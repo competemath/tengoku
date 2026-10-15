@@ -67,7 +67,9 @@ instance : CoeFun (PiecewiseC1Path x y) fun _ => ℝ → E where
 
 /-- The extended path is differentiable at every point of `(0, 1)` outside the partition.
 Same statement as the inherited `differentiable_off` but phrased in terms of `toPath.extend`
-instead of `toFun`. The two forms agree on `Icc 0 1` via `toPath_extend_eq_toFun`. -/
+instead of `toFun`. The two forms agree on `Icc 0 1` via `toPath_extend_eq_toFun`.
+@isnad1 id=differen.2h5v.s7.109a3fc1ed77 from=translated src=- shape=10d801e3 vocab=812c8dee
+-/
 theorem differentiable_off_extend (γ : PiecewiseC1Path x y) :
     ∀ t ∈ Ioo (0:ℝ) 1, t ∉ γ.partition → DifferentiableAt ℝ γ.toPath.extend t :=
   fun t ht htp => (γ.differentiable_off t ht htp).congr_of_eventuallyEq
@@ -75,22 +77,32 @@ theorem differentiable_off_extend (γ : PiecewiseC1Path x y) :
       fun u hu => γ.toPath_extend_eq_toFun u (Ioo_subset_Icc_self hu))
 
 /-- The derivative of the extended path is continuous at every point of `(0, 1)` outside
-the partition. Same statement as `deriv_continuous_off` but in terms of `toPath.extend`. -/
+the partition. Same statement as `deriv_continuous_off` but in terms of `toPath.extend`.
+@isnad1 id=continuo.2h5v.s7.d96f2aee75c7 from=translated src=- shape=839eb35e vocab=5d999699
+-/
 theorem deriv_continuous_off_extend (γ : PiecewiseC1Path x y) :
     ∀ t ∈ Ioo (0:ℝ) 1, t ∉ γ.partition → ContinuousAt (deriv γ.toPath.extend) t :=
   fun t ht htp => (γ.deriv_continuous_off t ht htp).congr
     (Filter.eventuallyEq_of_mem (isOpen_Ioo.mem_nhds ht)
       fun u hu => γ.toPath_extend_eq_toFun u (Ioo_subset_Icc_self hu)).deriv.symm
 
+/--
+@isnad1 id=eq.0h4v.s5.187371e7fed0 from=translated src=- shape=12d4d6b9 vocab=23560ff3
+-/
 @[simp]
 theorem apply_zero (γ : PiecewiseC1Path x y) : γ 0 = x :=
   γ.toPath.extend_zero
 
+/--
+@isnad1 id=eq.0h4v.s5.cda18d5b2125 from=translated src=- shape=97c21949 vocab=23560ff3
+-/
 @[simp]
 theorem apply_one (γ : PiecewiseC1Path x y) : γ 1 = y :=
   γ.toPath.extend_one
 
-/-- The underlying extended path is continuous. -/
+/-- The underlying extended path is continuous.
+@isnad1 id=continuo.0h4v.s5.f367f723e844 from=translated src=- shape=2415d7ea vocab=5672ab15
+-/
 @[fun_prop]
 theorem continuous (γ : PiecewiseC1Path x y) : Continuous (γ : ℝ → E) :=
   γ.toPath.continuous_extend
@@ -119,7 +131,9 @@ namespace PwC1Immersion
 instance : CoeFun (PwC1Immersion x y) fun _ => ℝ → E where
   coe γ := γ.toPiecewiseC1Path.extendedPath
 
-/-- The underlying extended path is continuous. -/
+/-- The underlying extended path is continuous.
+@isnad1 id=continuo.0h4v.s5.e6417677d70f from=translated src=- shape=344a899d vocab=a69a2cac
+-/
 @[fun_prop]
 theorem continuous (γ : PwC1Immersion x y) : Continuous (γ : ℝ → E) :=
   γ.toPiecewiseC1Path.continuous

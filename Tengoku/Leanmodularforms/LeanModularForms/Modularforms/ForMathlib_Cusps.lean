@@ -20,7 +20,9 @@ at infinity, by lifting along the `SL(2, ℤ)` action via
 open scoped MatrixGroups ModularForm UpperHalfPlane
 
 /-- If `f ∣[k] A` is zero at imaginary infinity for every `A ∈ 𝒮ℒ`, then `f` is zero at every
-cusp `c` of the arithmetic subgroup `𝒢`. -/
+cusp `c` of the arithmetic subgroup `𝒢`.
+@isnad1 id=iszeroat.2h4v.s9.5f3a1600308f from=translated src=- shape=6a36e555 vocab=dbd92186
+-/
 theorem zero_at_cusps_of_zero_at_infty {f : ℍ → ℂ} {c : OnePoint ℝ} {k : ℤ}
     {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] (hc : IsCusp c 𝒢)
     (hb : ∀ A ∈ 𝒮ℒ, UpperHalfPlane.IsZeroAtImInfty (f ∣[k] A)) : c.IsZeroAt f k := by

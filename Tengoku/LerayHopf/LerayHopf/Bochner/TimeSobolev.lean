@@ -216,7 +216,9 @@ noncomputable def GelfandTriple.hToVprimeCLM (GT : GelfandTriple) :
     (innerSL ℝ : GT.H →L[ℝ] (GT.H →L[ℝ] ℝ))
 
 /-- The bundled continuous linear map `hToVprimeCLM` agrees pointwise with the (unbundled)
-Riesz embedding `hToVprime`. -/
+Riesz embedding `hToVprime`.
+@isnad1 id=eq.0h2v.s9.89c39b14d1bb from=translated src=- shape=edf96a52 vocab=4e6da1a7
+-/
 @[simp] theorem GelfandTriple.hToVprimeCLM_apply (GT : GelfandTriple) :
     letI := GT.instNACG_H;
     (h : GT.H) → GT.hToVprimeCLM h = GT.hToVprime h := by
@@ -242,7 +244,9 @@ integrability follows from continuity of the integrand on a compact domain) and 
 `s1-walls-design.md`); the interval integrability side-conditions collapse because
 compactness of `tsupport ψ` gives integrability for free.
 
-Tier: **Sonnet** (mechanical port of `isWeakTimeDeriv_comp_clm`). -/
+Tier: **Sonnet** (mechanical port of `isWeakTimeDeriv_comp_clm`).
+@isnad1 id=isweakti.3h5v.s9.d7b88ed49bd0 from=translated src=- shape=df502067 vocab=418e3ad0
+-/
 theorem isWeakTimeDerivℝ_comp_clm {X Y : Type*}
     [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
     [NormedAddCommGroup Y] [NormedSpace ℝ Y] [CompleteSpace Y]
@@ -327,7 +331,9 @@ subsequence; the first conjunct is `hg` itself, kept in the conclusion so the le
 "measurable representative + a.e. subsequence" for its E1-style consumer.
 
 **Proved** (sorry-free). Route: `tendstoInMeasure_of_tendsto_eLpNorm` (needs `hg`)
-⇒ `TendstoInMeasure.exists_seq_tendsto_ae`. -/
+⇒ `TendstoInMeasure.exists_seq_tendsto_ae`.
+@isnad1 id=and.3h4v.s7.996f0a3b02c5 from=translated src=- shape=381560c3 vocab=01cc745f
+-/
 theorem aeStronglyMeasurable_of_spaceTimeL2
     {μ : Measure ℝ} {f : ℕ → ℝ → β} {g : ℝ → β}
     (hf : ∀ n, AEStronglyMeasurable (f n) μ)
@@ -367,7 +373,9 @@ of a non-measurable function) so `hconv` holds, yet `{t : ‖g t‖ > 1} = V` is
 null set (positive outer measure), so `∀ᵐ t, ‖g t‖ ≤ 1` FAILS. The norm bound on the limit
 genuinely needs `g` measurable. No-smuggle: `hg` asserts only measurability of `g`.
 
-**Proved** (sorry-free), given `hg`. -/
+**Proved** (sorry-free), given `hg`.
+@isnad1 id=eventual.4h5v.s7.0bf887021980 from=translated src=- shape=1eb48116 vocab=59cc62e4
+-/
 theorem kineticEnergy_lsc_transfer {β : Type*} [NormedAddCommGroup β]
     {μ : Measure ℝ} {f : ℕ → ℝ → β} {g : ℝ → β} {M : ℝ}
     (hf : ∀ n, AEStronglyMeasurable (f n) μ)

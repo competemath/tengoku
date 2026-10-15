@@ -68,12 +68,16 @@ noncomputable def schwartzC (f : SchwartzMap Domain3 ℝ) : SchwartzMap Domain3 
   f.postcompCLM (RCLike.ofRealCLM (K := ℂ))
 
 /-- The complexification `schwartzC f` evaluates pointwise as the real-to-complex coercion of
-`f`. -/
+`f`.
+@isnad1 id=eq.0h2v.s9.ad685db81717 from=translated src=- shape=ea5bac77 vocab=569e98d5
+-/
 theorem schwartzC_apply (f : SchwartzMap Domain3 ℝ) (x : Domain3) :
     schwartzC f x = (f x : ℂ) := rfl
 
 /-- The complex L²-class of a complexified real Schwartz map is the `compLpL`-embedding of the
-real class — i.e. exactly `potentialComponentC`-shaped. -/
+real class — i.e. exactly `potentialComponentC`-shaped.
+@isnad1 id=eq.0h1v.s16.fb15942707d2 from=translated src=- shape=1e4a556a vocab=0cf7313d
+-/
 theorem toLp_schwartzC_eq (f : SchwartzMap Domain3 ℝ) :
     (schwartzC f).toLp 2 (volume : Measure Domain3)
       = (RCLike.ofRealCLM (K := ℂ)).compLpL 2 (volume : Measure Domain3)
@@ -90,7 +94,9 @@ theorem toLp_schwartzC_eq (f : SchwartzMap Domain3 ℝ) :
 
 Moved here from `CurlDensity.lean` (issue #113 PR-2), kept public (not `private` as on `main`):
 `CurlDensity.lean`'s own remaining Schwartz-Fourier machinery and `StokesFourier.lean` both
-reference it and `fourier_schwartzC_lineDeriv_apply` by name. -/
+reference it and `fourier_schwartzC_lineDeriv_apply` by name.
+@isnad1 id=eq.0h2v.s10.8d4396da4739 from=translated src=- shape=82685943 vocab=09aaa747
+-/
 theorem lineDerivOp_schwartzC (f : SchwartzMap Domain3 ℝ) (m : Domain3) :
     (∂_{m} (schwartzC f)) = schwartzC (∂_{m} f) := by
   ext x
@@ -110,7 +116,9 @@ direction `m`, the Schwartz Fourier transform of `schwartzC (∂_m f)` at `ξ` i
 `(2π i)(inner ℝ ξ m)·𝓕(schwartzC f)(ξ)`.
 
 This is `fourier_lineDerivOp_eq` applied to the complexified map `schwartzC f`, using
-`lineDerivOp_schwartzC` to identify `schwartzC (∂_m f) = ∂_m (schwartzC f)`. -/
+`lineDerivOp_schwartzC` to identify `schwartzC (∂_m f) = ∂_m (schwartzC f)`.
+@isnad1 id=eq.0h3v.s10.a061dd65b1c7 from=translated src=- shape=b5172776 vocab=d0690d50
+-/
 theorem fourier_schwartzC_lineDeriv_apply
     (f : SchwartzMap Domain3 ℝ) (m : Domain3) (ξ : Domain3) :
     (𝓕 (schwartzC (∂_{m} f)) : SchwartzMap Domain3 ℂ) ξ
@@ -133,7 +141,9 @@ transform of its complexification satisfies `𝓕(schwartzC φ)(-ξ) = conj (�
 This is the conjugate symmetry of the Fourier transform of a (complexified) real function:
 pushing `conj` through the integral defining `𝓕`, the unit-modulus character contributes
 `conj(𝐞(-⟪v,ξ⟫)) = 𝐞(⟪v,ξ⟫) = 𝐞(-⟪v,-ξ⟫)`, while `conj` acts trivially on the real-valued
-integrand `schwartzC φ`. -/
+integrand `schwartzC φ`.
+@isnad1 id=eq.0h2v.s10.304dfc5a5816 from=translated src=- shape=2285a0a6 vocab=7c69a5f6
+-/
 theorem fourier_schwartzC_hermitian (φ : SchwartzMap Domain3 ℝ) (ξ : Domain3) :
     (𝓕 (schwartzC φ) : SchwartzMap Domain3 ℂ) (-ξ)
       = (starRingEnd ℂ) ((𝓕 (schwartzC φ) : SchwartzMap Domain3 ℂ) ξ) := by
@@ -155,7 +165,9 @@ theorem fourier_schwartzC_hermitian (φ : SchwartzMap Domain3 ℝ) (ξ : Domain3
   rw [← Circle.coe_inv_eq_conj, ← AddChar.map_neg_eq_inv, neg_neg]
 
 /-- The complex L²-inner product of the complexifications of two real Lp components equals the
-cast of their real L²-inner product.  Both sides are the integral of the pointwise product. -/
+cast of their real L²-inner product.  Both sides are the integral of the pointwise product.
+@isnad1 id=eq.0h2v.s17.17eaf1da88de from=translated src=- shape=e71ded37 vocab=4cde96de
+-/
 theorem complexInner_compLpL_ofReal
     (a b : Lp ℝ 2 (volume : Measure Domain3)) :
     (inner ℂ ((RCLike.ofRealCLM (K := ℂ)).compLpL 2 (volume : Measure Domain3) a)
@@ -188,7 +200,9 @@ theorem complexInner_compLpL_ofReal
         integral_ofReal
 
 /-- **Component decomposition of the `L2VF_R3` inner product.**  The real inner product on
-`L2VF_R3 = L²(ℝ³; ℝ³)` is the sum over the three coordinates of the component inner products. -/
+`L2VF_R3 = L²(ℝ³; ℝ³)` is the sum over the three coordinates of the component inner products.
+@isnad1 id=eq.0h2v.s17.2b4e78d98ab7 from=translated src=- shape=82366177 vocab=9f07e472
+-/
 theorem inner_L2VF_eq_sum_component (a b : L2VF_R3) :
     (inner ℝ a b : ℝ)
       = ∑ j : Fin 3, (inner ℝ (L2VF_projComponent_R3 j a) (L2VF_projComponent_R3 j b) : ℝ) := by
@@ -236,7 +250,9 @@ Fourier transforms:
 
 Assembles `inner_L2VF_eq_sum_component` (vector → component inners), `complexInner_compLpL_ofReal`
 (real → complex component inner), `Lp.inner_fourier_eq` (Plancherel per component), and the
-finite-sum/integral swap. -/
+finite-sum/integral swap.
+@isnad1 id=eq.0h2v.s17.46fd20744618 from=translated src=- shape=7d013dd4 vocab=d650c186
+-/
 theorem inner_L2VF_eq_integral_sum_fourier (a b : L2VF_R3) :
     ((inner ℝ a b : ℝ) : ℂ)
       = ∫ ξ : Domain3, ∑ j : Fin 3,
@@ -307,7 +323,9 @@ blockers (the `(P1)` reflection identity).  It is genuine analysis, axiom-free, 
 Pointwise integral argument (mirrors `fourier_schwartzC_hermitian`): pushing `conj` into the
 integral defining `𝓕 g ξ = ∫ 𝐞(-⟪v,ξ⟫) g v` turns the unit-modulus character into its
 inverse `𝐞(⟪v,ξ⟫)` and conjugates the integrand to `g(-v)` (Hermitian); the substitution
-`v ↦ -v` (negation is measure preserving) restores `∫ 𝐞(-⟪v,ξ⟫) g v = 𝓕 g ξ`. -/
+`v ↦ -v` (negation is measure preserving) restores `∫ 𝐞(-⟪v,ξ⟫) g v = 𝓕 g ξ`.
+@isnad1 id=eq.1h2v.s11.7c767fec232f from=translated src=- shape=56126b6f vocab=5b211c8a
+-/
 theorem fourier_hermitian_real
     (g : SchwartzMap Domain3 ℂ)
     (hg : ∀ v : Domain3, g (-v) = (starRingEnd ℂ) (g v)) (ξ : Domain3) :
@@ -355,7 +373,9 @@ then there exists `φ : 𝓢(ℝ³, ℝ)` such that `testSymbol φ = h`.
 
 Key Mathlib decls: `SchwartzMap.postcompCLM`, `Complex.conjCLE`, `RCLike.reCLM`,
 `FourierTransform.fourierCLE` (symm), `FourierInvPair`,
-`fourier_ofReal_reflect_eq_conj` (item 9, proved above). -/
+`fourier_ofReal_reflect_eq_conj` (item 9, proved above).
+@isnad1 id=ex.1h1v.s10.b4147e4579c1 from=translated src=- shape=12076114 vocab=7e049bfc
+-/
 theorem schwartz_antiHermitian_has_testSymbol_preimage
     (h : SchwartzMap Domain3 ℂ)
     (hH : ∀ ξ : Domain3, h (-ξ) = -(starRingEnd ℂ) (h ξ)) :
@@ -429,7 +449,9 @@ theorem schwartz_antiHermitian_has_testSymbol_preimage
 Same even/odd reduction as the forward direction of `mem_sigma_iff_fourier_transverse`, but
 the parity assignment is mirrored: for a real smooth compactly-supported test `g`, the
 even part `gE = g + g∘neg` complexifies to a *Hermitian* symbol directly, while `i·gO`
-(`gO = g − g∘neg`) is Hermitian; both feed the hypothesis, and `2g = gE + gO`. -/
+(`gO = g − g∘neg`) is Hermitian; both feed the hypothesis, and `2g = gE + gO`.
+@isnad1 id=eventual.2h1v.s11.bfbe5043f51e from=translated src=- shape=bec6d807 vocab=ef702964
+-/
 theorem ae_zero_of_hermitianTest
     (f : Domain3 → ℂ) (hf : LocallyIntegrable f (volume : Measure Domain3))
     (htest : ∀ G : SchwartzMap Domain3 ℂ, (∀ ξ : Domain3, G (-ξ) = (starRingEnd ℂ) (G ξ)) →
@@ -518,7 +540,9 @@ theorem ae_zero_of_hermitianTest
 `G` (`G(-ξ) = conj(G ξ)`) is `𝓕 (schwartzC φ)` for some *real* Schwartz `φ`.  Same construction
 as `schwartz_antiHermitian_has_testSymbol_preimage` (P2), minus the `testSymbol` wrapper:
 `Φ = 𝓕⁻ G` is real-valued (`fourier_hermitian_real`), `φ = Re ∘ Φ`, and
-`𝓕 (schwartzC φ) = 𝓕 (𝓕⁻ G) = G`. -/
+`𝓕 (schwartzC φ) = 𝓕 (𝓕⁻ G) = G`.
+@isnad1 id=ex.1h1v.s10.49c8c1715e38 from=translated src=- shape=29139968 vocab=7c69a5f6
+-/
 theorem schwartz_hermitian_has_fourier_preimage
     (G : SchwartzMap Domain3 ℂ) (hH : ∀ ξ : Domain3, G (-ξ) = (starRingEnd ℂ) (G ξ)) :
     ∃ φ : SchwartzMap Domain3 ℝ, (𝓕 (schwartzC φ) : SchwartzMap Domain3 ℂ) = G := by

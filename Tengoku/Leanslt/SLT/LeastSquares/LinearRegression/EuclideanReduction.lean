@@ -50,23 +50,37 @@ def empiricalToEuclidean (n : ℕ) (v : EmpiricalSpace n) : EuclideanSpace ℝ (
 def euclideanToEmpirical (n : ℕ) (v : EuclideanSpace ℝ (Fin n)) : EmpiricalSpace n :=
   WithLp.equiv 2 (Fin n → ℝ) v
 
+/--
+@isnad1 id=eq.0h2v.s3.6e21a2d53e09 from=translated src=- shape=6ddf6d3e vocab=4c7f301b
+-/
 @[simp]
 lemma euclideanToEmpirical_empiricalToEuclidean (v : EmpiricalSpace n) :
     euclideanToEmpirical n (empiricalToEuclidean n v) = v := by
   simp [euclideanToEmpirical, empiricalToEuclidean]
 
+/--
+@isnad1 id=eq.0h2v.s4.0e3d2c61acdb from=translated src=- shape=4e1595b8 vocab=d2b153ff
+-/
 @[simp]
 lemma empiricalToEuclidean_euclideanToEmpirical (v : EuclideanSpace ℝ (Fin n)) :
     empiricalToEuclidean n (euclideanToEmpirical n v) = v := by
   simp [euclideanToEmpirical, empiricalToEuclidean]
 
+/--
+@isnad1 id=eq.0h3v.s5.7dd0db002636 from=translated src=- shape=e18a765e vocab=f4043019
+-/
 lemma empiricalToEuclidean_apply (v : EmpiricalSpace n) (i : Fin n) :
     empiricalToEuclidean n v i = v i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.eb701c4d55be from=translated src=- shape=4ef26fb0 vocab=8068eb00
+-/
 lemma euclideanToEmpirical_apply (v : EuclideanSpace ℝ (Fin n)) (i : Fin n) :
     euclideanToEmpirical n v i = v i := rfl
 
-/-- Distance in EuclideanSpace equals √n times distance in EmpiricalSpace -/
+/-- Distance in EuclideanSpace equals √n times distance in EmpiricalSpace
+@isnad1 id=eq.1h3v.s6.9ba1f3fcd788 from=translated src=- shape=5e9df880 vocab=2535f808
+-/
 theorem dist_euclidean_eq_sqrt_n_mul_dist_empirical (hn : 0 < n)
     (v₁ v₂ : EmpiricalSpace n) :
     dist (empiricalToEuclidean n v₁) (empiricalToEuclidean n v₂) =
@@ -94,7 +108,9 @@ theorem dist_euclidean_eq_sqrt_n_mul_dist_empirical (hn : 0 < n)
   calc Real.sqrt S = Real.sqrt (n * ((n : ℝ)⁻¹ * S)) := by rw [mul_inv_cancel_left₀ hn_ne S]
     _ = Real.sqrt n * Real.sqrt ((n : ℝ)⁻¹ * S) := Real.sqrt_mul hn_nonneg _
 
-/-- Norm in EuclideanSpace equals √n times empirical norm -/
+/-- Norm in EuclideanSpace equals √n times empirical norm
+@isnad1 id=eq.1h2v.s6.20e650f75326 from=translated src=- shape=9abc8e5a vocab=4ed46f0f
+-/
 theorem norm_euclidean_eq_sqrt_n_mul_empiricalNorm (hn : 0 < n) (v : EmpiricalSpace n) :
     ‖empiricalToEuclidean n v‖ = Real.sqrt n * empiricalNorm n v := by
   have h := dist_euclidean_eq_sqrt_n_mul_dist_empirical hn v 0
@@ -122,7 +138,9 @@ def euclideanLocalizedBall (n d : ℕ) (δ : ℝ) (x : Fin n → EuclideanSpace 
     Set (EuclideanSpace ℝ (Fin n)) :=
   euclideanBallOrigin n (δ * Real.sqrt n) ∩ designMatrixRange n d x
 
-/-- Membership in Euclidean localized ball via parameter θ -/
+/-- Membership in Euclidean localized ball via parameter θ
+@isnad1 id=iff.1h5v.s6.f8e6d00d8456 from=translated src=- shape=9571142d vocab=d5e17756
+-/
 theorem mem_euclideanLocalizedBall_iff (_hn : 0 < n)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) (v : EuclideanSpace ℝ (Fin n)) :
     v ∈ euclideanLocalizedBall n d δ x ↔
@@ -136,7 +154,9 @@ theorem mem_euclideanLocalizedBall_iff (_hn : 0 < n)
     exact ⟨hball, θ, rfl⟩
 
 /-- The empirical image maps to the Euclidean localized ball under the scaling.
-    More precisely: empiricalToEuclidean '' linearLocalizedBallImage = euclideanLocalizedBall -/
+    More precisely: empiricalToEuclidean '' linearLocalizedBallImage = euclideanLocalizedBall
+@isnad1 id=eq.1h4v.s5.5fa46e2faf3d from=translated src=- shape=b26d7ce0 vocab=5d291a83
+-/
 theorem empiricalToEuclidean_image_eq (hn : 0 < n)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) :
     empiricalToEuclidean n '' linearLocalizedBallImage n d δ x =
@@ -198,7 +218,9 @@ theorem empiricalToEuclidean_image_eq (hn : 0 < n)
         | (all_goals decide; done; trace "PORTFOLIO-OK decide")
         | (all_goals tauto; done; trace "PORTFOLIO-OK tauto")
 
-/-- empiricalToEuclidean is a bijection from EmpiricalSpace to EuclideanSpace -/
+/-- empiricalToEuclidean is a bijection from EmpiricalSpace to EuclideanSpace
+@isnad1 id=bijectiv.0h1v.s3.3cceeb044b35 from=translated src=- shape=bf1e441f vocab=5de10924
+-/
 lemma empiricalToEuclidean_bijective : Function.Bijective (empiricalToEuclidean n) := by
   constructor
   · -- Injective
@@ -212,7 +234,9 @@ lemma empiricalToEuclidean_bijective : Function.Bijective (empiricalToEuclidean 
     use euclideanToEmpirical n v
     simp
 
-/-- Scaling property: for any s > 0, an s-net in EmpiricalSpace induces an (s√n)-net in EuclideanSpace -/
+/-- Scaling property: for any s > 0, an s-net in EmpiricalSpace induces an (s√n)-net in EuclideanSpace
+@isnad1 id=isenet.2h4v.s7.7527ec878f88 from=translated src=- shape=f56c99a9 vocab=64cc8dde
+-/
 theorem isENet_empiricalToEuclidean_image (hn : 0 < n)
     {t : Finset (EmpiricalSpace n)} {s : ℝ} {S : Set (EmpiricalSpace n)}
     (hnet : IsENet t s S) :
@@ -244,7 +268,9 @@ noncomputable def designMatrixRangeSubmodule (x : Fin n → EuclideanSpace ℝ (
     Submodule ℝ (EuclideanSpace ℝ (Fin n)) :=
   LinearMap.range (designMatrixLinearMap x)
 
-/-- When the design matrix has full column rank, the range is d-dimensional -/
+/-- When the design matrix has full column rank, the range is d-dimensional
+@isnad1 id=eq.1h3v.s9.67dde48384e5 from=translated src=- shape=89d28730 vocab=2dbd7a8c
+-/
 lemma designMatrixRange_finrank_eq_of_injective
     (x : Fin n → EuclideanSpace ℝ (Fin d))
     (hinj : Function.Injective (designMatrixMul x)) :
@@ -263,7 +289,9 @@ the full-rank assumption to arbitrary matrices. -/
 noncomputable def designMatrixRank (x : Fin n → EuclideanSpace ℝ (Fin d)) : ℕ :=
   Module.finrank ℝ (designMatrixRangeSubmodule x)
 
-/-- Rank is at most d (the column dimension) -/
+/-- Rank is at most d (the column dimension)
+@isnad1 id=le.0h3v.s4.35fafc19eca2 from=translated src=- shape=db695c16 vocab=b48f31a2
+-/
 lemma designMatrixRank_le_d (x : Fin n → EuclideanSpace ℝ (Fin d)) :
     designMatrixRank x ≤ d := by
   unfold designMatrixRank designMatrixRangeSubmodule
@@ -271,14 +299,18 @@ lemma designMatrixRank_le_d (x : Fin n → EuclideanSpace ℝ (Fin d)) :
       ≤ Module.finrank ℝ (EuclideanSpace ℝ (Fin d)) := LinearMap.finrank_range_le _
     _ = d := by simp only [finrank_euclideanSpace, Fintype.card_fin]
 
-/-- Rank equals d when X is injective (backward compatibility) -/
+/-- Rank equals d when X is injective (backward compatibility)
+@isnad1 id=eq.1h3v.s5.775ebc6345af from=translated src=- shape=e6838338 vocab=4ebc2bf6
+-/
 lemma designMatrixRank_eq_d_of_injective (x : Fin n → EuclideanSpace ℝ (Fin d))
     (hinj : Function.Injective (designMatrixMul x)) :
     designMatrixRank x = d := by
   unfold designMatrixRank
   exact designMatrixRange_finrank_eq_of_injective x hinj
 
-/-- Rank is positive iff range is nontrivial (i.e., ∃ θ, Xθ ≠ 0) -/
+/-- Rank is positive iff range is nontrivial (i.e., ∃ θ, Xθ ≠ 0)
+@isnad1 id=iff.0h3v.s6.b265d34853ba from=translated src=- shape=89394c02 vocab=c610441c
+-/
 lemma designMatrixRank_pos_iff (x : Fin n → EuclideanSpace ℝ (Fin d)) :
     0 < designMatrixRank x ↔ ∃ θ, designMatrixMul x θ ≠ 0 := by
   unfold designMatrixRank designMatrixRangeSubmodule
@@ -303,7 +335,9 @@ lemma designMatrixRank_pos_iff (x : Fin n → EuclideanSpace ℝ (Fin d)) :
     apply hθ
     exact Subtype.ext_iff.mp h
 
-/-- The range submodule is nontrivial when rank is positive -/
+/-- The range submodule is nontrivial when rank is positive
+@isnad1 id=ne.1h3v.s8.a72d7f3206cd from=translated src=- shape=2b51d471 vocab=d79c8bef
+-/
 lemma designMatrixRangeSubmodule_ne_bot_of_rank_pos (x : Fin n → EuclideanSpace ℝ (Fin d))
     (hr : 0 < designMatrixRank x) :
     designMatrixRangeSubmodule x ≠ ⊥ := by
@@ -325,14 +359,18 @@ noncomputable def designMatrixEquiv (x : Fin n → EuclideanSpace ℝ (Fin d))
 
 /-- The design matrix induces an isometry from ℝ^d to its range when properly normalized.
     More precisely, if we consider the range with the induced Euclidean norm,
-    then the map preserves the norm structure. -/
+    then the map preserves the norm structure.
+@isnad1 id=mem.0h4v.s5.c19776e18f71 from=translated src=- shape=2b442a9b vocab=69dedb42
+-/
 lemma designMatrixMul_mem_range (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) :
     designMatrixMul x θ ∈ designMatrixRange n d x := by
   unfold designMatrixRange
   exact ⟨θ, rfl⟩
 
-/-- The euclidean localized ball is contained in a ball in ℝ^n -/
+/-- The euclidean localized ball is contained in a ball in ℝ^n
+@isnad1 id=le.0h4v.s7.6c2163635729 from=translated src=- shape=cb70b5c9 vocab=96b7a79f
+-/
 lemma euclideanLocalizedBall_subset_ball (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) :
     euclideanLocalizedBall n d δ x ⊆
     Metric.closedBall (0 : EuclideanSpace ℝ (Fin n)) (δ * Real.sqrt n) := by
@@ -340,7 +378,9 @@ lemma euclideanLocalizedBall_subset_ball (x : Fin n → EuclideanSpace ℝ (Fin 
   unfold euclideanLocalizedBall euclideanBallOrigin at hv
   exact hv.1
 
-/-- The euclidean localized ball is contained in the range of X -/
+/-- The euclidean localized ball is contained in the range of X
+@isnad1 id=le.0h4v.s5.2a6df4897dd1 from=translated src=- shape=31c5c039 vocab=e0b340af
+-/
 lemma euclideanLocalizedBall_subset_range (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) :
     euclideanLocalizedBall n d δ x ⊆ designMatrixRange n d x := by
   intro v hv
@@ -349,7 +389,9 @@ lemma euclideanLocalizedBall_subset_range (x : Fin n → EuclideanSpace ℝ (Fin
 
 /-- Any d-dimensional subspace of a Euclidean space admits an isometric linear equivalence to ℝ^d.
     This is a fundamental result: all finite-dimensional inner product spaces of the same dimension
-    are isometrically isomorphic. -/
+    are isometrically isomorphic.
+@isnad1 id=nonempty.2h3v.s10.8db60a4409bb from=translated src=- shape=c30beda0 vocab=98fb2eca
+-/
 lemma exists_linearIsometryEquiv_of_finrank_eq (hd : 0 < d) (V : Submodule ℝ (EuclideanSpace ℝ (Fin n)))
     (hV : Module.finrank ℝ V = d) :
     Nonempty (V ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin d)) := by
@@ -364,7 +406,9 @@ lemma exists_linearIsometryEquiv_of_finrank_eq (hd : 0 < d) (V : Submodule ℝ (
   -- b'.repr gives V ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin d)
   exact ⟨b'.repr⟩
 
-/-- The ball in a subspace V equals the intersection of the ambient ball with V -/
+/-- The ball in a subspace V equals the intersection of the ambient ball with V
+@isnad1 id=eq.0h3v.s12.8f49973f0ff5 from=translated src=- shape=13b49a24 vocab=82715204
+-/
 lemma submodule_closedBall_eq_inter (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) (r : ℝ) :
     V.subtypeL '' (Metric.closedBall (0 : V) r) =
     Metric.closedBall (0 : EuclideanSpace ℝ (Fin n)) r ∩ V := by
@@ -388,7 +432,9 @@ lemma submodule_closedBall_eq_inter (V : Submodule ℝ (EuclideanSpace ℝ (Fin 
       exact hball
     · simp only [Submodule.subtypeL_apply]
 
-/-- Linear isometry equivalence preserves closed balls -/
+/-- Linear isometry equivalence preserves closed balls
+@isnad1 id=eq.0h4v.s8.57f75f10b1d9 from=translated src=- shape=3cecc579 vocab=c6474ff1
+-/
 lemma LinearIsometryEquiv.image_closedBall {E F : Type*} [NormedAddCommGroup E]
     [NormedAddCommGroup F] [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
     (e : E ≃ₗᵢ[ℝ] F) (r : ℝ) :

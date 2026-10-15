@@ -25,13 +25,17 @@ open Complex Set
 
 noncomputable section
 
-/-- The argument of `r * I` is `π/2` for `r > 0`. -/
+/-- The argument of `r * I` is `π/2` for `r > 0`.
+@isnad1 id=eq.1h1v.s5.ce2f59807643 from=translated src=- shape=25b4244b vocab=79f40c23
+-/
 theorem arg_ofReal_mul_I (r : ℝ) (hr : 0 < r) :
     arg (↑r * I) = Real.pi / 2 := by
   rw [Complex.arg_real_mul _ hr, Complex.arg_I]
 
 /-- The derivative of the arc parametrization.
-`d/dt exp(i·θ(t)) = (5π/6) · i · exp(i·θ(t))`. -/
+`d/dt exp(i·θ(t)) = (5π/6) · i · exp(i·θ(t))`.
+@isnad1 id=eq.0h1v.s7.58295008b678 from=translated src=- shape=44d7d9f7 vocab=1996c2bd
+-/
 theorem fdBoundary_arc_deriv_eq (t : ℝ) :
     deriv (fun s => exp (↑(fdArcAngle s) * I)) t =
       ↑(5 * Real.pi / 6) * I * exp (↑(fdArcAngle t) * I) := by

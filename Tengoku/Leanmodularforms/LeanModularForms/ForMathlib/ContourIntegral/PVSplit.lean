@@ -35,7 +35,9 @@ For ε, δ > 0 with δ < min(t₀ - a, b - t₀), if:
 
 then the full cutoff integral equals the sum of the left and right integrals of
 `(γ t - s)⁻¹ * deriv γ t`. The middle piece vanishes because the cutoff sets the
-integrand to 0 whenever ‖γ t - s‖ ≤ ε. -/
+integrand to 0 whenever ‖γ t - s‖ ≤ ε.
+@isnad1 id=eq.9h7v.s9.963a54b372ee from=translated src=- shape=0cc962c5 vocab=f48ebcea
+-/
 theorem pv_split_at_crossing {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ} {ε δ t₀ : ℝ}
     (_hab : a < b) (ht₀ : t₀ ∈ Ioo a b) (_hε : 0 < ε) (hδ : 0 < δ)
     (hδ_small : δ < min (t₀ - a) (b - t₀))

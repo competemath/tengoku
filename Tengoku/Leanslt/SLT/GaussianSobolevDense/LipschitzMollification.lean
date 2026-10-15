@@ -38,7 +38,9 @@ variable {n : ℕ}
 
 /-! ### Auxiliary Integrability Lemmas -/
 
-/-- Helper: f(x - ·) * ρ_ε is integrable when f is continuous and ρ_ε has compact support. -/
+/-- Helper: f(x - ·) * ρ_ε is integrable when f is continuous and ρ_ε has compact support.
+@isnad1 id=integrab.2h4v.s8.3e766d2d88e4 from=translated src=- shape=94f6e087 vocab=119776cb
+-/
 lemma mollify_integrand_integrable {f : E n → ℝ} (hf_cont : Continuous f)
     {ε : ℝ} (hε : 0 < ε) (x : E n) :
     Integrable (fun y => f (x - y) * stdMollifierPi n ε y) volume := by
@@ -49,7 +51,9 @@ lemma mollify_integrand_integrable {f : E n → ℝ} (hf_cont : Continuous f)
     (stdMollifierPi_hasCompactSupport hε).mul_left
   exact hprod_cont.integrable_of_hasCompactSupport hprod_supp
 
-/-- Helper: constant * ρ_ε is integrable. -/
+/-- Helper: constant * ρ_ε is integrable.
+@isnad1 id=integrab.1h3v.s7.088e524a5abc from=translated src=- shape=dede48e0 vocab=069ce3db
+-/
 lemma mollify_const_integrable {c : ℝ} {ε : ℝ} (hε : 0 < ε) :
     Integrable (fun y : E n => c * stdMollifierPi n ε y) volume :=
   Integrable.const_mul ((stdMollifierPi_contDiff hε).continuous.integrable_of_hasCompactSupport
@@ -57,7 +61,9 @@ lemma mollify_const_integrable {c : ℝ} {ε : ℝ} (hε : 0 < ε) :
 
 /-! ### Lipschitz Preservation under Mollification -/
 
-/-- Mollification preserves Lipschitz constant. -/
+/-- Mollification preserves Lipschitz constant.
+@isnad1 id=lipschit.2h4v.s6.e112059ac9ec from=translated src=- shape=d7894479 vocab=89b1f097
+-/
 lemma mollify_lipschitzWith {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ} (hε : 0 < ε)
     (hf : LipschitzWith L f) : LipschitzWith L (mollify ε f) :=
   LipschitzWith.of_dist_le_mul fun x y => by
@@ -103,7 +109,9 @@ lemma mollify_lipschitzWith {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ} (hε : 0 
       _ = (L : ℝ) * dist x y := by
           rw [stdMollifierPi_integral_eq_one hε, mul_one]
 
-/-- Mollification of a Lipschitz function is smooth (C^∞). -/
+/-- Mollification of a Lipschitz function is smooth (C^∞).
+@isnad1 id=contdiff.2h4v.s7.397ec75104fc from=translated src=- shape=b0ac2bd8 vocab=b0ede55b
+-/
 lemma mollify_smooth_of_lipschitz {f : E n → ℝ} {L : ℝ≥0}
     (hf : LipschitzWith L f) {ε : ℝ} (hε : 0 < ε) :
     ContDiff ℝ (⊤ : ℕ∞) (mollify ε f) := by
@@ -114,7 +122,9 @@ lemma mollify_smooth_of_lipschitz {f : E n → ℝ} {L : ℝ≥0}
   · exact h_int
   · exact stdMollifierPi_contDiff hε
 
-/-- Gradient of mollified Lipschitz function is uniformly bounded by the Lipschitz constant. -/
+/-- Gradient of mollified Lipschitz function is uniformly bounded by the Lipschitz constant.
+@isnad1 id=le.2h5v.s9.8f8db87023bd from=translated src=- shape=6666fdf0 vocab=f1d4d5de
+-/
 lemma sup_norm_fderiv_le_of_mollify_lipschitz {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ}
     (hε : 0 < ε) (hf : LipschitzWith L f) (x : E n) :
     ‖fderiv ℝ (mollify ε f) x‖ ≤ L := by
@@ -130,14 +140,18 @@ This is ∫ ‖z‖ * ρ₁(z) dz where ρ₁ is the unit-scale mollifier. -/
 noncomputable def mollifierFirstMoment (n : ℕ) : ℝ :=
   ∫ z : E n, ‖z‖ * stdMollifierPi n 1 z
 
-/-- The first moment of the mollifier is finite and nonnegative. -/
+/-- The first moment of the mollifier is finite and nonnegative.
+@isnad1 id=le.0h1v.s3.4ed56fa595b3 from=translated src=- shape=b9369acb vocab=23e1e390
+-/
 lemma mollifierFirstMoment_nonneg : 0 ≤ mollifierFirstMoment n := by
   unfold mollifierFirstMoment
   apply integral_nonneg
   intro z
   exact mul_nonneg (norm_nonneg _) (stdMollifierPi_nonneg 1 one_pos z)
 
-/-- Integrability of ‖z‖ * ρ_ε(z) (the mollifier has compact support). -/
+/-- Integrability of ‖z‖ * ρ_ε(z) (the mollifier has compact support).
+@isnad1 id=integrab.1h2v.s8.7e0bc3428173 from=translated src=- shape=f8819f64 vocab=4e09dda3
+-/
 lemma integrable_norm_mul_stdMollifierPi {ε : ℝ} (hε : 0 < ε) :
     Integrable (fun z : E n => ‖z‖ * stdMollifierPi n ε z) volume := by
   -- ‖z‖ * ρ_ε(z) is continuous
@@ -148,7 +162,9 @@ lemma integrable_norm_mul_stdMollifierPi {ε : ℝ} (hε : 0 < ε) :
     (stdMollifierPi_hasCompactSupport hε).mul_left
   exact h_cont.integrable_of_hasCompactSupport h_supp
 
-/-- Quantitative mollification approximation error for Lipschitz functions. -/
+/-- Quantitative mollification approximation error for Lipschitz functions.
+@isnad1 id=le.2h5v.s8.320c89e08a05 from=translated src=- shape=035a2f69 vocab=3e4ed775
+-/
 theorem mollify_dist_le_of_lipschitz {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ}
     (hε : 0 < ε) (hf : LipschitzWith L f) (x : E n) :
     dist (mollify ε f x) (f x) ≤ L * ∫ z : E n, ‖z‖ * stdMollifierPi n ε z := by
@@ -195,7 +211,9 @@ theorem mollify_dist_le_of_lipschitz {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ}
 /-- The first moment integral ∫ ‖z‖ * ρ_ε(z) dz is bounded by ε * √n.
 
 On the support of ρ_ε (contained in closedBall 0 (ε√n)), we have ‖z‖ ≤ ε√n.
-Since ∫ ρ_ε = 1, we get ∫ ‖z‖ * ρ_ε ≤ ε√n. -/
+Since ∫ ρ_ε = 1, we get ∫ ‖z‖ * ρ_ε ≤ ε√n.
+@isnad1 id=le.1h2v.s8.0efa1b35a182 from=translated src=- shape=b8cdc79c vocab=f3f28c82
+-/
 lemma integral_norm_mul_stdMollifierPi_le {ε : ℝ} (hε : 0 < ε) :
     ∫ z : E n, ‖z‖ * stdMollifierPi n ε z ≤ ε * Real.sqrt n := by
   calc ∫ z : E n, ‖z‖ * stdMollifierPi n ε z
@@ -224,6 +242,7 @@ lemma integral_norm_mul_stdMollifierPi_le {ε : ℝ} (hε : 0 < ε) :
 
 Combines the general bound with the first moment estimate to give:
   dist(f_ε(x), f(x)) ≤ L · ε · √n
+@isnad1 id=le.2h5v.s6.c1b8d2f35d57 from=translated src=- shape=54799b67 vocab=e03c3ef0
 -/
 theorem mollify_dist_le_of_lipschitz' {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ}
     (hε : 0 < ε) (hf : LipschitzWith L f) (x : E n) :
@@ -235,7 +254,9 @@ theorem mollify_dist_le_of_lipschitz' {f : E n → ℝ} {L : ℝ≥0} {ε : ℝ}
         exact NNReal.coe_nonneg L
     _ = L * ε * Real.sqrt n := by ring
 
-/-- The first moment integral tends to 0 as ε → 0. -/
+/-- The first moment integral tends to 0 as ε → 0.
+@isnad1 id=tendsto.0h1v.s8.719e8e0d0cc2 from=translated src=- shape=1b8081b3 vocab=3f64ffa1
+-/
 lemma tendsto_integral_norm_mul_stdMollifierPi :
     Filter.Tendsto (fun ε => ∫ z : E n, ‖z‖ * stdMollifierPi n ε z)
       (nhdsWithin 0 (Set.Ioi 0)) (nhds 0) := by
@@ -267,6 +288,7 @@ lemma tendsto_integral_norm_mul_stdMollifierPi :
 
 This is a direct consequence of the quantitative bound:
   dist (mollify ε f x) (f x) ≤ L * ∫ ‖z‖ * ρ_ε(z) dz → 0
+@isnad1 id=tendsto.1h4v.s6.b05fe93e9071 from=translated src=- shape=60b4d588 vocab=0b41ea83
 -/
 theorem mollify_tendsto_of_lipschitz {f : E n → ℝ} {L : ℝ≥0}
     (hf : LipschitzWith L f) (x : E n) :

@@ -78,7 +78,9 @@ structure IsTimeMollifier (ρ : ℝ → ℝ) : Prop where
   /-- Unit mass `∫ ρ = 1` (the Young constant `‖ρ‖₁ = 1`). -/
   mass_one : ∫ x, ρ x = 1
 
-/-- `ContDiffBump.normed volume` is a normalized time mollifier. -/
+/-- `ContDiffBump.normed volume` is a normalized time mollifier.
+@isnad1 id=istimemo.0h2v.s4.5ce3c8a19986 from=translated src=- shape=490ef307 vocab=b5afd13e
+-/
 theorem ContDiffBump.isTimeMollifier {c : ℝ} (φ : ContDiffBump c) :
     IsTimeMollifier (φ.normed (volume : Measure ℝ)) where
   continuous := φ.continuous_normed
@@ -104,7 +106,9 @@ noncomputable def timeTranslateL2 (h : ℝ) (g : Lp E 2 (volume : Measure ℝ)) 
     (measurePreserving_add_right (volume : Measure ℝ) h) g
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
-/-- Translation is an isometry on `L²(ℝ;E)`: `‖τ_h g‖ = ‖g‖`. -/
+/-- Translation is an isometry on `L²(ℝ;E)`: `‖τ_h g‖ = ‖g‖`.
+@isnad1 id=eq.0h3v.s9.ec5bc183b7fa from=translated src=- shape=19041b3b vocab=25345e64
+-/
 theorem timeTranslateL2_norm (h : ℝ) (g : Lp E 2 (volume : Measure ℝ)) :
     ‖timeTranslateL2 h g‖ = ‖g‖ := by
   rw [timeTranslateL2, Lp.norm_compMeasurePreserving]
@@ -112,7 +116,9 @@ theorem timeTranslateL2_norm (h : ℝ) (g : Lp E 2 (volume : Measure ℝ)) :
 omit [NormedSpace ℝ E] [CompleteSpace E] in
 /-- `h ↦ τ_h g` is continuous from `ℝ` into `L²(ℝ;E)` (mathlib's translation continuity in
 `Lp`, `Continuous.compMeasurePreservingLp`). Needed for strong measurability / integrability of
-the convolution integrand. -/
+the convolution integrand.
+@isnad1 id=continuo.0h2v.s10.2d53923420c3 from=translated src=- shape=661bd431 vocab=03df2f15
+-/
 theorem continuous_timeTranslateL2 (g : Lp E 2 (volume : Measure ℝ)) :
     Continuous (fun h : ℝ => timeTranslateL2 h g) := by
   set sh : ℝ → C(ℝ, ℝ) := fun h => ⟨(· + h), continuous_id.add continuous_const⟩ with hsh
@@ -137,7 +143,9 @@ noncomputable def timeConvL2 (ρ : ℝ → ℝ) (g : Lp E 2 (volume : Measure �
 omit [CompleteSpace E] in
 /-- The kernel-weighted-translate family `h ↦ ρ h • τ_h g` is Bochner integrable as an
 `L²(ℝ;E)`-valued map: continuous (so strongly measurable), with compact support
-(`tsupport ρ`, since outside it the scalar factor vanishes). -/
+(`tsupport ρ`, since outside it the scalar factor vanishes).
+@isnad1 id=integrab.1h3v.s12.980d2fa588c0 from=translated src=- shape=0de7eb41 vocab=cf414c6f
+-/
 theorem integrable_timeMollifier_smul_translate {ρ : ℝ → ℝ} (hρ : IsTimeMollifier ρ)
     (g : Lp E 2 (volume : Measure ℝ)) :
     Integrable (fun h : ℝ => ρ h • timeTranslateL2 h g) (volume : Measure ℝ) := by
@@ -152,7 +160,9 @@ theorem integrable_timeMollifier_smul_translate {ρ : ℝ → ℝ} (hρ : IsTime
   exact hcont.integrable_of_hasCompactSupport hsupp
 
 omit [CompleteSpace E] in
-/-- `‖ρ h • τ_h g‖ = ρ h · ‖g‖` (using `hρ.nonneg` so `|ρ h| = ρ h`, and translation isometry). -/
+/-- `‖ρ h • τ_h g‖ = ρ h · ‖g‖` (using `hρ.nonneg` so `|ρ h| = ρ h`, and translation isometry).
+@isnad1 id=eq.1h4v.s12.f90d12851b82 from=translated src=- shape=d9699c10 vocab=82e47736
+-/
 theorem norm_timeMollifier_smul_translate {ρ : ℝ → ℝ} (hρ : IsTimeMollifier ρ)
     (g : Lp E 2 (volume : Measure ℝ)) (h : ℝ) :
     ‖ρ h • timeTranslateL2 h g‖ = ρ h * ‖g‖ := by
@@ -173,7 +183,9 @@ convolution inequality `‖ρ ⋆ g‖₂ ≤ ‖ρ‖₁ · ‖g‖₂` with `�
 
 This is the time-line, `E`-abstract transport of `FrechetKolmogorov.convL2_norm_le` (the
 whole-space spatial model). It is the foundational reusable piece of the S1 build: the same
-bound serves the `L²(0,T;V)` and `L²(0,T;V')` convergences once the interval layer lands. -/
+bound serves the `L²(0,T;V)` and `L²(0,T;V')` convergences once the interval layer lands.
+@isnad1 id=le.1h3v.s9.52a96b1b905c from=translated src=- shape=66cf9b37 vocab=6bc9ca40
+-/
 theorem timeConvL2_norm_le [CompleteSpace E] {ρ : ℝ → ℝ} (hρ : IsTimeMollifier ρ)
     (g : Lp E 2 (volume : Measure ℝ)) :
     ‖timeConvL2 ρ g‖ ≤ ‖g‖ := by

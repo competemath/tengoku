@@ -42,7 +42,9 @@ abbrev E (n : ℕ) := EuclideanSpace ℝ (Fin n)
 instance : (gaussianReal 0 1).IsOpenPosMeasure :=
   (gaussianReal_absolutelyContinuous' 0 one_ne_zero).isOpenPosMeasure
 
-/-- The standard Gaussian on EuclideanSpace has IsOpenPosMeasure. -/
+/-- The standard Gaussian on EuclideanSpace has IsOpenPosMeasure.
+@isnad1 id=isopenpo.0h1v.s6.9bcf4f0aab08 from=translated src=- shape=bb95f982 vocab=f040d5e5
+-/
 instance stdGaussianE_isOpenPosMeasure : (stdGaussianE n).IsOpenPosMeasure := by
   unfold stdGaussianE GaussianMeasure.stdGaussianPi
   apply Continuous.isOpenPosMeasure_map
@@ -65,6 +67,9 @@ noncomputable def GaussianSobolevNorm (n : ℕ) (f : E n → ℝ)
 def MemW12Gaussian (n : ℕ) (f : E n → ℝ) (γ : Measure (E n)) : Prop :=
   MemLp f 2 γ ∧ MemLp (fun x ↦ fderiv ℝ f x) 2 γ
 
+/--
+@isnad1 id=iff.0h3v.s9.f187dfd75f95 from=translated src=- shape=bef57ff1 vocab=8f514aac
+-/
 lemma memW12Gaussian_iff_sobolevNormSq_lt_top {f : E n → ℝ}
     {γ : Measure (E n)} :
     MemW12Gaussian n f γ ↔
@@ -92,11 +97,17 @@ lemma memW12Gaussian_iff_sobolevNormSq_lt_top {f : E n → ℝ}
 noncomputable def smoothCutoff : ℝ → ℝ :=
   (ContDiffBumpBase.ofInnerProductSpace ℝ).toFun 2
 
+/--
+@isnad1 id=eq.0h1v.s4.697e32237aaa from=translated src=- shape=1e16eff0 vocab=a1df824b
+-/
 lemma smoothCutoff_eq_smoothTransition (x : ℝ) :
     smoothCutoff x = Real.smoothTransition (2 - |x|) := by
   have hden : (2 : ℝ) - 1 = 1 := by norm_num
   simp [smoothCutoff, ContDiffBumpBase.ofInnerProductSpace, Real.norm_eq_abs, hden]
 
+/--
+@isnad1 id=contdiff.0h0v.s5.f306585c9069 from=translated src=- shape=3cea26be vocab=a9d5915d
+-/
 lemma smoothCutoff_contDiff : ContDiff ℝ (⊤ : ℕ∞) smoothCutoff := by
   rw [contDiff_iff_contDiffAt]
   intro x
@@ -117,24 +128,39 @@ lemma smoothCutoff_contDiff : ContDiff ℝ (⊤ : ℕ∞) smoothCutoff := by
     (fun y : ℝ => Function.uncurry (ContDiffBumpBase.ofInnerProductSpace ℝ).toFun ((2 : ℝ), y)) x
   exact h_at.comp x h_comp
 
+/--
+@isnad1 id=eq.1h1v.s4.f4d6fbe39206 from=translated src=- shape=20a8a312 vocab=2903a713
+-/
 lemma smoothCutoff_eq_one_of_le {x : ℝ} (hx : |x| ≤ 1) : smoothCutoff x = 1 := by
   have h : (1 : ℝ) ≤ 2 - |x| := by linarith
   simpa [smoothCutoff_eq_smoothTransition] using
     (Real.smoothTransition.one_of_one_le (x := 2 - |x|) h)
 
+/--
+@isnad1 id=eq.1h1v.s4.b57eca78efa1 from=translated src=- shape=7a8068be vocab=86b6087e
+-/
 lemma smoothCutoff_eq_zero_of_ge {x : ℝ} (hx : 2 ≤ |x|) : smoothCutoff x = 0 := by
   have h : 2 - |x| ≤ 0 := by linarith
   simpa [smoothCutoff_eq_smoothTransition] using
     (Real.smoothTransition.zero_of_nonpos (x := 2 - |x|) h)
 
+/--
+@isnad1 id=le.0h1v.s3.3a975f0d6cdc from=translated src=- shape=8a62b088 vocab=91988e6d
+-/
 lemma smoothCutoff_nonneg (x : ℝ) : 0 ≤ smoothCutoff x := by
   simpa [smoothCutoff_eq_smoothTransition] using
     (Real.smoothTransition.nonneg (x := 2 - |x|))
 
+/--
+@isnad1 id=le.0h1v.s3.44878c8a231f from=translated src=- shape=b14ee516 vocab=91988e6d
+-/
 lemma smoothCutoff_le_one (x : ℝ) : smoothCutoff x ≤ 1 := by
   simpa [smoothCutoff_eq_smoothTransition] using
     (Real.smoothTransition.le_one (x := 2 - |x|))
 
+/--
+@isnad1 id=iff.0h1v.s4.c024556acc4c from=translated src=- shape=b7856542 vocab=2903a713
+-/
 lemma smoothCutoff_eq_one_iff_abs_le {x : ℝ} : smoothCutoff x = 1 ↔ |x| ≤ 1 := by
   have h' : (1 : ℝ) ≤ 2 - |x| ↔ |x| ≤ 1 := by
     constructor
@@ -149,13 +175,18 @@ lemma smoothCutoff_eq_one_iff_abs_le {x : ℝ} : smoothCutoff x = 1 ↔ |x| ≤ 
 
     Proof strategy:
     - If 1 < |x|, then 2 - |x| < 1
-    - `Real.smoothTransition` is strictly less than 1 on inputs < 1 -/
+    - `Real.smoothTransition` is strictly less than 1 on inputs < 1
+@isnad1 id=lt.1h1v.s4.69151b217c24 from=translated src=- shape=66a571b8 vocab=1171927e
+-/
 lemma smoothCutoff_lt_one_of_abs_gt_one {x : ℝ} (hx1 : 1 < |x|) :
     smoothCutoff x < 1 := by
   have hlt : 2 - |x| < 1 := by linarith
   simpa [smoothCutoff_eq_smoothTransition] using
     (Real.smoothTransition.lt_one_of_lt_one (x := 2 - |x|) hlt)
 
+/--
+@isnad1 id=le.0h0v.s5.ffdf0b5d714b from=translated src=- shape=66c352d6 vocab=a924bf38
+-/
 lemma smoothCutoff_support : Function.support smoothCutoff ⊆ Set.Icc (-2) 2 := by
   intro x hx
   simp only [Function.mem_support, ne_eq] at hx
@@ -173,6 +204,9 @@ lemma smoothCutoff_support : Function.support smoothCutoff ⊆ Set.Icc (-2) 2 :=
 noncomputable def smoothCutoffR (R : ℝ) (x : E n) : ℝ :=
   smoothCutoff (‖x‖ / R)
 
+/--
+@isnad1 id=eq.2h3v.s6.2fecc6daa589 from=translated src=- shape=0429137d vocab=55fe70f7
+-/
 lemma smoothCutoffR_eq_one_of_norm_le {R : ℝ} (hR : 0 < R) {x : E n}
     (hx : ‖x‖ ≤ R) : smoothCutoffR R x = 1 := by
   unfold smoothCutoffR
@@ -180,6 +214,9 @@ lemma smoothCutoffR_eq_one_of_norm_le {R : ℝ} (hR : 0 < R) {x : E n}
   rw [abs_of_nonneg (div_nonneg (norm_nonneg _) hR.le)]
   exact div_le_one_of_le₀ hx hR.le
 
+/--
+@isnad1 id=eq.2h3v.s6.d687b88854d9 from=translated src=- shape=97121887 vocab=a11638b9
+-/
 lemma smoothCutoffR_eq_zero_of_norm_ge {R : ℝ} (hR : 0 < R) {x : E n}
     (hx : 2 * R ≤ ‖x‖) : smoothCutoffR R x = 0 := by
   unfold smoothCutoffR
@@ -188,12 +225,21 @@ lemma smoothCutoffR_eq_zero_of_norm_ge {R : ℝ} (hR : 0 < R) {x : E n}
   calc 2 = 2 * R / R := by field_simp
     _ ≤ ‖x‖ / R := div_le_div_of_nonneg_right hx hR.le
 
+/--
+@isnad1 id=le.0h3v.s4.1efec589c7ca from=translated src=- shape=1f6032b4 vocab=a561d87d
+-/
 lemma smoothCutoffR_nonneg (R : ℝ) (x : E n) : 0 ≤ smoothCutoffR R x :=
   smoothCutoff_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s4.5d8a8e7afb0b from=translated src=- shape=a9c56bf3 vocab=a561d87d
+-/
 lemma smoothCutoffR_le_one (R : ℝ) (x : E n) : smoothCutoffR R x ≤ 1 :=
   smoothCutoff_le_one _
 
+/--
+@isnad1 id=contdiff.1h2v.s6.59afbc7612cd from=translated src=- shape=738dbf8a vocab=fbba7fcc
+-/
 lemma smoothCutoffR_contDiff {R : ℝ} (hR : 0 < R) : ContDiff ℝ (⊤ : ℕ∞) (smoothCutoffR R : E n → ℝ) := by
   rw [contDiff_iff_contDiffAt]
   intro x
@@ -227,6 +273,9 @@ lemma smoothCutoffR_contDiff {R : ℝ} (hR : 0 < R) : ContDiff ℝ (⊤ : ℕ∞
       h_div.contDiffAt.comp x h_norm
     exact smoothCutoff_contDiff.contDiffAt.comp x h_comp1
 
+/--
+@isnad1 id=le.1h2v.s7.a57d08d3248b from=translated src=- shape=a322e64e vocab=0131c35d
+-/
 lemma smoothCutoffR_support_subset {R : ℝ} (hR : 0 < R) :
     Function.support (smoothCutoffR R : E n → ℝ) ⊆ Metric.closedBall 0 (2 * R) := by
   intro x hx
@@ -236,6 +285,9 @@ lemma smoothCutoffR_support_subset {R : ℝ} (hR : 0 < R) :
   have : smoothCutoffR R x = 0 := smoothCutoffR_eq_zero_of_norm_ge hR h.le
   simp only [Function.mem_support, this, ne_eq, not_true_eq_false] at hx
 
+/--
+@isnad1 id=hascompa.1h2v.s5.35650b92beb7 from=translated src=- shape=dd3213c0 vocab=f8461266
+-/
 lemma smoothCutoffR_hasCompactSupport {R : ℝ} (hR : 0 < R) :
     HasCompactSupport (smoothCutoffR R : E n → ℝ) := by
   rw [hasCompactSupport_def]
@@ -245,7 +297,9 @@ lemma smoothCutoffR_hasCompactSupport {R : ℝ} (hR : 0 < R) :
     _ = Metric.closedBall 0 (2 * R) := IsClosed.closure_eq Metric.isClosed_closedBall
 
 /-- For any fixed x, smoothCutoffR R x → 1 as R → ∞.
-    Proof: For R > ‖x‖, we have ‖x‖/R < 1, so smoothCutoff(‖x‖/R) = 1. -/
+    Proof: For R > ‖x‖, we have ‖x‖/R < 1, so smoothCutoff(‖x‖/R) = 1.
+@isnad1 id=tendsto.0h2v.s4.779663456db4 from=translated src=- shape=89a4d769 vocab=1df59328
+-/
 lemma smoothCutoffR_tendsto_one (x : E n) :
     Filter.Tendsto (fun R => smoothCutoffR R x) Filter.atTop (nhds 1) := by
   -- For R > ‖x‖ + 1, smoothCutoffR R x = 1 (eventually constant)
@@ -271,23 +325,33 @@ noncomputable def stdMollifierConst : ℝ :=
 noncomputable def stdMollifier (x : ℝ) : ℝ :=
   stdMollifierConst * stdMollifierKernel x
 
+/--
+@isnad1 id=le.0h1v.s3.abd3c6905fad from=translated src=- shape=8a62b088 vocab=48d5d04c
+-/
 lemma stdMollifierKernel_nonneg (x : ℝ) : 0 ≤ stdMollifierKernel x := by
   unfold stdMollifierKernel
   split_ifs with h
   · exact Real.exp_nonneg _
   · rfl
 
+/--
+@isnad1 id=lt.1h1v.s4.9ae5b4a89424 from=translated src=- shape=4dc372bb vocab=e7403f62
+-/
 lemma stdMollifierKernel_pos_of_abs_lt_one {x : ℝ} (hx : |x| < 1) : 0 < stdMollifierKernel x := by
   unfold stdMollifierKernel
   simp only [hx, ↓reduceIte]
   exact Real.exp_pos _
 
-/-- {x | |x| < 1} equals Metric.ball 0 1 in ℝ -/
+/-- {x | |x| < 1} equals Metric.ball 0 1 in ℝ
+@isnad1 id=eq.0h0v.s5.cc1c23f72262 from=translated src=- shape=1b6c2616 vocab=f07724cd
+-/
 lemma abs_lt_one_eq_ball : {x : ℝ | |x| < 1} = Metric.ball 0 1 := by
   ext x
   simp only [Set.mem_ofPred_eq, Metric.mem_ball, dist_zero_right, Real.norm_eq_abs]
 
-/-- The mollifier kernel is measurable -/
+/-- The mollifier kernel is measurable
+@isnad1 id=measurab.0h0v.s2.ba41c77f925e from=translated src=- shape=e3d48bcb vocab=fcc62827
+-/
 lemma stdMollifierKernel_measurable : Measurable stdMollifierKernel := by
   unfold stdMollifierKernel
   have h_meas_set : MeasurableSet {x : ℝ | |x| < 1} := by
@@ -298,7 +362,9 @@ lemma stdMollifierKernel_measurable : Measurable stdMollifierKernel := by
     exact measurable_const.sub (measurable_id.pow_const 2)
   · exact measurable_const
 
-/-- On (-1, 1), stdMollifierKernel equals exp(-1/(1-x²)) -/
+/-- On (-1, 1), stdMollifierKernel equals exp(-1/(1-x²))
+@isnad1 id=eq.1h1v.s6.f44e102c4c92 from=translated src=- shape=6dbb0c50 vocab=570099fc
+-/
 lemma stdMollifierKernel_eq_on_Ioo {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) :
     stdMollifierKernel x = Real.exp (-1 / (1 - x^2)) := by
   unfold stdMollifierKernel
@@ -306,7 +372,9 @@ lemma stdMollifierKernel_eq_on_Ioo {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) :
   have h : |x| < 1 := abs_lt.mpr hx
   simp only [h, ↓reduceIte]
 
-/-- The mollifier kernel is bounded by 1 -/
+/-- The mollifier kernel is bounded by 1
+@isnad1 id=le.0h1v.s3.9b7df86512f5 from=translated src=- shape=b14ee516 vocab=48d5d04c
+-/
 lemma stdMollifierKernel_le_one (x : ℝ) : stdMollifierKernel x ≤ 1 := by
   unfold stdMollifierKernel
   split_ifs with h
@@ -323,7 +391,9 @@ lemma stdMollifierKernel_le_one (x : ℝ) : stdMollifierKernel x ≤ 1 := by
     linarith
   · exact zero_le_one
 
-/-- The mollifier kernel is integrable on (-1,1) -/
+/-- The mollifier kernel is integrable on (-1,1)
+@isnad1 id=integrab.0h0v.s5.d56878411fc8 from=translated src=- shape=917bd03f vocab=882669ec
+-/
 lemma stdMollifierKernel_integrableOn_Ioo : IntegrableOn stdMollifierKernel (Set.Ioo (-1) 1) := by
   refine IntegrableOn.of_bound ?_ stdMollifierKernel_measurable.aestronglyMeasurable.restrict 1 ?_
   · rw [Real.volume_Ioo]
@@ -333,7 +403,9 @@ lemma stdMollifierKernel_integrableOn_Ioo : IntegrableOn stdMollifierKernel (Set
     rw [Real.norm_eq_abs, abs_of_nonneg (stdMollifierKernel_nonneg x)]
     exact stdMollifierKernel_le_one x
 
-/-- The integral of the mollifier kernel over (-1,1) is positive -/
+/-- The integral of the mollifier kernel over (-1,1) is positive
+@isnad1 id=lt.0h0v.s5.88f589cf9930 from=translated src=- shape=61d926cd vocab=737e2c2d
+-/
 lemma stdMollifierKernel_integral_pos :
     0 < ∫ x in Set.Ioo (-1 : ℝ) 1, stdMollifierKernel x := by
   rw [MeasureTheory.setIntegral_pos_iff_support_of_nonneg_ae]
@@ -362,17 +434,29 @@ lemma stdMollifierKernel_integral_pos :
   · -- Integrable
     exact stdMollifierKernel_integrableOn_Ioo
 
+/--
+@isnad1 id=lt.0h0v.s3.d39ddb330d67 from=translated src=- shape=ff3a10fc vocab=95b2443e
+-/
 lemma stdMollifierConst_pos : 0 < stdMollifierConst := by
   unfold stdMollifierConst
   exact inv_pos.mpr stdMollifierKernel_integral_pos
 
+/--
+@isnad1 id=le.0h0v.s3.fe4418b1b333 from=translated src=- shape=ff3a10fc vocab=7b61abca
+-/
 lemma stdMollifierConst_nonneg : 0 ≤ stdMollifierConst :=
   le_of_lt stdMollifierConst_pos
 
+/--
+@isnad1 id=le.0h1v.s3.7f571a6ea8c9 from=translated src=- shape=8a62b088 vocab=fcba5d54
+-/
 lemma stdMollifier_nonneg (x : ℝ) : 0 ≤ stdMollifier x := by
   unfold stdMollifier
   exact mul_nonneg stdMollifierConst_nonneg (stdMollifierKernel_nonneg x)
 
+/--
+@isnad1 id=le.0h0v.s4.1c4bc8d299a1 from=translated src=- shape=66c352d6 vocab=d790a6fd
+-/
 lemma stdMollifier_support : Function.support stdMollifier ⊆ Set.Ioo (-1) 1 := by
   intro x hx
   simp only [Function.mem_support, ne_eq] at hx
@@ -382,6 +466,9 @@ lemma stdMollifier_support : Function.support stdMollifier ⊆ Set.Ioo (-1) 1 :=
     exact h
   · simp at hx
 
+/--
+@isnad1 id=hascompa.0h0v.s3.3d6574d2dade from=translated src=- shape=e3d48bcb vocab=6b2e1c0e
+-/
 lemma stdMollifier_hasCompactSupport : HasCompactSupport stdMollifier := by
   rw [hasCompactSupport_def]
   apply IsCompact.of_isClosed_subset (isCompact_Icc (a := -1) (b := 1)) isClosed_closure
@@ -396,7 +483,9 @@ Since expNegInvGlue is smooth (from Mathlib) and x ↦ 1 - x² is smooth (polyno
 their composition is smooth.
 -/
 
-/-- stdMollifierKernel equals expNegInvGlue composed with 1 - x² -/
+/-- stdMollifierKernel equals expNegInvGlue composed with 1 - x²
+@isnad1 id=eq.0h1v.s5.dc6a48880d5c from=translated src=- shape=fa8f9c71 vocab=e227e789
+-/
 lemma stdMollifierKernel_eq_expNegInvGlue (x : ℝ) :
     stdMollifierKernel x = expNegInvGlue (1 - x^2) := by
   unfold stdMollifierKernel
@@ -419,7 +508,9 @@ lemma stdMollifierKernel_eq_expNegInvGlue (x : ℝ) :
     have hnonpos : 1 - x^2 ≤ 0 := by linarith
     exact (expNegInvGlue.zero_of_nonpos hnonpos).symm
 
-/-- The mollifier kernel is smooth (C^∞). -/
+/-- The mollifier kernel is smooth (C^∞).
+@isnad1 id=contdiff.0h0v.s5.915b6f54d213 from=translated src=- shape=3cea26be vocab=89402011
+-/
 lemma stdMollifierKernel_contDiff : ContDiff ℝ (⊤ : ℕ∞) stdMollifierKernel := by
   have h : stdMollifierKernel = expNegInvGlue ∘ (fun x => 1 - x^2) := by
     ext x; exact stdMollifierKernel_eq_expNegInvGlue x
@@ -430,11 +521,16 @@ lemma stdMollifierKernel_contDiff : ContDiff ℝ (⊤ : ℕ∞) stdMollifierKern
     exact contDiff_const.sub (contDiff_id.pow 2)
   exact contDiff_infty.2 h_all
 
-/-- The standard mollifier is smooth (C^∞) -/
+/-- The standard mollifier is smooth (C^∞)
+@isnad1 id=contdiff.0h0v.s5.bf40e4a2b9de from=translated src=- shape=3cea26be vocab=2024ba25
+-/
 lemma stdMollifier_contDiff : ContDiff ℝ (⊤ : ℕ∞) stdMollifier := by
   unfold stdMollifier
   exact contDiff_const.mul stdMollifierKernel_contDiff
 
+/--
+@isnad1 id=eq.1h1v.s5.ad7fe24ee480 from=translated src=- shape=27c146c1 vocab=fedc4a13
+-/
 lemma stdMollifierKernel_eq_zero_outside {x : ℝ} (hx : x ∉ Set.Ioo (-1 : ℝ) 1) :
     stdMollifierKernel x = 0 := by
   unfold stdMollifierKernel
@@ -446,14 +542,23 @@ lemma stdMollifierKernel_eq_zero_outside {x : ℝ} (hx : x ∉ Set.Ioo (-1 : ℝ
     | inr h => right; exact h
   simp only [habs, ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h1v.s5.ba0b3f3484df from=translated src=- shape=27c146c1 vocab=7d5d6860
+-/
 lemma stdMollifier_eq_zero_outside {x : ℝ} (hx : x ∉ Set.Ioo (-1 : ℝ) 1) :
     stdMollifier x = 0 := by
   unfold stdMollifier
   simp only [stdMollifierKernel_eq_zero_outside hx, mul_zero]
 
+/--
+@isnad1 id=measurab.0h0v.s2.d3a74771212b from=translated src=- shape=e3d48bcb vocab=c04de2c3
+-/
 lemma stdMollifier_measurable : Measurable stdMollifier := by
   exact measurable_const.mul stdMollifierKernel_measurable
 
+/--
+@isnad1 id=integrab.0h0v.s4.38a17a3ef9bf from=translated src=- shape=e14394ff vocab=20dbca85
+-/
 lemma stdMollifier_integrable : Integrable stdMollifier := by
   have h : IntegrableOn stdMollifier (Set.Ioo (-1) 1) := by
     refine IntegrableOn.of_bound ?_ ?_ stdMollifierConst ?_
@@ -474,6 +579,9 @@ lemma stdMollifier_integrable : Integrable stdMollifier := by
   rw [h_eq]
   exact IntegrableOn.integrable_indicator h measurableSet_Ioo
 
+/--
+@isnad1 id=eq.0h0v.s5.75ddfe9fbfd3 from=translated src=- shape=f0e61117 vocab=aace5864
+-/
 lemma stdMollifier_integral_eq_one : ∫ x, stdMollifier x = 1 := by
   -- The integral is just over the support Ioo (-1) 1
   have h_eq : ∫ x, stdMollifier x = ∫ x in Set.Ioo (-1 : ℝ) 1, stdMollifier x := by
@@ -498,10 +606,16 @@ lemma stdMollifier_integral_eq_one : ∫ x, stdMollifier x = 1 := by
 noncomputable def stdMollifierEps (ε : ℝ) (x : ℝ) : ℝ :=
   ε⁻¹ * stdMollifier (x / ε)
 
+/--
+@isnad1 id=le.1h2v.s4.3248061fefe5 from=translated src=- shape=1852429d vocab=48de732f
+-/
 lemma stdMollifierEps_nonneg {ε : ℝ} (hε : 0 < ε) (x : ℝ) : 0 ≤ stdMollifierEps ε x := by
   unfold stdMollifierEps
   apply mul_nonneg (inv_nonneg.mpr hε.le) (stdMollifier_nonneg _)
 
+/--
+@isnad1 id=eq.2h2v.s5.f2f0863fbf9a from=translated src=- shape=29f6c3a9 vocab=9f93d487
+-/
 lemma stdMollifierEps_eq_zero_of_abs_ge {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : ε ≤ |x|) :
     stdMollifierEps ε x = 0 := by
   unfold stdMollifierEps
@@ -525,6 +639,9 @@ lemma stdMollifierEps_eq_zero_of_abs_ge {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx 
     exact h3
   rw [stdMollifier_eq_zero_outside h, mul_zero]
 
+/--
+@isnad1 id=le.1h1v.s5.e1a1aa069515 from=translated src=- shape=de1efdb1 vocab=393f72ba
+-/
 lemma stdMollifierEps_support {ε : ℝ} (hε : 0 < ε) :
     Function.support (stdMollifierEps ε) ⊆ Set.Ioo (-ε) ε := by
   intro x hx
@@ -547,6 +664,9 @@ lemma stdMollifierEps_support {ε : ℝ} (hε : 0 < ε) :
       exact h (by linarith)
   exact hx (stdMollifierEps_eq_zero_of_abs_ge hε habs)
 
+/--
+@isnad1 id=eq.1h1v.s5.793a0fab4ba3 from=translated src=- shape=78831b10 vocab=d36ba197
+-/
 lemma stdMollifierEps_integral_eq_one {ε : ℝ} (hε : 0 < ε) :
     ∫ x, stdMollifierEps ε x = 1 := by
   unfold stdMollifierEps
@@ -562,7 +682,9 @@ lemma stdMollifierEps_integral_eq_one {ε : ℝ} (hε : 0 < ε) :
   simp only [hdim, pow_one, inv_inv, smul_eq_mul, stdMollifier_integral_eq_one, mul_one]
   field_simp
 
-/-- The scaled mollifier is smooth (C^∞) -/
+/-- The scaled mollifier is smooth (C^∞)
+@isnad1 id=contdiff.1h1v.s5.c1b018dc59ef from=translated src=- shape=7538186c vocab=1471cd3c
+-/
 lemma stdMollifierEps_contDiff {ε : ℝ} (_hε : 0 < ε) : ContDiff ℝ (⊤ : ℕ∞) (stdMollifierEps ε) := by
   unfold stdMollifierEps
   apply ContDiff.mul contDiff_const
@@ -572,6 +694,9 @@ lemma stdMollifierEps_contDiff {ε : ℝ} (_hε : 0 < ε) : ContDiff ℝ (⊤ : 
 noncomputable def stdMollifierPi (n : ℕ) (ε : ℝ) (x : E n) : ℝ :=
   ∏ i, stdMollifierEps ε (x i)
 
+/--
+@isnad1 id=le.1h3v.s4.e9962fad2a2a from=translated src=- shape=b60a649c vocab=5b55d788
+-/
 lemma stdMollifierPi_nonneg (ε : ℝ) (hε : 0 < ε) (x : E n) : 0 ≤ stdMollifierPi n ε x := by
   unfold stdMollifierPi stdMollifierEps
   apply Finset.prod_nonneg
@@ -580,6 +705,9 @@ lemma stdMollifierPi_nonneg (ε : ℝ) (hε : 0 < ε) (x : E n) : 0 ≤ stdMolli
   · exact inv_nonneg.mpr hε.le
   · exact stdMollifier_nonneg _
 
+/--
+@isnad1 id=hascompa.1h2v.s5.f0d3280185a5 from=translated src=- shape=dd3213c0 vocab=b7989a97
+-/
 lemma stdMollifierPi_hasCompactSupport {ε : ℝ} (hε : 0 < ε) :
     HasCompactSupport (stdMollifierPi n ε) := by
   -- The support is contained in the cube {x : ∀ i, |x i| < ε}
@@ -627,7 +755,9 @@ lemma stdMollifierPi_hasCompactSupport {ε : ℝ} (hε : 0 < ε) :
       have hzero : stdMollifierEps ε (x i) = 0 := stdMollifierEps_eq_zero_of_abs_ge hε hi
       exact Finset.prod_eq_zero (Finset.mem_univ i) hzero
 
-/-- The tsupport of the n-dimensional mollifier is contained in a closed ball of radius ε√n -/
+/-- The tsupport of the n-dimensional mollifier is contained in a closed ball of radius ε√n
+@isnad1 id=le.1h2v.s7.a1d13df2bb50 from=translated src=- shape=9b59822c vocab=943b8d12
+-/
 lemma stdMollifierPi_tsupport_subset {ε : ℝ} (hε : 0 < ε) :
     tsupport (stdMollifierPi n ε) ⊆ Metric.closedBall (0 : E n) (ε * Real.sqrt n) := by
   -- The tsupport ⊆ closure K where K = closedBall 0 (ε * √n) was used in HasCompactSupport.intro'
@@ -680,7 +810,9 @@ lemma stdMollifierPi_tsupport_subset {ε : ℝ} (hε : 0 < ε) :
   exact hx.and_eventually h_not_in_support |>.exists.elim fun y hy =>
     hy.2 hy.1
 
-/-- The n-dimensional mollifier is smooth (C^∞) -/
+/-- The n-dimensional mollifier is smooth (C^∞)
+@isnad1 id=contdiff.1h2v.s6.d39e78edff28 from=translated src=- shape=738dbf8a vocab=4ce1d6e1
+-/
 lemma stdMollifierPi_contDiff {ε : ℝ} (hε : 0 < ε) : ContDiff ℝ (⊤ : ℕ∞) (stdMollifierPi n ε) := by
   unfold stdMollifierPi
   -- The function can be written as f x = ∏ i, (g i) x where g i = stdMollifierEps ε ∘ coord i
@@ -697,6 +829,9 @@ lemma stdMollifierPi_contDiff {ε : ℝ} (hε : 0 < ε) : ContDiff ℝ (⊤ : �
   exact ((contDiff_infty.1 (stdMollifierEps_contDiff hε) m)).comp
     ((contDiff_piLp_apply (n := ⊤) 2 (i := i)).of_le le_top)
 
+/--
+@isnad1 id=eq.1h2v.s7.b96bcbb5efd9 from=translated src=- shape=b0078398 vocab=3b020779
+-/
 lemma stdMollifierPi_integral_eq_one {ε : ℝ} (hε : 0 < ε) :
     ∫ x, stdMollifierPi n ε x = 1 := by
   -- By Fubini, the integral of a product equals the product of integrals
@@ -719,6 +854,9 @@ lemma stdMollifierPi_integral_eq_one {ε : ℝ} (hε : 0 < ε) :
 noncomputable def mollify (ε : ℝ) (f : E n → ℝ) (x : E n) : ℝ :=
   ∫ y, f (x - y) * stdMollifierPi n ε y
 
+/--
+@isnad1 id=eq.0h4v.s8.b4b80e10584b from=translated src=- shape=f7cf83e5 vocab=6022be2f
+-/
 lemma mollify_eq (ε : ℝ) (f : E n → ℝ) (x : E n) :
     mollify ε f x = ∫ y, f (x - y) * stdMollifierPi n ε y := rfl
 

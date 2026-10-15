@@ -84,7 +84,9 @@ closedness follows because each functional is continuous. -/
 noncomputable def L2Sigma_R3 : Submodule ℝ L2VF_R3 :=
   ⨅ φ : SchwartzMap Domain3 ℝ, (divTestFunctional φ).ker
 
-/-- `L2Sigma_R3` is a closed subset of `L2VF_R3`. -/
+/-- `L2Sigma_R3` is a closed subset of `L2VF_R3`.
+@isnad1 id=isclosed.0h0v.s15.e08f76040129 from=translated src=- shape=350505fc vocab=209b5b50
+-/
 theorem isClosed_L2Sigma_R3 : IsClosed (L2Sigma_R3 : Set L2VF_R3) := by
   simp only [L2Sigma_R3, Submodule.coe_iInf]
   exact isClosed_iInter fun φ => ContinuousLinearMap.isClosed_ker (divTestFunctional φ)
@@ -104,7 +106,9 @@ separable topological space.
    hence `SeparableSpace (EuclideanSpace ℝ (Fin 3))` by `SecondCountableTopology.to_separableSpace`.
 5. `MeasureTheory.Lp.SecondCountableTopology [IsSeparable μ] [SeparableSpace E]` gives
    `SecondCountableTopology L2VF_R3`.
-6. `SecondCountableTopology.to_separableSpace` gives `SeparableSpace L2VF_R3`. -/
+6. `SecondCountableTopology.to_separableSpace` gives `SeparableSpace L2VF_R3`.
+@isnad1 id=separabl.0h0v.s14.2e3fb2de2fa9 from=translated src=- shape=268e3c3c vocab=2193e770
+-/
 theorem L2VF_R3_separable : TopologicalSpace.SeparableSpace L2VF_R3 := by
   -- Step 1: `Domain3` has `BorelSpace` and `SecondCountableTopology` (finite-dimensional
   -- Euclidean space), so `CountablyGenerated Domain3` fires via
@@ -140,7 +144,9 @@ theorem L2VF_R3_separable : TopologicalSpace.SeparableSpace L2VF_R3 := by
 - Since `L2Sigma_R3` is already strongly closed, `(toWeakSpace ℝ L2VF_R3) '' L2Sigma_R3`
   is closed in `WeakSpace ℝ L2VF_R3`.
 - As `toWeakSpace ℝ L2VF_R3` is a bijection, this translates to `IsClosed` of the
-  image (which is identified with `L2Sigma_R3` via the linear equivalence). -/
+  image (which is identified with `L2Sigma_R3` via the linear equivalence).
+@isnad1 id=isclosed.0h0v.s18.7c6c92176d33 from=translated src=- shape=1d2efe7c vocab=86326ed2
+-/
 theorem L2Sigma_R3_weaklyClosed :
     IsClosed ((toWeakSpace ℝ L2VF_R3) '' (L2Sigma_R3 : Set L2VF_R3)) := by
   -- `L2Sigma_R3` is convex (it is a submodule over ℝ).

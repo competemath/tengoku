@@ -11,7 +11,9 @@ namespace MeasureTheory
 
 variable {α E : Type*} {m : MeasurableSpace α} {mu : Measure α}
 
-/-- Convergence in L^1 yields an a.e.-convergent subsequence. -/
+/-- Convergence in L^1 yields an a.e.-convergent subsequence.
+@isnad1 id=ex.3h6v.s7.aac608952e8f from=translated src=- shape=9d8711a9 vocab=415d4ff5
+-/
 theorem exists_seq_tendsto_ae_of_tendsto_eLpNorm_one
     [NormedAddCommGroup E] {f : ℕ → α → E} {g : α → E}
     (hf : ∀ n, AEStronglyMeasurable (f n) mu)

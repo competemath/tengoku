@@ -107,7 +107,9 @@ For `ε, δ > 0` with `δ < min t₀ (1 - t₀)`, if:
 
 then the full cutoff integral equals the sum of the left and right integrals of
 `(γ t - s)⁻¹ * deriv γ t`. The middle piece vanishes because the cutoff sets the
-integrand to `0` whenever `‖γ t - s‖ ≤ ε`. -/
+integrand to `0` whenever `‖γ t - s‖ ≤ ε`.
+@isnad1 id=eq.8h5v.s9.a65ad6d35a7d from=translated src=- shape=44632e75 vocab=f48ebcea
+-/
 theorem pv_split_at_crossing {γ : ℝ → ℂ} {s : ℂ} {ε δ t₀ : ℝ}
     (_ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) (_hε : 0 < ε) (hδ : 0 < δ)
     (hδ_small : δ < min t₀ (1 - t₀))
@@ -137,7 +139,9 @@ theorem pv_split_at_crossing {γ : ℝ → ℂ} {s : ℂ} {ε δ t₀ : ℝ}
 along a curve with unique crossing at `t₀` tends to `L`, provided:
 1. For small `ε`, the curve is `ε`-far from `s` except near `t₀`
 2. The far-segment integrals sum to some expression `E(ε)`
-3. `E(ε) → L` as `ε → 0⁺` -/
+3. `E(ε) → L` as `ε → 0⁺`
+@isnad1 id=tendsto.10h7v.s9.3aaacc5a307f from=translated src=- shape=218a813f vocab=80834ea4
+-/
 theorem pv_tendsto_of_crossing_limit {γ : ℝ → ℂ} {s L : ℂ} {t₀ : ℝ}
     (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) {δ : ℝ → ℝ} {threshold : ℝ} (hthresh : 0 < threshold)
     (hδ_pos : ∀ ε, 0 < ε → ε < threshold → 0 < δ ε)
@@ -168,7 +172,9 @@ theorem pv_tendsto_of_crossing_limit {γ : ℝ → ℂ} {s L : ℂ} {t₀ : ℝ}
 set_option linter.unusedVariables false in
 /-- Asymmetric crossing limit: allows different cutoff radii on left and right
 of the crossing point. Needed for corner crossings (e.g., `ρ`, `ρ+1`) where
-the geometry differs on each side (e.g., vertical segment vs arc). -/
+the geometry differs on each side (e.g., vertical segment vs arc).
+@isnad1 id=tendsto.13h8v.s10.4a21f4573ab1 from=translated src=- shape=88f07e11 vocab=5f273faf
+-/
 theorem pv_tendsto_of_crossing_limit_asymmetric {γ : ℝ → ℂ} {s L : ℂ} {t₀ : ℝ}
     (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) {δ_left δ_right : ℝ → ℝ} {threshold : ℝ}
     (hthresh : 0 < threshold)

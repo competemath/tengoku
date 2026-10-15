@@ -35,7 +35,9 @@ variable {n : ℕ}
 
 /-! ### Auxiliary Lemmas for ENNReal Arithmetic -/
 
-/-- GaussianSobolevNormSq is symmetric under negation: ||−f||² = ||f||² -/
+/-- GaussianSobolevNormSq is symmetric under negation: ||−f||² = ||f||²
+@isnad1 id=eq.0h3v.s6.d5419a0431d9 from=translated src=- shape=79896947 vocab=f19ac332
+-/
 lemma gaussianSobolevNormSq_neg (f : E n → ℝ) (γ : Measure (E n)) :
     GaussianSobolevNormSq n (-f) γ = GaussianSobolevNormSq n f γ := by
   simp only [GaussianSobolevNormSq]
@@ -50,7 +52,9 @@ lemma gaussianSobolevNormSq_neg (f : E n → ℝ) (γ : Measure (E n)) :
       simp only [norm_neg]
     rw [h_eq]
 
-/-- GaussianSobolevNormSq is symmetric under swapping: ||a - b||² = ||b - a||² -/
+/-- GaussianSobolevNormSq is symmetric under swapping: ||a - b||² = ||b - a||²
+@isnad1 id=eq.0h4v.s6.97eaea46f503 from=translated src=- shape=da061c25 vocab=7395c803
+-/
 lemma gaussianSobolevNormSq_sub_comm (f g : E n → ℝ) (γ : Measure (E n)) :
     GaussianSobolevNormSq n (f - g) γ = GaussianSobolevNormSq n (g - f) γ := by
   have h : f - g = -(g - f) := by
@@ -59,7 +63,9 @@ lemma gaussianSobolevNormSq_sub_comm (f g : E n → ℝ) (γ : Measure (E n)) :
     ring
   rw [h, gaussianSobolevNormSq_neg]
 
-/-- The elementary inequality (a + b)² ≤ 2a² + 2b² for ENNReal -/
+/-- The elementary inequality (a + b)² ≤ 2a² + 2b² for ENNReal
+@isnad1 id=le.0h2v.s7.594a8c4c69fa from=translated src=- shape=26b5f994 vocab=843b1dec
+-/
 lemma ennreal_sq_add_le (a b : ℝ≥0∞) : (a + b)^2 ≤ 2 * a^2 + 2 * b^2 := by
   by_cases ha : a = ⊤
   · simp [ha]
@@ -74,7 +80,9 @@ lemma ennreal_sq_add_le (a b : ℝ≥0∞) : (a + b)^2 ≤ 2 * a^2 + 2 * b^2 := 
   calc (a + b)^2 ≤ 2 * (a^2 + b^2) := add_sq_le
     _ = 2 * a^2 + 2 * b^2 := by ring
 
-/-- Triangle inequality for eLpNorm squared when p ≥ 1 -/
+/-- Triangle inequality for eLpNorm squared when p ≥ 1
+@isnad1 id=le.2h4v.s9.6d6213d38d34 from=translated src=- shape=c9395e3b vocab=f2c78918
+-/
 lemma eLpNorm_add_sq_le' (f g : E n → ℝ) (μ : Measure (E n))
     (hf : AEStronglyMeasurable f μ) (hg : AEStronglyMeasurable g μ) :
     eLpNorm (f + g) 2 μ ^ 2 ≤ 2 * eLpNorm f 2 μ ^ 2 + 2 * eLpNorm g 2 μ ^ 2 := by
@@ -86,7 +94,9 @@ lemma eLpNorm_add_sq_le' (f g : E n → ℝ) (μ : Measure (E n))
 
 /-! ### Triangle Inequality for GaussianSobolevNormSq -/
 
-/-- Triangle inequality for GaussianSobolevNormSq for differentiable functions -/
+/-- Triangle inequality for GaussianSobolevNormSq for differentiable functions
+@isnad1 id=le.6h4v.s10.09552a05c363 from=translated src=- shape=ee7cae25 vocab=1a17d237
+-/
 lemma gaussianSobolevNormSq_add_le_of_diff (f g : E n → ℝ) (γ : Measure (E n))
     (hf : AEStronglyMeasurable f γ) (hg : AEStronglyMeasurable g γ)
     (hf_diff : Differentiable ℝ f) (hg_diff : Differentiable ℝ g)
@@ -142,7 +152,9 @@ lemma gaussianSobolevNormSq_add_le_of_diff (f g : E n → ℝ) (γ : Measure (E 
 
 /-! ### Extracting ε from Tendsto -/
 
-/-- Helper to extract a point achieving a bound from a Tendsto to nhds 0 in ENNReal. -/
+/-- Helper to extract a point achieving a bound from a Tendsto to nhds 0 in ENNReal.
+@isnad1 id=ex.2h2v.s6.d97d1cc92ef6 from=translated src=- shape=517122c8 vocab=14d0271c
+-/
 lemma exists_lt_of_tendsto_nhdsWithin_right {f : ℝ → ℝ≥0∞} {b : ℝ≥0∞}
     (hf : Tendsto f (nhdsWithin 0 (Set.Ioi 0)) (nhds 0)) (hb : 0 < b) :
     ∃ ε : ℝ, 0 < ε ∧ f ε < b := by
@@ -170,7 +182,9 @@ lemma exists_lt_of_tendsto_nhdsWithin_right {f : ℝ → ℝ≥0∞} {b : ℝ≥
 set_option maxHeartbeats 400000 in
 /-- For any f ∈ W^{1,2}(γ) with sufficient regularity (differentiable with continuous gradient)
     and δ > 0, there exists a smooth compactly supported function g
-    such that ‖f - g‖_{W^{1,2}(γ)} < δ. -/
+    such that ‖f - g‖_{W^{1,2}(γ)} < δ.
+@isnad1 id=ex.4h3v.s10.87ee6532ca25 from=translated src=- shape=9e68c43d vocab=011e2e7a
+-/
 theorem exists_smooth_compactSupport_approx (f : E n → ℝ) (hf : MemW12Gaussian n f (stdGaussianE n))
     (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fun x => fderiv ℝ f x))
     {δ : ℝ} (hδ : 0 < δ) :
@@ -298,7 +312,9 @@ theorem exists_smooth_compactSupport_approx (f : E n → ℝ) (hf : MemW12Gaussi
 
 /-! ### Main Density Theorem -/
 
-/-- The space of smooth compactly supported functions C_c^∞(ℝⁿ) is dense in W^{1,2}(γ). -/
+/-- The space of smooth compactly supported functions C_c^∞(ℝⁿ) is dense in W^{1,2}(γ).
+@isnad1 id=ex.4h3v.s9.331575c6b739 from=translated src=- shape=083c1b83 vocab=02fb1d59
+-/
 theorem dense_smooth_compactSupport_W12Gaussian :
     ∀ f : E n → ℝ, MemW12Gaussian n f (stdGaussianE n) →
     Differentiable ℝ f →
@@ -316,7 +332,9 @@ theorem dense_smooth_compactSupport_W12Gaussian :
     _ = ENNReal.ofReal ε := by rw [Real.sq_sqrt (le_of_lt hε)]
 
 /-- Alternative formulation: for any regular f ∈ W^{1,2}(γ), f is in the closure of C_c^∞
-    in the Gaussian Sobolev topology. -/
+    in the Gaussian Sobolev topology.
+@isnad1 id=ex.4h3v.s9.331575c6b739 from=translated src=- shape=083c1b83 vocab=02fb1d59
+-/
 theorem mem_closure_smooth_compactSupport (f : E n → ℝ) (hf : MemW12Gaussian n f (stdGaussianE n))
     (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :
     ∀ ε > 0, ∃ g : E n → ℝ, ContDiff ℝ (⊤ : ℕ∞) g ∧ HasCompactSupport g ∧
@@ -327,7 +345,9 @@ theorem mem_closure_smooth_compactSupport (f : E n → ℝ) (hf : MemW12Gaussian
 /-! ### Convergent Sequence from Density -/
 
 /-- From the density theorem, we can construct a sequence of smooth compactly supported
-    functions converging to any regular f ∈ W^{1,2}(γ) in the Gaussian Sobolev norm. -/
+    functions converging to any regular f ∈ W^{1,2}(γ) in the Gaussian Sobolev norm.
+@isnad1 id=ex.3h2v.s10.45e78b8322dd from=translated src=- shape=5e2b3765 vocab=62f1e1bb
+-/
 theorem exists_smooth_compactSupport_seq_tendsto (f : E n → ℝ)
     (hf : MemW12Gaussian n f (stdGaussianE n))
     (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :
@@ -384,6 +404,9 @@ def MemW12GaussianReal (f : ℝ → ℝ) (γ : Measure ℝ) : Prop :=
 noncomputable def smoothCutoffRReal (R : ℝ) (x : ℝ) : ℝ :=
   GaussianSobolev.smoothCutoff (|x| / R)
 
+/--
+@isnad1 id=eq.2h2v.s5.9ea6cc606f37 from=translated src=- shape=12f7123f vocab=fd612e27
+-/
 lemma smoothCutoffRReal_eq_one_of_abs_le {R : ℝ} (hR : 0 < R) {x : ℝ}
     (hx : |x| ≤ R) : smoothCutoffRReal R x = 1 := by
   unfold smoothCutoffRReal
@@ -391,6 +414,9 @@ lemma smoothCutoffRReal_eq_one_of_abs_le {R : ℝ} (hR : 0 < R) {x : ℝ}
   rw [abs_of_nonneg (div_nonneg (abs_nonneg _) hR.le)]
   exact div_le_one_of_le₀ hx hR.le
 
+/--
+@isnad1 id=eq.2h2v.s5.3ecc872a94e0 from=translated src=- shape=a71c2243 vocab=48d20fa2
+-/
 lemma smoothCutoffRReal_eq_zero_of_abs_ge {R : ℝ} (hR : 0 < R) {x : ℝ}
     (hx : 2 * R ≤ |x|) : smoothCutoffRReal R x = 0 := by
   unfold smoothCutoffRReal
@@ -399,12 +425,21 @@ lemma smoothCutoffRReal_eq_zero_of_abs_ge {R : ℝ} (hR : 0 < R) {x : ℝ}
   calc 2 = 2 * R / R := by field_simp
     _ ≤ |x| / R := div_le_div_of_nonneg_right hx hR.le
 
+/--
+@isnad1 id=le.0h2v.s4.28efa2f1cf9d from=translated src=- shape=a120b2a8 vocab=3a50d062
+-/
 lemma smoothCutoffRReal_nonneg (R : ℝ) (x : ℝ) : 0 ≤ smoothCutoffRReal R x :=
   GaussianSobolev.smoothCutoff_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.3864c6d7b0a1 from=translated src=- shape=aa052b1b vocab=3a50d062
+-/
 lemma smoothCutoffRReal_le_one (R : ℝ) (x : ℝ) : smoothCutoffRReal R x ≤ 1 :=
   GaussianSobolev.smoothCutoff_le_one _
 
+/--
+@isnad1 id=contdiff.1h1v.s5.73b69ea4ef5c from=translated src=- shape=7538186c vocab=b7b5e62d
+-/
 lemma smoothCutoffRReal_contDiff {R : ℝ} (hR : 0 < R) :
     ContDiff ℝ (⊤ : ℕ∞) (smoothCutoffRReal R) := by
   rw [contDiff_iff_contDiffAt]
@@ -454,6 +489,9 @@ lemma smoothCutoffRReal_contDiff {R : ℝ} (hR : 0 < R) :
       h_div.contDiffAt.comp x h_abs
     exact GaussianSobolev.smoothCutoff_contDiff.contDiffAt.comp x h_comp1
 
+/--
+@isnad1 id=hascompa.1h1v.s4.0fe0d337a6fa from=translated src=- shape=e217721d vocab=538e75ac
+-/
 lemma smoothCutoffRReal_hasCompactSupport {R : ℝ} (hR : 0 < R) :
     HasCompactSupport (smoothCutoffRReal R) := by
   rw [hasCompactSupport_def]
@@ -482,7 +520,9 @@ lemma smoothCutoffRReal_hasCompactSupport {R : ℝ} (hR : 0 < R) :
 noncomputable def equivE1Real : GaussianSobolev.E 1 ≃ ℝ :=
   (EuclideanSpace.equiv (Fin 1) ℝ).toEquiv.trans (Equiv.funUnique (Fin 1) ℝ)
 
-/-- Lemma: equivE1Real x = x 0 for x : E 1 -/
+/-- Lemma: equivE1Real x = x 0 for x : E 1
+@isnad1 id=eq.0h1v.s6.f341060a298c from=translated src=- shape=4c4eab39 vocab=ea31bf7e
+-/
 lemma equivE1Real_apply (x : GaussianSobolev.E 1) : equivE1Real x = x 0 := by
   simp only [equivE1Real, Equiv.trans_apply, Equiv.funUnique_apply]
   rfl
@@ -516,17 +556,23 @@ noncomputable def toE1Fun (f : ℝ → ℝ) : GaussianSobolev.E 1 → ℝ :=
 noncomputable def fromE1Fun (g : GaussianSobolev.E 1 → ℝ) : ℝ → ℝ :=
   g ∘ equivE1Real.symm
 
-/-- The funUnique equivalence for Fin 1 is continuous. -/
+/-- The funUnique equivalence for Fin 1 is continuous.
+@isnad1 id=continuo.0h0v.s6.aa84f8b20f1a from=translated src=- shape=e4e1ac7e vocab=0c0c19e2
+-/
 lemma continuous_funUnique_symm : Continuous (Equiv.funUnique (Fin 1) ℝ).symm := by
   simp only [Equiv.funUnique_symm_apply]
   exact continuous_pi (fun _ => continuous_id)
 
-/-- The funUnique equivalence for Fin 1 is measurable. -/
+/-- The funUnique equivalence for Fin 1 is measurable.
+@isnad1 id=measurab.0h0v.s6.cea41123a4ac from=translated src=- shape=e4e1ac7e vocab=a3bb69c9
+-/
 lemma measurable_funUnique_symm : Measurable (Equiv.funUnique (Fin 1) ℝ).symm :=
   continuous_funUnique_symm.measurable
 
 /-- The product measure Measure.pi on Fin 1 → ℝ with each coordinate being gaussianReal 0 1
-    equals gaussianReal 0 1 transported via funUnique. -/
+    equals gaussianReal 0 1 transported via funUnique.
+@isnad1 id=eq.0h0v.s7.6952e9a29d6d from=translated src=- shape=399d2347 vocab=9bef614f
+-/
 lemma measurePi_fin1_eq_gaussianReal :
     Measure.pi (fun _ : Fin 1 ↦ gaussianReal 0 1) =
       Measure.map (Equiv.funUnique (Fin 1) ℝ).symm (gaussianReal 0 1) := by
@@ -549,19 +595,27 @@ lemma measurePi_fin1_eq_gaussianReal :
   rw [h_preimage]
   simp only [Finset.univ_unique, Fin.default_eq_zero, Finset.prod_singleton]
 
-/-- The equivE1Real.symm is continuous. -/
+/-- The equivE1Real.symm is continuous.
+@isnad1 id=continuo.0h0v.s6.7d67d3d3bf49 from=translated src=- shape=ab998695 vocab=2b41ffaf
+-/
 lemma continuous_equivE1Real_symm : Continuous equivE1Real.symm :=
   linearIsometryEquivE1Real.symm.continuous
 
-/-- The equivE1Real is continuous. -/
+/-- The equivE1Real is continuous.
+@isnad1 id=continuo.0h0v.s6.e094251f3c68 from=translated src=- shape=ac9758f7 vocab=5ed2d22e
+-/
 lemma continuous_equivE1Real : Continuous equivE1Real :=
   linearIsometryEquivE1Real.continuous
 
-/-- The equivE1Real.symm is measurable. -/
+/-- The equivE1Real.symm is measurable.
+@isnad1 id=measurab.0h0v.s6.c45d7fc16214 from=translated src=- shape=ab998695 vocab=e19be0de
+-/
 lemma measurable_equivE1Real_symm : Measurable equivE1Real.symm :=
   continuous_equivE1Real_symm.measurable
 
-/-- The equivE1Real is measurable. -/
+/-- The equivE1Real is measurable.
+@isnad1 id=measurab.0h0v.s6.c871c756ca07 from=translated src=- shape=ac9758f7 vocab=8aac5526
+-/
 lemma measurable_equivE1Real : Measurable equivE1Real :=
   continuous_equivE1Real.measurable
 
@@ -569,13 +623,19 @@ lemma measurable_equivE1Real : Measurable equivE1Real :=
 noncomputable def measurableEquivE1Real : GaussianSobolev.E 1 ≃ᵐ ℝ :=
   linearIsometryEquivE1Real.toHomeomorph.toMeasurableEquiv
 
-/-- The MeasurableEquiv agrees with equivE1Real. -/
+/-- The MeasurableEquiv agrees with equivE1Real.
+@isnad1 id=eq.0h0v.s8.52945daf3733 from=translated src=- shape=19f96cde vocab=55597343
+-/
 lemma measurableEquivE1Real_eq : ⇑measurableEquivE1Real = equivE1Real := rfl
 
-/-- The symm of MeasurableEquiv agrees with equivE1Real.symm. -/
+/-- The symm of MeasurableEquiv agrees with equivE1Real.symm.
+@isnad1 id=eq.0h0v.s8.3c0189aed23f from=translated src=- shape=27af8a6f vocab=79d5f72f
+-/
 lemma measurableEquivE1Real_symm_eq : ⇑measurableEquivE1Real.symm = equivE1Real.symm := rfl
 
-/-- The standard Gaussian on E 1 equals the 1D Gaussian transported via the equivalence. -/
+/-- The standard Gaussian on E 1 equals the 1D Gaussian transported via the equivalence.
+@isnad1 id=eq.0h0v.s7.242ac7db5a28 from=translated src=- shape=e47eef61 vocab=af82d622
+-/
 lemma stdGaussianE_1_eq_map_gaussianReal :
     stdGaussianE 1 =
       Measure.map equivE1Real.symm (gaussianReal 0 1) := by
@@ -589,7 +649,9 @@ lemma stdGaussianE_1_eq_map_gaussianReal :
 /-! ### Transfer of Norms -/
 
 /-- The eLpNorm of f on ℝ with gaussianReal 0 1 equals the eLpNorm of toE1Fun f
-    on E 1 with stdGaussianE 1. -/
+    on E 1 with stdGaussianE 1.
+@isnad1 id=eq.1h2v.s7.954f20dada1b from=translated src=- shape=1575f059 vocab=cd530e6d
+-/
 lemma eLpNorm_toE1Fun_eq (f : ℝ → ℝ) (p : ℝ≥0∞)
     (hf : AEStronglyMeasurable f (gaussianReal 0 1)) :
     eLpNorm (toE1Fun f) p (stdGaussianE 1) = eLpNorm f p (gaussianReal 0 1) := by
@@ -611,7 +673,9 @@ lemma eLpNorm_toE1Fun_eq (f : ℝ → ℝ) (p : ℝ≥0∞)
   -- (f ∘ e) ∘ e.symm = f by congruence
   congr 1
 
-/-- The fderiv of toE1Fun f at a point relates to the fderiv of f. -/
+/-- The fderiv of toE1Fun f at a point relates to the fderiv of f.
+@isnad1 id=eq.1h2v.s10.41a0e75a6a7e from=translated src=- shape=e55ae70a vocab=8cd9efef
+-/
 lemma fderiv_toE1Fun (f : ℝ → ℝ) (hf_diff : Differentiable ℝ f) (x : GaussianSobolev.E 1) :
     fderiv ℝ (toE1Fun f) x = (fderiv ℝ f (equivE1Real x)).comp (linearIsometryEquivE1Real : GaussianSobolev.E 1 →L[ℝ] ℝ) := by
   unfold toE1Fun
@@ -621,7 +685,9 @@ lemma fderiv_toE1Fun (f : ℝ → ℝ) (hf_diff : Differentiable ℝ f) (x : Gau
   -- fderiv of a linear isometry equiv is itself
   exact linearIsometryEquivE1Real.toContinuousLinearEquiv.fderiv
 
-/-- The norm of fderiv of toE1Fun equals the norm of fderiv of f (both are 1D). -/
+/-- The norm of fderiv of toE1Fun equals the norm of fderiv of f (both are 1D).
+@isnad1 id=eq.1h2v.s10.c20b5389f3ed from=translated src=- shape=ca222539 vocab=fee42641
+-/
 lemma norm_fderiv_toE1Fun_eq (f : ℝ → ℝ) (hf_diff : Differentiable ℝ f) (x : GaussianSobolev.E 1) :
     ‖fderiv ℝ (toE1Fun f) x‖ = ‖fderiv ℝ f (equivE1Real x)‖ := by
   rw [fderiv_toE1Fun f hf_diff x]
@@ -634,7 +700,9 @@ lemma norm_fderiv_toE1Fun_eq (f : ℝ → ℝ) (hf_diff : Differentiable ℝ f) 
 
 /-! ### Transfer of W^{1,2} Membership -/
 
-/-- If f ∈ W^{1,2}(gaussianReal 0 1) on ℝ, then toE1Fun f ∈ W^{1,2}(stdGaussianE 1) on E 1. -/
+/-- If f ∈ W^{1,2}(gaussianReal 0 1) on ℝ, then toE1Fun f ∈ W^{1,2}(stdGaussianE 1) on E 1.
+@isnad1 id=memw12ga.2h1v.s6.be51e5902477 from=translated src=- shape=080f618d vocab=d2d5ccde
+-/
 lemma memW12Gaussian_toE1Fun (f : ℝ → ℝ) (hf : MemW12GaussianReal f (gaussianReal 0 1))
     (hf_diff : Differentiable ℝ f) :
     GaussianSobolev.MemW12Gaussian 1 (toE1Fun f) (stdGaussianE 1) := by
@@ -684,12 +752,16 @@ lemma memW12Gaussian_toE1Fun (f : ℝ → ℝ) (hf : MemW12GaussianReal f (gauss
 
 /-! ### Transfer of Differentiability -/
 
-/-- If f is differentiable on ℝ, then toE1Fun f is differentiable on E 1. -/
+/-- If f is differentiable on ℝ, then toE1Fun f is differentiable on E 1.
+@isnad1 id=differen.1h1v.s8.c0ada303b85f from=translated src=- shape=285fb9ec vocab=8d17ce41
+-/
 lemma differentiable_toE1Fun (f : ℝ → ℝ) (hf : Differentiable ℝ f) :
     Differentiable ℝ (toE1Fun f) :=
   hf.comp linearIsometryEquivE1Real.differentiable
 
-/-- If f has continuous fderiv on ℝ, then toE1Fun f has continuous fderiv on E 1. -/
+/-- If f has continuous fderiv on ℝ, then toE1Fun f has continuous fderiv on E 1.
+@isnad1 id=continuo.2h1v.s10.5c58cc3304f5 from=translated src=- shape=6842feb2 vocab=a7574d2f
+-/
 lemma continuous_fderiv_toE1Fun (f : ℝ → ℝ) (hf_diff : Differentiable ℝ f)
     (hf_cont : Continuous (fun x => fderiv ℝ f x)) :
     Continuous (fun x => fderiv ℝ (toE1Fun f) x) := by
@@ -710,13 +782,17 @@ lemma continuous_fderiv_toE1Fun (f : ℝ → ℝ) (hf_diff : Differentiable ℝ 
 
 /-! ### Transfer of Smooth Functions with Compact Support -/
 
-/-- If g : E 1 → ℝ is smooth, then fromE1Fun g is smooth on ℝ. -/
+/-- If g : E 1 → ℝ is smooth, then fromE1Fun g is smooth on ℝ.
+@isnad1 id=contdiff.1h1v.s7.405b2f13611c from=translated src=- shape=112190ae vocab=89ac9049
+-/
 lemma contDiff_fromE1Fun (g : GaussianSobolev.E 1 → ℝ) (hg : ContDiff ℝ (⊤ : ℕ∞) g) :
     ContDiff ℝ (⊤ : ℕ∞) (fromE1Fun g) := by
   unfold fromE1Fun
   exact hg.comp linearIsometryEquivE1Real.symm.contDiff
 
-/-- If g : E 1 → ℝ has compact support, then fromE1Fun g has compact support on ℝ. -/
+/-- If g : E 1 → ℝ has compact support, then fromE1Fun g has compact support on ℝ.
+@isnad1 id=hascompa.1h1v.s6.59820963baf9 from=translated src=- shape=5efcddc0 vocab=74fc40fa
+-/
 lemma hasCompactSupport_fromE1Fun (g : GaussianSobolev.E 1 → ℝ) (hg : HasCompactSupport g) :
     HasCompactSupport (fromE1Fun g) := by
   unfold fromE1Fun
@@ -743,7 +819,9 @@ lemma hasCompactSupport_fromE1Fun (g : GaussianSobolev.E 1 → ℝ) (hg : HasCom
 
 /-! ### Transfer of Sobolev Norm -/
 
-/-- The Gaussian Sobolev norm squared of fromE1Fun g on ℝ equals that of g on E 1. -/
+/-- The Gaussian Sobolev norm squared of fromE1Fun g on ℝ equals that of g on E 1.
+@isnad1 id=eq.1h1v.s7.50c87dfad366 from=translated src=- shape=798816f1 vocab=95140e65
+-/
 lemma gaussianSobolevNormSq_fromE1Fun (g : GaussianSobolev.E 1 → ℝ) (hg_smooth : ContDiff ℝ 1 g) :
     GaussianSobolevNormSqReal (fromE1Fun g) (gaussianReal 0 1) =
       GaussianSobolev.GaussianSobolevNormSq 1 g (stdGaussianE 1) := by
@@ -785,18 +863,24 @@ lemma gaussianSobolevNormSq_fromE1Fun (g : GaussianSobolev.E 1 → ℝ) (hg_smoo
         (fderiv ℝ g (equivE1Real.symm x)) linearIsometryEquivE1Real.symm
     rw [hfun_eq]
 
-/-- toE1Fun and fromE1Fun are inverses on functions. -/
+/-- toE1Fun and fromE1Fun are inverses on functions.
+@isnad1 id=eq.0h1v.s3.6c86e2f1e93c from=translated src=- shape=4c35d954 vocab=1dfe8cb8
+-/
 lemma fromE1Fun_toE1Fun (f : ℝ → ℝ) : fromE1Fun (toE1Fun f) = f := by
   ext x
   simp only [fromE1Fun, toE1Fun, Function.comp_apply, Equiv.apply_symm_apply]
 
-/-- fromE1Fun (g - h) = fromE1Fun g - fromE1Fun h -/
+/-- fromE1Fun (g - h) = fromE1Fun g - fromE1Fun h
+@isnad1 id=eq.0h2v.s6.3e40e42b5a19 from=translated src=- shape=1fbfcc70 vocab=4d271f8c
+-/
 lemma fromE1Fun_sub (g h : GaussianSobolev.E 1 → ℝ) :
     fromE1Fun (g - h) = fromE1Fun g - fromE1Fun h := by
   ext x
   simp only [fromE1Fun, Pi.sub_apply, Function.comp_apply]
 
-/-- Gaussian Sobolev norm of (f - fromE1Fun g) relates to norm of (toE1Fun f - g). -/
+/-- Gaussian Sobolev norm of (f - fromE1Fun g) relates to norm of (toE1Fun f - g).
+@isnad1 id=eq.3h2v.s9.c813feb41d64 from=translated src=- shape=380ac2bf vocab=88ba62ba
+-/
 lemma gaussianSobolevNormSq_sub_eq (f : ℝ → ℝ) (g : GaussianSobolev.E 1 → ℝ)
     (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fderiv ℝ f))
     (hg_smooth : ContDiff ℝ 1 g) :
@@ -819,7 +903,9 @@ lemma gaussianSobolevNormSq_sub_eq (f : ℝ → ℝ) (g : GaussianSobolev.E 1 �
     functions converging to any regular f ∈ W^{1,2}(γ) in the 1D Gaussian Sobolev norm.
 
     This is the 1D specialization of `exists_smooth_compactSupport_seq_tendsto` for
-    functions f : ℝ → ℝ with the standard 1D Gaussian measure. -/
+    functions f : ℝ → ℝ with the standard 1D Gaussian measure.
+@isnad1 id=ex.3h1v.s8.d1594882cd36 from=translated src=- shape=d8105df9 vocab=78929a66
+-/
 theorem exists_smooth_compactSupport_seq_tendsto_real (f : ℝ → ℝ)
     (hf : MemW12GaussianReal f (gaussianReal 0 1))
     (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :

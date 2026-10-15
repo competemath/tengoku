@@ -46,7 +46,9 @@ noncomputable def linearEntropyIntegral (n d : ℕ) (δ D : ℝ)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) : ℝ :=
   entropyIntegral (linearLocalizedBallImage n d δ x) D
 
-/-- The linearLocalizedBallImage is totally bounded (as a finite-dimensional compact set image). -/
+/-- The linearLocalizedBallImage is totally bounded (as a finite-dimensional compact set image).
+@isnad1 id=totallyb.1h4v.s5.3b60fed1c8d9 from=translated src=- shape=61f01e32 vocab=6d40009f
+-/
 lemma linearLocalizedBallImage_totallyBounded (hn : 0 < n)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) :
     TotallyBounded (linearLocalizedBallImage n d δ x) := by
@@ -103,7 +105,9 @@ lemma linearLocalizedBallImage_totallyBounded (hn : 0 < n)
           apply div_lt_div_of_pos_right hz_ball hsqrt_pos
       _ = ε := by field_simp
 
-/-- Helper: metricEntropyOfNat n ≤ log N when n ≤ N as reals. -/
+/-- Helper: metricEntropyOfNat n ≤ log N when n ≤ N as reals.
+@isnad1 id=le.2h2v.s4.72ba442d5c7a from=translated src=- shape=29a37ebd vocab=a6ec75b7
+-/
 lemma metricEntropyOfNat_le_log {m : ℕ} {N : ℝ} (hN_pos : 1 < N) (hm_le : (m : ℝ) ≤ N) :
     metricEntropyOfNat m ≤ Real.log N := by
   unfold metricEntropyOfNat
@@ -113,14 +117,18 @@ lemma metricEntropyOfNat_le_log {m : ℕ} {N : ℝ} (hN_pos : 1 < N) (hm_le : (m
     apply Real.log_le_log (Nat.cast_pos.mpr (by omega : 0 < m)) hm_le
 
 /-- The linearLocalizedBallImage equals the empiricalMetricImage of the localizedBall
-    for the linear predictor class. This is the key lemma connecting the two formulations. -/
+    for the linear predictor class. This is the key lemma connecting the two formulations.
+@isnad1 id=eq.0h4v.s5.cc24a44d1b12 from=translated src=- shape=ea27735a vocab=539d5828
+-/
 lemma linearLocalizedBallImage_eq_empiricalImage (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) :
     linearLocalizedBallImage n d δ x =
     empiricalMetricImage n x '' localizedBall (linearPredictorClass d) δ x := by
   unfold linearLocalizedBallImage linearLocalizedBall
   rfl
 
-/-- Integrability of the explicit entropy bound function. -/
+/-- Integrability of the explicit entropy bound function.
+@isnad1 id=integrab.2h3v.s7.136c642d084c from=translated src=- shape=2c5ab110 vocab=c30ca96f
+-/
 lemma linearEntropyIntegral_integrableOn {δ D : ℝ} (hδ : 0 < δ) (hDδ : D ≤ 2 * δ) :
     MeasureTheory.IntegrableOn
       (fun ε => Real.sqrt (d * Real.log (1 + 2 * δ / ε))) (Set.Ioc 0 D) := by

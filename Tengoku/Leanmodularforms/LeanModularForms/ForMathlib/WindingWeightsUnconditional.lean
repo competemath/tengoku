@@ -22,7 +22,9 @@ open scoped Real Interval
 
 noncomputable section
 
-/-- Winding number at `i` is `-1/2` from `SingleCrossingData` with limit `-(πi)`. -/
+/-- Winding number at `i` is `-1/2` from `SingleCrossingData` with limit `-(πi)`.
+@isnad1 id=hasgener.1h4v.s6.f9ab330e9643 from=translated src=- shape=f7d67e71 vocab=590690c7
+-/
 theorem hasWindingNumber_atI_of_scd
     {γ : PiecewiseC1Path x y} (D : SingleCrossingData γ I)
     (hL : D.L = -(↑Real.pi * I)) :

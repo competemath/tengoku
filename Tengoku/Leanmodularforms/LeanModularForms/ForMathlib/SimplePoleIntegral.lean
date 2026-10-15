@@ -30,7 +30,9 @@ noncomputable section
 variable {x y : ℂ}
 
 /-- When `γ` avoids `s` with positive minimum distance, the ordinary contour integral
-of `(z - s)⁻¹` equals `2πi · generalizedWindingNumber γ s`. -/
+of `(z - s)⁻¹` equals `2πi · generalizedWindingNumber γ s`.
+@isnad1 id=eq.1h4v.s7.3bd05ba6f595 from=translated src=- shape=f47852a0 vocab=af3a3ac2
+-/
 theorem integral_inv_sub_eq_winding {s : ℂ} {γ : PiecewiseC1Path x y}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - s‖) :
     γ.contourIntegral (fun z => (z - s)⁻¹) =

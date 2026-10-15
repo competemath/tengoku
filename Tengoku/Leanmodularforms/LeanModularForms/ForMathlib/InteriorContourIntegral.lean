@@ -36,6 +36,9 @@ private lemma abs_lt_of_sq_lt {a b : ℝ} (h : a ^ 2 < b ^ 2) : |a| < |b| := by
   nlinarith [sq_abs a, sq_abs b, sq_nonneg (|a| - |b|),
     abs_nonneg a, abs_nonneg b]
 
+/--
+@isnad1 id=lt.3h1v.s6.e159ecdf53ec from=translated src=- shape=100c0d6f vocab=23878b0b
+-/
 theorem im_gt_sqrt3_div_two_of_interior {z : ℂ}
     (hz_norm : 1 < ‖z‖) (hz_re : |z.re| < 1/2) (hz_im : 0 < z.im) :
     Real.sqrt 3 / 2 < z.im := by
@@ -465,7 +468,9 @@ private theorem xfer {z : ℂ} {H : ℝ}
   rw [show γ.extendedPath t = γ.toPath.extend t from rfl,
     hγ t (Ioo_subset_Icc_self ht01), hee.deriv_eq]
 
-/-- **Interior contour integral = -2πi** for the FD boundary. -/
+/-- **Interior contour integral = -2πi** for the FD boundary.
+@isnad1 id=eq.3h3v.s7.bb17257273f9 from=translated src=- shape=687a3acf vocab=3e2a4272
+-/
 theorem fdBoundary_contourIntegral_interior_eq {H : ℝ}
     (_hH : H > Real.sqrt 3 / 2) {z : ℂ} (hz : FDStrictInterior z H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
@@ -474,7 +479,9 @@ theorem fdBoundary_contourIntegral_interior_eq {H : ℝ}
   rw [xfer hγ]
   exact ftc_full hz.norm_gt hz.re_abs_lt hz.im_pos hz.im_lt
 
-/-- **Interior winding number = -1**. -/
+/-- **Interior winding number = -1**.
+@isnad1 id=hasgener.3h3v.s7.64a440b97c59 from=translated src=- shape=1baee113 vocab=6b273e93
+-/
 theorem fdBoundary_interior_winding_complete {H : ℝ}
     (hH : H > Real.sqrt 3 / 2) {z : ℂ} (hz : FDStrictInterior z H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}

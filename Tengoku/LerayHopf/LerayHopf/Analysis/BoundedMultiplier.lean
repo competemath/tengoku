@@ -35,7 +35,9 @@ private theorem normSq_eq_integral_normSq (g : Lp ℂ 2 μ) :
 
 /-- `mulBdd m hmem g` is the `L²`-class of `x ↦ (m x : ℂ) • g x`, for a bounded
 a.e.-strongly-measurable real multiplier `m` (bound `C`).  Well-defined because the bounded
-multiplier keeps `g ∈ L²` inside `L²` (Hölder `∞ · 2 ⊆ 2`). -/
+multiplier keeps `g ∈ L²` inside `L²` (Hölder `∞ · 2 ⊆ 2`).
+@isnad1 id=memlp.1h4v.s9.96af50c23aa6 from=translated src=- shape=a4a8d5f5 vocab=a8912060
+-/
 theorem memLp_mulBdd (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (g : Lp ℂ 2 μ) :
     MemLp (fun x => (m x : ℂ) • (g : X → ℂ) x) 2 μ := by
@@ -49,13 +51,17 @@ noncomputable def mulBdd (m : X → ℝ)
   (memLp_mulBdd μ m hmem g).toLp _
 
 /-- The `Lp`-coercion of `mulBdd m g` agrees a.e. with the pointwise multiplier action
-`x ↦ (m x : ℂ) • g x`. -/
+`x ↦ (m x : ℂ) • g x`.
+@isnad1 id=eventual.1h4v.s9.418c7d03000d from=translated src=- shape=d0c3a59b vocab=fe1ae015
+-/
 theorem mulBdd_coeFn (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (g : Lp ℂ 2 μ) :
     (mulBdd μ m hmem g : X → ℂ) =ᵐ[μ] fun x => (m x : ℂ) • (g : X → ℂ) x :=
   MemLp.coeFn_toLp _
 
-/-- **ℝ-homogeneity of the bounded multiplier.** -/
+/-- **ℝ-homogeneity of the bounded multiplier.**
+@isnad1 id=eq.1h5v.s12.06d9091b0018 from=translated src=- shape=202d291a vocab=743b7243
+-/
 theorem mulBdd_smul (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (r : ℝ) (g : Lp ℂ 2 μ) :
     mulBdd μ m hmem (r • g) = r • mulBdd μ m hmem g := by
@@ -66,7 +72,9 @@ theorem mulBdd_smul (m : X → ℝ)
   simp only [smul_eq_mul, Complex.real_smul]
   ring
 
-/-- **Additivity of the bounded multiplier.** -/
+/-- **Additivity of the bounded multiplier.**
+@isnad1 id=eq.1h5v.s11.f95a3f16406b from=translated src=- shape=aa7eb4d9 vocab=2ddded6f
+-/
 theorem mulBdd_add (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (g h : Lp ℂ 2 μ) :
     mulBdd μ m hmem (g + h) = mulBdd μ m hmem g + mulBdd μ m hmem h := by
@@ -76,7 +84,9 @@ theorem mulBdd_add (m : X → ℝ)
     mulBdd_coeFn μ m hmem g, mulBdd_coeFn μ m hmem h, Lp.coeFn_add g h] with x h1 h2 h3 h4 h5
   rw [h1, h2, Pi.add_apply, h3, h4, h5, Pi.add_apply, smul_add]
 
-/-- **Squared `L²`-norm of `mulBdd m g` as the weighted integral** `∫ (m x)² ‖g x‖²`. -/
+/-- **Squared `L²`-norm of `mulBdd m g` as the weighted integral** `∫ (m x)² ‖g x‖²`.
+@isnad1 id=eq.1h4v.s9.34247aaf5083 from=translated src=- shape=e2ea7287 vocab=724d1d86
+-/
 theorem norm_mulBdd_sq (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (g : Lp ℂ 2 μ) :
     ‖mulBdd μ m hmem g‖ ^ 2 = ∫ x : X, (m x) ^ 2 * ‖(g : X → ℂ) x‖ ^ 2 ∂μ := by
@@ -87,7 +97,9 @@ theorem norm_mulBdd_sq (m : X → ℝ)
   rw [norm_smul, mul_pow, Complex.norm_real, Real.norm_eq_abs, sq_abs]
 
 /-- **Operator bound for the bounded multiplier:** `‖mulBdd m g‖ ≤ C ‖g‖` whenever `|m| ≤ C`
-everywhere (the sup bound on `m` dominates the operator). -/
+everywhere (the sup bound on `m` dominates the operator).
+@isnad1 id=le.3h5v.s9.d5421e3eb174 from=translated src=- shape=d39d865e vocab=f81f32dc
+-/
 theorem norm_mulBdd_le (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) {C : ℝ}
     (hC : 0 ≤ C) (hmle : ∀ x, |m x| ≤ C) (g : Lp ℂ 2 μ) :
@@ -106,7 +118,9 @@ theorem norm_mulBdd_le (m : X → ℝ)
   have hrhs : 0 ≤ C * ‖g‖ := mul_nonneg hC (norm_nonneg _)
   nlinarith [norm_nonneg (mulBdd μ m hmem g), hsq, hrhs]
 
-/-- **Subtractivity of the bounded multiplier.** -/
+/-- **Subtractivity of the bounded multiplier.**
+@isnad1 id=eq.1h5v.s11.4680e44fddda from=translated src=- shape=aa7eb4d9 vocab=064a41cc
+-/
 theorem mulBdd_sub (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (g h : Lp ℂ 2 μ) :
     mulBdd μ m hmem (g - h) = mulBdd μ m hmem g - mulBdd μ m hmem h := by
@@ -116,7 +130,9 @@ theorem mulBdd_sub (m : X → ℝ)
     mulBdd_coeFn μ m hmem g, mulBdd_coeFn μ m hmem h, Lp.coeFn_sub g h] with x h1 h2 h3 h4 h5
   rw [h1, h2, Pi.sub_apply, h3, h4, h5, Pi.sub_apply, smul_sub]
 
-/-- **Continuity of the bounded multiplier operator** (it is `C`-Lipschitz). -/
+/-- **Continuity of the bounded multiplier operator** (it is `C`-Lipschitz).
+@isnad1 id=continuo.3h4v.s11.e46182767576 from=translated src=- shape=7fd10359 vocab=591f2425
+-/
 theorem continuous_mulBdd (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) {C : ℝ}
     (hC : 0 ≤ C) (hmle : ∀ x, |m x| ≤ C) :
@@ -126,7 +142,9 @@ theorem continuous_mulBdd (m : X → ℝ)
   rw [dist_eq_norm, dist_eq_norm, ← mulBdd_sub μ m hmem g h, Real.coe_toNNReal C hC]
   exact norm_mulBdd_le μ m hmem hC hmle (g - h)
 
-/-- **Self-adjointness of the bounded real multiplier.**  `⟪c, mulBdd m g⟫ = ⟪mulBdd m c, g⟫`. -/
+/-- **Self-adjointness of the bounded real multiplier.**  `⟪c, mulBdd m g⟫ = ⟪mulBdd m c, g⟫`.
+@isnad1 id=eq.1h5v.s9.d576c1d2b1de from=translated src=- shape=34544ee0 vocab=635de4bc
+-/
 theorem inner_mulBdd_left (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ) (c g : Lp ℂ 2 μ) :
     (inner ℂ c (mulBdd μ m hmem g) : ℂ) = inner ℂ (mulBdd μ m hmem c) g := by
@@ -140,7 +158,9 @@ theorem inner_mulBdd_left (m : X → ℝ)
 
 /-- **Bounded-multiplier Bochner commute (interval integral).**  For a curve `G` that is
 interval-integrable on `[a,b]`, the bounded multiplier commutes with the Bochner integral:
-`mulBdd m (∫_a^b G s ds) = ∫_a^b mulBdd m (G s) ds`. -/
+`mulBdd m (∫_a^b G s ds) = ∫_a^b mulBdd m (G s) ds`.
+@isnad1 id=eq.3h6v.s11.3cf7a0581744 from=translated src=- shape=6c95c09e vocab=1870ffa4
+-/
 theorem mulBdd_intervalIntegral_comm (m : X → ℝ)
     (hmem : MemLp (fun x : X => (m x : ℂ)) ⊤ μ)
     {G : ℝ → Lp ℂ 2 μ} {a b : ℝ}

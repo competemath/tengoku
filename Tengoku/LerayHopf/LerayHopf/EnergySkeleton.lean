@@ -32,7 +32,9 @@ def EnergyInequality (ed : EnergyData) : Prop :=
   ∀ s t : ℝ, 0 ≤ s → s ≤ t → ed.E t + ed.ν * ed.A s t ≤ ed.E s
 
 /-- If the energy inequality holds with nonnegative viscosity and nonnegative
-accumulated dissipation, then the energy is nonincreasing on `[0, ∞)`. -/
+accumulated dissipation, then the energy is nonincreasing on `[0, ∞)`.
+@isnad1 id=le.5h3v.s6.274c22be5565 from=translated src=- shape=774468e7 vocab=9b06e536
+-/
 theorem energy_nonincreasing_from_nonnegative_dissipation
     (ed : EnergyData) (hE : EnergyInequality ed) (hν : 0 ≤ ed.ν)
     (hA : ∀ s t, 0 ≤ s → s ≤ t → 0 ≤ ed.A s t) :

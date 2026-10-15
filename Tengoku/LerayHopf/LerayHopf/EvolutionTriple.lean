@@ -70,7 +70,9 @@ structure DissipativeEvolution where
 /-- **b(u, u, u) = 0** follows purely from antisymmetry.
 
 Proof: `b(u, u, u) = -b(u, u, u)` by `convForm_antisymm u u u`, so `2 * b(u, u, u) = 0`,
-hence `b(u, u, u) = 0`. -/
+hence `b(u, u, u) = 0`.
+@isnad1 id=eq.0h2v.s4.2a60f1c8950a from=translated src=- shape=3c2254c0 vocab=f72ca537
+-/
 theorem DissipativeEvolution.convForm_self_zero
     (E : DissipativeEvolution) (u : E.H) :
     E.convForm u u u = 0 := by
@@ -81,7 +83,9 @@ theorem DissipativeEvolution.convForm_self_zero
 the energy-estimate workhorse.
 
 Proof: `b(u, v, v) = -b(u, v, v)` by `convForm_antisymm u v v`, so `2 * b(u, v, v) = 0`,
-hence `b(u, v, v) = 0`. -/
+hence `b(u, v, v) = 0`.
+@isnad1 id=eq.0h3v.s4.bb15367ec764 from=translated src=- shape=edda528a vocab=f72ca537
+-/
 theorem DissipativeEvolution.convForm_self_zero_right
     (E : DissipativeEvolution) (u v : E.H) :
     E.convForm u v v = 0 := by

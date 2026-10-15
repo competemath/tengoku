@@ -54,7 +54,9 @@ variable {x y : ℂ}
 
 /-- At any single crossing with limit `L = -(π * I)`, the generalized winding
 number is `-1/2`. This is the universal smooth-crossing result: the angle
-swept from entry to exit is `π`, giving `-(π * I) / (2 * π * I) = -1/2`. -/
+swept from entry to exit is `π`, giving `-(π * I) / (2 * π * I) = -1/2`.
+@isnad1 id=hasgener.1h5v.s6.7e4fe51ac139 from=translated src=- shape=fe0284c4 vocab=590690c7
+-/
 theorem hasGeneralizedWindingNumber_neg_half_of_scd {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     (D : SingleCrossingData γ z₀) (hL : D.L = -(↑Real.pi * I)) :
     HasGeneralizedWindingNumber γ z₀ (-1 / 2) := by
@@ -95,7 +97,9 @@ def mkSingleCrossingData_smooth {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdS
   h_limit := ftcHyp.h_limit
 
 /-- From a generic smooth crossing `SingleCrossingData` with limit `L = -(π * I)`,
-extract `HasGeneralizedWindingNumber γ z₀ (-1/2)`. -/
+extract `HasGeneralizedWindingNumber γ z₀ (-1/2)`.
+@isnad1 id=hasgener.6h7v.s8.4766b9f256d6 from=translated src=- shape=cdb5523e vocab=e98fda46
+-/
 theorem boundaryWinding_of_smoothFTCHyp {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (z₀ : ℂ) (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo 0 1) (δ : ℝ → ℝ) (threshold : ℝ) (hthresh : 0 < threshold)
     (hδ_pos : ∀ ε, 0 < ε → ε < threshold → 0 < δ ε)
@@ -143,7 +147,9 @@ structure SmoothBoundaryWindingData {H : ℝ} (γ : PiecewiseC1Path (fdStart H) 
   /-- Analytical hypothesis with limit `-(π * I)`. -/
   ftcHyp : ArcFTCHyp γ z₀ t₀ δ threshold (-(↑Real.pi * I))
 
-/-- From `SmoothBoundaryWindingData`, extract `HasGeneralizedWindingNumber γ z₀ (-1/2)`. -/
+/-- From `SmoothBoundaryWindingData`, extract `HasGeneralizedWindingNumber γ z₀ (-1/2)`.
+@isnad1 id=hasgener.0h4v.s5.714ace390e64 from=translated src=- shape=32c7caa0 vocab=2593727c
+-/
 theorem SmoothBoundaryWindingData.hasWindingNumber {H : ℝ}
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)} {z₀ : ℂ}
     (D : SmoothBoundaryWindingData γ z₀) : HasGeneralizedWindingNumber γ z₀ (-1 / 2) :=
@@ -158,6 +164,9 @@ the distance from `z₀ = γ(t₀)` satisfies `‖γ(t) - z₀‖ = C·|t - t₀
 positive constant `C`. The cutoff `linDelta C ε = ε / C` inverts this. -/
 def linDelta (C : ℝ) (ε : ℝ) : ℝ := ε / C
 
+/--
+@isnad1 id=lt.2h2v.s5.83fdee97bd9d from=translated src=- shape=6c67d60b vocab=df15ef1b
+-/
 theorem linDelta_pos {C ε : ℝ} (hC : 0 < C) (hε : 0 < ε) : 0 < linDelta C ε :=
   div_pos hε hC
 

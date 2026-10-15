@@ -20,7 +20,9 @@ namespace HeckeRing
 
 variable {G : Type*} [Group G] (H : Subgroup G) (Δ : Submonoid G)
 
-/-- The conjugation action on `H` as a set product: `gHg⁻¹ = {g} * H * {g⁻¹}`. -/
+/-- The conjugation action on `H` as a set product: `gHg⁻¹ = {g} * H * {g⁻¹}`.
+@isnad1 id=eq.0h3v.s7.3f51e34c88a4 from=translated src=- shape=0c3d0780 vocab=a1edfc88
+-/
 lemma conjAct_smul_coe_eq (g : G) :
     ((ConjAct.toConjAct g • H) : Set G) = {g} * H * {g⁻¹} := by
   ext x
@@ -36,7 +38,9 @@ lemma conjAct_smul_coe_eq (g : G) :
       inv_inv, mem_preimage, SetLike.mem_coe] at *
     rwa [← mul_assoc] at h
 
-/-- Conjugation by an element of `H` fixes `H`. -/
+/-- Conjugation by an element of `H` fixes `H`.
+@isnad1 id=eq.0h3v.s7.aa287b9a3c88 from=translated src=- shape=45eeb04a vocab=6ebae642
+-/
 lemma conjAct_smul_elt_eq (h : H) : ConjAct.toConjAct (h : G) • H = H := by
   have : ConjAct.toConjAct (h : G) • (H : Set G) = H := by
     rw [conjAct_smul_coe_eq, Subgroup.singleton_mul_subgroup h.2,
@@ -92,7 +96,9 @@ noncomputable def toSet (D : HeckeCoset P) : Set G :=
 /-- A representative `g : Δ` (via `Quotient.out`). -/
 noncomputable def rep (D : HeckeCoset P) : P.Δ := Quotient.out D
 
-/-- The representative of a `HeckeCoset` maps back to the coset under `⟦·⟧`. -/
+/-- The representative of a `HeckeCoset` maps back to the coset under `⟦·⟧`.
+@isnad1 id=eq.0h3v.s6.bf9fe3d62058 from=translated src=- shape=e7607b83 vocab=fbbffc1a
+-/
 lemma mk_rep (D : HeckeCoset P) : (⟦HeckeCoset.rep D⟧ : HeckeCoset P) = D :=
   Quotient.out_eq D
 
@@ -101,21 +107,29 @@ lemma eq_iff (g h : P.Δ) : (⟦g⟧ : HeckeCoset P) = ⟦h⟧ ↔
     DoubleCoset.doubleCoset (g : G) P.H P.H = DoubleCoset.doubleCoset (h : G) P.H P.H :=
   Quotient.eq (r := dcSetoid P)
 
-/-- The carrier set of `⟦g⟧` is definitionally `HgH`. -/
+/-- The carrier set of `⟦g⟧` is definitionally `HgH`.
+@isnad1 id=eq.0h3v.s7.917398934a2a from=translated src=- shape=97f484dc vocab=1e7362de
+-/
 @[simp] lemma toSet_mk (g : P.Δ) :
     HeckeCoset.toSet (⟦g⟧ : HeckeCoset P) = DoubleCoset.doubleCoset (g : G) P.H P.H := rfl
 
-/-- The carrier set equals the double coset of the representative. -/
+/-- The carrier set equals the double coset of the representative.
+@isnad1 id=eq.0h3v.s6.89630f31214e from=translated src=- shape=750d7626 vocab=edbe72aa
+-/
 lemma toSet_eq_rep (D : HeckeCoset P) :
     HeckeCoset.toSet D = DoubleCoset.doubleCoset (HeckeCoset.rep D : G) P.H P.H := by
   refine Quotient.inductionOn D fun g ↦ ?_
   simpa only [toSet_mk, HeckeCoset.rep] using (Quotient.exact (Quotient.out_eq (⟦g⟧ : HeckeCoset P))).symm
 
-/-- The representative lies in its double coset. -/
+/-- The representative lies in its double coset.
+@isnad1 id=mem.0h3v.s6.8ff9ed5e7b13 from=translated src=- shape=5bd4fbe1 vocab=c15f01b8
+-/
 lemma rep_mem (D : HeckeCoset P) : (HeckeCoset.rep D : G) ∈ HeckeCoset.toSet D :=
   toSet_eq_rep D ▸ DoubleCoset.mem_doubleCoset_self P.H P.H _
 
-/-- If `x ∈ HgH`, then `HxH = HgH`. The fundamental double coset absorption lemma. -/
+/-- If `x ∈ HgH`, then `HxH = HgH`. The fundamental double coset absorption lemma.
+@isnad1 id=eq.1h4v.s8.026fbade0dfb from=translated src=- shape=becc3d4b vocab=3bd00f16
+-/
 lemma doubleCoset_eq_of_mem {g : P.Δ} {x : G}
     (hx : x ∈ DoubleCoset.doubleCoset (g : G) P.H P.H) :
     DoubleCoset.doubleCoset x P.H P.H = DoubleCoset.doubleCoset (g : G) P.H P.H := by
@@ -138,15 +152,21 @@ lemma eq_mk_of_mem {g₁ g₂ : P.Δ}
 /-- The identity double coset `H1H = H`. -/
 def one (P : HeckePair G) : HeckeCoset P := ⟦⟨1, P.Δ.one_mem⟩⟧
 
-/-- Induction: to prove something for all double cosets, prove it for `⟦g⟧`. -/
+/-- Induction: to prove something for all double cosets, prove it for `⟦g⟧`.
+@isnad1 id=var.0h5v.s6.e3d77abb3069 from=translated src=- shape=183f311e vocab=6c73a4e4
+-/
 protected lemma ind {motive : HeckeCoset P → Prop}
     (h : ∀ g : P.Δ, motive ⟦g⟧) : ∀ D, motive D := Quotient.ind h
 
-/-- Two-argument induction. -/
+/-- Two-argument induction.
+@isnad1 id=var.0h6v.s7.d5817b782356 from=translated src=- shape=4925183b vocab=6c73a4e4
+-/
 protected lemma ind₂ {motive : HeckeCoset P → HeckeCoset P → Prop}
     (h : ∀ g₁ g₂ : P.Δ, motive ⟦g₁⟧ ⟦g₂⟧) : ∀ D₁ D₂, motive D₁ D₂ := Quotient.ind₂ h
 
-/-- The representative of `HeckeCoset.one` belongs to `H`. -/
+/-- The representative of `HeckeCoset.one` belongs to `H`.
+@isnad1 id=mem.0h2v.s6.dc4bd17b9a4c from=translated src=- shape=643ab7b5 vocab=fc566e64
+-/
 lemma one_rep_mem_H (P : HeckePair G) : ((one P).rep : G) ∈ P.H := by
   have hm := rep_mem (one P)
   rw [toSet_eq_rep,
@@ -175,31 +195,41 @@ noncomputable def rep (D : HeckeLeftCoset P) : P.Δ := Quotient.out D
 /-- The identity left coset `1H = H`. -/
 def one (P : HeckePair G) : HeckeLeftCoset P := ⟦⟨1, P.Δ.one_mem⟩⟧
 
-/-- Induction for left cosets. -/
+/-- Induction for left cosets.
+@isnad1 id=var.0h5v.s6.93b0eb5f0298 from=translated src=- shape=183f311e vocab=595614dd
+-/
 protected lemma ind {motive : HeckeLeftCoset P → Prop}
     (h : ∀ g : P.Δ, motive ⟦g⟧) : ∀ D, motive D := Quotient.ind h
 
 end HeckeLeftCoset
 
-/-- Left-multiplying the representative by an element of `H` does not change the double coset. -/
+/-- Left-multiplying the representative by an element of `H` does not change the double coset.
+@isnad1 id=eq.0h4v.s7.485f49ac6b84 from=translated src=- shape=ebbe5eeb vocab=7f720614
+-/
 lemma doset_mul_left_eq_self (P : HeckePair G) (h : P.H) (g : G) :
     DoubleCoset.doubleCoset ((h : G) * g) P.H P.H =
     DoubleCoset.doubleCoset g P.H P.H := by
   simp_rw [DoubleCoset.doubleCoset, ← Set.singleton_mul_singleton, ← mul_assoc]
   conv => enter [1, 1, 1]; rw [Subgroup.subgroup_mul_singleton h.2]
 
-/-- Right-multiplying the representative by an element of `H` does not change the double coset. -/
+/-- Right-multiplying the representative by an element of `H` does not change the double coset.
+@isnad1 id=eq.0h4v.s7.d5b9f40baea3 from=translated src=- shape=6e3d0c18 vocab=7f720614
+-/
 lemma DoubleCoset.doubleCoset_mul_right_eq_self (P : HeckePair G)
     (h : P.H) (g : G) : DoubleCoset.doubleCoset (g * h) P.H P.H =
     DoubleCoset.doubleCoset g P.H P.H := by
   simp_rw [DoubleCoset.doubleCoset, ← Set.singleton_mul_singleton, ← mul_assoc]
   conv => enter [1]; rw [mul_assoc, Subgroup.singleton_mul_subgroup h.2]
 
-/-- Scalar multiplication by a group element is the same as singleton set multiplication. -/
+/-- Scalar multiplication by a group element is the same as singleton set multiplication.
+@isnad1 id=eq.0h3v.s6.8846ab16861b from=translated src=- shape=7d7a6158 vocab=bd79ff4c
+-/
 lemma smul_eq_singleton_mul (s : Set G) (g : G) : g • s = {g} * s :=
   Set.singleton_smul.symm
 
-/-- A subgroup `H` is the union of left cosets of any sub-subgroup `K ≤ H`. -/
+/-- A subgroup `H` is the union of left cosets of any sub-subgroup `K ≤ H`.
+@isnad1 id=eq.1h3v.s8.f240b24dd158 from=translated src=- shape=4183234b vocab=4f47608e
+-/
 lemma set_eq_iUnion_leftCosets (K : Subgroup G) (hK : K ≤ H) :
     (H : Set G) = ⋃ (i : H ⧸ K.subgroupOf H), (i.out : G) • (K : Set G) := by
   ext a
@@ -218,7 +248,9 @@ lemma set_eq_iUnion_leftCosets (K : Subgroup G) (hK : K ≤ H) :
     show ((Quotient.out i : H) : G) * h ∈ H
     exact mul_mem (by simp) (hK hh)
 
-/-- The conjugate subgroup `gHg⁻¹` is closed under multiplication. -/
+/-- The conjugate subgroup `gHg⁻¹` is closed under multiplication.
+@isnad1 id=eq.0h3v.s8.ec234dc93609 from=translated src=- shape=80094691 vocab=3ded54ab
+-/
 lemma conjAct_mul_self_eq_self (g : G) :
     ((ConjAct.toConjAct g • H) : Set G) * (ConjAct.toConjAct g • H) =
     (ConjAct.toConjAct g • H) := by
@@ -229,7 +261,9 @@ lemma conjAct_mul_self_eq_self (g : G) :
   conv => enter [1, 1, 2]; simp only [inv_mul_cancel, Set.singleton_one, one_mul]
   conv => enter [1, 1]; rw [mul_assoc, coe_mul_coe H]
 
-/-- The intersection `H ∩ gHg⁻¹` acts trivially on `gHg⁻¹` by left multiplication. -/
+/-- The intersection `H ∩ gHg⁻¹` acts trivially on `gHg⁻¹` by left multiplication.
+@isnad1 id=eq.0h3v.s8.5ff1973bccae from=translated src=- shape=3d5e02b3 vocab=94adb491
+-/
 lemma inter_mul_conjAct_eq_conjAct (g : G) :
     ((H : Set G) ∩ (ConjAct.toConjAct g • H)) * (ConjAct.toConjAct g • H) =
     (ConjAct.toConjAct g • H) :=
@@ -239,12 +273,16 @@ lemma inter_mul_conjAct_eq_conjAct (g : G) :
       (by simp [conjAct_mul_self_eq_self]))
     (subset_mul_right _ ⟨Subgroup.one_mem H, Subgroup.one_mem (ConjAct.toConjAct g • H)⟩)
 
-/-- Right multiplication by a singleton is cancellative. -/
+/-- Right multiplication by a singleton is cancellative.
+@isnad1 id=eq.1h4v.s6.d37172d747c6 from=translated src=- shape=c138e93b vocab=f159cfe4
+-/
 lemma mul_singleton_right_cancel (g : G) (K L : Set G) (h : K * {g} = L * {g}) : K = L := by
   have h2 := congrFun (congrArg HMul.hMul h) {g⁻¹}
   simp_rw [mul_assoc, Set.singleton_mul_singleton] at h2; simpa using h2
 
-/-- A double coset `HgH` decomposes as a disjoint union of left cosets of `H`. -/
+/-- A double coset `HgH` decomposes as a disjoint union of left cosets of `H`.
+@isnad1 id=eq.0h3v.s9.269a776c807d from=translated src=- shape=6a28a215 vocab=f2e762a9
+-/
 lemma DoubleCoset.doubleCoset_eq_iUnion_leftCosets (g : G) :
     DoubleCoset.doubleCoset g H H =
     ⋃ (i : H ⧸ (ConjAct.toConjAct g • H).subgroupOf H),
@@ -300,7 +338,9 @@ variable (P : HeckePair G) (Z : Type*) [CommRing Z]
 abbrev decompQuot (P : HeckePair G) (g : P.Δ) :=
   P.H ⧸ (ConjAct.toConjAct (g : G) • P.H).subgroupOf P.H
 
-/-- Products of the form `a · h · b` with `h ∈ H`, `a, b ∈ Δ` remain in `Δ`. -/
+/-- Products of the form `a · h · b` with `h ∈ H`, `a, b ∈ Δ` remain in `Δ`.
+@isnad1 id=mem.1h6v.s8.9665d92182c0 from=translated src=- shape=86f85d6e vocab=bd7a9f93
+-/
 lemma delta_mul_mem (i : H) (a b : Δ) (h₀ : H.toSubmonoid ≤ Δ) :
     a * (i : G) * b ∈ Δ := by
   rw [mul_assoc]; exact Submonoid.mul_mem _ a.2 (Submonoid.mul_mem _ (h₀ i.2) b.2)

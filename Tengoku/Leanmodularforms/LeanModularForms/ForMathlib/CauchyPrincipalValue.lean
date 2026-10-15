@@ -66,6 +66,9 @@ Returns `f(γ(t)) · γ'(t)` when `‖γ(t) - z₀‖ > ε`, and `0` otherwise. 
 def cpvIntegrand (f : ℂ → ℂ) (γ : ℝ → ℂ) (z₀ : ℂ) (ε : ℝ) (t : ℝ) : ℂ :=
   if ‖γ t - z₀‖ > ε then f (γ t) * deriv γ t else 0
 
+/--
+@isnad1 id=eq.1h5v.s6.a2a2da78e14f from=translated src=- shape=c0cd3bac vocab=6f868bf5
+-/
 @[simp]
 theorem cpvIntegrand_of_gt {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ} {ε : ℝ} {t : ℝ}
     (h : ε < ‖γ t - z₀‖) :
@@ -86,12 +89,16 @@ def cauchyPV (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (z₀ : ℂ) : ℂ :=
   limUnder (𝓝[>] (0 : ℝ)) fun ε =>
     ∫ t in (0 : ℝ)..1, cpvIntegrand f γ.toPath.extend z₀ ε t
 
-/-- Bridge theorem: if `HasCauchyPV f γ z₀ L`, then `cauchyPV f γ z₀ = L`. -/
+/-- Bridge theorem: if `HasCauchyPV f γ z₀ L`, then `cauchyPV f γ z₀ = L`.
+@isnad1 id=eq.1h6v.s5.ac673838c9a2 from=translated src=- shape=4b1f0969 vocab=1600cef1
+-/
 theorem HasCauchyPV.cauchyPV_eq {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV f γ z₀ L) : cauchyPV f γ z₀ = L :=
   h.limUnder_eq
 
-/-- Scalar multiplication: `HasCauchyPV f γ z₀ L → HasCauchyPV (c • f) γ z₀ (c * L)`. -/
+/-- Scalar multiplication: `HasCauchyPV f γ z₀ L → HasCauchyPV (c • f) γ z₀ (c * L)`.
+@isnad1 id=hascauch.1h7v.s5.a7e3717f260b from=translated src=- shape=f428820a vocab=836d924f
+-/
 theorem HasCauchyPV.smul {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
     (c : ℂ) (h : HasCauchyPV f γ z₀ L) :
     HasCauchyPV (fun z => c * f z) γ z₀ (c * L) := by
@@ -103,7 +110,9 @@ theorem HasCauchyPV.smul {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : �
   split_ifs <;> ring
 
 /-- If `γ` avoids `z₀` (minimum distance `δ > 0`), then the CPV equals the ordinary
-contour integral, since the cutoff integrand equals the full integrand for small `ε`. -/
+contour integral, since the cutoff integrand equals the full integrand for small `ε`.
+@isnad1 id=hascauch.1h5v.s6.b206eb0ce46d from=translated src=- shape=0378c657 vocab=aa88358c
+-/
 theorem hasCauchyPV_of_avoids {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - z₀‖) :
     HasCauchyPV f γ z₀ (γ.contourIntegral f) := by
@@ -120,19 +129,27 @@ def cpvIntegrandOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ) (ε : �
   if ∃ s ∈ S, ‖γ t - s‖ ≤ ε then 0
   else f (γ t) * deriv γ t
 
+/--
+@isnad1 id=eq.1h5v.s6.9e5d73247775 from=translated src=- shape=8e33d239 vocab=57a1a414
+-/
 @[simp]
 theorem cpvIntegrandOn_of_forall_gt {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {ε : ℝ} {t : ℝ}
     (h : ∀ s ∈ S, ε < ‖γ t - s‖) :
     cpvIntegrandOn S f γ ε t = f (γ t) * deriv γ t :=
   ite_eq_right fun ⟨s, hs, hle⟩ => (h s hs).not_ge hle
 
+/--
+@isnad1 id=eq.1h5v.s6.a593aadd5d30 from=translated src=- shape=f873189e vocab=6e46bd81
+-/
 @[simp]
 theorem cpvIntegrandOn_of_exists_le {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {ε : ℝ} {t : ℝ}
     (h : ∃ s ∈ S, ‖γ t - s‖ ≤ ε) :
     cpvIntegrandOn S f γ ε t = 0 :=
   ite_eq_left h
 
-/-- Single-point CPV integrand agrees with multi-point CPV integrand for a singleton. -/
+/-- Single-point CPV integrand agrees with multi-point CPV integrand for a singleton.
+@isnad1 id=eq.0h5v.s5.5514930144f1 from=translated src=- shape=729dff23 vocab=d4a27c3f
+-/
 theorem cpvIntegrand_eq_cpvIntegrandOn_singleton {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ}
     {ε : ℝ} {t : ℝ} :
     cpvIntegrand f γ z₀ ε t = cpvIntegrandOn {z₀} f γ ε t := by
@@ -147,7 +164,9 @@ def HasCauchyPVOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) 
     (𝓝[>] 0) (𝓝 L)
 
 /-- If `γ` avoids all points in `S`, the multi-point CPV equals the ordinary
-contour integral. -/
+contour integral.
+@isnad1 id=hascauch.1h5v.s6.e7a1875e7a9f from=translated src=- shape=681354bc vocab=40d2d924
+-/
 theorem hasCauchyPVOn_of_avoids {S : Finset ℂ} {f : ℂ → ℂ} {γ : PiecewiseC1Path x y}
     (hδ : ∃ δ > 0, ∀ s ∈ S, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - s‖) :
     HasCauchyPVOn S f γ (γ.contourIntegral f) := by
@@ -159,7 +178,9 @@ theorem hasCauchyPVOn_of_avoids {S : Finset ℂ} {f : ℂ → ℂ} {γ : Piecewi
   rw [Set.uIcc_of_le zero_le_one] at ht
   exact (cpvIntegrandOn_of_forall_gt fun s hs => hε.2.trans_le (hδ_bound s hs t ht)).symm
 
-/-- The limit in `HasCauchyPV` is unique. -/
+/-- The limit in `HasCauchyPV` is unique.
+@isnad1 id=eq.2h7v.s5.7092bb5d5f65 from=translated src=- shape=54a3549a vocab=6c47fac3
+-/
 theorem HasCauchyPV.unique {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     {L₁ L₂ : ℂ} (h₁ : HasCauchyPV f γ z₀ L₁) (h₂ : HasCauchyPV f γ z₀ L₂) :
     L₁ = L₂ :=

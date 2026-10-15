@@ -43,7 +43,9 @@ namespace HungerbuhlerWasem
 
 /-- When `γ` has right-derivative `L ≠ 0` at `t₀` and `γ(t₀) = s`, for `t` close to
 `t₀` from the right, `γ(t) − s` lies in the `+L` hemisphere
-(`Re((γ(t) − s) · conj L) ≥ 0`). -/
+(`Re((γ(t) − s) · conj L) ≥ 0`).
+@isnad1 id=eventual.3h4v.s7.9d87077e65c2 from=translated src=- shape=5a549d84 vocab=26ae91c6
+-/
 theorem eventually_re_pos_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ} (hL : L ≠ 0)
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_s : γ t₀ = s) :
@@ -69,7 +71,9 @@ theorem eventually_re_pos_right
   nlinarith [hLsq_pos]
 
 /-- Symmetric counterpart of `eventually_re_pos_right`: `Re((γ(t) − s) · conj L) ≤ 0`
-for `t` close to `t₀` from the left. -/
+for `t` close to `t₀` from the left.
+@isnad1 id=eventual.3h4v.s7.1a74ded48962 from=translated src=- shape=9df00d0e vocab=d8552670
+-/
 theorem eventually_re_neg_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ} (hL : L ≠ 0)
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_s : γ t₀ = s) :
@@ -94,7 +98,9 @@ theorem eventually_re_neg_left
     nlinarith [abs_le.mp (habs.trans (mul_le_mul_of_nonneg_right h_b (norm_nonneg L)))]
   nlinarith [hLsq_pos]
 
-/-- With right-derivative `L ≠ 0`, the curve cannot stay at `s` past `t₀`. -/
+/-- With right-derivative `L ≠ 0`, the curve cannot stay at `s` past `t₀`.
+@isnad1 id=eventual.3h4v.s6.9b496093e067 from=translated src=- shape=2c2185d2 vocab=ac29dfb0
+-/
 theorem eventually_ne_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ} (hL : L ≠ 0)
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_s : γ t₀ = s) :
@@ -109,7 +115,9 @@ theorem eventually_ne_right
     abs_of_pos h_pos] at h_b
   nlinarith
 
-/-- Left-side counterpart of `eventually_ne_right`. -/
+/-- Left-side counterpart of `eventually_ne_right`.
+@isnad1 id=eventual.3h4v.s6.011938fa260f from=translated src=- shape=2c2185d2 vocab=cc3a18b2
+-/
 theorem eventually_ne_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ} (hL : L ≠ 0)
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_s : γ t₀ = s) :
@@ -125,7 +133,9 @@ theorem eventually_ne_left
   nlinarith
 
 /-- If `z₁, z₂` are equidistant from `s` (distance `d`), then any point `z` on the
-segment from `z₁` to `z₂` satisfies `‖z − s‖² ≥ d² − ‖z₁ − z₂‖²/4`. -/
+segment from `z₁` to `z₂` satisfies `‖z − s‖² ≥ d² − ‖z₁ − z₂‖²/4`.
+@isnad1 id=le.3h5v.s7.2a3421fbbe23 from=translated src=- shape=a470f615 vocab=6f083834
+-/
 theorem norm_sq_segment_to_pole_lower_bound
     {z₁ z₂ s : ℂ} {d : ℝ}
     (h₁ : ‖z₁ - s‖ = d) (h₂ : ‖z₂ - s‖ = d)
@@ -161,7 +171,9 @@ theorem norm_sq_segment_to_pole_lower_bound
   nlinarith [h_quad, h_ab_le, sq_nonneg (‖z₁ - z₂‖)]
 
 /-- When the chord between two equidistant points is at most `d`, the segment from
-`z₁` to `z₂` stays at distance `≥ d/2` from `s`. -/
+`z₁` to `z₂` stays at distance `≥ d/2` from `s`.
+@isnad1 id=le.5h5v.s7.3121bb3e98d7 from=translated src=- shape=48b41d2b vocab=f5e5325c
+-/
 theorem norm_segment_to_pole_lower_bound_half
     {z₁ z₂ s : ℂ} {d : ℝ} (_hd_pos : 0 < d)
     (h₁ : ‖z₁ - s‖ = d) (h₂ : ‖z₂ - s‖ = d) (h_chord : ‖z₁ - z₂‖ ≤ d)

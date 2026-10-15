@@ -38,6 +38,9 @@ namespace RademacherApprox
 def rademacherMeasure : Measure ℝ :=
   (1/2 : ℝ≥0∞) • Measure.dirac (-1 : ℝ) + (1/2 : ℝ≥0∞) • Measure.dirac (1 : ℝ)
 
+/--
+@isnad1 id=isprobab.0h0v.s2.39c0ac38d711 from=translated src=- shape=54c8eceb vocab=0d737acb
+-/
 instance isProbabilityMeasure_rademacherMeasure : IsProbabilityMeasure rademacherMeasure := by
   constructor
   simp only [rademacherMeasure, Measure.coe_add, Measure.coe_smul, Pi.add_apply, Pi.smul_apply,
@@ -52,7 +55,9 @@ def rademacherProbMeasure : ProbabilityMeasure ℝ :=
 
 /-! ### Basic Properties of Rademacher Random Variables -/
 
-/-- Integrability of identity on the Rademacher measure. -/
+/-- Integrability of identity on the Rademacher measure.
+@isnad1 id=integrab.0h0v.s4.f364f01cf188 from=translated src=- shape=0f0f023f vocab=824e878d
+-/
 lemma integrable_id_rademacherMeasure : Integrable id rademacherMeasure := by
   simp only [rademacherMeasure]
   apply Integrable.add_measure
@@ -63,7 +68,9 @@ lemma integrable_id_rademacherMeasure : Integrable id rademacherMeasure := by
     apply integrable_dirac
     simp
 
-/-- The expectation of a Rademacher random variable is 0. -/
+/-- The expectation of a Rademacher random variable is 0.
+@isnad1 id=eq.0h0v.s4.e173366db549 from=translated src=- shape=61c19e6c vocab=1a478c1a
+-/
 theorem rademacher_expectation_zero : ∫ x, x ∂rademacherMeasure = 0 := by
   simp only [rademacherMeasure]
   rw [integral_add_measure, integral_smul_measure, integral_smul_measure]
@@ -77,7 +84,9 @@ theorem rademacher_expectation_zero : ∫ x, x ∂rademacherMeasure = 0 := by
     apply integrable_dirac
     simp
 
-/-- The second moment of a Rademacher random variable is 1. -/
+/-- The second moment of a Rademacher random variable is 1.
+@isnad1 id=eq.0h0v.s5.63e5aa81cc9b from=translated src=- shape=dc956614 vocab=f4cef1e7
+-/
 theorem rademacher_second_moment : ∫ x, x^2 ∂rademacherMeasure = 1 := by
   simp only [rademacherMeasure]
   rw [integral_add_measure, integral_smul_measure, integral_smul_measure]
@@ -99,14 +108,18 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 def IsRademacher (P : Measure Ω) (ε : Ω → ℝ) : Prop :=
   P.map ε = rademacherMeasure
 
-/-- The expectation of a Rademacher random variable is 0. -/
+/-- The expectation of a Rademacher random variable is 0.
+@isnad1 id=eq.2h3v.s5.f5365fb8480a from=translated src=- shape=c3307297 vocab=64e384c8
+-/
 theorem IsRademacher.expectation_zero {P : Measure Ω} [IsProbabilityMeasure P]
     {ε : Ω → ℝ} (hε : Measurable ε) (h : IsRademacher P ε) : ∫ x, ε x ∂P = 0 := by
   have : ∫ x, x ∂(P.map ε) = ∫ x, ε x ∂P := integral_map hε.aemeasurable aestronglyMeasurable_id
   rw [← this, h]
   exact rademacher_expectation_zero
 
-/-- The second moment of a Rademacher random variable is 1. -/
+/-- The second moment of a Rademacher random variable is 1.
+@isnad1 id=eq.2h3v.s6.845b1d72e1f1 from=translated src=- shape=1b649a2e vocab=cb726e78
+-/
 theorem IsRademacher.second_moment {P : Measure Ω} [IsProbabilityMeasure P]
     {ε : Ω → ℝ} (hε : Measurable ε) (h : IsRademacher P ε) : ∫ x, (ε x) ^ 2 ∂P = 1 := by
   have : ∫ x, x ^ 2 ∂(P.map ε) = ∫ x, (ε x) ^ 2 ∂P :=
@@ -143,7 +156,9 @@ def rademacherSum (ε : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ :=
 
 variable {P : ProbabilityMeasure Ω}
 
-/-- Rademacher random variables are bounded (taking values in {-1, 1}), hence integrable. -/
+/-- Rademacher random variables are bounded (taking values in {-1, 1}), hence integrable.
+@isnad1 id=integrab.0h4v.s5.a465f328f3ae from=translated src=- shape=bece03f5 vocab=abfdbf7e
+-/
 lemma IndepRademacherSeq.integrable (seq : IndepRademacherSeq Ω P) (i : ℕ) :
     Integrable (seq.ε i) (↑P) := by
   -- Use the fact that P.map ε_i = rademacherMeasure and id is integrable on rademacherMeasure
@@ -152,7 +167,9 @@ lemma IndepRademacherSeq.integrable (seq : IndepRademacherSeq Ω P) (i : ℕ) :
   rw [h] at him
   exact him.mp integrable_id_rademacherMeasure
 
-/-- Rademacher random variables are bounded by 1 almost everywhere. -/
+/-- Rademacher random variables are bounded by 1 almost everywhere.
+@isnad1 id=eventual.0h4v.s5.91b63f44c1c6 from=translated src=- shape=40b3037f vocab=e15c1103
+-/
 lemma IndepRademacherSeq.norm_le_one (seq : IndepRademacherSeq Ω P) (i : ℕ) :
     ∀ᵐ ω ∂(↑P : Measure Ω), ‖seq.ε i ω‖ ≤ 1 := by
   -- The law of ε_i is the Rademacher measure, which is supported on {-1, 1}
@@ -172,13 +189,17 @@ lemma IndepRademacherSeq.norm_le_one (seq : IndepRademacherSeq Ω P) (i : ℕ) :
   rw [← h] at hae
   exact ae_of_ae_map (seq.measurable i).aemeasurable hae
 
-/-- The product of two Rademacher random variables is integrable. -/
+/-- The product of two Rademacher random variables is integrable.
+@isnad1 id=integrab.0h5v.s6.fcc66f10a7a8 from=translated src=- shape=4c8c4a9e vocab=2252b144
+-/
 lemma IndepRademacherSeq.integrable_mul (seq : IndepRademacherSeq Ω P) (i j : ℕ) :
     Integrable (fun ω => seq.ε i ω * seq.ε j ω) (↑P) :=
   Integrable.bdd_mul (seq.integrable j) (seq.integrable i).aestronglyMeasurable (seq.norm_le_one i)
 
 /-- **Expectation of Rademacher Sum is Zero**
-`E[S_n] = n^{-1/2} * ∑_{j=1}^{n} E[ε_j] = 0` -/
+`E[S_n] = n^{-1/2} * ∑_{j=1}^{n} E[ε_j] = 0`
+@isnad1 id=eq.0h4v.s5.b1655629359b from=translated src=- shape=dd2a3761 vocab=13f02271
+-/
 theorem rademacherSum_expectation_zero (seq : IndepRademacherSeq Ω P) (n : ℕ) :
     ∫ ω, rademacherSum seq.ε n ω ∂(↑P) = 0 := by
   unfold rademacherSum
@@ -194,7 +215,9 @@ theorem rademacherSum_expectation_zero (seq : IndepRademacherSeq Ω P) (n : ℕ)
   rw [h_sum_zero, mul_zero]
 
 /-- **Variance of Rademacher Sum is One**
-`Var(S_n) = n^{-1} * ∑_{j=1}^{n} Var(ε_j) = n^{-1} * n = 1` -/
+`Var(S_n) = n^{-1} * ∑_{j=1}^{n} Var(ε_j) = n^{-1} * n = 1`
+@isnad1 id=eq.1h4v.s7.6bb76297f8d8 from=translated src=- shape=ec3e6c47 vocab=2c7ceec7
+-/
 theorem rademacherSum_variance_one (seq : IndepRademacherSeq Ω P) (n : ℕ) (hn : n ≠ 0) :
     ∫ ω, (rademacherSum seq.ε n ω) ^ 2 ∂(↑P) - (∫ ω, rademacherSum seq.ε n ω ∂(↑P)) ^ 2 = 1 := by
   rw [rademacherSum_expectation_zero seq n]

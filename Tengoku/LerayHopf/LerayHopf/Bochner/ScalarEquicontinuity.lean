@@ -57,7 +57,9 @@ every `m` the sequence `n ↦ f m (φ n)` converges uniformly on `[0,T]`.
 The eventual-Lipschitz form of `hlip` (cutoff `n₀ m`, not all-`n`) is load-bearing:
 the Galerkin application supplies the Lipschitz estimate only for `n` past the test's
 band-limit cutoff (`m ≤ n` in P0.3).  Uniform convergence along a subsequence is a
-tail property, so the engine absorbs the finite prefix without loss. -/
+tail property, so the engine absorbs the finite prefix without loss.
+@isnad1 id=ex.3h4v.s7.29a7932d87af from=translated src=- shape=35ee430e vocab=ba6320f9
+-/
 theorem exists_uniform_subseq_of_lipschitz_family
     (T : ℝ) (hT : 0 < T) (f : ℕ → ℕ → ℝ → ℝ) (B L : ℕ → ℝ)
     (hb : ∀ m n t, t ∈ Icc (0 : ℝ) T → |f m n t| ≤ B m)

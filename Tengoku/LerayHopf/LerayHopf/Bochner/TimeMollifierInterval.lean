@@ -74,7 +74,9 @@ modulus `‖τ_h g − g‖`. This is the abstract-`E` time-line transport of
 `FrechetKolmogorov.convolution_sub_L2_le_translation_modulus`. -/
 
 /-- The defect `timeConvL2 ρ g − g` equals the single Bochner integral
-`∫ h, ρ h • (τ_h g − g)` (using `∫ ρ = 1` to write `g = ∫ h, ρ h • g`). -/
+`∫ h, ρ h • (τ_h g − g)` (using `∫ ρ = 1` to write `g = ∫ h, ρ h • g`).
+@isnad1 id=eq.1h3v.s12.d6b72ce8b72c from=translated src=- shape=f38aa5b8 vocab=46bfb255
+-/
 theorem timeConvL2_sub_eq_integral {ρ : ℝ → ℝ} (hρ : IsTimeMollifier ρ)
     (g : Lp E 2 (volume : Measure ℝ)) :
     timeConvL2 ρ g - g
@@ -96,7 +98,9 @@ theorem timeConvL2_sub_eq_integral {ρ : ℝ → ℝ} (hρ : IsTimeMollifier ρ)
 
 /-- **Translation-modulus bound** (time-line, `E`-abstract):
 `‖timeConvL2 ρ g − g‖ ≤ ∫ h, ρ h • ‖τ_h g − g‖`. Direct port of
-`FrechetKolmogorov.convolution_sub_L2_le_translation_modulus`. -/
+`FrechetKolmogorov.convolution_sub_L2_le_translation_modulus`.
+@isnad1 id=le.1h3v.s11.2206ea712794 from=translated src=- shape=f15d386c vocab=b5eb81ae
+-/
 theorem timeConvL2_sub_le_translation_modulus {ρ : ℝ → ℝ} (hρ : IsTimeMollifier ρ)
     (g : Lp E 2 (volume : Measure ℝ)) :
     ‖timeConvL2 ρ g - g‖
@@ -115,13 +119,17 @@ theorem timeConvL2_sub_le_translation_modulus {ρ : ℝ → ℝ} (hρ : IsTimeMo
 concentrates at `0`. -/
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
-/-- The translation modulus `h ↦ ‖τ_h g − g‖` is continuous. -/
+/-- The translation modulus `h ↦ ‖τ_h g − g‖` is continuous.
+@isnad1 id=continuo.0h2v.s10.1b2a815c8b46 from=translated src=- shape=55762c95 vocab=93b5c407
+-/
 theorem continuous_translationModulus (g : Lp E 2 (volume : Measure ℝ)) :
     Continuous (fun h : ℝ => ‖timeTranslateL2 h g - g‖) :=
   ((continuous_timeTranslateL2 g).sub continuous_const).norm
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
-/-- The translation modulus vanishes at `h = 0`: `τ_0 g = g`. -/
+/-- The translation modulus vanishes at `h = 0`: `τ_0 g = g`.
+@isnad1 id=eq.0h2v.s10.12a2a4b89df9 from=translated src=- shape=17109515 vocab=f10ab7d2
+-/
 theorem translationModulus_zero (g : Lp E 2 (volume : Measure ℝ)) :
     ‖timeTranslateL2 (0 : ℝ) g - g‖ = 0 := by
   have h0 : timeTranslateL2 (0 : ℝ) g = g := by
@@ -147,7 +155,9 @@ pillar needed, proved here via the translation-modulus route (no pointwise/`Lp` 
 * `timeConvL2_sub_le_translation_modulus` bounds the defect by `∫ h, ρ n h • ‖τ_h g − g‖`;
 * on `supp (ρ n) = ball 0 (φ n).rOut`, continuity of the modulus at `0` (value `0`,
   `translationModulus_zero`) makes `‖τ_h g − g‖ ≤ ε` for `n` large;
-* `∫ ρ n = 1` (`mass_one`) collapses `∫ ρ n • ε = ε`, so the defect is `≤ ε` eventually. -/
+* `∫ ρ n = 1` (`mass_one`) collapses `∫ ρ n • ε = ε`, so the defect is `≤ ε` eventually.
+@isnad1 id=tendsto.1h3v.s10.dd6fc1d74522 from=translated src=- shape=caf73607 vocab=8d899656
+-/
 theorem timeConvL2_tendsto_self (g : Lp E 2 (volume : Measure ℝ))
     (φ : ℕ → ContDiffBump (0 : ℝ)) (hφ : Tendsto (fun n => (φ n).rOut) atTop (𝓝 0)) :
     Tendsto (fun n => ‖timeConvL2 ((φ n).normed (volume : Measure ℝ)) g - g‖) atTop (𝓝 0) := by
@@ -262,7 +272,9 @@ The proof transfers `χ` onto the test function `ψ`: the product `χ · ψ` is 
 supported (compact support of `ψ` wins), `deriv (χ · ψ) = χ' · ψ + χ · ψ'`, so
 `∫ (χψ)'• u = ∫ (χ'ψ)•u + ∫ (χψ')•u`. Apply `hwd (χ · ψ)` on the left, regroup; each summand is
 `(continuous compactly-supported scalar) • (locally integrable)`, hence integrable
-(`LocallyIntegrable.integrable_smul_left_of_hasCompactSupport`). -/
+(`LocallyIntegrable.integrable_smul_left_of_hasCompactSupport`).
+@isnad1 id=isweakti.4h4v.s8.240ce51deb0e from=translated src=- shape=a3519895 vocab=8560b97f
+-/
 theorem isWeakTimeDerivℝ_smul_cutoff (χ : ℝ → ℝ) (hχ : ContDiff ℝ 1 χ)
     (u v : ℝ → X) (hu : LocallyIntegrable u (volume : Measure ℝ))
     (hv : LocallyIntegrable v (volume : Measure ℝ)) (hwd : IsWeakTimeDerivℝ u v) :

@@ -45,6 +45,9 @@ section ForMathlib
 
 variable {α : Type*} [MeasurableSpace α]
 
+/--
+@isnad1 id=integrab.5h6v.s7.12e36cd1dc6e from=translated src=- shape=b5941b9c vocab=892cb0e2
+-/
 lemma integrable_norm_rpow_antitone
     (μ : Measure α) [IsFiniteMeasure μ]
     {E} [NormedAddCommGroup E] {f : α → E} (hf : AEStronglyMeasurable f μ)
@@ -61,6 +64,9 @@ lemma integrable_norm_rpow_antitone
   · rw [← integrable_norm_rpow_iff hf, ENNReal.toReal_ofReal hp.le] <;> simp_all
   · infer_instance
 
+/--
+@isnad1 id=integrab.3h6v.s7.79faf879d739 from=translated src=- shape=44cbb018 vocab=aa41b263
+-/
 lemma integrable_norm_pow_antitone
     (μ : Measure α) [IsFiniteMeasure μ]
     {E} [NormedAddCommGroup E] {f : α → E} (hf : AEStronglyMeasurable f μ)
@@ -80,6 +86,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
   {μ : Measure E} [IsProbabilityMeasure μ]
 
+/--
+@isnad1 id=contdiff.1h3v.s7.c49485d85dbe from=translated src=- shape=fea44c67 vocab=593fbc43
+-/
 @[fun_prop]
 theorem contDiff_charFun
     {n : ℕ} (hint : Integrable (‖·‖ ^ n) μ) :
@@ -92,6 +101,9 @@ theorem contDiff_charFun
   refine (VectorFourier.contDiff_fourierIntegral (L := innerSL ℝ) hint').comp ?_
   exact contDiff_const_smul _
 
+/--
+@isnad1 id=continuo.0h2v.s6.81dada462cda from=translated src=- shape=9ee56bd0 vocab=68b8d2d1
+-/
 @[fun_prop]
   lemma continuous_charFun : Continuous (charFun μ) := by
     rw [← contDiff_zero (𝕜 := ℝ)]
@@ -123,6 +135,9 @@ section NormedSpace
 
 variable [NormedSpace ℝ E] [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=istightm.1h3v.s7.87c72deb4b05 from=translated src=- shape=e5d6b327 vocab=1b457046
+-/
 lemma isTightMeasureSet_of_tendsto_limsup_measure_norm_gt
     (h : Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < ‖x‖}) atTop) atTop (𝓝 0)) :
     IsTightMeasureSet (Set.range μ) := by
@@ -136,6 +151,9 @@ lemma isTightMeasureSet_of_tendsto_limsup_measure_norm_gt
     simp only [Set.mem_ofPred_eq] at hx ⊢
     exact huv.trans_lt hx
 
+/--
+@isnad1 id=iff.0h3v.s7.7b6982144a8e from=translated src=- shape=f65e86d1 vocab=1b457046
+-/
 lemma isTightMeasureSet_iff_tendsto_limsup_measure_norm_gt :
     IsTightMeasureSet (Set.range μ)
       ↔ Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < ‖x‖}) atTop) atTop (𝓝 0) := by
@@ -153,6 +171,9 @@ section InnerProductSpace
 
 variable [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=istightm.1h3v.s7.7838f4e55d9c from=translated src=- shape=9cc72312 vocab=2f4aedad
+-/
 lemma isTightMeasureSet_of_tendsto_limsup_inner
     (h : ∀ z, Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < |⟪z, x⟫|}) atTop) atTop (𝓝 0)) :
     IsTightMeasureSet (Set.range μ) := by
@@ -168,6 +189,9 @@ lemma isTightMeasureSet_of_tendsto_limsup_inner
     simpa [h_map] using h_tight
   · exact measure_mono fun x hx ↦ huv.trans_lt hx
 
+/--
+@isnad1 id=iff.0h3v.s7.aebe9aed153c from=translated src=- shape=6808e3e0 vocab=2f4aedad
+-/
 lemma isTightMeasureSet_iff_tendsto_limsup_inner :
     IsTightMeasureSet (Set.range μ)
       ↔ ∀ z, Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < |⟪z, x⟫|}) atTop) atTop (𝓝 0) := by
@@ -180,6 +204,9 @@ lemma isTightMeasureSet_iff_tendsto_limsup_inner :
   simp_rw [iSup_range]
   exact limsup_le_iSup
 
+/--
+@isnad1 id=istightm.1h3v.s7.0e5aea68af06 from=translated src=- shape=b58e442e vocab=5324feba
+-/
 lemma isTightMeasureSet_of_tendsto_limsup_inner_of_norm_eq_one
     (h : ∀ z, ‖z‖ = 1
       → Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < |⟪z, x⟫|}) atTop) atTop (𝓝 0)) :
@@ -204,7 +231,9 @@ lemma isTightMeasureSet_of_tendsto_limsup_inner_of_norm_eq_one
   positivity
 
 /-- If the characteristic functions converge pointwise to a function which is continuous at 0,
-then `{μ n | n}` is tight. -/
+then `{μ n | n}` is tight.
+@isnad1 id=istightm.3h4v.s7.cc6a26919b6f from=translated src=- shape=854468ec vocab=033d7849
+-/
 lemma isTightMeasureSet_of_tendsto_charFun {μ : ℕ → Measure E} [∀ i, IsProbabilityMeasure (μ i)]
     {f : E → ℂ} (hf : ContinuousAt f 0) (hf_meas : Measurable f)
     (h : ∀ t, Tendsto (fun n ↦ charFun (μ n) t) atTop (𝓝 (f t))) :

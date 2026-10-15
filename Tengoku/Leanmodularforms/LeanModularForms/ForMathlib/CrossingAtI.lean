@@ -32,16 +32,23 @@ noncomputable section
 /-- Exact cutoff for the crossing at `i`: `δ(ε) = (12/(5π)) · arcsin(ε/2)`. -/
 def arcsinDelta (ε : ℝ) : ℝ := 12 / (5 * Real.pi) * Real.arcsin (ε / 2)
 
+/--
+@isnad1 id=lt.1h1v.s4.afc1b79a25f7 from=translated src=- shape=35bd48ee vocab=13d6ac98
+-/
 theorem arcsinDelta_pos {ε : ℝ} (hε : 0 < ε) : 0 < arcsinDelta ε := by
   unfold arcsinDelta
   exact mul_pos (by positivity) (Real.arcsin_pos.mpr (by linarith))
 
-/-- `5π/12 · arcsinDelta(ε) = arcsin(ε/2)`. -/
+/-- `5π/12 · arcsinDelta(ε) = arcsin(ε/2)`.
+@isnad1 id=eq.0h1v.s6.e27b77cd89ea from=translated src=- shape=80790239 vocab=e76f3d38
+-/
 theorem half_angle_arcsinDelta (ε : ℝ) :
     5 * Real.pi / 12 * arcsinDelta ε = Real.arcsin (ε / 2) := by
   unfold arcsinDelta; field_simp
 
-/-- Jordan's inequality for arcsin: `arcsin(x) ≤ π/2 · x` for `0 ≤ x ≤ 1`. -/
+/-- Jordan's inequality for arcsin: `arcsin(x) ≤ π/2 · x` for `0 ≤ x ≤ 1`.
+@isnad1 id=le.2h1v.s5.c5238a21f903 from=translated src=- shape=36562b22 vocab=9fdcc4f3
+-/
 theorem arcsin_le_pi_half_mul {x : ℝ} (hx : 0 ≤ x) (hx1 : x ≤ 1) :
     Real.arcsin x ≤ Real.pi / 2 * x := by
   rcases eq_or_lt_of_le hx with rfl | hx_pos
@@ -55,7 +62,9 @@ theorem arcsin_le_pi_half_mul {x : ℝ} (hx : 0 ≤ x) (hx1 : x ≤ 1) :
   rwa [← mul_assoc, show Real.pi / 2 * (2 / Real.pi) = (1 : ℝ) by field_simp,
     one_mul] at h1
 
-/-- `arcsinDelta(ε) < 1/5` for `0 < ε < 1/3`. -/
+/-- `arcsinDelta(ε) < 1/5` for `0 < ε < 1/3`.
+@isnad1 id=lt.2h1v.s6.3a2b1edb0e0a from=translated src=- shape=3bf698c1 vocab=a1a0c403
+-/
 theorem arcsinDelta_lt_one_fifth {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3) :
     arcsinDelta ε < 1/5 := by
   unfold arcsinDelta
@@ -84,7 +93,9 @@ private theorem abs_halfAngle_le_pi12 {t : ℝ}
       ≤ 5 * Real.pi / 12 * (1/5) := by gcongr
     _ = Real.pi / 12 := by ring
 
-/-- Near bound: `|t - 2/5| ≤ arcsinDelta(ε)` implies `‖γ(t) - i‖ ≤ ε`. -/
+/-- Near bound: `|t - 2/5| ≤ arcsinDelta(ε)` implies `‖γ(t) - i‖ ≤ ε`.
+@isnad1 id=le.3h3v.s6.35ce97a20f21 from=translated src=- shape=06b7869a vocab=4c682ceb
+-/
 theorem arc_near_at_I_arcsin (H : ℝ) {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
     {t : ℝ} (ht : |t - 2/5| ≤ arcsinDelta ε) :
     ‖fdBoundaryFun H t - I‖ ≤ ε := by
@@ -108,7 +119,9 @@ theorem arc_near_at_I_arcsin (H : ℝ) {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 
       (by linarith [abs_nonneg α]) harc_le hα_le_asin
   linarith
 
-/-- Far bound on arc: `|t - 2/5| > arcsinDelta(ε)` implies `ε < ‖γ(t) - i‖`. -/
+/-- Far bound on arc: `|t - 2/5| > arcsinDelta(ε)` implies `ε < ‖γ(t) - i‖`.
+@isnad1 id=lt.4h3v.s7.74ee3717226d from=translated src=- shape=0ec1c665 vocab=5b5e3454
+-/
 theorem arc_far_at_I_arcsin (H : ℝ) {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
     {t : ℝ} (ht_arc : t ∈ Icc (1/5 : ℝ) (3/5)) (hδt : arcsinDelta ε < |t - 2/5|) :
     ε < ‖fdBoundaryFun H t - I‖ := by

@@ -48,7 +48,9 @@ def orthogonalProjectionComplex (w L : ℂ) : ℂ :=
 def tangentDeviation (w L : ℂ) : ℂ :=
   w - orthogonalProjectionComplex w L
 
-/-- Projection of a real scalar multiple of `L` onto `L` is itself. -/
+/-- Projection of a real scalar multiple of `L` onto `L` is itself.
+@isnad1 id=eq.1h2v.s6.72a2b9199f11 from=translated src=- shape=d655b8f8 vocab=ad688d72
+-/
 theorem orthogonalProjectionComplex_real_smul_self (c : ℝ) (L : ℂ) (hL : L ≠ 0) :
     orthogonalProjectionComplex (c • L) L = c • L := by
   have hns : Complex.normSq L ≠ 0 := (Complex.normSq_pos.mpr hL).ne'
@@ -59,18 +61,24 @@ theorem orthogonalProjectionComplex_real_smul_self (c : ℝ) (L : ℂ) (hL : L �
     exact mul_div_cancel_of_imp fun h => absurd h hns
   rw [h_coeff]
 
-/-- Tangent deviation of a real scalar multiple of `L` vanishes. -/
+/-- Tangent deviation of a real scalar multiple of `L` vanishes.
+@isnad1 id=eq.1h2v.s6.99af63938f5e from=translated src=- shape=cb37757a vocab=035feb41
+-/
 theorem tangentDeviation_real_smul_self (c : ℝ) (L : ℂ) (hL : L ≠ 0) :
     tangentDeviation (c • L) L = 0 := by
   rw [tangentDeviation, orthogonalProjectionComplex_real_smul_self c L hL, sub_self]
 
-/-- Tangent deviation is additive in the first argument. -/
+/-- Tangent deviation is additive in the first argument.
+@isnad1 id=eq.0h3v.s5.6a53d742a033 from=translated src=- shape=2f6dc6a8 vocab=27492c44
+-/
 theorem tangentDeviation_add (w₁ w₂ L : ℂ) :
     tangentDeviation (w₁ + w₂) L = tangentDeviation w₁ L + tangentDeviation w₂ L := by
   simp only [tangentDeviation, orthogonalProjectionComplex, add_mul, Complex.add_re, add_div]
   module
 
-/-- Norm bound: `‖tangentDeviation w L‖ ≤ 2 * ‖w‖` for `L ≠ 0`. -/
+/-- Norm bound: `‖tangentDeviation w L‖ ≤ 2 * ‖w‖` for `L ≠ 0`.
+@isnad1 id=le.1h2v.s5.92a7eb920d4a from=translated src=- shape=184f92ea vocab=e336b24a
+-/
 theorem norm_tangentDeviation_le (w L : ℂ) (hL : L ≠ 0) :
     ‖tangentDeviation w L‖ ≤ 2 * ‖w‖ := by
   have hns : 0 < Complex.normSq L := Complex.normSq_pos.mpr hL
@@ -165,7 +173,9 @@ private theorem tangentDeviation_isLittleO_left
 
 /-- Every piecewise C¹ immersion is flat of order 1 at any interior point.
 The derivative approximation `γ(t) - γ(t₀) ∼ L(t - t₀)` lies exactly on the
-tangent line, so the deviation is the remainder `o(t - t₀) = o(‖γ(t) - γ(t₀)‖)`. -/
+tangent line, so the deviation is the remainder `o(t - t₀) = o(‖γ(t) - γ(t₀)‖)`.
+@isnad1 id=isflatof.1h4v.s6.d2ebed6b1bfe from=translated src=- shape=6019894e vocab=795be59b
+-/
 theorem isFlatOfOrder_one (γ : PwC1Immersion x y) (t₀ : ℝ)
     (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) :
     IsFlatOfOrder (γ : ℝ → ℂ) t₀ 1 := by

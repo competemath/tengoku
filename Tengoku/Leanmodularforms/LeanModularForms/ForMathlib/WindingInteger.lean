@@ -39,7 +39,9 @@ namespace Complex
 /-- For a continuous function `γ : ℝ → ℂ` avoiding `w` on a compact interval, there
 exists `δ > 0` such that on any sub-interval of length `< δ`, `γ` varies by less than
 half the minimum distance to `w`. This gives a partition where each segment of
-`γ - w` lies in a ball avoiding `0`. -/
+`γ - w` lies in a ball avoiding `0`.
+@isnad1 id=ex.2h2v.s7.e122aac768c4 from=translated src=- shape=fcac3508 vocab=fdbadbbc
+-/
 theorem exists_uniform_modulus_avoiding {γ : ℝ → ℂ} {w : ℂ}
     (hγ : ContinuousOn γ (Icc (0 : ℝ) 1))
     (h_avoid : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w) :
@@ -73,7 +75,9 @@ theorem exists_uniform_modulus_avoiding {γ : ℝ → ℂ} {w : ℂ}
 
 /-! ### Slit-plane containment for small balls -/
 
-/-- The closed ball of radius `1/2` around `1` is contained in `Complex.slitPlane`. -/
+/-- The closed ball of radius `1/2` around `1` is contained in `Complex.slitPlane`.
+@isnad1 id=mem.1h1v.s5.9cfb2fbdd009 from=translated src=- shape=7e0da83e vocab=2d791389
+-/
 theorem mem_slitPlane_of_ball_one (z : ℂ) (hz : ‖z - 1‖ < 1 / 2) :
     z ∈ Complex.slitPlane := by
   rw [Complex.mem_slitPlane_iff]
@@ -94,11 +98,17 @@ Helper definitions and theorems for this construction are below. -/
 /-- Helper: clamp `t` to `[s_j, s_{j+1}]`. For partition segment `j`. -/
 def segClamp (s_j s_jp1 t : ℝ) : ℝ := max s_j (min t s_jp1)
 
+/--
+@isnad1 id=continuo.0h2v.s4.c8c634516aea from=translated src=- shape=443e0365 vocab=a08bd71b
+-/
 @[fun_prop]
 theorem segClamp_continuous (s_j s_jp1 : ℝ) :
     Continuous (segClamp s_j s_jp1) :=
   continuous_const.max (continuous_id.min continuous_const)
 
+/--
+@isnad1 id=mem.1h3v.s4.dbc794f1bbc2 from=translated src=- shape=16458684 vocab=7555cae5
+-/
 theorem segClamp_mem_Icc (s_j s_jp1 t : ℝ) (h : s_j ≤ s_jp1) :
     segClamp s_j s_jp1 t ∈ Icc s_j s_jp1 := by
   refine ⟨le_max_left _ _, ?_⟩
@@ -107,14 +117,23 @@ theorem segClamp_mem_Icc (s_j s_jp1 t : ℝ) (h : s_j ≤ s_jp1) :
   · simpa [min_eq_left ht] using max_le h ht
   · rw [min_eq_right ht, max_le_iff]; exact ⟨h, le_refl _⟩
 
+/--
+@isnad1 id=eq.2h3v.s4.ebbcb9dc341c from=translated src=- shape=34aedef8 vocab=40b09a96
+-/
 theorem segClamp_eq_left {s_j s_jp1 t : ℝ} (h : s_j ≤ s_jp1) (ht : t ≤ s_j) :
     segClamp s_j s_jp1 t = s_j := by
   rw [segClamp, min_eq_left (ht.trans h), max_eq_left ht]
 
+/--
+@isnad1 id=eq.2h3v.s4.880769ecc32b from=translated src=- shape=6e94c410 vocab=40b09a96
+-/
 theorem segClamp_eq_self {s_j s_jp1 t : ℝ} (ht_lo : s_j ≤ t) (ht_hi : t ≤ s_jp1) :
     segClamp s_j s_jp1 t = t := by
   rw [segClamp, min_eq_left ht_hi, max_eq_right ht_lo]
 
+/--
+@isnad1 id=eq.2h3v.s4.a9dda844048a from=translated src=- shape=fffdb857 vocab=40b09a96
+-/
 theorem segClamp_eq_right {s_j s_jp1 t : ℝ} (h : s_j ≤ s_jp1) (ht : s_jp1 ≤ t) :
     segClamp s_j s_jp1 t = s_jp1 := by
   rw [segClamp, min_eq_right ht, max_eq_right h]
@@ -123,23 +142,34 @@ theorem segClamp_eq_right {s_j s_jp1 t : ℝ} (h : s_j ≤ s_jp1) (ht : s_jp1 �
 noncomputable def segRatio (γ : ℝ → ℂ) (w : ℂ) (s_j s_jp1 t : ℝ) : ℂ :=
   (γ (segClamp s_j s_jp1 t) - w) / (γ s_j - w)
 
+/--
+@isnad1 id=eq.3h5v.s5.1add452d9515 from=translated src=- shape=818a059b vocab=ddfa73dd
+-/
 theorem segRatio_eq_one_of_le {γ : ℝ → ℂ} {w : ℂ} {s_j s_jp1 t : ℝ}
     (h : s_j ≤ s_jp1) (ht : t ≤ s_j) (h_ne : γ s_j - w ≠ 0) :
     segRatio γ w s_j s_jp1 t = 1 := by
   rw [segRatio, segClamp_eq_left h ht, div_self h_ne]
 
+/--
+@isnad1 id=eq.2h5v.s5.61394b620bd9 from=translated src=- shape=bd32aeed vocab=81e36b34
+-/
 theorem segRatio_eq_self_div {γ : ℝ → ℂ} {w : ℂ} {s_j s_jp1 t : ℝ}
     (ht_lo : s_j ≤ t) (ht_hi : t ≤ s_jp1) :
     segRatio γ w s_j s_jp1 t = (γ t - w) / (γ s_j - w) := by
   rw [segRatio, segClamp_eq_self ht_lo ht_hi]
 
+/--
+@isnad1 id=eq.2h5v.s5.181de759e14f from=translated src=- shape=2e40144d vocab=81e36b34
+-/
 theorem segRatio_eq_full {γ : ℝ → ℂ} {w : ℂ} {s_j s_jp1 t : ℝ}
     (h : s_j ≤ s_jp1) (ht : s_jp1 ≤ t) :
     segRatio γ w s_j s_jp1 t = (γ s_jp1 - w) / (γ s_j - w) := by
   rw [segRatio, segClamp_eq_right h ht]
 
 /-- For partition with mesh < δ' and segments [s_j, s_{j+1}] of length ≤ mesh,
-on the j-th segment, `γ(clamp t) - γ s_j` is small, so `segRatio j t ∈ ball(1, 1/2)`. -/
+on the j-th segment, `γ(clamp t) - γ s_j` is small, so `segRatio j t ∈ ball(1, 1/2)`.
+@isnad1 id=lt.7h7v.s8.bfeecc7acf41 from=translated src=- shape=301edbb7 vocab=d1e8169b
+-/
 theorem segRatio_mem_ball_one
     {γ : ℝ → ℂ} {w : ℂ} {δ' ρ : ℝ} (hρ_pos : 0 < ρ)
     (h_dist_lb : ∀ t ∈ Icc (0 : ℝ) 1, ρ ≤ ‖γ t - w‖)
@@ -168,7 +198,9 @@ theorem segRatio_mem_ball_one
     _ ≤ ‖γ s_j - w‖ / 2 := by linarith
     _ = 1 / 2 * ‖γ s_j - w‖ := by ring
 
-/-- Continuity of `t ↦ segRatio γ w s_j s_jp1 t` on `Icc (0 : ℝ) 1`. -/
+/-- Continuity of `t ↦ segRatio γ w s_j s_jp1 t` on `Icc (0 : ℝ) 1`.
+@isnad1 id=continuo.4h4v.s7.18dee8d6637d from=translated src=- shape=e6a7b280 vocab=645b59e8
+-/
 theorem continuousOn_segRatio {γ : ℝ → ℂ} (hγ : ContinuousOn γ (Icc (0 : ℝ) 1))
     {w : ℂ} {s_j s_jp1 : ℝ} (hsj : s_j ∈ Icc (0 : ℝ) 1)
     (hsjp1 : s_jp1 ∈ Icc (0 : ℝ) 1) (h_le : s_j ≤ s_jp1) :
@@ -181,7 +213,9 @@ theorem continuousOn_segRatio {γ : ℝ → ℂ} (hγ : ContinuousOn γ (Icc (0 
   exact ⟨hsj.1.trans (segClamp_mem_Icc s_j s_jp1 t h_le).1,
     (segClamp_mem_Icc s_j s_jp1 t h_le).2.trans hsjp1.2⟩
 
-/-- Combined: for partition with mesh < δ', `segRatio j t ∈ slitPlane`. -/
+/-- Combined: for partition with mesh < δ', `segRatio j t ∈ slitPlane`.
+@isnad1 id=mem.7h7v.s8.6ef51b86c1fd from=translated src=- shape=b6e1a9a2 vocab=9bc2efda
+-/
 theorem segRatio_mem_slitPlane
     {γ : ℝ → ℂ} {w : ℂ} {δ' ρ : ℝ} (hρ_pos : 0 < ρ)
     (h_dist_lb : ∀ t ∈ Icc (0 : ℝ) 1, ρ ≤ ‖γ t - w‖)
@@ -213,7 +247,9 @@ product `∏_{j < N} segRatio γ w (s j) (s (j+1)) t` collapses to
 `(γ t - w) / (γ 0 - w)`.
 
 This is the key identity making `Im(log)` of each `segRatio` add up to a
-continuous argument lift of `t ↦ γ t - w`. -/
+continuous argument lift of `t ↦ γ t - w`.
+@isnad1 id=eq.6h6v.s7.6205f9e5504e from=translated src=- shape=de96519f vocab=d8835790
+-/
 theorem prod_segRatio_telescope
     {γ : ℝ → ℂ} {w : ℂ} {N : ℕ} {s : ℕ → ℝ}
     (hs_zero : s 0 = 0) (hs_mono : Monotone s)
@@ -252,7 +288,9 @@ theorem prod_segRatio_telescope
 
 /-! ### Continuous arg-lift summand (continued) -/
 
-/-- Each summand in the telescoping arg-lift sum is continuous. -/
+/-- Each summand in the telescoping arg-lift sum is continuous.
+@isnad1 id=continuo.8h6v.s8.7a2f1c14b1b7 from=translated src=- shape=6bf9f639 vocab=7745dd87
+-/
 theorem continuousOn_im_log_segRatio {γ : ℝ → ℂ}
     (hγ : ContinuousOn γ (Icc (0 : ℝ) 1)) {w : ℂ} {δ' ρ : ℝ} (hρ_pos : 0 < ρ)
     (h_dist_lb : ∀ t ∈ Icc (0 : ℝ) 1, ρ ≤ ‖γ t - w‖)
@@ -311,6 +349,9 @@ private lemma partition_segment_exists {N : ℕ} (hN : 0 < N) {t : ℝ}
 
 /-! ### Main theorem: continuous argument lift -/
 
+/--
+@isnad1 id=ex.2h2v.s8.70ae15862855 from=translated src=- shape=7ea5e1c9 vocab=2471f1ea
+-/
 theorem exists_continuous_arg_lift_with_partition
     {γ : ℝ → ℂ} {w : ℂ}
     (hγ : ContinuousOn γ (Icc (0 : ℝ) 1))
@@ -436,6 +477,9 @@ If on `[a, b]` the curve `γ` is continuous, differentiable off a countable set 
 avoids `w`, and `(γ(t) − w)/(γ(a) − w) ∈ slitPlane` for all `t ∈ [a,b]`, then
 `∫_a^b γ'(t)/(γ(t) − w) dt = log((γ(b) − w)/(γ(a) − w))`. -/
 
+/--
+@isnad1 id=eq.7h5v.s8.1b2dd5cd0005 from=translated src=- shape=ecefcc6e vocab=69fc4c71
+-/
 theorem segment_log_FTC
     {γ : ℝ → ℂ} {w : ℂ} {a b : ℝ} (hab : a ≤ b) {P : Set ℝ} (hP_count : P.Countable)
     (hγ_cont : ContinuousOn γ (Icc a b))

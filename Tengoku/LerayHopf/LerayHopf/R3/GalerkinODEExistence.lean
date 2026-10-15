@@ -99,7 +99,9 @@ noncomputable def schemeOfBasis (B : SchwartzGalerkinBasis) : R3GalerkinScheme w
   range_schwartz  := galerkinP_range_schwartz B
   mono_range      := galerkinP_mono_range B
 
-/-- The projector of `schemeOfBasis B` is definitionally `galerkinP B`. -/
+/-- The projector of `schemeOfBasis B` is definitionally `galerkinP B`.
+@isnad1 id=eq.0h2v.s15.144ee89e2223 from=translated src=- shape=1cce8e22 vocab=04265ac6
+-/
 @[simp] theorem schemeOfBasis_P (B : SchwartzGalerkinBasis) (n : ℕ) :
     (schemeOfBasis B).P n = galerkinP B n := rfl
 
@@ -107,7 +109,9 @@ noncomputable def schemeOfBasis (B : SchwartzGalerkinBasis) : R3GalerkinScheme w
 
 /-- The prefix span lies in the divergence-free subspace: every generator `B.e k` is
 divergence-free (`B.e_mem_sigma`) and `L2Sigma_R3` is a submodule, so the span is contained
-in it.  This is the `Submodule` inequality underlying the `V_n ↪ L2Sigma_R3` embedding. -/
+in it.  This is the `Submodule` inequality underlying the `V_n ↪ L2Sigma_R3` embedding.
+@isnad1 id=le.0h2v.s15.081169a6703e from=translated src=- shape=3885c309 vocab=3bfeb613
+-/
 theorem galerkinSpan_le_sigma (B : SchwartzGalerkinBasis) (n : ℕ) :
     galerkinSpan B n ≤ L2Sigma_R3 := by
   refine Submodule.span_le.mpr ?_
@@ -116,7 +120,9 @@ theorem galerkinSpan_le_sigma (B : SchwartzGalerkinBasis) (n : ℕ) :
 
 /-- Embedding helper: an element of `V_n := galerkinSpan B n`, viewed as an `L2VF_R3`
 vector, is divergence-free, i.e. lies in `L2Sigma_R3`.  Used to coerce `V_n` elements into
-the domain `L2Sigma_R3` of the convection form `F.b`. -/
+the domain `L2Sigma_R3` of the convection form `F.b`.
+@isnad1 id=mem.0h3v.s16.83a5156dfb6c from=translated src=- shape=5ca6cf0b vocab=0e8f7bb6
+-/
 theorem mem_sigma_of_mem_galerkinSpan (B : SchwartzGalerkinBasis) (n : ℕ)
     (v : galerkinSpan B n) : (v : L2VF_R3) ∈ L2Sigma_R3 :=
   galerkinSpan_le_sigma B n v.2
@@ -128,7 +134,9 @@ noncomputable def galerkinSpanToSigma (B : SchwartzGalerkinBasis) (n : ℕ)
   ⟨(v : L2VF_R3), mem_sigma_of_mem_galerkinSpan B n v⟩
 
 /-- The `L2Sigma_R3`-embedding `galerkinSpanToSigma` is compatible with the underlying
-`L2VF_R3` coercion: coercing the image agrees with coercing the source `V_n` element. -/
+`L2VF_R3` coercion: coercing the image agrees with coercing the source `V_n` element.
+@isnad1 id=eq.0h3v.s16.124e01b2962a from=translated src=- shape=dfd6c71f vocab=a5f7bc46
+-/
 @[simp] theorem galerkinSpanToSigma_coe (B : SchwartzGalerkinBasis) (n : ℕ)
     (v : galerkinSpan B n) :
     ((galerkinSpanToSigma B n v : L2Sigma_R3) : L2VF_R3) = (v : L2VF_R3) := rfl
@@ -141,7 +149,9 @@ open scoped FourierTransform SchwartzMap
 /-- A span element has **complex Schwartz** component representatives: for `w ∈ V_n`, each
 complex component `L2VF_projComponentC_R3 j w` is the `L²`-class of a (complex-valued)
 Schwartz map.  This is the complexification of `galerkinP_range_schwartz` (real components ⇒
-real Schwartz), post-composed with the real-to-complex embedding `RCLike.ofRealCLM`. -/
+real Schwartz), post-composed with the real-to-complex embedding `RCLike.ofRealCLM`.
+@isnad1 id=ex.0h3v.s17.163bdbe5cebb from=translated src=- shape=adff8383 vocab=afa50435
+-/
 theorem galerkinSpan_exists_schwartzC
     (B : SchwartzGalerkinBasis) (n : ℕ) (w : galerkinSpan B n) :
     ∃ φ : Fin 3 → SchwartzMap Domain3 ℂ,
@@ -183,7 +193,9 @@ theorem galerkinSpan_exists_schwartzC
 `j`-th complex component is a.e. equal to a genuine **Schwartz** function (the classical
 Schwartz Fourier transform of the component's Schwartz representative).  This is the bridge
 from the a.e.-only `Lp.fourierTransformₗᵢ` coercion to the classical Schwartz `fourierIntegral`,
-via `SchwartzMap.toLp_fourier_eq`. -/
+via `SchwartzMap.toLp_fourier_eq`.
+@isnad1 id=ex.0h4v.s17.d53539e8b9ac from=translated src=- shape=6307dcc7 vocab=cef93f62
+-/
 theorem galerkinSpan_fourier_ae
     (B : SchwartzGalerkinBasis) (n : ℕ) (w : galerkinSpan B n) (j : Fin 3) :
     ∃ S : SchwartzMap Domain3 ℂ,
@@ -202,7 +214,9 @@ theorem galerkinSpan_fourier_ae
 are span elements: their Fourier components are a.e. Schwartz, so the integrand is dominated by
 `C · (‖ξ‖² · ‖S_w ξ‖)` (`S_u` bounded, `S_w` rapidly decaying), which is integrable by
 `SchwartzMap.integrable_pow_mul`.  This is the crux that licenses `integral_add`/
-`integral_const_mul` and hence the right-linearity of `stokesTestPairing_R3` on `V_n`. -/
+`integral_const_mul` and hence the right-linearity of `stokesTestPairing_R3` on `V_n`.
+@isnad1 id=integrab.0h5v.s18.c61443c2d7ca from=translated src=- shape=6e393206 vocab=4b05e5cd
+-/
 theorem stokesTestPairing_R3_integrand_integrable
     (B : SchwartzGalerkinBasis) (n : ℕ) (u w : galerkinSpan B n) (j : Fin 3) :
     Integrable (fun ξ : Domain3 =>
@@ -263,7 +277,9 @@ theorem stokesTestPairing_R3_integrand_integrable
 pairing is additive in its second argument when both arguments lie in `V_n`.  This uses
 additivity of the component CLM and of the `L²`-Fourier transform (`map_add`), `Lp.coeFn_add`
 to push it through the a.e. coercion, and the integrability of each component integrand
-(`stokesTestPairing_R3_integrand_integrable`) to split the Bochner integral via `integral_add`. -/
+(`stokesTestPairing_R3_integrand_integrable`) to split the Bochner integral via `integral_add`.
+@isnad1 id=eq.0h5v.s19.d742a03a7a91 from=translated src=- shape=cc1a3c49 vocab=cb98f043
+-/
 theorem stokesTestPairing_R3_add_right
     (B : SchwartzGalerkinBasis) (n : ℕ) (u w w' : galerkinSpan B n) :
     stokesTestPairing_R3 (u : L2VF_R3) ((w + w' : galerkinSpan B n) : L2VF_R3)
@@ -311,7 +327,9 @@ theorem stokesTestPairing_R3_add_right
     rw [hξ]
     rw [map_add, mul_add, Complex.add_re, mul_add]
 
-/-- Right-homogeneity of `stokesTestPairing_R3` on span elements. -/
+/-- Right-homogeneity of `stokesTestPairing_R3` on span elements.
+@isnad1 id=eq.0h5v.s18.5199d34f95a8 from=translated src=- shape=9f984912 vocab=c11dadab
+-/
 theorem stokesTestPairing_R3_smul_right
     (B : SchwartzGalerkinBasis) (n : ℕ) (u w : galerkinSpan B n) (c : ℝ) :
     stokesTestPairing_R3 (u : L2VF_R3) ((c • w : galerkinSpan B n) : L2VF_R3)
@@ -347,13 +365,17 @@ theorem stokesTestPairing_R3_smul_right
 /-! ### R1 — the finite-dim Galerkin Riesz vector field -/
 
 /-- `galerkinSpanToSigma` is additive in its argument (both sides agree as `L2Sigma_R3`
-elements, i.e. as the underlying `L2VF_R3` vectors via `Submodule.coe_add`). -/
+elements, i.e. as the underlying `L2VF_R3` vectors via `Submodule.coe_add`).
+@isnad1 id=eq.0h4v.s18.24547f22cba3 from=translated src=- shape=a5a52a63 vocab=55c4024c
+-/
 theorem galerkinSpanToSigma_add (B : SchwartzGalerkinBasis) (n : ℕ)
     (w w' : galerkinSpan B n) :
     galerkinSpanToSigma B n (w + w') = galerkinSpanToSigma B n w + galerkinSpanToSigma B n w' := by
   apply Subtype.ext; rfl
 
-/-- `galerkinSpanToSigma` is ℝ-homogeneous in its argument. -/
+/-- `galerkinSpanToSigma` is ℝ-homogeneous in its argument.
+@isnad1 id=eq.0h4v.s18.8932a52104ba from=translated src=- shape=38197060 vocab=2e03037d
+-/
 theorem galerkinSpanToSigma_smul (B : SchwartzGalerkinBasis) (n : ℕ)
     (c : ℝ) (w : galerkinSpan B n) :
     galerkinSpanToSigma B n (c • w) = c • galerkinSpanToSigma B n w := by
@@ -438,7 +460,9 @@ noncomputable def galerkinODE_functional
         simp only [RingHom.id_apply, smul_eq_mul]
         ring }
 
-/-- `galerkinODE_functional` unfolds to its defining Stokes/convection pairing formula. -/
+/-- `galerkinODE_functional` unfolds to its defining Stokes/convection pairing formula.
+@isnad1 id=eq.0h6v.s18.c01fa21bdb31 from=translated src=- shape=bb55ca58 vocab=6ecdbadd
+-/
 @[simp] theorem galerkinODE_functional_apply
     (B : SchwartzGalerkinBasis) (F : R3NSForms (schemeOfBasis B)) (ν : ℝ) (n : ℕ)
     (u w : galerkinSpan B n) :
@@ -471,7 +495,9 @@ noncomputable def galerkinODE_vectorField
 functional `w ↦ - ν · stokes(u, w) - b(u, u, w)`.  This is the **R-repr** content
 (weak-form ⇄ vector-field representation) made precise: it is the identity from which the
 weak Galerkin ODE `u_ode` is DERIVED in R3.  Sign/`ν` conventions match `u_ode`
-(`SolutionInterfaces.lean` / `GalerkinODE.lean:102`). -/
+(`SolutionInterfaces.lean` / `GalerkinODE.lean:102`).
+@isnad1 id=eq.0h6v.s17.7c06e1cc8512 from=translated src=- shape=18a94d2b vocab=fd923298
+-/
 theorem galerkinODE_vectorField_spec
     (B : SchwartzGalerkinBasis) (F : R3NSForms (schemeOfBasis B)) (ν : ℝ) (n : ℕ)
     (u w : galerkinSpan B n) :
@@ -552,7 +578,9 @@ noncomputable def weightedFourierComponentₗ (B : SchwartzGalerkinBasis) (n : �
       (galerkinSpan_memH1 B n v) (galerkinSpan_memH1 B n (r • v)) j
 
 /-- The weighted Fourier component map on `V_n` is **continuous** (linear map out of a
-finite-dimensional space). -/
+finite-dimensional space).
+@isnad1 id=continuo.0h3v.s18.75c4deb23f13 from=translated src=- shape=a2c54b03 vocab=fe998955
+-/
 theorem continuous_weightedFourierComponentₗ (B : SchwartzGalerkinBasis) (n : ℕ) (j : Fin 3) :
     Continuous (weightedFourierComponentₗ B n j) :=
   (weightedFourierComponentₗ B n j).continuous_of_finiteDimensional

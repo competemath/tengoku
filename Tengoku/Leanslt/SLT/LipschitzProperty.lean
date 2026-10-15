@@ -15,13 +15,17 @@ variable {n : ℕ}
 Basic Properties of Lipschitz Functions
 -/
 
-/-- Lipschitz functions are measurable (via continuity) -/
+/-- Lipschitz functions are measurable (via continuity)
+@isnad1 id=measurab.1h3v.s5.dcfe9a7eec1d from=translated src=- shape=33eadd2a vocab=ce31fbc4
+-/
 lemma lipschitz_measurable (f : (Fin n → ℝ) → ℝ) (L : ℝ)
     (hf : LipschitzWith (Real.toNNReal L) f) :
     Measurable f :=
   hf.continuous.measurable
 
-/-- Lipschitz functions have linear growth -/
+/-- Lipschitz functions have linear growth
+@isnad1 id=le.2h4v.s7.e44ffdafbba9 from=translated src=- shape=9ef22e16 vocab=66b67ede
+-/
 lemma lipschitz_linear_growth (f : (Fin n → ℝ) → ℝ) (L : ℝ) (hL : 0 ≤ L)
     (hf : LipschitzWith (Real.toNNReal L) f) (w : Fin n → ℝ) :
     |f w| ≤ |f 0| + L * ‖w‖ := by
@@ -36,13 +40,17 @@ lemma lipschitz_linear_growth (f : (Fin n → ℝ) → ℝ) (L : ℝ) (hL : 0 �
     _ ≤ L * ‖w - 0‖ + |f 0| := by linarith
     _ = |f 0| + L * ‖w‖ := by simp only [sub_zero]; ring
 
-/-- Absolute value of coordinate is integrable -/
+/-- Absolute value of coordinate is integrable
+@isnad1 id=integrab.0h2v.s5.57239ee94da8 from=translated src=- shape=4f3906ae vocab=3e6e96e7
+-/
 lemma integrable_abs_eval_stdGaussianPi (i : Fin n) :
     Integrable (fun w : Fin n → ℝ => |w i|) (GaussianMeasure.stdGaussianPi n) := by
   exact (GaussianMeasure.integrable_eval_stdGaussianPi i).abs
 
 /-- Integrability of exp(t * |w_i|) under stdGaussianPi.
-Key insight: exp(t * |x|) ≤ exp(t * x) + exp(-t * x) -/
+Key insight: exp(t * |x|) ≤ exp(t * x) + exp(-t * x)
+@isnad1 id=integrab.0h3v.s6.7b883735980b from=translated src=- shape=8e82d2de vocab=88686abd
+-/
 lemma integrable_exp_mul_abs_eval_stdGaussianPi (t : ℝ) (i : Fin n) :
     Integrable (fun w : Fin n → ℝ => exp (t * |w i|)) (GaussianMeasure.stdGaussianPi n) := by
   -- exp(t * |x|) ≤ exp(t * x) + exp(-t * x) for all x
@@ -68,7 +76,9 @@ lemma integrable_exp_mul_abs_eval_stdGaussianPi (t : ℝ) (i : Fin n) :
     rw [abs_of_nonneg h_sum_pos]
     exact h_bound w
 
-/-- Norm of Gaussian vector has finite moments -/
+/-- Norm of Gaussian vector has finite moments
+@isnad1 id=integrab.0h1v.s6.4f59b1fa5d40 from=translated src=- shape=8b8e6595 vocab=b6093647
+-/
 lemma norm_integrable_stdGaussianPi :
     Integrable (fun w : Fin n → ℝ => ‖w‖) (GaussianMeasure.stdGaussianPi n) := by
   -- Use ‖w‖ ≤ Σᵢ |wᵢ| for pi-norm (sup norm)
@@ -85,7 +95,9 @@ lemma norm_integrable_stdGaussianPi :
         Finset.single_le_sum (fun j _ => abs_nonneg (w j)) (Finset.mem_univ i)
     exact pi_norm_le_iff_of_nonneg h_sum_nonneg |>.mpr key
 
-/-- Lipschitz functions are integrable under stdGaussianPi -/
+/-- Lipschitz functions are integrable under stdGaussianPi
+@isnad1 id=integrab.2h3v.s6.75ea8a5e033c from=translated src=- shape=c1cade48 vocab=f6756a46
+-/
 lemma lipschitz_integrable_stdGaussianPi (f : (Fin n → ℝ) → ℝ) (L : ℝ) (hL : 0 ≤ L)
     (hf : LipschitzWith (Real.toNNReal L) f) :
     Integrable f (GaussianMeasure.stdGaussianPi n) := by
@@ -104,7 +116,9 @@ lemma lipschitz_integrable_stdGaussianPi (f : (Fin n → ℝ) → ℝ) (L : ℝ)
 noncomputable def centeredLipschitz (f : (Fin n → ℝ) → ℝ) : (Fin n → ℝ) → ℝ :=
   fun w => f w - ∫ w', f w' ∂(GaussianMeasure.stdGaussianPi n)
 
-/-- Centered function has mean zero -/
+/-- Centered function has mean zero
+@isnad1 id=eq.2h3v.s6.59b6e77547ca from=translated src=- shape=c0bb4e18 vocab=4eab2971
+-/
 lemma integral_centeredLipschitz_eq_zero (f : (Fin n → ℝ) → ℝ) (L : ℝ) (hL : 0 ≤ L)
     (hf : LipschitzWith (Real.toNNReal L) f) :
     ∫ w, centeredLipschitz f w ∂(GaussianMeasure.stdGaussianPi n) = 0 := by

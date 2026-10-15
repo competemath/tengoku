@@ -38,16 +38,22 @@ noncomputable def stdGaussianPi (n : ℕ) : Measure (Fin n → ℝ) :=
 
 /-! ## Gaussian Measure Properties -/
 
-/-- `stdGaussianPi` is a probability measure. -/
+/-- `stdGaussianPi` is a probability measure.
+@isnad1 id=isprobab.0h1v.s4.daca60c297db from=translated src=- shape=e72d7878 vocab=cad97413
+-/
 instance stdGaussianPi_isProbabilityMeasure : IsProbabilityMeasure (stdGaussianPi n) := by
   unfold stdGaussianPi
   infer_instance
 
-/-- `stdGaussianPi` is a finite measure. -/
+/-- `stdGaussianPi` is a finite measure.
+@isnad1 id=isfinite.0h1v.s4.fc0dc8ca6edf from=translated src=- shape=e72d7878 vocab=61f0eec8
+-/
 instance stdGaussianPi_isFiniteMeasure : IsFiniteMeasure (stdGaussianPi n) :=
   inferInstance
 
-/-- `stdGaussianPi` is sigma-finite. -/
+/-- `stdGaussianPi` is sigma-finite.
+@isnad1 id=sigmafin.0h1v.s4.d40efa990c54 from=translated src=- shape=e72d7878 vocab=3b055f5b
+-/
 instance stdGaussianPi_isSigmaFinite : SigmaFinite (stdGaussianPi n) := by
   unfold stdGaussianPi
   infer_instance
@@ -58,13 +64,17 @@ instance stdGaussianPi_isSigmaFinite : SigmaFinite (stdGaussianPi n) := by
 noncomputable def stdGaussianE (n : ℕ) : Measure (EuclideanSpace ℝ (Fin n)) :=
   Measure.map (EuclideanSpace.equiv (Fin n) ℝ).symm (stdGaussianPi n)
 
-/-- `stdGaussianE` is a probability measure. -/
+/-- `stdGaussianE` is a probability measure.
+@isnad1 id=isprobab.0h1v.s5.80c9cf20d905 from=translated src=- shape=bb95f982 vocab=9475afe1
+-/
 instance stdGaussianE_isProbabilityMeasure : IsProbabilityMeasure (stdGaussianE n) := by
   unfold stdGaussianE
   apply MeasureTheory.Measure.isProbabilityMeasure_map
   exact (EuclideanSpace.equiv (Fin n) ℝ).symm.continuous.measurable.aemeasurable
 
-/-- Transfer of integrals: integrating f over stdGaussianE equals integrating f ∘ e.symm over stdGaussianPi. -/
+/-- Transfer of integrals: integrating f over stdGaussianE equals integrating f ∘ e.symm over stdGaussianPi.
+@isnad1 id=eq.0h2v.s10.c161f2dd5773 from=translated src=- shape=13c760e2 vocab=b23fa223
+-/
 lemma integral_stdGaussianE_eq (f : EuclideanSpace ℝ (Fin n) → ℝ) :
     ∫ x, f x ∂(stdGaussianE n) = ∫ w, f ((EuclideanSpace.equiv (Fin n) ℝ).symm w) ∂(stdGaussianPi n) := by
   unfold stdGaussianE
@@ -75,37 +85,49 @@ lemma integral_stdGaussianE_eq (f : EuclideanSpace ℝ (Fin n) → ℝ) :
 The key insight is that coordinate projections from `stdGaussianPi n` are independent
 standard Gaussians. -/
 
-/-- The coordinate projections from stdGaussianPi are independent -/
+/-- The coordinate projections from stdGaussianPi are independent
+@isnad1 id=iindepfu.0h1v.s5.3f38b9116a22 from=translated src=- shape=73347149 vocab=12f892e1
+-/
 lemma iIndepFun_eval_stdGaussianPi :
     iIndepFun (fun i (w : Fin n → ℝ) => w i) (stdGaussianPi n) := by
   unfold stdGaussianPi
   exact iIndepFun_pi (fun _ => measurable_id.aemeasurable)
 
-/-- The pushforward of stdGaussianPi under coordinate projection is gaussianReal 0 1 -/
+/-- The pushforward of stdGaussianPi under coordinate projection is gaussianReal 0 1
+@isnad1 id=eq.0h2v.s5.c32857010b4e from=translated src=- shape=322c0259 vocab=601e4f74
+-/
 lemma map_eval_stdGaussianPi (i : Fin n) :
     (stdGaussianPi n).map (fun w => w i) = gaussianReal 0 1 := by
   unfold stdGaussianPi
   exact (measurePreserving_eval (fun _ : Fin n => gaussianReal 0 1) i).map_eq
 
-/-- MGF of coordinate projection equals standard Gaussian MGF -/
+/-- MGF of coordinate projection equals standard Gaussian MGF
+@isnad1 id=eq.0h3v.s6.db01188fe6e4 from=translated src=- shape=f45b4791 vocab=1c95775c
+-/
 lemma mgf_eval_stdGaussianPi (i : Fin n) (t : ℝ) :
     mgf (fun w : Fin n → ℝ => w i) (stdGaussianPi n) t = exp (t^2 / 2) := by
   have h_map : (stdGaussianPi n).map (fun w => w i) = gaussianReal 0 1 := map_eval_stdGaussianPi i
   rw [mgf_gaussianReal h_map t]
   simp only [zero_mul, NNReal.coe_one, one_mul, zero_add]
 
-/-- CGF of coordinate projection equals t²/2 -/
+/-- CGF of coordinate projection equals t²/2
+@isnad1 id=eq.0h3v.s6.175278892254 from=translated src=- shape=d031a611 vocab=0559da70
+-/
 lemma cgf_eval_stdGaussianPi (i : Fin n) (t : ℝ) :
     cgf (fun w : Fin n → ℝ => w i) (stdGaussianPi n) t = t^2 / 2 := by
   unfold cgf
   rw [mgf_eval_stdGaussianPi i t]
   exact Real.log_exp (t^2 / 2)
 
-/-- Measurability of coordinate projection -/
+/-- Measurability of coordinate projection
+@isnad1 id=measurab.0h2v.s4.3bffae069f90 from=translated src=- shape=a3ca029d vocab=99fb6479
+-/
 lemma measurable_eval (i : Fin n) : Measurable (fun w : Fin n → ℝ => w i) :=
   measurable_pi_apply i
 
-/-- Integrability of exp(t * w_i) under stdGaussianPi -/
+/-- Integrability of exp(t * w_i) under stdGaussianPi
+@isnad1 id=integrab.0h3v.s5.e98f96e660d1 from=translated src=- shape=bc7bac4c vocab=30bd5823
+-/
 lemma integrable_exp_mul_eval_stdGaussianPi (i : Fin n) (t : ℝ) :
     Integrable (fun w : Fin n → ℝ => exp (t * w i)) (stdGaussianPi n) := by
   -- Use mgf_pos_iff: 0 < mgf X μ t ↔ Integrable (fun ω => exp (t * X ω)) μ
@@ -120,12 +142,16 @@ lemma integrable_exp_mul_eval_stdGaussianPi (i : Fin n) (t : ℝ) :
 
 For scaled coordinates a * w_i, we compute MGF directly. -/
 
-/-- Measurability of scaled coordinates -/
+/-- Measurability of scaled coordinates
+@isnad1 id=measurab.0h3v.s5.3eeab1831efd from=translated src=- shape=a6aa24d2 vocab=7b978623
+-/
 lemma measurable_mul_eval (a : Fin n → ℝ) (i : Fin n) :
     Measurable (fun w : Fin n → ℝ => a i * w i) :=
   (measurable_const_mul (a i)).comp (measurable_pi_apply i)
 
-/-- MGF of scaled coordinate a * w_i -/
+/-- MGF of scaled coordinate a * w_i
+@isnad1 id=eq.0h4v.s6.6251f308bde3 from=translated src=- shape=084427bb vocab=ec020c1a
+-/
 lemma mgf_mul_eval_stdGaussianPi (a : ℝ) (i : Fin n) (t : ℝ) :
     mgf (fun w : Fin n → ℝ => a * w i) (stdGaussianPi n) t = exp ((t * a)^2 / 2) := by
   -- mgf of (a * w_i) at t equals E[exp(t * a * w_i)] = mgf of w_i at (t * a)
@@ -138,21 +164,27 @@ lemma mgf_mul_eval_stdGaussianPi (a : ℝ) (i : Fin n) (t : ℝ) :
   unfold mgf at h_mgf
   rw [h_mgf]
 
-/-- CGF of scaled coordinate a * w_i -/
+/-- CGF of scaled coordinate a * w_i
+@isnad1 id=eq.0h4v.s6.1eeefb9903db from=translated src=- shape=d05dd2ef vocab=468a59b5
+-/
 lemma cgf_mul_eval_stdGaussianPi (a : ℝ) (i : Fin n) (t : ℝ) :
     cgf (fun w : Fin n → ℝ => a * w i) (stdGaussianPi n) t = (t * a)^2 / 2 := by
   unfold cgf
   rw [mgf_mul_eval_stdGaussianPi a i t]
   exact Real.log_exp ((t * a)^2 / 2)
 
-/-- Independence of scaled coordinates -/
+/-- Independence of scaled coordinates
+@isnad1 id=iindepfu.0h2v.s5.6de29d5dcd63 from=translated src=- shape=5797a048 vocab=59f11718
+-/
 lemma iIndepFun_mul_eval_stdGaussianPi (a : Fin n → ℝ) :
     iIndepFun (fun i (w : Fin n → ℝ) => a i * w i) (stdGaussianPi n) := by
   apply iIndepFun.comp iIndepFun_eval_stdGaussianPi
   intro i
   exact measurable_const_mul (a i)
 
-/-- Integrability of exp(t * (a * w_i)) under stdGaussianPi -/
+/-- Integrability of exp(t * (a * w_i)) under stdGaussianPi
+@isnad1 id=integrab.0h4v.s6.28774ec28228 from=translated src=- shape=1bbcd2d0 vocab=30bd5823
+-/
 lemma integrable_exp_mul_mul_eval_stdGaussianPi (a : ℝ) (i : Fin n) (t : ℝ) :
     Integrable (fun w : Fin n → ℝ => exp (t * (a * w i))) (stdGaussianPi n) := by
   have h_eq : (fun w : Fin n → ℝ => exp (t * (a * w i))) =
@@ -162,7 +194,9 @@ lemma integrable_exp_mul_mul_eval_stdGaussianPi (a : ℝ) (i : Fin n) (t : ℝ) 
 
 /-! ## CGF of Linear Sum -/
 
-/-- CGF of linear sum ∑ aᵢwᵢ -/
+/-- CGF of linear sum ∑ aᵢwᵢ
+@isnad1 id=eq.0h3v.s6.e6f14c197af5 from=translated src=- shape=856664d6 vocab=84b66d95
+-/
 lemma cgf_linear_sum_stdGaussianPi (a : Fin n → ℝ) (t : ℝ) :
     cgf (fun w : Fin n → ℝ => ∑ i, a i * w i) (stdGaussianPi n) t =
       ∑ i : Fin n, (t * a i)^2 / 2 := by
@@ -184,7 +218,9 @@ lemma cgf_linear_sum_stdGaussianPi (a : Fin n → ℝ) (t : ℝ) :
   intro i _
   exact cgf_mul_eval_stdGaussianPi (a i) i t
 
-/-- Simplified CGF formula for linear sum -/
+/-- Simplified CGF formula for linear sum
+@isnad1 id=eq.0h3v.s7.66a39b6d299a from=translated src=- shape=af8b2343 vocab=84b66d95
+-/
 lemma cgf_linear_sum_stdGaussianPi' (a : Fin n → ℝ) (t : ℝ) :
     cgf (fun w : Fin n → ℝ => ∑ i, a i * w i) (stdGaussianPi n) t =
       t^2 * (∑ i : Fin n, (a i)^2) / 2 := by
@@ -199,7 +235,9 @@ lemma cgf_linear_sum_stdGaussianPi' (a : Fin n → ℝ) (t : ℝ) :
 
 /-! ## CGF Bound -/
 
-/-- The CGF bound for linear functions (sub-Gaussian condition) -/
+/-- The CGF bound for linear functions (sub-Gaussian condition)
+@isnad1 id=le.0h3v.s7.417685970192 from=translated src=- shape=7604b25a vocab=7720c428
+-/
 lemma linear_cgf_bound_stdGaussianPi (a : Fin n → ℝ) (t : ℝ) :
     cgf (fun w => ∑ i, a i * w i) (stdGaussianPi n) t ≤
       t^2 * (Real.sqrt (∑ i, (a i)^2))^2 / 2 := by
@@ -208,7 +246,9 @@ lemma linear_cgf_bound_stdGaussianPi (a : Fin n → ℝ) (t : ℝ) :
 
 /-! ## Integrability -/
 
-/-- Linear combinations of Gaussians have integrable exponentials -/
+/-- Linear combinations of Gaussians have integrable exponentials
+@isnad1 id=integrab.0h3v.s6.c74e24e141d2 from=translated src=- shape=5ea091a9 vocab=34bc1b47
+-/
 lemma integrable_exp_mul_linear_stdGaussianPi (a : Fin n → ℝ) (t : ℝ) :
     Integrable (fun w => exp (t * ∑ i, a i * w i)) (stdGaussianPi n) := by
   -- Use the independence-based integrability theorem
@@ -223,7 +263,9 @@ lemma integrable_exp_mul_linear_stdGaussianPi (a : Fin n → ℝ) (t : ℝ) :
 
 /-! ## Tail Bounds -/
 
-/-- One-sided tail bound for linear functions of Gaussians -/
+/-- One-sided tail bound for linear functions of Gaussians
+@isnad1 id=le.2h3v.s7.460f9394d4d1 from=translated src=- shape=778fcf5b vocab=dd18df62
+-/
 theorem linear_tail_bound_stdGaussianPi (a : Fin n → ℝ) (u : ℝ) (hu : 0 < u)
     (ha : 0 < ∑ i, (a i)^2) :
     (stdGaussianPi n {w | u ≤ ∑ i, a i * w i}).toReal ≤
@@ -239,7 +281,9 @@ theorem linear_tail_bound_stdGaussianPi (a : Fin n → ℝ) (u : ℝ) (hu : 0 < 
   simp only [Real.sq_sqrt (sum_nonneg fun _ _ => sq_nonneg _)] at h_bound
   exact h_bound
 
-/-- Two-sided tail bound for linear functions of Gaussians -/
+/-- Two-sided tail bound for linear functions of Gaussians
+@isnad1 id=le.2h3v.s7.8c3d48a39322 from=translated src=- shape=5fbb8b5c vocab=f4bc4197
+-/
 theorem linear_two_sided_tail_bound_stdGaussianPi (a : Fin n → ℝ) (u : ℝ)
     (hu : 0 < u) (ha : 0 < ∑ i, (a i)^2) :
     (stdGaussianPi n {w | u ≤ |∑ i, a i * w i|}).toReal ≤
@@ -284,7 +328,9 @@ theorem linear_two_sided_tail_bound_stdGaussianPi (a : Fin n → ℝ) (u : ℝ)
 
 /-! ## Expectation and Centering -/
 
-/-- Integrability of identity over Gaussian with nonzero variance -/
+/-- Integrability of identity over Gaussian with nonzero variance
+@isnad1 id=integrab.1h1v.s5.68c14fe7b4b8 from=translated src=- shape=6f1ffd75 vocab=eb74c33c
+-/
 lemma integrable_id_gaussianReal {v : NNReal} (hv : v ≠ 0) :
     Integrable id (gaussianReal 0 v) := by
   rw [gaussianReal_of_var_ne_zero 0 hv]
@@ -318,7 +364,9 @@ lemma integrable_id_gaussianReal {v : NNReal} (hv : v ≠ 0) :
   · -- PDF is a.e. less than ⊤
     exact ae_of_all _ (fun x => ENNReal.ofReal_lt_top)
 
-/-- The integral of id over standard Gaussian with mean 0 is 0, by symmetry -/
+/-- The integral of id over standard Gaussian with mean 0 is 0, by symmetry
+@isnad1 id=eq.0h1v.s5.233f2898906e from=translated src=- shape=6f692e54 vocab=7aeca6a9
+-/
 lemma integral_id_gaussianReal_zero (v : NNReal) : ∫ x, x ∂(gaussianReal 0 v) = 0 := by
   by_cases hv : v = 0
   · simp [hv, gaussianReal_zero_var]
@@ -342,7 +390,9 @@ lemma integral_id_gaussianReal_zero (v : NNReal) : ∫ x, x ∂(gaussianReal 0 v
             exact integral_neg (fun y => y)
     linarith
 
-/-- Integrability of coordinate projections over stdGaussianPi -/
+/-- Integrability of coordinate projections over stdGaussianPi
+@isnad1 id=integrab.0h2v.s5.ec3a40910689 from=translated src=- shape=1760910a vocab=9a833b84
+-/
 lemma integrable_eval_stdGaussianPi (i : Fin n) :
     Integrable (fun w : Fin n → ℝ => w i) (stdGaussianPi n) := by
   have h : Integrable id (gaussianReal 0 1) := integrable_id_gaussianReal one_ne_zero
@@ -357,7 +407,9 @@ lemma integrable_eval_stdGaussianPi (i : Fin n) :
 
 /-- Integrability of (w i)^2 over stdGaussianPi.
 Uses the fact that exp(t * w_i) is integrable for all t, which implies all polynomial moments exist.
-Key bound: |x|^2 ≤ 4 * max(exp(x), exp(-x)) ≤ 4 * (exp(x) + exp(-x)). -/
+Key bound: |x|^2 ≤ 4 * max(exp(x), exp(-x)) ≤ 4 * (exp(x) + exp(-x)).
+@isnad1 id=integrab.0h2v.s6.13ad70934813 from=translated src=- shape=eb619b2d vocab=4ed004a7
+-/
 lemma integrable_sq_eval_stdGaussianPi (i : Fin n) :
     Integrable (fun w : Fin n → ℝ => (w i) ^ 2) (stdGaussianPi n) := by
   have h_exp_pos : Integrable (fun w : Fin n → ℝ => exp (w i)) (stdGaussianPi n) := by
@@ -386,7 +438,9 @@ lemma integrable_sq_eval_stdGaussianPi (i : Fin n) :
       _ ≤ 4 * max (exp (w i)) (exp (-(w i))) := h_bound
       _ ≤ 4 * (exp (w i) + exp (-(w i))) := by linarith [h_max_le]
 
-/-- Integral of coordinate projection equals 0 (since Gaussian has mean 0) -/
+/-- Integral of coordinate projection equals 0 (since Gaussian has mean 0)
+@isnad1 id=eq.0h2v.s5.894eeb1a2b9e from=translated src=- shape=ebaa9400 vocab=7efd7769
+-/
 lemma integral_eval_stdGaussianPi (i : Fin n) :
     ∫ w, w i ∂(stdGaussianPi n) = 0 := by
   have hmeas : AEMeasurable (fun w : Fin n → ℝ => w i) (stdGaussianPi n) :=
@@ -400,7 +454,9 @@ lemma integral_eval_stdGaussianPi (i : Fin n) :
     _ = ∫ x, id x ∂(gaussianReal 0 1) := by rw [map_eval_stdGaussianPi i]
     _ = 0 := integral_id_gaussianReal_zero 1
 
-/-- Expectation of linear combination is 0 -/
+/-- Expectation of linear combination is 0
+@isnad1 id=eq.0h2v.s6.8593406eb740 from=translated src=- shape=a8427c23 vocab=615822c9
+-/
 theorem integral_linear_stdGaussianPi_eq_zero (a : Fin n → ℝ) :
     ∫ w, ∑ i, a i * w i ∂(stdGaussianPi n) = 0 := by
   rw [integral_finsetSum]
@@ -408,7 +464,9 @@ theorem integral_linear_stdGaussianPi_eq_zero (a : Fin n → ℝ) :
   · intro i _
     exact Integrable.const_mul (integrable_eval_stdGaussianPi i) (a i)
 
-/-- Tail bound for centered linear combination (mean is 0) -/
+/-- Tail bound for centered linear combination (mean is 0)
+@isnad1 id=le.2h3v.s8.dae026103b1f from=translated src=- shape=5acf09e7 vocab=4b1b9efd
+-/
 theorem linear_centered_tail_bound_stdGaussianPi (a : Fin n → ℝ) (u : ℝ)
     (hu : 0 < u) (ha : 0 < ∑ i, (a i)^2) :
     (stdGaussianPi n

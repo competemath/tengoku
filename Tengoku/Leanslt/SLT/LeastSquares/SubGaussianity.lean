@@ -34,7 +34,9 @@ This is the key object whose sub-Gaussianity we establish. -/
 noncomputable def empiricalProcess (n : ℕ) (x : Fin n → X) (g : X → ℝ) (w : Fin n → ℝ) : ℝ :=
   (n : ℝ)⁻¹ * ∑ i, w i * g (x i)
 
-/-- Alternative form: empiricalProcess as sum with coefficients -/
+/-- Alternative form: empiricalProcess as sum with coefficients
+@isnad1 id=eq.0h5v.s6.c4951c0540cc from=translated src=- shape=18f49d9d vocab=87041799
+-/
 lemma empiricalProcess_eq_sum (n : ℕ) (x : Fin n → X) (g : X → ℝ) (w : Fin n → ℝ) :
     empiricalProcess n x g w = ∑ i, (n : ℝ)⁻¹ * g (x i) * w i := by
   unfold empiricalProcess
@@ -43,13 +45,17 @@ lemma empiricalProcess_eq_sum (n : ℕ) (x : Fin n → X) (g : X → ℝ) (w : F
   intro i _
   ring
 
-/-- Empirical process is linear in g -/
+/-- Empirical process is linear in g
+@isnad1 id=eq.0h6v.s5.9729207be5b8 from=translated src=- shape=119ed796 vocab=7868e591
+-/
 lemma empiricalProcess_sub (n : ℕ) (x : Fin n → X) (g₁ g₂ : X → ℝ) (w : Fin n → ℝ) :
     empiricalProcess n x g₁ w - empiricalProcess n x g₂ w =
     empiricalProcess n x (fun y => g₁ y - g₂ y) w := by
   simp only [empiricalProcess, ← Finset.sum_sub_distrib, ← mul_sub, mul_comm (w _), sub_mul]
 
-/-- Negating w negates the empirical process -/
+/-- Negating w negates the empirical process
+@isnad1 id=eq.0h5v.s5.3517177cd220 from=translated src=- shape=837e32ac vocab=bbe32fd5
+-/
 lemma empiricalProcess_neg_w (n : ℕ) (x : Fin n → X) (g : X → ℝ) (w : Fin n → ℝ) :
     empiricalProcess n x g (fun i => -(w i)) = -empiricalProcess n x g w := by
   unfold empiricalProcess
@@ -65,7 +71,9 @@ def diffValues (n : ℕ) (x : Fin n → X) (g₁ g₂ : X → ℝ) : Fin n → �
   fun i => g₁ (x i) - g₂ (x i)
 
 /-- The increment Z_{g₁} - Z_{g₂} equals the weighted sum (1/n) Σᵢ wᵢ dᵢ
-where dᵢ = g₁(xᵢ) - g₂(xᵢ) -/
+where dᵢ = g₁(xᵢ) - g₂(xᵢ)
+@isnad1 id=eq.0h6v.s6.6dff1eaed17a from=translated src=- shape=95e2fa0c vocab=b7be8083
+-/
 lemma empiricalProcess_increment_eq_weighted_sum (n : ℕ) (x : Fin n → X)
     (g₁ g₂ : X → ℝ) (w : Fin n → ℝ) :
     empiricalProcess n x g₁ w - empiricalProcess n x g₂ w =
@@ -74,7 +82,9 @@ lemma empiricalProcess_increment_eq_weighted_sum (n : ℕ) (x : Fin n → X)
   unfold diffValues
   rfl
 
-/-- Variance of the increment equals ‖g₁ - g₂‖_n² / n -/
+/-- Variance of the increment equals ‖g₁ - g₂‖_n² / n
+@isnad1 id=eq.0h5v.s6.d11c1334b7f8 from=translated src=- shape=ee012554 vocab=2a4ca70b
+-/
 lemma empiricalProcess_increment_variance (n : ℕ) (x : Fin n → X)
     (g₁ g₂ : X → ℝ) :
     ∑ i, ((n : ℝ)⁻¹ * (diffValues n x g₁ g₂ i))^2 =
@@ -94,7 +104,9 @@ We show E[exp(t (Z_{g₁} - Z_{g₂}))] = exp(t² ‖g₁-g₂‖_n² / (2n))
 which is exactly exp(t² τ² ‖g₁-g₂‖_n² / 2) with τ = 1/√n.
 -/
 
-/-- MGF of the empirical process increment. -/
+/-- MGF of the empirical process increment.
+@isnad1 id=eq.0h6v.s7.6f4ad9d7c089 from=translated src=- shape=8dadef8b vocab=bcfeb65c
+-/
 lemma empiricalProcess_increment_mgf (n : ℕ) [NeZero n] (x : Fin n → X)
     (g₁ g₂ : X → ℝ) (t : ℝ) :
     ∫ w, Real.exp (t * (empiricalProcess n x g₁ w - empiricalProcess n x g₂ w))
@@ -160,7 +172,9 @@ lemma empiricalProcess_increment_mgf (n : ℕ) [NeZero n] (x : Fin n → X)
 /-- The sub-Gaussian parameter τ = 1/√n -/
 noncomputable def subGaussianParam (n : ℕ) : ℝ := 1 / Real.sqrt n
 
-/-- Key rewriting: ‖d‖_n²/(2n) = τ² ‖d‖_n² / 2 where τ = 1/√n -/
+/-- Key rewriting: ‖d‖_n²/(2n) = τ² ‖d‖_n² / 2 where τ = 1/√n
+@isnad1 id=eq.1h2v.s6.d3622fee7415 from=translated src=- shape=763104a2 vocab=8cce6f84
+-/
 lemma subGaussian_exponent_eq (n : ℕ) (hn : 0 < n) (d : ℝ) :
     d^2 / (2 * n) = (subGaussianParam n)^2 * d^2 / 2 := by
   unfold subGaussianParam
@@ -176,7 +190,9 @@ This is formulated as: for all g₁, g₂ and all t,
   E[exp(t (Z_{g₁} - Z_{g₂}))] ≤ exp(t² τ² ‖g₁ - g₂‖_n² / 2)
 where τ = 1/√n.
 
-Note: For Gaussian, the bound is actually EQUALITY, making this immediate. -/
+Note: For Gaussian, the bound is actually EQUALITY, making this immediate.
+@isnad1 id=other.1h3v.s7.715f77bf895b from=translated src=- shape=1b4c804c vocab=b356579d
+-/
 theorem empiricalProcess_isSubGaussian (n : ℕ) (hn : 0 < n) (x : Fin n → X) :
     let μ := stdGaussianPi n
     let τ := subGaussianParam n
@@ -198,7 +214,9 @@ theorem empiricalProcess_isSubGaussian (n : ℕ) (hn : 0 < n) (x : Fin n → X) 
   congr 1; ring
 
 /-- Corollary: The empirical process increment satisfies the IsSubGaussianProcess definition
-when we embed functions into a metric space with the empirical norm. -/
+when we embed functions into a metric space with the empirical norm.
+@isnad1 id=le.1h6v.s7.82b06800912a from=translated src=- shape=5d17fab5 vocab=3f7bfddd
+-/
 lemma empiricalProcess_subGaussian_bound (n : ℕ) (hn : 0 < n) (x : Fin n → X)
     (g₁ g₂ : X → ℝ) (t : ℝ) :
     ∫ w, Real.exp (t * (empiricalProcess n x g₁ w - empiricalProcess n x g₂ w))

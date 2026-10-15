@@ -110,7 +110,9 @@ structure CompactnessPackage (D : Domain) (C : NSFormCore D) (ν T : ℝ) (u₀ 
     MeasureTheory.AEStronglyMeasurable (fun t => (limit t : D.X))
       (MeasureTheory.volume.restrict (Set.Icc 0 T))
 
-/-- **Assembly:** A `CompactnessPackage` yields `Nonempty (LerayHopfSolution …)`. -/
+/-- **Assembly:** A `CompactnessPackage` yields `Nonempty (LerayHopfSolution …)`.
+@isnad1 id=nonempty.0h6v.s7.b660115dff4f from=translated src=- shape=b7256991 vocab=1d18e046
+-/
 theorem exists_lerayHopf_from_package (D : Domain) (C : NSFormCore D) (ν T : ℝ)
     (u₀ : ↥D.σ) (pkg : CompactnessPackage D C ν T u₀) :
     Nonempty (LerayHopfSolution D C ν T u₀) :=

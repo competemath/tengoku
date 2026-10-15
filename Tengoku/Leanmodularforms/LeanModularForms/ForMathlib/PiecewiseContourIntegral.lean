@@ -56,7 +56,9 @@ def contourIntegral (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) : ℂ :=
 def contourIntegrand (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (t : ℝ) : ℂ :=
   f (γ t) * deriv γ.toPath.extend t
 
-/-- Addition: `∮_γ (f + g) = ∮_γ f + ∮_γ g` when both integrands are integrable. -/
+/-- Addition: `∮_γ (f + g) = ∮_γ f + ∮_γ g` when both integrands are integrable.
+@isnad1 id=eq.2h5v.s7.2e7b0476e346 from=translated src=- shape=ec523f00 vocab=2e8b7a8a
+-/
 theorem contourIntegral_add (f g : ℂ → ℂ) (γ : PiecewiseC1Path x y)
     (hf : IntervalIntegrable (contourIntegrand f γ) volume 0 1)
     (hg : IntervalIntegrable (contourIntegrand g γ) volume 0 1) :
@@ -65,20 +67,26 @@ theorem contourIntegral_add (f g : ℂ → ℂ) (γ : PiecewiseC1Path x y)
   simp only [contourIntegral, add_mul]
   exact intervalIntegral.integral_add hf hg
 
-/-- Scalar multiplication: `∮_γ (c • f) = c • ∮_γ f`. -/
+/-- Scalar multiplication: `∮_γ (c • f) = c • ∮_γ f`.
+@isnad1 id=eq.0h5v.s5.6173a8603456 from=translated src=- shape=c4c00f4a vocab=5982d55a
+-/
 theorem contourIntegral_smul (c : ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) :
     contourIntegral (fun z => c * f z) γ = c * contourIntegral f γ := by
   simp only [contourIntegral, mul_assoc]
   exact intervalIntegral.integral_const_mul c _
 
-/-- The contour integral of the zero function is zero. -/
+/-- The contour integral of the zero function is zero.
+@isnad1 id=eq.0h3v.s5.f7d447a1c012 from=translated src=- shape=277f4462 vocab=2a173a60
+-/
 theorem contourIntegral_zero (γ : PiecewiseC1Path x y) :
     contourIntegral (fun _ => 0) γ = 0 := by
   simp [contourIntegral]
 
 /-- **Finset sum linearity for contour integrals.** When each integrand
 `contourIntegrand (f i) γ` is interval-integrable on `[0, 1]`,
-`∮_γ (∑ i ∈ ι, f i z) = ∑ i ∈ ι, ∮_γ f i z`. -/
+`∮_γ (∑ i ∈ ι, f i z) = ∑ i ∈ ι, ∮_γ f i z`.
+@isnad1 id=eq.1h6v.s6.d040c4ac77db from=translated src=- shape=9cd03dab vocab=954cb8c1
+-/
 theorem contourIntegral_finset_sum {ι : Type*} (s : Finset ι)
     (f : ι → ℂ → ℂ) (γ : PiecewiseC1Path x y)
     (hf : ∀ i ∈ s, IntervalIntegrable (contourIntegrand (f i) γ) volume 0 1) :
@@ -194,7 +202,9 @@ If `F` is a holomorphic primitive of `f` on a set `U` containing the image of `�
 then `∮_γ f(z) dz = F(y) - F(x)`.
 
 The proof splits the integral at partition points and applies FTC on each smooth
-segment; adjacent segments telescope. -/
+segment; adjacent segments telescope.
+@isnad1 id=eq.3h6v.s8.85c251292322 from=translated src=- shape=34cf2e38 vocab=19e73956
+-/
 theorem contourIntegral_eq_sub_of_hasDerivAt {F f : ℂ → ℂ}
     (γ : PiecewiseC1Path x y) {U : Set ℂ}
     (hU : ∀ t ∈ Icc (0 : ℝ) 1, γ t ∈ U)
@@ -214,7 +224,9 @@ theorem contourIntegral_eq_sub_of_hasDerivAt {F f : ℂ → ℂ}
   have h := ftc_induction γ _ 0 1 hFγ_cont hFγ_deriv h_int le_rfl zero_le_one subset_rfl
   rwa [γ.apply_one, γ.apply_zero] at h
 
-/-- **FTC for closed piecewise C¹ paths.** If `F' = f` along a closed path, then `∮_γ f = 0`. -/
+/-- **FTC for closed piecewise C¹ paths.** If `F' = f` along a closed path, then `∮_γ f = 0`.
+@isnad1 id=eq.4h6v.s8.fb8d7876c45c from=translated src=- shape=072807cd vocab=3370ae8c
+-/
 theorem contourIntegral_eq_zero_of_hasDerivAt_of_closed {F f : ℂ → ℂ}
     (γ : PiecewiseC1Path x y) (hclosed : x = y) {U : Set ℂ}
     (hU : ∀ t ∈ Icc (0 : ℝ) 1, γ t ∈ U)

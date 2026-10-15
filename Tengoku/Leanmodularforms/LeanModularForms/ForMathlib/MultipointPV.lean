@@ -49,14 +49,18 @@ noncomputable section
 
 variable {x y : ℂ}
 
-/-- The multi-point CPV integrand distributes over subtraction pointwise. -/
+/-- The multi-point CPV integrand distributes over subtraction pointwise.
+@isnad1 id=eq.0h6v.s5.071484326d11 from=translated src=- shape=03b2f40b vocab=5f9b2190
+-/
 theorem cpvIntegrandOn_sub (S : Finset ℂ) (f g : ℂ → ℂ) (γ : ℝ → ℂ) (ε : ℝ) (t : ℝ) :
     cpvIntegrandOn S (fun z => f z - g z) γ ε t =
       cpvIntegrandOn S f γ ε t - cpvIntegrandOn S g γ ε t := by
   simp only [cpvIntegrandOn]
   split_ifs <;> ring
 
-/-- The multi-point CPV integrand distributes over addition pointwise. -/
+/-- The multi-point CPV integrand distributes over addition pointwise.
+@isnad1 id=eq.0h6v.s5.d733ba091aab from=translated src=- shape=03b2f40b vocab=f60ed58e
+-/
 theorem cpvIntegrandOn_add (S : Finset ℂ) (f g : ℂ → ℂ) (γ : ℝ → ℂ) (ε : ℝ) (t : ℝ) :
     cpvIntegrandOn S (fun z => f z + g z) γ ε t =
       cpvIntegrandOn S f γ ε t + cpvIntegrandOn S g γ ε t := by
@@ -67,7 +71,9 @@ theorem cpvIntegrandOn_add (S : Finset ℂ) (f g : ℂ → ℂ) (γ : ℝ → �
 `HasCauchyPVOn S g γ L₂`, then `HasCauchyPVOn S (f - g) γ (L₁ - L₂)`.
 
 The integrability hypotheses are needed to split the integral of the difference
-into a difference of integrals. -/
+into a difference of integrals.
+@isnad1 id=hascauch.4h8v.s8.b8a9c115e9d9 from=translated src=- shape=5cdda31b vocab=78ca8329
+-/
 theorem HasCauchyPVOn.sub {S : Finset ℂ} {f g : ℂ → ℂ}
     {γ : PiecewiseC1Path x y} {L₁ L₂ : ℂ}
     (hf : HasCauchyPVOn S f γ L₁) (hg : HasCauchyPVOn S g γ L₂)
@@ -88,7 +94,9 @@ theorem HasCauchyPVOn.sub {S : Finset ℂ} {f g : ℂ → ℂ}
   exact (hf.sub hg).congr' heq.symm
 
 /-- Addition of multi-point CPV limits: if `HasCauchyPVOn S f γ L₁` and
-`HasCauchyPVOn S g γ L₂`, then `HasCauchyPVOn S (f + g) γ (L₁ + L₂)`. -/
+`HasCauchyPVOn S g γ L₂`, then `HasCauchyPVOn S (f + g) γ (L₁ + L₂)`.
+@isnad1 id=hascauch.4h8v.s8.881d1cf334e0 from=translated src=- shape=5cdda31b vocab=0cf46d76
+-/
 theorem HasCauchyPVOn.add {S : Finset ℂ} {f g : ℂ → ℂ}
     {γ : PiecewiseC1Path x y} {L₁ L₂ : ℂ}
     (hf : HasCauchyPVOn S f γ L₁) (hg : HasCauchyPVOn S g γ L₂)
@@ -108,7 +116,9 @@ theorem HasCauchyPVOn.add {S : Finset ℂ} {f g : ℂ → ℂ}
       (fun t _ => cpvIntegrandOn_add S f g γ.toPath.extend ε t)
   exact (hf.add hg).congr' heq.symm
 
-/-- A `HasCauchyPVOn` for a singleton set implies `HasCauchyPV` at that point. -/
+/-- A `HasCauchyPVOn` for a singleton set implies `HasCauchyPV` at that point.
+@isnad1 id=hascauch.1h6v.s5.574942655758 from=translated src=- shape=ce7a0c29 vocab=befe9553
+-/
 theorem hasCauchyPV_of_hasCauchyPVOn_singleton {f : ℂ → ℂ}
     {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPVOn {z₀} f γ L) : HasCauchyPV f γ z₀ L := by
@@ -116,7 +126,9 @@ theorem hasCauchyPV_of_hasCauchyPVOn_singleton {f : ℂ → ℂ}
   exact h.congr fun ε => intervalIntegral.integral_congr fun t _ =>
     cpvIntegrand_eq_cpvIntegrandOn_singleton.symm
 
-/-- The multi-point CPV of the zero function is zero. -/
+/-- The multi-point CPV of the zero function is zero.
+@isnad1 id=hascauch.0h4v.s5.974d0310fe86 from=translated src=- shape=a3d9e2af vocab=b9f4eb38
+-/
 theorem HasCauchyPVOn.zero_fun {S : Finset ℂ} {γ : PiecewiseC1Path x y} :
     HasCauchyPVOn S (fun _ => (0 : ℂ)) γ 0 := by
   simp only [HasCauchyPVOn]
@@ -127,7 +139,9 @@ theorem HasCauchyPVOn.zero_fun {S : Finset ℂ} {γ : PiecewiseC1Path x y} :
   split_ifs <;> simp
 
 /-- Finite sum of `HasCauchyPVOn`: if each `f i` has multi-point CPV `L i` along `γ`
-on `S` (with cutoff integrability), the sum `∑ i ∈ T, f i` has CPV `∑ i ∈ T, L i`. -/
+on `S` (with cutoff integrability), the sum `∑ i ∈ T, f i` has CPV `∑ i ∈ T, L i`.
+@isnad1 id=hascauch.2h8v.s7.f840ed3ce5f1 from=translated src=- shape=3902a072 vocab=440aead5
+-/
 theorem HasCauchyPVOn.finset_sum {ι : Type*} [DecidableEq ι] (T : Finset ι)
     {S : Finset ℂ} {γ : PiecewiseC1Path x y} {f : ι → ℂ → ℂ} {L : ι → ℂ}
     (hf : ∀ i ∈ T, HasCauchyPVOn S (f i) γ (L i))

@@ -45,13 +45,17 @@ We represent this as the range of the map θ ↦ (x ↦ inner θ x). -/
 def linearPredictorClass (d : ℕ) : Set ((EuclideanSpace ℝ (Fin d)) → ℝ) :=
   {f | ∃ θ : EuclideanSpace ℝ (Fin d), f = fun x => @inner ℝ _ _ θ x}
 
-/-- Zero function is a linear predictor (with θ = 0) -/
+/-- Zero function is a linear predictor (with θ = 0)
+@isnad1 id=mem.0h1v.s5.3b854d9fb9af from=translated src=- shape=a04bf54b vocab=f5ab10dc
+-/
 lemma zero_mem_linearPredictorClass : (0 : (EuclideanSpace ℝ (Fin d)) → ℝ) ∈ linearPredictorClass d := by
   use 0
   ext x
   simp only [Pi.zero_apply, inner_zero_left]
 
-/-- Linear predictors are closed under addition -/
+/-- Linear predictors are closed under addition
+@isnad1 id=mem.2h3v.s7.2e01f138c3d5 from=translated src=- shape=9fd67329 vocab=0a1ba8a4
+-/
 lemma add_mem_linearPredictorClass {f g : (EuclideanSpace ℝ (Fin d)) → ℝ}
     (hf : f ∈ linearPredictorClass d) (hg : g ∈ linearPredictorClass d) :
     f + g ∈ linearPredictorClass d := by
@@ -61,7 +65,9 @@ lemma add_mem_linearPredictorClass {f g : (EuclideanSpace ℝ (Fin d)) → ℝ}
   ext x
   simp only [Pi.add_apply, inner_add_left]
 
-/-- Linear predictors are closed under scalar multiplication -/
+/-- Linear predictors are closed under scalar multiplication
+@isnad1 id=mem.1h3v.s6.14e0ac63b9c7 from=translated src=- shape=8b80b1a4 vocab=100112a5
+-/
 lemma smul_mem_linearPredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {c : ℝ}
     (hf : f ∈ linearPredictorClass d) :
     c • f ∈ linearPredictorClass d := by
@@ -70,7 +76,9 @@ lemma smul_mem_linearPredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {
   ext x
   simp only [Pi.smul_apply, smul_eq_mul, inner_smul_left, RCLike.conj_to_real]
 
-/-- Linear predictors are closed under negation -/
+/-- Linear predictors are closed under negation
+@isnad1 id=mem.1h2v.s6.1d3f7d2aecc8 from=translated src=- shape=49f0720e vocab=efa682a0
+-/
 lemma neg_mem_linearPredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ}
     (hf : f ∈ linearPredictorClass d) :
     -f ∈ linearPredictorClass d := by
@@ -78,7 +86,9 @@ lemma neg_mem_linearPredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ}
   rw [this]
   exact smul_mem_linearPredictorClass hf
 
-/-- Linear predictors are closed under subtraction -/
+/-- Linear predictors are closed under subtraction
+@isnad1 id=mem.2h3v.s7.f848726394ec from=translated src=- shape=9fd67329 vocab=aeeccccb
+-/
 lemma sub_mem_linearPredictorClass {f g : (EuclideanSpace ℝ (Fin d)) → ℝ}
     (hf : f ∈ linearPredictorClass d) (hg : g ∈ linearPredictorClass d) :
     f - g ∈ linearPredictorClass d := by
@@ -91,7 +101,9 @@ lemma sub_mem_linearPredictorClass {f g : (EuclideanSpace ℝ (Fin d)) → ℝ}
 For a linear class F, the shifted class F* = F - {f*} = F.
 -/
 
-/-- For a linear predictor f*, the shifted class equals the original class -/
+/-- For a linear predictor f*, the shifted class equals the original class
+@isnad1 id=eq.1h2v.s5.04dd35f0202d from=translated src=- shape=efbd6994 vocab=1038bc76
+-/
 theorem shiftedClass_eq_self_of_linear {f_star : (EuclideanSpace ℝ (Fin d)) → ℝ}
     (hf_star : f_star ∈ linearPredictorClass d) :
     shiftedClass (linearPredictorClass d) f_star = linearPredictorClass d := by
@@ -110,7 +122,9 @@ theorem shiftedClass_eq_self_of_linear {f_star : (EuclideanSpace ℝ (Fin d)) �
       simp only [Pi.add_apply, Pi.sub_apply]
       ring
 
-/-- The linear predictor class is star-shaped (closed under [0,1] scaling with 0 ∈ F) -/
+/-- The linear predictor class is star-shaped (closed under [0,1] scaling with 0 ∈ F)
+@isnad1 id=isstarsh.0h1v.s3.98fa8085ad87 from=translated src=- shape=5a85d845 vocab=e1cb8d33
+-/
 theorem linearPredictorClass_isStarShaped : IsStarShaped (linearPredictorClass d) := by
   constructor
   · exact zero_mem_linearPredictorClass

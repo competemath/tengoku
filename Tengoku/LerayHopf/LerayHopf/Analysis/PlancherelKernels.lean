@@ -76,7 +76,9 @@ open scoped Real LineDeriv RealInnerProductSpace FourierTransform
 bounded by the Euclidean norm `√(∑ᵢ ‖L (b i)‖²)` of its gradient covector, for any orthonormal
 basis `b`. This is the Hilbert–Schmidt bound `‖L‖_op ≤ ‖L‖_HS`; the reverse inequality is false
 for a ℂ-valued (rank-2) codomain, so only `≤` holds — which is the direction the GNS upper
-bound needs. -/
+bound needs.
+@isnad1 id=le.0h3v.s10.fccb1a8ebd0b from=translated src=- shape=53b024c4 vocab=30912b5a
+-/
 theorem opNorm_le_sqrt_sum_sq {ι : Type*} [Fintype ι]
     (b : OrthonormalBasis ι ℝ Domain3) (L : Domain3 →L[ℝ] ℂ) :
     ‖L‖ ≤ Real.sqrt (∑ i, ‖L (b i)‖ ^ 2) := by
@@ -105,7 +107,9 @@ theorem opNorm_le_sqrt_sum_sq {ι : Type*} [Fintype ι]
 
 /-- **Plancherel kernel 2.** For a Schwartz `g : 𝓢(ℝ³, ℂ)`, the squared `L²`-class norm is the
 integral of the pointwise squared norm: `‖g.toLp 2‖² = ∫ ‖g ξ‖²`. (Via
-`SchwartzMap.inner_toL2_toL2_eq`.) -/
+`SchwartzMap.inner_toL2_toL2_eq`.)
+@isnad1 id=eq.0h1v.s12.077966557d24 from=translated src=- shape=e370ae59 vocab=2950bc11
+-/
 theorem normSq_toLp_two (g : SchwartzMap Domain3 ℂ) :
     ‖g.toLp 2 (volume : Measure Domain3)‖ ^ 2
       = ∫ ξ : Domain3, ‖g ξ‖ ^ 2 ∂(volume : Measure Domain3) := by
@@ -121,7 +125,9 @@ theorem normSq_toLp_two (g : SchwartzMap Domain3 ℂ) :
 
 /-- **Plancherel kernel 3.** Per-direction Schwartz Plancherel: for `φ : 𝓢(ℝ³, ℂ)` and a
 direction `m`, `‖(∂_{m}φ).toLp 2‖² = ∫ (2π)² ⟨ξ,m⟩² ‖𝓕 φ ξ‖²`. Uses `fourier_lineDerivOp_eq`
-(`𝓕(∂_{m}φ) = 2πi⟨·,m⟩ 𝓕 φ`) + Plancherel (`norm_fourier_toL2_eq`) + `normSq_toLp_two`. -/
+(`𝓕(∂_{m}φ) = 2πi⟨·,m⟩ 𝓕 φ`) + Plancherel (`norm_fourier_toL2_eq`) + `normSq_toLp_two`.
+@isnad1 id=eq.0h2v.s12.a10404ddd02f from=translated src=- shape=0eac97b5 vocab=8e37a840
+-/
 theorem normSq_lineDeriv_toLp (φ : SchwartzMap Domain3 ℂ) (m : Domain3) :
     ‖(∂_{m} φ).toLp 2 (volume : Measure Domain3)‖ ^ 2
       = ∫ ξ : Domain3, (2 * Real.pi) ^ 2 * (inner ℝ ξ m) ^ 2 * ‖(𝓕 φ) ξ‖ ^ 2
@@ -144,7 +150,9 @@ theorem normSq_lineDeriv_toLp (φ : SchwartzMap Domain3 ℂ) (m : Domain3) :
 /-- **Plancherel kernel 4.** Integrated gradient–Fourier bound for Schwartz `φ`:
 `∫ ‖fderiv ℝ φ x‖² ≤ (2π)² ∫ ‖ξ‖² ‖𝓕 φ ξ‖²`. Combines the pointwise HS bound
 (`opNorm_le_sqrt_sum_sq`, squared) with the summed per-direction Plancherel
-(`normSq_lineDeriv_toLp`) over the standard basis (`∑ᵢ ⟨ξ,eᵢ⟩² = ‖ξ‖²`). -/
+(`normSq_lineDeriv_toLp`) over the standard basis (`∑ᵢ ⟨ξ,eᵢ⟩² = ‖ξ‖²`).
+@isnad1 id=le.0h1v.s11.60d97d02e454 from=translated src=- shape=ec204ee0 vocab=fba03498
+-/
 theorem integral_normSq_fderiv_le (φ : SchwartzMap Domain3 ℂ) :
     ∫ x : Domain3, ‖fderiv ℝ φ x‖ ^ 2 ∂(volume : Measure Domain3)
       ≤ ∫ ξ : Domain3, (2 * Real.pi) ^ 2 * ‖ξ‖ ^ 2 * ‖(𝓕 φ) ξ‖ ^ 2 ∂(volume : Measure Domain3) := by
@@ -226,7 +234,9 @@ theorem integral_normSq_fderiv_le (φ : SchwartzMap Domain3 ℂ) :
 
 /-! ### The energy-class gradient bound (`EuclideanSpace.single`/`lineDerivOpCLM` presentation) -/
 
-/-- **Plancherel kernel 5.** `fderiv φ x (eᵢ) = (∂_{eᵢ}φ) x` for a complex Schwartz function. -/
+/-- **Plancherel kernel 5.** `fderiv φ x (eᵢ) = (∂_{eᵢ}φ) x` for a complex Schwartz function.
+@isnad1 id=eq.0h3v.s12.02bd87221f6f from=translated src=- shape=a6f9efd2 vocab=145e4463
+-/
 theorem fderiv_apply_single_eq_lineDeriv (φ : SchwartzMap Domain3 ℂ) (i : Fin 3) (x : Domain3) :
     fderiv ℝ (φ : Domain3 → ℂ) x (EuclideanSpace.single i (1 : ℝ))
       = (lineDerivOpCLM ℝ (SchwartzMap Domain3 ℂ) (EuclideanSpace.single i (1 : ℝ)) φ) x := by
@@ -236,7 +246,9 @@ theorem fderiv_apply_single_eq_lineDeriv (φ : SchwartzMap Domain3 ℂ) (i : Fin
 
 /-- **Plancherel kernel 6.** The `L²`-norm of the full gradient is bounded by the sum over the
 three coordinate directions of the `L²`-norms of the directional derivatives:
-`eLpNorm (fderiv φ) 2 ≤ ∑ᵢ eLpNorm (∂_{eᵢ}φ) 2`. -/
+`eLpNorm (fderiv φ) 2 ≤ ∑ᵢ eLpNorm (∂_{eᵢ}φ) 2`.
+@isnad1 id=le.0h1v.s13.acb06ed93837 from=translated src=- shape=66e552b3 vocab=50b8495e
+-/
 theorem eLpNorm_fderiv_le_sum_lineDeriv (φ : SchwartzMap Domain3 ℂ) :
     eLpNorm (fderiv ℝ (φ : Domain3 → ℂ)) 2 (volume : Measure Domain3) ≤
       ∑ i : Fin 3, eLpNorm
@@ -280,7 +292,9 @@ theorem eLpNorm_fderiv_le_sum_lineDeriv (φ : SchwartzMap Domain3 ℂ) :
 
 /-- **Plancherel kernel 7 — quantitative `L²∩L⁶` interpolation at exponent 3.** For
 `f : Domain3 → F`, `eLpNorm f 3 ≤ (eLpNorm f 2)^{1/2} · (eLpNorm f 6)^{1/2}`. The square route:
-`(eLpNorm f 3)² = eLpNorm (‖f‖²) (3/2) ≤ eLpNorm ‖f‖ 6 · eLpNorm ‖f‖ 2` (Hölder `1/6+1/2=2/3`). -/
+`(eLpNorm f 3)² = eLpNorm (‖f‖²) (3/2) ≤ eLpNorm ‖f‖ 6 · eLpNorm ‖f‖ 2` (Hölder `1/6+1/2=2/3`).
+@isnad1 id=le.2h2v.s10.178ce37b85cc from=translated src=- shape=d166d232 vocab=a60643c4
+-/
 theorem eLpNorm_three_le_interp {F : Type*} [NormedAddCommGroup F] (f : Domain3 → F)
     (h2 : MemLp f 2 (volume : Measure Domain3))
     (h6 : MemLp f 6 (volume : Measure Domain3)) :

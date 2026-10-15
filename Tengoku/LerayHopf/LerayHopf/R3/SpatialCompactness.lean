@@ -99,7 +99,9 @@ structure LocalRellichInput where
         restrictToBall R w ∈ K
 
 /-- L²-norm-squared as an integral of the pointwise squared norm, for an element of an
-`L²` space over a real inner-product target. -/
+`L²` space over a real inner-product target.
+@isnad1 id=eq.0h2v.s12.48eaaa71e367 from=translated src=- shape=a8fe3eb8 vocab=f9b587ab
+-/
 theorem normSq_eq_integral_normSq {μ : Measure Domain3}
     (h : Lp (EuclideanSpace ℝ (Fin 3)) 2 μ) :
     ‖h‖ ^ 2 = ∫ x, ‖(h x : EuclideanSpace ℝ (Fin 3))‖ ^ 2 ∂μ := by
@@ -113,7 +115,9 @@ theorem normSq_eq_integral_normSq {μ : Measure Domain3}
 
 /-- **D0c.** The ball set-integral of the squared difference equals the squared
 L²(B_R)-distance of the two restrictions. This is the bridge between the conclusion's
-set-integral shape and the metric in which `IsCompact.tendsto_subseq` produces convergence. -/
+set-integral shape and the metric in which `IsCompact.tendsto_subseq` produces convergence.
+@isnad1 id=eq.0h3v.s14.59b8e5697665 from=translated src=- shape=baf034f7 vocab=76680f03
+-/
 theorem setIntegral_normSq_eq_dist_sq_restrictToBall (R : ℝ) (u v : L2VF_R3) :
     ∫ x in Metric.closedBall (0 : Domain3) R,
       ‖(u x : EuclideanSpace ℝ (Fin 3)) - (v x : EuclideanSpace ℝ (Fin 3))‖ ^ 2
@@ -144,7 +148,9 @@ theorem setIntegral_normSq_eq_dist_sq_restrictToBall (R : ℝ) (u v : L2VF_R3) :
 
 /-- Factorization of a nested family of extractions: if `Φ (k+1) = Φ k ∘ ρ k` with each
 `ρ k` strictly monotone, then for `k ≤ n` the extraction `Φ n` is `Φ k` post-composed with a
-strictly monotone map. -/
+strictly monotone map.
+@isnad1 id=ex.3h4v.s6.2606aa16e1c4 from=translated src=- shape=5a760d7e vocab=af0d7029
+-/
 theorem nested_extraction_factor (Φ ρ : ℕ → ℕ → ℕ)
     (hρ : ∀ k, StrictMono (ρ k)) (hstep : ∀ k, Φ (k + 1) = Φ k ∘ ρ k) :
     ∀ k n, k ≤ n → ∃ R : ℕ → ℕ, StrictMono R ∧ Φ n = Φ k ∘ R := by
@@ -178,7 +184,9 @@ private noncomputable def furtherRestrict (R k : ℝ) (h : (R : ℝ) ≤ k)
         Measure.restrict_mono hsub le_rfl
       exact (Lp.memLp w).mono_measure hle)
 
-/-- Restriction to a ball does not increase the L²-norm. -/
+/-- Restriction to a ball does not increase the L²-norm.
+@isnad1 id=le.0h2v.s13.a9f4a202114a from=translated src=- shape=07c142a8 vocab=9ad1da80
+-/
 theorem norm_restrictToBall_le (R : ℝ) (w : L2VF_R3) :
     ‖restrictToBall R w‖ ≤ ‖w‖ := by
   rw [Lp.norm_def, Lp.norm_def]
@@ -190,7 +198,9 @@ theorem norm_restrictToBall_le (R : ℝ) (w : L2VF_R3) :
   rw [eLpNorm_congr_ae hcong]
   exact ENNReal.toReal_mono (Lp.memLp w).2.ne (eLpNorm_mono_measure _ hle)
 
-/-- `restrictToBall R` sends `0` to `0`. -/
+/-- `restrictToBall R` sends `0` to `0`.
+@isnad1 id=eq.0h1v.s14.48c409d617e8 from=translated src=- shape=7ab19379 vocab=43438cb6
+-/
 theorem restrictToBall_zero (R : ℝ) : restrictToBall R (0 : L2VF_R3) = 0 := by
   apply Lp.ext
   have h1 : ⇑(restrictToBall R (0 : L2VF_R3))
@@ -206,7 +216,9 @@ theorem restrictToBall_zero (R : ℝ) : restrictToBall R (0 : L2VF_R3) = 0 := by
   filter_upwards [h1, h0, hz0] with x hx hx0 hxz
   simp only [hx, hx0, hxz, Pi.zero_apply]
 
-/-- `restrictToBall R (u - v) = restrictToBall R u - restrictToBall R v`. -/
+/-- `restrictToBall R (u - v) = restrictToBall R u - restrictToBall R v`.
+@isnad1 id=eq.0h3v.s15.14e8bdd560ee from=translated src=- shape=80982149 vocab=22ebfa6c
+-/
 theorem restrictToBall_sub (R : ℝ) (u v : L2VF_R3) :
     restrictToBall R (u - v) = restrictToBall R u - restrictToBall R v := by
   apply Lp.ext
@@ -227,7 +239,9 @@ theorem restrictToBall_sub (R : ℝ) (u v : L2VF_R3) :
   simp only [h4, Pi.sub_apply, eq2, eq3]
 
 /-- `restrictToBall R` is `1`-Lipschitz on `L2VF_R3`. Used to obtain continuity, hence
-time-measurability transport. -/
+time-measurability transport.
+@isnad1 id=le.0h3v.s14.0863e8ff2adf from=translated src=- shape=ffafc5a6 vocab=98d3cf87
+-/
 theorem restrictToBall_dist_le (R : ℝ) (u v : L2VF_R3) :
     dist (restrictToBall R u) (restrictToBall R v) ≤ dist u v := by
   rw [dist_eq_norm, dist_eq_norm, Lp.norm_def, Lp.norm_def]
@@ -256,7 +270,9 @@ theorem restrictToBall_dist_le (R : ℝ) (u v : L2VF_R3) :
   rw [← eLpNorm_congr_ae hcongG]
   exact (Lp.memLp (u - v)).2.ne
 
-/-- Continuity of `restrictToBall R : L2VF_R3 → L2ballR3 R` (it is `1`-Lipschitz). -/
+/-- Continuity of `restrictToBall R : L2VF_R3 → L2ballR3 R` (it is `1`-Lipschitz).
+@isnad1 id=continuo.0h1v.s15.3b134ca314c3 from=translated src=- shape=07d78b56 vocab=6a49e9ef
+-/
 theorem continuous_restrictToBall (R : ℝ) :
     Continuous (fun w : L2VF_R3 => restrictToBall R w) := by
   refine Metric.continuous_iff.2 fun w ε hε => ⟨ε, hε, fun w' hw' => ?_⟩
@@ -264,7 +280,9 @@ theorem continuous_restrictToBall (R : ℝ) :
       ≤ dist w' w := restrictToBall_dist_le R w' w
     _ < ε := hw'
 
-/-- The squared L²(B_R)-norm of `restrictToBall R w` equals the ball set-integral of `‖w·‖²`. -/
+/-- The squared L²(B_R)-norm of `restrictToBall R w` equals the ball set-integral of `‖w·‖²`.
+@isnad1 id=eq.0h2v.s13.8b1d4c0d68cc from=translated src=- shape=ee0e976b vocab=002dc8c1
+-/
 theorem normSq_restrictToBall_eq_setIntegral (R : ℝ) (w : L2VF_R3) :
     ‖restrictToBall R w‖ ^ 2
       = ∫ x in Metric.closedBall (0 : Domain3) R,
@@ -373,7 +391,9 @@ noncomputable def tailVF (R : ℝ) (w : L2VF_R3) : L2tailR3 R :=
   MemLp.toLp (w : Domain3 → EuclideanSpace ℝ (Fin 3))
     ((Lp.memLp w).restrict (Metric.closedBall (0 : Domain3) R)ᶜ)
 
-/-- The tail restriction does not increase the L²-norm. -/
+/-- The tail restriction does not increase the L²-norm.
+@isnad1 id=le.0h2v.s13.cabfed6e3c7d from=translated src=- shape=542c12f3 vocab=2413c609
+-/
 theorem norm_tailVF_le (R : ℝ) (w : L2VF_R3) : ‖tailVF R w‖ ≤ ‖w‖ := by
   rw [Lp.norm_def, Lp.norm_def]
   have hle : volume.restrict (Metric.closedBall (0 : Domain3) R)ᶜ ≤ (volume : Measure Domain3) :=
@@ -385,7 +405,9 @@ theorem norm_tailVF_le (R : ℝ) (w : L2VF_R3) : ‖tailVF R w‖ ≤ ‖w‖ :=
   exact ENNReal.toReal_mono (Lp.memLp w).2.ne (eLpNorm_mono_measure _ hle)
 
 /-- **Ball/tail split** of the global L²-vector inner product:
-`⟪v, w⟫ = ⟪restrictToBall R v, restrictToBall R w⟫ + ⟪tailVF R v, tailVF R w⟫`. -/
+`⟪v, w⟫ = ⟪restrictToBall R v, restrictToBall R w⟫ + ⟪tailVF R v, tailVF R w⟫`.
+@isnad1 id=eq.0h3v.s14.f2cb8497e453 from=translated src=- shape=f8b1f147 vocab=01eba91b
+-/
 theorem inner_eq_ball_add_tail (R : ℝ) (v w : L2VF_R3) :
     (inner ℝ v w : ℝ)
       = (inner ℝ (restrictToBall R v) (restrictToBall R w) : ℝ)
@@ -427,7 +449,9 @@ theorem inner_eq_ball_add_tail (R : ℝ) (v w : L2VF_R3) :
 Proved via dominated/monotone convergence: `eLpNorm v 2 (B_Rᶜ-restricted)`'s square is the
 set-lintegral over `B_Rᶜ` of `‖v ·‖ₑ²`, which decreases to the lintegral over `⋂_R B_Rᶜ = ∅`,
 hence to `0`.  We obtain it from the ball-exhaustion `tendsto_setLIntegral_closedBall`: the
-ball part increases to the full (finite) integral, so the complement part tends to `0`. -/
+ball part increases to the full (finite) integral, so the complement part tends to `0`.
+@isnad1 id=tendsto.0h1v.s13.b916deec26d4 from=translated src=- shape=58726df0 vocab=8a4c0f83
+-/
 theorem tendsto_norm_tailVF_zero (v : L2VF_R3) :
     Tendsto (fun k : ℕ => ‖tailVF (k : ℝ) v‖) atTop (𝓝 0) := by
   classical

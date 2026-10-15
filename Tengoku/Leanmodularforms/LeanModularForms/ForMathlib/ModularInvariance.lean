@@ -77,7 +77,9 @@ private lemma meromorphicOrderAt_comp_sub_const (g : ℂ → ℂ) (x c : ℂ) :
     simp only [smul_eq_mul] at hz ⊢
     rw [hz]; congr 2; ring
 
-/-- T-invariance of vanishing order: `ord(f, z+1) = ord(f, z)`. -/
+/-- T-invariance of vanishing order: `ord(f, z+1) = ord(f, z)`.
+@isnad1 id=eq.0h3v.s9.61287545ed5c from=translated src=- shape=a50482e2 vocab=68d0512b
+-/
 lemma ord_add_one_eq (p : ℍ) :
     orderOfVanishingAt' f ((1 : ℝ) +ᵥ p) = orderOfVanishingAt' f p := by
   unfold orderOfVanishingAt'
@@ -105,10 +107,15 @@ lemma ord_add_one_eq (p : ℍ) :
 /-- An open box containing the truncated fundamental domain. -/
 def fdBox (M : ℝ) : Set ℂ := {z : ℂ | -1 < z.re ∧ z.re < 1 ∧ (1:ℝ)/2 < z.im ∧ z.im < M}
 
+/--
+@isnad1 id=lt.1h2v.s4.2b3395c53aaa from=translated src=- shape=d9bd9ecf vocab=e76e0434
+-/
 lemma fdBox_im_pos {M : ℝ} {z : ℂ} (hz : z ∈ fdBox M) : 0 < z.im := by
   linarith [hz.2.2.1]
 
-/-- A nonzero modular form has finitely many zeros in `fdBox M`. -/
+/-- A nonzero modular form has finitely many zeros in `fdBox M`.
+@isnad1 id=finite.2h3v.s9.833bb0a1fcdf from=translated src=- shape=22652640 vocab=469a76a0
+-/
 theorem modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : (1:ℝ)/2 < M) :
     Set.Finite {z ∈ fdBox M | modularFormCompOfComplex f z = 0} := by
   by_contra h_inf
@@ -140,7 +147,9 @@ theorem modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : 
     (h_analOn.eqOn_zero_of_preconnected_of_frequently_eq_zero
       h_preconn hz₀_pos h_freq) z.im_pos
 
-/-- The cusp function of a nonzero modular form is not identically zero near 0. -/
+/-- The cusp function of a nonzero modular form is not identically zero near 0.
+@isnad1 id=not.1h2v.s10.9cad9f00d8db from=translated src=- shape=666fa749 vocab=8133b3a8
+-/
 theorem cuspFunction_not_eventually_zero (hf : f ≠ 0) :
     ¬∀ᶠ q in 𝓝 (0 : ℂ), UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q = 0 := by
   intro h_freq
@@ -163,7 +172,9 @@ theorem cuspFunction_not_eventually_zero (hf : f ≠ 0) :
     rw [Metric.mem_ball, dist_zero_right]
     exact_mod_cast UpperHalfPlane.norm_qParam_lt_one 1 τ)
 
-/-- For a nonzero modular form, the cusp function is eventually nonzero near 0. -/
+/-- For a nonzero modular form, the cusp function is eventually nonzero near 0.
+@isnad1 id=eventual.1h2v.s10.66c5337e1bd4 from=translated src=- shape=f1a5447c vocab=b562472e
+-/
 theorem cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
     ∀ᶠ q in 𝓝[≠] (0 : ℂ),
       UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 :=
@@ -173,7 +184,9 @@ theorem cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
     one_mem_strictPeriods_SL).eventually_eq_zero_or_eventually_ne_zero.resolve_left
     (cuspFunction_not_eventually_zero f hf)
 
-/-- Existence of a nonvanishing radius for the cusp function. -/
+/-- Existence of a nonvanishing radius for the cusp function.
+@isnad1 id=ex.1h2v.s10.ae1f77a87f2f from=translated src=- shape=9d221666 vocab=b7540847
+-/
 theorem exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
     ∃ r : ℝ, 0 < r ∧ ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) r →
       q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 := by
@@ -187,7 +200,9 @@ theorem exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
 /-- Convert a q-radius to a FD boundary height. -/
 noncomputable def heightOfRadius (r : ℝ) : ℝ := -Real.log r / (2 * Real.pi)
 
-/-- For a nonzero modular form, there exists `H > √3/2` with cusp nonvanishing. -/
+/-- For a nonzero modular form, there exists `H > √3/2` with cusp nonvanishing.
+@isnad1 id=ex.1h2v.s10.83c2b43fcd36 from=translated src=- shape=02b1497b vocab=a4af65cc
+-/
 theorem exists_height_cusp_nonvanishing (hf : f ≠ 0) :
     ∃ H : ℝ, Real.sqrt 3 / 2 < H ∧
       ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H)) →
@@ -207,7 +222,9 @@ theorem exists_height_cusp_nonvanishing (hf : f ≠ 0) :
           unfold heightOfRadius; field_simp]
         exact Real.exp_log hr_pos
 
-/-- Height monotonicity for cusp nonvanishing. -/
+/-- Height monotonicity for cusp nonvanishing.
+@isnad1 id=ne.4h5v.s9.43182256d0e4 from=translated src=- shape=483fa8e7 vocab=6db6b775
+-/
 lemma cusp_nonvanishing_height_mono {H₁ H₂ : ℝ} (hH : H₁ ≤ H₂)
     (h : ∀ q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H₁)), q ≠ 0 →
       UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0) :

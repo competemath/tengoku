@@ -56,7 +56,9 @@ noncomputable def empColumn (x : Fin n → EuclideanSpace ℝ (Fin d)) (j : Fin 
     EmpiricalSpace n :=
   fun i => (x i) j
 
-/-- The empColumn applied at index i equals the j-th coordinate of x_i -/
+/-- The empColumn applied at index i equals the j-th coordinate of x_i
+@isnad1 id=eq.0h5v.s5.8db083920ad3 from=translated src=- shape=1ba62c0d vocab=0be55c7c
+-/
 lemma empColumn_apply (x : Fin n → EuclideanSpace ℝ (Fin d)) (j : Fin d) (i : Fin n) :
     empColumn x j i = (x i) j := rfl
 
@@ -71,12 +73,16 @@ noncomputable def maureyVec (x : Fin n → EuclideanSpace ℝ (Fin d)) (R : ℝ)
   | none => 0
   | some (j, b) => scaledSignedColumn x R j b
 
-/-- maureyVec at none is zero -/
+/-- maureyVec at none is zero
+@isnad1 id=eq.0h4v.s5.e69c2a6bce62 from=translated src=- shape=a391b485 vocab=9020fc01
+-/
 @[simp]
 lemma maureyVec_none (x : Fin n → EuclideanSpace ℝ (Fin d)) (R : ℝ) :
     maureyVec x R none = 0 := rfl
 
-/-- maureyVec at some (j, b) is the scaled signed column -/
+/-- maureyVec at some (j, b) is the scaled signed column
+@isnad1 id=eq.0h6v.s5.f4577268008a from=translated src=- shape=d5fd4105 vocab=43552111
+-/
 lemma maureyVec_some (x : Fin n → EuclideanSpace ℝ (Fin d)) (R : ℝ) (j : Fin d) (b : Bool) :
     maureyVec x R (some (j, b)) = scaledSignedColumn x R j b := rfl
 
@@ -96,7 +102,9 @@ def l1BallImage (x : Fin n → EuclideanSpace ℝ (Fin d)) (R : ℝ) : Set (Empi
   {v | ∃ θ : EuclideanSpace ℝ (Fin d), l1norm θ ≤ R ∧
        v = fun i => (1 / Real.sqrt n) * @inner ℝ _ _ θ (x i)}
 
-/-- Membership characterization for l1BallImage -/
+/-- Membership characterization for l1BallImage
+@isnad1 id=iff.0h5v.s7.317c73ac394c from=translated src=- shape=6d8fba61 vocab=3ba82b1c
+-/
 lemma mem_l1BallImage_iff {x : Fin n → EuclideanSpace ℝ (Fin d)} {R : ℝ}
     {v : EmpiricalSpace n} :
     v ∈ l1BallImage x R ↔
@@ -105,7 +113,9 @@ lemma mem_l1BallImage_iff {x : Fin n → EuclideanSpace ℝ (Fin d)} {R : ℝ}
 
 /-! ## Net Cardinality Bound -/
 
-/-- Net cardinality bound: |maureyNet| ≤ (2d + 1)^k -/
+/-- Net cardinality bound: |maureyNet| ≤ (2d + 1)^k
+@isnad1 id=le.0h5v.s6.2f35f03d3a63 from=translated src=- shape=23a2707b vocab=f627f9de
+-/
 lemma maureyNet_card_le (x : Fin n → EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) :
     (maureyNet x R k).card ≤ (2 * d + 1) ^ k := by
   classical
@@ -126,6 +136,9 @@ lemma maureyNet_card_le (x : Fin n → EuclideanSpace ℝ (Fin d)) (R : ℝ) (k 
 
 -- MeasurableSpace for Option (Fin d × Bool) using discrete sigma-algebra
 instance instMeasurableSpaceOptionFinProdBool (d : ℕ) : MeasurableSpace (Option (Fin d × Bool)) := ⊤
+/--
+@isnad1 id=measurab.0h1v.s3.2adfe8bfc098 from=translated src=- shape=d8f56534 vocab=7501eb7d
+-/
 instance instMeasurableSingletonClassOptionFinProdBool (d : ℕ) :
     MeasurableSingletonClass (Option (Fin d × Bool)) :=
   ⟨fun _ => trivial⟩
@@ -215,20 +228,31 @@ noncomputable def maureyPMF (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (hθ : l
 /-- Helper: the sign function for Maurey's method -/
 noncomputable def maureySign (x : ℝ) : ℝ := if 0 ≤ x then 1 else -1
 
+/--
+@isnad1 id=eq.0h1v.s4.751e69c8e6ed from=translated src=- shape=bc3eac35 vocab=2670b336
+-/
 lemma abs_mul_maureySign (x : ℝ) : |x| * maureySign x = x := by
   by_cases hx : 0 ≤ x
   · simp [maureySign, hx, abs_of_nonneg hx]
   · have hx' : x < 0 := lt_of_not_ge hx
     simp [maureySign, hx, abs_of_neg hx']
 
+/--
+@isnad1 id=eq.0h1v.s4.1fa2906a5246 from=translated src=- shape=a5e71125 vocab=2670b336
+-/
 lemma maureySign_mul_abs (x : ℝ) : maureySign x * |x| = x := by
   rw [mul_comm, abs_mul_maureySign]
 
+/--
+@isnad1 id=eq.0h1v.s4.05e4381cf48c from=translated src=- shape=98bba06a vocab=3c77a9d2
+-/
 lemma maureySign_sq (x : ℝ) : maureySign x ^ 2 = 1 := by
   by_cases hx : 0 ≤ x <;> simp [maureySign, hx]
 
 /-- Mean of maureyVec at coordinate i equals target_i = (1/√n) * ⟨θ, x_i⟩.
-This is the unbiasedness property of Maurey's random variable. -/
+This is the unbiasedness property of Maurey's random variable.
+@isnad1 id=eq.2h6v.s7.7d596249111d from=translated src=- shape=99e2904a vocab=9c0b00a4
+-/
 lemma maureyPMF_mean_coord (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R) (hθ : l1norm θ ≤ R) (i : Fin n) :
     ∫ o, maureyVec x R o i ∂(maureyPMF θ R hθ).toMeasure = (1 / Real.sqrt n) * @inner ℝ _ _ θ (x i) := by
@@ -287,7 +311,9 @@ lemma maureyPMF_mean_coord (x : Fin n → EuclideanSpace ℝ (Fin d))
   simp only [h_inner]
   rw [← Finset.mul_sum]
 
-/-- Sum of squared coordinates bound for empirical average -/
+/-- Sum of squared coordinates bound for empirical average
+@isnad1 id=le.4h5v.s7.2ef7683a9810 from=translated src=- shape=20ca200a vocab=87a83cba
+-/
 lemma maureyPMF_variance_bound (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R) (hθ : l1norm θ ≤ R)
     (hcol : columnNormBound x) (hn : 0 < n) :
@@ -373,7 +399,9 @@ noncomputable def productPMFWeight (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (
     (Fin k → Option (Fin d × Bool)) → ℝ≥0∞ :=
   fun f => ∏ l : Fin k, (maureyPMF θ R hθ) (f l)
 
-/-- The product PMF weights sum to 1 (it's a valid PMF). -/
+/-- The product PMF weights sum to 1 (it's a valid PMF).
+@isnad1 id=eq.1h4v.s6.81ee765074d0 from=translated src=- shape=81b2720e vocab=9ab0a75b
+-/
 lemma productPMFWeight_sum_eq_one (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (hθ : l1norm θ ≤ R) (k : ℕ) :
     ∑ f : Fin k → Option (Fin d × Bool), productPMFWeight θ R hθ k f = 1 := by
   unfold productPMFWeight
@@ -393,7 +421,9 @@ lemma productPMFWeight_sum_eq_one (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (h
 
 /-- Key Maurey bound: For k samples from the Maurey PMF, the expected distSq is bounded.
 Specifically, there exists a sample f with distSq(maureyAvg f, target) ≤ R * l1norm θ / k.
-This is because E[distSq] ≤ R * l1norm θ / k, and min ≤ E by pigeonhole. -/
+This is because E[distSq] ≤ R * l1norm θ / k, and min ≤ E by pigeonhole.
+@isnad1 id=ex.5h6v.s7.c4860ecbefcb from=translated src=- shape=b47c4b73 vocab=2a96f464
+-/
 lemma maurey_exists_good_sample (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R) (hθ : l1norm θ ≤ R)
     (hcol : columnNormBound x) (hn : 0 < n) (k : ℕ) (hk : 0 < k) :
@@ -795,7 +825,9 @@ lemma maurey_exists_good_sample (x : Fin n → EuclideanSpace ℝ (Fin d))
 /-- Main bound: existence of close average in EmpiricalSpace.
 
 This is Maurey's empirical method: for any θ with ‖θ‖₁ ≤ R, there exists a k-sample average
-from the signed columns that approximates Xθ/√n within distance ε, provided k ≥ R²/ε². -/
+from the signed columns that approximates Xθ/√n within distance ε, provided k ≥ R²/ε².
+@isnad1 id=ex.6h7v.s7.ac65886bad94 from=translated src=- shape=e12a5440 vocab=2a96f464
+-/
 lemma exists_maureyAvg_close (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) {R ε : ℝ} (hR : 0 < R) (hε : 0 < ε)
     (hθ : l1norm θ ≤ R) (hcol : columnNormBound x) (hn : 0 < n)
@@ -958,19 +990,25 @@ The empirical image of the localized ball is totally bounded because it's contai
 in a closed ball of finite radius.
 -/
 
-/-- The empirical image of l1LocalizedBall is contained in a closed ball of radius δ -/
+/-- The empirical image of l1LocalizedBall is contained in a closed ball of radius δ
+@isnad1 id=le.0h6v.s5.53daeed29dee from=translated src=- shape=647242d0 vocab=f64b2f98
+-/
 lemma l1EmpiricalImage_subset_closedBall {d : ℕ} {R δ : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
     {x : Fin n → EuclideanSpace ℝ (Fin d)} :
     l1EmpiricalImage x '' (l1LocalizedBall d R δ θ_star x) ⊆
     Metric.closedBall (0 : EmpiricalSpace n) δ :=
   l1LocalizedBallImage_subset
 
-/-- The closed ball in EmpiricalSpace is bounded -/
+/-- The closed ball in EmpiricalSpace is bounded
+@isnad1 id=isbounde.0h2v.s4.baee045c3b8f from=translated src=- shape=6644993a vocab=097e420e
+-/
 lemma EmpiricalSpace_closedBall_bounded (n : ℕ) (r : ℝ) :
     Bornology.IsBounded (Metric.closedBall (0 : EmpiricalSpace n) r) :=
   Metric.isBounded_closedBall
 
-/-- The empirical image of l1LocalizedBall(δ) is bounded -/
+/-- The empirical image of l1LocalizedBall(δ) is bounded
+@isnad1 id=isbounde.0h6v.s5.932e0ff01f34 from=translated src=- shape=5e3042bf vocab=e4cf9544
+-/
 theorem l1LocalizedBallImage_bounded {d : ℕ} {R δ : ℝ}
     {θ_star : EuclideanSpace ℝ (Fin d)} (x : Fin n → EuclideanSpace ℝ (Fin d)) :
     Bornology.IsBounded (l1EmpiricalImage x '' (l1LocalizedBall d R δ θ_star x)) :=
@@ -991,7 +1029,9 @@ def l1LocalizedImage (x : Fin n → EuclideanSpace ℝ (Fin d)) (R δ : ℝ) :
        empiricalNorm n (fun i => @inner ℝ _ _ θ (x i)) ≤ δ ∧
        v = fun i => (1 / Real.sqrt n) * @inner ℝ _ _ θ (x i)}
 
-/-- Membership characterization for l1LocalizedImage -/
+/-- Membership characterization for l1LocalizedImage
+@isnad1 id=iff.0h6v.s7.18f2b78fa5ce from=translated src=- shape=db496da6 vocab=8f4d82f0
+-/
 lemma mem_l1LocalizedImage_iff {x : Fin n → EuclideanSpace ℝ (Fin d)} {R δ : ℝ}
     {v : EmpiricalSpace n} :
     v ∈ l1LocalizedImage x R δ ↔
@@ -999,7 +1039,9 @@ lemma mem_l1LocalizedImage_iff {x : Fin n → EuclideanSpace ℝ (Fin d)} {R δ 
       empiricalNorm n (fun i => @inner ℝ _ _ θ (x i)) ≤ δ ∧
       v = fun i => (1 / Real.sqrt n) * @inner ℝ _ _ θ (x i) := Iff.rfl
 
-/-- The localized ball image is a subset of the full ball image -/
+/-- The localized ball image is a subset of the full ball image
+@isnad1 id=le.0h5v.s5.d3bc40a03c77 from=translated src=- shape=18a677f8 vocab=5c7d7bed
+-/
 lemma l1LocalizedImage_subset_l1BallImage (x : Fin n → EuclideanSpace ℝ (Fin d)) (R δ : ℝ) :
     l1LocalizedImage x R δ ⊆ l1BallImage x R := by
   intro v ⟨θ, hθ_norm, _, hv⟩

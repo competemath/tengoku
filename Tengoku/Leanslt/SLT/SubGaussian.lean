@@ -56,7 +56,9 @@ def IsSubGaussian {Ω : Type*} [MeasurableSpace Ω] (X : Ω → ℝ) (σ_sq : �
     (μ : Measure Ω) : Prop :=
   ∃ h : 0 ≤ σ_sq, HasSubgaussianMGF X ⟨σ_sq, h⟩ μ
 
-/-- Monotonicity of the MGF sub-Gaussian parameter. -/
+/-- Monotonicity of the MGF sub-Gaussian parameter.
+@isnad1 id=hassubga.2h5v.s5.11d770f1a4b6 from=translated src=- shape=bc68f170 vocab=4edfee3a
+-/
 lemma hasSubgaussianMGF_mono_param {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ}
     {μ : Measure Ω}
     {c d : ℝ≥0} (h : HasSubgaussianMGF X c μ) (hcd : (c : ℝ) ≤ d) :
@@ -89,11 +91,17 @@ def HasFiniteSubGaussianPsi2Norm {Ω : Type*} [MeasurableSpace Ω] (X : Ω → �
     (μ : Measure Ω) : Prop :=
   ∃ K : ℝ, HasSubGaussianPsi2Bound X μ K
 
+/--
+@isnad1 id=le.1h3v.s5.56c324007355 from=translated src=- shape=f3117b01 vocab=b95800ce
+-/
 lemma subGaussianPsi2Norm_nonneg {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ}
     {μ : Measure Ω} (hfin : HasFiniteSubGaussianPsi2Norm X μ) :
     0 ≤ subGaussianPsi2Norm X μ := by
   exact le_csInf hfin fun K hK => hK.1.le
 
+/--
+@isnad1 id=ex.2h4v.s5.60ff3dd95431 from=translated src=- shape=360aee74 vocab=fd26af4d
+-/
 lemma exists_hasSubGaussianPsi2Bound_lt {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {μ : Measure Ω} {R : ℝ}
     (hfin : HasFiniteSubGaussianPsi2Norm X μ)
@@ -106,6 +114,9 @@ lemma exists_hasSubGaussianPsi2Bound_lt {Ω : Type*} [MeasurableSpace Ω]
   have hR_le : R ≤ sInf S := le_csInf hne fun K hK => h K hK
   exact not_lt_of_ge hR_le (by simpa [subGaussianPsi2Norm, S] using hR)
 
+/--
+@isnad1 id=hassubga.2h4v.s6.5c067d4fd6e9 from=translated src=- shape=ed0c5877 vocab=fd3db06a
+-/
 lemma hasSubgaussianMGF_of_subGaussianPsi2Norm_lt {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {μ : Measure Ω} {R : ℝ}
     (hfin : HasFiniteSubGaussianPsi2Norm X μ)
@@ -119,6 +130,9 @@ lemma hasSubgaussianMGF_of_subGaussianPsi2Norm_lt {Ω : Type*} [MeasurableSpace 
     change K ^ 2 ≤ R ^ 2
     exact hsq)
 
+/--
+@isnad1 id=hassubga.2h4v.s6.9651e0900527 from=translated src=- shape=b0a4cacc vocab=e1b9e052
+-/
 lemma hasSubgaussianMGF_of_subGaussianPsi2Norm_le {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {μ : Measure Ω} {R : ℝ}
     (hfin : HasFiniteSubGaussianPsi2Norm X μ) (hR : subGaussianPsi2Norm X μ ≤ R) :
@@ -152,13 +166,18 @@ lemma hasSubgaussianMGF_of_subGaussianPsi2Norm_le {Ω : Type*} [MeasurableSpace 
       exact (hasSubgaussianMGF_of_subGaussianPsi2Norm_lt hfin hlt).mgf_le t
     exact le_of_tendsto_of_tendsto hlim_const hlim_bound hev
 
+/--
+@isnad1 id=hassubga.2h3v.s5.4aea6d357adf from=translated src=- shape=c7834db3 vocab=fd26af4d
+-/
 lemma hasSubGaussianPsi2Bound_subGaussianPsi2Norm_of_pos {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {μ : Measure Ω} (hfin : HasFiniteSubGaussianPsi2Norm X μ)
     (hpos : 0 < subGaussianPsi2Norm X μ) :
     HasSubGaussianPsi2Bound X μ (subGaussianPsi2Norm X μ) :=
   ⟨hpos, hasSubgaussianMGF_of_subGaussianPsi2Norm_le hfin le_rfl⟩
 
-/-- A one-sided Bernstein tail bound from a local quadratic CGF estimate. -/
+/-- A one-sided Bernstein tail bound from a local quadratic CGF estimate.
+@isnad1 id=le.6h7v.s8.6b876751ba76 from=translated src=- shape=a99a3fa5 vocab=9e5ff95e
+-/
 theorem bernstein_one_sided_of_cgf_bound {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {Y : Ω → ℝ} {v b C t : ℝ}
     (hC : 0 < C) (hv : 0 < v) (hb : 0 < b)
@@ -226,7 +245,9 @@ theorem bernstein_one_sided_of_cgf_bound {Ω : Type*} [MeasurableSpace Ω]
         rw [h_rate]
         ring_nf
 
-/-- A two-sided Bernstein tail bound from a local quadratic CGF estimate. -/
+/-- A two-sided Bernstein tail bound from a local quadratic CGF estimate.
+@isnad1 id=le.6h7v.s8.8bd4984aafe8 from=translated src=- shape=a8980abd vocab=9e5ff95e
+-/
 theorem bernstein_two_sided_of_cgf_bound {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {Y : Ω → ℝ} {v b C t : ℝ}
     (hC : 0 < C) (hv : 0 < v) (hb : 0 < b)
@@ -288,6 +309,9 @@ def maxSubGaussianPsi2Norm {Ω : Type*} [MeasurableSpace Ω] {n : ℕ}
     (Finset.univ : Finset (Fin n)).sup' h fun i => subGaussianPsi2Norm (X i) μ
   else 0
 
+/--
+@isnad1 id=le.0h5v.s5.7dbe2ef43fd3 from=translated src=- shape=739c41e7 vocab=9aa3a704
+-/
 lemma subGaussianPsi2Norm_le_maxSubGaussianPsi2Norm {Ω : Type*}
     [MeasurableSpace Ω] {n : ℕ} {X : Fin n → Ω → ℝ} {μ : Measure Ω}
     (i : Fin n) :
@@ -298,7 +322,9 @@ lemma subGaussianPsi2Norm_le_maxSubGaussianPsi2Norm {Ω : Type*}
     ⟨i, Finset.mem_univ i⟩)]
   exact Finset.le_sup' (f := fun i => subGaussianPsi2Norm (X i) μ) (Finset.mem_univ i)
 
-/-- A sub-Gaussian random variable has integrable exponential tilts. -/
+/-- A sub-Gaussian random variable has integrable exponential tilts.
+@isnad1 id=integrab.1h5v.s6.935608caf231 from=translated src=- shape=f9e4c9dd vocab=cef3df26
+-/
 lemma IsSubGaussian.integrable_exp_mul {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {σ_sq : ℝ} {μ : Measure Ω} [IsFiniteMeasure μ]
     (h_sg : IsSubGaussian X σ_sq μ) (t : ℝ) :
@@ -306,14 +332,18 @@ lemma IsSubGaussian.integrable_exp_mul {Ω : Type*} [MeasurableSpace Ω]
   obtain ⟨_, h_mgf⟩ := h_sg
   exact h_mgf.integrable_exp_mul t
 
-/-- Compatibility name for exponential integrability of sub-Gaussian random variables. -/
+/-- Compatibility name for exponential integrability of sub-Gaussian random variables.
+@isnad1 id=integrab.1h5v.s6.935608caf231 from=translated src=- shape=f9e4c9dd vocab=cef3df26
+-/
 lemma sub_gaussian_integrable {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {σ_sq : ℝ} {μ : Measure Ω} [IsFiniteMeasure μ]
     (h_sg : IsSubGaussian X σ_sq μ) (t : ℝ) :
     Integrable (fun x => Real.exp (t * X x)) μ :=
   h_sg.integrable_exp_mul t
 
-/-- A sub-Gaussian real random variable is integrable. -/
+/-- A sub-Gaussian real random variable is integrable.
+@isnad1 id=integrab.1h4v.s5.7156c8438b66 from=translated src=- shape=6d0a16f7 vocab=4d338e61
+-/
 lemma IsSubGaussian.integrable {Ω : Type*} [MeasurableSpace Ω]
     {X : Ω → ℝ} {σ_sq : ℝ} {μ : Measure Ω} [IsFiniteMeasure μ]
     (h_sg : IsSubGaussian X σ_sq μ) :
@@ -334,7 +364,9 @@ lemma IsSubGaussian.integrable {Ω : Type*} [MeasurableSpace Ω]
           linarith [Real.add_one_le_exp (X ω), Real.add_one_le_exp (-X ω),
             Real.exp_pos (X ω), Real.exp_pos (-X ω)]⟩
 
-/-- A finite supremum of integrable real-valued functions is integrable. -/
+/-- A finite supremum of integrable real-valued functions is integrable.
+@isnad1 id=integrab.1h4v.s6.049ee3b421c5 from=translated src=- shape=9b791861 vocab=702ff207
+-/
 lemma integrable_ciSup_of_fintype {Ω : Type*} [MeasurableSpace Ω]
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {Y : ι → Ω → ℝ} {μ : Measure Ω}
@@ -365,7 +397,9 @@ lemma integrable_ciSup_of_fintype {Ω : Type*} [MeasurableSpace Ω]
           le_trans (le_abs_self _) (Finset.single_le_sum
             (fun a _ => abs_nonneg (Y a x)) (Finset.mem_univ i)) using 1
 
-/-- A finite supremum of absolute values of integrable real-valued functions is integrable. -/
+/-- A finite supremum of absolute values of integrable real-valued functions is integrable.
+@isnad1 id=integrab.1h4v.s6.a98acf89f7d6 from=translated src=- shape=676482ce vocab=924108df
+-/
 lemma integrable_ciSup_abs_of_fintype {Ω : Type*} [MeasurableSpace Ω]
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {Y : ι → Ω → ℝ} {μ : Measure Ω}
@@ -373,7 +407,9 @@ lemma integrable_ciSup_abs_of_fintype {Ω : Type*} [MeasurableSpace Ω]
     Integrable (fun x => ⨆ i, |Y i x|) μ :=
   integrable_ciSup_of_fintype (Y := fun i x => |Y i x|) (fun i => (h_int i).abs)
 
-/-- A finite supremum of a sub-Gaussian family is integrable. -/
+/-- A finite supremum of a sub-Gaussian family is integrable.
+@isnad1 id=integrab.1h5v.s6.ca860b6bd99a from=translated src=- shape=789d511d vocab=b02e69d5
+-/
 lemma integrable_ciSup_of_fintype_subGaussian {Ω : Type*} [MeasurableSpace Ω]
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {Y : ι → Ω → ℝ} {σ_sq : ι → ℝ} {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -381,7 +417,9 @@ lemma integrable_ciSup_of_fintype_subGaussian {Ω : Type*} [MeasurableSpace Ω]
     Integrable (fun x => ⨆ i, Y i x) μ :=
   integrable_ciSup_of_fintype (fun i => (h_sg i).integrable)
 
-/-- A finite supremum of absolute values of a sub-Gaussian family is integrable. -/
+/-- A finite supremum of absolute values of a sub-Gaussian family is integrable.
+@isnad1 id=integrab.1h5v.s6.3482852bbc6d from=translated src=- shape=20acdab8 vocab=3d2372b4
+-/
 lemma integrable_ciSup_abs_of_fintype_subGaussian {Ω : Type*} [MeasurableSpace Ω]
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {Y : ι → Ω → ℝ} {σ_sq : ι → ℝ} {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -404,6 +442,9 @@ def IsSubGaussianProcess' (μ : Measure Ω) (X : A → Ω → ℝ) (σ : ℝ) : 
   ∀ s t : A, ∀ l : ℝ, mgf (fun ω => X s ω - X t ω) μ l ≤
     exp (l^2 * σ^2 * (dist s t)^2 / 2)
 
+/--
+@isnad1 id=iff.0h5v.s5.f53d4af403cc from=translated src=- shape=e614c97d vocab=15707664
+-/
 lemma IsSubGaussianProcess_iff_IsSubGaussianProcess' {μ : Measure Ω} {X : A → Ω → ℝ} {σ : ℝ} :
     IsSubGaussianProcess μ X σ ↔ IsSubGaussianProcess' μ X σ :=
   ⟨fun h s t l => h s t l, fun h s t l => h s t l⟩
@@ -412,13 +453,17 @@ lemma IsSubGaussianProcess_iff_IsSubGaussianProcess' {μ : Measure Ω} {X : A �
 ## Basic properties of sub-Gaussian processes
 -/
 
-/-- Sub-Gaussian processes are symmetric in the parameter. -/
+/-- Sub-Gaussian processes are symmetric in the parameter.
+@isnad1 id=le.1h8v.s7.a8d45ce7249e from=translated src=- shape=d087a835 vocab=fbd6f9be
+-/
 lemma IsSubGaussianProcess.symm {μ : Measure Ω} {X : A → Ω → ℝ} {σ : ℝ}
     (h : IsSubGaussianProcess μ X σ) (s t : A) (l : ℝ) :
     μ[fun ω => exp (l * (X t ω - X s ω))] ≤ exp (l^2 * σ^2 * (dist t s)^2 / 2) :=
   h t s l
 
-/-- If σ ≤ σ', then σ-sub-Gaussian implies σ'-sub-Gaussian. -/
+/-- If σ ≤ σ', then σ-sub-Gaussian implies σ'-sub-Gaussian.
+@isnad1 id=issubgau.3h6v.s5.834c727559df from=translated src=- shape=477c783f vocab=727582db
+-/
 lemma IsSubGaussianProcess.mono {μ : Measure Ω} {X : A → Ω → ℝ} {σ σ' : ℝ}
     (h : IsSubGaussianProcess μ X σ) (hσ : 0 ≤ σ) (hσ' : σ ≤ σ') :
     IsSubGaussianProcess μ X σ' := by
@@ -441,7 +486,9 @@ The key result is that sub-Gaussian increments have exponentially decaying tails
 /-- Chernoff bound: for any sub-Gaussian increment, P(X_s - X_t ≥ u) ≤ exp(-u²/(2σ²d(s,t)²)).
     This is the one-sided tail bound.
     Note: In a PseudoMetricSpace, we require dist s t > 0 explicitly (unlike MetricSpace
-    where this follows from s ≠ t). -/
+    where this follows from s ≠ t).
+@isnad1 id=le.5h8v.s8.92ec9545df2c from=translated src=- shape=88a7f6e1 vocab=2e787214
+-/
 theorem subGaussian_tail_bound_one_sided {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : A → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)
     (hX : IsSubGaussianProcess μ X σ)
@@ -466,7 +513,9 @@ theorem subGaussian_tail_bound_one_sided {μ : Measure Ω} [IsProbabilityMeasure
   rw [h_eq]
   exact h_result
 
-/-- Two-sided tail bound for sub-Gaussian increments. -/
+/-- Two-sided tail bound for sub-Gaussian increments.
+@isnad1 id=le.6h8v.s8.c93d75d6c31f from=translated src=- shape=bdd9a673 vocab=b8f378cb
+-/
 theorem subGaussian_tail_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : A → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)
     (hX : IsSubGaussianProcess μ X σ)
@@ -517,7 +566,9 @@ theorem subGaussian_tail_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
 ## First moment bound for sub-Gaussian increments
 -/
 
-/-- The Gaussian integral ∫₀^∞ 2·exp(-r²/(2τ²)) dr = τ·√(2π) for τ > 0. -/
+/-- The Gaussian integral ∫₀^∞ 2·exp(-r²/(2τ²)) dr = τ·√(2π) for τ > 0.
+@isnad1 id=eq.1h1v.s7.382bc38a0ffd from=translated src=- shape=39057805 vocab=f9f1bf85
+-/
 lemma gaussian_tail_integral {τ : ℝ} (hτ : 0 < τ) :
     ∫ r in Ioi (0 : ℝ), 2 * exp (-r^2 / (2 * τ^2)) = τ * sqrt (2 * π) := by
   have h1 : ∫ r in Ioi (0 : ℝ), 2 * exp (-r^2 / (2 * τ^2)) =
@@ -537,7 +588,9 @@ lemma gaussian_tail_integral {τ : ℝ} (hτ : 0 < τ) :
 
 /-- A random variable with MGF bounded by 1 for all λ is zero a.s.
 
-    Key lemma for the degenerate case of sub-Gaussian processes with zero variance proxy. -/
+    Key lemma for the degenerate case of sub-Gaussian processes with zero variance proxy.
+@isnad1 id=eventual.3h3v.s7.4b9f63b20588 from=translated src=- shape=5aa30647 vocab=15f1d8a8
+-/
 lemma ae_eq_zero_of_mgf_le_one {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Y : Ω → ℝ}
     (hY_mgf : ∀ l : ℝ, μ[fun ω => exp (l * Y ω)] ≤ 1)
@@ -669,7 +722,9 @@ lemma ae_eq_zero_of_mgf_le_one {μ : Measure Ω} [IsProbabilityMeasure μ]
   filter_upwards [h_le_zero, h_ge_zero] with ω h1 h2
   linarith
 
-/-- If Y = 0 a.e., then ∫|Y| = 0. -/
+/-- If Y = 0 a.e., then ∫|Y| = 0.
+@isnad1 id=eq.1h3v.s6.f93eddcea16b from=translated src=- shape=12c53e31 vocab=fd7d3bcb
+-/
 lemma integral_abs_eq_zero_of_ae_eq_zero {μ : Measure Ω} {Y : Ω → ℝ}
     (hY_ae : Y =ᵐ[μ] (fun _ => 0)) : ∫ ω, |Y ω| ∂μ = 0 := by
   have h_ae : (fun ω => |Y ω|) =ᵐ[μ] (fun _ => (0 : ℝ)) := by
@@ -677,7 +732,9 @@ lemma integral_abs_eq_zero_of_ae_eq_zero {μ : Measure Ω} {Y : Ω → ℝ}
     simp [hω]
   rw [integral_congr_ae h_ae, integral_zero]
 
-/-- Integral of absolute value of sub-Gaussian increment with variance proxy 0. -/
+/-- Integral of absolute value of sub-Gaussian increment with variance proxy 0.
+@isnad1 id=eq.2h3v.s7.00a1517271f4 from=translated src=- shape=e4afd45a vocab=cbdfbfc9
+-/
 lemma integral_abs_subGaussian_zero {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Y : Ω → ℝ}
     (hY_mgf_le_one : ∀ l : ℝ, μ[fun ω => exp (l * Y ω)] ≤ 1)
@@ -695,7 +752,9 @@ lemma integral_abs_subGaussian_zero {μ : Measure Ω} [IsProbabilityMeasure μ]
     1. From `subGaussian_tail_bound`: P(|X_s - X_t| ≥ r) ≤ 2·exp(-r²/(2σ²d(s,t)²))
     2. By layer-cake: E[|X_s - X_t|] = ∫₀^∞ P(|X_s - X_t| ≥ r) dr
     3. Computing: ∫₀^∞ 2·exp(-r²/(2τ²)) dr = τ·√(2π) where τ = σ·d(s,t)
-    4. Therefore: E[|X_s - X_t|] ≤ √(2π) · σ · d(s,t) -/
+    4. Therefore: E[|X_s - X_t|] ≤ √(2π) · σ · d(s,t)
+@isnad1 id=le.4h7v.s7.e1f1228f0e36 from=translated src=- shape=4e42e350 vocab=f0defb64
+-/
 theorem subGaussian_first_moment_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : A → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)
     (hX : IsSubGaussianProcess μ X σ)
@@ -767,7 +826,9 @@ process over finite sets.
 
 omit [PseudoMetricSpace A] in
 /-- For a finite nonempty set, the subtype iSup equals sup'.
-    This avoids the issue with biSup and sSup ∅ for ℝ. -/
+    This avoids the issue with biSup and sSup ∅ for ℝ.
+@isnad1 id=eq.1h3v.s6.610868d29b7e from=translated src=- shape=ccdb7d20 vocab=de52d2b6
+-/
 lemma iSup_subtype_eq_sup' {T : Finset A} (hT : T.Nonempty) (f : A → ℝ) :
     ⨆ (t : T), f t = T.sup' hT f := by
   haveI : Nonempty T := hT.to_subtype
@@ -785,7 +846,9 @@ lemma iSup_subtype_eq_sup' {T : Finset A} (hT : T.Nonempty) (f : A → ℝ) :
 
 omit [PseudoMetricSpace A] in
 /-- For a finite set with at least one non-negative value, biSup equals sup'.
-    The hypothesis is needed because sSup ∅ = 0 for ℝ. -/
+    The hypothesis is needed because sSup ∅ = 0 for ℝ.
+@isnad1 id=eq.2h3v.s6.b3a7382d0388 from=translated src=- shape=b50b393e vocab=97854d8d
+-/
 lemma biSup_eq_sup'_of_finset {T : Finset A} (hT : T.Nonempty) (f : A → ℝ)
     (h_nonneg : ∃ t ∈ T, 0 ≤ f t) :
     ⨆ t ∈ T, f t = T.sup' hT f := by
@@ -798,7 +861,9 @@ lemma biSup_eq_sup'_of_finset {T : Finset A} (hT : T.Nonempty) (f : A → ℝ)
   rw [h, Finset.max'_eq_sup', Finset.sup'_image]
   simp only [Function.comp_def, id]
 
-/-- E[max_{t ∈ T} X_t] ≤ σ · diam(T) · √(2 log |T|) for centered sub-Gaussian processes. -/
+/-- E[max_{t ∈ T} X_t] ≤ σ · diam(T) · √(2 log |T|) for centered sub-Gaussian processes.
+@isnad1 id=le.10h7v.s8.40859328bd63 from=translated src=- shape=27630df6 vocab=e5b5d90b
+-/
 theorem subGaussian_finite_max_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : A → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)
     (hX : IsSubGaussianProcess μ X σ)
@@ -850,7 +915,9 @@ theorem subGaussian_finite_max_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     _ = ∫ ω, T.sup' hT (fun t => X t ω) ∂μ := by congr 1; ext ω; exact h_biSup_eq ω
     _ ≤ σ' * sqrt (2 * log T.card) := h_result
 
-/-- Variant of `subGaussian_finite_max_bound` with diameter bound D and no fixed basepoint. -/
+/-- Variant of `subGaussian_finite_max_bound` with diameter bound D and no fixed basepoint.
+@isnad1 id=ex.8h7v.s8.c7c282b0e160 from=translated src=- shape=14a2ab33 vocab=15a836ea
+-/
 theorem subGaussian_finite_max_bound' {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : A → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)
     (hX : IsSubGaussianProcess μ X σ)
@@ -943,7 +1010,9 @@ allowing us to eliminate redundant hypotheses in the Dudley theorem.
 
 This follows from the fact that when `integrableExpSet Y μ = univ`, we have
 `0 ∈ interior(integrableExpSet Y μ)`, and Mathlib provides that `Y^p` is
-integrable for any `p ≥ 0` in this case. -/
+integrable for any `p ≥ 0` in this case.
+@isnad1 id=integrab.1h3v.s6.11fbe643dca9 from=translated src=- shape=dfb4c7a9 vocab=d3f7d3e3
+-/
 lemma integrable_of_integrable_exp_all {Ω : Type*} [MeasurableSpace Ω]
     {Y : Ω → ℝ} {μ : Measure Ω}
     (h : ∀ l : ℝ, Integrable (fun ω => exp (l * Y ω)) μ) :
@@ -967,7 +1036,9 @@ then the increment `X s - X t` has zero mean.
 4. Since `M(l) ≤ f(l)` where `f(l) = exp(l² σ² d² / 2)`, and `f'(0) = 0`,
    we get `E[X s - X t] ≤ 0` by comparing derivatives at a touching point.
 5. By symmetry (swapping s and t), `E[X t - X s] ≤ 0`, i.e., `E[X s - X t] ≥ 0`.
-6. Therefore `E[X s - X t] = 0`. -/
+6. Therefore `E[X s - X t] = 0`.
+@isnad1 id=eq.2h7v.s7.a5a143644c80 from=translated src=- shape=527581b9 vocab=767251c6
+-/
 lemma subGaussian_process_centered {Ω : Type*} [MeasurableSpace Ω]
     {A : Type*} [PseudoMetricSpace A] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : A → Ω → ℝ} {σ : ℝ}

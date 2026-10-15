@@ -72,21 +72,33 @@ def matrixSmallestSingularValue {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) : �
   matrixSingularValue A (n - 1)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h4v.s4.aa96747b59cf from=translated src=- shape=8e28e431 vocab=754368c2
+-/
 lemma matrixSingularValue_nonneg {m n k : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     0 ≤ matrixSingularValue A k :=
   A.toEuclideanLin.singularValues_nonneg k
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h3v.s4.619ddddb3d04 from=translated src=- shape=c4626bc3 vocab=b63c77c5
+-/
 lemma matrixLargestSingularValue_nonneg {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     0 ≤ matrixLargestSingularValue A :=
   matrixSingularValue_nonneg A
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h3v.s4.4a6f447e7fdc from=translated src=- shape=c4626bc3 vocab=bb08373a
+-/
 lemma matrixSmallestSingularValue_nonneg {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     0 ≤ matrixSmallestSingularValue A :=
   matrixSingularValue_nonneg A
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h3v.s4.4a48d24fc393 from=translated src=- shape=fd7ba6b5 vocab=f401e01f
+-/
 lemma matrixSmallestSingularValue_le_largest {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     matrixSmallestSingularValue A ≤ matrixLargestSingularValue A := by
   unfold matrixSmallestSingularValue matrixLargestSingularValue matrixSingularValue
@@ -110,7 +122,9 @@ def sampleCovarianceDeviationOperatorNorm {m n : ℕ} (A : Matrix (Fin m) (Fin n
   matrixOperatorNorm (sampleCovarianceDeviation A)
 
 omit [MeasurableSpace Ω] in
-/-- The Euclidean linear map associated to `AᵀA` is `A† ∘ A`. -/
+/-- The Euclidean linear map associated to `AᵀA` is `A† ∘ A`.
+@isnad1 id=eq.0h3v.s14.cc954fd6d4d7 from=translated src=- shape=9a1f2998 vocab=340fa8e8
+-/
 lemma conjTranspose_mul_self_toEuclideanLin {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) :
     (A.conjTranspose * A).toEuclideanLin =
@@ -122,6 +136,9 @@ lemma conjTranspose_mul_self_toEuclideanLin {m n : ℕ}
     (v₃ := (EuclideanSpace.basisFun (Fin n) ℝ).toBasis) A.conjTranspose A
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s13.13ebcc316b30 from=translated src=- shape=6b599d65 vocab=f7b843cb
+-/
 lemma inner_conjTranspose_mul_self_toEuclideanLin {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (x : EuclideanSpace ℝ (Fin n)) :
     inner ℝ ((A.conjTranspose * A).toEuclideanLin x) x =
@@ -132,6 +149,9 @@ lemma inner_conjTranspose_mul_self_toEuclideanLin {m n : ℕ}
   rw [real_inner_self_eq_norm_sq]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s13.d90e1cbebec3 from=translated src=- shape=b767e143 vocab=9a2aa710
+-/
 lemma inner_sampleCovarianceDeviation_toEuclideanLin {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (x : EuclideanSpace ℝ (Fin n)) :
     inner ℝ ((sampleCovarianceDeviation A).toEuclideanLin x) x =
@@ -189,6 +209,9 @@ lemma inner_sampleCovarianceDeviation_toEuclideanLin {m n : ℕ}
     _ = (m : ℝ)⁻¹ * ‖A.toEuclideanLin x‖ ^ 2 - ‖x‖ ^ 2 := rfl
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=issymm.0h3v.s4.dc9bedf69527 from=translated src=- shape=9b206ad4 vocab=32422a0b
+-/
 lemma sampleCovarianceDeviation_isSymm {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     (sampleCovarianceDeviation A).IsSymm := by
   have hgram : (A.conjTranspose * A).IsSymm := by
@@ -221,6 +244,9 @@ lemma sampleCovarianceDeviation_isSymm {m n : ℕ} (A : Matrix (Fin m) (Fin n) �
         (1 : Matrix (Fin n) (Fin n) ℝ)) i j) := by simp
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h3v.s12.d60e8db1637d from=translated src=- shape=2bd48edd vocab=e4f4ac22
+-/
 lemma abs_inner_toEuclideanLin_le_matrixOperatorNorm_mul_norm_sq {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : EuclideanSpace ℝ (Fin n)) :
     |inner ℝ (A.toEuclideanLin x) x| ≤ matrixOperatorNorm A * ‖x‖ ^ 2 := by
@@ -235,6 +261,9 @@ lemma abs_inner_toEuclideanLin_le_matrixOperatorNorm_mul_norm_sq {n : ℕ}
     _ = matrixOperatorNorm A * ‖x‖ ^ 2 := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h4v.s6.fe6526cd7819 from=translated src=- shape=69076865 vocab=05b62fc4
+-/
 lemma abs_inv_mul_sq_matrixSingularValue_sub_one_le_sampleCovarianceDeviationOperatorNorm
     {m n k : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) (hk : k < n) :
     |(m : ℝ)⁻¹ * matrixSingularValue A k ^ 2 - 1| ≤
@@ -289,6 +318,9 @@ lemma abs_inv_mul_sq_matrixSingularValue_sub_one_le_sampleCovarianceDeviationOpe
   simpa [sampleCovarianceDeviationOperatorNorm] using hquad
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=and.3h5v.s7.3931fd167f03 from=translated src=- shape=8675067b vocab=a71f5690
+-/
 lemma matrixSingularValue_sq_bounds_of_sampleCovarianceDeviationOperatorNorm_le
     {m n k : ℕ} (hm : 0 < m) (A : Matrix (Fin m) (Fin n) ℝ)
     {δ : ℝ} (hδ : sampleCovarianceDeviationOperatorNorm A ≤ δ) (hk : k < n) :
@@ -318,6 +350,9 @@ lemma matrixSingularValue_sq_bounds_of_sampleCovarianceDeviationOperatorNorm_le
         mul_le_mul_of_nonneg_left hupper hmR_pos.le
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=and.4h5v.s7.0ddba46749ed from=translated src=- shape=3cb85efa vocab=382fb1ac
+-/
 lemma matrixSingularValue_bounds_of_sampleCovarianceDeviationOperatorNorm_le_max
     {m n k : ℕ} (hm : 0 < m) (A : Matrix (Fin m) (Fin n) ℝ)
     {B : ℝ} (hB : 0 ≤ B)
@@ -407,6 +442,9 @@ lemma matrixSingularValue_bounds_of_sampleCovarianceDeviationOperatorNorm_le_max
   exact ⟨by simpa [a, s] using hlower, by simpa [a, s] using hupper⟩
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=and.4h4v.s7.a15a18cd19ba from=translated src=- shape=62852db5 vocab=aa229c99
+-/
 lemma singular_value_sandwich_of_sampleCovarianceDeviationOperatorNorm_le_max
     {m n : ℕ} (hm : 0 < m) (hn : 0 < n)
     (A : Matrix (Fin m) (Fin n) ℝ) {B : ℝ} (hB : 0 ≤ B)
@@ -438,6 +476,9 @@ def matrixRowVector {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) (i : Fin m) :
   WithLp.toLp 2 fun j => A i j
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s5.21cb294d83eb from=translated src=- shape=c71b6bf0 vocab=44743370
+-/
 lemma matrixColumnVector_randomMatrix_eq_randomVector {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (ω : Ω) (j : Fin n) :
     matrixColumnVector (randomMatrix A ω) j =
@@ -445,6 +486,9 @@ lemma matrixColumnVector_randomMatrix_eq_randomVector {m n : ℕ}
   rfl
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s5.a545f786ae58 from=translated src=- shape=4400e0cb vocab=69a7d118
+-/
 lemma matrixRowVector_randomMatrix_eq_randomVector {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (ω : Ω) (i : Fin m) :
     matrixRowVector (randomMatrix A ω) i =
@@ -452,6 +496,9 @@ lemma matrixRowVector_randomMatrix_eq_randomVector {m n : ℕ}
   rfl
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h7v.s5.139c213a8337 from=translated src=- shape=d6b5afcc vocab=04ce6ab7
+-/
 @[simp]
 lemma randomMatrix_apply {m n : ℕ} (A : Fin m → Fin n → Ω → ℝ) (ω : Ω)
     (i : Fin m) (j : Fin n) :
@@ -459,7 +506,9 @@ lemma randomMatrix_apply {m n : ℕ} (A : Fin m → Fin n → Ω → ℝ) (ω : 
   rfl
 
 /-- If all unit-vector bilinear forms of a rectangular matrix are bounded by `B`, then its
-operator norm is bounded by `B`. -/
+operator norm is bounded by `B`.
+@isnad1 id=le.2h4v.s12.5575831e5ec2 from=translated src=- shape=772a95a6 vocab=cb5ac794
+-/
 lemma matrixOperatorNorm_le_of_forall_unit_abs_inner_le {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) {B : ℝ} (hB : 0 ≤ B)
     (h : ∀ x : EuclideanSpace ℝ (Fin n), ∀ y : EuclideanSpace ℝ (Fin m),
@@ -504,18 +553,27 @@ structure CenteredMatrixBilinearNet (m n : ℕ) (ε : ℝ) extends
     euclideanUnitBall m
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.1h2v.s6.d63e4df96aa6 from=translated src=- shape=cc252f86 vocab=e675ceb2
+-/
 lemma norm_eq_one_of_mem_euclideanUnitSphere {n : ℕ}
     {x : EuclideanSpace ℝ (Fin n)} (hx : x ∈ euclideanUnitSphere n) :
     ‖x‖ = 1 := by
   simpa [euclideanUnitSphere, dist_eq_norm] using hx
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h2v.s6.52336b92ac9c from=translated src=- shape=cc252f86 vocab=6daa1cdb
+-/
 lemma norm_le_one_of_mem_euclideanUnitBall {n : ℕ}
     {x : EuclideanSpace ℝ (Fin n)} (hx : x ∈ euclideanUnitBall n) :
     ‖x‖ ≤ 1 := by
   simpa [euclideanUnitBall, dist_eq_norm] using hx
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=nonempty.1h1v.s4.da9e478b212e from=translated src=- shape=00e0d054 vocab=dde0207e
+-/
 lemma euclideanUnitSphere_nonempty_of_pos {n : ℕ} (hn : 0 < n) :
     (euclideanUnitSphere n).Nonempty := by
   let i : Fin n := ⟨0, hn⟩
@@ -523,6 +581,9 @@ lemma euclideanUnitSphere_nonempty_of_pos {n : ℕ} (hn : 0 < n) :
   simp [euclideanUnitSphere]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=ex.1h5v.s7.c694e60a0e0c from=translated src=- shape=45895454 vocab=5e014758
+-/
 lemma MatrixBilinearNet.exists_domain_near {m n : ℕ} {ε : ℝ}
     (N : MatrixBilinearNet m n ε) {x : EuclideanSpace ℝ (Fin n)}
     (hx : x ∈ euclideanUnitSphere n) :
@@ -531,6 +592,9 @@ lemma MatrixBilinearNet.exists_domain_near {m n : ℕ} {ε : ℝ}
   exact ⟨x₀, hx₀, by simpa [dist_eq_norm] using Metric.mem_closedBall.mp hball⟩
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=ex.1h5v.s7.5afd2d819276 from=translated src=- shape=df7439fc vocab=74927132
+-/
 lemma MatrixBilinearNet.exists_codomain_near {m n : ℕ} {ε : ℝ}
     (N : MatrixBilinearNet m n ε) {y : EuclideanSpace ℝ (Fin m)}
     (hy : y ∈ euclideanUnitSphere m) :
@@ -539,6 +603,9 @@ lemma MatrixBilinearNet.exists_codomain_near {m n : ℕ} {ε : ℝ}
   exact ⟨y₀, hy₀, by simpa [dist_eq_norm] using Metric.mem_closedBall.mp hball⟩
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=nonempty.1h4v.s4.8c33344a0f57 from=translated src=- shape=4dd20d31 vocab=3bdf498d
+-/
 lemma MatrixBilinearNet.domainNet_nonempty_of_pos {m n : ℕ} {ε : ℝ}
     (N : MatrixBilinearNet m n ε) (hn : 0 < n) :
     N.domainNet.Nonempty := by
@@ -547,6 +614,9 @@ lemma MatrixBilinearNet.domainNet_nonempty_of_pos {m n : ℕ} {ε : ℝ}
   exact ⟨x₀, hx₀⟩
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=nonempty.1h4v.s4.3e07b0a2503a from=translated src=- shape=c5dba687 vocab=09e2db9b
+-/
 lemma MatrixBilinearNet.codomainNet_nonempty_of_pos {m n : ℕ} {ε : ℝ}
     (N : MatrixBilinearNet m n ε) (hm : 0 < m) :
     N.codomainNet.Nonempty := by
@@ -555,6 +625,9 @@ lemma MatrixBilinearNet.codomainNet_nonempty_of_pos {m n : ℕ} {ε : ℝ}
   exact ⟨y₀, hy₀⟩
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=ex.1h3v.s7.0a9c108e90cf from=translated src=- shape=ea02148f vocab=aeeb6507
+-/
 lemma exists_centeredMatrixBilinearNet {m n : ℕ} {ε : ℝ} (hε : 0 < ε) :
     ∃ N : CenteredMatrixBilinearNet m n ε,
       (N.domainNet.card : WithTop ℕ) ≤
@@ -591,6 +664,9 @@ lemma exists_centeredMatrixBilinearNet {m n : ℕ} {ε : ℝ} (hε : 0 < ε) :
   · simpa [euclideanUnitBall, euclideanBall] using hcodomain_subset
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=ex.0h2v.s8.715f3696ba9b from=translated src=- shape=07aa240a vocab=a1041404
+-/
 lemma exists_quarter_centeredMatrixBilinearNet (m n : ℕ) :
     ∃ N : CenteredMatrixBilinearNet m n (1 / 4),
       (N.domainNet.card : WithTop ℕ) ≤
@@ -616,6 +692,7 @@ omit [MeasurableSpace Ω] in
 Deterministic net reduction for rectangular operator norms. If all bilinear forms
 `⟪Ax, y⟫` are bounded by `u` on a centered `ε`-net of the two unit spheres, then the operator
 norm is bounded by `u / (1 - 2ε)`.
+@isnad1 id=le.4h6v.s12.442bbe8f1b14 from=translated src=- shape=1294686e vocab=3365ac07
 -/
 lemma matrixOperatorNorm_le_of_centered_bilinear_net {m n : ℕ} {ε u : ℝ}
     (A : Matrix (Fin m) (Fin n) ℝ) (N : CenteredMatrixBilinearNet m n ε)
@@ -704,7 +781,9 @@ lemma matrixOperatorNorm_le_of_centered_bilinear_net {m n : ℕ} {ε u : ℝ}
   have hmul' : M * (1 - 2 * ε) ≤ u := by nlinarith
   exact (le_div_iff₀ hden).mpr (by simpa [M] using hmul')
 
-/-- The standard `ε = 1/4` matrix-net reduction used in HDP's proof of Theorem 4.4.3. -/
+/-- The standard `ε = 1/4` matrix-net reduction used in HDP's proof of Theorem 4.4.3.
+@isnad1 id=le.2h5v.s12.4dfc733b50bb from=translated src=- shape=d4597081 vocab=070813a4
+-/
 lemma matrixOperatorNorm_le_two_mul_of_quarter_centered_bilinear_net {m n : ℕ} {u : ℝ}
     (A : Matrix (Fin m) (Fin n) ℝ) (N : CenteredMatrixBilinearNet m n (1 / 4))
     (hu : 0 ≤ u)
@@ -719,6 +798,9 @@ lemma matrixOperatorNorm_le_two_mul_of_quarter_centered_bilinear_net {m n : ℕ}
     _ = 2 * u := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=issymmet.1h2v.s12.55b7d68b6fbd from=translated src=- shape=6cd5ca22 vocab=fdf8a33d
+-/
 lemma matrix_toEuclideanLin_isSymmetric_of_isSymm {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.IsSymm) :
     A.toEuclideanLin.IsSymmetric := by
@@ -730,6 +812,9 @@ lemma matrix_toEuclideanLin_isSymmetric_of_isSymm {n : ℕ}
   rw [hconj]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=issymmet.1h2v.s13.72251dbb087b from=translated src=- shape=7756849e vocab=c7cf2e5b
+-/
 lemma matrix_toEuclideanCLM_isSymmetric_of_isSymm {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.IsSymm) :
     (A.toEuclideanLin.toContinuousLinearMap).IsSymmetric := by
@@ -738,6 +823,9 @@ lemma matrix_toEuclideanCLM_isSymmetric_of_isSymm {n : ℕ}
     (A := A.toEuclideanLin.toContinuousLinearMap) (by simpa using hlin) |>.isSymmetric
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.3h3v.s12.2773125f5e48 from=translated src=- shape=3cfcb8bb vocab=de0bf1b4
+-/
 lemma matrixOperatorNorm_le_of_forall_unit_abs_quadratic_le {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (hA_symm : A.IsSymm) {B : ℝ} (hB : 0 ≤ B)
     (h : ∀ x : EuclideanSpace ℝ (Fin n), ‖x‖ = 1 →
@@ -772,6 +860,7 @@ lemma matrixOperatorNorm_le_of_forall_unit_abs_quadratic_le {n : ℕ}
 /--
 Deterministic net reduction for symmetric operator norms. If a centered `ε`-net of the unit
 sphere controls all quadratic forms `⟪Ax, x⟫`, then it controls the Euclidean operator norm.
+@isnad1 id=le.5h5v.s12.4fcbae7e1eca from=translated src=- shape=3fccc5aa vocab=b022bb85
 -/
 lemma matrixOperatorNorm_le_of_centered_quadratic_net {n : ℕ} {ε u : ℝ}
     (A : Matrix (Fin n) (Fin n) ℝ) (hA_symm : A.IsSymm)
@@ -854,7 +943,9 @@ lemma matrixOperatorNorm_le_of_centered_quadratic_net {n : ℕ} {ε u : ℝ}
   have hmul' : M * (1 - 2 * ε) ≤ u := by nlinarith
   exact (le_div_iff₀ hden).mpr (by simpa [M] using hmul')
 
-/-- The standard `ε = 1/4` symmetric matrix-net reduction used in HDP Corollary 4.4.7. -/
+/-- The standard `ε = 1/4` symmetric matrix-net reduction used in HDP Corollary 4.4.7.
+@isnad1 id=le.3h4v.s12.789a158f7650 from=translated src=- shape=7e55432e vocab=a452f731
+-/
 lemma matrixOperatorNorm_le_two_mul_of_quarter_centered_quadratic_net {n : ℕ} {u : ℝ}
     (A : Matrix (Fin n) (Fin n) ℝ) (hA_symm : A.IsSymm)
     (N : CenteredMatrixBilinearNet n n (1 / 4)) (hu : 0 ≤ u)
@@ -868,6 +959,9 @@ lemma matrixOperatorNorm_le_two_mul_of_quarter_centered_quadratic_net {n : ℕ} 
     _ = 2 * u := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h5v.s12.c1a4894f0f9e from=translated src=- shape=6b7bbcd0 vocab=8714692d
+-/
 lemma matrixOperatorNorm_event_subset_quarter_centered_quadratic_net {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {u : ℝ}
     (N : CenteredMatrixBilinearNet n n (1 / 4))
@@ -892,6 +986,9 @@ lemma matrixOperatorNorm_event_subset_quarter_centered_quadratic_net {n : ℕ}
   exact (not_le_of_gt hω) hnorm
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h5v.s12.8a9363f747cc from=translated src=- shape=da1f857b vocab=2f6ab795
+-/
 lemma sampleCovarianceDeviationOperatorNorm_le_two_mul_of_quarter_centered_quadratic_net
     {m n : ℕ} {u : ℝ}
     (A : Matrix (Fin m) (Fin n) ℝ) (N : CenteredMatrixBilinearNet n n (1 / 4))
@@ -907,6 +1004,9 @@ lemma sampleCovarianceDeviationOperatorNorm_le_two_mul_of_quarter_centered_quadr
   exact hnet x hx
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h6v.s12.c76125e585f8 from=translated src=- shape=4a488f7b vocab=fed9ceb3
+-/
 lemma sampleCovarianceDeviationOperatorNorm_event_subset_quarter_centered_quadratic_net
     {m n : ℕ} {A : Fin m → Fin n → Ω → ℝ} {u : ℝ}
     (N : CenteredMatrixBilinearNet n n (1 / 4)) (hu : 0 ≤ u) :
@@ -967,6 +1067,9 @@ def signedSampleCovarianceDeviationValue {m n : ℕ} (A : Matrix (Fin m) (Fin n)
 
 omit [MeasurableSpace Ω] in
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h4v.s7.8e76866ff8b2 from=translated src=- shape=742b97ca vocab=a57da115
+-/
 lemma sampleCovarianceDeviationOperatorNorm_le_two_mul_signed_sup_of_quarter_centered_net
     {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     (N : CenteredMatrixBilinearNet n n (1 / 4)) (hN : N.domainNet.Nonempty) :
@@ -1016,6 +1119,9 @@ lemma sampleCovarianceDeviationOperatorNorm_le_two_mul_signed_sup_of_quarter_cen
         (signedSampleCovarianceDeviationValue A)) := by rfl
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=nonempty.2h4v.s5.c657b423418e from=translated src=- shape=2ba8760e vocab=17f38d2d
+-/
 lemma CenteredMatrixBilinearNet.pairs_nonempty_of_pos {m n : ℕ} {ε : ℝ}
     (N : CenteredMatrixBilinearNet m n ε) (hm : 0 < m) (hn : 0 < n) :
     N.pairs.Nonempty := by
@@ -1026,6 +1132,9 @@ lemma CenteredMatrixBilinearNet.pairs_nonempty_of_pos {m n : ℕ} {ε : ℝ}
   simpa [CenteredMatrixBilinearNet.pairs] using hdomain.product hcodomain
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h4v.s5.1549b26572db from=translated src=- shape=07bc64c7 vocab=8c831589
+-/
 lemma CenteredMatrixBilinearNet.signedPairs_card_ge_two_of_pos {m n : ℕ} {ε : ℝ}
     (N : CenteredMatrixBilinearNet m n ε) (hm : 0 < m) (hn : 0 < n) :
     2 ≤ N.signedPairs.card := by
@@ -1035,6 +1144,9 @@ lemma CenteredMatrixBilinearNet.signedPairs_card_ge_two_of_pos {m n : ℕ} {ε :
   simpa [CenteredMatrixBilinearNet.signedPairs, Finset.card_product] using hmul
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h4v.s5.2a6b5d4e0291 from=translated src=- shape=98e7d286 vocab=e1f19d6c
+-/
 lemma CenteredMatrixBilinearNet.signedDomain_card_ge_two_of_pos {m n : ℕ} {ε : ℝ}
     (N : CenteredMatrixBilinearNet m n ε) (hn : 0 < n) :
     2 ≤ N.signedDomain.card := by
@@ -1062,6 +1174,9 @@ def maxFamilySubGaussianPsi2Norm {ι : Type*} [Fintype ι]
     (Finset.univ : Finset ι).sup' h fun i => subGaussianPsi2Norm (X i) μ
   else 0
 
+/--
+@isnad1 id=le.0h5v.s5.f619a2ae3b99 from=translated src=- shape=029d0861 vocab=8afe6cd3
+-/
 lemma subGaussianPsi2Norm_le_maxFamilySubGaussianPsi2Norm {ι : Type*} [Fintype ι]
     (X : ι → Ω → ℝ) (μ : Measure Ω) (i : ι) :
     subGaussianPsi2Norm (X i) μ ≤ maxFamilySubGaussianPsi2Norm X μ := by
@@ -1075,6 +1190,9 @@ def maxMatrixEntrySubGaussianPsi2Norm {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (μ : Measure Ω) : ℝ :=
   maxFamilySubGaussianPsi2Norm (fun p : Fin m × Fin n => A p.1 p.2) μ
 
+/--
+@isnad1 id=le.0h7v.s5.83c4f84db76b from=translated src=- shape=11cfcd79 vocab=55df3428
+-/
 lemma subGaussianPsi2Norm_le_maxMatrixEntrySubGaussianPsi2Norm {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (μ : Measure Ω) (i : Fin m) (j : Fin n) :
     subGaussianPsi2Norm (A i j) μ ≤ maxMatrixEntrySubGaussianPsi2Norm A μ := by
@@ -1098,12 +1216,18 @@ def HasFiniteSubGaussianVectorPsi2Norm {n : ℕ} (X : Ω → EuclideanSpace ℝ 
     (μ : Measure Ω) : Prop :=
   ∃ K : ℝ, HasSubGaussianVectorPsi2Bound X μ K
 
+/--
+@isnad1 id=le.1h4v.s5.0968f654404f from=translated src=- shape=34c54146 vocab=3a873a17
+-/
 lemma subGaussianVectorPsi2Norm_nonneg {n : ℕ}
     {X : Ω → EuclideanSpace ℝ (Fin n)} {μ : Measure Ω}
     (hfin : HasFiniteSubGaussianVectorPsi2Norm X μ) :
     0 ≤ subGaussianVectorPsi2Norm X μ := by
   exact le_csInf hfin fun K hK => hK.1.le
 
+/--
+@isnad1 id=ex.2h5v.s5.bc3a6def9d37 from=translated src=- shape=81294374 vocab=55db55fd
+-/
 lemma exists_hasSubGaussianVectorPsi2Bound_lt {n : ℕ}
     {X : Ω → EuclideanSpace ℝ (Fin n)} {μ : Measure Ω} {R : ℝ}
     (hfin : HasFiniteSubGaussianVectorPsi2Norm X μ)
@@ -1116,6 +1240,9 @@ lemma exists_hasSubGaussianVectorPsi2Bound_lt {n : ℕ}
   have hR_le : R ≤ sInf S := le_csInf hne fun K hK => h K hK
   exact not_lt_of_ge hR_le (by simpa [subGaussianVectorPsi2Norm, S] using hR)
 
+/--
+@isnad1 id=hassubga.3h6v.s7.b447aefe789d from=translated src=- shape=7e3eb599 vocab=f40b34a5
+-/
 lemma hasSubgaussianMGF_inner_of_subGaussianVectorPsi2Norm_lt {n : ℕ}
     {X : Ω → EuclideanSpace ℝ (Fin n)} {μ : Measure Ω} {R : ℝ}
     (hfin : HasFiniteSubGaussianVectorPsi2Norm X μ)
@@ -1130,6 +1257,9 @@ lemma hasSubgaussianMGF_inner_of_subGaussianVectorPsi2Norm_lt {n : ℕ}
     change K ^ 2 ≤ R ^ 2
     exact hsq)
 
+/--
+@isnad1 id=hassubga.3h6v.s7.b00ebfeed900 from=translated src=- shape=b728bf11 vocab=41e60567
+-/
 lemma hasSubgaussianMGF_inner_of_subGaussianVectorPsi2Norm_le {n : ℕ}
     {X : Ω → EuclideanSpace ℝ (Fin n)} {μ : Measure Ω} {R : ℝ}
     (hfin : HasFiniteSubGaussianVectorPsi2Norm X μ)
@@ -1180,6 +1310,9 @@ def maxMatrixRowSubGaussianPsi2Norm {m n : ℕ}
       subGaussianVectorPsi2Norm (randomMatrixRowVector A i) μ
   else 0
 
+/--
+@isnad1 id=le.0h6v.s5.d2da86a54b9a from=translated src=- shape=9c62e1ad vocab=7caf2eba
+-/
 lemma subGaussianVectorPsi2Norm_le_maxMatrixRowSubGaussianPsi2Norm {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (μ : Measure Ω) (i : Fin m) :
     subGaussianVectorPsi2Norm (randomMatrixRowVector A i) μ ≤
@@ -1191,6 +1324,9 @@ lemma subGaussianVectorPsi2Norm_le_maxMatrixRowSubGaussianPsi2Norm {m n : ℕ}
     (f := fun i => subGaussianVectorPsi2Norm (randomMatrixRowVector A i) μ)
     (Finset.mem_univ i)
 
+/--
+@isnad1 id=hassubga.3h8v.s7.85b457e39290 from=translated src=- shape=f7bf80dd vocab=7c6fbd8c
+-/
 lemma row_inner_hasSubgaussianMGF_of_max_row_psi2 {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (hK_def : K = maxMatrixRowSubGaussianPsi2Norm A μ)
@@ -1207,6 +1343,7 @@ lemma row_inner_hasSubgaussianMGF_of_max_row_psi2 {m n : ℕ}
 /--
 If `K` is the maximum entrywise ψ₂ scale, then each entry has an MGF sub-Gaussian
 certificate at scale `K`. This uses the closed-infimum lemma for `subGaussianPsi2Norm`.
+@isnad1 id=hassubga.2h8v.s6.60a834e83210 from=translated src=- shape=ead673ae vocab=055781fb
 -/
 lemma entry_hasSubgaussianMGF_of_max {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
@@ -1224,6 +1361,7 @@ lemma entry_hasSubgaussianMGF_of_max {m n : ℕ}
 If `K` is the maximum entrywise ψ₂ scale, then each entry has an MGF sub-Gaussian
 certificate at the slightly larger scale `2K`. The factor `2` is the standard margin for
 turning the infimum defining `subGaussianPsi2Norm` into a strict admissible bound.
+@isnad1 id=hassubga.3h8v.s6.ded2a4d4f598 from=translated src=- shape=cf9ce8c9 vocab=b32fe70d
 -/
 lemma entry_hasSubgaussianMGF_two_mul_max {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
@@ -1242,6 +1380,9 @@ lemma entry_hasSubgaussianMGF_two_mul_max {m n : ℕ}
 /-! ## Fixed bilinear forms of random matrices -/
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h7v.s12.3ee55faa6bff from=translated src=- shape=b84d4740 vocab=896a79b5
+-/
 lemma inner_randomMatrix_eq_sum_entries {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (ω : Ω)
     (x : EuclideanSpace ℝ (Fin n)) (y : EuclideanSpace ℝ (Fin m)) :
@@ -1266,6 +1407,9 @@ lemma inner_randomMatrix_eq_sum_entries {m n : ℕ}
   ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h5v.s12.4b3f69cdce86 from=translated src=- shape=1ae06f48 vocab=815762e8
+-/
 lemma inner_matrix_eq_sum_entries {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (y : EuclideanSpace ℝ (Fin m)) :
@@ -1289,6 +1433,9 @@ def upperTriangleQuadraticCoeff {n : ℕ} (x : EuclideanSpace ℝ (Fin n))
   else 2 * (x p.val.2 * x p.val.1)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.1h5v.s12.bbfa9f4c08ef from=translated src=- shape=9c90bd97 vocab=53549041
+-/
 lemma inner_randomMatrix_eq_sum_upperTriangle {n : ℕ}
     (A : Fin n → Fin n → Ω → ℝ) (hsym : ∀ ω i j, A i j ω = A j i ω)
     (ω : Ω) (x : EuclideanSpace ℝ (Fin n)) :
@@ -1360,6 +1507,9 @@ lemma inner_randomMatrix_eq_sum_upperTriangle {n : ℕ}
     _ = ∑ p : UpperTriangleIndex n,
           upperTriangleQuadraticCoeff x p * A p.val.1 p.val.2 ω := rfl
 
+/--
+@isnad1 id=measurab.1h6v.s12.f0a881cf60e1 from=translated src=- shape=8d38d918 vocab=f7fe4f43
+-/
 lemma inner_randomMatrix_measurable {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} (hA_meas : ∀ i j, Measurable (A i j))
     (x : EuclideanSpace ℝ (Fin n)) (y : EuclideanSpace ℝ (Fin m)) :
@@ -1375,6 +1525,9 @@ lemma inner_randomMatrix_measurable {m n : ℕ}
 
 -- The Euclidean operator norm is bounded by the `ℓ¹` norm of the matrix entries.
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h3v.s6.5459c4c33274 from=translated src=- shape=f60e7036 vocab=fb5ba10d
+-/
 lemma matrixOperatorNorm_le_sum_abs_entries {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) :
     matrixOperatorNorm A ≤ ∑ p : Fin m × Fin n, |A p.1 p.2| := by
@@ -1406,6 +1559,9 @@ lemma matrixOperatorNorm_le_sum_abs_entries {m n : ℕ}
         _ = |A p.1 p.2| := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s12.67045a0394a1 from=translated src=- shape=619b96c3 vocab=83d13bfa
+-/
 lemma matrixColumnVector_eq_toEuclideanLin_single {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (j : Fin n) :
     matrixColumnVector A j =
@@ -1415,6 +1571,9 @@ lemma matrixColumnVector_eq_toEuclideanLin_single {m n : ℕ}
   simp [matrixColumnVector]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h4v.s5.77598385f011 from=translated src=- shape=ac829041 vocab=7c152fdc
+-/
 lemma norm_matrixColumnVector_le_matrixOperatorNorm {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (j : Fin n) :
     ‖matrixColumnVector A j‖ ≤ matrixOperatorNorm A := by
@@ -1431,6 +1590,9 @@ lemma norm_matrixColumnVector_le_matrixOperatorNorm {m n : ℕ}
       simp [matrixOperatorNorm, he]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h3v.s5.8bc41d8559ef from=translated src=- shape=4ba73bfd vocab=fc37a70a
+-/
 lemma matrixOperatorNorm_conjTranspose {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) :
     matrixOperatorNorm A.conjTranspose = matrixOperatorNorm A := by
@@ -1440,6 +1602,9 @@ lemma matrixOperatorNorm_conjTranspose {m n : ℕ}
   exact ContinuousLinearMap.adjoint.norm_map A.toEuclideanLin.toContinuousLinearMap
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h4v.s5.6111fa644b43 from=translated src=- shape=3f6058cf vocab=e2df3695
+-/
 lemma norm_matrixRowVector_le_matrixOperatorNorm {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (i : Fin m) :
     ‖matrixRowVector A i‖ ≤ matrixOperatorNorm A := by
@@ -1451,6 +1616,9 @@ lemma norm_matrixRowVector_le_matrixOperatorNorm {m n : ℕ}
     _ = matrixOperatorNorm A := matrixOperatorNorm_conjTranspose A
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h5v.s6.9d4e78ec5a90 from=translated src=- shape=008afb82 vocab=f0908826
+-/
 lemma avg_row_column_norm_le_matrixOperatorNorm {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (i : Fin m) (j : Fin n) :
     (‖matrixRowVector A i‖ + ‖matrixColumnVector A j‖) / 2 ≤ matrixOperatorNorm A := by
@@ -1459,6 +1627,9 @@ lemma avg_row_column_norm_le_matrixOperatorNorm {m n : ℕ}
   nlinarith
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h7v.s7.3f788071f34f from=translated src=- shape=607be6cc vocab=f0908826
+-/
 lemma row_column_norm_average_le_matrixOperatorNorm_of_le {m n : ℕ}
     (A : Matrix (Fin m) (Fin n) ℝ) (i : Fin m) (j : Fin n) {r c : ℝ}
     (hrow : r ≤ ‖matrixRowVector A i‖) (hcol : c ≤ ‖matrixColumnVector A j‖) :
@@ -1467,12 +1638,18 @@ lemma row_column_norm_average_le_matrixOperatorNorm_of_le {m n : ℕ}
   linarith
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s6.f22b69d21798 from=translated src=- shape=eed8923a vocab=0494fc09
+-/
 lemma randomVector_norm_sq_eq_sum_sq {n : ℕ} (X : Fin n → Ω → ℝ) (ω : Ω) :
     ‖HansonWright.randomVector X ω‖ ^ 2 = ∑ i, X i ω ^ 2 := by
   rw [EuclideanSpace.real_norm_sq_eq]
   rfl
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h2v.s6.56fafa82909d from=translated src=- shape=02f4e62f vocab=434302b1
+-/
 lemma quadraticForm_one_eq_sum_sq {n : ℕ} (x : Fin n → ℝ) :
     HansonWright.quadraticForm (1 : Matrix (Fin n) (Fin n) ℝ) x =
       ∑ i, x i ^ 2 := by
@@ -1492,6 +1669,9 @@ lemma quadraticForm_one_eq_sum_sq {n : ℕ} (x : Fin n → ℝ) :
           simp [pow_two]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s6.999cbf0e366e from=translated src=- shape=d7c59633 vocab=85348ff2
+-/
 lemma randomQuadraticForm_one_eq_norm_sq {n : ℕ}
     (X : Fin n → Ω → ℝ) (ω : Ω) :
     HansonWright.randomQuadraticForm (1 : Matrix (Fin n) (Fin n) ℝ) X ω =
@@ -1500,6 +1680,9 @@ lemma randomQuadraticForm_one_eq_norm_sq {n : ℕ}
     randomVector_norm_sq_eq_sum_sq]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h1v.s5.10b3835d32b9 from=translated src=- shape=c36dc4f4 vocab=b22e92cb
+-/
 lemma frobeniusNormSq_one {n : ℕ} :
     HansonWright.frobeniusNormSq (1 : Matrix (Fin n) (Fin n) ℝ) = n := by
   classical
@@ -1519,11 +1702,17 @@ lemma frobeniusNormSq_one {n : ℕ} :
     _ = n := by simp
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h1v.s5.3f537b414898 from=translated src=- shape=11bc1e11 vocab=20718fb8
+-/
 lemma frobeniusNorm_one_sq {n : ℕ} :
     HansonWright.frobeniusNorm (1 : Matrix (Fin n) (Fin n) ℝ) ^ 2 = n := by
   rw [HansonWright.frobeniusNorm_sq, frobeniusNormSq_one]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h1v.s12.a61147f5a635 from=translated src=- shape=eafd490d vocab=92267545
+-/
 lemma toEuclideanCLM_one {n : ℕ} :
     Matrix.toEuclideanCLM (n := Fin n) (𝕜 := ℝ) (1 : Matrix (Fin n) (Fin n) ℝ) =
       ContinuousLinearMap.id ℝ (EuclideanSpace ℝ (Fin n)) := by
@@ -1531,6 +1720,9 @@ lemma toEuclideanCLM_one {n : ℕ} :
   simp
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h1v.s5.08186e417ea7 from=translated src=- shape=82363111 vocab=2fe8f549
+-/
 lemma operatorNorm_one_le {n : ℕ} :
     HansonWright.operatorNorm (1 : Matrix (Fin n) (Fin n) ℝ) ≤ 1 := by
   unfold HansonWright.operatorNorm
@@ -1538,6 +1730,9 @@ lemma operatorNorm_one_le {n : ℕ} :
   exact ContinuousLinearMap.norm_id_le
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=lt.1h1v.s5.b56241679429 from=translated src=- shape=4f60e28f vocab=f6ac6845
+-/
 lemma operatorNorm_one_pos_of_pos {n : ℕ} (hn : 0 < n) :
     0 < HansonWright.operatorNorm (1 : Matrix (Fin n) (Fin n) ℝ) := by
   unfold HansonWright.operatorNorm
@@ -1556,6 +1751,9 @@ lemma operatorNorm_one_pos_of_pos {n : ℕ} (hn : 0 < n) :
   exact lt_of_lt_of_le (by norm_num : (0 : ℝ) < 1) hle
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h1v.s5.db326eaa2fe9 from=translated src=- shape=6cbbd23d vocab=8cb731e6
+-/
 lemma one_le_operatorNorm_one_of_pos {n : ℕ} (hn : 0 < n) :
     1 ≤ HansonWright.operatorNorm (1 : Matrix (Fin n) (Fin n) ℝ) := by
   unfold HansonWright.operatorNorm
@@ -1574,6 +1772,9 @@ lemma one_le_operatorNorm_one_of_pos {n : ℕ} (hn : 0 < n) :
   exact hle
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.1h1v.s5.ba7924be6a19 from=translated src=- shape=35a651c4 vocab=f6ac6845
+-/
 lemma operatorNorm_one_eq_of_pos {n : ℕ} (hn : 0 < n) :
     HansonWright.operatorNorm (1 : Matrix (Fin n) (Fin n) ℝ) = 1 :=
   le_antisymm operatorNorm_one_le (one_le_operatorNorm_one_of_pos hn)
@@ -1584,12 +1785,18 @@ def hdpHansonWrightConstant : ℝ :=
   64 * exp 1 ^ 2
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=lt.0h0v.s3.f125f80021ce from=translated src=- shape=ff3a10fc vocab=68c405ed
+-/
 lemma hdpHansonWrightConstant_pos :
     0 < hdpHansonWrightConstant := by
   unfold hdpHansonWrightConstant
   positivity
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h0v.s4.341672ce6f4c from=translated src=- shape=d5ffbdbd vocab=1f63510f
+-/
 lemma hdpHansonWrightConstant_domain :
     4 * exp 1 ≤ hdpHansonWrightConstant := by
   unfold hdpHansonWrightConstant
@@ -1599,6 +1806,9 @@ lemma hdpHansonWrightConstant_domain :
   nlinarith
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h0v.s5.1e2324ce64d9 from=translated src=- shape=eda02c4b vocab=c5ea7091
+-/
 lemma hdpHansonWrightConstant_diag_quad :
     8 * exp 1 ^ 3 ≤ hdpHansonWrightConstant := by
   unfold hdpHansonWrightConstant
@@ -1609,6 +1819,9 @@ lemma hdpHansonWrightConstant_diag_quad :
   nlinarith
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h0v.s5.a5d50a55ba4f from=translated src=- shape=8407a885 vocab=c5ea7091
+-/
 lemma hdpHansonWrightConstant_offdiag_domain :
     16 * exp 1 ≤ hdpHansonWrightConstant ^ 2 := by
   have hC_pos : 0 < hdpHansonWrightConstant := hdpHansonWrightConstant_pos
@@ -1628,6 +1841,9 @@ lemma hdpHansonWrightConstant_offdiag_domain :
   exact hC_ge_sixteen.trans hC_sq_ge
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h0v.s5.b7a69fd1c7f8 from=translated src=- shape=eda02c4b vocab=c5ea7091
+-/
 lemma hdpHansonWrightConstant_offdiag_quad :
     64 * exp 1 ^ 2 ≤ hdpHansonWrightConstant := by
   rfl
@@ -1638,6 +1854,9 @@ def randomVectorLowerTailConstant : ℝ :=
   1 / (64 * hdpHansonWrightConstant * exp 1 ^ 2)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=lt.0h0v.s3.6822bf7109b6 from=translated src=- shape=ff3a10fc vocab=cb59f4c1
+-/
 lemma randomVectorLowerTailConstant_pos :
     0 < randomVectorLowerTailConstant := by
   unfold randomVectorLowerTailConstant hdpHansonWrightConstant
@@ -1648,6 +1867,7 @@ For fixed deterministic vectors `x` and `y`, the bilinear form `⟪A x, y⟫` is
 independent linear combination of the entries of `A`, hence has a sub-Gaussian MGF certificate.
 The variance proxy is kept in explicit coefficient-sum form; later net estimates bound it by
 `K²` on unit balls.
+@isnad1 id=hassubga.2h8v.s12.b802e6a40f78 from=translated src=- shape=74cdb189 vocab=58a971ce
 -/
 lemma inner_randomMatrix_hasSubgaussianMGF_explicit {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
@@ -1677,6 +1897,9 @@ lemma inner_randomMatrix_hasSubgaussianMGF_explicit {m n : ℕ}
   simpa using (inner_randomMatrix_eq_sum_entries A ω x y).symm
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s8.1460ad1540a8 from=translated src=- shape=e60e2afb vocab=0badc7db
+-/
 lemma sum_sq_bilinear_coeff_eq_norm_mul {m n : ℕ}
     (x : EuclideanSpace ℝ (Fin n)) (y : EuclideanSpace ℝ (Fin m)) :
     (∑ p : Fin m × Fin n, (x p.2 * y p.1) ^ 2) = ‖x‖ ^ 2 * ‖y‖ ^ 2 := by
@@ -1703,6 +1926,9 @@ lemma sum_sq_bilinear_coeff_eq_norm_mul {m n : ℕ}
     _ = ‖x‖ ^ 2 * ‖y‖ ^ 2 := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h3v.s9.7554600ea9ad from=translated src=- shape=b1e9a1d3 vocab=75d7d1c0
+-/
 lemma upperTriangleQuadraticCoeff_sq_le_four_mul {n : ℕ}
     (x : EuclideanSpace ℝ (Fin n)) (p : UpperTriangleIndex n) :
     upperTriangleQuadraticCoeff x p ^ 2 ≤ 4 * (x p.val.2 * x p.val.1) ^ 2 := by
@@ -1714,6 +1940,9 @@ lemma upperTriangleQuadraticCoeff_sq_le_four_mul {n : ℕ}
     exact le_rfl
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h2v.s7.c63434bfb4ef from=translated src=- shape=aff39eb0 vocab=31220553
+-/
 lemma sum_upperTriangleQuadraticCoeff_sq_le_four_norm_pow_four {n : ℕ}
     (x : EuclideanSpace ℝ (Fin n)) :
     (∑ p : UpperTriangleIndex n, upperTriangleQuadraticCoeff x p ^ 2) ≤ 4 * ‖x‖ ^ 4 := by
@@ -1750,6 +1979,9 @@ lemma sum_upperTriangleQuadraticCoeff_sq_le_four_norm_pow_four {n : ℕ}
   exact hsum_point.trans (hsum_subset.trans_eq hfull)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h2v.s7.38096f98bb66 from=translated src=- shape=4446ea59 vocab=5b9a3ae5
+-/
 lemma sum_upperTriangleQuadraticCoeff_sq_le_four_of_norm_le_one {n : ℕ}
     {x : EuclideanSpace ℝ (Fin n)} (hx : ‖x‖ ≤ 1) :
     (∑ p : UpperTriangleIndex n, upperTriangleQuadraticCoeff x p ^ 2) ≤ 4 := by
@@ -1768,6 +2000,9 @@ lemma sum_upperTriangleQuadraticCoeff_sq_le_four_of_norm_le_one {n : ℕ}
     _ = 4 := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h3v.s7.daf69cc2a5e6 from=translated src=- shape=a58f1284 vocab=fcf4ee59
+-/
 lemma upperTriangleQuadraticCoeff_variance_proxy_le {n : ℕ}
     {x : EuclideanSpace ℝ (Fin n)} (hx : ‖x‖ ≤ 1) (K : ℝ) :
     (((∑ p : UpperTriangleIndex n,
@@ -1791,6 +2026,9 @@ lemma upperTriangleQuadraticCoeff_variance_proxy_le {n : ℕ}
             (sum_upperTriangleQuadraticCoeff_sq_le_four_of_norm_le_one hx) (sq_nonneg K)
     _ = (2 * K) ^ 2 := by ring
 
+/--
+@isnad1 id=hassubga.2h6v.s9.2d85d01b99a5 from=translated src=- shape=1b20bec9 vocab=9d566d50
+-/
 lemma upperTriangleQuadraticForm_hasSubgaussianMGF_explicit {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h_indep : iIndepFun (fun p : UpperTriangleIndex n => A p.val.1 p.val.2) μ)
@@ -1819,6 +2057,9 @@ lemma upperTriangleQuadraticForm_hasSubgaussianMGF_explicit {n : ℕ}
       (fun p : UpperTriangleIndex n => upperTriangleQuadraticCoeff x p)
   simpa [cK] using hsum
 
+/--
+@isnad1 id=hassubga.3h6v.s8.60738b42e9f4 from=translated src=- shape=3c46608f vocab=9171763f
+-/
 lemma upperTriangleQuadraticForm_hasSubgaussianMGF_of_norm_le_one {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h_indep : iIndepFun (fun p : UpperTriangleIndex n => A p.val.1 p.val.2) μ)
@@ -1839,6 +2080,9 @@ lemma upperTriangleQuadraticForm_hasSubgaussianMGF_of_norm_le_one {n : ℕ}
   exact upperTriangleQuadraticCoeff_variance_proxy_le hx K
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h5v.s8.4c5b2949de44 from=translated src=- shape=10f6ab24 vocab=7ac507ee
+-/
 lemma bilinear_coeff_variance_proxy_eq {m n : ℕ}
     (x : EuclideanSpace ℝ (Fin n)) (y : EuclideanSpace ℝ (Fin m)) (K : ℝ) :
     (((∑ p : Fin m × Fin n,
@@ -1861,7 +2105,9 @@ lemma bilinear_coeff_variance_proxy_eq {m n : ℕ}
     _ = K ^ 2 * ‖x‖ ^ 2 * ‖y‖ ^ 2 := by ring
 
 /-- Fixed bilinear forms of independent entrywise sub-Gaussian random matrices are
-sub-Gaussian with variance proxy `K² ‖x‖² ‖y‖²`. -/
+sub-Gaussian with variance proxy `K² ‖x‖² ‖y‖²`.
+@isnad1 id=hassubga.2h8v.s12.d61c88fda18c from=translated src=- shape=2770bd11 vocab=99b4485b
+-/
 lemma inner_randomMatrix_hasSubgaussianMGF {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h_indep : iIndepFun (fun p : Fin m × Fin n => A p.1 p.2) μ)
@@ -1880,7 +2126,9 @@ lemma inner_randomMatrix_hasSubgaussianMGF {m n : ℕ}
     K ^ 2 * ‖x‖ ^ 2 * ‖y‖ ^ 2
   rw [bilinear_coeff_variance_proxy_eq]
 
-/-- Unit-ball specialization of `inner_randomMatrix_hasSubgaussianMGF`. -/
+/-- Unit-ball specialization of `inner_randomMatrix_hasSubgaussianMGF`.
+@isnad1 id=hassubga.4h8v.s12.b2b356b4b2eb from=translated src=- shape=e5f89325 vocab=dcfffb13
+-/
 lemma inner_randomMatrix_hasSubgaussianMGF_of_norm_le_one {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h_indep : iIndepFun (fun p : Fin m × Fin n => A p.1 p.2) μ)
@@ -1908,7 +2156,9 @@ lemma inner_randomMatrix_hasSubgaussianMGF_of_norm_le_one {m n : ℕ}
 
 /-! ## Two-sided tails for fixed bilinear forms -/
 
-/-- Two-sided tail bound from an MGF sub-Gaussian certificate. -/
+/-- Two-sided tail bound from an MGF sub-Gaussian certificate.
+@isnad1 id=le.3h5v.s7.eed19c34ed00 from=translated src=- shape=ceed43fb vocab=d24228f0
+-/
 lemma HasSubgaussianMGF.measure_abs_ge_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {σ u : ℝ} (hσ : 0 < σ)
     (hX : HasSubgaussianMGF X ⟨σ ^ 2, sq_nonneg σ⟩ μ) (hu : 0 < u) :
@@ -1957,7 +2207,9 @@ lemma HasSubgaussianMGF.measure_abs_ge_le {μ : Measure Ω} [IsProbabilityMeasur
     _ = 2 * exp (-u ^ 2 / (2 * σ ^ 2)) := by ring
 
 /-- Fixed bilinear forms of a random matrix have the standard two-sided sub-Gaussian tail
-when the test vectors lie in the Euclidean unit balls. -/
+when the test vectors lie in the Euclidean unit balls.
+@isnad1 id=le.6h9v.s12.a9a9aa5d139c from=translated src=- shape=45bfa7e4 vocab=90170b07
+-/
 lemma inner_randomMatrix_tail_of_norm_le_one {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ] {K u : ℝ}
     (hK : 0 < K)
@@ -1972,7 +2224,9 @@ lemma inner_randomMatrix_tail_of_norm_le_one {m n : ℕ}
       (A := A) (μ := μ) (K := K) h_indep hA_subG hx hy) hu
 
 /-- Fixed upper-triangle quadratic forms have the standard two-sided sub-Gaussian tail on the
-Euclidean unit ball. -/
+Euclidean unit ball.
+@isnad1 id=le.5h7v.s9.f604504fd3e4 from=translated src=- shape=2173b66b vocab=d97fa523
+-/
 lemma upperTriangleQuadraticForm_tail_of_norm_le_one {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ] {K u : ℝ}
     (hK : 0 < K)
@@ -1992,7 +2246,9 @@ lemma upperTriangleQuadraticForm_tail_of_norm_le_one {n : ℕ}
   have hden : 2 * (2 * K) ^ 2 = 8 * K ^ 2 := by ring
   simpa [hden] using htail
 
-/-- Finite-net tail bound for the upper-triangle quadratic forms. -/
+/-- Finite-net tail bound for the upper-triangle quadratic forms.
+@isnad1 id=le.4h7v.s9.475abaed0f89 from=translated src=- shape=803d45e1 vocab=59090cb0
+-/
 lemma upperTriangleQuadraticForm_net_tail {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ] {K u : ℝ}
     (N : CenteredMatrixBilinearNet n n (1 / 4)) (hK : 0 < K)
@@ -2043,6 +2299,7 @@ lemma upperTriangleQuadraticForm_net_tail {n : ℕ}
 /--
 Symmetric finite-net operator-norm tail, assuming the deterministic upper-triangle
 representation of every quadratic form.
+@isnad1 id=le.6h7v.s12.8fee993a4877 from=translated src=- shape=718b8d4e vocab=83e279ec
 -/
 lemma matrixOperatorNorm_tail_of_quarter_centered_quadratic_net {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ] {K u : ℝ}
@@ -2087,6 +2344,7 @@ lemma matrixOperatorNorm_tail_of_quarter_centered_quadratic_net {n : ℕ}
 Finite-net tail bound for the operator norm. For a centered quarter-net of the two Euclidean
 unit spheres, the event `‖A‖ > 2u` is contained in the union of the fixed bilinear-form tail
 events over all net pairs.
+@isnad1 id=le.4h8v.s8.93594e7d574f from=translated src=- shape=5bad0205 vocab=3a0639ff
 -/
 lemma matrixOperatorNorm_tail_of_quarter_centered_bilinear_net {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ] {K u : ℝ}
@@ -2200,6 +2458,9 @@ structure HasIndependentMeanZeroIsotropicSubGaussianRows {m n : ℕ}
   finite_row_psi2 : ∀ i, HasFiniteSubGaussianVectorPsi2Norm (randomMatrixRowVector A i) μ
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s12.e25c4f2666c4 from=translated src=- shape=80a70d22 vocab=3aac6a70
+-/
 lemma randomVector_rowProjection_eq_toEuclideanLin {m n : ℕ}
     (A : Fin m → Fin n → Ω → ℝ) (ω : Ω) (x : EuclideanSpace ℝ (Fin n)) :
     HansonWright.randomVector
@@ -2214,6 +2475,9 @@ lemma randomVector_rowProjection_eq_toEuclideanLin {m n : ℕ}
   intro j _
   ring
 
+/--
+@isnad1 id=iindepfu.1h6v.s6.7018693ca349 from=translated src=- shape=537d5023 vocab=4e96f181
+-/
 lemma HasIndependentMeanZeroIsotropicSubGaussianRows.row_projection_iIndepFun {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     (hA : HasIndependentMeanZeroIsotropicSubGaussianRows A μ)
@@ -2222,6 +2486,9 @@ lemma HasIndependentMeanZeroIsotropicSubGaussianRows.row_projection_iIndepFun {m
   simpa [Function.comp_def] using
     hA.independent_rows.comp (fun _ v => inner ℝ v x) (fun _ => by fun_prop)
 
+/--
+@isnad1 id=hassubga.3h8v.s7.c0439dee6660 from=translated src=- shape=23fb9ab5 vocab=e1cbd35f
+-/
 lemma HasIndependentMeanZeroIsotropicSubGaussianRows.row_projection_hasSubgaussianMGF_two_mul_max
     {m n : ℕ} {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (hA : HasIndependentMeanZeroIsotropicSubGaussianRows A μ)
@@ -2236,6 +2503,9 @@ lemma HasIndependentMeanZeroIsotropicSubGaussianRows.row_projection_hasSubgaussi
   change K ^ 2 ≤ (2 * K) ^ 2
   nlinarith [sq_nonneg K]
 
+/--
+@isnad1 id=eq.2h7v.s7.c6063bc7e7d6 from=translated src=- shape=1e3ae125 vocab=36b7dda6
+-/
 lemma HasIndependentMeanZeroIsotropicSubGaussianRows.row_projection_second_moment_one
     {m n : ℕ} {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     (hA : HasIndependentMeanZeroIsotropicSubGaussianRows A μ)
@@ -2243,6 +2513,9 @@ lemma HasIndependentMeanZeroIsotropicSubGaussianRows.row_projection_second_momen
     ∫ ω, (inner ℝ (randomMatrixRowVector A i ω) x) ^ 2 ∂μ = 1 := by
   simpa [hx] using hA.isotropic i x
 
+/--
+@isnad1 id=measurab.1h6v.s5.112109b9dfd0 from=translated src=- shape=c465d514 vocab=cef430fb
+-/
 lemma HasIndependentMeanZeroSubGaussianUpperTriangle.measurable {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω}
     (hA : HasIndependentMeanZeroSubGaussianUpperTriangle A μ) (i j : Fin n) :
@@ -2255,6 +2528,9 @@ lemma HasIndependentMeanZeroSubGaussianUpperTriangle.measurable {n : ℕ}
       exact hA.symmetric ω i j
     simpa [h_eq] using hA.measurable_upper j i hji
 
+/--
+@isnad1 id=eq.1h6v.s6.a23981a7154d from=translated src=- shape=06870cdf vocab=afe635ff
+-/
 lemma HasIndependentMeanZeroSubGaussianUpperTriangle.mean_zero {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω}
     (hA : HasIndependentMeanZeroSubGaussianUpperTriangle A μ) (i j : Fin n) :
@@ -2267,6 +2543,9 @@ lemma HasIndependentMeanZeroSubGaussianUpperTriangle.mean_zero {n : ℕ}
         exact integral_congr_ae (ae_of_all μ fun ω => hA.symmetric ω i j)
       _ = 0 := hA.mean_zero_upper j i hji
 
+/--
+@isnad1 id=hasfinit.1h6v.s5.bc5dfb6ce96a from=translated src=- shape=2ec04dd8 vocab=4902d4e6
+-/
 lemma HasIndependentMeanZeroSubGaussianUpperTriangle.finite_psi2 {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω}
     (hA : HasIndependentMeanZeroSubGaussianUpperTriangle A μ) (i j : Fin n) :
@@ -2278,6 +2557,9 @@ lemma HasIndependentMeanZeroSubGaussianUpperTriangle.finite_psi2 {n : ℕ}
     refine ⟨K, hK_pos, ?_⟩
     exact hK_mgf.congr (ae_of_all μ fun ω => (hA.symmetric ω i j).symm)
 
+/--
+@isnad1 id=issymm.1h5v.s5.70d50541fad1 from=translated src=- shape=2e25e851 vocab=10c159c8
+-/
 lemma HasIndependentMeanZeroSubGaussianUpperTriangle.randomMatrix_isSymm {n : ℕ}
     {A : Fin n → Fin n → Ω → ℝ} {μ : Measure Ω}
     (hA : HasIndependentMeanZeroSubGaussianUpperTriangle A μ) (ω : Ω) :
@@ -2286,6 +2568,9 @@ lemma HasIndependentMeanZeroSubGaussianUpperTriangle.randomMatrix_isSymm {n : �
   intro i j
   exact (hA.symmetric ω i j).symm
 
+/--
+@isnad1 id=le.0h3v.s6.47cba5bf57f2 from=translated src=- shape=dbc25c56 vocab=094bf301
+-/
 lemma probability_compl_real_ge_one_sub {μ : Measure Ω} [IsProbabilityMeasure μ]
     (s : Set Ω) :
     1 - (μ s).toReal ≤ (μ sᶜ).toReal := by
@@ -2302,6 +2587,9 @@ lemma probability_compl_real_ge_one_sub {μ : Measure Ω} [IsProbabilityMeasure 
   rw [ENNReal.toReal_add (measure_ne_top μ s) (measure_ne_top μ sᶜ)] at hreal
   linarith
 
+/--
+@isnad1 id=le.1h5v.s6.019b63600f03 from=translated src=- shape=e5935166 vocab=c67518fb
+-/
 lemma probability_le_of_tail_real_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {B δ : ℝ}
     (htail : (μ {ω | B < X ω}).toReal ≤ δ) :
@@ -2313,6 +2601,9 @@ lemma probability_le_of_tail_real_le {μ : Measure Ω} [IsProbabilityMeasure μ]
   rw [hset] at hcompl
   linarith
 
+/--
+@isnad1 id=le.1h5v.s6.57f81d6514f4 from=translated src=- shape=0e5fe4c0 vocab=c67518fb
+-/
 lemma probability_ge_of_lower_tail_real_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {B δ : ℝ}
     (htail : (μ {ω | X ω < B}).toReal ≤ δ) :
@@ -2324,6 +2615,9 @@ lemma probability_ge_of_lower_tail_real_le {μ : Measure Ω} [IsProbabilityMeasu
   rw [hset] at hcompl
   linarith
 
+/--
+@isnad1 id=eq.2h4v.s7.72ba3d4326ff from=translated src=- shape=eff9bc33 vocab=cd41f386
+-/
 lemma integral_randomQuadraticForm_one_eq_nat {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {X : Fin n → Ω → ℝ}
     (hX_sq_int : ∀ i, Integrable (fun ω => X i ω ^ 2) μ)
@@ -2347,6 +2641,9 @@ lemma integral_randomQuadraticForm_one_eq_nat {μ : Measure Ω} [IsProbabilityMe
       exact hsecond i
     _ = (n : ℝ) := by simp
 
+/--
+@isnad1 id=eq.2h5v.s7.1572a9554ce2 from=translated src=- shape=4c965490 vocab=d7339653
+-/
 lemma centeredQuadraticForm_one_eq_norm_sq_sub_nat {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {X : Fin n → Ω → ℝ}
     (hX_sq_int : ∀ i, Integrable (fun ω => X i ω ^ 2) μ)
@@ -2357,6 +2654,9 @@ lemma centeredQuadraticForm_one_eq_norm_sq_sub_nat {μ : Measure Ω} [IsProbabil
   rw [integral_randomQuadraticForm_one_eq_nat hX_sq_int hsecond,
     randomQuadraticForm_one_eq_norm_sq]
 
+/--
+@isnad1 id=le.3h4v.s7.12221b745a0d from=translated src=- shape=f1609700 vocab=028cc14d
+-/
 lemma one_div_four_exp_sq_le_sq_of_subgaussian_second_moment_one
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ} {K : ℝ}
     (hK : 0 < K)
@@ -2380,6 +2680,9 @@ lemma one_div_four_exp_sq_le_sq_of_subgaussian_second_moment_one
     nlinarith
   exact (div_le_iff₀ hden_pos).mpr hone_le''
 
+/--
+@isnad1 id=le.5h6v.s7.9a260ff26184 from=translated src=- shape=bce4bc34 vocab=0f9af6c3
+-/
 lemma HasIndependentMeanZeroIsotropicSubGaussianRows.max_row_psi2_sq_lower
     {m n : ℕ} (hm : 0 < m) (hn : 0 < n)
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2405,6 +2708,9 @@ lemma HasIndependentMeanZeroIsotropicSubGaussianRows.max_row_psi2_sq_lower
   exact one_div_four_exp_sq_le_sq_of_subgaussian_second_moment_one hK hsubG
     (hA.row_projection_second_moment_one i0 hx)
 
+/--
+@isnad1 id=le.4h5v.s8.2ed10f102621 from=translated src=- shape=1d5ced84 vocab=c075551c
+-/
 lemma randomVector_bad_event_subset_quadratic_tail {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {X : Fin n → Ω → ℝ}
     (hX_sq_int : ∀ i, Integrable (fun ω => X i ω ^ 2) μ)
@@ -2438,6 +2744,9 @@ lemma randomVector_bad_event_subset_quadratic_tail {μ : Measure Ω} [IsProbabil
   rw [abs_of_nonpos hnonpos]
   linarith
 
+/--
+@isnad1 id=le.8h5v.s8.7275472be0df from=translated src=- shape=e9aa6f77 vocab=f04da713
+-/
 lemma randomVector_quadratic_tail_rhs_le {n : ℕ} (hn : 0 < n)
     {K t : ℝ} (hK : 0 < K) (ht : 0 < t)
     (ht_le : t ≤ √(n : ℝ)) (hK_lower : 1 / (4 * exp 1 ^ 2) ≤ K ^ 2)
@@ -2527,6 +2836,9 @@ lemma randomVector_quadratic_tail_rhs_le {n : ℕ} (hn : 0 < n)
         ring
   exact mul_le_mul_of_nonneg_left (exp_le_exp.mpr harg) (by norm_num)
 
+/--
+@isnad1 id=le.6h6v.s8.aefcd320ae05 from=translated src=- shape=19d8ba7d vocab=fc3311a4
+-/
 theorem randomVector_norm_lower_tail_of_subgaussian_mgf_bound {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (hn : 0 < n) {X : Fin n → Ω → ℝ} {K : ℝ}
     (hK : 0 < K) (h_indep : iIndepFun X μ)
@@ -2637,6 +2949,9 @@ theorem randomVector_norm_lower_tail_of_subgaussian_mgf_bound {μ : Measure Ω}
       (μ := μ) (X := fun ω => ‖HansonWright.randomVector X ω‖)
       (B := √(n : ℝ) - t) hbad_tail
 
+/--
+@isnad1 id=le.6h8v.s12.e0f9935c4c8e from=translated src=- shape=3e76957a vocab=b6fbaed1
+-/
 theorem fixed_unit_vector_matrix_apply_lower_tail_of_row_subgaussian {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -2663,6 +2978,9 @@ theorem fixed_unit_vector_matrix_apply_lower_tail_of_row_subgaussian {m n : ℕ}
   intro t ht
   simpa [X, randomVector_rowProjection_eq_toEuclideanLin] using htail t ht
 
+/--
+@isnad1 id=le.6h8v.s12.896089fdd659 from=translated src=- shape=b909645d vocab=c9347026
+-/
 theorem fixed_unit_vector_matrix_apply_sq_sub_dim_tail_of_row_subgaussian {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -2734,6 +3052,9 @@ theorem fixed_unit_vector_matrix_apply_sq_sub_dim_tail_of_row_subgaussian {m n :
   rw [← hset]
   exact htail
 
+/--
+@isnad1 id=le.6h8v.s12.073f03224cc7 from=translated src=- shape=1b373175 vocab=ace8d7a1
+-/
 lemma fixed_unit_vector_matrix_apply_sq_sub_dim_cgf_le_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -2802,6 +3123,9 @@ lemma fixed_unit_vector_matrix_apply_sq_sub_dim_cgf_le_hdp {m n : ℕ}
     _ = hdpHansonWrightConstant * l ^ 2 * K ^ 4 * (m : ℝ) := by
         rw [frobeniusNorm_one_sq (n := m)]
 
+/--
+@isnad1 id=integrab.6h8v.s12.af7fed0f2d64 from=translated src=- shape=f580bee7 vocab=98026e7a
+-/
 lemma fixed_unit_vector_matrix_apply_sq_sub_dim_integrable_exp_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -2860,6 +3184,9 @@ lemma fixed_unit_vector_matrix_apply_sq_sub_dim_integrable_exp_hdp {m n : ℕ}
   funext ω
   rw [hcenter_eq ω]
 
+/--
+@isnad1 id=le.6h8v.s12.c12e278bd58c from=translated src=- shape=65e2e20b vocab=f575ef37
+-/
 lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_cgf_le_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -2970,6 +3297,9 @@ lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_cgf_le_hdp {m n : ℕ}
     rw [hcgf_eq]
     exact hcgf_unit.trans hmain_le
 
+/--
+@isnad1 id=integrab.6h8v.s12.322ce9e7ee66 from=translated src=- shape=d287bf33 vocab=9ce5e8c2
+-/
 lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_integrable_exp_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -3048,6 +3378,9 @@ lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_integrable_exp_hdp {m n : ℕ}
     dsimp [θ]
     ring_nf
 
+/--
+@isnad1 id=integrab.3h7v.s12.471025db5a2f from=translated src=- shape=77b261e5 vocab=2429f8d4
+-/
 lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_integrable_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -3117,6 +3450,9 @@ lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_integrable_hdp {m n : ℕ}
     filter_upwards with ω
     exact (hscaled_eq ω).symm
 
+/--
+@isnad1 id=measurab.1h5v.s12.5cde334e624e from=translated src=- shape=8f74ab89 vocab=ac8a7aee
+-/
 lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_measurable {m n : ℕ}
     {A : Fin m → Fin n → Ω → ℝ}
     (hA_meas : ∀ i j, Measurable (A i j))
@@ -3151,6 +3487,9 @@ lemma fixed_vector_matrix_apply_sq_sub_scaled_dim_measurable {m n : ℕ}
     exact (randomVector_rowProjection_eq_toEuclideanLin A ω x).symm]
   rw [randomVector_norm_sq_eq_sum_sq]
 
+/--
+@isnad1 id=le.6h8v.s12.808ac14d0c57 from=translated src=- shape=d3c60611 vocab=b1053db2
+-/
 theorem fixed_unit_vector_matrix_apply_sq_sub_dim_tail_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -3166,6 +3505,9 @@ theorem fixed_unit_vector_matrix_apply_sq_sub_dim_tail_hdp {m n : ℕ}
       (m := m) (n := n) hm (A := A) (μ := μ) hA hK_def hK hu hx
   simpa [frobeniusNorm_one_sq (n := m), operatorNorm_one_eq_of_pos hm] using htail
 
+/--
+@isnad1 id=le.6h8v.s12.be52f2d6333d from=translated src=- shape=e420a2b1 vocab=b1053db2
+-/
 theorem fixed_vector_matrix_apply_sq_sub_scaled_dim_tail_hdp {m n : ℕ}
     (hm : 0 < m) {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -3236,6 +3578,9 @@ theorem fixed_vector_matrix_apply_sq_sub_scaled_dim_tail_hdp {m n : ℕ}
         (m := m) (n := n) hm (A := A) (μ := μ) hA hK_def hK hu.le hy
     exact (ENNReal.toReal_mono (measure_ne_top μ _) (measure_mono hsubset)).trans htail
 
+/--
+@isnad1 id=le.5h8v.s8.e77182f8c8d9 from=translated src=- shape=56638690 vocab=ef2b9e2a
+-/
 lemma sampleCovarianceDeviationOperatorNorm_tail_of_quarter_centered_quadratic_net
     {m n : ℕ} (hm : 0 < m)
     {A : Fin m → Fin n → Ω → ℝ} {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3319,6 +3664,9 @@ lemma sampleCovarianceDeviationOperatorNorm_tail_of_quarter_centered_quadratic_n
           ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h1v.s5.ca8753ba5817 from=translated src=- shape=8fa1b55e vocab=f8f3d287
+-/
 lemma seventeen_pow_le_exp_seventeen_mul (d : ℕ) :
     (17 : ℝ) ^ d ≤ exp (17 * (d : ℝ)) := by
   have h17 : (17 : ℝ) ≤ exp 17 := by
@@ -3354,6 +3702,9 @@ def twoSidedSubgaussianMatricesConstant : ℝ :=
   4 * sampleCovarianceDeviationScaleConstant
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.9h5v.s8.72852a1ee921 from=translated src=- shape=bba8f874 vocab=206798e9
+-/
 lemma two_mul_scale_le_max_of_scale_bounds {D C k0 X Y : ℝ}
     (hD_nonneg : 0 ≤ D) (hC_nonneg : 0 ≤ C) (hk0_pos : 0 < k0)
     (hX_nonneg : 0 ≤ X) (hY_nonneg : 0 ≤ Y) (hY_le : Y ≤ X / k0)
@@ -3428,6 +3779,9 @@ lemma two_mul_scale_le_max_of_scale_bounds {D C k0 X Y : ℝ}
       _ = (C * X) ^ 2 := by ring
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.4h4v.s8.9422aae20444 from=translated src=- shape=21a3012a vocab=2cc9b38b
+-/
 lemma sampleCovarianceDeviationHdpScale_le_max_hdp_radius {m n : ℕ} (hm : 0 < m)
     {K t : ℝ} (hK : 0 < K) (ht : 0 ≤ t)
     (hK_lower : 1 / (4 * exp 1 ^ 2) ≤ K ^ 2) :
@@ -3586,6 +3940,9 @@ lemma sampleCovarianceDeviationHdpScale_le_max_hdp_radius {m n : ℕ} (hm : 0 < 
         dsimp [C, X, Y, S]
         ring_nf
 
+/--
+@isnad1 id=le.7h7v.s8.f03ea5b90ff6 from=translated src=- shape=5b2dcb6d vocab=3befb3f0
+-/
 lemma expected_max_of_cgf_bound_at {ι : Type*} {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : ι → Ω → ℝ} {s : Finset ι} (hs : s.Nonempty) (hs_card : 2 ≤ s.card)
     {l a : ℝ} (hl : 0 < l)
@@ -3661,6 +4018,9 @@ lemma expected_max_of_cgf_bound_at {ι : Type*} {μ : Measure Ω} [IsProbability
     _ = (1 / l) * (log s.card + a) := by rw [hd_def]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h4v.s8.bf86ef0d3b5c from=translated src=- shape=150e9d90 vocab=70b4aaf4
+-/
 lemma sampleCovarianceDeviation_tail_prefactor_le {m n : ℕ} (hm : 0 < m)
     {K t : ℝ} (hK : 0 < K) :
     2 * 17 ^ n *
@@ -3767,6 +4127,9 @@ lemma sampleCovarianceDeviation_tail_prefactor_le {m n : ℕ} (hm : 0 < m)
                     ring_nf
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h3v.s6.3fcfe6f05634 from=translated src=- shape=2d7276d1 vocab=0c627c0b
+-/
 lemma cast_add_add_sq_le_sq_sqrt_add_sqrt_add {m n : ℕ} {t : ℝ} (ht : 0 ≤ t) :
     ((m + n : ℕ) : ℝ) + t ^ 2 ≤ (√(m : ℝ) + √(n : ℝ) + t) ^ 2 := by
   have hsqrt_m_sq : √(m : ℝ) ^ 2 = (m : ℝ) :=
@@ -3786,6 +4149,9 @@ lemma cast_add_add_sq_le_sq_sqrt_add_sqrt_add {m n : ℕ} {t : ℝ} (ht : 0 ≤ 
         nlinarith [hsqrt_m_sq, hsqrt_n_sq]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h4v.s7.ca2a8f7612e9 from=translated src=- shape=5d8b0f0c vocab=f7c166ae
+-/
 lemma rectangular_net_tail_prefactor_le {m n : ℕ} {K t : ℝ}
     (hK : 0 < K) (ht : 0 < t) :
     2 * 17 ^ (m + n) *
@@ -3824,6 +4190,9 @@ lemma rectangular_net_tail_prefactor_le {m n : ℕ} {K t : ℝ}
           mul_le_mul_of_nonneg_left hnet (by norm_num : (0 : ℝ) ≤ 2)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h2v.s6.a0c4de3691bf from=translated src=- shape=82e911e7 vocab=0c627c0b
+-/
 lemma cast_add_sq_le_sq_sqrt_add {n : ℕ} {t : ℝ} (ht : 0 ≤ t) :
     (n : ℝ) + t ^ 2 ≤ (√(n : ℝ) + t) ^ 2 := by
   have hsqrt_n_sq : √(n : ℝ) ^ 2 = (n : ℝ) :=
@@ -3836,6 +4205,9 @@ lemma cast_add_sq_le_sq_sqrt_add {n : ℕ} {t : ℝ} (ht : 0 ≤ t) :
       nlinarith [hsqrt_n_sq]
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.2h3v.s7.c392fce97521 from=translated src=- shape=876a7f30 vocab=f7c166ae
+-/
 lemma symmetric_net_tail_prefactor_le {n : ℕ} {K t : ℝ}
     (hK : 0 < K) (ht : 0 < t) :
     2 * 17 ^ n *
@@ -3928,7 +4300,9 @@ def norm_random_matrices_lower_bound_hdp {m n : ℕ}
               matrixOperatorNorm (randomMatrix A ω)}).toReal ≥
             1 - 2 * exp (-(c * t ^ 2 / K ^ 4))
 
-/-- HDP Exercise 4.42 for positive dimensions, proved from one row or one column. -/
+/-- HDP Exercise 4.42 for positive dimensions, proved from one row or one column.
+@isnad1 id=normrand.2h5v.s5.3ebbb8447b53 from=translated src=- shape=9dfc2740 vocab=bdc53c10
+-/
 theorem norm_random_matrices_lower_bound_hdp_of_pos {m n : ℕ} (hm : 0 < m) (hn : 0 < n)
     (A : Fin m → Fin n → Ω → ℝ) (μ : Measure Ω) [IsProbabilityMeasure μ] :
     norm_random_matrices_lower_bound_hdp A μ := by
@@ -4080,6 +4454,9 @@ def two_sided_subgaussian_matrices_hdp {m n : ℕ}
             1 - 2 * exp (-(t ^ 2))
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=lt.0h0v.s3.24bc43612881 from=translated src=- shape=ff3a10fc vocab=5a536292
+-/
 lemma twoSidedSubgaussianMatricesConstant_pos :
     0 < twoSidedSubgaussianMatricesConstant := by
   have hD_pos : 0 < sampleCovarianceDeviationScaleConstant := by

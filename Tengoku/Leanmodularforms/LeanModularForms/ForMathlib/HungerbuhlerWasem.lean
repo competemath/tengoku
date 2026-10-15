@@ -91,7 +91,9 @@ structure PolarPartDecomposition (f : ℂ → ℂ) (S : Finset ℂ) (U : Set ℂ
 variable {x : ℂ}
 
 /-- The derivative of a Lipschitz extended piecewise-`C¹` path is interval-integrable
-on `[0, 1]`: derivatives of Lipschitz functions are bounded by the Lipschitz constant. -/
+on `[0, 1]`: derivatives of Lipschitz functions are bounded by the Lipschitz constant.
+@isnad1 id=interval.1h3v.s7.b544d1dd774f from=translated src=- shape=5d0ec2c0 vocab=787c3306
+-/
 theorem deriv_intervalIntegrable_of_lipschitz (γP : PiecewiseC1Path x x) {K : NNReal}
     (hLip : LipschitzWith K γP.toPath.extend) :
     IntervalIntegrable (deriv γP.toPath.extend) MeasureTheory.volume 0 1 := by
@@ -102,7 +104,9 @@ theorem deriv_intervalIntegrable_of_lipschitz (γP : PiecewiseC1Path x x) {K : N
       (fun _ => norm_deriv_le_of_lipschitz hLip)))
 
 /-- The bad set `γ⁻¹(S) ∩ Icc 0 1` for a piecewise-`C¹` immersion `γ` and a
-finite set `S` has Lebesgue measure zero. -/
+finite set `S` has Lebesgue measure zero.
+@isnad1 id=eq.0h3v.s6.412b3c211d21 from=translated src=- shape=2715627a vocab=c7e29df5
+-/
 theorem volume_preimage_finset_in_Icc01_zero
     (γ : ClosedPwC1Immersion x) (S : Finset ℂ) :
     volume {t ∈ Icc (0 : ℝ) 1 |
@@ -156,7 +160,9 @@ private theorem cpv_badSet_measurableSet (γP : PiecewiseC1Path x x) (S : Finset
     ((γP.toPath.continuous_extend.sub continuous_const).norm) continuous_const).measurableSet
 
 /-- Express `cpvIntegrandOn S g γ.extend ε` as an indicator of the contour
-integrand on the complement of the bad set. -/
+integrand on the complement of the bad set.
+@isnad1 id=eq.0h6v.s6.fb2fcd40e8a3 from=translated src=- shape=ef8bea17 vocab=4881f105
+-/
 theorem cpvIntegrandOn_eq_indicator_compl
     (γP : PiecewiseC1Path x x) (S : Finset ℂ) (g : ℂ → ℂ) (ε : ℝ) (t : ℝ) :
     cpvIntegrandOn S g γP.toPath.extend ε t =
@@ -171,7 +177,9 @@ theorem cpvIntegrandOn_eq_indicator_compl
 /-- The cutoff integrand `cpvIntegrandOn S g γ.extend ε` is interval-integrable
 on `[0, 1]` for any `ε`, when `g` is differentiable on `U` and γ has image in
 `U`. The proof realizes the cutoff as an indicator of the (interval-integrable)
-contour integrand on a measurable set. -/
+contour integrand on a measurable set.
+@isnad1 id=interval.2h6v.s8.f00ceeee7708 from=translated src=- shape=3d31e3f9 vocab=fc02b000
+-/
 theorem cpvIntegrandOn_diff_intervalIntegrable
     (γ : ClosedPwC1Immersion x) (S : Finset ℂ) {U : Set ℂ} {g : ℂ → ℂ}
     (h_diff : DifferentiableOn ℂ g U)
@@ -202,7 +210,9 @@ private theorem cpv_ae_not_mem_S (γ : ClosedPwC1Immersion x) (S : Finset ℂ) :
   exact ht
 
 /-- For a function `g` differentiable on `U` and γ ⊆ U, the cutoff integrands
-converge pointwise a.e. on `Icc 0 1` to the contour integrand as `ε → 0⁺`. -/
+converge pointwise a.e. on `Icc 0 1` to the contour integrand as `ε → 0⁺`.
+@isnad1 id=eventual.0h4v.s7.e9b1503b93c8 from=translated src=- shape=d0ad7663 vocab=7b9dd059
+-/
 theorem cpvIntegrandOn_tendsto_contourIntegrand_ae
     (γ : ClosedPwC1Immersion x) (S : Finset ℂ) (g : ℂ → ℂ) :
     ∀ᵐ t ∂(MeasureTheory.volume.restrict (Ι (0 : ℝ) 1)),

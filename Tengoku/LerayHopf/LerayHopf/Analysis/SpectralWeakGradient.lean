@@ -46,13 +46,17 @@ noncomputable def cxify (φ : SchwartzMap Domain3 ℝ) : SchwartzMap Domain3 ℂ
   φ.postcompCLM (RCLike.ofRealCLM (K := ℂ))
 
 /-- The complexification `cxify φ` evaluates pointwise as the real-to-complex coercion of
-`φ`. -/
+`φ`.
+@isnad1 id=eq.0h2v.s9.1f33c65886ff from=translated src=- shape=ea5bac77 vocab=db4c52ce
+-/
 @[simp] theorem cxify_apply (φ : SchwartzMap Domain3 ℝ) (x : Domain3) :
     cxify φ x = ((φ x : ℝ) : ℂ) := by
   simp [cxify, SchwartzMap.postcompCLM_apply]
 
 /-- Complexification commutes with the line derivative: `∂_{m}(cxify φ) = cxify (∂_{m} φ)`.
-Both sides agree pointwise: `lineDeriv` commutes with the `ℝ`-linear map `ofRealCLM`. -/
+Both sides agree pointwise: `lineDeriv` commutes with the `ℝ`-linear map `ofRealCLM`.
+@isnad1 id=eq.0h2v.s13.8d9349b301ef from=translated src=- shape=a4951ccd vocab=d1f2bbb7
+-/
 theorem lineDerivOp_cxify (m : Domain3) (φ : SchwartzMap Domain3 ℝ) :
     (lineDerivOpCLM ℝ (SchwartzMap Domain3 ℂ) m) (cxify φ)
       = cxify ((lineDerivOpCLM ℝ (SchwartzMap Domain3 ℝ) m) φ) := by
@@ -96,7 +100,9 @@ noncomputable def gradComp_of_memH1 (u : L2VF_R3) (hu : memH1VF_R3 u) (a j : Fin
   -- MemSobolev 0 2 ↔ ∃ f' : L2C_R3, f = f' — extract the L² representative.
   (TemperedDistribution.memSobolev_zero_iff.mp hderiv).choose
 
-/-- Injectivity of the `Lp → 𝓢'` embedding: equal tempered distributions ⟹ equal `Lp` elements. -/
+/-- Injectivity of the `Lp → 𝓢'` embedding: equal tempered distributions ⟹ equal `Lp` elements.
+@isnad1 id=eq.1h2v.s13.a9c48ad2f0ca from=translated src=- shape=b0b67122 vocab=69e6d122
+-/
 theorem L2C_eq_of_toTempered_eq {f g : L2C_R3}
     (h : (f : 𝓢'(Domain3, ℂ)) = (g : 𝓢'(Domain3, ℂ))) : f = g := by
   have hker := MeasureTheory.Lp.ker_toTemperedDistributionCLM_eq_bot

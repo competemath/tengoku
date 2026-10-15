@@ -44,7 +44,9 @@ variable {x : ℂ}
 
 /-- **Right-side chord-to-tangent quotient limit.** Given `γ : ℝ → ℂ` with
 `HasDerivWithinAt γ L (Ioi t₀) t₀` and `γ(t₀) = s`, the chord quotient
-`(γ(t) - s) / (t - t₀)` tends to `L` as `t → t₀⁺`. -/
+`(γ(t) - s) / (t - t₀)` tends to `L` as `t → t₀⁺`.
+@isnad1 id=tendsto.2h4v.s7.a510f327b46c from=translated src=- shape=dc91001b vocab=bab506bd
+-/
 theorem chord_div_t_tendsto_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_at : γ t₀ = s) :
@@ -76,7 +78,9 @@ theorem chord_div_t_tendsto_right
 
 /-- **Left-side chord-to-tangent quotient limit.** Given `γ : ℝ → ℂ` with
 `HasDerivWithinAt γ L (Iio t₀) t₀` and `γ(t₀) = s`, the chord quotient
-`(γ(t) - s) / (t - t₀)` tends to `L` as `t → t₀⁻`. -/
+`(γ(t) - s) / (t - t₀)` tends to `L` as `t → t₀⁻`.
+@isnad1 id=tendsto.2h4v.s7.2377653581cf from=translated src=- shape=dc91001b vocab=17446e6b
+-/
 theorem chord_div_t_tendsto_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_at : γ t₀ = s) :
@@ -113,7 +117,9 @@ function `δ_right : ℝ → ℝ⁺` with `δ_right(ε) → 0⁺` as `ε → 0�
 This is a composition: `chord_div_t_tendsto_right` gives the limit
 `(γ(t) - s)/(t - t₀) → L_+` as `t → t₀⁺`, and the map
 `ε ↦ t₀ + δ_right(ε)` carries `𝓝[>] 0` to `𝓝[>] t₀` (since `δ_right > 0`
-and `δ_right → 0⁺`). -/
+and `δ_right → 0⁺`).
+@isnad1 id=tendsto.4h5v.s7.d5c541a57abd from=translated src=- shape=9ca91c8b vocab=9bf1993f
+-/
 theorem exit_chord_tendsto_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_at : γ t₀ = s)
@@ -138,7 +144,9 @@ theorem exit_chord_tendsto_right
 `(γ(t₀ - δ_left(ε)) - s) / (-δ_left(ε)) → L_-` as `ε → 0⁺`.
 
 (Note the sign: `t - t₀ = -δ_left(ε) < 0`, so dividing by `t - t₀` gives the
-right limit `L_-`. Equivalently, `(γ(t₀ - δ_left(ε)) - s) / δ_left(ε) → -L_-`.) -/
+right limit `L_-`. Equivalently, `(γ(t₀ - δ_left(ε)) - s) / δ_left(ε) → -L_-`.)
+@isnad1 id=tendsto.4h5v.s7.0dfa3b2a55ae from=translated src=- shape=2666ba13 vocab=3b26be6b
+-/
 theorem exit_chord_tendsto_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_at : γ t₀ = s)
@@ -161,7 +169,9 @@ theorem exit_chord_tendsto_left
 /-- **Normalized chord close to 1 (right side).** For any `ρ > 0`, eventually
 on `𝓝[>] t₀`, `‖(γ(t) - s) / (L · (t - t₀)) - 1‖ ≤ ρ`.
 
-This is the key chord-to-tangent estimate in normalized form. -/
+This is the key chord-to-tangent estimate in normalized form.
+@isnad1 id=eventual.4h5v.s7.a396b87464bf from=translated src=- shape=ffa8a350 vocab=f7e5e03e
+-/
 theorem normalized_chord_close_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0)
@@ -182,7 +192,9 @@ theorem normalized_chord_close_right
   rw [dist_eq_norm] at ht; exact ht.le
 
 /-- **Normalized chord close to 1 (left side).** Note the sign: on the left, the
-relevant tangent is `-L_-` and `t - t₀ < 0`, so we work with `(t₀ - t) > 0`. -/
+relevant tangent is `-L_-` and `t - t₀ < 0`, so we work with `(t₀ - t) > 0`.
+@isnad1 id=eventual.4h5v.s7.92f592374575 from=translated src=- shape=ffa8a350 vocab=66b4ed4b
+-/
 theorem normalized_chord_close_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0)
@@ -204,7 +216,9 @@ theorem normalized_chord_close_left
 
 /-- **Fixed-radius normalized chord bound (right side).** From the eventual
 bound, extract a positive radius `r > 0` such that the bound holds uniformly
-on `(t₀, t₀ + r]`. -/
+on `(t₀, t₀ + r]`.
+@isnad1 id=ex.4h5v.s7.db7711f9da2c from=translated src=- shape=c9d9193d vocab=7f5b49b5
+-/
 theorem exists_normalized_chord_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0)
@@ -223,7 +237,9 @@ theorem exists_normalized_chord_right
   rw [Metric.mem_ball, Real.dist_eq, abs_of_pos (by linarith [ht_in.1] : 0 < t - t₀)]
   linarith [ht_in.2]
 
-/-- **Fixed-radius normalized chord bound (left side).** -/
+/-- **Fixed-radius normalized chord bound (left side).**
+@isnad1 id=ex.4h5v.s7.1f37f1930265 from=translated src=- shape=81c7969a vocab=ea76364c
+-/
 theorem exists_normalized_chord_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0)
@@ -246,7 +262,9 @@ theorem exists_normalized_chord_left
 `‖w - 1‖ ≤ 1/4`, then `z / w ∈ slitPlane` (specifically `Re(z/w) > 0`).
 
 The proof uses `‖z/w - 1‖ = ‖z-w‖/‖w‖ ≤ (1/2)/(3/4) = 2/3 < 1`, giving
-`Re(z/w) > 0` via `|Re(z/w) - 1| ≤ |z/w - 1| < 1`. -/
+`Re(z/w) > 0` via `|Re(z/w) - 1| ≤ |z/w - 1| < 1`.
+@isnad1 id=mem.2h2v.s6.86d5c79e06e7 from=translated src=- shape=9dc38f62 vocab=148292b9
+-/
 theorem div_mem_slitPlane_of_close_to_one {z w : ℂ}
     (hz : ‖z - 1‖ ≤ 1 / 4) (hw : ‖w - 1‖ ≤ 1 / 4) :
     z / w ∈ Complex.slitPlane := by
@@ -290,7 +308,9 @@ all `a, b` with `t₀ < a ≤ b ≤ t₀ + r`, the chord quotient
 This follows from chord-to-tangent: the normalized quantities
 `(γ(b)-s)/(L·(b-t₀))` and `(γ(a)-s)/(L·(a-t₀))` are both close to `1` for
 `a, b` near `t₀⁺`, and their ratio (times positive real `(b-t₀)/(a-t₀)`) is
-in slitPlane. -/
+in slitPlane.
+@isnad1 id=ex.3h4v.s7.82c52b7f43f4 from=translated src=- shape=31b5a84c vocab=955c550e
+-/
 theorem exists_slitPlane_chord_quotient_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0) :
@@ -332,7 +352,9 @@ theorem exists_slitPlane_chord_quotient_right
 
 This is the FTC-relevant form: the FTC `segment_log_FTC` requires
 `(γ(t) - s) / (γ(a) - s) ∈ slitPlane` for `t ∈ [a, b]` (where `a` is the left
-endpoint). Here `b` is closer to `t₀`, so `γ(b) - s` is smaller in magnitude. -/
+endpoint). Here `b` is closer to `t₀`, so `γ(b) - s` is smaller in magnitude.
+@isnad1 id=ex.3h4v.s7.90e93d194645 from=translated src=- shape=dc8346e5 vocab=ab939e0a
+-/
 theorem exists_slitPlane_chord_quotient_left_forward
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0) :
@@ -368,7 +390,9 @@ theorem exists_slitPlane_chord_quotient_left_forward
   rw [h_ratio]
   exact ofReal_pos_mul_mem_slitPlane (div_pos_of_neg_of_neg hb_neg ha_neg) h_zw
 
-/-- **Right annular quotient arg convergence.** -/
+/-- **Right annular quotient arg convergence.**
+@isnad1 id=tendsto.6h6v.s8.47d237060005 from=translated src=- shape=3b101a94 vocab=135f2492
+-/
 theorem arg_right_annular_tendsto
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Ioi t₀) t₀) (h_at : γ t₀ = s) (hL : L ≠ 0)
@@ -396,7 +420,9 @@ theorem arg_right_annular_tendsto
       ((δ_right ε : ℝ) : ℂ) * ((γ (t₀ + r) - s) / (γ (t₀ + δ_right ε) - s)) from by ring]
   exact Complex.arg_real_mul _ hε
 
-/-- **Left annular quotient arg convergence.** -/
+/-- **Left annular quotient arg convergence.**
+@isnad1 id=tendsto.6h6v.s8.00434ee17b0e from=translated src=- shape=599d833f vocab=9f74f15f
+-/
 theorem arg_left_annular_tendsto
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Iio t₀) t₀) (h_at : γ t₀ = s) (_hL : L ≠ 0)

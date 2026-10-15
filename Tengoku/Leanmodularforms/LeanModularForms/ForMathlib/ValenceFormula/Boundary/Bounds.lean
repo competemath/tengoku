@@ -25,16 +25,25 @@ open scoped Real Interval
 
 noncomputable section
 
+/--
+@isnad1 id=eq.1h2v.s4.67af82f8ed4e from=translated src=- shape=09ae8919 vocab=78b0a9ee
+-/
 lemma fdBoundary_H_eq_seg1_H {H t : ℝ} (ht : t ≤ 1) :
     fdBoundary_H H t = fdBoundary_seg1_H H t := by
   simp only [fdBoundary_H, ht, ite_true, fdBoundary_seg1_H]
 
+/--
+@isnad1 id=eq.2h2v.s5.6b745e2174e5 from=translated src=- shape=c1fa7339 vocab=08162f39
+-/
 lemma fdBoundary_H_eq_seg2_H {t : ℝ} (H : ℝ)
     (ht1 : 1 < t) (ht2 : t ≤ 2) :
     fdBoundary_H H t = fdBoundary_seg2_H t := by
   simp only [fdBoundary_H, not_le.mpr ht1, ht2, ite_true, ite_false,
     fdBoundary_seg2_H, fdBoundary_seg2]
 
+/--
+@isnad1 id=eq.2h2v.s5.a41393fc0220 from=translated src=- shape=c1fa7339 vocab=8c84fe15
+-/
 lemma fdBoundary_H_eq_seg3_H {t : ℝ} (H : ℝ)
     (ht2 : 2 < t) (ht3 : t ≤ 3) :
     fdBoundary_H H t = fdBoundary_seg3_H t := by
@@ -42,6 +51,9 @@ lemma fdBoundary_H_eq_seg3_H {t : ℝ} (H : ℝ)
     not_le.mpr ht2, ht3, ite_true, ite_false,
     fdBoundary_seg3_H, fdBoundary_seg3]
 
+/--
+@isnad1 id=eq.2h2v.s5.4acad64d0f71 from=translated src=- shape=1dc7e815 vocab=75bd1a12
+-/
 lemma fdBoundary_H_eq_seg4_H {H t : ℝ}
     (ht3 : 3 < t) (ht4 : t ≤ 4) :
     fdBoundary_H H t = fdBoundary_seg4_H H t := by
@@ -49,6 +61,9 @@ lemma fdBoundary_H_eq_seg4_H {H t : ℝ}
     not_le.mpr (show (2:ℝ) < t by linarith), not_le.mpr ht3,
     ht4, ite_true, ite_false, fdBoundary_seg4_H]
 
+/--
+@isnad1 id=eq.1h2v.s4.fb191464686e from=translated src=- shape=a252a28b vocab=f1a625b3
+-/
 lemma fdBoundary_H_eq_seg5_H {H t : ℝ} (ht4 : 4 < t) :
     fdBoundary_H H t = fdBoundary_seg5_H H t := by
   simp only [fdBoundary_H, not_le.mpr (show (1:ℝ) < t by linarith),
@@ -141,6 +156,9 @@ private lemma seg3_re {t : ℝ} :
   rw [seg3_as_trig, add_re, ofReal_re, mul_re, ofReal_re, ofReal_im, I_re, I_im]
   ring
 
+/--
+@isnad1 id=lt.2h2v.s6.b6f41ad33991 from=translated src=- shape=a240c54a vocab=75769361
+-/
 lemma fdBoundary_H_im_pos (H : ℝ) (hH : Real.sqrt 3 / 2 < H) :
     ∀ t ∈ Icc (0 : ℝ) 5, 0 < (fdBoundary_H H t).im := by
   intro t ⟨ht0, ht5⟩
@@ -164,6 +182,9 @@ lemma fdBoundary_H_im_pos (H : ℝ) (hH : Real.sqrt 3 / 2 < H) :
   rw [fdBoundary_H_eq_seg5_H h4, seg5_H_im]
   linarith
 
+/--
+@isnad1 id=le.2h2v.s6.bf70d2684da5 from=translated src=- shape=f7d9a1eb vocab=f8778142
+-/
 lemma fdBoundary_H_im_ge_sqrt3_div_2 (H : ℝ) (hH : Real.sqrt 3 / 2 ≤ H) :
     ∀ t ∈ Icc (0 : ℝ) 5, Real.sqrt 3 / 2 ≤ (fdBoundary_H H t).im := by
   intro t ⟨ht0, ht5⟩
@@ -195,6 +216,9 @@ private lemma seg4_H_re {H t : ℝ} : (fdBoundary_seg4_H H t).re = -1 / 2 := by
 private lemma seg5_H_re {H t : ℝ} : (fdBoundary_seg5_H H t).re = t - 9 / 2 := by
   simp [fdBoundary_seg5_H]
 
+/--
+@isnad1 id=le.1h2v.s5.8f39c35ed3c3 from=translated src=- shape=80d2335a vocab=ac98550c
+-/
 lemma fdBoundary_H_re_abs_le_half (H : ℝ) :
     ∀ t ∈ Icc (0 : ℝ) 5, |Complex.re (fdBoundary_H H t)| ≤ 1 / 2 := by
   intro t ⟨ht0, ht5⟩
@@ -217,6 +241,9 @@ lemma fdBoundary_H_re_abs_le_half (H : ℝ) :
   rw [fdBoundary_H_eq_seg5_H h4, seg5_H_re, abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=le.2h2v.s5.b7e0e95f00de from=translated src=- shape=1d86d63e vocab=dfc4f9c5
+-/
 lemma fdBoundary_H_im_le_H {H : ℝ} (hH : 1 ≤ H) :
     ∀ t ∈ Icc (0 : ℝ) 5, (fdBoundary_H H t).im ≤ H := by
   intro t ⟨ht0, ht5⟩

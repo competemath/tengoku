@@ -40,6 +40,9 @@ def ellipticPointRhoPlusOne' : UpperHalfPlane :=
 /-- The T-translate `ρ + 1` as a complex number. -/
 abbrev ellipticPointRhoPlusOne : ℂ := (ellipticPointRhoPlusOne' : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s4.89a177338431 from=translated src=- shape=7132d4c4 vocab=6ba92002
+-/
 theorem ellipticPointRho_add_one_eq :
     ellipticPointRho + 1 = ellipticPointRhoPlusOne := by
   change (-1/2 + (Real.sqrt 3 / 2) * I : ℂ) + 1 = 1/2 + (Real.sqrt 3 / 2) * I
@@ -60,23 +63,38 @@ private lemma rho_plus_one_normSq_eq_one :
   rw [h1, Complex.normSq_add_mul_I]
   nlinarith [Real.sq_sqrt (show (3 : ℝ) ≥ 0 by norm_num)]
 
+/--
+@isnad1 id=eq.0h0v.s3.480f0c1ea6d1 from=translated src=- shape=b3c4969c vocab=a53fd7f8
+-/
 theorem ellipticPointRhoPlusOne_norm : ‖ellipticPointRhoPlusOne‖ = 1 := by
   change Real.sqrt (Complex.normSq _) = 1
   rw [rho_plus_one_normSq_eq_one, Real.sqrt_one]
 
+/--
+@isnad1 id=eq.0h0v.s3.01ec8b6351ca from=translated src=- shape=b3c4969c vocab=725b3984
+-/
 theorem ellipticPointRho_norm : ‖ellipticPointRho‖ = 1 := by
   change Real.sqrt (Complex.normSq _) = 1
   rw [rho_normSq_eq_one, Real.sqrt_one]
 
+/--
+@isnad1 id=mem.0h0v.s3.bf5b186d5093 from=translated src=- shape=d1530203 vocab=16257a5d
+-/
 theorem ellipticPointI_mem_fd : ellipticPointI' ∈ 𝒟 := by
   refine ⟨?_, ?_⟩
   · simp [ellipticPointI', Complex.normSq_I]
   · simp only [ellipticPointI', UpperHalfPlane.re]; norm_num
 
+/--
+@isnad1 id=mem.0h0v.s3.a4098fe64ae5 from=translated src=- shape=d1530203 vocab=33936d57
+-/
 theorem ellipticPointRho_mem_fd : ellipticPointRho' ∈ 𝒟 := by
   refine ⟨rho_normSq_eq_one.ge, ?_⟩
   simp only [ellipticPointRho', UpperHalfPlane.re]; norm_num
 
+/--
+@isnad1 id=ne.0h0v.s2.44003e1f10cb from=translated src=- shape=54c8eceb vocab=30211f67
+-/
 lemma ellipticPointI_ne_rho : ellipticPointI' ≠ ellipticPointRho' := by
   intro h
   have h1 : (ellipticPointI' : ℂ).re = (ellipticPointRho' : ℂ).re := by rw [h]

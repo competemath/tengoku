@@ -37,7 +37,9 @@ variable {f : ℂ → ℂ}
 set_option backward.isDefEq.respectTransparency false in
 /-- The `dslope` integral representation on a convex open set: when `f` is
 differentiable on `U` and both `c, w ∈ U` (so the segment `[c, w] ⊆ U`), then
-`dslope f c w` equals the integral of the derivative of `f` along the segment. -/
+`dslope f c w` equals the integral of the derivative of `f` along the segment.
+@isnad1 id=eq.5h4v.s8.e2072c53999d from=translated src=- shape=0016002b vocab=4c543178
+-/
 theorem dslope_eq_integral_deriv {U : Set ℂ} (hU : Convex ℝ U) (hU_open : IsOpen U)
     (hf : DifferentiableOn ℂ f U) {c w : ℂ} (hc : c ∈ U) (hw : w ∈ U) :
     dslope f c w = ∫ t in (0 : ℝ)..1, deriv f (c + t • (w - c)) := by

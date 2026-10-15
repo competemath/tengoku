@@ -44,7 +44,9 @@ def packingNumber {A : Type*} [PseudoMetricSpace A] (eps : ℝ) (s : Set A) : Wi
 
 variable {A : Type*} [PseudoMetricSpace A]
 
-/-- If `t` is an `eps1`-net and `eps1 ≤ eps2`, then `t` is also an `eps2`-net. -/
+/-- If `t` is an `eps1`-net and `eps1 ≤ eps2`, then `t` is also an `eps2`-net.
+@isnad1 id=isenet.2h5v.s5.e5638b5ef707 from=translated src=- shape=9a1b8ac1 vocab=ab076102
+-/
 lemma IsENet.mono_eps {t : Finset A} {eps1 eps2 : ℝ} {s : Set A}
     (h : IsENet t eps1 s) (heps : eps1 ≤ eps2) : IsENet t eps2 s := by
   intro x hx
@@ -56,7 +58,9 @@ lemma IsENet.mono_eps {t : Finset A} {eps1 eps2 : ℝ} {s : Set A}
 -/
 
 /-- A maximal packing is a covering: if no point of `s` can be added to a packing `t`,
-    then `t` is an `eps`-net for `s`. Requires `eps ≥ 0` for the closed ball condition. -/
+    then `t` is an `eps`-net for `s`. Requires `eps ≥ 0` for the closed ball condition.
+@isnad1 id=isenet.2h4v.s6.f0be75a6b2af from=translated src=- shape=ce606950 vocab=de00fdb9
+-/
 lemma isENet_of_maximal {t : Finset A} {eps : ℝ} {s : Set A}
     (heps : 0 ≤ eps)
     (hmax : ∀ a ∈ s, a ∉ t → ∃ x ∈ t, dist a x ≤ eps) :
@@ -71,13 +75,17 @@ lemma isENet_of_maximal {t : Finset A} {eps : ℝ} {s : Set A}
 ## Covering numbers for totally bounded sets
 -/
 
-/-- Helper: extract a natural number from a finite WithTop ℕ -/
+/-- Helper: extract a natural number from a finite WithTop ℕ
+@isnad1 id=ex.1h1v.s5.71be5c56d310 from=translated src=- shape=fb4dec0e vocab=4f66bbd5
+-/
 lemma WithTop.untop_of_lt_top {n : WithTop ℕ} (h : n < ⊤) : ∃ m : ℕ, n = m := by
   cases n with
   | top => simp at h
   | coe m => exact ⟨m, rfl⟩
 
-/-- For a totally bounded set, there exists a finite epsilon-net with points in s. -/
+/-- For a totally bounded set, there exists a finite epsilon-net with points in s.
+@isnad1 id=ex.2h3v.s5.8e3fd65f5c6b from=translated src=- shape=4a1f676d vocab=a5b97b4e
+-/
 lemma exists_finset_isENet_subset_of_totallyBounded {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset A, IsENet t eps s ∧ (t : Set A) ⊆ s := by
@@ -96,14 +104,18 @@ lemma exists_finset_isENet_subset_of_totallyBounded {eps : ℝ} {s : Set A}
     simp only [Finset.mem_coe] at hx
     exact ht_sub (ht_finite.mem_toFinset.mp hx)
 
-/-- For a totally bounded set, there exists a finite epsilon-net. -/
+/-- For a totally bounded set, there exists a finite epsilon-net.
+@isnad1 id=ex.2h3v.s5.93bb3a087785 from=translated src=- shape=7b6f7996 vocab=48a172cd
+-/
 lemma exists_finset_isENet_of_totallyBounded {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset A, IsENet t eps s :=
   (exists_finset_isENet_subset_of_totallyBounded heps hs).imp fun _ h => h.1
 
 /-- For a totally bounded set, there exists an optimal epsilon-net whose cardinality
-    equals the covering number. -/
+    equals the covering number.
+@isnad1 id=ex.2h3v.s5.18ae3c526689 from=translated src=- shape=93ef8e57 vocab=5432b31f
+-/
 lemma exists_optimal_enet {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset A, IsENet t eps s ∧ (t.card : WithTop ℕ) = coveringNumber eps s := by
@@ -116,7 +128,9 @@ lemma exists_optimal_enet {eps : ℝ} {s : Set A}
 /-- An eps-net inside s can be constructed from an (eps/2)-net by projecting points to s.
     For any (eps/2)-net t (possibly outside s), we project each point x ∈ t to some
     representative f(x) ∈ s ∩ closedBall(x, eps/2). The image f(t) is an eps-net for s
-    contained in s (by triangle inequality: eps/2 + eps/2 = eps), with |f(t)| ≤ |t|. -/
+    contained in s (by triangle inequality: eps/2 + eps/2 = eps), with |f(t)| ≤ |t|.
+@isnad1 id=ex.3h3v.s6.bbd0b7530732 from=translated src=- shape=565ad6f7 vocab=5939dd51
+-/
 lemma exists_enet_subset_from_half {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) (hsne : s.Nonempty) :
     ∃ t : Finset A, IsENet t eps s ∧ (t : Set A) ⊆ s ∧
@@ -187,17 +201,23 @@ variable {ι : Type*} [Fintype ι] [Nonempty ι]
 abbrev euclideanBall (R : ℝ) : Set (EuclideanSpace ℝ ι) := Metric.closedBall 0 R
 
 omit [Nonempty ι] in
-/-- The Euclidean ball is totally bounded (since it's compact in finite dimensions). -/
+/-- The Euclidean ball is totally bounded (since it's compact in finite dimensions).
+@isnad1 id=totallyb.0h2v.s5.3a02feae6ae9 from=translated src=- shape=e260248c vocab=8ab25dc0
+-/
 lemma euclideanBall_totallyBounded (R : ℝ) : TotallyBounded (euclideanBall R : Set (EuclideanSpace ℝ ι)) :=
   (ProperSpace.isCompact_closedBall 0 R).totallyBounded
 
 omit [Nonempty ι] in
-/-- The Euclidean ball is nonempty for non-negative radius. -/
+/-- The Euclidean ball is nonempty for non-negative radius.
+@isnad1 id=nonempty.1h2v.s4.0d69972ab1f1 from=translated src=- shape=689a782e vocab=a5e7f8b1
+-/
 lemma euclideanBall_nonempty {R : ℝ} (hR : 0 ≤ R) : (euclideanBall R : Set (EuclideanSpace ℝ ι)).Nonempty :=
   ⟨0, Metric.mem_closedBall_self hR⟩
 
 /-- If points x and y are ε-separated (dist x y > ε), then the closed balls of radius ε/2
-    around them are disjoint. -/
+    around them are disjoint.
+@isnad1 id=disjoint.2h4v.s6.9a4f5b74a69d from=translated src=- shape=06fb5bab vocab=6106c0c8
+-/
 lemma closedBall_half_disjoint {E : Type*} [PseudoMetricSpace E] {x y : E} {eps : ℝ}
     (_heps : 0 ≤ eps) (hsep : eps < dist x y) :
     Disjoint (Metric.closedBall x (eps / 2)) (Metric.closedBall y (eps / 2)) := by
@@ -205,7 +225,9 @@ lemma closedBall_half_disjoint {E : Type*} [PseudoMetricSpace E] {x y : E} {eps 
   calc eps / 2 + eps / 2 = eps := by ring
     _ < dist x y := hsep
 
-/-- For a packing, the half-radius balls around distinct points are pairwise disjoint. -/
+/-- For a packing, the half-radius balls around distinct points are pairwise disjoint.
+@isnad1 id=pairwise.2h4v.s6.c07f621e468b from=translated src=- shape=d25bc7cb vocab=b81a1d05
+-/
 lemma packing_halfBalls_pairwiseDisjoint {E : Type*} [PseudoMetricSpace E]
     {t : Finset E} {eps : ℝ} {s : Set E}
     (heps : 0 ≤ eps) (hpacking : IsPacking t eps s) :
@@ -214,7 +236,9 @@ lemma packing_halfBalls_pairwiseDisjoint {E : Type*} [PseudoMetricSpace E]
   have hsep := hpacking.2 hx hy hxy
   exact closedBall_half_disjoint heps hsep
 
-/-- A half-radius ball around a point in closedBall(0, R) is contained in closedBall(0, R + eps/2). -/
+/-- A half-radius ball around a point in closedBall(0, R) is contained in closedBall(0, R + eps/2).
+@isnad1 id=le.1h4v.s6.9522c9ec4385 from=translated src=- shape=f2d3c0da vocab=a5e4dbd9
+-/
 lemma halfBall_subset_enlargedBall {E : Type*} [SeminormedAddCommGroup E]
     {x : E} {R eps : ℝ} (hx : x ∈ Metric.closedBall (0 : E) R) :
     Metric.closedBall x (eps / 2) ⊆ Metric.closedBall (0 : E) (R + eps / 2) := by
@@ -228,7 +252,9 @@ lemma halfBall_subset_enlargedBall {E : Type*} [SeminormedAddCommGroup E]
     _ ≤ eps / 2 + R := by linarith [hz, hx]
     _ = R + eps / 2 := by ring
 
-/-- Union of half-balls around a packing in B(0, R) is contained in B(0, R + eps/2). -/
+/-- Union of half-balls around a packing in B(0, R) is contained in B(0, R + eps/2).
+@isnad1 id=le.2h5v.s7.274b2140c103 from=translated src=- shape=b0f87b03 vocab=e56350d3
+-/
 lemma packing_halfBalls_subset {E : Type*} [SeminormedAddCommGroup E]
     {t : Finset E} {R eps : ℝ} {s : Set E}
     (hpacking : IsPacking t eps s) (hs : s ⊆ Metric.closedBall (0 : E) R) :
@@ -241,7 +267,9 @@ lemma packing_halfBalls_subset {E : Type*} [SeminormedAddCommGroup E]
   exact halfBall_subset_enlargedBall hxR hzx
 
 omit [Nonempty ι] in
-/-- Key volume lemma: The volume of disjoint half-balls equals the sum of individual volumes. -/
+/-- Key volume lemma: The volume of disjoint half-balls equals the sum of individual volumes.
+@isnad1 id=eq.2h3v.s9.97413bd542b6 from=translated src=- shape=92e231e1 vocab=984d7355
+-/
 lemma volume_disjoint_union_closedBalls
     {t : Finset (EuclideanSpace ℝ ι)} {eps : ℝ} (_heps : 0 ≤ eps)
     (hpwd : (t : Set (EuclideanSpace ℝ ι)).PairwiseDisjoint
@@ -252,7 +280,9 @@ lemma volume_disjoint_union_closedBalls
     fun _ _ => measurableSet_closedBall
   exact measure_biUnion_finset hpwd hmeas
 
-/-- The volume of a closed ball in EuclideanSpace is proportional to r^d. -/
+/-- The volume of a closed ball in EuclideanSpace is proportional to r^d.
+@isnad1 id=eq.0h3v.s8.6beb29281008 from=translated src=- shape=89fca670 vocab=c06e2b6f
+-/
 lemma volume_closedBall_euclidean (x : EuclideanSpace ℝ ι) (r : ℝ) :
     MeasureTheory.volume (Metric.closedBall x r) =
     ENNReal.ofReal r ^ (Fintype.card ι) *
@@ -264,6 +294,9 @@ lemma volume_closedBall_euclidean (x : EuclideanSpace ℝ ι) (r : ℝ) :
 noncomputable def euclideanBallVolumeConst (d : ℕ) : ℝ :=
   Real.pi.sqrt ^ d / Real.Gamma (d / 2 + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.d5ae2e4ce83f from=translated src=- shape=b9369acb vocab=08a68d49
+-/
 lemma euclideanBallVolumeConst_pos (d : ℕ) : 0 < euclideanBallVolumeConst d := by
   unfold euclideanBallVolumeConst
   apply div_pos
@@ -271,7 +304,9 @@ lemma euclideanBallVolumeConst_pos (d : ℕ) : 0 < euclideanBallVolumeConst d :=
   · have h : (0 : ℝ) < (d : ℝ) / 2 + 1 := by positivity
     exact Real.Gamma_pos_of_pos h
 
-/-- The volume of a closed ball with radius r equals r^d times the unit ball volume. -/
+/-- The volume of a closed ball with radius r equals r^d times the unit ball volume.
+@isnad1 id=eq.1h3v.s8.9f534d68516a from=translated src=- shape=455e455f vocab=cc21d594
+-/
 lemma volume_closedBall_eq_rpow (x : EuclideanSpace ℝ ι) (r : ℝ) (hr : 0 ≤ r) :
     MeasureTheory.volume (Metric.closedBall x r) =
     ENNReal.ofReal (r ^ Fintype.card ι * euclideanBallVolumeConst (Fintype.card ι)) := by
@@ -289,7 +324,9 @@ lemma volume_closedBall_eq_rpow (x : EuclideanSpace ℝ ι) (r : ℝ) (hr : 0 �
   rw [← ENNReal.ofReal_mul (pow_nonneg hr _)]
 
 /-- Key cardinality bound: For a packing in B(0, R), we have
-    |t| ≤ ((R + ε/2) / (ε/2))^d = (1 + 2R/ε)^d -/
+    |t| ≤ ((R + ε/2) / (ε/2))^d = (1 + 2R/ε)^d
+@isnad1 id=le.3h4v.s7.5fc9cb9c14c9 from=translated src=- shape=cc0ff93d vocab=95874f2a
+-/
 lemma packing_card_bound_aux
     {t : Finset (EuclideanSpace ℝ ι)} {R eps : ℝ}
     (hR : 0 ≤ R) (heps : 0 < eps)
@@ -363,7 +400,9 @@ lemma packing_card_bound_aux
   rw [hdiv_eq] at hcancel
   exact hcancel
 
-/-- Main bound: For a packing, |t| ≤ (1 + 2R/ε)^d. -/
+/-- Main bound: For a packing, |t| ≤ (1 + 2R/ε)^d.
+@isnad1 id=le.3h4v.s7.74a154743d38 from=translated src=- shape=fa853097 vocab=cf22f57a
+-/
 lemma packing_card_bound
     {t : Finset (EuclideanSpace ℝ ι)} {R eps : ℝ}
     (hR : 0 ≤ R) (heps : 0 < eps)
@@ -377,7 +416,9 @@ lemma packing_card_bound
   exact h
 
 /-- A maximal packing is an ε-net: if no point of s can be added while maintaining
-    ε-separation, then the packing is an ε-net. -/
+    ε-separation, then the packing is an ε-net.
+@isnad1 id=isenet.3h4v.s6.8db99f75b150 from=translated src=- shape=a1dac5ca vocab=eadac262
+-/
 lemma maximal_packing_isENet {E : Type*} [PseudoMetricSpace E]
     {t : Finset E} {eps : ℝ} {s : Set E}
     (heps : 0 ≤ eps)
@@ -386,7 +427,9 @@ lemma maximal_packing_isENet {E : Type*} [PseudoMetricSpace E]
     IsENet t eps s :=
   isENet_of_maximal heps hmaximal
 
-/-- Any ε-separated subset of a totally bounded set is finite. -/
+/-- Any ε-separated subset of a totally bounded set is finite.
+@isnad1 id=finite.4h4v.s5.b04f5d594877 from=translated src=- shape=18077262 vocab=4579ca7a
+-/
 lemma separated_finite_of_totallyBounded {E : Type*} [PseudoMetricSpace E]
     {s : Set E} {eps : ℝ} (heps : 0 < eps) (hs : TotallyBounded s)
     {t : Set E} (ht_sub : t ⊆ s) (ht_sep : t.Pairwise (fun x y => eps < dist x y)) :
@@ -429,7 +472,9 @@ lemma separated_finite_of_totallyBounded {E : Type*} [PseudoMetricSpace E]
   have hfin_t : Finite t := Finite.of_injective f hf_inj
   exact Set.finite_coe_iff.mp hfin_t
 
-/-- The existence of a maximal packing in a totally bounded set. -/
+/-- The existence of a maximal packing in a totally bounded set.
+@isnad1 id=ex.2h3v.s6.44979e241630 from=translated src=- shape=0a97c0d2 vocab=9d0dac20
+-/
 lemma exists_maximal_packing {E : Type*} [PseudoMetricSpace E]
     {s : Set E} (eps : ℝ) (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset E, IsPacking t eps s ∧
@@ -560,6 +605,9 @@ variable {d : ℕ}
 
 -- MeasurableSpace for Option (Fin d) using discrete sigma-algebra
 instance instMeasurableSpaceOptionFin (d : ℕ) : MeasurableSpace (Option (Fin d)) := ⊤
+/--
+@isnad1 id=measurab.0h1v.s3.a48447a89376 from=translated src=- shape=36b3d148 vocab=1b0a1c9f
+-/
 instance instMeasurableSingletonClassOptionFin (d : ℕ) : MeasurableSingletonClass (Option (Fin d)) :=
   ⟨fun _ => trivial⟩
 
@@ -571,12 +619,18 @@ def l1Ball (R : ℝ) : Set (EuclideanSpace ℝ (Fin d)) := {x | l1norm x ≤ R}
 -- deterministic sign (+1 for nonnegative, -1 for negative)
 noncomputable def sgn (x : ℝ) : ℝ := if 0 ≤ x then 1 else -1
 
+/--
+@isnad1 id=eq.0h1v.s4.8405aa1703b1 from=translated src=- shape=bc3eac35 vocab=b4a93424
+-/
 lemma abs_mul_sgn (x : ℝ) : |x| * sgn x = x := by
   by_cases hx : 0 ≤ x
   · simp [sgn, hx, abs_of_nonneg hx]
   · have hx' : x < 0 := lt_of_not_ge hx
     simp [sgn, hx, abs_of_neg hx']
 
+/--
+@isnad1 id=eq.0h1v.s4.3fa0d4d62118 from=translated src=- shape=98bba06a vocab=fb8710a7
+-/
 lemma sgn_sq (x : ℝ) : sgn x ^ 2 = 1 := by
   by_cases hx : 0 ≤ x <;> simp [sgn, hx]
 
@@ -596,9 +650,15 @@ noncomputable def embed (θ : EuclideanSpace ℝ (Fin d)) : Option (Fin d) → O
   | none => none
   | some j => some (j, decide (0 ≤ θ j))
 
+/--
+@isnad1 id=eq.0h1v.s4.9175caf5d48c from=translated src=- shape=f60b2653 vocab=aebd7df1
+-/
 lemma sgnBool_decide (x : ℝ) : sgnBool (decide (0 ≤ x)) = sgn x := by
   by_cases hx : 0 ≤ x <;> simp [sgnBool, sgn, hx]
 
+/--
+@isnad1 id=eq.0h4v.s4.e3569b7f617e from=translated src=- shape=d810078f vocab=9bb967ab
+-/
 lemma vec_embed (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (o : Option (Fin d)) :
     vec R (embed θ o) = vecθ θ R o := by
   cases o <;> simp [embed, vec, vecθ, sgnBool_decide]
@@ -611,6 +671,9 @@ noncomputable def avgθ (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) (f
     EuclideanSpace ℝ (Fin d) :=
   (1 / (k : ℝ)) • ∑ i, vecθ θ R (f i)
 
+/--
+@isnad1 id=eq.0h5v.s5.3952d66b0a5a from=translated src=- shape=06e57b0f vocab=3b29d65c
+-/
 lemma avg_embed (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d)) :
     avg R k (fun i => embed θ (f i)) = avgθ θ R k f := by
   simp [avg, avgθ, vec_embed]
@@ -620,6 +683,9 @@ noncomputable def l1Net (R : ℝ) (k : ℕ) : Finset (EuclideanSpace ℝ (Fin d)
   classical
   exact (Finset.univ.image (avg R k))
 
+/--
+@isnad1 id=le.0h3v.s5.f669712dae1f from=translated src=- shape=eea95aa0 vocab=9fc72846
+-/
 lemma l1Net_card_le (R : ℝ) (k : ℕ) :
     (l1Net (d := d) R k).card ≤ (2 * d + 1) ^ k := by
   classical
@@ -692,6 +758,9 @@ noncomputable def l1pmf (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (hθ : l1nor
       rw [hsum_real, ENNReal.ofReal_one] 
 
 -- expectation of coordinate for base pmf
+/--
+@isnad1 id=eq.2h4v.s7.b66de2e1d2d1 from=translated src=- shape=3d516d4a vocab=4ae66c0a
+-/
 lemma l1pmf_mean_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
     (hθ : l1norm θ ≤ R) (j : Fin d) :
     ∫ o, (vecθ θ R o) j ∂(l1pmf θ R hθ).toMeasure = θ j := by
@@ -717,6 +786,9 @@ lemma l1pmf_mean_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
   field_simp
   rw [abs_mul_sgn] 
 
+/--
+@isnad1 id=eq.2h4v.s7.80c14b8d7c14 from=translated src=- shape=16faa315 vocab=047107d3
+-/
 lemma l1pmf_second_moment_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
     (hθ : l1norm θ ≤ R) (j : Fin d) :
     ∫ o, ((vecθ θ R o) j) ^ 2 ∂(l1pmf θ R hθ).toMeasure = R * ‖θ j‖ := by
@@ -750,6 +822,9 @@ lemma l1pmf_second_moment_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR 
   ring
 
 -- Main bound: existence of close average
+/--
+@isnad1 id=ex.4h5v.s7.10286fd73115 from=translated src=- shape=7a8254bc vocab=313bbfbb
+-/
 lemma exists_avgθ_close (θ : EuclideanSpace ℝ (Fin d)) {R eps : ℝ} (hR : 0 < R)
     (hε : 0 < eps) (hθ : l1norm θ ≤ R) (k : ℕ) (hk : R ^ 2 ≤ (k : ℝ) * eps ^ 2) :
     ∃ f : Fin k → Option (Fin d), dist (avgθ θ R k f) θ ≤ eps := by
@@ -985,14 +1060,18 @@ separates coordinates into those with large magnitude (> τ) and small magnitude
 noncomputable def largeCoords (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) : Finset (Fin d) :=
   Finset.filter (fun j => τ < ‖θ j‖) Finset.univ
 
-/-- The ℓ₁ norm decomposes as sum over large coordinates plus sum over small coordinates -/
+/-- The ℓ₁ norm decomposes as sum over large coordinates plus sum over small coordinates
+@isnad1 id=eq.0h3v.s6.65bc5327e2d9 from=translated src=- shape=c6da5390 vocab=68c94bea
+-/
 lemma l1norm_eq_sum_large_add_small (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
     l1norm θ = ∑ j ∈ largeCoords θ τ, ‖θ j‖ + ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ := by
   unfold l1norm largeCoords
   rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (fun j => τ < ‖θ j‖) (fun j => ‖θ j‖)]
   simp only [Finset.compl_filter]
 
-/-- Sum over small coordinates is at most the full ℓ₁ norm -/
+/-- Sum over small coordinates is at most the full ℓ₁ norm
+@isnad1 id=le.0h3v.s6.2da2f9844157 from=translated src=- shape=f071302e vocab=22fb7b19
+-/
 lemma sum_small_coords_le_l1norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
     ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ ≤ l1norm θ := by
   unfold l1norm
@@ -1000,13 +1079,17 @@ lemma sum_small_coords_le_l1norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
   intro x
   exact norm_nonneg _
 
-/-- Sum over small coordinates is bounded by 2R when θ is in the ℓ₁-ball of radius 2R -/
+/-- Sum over small coordinates is bounded by 2R when θ is in the ℓ₁-ball of radius 2R
+@isnad1 id=le.1h4v.s6.828ff8377658 from=translated src=- shape=ebae937d vocab=6617f07a
+-/
 lemma sum_small_coords_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hθ : l1norm θ ≤ 2 * R) :
     ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ ≤ 2 * R :=
   le_trans (sum_small_coords_le_l1norm θ τ) hθ
 
-/-- Cauchy-Schwarz: sum of |θ j| over large coordinates is at most √|S| · ‖θ‖₂ -/
+/-- Cauchy-Schwarz: sum of |θ j| over large coordinates is at most √|S| · ‖θ‖₂
+@isnad1 id=le.0h3v.s6.04ccc580b5ba from=translated src=- shape=009d3304 vocab=2eede0b9
+-/
 lemma sum_large_coords_le_sqrt_card_mul_norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
     ∑ j ∈ largeCoords θ τ, ‖θ j‖ ≤ Real.sqrt (largeCoords θ τ).card * ‖θ‖ := by
   -- Apply Cauchy-Schwarz: ∑ 1·|θⱼ| ≤ √(∑ 1²) · √(∑ |θⱼ|²)
@@ -1030,7 +1113,9 @@ lemma sum_large_coords_le_sqrt_card_mul_norm (θ : EuclideanSpace ℝ (Fin d)) (
         apply mul_le_mul_of_nonneg_left hpart_le_whole
         exact Real.sqrt_nonneg _
 
-/-- Cardinality of large coordinates satisfies |S| · τ < 2R + τ -/
+/-- Cardinality of large coordinates satisfies |S| · τ < 2R + τ
+@isnad1 id=lt.2h4v.s6.fc344b9bb9ac from=translated src=- shape=419947db vocab=074cf79e
+-/
 lemma largeCoords_card_mul_lt (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     (largeCoords θ τ).card * τ < 2 * R + τ := by
@@ -1053,7 +1138,9 @@ lemma largeCoords_card_mul_lt (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : 
     _ ≤ 2 * R := hθ
     _ < 2 * R + τ := by linarith
 
-/-- If |S| · τ < 2R + τ and τ > 0, then |S| < 2R/τ + 1 -/
+/-- If |S| · τ < 2R + τ and τ > 0, then |S| < 2R/τ + 1
+@isnad1 id=lt.2h4v.s6.5173cbcbb8a5 from=translated src=- shape=8c395e5f vocab=38098a1b
+-/
 lemma largeCoords_card_lt_div_add_one (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     ((largeCoords θ τ).card : ℝ) < 2 * R / τ + 1 := by
@@ -1065,7 +1152,9 @@ lemma largeCoords_card_lt_div_add_one (θ : EuclideanSpace ℝ (Fin d)) (τ : �
   have heq : (2 * R + τ) / τ = 2 * R / τ + 1 := by field_simp
   linarith
 
-/-- Square root of cardinality bound: √|S| ≤ √(2R/τ + 1) -/
+/-- Square root of cardinality bound: √|S| ≤ √(2R/τ + 1)
+@isnad1 id=le.2h4v.s6.8dc38ed07f5e from=translated src=- shape=8e1c9ca4 vocab=0fe25e29
+-/
 lemma sqrt_largeCoords_card_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     Real.sqrt (largeCoords θ τ).card ≤ Real.sqrt (2 * R / τ + 1) := by
@@ -1074,7 +1163,9 @@ lemma sqrt_largeCoords_card_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R :
   linarith
 
 /-- Peeling inequality: for θ in B₁(2R) and τ > 0,
-    ‖θ‖₁ ≤ √(2R/τ + 1) · ‖θ‖₂ + 2R -/
+    ‖θ‖₁ ≤ √(2R/τ + 1) · ‖θ‖₂ + 2R
+@isnad1 id=le.2h4v.s7.51a0bb4ea5d9 from=translated src=- shape=f4770f62 vocab=4143f010
+-/
 theorem l1_peeling_inequality (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     l1norm θ ≤ Real.sqrt (2 * R / τ + 1) * ‖θ‖ + 2 * R := by
@@ -1089,7 +1180,9 @@ theorem l1_peeling_inequality (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
   have h2 : ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ ≤ 2 * R := sum_small_coords_le θ τ R hθ
   linarith
 
-/-- √(a + b) ≤ √a + √b for non-negative a, b -/
+/-- √(a + b) ≤ √a + √b for non-negative a, b
+@isnad1 id=le.2h2v.s5.89638037d61c from=translated src=- shape=e44816be vocab=c24bb1bf
+-/
 lemma sqrt_add_le_peeling {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Real.sqrt (a + b) ≤ Real.sqrt a + Real.sqrt b := by
   have hsum_nonneg : 0 ≤ Real.sqrt a + Real.sqrt b := by
@@ -1105,7 +1198,9 @@ lemma sqrt_add_le_peeling {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     exact Real.sqrt_nonneg b
   linarith
 
-/-- Alternative form of peeling inequality using τ^(-1/2) notation -/
+/-- Alternative form of peeling inequality using τ^(-1/2) notation
+@isnad1 id=le.3h4v.s7.18fdea650b50 from=translated src=- shape=216ec189 vocab=482afa03
+-/
 theorem l1_peeling_inequality' (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
     (hτ : 0 < τ) (hR : 0 ≤ R) (hθ : l1norm θ ≤ 2 * R) :
     l1norm θ ≤ Real.sqrt (2 * R) * τ ^ (-(1:ℝ)/2) * ‖θ‖ + ‖θ‖ + 2 * R := by
@@ -1143,7 +1238,9 @@ section LipschitzImage
 
 variable {A B : Type*} [PseudoMetricSpace A] [PseudoMetricSpace B]
 
-/-- An ε-net for a set S induces an ε·L-net for the image f(S) under an L-Lipschitz map. -/
+/-- An ε-net for a set S induces an ε·L-net for the image f(S) under an L-Lipschitz map.
+@isnad1 id=isenet.3h7v.s6.3f8dfd3da22a from=translated src=- shape=922b1868 vocab=79ce889d
+-/
 lemma IsENet.image_of_lipschitz [DecidableEq B] {L : ℝ} (hL : 0 ≤ L) {f : A → B}
     (hf : ∀ x y : A, dist (f x) (f y) ≤ L * dist x y)
     {t : Finset A} {eps : ℝ} {s : Set A}

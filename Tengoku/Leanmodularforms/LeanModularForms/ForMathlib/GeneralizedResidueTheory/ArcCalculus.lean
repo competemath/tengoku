@@ -40,7 +40,9 @@ private lemma unitArc_angle_hasDerivAt (θ₁ θ₂ a b t : ℝ) (hab : b - a �
       ((θ₂ - θ₁) / (b - a)) t := hval ▸ hd.mul_const (θ₂ - θ₁)
   exact h1.const_add θ₁
 
-/-- Derivative of the unit arc. -/
+/-- Derivative of the unit arc.
+@isnad1 id=hasderiv.1h5v.s6.1d9b045b9011 from=translated src=- shape=882ffd22 vocab=76bf73d9
+-/
 theorem unitArc_hasDerivAt (θ₁ θ₂ a b t : ℝ) (hab : a < b) :
     HasDerivAt (unitArc θ₁ θ₂ a b)
       (unitArc θ₁ θ₂ a b t * (↑((θ₂ - θ₁) / (b - a)) * I)) t := by
@@ -50,11 +52,15 @@ theorem unitArc_hasDerivAt (θ₁ θ₂ a b t : ℝ) (hab : a < b) :
   simp only [unitArc]
   exact (hlift.mul_const I).cexp
 
-/-- sin is positive on the open interval (0, π). -/
+/-- sin is positive on the open interval (0, π).
+@isnad1 id=lt.1h1v.s4.4d61d26d53ac from=translated src=- shape=5096659d vocab=569d8727
+-/
 theorem sin_pos_of_mem_Ioo_zero_pi {θ : ℝ} (hθ : θ ∈ Ioo 0 π) : 0 < Real.sin θ :=
   Real.sin_pos_of_pos_of_lt_pi hθ.1 hθ.2
 
-/-- |cos θ| ≤ 1/2 for θ ∈ [π/3, 2π/3]. -/
+/-- |cos θ| ≤ 1/2 for θ ∈ [π/3, 2π/3].
+@isnad1 id=le.1h1v.s6.80c05ee8694e from=translated src=- shape=bd10823d vocab=50ac21a1
+-/
 theorem abs_cos_le_half_of_mem_Icc {θ : ℝ} (hθ : θ ∈ Icc (π / 3) (2 * π / 3)) :
     |Real.cos θ| ≤ 1 / 2 := by
   have hpi := Real.pi_pos

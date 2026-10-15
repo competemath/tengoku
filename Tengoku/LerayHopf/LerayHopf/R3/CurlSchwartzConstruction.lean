@@ -68,7 +68,9 @@ private theorem compLpL_comp_compLpL
 
 /-- Round-trip H1: projecting the assembled field onto its `i`-th component recovers
 `u i`.  Mathematically `(EuclideanSpace.single j 1) i = δ_{ij}`, so the sum collapses
-to the `i`-th summand. -/
+to the `i`-th summand.
+@isnad1 id=eq.0h2v.s16.d70baadeb925 from=translated src=- shape=efca3abd vocab=36e3f857
+-/
 theorem L2VF_projComponent_ofComponents
     (u : Fin 3 → Lp ℝ 2 (volume : Measure Domain3)) (i : Fin 3) :
     L2VF_projComponent_R3 i (L2VF_ofComponents u) = u i := by
@@ -165,7 +167,9 @@ def CurlSchwartzDense : Prop :=
     (Submodule.span ℝ (Set.range curlSchwartzL2)).topologicalClosure
 
 /-- A2'.  Round-trip for `curlSchwartzL2`: the `j`-th component of `curlSchwartzL2 ψ`
-is exactly the L²-class of the `j`-th curl component. -/
+is exactly the L²-class of the `j`-th curl component.
+@isnad1 id=eq.0h2v.s16.535a4aa1888c from=translated src=- shape=09463bb1 vocab=da9c9403
+-/
 theorem curlSchwartzL2_projComponent
     (ψ : Fin 3 → SchwartzMap Domain3 ℝ) (j : Fin 3) :
     L2VF_projComponent_R3 j (curlSchwartzL2 ψ)

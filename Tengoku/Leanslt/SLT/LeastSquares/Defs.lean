@@ -41,7 +41,9 @@ def IsStarShaped (H : Set (X → ℝ)) : Prop :=
 noncomputable def empiricalNorm (n : ℕ) (f : Fin n → ℝ) : ℝ :=
   Real.sqrt ((n : ℝ)⁻¹ * ∑ k : Fin n, f k ^ 2)
 
-/-- The squared empirical norm equals n⁻¹ Σᵢ fᵢ² -/
+/-- The squared empirical norm equals n⁻¹ Σᵢ fᵢ²
+@isnad1 id=eq.0h2v.s6.f982a524f013 from=translated src=- shape=4e91935a vocab=6126991f
+-/
 lemma empiricalNorm_sq (n : ℕ) (f : Fin n → ℝ) :
     (empiricalNorm n f) ^ 2 = (n : ℝ)⁻¹ * ∑ k : Fin n, f k ^ 2 := by
   unfold empiricalNorm
@@ -50,16 +52,22 @@ lemma empiricalNorm_sq (n : ℕ) (f : Fin n → ℝ) :
   · exact inv_nonneg.mpr (Nat.cast_nonneg n)
   · exact sum_nonneg fun i _ => sq_nonneg _
 
-/-- Empirical norm is non-negative -/
+/-- Empirical norm is non-negative
+@isnad1 id=le.0h2v.s4.09d21ee57b43 from=translated src=- shape=42a2b5ba vocab=551183e2
+-/
 lemma empiricalNorm_nonneg (n : ℕ) (f : Fin n → ℝ) : 0 ≤ empiricalNorm n f :=
   Real.sqrt_nonneg _
 
-/-- Empirical norm of zero is zero -/
+/-- Empirical norm of zero is zero
+@isnad1 id=eq.0h1v.s5.91f5d3d7cfc0 from=translated src=- shape=1e328ab6 vocab=3a73142a
+-/
 lemma empiricalNorm_zero (n : ℕ) : empiricalNorm n (0 : Fin n → ℝ) = 0 := by
   unfold empiricalNorm
   simp
 
-/-- Empirical norm is symmetric under negation: ‖-f‖_n = ‖f‖_n -/
+/-- Empirical norm is symmetric under negation: ‖-f‖_n = ‖f‖_n
+@isnad1 id=eq.0h2v.s4.a8ee35032084 from=translated src=- shape=fabe8457 vocab=402270fa
+-/
 lemma empiricalNorm_neg (n : ℕ) (f : Fin n → ℝ) : empiricalNorm n (-f) = empiricalNorm n f := by
   unfold empiricalNorm
   congr 2
@@ -91,7 +99,9 @@ noncomputable instance instDist (n : ℕ) : Dist (EmpiricalSpace n) where
 noncomputable instance instEDist (n : ℕ) : EDist (EmpiricalSpace n) where
   edist a b := ENNReal.ofReal (dist a b)
 
-/-- dist(a, a) = 0 -/
+/-- dist(a, a) = 0
+@isnad1 id=eq.0h2v.s4.d8f2276ee629 from=translated src=- shape=f04f0bdd vocab=1e512b15
+-/
 lemma dist_self (n : ℕ) (a : EmpiricalSpace n) : dist a a = 0 := by
   show empiricalNorm n (a - a) = 0
   have h : (a - a : EmpiricalSpace n) = 0 := by
@@ -101,7 +111,9 @@ lemma dist_self (n : ℕ) (a : EmpiricalSpace n) : dist a a = 0 := by
   rw [h]
   exact empiricalNorm_zero n
 
-/-- dist(a, b) = dist(b, a) -/
+/-- dist(a, b) = dist(b, a)
+@isnad1 id=eq.0h3v.s4.c5d2b37eb470 from=translated src=- shape=c2041b2c vocab=1e512b15
+-/
 lemma dist_comm (n : ℕ) (a b : EmpiricalSpace n) : dist a b = dist b a := by
   show empiricalNorm n (a - b) = empiricalNorm n (b - a)
   have h : (a - b : EmpiricalSpace n) = -(b - a) := by
@@ -111,11 +123,15 @@ lemma dist_comm (n : ℕ) (a b : EmpiricalSpace n) : dist a b = dist b a := by
   rw [h]
   exact empiricalNorm_neg n _
 
-/-- dist(a, b) ≥ 0 -/
+/-- dist(a, b) ≥ 0
+@isnad1 id=le.0h3v.s4.821347792cfd from=translated src=- shape=d54af1f1 vocab=8e8d6bc2
+-/
 lemma dist_nonneg (n : ℕ) (a b : EmpiricalSpace n) : 0 ≤ dist a b :=
   empiricalNorm_nonneg n (a - b)
 
-/-- Triangle inequality: dist(a, c) ≤ dist(a, b) + dist(b, c) -/
+/-- Triangle inequality: dist(a, c) ≤ dist(a, b) + dist(b, c)
+@isnad1 id=le.0h4v.s5.f72bb0c1fd03 from=translated src=- shape=f16bab82 vocab=faa97b24
+-/
 lemma dist_triangle (n : ℕ) (a b c : EmpiricalSpace n) :
     dist a c ≤ dist a b + dist b c := by
   show empiricalNorm n (a - c) ≤ empiricalNorm n (a - b) + empiricalNorm n (b - c)
@@ -161,7 +177,9 @@ lemma dist_triangle (n : ℕ) (a b c : EmpiricalSpace n) :
   rw [h_eq]
   exact norm_add_le (a' - b') (b' - c')
 
-/-- edist is well-defined -/
+/-- edist is well-defined
+@isnad1 id=eq.0h3v.s4.15b812880968 from=translated src=- shape=c02ece60 vocab=6daed5b1
+-/
 lemma edist_dist (n : ℕ) (a b : EmpiricalSpace n) :
     edist a b = ENNReal.ofReal (dist a b) := rfl
 
@@ -178,9 +196,15 @@ def toFun (n : ℕ) (v : EmpiricalSpace n) : Fin n → ℝ := v
 /-- Coercion from Fin n → ℝ to EmpiricalSpace -/
 def ofFun (n : ℕ) (v : Fin n → ℝ) : EmpiricalSpace n := v
 
+/--
+@isnad1 id=eq.0h2v.s4.e671fac136d0 from=translated src=- shape=fdec4105 vocab=e0f3206a
+-/
 @[simp]
 lemma toFun_ofFun (n : ℕ) (v : Fin n → ℝ) : toFun n (ofFun n v) = v := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.b484d6bd3f0b from=translated src=- shape=6ddf6d3e vocab=c91c6a87
+-/
 @[simp]
 lemma ofFun_toFun (n : ℕ) (v : EmpiricalSpace n) : ofFun n (toFun n v) = v := rfl
 
@@ -191,7 +215,9 @@ This is the evaluation at sample points: g ↦ (g(x₁), ..., g(xₙ)). -/
 def empiricalMetricImage {X : Type*} (n : ℕ) (x : Fin n → X) (g : X → ℝ) : EmpiricalSpace n :=
   fun i => g (x i)
 
-/-- The distance between empiricalMetricImages equals the empirical norm of pointwise differences -/
+/-- The distance between empiricalMetricImages equals the empirical norm of pointwise differences
+@isnad1 id=eq.0h5v.s5.9f7243c9ee5a from=translated src=- shape=ec028f10 vocab=2fb14c90
+-/
 lemma dist_empiricalMetricImage {X : Type*} (n : ℕ) (x : Fin n → X) (g₁ g₂ : X → ℝ) :
     dist (empiricalMetricImage n x g₁) (empiricalMetricImage n x g₂) =
     empiricalNorm n (fun i => g₁ (x i) - g₂ (x i)) := by
@@ -215,12 +241,16 @@ def satisfiesCriticalInequality (n : ℕ) (σ δ : ℝ) (H : Set (X → ℝ)) (x
 def shiftedClass (F : Set (X → ℝ)) (f_star : X → ℝ) : Set (X → ℝ) :=
   {h | ∃ f ∈ F, h = f - f_star}
 
-/-- f - f* is in the shifted class when f ∈ F -/
+/-- f - f* is in the shifted class when f ∈ F
+@isnad1 id=mem.1h4v.s6.22722e70dd6b from=translated src=- shape=ef656ffd vocab=e900755b
+-/
 lemma mem_shiftedClass_of_mem {F : Set (X → ℝ)} {f_star f : X → ℝ} (hf : f ∈ F) :
     f - f_star ∈ shiftedClass F f_star :=
   ⟨f, hf, rfl⟩
 
-/-- 0 is in the shifted class when f* ∈ F -/
+/-- 0 is in the shifted class when f* ∈ F
+@isnad1 id=mem.1h3v.s5.65c385a19abc from=translated src=- shape=b2a4cb8f vocab=9e643e31
+-/
 lemma zero_mem_shiftedClass_of_f_star_mem {F : Set (X → ℝ)} {f_star : X → ℝ} (hf : f_star ∈ F) :
     (0 : X → ℝ) ∈ shiftedClass F f_star := by
   use f_star, hf
@@ -234,7 +264,9 @@ def isLeastSquaresEstimator {n : ℕ} (y : Fin n → ℝ) (F : Set (X → ℝ)) 
     (f_hat : X → ℝ) : Prop :=
   f_hat ∈ F ∧ ∀ f ∈ F, ∑ i, (y i - f_hat (x i))^2 ≤ ∑ i, (y i - f (x i))^2
 
-/-- The optimality condition of least squares -/
+/-- The optimality condition of least squares
+@isnad1 id=le.2h7v.s7.5c25ee7afa05 from=translated src=- shape=173555d7 vocab=9fdd1a50
+-/
 lemma isLeastSquaresEstimator.le_of_mem {n : ℕ} {y : Fin n → ℝ} {F : Set (X → ℝ)} {x : Fin n → X}
     {f_hat : X → ℝ} (h : isLeastSquaresEstimator y F x f_hat) {f : X → ℝ} (hf : f ∈ F) :
     ∑ i, (y i - f_hat (x i))^2 ≤ ∑ i, (y i - f (x i))^2 :=
@@ -268,16 +300,22 @@ y_i = f*(x_i) + σ * w_i -/
 def RegressionModel.response (M : RegressionModel n X) (w : Fin n → ℝ) : Fin n → ℝ :=
   fun i => M.f_star (M.x i) + M.σ * w i
 
-/-- Response at index i equals f*(x_i) + σ * w_i -/
+/-- Response at index i equals f*(x_i) + σ * w_i
+@isnad1 id=eq.0h5v.s5.b2501d581e50 from=translated src=- shape=77379346 vocab=3e1ae16f
+-/
 @[simp]
 lemma RegressionModel.response_apply (M : RegressionModel n X) (w : Fin n → ℝ) (i : Fin n) :
     M.response w i = M.f_star (M.x i) + M.σ * w i := rfl
 
-/-- σ² is positive -/
+/-- σ² is positive
+@isnad1 id=lt.0h3v.s5.c5fca176fe5c from=translated src=- shape=f6fcfd4a vocab=ae1ad444
+-/
 lemma RegressionModel.sq_σ_pos (M : RegressionModel n X) : 0 < M.σ ^ 2 :=
   sq_pos_of_pos M.hσ_pos
 
-/-- σ is non-negative -/
+/-- σ is non-negative
+@isnad1 id=le.0h3v.s4.103a86e6c6b4 from=translated src=- shape=0aa558cf vocab=94edf3ce
+-/
 lemma RegressionModel.σ_nonneg (M : RegressionModel n X) : 0 ≤ M.σ :=
   le_of_lt M.hσ_pos
 

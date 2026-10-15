@@ -66,7 +66,9 @@ variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 /-- Auxiliary: if a projection `P : V →ₗ[K] V` restricts to the identity on a
 submodule `S` (i.e. `P ∘ₗ S.subtype = S.subtype`), then the tensor map
-`map P id` fixes every element of `range (map S.subtype id)`. -/
+`map P id` fixes every element of `range (map S.subtype id)`.
+@isnad1 id=eq.2h5v.s10.27f44f9edb9c from=translated src=- shape=c64e60c1 vocab=26513ea6
+-/
 theorem map_proj_id_fix_of_mem_range
     {S : Submodule K V} {P : V →ₗ[K] V} (hP : P ∘ₗ S.subtype = S.subtype)
     {x : TensorProduct K V V}
@@ -75,7 +77,9 @@ theorem map_proj_id_fix_of_mem_range
   obtain ⟨y, rfl⟩ := hx
   rw [TensorProduct.map_map, hP, LinearMap.comp_id]
 
-/-- Auxiliary: symmetric version for the second tensor slot. -/
+/-- Auxiliary: symmetric version for the second tensor slot.
+@isnad1 id=eq.2h5v.s10.a0cc738e0016 from=translated src=- shape=1efef1c6 vocab=26513ea6
+-/
 theorem map_id_proj_fix_of_mem_range
     {S : Submodule K V} {P : V →ₗ[K] V} (hP : P ∘ₗ S.subtype = S.subtype)
     {x : TensorProduct K V V}
@@ -89,7 +93,9 @@ of `V ⊗ S` intersect in exactly the image of `S ⊗ S`.
 
 Stated for a general `DivisionRing K`, `K`-vector space `V`, and submodule
 `S : Submodule K V`. The two outer ranges are the images of `S ⊗ V` and `V ⊗ S`;
-the right-hand side `range (mapIncl S S)` is the image of `S ⊗ S`. -/
+the right-hand side `range (mapIncl S S)` is the image of `S ⊗ S`.
+@isnad1 id=eq.0h3v.s10.58381f4ae94d from=translated src=- shape=2764a96f vocab=b5664e18
+-/
 theorem range_map_subtype_inf_range_map_subtype (S : Submodule K V) :
     LinearMap.range (TensorProduct.map S.subtype (LinearMap.id : V →ₗ[K] V))
         ⊓ LinearMap.range (TensorProduct.map (LinearMap.id : V →ₗ[K] V) S.subtype)

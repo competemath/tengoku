@@ -64,7 +64,9 @@ structure IsNullHomologous (γ : PwC1Immersion x x) (U : Set ℂ) : Prop where
 
 /-! ### Auxiliary lemmas -/
 
-/-- If a piecewise C^1 path avoids a point, there is a positive distance lower bound. -/
+/-- If a piecewise C^1 path avoids a point, there is a positive distance lower bound.
+@isnad1 id=ex.1h3v.s7.905c58ed3192 from=translated src=- shape=b630f07b vocab=6687762e
+-/
 theorem avoids_delta_bound (γ : PiecewiseC1Path x x) (z₀ : ℂ)
     (h_avoids : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ z₀) :
     ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - z₀‖ := by
@@ -84,7 +86,9 @@ theorem avoids_delta_bound (γ : PiecewiseC1Path x x) (z₀ : ℂ)
 /-! ### Lipschitz implies bounded image -/
 
 /-- Lipschitz `γ.toPath.extend` on `[0, 1]` has norm bounded by
-`‖γ(0)‖ + K`. -/
+`‖γ(0)‖ + K`.
+@isnad1 id=le.2h4v.s8.a3f8b804479b from=translated src=- shape=14e4b2a4 vocab=eaf88321
+-/
 lemma lipschitzWith_norm_bound_on_Icc01
     {x : ℂ} {γ : PwC1Immersion x x} {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) (t : ℝ) (ht : t ∈ Icc (0 : ℝ) 1) :
@@ -142,7 +146,9 @@ private lemma contourIntegral_inv_norm_le_of_far
 /-- **Generalized winding number vanishes for `w` far from γ.**
 
 For a Lipschitz closed piecewise-`C¹` immersion `γ`, the generalized winding
-number around `w` is `0` whenever `‖w‖` exceeds `‖γ(0)‖ + K + K/(2π)`. -/
+number around `w` is `0` whenever `‖w‖` exceeds `‖γ(0)‖ + K + K/(2π)`.
+@isnad1 id=eq.2h4v.s8.b73182947e4e from=translated src=- shape=139bfd7d vocab=59ef798f
+-/
 theorem generalizedWindingNumber_eq_zero_of_far_lipschitz
     {x : ℂ} {γ : PwC1Immersion x x} {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) {w : ℂ}
@@ -195,7 +201,9 @@ theorem generalizedWindingNumber_eq_zero_of_far_lipschitz
 This is the **Lipschitz analog** of `winding_eventually_zero_cocompact_of_bounded`
 (which used bounded U). Crucially, this version does **not** require U to be
 bounded — it only uses γ being Lipschitz, which is automatic for
-`ClosedPwC1Immersion`. -/
+`ClosedPwC1Immersion`.
+@isnad1 id=eventual.1h3v.s7.f7361a69a211 from=translated src=- shape=37963072 vocab=b57ff423
+-/
 theorem winding_eventually_zero_cocompact_of_lipschitz
     {x : ℂ} {γ : PwC1Immersion x x} {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) :
@@ -226,7 +234,9 @@ a whole neighborhood of `w`.
 
 Combines W-4 (locally constant) with the null-homologous vanishing at `w`. Unlike
 `winding_zero_nhds_of_not_mem_closure`, this works even when `w ∈ closure U \ U`
-(e.g., a boundary point of `U`), at the cost of needing γ Lipschitz. -/
+(e.g., a boundary point of `U`), at the cost of needing γ Lipschitz.
+@isnad1 id=ex.4h5v.s7.f358630f1a62 from=translated src=- shape=4567734a vocab=0cbf711f
+-/
 theorem IsNullHomologous.winding_zero_nhds_of_not_mem_of_closed
     {γ : PwC1Immersion x x} {U : Set ℂ} (h_null : IsNullHomologous γ U)
     {w : ℂ} (hw : w ∉ U)

@@ -46,7 +46,9 @@ open scoped Interval
 namespace SegmentFTC
 
 /-- Transfer integrability from a local function `h` to `g` given that their
-log-derivatives agree almost everywhere on the interval. -/
+log-derivatives agree almost everywhere on the interval.
+@isnad1 id=interval.2h4v.s8.05610f8d966c from=translated src=- shape=38206daa vocab=19a55278
+-/
 theorem ftc_telescope_integrability {g h : ℝ → ℂ} {a b : ℝ}
     (hint_h : IntervalIntegrable (fun t => deriv h t / h t) volume a b)
     (h_ae : ∀ᵐ t ∂volume, t ∈ Ι a b → deriv g t / g t = deriv h t / h t) :
@@ -56,7 +58,9 @@ theorem ftc_telescope_integrability {g h : ℝ → ℂ} {a b : ℝ}
 
 /-- Transfer an FTC result from a local function `h` to `g` given that their
 log-derivatives agree a.e. and their values agree at the endpoints.
-Produces both integrability and the FTC equality for `g`. -/
+Produces both integrability and the FTC equality for `g`.
+@isnad1 id=and.5h4v.s9.d82ec39a3d50 from=translated src=- shape=198f8292 vocab=f3aa03f9
+-/
 theorem ftc_telescope_transfer {g h : ℝ → ℂ} {a b : ℝ}
     (hint_h : IntervalIntegrable (fun t => deriv h t / h t) volume a b)
     (h_ftc : ∫ t in a..b, deriv h t / h t = Complex.log (h b) - Complex.log (h a))
@@ -72,7 +76,9 @@ end SegmentFTC
 namespace LogDerivFTC
 
 /-- If `f : ℝ → ℂ` is C^1 on `[a,b]` with `f(t) ∈ slitPlane` for all `t ∈ [a,b]`,
-then the log-derivative `t ↦ deriv f t / f t` is interval integrable on `[a,b]`. -/
+then the log-derivative `t ↦ deriv f t / f t` is interval integrable on `[a,b]`.
+@isnad1 id=interval.4h3v.s7.2e823696b4a8 from=translated src=- shape=15ca89ce vocab=8fd89a2d
+-/
 theorem intervalIntegrable_logDeriv_of_slitPlane {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_deriv_cont : ContinuousOn (deriv f) (Icc a b))
@@ -85,7 +91,9 @@ theorem intervalIntegrable_logDeriv_of_slitPlane {f : ℝ → ℂ} {a b : ℝ} (
 /-- Fundamental theorem of calculus for log-derivative integrals:
 If `f : ℝ → ℂ` is differentiable on `(a,b)` with derivative continuous on `[a,b]`,
 and `f(t) ∈ slitPlane` for all `t ∈ [a,b]`, then
-`∫ t in a..b, deriv f t / f t = Complex.log (f b) - Complex.log (f a)`. -/
+`∫ t in a..b, deriv f t / f t = Complex.log (f b) - Complex.log (f a)`.
+@isnad1 id=eq.5h3v.s8.06980bced0a0 from=translated src=- shape=c6b520fe vocab=da37790d
+-/
 theorem integral_logDeriv_eq_log_sub {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)
@@ -99,7 +107,9 @@ theorem integral_logDeriv_eq_log_sub {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ 
 
 /-- Combined integrability and FTC for a single C^1 function staying in slitPlane.
 
-Returns both `IntervalIntegrable (f'/f)` and `∫ f'/f = log(f(b)) - log(f(a))`. -/
+Returns both `IntervalIntegrable (f'/f)` and `∫ f'/f = log(f(b)) - log(f(a))`.
+@isnad1 id=and.5h3v.s8.fabe94f9e78a from=translated src=- shape=1b6b262d vocab=73f84612
+-/
 theorem ftc_log_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)
@@ -112,7 +122,9 @@ theorem ftc_log_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
 
 /-- Combined integrability and FTC when `-f` stays in slitPlane.
 
-Returns both `IntervalIntegrable (f'/f)` and `∫ f'/f = log(-f(b)) - log(-f(a))`. -/
+Returns both `IntervalIntegrable (f'/f)` and `∫ f'/f = log(-f(b)) - log(-f(a))`.
+@isnad1 id=and.5h3v.s8.2693c1bd7ec7 from=translated src=- shape=32efc270 vocab=dded0003
+-/
 theorem ftc_log_neg_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)
@@ -138,7 +150,9 @@ theorem ftc_log_neg_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
 Given a "reference" function `h` (C^1 with values in slitPlane) and a function `g`
 that agrees with `h` on `(a,b)` up to a null set (with matching endpoint values),
 both `∫ g'/g` and `∫ h'/h` are interval integrable and equal
-`Complex.log(g b) - Complex.log(g a)`. -/
+`Complex.log(g b) - Complex.log(g a)`.
+@isnad1 id=and.8h4v.s9.4f2b6e97ac13 from=translated src=- shape=233f0c07 vocab=73f84612
+-/
 theorem ftc_log_pieceFM {g h : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hh_cont : ContinuousOn h (Icc a b))
     (hh_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ h t)

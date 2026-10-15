@@ -58,12 +58,21 @@ the boundary traces `exp(i * fdArcAngle t)` along the unit circle from
 angle `pi/3` (at `t = 1/5`) through `pi/2` (at `t = 2/5`) to `2pi/3` (at `t = 3/5`). -/
 def fdArcAngle (t : ℝ) : ℝ := Real.pi / 3 + (5 * t - 1) * (Real.pi / 6)
 
+/--
+@isnad1 id=eq.0h0v.s5.8ef23fdba601 from=translated src=- shape=c0e42d06 vocab=3f0d9ed3
+-/
 theorem fdArcAngle_at_one_fifth : fdArcAngle (1/5) = Real.pi / 3 := by
   unfold fdArcAngle; ring
 
+/--
+@isnad1 id=eq.0h0v.s5.cdb11d161019 from=translated src=- shape=7644342d vocab=bf5653ea
+-/
 theorem fdArcAngle_at_three_fifths : fdArcAngle (3/5) = 2 * Real.pi / 3 := by
   unfold fdArcAngle; ring
 
+/--
+@isnad1 id=continuo.0h0v.s3.36a7e619ca73 from=translated src=- shape=e3d48bcb vocab=85b359ae
+-/
 @[fun_prop]
 theorem fdArcAngle_continuous : Continuous fdArcAngle := by
   unfold fdArcAngle; fun_prop
@@ -79,7 +88,9 @@ private theorem cos_sin_sub_sq_eq_half_angle_sq (θ φ : ℝ) :
 /-- Distance between two points on the unit circle:
 `norm(exp(i*theta) - exp(i*phi)) = 2|sin((theta-phi)/2)|`.
 
-Proved by expanding to `cos + i*sin` form and using the half-angle identity. -/
+Proved by expanding to `cos + i*sin` form and using the half-angle identity.
+@isnad1 id=eq.0h2v.s6.4457844f9834 from=translated src=- shape=824fcaae vocab=c7dda867
+-/
 theorem norm_exp_sub_exp (θ φ : ℝ) :
     ‖exp (↑θ * I) - exp (↑φ * I)‖ = 2 * |Real.sin ((θ - φ) / 2)| := by
   rw [exp_mul_I, exp_mul_I, ← ofReal_cos, ← ofReal_sin, ← ofReal_cos, ← ofReal_sin,
@@ -88,7 +99,9 @@ theorem norm_exp_sub_exp (θ φ : ℝ) :
     norm_add_mul_I, cos_sin_sub_sq_eq_half_angle_sq]
   exact Real.sqrt_sq (by positivity)
 
-/-- On segments 2-3 (`t` in `(1/5, 3/5]`), the FD boundary is `exp(i * fdArcAngle t)`. -/
+/-- On segments 2-3 (`t` in `(1/5, 3/5]`), the FD boundary is `exp(i * fdArcAngle t)`.
+@isnad1 id=eq.2h2v.s6.96d30c69d6f0 from=translated src=- shape=422d6d04 vocab=d80c7a17
+-/
 theorem fdBoundaryFun_arc_eq_exp (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t ≤ 3/5) :
     fdBoundaryFun H t = exp (↑(fdArcAngle t) * I) := by
   have hh : ¬ t ≤ 1/5 := by linarith
@@ -100,7 +113,9 @@ theorem fdBoundaryFun_arc_eq_exp (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t �
     congr 1; push_cast; ring
 
 /-- The arc distance to `I`:
-`norm(fdBoundaryFun H t - I) = 2|sin((fdArcAngle t - pi/2)/2)|` for `t` in `(1/5, 3/5]`. -/
+`norm(fdBoundaryFun H t - I) = 2|sin((fdArcAngle t - pi/2)/2)|` for `t` in `(1/5, 3/5]`.
+@isnad1 id=eq.2h2v.s7.5e126271e4c8 from=translated src=- shape=a6828b36 vocab=c792b773
+-/
 theorem fdBoundaryFun_arc_dist_I (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t ≤ 3/5) :
     ‖fdBoundaryFun H t - I‖ = 2 * |Real.sin ((fdArcAngle t - Real.pi / 2) / 2)| := by
   set θ := fdArcAngle t
@@ -113,7 +128,9 @@ theorem fdBoundaryFun_arc_dist_I (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t �
   exact Real.sqrt_sq (by positivity)
 
 /-- The arc distance to `rho`:
-`norm(fdBoundaryFun H t - rho) = 2|sin((fdArcAngle t - 2pi/3)/2)|` for `t` in `(1/5, 3/5]`. -/
+`norm(fdBoundaryFun H t - rho) = 2|sin((fdArcAngle t - 2pi/3)/2)|` for `t` in `(1/5, 3/5]`.
+@isnad1 id=eq.2h2v.s7.5252c0aa4da4 from=translated src=- shape=058a2279 vocab=d527e8b3
+-/
 theorem fdBoundaryFun_arc_dist_rho (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t ≤ 3/5) :
     ‖fdBoundaryFun H t - ellipticPointRho‖ =
       2 * |Real.sin ((fdArcAngle t - 2 * Real.pi / 3) / 2)| := by
@@ -130,7 +147,9 @@ theorem fdBoundaryFun_arc_dist_rho (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t 
   exact Real.sqrt_sq (by positivity)
 
 /-- The arc distance to `rho+1`:
-`norm(fdBoundaryFun H t - (rho+1)) = 2|sin((fdArcAngle t - pi/3)/2)|` for `t` in `(1/5, 3/5]`. -/
+`norm(fdBoundaryFun H t - (rho+1)) = 2|sin((fdArcAngle t - pi/3)/2)|` for `t` in `(1/5, 3/5]`.
+@isnad1 id=eq.2h2v.s7.f0e33649c080 from=translated src=- shape=a6828b36 vocab=9bf91e0a
+-/
 theorem fdBoundaryFun_arc_dist_rhoPlusOne (H : ℝ) (t : ℝ)
     (ht1 : 1/5 < t) (ht2 : t ≤ 3/5) :
     ‖fdBoundaryFun H t - ellipticPointRhoPlusOne‖ =
@@ -150,14 +169,18 @@ section DistanceBounds
 
 variable (H : ℝ)
 
-/-- On segment 1 (right vertical, `re = 1/2`), distance to `I` is at least `1/2`. -/
+/-- On segment 1 (right vertical, `re = 1/2`), distance to `I` is at least `1/2`.
+@isnad1 id=le.1h2v.s6.0507591bec2b from=translated src=- shape=bb35bbae vocab=489f0c10
+-/
 theorem fdBoundaryFun_seg1_dist_I_lower (t : ℝ) (ht : t ≤ 1/5) :
     (1 : ℝ) / 2 ≤ ‖fdBoundaryFun H t - I‖ := by
   have h1 : (fdBoundaryFun H t - I).re = 1/2 := by
     simp [fdBoundaryFun_seg1_re H t ht]
   simpa [h1, abs_of_pos] using Complex.abs_re_le_norm (fdBoundaryFun H t - I)
 
-/-- On segment 4 (left vertical, `re = -1/2`), distance to `I` is at least `1/2`. -/
+/-- On segment 4 (left vertical, `re = -1/2`), distance to `I` is at least `1/2`.
+@isnad1 id=le.2h2v.s6.a8e22dad9f40 from=translated src=- shape=c453703f vocab=4e86441b
+-/
 theorem fdBoundaryFun_seg4_dist_I_lower (t : ℝ) (ht3 : 3/5 < t) (ht4 : t ≤ 4/5) :
     (1 : ℝ) / 2 ≤ ‖fdBoundaryFun H t - I‖ := by
   have h1 : (fdBoundaryFun H t - I).re = -1/2 := by
@@ -165,7 +188,9 @@ theorem fdBoundaryFun_seg4_dist_I_lower (t : ℝ) (ht3 : 3/5 < t) (ht4 : t ≤ 4
   simpa [h1, show |(-1/2 : ℝ)| = 1/2 by norm_num] using
     Complex.abs_re_le_norm (fdBoundaryFun H t - I)
 
-/-- On segment 5 (horizontal at height `H`), distance to `I` is at least `H - 1`. -/
+/-- On segment 5 (horizontal at height `H`), distance to `I` is at least `H - 1`.
+@isnad1 id=le.2h2v.s6.bdd641ba2c9d from=translated src=- shape=9a60295a vocab=4e86441b
+-/
 theorem fdBoundaryFun_seg5_dist_I_lower (hH : 1 < H) (t : ℝ) (ht : 4/5 < t) :
     H - 1 ≤ ‖fdBoundaryFun H t - I‖ := by
   have h1 : (fdBoundaryFun H t - I).im = H - 1 := by
@@ -173,7 +198,9 @@ theorem fdBoundaryFun_seg5_dist_I_lower (hH : 1 < H) (t : ℝ) (ht : 4/5 < t) :
   simpa [h1, abs_of_pos (by linarith : (0 : ℝ) < H - 1)] using
     Complex.abs_im_le_norm (fdBoundaryFun H t - I)
 
-/-- On segment 1 (`re = 1/2`), distance to `rho` (`re = -1/2`) is at least 1. -/
+/-- On segment 1 (`re = 1/2`), distance to `rho` (`re = -1/2`) is at least 1.
+@isnad1 id=le.1h2v.s5.f30a433ed2de from=translated src=- shape=15841922 vocab=50b8c638
+-/
 theorem fdBoundaryFun_seg1_dist_rho_lower (t : ℝ) (ht : t ≤ 1/5) :
     (1 : ℝ) ≤ ‖fdBoundaryFun H t - ellipticPointRho‖ := by
   have h1 : (fdBoundaryFun H t - ellipticPointRho).re = 1 := by
@@ -181,7 +208,9 @@ theorem fdBoundaryFun_seg1_dist_rho_lower (t : ℝ) (ht : t ≤ 1/5) :
     norm_num
   simpa [h1] using Complex.abs_re_le_norm (fdBoundaryFun H t - ellipticPointRho)
 
-/-- On segment 5, distance to `rho` is at least `H - sqrt(3)/2`. -/
+/-- On segment 5, distance to `rho` is at least `H - sqrt(3)/2`.
+@isnad1 id=le.2h2v.s6.baebad12a94f from=translated src=- shape=78575766 vocab=11d86ff9
+-/
 theorem fdBoundaryFun_seg5_dist_rho_lower (hH : fdHeightValid H) (t : ℝ) (ht : 4/5 < t) :
     H - Real.sqrt 3 / 2 ≤ ‖fdBoundaryFun H t - ellipticPointRho‖ := by
   have h1 : (fdBoundaryFun H t - ellipticPointRho).im = H - Real.sqrt 3 / 2 := by
@@ -190,7 +219,9 @@ theorem fdBoundaryFun_seg5_dist_rho_lower (hH : fdHeightValid H) (t : ℝ) (ht :
   simpa [h1, abs_of_pos (by linarith : (0 : ℝ) < H - Real.sqrt 3 / 2)] using
     Complex.abs_im_le_norm (fdBoundaryFun H t - ellipticPointRho)
 
-/-- On segment 4 (`re = -1/2`), distance to `rho+1` (`re = 1/2`) is at least 1. -/
+/-- On segment 4 (`re = -1/2`), distance to `rho+1` (`re = 1/2`) is at least 1.
+@isnad1 id=le.2h2v.s6.4858c35d700e from=translated src=- shape=95ca21ae vocab=ccf5a2cb
+-/
 theorem fdBoundaryFun_seg4_dist_rhoPlusOne_lower (t : ℝ) (ht3 : 3/5 < t) (ht4 : t ≤ 4/5) :
     (1 : ℝ) ≤ ‖fdBoundaryFun H t - ellipticPointRhoPlusOne‖ := by
   have h1 : (fdBoundaryFun H t - ellipticPointRhoPlusOne).re = -1 := by
@@ -200,7 +231,9 @@ theorem fdBoundaryFun_seg4_dist_rhoPlusOne_lower (t : ℝ) (ht3 : 3/5 < t) (ht4 
   simpa [h1, show |(-1 : ℝ)| = 1 by norm_num] using
     Complex.abs_re_le_norm (fdBoundaryFun H t - ellipticPointRhoPlusOne)
 
-/-- On segment 5, distance to `rho+1` is at least `H - sqrt(3)/2`. -/
+/-- On segment 5, distance to `rho+1` is at least `H - sqrt(3)/2`.
+@isnad1 id=le.2h2v.s6.e42ffd8cb2de from=translated src=- shape=78575766 vocab=5ee56e5f
+-/
 theorem fdBoundaryFun_seg5_dist_rhoPlusOne_lower (hH : fdHeightValid H) (t : ℝ)
     (ht : 4/5 < t) :
     H - Real.sqrt 3 / 2 ≤ ‖fdBoundaryFun H t - ellipticPointRhoPlusOne‖ := by
