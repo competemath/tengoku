@@ -87,6 +87,11 @@ jobs:
           sudo swapoff -a >/dev/null 2>&1 || true; sudo rm -f /mnt/swapfile /swapfile || true
           df -h /
 
+      # The runner has ended this job twice (no space left on the device; a process killed for memory) and each time the cause was found with
+      # probe runs. A sample every 20 s (scripts/ci/runner_telemetry.py), and a summary on the job's page, leave the evidence in the job itself.
+      - name: Runner telemetry (disk, memory, kernel out-of-memory kills)
+        run: nohup python3 scripts/ci/runner_telemetry.py watch >/dev/null 2>&1 &
+
       # Restore whatever earlier jobs compiled: exact tree first, then any
       # earlier state of this branch (Lake rebuilds only what differs).
       - name: Restore partial build
@@ -139,6 +144,15 @@ jobs:
             echo "complete=true" >> "$GITHUB_OUTPUT"
           fi
 
+      # The tree's input-to-output mappings (Lake's artifact cache, `lake build -o`): the queue's deltas are diffed against them
+      # (scripts/lake_cache.py). A walk of the finished tree, nothing compiles; sealed like the build.
+      - name: The tree's mappings, for the queue's deltas
+        if: steps.build.outputs.complete == 'true'
+        run: |
+          set -o pipefail
+          sudo unshare --net --pid --fork --mount-proc runuser -u "$(id -un)" -- env -i HOME="$HOME" PATH="$HOME/.elan/bin:/usr/local/bin:/usr/bin:/bin" LANG=C.UTF-8 LAKE_ARTIFACT_CACHE=true LAKE_CACHE_DIR="$PWD/.lake/cache" \
+            timeout 20m lake build Tengoku.All -o base.jsonl 2>&1 | tail -1
+          echo "base mappings: $(wc -l < base.jsonl) lines, $(du -h base.jsonl | cut -f1)"
       - name: Save partial/complete build
         if: always()
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -165,6 +179,7 @@ jobs:
           { df -h / | tail -1; du -sh .lake/build; } 2>&1 | sed 's/^/before pack: /'
           TENGOKU_ROOT="$GITHUB_WORKSPACE" bash "$RUNNER_TEMP/cache.sh" pack cache-out
           df -h / | tail -1 | sed 's/^/after pack: /'
+          cp base.jsonl cache-out/base.jsonl   # the nightly's own mappings travel with it: the queue's deltas are measured against them
 
       - if: steps.build.outputs.complete == 'true' && steps.guard.outputs.stale != 'true'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -181,6 +196,13 @@ jobs:
           set -o pipefail
           sudo unshare --net --pid --fork --mount-proc runuser -u "$(id -un)" -- env -i HOME="$HOME" PATH="$HOME/.elan/bin:/usr/local/bin:/usr/bin:/bin" LANG=C.UTF-8 \
             lake env lean --run tools/CommandKeywords.lean | python3 scripts/ci/cmdkw_check.py
+
+      - name: Runner telemetry summary
+        if: always()
+        run: python3 scripts/ci/runner_telemetry.py summary >> "$GITHUB_STEP_SUMMARY"
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: runner-telemetry, path: telemetry.jsonl, retention-days: 3, if-no-files-found: ignore }
 
   # Publishes what the build packed: it runs no Lean, so it is the one job that may write releases and sign.
   publish:
@@ -215,7 +237,9 @@ jobs:
         id: attest
         uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
-          subject-path: cache-out/tengoku-cache.tar.zst.part-*
+          subject-path: |
+            cache-out/tengoku-cache.tar.zst.part-*
+            cache-out/base.jsonl
 
       # The same attestation as a file of the release: the signed Sigstore bundle of the parts' SLSA build
       # provenance (one JSON line). It serves whoever downloads the release without GitHub's attestation API:
