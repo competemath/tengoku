@@ -24,6 +24,9 @@ abbrev TP (α : Program) : Type := {τ // τ ∈ testsOfProgram α} → Bool
 
 instance : Fintype (TP α) := Pi.instFintype
 
+/--
+@isnad1 id=iff.0h3v.s6.a31e42c3c449 from=translated src=- shape=17890f64 vocab=58723599
+-/
 theorem TP_eq_iff {α} {ℓ ℓ' : TP α} : (ℓ = ℓ') ↔ ∀ τ ∈ (testsOfProgram α).attach, ℓ τ = ℓ' τ := by
   constructor
   · intro ℓ_eq_ℓ _ _
@@ -55,6 +58,7 @@ def allTP α : List (TP α) := (testsOfProgram α).sublists.map (fun l ⟨τ, _�
 /-- All test profiles are in the list of all test profiles.
 Thanks to Floris van Doorn
 https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/List.20of.20.28provably.29.20all.20functions.20from.20given.20List.20to.20Bool
+@isnad1 id=mem.0h2v.s4.cf86dde34c3a from=translated src=- shape=d5a9ac66 vocab=47200539
 -/
 theorem allTP_mem (ℓ : TP α) : ℓ ∈ allTP α := by
   simp only [allTP, List.mem_map, List.mem_sublists]
@@ -65,7 +69,9 @@ theorem allTP_mem (ℓ : TP α) : ℓ ∈ allTP α := by
 def signature (α : Program) (ℓ : TP α) : Formula :=
   con <| (testsOfProgram α).attach.map (fun τ => if ℓ τ then τ.val else ~τ.val)
 
-/-- A signature assigns each test exactly the truth value recorded by its profile. -/
+/-- A signature assigns each test exactly the truth value recorded by its profile.
+@isnad1 id=iff.0h5v.s6.c6712c63eb2d from=translated src=- shape=11325ac0 vocab=126b969b
+-/
 theorem signature_iff {W} {M : KripkeModel W} {w : W} :
     evaluate M w (signature α ℓ) ↔ ∀ τ ∈ (testsOfProgram α).attach, ℓ τ ↔ evaluate M w τ.val := by
   simp only [signature, conEval, List.mem_map, List.mem_attach, true_and, Subtype.exists,
@@ -81,7 +87,9 @@ theorem signature_iff {W} {M : KripkeModel W} {w : W} :
 
 -- Now come two out of the three facts about test profiles and signatures.
 
-/-- This is currently unused. -/
+/-- This is currently unused.
+@isnad1 id=tautolog.0h1v.s3.9538a84b8d3b from=translated src=- shape=79a80e93 vocab=690d0bf8
+-/
 theorem top_equiv_disj_TP : ∀ α, tautology (dis ((allTP α).map (signature α))) := by
   intro α W M w
   rw [disEval]
@@ -97,7 +105,9 @@ theorem top_equiv_disj_TP : ∀ α, tautology (dis ((allTP α).map (signature α
     subst def_f
     aesop
 
-/-- This is currently unused. -/
+/-- This is currently unused.
+@isnad1 id=contradi.1h3v.s4.4d7cca5eddb1 from=translated src=- shape=daaee5bd vocab=dc70b4eb
+-/
 theorem signature_contradiction_of_neq_TPs {ℓ ℓ' : TP α} :
     ℓ ≠ ℓ' → contradiction (signature α ℓ ⋀ signature α ℓ') := by
   intro h W M w hboth
@@ -123,6 +133,9 @@ def F : (α : Program) → (ℓ : TP α) → List Formula
 | α;'β, ℓ => F α ℓ ∪ F β ℓ
 | ∗α, ℓ => F α ℓ
 
+/--
+@isnad1 id=subset.0h2v.s4.5a2e79b7585a from=translated src=- shape=eb30fba3 vocab=cf46c1f2
+-/
 lemma F_sub_testsOfProgram_map_neg (α : Program) (ℓ : TP α) :
     F α ℓ ⊆ (testsOfProgram α).map Formula.neg := by
   cases α <;> simp_all only [F, List.empty_eq, testsOfProgram, List.map_nil, List.Subset.refl,
@@ -158,6 +171,9 @@ def Bset (α : Program) (ℓ : TP α) (ψ : Formula) : List Formula :=
 def unfoldBox (α : Program) (φ : Formula) : List (List Formula) :=
   (allTP α).map (fun ℓ => Bset α ℓ φ)
 
+/--
+@isnad1 id=iff.0h3v.s6.f1e0d7345f7a from=translated src=- shape=f31c1381 vocab=d83add3c
+-/
 theorem F_mem_iff_neg α (ℓ : TP α) φ :
     φ ∈ F α ℓ ↔ ∃ τ, ∃ (h : τ ∈ testsOfProgram α), φ = (~τ) ∧ ℓ ⟨τ,h⟩ = false := by
   simp_all only [exists_and_left]
@@ -180,6 +196,9 @@ theorem F_mem_iff_neg α (ℓ : TP α) φ :
   case test τ =>
     aesop
 
+/--
+@isnad1 id=mem.2h4v.s6.4811a7996e27 from=translated src=- shape=45f4fb10 vocab=bdb07954
+-/
 theorem P_monotone α (ℓ ℓ' : TP α) (h : ∀ τ, ℓ τ → ℓ' τ) δ : δ ∈ P α ℓ → δ ∈ P α ℓ' := by
   cases α
   case atom_prog _ =>
@@ -221,6 +240,9 @@ theorem P_monotone α (ℓ ℓ' : TP α) (h : ∀ τ, ℓ τ → ℓ' τ) δ : �
   case test τ =>
     simp_all [testsOfProgram, P]
 
+/--
+@isnad1 id=lt.1h3v.s4.a154ee3b34ba from=translated src=- shape=390488c5 vocab=cb85db23
+-/
 theorem F_goes_down : φ ∈ F α ℓ → lengthOfFormula φ < lengthOfProgram α := by
   intro φ_in
   cases α
@@ -252,6 +274,9 @@ theorem F_goes_down : φ ∈ F α ℓ → lengthOfFormula φ < lengthOfProgram �
     · simp_all
     · simp_all
 
+/--
+@isnad1 id=not.2h4v.s5.aa26563c0200 from=translated src=- shape=6d780bf8 vocab=005f3d69
+-/
 theorem keepFreshF α ℓ (x_notin : x ∉ α.voc) : ∀ φ ∈ F α ℓ, x ∉ φ.voc := by
   intro φ φ_in
   cases α
@@ -273,6 +298,9 @@ theorem keepFreshF α ℓ (x_notin : x ∉ α.voc) : ∀ φ ∈ F α ℓ, x ∉ 
     have := keepFreshF α ℓ x_notin
     aesop
 
+/--
+@isnad1 id=not.2h4v.s5.4f398ed38ca2 from=translated src=- shape=987bf0b1 vocab=0a3f63b7
+-/
 theorem keepFreshP α ℓ (x_notin : x ∉ α.voc) : ∀ δ ∈ P α ℓ, x ∉ δ.pdlPvoc := by
   intro δ δ_in
   cases α
@@ -318,7 +346,9 @@ theorem keepFreshP α ℓ (x_notin : x ∉ α.voc) : ∀ δ ∈ P α ℓ, x ∉ 
       · exact IHα _ δ'_in.1 _ γ_in_δ'
       · subst_eqs; assumption
 
-/-- Depending on α we know what can occur inside `δ ∈ P α ℓ` and thus later in `unfoldBox`. -/
+/-- Depending on α we know what can occur inside `δ ∈ P α ℓ` and thus later in `unfoldBox`.
+@isnad1 id=and.1h3v.s7.407eb011b2ff from=translated src=- shape=a818a8e1 vocab=5562a59b
+-/
 theorem boxHelperTermination α (ℓ : TP α) :
   ∀ δ ∈ P α ℓ,
       ( α.isAtomic → δ = [α] )
@@ -506,7 +536,9 @@ theorem boxHelperTermination α (ℓ : TP α) :
         simp_all [subprograms]
         grind
 
-/-- Proven from `boxHelperTermination`. -/
+/-- Proven from `boxHelperTermination`.
+@isnad1 id=ite.2h4v.s5.ad9a09085467 from=translated src=- shape=cbc801cd vocab=436bae3b
+-/
 theorem PgoesDown : γ ∈ δ → δ ∈ P α ℓ →
   (if α.isAtomic
     then γ = α
@@ -543,7 +575,9 @@ theorem PgoesDown : γ ∈ δ → δ ∈ P α ℓ →
       grind
 
 /-- Where formulas in the unfolding can come from.
-The article also says `φ ∈ fischerLadner [⌈α⌉ψ]` which we prove later in `unfoldBox_in_FL`. -/
+The article also says `φ ∈ fischerLadner [⌈α⌉ψ]` which we prove later in `unfoldBox_in_FL`.
+@isnad1 id=or.2h4v.s6.fd4b8c35311e from=translated src=- shape=035221fb vocab=5b909782
+-/
 theorem unfoldBoxContent α ψ :
     ∀ X ∈ (unfoldBox α ψ),
     ∀ φ ∈ X,
@@ -632,6 +666,9 @@ theorem unfoldBoxContent α ψ :
           use δ1n ++ [∗β]
           grind
 
+/--
+@isnad1 id=or.3h5v.s6.269830981585 from=translated src=- shape=fa03f4f4 vocab=08ed5072
+-/
 theorem unfoldBox_voc {x α φ} {L} (L_in : L ∈ unfoldBox α φ) {ψ} (ψ_in : ψ ∈ L)
     (x_in_voc_ψ : x ∈ ψ.voc) : x ∈ α.voc ∨ x ∈ φ.voc := by
   rcases unfoldBoxContent _ _ _ L_in _ ψ_in with ψ_def | ⟨τ, τ_in, ψ_def⟩ | ⟨a, δ, ψ_def, sub_α⟩
@@ -655,7 +692,9 @@ theorem unfoldBox_voc {x α φ} {L} (L_in : L ∈ unfoldBox α φ) {ψ} (ψ_in :
       exact subprograms_voc (sub_α.2 β β_in) x_in_βvoc
     · exact Or.inr x_in
 
-/-- `Finset` version of `unfoldBox_voc`. -/
+/-- `Finset` version of `unfoldBox_voc`.
+@isnad1 id=or.3h5v.s6.a6aa0a7aa925 from=translated src=- shape=4b2c37fb vocab=c6d8c316
+-/
 theorem unfoldBox_voc_fin {x α φ} {X : Finset Formula} (X_in : X ∈ (unfoldBox α φ).pdlToFinFin)
     {ψ} (ψ_in : ψ ∈ X) (x_in_voc_ψ : x ∈ ψ.voc) : x ∈ α.voc ∨ x ∈ φ.voc := by
   simp only [List.pdlToFinFin, List.mem_toFinset, List.mem_map] at X_in
@@ -663,7 +702,9 @@ theorem unfoldBox_voc_fin {x α φ} {X : Finset Formula} (X_in : X ∈ (unfoldBo
   exact unfoldBox_voc L_in (List.mem_toFinset.mp ψ_in) x_in_voc_ψ
 
 /-- A helper theorem about `Bset` and `signature`.
-Note that the paper only states the third conjunct. -/
+Note that the paper only states the third conjunct.
+@isnad1 id=and.0h2v.s6.701e8eaec265 from=translated src=- shape=34f5618b vocab=3034bf56
+-/
 theorem boxHelperTP α (ℓ : TP α) :
     (∀ τ, (~τ.val) ∈ F α ℓ → ℓ τ = false)
   ∧ (con (F α ℓ) ⋀ signature α ℓ ≡ signature α ℓ)
@@ -699,6 +740,9 @@ theorem boxHelperTP α (ℓ : TP α) :
         aesop
       · aesop
 
+/--
+@isnad1 id=semimpli.4h6v.s6.5634b8d2c5ee from=translated src=- shape=6d4b21ea vocab=655064ab
+-/
 theorem guardToStar (x : Nat) β χ0 χ1 ρ ψ
     (x_notin_beta : Sum.inl x ∉ β.voc)
     (beta_equiv : (⌈β⌉·x) ≡ (((·x) ⋀ χ0) ⋁ χ1))
@@ -742,7 +786,9 @@ theorem guardToStar (x : Nat) β χ0 χ1 ρ ψ
     apply IH
     exact fortysix W M u1 u2 w_rho u1_b_u2
 
-/-- Show "suffices" part outside, to use `localBoxTruth` for star case in `localBoxTruthI`. -/
+/-- Show "suffices" part outside, to use `localBoxTruth` for star case in `localBoxTruthI`.
+@isnad1 id=semequiv.1h2v.s5.389f57dcfec3 from=translated src=- shape=68263ef2 vocab=1c04e20e
+-/
 theorem localBoxTruth_connector γ ψ :
     (goal : ∀ ℓ, (⌈γ⌉ψ) ⋀ signature γ ℓ ≡ con (Bset γ ℓ ψ) ⋀ signature γ ℓ) →
     (⌈γ⌉ψ) ≡ dis ( (allTP γ).map (fun ℓ => con (Bset γ ℓ ψ)) ) := by
@@ -1355,7 +1401,9 @@ private theorem boxSequence_profile (α β : Program) (ψ : Formula) (ℓ : TP (
         · simp_all
         · simp_all
 
-/-- Induction claim for `localBoxTruth`. -/
+/-- Induction claim for `localBoxTruth`.
+@isnad1 id=semequiv.0h3v.s4.3dcea823cf5f from=translated src=- shape=1edf25ae vocab=3cd66746
+-/
 theorem localBoxTruthI γ ψ (ℓ : TP γ) :
     (⌈γ⌉ψ) ⋀ signature γ ℓ ≡ con (Bset γ ℓ ψ) ⋀ signature γ ℓ := by
   intro W M w
@@ -1380,9 +1428,15 @@ theorem localBoxTruthI γ ψ (ℓ : TP γ) :
     · simpa only [List.mem_singleton, forall_eq] using
         boxStar_backward β ψ (localBoxTruthI β) W M w
 
+/--
+@isnad1 id=semequiv.0h2v.s4.345fa3e551e3 from=translated src=- shape=11e836aa vocab=7a3500cc
+-/
 theorem localBoxTruth γ ψ : (⌈γ⌉ψ) ≡ dis ( (allTP γ).map (fun ℓ => con (Bset γ ℓ ψ)) ) :=
   localBoxTruth_connector γ ψ (localBoxTruthI γ ψ)
 
+/--
+@isnad1 id=ex.2h6v.s6.63883644a358 from=translated src=- shape=150a8d2b vocab=272407e1
+-/
 theorem existsBoxFP γ (v_γ_w : relate M γ v w) (ℓ : TP γ) (v_conF : (M, v) ⊨ con (F γ ℓ)) :
     ∃ δ ∈ P γ ℓ, relateSeq M δ v w := by
   cases γ

@@ -24,6 +24,9 @@ variable {α : Type*} {C R : Set (Set α)} {s : ℕ → Set α}
 
 -- `innerRegular` is defined only for a measure, hence we expand the definition to use it with a
 -- content
+/--
+@isnad1 id=tendsto.7h5v.s7.1a4d2d99fe89 from=translated src=- shape=63455210 vocab=260d59e4
+-/
 lemma tendsto_zero_of_regular_addContent (hR : IsSetRing R) (m : AddContent ℝ≥0∞ R)
     (hs : ∀ n, s n ∈ R) (hs_anti : Antitone s) (hs_Inter : (⋂ n, s n) = ∅)
     (hC : IsCompactSystem C) (hCR : C ⊆ R)
@@ -74,6 +77,9 @@ lemma tendsto_zero_of_regular_addContent (hR : IsSetRing R) (m : AddContent ℝ�
     _ ≤ ∑' i, (δ i : ℝ≥0∞) := ENNReal.sum_le_tsum _
     _ ≤ ε := hδ_sum.le
 
+/--
+@isnad1 id=eq.8h5v.s8.11b2b138fa6f from=translated src=- shape=4ab4bc6b vocab=a79ed7b5
+-/
 lemma addContent_iUnion_eq_sum_of_regular (hR : IsSetRing R) (m : AddContent ℝ≥0∞ R)
     (hm_ne_top : ∀ s ∈ R, m s ≠ ∞)
     (hC : IsCompactSystem C) (hCR : C ⊆ R)

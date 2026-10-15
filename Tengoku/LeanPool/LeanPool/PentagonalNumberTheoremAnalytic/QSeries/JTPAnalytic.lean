@@ -39,7 +39,9 @@ noncomputable section
 
 /-- Ratio-test core for the Weierstrass `M`-test bounds appearing in the Jacobi triple
 product: for `‖q‖ < 1` the family `k ↦ c ^ (k + j) * ‖q‖ ^ (k + 2 * j).choose 2` is summable
-for every real `c` and every shift `j`. -/
+for every real `c` and every shift `j`.
+@isnad1 id=summable.1h3v.s6.27a40fd24007 from=translated src=- shape=916c4708 vocab=584c6fdf
+-/
 theorem summable_pow_add_mul_norm_pow_choose_two {q : ℂ} (hq : ‖q‖ < 1) (c : ℝ) (j : ℕ) :
     Summable fun k : ℕ => c ^ (k + j) * ‖q‖ ^ (k + 2 * j).choose 2 := by
   have h_lim : Tendsto (fun k : ℕ => |c| * ‖q‖ ^ (k + 2 * j)) atTop (𝓝 0) := by
@@ -60,24 +62,32 @@ theorem summable_pow_add_mul_norm_pow_choose_two {q : ℂ} (hq : ‖q‖ < 1) (c
   exact mul_le_mul_of_nonneg_right hk.le (norm_nonneg _)
 
 /-- The nonneg bilateral sum $\sum_{k \ge 0} z^k q^{\binom{k}{2}}$ converges
-for **all** $z \in \mathbb{C}$ when $\|q\| < 1$. -/
+for **all** $z \in \mathbb{C}$ when $\|q\| < 1$.
+@isnad1 id=summable.1h2v.s6.8de30ffde103 from=translated src=- shape=c7433f90 vocab=73f7f99f
+-/
 theorem summable_pow_mul_pow_choose_two' {q z : ℂ} (hq : ‖q‖ < 1) :
     Summable (fun k : ℕ => z ^ k * q ^ k.choose 2) := by
   refine Summable.of_norm ?_
   simpa using summable_pow_add_mul_norm_pow_choose_two hq ‖z‖ 0
 
-/-- Summability of the Weierstrass M-test bound $R^k \|q\|^{\binom{k}{2}}$ for any real $R$. -/
+/-- Summability of the Weierstrass M-test bound $R^k \|q\|^{\binom{k}{2}}$ for any real $R$.
+@isnad1 id=summable.1h2v.s6.8b22ea827e51 from=translated src=- shape=d0e89168 vocab=73f7f99f
+-/
 theorem summable_pow_mul_norm_pow_choose_two {q : ℂ} (hq : ‖q‖ < 1) (R : ℝ) :
     Summable (fun k : ℕ => R ^ k * ‖q‖ ^ k.choose 2) := by
   simpa using summable_pow_add_mul_norm_pow_choose_two hq R 0
 
 /-- Summability of the Weierstrass M-test bound $(R')^{m+1} \|q\|^{\binom{m+2}{2}}$
-for any real $R'$. -/
+for any real $R'$.
+@isnad1 id=summable.1h2v.s6.4d26bd5b23a1 from=translated src=- shape=6d7ae4be vocab=584c6fdf
+-/
 theorem summable_pow_succ_mul_norm_pow_choose_two {q : ℂ} (hq : ‖q‖ < 1) (R' : ℝ) :
     Summable (fun m : ℕ => R' ^ (m + 1) * ‖q‖ ^ (m + 2).choose 2) := by
   simpa using summable_pow_add_mul_norm_pow_choose_two hq R' 1
 
-/-- Extended product expansion for all $z$. -/
+/-- Extended product expansion for all $z$.
+@isnad1 id=hassum.1h2v.s7.c3bf4cb50de8 from=translated src=- shape=0a5f8911 vocab=9d01afcb
+-/
 theorem hasSum_pow_choose_two_mul_pow_mul_qPochhammerInf' {q z : ℂ} (hq : ‖q‖ < 1) :
     HasSum (fun n : ℕ => q ^ n.choose 2 * z ^ n * qPochhammerInf (q * q ^ n) q)
       (qPochhammerInf q q * qPochhammerInf (-z) q) := by
@@ -91,7 +101,9 @@ theorem hasSum_pow_choose_two_mul_pow_mul_qPochhammerInf' {q z : ℂ} (hq : ‖q
     field_simp
 
 /-- The nonneg partial sums $\sum_{k < N} z^k q^{\binom{k}{2}}$ converge uniformly on
-$\{z : \|z\| \le R\}$ by the Weierstrass M-test. -/
+$\{z : \|z\| \le R\}$ by the Weierstrass M-test.
+@isnad1 id=tendstou.1h2v.s7.1a3d199f1900 from=translated src=- shape=d2aac9b5 vocab=67f4c6d4
+-/
 theorem tendstoUniformlyOn_sum_pow_mul_pow_choose_two {q : ℂ} (hq : ‖q‖ < 1) (R : ℝ) :
     TendstoUniformlyOn
       (fun N z => ∑ k ∈ Finset.range N, z ^ k * q ^ k.choose 2)
@@ -102,7 +114,9 @@ theorem tendstoUniformlyOn_sum_pow_mul_pow_choose_two {q : ℂ} (hq : ‖q‖ < 
   exact mul_le_mul_of_nonneg_right
     (pow_le_pow_left₀ (norm_nonneg z) (mem_closedBall_zero_iff.mp hz) n) (by positivity)
 
-/-- The negative-index partial sums converge uniformly on $\{z : \|z^{-1}\| \le R'\}$. -/
+/-- The negative-index partial sums converge uniformly on $\{z : \|z^{-1}\| \le R'\}$.
+@isnad1 id=tendstou.1h2v.s7.d735cc50bbd7 from=translated src=- shape=e4b0f395 vocab=9b1c6748
+-/
 theorem tendstoUniformlyOn_sum_inv_pow_mul_pow_choose_two {q : ℂ} (hq : ‖q‖ < 1) (R' : ℝ) :
     TendstoUniformlyOn
       (fun N z => ∑ m ∈ Finset.range N, z⁻¹ ^ (m + 1) * q ^ (m + 2).choose 2)
@@ -133,7 +147,9 @@ private lemma tendstoUniformlyOn_prod_range_of_finset {α β : Type*}
   exact h_range.eventually h1
 
 /-- The partial Pochhammer products $(a;q)_n$ converge locally uniformly in $a$
-when $\|q\| < 1$. -/
+when $\|q\| < 1$.
+@isnad1 id=tendstol.1h1v.s5.67ebe3a81773 from=translated src=- shape=4dff1819 vocab=f44e1902
+-/
 theorem tendstoLocallyUniformly_qPochhammer {q : ℂ} (hq : ‖q‖ < 1) :
     TendstoLocallyUniformly
       (fun n a => qPochhammer a q n)
@@ -188,7 +204,9 @@ private lemma norm_inv_le_of_mem_ball {z₀ z : ℂ} (hz₀ : z₀ ≠ 0)
   linarith
 
 /-- The partial sums of the bilateral Jacobi series converge locally uniformly on
-$\{z \neq 0\}$ for fixed $\|q\| < 1$. -/
+$\{z \neq 0\}$ for fixed $\|q\| < 1$.
+@isnad1 id=tendstol.1h1v.s7.0b4796a88ed1 from=translated src=- shape=8be4aa6c vocab=8bc68596
+-/
 theorem tendstoLocallyUniformlyOn_jacobiBilateral {q : ℂ} (hq : ‖q‖ < 1) :
     TendstoLocallyUniformlyOn
       (fun N z =>
@@ -214,7 +232,9 @@ theorem tendstoLocallyUniformlyOn_jacobiBilateral {q : ℂ} (hq : ‖q‖ < 1) :
       Filter.inter_mem (mem_nhdsWithin_of_mem_nhds (Metric.ball_mem_nhds z₀ hr₀))
         self_mem_nhdsWithin, hr ε hε⟩
 
-/-- Uniform convergence of the product of two bounded sequences in a normed ring. -/
+/-- Uniform convergence of the product of two bounded sequences in a normed ring.
+@isnad1 id=tendstou.4h5v.s7.471493452134 from=translated src=- shape=178ec496 vocab=5ea1f190
+-/
 lemma tendstoUniformlyOn_mul_of_bounded {s : Set ℂ}
     {f₁ f₂ : ℕ → ℂ → ℂ} {F₁ F₂ : ℂ → ℂ}
     (h₁ : TendstoUniformlyOn f₁ F₁ atTop s)
@@ -248,7 +268,9 @@ lemma tendstoUniformlyOn_mul_of_bounded {s : Set ℂ}
     (mul_le_mul_of_nonneg_right (hC₁ n z hz) (norm_nonneg _))) ?_)
   nlinarith [norm_nonneg (F₁ z - f₁ n z), norm_nonneg (F₂ z - f₂ n z)]
 
-/-- The Pochhammer products $(a;q)_n$ converge uniformly on any closed ball as $n \to \infty$. -/
+/-- The Pochhammer products $(a;q)_n$ converge uniformly on any closed ball as $n \to \infty$.
+@isnad1 id=tendstou.1h2v.s6.57c078f5a58d from=translated src=- shape=bf31a97c vocab=560a6b5e
+-/
 lemma tendstoUniformlyOn_qPochhammer_closedBall {q : ℂ} (hq : ‖q‖ < 1) (R : ℝ) :
     TendstoUniformlyOn (fun n a => qPochhammer a q n)
       (fun a => qPochhammerInf a q) atTop (Metric.closedBall 0 R) :=
@@ -267,7 +289,9 @@ private lemma neg_div_mem_closedBall {q z₀ z : ℂ} (hz₀ : z₀ ≠ 0)
   nlinarith [norm_nonneg q]
 
 /-- The Pochhammer products `qPochhammer (-z) q n` converge uniformly to
-`qPochhammerInf (-z) q` on any `Metric.closedBall z₀ r` when `‖q‖ < 1`. -/
+`qPochhammerInf (-z) q` on any `Metric.closedBall z₀ r` when `‖q‖ < 1`.
+@isnad1 id=tendstou.1h3v.s6.95e3d33398c5 from=translated src=- shape=a43bebea vocab=54649f54
+-/
 lemma tendstoUniformlyOn_qPochhammer_neg_closedBall {q : ℂ} (hq : ‖q‖ < 1) (z₀ : ℂ) (r : ℝ) :
     TendstoUniformlyOn (fun n z => qPochhammer (-z) q n)
       (fun z => qPochhammerInf (-z) q) atTop (Metric.closedBall z₀ r) := by
@@ -279,7 +303,9 @@ lemma tendstoUniformlyOn_qPochhammer_neg_closedBall {q : ℂ} (hq : ‖q‖ < 1)
 
 /-- The Pochhammer products `qPochhammer (-q / z) q n` converge uniformly to
 `qPochhammerInf (-q / z) q` on `Metric.closedBall z₀ (‖z₀‖ / 2)` for `z₀ ≠ 0`,
-`‖q‖ < 1`. -/
+`‖q‖ < 1`.
+@isnad1 id=tendstou.2h2v.s6.63684869a4a2 from=translated src=- shape=a6fe5cd6 vocab=b3b1ebb6
+-/
 lemma tendstoUniformlyOn_qPochhammer_neg_div {q : ℂ} (hq : ‖q‖ < 1) {z₀ : ℂ} (hz₀ : z₀ ≠ 0) :
     TendstoUniformlyOn (fun n z => qPochhammer (-q / z) q n)
       (fun z => qPochhammerInf (-q / z) q) atTop (Metric.closedBall z₀ (‖z₀‖ / 2)) :=
@@ -287,7 +313,9 @@ lemma tendstoUniformlyOn_qPochhammer_neg_div {q : ℂ} (hq : ‖q‖ < 1) {z₀ 
     (tendstoUniformlyOn_qPochhammer_closedBall hq (2 * ‖q‖ / ‖z₀‖))
     fun _ hz => neg_div_mem_closedBall hz₀ hz
 
-/-- Iterating the product-side FE $N$ times. -/
+/-- Iterating the product-side FE $N$ times.
+@isnad1 id=eq.3h3v.s6.713863cecaed from=translated src=- shape=026656c6 vocab=ee9f9b0c
+-/
 theorem jacobiProd_eq_pow_mul_pow_choose_two_mul {q z : ℂ} (hq : ‖q‖ < 1) (hq' : q ≠ 0)
     (hz : z ≠ 0) (N : ℕ) :
     jacobiProd q z = z ^ N * q ^ N.choose 2 * jacobiProd q (q ^ N * z) := by

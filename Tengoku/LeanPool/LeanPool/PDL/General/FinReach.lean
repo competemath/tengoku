@@ -31,10 +31,16 @@ def reachStep (s : Finset α) : Finset α :=
 def reachSet (a : α) : Finset α :=
   (reachStep r)^[Fintype.card α] (Finset.univ.filter (fun b => r a b))
 
+/--
+@isnad1 id=le.0h3v.s5.4e2d06d60688 from=translated src=- shape=9544599e vocab=b54d9d45
+-/
 lemma subset_reachStep (s : Finset α) : s ⊆ reachStep r s := by
   intro x hx
   simp [reachStep, hx]
 
+/--
+@isnad1 id=le.1h5v.s6.cced8a8f044e from=translated src=- shape=a964f52f vocab=b8e914df
+-/
 lemma reachStep_iterate_mono (s : Finset α) {m n : ℕ} (h : m ≤ n) :
     (reachStep r)^[m] s ⊆ (reachStep r)^[n] s := by
   induction n with
@@ -45,7 +51,9 @@ lemma reachStep_iterate_mono (s : Finset α) {m n : ℕ} (h : m ≤ n) :
       exact (ih (Nat.lt_succ_iff.mp h')).trans (subset_reachStep r _)
     · exact subset_rfl
 
-/-- As soon as the iteration stops growing it stays the same forever. -/
+/-- As soon as the iteration stops growing it stays the same forever.
+@isnad1 id=eq.2h5v.s6.615e3f2a578c from=translated src=- shape=f2e38e18 vocab=8d70f0cc
+-/
 lemma reachStep_iterate_eq_of_eq (s : Finset α) {m : ℕ}
     (h : (reachStep r)^[m + 1] s = (reachStep r)^[m] s) :
     ∀ k, m ≤ k → (reachStep r)^[k] s = (reachStep r)^[m] s := by
@@ -61,7 +69,9 @@ lemma reachStep_iterate_eq_of_eq (s : Finset α) {m : ℕ}
       rw [Function.iterate_succ_apply', hik, ← Function.iterate_succ_apply' (reachStep r) m s, h]
     · rfl
 
-/-- As long as the iteration is still growing it gains at least one element per step. -/
+/-- As long as the iteration is still growing it gains at least one element per step.
+@isnad1 id=le.1h4v.s6.169f998e7633 from=translated src=- shape=c03ec855 vocab=15b78506
+-/
 lemma card_le_card_iterate (s : Finset α) :
     ∀ n, (∀ m < n, (reachStep r)^[m + 1] s ≠ (reachStep r)^[m] s) →
       n ≤ ((reachStep r)^[n] s).card := by
@@ -78,7 +88,9 @@ lemma card_le_card_iterate (s : Finset α) :
     have := Finset.card_lt_card hss
     omega
 
-/-- After `Fintype.card α` steps the iteration has reached a fixed point. -/
+/-- After `Fintype.card α` steps the iteration has reached a fixed point.
+@isnad1 id=eq.0h3v.s5.5959e9ed5a13 from=translated src=- shape=6958567f vocab=dc0962a3
+-/
 lemma reachStep_iterate_card_fixed (s : Finset α) :
     reachStep r ((reachStep r)^[Fintype.card α] s) = (reachStep r)^[Fintype.card α] s := by
   set N := Fintype.card α with hN
@@ -95,6 +107,9 @@ lemma reachStep_iterate_card_fixed (s : Finset α) :
     have h2 := reachStep_iterate_eq_of_eq r s heq (N + 1) (by omega)
     rw [← Function.iterate_succ_apply' (reachStep r) N s, h1, h2]
 
+/--
+@isnad1 id=transgen.1h5v.s6.9f012ad0e27f from=translated src=- shape=58e1c968 vocab=d3871585
+-/
 lemma transGen_of_mem_iterate (a : α) : ∀ (n : ℕ) (b : α),
     b ∈ (reachStep r)^[n] (Finset.univ.filter (fun b => r a b)) → Relation.TransGen r a b := by
   intro n
@@ -111,7 +126,9 @@ lemma transGen_of_mem_iterate (a : α) : ∀ (n : ℕ) (b : α),
     · exact ih b h
     · exact (ih c hc).tail hcb
 
-/-- The transitive closure of `r` is computed by `reachSet`. -/
+/-- The transitive closure of `r` is computed by `reachSet`.
+@isnad1 id=iff.0h4v.s5.22fe8af98ad2 from=translated src=- shape=186fc678 vocab=14883c49
+-/
 theorem mem_reachSet_iff (a b : α) : b ∈ reachSet r a ↔ Relation.TransGen r a b := by
   constructor
   · exact transGen_of_mem_iterate r a _ b

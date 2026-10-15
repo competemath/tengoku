@@ -22,7 +22,9 @@ zeroth coefficient cancellation holds locally in phase space.
 
 namespace LeanPool.PoincareThreeBody
 
-/-- A differentiable scalar function of an observable Poisson-commutes with that observable. -/
+/-- A differentiable scalar function of an observable Poisson-commutes with that observable.
+@isnad1 id=eq.2h3v.s7.13ed8865697a from=translated src=- shape=690e17a6 vocab=1ef5973c
+-/
 theorem poissonBracket_comp_self_eq_zero
     {observable : PhaseSpace → ℝ} {scalarFunction : ℝ → ℝ} {state : PhaseSpace}
     (hobservable : DifferentiableAt ℝ observable state)
@@ -48,7 +50,9 @@ theorem poissonBracket_comp_self_eq_zero
   simp_rw [hscalarDerivative]
   ring
 
-/-- The Poisson bracket is additive in its first argument at differentiability points. -/
+/-- The Poisson bracket is additive in its first argument at differentiability points.
+@isnad1 id=eq.2h4v.s8.265fa27032c5 from=translated src=- shape=975ce270 vocab=152894b8
+-/
 theorem poissonBracket_sub_left
     {first second observable : PhaseSpace → ℝ} {state : PhaseSpace}
     (hfirst : DifferentiableAt ℝ first state)
@@ -65,7 +69,9 @@ theorem poissonBracket_sub_left
   ring
 
 /-- Multiplying the first argument by a constant multiplies its Poisson bracket by that
-constant. -/
+constant.
+@isnad1 id=eq.1h4v.s7.1e1de118c16c from=translated src=- shape=e70e809c vocab=de3aa2f6
+-/
 theorem poissonBracket_const_mul_left
     {first observable : PhaseSpace → ℝ} {state : PhaseSpace}
     (hfirst : DifferentiableAt ℝ first state) (scalar : ℝ) :
@@ -77,7 +83,9 @@ theorem poissonBracket_const_mul_left
   simp only [smul_apply, smul_eq_mul]
   ring
 
-/-- Subtracting a differentiable function of the Hamiltonian preserves Poisson commutation. -/
+/-- Subtracting a differentiable function of the Hamiltonian preserves Poisson commutation.
+@isnad1 id=eq.4h4v.s8.1adf441393af from=translated src=- shape=6c67a492 vocab=4ce718f2
+-/
 theorem poissonBracket_normalizationResidual_eq_zero
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     {mass : ℝ} {state : PhaseSpace}
@@ -100,7 +108,9 @@ theorem poissonBracket_normalizationResidual_eq_zero
     sub_self]
 
 /-- Under the challenge hypotheses, the normalization residual is a first integral at every
-domain point where the chosen energy function is analytic. -/
+domain point where the chosen energy function is analytic.
+@isnad1 id=eq.4h4v.s6.5e0e5c0c6d1e from=translated src=- shape=f5bbaf30 vocab=ecd5e290
+-/
 theorem IsFirstIntegralFamily.normalizationResidual_poissonBracket_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -123,7 +133,9 @@ theorem IsFirstIntegralFamily.normalizationResidual_poissonBracket_eq_zero
     (hfirstIntegral z hz)
 
 /-- At nonzero mass, division of the normalization residual by mass preserves its
-first-integral equation. -/
+first-integral equation.
+@isnad1 id=eq.5h5v.s6.328a19aadc7f from=translated src=- shape=bb2dd6fc vocab=3f4f98dd
+-/
 theorem IsFirstIntegralFamily.normalizationResidual_div_mass_poissonBracket_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -161,7 +173,9 @@ theorem IsFirstIntegralFamily.normalizationResidual_div_mass_poissonBracket_eq_z
     mul_zero]
 
 /-- If the zeroth residual vanishes on a phase neighborhood, then the `dslope`-normalized
-candidate Poisson-commutes with the Hamiltonian at every nonzero mass in the domain. -/
+candidate Poisson-commutes with the Hamiltonian at every nonzero mass in the domain.
+@isnad1 id=eq.6h5v.s7.50f15e450cbe from=translated src=- shape=8b8150ff vocab=456bbb6b
+-/
 theorem IsFirstIntegralFamily.massNormalizedCandidate_poissonBracket_eq_zero_of_ne
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -183,7 +197,9 @@ theorem IsFirstIntegralFamily.massNormalizedCandidate_poissonBracket_eq_zero_of_
     hanalytic hfirstIntegral hmass hdomain henergyFunction
 
 /-- A Poisson bracket formed from two jointly `C¹` mass/phase families varies continuously with
-mass at a fixed phase point. -/
+mass at a fixed phase point.
+@isnad1 id=continuo.2h4v.s8.975a8df9d333 from=translated src=- shape=6b307510 vocab=de171d3c
+-/
 theorem continuousAt_poissonBracket_curry
     {first second : ℝ × PhaseSpace → ℝ} {mass : ℝ} {state : PhaseSpace}
     (hfirst : ContDiffAt ℝ 1 first (mass, state))
@@ -256,7 +272,9 @@ theorem continuousAt_poissonBracket_curry
 
 /-- Once joint `C¹` regularity of the removable quotient is available, its off-zero
 first-integral equation extends continuously to mass zero.  This isolates the joint analytic
-Hadamard-division lemma needed to iterate Poincaré's normalization. -/
+Hadamard-division lemma needed to iterate Poincaré's normalization.
+@isnad1 id=eq.7h4v.s8.83b6f4af9f5e from=translated src=- shape=87e9cf25 vocab=da790119
+-/
 theorem IsFirstIntegralFamily.massNormalizedCandidate_poissonBracket_eq_zero_at_mass_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -330,7 +348,9 @@ theorem IsFirstIntegralFamily.massNormalizedCandidate_poissonBracket_eq_zero_at_
   exact tendsto_nhds_unique_of_eventuallyEq hlimit hzeroLimit hzero
 
 /-- Joint analyticity of the domain-correct removable quotient upgrades the pointwise
-normalization algebra to a first-integral family on the whole parameter domain. -/
+normalization algebra to a first-integral family on the whole parameter domain.
+@isnad1 id=isfirsti.6h3v.s6.89ee87b242ad from=translated src=- shape=cbbfe77f vocab=dcef3931
+-/
 theorem IsFirstIntegralFamily.domainMassNormalizedCandidate_isFirstIntegralFamily
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

@@ -23,7 +23,9 @@ namespace LeanPool.PoincareThreeBody
 open Filter MeasureTheory Set Topology
 
 /-- For a fixed degree, the restricted parameter coefficient varies continuously with time as
-long as the time displacement remains inside the joint convergence ball. -/
+long as the time displacement remains inside the joint convergence ball.
+@isnad1 id=continuo.1h4v.s7.fc54ac9b09ea from=translated src=- shape=03ffb3fa vocab=198d690a
+-/
 theorem continuousOn_jointBallFiberSeries_degree
     (jointSeries : FormalMultilinearSeries ℝ (ℝ × ℝ) ℝ)
     (centerTime : ℝ) (degree : ℕ) {timeBound : NNReal}
@@ -66,7 +68,9 @@ noncomputable def jointBallFiberCoefficientBound
       {subset : Finset (Fin (degree + order)) // subset.card = order},
     ‖jointSeries (degree + index.1)‖₊ * timeBound ^ index.1
 
-/-- Every fiber coefficient on the slab is bounded by the coefficient majorant above. -/
+/-- Every fiber coefficient on the slab is bounded by the coefficient majorant above.
+@isnad1 id=le.2h5v.s8.b2e9e99acf5c from=translated src=- shape=786bb89f vocab=6f95a91a
+-/
 theorem nnnorm_jointBallFiberSeries_le_coefficientBound
     (jointSeries : FormalMultilinearSeries ℝ (ℝ × ℝ) ℝ)
     (centerTime time : ℝ) (degree : ℕ) {timeBound : NNReal}
@@ -101,7 +105,9 @@ theorem nnnorm_jointBallFiberSeries_le_coefficientBound
         (jointSeries.changeOriginSeries_summable_aux₂ hradius degree)
 
 /-- The coefficient majorants are summable at every parameter radius whose sum with the slab
-half-width remains inside the original joint convergence radius. -/
+half-width remains inside the original joint convergence radius.
+@isnad1 id=summable.1h3v.s7.cf69969aaa4d from=translated src=- shape=715806b7 vocab=8677daac
+-/
 theorem summable_coefficientBound_mul_pow
     (jointSeries : FormalMultilinearSeries ℝ (ℝ × ℝ) ℝ)
     {timeBound fiberRadius : NNReal}
@@ -118,7 +124,9 @@ theorem summable_coefficientBound_mul_pow
   simpa only [NNReal.coe_mul, NNReal.coe_pow] using NNReal.summable_coe.mpr hnnreal
 
 /-- Integrating over a finite measurable time set contained in a joint analytic slab preserves a
-uniform parameter power series. -/
+uniform parameter power series.
+@isnad1 id=hasfpowe.6h8v.s8.7941d9c81f56 from=translated src=- shape=a9ec935d vocab=ef9da150
+-/
 theorem hasFPowerSeriesOnBall_setIntegral_of_joint_ball_of_measurableSet
     {function : ℝ × ℝ → ℝ}
     {jointSeries : FormalMultilinearSeries ℝ (ℝ × ℝ) ℝ}
@@ -192,7 +200,9 @@ theorem hasFPowerSeriesOnBall_setIntegral_of_joint_ball_of_measurableSet
     (volume.restrict timeSet) hfiberRadius hseries
       hcoeffIntegrable hcoeffSummable
 
-/-- Closed intervals are the principal special case of measurable time sets. -/
+/-- Closed intervals are the principal special case of measurable time sets.
+@isnad1 id=hasfpowe.4h9v.s8.4f0f5e8752d5 from=translated src=- shape=3c208e7b vocab=0b79df19
+-/
 theorem hasFPowerSeriesOnBall_setIntegral_of_joint_ball
     {function : ℝ × ℝ → ℝ}
     {jointSeries : FormalMultilinearSeries ℝ (ℝ × ℝ) ℝ}

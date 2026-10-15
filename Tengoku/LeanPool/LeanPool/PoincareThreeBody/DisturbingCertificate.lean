@@ -30,6 +30,9 @@ noncomputable def resonantDisturbingDifference
   resonantDisturbingFunction p q eccentricity phaseA time -
     resonantDisturbingFunction p q eccentricity phaseB time
 
+/--
+@isnad1 id=contdiff.5h7v.s7.b6c023a75264 from=translated src=- shape=acc31577 vocab=2433a73b
+-/
 theorem contDiffOn_resonantDisturbingDifference
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity phaseA phaseB start finish : ℝ}
@@ -52,7 +55,9 @@ theorem contDiffOn_resonantDisturbingDifference
   exact (hsmoothA.sub hsmoothB).contDiffOn
 
 /-- A finite trapezoidal certificate for the phase difference proves that the exact Poincaré
-averages at those phases are distinct. -/
+averages at those phases are distinct.
+@isnad1 id=ne.8h7v.s8.43bd56b5e94a from=translated src=- shape=0b9194c3 vocab=bf5dd094
+-/
 theorem resonantDisturbingAverage_ne_of_trapezoidal_certificate
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity phaseA phaseB errorBound : ℝ} {steps : ℕ}
@@ -85,7 +90,9 @@ theorem resonantDisturbingAverage_ne_of_trapezoidal_certificate
   exact sub_eq_zero.mpr (by simpa [resonantDisturbingAverage] using hvalues)
 
 /-- The same finite certificate produces an orientation with a nonzero derivative of the exact
-Poincaré average. -/
+Poincaré average.
+@isnad1 id=ex.8h7v.s8.065f1793991d from=translated src=- shape=6322dc36 vocab=b360fb4d
+-/
 theorem exists_deriv_resonantDisturbingAverage_ne_zero_of_trapezoidal_certificate
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity phaseA phaseB errorBound : ℝ} {steps : ℕ}

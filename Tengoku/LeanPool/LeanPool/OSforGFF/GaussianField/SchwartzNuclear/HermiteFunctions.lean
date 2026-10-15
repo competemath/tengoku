@@ -199,7 +199,9 @@ private lemma polynomial_eval_mul_exp_neg_bound (P : ℝ[X]) {b : ℝ} (hb : 0 <
           rw [abs_mul, abs_pow, abs_of_pos (Real.exp_pos _)]]
     exact mul_le_mul_of_nonneg_left (pow_mul_exp_neg_le k hb x) (abs_nonneg a)
 
-/-- Hermite functions are square-integrable. -/
+/-- Hermite functions are square-integrable.
+@isnad1 id=memlp.0h1v.s5.e52b06400a05 from=translated src=- shape=09376515 vocab=a922119d
+-/
 theorem hermiteFunction_memLp (n : ℕ) :
     MemLp (hermiteFunction n) 2 MeasureTheory.volume := by
   have hcont := continuous_hermiteFunction n
@@ -243,6 +245,7 @@ abbrev hermiteR (n : ℕ) : ℝ[X] := (hermite n).map (Int.castRingHom ℝ)
 
 /-- The derivative of the (n+1)-th Hermite polynomial is (n+1) times the n-th.
     Adapted from auto1's `probHermite_derivative`.
+@isnad1 id=eq.0h1v.s7.e16f38815cba from=translated src=- shape=4dfe7772 vocab=0b5e48d4
 -/
 theorem hermite_derivative (n : ℕ) :
     derivative (hermite (n + 1)) = (↑(n + 1) : ℤ[X]) * hermite n := by
@@ -454,7 +457,9 @@ private theorem J_succ_zero (k : ℕ) : J (k + 1) 0 = 0 := by
   have h4 : (↑(k + 1) : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (by omega)
   exact (mul_eq_zero.mp h3).resolve_left h4
 
-/-- `J(n, m) = if n = m then n! * √(2π) else 0`. -/
+/-- `J(n, m) = if n = m then n! * √(2π) else 0`.
+@isnad1 id=eq.0h2v.s5.f037a1aa80e9 from=translated src=- shape=c5a5dce7 vocab=62daa519
+-/
 theorem J_eq : ∀ m n : ℕ,
     J n m = if n = m then ↑(n.factorial) * Real.sqrt (2 * Real.pi) else 0 := by
   intro m
@@ -532,6 +537,7 @@ private theorem hermiteFunction_integral_eq (n m : ℕ) :
 
 /-- Hermite functions are orthonormal in L²(ℝ):
     ∫ ψₙ(x) ψₘ(x) dx = δₙₘ
+@isnad1 id=eq.0h2v.s5.c3eb77a0317e from=translated src=- shape=b44d3c89 vocab=0f0b662c
 -/
 theorem hermiteFunction_orthonormal :
     ∀ n m : ℕ, ∫ x, hermiteFunction n x * hermiteFunction m x = if n = m then 1 else 0 := by
@@ -619,7 +625,9 @@ private lemma poly_mul_gaussian_schwartz (P : ℝ[X]) :
       simp only [smul_apply, smul_eq_mul, Polynomial.eval_monomial, hψ x]
       ring⟩
 
-/-- Each Hermite function is a Schwartz function. -/
+/-- Each Hermite function is a Schwartz function.
+@isnad1 id=ex.0h1v.s6.190f7f84e9eb from=translated src=- shape=0e478a6a vocab=4f7cb1a5
+-/
 theorem hermiteFunction_schwartz (n : ℕ) :
     ∃ (φ : SchwartzMap ℝ ℝ), ∀ x, φ x = hermiteFunction n x := by
   -- Hₙ(x√2) = Q(x) where Q is the composed polynomial
@@ -664,11 +672,16 @@ private lemma normConst_succ (n : ℕ) :
   have hn1 : (0 : ℝ) < ↑(n + 1) := Nat.cast_pos.mpr (Nat.succ_pos n)
   field_simp
 
-/-- X · Hₙ₊₁ = Hₙ₊₂ + (n+1) · Hₙ in ℤ[X]. -/
+/-- X · Hₙ₊₁ = Hₙ₊₂ + (n+1) · Hₙ in ℤ[X].
+@isnad1 id=eq.0h1v.s6.ab797f89d6c1 from=translated src=- shape=dd68abff vocab=7df7fc42
+-/
 lemma hermite_X_mul (n : ℕ) :
     X * hermite (n + 1) = hermite (n + 2) + (↑(n + 1) : ℤ[X]) * hermite n := by
   linear_combination -(hermite_succ (n + 1)) + hermite_derivative n
 
+/--
+@isnad1 id=eq.0h2v.s6.e93502a9180a from=translated src=- shape=f4192569 vocab=7ae037fe
+-/
 lemma hermiteR_recurrence_succ (n : ℕ) (t : ℝ) :
     t * (hermiteR (n + 1)).eval t =
     (hermiteR (n + 2)).eval t + ↑(n + 1) * (hermiteR n).eval t := by
@@ -679,7 +692,9 @@ lemma hermiteR_recurrence_succ (n : ℕ) (t : ℝ) :
     Polynomial.eval_X, Polynomial.eval_natCast] at h
   linarith
 
-/-- Hermite recurrence for n = 0: t · H₀(t) = H₁(t). -/
+/-- Hermite recurrence for n = 0: t · H₀(t) = H₁(t).
+@isnad1 id=eq.0h1v.s5.9ee549b5f8da from=translated src=- shape=3a1ed2d0 vocab=045cde47
+-/
 lemma hermiteR_recurrence_zero (t : ℝ) :
     t * (hermiteR 0).eval t = (hermiteR 1).eval t := by
   simp [hermiteR, hermite_zero, hermite_succ, Polynomial.eval_X,
@@ -714,7 +729,9 @@ private lemma normConst_mul_div_sqrt2 (n : ℕ) :
   rw [mul_assoc, hc.symm, mul_div_assoc, Real.sqrt_div hn1]
   ring
 
-/-- Multiplication by x: x·ψₙ = √((n+1)/2)·ψ_{n+1} + √(n/2)·ψ_{n-1}. -/
+/-- Multiplication by x: x·ψₙ = √((n+1)/2)·ψ_{n+1} + √(n/2)·ψ_{n-1}.
+@isnad1 id=eq.0h2v.s6.60d0a99c336e from=translated src=- shape=baff52e2 vocab=9d573268
+-/
 theorem mul_x_hermiteFunction (n : ℕ) (x : ℝ) :
     x * hermiteFunction n x =
     Real.sqrt ((↑(n + 1) : ℝ) / 2) * hermiteFunction (n + 1) x +
@@ -776,7 +793,9 @@ theorem mul_x_hermiteFunction (n : ℕ) (x : ℝ) :
     rw [expand, key1, key2]
     ring
 
-/-- Hermite functions are smooth (ContDiff ℝ ⊤). -/
+/-- Hermite functions are smooth (ContDiff ℝ ⊤).
+@isnad1 id=contdiff.0h2v.s5.bcd7c5cbdcd0 from=translated src=- shape=edcb9957 vocab=80cf5d10
+-/
 lemma hermiteFunction_contDiff (j : ℕ) (m : ℕ) :
     ContDiff ℝ m (hermiteFunction j) := by
   obtain ⟨φ, hφ⟩ := hermiteFunction_schwartz j
@@ -785,6 +804,7 @@ lemma hermiteFunction_contDiff (j : ℕ) (m : ℕ) :
 
 /-- Derivative identity: ψₙ'(x) = √(n/2) ψ_{n-1}(x) - √((n+1)/2) ψ_{n+1}(x).
     Proved from the product rule on cₙ · Hₙ(x√2) · exp(-x²/2) and Hermite recurrence.
+@isnad1 id=eq.0h2v.s7.672a4b96b488 from=translated src=- shape=8505a554 vocab=867d0058
 -/
 theorem deriv_hermiteFunction (n : ℕ) (x : ℝ) :
     deriv (hermiteFunction n) x =
@@ -1014,6 +1034,7 @@ private lemma hermiteFunction_sq_tendsto_atBot (n : ℕ) :
 /-- Agmon-type sup bound: |ψₙ(x)| grows at most polynomially in n.
     Uses FTC + Cauchy-Schwarz + orthonormality + derivative identity:
     |ψₙ(x)|² ≤ 2‖ψₙ‖₂ · ‖ψₙ'‖₂ = 2√((2n+1)/2) ≤ C·(1+n)^{1/2}.
+@isnad1 id=ex.0h0v.s6.864098e7820a from=translated src=- shape=52284e89 vocab=5cacd6d8
 -/
 theorem hermiteFunction_sup_bound :
     ∃ (C : ℝ) (s : ℝ), 0 < C ∧ 0 ≤ s ∧
@@ -1301,6 +1322,7 @@ private theorem hermiteFunction_pointwise_bound (k m : ℕ) :
     levels is Hilbert-Schmidt. The exponent s depends on the seminorm order:
     for the Schwartz seminorm p_{k,m}(f) = sup_x (1+|x|)^k |f^(m)(x)|,
     we have ‖ψₙ‖_{k,m} ≤ C_{k,m} · (1+n)^{(k+m)/2 + 1/4}.
+@isnad1 id=ex.0h2v.s9.817a731da4d4 from=translated src=- shape=b5b414de vocab=71af2aa1
 -/
 theorem hermiteFunction_seminorm_bound (k m : ℕ) :
     ∃ (C : ℝ) (s : ℝ), 0 < C ∧ 0 ≤ s ∧
@@ -1330,6 +1352,7 @@ by the Sobolev-Hermite norms.
 
 /-- The Hilbert-Schmidt sum for the inclusion between Sobolev-Hermite levels:
     ∑_{n=0}^{N-1} (1+n)^{-2s} is bounded for s > 1/2, uniformly in N.
+@isnad1 id=ex.1h1v.s6.ebed86dbe806 from=translated src=- shape=63f5bd6e vocab=2aae7c7b
 -/
 theorem sobolevHermite_hs_sum_bound (s : ℝ) (hs : 1 / 2 < s) :
     ∃ C : ℝ, ∀ N : ℕ, ∑ i ∈ Finset.range N, ((1 + (i : ℝ)) ^ (-2 * s)) ≤ C := by
@@ -1781,6 +1804,7 @@ private theorem hermiteFunction_complete_proof :
 
 /-- Hermite functions form a complete system in L²(ℝ):
     if ∫ f ψₙ = 0 for all n, then f = 0 a.e.
+@isnad1 id=eventual.2h1v.s7.bce8427e9e19 from=translated src=- shape=14e7aa5f vocab=6cde4316
 -/
 theorem hermiteFunction_complete :
     ∀ f : ℝ → ℝ, MemLp f 2 volume →

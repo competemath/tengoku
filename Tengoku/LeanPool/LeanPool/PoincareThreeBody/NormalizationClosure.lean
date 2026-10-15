@@ -67,7 +67,9 @@ def MassZeroAnalyticDivisionPrinciple : Prop :=
         AnalyticAt ℝ
           (Function.uncurry (domainMassNormalizedCandidate F energyFunction)) (0, state)
 
-/-- Parameterized analytic division is reduced exactly to the removable mass-zero slice. -/
+/-- Parameterized analytic division is reduced exactly to the removable mass-zero slice.
+@isnad1 id=iff.0h0v.s1.7f1271849cb9 from=translated src=- shape=25b03439 vocab=c0db6ffd
+-/
 theorem jointAnalyticMassDivisionPrinciple_iff_massZero :
     JointAnalyticMassDivisionPrinciple ↔ MassZeroAnalyticDivisionPrinciple := by
   constructor
@@ -79,7 +81,9 @@ theorem jointAnalyticMassDivisionPrinciple_iff_massZero :
       hanalytic henergy (hdivision _hδ hanalytic henergy hcancel)
 
 /-- The functional-dependence and analytic-division halves together give the reusable one-step
-closure theorem; preservation of the first-integral equation is already formal. -/
+closure theorem; preservation of the first-integral equation is already formal.
+@isnad1 id=classica.2h0v.s2.3bab68882c81 from=translated src=- shape=f443e7c7 vocab=c69a7f74
+-/
 theorem classicalNormalizationStep_of_zerothCoefficient_of_massDivision
     (hcoefficient : ClassicalZerothCoefficientPrinciple)
     (hdivision : JointAnalyticMassDivisionPrinciple) :
@@ -105,6 +109,9 @@ noncomputable def selectedEnergy
     (current : NormalizationState δ) : ℝ → ℝ :=
   Classical.choose (hstep hδ current.analytic current.firstIntegral)
 
+/--
+@isnad1 id=and.2h2v.s7.8d1b05a52ced from=translated src=- shape=38ddabcd vocab=d446a17e
+-/
 theorem selectedEnergy_spec
     (hstep : ClassicalNormalizationStep) {δ : ℝ} (hδ : 0 < δ)
     (current : NormalizationState δ) :
@@ -140,7 +147,9 @@ noncomputable def normalizationEnergySequence
   selectedEnergy hstep hδ (normalizationStateSequence hstep hδ initial n)
 
 /-- The recursively bundled family agrees with the explicit iteration used by the all-orders
-endpoint. -/
+endpoint.
+@isnad1 id=eq.2h3v.s6.7e6f2be9c03a from=translated src=- shape=f2b5a44e vocab=2bddb771
+-/
 theorem normalizationStateSequence_family_eq_iterated
     (hstep : ClassicalNormalizationStep) {δ : ℝ} (hδ : 0 < δ)
     (initial : NormalizationState δ) (n : ℕ) :
@@ -154,7 +163,9 @@ theorem normalizationStateSequence_family_eq_iterated
         iteratedMassNormalization_succ, normalizationEnergySequence]
       rw [ih]
 
-/-- A one-step normalization closure theorem supplies the complete all-orders principle. -/
+/-- A one-step normalization closure theorem supplies the complete all-orders principle.
+@isnad1 id=classica.1h0v.s1.1c706d6dd825 from=translated src=- shape=1d48f1ac vocab=91e8a4a0
+-/
 theorem classicalNormalizationPrinciple_of_step
     (hstep : ClassicalNormalizationStep) : ClassicalNormalizationPrinciple := by
   intro δ F hδ hanalytic hfirstIntegral
@@ -172,7 +183,9 @@ theorem classicalNormalizationPrinciple_of_step
     exact (selectedEnergy_spec hstep hδ
       (normalizationStateSequence hstep hδ initial n)).2.1 state hcollision
 
-/-- Thus the exact challenge theorem follows from the one-step closure theorem. -/
+/-- Thus the exact challenge theorem follows from the one-step closure theorem.
+@isnad1 id=not.1h0v.s5.aed96805cba8 from=translated src=- shape=bdf693e7 vocab=9645c596
+-/
 theorem nonintegrability_of_classicalNormalizationStep
     (hstep : ClassicalNormalizationStep) :
     ¬∃ δ : ℝ, 0 < δ ∧ ∃ F : ℝ → PhaseSpace → ℝ,
@@ -181,7 +194,9 @@ theorem nonintegrability_of_classicalNormalizationStep
   nonintegrability_of_classicalNormalizationPrinciple
     (classicalNormalizationPrinciple_of_step hstep)
 
-/-- Final decomposition of the exact theorem into its two remaining reusable inputs. -/
+/-- Final decomposition of the exact theorem into its two remaining reusable inputs.
+@isnad1 id=not.2h0v.s5.8d09700f2e94 from=translated src=- shape=4f651e07 vocab=64b48ca1
+-/
 theorem nonintegrability_of_zerothCoefficient_of_massDivision
     (hcoefficient : ClassicalZerothCoefficientPrinciple)
     (hdivision : JointAnalyticMassDivisionPrinciple) :

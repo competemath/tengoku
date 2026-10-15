@@ -51,6 +51,7 @@ def marginalCF {E : Type*} [AddCommGroup E] [Module ℝ E]
     Proof: Each summand `tᵢ • fᵢ` is continuous in t (scalar multiplication
     by a continuous coordinate projection), and a finite sum of continuous
     functions is continuous. Then compose with continuous Φ.
+@isnad1 id=continuo.1h4v.s7.cd8acd7b79c0 from=translated src=- shape=3f778283 vocab=47bd9d56
 -/
 theorem marginalCF_continuous {E : Type*} [AddCommGroup E] [Module ℝ E]
     [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E]
@@ -74,13 +75,16 @@ private def spanLinearMap {E : Type*} [AddCommGroup E] [Module ℝ E]
 
     Uses `isPositiveDefinite_precomp_linear`: if Φ is PD on E and T : V →ₗ E
     is linear, then Φ ∘ T is PD on V.
+@isnad1 id=ispositi.1h4v.s6.094810afd8b2 from=translated src=- shape=1d1edc90 vocab=41ca88cf
 -/
 theorem marginalCF_pd {E : Type*} [AddCommGroup E] [Module ℝ E]
     (Φ : E → ℂ) {n : ℕ} (f : Fin n → E)
     (hPD : IsPositiveDefinite Φ) : IsPositiveDefinite (marginalCF Φ f) :=
   isPositiveDefinite_precomp_linear Φ hPD (spanLinearMap f)
 
-/-- The marginal CF is normalized: Φ_F(0) = Φ(0) = 1. -/
+/-- The marginal CF is normalized: Φ_F(0) = Φ(0) = 1.
+@isnad1 id=eq.1h4v.s7.14404008c0f6 from=translated src=- shape=3f93e75e vocab=b501dbf0
+-/
 theorem marginalCF_normalized {E : Type*} [AddCommGroup E] [Module ℝ E]
     (Φ : E → ℂ) {n : ℕ} (f : Fin n → E)
     (h_norm : Φ 0 = 1) : marginalCF Φ f 0 = 1 := by
@@ -91,6 +95,7 @@ theorem marginalCF_normalized {E : Type*} [AddCommGroup E] [Module ℝ E]
 
     This is the core step connecting the infinite-dimensional Minlos problem
     to the finite-dimensional Bochner theorem.
+@isnad1 id=existsun.3h4v.s8.5edbd5cfeb6a from=translated src=- shape=d54fa5b7 vocab=036bcff4
 -/
 theorem marginal_measure_exists {E : Type*} [AddCommGroup E] [Module ℝ E]
     [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E]

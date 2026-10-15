@@ -41,7 +41,9 @@ abbrev numCyclesOfPerm (f : Equiv.Perm X)
 
 /-- The number of cycles of a permutation `f : X → X` is equal to the cardinality of any set of
     representatives of its cycles. That is, any set that contains exactly one element of `X` from
-    every cycle of `f`. -/
+    every cycle of `f`.
+@isnad1 id=eq.2h3v.s6.776d32be53db from=translated src=- shape=17305dd0 vocab=6a4bcfb6
+-/
 lemma numCyclesOfPerm_eq_card {f : Equiv.Perm X}
     [Fintype (Quotient (Equiv.Perm.SameCycle.setoid f))] {s : Finset X}
     (h1 : ∀ x ∈ s, ∀ y ∈ s, f.SameCycle x y → x = y)
@@ -78,7 +80,9 @@ same element. If `fⁿ⁺¹ x = x`, then for any `k ∈ ℤ`, we have `fᵏ x = 
 -/
 
 /-- Given a permutation on a finite type `f : X → X` and any `x : X` there exists `n : ℕ` such
-    that `fⁿ⁺¹ x = x`. -/
+    that `fⁿ⁺¹ x = x`.
+@isnad1 id=ex.0h3v.s6.29e13ef58a6a from=translated src=- shape=a5f6ebaf vocab=1cac09db
+-/
 lemma exists_perm_pow [Finite X] (f : Equiv.Perm X) (x : X) :
     ∃ n, (f ^ (n + 1)) x = x := by
   classical
@@ -90,7 +94,9 @@ lemma exists_perm_pow [Finite X] (f : Equiv.Perm X) (x : X) :
       ← f.cycleOf_pow_apply_self, pow_orderOf_eq_one, Equiv.Perm.one_apply]
   · exact ⟨0, Equiv.Perm.notMem_support.1 hx⟩
 
-/-- Given a permutation `f` satisfying `fⁿ x = x` we can reduce `fⁿ*ᵐ⁺ʳ x` to `fʳ x`. -/
+/-- Given a permutation `f` satisfying `fⁿ x = x` we can reduce `fⁿ*ᵐ⁺ʳ x` to `fʳ x`.
+@isnad1 id=eq.1h6v.s6.43bf723c3b66 from=translated src=- shape=fa5993d7 vocab=214aba65
+-/
 lemma perm_pow_reduce {n m r : ℕ} {f : Equiv.Perm X} {x : X} (h : (f ^ n) x = x) :
     (f ^ (m * n + r)) x = (f ^ r) x := by
   induction m with
@@ -100,7 +106,9 @@ lemma perm_pow_reduce {n m r : ℕ} {f : Equiv.Perm X} {x : X} (h : (f ^ n) x = 
     simp [h, hk]
 
 /-- Given a permutation `f` satisfying `fⁿ⁺¹ x = x` for some `n : ℕ`, then for any `k : ℤ`,
-    `fᵏ x = fᵐ x` for some `m ∈ {0, ..., n}`. -/
+    `fᵏ x = fᵐ x` for some `m ∈ {0, ..., n}`.
+@isnad1 id=ex.1h5v.s7.1d4e4fd5262c from=translated src=- shape=09b1a5e9 vocab=81e9db19
+-/
 lemma forall_exists_lt_perm_pow_eq_perm_pow {n : ℕ} {f : Equiv.Perm X} {x : X}
     (h : (f ^ (n + 1)) x = x) :
     ∀ k : ℤ, ∃ m < n + 1, (f ^ k) x = (f ^ m) x := by
@@ -154,7 +162,9 @@ adding `n` to the domain and defining `f n = n`. We get a permutation on `Fin (n
 
 variable {n : ℕ}
 
-/-- If `n < m + 1` and `n ≠ m` then `n < m`. -/
+/-- If `n < m + 1` and `n ≠ m` then `n < m`.
+@isnad1 id=lt.2h2v.s5.897e8c05dca3 from=translated src=- shape=92395d91 vocab=13a96747
+-/
 lemma lt_of_lt_succ_of_neq {m : ℕ} (h1 : m < n + 1) (h2 : m ≠ n) : m < n := by
   omega
 
@@ -166,7 +176,9 @@ def liftFin (i : Fin n) : Fin (n + 1) := ⟨i.1, Nat.lt_succ_of_lt i.2⟩
 private lemma liftFin_of_lt {a : Fin (n + 1)} (ha : a.1 < n) :
     liftFin (⟨a.1, ha⟩ : Fin n) = a := Fin.ext rfl
 
-/-- For any permutation `f` of `Fin (n + 1)`, if `f i = n` for some `i < n`, then `f (f i) < n`. -/
+/-- For any permutation `f` of `Fin (n + 1)`, if `f i = n` for some `i < n`, then `f (f i) < n`.
+@isnad1 id=lt.1h3v.s8.63c24a5bd6b9 from=translated src=- shape=2641ec80 vocab=87a0e28f
+-/
 lemma perm_perm_val_lt_of_perm_val_eq {f : Equiv.Perm (Fin (n + 1))} {i : Fin n}
     (h : (f (liftFin i)).1 = n) : (f (f (liftFin i))).1 < n := by
   by_contra hcontra

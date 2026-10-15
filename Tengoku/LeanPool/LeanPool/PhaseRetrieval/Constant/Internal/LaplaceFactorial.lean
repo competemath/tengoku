@@ -72,6 +72,9 @@ private lemma hasDerivAt_phiFunc (n : ℕ) {r : ℝ} (hr : 0 < r) :
 `φ_n''(r) = −(2n+1)/r² − 2 ≤ −2` for `r > 0`.
 In particular, `φ_n` is strictly concave on `(0, ∞)`.
 -/
+/--
+@isnad1 id=strictco.1h1v.s5.29c9db7102c7 from=translated src=- shape=4cbe1510 vocab=ee885447
+-/
 theorem phiFunc_concavity {n : ℕ} (hn : 1 ≤ n) :
     StrictConcaveOn ℝ (Ioi 0) (phiFunc n) := by
   apply StrictAntiOn.strictConcaveOn_of_deriv (convex_Ioi 0)
@@ -152,6 +155,9 @@ private lemma hFunc_le {n : ℕ} (hn : 1 ≤ n) {r : ℝ} (hr : 0 < r) :
         (show rStar n ∈ Ioi 0 from rStar_pos hn) (show r ∈ Ioi 0 from hr)
         hgt (hFunc_deriv_eq_zero hn))
 
+/--
+@isnad1 id=le.2h2v.s6.d8feaf08bfe9 from=translated src=- shape=95970fef vocab=b64a022a
+-/
 theorem phiFunc_quad_bound {n : ℕ} (hn : 1 ≤ n) {r : ℝ} (hr : 0 < r) :
     phiFunc n r ≤ phiFunc n (rStar n) - (r - rStar n) ^ 2 := by
   have h := hFunc_le hn hr
@@ -214,6 +220,9 @@ private lemma stirling_log_bound {n : ℕ} (hn : 1 ≤ n) :
       simp only [Nat.cast_ofNat]]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s6.96cde55d6ba6 from=translated src=- shape=fd270dcb vocab=ddb8aa4c
+-/
 theorem exp_phi_le_factorial {n : ℕ} (hn : 1 ≤ n) :
     Real.exp (phiFunc n (rStar n)) ≤
     Real.exp (1 / 4) * (Nat.factorial n : ℝ) / 2 := by
@@ -303,6 +312,9 @@ private lemma pointwise_bound {n : ℕ} (hn : 1 ≤ n) {r : ℝ}
       _ = Real.exp (1 / 4) * ↑n.factorial / 2 *
           Real.exp (-(distToInterval (rStar n) j) ^ 2) := by ring
 
+/--
+@isnad1 id=le.1h2v.s7.ca90d26ebb07 from=translated src=- shape=eac3c70e vocab=afe28d9a
+-/
 theorem monomial_integral_bound {n : ℕ} (hn : 1 ≤ n) (j : ℕ) :
     ∫ r in (j : ℝ)..(j + 1 : ℝ), r ^ (2 * n + 1) * Real.exp (-r ^ 2) ≤
       Real.exp (1 / 4) * (Nat.factorial n : ℝ) / 2 *

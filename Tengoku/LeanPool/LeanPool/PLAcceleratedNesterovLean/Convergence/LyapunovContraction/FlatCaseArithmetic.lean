@@ -46,6 +46,7 @@ Parameters represent extracted real values from the geometric proof:
   • PGsq, PperpGsq = ‖P g‖², ‖P⊥ g‖²
   • Esq = ‖e_n‖²
   • Various inner products
+@isnad1 id=le.27h23v.s10.52cbb920a975 from=translated src=- shape=80e6d5e8 vocab=51c974e8
 -/
 theorem flat_case_arithmetic
     -- Rate parameter

@@ -38,10 +38,15 @@ variable {ι : Type u}
 noncomputable def entrywiseExp (R : Matrix ι ι ℝ) : Matrix ι ι ℝ :=
   fun i j => Real.exp (R i j)
 
+/--
+@isnad1 id=eq.0h4v.s4.3880d1d6f4aa from=translated src=- shape=f4dfd941 vocab=06a129f8
+-/
 @[simp] lemma entrywiseExp_apply (R : Matrix ι ι ℝ) (i j : ι) :
   entrywiseExp R i j = Real.exp (R i j) := rfl
 
-/-- Continuity of the entrywise exponential map `R ↦ exp ∘ R` on matrices. -/
+/-- Continuity of the entrywise exponential map `R ↦ exp ∘ R` on matrices.
+@isnad1 id=continuo.0h1v.s5.3946c002f3f5 from=translated src=- shape=abb4ae22 vocab=1e946141
+-/
 lemma continuous_entrywiseExp (ι : Type u) :
   Continuous (fun R : Matrix ι ι ℝ => entrywiseExp R) := by
   classical
@@ -72,7 +77,13 @@ private lemma isHermitian_entrywiseExp_real (R : Matrix ι ι ℝ)
   | 0     => hadamardOne (ι := ι)
   | n+1   => hadamardPow R n ∘ₕ R
 
+/--
+@isnad1 id=eq.0h2v.s4.88b55ce53ba8 from=translated src=- shape=a882d9ed vocab=2eb21a83
+-/
 @[simp] lemma hadamardPow_zero (R : Matrix ι ι ℝ) : hadamardPow R 0 = hadamardOne (ι := ι) := rfl
+/--
+@isnad1 id=eq.0h3v.s5.45100a80bf06 from=translated src=- shape=c7d28235 vocab=f6077e4a
+-/
 @[simp] lemma hadamardPow_succ (R : Matrix ι ι ℝ) (n : ℕ) :
   hadamardPow R (n+1) = hadamardPow R n ∘ₕ R := rfl
 
@@ -85,7 +96,9 @@ private lemma isHermitian_hadamard_real {A B : Matrix ι ι ℝ}
   have hBij : B i j = B j i := by simpa using (Matrix.IsHermitian.apply hB i j).symm
   simp [Matrix.conjTranspose, Matrix.hadamard, hAij, hBij]
 
-/-- Hadamard powers act entrywise as usual scalar powers. -/
+/-- Hadamard powers act entrywise as usual scalar powers.
+@isnad1 id=eq.0h5v.s5.94acabca048d from=translated src=- shape=7509b37a vocab=4a70daf6
+-/
 lemma hadamardPow_apply (R : Matrix ι ι ℝ) (n : ℕ) (i j : ι) :
   hadamardPow R n i j = (R i j) ^ n := by
   induction n with
@@ -102,6 +115,7 @@ noncomputable def entrywiseExpHadamardSeries (R : Matrix ι ι ℝ) : Matrix ι 
 
 /-- The entrywise exponential agrees with its Hadamard series expansion.
     Uses the Taylor series for Complex.exp and converts to the real case.
+@isnad1 id=eq.0h2v.s4.dc9cb9dd4a90 from=translated src=- shape=97e9d6e0 vocab=555858f7
 -/
 lemma entrywiseExp_eq_hadamardSeries (R : Matrix ι ι ℝ) :
   entrywiseExp R = entrywiseExpHadamardSeries R := by
@@ -149,11 +163,15 @@ lemma entrywiseExp_eq_hadamardSeries (R : Matrix ι ι ℝ) :
     simpa [fR, one_div, div_eq_mul_inv, mul_comm] using hx_sum.symm
   simpa [x, hadamardPow_apply, one_div, div_eq_mul_inv, mul_comm] using hx_sum'
 
-/-- Ones is the identity for the Hadamard product. -/
+/-- Ones is the identity for the Hadamard product.
+@isnad1 id=eq.0h2v.s4.cad10ce63159 from=translated src=- shape=1f5780ec vocab=68e97220
+-/
 lemma hadamardOne_hMul_left (R : Matrix ι ι ℝ) : Matrix.hadamard (hadamardOne ι) R = R := by
   ext i j; simp [hadamardOne, Matrix.hadamard]
 
-/-- Hadamard powers of a positive definite matrix are positive definite for all n ≥ 1. -/
+/-- Hadamard powers of a positive definite matrix are positive definite for all n ≥ 1.
+@isnad1 id=posdef.2h3v.s5.d5c305e4284c from=translated src=- shape=f329b8c1 vocab=644c4a5e
+-/
 lemma hadamardPow_posDef_of_posDef
   [Finite ι] (R : Matrix ι ι ℝ) (hR : R.PosDef) : ∀ n, 1 ≤ n → (hadamardPow R n).PosDef := by
   classical
@@ -174,6 +192,7 @@ lemma hadamardPow_posDef_of_posDef
 
 /-- The quadratic form of the Hadamard series equals the sum of quadratic forms of individual terms.
     This lemma handles the complex interchange of summation and quadratic form evaluation.
+@isnad1 id=eq.0h3v.s6.3b0a8981a05c from=translated src=- shape=af605e17 vocab=e5bd37f9
 -/
 lemma quadratic_form_entrywiseExp_hadamardSeries
   [Fintype ι] (R : Matrix ι ι ℝ) (x : ι → ℝ) :
@@ -240,6 +259,7 @@ lemma quadratic_form_entrywiseExp_hadamardSeries
 
 /-- Summability of the scalar quadratic-form coefficients appearing in the
     Hadamard exponential series.
+@isnad1 id=summable.0h3v.s6.2c4013c63e5a from=translated src=- shape=74f2f02d vocab=f3611d24
 -/
 lemma summable_hadamardQuadSeries
     [Fintype ι] (R : Matrix ι ι ℝ) (x : ι → ℝ) :
@@ -295,6 +315,7 @@ lemma summable_hadamardQuadSeries
     summing with positive coefficients 1/n! yields strictly positive quadratic form for every x ≠ 0
     since the n = 1 term already contributes xᵀ R x > 0. Interchange of sum and quadratic form
     follows from absolute convergence of the scalar exp series; IsHermitian follows termwise.
+@isnad1 id=posdef.1h2v.s4.e51a1cc1220e from=translated src=- shape=11ca935a vocab=4abd8c97
 -/
 lemma posDef_entrywiseExp_hadamardSeries_of_posDef
   [Finite ι] (R : Matrix ι ι ℝ) (hR : R.PosDef) :
@@ -394,6 +415,7 @@ lemma posDef_entrywiseExp_hadamardSeries_of_posDef
     entrywiseExpHadamardSeries(R) is PSD.
 
     NOTE: This proof is simplified to avoid matrix reduction timeouts.
+@isnad1 id=possemid.1h2v.s4.26bb7a4237bf from=translated src=- shape=11ca935a vocab=311efa4a
 -/
 lemma posSemidef_entrywiseExp_hadamardSeries_of_posSemidef
   [Finite ι] (R : Matrix ι ι ℝ) (hR : R.PosSemidef) :

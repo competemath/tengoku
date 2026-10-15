@@ -35,11 +35,17 @@ space. -/
 noncomputable def uniformExpectationReal [Fintype Ω] (X : Ω → ℝ) : ℝ :=
   (∑ ω : Ω, X ω) / (Fintype.card Ω : ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s4.9d6eb415c0e4 from=translated src=- shape=358e4751 vocab=8e273569
+-/
 theorem uniformProbabilityReal_eq_coe_uniformProbability [Fintype Ω]
     (P : Ω → Prop) [DecidablePred P] :
     uniformProbabilityReal P = (uniformProbability P : ℝ) := by
   simp [uniformProbabilityReal, uniformProbability]
 
+/--
+@isnad1 id=le.1h3v.s5.eaadd62775dc from=translated src=- shape=b6915b05 vocab=e1f83fc0
+-/
 theorem uniformProbability_le_of_uniformProbabilityReal_le [Fintype Ω]
     {P : Ω → Prop} [DecidablePred P] {eps : ℚ}
     (h : uniformProbabilityReal P ≤ (eps : ℝ)) :
@@ -49,7 +55,9 @@ theorem uniformProbability_le_of_uniformProbabilityReal_le [Fintype Ω]
   exact_mod_cast hcast
 
 /-- Finite Markov inequality for uniform probability.  The event is allowed to
-be any predicate implied by `a ≤ X`. -/
+be any predicate implied by `a ≤ X`.
+@isnad1 id=le.3h4v.s6.1c60919f26bb from=translated src=- shape=c3a3efe7 vocab=7868f3f2
+-/
 theorem uniformProbabilityReal_le_expect_div_of_event_le [Fintype Ω] [Nonempty Ω]
     {P : Ω → Prop} [DecidablePred P]
     (X : Ω → ℝ) {a : ℝ}
@@ -82,7 +90,9 @@ theorem uniformProbabilityReal_le_expect_div_of_event_le [Fintype Ω] [Nonempty 
   exact div_le_div_of_nonneg_right hcard_mul_a_le_sum hden_pos.le
 
 /-- Chernoff's exponential-moment step for a lower tail, proved here as
-Markov's inequality applied to `exp(λ(T - X))`. -/
+Markov's inequality applied to `exp(λ(T - X))`.
+@isnad1 id=le.1h4v.s6.a91f86e828c4 from=translated src=- shape=45f7e137 vocab=d97bd7bf
+-/
 theorem uniformProbabilityReal_lt_le_exponentialMoment [Fintype Ω] [Nonempty Ω]
     (X : Ω → ℝ) {T lam : ℝ} (hlam : 0 < lam) :
     uniformProbabilityReal (fun ω : Ω => X ω < T) ≤
@@ -103,6 +113,9 @@ theorem uniformProbabilityReal_lt_le_exponentialMoment [Fintype Ω] [Nonempty Ω
         simpa using hexp.le)
   simpa using hmarkov
 
+/--
+@isnad1 id=le.2h5v.s6.8fcc84bea06f from=translated src=- shape=e974344b vocab=d97bd7bf
+-/
 theorem uniformProbabilityReal_lt_le_of_exponentialMoment_le [Fintype Ω] [Nonempty Ω]
     (X : Ω → ℝ) {T lam B : ℝ} (hlam : 0 < lam)
     (hmoment :
@@ -110,6 +123,9 @@ theorem uniformProbabilityReal_lt_le_of_exponentialMoment_le [Fintype Ω] [Nonem
     uniformProbabilityReal (fun ω : Ω => X ω < T) ≤ B :=
   (uniformProbabilityReal_lt_le_exponentialMoment X hlam).trans hmoment
 
+/--
+@isnad1 id=le.2h5v.s6.9c8ff717ce72 from=translated src=- shape=c830769c vocab=4b68cc57
+-/
 theorem uniformProbabilityReal_lt_le_exp_neg_of_exponentialMoment_le [Fintype Ω] [Nonempty Ω]
     (X : Ω → ℝ) {T lam exponent : ℝ} (hlam : 0 < lam)
     (hmoment :
@@ -120,7 +136,9 @@ theorem uniformProbabilityReal_lt_le_exp_neg_of_exponentialMoment_le [Fintype Ω
 
 /-- Convexity of the exponential gives the chord bound used for bounded
 nonnegative summands: on `0 ≤ z ≤ B`, `exp(-λ z)` is below the chord joining
-`0` and `B`. -/
+`0` and `B`.
+@isnad1 id=le.3h3v.s6.ade094716bfe from=translated src=- shape=d42cba88 vocab=7da641cc
+-/
 theorem exp_neg_mul_le_chord {lam B z : ℝ}
     (hB : 0 < B) (hz0 : 0 ≤ z) (hzB : z ≤ B) :
     Real.exp (-(lam * z)) ≤
@@ -152,7 +170,9 @@ theorem exp_neg_mul_le_chord {lam B z : ℝ}
 
 /-- A scalar lower bound for `1 - exp(-x)` that follows from `1 + x ≤ exp x`.
 This is the elementary replacement for the usual Taylor estimate in the
-bounded-nonnegative Chernoff optimization. -/
+bounded-nonnegative Chernoff optimization.
+@isnad1 id=le.1h1v.s5.87600da87a1c from=translated src=- shape=5b696d1f vocab=c66c1517
+-/
 theorem one_sub_exp_neg_ge_sub_sq {x : ℝ} (hx : 0 ≤ x) :
     x - x ^ 2 ≤ 1 - Real.exp (-x) := by
   have hxden : 0 < 1 + x := by positivity
@@ -166,6 +186,9 @@ theorem one_sub_exp_neg_ge_sub_sq {x : ℝ} (hx : 0 ≤ x) :
     nlinarith [sq_nonneg x, mul_nonneg hx (sq_nonneg x)]
   linarith
 
+/--
+@isnad1 id=le.0h1v.s4.c5a5c8259744 from=translated src=- shape=8c40afa3 vocab=e9db171f
+-/
 theorem one_sub_le_exp_neg (u : ℝ) :
     1 - u ≤ Real.exp (-u) := by
   have h := Real.add_one_le_exp (-u)
@@ -173,7 +196,9 @@ theorem one_sub_le_exp_neg (u : ℝ) :
 
 /-- If a nonnegative one-step moment is at most `1-u`, then its `N`-fold
 product is at most `exp(-N u)`.  This is the product step in the
-bounded-nonnegative Chernoff argument. -/
+bounded-nonnegative Chernoff argument.
+@isnad1 id=le.2h3v.s6.9c9120f12b5d from=translated src=- shape=fcf4cb02 vocab=2b8c9761
+-/
 theorem pow_le_exp_neg_mul_of_le_one_sub {a u : ℝ} (N : ℕ)
     (ha_nonneg : 0 ≤ a) (ha_le : a ≤ 1 - u) :
     a ^ N ≤ Real.exp (-((N : ℝ) * u)) := by
@@ -195,7 +220,9 @@ theorem pow_le_exp_neg_mul_of_le_one_sub {a u : ℝ} (N : ℕ)
 
 /-- Algebraic optimization for the chord-based bounded-nonnegative Chernoff
 bound.  If `mu` exceeds the threshold `T` by `gap`, then the choice
-`λ = gap/(2 B mu)` gives the usual quadratic exponent. -/
+`λ = gap/(2 B mu)` gives the usual quadratic exponent.
+@isnad1 id=le.5h5v.s7.f63d10945644 from=translated src=- shape=3ca745d4 vocab=ee8e65b7
+-/
 theorem exp_chord_quadratic_optimized {T gap B mu lam : ℝ}
     (hB : 0 < B) (hmu : 0 < mu) (hgap : 0 ≤ gap)
     (hmean : T + gap ≤ mu)
@@ -216,7 +243,9 @@ theorem exp_chord_quadratic_optimized {T gap B mu lam : ℝ}
 
 /-- A convenient way to discharge the hypercube union bound: an exponent at
 least `(n+1) log 2` makes the fixed-target failure probability at most
-`2^-(n+1)`. -/
+`2^-(n+1)`.
+@isnad1 id=le.1h2v.s6.65dff1c206b7 from=translated src=- shape=b5dcbc40 vocab=a9e24dd1
+-/
 theorem exp_neg_le_inv_two_pow_succ_of_log_le (n : ℕ) {exponent : ℝ}
     (hlog : ((n + 1 : ℕ) : ℝ) * Real.log 2 ≤ exponent) :
     Real.exp (-exponent) ≤

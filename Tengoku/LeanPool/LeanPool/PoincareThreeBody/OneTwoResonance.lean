@@ -25,21 +25,30 @@ open scoped Interval
 /-- The eccentricity selected for the concrete 1:2 resonance certificate. -/
 noncomputable def oneTwoEccentricity : ℝ := 1 / 10
 
-/-- The 1:2 resonant first action is strictly less than the rational bound `4 / 5`. -/
+/-- The 1:2 resonant first action is strictly less than the rational bound `4 / 5`.
+@isnad1 id=lt.0h0v.s5.23568a37f540 from=translated src=- shape=0cc596d4 vocab=8f9bdd5a
+-/
 lemma resonantFirstAction_one_two_lt_four_fifths :
     resonantFirstAction 1 2 < (4 / 5 : ℝ) := by
   apply (show Odd 3 by decide).pow_lt_pow.mp
   rw [resonantFirstAction_cube (by norm_num) (by norm_num)]
   norm_num
 
-/-- The selected eccentricity is physically elliptic. -/
+/-- The selected eccentricity is physically elliptic.
+@isnad1 id=le.0h0v.s3.34708b5dae2b from=translated src=- shape=ff3a10fc vocab=24e62258
+-/
 lemma oneTwoEccentricity_nonneg : 0 ≤ oneTwoEccentricity := by
   norm_num [oneTwoEccentricity]
 
+/--
+@isnad1 id=lt.0h0v.s3.17d92845c3a7 from=translated src=- shape=ffdda526 vocab=d27f15bd
+-/
 lemma oneTwoEccentricity_lt_one : oneTwoEccentricity < 1 := by
   norm_num [oneTwoEccentricity]
 
-/-- The selected ellipse lies strictly inside the orbit of the unit primary. -/
+/-- The selected ellipse lies strictly inside the orbit of the unit primary.
+@isnad1 id=lt.0h0v.s5.d2f1cd1d2dd8 from=translated src=- shape=7715e727 vocab=0a418108
+-/
 lemma oneTwo_apoapsis_lt_one :
     resonantFirstAction 1 2 ^ 2 * (1 + oneTwoEccentricity) < 1 := by
   have hpos : 0 < resonantFirstAction 1 2 :=
@@ -51,7 +60,9 @@ lemma oneTwo_apoapsis_lt_one :
   nlinarith
 
 /-- A validated quadrature certificate for the selected phase pair gives a nonzero derivative of
-the exact resonant average, and hence the Poincaré homological obstruction on this orbit. -/
+the exact resonant average, and hence the Poincaré homological obstruction on this orbit.
+@isnad1 id=ex.3h4v.s7.f208d9b73a9f from=translated src=- shape=ecb0155b vocab=811e7a05
+-/
 theorem oneTwo_exists_average_derivative_ne_zero_of_trapezoidal_certificate
     {phaseA phaseB errorBound : ℝ} {steps : ℕ}
     (hsecondDerivative : ∀ time,

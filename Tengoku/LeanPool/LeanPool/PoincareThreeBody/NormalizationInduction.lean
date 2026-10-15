@@ -32,10 +32,16 @@ noncomputable def iteratedMassNormalization
   | n + 1 => domainMassNormalizedCandidate
       (iteratedMassNormalization F energyFunction n) (energyFunction n)
 
+/--
+@isnad1 id=eq.0h2v.s4.ad40fd8fbc2e from=translated src=- shape=d6c0c121 vocab=b1ccd3c7
+-/
 @[simp] theorem iteratedMassNormalization_zero
     (F : ℝ → PhaseSpace → ℝ) (energyFunction : ℕ → ℝ → ℝ) :
     iteratedMassNormalization F energyFunction 0 = F := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e6bc4c0e0f11 from=translated src=- shape=f265c497 vocab=33d03b0a
+-/
 @[simp] theorem iteratedMassNormalization_succ
     (F : ℝ → PhaseSpace → ℝ) (energyFunction : ℕ → ℝ → ℝ) (n : ℕ) :
     iteratedMassNormalization F energyFunction (n + 1) =
@@ -47,11 +53,17 @@ noncomputable def accumulatedEnergy
     (energyFunction : ℕ → ℝ → ℝ) (n : ℕ) (mass energy : ℝ) : ℝ :=
   ∑ k ∈ Finset.range n, mass ^ k * energyFunction k energy
 
+/--
+@isnad1 id=eq.0h3v.s4.01e0364fd4f0 from=translated src=- shape=421a443e vocab=b36ffcb6
+-/
 @[simp] theorem accumulatedEnergy_zero
     (energyFunction : ℕ → ℝ → ℝ) (mass energy : ℝ) :
     accumulatedEnergy energyFunction 0 mass energy = 0 := by
   simp [accumulatedEnergy]
 
+/--
+@isnad1 id=eq.0h4v.s6.07c3307d33e3 from=translated src=- shape=bc024e4f vocab=3487dc8e
+-/
 theorem accumulatedEnergy_succ
     (energyFunction : ℕ → ℝ → ℝ) (n : ℕ) (mass energy : ℝ) :
     accumulatedEnergy energyFunction (n + 1) mass energy =
@@ -60,7 +72,9 @@ theorem accumulatedEnergy_succ
   simp [accumulatedEnergy, Finset.sum_range_succ]
 
 /-- If every normalization step cancels its zeroth coefficient, the original candidate has an
-exact expansion through every finite order, with the next normalized candidate as remainder. -/
+exact expansion through every finite order, with the next normalized candidate as remainder.
+@isnad1 id=eq.2h5v.s7.98734c2bbc70 from=translated src=- shape=c7a737ef vocab=022436be
+-/
 theorem iteratedMassNormalization_exact_expansion
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℕ → ℝ → ℝ}
     (hcancel : ∀ n state, (0, state) ∈ collisionFree →
@@ -92,7 +106,9 @@ theorem iteratedMassNormalization_exact_expansion
       ring
 
 /-- The expansion remainder is divisible by `mass ^ n` after subtracting the accumulated function
-of the Hamiltonian. -/
+of the Hamiltonian.
+@isnad1 id=eq.2h5v.s7.a28575eef2de from=translated src=- shape=87437afc vocab=805b1046
+-/
 theorem iteratedMassNormalization_remainder
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℕ → ℝ → ℝ}
     (hcancel : ∀ n state, (0, state) ∈ collisionFree →
@@ -107,7 +123,9 @@ theorem iteratedMassNormalization_remainder
   ring
 
 /-- Differentiability of each energy coefficient makes their finite accumulated sum
-differentiable in energy. -/
+differentiable in energy.
+@isnad1 id=differen.1h4v.s7.67d9c819876e from=translated src=- shape=8738dced vocab=8c3b86d0
+-/
 theorem differentiableAt_accumulatedEnergy
     {energyFunction : ℕ → ℝ → ℝ} {n : ℕ} {mass energy : ℝ}
     (henergy : ∀ k < n, DifferentiableAt ℝ (energyFunction k) energy) :
@@ -116,7 +134,9 @@ theorem differentiableAt_accumulatedEnergy
   fun_prop (disch := aesop)
 
 /-- At every finite normalization order, each differential minor of the original candidate is a
-power of the mass times the corresponding minor of the normalized remainder. -/
+power of the mass times the corresponding minor of the normalized remainder.
+@isnad1 id=eq.5h7v.s9.af5a16a07f9c from=translated src=- shape=2a708e60 vocab=24778820
+-/
 theorem massDifferentialMinor_eq_pow_mul_iteratedNormalization
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℕ → ℝ → ℝ}
     (hcancel : ∀ n state, (0, state) ∈ collisionFree →
@@ -178,7 +198,9 @@ theorem massDifferentialMinor_eq_pow_mul_iteratedNormalization
   linear_combination hfunctionMinor
 
 /-- A germ divisible by a strictly higher power than the requested derivative order has that
-derivative equal to zero. -/
+derivative equal to zero.
+@isnad1 id=eq.3h4v.s7.d1fbf0a67b4a from=translated src=- shape=c5a121c2 vocab=2d78cce2
+-/
 theorem iteratedDeriv_eq_zero_of_eventually_eq_pow_mul
     {f g : ℝ → ℝ} {order power : ℕ} (horder : order < power)
     (hg : ContDiffAt ℝ order g 0)
@@ -198,7 +220,9 @@ theorem iteratedDeriv_eq_zero_of_eventually_eq_pow_mul
 
 /-- If every normalized remainder stays jointly analytic and every zeroth coefficient is removed
 as a function of the Hamiltonian, every mass derivative of every original differential minor
-vanishes at zero.  This is the formal infinite-order conclusion of Poincaré's induction. -/
+vanishes at zero.  This is the formal infinite-order conclusion of Poincaré's induction.
+@isnad1 id=eq.5h7v.s7.a3ceebd7b2cf from=translated src=- shape=499dd5cc vocab=3e4dd6b4
+-/
 theorem massDifferentialMinor_flat_of_iterated_normalizations
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     {energyFunction : ℕ → ℝ → ℝ}
@@ -269,7 +293,9 @@ theorem massDifferentialMinor_flat_of_iterated_normalizations
 
 /-- The infinite normalization conclusion rules out independence at every point off the horizontal
 axis.  For such a phase point, its whole mass interval avoids both collision cylinders and hence
-lies in one connected mass fiber. -/
+lies in one connected mass fiber.
+@isnad1 id=not.6h5v.s10.cee6630d3618 from=translated src=- shape=5c06c6bc vocab=84e1e731
+-/
 theorem not_linearIndependent_of_iterated_normalizations_of_vertical_ne_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     {energyFunction : ℕ → ℝ → ℝ}
@@ -325,13 +351,18 @@ theorem not_linearIndependent_of_iterated_normalizations_of_vertical_ne_zero
 def verticalPerturbation (state : PhaseSpace) (offset : ℝ) : PhaseSpace :=
   state + offset • coordinateVector 1
 
+/--
+@isnad1 id=eq.0h2v.s5.ff3d15bfc611 from=translated src=- shape=b2a492bc vocab=2d3ff56e
+-/
 @[simp] theorem verticalPerturbation_vertical (state : PhaseSpace) (offset : ℝ) :
     verticalPerturbation state offset 1 = state 1 + offset := by
   simp [verticalPerturbation]
 
 /-- The full abstract endpoint of the infinite coefficient induction.  Independence at a point
 on the horizontal axis persists under a small vertical perturbation, reducing it to the connected
-mass-fiber result above. -/
+mass-fiber result above.
+@isnad1 id=not.4h3v.s7.b6cf06e0bbca from=translated src=- shape=e5efaf35 vocab=c3c2a3da
+-/
 theorem not_isIndependentSomewhere_of_iterated_normalizations
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     {energyFunction : ℕ → ℝ → ℝ}
@@ -450,7 +481,9 @@ def ClassicalNormalizationPrinciple : Prop :=
           iteratedMassNormalization F energyFunction n 0 state =
             energyFunction n (hamiltonian 0 state))
 
-/-- Poincaré nonintegrability follows from the classical all-orders normalization principle. -/
+/-- Poincaré nonintegrability follows from the classical all-orders normalization principle.
+@isnad1 id=not.1h0v.s5.3878f0179015 from=translated src=- shape=bdf693e7 vocab=d9bca533
+-/
 theorem nonintegrability_of_classicalNormalizationPrinciple
     (hprinciple : ClassicalNormalizationPrinciple) :
     ¬∃ δ : ℝ, 0 < δ ∧ ∃ F : ℝ → PhaseSpace → ℝ,

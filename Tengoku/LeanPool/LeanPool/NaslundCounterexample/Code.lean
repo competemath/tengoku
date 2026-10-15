@@ -32,15 +32,21 @@ def code : Finset (Fin 4 → ZMod 3) :=
   {![0, 0, 0, 0], ![0, 2, 1, 1], ![0, 1, 2, 1], ![0, 1, 1, 2], ![1, 2, 0, 0], ![1, 0, 2, 0],
     ![1, 0, 0, 2], ![2, 2, 1, 2], ![2, 1, 2, 2], ![2, 2, 2, 1]}
 
-/-- The code has ten words. -/
+/-- The code has ten words.
+@isnad1 id=eq.0h0v.s4.110e79f01d34 from=translated src=- shape=dee0f1bb vocab=e026c4d6
+-/
 theorem code_card : code.card = 10 := by decide +kernel
 
 /-- **The code property.** Two words of `S` whose difference has every coordinate in `{0, 1}` —
-the two squares of `F_3` — are equal. -/
+the two squares of `F_3` — are equal.
+@isnad1 id=eq.3h2v.s8.b8f1d467140c from=translated src=- shape=f07533da vocab=99a094d8
+-/
 theorem code_property :
     ∀ s ∈ code, ∀ s' ∈ code, (∀ i, s' i - s i = 0 ∨ s' i - s i = 1) → s = s' := by decide +kernel
 
-/-- Every square in `F_3` is `0` or `1`. -/
+/-- Every square in `F_3` is `0` or `1`.
+@isnad1 id=or.0h1v.s8.df8a943adb77 from=translated src=- shape=c2777ad9 vocab=4056605a
+-/
 theorem sq_eq_zero_or_one (a : ZMod 3) : a ^ 2 = 0 ∨ a ^ 2 = 1 := by revert a; decide
 
 /-- In `F_3`, `a ^ 2 = 0` forces `a = 0`. -/

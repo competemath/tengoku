@@ -23,6 +23,9 @@ namespace LeanPool.PoincareThreeBody
 noncomputable def resonantSafeOrientation (p q : ℕ) : ℝ :=
   resonantCollisionOrientation p q + Real.pi / q
 
+/--
+@isnad1 id=eq.2h2v.s5.226c248c84d0 from=translated src=- shape=c1754e23 vocab=150786d5
+-/
 theorem resonantCollisionEccentricity_apoapsis_identity
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     resonantSemimajorAxis p q * (1 + resonantCollisionEccentricity p q) = 1 := by
@@ -32,7 +35,9 @@ theorem resonantCollisionEccentricity_apoapsis_identity
   ring
 
 /-- The safe orientation never meets the unit primary, even at the limiting collision
-eccentricity. -/
+eccentricity.
+@isnad1 id=ne.4h3v.s7.52dc4aa7fcff from=translated src=- shape=6236bff1 vocab=eb9c0746
+-/
 theorem safeOrientation_primaryDistance_ne_zero_at_collisionBoundary
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)

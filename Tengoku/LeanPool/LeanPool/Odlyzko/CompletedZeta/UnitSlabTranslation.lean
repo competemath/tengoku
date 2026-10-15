@@ -36,6 +36,9 @@ noncomputable def unitCoordinateShiftHom :
     by_cases hw : w = w₀ <;> simp [unitCoordinateShift, hw]
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s8.496c7dfb7c21 from=translated src=- shape=112ea730 vocab=15f4d5e5
+-/
 @[simp]
 theorem unitCoordinateShiftHom_apply
     (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) :
@@ -49,12 +52,18 @@ noncomputable def unitCoordinateLattice :
   (unitCoordinateShiftHom (K := K)).range
 
 open Classical in
+/--
+@isnad1 id=mem.0h2v.s6.1e76d4e1251a from=translated src=- shape=24ff2e8c vocab=e966da3c
+-/
 theorem unitCoordinateShift_mem_lattice
     (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) :
     unitCoordinateShift z ∈ unitCoordinateLattice (K := K) :=
   ⟨z, rfl⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.8fdd0571fbd5 from=translated src=- shape=f9eaa0c0 vocab=f0883a16
+-/
 theorem unitCoordinateLattice_apply_w₀
     (g : unitCoordinateLattice (K := K)) :
     (g : mixedEmbedding.realSpace K) w₀ = 0 := by
@@ -63,6 +72,9 @@ theorem unitCoordinateLattice_apply_w₀
   simp [unitCoordinateShift]
 
 open Classical in
+/--
+@isnad1 id=countabl.0h1v.s6.77f302532d07 from=translated src=- shape=8f50d87a vocab=a53c9920
+-/
 noncomputable instance countable_unitCoordinateLattice :
     Countable (unitCoordinateLattice (K := K)) :=
   Function.Surjective.countable
@@ -76,6 +88,9 @@ noncomputable instance countable_unitCoordinateLattice :
       simpa using hz)
 
 open Classical in
+/--
+@isnad1 id=existsun.0h2v.s8.613b1e6fdd68 from=translated src=- shape=e517efce vocab=79075271
+-/
 theorem existsUnique_vadd_mem_unitFundamentalParamSet
     (x : mixedEmbedding.realSpace K) :
     ∃! g : unitCoordinateLattice (K := K),
@@ -130,6 +145,9 @@ theorem existsUnique_vadd_mem_unitFundamentalParamSet
         (eq_neg_of_add_eq_zero_left hzfloor)
 
 open Classical in
+/--
+@isnad1 id=isaddfun.0h1v.s9.2b8c844b37b9 from=translated src=- shape=35b8c568 vocab=55654de7
+-/
 theorem isAddFundamentalDomain_unitFundamentalParamSet :
     IsAddFundamentalDomain (unitCoordinateLattice (K := K))
       (unitFundamentalParamSet K) volume :=
@@ -145,6 +163,9 @@ def unitFundamentalRealTranslate
   (fun x ↦ x - a) ⁻¹' unitFundamentalParamSet K
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s6.b7e4b8cfb09c from=translated src=- shape=1040e849 vocab=a987e684
+-/
 theorem unitFundamentalRealTranslate_eq_image
     (a : mixedEmbedding.realSpace K) :
     unitFundamentalRealTranslate (K := K) a =
@@ -157,6 +178,9 @@ theorem unitFundamentalRealTranslate_eq_image
     simpa [unitFundamentalRealTranslate] using hy
 
 open Classical in
+/--
+@isnad1 id=measurab.0h2v.s5.7fb0398773b4 from=translated src=- shape=079b69e2 vocab=98a549f1
+-/
 theorem measurableSet_unitFundamentalRealTranslate
     (a : mixedEmbedding.realSpace K) :
     MeasurableSet (unitFundamentalRealTranslate (K := K) a) := by
@@ -164,6 +188,9 @@ theorem measurableSet_unitFundamentalRealTranslate
     measurableSet_unitFundamentalParamSet
 
 open Classical in
+/--
+@isnad1 id=isaddfun.0h2v.s9.4ba16b963e08 from=translated src=- shape=70d83399 vocab=30b3c817
+-/
 theorem isAddFundamentalDomain_unitFundamentalRealTranslate
     (a : mixedEmbedding.realSpace K) :
     IsAddFundamentalDomain (unitCoordinateLattice (K := K))
@@ -184,6 +211,9 @@ theorem isAddFundamentalDomain_unitFundamentalRealTranslate
     (convert hg' using 1; grind)
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s7.af2bc65cd78e from=translated src=- shape=de377fa7 vocab=a2b9c7aa
+-/
 theorem setIntegral_add_unitFundamentalParamSet
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E)
@@ -201,6 +231,9 @@ theorem setIntegral_add_unitFundamentalParamSet
     (unitFundamentalParamSet K)
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.269166b20c04 from=translated src=- shape=f888fa1e vocab=e7e5cc5c
+-/
 theorem setIntegral_unitFundamentalParamSet_add_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E)
@@ -215,6 +248,9 @@ theorem setIntegral_unitFundamentalParamSet_add_eq
       isAddFundamentalDomain_unitFundamentalParamSet hf
 
 open Classical in
+/--
+@isnad1 id=iff.1h4v.s8.fffa37e08e9e from=translated src=- shape=424be39d vocab=4b223b3e
+-/
 theorem integrableOn_unitFundamentalParamSet_comp_add_iff
     {E : Type*} [NormedAddCommGroup E]
     (f : mixedEmbedding.realSpace K → E)

@@ -48,12 +48,17 @@ noncomputable def delaunayAnchorMeanAngleChart (angles : ℝ × ℝ) : PhaseSpac
 noncomputable def delaunayAnchorMeanAngles : ℝ × ℝ :=
   (0, Real.pi / 2)
 
+/--
+@isnad1 id=analytic.0h0v.s7.4dbbf90134b0 from=translated src=- shape=c1acf293 vocab=7bbc5cf1
+-/
 theorem analyticAt_delaunayAnchorMeanAngleChart :
     AnalyticAt ℝ delaunayAnchorMeanAngleChart delaunayAnchorMeanAngles := by
   exact analyticAt_liftedDelaunayPhasePoint_angles (by norm_num) (by norm_num) _
 
 /-- Hamiltonian vectors commute with pulling an action covector back along an action
-derivative. -/
+derivative.
+@isnad1 id=eq.0h2v.s8.86537a15f1d4 from=translated src=- shape=eaac2885 vocab=7401c86d
+-/
 theorem phaseHamiltonianVector_actionCovector_comp
     (actionDerivative : PhaseSpace →L[ℝ] ActionSpace) (vector : ActionSpace) :
     phaseHamiltonianVector ((actionCovector vector).comp actionDerivative) =
@@ -70,7 +75,9 @@ theorem phaseHamiltonianVector_actionCovector_comp
   rfl
 
 /-- The Hamiltonian vector of the mass-zero Hamiltonian differential is its explicit rotating
-Kepler vector field. -/
+Kepler vector field.
+@isnad1 id=eq.1h1v.s7.a69c0cbc7e88 from=translated src=- shape=898ccefc vocab=ad5a680a
+-/
 theorem phaseHamiltonianVector_fderiv_hamiltonian_zero
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0) :
     phaseHamiltonianVector (fderiv ℝ (hamiltonian 0) state) =
@@ -91,6 +98,9 @@ noncomputable def delaunayAnchorEccentricAngleChart
     (angles : ℝ × ℝ) : PhaseSpace :=
   delaunayAnchorChart (delaunayAnchorAction, angles)
 
+/--
+@isnad1 id=hasfderi.0h0v.s8.c90bc85f81f4 from=translated src=- shape=3fc31608 vocab=c4cc3e28
+-/
 theorem hasFDerivAt_delaunayAnchorMeanFromEccentricAngles :
     HasFDerivAt delaunayAnchorMeanFromEccentricAngles
       (((ContinuousLinearMap.toSpanSingleton ℝ (1 / 2 : ℝ)).comp
@@ -108,6 +118,9 @@ theorem hasFDerivAt_delaunayAnchorMeanFromEccentricAngles :
     delaunayAnchorMeanAngles hfst
   exact hmean.prodMk hasFDerivAt_snd
 
+/--
+@isnad1 id=injectiv.0h0v.s9.476271bd8d2a from=translated src=- shape=f8b4ffe5 vocab=e2cacfad
+-/
 theorem injective_fderiv_delaunayAnchorMeanFromEccentricAngles :
     Function.Injective
       (fderiv ℝ delaunayAnchorMeanFromEccentricAngles

@@ -51,11 +51,17 @@ def localMinSet (f : E → ℝ) (x₀ : E) : Set E :=
   {x | IsLocalMin f x ∧ f x = f x₀}
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=iff.0h4v.s5.b37f906aba4b from=translated src=- shape=b5a7808f vocab=d3f810fe
+-/
 theorem mem_localMinSet {f : E → ℝ} {x₀ x : E} :
     x ∈ localMinSet f x₀ ↔ IsLocalMin f x ∧ f x = f x₀ :=
   Iff.rfl
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=mem.1h3v.s5.c14c09d3340c from=translated src=- shape=b9e15869 vocab=d3f810fe
+-/
 theorem self_mem_localMinSet {f : E → ℝ} {x₀ : E} (hmin : IsLocalMin f x₀) :
     x₀ ∈ localMinSet f x₀ :=
   ⟨hmin, rfl⟩

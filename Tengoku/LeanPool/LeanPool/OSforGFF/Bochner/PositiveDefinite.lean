@@ -60,6 +60,7 @@ structure IsPositiveDefinite {α : Type*} [AddGroup α] (φ : α → ℂ) : Prop
 
 /-- Composition preserves positive definiteness: if ψ is positive definite on H and
     T : E →ₗ[ℝ] H is linear, then ψ ∘ T is positive definite on E.
+@isnad1 id=ispositi.1h4v.s6.82f7e491e5b5 from=translated src=- shape=6adf00b0 vocab=246ea1ce
 -/
 lemma isPositiveDefinite_precomp_linear
     {E H : Type*} [AddCommGroup E] [AddCommGroup H]
@@ -92,16 +93,22 @@ private lemma kernelMatrix_posSemidef {m : ℕ} (hpd : IsPositiveDefinite φ) (x
     simpa [M] using hM_herm.im_star_dotProduct_mulVec_self c
   exact Complex.nonneg_iff.mpr ⟨hre, him.symm⟩
 
-/-- φ(-x) = conj(φ(x)). -/
+/-- φ(-x) = conj(φ(x)).
+@isnad1 id=eq.1h3v.s6.2ad75cc6ccbe from=translated src=- shape=dbde14d7 vocab=e8a55eae
+-/
 lemma conj_symm (hpd : IsPositiveDefinite φ) (x : α) :
     φ (-x) = starRingEnd ℂ (φ x) := hpd.hermitian x
 
-/-- φ(0) is real and nonneg. (Test with m = 1, c₁ = 1.) -/
+/-- φ(0) is real and nonneg. (Test with m = 1, c₁ = 1.)
+@isnad1 id=le.1h2v.s5.eb4ca58bcf1b from=translated src=- shape=1201754b vocab=bd9e3613
+-/
 lemma eval_zero_nonneg (hpd : IsPositiveDefinite φ) : 0 ≤ (φ 0).re := by
   have h := hpd.nonneg 1 (fun _ => 0) (fun _ => 1)
   simpa [starRingEnd_apply, star_one] using h
 
-/-- φ(0) is real (imaginary part is zero). -/
+/-- φ(0) is real (imaginary part is zero).
+@isnad1 id=eq.1h2v.s5.dd1564425985 from=translated src=- shape=969036e6 vocab=a021bbf5
+-/
 lemma eval_zero_real (hpd : IsPositiveDefinite φ) : (φ 0).im = 0 := by
   have h := hpd.hermitian 0
   simp only [neg_zero] at h
@@ -118,7 +125,9 @@ private lemma pd_two (hpd : IsPositiveDefinite φ) (a b : α) (c₀ c₁ : ℂ) 
   have h := hpd.nonneg 2 ![a, b] ![c₀, c₁]
   simpa only [Fin.sum_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one] using h
 
-/-- ‖φ(x)‖ ≤ φ(0).re for all x. (Cauchy-Schwarz on the 2×2 PD matrix.) -/
+/-- ‖φ(x)‖ ≤ φ(0).re for all x. (Cauchy-Schwarz on the 2×2 PD matrix.)
+@isnad1 id=le.1h3v.s5.0614da05b5cd from=translated src=- shape=04ef1108 vocab=36063daa
+-/
 lemma bounded_by_zero (hpd : IsPositiveDefinite φ) (x : α) :
     ‖φ x‖ ≤ (φ 0).re := by
   -- Handle the case φ x = 0
@@ -169,6 +178,7 @@ lemma bounded_by_zero (hpd : IsPositiveDefinite φ) (x : α) :
 
     Proof idea: The Hadamard (entrywise) product of two PSD Hermitian matrices
     is PSD. For the Hermitian condition, use conj(φψ) = conj(φ)conj(ψ).
+@isnad1 id=ispositi.2h3v.s5.5f4eb1f481fa from=translated src=- shape=85f2bb63 vocab=3206b693
 -/
 lemma mul (hpd : IsPositiveDefinite φ) {ψ : α → ℂ} (hψ : IsPositiveDefinite ψ) :
     IsPositiveDefinite (fun x => φ x * ψ x) := by

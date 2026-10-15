@@ -55,7 +55,9 @@ def marginalFun (φ : H → ℂ) {n : ℕ} (v : Fin n → H) :
   fun t => φ (∑ i, t i • v i)
 
 omit [CompleteSpace H] in
-/-- The marginal function of a PD function is PD. -/
+/-- The marginal function of a PD function is PD.
+@isnad1 id=ispositi.1h4v.s6.91a8eafc48b4 from=translated src=- shape=55ab1eb7 vocab=ded181b3
+-/
 lemma marginalFun_isPositiveDefinite (φ : H → ℂ) (hpd : IsPositiveDefinite φ)
     {n : ℕ} (v : Fin n → H) :
     IsPositiveDefinite (marginalFun φ v) := by
@@ -74,21 +76,28 @@ lemma marginalFun_isPositiveDefinite (φ : H → ℂ) (hpd : IsPositiveDefinite 
 
 /-! ## Tail Bound Algebra -/
 
-/-- 1 - exp(-t) > 0 for t > 0. -/
+/-- 1 - exp(-t) > 0 for t > 0.
+@isnad1 id=lt.1h1v.s5.9055ee8be80f from=translated src=- shape=d8144543 vocab=6080affd
+-/
 lemma one_sub_exp_neg_pos {t : ℝ} (ht : 0 < t) : 0 < 1 - Real.exp (-t) := by
   simp_all
 
-/-- exp(-b) ≤ exp(-a) when a ≤ b. -/
+/-- exp(-b) ≤ exp(-a) when a ≤ b.
+@isnad1 id=le.1h2v.s4.bb432488d9ac from=translated src=- shape=2d24f4ce vocab=cc057194
+-/
 lemma exp_neg_le_exp_neg {a b : ℝ} (hab : a ≤ b) :
     Real.exp (-b) ≤ Real.exp (-a) := Real.exp_le_exp_of_le (neg_le_neg hab)
 
-/-- The denominator 1 - exp(-R²/2) is positive for R > 0. -/
+/-- The denominator 1 - exp(-R²/2) is positive for R > 0.
+@isnad1 id=lt.1h1v.s6.620c08ca5f0e from=translated src=- shape=c2611761 vocab=c05ef28d
+-/
 lemma one_sub_exp_half_sq_pos (R : ℝ) (hR : 0 < R) :
     0 < 1 - Real.exp (-(R ^ 2 / 2)) := by
   apply one_sub_exp_neg_pos; positivity
 
 /-- Chebyshev/Markov bound with scaling: if ∫ (1 - exp(-σ²‖y‖²/2)) dμ ≤ C,
     then μ({‖y‖ ≥ R}) ≤ C / (1 - exp(-σ²R²/2)).
+@isnad1 id=le.4h5v.s8.99bdbc3e3fc9 from=translated src=- shape=12288f22 vocab=9d563780
 -/
 lemma tail_bound_from_exp_integral {V : Type*} [NormedAddCommGroup V]
     [MeasurableSpace V] [BorelSpace V]
@@ -153,15 +162,24 @@ abbrev gaussDensity (σ : ℝ) (x : V) : ℝ :=
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
   [SecondCountableTopology V] in
+/--
+@isnad1 id=le.0h3v.s4.a2ec19f45e1c from=translated src=- shape=ba162991 vocab=cd170f18
+-/
 lemma gaussDensity_nonneg' (σ : ℝ) (x : V) : 0 ≤ gaussDensity σ x :=
   Real.exp_nonneg _
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
   [SecondCountableTopology V] in
+/--
+@isnad1 id=continuo.0h2v.s4.a3266a15a57b from=translated src=- shape=e89acc56 vocab=835ef3d9
+-/
 lemma gaussDensity_continuous' (σ : ℝ) : Continuous (gaussDensity (V := V) σ) := by
   unfold gaussDensity; fun_prop
 
 omit [SecondCountableTopology V] in
+/--
+@isnad1 id=integrab.1h2v.s6.33f7d74d8ddf from=translated src=- shape=748f5ef2 vocab=99734470
+-/
 lemma gaussDensity_integrable' (σ : ℝ) (hσ : 0 < σ) :
     Integrable (gaussDensity σ) (volume : Measure V) := by
   set b : ℝ := 1 / (2 * σ ^ 2)
@@ -177,6 +195,9 @@ lemma gaussDensity_integrable' (σ : ℝ) (hσ : 0 < σ) :
   rw [heq]; exact hcint.norm
 
 omit [SecondCountableTopology V] in
+/--
+@isnad1 id=lt.1h2v.s6.2b1aaf7755c7 from=translated src=- shape=4c5dcccf vocab=d5c09344
+-/
 lemma gaussDensity_integral_pos' (σ : ℝ) (hσ : 0 < σ) :
     0 < ∫ x : V, gaussDensity σ x := by
   apply integral_pos_of_integrable_nonneg_nonzero (x := 0)
@@ -229,6 +250,9 @@ private lemma cexp_neg_sq_integrable_prob' (μ : ProbabilityMeasure V) (σ : ℝ
   rw [this]
   exact (exp_neg_sq_integrable_prob' μ σ ‹_›).ofReal
 
+/--
+@isnad1 id=integrab.2h4v.s7.c126659481ac from=translated src=- shape=bbb4bae2 vocab=91ad00d7
+-/
 lemma gaussDensity_mul_charFun_re_integrable' (μ : ProbabilityMeasure V)
     (φ : V → ℂ) (hφ : ∀ t, charFun μ.toMeasure t = φ t) (σ : ℝ) (hσ : 0 < σ) :
     Integrable (fun x : V => gaussDensity σ x * (φ x).re) volume := by
@@ -264,6 +288,7 @@ private lemma gaussDensity_mul_charFun_integrable' (μ : ProbabilityMeasure V)
 
 /-- Fubini identity for Gaussian averaging:
     ∫_μ (1-exp(-σ²‖y‖²/2)) = C⁻¹ ∫ exp(-b‖x‖²) Re(1-φ(x)) dx.
+@isnad1 id=eq.2h4v.s8.a54cc4de3db9 from=translated src=- shape=c9dd09c9 vocab=6cf316d0
 -/
 theorem fubini_gaussian_charFun
     (μ : ProbabilityMeasure V) (φ : V → ℂ)
@@ -546,6 +571,7 @@ private lemma gaussian_inner_sq_le' (σ : ℝ) (hσ : 0 < σ) (w : V) :
 /-- Gaussian second moment bound:
     C⁻¹ ∫ exp(-b‖x‖²) ⟪x,Sx⟫ dx ≤ σ²·Tr(S).
     Uses spectral decomposition to reduce to single-direction bounds.
+@isnad1 id=le.4h4v.s9.396a80ccb4d8 from=translated src=- shape=378ffdfd vocab=c415cd0e
 -/
 theorem gaussian_quadForm_integral_le
     (σ : ℝ) (hσ : 0 < σ)
@@ -619,6 +645,9 @@ private lemma mul_exp_neg_le_one' {t : ℝ} (_ht : 0 ≤ t) : t * Real.exp (-t) 
   linarith [Real.add_one_le_exp t]
 
 omit [SecondCountableTopology V] in
+/--
+@isnad1 id=integrab.1h3v.s7.7a775e8605ef from=translated src=- shape=f0900c94 vocab=9f68b94b
+-/
 lemma gaussDensity_mul_quadForm_integrable' (σ : ℝ) (hσ : 0 < σ)
     (S : V →L[ℝ] V) :
     Integrable (fun x => gaussDensity σ x * quadForm S x) volume := by
@@ -685,6 +714,7 @@ lemma gaussDensity_mul_quadForm_integrable' (σ : ℝ) (hσ : 0 < σ)
     Here exp(-σ²‖y‖²/2) is the characteristic function of N(0, σ²I).
     The bound follows from Fubini + pointwise bound Re(1-φ) ≤ ε + 2·qf
     + Gaussian second moment E_γ[⟨x,Sx⟩] ≤ σ²·Tr(S).
+@isnad1 id=le.7h7v.s9.837dfca412d4 from=translated src=- shape=eb1d4cc2 vocab=ce2a6cee
 -/
 theorem gaussian_averaging_bound
     (μ : ProbabilityMeasure V) (φ : V → ℂ)
@@ -774,7 +804,9 @@ theorem gaussian_averaging_bound
 
 end GaussianAveraging
 
-/-- Scaled Chebyshev: combining Gaussian averaging with the tail bound. -/
+/-- Scaled Chebyshev: combining Gaussian averaging with the tail bound.
+@isnad1 id=le.8h8v.s9.dcaa5e037f6d from=translated src=- shape=2b31c00e vocab=84f49ed5
+-/
 lemma scaled_tail_bound
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
     [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
@@ -822,14 +854,18 @@ def restrictOp (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H) :
   LinearMap.toContinuousLinearMap (projON v ∘ₗ S.toLinearMap ∘ₗ embedON v)
 
 omit [CompleteSpace H] in
-/-- Coordinate formula for restrictOp. -/
+/-- Coordinate formula for restrictOp.
+@isnad1 id=eq.0h6v.s9.0a47cb256a4f from=translated src=- shape=22530aa1 vocab=9d940a32
+-/
 lemma restrictOp_apply (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     (t : EuclideanSpace ℝ (Fin n)) (i : Fin n) :
     (restrictOp S v t) i = @inner ℝ H _ (v i) (S (∑ j, t j • v j)) := by
   unfold restrictOp projON embedON; simp
 
 omit [CompleteSpace H] in
-/-- The quadratic form of the restricted operator equals the original. -/
+/-- The quadratic form of the restricted operator equals the original.
+@isnad1 id=eq.0h5v.s8.78705c1afc77 from=translated src=- shape=7fc998a6 vocab=3acb0e81
+-/
 lemma restrictOp_quadForm (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     (t : EuclideanSpace ℝ (Fin n)) :
     quadForm (restrictOp S v) t = quadForm S (∑ i, t i • v i) := by
@@ -848,7 +884,9 @@ private lemma inner_self_adjoint_comm (S : H →L[ℝ] H) (hS : S.IsPositive)
   rw [hS.isSelfAdjoint.adjoint_eq] at h
   rw [← h, real_inner_comm]
 
-/-- The restriction of a positive operator is positive. -/
+/-- The restriction of a positive operator is positive.
+@isnad1 id=ispositi.1h4v.s7.6e02697d0ec6 from=translated src=- shape=6dc2c377 vocab=bacaac69
+-/
 lemma restrictOp_isPositive (S : H →L[ℝ] H) (hS : S.IsPositive)
     {n : ℕ} (v : Fin n → H) :
     (restrictOp S v).IsPositive := by
@@ -875,6 +913,7 @@ lemma restrictOp_isPositive (S : H →L[ℝ] H) (hS : S.IsPositive)
     Proof: decompose bₖ = P(bₖ) + Q(bₖ) via the projection P onto span(v).
     The cross term ∑' k ⟪Q(bₖ), S(P(bₖ))⟫ vanishes by Parseval + orthonormality,
     so the difference = ∑' k ⟪Q(bₖ), S(Q(bₖ))⟫ ≥ 0 by positivity of S.
+@isnad1 id=le.3h6v.s9.0c8746ab2529 from=translated src=- shape=acd5ed68 vocab=3abcee4c
 -/
 theorem orthonormal_diag_le_hilbert_trace (S : H →L[ℝ] H) (hS : S.IsPositive)
     {n : ℕ} (v : Fin n → H) (hv : Orthonormal ℝ v)
@@ -958,6 +997,7 @@ omit [CompleteSpace H] in
 /-- The trace of restrictOp in any ONB of EuclideanSpace equals ∑ⱼ ⟪vⱼ, S(vⱼ)⟫.
     Uses `LinearMap.trace_eq_sum_inner` for basis independence on finite-dimensional
     EuclideanSpace, then computes the standard basis entries.
+@isnad1 id=eq.1h6v.s10.7ce2e05ede3e from=translated src=- shape=9916fc41 vocab=b7218356
 -/
 lemma restrictOp_trace_eq_diag (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     (_hv : Orthonormal ℝ v)
@@ -991,6 +1031,7 @@ lemma restrictOp_trace_eq_diag (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
 /-- The trace of the restricted operator is bounded by the trace of the
     original on any Hilbert basis. Combines trace basis independence on
     EuclideanSpace with the diagonal bound.
+@isnad1 id=le.3h8v.s10.5bee576fe789 from=translated src=- shape=869f271c vocab=5293ad48
 -/
 lemma restrictOp_trace_le (S : H →L[ℝ] H) (hS : S.IsPositive)
     {n : ℕ} (v : Fin n → H) (hv : Orthonormal ℝ v)
@@ -1008,6 +1049,7 @@ lemma restrictOp_trace_le (S : H →L[ℝ] H) (hS : S.IsPositive)
 
 /-- For any C < η and σ > 0, there exists R > 0 such that
     C / (1 - exp(-σ²R²/2)) < η.
+@isnad1 id=ex.3h3v.s7.88db5dda1445 from=translated src=- shape=abc5c3c8 vocab=a95bab30
 -/
 lemma exists_R_for_tail_bound (C η σ : ℝ) (hC : 0 < C) (hCη : C < η) (hσ : 0 < σ) :
     ∃ R > 0, C / (1 - Real.exp (-(σ ^ 2 * R ^ 2 / 2))) < η := by
@@ -1033,6 +1075,7 @@ lemma exists_R_for_tail_bound (C η σ : ℝ) (hC : 0 < C) (hCη : C < η) (hσ 
 /-- **Sazonov Tightness Theorem.** If φ : H → ℂ is positive definite, normalized,
     and Sazonov-continuous at 0, then the family of all finite-dimensional
     marginal measures is uniformly tight.
+@isnad1 id=ex.5h3v.s9.d40dd5cf3c50 from=translated src=- shape=9e28d8f4 vocab=f89db435
 -/
 theorem sazonov_tightness (φ : H → ℂ) (_hpd : IsPositiveDefinite φ)
     (_hnorm : φ 0 = 1) (_hcont : Continuous φ)

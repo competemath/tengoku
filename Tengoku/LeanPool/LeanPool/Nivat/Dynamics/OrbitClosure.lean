@@ -68,26 +68,36 @@ def orbitClosure {A : Type*} [TopologicalSpace A] (c : Configuration A) :
     Set (Configuration A) := closure (orbit c)
 
 /-- Each shift is continuous in the product topology. This gives the shift invariance of `X_c`
-used in Section 1.1 and Lemma 3.1 (`lem:halfplane-pair`). -/
+used in Section 1.1 and Lemma 3.1 (`lem:halfplane-pair`).
+@isnad1 id=continuo.0h2v.s4.ee681dc91713 from=translated src=- shape=4c4fe52c vocab=d1ecc9a6
+-/
 theorem continuous_shift {A : Type*} [TopologicalSpace A] (h : Lattice) :
     Continuous (shift h : Configuration A → Configuration A) := by
   exact continuous_pi (fun z => continuous_apply (z + h))
 
-/-- The orbit closure `X_c` of Section 1.1 is closed in the product topology. -/
+/-- The orbit closure `X_c` of Section 1.1 is closed in the product topology.
+@isnad1 id=isclosed.0h2v.s4.f6bedd70e9c1 from=translated src=- shape=d5937128 vocab=3f51a404
+-/
 theorem isClosed_orbitClosure {A : Type*} [TopologicalSpace A] (c : Configuration A) :
     IsClosed (orbitClosure c) := isClosed_closure
 
 /-- Every translate of the original configuration belongs to its orbit closure `X_c`, as used in
-Section 1.1. -/
+Section 1.1.
+@isnad1 id=mem.0h3v.s4.f27378f5eebd from=translated src=- shape=92aed0be vocab=8eea3f08
+-/
 theorem shift_mem_orbitClosure {A : Type*} [TopologicalSpace A] (c : Configuration A)
     (h : Lattice) : shift h c ∈ orbitClosure c := subset_closure ⟨h, rfl⟩
 
-/-- The original configuration belongs to the orbit closure `X_c` of Section 1.1. -/
+/-- The original configuration belongs to the orbit closure `X_c` of Section 1.1.
+@isnad1 id=mem.0h2v.s4.611178d8945c from=translated src=- shape=4b6150e7 vocab=a914345d
+-/
 theorem mem_orbitClosure {A : Type*} [TopologicalSpace A] (c : Configuration A) :
     c ∈ orbitClosure c := by simpa using shift_mem_orbitClosure c 0
 
 /-- The orbit closure `X_c` is invariant under every integer shift, as required by Lemma 3.1
-(`lem:halfplane-pair`). -/
+(`lem:halfplane-pair`).
+@isnad1 id=mem.1h4v.s5.e2a4f5c81dae from=translated src=- shape=9c79bcb6 vocab=8eea3f08
+-/
 theorem shift_orbitClosure {A : Type*} [TopologicalSpace A] (c : Configuration A)
     (h : Lattice) {x : Configuration A} (hx : x ∈ orbitClosure c) :
     shift h x ∈ orbitClosure c := by
@@ -101,7 +111,9 @@ theorem shift_orbitClosure {A : Type*} [TopologicalSpace A] (c : Configuration A
 
 /-- Every finite restriction of a point of `X_c` occurs in the original configuration. This is the
 finite-pattern inheritance property of Section 1.1; discreteness is needed only for the
-alphabet. -/
+alphabet.
+@isnad1 id=ex.1h4v.s6.c8cf8143ed2d from=translated src=- shape=a65b0d88 vocab=a29300d8
+-/
 theorem finite_pattern_occurs {A : Type*} [TopologicalSpace A] [DiscreteTopology A]
     (c : Configuration A) {x : Configuration A} (hx : x ∈ orbitClosure c)
     (D : Finset Lattice) : ∃ h : Lattice, ∀ z ∈ D, x z = c (z + h) := by
@@ -115,7 +127,9 @@ theorem finite_pattern_occurs {A : Type*} [TopologicalSpace A] [DiscreteTopology
   exact (hyU z hz).symm
 
 /-- Every translated pattern of an orbit-closure point belongs to the original pattern language,
-by the inheritance property of Section 1.1. -/
+by the inheritance property of Section 1.1.
+@isnad1 id=mem.1h5v.s6.86bb7dbe8ac7 from=translated src=- shape=7593ed7a vocab=35089a28
+-/
 theorem patternAt_mem_patterns_of_mem_orbitClosure {A : Type*} [TopologicalSpace A]
     [DiscreteTopology A] (c : Configuration A) {x : Configuration A}
     (hx : x ∈ orbitClosure c) (D : Finset Lattice) (u : Lattice) :
@@ -127,7 +141,9 @@ theorem patternAt_mem_patterns_of_mem_orbitClosure {A : Type*} [TopologicalSpace
 
 /-- A nonperiodic configuration has an injective translation orbit and hence infinite orbit
 closure. This supplies the hypothesis of Lemma 3.1 in Corollary 3.6
-(`cor:periodic-difference`). -/
+(`cor:periodic-difference`).
+@isnad1 id=infinite.1h2v.s4.6c0dd7e58429 from=translated src=- shape=5e9018c8 vocab=ca88914c
+-/
 theorem infinite_orbitClosure_of_not_periodic {A : Type*} [TopologicalSpace A]
     (c : Configuration A) (hn : ¬ Periodic c) : (orbitClosure c).Infinite := by
   have hinj : Function.Injective (fun h : Lattice => shift h c) := by
@@ -142,7 +158,9 @@ theorem infinite_orbitClosure_of_not_periodic {A : Type*} [TopologicalSpace A]
 
 /-- Lemma 3.1 (`lem:halfplane-pair`) for a nonperiodic configuration with arbitrary finite range,
 together with the language inheritance of Section 1.1. Compactness is applied to the range
-subtype with its discrete topology. -/
+subtype with its discrete topology.
+@isnad1 id=ex.2h2v.s8.c9b533ee387f from=translated src=- shape=0c21513d vocab=34d2793c
+-/
 theorem halfPlane_pair_of_finiteRange_not_periodic {A : Type*}
     (c : Configuration A) (hc : FiniteRange c) (hn : ¬ Periodic c) :
     ∃ x y : Configuration A, ∃ ν : ℝ × ℝ,

@@ -48,14 +48,23 @@ def oddDoubleDigitsAux (half : ℕ) : List ℕ → ℕ → List ℕ
       ((2 * digit + carry) % oddBase half) ::
         oddDoubleDigitsAux half digits nextCarry
 
+/--
+@isnad1 id=lt.0h1v.s3.768d5b10105e from=translated src=- shape=8a62b088 vocab=edcd7771
+-/
 lemma oddBase_pos (half : ℕ) : 0 < oddBase half := by
   simp [oddBase]
 
+/--
+@isnad1 id=lt.1h1v.s4.75afbcdcbae0 from=translated src=- shape=35bd48ee vocab=edcd7771
+-/
 lemma oddBase_one_lt {half : ℕ} (hhalf : 0 < half) :
     1 < oddBase half := by
   simp [oddBase]
   omega
 
+/--
+@isnad1 id=le.2h3v.s5.f796410858d3 from=translated src=- shape=f2aca9a1 vocab=0fc5f2d3
+-/
 lemma oddDoubleCarryStep_le_one
     {half carry digit : ℕ} (hcarry : carry ≤ 1)
     (hdigit : digit < oddBase half) :
@@ -68,6 +77,9 @@ lemma oddDoubleCarryStep_le_one
     (Nat.div_lt_iff_lt_mul (oddBase_pos half)).2 hnumerator
   simpa [oddDoubleCarryStep] using hquotient
 
+/--
+@isnad1 id=lt.3h3v.s5.31012c82f137 from=translated src=- shape=4941f60c vocab=0fc5f2d3
+-/
 lemma oddDoubleCarryStep_lt_base
     {half carry digit : ℕ} (hhalf : 0 < half)
     (hcarry : carry ≤ 1) (hdigit : digit < oddBase half) :
@@ -76,12 +88,18 @@ lemma oddDoubleCarryStep_lt_base
   have hbase := oddBase_one_lt hhalf
   omega
 
+/--
+@isnad1 id=eq.0h3v.s6.f3fbfff5820e from=translated src=- shape=1393ed00 vocab=58b2742a
+-/
 lemma oddDoubleCarryStep_local (half carry digit : ℕ) :
     (2 * digit + carry) % oddBase half +
         oddBase half * oddDoubleCarryStep half carry digit =
       2 * digit + carry := by
   exact Nat.mod_add_div (2 * digit + carry) (oddBase half)
 
+/--
+@isnad1 id=eq.1h2v.s5.b837196118cd from=translated src=- shape=ca4e12ff vocab=bf1f5ef7
+-/
 lemma oddDoubleCarryStep_zero_of_lt_succ
     {half digit : ℕ} (hdigit : digit < half + 1) :
     oddDoubleCarryStep half 0 digit = 0 := by
@@ -90,6 +108,9 @@ lemma oddDoubleCarryStep_zero_of_lt_succ
   simp [oddBase]
   omega
 
+/--
+@isnad1 id=eq.2h2v.s5.fe3d5665e180 from=translated src=- shape=cdd23cae vocab=fe3f10d3
+-/
 lemma oddDoubleCarryStep_one_of_succ_le
     {half digit : ℕ} (hlower : half + 1 ≤ digit)
     (hupper : digit < oddBase half) :
@@ -101,6 +122,9 @@ lemma oddDoubleCarryStep_one_of_succ_le
   · simp [oddBase] at hupper ⊢
     omega
 
+/--
+@isnad1 id=eq.1h2v.s4.2d7d7340ded2 from=translated src=- shape=3ca8d824 vocab=c20c380d
+-/
 lemma oddDoubleCarryStep_zero_of_lt
     {half digit : ℕ} (hdigit : digit < half) :
     oddDoubleCarryStep half 1 digit = 0 := by
@@ -109,6 +133,9 @@ lemma oddDoubleCarryStep_zero_of_lt
   simp [oddBase]
   omega
 
+/--
+@isnad1 id=eq.2h2v.s5.42e5ded8e1b3 from=translated src=- shape=6a8eaafb vocab=0fc5f2d3
+-/
 lemma oddDoubleCarryStep_one_of_le
     {half digit : ℕ} (hlower : half ≤ digit)
     (hupper : digit < oddBase half) :
@@ -120,12 +147,18 @@ lemma oddDoubleCarryStep_one_of_le
   · simp [oddBase] at hupper ⊢
     omega
 
+/--
+@isnad1 id=eq.0h3v.s4.c00566d1360e from=translated src=- shape=95220625 vocab=225fa1b1
+-/
 lemma oddDoubleDigitsAux_length (half : ℕ) (digits : List ℕ) (carry : ℕ) :
     (oddDoubleDigitsAux half digits carry).length = digits.length + 1 := by
   induction digits generalizing carry with
   | nil => simp [oddDoubleDigitsAux]
   | cons digit digits ih => simp [oddDoubleDigitsAux, ih, Nat.add_assoc]
 
+/--
+@isnad1 id=lt.4h4v.s6.b2bd72062262 from=translated src=- shape=6e908726 vocab=e44653c9
+-/
 lemma oddDoubleDigitsAux_lt_base
     {half : ℕ} (hhalf : 0 < half) {digits : List ℕ} {carry : ℕ}
     (hcarry : carry ≤ 1)
@@ -150,6 +183,9 @@ lemma oddDoubleDigitsAux_lt_base
           (fun d hd => hdigits d (List.mem_cons_of_mem digit hd))
           value htail
 
+/--
+@isnad1 id=eq.2h3v.s6.b0baa99fde13 from=translated src=- shape=5e2712b8 vocab=986e9c4b
+-/
 lemma oddDoubleDigitsAux_ofDigits
     {half : ℕ} {digits : List ℕ} {carry : ℕ}
     (hcarry : carry ≤ 1)
@@ -182,6 +218,9 @@ lemma oddDoubleDigitsAux_ofDigits
               (digit + oddBase half *
                 Nat.ofDigits (oddBase half) digits) + carry := by ring
 
+/--
+@isnad1 id=eq.2h3v.s6.afacf0ae0112 from=translated src=- shape=286f733d vocab=6033f671
+-/
 lemma oddDoubleDigitsAux_sum_add_carries
     {half : ℕ} {digits : List ℕ} {carry : ℕ}
     (hcarry : carry ≤ 1)
@@ -229,7 +268,9 @@ lemma oddDoubleDigitsAux_sum_add_carries
               ring
 
 /-- In an odd prime base, Kummer's central-binomial valuation is exactly the
-number of carries produced by doubling any valid padded digit word. -/
+number of carries produced by doubling any valid padded digit word.
+@isnad1 id=eq.2h2v.s5.cacc8e440750 from=translated src=- shape=cdbaf927 vocab=f7c75f46
+-/
 theorem padicValNat_oddPrime_centralBinom_ofDigits_eq_carryCount
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime]
     (digits : List ℕ)

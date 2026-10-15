@@ -117,6 +117,7 @@ private lemma PL_to_local_MuPL (f : E d → ℝ) (μ : ℝ) (U : Set (E d))
     self-adjointness of Dπ(m) (which holds for smooth nearest-point projections), this
     gives ker(Dπ(m)) ⊆ (hessKer f m)⊥, so normal directions lie in the orthogonal
     complement of the Hessian kernel where μ-coercivity holds.
+@isnad1 id=le.11h8v.s13.ef509b1e0516 from=translated src=- shape=00780f54 vocab=9add82f8
 -/
 theorem hessian_normal_bound_from_PL {d : ℕ}
     (f : E d → ℝ) (μ : ℝ) (U : Set (E d))
@@ -196,7 +197,9 @@ private lemma gradient_hessian_inner (f : E d → ℝ) (x v w : E d) (hf : ContD
   linarith
 
 /-- Under PL on U at a minimizer m, μ⟨D(∇f)(m) v, v⟩ ≤ ‖D(∇f)(m) v‖² for all v.
-    Gradient-form export of the core PL Hessian bound. -/
+    Gradient-form export of the core PL Hessian bound.
+@isnad1 id=le.5h6v.s11.05611bcd5eb9 from=translated src=- shape=da4bf280 vocab=784ced26
+-/
 theorem PL_gradient_hessian_bound (f : E d → ℝ) (μ : ℝ) (U : Set (E d))
     (hPL : PolyakLojasiewicz f μ U) (hU_open : IsOpen U)
     (m : E d) (hf : ContDiffAt ℝ 2 f m) (hmS : m ∈ argminSet f) (hmU : m ∈ U) (v : E d) :

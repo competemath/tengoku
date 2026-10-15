@@ -30,25 +30,33 @@ open Finset
 
 namespace PentagonalNumberTheorem.Franklin
 
-/-- α-partitions and β-partitions are disjoint. -/
+/-- α-partitions and β-partitions are disjoint.
+@isnad1 id=eq.0h1v.s5.6b794891dca8 from=translated src=- shape=9255d3a1 vocab=218b8f8d
+-/
 theorem DPalpha_inter_DPbeta (n : ℕ) :
     distinctPartitionsAlpha n ∩ distinctPartitionsBeta n = ∅ := by
   simp only [distinctPartitionsAlpha, distinctPartitionsBeta, ← filter_and, filter_eq_empty_iff]
   intro S _
   omega
-/-- α-partitions and special partitions are disjoint. -/
+/-- α-partitions and special partitions are disjoint.
+@isnad1 id=eq.0h1v.s5.99a957bdb94c from=translated src=- shape=9255d3a1 vocab=8b8f111d
+-/
 theorem DPalpha_inter_DPspecial (n : ℕ) :
     distinctPartitionsAlpha n ∩ distinctPartitionsSpecial n = ∅ := by
   simp only [distinctPartitionsAlpha, distinctPartitionsSpecial, ← filter_and, filter_eq_empty_iff]
   intro S _
   omega
-/-- β-partitions and special partitions are disjoint. -/
+/-- β-partitions and special partitions are disjoint.
+@isnad1 id=eq.0h1v.s5.47d0aff22e94 from=translated src=- shape=9255d3a1 vocab=2e451df8
+-/
 theorem DPbeta_inter_DPspecial (n : ℕ) :
     distinctPartitionsBeta n ∩ distinctPartitionsSpecial n = ∅ := by
   simp only [distinctPartitionsBeta, distinctPartitionsSpecial, ← filter_and, filter_eq_empty_iff]
   intro S _
   omega
-/-- Every distinct partition is in exactly one of α, β, or special. -/
+/-- Every distinct partition is in exactly one of α, β, or special.
+@isnad1 id=eq.0h1v.s5.926a0f3c6f37 from=translated src=- shape=58cefde5 vocab=b56dd2de
+-/
 theorem DP_eq_union (n : ℕ) :
     distinctPartitions n =
     distinctPartitionsAlpha n ∪ distinctPartitionsBeta n ∪ distinctPartitionsSpecial n := by
@@ -56,30 +64,42 @@ theorem DP_eq_union (n : ℕ) :
     ← filter_or]
   exact (filter_true_of_mem fun S _ => by omega).symm
 /-- The pentagonal identity `a * (3 * a - 1) = 3 * a ^ 2 - a`, stated without truncated
-subtraction so that `omega` can use it. -/
+subtraction so that `omega` can use it.
+@isnad1 id=eq.0h1v.s6.bb4912cc643a from=translated src=- shape=2beed6cf vocab=6278b6cd
+-/
 theorem mul_three_sub_one_add_self (a : ℕ) : a * (3 * a - 1) + a = 3 * a ^ 2 := by
   cases a with
   | zero => rfl
   | succ b => rw [show 3 * (b + 1) - 1 = 3 * b + 2 by omega]; ring
-/-- The set smkSet(k) has exactly k elements. -/
+/-- The set smkSet(k) has exactly k elements.
+@isnad1 id=eq.1h1v.s4.302e5304fc63 from=translated src=- shape=963036ab vocab=662ce922
+-/
 theorem SmkSet_card (k : ℕ) (hk : 1 ≤ k) : (smkSet k).card = k := by
   unfold smkSet; rw [Nat.card_Icc]; omega
-/-- The sum of smkSet(k) equals (3k²-k)/2. -/
+/-- The sum of smkSet(k) equals (3k²-k)/2.
+@isnad1 id=eq.1h1v.s6.4d74e7c7242c from=translated src=- shape=efe059f6 vocab=2d4eac39
+-/
 theorem SmkSet_sum (k : ℕ) (hk : 1 ≤ k) : (smkSet k).sum id = (3 * k ^ 2 - k) / 2 := by
   have key := mul_three_sub_one_add_self k
   rw [smkSet, Icc_sum_id, show 2 * k - 1 + 1 - k = k by omega,
     show k + (2 * k - 1) = 3 * k - 1 by omega]
   omega
-/-- The set spkSet(k) has exactly k elements. -/
+/-- The set spkSet(k) has exactly k elements.
+@isnad1 id=eq.1h1v.s4.21f98bc2ee61 from=translated src=- shape=963036ab vocab=4921d3d2
+-/
 theorem SpkSet_card (k : ℕ) (hk : 1 ≤ k) : (spkSet k).card = k := by
   unfold spkSet; rw [Nat.card_Icc]; omega
-/-- The sum of spkSet(k) equals (3k²+k)/2. -/
+/-- The sum of spkSet(k) equals (3k²+k)/2.
+@isnad1 id=eq.1h1v.s6.22955a320522 from=translated src=- shape=efe059f6 vocab=da67d6fc
+-/
 theorem SpkSet_sum (k : ℕ) (hk : 1 ≤ k) : (spkSet k).sum id = (3 * k ^ 2 + k) / 2 := by
   rw [spkSet, Icc_sum_id, show 2 * k + 1 - (k + 1) = k by omega]
   congr 1
   ring
 /-- A nonempty distinct partition whose top run reaches all the way down to its base is the
-whole interval `Icc (partBase S) (partMax S)`. -/
+whole interval `Icc (partBase S) (partMax S)`.
+@isnad1 id=eq.2h1v.s5.8b152a8bb1b4 from=translated src=- shape=c851209d vocab=96536edc
+-/
 theorem DP_eq_Icc_of_run_reaches_base (S : Finset ℕ) (hne : S.Nonempty)
     (h : partMax S - partSlope S + 1 ≤ partBase S) :
     S = Icc (partBase S) (partMax S) := by
@@ -92,7 +112,9 @@ theorem DP_eq_Icc_of_run_reaches_base (S : Finset ℕ) (hne : S.Nonempty)
   rwa [Nat.sub_sub_self h2] at hmem
 /-- A nonempty *special* partition of `n` is exactly the interval `Icc b m` running from its
 base `b` to its max `m`. Consequently its slope is the full length `m - b + 1` of that interval,
-and `2 * n = s * (b + m)` by Gauss' summation formula. -/
+and `2 * n = s * (b + m)` by Gauss' summation formula.
+@isnad1 id=and.2h2v.s6.23afe89429b5 from=translated src=- shape=77715b15 vocab=630f4124
+-/
 theorem DPspecial_eq_Icc (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsSpecial n)
     (hne : S.Nonempty) :
     S = Icc (partBase S) (partMax S) ∧ partSlope S = partMax S - partBase S + 1 ∧
@@ -114,7 +136,9 @@ theorem DPspecial_eq_Icc (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitio
   have h2 := Icc_sum_id_mul_two (partBase S) (partMax S)
   rw [hsum, show partMax S + 1 - partBase S = partSlope S by omega] at h2
   omega
-/-- For non-pentagonal n ≥ 1, there are no special partitions. -/
+/-- For non-pentagonal n ≥ 1, there are no special partitions.
+@isnad1 id=eq.3h1v.s7.ac463dbcc19c from=translated src=- shape=7d7995de vocab=a6d7b7cb
+-/
 theorem DPspecial_empty_of_nonpent (n : ℕ) (hn : 1 ≤ n)
     (h1 : ∀ k, 1 ≤ k → 2 * n ≠ 3 * k ^ 2 - k)
     (h2 : ∀ k, 1 ≤ k → 2 * n ≠ 3 * k ^ 2 + k) :
@@ -146,7 +170,9 @@ theorem DPspecial_empty_of_nonpent (n : ℕ) (hn : 1 ≤ n)
     rw [ht, show partBase S = t + 2 by omega, show partMax S = 2 * t + 2 by omega] at hsum
     have e1 : (t + 1) * (t + 2 + (2 * t + 2)) = 3 * t ^ 2 + 7 * t + 4 := by ring
     omega
-/-- `x ↦ 3x² − x` is injective on `ℕ`, stated without truncated subtraction. -/
+/-- `x ↦ 3x² − x` is injective on `ℕ`, stated without truncated subtraction.
+@isnad1 id=eq.1h2v.s6.5b4a47d04ffe from=translated src=- shape=1ebf5308 vocab=30ba1354
+-/
 theorem pent_minus_inj {a b : ℕ} (h : 3 * a ^ 2 + b = 3 * b ^ 2 + a) : a = b := by
   rcases lt_trichotomy a b with h' | h' | h'
   · obtain ⟨d, rfl⟩ : ∃ d, b = a + 1 + d := ⟨b - a - 1, by omega⟩
@@ -154,7 +180,9 @@ theorem pent_minus_inj {a b : ℕ} (h : 3 * a ^ 2 + b = 3 * b ^ 2 + a) : a = b :
   · exact h'
   · obtain ⟨d, rfl⟩ : ∃ d, a = b + 1 + d := ⟨a - b - 1, by omega⟩
     exfalso; nlinarith
-/-- The two pentagonal families never collide: `3j² + j ≠ 3k² − k` when `1 ≤ k`. -/
+/-- The two pentagonal families never collide: `3j² + j ≠ 3k² − k` when `1 ≤ k`.
+@isnad1 id=false.2h2v.s6.fea5e4d81bc7 from=translated src=- shape=9b37c452 vocab=f96c6fce
+-/
 theorem pent_plus_ne_pent_minus {j k : ℕ} (hk : 1 ≤ k)
     (h : 3 * j ^ 2 + j + k = 3 * k ^ 2) : False := by
   rcases lt_or_ge j k with hjk | hjk
@@ -162,7 +190,9 @@ theorem pent_plus_ne_pent_minus {j k : ℕ} (hk : 1 ≤ k)
     nlinarith
   · obtain ⟨d, rfl⟩ : ∃ d, j = k + d := ⟨j - k, by omega⟩
     nlinarith
-/-- For n = (3k²-k)/2 (pentagonal minus), the only special partition is smkSet(k). -/
+/-- For n = (3k²-k)/2 (pentagonal minus), the only special partition is smkSet(k).
+@isnad1 id=eq.2h2v.s6.d3fb2d8f39b9 from=translated src=- shape=d0b363ee vocab=b6740bb8
+-/
 theorem DPspecial_pent_minus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 - k) :
     distinctPartitionsSpecial n = {smkSet k} := by
   have ek := mul_three_sub_one_add_self k
@@ -200,29 +230,41 @@ theorem DPspecial_pent_minus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 
           show partBase S + partMax S = 3 * j + 1 by omega] at hsum2
         have e : j * (3 * j + 1) = 3 * j ^ 2 + j := by ring
         exact pent_plus_ne_pent_minus (j := j) hk (by omega)
-/-- The base of `spkSet k` is `k + 1`. -/
+/-- The base of `spkSet k` is `k + 1`.
+@isnad1 id=eq.1h1v.s4.d5b9d45eb794 from=translated src=- shape=9eb43dc0 vocab=5d657f20
+-/
 theorem partBase_spkSet {k : ℕ} (hk : 1 ≤ k) : partBase (spkSet k) = k + 1 := by
   rw [spkSet]; exact partBase_Icc (by omega)
-/-- The largest part of `spkSet k` is `2 * k`. -/
+/-- The largest part of `spkSet k` is `2 * k`.
+@isnad1 id=eq.1h1v.s4.addf3636a4e5 from=translated src=- shape=bf1af62c vocab=2663402c
+-/
 theorem partMax_spkSet {k : ℕ} (hk : 1 ≤ k) : partMax (spkSet k) = 2 * k := by
   rw [spkSet]; exact partMax_Icc (by omega)
-/-- `spkSet k` is one single run, so its slope is its whole length `k`. -/
+/-- `spkSet k` is one single run, so its slope is its whole length `k`.
+@isnad1 id=eq.1h1v.s4.5db1278019ef from=translated src=- shape=cc7bc718 vocab=f3a42d18
+-/
 theorem partSlope_spkSet {k : ℕ} (hk : 1 ≤ k) : partSlope (spkSet k) = k := by
   rw [spkSet, partSlope_Icc (show k + 1 ≤ 2 * k by omega)]; omega
 /-- The pentagonal numbers of the second kind are pairwise distinct: `a ↦ a * (3 * a + 1)`
-is injective. -/
+is injective.
+@isnad1 id=eq.1h2v.s6.28c2e2fb2176 from=translated src=- shape=49a1d5db vocab=30ba1354
+-/
 theorem pent_plus_inj {a b : ℕ} (h : a * (3 * a + 1) = 3 * b ^ 2 + b) : a = b := by
   rcases lt_trichotomy a b with hab | hab | hab
   · exfalso; nlinarith
   · exact hab
   · exfalso; nlinarith
 /-- No pentagonal number of the first kind is also one of the second kind: with `a = c + 1`,
-`a * (3 * a - 1) = (c + 1) * (3 * c + 2)` never equals `b * (3 * b + 1)`. -/
+`a * (3 * a - 1) = (c + 1) * (3 * c + 2)` never equals `b * (3 * b + 1)`.
+@isnad1 id=ne.0h2v.s6.689e4c174bf4 from=translated src=- shape=f014a9af vocab=30ba1354
+-/
 theorem pent_minus_ne_pent_plus (c b : ℕ) : (c + 1) * (3 * c + 2) ≠ 3 * b ^ 2 + b := by
   intro hc
   have e : (c + 1) * (3 * c + 2) + (c + 1) = 3 * (c + 1) ^ 2 := by ring
   exact pent_plus_ne_pent_minus (j := b) (k := c + 1) (by omega) (by omega)
-/-- For n = (3k²+k)/2 (pentagonal plus), the only special partition is spkSet(k). -/
+/-- For n = (3k²+k)/2 (pentagonal plus), the only special partition is spkSet(k).
+@isnad1 id=eq.2h2v.s6.048c53575297 from=translated src=- shape=d0b363ee vocab=3ec20f77
+-/
 theorem DPspecial_pent_plus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 + k) :
     distinctPartitionsSpecial n = {spkSet k} := by
   have hb : partBase (spkSet k) = k + 1 := partBase_spkSet hk
@@ -256,7 +298,9 @@ theorem DPspecial_pent_plus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 +
       refine pent_plus_inj ?_
       rw [← hn, hsum2, show partBase S + partMax S = 3 * partSlope S + 1 by omega]
     rw [hSeq, show partBase S = k + 1 by omega, show partMax S = 2 * k by omega, spkSet]
-/-- The Franklin α-operation maps α-partitions into β-partitions. -/
+/-- The Franklin α-operation maps α-partitions into β-partitions.
+@isnad1 id=mem.1h2v.s5.b6b08b1c54c7 from=translated src=- shape=cfcd0746 vocab=559ae749
+-/
 theorem alphaOp_mem_DPbeta (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsAlpha n) :
     alphaOp S ∈ distinctPartitionsBeta n := by
   have hne := DPalpha_nonempty n S hS
@@ -281,7 +325,9 @@ theorem alphaOp_mem_DPbeta (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartit
     have hcard := card_pos.mpr hne'
     have h2b := DPalpha_max_ge_2base n S hS
     omega
-/-- The Franklin β-operation maps β-partitions into α-partitions. -/
+/-- The Franklin β-operation maps β-partitions into α-partitions.
+@isnad1 id=mem.1h2v.s5.65153030018d from=translated src=- shape=cfcd0746 vocab=1e934625
+-/
 theorem betaOp_mem_DPalpha (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsBeta n) :
     betaOp S ∈ distinctPartitionsAlpha n := by
   have hne := DPbeta_nonempty n S hS
@@ -322,7 +368,9 @@ theorem betaOp_mem_DPalpha (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartit
     exact hrun _ hlt
   have hbase := betaOp_partBase n S hS
   exact mem_filter.mpr ⟨hDP', by omega⟩
-/-- The β-operation is a left inverse of the α-operation. -/
+/-- The β-operation is a left inverse of the α-operation.
+@isnad1 id=eq.1h2v.s4.22ff16fe8c60 from=translated src=- shape=44c15079 vocab=963322bf
+-/
 theorem betaOp_alphaOp (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsAlpha n) :
     betaOp (alphaOp S) = S := by
   have hne := DPalpha_nonempty n S hS
@@ -348,7 +396,9 @@ theorem betaOp_alphaOp (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitions
     · by_cases h2 : x = partMax S - partBase S + 1
       · exact Or.inr (Or.inl (by omega))
       · exact Or.inr (Or.inr (Or.inr ⟨h2, h1, hx⟩))
-/-- The α-operation is a left inverse of the β-operation. -/
+/-- The α-operation is a left inverse of the β-operation.
+@isnad1 id=eq.1h2v.s4.3352bbf5a8ef from=translated src=- shape=44c15079 vocab=dac9f3cc
+-/
 theorem alphaOp_betaOp (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsBeta n) :
     alphaOp (betaOp S) = S := by
   have hne := DPbeta_nonempty n S hS
@@ -378,17 +428,23 @@ theorem alphaOp_betaOp (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitions
           by omega] at hx)
       · rintro rfl
         exact hs_not hx
-/-- `alphaOp` is injective on `distinctPartitionsAlpha n`, since `betaOp` is a left inverse. -/
+/-- `alphaOp` is injective on `distinctPartitionsAlpha n`, since `betaOp` is a left inverse.
+@isnad1 id=eq.3h3v.s5.75c1f3488a68 from=translated src=- shape=a1e2634c vocab=2c367b7a
+-/
 theorem alphaOp_inj (n : ℕ) {S T : Finset ℕ} (hS : S ∈ distinctPartitionsAlpha n)
     (hT : T ∈ distinctPartitionsAlpha n) (h : alphaOp S = alphaOp T) : S = T := by
   rw [← betaOp_alphaOp n S hS, ← betaOp_alphaOp n T hT, h]
-/-- Franklin's involution gives a bijection: |α(n)| = |β(n)|. -/
+/-- Franklin's involution gives a bijection: |α(n)| = |β(n)|.
+@isnad1 id=eq.0h1v.s3.4cfe71eddc3e from=translated src=- shape=7cf33db3 vocab=80f6fe30
+-/
 theorem DPalpha_card_eq_DPbeta_card (n : ℕ) :
     (distinctPartitionsAlpha n).card = (distinctPartitionsBeta n).card :=
   card_bij (fun S _ => alphaOp S) (fun S hS => alphaOp_mem_DPbeta n S hS)
     (fun _ h₁ _ h₂ h => alphaOp_inj n h₁ h₂ h)
     fun T hT => ⟨betaOp T, betaOp_mem_DPalpha n T hT, alphaOp_betaOp n T hT⟩
-/-- The α-operation preserves the number of parts. -/
+/-- The α-operation preserves the number of parts.
+@isnad1 id=eq.1h2v.s5.f2198e14b415 from=translated src=- shape=ed39fcb3 vocab=859ff7ec
+-/
 theorem alphaOp_card (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsAlpha n) :
     (alphaOp S).card + 1 = S.card := by
   have hne := DPalpha_nonempty n S hS
@@ -402,7 +458,9 @@ theorem alphaOp_card (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsAl
   rw [card_insert_of_notMem hnot, card_erase_of_mem (mem_erase_of_ne_of_mem hbm.symm hm),
     card_erase_of_mem hb]
   omega
-/-- The β-operation preserves the number of parts. -/
+/-- The β-operation preserves the number of parts.
+@isnad1 id=eq.1h2v.s5.f6da460de1f1 from=translated src=- shape=e1afe35b vocab=c745ba9f
+-/
 theorem betaOp_card (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsBeta n) :
     (betaOp S).card = S.card + 1 := by
   have hs : partSlope S ∉ S := DPbeta_slope_not_mem n S hS
@@ -415,7 +473,9 @@ theorem betaOp_card (n : ℕ) (S : Finset ℕ) (hS : S ∈ distinctPartitionsBet
   omega
 /-- Franklin's involution refined by a condition on the number of parts: `α` matches the members
 of `𝒫_α(n)` whose size satisfies `p` with those of `𝒫_β(n)` whose size satisfies `q`, provided
-`p (a + 1)` and `q a` always agree (recall `|α(S)| + 1 = |S|`). -/
+`p (a + 1)` and `q a` always agree (recall `|α(S)| + 1 = |S|`).
+@isnad1 id=eq.1h3v.s6.cf43f8c0eaf8 from=translated src=- shape=b25f9f44 vocab=f4c49037
+-/
 theorem DPalpha_filter_card_eq (n : ℕ) (p q : ℕ → Prop) [DecidablePred p] [DecidablePred q]
     (hpq : ∀ a : ℕ, p (a + 1) ↔ q a) :
     ((distinctPartitionsAlpha n).filter fun S => p S.card).card =
@@ -430,17 +490,23 @@ theorem DPalpha_filter_card_eq (n : ℕ) (p q : ℕ → Prop) [DecidablePred p] 
     refine ⟨betaOp T, mem_filter.mpr ⟨betaOp_mem_DPalpha n T hT, ?_⟩, alphaOp_betaOp n T hT⟩
     rw [betaOp_card n T hT]
     exact (hpq _).mpr hq
-/-- |{S ∈ α(n) : |S| odd}| = |{S ∈ β(n) : |S| even}|. -/
+/-- |{S ∈ α(n) : |S| odd}| = |{S ∈ β(n) : |S| even}|.
+@isnad1 id=eq.0h1v.s6.cef53720f866 from=translated src=- shape=f78806bf vocab=ff26b5ab
+-/
 theorem DPalpha_odd_card_eq_DPbeta_even_card (n : ℕ) :
     ((distinctPartitionsAlpha n).filter (fun S => S.card % 2 = 1)).card =
     ((distinctPartitionsBeta n).filter (fun S => S.card % 2 = 0)).card :=
   DPalpha_filter_card_eq n (· % 2 = 1) (· % 2 = 0) fun _ => by omega
-/-- |{S ∈ α(n) : |S| even}| = |{S ∈ β(n) : |S| odd}|. -/
+/-- |{S ∈ α(n) : |S| even}| = |{S ∈ β(n) : |S| odd}|.
+@isnad1 id=eq.0h1v.s6.2ba02b49abd2 from=translated src=- shape=f78806bf vocab=ff26b5ab
+-/
 theorem DPalpha_even_card_eq_DPbeta_odd_card (n : ℕ) :
     ((distinctPartitionsAlpha n).filter (fun S => S.card % 2 = 0)).card =
     ((distinctPartitionsBeta n).filter (fun S => S.card % 2 = 1)).card :=
   DPalpha_filter_card_eq n (· % 2 = 0) (· % 2 = 1) fun _ => by omega
-/-- Any filtered count of `distinctPartitions n` splits along the α/β/special decomposition. -/
+/-- Any filtered count of `distinctPartitions n` splits along the α/β/special decomposition.
+@isnad1 id=eq.0h2v.s6.795418be8b6e from=translated src=- shape=4338f2be vocab=6d59aeea
+-/
 theorem DP_card_filter_split (n : ℕ) (P : Finset ℕ → Prop) [DecidablePred P] :
     ((distinctPartitions n).filter P).card =
       ((distinctPartitionsAlpha n).filter P).card + ((distinctPartitionsBeta n).filter P).card +
@@ -455,7 +521,9 @@ theorem DP_card_filter_split (n : ℕ) (P : Finset ℕ → Prop) [DecidablePred 
     card_union_of_disjoint (disjoint_union_left.mpr
       ⟨disjoint_filter_filter hac, disjoint_filter_filter hbc⟩),
     card_union_of_disjoint (disjoint_filter_filter hab)]
-/-- pe(n) - po(n) equals the signed count of special partitions. -/
+/-- pe(n) - po(n) equals the signed count of special partitions.
+@isnad1 id=eq.0h1v.s7.2d360885d1fa from=translated src=- shape=05dce202 vocab=bb383c1d
+-/
 theorem pe_minus_po_eq_special (n : ℕ) :
     (pe n : ℤ) - po n =
     ((distinctPartitionsSpecial n).filter (fun S => S.card % 2 = 0)).card -
@@ -466,16 +534,22 @@ theorem pe_minus_po_eq_special (n : ℕ) :
   have ho := DPalpha_odd_card_eq_DPbeta_even_card n
   simp only [pe, po, distinctPartitionsEven, distinctPartitionsOdd]
   omega
-/-- **Lemma 24 (Source), case n = 0**: `p_e(0) − p_o(0) = 1`. -/
+/-- **Lemma 24 (Source), case n = 0**: `p_e(0) − p_o(0) = 1`.
+@isnad1 id=eq.0h0v.s5.1d5b902539ae from=translated src=- shape=d558e2f6 vocab=80bba9bd
+-/
 theorem pe_minus_po_zero : (pe 0 : ℤ) - po 0 = 1 := by decide
-/-- For non-pentagonal n ≥ 1, pe(n) - po(n) = 0. -/
+/-- For non-pentagonal n ≥ 1, pe(n) - po(n) = 0.
+@isnad1 id=eq.3h1v.s7.72150ec2e226 from=translated src=- shape=9f1aecff vocab=5db53e7b
+-/
 theorem pe_minus_po_nonpent (n : ℕ) (hn : 1 ≤ n)
     (h1 : ∀ k, 1 ≤ k → 2 * n ≠ 3 * k ^ 2 - k)
     (h2 : ∀ k, 1 ≤ k → 2 * n ≠ 3 * k ^ 2 + k) :
     (pe n : ℤ) - po n = 0 := by
   rw [pe_minus_po_eq_special, DPspecial_empty_of_nonpent n hn h1 h2]
   simp
-/-- The signed count of a one-element family of partitions with `k` parts is `(-1) ^ k`. -/
+/-- The signed count of a one-element family of partitions with `k` parts is `(-1) ^ k`.
+@isnad1 id=eq.1h2v.s7.bdba219fc551 from=translated src=- shape=7a70645a vocab=0d6a80ee
+-/
 theorem signed_card_of_singleton (T : Finset ℕ) (k : ℕ) (hT : T.card = k) :
     ((({T} : Finset (Finset ℕ)).filter (fun S => S.card % 2 = 0)).card : ℤ) -
       (({T} : Finset (Finset ℕ)).filter (fun S => S.card % 2 = 1)).card = (-1) ^ k := by
@@ -487,12 +561,16 @@ theorem signed_card_of_singleton (T : Finset ℕ) (k : ℕ) (hT : T.card = k) :
   · have hk : k % 2 = 1 := Nat.odd_iff.mp h
     rw [ite_eq_right (by omega), ite_eq_left hk, h.neg_one_pow]
     simp
-/-- For n = (3k²-k)/2, pe(n) - po(n) = (-1)^k. -/
+/-- For n = (3k²-k)/2, pe(n) - po(n) = (-1)^k.
+@isnad1 id=eq.2h2v.s6.f84d2e7faf99 from=translated src=- shape=4232654c vocab=bcea27a8
+-/
 theorem pe_minus_po_pent_minus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 - k) :
     (pe n : ℤ) - po n = (-1) ^ k := by
   rw [pe_minus_po_eq_special, DPspecial_pent_minus n k hk hn]
   exact signed_card_of_singleton _ k (SmkSet_card k hk)
-/-- For n = (3k²+k)/2, pe(n) - po(n) = (-1)^k. -/
+/-- For n = (3k²+k)/2, pe(n) - po(n) = (-1)^k.
+@isnad1 id=eq.2h2v.s6.4137a19f58ac from=translated src=- shape=82d47aff vocab=9eff510a
+-/
 theorem pe_minus_po_pent_plus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 + k) :
     (pe n : ℤ) - po n = (-1) ^ k := by
   rw [pe_minus_po_eq_special, DPspecial_pent_plus n k hk hn]

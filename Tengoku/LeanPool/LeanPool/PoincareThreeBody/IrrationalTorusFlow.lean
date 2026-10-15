@@ -31,10 +31,16 @@ abbrev AngleTorus := AngleCircle × AngleCircle
 noncomputable def rotatingAngleFlow (ω time : ℝ) (angle : AngleTorus) : AngleTorus :=
   (angle.1 + ((ω * time : ℝ) : AngleCircle), angle.2 - ((time : ℝ) : AngleCircle))
 
+/--
+@isnad1 id=eq.0h2v.s4.5d5fe67f126f from=translated src=- shape=21ff25f1 vocab=95d2e9bd
+-/
 lemma rotatingAngleFlow_zero (ω : ℝ) (angle : AngleTorus) :
     rotatingAngleFlow ω 0 angle = angle := by
   simp [rotatingAngleFlow]
 
+/--
+@isnad1 id=eq.0h4v.s4.cccfcaed4ed4 from=translated src=- shape=e79abd3c vocab=8c5c326d
+-/
 lemma rotatingAngleFlow_add (ω first second : ℝ) (angle : AngleTorus) :
     rotatingAngleFlow ω (first + second) angle =
       rotatingAngleFlow ω second (rotatingAngleFlow ω first angle) := by
@@ -50,7 +56,9 @@ lemma rotatingAngleFlow_add (ω first second : ℝ) (angle : AngleTorus) :
     abel
 
 /-- On an irrational rotating Kepler torus, fixing the second angle and advancing through whole
-rotating periods gives a dense set of first angles. -/
+rotating periods gives a dense set of first angles.
+@isnad1 id=denseran.1h1v.s5.1368240fd31d from=translated src=- shape=20cfca47 vocab=8995fefc
+-/
 theorem denseRange_firstAngle_wholePeriods {ω : ℝ} (hω : Irrational ω) :
     DenseRange (fun n : ℤ ↦ (n • ((2 * Real.pi * ω : ℝ) : AngleCircle))) := by
   change DenseRange (fun n : ℤ ↦
@@ -133,7 +141,9 @@ theorem eq_of_rotatingAngleFlow_invariant
         _ = f second := by simpa only [Prod.eta] using hsame
 
 /-- Extensional form: every continuous invariant of an irrational rotating flow is a constant
-function. -/
+function.
+@isnad1 id=eq.3h3v.s6.40127e76e000 from=translated src=- shape=6d0cf458 vocab=b0c1534e
+-/
 theorem rotatingAngleFlow_invariant_eq_const
     {ω : ℝ} (hω : Irrational ω) {f : AngleTorus → ℝ} (hf : Continuous f)
     (hinvariant : ∀ angle time, f (rotatingAngleFlow ω time angle) = f angle)
@@ -162,7 +172,9 @@ theorem eq_of_continuous_family_rotatingAngleFlow_invariant
       (fun angle time ↦ hinvariant frequency angle time) first second
   exact congrFun heq ω
 
-/-- Extensional form of angle-independence for a continuous family of rotating-flow invariants. -/
+/-- Extensional form of angle-independence for a continuous family of rotating-flow invariants.
+@isnad1 id=eq.2h2v.s6.433fecf6eca0 from=translated src=- shape=05d82e55 vocab=612cba40
+-/
 theorem continuous_family_rotatingAngleFlow_invariant_eq_base
     {f : ℝ × AngleTorus → ℝ} (hf : Continuous f)
     (hinvariant : ∀ ω angle time,
@@ -174,7 +186,9 @@ theorem continuous_family_rotatingAngleFlow_invariant_eq_base
     state.1 state.2 base
 
 /-- A continuous periodic real function descends continuously to the corresponding additive
-circle. -/
+circle.
+@isnad1 id=continuo.2h2v.s6.dec6b9364414 from=translated src=- shape=32e99f2c vocab=7f541e80
+-/
 theorem Function.Periodic.continuous_lift
     {f : ℝ → ℝ} {period : ℝ} (hperiodic : Function.Periodic f period)
     (hcontinuous : Continuous f) :

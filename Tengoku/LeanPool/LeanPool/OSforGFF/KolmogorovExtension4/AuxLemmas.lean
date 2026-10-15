@@ -22,6 +22,9 @@ section Accumulate
 
 variable {α : Type*}
 
+/--
+@isnad1 id=measurab.1h4v.s4.3024f1ec118a from=translated src=- shape=4cbb6179 vocab=665b28ee
+-/
 theorem MeasurableSet.accumulate {_ : MeasurableSpace α} {s : ℕ → Set α}
     (hs : ∀ n, MeasurableSet (s n)) (n : ℕ) : MeasurableSet (Set.accumulate s n) :=
   MeasurableSet.biUnion (Set.to_countable _) fun n _ ↦ hs n

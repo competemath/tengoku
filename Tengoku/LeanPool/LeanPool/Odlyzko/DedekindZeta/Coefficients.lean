@@ -25,6 +25,9 @@ variable (K : Type*) [Field K] [NumberField K]
 noncomputable def idealNormCount (n : ℕ) : ℕ :=
   Nat.card {I : Ideal (𝓞 K) // absNorm I = n}
 
+/--
+@isnad1 id=eq.0h2v.s4.7e97b8d8cee4 from=translated src=- shape=91d50db7 vocab=5d1c5955
+-/
 lemma dedekindZeta_eq_LSeries_idealNormCount (s : ℂ) :
     NumberField.dedekindZeta K s = LSeries (fun n ↦ (idealNormCount K n : ℂ)) s :=
   rfl

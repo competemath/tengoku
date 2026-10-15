@@ -33,6 +33,9 @@ space, as a rational number. -/
 noncomputable def uniformExpectation [Fintype Ω] (X : Ω → ℕ) : ℚ :=
   (∑ ω : Ω, (X ω : ℚ)) / (Fintype.card Ω : ℚ)
 
+/--
+@isnad1 id=ex.1h2v.s5.05a43ab2b570 from=translated src=- shape=169a29ec vocab=9ae711e2
+-/
 theorem exists_not_of_uniformProbability_lt_one [Fintype Ω] [Nonempty Ω]
     {P : Ω → Prop} [DecidablePred P]
     (hprob : uniformProbability P < 1) :
@@ -51,7 +54,9 @@ theorem exists_not_of_uniformProbability_lt_one [Fintype Ω] [Nonempty Ω]
     simp_all
   linarith
 
-/-- Union bound for finite uniform probabilities. -/
+/-- Union bound for finite uniform probabilities.
+@isnad1 id=le.0h3v.s6.6a6ee9f73151 from=translated src=- shape=7ad64e4a vocab=be7002e1
+-/
 theorem uniformProbability_exists_le_sum [Fintype Ω] [Nonempty Ω]
     [Fintype ι] (P : ι → Ω → Prop)
     [∀ i, DecidablePred (P i)]

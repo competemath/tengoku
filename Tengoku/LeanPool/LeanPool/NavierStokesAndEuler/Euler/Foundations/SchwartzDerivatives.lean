@@ -41,7 +41,9 @@ def schwartzDerivative (m : E) (f : 𝓢(E, F)) : 𝓢(E, F) where
 abbrev schwartzIteratedDerivative {n : ℕ} : (Fin n → E) → 𝓢(E, F) → 𝓢(E, F) :=
   @LineDeriv.iteratedLineDerivOp E 𝓢(E, F) ⟨schwartzDerivative⟩ n
 
-/-- Iterated directional differentiation evaluates the actual Fréchet derivative tensor. -/
+/-- Iterated directional differentiation evaluates the actual Fréchet derivative tensor.
+@isnad1 id=eq.0h6v.s8.0a7f15cd61eb from=translated src=- shape=ec52d3bc vocab=b1869263
+-/
 theorem schwartzIteratedDerivative_apply {n : ℕ} (m : Fin n → E) (f : 𝓢(E, F)) (x : E) :
     schwartzIteratedDerivative m f x = iteratedFDeriv ℝ n f x m :=
   SchwartzMap.iteratedLineDerivOp_eq_iteratedFDeriv

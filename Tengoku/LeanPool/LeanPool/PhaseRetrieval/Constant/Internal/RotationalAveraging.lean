@@ -138,6 +138,9 @@ Step 3: `∫ rho² d(haar) ≥ (1/4)(r/√2)² = r²/8`.
 Convert to an interval integral on `ℝ` via `integral_haarAddCircle` and
 `integral_preimage`, then bound from below on `[-π/4, π/4]`.
 -/
+/--
+@isnad1 id=le.1h1v.s7.ab4b63efc630 from=translated src=- shape=fe87b70d vocab=66a2ff4d
+-/
 theorem rotational_averaging_bound {r : ℝ} (hr : 0 ≤ r) :
     ∫ t : AddCircle T, (rho (↑r * (fourier 1 t : ℂ))) ^ 2 ∂AddCircle.haarAddCircle ≥
       r ^ 2 / 8 := by

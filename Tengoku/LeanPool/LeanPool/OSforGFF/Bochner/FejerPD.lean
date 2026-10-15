@@ -89,6 +89,7 @@ private lemma isPositiveDefinite_exp_inner (ξ : V) :
 
 /-- Volume on a finite-dimensional inner product space is neg-invariant.
     Proof: negation is a linear isometry equiv, which preserves addHaar measure.
+@isnad1 id=isneginv.0h1v.s6.cf2ee32ee2b8 from=translated src=- shape=ebc3b9bf vocab=90b3d9f3
 -/
 instance volumeIsNegInvariant : (volume : Measure V).IsNegInvariant := by
   constructor; exact ((LinearIsometryEquiv.neg ℝ (E := V)).measurePreserving).map_eq
@@ -575,6 +576,7 @@ private lemma pd_integral_re_nonneg (ψ : V → ℂ) (hpd : IsPositiveDefinite �
 
 /-- The Fourier transform of a continuous integrable positive-definite function
     on a finite-dimensional real inner product space has nonneg real part.
+@isnad1 id=le.3h3v.s7.214c30bccebe from=translated src=- shape=ae3be308 vocab=b5269ae2
 -/
 theorem pd_l1_fourier_re_nonneg_theorem
     (φ : V → ℂ) (hpd : IsPositiveDefinite φ)

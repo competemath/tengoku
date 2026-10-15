@@ -20,6 +20,9 @@ namespace NumberField.Odlyzko
 noncomputable def cosLowerSix (x : ℝ) : ℝ :=
   1 - x ^ 2 / 2 + x ^ 4 / 24 - x ^ 6 / 720
 
+/--
+@isnad1 id=eq.1h1v.s6.bdeb1946e392 from=translated src=- shape=573a7a8b vocab=ec7fe493
+-/
 theorem taylorWithinEval_cos_eight {x : ℝ} (hx0 : x ≠ 0) :
     taylorWithinEval Real.cos 8 (Set.uIcc 0 x) 0 x =
       cosLowerSix x + x ^ 8 / 40320 := by
@@ -37,6 +40,9 @@ theorem taylorWithinEval_cos_eight {x : ℝ} (hx0 : x ≠ 0) :
   norm_num [cosLowerSix]
   ring
 
+/--
+@isnad1 id=le.1h1v.s4.88ebf9440bc8 from=translated src=- shape=a5c9238d vocab=212fdf0e
+-/
 theorem cosLowerSix_le_cos {x : ℝ} (hx : |x| ≤ 4) :
     cosLowerSix x ≤ Real.cos x := by
   by_cases hx0 : x = 0
@@ -135,6 +141,9 @@ private theorem integral_tartarWeight_mul_pow_six :
     integral_pow, integral_pow]
   norm_num
 
+/--
+@isnad1 id=le.1h1v.s4.2ddb728507d9 from=translated src=- shape=a5c9238d vocab=42b14879
+-/
 theorem tartarAmplitudeLowerSix_le {x : ℝ} (hx : |x| ≤ 4) :
     tartarAmplitudeLowerSix x ≤ Tartar.amplitude x := by
   rw [tartarAmplitude_eq_cosineTransform]

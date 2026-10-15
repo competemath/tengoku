@@ -26,7 +26,9 @@ variable {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
 variable [Algebra R S] [Algebra S T] [Algebra R T] [IsScalarTower R S T]
 
 /-- Multiplicativity of the ramification index in a tower of Dedekind domains, stated with the
-hypotheses used by the Hilbert ramification development. -/
+hypotheses used by the Hilbert ramification development.
+@isnad1 id=eq.6h6v.s9.44e24f10670a from=translated src=- shape=37059eff vocab=b633b215
+-/
 theorem ramificationIdx_algebra_tower_of_eq [IsDedekindDomain S] [IsDedekindDomain T]
     {p : Ideal R} {P : Ideal S} {Q : Ideal T} [hpm : IsPrime P] [hqm : IsPrime Q]
     (_hf0 : map (algebraMap R S) p ≠ ⊥) (hg0 : map (algebraMap S T) P ≠ ⊥)
@@ -36,7 +38,9 @@ theorem ramificationIdx_algebra_tower_of_eq [IsDedekindDomain S] [IsDedekindDoma
   ramificationIdx'_algebra_tower hg0 hfg (map_le_iff_le_comap.mpr (le_of_eq hg))
 
 /-- The quotient-dimension tower law retains the former inertia-degree formula even when the
-ideal upstairs is not prime, where the residue-field inertia degree is zero. -/
+ideal upstairs is not prime, where the residue-field inertia degree is zero.
+@isnad1 id=other.2h6v.s9.5cbc73180a66 from=translated src=- shape=e1c72c4e vocab=2d95b3dd
+-/
 theorem quotient_finrank_algebra_tower_of_eq {p : Ideal R} {P : Ideal S} {I : Ideal T}
     [IsMaximal p] [IsMaximal P] (hp : p = comap (algebraMap R S) P)
     (hP : P = comap (algebraMap S T) I) :
@@ -57,7 +61,9 @@ theorem quotient_finrank_algebra_tower_of_eq {p : Ideal R} {P : Ideal S} {I : Id
 
 variable (R) in
 /-- Multiplicativity of the inertia degree in a tower of Dedekind domains, stated with the
-hypotheses used by the Hilbert ramification development. -/
+hypotheses used by the Hilbert ramification development.
+@isnad1 id=eq.1h5v.s7.e209d4baab5e from=translated src=- shape=0a019639 vocab=4348db5d
+-/
 theorem inertiaDeg_algebra_tower_of_eq {P : Ideal S} {I : Ideal T}
     (hP : P = comap (algebraMap S T) I) : I.inertiaDeg R =
     P.inertiaDeg R * I.inertiaDeg S :=

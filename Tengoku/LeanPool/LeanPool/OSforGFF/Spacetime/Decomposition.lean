@@ -55,14 +55,18 @@ def spacetimeDecomp : SpaceTime ≃ᵐ ℝ × SpatialCoords :=
   (MeasurableEquiv.prodCongr (MeasurableEquiv.refl ℝ)
     (piLpMeasurableEquiv (STDimension - 1)).symm))
 
-/-- Measure preservation for piLpMeasurableEquiv. -/
+/-- Measure preservation for piLpMeasurableEquiv.
+@isnad1 id=measurep.0h1v.s9.8a828ae590cb from=translated src=- shape=45b4978f vocab=83f2175e
+-/
 lemma piLpMeasurableEquiv_measurePreserving (n : ℕ) :
     MeasurePreserving (piLpMeasurableEquiv n)
       (volume : Measure (PiLp 2 (fun _ : Fin n => ℝ))) volume := by
   simp only [piLpMeasurableEquiv]
   exact PiLp.volume_preserving_ofLp (ι := Fin n)
 
-/-- The spacetime decomposition preserves measure. -/
+/-- The spacetime decomposition preserves measure.
+@isnad1 id=measurep.0h0v.s10.d0b358bdc7ba from=translated src=- shape=f902b55a vocab=ea55b3b8
+-/
 theorem spacetimeDecomp_measurePreserving :
     MeasurePreserving spacetimeDecomp (volume : Measure SpaceTime) volume := by
   unfold spacetimeDecomp
@@ -85,12 +89,15 @@ theorem spacetimeDecomp_measurePreserving :
       exact PiLp.volume_preserving_toLp (ι := Fin (STDimension - 1))
   exact h1.trans (h2.trans h3)
 
-/-- Spacetime decomposition maps k to (k 0, spatialPart k). -/
+/-- Spacetime decomposition maps k to (k 0, spatialPart k).
+@isnad1 id=eq.0h1v.s8.df35d6b18735 from=translated src=- shape=2f53a93a vocab=b0e9fb54
+-/
 theorem spacetimeDecomp_apply (k : SpaceTime) :
     spacetimeDecomp k = (k 0, spatialPart k) := rfl
 
 /-- `spacetimeDecomp.symm` equals `spacetimeOfTimeSpace` (from SchwartzProdIntegrable.lean).
     Both construct a SpaceTime point from time t and spatial coordinates v.
+@isnad1 id=eq.0h2v.s9.b834718b934d from=translated src=- shape=054770ef vocab=419954f2
 -/
 lemma spacetimeDecomp_symm_eq_spacetimeOfTimeSpace (t : ℝ) (v : SpatialCoords) :
     spacetimeDecomp.symm (t, v) = spacetimeOfTimeSpace t v := by
@@ -112,7 +119,9 @@ lemma spacetimeDecomp_symm_eq_spacetimeOfTimeSpace (t : ℝ) (v : SpatialCoords)
     rw [← h_spatialPart_def, h_spatial]
     exact (spacetimeOfTimeSpace_spatial t v j).symm
 
-/-- The SpaceTime norm decomposes into time and spatial parts: ‖k‖² = k₀² + ‖k_sp‖². -/
+/-- The SpaceTime norm decomposes into time and spatial parts: ‖k‖² = k₀² + ‖k_sp‖².
+@isnad1 id=eq.0h1v.s8.9c8f4324c6d7 from=translated src=- shape=fb351d36 vocab=9a513f68
+-/
 lemma spacetime_norm_sq_decompose (k : SpaceTime) :
     ‖k‖^2 = (k 0)^2 + ‖spatialPart k‖^2 := by
   -- Expand SpaceTime norm as sum over 4 components
@@ -135,7 +144,9 @@ lemma spacetime_norm_sq_decompose (k : SpaceTime) :
     ring
   rw [hST, hSp]; ring
 
-/-- For a product-type integrand f(k₀) × g(k_sp), the integral decomposes as a product. -/
+/-- For a product-type integrand f(k₀) × g(k_sp), the integral decomposes as a product.
+@isnad1 id=eq.2h2v.s10.6205f91bf402 from=translated src=- shape=77719327 vocab=2674958f
+-/
 lemma integral_spacetime_prod_split {f : ℝ → ℂ} {g : SpatialCoords → ℂ}
     (_hf : Integrable f) (_hg : Integrable g) :
     ∫ k : SpaceTime, f (k 0) * g (spatialPart k) =

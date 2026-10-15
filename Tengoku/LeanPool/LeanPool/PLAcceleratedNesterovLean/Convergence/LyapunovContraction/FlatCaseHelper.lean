@@ -25,6 +25,9 @@ variable {d : ℕ}
 
 /-! ## Orthogonality from self-adjoint + idempotent -/
 
+/--
+@isnad1 id=eq.2h3v.s11.84e4f94d5172 from=translated src=- shape=a9413b9c vocab=f878a705
+-/
 theorem proj_orth_inner (P : E d →L[ℝ] E d)
     (hP_self_adj : ∀ x y : E d, @inner ℝ _ _ (P x) y = @inner ℝ _ _ x (P y))
     (hP_idem : ∀ x : E d, P (P x) = P x) (v : E d) :
@@ -33,6 +36,9 @@ theorem proj_orth_inner (P : E d →L[ℝ] E d)
 
 /-! ## Pythagorean decomposition -/
 
+/--
+@isnad1 id=eq.2h3v.s11.cde902803afc from=translated src=- shape=5de49040 vocab=2d5ad2e9
+-/
 theorem pythagorean_proj (P : E d →L[ℝ] E d)
     (hP_self_adj : ∀ x y : E d, @inner ℝ _ _ (P x) y = @inner ℝ _ _ x (P y))
     (hP_idem : ∀ x : E d, P (P x) = P x) (v : E d) :
@@ -46,6 +52,9 @@ theorem pythagorean_proj (P : E d →L[ℝ] E d)
 
 /-! ## Cross-term vanishing -/
 
+/--
+@isnad1 id=eq.2h4v.s11.d9764156c68f from=translated src=- shape=6d223c10 vocab=f878a705
+-/
 theorem cross_term_Pg_b (P : E d →L[ℝ] E d)
     (hP_self_adj : ∀ x y : E d, @inner ℝ _ _ (P x) y = @inner ℝ _ _ x (P y))
     (hP_idem : ∀ x : E d, P (P x) = P x)
@@ -53,6 +62,9 @@ theorem cross_term_Pg_b (P : E d →L[ℝ] E d)
     @inner ℝ _ _ (P g) (v - P v) = (0 : ℝ) := by
   simp_all
 
+/--
+@isnad1 id=eq.2h4v.s11.3dd2d01100e8 from=translated src=- shape=8eb6e254 vocab=f878a705
+-/
 theorem cross_term_Pperpg_Pv (P : E d →L[ℝ] E d)
     (hP_self_adj : ∀ x y : E d, @inner ℝ _ _ (P x) y = @inner ℝ _ _ x (P y))
     (hP_idem : ∀ x : E d, P (P x) = P x)
@@ -63,6 +75,9 @@ theorem cross_term_Pperpg_Pv (P : E d →L[ℝ] E d)
 
 /-! ## Inner product decomposition -/
 
+/--
+@isnad1 id=eq.2h4v.s12.19505c92cbf9 from=translated src=- shape=ef0699c9 vocab=7ef1de06
+-/
 theorem inner_proj_decomp (P : E d →L[ℝ] E d)
     (hP_self_adj : ∀ x y : E d, @inner ℝ _ _ (P x) y = @inner ℝ _ _ x (P y))
     (hP_idem : ∀ x : E d, P (P x) = P x)
@@ -77,6 +92,9 @@ theorem inner_proj_decomp (P : E d →L[ℝ] E d)
 
 /-! ## Norm of wn = (1-a)•b + √μ'•en - √η•P⊥g -/
 
+/--
+@isnad1 id=eq.2h7v.s9.cbf4517703a7 from=translated src=- shape=8d0d59d4 vocab=6f218a7b
+-/
 theorem norm_three_term_sq (b en ppg : E d) (c1 c2 c3 : ℝ)
     (hc2_nn : 0 ≤ c2) (hc3_nn : 0 ≤ c3) :
     ‖c1 • b + Real.sqrt c2 • en - Real.sqrt c3 • ppg‖ ^ 2 =
@@ -96,6 +114,9 @@ theorem norm_three_term_sq (b en ppg : E d) (c1 c2 c3 : ℝ)
 
 /-! ## Norm of un = b + √μ'•en -/
 
+/--
+@isnad1 id=eq.1h4v.s8.d981dabfe2ab from=translated src=- shape=3b001fb4 vocab=66015829
+-/
 theorem norm_two_term_sq (b en : E d) (c : ℝ) (hc : 0 ≤ c) :
     ‖b + Real.sqrt c • en‖ ^ 2 =
       ‖b‖ ^ 2 + c * ‖en‖ ^ 2 + 2 * Real.sqrt c * @inner ℝ _ _ b en := by
@@ -107,7 +128,9 @@ theorem norm_two_term_sq (b en : E d) (c : ℝ) (hc : 0 ≤ c) :
 /-! ## Segment-based combined bound -/
 
 /-- From strong aiming and segment estimate:
-    F(xn) + √η·⟨g,v⟩ - ⟨g,e⟩ + μ'/2·‖e‖² ≥ -εη/2·‖v‖² -/
+    F(xn) + √η·⟨g,v⟩ - ⟨g,e⟩ + μ'/2·‖e‖² ≥ -εη/2·‖v‖²
+@isnad1 id=le.1h5v.s6.acd1401eae53 from=translated src=- shape=48cf476e vocab=154d92d1
+-/
 theorem combined_aim_segment
     (Fn ipGE sqη_ipGV μ'_half_Esq εη_half_Vsq : ℝ)
     (h_seg : Fn + sqη_ipGV ≥ ipGE - μ'_half_Esq - εη_half_Vsq) :

@@ -42,6 +42,9 @@ def sampleTotalContribution {n N : ℕ} (rIn rOut : ℕ)
     (target : HypercubeVertex n) (sample : CenterSample n N) : ℕ :=
   ∑ j : Fin N, annulusContribution rIn rOut target (sample j)
 
+/--
+@isnad1 id=eq.0h6v.s5.6018020b2b45 from=translated src=- shape=6625c83f vocab=df7ad59d
+-/
 theorem annulusTotalContribution_toList {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) (sample : CenterSample n N) :
     annulusTotalContribution rIn rOut target sample.toList =
@@ -50,6 +53,9 @@ theorem annulusTotalContribution_toList {n N rIn rOut : ℕ}
     List.ofFn_comp'] using
       (Fin.sum_ofFn fun j : Fin N => annulusContribution rIn rOut target (sample j))
 
+/--
+@isnad1 id=eq.0h2v.s6.9b2dc1aa93d1 from=translated src=- shape=e240e743 vocab=e5b3e542
+-/
 theorem card_centerSample (n N : ℕ) :
     Fintype.card (CenterSample n N) = (2 ^ n) ^ N := by
   simp [CenterSample]
@@ -72,6 +78,9 @@ noncomputable def oneCenterContributionSecondMoment {n : ℕ} (rIn rOut : ℕ)
   uniformExpectation fun center : HypercubeVertex n =>
     (annulusContribution rIn rOut target center) ^ 2
 
+/--
+@isnad1 id=eq.0h4v.s6.332a7d057cad from=translated src=- shape=218e65a7 vocab=dbaf311d
+-/
 theorem oneCenterContributionExpectation_eq_sum {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionExpectation rIn rOut target =
@@ -79,6 +88,9 @@ theorem oneCenterContributionExpectation_eq_sum {n rIn rOut : ℕ}
           (annulusContribution rIn rOut target center : ℚ)) / (2 ^ n : ℚ) := by
   simp [oneCenterContributionExpectation, uniformExpectation]
 
+/--
+@isnad1 id=eq.0h4v.s6.1266a938de75 from=translated src=- shape=218e65a7 vocab=fc2360c9
+-/
 theorem oneCenterContributionExpectationReal_eq_sum {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionExpectationReal rIn rOut target =
@@ -86,6 +98,9 @@ theorem oneCenterContributionExpectationReal_eq_sum {n rIn rOut : ℕ}
           (annulusContribution rIn rOut target center : ℝ)) / (2 ^ n : ℝ) := by
   simp [oneCenterContributionExpectationReal, uniformExpectationReal]
 
+/--
+@isnad1 id=eq.0h4v.s6.48000ae6bc08 from=translated src=- shape=ac806a06 vocab=5f1270aa
+-/
 theorem oneCenterContributionSecondMoment_eq_sum {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionSecondMoment rIn rOut target =
@@ -95,7 +110,9 @@ theorem oneCenterContributionSecondMoment_eq_sum {n rIn rOut : ℕ}
   simp [oneCenterContributionSecondMoment, uniformExpectation]
 
 /-- Expectation-level version of `Z^2 ≤ B_0 Z` for one random annulus
-contribution. -/
+contribution.
+@isnad1 id=le.0h4v.s5.9da5c7dfe3f5 from=translated src=- shape=e46c8975 vocab=f886e284
+-/
 theorem oneCenterContributionSecondMoment_le_width_mul_expectation {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionSecondMoment rIn rOut target ≤
@@ -126,7 +143,9 @@ theorem oneCenterContributionSecondMoment_le_width_mul_expectation {n rIn rOut :
             (annulusContribution rIn rOut target center : ℚ)) / (2 ^ n : ℚ)) := by
           ring
 
-/-- Cardinality of a Hamming sphere, written as a filtered finite sum. -/
+/-- Cardinality of a Hamming sphere, written as a filtered finite sum.
+@isnad1 id=eq.0h3v.s5.6aca411d61bf from=translated src=- shape=ca920d21 vocab=95f3587a
+-/
 theorem card_filter_dist_eq {n i : ℕ} (target : HypercubeVertex n) :
     (Finset.univ.filter fun center : HypercubeVertex n => dist target center = i).card =
       Nat.choose n i := by
@@ -138,7 +157,9 @@ theorem card_filter_dist_eq {n i : ℕ} (target : HypercubeVertex n) :
       (Fintype.card_subtype fun center : HypercubeVertex n => dist target center = i)
   rw [← hsubtype, card_sphere]
 
-/-- Sum of the annulus contribution over one Hamming sphere. -/
+/-- Sum of the annulus contribution over one Hamming sphere.
+@isnad1 id=eq.0h5v.s7.aed4335eb45b from=translated src=- shape=892dbbd4 vocab=dd175d21
+-/
 theorem sum_filter_dist_eq_annulusContribution {n rIn rOut i : ℕ}
     (target : HypercubeVertex n) :
     (∑ center ∈
@@ -181,7 +202,9 @@ theorem sum_filter_dist_eq_annulusContribution {n rIn rOut i : ℕ}
         if rIn ≤ i ∧ i ≤ rOut then 2 ^ (rOut - i) else 0 := by
           simp [hcard, contributionAtDistance]
 
-/-- Exact one-center annulus contribution, grouped by Hamming distance. -/
+/-- Exact one-center annulus contribution, grouped by Hamming distance.
+@isnad1 id=eq.0h4v.s7.755a5528b388 from=translated src=- shape=38db9f45 vocab=dc8e7f5e
+-/
 theorem sum_annulusContribution_eq_sum_range {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     (∑ center : HypercubeVertex n, annulusContribution rIn rOut target center) =
@@ -219,7 +242,9 @@ theorem sum_annulusContribution_eq_sum_range {n rIn rOut : ℕ}
             sum_filter_dist_eq_annulusContribution
               (n := n) (rIn := rIn) (rOut := rOut) (i := i) target
 
-/-- Exact one-center expectation as a binomial sphere sum. -/
+/-- Exact one-center expectation as a binomial sphere sum.
+@isnad1 id=eq.0h4v.s7.ce052464b962 from=translated src=- shape=adb4d3e9 vocab=a337d6b8
+-/
 theorem oneCenterContributionExpectation_eq_distance_sum {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionExpectation rIn rOut target =
@@ -245,12 +270,17 @@ def annulusMeanNumerator (n rIn rOut : ℕ) : ℕ :=
 noncomputable def annulusMean (n rIn rOut : ℕ) : ℚ :=
   (annulusMeanNumerator n rIn rOut : ℚ) / (2 ^ n : ℚ)
 
+/--
+@isnad1 id=le.0h3v.s4.3f18bda4e4ca from=translated src=- shape=bcba18c1 vocab=4454613f
+-/
 theorem annulusMean_nonneg (n rIn rOut : ℕ) :
     0 ≤ (annulusMean n rIn rOut : ℝ) := by
   unfold annulusMean annulusMeanNumerator
   positivity
 
-/-- Binomial evaluation of the full weighted Hamming-sphere sum. -/
+/-- Binomial evaluation of the full weighted Hamming-sphere sum.
+@isnad1 id=eq.0h1v.s6.1c85216f5014 from=translated src=- shape=b76f0833 vocab=bf80302f
+-/
 theorem weightedSphereSum_half_eq (n : ℕ) :
     (∑ i ∈ Finset.range (n + 1), (Nat.choose n i : ℝ) * ((1 : ℝ) / 2) ^ i) =
       ((3 : ℝ) / 2) ^ n := by
@@ -265,6 +295,9 @@ theorem weightedSphereSum_half_eq (n : ℕ) :
     _ = (((1 : ℝ) / 2) + 1) ^ n := h.symm
     _ = ((3 : ℝ) / 2) ^ n := by norm_num
 
+/--
+@isnad1 id=eq.1h2v.s6.5822619424e1 from=translated src=- shape=c36249ee vocab=5ce83074
+-/
 theorem pow_two_sub_eq_mul_half_pow {rOut i : ℕ} (hi : i ≤ rOut) :
     (2 ^ (rOut - i) : ℝ) = (2 ^ rOut : ℝ) * ((1 : ℝ) / 2) ^ i := by
   have hpow : (2 : ℝ) ^ rOut = (2 : ℝ) ^ (rOut - i) * (2 : ℝ) ^ i := by
@@ -272,6 +305,9 @@ theorem pow_two_sub_eq_mul_half_pow {rOut i : ℕ} (hi : i ≤ rOut) :
     simp_all
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s7.957e25b5b72f from=translated src=- shape=ac83bbd1 vocab=a7fba98b
+-/
 theorem annulusMean_eq_real_sum (n rIn rOut : ℕ) :
     (annulusMean n rIn rOut : ℝ) =
       (∑ i ∈ Finset.range (n + 1),
@@ -285,7 +321,9 @@ theorem annulusMean_eq_real_sum (n rIn rOut : ℕ) :
   by_cases h : rIn ≤ i ∧ i ≤ rOut <;> simp [h]
 
 /-- Truncating to an annulus can only decrease the full weighted expectation
-`2^rOut (3/4)^n`. -/
+`2^rOut (3/4)^n`.
+@isnad1 id=le.0h3v.s6.93521b33003b from=translated src=- shape=db529051 vocab=c8290859
+-/
 theorem annulusMean_le_fullWeightedMean (n rIn rOut : ℕ) :
     (annulusMean n rIn rOut : ℝ) ≤
       (2 ^ rOut : ℝ) * (((3 : ℝ) / 4) ^ n) := by
@@ -359,7 +397,9 @@ noncomputable def binomialWindowProbThird (n rIn rOut : ℕ) : ℝ :=
 
 /-- Termwise conversion between the annulus contribution weight and the
 `Binomial(1/3)` mass after factoring out the full weighted mean
-`2^rOut (3/4)^n`. -/
+`2^rOut (3/4)^n`.
+@isnad1 id=eq.2h3v.s7.39c0552c5c50 from=translated src=- shape=24d2d012 vocab=5ce83074
+-/
 theorem annulusWeightedTerm_eq_fullFactor_mul_binomialTerm
     {n rOut i : ℕ} (hin : i ≤ n) (hr : i ≤ rOut) :
     (2 ^ (rOut - i) : ℝ) / (2 ^ n : ℝ) =
@@ -391,7 +431,9 @@ theorem annulusWeightedTerm_eq_fullFactor_mul_binomialTerm
   ring
 
 /-- Exact normalization of the annulus mean: it is the full weighted mean
-`2^rOut (3/4)^n` times a `Binomial(n,1/3)` window probability. -/
+`2^rOut (3/4)^n` times a `Binomial(n,1/3)` window probability.
+@isnad1 id=eq.0h3v.s6.779ffaeb31bf from=translated src=- shape=7bdea913 vocab=6ae884a0
+-/
 theorem annulusMean_eq_fullWeightedMean_mul_binomialWindowProbThird
     (n rIn rOut : ℕ) :
     (annulusMean n rIn rOut : ℝ) =
@@ -469,11 +511,17 @@ noncomputable def binomialRightTailProbThird (n rOut : ℕ) : ℝ :=
   ∑ i ∈ Finset.range (n + 1),
     if rOut < i then binomialMassThird n i else 0
 
+/--
+@isnad1 id=le.0h2v.s4.9d3dde7bc482 from=translated src=- shape=5ffe46ab vocab=f2172b27
+-/
 theorem binomialMassThird_nonneg (n i : ℕ) :
     0 ≤ binomialMassThird n i := by
   unfold binomialMassThird
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.7757344ced32 from=translated src=- shape=4110ba4e vocab=df1dc085
+-/
 theorem binomialTotalProbThird_eq_one (n : ℕ) :
     (∑ i ∈ Finset.range (n + 1), binomialMassThird n i) = 1 := by
   have h := add_pow ((1 : ℝ) / 3) ((2 : ℝ) / 3) n
@@ -490,7 +538,9 @@ theorem binomialTotalProbThird_eq_one (n : ℕ) :
     _ = 1 := by norm_num
 
 /-- For a valid annulus, every binomial mass is either inside the window, in
-the left tail, or in the right tail. -/
+the left tail, or in the right tail.
+@isnad1 id=eq.1h4v.s6.0d3640b7f9bf from=translated src=- shape=d87d56ce vocab=0413f852
+-/
 theorem binomialWindow_tail_partition_term {n rIn rOut i : ℕ}
     (hr : rIn ≤ rOut) :
     (if rIn ≤ i ∧ i ≤ rOut then binomialMassThird n i else 0) +
@@ -507,7 +557,9 @@ theorem binomialWindow_tail_partition_term {n rIn rOut i : ℕ}
     · have hinside : rIn ≤ i ∧ i ≤ rOut := by omega
       simp [hleft, hright, hinside]
 
-/-- Window probability plus the two outside tails equals one. -/
+/-- Window probability plus the two outside tails equals one.
+@isnad1 id=eq.1h3v.s5.8510a455a216 from=translated src=- shape=2f70c12f vocab=73c78631
+-/
 theorem binomialWindowProbThird_add_tails_eq_one
     (n rIn rOut : ℕ) (hr : rIn ≤ rOut) :
     binomialWindowProbThird n rIn rOut +
@@ -525,7 +577,9 @@ theorem binomialWindowProbThird_add_tails_eq_one
   exact hterm
 
 /-- If the two binomial tails outside the annulus have total mass at most
-`eps`, then the annulus window has mass at least `1-eps`. -/
+`eps`, then the annulus window has mass at least `1-eps`.
+@isnad1 id=le.2h4v.s5.cfbbe065a943 from=translated src=- shape=adc7f95b vocab=5231b3a8
+-/
 theorem binomialWindowProbThird_lower_of_tails_le
     {n rIn rOut : ℕ} {eps : ℝ} (hr : rIn ≤ rOut)
     (htails :
@@ -535,7 +589,9 @@ theorem binomialWindowProbThird_lower_of_tails_le
   have hpartition := binomialWindowProbThird_add_tails_eq_one n rIn rOut hr
   linarith
 
-/-- Exact negative exponential moment of `Binomial(n,1/3)`. -/
+/-- Exact negative exponential moment of `Binomial(n,1/3)`.
+@isnad1 id=eq.0h2v.s7.d4bb9bc2e7f4 from=translated src=- shape=ad46546f vocab=6824af8b
+-/
 theorem binomialExpNegMomentThird_eq (n : ℕ) (lam : ℝ) :
     (∑ i ∈ Finset.range (n + 1),
         binomialMassThird n i * (Real.exp (-lam)) ^ i) =
@@ -554,7 +610,9 @@ theorem binomialExpNegMomentThird_eq (n : ℕ) (lam : ℝ) :
           ring
     _ = (((1 : ℝ) / 3) * Real.exp (-lam) + ((2 : ℝ) / 3)) ^ n := h.symm
 
-/-- Exact positive exponential moment of `Binomial(n,1/3)`. -/
+/-- Exact positive exponential moment of `Binomial(n,1/3)`.
+@isnad1 id=eq.0h2v.s7.7371a3637404 from=translated src=- shape=3d5cd89c vocab=5b44342b
+-/
 theorem binomialExpMomentThird_eq (n : ℕ) (lam : ℝ) :
     (∑ i ∈ Finset.range (n + 1),
         binomialMassThird n i * (Real.exp lam) ^ i) =
@@ -574,7 +632,9 @@ theorem binomialExpMomentThird_eq (n : ℕ) (lam : ℝ) :
     _ = (((1 : ℝ) / 3) * Real.exp lam + ((2 : ℝ) / 3)) ^ n := h.symm
 
 /-- Chernoff bound for the left tail of `Binomial(n,1/3)`, with arbitrary
-nonnegative parameter `lam`. -/
+nonnegative parameter `lam`.
+@isnad1 id=le.1h3v.s6.e28fcf5a0578 from=translated src=- shape=b2d3f85f vocab=f407c62b
+-/
 theorem binomialLeftTailProbThird_le_chernoff (n rIn : ℕ) {lam : ℝ}
     (hlam : 0 ≤ lam) :
     binomialLeftTailProbThird n rIn ≤
@@ -629,7 +689,9 @@ theorem binomialLeftTailProbThird_le_chernoff (n rIn : ℕ) {lam : ℝ}
           rw [binomialExpNegMomentThird_eq]
 
 /-- Chernoff bound for the right tail of `Binomial(n,1/3)`, with arbitrary
-nonnegative parameter `lam`. -/
+nonnegative parameter `lam`.
+@isnad1 id=le.1h3v.s6.fd7633a18bc8 from=translated src=- shape=6f26351a vocab=bff8efa7
+-/
 theorem binomialRightTailProbThird_le_chernoff (n rOut : ℕ) {lam : ℝ}
     (hlam : 0 ≤ lam) :
     binomialRightTailProbThird n rOut ≤
@@ -683,6 +745,9 @@ theorem binomialRightTailProbThird_le_chernoff (n rOut : ℕ) {lam : ℝ}
         (((1 : ℝ) / 3) * Real.exp lam + ((2 : ℝ) / 3)) ^ n := by
           rw [binomialExpMomentThird_eq]
 
+/--
+@isnad1 id=eq.0h4v.s4.81f5f85b139a from=translated src=- shape=4a4fda86 vocab=60a0afc1
+-/
 theorem oneCenterContributionExpectation_eq_annulusMean {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionExpectation rIn rOut target =
@@ -691,6 +756,9 @@ theorem oneCenterContributionExpectation_eq_annulusMean {n rIn rOut : ℕ}
     oneCenterContributionExpectation_eq_distance_sum
       (n := n) (rIn := rIn) (rOut := rOut) target
 
+/--
+@isnad1 id=eq.0h4v.s4.bf2466c3ca6d from=translated src=- shape=8159b30d vocab=a6dfdbbb
+-/
 theorem oneCenterContributionExpectationReal_eq_coe {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionExpectationReal rIn rOut target =
@@ -698,6 +766,9 @@ theorem oneCenterContributionExpectationReal_eq_coe {n rIn rOut : ℕ}
   simp [oneCenterContributionExpectationReal, oneCenterContributionExpectation,
     uniformExpectationReal, uniformExpectation]
 
+/--
+@isnad1 id=eq.0h4v.s4.c6180c287795 from=translated src=- shape=d1b92754 vocab=a16ddedd
+-/
 theorem oneCenterContributionExpectationReal_eq_annulusMean {n rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     oneCenterContributionExpectationReal rIn rOut target =
@@ -719,6 +790,9 @@ noncomputable def sampleContributionSecondMomentProxy {n N : ℕ} (rIn rOut : �
     (target : HypercubeVertex n) : ℚ :=
   (N : ℚ) * oneCenterContributionSecondMoment rIn rOut target
 
+/--
+@isnad1 id=eq.0h5v.s6.79de845a7d27 from=translated src=- shape=57a0b7c1 vocab=702c8391
+-/
 theorem sampleContributionExpectation_eq_sum {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     sampleContributionExpectation (N := N) rIn rOut target =
@@ -729,7 +803,9 @@ theorem sampleContributionExpectation_eq_sum {n N rIn rOut : ℕ}
 
 /-- For a fixed coordinate of the random center tuple, summing over all samples
 is the one-center sum multiplied by the number of choices for the remaining
-coordinates. -/
+coordinates.
+@isnad1 id=eq.0h4v.s7.ad8d21133242 from=translated src=- shape=4c35169e vocab=8df65ee2
+-/
 theorem sum_centerSample_eval {n N : ℕ} (j : Fin N)
     (f : HypercubeVertex n → ℕ) :
     (∑ sample : CenterSample n N, (f (sample j) : ℚ)) =
@@ -791,7 +867,9 @@ theorem sum_centerSample_eval {n N : ℕ} (j : Fin N)
           rfl
 
 /-- Numerator of the `N`-center expectation, written as `N` copies of the
-one-coordinate sum. -/
+one-coordinate sum.
+@isnad1 id=eq.0h5v.s7.a3fac38e4cef from=translated src=- shape=6315e09c vocab=5f152064
+-/
 theorem sum_sampleTotalContribution_eq {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     (∑ sample : CenterSample n N,
@@ -826,7 +904,9 @@ theorem sum_sampleTotalContribution_eq {n N rIn rOut : ℕ}
           simp [Finset.sum_const, nsmul_eq_mul, mul_assoc]
 
 /-- Linearity of expectation for the independent uniform center tuple used
-here: the expected total contribution is `N` times the one-center expectation. -/
+here: the expected total contribution is `N` times the one-center expectation.
+@isnad1 id=eq.0h5v.s5.d233746f4183 from=translated src=- shape=aec96c6f vocab=c008df8e
+-/
 theorem sampleContributionExpectation_eq_nat_mul_oneCenter {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     sampleContributionExpectation (N := N) rIn rOut target =
@@ -844,6 +924,9 @@ theorem sampleContributionExpectation_eq_nat_mul_oneCenter {n N rIn rOut : ℕ}
       field_simp [hpow_ne]
       ring
 
+/--
+@isnad1 id=eq.0h5v.s5.8487914a4152 from=translated src=- shape=2ab91bdd vocab=eedea20c
+-/
 theorem sampleContributionExpectation_eq_nat_mul_annulusMean {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     sampleContributionExpectation (N := N) rIn rOut target =
@@ -852,7 +935,9 @@ theorem sampleContributionExpectation_eq_nat_mul_annulusMean {n N rIn rOut : ℕ
   rw [oneCenterContributionExpectation_eq_annulusMean]
 
 /-- Bernstein variance-proxy bound: the sum of one-center second moments is at
-most the annulus width factor times the mean total contribution. -/
+most the annulus width factor times the mean total contribution.
+@isnad1 id=le.0h5v.s5.acf2d98dff3b from=translated src=- shape=4b669665 vocab=193c0378
+-/
 theorem sampleContributionSecondMomentProxy_le_width_mul_expectation {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) :
     sampleContributionSecondMomentProxy (N := N) rIn rOut target ≤
@@ -874,7 +959,9 @@ theorem sampleContributionSecondMomentProxy_le_width_mul_expectation {n N rIn rO
           ring
 
 /-- Paper-facing variance-proxy corollary: once the expected total contribution
-is at most `2T`, the Bernstein variance proxy is at most `2 B_0 T`. -/
+is at most `2T`, the Bernstein variance proxy is at most `2 B_0 T`.
+@isnad1 id=le.1h6v.s6.f40cef91b3be from=translated src=- shape=ae1b8e2e vocab=c14972e1
+-/
 theorem sampleContributionSecondMomentProxy_le_two_width_mul_T
     {n N rIn rOut T : ℕ} (target : HypercubeVertex n)
     (hmean_upper :
@@ -938,6 +1025,9 @@ noncomputable def targetFailureProbabilityReal {n N : ℕ} (rIn rOut T : ℕ)
   uniformProbabilityReal fun sample : CenterSample n N =>
     sampleTargetFails rIn rOut T target sample
 
+/--
+@isnad1 id=eq.0h6v.s5.cd248e621fd5 from=translated src=- shape=0bdeede0 vocab=9835a352
+-/
 theorem targetFailureProbabilityReal_eq_coe {n N rIn rOut T : ℕ}
     (target : HypercubeVertex n) :
     targetFailureProbabilityReal (N := N) rIn rOut T target =
@@ -960,6 +1050,9 @@ noncomputable def oneCenterNegativeExponentialMoment {n : ℕ}
   uniformExpectationReal fun center : HypercubeVertex n =>
     Real.exp (-(lam * (annulusContribution rIn rOut target center : ℝ)))
 
+/--
+@isnad1 id=le.0h5v.s4.9dfa0d93e09e from=translated src=- shape=ad865822 vocab=7d98763f
+-/
 theorem oneCenterNegativeExponentialMoment_nonneg {n rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     0 ≤ oneCenterNegativeExponentialMoment rIn rOut target lam := by
@@ -971,7 +1064,9 @@ theorem oneCenterNegativeExponentialMoment_nonneg {n rIn rOut : ℕ}
 
 /-- One-center bounded-nonnegative Chernoff estimate: the negative exponential
 moment is bounded by the chord estimate in terms of the one-center mean and
-the annulus width `B_0 = 2^(rOut-rIn)`. -/
+the annulus width `B_0 = 2^(rOut-rIn)`.
+@isnad1 id=le.0h5v.s7.d449fdb58ba9 from=translated src=- shape=57caa8cd vocab=d18c07e9
+-/
 theorem oneCenterNegativeExponentialMoment_le_chord {n rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     oneCenterNegativeExponentialMoment rIn rOut target lam ≤
@@ -1029,7 +1124,9 @@ theorem oneCenterNegativeExponentialMoment_le_chord {n rIn rOut : ℕ}
           rw [hcard_eq]
           field_simp [hBpos.ne', hcard_pos.ne']
 
-/-- Sum of the one-center negative exponential factor over one Hamming sphere. -/
+/-- Sum of the one-center negative exponential factor over one Hamming sphere.
+@isnad1 id=eq.0h6v.s7.130349dab590 from=translated src=- shape=8079eb2a vocab=6a2cd31a
+-/
 theorem sum_filter_dist_eq_exp_annulusContribution {n rIn rOut i : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     (∑ center ∈
@@ -1081,7 +1178,9 @@ theorem sum_filter_dist_eq_exp_annulusContribution {n rIn rOut i : ℕ}
           simp [hcard, contributionAtDistance]
 
 /-- Exact one-center negative exponential moment numerator, grouped by Hamming
-distance. -/
+distance.
+@isnad1 id=eq.0h5v.s7.225a569b4d9a from=translated src=- shape=a1061a98 vocab=f57860de
+-/
 theorem sum_exp_annulusContribution_eq_sum_range {n rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     (∑ center : HypercubeVertex n,
@@ -1127,7 +1226,9 @@ theorem sum_exp_annulusContribution_eq_sum_range {n rIn rOut : ℕ}
               (n := n) (rIn := rIn) (rOut := rOut) (i := i) target lam
 
 /-- Exact one-center negative exponential moment as a binomial Hamming-sphere
-sum. -/
+sum.
+@isnad1 id=eq.0h5v.s7.4084d099cac2 from=translated src=- shape=ada2d07f vocab=4a9d12af
+-/
 theorem oneCenterNegativeExponentialMoment_eq_distance_sum {n rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     oneCenterNegativeExponentialMoment rIn rOut target lam =
@@ -1144,7 +1245,9 @@ theorem oneCenterNegativeExponentialMoment_eq_distance_sum {n rIn rOut : ℕ}
   simp [uniformExpectationReal, hsum]
 
 /-- The one-center exponential moment is independent of the target, by
-hypercube symmetry and the Hamming-sphere count. -/
+hypercube symmetry and the Hamming-sphere count.
+@isnad1 id=eq.0h6v.s4.5f351b047e9a from=translated src=- shape=a595a414 vocab=8bec8f65
+-/
 theorem oneCenterNegativeExponentialMoment_eq_of_targets {n rIn rOut : ℕ}
     (target target' : HypercubeVertex n) (lam : ℝ) :
     oneCenterNegativeExponentialMoment rIn rOut target lam =
@@ -1152,6 +1255,9 @@ theorem oneCenterNegativeExponentialMoment_eq_of_targets {n rIn rOut : ℕ}
   rw [oneCenterNegativeExponentialMoment_eq_distance_sum target lam,
     oneCenterNegativeExponentialMoment_eq_distance_sum target' lam]
 
+/--
+@isnad1 id=eq.0h7v.s6.9707c3d04b18 from=translated src=- shape=41f70075 vocab=ebc78f7e
+-/
 theorem exp_neg_sampleTotalContribution_eq_prod {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) (sample : CenterSample n N) :
     Real.exp (-(lam * (sampleTotalContribution rIn rOut target sample : ℝ))) =
@@ -1178,7 +1284,9 @@ theorem exp_neg_sampleTotalContribution_eq_prod {n N rIn rOut : ℕ}
                 -(lam * (annulusContribution rIn rOut target (sample j) : ℝ))))
 
 /-- The product-space sum of independent one-center exponential factors
-factors as the `N`th power of the one-center sum. -/
+factors as the `N`th power of the one-center sum.
+@isnad1 id=eq.0h6v.s7.379e1e3228b9 from=translated src=- shape=fc6c63f3 vocab=f2d8acc9
+-/
 theorem sum_prod_oneCenterNegativeExponentialMoment {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     (∑ sample : CenterSample n N,
@@ -1195,6 +1303,9 @@ theorem sum_prod_oneCenterNegativeExponentialMoment {n N rIn rOut : ℕ}
     (Fintype.prod_sum (fun _j : Fin N => fun center : HypercubeVertex n => f center)).symm
   simpa [CenterSample, f, Finset.prod_const] using hprod
 
+/--
+@isnad1 id=eq.0h6v.s7.283435580458 from=translated src=- shape=282b0190 vocab=10cb37e9
+-/
 theorem sum_exp_neg_sampleTotalContribution_eq_pow {n N rIn rOut : ℕ}
     (target : HypercubeVertex n) (lam : ℝ) :
     (∑ sample : CenterSample n N,
@@ -1218,6 +1329,9 @@ theorem sum_exp_neg_sampleTotalContribution_eq_pow {n N rIn rOut : ℕ}
           (annulusContribution rIn rOut target center : ℝ)))) ^ N := by
           exact sum_prod_oneCenterNegativeExponentialMoment target lam
 
+/--
+@isnad1 id=eq.0h8v.s6.952465f958ef from=translated src=- shape=434965d3 vocab=0db9eb0a
+-/
 theorem exp_target_sub_sampleTotalContribution
     {n N rIn rOut T : ℕ} (target : HypercubeVertex n)
     (lam : ℝ) (sample : CenterSample n N) :
@@ -1234,7 +1348,9 @@ theorem exp_target_sub_sampleTotalContribution
     ring
   rw [harg, Real.exp_add]
 
-/-- Independence factorization for the lower-tail exponential moment. -/
+/-- Independence factorization for the lower-tail exponential moment.
+@isnad1 id=eq.0h7v.s6.780ebbb205d6 from=translated src=- shape=7692e121 vocab=d52c557d
+-/
 theorem targetLowerTailExponentialMoment_eq
     {n N rIn rOut T : ℕ} (target : HypercubeVertex n) (lam : ℝ) :
     targetLowerTailExponentialMoment (N := N) rIn rOut T target lam =
@@ -1278,7 +1394,9 @@ theorem targetLowerTailExponentialMoment_eq
 
 /-- Chord-based lower-tail exponential-moment bound before optimizing the
 Chernoff parameter.  Here `B = 2^(rOut-rIn)` and the parenthesized term is the
-one-center chord drop. -/
+one-center chord drop.
+@isnad1 id=le.1h7v.s7.da3cabab2814 from=translated src=- shape=85e9b68f vocab=0a086ad2
+-/
 theorem targetLowerTailExponentialMoment_le_exp_chord
     {n N rIn rOut T : ℕ} (target : HypercubeVertex n) {lam : ℝ}
     (hlam_nonneg : 0 ≤ lam) :
@@ -1334,7 +1452,9 @@ theorem targetLowerTailExponentialMoment_le_exp_chord
 /-- Optimized chord-based Chernoff bound for one fixed target.  This is the
 analytic gap-closing statement: if the expected annulus contribution `mu`
 exceeds the threshold by `gap`, then the optimized exponential moment is
-bounded by `exp(-gap^2/(4 B mu))`, where `B = 2^(rOut-rIn)`. -/
+bounded by `exp(-gap^2/(4 B mu))`, where `B = 2^(rOut-rIn)`.
+@isnad1 id=le.3h7v.s8.787514f2b291 from=translated src=- shape=9eea2ecb vocab=e02adbbd
+-/
 theorem targetLowerTailExponentialMoment_le_exp_optimized_chord
     {n N rIn rOut T : ℕ} (target : HypercubeVertex n) {gap : ℝ}
     (hgap : 0 ≤ gap)
@@ -1450,6 +1570,9 @@ def OneCenterDistanceSumExponentialMomentBound
               ((if rIn ≤ i ∧ i ≤ rOut then 2 ^ (rOut - i) else 0 : ℕ) : ℝ)))) /
         (2 ^ n : ℝ)) ^ N) ≤ eps
 
+/--
+@isnad1 id=onecente.1h7v.s4.cf1b24a7ba1e from=translated src=- shape=4167f54b vocab=03ef1a5f
+-/
 theorem oneCenterExponentialMomentBound_of_distanceSum
     {n N rIn rOut T : ℕ} {lam eps : ℝ}
     (hbound : OneCenterDistanceSumExponentialMomentBound n N rIn rOut T lam eps) :
@@ -1458,6 +1581,9 @@ theorem oneCenterExponentialMomentBound_of_distanceSum
   refine ⟨hlam, ?_⟩
   simpa [oneCenterNegativeExponentialMoment_eq_distance_sum] using hmoment
 
+/--
+@isnad1 id=le.1h7v.s5.63e606ca2fb1 from=translated src=- shape=25058009 vocab=6c6e3d82
+-/
 theorem targetFailureProbabilityReal_le_exponentialMoment {n N rIn rOut T : ℕ}
     (target : HypercubeVertex n) {lam : ℝ} (hlam : 0 < lam) :
     targetFailureProbabilityReal (N := N) rIn rOut T target ≤
@@ -1491,6 +1617,9 @@ theorem targetFailureProbabilityReal_le_exponentialMoment {n N rIn rOut T : ℕ}
         simpa using hexp.le)
   simpa [targetFailureProbabilityReal, targetLowerTailExponentialMoment] using hmarkov
 
+/--
+@isnad1 id=le.2h8v.s5.3323ac1c12a6 from=translated src=- shape=cba66a12 vocab=247930f7
+-/
 theorem targetFailureProbability_le_of_exponentialMoment_le {n N rIn rOut T : ℕ}
     (target : HypercubeVertex n) {lam : ℝ} {eps : ℚ}
     (hlam : 0 < lam)
@@ -1506,6 +1635,9 @@ theorem targetFailureProbability_le_of_exponentialMoment_le {n N rIn rOut T : �
     simpa [targetFailureProbabilityReal_eq_coe] using hreal
   exact_mod_cast hcast
 
+/--
+@isnad1 id=le.3h9v.s6.0c2a9143f170 from=translated src=- shape=cbc68bf4 vocab=902b32f5
+-/
 theorem targetFailureProbability_le_exp_neg_of_exponentialMoment_le {n N rIn rOut T : ℕ}
     (target : HypercubeVertex n) {lam exponent : ℝ} {eps : ℚ}
     (hlam : 0 < lam)
@@ -1517,7 +1649,9 @@ theorem targetFailureProbability_le_exp_neg_of_exponentialMoment_le {n N rIn rOu
   targetFailureProbability_le_of_exponentialMoment_le target hlam (hmoment.trans hexp)
 
 /-- Fixed-target failure bound obtained from the optimized chord Chernoff
-estimate. -/
+estimate.
+@isnad1 id=le.4h8v.s7.673f38740edd from=translated src=- shape=1798f5d2 vocab=b116b965
+-/
 theorem targetFailureProbability_le_exp_optimized_chord
     {n N rIn rOut T : ℕ} (target : HypercubeVertex n) {gap : ℝ} {eps : ℚ}
     (hgap_pos : 0 < gap)
@@ -1561,7 +1695,9 @@ noncomputable def globalFailureProbability {n N : ℕ} (rIn rOut T : ℕ) : ℚ 
   uniformProbability fun sample : CenterSample n N =>
     sampleFailsSomeTarget rIn rOut T sample
 
-/-- Union bound over all targets. -/
+/-- Union bound over all targets.
+@isnad1 id=le.0h5v.s5.636d5b506271 from=translated src=- shape=807db7d8 vocab=a7cf1a42
+-/
 theorem globalFailureProbability_le_sum_targetFailureProbability {n N rIn rOut T : ℕ} :
     globalFailureProbability (n := n) (N := N) rIn rOut T ≤
       ∑ target : HypercubeVertex n,
@@ -1582,7 +1718,9 @@ theorem globalFailureProbability_le_sum_targetFailureProbability {n N rIn rOut T
         (fun target sample => sampleTotalContribution rIn rOut target sample < T))
 
 /-- Probabilistic-method extraction: if the probability that some target fails
-is less than one, then a good center sample exists. -/
+is less than one, then a good center sample exists.
+@isnad1 id=ex.1h5v.s5.5d35146aa25a from=translated src=- shape=d673f2b4 vocab=7b9a8b85
+-/
 theorem exists_goodCenterSample_of_globalFailureProbability_lt_one {n N rIn rOut T : ℕ}
     (hprob : globalFailureProbability (n := n) (N := N) rIn rOut T < 1) :
     ∃ sample : CenterSample n N,
@@ -1604,7 +1742,9 @@ theorem exists_goodCenterSample_of_globalFailureProbability_lt_one {n N rIn rOut
     Nat.le_of_not_gt hnot_lt
   simpa [annulusTotalContribution_toList] using hle
 
-/-- Costed high-demand conclusion from a global failure-probability bound. -/
+/-- Costed high-demand conclusion from a global failure-probability bound.
+@isnad1 id=hassolva.1h5v.s6.6ec77412c1e8 from=translated src=- shape=546f6b49 vocab=91602ba2
+-/
 theorem hasSolvableAtMostSize_of_globalFailureProbability_lt_one {n N rIn rOut T : ℕ}
     (hprob : globalFailureProbability (n := n) (N := N) rIn rOut T < 1) :
     HasSolvableAtMostSize (graph n) T (N * 2 ^ rOut) := by
@@ -1615,7 +1755,9 @@ theorem hasSolvableAtMostSize_of_globalFailureProbability_lt_one {n N rIn rOut T
   simpa [CenterSample.toList] using h
 
 /-- High-demand version of the probabilistic-method extraction.  The selected
-stack-list distribution has occupied piles of size at least `2^rOut`. -/
+stack-list distribution has occupied piles of size at least `2^rOut`.
+@isnad1 id=hashighd.1h5v.s6.c096d8658e5a from=translated src=- shape=3ea758d8 vocab=aca19323
+-/
 theorem hasHighDemandDistribution_of_globalFailureProbability_lt_one
     {n N rIn rOut T : ℕ}
     (hprob : globalFailureProbability (n := n) (N := N) rIn rOut T < 1) :
@@ -1632,6 +1774,9 @@ def ChernoffMeanLowerBound (n N rIn rOut T : ℕ) : Prop :=
   ∀ target : HypercubeVertex n,
     (T : ℚ) ≤ sampleContributionExpectation (n := n) (N := N) rIn rOut target
 
+/--
+@isnad1 id=iff.0h5v.s5.2d834a8f2fde from=translated src=- shape=a10d4d01 vocab=3ce12b83
+-/
 theorem chernoffMeanLowerBound_iff_annulusMean {n N rIn rOut T : ℕ} :
     ChernoffMeanLowerBound n N rIn rOut T ↔
       (T : ℚ) ≤ (N : ℚ) * annulusMean n rIn rOut := by
@@ -1642,6 +1787,9 @@ theorem chernoffMeanLowerBound_iff_annulusMean {n N rIn rOut T : ℕ} :
   · intro hmean target
     simpa [sampleContributionExpectation_eq_nat_mul_annulusMean] using hmean
 
+/--
+@isnad1 id=chernoff.1h5v.s5.25840387abae from=translated src=- shape=76579339 vocab=3ce12b83
+-/
 theorem chernoffMeanLowerBound_of_annulusMean {n N rIn rOut T : ℕ}
     (hmean : (T : ℚ) ≤ (N : ℚ) * annulusMean n rIn rOut) :
     ChernoffMeanLowerBound n N rIn rOut T :=
@@ -1654,7 +1802,9 @@ def BernsteinTargetFailureBound (n N rIn rOut T : ℕ) (eps : ℚ) : Prop :=
     targetFailureProbability (n := n) (N := N) rIn rOut T target ≤ eps
 
 /-- Target-failure bound with the target-independent real annulus mean
-substituted for the fixed-target mean. -/
+substituted for the fixed-target mean.
+@isnad1 id=bernstei.4h7v.s7.2916ff86675e from=translated src=- shape=257ece1c vocab=9496065b
+-/
 theorem bernsteinTargetFailureBound_of_optimized_chord_annulusMean
     {n N rIn rOut T : ℕ} {gap : ℝ} {eps : ℚ}
     (hgap_pos : 0 < gap)
@@ -1696,6 +1846,9 @@ def ChernoffExponentialMomentBound (n N rIn rOut T : ℕ) (eps : ℝ) : Prop :=
       0 < lam ∧
         targetLowerTailExponentialMoment (n := n) (N := N) rIn rOut T target lam ≤ eps
 
+/--
+@isnad1 id=chernoff.1h7v.s4.c1688c6953ae from=translated src=- shape=defac6c6 vocab=d4434e6f
+-/
 theorem chernoffExponentialMomentBound_of_oneCenterExponentialMomentBound
     {n N rIn rOut T : ℕ} {lam eps : ℝ}
     (hbound : OneCenterExponentialMomentBound n N rIn rOut T lam eps) :
@@ -1708,6 +1861,9 @@ theorem chernoffExponentialMomentBound_of_oneCenterExponentialMomentBound
     target (fun _ : Fin n => false) lam]
   exact hmoment
 
+/--
+@isnad1 id=bernstei.2h7v.s5.8dc9cf6bacff from=translated src=- shape=717393c6 vocab=03d5d469
+-/
 theorem bernsteinTargetFailureBound_of_chernoffExponentialMomentBound
     {n N rIn rOut T : ℕ} {epsReal : ℝ} {eps : ℚ}
     (hmoment : ChernoffExponentialMomentBound n N rIn rOut T epsReal)
@@ -1724,7 +1880,9 @@ noncomputable def bernsteinExponent (variance scale gap : ℝ) : ℝ :=
   gap ^ 2 / (2 * (variance + scale * gap / 3))
 
 /-- The constant calculation used in the paper after Bernstein is applied with
-variance proxy `2 * B * T`, scale `B`, and gap `delta*T/4`. -/
+variance proxy `2 * B * T`, scale `B`, and gap `delta*T/4`.
+@isnad1 id=le.4h3v.s7.ba5cc6c86d53 from=translated src=- shape=f6c52dbd vocab=2d944d1e
+-/
 theorem bernsteinExponent_two_width_mul_T_ge
     {delta T B : ℝ} (hdelta_nonneg : 0 ≤ delta) (hdelta_le : delta ≤ 1 / 2)
     (hT_pos : 0 < T) (hB_pos : 0 < B) :
@@ -1764,6 +1922,9 @@ def BernsteinExponentialMomentBound (n N rIn rOut T : ℕ)
   ChernoffExponentialMomentBound n N rIn rOut T
     (Real.exp (-(bernsteinExponent variance scale gap)))
 
+/--
+@isnad1 id=bernstei.1h9v.s5.4e7b493ae401 from=translated src=- shape=015354c3 vocab=fd1062fd
+-/
 theorem bernsteinExponentialMomentBound_of_oneCenterDistanceSum
     {n N rIn rOut T : ℕ} {lam variance scale gap : ℝ}
     (hbound :
@@ -1773,6 +1934,9 @@ theorem bernsteinExponentialMomentBound_of_oneCenterDistanceSum
   chernoffExponentialMomentBound_of_oneCenterExponentialMomentBound
     (oneCenterExponentialMomentBound_of_distanceSum hbound)
 
+/--
+@isnad1 id=bernstei.2h9v.s5.e406664f320e from=translated src=- shape=7f3dd31c vocab=fbeca10e
+-/
 theorem bernsteinTargetFailureBound_of_bernsteinExponentialMomentBound
     {n N rIn rOut T : ℕ} {variance scale gap : ℝ} {eps : ℚ}
     (hmoment : BernsteinExponentialMomentBound n N rIn rOut T variance scale gap)
@@ -1780,7 +1944,9 @@ theorem bernsteinTargetFailureBound_of_bernsteinExponentialMomentBound
     BernsteinTargetFailureBound n N rIn rOut T eps :=
   bernsteinTargetFailureBound_of_chernoffExponentialMomentBound hmoment hexp
 
-/-- The usual union-bound finish from a Bernstein fixed-target estimate. -/
+/-- The usual union-bound finish from a Bernstein fixed-target estimate.
+@isnad1 id=ex.2h6v.s6.fd50736d7bcd from=translated src=- shape=c329d6c0 vocab=c6bca2ea
+-/
 theorem exists_goodCenterSample_of_bernstein_bound {n N rIn rOut T : ℕ} {eps : ℚ}
     (hbernstein : BernsteinTargetFailureBound n N rIn rOut T eps)
     (hunion : (Fintype.card (HypercubeVertex n) : ℚ) * eps < 1) :
@@ -1803,7 +1969,9 @@ theorem exists_goodCenterSample_of_bernstein_bound {n N rIn rOut T : ℕ} {eps :
     exact lt_of_le_of_lt (hglobal_le.trans hsum_le) (by simpa [hsum_eps] using hunion)
   exact exists_goodCenterSample_of_globalFailureProbability_lt_one hprob
 
-/-- Costed high-demand conclusion from the Bernstein fixed-target estimate. -/
+/-- Costed high-demand conclusion from the Bernstein fixed-target estimate.
+@isnad1 id=hassolva.2h6v.s6.c8a076361396 from=translated src=- shape=cd025ea0 vocab=da273141
+-/
 theorem hasSolvableAtMostSize_of_bernstein_bound {n N rIn rOut T : ℕ} {eps : ℚ}
     (hbernstein : BernsteinTargetFailureBound n N rIn rOut T eps)
     (hunion : (Fintype.card (HypercubeVertex n) : ℚ) * eps < 1) :
@@ -1814,6 +1982,9 @@ theorem hasSolvableAtMostSize_of_bernstein_bound {n N rIn rOut T : ℕ} {eps : �
   have h := hasSolvableAtMostSize_of_goodCenterList hgood
   simpa [CenterSample.toList] using h
 
+/--
+@isnad1 id=lt.0h1v.s6.22d59f5b249e from=translated src=- shape=8ca1e852 vocab=f66d499d
+-/
 theorem hypercube_card_mul_inv_two_pow_succ_lt_one (n : ℕ) :
     (Fintype.card (HypercubeVertex n) : ℚ) *
         ((1 : ℚ) / (2 ^ (n + 1) : ℚ)) < 1 := by
@@ -1823,7 +1994,9 @@ theorem hypercube_card_mul_inv_two_pow_succ_lt_one (n : ℕ) :
   exact pow_lt_pow_right₀ (by norm_num : (1 : ℚ) < 2) (Nat.lt_succ_self n)
 
 /-- Probabilistic-method finish from the optimized chord Chernoff estimate,
-using the target-independent annulus mean. -/
+using the target-independent annulus mean.
+@isnad1 id=ex.5h7v.s7.91818ef6c752 from=translated src=- shape=5f65f580 vocab=149c4fc8
+-/
 theorem exists_goodCenterSample_of_optimized_chord_annulusMean
     {n N rIn rOut T : ℕ} {gap : ℝ} {eps : ℚ}
     (hgap_pos : 0 < gap)
@@ -1843,7 +2016,9 @@ theorem exists_goodCenterSample_of_optimized_chord_annulusMean
       hgap_pos hmu_pos hmean hexp)
     hunion
 
-/-- Costed high-demand conclusion from the optimized chord Chernoff estimate. -/
+/-- Costed high-demand conclusion from the optimized chord Chernoff estimate.
+@isnad1 id=hassolva.5h7v.s8.717331f7e4b0 from=translated src=- shape=25875de8 vocab=37eec490
+-/
 theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean
     {n N rIn rOut T : ℕ} {gap : ℝ} {eps : ℚ}
     (hgap_pos : 0 < gap)
@@ -1863,7 +2038,9 @@ theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean
     hunion
 
 /-- Optimized chord Chernoff finish with the standard fixed-target failure
-budget `2^-(n+1)`, which is strong enough for the union bound over `Q_n`. -/
+budget `2^-(n+1)`, which is strong enough for the union bound over `Q_n`.
+@isnad1 id=ex.4h6v.s7.bb9189bd5951 from=translated src=- shape=58ccb0a2 vocab=3fcf504a
+-/
 theorem exists_goodCenterSample_of_optimized_chord_annulusMean_inv_two
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -1883,7 +2060,9 @@ theorem exists_goodCenterSample_of_optimized_chord_annulusMean_inv_two
     (hypercube_card_mul_inv_two_pow_succ_lt_one n)
 
 /-- Costed high-demand conclusion with fixed-target failure budget
-`2^-(n+1)`. -/
+`2^-(n+1)`.
+@isnad1 id=hassolva.4h6v.s8.926d65d4bf58 from=translated src=- shape=fb1e8135 vocab=8faa1422
+-/
 theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean_inv_two
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -1902,7 +2081,9 @@ theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean_inv_two
     (hypercube_card_mul_inv_two_pow_succ_lt_one n)
 
 /-- Version of the optimized chord finish where the union-bound comparison is
-discharged by the exponent inequality `exponent ≥ (n+1) log 2`. -/
+discharged by the exponent inequality `exponent ≥ (n+1) log 2`.
+@isnad1 id=ex.4h6v.s7.68fb4f37e906 from=translated src=- shape=a9d43866 vocab=2a43b7c4
+-/
 theorem exists_goodCenterSample_of_optimized_chord_annulusMean_log
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -1920,7 +2101,9 @@ theorem exists_goodCenterSample_of_optimized_chord_annulusMean_log
     (exp_neg_le_inv_two_pow_succ_of_log_le n hlog)
 
 /-- Costed high-demand conclusion from the optimized chord estimate and the
-exponent condition `gap^2/(4 B_0 mu) ≥ (n+1) log 2`. -/
+exponent condition `gap^2/(4 B_0 mu) ≥ (n+1) log 2`.
+@isnad1 id=hassolva.4h6v.s8.2ab532c4e270 from=translated src=- shape=ed4ad2ba vocab=f2f7d078
+-/
 theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean_log
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -1937,7 +2120,9 @@ theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean_log
     (exp_neg_le_inv_two_pow_succ_of_log_le n hlog)
 
 /-- The same log-threshold finish, deriving positivity of the mean from the
-positive gap and the inequality `T + gap ≤ mean`. -/
+positive gap and the inequality `T + gap ≤ mean`.
+@isnad1 id=ex.3h6v.s7.6102ef88e578 from=translated src=- shape=a1fe9e6b vocab=2a43b7c4
+-/
 theorem exists_goodCenterSample_of_optimized_chord_annulusMean_log_of_mean_gap
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -1956,7 +2141,9 @@ theorem exists_goodCenterSample_of_optimized_chord_annulusMean_log_of_mean_gap
     hgap_pos hmu_pos hmean hlog
 
 /-- Costed high-demand conclusion with positivity of the mean derived from the
-mean-gap hypothesis. -/
+mean-gap hypothesis.
+@isnad1 id=hassolva.3h6v.s8.e740cc091826 from=translated src=- shape=876f6032 vocab=f2f7d078
+-/
 theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean_log_of_mean_gap
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -1974,7 +2161,9 @@ theorem hasSolvableAtMostSize_of_optimized_chord_annulusMean_log_of_mean_gap
     hgap_pos hmu_pos hmean hlog
 
 /-- High-demand conclusion from the optimized chord estimate and logarithmic
-union-bound criterion. -/
+union-bound criterion.
+@isnad1 id=hashighd.3h6v.s7.ba38968b027f from=translated src=- shape=49fa6695 vocab=70892c05
+-/
 theorem hasHighDemandDistribution_of_optimized_chord_annulusMean_log_of_mean_gap
     {n N rIn rOut T : ℕ} {gap : ℝ}
     (hgap_pos : 0 < gap)
@@ -2016,6 +2205,9 @@ theorem hasHighDemandDistribution_of_optimized_chord_annulusMean_log_of_mean_gap
           hypercube_card_mul_inv_two_pow_succ_lt_one n)
   exact hasHighDemandDistribution_of_globalFailureProbability_lt_one hfailure
 
+/--
+@isnad1 id=ex.3h9v.s6.115e33f1786a from=translated src=- shape=42e112d2 vocab=899a6a52
+-/
 theorem exists_goodCenterSample_of_bernsteinExponentialMomentBound
     {n N rIn rOut T : ℕ} {variance scale gap : ℝ} {eps : ℚ}
     (hmoment : BernsteinExponentialMomentBound n N rIn rOut T variance scale gap)
@@ -2026,6 +2218,9 @@ theorem exists_goodCenterSample_of_bernsteinExponentialMomentBound
   exists_goodCenterSample_of_bernstein_bound
     (bernsteinTargetFailureBound_of_bernsteinExponentialMomentBound hmoment hexp) hunion
 
+/--
+@isnad1 id=hassolva.3h9v.s7.e2fb1a5f60a9 from=translated src=- shape=083e0a57 vocab=74b4c722
+-/
 theorem hasSolvableAtMostSize_of_bernsteinExponentialMomentBound
     {n N rIn rOut T : ℕ} {variance scale gap : ℝ} {eps : ℚ}
     (hmoment : BernsteinExponentialMomentBound n N rIn rOut T variance scale gap)
@@ -2035,6 +2230,9 @@ theorem hasSolvableAtMostSize_of_bernsteinExponentialMomentBound
   hasSolvableAtMostSize_of_bernstein_bound
     (bernsteinTargetFailureBound_of_bernsteinExponentialMomentBound hmoment hexp) hunion
 
+/--
+@isnad1 id=ex.3h10v.s6.7786390102f4 from=translated src=- shape=9adb4a80 vocab=dcecbc01
+-/
 theorem exists_goodCenterSample_of_oneCenterDistanceSum
     {n N rIn rOut T : ℕ} {lam variance scale gap : ℝ} {eps : ℚ}
     (hbound :
@@ -2047,6 +2245,9 @@ theorem exists_goodCenterSample_of_oneCenterDistanceSum
   exists_goodCenterSample_of_bernsteinExponentialMomentBound
     (bernsteinExponentialMomentBound_of_oneCenterDistanceSum hbound) hexp hunion
 
+/--
+@isnad1 id=hassolva.3h10v.s7.d547616130f7 from=translated src=- shape=7312b064 vocab=dffdbb6f
+-/
 theorem hasSolvableAtMostSize_of_oneCenterDistanceSum
     {n N rIn rOut T : ℕ} {lam variance scale gap : ℝ} {eps : ℚ}
     (hbound :

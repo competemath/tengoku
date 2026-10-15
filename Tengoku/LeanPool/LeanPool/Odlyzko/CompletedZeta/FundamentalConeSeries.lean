@@ -72,6 +72,9 @@ private theorem finite_idealSetIntNorm_fiber
     ((idealSetEquivNorm K J n).symm.trans
       (idealSetIntNormFiberEquiv K J n).symm)
 
+/--
+@isnad1 id=eq.0h3v.s9.13cfe77c4acb from=translated src=- shape=bd1e4123 vocab=3fc28f75
+-/
 theorem fundamentalConeNormCount_eq_natCard_idealSetIntNorm
     (J : (Ideal (𝓞 K))⁰) (n : ℕ) :
     fundamentalConeNormCount K J n =
@@ -79,6 +82,9 @@ theorem fundamentalConeNormCount_eq_natCard_idealSetIntNorm
   rw [fundamentalConeNormCount]
   exact (Nat.card_congr (idealSetIntNormFiberEquiv K J n)).symm
 
+/--
+@isnad1 id=ne.0h3v.s9.665e2dc4874f from=translated src=- shape=7a523255 vocab=1e8a8045
+-/
 theorem idealSetIntNorm_ne_zero
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     idealSetIntNorm K J a ≠ 0 := by
@@ -87,6 +93,9 @@ theorem idealSetIntNorm_ne_zero
   have hnat : 0 < idealSetIntNorm K J a := by simp_all
   grind
 
+/--
+@isnad1 id=eq.0h3v.s9.8aea4fe9f56d from=translated src=- shape=9e7d62d1 vocab=b59c0e1e
+-/
 theorem fundamentalConeNormCount_eq_torsion_mul
     (J : (Ideal (𝓞 K))⁰) (n : ℕ) :
     fundamentalConeNormCount K J n =
@@ -96,6 +105,9 @@ theorem fundamentalConeNormCount_eq_torsion_mul
     ← Nat.card_prod]
   exact Nat.card_congr (idealSetEquivNorm K J n)
 
+/--
+@isnad1 id=le.0h3v.s9.160e05da987d from=translated src=- shape=939dc134 vocab=cdafd064
+-/
 theorem principalIdealNormCount_le_idealNormCount
     (J : (Ideal (𝓞 K))⁰) (n : ℕ) :
     principalIdealNormCount K J n ≤ idealNormCount K n := by
@@ -119,6 +131,9 @@ noncomputable def principalIdealZeta (J : (Ideal (𝓞 K))⁰) (s : ℂ) : ℂ :
 noncomputable def fundamentalConeZeta (J : (Ideal (𝓞 K))⁰) (s : ℂ) : ℂ :=
   LSeries (fun n ↦ (fundamentalConeNormCount K J n : ℂ)) s
 
+/--
+@isnad1 id=lseriess.1h3v.s9.4c5868acce0b from=translated src=- shape=df74328c vocab=1b0af3a6
+-/
 theorem lSeriesSummable_principalIdealNormCount
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (principalIdealNormCount K J n : ℂ)) s := by
@@ -133,6 +148,9 @@ theorem lSeriesSummable_principalIdealNormCount
     (by exact_mod_cast principalIdealNormCount_le_idealNormCount K J n)
     (norm_nonneg _)
 
+/--
+@isnad1 id=lseriess.1h3v.s9.85a4242dea5d from=translated src=- shape=df74328c vocab=dc5350e5
+-/
 theorem lSeriesSummable_fundamentalConeNormCount
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (fundamentalConeNormCount K J n : ℂ)) s := by
@@ -146,6 +164,9 @@ theorem lSeriesSummable_fundamentalConeNormCount
   rw [hcoeff]
   exact (lSeriesSummable_principalIdealNormCount K J hs).smul _
 
+/--
+@isnad1 id=summable.1h3v.s9.e241bf38ef8c from=translated src=- shape=44456d3c vocab=e34ee7f7
+-/
 theorem summable_idealSet_inverseNormPower
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     Summable (fun a : idealSet K J ↦
@@ -159,6 +180,9 @@ theorem summable_idealSet_inverseNormPower
   funext n
   rw [fundamentalConeNormCount_eq_natCard_idealSetIntNorm]
 
+/--
+@isnad1 id=hassum.1h3v.s9.ccb59482ba89 from=translated src=- shape=96f21bd3 vocab=69730e58
+-/
 theorem hasSum_idealSet_inverseNormPower
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     HasSum (fun a : idealSet K J ↦
@@ -173,6 +197,9 @@ theorem hasSum_idealSet_inverseNormPower
   simpa only [fundamentalConeZeta,
     ← fundamentalConeNormCount_eq_natCard_idealSetIntNorm] using h
 
+/--
+@isnad1 id=eq.0h3v.s9.bac9bdf66b71 from=translated src=- shape=80f8e412 vocab=b1ee5907
+-/
 theorem fundamentalConeZeta_eq_torsion_mul_principalIdealZeta
     (J : (Ideal (𝓞 K))⁰) (s : ℂ) :
     fundamentalConeZeta K J s =

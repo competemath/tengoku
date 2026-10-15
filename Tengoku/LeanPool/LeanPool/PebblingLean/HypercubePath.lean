@@ -25,12 +25,18 @@ namespace Hypercube
 
 open Pebbling
 
+/--
+@isnad1 id=eq.0h2v.s4.e82495d5ad51 from=translated src=- shape=c1aab5f2 vocab=d1365db7
+-/
 @[simp]
 theorem fromDiffSet_empty {n : ℕ} (base : HypercubeVertex n) :
     fromDiffSet base ∅ = base := by
   funext i
   simp [fromDiffSet]
 
+/--
+@isnad1 id=eq.1h4v.s6.cda4f149d792 from=translated src=- shape=b90fc566 vocab=2fefa430
+-/
 theorem diffSet_fromDiffSet_insert {n : ℕ} (base : HypercubeVertex n)
     {s : Finset (Fin n)} {i : Fin n} (hi : i ∉ s) :
     diffSet (fromDiffSet base s) (fromDiffSet base (insert i s)) = {i} := by
@@ -44,14 +50,18 @@ theorem diffSet_fromDiffSet_insert {n : ℕ} (base : HypercubeVertex n)
     · simp [diffSet, fromDiffSet, hji, hjs]
     · simp [diffSet, fromDiffSet, hji, hjs]
 
-/-- Flipping one new coordinate gives an adjacent hypercube vertex. -/
+/-- Flipping one new coordinate gives an adjacent hypercube vertex.
+@isnad1 id=adj.1h4v.s5.f26dc0d710c9 from=translated src=- shape=ef69768c vocab=cce2fa31
+-/
 theorem adj_fromDiffSet_insert {n : ℕ} (base : HypercubeVertex n)
     {s : Finset (Fin n)} {i : Fin n} (hi : i ∉ s) :
     (graph n).Adj (fromDiffSet base s) (fromDiffSet base (insert i s)) := by
   simp [graph, dist_eq_card_diffSet, diffSet_fromDiffSet_insert base hi]
 
 /-- Flipping the coordinates in `s`, one at a time, gives a walk back to the
-base vertex of length `s.card`. -/
+base vertex of length `s.card`.
+@isnad1 id=ex.0h3v.s5.f0f71fc39fee from=translated src=- shape=e2e14a4f vocab=e02231cf
+-/
 theorem exists_walk_fromDiffSet_to_base {n : ℕ} (base : HypercubeVertex n)
     (s : Finset (Fin n)) :
     ∃ walk : (graph n).Walk (fromDiffSet base s) base, walk.length = s.card := by
@@ -64,7 +74,9 @@ theorem exists_walk_fromDiffSet_to_base {n : ℕ} (base : HypercubeVertex n)
     refine ⟨Graph.Walk.cons ((graph n).symm (adj_fromDiffSet_insert base hi)) tail, ?_⟩
     simp [Graph.Walk.length, htail, Finset.card_insert_of_notMem hi]
 
-/-- Hypercube Hamming distance is realized by a graph walk of the same length. -/
+/-- Hypercube Hamming distance is realized by a graph walk of the same length.
+@isnad1 id=ex.0h3v.s5.af8537bcbdde from=translated src=- shape=bcc1c397 vocab=4141d71c
+-/
 theorem exists_walk_length_dist {n : ℕ} (x y : HypercubeVertex n) :
     ∃ walk : (graph n).Walk x y, walk.length = dist x y := by
   classical
@@ -75,7 +87,9 @@ theorem exists_walk_length_dist {n : ℕ} (x y : HypercubeVertex n) :
   simp [Graph.Walk.length_reverse, hlen, dist_eq_card_diffSet]
 
 /-- A single pile of `T * 2^d` pebbles can directly deliver `T` pebbles across
-Hamming distance `d`. -/
+Hamming distance `d`.
+@isnad1 id=canreach.0h4v.s6.7aada7a63b76 from=translated src=- shape=e35399af vocab=500b2b7b
+-/
 theorem canReachAtLeast_single_dist {n : ℕ} (center target : HypercubeVertex n)
     (T : ℕ) :
     CanReachAtLeast (graph n)

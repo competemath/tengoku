@@ -23,7 +23,9 @@ namespace LeanPool.PoincareThreeBody
 open MeasureTheory Set
 open scoped Interval
 
-/-- The derivative of a periodic scalar function has zero integral over a period. -/
+/-- The derivative of a periodic scalar function has zero integral over a period.
+@isnad1 id=eq.3h3v.s7.3041f7681d3f from=translated src=- shape=04af65b9 vocab=700a6062
+-/
 theorem intervalIntegral_derivative_eq_zero_of_endpoints_eq
     {correction correctionDerivative : ℝ → ℝ} {period : ℝ}
     (hderiv : ∀ time ∈ uIcc 0 period,
@@ -34,7 +36,9 @@ theorem intervalIntegral_derivative_eq_zero_of_endpoints_eq
   rw [intervalIntegral.integral_eq_sub_of_hasDerivAt hderiv hintegrable, hperiodic, sub_self]
 
 /-- If a first homological equation is a periodic total derivative plus a forcing term, then the
-forcing has zero average over the period. -/
+forcing has zero average over the period.
+@isnad1 id=eq.5h4v.s7.54d5471ce88d from=translated src=- shape=3669b824 vocab=516a500c
+-/
 theorem intervalIntegral_forcing_eq_zero_of_homologicalEquation
     {correction correctionDerivative forcing : ℝ → ℝ} {period : ℝ}
     (hderiv : ∀ time ∈ uIcc 0 period,
@@ -56,7 +60,9 @@ theorem intervalIntegral_forcing_eq_zero_of_homologicalEquation
   exact hequationIntegral
 
 /-- Averaging a scalar first homological equation over a periodic orbit kills its correction
-term. -/
+term.
+@isnad1 id=eq.6h5v.s7.9a04d1f13eb8 from=translated src=- shape=092d8351 vocab=c22f6861
+-/
 theorem coefficient_eq_zero_of_averaged_homologicalEquation
     {correction correctionDerivative forcing : ℝ → ℝ} {coefficient period : ℝ}
     (hderiv : ∀ time ∈ uIcc 0 period,
@@ -81,7 +87,9 @@ theorem coefficient_eq_zero_of_averaged_homologicalEquation
   exact (mul_eq_zero.mp hequationIntegral).resolve_right hforcing
 
 /-- A nonzero averaged perturbation on a resonant orbit yields Poincaré's two-dimensional
-linear-dependence obstruction. -/
+linear-dependence obstruction.
+@isnad1 id=not.8h7v.s8.718a3b08d249 from=translated src=- shape=25c5b82a vocab=190ffdba
+-/
 theorem averagedHomologicalEquation_obstruction
     {k frequency differential : ActionSpace}
     {correction correctionDerivative forcing : ℝ → ℝ} {period : ℝ}

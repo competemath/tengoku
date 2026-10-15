@@ -25,7 +25,9 @@ noncomputable def parameterCoefficient
   fderiv ℝ G (0, b) (1, 0)
 
 /-- A jointly `C²` function has a differentiable first parameter coefficient in the remaining
-variables. -/
+variables.
+@isnad1 id=differen.1h3v.s7.ecccefb2be69 from=translated src=- shape=1c279bb0 vocab=f3d7a03b
+-/
 theorem differentiableAt_parameterCoefficient
     {B : Type*} [NormedAddCommGroup B] [NormedSpace ℝ B]
     {G : ℝ × B → ℝ} {b : B} (hG : ContDiffAt ℝ 2 G (0, b)) :
@@ -35,7 +37,9 @@ theorem differentiableAt_parameterCoefficient
   unfold parameterCoefficient
   fun_prop
 
-/-- A jointly `C²` function has a continuously differentiable first parameter coefficient. -/
+/-- A jointly `C²` function has a continuously differentiable first parameter coefficient.
+@isnad1 id=contdiff.1h3v.s7.761b667b15f4 from=translated src=- shape=88221f33 vocab=b21d341b
+-/
 theorem contDiffAt_parameterCoefficient
     {B : Type*} [NormedAddCommGroup B] [NormedSpace ℝ B]
     {G : ℝ × B → ℝ} {b : B} (hG : ContDiffAt ℝ 2 G (0, b)) :
@@ -46,7 +50,9 @@ theorem contDiffAt_parameterCoefficient
   fun_prop
 
 /-- The phase derivative of a slice of a jointly differentiable function is its joint derivative
-in the pure phase direction. -/
+in the pure phase direction.
+@isnad1 id=eq.1h7v.s9.499b972270c3 from=translated src=- shape=c7e4df6f vocab=cad8c25c
+-/
 theorem fderiv_curry_right_apply
     {A B C : Type*}
     [NormedAddCommGroup A] [NormedSpace ℝ A]
@@ -64,7 +70,9 @@ theorem fderiv_curry_right_apply
   rfl
 
 /-- The mass derivative of a scalar slice is the joint derivative in the pure parameter
-direction. -/
+direction.
+@isnad1 id=eq.1h3v.s7.e1000f0bb944 from=translated src=- shape=7f74bfc9 vocab=70d76f79
+-/
 theorem deriv_curry_left
     {B : Type*} [NormedAddCommGroup B] [NormedSpace ℝ B]
     {G : ℝ × B → ℝ} {b : B} (hG : DifferentiableAt ℝ G (0, b)) :
@@ -77,7 +85,9 @@ theorem deriv_curry_left
   rfl
 
 /-- Along an affine line, the derivative of a first directional derivative is the corresponding
-second directional derivative. -/
+second directional derivative.
+@isnad1 id=hasderiv.1h5v.s9.192d32dedf7a from=translated src=- shape=a9342a98 vocab=edce4ab2
+-/
 theorem hasDerivAt_directionalFDeriv_along_line
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {G : E → ℝ} {x v w : E} (hG : ContDiffAt ℝ 2 G x) :
@@ -109,7 +119,9 @@ theorem hasDerivAt_directionalFDeriv_along_line
     (m := ![w, v])
   simpa [Q] using hsucc.symm
 
-/-- The second derivative of a real `C²` function is symmetric. -/
+/-- The second derivative of a real `C²` function is symmetric.
+@isnad1 id=eq.1h5v.s9.75c3b32a3fb7 from=translated src=- shape=88d750d5 vocab=3dbbf628
+-/
 theorem iteratedFDeriv_two_swap
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {G : E → ℝ} {x v w : E} (hG : ContDiffAt ℝ 2 G x) :
@@ -117,7 +129,9 @@ theorem iteratedFDeriv_two_swap
   exact (hG.isSymmSndFDerivAt (by simp)).iteratedFDeriv_cons
 
 /-- The directional derivative along a line can equivalently be written with the two directions
-swapped. This is the form used to commute mass and phase differentiation. -/
+swapped. This is the form used to commute mass and phase differentiation.
+@isnad1 id=hasderiv.1h5v.s9.cb56b6b476bd from=translated src=- shape=088a6c6c vocab=edce4ab2
+-/
 theorem hasDerivAt_directionalFDeriv_along_line_swap
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {G : E → ℝ} {x v w : E} (hG : ContDiffAt ℝ 2 G x) :
@@ -128,7 +142,9 @@ theorem hasDerivAt_directionalFDeriv_along_line_swap
   exact iteratedFDeriv_two_swap hG
 
 /-- The phase derivative of the parameter coefficient is the mixed second derivative with phase
-first and parameter second. -/
+first and parameter second.
+@isnad1 id=eq.1h4v.s9.90574c53b04d from=translated src=- shape=f4e0ca80 vocab=85981f89
+-/
 theorem fderiv_parameterCoefficient
     {B : Type*} [NormedAddCommGroup B] [NormedSpace ℝ B]
     {G : ℝ × B → ℝ} {b v : B} (hG : ContDiffAt ℝ 2 G (0, b)) :
@@ -165,7 +181,9 @@ theorem fderiv_parameterCoefficient
     simp [parameterCoefficient]
   exact hcoefficientLine.unique hmixedCoefficient
 
-/-- Joint `C²` regularity commutes the parameter derivative with every phase derivative. -/
+/-- Joint `C²` regularity commutes the parameter derivative with every phase derivative.
+@isnad1 id=hasderiv.1h4v.s9.56f43c6cc98f from=translated src=- shape=4413385a vocab=5e348afb
+-/
 theorem hasDerivAt_fderiv_curry_right
     {B : Type*} [NormedAddCommGroup B] [NormedSpace ℝ B]
     {G : ℝ × B → ℝ} {b v : B} (hG : ContDiffAt ℝ 2 G (0, b)) :

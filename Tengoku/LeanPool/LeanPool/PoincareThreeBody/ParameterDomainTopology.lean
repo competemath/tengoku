@@ -59,7 +59,9 @@ def primaryConfigurations : Set Plane := {![0, 0], ![1, 0]}
 def straightenedParameterDomain (δ : ℝ) : Set ((ℝ × Plane) × Plane) :=
   (Set.Ioo (-δ) δ ×ˢ primaryConfigurationsᶜ) ×ˢ Set.univ
 
-/-- The original parameter domain is the preimage of its product form under the shear. -/
+/-- The original parameter domain is the preimage of its product form under the shear.
+@isnad1 id=eq.0h1v.s8.57f670d3f7cc from=translated src=- shape=88b7fcec vocab=278cbb27
+-/
 lemma parameterCoordinateHomeomorph_preimage_straightenedParameterDomain (δ : ℝ) :
     parameterCoordinateHomeomorph ⁻¹' straightenedParameterDomain δ = parameterDomain δ := by
   ext z
@@ -119,7 +121,9 @@ lemma parameterCoordinateHomeomorph_preimage_straightenedParameterDomain (δ : �
         simp [firstPrimaryDistanceSq, hy]
         nlinarith
 
-/-- The plane with the two primary positions removed is path-connected. -/
+/-- The plane with the two primary positions removed is path-connected.
+@isnad1 id=ispathco.0h0v.s5.45adebaa66ce from=translated src=- shape=531af6ad vocab=406c41ef
+-/
 lemma isPathConnected_primaryConfigurations_compl :
     IsPathConnected primaryConfigurationsᶜ := by
   apply Set.Countable.isPathConnected_compl_of_one_lt_rank
@@ -129,7 +133,9 @@ lemma isPathConnected_primaryConfigurations_compl :
       simp [primaryConfigurations]
     exact hfinite.countable
 
-/-- The straightened parameter domain is path-connected for a positive mass radius. -/
+/-- The straightened parameter domain is path-connected for a positive mass radius.
+@isnad1 id=ispathco.1h1v.s6.23ed0deab1be from=translated src=- shape=c7b8d2ae vocab=9409fc37
+-/
 lemma isPathConnected_straightenedParameterDomain {δ : ℝ} (hδ : 0 < δ) :
     IsPathConnected (straightenedParameterDomain δ) := by
   apply IsPathConnected.prod
@@ -138,7 +144,9 @@ lemma isPathConnected_straightenedParameterDomain {δ : ℝ} (hδ : 0 < δ) :
     · exact isPathConnected_primaryConfigurations_compl
   · exact isPathConnected_univ
 
-/-- The collision-free parameter domain in the challenge is preconnected. -/
+/-- The collision-free parameter domain in the challenge is preconnected.
+@isnad1 id=isprecon.1h1v.s5.732ce50e5642 from=translated src=- shape=aacdf4ed vocab=df7c05b3
+-/
 theorem isPreconnected_parameterDomain {δ : ℝ} (hδ : 0 < δ) :
     IsPreconnected (parameterDomain δ) := by
   rw [← parameterCoordinateHomeomorph_preimage_straightenedParameterDomain δ]
@@ -165,7 +173,9 @@ def massZeroCollisionFree : Set PhaseSpace :=
   {state | (0, state) ∈ collisionFree}
 
 /-- The mass-zero collision-free phase domain is a twice-punctured position plane times the
-unrestricted momentum plane. -/
+unrestricted momentum plane.
+@isnad1 id=eq.0h0v.s8.d7a679e2337a from=translated src=- shape=ba1d6541 vocab=af97368e
+-/
 lemma phaseCoordinateHomeomorph_preimage_primaryConfigurations :
     phaseCoordinateHomeomorph ⁻¹' (primaryConfigurationsᶜ ×ˢ Set.univ) =
       massZeroCollisionFree := by
@@ -216,13 +226,18 @@ lemma phaseCoordinateHomeomorph_preimage_primaryConfigurations :
         simpa using this
       simp [firstPrimaryDistanceSq, hx, hy]
 
-/-- The full mass-zero collision-free phase domain is path-connected. -/
+/-- The full mass-zero collision-free phase domain is path-connected.
+@isnad1 id=ispathco.0h0v.s4.32a7478f4cad from=translated src=- shape=25b03439 vocab=b66eefb8
+-/
 theorem isPathConnected_massZeroCollisionFree :
     IsPathConnected massZeroCollisionFree := by
   rw [← phaseCoordinateHomeomorph_preimage_primaryConfigurations]
   apply phaseCoordinateHomeomorph.isPathConnected_preimage.mpr
   exact isPathConnected_primaryConfigurations_compl.prod isPathConnected_univ
 
+/--
+@isnad1 id=isprecon.0h0v.s4.3e4a70610941 from=translated src=- shape=25b03439 vocab=d5bbba1c
+-/
 theorem isPreconnected_massZeroCollisionFree :
     IsPreconnected massZeroCollisionFree :=
   isPathConnected_massZeroCollisionFree.isConnected.isPreconnected

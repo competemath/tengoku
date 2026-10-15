@@ -62,10 +62,22 @@ def subst (σ : Var → Formula) : QFormula Var → Formula
   | .and ι1 ι2 => ι1.subst σ ⋀ ι2.subst σ
   | .boxes as ι => ⌈⌈as⌉⌉(ι.subst σ)
 
+/--
+@isnad1 id=eq.0h3v.s4.fe79635fe7f4 from=translated src=- shape=e985dadc vocab=975c1de7
+-/
 @[simp] lemma subst_fma {σ : Var → Formula} {ψ} : (fma ψ : QFormula Var).subst σ = ψ := rfl
+/--
+@isnad1 id=eq.0h3v.s4.aad0877df5e4 from=translated src=- shape=efea380b vocab=3334801a
+-/
 @[simp] lemma subst_var {σ : Var → Formula} {q} : (var q : QFormula Var).subst σ = σ q := rfl
+/--
+@isnad1 id=eq.0h4v.s4.b95b3709fab2 from=translated src=- shape=8b980a24 vocab=daba7f9d
+-/
 @[simp] lemma subst_and {σ : Var → Formula} {ι1 ι2 : QFormula Var} :
     (ι1.and ι2).subst σ = ι1.subst σ ⋀ ι2.subst σ := rfl
+/--
+@isnad1 id=eq.0h4v.s4.41bb6577b6c4 from=translated src=- shape=aeeae88f vocab=e0410874
+-/
 @[simp] lemma subst_boxes {σ : Var → Formula} {as} {ι : QFormula Var} :
     (ι.boxes as).subst σ = ⌈⌈as⌉⌉(ι.subst σ) := rfl
 
@@ -91,10 +103,18 @@ def conj : List (QFormula Var) → QFormula Var
   | [ι] => ι
   | ι :: rest => .and ι (conj rest)
 
+/--
+@isnad1 id=eq.0h1v.s3.9d480a0a6880 from=translated src=- shape=7fcce004 vocab=151f67e1
+-/
 @[simp] lemma conj_nil : conj ([] : List (QFormula Var)) = .fma ⊤ := rfl
+/--
+@isnad1 id=eq.0h2v.s4.da82ce829895 from=translated src=- shape=ac1c3fe7 vocab=dafb8ec8
+-/
 @[simp] lemma conj_singleton {ι : QFormula Var} : conj [ι] = ι := rfl
 
-/-- Substitution commutes with big conjunction. -/
+/-- Substitution commutes with big conjunction.
+@isnad1 id=eq.0h3v.s4.5ae7d0053a1a from=translated src=- shape=475659bd vocab=86b29f0c
+-/
 lemma subst_conj (σ : Var → Formula) :
     ∀ L : List (QFormula Var), (conj L).subst σ = con (L.map (subst σ))
   | [] => rfl
@@ -128,6 +148,9 @@ def prefixBoxes (as : List Program) : QSimple Var → QSimple Var
   | .fma ψ => .fma (⌈⌈as⌉⌉ψ)
   | .boxVar bs q => .boxVar (as ++ bs) q
 
+/--
+@isnad1 id=eq.0h4v.s4.e4ccfd7cd3a2 from=translated src=- shape=73c628e7 vocab=fbaae56f
+-/
 @[simp] lemma toQ_prefixBoxes (as : List Program) (s : QSimple Var) (σ : Var → Formula) :
     (prefixBoxes as s).toQ.subst σ = ⌈⌈as⌉⌉(s.toQ.subst σ) := by
   cases s with
@@ -162,7 +185,9 @@ def Spl : QFormula Var → List (QSimple Var)
   | .and ι1 ι2 => ι1.Spl ++ ι2.Spl
   | .boxes as ι => ι.Spl.map (QSimple.prefixBoxes as)
 
-/-- `Spl(ι)` is never empty. -/
+/-- `Spl(ι)` is never empty.
+@isnad1 id=ne.0h2v.s3.e0b04e6b0c14 from=translated src=- shape=3d1b2d31 vocab=b5d98eb9
+-/
 lemma Spl_ne_nil (ι : QFormula Var) : ι.Spl ≠ [] := by
   induction ι with
   | fma => simp [Spl]
@@ -176,9 +201,14 @@ def nf (ι : QFormula Var) : QFormula Var := conj (ι.Spl.map QSimple.toQ)
 /-- Being *in normal form*: a conjunction of simple Q-formulas. -/
 def IsNormalForm (ι : QFormula Var) : Prop := ∃ L : List (QSimple Var), ι = conj (L.map QSimple.toQ)
 
+/--
+@isnad1 id=isnormal.0h2v.s3.c02a5e2299fb from=translated src=- shape=41820d97 vocab=8e6ac71d
+-/
 lemma isNormalForm_nf (ι : QFormula Var) : IsNormalForm ι.nf := ⟨ι.Spl, rfl⟩
 
-/-- Evaluating a normal form means evaluating all its simple conjuncts. -/
+/-- Evaluating a normal form means evaluating all its simple conjuncts.
+@isnad1 id=iff.0h6v.s5.155ab95c11b0 from=translated src=- shape=bb53fdea vocab=d0a8fb46
+-/
 lemma eval_nf_iff {W} {M : KripkeModel W} {w : W} (σ : Var → Formula) (ι : QFormula Var) :
     evaluate M w (ι.nf.subst σ) ↔ ∀ s ∈ ι.Spl, evaluate M w (s.toQ.subst σ) := by
   rw [nf, subst_conj, conEval]
@@ -189,7 +219,9 @@ lemma eval_nf_iff {W} {M : KripkeModel W} {w : W} (σ : Var → Formula) (ι : Q
 
 /-! ## Fact 9.17 -/
 
-/-- Fact 9.17, first part: every Q-formula is equivalent to its normal form. -/
+/-- Fact 9.17, first part: every Q-formula is equivalent to its normal form.
+@isnad1 id=iff.0h6v.s5.a295421f934c from=translated src=- shape=e7290259 vocab=fea1444f
+-/
 theorem eval_nf {W} {M : KripkeModel W} {w : W} (σ : Var → Formula) (ι : QFormula Var) :
     evaluate M w (ι.nf.subst σ) ↔ evaluate M w (ι.subst σ) := by
   induction ι generalizing w with
@@ -221,12 +253,16 @@ theorem eval_nf {W} {M : KripkeModel W} {w : W} (σ : Var → Formula) (ι : QFo
         rw [← IH (w := v), eval_nf_iff] at hv'
         exact hv' s hs
 
-/-- The vocabulary of a simple Q-formula prefixed with boxes. -/
+/-- The vocabulary of a simple Q-formula prefixed with boxes.
+@isnad1 id=eq.0h4v.s5.b8cc860b49ef from=translated src=- shape=bc004b13 vocab=6e7aefcf
+-/
 lemma voc_toQ_prefixBoxes (as : List Program) (s : QSimple Var) (σ : Var → Formula) :
     ((QSimple.prefixBoxes as s).toQ.subst σ).voc = as.pdlPvoc ∪ (s.toQ.subst σ).voc := by
   rw [QSimple.toQ_prefixBoxes, Formula.voc_boxes]
 
-/-- The vocabulary of a normal form is the union of the vocabularies of its conjuncts. -/
+/-- The vocabulary of a normal form is the union of the vocabularies of its conjuncts.
+@isnad1 id=iff.0h4v.s6.7e1fbd46fed3 from=translated src=- shape=504b4d94 vocab=230b60e3
+-/
 lemma mem_voc_nf {n} (σ : Var → Formula) (ι : QFormula Var) :
     n ∈ (ι.nf.subst σ).voc ↔ ∃ s ∈ ι.Spl, n ∈ (s.toQ.subst σ).voc := by
   rw [nf, subst_conj, in_voc_con]
@@ -235,7 +271,9 @@ lemma mem_voc_nf {n} (σ : Var → Formula) (ι : QFormula Var) :
   · rintro ⟨_, ⟨s, hs, rfl⟩, hn⟩; exact ⟨s, hs, hn⟩
   · rintro ⟨s, hs, hn⟩; exact ⟨_, ⟨s, hs, rfl⟩, hn⟩
 
-/-- Fact 9.17, second part: a Q-formula and its normal form have the same vocabulary. -/
+/-- Fact 9.17, second part: a Q-formula and its normal form have the same vocabulary.
+@isnad1 id=eq.0h3v.s4.9e51bb6eb05e from=translated src=- shape=e55c7f6b vocab=6e8c15f0
+-/
 theorem voc_nf (σ : Var → Formula) (ι : QFormula Var) :
     (ι.nf.subst σ).voc = (ι.subst σ).voc := by
   apply Finset.ext
@@ -286,7 +324,9 @@ formula `[(⋃ᵢ αᵢ)*](⋀ⱼ [βⱼ]q_{zⱼ} ∧ ψ)` of the companion case
 def gfp [DecidableEq Var] (x : Var) (ι : QFormula Var) : QFormula Var :=
   .boxes [∗ (Program.unions (ι.loopProgs x))] (ι.dropVar x)
 
-/-- The internal variable `x` no longer occurs in `gfp x ι`. -/
+/-- The internal variable `x` no longer occurs in `gfp x ι`.
+@isnad1 id=not.0h3v.s4.e454d41d739f from=translated src=- shape=10cf7878 vocab=2ae3fe7f
+-/
 lemma not_mem_vars_gfp [DecidableEq Var] (x : Var) (ι : QFormula Var) :
     x ∉ (ι.gfp x).vars := by
   have main : ∀ L : List (QSimple Var), (∀ s ∈ L, ¬ s.mentions x) →

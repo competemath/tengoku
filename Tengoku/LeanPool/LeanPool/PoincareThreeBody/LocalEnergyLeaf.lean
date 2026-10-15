@@ -27,6 +27,9 @@ open Set
 noncomputable def delaunayAnchorFirstAction : ℝ :=
   1 / Real.sqrt 3
 
+/--
+@isnad1 id=eq.0h0v.s4.a191ee7d07dc from=translated src=- shape=80ecc83a vocab=3fdb1623
+-/
 theorem energyLeafAction_anchor :
     energyLeafAction (-2) delaunayAnchorFirstAction = delaunayAnchorAction := by
   funext coordinate
@@ -42,7 +45,9 @@ theorem energyLeafAction_anchor :
     norm_num
 
 /-- The straight energy-leaf action is jointly analytic in energy and first action away from
-`L = 0`. -/
+`L = 0`.
+@isnad1 id=analytic.1h2v.s7.0bfa889a4935 from=translated src=- shape=5be8f7ab vocab=a78a14a1
+-/
 theorem analyticAt_energyLeafAction_parameters
     {energy firstAction : ℝ} (hfirstAction : firstAction ≠ 0) :
     AnalyticAt ℝ
@@ -64,7 +69,9 @@ theorem analyticAt_energyLeafAction_parameters
     exact analyticAt_const.div hdenominator hdenominatorNe |>.sub analyticAt_fst
 
 /-- On the interior part of the anchor chart, angle independence identifies the phase value with
-the action-section representative. -/
+the action-section representative.
+@isnad1 id=eq.5h3v.s7.b3522393478a from=translated src=- shape=72b048b2 vocab=e68da5d2
+-/
 theorem IsFirstIntegralFamily.delaunayAnchorChart_eq_leadingActionCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -93,7 +100,9 @@ theorem IsFirstIntegralFamily.delaunayAnchorChart_eq_leadingActionCoefficient
   exact hvalue.symm
 
 /-- The mass-zero Hamiltonian in the anchor chart is the Delaunay Hamiltonian of its action
-parameters. -/
+parameters.
+@isnad1 id=eq.1h1v.s5.59bc5f02eab2 from=translated src=- shape=8b474e53 vocab=a4e46070
+-/
 theorem hamiltonian_zero_delaunayAnchorChart
     {parameters : DelaunayAnchorParameters}
     (haction : parameters.1 ∈ ProgradeEllipticActions) :

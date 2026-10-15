@@ -20,6 +20,9 @@ public section
 
 namespace NavierStokesAndEuler
 
+/--
+@isnad1 id=iff.0h1v.s4.f4e3aa245435 from=translated src=- shape=9a4ae0f5 vocab=a197a3df
+-/
 theorem le_infinity_iff_ne_top (n : WithTop ℕ∞) :
     n ≤ (⊤ : ℕ∞) ↔ n ≠ ⊤ := by
   cases n with

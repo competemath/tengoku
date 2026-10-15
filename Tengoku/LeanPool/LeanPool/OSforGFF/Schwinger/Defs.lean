@@ -62,7 +62,9 @@ def SchwingerFunction₂ (dμ_config : ProbabilityMeasure FieldConfiguration)
   (f g : OSforGFF.TestFunction) : ℝ :=
   SchwingerFunction dμ_config 2 ![f, g]
 
-/-- The Schwinger function equals the GJ mean for n=1 -/
+/-- The Schwinger function equals the GJ mean for n=1
+@isnad1 id=eq.0h2v.s8.258014a8bac0 from=translated src=- shape=5f1f646b vocab=4aeda908
+-/
 lemma schwinger_eq_mean (dμ_config : ProbabilityMeasure FieldConfiguration)
     (f : OSforGFF.TestFunction) :
   SchwingerFunction₁ dμ_config f = GJMean dμ_config f := by
@@ -70,7 +72,9 @@ lemma schwinger_eq_mean (dμ_config : ProbabilityMeasure FieldConfiguration)
   classical
   simp
 
-/-- The Schwinger function equals the direct covariance integral for n=2 -/
+/-- The Schwinger function equals the direct covariance integral for n=2
+@isnad1 id=eq.0h3v.s10.0cd7261c537f from=translated src=- shape=5a82da33 vocab=5e837b54
+-/
 lemma schwinger_eq_covariance (dμ_config : ProbabilityMeasure FieldConfiguration) (f g :
   OSforGFF.TestFunction) :
   SchwingerFunction₂ dμ_config f g = ∫ ω, (distributionPairing ω f) * (distributionPairing ω g)
@@ -79,7 +83,9 @@ lemma schwinger_eq_covariance (dμ_config : ProbabilityMeasure FieldConfiguratio
   classical
   simp [Fin.prod_univ_two]
 
-/-- For centered measures (zero mean), the 1-point function vanishes -/
+/-- For centered measures (zero mean), the 1-point function vanishes
+@isnad1 id=eq.1h2v.s8.36b2379f3cad from=translated src=- shape=99452dfa vocab=4aeda908
+-/
 lemma schwinger_vanishes_centered (dμ_config : ProbabilityMeasure FieldConfiguration)
   (h_centered : ∀ f : OSforGFF.TestFunction, GJMean dμ_config f = 0) (f : OSforGFF.TestFunction) :
   SchwingerFunction₁ dμ_config f = 0 := by
@@ -112,6 +118,7 @@ def CovarianceBilinear (dμ_config : ProbabilityMeasure FieldConfiguration) : Pr
 
 /-- If the product pairing is integrable for all test functions, then the complex
     2-point Schwinger function is ℂ-bilinear in both arguments.
+@isnad1 id=covarian.1h1v.s10.dd5b00a50fd3 from=translated src=- shape=13f2b7ad vocab=4b42144d
 -/
 lemma CovarianceBilinear_of_integrable
   (dμ_config : ProbabilityMeasure FieldConfiguration)

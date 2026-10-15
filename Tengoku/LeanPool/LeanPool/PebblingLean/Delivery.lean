@@ -43,6 +43,9 @@ def append {u v w : V} : G.Walk u v → G.Walk v w → G.Walk u w
   | nil _, tail => tail
   | cons h headTail, tail => cons h (append headTail tail)
 
+/--
+@isnad1 id=eq.0h7v.s5.6edc5caf2a5d from=translated src=- shape=17b5afc2 vocab=3a995835
+-/
 @[simp]
 theorem length_append {u v w : V} (p : G.Walk u v) (q : G.Walk v w) :
     (Graph.Walk.append G p q).length = p.length + q.length := by
@@ -57,6 +60,9 @@ def reverse {u v : V} : G.Walk u v → G.Walk v u
   | nil u => nil u
   | cons h tail => Graph.Walk.append G (reverse tail) (cons (G.symm h) (nil _))
 
+/--
+@isnad1 id=eq.0h5v.s5.8042dffd77a0 from=translated src=- shape=9c1282f7 vocab=cb8aab96
+-/
 @[simp]
 theorem length_reverse {u v : V} (p : G.Walk u v) :
     p.reverse.length = p.length := by
@@ -78,16 +84,25 @@ variable {V : Type u}
 def single [DecidableEq V] (v : V) (k : ℕ) : Pebbling V :=
   fun x => if x = v then k else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.69cd1fe972a8 from=translated src=- shape=35cf4804 vocab=f6c6523e
+-/
 @[simp]
 theorem single_apply_self [DecidableEq V] (v : V) (k : ℕ) :
     single v k v = k := by
   simp [single]
 
+/--
+@isnad1 id=eq.1h4v.s4.7abf56d4aad4 from=translated src=- shape=70e3b927 vocab=f6c6523e
+-/
 @[simp]
 theorem single_apply_ne [DecidableEq V] {u v : V} (k : ℕ) (h : u ≠ v) :
     single v k u = 0 := by
   simp [single, h]
 
+/--
+@isnad1 id=eq.0h3v.s4.bb1f106bea41 from=translated src=- shape=259625eb vocab=d7b4288a
+-/
 @[simp]
 theorem size_single [Fintype V] [DecidableEq V] (v : V) (k : ℕ) :
     size (single v k) = k := by
@@ -100,22 +115,34 @@ vertices, so they are distinct. -/
 def twoPoint [DecidableEq V] (u v : V) (ku kv : ℕ) : Pebbling V :=
   fun x => if x = u then ku else if x = v then kv else 0
 
+/--
+@isnad1 id=eq.0h5v.s4.eba6707239a3 from=translated src=- shape=f1b4ee2b vocab=284733de
+-/
 @[simp]
 theorem twoPoint_apply_left [DecidableEq V] (u v : V) (ku kv : ℕ) :
     twoPoint u v ku kv u = ku := by
   simp [twoPoint]
 
+/--
+@isnad1 id=eq.1h5v.s4.2068c7c14559 from=translated src=- shape=fe4cdde2 vocab=284733de
+-/
 @[simp]
 theorem twoPoint_apply_right [DecidableEq V] {u v : V} (ku kv : ℕ) (hvu : v ≠ u) :
     twoPoint u v ku kv v = kv := by
   simp [twoPoint, hvu]
 
+/--
+@isnad1 id=eq.2h6v.s5.f75455488bd2 from=translated src=- shape=8203724e vocab=284733de
+-/
 @[simp]
 theorem twoPoint_apply_ne [DecidableEq V] {u v x : V} (ku kv : ℕ)
     (hxu : x ≠ u) (hxv : x ≠ v) :
     twoPoint u v ku kv x = 0 := by
   simp [twoPoint, hxu, hxv]
 
+/--
+@isnad1 id=eq.1h4v.s5.06555ab29789 from=translated src=- shape=2d4ba172 vocab=d4fd4618
+-/
 theorem single_eq_twoPoint_right_zero [DecidableEq V] {u v : V} (k : ℕ) (huv : u ≠ v) :
     single u k = twoPoint u v k 0 := by
   funext x
@@ -128,6 +155,9 @@ theorem single_eq_twoPoint_right_zero [DecidableEq V] {u v : V} (k : ℕ) (huv :
       simp [single, twoPoint, hvu]
     · simp [single, twoPoint, hxu, hxv]
 
+/--
+@isnad1 id=eq.1h4v.s5.a883983b2aff from=translated src=- shape=a8bde586 vocab=d4fd4618
+-/
 theorem single_eq_twoPoint_left_zero [DecidableEq V] {u v : V} (k : ℕ) (huv : u ≠ v) :
     single v k = twoPoint u v 0 k := by
   funext x
@@ -141,7 +171,9 @@ theorem single_eq_twoPoint_left_zero [DecidableEq V] {u v : V} (k : ℕ) (huv : 
     · simp [single, twoPoint, hxu, hxv]
 
 /-- One edge move transfers one pebble from the left support vertex to the
-right support vertex, consuming two pebbles on the left. -/
+right support vertex, consuming two pebbles on the left.
+@isnad1 id=move.1h6v.s6.d6a49063f58f from=translated src=- shape=49e9ca48 vocab=6647169a
+-/
 theorem twoPoint_edge_move [DecidableEq V] {G : Graph V} {u v : V}
     (huv_adj : G.Adj u v) (k a : ℕ) :
     Move G (twoPoint u v (2 * (k + 1)) a) (twoPoint u v (2 * k) (a + 1)) := by
@@ -163,7 +195,9 @@ theorem twoPoint_edge_move [DecidableEq V] {G : Graph V} {u v : V}
       · simp [moveDistribution, twoPoint, hxu, hxv]
 
 /-- Repeating the same edge move sends `k` pebbles across an edge from a pile
-of size `2*k`, preserving any accumulator already present at the destination. -/
+of size `2*k`, preserving any accumulator already present at the destination.
+@isnad1 id=reaches.1h6v.s6.ae2dc78345d0 from=translated src=- shape=7dc943ef vocab=9c10d0b5
+-/
 theorem reaches_twoPoint_edge [DecidableEq V] {G : Graph V} {u v : V}
     (huv_adj : G.Adj u v) (k a : ℕ) :
     Reaches G (twoPoint u v (2 * k) a) (twoPoint u v 0 (a + k)) := by
@@ -178,7 +212,9 @@ theorem reaches_twoPoint_edge [DecidableEq V] {G : Graph V} {u v : V}
       exact Relation.ReflTransGen.head hmove htail
 
 /-- A pile of `2*k` pebbles at one endpoint of an edge can deliver `k` pebbles
-to the other endpoint. -/
+to the other endpoint.
+@isnad1 id=reaches.1h5v.s5.99bfe6f0d7ce from=translated src=- shape=d377f824 vocab=3dcf2e3b
+-/
 theorem reaches_single_edge [DecidableEq V] {G : Graph V} {u v : V}
     (huv_adj : G.Adj u v) (k : ℕ) :
     Reaches G (single u (2 * k)) (single v k) := by
@@ -194,7 +230,9 @@ theorem reaches_single_edge [DecidableEq V] {G : Graph V} {u v : V}
   rw [hstart, hfinish]
   simpa [Nat.zero_add] using hreach
 
-/-- Direct delivery along a walk. -/
+/-- Direct delivery along a walk.
+@isnad1 id=canreach.0h6v.s5.8ecd461e7970 from=translated src=- shape=2d50b414 vocab=1af28af1
+-/
 theorem canReachAtLeast_single_of_walk [DecidableEq V] {G : Graph V} {u target : V}
     (walk : G.Walk u target) (T : ℕ) :
     CanReachAtLeast G (single u (T * 2 ^ walk.length)) target T := by
@@ -218,7 +256,9 @@ theorem canReachAtLeast_single_of_walk [DecidableEq V] {G : Graph V} {u target :
         simpa [hpow, Reaches] using Relation.ReflTransGen.trans hfirst htail, htarget⟩
 
 /-- Direct delivery is monotone in the initial distribution: extra pebbles
-away from the chosen starting pile cannot hurt. -/
+away from the chosen starting pile cannot hurt.
+@isnad1 id=canreach.1h7v.s6.e3f6c986a01b from=translated src=- shape=9adb7caa vocab=720e993f
+-/
 theorem canReachAtLeast_of_walk_of_single_dominated [DecidableEq V] {G : Graph V}
     {D : Pebbling V} {u target : V} (walk : G.Walk u target) {T : ℕ}
     (hdom : Dominates D (single u (T * 2 ^ walk.length))) :
@@ -226,7 +266,9 @@ theorem canReachAtLeast_of_walk_of_single_dominated [DecidableEq V] {G : Graph V
   canReachAtLeast_of_dominates (canReachAtLeast_single_of_walk walk T) hdom
 
 /-- Moving from `D` to `E` can be done with an untouched extra distribution
-added everywhere. -/
+added everywhere.
+@isnad1 id=move.1h5v.s6.e9f127021e8a from=translated src=- shape=6330ece1 vocab=bc8269ec
+-/
 theorem move_add_right [DecidableEq V] {G : Graph V} {D E A : Pebbling V}
     (hmove : Move G D E) :
     Move G (D + A) (E + A) := by
@@ -255,7 +297,9 @@ theorem move_add_right [DecidableEq V] {G : Graph V} {D E A : Pebbling V}
   exact hD.trans (Nat.le_add_right (D u) (A u))
 
 /-- A whole pebbling sequence can be replayed with an untouched extra
-distribution added everywhere. -/
+distribution added everywhere.
+@isnad1 id=reaches.1h5v.s6.8f11058a2fe6 from=translated src=- shape=6330ece1 vocab=57e31394
+-/
 theorem reaches_add_right [DecidableEq V] {G : Graph V} {D E A : Pebbling V}
     (hreach : Reaches G D E) :
     Reaches G (D + A) (E + A) := by
@@ -266,7 +310,9 @@ theorem reaches_add_right [DecidableEq V] {G : Graph V} {D E A : Pebbling V}
     exact Relation.ReflTransGen.head (move_add_right hmove) ih
 
 /-- If two distributions can independently deliver `T₁` and `T₂` pebbles to
-the same target, their sum can deliver `T₁ + T₂`. -/
+the same target, their sum can deliver `T₁ + T₂`.
+@isnad1 id=canreach.2h7v.s6.08603246c48c from=translated src=- shape=5615599c vocab=6f3362a7
+-/
 theorem canReachAtLeast_add [DecidableEq V] {G : Graph V} {D₁ D₂ : Pebbling V}
     {target : V} {T₁ T₂ : ℕ}
     (h₁ : CanReachAtLeast G D₁ target T₁)

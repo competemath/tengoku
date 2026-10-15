@@ -30,6 +30,9 @@ noncomputable def codifferentClass : ClassGroup (𝓞 K) :=
       (1 : (FractionalIdeal (𝓞 K)⁰ K)ˣ))
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s11.b3e56556fad0 from=translated src=- shape=980236fa vocab=0b707459
+-/
 theorem mk_traceDualIdealUnit
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ClassGroup.mk K (traceDualIdealUnit K I) =
@@ -70,6 +73,9 @@ noncomputable def traceDualInverseClassEquiv :
     ((traceDualClassEquiv K).trans (classGroupInvEquiv K))
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s8.42a415ac5a49 from=translated src=- shape=51a29e8e vocab=cb569612
+-/
 @[simp]
 theorem traceDualInverseClassEquiv_apply
     (C : ClassGroup (𝓞 K)) :
@@ -78,6 +84,9 @@ theorem traceDualInverseClassEquiv_apply
   rfl
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s11.ec768cdd3ccf from=translated src=- shape=af8dd1ea vocab=0c8a92b5
+-/
 theorem mk_traceDualIdealUnit_eq_traceDualClassEquiv
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ClassGroup.mk K (traceDualIdealUnit K I) =

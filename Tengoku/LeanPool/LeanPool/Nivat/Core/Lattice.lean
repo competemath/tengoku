@@ -56,7 +56,9 @@ coordinate change as the lattice configurations.
 namespace Nivat
 
 /-- An additive lattice map is determined by its two basis vectors, giving the primitive-direction
-coordinate formula used in Section 1.1. -/
+coordinate formula used in Section 1.1.
+@isnad1 id=eq.0h2v.s7.b3c80f025978 from=translated src=- shape=71eb411c vocab=67d3cb75
+-/
 theorem lattice_addEquiv_coordinates (e : Lattice ≃+ Lattice) (z : Lattice) :
     e z = z.1 • e (1, 0) + z.2 • e (0, 1) := by
   have hz : z = z.1 • ((1 : ℤ), (0 : ℤ)) + z.2 • ((0 : ℤ), (1 : ℤ)) := by
@@ -94,7 +96,9 @@ def bezoutLatticeEquiv (x y a b : ℤ) (h : x * a + y * b = 1) : Lattice ≃+ La
 
 /-- Every nonzero integer direction is a positive multiple of the first vector of a lattice basis.
 This is the primitive-direction normalization of Section 1.1, used in Proposition 3.5 and
-Theorem 5.1. -/
+Theorem 5.1.
+@isnad1 id=ex.1h1v.s7.7959bebf6df9 from=translated src=- shape=a41ac446 vocab=8a038dd7
+-/
 theorem exists_lattice_basis_for_nonzero (h : Lattice) (hh : h ≠ 0) :
     ∃ q : ℕ, 0 < q ∧ ∃ e : Lattice ≃+ Lattice, e ((q : ℤ), 0) = h := by
   have hg : 0 < Int.gcd h.1 h.2 := by
@@ -124,7 +128,9 @@ def latticeEquivRatLinear (e : Lattice ≃+ Lattice) : (ℚ × ℚ) →ₗ[ℚ] 
   map_smul' r z := by apply Prod.ext <;> dsimp <;> ring
 
 /-- The rational linear extension agrees with its lattice equivalence at every integer site. This
-is the compatibility needed by the convex-window coordinate change in Theorem 5.1. -/
+is the compatibility needed by the convex-window coordinate change in Theorem 5.1.
+@isnad1 id=eq.0h2v.s7.e2a270a29017 from=translated src=- shape=0cbe4c8d vocab=d05ff1b5
+-/
 theorem latticeEquivRatLinear_compatible (e : Lattice ≃+ Lattice) (z : Lattice) :
     latticeRatCast (e z) = latticeEquivRatLinear e (latticeRatCast z) := by
   rw [lattice_addEquiv_coordinates]
@@ -132,7 +138,9 @@ theorem latticeEquivRatLinear_compatible (e : Lattice ≃+ Lattice) (z : Lattice
     simp only [Int.cast_add, Int.cast_mul] <;> ring
 
 /-- Two nonparallel directions have a nonzero transverse coordinate after the first is made
-horizontal. This is the coordinate normalization in the nonparallel case of Theorem 5.1. -/
+horizontal. This is the coordinate normalization in the nonparallel case of Theorem 5.1.
+@isnad1 id=ne.2h4v.s7.c26ff4092101 from=translated src=- shape=2fd65070 vocab=43c58dbc
+-/
 theorem transverse_coordinate_ne_zero (e : Lattice ≃+ Lattice) (q : ℕ)
     {h t : Lattice} (he : e ((q : ℤ), 0) = h)
     (hnonparallel : h.1 * t.2 ≠ h.2 * t.1) : (e.symm t).2 ≠ 0 := by

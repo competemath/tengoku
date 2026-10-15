@@ -32,7 +32,9 @@ variable {E : Type*}
 -- ════════════════════════════════════════════════════════════════════════════
 
 omit [FiniteDimensional ℝ E] in
-/-- Under μ-PŁ at a local minimum, μ · H(v,v) ≤ ‖Hv‖² for all v. -/
+/-- Under μ-PŁ at a local minimum, μ · H(v,v) ≤ ‖Hv‖² for all v.
+@isnad1 id=le.4h5v.s10.5bc8d8b9242f from=translated src=- shape=eaa2c306 vocab=3acb5821
+-/
 lemma muPL_norm_sq_bound (f : E → ℝ) (μ : ℝ) (x₀ v : E)
     (hμ : 0 < μ) (hf : ContDiffAt ℝ 2 f x₀) (hmin : IsLocalMin f x₀)
     (hPL : MuPL f μ x₀) :
@@ -190,7 +192,9 @@ lemma muPL_norm_sq_bound (f : E → ℝ) (μ : ℝ) (x₀ v : E)
 -- ════════════════════════════════════════════════════════════════════════════
 
 /-- Main theorem: Under μ-PŁ at a local minimizer, the Hessian is μ-coercive
-    on the orthogonal complement of its kernel. -/
+    on the orthogonal complement of its kernel.
+@isnad1 id=le.5h5v.s9.59f75f28c760 from=translated src=- shape=cea77fb5 vocab=5f8cd335
+-/
 theorem hessian_coercive_on_orthogonal_of_MuPL_impl (f : E → ℝ) (μ : ℝ) (x₀ : E)
     (hμ : 0 < μ) (hf : ContDiffAt ℝ 2 f x₀) (hmin : IsLocalMin f x₀)
     (hPL : MuPL f μ x₀) :

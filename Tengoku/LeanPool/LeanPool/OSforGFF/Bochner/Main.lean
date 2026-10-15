@@ -119,6 +119,7 @@ omit [FiniteDimensional ℝ V] in
 
     The key steps are: (1) swap finite sum and integral, (2) recognize
     the integrand as a norm squared.
+@isnad1 id=ispositi.0h2v.s5.29990ec687b1 from=translated src=- shape=b8d28b70 vocab=59491a4b
 -/
 lemma isPositiveDefinite_charFun (μ : Measure V) [IsFiniteMeasure μ] :
     IsPositiveDefinite (fun t : V => charFun μ t) where
@@ -209,6 +210,7 @@ omit [FiniteDimensional ℝ V] in
     finite measure is PD. This is a "continuous Schur product" — the same
     algebraic trick as `isPositiveDefinite_charFun` but with modified
     coefficients d_k(x) = c_k · exp(-i⟨x, t_k⟩) absorbed into the PD condition.
+@isnad1 id=ispositi.1h3v.s6.0c050eca74ee from=translated src=- shape=6f407512 vocab=60d509d5
 -/
 lemma isPositiveDefinite_mul_charFun {φ : V → ℂ} (hpd : IsPositiveDefinite φ)
     (μ : Measure V) [IsFiniteMeasure μ] :
@@ -380,6 +382,7 @@ private lemma gaussian_eq_charFun (ε : ℝ) (hε : 0 < ε) :
 
     Proved by showing it is the characteristic function of a centered
     Gaussian measure with variance 1/(2ε).
+@isnad1 id=ispositi.1h2v.s6.58af13704f01 from=translated src=- shape=3894a5b5 vocab=ac00fea2
 -/
 lemma isPositiveDefinite_gaussian (ε : ℝ) (hε : 0 < ε) :
     IsPositiveDefinite (fun x : V => cexp (-(ε : ℂ) * ↑(‖x‖ ^ 2))) := by
@@ -408,6 +411,7 @@ noncomputable def gaussianRegularize (φ : V → ℂ) (ε : ℝ) : V → ℂ :=
       = ∫ g(ξ) [∑ᵢⱼ (cᵢ e^{2πi⟨xᵢ,ξ⟩})* (cⱼ e^{2πi⟨xⱼ,ξ⟩}) φ(xᵢ-xⱼ)] dξ
 
     The inner sum has .re ≥ 0 by PD of φ, and g ≥ 0, so the integral ≥ 0.
+@isnad1 id=ispositi.2h3v.s6.76f5ced85029 from=translated src=- shape=1fc5a9eb vocab=c4bedc94
 -/
 lemma gaussianRegularize_pd (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     (ε : ℝ) (hε : 0 < ε) :
@@ -429,7 +433,9 @@ lemma gaussianRegularize_pd (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     simp_rw [heq]
     exact hmul.nonneg m x c
 
-/-- φ_ε is integrable (φ is bounded by φ(0), times Gaussian decay). -/
+/-- φ_ε is integrable (φ is bounded by φ(0), times Gaussian decay).
+@isnad1 id=integrab.3h3v.s7.014011130499 from=translated src=- shape=aa0b984d vocab=71fd0424
+-/
 lemma gaussianRegularize_integrable (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     (hcont : Continuous φ) (ε : ℝ) (hε : 0 < ε) :
     Integrable (gaussianRegularize φ ε) := by
@@ -448,13 +454,17 @@ lemma gaussianRegularize_integrable (φ : V → ℂ) (hpd : IsPositiveDefinite �
   exact mul_le_mul_of_nonneg_right (hpd.bounded_by_zero x) (norm_nonneg _)
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
-/-- φ_ε(0) = φ(0). -/
+/-- φ_ε(0) = φ(0).
+@isnad1 id=eq.0h3v.s5.71541b20700b from=translated src=- shape=6f71380d vocab=d3d5f72b
+-/
 lemma gaussianRegularize_zero (φ : V → ℂ) (ε : ℝ) :
     gaussianRegularize φ ε 0 = φ 0 := by
   simp [gaussianRegularize, norm_zero]
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
-/-- φ_ε → φ pointwise as ε → 0⁺. -/
+/-- φ_ε → φ pointwise as ε → 0⁺.
+@isnad1 id=tendsto.0h3v.s5.87d0d30b0c85 from=translated src=- shape=0820d667 vocab=34b90d12
+-/
 lemma gaussianRegularize_tendsto (φ : V → ℂ) (x : V) :
     Tendsto (fun ε => gaussianRegularize φ ε x) (𝓝[>] 0) (𝓝 (φ x)) := by
   simp only [gaussianRegularize]
@@ -485,6 +495,7 @@ As the lattice refines and grows, S_N → 𝓕ψ(ξ), giving Re(𝓕ψ(ξ)) ≥ 
 
     Proved in `Bochner.FejerPD` via Fejér-weighted PD sums.
     Refs: Rudin, Theorem 1.4.3; Folland, §4.2, Lemma 4.8.
+@isnad1 id=le.3h3v.s7.214c30bccebe from=translated src=- shape=ae3be308 vocab=b5269ae2
 -/
 theorem pd_l1_fourier_re_nonneg_ax
     (V : Type*) [NormedAddCommGroup V] [InnerProductSpace ℝ V]
@@ -495,6 +506,7 @@ theorem pd_l1_fourier_re_nonneg_ax
 
 /-- The real part of the Fourier transform of an L¹ PD function is nonneg.
     Ref: Folland, *A Course in Abstract Harmonic Analysis*, §4.2, Lemma 4.8.
+@isnad1 id=le.3h3v.s7.214c30bccebe from=translated src=- shape=ae3be308 vocab=b5269ae2
 -/
 theorem pd_l1_fourier_re_nonneg (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     (hint : Integrable φ) (hcont : Continuous φ) (ξ : V) : 0 ≤ (𝓕 φ ξ).re :=
@@ -503,6 +515,7 @@ theorem pd_l1_fourier_re_nonneg (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
 /-- An L¹ positive-definite function has a nonneg real Fourier transform.
     Continuity of φ̂ (from Riemann-Lebesgue) means this holds everywhere,
     not just a.e.
+@isnad1 id=and.3h3v.s7.04ceaa01433e from=translated src=- shape=8b918f5f vocab=ada84c5d
 -/
 lemma pd_l1_fourier_nonneg (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     (hint : Integrable φ) (hcont : Continuous φ) (ξ : V) :
@@ -531,7 +544,9 @@ lemma pd_l1_fourier_nonneg (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     linarith
   exact ⟨pd_l1_fourier_re_nonneg φ hpd hint hcont ξ, him⟩
 
-/-- The Fourier transform of an L¹ PD function is real and nonneg. -/
+/-- The Fourier transform of an L¹ PD function is real and nonneg.
+@isnad1 id=and.3h3v.s7.9daf70460aed from=translated src=- shape=d8872429 vocab=87243931
+-/
 lemma pd_l1_fourier_real_nonneg (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     (hint : Integrable φ) (hcont : Continuous φ) (ξ : V) :
     𝓕 φ ξ = ↑((𝓕 φ ξ).re) ∧ 0 ≤ (𝓕 φ ξ).re := by
@@ -553,6 +568,7 @@ By Fourier inversion, charFun(μ) = φ.
     Key idea: define ψ(x) = φ(2πx) to absorb the 2π convention difference
     between charFun (uses e^{i⟪x,t⟫}) and 𝓕 (uses e^{-2πi⟪x,ξ⟫}).
     Then dμ = 𝓕ψ · dλ is a probability measure with charFun(μ) = φ.
+@isnad1 id=ex.5h2v.s8.909e65b2246e from=translated src=- shape=781a874d vocab=843a36e0
 -/
 lemma measure_of_pd_l1 (φ : V → ℂ)
     (hpd : IsPositiveDefinite φ) (hint : Integrable φ)
@@ -773,6 +789,7 @@ private lemma integral_norm_ft_gaussian_eq_one (t : ℝ) (ht : 0 < t) :
     gives ∫ (𝓕 φ_ε) * g_t = ∫ φ_ε * (𝓕 g_t), bounded by ‖φ_ε‖∞ * ‖𝓕 g_t‖₁ = (φ 0).re.
     Monotone convergence (g_t ↗ 1) gives ∫⁻ ‖𝓕 φ_ε‖ ≤ (φ 0).re < ∞.
     Ref: Folland, A Course in Abstract Harmonic Analysis, 4.2.
+@isnad1 id=integrab.3h3v.s7.f5d210a2218d from=translated src=- shape=64453df1 vocab=f1c82de0
 -/
 theorem gaussianRegularize_ft_integrable (φ : V → ℂ)
     (hpd : IsPositiveDefinite φ) (hcont : Continuous φ)
@@ -1024,6 +1041,7 @@ private lemma charFun_measure_inner_bound (φ : V → ℂ)
     Since charFun(μ_ε) = φ_ε → φ uniformly on compacts and φ is continuous
     at 0 with φ(0) = 1, the RHS → 0 uniformly in ε as r → ∞.
     Ref: Folland, §4.2, proof of Theorem 4.15.
+@isnad1 id=istightm.3h2v.s7.5c103f49736a from=translated src=- shape=36310867 vocab=4932242e
 -/
 theorem gaussianRegularize_measures_tight (φ : V → ℂ)
     (hpd : IsPositiveDefinite φ) (hcont : Continuous φ) (hnorm : φ 0 = 1) :
@@ -1262,6 +1280,7 @@ characteristic function of a unique probability measure on V.
 This is the finite-dimensional version. The infinite-dimensional
 generalization (Bochner-Minlos) additionally requires nuclearity of the
 domain space.
+@isnad1 id=existsun.3h2v.s7.980c086014fa from=translated src=- shape=f9be28f1 vocab=54e25b56
 -/
 theorem bochner_theorem (φ : V → ℂ)
     (hcont : Continuous φ) (hpd : IsPositiveDefinite φ) (hnorm : φ 0 = 1) :

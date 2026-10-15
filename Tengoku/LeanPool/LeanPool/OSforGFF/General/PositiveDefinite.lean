@@ -46,6 +46,7 @@ def IsPositiveDefinite {α : Type*} [AddGroup α] (φ : α → ℂ) : Prop :=
 
 /-- Composition preserves positive definiteness: if ψ is positive definite on H and
     T : E →ₗ[ℝ] H is linear, then ψ ∘ T is positive definite on E.
+@isnad1 id=ispositi.1h4v.s6.43080ef3ca16 from=translated src=- shape=6adf00b0 vocab=629ccca6
 -/
 lemma isPositiveDefinite_precomp_linear
   {E H : Type*} [AddCommGroup E] [AddCommGroup H]

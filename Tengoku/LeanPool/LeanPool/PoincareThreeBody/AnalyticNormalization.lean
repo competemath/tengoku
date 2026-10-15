@@ -24,7 +24,9 @@ each phase-space slice of the normalized residual.
 namespace LeanPool.PoincareThreeBody
 
 /-- The differentiable slope of an analytic one-variable function is analytic at its base point.
-This is the analytic form of division by a linear factor. -/
+This is the analytic form of division by a linear factor.
+@isnad1 id=analytic.1h2v.s6.71b5973b14ee from=translated src=- shape=90ba9816 vocab=2c4e7eb8
+-/
 theorem AnalyticAt.analyticAt_dslope
     {f : ℝ → ℝ} {base : ℝ} (hf : AnalyticAt ℝ f base) :
     AnalyticAt ℝ (dslope f base) base := by
@@ -32,7 +34,9 @@ theorem AnalyticAt.analyticAt_dslope
   exact hseries.has_fpower_series_dslope_fslope.analyticAt
 
 /-- If an analytic function vanishes at the base point, its differentiable slope reconstructs it
-after multiplication by the corresponding linear factor. -/
+after multiplication by the corresponding linear factor.
+@isnad1 id=eq.1h3v.s5.da4c0aad57e4 from=translated src=- shape=bee1131d vocab=dd51e9ca
+-/
 theorem sub_mul_dslope_eq_of_eq_zero
     {f : ℝ → ℝ} {base : ℝ} (hzero : f base = 0) (argument : ℝ) :
     (argument - base) * dslope f base argument = f argument := by
@@ -60,12 +64,18 @@ noncomputable def domainMassNormalizedCandidate
   if mass = 0 then massNormalizedCandidate F energyFunction 0 state
   else normalizationResidual F energyFunction mass state / mass
 
+/--
+@isnad1 id=eq.0h3v.s5.4e6533fe53d8 from=translated src=- shape=1f0a87cb vocab=ee3ddfdb
+-/
 @[simp] theorem domainMassNormalizedCandidate_zero
     (F : ℝ → PhaseSpace → ℝ) (energyFunction : ℝ → ℝ) (state : PhaseSpace) :
     domainMassNormalizedCandidate F energyFunction 0 state =
       massNormalizedCandidate F energyFunction 0 state := by
   simp [domainMassNormalizedCandidate]
 
+/--
+@isnad1 id=eq.1h4v.s5.180642e6ef22 from=translated src=- shape=af4cb7a9 vocab=a245b1f9
+-/
 theorem domainMassNormalizedCandidate_eq_div
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     {mass : ℝ} (hmass : mass ≠ 0) (state : PhaseSpace) :
@@ -73,7 +83,9 @@ theorem domainMassNormalizedCandidate_eq_div
       normalizationResidual F energyFunction mass state / mass := by
   simp [domainMassNormalizedCandidate, hmass]
 
-/-- Exact reconstruction of a residual whose zeroth mass coefficient has been cancelled. -/
+/-- Exact reconstruction of a residual whose zeroth mass coefficient has been cancelled.
+@isnad1 id=eq.1h4v.s5.776b15249d3b from=translated src=- shape=6d96cbb7 vocab=20e1133c
+-/
 theorem mass_mul_massNormalizedCandidate
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ} {state : PhaseSpace}
     (hzero : F 0 state = energyFunction (hamiltonian 0 state)) (mass : ℝ) :
@@ -87,7 +99,9 @@ theorem mass_mul_massNormalizedCandidate
       normalizationResidual F energyFunction candidateMass state)
     (base := 0) (by simp [normalizationResidual, hzero]) mass
 
-/-- At nonzero mass the normalized candidate is the ordinary quotient of the residual by mass. -/
+/-- At nonzero mass the normalized candidate is the ordinary quotient of the residual by mass.
+@isnad1 id=eq.2h4v.s6.b397ddf72022 from=translated src=- shape=3fced933 vocab=89d630f3
+-/
 theorem massNormalizedCandidate_eq_div
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     {mass : ℝ} (hmass : mass ≠ 0) {state : PhaseSpace}
@@ -98,7 +112,9 @@ theorem massNormalizedCandidate_eq_div
   simp [slope, normalizationResidual, hzero, div_eq_mul_inv, mul_comm]
 
 /-- On a phase point where the zeroth coefficient cancels, the domain-correct and `dslope`
-normalizations coincide. -/
+normalizations coincide.
+@isnad1 id=eq.1h4v.s5.fd2171d86605 from=translated src=- shape=c880042a vocab=650eb8a4
+-/
 theorem domainMassNormalizedCandidate_eq_massNormalizedCandidate
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     {mass : ℝ} {state : PhaseSpace}
@@ -113,7 +129,9 @@ theorem domainMassNormalizedCandidate_eq_massNormalizedCandidate
 
 /-- Away from the removable hypersurface `mass = 0`, the domain-correct normalized candidate is
 jointly analytic by ordinary analytic division.  Thus the genuinely parameterized content of the
-Hadamard division step is confined to points whose mass coordinate is zero. -/
+Hadamard division step is confined to points whose mass coordinate is zero.
+@isnad1 id=analytic.4h3v.s9.f974c2cf6169 from=translated src=- shape=ff50472e vocab=94544145
+-/
 theorem analyticAt_uncurry_domainMassNormalizedCandidate_of_mass_ne
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     {z : ℝ × PhaseSpace}
@@ -140,7 +158,9 @@ theorem analyticAt_uncurry_domainMassNormalizedCandidate_of_mass_ne
 
 /-- To prove joint analyticity of the normalized family on the full parameter domain, it is
 enough to prove the removable extension at the mass-zero slice.  All nonzero-mass points follow
-from ordinary analytic division. -/
+from ordinary analytic division.
+@isnad1 id=isjointl.3h3v.s8.749fa02bebc3 from=translated src=- shape=62e0ddfd vocab=d6dd4950
+-/
 theorem isJointlyAnalytic_domainMassNormalizedCandidate_of_mass_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -158,7 +178,9 @@ theorem isJointlyAnalytic_domainMassNormalizedCandidate_of_mass_zero
       hmass (hanalytic (mass, state) hz) (hamiltonian_analyticAt hz.2)
       (henergyFunction (hamiltonian mass state))
 
-/-- Exact reconstruction for the domain-correct normalization. -/
+/-- Exact reconstruction for the domain-correct normalization.
+@isnad1 id=eq.1h4v.s5.9a10f3a0a99a from=translated src=- shape=6d96cbb7 vocab=141667bc
+-/
 theorem mass_mul_domainMassNormalizedCandidate
     {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ} {state : PhaseSpace}
     (hzero : F 0 state = energyFunction (hamiltonian 0 state)) (mass : ℝ) :
@@ -168,7 +190,9 @@ theorem mass_mul_domainMassNormalizedCandidate
   exact mass_mul_massNormalizedCandidate hzero mass
 
 /-- Joint analyticity of the candidate and analyticity of the energy function make every fixed
-phase slice of the residual analytic in mass. -/
+phase slice of the residual analytic in mass.
+@isnad1 id=analytic.3h4v.s6.7170b99cd583 from=translated src=- shape=a778cab4 vocab=663eccfa
+-/
 theorem analyticAt_normalizationResidual_massSlice
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) {state : PhaseSpace}
@@ -188,7 +212,9 @@ theorem analyticAt_normalizationResidual_massSlice
   exact hcandidate.sub (henergyFunction.comp
     (f := fun mass ↦ hamiltonian mass state) hhamiltonian)
 
-/-- The removable mass quotient is analytic at zero on every fixed collision-free phase slice. -/
+/-- The removable mass quotient is analytic at zero on every fixed collision-free phase slice.
+@isnad1 id=analytic.3h4v.s6.ef82cffbf9c3 from=translated src=- shape=a778cab4 vocab=a5ba3348
+-/
 theorem analyticAt_massNormalizedCandidate_massSlice
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) {state : PhaseSpace}
@@ -201,7 +227,9 @@ theorem analyticAt_massNormalizedCandidate_massSlice
       hanalytic hdomain henergyFunction)
 
 /-- At mass zero the normalized candidate is exactly the first parameter coefficient of the
-joint residual. -/
+joint residual.
+@isnad1 id=eq.3h4v.s7.137a859d2ac0 from=translated src=- shape=28f9fdf8 vocab=296eb9f3
+-/
 theorem massNormalizedCandidate_zero_eq_parameterCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) {state : PhaseSpace}
@@ -228,7 +256,9 @@ theorem massNormalizedCandidate_zero_eq_parameterCoefficient
       (G := Function.uncurry (normalizationResidual F energyFunction)) hjoint)
 
 /-- Explicit coefficient bookkeeping for one normalization step: the new zeroth coefficient is
-the old first mass coefficient minus the energy derivative times the Hamiltonian perturbation. -/
+the old first mass coefficient minus the energy derivative times the Hamiltonian perturbation.
+@isnad1 id=eq.3h4v.s8.c05ba9731468 from=translated src=- shape=2f3d6065 vocab=1022a035
+-/
 theorem parameterCoefficient_normalizationResidual
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) {state : PhaseSpace}
@@ -278,7 +308,9 @@ theorem parameterCoefficient_normalizationResidual
   rw [hresidualSlice, hcandidateCoefficient,
     deriv_hamiltonian_mass_zero hdomain.2]
 
-/-- Explicit value of the removable quotient at mass zero. -/
+/-- Explicit value of the removable quotient at mass zero.
+@isnad1 id=eq.3h4v.s7.4071b8a97bf9 from=translated src=- shape=3723d366 vocab=7d89a194
+-/
 theorem massNormalizedCandidate_zero_eq_nextCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) {state : PhaseSpace}

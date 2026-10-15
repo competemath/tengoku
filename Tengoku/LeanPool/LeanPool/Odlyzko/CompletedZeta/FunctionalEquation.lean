@@ -88,6 +88,9 @@ variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.2086442110ec from=translated src=- shape=b583e0ff vocab=af523251
+-/
 theorem poleClearedCenteredClassThetaIntegral_functionalEquation
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ) :
     poleClearedCenteredClassThetaIntegral K I s =
@@ -100,6 +103,9 @@ theorem poleClearedCenteredClassThetaIntegral_functionalEquation
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.efb08a5dc6a1 from=translated src=- shape=b583e0ff vocab=8b82e427
+-/
 theorem poleClearedCenteredFractionalClassContribution_functionalEquation
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ) :
     poleClearedCenteredFractionalClassContribution K I s =
@@ -118,6 +124,9 @@ noncomputable def poleClearedCompletedDedekindZetaContinuation (s : ℂ) : ℂ :
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s13.ef9738ca22e8 from=translated src=- shape=ff86c489 vocab=cc350e92
+-/
 theorem mk_traceDual_inverseClassIdealRepresentative_eq_reindexed
     (C : ClassGroup (𝓞 K)) :
     ClassGroup.mk K

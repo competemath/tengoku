@@ -66,7 +66,9 @@ def BoundaryRule {A : Type*} (x : ℤ × ℤ → A) (C : Finset (ℤ × ℤ)) (k
     x (z + ((k : ℤ), 0)) = x (z' + ((k : ℤ), 0))
 
 /-- A finite family of periodic bilateral words has a common positive period, obtained by
-multiplying their periods. Lemma 5.8 (`lem:row-lifting`). -/
+multiplying their periods. Lemma 5.8 (`lem:row-lifting`).
+@isnad1 id=ex.1h4v.s6.7d458169a735 from=translated src=- shape=3178d69f vocab=6f21a8d7
+-/
 theorem common_period_of_finite {A ι : Type*} (s : Finset ι) (f : ι → ℤ → A)
     (h : ∀ i ∈ s, ∃ p : ℕ, 0 < p ∧ Function.Periodic (f i) (p : ℤ)) :
     ∃ p : ℕ, 0 < p ∧ ∀ i ∈ s, Function.Periodic (f i) (p : ℤ) := by
@@ -109,7 +111,9 @@ theorem eq_const_of_periodic_of_strip {A : Type*} (d : ℤ × ℤ → A)
     _ = s := hz w.1 w.2 hlo hhi
 
 /-- A property determined by the next `H` rows propagates downward through any prescribed finite
-number of rows. Lemma 5.8 (`lem:row-lifting`). -/
+number of rows. Lemma 5.8 (`lem:row-lifting`).
+@isnad1 id=var.2h6v.s6.97f907812eeb from=translated src=- shape=166adcee vocab=2ba88e87
+-/
 theorem propagate_rows_downward (P : ℤ → Prop) (H : ℕ)
     (hinit : ∀ j : ℤ, 1 ≤ j → j ≤ H → P j)
     (hstep : ∀ j : ℤ, (∀ r : ℤ, 1 ≤ r → r ≤ H → P (j + r)) → P j) :
@@ -129,7 +133,9 @@ theorem propagate_rows_downward (P : ℤ → Prop) (H : ℕ)
       apply ih (j + r) <;> omega
 
 /-- If each of the finitely many rows supporting the translated interior pattern is periodic,
-their common period makes that pattern a periodic parameter. Lemma 5.8 (`lem:row-lifting`). -/
+their common period makes that pattern a periodic parameter. Lemma 5.8 (`lem:row-lifting`).
+@isnad1 id=ex.1h4v.s7.e491cab766e1 from=translated src=- shape=3164a161 vocab=8f987127
+-/
 theorem interior_forcing_periodic {A : Type*} (x : ℤ × ℤ → A)
     (C : Finset (ℤ × ℤ)) (j : ℤ)
     (hrows : ∀ u ∈ C, RowPeriodic x (j + u.2)) :
@@ -149,7 +155,9 @@ theorem interior_forcing_periodic {A : Type*} (x : ℤ × ℤ → A)
 
 /-- A boundary row is periodic when its interior rows are periodic: the boundary rule and
 interior parameter satisfy the periodic-forcing lemma, including zero memory. Lemma 5.8
-(`lem:row-lifting`), using Lemma 5.4 (`lem:forcing`). -/
+(`lem:row-lifting`), using Lemma 5.4 (`lem:forcing`).
+@isnad1 id=rowperio.3h5v.s6.5db7ad2c0953 from=translated src=- shape=05987ef9 vocab=75abfa45
+-/
 theorem rowPeriodic_of_boundaryRule {A : Type*} (x : ℤ × ℤ → A)
     (hx : (Set.range x).Finite) (C : Finset (ℤ × ℤ)) (k : ℕ)
     (hrule : BoundaryRule x C k) (j : ℤ)
@@ -174,7 +182,9 @@ theorem rowPeriodic_of_boundaryRule {A : Type*} (x : ℤ × ℤ → A)
 
 /-- A vanishing mixed difference implies that the difference in a multiple of the first
 direction still has the second direction as a period. Commutation and multiples of a period
-give the operator consequence of equation `eq:telescoping-lift`. Lemma 5.8 (`lem:row-lifting`). -/
+give the operator consequence of equation `eq:telescoping-lift`. Lemma 5.8 (`lem:row-lifting`).
+@isnad1 id=isperiod.1h5v.s6.ede109c9131f from=translated src=- shape=0f1f4690 vocab=a5db6ef5
+-/
 theorem difference_multiple_period {A : Type*} [AddCommGroup A]
     (x : Configuration A) (h t : Lattice)
     (hmix : difference h (difference t x) = 0) (n : ℕ) :
@@ -187,7 +197,9 @@ theorem difference_multiple_period {A : Type*} [AddCommGroup A]
 /-- A boundary rule and periodic initial interior rows yield a global horizontal period that is
 a positive multiple of the supplied horizontal direction. Only finitely many row periods are
 combined; the transverse mixed difference extends their common multiple across the plane.
-Lemma 5.8 (`lem:row-lifting`). -/
+Lemma 5.8 (`lem:row-lifting`).
+@isnad1 id=ex.8h7v.s7.1cab167b5fc6 from=translated src=- shape=197f81b2 vocab=5edbe218
+-/
 theorem periodic_of_rows_boundaryRule (x : Configuration ℚ) (hx : FiniteRange x)
     (C : Finset Lattice) (k H : ℕ) (_hH : 0 < H)
     (hC : ∀ u ∈ C, 1 ≤ u.2 ∧ u.2 ≤ H) (hrule : BoundaryRule x C k)

@@ -47,6 +47,9 @@ open scoped Topology
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=tendsto.0h0v.s6.49457444de57 from=translated src=- shape=28ae9a25 vocab=de07e499
+-/
 theorem tendsto_sin_sub_mul_cos_div_pow_three :
     Tendsto (fun x : ℝ ↦ (Real.sin x - x * Real.cos x) / x ^ 3)
       (𝓝[≠] 0) (𝓝 (1 / 3 : ℝ)) := by
@@ -80,6 +83,9 @@ theorem tendsto_sin_sub_mul_cos_div_pow_three :
       grind)
     simp_all
 
+/--
+@isnad1 id=tendsto.0h0v.s5.8d410042d63a from=translated src=- shape=2b280528 vocab=c90dc0a4
+-/
 theorem tendsto_tartarAmplitude_punctured_zero :
     Tendsto Tartar.amplitude (𝓝[≠] 0) (𝓝 1) := by
   convert (tendsto_sin_sub_mul_cos_div_pow_three.const_mul 3).congr' ?_ using 1
@@ -88,11 +94,17 @@ theorem tendsto_tartarAmplitude_punctured_zero :
   rw [tartarAmplitude_eq_of_ne hx]
   ring
 
+/--
+@isnad1 id=continuo.0h0v.s4.99e1410f9545 from=translated src=- shape=5446e38f vocab=c4f8d332
+-/
 theorem tartarAmplitude_continuousAt_zero :
     ContinuousAt Tartar.amplitude 0 := by
   rw [continuousAt_iff_punctured_nhds, tartarAmplitude_zero]
   exact tendsto_tartarAmplitude_punctured_zero
 
+/--
+@isnad1 id=continuo.0h0v.s3.a294a4f4973f from=translated src=- shape=e3d48bcb vocab=f8c5614b
+-/
 @[fun_prop]
 theorem tartarAmplitude_continuous : Continuous Tartar.amplitude := by
   rw [continuous_iff_continuousAt]
@@ -101,6 +113,9 @@ theorem tartarAmplitude_continuous : Continuous Tartar.amplitude := by
   · simpa [hx] using tartarAmplitude_continuousAt_zero
   · exact tartarAmplitude_continuousAt_of_ne hx
 
+/--
+@isnad1 id=continuo.0h0v.s3.9995aa52296a from=translated src=- shape=e3d48bcb vocab=5b200433
+-/
 @[fun_prop]
 theorem tartarTestFunction_continuous : Continuous Tartar.testFunction := by
   unfold Tartar.testFunction
@@ -121,9 +136,15 @@ namespace NumberField.Odlyzko
 noncomputable def complexTartarWeight (x : ℝ) : ℂ :=
   Tartar.weight x
 
+/--
+@isnad1 id=integrab.0h0v.s5.592be11e469a from=translated src=- shape=c57f8401 vocab=44fda468
+-/
 theorem complexTartarWeight_integrable : Integrable complexTartarWeight := by
   exact tartarWeight_integrable.ofReal
 
+/--
+@isnad1 id=eq.0h1v.s5.4e04ce71cc31 from=translated src=- shape=6f09202f vocab=da5146ae
+-/
 theorem integral_tartarWeight_mul_sin (a : ℝ) :
     ∫ x : ℝ, Tartar.weight x * Real.sin (a * x) = 0 := by
   let f : ℝ → ℝ := fun x ↦ Tartar.weight x * Real.sin (a * x)
@@ -138,6 +159,9 @@ theorem integral_tartarWeight_mul_sin (a : ℝ) :
       _ = -(∫ x : ℝ, f x) := integral_neg f
   grind
 
+/--
+@isnad1 id=eq.0h1v.s6.49c6d1eafcf0 from=translated src=- shape=47b5a340 vocab=9b5656ee
+-/
 theorem fourier_complexTartarWeight (ξ : ℝ) :
     𝓕 complexTartarWeight ξ =
       ((4 / 3 : ℝ) * Tartar.amplitude (2 * Real.pi * ξ) : ℂ) := by
@@ -193,12 +217,18 @@ theorem fourier_complexTartarWeight (ξ : ℝ) :
 noncomputable def tartarWeightConvolution (x : ℝ) : ℝ :=
   ∫ t : ℝ, Tartar.weight t * Tartar.weight (x - t)
 
+/--
+@isnad1 id=le.0h1v.s3.cd617b945bb9 from=translated src=- shape=8a62b088 vocab=e63c0fd6
+-/
 theorem tartarWeightConvolution_nonneg (x : ℝ) :
     0 ≤ tartarWeightConvolution x := by
   apply integral_nonneg
   intro t
   exact mul_nonneg (tartarWeight_nonneg t) (tartarWeight_nonneg (x - t))
 
+/--
+@isnad1 id=eq.0h1v.s6.bb52b22d9b96 from=translated src=- shape=aee1ae8c vocab=50b42aff
+-/
 theorem complexTartarWeight_convolution_eq (x : ℝ) :
     (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight) x =
       tartarWeightConvolution x := by
@@ -207,11 +237,17 @@ theorem complexTartarWeight_convolution_eq (x : ℝ) :
   filter_upwards [] with t
   simp [complexTartarWeight]
 
+/--
+@isnad1 id=integrab.0h0v.s6.195a74f2cc2d from=translated src=- shape=5e57f4d4 vocab=edf87af8
+-/
 theorem complexTartarWeight_convolution_integrable :
     Integrable (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight) :=
   complexTartarWeight_integrable.integrable_convolution (ContinuousLinearMap.mul ℂ ℂ)
     complexTartarWeight_integrable
 
+/--
+@isnad1 id=continuo.0h0v.s6.d920da8198f4 from=translated src=- shape=9a037d99 vocab=a2eba745
+-/
 theorem complexTartarWeight_convolution_continuous :
     Continuous (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight) := by
   have hc : HasCompactSupport complexTartarWeight := by
@@ -222,6 +258,9 @@ theorem complexTartarWeight_convolution_continuous :
     complexTartarWeight_integrable.locallyIntegrable
   exact RCLike.continuous_ofReal.comp tartarWeight_continuous
 
+/--
+@isnad1 id=eq.0h1v.s7.809e03d982f0 from=translated src=- shape=e9dbc340 vocab=8e3f9b98
+-/
 theorem fourier_complexTartarWeight_convolution (ξ : ℝ) :
     𝓕 (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight) ξ =
       ((16 / 9 : ℝ) * Tartar.testFunction (2 * Real.pi * ξ) : ℂ) := by
@@ -234,6 +273,9 @@ theorem fourier_complexTartarWeight_convolution (ξ : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=integrab.0h0v.s7.92ed1ce158fe from=translated src=- shape=c936fae7 vocab=40a2a7a3
+-/
 theorem fourier_complexTartarWeight_convolution_integrable :
     Integrable (𝓕
       (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight)) := by
@@ -247,6 +289,9 @@ theorem fourier_complexTartarWeight_convolution_integrable :
   rw [fourier_complexTartarWeight_convolution]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s7.4a4f4c0d693f from=translated src=- shape=9536559c vocab=9b66cc8d
+-/
 theorem fourierInv_fourier_complexTartarWeight_convolution :
     𝓕⁻ (𝓕 (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight)) =
       (complexTartarWeight ⋆[ContinuousLinearMap.mul ℂ ℂ] complexTartarWeight) :=
@@ -254,6 +299,9 @@ theorem fourierInv_fourier_complexTartarWeight_convolution :
     complexTartarWeight_convolution_integrable
     fourier_complexTartarWeight_convolution_integrable
 
+/--
+@isnad1 id=eq.0h0v.s6.453c10e26826 from=translated src=- shape=8fab9821 vocab=21c023e3
+-/
 theorem integral_tartarWeight_sq :
     ∫ x : ℝ, Tartar.weight x ^ 2 = 16 / 15 := by
   rw [tartarWeight_eq_indicator]
@@ -280,6 +328,9 @@ theorem integral_tartarWeight_sq :
     integral_pow, integral_pow]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.ba9df3112fdb from=translated src=- shape=d4f6e56f vocab=47e5e0a8
+-/
 @[simp]
 theorem tartarWeightConvolution_zero :
     tartarWeightConvolution 0 = 16 / 15 := by

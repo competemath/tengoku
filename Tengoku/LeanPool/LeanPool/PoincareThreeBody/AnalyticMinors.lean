@@ -35,7 +35,9 @@ noncomputable def massDifferentialMinor
     (fderiv ℝ (F mass) state) i j
 
 /-- Coordinate-minor form of the physical leading obstruction, suitable for analytic
-continuation. -/
+continuation.
+@isnad1 id=eq.8h8v.s7.d54d72d740ba from=translated src=- shape=933ec1a1 vocab=5b5b174c
+-/
 theorem IsFirstIntegralFamily.mass_zero_differentialMinor_eq_zero_on_liftedEllipse
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -67,7 +69,9 @@ noncomputable def jointDifferentialMinor
     fderiv ℝ (Function.uncurry hamiltonian) z (0, coordinateVector j) *
       fderiv ℝ (Function.uncurry F) z (0, coordinateVector i)
 
-/-- On the analytic domain, the joint and curried formulations of a phase minor agree. -/
+/-- On the analytic domain, the joint and curried formulations of a phase minor agree.
+@isnad1 id=eq.2h5v.s6.7080e7328706 from=translated src=- shape=3f3c02f5 vocab=9203f3f5
+-/
 theorem jointDifferentialMinor_eq_massDifferentialMinor
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) {z : ℝ × PhaseSpace}
@@ -92,7 +96,9 @@ theorem jointDifferentialMinor_eq_massDifferentialMinor
   rw [← hhamiltonianPartial i, ← hcandidatePartial j,
     ← hhamiltonianPartial j, ← hcandidatePartial i]
 
-/-- Joint coordinate minors are analytic on the complete collision-free parameter domain. -/
+/-- Joint coordinate minors are analytic on the complete collision-free parameter domain.
+@isnad1 id=analytic.1h4v.s7.c7b2359446d4 from=translated src=- shape=3fe90fc8 vocab=6b2307b8
+-/
 theorem IsJointlyAnalytic.analyticOnNhd_jointDifferentialMinor
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F) (i j : Fin 4) :
@@ -120,7 +126,9 @@ theorem IsJointlyAnalytic.analyticOnNhd_jointDifferentialMinor
     ((hhamiltonian j).mul (hcandidate i))
 
 /-- At mass zero, every phase differential minor is analytic on the full collision-free phase
-domain. -/
+domain.
+@isnad1 id=analytic.2h4v.s7.0df4e1a0ab12 from=translated src=- shape=b2e38ebb vocab=f966bd6d
+-/
 theorem IsJointlyAnalytic.analyticOnNhd_massZeroDifferentialMinor
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F) (i j : Fin 4) :
@@ -158,7 +166,9 @@ theorem IsJointlyAnalytic.analyticOnNhd_massZeroDifferentialMinor
   exact hjoint.congr heq
 
 /-- A mass-zero minor that vanishes near one collision-free phase point vanishes on the entire
-connected mass-zero phase domain. -/
+connected mass-zero phase domain.
+@isnad1 id=eqon.4h5v.s7.202ef17baa0d from=translated src=- shape=349b3565 vocab=c15254c7
+-/
 theorem IsJointlyAnalytic.massZeroDifferentialMinor_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -175,7 +185,9 @@ theorem IsJointlyAnalytic.massZeroDifferentialMinor_eq_zero
 
 /-- A joint minor which vanishes near one point vanishes throughout a connected parameter
 domain.  Unlike continuation along a fixed-state mass fiber, this permits paths which move around
-the collision cylinders. -/
+the collision cylinders.
+@isnad1 id=eqon.4h5v.s7.e9bf99de7ac0 from=translated src=- shape=76dd0a11 vocab=dfa96acc
+-/
 theorem IsJointlyAnalytic.jointDifferentialMinor_eq_zero_on_preconnected
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -191,7 +203,9 @@ theorem IsJointlyAnalytic.jointDifferentialMinor_eq_zero_on_preconnected
 
 /-- The analytic-continuation endpoint of Poincaré's coefficient argument: local vanishing of all
 phase-differential minors at one point contradicts functional independence anywhere in the
-connected collision-free parameter domain. -/
+connected collision-free parameter domain.
+@isnad1 id=not.4h3v.s7.9a941e4767a3 from=translated src=- shape=690707e4 vocab=87d60b2b
+-/
 theorem IsJointlyAnalytic.not_isIndependentSomewhere_of_local_minors_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -212,7 +226,9 @@ theorem IsJointlyAnalytic.not_isIndependentSomewhere_of_local_minors_eq_zero
     exact hglobal hz
   exact hdependent hindependent
 
-/-- The connectedness-specialized form used by the final nonintegrability proof. -/
+/-- The connectedness-specialized form used by the final nonintegrability proof.
+@isnad1 id=not.4h3v.s6.d0374f2a5cfe from=translated src=- shape=b8361852 vocab=04a59704
+-/
 theorem IsJointlyAnalytic.not_isIndependentSomewhere_of_local_minors_eq_zero'
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -224,7 +240,9 @@ theorem IsJointlyAnalytic.not_isIndependentSomewhere_of_local_minors_eq_zero'
     hanalytic (isPreconnected_parameterDomain hδ) hbase hlocal
 
 /-- A pure phase partial derivative of a jointly analytic family is analytic as the mass varies
-with phase held fixed. -/
+with phase held fixed.
+@isnad1 id=analytic.1h4v.s9.b48e588d7f99 from=translated src=- shape=38d1ad7f vocab=87140be4
+-/
 theorem analyticAt_phaseFDeriv_massSlice
     {G : ℝ × PhaseSpace → ℝ} {mass : ℝ} {state direction : PhaseSpace}
     (hG : AnalyticAt ℝ G (mass, state)) :
@@ -261,7 +279,9 @@ theorem analyticAt_phaseFDeriv_massSlice
     exact (fderiv_curry_right_apply hmass).symm
   exact hjointPartial.congr heventual
 
-/-- Every Hamiltonian/candidate coordinate minor is analytic along a collision-free mass fiber. -/
+/-- Every Hamiltonian/candidate coordinate minor is analytic along a collision-free mass fiber.
+@isnad1 id=analytic.2h6v.s6.db1885dbd181 from=translated src=- shape=b2d3f7d2 vocab=68f089d3
+-/
 theorem IsJointlyAnalytic.analyticAt_massDifferentialMinor_massSlice
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -293,7 +313,9 @@ theorem IsJointlyAnalytic.analyticAt_massDifferentialMinor_massSlice
   exact ((hhamiltonian i).mul (hcandidate j)).sub
     ((hhamiltonian j).mul (hcandidate i))
 
-/-- Analyticity throughout a collision-free mass subset. -/
+/-- Analyticity throughout a collision-free mass subset.
+@isnad1 id=analytic.2h6v.s6.9f3785d1b760 from=translated src=- shape=3d31c418 vocab=d2146129
+-/
 theorem IsJointlyAnalytic.analyticOnNhd_massDifferentialMinor_massSlice
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -307,7 +329,9 @@ theorem IsJointlyAnalytic.analyticOnNhd_massDifferentialMinor_massSlice
     hanalytic (hdomain mass hmass) i j
 
 /-- Infinite-order vanishing of an analytic real germ makes it identically zero on a
-neighborhood. -/
+neighborhood.
+@isnad1 id=eventual.2h2v.s6.0c0f58f4ccf7 from=translated src=- shape=285aedba vocab=57a38fe5
+-/
 theorem AnalyticAt.eventually_eq_zero_of_iteratedDeriv_eq_zero
     {f : ℝ → ℝ} {base : ℝ} (hf : AnalyticAt ℝ f base)
     (hflat : ∀ n : ℕ, iteratedDeriv n f base = 0) :
@@ -320,7 +344,9 @@ theorem AnalyticAt.eventually_eq_zero_of_iteratedDeriv_eq_zero
   exact analyticOrderAt_eq_top.mp horder
 
 /-- Taylor-flat differential minors vanish on every connected collision-free mass set containing
-zero. -/
+zero.
+@isnad1 id=eqon.5h6v.s7.007fe306c663 from=translated src=- shape=9f347bfa vocab=bb7a38f9
+-/
 theorem IsJointlyAnalytic.massDifferentialMinor_eq_zero_on_preconnected
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)
@@ -341,7 +367,9 @@ theorem IsJointlyAnalytic.massDifferentialMinor_eq_zero_on_preconnected
     analyticOnNhd_const hpreconnected hzero heventual
 
 /-- Flatness of every minor at zero rules out functional independence at every mass in the same
-connected collision-free fiber. -/
+connected collision-free fiber.
+@isnad1 id=not.6h5v.s10.f1cb91484c1e from=translated src=- shape=5868120c vocab=25887e53
+-/
 theorem IsJointlyAnalytic.not_independent_on_preconnected_massFiber_of_minors_flat
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hanalytic : IsJointlyAnalytic δ F)

@@ -22,6 +22,9 @@ variable {α : Type*}
 def birkhoffMax (f : α → α) (φ : α → ℝ) : ℕ →o (α → ℝ) :=
   partialSups (birkhoffSum f φ ∘ .succ)
 
+/--
+@isnad1 id=eq.0h5v.s6.3f0fe891ffe3 from=translated src=- shape=45c453af vocab=fc72f047
+-/
 lemma birkhoffMax_succ : birkhoffMax f φ n.succ x = φ x + 0 ⊔ birkhoffMax f φ n (f x) := by
   have : birkhoffSum f φ ∘ .succ = fun k ↦ φ + birkhoffSum f φ k ∘ f := by
     funext k x; dsimp
@@ -38,16 +41,25 @@ lemma birkhoffMax_succ : birkhoffMax f φ n.succ x = φ x + 0 ⊔ birkhoffMax f 
 abbrev birkhoffMaxDiff (f : α → α) (φ : α → ℝ) (n : ℕ) (x : α) :=
   birkhoffMax f φ (n + 1) x - birkhoffMax f φ n (f x)
 
+/--
+@isnad1 id=eq.0h5v.s6.13bbaeab3d6d from=translated src=- shape=36871623 vocab=bee7fc82
+-/
 theorem birkhoffMaxDiff_aux :
     birkhoffMaxDiff f φ n x = φ x - (0 ⊓ birkhoffMax f φ n (f x)) := by
   rw [sub_eq_sub_iff_add_eq_add, birkhoffMax_succ, add_assoc, add_right_inj, max_add_min, zero_add]
 
+/--
+@isnad1 id=antitone.0h3v.s4.88b58d844443 from=translated src=- shape=24303d3d vocab=3bdc7c16
+-/
 lemma birkhoffMaxDiff_antitone : Antitone (birkhoffMaxDiff f φ) := by
   intro m n h x
   rw [birkhoffMaxDiff_aux, birkhoffMaxDiff_aux]
   apply sub_le_sub_left
   exact inf_le_inf_left _ ((birkhoffMax f φ).monotone' h _)
 
+/--
+@isnad1 id=measurab.2h4v.s5.8545dfe21b66 from=translated src=- shape=e3863710 vocab=5df2e092
+-/
 @[fun_prop]
 lemma birkhoffSum_measurable [MeasurableSpace α]
     {f : α → α} (hf : Measurable f)
@@ -56,6 +68,9 @@ lemma birkhoffSum_measurable [MeasurableSpace α]
   apply Finset.measurable_sum
   measurability
 
+/--
+@isnad1 id=measurab.2h4v.s6.bf5a6ed0ff49 from=translated src=- shape=8433617d vocab=85f89677
+-/
 @[fun_prop]
 lemma birkhoffMax_measurable [MeasurableSpace α]
     {f : α → α} (hf : Measurable f)
@@ -81,6 +96,9 @@ variable {α : Type*} [msα : MeasurableSpace α] (μ : Measure α)
 noncomputable def birkhoffSup (f : α → α) (φ : α → ℝ) (x : α) : EReal :=
   iSup fun n ↦ ↑(birkhoffSum f φ (n + 1) x)
 
+/--
+@isnad1 id=measurab.2h3v.s5.08d75cf988c4 from=translated src=- shape=b2fd831c vocab=6307994b
+-/
 lemma birkhoffSup_measurable
     {f : α → α} (hf : Measurable f)
     {φ : α → ℝ} (hφ : Measurable φ) :
@@ -90,6 +108,9 @@ lemma birkhoffSup_measurable
 /-- The set of points `x` for which `birkhoffSup f φ x = ⊤`. -/
 def divergentSet (f : α → α) (φ : α → ℝ) : Set α := (birkhoffSup f φ)⁻¹' {⊤}
 
+/--
+@isnad1 id=iff.0h4v.s5.111c445ea7f3 from=translated src=- shape=1c954533 vocab=23324208
+-/
 lemma divergentSet_invariant : f x ∈ divergentSet f φ ↔ x ∈ divergentSet f φ := by
   constructor
   · intro hx
@@ -130,12 +151,18 @@ lemma divergentSet_invariant : f x ∈ divergentSet f φ ↔ x ∈ divergentSet 
       | succ N =>
         use N
 
+/--
+@isnad1 id=measurab.2h3v.s5.79424f63ab30 from=translated src=- shape=b753b9a2 vocab=218c3519
+-/
 lemma divergentSet_measurable
     {f : α → α} (hf : Measurable f)
     {φ : α → ℝ} (hφ : Measurable φ) :
     MeasurableSet (divergentSet f φ) :=
       measurableSet_preimage (birkhoffSup_measurable hf hφ) (measurableSet_singleton _)
 
+/--
+@isnad1 id=measurab.2h3v.s5.5fc73694ff02 from=translated src=- shape=b753b9a2 vocab=a692e707
+-/
 lemma divergentSet_mem_invalg
     {f : α → α} (hf : Measurable f)
     {φ : α → ℝ} (hφ : Measurable φ) :
@@ -143,6 +170,9 @@ lemma divergentSet_mem_invalg
   /- should be `Set.ext divergentSet_invariant` but it is VERY slow -/
   ⟨divergentSet_measurable hf hφ, funext (fun _ ↦ propext divergentSet_invariant)⟩
 
+/--
+@isnad1 id=tendsto.1h4v.s6.45cec698b60f from=translated src=- shape=a4bd1ffe vocab=90cb1810
+-/
 lemma birkhoffMax_tendsto_top_mem_divergentSet (hx : x ∈ divergentSet f φ) :
     Tendsto (birkhoffMax f φ · x) atTop atTop := by
   apply tendsto_atTop_atTop.mpr
@@ -154,6 +184,9 @@ lemma birkhoffMax_tendsto_top_mem_divergentSet (hx : x ∈ divergentSet f φ) :
   exact fun n hn ↦
     le_trans (le_of_lt hN) (le_partialSups_of_le (birkhoffSum f φ ∘ .succ) hn x)
 
+/--
+@isnad1 id=tendsto.1h4v.s5.a9d68ff732ca from=translated src=- shape=fa8f6c20 vocab=18485dd5
+-/
 lemma birkhoffMaxDiff_tendsto_of_mem_divergentSet (hx : x ∈ divergentSet f φ) :
     Tendsto (birkhoffMaxDiff f φ · x) atTop (𝓝 (φ x)) := by
   have hx' : f x ∈ divergentSet f φ := divergentSet_invariant.mpr hx
@@ -167,6 +200,9 @@ lemma birkhoffMaxDiff_tendsto_of_mem_divergentSet (hx : x ∈ divergentSet f φ)
 /-- The filter on real numbers approaching the non-positive half-line from above. -/
 abbrev nonneg : Filter ℝ := ⨅ ε > 0, 𝓟 (Set.Iio ε)
 
+/--
+@isnad1 id=tendsto.1h4v.s5.0f46a9c42e0c from=translated src=- shape=c12f88f2 vocab=522962f9
+-/
 lemma birkhoffAverage_tendsto_nonpos_of_not_mem_divergentSet
     (hx : x ∉ divergentSet f φ) :
     Tendsto (birkhoffAverage ℝ f φ · x) atTop nonneg := by
@@ -201,14 +237,23 @@ lemma birkhoffAverage_tendsto_nonpos_of_not_mem_divergentSet
 variable {f : α → α} (hf : MeasurePreserving f μ μ)
          {φ : α → ℝ} (hφ : Integrable φ μ) (hφ' : Measurable φ) /- seems necessary? -/
 
+/--
+@isnad1 id=integrab.2h5v.s6.b4fa115966bf from=translated src=- shape=f15aea1b vocab=ffe7aae2
+-/
 lemma iterates_integrable {i : ℕ} (hf : MeasurePreserving f μ μ) (hφ : Integrable φ μ) :
     Integrable (φ ∘ f^[i]) μ := by
   exact (hf.iterate i).integrable_comp_of_integrable hφ
 
+/--
+@isnad1 id=integrab.2h5v.s6.7d9661fc38f1 from=translated src=- shape=60d4ebc0 vocab=b493d40b
+-/
 lemma birkhoffSum_integrable (hf : MeasurePreserving f μ μ) (hφ : Integrable φ μ) :
     Integrable (birkhoffSum f φ n) μ :=
   integrable_finsetSum _ fun _ _ ↦ iterates_integrable μ hf hφ
 
+/--
+@isnad1 id=integrab.2h5v.s6.22aaedb27cb8 from=translated src=- shape=f435c9ba vocab=823d39ad
+-/
 lemma birkhoffMax_integrable (hf : MeasurePreserving f μ μ) (hφ : Integrable φ μ) :
     Integrable (birkhoffMax f φ n) μ := by
   unfold birkhoffMax
@@ -216,6 +261,9 @@ lemma birkhoffMax_integrable (hf : MeasurePreserving f μ μ) (hφ : Integrable 
   | zero => simpa
   | succ n hn => simpa using Integrable.sup hn (birkhoffSum_integrable μ hf hφ)
 
+/--
+@isnad1 id=integrab.2h5v.s6.a26234c19f57 from=translated src=- shape=308eec10 vocab=814c163f
+-/
 lemma birkhoffMaxDiff_integrable (hf : MeasurePreserving f μ μ) (hφ : Integrable φ μ) :
     Integrable (birkhoffMaxDiff f φ n) μ := by
   apply Integrable.sub (birkhoffMax_integrable μ hf hφ)
@@ -223,6 +271,9 @@ lemma birkhoffMaxDiff_integrable (hf : MeasurePreserving f μ μ) (hφ : Integra
   · exact birkhoffMax_integrable μ hf hφ
   · exact (birkhoffMax_integrable μ hf hφ).aestronglyMeasurable
 
+/--
+@isnad1 id=tendsto.3h4v.s7.38ad3e34ed9b from=translated src=- shape=b4f69511 vocab=142570af
+-/
 lemma int_birkhoffMaxDiff_in_divergentSet_tendsto (hf : MeasurePreserving f μ μ)
     (hφ : Integrable φ μ) (hφ' : Measurable φ) :
     Tendsto (fun n ↦ ∫ x in divergentSet f φ, birkhoffMaxDiff f φ n x ∂μ) atTop
@@ -242,6 +293,9 @@ lemma int_birkhoffMaxDiff_in_divergentSet_tendsto (hf : MeasurePreserving f μ �
   · exact (ae_restrict_iff' (divergentSet_measurable hf.measurable hφ')).mpr
       (ae_of_all _ fun _ hx ↦ birkhoffMaxDiff_tendsto_of_mem_divergentSet hx)
 
+/--
+@isnad1 id=le.3h5v.s6.555a19a33951 from=translated src=- shape=52bfee78 vocab=fbdd31ef
+-/
 lemma int_birkhoffMaxDiff_in_divergentSet_nonneg (hf : MeasurePreserving f μ μ)
     (hφ : Integrable φ μ) (hφ' : Measurable φ) :
     0 ≤ ∫ x in divergentSet f φ, birkhoffMaxDiff f φ n x ∂μ := by
@@ -262,6 +316,9 @@ lemma int_birkhoffMaxDiff_in_divergentSet_nonneg (hf : MeasurePreserving f μ μ
     rw [this]
     exact mi.restrict
 
+/--
+@isnad1 id=le.3h4v.s6.c7ee92b2a504 from=translated src=- shape=e33aa2ea vocab=0fd02179
+-/
 lemma int_in_divergentSet_nonneg (hf : MeasurePreserving f μ μ)
     (hφ : Integrable φ μ) (hφ' : Measurable φ) :
     0 ≤ ∫ x in divergentSet f φ, φ x ∂μ :=
@@ -270,12 +327,18 @@ lemma int_in_divergentSet_nonneg (hf : MeasurePreserving f μ μ)
     (fun _ ↦ int_birkhoffMaxDiff_in_divergentSet_nonneg μ hf hφ hφ')
 
 /- these seem to be missing? -/
+/--
+@isnad1 id=le.0h2v.s4.89d11a726404 from=translated src=- shape=c00568ff vocab=2431baf8
+-/
 lemma nullMeasurableSpace_le {μ : Measure α} :
     msα ≤ NullMeasurableSpace.instMeasurableSpace (α := α) (μ := μ) :=
   fun s hs ↦ ⟨s, hs, ae_eq_refl s⟩
 
 variable [hμ : IsProbabilityMeasure μ]
 
+/--
+@isnad1 id=eq.4h4v.s7.a8a7f29eac83 from=translated src=- shape=8387af8a vocab=93a0f16d
+-/
 lemma divergentSet_zero_meas_of_condexp_neg
     (h : ∀ᵐ x ∂μ, (μ[φ | invariants f]) x < 0) (hf : MeasurePreserving f μ μ)
     (hφ : Integrable φ μ) (hφ' : Measurable φ) :
@@ -299,6 +362,9 @@ lemma divergentSet_zero_meas_of_condexp_neg
       exact (le_trans (invariants_le f) nullMeasurableSpace_le)
   exact (not_le_of_gt this) (int_in_divergentSet_nonneg μ hf hφ hφ')
 
+/--
+@isnad1 id=eventual.4h4v.s7.b0b77ac1aeda from=translated src=- shape=1587bc30 vocab=03a6e487
+-/
 lemma limsup_birkhoffAverage_nonpos_of_condexp_neg (hf : MeasurePreserving f μ μ)
     (hφ : Integrable φ μ) (hφ' : Measurable φ)
     (h : ∀ᵐ x ∂μ, (μ[φ | invariants f]) x < 0) :
@@ -313,6 +379,9 @@ noncomputable def invCondexp
     (μ : Measure α) (f : α → α) (φ : α → ℝ) : α → ℝ :=
   μ[φ | invariants f]
 
+/--
+@isnad1 id=eventual.4h5v.s7.19f1ff111ad1 from=translated src=- shape=f6a76039 vocab=1aa20109
+-/
 theorem birkhoffErgodicTheorem_aux {ε : ℝ} (hε : 0 < ε) (hf : MeasurePreserving f μ μ)
     (hφ : Integrable φ μ) (hφ' : Measurable φ) :
     ∀ᵐ x ∂μ, Tendsto
@@ -354,7 +423,9 @@ theorem birkhoffErgodicTheorem_aux {ε : ℝ} (hε : 0 < ε) (hf : MeasurePreser
     birkhoffAverage_of_comp_eq ℝ condexpφ_invariant
       (Nat.cast_ne_zero.mpr (Nat.ne_zero_of_lt hn))]
 
-/-- This is the main result but assuming `Measurable φ`. -/
+/-- This is the main result but assuming `Measurable φ`.
+@isnad1 id=eventual.3h4v.s6.fe77f06c0476 from=translated src=- shape=2c607fe9 vocab=297851fb
+-/
 theorem birkhoffErgodicTheorem (hf : MeasurePreserving f μ μ) (hφ : Integrable φ μ)
     (hφ' : Measurable φ) :
     ∀ᵐ x ∂μ,
@@ -397,7 +468,9 @@ theorem birkhoffErgodicTheorem (hf : MeasurePreserving f μ μ) (hφ : Integrabl
   norm_num at hk' ⊢
   linarith
 
-/-- Here we drop the assumption that the observable is `Measurable`. -/
+/-- Here we drop the assumption that the observable is `Measurable`.
+@isnad1 id=eventual.2h4v.s6.515d60a92b77 from=translated src=- shape=113938fd vocab=e8d7b56f
+-/
 theorem birkhoffErgodicTheorem' {Φ : α → ℝ} (hf : MeasurePreserving f μ μ)
     (hΦ : Integrable Φ μ) :
     ∀ᵐ x ∂μ,

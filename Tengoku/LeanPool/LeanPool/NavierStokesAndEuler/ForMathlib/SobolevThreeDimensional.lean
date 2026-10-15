@@ -42,6 +42,9 @@ local notation "ℝ³" => EuclideanSpace ℝ (Fin 3)
 @[expose] def sobolevConstant : ℝ≥0 :=
   eLpNormLESNormFDerivOfEqInnerConst (volume : Measure ℝ³) 2
 
+/--
+@isnad1 id=le.0h0v.s3.c13d375e1e31 from=translated src=- shape=a1bca669 vocab=65860da5
+-/
 theorem sobolevConstant_nonneg : 0 ≤ (sobolevConstant : ℝ) := NNReal.coe_nonneg _
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]

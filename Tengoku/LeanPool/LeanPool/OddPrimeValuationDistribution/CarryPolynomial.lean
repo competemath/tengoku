@@ -51,11 +51,17 @@ def oddCarryWordsSuccEquiv (half length : ℕ) :
     rcases pair with ⟨digit, word⟩
     rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.f1ca8e9dfcf8 from=translated src=- shape=28242dad vocab=364c10c9
+-/
 lemma oddCarryPolynomialFrom_zero (half carry : ℕ) :
     oddCarryPolynomialFrom half carry 0 = 1 := by
   simp [oddCarryPolynomialFrom, oddCarryWordDigits,
     oddDoubleCarryCountAux]
 
+/--
+@isnad1 id=eq.0h3v.s6.f8ecc54f087d from=translated src=- shape=fd879476 vocab=9978f823
+-/
 lemma oddCarryPolynomialFrom_succ (half carry length : ℕ) :
     oddCarryPolynomialFrom half carry (length + 1) =
       ∑ digit : Fin (oddBase half),
@@ -97,6 +103,9 @@ def oddOneCarryDigitSplitEquiv (half : ℕ) :
     Fin (oddBase half) ≃ Fin half ⊕ Fin (half + 1) :=
   (finCongr (by simp [oddBase]; omega)).trans finSumFinEquiv.symm
 
+/--
+@isnad1 id=eq.0h2v.s7.057089e4cd87 from=translated src=- shape=e4bd985e vocab=1a57b821
+-/
 @[simp]
 lemma oddZeroCarryDigitSplitEquiv_symm_inl_val
     (half : ℕ) (digit : Fin (half + 1)) :
@@ -104,6 +113,9 @@ lemma oddZeroCarryDigitSplitEquiv_symm_inl_val
       digit.val := by
   simp [oddZeroCarryDigitSplitEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s7.41752b907c18 from=translated src=- shape=35495921 vocab=1ab06e18
+-/
 @[simp]
 lemma oddZeroCarryDigitSplitEquiv_symm_inr_val
     (half : ℕ) (digit : Fin half) :
@@ -111,6 +123,9 @@ lemma oddZeroCarryDigitSplitEquiv_symm_inr_val
       half + 1 + digit.val := by
   simp [oddZeroCarryDigitSplitEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s7.220b9b648a28 from=translated src=- shape=eb1cb416 vocab=e0ddd7c4
+-/
 @[simp]
 lemma oddOneCarryDigitSplitEquiv_symm_inl_val
     (half : ℕ) (digit : Fin half) :
@@ -118,6 +133,9 @@ lemma oddOneCarryDigitSplitEquiv_symm_inl_val
       digit.val := by
   simp [oddOneCarryDigitSplitEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s7.dc1235105a00 from=translated src=- shape=c7a9f30f vocab=bfc5651b
+-/
 @[simp]
 lemma oddOneCarryDigitSplitEquiv_symm_inr_val
     (half : ℕ) (digit : Fin (half + 1)) :
@@ -125,6 +143,9 @@ lemma oddOneCarryDigitSplitEquiv_symm_inr_val
       half + digit.val := by
   simp [oddOneCarryDigitSplitEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s7.3386347ba013 from=translated src=- shape=29367208 vocab=b619980e
+-/
 lemma oddDoubleCarryStep_zero_split_inl
     (half : ℕ) (digit : Fin (half + 1)) :
     oddDoubleCarryStep half 0
@@ -132,6 +153,9 @@ lemma oddDoubleCarryStep_zero_split_inl
   rw [oddZeroCarryDigitSplitEquiv_symm_inl_val]
   exact oddDoubleCarryStep_zero_of_lt_succ digit.isLt
 
+/--
+@isnad1 id=eq.0h2v.s7.a9a1dfd69b7c from=translated src=- shape=dcbc161d vocab=1747f770
+-/
 lemma oddDoubleCarryStep_zero_split_inr
     (half : ℕ) (digit : Fin half) :
     oddDoubleCarryStep half 0
@@ -142,6 +166,9 @@ lemma oddDoubleCarryStep_zero_split_inr
   · simp [oddBase]
     omega
 
+/--
+@isnad1 id=eq.0h2v.s7.a94aa790e086 from=translated src=- shape=37613dd1 vocab=54e06e47
+-/
 lemma oddDoubleCarryStep_one_split_inl
     (half : ℕ) (digit : Fin half) :
     oddDoubleCarryStep half 1
@@ -149,6 +176,9 @@ lemma oddDoubleCarryStep_one_split_inl
   rw [oddOneCarryDigitSplitEquiv_symm_inl_val]
   exact oddDoubleCarryStep_zero_of_lt digit.isLt
 
+/--
+@isnad1 id=eq.0h2v.s7.737fbadf5fcb from=translated src=- shape=e436b497 vocab=ee6b1bc8
+-/
 lemma oddDoubleCarryStep_one_split_inr
     (half : ℕ) (digit : Fin (half + 1)) :
     oddDoubleCarryStep half 1
@@ -159,6 +189,9 @@ lemma oddDoubleCarryStep_one_split_inr
   · simp [oddBase]
     omega
 
+/--
+@isnad1 id=eq.0h2v.s7.d23b6ac0da7e from=translated src=- shape=b593a255 vocab=4ba2b7f0
+-/
 lemma oddCarryPolynomialFrom_zeroCarry_succ (half length : ℕ) :
     oddCarryPolynomialFrom half 0 (length + 1) =
       ((half + 1 : ℕ) : Polynomial ℕ) *
@@ -190,6 +223,9 @@ lemma oddCarryPolynomialFrom_zeroCarry_succ (half length : ℕ) :
           simp
           ring
 
+/--
+@isnad1 id=eq.0h2v.s7.29fed45c815e from=translated src=- shape=71acaaa2 vocab=4ba2b7f0
+-/
 lemma oddCarryPolynomialFrom_oneCarry_succ (half length : ℕ) :
     oddCarryPolynomialFrom half 1 (length + 1) =
       (half : Polynomial ℕ) * oddCarryPolynomialFrom half 0 length +
@@ -219,11 +255,17 @@ lemma oddCarryPolynomialFrom_oneCarry_succ (half length : ℕ) :
           simp
           ring
 
+/--
+@isnad1 id=eq.0h1v.s4.acbbfe874093 from=translated src=- shape=9605fde8 vocab=7febc417
+-/
 @[simp]
 theorem oddCarryPolynomial_zero (half : ℕ) :
     oddCarryPolynomial half 0 = 1 := by
   simp [oddCarryPolynomial, oddCarryPolynomialFrom_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.48b18b6738b7 from=translated src=- shape=0af348e6 vocab=31ca3c58
+-/
 @[simp]
 theorem oddCarryPolynomial_one (half : ℕ) :
     oddCarryPolynomial half 1 =
@@ -233,7 +275,9 @@ theorem oddCarryPolynomial_one (half : ℕ) :
   simp [oddCarryPolynomialFrom_zero]
 
 /-- Headline recurrence for the full carry distribution in odd base
-`2 * half + 1`. -/
+`2 * half + 1`.
+@isnad1 id=eq.0h2v.s7.704b5c5b3504 from=translated src=- shape=f5f7e5f2 vocab=885c06bd
+-/
 theorem oddCarryPolynomial_recurrence (half length : ℕ) :
     oddCarryPolynomial half (length + 2) +
         (oddBase half : Polynomial ℕ) * X *

@@ -29,7 +29,9 @@ noncomputable def rotatingKeplerDifferential (s : PhaseSpace) : PhaseSpace →L[
     (s 2 + s 1) • projection 2 +
     (s 3 - s 0) • projection 3
 
-/-- Fréchet derivative of the mass-zero Hamiltonian away from the Kepler collision. -/
+/-- Fréchet derivative of the mass-zero Hamiltonian away from the Kepler collision.
+@isnad1 id=hasfderi.1h1v.s7.31c0d5f335cf from=translated src=- shape=59036a47 vocab=c897e48f
+-/
 theorem hasFDerivAt_hamiltonian_zero {s : PhaseSpace}
     (horigin : s 0 ^ 2 + s 1 ^ 2 ≠ 0) :
     HasFDerivAt (hamiltonian 0) (rotatingKeplerDifferential s) s := by
@@ -93,13 +95,18 @@ theorem hasFDerivAt_hamiltonian_zero {s : PhaseSpace}
     field_simp [hroot]
     ring
 
+/--
+@isnad1 id=eq.1h1v.s8.eb1bb0c02a86 from=translated src=- shape=810dc5ae vocab=eb2a437e
+-/
 theorem fderiv_hamiltonian_zero {s : PhaseSpace}
     (horigin : s 0 ^ 2 + s 1 ^ 2 ≠ 0) :
     fderiv ℝ (hamiltonian 0) s = rotatingKeplerDifferential s :=
   (hasFDerivAt_hamiltonian_zero horigin).fderiv
 
 /-- The Poisson bracket with the Kepler Hamiltonian is the directional derivative along its
-explicit Hamiltonian vector field. -/
+explicit Hamiltonian vector field.
+@isnad1 id=eq.1h2v.s9.736b23b6cb07 from=translated src=- shape=6017b5ee vocab=420d43c5
+-/
 theorem poissonBracket_hamiltonian_zero_eq_fderiv_apply
     (F : PhaseSpace → ℝ) {s : PhaseSpace}
     (horigin : s 0 ^ 2 + s 1 ^ 2 ≠ 0) :
@@ -121,7 +128,9 @@ theorem poissonBracket_hamiltonian_zero_eq_fderiv_apply
   ring
 
 /-- Along the true resonant orbit, the time derivative of any differentiable observable is its
-Poisson bracket with the mass-zero Hamiltonian. -/
+Poisson bracket with the mass-zero Hamiltonian.
+@isnad1 id=hasderiv.5h6v.s7.ceedec86716c from=translated src=- shape=a1534b9c vocab=9e709a62
+-/
 theorem DifferentiableAt.hasDerivAt_comp_orientedResonantKeplerPhasePoint
     {F : PhaseSpace → ℝ} {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}

@@ -41,6 +41,9 @@ such lists. -/
 def IsGoodCenterList (n rIn rOut T : ℕ) (centers : List (HypercubeVertex n)) : Prop :=
   ∀ target : HypercubeVertex n, T ≤ annulusTotalContribution rIn rOut target centers
 
+/--
+@isnad1 id=eq.0h3v.s5.4da8ee8bb118 from=translated src=- shape=e4956e46 vocab=8c1df1da
+-/
 theorem size_stackListDistribution {n rOut : ℕ}
     (centers : List (HypercubeVertex n)) :
     size (stackListDistribution rOut centers) = centers.length * 2 ^ rOut := by
@@ -53,7 +56,9 @@ theorem size_stackListDistribution {n rOut : ℕ}
       ring
 
 /-- Every occupied pile in a stack-list distribution has at least one full
-stack.  Repeated centers only increase the pile size. -/
+stack.  Repeated centers only increase the pile size.
+@isnad1 id=minoccup.0h3v.s5.3fb5b6410c4e from=translated src=- shape=92b81dd0 vocab=1e4f28bb
+-/
 theorem minOccupiedPileSize_stackListDistribution {n rOut : ℕ}
     (centers : List (HypercubeVertex n)) :
     MinOccupiedPileSize (stackListDistribution (n := n) rOut centers) (2 ^ rOut) := by
@@ -73,7 +78,9 @@ theorem minOccupiedPileSize_stackListDistribution {n rOut : ℕ}
         simpa [stackListDistribution, hsingle] using ih hv_tail
 
 /-- A stack of size `2^rOut` at an annulus center can directly deliver the
-annulus contribution assigned to that center. -/
+annulus contribution assigned to that center.
+@isnad1 id=canreach.1h5v.s6.769b6d9249d7 from=translated src=- shape=e9a06394 vocab=e1a650ad
+-/
 theorem canReachAtLeast_annulusContribution_single {n rIn rOut : ℕ}
     {target center : HypercubeVertex n}
     (hmem : center ∈ annulus n rIn rOut target) :
@@ -95,7 +102,9 @@ theorem canReachAtLeast_annulusContribution_single {n rIn rOut : ℕ}
     (annulusContribution rIn rOut target center)
 
 /-- The deterministic delivery interpretation of `X_t`: the stack list can
-deliver at least the total annulus contribution to the fixed target. -/
+deliver at least the total annulus contribution to the fixed target.
+@isnad1 id=canreach.0h5v.s5.4ef682ed7232 from=translated src=- shape=9632f60b vocab=ee80766f
+-/
 theorem canReachAtLeast_annulusTotalContribution_stackList {n rIn rOut : ℕ}
     (target : HypercubeVertex n) (centers : List (HypercubeVertex n)) :
     CanReachAtLeast (graph n)
@@ -118,7 +127,9 @@ theorem canReachAtLeast_annulusTotalContribution_stackList {n rIn rOut : ℕ}
       simpa [stackListDistribution, annulusTotalContribution, Nat.add_assoc] using hsum
 
 /-- Deterministic probabilistic-method interface: once a center list is good
-for every target, the corresponding stack distribution is `T`-solvable. -/
+for every target, the corresponding stack distribution is `T`-solvable.
+@isnad1 id=solvable.1h5v.s5.b94134161c3f from=translated src=- shape=032e9d5d vocab=8cc35952
+-/
 theorem solvableAtLeast_stackListDistribution_of_good {n rIn rOut T : ℕ}
     {centers : List (HypercubeVertex n)}
     (hgood : IsGoodCenterList n rIn rOut T centers) :
@@ -127,7 +138,9 @@ theorem solvableAtLeast_stackListDistribution_of_good {n rIn rOut T : ℕ}
   exact Pebbling.canReachAtLeast_mono (hgood target)
     (canReachAtLeast_annulusTotalContribution_stackList target centers)
 
-/-- Costed form of the deterministic interface for the high-demand lemma. -/
+/-- Costed form of the deterministic interface for the high-demand lemma.
+@isnad1 id=hassolva.1h5v.s6.83bb0a83e27a from=translated src=- shape=498cd23e vocab=73e0f802
+-/
 theorem hasSolvableAtMostSize_of_goodCenterList {n rIn rOut T : ℕ}
     {centers : List (HypercubeVertex n)}
     (hgood : IsGoodCenterList n rIn rOut T centers) :
@@ -138,7 +151,9 @@ theorem hasSolvableAtMostSize_of_goodCenterList {n rIn rOut T : ℕ}
 
 /-- High-demand form of the deterministic interface: a good center list gives
 a `T`-solvable distribution with controlled size and occupied piles of size at
-least `2^rOut`. -/
+least `2^rOut`.
+@isnad1 id=hashighd.1h5v.s6.573d543903c8 from=translated src=- shape=52be0b83 vocab=bf31908d
+-/
 theorem hasHighDemandDistribution_of_goodCenterList {n rIn rOut T : ℕ}
     {centers : List (HypercubeVertex n)}
     (hgood : IsGoodCenterList n rIn rOut T centers) :

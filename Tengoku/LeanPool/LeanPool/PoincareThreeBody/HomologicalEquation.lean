@@ -23,7 +23,9 @@ namespace LeanPool.PoincareThreeBody
 
 /-- Differentiating the canonical Poisson bracket with respect to a parameter gives the two cross
 brackets.  The derivative hypotheses are stated coordinatewise to isolate the required interchange
-of the mass derivative and the phase derivative. -/
+of the mass derivative and the phase derivative.
+@isnad1 id=hasderiv.2h5v.s10.6f74339e66d6 from=translated src=- shape=c90b9757 vocab=5144b73d
+-/
 theorem hasDerivAt_poissonBracket_family
     {F H : ℝ → PhaseSpace → ℝ} {F₁ H₁ : PhaseSpace → ℝ} {s : PhaseSpace}
     (hF : ∀ i, HasDerivAt
@@ -47,7 +49,9 @@ theorem hasDerivAt_poissonBracket_family
     ring
 
 /-- The coefficient of the parameter in a vanishing Poisson bracket is the first homological
-equation. -/
+equation.
+@isnad1 id=eq.3h5v.s10.3a92dde34f95 from=translated src=- shape=3cdf0ed9 vocab=ffdb9355
+-/
 theorem firstHomologicalEquation_of_poissonBracket_zero
     {F H : ℝ → PhaseSpace → ℝ} {F₁ H₁ : PhaseSpace → ℝ} {s : PhaseSpace}
     (hF : ∀ i, HasDerivAt
@@ -67,7 +71,9 @@ theorem firstHomologicalEquation_of_poissonBracket_zero
   exact hzero.unique (hasDerivAt_const 0 0)
 
 /-- For the restricted three-body Hamiltonian, the Hamiltonian cross term in the first
-homological equation is the explicit first mass perturbation. -/
+homological equation is the explicit first mass perturbation.
+@isnad1 id=eq.3h3v.s10.4f763f9e7f3e from=translated src=- shape=4ac345c9 vocab=2d7c6d98
+-/
 theorem firstHomologicalEquation_cr3bp
     {F : ℝ → PhaseSpace → ℝ} {F₁ : PhaseSpace → ℝ} {s : PhaseSpace}
     (hF : ∀ i, HasDerivAt

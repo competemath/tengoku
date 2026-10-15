@@ -31,7 +31,9 @@ def IsPositiveDefiniteKernel {α : Type*} (K : α → α → ℂ) : Prop :=
   ∀ (m : ℕ) (x : Fin m → α) (c : Fin m → ℂ),
     0 ≤ (∑ i : Fin m, ∑ j : Fin m, (star (c i)) * (c j) * K (x i) (x j)).re
 
-/-- Step 2: The inner product kernel is positive definite. -/
+/-- Step 2: The inner product kernel is positive definite.
+@isnad1 id=ispositi.0h1v.s5.11d1c61228de from=translated src=- shape=cabbc910 vocab=98e5a369
+-/
 lemma innerProduct_is_pd_kernel :
     IsPositiveDefiniteKernel (fun (x y : H) => (⟪x, y⟫_ℝ : ℂ)) := by
   -- Strategy:
@@ -97,6 +99,7 @@ lemma innerProduct_is_pd_kernel :
 
 /-- Helper: For a real-valued PD kernel, the kernel matrix is PSD.
     Forward direction of the bridge between complex kernels and real matrices.
+@isnad1 id=possemid.3h4v.s7.a9203ee93255 from=translated src=- shape=4fcacc03 vocab=292b6f26
 -/
 lemma real_valued_PD_kernel_gives_PSD_matrix {α : Type*} (K : α → α → ℂ)
     (h_real : ∀ x y, (K x y).im = 0)
@@ -129,6 +132,7 @@ lemma real_valued_PD_kernel_gives_PSD_matrix {α : Type*} (K : α → α → ℂ
 
 /-- Step 3b: Exponential of a symmetric real-valued PD kernel is PD.
     Uses the Hadamard series machinery from HadamardExp.lean (same as OS3 proof).
+@isnad1 id=ispositi.3h2v.s5.d4bab2010f22 from=translated src=- shape=6af04703 vocab=ed62aee5
 -/
 lemma exp_is_pd_kernel {α : Type*} (K : α → α → ℂ) (hK : IsPositiveDefiniteKernel K)
     (h_real : ∀ x y, (K x y).im = 0)
@@ -192,7 +196,9 @@ lemma exp_is_pd_kernel {α : Type*} (K : α → α → ℂ) (hK : IsPositiveDefi
   rw [h_sum_eq]
   exact add_nonneg (hN_psd.dotProduct_mulVec_nonneg a) (hN_psd.dotProduct_mulVec_nonneg b)
 
-/-- The Gaussian RBF kernel is positive definite on any inner product space. -/
+/-- The Gaussian RBF kernel is positive definite on any inner product space.
+@isnad1 id=ispositi.0h1v.s6.d646d954bf45 from=translated src=- shape=050c4887 vocab=b822451a
+-/
 theorem gaussian_rbf_pd_innerProduct_proof :
     GFF4D.IsPositiveDefinite (fun h : H => cexp (-(1/2 : ℂ) * (‖h‖^2 : ℝ))) := by
   -- Strategy:

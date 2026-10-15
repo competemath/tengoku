@@ -33,6 +33,9 @@ def phaseHamiltonianVector (covector : PhaseSpace →L[ℝ] ℝ) : PhaseSpace :=
   ![covector (coordinateVector 2), covector (coordinateVector 3),
     -covector (coordinateVector 0), -covector (coordinateVector 1)]
 
+/--
+@isnad1 id=eq.0h2v.s8.27636c3932d0 from=translated src=- shape=4d7eea35 vocab=9af72d82
+-/
 lemma phasePoissonPairing_eq_apply_phaseHamiltonianVector
     (first second : PhaseSpace →L[ℝ] ℝ) :
     phasePoissonPairing first second = first (phaseHamiltonianVector second) := by
@@ -47,19 +50,27 @@ lemma phasePoissonPairing_eq_apply_phaseHamiltonianVector
   unfold phasePoissonPairing
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.96f6865e3a31 from=translated src=- shape=aa7069d3 vocab=64ee8941
+-/
 lemma phaseHamiltonianVector_add (first second : PhaseSpace →L[ℝ] ℝ) :
     phaseHamiltonianVector (first + second) =
       phaseHamiltonianVector first + phaseHamiltonianVector second := by
   funext coordinate
   fin_cases coordinate <;> simp [phaseHamiltonianVector] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s8.ac60b1f9c0f4 from=translated src=- shape=727eb5fa vocab=62477cd6
+-/
 lemma phaseHamiltonianVector_smul (scalar : ℝ) (covector : PhaseSpace →L[ℝ] ℝ) :
     phaseHamiltonianVector (scalar • covector) =
       scalar • phaseHamiltonianVector covector := by
   funext coordinate
   fin_cases coordinate <;> simp [phaseHamiltonianVector]
 
-/-- The canonical sharp map from covectors to Hamiltonian vectors is injective. -/
+/-- The canonical sharp map from covectors to Hamiltonian vectors is injective.
+@isnad1 id=injectiv.0h0v.s6.5d71266c5916 from=translated src=- shape=a28560e6 vocab=4f283fdf
+-/
 theorem phaseHamiltonianVector_injective :
     Function.Injective phaseHamiltonianVector := by
   intro first second hequal
@@ -84,12 +95,18 @@ theorem phaseHamiltonianVector_injective :
     map_smul, map_smul, map_smul, map_smul, map_smul, map_smul, map_smul, map_smul]
   rw [hcoordinates 0, hcoordinates 1, hcoordinates 2, hcoordinates 3]
 
+/--
+@isnad1 id=eq.0h2v.s7.433d2ceccec3 from=translated src=- shape=3e39d373 vocab=a5d10393
+-/
 lemma phasePoissonPairing_skew
     (first second : PhaseSpace →L[ℝ] ℝ) :
     phasePoissonPairing first second = -phasePoissonPairing second first := by
   unfold phasePoissonPairing
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.975b84b96e68 from=translated src=- shape=f65bc11b vocab=9ac80465
+-/
 lemma phasePoissonPairing_self (covector : PhaseSpace →L[ℝ] ℝ) :
     phasePoissonPairing covector covector = 0 := by
   unfold phasePoissonPairing
@@ -101,6 +118,9 @@ def actionDerivativeCovector
     PhaseSpace →L[ℝ] ℝ :=
   (ContinuousLinearMap.proj coordinate).comp actionDerivative
 
+/--
+@isnad1 id=eq.0h3v.s9.8cbd8909bca8 from=translated src=- shape=ff97f052 vocab=1fd81bd6
+-/
 lemma actionDerivativeCovector_apply
     (actionDerivative : PhaseSpace →L[ℝ] ActionSpace)
     (coordinate : Fin 2) (direction : PhaseSpace) :
@@ -121,6 +141,9 @@ def actionHamiltonianTangentMap
     ext coordinate
     fin_cases coordinate <;> simp [smul_eq_mul] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s8.e5fc5e890ab5 from=translated src=- shape=ed890042 vocab=98b9cc51
+-/
 lemma actionHamiltonianTangentMap_apply
     (actionDerivative : PhaseSpace →L[ℝ] ActionSpace) (vector : ActionSpace) :
     actionHamiltonianTangentMap actionDerivative vector =
@@ -128,7 +151,9 @@ lemma actionHamiltonianTangentMap_apply
         vector 1 • phaseHamiltonianVector (actionDerivativeCovector actionDerivative 1) :=
   rfl
 
-/-- A right inverse makes the two Hamiltonian row vectors linearly independent. -/
+/-- A right inverse makes the two Hamiltonian row vectors linearly independent.
+@isnad1 id=injectiv.1h2v.s9.dc0725c53d08 from=translated src=- shape=002fec08 vocab=83e3d225
+-/
 theorem actionHamiltonianTangentMap_injective_of_rightInverse
     {actionDerivative : PhaseSpace →L[ℝ] ActionSpace}
     {actionSectionDerivative : ActionSpace →L[ℝ] PhaseSpace}
@@ -179,7 +204,9 @@ theorem actionHamiltonianTangentMap_injective_of_rightInverse
   · exact hone
 
 /-- In four-dimensional canonical phase space, an isotropic surjective two-action derivative has
-kernel exactly the span of its two Hamiltonian row vectors. -/
+kernel exactly the span of its two Hamiltonian row vectors.
+@isnad1 id=eq.2h2v.s10.fe5b3f7dc701 from=translated src=- shape=4520fcdb vocab=11b78182
+-/
 theorem range_actionHamiltonianTangentMap_eq_ker
     {actionDerivative : PhaseSpace →L[ℝ] ActionSpace}
     {actionSectionDerivative : ActionSpace →L[ℝ] PhaseSpace}
@@ -246,7 +273,9 @@ theorem range_actionHamiltonianTangentMap_eq_ker
     (htangentFinrank.trans hkernelFinrank.symm)
 
 /-- A phase covector which Poisson-annihilates both rows of an isotropic action derivative factors
-through that derivative.  The factor is computed by any linear right inverse. -/
+through that derivative.  The factor is computed by any linear right inverse.
+@isnad1 id=eq.3h3v.s10.31fd3e20d999 from=translated src=- shape=ede4b245 vocab=65685834
+-/
 theorem phaseCovector_eq_comp_actionDerivative
     {actionDerivative : PhaseSpace →L[ℝ] ActionSpace}
     {actionSectionDerivative : ActionSpace →L[ℝ] PhaseSpace}
@@ -293,6 +322,9 @@ theorem phaseCovector_eq_comp_actionDerivative
       rw [map_add, hphaseVertical, zero_add]
     _ = ((phaseCovector.comp actionSectionDerivative).comp actionDerivative) direction := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e6f9465180cc from=translated src=- shape=c1ea16d5 vocab=a829805e
+-/
 lemma poissonBracket_eq_phasePoissonPairing
     (f g : PhaseSpace → ℝ) (state : PhaseSpace) :
     poissonBracket f g state =
@@ -309,7 +341,9 @@ noncomputable def actionPoissonVector
 def angularActionVectorField (state : PhaseSpace) : PhaseSpace :=
   ![-state 1, state 0, -state 3, state 2]
 
-/-- Varying the negated rotation angle generates the angular-action Hamiltonian flow. -/
+/-- Varying the negated rotation angle generates the angular-action Hamiltonian flow.
+@isnad1 id=hasderiv.0h2v.s7.f37113ccfb42 from=translated src=- shape=888f6d81 vocab=5ee9431a
+-/
 theorem hasDerivAt_positionInRotatingFrame_neg
     (angle : ℝ) (vector : ActionSpace) :
     HasDerivAt (fun argument ↦ positionInRotatingFrame (-argument) vector)
@@ -341,7 +375,9 @@ theorem hasDerivAt_positionInRotatingFrame_neg
     · simp [positionInRotatingFrame]
       ring
 
-/-- Varying the lifted periapsis angle follows the angular-action Hamiltonian vector field. -/
+/-- Varying the lifted periapsis angle follows the angular-action Hamiltonian vector field.
+@isnad1 id=hasderiv.0h4v.s6.8bba421e29e9 from=translated src=- shape=49e692be vocab=b599a475
+-/
 theorem hasDerivAt_liftedDelaunayPhasePoint_periapsisAngle
     (firstAction eccentricity meanAnomaly periapsisAngle : ℝ) :
     HasDerivAt
@@ -365,7 +401,9 @@ theorem hasDerivAt_liftedDelaunayPhasePoint_periapsisAngle
   · exact (hasDerivAt_pi.mp hmomentum) 0
   · exact (hasDerivAt_pi.mp hmomentum) 1
 
-/-- Differential of the Cartesian angular action. -/
+/-- Differential of the Cartesian angular action.
+@isnad1 id=eq.0h1v.s12.20d98e118313 from=translated src=- shape=721c479c vocab=74e8b453
+-/
 theorem fderiv_cartesianAngularAction (state : PhaseSpace) :
     fderiv ℝ cartesianAngularAction state =
       ((state 0) • (ContinuousLinearMap.proj 3 : PhaseSpace →L[ℝ] ℝ) +
@@ -385,7 +423,9 @@ theorem fderiv_cartesianAngularAction (state : PhaseSpace) :
   exact hraw.fderiv
 
 /-- Bracketing with angular action differentiates along simultaneous rotation of position and
-momentum. -/
+momentum.
+@isnad1 id=eq.0h2v.s8.8f0ae8489e0d from=translated src=- shape=4cc8cb58 vocab=00dbffed
+-/
 theorem poissonBracket_cartesianAngularAction
     (f : PhaseSpace → ℝ) (state : PhaseSpace) :
     poissonBracket f cartesianAngularAction state =
@@ -402,6 +442,9 @@ theorem poissonBracket_cartesianAngularAction
   simp
   ring
 
+/--
+@isnad1 id=eq.2h3v.s10.414b20c65506 from=translated src=- shape=d5366982 vocab=9a7a654b
+-/
 lemma fderiv_cartesianDelaunayActions_coordinate
     {state direction : PhaseSpace}
     (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
@@ -425,7 +468,9 @@ lemma fderiv_cartesianDelaunayActions_coordinate
   simpa using happly
 
 /-- Pairing a phase covector with a pulled-back action covector contracts the represented action
-vector with the two action Poisson brackets. -/
+vector with the two action Poisson brackets.
+@isnad1 id=eq.2h3v.s9.d69ed0df859c from=translated src=- shape=20251557 vocab=4fc43cd2
+-/
 theorem phasePoissonPairing_actionCovector_comp_actions
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0)
@@ -455,7 +500,9 @@ theorem phasePoissonPairing_actionCovector_comp_actions
   ring
 
 /-- Bracketing any observable with the zero-mass Hamiltonian is contraction of the Delaunay
-frequency with its two action brackets. -/
+frequency with its two action brackets.
+@isnad1 id=eq.2h2v.s7.e517677ce5ef from=translated src=- shape=fcf2ef22 vocab=63b0beb8
+-/
 theorem poissonBracket_hamiltonian_zero_eq_frequency_dot_actionPoisson
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) (f : PhaseSpace → ℝ) :
@@ -469,7 +516,9 @@ theorem poissonBracket_hamiltonian_zero_eq_frequency_dot_actionPoisson
   rfl
 
 /-- Angle-independence of the leading candidate implies that it Poisson-commutes with angular
-action at every interior lifted elliptic point. -/
+action at every interior lifted elliptic point.
+@isnad1 id=eq.7h6v.s7.4c11c515fce7 from=translated src=- shape=0044881c vocab=e14872ce
+-/
 theorem IsFirstIntegralFamily.poissonBracket_cartesianAngularAction_mass_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -513,7 +562,9 @@ theorem IsFirstIntegralFamily.poissonBracket_cartesianAngularAction_mass_zero
     _ = 0 := by rw [hconstant]; simp
 
 /-- The leading candidate Poisson-commutes with both reconstructed Delaunay actions throughout
-the interior elliptic chart. -/
+the interior elliptic chart.
+@isnad1 id=eq.7h6v.s7.dd02f7ab4724 from=translated src=- shape=ed2d3e84 vocab=32dde44b
+-/
 theorem IsFirstIntegralFamily.actionPoissonVector_mass_zero_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)

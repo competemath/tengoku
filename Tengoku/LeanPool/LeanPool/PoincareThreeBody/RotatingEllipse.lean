@@ -48,6 +48,9 @@ noncomputable def rotatingEllipsePhasePoint
     (firstAction eccentricity anomaly time : ℝ) : PhaseSpace :=
   positionPhasePoint (rotatingEllipsePosition firstAction eccentricity anomaly time)
 
+/--
+@isnad1 id=eq.2h3v.s7.34f867f051a3 from=translated src=- shape=d3c79f91 vocab=1e57271d
+-/
 lemma inertialEllipsePosition_sq {firstAction eccentricity anomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity ≤ 1) :
     (inertialEllipsePosition firstAction eccentricity anomaly 0) ^ 2 +
@@ -65,6 +68,9 @@ lemma inertialEllipsePosition_sq {firstAction eccentricity anomaly : ℝ}
   rw [hsqrt, hcos]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.15633e03f2a6 from=translated src=- shape=c24a0130 vocab=cf1d45ab
+-/
 lemma positionInRotatingFrame_sq (time : ℝ) (position : ActionSpace) :
     (positionInRotatingFrame time position 0) ^ 2 +
         (positionInRotatingFrame time position 1) ^ 2 =
@@ -73,6 +79,9 @@ lemma positionInRotatingFrame_sq (time : ℝ) (position : ActionSpace) :
   simp only [positionInRotatingFrame, Matrix.cons_val_zero, Matrix.cons_val_one]
   linear_combination ((position 0) ^ 2 + (position 1) ^ 2) * htrig
 
+/--
+@isnad1 id=eq.0h3v.s4.680c358a6582 from=translated src=- shape=7177eae1 vocab=56fe8e24
+-/
 lemma positionInRotatingFrame_add (firstAngle secondAngle : ℝ) (position : ActionSpace) :
     positionInRotatingFrame (firstAngle + secondAngle) position =
       positionInRotatingFrame firstAngle (positionInRotatingFrame secondAngle position) := by
@@ -80,6 +89,9 @@ lemma positionInRotatingFrame_add (firstAngle secondAngle : ℝ) (position : Act
   funext coordinate
   fin_cases coordinate <;> simp [Real.cos_add, Real.sin_add] <;> ring
 
+/--
+@isnad1 id=eq.2h4v.s7.f5df44a88589 from=translated src=- shape=d67825cb vocab=e5280879
+-/
 lemma rotatingEllipsePosition_sq {firstAction eccentricity anomaly time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity ≤ 1) :
     (rotatingEllipsePosition firstAction eccentricity anomaly time 0) ^ 2 +
@@ -88,7 +100,9 @@ lemma rotatingEllipsePosition_sq {firstAction eccentricity anomaly time : ℝ}
   rw [rotatingEllipsePosition, positionInRotatingFrame_sq,
     inertialEllipsePosition_sq heccentricity heccentricityOne]
 
-/-- An ellipse whose apoapsis is strictly inside the unit circle cannot meet the unit primary. -/
+/-- An ellipse whose apoapsis is strictly inside the unit circle cannot meet the unit primary.
+@isnad1 id=ne.3h4v.s7.4fe6d37f26d3 from=translated src=- shape=41edcf71 vocab=f3332bbd
+-/
 lemma rotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
     {firstAction eccentricity anomaly time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -114,6 +128,9 @@ lemma rotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
   rw [hx, hy] at hpositionSq
   nlinarith
 
+/--
+@isnad1 id=eq.0h1v.s7.09aa7e06e58e from=translated src=- shape=8dbbc51a vocab=f24e40c3
+-/
 lemma primaryDistanceSq_positionPhasePoint (position : ActionSpace) :
     ((positionPhasePoint position 0 - 1) ^ 2 + (positionPhasePoint position 1) ^ 2) =
       ((position 0) ^ 2 + (position 1) ^ 2) - 2 * position 0 + 1 := by
@@ -121,7 +138,9 @@ lemma primaryDistanceSq_positionPhasePoint (position : ActionSpace) :
   ring
 
 /-- Restriction of the first mass perturbation to an elliptic Kepler position, written in terms of
-its radius and rotating x-coordinate. -/
+its radius and rotating x-coordinate.
+@isnad1 id=eq.3h4v.s7.c7141aabf9c6 from=translated src=- shape=ea4e6aeb vocab=5ec313a2
+-/
 theorem firstMassPerturbation_rotatingEllipse
     {firstAction eccentricity anomaly time : ℝ} (hfirstAction : firstAction ≠ 0)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -154,7 +173,9 @@ theorem firstMassPerturbation_rotatingEllipse
   rw [hsqrt, hdistance]
 
 /-- Equivalent source form of the restricted perturbation, combining its first two terms over
-the cube of the Kepler radius. -/
+the cube of the Kepler radius.
+@isnad1 id=eq.3h4v.s7.bee147eb773d from=translated src=- shape=251d6125 vocab=5ec313a2
+-/
 theorem firstMassPerturbation_rotatingEllipse_sourceForm
     {firstAction eccentricity anomaly time : ℝ} (hfirstAction : firstAction ≠ 0)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :

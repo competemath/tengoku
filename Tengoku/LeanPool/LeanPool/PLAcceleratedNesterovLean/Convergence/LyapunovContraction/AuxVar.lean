@@ -25,6 +25,9 @@ open Manifold
 
 variable {d : ℕ}
 
+/--
+@isnad1 id=other.4h9v.s11.3166b59fb68a from=translated src=- shape=28553541 vocab=553012da
+-/
 theorem auxVar_recursion (P : E d →L[ℝ] E d) (μ' η ρ : ℝ) (π : E d → E d)
     (f : E d → ℝ) (x₁ : E d) (n : ℕ)
     (hρ : ρ = (1 - Real.sqrt (μ' * η)) / (1 + Real.sqrt (μ' * η)))

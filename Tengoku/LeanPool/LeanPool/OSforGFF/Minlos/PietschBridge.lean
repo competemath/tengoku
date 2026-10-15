@@ -62,6 +62,7 @@ def IsNuclear (E : Type*) [AddCommGroup E] [Module ℝ E]
 
 /-- Summability of the weighted square series: `∑ₙ fₙ(x)² · cₙ < ∞`.
 This uses the bound `|fₙ(x)| ≤ q(x)` to dominate by `q(x)² · ∑ cₙ`.
+@isnad1 id=summable.3h5v.s8.fa330557ef63 from=translated src=- shape=68063656 vocab=3d73c3fd
 -/
 lemma summable_sq_mul_of_bounded (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
@@ -79,7 +80,9 @@ lemma summable_sq_mul_of_bounded (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → �
     exact mul_le_mul_of_nonneg_right h1 (hc_nn n)
   · exact (hc_sum.mul_left ((q x) ^ 2)).congr (fun n => by ring)
 
-/-- Nonnegativity of the weighted square series. -/
+/-- Nonnegativity of the weighted square series.
+@isnad1 id=le.1h4v.s7.3c5fbecadad2 from=translated src=- shape=8a639017 vocab=005269a3
+-/
 lemma tsum_sq_mul_nonneg (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (x : E) :
     0 ≤ ∑' n, (f n x) ^ 2 * c n := tsum_nonneg (fun n => mul_nonneg (sq_nonneg _) (hc_nn n))
@@ -170,7 +173,9 @@ def hilbertianLift (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
         tsum_mul_left, Real.sqrt_mul (sq_nonneg a),
         Real.sqrt_sq_eq_abs, Real.norm_eq_abs])
 
-/-- The Hilbertian lift evaluates as `r(x) = √(Σₖ fₖ(x)² · cₖ)`. -/
+/-- The Hilbertian lift evaluates as `r(x) = √(Σₖ fₖ(x)² · cₖ)`.
+@isnad1 id=eq.3h5v.s9.6f3275d0eae1 from=translated src=- shape=5adae6b9 vocab=d584fb86
+-/
 theorem hilbertianLift_apply (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x) (x : E) :
@@ -180,6 +185,7 @@ theorem hilbertianLift_apply (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
 
 Proof: `fₙ(x+y)² + fₙ(x-y)² = (fₙx + fₙy)² + (fₙx - fₙy)² = 2(fₙx² + fₙy²)`
 for each `n` (using linearity of `fₙ`), then sum and take √.
+@isnad1 id=ishilber.3h4v.s8.ae37932734e2 from=translated src=- shape=c9301832 vocab=7c3a8f8d
 -/
 theorem hilbertianLift_isHilbertian (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
@@ -204,6 +210,7 @@ theorem hilbertianLift_isHilbertian (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ →
 
 /-- Cauchy-Schwarz: the nuclear expansion is bounded by `√(Σcₖ) · r(x)`.
   `Σₖ |fₖ(x)|·cₖ ≤ √(Σₖ fₖ(x)²·cₖ) · √(Σₖ cₖ) = √(Σcₖ) · r(x)`
+@isnad1 id=le.3h5v.s9.1426162d01a9 from=translated src=- shape=893df909 vocab=f37b59f6
 -/
 theorem hilbertianLift_dominates (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
@@ -242,6 +249,7 @@ theorem hilbertianLift_dominates (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → �
 
 /-- Functionals bounded by a dominating seminorm `q` are also bounded by the
 Hilbertian lift: `r(x) ≤ √(Σcₖ) · q(x)`.
+@isnad1 id=le.3h5v.s9.4469077959d5 from=translated src=- shape=95bc6c00 vocab=f37b59f6
 -/
 theorem hilbertianLift_le_dominator (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
@@ -275,7 +283,9 @@ omit [TopologicalSpace E] in
 private lemma R_congr' (R : Seminorm ℝ E) {x y : E} (h : x = y) : R x = R y := by rw [h]
 
 omit [TopologicalSpace E] in
-/-- `ip(x, x) = R(x)²`. -/
+/-- `ip(x, x) = R(x)²`.
+@isnad1 id=eq.0h3v.s7.be8c89d360cb from=translated src=- shape=beb75e7d vocab=28ccd260
+-/
 lemma Seminorm.innerProd_self (R : Seminorm ℝ E) (x : E) :
     R.innerProd x x = R x ^ 2 := by
   simp only [Seminorm.innerProd, sub_self, map_zero, sq, zero_mul, sub_zero]
@@ -283,7 +293,9 @@ lemma Seminorm.innerProd_self (R : Seminorm ℝ E) (x : E) :
   simp; ring
 
 omit [TopologicalSpace E] in
-/-- `ip(x, y) = ip(y, x)` (symmetry). -/
+/-- `ip(x, y) = ip(y, x)` (symmetry).
+@isnad1 id=eq.0h4v.s6.6d4654dd8a6e from=translated src=- shape=833423f2 vocab=253595e4
+-/
 lemma Seminorm.innerProd_comm (R : Seminorm ℝ E) (x y : E) :
     R.innerProd x y = R.innerProd y x := by
   simp only [Seminorm.innerProd]
@@ -292,7 +304,9 @@ lemma Seminorm.innerProd_comm (R : Seminorm ℝ E) (x y : E) :
   rw [h1, h2]
 
 omit [TopologicalSpace E] in
-/-- `ip(-x, y) = -ip(x, y)`. -/
+/-- `ip(-x, y) = -ip(x, y)`.
+@isnad1 id=eq.0h4v.s6.c6f71fc12ad9 from=translated src=- shape=f6e58579 vocab=6fc687c9
+-/
 lemma Seminorm.innerProd_neg_left (R : Seminorm ℝ E) (x y : E) :
     R.innerProd (-x) y = -R.innerProd x y := by
   simp only [Seminorm.innerProd]
@@ -305,6 +319,7 @@ omit [TopologicalSpace E] in
 
 Uses four applications of the parallelogram identity with different argument pairs,
 then combines by linear arithmetic.
+@isnad1 id=eq.1h5v.s7.67aaf2e6b3a6 from=translated src=- shape=932fe9e2 vocab=c733e98c
 -/
 lemma Seminorm.innerProd_add_left (R : Seminorm ℝ E) (hR : R.IsHilbertian) (x₁ x₂ y : E) :
     R.innerProd (x₁ + x₂) y = R.innerProd x₁ y + R.innerProd x₂ y := by
@@ -322,7 +337,9 @@ lemma Seminorm.innerProd_add_left (R : Seminorm ℝ E) (hR : R.IsHilbertian) (x�
   linarith
 
 omit [TopologicalSpace E] in
-/-- `ip(∑ xⱼ, y) = ∑ ip(xⱼ, y)` (finite sum in first argument). -/
+/-- `ip(∑ xⱼ, y) = ∑ ip(xⱼ, y)` (finite sum in first argument).
+@isnad1 id=eq.1h6v.s6.9bee19a23a30 from=translated src=- shape=31aac257 vocab=13cdfe86
+-/
 lemma Seminorm.innerProd_sum_left (R : Seminorm ℝ E) (hR : R.IsHilbertian) {ι : Type*}
     (s : Finset ι) (f : ι → E) (y : E) :
     R.innerProd (∑ j ∈ s, f j) y = ∑ j ∈ s, R.innerProd (f j) y := by
@@ -358,6 +375,7 @@ omit [TopologicalSpace E] in
 Proof: `t ↦ ip(t•x, y)` is additive (from `innerProd_add_left`) and continuous
 (since `R` is Lipschitz). A continuous additive function `ℝ → ℝ` is ℝ-linear
 by `map_real_smul`.
+@isnad1 id=eq.1h5v.s7.fe35d0034af0 from=translated src=- shape=a13728bc vocab=6fcf8d23
 -/
 lemma Seminorm.innerProd_smul_left (R : Seminorm ℝ E) (hR : R.IsHilbertian) (a : ℝ) (x y : E) :
     R.innerProd (a • x) y = a * R.innerProd x y := by
@@ -392,7 +410,9 @@ private lemma R_orthonormal_norm (R : Seminorm ℝ E) {N : ℕ} (v : Fin N → E
   nlinarith [apply_nonneg R (v j)]
 
 omit [TopologicalSpace E] in
-/-- `R(∑ⱼ aⱼ • vⱼ)² = ∑ⱼ aⱼ²` for R-orthonormal `{vⱼ}` (by induction using Pythagoras). -/
+/-- `R(∑ⱼ aⱼ • vⱼ)² = ∑ⱼ aⱼ²` for R-orthonormal `{vⱼ}` (by induction using Pythagoras).
+@isnad1 id=eq.2h5v.s8.127f68877a28 from=translated src=- shape=0d17dc60 vocab=408e8db1
+-/
 lemma Seminorm.sq_sum_orthonormal (R : Seminorm ℝ E) (hR : R.IsHilbertian)
     {N : ℕ} (v : Fin N → E) (hv : R.IsOrthonormalSeq v) (a : Fin N → ℝ) :
     R (∑ j, a j • v j) ^ 2 = ∑ j, a j ^ 2 := by
@@ -430,6 +450,7 @@ then for any finite R-orthonormal sequence `{eⱼ}`, we have `Σⱼ φ(eⱼ)² �
 Proof: let `w = Σⱼ φ(vⱼ)·vⱼ`. By orthonormality `R(w)² = Σⱼ φ(vⱼ)²`,
 by linearity `φ(w) = Σⱼ φ(vⱼ)²`, and `|φ(w)| ≤ R(w)`.
 So `S ≤ R(w) = √S`, giving `S ≤ 1`.
+@isnad1 id=le.3h5v.s8.b598541da68e from=translated src=- shape=a4af8681 vocab=0539f6a5
 -/
 theorem bessel_hilbertian {N : ℕ}
     (R : Seminorm ℝ E) (hR : R.IsHilbertian)
@@ -457,6 +478,7 @@ For any finite R-orthonormal sequence `{eⱼ}`:
            ≤ (Σₖ cₖ) · Σₖ cₖ·(Σⱼ |fₖ(eⱼ)|²)    [Cauchy-Schwarz + swap]
            ≤ (Σₖ cₖ)²                               [Bessel: Σⱼ|fₖ(eⱼ)|² ≤ 1]
 ```
+@isnad1 id=ishilber.6h5v.s9.ea463935c685 from=translated src=- shape=04545657 vocab=2f7bb520
 -/
 theorem isHilbertSchmidtEmbedding_of_nuclear
     (p R : Seminorm ℝ E)
@@ -803,6 +825,7 @@ A locally convex space satisfying Pietsch's nuclear dominance condition
 
 The proof constructs a recursive family of Hilbertian seminorms from the
 Pietsch factorizations and shows they have Hilbert-Schmidt embeddings.
+@isnad1 id=ishilber.3h2v.s8.f333c0631234 from=translated src=- shape=fc5c7dff vocab=719a251f
 -/
 theorem isHilbertNuclear_of_nuclear
     [IsTopologicalAddGroup E] [ContinuousSMul ℝ E]

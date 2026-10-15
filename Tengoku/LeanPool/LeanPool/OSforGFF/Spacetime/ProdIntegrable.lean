@@ -38,6 +38,7 @@ private lemma norm_iteratedFDeriv_one_eq (f : TestFunctionℂ) (y : SpaceTime) :
 
 /-- For a Schwartz function vanishing on {x₀ ≤ 0}, the linear bound ‖f(x)‖ ≤ C · x₀ holds.
     Follows from mean value theorem + global derivative bounds on Schwartz functions.
+@isnad1 id=ex.1h1v.s8.dca82106bae3 from=translated src=- shape=980050d5 vocab=4984729d
 -/
 theorem schwartz_vanishing_linear_bound (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
@@ -123,13 +124,16 @@ abbrev SpatialCoords3 : Type := EuclideanSpace ℝ (Fin 3)
 noncomputable def spacetimeOfTimeSpace (t : ℝ) (x : SpatialCoords3) : SpaceTime :=
   EuclideanSpace.equiv (Fin 4) ℝ |>.symm (Fin.cons t (fun i => x i))
 
-/-- The time coordinate of spacetimeOfTimeSpace is t. -/
+/-- The time coordinate of spacetimeOfTimeSpace is t.
+@isnad1 id=eq.0h2v.s5.9314652c2bcc from=translated src=- shape=db33f545 vocab=f86a5486
+-/
 lemma spacetimeOfTimeSpace_time (t : ℝ) (x : SpatialCoords3) :
     (spacetimeOfTimeSpace t x) 0 = t := by
   simp [spacetimeOfTimeSpace, EuclideanSpace.equiv]
 
 /-- Access the i-th spatial component of spacetimeOfTimeSpace.
     Mathematical fact: (spacetimeOfTimeSpace t x) (i+1) = x i
+@isnad1 id=eq.0h3v.s6.230c851347a1 from=translated src=- shape=d2dbf219 vocab=7dd10d96
 -/
 lemma spacetimeOfTimeSpace_spatial (t : ℝ) (x : SpatialCoords3) (i : Fin 3) :
     (spacetimeOfTimeSpace t x) ⟨i.val + 1, Nat.add_lt_add_right i.isLt 1⟩ = x i := by
@@ -138,6 +142,7 @@ lemma spacetimeOfTimeSpace_spatial (t : ℝ) (x : SpatialCoords3) (i : Fin 3) :
 
 /-- The decomposition: spacetimeOfTimeSpace t x = timeOrigin t + spatialEmbed x.
     This is the key structural fact: (t, x) = (t, 0) + (0, x).
+@isnad1 id=eq.0h2v.s7.f70dc3cd8733 from=translated src=- shape=edd3cb42 vocab=9b74d8ef
 -/
 lemma spacetimeOfTimeSpace_decompose (t : ℝ) (x : SpatialCoords3) :
     spacetimeOfTimeSpace t x = spacetimeOfTimeSpace t 0 + spacetimeOfTimeSpace 0 x := by
@@ -150,7 +155,9 @@ lemma spacetimeOfTimeSpace_decompose (t : ℝ) (x : SpatialCoords3) :
     -- spatial coordinates
     simp [spacetimeOfTimeSpace, EuclideanSpace.equiv, Fin.cons_succ]
 
-/-- Norm comparison: the spacetime norm dominates the spatial norm. -/
+/-- Norm comparison: the spacetime norm dominates the spatial norm.
+@isnad1 id=le.0h2v.s6.9457578e9438 from=translated src=- shape=5db490ba vocab=a713f284
+-/
 lemma spacetimeOfTimeSpace_norm_ge (t : ℝ) (x : SpatialCoords3) :
     ‖spacetimeOfTimeSpace t x‖ ≥ ‖x‖ := by
   have hsq : ‖spacetimeOfTimeSpace t x‖ ^ 2 = t ^ 2 + ‖x‖ ^ 2 := by
@@ -189,7 +196,9 @@ noncomputable def spatialEmbed : SpatialCoords3 →ₗ[ℝ] SpaceTime where
     | zero => simp [spacetimeOfTimeSpace, EuclideanSpace.equiv, Fin.cons_zero]
     | succ j => simp [spacetimeOfTimeSpace, EuclideanSpace.equiv, Fin.cons_succ]
 
-/-- The spatial embedding is continuous (being linear on finite-dim spaces). -/
+/-- The spatial embedding is continuous (being linear on finite-dim spaces).
+@isnad1 id=continuo.0h0v.s9.5c2e1b78fb35 from=translated src=- shape=70a4c996 vocab=45f16adb
+-/
 lemma spatialEmbed_continuous : Continuous spatialEmbed :=
   LinearMap.continuous_of_finiteDimensional spatialEmbed
 
@@ -201,7 +210,9 @@ noncomputable def spatialEmbedCLM : SpatialCoords3 →L[ℝ] SpaceTime :=
 noncomputable def timeOrigin (t : ℝ) : SpaceTime :=
   spacetimeOfTimeSpace t 0
 
-/-- spacetimeOfTimeSpace is continuous in the spatial argument for fixed time. -/
+/-- spacetimeOfTimeSpace is continuous in the spatial argument for fixed time.
+@isnad1 id=continuo.0h1v.s6.b0f6fd5fcfc7 from=translated src=- shape=7000f90d vocab=a04bde2d
+-/
 lemma continuous_spacetimeOfTimeSpace_right (t : ℝ) : Continuous (spacetimeOfTimeSpace t) := by
   -- spacetimeOfTimeSpace t x = timeOrigin t + spatialEmbedCLM x (constant + CLM)
   have h_decompose : ∀ x, spacetimeOfTimeSpace t x = timeOrigin t + spatialEmbedCLM x :=
@@ -210,6 +221,7 @@ lemma continuous_spacetimeOfTimeSpace_right (t : ℝ) : Continuous (spacetimeOfT
 
 /-- A Schwartz function restricted to a fixed time slice is integrable over ℝ³.
     Uses decay transfer: 4D Schwartz decay implies 3D integrability via norm comparison.
+@isnad1 id=integrab.0h2v.s8.0f741eab436b from=translated src=- shape=d0434bea vocab=1361f61d
 -/
 lemma schwartz_time_slice_integrable (f : TestFunctionℂ) (t : ℝ) :
     Integrable (fun x : SpatialCoords3 => f (spacetimeOfTimeSpace t x)) volume := by
@@ -272,7 +284,9 @@ lemma schwartz_time_slice_integrable (f : TestFunctionℂ) (t : ℝ) :
 noncomputable def spatialNormIntegral (f : TestFunctionℂ) (t : ℝ) : ℝ :=
   ∫ x : SpatialCoords3, ‖f (spacetimeOfTimeSpace t x)‖
 
-/-- G(t) = 0 for t ≤ 0 when f vanishes on {t ≤ 0}. -/
+/-- G(t) = 0 for t ≤ 0 when f vanishes on {t ≤ 0}.
+@isnad1 id=eq.2h2v.s7.91ef806bc748 from=translated src=- shape=5940defa vocab=9dda5f95
+-/
 lemma spatialNormIntegral_zero_of_neg (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) (t : ℝ) (ht : t ≤ 0) :
     spatialNormIntegral f t = 0 := by
@@ -284,7 +298,9 @@ lemma spatialNormIntegral_zero_of_neg (f : TestFunctionℂ)
     simp [hf_supp _ h]
   simp [h_zero]
 
-/-- G(t) is nonnegative. -/
+/-- G(t) is nonnegative.
+@isnad1 id=le.0h2v.s4.06bc674c0283 from=translated src=- shape=787c1379 vocab=4da04e2a
+-/
 lemma spatialNormIntegral_nonneg (f : TestFunctionℂ) (t : ℝ) :
     0 ≤ spatialNormIntegral f t :=
   integral_nonneg (fun _ => norm_nonneg _)
@@ -314,6 +330,7 @@ lemma spatialNormIntegral_nonneg (f : TestFunctionℂ) (t : ℝ) :
     integral ∫ ‖f(t, ·)‖ dx bounded by C·t.
 
     **Used by**: `spatialNormIntegral_linear_bound` and `F_norm_bound_via_linear_vanishing`.
+@isnad1 id=ex.1h1v.s8.989f0c357263 from=translated src=- shape=963598db vocab=121a1d82
 -/
 lemma schwartz_vanishing_ftc_decay (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
@@ -541,6 +558,7 @@ lemma schwartz_vanishing_ftc_decay (f : TestFunctionℂ)
     This follows from integrating the pointwise bound ‖f(t,x)‖ ≤ C·t
     over the spatial coordinates. Since Schwartz functions have fast decay,
     the spatial integral is finite.
+@isnad1 id=ex.1h1v.s8.4d411a05df85 from=translated src=- shape=4ae7b379 vocab=e421209c
 -/
 theorem spatialNormIntegral_linear_bound (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :

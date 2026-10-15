@@ -44,14 +44,18 @@ def qPochhammerInv (k : ℕ) : R⟦X⟧ :=
   MvPowerSeries.invOfUnit (qPochhammer (X : R⟦X⟧) k) 1
 
 omit [TopologicalSpace R] [DiscreteTopology R] in
-/-- `qPochhammer X k` times its formal power series inverse equals 1. -/
+/-- `qPochhammer X k` times its formal power series inverse equals 1.
+@isnad1 id=eq.0h2v.s5.418fa5d2920e from=translated src=- shape=ffc64272 vocab=23144c23
+-/
 @[simp]
 theorem qPochhammer_X_mul_qPochhammerInv (k : ℕ) :
     qPochhammer (X : R⟦X⟧) k * qPochhammerInv (R := R) k = 1 :=
   PowerSeries.mul_invOfUnit _ 1 (by simpa using constantCoeff_qPochhammer_X (R := R) k)
 
 omit [TopologicalSpace R] [DiscreteTopology R] in
-/-- The formal power series inverse of `qPochhammer X k` times `qPochhammer X k` equals 1. -/
+/-- The formal power series inverse of `qPochhammer X k` times `qPochhammer X k` equals 1.
+@isnad1 id=eq.0h2v.s5.ae0e271d0cd1 from=translated src=- shape=228f4acf vocab=23144c23
+-/
 @[simp]
 theorem qPochhammerInv_mul_qPochhammer_X (k : ℕ) :
     qPochhammerInv (R := R) k * qPochhammer (X : R⟦X⟧) k = 1 := by
@@ -59,7 +63,9 @@ theorem qPochhammerInv_mul_qPochhammer_X (k : ℕ) :
 
 omit [TopologicalSpace R] [DiscreteTopology R] in
 /-- The recursion `(1 - X^{k+1}) * qPochhammerInv(k+1) = qPochhammerInv(k)` for the inverse
-q-Pochhammer symbol. -/
+q-Pochhammer symbol.
+@isnad1 id=eq.0h2v.s7.e50cde59cce8 from=translated src=- shape=659a4ceb vocab=f88176c9
+-/
 theorem one_sub_pow_mul_qPochhammerInv_succ (k : ℕ) :
     (1 - (X : R⟦X⟧) ^ (k + 1)) * qPochhammerInv (R := R) (k + 1) = qPochhammerInv k := by
   have h1 := qPochhammer_X_mul_qPochhammerInv (R := R) (k + 1)
@@ -67,27 +73,35 @@ theorem one_sub_pow_mul_qPochhammerInv_succ (k : ℕ) :
   refine (isUnit_qPochhammer_X (R := R) k).mul_left_cancel ?_
   rw [qPochhammer_X_mul_qPochhammerInv, ← mul_assoc, h1]
 
-/-- `qPochhammerInf X` is a unit. -/
+/-- `qPochhammerInf X` is a unit.
+@isnad1 id=isunit.0h1v.s5.088835592840 from=translated src=- shape=e67f82c8 vocab=a0463096
+-/
 theorem isUnit_qPochhammerInf_X : IsUnit (qPochhammerInf (X : R⟦X⟧)) :=
   isUnit_qPochhammerInf X (by simp)
 
 /-- Inverse of `qPochhammerInf X`. -/
 def qPochhammerInfInv : R⟦X⟧ := ↑(isUnit_qPochhammerInf_X (R := R)).unit⁻¹
 
-/-- `qPochhammerInf X` times its formal power series inverse equals 1. -/
+/-- `qPochhammerInf X` times its formal power series inverse equals 1.
+@isnad1 id=eq.0h1v.s6.43c2b7bc2b13 from=translated src=- shape=c593a092 vocab=0911a23f
+-/
 @[simp]
 theorem qPochhammerInf_X_mul_qPochhammerInfInv :
     qPochhammerInf (X : R⟦X⟧) * qPochhammerInfInv (R := R) = 1 :=
   isUnit_qPochhammerInf_X.mul_val_inv
 
-/-- The formal power series inverse of `qPochhammerInf X` times `qPochhammerInf X` equals 1. -/
+/-- The formal power series inverse of `qPochhammerInf X` times `qPochhammerInf X` equals 1.
+@isnad1 id=eq.0h1v.s6.bc6c4f326bdd from=translated src=- shape=754046e5 vocab=0911a23f
+-/
 @[simp]
 theorem qPochhammerInfInv_mul_qPochhammerInf_X :
     qPochhammerInfInv (R := R) * qPochhammerInf (X : R⟦X⟧) = 1 :=
   isUnit_qPochhammerInf_X.val_inv_mul
 
 /-- `qPochhammerInf X * qPochhammerInv n = qPochhammerInf (X * X^n)`: multiplying the infinite
-product by the `n`-th inverse Pochhammer symbol shifts the argument. -/
+product by the `n`-th inverse Pochhammer symbol shifts the argument.
+@isnad1 id=eq.0h2v.s6.ac203a7ca6c3 from=translated src=- shape=3162119f vocab=545b47d3
+-/
 theorem qPochhammerInf_X_mul_qPochhammerInv (n : ℕ) :
     qPochhammerInf (X : R⟦X⟧) * qPochhammerInv (R := R) n = qPochhammerInf (X * X ^ n) := by
   rw [qPochhammerInf_X_eq_qPochhammer_mul n, mul_right_comm, qPochhammer_X_mul_qPochhammerInv,
@@ -134,7 +148,9 @@ private theorem coeff_mul_congr {f g b : R⟦X⟧} {N j : ℕ} (hj : j < N)
   rwa [sub_mul, map_sub, sub_eq_zero] at hj0
 
 omit [TopologicalSpace R] [DiscreteTopology R] in
-/-- For `j + k ≤ n`, the `j`-th coefficient of `qBinom n k X` equals that of `qPochhammerInv k`. -/
+/-- For `j + k ≤ n`, the `j`-th coefficient of `qBinom n k X` equals that of `qPochhammerInv k`.
+@isnad1 id=eq.1h4v.s8.73b6e0711fa3 from=translated src=- shape=ea3818fc vocab=bf8ea22d
+-/
 theorem coeff_qBinom_eq_coeff_qPochhammerInv {k j n : ℕ} (hjk : j + k ≤ n) :
     PowerSeries.coeff j (QSeries.qBinom n k (X : R⟦X⟧)) =
     PowerSeries.coeff j (qPochhammerInv (R := R) k) := by
@@ -192,7 +208,9 @@ private theorem coeff_pow_choose_two_mul_qBinom_mul_pow (a : R⟦X⟧) (n k : �
   · rfl
 
 /-- FPS Euler second identity: `qPochhammerInf(-a) = Σ_{k≥0} X^{C(k,2)} · a^k · (qPochhammer X k)⁻¹`
-in `R⟦X⟧`. -/
+in `R⟦X⟧`.
+@isnad1 id=eq.0h2v.s7.c9f273935ba4 from=translated src=- shape=583c299e vocab=9c2ec3d9
+-/
 theorem euler_second_identity (a : R⟦X⟧) :
     qPochhammerInf (-a) = ∑' k : ℕ, X ^ k.choose 2 * a ^ k * qPochhammerInv (R := R) k := by
   ext n
@@ -242,7 +260,9 @@ def keySum (k : ℕ) : R⟦X⟧ :=
   ∑' m : ℕ, X ^ (m * (m + k)) * qPochhammerInv (R := R) m * qPochhammerInv (m + k)
 
 omit [DiscreteTopology R] in
-/-- The defining series for `keySum k` is summable in `R⟦X⟧`. -/
+/-- The defining series for `keySum k` is summable in `R⟦X⟧`.
+@isnad1 id=summable.0h2v.s7.5a2f8aee65bf from=translated src=- shape=b992542b vocab=73817c40
+-/
 theorem summable_keySummand (k : ℕ) :
     Summable (fun m : ℕ =>
       X ^ (m * (m + k)) * qPochhammerInv (R := R) m * qPochhammerInv (m + k)) := by
@@ -309,7 +329,9 @@ private theorem keySumShift_eq_keySum_succ_add (k : ℕ) :
   · simp only [keySum, Finset.sum_range_one, Nat.zero_mul, Nat.zero_add, pow_zero, one_mul]
     ring
 
-/-- The recurrence: `S_k − S_{k+1} = X^{k+1} (S_{k+2} − S_{k+1})`. -/
+/-- The recurrence: `S_k − S_{k+1} = X^{k+1} (S_{k+2} − S_{k+1})`.
+@isnad1 id=eq.0h2v.s7.c036add89a06 from=translated src=- shape=bf6da468 vocab=3ca702f5
+-/
 theorem keySum_sub_keySum_succ (k : ℕ) :
     keySum (R := R) k - keySum (k + 1) =
     X ^ (k + 1) * (keySum (R := R) (k + 2) - keySum (k + 1)) := by
@@ -317,7 +339,9 @@ theorem keySum_sub_keySum_succ (k : ℕ) :
   rw [mul_sub, sub_eq_sub_iff_add_eq_add]
   exact h.trans (add_comm _ _)
 
-/-- `keySum k` is independent of `k`: all values are equal to `keySum 0`. -/
+/-- `keySum k` is independent of `k`: all values are equal to `keySum 0`.
+@isnad1 id=eq.0h2v.s4.428770950339 from=translated src=- shape=3bc33c16 vocab=133148bf
+-/
 theorem keySum_eq_keySum_zero (k : ℕ) : keySum (R := R) k = keySum 0 := by
   -- `S_j - S_{j+1}` is divisible by `X ^ N` for every `N`, hence zero.
   have key : ∀ N j : ℕ, ∃ g : R⟦X⟧, keySum (R := R) j - keySum (j + 1) = X ^ N * g := by
@@ -345,7 +369,9 @@ end KeyIdentity
 section Cauchy
 
 /-- `qPochhammerInf X * qPochhammerInf(-a) = Σ_n X^{C(n,2)} a^n qPochhammerInf(X · X^n)`
-in `R⟦X⟧`. -/
+in `R⟦X⟧`.
+@isnad1 id=eq.0h2v.s8.0dd3db187133 from=translated src=- shape=e768876c vocab=91c37693
+-/
 theorem qPochhammerInf_X_mul_qPochhammerInf_neg (a : R⟦X⟧) :
     qPochhammerInf (X : R⟦X⟧) * qPochhammerInf (-a) =
     ∑' n : ℕ, X ^ n.choose 2 * a ^ n * qPochhammerInf (X * X ^ n) := by

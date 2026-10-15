@@ -27,7 +27,9 @@ namespace Hypercube
 open Pebbling
 
 /-- For the hypercube, any target reachable from `D` has initial weight at least
-one with respect to that target. -/
+one with respect to that target.
+@isnad1 id=le.1h3v.s6.e3a104c0b27d from=translated src=- shape=544a84b4 vocab=246fca7f
+-/
 theorem one_le_weight_of_canReach {n : ℕ} {D : Pebbling (HypercubeVertex n)}
     {target : HypercubeVertex n}
     (hcan : CanReach (graph n) D target) :
@@ -36,14 +38,18 @@ theorem one_le_weight_of_canReach {n : ℕ} {D : Pebbling (HypercubeVertex n)}
     (D := D) (target := target) hcan (dist_self target)
     (fun {u v} h => dist_adj_le_succ (t := target) h)
 
-/-- A solvable distribution has target weight at least one for every target. -/
+/-- A solvable distribution has target weight at least one for every target.
+@isnad1 id=le.1h3v.s6.1572fa95482a from=translated src=- shape=1a31e5de vocab=35c8a0d9
+-/
 theorem one_le_weight_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex n)}
     (hsolv : Solvable (graph n) D) (target : HypercubeVertex n) :
     1 ≤ weight dist D target :=
   one_le_weight_of_canReach (D := D) (target := target) (hsolv target)
 
 /-- Summing the target-wise lower bound over all targets gives
-`|Q_n| ≤ ∑_t W_t(D)`. -/
+`|Q_n| ≤ ∑_t W_t(D)`.
+@isnad1 id=le.1h2v.s6.579c5f218755 from=translated src=- shape=b28d4fe7 vocab=9d1d2751
+-/
 theorem card_le_sum_weight_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex n)}
     (hsolv : Solvable (graph n) D) :
     (Fintype.card (HypercubeVertex n) : ℚ) ≤
@@ -56,7 +62,9 @@ theorem card_le_sum_weight_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex 
           exact Finset.sum_le_sum fun target _ =>
             one_le_weight_of_solvable (D := D) hsolv target
 
-/-- The finite-subset identity behind the inner hypercube weight sum. -/
+/-- The finite-subset identity behind the inner hypercube weight sum.
+@isnad1 id=eq.0h1v.s6.260e9f43933c from=translated src=- shape=72ea6ed1 vocab=28cc00d0
+-/
 theorem sum_invPow_card_finsets (n : ℕ) :
     (∑ s : Finset (Fin n), (1 : ℚ) / (2 : ℚ) ^ s.card) = ((3 : ℚ) / 2) ^ n := by
   classical
@@ -72,7 +80,9 @@ theorem sum_invPow_card_finsets (n : ℕ) :
       ring
 
 /-- For a fixed hypercube vertex `base`, the sum of one-pebble weights over all
-targets is `(3/2)^n`. -/
+targets is `(3/2)^n`.
+@isnad1 id=eq.0h2v.s6.85a89753945b from=translated src=- shape=4650b6f4 vocab=905637da
+-/
 theorem sum_unitWeight (n : ℕ) (base : HypercubeVertex n) :
     (∑ target : HypercubeVertex n, unitWeight dist target base) = ((3 : ℚ) / 2) ^ n := by
   classical
@@ -85,7 +95,9 @@ theorem sum_unitWeight (n : ℕ) (base : HypercubeVertex n) :
               (fun s : Finset (Fin n) => (1 : ℚ) / (2 : ℚ) ^ s.card))
     _ = ((3 : ℚ) / 2) ^ n := sum_invPow_card_finsets n
 
-/-- The double sum of weights factors as `|D| * (3/2)^n`. -/
+/-- The double sum of weights factors as `|D| * (3/2)^n`.
+@isnad1 id=eq.0h2v.s6.a4dd5db9145b from=translated src=- shape=e52151ba vocab=0cb294a2
+-/
 theorem sum_weight_eq_size_mul {n : ℕ} (D : Pebbling (HypercubeVertex n)) :
     (∑ target : HypercubeVertex n, weight dist D target)
       = (size D : ℚ) * ((3 : ℚ) / 2) ^ n := by
@@ -107,7 +119,9 @@ theorem sum_weight_eq_size_mul {n : ℕ} (D : Pebbling (HypercubeVertex n)) :
           simp [size, Finset.sum_mul]
 
 /-- Formal version of the averaged weight inequality
-`|Q_n| ≤ |D| (3/2)^n` for every solvable distribution `D`. -/
+`|Q_n| ≤ |D| (3/2)^n` for every solvable distribution `D`.
+@isnad1 id=le.1h2v.s6.219a9ce4bdaf from=translated src=- shape=74060495 vocab=3870ba30
+-/
 theorem card_le_size_mul_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex n)}
     (hsolv : Solvable (graph n) D) :
     (Fintype.card (HypercubeVertex n) : ℚ) ≤
@@ -116,7 +130,9 @@ theorem card_le_size_mul_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex n)
     (sum_weight_eq_size_mul D)
 
 /-- The lower bound in the paper's usual rational form:
-every solvable distribution on `Q_n` has at least `(4/3)^n` pebbles. -/
+every solvable distribution on `Q_n` has at least `(4/3)^n` pebbles.
+@isnad1 id=le.1h2v.s6.2929bdafbade from=translated src=- shape=aab724cb vocab=96b1138c
+-/
 theorem lower_bound_size_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex n)}
     (hsolv : Solvable (graph n) D) :
     ((4 : ℚ) / 3) ^ n ≤ (size D : ℚ) := by
@@ -132,7 +148,9 @@ theorem lower_bound_size_of_solvable {n : ℕ} {D : Pebbling (HypercubeVertex n)
     rw [← pow_mul, ← pow_mul, Nat.mul_comm]
   simpa [heq]
 
-/-- Lower bound for any specified solvable size. -/
+/-- Lower bound for any specified solvable size.
+@isnad1 id=le.1h2v.s6.362c45556c30 from=translated src=- shape=001ae62f vocab=bf5fd584
+-/
 theorem lower_bound_of_hasSolvableSize {n k : ℕ}
     (h : HasSolvableSize (graph n) k) :
     ((4 : ℚ) / 3) ^ n ≤ (k : ℚ) := by
@@ -140,7 +158,9 @@ theorem lower_bound_of_hasSolvableSize {n k : ℕ}
   rw [← hsize]
   exact lower_bound_size_of_solvable hsolv
 
-/-- Lower bound for any `k` certified as the optimal pebbling number. -/
+/-- Lower bound for any `k` certified as the optimal pebbling number.
+@isnad1 id=le.1h2v.s6.7255b0b4c986 from=translated src=- shape=001ae62f vocab=df8d0cef
+-/
 theorem lower_bound_of_isOptimalNumber {n k : ℕ}
     (hopt : IsOptimalNumber (graph n) k) :
     ((4 : ℚ) / 3) ^ n ≤ (k : ℚ) :=

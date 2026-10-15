@@ -32,7 +32,9 @@ then φ'(1) ≥ (φ(1) - φ(0)) + c/2.
 
 Applies to C² functions with arbitrary φ'(0).
 The proof uses ψ(t) = t·φ'(t) - φ(t) + φ(0) - (c/2)t², which satisfies
-ψ(0) = 0 regardless of φ'(0) (since 0·φ'(0) = 0), and ψ'(t) = t·(φ''(t) - c) ≥ 0. -/
+ψ(0) = 0 regardless of φ'(0) (since 0·φ'(0) = 0), and ψ'(t) = t·(φ''(t) - c) ≥ 0.
+@isnad1 id=le.5h2v.s8.dbf7a59ddad7 from=translated src=- shape=fdfd74ff vocab=19269c34
+-/
 theorem segment_estimate_from_hessian (φ : ℝ → ℝ) (c : ℝ)
     (hφ_cont : ContinuousOn φ (Set.Icc 0 1))
     (hφ_diff : DifferentiableOn ℝ φ (Set.Ioo 0 1))
@@ -94,7 +96,9 @@ theorem segment_estimate_from_hessian (φ : ℝ → ℝ) (c : ℝ)
 /-! ## Fiber path second derivative = Hessian quadratic form -/
 
 /-- The fiber path φ(t) = f(m + t·v) is C² when f is C² on an open set
-containing the entire line through m in direction v. -/
+containing the entire line through m in direction v.
+@isnad1 id=contdiff.3h5v.s8.7f476e3ad81d from=translated src=- shape=e13d3438 vocab=0499e81e
+-/
 theorem fiber_path_contDiff2 {d : ℕ} (f : E d → ℝ) (m v : E d)
     {V : Set (E d)} (hV : IsOpen V) (hf_C2 : ContDiffOn ℝ 2 f V)
     (hseg : ∀ t : ℝ, m + t • v ∈ V) :
@@ -106,7 +110,9 @@ theorem fiber_path_contDiff2 {d : ℕ} (f : E d → ℝ) (m v : E d)
   exact (hf_C2.contDiffAt (hV.mem_nhds (hseg t))).comp t hψ.contDiffAt
 
 /-- The fiber path φ(t) = f(m + t·v) is C² at every point t ∈ [0,1] when f is C²
-on an open set containing the segment {m + t·v | t ∈ [0,1]}. -/
+on an open set containing the segment {m + t·v | t ∈ [0,1]}.
+@isnad1 id=contdiff.4h6v.s8.68a4464f9b4c from=translated src=- shape=18ee83b6 vocab=79d09bac
+-/
 theorem fiber_path_C2at_on_segment {d : ℕ} (f : E d → ℝ) (m v : E d)
     {V : Set (E d)} (hV : IsOpen V) (hf_C2 : ContDiffOn ℝ 2 f V)
     (hseg : ∀ t : ℝ, t ∈ Set.Icc 0 1 → m + t • v ∈ V) :

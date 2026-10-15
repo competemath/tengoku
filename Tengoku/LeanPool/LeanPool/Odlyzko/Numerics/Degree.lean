@@ -17,9 +17,15 @@ namespace NumberField.Odlyzko
 noncomputable def odlyzkoScale : ℝ :=
   41 / 50
 
+/--
+@isnad1 id=lt.0h0v.s3.35886c8ab23c from=translated src=- shape=ff3a10fc vocab=88bd7eab
+-/
 theorem odlyzkoScale_pos : 0 < odlyzkoScale := by
   norm_num [odlyzkoScale]
 
+/--
+@isnad1 id=le.1h1v.s6.6c692f92a6ea from=translated src=- shape=161abf83 vocab=1c9ca728
+-/
 theorem degreeCorrection_le_degreeEighteen {n : ℕ} (hn : 18 ≤ n) :
     12 * Real.pi / (5 * n * odlyzkoScale) ≤ 20 * Real.pi / 123 := by
   have : (18 : ℝ) ≤ n := by simp_all

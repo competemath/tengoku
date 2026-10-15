@@ -39,6 +39,9 @@ open Complex intervalIntegral
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h4v.s6.4ae7112317b2 from=translated src=- shape=f115ca65 vocab=27d09377
+-/
 theorem verticalSegmentIntegral_one_sub_of_antiInvariant
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {f : ℂ → E} (hf : ∀ z, f (1 - z) = -f z)
@@ -69,6 +72,9 @@ theorem verticalSegmentIntegral_one_sub_of_antiInvariant
         (a := -T) (b := T))
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s8.11cdfa4786d9 from=translated src=- shape=1daacb9c vocab=5a8aeba4
+-/
 theorem rectangleIntegral_eq_horizontal_sub_add_two_vertical_of_antiInvariant
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {f : ℂ → E} (hf : ∀ z, f (1 - z) = -f z)
@@ -85,6 +91,9 @@ theorem rectangleIntegral_eq_horizontal_sub_add_two_vertical_of_antiInvariant
   simp only [two_smul]
   grind
 
+/--
+@isnad1 id=eq.2h3v.s6.1d9b870e5137 from=translated src=- shape=0ed9138e vocab=0bb5dd3c
+-/
 theorem mul_antiInvariant_of_invariant_of_antiInvariant
     {h g : ℂ → ℂ}
     (hh : ∀ z, h (1 - z) = h z)
@@ -111,6 +120,9 @@ noncomputable def inverseGaussKernel (f : ℝ → ℝ) (x : ℝ) : ℝ :=
   (Real.exp (-x) - 2 * f x / (Real.exp x + 1)) /
     (1 - Real.exp (-x))
 
+/--
+@isnad1 id=eq.1h2v.s5.fd733d1bce33 from=translated src=- shape=63b80ee9 vocab=161fa67c
+-/
 theorem inverseGaussKernel_eq
     {f : ℝ → ℝ} {x : ℝ} (hx : 0 < x) :
     inverseGaussKernel f x =
@@ -140,6 +152,9 @@ private theorem fermiDiracKernel_le_exp_neg (x : ℝ) :
   exact inv_anti₀ (Real.exp_pos x)
     (le_add_of_nonneg_right zero_le_one)
 
+/--
+@isnad1 id=integrab.0h0v.s5.a7e70d16fb02 from=translated src=- shape=a0299261 vocab=3168e6c6
+-/
 theorem integrableOn_fermiDiracKernel_Ioi :
     IntegrableOn fermiDiracKernel (Ioi 0) := by
   apply (integrableOn_exp_neg_Ioi 0).mono'
@@ -160,6 +175,9 @@ theorem integrableOn_fermiDiracKernel_Ioi :
       abs_of_nonneg (fermiDiracKernel_nonneg x)]
     exact fermiDiracKernel_le_exp_neg x
 
+/--
+@isnad1 id=eq.0h0v.s5.9c8e85e7e94f from=translated src=- shape=ce08d409 vocab=182a5ebf
+-/
 theorem integral_fermiDiracKernel :
     (∫ x : ℝ in Ioi 0, fermiDiracKernel x) =
       Real.log 2 := by
@@ -209,6 +227,9 @@ open Real
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h2v.s6.d39a56a740e6 from=translated src=- shape=9bd5668e vocab=475a2b1f
+-/
 theorem exp_sub_poitouKernel_mul_exp_neg_half_div_eq_inverseGaussKernel
     (f : ℝ → ℝ) {x : ℝ} (_hx : 0 < x) :
     (Real.exp (-x) -
@@ -234,6 +255,9 @@ theorem exp_sub_poitouKernel_mul_exp_neg_half_div_eq_inverseGaussKernel
     rw [show -x / 2 = -(x / 2) by ring, Real.exp_neg]
   grind
 
+/--
+@isnad1 id=eq.1h3v.s6.ca69e6051466 from=translated src=- shape=068f1d52 vocab=5ea7aeb3
+-/
 theorem exp_sub_regularizedPoitouKernel_mul_exp_neg_half_div
     (y δ : ℝ) {x : ℝ} (hx : 0 < x) :
     (Real.exp (-x) -
@@ -254,6 +278,9 @@ open Complex MeasureTheory Real Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h3v.s6.79ca2fdd212c from=translated src=- shape=093af8bc vocab=19429158
+-/
 theorem norm_gaussDigammaIntegrand_vertical_le
     (σ t : ℝ) {x : ℝ} (hx : 0 < x) :
     ‖gaussDigammaIntegrand (σ + t * I) x‖ ≤
@@ -282,6 +309,9 @@ theorem norm_gaussDigammaIntegrand_vertical_le
   rw [gaussDigammaIntegrand, norm_div, hden]
   exact div_le_div_of_nonneg_right hnum hdenPos.le
 
+/--
+@isnad1 id=integrab.1h4v.s6.df2294c01d10 from=translated src=- shape=ceb12537 vocab=fe5c6c19
+-/
 theorem integrable_poitouTransform_regularized_mul_cexp_neg
     {δ : ℝ} (hδ : 0 < δ) (y σ x : ℝ) :
     Integrable (fun t : ℝ ↦
@@ -297,6 +327,9 @@ theorem integrable_poitouTransform_regularized_mul_cexp_neg
       simp
     rw [hre]
 
+/--
+@isnad1 id=eq.2h4v.s7.b7b733863cdd from=translated src=- shape=56b3a173 vocab=4d59a436
+-/
 theorem integral_poitouTransform_regularized_mul_gaussDigammaIntegrand
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) {x : ℝ} (hx : 0 < x) :
     (∫ t : ℝ,
@@ -366,6 +399,9 @@ open scoped Topology
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=integrab.2h2v.s5.ff64237f4e56 from=translated src=- shape=392fc779 vocab=7a9f21f7
+-/
 theorem regularizedScaledTartar_integrable
     {y δ : ℝ} (hy : y ≠ 0) (hδ : 0 ≤ δ) :
     Integrable (regularizedScaledTartar y δ) := by
@@ -376,6 +412,9 @@ theorem regularizedScaledTartar_integrable
       abs_of_nonneg (regularizedScaledTartar_nonneg y δ x)]
     exact regularizedScaledTartar_le_scaledTartar hδ
 
+/--
+@isnad1 id=eq.0h4v.s5.52abde3e32db from=translated src=- shape=1e867920 vocab=9f000c90
+-/
 theorem poitouTransformIntegrand_regularizedScaledTartar_eq
     (y δ : ℝ) (s : ℂ) (x : ℝ) :
     poitouTransformIntegrand (regularizedScaledTartar y δ) s x =
@@ -386,6 +425,9 @@ theorem poitouTransformIntegrand_regularizedScaledTartar_eq
   push_cast
   ring
 
+/--
+@isnad1 id=le.1h4v.s5.a22b0487acc0 from=translated src=- shape=63421a5b vocab=9874b1c7
+-/
 theorem norm_poitouTransformIntegrand_regularized_le_scaled
     {y δ : ℝ} (hδ : 0 ≤ δ) (s : ℂ) (x : ℝ) :
     ‖poitouTransformIntegrand (regularizedScaledTartar y δ) s x‖ ≤
@@ -400,6 +442,9 @@ theorem norm_poitouTransformIntegrand_regularized_le_scaled
   simpa only [one_mul] using
     mul_le_mul_of_nonneg_right hexp (norm_nonneg _)
 
+/--
+@isnad1 id=tendsto.2h2v.s6.05e33ea6a013 from=translated src=- shape=e64277d2 vocab=fa1bd32e
+-/
 theorem tendsto_poitouTransform_regularizedScaledTartar_nhdsGT_zero
     {y : ℝ} (hy : y ≠ 0) {s : ℂ} (hs : s.re ∈ Icc 0 1) :
     Tendsto
@@ -459,12 +504,18 @@ noncomputable def completedZetaPoleFactor (s : ℂ) : ℂ :=
 noncomputable def completedZetaPoleLogDeriv (s : ℂ) : ℂ :=
   1 / s + 1 / (s - 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.fafea648b5ff from=translated src=- shape=ebb0ef19 vocab=e978a2de
+-/
 theorem completedZetaPoleLogDeriv_one_sub (s : ℂ) :
     completedZetaPoleLogDeriv (1 - s) =
       -completedZetaPoleLogDeriv s := by
   unfold completedZetaPoleLogDeriv
   grind
 
+/--
+@isnad1 id=eq.0h0v.s5.22caf2efdf3d from=translated src=- shape=ba7bc9fa vocab=98b0f3d0
+-/
 theorem meromorphicOrderAt_completedZetaPoleFactor_zero :
     meromorphicOrderAt completedZetaPoleFactor 0 = 1 := by
   have hg : meromorphicOrderAt (fun s : ℂ ↦ s - 1) 0 = 0 := by
@@ -478,6 +529,9 @@ theorem meromorphicOrderAt_completedZetaPoleFactor_zero :
   rw [add_zero, show (fun s : ℂ ↦ s) = id by grind]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s5.2471793ecd0a from=translated src=- shape=ba7bc9fa vocab=98b0f3d0
+-/
 theorem meromorphicOrderAt_completedZetaPoleFactor_one :
     meromorphicOrderAt completedZetaPoleFactor 1 = 1 := by
   have hf : meromorphicOrderAt (fun s : ℂ ↦ s) 1 = 0 := by
@@ -490,6 +544,9 @@ theorem meromorphicOrderAt_completedZetaPoleFactor_one :
   rw [meromorphicOrderAt_mul (by fun_prop) (by fun_prop), hf]
   simp
 
+/--
+@isnad1 id=eq.2h1v.s5.567ec4b0ac1c from=translated src=- shape=8947be71 vocab=04018f04
+-/
 theorem logDeriv_completedZetaPoleFactor_eq
     {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
     logDeriv completedZetaPoleFactor s =
@@ -503,6 +560,9 @@ theorem logDeriv_completedZetaPoleFactor_eq
   · simp
   · simp
 
+/--
+@isnad1 id=eq.5h5v.s7.deeb26aa6d78 from=translated src=- shape=65a8f8c5 vocab=555ca6a3
+-/
 theorem rectangleIntegral_mul_completedZetaPoleLogDeriv
     {h : ℂ → ℂ} {a b u v : ℝ}
     (ha : a < 0) (hb : 1 < b) (hu : u < 0) (hv : 0 < v)
@@ -625,6 +685,9 @@ universe u
 variable {E : Type u} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=rectangl.3h6v.s7.f0541b8acbc7 from=translated src=- shape=513cabc2 vocab=f889f91d
+-/
 theorem rectangleBorderIntegrable_of_continuousAt_boundary
     {f : ℂ → E} {a b u v : ℝ} (hab : a ≤ b) (huv : u ≤ v)
     (hf : ∀ z ∈ Icc a b ×ℂ Icc u v,
@@ -684,6 +747,9 @@ theorem rectangleBorderIntegrable_of_continuousAt_boundary
     simpa only [ContinuousAt, Function.comp_def] using
       Filter.Tendsto.comp hout hin
 
+/--
+@isnad1 id=eq.2h5v.s6.94eac74dfd9d from=translated src=- shape=04d5ec88 vocab=b1ecaedc
+-/
 theorem rectangleIntegral_sub
     {f g : ℂ → E} {z w : ℂ}
     (hf : RectangleBorderIntegrable f z w)
@@ -717,6 +783,9 @@ private theorem tartarWeightConvolution_integrable :
   rw [complexTartarWeight_convolution_eq, norm_real, Real.norm_eq_abs,
     abs_of_nonneg (tartarWeightConvolution_nonneg x)]
 
+/--
+@isnad1 id=eq.0h2v.s6.e34c8aaf2a64 from=translated src=- shape=78f149c0 vocab=c34818d7
+-/
 theorem scaledTartarTestFunction_eq_integral_weightConvolution_cos
     (y x : ℝ) :
     scaledTartarTestFunction y x =
@@ -768,6 +837,9 @@ theorem scaledTartarTestFunction_eq_integral_weightConvolution_cos
   simp only [add_zero] at hre
   grind
 
+/--
+@isnad1 id=le.1h2v.s6.e22747b15a61 from=translated src=- shape=b059de8a vocab=e2a0a4e0
+-/
 theorem integral_exp_neg_mul_sq_mul_cos_nonneg
     {δ : ℝ} (hδ : 0 < δ) (a : ℝ) :
     0 ≤ ∫ x : ℝ, Real.exp (-δ * x ^ 2) * Real.cos (a * x) := by
@@ -819,6 +891,9 @@ theorem integral_exp_neg_mul_sq_mul_cos_nonneg
   rw [hre]
   positivity
 
+/--
+@isnad1 id=le.1h3v.s4.777bda3e0fab from=translated src=- shape=f4cd5b2b vocab=0354d926
+-/
 theorem cosineTransform_regularizedScaledTartar_nonneg
     {δ : ℝ} (hδ : 0 < δ) (y t : ℝ) :
     0 ≤ Poitou.cosineTransform (regularizedScaledTartar y δ) t := by
@@ -930,6 +1005,9 @@ theorem cosineTransform_regularizedScaledTartar_nonneg
     _ = (9 / 16 : ℝ) * ∫ v : ℝ, ∫ x : ℝ, F x v := by simp_all
     _ ≥ 0 := mul_nonneg (by norm_num) (integral_nonneg hinner)
 
+/--
+@isnad1 id=admissib.2h2v.s4.ec3283a623f2 from=translated src=- shape=6a0479e5 vocab=757c9d2b
+-/
 theorem regularizedScaledTartar_poitouAdmissible
     {y δ : ℝ} (hy : y ≠ 0) (hδ : 0 < δ) :
     Poitou.Admissible (regularizedScaledTartar y δ) where
@@ -963,6 +1041,9 @@ private theorem regularizedPoitouCriticalStripMajorant_integrable
     Integrable (regularizedPoitouCriticalStripMajorant δ) := by
   exact (integrable_exp_neg_mul_sq (half_pos hδ)).const_mul _
 
+/--
+@isnad1 id=le.2h4v.s5.c1a1cd531aa1 from=translated src=- shape=b6c7d9b9 vocab=e0f10b27
+-/
 theorem norm_poitouTransformIntegrand_regularized_le_criticalStripMajorant
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {s : ℂ}
     (hs : s ∈ poitouClosedCriticalStrip) (x : ℝ) :
@@ -981,6 +1062,9 @@ theorem norm_poitouTransformIntegrand_regularized_le_criticalStripMajorant
     · positivity
   · exact (Real.exp_pos _).le
 
+/--
+@isnad1 id=le.2h3v.s5.11cf7d104dd2 from=translated src=- shape=af07f67c vocab=99dd959c
+-/
 theorem norm_poitouTransform_regularized_le_criticalStripIntegral
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {s : ℂ}
     (hs : s ∈ poitouClosedCriticalStrip) :
@@ -993,6 +1077,9 @@ theorem norm_poitouTransform_regularized_le_criticalStripIntegral
   exact norm_poitouTransformIntegrand_regularized_le_criticalStripMajorant
     hδ y hs x
 
+/--
+@isnad1 id=diffcont.1h2v.s5.b13eea34c145 from=translated src=- shape=150a2d0d vocab=7560fc00
+-/
 theorem diffContOnCl_poitouTransform_regularized
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) :
     DiffContOnCl ℂ (poitouTransform (regularizedScaledTartar y δ))
@@ -1010,6 +1097,9 @@ noncomputable def negativeExpRegularizedPoitouTransform
     (y δ : ℝ) (s : ℂ) : ℂ :=
   Complex.exp (-poitouTransform (regularizedScaledTartar y δ) s)
 
+/--
+@isnad1 id=diffcont.1h2v.s5.85d9780a097d from=translated src=- shape=8ac34142 vocab=5614c37f
+-/
 theorem diffContOnCl_negativeExpRegularizedPoitouTransform
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) :
     DiffContOnCl ℂ (negativeExpRegularizedPoitouTransform y δ)
@@ -1021,6 +1111,9 @@ theorem diffContOnCl_negativeExpRegularizedPoitouTransform
   · exact Complex.continuous_exp.continuousOn.comp h.continuousOn
       (fun _ _ ↦ mem_univ _)
 
+/--
+@isnad1 id=le.2h3v.s5.1186d4668742 from=translated src=- shape=dcf6c1fa vocab=902dee2e
+-/
 theorem norm_negativeExpRegularizedPoitouTransform_le
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {s : ℂ}
     (hs : s ∈ poitouClosedCriticalStrip) :
@@ -1038,6 +1131,9 @@ theorem norm_negativeExpRegularizedPoitouTransform_le
     _ ≤ _ :=
       norm_poitouTransform_regularized_le_criticalStripIntegral hδ y hs
 
+/--
+@isnad1 id=ex.1h2v.s7.14563d99ce35 from=translated src=- shape=11c2c4e4 vocab=b90facfb
+-/
 theorem negativeExpRegularizedPoitouTransform_growth
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) :
     ∃ c < Real.pi / (1 - 0), ∃ B,
@@ -1055,6 +1151,9 @@ theorem negativeExpRegularizedPoitouTransform_growth
   simpa using
     norm_negativeExpRegularizedPoitouTransform_le hδ y hs'
 
+/--
+@isnad1 id=le.3h3v.s5.61c1357236af from=translated src=- shape=aef662b2 vocab=0bc919ec
+-/
 theorem norm_negativeExpRegularizedPoitouTransform_le_one_of_re_zero
     {y δ : ℝ} (hy : y ≠ 0) (hδ : 0 < δ) {s : ℂ}
     (hs : s.re = 0) :
@@ -1070,6 +1169,9 @@ theorem norm_negativeExpRegularizedPoitouTransform_le_one_of_re_zero
     (poitouTransformIntegrand_regularizedScaledTartar_integrable
       hδ (s.im * I)))
 
+/--
+@isnad1 id=le.3h3v.s5.bbd4a785d388 from=translated src=- shape=aef662b2 vocab=0bc919ec
+-/
 theorem norm_negativeExpRegularizedPoitouTransform_le_one_of_re_one
     {y δ : ℝ} (hy : y ≠ 0) (hδ : 0 < δ) {s : ℂ}
     (hs : s.re = 1) :
@@ -1085,6 +1187,9 @@ theorem norm_negativeExpRegularizedPoitouTransform_le_one_of_re_one
     (poitouTransformIntegrand_regularizedScaledTartar_integrable
       hδ (((-s.im : ℝ) : ℂ) * I)))
 
+/--
+@isnad1 id=le.3h3v.s5.fbded87f6f93 from=translated src=- shape=9f59b9dc vocab=8cf92fd7
+-/
 theorem re_poitouTransform_regularizedScaledTartar_nonneg
     {y δ : ℝ} (hy : y ≠ 0) (hδ : 0 < δ) {s : ℂ}
     (hs : s ∈ poitouClosedCriticalStrip) :
@@ -1152,6 +1257,9 @@ open Complex NumberField Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.3h4v.s7.c73bac9a72c3 from=translated src=- shape=8feaffcb vocab=22e7052f
+-/
 theorem regularizedPoitou_completedZetaPole_centeredRectangle_identity
     {y δ b T : ℝ} (hδ : 0 < δ) (hb : 1 < b) (hT : 0 < T) :
     horizontalIntegral
@@ -1229,6 +1337,9 @@ end
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h1v.s7.7d6552844cc2 from=translated src=- shape=de15f273 vocab=47f8b159
+-/
 theorem numericalCertificate_of_integral_le {J : ℝ} (hJ : J ≤ 2 / 5) :
     Real.log (33 / 4) ≤
       Real.eulerMascheroniConstant + Real.log (4 * Real.pi) - J - 20 * Real.pi / 123 := by
@@ -1286,6 +1397,9 @@ noncomputable def regularizedArchimedeanIntegrand
     (y δ x : ℝ) : ℝ :=
   (1 - regularizedScaledTartar y δ x) / Real.sinh x
 
+/--
+@isnad1 id=le.1h3v.s6.bf4ca451fa6b from=translated src=- shape=932175f9 vocab=3a5aa289
+-/
 theorem one_sub_regularizedScaledTartar_le_sq
     {δ : ℝ} (hδ : 0 ≤ δ) (y x : ℝ) :
     1 - regularizedScaledTartar y δ x ≤
@@ -1311,6 +1425,9 @@ theorem one_sub_regularizedScaledTartar_le_sq
   unfold regularizedScaledTartar
   grind
 
+/--
+@isnad1 id=le.2h3v.s5.fe5c71462ffb from=translated src=- shape=753bbbe9 vocab=a321a7c6
+-/
 theorem regularizedArchimedeanIntegrand_nonneg
     {δ x : ℝ} (hδ : 0 ≤ δ) (hx : 0 < x) (y : ℝ) :
     0 ≤ regularizedArchimedeanIntegrand y δ x := by
@@ -1319,6 +1436,9 @@ theorem regularizedArchimedeanIntegrand_nonneg
     (sub_nonneg.mpr (regularizedScaledTartar_le_one hδ))
     (Real.sinh_pos_iff.mpr hx).le
 
+/--
+@isnad1 id=le.2h3v.s6.ac0d58d2cbc5 from=translated src=- shape=4cd17f76 vocab=c4a7ee85
+-/
 theorem regularizedArchimedeanIntegrand_le_linear
     {δ x : ℝ} (hδ : 0 ≤ δ) (hx : 0 < x) (y : ℝ) :
     regularizedArchimedeanIntegrand y δ x ≤
@@ -1334,6 +1454,9 @@ theorem regularizedArchimedeanIntegrand_le_linear
     _ ≤ ((y ^ 2 / 5 + δ) * x) * Real.sinh x := by
       gcongr
 
+/--
+@isnad1 id=integrab.1h2v.s5.f9784c39dd62 from=translated src=- shape=35d23957 vocab=306aeb51
+-/
 theorem integrableOn_regularizedArchimedeanIntegrand_Ioc_zero_one
     {δ : ℝ} (hδ : 0 ≤ δ) (y : ℝ) :
     IntegrableOn (regularizedArchimedeanIntegrand y δ) (Ioc 0 1) := by
@@ -1353,6 +1476,9 @@ theorem integrableOn_regularizedArchimedeanIntegrand_Ioc_zero_one
         (regularizedArchimedeanIntegrand_nonneg hδ hx.1 y)]
     exact regularizedArchimedeanIntegrand_le_linear hδ hx.1 y
 
+/--
+@isnad1 id=integrab.1h2v.s5.95b5a5cbbb7a from=translated src=- shape=588367c6 vocab=5241c41d
+-/
 theorem integrableOn_regularizedArchimedeanIntegrand_Ioi_one
     {δ : ℝ} (hδ : 0 ≤ δ) (y : ℝ) :
     IntegrableOn (regularizedArchimedeanIntegrand y δ) (Ioi 1) := by
@@ -1379,6 +1505,9 @@ theorem integrableOn_regularizedArchimedeanIntegrand_Ioi_one
       _ ≤ (8 / 3 : ℝ) * Real.exp (-x) :=
         one_div_sinh_le_exp_tail hx.le
 
+/--
+@isnad1 id=integrab.1h2v.s5.1aa8bae00e82 from=translated src=- shape=588367c6 vocab=5241c41d
+-/
 theorem integrableOn_regularizedArchimedeanIntegrand_Ioi
     {δ : ℝ} (hδ : 0 ≤ δ) (y : ℝ) :
     IntegrableOn (regularizedArchimedeanIntegrand y δ) (Ioi 0) := by
@@ -1405,6 +1534,9 @@ noncomputable def regularizedArchimedeanMajorant
   if x ≤ 1 then (y ^ 2 / 5 + 1) * x
   else (8 / 3 : ℝ) * Real.exp (-x)
 
+/--
+@isnad1 id=integrab.0h1v.s5.00877745a518 from=translated src=- shape=85d65c90 vocab=aeb7c28b
+-/
 theorem integrableOn_regularizedArchimedeanMajorant_Ioi
     (y : ℝ) :
     IntegrableOn (regularizedArchimedeanMajorant y) (Ioi 0) := by
@@ -1432,6 +1564,9 @@ theorem integrableOn_regularizedArchimedeanMajorant_Ioi
   rw [← hunion]
   exact hnear.union htail
 
+/--
+@isnad1 id=le.3h3v.s5.7b97bcc41e93 from=translated src=- shape=dc41144a vocab=27ce1961
+-/
 theorem norm_regularizedArchimedeanIntegrand_le_majorant
     {δ x : ℝ} (hδ : 0 ≤ δ) (hδ1 : δ ≤ 1)
     (hx : 0 < x) (y : ℝ) :
@@ -1457,6 +1592,9 @@ theorem norm_regularizedArchimedeanIntegrand_le_majorant
       _ ≤ (8 / 3 : ℝ) * Real.exp (-x) :=
         one_div_sinh_le_exp_tail hxone
 
+/--
+@isnad1 id=tendsto.0h1v.s6.e4724cebe61e from=translated src=- shape=47128cc3 vocab=55b574d1
+-/
 theorem tendsto_integral_regularizedArchimedeanIntegrand_nhdsGT_zero
     (y : ℝ) :
     Tendsto
@@ -1490,6 +1628,9 @@ theorem tendsto_integral_regularizedArchimedeanIntegrand_nhdsGT_zero
           (tendsto_regularizedScaledTartar_nhds_zero y x))
         |>.div_const (Real.sinh x))
 
+/--
+@isnad1 id=tendsto.0h1v.s6.ba7011ca6203 from=translated src=- shape=645f215b vocab=22d25d97
+-/
 theorem tendsto_integral_inverseGaussKernel_regularizedScaledTartar_nhdsGT_zero
     (y : ℝ) :
     Tendsto
@@ -1520,6 +1661,9 @@ open Complex Real Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.3h3v.s6.e42056df6fa0 from=translated src=- shape=b99040f2 vocab=ab86610c
+-/
 theorem norm_gaussDigammaIntegrand_vertical_le_four_div
     {σ t x : ℝ} (hσ : 0 ≤ σ) (hx : 0 < x) (hx1 : x ≤ 1) :
     ‖gaussDigammaIntegrand (σ + t * I) x‖ ≤ 4 / x := by
@@ -1540,6 +1684,9 @@ theorem norm_gaussDigammaIntegrand_vertical_le_four_div
       exact div_le_div₀ (by positivity) hnum (by positivity) hden
     _ = 4 / x := by grind
 
+/--
+@isnad1 id=le.3h3v.s6.4513633c5d33 from=translated src=- shape=62664a3c vocab=4273dba4
+-/
 theorem norm_gaussDigammaIntegrand_vertical_le_sqrt
     {σ t x : ℝ} (hσ : 0 ≤ σ) (hx : 0 < x) (hx1 : x ≤ 1) :
     ‖gaussDigammaIntegrand (σ + t * I) x‖ ≤
@@ -1627,6 +1774,9 @@ private theorem sqrt_add_abs_mul_norm_poitouTransform_le_rpow
         rw [← Real.rpow_sub htpos]
         grind]
 
+/--
+@isnad1 id=integrab.1h3v.s6.b58ff9aedea4 from=translated src=- shape=2e6b7ae8 vocab=34222836
+-/
 theorem integrable_sqrt_add_abs_mul_norm_poitouTransform_regularized
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Integrable (fun t : ℝ ↦
@@ -1840,6 +1990,9 @@ private theorem integrableOn_gaussDigammaVerticalTailMajorant
       (by
         gcongr)
 
+/--
+@isnad1 id=integrab.2h3v.s7.4bcb94625226 from=translated src=- shape=0441ecd9 vocab=2f156846
+-/
 theorem integrableOn_uncurry_poitouTransform_regularized_mul_gaussDigammaIntegrand_Ioi
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 0 < σ) :
     Integrable
@@ -1926,6 +2079,9 @@ theorem integrableOn_uncurry_poitouTransform_regularized_mul_gaussDigammaIntegra
   rw [hmeasure, Measure.prod_add]
   exact hnear.add_measure htail
 
+/--
+@isnad1 id=eq.2h3v.s7.3d065c7e5101 from=translated src=- shape=08a65fac vocab=c788ef2e
+-/
 theorem integral_poitouTransform_regularized_mul_integral_gaussDigammaIntegrand_Ioi
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 0 < σ) :
     (∫ t : ℝ,
@@ -1965,6 +2121,9 @@ open Complex MeasureTheory Real Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h1v.s6.b51e64195892 from=translated src=- shape=8ae4fb95 vocab=dd7811e3
+-/
 theorem integral_gaussDigammaIntegrand_eq_digamma_add_euler
     {s : ℂ} (hs : 0 < s.re) :
     (∫ x : ℝ in Ioi 0, gaussDigammaIntegrand s x) =
@@ -1973,6 +2132,9 @@ theorem integral_gaussDigammaIntegrand_eq_digamma_add_euler
   unfold gaussDigamma at hgauss
   grind
 
+/--
+@isnad1 id=integrab.2h3v.s6.ce6a389e7bf1 from=translated src=- shape=fa45052e vocab=2ae393f1
+-/
 theorem integrable_poitouTransform_regularized_mul_digamma_add_euler
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 0 < σ) :
     Integrable (fun t : ℝ ↦
@@ -1996,6 +2158,9 @@ theorem integrable_poitouTransform_regularized_mul_digamma_add_euler
     integral_gaussDigammaIntegrand_eq_digamma_add_euler
       (by simpa using hσ)]
 
+/--
+@isnad1 id=eq.2h3v.s7.f12ae21c419c from=translated src=- shape=f48f758d vocab=6c8e2037
+-/
 theorem integral_poitouTransform_regularized_mul_digamma_add_euler
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 0 < σ) :
     (∫ t : ℝ,
@@ -2038,6 +2203,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=integrab.2h4v.s7.f9ebe0c2899d from=translated src=- shape=462d9e7e vocab=5c06526e
+-/
 theorem integrable_poitouTransform_regularized_mul_neg_logDeriv_dedekindZeta
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 1 < σ) :
     Integrable (fun t : ℝ ↦
@@ -2098,6 +2266,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=le.2h2v.s6.a6a20bd63d7c from=translated src=- shape=8df532b8 vocab=1d55b5f2
+-/
 theorem le_rootDiscr_of_log_le_logDiscr_div_finrank {c : ℝ} (hc : 0 < c)
     (h :
       Real.log c ≤ Real.log |(discr K : ℝ)| / finrank ℚ K) :
@@ -2120,6 +2291,9 @@ def TotallyComplexPoitouEstimate : Prop :=
       archimedeanIntegral odlyzkoScale -
       12 * Real.pi / (5 * finrank ℚ K * odlyzkoScale)
 
+/--
+@isnad1 id=le.2h1v.s6.07162cd6cfcd from=translated src=- shape=a5980c14 vocab=f7ce906d
+-/
 theorem target_le_rootDiscr_of_poitouEstimate
     (hdim : 18 ≤ finrank ℚ K) (hP : TotallyComplexPoitouEstimate K) :
     (8.25 : ℝ) ≤ rootDiscr K := by
@@ -2133,6 +2307,9 @@ theorem target_le_rootDiscr_of_poitouEstimate
   norm_num [show (8.25 : ℝ) = 33 / 4 by norm_num]
   exact le_rootDiscr_of_log_le_logDiscr_div_finrank K (by norm_num) hlog
 
+/--
+@isnad1 id=le.2h1v.s6.e2dab3d977dd from=translated src=- shape=a9ef85ca vocab=ca133277
+-/
 theorem odlyzkoBound_of_poitouEstimate (hdim : 18 ≤ finrank ℚ K)
     (hP : TotallyComplexPoitouEstimate K) :
     |(discr K : ℝ)| ≥ (8.25 : ℝ) ^ finrank ℚ K :=

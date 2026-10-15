@@ -31,6 +31,9 @@ noncomputable def traceToEuclidean :
   (traceToMixed K).trans (mixedEmbedding.euclidean.toMixed K).symm
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s12.7263ac535498 from=translated src=- shape=51ff9bd8 vocab=ad66d177
+-/
 theorem traceIdealLattice_eq_comap_euclideanIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     traceIdealLattice K I =
@@ -100,6 +103,9 @@ private theorem det_traceToEuclidean :
     det_unscaleComplexCoordinates]
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s10.346ae0796588 from=translated src=- shape=466a9570 vocab=05d1da10
+-/
 theorem covolume_comap_continuousLinearEquiv
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
@@ -143,6 +149,9 @@ theorem covolume_comap_continuousLinearEquiv
   simp
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s10.d01138965abf from=translated src=- shape=a775c563 vocab=e183f45e
+-/
 theorem covolume_traceIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ZLattice.covolume (traceIdealLattice K I) =
@@ -197,6 +206,9 @@ noncomputable def radialMixedSpaceUnit
 
 omit [NumberField K] in
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s10.b68eed5f368f from=translated src=- shape=4cca3584 vocab=557af2e0
+-/
 @[simp]
 theorem radialMixedSpaceUnit_val
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -215,6 +227,9 @@ noncomputable def traceRadialScale
     (traceToMixed K).symm.toLinearEquiv |>.toContinuousLinearEquiv
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s13.001c52aeb89f from=translated src=- shape=9b6afccc vocab=b07cb57d
+-/
 theorem traceToMixed_traceRadialScale
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0)
     (v : mixedEmbedding.euclidean.mixedSpace K) :
@@ -224,6 +239,9 @@ theorem traceToMixed_traceRadialScale
   simp
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s13.1f6328ec16e8 from=translated src=- shape=5b7245e7 vocab=75808769
+-/
 theorem inner_traceRadialScale
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0)
     (v z : mixedEmbedding.euclidean.mixedSpace K) :
@@ -262,6 +280,9 @@ theorem inner_traceRadialScale
     ring
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s13.1e883ffa93ae from=translated src=- shape=1091e438 vocab=6c45f186
+-/
 theorem traceRadialScale_symm_apply
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0)
     (v : mixedEmbedding.euclidean.mixedSpace K) :
@@ -294,6 +315,9 @@ theorem traceRadialScale_symm_apply
     simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s14.afbe347e0ccd from=translated src=- shape=976bb793 vocab=37bf0803
+-/
 theorem traceConjugation_traceRadialScale
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0)
     (v : mixedEmbedding.euclidean.mixedSpace K) :
@@ -339,6 +363,9 @@ noncomputable def conjugateShapeIdealLattice
     ((traceConjugation K).toLinearEquiv.restrictScalars ℤ).toLinearMap
 
 open Classical in
+/--
+@isnad1 id=iff.1h4v.s12.762bc3a706a8 from=translated src=- shape=6ace45a1 vocab=5969c066
+-/
 theorem mem_conjugateShapeIdealLattice_iff
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0)
@@ -353,6 +380,9 @@ theorem mem_conjugateShapeIdealLattice_iff
     simp
 
 open Classical in
+/--
+@isnad1 id=iff.0h3v.s12.6f1aacab1e2a from=translated src=- shape=a6136b96 vocab=0bdba551
+-/
 theorem mem_conjugateTraceIdealLattice_iff
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (v : mixedEmbedding.euclidean.mixedSpace K) :
@@ -366,6 +396,9 @@ theorem mem_conjugateTraceIdealLattice_iff
     simp
 
 open Classical in
+/--
+@isnad1 id=iff.1h4v.s13.de94c408c12f from=translated src=- shape=6261f20f vocab=35d3c8fc
+-/
 theorem mem_dualLattice_shapeIdealLattice_iff
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0)
@@ -403,6 +436,9 @@ theorem mem_dualLattice_shapeIdealLattice_iff
     simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s10.4a2537aca9af from=translated src=- shape=0f779fde vocab=ce690256
+-/
 theorem dualLattice_shapeIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -425,6 +461,9 @@ theorem dualLattice_shapeIdealLattice
   simp
 
 open Classical in
+/--
+@isnad1 id=iff.1h4v.s12.0ecbee49ae68 from=translated src=- shape=5e33488d vocab=0be896c0
+-/
 theorem traceRadialScale_traceEmbedding_mem_shapeIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) (x : K) :
@@ -441,6 +480,9 @@ theorem traceRadialScale_traceEmbedding_mem_shapeIdealLattice
 variable [IsTotallyComplex K]
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s12.0e08a2574ad5 from=translated src=- shape=0c73541d vocab=cb965d44
+-/
 theorem norm_sq_traceRadialScale_traceEmbedding
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) (x : K) :
     ‖traceRadialScale K q hq (traceEmbedding K x)‖ ^ 2 =
@@ -495,6 +537,9 @@ theorem norm_sq_traceRadialScale_traceEmbedding
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s12.bbb99ed998f5 from=translated src=- shape=5315d2c7 vocab=a33ed038
+-/
 theorem complexPlaceGaussian_eq_latticeGaussian
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) (x : K) :
     complexPlaceGaussian K x q =
@@ -533,6 +578,9 @@ noncomputable def idealElementShapeMap
           exact ⟨x, x.prop, rfl⟩)⟩
 
 open Classical in
+/--
+@isnad1 id=bijectiv.1h3v.s12.f0ff09900331 from=translated src=- shape=3911e8f8 vocab=ef3895b8
+-/
 theorem idealElementShapeMap_bijective
     (J : (Ideal (𝓞 K))⁰)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -572,6 +620,9 @@ noncomputable def idealElementShapeEquiv
     (idealElementShapeMap_bijective K J q hq)
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s15.f0f740a3ec86 from=translated src=- shape=3b6a0092 vocab=0553734d
+-/
 @[simp]
 theorem idealElementShapeEquiv_coe
     (J : (Ideal (𝓞 K))⁰)
@@ -595,6 +646,9 @@ noncomputable def shapeIdealTheta
     (shapeIdealLattice K (FractionalIdeal.mk0 K J) q hq) Real.pi
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s11.37b42d666d43 from=translated src=- shape=3fdc9e37 vocab=afdf0502
+-/
 theorem shapeIdealTheta_eq_tsum
     (J : (Ideal (𝓞 K))⁰)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -610,6 +664,9 @@ theorem shapeIdealTheta_eq_tsum
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s9.15ad56371608 from=translated src=- shape=e031cc7c vocab=df23b255
+-/
 theorem dualLatticeTheta_shapeIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -681,6 +738,9 @@ private theorem radialMixedSpaceUnit_toLinearMap
     simp [radialMixedSpaceUnit, mixedSpaceOfRealSpace_apply]
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s14.364d226d6962 from=translated src=- shape=0bc8a58a vocab=a2dfdeaf
+-/
 theorem det_radialMixedSpaceUnit
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
     LinearMap.det
@@ -693,6 +753,9 @@ theorem det_radialMixedSpaceUnit
   simp [LinearMap.det_smul]
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s14.258592e8180d from=translated src=- shape=e9dc4cc6 vocab=b3984421
+-/
 theorem det_traceRadialScale
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
     LinearMap.det (traceRadialScale K q hq).toLinearMap =
@@ -709,6 +772,9 @@ theorem det_traceRadialScale
   exact det_radialMixedSpaceUnit K q hq
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s11.e63fc942bd97 from=translated src=- shape=da539ca7 vocab=2622d67e
+-/
 theorem covolume_shapeIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -732,6 +798,9 @@ theorem covolume_shapeIdealLattice
 variable [IsTotallyComplex K]
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.bd4619bf8f4e from=translated src=- shape=dc1513bb vocab=a960266e
+-/
 theorem expMapBasis_neg
     (y : mixedEmbedding.realSpace K) (w : InfinitePlace K) :
     mixedEmbedding.fundamentalCone.expMapBasis (-y) w =
@@ -741,6 +810,9 @@ theorem expMapBasis_neg
   simp [mixedEmbedding.fundamentalCone.expMap_apply, Real.exp_neg]
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s10.dfa55488022c from=translated src=- shape=79536c02 vocab=b76c6cd8
+-/
 theorem covolume_shapeIdealLattice_expMapBasis
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (y : mixedEmbedding.realSpace K) :
@@ -811,6 +883,9 @@ noncomputable def fractionalIdealElementShapeMap
       K I q hq _).2 x.prop⟩
 
 open Classical in
+/--
+@isnad1 id=bijectiv.1h3v.s10.ca0fc7161429 from=translated src=- shape=4d067024 vocab=2fb33d7a
+-/
 theorem fractionalIdealElementShapeMap_bijective
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -846,6 +921,9 @@ noncomputable def fractionalIdealElementShapeEquiv
     (fractionalIdealElementShapeMap_bijective K I q hq)
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s13.3978a60ce565 from=translated src=- shape=859ce7f0 vocab=c5e159a8
+-/
 @[simp]
 theorem fractionalIdealElementShapeEquiv_coe
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
@@ -868,6 +946,9 @@ noncomputable def fractionalShapeIdealTheta
   latticeTheta (shapeIdealLattice K I q hq) Real.pi
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s10.aee418da00b7 from=translated src=- shape=622e6be1 vocab=7ac031e9
+-/
 theorem fractionalShapeIdealTheta_eq_tsum
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (q : InfinitePlace K → ℝ) (hq : ∀ w, q w ≠ 0) :
@@ -893,6 +974,9 @@ noncomputable def fractionalIdealNumerator
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s12.a6a5c47bbb64 from=translated src=- shape=1ce88072 vocab=c16b582b
+-/
 theorem mk0_fractionalIdealNumerator
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ClassGroup.mk0 (fractionalIdealNumerator K I) =
@@ -968,6 +1052,9 @@ noncomputable def denominatorLogCoordinates
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.221e42621e2e from=translated src=- shape=2433faf0 vocab=039a48b0
+-/
 theorem expMapBasis_add
     (x y : mixedEmbedding.realSpace K) :
     mixedEmbedding.fundamentalCone.expMapBasis (x + y) =

@@ -30,7 +30,9 @@ noncomputable section
 namespace PLAcceleratedNesterovLean
 
 /-- A continuous function that is positive on a compact set is bounded below
-    by a positive constant. -/
+    by a positive constant.
+@isnad1 id=ex.4h3v.s6.8cc8b703d7db from=translated src=- shape=ab6cb2e1 vocab=4050f85d
+-/
 theorem continuous_pos_lower_bound_compact {X : Type*} [TopologicalSpace X]
     (g : X → ℝ) (K : Set X) (hK : IsCompact K) (hK_ne : K.Nonempty)
     (hg : Continuous g) (hpos : ∀ x ∈ K, 0 < g x) :
@@ -39,7 +41,9 @@ theorem continuous_pos_lower_bound_compact {X : Type*} [TopologicalSpace X]
   exact ⟨g x₀, hpos x₀ hx₀K, fun x hx => hx₀min hx⟩
 
 /-- If g is continuous and g ≥ c on a compact set K, then g ≥ c - δ on a neighborhood
-    of K for any δ > 0. (Open set version.) -/
+    of K for any δ > 0. (Open set version.)
+@isnad1 id=ex.4h5v.s6.1121f7220f13 from=translated src=- shape=797a0f98 vocab=0c4ad926
+-/
 theorem continuous_lower_bound_neighborhood {X : Type*} [TopologicalSpace X]
     (g : X → ℝ) (K : Set X) (_hK : IsCompact K)
     (hg : Continuous g) (c : ℝ) (hc : ∀ x ∈ K, c ≤ g x) (δ : ℝ) (hδ : 0 < δ) :
@@ -53,7 +57,9 @@ theorem continuous_lower_bound_neighborhood {X : Type*} [TopologicalSpace X]
     linarith
 
 /-- PSD at minimizers: if m is a global minimizer of a function f that is C² at m,
-    then D²f(m) ≥ 0. -/
+    then D²f(m) ≥ 0.
+@isnad1 id=le.2h4v.s7.94592e7a129d from=translated src=- shape=a8e8d9dc vocab=2ae1e8e6
+-/
 theorem hessian_psd_at_minimizer {d : ℕ}
     (f : E d → ℝ) (m : E d)
     (hmin : ∀ y, f m ≤ f y)

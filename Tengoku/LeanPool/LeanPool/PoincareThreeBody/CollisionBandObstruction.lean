@@ -32,6 +32,9 @@ def resonantCollisionBandActions (eccentricity : ℝ) :
   {action | ∃ p q : ℕ, 0 < p ∧ 0 < q ∧
     action.1.1.1 = resonantFirstAction p q}
 
+/--
+@isnad1 id=dense.0h1v.s7.9ef6ecddc3f9 from=translated src=- shape=fc2c1e2b vocab=c475c861
+-/
 theorem resonantCollisionBandActions_dense (eccentricity : ℝ) :
     Dense (resonantCollisionBandActions eccentricity) := by
   apply Subtype.dense_iff.mpr
@@ -55,6 +58,9 @@ theorem resonantCollisionBandActions_dense (eccentricity : ℝ) :
   have hclosures := congrArg closure himage
   exact hclosures.symm ▸ hclosure
 
+/--
+@isnad1 id=eq.7h5v.s7.cf4ee8c46446 from=translated src=- shape=ce7753b8 vocab=14fc48af
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_at_collisionBandResonance
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -106,7 +112,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_at_collisi
       resonantLeadingActionDifferential] using horthogonal
 
 /-- Collision-band resonances are dense, so the leading wedge vanishes throughout the band at
-every fixed admissible eccentricity. -/
+every fixed admissible eccentricity.
+@isnad1 id=eq.5h4v.s8.fdf08377c1be from=translated src=- shape=1f96ffce vocab=6e0cf015
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_on_collisionBand
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

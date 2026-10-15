@@ -24,6 +24,9 @@ open scoped Topology
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h3v.s6.b70e0de36aa3 from=translated src=- shape=44dcba1c vocab=b09e3a18
+-/
 theorem mul_abs_le_half_mul_sq_add_sq_div
     {δ : ℝ} (hδ : 0 < δ) (a x : ℝ) :
     a * |x| ≤ δ / 2 * x ^ 2 + a ^ 2 / (2 * δ) := by
@@ -36,6 +39,9 @@ theorem mul_abs_le_half_mul_sq_add_sq_div
   rw [sq_abs] at hsquare
   nlinarith
 
+/--
+@isnad1 id=le.1h3v.s7.31e309bb3a21 from=translated src=- shape=f6f9d8b9 vocab=e10bd698
+-/
 theorem exp_neg_mul_sq_add_mul_le
     {δ : ℝ} (hδ : 0 < δ) (a x : ℝ) :
     Real.exp (-δ * x ^ 2 + a * |x|) ≤
@@ -46,11 +52,17 @@ theorem exp_neg_mul_sq_add_mul_le
   have hyoung := mul_abs_le_half_mul_sq_add_sq_div hδ a x
   linarith
 
+/--
+@isnad1 id=continuo.0h2v.s4.f2d08fc784a2 from=translated src=- shape=443e0365 vocab=31d9b4c1
+-/
 theorem continuous_regularizedScaledTartar (y δ : ℝ) :
     Continuous (regularizedScaledTartar y δ) := by
   unfold regularizedScaledTartar scaledTartarTestFunction
   fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s5.70ace84a1a60 from=translated src=- shape=3da6405f vocab=eb5267b8
+-/
 theorem continuous_poitouTransformIntegrand_regularizedScaledTartar
     (y δ : ℝ) (s : ℂ) :
     Continuous
@@ -66,6 +78,9 @@ theorem continuous_poitouTransformIntegrand_regularizedScaledTartar
     exact (Real.cosh_pos _).ne'
   exact (Complex.continuous_ofReal.comp hquot).mul (by fun_prop)
 
+/--
+@isnad1 id=le.1h4v.s7.e2f4ee7452b0 from=translated src=- shape=dda37802 vocab=9bb91694
+-/
 theorem norm_poitouTransformIntegrand_regularizedScaledTartar_le
     {y δ : ℝ} (hδ : 0 < δ) (s : ℂ) (x : ℝ) :
     ‖poitouTransformIntegrand (regularizedScaledTartar y δ) s x‖ ≤
@@ -112,6 +127,9 @@ theorem norm_poitouTransformIntegrand_regularizedScaledTartar_le
       simpa only [sq_abs, neg_mul] using
         exp_neg_mul_sq_add_mul_le hδ |s.re - 1 / 2| x
 
+/--
+@isnad1 id=integrab.1h3v.s5.0a87a95fb7b9 from=translated src=- shape=11b3c163 vocab=bb80009d
+-/
 theorem poitouTransformIntegrand_regularizedScaledTartar_integrable
     {y δ : ℝ} (hδ : 0 < δ) (s : ℂ) :
     Integrable
@@ -136,6 +154,9 @@ private theorem continuous_poitouTransformDerivativeIntegrand_regularizedScaledT
   exact Complex.continuous_ofReal.mul
     (continuous_poitouTransformIntegrand_regularizedScaledTartar y δ s)
 
+/--
+@isnad1 id=le.1h4v.s7.bfb79acceb88 from=translated src=- shape=538ac36a vocab=fdda2f1d
+-/
 theorem norm_poitouTransformDerivativeIntegrand_regularizedScaledTartar_le
     {y δ : ℝ} (hδ : 0 < δ) (s : ℂ) (x : ℝ) :
     ‖poitouTransformDerivativeIntegrand
@@ -154,6 +175,9 @@ theorem norm_poitouTransformDerivativeIntegrand_regularizedScaledTartar_le
       exact norm_poitouTransformIntegrand_regularizedScaledTartar_le hδ s x
     _ = _ := by ring
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.797603c543bd from=translated src=- shape=805d5ad7 vocab=01b9124c
+-/
 theorem hasDerivAt_poitouTransform_regularizedScaledTartar
     {y δ : ℝ} (hδ : 0 < δ) (s : ℂ) :
     HasDerivAt
@@ -210,6 +234,9 @@ theorem hasDerivAt_poitouTransform_regularizedScaledTartar
           (regularizedScaledTartar y δ) z x)
   exact hresult.2
 
+/--
+@isnad1 id=analytic.1h2v.s5.46624b9d6d1e from=translated src=- shape=ab9adc63 vocab=c8a1b776
+-/
 theorem analyticOnNhd_poitouTransform_regularizedScaledTartar
     {y δ : ℝ} (hδ : 0 < δ) :
     AnalyticOnNhd ℂ

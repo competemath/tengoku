@@ -37,7 +37,9 @@ abbrev Pkappa (d : Nat) (kappa : MultiIndex d) : Type :=
 
 namespace Pkappa
 
-/-- Two `Pkappa d kappa` coefficient arrays agreeing pointwise are equal. -/
+/-- Two `Pkappa d kappa` coefficient arrays agreeing pointwise are equal.
+@isnad1 id=eq.1h4v.s5.45484338f75e from=translated src=- shape=eb475bce vocab=86125e66
+-/
 @[ext] theorem ext {d : Nat} {kappa : MultiIndex d} {F G : Pkappa d kappa}
     (h : ∀ a, F a = G a) : F = G := Finsupp.ext h
 

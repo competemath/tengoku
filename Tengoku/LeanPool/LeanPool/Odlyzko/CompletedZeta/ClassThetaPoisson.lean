@@ -32,6 +32,9 @@ noncomputable def fractionalShapeCovolumeConstant
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.66deb632b46e from=translated src=- shape=bc550a2d vocab=f54a5785
+-/
 theorem fractionalShapeCovolumeConstant_traceDual
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     fractionalShapeCovolumeConstant K (traceDualIdealUnit K I) =

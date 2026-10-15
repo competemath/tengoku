@@ -27,6 +27,9 @@ noncomputable def rotatingKeplerVectorField (s : PhaseSpace) : PhaseSpace :=
     s 3 - s 0 / (Real.sqrt (s 0 ^ 2 + s 1 ^ 2)) ^ 3,
     -s 2 - s 1 / (Real.sqrt (s 0 ^ 2 + s 1 ^ 2)) ^ 3]
 
+/--
+@isnad1 id=eq.4h5v.s7.369b873e37a3 from=translated src=- shape=dd2b2d76 vocab=1eac8f8d
+-/
 lemma sqrt_positionSq_orientedResonantKeplerPhasePoint
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -51,7 +54,9 @@ lemma sqrt_positionSq_orientedResonantKeplerPhasePoint
         heccentricity heccentricityOne.le]
   exact (Real.sqrt_sq_eq_abs _).trans (abs_of_pos hradius)
 
-/-- The derivative of the full resonant phase-space curve is the rotating Kepler vector field. -/
+/-- The derivative of the full resonant phase-space curve is the rotating Kepler vector field.
+@isnad1 id=hasderiv.4h5v.s7.3755c9149a66 from=translated src=- shape=2baf2a82 vocab=2608979d
+-/
 theorem hasDerivAt_orientedResonantKeplerPhasePoint
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -91,7 +96,9 @@ theorem hasDerivAt_orientedResonantKeplerPhasePoint
     rw [hradius]
     exact hmomentum.2
 
-/-- Chain rule for a scalar observable along the full resonant Kepler orbit. -/
+/-- Chain rule for a scalar observable along the full resonant Kepler orbit.
+@isnad1 id=hasderiv.6h8v.s8.6a9b97afae73 from=translated src=- shape=35f6947f vocab=def04a23
+-/
 theorem HasFDerivAt.hasDerivAt_comp_orientedResonantKeplerPhasePoint
     {F : PhaseSpace → ℝ} {F' : PhaseSpace →L[ℝ] ℝ} {s : PhaseSpace}
     (hF : HasFDerivAt F F' s)

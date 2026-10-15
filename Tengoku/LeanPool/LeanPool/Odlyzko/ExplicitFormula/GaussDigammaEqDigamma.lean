@@ -28,6 +28,9 @@ noncomputable def gaussDigammaIntegrand (s : ℂ) (x : ℝ) : ℂ :=
   (Complex.exp (-x) - Complex.exp (-s * x)) /
     (1 - Complex.exp (-x))
 
+/--
+@isnad1 id=eq.1h1v.s6.5b783b1e5b91 from=translated src=- shape=2d2b9f55 vocab=f55003f0
+-/
 theorem integral_cexp_neg_mul_Ioi {s : ℂ} (hs : 0 < s.re) :
     (∫ x : ℝ in Ioi 0, Complex.exp (-s * x)) = 1 / s := by
   have hneg : (-s).re < 0 := by simpa using hs
@@ -44,6 +47,9 @@ open Complex MeasureTheory Real Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.2h1v.s5.5693a35ca220 from=translated src=- shape=a40daae4 vocab=652a836c
+-/
 theorem half_mul_le_one_sub_exp_neg {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     x / 2 ≤ 1 - Real.exp (-x) := by
   have hexp : x + 1 ≤ Real.exp x := Real.add_one_le_exp x
@@ -56,6 +62,9 @@ theorem half_mul_le_one_sub_exp_neg {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
   rw [Real.exp_neg]
   linarith
 
+/--
+@isnad1 id=le.3h2v.s6.d941d305cb2e from=translated src=- shape=7160a277 vocab=9403144e
+-/
 theorem norm_gaussDigammaIntegrand_le_local
     (s : ℂ) {x : ℝ} (hx0 : 0 < x) (hx1 : x ≤ 1)
     (hsx : ‖s - 1‖ * x ≤ 1) :
@@ -119,6 +128,9 @@ theorem norm_gaussDigammaIntegrand_le_local
     _ ≤ (4 * ‖s - 1‖) * (1 - Real.exp (-x)) := by
       nlinarith [norm_nonneg (s - 1)]
 
+/--
+@isnad1 id=le.2h2v.s6.f4b0b6e4a3cd from=translated src=- shape=f735c9b9 vocab=75e491e3
+-/
 theorem norm_gaussDigammaIntegrand_le_tail
     {s : ℂ} (_hs : 0 < s.re) {x : ℝ} (hx : 1 ≤ x) :
     ‖gaussDigammaIntegrand s x‖ ≤
@@ -161,6 +173,9 @@ theorem norm_gaussDigammaIntegrand_le_tail
         (by positivity) hdenOnePos hdenLower
     _ = _ := by grind
 
+/--
+@isnad1 id=integrab.1h1v.s5.ddc1bcc93121 from=translated src=- shape=60318903 vocab=e92165af
+-/
 theorem gaussDigammaIntegrand_integrableOn_Ioi_one
     {s : ℂ} (hs : 0 < s.re) :
     MeasureTheory.IntegrableOn (gaussDigammaIntegrand s)
@@ -207,6 +222,9 @@ theorem gaussDigammaIntegrand_integrableOn_Ioi_one
 noncomputable def gaussDigammaLocalRadius (s : ℂ) : ℝ :=
   min 1 (1 / (1 + ‖s - 1‖))
 
+/--
+@isnad1 id=le.0h1v.s5.96e51b5d39b4 from=translated src=- shape=d1a925a0 vocab=9729e783
+-/
 theorem norm_mul_gaussDigammaLocalRadius_le_one (s : ℂ) :
     ‖s - 1‖ * gaussDigammaLocalRadius s ≤ 1 := by
   have hr :
@@ -220,6 +238,9 @@ theorem norm_mul_gaussDigammaLocalRadius_le_one (s : ℂ) :
       rw [one_div, ← div_eq_mul_inv]
       exact (div_le_one hp).mpr (by linarith)
 
+/--
+@isnad1 id=integrab.0h1v.s5.b276981f3384 from=translated src=- shape=1daf466a vocab=e953acde
+-/
 theorem gaussDigammaIntegrand_integrableOn_Ioc_zero_localRadius
     (s : ℂ) :
     IntegrableOn (gaussDigammaIntegrand s)
@@ -255,6 +276,9 @@ theorem gaussDigammaIntegrand_integrableOn_Ioc_zero_localRadius
     ‖s - 1‖ * x ≤ ‖s - 1‖ * r := by gcongr; simp_all
     _ ≤ 1 := norm_mul_gaussDigammaLocalRadius_le_one s
 
+/--
+@isnad1 id=integrab.1h1v.s5.d2f568719a9f from=translated src=- shape=60318903 vocab=e92165af
+-/
 theorem gaussDigammaIntegrand_integrableOn_Ioi
     {s : ℂ} (hs : 0 < s.re) :
     IntegrableOn (gaussDigammaIntegrand s) (Ioi 0) := by
@@ -321,6 +345,9 @@ noncomputable def gaussDigammaPartialIntegrand (s : ℂ) (n : ℕ) (x : ℝ) : �
 noncomputable def gaussDigammaPartialSum (s : ℂ) (n : ℕ) : ℂ :=
   ∑ k ∈ Finset.range n, (((k + 1 : ℕ) : ℂ)⁻¹ - (s + k)⁻¹)
 
+/--
+@isnad1 id=eq.1h3v.s5.abd6ddd32526 from=translated src=- shape=e837217c vocab=2dd20d6b
+-/
 theorem gaussDigammaPartialIntegrand_eq
     (s : ℂ) (n : ℕ) {x : ℝ} (hx : x ≠ 0) :
     gaussDigammaPartialIntegrand s n x =
@@ -367,6 +394,9 @@ theorem gaussDigammaPartialIntegrand_eq
         hfactor_succ]
       grind
 
+/--
+@isnad1 id=eq.1h2v.s5.792d71df529f from=translated src=- shape=5e13f2de vocab=de12868b
+-/
 theorem integral_gaussDigammaPartialIntegrand
     {s : ℂ} (hs : 0 < s.re) (n : ℕ) :
     (∫ x : ℝ in Ioi 0, gaussDigammaPartialIntegrand s n x) =
@@ -409,6 +439,9 @@ theorem integral_gaussDigammaPartialIntegrand
           simp only [neg_re, add_re, natCast_re]
           grind) 0)
 
+/--
+@isnad1 id=tendsto.1h1v.s6.0d15da2bbf05 from=translated src=- shape=fa285efa vocab=72cf7d76
+-/
 theorem tendsto_integral_gaussDigammaPartialIntegrand
     {s : ℂ} (hs : 0 < s.re) :
     Tendsto
@@ -483,6 +516,9 @@ theorem tendsto_integral_gaussDigammaPartialIntegrand
     rw [← Complex.exp_nat_mul]
     simp
 
+/--
+@isnad1 id=tendsto.1h1v.s6.8143c0aa1842 from=translated src=- shape=5997a93f vocab=239c7a58
+-/
 theorem tendsto_gaussDigammaPartialSum
     {s : ℂ} (hs : 0 < s.re) :
     Tendsto (gaussDigammaPartialSum s) atTop
@@ -502,6 +538,9 @@ open Complex
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h2v.s5.ac37207ad95e from=translated src=- shape=cd23fca9 vocab=3e9ba2ea
+-/
 theorem logDeriv_natCast_cpow
     {n : ℕ} (hn : n ≠ 0) (s : ℂ) :
     logDeriv (fun z : ℂ ↦ (n : ℂ) ^ z) s =
@@ -520,6 +559,9 @@ private theorem logDeriv_add_nat (s : ℂ) (j : ℕ) :
   rw [logDeriv_apply, deriv_add_const]
   simp only [deriv_id'', one_div]
 
+/--
+@isnad1 id=eq.2h2v.s7.d51038823f94 from=translated src=- shape=d471cfa6 vocab=c5b3e037
+-/
 theorem logDeriv_GammaSeq
     {s : ℂ} {n : ℕ} (hn : n ≠ 0)
     (hs : ∀ j ∈ Finset.range (n + 1), s + j ≠ 0) :
@@ -585,6 +627,9 @@ private theorem sum_range_natCast_inv_eq_harmonic (n : ℕ) :
       rw [Finset.sum_range_succ, ih, harmonic_succ]
       simp
 
+/--
+@isnad1 id=eq.1h2v.s6.acaa298f966a from=translated src=- shape=9bc1617b vocab=6bada9c6
+-/
 theorem logDeriv_GammaSeq_succ_eq
     {s : ℂ} (hs : 0 < s.re) (n : ℕ) :
     logDeriv (fun z : ℂ ↦ Complex.GammaSeq z (n + 1)) s =
@@ -636,6 +681,9 @@ private theorem gaussDigammaPartialSum_eq_sum_seriesTerm (s : ℂ) (n : ℕ) :
       ∑ k ∈ Finset.range n, gaussDigammaSeriesTerm k s :=
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.cdd687f35ead from=translated src=- shape=7328e6ea vocab=c867c8fd
+-/
 theorem gaussDigammaSeriesTerm_eq_div
     {s : ℂ} (hs : 0 < s.re) (k : ℕ) :
     gaussDigammaSeriesTerm k s =
@@ -650,6 +698,9 @@ theorem gaussDigammaSeriesTerm_eq_div
   unfold gaussDigammaSeriesTerm
   grind
 
+/--
+@isnad1 id=le.3h3v.s6.1580c6e20a60 from=translated src=- shape=1b4235b3 vocab=0d987bc8
+-/
 theorem norm_gaussDigammaSeriesTerm_le
     {M : ℝ} {s : ℂ} (hs : 0 < s.re) (hsM : ‖s - 1‖ ≤ M)
     {k : ℕ} (hk : 1 ≤ k) :
@@ -679,6 +730,9 @@ theorem norm_gaussDigammaSeriesTerm_le
         gcongr
   exact div_le_div₀ hM hsM (sq_pos_of_pos hkR) hden
 
+/--
+@isnad1 id=tendstou.0h1v.s6.a284be451146 from=translated src=- shape=a1c44e71 vocab=6ffcf7dd
+-/
 theorem tendstoUniformlyOn_gaussDigammaPartialSum
     (M : ℝ) :
     TendstoUniformlyOn
@@ -700,6 +754,9 @@ theorem tendstoUniformlyOn_gaussDigammaPartialSum
   filter_upwards [eventually_ge_atTop 1] with k hk s hs
   exact norm_gaussDigammaSeriesTerm_le hs.1 hs.2 hk
 
+/--
+@isnad1 id=eq.1h1v.s6.4b043ed551f3 from=translated src=- shape=968b9e56 vocab=8fedc072
+-/
 theorem tsum_gaussDigammaSeriesTerm_eq_integral
     {s : ℂ} (hs : 0 < s.re) :
     (∑' k, gaussDigammaSeriesTerm k s) =
@@ -709,6 +766,9 @@ theorem tsum_gaussDigammaSeriesTerm_eq_integral
       ⟨hs, le_rfl⟩)
     (tendsto_gaussDigammaPartialSum hs)
 
+/--
+@isnad1 id=tendstol.0h0v.s6.4ba3d5507589 from=translated src=- shape=57a6cf16 vocab=6c6a9684
+-/
 theorem tendstoLocallyUniformlyOn_gaussDigammaPartialSum :
     TendstoLocallyUniformlyOn
       (fun n s ↦ gaussDigammaPartialSum s n)
@@ -743,6 +803,9 @@ open scoped Topology
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.2h2v.s6.33b2cbe4df99 from=translated src=- shape=04764be8 vocab=d4c7a0ec
+-/
 theorem norm_inv_add_natCast_le
     {s : ℂ} (hs : 0 < s.re) {n : ℕ} (hn : 1 ≤ n) :
     ‖(s + (n : ℂ))⁻¹‖ ≤ 1 / (n : ℝ) := by
@@ -756,6 +819,9 @@ theorem norm_inv_add_natCast_le
   rw [norm_inv, one_div]
   exact inv_anti₀ hnR hnorm
 
+/--
+@isnad1 id=tendstou.0h0v.s6.33879aaae5d9 from=translated src=- shape=85482b85 vocab=fd2cedf7
+-/
 theorem tendstoUniformlyOn_inv_add_natCast_succ :
     TendstoUniformlyOn
       (fun n (s : ℂ) ↦ (s + (n + 1 : ℕ))⁻¹)
@@ -782,6 +848,9 @@ theorem tendstoUniformlyOn_inv_add_natCast_succ :
             abs_of_nonneg hinvnonneg, one_div, Nat.cast_add,
             Nat.cast_succ, Nat.cast_one] using hN n hn)
 
+/--
+@isnad1 id=tendstol.0h0v.s6.eeaf80e3f1ad from=translated src=- shape=8c65b104 vocab=93eb7a69
+-/
 theorem tendstoLocallyUniformlyOn_logDeriv_GammaSeq_succ :
     TendstoLocallyUniformlyOn
       (fun n s ↦ logDeriv (fun z : ℂ ↦ Complex.GammaSeq z (n + 1)) s)
@@ -858,6 +927,9 @@ noncomputable def gammaVerticalMajorant (a b : ℝ) (x : ℝ) : ℝ :=
   (Ioi 0).indicator
     (fun x ↦ Real.exp (-x) * (x ^ (a - 1) + x ^ (b - 1))) x
 
+/--
+@isnad1 id=eq.2h2v.s5.7c5154b5a1c7 from=translated src=- shape=87324c85 vocab=6e298f4c
+-/
 theorem integral_gammaSeqApproxIntegrand
     {s : ℂ} (hs : 0 < s.re) {n : ℕ} (hn : n ≠ 0) :
     (∫ x : ℝ, gammaSeqApproxIntegrand n s x) =
@@ -867,6 +939,9 @@ theorem integral_gammaSeqApproxIntegrand
   rw [← MeasureTheory.integral_indicator measurableSet_Ioc]
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.281ec55ee952 from=translated src=- shape=fdd27f9a vocab=71bab80c
+-/
 theorem integral_gammaIntegralIntegrand
     {s : ℂ} (hs : 0 < s.re) :
     (∫ x : ℝ, gammaIntegralIntegrand s x) = Complex.Gamma s := by
@@ -879,6 +954,9 @@ theorem integral_gammaIntegralIntegrand
       Complex.GammaIntegral s by rfl]
   exact (Complex.Gamma_eq_integral hs).symm
 
+/--
+@isnad1 id=le.3h4v.s6.0211391bd289 from=translated src=- shape=cbd7301b vocab=05a40248
+-/
 theorem rpow_re_sub_one_le_endpoint_sum
     {a b x : ℝ} {s : ℂ}
     (hx : 0 < x) (ha : a ≤ s.re) (hb : s.re ≤ b) :
@@ -919,6 +997,9 @@ noncomputable def gammaSeqIntegralError (a b : ℝ) (n : ℕ) (x : ℝ) : ℝ :=
   |gammaSeqScalarKernel n x - gammaScalarKernel x| *
     (Ioi 0).indicator (fun x ↦ x ^ (a - 1) + x ^ (b - 1)) x
 
+/--
+@isnad1 id=integrab.2h2v.s5.80c7b886922f from=translated src=- shape=743a1cb3 vocab=bc6a81fe
+-/
 theorem integrable_gammaVerticalMajorant
     {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     Integrable (gammaVerticalMajorant a b) := by
@@ -950,6 +1031,9 @@ private theorem gammaScalarKernel_nonneg (x : ℝ) :
     exact (Real.exp_pos _).le
   · rw [gammaScalarKernel, indicator_of_notMem hx]
 
+/--
+@isnad1 id=le.0h2v.s3.95fcb686504e from=translated src=- shape=47becd6c vocab=fe1e1620
+-/
 theorem gammaSeqScalarKernel_le (n : ℕ) (x : ℝ) :
     gammaSeqScalarKernel n x ≤ gammaScalarKernel x := by
   by_cases hx : x ∈ Ioc 0 (n : ℝ)
@@ -960,6 +1044,9 @@ theorem gammaSeqScalarKernel_le (n : ℕ) (x : ℝ) :
   · rw [gammaSeqScalarKernel, indicator_of_notMem hx]
     exact gammaScalarKernel_nonneg x
 
+/--
+@isnad1 id=tendsto.0h1v.s4.9060051fc406 from=translated src=- shape=fffc4cd4 vocab=c08aa245
+-/
 theorem tendsto_gammaSeqScalarKernel (x : ℝ) :
     Tendsto (fun n : ℕ ↦ gammaSeqScalarKernel n x)
       atTop (𝓝 (gammaScalarKernel x)) := by
@@ -980,6 +1067,9 @@ theorem tendsto_gammaSeqScalarKernel (x : ℝ) :
       (tendsto_const_nhds :
         Tendsto (fun _ : ℕ ↦ (0 : ℝ)) atTop (𝓝 0))
 
+/--
+@isnad1 id=tendsto.0h3v.s5.a35cd9bee510 from=translated src=- shape=ed070b46 vocab=9caa3cb9
+-/
 theorem tendsto_gammaSeqIntegralError (a b x : ℝ) :
     Tendsto (fun n : ℕ ↦ gammaSeqIntegralError a b n x)
       atTop (𝓝 0) := by
@@ -998,6 +1088,9 @@ theorem tendsto_gammaSeqIntegralError (a b x : ℝ) :
       ((Ioi 0).indicator
         (fun x ↦ x ^ (a - 1) + x ^ (b - 1)) x))
 
+/--
+@isnad1 id=le.0h4v.s4.5bd6aa6ce48b from=translated src=- shape=62b99e88 vocab=b7c37969
+-/
 theorem gammaSeqIntegralError_le_majorant
     (a b : ℝ) (n : ℕ) (x : ℝ) :
     gammaSeqIntegralError a b n x ≤ gammaVerticalMajorant a b x := by
@@ -1021,6 +1114,9 @@ theorem gammaSeqIntegralError_le_majorant
   · rw [gammaSeqIntegralError, gammaVerticalMajorant,
       indicator_of_notMem hx, indicator_of_notMem hx, mul_zero]
 
+/--
+@isnad1 id=le.0h4v.s4.b585eca4f27a from=translated src=- shape=b9ff034a vocab=2066ae3a
+-/
 theorem gammaSeqIntegralError_nonneg
     (a b : ℝ) (n : ℕ) (x : ℝ) :
     0 ≤ gammaSeqIntegralError a b n x := by
@@ -1044,6 +1140,9 @@ private theorem measurable_gammaScalarKernel :
   apply Measurable.indicator _ measurableSet_Ioi
   fun_prop
 
+/--
+@isnad1 id=aestrong.0h3v.s4.d02cca85d69a from=translated src=- shape=3fc3138b vocab=0c008590
+-/
 theorem aestronglyMeasurable_gammaSeqIntegralError
     (a b : ℝ) (n : ℕ) :
     AEStronglyMeasurable (gammaSeqIntegralError a b n) := by
@@ -1061,6 +1160,9 @@ theorem aestronglyMeasurable_gammaSeqIntegralError
           (fun x hx ↦ Or.inl hx.ne'))).aestronglyMeasurable
         measurableSet_Ioi
 
+/--
+@isnad1 id=integrab.2h3v.s5.cce3158452a7 from=translated src=- shape=03b7c439 vocab=81ee2770
+-/
 theorem integrable_gammaSeqIntegralError
     {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (n : ℕ) :
     Integrable (gammaSeqIntegralError a b n) := by
@@ -1071,6 +1173,9 @@ theorem integrable_gammaSeqIntegralError
     abs_of_nonneg (gammaSeqIntegralError_nonneg a b n x)]
   exact gammaSeqIntegralError_le_majorant a b n x
 
+/--
+@isnad1 id=tendsto.2h2v.s6.0bbba16f9ea0 from=translated src=- shape=d5bc723e vocab=aba9788c
+-/
 theorem tendsto_integral_gammaSeqIntegralError
     {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     Tendsto (fun n : ℕ ↦ ∫ x : ℝ, gammaSeqIntegralError a b n x)
@@ -1089,6 +1194,9 @@ theorem tendsto_integral_gammaSeqIntegralError
       abs_of_nonneg (gammaSeqIntegralError_nonneg a b n x)]
     exact gammaSeqIntegralError_le_majorant a b n x
 
+/--
+@isnad1 id=integrab.1h2v.s5.30902b9b5a12 from=translated src=- shape=5458f815 vocab=a028c1e8
+-/
 theorem integrable_gammaSeqApproxIntegrand
     {s : ℂ} (hs : 0 < s.re) (n : ℕ) :
     Integrable (gammaSeqApproxIntegrand n s) := by
@@ -1107,6 +1215,9 @@ theorem integrable_gammaSeqApproxIntegrand
     simp_all
   · fun_prop
 
+/--
+@isnad1 id=integrab.1h1v.s5.a93b8aa3e830 from=translated src=- shape=b9809709 vocab=549a29a5
+-/
 theorem integrable_gammaIntegralIntegrand
     {s : ℂ} (hs : 0 < s.re) :
     Integrable (gammaIntegralIntegrand s) := by
@@ -1117,6 +1228,9 @@ theorem integrable_gammaIntegralIntegrand
   rw [integrable_indicator_iff measurableSet_Ioi]
   exact Complex.GammaIntegral_convergent hs
 
+/--
+@isnad1 id=le.2h5v.s5.b2ca14209dac from=translated src=- shape=a3ff09ea vocab=fd1edd2c
+-/
 theorem norm_gammaSeqApproxIntegrand_sub_le_error
     {a b : ℝ} {s : ℂ} (ha : a ≤ s.re) (hb : s.re ≤ b)
     (n : ℕ) (x : ℝ) :
@@ -1156,6 +1270,9 @@ theorem norm_gammaSeqApproxIntegrand_sub_le_error
       sub_zero, norm_zero, gammaSeqIntegralError,
       indicator_of_notMem hx, mul_zero]
 
+/--
+@isnad1 id=le.4h4v.s7.e0c4c6ed6d43 from=translated src=- shape=0a9db297 vocab=075b82b2
+-/
 theorem norm_integral_gammaSeqApproxIntegrand_sub_le
     {a b : ℝ} (ha0 : 0 < a) (hb0 : 0 < b)
     {s : ℂ} (ha : a ≤ s.re) (hb : s.re ≤ b)
@@ -1172,6 +1289,9 @@ theorem norm_integral_gammaSeqApproxIntegrand_sub_le
     (ae_of_all _ fun x ↦
       norm_gammaSeqApproxIntegrand_sub_le_error ha hb n x)
 
+/--
+@isnad1 id=tendstou.2h2v.s6.32323298a389 from=translated src=- shape=0b35d3bc vocab=303532bc
+-/
 theorem tendstoUniformlyOn_integral_gammaSeqApproxIntegrand
     {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     TendstoUniformlyOn
@@ -1196,6 +1316,9 @@ theorem tendstoUniformlyOn_integral_gammaSeqApproxIntegrand
   simpa only [Real.dist_eq, sub_zero, abs_of_nonneg hnonneg] using
     hN n hn
 
+/--
+@isnad1 id=tendstou.2h2v.s6.ded89e07ce39 from=translated src=- shape=8216b43d vocab=a1148184
+-/
 theorem tendstoUniformlyOn_GammaSeq
     {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     TendstoUniformlyOn
@@ -1211,6 +1334,9 @@ theorem tendstoUniformlyOn_GammaSeq
   exact h'.congr_right fun s hs ↦
     integral_gammaIntegralIntegrand (ha.trans_le hs.1)
 
+/--
+@isnad1 id=tendstol.0h0v.s5.d583f394d180 from=translated src=- shape=6b0e006c vocab=30b02010
+-/
 theorem tendstoLocallyUniformlyOn_GammaSeq :
     TendstoLocallyUniformlyOn
       (fun n s ↦ Complex.GammaSeq s n)
@@ -1247,6 +1373,9 @@ open scoped Topology
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=tendstol.0h0v.s6.cafd293d81cb from=translated src=- shape=8b963bbc vocab=055cfb62
+-/
 theorem tendstoLocallyUniformlyOn_GammaSeq_succ :
     TendstoLocallyUniformlyOn
       (fun n s ↦ Complex.GammaSeq s (n + 1))
@@ -1259,6 +1388,9 @@ theorem tendstoLocallyUniformlyOn_GammaSeq_succ :
     ⟨t, ht,
       (Filter.tendsto_add_atTop_nat 1).eventually hEventually⟩
 
+/--
+@isnad1 id=differen.0h1v.s6.ad8eac859699 from=translated src=- shape=6e1f651f vocab=c3d74313
+-/
 theorem differentiableOn_GammaSeq_succ (n : ℕ) :
     DifferentiableOn ℂ
       (fun s : ℂ ↦ Complex.GammaSeq s (n + 1))
@@ -1288,6 +1420,9 @@ theorem differentiableOn_GammaSeq_succ (n : ℕ) :
     simp only [add_re, natCast_re, zero_re] at hre
     grind
 
+/--
+@isnad1 id=eq.1h1v.s4.3d635fdce864 from=translated src=- shape=8b8e55c8 vocab=38f17982
+-/
 theorem gaussDigamma_eq_digamma
     {s : ℂ} (hs : 0 < s.re) :
     gaussDigamma s = Complex.digamma s := by

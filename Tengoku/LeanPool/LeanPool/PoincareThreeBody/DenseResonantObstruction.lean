@@ -26,7 +26,9 @@ def resonantInteriorPositiveActions (eccentricity : ℝ) :
   {action | ∃ p q : ℕ, 0 < p ∧ 0 < q ∧
     action.1.1 = resonantFirstAction p q}
 
-/-- Rational Kepler resonances are dense even after imposing the open apoapsis constraint. -/
+/-- Rational Kepler resonances are dense even after imposing the open apoapsis constraint.
+@isnad1 id=dense.0h1v.s6.e869fa97505e from=translated src=- shape=fc2c1e2b vocab=64cde96b
+-/
 theorem resonantInteriorPositiveActions_dense (eccentricity : ℝ) :
     Dense (resonantInteriorPositiveActions eccentricity) := by
   apply Subtype.dense_iff.mpr
@@ -54,7 +56,9 @@ theorem resonantInteriorPositiveActions_dense (eccentricity : ℝ) :
   exact hclosures.symm ▸ hclosure
 
 /-- Conditional classical density step: nonconstant resonant averages force the frequency and
-leading differential to have zero wedge at every interior action of fixed eccentricity. -/
+leading differential to have zero wedge at every interior action of fixed eccentricity.
+@isnad1 id=eq.6h4v.s8.cc28df850850 from=translated src=- shape=10adb701 vocab=eeff34c1
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferentialAtEccentricity_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -96,7 +100,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferentialAtEccentricity_eq_z
     resonantLeadingActionDifferential] using horthogonal
 
 /-- Under the same resonant nonconstancy input, the two differentials are dependent at every
-interior fixed-eccentricity action. -/
+interior fixed-eccentricity action.
+@isnad1 id=not.6h4v.s8.a5254c8d5988 from=translated src=- shape=e3048d89 vocab=16ea7fac
+-/
 theorem IsFirstIntegralFamily.leadingActionDifferentialAtEccentricity_obstruction
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

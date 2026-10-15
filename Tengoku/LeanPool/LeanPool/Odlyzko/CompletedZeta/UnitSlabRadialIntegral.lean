@@ -30,6 +30,9 @@ noncomputable def positiveUnitSlabCoordinateFactor
   else (Ico 0 1).indicator (fun _ ↦ 1) x
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s6.b17277c3b21a from=translated src=- shape=5fb26574 vocab=2ea794fc
+-/
 theorem positiveUnitSlab_indicator_eq_prod
     (f : ℝ → ℂ) (y : mixedEmbedding.realSpace K) :
     (positiveUnitFundamentalParamSet (K := K)).indicator
@@ -65,6 +68,9 @@ theorem positiveUnitSlab_indicator_eq_prod
     simp [positiveUnitSlabCoordinateFactor, hrad]
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.806c33cdb8e9 from=translated src=- shape=fa39e818 vocab=b41f0cb6
+-/
 theorem setIntegral_positiveUnitFundamentalParamSet_radial
     (f : ℝ → ℂ) :
     (∫ y in positiveUnitFundamentalParamSet (K := K), f (y w₀)) =
@@ -93,6 +99,9 @@ theorem setIntegral_positiveUnitFundamentalParamSet_radial
       · simp
 
 open Classical in
+/--
+@isnad1 id=integrab.1h2v.s7.1d8feb7eafb6 from=translated src=- shape=a382c738 vocab=456fdf5f
+-/
 theorem integrableOn_positiveUnitFundamentalParamSet_radial
     {f : ℝ → ℂ} (hf : IntegrableOn f (Ioi 0)) :
     IntegrableOn (fun y : mixedEmbedding.realSpace K ↦ f (y w₀))

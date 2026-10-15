@@ -61,13 +61,17 @@ noncomputable def intLaurentCast : IntegerLaurent →+* Laurent :=
   AddMonoidAlgebra.mapRingHom Lattice (Int.castRingHom ℚ)
 
 /-- Auxiliary to the scaling step of Appendix A (`app:product`): coefficient embedding acts
-pointwise by the integer-to-rational cast. -/
+pointwise by the integer-to-rational cast.
+@isnad1 id=eq.0h2v.s6.4090b9475b98 from=translated src=- shape=e6dfcfb4 vocab=cf772678
+-/
 @[simp] theorem intLaurentCast_coeff (F : IntegerLaurent) (h : Lattice) :
     (intLaurentCast F).coeff h = (F.coeff h : ℚ) := by
   simp [intLaurentCast]
 
 /-- The common-denominator step in Appendix A (`app:product`): one nonzero integer multiplier makes
-every element of a finite rational set integral. -/
+every element of a finite rational set integral.
+@isnad1 id=ex.1h1v.s5.180ea471840d from=translated src=- shape=cf55c556 vocab=4dbdc62b
+-/
 theorem finite_set_integer_scale (S : Set ℚ) (hS : S.Finite) :
     ∃ n : ℤ, n ≠ 0 ∧ ∀ x ∈ S, ∃ a : ℤ, (n : ℚ) * x = (a : ℚ) := by
   classical
@@ -80,7 +84,9 @@ theorem finite_set_integer_scale (S : Set ℚ) (hS : S.Finite) :
   simpa using ha.symm
 
 /-- The configuration scaling step of Appendix A (`app:product`): a nonzero integer multiple of a
-finite-range rational configuration has finite integer range. -/
+finite-range rational configuration has finite integer range.
+@isnad1 id=ex.1h1v.s5.71a093fb376a from=translated src=- shape=cd8478a9 vocab=31c62c47
+-/
 theorem finiteRange_integer_scale {c : Configuration ℚ} (hc : FiniteRange c) :
     ∃ n : ℤ, n ≠ 0 ∧ ∃ C : Configuration ℤ,
       FiniteRange C ∧ ∀ z, (n : ℚ) * c z = (C z : ℚ) := by
@@ -100,7 +106,9 @@ theorem finiteRange_integer_scale {c : Configuration ℚ} (hc : FiniteRange c) :
   exact hcast
 
 /-- The filter scaling step of Appendix A (`app:product`): a rational Laurent polynomial has a
-nonzero integer multiple represented by an integer-coefficient filter. -/
+nonzero integer multiple represented by an integer-coefficient filter.
+@isnad1 id=ex.0h1v.s6.8f280a4e545e from=translated src=- shape=14c6785a vocab=f8d9ccd0
+-/
 theorem integer_filter_scale (f : Laurent) :
     ∃ n : ℤ, n ≠ 0 ∧ ∃ F : IntegerLaurent, intLaurentCast F = (n : ℚ) • f := by
   classical

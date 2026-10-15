@@ -49,6 +49,9 @@ noncomputable def resonantEllipsePhasePoint
     (p q : ℕ) (eccentricity time : ℝ) : PhaseSpace :=
   positionPhasePoint (resonantRotatingEllipsePosition p q eccentricity time)
 
+/--
+@isnad1 id=eq.2h2v.s5.6c49c4b45804 from=translated src=- shape=56331341 vocab=92042855
+-/
 lemma resonantMeanMotion_eq_delaunayFrequency {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     resonantMeanMotion p q =
       delaunayFrequency (resonantFirstAction p q) 0 := by
@@ -58,6 +61,9 @@ lemma resonantMeanMotion_eq_delaunayFrequency {p q : ℕ} (hp : 0 < p) (hq : 0 <
   rw [resonantFirstAction_cube hp hq]
   field_simp
 
+/--
+@isnad1 id=eq.1h3v.s6.c2391621b30c from=translated src=- shape=ac0e25c9 vocab=42a36f24
+-/
 lemma resonantMeanAnomaly_add_period {p q : ℕ} (hp : 0 < p) (time : ℝ) :
     resonantMeanAnomaly p q (time + resonantOrbitPeriod p) =
       resonantMeanAnomaly p q time + q * (2 * Real.pi) := by
@@ -65,6 +71,9 @@ lemma resonantMeanAnomaly_add_period {p q : ℕ} (hp : 0 < p) (time : ℝ) :
   unfold resonantMeanAnomaly resonantMeanMotion resonantOrbitPeriod
   field_simp
 
+/--
+@isnad1 id=eq.3h4v.s6.91d6a6a416e8 from=translated src=- shape=530e6565 vocab=65e87a3e
+-/
 lemma resonantEccentricAnomaly_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -74,6 +83,9 @@ lemma resonantEccentricAnomaly_add_period {p q : ℕ} (hp : 0 < p)
   rw [resonantMeanAnomaly_add_period hp,
     eccentricAnomaly_add_nat_mul_two_pi q heccentricity heccentricityOne]
 
+/--
+@isnad1 id=analytic.0h3v.s5.0f49c28ad72d from=translated src=- shape=6e3afc3f vocab=45979946
+-/
 theorem analyticAt_resonantMeanAnomaly (p q : ℕ) (time : ℝ) :
     AnalyticAt ℝ (resonantMeanAnomaly p q) time := by
   have hid : AnalyticAt ℝ id time := analyticAt_id
@@ -82,6 +94,9 @@ theorem analyticAt_resonantMeanAnomaly (p q : ℕ) (time : ℝ) :
   filter_upwards [] with argument
   simp [resonantMeanAnomaly, smul_eq_mul]
 
+/--
+@isnad1 id=analytic.2h4v.s6.9305d8a815b0 from=translated src=- shape=d25ca660 vocab=93618eb4
+-/
 theorem analyticAt_resonantEccentricAnomaly (p q : ℕ) {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     AnalyticAt ℝ (resonantEccentricAnomaly p q eccentricity) time := by
@@ -89,6 +104,9 @@ theorem analyticAt_resonantEccentricAnomaly (p q : ℕ) {eccentricity time : ℝ
     (meanAnomaly := resonantMeanAnomaly p q time) heccentricity heccentricityOne).comp
       (analyticAt_resonantMeanAnomaly p q time)
 
+/--
+@isnad1 id=analytic.2h5v.s6.e4cf8d5b8da8 from=translated src=- shape=1e5ad6f4 vocab=54a0d776
+-/
 theorem analyticAt_resonantRotatingEllipsePosition_coordinate
     (p q : ℕ) {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -138,7 +156,9 @@ theorem analyticAt_resonantRotatingEllipsePosition_coordinate
     exact (hsinTime.neg.mul hx).add (hcosTime.mul hy)
 
 /-- Away from a collision with the unit primary, the disturbing function restricted to a resonant
-ellipse is real analytic in time. -/
+ellipse is real analytic in time.
+@isnad1 id=analytic.5h4v.s7.2007993dcc9f from=translated src=- shape=6a58ebfb vocab=a5631458
+-/
 theorem analyticAt_firstMassPerturbation_resonantOrbit
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -198,6 +218,9 @@ theorem analyticAt_firstMassPerturbation_resonantOrbit
   simp [x, y, resonantEllipsePhasePoint, positionPhasePoint, firstMassPerturbation,
     div_eq_mul_inv]
 
+/--
+@isnad1 id=interval.5h5v.s7.cd88834c8960 from=translated src=- shape=1c8940bc vocab=103bc2a1
+-/
 theorem intervalIntegrable_firstMassPerturbation_resonantOrbit
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity start finish : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -213,6 +236,9 @@ theorem intervalIntegrable_firstMassPerturbation_resonantOrbit
   exact (analyticAt_firstMassPerturbation_resonantOrbit hp hq heccentricity
     heccentricityOne (hprimary time htime)).continuousAt.continuousWithinAt
 
+/--
+@isnad1 id=ne.3h4v.s7.6417739db030 from=translated src=- shape=7e991c9e vocab=fda24dc9
+-/
 lemma resonantRotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
     {p q : ℕ} {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -222,6 +248,9 @@ lemma resonantRotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
   exact rotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one heccentricity
     heccentricityOne hapoapsis
 
+/--
+@isnad1 id=analytic.5h4v.s7.61970df2c1ae from=translated src=- shape=ec7ffd04 vocab=fcc827b9
+-/
 theorem analyticAt_firstMassPerturbation_resonantOrbit_of_apoapsis_lt_one
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -233,6 +262,9 @@ theorem analyticAt_firstMassPerturbation_resonantOrbit_of_apoapsis_lt_one
     (resonantRotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
       heccentricity heccentricityOne hapoapsis)
 
+/--
+@isnad1 id=interval.5h5v.s7.42a0094d3ea2 from=translated src=- shape=3d15f330 vocab=0aabfac1
+-/
 theorem intervalIntegrable_firstMassPerturbation_resonantOrbit_of_apoapsis_lt_one
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity start finish : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -247,6 +279,9 @@ theorem intervalIntegrable_firstMassPerturbation_resonantOrbit_of_apoapsis_lt_on
   exact resonantRotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
     heccentricity heccentricityOne hapoapsis
 
+/--
+@isnad1 id=mem.5h4v.s7.9ddafe9213f6 from=translated src=- shape=fade18ac vocab=d32f50b7
+-/
 lemma resonantEllipsePhasePoint_collisionFree_mass_zero
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -276,7 +311,9 @@ lemma resonantEllipsePhasePoint_collisionFree_mass_zero
     simpa [secondPrimaryDistanceSq,
       resonantEllipsePhasePoint, positionPhasePoint] using horigin
 
-/-- A rational Kepler resonance gives a genuinely periodic orbit in the rotating frame. -/
+/-- A rational Kepler resonance gives a genuinely periodic orbit in the rotating frame.
+@isnad1 id=eq.3h4v.s5.bd50c6f27403 from=translated src=- shape=12dc61a4 vocab=d2ae8e51
+-/
 theorem resonantRotatingEllipsePosition_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -289,6 +326,9 @@ theorem resonantRotatingEllipsePosition_add_period {p q : ℕ} (hp : 0 < p)
   rw [hperiod]
   simp [inertialEllipsePosition]
 
+/--
+@isnad1 id=eq.3h4v.s5.74662d94bbb9 from=translated src=- shape=12dc61a4 vocab=f5ed6e54
+-/
 lemma resonantEllipsePhasePoint_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -297,7 +337,9 @@ lemma resonantEllipsePhasePoint_add_period {p q : ℕ} (hp : 0 < p)
   unfold resonantEllipsePhasePoint
   rw [resonantRotatingEllipsePosition_add_period hp heccentricity heccentricityOne]
 
-/-- The disturbing function restricted to a resonant ellipse has the common resonant period. -/
+/-- The disturbing function restricted to a resonant ellipse has the common resonant period.
+@isnad1 id=eq.3h4v.s5.9c9b6659f4db from=translated src=- shape=488c8f00 vocab=0cc4d4e6
+-/
 lemma firstMassPerturbation_resonantOrbit_periodic {p q : ℕ} (hp : 0 < p)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :

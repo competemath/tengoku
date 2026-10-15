@@ -58,6 +58,9 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=iff.0h5v.s4.b078875b0fcb from=translated src=- shape=9c63c678 vocab=cf4c6d95
+-/
 theorem evalDis {W M f g} {w : W} : evaluate M w (f⋁g) ↔ evaluate M w f ∨ evaluate M w g :=
   by
   simp
@@ -152,12 +155,18 @@ scoped infixl:40 " ≡ᵣ " => relEquiv
 /-- Failure of semantic satisfaction or consequence. -/
 scoped infixl:40 " ⊭ " => fun a b => ¬a⊨b
 
+/--
+@isnad1 id=iff.0h1v.s4.d4feba4ad593 from=translated src=- shape=2bd6c624 vocab=dc5f54f4
+-/
 @[simp]
 theorem singletonSat_iff_sat : ∀ φ, satisfiable ({φ} : Finset Formula) ↔ satisfiable φ :=
   by
   intro phi
   simp [satisfiable]
 
+/--
+@isnad1 id=iff.0h4v.s5.4acf2b4392db from=translated src=- shape=fa9bc269 vocab=a3b9554d
+-/
 @[simp]
 theorem vDashSingleton_iff_vDash_formula {M : KripkeModel W} {w : W} :
     ∀ φ, (M, w) ⊨ ([φ] : List Formula) ↔ evaluate M w φ :=
@@ -167,6 +176,9 @@ theorem vDashSingleton_iff_vDash_formula {M : KripkeModel W} {w : W} :
 
 -- useful lemmas to connect different ⊨ cases
 
+/--
+@isnad1 id=iff.1h5v.s5.7485d5a2f46f from=translated src=- shape=86103cfb vocab=805127ac
+-/
 theorem equiv_iff (φ ψ : Formula) (φ_eq_ψ : φ ≡ ψ) :
     ∀ {W} {M : KripkeModel W} {w : W},
     (M, w) ⊨ φ ↔ (M, w) ⊨ ψ :=
@@ -188,19 +200,31 @@ def relateSeq {W} (M : KripkeModel W) (δ : List Program) (w v : W) : Prop :=
   | [] => w = v
   | (α::as) => ∃ u, relate M α w u ∧ relateSeq M as u v
 
+/--
+@isnad1 id=iff.0h4v.s4.f4b79e55c5ff from=translated src=- shape=15166960 vocab=75ad5d88
+-/
 @[simp]
 theorem relateSeq_nil {M : KripkeModel W} {w v : W} :
     relateSeq M [] w v ↔ w = v := by
   simp [relateSeq]
 
+/--
+@isnad1 id=iff.0h5v.s4.6241b8966c13 from=translated src=- shape=239e08bf vocab=8b93caa0
+-/
 @[simp]
 theorem relateSeq_singleton {M : KripkeModel W} {α : Program} {w v : W} :
     relateSeq M [α] w v ↔ relate M α w v := by
   simp [relateSeq]
 
+/--
+@isnad1 id=iff.0h6v.s5.9b1e591325f3 from=translated src=- shape=059b2086 vocab=38fd8ba1
+-/
 theorem relateSeq_cons {M : KripkeModel W} {d : Program} {δ : List Program} {w v : W} :
     relateSeq M (d :: δ) w v ↔ ∃ u, relate M d w u ∧ relateSeq M δ u v := iff_of_eq rfl
 
+/--
+@isnad1 id=iff.0h6v.s5.6c52367667e0 from=translated src=- shape=2e8aa5de vocab=ba95087b
+-/
 theorem relateSeq_append {M : KripkeModel W} {l1 l2 : List Program} {w v : W} :
     relateSeq M (l1 ++ l2) w v ↔ ∃ u, relateSeq M l1 w u ∧ relateSeq M l2 u v := by
   induction l1 generalizing w v
@@ -209,11 +233,16 @@ theorem relateSeq_append {M : KripkeModel W} {l1 l2 : List Program} {w v : W} :
     simp [relateSeq]
     aesop
 
+/--
+@isnad1 id=iff.0h5v.s4.1bfbfa64c20d from=translated src=- shape=6acb569b vocab=15121c0c
+-/
 lemma relate_steps_iff_relateSeq (M : KripkeModel W) (δ : List Program) (w v : W) :
     relate M (Program.steps δ) w v ↔ relateSeq M δ w v := by
   induction δ generalizing w v <;> simp_all [relateSeq]
 
-/-- Relating along `Program.unions L` means relating along one of the programs in `L`. -/
+/-- Relating along `Program.unions L` means relating along one of the programs in `L`.
+@isnad1 id=iff.0h5v.s5.c2f541b6c625 from=translated src=- shape=9fb50772 vocab=d7296f5a
+-/
 lemma relate_unions {W} {M : KripkeModel W} : ∀ (L : List Program) (v u : W),
     relate M (Program.unions L) v u ↔ ∃ a ∈ L, relate M a v u
   | [], v, u => by simp [Program.unions, relate, evaluate]
@@ -228,6 +257,9 @@ lemma relate_unions {W} {M : KripkeModel W} : ∀ (L : List Program) (v u : W),
         · exact Or.inl h
         · exact Or.inr ⟨c, hc, h⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.c6e854c215fd from=translated src=- shape=bbe300d3 vocab=de4a73f4
+-/
 theorem evalBoxes (δ : List Program) φ :
     evaluate M w (⌈⌈δ⌉⌉φ) ↔ (∀ v, relateSeq M δ w v → evaluate M v φ) := by
   induction δ generalizing w
@@ -248,12 +280,17 @@ theorem evalBoxes (δ : List Program) φ :
       simp only [relateSeq]
       use u
 
+/--
+@isnad1 id=iff.0h5v.s5.6469f54a2007 from=translated src=- shape=732737d3 vocab=735a6218
+-/
 @[simp]
 theorem evaluate_unload_box {af} :
     evaluate M w (⌊α⌋af).unload ↔ ∀ v, relate M α w v → (M,v) ⊨ af := by
   cases af <;> simp_all [SemImplies]
 
-/-- Semantic induction rule for the Kleene star operator. -/
+/-- Semantic induction rule for the Kleene star operator.
+@isnad1 id=semimpli.1h3v.s4.590e3a50e949 from=translated src=- shape=15770500 vocab=64371db5
+-/
 theorem stepToStar : φ ⊨ (⌈α⌉φ) ⋀ ψ  →  φ ⊨ (⌈∗α⌉ψ) := by
   intro hyp W M w w_φ
   specialize hyp W M

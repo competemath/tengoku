@@ -26,6 +26,9 @@ abbrev MultiIndex (d : ℕ) := Fin d → ℕ
 /-- `T`: T. -/
 abbrev T : ℝ := HermiteLEAN.T
 
+/--
+@isnad1 id=lt.0h0v.s3.ac80a6d4d604 from=translated src=- shape=ff3a10fc vocab=013035ba
+-/
 lemma T_pos : 0 < T := HermiteLEAN.T_pos
 
 instance : Fact (0 < T) := ⟨T_pos⟩

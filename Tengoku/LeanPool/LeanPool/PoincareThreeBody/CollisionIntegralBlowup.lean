@@ -28,6 +28,9 @@ noncomputable def resonantPrimaryInverse
   let position := orientedResonantEllipsePosition p q eccentricity orientation time
   1 / Real.sqrt ((position 0 - 1) ^ 2 + position 1 ^ 2)
 
+/--
+@isnad1 id=analytic.3h5v.s6.5c6154a07faf from=translated src=- shape=0e0f323a vocab=bcd91ed1
+-/
 theorem analyticAt_resonantPrimaryInverse_time
     {p q : ℕ} {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -57,6 +60,9 @@ theorem analyticAt_resonantPrimaryInverse_time
     filter_upwards [] with argument
     rfl)
 
+/--
+@isnad1 id=continuo.3h4v.s6.41f17bf47b78 from=translated src=- shape=3baa30c1 vocab=4b002fdd
+-/
 theorem continuous_resonantPrimaryInverse
     {p q : ℕ} {eccentricity orientation : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -68,7 +74,9 @@ theorem continuous_resonantPrimaryInverse
     heccentricity heccentricityOne hapoapsis).continuousAt
 
 /-- On the one-sided time interval where time displacement dominates eccentricity displacement,
-the collision inverse is bounded below by a reciprocal linear function. -/
+the collision inverse is bounded below by a reciprocal linear function.
+@isnad1 id=le.7h6v.s8.dd5db6482a65 from=translated src=- shape=aed3e0f7 vocab=00d7c0a3
+-/
 theorem one_div_two_mul_constant_mul_time_le_resonantPrimaryInverse
     {p q : ℕ} {lipConstant neighborhoodRadius eccentricity time : ℝ}
     (hlocal : ∀ parameters : ℝ × ℝ,
@@ -148,7 +156,9 @@ theorem one_div_two_mul_constant_mul_time_le_resonantPrimaryInverse
   dsimp only
   exact one_div_le_one_div_of_le hdistancePositive hdistanceBound
 
-/-- Integrating the pointwise collision estimate gives the explicit logarithmic lower bound. -/
+/-- Integrating the pointwise collision estimate gives the explicit logarithmic lower bound.
+@isnad1 id=le.8h6v.s8.1735e0ba295e from=translated src=- shape=efb5dc9f vocab=ef5a3c14
+-/
 theorem log_lower_bound_resonantPrimaryInverse_local_integral
     {p q : ℕ} {lipConstant neighborhoodRadius eccentricity window : ℝ}
     (hconstant : 0 < lipConstant)
@@ -228,7 +238,9 @@ theorem log_lower_bound_resonantPrimaryInverse_local_integral
     _ ≤ _ := hintegralLower
 
 /-- The local logarithmic estimate also bounds the inverse-distance integral over the whole
-resonant period, provided the comparison window lies inside that period. -/
+resonant period, provided the comparison window lies inside that period.
+@isnad1 id=le.9h6v.s8.d87b04a18237 from=translated src=- shape=13308367 vocab=5db5265e
+-/
 theorem log_lower_bound_resonantPrimaryInverse_period_integral
     {p q : ℕ} {lipConstant neighborhoodRadius eccentricity window : ℝ}
     (hconstant : 0 < lipConstant)

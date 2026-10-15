@@ -50,6 +50,9 @@ noncomputable def centeredClassThetaPoissonCorrection
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.ddd5775a7c27 from=translated src=- shape=fdc25c79 vocab=ee836059
+-/
 theorem logarithmicMellinWeight_neg_mul_centered_invCovolume
     (s : ℂ) (y : mixedEmbedding.realSpace K) :
     logarithmicMellinWeight K s (-y) *
@@ -74,6 +77,9 @@ theorem logarithmicMellinWeight_neg_mul_centered_invCovolume
   ring_nf
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s8.0f767dde85ea from=translated src=- shape=8469626e vocab=ef6b97c6
+-/
 theorem centeredNonzeroFractionalShapeThetaMellinKernel_vadd_unitCoordinateLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ)
     (g : unitCoordinateLattice (K := K))
@@ -97,6 +103,9 @@ theorem centeredNonzeroFractionalShapeThetaMellinKernel_vadd_unitCoordinateLatti
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s6.f1f33139891a from=translated src=- shape=f4b80a2b vocab=10802f40
+-/
 theorem centeredClassThetaPoissonCorrection_eq
     (s : ℂ) (y : mixedEmbedding.realSpace K) :
     centeredClassThetaPoissonCorrection K s y =
@@ -107,6 +116,9 @@ theorem centeredClassThetaPoissonCorrection_eq
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=integrab.1h2v.s6.edbfd1750918 from=translated src=- shape=d1f8b1ff vocab=bb16659b
+-/
 theorem integrableOn_centeredClassThetaPoissonCorrection
     {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (centeredClassThetaPoissonCorrection K s)
@@ -122,6 +134,9 @@ theorem integrableOn_centeredClassThetaPoissonCorrection
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s8.761e49590775 from=translated src=- shape=1c7ffae1 vocab=d0bf739d
+-/
 theorem setIntegral_centeredClassThetaPoissonCorrection
     {s : ℂ} (hs : 1 < s.re) :
     (∫ y in positiveUnitFundamentalParamSet (K := K),

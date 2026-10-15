@@ -1136,7 +1136,9 @@ private theorem annulusIntegralSq_phi0_shell_bound
           rw [hconst]
           ring
 
-/-- Localization of the lowest vector `Phi k 0`. -/
+/-- Localization of the lowest vector `Phi k 0`.
+@isnad1 id=ex.0h1v.s6.c2c6ef6df913 from=translated src=- shape=d6d4b6fa vocab=dcd285e2
+-/
 theorem phi0_localization :
     ∀ k : ℕ,
       ∃ C c : ℝ,
@@ -2531,7 +2533,9 @@ private theorem radial_integrand_pointwise_bound (k : ℕ) :
             (posPart (|r - Real.sqrt (n : ℝ)| - ((k + 3 : ℕ) : ℝ))) ^ 2) :=
           mul_le_mul_of_nonneg_right (le_max_right _ _) (by positivity)
 
-/-- Single-basis localization near the annulus `|z| ~ sqrt n`. -/
+/-- Single-basis localization near the annulus `|z| ~ sqrt n`.
+@isnad1 id=ex.0h1v.s7.f8ae6353a9b3 from=translated src=- shape=15e77a89 vocab=055bf065
+-/
 theorem single_basis_localization :
     ∀ k : ℕ,
       ∃ C c : ℝ,

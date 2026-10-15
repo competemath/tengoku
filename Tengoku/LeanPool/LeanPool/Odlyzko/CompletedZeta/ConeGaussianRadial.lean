@@ -29,6 +29,9 @@ abbrev complexPlacePositiveOrthant :
   Set.univ.pi fun _ ↦ Set.Ioi 0
 
 open Classical in
+/--
+@isnad1 id=eq.0h1v.s6.637840403178 from=translated src=- shape=7ce69be7 vocab=20eecfb9
+-/
 theorem expMapBasis_image_univ :
     expMapBasis '' (Set.univ : Set (realSpace K)) =
       complexPlacePositiveOrthant K := by
@@ -46,6 +49,9 @@ theorem expMapBasis_image_univ :
       expMapBasis.right_inv htarget⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h1v.s6.cdfb18434a8f from=translated src=- shape=9e7a205f vocab=072da370
+-/
 theorem pi_restrict_Ioi_eq_volume_restrict_positiveOrthant :
     Measure.pi
         (fun _ : InfinitePlace K ↦
@@ -64,6 +70,9 @@ noncomputable def complexPlaceRadialJacobian
     NumberField.Units.regulator K
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s8.9e414251ef71 from=translated src=- shape=552fdc7a vocab=f1407e48
+-/
 theorem complexPlaceRadialJacobian_expMapBasis
     (y : realSpace K) :
     complexPlaceRadialJacobian K (expMapBasis y) =
@@ -79,6 +88,9 @@ theorem complexPlaceRadialJacobian_expMapBasis
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s8.07962e07ab99 from=translated src=- shape=eddee57f vocab=57e1cd7c
+-/
 theorem integral_positiveOrthant_eq_expMapBasis
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : (InfinitePlace K → ℝ) → E) :
@@ -96,6 +108,9 @@ theorem integral_positiveOrthant_eq_expMapBasis
       f
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s8.0b88b797d05f from=translated src=- shape=68e45e56 vocab=4400dd20
+-/
 theorem integral_complexPlaceMellinGaussian_eq_expMapBasis
     (x : K) (s : ℂ) :
     (∫ q : InfinitePlace K → ℝ,
@@ -108,6 +123,9 @@ theorem integral_complexPlaceMellinGaussian_eq_expMapBasis
     (complexPlaceMellinGaussian K x s)
 
 open Classical in
+/--
+@isnad1 id=lt.0h2v.s6.93aab698fdb9 from=translated src=- shape=92f237e7 vocab=cb36c883
+-/
 theorem complexPlaceRadialJacobian_expMapBasis_pos
     (y : realSpace K) :
     0 < complexPlaceRadialJacobian K (expMapBasis y) := by
@@ -136,6 +154,9 @@ noncomputable def radialMellinGaussian
     complexPlaceMellinGaussian K x s (expMapBasis y)
 
 open Classical in
+/--
+@isnad1 id=integrab.2h3v.s7.031d79cf6a8a from=translated src=- shape=c504fc80 vocab=87808de8
+-/
 theorem integrable_complexPlaceRadialJacobian_smul_mellinGaussian
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     Integrable (radialMellinGaussian K x s) := by
@@ -156,6 +177,9 @@ theorem integrable_complexPlaceRadialJacobian_smul_mellinGaussian
     complexPlaceRadialJacobian_expMapBasis]
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.e40d62c727e5 from=translated src=- shape=be10a326 vocab=8aa77e8d
+-/
 theorem integral_norm_radialMellinGaussian
     (x : K) (s : ℂ) :
     (∫ y : realSpace K, ‖radialMellinGaussian K x s y‖) =
@@ -174,6 +198,9 @@ theorem integral_norm_radialMellinGaussian
 variable [IsTotallyComplex K]
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.739dcc8278e4 from=translated src=- shape=3908c3f4 vocab=fafc1aa9
+-/
 theorem prod_complexPlace_apply_unit_eq_one (u : (𝓞 K)ˣ) :
     ∏ w : {w : InfinitePlace K // IsComplex w},
       w.1 (((u : 𝓞 K) : K)) = 1 := by
@@ -186,6 +213,9 @@ theorem prod_complexPlace_apply_unit_eq_one (u : (𝓞 K)ˣ) :
         iff_self]) (fun w ↦ w (((u : 𝓞 K) : K)))
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.eeb4c61dcb73 from=translated src=- shape=d69a67fa vocab=2874cfe7
+-/
 theorem complexPlaceRadialJacobian_expMapBasis_add_unitCoordinateShift
     (y : realSpace K)
     (z : {w : InfinitePlace K //
@@ -206,6 +236,9 @@ theorem complexPlaceRadialJacobian_expMapBasis_add_unitCoordinateShift
   rw [prod_complexPlace_apply_unit_eq_one K, one_mul]
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s7.6b468e6d8bd5 from=translated src=- shape=8060dac4 vocab=e85426ac
+-/
 theorem radialMellinGaussian_add_unitCoordinateShift
     (x : K) (s : ℂ) (y : realSpace K)
     (z : {w : InfinitePlace K //
@@ -220,6 +253,9 @@ theorem radialMellinGaussian_add_unitCoordinateShift
     complexPlaceMellinGaussian_fundamentalUnitForShift]
 
 open Classical in
+/--
+@isnad1 id=eq.2h3v.s8.a1080e627aa7 from=translated src=- shape=9ba97d68 vocab=c449768e
+-/
 theorem integral_radialMellinGaussian_eq_tsum_unitSlab
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     (∫ y : realSpace K, radialMellinGaussian K x s y) =

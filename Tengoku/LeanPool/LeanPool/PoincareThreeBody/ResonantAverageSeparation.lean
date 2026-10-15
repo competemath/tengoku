@@ -26,6 +26,9 @@ namespace LeanPool.PoincareThreeBody
 
 open Filter Set Topology
 
+/--
+@isnad1 id=ex.4h2v.s6.c3bea9fb4e8f from=translated src=- shape=f23ad2fc vocab=9e0751af
+-/
 theorem exists_separating_resonantDisturbingAverages_of_collision_band
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -73,7 +76,9 @@ theorem exists_separating_resonantDisturbingAverages_of_collision_band
   · linarith
 
 /-- For every rational resonance in the collision band, nondegenerate eccentricities are dense
-in the whole admissible fiber. -/
+in the whole admissible fiber.
+@isnad1 id=dense.4h2v.s6.8f23e99464fc from=translated src=- shape=05a9e05d vocab=e046461a
+-/
 theorem dense_nondegenerateResonantEccentricities_of_collision_band
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)

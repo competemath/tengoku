@@ -28,7 +28,9 @@ namespace TrivialGroup
 
 /-- When using the trivial group, every coloring is equivalent only to itself. The number of
     distinct colorings is equal to the number of functions.
-    `⊥ : Subgroup (X ≃ X)` denotes the trivial subgroup of `X ≃ X`. -/
+    `⊥ : Subgroup (X ≃ X)` denotes the trivial subgroup of `X ≃ X`.
+@isnad1 id=eq.0h2v.s7.ee479e15d01f from=translated src=- shape=ee309352 vocab=7a9133c9
+-/
 lemma numDistinctColoringsOfTrivialGroup (X : Type u) (Y : Type v) [Fintype X] [Fintype Y]
     [Fintype (Quotient (MulAction.orbitRel (⊥ : Subgroup (X ≃ X)) (X → Y)))] :
     numDistinctColorings X Y (⊥ : Subgroup (X ≃ X)) = (Fintype.card Y) ^ (Fintype.card X) := by

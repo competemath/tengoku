@@ -34,6 +34,9 @@ noncomputable def eccentricKeplerMapFDeriv (parameters : ℝ × ℝ) :
     !![1, 0;
       -Real.sin parameters.2, 1 - parameters.1 * Real.cos parameters.2]).toContinuousLinearMap
 
+/--
+@isnad1 id=hasfderi.0h1v.s6.95e41db16e26 from=translated src=- shape=99fbcee6 vocab=179d7a58
+-/
 theorem hasFDerivAt_eccentricKeplerMap (parameters : ℝ × ℝ) :
     HasFDerivAt eccentricKeplerMap (eccentricKeplerMapFDeriv parameters) parameters := by
   have hraw :=
@@ -50,12 +53,18 @@ theorem hasFDerivAt_eccentricKeplerMap (parameters : ℝ × ℝ) :
   simp [smul_smul, Function.comp_apply]
   ring
 
+/--
+@isnad1 id=analytic.0h1v.s6.0b4d510a06e8 from=translated src=- shape=1f4b4197 vocab=ccb4e12a
+-/
 theorem analyticAt_eccentricKeplerMap (parameters : ℝ × ℝ) :
     AnalyticAt ℝ eccentricKeplerMap parameters := by
   unfold eccentricKeplerMap eccentricMeanAnomaly
   exact analyticAt_fst.prod
     (analyticAt_snd.sub (analyticAt_fst.mul (Real.analyticAt_sin.comp analyticAt_snd)))
 
+/--
+@isnad1 id=eq.0h2v.s7.e3adb83dfc34 from=translated src=- shape=9a85a2a6 vocab=69ce66a3
+-/
 theorem eccentricKeplerMapFDeriv_apply (parameters direction : ℝ × ℝ) :
     eccentricKeplerMapFDeriv parameters direction =
       (direction.1,
@@ -65,6 +74,9 @@ theorem eccentricKeplerMapFDeriv_apply (parameters direction : ℝ × ℝ) :
   rw [Matrix.toLin_finTwoProd_toContinuousLinearMap]
   simp
 
+/--
+@isnad1 id=bijectiv.1h1v.s7.29b6dc844d15 from=translated src=- shape=6f46665d vocab=019c9aa2
+-/
 theorem eccentricKeplerMapFDeriv_bijective
     {parameters : ℝ × ℝ}
     (hdenominator : 1 - parameters.1 * Real.cos parameters.2 ≠ 0) :
@@ -95,6 +107,9 @@ theorem eccentricKeplerMapFDeriv_bijective
 noncomputable def jointEccentricAnomaly (parameters : ℝ × ℝ) : ℝ × ℝ :=
   (parameters.1, eccentricAnomaly parameters.1 parameters.2)
 
+/--
+@isnad1 id=eq.1h1v.s4.29c8b2984ece from=translated src=- shape=01b89e5b vocab=d1e49d82
+-/
 theorem eccentricKeplerMap_jointEccentricAnomaly
     {parameters : ℝ × ℝ} (heccentricity : 0 ≤ parameters.1) :
     eccentricKeplerMap (jointEccentricAnomaly parameters) = parameters := by
@@ -102,6 +117,9 @@ theorem eccentricKeplerMap_jointEccentricAnomaly
   · rfl
   · exact eccentricMeanAnomaly_eccentricAnomaly heccentricity parameters.2
 
+/--
+@isnad1 id=eq.2h1v.s5.42512b34a669 from=translated src=- shape=a3ab71ed vocab=9ca2e0d0
+-/
 theorem jointEccentricAnomaly_eccentricKeplerMap
     {parameters : ℝ × ℝ} (heccentricity : 0 ≤ parameters.1)
     (heccentricityOne : parameters.1 < 1) :
@@ -112,7 +130,9 @@ theorem jointEccentricAnomaly_eccentricKeplerMap
       heccentricity heccentricityOne parameters.2
 
 /-- The eccentric anomaly is jointly real analytic in eccentricity and mean anomaly throughout
-the elliptic range `0 < e < 1`. -/
+the elliptic range `0 < e < 1`.
+@isnad1 id=analytic.2h1v.s6.870c551694f1 from=translated src=- shape=a38cfb91 vocab=0f6ab6ee
+-/
 theorem analyticAt_jointEccentricAnomaly
     {parameters : ℝ × ℝ} (heccentricity : 0 < parameters.1)
     (heccentricityOne : parameters.1 < 1) :
@@ -162,6 +182,9 @@ theorem analyticAt_jointEccentricAnomaly
     exact hstrict.localInverse_unique hleftInverse
   exact hlocalAnalytic.congr heventually.symm
 
+/--
+@isnad1 id=analytic.2h2v.s6.c5fb13ad1260 from=translated src=- shape=482f0966 vocab=7f57a08d
+-/
 theorem analyticAt_eccentricAnomaly_joint
     {eccentricity meanAnomaly : ℝ} (heccentricity : 0 < eccentricity)
     (heccentricityOne : eccentricity < 1) :

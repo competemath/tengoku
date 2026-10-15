@@ -73,7 +73,9 @@ def ZeroBelow (ν : ℝ × ℝ) (d : Configuration ℚ) : Prop :=
   ∃ B : ℝ, ∀ z : Lattice, normalHom ν z < B → d z = 0
 
 /-- The vanishing space `V_ν` is preserved by every shift after adjusting its threshold, as
-required for transverse cancellation in Proposition 3.5 (`prop:tangent-period`). -/
+required for transverse cancellation in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=zerobelo.1h3v.s4.c90dd504a78d from=translated src=- shape=bf925ebe vocab=69c1b039
+-/
 theorem ZeroBelow.shift {ν : ℝ × ℝ} {d : Configuration ℚ} (hd : ZeroBelow ν d)
     (h : Lattice) : ZeroBelow ν (shift h d) := by
   obtain ⟨B, hB⟩ := hd
@@ -82,7 +84,9 @@ theorem ZeroBelow.shift {ν : ℝ × ℝ} {d : Configuration ℚ} (hd : ZeroBelo
   exact hB (z + h) (by rw [map_add]; linarith)
 
 /-- The vanishing space `V_ν` is closed under subtraction, using the smaller of the two thresholds
-in Proposition 3.5 (`prop:tangent-period`). -/
+in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=zerobelo.2h3v.s5.852f97cf790f from=translated src=- shape=6f6b5526 vocab=4fa4d632
+-/
 theorem ZeroBelow.sub {ν : ℝ × ℝ} {d e : Configuration ℚ}
     (hd : ZeroBelow ν d) (he : ZeroBelow ν e) : ZeroBelow ν (d - e) := by
   obtain ⟨B, hB⟩ := hd
@@ -93,13 +97,17 @@ theorem ZeroBelow.sub {ν : ℝ × ℝ} {d e : Configuration ℚ}
   rw [hB z (hz.trans_le (min_le_left _ _)), hC z (hz.trans_le (min_le_right _ _)), sub_self]
 
 /-- Every directional difference preserves the vanishing space `V_ν` of Proposition 3.5
-(`prop:tangent-period`). -/
+(`prop:tangent-period`).
+@isnad1 id=zerobelo.1h3v.s4.09b214766c6d from=translated src=- shape=bf925ebe vocab=e9a57ee0
+-/
 theorem ZeroBelow.difference {ν : ℝ × ℝ} {d : Configuration ℚ} (hd : ZeroBelow ν d)
     (h : Lattice) : ZeroBelow ν (difference h d) := (hd.shift h).sub hd
 
 /-- A periodic configuration in `V_ν` is zero when its period has positive normal coordinate: each
 orbit reaches the vanishing half-plane. This is the injectivity argument of Proposition 3.5
-(`prop:tangent-period`). -/
+(`prop:tangent-period`).
+@isnad1 id=eq.3h3v.s6.8baaa02f20c7 from=translated src=- shape=c1629719 vocab=d6647575
+-/
 theorem zero_of_zeroBelow_periodic_pos {ν : ℝ × ℝ} {d : Configuration ℚ}
     (hd : ZeroBelow ν d) (h : Lattice) (hpos : 0 < normalHom ν h)
     (hp : IsPeriod d h) : d = 0 := by
@@ -116,7 +124,9 @@ theorem zero_of_zeroBelow_periodic_pos {ν : ℝ × ℝ} {d : Configuration ℚ}
   exact ((hp.zsmul (-n)) z).symm.trans hzero
 
 /-- A transverse difference has trivial kernel on `V_ν`, for either sign of its normal coordinate.
-This is the cancellation principle of Proposition 3.5 (`prop:tangent-period`). -/
+This is the cancellation principle of Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=eq.3h3v.s6.3c7817579ed6 from=translated src=- shape=7ee3d72e vocab=4edf75ea
+-/
 theorem zero_of_zeroBelow_difference {ν : ℝ × ℝ} {d : Configuration ℚ}
     (hd : ZeroBelow ν d) (h : Lattice) (htrans : normalHom ν h ≠ 0)
     (hdiff : difference h d = 0) : d = 0 := by
@@ -128,7 +138,9 @@ theorem zero_of_zeroBelow_difference {ν : ℝ × ℝ} {d : Configuration ℚ}
 
 /-- Finite-pattern language inclusion transports each Laurent annihilator, by evaluating its
 translated finite support. This is equation `eq:inheritance` in Section 1.1, used in Corollary
-3.6 (`cor:periodic-difference`). -/
+3.6 (`cor:periodic-difference`).
+@isnad1 id=eq.2h3v.s7.762843ca554c from=translated src=- shape=cce13d31 vocab=54889c35
+-/
 theorem act_eq_zero_of_origin_language (c x : Configuration ℚ)
     (hx : ∀ D : Finset Lattice, patternAt x D 0 ∈ patterns c D)
     (f : Laurent) (hf : act f c = 0) : act f x = 0 := by
@@ -156,23 +168,31 @@ noncomputable def differenceProduct (hs : List Lattice) : Laurent :=
   (hs.map (fun h => monomial h - 1)).prod
 
 /-- The empty product of difference factors is the identity, so cancelling every factor forces the
-configuration to vanish in Proposition 3.5 (`prop:tangent-period`). -/
+configuration to vanish in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=eq.0h0v.s4.b404981b7a2d from=translated src=- shape=35225b15 vocab=1584c415
+-/
 @[simp] theorem differenceProduct_nil : differenceProduct [] = 1 := rfl
 
 /-- Prepending a direction multiplies its difference factor into the product used in Proposition
-3.5 (`prop:tangent-period`). -/
+3.5 (`prop:tangent-period`).
+@isnad1 id=eq.0h2v.s6.2620512cc221 from=translated src=- shape=113ff713 vocab=e35bf988
+-/
 @[simp] theorem differenceProduct_cons (h : Lattice) (hs : List Lattice) :
     differenceProduct (h :: hs) = (monomial h - 1) * differenceProduct hs := rfl
 
 /-- The action of a product beginning with a direction is that directional difference of the
-remaining action, as used in Proposition 3.5 (`prop:tangent-period`). -/
+remaining action, as used in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=eq.0h3v.s4.d467cff9db85 from=translated src=- shape=569a5104 vocab=89069995
+-/
 theorem act_differenceProduct_cons (h : Lattice) (hs : List Lattice)
     (d : Configuration ℚ) :
     act (differenceProduct (h :: hs)) d = difference h (act (differenceProduct hs) d) := by
   rw [differenceProduct_cons, act_mul, act_difference]
 
 /-- A finite product of difference operators preserves `V_ν`, which justifies iterated
-cancellation in Proposition 3.5 (`prop:tangent-period`). -/
+cancellation in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=zerobelo.1h3v.s4.4a82fcfb1bfb from=translated src=- shape=a60f1afe vocab=aa4099ba
+-/
 theorem ZeroBelow.act_differenceProduct {ν : ℝ × ℝ} {d : Configuration ℚ}
     (hd : ZeroBelow ν d) (hs : List Lattice) : ZeroBelow ν (act (differenceProduct hs) d) := by
   induction hs with
@@ -181,7 +201,9 @@ theorem ZeroBelow.act_differenceProduct {ν : ℝ × ℝ} {d : Configuration ℚ
 
 /-- Every transverse factor can be cancelled from an annihilating product on `V_ν`, retaining
 tangential factors with their multiplicities. This is the first step of Proposition 3.5
-(`prop:tangent-period`). -/
+(`prop:tangent-period`).
+@isnad1 id=eq.2h3v.s7.dbd1b16988b9 from=translated src=- shape=56270883 vocab=05b41914
+-/
 theorem cancel_transverse_factors {ν : ℝ × ℝ} (hs : List Lattice)
     (d : Configuration ℚ) (hd : ZeroBelow ν d)
     (hprod : act (differenceProduct hs) d = 0) :
@@ -200,7 +222,9 @@ theorem cancel_transverse_factors {ν : ℝ × ℝ} (hs : List Lattice)
       exact ih d hd (zero_of_zeroBelow_difference (hd.act_differenceProduct hs) h htangent hprod)
 
 /-- The normal coordinate in an integer lattice basis is the linear combination of its two basis
-values, as used for coordinate normalization in Proposition 3.5 (`prop:tangent-period`). -/
+values, as used for coordinate normalization in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=eq.0h3v.s8.5dacc5a0855a from=translated src=- shape=71321598 vocab=8d4d23dd
+-/
 theorem normal_in_basis (ν : ℝ × ℝ) (e : Lattice ≃+ Lattice) (z : Lattice) :
     normalHom ν (e z) = (z.1 : ℝ) * normalHom ν (e (1, 0)) +
       (z.2 : ℝ) * normalHom ν (e (0, 1)) := by
@@ -209,7 +233,9 @@ theorem normal_in_basis (ν : ℝ × ℝ) (e : Lattice ≃+ Lattice) (z : Lattic
 
 /-- A tangential nonzero lattice vector and a nonzero normal admit an integer lattice basis whose
 first vector is tangent and whose second vector has positive normal coordinate. This is the
-basis choice in Proposition 3.5 (`prop:tangent-period`). -/
+basis choice in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=ex.3h2v.s8.17d68791475d from=translated src=- shape=22a4e5ee vocab=2a2225ea
+-/
 theorem exists_oriented_tangent_basis (ν : ℝ × ℝ) (hν : ν ≠ 0)
     (h : Lattice) (hh : h ≠ 0) (htangent : normalHom ν h = 0) :
     ∃ e : Lattice ≃+ Lattice, normalHom ν (e (1, 0)) = 0 ∧
@@ -240,7 +266,9 @@ theorem exists_oriented_tangent_basis (ν : ℝ × ℝ) (hν : ν ≠ 0)
   · exact ⟨e, hcol₁, hpos⟩
 
 /-- Tangential lattice vectors have zero transverse coordinate in an oriented tangent basis, as
-used in Proposition 3.5 (`prop:tangent-period`). -/
+used in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=eq.3h3v.s8.d63c02ff4400 from=translated src=- shape=24edbb96 vocab=d064eee7
+-/
 theorem tangent_coordinate_zero (ν : ℝ × ℝ) (e : Lattice ≃+ Lattice)
     (hcol₁ : normalHom ν (e (1, 0)) = 0) (hcol₂ : 0 < normalHom ν (e (0, 1)))
     (h : Lattice) (htangent : normalHom ν h = 0) : (e.symm h).2 = 0 := by
@@ -252,7 +280,9 @@ theorem tangent_coordinate_zero (ν : ℝ × ℝ) (e : Lattice ≃+ Lattice)
 
 /-- An annihilating product of directional differences implies a repeated difference in any common
 multiple of those directions. This is the operator-divisibility step of Proposition 3.5
-(`prop:tangent-period`). -/
+(`prop:tangent-period`).
+@isnad1 id=eq.2h3v.s6.8b4b21d6a3a9 from=translated src=- shape=18c7d740 vocab=67d76c7c
+-/
 theorem iterate_difference_eq_zero_of_common_multiple (hs : List Lattice) (H : Lattice)
     (hcommon : ∀ h ∈ hs, ∃ k : ℤ, H = k • h) (d : Configuration ℚ)
     (hprod : act (differenceProduct hs) d = 0) :
@@ -273,7 +303,9 @@ theorem iterate_difference_eq_zero_of_common_multiple (hs : List Lattice) (H : L
 
 /-- Finitely many nonzero integer directions on a basis line have a common nonzero integer
 multiple, obtained from the product of their first coordinates in Proposition 3.5
-(`prop:tangent-period`). -/
+(`prop:tangent-period`).
+@isnad1 id=ex.2h2v.s7.168cad80fba4 from=translated src=- shape=264efbd9 vocab=07633b6f
+-/
 theorem exists_common_multiple_on_basis_line (e : Lattice ≃+ Lattice) (hs : List Lattice)
     (hnonzero : ∀ h ∈ hs, h ≠ 0) (hline : ∀ h ∈ hs, (e.symm h).2 = 0) :
     ∃ K : ℤ, K ≠ 0 ∧ ∀ h ∈ hs, ∃ k : ℤ, e (K, 0) = k • h := by
@@ -311,7 +343,9 @@ theorem exists_common_multiple_on_basis_line (e : Lattice ≃+ Lattice) (hs : Li
 
 /-- A finite-range rational configuration annihilated by a nonempty product of tangential
 differences has a positive period on that basis line. This is the final use of Lemma 3.4
-(`lem:repeated`) in Proposition 3.5 (`prop:tangent-period`). -/
+(`lem:repeated`) in Proposition 3.5 (`prop:tangent-period`).
+@isnad1 id=ex.5h3v.s7.7075f9a09d64 from=translated src=- shape=d0681c7b vocab=3b5ecd7e
+-/
 theorem periodic_of_tangential_product (e : Lattice ≃+ Lattice) (hs : List Lattice)
     (hne : hs ≠ []) (hnonzero : ∀ h ∈ hs, h ≠ 0)
     (hline : ∀ h ∈ hs, (e.symm h).2 = 0) (d : Configuration ℚ) (hd : FiniteRange d)
@@ -333,7 +367,9 @@ theorem periodic_of_tangential_product (e : Lattice ≃+ Lattice) (hs : List Lat
 /-- Proposition 3.5 (`prop:tangent-period`): a nonzero finite-range rational configuration with a
 nonzero annihilator and vanishing on a half-plane has a positive period in a primitive tangent
 direction. The returned lattice basis also orients the transverse coordinate toward the
-positive half-plane. -/
+positive half-plane.
+@isnad1 id=ex.6h3v.s8.93427bf6af72 from=translated src=- shape=f3e9da67 vocab=6880c71f
+-/
 theorem exists_tangent_period_of_nonzero_annihilator (d : Configuration ℚ)
     (hd : FiniteRange d) (hdne : d ≠ 0) (ν : ℝ × ℝ) (hν : ν ≠ 0)
     (hbelow : ∀ z : Lattice, normalHom ν z < 0 → d z = 0)
@@ -369,7 +405,9 @@ theorem exists_tangent_period_of_nonzero_annihilator (d : Configuration ℚ)
 
 /-- Corollary 3.6 (`cor:periodic-difference`): a nonperiodic finite-range rational configuration
 with a nonzero annihilator yields a nonzero periodic difference of two configurations in its
-pattern language, vanishing on the negative rows of a primitive lattice basis. -/
+pattern language, vanishing on the negative rows of a primitive lattice basis.
+@isnad1 id=ex.4h2v.s9.efbebd1dda41 from=translated src=- shape=487e6a7d vocab=cf940c1b
+-/
 theorem periodic_difference_of_nonzero_annihilator (c : Configuration ℚ)
     (hc : FiniteRange c) (hn : ¬ Periodic c) (f : Laurent) (hf : f ≠ 0)
     (hann : act f c = 0) :

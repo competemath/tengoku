@@ -66,12 +66,16 @@ def RowBandSubset (D₀ D : Finset Lattice) : Prop :=
   D ⊆ D₀ ∧ ∀ z ∈ D₀, (∃ u ∈ D, u.2 ≤ z.2) → (∃ v ∈ D, z.2 ≤ v.2) → z ∈ D
 
 /-- The original finite window is a row band of itself, so it is an admissible initial window
-for discrepancy selection. Lemma 5.5 (`lem:boundary-window`). -/
+for discrepancy selection. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=rowbands.0h1v.s2.f9d718782caf from=translated src=- shape=3bd27ae8 vocab=f0134ce4
+-/
 theorem RowBandSubset.refl (D : Finset Lattice) : RowBandSubset D D := by
   exact ⟨Finset.Subset.refl _, fun z hz _ _ => hz⟩
 
 /-- Deleting all rows at or below a level preserves the property of retaining every original
-site between occupied rows. Lemma 5.5 (`lem:boundary-window`). -/
+site between occupied rows. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=rowbands.1h3v.s5.b6cff843b735 from=translated src=- shape=78cd9cb6 vocab=70d39213
+-/
 theorem RowBandSubset.filter_gt {D₀ D : Finset Lattice} (hD : RowBandSubset D₀ D) (a : ℤ) :
     RowBandSubset D₀ (D.filter (fun z => a < z.2)) := by
   refine ⟨(Finset.filter_subset _ _).trans hD.1, ?_⟩
@@ -83,7 +87,9 @@ theorem RowBandSubset.filter_gt {D₀ D : Finset Lattice} (hD : RowBandSubset D�
   exact Finset.mem_filter.mpr ⟨hD.2 z hz ⟨u, huD, huz⟩ ⟨v, hvD, hzv⟩, hau.trans_le huz⟩
 
 /-- Deleting all rows at or above a level preserves the property of retaining every original
-site between occupied rows. Lemma 5.5 (`lem:boundary-window`). -/
+site between occupied rows. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=rowbands.1h3v.s5.31e7cf5ca639 from=translated src=- shape=5e876f77 vocab=70d39213
+-/
 theorem RowBandSubset.filter_lt {D₀ D : Finset Lattice} (hD : RowBandSubset D₀ D) (b : ℤ) :
     RowBandSubset D₀ (D.filter (fun z => z.2 < b)) := by
   refine ⟨(Finset.filter_subset _ _).trans hD.1, ?_⟩
@@ -96,7 +102,9 @@ theorem RowBandSubset.filter_lt {D₀ D : Finset Lattice} (hD : RowBandSubset D�
 
 /-- Among the row bands with nonpositive discrepancy, choose one of least cardinality; deleting
 an occupied extreme row from it must give positive discrepancy. Lemma 5.5
-(`lem:boundary-window`). -/
+(`lem:boundary-window`).
+@isnad1 id=ex.1h3v.s6.b5a58607500e from=translated src=- shape=d610c04d vocab=c016738d
+-/
 theorem exists_minimal_lowcomplex_rowBand {A : Type*} (c : Configuration A)
     (D₀ : Finset Lattice) (hlow : complexity c D₀ ≤ D₀.card) :
     ∃ D : Finset Lattice, RowBandSubset D₀ D ∧ complexity c D ≤ D.card ∧
@@ -113,7 +121,9 @@ theorem exists_minimal_lowcomplex_rowBand {A : Type*} (c : Configuration A)
   exact hmin E (Finset.mem_filter.mpr ⟨Finset.mem_powerset.mpr hE.1, hE, hlE⟩)
 
 /-- A convex subset of the rational plane contains the full horizontal interval between two
-points of the same row. Lemma 5.5 (`lem:boundary-window`). -/
+points of the same row. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=mem.5h5v.s6.0803196b53f7 from=translated src=- shape=8199fb80 vocab=f9d0194a
+-/
 theorem convex_horizontal_interval {S : Set (ℚ × ℚ)} (hS : Convex ℚ S)
     {l r t j : ℚ} (hl : (l, j) ∈ S) (hr : (r, j) ∈ S)
     (hlt : l ≤ t) (htr : t ≤ r) : (t, j) ∈ S := by
@@ -125,7 +135,9 @@ theorem convex_horizontal_interval {S : Set (ℚ × ℚ)} (hS : Convex ℚ S)
   exact hline.ordConnected.out hl hr ⟨hlt, htr⟩
 
 /-- Every integer site between two sites in one row of a lattice-convex window belongs to that
-window. Lemma 5.5 (`lem:boundary-window`). -/
+window. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=mem.5h5v.s6.c48f2a31931f from=translated src=- shape=0257ef1d vocab=f96810ad
+-/
 theorem LatticeConvex.row_interval {D : Finset Lattice} (hD : LatticeConvex D)
     {l r t j : ℤ} (hl : (l, j) ∈ D) (hr : (r, j) ∈ D)
     (hlt : l ≤ t) (htr : t ≤ r) : (t, j) ∈ D := by
@@ -137,7 +149,9 @@ theorem LatticeConvex.row_interval {D : Finset Lattice} (hD : LatticeConvex D)
 
 /-- If both extreme rows have at least `e` consecutive sites, convex interpolation gives at
 least `e - 1` consecutive integer sites on every intermediate row. Ceiling the interpolated
-left endpoint accounts for the sharp loss of one site. Lemma 5.5 (`lem:boundary-window`). -/
+left endpoint accounts for the sharp loss of one site. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=ex.7h7v.s7.5ec5263d906a from=translated src=- shape=0b349dc7 vocab=531570a1
+-/
 theorem LatticeConvex.row_interpolation {D : Finset Lattice} (hD : LatticeConvex D)
     (a b l₀ l₁ : ℤ) (e : ℕ) (he : 0 < e) (hab : a < b)
     (hbottom : ∀ r : ℕ, r < e → (l₀ + (r : ℤ), a) ∈ D)
@@ -175,7 +189,9 @@ theorem LatticeConvex.row_interpolation {D : Finset Lattice} (hD : LatticeConvex
 
 /-- A compatible rational linear map pulls a lattice-convex window back to another
 lattice-convex window. The membership equation records the actual preimage in the chosen
-basis. Lemma 5.5 (`lem:boundary-window`). -/
+basis. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=latticec.3h4v.s7.84e35e12af6e from=translated src=- shape=3437bdd3 vocab=0af8dd5c
+-/
 theorem LatticeConvex.linear_preimage {D₀ D : Finset Lattice} (hD₀ : LatticeConvex D₀)
     (φ : Lattice → Lattice) (L : (ℚ × ℚ) →ₗ[ℚ] (ℚ × ℚ))
     (hcompat : ∀ z, latticeRatCast (φ z) = L (latticeRatCast z))
@@ -194,7 +210,9 @@ def rowSites (D : Finset Lattice) (j : ℤ) : Finset Lattice := D.filter (fun z 
 def rowCoordinates (D : Finset Lattice) (j : ℤ) : Finset ℤ := (rowSites D j).image Prod.fst
 
 /-- An integer is a row coordinate exactly when its paired lattice point belongs to that row of
-the window. Lemma 5.5 (`lem:boundary-window`). -/
+the window. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=iff.0h3v.s5.f4ee216bf7c9 from=translated src=- shape=de6393a1 vocab=5df51ae9
+-/
 @[simp] theorem mem_rowCoordinates (D : Finset Lattice) (j i : ℤ) :
     i ∈ rowCoordinates D j ↔ (i, j) ∈ D := by
   simp only [rowCoordinates, rowSites, Finset.mem_image, Finset.mem_filter]
@@ -206,7 +224,9 @@ the window. Lemma 5.5 (`lem:boundary-window`). -/
     exact ⟨(i, j), ⟨h, rfl⟩, rfl⟩
 
 /-- Projection to the horizontal coordinate is injective within a fixed row and therefore
-preserves its number of sites. Lemma 5.5 (`lem:boundary-window`). -/
+preserves its number of sites. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=eq.0h2v.s4.1145d891ef73 from=translated src=- shape=479f218c vocab=c31183fe
+-/
 theorem card_rowCoordinates (D : Finset Lattice) (j : ℤ) :
     (rowCoordinates D j).card = (rowSites D j).card := by
   apply Finset.card_image_iff.mpr
@@ -215,7 +235,9 @@ theorem card_rowCoordinates (D : Finset Lattice) (j : ℤ) :
   exact (Finset.mem_filter.mp hx).2.trans (Finset.mem_filter.mp hy).2.symm
 
 /-- An occupied row of a row band retains every site between any two of its sites, by row
-convexity of the original window. Lemma 5.5 (`lem:boundary-window`). -/
+convexity of the original window. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=mem.6h6v.s6.c850a81acb23 from=translated src=- shape=cd158427 vocab=55ff149a
+-/
 theorem RowBandSubset.row_interval {D₀ D : Finset Lattice} (hband : RowBandSubset D₀ D)
     (hD₀ : LatticeConvex D₀) {l r t j : ℤ}
     (hl : (l, j) ∈ D) (hr : (r, j) ∈ D) (hlt : l ≤ t) (htr : t ≤ r) :
@@ -224,7 +246,9 @@ theorem RowBandSubset.row_interval {D₀ D : Finset Lattice} (hband : RowBandSub
     ⟨(l, j), hl, le_rfl⟩ ⟨(r, j), hr, le_rfl⟩
 
 /-- A nonempty finite integer row with no gaps consists exactly of a consecutive block whose
-length is its cardinality. Lemma 5.5 (`lem:boundary-window`). -/
+length is its cardinality. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=ex.2h2v.s7.10bde9798d29 from=translated src=- shape=1a7c0027 vocab=943b523b
+-/
 theorem row_exact_block {D : Finset Lattice} (j : ℤ)
     (hrow : ∀ l r t : ℤ, (l, j) ∈ D → (r, j) ∈ D → l ≤ t → t ≤ r → (t, j) ∈ D)
     (hne : (rowCoordinates D j).Nonempty) :
@@ -265,7 +289,9 @@ theorem row_exact_block {D : Finset Lattice} (j : ℤ)
 
 /-- Deleting a nonempty endpoint row from a smallest low-complexity band crosses to positive
 discrepancy, so the increase in pattern count is smaller than the number of deleted sites.
-Lemma 5.5 (`lem:boundary-window`), equation `eq:boundary-cost`. -/
+Lemma 5.5 (`lem:boundary-window`), equation `eq:boundary-cost`.
+@isnad1 id=lt.5h5v.s7.ec244ca2d3e7 from=translated src=- shape=95c8087d vocab=f41753c6
+-/
 theorem small_cost_of_minimal_rowBand_endpoint {A : Type*} (c : Configuration A)
     {D₀ D : Finset Lattice} (hband : RowBandSubset D₀ D)
     (hlow : complexity c D ≤ D.card)
@@ -348,7 +374,9 @@ structure ShapeWindow {A : Type*} (c : Configuration A) (D₀ : Finset Lattice) 
 
 /-- A low-complexity lattice-convex window contains a row band with a shorter extreme edge whose
 deletion has cost less than the edge length and leaves the required `e - 1` row blocks.
-Lemma 5.5 (`lem:boundary-window`). -/
+Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=nonempty.3h3v.s4.b211c29393fe from=translated src=- shape=c42ba722 vocab=15425b0d
+-/
 theorem exists_shapeWindow {A : Type*} (c : Configuration A) (hc : FiniteRange c)
     (D₀ : Finset Lattice) (hconv : LatticeConvex D₀)
     (hlow₀ : complexity c D₀ ≤ D₀.card) : Nonempty (ShapeWindow c D₀) := by
@@ -401,7 +429,9 @@ theorem exists_shapeWindow {A : Type*} (c : Configuration A) (hc : FiniteRange c
     exact ⟨l₀, fun r hr => (hex₀ _).mpr ⟨r, by omega, rfl⟩⟩
 
 /-- At every row other than the selected extreme edge, the consecutive-block witnesses lie in
-the interior. Lemma 5.5 (`lem:boundary-window`). -/
+the interior. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=ex.3h5v.s6.d9a64b927884 from=translated src=- shape=29ce42bd vocab=31498290
+-/
 theorem ShapeWindow.interior_row_blocks {A : Type*} {c : Configuration A}
     {D₀ : Finset Lattice} (w : ShapeWindow c D₀) (j : ℤ)
     (hlo : w.lo ≤ j) (hhi : j ≤ w.hi) (hne : j ≠ w.edge) :

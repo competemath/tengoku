@@ -33,12 +33,18 @@ noncomputable def apoapsisRadius (firstAction secondAction : ℝ) : ℝ :=
 noncomputable def angularActionFromEccentricity (firstAction eccentricity : ℝ) : ℝ :=
   firstAction * Real.sqrt (1 - eccentricity ^ 2)
 
+/--
+@isnad1 id=eq.0h2v.s5.334ebba625e0 from=translated src=- shape=19d022e8 vocab=db9f076d
+-/
 lemma periapsis_add_apoapsis (firstAction secondAction : ℝ) :
     periapsisRadius firstAction secondAction + apoapsisRadius firstAction secondAction =
       2 * firstAction ^ 2 := by
   unfold periapsisRadius apoapsisRadius
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.652be5ff8797 from=translated src=- shape=89ca69b9 vocab=c6d9bf55
+-/
 lemma periapsis_mul_apoapsis {firstAction secondAction : ℝ}
     (hactions : secondAction ^ 2 ≤ firstAction ^ 2) :
     periapsisRadius firstAction secondAction * apoapsisRadius firstAction secondAction =
@@ -50,6 +56,9 @@ lemma periapsis_mul_apoapsis {firstAction secondAction : ℝ}
   unfold periapsisRadius apoapsisRadius
   nlinarith
 
+/--
+@isnad1 id=lt.3h2v.s5.e38e13fe352e from=translated src=- shape=594a9676 vocab=974418be
+-/
 lemma angularActionFromEccentricity_pos {firstAction eccentricity : ℝ}
     (hfirstAction : 0 < firstAction) (heccentricity : 0 < eccentricity)
     (heccentricityOne : eccentricity < 1) :
@@ -57,6 +66,9 @@ lemma angularActionFromEccentricity_pos {firstAction eccentricity : ℝ}
   unfold angularActionFromEccentricity
   exact mul_pos hfirstAction (Real.sqrt_pos.mpr (by nlinarith))
 
+/--
+@isnad1 id=lt.2h2v.s5.64f3ca2f4882 from=translated src=- shape=d4bdd684 vocab=974418be
+-/
 lemma angularActionFromEccentricity_lt_firstAction {firstAction eccentricity : ℝ}
     (hfirstAction : 0 < firstAction) (heccentricity : 0 < eccentricity) :
     angularActionFromEccentricity firstAction eccentricity < firstAction := by
@@ -66,6 +78,9 @@ lemma angularActionFromEccentricity_lt_firstAction {firstAction eccentricity : �
   unfold angularActionFromEccentricity
   nlinarith [Real.sqrt_nonneg (1 - eccentricity ^ 2)]
 
+/--
+@isnad1 id=eq.2h2v.s6.db6b62784c61 from=translated src=- shape=931e6f6c vocab=795435d4
+-/
 lemma delaunayDiscriminant_angularActionFromEccentricity
     {firstAction eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity ≤ 1) :
@@ -77,6 +92,9 @@ lemma delaunayDiscriminant_angularActionFromEccentricity
   unfold angularActionFromEccentricity
   nlinarith
 
+/--
+@isnad1 id=eq.3h2v.s6.b7774955dd1b from=translated src=- shape=22ac97a4 vocab=6daccdb2
+-/
 lemma sqrt_delaunayDiscriminant_angularActionFromEccentricity
     {firstAction eccentricity : ℝ} (hfirstAction : 0 ≤ firstAction)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity ≤ 1) :
@@ -86,6 +104,9 @@ lemma sqrt_delaunayDiscriminant_angularActionFromEccentricity
   rw [delaunayDiscriminant_angularActionFromEccentricity heccentricity heccentricityOne,
     Real.sqrt_sq_eq_abs, abs_of_nonneg (mul_nonneg hfirstAction heccentricity)]
 
+/--
+@isnad1 id=eq.3h2v.s6.5160d0028cc7 from=translated src=- shape=ac6ba2f8 vocab=55a5ad41
+-/
 lemma periapsisRadius_angularActionFromEccentricity
     {firstAction eccentricity : ℝ} (hfirstAction : 0 ≤ firstAction)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity ≤ 1) :
@@ -96,6 +117,9 @@ lemma periapsisRadius_angularActionFromEccentricity
     heccentricityOne]
   ring
 
+/--
+@isnad1 id=eq.3h2v.s6.638582edf569 from=translated src=- shape=ac6ba2f8 vocab=2c600779
+-/
 lemma apoapsisRadius_angularActionFromEccentricity
     {firstAction eccentricity : ℝ} (hfirstAction : 0 ≤ firstAction)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity ≤ 1) :
@@ -106,7 +130,9 @@ lemma apoapsisRadius_angularActionFromEccentricity
     heccentricityOne]
   ring
 
-/-- The radial momentum radicand factors through the two Kepler turning radii. -/
+/-- The radial momentum radicand factors through the two Kepler turning radii.
+@isnad1 id=eq.3h3v.s7.960f2da55c1c from=translated src=- shape=a138804c vocab=d2d32010
+-/
 theorem delaunayRadialMomentumSq_factorization {radius firstAction secondAction : ℝ}
     (hradius : radius ≠ 0) (hfirstAction : firstAction ≠ 0)
     (hactions : secondAction ^ 2 ≤ firstAction ^ 2) :
@@ -121,6 +147,9 @@ theorem delaunayRadialMomentumSq_factorization {radius firstAction secondAction 
   rw [← hsum, ← hproduct]
   ring
 
+/--
+@isnad1 id=le.1h2v.s4.1460c1cc8cc1 from=translated src=- shape=e849884a vocab=21116ef3
+-/
 lemma periapsis_le_apoapsis {firstAction secondAction : ℝ}
     (hfirstAction : 0 ≤ firstAction) :
     periapsisRadius firstAction secondAction ≤
@@ -133,17 +162,26 @@ lemma periapsis_le_apoapsis {firstAction secondAction : ℝ}
     mul_nonneg hfirstAction hsqrt
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s6.faaf0e298e3d from=translated src=- shape=bdf58976 vocab=9bc4a636
+-/
 lemma delaunayAction_discriminant_pos {firstAction secondAction : ℝ}
     (hsecondAction : 0 < secondAction) (hactions : secondAction < firstAction) :
     0 < firstAction ^ 2 - secondAction ^ 2 := by
   nlinarith
 
+/--
+@isnad1 id=lt.2h2v.s6.a910b5a9f0a1 from=translated src=- shape=b28d423c vocab=2d6f2252
+-/
 lemma sqrt_delaunayAction_discriminant_lt {firstAction secondAction : ℝ}
     (hsecondAction : 0 < secondAction) (hactions : secondAction < firstAction) :
     Real.sqrt (firstAction ^ 2 - secondAction ^ 2) < firstAction := by
   rw [Real.sqrt_lt' (lt_trans hsecondAction hactions)]
   nlinarith
 
+/--
+@isnad1 id=lt.2h2v.s5.827a9a930ba8 from=translated src=- shape=909fdf01 vocab=86eb1f62
+-/
 lemma periapsisRadius_pos {firstAction secondAction : ℝ}
     (hsecondAction : 0 < secondAction) (hactions : secondAction < firstAction) :
     0 < periapsisRadius firstAction secondAction := by
@@ -151,6 +189,9 @@ lemma periapsisRadius_pos {firstAction secondAction : ℝ}
   exact mul_pos (lt_trans hsecondAction hactions)
     (sub_pos.mpr (sqrt_delaunayAction_discriminant_lt hsecondAction hactions))
 
+/--
+@isnad1 id=lt.2h2v.s5.e1cf53ac22c8 from=translated src=- shape=909fdf01 vocab=786e7d1e
+-/
 lemma apoapsisRadius_pos {firstAction secondAction : ℝ}
     (hsecondAction : 0 < secondAction) (hactions : secondAction < firstAction) :
     0 < apoapsisRadius firstAction secondAction := by
@@ -158,6 +199,9 @@ lemma apoapsisRadius_pos {firstAction secondAction : ℝ}
   exact mul_pos (lt_trans hsecondAction hactions)
     (add_pos_of_pos_of_nonneg (lt_trans hsecondAction hactions) (Real.sqrt_nonneg _))
 
+/--
+@isnad1 id=lt.2h2v.s4.2b516deddcc9 from=translated src=- shape=310bd412 vocab=df5cbd3c
+-/
 lemma periapsisRadius_lt_apoapsisRadius {firstAction secondAction : ℝ}
     (hsecondAction : 0 < secondAction) (hactions : secondAction < firstAction) :
     periapsisRadius firstAction secondAction <
@@ -169,7 +213,9 @@ lemma periapsisRadius_lt_apoapsisRadius {firstAction secondAction : ℝ}
   nlinarith
 
 /-- Between periapsis and apoapsis, the radial momentum square prescribed by the Delaunay actions
-is nonnegative. -/
+is nonnegative.
+@isnad1 id=le.4h3v.s5.e1a19c1dd256 from=translated src=- shape=b29e99a9 vocab=f1bccb12
+-/
 theorem delaunayRadialMomentumSq_nonneg_of_mem_turningInterval
     {radius firstAction secondAction : ℝ}
     (hsecondAction : 0 < secondAction) (hactions : secondAction < firstAction)

@@ -41,11 +41,17 @@ noncomputable abbrev muCircle : MeasureTheory.Measure Circle := μCircle
 /-- `Cavg`: Cavg. -/
 def Cavg : ℝ := 1
 
+/--
+@isnad1 id=lt.0h0v.s3.98bd7014c3f2 from=translated src=- shape=ff3a10fc vocab=8921a244
+-/
 theorem Cavg_pos : 0 < Cavg := by norm_num [Cavg]
 
 /-- `Crot`: Crot. -/
 def Crot : ℝ := 64 * Real.pi
 
+/--
+@isnad1 id=lt.0h0v.s3.8098a9b946df from=translated src=- shape=ff3a10fc vocab=ca363ae0
+-/
 theorem Crot_pos : 0 < Crot := by
   unfold Crot
   nlinarith [Real.pi_pos]
@@ -54,6 +60,9 @@ theorem Crot_pos : 0 < Crot := by
 noncomputable def zeta (x : Circle) : ℂ :=
   AddCircle.toCircle x
 
+/--
+@isnad1 id=eq.0h1v.s3.5672a0496b06 from=translated src=- shape=8e1bdd70 vocab=2ee2b560
+-/
 theorem norm_zeta (x : Circle) : ‖zeta x‖ = 1 := by
   simp [zeta, Circle.norm_coe]
 
@@ -61,6 +70,9 @@ theorem norm_zeta (x : Circle) : ‖zeta x‖ = 1 := by
 noncomputable def circleChar (n : Nat) : Circle -> ℂ :=
   fun x => zeta x ^ n
 
+/--
+@isnad1 id=eq.0h2v.s4.7ef72e14d5c6 from=translated src=- shape=c2be0907 vocab=4cffb654
+-/
 theorem circleChar_eq_zeta_pow (n : Nat) (x : Circle) :
     circleChar n x = zeta x ^ n := rfl
 
@@ -106,6 +118,9 @@ noncomputable def carrierArc (N : Nat) (k : Fin N) : CircleArc where
     rw [hwidth]
     exact div_le_self hpi_nonneg hNge
 
+/--
+@isnad1 id=eq.0h2v.s5.cddac81dfa60 from=translated src=- shape=fef82c33 vocab=a4f55017
+-/
 theorem carrierArc_length {N : Nat} (k : Fin N) :
     arcLength (carrierArc N k) = (2 * Real.pi) / (N : ℝ) := by
   unfold arcLength carrierArc
@@ -113,17 +128,26 @@ theorem carrierArc_length {N : Nat} (k : Fin N) :
   field_simp [ne_of_gt hNpos]
   norm_num
 
+/--
+@isnad1 id=lt.0h2v.s4.d84c01c44a00 from=translated src=- shape=5d330033 vocab=a846b2d8
+-/
 theorem carrierArc_length_pos {N : Nat} (k : Fin N) :
     0 < arcLength (carrierArc N k) := by
   rw [carrierArc_length k]
   have hNpos : (0 : ℝ) < (N : ℝ) := by exact_mod_cast k.pos
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.376c441432d2 from=translated src=- shape=5d330033 vocab=207ab4fd
+-/
 theorem carrierArc_left_nonneg {N : Nat} (k : Fin N) :
     0 <= (carrierArc N k).left := by
   unfold carrierArc
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.2100e1e28fea from=translated src=- shape=88e45b10 vocab=ce35ca6e
+-/
 theorem carrierArc_right_le_period {N : Nat} (k : Fin N) :
     (carrierArc N k).right <= 2 * Real.pi := by
   unfold carrierArc
@@ -137,12 +161,18 @@ theorem carrierArc_right_le_period {N : Nat} (k : Fin N) :
         (le_of_lt hNpos)
     _ = 2 * Real.pi := by field_simp [ne_of_gt hNpos]
 
+/--
+@isnad1 id=lt.0h2v.s4.8f905c7d5262 from=translated src=- shape=9c4a76b5 vocab=23783fca
+-/
 theorem carrierArc_left_lt_right {N : Nat} (k : Fin N) :
     (carrierArc N k).left < (carrierArc N k).right := by
   have hlen := carrierArc_length_pos k
   dsimp [arcLength] at hlen
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s6.993b98a43d1e from=translated src=- shape=3459ae00 vocab=abc6198b
+-/
 theorem carrierArc_arcSet_eq_mk_image_Icc {N : Nat} (k : Fin N) :
     arcSet (carrierArc N k) =
       QuotientAddGroup.mk ''
@@ -179,6 +209,9 @@ theorem carrierArc_arcSet_eq_mk_image_Icc {N : Nat} (k : Fin N) :
       field_simp [ne_of_gt hlen_pos]
       ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s8.0924233df4c5 from=translated src=- shape=fa519a44 vocab=564af9ca
+-/
 theorem carrierArc_arcSet_eq_mk_image_Ioc_union_left {N : Nat} (k : Fin N) :
     arcSet (carrierArc N k) =
       (QuotientAddGroup.mk ''
@@ -202,6 +235,9 @@ theorem carrierArc_arcSet_eq_mk_image_Ioc_union_left {N : Nat} (k : Fin N) :
         exact ⟨le_rfl, le_of_lt (carrierArc_left_lt_right k)⟩
   rw [hIcc, Set.image_union, Set.image_singleton]
 
+/--
+@isnad1 id=injon.0h0v.s6.13b0f0ae0560 from=translated src=- shape=63f00893 vocab=b3dc71a9
+-/
 theorem quotient_mk_injOn_Ioc_zero_period :
     Set.InjOn (fun t : ℝ => (QuotientAddGroup.mk t : Circle))
       (Set.Ioc (0 : ℝ) (2 * Real.pi)) := by
@@ -220,6 +256,9 @@ theorem quotient_mk_injOn_Ioc_zero_period :
   rw [hx', hy'] at h
   exact Subtype.ext_iff.mp h
 
+/--
+@isnad1 id=eq.0h2v.s7.67a763500210 from=translated src=- shape=5abd6f9e vocab=d43fb628
+-/
 theorem carrierArc_mk_preimage_image_Ioc_inter_fundamental
     {N : Nat} (k : Fin N) :
     ((fun t : ℝ => (QuotientAddGroup.mk t : Circle)) ⁻¹'
@@ -243,11 +282,17 @@ theorem carrierArc_mk_preimage_image_Ioc_inter_fundamental
     · exact ⟨lt_of_le_of_lt (carrierArc_left_nonneg k) hx.1,
         le_trans hx.2 (carrierArc_right_le_period k)⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.28ab2c4dc99e from=translated src=- shape=8acf7f27 vocab=fc6d0504
+-/
 theorem volume_singleton_circle (x : Circle) :
     MeasureTheory.volume ({x} : Set Circle) = 0 := by
   have h := AddCircle.volume_closedBall (T := 2 * Real.pi) (x := x) (ε := 0)
   simpa using h
 
+/--
+@isnad1 id=eq.0h1v.s6.43be43069214 from=translated src=- shape=778ca0af vocab=a1470509
+-/
 theorem μCircle_singleton (x : Circle) :
     μCircle ({x} : Set Circle) = 0 := by
   have hvol : MeasureTheory.volume ({x} : Set Circle) = 0 :=
@@ -281,12 +326,18 @@ private theorem carrierArc_arcSet_ae_eq_mk_image_Ioc_of_singleton_null
       exact False.elim (hx.2 (Or.inl hx.1))
     · simp
 
+/--
+@isnad1 id=eventual.0h2v.s6.162dcdd33a2d from=translated src=- shape=5047f6bb vocab=69144f90
+-/
 theorem carrierArc_arcSet_ae_eq_mk_image_Ioc {N : Nat} (k : Fin N) :
     arcSet (carrierArc N k) =ᵐ[μCircle]
       QuotientAddGroup.mk ''
         Set.Ioc ((carrierArc N k).left) ((carrierArc N k).right) :=
   carrierArc_arcSet_ae_eq_mk_image_Ioc_of_singleton_null k μCircle μCircle_singleton
 
+/--
+@isnad1 id=eventual.0h2v.s6.60acb1fcaab1 from=translated src=- shape=272f8b00 vocab=c80c1e44
+-/
 theorem carrierArc_arcSet_ae_eq_mk_image_Ioc_volume {N : Nat} (k : Fin N) :
     arcSet (carrierArc N k) =ᵐ[(MeasureTheory.volume : MeasureTheory.Measure Circle)]
       QuotientAddGroup.mk ''
@@ -298,25 +349,43 @@ noncomputable def carrierAverage {N : Nat} (k : Fin N)
     (f : Circle -> ℂ) : ℂ :=
   (N : ℂ) * ∫ x in arcSet (carrierArc N k), f x ∂ μCircle
 
+/--
+@isnad1 id=le.0h1v.s3.4f37bad94cc1 from=translated src=- shape=b9369acb vocab=4d9524d6
+-/
 theorem arcLength_nonneg (I : CircleArc) : 0 <= arcLength I := by
   dsimp [arcLength]
   exact sub_nonneg.mpr I.left_le_right
 
+/--
+@isnad1 id=continuo.0h1v.s5.23b75c4672c2 from=translated src=- shape=7000f90d vocab=04a98fdf
+-/
 theorem continuous_arcParam (I : CircleArc) : Continuous (arcParam I) := by
   unfold arcParam
   exact (AddCircle.continuous_mk' (2 * Real.pi)).comp
     (continuous_const.add (continuous_id.mul continuous_const))
 
+/--
+@isnad1 id=eq.0h1v.s4.ce3313b0b9e0 from=translated src=- shape=c83ca1ec vocab=553fe89a
+-/
 theorem arcSet_eq_image (I : CircleArc) :
     arcSet I = arcParam I '' Set.Icc (0 : ℝ) 1 := rfl
 
+/--
+@isnad1 id=iscompac.0h1v.s5.d4a41119c57c from=translated src=- shape=1a6c1393 vocab=de807b21
+-/
 theorem isCompact_arcSet (I : CircleArc) : IsCompact (arcSet I) := by
   rw [arcSet_eq_image]
   exact isCompact_Icc.image (continuous_arcParam I)
 
+/--
+@isnad1 id=measurab.0h1v.s5.4be3f2e718b0 from=translated src=- shape=1a6c1393 vocab=62b30673
+-/
 theorem measurableSet_arcSet (I : CircleArc) : MeasurableSet (arcSet I) :=
   (isCompact_arcSet I).measurableSet
 
+/--
+@isnad1 id=eq.0h2v.s8.319d3353f03f from=translated src=- shape=18397bde vocab=278096ff
+-/
 theorem volume_mk_image_carrierArc_Ioc {N : Nat} (k : Fin N) :
     MeasureTheory.volume
         ((fun t : ℝ => (QuotientAddGroup.mk t : Circle)) ''
@@ -347,6 +416,9 @@ theorem volume_mk_image_carrierArc_Ioc {N : Nat} (k : Fin N) :
   symm
   rw [← hpre]
 
+/--
+@isnad1 id=eq.0h2v.s7.c2191107252b from=translated src=- shape=5c2d2718 vocab=9e3be226
+-/
 theorem period_smul_μCircle_mk_image_carrierArc_Ioc {N : Nat} (k : Fin N) :
     ENNReal.ofReal (2 * Real.pi) *
         μCircle
@@ -363,6 +435,9 @@ theorem period_smul_μCircle_mk_image_carrierArc_Ioc {N : Nat} (k : Fin N) :
   rw [← hmeasure]
   exact volume_mk_image_carrierArc_Ioc k
 
+/--
+@isnad1 id=eq.0h2v.s6.de2b2e13bc21 from=translated src=- shape=0b64a15d vocab=b9d9e825
+-/
 theorem period_smul_μCircle_carrierArc {N : Nat} (k : Fin N) :
     ENNReal.ofReal (2 * Real.pi) *
         μCircle (arcSet (carrierArc N k)) =
@@ -374,6 +449,9 @@ theorem period_smul_μCircle_carrierArc {N : Nat} (k : Fin N) :
 noncomputable def arcIntegral (I : CircleArc) (f : Circle -> ℝ) : ℝ :=
   ∫ x in arcSet I, f x ∂ μCircle
 
+/--
+@isnad1 id=eq.0h3v.s7.32d70059b041 from=translated src=- shape=724f3414 vocab=aa0fe8a2
+-/
 theorem carrierArc_arcIntegral_eq_mk_image_Ioc
     {N : Nat} (k : Fin N) (f : Circle -> ℝ) :
     arcIntegral (carrierArc N k) f =
@@ -383,6 +461,9 @@ theorem carrierArc_arcIntegral_eq_mk_image_Ioc
   unfold arcIntegral
   rw [MeasureTheory.Measure.restrict_congr_set (carrierArc_arcSet_ae_eq_mk_image_Ioc k)]
 
+/--
+@isnad1 id=eq.0h3v.s7.5b1ef7737cee from=translated src=- shape=b457baa8 vocab=759d9adf
+-/
 theorem carrierArc_mk_image_Ioc_integral_eq_scaled
     {N : Nat} (k : Fin N) (f : Circle -> ℝ) :
     (∫ x in (fun t : ℝ => (QuotientAddGroup.mk t : Circle)) ''
@@ -461,11 +542,17 @@ theorem carrierArc_mk_image_Ioc_integral_eq_scaled
 noncomputable def arcAverage (I : CircleArc) (f : Circle -> ℂ) : ℂ :=
   (arcLength I)⁻¹ • ∫ x in arcSet I, f x ∂ μCircle
 
+/--
+@isnad1 id=mem.1h2v.s5.779c6f80118e from=translated src=- shape=4016e300 vocab=641a3cc9
+-/
 theorem intervalParam_mem_arc (I : CircleArc) :
     ∀ t ∈ Set.Icc (0 : ℝ) 1, arcParam I t ∈ arcSet I := by
   intro t ht
   exact ⟨t, ht, rfl⟩
 
+/--
+@isnad1 id=le.1h2v.s5.739cafada67b from=translated src=- shape=846ad401 vocab=eac28fce
+-/
 theorem arcIntegral_nonneg
     (I : CircleArc) {f : Circle -> ℝ}
     (hf : ∀ x ∈ arcSet I, 0 <= f x) :
@@ -474,22 +561,40 @@ theorem arcIntegral_nonneg
   refine MeasureTheory.integral_nonneg_of_ae ?_
   exact (MeasureTheory.ae_restrict_mem (measurableSet_arcSet I)).mono fun x hx => hf x hx
 
+/--
+@isnad1 id=eq.0h2v.s7.641d2972814a from=translated src=- shape=52fa196d vocab=d10b0918
+-/
 theorem arcAverage_eq_arcIntegral_div
     (I : CircleArc) (f : Circle -> ℂ) :
     arcAverage I f =
       (arcLength I)⁻¹ •
         ∫ x in arcSet I, f x ∂ μCircle := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.dcf7684bf64b from=translated src=- shape=2f019d02 vocab=9cecdc0d
+-/
 theorem norm_circleChar (n : Nat) (x : Circle) : ‖circleChar n x‖ = 1 := by
   simp [circleChar, norm_zeta]
 
+/--
+@isnad1 id=eq.0h1v.s4.60ef0684e71a from=translated src=- shape=fcc0db09 vocab=332527d1
+-/
 theorem circleChar_zero (x : Circle) : circleChar 0 x = 1 := by simp [circleChar]
 
+/--
+@isnad1 id=eq.0h1v.s3.29ce86ca9031 from=translated src=- shape=f110163e vocab=2ca321e9
+-/
 theorem circleChar_one (x : Circle) : circleChar 1 x = zeta x := by simp [circleChar]
 
+/--
+@isnad1 id=eq.0h3v.s5.b5a54ce5a56f from=translated src=- shape=897af36f vocab=53cdf177
+-/
 theorem circleChar_add (m n : Nat) (x : Circle) :
     circleChar (m + n) x = circleChar m x * circleChar n x := by simp [circleChar, pow_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.56c60c1d738f from=translated src=- shape=295bbecf vocab=cade421d
+-/
 theorem circleChar_mk (n : Nat) (theta : ℝ) :
     circleChar n (QuotientAddGroup.mk theta : Circle) =
       Complex.exp (Complex.I * (n : ℂ) * theta) := by
@@ -500,6 +605,9 @@ theorem circleChar_mk (n : Nat) (theta : ℝ) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.69fc36d6c17c from=translated src=- shape=d9e5d748 vocab=fde74430
+-/
 theorem circleChar_eq_fourier_nat (n : Nat) (x : Circle) :
     circleChar n x = fourier (n : Int) x := by
   induction n with
@@ -723,6 +831,9 @@ private theorem carrierArc_setIntegral_constant_center_lower
         (constant_center_defect_eq_norm_sq_rho
           (c := c) (u := u) (z := circleChar N (QuotientAddGroup.mk t : Circle)) hc).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.8c2553c37b2e from=translated src=- shape=9f148781 vocab=c647306c
+-/
 theorem circleChar_carrierArc_arcParam {N : Nat} (k : Fin N) (t : ℝ) :
     circleChar N (arcParam (carrierArc N k) t) =
       Complex.exp (Complex.I * (2 * Real.pi * t)) := by
@@ -749,6 +860,9 @@ theorem circleChar_carrierArc_arcParam {N : Nat} (k : Fin N) (t : ℝ) :
     exact Complex.exp_nat_mul_two_pi_mul_I k.1
   rw [hint, one_mul]
 
+/--
+@isnad1 id=eq.2h3v.s7.c644442acb51 from=translated src=- shape=ec2f50ec vocab=444b378f
+-/
 theorem circleIntegral_union_finset
     {ι : Type} [Fintype ι] (I : ι -> CircleArc)
     (hdisj : Pairwise fun i j => Disjoint (arcSet (I i)) (arcSet (I j)))
@@ -761,6 +875,9 @@ theorem circleIntegral_union_finset
       (μ := μCircle) (f := f) (s := fun i => arcSet (I i))
       (fun i => measurableSet_arcSet (I i)) hdisj hf)
 
+/--
+@isnad1 id=eq.2h2v.s8.cd92d5d1ad97 from=translated src=- shape=251716e8 vocab=08e51d32
+-/
 theorem circleIntegral_split_compl
     (s : Set Circle) (hs : MeasurableSet s) {f : Circle -> ℝ}
     (hf : MeasureTheory.Integrable f μCircle) :
@@ -768,6 +885,9 @@ theorem circleIntegral_split_compl
       ∫ x in s, f x ∂ μCircle + ∫ x in sᶜ, f x ∂ μCircle :=
   (MeasureTheory.integral_add_compl (μ := μCircle) (f := f) hs hf).symm
 
+/--
+@isnad1 id=le.1h4v.s6.8ac9ba33d7d9 from=translated src=- shape=9eab6288 vocab=b94f3091
+-/
 theorem constantCenter_fastRotate_carrierArc_sq_le_defectSq
     {N : Nat} (k : Fin N) {c u : ℂ} (hc : c ≠ 0) :
     arcLength (carrierArc N k) * ‖u‖ ^ 2 <=
@@ -841,6 +961,9 @@ private theorem gamma_d_isOpenPosMeasure (d : Nat) :
       hball_vol_zero
   exact fun hzero => hball_ne (MeasureTheory.measure_mono_null hball hzero)
 
+/--
+@isnad1 id=eq.4h3v.s7.7a9ca9a0a9c9 from=translated src=- shape=2e54975c vocab=7e113037
+-/
 theorem continuous_eq_of_ae_eq_gamma
     {d : Nat} (hd : 0 < d) {f g : Cd d -> ℂ}
     (hf : Continuous f) (hg : Continuous g) (hfg : f =ᵐ[gammaD d] g) :
@@ -900,6 +1023,9 @@ noncomputable def symplecticFourierRep {d : Nat}
         ((2 * Real.pi : ℂ) * Complex.I *
           (((inner ℝ η.2 ξ.1 : ℝ) - (inner ℝ η.1 ξ.2 : ℝ) : ℝ) : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s7.5d5077ef0121 from=translated src=- shape=9f4c8acc vocab=795211c5
+-/
 theorem symplecticFourierPhase_norm {d : Nat} (η ξ : PhaseSpace d) :
     ‖Complex.exp
         ((2 * Real.pi : ℂ) * Complex.I *
@@ -936,6 +1062,9 @@ def symplecticFormLinear {d : Nat} : PhaseSpace d →ₗ[ℝ] PhaseSpace d →�
     simp [inner_smul_left]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s9.121877250713 from=translated src=- shape=390f489c vocab=c86ff7f9
+-/
 theorem symplecticFourierRep_eq_vectorFourier {d : Nat}
     (F : PhaseSpace d -> ℂ) (ξ : PhaseSpace d) :
     symplecticFourierRep F ξ =
@@ -947,6 +1076,9 @@ theorem symplecticFourierRep_eq_vectorFourier {d : Nat}
   simp [symplecticFormLinear, Real.fourierChar_apply, Circle.smul_def, sub_eq_add_neg,
     mul_assoc, mul_comm]
 
+/--
+@isnad1 id=le.2h4v.s10.d6e9db1a0a8f from=translated src=- shape=e9faf31d vocab=89ea9127
+-/
 theorem symplecticFourierRep_sub_le_lpNorm_one {d : Nat}
     {G₁ G₂ : PhaseSpace d -> ℂ}
     (h1 : Integrable G₁ (MeasureTheory.volume : MeasureTheory.Measure (PhaseSpace d)))
@@ -989,6 +1121,9 @@ theorem symplecticFourierRep_sub_le_lpNorm_one {d : Nat}
           symm
           exact MeasureTheory.lpNorm_one_eq_integral_norm hdiff.aestronglyMeasurable
 
+/--
+@isnad1 id=tendsto.3h4v.s10.84dda93ce922 from=translated src=- shape=ffd53a2d vocab=64d592ad
+-/
 theorem tendsto_symplecticFourierRep_of_lpNorm_one {d : Nat}
     {G : PhaseSpace d -> ℂ} {Gₙ : Nat -> PhaseSpace d -> ℂ}
     (hG : Integrable G (MeasureTheory.volume : MeasureTheory.Measure (PhaseSpace d)))
@@ -1005,6 +1140,9 @@ theorem tendsto_symplecticFourierRep_of_lpNorm_one {d : Nat}
   intro n
   simpa using symplecticFourierRep_sub_le_lpNorm_one (h1 := hGₙ n) (h2 := hG) ξ
 
+/--
+@isnad1 id=eq.5h6v.s10.6fc79705b294 from=translated src=- shape=58f7a60b vocab=64d592ad
+-/
 theorem symplecticFourierRep_eq_of_lpNorm_one_approx {d : Nat}
     {G : PhaseSpace d -> ℂ} {Gₙ : Nat -> PhaseSpace d -> ℂ}
     {A : ℂ} {Aₙ : Nat -> ℂ}
@@ -1037,6 +1175,9 @@ def IsL2Rep {d : Nat} (f : L2Real d) (fRep : RealVec d -> ℂ) : Prop :=
 noncomputable def translateL2 {d : Nat} (a : RealVec d) (f : L2Real d) : L2Real d :=
   DomAddAct.mk a +ᵥ f
 
+/--
+@isnad1 id=eventual.0h3v.s12.66fb9cee9b1c from=translated src=- shape=bfbb52b8 vocab=df46eb54
+-/
 theorem translateL2_coeFn {d : Nat} (a : RealVec d) (f : L2Real d) :
     ((translateL2 a f : L2Real d) : RealVec d -> ℂ)
       =ᵐ[(MeasureTheory.volume : MeasureTheory.Measure (RealVec d))]
@@ -1044,18 +1185,30 @@ theorem translateL2_coeFn {d : Nat} (a : RealVec d) (f : L2Real d) :
   filter_upwards [DomAddAct.vadd_Lp_ae_eq (DomAddAct.mk a) f] with t ht
   simpa [translateL2, vadd_eq_add, add_comm] using ht
 
+/--
+@isnad1 id=eventual.0h3v.s12.d8be326200cd from=translated src=- shape=dab0807e vocab=b1dfde75
+-/
 theorem translateL2_neg_coeFn {d : Nat} (a : RealVec d) (f : L2Real d) :
     ((translateL2 (-a) f : L2Real d) : RealVec d -> ℂ)
       =ᵐ[(MeasureTheory.volume : MeasureTheory.Measure (RealVec d))]
         fun t => (f : RealVec d -> ℂ) (t - a) := by
   simpa [sub_eq_add_neg] using translateL2_coeFn (-a) f
 
+/--
+@isnad1 id=eq.0h3v.s12.a55679933d8d from=translated src=- shape=4bc4ab12 vocab=9a1ccb16
+-/
 theorem norm_translateL2 {d : Nat} (a : RealVec d) (f : L2Real d) :
     ‖translateL2 a f‖ = ‖f‖ := by simp [translateL2]
 
+/--
+@isnad1 id=eq.0h4v.s12.79dde8a2d529 from=translated src=- shape=fbde0844 vocab=6d679ec4
+-/
 theorem dist_translateL2 {d : Nat} (a : RealVec d) (f g : L2Real d) :
     dist (translateL2 a f) (translateL2 a g) = dist f g := by simp [translateL2]
 
+/--
+@isnad1 id=continuo.0h2v.s13.f0b3f8fd5d3b from=translated src=- shape=621ca69d vocab=344cf5b0
+-/
 theorem continuous_translateL2_apply {d : Nat} (f : L2Real d) :
     Continuous fun a : RealVec d => translateL2 a f := by
   have : Fact (Ne (2 : ENNReal) ⊤) := ⟨by norm_num⟩
@@ -1069,6 +1222,9 @@ theorem continuous_translateL2_apply {d : Nat} (f : L2Real d) :
 noncomputable def modulationPhase {d : Nat} (ω : RealVec d) (t : RealVec d) : ℂ :=
   Complex.exp (-(2 * Real.pi : ℂ) * Complex.I * ((inner ℝ ω t : ℝ) : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s4.6faa2daf49ab from=translated src=- shape=b799a142 vocab=d9930229
+-/
 theorem modulationPhase_norm {d : Nat} (ω t : RealVec d) :
     ‖modulationPhase ω t‖ = 1 := by
   unfold modulationPhase
@@ -1077,6 +1233,9 @@ theorem modulationPhase_norm {d : Nat} (ω t : RealVec d) :
       (-(2 * Real.pi : ℂ) * Complex.I * ((inner ℝ ω t : ℝ) : ℂ)).re = 0 := by simp [Complex.mul_re]
   rw [hre, Real.exp_zero]
 
+/--
+@isnad1 id=eq.1h3v.s8.54226d539c20 from=translated src=- shape=35ee2624 vocab=03654b7a
+-/
 theorem fourier_translate_realVec {d : Nat} (a : RealVec d) (f : RealVec d -> ℂ)
     (_hf : Integrable f (MeasureTheory.volume : MeasureTheory.Measure (RealVec d))) :
     FourierTransform.fourier (fun t : RealVec d => f (t - a)) =
@@ -1112,10 +1271,16 @@ noncomputable def schwartzCompSubConstCLM {d : Nat} (a : RealVec d) :
     (by exact sub_const_hasTemperateGrowth a)
     (by exact sub_const_antilipschitz a)
 
+/--
+@isnad1 id=eq.0h3v.s11.93845bbcc81e from=translated src=- shape=7b68e21c vocab=1a7f2bdf
+-/
 @[simp] theorem schwartzCompSubConstCLM_apply {d : Nat} (a : RealVec d)
     (f : SchwartzMap (RealVec d) ℂ) :
     schwartzCompSubConstCLM a f = f ∘ fun x : RealVec d => x - a := by rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.724d65430bee from=translated src=- shape=66694775 vocab=a103d9fc
+-/
 theorem fourier_schwartzCompSubConstCLM_realVec {d : Nat}
     (f : SchwartzMap (RealVec d) ℂ) (a : RealVec d) :
     FourierTransform.fourier (schwartzCompSubConstCLM a f : RealVec d -> ℂ) =
@@ -1161,35 +1326,53 @@ noncomputable def modulateL2 {d : Nat} (ω : RealVec d) (f : L2Real d) : L2Real 
   (private_decl% (modulateL2_mem ω f)).toLp
     (fun t : RealVec d => modulationPhase ω t * (f : RealVec d -> ℂ) t)
 
+/--
+@isnad1 id=eventual.0h3v.s12.5b98822a2c55 from=translated src=- shape=3bd0e9cc vocab=f330f5bd
+-/
 theorem modulateL2_coeFn {d : Nat} (ω : RealVec d) (f : L2Real d) :
     ((modulateL2 ω f : L2Real d) : RealVec d -> ℂ)
       =ᵐ[(MeasureTheory.volume : MeasureTheory.Measure (RealVec d))]
         fun t => modulationPhase ω t * (f : RealVec d -> ℂ) t := (modulateL2_mem ω f).coeFn_toLp
 
+/--
+@isnad1 id=eq.1h4v.s12.b54f2de95a98 from=translated src=- shape=7a88690a vocab=18e0090b
+-/
 theorem stftRep_congr_right
     {d : Nat} {h f g : L2Real d} (hfg : f = g) :
     stftRep h f = stftRep h g := by
   subst hfg
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.bbf60f4b5585 from=translated src=- shape=4cdd54e6 vocab=18e0090b
+-/
 theorem stftRep_congr_left
     {d : Nat} {h h' f : L2Real d} (hh : h = h') :
     stftRep h f = stftRep h' f := by
   subst hh
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.f33e129cab75 from=translated src=- shape=4cdd54e6 vocab=6f0890c4
+-/
 theorem ambiguityRep_congr_left
     {d : Nat} {f f' g : L2Real d} (hf : f = f') :
     ambiguityRep f g = ambiguityRep f' g := by
   subst hf
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.ddd0bb14536c from=translated src=- shape=7a88690a vocab=6f0890c4
+-/
 theorem ambiguityRep_congr_right
     {d : Nat} {f g g' : L2Real d} (hg : g = g') :
     ambiguityRep f g = ambiguityRep f g' := by
   subst hg
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s17.3b35e1c76955 from=translated src=- shape=d105db1d vocab=4f0939b4
+-/
 theorem ambiguityRep_eq_lpPairing
     {d : Nat} (f g : L2Real d) (ξ : PhaseSpace d) :
     ambiguityRep f g ξ =
@@ -1214,6 +1397,9 @@ theorem ambiguityRep_eq_lpPairing
   simp [ContinuousLinearMap.mul_apply']
   ring_nf
 
+/--
+@isnad1 id=eq.0h4v.s17.ade67e1c45b8 from=translated src=- shape=1d9c6072 vocab=4d31e76b
+-/
 theorem stftRep_eq_lpPairing
     {d : Nat} (h f : L2Real d) (ξ : PhaseSpace d) :
     stftRep h f ξ =
@@ -1236,6 +1422,9 @@ theorem stftRep_eq_lpPairing
   simp [ContinuousLinearMap.mul_apply']
   ring_nf
 
+/--
+@isnad1 id=eq.0h4v.s11.bc8107f8aa8b from=translated src=- shape=892844ae vocab=52872ae3
+-/
 theorem spectrogramRep_eq_stft_mul_star
     {d : Nat} (h f : L2Real d) (ξ : PhaseSpace d) :
     ((‖stftRep h f ξ‖ ^ 2 : ℝ) : ℂ) =
@@ -1243,6 +1432,9 @@ theorem spectrogramRep_eq_stft_mul_star
   rw [Complex.star_def]
   exact_mod_cast (Complex.mul_conj' (stftRep h f ξ)).symm
 
+/--
+@isnad1 id=eq.1h4v.s12.edad5a11899a from=translated src=- shape=34852fdf vocab=435d57c1
+-/
 theorem spectrogram_ambiguity_identity_of_product_moyal
     {d : Nat}
     (hmoyal : ∀ (h f : L2Real d) (ξ : PhaseSpace d),
@@ -1259,6 +1451,9 @@ theorem spectrogram_ambiguity_identity_of_product_moyal
     exact spectrogramRep_eq_stft_mul_star h f η]
   exact hmoyal h f ξ
 
+/--
+@isnad1 id=eq.3h6v.s15.27a6fbfd6472 from=translated src=- shape=9b65afb9 vocab=c183506f
+-/
 theorem ae_unimodular_phase_to_L2_eq
     {d : Nat} {f g : L2Real d} {fRep gRep : RealVec d -> ℂ} {w : ℂ}
     (hf_rep : IsL2Rep f fRep) (hg_rep : IsL2Rep g gRep)
@@ -1289,6 +1484,9 @@ theorem ae_unimodular_phase_to_L2_eq
     _ = w * fRep u := hph
     _ = ((w • f : L2Real d) : RealVec d -> ℂ) u := hsm.symm
 
+/--
+@isnad1 id=eventual.2h3v.s13.6a5407f1a4c0 from=translated src=- shape=bf15ab07 vocab=a30a2150
+-/
 theorem rep_ae_eq_zero_of_L2_eq_zero
     {d : Nat} {f : L2Real d} {fRep : RealVec d -> ℂ}
     (hf_rep : IsL2Rep f fRep) (hf_zero : f = 0) :
@@ -1306,6 +1504,9 @@ theorem rep_ae_eq_zero_of_L2_eq_zero
     exact MeasureTheory.Lp.coeFn_zero ℂ 2 MeasureTheory.volume
   exact hcoe.symm.trans hzero
 
+/--
+@isnad1 id=eq.2h3v.s13.83345a457b5c from=translated src=- shape=6647508a vocab=a30a2150
+-/
 theorem L2_eq_zero_of_rep_ae_eq_zero
     {d : Nat} {f : L2Real d} {fRep : RealVec d -> ℂ}
     (hf_rep : IsL2Rep f fRep)
@@ -1326,6 +1527,9 @@ theorem L2_eq_zero_of_rep_ae_eq_zero
     _ = 0 := hrep
     _ = ((0 : L2Real d) : RealVec d -> ℂ) u := h0.symm
 
+/--
+@isnad1 id=true.1h2v.s4.284da25aec02 from=translated src=- shape=0e860516 vocab=f5bcf41c
+-/
 theorem boxPartialSums_have_L2_limit
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) :
     True := by
@@ -1337,6 +1541,9 @@ theorem boxPartialSums_have_L2_limit
   -/
   trivial
 
+/--
+@isnad1 id=true.0h0v.s0.76c777b0ce3c from=translated src=- shape=45709ebd vocab=e3b0c442
+-/
 theorem circleFourier_exact_modulus_bridge :
     True := by
   /-

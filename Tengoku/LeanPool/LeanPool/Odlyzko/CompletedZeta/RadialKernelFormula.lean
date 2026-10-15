@@ -62,6 +62,9 @@ noncomputable def complexPlaceGaussian
       ∑ w : InfinitePlace K, (w x) ^ 2 * (q w) ^ 2 : ℝ) : ℂ))
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s6.f84d06d985d2 from=translated src=- shape=5cb40bae vocab=5de69d3b
+-/
 theorem complexPlaceMellinGaussian_eq_prod_cpow_mul_gaussian
     (x : K) (s : ℂ) (q : InfinitePlace K → ℝ)
     (hq : ∀ w, 0 ≤ q w) :
@@ -82,6 +85,9 @@ theorem complexPlaceMellinGaussian_eq_prod_cpow_mul_gaussian
 variable [IsTotallyComplex K]
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s6.0adc63c76d8b from=translated src=- shape=39bb1ff9 vocab=c6d88654
+-/
 theorem prod_complexPlace_eq_prod_infinitePlace
     (f : InfinitePlace K → ℝ) :
     (∏ w : {w : InfinitePlace K // IsComplex w}, f w.1) =
@@ -94,6 +100,9 @@ theorem prod_complexPlace_eq_prod_infinitePlace
         IsTotallyComplex.isComplex, iff_self]) f
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s10.aa8386419002 from=translated src=- shape=e4687faa vocab=bc3473ec
+-/
 theorem prod_infinitePlace_sq_eq_norm_mixedSpaceOfRealSpace
     (q : InfinitePlace K → ℝ) (hq : ∀ w, 0 ≤ q w) :
     (∏ w : InfinitePlace K, q w) ^ 2 =
@@ -103,6 +112,9 @@ theorem prod_infinitePlace_sq_eq_norm_mixedSpaceOfRealSpace
     IsTotallyComplex.mult_eq, ← Finset.prod_pow]
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.4c84771b0db9 from=translated src=- shape=e1b8cfae vocab=68fc07f8
+-/
 theorem prod_expMapBasis_eq_exp_half_finrank
     (y : realSpace K) :
     ∏ w : InfinitePlace K, expMapBasis y w =
@@ -131,6 +143,9 @@ theorem prod_expMapBasis_eq_exp_half_finrank
   simp
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s4.0f4aa4a7e894 from=translated src=- shape=d72d682b vocab=af5a6e51
+-/
 theorem ofReal_exp_cpow (a : ℝ) (s : ℂ) :
     ((Real.exp a : ℝ) : ℂ) ^ s =
       Complex.exp ((a : ℂ) * s) := by
@@ -140,6 +155,9 @@ theorem ofReal_exp_cpow (a : ℝ) (s : ℂ) :
     Real.log_exp]
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s7.44e674a355ff from=translated src=- shape=b70a5fe3 vocab=1d0afaa9
+-/
 theorem complexPlaceRadialJacobian_eq_prod
     (q : InfinitePlace K → ℝ) (hq : ∀ w, 0 < q w) :
     complexPlaceRadialJacobian K q =
@@ -153,6 +171,9 @@ theorem complexPlaceRadialJacobian_eq_prod
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s8.02371238e5a7 from=translated src=- shape=d8ac58fd vocab=a0edac02
+-/
 theorem radialMellinGaussian_eq_prod_cpow_mul_gaussian
     (x : K) (s : ℂ) (y : realSpace K) :
     radialMellinGaussian K x s y =
@@ -201,6 +222,9 @@ theorem radialMellinGaussian_eq_prod_cpow_mul_gaussian
               (2 * s) := by simp
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s8.69258dee7bc1 from=translated src=- shape=87fc6b80 vocab=25b4e88d
+-/
 theorem radialMellinGaussian_eq_exp_mul_gaussian
     (x : K) (s : ℂ) (y : realSpace K) :
     radialMellinGaussian K x s y =
@@ -217,6 +241,9 @@ theorem radialMellinGaussian_eq_exp_mul_gaussian
   ring_nf
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s10.de3504a27cfc from=translated src=- shape=c082db55 vocab=8bc4a423
+-/
 theorem fundamentalConeZeta_eq_integral_tsum_nonzeroIdealElement_radial
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     ((2 : ℂ)⁻¹ * CompletedZeta.complexPlaceGammaFactor s) ^ nrComplexPlaces K *
@@ -267,6 +294,9 @@ noncomputable def nonzeroIdealShapeTheta
     complexPlaceGaussian K (((x : 𝓞 K) : K)) (expMapBasis y)
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s10.7da24bcb47c7 from=translated src=- shape=ff84de66 vocab=a9e25c62
+-/
 theorem tsum_nonzeroIdealElement_radialMellinGaussian
     (J : (Ideal (𝓞 K))⁰) (s : ℂ) (y : realSpace K) :
     (∑' x : nonzeroIdealElement K J,
@@ -285,6 +315,9 @@ theorem tsum_nonzeroIdealElement_radialMellinGaussian
   ring
 
 open Classical in
+/--
+@isnad1 id=integrab.1h3v.s9.79d8ae5fb6b2 from=translated src=- shape=4b1618cd vocab=53f12069
+-/
 theorem integrableOn_logarithmicMellinWeight_mul_nonzeroIdealShapeTheta
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn
@@ -361,6 +394,9 @@ theorem integrableOn_logarithmicMellinWeight_mul_nonzeroIdealShapeTheta
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s9.ef5c4ac31d46 from=translated src=- shape=fddc7a2f vocab=db11524a
+-/
 theorem fundamentalConeZeta_eq_integral_nonzeroIdealShapeTheta
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     ((2 : ℂ)⁻¹ * CompletedZeta.complexPlaceGammaFactor s) ^ nrComplexPlaces K *

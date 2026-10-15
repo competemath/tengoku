@@ -22,7 +22,9 @@ namespace LeanPool.PoincareThreeBody
 open scoped Interval
 
 /-- If the absolute trapezoidal approximation exceeds its certified error bound, the exact
-integral is nonzero. -/
+integral is nonzero.
+@isnad1 id=ne.4h5v.s7.1ae24d4d1d7e from=translated src=- shape=d3cf7e5a vocab=f0b73b03
+-/
 theorem intervalIntegral_ne_zero_of_trapezoidal_certificate
     {f : ℝ → ℝ} {a b errorBound : ℝ} {steps : ℕ}
     (hsmooth : ContDiffOn ℝ 2 f [[a, b]])
@@ -39,7 +41,9 @@ theorem intervalIntegral_ne_zero_of_trapezoidal_certificate
   exact (not_le_of_gt hcertificate) herror
 
 /-- A positive trapezoidal approximation larger than its certified error bound forces the exact
-integral to be positive. -/
+integral to be positive.
+@isnad1 id=lt.4h5v.s7.3af7927afdfb from=translated src=- shape=a93b4fe8 vocab=f0b73b03
+-/
 theorem intervalIntegral_pos_of_trapezoidal_certificate
     {f : ℝ → ℝ} {a b errorBound : ℝ} {steps : ℕ}
     (hsmooth : ContDiffOn ℝ 2 f [[a, b]])

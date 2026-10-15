@@ -13,6 +13,9 @@ public import Tengoku
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h1v.s6.46e5229cf6b6 from=translated src=- shape=c59e6bdd vocab=6517640d
+-/
 theorem one_div_sinh_le_exp_tail {x : ℝ} (hx : 1 ≤ x) :
     1 / Real.sinh x ≤ (8 / 3 : ℝ) * Real.exp (-x) := by
   have he : Real.exp (-x) < 1 / 2 := by
@@ -31,6 +34,9 @@ theorem one_div_sinh_le_exp_tail {x : ℝ} (hx : 1 ≤ x) :
   rw [div_le_iff₀ hsinh0]
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.5365d15cd5fe from=translated src=- shape=c59e6bdd vocab=6517640d
+-/
 theorem one_div_sinh_le_seven_thirds_exp {x : ℝ} (hx : 1 ≤ x) :
     1 / Real.sinh x ≤ (7 / 3 : ℝ) * Real.exp (-x) := by
   have he : Real.exp (-x) < 3 / 8 := by
@@ -49,6 +55,9 @@ theorem one_div_sinh_le_seven_thirds_exp {x : ℝ} (hx : 1 ≤ x) :
   rw [div_le_iff₀ hsinh0]
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.1b9e2f447d3d from=translated src=- shape=c59e6bdd vocab=6517640d
+-/
 theorem one_div_sinh_le_sixty_four_thirty_one_exp {x : ℝ} (hx : 2 ≤ x) :
     1 / Real.sinh x ≤ (64 / 31 : ℝ) * Real.exp (-x) := by
   have he1 : Real.exp (-x) < 9 / 64 := by
@@ -74,6 +83,9 @@ theorem one_div_sinh_le_sixty_four_thirty_one_exp {x : ℝ} (hx : 2 ≤ x) :
   rw [div_le_iff₀ hsinh0]
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.fdcb77badc74 from=translated src=- shape=c59e6bdd vocab=6517640d
+-/
 theorem one_div_sinh_le_exp_tail_four {x : ℝ} (hx : 4 ≤ x) :
     1 / Real.sinh x ≤ (512 / 255 : ℝ) * Real.exp (-x) := by
   have he1 : Real.exp (-x) < 1 / 16 := by

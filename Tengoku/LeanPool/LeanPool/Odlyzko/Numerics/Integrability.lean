@@ -26,17 +26,26 @@ noncomputable def archimedeanIntegrand (y x : ℝ) : ℝ :=
 noncomputable def archimedeanIntegral (y : ℝ) : ℝ :=
   ∫ x in Set.Ioi (0 : ℝ), archimedeanIntegrand y x
 
+/--
+@isnad1 id=le.1h2v.s5.e5095455d9f8 from=translated src=- shape=cc3bb3d7 vocab=d7b54d8b
+-/
 theorem archimedeanIntegrand_le_one_div_sinh {y x : ℝ} (hx : 0 < x) :
     archimedeanIntegrand y x ≤ 1 / Real.sinh x := by
   have hs : 0 < Real.sinh x := Real.sinh_pos_iff.mpr hx
   rw [archimedeanIntegrand, div_le_div_iff_of_pos_right hs]
   linarith [tartarTestFunction_nonneg (y * x)]
 
+/--
+@isnad1 id=le.1h2v.s5.7cff0b466d2f from=translated src=- shape=7ec6b032 vocab=21009a19
+-/
 theorem archimedeanIntegrand_le_exp_tail {y x : ℝ} (hx : 1 ≤ x) :
     archimedeanIntegrand y x ≤ (8 / 3 : ℝ) * Real.exp (-x) := by
   exact (archimedeanIntegrand_le_one_div_sinh (lt_of_lt_of_le zero_lt_one hx)).trans
     (one_div_sinh_le_exp_tail hx)
 
+/--
+@isnad1 id=lt.0h0v.s6.2a62a03319cb from=translated src=- shape=5316a86e vocab=31fae1db
+-/
 theorem NumericalCertificate.exp_tail_at_four_lt :
     (512 / 255 : ℝ) * Real.exp (-4) < 1 / 25 := by
   have he : Real.exp (-1) < 0.3678794412 := Real.exp_neg_one_lt_d9
@@ -50,6 +59,9 @@ theorem NumericalCertificate.exp_tail_at_four_lt :
         < (512 / 255 : ℝ) * (0.3678794412 : ℝ) ^ 4 := by gcongr
     _ < 1 / 25 := by norm_num
 
+/--
+@isnad1 id=lt.1h1v.s6.789fabf79201 from=translated src=- shape=4ab3ff13 vocab=06d3911b
+-/
 theorem NumericalCertificate.integral_archimedeanIntegrand_Ioi_four_lt {y : ℝ}
     (hint : MeasureTheory.IntegrableOn (archimedeanIntegrand y) (Set.Ioi 4)) :
     (∫ x in Set.Ioi (4 : ℝ), archimedeanIntegrand y x) < 1 / 25 := by
@@ -79,12 +91,18 @@ open MeasureTheory Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h2v.s4.b4354b7bb12e from=translated src=- shape=676e8bff vocab=ab220294
+-/
 theorem archimedeanIntegrand_nonneg {y x : ℝ} (hx : 0 < x) :
     0 ≤ archimedeanIntegrand y x := by
   rw [archimedeanIntegrand]
   exact div_nonneg (sub_nonneg.mpr (tartarTestFunction_le_one _))
     (Real.sinh_nonneg_iff.mpr hx.le)
 
+/--
+@isnad1 id=le.1h2v.s6.3b408172a596 from=translated src=- shape=862c81f6 vocab=7ff0a487
+-/
 theorem archimedeanIntegrand_le_linear {y x : ℝ} (hx : 0 < x) :
     archimedeanIntegrand y x ≤ y ^ 2 / 5 * x := by
   have hs : 0 < Real.sinh x := Real.sinh_pos_iff.mpr hx
@@ -97,6 +115,9 @@ theorem archimedeanIntegrand_le_linear {y x : ℝ} (hx : 0 < x) :
     _ ≤ (y ^ 2 / 5 * x) * Real.sinh x := by
       gcongr
 
+/--
+@isnad1 id=integrab.0h1v.s5.17ea947be54c from=translated src=- shape=cca0aac9 vocab=a38f81d0
+-/
 theorem integrableOn_archimedeanIntegrand_Ioc_zero_one (y : ℝ) :
     IntegrableOn (archimedeanIntegrand y) (Set.Ioc 0 1) := by
   have hmajor : IntegrableOn (fun x : ℝ ↦ y ^ 2 / 5 * x) (Set.Ioc 0 1) :=
@@ -110,6 +131,9 @@ theorem integrableOn_archimedeanIntegrand_Ioc_zero_one (y : ℝ) :
     rw [Real.norm_eq_abs, abs_of_nonneg (archimedeanIntegrand_nonneg hx.1)]
     exact archimedeanIntegrand_le_linear hx.1
 
+/--
+@isnad1 id=integrab.0h1v.s5.ffb10670efcb from=translated src=- shape=85d65c90 vocab=d50cb6fa
+-/
 theorem integrableOn_archimedeanIntegrand_Ioi_one (y : ℝ) :
     IntegrableOn (archimedeanIntegrand y) (Set.Ioi 1) := by
   have hmajor :
@@ -124,6 +148,9 @@ theorem integrableOn_archimedeanIntegrand_Ioi_one (y : ℝ) :
       abs_of_nonneg (archimedeanIntegrand_nonneg (zero_lt_one.trans hx))]
     exact archimedeanIntegrand_le_exp_tail hx.le
 
+/--
+@isnad1 id=integrab.0h1v.s5.39fdeb603fd6 from=translated src=- shape=85d65c90 vocab=d50cb6fa
+-/
 theorem integrableOn_archimedeanIntegrand_Ioi (y : ℝ) :
     IntegrableOn (archimedeanIntegrand y) (Set.Ioi 0) := by
   have hunion : Set.Ioc (0 : ℝ) 1 ∪ Set.Ioi 1 = Set.Ioi 0 := by simp

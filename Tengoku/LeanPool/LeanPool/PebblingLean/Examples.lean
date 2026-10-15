@@ -29,6 +29,9 @@ def zeroVertex (n : ℕ) : HypercubeVertex n :=
 def oneVertex (n : ℕ) : HypercubeVertex n :=
   fun _ => true
 
+/--
+@isnad1 id=eq.0h1v.s3.4d19a5bac539 from=translated src=- shape=0522356e vocab=c7f2b903
+-/
 theorem dist_zero_zero (n : ℕ) : dist (zeroVertex n) (zeroVertex n) = 0 := by
   exact dist_self (zeroVertex n)
 

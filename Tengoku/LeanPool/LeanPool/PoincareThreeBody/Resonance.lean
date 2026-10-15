@@ -31,10 +31,15 @@ def dot (u v : ActionSpace) : ℝ :=
 def wedge (u v : ActionSpace) : ℝ :=
   u 0 * v 1 - u 1 * v 0
 
+/--
+@isnad1 id=eq.0h2v.s6.32a08712a0dd from=translated src=- shape=b6b89085 vocab=33a91758
+-/
 lemma dot_eq (u v : ActionSpace) : dot u v = u 0 * v 0 + u 1 * v 1 := by
   simp [dot, Fin.sum_univ_two]
 
-/-- Two covectors annihilating the same nonzero vector in dimension two have zero wedge. -/
+/-- Two covectors annihilating the same nonzero vector in dimension two have zero wedge.
+@isnad1 id=eq.3h3v.s6.3f765da446e9 from=translated src=- shape=48c4f6f5 vocab=6811c888
+-/
 theorem wedge_eq_zero_of_resonance {k u v : ActionSpace} (hk : k ≠ 0)
     (hu : dot k u = 0) (hv : dot k v = 0) : wedge u v = 0 := by
   rw [dot_eq] at hu hv
@@ -58,7 +63,9 @@ theorem wedge_eq_zero_of_resonance {k u v : ActionSpace} (hk : k ≠ 0)
       nlinarith
     exact (mul_eq_zero.mp hmul).resolve_left hk0
 
-/-- Zero wedge is equivalent to failure of linear independence for two vectors in dimension two. -/
+/-- Zero wedge is equivalent to failure of linear independence for two vectors in dimension two.
+@isnad1 id=not.1h2v.s6.a30f2d851169 from=translated src=- shape=4317856f vocab=595b81c5
+-/
 theorem not_linearIndependent_of_wedge_eq_zero {u v : ActionSpace} (h : wedge u v = 0) :
     ¬LinearIndependent ℝ ![u, v] := by
   intro huv
@@ -69,7 +76,9 @@ theorem not_linearIndependent_of_wedge_eq_zero {u v : ActionSpace} (h : wedge u 
   rw [Matrix.det_fin_two]
   simpa [A, wedge] using h
 
-/-- The resonant linear-algebra obstruction in the form used by the perturbative proof. -/
+/-- The resonant linear-algebra obstruction in the form used by the perturbative proof.
+@isnad1 id=not.3h3v.s7.55465c385a8c from=translated src=- shape=8ea7cecb vocab=958adee7
+-/
 theorem not_linearIndependent_of_common_resonance {k frequency differential : ActionSpace}
     (hk : k ≠ 0) (hfrequency : dot k frequency = 0)
     (hdifferential : dot k differential = 0) :
@@ -78,7 +87,9 @@ theorem not_linearIndependent_of_common_resonance {k frequency differential : Ac
     (wedge_eq_zero_of_resonance hk hfrequency hdifferential)
 
 /-- A nonzero perturbing Fourier mode turns the first homological equation into the second
-orthogonality relation needed by the resonant obstruction. -/
+orthogonality relation needed by the resonant obstruction.
+@isnad1 id=not.4h5v.s7.373ffcb17cc4 from=translated src=- shape=8a6255da vocab=76b4c282
+-/
 theorem homologicalEquation_obstruction
     {k frequency differential : ActionSpace} {correction perturbation : ℝ}
     (hk : k ≠ 0) (hresonance : dot k frequency = 0) (hperturbation : perturbation ≠ 0)
@@ -89,7 +100,9 @@ theorem homologicalEquation_obstruction
     exact (mul_eq_zero.mp hequation).resolve_right hperturbation
   exact not_linearIndependent_of_common_resonance hk hresonance hdifferential
 
-/-- A continuous wedge that vanishes on a dense family of resonant actions vanishes everywhere. -/
+/-- A continuous wedge that vanishes on a dense family of resonant actions vanishes everywhere.
+@isnad1 id=eq.4h5v.s7.2331dddf497d from=translated src=- shape=1e12a2c4 vocab=173d2416
+-/
 theorem wedge_eq_zero_of_dense_resonances {X : Type*} [TopologicalSpace X]
     {resonantActions : Set X} (hdense : Dense resonantActions)
     {frequency differential : X → ActionSpace} (hfrequency : Continuous frequency)
@@ -103,7 +116,9 @@ theorem wedge_eq_zero_of_dense_resonances {X : Type*} [TopologicalSpace X]
     hwedge.ext_on hdense continuous_const hresonant
   exact congrFun heq x
 
-/-- Dense resonant obstructions force dependence at every action in the two-dimensional family. -/
+/-- Dense resonant obstructions force dependence at every action in the two-dimensional family.
+@isnad1 id=not.4h5v.s7.36c5873a5993 from=translated src=- shape=9806e1cd vocab=6da5c69b
+-/
 theorem denseResonance_obstruction {X : Type*} [TopologicalSpace X]
     {resonantActions : Set X} (hdense : Dense resonantActions)
     {frequency differential : X → ActionSpace} (hfrequency : Continuous frequency)

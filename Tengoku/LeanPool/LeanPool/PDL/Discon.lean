@@ -28,14 +28,26 @@ def con : List Formula → Formula
   | [f] => f
   | f :: rest => f⋀con rest
 
+/--
+@isnad1 id=eq.0h0v.s3.a7512d490552 from=translated src=- shape=76fe020d vocab=fa8bc63f
+-/
 theorem conempty : con ∅ = (⊤ : Formula) := by rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.4760839d78d0 from=translated src=- shape=5aa60faa vocab=a11c312f
+-/
 @[simp]
 theorem consingle {f : Formula} : con [f] = f := by rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.de2d8a3945d4 from=translated src=- shape=c9bd5ef9 vocab=26591be4
+-/
 theorem listEq_to_conEq : l1 = l2 → con l1 = con l2 := by
   aesop
 
+/--
+@isnad1 id=iff.0h5v.s5.05daf0548f4e from=translated src=- shape=5b9d2752 vocab=276379cd
+-/
 theorem conEvalHT {X f W M} {w : W} :
     evaluate M w (con (f :: X)) ↔ evaluate M w f ∧ evaluate M w (con X) :=
   by
@@ -43,6 +55,9 @@ theorem conEvalHT {X f W M} {w : W} :
   · simp
   · simp
 
+/--
+@isnad1 id=iff.0h4v.s5.0e523775b8a9 from=translated src=- shape=07f86ff8 vocab=6d7de4b9
+-/
 theorem conEval {W M X} {w : W} : evaluate M w (con X) ↔ ∀ f ∈ X, evaluate M w f :=
   by
   induction X
@@ -52,7 +67,9 @@ theorem conEval {W M X} {w : W} : evaluate M w (con X) ↔ ∀ f ∈ X, evaluate
     intro _
     assumption
 
-/-- Vocabulary of Conjunction -/
+/-- Vocabulary of Conjunction
+@isnad1 id=iff.0h2v.s5.61ab008a3f96 from=translated src=- shape=0764fe71 vocab=fa378ab5
+-/
 theorem in_voc_con n (L : List Formula) :
     n ∈ (con L).voc ↔ ∃ φ ∈ L, n ∈ φ.voc := by
   induction L
@@ -67,25 +84,38 @@ theorem in_voc_con n (L : List Formula) :
 /-- The conjunction of a `Finset` of formulas, via `Finset.pdlSort`. -/
 def _root_.Finset.pdlCon (X : Finset Formula) : Formula := _root_.PDL.con X.pdlSort
 
+/--
+@isnad1 id=eq.0h0v.s3.60f11a78f81c from=translated src=- shape=76fe020d vocab=d01a200d
+-/
 @[simp]
 theorem Finset.con_empty : Finset.pdlCon ∅ = (⊤ : Formula) := by
   simp [Finset.pdlCon, Finset.pdlSort]
 
+/--
+@isnad1 id=eq.0h1v.s3.e5cac4432309 from=translated src=- shape=41f33cba vocab=ea722882
+-/
 @[simp]
 theorem Finset.con_singleton {f : Formula} : Finset.pdlCon {f} = f := by
   simp [Finset.pdlCon, Finset.pdlSort]
 
+/--
+@isnad1 id=iff.0h4v.s5.2a04e790dbb3 from=translated src=- shape=07f86ff8 vocab=66ac1ab5
+-/
 theorem Finset.conEval {W M} {X : Finset Formula} {w : W} :
     evaluate M w X.pdlCon ↔ ∀ f ∈ X, evaluate M w f := by
   simp [Finset.pdlCon, _root_.PDL.conEval]
 
-/-- Evaluating a conjunction does not care about sorting. -/
+/-- Evaluating a conjunction does not care about sorting.
+@isnad1 id=iff.0h4v.s5.e575c6c1020f from=translated src=- shape=ad98e820 vocab=1e4eb608
+-/
 lemma evaluate_con_sort (X : Finset Formula) :
     evaluate M w (con (X.sort fun a b ↦ a ≤ b)) ↔ ∀ φ ∈ X, evaluate M w φ := by
   rw [conEval]
   simp
 
-/-- Vocabulary of the conjunction of a `Finset`. -/
+/-- Vocabulary of the conjunction of a `Finset`.
+@isnad1 id=iff.0h2v.s5.e63562c554ed from=translated src=- shape=0764fe71 vocab=10141c4b
+-/
 theorem Finset.in_voc_con n (X : Finset Formula) :
     n ∈ X.pdlCon.voc ↔ ∃ φ ∈ X, n ∈ φ.voc := by
   simp [Finset.pdlCon, _root_.PDL.in_voc_con]
@@ -99,15 +129,27 @@ def dis : List Formula → Formula
   | [f] => f
   | f :: rest => f ⋁ dis rest
 
+/--
+@isnad1 id=eq.0h0v.s3.f6f09be94296 from=translated src=- shape=76fe020d vocab=4da561cb
+-/
 @[simp]
 theorem disempty : dis ∅ = (⊥ : Formula) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.ee503864a2ed from=translated src=- shape=5aa60faa vocab=528a3002
+-/
 @[simp]
 theorem dissingle {f : Formula} : dis [f] = f := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.d6afbaef4bcf from=translated src=- shape=c9bd5ef9 vocab=e71fb09e
+-/
 theorem listEq_to_disEq : l1 = l2 → dis l1 = dis l2 := by
   aesop
 
+/--
+@isnad1 id=iff.0h5v.s5.450ecc0b265a from=translated src=- shape=5b9d2752 vocab=07b15f34
+-/
 theorem disEvalHT {X f W M} {w : W} :
     evaluate M w (dis (f :: X)) ↔ evaluate M w f ∨ evaluate M w (dis X) :=
   by
@@ -116,6 +158,9 @@ theorem disEvalHT {X f W M} {w : W} :
   · simp
     tauto
 
+/--
+@isnad1 id=iff.0h4v.s5.59ba544b7e92 from=translated src=- shape=49fd384e vocab=014f5748
+-/
 theorem disEval {W M X} {w : W} : evaluate M w (dis X) ↔ ∃ f ∈ X, evaluate M w f :=
   by
   induction X
@@ -123,7 +168,9 @@ theorem disEval {W M X} {w : W} : evaluate M w (dis X) ↔ ∃ f ∈ X, evaluate
   · rw [disEvalHT]
     simp_all
 
-/-- Vocabulary of Disjunction -/
+/-- Vocabulary of Disjunction
+@isnad1 id=iff.0h2v.s5.4f092ddfb382 from=translated src=- shape=0764fe71 vocab=3a7ee471
+-/
 theorem in_voc_dis n (L : List Formula) :
     n ∈ (dis L).voc ↔ ∃ φ ∈ L, n ∈ φ.voc := by
   induction L
@@ -139,19 +186,30 @@ theorem in_voc_dis n (L : List Formula) :
 /-- The disjunction of a `Finset` of formulas, via `Finset.pdlSort`. -/
 def _root_.Finset.pdlDis (X : Finset Formula) : Formula := _root_.PDL.dis X.pdlSort
 
+/--
+@isnad1 id=eq.0h0v.s3.79d93ae373d8 from=translated src=- shape=76fe020d vocab=b5c87dd0
+-/
 @[simp]
 theorem Finset.dis_empty : Finset.pdlDis ∅ = (⊥ : Formula) := by
   simp [Finset.pdlDis, Finset.pdlSort]
 
+/--
+@isnad1 id=eq.0h1v.s3.958805211939 from=translated src=- shape=41f33cba vocab=8b48c6fe
+-/
 @[simp]
 theorem Finset.dis_singleton {f : Formula} : Finset.pdlDis {f} = f := by
   simp [Finset.pdlDis, Finset.pdlSort]
 
+/--
+@isnad1 id=iff.0h4v.s5.6a3c466b1bd1 from=translated src=- shape=49fd384e vocab=7a13474a
+-/
 theorem Finset.disEval {W M} {X : Finset Formula} {w : W} :
     evaluate M w X.pdlDis ↔ ∃ f ∈ X, evaluate M w f := by
   simp [Finset.pdlDis, _root_.PDL.disEval]
 
-/-- Vocabulary of the disjunction of a `Finset`. -/
+/-- Vocabulary of the disjunction of a `Finset`.
+@isnad1 id=iff.0h2v.s5.bdcce45772aa from=translated src=- shape=0764fe71 vocab=4b52c539
+-/
 theorem Finset.in_voc_dis n (X : Finset Formula) :
     n ∈ X.pdlDis.voc ↔ ∃ φ ∈ X, n ∈ φ.voc := by
   simp [Finset.pdlDis, _root_.PDL.in_voc_dis]
@@ -165,18 +223,29 @@ def discon : List (List Formula) → Formula
   | [X] => con X
   | X :: rest => con X ⋁ discon rest
 
+/--
+@isnad1 id=eq.0h0v.s4.54594595fa75 from=translated src=- shape=60fdcb3c vocab=f6029885
+-/
 theorem disconempty : discon {∅} = (⊤ : Formula) := by rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.dec90bd9a7c9 from=translated src=- shape=e2d235fe vocab=84af44a4
+-/
 @[simp]
 theorem disconsingle {f : Formula} : discon [[f]] = f := by rfl
 
+/--
+@isnad1 id=semequiv.0h2v.s4.50b5320a056c from=translated src=- shape=5867e702 vocab=4312266b
+-/
 theorem disconEvalHT {X} : ∀ XS, discon (X :: XS) ≡ con X ⋁ discon XS :=
   by
   unfold semEquiv
   intro XS W M w
   cases XS <;> simp
 
-/-- Variant of `disconEval` for a specific length of `XS` to be provable by induction. -/
+/-- Variant of `disconEval` for a specific length of `XS` to be provable by induction.
+@isnad1 id=iff.1h5v.s5.df8b33cfcfb2 from=translated src=- shape=09c00d6c vocab=c0c9ff8e
+-/
 theorem disconEval' {W M} {w : W} :
     ∀ {N : Nat} XS,
       List.length XS = N → (evaluate M w (discon XS) ↔ ∃ Y ∈ XS, ∀ f ∈ Y, evaluate M w f) := by
@@ -214,6 +283,9 @@ theorem disconEval' {W M} {w : W} :
       · right
         use Y
 
+/--
+@isnad1 id=iff.0h4v.s5.b72944a35e9e from=translated src=- shape=3f82a295 vocab=f7c56f49
+-/
 theorem disconEval {W M} {w : W} :
     ∀ XS,
       (evaluate M w (discon XS) ↔ ∃ Y ∈ XS, ∀ f ∈ Y, evaluate M w f) :=
@@ -221,6 +293,9 @@ theorem disconEval {W M} {w : W} :
     intro XS
     apply disconEval' XS rfl
 
+/--
+@isnad1 id=semequiv.0h2v.s4.dddd04a0b48a from=translated src=- shape=f616bc91 vocab=e5aef2d0
+-/
 theorem disconOr {XS YS} : discon (XS ∪ YS) ≡ discon XS ⋁ discon YS :=
   by
   unfold semEquiv
@@ -286,7 +361,9 @@ def Formula.linearOrder : LinearOrder Formula where
 attribute [local instance] Formula.linearOrder
 
 /-- The lexicographic `List.le` on `List Formula` agrees with the `≤` coming from
-the linear order `Formula.linearOrder`. -/
+the linear order `Formula.linearOrder`.
+@isnad1 id=iff.0h2v.s4.28d3e5b1fa5a from=translated src=- shape=3a4c8c7c vocab=ce842133
+-/
 lemma List.le_iff_le_formula (l1 l2 : List Formula) : List.le l1 l2 ↔ l1 ≤ l2 := by
   change ¬ (l2 < l1) ↔ l1 ≤ l2
   exact not_lt
@@ -312,6 +389,9 @@ lexicographically with `List.le`. -/
 def _root_.Finset.pdlDiscon : Finset (Finset Formula) → Formula
   | XS => _root_.PDL.discon ((XS.image Finset.pdlSort).sort List.le)
 
+/--
+@isnad1 id=iff.0h4v.s5.6a649ad66702 from=translated src=- shape=3f82a295 vocab=352a6fac
+-/
 theorem Finset.disconEval {W M} {w : W} (XS : Finset (Finset Formula)) :
     evaluate M w XS.pdlDiscon ↔ ∃ Y ∈ XS, ∀ f ∈ Y, evaluate M w f := by
   rw [Finset.pdlDiscon, _root_.PDL.disconEval]
@@ -347,6 +427,9 @@ instance listHasUplus : HasUplus List := ⟨pairunionList⟩
 @[simp]
 instance finsetHasUplus : HasUplus Finset := ⟨pairunionFinset⟩
 
+/--
+@isnad1 id=semequiv.0h2v.s4.9b1793c7ae02 from=translated src=- shape=6af60ea3 vocab=6dedaef6
+-/
 theorem disconAnd {XS YS} : discon (XS ⊎ YS) ≡ discon XS ⋀ discon YS :=
   by
   unfold semEquiv
@@ -358,6 +441,9 @@ theorem disconAnd {XS YS} : discon (XS ⊎ YS) ≡ discon XS ⋀ discon YS :=
   rw [disconEval YS]
   aesop
 
+/--
+@isnad1 id=mem.2h4v.s6.c2ec15f156ae from=translated src=- shape=2d6f9679 vocab=ba97e959
+-/
 theorem union_elem_uplus {XS YS : Finset (Finset Formula)} {X Y : Finset Formula} :
   X ∈ XS → Y ∈ YS → ((X ∪ Y) ∈ (XS ⊎ YS)) :=
   by
@@ -365,7 +451,9 @@ theorem union_elem_uplus {XS YS : Finset (Finset Formula)} {X Y : Finset Formula
   simp only [HasUplus.pairunion, pairunionFinset, Finset.mem_biUnion, Finset.mem_singleton]
   exact ⟨X, X_in, Y, Y_in, rfl⟩
 
-/-- Helper for `oneSidedLocalRuleTruth`, used with `g = Yset`. -/
+/-- Helper for `oneSidedLocalRuleTruth`, used with `g = Yset`.
+@isnad1 id=iff.0h6v.s6.6184dc06be00 from=translated src=- shape=b0b4d578 vocab=ca245ad4
+-/
 theorem mapCon_mapForall (M : KripkeModel W) w φ
     (g : (List Formula × List Program) → Formula → List Formula) :
     (∃ f ∈ List.map (fun Fδ => con (g Fδ φ)) X, evaluate M w f) ↔
