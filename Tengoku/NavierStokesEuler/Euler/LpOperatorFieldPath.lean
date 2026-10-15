@@ -37,7 +37,9 @@ private local instance : NormedAddCommGroup
 private local instance : NormedSpace ℝ
     (supportedSpace (V := E) μ S hS →L[ℝ] supportedSpace (V := F) μ S hS) := inferInstance
 
-/-- Linearity in the actual rectangular coefficient field. -/
+/-- Linearity in the actual rectangular coefficient field.
+@isnad1 id=eq.1h7v.s16.4378906c0bcb from=translated src=- shape=6d7f580c vocab=f448a3bc
+-/
 theorem supported_add (A B : α →ᵇ E →L[ℝ] F) :
     supported μ S hS (A+B) = supported μ S hS A + supported μ S hS B := by
   apply ContinuousLinearMap.ext
@@ -47,6 +49,9 @@ theorem supported_add (A B : α →ᵇ E →L[ℝ] F) :
   rw [full_add]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s16.b067bb79b94f from=translated src=- shape=1b352413 vocab=af15be29
+-/
 theorem supported_smul (r : ℝ) (A : α →ᵇ E →L[ℝ] F) :
     supported μ S hS (r • A) = r • supported μ S hS A := by
   apply ContinuousLinearMap.ext
@@ -72,8 +77,14 @@ def supportedMap : (α →ᵇ E →L[ℝ] F) →L[ℝ]
     simpa only [one_mul] using
       supported_norm μ S hS A ‖A‖ (norm_nonneg _) (fun x _ => A.norm_coe_le_norm x))
 
+/--
+@isnad1 id=eq.1h6v.s16.d9d6ff2251a4 from=translated src=- shape=3e9564ef vocab=e66cd302
+-/
 @[simp] theorem supportedMap_apply (A : α →ᵇ E →L[ℝ] F) : supportedMap μ S hS A = supported μ S hS A := rfl
 
+/--
+@isnad1 id=le.1h5v.s15.7529914be4d2 from=translated src=- shape=fcf0f272 vocab=73077250
+-/
 theorem supportedMap_norm : ‖supportedMap (E := E) (F := F) μ S hS‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro A
@@ -88,9 +99,15 @@ def supportedPathMap : C(K,α →ᵇ E →L[ℝ] F) →L[ℝ]
   (supportedMap (E := E) (F := F) μ S hS).compLeftContinuous ℝ K
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.1h8v.s18.5738ed7dbbc8 from=translated src=- shape=8a8bc960 vocab=bc43baca
+-/
 @[simp] theorem supportedPathMap_apply (A : C(K,α →ᵇ E →L[ℝ] F)) (t : K) :
     supportedPathMap μ S hS A t = supported μ S hS (A t) := rfl
 
+/--
+@isnad1 id=le.1h6v.s17.55cee961a424 from=translated src=- shape=ddb226c5 vocab=06ea3392
+-/
 theorem supportedPathMap_norm : ‖supportedPathMap (K := K) (E := E) (F := F) μ S hS‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro A
@@ -101,7 +118,9 @@ theorem supportedPathMap_norm : ‖supportedPathMap (K := K) (E := E) (F := F) �
     (A.norm_coe_le_norm t)
 
 omit [CompactSpace K] in
-/-- Every-time pointwise lower frame bounds hold on the real L² frame path. -/
+/-- Every-time pointwise lower frame bounds hold on the real L² frame path.
+@isnad1 id=le.3h10v.s18.078621abd048 from=translated src=- shape=1fc3d248 vocab=792241cd
+-/
 theorem supportedPath_lower (A : C(K,α →ᵇ E →L[ℝ] F)) (c : ℝ) (hc : 0 ≤ c)
     (hA : ∀ t x, x ∈ S → ∀ v, c*‖v‖^2 ≤ ‖A t x v‖^2)
     (t : K) (u : supportedSpace (V := E) μ S hS) :
@@ -114,7 +133,9 @@ variable [CompleteSpace F]
   (T : ℝ) (hT : 0 ≤ T) (A A' : C(Icc (0 : ℝ) T,α →ᵇ E →L[ℝ] F))
 
 /-- Literal pointwise coefficient time derivatives give the genuine within-time
-operator derivative; no global time extension is assumed. -/
+operator derivative; no global time extension is assumed.
+@isnad1 id=hasderiv.3h9v.s19.c7041dafcd12 from=translated src=- shape=931903a6 vocab=b01211af
+-/
 theorem supportedPath_hasDerivWithinAt
     (hpoint : ∀ t ∈ Icc (0 : ℝ) T, ∀ x : α,
       HasDerivWithinAt (fun s => extendPath T hT A s x)
@@ -138,7 +159,9 @@ theorem supportedPath_hasDerivWithinAt
 
 end Derivative
 
-/-- A localized Hessian upper bound passes to its genuine supported L² operator. -/
+/-- A localized Hessian upper bound passes to its genuine supported L² operator.
+@isnad1 id=le.2h7v.s15.0747b2f4b4c8 from=translated src=- shape=0133b8e1 vocab=d440bea2
+-/
 theorem supported_quadratic_upper (A : α →ᵇ E →L[ℝ] E) (C : ℝ)
     (hA : ∀ x ∈ S, ∀ v, ⟪A x v,v⟫_ℝ ≤ C*‖v‖^2) (u : supportedSpace (V := E) μ S hS) :
     ⟪supported μ S hS A u,u⟫_ℝ ≤ C*‖u‖^2 := by

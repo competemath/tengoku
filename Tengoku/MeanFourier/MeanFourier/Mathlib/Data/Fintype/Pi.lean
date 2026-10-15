@@ -9,6 +9,9 @@ namespace Set
 variable {ι : Type*} {α : ι → Type*} {t : ∀ i, Set (α i)}
 
 -- TODO: Replace `Set.Finite.pi`
+/--
+@isnad1 id=finite.2h3v.s5.735a483ffc25 from=translated src=- shape=0ca8c2b8 vocab=948bcde0
+-/
 lemma Finite.univ_pi (ht : ∀ i, (t i).Finite) (ht' : {i | (t i).Nontrivial}.Finite) :
     (univ.pi t).Finite := by
   obtain ⟨s, hs⟩ := ht'.exists_finset

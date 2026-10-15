@@ -42,13 +42,17 @@ def frozenForcing (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E) (x y : P) : 
   (U x).weightedInitial g hg (a₀ y)+(U x).weightedForcing g hg (f y)
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
-/-- The frozen coefficient at its base parameter is the identity. -/
+/-- The frozen coefficient at its base parameter is the identity.
+@isnad1 id=eq.2h7v.s10.ec055e115790 from=translated src=- shape=17f15a41 vocab=9c7113bf
+-/
 theorem frozenOperator_self (x : P) :
     frozenOperator T hT B U g hg x x = ContinuousLinearMap.id ℝ _ := by
   simp only [frozenOperator, sub_self, comp_zero, sub_zero]
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
-/-- The actual normalized Duhamel solution satisfies this bounded-operator equation. -/
+/-- The actual normalized Duhamel solution satisfies this bounded-operator equation.
+@isnad1 id=eq.2h10v.s10.edd408bf6972 from=translated src=- shape=e89ee482 vocab=ff6b8423
+-/
 theorem frozenOperator_equation (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E) (x y : P) :
     frozenOperator T hT B U g hg x y ((U y).weightedSolution g hg (f y) (a₀ y)) =
       frozenForcing T hT B U g hg f a₀ x y := by
@@ -62,12 +66,16 @@ theorem frozenOperator_equation (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E
         ((U y).weightedSolution g hg (f y) (a₀ y))) = _
   exact sub_eq_iff_eq_add.mpr (by simpa only [frozenForcing, add_assoc] using h)
 
-/-- The frozen coefficient is genuinely smooth in the translated coefficients. -/
+/-- The frozen coefficient is genuinely smooth in the translated coefficients.
+@isnad1 id=contdiff.3h7v.s10.aedb9f090948 from=translated src=- shape=37373723 vocab=ba3b38d3
+-/
 theorem frozenOperator_contDiff (hB : ContDiff ℝ ∞ B) (x : P) :
     ContDiff ℝ ∞ (frozenOperator T hT B U g hg x) :=
   contDiff_const.sub (contDiff_const.clm_comp ((contDiff_multiplier B hB).sub contDiff_const))
 
-/-- The transformed data retain the actual parameter smoothness of the original data. -/
+/-- The transformed data retain the actual parameter smoothness of the original data.
+@isnad1 id=contdiff.4h9v.s9.342b820a0399 from=translated src=- shape=83f2a1ce vocab=565fb795
+-/
 theorem frozenForcing_contDiff (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E)
     (hf : ContDiff ℝ ∞ f) (ha₀ : ContDiff ℝ ∞ a₀) (x : P) :
     ContDiff ℝ ∞ (frozenForcing T hT B U g hg f a₀ x) :=

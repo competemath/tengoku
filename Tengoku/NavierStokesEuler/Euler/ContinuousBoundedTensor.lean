@@ -70,6 +70,9 @@ def tensorPath (n : ℕ) (A : E [×n]→L[ℝ] C(K, X →ᵇ V)) :
         (continuous_pi (fun w => (A (fun i => Module.finBasis ℝ E (w i))).continuous)))
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h8v.s11.fd6f750b2c72 from=translated src=- shape=41fe9a8e vocab=c751fb0c
+-/
 theorem tensorPath_eq (n : ℕ) (A : E [×n]→L[ℝ] C(K, X →ᵇ V)) (t : K) (x : X) :
     tensorPath n A t x = (BoundedContinuousFunction.evalCLM ℝ x).compContinuousMultilinearMap
       ((ContinuousMap.evalCLM ℝ t).compContinuousMultilinearMap A) := by
@@ -83,6 +86,9 @@ theorem tensorPath_eq (n : ℕ) (A : E [×n]→L[ℝ] C(K, X →ᵇ V)) (t : K) 
   rw [he, reassembly_coordinates]
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h9v.s11.8b05e05aa5e3 from=translated src=- shape=b42f4301 vocab=e8114199
+-/
 @[simp] theorem tensorPath_apply (n : ℕ) (A : E [×n]→L[ℝ] C(K, X →ᵇ V))
     (t : K) (x : X) (v : Fin n → E) : tensorPath n A t x v = A v t x := by
   rw [tensorPath_eq]
@@ -93,6 +99,9 @@ private local instance (n : ℕ) : NormedSpace ℝ (C(K, X →ᵇ (E [×n]→L[�
 private local instance (n : ℕ) : NormedAddCommGroup (E [×n]→L[ℝ] C(K, X →ᵇ V)) := inferInstance
 private local instance (n : ℕ) : NormedSpace ℝ (E [×n]→L[ℝ] C(K, X →ᵇ V)) := inferInstance
 
+/--
+@isnad1 id=le.0h6v.s10.c45f31c61453 from=translated src=- shape=6caaf58b vocab=1f9dbba6
+-/
 theorem tensorPath_norm_le (n : ℕ) (A : E [×n]→L[ℝ] C(K, X →ᵇ V)) :
     ‖tensorPath n A‖ ≤ ‖A‖ := by
   apply (ContinuousMap.norm_le _ (norm_nonneg A)).2
@@ -135,10 +144,16 @@ def tensorPathMap (n : ℕ) :
       change ‖tensorPath n A‖ ≤ 1 * ‖A‖
       simpa only [one_mul] using tensorPath_norm_le n A)
 
+/--
+@isnad1 id=eq.0h9v.s13.96c9d96aa84d from=translated src=- shape=08bb26d8 vocab=2aab6800
+-/
 @[simp] theorem tensorPathMap_apply (n : ℕ) (A : E [×n]→L[ℝ] C(K, X →ᵇ V))
     (t : K) (x : X) (v : Fin n → E) : tensorPathMap n A t x v = A v t x :=
   tensorPath_apply n A t x v
 
+/--
+@isnad1 id=le.0h5v.s12.f444c52807b9 from=translated src=- shape=e44dea83 vocab=318c59c5
+-/
 theorem tensorPathMap_norm_le (n : ℕ) :
     ‖tensorPathMap (K := K) (X := X) (E := E) (V := V) n‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ zero_le_one
@@ -146,6 +161,9 @@ theorem tensorPathMap_norm_le (n : ℕ) :
   change ‖tensorPath n A‖ ≤ 1 * ‖A‖
   simpa only [one_mul] using tensorPath_norm_le n A
 
+/--
+@isnad1 id=eq.1h9v.s13.2a9c4cbc3ac1 from=translated src=- shape=ed92ce8d vocab=2cc83a93
+-/
 theorem tensorPath_iteratedFDeriv (f : E → C(K, X →ᵇ V)) (hf : ContDiff ℝ ∞ f)
     (n : ℕ) (a : E) (t : K) (x : X) :
     tensorPathMap n (iteratedFDeriv ℝ n f a) t x =

@@ -33,7 +33,9 @@ open Set Filter
 
 variable {α : Type*} [Field α] [LinearOrder α] [FloorSemiring α] [IsStrictOrderedRing α]
 
-/-- If `t ∈ [a + n * h, a + (n + 1) * h)` and `0 < h`, then `⌊(t - a) / h⌋₊ = n`. -/
+/-- If `t ∈ [a + n * h, a + (n + 1) * h)` and `0 < h`, then `⌊(t - a) / h⌋₊ = n`.
+@isnad1 id=eq.2h5v.s8.ded691118a7a from=translated src=- shape=a55ac542 vocab=dad04fde
+-/
 theorem Nat.floor_div_eq_of_mem_Ico {h : α} (hh : 0 < h) {a : α}
     {n : ℕ} {t : α} (ht : t ∈ Ico (a + n * h) (a + (n + 1) * h)) :
     ⌊(t - a) / h⌋₊ = n := by
@@ -41,7 +43,9 @@ theorem Nat.floor_div_eq_of_mem_Ico {h : α} (hh : 0 < h) {a : α}
     (first | rw [le_div_iff₀ hh] | rw [div_lt_iff₀ hh]) <;> linarith [ht.1, ht.2]
 
 /-- If `0 < h` and `a ≤ t`, then `t` lies in the floor interval
-`[a + ⌊(t - a) / h⌋₊ * h, a + (⌊(t - a) / h⌋₊ + 1) * h)`. -/
+`[a + ⌊(t - a) / h⌋₊ * h, a + (⌊(t - a) / h⌋₊ + 1) * h)`.
+@isnad1 id=mem.2h4v.s8.7bc601a9f911 from=translated src=- shape=673da5f2 vocab=79bcd2b9
+-/
 theorem mem_Ico_Nat_floor_div {h : α} (hh : 0 < h) {a t : α} (hat : a ≤ t) :
     t ∈ Ico (a + ⌊(t - a) / h⌋₊ * h) (a + (↑⌊(t - a) / h⌋₊ + 1) * h) := by
   constructor <;> nlinarith [Nat.floor_le (div_nonneg (sub_nonneg.mpr hat) hh.le),
@@ -61,7 +65,9 @@ noncomputable def piecewiseLinear {E : Type*} [AddCommGroup E] [Module α E]
 noncomputable def piecewiseConst {E : Type*} (c : ℕ → E) (h : α) (a : α) (t : α) : E :=
   c ⌊(t - a) / h⌋₊
 
-/-- The piecewise constant function equals `c n` on `[a + n * h, a + (n + 1) * h)`. -/
+/-- The piecewise constant function equals `c n` on `[a + n * h, a + (n + 1) * h)`.
+@isnad1 id=eq.2h7v.s8.13d39ab5b0e2 from=translated src=- shape=f62ff4b4 vocab=7e1a914c
+-/
 theorem piecewiseConst_eq_on_Ico {E : Type*} {c : ℕ → E} {h : α} {a : α}
     (hh : 0 < h) {n : ℕ} {t : α}
     (ht : t ∈ Ico (a + n * h) (a + (n + 1) * h)) :
@@ -70,7 +76,9 @@ theorem piecewiseConst_eq_on_Ico {E : Type*} {c : ℕ → E} {h : α} {a : α}
 
 variable [TopologicalSpace α] [OrderTopology α]
 
-/-- The regular grid of closed intervals `[a + n * h, a + (n + 1) * h]` is locally finite. -/
+/-- The regular grid of closed intervals `[a + n * h, a + (n + 1) * h]` is locally finite.
+@isnad1 id=locallyf.1h3v.s7.311809ea898b from=translated src=- shape=650fb8f2 vocab=d941d072
+-/
 theorem locallyFinite_Icc_grid {h : α} (hh : 0 < h) (a : α) :
     LocallyFinite fun n : ℕ => Icc (a + n * h) (a + (↑n + 1) * h) := by
   intro x
@@ -82,7 +90,9 @@ theorem locallyFinite_Icc_grid {h : α} (hh : 0 < h) (a : α) :
     (first | rw [div_lt_iff₀ hh] | rw [le_div_iff₀ hh]) <;> push_cast <;> nlinarith
 
 /-- A function continuous on each cell `[a + n * h, a + (n + 1) * h]` is continuous
-on `[a, ∞)`. -/
+on `[a, ∞)`.
+@isnad1 id=continuo.2h5v.s8.0b1d2703ac6d from=translated src=- shape=07312983 vocab=04258cdd
+-/
 theorem ContinuousOn.of_Icc_grid {F : Type*} [TopologicalSpace F]
     {f : α → F} {h : α} (hh : 0 < h) {a : α}
     (hf : ∀ n : ℕ, ContinuousOn f (Icc (a + n * h) (a + (n + 1) * h))) :

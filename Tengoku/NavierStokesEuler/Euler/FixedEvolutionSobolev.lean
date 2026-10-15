@@ -26,10 +26,16 @@ open scoped ContDiff
 
 def traceCost (T : ℝ) : ℝ := T⁻¹*Real.sqrt T+2*Real.sqrt T
 
+/--
+@isnad1 id=le.1h1v.s4.8a150282c401 from=translated src=- shape=35bd48ee vocab=e3170f88
+-/
 theorem traceCost_nonneg (T : ℝ) (hT : 0 ≤ T) : 0 ≤ traceCost T := by
   unfold traceCost
   positivity
 
+/--
+@isnad1 id=and.7h10v.s7.36e2d1d33527 from=translated src=- shape=023ee74b vocab=652802bd
+-/
 theorem weak_radius_bounds (ι : Type*) [Fintype ι] (q : ℕ) (T Rc C₀ C₁ CH c Cf R : ℝ)
     (hT : 0 ≤ T) (hRc : 0 ≤ Rc) (hC₀ : 0 ≤ C₀) (hC₁ : 0 ≤ C₁) (hCH : 0 ≤ CH) (hCf : 0 ≤ Cf)
     (hR : 2*blockCost ι q T Rc C₀ C₁ CH c Cf*(sobolevCoefficientRadius ι Rc+1) ≤ R) :
@@ -62,7 +68,9 @@ variable {X U E ι : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 include hdir hQ hQ₁ hH hRc hC₀ hC₁ hCH hCf hbQ hbQ₁ hbH hRweak hRstrong
 
-/-- Actual L² acceleration has the second shift, in the same fixed Hq block. -/
+/-- Actual L² acceleration has the second shift, in the same fixed Hq block.
+@isnad1 id=le.23h22v.s14.6f72c995eaee from=translated src=- shape=c1bf52a1 vocab=1916f807
+-/
 theorem accelerationLp_block_gevrey (f : X → TimeLp T E) (hf : ContDiff ℝ ∞ f) (d : ℕ)
     (hfb : ∀ n x, block directions q f n x ≤ Cf*majorant R d n) (n : ℕ) (x : X) :
     block directions q (fun y => accelerationLp T hT (Q y) (Q₁ y) (H y) c hc (hLower y) (hd y)
@@ -82,7 +90,9 @@ theorem accelerationLp_block_gevrey (f : X → TimeLp T E) (hf : ContDiff ℝ �
     Rc R C₀ C₁ Cf 1 hRc hRcR hC₀ hC₁ hCf zero_le_one hRstrong hbQ hbQ₁ (d+1) hbf hbv n x
 
 /-- The actual H¹ representative has a uniform-time block estimate with
-the explicit time-trace cost, and no new external-radius factor. -/
+the explicit time-trace cost, and no new external-radius factor.
+@isnad1 id=le.24h22v.s14.cedcbb23d398 from=translated src=- shape=864f56b9 vocab=a17011f4
+-/
 theorem velocityPath_block_gevrey (hTpos : 0 < T)
     (f : X → TimeLp T E) (hf : ContDiff ℝ ∞ f) (d : ℕ)
     (hfb : ∀ n x, block directions q f n x ≤ Cf*majorant R d n) (n : ℕ) (x : X) :
@@ -112,7 +122,9 @@ theorem velocityPath_block_gevrey (hTpos : 0 < T)
   simpa only [mul_one,traceCost] using h
 
 /-- A bounded continuous-time forcing family enters the actual time-L² space
-with no amplitude loss on a source interval of length at most one. -/
+with no amplitude loss on a source interval of length at most one.
+@isnad1 id=le.25h22v.s14.8a8591a882d6 from=translated src=- shape=d64ed9f8 vocab=02d2ebbe
+-/
 theorem continuousVelocity_block_gevrey (hTpos : 0 < T) (hT1 : T ≤ 1)
     (f : X → C(Icc (0 : ℝ) T,E)) (hf : ContDiff ℝ ∞ f) (d : ℕ)
     (hfb : ∀ n x, block directions q f n x ≤ Cf*majorant R d n) (n : ℕ) (x : X) :
@@ -131,7 +143,9 @@ theorem continuousVelocity_block_gevrey (hTpos : 0 < T) (hT1 : T ≤ 1)
     hQ hQ₁ hH Rc C₀ C₁ CH Cf R hRc hC₀ hC₁ hCH hCf hbQ hbQ₁ hbH hRweak hRstrong hTpos flp hflp d hb n x
 
 /-- The genuine continuous Gram acceleration has the third shift; its norm
-includes the endpoint needed for gluing the first-order evolution. -/
+includes the endpoint needed for gluing the first-order evolution.
+@isnad1 id=le.26h22v.s13.6a37e50031c8 from=translated src=- shape=acf3de48 vocab=263e5ea4
+-/
 theorem classicalAcceleration_block_gevrey (hTpos : 0 < T) (hT1 : T ≤ 1)
     (hRuniform : 2*gramBlockCost ι q c Rc C₀ (accelerationBlockAmplitude ι q Rc C₀ C₁ Cf (traceCost T))*
       (sobolevCoefficientRadius ι Rc+1) ≤ R)

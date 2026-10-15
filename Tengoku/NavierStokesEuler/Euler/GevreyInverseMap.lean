@@ -21,6 +21,9 @@ variable {E F G : Type*}
   [NormedAddCommGroup F] [NormedSpace ℝ F]
   [NormedAddCommGroup G] [NormedSpace ℝ G]
 
+/--
+@isnad1 id=eq.0h6v.s7.9a3a84cb77ba from=translated src=- shape=3f8225af vocab=f72cf97c
+-/
 lemma predecessor_partition_bound_factorization {n : ℕ} (c : OrderedFinpartition n)
     (A B R S : ℝ) :
     (A * S^c.length * (c.length.factorial : ℝ)^2) *
@@ -32,6 +35,9 @@ lemma predecessor_partition_bound_factorization {n : ℕ} (c : OrderedFinpartiti
   rw [mul_pow]
   ring
 
+/--
+@isnad1 id=le.8h10v.s9.f8c80212c395 from=translated src=- shape=d4893725 vocab=8573b439
+-/
 theorem norm_taylorComp_predecessor_le
     (q : FormalMultilinearSeries ℝ F G) (p : FormalMultilinearSeries ℝ E F)
     (n : ℕ) (hn : 0 < n) (A B R S : ℝ)
@@ -69,6 +75,9 @@ theorem norm_taylorComp_predecessor_le
         (mul_nonneg hB hS) hBS) (mul_nonneg hA (pow_nonneg hR n))
     _ = _ := by ring
 
+/--
+@isnad1 id=le.10h11v.s9.3644c3cddaf1 from=translated src=- shape=4854396b vocab=4b671dbe
+-/
 theorem norm_iteratedFDeriv_comp_predecessor_at
     (f : E → F) (g : F → G) (n : ℕ) (hn : 0 < n) (x : E)
     (hf : ContDiffAt ℝ n f x) (hg : ContDiffAt ℝ n g (f x))
@@ -85,16 +94,24 @@ theorem norm_iteratedFDeriv_comp_predecessor_at
 
 def inverseMapRadius (C R : ℝ) : ℝ := 1 + 2*C*R
 
+/--
+@isnad1 id=le.2h2v.s5.043256e01996 from=translated src=- shape=6c67d60b vocab=e56d01bb
+-/
 lemma inverseMapRadius_ge_one (C R : ℝ) (hC : 0 ≤ C) (hR : 0 ≤ R) :
     1 ≤ inverseMapRadius C R := by
   unfold inverseMapRadius
   nlinarith [mul_nonneg hC hR]
 
+/--
+@isnad1 id=lt.2h2v.s5.56973a92afeb from=translated src=- shape=4261138a vocab=4400f192
+-/
 lemma inverseMapRadius_pos (C R : ℝ) (hC : 0 ≤ C) (hR : 0 ≤ R) :
     0 < inverseMapRadius C R := lt_of_lt_of_le zero_lt_one (inverseMapRadius_ge_one C R hC hR)
 
 /-- Positive derivatives of a genuine solution of `DY = A ∘ Y` have one
-fixed polynomial Gevrey radius.  The value of `Y` need not be bounded. -/
+fixed polynomial Gevrey radius.  The value of `Y` need not be bounded.
+@isnad1 id=le.6h8v.s10.f82127d59657 from=translated src=- shape=81344ff3 vocab=2b093226
+-/
 theorem norm_iteratedFDeriv_of_fderiv_eq_comp
     (Y : E → F) (A : F → E →L[ℝ] F)
     (hY : ContDiff ℝ ∞ Y) (hA : ContDiff ℝ ∞ A)
@@ -145,7 +162,9 @@ theorem norm_iteratedFDeriv_of_fderiv_eq_comp
         _ = _ := by ring
 
 /-- The same estimate in the usual unshifted form, directly usable as the
-inner-function hypothesis of the composition theorem. -/
+inner-function hypothesis of the composition theorem.
+@isnad1 id=le.7h8v.s10.b52a792c9969 from=translated src=- shape=991f4978 vocab=eb12f3e5
+-/
 theorem positive_jets_of_fderiv_eq_comp
     (Y : E → F) (A : F → E →L[ℝ] F)
     (hY : ContDiff ℝ ∞ Y) (hA : ContDiff ℝ ∞ A)
@@ -167,7 +186,9 @@ theorem positive_jets_of_fderiv_eq_comp
   exact mul_nonneg hC (pow_nonneg (inverseMapRadius_pos C R hC hR).le n)
 
 /-- Smoothness itself follows by differentiating the genuine differential
-identity; it need not be supplied as an independent inverse-map assumption. -/
+identity; it need not be supplied as an independent inverse-map assumption.
+@isnad1 id=contdiff.3h4v.s8.cd1121288c6c from=translated src=- shape=1b4090ac vocab=19dbe4ea
+-/
 theorem contDiff_of_fderiv_eq_comp
     (Y : E → F) (A : F → E →L[ℝ] F)
     (hY : Differentiable ℝ Y) (hA : ContDiff ℝ ∞ A)
@@ -184,7 +205,9 @@ theorem contDiff_of_fderiv_eq_comp
     exact (hA.of_le (by simp)).comp ih
 
 /-- The differential equation follows from an actual inverse identity and
-the actual inverse of the derivative of the original coordinate map. -/
+the actual inverse of the derivative of the original coordinate map.
+@isnad1 id=eq.4h5v.s9.b14c8e4513bc from=translated src=- shape=0e904a40 vocab=5e1ab990
+-/
 theorem fderiv_eq_inverse_field
     (X Y : E → E) (A : E → E →L[ℝ] E)
     (hX : Differentiable ℝ X) (hY : Differentiable ℝ Y)
@@ -201,7 +224,9 @@ theorem fderiv_eq_inverse_field
   simpa only [ContinuousLinearMap.comp_apply, ContinuousLinearMap.id_apply, hleft] using hv
 
 /-- Gevrey-two regularity of an actual smooth inverse map with a Gevrey-two
-inverse derivative field. -/
+inverse derivative field.
+@isnad1 id=le.8h8v.s10.4ff085a93349 from=translated src=- shape=e77162fb vocab=94f025c3
+-/
 theorem norm_iteratedFDeriv_inverseMap
     (X Y : E → E) (A : E → E →L[ℝ] E)
     (hX : Differentiable ℝ X) (hY : ContDiff ℝ ∞ Y) (hA : ContDiff ℝ ∞ A)
@@ -218,7 +243,9 @@ theorem norm_iteratedFDeriv_inverseMap
 
 /-- Pullback by a map satisfying the actual inverse differential equation
 preserves Gevrey two, with an explicit polynomial radius and unchanged
-outer amplitude.  Only differentiability of the inverse is an input. -/
+outer amplitude.  Only differentiability of the inverse is an input.
+@isnad1 id=le.10h12v.s10.0926a3c2e576 from=translated src=- shape=77a26809 vocab=539e73fc
+-/
 theorem norm_iteratedFDeriv_comp_of_fderiv_eq_comp
     (Y : E → F) (A : F → E →L[ℝ] F) (g : F → G)
     (hY : Differentiable ℝ Y) (hA : ContDiff ℝ ∞ A) (hg : ContDiff ℝ ∞ g)

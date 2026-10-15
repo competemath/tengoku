@@ -18,7 +18,9 @@ open MeasureTheory EulerSmoothLimit EulerVectorCalculus EulerMeanHarmonic
 open scoped ContDiff Topology
 
 /-- List coordinate derivatives agree with the ordinary Fréchet tensor
-evaluated on the corresponding sequence of coordinate directions. -/
+evaluated on the corresponding sequence of coordinate directions.
+@isnad1 id=eq.1h4v.s9.4a2b742733aa from=translated src=- shape=34cd1928 vocab=0115990f
+-/
 theorem iteratedFDeriv_coordinate_word (n : ℕ) (w : Fin n → Fin 3)
     (h : Space → ℝ) (hh : ContDiff ℝ ∞ h) (x : Space) :
     iteratedFDeriv ℝ n h x (fun i => direction (w i)) =
@@ -36,7 +38,9 @@ theorem iteratedFDeriv_coordinate_word (n : ℕ) (w : Fin n → Fin 3)
     rw [he, List.ofFn_succ]
     rfl
 
-/-- Coordinate projection commutes with the actual iterated Fréchet derivative. -/
+/-- Coordinate projection commutes with the actual iterated Fréchet derivative.
+@isnad1 id=eq.1h5v.s11.6b08f9da8d5c from=translated src=- shape=045ec70c vocab=5ddf2482
+-/
 theorem iteratedFDeriv_component (n : ℕ) (u : Space → Space)
     (hu : ContDiff ℝ ∞ u) (x : Space) (m : Fin n → Space) (j : Fin 3) :
     iteratedFDeriv ℝ n (fun y => u y j) x m = (iteratedFDeriv ℝ n u x m) j := by
@@ -44,7 +48,9 @@ theorem iteratedFDeriv_component (n : ℕ) (u : Space → Space)
     (hu.contDiffAt (x := x)) (i := n) (by simp)
   exact congrArg (fun A : Space [×n]→L[ℝ] ℝ => A m) he
 
-/-- Every coordinate evaluation of the Fréchet tensor is in L². -/
+/-- Every coordinate evaluation of the Fréchet tensor is in L².
+@isnad1 id=memlp.4h3v.s11.24f923028216 from=translated src=- shape=f3a7e632 vocab=bceccff8
+-/
 theorem iteratedFDeriv_coordinate_memLp (u : Space → Space)
     (hu : ContDiff ℝ ∞ u) (hL2 : MemLp u 2 volume)
     (hdiv : ∀ x, divergence u x = 0) (hc : HasCompactSupport (vectorCurl u))
@@ -61,7 +67,9 @@ theorem iteratedFDeriv_coordinate_memLp (u : Space → Space)
   exact component_wordDerivative_memLp u hu hL2 hdiv hc j (List.ofFn w)
 
 /-- Smooth finite-energy divergence-free velocity with compact vorticity
-has all its actual Fréchet derivatives in L². -/
+has all its actual Fréchet derivatives in L².
+@isnad1 id=memlp.4h2v.s12.7934ce38ec12 from=translated src=- shape=1681e7ce vocab=b0bbd99c
+-/
 theorem iteratedFDeriv_memLp_of_curl_compact (u : Space → Space)
     (hu : ContDiff ℝ ∞ u) (hL2 : MemLp u 2 volume)
     (hdiv : ∀ x, divergence u x = 0) (hc : HasCompactSupport (vectorCurl u))
@@ -84,7 +92,9 @@ def smoothL2Field_of_curl_compact (u : Space → Space)
   integrable := iteratedFDeriv_memLp_of_curl_compact u hu hL2 hdiv hc
 
 /-- The literal tensor energy is controlled by finitely many scalar coordinate
-energies. The constant is fixed by the derivative order alone. -/
+energies. The constant is fixed by the derivative order alone.
+@isnad1 id=le.1h2v.s13.cf544f7f5f38 from=translated src=- shape=b40dcdb5 vocab=10938d68
+-/
 theorem tensor_integral_norm_sq_le_coordinate_energy (n : ℕ)
     (F : Space → (Space [×n]→L[ℝ] Space)) (hF : MemLp F 2 volume) :
     (∫ x, ‖F x‖ ^ 2) ≤ ‖tensorReassembly (V := Space) n‖ ^ 2 *
@@ -112,7 +122,9 @@ theorem tensor_integral_norm_sq_le_coordinate_energy (n : ℕ)
       exact integral_finsetSum Finset.univ (fun j _ => hcoord w j)
 
 /-- The L² class of a smooth field's tensor has exactly its ordinary integral
-energy, so quantitative recovery applies to the development's norm. -/
+energy, so quantitative recovery applies to the development's norm.
+@isnad1 id=eq.0h2v.s14.6038e822e15b from=translated src=- shape=b3f02c2e vocab=792e3fa2
+-/
 theorem jetLp_norm_sq_eq_integral (A : SmoothL2Field Space) (n : ℕ) :
     ‖A.jetLp n‖ ^ 2 = ∫ x, ‖iteratedFDeriv ℝ n A.field x‖ ^ 2 := by
   rw [EulerLpBochnerRealization.norm_sq_eq_integral]
@@ -121,7 +133,9 @@ theorem jetLp_norm_sq_eq_integral (A : SmoothL2Field Space) (n : ℕ) :
   exact congrArg (fun v : Space [×n]→L[ℝ] Space => ‖v‖ ^ 2) hx
 
 /-- Uniform bounds for scalar coordinate-word energies yield uniform L²
-norms of the actual Fréchet tensors over an arbitrary parameter set. -/
+norms of the actual Fréchet tensors over an arbitrary parameter set.
+@isnad1 id=ex.1h3v.s14.047217141160 from=translated src=- shape=0e4940ff vocab=25cd7f73
+-/
 theorem jetLp_norm_uniform_of_coordinate_energy {ι : Type*}
     (A : ι → SmoothL2Field Space)
     (henergy : ∀ (j : Fin 3) (word : List (Fin 3)), ∃ B : ℝ,

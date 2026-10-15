@@ -18,6 +18,9 @@ variable (P : ℝ) [Fact (0 < P)]
 
 include hperiod in
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=eq.1h6v.s9.4f67702dca9b from=translated src=- shape=2b07e6cc vocab=4a5ac1ad
+-/
 theorem iteratedFDeriv_deck (n : ℕ) (c : AddSubgroup.zmultiples P) (z : LiftTangent) :
     iteratedFDeriv ℝ n f (z.1,(c : ℝ)+z.2)=iteratedFDeriv ℝ n f z := by
   let a : LiftTangent := (0,(c : ℝ))
@@ -32,12 +35,18 @@ def jetSeries (q : LiftDomain P) : FormalMultilinearSeries ℝ LiftTangent W :=
   fun n => descend P (iteratedFDeriv ℝ n f) q
 
 include hperiod in
+/--
+@isnad1 id=eq.1h5v.s9.ce77bdb0732c from=translated src=- shape=c510d2f8 vocab=ff66539b
+-/
 theorem jetSeries_cover (n : ℕ) (z : LiftTangent) :
     jetSeries P f (coveringMap P z) n=iteratedFDeriv ℝ n f z :=
   descend_cover P _ (fiber_constant_of_deck P _ (iteratedFDeriv_deck P f hperiod n)) z
 
 include hperiod in
 omit [NormedAddCommGroup W] [NormedSpace ℝ W] in
+/--
+@isnad1 id=eq.1h4v.s7.352d3a8eaecf from=translated src=- shape=c3fae35c vocab=53651ae1
+-/
 theorem localFieldLift_descend_cover (z : LiftTangent) :
     localFieldLift P (descend P f) (coveringMap P z)=fun h => f (z+h) := by
   have h0 : localFieldLift P (descend P f) 0=f := by
@@ -48,6 +57,9 @@ theorem localFieldLift_descend_cover (z : LiftTangent) :
   rw [localFieldLift_cover,h0]
 
 include hperiod in
+/--
+@isnad1 id=contdiff.2h4v.s9.e4497ac40158 from=translated src=- shape=f5e15cd1 vocab=0c9e2913
+-/
 theorem descend_smooth (hf : ContDiff ℝ ∞ f) (q : LiftDomain P) :
     ContDiff ℝ ∞ (localFieldLift P (descend P f) q) := by
   obtain ⟨z,rfl⟩ := (coveringMap_isOpenQuotient P).surjective q
@@ -55,12 +67,18 @@ theorem descend_smooth (hf : ContDiff ℝ ∞ f) (q : LiftDomain P) :
   exact hf.comp (contDiff_const.add contDiff_id)
 
 include hperiod in
+/--
+@isnad1 id=eq.1h5v.s9.711c0747b718 from=translated src=- shape=67c0a2a7 vocab=127ad7e2
+-/
 theorem jetSeries_eq_local (q : LiftDomain P) (n : ℕ) :
     jetSeries P f q n=iteratedFDeriv ℝ n (localFieldLift P (descend P f) q) 0 := by
   obtain ⟨z,rfl⟩ := (coveringMap_isOpenQuotient P).surjective q
   rw [jetSeries_cover P f hperiod,localFieldLift_descend_cover P f hperiod,
     iteratedFDeriv_comp_add_left,add_zero]
 
+/--
+@isnad1 id=continuo.2h5v.s10.698a1844ca2c from=translated src=- shape=1aa2fc7f vocab=07829b21
+-/
 theorem jetSeries_joint_continuous {K : Type*} [TopologicalSpace K]
     (F : K → LiftTangent → W)
     (hF : ∀ t (c : AddSubgroup.zmultiples P) z, F t (z.1,(c : ℝ)+z.2)=F t z)
@@ -72,6 +90,9 @@ theorem jetSeries_joint_continuous {K : Type*} [TopologicalSpace K]
 
 include hperiod in
 omit [NormedAddCommGroup W] [NormedSpace ℝ W] in
+/--
+@isnad1 id=eq.1h4v.s7.2f49356ca02d from=translated src=- shape=9885ef40 vocab=ec31a11a
+-/
 theorem descend_comp_map (Φ : LiftTangent → LiftTangent) :
     descend P (f ∘ Φ) = descend P f ∘ descendMap P Φ := by
   funext q
@@ -79,6 +100,9 @@ theorem descend_comp_map (Φ : LiftTangent → LiftTangent) :
     (Φ (sectionPoint P q))).symm
 
 include hperiod in
+/--
+@isnad1 id=eq.3h6v.s10.f8e88885f73c from=translated src=- shape=2bddbeb4 vocab=113a05fd
+-/
 theorem jetSeries_comp (Φ : LiftTangent → LiftTangent)
     (hf : ContDiff ℝ ∞ f) (hΦ : ContDiff ℝ ∞ Φ) (q : LiftDomain P) (n : ℕ) :
     jetSeries P (f ∘ Φ) q n =
@@ -91,6 +115,9 @@ theorem jetSeries_comp (Φ : LiftTangent → LiftTangent)
 
 include hperiod in
 omit [Fact (0 < P)] [NormedAddCommGroup W] [NormedSpace ℝ W] in
+/--
+@isnad1 id=eq.2h6v.s8.826be846724d from=translated src=- shape=2a3cad4a vocab=b0defe7d
+-/
 theorem comp_deck (Φ : LiftTangent → LiftTangent)
     (hΦ : ∀ (c : AddSubgroup.zmultiples P) z,
       Φ (z.1,(c : ℝ)+z.2)=((Φ z).1,(c : ℝ)+(Φ z).2))
@@ -99,6 +126,9 @@ theorem comp_deck (Φ : LiftTangent → LiftTangent)
   simp only [Function.comp_def,hΦ,hperiod]
 
 include hperiod in
+/--
+@isnad1 id=eq.4h6v.s11.80752a872829 from=translated src=- shape=dcc013e6 vocab=5bb8cbe5
+-/
 theorem local_jet_comp (Φ : LiftTangent → LiftTangent)
     (hdeck : ∀ (c : AddSubgroup.zmultiples P) z,
       Φ (z.1,(c : ℝ)+z.2)=((Φ z).1,(c : ℝ)+(Φ z).2))

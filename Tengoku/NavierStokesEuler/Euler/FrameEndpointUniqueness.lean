@@ -23,6 +23,9 @@ def applyPath {T : ℝ} (Q : C(Icc (0 : ℝ) T,U →L[ℝ] E))
   ⟨fun t => Q t (z t),Q.continuous.clm_apply z.continuous⟩
 
 omit [CompleteSpace U] [CompleteSpace E] in
+/--
+@isnad1 id=hasderiv.3h8v.s11.ffc86ab49214 from=translated src=- shape=e6f58492 vocab=165d63f9
+-/
 theorem applyPath_hasDerivWithinAt (T : ℝ) (hT : 0 ≤ T)
     (Q Q₁ : C(Icc (0 : ℝ) T,U →L[ℝ] E))
     (z v : C(Icc (0 : ℝ) T,U))
@@ -37,6 +40,9 @@ theorem applyPath_hasDerivWithinAt (T : ℝ) (hT : 0 ≤ T)
     (Q₁ t (z t)+Q t (v t)) (Icc (0 : ℝ) T) t
   simpa only [extendPath,projIcc_of_mem hT t.property] using (hd t).clm_apply (hz t)
 
+/--
+@isnad1 id=and.15h12v.s13.1a417e1926e0 from=translated src=- shape=d125c9b3 vocab=ca23edc9
+-/
 theorem zero_of_projected_equation (T : ℝ) (hT : 0 ≤ T) (hTpos : 0 < T)
     (Q Q₁ Q₂ : C(Icc (0 : ℝ) T,U →L[ℝ] E))
     (H : C(Icc (0 : ℝ) T,E →L[ℝ] E))
@@ -97,6 +103,9 @@ theorem zero_of_projected_equation (T : ℝ) (hT : 0 ≤ T) (hTpos : 0 < T)
   rw [hz0,ContinuousMap.zero_apply,map_zero,zero_add] at hu0
   rw [← frameLeftInverse_apply (Q t) c hc (hQ t) (v t),hu0,map_zero,ContinuousMap.zero_apply]
 
+/--
+@isnad1 id=and.18h15v.s14.643c7094e435 from=translated src=- shape=ea3bf7cb vocab=ca23edc9
+-/
 theorem unique_of_projected_equation (T : ℝ) (hT : 0 ≤ T) (hTpos : 0 < T)
     (Q Q₁ Q₂ : C(Icc (0 : ℝ) T,U →L[ℝ] E))
     (H : C(Icc (0 : ℝ) T,E →L[ℝ] E))

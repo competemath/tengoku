@@ -23,10 +23,16 @@ variable [Monoid M] [MulAction M X] {A B : Set X} {K L ε : ℝ} {m n : ℕ}
 
 attribute [gcongr] CovBySMul.subset_left CovBySMul.subset_right
 
+/--
+@isnad1 id=lt.2h5v.s5.a37ce46aad67 from=translated src=- shape=9b8345b6 vocab=6b9829e5
+-/
 @[to_additive]
 lemma CovBySMul.pos (hAB : CovBySMul M K A B) (hA : A.Nonempty) : 0 < K := by
   obtain ⟨F, hFK, hFAB⟩ := hAB; contrapose! hA; grw [hA] at hFK; simp_all
 
+/--
+@isnad1 id=covbysmu.2h8v.s6.cc0d1067bcef from=translated src=- shape=477e4cb0 vocab=1f73a086
+-/
 @[to_additive]
 lemma CovBySMul.prod {N : Type*} [Group N] {A B : Set M} {C D : Set N} (hAB : CovBySMul M K A B)
     (hCD : CovBySMul N L C D) : CovBySMul (M × N) (K * L) (A ×ˢ C) (B ×ˢ D) := by
@@ -43,6 +49,9 @@ lemma CovBySMul.prod {N : Type*} [Group N] {A B : Set M} {C D : Set N} (hAB : Co
   obtain ⟨h, hh, d, hd, rfl⟩ := hCD hy
   exact ⟨(g, h), by simp [*], (b, d), by simp [*]⟩
 
+/--
+@isnad1 id=covbysmu.1h7v.s7.4fa91d712d45 from=translated src=- shape=2e4d593e vocab=c2363f94
+-/
 @[to_additive]
 lemma CovBySMul.pi {ι : Type*} {G X : ι → Type*} {s : Finset ι} [∀ i, Group (G i)]
     [∀ i, MulAction (G i) (X i)] {A B : ∀ i, Set (X i)} {K : ι → ℝ}
@@ -64,6 +73,9 @@ end Monoid
 
 variable [Group G] {A B C : Set G} {K L : ℝ}
 
+/--
+@isnad1 id=covbysmu.2h6v.s7.b57565a6a780 from=translated src=- shape=1e5eb494 vocab=dc0425be
+-/
 @[to_additive]
 lemma CovBySMul.inter (hA : CovBySMul G K C A) (hB : CovBySMul G L C B) :
     CovBySMul G (K * L) C (A⁻¹ * A ∩ (B⁻¹ * B)) := by
@@ -90,7 +102,9 @@ lemma CovBySMul.inter (hA : CovBySMul G K C A) (hB : CovBySMul G L C B) :
       <;> grind [Set.mem_inv, inv_inv]
 
 /-- If `B` is covered by `Kᵢ`-many translates of each `Aᵢ`, then it is covered by `∏ᵢ Kᵢ`-many
-translates of `⋂ᵢ Aᵢ⁻¹ * Aᵢ`. -/
+translates of `⋂ᵢ Aᵢ⁻¹ * Aᵢ`.
+@isnad1 id=covbysmu.1h6v.s7.1d9ac15d88ce from=translated src=- shape=b18acf31 vocab=0f694b59
+-/
 protected lemma CovBySMul.iInter {ι : Type*} {A : ι → Set G} {s : Finset ι} {K : ι → ℝ}
     (h : ∀ i ∈ s, CovBySMul G (K i) B (A i)) :
     CovBySMul G (∏ i ∈ s, K i) B (⋂ i ∈ s, (A i)⁻¹ * A i) := by

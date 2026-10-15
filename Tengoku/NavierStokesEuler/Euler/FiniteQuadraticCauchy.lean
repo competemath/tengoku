@@ -6,7 +6,9 @@ namespace EulerQuadraticCauchy
 
 open scoped Topology
 
-/-- A finite family of Cauchy observations controlling squared differences forces a sequence to be Cauchy. -/
+/-- A finite family of Cauchy observations controlling squared differences forces a sequence to be Cauchy.
+@isnad1 id=cauchyse.3h7v.s7.b9ff7a4193dc from=translated src=- shape=9f11a085 vocab=9e3e1619
+-/
 theorem cauchy_of_finite_quadratic_bound {X Y Z I : Type*} [Fintype I]
     [NormedAddCommGroup X] [NormedAddCommGroup Y] [NormedAddCommGroup Z]
     (U : ℕ → X) (F : I → ℕ → Y) (V : ℕ → Z)

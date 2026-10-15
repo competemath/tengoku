@@ -28,10 +28,16 @@ def multilinearValue (L : ContinuousMultilinearMap ℝ V W)
         (Finset.prod_le_prod (fun _ _ => norm_nonneg _)
           (fun i _ => (f i).norm_coe_le_norm x)) (norm_nonneg L)))
 
+/--
+@isnad1 id=eq.0h7v.s8.2ac71a190db3 from=translated src=- shape=cedadfc0 vocab=91b737fc
+-/
 @[simp] theorem multilinearValue_apply (L : ContinuousMultilinearMap ℝ V W)
     (f : ∀ i, α →ᵇ V i) (x : α) :
     multilinearValue L f x = L (fun i => f i x) := rfl
 
+/--
+@isnad1 id=le.0h6v.s8.b1bf44ef8ea0 from=translated src=- shape=79919f5e vocab=97830886
+-/
 theorem multilinearValue_norm (L : ContinuousMultilinearMap ℝ V W)
     (f : ∀ i, α →ᵇ V i) :
     ‖multilinearValue L f‖ ≤ ‖L‖ * ∏ i, ‖f i‖ :=
@@ -75,10 +81,16 @@ def multilinearMap (L : ContinuousMultilinearMap ℝ V W) :
     ContinuousMultilinearMap ℝ (fun i => α →ᵇ V i) (α →ᵇ W) :=
   (multilinearAlgebra L).mkContinuous ‖L‖ (multilinearValue_norm L)
 
+/--
+@isnad1 id=eq.0h7v.s9.7ccf648f907e from=translated src=- shape=4330cb5a vocab=85b5dabd
+-/
 @[simp] theorem multilinearMap_apply (L : ContinuousMultilinearMap ℝ V W)
     (f : ∀ i, α →ᵇ V i) (x : α) :
     multilinearMap L f x = L (fun i => f i x) := rfl
 
+/--
+@isnad1 id=le.0h5v.s9.e876f8fd1b3c from=translated src=- shape=8e7e913b vocab=784ff5f1
+-/
 theorem multilinearMap_norm (L : ContinuousMultilinearMap ℝ V W) :
     ‖multilinearMap (α := α) L‖ ≤ ‖L‖ :=
   (multilinearAlgebra L).mkContinuous_norm_le (norm_nonneg L) (multilinearValue_norm L)

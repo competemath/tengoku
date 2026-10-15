@@ -52,12 +52,24 @@ scoped[FinsetFamily] infixl:70 " \\₊ " => Finset.posDiffs
 
 open scoped FinsetFamily
 
+/--
+@isnad1 id=iff.0h4v.s6.e4bf08c7a826 from=translated src=- shape=64cc76f8 vocab=74b77f01
+-/
 @[simp] lemma mem_posDiffs : a ∈ s \₊ t ↔ ∃ b ∈ s, ∃ c ∈ t, c ≤ b ∧ b \ c = a := by
   simp_rw [posDiffs, mem_image, mem_filter, mem_product, Prod.exists, and_assoc, exists_and_left]
 
+/--
+@isnad1 id=eq.0h2v.s5.5f0a8b5a777f from=translated src=- shape=24437d5a vocab=552e58a0
+-/
 @[simp] lemma posDiffs_empty (s : Finset α) : s \₊ ∅ = ∅ := by simp [posDiffs]
+/--
+@isnad1 id=eq.0h2v.s5.5a76eae5b6f9 from=translated src=- shape=efd55976 vocab=552e58a0
+-/
 @[simp] lemma empty_posDiffs (s : Finset α) : ∅ \₊ s = ∅ := by simp [posDiffs]
 
+/--
+@isnad1 id=le.0h3v.s5.d91201493b13 from=translated src=- shape=65963a2f vocab=f2f3dda0
+-/
 lemma posDiffs_subset_diffs : s \₊ t ⊆ s \\ t := by
   simp only [subset_iff, mem_posDiffs, mem_diffs]
   exact fun a ⟨b, hb, c, hc, _, ha⟩ ↦ ⟨b, hb, c, hc, ha⟩

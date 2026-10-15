@@ -40,12 +40,17 @@ private local instance : NormedAlgebra ℝ (α →ᵇ U →L[ℝ] U) := inferIns
 def gramField (Q : α →ᵇ U →L[ℝ] E) : α →ᵇ U →L[ℝ] U :=
   compositionMap (adjointMap Q) Q
 
+/--
+@isnad1 id=eq.0h5v.s9.6980bcbec25d from=translated src=- shape=b2516778 vocab=e25a12e4
+-/
 @[simp] theorem gramField_apply (Q : α →ᵇ U →L[ℝ] E) (x : α) : gramField Q x = gram (Q x) := rfl
 
 variable (Q : α →ᵇ U →L[ℝ] E) (c : ℝ) (hc : 0 < c)
   (hQ : ∀ x v, c*‖v‖^2 ≤ ‖Q x v‖^2)
 
-/-- Continuity of the actual pointwise coercive inverse. -/
+/-- Continuity of the actual pointwise coercive inverse.
+@isnad1 id=continuo.2h5v.s10.e1fb5d2338fa from=translated src=- shape=5570f17d vocab=69f6af96
+-/
 theorem inverseField_continuous : Continuous (fun x => gramInverse (Q x) c hc (hQ x)) := by
   have heq : (fun x => gramInverse (Q x) c hc (hQ x)) = fun x => Ring.inverse (gram (Q x)) := by
     funext x
@@ -65,8 +70,14 @@ def inverseField : α →ᵇ U →L[ℝ] U :=
   BoundedContinuousFunction.ofNormedAddCommGroup (fun x => gramInverse (Q x) c hc (hQ x))
     (inverseField_continuous Q c hc hQ) c⁻¹ (fun x => gramInverse_norm (Q x) c hc (hQ x))
 
+/--
+@isnad1 id=eq.2h6v.s10.11ed5de8b2e6 from=translated src=- shape=cb418bee vocab=188cede5
+-/
 @[simp] theorem inverseField_apply (x : α) : inverseField Q c hc hQ x = gramInverse (Q x) c hc (hQ x) := rfl
 
+/--
+@isnad1 id=le.2h5v.s9.3a0d9d0e6b5d from=translated src=- shape=8e976e6c vocab=65c33d2c
+-/
 theorem inverseField_norm : ‖inverseField Q c hc hQ‖ ≤ c⁻¹ :=
   BoundedContinuousFunction.norm_ofNormedAddCommGroup_le _ (inv_nonneg.mpr hc.le) _
 
@@ -87,7 +98,9 @@ def gramFieldUnit : (α →ᵇ U →L[ℝ] U)ˣ where
     intro v
     exact inverse_gram_apply (Q x) c hc (hQ x) v
 
-/-- Actual pointwise inversion equals the Banach-algebra inverse. -/
+/-- Actual pointwise inversion equals the Banach-algebra inverse.
+@isnad1 id=eq.2h5v.s10.d8650efa7bef from=translated src=- shape=13b59307 vocab=eccbdcd8
+-/
 theorem inverseField_eq_ringInverse : inverseField Q c hc hQ = Ring.inverse (gramField Q) :=
   (Ring.inverse_unit (M₀ := α →ᵇ U →L[ℝ] U) (gramFieldUnit Q c hc hQ)).symm
 
@@ -104,6 +117,9 @@ private local instance : NormedSpace ℝ (C(K,α →ᵇ U →L[ℝ] U)) := infer
 def gramPath (Qp : C(K,α →ᵇ U →L[ℝ] E)) : C(K,α →ᵇ U →L[ℝ] U) :=
   pathCompositionMap (pathAdjointMap Qp) Qp
 
+/--
+@isnad1 id=eq.0h6v.s11.d109ee1b19f6 from=translated src=- shape=9329dbdb vocab=c943405a
+-/
 @[simp] theorem gramPath_apply (Qp : C(K,α →ᵇ U →L[ℝ] E)) (t : K) : gramPath Qp t = gramField (Qp t) := rfl
 
 /-- The constructed inverse is continuous in the spatial uniform norm as time varies. -/
@@ -118,11 +134,16 @@ def inversePath (Qp : C(K,α →ᵇ U →L[ℝ] E))
     exact ((hasFDerivAt_ringInverse (𝕜 := ℝ) (gramFieldUnit (Qp t) c hc (hLower t))).continuousAt).comp
       (x := t) (gramPath Qp).continuous.continuousAt
 
+/--
+@isnad1 id=eq.2h8v.s12.a3faf4c3ab60 from=translated src=- shape=f2f4ee7f vocab=a66f6343
+-/
 @[simp] theorem inversePath_apply (Qp : C(K,α →ᵇ U →L[ℝ] E))
     (hLower : ∀ t x v, c*‖v‖^2 ≤ ‖Qp t x v‖^2) (t : K) (x : α) :
     inversePath c hc Qp hLower t x = gramInverse (Qp t x) c hc (hLower t x) := rfl
 
-/-- The uniform time-space inverse bound is the same coercive bound. -/
+/-- The uniform time-space inverse bound is the same coercive bound.
+@isnad1 id=le.2h6v.s11.f52085e1f572 from=translated src=- shape=9f00640b vocab=6ee710a6
+-/
 theorem inversePath_norm (Qp : C(K,α →ᵇ U →L[ℝ] E))
     (hLower : ∀ t x v, c*‖v‖^2 ≤ ‖Qp t x v‖^2) : ‖inversePath c hc Qp hLower‖ ≤ c⁻¹ := by
   apply (ContinuousMap.norm_le _ (inv_nonneg.mpr hc.le)).2
@@ -143,7 +164,9 @@ def gramPathUnit (Qp : C(K,α →ᵇ U →L[ℝ] E))
     intro t
     exact (gramFieldUnit (Qp t) c hc (hLower t)).inv_val
 
-/-- The actual inverse path is the algebra inverse in the uniform time-space norm. -/
+/-- The actual inverse path is the algebra inverse in the uniform time-space norm.
+@isnad1 id=eq.2h6v.s11.e16d49ff2735 from=translated src=- shape=ffe41fca vocab=9dcc0a26
+-/
 theorem inversePath_eq_ringInverse (Qp : C(K,α →ᵇ U →L[ℝ] E))
     (hLower : ∀ t x v, c*‖v‖^2 ≤ ‖Qp t x v‖^2) :
     inversePath c hc Qp hLower = Ring.inverse (gramPath Qp) :=
@@ -151,12 +174,16 @@ theorem inversePath_eq_ringInverse (Qp : C(K,α →ᵇ U →L[ℝ] E))
 
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
-/-- Smoothness of the actual uniform Gram coefficient path. -/
+/-- Smoothness of the actual uniform Gram coefficient path.
+@isnad1 id=contdiff.1h7v.s10.bdee903d766e from=translated src=- shape=cac98af1 vocab=c1746c2a
+-/
 theorem gramPath_contDiff (A : P → C(K,α →ᵇ U →L[ℝ] E)) {n : ℕ∞ω} (hA : ContDiff ℝ n A) :
     ContDiff ℝ n (fun a => gramPath (A a)) :=
   pathComposition_contDiff (fun a => pathAdjointMap (A a)) A ((pathAdjointMap (α := α) (K := K) (U := U) (E := E)).contDiff.comp hA) hA
 
-/-- Smoothness of the constructed inverse in the uniform time-space norm. -/
+/-- Smoothness of the constructed inverse in the uniform time-space norm.
+@isnad1 id=contdiff.3h8v.s11.7595632d0656 from=translated src=- shape=b7c409f5 vocab=b7030345
+-/
 theorem inversePath_contDiff (A : P → C(K,α →ᵇ U →L[ℝ] E))
     (hLower : ∀ a t x v, c*‖v‖^2 ≤ ‖A a t x v‖^2) {n : ℕ∞ω} (hA : ContDiff ℝ n A) :
     ContDiff ℝ n (fun a => inversePath c hc (A a) (hLower a)) := by

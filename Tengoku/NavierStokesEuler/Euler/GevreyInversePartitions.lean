@@ -17,6 +17,9 @@ namespace EulerGevreyComposition
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=le.0h3v.s5.c9a8da00cdfd from=translated src=- shape=6959cee7 vocab=9e801b1b
+-/
 lemma partSize_add_length_le (c : OrderedFinpartition n) (i : Fin c.length) :
     c.partSize i + c.length ≤ n + 1 := by
   have hs : (∑ j : Fin c.length, (c.partSize j - 1)) + c.length = n := by
@@ -29,6 +32,9 @@ lemma partSize_add_length_le (c : OrderedFinpartition n) (i : Fin c.length) :
   have hp := c.partSize_pos i
   omega
 
+/--
+@isnad1 id=le.0h2v.s6.eb42f80403e3 from=translated src=- shape=e27266f5 vocab=343a8a55
+-/
 lemma sum_partSize_sq_le (c : OrderedFinpartition n) :
     ∑ i, (c.partSize i : ℝ)^2 ≤ ((n : ℝ) - c.length + 1) * n := by
   calc
@@ -52,11 +58,17 @@ def predecessorPartitionWeight (x : ℝ) (c : OrderedFinpartition n) : ℝ :=
 def predecessorPartitionSum (n : ℕ) (x : ℝ) : ℝ :=
   ∑ c : OrderedFinpartition n, predecessorPartitionWeight x c
 
+/--
+@isnad1 id=le.1h3v.s4.b16bbbeffae9 from=translated src=- shape=07de1eae vocab=a6b705f6
+-/
 lemma predecessorPartitionWeight_nonneg (x : ℝ) (hx : 0 ≤ x)
     (c : OrderedFinpartition n) : 0 ≤ predecessorPartitionWeight x c := by
   unfold predecessorPartitionWeight
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s4.7c3686c730f9 from=translated src=- shape=39cc4c45 vocab=fb405c4e
+-/
 lemma predecessorFactorialProduct_extendLeft (c : OrderedFinpartition n) :
     predecessorFactorialProduct c.extendLeft = predecessorFactorialProduct c := by
   change (∏ i : Fin (c.length+1),
@@ -65,6 +77,9 @@ lemma predecessorFactorialProduct_extendLeft (c : OrderedFinpartition n) :
   rw [Fin.prod_univ_succ]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.15d91693e5d5 from=translated src=- shape=b054b0c1 vocab=8f01b6bf
+-/
 lemma predecessorFactorialProduct_extendMiddle (c : OrderedFinpartition n)
     (i : Fin c.length) :
     predecessorFactorialProduct (c.extendMiddle i) =
@@ -85,6 +100,9 @@ lemma predecessorFactorialProduct_extendMiddle (c : OrderedFinpartition n)
   rw [he, Finset.prod_mul_distrib]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.0cc6e41741b0 from=translated src=- shape=1b72953b vocab=0c00a1e4
+-/
 lemma predecessorPartitionWeight_extendLeft (x : ℝ) (c : OrderedFinpartition n) :
     predecessorPartitionWeight x c.extendLeft =
       (x * ((c.length : ℝ) + 1)^2) * predecessorPartitionWeight x c := by
@@ -93,6 +111,9 @@ lemma predecessorPartitionWeight_extendLeft (x : ℝ) (c : OrderedFinpartition n
     Nat.cast_add, Nat.cast_one, pow_succ]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.62162ff0e0e6 from=translated src=- shape=b22800a6 vocab=628d7d50
+-/
 lemma predecessorPartitionWeight_extendMiddle (x : ℝ) (c : OrderedFinpartition n)
     (i : Fin c.length) :
     predecessorPartitionWeight x (c.extendMiddle i) =
@@ -101,6 +122,9 @@ lemma predecessorPartitionWeight_extendMiddle (x : ℝ) (c : OrderedFinpartition
     predecessorFactorialProduct_extendMiddle]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.496da7493da1 from=translated src=- shape=adeb03d6 vocab=c1f2711a
+-/
 lemma predecessorPartitionSum_succ (n : ℕ) (x : ℝ) :
     predecessorPartitionSum (n+1) x =
       ∑ c : OrderedFinpartition n,
@@ -116,6 +140,9 @@ lemma predecessorPartitionSum_succ (n : ℕ) (x : ℝ) :
   intro c _
   ring
 
+/--
+@isnad1 id=le.3h2v.s6.fb6bf1e4617f from=translated src=- shape=83a245a6 vocab=43b8a4ee
+-/
 lemma predecessorPartitionSum_succ_le (n : ℕ) (hn : 0 < n)
     (x : ℝ) (hx : 0 ≤ x) (hxhalf : x ≤ 1/2) :
     predecessorPartitionSum (n+1) x ≤
@@ -134,7 +161,9 @@ lemma predecessorPartitionSum_succ_le (n : ℕ) (hn : 0 < n)
   nlinarith
 
 /-- Unlike the unshifted weights, these weights have a uniformly bounded
-normalized sum on the scalar interval `[0, 1/2]`. -/
+normalized sum on the scalar interval `[0, 1/2]`.
+@isnad1 id=le.3h2v.s6.ef71f21539bc from=translated src=- shape=2d242fac vocab=5a66a294
+-/
 theorem predecessorPartitionSum_le (n : ℕ) (hn : 0 < n)
     (x : ℝ) (hx : 0 ≤ x) (hxhalf : x ≤ 1/2) :
     predecessorPartitionSum n x ≤ x * (n.factorial : ℝ)^2 := by

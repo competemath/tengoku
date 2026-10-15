@@ -14,6 +14,9 @@ variable {E F : Type*}
   [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=hasfderi.4h7v.s9.98f7ea7f2a44 from=translated src=- shape=57b13535 vocab=c9866079
+-/
 theorem hasFDerivAt_inverse
     (X : F → E) (Y : E → F) (x : E)
     (J : F →L[ℝ] E) (I : E →L[ℝ] F)

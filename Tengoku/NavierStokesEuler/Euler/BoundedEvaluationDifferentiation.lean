@@ -16,6 +16,9 @@ variable {X H V : Type*}
   [NormedAddCommGroup H] [NormedSpace ℝ H]
   [NormedAddCommGroup V] [NormedSpace ℝ V]
 
+/--
+@isnad1 id=hasfderi.4h10v.s10.c515b1fe8da7 from=translated src=- shape=2b68a5ba vocab=fa19c621
+-/
 theorem hasFDerivAt (E : X → H →L[ℝ] V) (C : ℝ) (hE : ∀ x, ‖E x‖ ≤ C)
     (u : ℝ → H) (u' : H) (t : ℝ) (x : X)
     (hu : HasDerivAt u u' t) (D : X →L[ℝ] V)

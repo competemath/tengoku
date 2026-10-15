@@ -10,7 +10,9 @@ open Set MeasureTheory
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
-/-- This formula realizes the angular primitive as an integral of translations. -/
+/-- This formula realizes the angular primitive as an integral of translations.
+@isnad1 id=eq.4h4v.s8.cbc9e3e5d027 from=translated src=- shape=3670b153 vocab=bd52a302
+-/
 theorem primitive_eq_translation_kernel (P : ℝ) (hP : P ≠ 0) (f : ℝ → E)
     (hf : Continuous f) (hper : Function.Periodic f P)
     (hmean : (∫ s in (0 : ℝ)..P, f s)=0) (θ : ℝ) :

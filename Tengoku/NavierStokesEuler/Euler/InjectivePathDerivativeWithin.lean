@@ -11,7 +11,9 @@ open Set MeasureTheory EulerVolterraConvolution EulerIntegralPathLimit
 variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
   [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
-/-- A continuous stronger-space derivative is genuine even at the interval endpoints. -/
+/-- A continuous stronger-space derivative is genuine even at the interval endpoints.
+@isnad1 id=hasderiv.3h7v.s9.58d30ca6f1b3 from=translated src=- shape=b0fbb4ba vocab=8c2efd68
+-/
 theorem hasDerivWithinAt_of_injective_map (L : E →L[ℝ] F) (hL : Function.Injective L)
     (T : ℝ) (hT : 0 ≤ T) (u f : C(Icc (0 : ℝ) T,E))
     (hd : ∀ t ∈ Ioo 0 T, HasDerivAt (fun r => L (extendPath T hT u r))

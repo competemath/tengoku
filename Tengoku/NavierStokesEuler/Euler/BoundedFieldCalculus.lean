@@ -45,9 +45,15 @@ def bilinearValue (B : E →L[ℝ] F →L[ℝ] G) (f : α →ᵇ E) (g : α →�
       (mul_le_mul (mul_le_mul_of_nonneg_left (f.norm_coe_le_norm x) (norm_nonneg B))
         (g.norm_coe_le_norm x) (norm_nonneg _) (mul_nonneg (norm_nonneg B) (norm_nonneg f))))
 
+/--
+@isnad1 id=eq.0h8v.s10.89a9774af44b from=translated src=- shape=d800b870 vocab=51b7faa3
+-/
 @[simp] theorem bilinearValue_apply (B : E →L[ℝ] F →L[ℝ] G) (f : α →ᵇ E) (g : α →ᵇ F) (x : α) :
     bilinearValue B f g x = B (f x) (g x) := rfl
 
+/--
+@isnad1 id=le.0h7v.s9.970bf1850024 from=translated src=- shape=d37c6755 vocab=41df696a
+-/
 theorem bilinearValue_norm (B : E →L[ℝ] F →L[ℝ] G) (f : α →ᵇ E) (g : α →ᵇ F) :
     ‖bilinearValue B f g‖ ≤ ‖B‖*‖f‖*‖g‖ :=
   BoundedContinuousFunction.norm_ofNormedAddCommGroup_le _ (by positivity) _
@@ -81,13 +87,21 @@ def bilinearLinear (B : E →L[ℝ] F →L[ℝ] G) : (α →ᵇ E) →ₗ[ℝ] (
 def bilinearMap (B : E →L[ℝ] F →L[ℝ] G) : (α →ᵇ E) →L[ℝ] (α →ᵇ F) →L[ℝ] (α →ᵇ G) :=
   (bilinearLinear B).mkContinuous₂ ‖B‖ (bilinearValue_norm B)
 
+/--
+@isnad1 id=eq.0h8v.s11.78d4659e67f2 from=translated src=- shape=9aa1f77f vocab=591a079f
+-/
 @[simp] theorem bilinearMap_apply (B : E →L[ℝ] F →L[ℝ] G) (f : α →ᵇ E) (g : α →ᵇ F) (x : α) :
     bilinearMap B f g x = B (f x) (g x) := rfl
 
+/--
+@isnad1 id=le.0h5v.s10.4ffab3801d70 from=translated src=- shape=387b328f vocab=86047f60
+-/
 theorem bilinearMap_norm (B : E →L[ℝ] F →L[ℝ] G) : ‖bilinearMap (α := α) B‖ ≤ ‖B‖ :=
   (bilinearLinear B).mkContinuous₂_norm_le (norm_nonneg B) (bilinearValue_norm B)
 
-/-- Pointwise postcomposition preserves the coefficient map's norm bound. -/
+/-- Pointwise postcomposition preserves the coefficient map's norm bound.
+@isnad1 id=le.0h4v.s9.9f67f795d807 from=translated src=- shape=7fbd9105 vocab=c1b5bc56
+-/
 theorem postcomposition_norm (L : E →L[ℝ] F) : ‖L.compLeftContinuousBounded α‖ ≤ ‖L‖ := by
   apply opNorm_le_bound _ (norm_nonneg L)
   intro f
@@ -123,9 +137,15 @@ private local instance : NormedSpace ℝ ((α →ᵇ U →L[ℝ] E) →L[ℝ] (�
 def compositionMap : (α →ᵇ E →L[ℝ] F) →L[ℝ] (α →ᵇ U →L[ℝ] E) →L[ℝ] (α →ᵇ U →L[ℝ] F) :=
   bilinearMap (compL ℝ U E F)
 
+/--
+@isnad1 id=le.0h4v.s13.fbc447f952a7 from=translated src=- shape=6e1b013b vocab=9b00c4e9
+-/
 theorem compositionMap_norm : ‖compositionMap (α := α) (U := U) (E := E) (F := F)‖ ≤ 1 :=
   (bilinearMap_norm (compL ℝ U E F)).trans (norm_compL_le ℝ U E F)
 
+/--
+@isnad1 id=eq.0h7v.s14.567ec544da78 from=translated src=- shape=a77e7229 vocab=d33f5044
+-/
 @[simp] theorem compositionMap_apply (A : α →ᵇ E →L[ℝ] F) (B : α →ᵇ U →L[ℝ] E) (x : α) :
     compositionMap A B x = (A x).comp (B x) := rfl
 
@@ -149,10 +169,16 @@ def pathCompositionMap : C(K,α →ᵇ E →L[ℝ] F) →L[ℝ]
     (E := α →ᵇ U →L[ℝ] E) (F := α →ᵇ U →L[ℝ] F)).comp
     ((compositionMap (α := α) (U := U) (E := E) (F := F)).compLeftContinuous ℝ K)
 
+/--
+@isnad1 id=eq.0h9v.s15.2bd596b4ad94 from=translated src=- shape=48399f3b vocab=3fc71069
+-/
 @[simp] theorem pathCompositionMap_apply (A : C(K,α →ᵇ E →L[ℝ] F))
     (B : C(K,α →ᵇ U →L[ℝ] E)) (t : K) (x : α) :
     pathCompositionMap A B t x = (A t x).comp (B t x) := rfl
 
+/--
+@isnad1 id=le.0h5v.s14.f3fb17a15d25 from=translated src=- shape=d7bae290 vocab=14e6b489
+-/
 theorem pathCompositionMap_norm : ‖pathCompositionMap (α := α) (K := K) (U := U) (E := E) (F := F)‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro A
@@ -169,7 +195,9 @@ theorem pathCompositionMap_norm : ‖pathCompositionMap (α := α) (K := K) (U :
 
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
-/-- Genuine smoothness of pointwise field composition in the uniform time-space norm. -/
+/-- Genuine smoothness of pointwise field composition in the uniform time-space norm.
+@isnad1 id=contdiff.2h9v.s15.a5865bf4a9f0 from=translated src=- shape=6f3e4563 vocab=a79a32d0
+-/
 theorem pathComposition_contDiff (A : P → C(K,α →ᵇ E →L[ℝ] F))
     (B : P → C(K,α →ᵇ U →L[ℝ] E)) {n : ℕ∞ω} (hA : ContDiff ℝ n A) (hB : ContDiff ℝ n B) :
     ContDiff ℝ n (fun y => pathCompositionMap (A y) (B y)) :=
@@ -178,7 +206,9 @@ theorem pathComposition_contDiff (A : P → C(K,α →ᵇ E →L[ℝ] F))
     (F := C(K,α →ᵇ U →L[ℝ] E) →L[ℝ] C(K,α →ᵇ U →L[ℝ] F))
     (pathCompositionMap (α := α) (K := K) (U := U) (E := E) (F := F))).comp hA).clm_apply hB
 
-/-- The actual field product has the same factorial convolution bound. -/
+/-- The actual field product has the same factorial convolution bound.
+@isnad1 id=le.7h15v.s15.e96510bab4f1 from=translated src=- shape=cc5e8e38 vocab=51a7a102
+-/
 theorem pathComposition_bound (A : P → C(K,α →ᵇ E →L[ℝ] F))
     (B : P → C(K,α →ᵇ U →L[ℝ] E)) (hA : ContDiff ℝ ∞ A) (hB : ContDiff ℝ ∞ B)
     (R C D : ℝ) (hR : 0 ≤ R) (hC : 0 ≤ C) (hD : 0 ≤ D) (c d : ℕ)
@@ -212,8 +242,14 @@ private local instance : NormedSpace ℝ ((α →ᵇ U →L[ℝ] E) →L[ℝ] (�
 def adjointMap : (α →ᵇ U →L[ℝ] E) →L[ℝ] (α →ᵇ E →L[ℝ] U) :=
   (realAdjoint (U := U) (E := E)).compLeftContinuousBounded α
 
+/--
+@isnad1 id=eq.0h5v.s12.b45de0670534 from=translated src=- shape=f1df490f vocab=940244f8
+-/
 @[simp] theorem adjointMap_apply (A : α →ᵇ U →L[ℝ] E) (x : α) : adjointMap A x = (A x).adjoint := rfl
 
+/--
+@isnad1 id=le.0h3v.s11.6ea0fa075159 from=translated src=- shape=17345f98 vocab=8581efbf
+-/
 theorem adjointMap_norm : ‖adjointMap (α := α) (U := U) (E := E)‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro A
@@ -238,9 +274,15 @@ def pathAdjointMap : C(K,α →ᵇ U →L[ℝ] E) →L[ℝ] C(K,α →ᵇ E →L
   (adjointMap (α := α) (U := U) (E := E)).compLeftContinuous ℝ K
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h7v.s14.9f0200c43ec8 from=translated src=- shape=16bab81d vocab=081f7226
+-/
 @[simp] theorem pathAdjointMap_apply (A : C(K,α →ᵇ U →L[ℝ] E)) (t : K) (x : α) :
     pathAdjointMap A t x = (A t x).adjoint := rfl
 
+/--
+@isnad1 id=le.0h4v.s12.d90a0d6a8eed from=translated src=- shape=9bc5109c vocab=4416cee6
+-/
 theorem pathAdjointMap_norm : ‖pathAdjointMap (α := α) (K := K) (U := U) (E := E)‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro A

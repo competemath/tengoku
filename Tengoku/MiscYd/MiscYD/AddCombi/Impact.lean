@@ -27,6 +27,9 @@ variable [Mul α] {n : ℕ}
 noncomputable def mulImpact (s : Finset α) (n : ℕ) : ℕ :=
   ⨅ t : {t : Finset α // #t = n}, (s * t).card
 
+/--
+@isnad1 id=eq.0h2v.s4.5050b267378f from=translated src=- shape=3f303cb1 vocab=3cc7691a
+-/
 @[to_additive (attr := simp)]
 lemma mulImpact_empty (n : ℕ) : (∅ : Finset α).mulImpact n = 0 := by simp [mulImpact]
 
@@ -35,6 +38,9 @@ end Mul
 section Group
 variable [Group α] {n : ℕ}
 
+/--
+@isnad1 id=eq.0h3v.s5.9334f5f62339 from=translated src=- shape=e0b69164 vocab=eaca5840
+-/
 @[to_additive (attr := simp)]
 lemma mulImpact_singleton [Infinite α] (a : α) (n : ℕ) : ({a} : Finset α).mulImpact n = n := by
   simp only [mulImpact, singleton_mul, card_smul_finset]

@@ -15,6 +15,9 @@ def coordinates (ε : ℝ) : (ℝ × E) →L[ℝ] (ℝ × E) :=
   ((ε⁻¹ • ContinuousLinearMap.id ℝ ℝ).comp (fst ℝ ℝ E)).prod (snd ℝ ℝ E)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h3v.s8.e383e4434cbf from=translated src=- shape=58199a0c vocab=83a4818e
+-/
 @[simp] theorem coordinates_apply (ε : ℝ) (q : ℝ × E) :
     coordinates ε q=(ε⁻¹*q.1,q.2) := rfl
 
@@ -25,12 +28,18 @@ def pressure (ε : ℝ) (p : ℝ × E → ℝ) (q : ℝ × E) : ℝ :=
   (ε⁻¹)^2*p (coordinates ε q)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=hasfderi.1h4v.s10.e82ed7686645 from=translated src=- shape=3fbe4088 vocab=cc36e5a7
+-/
 theorem velocity_hasFDerivAt (ε : ℝ) (u : ℝ × E → E) (q : ℝ × E)
     (hu : DifferentiableAt ℝ u (coordinates ε q)) :
     HasFDerivAt (velocity ε u)
       (ε⁻¹ • (fderiv ℝ u (coordinates ε q)).comp (coordinates ε)) q :=
   (hu.hasFDerivAt.comp q (coordinates (E := E) ε).hasFDerivAt).const_smul ε⁻¹
 
+/--
+@isnad1 id=eq.1h4v.s8.66ead83923cc from=translated src=- shape=d3e5d96f vocab=6d482f02
+-/
 theorem pressure_gradient (ε : ℝ) (p : ℝ × E → ℝ) (q : ℝ × E)
     (hp : DifferentiableAt ℝ (fun y => p (ε⁻¹*q.1,y)) q.2) :
     gradient (fun y => pressure ε p (q.1,y)) q.2 =
@@ -43,6 +52,9 @@ theorem pressure_gradient (ε : ℝ) (p : ℝ × E → ℝ) (q : ℝ × E)
   rw [inner_gradient_left,real_inner_smul_left,inner_gradient_left,hs.fderiv]
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s9.8ddd264f583f from=translated src=- shape=b79cd266 vocab=d6679f69
+-/
 theorem momentumResidual_eq (ε : ℝ) (u : ℝ × E → E) (p : ℝ × E → ℝ) (q : ℝ × E)
     (hu : DifferentiableAt ℝ u (coordinates ε q))
     (hp : DifferentiableAt ℝ (fun y => p (ε⁻¹*q.1,y)) q.2) :
@@ -57,6 +69,9 @@ theorem momentumResidual_eq (ε : ℝ) (u : ℝ × E → E) (p : ℝ × E → �
   rw [hd,map_smul,smul_smul,← pow_two,← smul_add]
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s9.73d6e67bc0b2 from=translated src=- shape=1f7b5859 vocab=48685ee0
+-/
 theorem momentumResidual_zero (ε : ℝ) (u : ℝ × E → E) (p : ℝ × E → ℝ) (q : ℝ × E)
     (hu : DifferentiableAt ℝ u (coordinates ε q))
     (hp : DifferentiableAt ℝ (fun y => p (ε⁻¹*q.1,y)) q.2)
@@ -65,6 +80,9 @@ theorem momentumResidual_zero (ε : ℝ) (u : ℝ × E → E) (p : ℝ × E → 
   rw [momentumResidual_eq ε u p q hu hp,he,smul_zero]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.1h5v.s9.f2018226fb64 from=translated src=- shape=1297b292 vocab=b3dfd93d
+-/
 theorem spatial_derivative (ε : ℝ) (u : ℝ × E → E) (t : ℝ) (x : E)
     (hu : DifferentiableAt ℝ (fun y => u (ε⁻¹*t,y)) x) :
     fderiv ℝ (fun y => velocity ε u (t,y)) x =
@@ -75,11 +93,17 @@ def timeMap (ε : ℝ) (hε : 0 < ε) : C(Icc (0 : ℝ) ε,Icc (0 : ℝ) 1) wher
   toFun t := ⟨t/ε,div_nonneg t.property.1 hε.le,(div_le_one hε).mpr t.property.2⟩
   continuous_toFun := (continuous_subtype_val.div_const ε).subtype_mk _
 
+/--
+@isnad1 id=eq.1h1v.s8.d16322520763 from=translated src=- shape=524357d1 vocab=12cf200d
+-/
 theorem timeMap_initial (ε : ℝ) (hε : 0 < ε) :
     timeMap ε hε ⟨0,le_rfl,hε.le⟩=⟨0,le_rfl,by norm_num⟩ := by
   apply Subtype.ext
   exact zero_div ε
 
+/--
+@isnad1 id=mem.2h2v.s6.dd4a031324eb from=translated src=- shape=2fb74a95 vocab=ee7a7b96
+-/
 theorem scaled_time_interior (ε : ℝ) (hε : 0 < ε) (t : ℝ) (ht : t ∈ Ioo 0 ε) :
     ε⁻¹*t ∈ Ioo (0 : ℝ) 1 := by
   rw [mul_comm,← div_eq_mul_inv]

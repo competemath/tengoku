@@ -11,7 +11,9 @@ open MeasureTheory Set Real EulerEnergyBootstrap
 open scoped Topology
 
 /-- An all-subinterval integral upper bound gives the genuine right Dini slope bound.
-The energy itself need only be continuous, and may vanish. -/
+The energy itself need only be continuous, and may vanish.
+@isnad1 id=frequent.5h6v.s7.c232f76bd16d from=translated src=- shape=2cd0d9e6 vocab=8f80ff79
+-/
 theorem liminf_slope_le_of_integral (X A : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hA : ContinuousOn A (Icc a b))
     (hineq : ∀ x ∈ Icc a b, ∀ y ∈ Icc a b, x ≤ y → X y - X x ≤ ∫ s in x..y, A s)
@@ -41,7 +43,9 @@ theorem liminf_slope_le_of_integral (X A : ℝ → ℝ) (a b : ℝ) (hab : a ≤
     exact hcomp.trans_lt hys
   exact he.frequently
 
-/-- The source's nonlinear shrinking-radius bootstrap closes directly from the all-subinterval integral energy bound. -/
+/-- The source's nonlinear shrinking-radius bootstrap closes directly from the all-subinterval integral energy bound.
+@isnad1 id=and.18h11v.s9.b7f2ffc125e6 from=translated src=- shape=b1b88257 vocab=99645335
+-/
 theorem close_integral_energy_estimate
     (X A Y : ℝ → ℝ) (C B Δ r ρ₀ S R₀ : ℝ)
     (hC : 0 < C) (hB : 0 ≤ B) (hΔ : 0 < Δ) (hΔ1 : Δ ≤ 1)

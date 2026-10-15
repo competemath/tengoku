@@ -37,7 +37,9 @@ private local instance : NormedSpace ℝ (C(K,α →ᵇ E →L[ℝ] U)) := infer
 private local instance : NormedAddCommGroup (C(K,α →ᵇ U →L[ℝ] U)) := inferInstance
 private local instance : NormedSpace ℝ (C(K,α →ᵇ U →L[ℝ] U)) := inferInstance
 
-/-- The actual Gram field has the sharp fixed factorial product bound. -/
+/-- The actual Gram field has the sharp fixed factorial product bound.
+@isnad1 id=le.4h10v.s13.5e58dd4986c1 from=translated src=- shape=dd79b1eb vocab=18abe855
+-/
 theorem gramPath_bound (Q : P → C(K,α →ᵇ U →L[ℝ] E)) (hQ : ContDiff ℝ ∞ Q)
     (R C : ℝ) (hR : 0 ≤ R) (hC : 0 ≤ C)
     (hbQ : ∀ n x, ‖iteratedFDeriv ℝ n Q x‖ ≤ C*majorant R 0 n) (n : ℕ) (x : P) :
@@ -66,7 +68,9 @@ private local instance : NormedSpace ℝ C(K,α →ᵇ U →L[ℝ] U) := inferIn
 private local instance : NormedAddCommGroup (C(K,α →ᵇ U →L[ℝ] U) →L[ℝ] C(K,α →ᵇ U →L[ℝ] U)) := inferInstance
 private local instance : NormedSpace ℝ (C(K,α →ᵇ U →L[ℝ] U) →L[ℝ] C(K,α →ᵇ U →L[ℝ] U)) := inferInstance
 
-/-- The genuinely constructed inverse has one factorial shift in the uniform time-space norm. -/
+/-- The genuinely constructed inverse has one factorial shift in the uniform time-space norm.
+@isnad1 id=le.7h12v.s13.4dc62b468c06 from=translated src=- shape=77e81247 vocab=8a7fc529
+-/
 theorem inversePath_gevrey (Q : P → C(K,α →ᵇ U →L[ℝ] E))
     (c : ℝ) (hc : 0 < c) (hLower : ∀ y t x v, c*‖v‖^2 ≤ ‖Q y t x v‖^2)
     (hQ : ContDiff ℝ ∞ Q) (Rc C : ℝ) (hRc : 0 ≤ Rc) (hC : 0 ≤ C)
@@ -121,7 +125,9 @@ theorem inversePath_gevrey (Q : P → C(K,α →ᵇ U →L[ℝ] E))
     (by simpa only [mul_one] using hMD) hRc hR hI hApos 0
     (const_bound onePath R 1 hR0 hone) n x
 
-/-- A fixed coefficient radius absorbs the one inverse shift once, before recursive solves. -/
+/-- A fixed coefficient radius absorbs the one inverse shift once, before recursive solves.
+@isnad1 id=le.8h12v.s13.0cba0181b424 from=translated src=- shape=a7028394 vocab=8a7fc529
+-/
 theorem inversePath_coefficient_bound (Q : P → C(K,α →ᵇ U →L[ℝ] E))
     (c : ℝ) (hc : 0 < c) (hLower : ∀ y t x v, c*‖v‖^2 ≤ ‖Q y t x v‖^2)
     (hQ : ContDiff ℝ ∞ Q) (Rc C : ℝ) (hRc : 0 ≤ Rc) (hC : 0 ≤ C)

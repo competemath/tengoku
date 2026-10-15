@@ -36,6 +36,9 @@ private local instance : NormedSpace ℝ (Space →L[ℝ] C(K,V)) := inferInstan
 def direction (D : C(K,Space →L[ℝ] V)) (a : Space) : C(K,V) :=
   ⟨fun t => D t a, D.continuous.clm_apply continuous_const⟩
 
+/--
+@isnad1 id=le.0h4v.s10.2fc2d33b048f from=translated src=- shape=e2aecc40 vocab=394846eb
+-/
 theorem direction_norm_le (D : C(K,Space →L[ℝ] V)) (a : Space) :
     ‖direction D a‖ ≤ ‖D‖*‖a‖ := by
   apply (ContinuousMap.norm_le _ (mul_nonneg (norm_nonneg D) (norm_nonneg a))).2
@@ -53,9 +56,15 @@ def derivativeMap (D : C(K,Space →L[ℝ] V)) : Space →L[ℝ] C(K,V) where
   cont := AddMonoidHomClass.continuous_of_bound (derivativeLinear D) ‖D‖
     (direction_norm_le D)
 
+/--
+@isnad1 id=eq.0h5v.s11.ed1cdcd5044d from=translated src=- shape=dc2a7921 vocab=66fc916e
+-/
 @[simp] theorem derivativeMap_apply (D : C(K,Space →L[ℝ] V)) (a : Space) (t : K) :
     derivativeMap D a t = D t a := rfl
 
+/--
+@isnad1 id=le.0h3v.s10.1fa1fff8beac from=translated src=- shape=95a2de6e vocab=0b7d0f6e
+-/
 theorem derivativeMap_norm_le (D : C(K,Space →L[ℝ] V)) : ‖derivativeMap D‖ ≤ ‖D‖ :=
   (derivativeMap D).opNorm_le_bound (norm_nonneg D) (direction_norm_le D)
 
@@ -71,6 +80,9 @@ def derivativeBundling : C(K,Space →L[ℝ] V) →L[ℝ] (Space →L[ℝ] C(K,V
       change ‖derivativeMap D‖ ≤ 1*‖D‖
       simpa only [one_mul] using derivativeMap_norm_le D)
 
+/--
+@isnad1 id=le.0h2v.s12.d2b45985012e from=translated src=- shape=3b616a57 vocab=0e5a278f
+-/
 theorem derivativeBundling_norm_le_one : ‖derivativeBundling (K := K) (V := V)‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro D
@@ -109,6 +121,9 @@ def derivativeField (A : SpatialFamily K V) (a : Space) : C(K,Space →L[ℝ] V)
   (continuousMultilinearCurryFin1 ℝ Space V).toContinuousLinearEquiv.toContinuousLinearMap.compLeftContinuous ℝ K
     (A.jet 1 a)
 
+/--
+@isnad1 id=eq.0h5v.s10.428082c41e82 from=translated src=- shape=e7021dfd vocab=8957ec7a
+-/
 theorem derivativeField_eq (A : SpatialFamily K V) (a : Space) (t : K) :
     A.derivativeField a t = fderiv ℝ (fun b => A.field b t) a := by
   change continuousMultilinearCurryFin1 ℝ Space V (A.jet 1 a t) = _
@@ -123,6 +138,9 @@ def derivativeJet (A : SpatialFamily K V) (n : ℕ) (a : Space) :
   (continuousMultilinearCurryRightEquiv' ℝ n Space V).toContinuousLinearEquiv.toContinuousLinearMap.compLeftContinuous ℝ K
     (A.jet (n+1) a)
 
+/--
+@isnad1 id=eq.0h6v.s12.639e2514b346 from=translated src=- shape=197d7d49 vocab=438cb24b
+-/
 theorem derivativeJet_eq (A : SpatialFamily K V) (n : ℕ) (a : Space) (t : K) :
     A.derivativeJet n a t = iteratedFDeriv ℝ n (fderiv ℝ (fun b => A.field b t)) a := by
   change continuousMultilinearCurryRightEquiv' ℝ n Space V (A.jet (n+1) a t) = _
@@ -150,9 +168,15 @@ def derivative (A : SpatialFamily K V) : SpatialFamily K (Space →L[ℝ] V) whe
     rw [he, norm_iteratedFDeriv_fderiv]
     exact A.bounded (n+1) a t
 
+/--
+@isnad1 id=eq.0h4v.s8.c977281fdd09 from=translated src=- shape=6b9d1d81 vocab=a8f0cb40
+-/
 @[simp] theorem derivative_bound (A : SpatialFamily K V) (n : ℕ) :
     A.derivative.bound n = A.bound (n+1) := rfl
 
+/--
+@isnad1 id=le.0h5v.s10.5c287da3a914 from=translated src=- shape=7923aeb7 vocab=b075b3c7
+-/
 theorem taylor_bound (A : SpatialFamily K V) (a b : Space) :
     ‖A.field b-A.field a-derivativeMap (A.derivative.field a) (b-a)‖ ≤
       A.bound 2*‖b-a‖^2 := by
@@ -166,7 +190,9 @@ theorem taylor_bound (A : SpatialFamily K V) (a b : Space) :
     (fun x => A.field x t) (A.smooth t) (A.bound 2) (A.bound_nonneg 2) hD a (b-a)
   simpa only [add_sub_cancel] using h
 
-/-- Genuine differentiability in the uniform path norm, from the pointwise Taylor estimate. -/
+/-- Genuine differentiability in the uniform path norm, from the pointwise Taylor estimate.
+@isnad1 id=hasfderi.0h4v.s9.9c6e92d01277 from=translated src=- shape=984ffa17 vocab=460f090d
+-/
 theorem hasFDerivAt_field (A : SpatialFamily K V) (a : Space) :
     HasFDerivAt A.field (derivativeMap (A.derivative.field a)) a := by
   apply hasFDerivAt_iff_tendsto.mpr
@@ -183,6 +209,9 @@ theorem hasFDerivAt_field (A : SpatialFamily K V) (a : Space) :
   · have hc : Continuous (fun b : Space => A.bound 2*‖b-a‖) := by fun_prop
     simpa only [sub_self, norm_zero, mul_zero] using hc.tendsto a
 
+/--
+@isnad1 id=eq.0h3v.s13.80dc0c395031 from=translated src=- shape=58fc60f3 vocab=e4df6d90
+-/
 theorem fderiv_field (A : SpatialFamily K V) :
     fderiv ℝ A.field = fun a => derivativeBundling (A.derivative.field a) :=
   funext (fun a => (A.hasFDerivAt_field a).fderiv)
@@ -204,7 +233,9 @@ private theorem contDiff_field_aux (n : ℕ) :
       (E := C(K,Space →L[ℝ] V)) (F := Space →L[ℝ] C(K,V))
       (derivativeBundling (K := K) (V := V))).comp (ih (Space →L[ℝ] V) A.derivative)
 
-/-- All ordinary pointwise derivatives produce genuine uniform-path smoothness. -/
+/-- All ordinary pointwise derivatives produce genuine uniform-path smoothness.
+@isnad1 id=contdiff.0h3v.s7.76845ce1137e from=translated src=- shape=6e92335e vocab=6158f5fe
+-/
 theorem contDiff_field (A : SpatialFamily K V) : ContDiff ℝ ∞ A.field :=
   contDiff_infty.mpr (fun n => contDiff_field_aux n V A)
 
@@ -229,7 +260,9 @@ private theorem norm_iteratedFDeriv_field_aux (n : ℕ) :
       (derivativeBundling_norm_le_one (K := K) (V := V)) (norm_nonneg _)).trans
       (by simpa only [one_mul, derivative_bound] using ih (Space →L[ℝ] V) A.derivative a))
 
-/-- The original pointwise uniform derivative bound holds without any additional factor. -/
+/-- The original pointwise uniform derivative bound holds without any additional factor.
+@isnad1 id=le.0h5v.s9.1adc2b7a25ad from=translated src=- shape=87fa9f91 vocab=f5c71c82
+-/
 theorem norm_iteratedFDeriv_field_le (A : SpatialFamily K V) (n : ℕ) (a : Space) :
     ‖iteratedFDeriv ℝ n A.field a‖ ≤ A.bound n :=
   norm_iteratedFDeriv_field_aux n V A a

@@ -20,7 +20,9 @@ variable {K E F : Type*} [TopologicalSpace K]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- No continuity of inverse-map derivatives is an input: it follows from
-the prescribed differential identity and the coefficient's actual jets. -/
+the prescribed differential identity and the coefficient's actual jets.
+@isnad1 id=continuo.5h6v.s11.72c4ec018df4 from=translated src=- shape=ac6d7ffa vocab=bf40eb5a
+-/
 theorem continuous_iteratedFDeriv_of_fderiv_eq_comp
     (Y : K → E → F) (A : K → F → E →L[ℝ] F)
     (hY : Continuous (Function.uncurry Y))

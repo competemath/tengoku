@@ -20,11 +20,17 @@ def pressureCost (c B : ℝ) : ℕ → ℝ
   | 0 => c⁻¹
   | q+1 => c⁻¹+4*(pressureCost c B q*(1+productCost B q*pressureCost c B q))
 
+/--
+@isnad1 id=le.1h2v.s4.0a77251b1fa9 from=translated src=- shape=9141f3a7 vocab=84ccad35
+-/
 theorem productCost_nonneg (B : ℝ) (hB : 0 ≤ B) (q : ℕ) : 0 ≤ productCost B q := by
   induction q with
   | zero => exact hB
   | succ q ih => simp only [productCost]; positivity
 
+/--
+@isnad1 id=le.2h3v.s5.d91c1f5a0278 from=translated src=- shape=7904d8a2 vocab=5f349085
+-/
 theorem pressureCost_nonneg (c B : ℝ) (hc : 0 < c) (hB : 0 ≤ B) (q : ℕ) :
     0 ≤ pressureCost c B q := by
   induction q with
@@ -42,6 +48,9 @@ def TreeBound {s : ℕ} {A : SmoothCoefficient P} (K : CoefficientJet P dirs s A
   | .succ _ lower _ => (A.bound : ℝ) ≤ B ∧ ∀ i, TreeBound (lower i) B
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=le.1h6v.s5.062fcc2fe799 from=translated src=- shape=1a3b5baf vocab=e6aa84d3
+-/
 theorem TreeBound.root {s : ℕ} {A : SmoothCoefficient P} {K : CoefficientJet P dirs s A}
     {B : ℝ} (hK : TreeBound K B) : (A.bound : ℝ) ≤ B := by
   cases K with
@@ -49,6 +58,9 @@ theorem TreeBound.root {s : ℕ} {A : SmoothCoefficient P} {K : CoefficientJet P
   | succ => exact hK.1
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=treeboun.1h6v.s5.a476c4318cb4 from=translated src=- shape=e987a921 vocab=2188eaf0
+-/
 theorem treeBound_of_levels {s : ℕ} {A : SmoothCoefficient P} (K : CoefficientJet P dirs s A)
     (B : ℝ) (hb : ∀ n, n ≤ s → boundLevel P K n ≤ B) : TreeBound K B := by
   induction K with
@@ -66,6 +78,9 @@ theorem treeBound_of_levels {s : ℕ} {A : SmoothCoefficient P} (K : Coefficient
       exact hs.trans hh
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=treeboun.1h6v.s6.0b38018008dd from=translated src=- shape=18532a35 vocab=3dd51c52
+-/
 theorem TreeBound.truncate {s : ℕ} {A : SmoothCoefficient P}
     {K : CoefficientJet P dirs (s+1) A} {B : ℝ} (hK : TreeBound K B) :
     TreeBound K.truncate B := by
@@ -77,6 +92,9 @@ theorem TreeBound.truncate {s : ℕ} {A : SmoothCoefficient P}
           exact ⟨hK.1,fun i => ih (hK.2 i)⟩
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=treeboun.2h7v.s5.6564846a99b4 from=translated src=- shape=3660708e vocab=88ed4264
+-/
 theorem TreeBound.restrict {s : ℕ} {A : SmoothCoefficient P}
     {K : CoefficientJet P dirs s A} {B : ℝ} (hK : TreeBound K B)
     (q : ℕ) (hq : q ≤ s) : TreeBound (EulerH6Pressure.CoefficientJet.restrict K q hq) B := by
@@ -92,6 +110,9 @@ theorem TreeBound.restrict {s : ℕ} {A : SmoothCoefficient P}
           exact ⟨hK.1,fun i => ih (hK.2 i) (by omega)⟩
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=le.1h6v.s5.511db9c06ea4 from=translated src=- shape=1ec508a8 vocab=bc14c381
+-/
 theorem TreeBound.productConstant_le {s : ℕ} {A : SmoothCoefficient P}
     {K : CoefficientJet P dirs s A} {B : ℝ} (hK : TreeBound K B) :
     K.productConstant ≤ productCost B s := by
@@ -108,6 +129,9 @@ theorem TreeBound.productConstant_le {s : ℕ} {A : SmoothCoefficient P}
             _ = _ := by norm_num only [sum_const,card_univ,Fintype.card_fin,nsmul_eq_mul]; ring
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=le.3h7v.s6.dc1c72dfef5a from=translated src=- shape=380e9006 vocab=50c43502
+-/
 theorem TreeBound.pressureConstant_le {s : ℕ} {A : SmoothCoefficient P}
     {K : CoefficientJet P dirs s A} {B : ℝ} (hK : TreeBound K B)
     (c : ℝ) (hc : 0 < c) (hB : 0 ≤ B) : K.pressureConstant c ≤ pressureCost c B s := by

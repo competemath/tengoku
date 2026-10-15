@@ -25,7 +25,9 @@ namespace Evolution
 
 variable (U : Evolution T hT B)
 
-/-- The constructed Volterra inverse is the canonical continuous-linear-map inverse. -/
+/-- The constructed Volterra inverse is the canonical continuous-linear-map inverse.
+@isnad1 id=eq.1h4v.s10.739b0ec350dd from=translated src=- shape=40173148 vocab=f6b965e0
+-/
 theorem volterraInverse_eq_mapInverse : U.volterraInverse = (volterraOperator T hT B).inverse := by
   calc
     U.volterraInverse = (U.volterraEquiv.symm :
@@ -34,7 +36,9 @@ theorem volterraInverse_eq_mapInverse : U.volterraInverse = (volterraOperator T 
       (ContinuousLinearMap.inverse_equiv U.volterraEquiv).symm
     _ = _ := rfl
 
-/-- The actual forced solution is obtained by this genuine Volterra inverse. -/
+/-- The actual forced solution is obtained by this genuine Volterra inverse.
+@isnad1 id=eq.1h6v.s11.b9f952ef285c from=translated src=- shape=f4a0db01 vocab=7e83a6a2
+-/
 theorem solution_eq_volterraInverse (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     U.solution f a₀ = U.volterraInverse
       ((ContinuousLinearMap.const ℝ (Icc (0 : ℝ) T)) a₀ + integral T hT f) := by
@@ -58,13 +62,17 @@ end Evolution
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 variable (T : ℝ) (hT : 0 ≤ T) (B : P → C(Icc (0 : ℝ) T,E →L[ℝ] E))
 
-/-- Smooth coefficients give a genuinely smooth Volterra operator family. -/
+/-- Smooth coefficients give a genuinely smooth Volterra operator family.
+@isnad1 id=contdiff.2h5v.s10.2f4fb53bf07e from=translated src=- shape=b02a8355 vocab=db028e74
+-/
 theorem volterraOperator_contDiff {n : ℕ∞ω} (hB : ContDiff ℝ n B) :
     ContDiff ℝ n (fun x => volterraOperator T hT (B x)) := by
   exact contDiff_const.sub (contDiff_const.clm_comp (contDiff_multiplier B hB))
 
 /-- Parameter smoothness of the actual inverse requires no parameter regularity
-assumption on the chosen homogeneous fundamental evolutions. -/
+assumption on the chosen homogeneous fundamental evolutions.
+@isnad1 id=contdiff.2h6v.s10.f44fd5981d48 from=translated src=- shape=8cd63c75 vocab=0f613d4b
+-/
 theorem volterraInverse_contDiff (U : ∀ x, Evolution T hT (B x)) {n : ℕ∞ω}
     (hB : ContDiff ℝ n B) : ContDiff ℝ n (fun x => (U x).volterraInverse) := by
   have he : (fun x => (U x).volterraInverse) = fun x => (volterraOperator T hT (B x)).inverse := by
@@ -79,7 +87,9 @@ theorem volterraInverse_contDiff (U : ∀ x, Evolution T hT (B x)) {n : ℕ∞ω
   exact hi.comp x (volterraOperator_contDiff T hT B hB).contDiffAt
 
 /-- The integral construction is genuinely smooth in parameters whenever the
-coefficient, initial data and forcing are smooth in their actual Banach norms. -/
+coefficient, initial data and forcing are smooth in their actual Banach norms.
+@isnad1 id=contdiff.4h8v.s10.4aa3bfb16153 from=translated src=- shape=542b6e96 vocab=f89ae5ed
+-/
 theorem solution_contDiff (U : ∀ x, Evolution T hT (B x))
     (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E) {n : ℕ∞ω}
     (hB : ContDiff ℝ n B) (hf : ContDiff ℝ n f) (ha₀ : ContDiff ℝ n a₀) :

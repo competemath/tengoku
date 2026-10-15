@@ -26,11 +26,17 @@ private def jetFieldAux (n : ℕ) :
 def jetField (n : ℕ) {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (A : SmoothL2Field V) : SmoothL2Field (Space [×n]→L[ℝ] V) := jetFieldAux n V A
 
+/--
+@isnad1 id=eq.0h2v.s12.6d0ff4e6efa3 from=translated src=- shape=1b3c256d vocab=6260dc50
+-/
 @[simp] theorem jetField_zero {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (A : SmoothL2Field V) :
     jetField 0 A = mapField (V := V) (W := Space [×0]→L[ℝ] V)
       (continuousMultilinearCurryFin0 ℝ Space V).symm.toContinuousLinearEquiv.toContinuousLinearMap A := rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.d872c9f45eb4 from=translated src=- shape=f4abbd90 vocab=52942814
+-/
 @[simp] theorem jetField_succ {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (A : SmoothL2Field V) (n : ℕ) :
     jetField (n+1) A = mapField
@@ -54,11 +60,17 @@ private theorem jetField_field_aux (n : ℕ) :
     rw [ih (Space →L[ℝ] V) A.derivative x, iteratedFDeriv_succ_eq_comp_right]
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.a80f28228f72 from=translated src=- shape=e86865b0 vocab=3015bbe8
+-/
 @[simp] theorem jetField_field {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (A : SmoothL2Field V) (n : ℕ) (x : Space) :
     (jetField n A).field x = iteratedFDeriv ℝ n A.field x :=
   jetField_field_aux n V A x
 
+/--
+@isnad1 id=eq.0h3v.s14.11f6c21d1a36 from=translated src=- shape=a19ba91d vocab=280ab4dd
+-/
 theorem jetField_toLp {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (A : SmoothL2Field V) (n : ℕ) : (jetField n A).toLp = A.jetLp n := by
   apply Lp.ext
@@ -100,6 +112,9 @@ private theorem continuous_jetField_jet_aux (n : ℕ) :
       (continuousMultilinearCurryRightEquiv' ℝ n Space V).symm.toContinuousLinearEquiv.toContinuousLinearMap
       (fun t => jetField n (A t).derivative) hr
 
+/--
+@isnad1 id=continuo.1h5v.s19.45fc96978dfa from=translated src=- shape=fd9b0ae7 vocab=476c9297
+-/
 theorem continuous_jetField_jet {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (A : K → SmoothL2Field V) (hA : ∀ k, Continuous (fun t => (A t).jetLp k)) (n k : ℕ) :
     Continuous (fun t => (jetField n (A t)).jetLp k) :=

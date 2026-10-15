@@ -18,7 +18,9 @@ variable {E F G : Type*}
   [NormedAddCommGroup F] [NormedSpace ℝ F]
   [NormedAddCommGroup G] [NormedSpace ℝ G]
 
-/-- Comparison with an exact scalar polynomial composition. -/
+/-- Comparison with an exact scalar polynomial composition.
+@isnad1 id=le.6h8v.s9.d676b41bd58a from=translated src=- shape=59a02a76 vocab=66cf3236
+-/
 theorem norm_taylorComp_le_coefficient
     (P : FormalMultilinearSeries ℝ E F) (Q : FormalMultilinearSeries ℝ F G)
     (p q : ℝ[X]) (hp0 : p.coeff 0 = 0)
@@ -60,7 +62,9 @@ theorem norm_taylorComp_le_coefficient
     _ = _ := by ring
 
 /-- Finite sums are bounded by evaluating the composed nonnegative
-polynomial.  No derivative beyond order N occurs. -/
+polynomial.  No derivative beyond order N occurs.
+@isnad1 id=le.5h9v.s9.0b7a38eeb8ab from=translated src=- shape=5faba598 vocab=6c34e969
+-/
 theorem generating_sum_le_polynomial
     (P : FormalMultilinearSeries ℝ E F) (Q : FormalMultilinearSeries ℝ F G)
     (N : ℕ) (a b : ℕ → ℝ)
@@ -101,12 +105,17 @@ def normalizedJet (P : FormalMultilinearSeries ℝ E F) (n : ℕ) : ℝ :=
 def generatingSum (P : FormalMultilinearSeries ℝ E F) (N : ℕ) (z : ℝ) : ℝ :=
   ∑ n ∈ Finset.Icc 1 N, normalizedJet P n*z^n
 
+/--
+@isnad1 id=le.1h5v.s6.b27a810afa3e from=translated src=- shape=a3e19d85 vocab=f887956b
+-/
 theorem generatingSum_nonneg (P : FormalMultilinearSeries ℝ E F)
     (N : ℕ) (z : ℝ) (hz : 0 ≤ z) : 0 ≤ generatingSum P N z :=
   Finset.sum_nonneg fun n _ => mul_nonneg (by unfold normalizedJet; positivity) (pow_nonneg hz n)
 
 /-- The nonlinear generating-function bound needed for the small-flow
-bootstrap.  The inner generating sum is retained without a radius loss. -/
+bootstrap.  The inner generating sum is retained without a radius loss.
+@isnad1 id=le.5h9v.s8.f7a2d59e2339 from=translated src=- shape=305e3b9b vocab=cf4f3b52
+-/
 theorem generatingSum_taylorComp_le
     (P : FormalMultilinearSeries ℝ E F) (Q : FormalMultilinearSeries ℝ F G)
     (N : ℕ) (B R z : ℝ) (hB : 0 ≤ B) (hR : 0 ≤ R) (hz : 0 ≤ z)

@@ -18,13 +18,17 @@ def cylinderHeatJet {q : ℕ} {f : LiftL2 period} (J : SpatialJet period standar
   EulerPressureJetIdentities.SpatialJet.map (cylinderHeat period v)
     (fun a f => (cylinderHeat_translation period v a f).symm) J
 
-/-- Heat preserves every actual derivative coordinate. -/
+/-- Heat preserves every actual derivative coordinate.
+@isnad1 id=eq.0h7v.s16.d478ea881a22 from=translated src=- shape=df3a00c2 vocab=769e53ff
+-/
 theorem cylinderHeatJet_word {q n : ℕ} {f : LiftL2 period}
     (J : SpatialJet period standardDirection q f) (v : ℝ≥0) (w : Fin n → Fin 4) :
     (cylinderHeatJet period J v).word w = cylinderHeat period v (J.word w) :=
   EulerPressureJetIdentities.SpatialJet.map_word J (cylinderHeat period v) _ w
 
-/-- The actual heat operator commutes with the true strong-jet Laplacian. -/
+/-- The actual heat operator commutes with the true strong-jet Laplacian.
+@isnad1 id=eq.0h4v.s16.675bc68f9abd from=translated src=- shape=c0d1fde2 vocab=51c51ab0
+-/
 theorem cylinderHeatJet_laplacian {f : LiftL2 period} (J : SpatialJet period standardDirection 2 f) (v : ℝ≥0) :
     jetLaplacian period (cylinderHeatJet period J v) = cylinderHeat period v (jetLaplacian period J) := by
   simp only [jetLaplacian, cylinderHeatJet_word, map_sum]
@@ -32,11 +36,16 @@ theorem cylinderHeatJet_laplacian {f : LiftL2 period} (J : SpatialJet period sta
 /-- Real-time extension of the cylinder heat semigroup. -/
 def realCylinderHeat (t : ℝ) : LiftL2 period →L[ℝ] LiftL2 period := cylinderHeat period t.toNNReal
 
+/--
+@isnad1 id=eq.0h3v.s15.ac65fd42fe70 from=translated src=- shape=c04f4f93 vocab=c525a12a
+-/
 theorem realCylinderHeat_apply (t : ℝ) (f : LiftL2 period) :
     realCylinderHeat period t f = realHeatList period cylinderDirections t f :=
   (realHeatList_eq_toNNReal period cylinderDirections t f).symm
 
-/-- The actual cylinder heat generator at positive variance is one half of the Laplacian. -/
+/-- The actual cylinder heat generator at positive variance is one half of the Laplacian.
+@isnad1 id=hasderiv.1h4v.s16.245dfc766b67 from=translated src=- shape=65a3fa06 vocab=5b58704d
+-/
 theorem realCylinderHeat_generator_pos {f : LiftL2 period} (J : SpatialJet period standardDirection 2 f)
     {t : ℝ} (ht : 0 < t) :
     HasDerivAt (fun s => realCylinderHeat period s f)
@@ -63,7 +72,9 @@ theorem realCylinderHeat_generator_pos {f : LiftL2 period} (J : SpatialJet perio
   simpa only [List.map_ofFn, Function.comp_def, List.sum_ofFn, realCylinderHeat_apply,
     cylinderDirections, jetLaplacian, ddf] using h
 
-/-- The actual cylinder heat generator at zero variance is a right Laplacian derivative. -/
+/-- The actual cylinder heat generator at zero variance is a right Laplacian derivative.
+@isnad1 id=hasderiv.0h3v.s16.dd41de15818b from=translated src=- shape=a41ebe01 vocab=ee5d4e84
+-/
 theorem realCylinderHeat_generator_zero {f : LiftL2 period} (J : SpatialJet period standardDirection 2 f) :
     HasDerivWithinAt (fun s => realCylinderHeat period s f)
       ((1/2 : ℝ) • jetLaplacian period J) (Set.Ici 0) 0 := by
@@ -84,7 +95,9 @@ theorem realCylinderHeat_generator_zero {f : LiftL2 period} (J : SpatialJet peri
 /-- Variance2νt is the genuine viscosity-ν heat evolution. -/
 def viscousCylinderHeat (ν t : ℝ) : LiftL2 period →L[ℝ] LiftL2 period := realCylinderHeat period (2*ν*t)
 
-/-- The constructed heat evolution solves u_t=νΔu, with the actual strong spatial Laplacian. -/
+/-- The constructed heat evolution solves u_t=νΔu, with the actual strong spatial Laplacian.
+@isnad1 id=hasderiv.2h5v.s16.b9168e545646 from=translated src=- shape=925d009e vocab=cad2ac72
+-/
 theorem viscousCylinderHeat_equation {f : LiftL2 period} (J : SpatialJet period standardDirection 2 f)
     {ν t : ℝ} (hν : 0 < ν) (ht : 0 < t) :
     HasDerivAt (fun s => viscousCylinderHeat period ν s f)

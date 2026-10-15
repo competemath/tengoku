@@ -47,7 +47,9 @@ private local instance : NormedSpace ℝ (C(Icc (0 : ℝ) T,E) →L[ℝ] C(Icc (
 
 include hd in
 /-- The actual fixed-Hq block of the forward solution gains just one shift,
-with an unchanged radius and with H3 used only at the base parameter. -/
+with an unchanged radius and with H3 used only at the base parameter.
+@isnad1 id=le.17h20v.s11.8edf5b5e9eda from=translated src=- shape=e697f5a6 vocab=e1ccfca7
+-/
 theorem weightedSolution_block_gevrey_at
     (hB : ContDiff ℝ ∞ B) (hf : ContDiff ℝ ∞ f) (ha₀ : ContDiff ℝ ∞ a₀)
     (hg₀ : g ⟨0,le_rfl,hT⟩ = 1)

@@ -33,15 +33,24 @@ def zeroTraceMap (A : U →L[ℝ] V) :
       have hu : initialTrace T hT (u : TimeLp T U) = 0 := u.property
       rw [initialTrace_timeLift,hu,map_zero])
 
+/--
+@isnad1 id=eq.1h5v.s15.69bf5c6a3e2f from=translated src=- shape=1cd44ef3 vocab=479f20b6
+-/
 @[simp] theorem zeroTraceMap_coe (A : U →L[ℝ] V) (u : zeroTraceDerivatives (U := U) T hT) :
     (zeroTraceMap T hT A u : TimeLp T V) = timeLift T A (u : TimeLp T U) := rfl
 
+/--
+@isnad1 id=le.1h4v.s14.db72b94002b1 from=translated src=- shape=3274cf29 vocab=0c5b064f
+-/
 theorem zeroTraceMap_norm (A : U →L[ℝ] V) : ‖zeroTraceMap T hT A‖ ≤ ‖A‖ := by
   apply opNorm_le_bound _ (norm_nonneg A)
   intro u
   exact timeLift_apply_norm_le T A (u : TimeLp T U)
 
 omit [CompleteSpace U] [CompleteSpace V] [CompleteSpace E] [CompleteSpace F] in
+/--
+@isnad1 id=eq.2h10v.s14.1d8c88b5b729 from=translated src=- shape=5ad557ee vocab=2a770311
+-/
 theorem timeMultiplier_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (hQR : ∀ t u, R t (A u) = B (Q t u)) (u : TimeLp T U) :
@@ -53,6 +62,9 @@ theorem timeMultiplier_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   exact hQR (projIcc 0 T hT t) (u t)
 
 omit [CompleteSpace E] [CompleteSpace F] in
+/--
+@isnad1 id=eq.3h12v.s14.eb97e2fb6d61 from=translated src=- shape=699b05a9 vocab=5f8f90db
+-/
 theorem productDerivative_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q Q₁ : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R R₁ : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (hQR : ∀ t u, R t (A u) = B (Q t u))
@@ -65,6 +77,9 @@ theorem productDerivative_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     timeMultiplier_intertwines T hT A B Q R hQR,map_add]
 
 omit [CompleteSpace E] [CompleteSpace F] in
+/--
+@isnad1 id=eq.3h12v.s16.8a55a24eb2e4 from=translated src=- shape=915b6ba7 vocab=234c6d09
+-/
 theorem fixedDerivative_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q Q₁ : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R R₁ : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (hQR : ∀ t u, R t (A u) = B (Q t u))
@@ -73,6 +88,9 @@ theorem fixedDerivative_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
       timeLift T B (fixedFrameDerivative T hT Q Q₁ u) :=
   productDerivative_intertwines T hT A B Q Q₁ R R₁ hQR hQR₁ (u : TimeLp T U)
 
+/--
+@isnad1 id=eq.3h12v.s16.1f982ad4d367 from=translated src=- shape=771f2d97 vocab=9bed6b2c
+-/
 theorem fixedPrimitive_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q Q₁ : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R R₁ : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (hQR : ∀ t u, R t (A u) = B (Q t u))
@@ -85,7 +103,9 @@ theorem fixedPrimitive_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   rfl
 
 /-- A coefficient intertwiner and its adjoint preserve the actual variational
-solve, as follows by testing against the genuine pulled-back test field. -/
+solve, as follows by testing against the genuine pulled-back test field.
+@isnad1 id=eq.18h18v.s16.d5eb8b70e716 from=translated src=- shape=9e94c7ee vocab=6b1fea8d
+-/
 theorem fixedFrameSolver_intertwines
     (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q Q₁ : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R R₁ : C(Icc (0 : ℝ) T,V →L[ℝ] F))

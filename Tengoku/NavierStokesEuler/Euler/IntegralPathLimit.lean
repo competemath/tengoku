@@ -29,13 +29,17 @@ def pathIntegralOperator (T : ℝ) (hT : 0 ≤ T) (a b : ℝ) : C(Icc (0 : ℝ) 
         intervalIntegral.norm_integral_le_of_norm_le_const (fun t _ => extendPath_norm_le T hT f t)
       exact h.trans_eq (mul_comm _ _))
 
-/-- The time-integral operator is the literal Bochner interval integral. -/
+/-- The time-integral operator is the literal Bochner interval integral.
+@isnad1 id=eq.1h5v.s9.fe2765beef03 from=translated src=- shape=9e6a1639 vocab=061555a2
+-/
 theorem pathIntegralOperator_apply (T : ℝ) (hT : 0 ≤ T) (a b : ℝ) (f : C(Icc (0 : ℝ) T,E)) :
     pathIntegralOperator T hT a b f = ∫ t in a..b, extendPath T hT f t := rfl
 
 variable [CompleteSpace E]
 
-/-- Interior time derivatives with continuous endpoint traces give the exact integral evolution formula. -/
+/-- Interior time derivatives with continuous endpoint traces give the exact integral evolution formula.
+@isnad1 id=eq.2h5v.s10.d86919512ad5 from=translated src=- shape=4594f8b8 vocab=36b3c5f1
+-/
 theorem integral_equation_of_hasDerivAt (T : ℝ) (hT : 0 ≤ T)
     (u f : C(Icc (0 : ℝ) T,E))
     (hd : ∀ t ∈ Ioo 0 T, HasDerivAt (extendPath T hT u) (extendPath T hT f t) t)
@@ -51,7 +55,9 @@ theorem integral_equation_of_hasDerivAt (T : ℝ) (hT : 0 ≤ T)
   exact (eq_add_of_sub_eq h.symm).trans (add_comm _ _)
 
 omit [CompleteSpace E] in
-/-- Actual integral evolution equations pass to uniform limits of the solution and derivative paths. -/
+/-- Actual integral evolution equations pass to uniform limits of the solution and derivative paths.
+@isnad1 id=eq.4h7v.s11.ad917448efb4 from=translated src=- shape=5ec5364d vocab=d7f94644
+-/
 theorem integral_equation_limit (T : ℝ) (hT : 0 ≤ T)
     (u f : ℕ → C(Icc (0 : ℝ) T,E)) (v g : C(Icc (0 : ℝ) T,E))
     (hu : Filter.Tendsto u Filter.atTop (𝓝 v)) (hf : Filter.Tendsto f Filter.atTop (𝓝 g))
@@ -63,7 +69,9 @@ theorem integral_equation_limit (T : ℝ) (hT : 0 ≤ T)
   have hi := ((pathIntegralOperator T hT 0 t.val).continuous.tendsto g).comp hf
   exact tendsto_nhds_unique hv ((hz.add hi).congr (fun n => (heq n t).symm))
 
-/-- A continuous path satisfying the actual integral equation has the prescribed interior derivative. -/
+/-- A continuous path satisfying the actual integral equation has the prescribed interior derivative.
+@isnad1 id=hasderiv.3h5v.s10.7ee8619f136e from=translated src=- shape=c7bb5f2e vocab=36b3c5f1
+-/
 theorem hasDerivAt_of_integral_equation (T : ℝ) (hT : 0 ≤ T)
     (u f : C(Icc (0 : ℝ) T,E))
     (heq : ∀ t, u t = u ⟨0,le_rfl,hT⟩ + pathIntegralOperator T hT 0 t.val f)

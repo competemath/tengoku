@@ -13,6 +13,9 @@ open scoped ContDiff
 
 variable (P : ℝ) [Fact (0 < P)]
 
+/--
+@isnad1 id=mem.1h4v.s13.778155af4790 from=translated src=- shape=d8bf1c52 vocab=87323b6d
+-/
 theorem mem_of_test_integral (κ : ℝ) (m : Vector3) (u : LiftL2 P)
     (h : ∀ φ : LiftDomain P → ℝ,
       (HasCompactSupport φ ∧ ∀ x, ContDiff ℝ ∞ (localLift P φ x)) →
@@ -38,6 +41,9 @@ theorem mem_of_test_integral (κ : ℝ) (m : Vector3) (u : LiftL2 P)
   rw [real_inner_comm]
   exact hc hg'
 
+/--
+@isnad1 id=mem.3h5v.s14.59fed568755f from=translated src=- shape=0fe805d4 vocab=b5ec93f9
+-/
 theorem mem_of_classical (κ : ℝ) (m : Vector3) (u : LiftL2 P)
     (f : LiftDomain P → Vector3)
     (hrep : (u : LiftDomain P → Vector3) =ᵐ[liftMeasure P] f)

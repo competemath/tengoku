@@ -8,7 +8,9 @@ open scoped RealInnerProductSpace
 
 namespace EulerMeanBoundary
 
-/-- The curl vanishes precisely when the real derivative matrix is symmetric. -/
+/-- The curl vanishes precisely when the real derivative matrix is symmetric.
+@isnad1 id=iff.0h1v.s9.4d604fc38da1 from=translated src=- shape=4bfc9e52 vocab=37ec5bd7
+-/
 theorem curlMatrix_eq_zero_iff_isSymmetric (A : Space →L[ℝ] Space) :
     curlMatrix A = 0 ↔ A.IsSymmetric := by
   constructor

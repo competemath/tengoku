@@ -12,14 +12,18 @@ open scoped Topology
 variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
   [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
-/-- A bounded linear map commutes with the integral of an actual continuous time path. -/
+/-- A bounded linear map commutes with the integral of an actual continuous time path.
+@isnad1 id=eq.1h7v.s11.3f08943b06bf from=translated src=- shape=becc7234 vocab=e2a5d0e7
+-/
 theorem map_pathIntegral (L : E →L[ℝ] F) (T : ℝ) (hT : 0 ≤ T) (a b : ℝ)
     (f : C(Icc (0 : ℝ) T,E)) :
     L (pathIntegralOperator T hT a b f) =
       pathIntegralOperator T hT a b (L.compLeftContinuous ℝ (Icc (0 : ℝ) T) f) := by
   exact (L.intervalIntegral_comp_comm ((extendPath_continuous T hT f).intervalIntegrable a b)).symm
 
-/-- An evolution equation in the weaker space gives its exact integral equation in the stronger space when the embedding is injective and the proposed derivative is continuous there. -/
+/-- An evolution equation in the weaker space gives its exact integral equation in the stronger space when the embedding is injective and the proposed derivative is continuous there.
+@isnad1 id=eq.3h7v.s10.756cd85490c7 from=translated src=- shape=b4b34161 vocab=e76b0a8c
+-/
 theorem integral_equation_of_injective_map (L : E →L[ℝ] F) (hL : Function.Injective L)
     (T : ℝ) (hT : 0 ≤ T) (u f : C(Icc (0 : ℝ) T,E))
     (hd : ∀ t ∈ Ioo 0 T, HasDerivAt (fun r => L (extendPath T hT u r))
@@ -30,7 +34,9 @@ theorem integral_equation_of_injective_map (L : E →L[ℝ] F) (hL : Function.In
   exact integral_equation_of_hasDerivAt T hT (L.compLeftContinuous ℝ (Icc (0 : ℝ) T) u)
     (L.compLeftContinuous ℝ (Icc (0 : ℝ) T) f) hd t
 
-/-- A continuous stronger-space right-hand side lifts a genuine derivative equation through an injective bounded embedding, without assuming the stronger derivative exists. -/
+/-- A continuous stronger-space right-hand side lifts a genuine derivative equation through an injective bounded embedding, without assuming the stronger derivative exists.
+@isnad1 id=hasderiv.4h7v.s9.1d5866d746ea from=translated src=- shape=83c80024 vocab=f9687ec6
+-/
 theorem hasDerivAt_of_injective_map (L : E →L[ℝ] F) (hL : Function.Injective L)
     (T : ℝ) (hT : 0 ≤ T) (u f : C(Icc (0 : ℝ) T,E))
     (hd : ∀ t ∈ Ioo 0 T, HasDerivAt (fun r => L (extendPath T hT u r))

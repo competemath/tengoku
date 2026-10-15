@@ -15,6 +15,9 @@ variable {u₀ : Space → Space} {v : Space → ℝ → Space} {p : Space → �
 
 include h
 
+/--
+@isnad1 id=ex.2h5v.s7.d010c19c6b83 from=translated src=- shape=5877d217 vocab=43dba593
+-/
 theorem vorticity_bounded_on_compact (K : Set Space) (hK : IsCompact K) (T : ℝ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Icc (0 : ℝ) T, ∀ x ∈ K,
       ‖vectorCurl (v · t) x‖ ≤ M := by

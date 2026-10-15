@@ -19,7 +19,9 @@ open MeasureTheory InnerProductSpace Laplacian EulerSmoothLimit EulerVectorCalcu
 open scoped ContDiff Topology
 
 /-- Fatou's lemma turns uniform integral bounds on nonnegative localizations
-into integrability of the pointwise limit. -/
+into integrability of the pointwise limit.
+@isnad1 id=and.6h5v.s7.072431b6962f from=translated src=- shape=260e1ee0 vocab=6a78df52
+-/
 theorem integrable_and_integral_le_of_nonnegative_limit {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (F : ℕ → X → ℝ) (f : X → ℝ) (C : ℝ)
     (hF : ∀ n, Integrable (F n) μ) (hf : AEStronglyMeasurable f μ)
@@ -48,7 +50,9 @@ theorem integrable_and_integral_le_of_nonnegative_limit {X : Type*} [MeasurableS
     _ ≤ (ENNReal.ofReal C).toReal := ENNReal.toReal_mono ENNReal.ofReal_ne_top (hi.trans hb)
     _ = C := ENNReal.toReal_ofReal ((integral_nonneg (hF0 0)).trans (hbound 0))
 
-/-- The source term retained in the localized Dirichlet identity. -/
+/-- The source term retained in the localized Dirichlet identity.
+@isnad1 id=eq.3h2v.s10.68185c97f5b3 from=translated src=- shape=4e4e6f9d vocab=4f625e79
+-/
 theorem localized_dirichlet_identity (η h : Space → ℝ)
     (hcη : HasCompactSupport η) (hη : ContDiff ℝ ∞ η) (hh : ContDiff ℝ ∞ h) :
     (∫ x, ‖gradient (η * h) x‖ ^ 2) =
@@ -73,7 +77,9 @@ theorem localized_dirichlet_identity (η h : Space → ℝ)
   linarith
 
 /-- Smoothness of the scalar Laplacian follows directly from coordinate
-derivatives, with no global integrability premise. -/
+derivatives, with no global integrability premise.
+@isnad1 id=contdiff.1h1v.s8.138ad6e553a2 from=translated src=- shape=46d4481e vocab=fbc3ed2f
+-/
 theorem scalar_laplacian_smooth (h : Space → ℝ) (hh : ContDiff ℝ ∞ h) :
     ContDiff ℝ ∞ (Δ h) := by
   rw [show Δ h = fun x => ∑ i : Fin 3, partialDerivative (partialDerivative h i) i x from
@@ -82,7 +88,9 @@ theorem scalar_laplacian_smooth (h : Space → ℝ) (hh : ContDiff ℝ ∞ h) :
 
 /-- A smooth square-integrable function whose Laplacian has compact support
 has square-integrable first derivatives. The proof first localizes and only
-then invokes Fatou; no derivative integrability is assumed. -/
+then invokes Fatou; no derivative integrability is assumed.
+@isnad1 id=and.4h2v.s11.f4b606d12ca9 from=translated src=- shape=a8aeb59b vocab=d93a85f2
+-/
 theorem gradient_energy_recovery (M : ℝ)
     (hgrad : ∀ n x, ‖gradient (cutoff n) x‖ ≤ M)
     (h : Space → ℝ) (hh : ContDiff ℝ ∞ h) (hL2 : MemLp h 2 volume)
@@ -148,7 +156,9 @@ theorem gradient_energy_recovery (M : ℝ)
   exact ⟨(memLp_two_iff_integrable_sq_norm
     (contDiff_gradient hh).continuous.aestronglyMeasurable).mpr hfatou.1, hfatou.2⟩
 
-/-- A single fixed cutoff constant works for every scalar field. -/
+/-- A single fixed cutoff constant works for every scalar field.
+@isnad1 id=ex.0h0v.s11.170caae75b6c from=translated src=- shape=5991339c vocab=ec353e43
+-/
 theorem exists_gradient_energy_bound : ∃ M : ℝ, 0 ≤ M ∧
     ∀ (h : Space → ℝ), ContDiff ℝ ∞ h → MemLp h 2 volume →
       HasCompactSupport (Δ h) →
@@ -162,6 +172,9 @@ theorem exists_gradient_energy_bound : ∃ M : ℝ, 0 ≤ M ∧
         (EulerNoncompactTransport.cutoffScale_le_one n) hM0).trans_eq (mul_one M))
   exact ⟨M, hM0, fun h hh hL2 hcΔ => gradient_energy_recovery M hgrad h hh hL2 hcΔ⟩
 
+/--
+@isnad1 id=memlp.3h1v.s10.f5f8aaf51733 from=translated src=- shape=35515ea5 vocab=14cde145
+-/
 theorem gradient_memLp_of_laplacian_compact (h : Space → ℝ)
     (hh : ContDiff ℝ ∞ h) (hL2 : MemLp h 2 volume) (hcΔ : HasCompactSupport (Δ h)) :
     MemLp (gradient h) 2 volume := by
@@ -169,7 +182,9 @@ theorem gradient_memLp_of_laplacian_compact (h : Space → ℝ)
   exact (hM h hh hL2 hcΔ).1
 
 /-- A convenient quadratic estimate for uniform-in-time bootstrapping: the
-constant is independent of the field and of the support of its Laplacian. -/
+constant is independent of the field and of the support of its Laplacian.
+@isnad1 id=ex.0h0v.s10.1f6cd02c50f2 from=translated src=- shape=9b81f086 vocab=03cc6e6c
+-/
 theorem exists_gradient_energy_square_bound : ∃ C : ℝ, 0 ≤ C ∧
     ∀ (h : Space → ℝ), ContDiff ℝ ∞ h → MemLp h 2 volume →
       HasCompactSupport (Δ h) →
@@ -193,7 +208,9 @@ theorem exists_gradient_energy_square_bound : ∃ C : ℝ, 0 ≤ C ∧
   linarith [(hM h hh hL2 hcΔ).2]
 
 /-- Compact vorticity forces the Laplacian to be compactly supported. No
-integrability hypothesis on derivatives of the velocity is used here. -/
+integrability hypothesis on derivatives of the velocity is used here.
+@isnad1 id=hascompa.3h1v.s9.aeecf3accb38 from=translated src=- shape=3cd0709e vocab=00357c5a
+-/
 theorem laplacian_compact_of_curl_compact (u : Space → Space)
     (hu : ContDiff ℝ ∞ u) (hdiv : ∀ x, divergence u x = 0)
     (hc : HasCompactSupport (vectorCurl u)) : HasCompactSupport (Δ u) := by
@@ -208,7 +225,9 @@ theorem laplacian_compact_of_curl_compact (u : Space → Space)
   rw [he]
   exact (vectorCurl_compact _ hc).neg
 
-/-- The Laplacian commutes with every finite coordinate derivative word. -/
+/-- The Laplacian commutes with every finite coordinate derivative word.
+@isnad1 id=eq.1h2v.s8.91f790735eb6 from=translated src=- shape=65131e82 vocab=b43968f8
+-/
 theorem laplacian_wordDerivative (word : List (Fin 3)) (h : Space → ℝ)
     (hh : ContDiff ℝ ∞ h) :
     Δ (wordDerivative word h) = wordDerivative word (Δ h) := by
@@ -222,6 +241,9 @@ theorem laplacian_wordDerivative (word : List (Fin 3)) (h : Space → ℝ)
         funext (laplacian_partialDerivative _ (wordDerivative_smooth word h hh) i)]
     rw [ih]
 
+/--
+@isnad1 id=hascompa.1h2v.s6.efca23ee96d9 from=translated src=- shape=ffdedcfb vocab=d704051c
+-/
 theorem wordDerivative_compact (word : List (Fin 3)) (h : Space → ℝ)
     (hc : HasCompactSupport h) : HasCompactSupport (wordDerivative word h) := by
   induction word with
@@ -229,7 +251,9 @@ theorem wordDerivative_compact (word : List (Fin 3)) (h : Space → ℝ)
   | cons i word ih => exact ih.fderiv_apply ℝ (EuclideanSpace.single i 1)
 
 /-- Every coordinate derivative of a smooth L² scalar with compact Laplacian
-is L², proved inductively from the noncircular first-derivative estimate. -/
+is L², proved inductively from the noncircular first-derivative estimate.
+@isnad1 id=memlp.3h2v.s9.bf2bcfec712f from=translated src=- shape=24df17e5 vocab=1149ad60
+-/
 theorem wordDerivative_memLp_of_laplacian_compact (h : Space → ℝ)
     (hh : ContDiff ℝ ∞ h) (hL2 : MemLp h 2 volume) (hcΔ : HasCompactSupport (Δ h))
     (word : List (Fin 3)) : MemLp (wordDerivative word h) 2 volume := by
@@ -254,6 +278,9 @@ def wordEnergyBound (C : ℝ) (h : Space → ℝ) : List (Fin 3) → ℝ
   | _ :: word => C * wordEnergyBound C h word +
       ∫ x, wordDerivative word (Δ h) x ^ 2
 
+/--
+@isnad1 id=le.5h3v.s11.de13db9ec7fd from=translated src=- shape=5b50f30a vocab=54c907dd
+-/
 theorem wordDerivative_energy_le (C : ℝ) (hC0 : 0 ≤ C)
     (hC : ∀ (f : Space → ℝ), ContDiff ℝ ∞ f → MemLp f 2 volume →
       HasCompactSupport (Δ f) →
@@ -286,7 +313,9 @@ theorem wordDerivative_energy_le (C : ℝ) (hC0 : 0 ≤ C)
 
 /-- Uniform finite energy and uniform energies of the compact Laplacian jets
 give uniform energies of every velocity jet. The parameter set is arbitrary,
-so this applies directly to a compact time interval. -/
+so this applies directly to a compact time interval.
+@isnad1 id=ex.5h3v.s10.81c2cc20991f from=translated src=- shape=5d4a52ae vocab=7bbc6a4e
+-/
 theorem wordDerivative_energy_uniform {ι : Type*} (h : ι → Space → ℝ)
     (hs : ∀ t, ContDiff ℝ ∞ (h t)) (hL2 : ∀ t, MemLp (h t) 2 volume)
     (hcΔ : ∀ t, HasCompactSupport (Δ (h t)))
@@ -312,7 +341,9 @@ theorem wordDerivative_energy_uniform {ι : Type*} (h : ι → Space → ℝ)
     (hL2 t) (hcΔ t) word).trans (hB t)⟩
 
 /-- Every scalar coordinate derivative of a divergence-free smooth finite
-energy velocity with compact vorticity is square integrable. -/
+energy velocity with compact vorticity is square integrable.
+@isnad1 id=memlp.4h3v.s10.3ad274079043 from=translated src=- shape=f09b714a vocab=2bf31259
+-/
 theorem component_wordDerivative_memLp (u : Space → Space)
     (hu : ContDiff ℝ ∞ u) (hL2 : MemLp u 2 volume)
     (hdiv : ∀ x, divergence u x = 0) (hc : HasCompactSupport (vectorCurl u))
@@ -330,7 +361,9 @@ theorem component_wordDerivative_memLp (u : Space → Space)
   exact wordDerivative_memLp_of_laplacian_compact _ hs hcomp hΔ word
 
 /-- Uniform velocity energy and uniform compact Laplacian-jet energies give
-uniform bounds for every scalar coordinate jet of a divergence-free velocity. -/
+uniform bounds for every scalar coordinate jet of a divergence-free velocity.
+@isnad1 id=ex.6h4v.s11.329cc613b977 from=translated src=- shape=ee50b7b0 vocab=b61d14f2
+-/
 theorem component_wordDerivative_energy_uniform {ι : Type*} (u : ι → Space → Space)
     (hu : ∀ t, ContDiff ℝ ∞ (u t)) (hL2 : ∀ t, MemLp (u t) 2 volume)
     (hdiv : ∀ t x, divergence (u t) x = 0)

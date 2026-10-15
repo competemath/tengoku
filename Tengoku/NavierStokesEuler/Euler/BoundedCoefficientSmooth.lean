@@ -13,6 +13,9 @@ universe u
 
 variable {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
+/--
+@isnad1 id=le.0h2v.s10.33000c20b400 from=translated src=- shape=6449eab1 vocab=1ee46836
+-/
 theorem fieldDerivativeMap_norm_le (DA : Space →ᵇ (Space →L[ℝ] V)) :
     ‖fieldDerivativeMap DA‖ ≤ ‖DA‖ :=
   (fieldDerivativeMap DA).opNorm_le_bound (norm_nonneg DA) (fieldDirection_norm_le DA)
@@ -41,6 +44,9 @@ def derivativeBundling : (Space →ᵇ (Space →L[ℝ] V)) →L[ℝ]
     change ‖fieldDerivativeMap A‖ ≤ 1 * ‖A‖
     simpa only [one_mul] using fieldDerivativeMap_norm_le A)
 
+/--
+@isnad1 id=eq.0h2v.s13.ec52de1d74ed from=translated src=- shape=c0038846 vocab=3a462898
+-/
 @[simp] theorem derivativeBundling_apply (A : Space →ᵇ (Space →L[ℝ] V)) :
     derivativeBundling A = fieldDerivativeMap A := rfl
 
@@ -61,9 +67,15 @@ def derivative (A : BoundedSmoothField V) : BoundedSmoothField (Space →L[ℝ] 
     change ∃ C : ℝ, ∀ x, ‖iteratedFDeriv ℝ n (fderiv ℝ (A.field : Space → V)) x‖ ≤ C
     simpa only [norm_iteratedFDeriv_fderiv] using A.bounded (n+1)
 
+/--
+@isnad1 id=eq.0h3v.s11.98360fa703d5 from=translated src=- shape=3f6b0c8a vocab=bdbcd064
+-/
 @[simp] theorem derivative_field_apply (A : BoundedSmoothField V) (x : Space) :
     A.derivative.field x = fderiv ℝ (A.field : Space → V) x := rfl
 
+/--
+@isnad1 id=hasfderi.0h3v.s10.3bd5f8a41869 from=translated src=- shape=64fac3aa vocab=9723b1a9
+-/
 theorem translation_hasFDerivAt (A : BoundedSmoothField V) (a : Space) :
     HasFDerivAt (translated A.field) (fieldDerivativeMap (translated A.derivative.field a)) a := by
   obtain ⟨M, hM⟩ := A.bounded 2
@@ -73,6 +85,9 @@ theorem translation_hasFDerivAt (A : BoundedSmoothField V) (a : Space) :
   rw [← norm_iteratedFDeriv_one, norm_iteratedFDeriv_fderiv]
   exact hM x
 
+/--
+@isnad1 id=eq.0h2v.s13.d6c61870a7ed from=translated src=- shape=18a627b0 vocab=db02f8bb
+-/
 theorem translation_fderiv (A : BoundedSmoothField V) :
     fderiv ℝ (translated A.field) = fun a => derivativeBundling (translated A.derivative.field a) :=
   funext (fun a => (A.translation_hasFDerivAt a).fderiv)
@@ -92,7 +107,9 @@ private theorem translation_contDiff_nat_aux (n : ℕ) :
     rw [A.translation_fderiv]
     exact (derivativeBundling (V := V)).contDiff.comp (ih (Space →L[ℝ] V) A.derivative)
 
-/-- Every spatial translation of an actual globally bounded smooth coefficient depends smoothly on its parameter. -/
+/-- Every spatial translation of an actual globally bounded smooth coefficient depends smoothly on its parameter.
+@isnad1 id=contdiff.0h2v.s8.a62468318d78 from=translated src=- shape=e7ce5ddd vocab=9e6d49b6
+-/
 theorem translation_contDiff (A : BoundedSmoothField V) : ContDiff ℝ ∞ (translated A.field) :=
   contDiff_infty.mpr (fun n => translation_contDiff_nat_aux n V A)
 

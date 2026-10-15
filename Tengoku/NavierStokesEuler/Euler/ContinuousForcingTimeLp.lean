@@ -17,6 +17,9 @@ open Set MeasureTheory EulerSmoothLimit EulerLpTranslation EulerTimeLp EulerVolt
 
 variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
+/--
+@isnad1 id=memlp.2h4v.s18.fd18b9d21ed6 from=translated src=- shape=e7d3ffd1 vocab=9f3b9e38
+-/
 theorem spatialJets_memLp (T : ℝ) (hT : 0 ≤ T) (A : ℝ → SmoothL2Field V)
     (hA : ∀ n, Continuous (fun t : Icc (0 : ℝ) T => (A t).jetLp n)) (n : ℕ) :
     MemLp (fun t => (A t).jetLp n) 2 (timeMeasure T) := by
@@ -27,6 +30,9 @@ theorem spatialJets_memLp (T : ℝ) (hT : 0 ≤ T) (A : ℝ → SmoothL2Field V)
   change (A (projIcc 0 T hT t)).jetLp n = (A t).jetLp n
   rw [projIcc_of_mem hT ht]
 
+/--
+@isnad1 id=eventual.3h5v.s19.0215f3fb463c from=translated src=- shape=265e3d91 vocab=6ec8e498
+-/
 theorem forcing_representation (T : ℝ) (hT : 0 ≤ T) (A : ℝ → SmoothL2Field V)
     (fC : C(Icc (0 : ℝ) T,L2Space V)) (hC : ∀ t, fC t = (A t).toLp)
     (f : TimeLp T (L2Space V))

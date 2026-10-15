@@ -20,6 +20,9 @@ def inverseUnit (F G : Space →L[ℝ] Space)
   val_inv := hFG
   inv_val := hGF
 
+/--
+@isnad1 id=hasderiv.4h5v.s12.4566fe6244b5 from=translated src=- shape=b2fecd11 vocab=825e8abd
+-/
 theorem inverse_hasDerivWithinAt (s : Set ℝ) (t : ℝ) (ht : t ∈ s)
     (F G : ℝ → Space →L[ℝ] Space) (F₁ : Space →L[ℝ] Space)
     (hFG : ∀ r ∈ s, (F r).comp (G r) = ContinuousLinearMap.id ℝ Space)
@@ -33,7 +36,9 @@ theorem inverse_hasDerivWithinAt (s : Set ℝ) (t : ℝ) (ht : t ∈ s)
   intro r hr
   exact (Ring.inverse_unit (inverseUnit (F r) (G r) (hFG r hr) (hGF r hr))).symm
 
-/-- F_t=MF implies (F⁻¹)_t=−F⁻¹M on the same closed time set. -/
+/-- F_t=MF implies (F⁻¹)_t=−F⁻¹M on the same closed time set.
+@isnad1 id=hasderiv.4h5v.s12.8090664aa569 from=translated src=- shape=805fc732 vocab=825e8abd
+-/
 theorem inverse_strain_hasDerivWithinAt (s : Set ℝ) (t : ℝ) (ht : t ∈ s)
     (F G : ℝ → Space →L[ℝ] Space) (M : Space →L[ℝ] Space)
     (hFG : ∀ r ∈ s, (F r).comp (G r) = ContinuousLinearMap.id ℝ Space)
@@ -48,7 +53,9 @@ def adjointVector (m₀ : Space) : (Space →L[ℝ] Space) →L[ℝ] Space :=
     (ContinuousLinearMap.adjoint.toContinuousLinearEquiv.toContinuousLinearMap
       : (Space →L[ℝ] Space) →L[ℝ] (Space →L[ℝ] Space))
 
-/-- The actual transported normal satisfies m_t=−M* m. -/
+/-- The actual transported normal satisfies m_t=−M* m.
+@isnad1 id=hasderiv.4h6v.s15.41cb9ebebf97 from=translated src=- shape=41804ad3 vocab=752941e8
+-/
 theorem normal_hasDerivWithinAt (s : Set ℝ) (t : ℝ) (ht : t ∈ s)
     (F G : ℝ → Space →L[ℝ] Space) (M : Space →L[ℝ] Space) (m₀ : Space)
     (hFG : ∀ r ∈ s, (F r).comp (G r) = ContinuousLinearMap.id ℝ Space)

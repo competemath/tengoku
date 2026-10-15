@@ -35,7 +35,9 @@ private local instance : NormedSpace ℝ C(Icc (0 : ℝ) T,E →L[ℝ] E) := inf
 private local instance : NormedAddCommGroup (C(Icc (0 : ℝ) T,E) →L[ℝ] C(Icc (0 : ℝ) T,E)) := inferInstance
 private local instance : NormedSpace ℝ (C(Icc (0 : ℝ) T,E) →L[ℝ] C(Icc (0 : ℝ) T,E)) := inferInstance
 
-/-- Normalization by a fixed profile preserves actual parameter regularity. -/
+/-- Normalization by a fixed profile preserves actual parameter regularity.
+@isnad1 id=contdiff.5h9v.s9.3a174284ee91 from=translated src=- shape=ef667d8b vocab=427bd03b
+-/
 theorem weightedSolution_contDiff {n : ℕ∞ω} (hB : ContDiff ℝ n B)
     (hf : ContDiff ℝ n f) (ha₀ : ContDiff ℝ n a₀) :
     ContDiff ℝ n (fun x => (U x).weightedSolution g hg (f x) (a₀ x)) := by
@@ -50,7 +52,9 @@ theorem weightedSolution_contDiff {n : ℕ∞ω} (hB : ContDiff ℝ n B)
     (E := C(Icc (0 : ℝ) T,E)) (F := C(Icc (0 : ℝ) T,E)) (normalize g hg)).comp hs
 
 /-- The exact differentiated ODE yields a triangular estimate in the fixed
-profile norm, with the same homogeneous and Green operators at every order. -/
+profile norm, with the same homogeneous and Green operators at every order.
+@isnad1 id=le.8h11v.s13.db7d9f09c8ef from=translated src=- shape=87a9ce04 vocab=ad24935d
+-/
 theorem weightedSolution_derivative_recurrence
     (hB : ContDiff ℝ ∞ B) (hf : ContDiff ℝ ∞ f) (ha₀ : ContDiff ℝ ∞ a₀)
     (hg₀ : g ⟨0,le_rfl,hT⟩ = 1) (C : ℝ) (hC : 0 ≤ C)
@@ -82,7 +86,9 @@ theorem weightedSolution_derivative_recurrence
 def forwardCost (T C A D CB : ℝ) : ℝ := 1 + C*A + C*T*(D+CB)
 
 /-- The actual forward solve loses one factorial shift. Its radius condition
-contains only the propagator, coefficient and data amplitudes, and time length. -/
+contains only the propagator, coefficient and data amplitudes, and time length.
+@isnad1 id=le.16h17v.s12.745686b6a576 from=translated src=- shape=2817cace vocab=8cbd0a78
+-/
 theorem weightedSolution_gevrey
     (hB : ContDiff ℝ ∞ B) (hf : ContDiff ℝ ∞ f) (ha₀ : ContDiff ℝ ∞ a₀)
     (hg₀ : g ⟨0,le_rfl,hT⟩ = 1)

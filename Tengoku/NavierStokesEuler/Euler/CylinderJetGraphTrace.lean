@@ -19,6 +19,9 @@ variable (P : ℝ) [Fact (0 < P)]
   (hperiod : ∀ (c : AddSubgroup.zmultiples P) z, f (z.1,(c : ℝ)+z.2)=f z)
 
 include hperiod in
+/--
+@isnad1 id=eq.1h5v.s10.2be6af6a0cc8 from=translated src=- shape=2a2e32f2 vocab=1e7d006f
+-/
 theorem fieldDerivative_descend (a : LiftTangent) (q : LiftDomain P) :
     fieldDerivative P a (descend P f) q = fderiv ℝ f (sectionPoint P q) a := by
   have he := localFieldLift_descend_cover P f hperiod (sectionPoint P q)
@@ -27,12 +30,18 @@ theorem fieldDerivative_descend (a : LiftTangent) (q : LiftDomain P) :
   rw [he,fderiv_comp_add_left,add_zero]
 
 include hperiod in
+/--
+@isnad1 id=contdiff.2h5v.s10.23ce34060dee from=translated src=- shape=e75add81 vocab=46f531b8
+-/
 theorem jetSeries_smooth (hf : ContDiff ℝ ∞ f) (n : ℕ) (q : LiftDomain P) :
     ContDiff ℝ ∞ (localFieldLift P (fun x => jetSeries P f x n) q) :=
   descend_smooth P (iteratedFDeriv ℝ n f) (iteratedFDeriv_deck P f hperiod n)
     (hf.iteratedFDeriv_right (m := ∞) (by simp)) q
 
 include hperiod in
+/--
+@isnad1 id=le.1h5v.s11.5b33f4ef8d2f from=translated src=- shape=675ae062 vocab=752d9e64
+-/
 theorem angularJet_bound (n : ℕ) (q : LiftDomain P) :
     ‖fieldDerivative P (0,1) (fun x => jetSeries P f x n) q‖ ≤ ‖jetSeries P f q (n+1)‖ := by
   change ‖fieldDerivative P (0,1) (descend P (iteratedFDeriv ℝ n f)) q‖ ≤ _
@@ -44,6 +53,9 @@ theorem angularJet_bound (n : ℕ) (q : LiftDomain P) :
     max_eq_right (by norm_num : (0 : ℝ) ≤ 1),mul_one] using h
 
 include hperiod in
+/--
+@isnad1 id=and.3h4v.s13.a7f12fd9dc27 from=translated src=- shape=527dcbb4 vocab=de365c3b
+-/
 theorem angularJet_memLp_and_bound (hf : ContDiff ℝ ∞ f) (n : ℕ)
     (hLp : MemLp (fun q => jetSeries P f q (n+1)) 2 (liftMeasure P)) :
     MemLp (fieldDerivative P (0,1) (fun q => jetSeries P f q n)) 2 (liftMeasure P) ∧
@@ -59,6 +71,9 @@ theorem angularJet_memLp_and_bound (hf : ContDiff ℝ ∞ f) (n : ℕ)
 
 variable [CompleteSpace W]
 
+/--
+@isnad1 id=and.8h6v.s10.c407e0c0ab95 from=translated src=- shape=1f5957cf vocab=863a3910
+-/
 theorem graph_norm_bound (g : LiftDomain P → W)
     (hg : ∀ q, ContDiff ℝ ∞ (localFieldLift P g q))
     (hLp : MemLp g 2 (liftMeasure P))
@@ -91,6 +106,9 @@ theorem graph_norm_bound (g : LiftDomain P → W)
       ring
 
 include hperiod in
+/--
+@isnad1 id=and.9h7v.s14.f5e76994c023 from=translated src=- shape=d45bcb86 vocab=2b5479ff
+-/
 theorem jet_graph_memLp_and_bound (hf : ContDiff ℝ ∞ f) (n : ℕ)
     (hLp : MemLp (fun q => jetSeries P f q n) 2 (liftMeasure P))
     (hLp₁ : MemLp (fun q => jetSeries P f q (n+1)) 2 (liftMeasure P))

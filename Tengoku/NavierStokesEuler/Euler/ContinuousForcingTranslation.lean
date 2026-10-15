@@ -26,6 +26,9 @@ def translate (a : Space) (f : C(K,L2Space V)) : C(K,L2Space V) :=
   (EulerLpTranslation.translation a).toContinuousLinearMap.compLeftContinuous ℝ K f
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h5v.s16.7c1fb4013d76 from=translated src=- shape=d60259e4 vocab=d644ae68
+-/
 @[simp] theorem translate_apply (a : Space) (f : C(K,L2Space V)) (t : K) :
     translate a f t = EulerLpTranslation.translation a (f t) := rfl
 
@@ -45,6 +48,9 @@ def orbitJetPath (n : ℕ) (a : Space) : C(K,Space [×n]→L[ℝ] L2Space V) :=
 
 include hf in
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.2h7v.s18.bbcac0f24385 from=translated src=- shape=9cb095a4 vocab=92ba7885
+-/
 theorem orbitJetPath_eq (n : ℕ) (a : Space) (t : K) :
     orbitJetPath A hA n a t = iteratedFDeriv ℝ n (fun b : Space => translate b f t) a := by
   change multilinearBundling (P := Space) (V := V) volume n
@@ -74,12 +80,16 @@ def forcingFamily : SpatialFamily K (L2Space V) where
 include hA hf
 
 /-- Literal smooth forcing slices with continuous spatial L² jets have a
-genuinely smooth translation orbit in the uniform time norm. -/
+genuinely smooth translation orbit in the uniform time norm.
+@isnad1 id=contdiff.2h4v.s17.f36d99f86969 from=translated src=- shape=ede828dd vocab=6becfd13
+-/
 theorem forcing_translation_contDiff : ContDiff ℝ ∞ (fun a : Space => translate a f) :=
   (forcingFamily A hA f hf).contDiff_field
 
 /-- Every actual orbit derivative is controlled by the original uniform-time
-ordinary L² spatial derivative with constant one. -/
+ordinary L² spatial derivative with constant one.
+@isnad1 id=le.2h6v.s18.ef0be3adc2ce from=translated src=- shape=0cb08bd2 vocab=492510e6
+-/
 theorem forcing_translation_jet_bound (n : ℕ) (a : Space) :
     ‖iteratedFDeriv ℝ n (fun b : Space => translate b f) a‖ ≤ ‖spatialJetPath A hA n‖ :=
   (forcingFamily A hA f hf).norm_iteratedFDeriv_field_le n a

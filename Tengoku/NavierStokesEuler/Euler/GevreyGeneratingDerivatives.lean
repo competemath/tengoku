@@ -21,10 +21,16 @@ variable {E F G : Type*}
 def derivativeSum (f : E → F) (N : ℕ) (z : ℝ) (x : E) : ℝ :=
   generatingSum (ftaylorSeries ℝ f x) N z
 
+/--
+@isnad1 id=le.1h6v.s6.14972aaefd08 from=translated src=- shape=450d3d8c vocab=b854a9c3
+-/
 theorem derivativeSum_nonneg (f : E → F) (N : ℕ) (z : ℝ) (x : E)
     (hz : 0 ≤ z) : 0 ≤ derivativeSum f N z x :=
   generatingSum_nonneg _ _ _ hz
 
+/--
+@isnad1 id=le.3h7v.s7.e927d944527b from=translated src=- shape=1641ba1c vocab=b18f6ef9
+-/
 theorem derivativeSum_add_le (f g : E → F) (N : ℕ) (z : ℝ) (x : E)
     (hf : ContDiffAt ℝ N f x) (hg : ContDiffAt ℝ N g x) (hz : 0 ≤ z) :
     derivativeSum (f+g) N z x ≤ derivativeSum f N z x+derivativeSum g N z x := by
@@ -40,6 +46,9 @@ theorem derivativeSum_add_le (f g : E → F) (N : ℕ) (z : ℝ) (x : E)
       exact norm_add_le _ _
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h3v.s7.1ececfedce75 from=translated src=- shape=bc9ccf10 vocab=a70b612f
+-/
 theorem norm_iteratedFDeriv_id_le (n : ℕ) (hn : 0 < n) (x : E) :
     ‖iteratedFDeriv ℝ n (id : E → E) x‖ ≤ if n = 1 then 1 else 0 := by
   obtain ⟨m,rfl⟩ := Nat.exists_eq_succ_of_ne_zero hn.ne'
@@ -55,6 +64,9 @@ theorem norm_iteratedFDeriv_id_le (n : ℕ) (hn : 0 < n) (x : E) :
     rw [Nat.succ_eq_add_one, ite_eq_right hm1, ← norm_iteratedFDeriv_fderiv]
     simp [hid, iteratedFDeriv_const_of_ne hm]
 
+/--
+@isnad1 id=le.1h4v.s5.b6cee209cf90 from=translated src=- shape=4436209a vocab=d339424a
+-/
 theorem derivativeSum_id_le (N : ℕ) (z : ℝ) (x : E) (hz : 0 ≤ z) :
     derivativeSum (id : E → E) N z x ≤ z := by
   calc
@@ -79,12 +91,18 @@ theorem derivativeSum_id_le (N : ℕ) (z : ℝ) (x : E) (hz : 0 ≤ z) :
       · exact le_rfl
       · exact hz
 
+/--
+@isnad1 id=le.2h5v.s6.302cc2ba5169 from=translated src=- shape=85ce36fe vocab=a8d65e23
+-/
 theorem derivativeSum_id_add_le (f : E → E) (N : ℕ) (z : ℝ) (x : E)
     (hf : ContDiffAt ℝ N f x) (hz : 0 ≤ z) :
     derivativeSum (id+f) N z x ≤ z+derivativeSum f N z x :=
   (derivativeSum_add_le id f N z x contDiffAt_id hf hz).trans
     (add_le_add (derivativeSum_id_le N z x hz) le_rfl)
 
+/--
+@isnad1 id=le.7h10v.s8.9f81ffef6f37 from=translated src=- shape=a7b9de38 vocab=e9fddd55
+-/
 theorem derivativeSum_comp_le (f : E → F) (g : F → G) (N : ℕ)
     (z B R : ℝ) (x : E) (hz : 0 ≤ z) (hB : 0 ≤ B) (hR : 0 ≤ R)
     (hf : ContDiffAt ℝ N f x) (hg : ContDiffAt ℝ N g (f x))
@@ -104,6 +122,9 @@ theorem derivativeSum_comp_le (f : E → F) (g : F → G) (N : ℕ)
     (ftaylorSeries ℝ g (f x)).taylorComp (ftaylorSeries ℝ f x) n from
     iteratedFDeriv_comp hg hf hnN]
 
+/--
+@isnad1 id=le.3h3v.s6.f2b535412571 from=translated src=- shape=b94a52af vocab=7172fdac
+-/
 theorem rational_fraction_mono (B x y : ℝ) (hB : 0 ≤ B)
     (hxy : x ≤ y) (hy : y < 1) :
     B*x/(1-x) ≤ B*y/(1-y) := by
@@ -112,7 +133,9 @@ theorem rational_fraction_mono (B x y : ℝ) (hB : 0 ≤ B)
   apply (div_le_div_iff₀ hx hy').2
   nlinarith [mul_le_mul_of_nonneg_left hxy hB]
 
-/-- The identity part of a flow costs exactly z in its generating sum. -/
+/-- The identity part of a flow costs exactly z in its generating sum.
+@isnad1 id=le.7h9v.s8.605da6347a60 from=translated src=- shape=6cde5c58 vocab=0ddecb01
+-/
 theorem derivativeSum_comp_id_add_le (f : E → E) (g : E → F) (N : ℕ)
     (z B R : ℝ) (x : E) (hz : 0 ≤ z) (hB : 0 ≤ B) (hR : 0 ≤ R)
     (hf : ContDiffAt ℝ N f x) (hg : ContDiffAt ℝ N g (x+f x))

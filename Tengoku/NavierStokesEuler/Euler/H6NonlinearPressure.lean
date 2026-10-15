@@ -13,7 +13,9 @@ open scoped ContDiff ENNReal Topology
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Actual strong-jet Hq blocks equal the classical external-word Hq norms of any smooth representative. -/
+/-- Actual strong-jet Hq blocks equal the classical external-word Hq norms of any smooth representative.
+@isnad1 id=eq.3h7v.s11.18e81f4eb1a4 from=translated src=- shape=44495099 vocab=1748d1f9
+-/
 theorem blockNorm_eq_classical {s q n : ℕ} {U : LiftL2 period}
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection s U) (h : n + q ≤ s)
     (f : LiftDomain period → Vector3)
@@ -30,7 +32,9 @@ theorem blockNorm_eq_classical {s q n : ℕ} {U : LiftL2 period}
     (iteratedFieldDerivative_smooth period w f hf)
 
 /-- Source18's shifted H⁶ estimate for the genuine pressure of b·∇e.
-The largest velocity order is N+1 and the largest pressure order is N. -/
+The largest velocity order is N+1 and the largest pressure order is N.
+@isnad1 id=le.14h15v.s12.826baa9dc22e from=translated src=- shape=1352f919 vocab=d5f6217c
+-/
 theorem nonlinear_pressure_shifted_bound {s : ℕ} {A : SmoothCoefficient period} {F : LiftL2 period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection s F)

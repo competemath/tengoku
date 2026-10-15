@@ -14,6 +14,9 @@ variable (k : ℝ) (m : Vector3) (f : LiftTangent → LiftTangent)
 
 def graphVelocity (x : Vector3) : Vector3 := (f (graphLinear k m x)).1
 
+/--
+@isnad1 id=eq.2h4v.s13.0c9d5ae3dddc from=translated src=- shape=d4054a9a vocab=1057101a
+-/
 theorem graphVelocity_trace (hf : Differentiable ℝ f)
     (hgraph : ∀ z, graphConstraint k m (f z)=0) (x : Vector3) :
     LinearMap.trace ℝ Vector3 (fderiv ℝ (graphVelocity k m f) x).toLinearMap =
@@ -38,6 +41,9 @@ theorem graphVelocity_trace (hf : Differentiable ℝ f)
       LinearMap.trace_comp_comm' J.toLinearMap (F.comp D).toLinearMap
     _ = LinearMap.trace ℝ LiftTangent D.toLinearMap := by rw [← hD]
 
+/--
+@isnad1 id=eq.3h4v.s13.1a2b719085e8 from=translated src=- shape=8f3e5fba vocab=e9d0acfb
+-/
 theorem graphVelocity_trace_zero (hf : Differentiable ℝ f)
     (hgraph : ∀ z, graphConstraint k m (f z)=0)
     (hdiv : ∀ z, LinearMap.trace ℝ LiftTangent (fderiv ℝ f z).toLinearMap=0)

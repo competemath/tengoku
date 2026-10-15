@@ -13,11 +13,16 @@ open Set MeasureTheory EulerLiftedGradientSpace EulerCylinderSobolevSpace
 
 variable (P : ℝ) [Fact (0 < P)]
 
+/--
+@isnad1 id=continuo.0h3v.s21.0112568bf70d from=translated src=- shape=14e0798e vocab=5e2ad392
+-/
 theorem sobolevKernel_continuous {q : ℕ} (u : SobolevSpace P q) :
     Continuous (fun s : ℝ => s • sobolevTranslation P q (angleShift P s) u) :=
   continuous_id.smul ((sobolevTranslation_continuous P u).comp (angleShift_continuous P))
 
-/-- The lifted operator is also the actual Bochner integral in the Sobolev space. -/
+/-- The lifted operator is also the actual Bochner integral in the Sobolev space.
+@isnad1 id=eq.0h3v.s22.133baaacb708 from=translated src=- shape=3e115638 vocab=a7e83754
+-/
 theorem sobolevPrimitive_eq_integral {q : ℕ} (u : SobolevSpace P q) :
     sobolevPrimitive P q u = P⁻¹ • (∫ s in (0 : ℝ)..P, s • sobolevTranslation P q (angleShift P s) u) := by
   apply value_injective P
@@ -28,6 +33,9 @@ theorem sobolevPrimitive_eq_integral {q : ℕ} (u : SobolevSpace P q) :
   change P⁻¹ • (∫ s in (0 : ℝ)..P, kernelCurve P (value P u) s) = _
   congr 1
 
+/--
+@isnad1 id=eq.0h4v.s21.b6cf7342f4ee from=translated src=- shape=13738595 vocab=7c103adf
+-/
 theorem pointEvaluation_translation (u : SobolevSpace P 3) (a x : LiftDomain P) :
     pointEvaluation P x (sobolevTranslation P 3 a u) = representative P u (x+a) := by
   apply pointEvaluation_eq P x (sobolevTranslation P 3 a u)
@@ -38,6 +46,9 @@ theorem pointEvaluation_translation (u : SobolevSpace P 3) (a x : LiftDomain P) 
   change translation P a (value P u) y = _
   exact hy.trans hr
 
+/--
+@isnad1 id=eq.0h3v.s21.613bd8c3e555 from=translated src=- shape=852f62d5 vocab=05cfee7a
+-/
 theorem pointEvaluation_primitive_kernel (u : SobolevSpace P 3) (x : LiftDomain P) :
     pointEvaluation P x (sobolevPrimitive P 3 u) =
       P⁻¹ • (∫ s in (0 : ℝ)..P, s • representative P u (x+angleShift P s)) := by
@@ -51,7 +62,9 @@ theorem pointEvaluation_primitive_kernel (u : SobolevSpace P 3) (x : LiftDomain 
     s • representative P u (x+angleShift P s)
   rw [map_smul, pointEvaluation_translation]
 
-/-- Evaluation of the constructed L² operator gives the actual normalized integral. -/
+/-- Evaluation of the constructed L² operator gives the actual normalized integral.
+@isnad1 id=eq.3h5v.s21.ab09fe41d786 from=translated src=- shape=0fc48a22 vocab=f856ac42
+-/
 theorem pointEvaluation_primitive_classical (u : SobolevSpace P 3)
     (f : LiftDomain P → Vector3) (hf : Continuous f)
     (hrep : (value P u : LiftDomain P → Vector3)=ᵐ[liftMeasure P] f)
@@ -69,7 +82,9 @@ theorem pointEvaluation_primitive_classical (u : SobolevSpace P 3)
     (hf.comp (continuous_const.prodMk (AddCircle.continuous_mk' P))) hp (hmean y) θ
   simpa only [angleShift, Prod.mk_add_mk, add_zero, AddCircle.coe_add] using h.symm
 
-/-- Classical identification holds as equality of actual L² representatives. -/
+/-- Classical identification holds as equality of actual L² representatives.
+@isnad1 id=eventual.4h4v.s16.586ab21a42ed from=translated src=- shape=c18097ca vocab=8a5394fb
+-/
 theorem primitive_ae_classical (u : SobolevSpace P 3)
     (f q : LiftDomain P → Vector3) (hf : Continuous f)
     (hrep : (value P u : LiftDomain P → Vector3)=ᵐ[liftMeasure P] f)

@@ -19,10 +19,16 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 def radial (x : E) : E := (1+‖x‖)⁻¹ • x
 
+/--
+@isnad1 id=le.0h2v.s5.b2742b800faa from=translated src=- shape=9054a343 vocab=38841649
+-/
 theorem radial_norm (x : E) : ‖radial x‖ ≤ 1 := by
   rw [radial,norm_smul,Real.norm_of_nonneg (inv_nonneg.mpr (by positivity)),← div_eq_inv_mul]
   exact (div_le_one (by positivity)).mpr (by linarith [norm_nonneg x])
 
+/--
+@isnad1 id=le.0h3v.s6.5a5dae199250 from=translated src=- shape=d63facfa vocab=540b3dbc
+-/
 theorem radial_sub_norm (x y : E) : ‖radial x-radial y‖ ≤ 2*‖x-y‖ := by
   have hx : 0 < 1+‖x‖ := by positivity
   have hy : 0 < 1+‖y‖ := by positivity
@@ -55,15 +61,24 @@ theorem radial_sub_norm (x y : E) : ‖radial x-radial y‖ ≤ 2*‖x-y‖ := b
       _ ≤ _ := by simpa only [mul_one] using h1
   linarith
 
+/--
+@isnad1 id=lipschit.0h1v.s5.fb10aa1f9556 from=translated src=- shape=80effe51 vocab=5204ebe0
+-/
 theorem radial_lipschitz : LipschitzWith 2 (radial : E → E) :=
   lipschitzWith_iff_norm_sub_le.mpr radial_sub_norm
 
 def normalized (B : E →L[ℝ] E →L[ℝ] E) (x : E) : E := B (radial x) (radial x)
 
+/--
+@isnad1 id=le.0h4v.s10.f9353045d209 from=translated src=- shape=f3249bc6 vocab=b5c6bc27
+-/
 theorem bilinear_bound (B : E →L[ℝ] E →L[ℝ] E) (x y : E) :
     ‖B x y‖ ≤ ‖B‖*‖x‖*‖y‖ :=
   ((B x).le_opNorm y).trans (mul_le_mul_of_nonneg_right (B.le_opNorm x) (norm_nonneg y))
 
+/--
+@isnad1 id=lipschit.0h2v.s10.d49a3e1baa57 from=translated src=- shape=261a8bd2 vocab=1b31e889
+-/
 theorem normalized_lipschitz (B : E →L[ℝ] E →L[ℝ] E) :
     LipschitzWith (4*‖B‖₊) (normalized B) := by
   apply lipschitzWith_iff_norm_sub_le.mpr
@@ -84,6 +99,9 @@ theorem normalized_lipschitz (B : E →L[ℝ] E →L[ℝ] E) :
       (radial_sub_norm x y) (norm_nonneg _) (by positivity)).trans_eq (by ring)
   exact (add_le_add h1 h2).trans_eq (by simp only [NNReal.coe_mul,NNReal.coe_ofNat,coe_nnnorm]; ring)
 
+/--
+@isnad1 id=eq.0h3v.s10.f36a7b183daf from=translated src=- shape=c26a5496 vocab=baf8fcc1
+-/
 theorem normalized_eq (B : E →L[ℝ] E →L[ℝ] E) (x : E) :
     normalized B x=((1+‖x‖)⁻¹)^2 • B x x := by
   simp only [normalized,radial,map_smul,smul_apply,smul_smul,pow_two]
@@ -94,6 +112,9 @@ section Hilbert
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
 
+/--
+@isnad1 id=ex.1h3v.s11.902df00406a1 from=translated src=- shape=3b0c4074 vocab=696ebae1
+-/
 theorem exists_global_quadratic (B : E →L[ℝ] E →L[ℝ] E)
     (hB : ∀ x, ⟪x,B x x⟫_ℝ=0) (x : E) :
     ∃ u : ℝ → E, u 0=x ∧ (∀ t, HasDerivAt u (B (u t) (u t)) t) ∧

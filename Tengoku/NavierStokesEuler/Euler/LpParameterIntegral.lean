@@ -16,6 +16,9 @@ variable {α β E : Type*} [MeasurableSpace α] [MeasurableSpace β]
   [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 omit [NormedSpace ℝ E] in
+/--
+@isnad1 id=eq.1h4v.s7.8c243dfa2662 from=translated src=- shape=f681cdec vocab=d6588bbe
+-/
 theorem integral_norm_sq_eq (μ : Measure α) (f : α → E) (hf : MemLp f 2 μ) :
     (∫ x, ‖f x‖^2 ∂μ) = (eLpNorm f 2 μ).toReal^2 := by
   have he := EulerLpBochnerRealization.norm_sq_eq_integral (hf.toLp f)
@@ -25,7 +28,9 @@ theorem integral_norm_sq_eq (μ : Measure α) (f : α → E) (hf : MemLp f 2 μ)
   filter_upwards [hf.coeFn_toLp] with x hx
   rw [hx]
 
-/-- Bochner Cauchy--Schwarz against the constant function one. -/
+/-- Bochner Cauchy--Schwarz against the constant function one.
+@isnad1 id=le.1h4v.s7.22e65e2f7c8b from=translated src=- shape=c2e9d9dd vocab=9167289d
+-/
 theorem norm_integral_sq_le (ν : Measure α) [IsFiniteMeasure ν]
     (f : α → E) (hf : MemLp f 2 ν) :
     ‖∫ s, f s ∂ν‖^2 ≤ ν.real univ*(∫ s, ‖f s‖^2 ∂ν) := by
@@ -47,7 +52,9 @@ theorem norm_integral_sq_le (ν : Measure α) [IsFiniteMeasure ν]
 
 /-- The integral of a raw family with uniform L² bound C has L² bound
 `measure(parameter space) * C`.  This applies to time integration on a
-finite interval and to periodic parameter averaging. -/
+finite interval and to periodic parameter averaging.
+@isnad1 id=and.3h7v.s8.cfced08f3f08 from=translated src=- shape=5de25dc9 vocab=bbb77964
+-/
 theorem integral_memLp_and_bound
     (ν : Measure α) [IsFiniteMeasure ν] (μ : Measure β) [SFinite μ]
     (f : α × β → E) (hf : AEStronglyMeasurable f (ν.prod μ))
@@ -104,6 +111,9 @@ theorem integral_memLp_and_bound
       _ = _ := by rw [integral_const]; simp only [smul_eq_mul]; ring
   exact (sq_le_sq₀ ENNReal.toReal_nonneg (mul_nonneg measureReal_nonneg hC)).mp hfinal
 
+/--
+@isnad1 id=and.4h6v.s8.f7487256219c from=translated src=- shape=5faf6fd6 vocab=38241a6a
+-/
 theorem intervalIntegral_memLp_and_bound
     (T : ℝ) (hT : 0 ≤ T) (μ : Measure β) [SFinite μ]
     (f : ℝ × β → E)
