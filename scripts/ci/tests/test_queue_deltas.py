@@ -197,6 +197,111 @@ class WorkflowSnippets(unittest.TestCase):
         self.assertGreater(seen, 0, "the pattern found no snippet: the test would pass for nothing")
 
 
+def run_step(run: str, cwd: Path, shims: dict[str, str], env: dict[str, str]) -> subprocess.CompletedProcess:
+    """A workflow step's shell as the runner runs it (bash -e -o pipefail), with the named commands replaced."""
+    bin_ = cwd.parent / (cwd.name + "-bin")
+    bin_.mkdir(exist_ok=True)
+    for name, text in shims.items():
+        (bin_ / name).write_text("#!/usr/bin/env bash\n" + text)
+        (bin_ / name).chmod(0o755)
+    full = {**os.environ, "PATH": f"{bin_}{os.pathsep}{os.environ['PATH']}", **env}
+    return subprocess.run(["bash", "-e", "-o", "pipefail", "-c", run], cwd=cwd, env=full, capture_output=True, text=True)
+
+
+class QueueStepsSurviveTheirFailures(unittest.TestCase):
+    """CodeRabbit on the port (tengoku#563): a slow release download, a failed `gh run list` or a lost race for a release each ended a step under
+    `bash -e`, and the verdict then removed a group whose change was fine. Run as the shell they are."""
+
+    TIMEOUT = 'while [ "$1" = -k ]; do shift 2; done; shift; [ -n "$SHIM_TIMEOUT" ] && exit 124; exec "$@"\n'
+    LAKE_PY = (
+        "import json, os, sys\n"
+        'if os.environ.get("SHIM_RESTORE_FAILS"): sys.exit(3)\n'
+        'print(json.dumps({"base": "a" * 40, "tag": "cache-x", "revs": 2, "applied": [], "skipped": [], "refused": [], "seconds": 1, "base_mappings": "present"}))\n'
+    )
+
+    def seed(self, **env):
+        run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d) / "w"
+            (root / "scripts").mkdir(parents=True)
+            (root / ".lake" / "build").mkdir(parents=True)
+            (root / ".lake" / ".cache-base").write_text("cache-x " + "a" * 40 + "\n")
+            (root / "scripts" / "cache.sh").write_text("#!/usr/bin/env bash\necho unpacked\n")
+            (root / "scripts" / "cache.sh").chmod(0o755)
+            (root / "scripts" / "lake_cache.py").write_text(self.LAKE_PY)
+            summary = Path(d) / "summary.md"
+            r = run_step(run, root, {"timeout": self.TIMEOUT}, {"GITHUB_STEP_SUMMARY": str(summary), **env})
+            return (
+                r,
+                (root / ".lake" / ".base-missing").exists(),
+                (root / "base-tag.txt").read_text() if (root / "base-tag.txt").exists() else None,
+                summary.read_text() if summary.exists() else "",  # read before the temporary directory goes
+            )
+
+    def test_a_restore_that_reaches_its_cap_does_not_fail_the_step_and_marks_the_merge_needs_nightly(self):
+        r, marker, tag, _ = self.seed(SHIM_TIMEOUT="1")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertTrue(marker, "the base-missing marker is what turns the merge into needs-nightly")
+        self.assertEqual(tag, "cache-x\n")
+        self.assertIn("::warning::the restore did not finish", r.stdout)
+
+    def test_a_restore_that_fails_is_treated_the_same_way(self):
+        r, marker, _, _ = self.seed(SHIM_RESTORE_FAILS="1")
+        self.assertEqual((r.returncode, marker), (0, True), r.stdout + r.stderr)
+
+    def test_a_restore_that_works_leaves_no_marker_and_says_what_it_did(self):
+        r, marker, tag, summary = self.seed()
+        self.assertEqual((r.returncode, marker, tag), (0, False, "cache-x\n"), r.stdout + r.stderr)
+        self.assertIn("restore: base cache-x", summary)
+
+    def publish(self, state: str, gh: str, files: dict[str, str]):
+        run = step(load()["jobs"]["queue-gate"], "Publish it")["run"]
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d) / "w"
+            (root / "delta-out").mkdir(parents=True)
+            (root / "delta-out" / "base-tag").write_text("cache-x\n")
+            for name, text in files.items():
+                (root / "delta-out" / name).write_text(text)
+            log = Path(d) / "gh.log"
+            body = 'echo "$*" >> "$GH_LOG"\n' + gh
+            env = {
+                "STATE": state,
+                "GITHUB_REPOSITORY": "o/r",
+                "GITHUB_REF": "refs/heads/gh-readonly-queue/main/pr-1-" + "b" * 40,
+                "TEST_FAIL": "",
+                "GH_LOG": str(log),
+                "GH_TOKEN": "x",
+                "STATE_DIR": d,
+            }
+            r = run_step(run, root, {"gh": body, "sleep": "exit 0\n"}, env)
+            return r, (log.read_text().splitlines() if log.exists() else [])
+
+    def test_a_failed_run_list_does_not_fail_the_needs_nightly_publish(self):
+        gh = 'case "$1 $2" in "run list") exit 1;; esac\nexit 0\n'
+        r, calls = self.publish("needs-nightly", gh, {"needs-nightly": "needs-nightly:over-budget\n"})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertTrue(any(c.startswith("workflow run build.yml") for c in calls), calls)
+
+    def test_a_release_created_by_a_concurrent_group_is_accepted_and_the_create_targets_main(self):
+        gh = (
+            'case "$1 $2" in\n'
+            '  "release view") [ -f "$STATE_DIR/exists" ] && exit 0 || exit 1;;\n'
+            '  "release create") touch "$STATE_DIR/exists"; exit 1;;\n'  # lost the race: it exists now, and this call failed
+            "esac\nexit 0\n"
+        )
+        r, calls = self.publish("complete", gh, {"d-" + "c" * 40 + ".tar.zst": "x"})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        create = next(c for c in calls if c.startswith("release create"))
+        self.assertIn("--target main", create)
+        self.assertNotIn("GITHUB_SHA", create)
+        self.assertTrue(any(c.startswith("release upload lake-deltas-cache-x") for c in calls), calls)
+
+    def test_a_release_that_cannot_be_created_and_does_not_exist_still_fails_the_step(self):
+        gh = 'case "$1 $2" in "release view") exit 1;; "release create") exit 1;; esac\nexit 0\n'
+        r, _ = self.publish("complete", gh, {"d-" + "c" * 40 + ".tar.zst": "x"})
+        self.assertNotEqual(r.returncode, 0)
+
+
 class Telemetry(unittest.TestCase):
     """The queue's build job and the nightly's build job each leave the runner's disk, memory and OOM kills behind (scripts/ci/runner_telemetry.py)."""
 

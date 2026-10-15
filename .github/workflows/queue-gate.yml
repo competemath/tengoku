@@ -118,13 +118,21 @@ jobs:
         run: |
           scripts/cache.sh get 2>&1 | tail -3
           { df -h / | tail -1; du -sh .lake/build; } 2>&1 | sed 's/^/after seeding: /'
-          timeout -k 30 5m python3 scripts/lake_cache.py restore --fresh | tee restore.json
-          python3 - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          # A restore that hits its cap or fails (a slow release download, a day of sequential deltas) must not eject the group: a missing delta only
+          # costs a rebuild. The group then merges marked needs-nightly (the marker below), and Lake compiles what it must.
+          if ! timeout -k 30 5m python3 scripts/lake_cache.py restore --fresh > restore.json; then
+            echo "::warning::the restore did not finish (a slow or failing download): no deltas are used, this merge is marked needs-nightly"
+            echo "restore-failed" > .lake/.base-missing
+            : > restore.json
+          fi
+          if [ -s restore.json ]; then
+            python3 - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
           import json
           s = json.load(open("restore.json"))
           print(f"restore: base {s['tag']} ({s['base'][:9]}), {s['revs']} merge(s) since it, {len(s['applied'])} delta(s) applied, {len(s['skipped'])} without a delta, {len(s['refused'])} refused, {s['seconds']} s; base mappings {s['base_mappings']}")
           for r in s["refused"]: print(f"::warning::refused delta {r}")
           PY
+          fi
           cut -d' ' -f1 .lake/.cache-base > base-tag.txt
       # A group made only of the pipeline's own staging PRs (author vars.TENGOKU_BOT, branch bank/…, nothing but
       # data/staging/ changed) is not held back by a file that does not build yet: those records land in staging and
@@ -343,12 +351,15 @@ jobs:
           case "$STATE" in
             empty) echo "this group changed no build output: nothing to publish"; exit 0 ;;
             needs-nightly) echo "::warning::$(cat delta-out/needs-nightly): this merge publishes no delta; a nightly follows"
-              busy=$(( $(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --status in_progress --json databaseId -q 'length') + $(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --status queued --json databaseId -q 'length') ))
+              busy=$(( $(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --status in_progress --json databaseId -q 'length' || echo 0) + $(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --status queued --json databaseId -q 'length' || echo 0) ))
               if [ "$busy" = 0 ]; then gh workflow run build.yml -R "$GITHUB_REPOSITORY" --ref main && echo "started a cache build"; else echo "a cache build is already running"; fi
               exit 0 ;;
           esac
-          gh release view "$rel" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create "$rel" -R "$GITHUB_REPOSITORY" --title "deltas on $tag" --prerelease --target "$GITHUB_SHA" \
-            --notes "What each merge since the nightly cache $tag changed in the compiled tree, one attested file per merge commit (scripts/lake_cache.py restore). Collected with its nightly." >/dev/null
+          # Normally the nightly opened this release. When it did not: target main (the merge group's commit may never reach main, and the job token cannot
+          # tag a commit whose workflows differ from main's), and accept a create that lost the race to a concurrent group (the release exists then).
+          gh release view "$rel" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create "$rel" -R "$GITHUB_REPOSITORY" --title "deltas on $tag" --prerelease --target main \
+            --notes "What each merge since the nightly cache $tag changed in the compiled tree, one attested file per merge commit (scripts/lake_cache.py restore). Collected with its nightly." >/dev/null 2>&1 \
+            || gh release view "$rel" -R "$GITHUB_REPOSITORY" >/dev/null
           for attempt in 1 2 3; do
             if gh release upload "$rel" delta-out/d-*.tar.zst -R "$GITHUB_REPOSITORY" --clobber; then echo "published:"; printf '  %s\n' delta-out/d-*.tar.zst; exit 0; fi
             echo "upload attempt $attempt failed; retrying"; sleep $((attempt * 15))
