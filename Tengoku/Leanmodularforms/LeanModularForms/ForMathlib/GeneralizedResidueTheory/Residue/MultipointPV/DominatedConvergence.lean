@@ -383,7 +383,9 @@ private lemma A_eq_integral_A_int (S0 : Finset ℂ) (f g_reg : ℂ → ℂ) (γ 
       (pvIntegrand_intervalIntegrable_of_nonempty S0 f g_reg γ hS0_ne hg_decomp hg_cont hε)
       hSum_int]
 
-/-- Core dominated convergence for multi-point PV decomposition. -/
+/-- Core dominated convergence for multi-point PV decomposition.
+@isnad1 id=other.4h4v.s9.18a5f8c877aa from=translated src=- shape=4fb35e0e vocab=1c7f6edd
+-/
 lemma dominated_convergence_multipoint_helper (S0 : Finset ℂ) (f : ℂ → ℂ)
     (γ : PiecewiseC1Immersion) (g_reg : ℂ → ℂ) (_h_crossing_null : MeasureTheory.volume
       {t | t ∈ Icc γ.a γ.b ∧ γ.toFun t ∈ (S0 : Set ℂ)} = 0)
@@ -425,7 +427,9 @@ lemma dominated_convergence_multipoint_helper (S0 : Finset ℂ) (f : ℂ → ℂ
     filter_upwards [self_mem_nhdsWithin] with ε hε
     exact (h_A_eq_int ε hε).symm
 
-/-- Difference integrand converges to regular part integral. -/
+/-- Difference integrand converges to regular part integral.
+@isnad1 id=other.4h4v.s9.3c746d55d6c1 from=translated src=- shape=95e7e073 vocab=1c7f6edd
+-/
 lemma multipointPV_diff_tendsto (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Immersion)
     (_h_crossing_null : MeasureTheory.volume
       {t | t ∈ Icc γ.a γ.b ∧ γ.toFun t ∈ (S0 : Set ℂ)} = 0) (g_reg : ℂ → ℂ)
@@ -443,7 +447,9 @@ lemma multipointPV_diff_tendsto (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : Piecew
   dominated_convergence_multipoint_helper S0 f γ g_reg _h_crossing_null _hg_decomp
     hg_cont hS0_sep
 
-/-- Multi-point PV equals sum of single-point PVs when the regular part integral vanishes. -/
+/-- Multi-point PV equals sum of single-point PVs when the regular part integral vanishes.
+@isnad1 id=eq.7h4v.s9.7f4768f2892b from=translated src=- shape=aa13b60d vocab=294040f0
+-/
 lemma multipointPV_eq_sum_of_integral_zero (S0 : Finset ℂ) (f : ℂ → ℂ)
     (γ : PiecewiseC1Immersion) (_h_crossing_null : MeasureTheory.volume
       {t | t ∈ Icc γ.a γ.b ∧ γ.toFun t ∈ (S0 : Set ℂ)} = 0) (_g_reg : ℂ → ℂ)

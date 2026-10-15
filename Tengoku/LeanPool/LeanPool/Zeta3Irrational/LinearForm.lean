@@ -20,10 +20,16 @@ namespace LeanPool.Zeta3Irrational
 open scoped Nat
 open BigOperators
 
+/--
+@isnad1 id=ne.0h1v.s5.94ef3cf49227 from=translated src=- shape=e177a0c1 vocab=7889fc51
+-/
 lemma d_cube_ne_zero {r : ℕ} : ((d (Finset.Icc 1 r) ^ 3) : ℝ) ≠ (0 : ℝ) := by
   simp only [ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, pow_eq_zero_iff, Nat.cast_eq_zero]
   apply d_ne_zero; simp
 
+/--
+@isnad1 id=ex.0h1v.s7.77bbd10ffb59 from=translated src=- shape=875b174d vocab=41740744
+-/
 lemma J_rr_linear (r : ℕ) :
     ∃ a : ℤ,
       J r r = 2 * ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3 -
@@ -51,6 +57,9 @@ lemma J_rr_linear (r : ℕ) :
       not_false_eq_true, pow_eq_zero_iff, Nat.cast_eq_zero]
       linarith
 
+/--
+@isnad1 id=eq.2h2v.s6.ffe05392a0f2 from=translated src=- shape=3478750d vocab=9f14b117
+-/
 lemma Icc_diff_Icc {r s : ℕ} (_ : r > s) (_ : ¬s = 0) :
     Finset.Icc 1 r \ Finset.Icc 1 s = Finset.Icc (s + 1) r := by
   ext x
@@ -62,6 +71,9 @@ lemma Icc_diff_Icc {r s : ℕ} (_ : r > s) (_ : ¬s = 0) :
     · linarith
     · simp_all
 
+/--
+@isnad1 id=eq.1h2v.s7.0718a48cdf88 from=translated src=- shape=1b8abe09 vocab=6239f68e
+-/
 lemma one_div_sum_eq {r s : ℕ} (h : r > s) :
     ∑ m ∈ Finset.Icc 1 r, (1 / m ^ 2 : ℝ) - ∑ m ∈ Finset.Icc 1 s, (1 / m ^ 2 : ℝ) =
     ∑ m ∈ Finset.Icc 1 (r - s), (1 / (s + m) ^ 2 : ℝ) := by
@@ -75,6 +87,9 @@ lemma one_div_sum_eq {r s : ℕ} (h : r > s) :
         show s + 1 = 1 + s by omega, show r - s + 1 + s = r + 1 by omega]
   · exact Finset.Icc_subset_Icc_right (LT.lt.le (gt_iff_lt.1 h))
 
+/--
+@isnad1 id=ex.1h2v.s5.c69b77b32439 from=translated src=- shape=917e3271 vocab=eb26d544
+-/
 lemma J_rs_linear {r s : ℕ} (h : r > s) : ∃ a : ℤ, J r s = a / (d (Finset.Icc 1 r)) ^ 3 := by
   rw [J_rs (by linarith)]
   simp_rw [eq_div_iff d_cube_ne_zero, one_div_sum_eq h]
@@ -110,6 +125,9 @@ lemma J_rs_linear {r s : ℕ} (h : r > s) : ∃ a : ℤ, J r s = a / (d (Finset.
     rw [← Nat.cast_sub (by linarith)]
     norm_cast; linarith
 
+/--
+@isnad1 id=eq.0h2v.s9.03733c384c8d from=translated src=- shape=293e3ca1 vocab=c5b9d6ea
+-/
 lemma multi_integral_sum_comm (c : ℕ → ℤ) :
     ∫ (x : ℝ × ℝ) in Set.Ioo 0 1 ×ˢ Set.Ioo 0 1,
     ∑ x_1 ∈ Finset.range (n + 1), ∑ x_2 ∈ Finset.range (n + 1),
@@ -156,6 +174,9 @@ lemma multi_integral_sum_comm (c : ℕ → ℤ) :
       apply MeasureTheory.Integrable.mul_const
       exact integrableOn_J_rs i j
 
+/--
+@isnad1 id=eq.0h4v.s7.23782a2041e1 from=translated src=- shape=6d02da52 vocab=e38eb96c
+-/
 lemma multi_integral_mul_const (c d : ℕ) (p q : ℝ) :
     ∫ (x : ℝ × ℝ) in Set.Ioo 0 1 ×ˢ Set.Ioo 0 1,
       -(x.1 * x.2).log / (1 - x.1 * x.2) * p * x.1 ^ c * q * x.2 ^ d =
@@ -180,11 +201,17 @@ noncomputable def q (r s : ℕ) : ℤ :=
   else if r < s then 0
   else 2
 
+/--
+@isnad1 id=eq.0h2v.s3.d6f92d01d4e8 from=translated src=- shape=ab795eaa vocab=0c5e9b2e
+-/
 lemma J_symm (r s : ℕ) : J r s = J s r := by
   if h : r = s then rw [h]
   else
     rw [J_rs (by tauto), J_rs (by tauto), ← neg_div_neg_eq]; ring
 
+/--
+@isnad1 id=ex.0h0v.s7.9a2267286ff4 from=translated src=- shape=7d0e24e8 vocab=31d43fde
+-/
 lemma linear_int_aux : ∃ a b : ℕ → ℕ → ℤ, ∀ r s : ℕ, J r s =
     b r s * ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3 +
       a r s / (d (Finset.Icc 1 (Nat.max r s))) ^ 3 := by

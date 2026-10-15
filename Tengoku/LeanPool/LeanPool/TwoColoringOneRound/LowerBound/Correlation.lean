@@ -37,6 +37,9 @@ instance (n : Nat) : MulAction (G n) (Vertex n) where
   one_smul v := by exact Subtype.ext rfl
   mul_smul σ τ v := by exact Subtype.ext rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.dbf312438a86 from=translated src=- shape=5b93cf7f vocab=01b5a88e
+-/
 @[simp] lemma vertex_smul_apply {n : Nat} (σ : G n) (v : Vertex n) (i : Fin 3) :
     (σ • v).1 i = σ (v.1 i) := rfl
 
@@ -48,6 +51,9 @@ instance (n : Nat) : MulAction (G n) (Edge n) where
   one_smul e := by exact Subtype.ext rfl
   mul_smul σ τ e := by exact Subtype.ext rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.8830e190ae76 from=translated src=- shape=5b93cf7f vocab=2cf6b3ac
+-/
 @[simp] lemma edge_smul_apply {n : Nat} (σ : G n) (e : Edge n) (i : Fin 4) :
     (σ • e).1 i = σ (e.1 i) := rfl
 
@@ -55,6 +61,9 @@ instance (n : Nat) : MulAction (G n) (Edge n) where
 def spin (b : Bool) : Q :=
   if b then (-1 : Q) else (1 : Q)
 
+/--
+@isnad1 id=eq.0h1v.s4.de3a96e5eaf8 from=translated src=- shape=7bab346c vocab=fa436b5f
+-/
 lemma spin_mul_self (b : Bool) : spin b * spin b = 1 := by cases b <;> simp [spin]
 
 /-- Imported auxiliary declaration for the 2-coloring one-round formalization. -/
@@ -65,10 +74,16 @@ def corr {n : Nat} (f : Coloring n) (u v : Vertex n) : Q :=
 noncomputable def corrAvg {n : Nat} (f : Coloring n) (u v : Vertex n) : Q :=
   (∑ σ : G n, corr f (σ • u) (σ • v)) / (Fintype.card (G n) : Q)
 
+/--
+@isnad1 id=lt.0h1v.s4.13598e1baf23 from=translated src=- shape=979d170b vocab=d5181379
+-/
 lemma cardG_pos (n : Nat) : 0 < (Fintype.card (G n) : Q) := by
   have : 0 < Fintype.card (G n) := Fintype.card_pos
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h5v.s6.ccf44d011646 from=translated src=- shape=06940992 vocab=35378c04
+-/
 lemma corrAvg_smul {n : Nat} (f : Coloring n) (τ : G n) (u v : Vertex n) :
     corrAvg f (τ • u) (τ • v) = corrAvg f u v := by
   classical
@@ -85,12 +100,21 @@ lemma corrAvg_smul {n : Nat} (f : Coloring n) (τ : G n) (u v : Vertex n) :
   -- Rewrite the LHS numerator using `hsum'`.
   simp [hsum', g]
 
+/--
+@isnad1 id=le.0h2v.s4.242c1e8c7d6a from=translated src=- shape=24202273 vocab=426f4ca4
+-/
 lemma corr_le_one (b0 b1 : Bool) : spin b0 * spin b1 ≤ (1 : Q) := by
   cases b0 <;> cases b1 <;> simp [spin]
 
+/--
+@isnad1 id=le.0h2v.s4.d7e63eb3af09 from=translated src=- shape=41d2762b vocab=77b1d70a
+-/
 lemma neg_one_le_corr (b0 b1 : Bool) : (-1 : Q) ≤ spin b0 * spin b1 := by
   cases b0 <;> cases b1 <;> simp [spin]
 
+/--
+@isnad1 id=le.0h4v.s4.bbd18b2a45f8 from=translated src=- shape=62a99cd4 vocab=31772458
+-/
 lemma corrAvg_le_one {n : Nat} (f : Coloring n) (u v : Vertex n) : corrAvg f u v ≤ 1 := by
   classical
   unfold corrAvg corr
@@ -109,6 +133,9 @@ lemma corrAvg_le_one {n : Nat} (f : Coloring n) (u v : Vertex n) : corrAvg f u v
     simp_all
   exact (div_le_one (cardG_pos n)).2 hsum'
 
+/--
+@isnad1 id=le.0h4v.s4.01d31e84396c from=translated src=- shape=ec9d7bf3 vocab=36d03dd9
+-/
 lemma neg_one_le_corrAvg {n : Nat} (f : Coloring n) (u v : Vertex n) :
     (-1 : Q) ≤ corrAvg f u v := by
   classical
@@ -129,6 +156,9 @@ lemma neg_one_le_corrAvg {n : Nat} (f : Coloring n) (u v : Vertex n) :
     simp_all
   exact (_root_.le_div_iff₀ hpos).2 this
 
+/--
+@isnad1 id=and.0h3v.s7.d87f0cfff5d0 from=translated src=- shape=32883eec vocab=94ebe131
+-/
 lemma triangle_inequalities (b0 b1 b2 : Bool) :
     (-(spin b0 * spin b1 + spin b0 * spin b2 + spin b1 * spin b2) ≤ (1 : Q)) ∧
       (spin b0 * spin b1 + spin b0 * spin b2 - spin b1 * spin b2 ≤ 1) ∧
@@ -136,6 +166,9 @@ lemma triangle_inequalities (b0 b1 b2 : Bool) :
           (-spin b0 * spin b1 + spin b0 * spin b2 + spin b1 * spin b2 ≤ 1) := by
   cases b0 <;> cases b1 <;> cases b2 <;> simp [spin] <;> nlinarith
 
+/--
+@isnad1 id=eq.0h4v.s4.e42b24b5add6 from=translated src=- shape=ad0f5d63 vocab=1d33f8b1
+-/
 lemma corrAvg_comm {n : Nat} (f : Coloring n) (u v : Vertex n) :
     corrAvg f u v = corrAvg f v u := by
   classical
@@ -144,6 +177,9 @@ lemma corrAvg_comm {n : Nat} (f : Coloring n) (u v : Vertex n) :
 
 -- The `simp` steps in `corrAvg_triangle` (especially after `field_simp`) can be heartbeat-heavy;
 -- we raise the limit locally to keep the proof robust across Lean/Mathlib versions.
+/--
+@isnad1 id=and.0h5v.s7.96e814c4cba2 from=translated src=- shape=30e0a3a5 vocab=0a925cbf
+-/
 lemma corrAvg_triangle {n : Nat} (f : Coloring n) (u v w : Vertex n) :
     (-(corrAvg f u v + corrAvg f u w + corrAvg f v w) ≤ (1 : Q)) ∧
       (corrAvg f u v + corrAvg f u w - corrAvg f v w ≤ 1) ∧

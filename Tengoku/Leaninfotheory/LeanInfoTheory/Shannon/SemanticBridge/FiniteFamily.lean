@@ -54,7 +54,9 @@ universe u v w
 
 noncomputable section
 
-/-- Entropy is monotone under inclusion of finite family atoms. -/
+/-- Entropy is monotone under inclusion of finite family atoms.
+@isnad1 id=le.1h5v.s5.3ede7a3461ff from=translated src=- shape=c40ebe67 vocab=f4285a97
+-/
 theorem familyEntropy_mono
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -66,7 +68,9 @@ theorem familyEntropy_mono
   exact
     entropy_map_le (familyMarginal q t) (Finset.restrict₂ hst)
 
-/-- Source-family entropy is monotone under inclusion of finite atoms. -/
+/-- Source-family entropy is monotone under inclusion of finite atoms.
+@isnad1 id=le.1h7v.s6.f72ec617391f from=translated src=- shape=70014649 vocab=b17a7ea9
+-/
 theorem familyEntropyOf_mono
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -75,7 +79,9 @@ theorem familyEntropyOf_mono
     familyEntropyOf p X s ≤ familyEntropyOf p X t :=
   familyEntropy_mono (familyLawOf p X) hst
 
-/-- Conditional entropy of two finite subfamilies is nonnegative. -/
+/-- Conditional entropy of two finite subfamilies is nonnegative.
+@isnad1 id=le.0h5v.s5.29c9ff459461 from=translated src=- shape=24c832bb vocab=9bf108e2
+-/
 theorem familyCondEntropy_nonneg
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -84,7 +90,9 @@ theorem familyCondEntropy_nonneg
   unfold familyCondEntropy
   exact sub_nonneg.mpr (familyEntropy_mono q Finset.subset_union_right)
 
-/-- Conditional entropy of two finite source-indexed subfamilies is nonnegative. -/
+/-- Conditional entropy of two finite source-indexed subfamilies is nonnegative.
+@isnad1 id=le.0h7v.s5.7617bedd65d4 from=translated src=- shape=421ddd48 vocab=b66343f2
+-/
 theorem familyCondEntropyOf_nonneg
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -96,7 +104,9 @@ theorem familyCondEntropyOf_nonneg
 
 /-! ## Conditional mutual information and submodularity -/
 
-/-- Conditional mutual information of finite subfamilies is nonnegative. -/
+/-- Conditional mutual information of finite subfamilies is nonnegative.
+@isnad1 id=le.0h6v.s5.9c2b8bbc5a8b from=translated src=- shape=8240dfcc vocab=7b641470
+-/
 theorem familyCondMutualInfo_nonneg
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -108,6 +118,7 @@ theorem familyCondMutualInfo_nonneg
 /--
 Conditional mutual information of finite source-indexed subfamilies is
 nonnegative.
+@isnad1 id=le.0h8v.s5.053a36cc2d2a from=translated src=- shape=f2a658b8 vocab=ea23ef42
 -/
 theorem familyCondMutualInfoOf_nonneg
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -120,6 +131,7 @@ theorem familyCondMutualInfoOf_nonneg
 /--
 Entropy of finite family atoms is submodular:
 `H(A) + H(B) - H(A ∪ B) - H(A ∩ B) ≥ 0`.
+@isnad1 id=le.0h5v.s6.bcdf5a27dd7e from=translated src=- shape=ae849b43 vocab=68c60d8d
 -/
 theorem familyEntropy_submodular
     {Var : Type u} {alpha : Var -> Type v}
@@ -144,7 +156,9 @@ theorem familyEntropy_submodular
   rw [ha, hb, hab] at h
   exact h
 
-/-- Entropy of finite source-indexed family atoms is submodular. -/
+/-- Entropy of finite source-indexed family atoms is submodular.
+@isnad1 id=le.0h7v.s6.94c5e6a3607f from=translated src=- shape=4e75656f vocab=aa518529
+-/
 theorem familyEntropyOf_submodular
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -156,7 +170,9 @@ theorem familyEntropyOf_submodular
 
 /-! ## Mutual information and entropy bounds -/
 
-/-- Mutual information of two finite subfamilies is nonnegative. -/
+/-- Mutual information of two finite subfamilies is nonnegative.
+@isnad1 id=le.0h5v.s5.905bfeced83e from=translated src=- shape=24c832bb vocab=bee77025
+-/
 theorem familyMutualInfo_nonneg
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -166,7 +182,9 @@ theorem familyMutualInfo_nonneg
   unfold mutualInfoOf
   exact mutualInfo_nonneg _
 
-/-- Mutual information of two finite source-indexed subfamilies is nonnegative. -/
+/-- Mutual information of two finite source-indexed subfamilies is nonnegative.
+@isnad1 id=le.0h7v.s5.14b0eb5e9f2f from=translated src=- shape=421ddd48 vocab=93913897
+-/
 theorem familyMutualInfoOf_nonneg
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -175,7 +193,9 @@ theorem familyMutualInfoOf_nonneg
     0 ≤ familyMutualInfoOf p X a b := by
   exact familyMutualInfo_nonneg (familyLawOf p X) a b
 
-/-- Family mutual information is at most the entropy of its left atom. -/
+/-- Family mutual information is at most the entropy of its left atom.
+@isnad1 id=le.0h5v.s5.c4f08eec79fd from=translated src=- shape=804da42f vocab=224c13d2
+-/
 theorem familyMutualInfo_le_entropy_left
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -184,7 +204,9 @@ theorem familyMutualInfo_le_entropy_left
   rw [familyMutualInfo_eq_entropy_sub_condEntropy]
   exact sub_le_self _ (familyCondEntropy_nonneg q a b)
 
-/-- Family mutual information is at most the entropy of its right atom. -/
+/-- Family mutual information is at most the entropy of its right atom.
+@isnad1 id=le.0h5v.s5.5c87f8c769db from=translated src=- shape=f5c3acae vocab=224c13d2
+-/
 theorem familyMutualInfo_le_entropy_right
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -195,7 +217,9 @@ theorem familyMutualInfo_le_entropy_right
       familyMutualInfo_swap q b a
     _ ≤ familyEntropy q b := familyMutualInfo_le_entropy_left q b a
 
-/-- Source-family mutual information is at most the entropy of its left atom. -/
+/-- Source-family mutual information is at most the entropy of its left atom.
+@isnad1 id=le.0h7v.s5.7dfbd3e8f20c from=translated src=- shape=9efadfc2 vocab=b084ec53
+-/
 theorem familyMutualInfoOf_le_entropyOf_left
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -204,7 +228,9 @@ theorem familyMutualInfoOf_le_entropyOf_left
     familyMutualInfoOf p X a b ≤ familyEntropyOf p X a := by
   exact familyMutualInfo_le_entropy_left (familyLawOf p X) a b
 
-/-- Source-family mutual information is at most the entropy of its right atom. -/
+/-- Source-family mutual information is at most the entropy of its right atom.
+@isnad1 id=le.0h7v.s5.a875f7977fe9 from=translated src=- shape=a31ab723 vocab=b084ec53
+-/
 theorem familyMutualInfoOf_le_entropyOf_right
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -213,7 +239,9 @@ theorem familyMutualInfoOf_le_entropyOf_right
     familyMutualInfoOf p X a b ≤ familyEntropyOf p X b := by
   exact familyMutualInfo_le_entropy_right (familyLawOf p X) a b
 
-/-- Conditioning on a finite family atom cannot increase family entropy. -/
+/-- Conditioning on a finite family atom cannot increase family entropy.
+@isnad1 id=le.0h5v.s5.956de496ef55 from=translated src=- shape=804da42f vocab=74215306
+-/
 theorem familyCondEntropy_le_entropy
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -223,7 +251,9 @@ theorem familyCondEntropy_le_entropy
   rw [familyMutualInfo_eq_entropy_sub_condEntropy] at h
   exact sub_nonneg.mp h
 
-/-- Conditioning cannot increase entropy for finite source-indexed subfamilies. -/
+/-- Conditioning cannot increase entropy for finite source-indexed subfamilies.
+@isnad1 id=le.0h7v.s5.0b901be3e8fb from=translated src=- shape=9efadfc2 vocab=7f8e704a
+-/
 theorem familyCondEntropyOf_le_entropyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -234,7 +264,9 @@ theorem familyCondEntropyOf_le_entropyOf
 
 /-! ## Additional conditioning and binary subadditivity -/
 
-/-- Adding a finite conditioning atom cannot increase family conditional entropy. -/
+/-- Adding a finite conditioning atom cannot increase family conditional entropy.
+@isnad1 id=le.0h6v.s5.d14d7579fc7e from=translated src=- shape=6788f3e3 vocab=10ec8593
+-/
 theorem familyCondEntropy_union_le_condEntropy
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -247,6 +279,7 @@ theorem familyCondEntropy_union_le_condEntropy
 /--
 Adding a finite conditioning atom cannot increase source-family conditional
 entropy.
+@isnad1 id=le.0h8v.s6.eb49bcbe7153 from=translated src=- shape=0af00b4c vocab=8b1398ba
 -/
 theorem familyCondEntropyOf_union_le_condEntropyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -257,7 +290,9 @@ theorem familyCondEntropyOf_union_le_condEntropyOf
   exact
     familyCondEntropy_union_le_condEntropy (familyLawOf p X) a b c
 
-/-- Entropy of a union of two finite family atoms is subadditive. -/
+/-- Entropy of a union of two finite family atoms is subadditive.
+@isnad1 id=le.0h5v.s6.ac87c2dad047 from=translated src=- shape=b88f7142 vocab=0dee9f23
+-/
 theorem familyEntropy_union_le_add
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -271,7 +306,9 @@ theorem familyEntropy_union_le_add
       add_le_add_right (familyCondEntropy_le_entropy q a b) _
     _ = familyEntropy q a + familyEntropy q b := add_comm _ _
 
-/-- Source-family entropy of a union of two finite atoms is subadditive. -/
+/-- Source-family entropy of a union of two finite atoms is subadditive.
+@isnad1 id=le.0h7v.s6.050164da950e from=translated src=- shape=5ecd979e vocab=897b7f89
+-/
 theorem familyEntropyOf_union_le_add
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -283,7 +320,9 @@ theorem familyEntropyOf_union_le_add
 
 /-! ## N-way entropy subadditivity -/
 
-/-- Family entropy is at most the sum of the selected singleton entropies. -/
+/-- Family entropy is at most the sum of the selected singleton entropies.
+@isnad1 id=le.0h4v.s5.28d946dc96df from=translated src=- shape=334c52bc vocab=adb496fb
+-/
 theorem familyEntropy_le_sum_singletons
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -307,6 +346,7 @@ theorem familyEntropy_le_sum_singletons
 /--
 Source-family entropy is at most the sum of the selected singleton
 entropies.
+@isnad1 id=le.0h6v.s6.5e8149b20157 from=translated src=- shape=7dea2d81 vocab=cf5c1747
 -/
 theorem familyEntropyOf_le_sum_singletons
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -319,6 +359,7 @@ theorem familyEntropyOf_le_sum_singletons
 
 /--
 Textbook n-way entropy subadditivity for a list of distinct variable names.
+@isnad1 id=le.1h4v.s6.9a7af741c639 from=translated src=- shape=f09d2c1b vocab=b021c6b3
 -/
 theorem familyEntropy_subadditivity_of_nodup
     {Var : Type u} {alpha : Var -> Type v}
@@ -333,6 +374,7 @@ theorem familyEntropy_subadditivity_of_nodup
 /--
 Source-family textbook n-way entropy subadditivity for distinct variable
 names.
+@isnad1 id=le.1h6v.s6.e8cce22d9621 from=translated src=- shape=13649c89 vocab=aad375b7
 -/
 theorem familyEntropyOf_subadditivity_of_nodup
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}

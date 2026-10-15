@@ -17,6 +17,9 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.Shapes.UnitInterval`.
 
 namespace unitInterval
 
+/--
+@isnad1 id=continuo.0h0v.s4.33fb71c3fb40 from=translated src=- shape=049cd614 vocab=dd4a082c
+-/
 instance continuousMul : ContinuousMul I where
   continuous_mul := by
     apply Continuous.subtype_mk
@@ -31,6 +34,9 @@ instance : OfNat zeroOne 1 where ofNat := ⟨1, by norm_num⟩
 
 namespace zeroOne
 
+/--
+@isnad1 id=or.0h1v.s5.4edadf18b117 from=translated src=- shape=14dfe118 vocab=01cbcfeb
+-/
 lemma val_eq_zero_or_val_eq_one (t : zeroOne) : t.val = 0 ∨ t.val = 1 := by
   simpa only [Set.mem_insert_iff, Set.mem_singleton_iff] using t.property
 

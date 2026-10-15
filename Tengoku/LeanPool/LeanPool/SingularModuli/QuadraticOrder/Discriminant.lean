@@ -36,7 +36,9 @@ variable {d : ℤ}
 
 /-! ### Discriminant: `(τ - tauConj)²` -/
 
-/-- The difference of the two roots: `τ - tauConj = 2 • τ - d • 1`. -/
+/-- The difference of the two roots: `τ - tauConj = 2 • τ - d • 1`.
+@isnad1 id=eq.0h1v.s7.4e31c04e83fa from=translated src=- shape=c9245c47 vocab=9e485495
+-/
 lemma tau_sub_tauConj : tau - tauConj = 2 • tau - d • (1 : QuadraticOrder d) := by
   unfold tauConj
   abel
@@ -45,7 +47,9 @@ lemma tau_sub_tauConj : tau - tauConj = 2 • tau - d • (1 : QuadraticOrder d)
 right-hand-side equals `d • 1` when `d ≡ 0` or `d ≡ 1 (mod 4)` (the values
 for which `poly d` has integer coefficients matching the discriminant of the
 quadratic field). For general `d`, the difference is the Euclidean remainder
-`(d² - d) mod 4`. -/
+`(d² - d) mod 4`.
+@isnad1 id=eq.0h1v.s7.52328815cdf3 from=translated src=- shape=7ca2201e vocab=9d4a98ca
+-/
 lemma tau_sub_tauConj_sq :
     (tau - tauConj) ^ 2
       = (d ^ 2 - 4 * ((d ^ 2 - d) / 4) : ℤ) • (1 : QuadraticOrder d) := by
@@ -58,7 +62,9 @@ lemma tau_sub_tauConj_sq :
 /-- Under the valid-discriminant hypothesis `d ≡ 0 ∨ d ≡ 1 (mod 4)`, the
 discriminant equals `d` exactly: `(τ - tauConj)² = d • 1`. This is the case used
 throughout the thesis (the only `d` for which `QuadraticOrder d` coincides
-with the quadratic order of discriminant `d`). -/
+with the quadratic order of discriminant `d`).
+@isnad1 id=eq.1h1v.s7.0cfa999f505e from=translated src=- shape=6d69da6b vocab=799b603e
+-/
 lemma tau_sub_tauConj_sq_of_valid_disc
     (hd : d % 4 = 0 ∨ d % 4 = 1) :
     (tau - tauConj) ^ 2 = d • (1 : QuadraticOrder d) := by

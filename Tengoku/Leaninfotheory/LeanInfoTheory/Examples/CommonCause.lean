@@ -58,7 +58,9 @@ def noisyCopy (b : Bool) : PMF Bool :=
         rw [add_tsub_cancel_of_le h]
         rfl)
 
-/-- Both channel rows are genuinely random and depend on the input. -/
+/-- Both channel rows are genuinely random and depend on the input.
+@isnad1 id=and.0h0v.s6.8587a2dc1f77 from=translated src=- shape=a47bda60 vocab=0610b594
+-/
 theorem noisyCopy_masses :
     noisyCopy false true = (1 / 4 : ENNReal) /\
       noisyCopy true true = (3 / 4 : ENNReal) := by
@@ -69,17 +71,23 @@ def law : PMF (Bool × Bool × Bool) :=
   PMF.channelExtension
     ((PMF.channelJoint causeLaw noisyCopy).map Prod.swap) noisyCopy
 
-/-- The observation-cause-observation law is a Markov triple. -/
+/-- The observation-cause-observation law is a Markov triple.
+@isnad1 id=ismarkov.0h0v.s2.bf2b43b880bb from=translated src=- shape=aa9fb30a vocab=0c66cdb8
+-/
 theorem law_isMarkov : IsMarkovChain law := by
   simp [law]
 
-/-- The two observations are conditionally independent given their common cause. -/
+/-- The two observations are conditionally independent given their common cause.
+@isnad1 id=iscondin.0h0v.s5.752cfe2cb6d5 from=translated src=- shape=b4771597 vocab=b3aea34f
+-/
 theorem endpoints_condIndependent :
     IsCondIndependentOf law (fun x => x.1) (fun x => x.2.2)
       (fun x => x.2.1) := by
   simpa [IsMarkovChain, IsMarkovChainOf] using law_isMarkov
 
-/-- Every positive-mass cause fiber has an independent endpoint law. -/
+/-- Every positive-mass cause fiber has an independent endpoint law.
+@isnad1 id=isindepe.1h1v.s7.2846cab7b7bd from=translated src=- shape=0d9078a1 vocab=2fc957f6
+-/
 theorem positiveFiber_isIndependent :
     forall b (hb : thirdMarginal
         (law.map fun x => (x.1, x.2.2, x.2.1)) b ≠ 0),
@@ -88,7 +96,9 @@ theorem positiveFiber_isIndependent :
           (law.map fun x => (x.1, x.2.2, x.2.1)) b hb) :=
   (isMarkovChain_iff_fiberwise_endpoints_independent law).mp law_isMarkov
 
-/-- The endpoint conditional mutual information given the cause vanishes. -/
+/-- The endpoint conditional mutual information given the cause vanishes.
+@isnad1 id=eq.0h0v.s5.07085c45a5b2 from=translated src=- shape=09b9af3e vocab=0873d0ee
+-/
 theorem endpoint_condMutualInfo_eq_zero :
     condMutualInfoOf law (fun x => x.1) (fun x => x.2.2)
       (fun x => x.2.1) = 0 :=
@@ -96,13 +106,17 @@ theorem endpoint_condMutualInfo_eq_zero :
     (fun x => x.1) (fun x => x.2.2) (fun x => x.2.1)).mpr
       endpoints_condIndependent
 
-/-- The canonical total conditional channel reconstructs the common-cause law. -/
+/-- The canonical total conditional channel reconstructs the common-cause law.
+@isnad1 id=eq.0h0v.s5.dac468422264 from=translated src=- shape=e2860747 vocab=cd0570ce
+-/
 theorem law_eq_canonical_channelExtension :
     law = PMF.channelExtension (fstSndMarginal law)
       (condFstGivenSndChannel ((sndThirdMarginal law).map Prod.swap)) :=
   (isMarkovChain_iff_canonical_channelExtension law).mp law_isMarkov
 
-/-- Some channel from the cause reconstructs the common-cause law. -/
+/-- Some channel from the cause reconstructs the common-cause law.
+@isnad1 id=ex.0h0v.s4.6a22c5b82519 from=translated src=- shape=db913504 vocab=98eb2058
+-/
 theorem law_eq_some_channelExtension :
     exists V : Bool -> PMF Bool,
       law = PMF.channelExtension (fstSndMarginal law) V :=

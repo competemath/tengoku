@@ -47,7 +47,9 @@ open ThreePoint
 /-- The two atoms carrying mass in `twoPointLaw`. -/
 def twoPointSupport : Finset ThreePoint := {left, right}
 
-/-- The support used by `twoPointLaw` is nonempty. -/
+/-- The support used by `twoPointLaw` is nonempty.
+@isnad1 id=nonempty.0h0v.s1.e40c00cad6cd from=translated src=- shape=25b03439 vocab=0d1fd298
+-/
 theorem twoPointSupport_nonempty : twoPointSupport.Nonempty := by
   simp [twoPointSupport]
 
@@ -55,7 +57,9 @@ theorem twoPointSupport_nonempty : twoPointSupport.Nonempty := by
 def twoPointLaw : PMF ThreePoint :=
   PMF.uniformOfFinset twoPointSupport twoPointSupport_nonempty
 
-/-- The third ambient point is genuinely outside the support of `twoPointLaw`. -/
+/-- The third ambient point is genuinely outside the support of `twoPointLaw`.
+@isnad1 id=eq.0h0v.s3.1a0be274d944 from=translated src=- shape=390e0e93 vocab=7af2cc71
+-/
 @[simp]
 theorem twoPointLaw_support :
     twoPointLaw.support = (twoPointSupport : Set ThreePoint) := by
@@ -64,6 +68,7 @@ theorem twoPointLaw_support :
 /--
 For `twoPointLaw`, the support-cardinality entropy bound is strictly sharper
 than the alphabet-cardinality bound.
+@isnad1 id=and.0h0v.s5.61c7426ebbf5 from=translated src=- shape=2624a384 vocab=2c4bb348
 -/
 theorem supportBound_is_strictly_sharper :
     entropy twoPointLaw <= Real.log (twoPointLaw.support.ncard : Real) ∧
@@ -88,7 +93,9 @@ def supportWitness : ThreePoint -> Bool
   | right => true
   | outside => false
 
-/-- `supportEncoding` is not globally injective. -/
+/-- `supportEncoding` is not globally injective.
+@isnad1 id=not.0h0v.s2.c904d8d3bfd2 from=translated src=- shape=6516253f vocab=3dfdd52f
+-/
 theorem supportEncoding_not_injective :
     Not (Function.Injective supportEncoding) := by
   intro h
@@ -96,14 +103,18 @@ theorem supportEncoding_not_injective :
   have := h heq
   cases this
 
-/-- `supportEncoding` is injective where `twoPointLaw` carries mass. -/
+/-- `supportEncoding` is injective where `twoPointLaw` carries mass.
+@isnad1 id=injon.0h0v.s2.1b3593006eba from=translated src=- shape=437174ac vocab=d9e5ca41
+-/
 theorem supportEncoding_injOn_support :
     Set.InjOn supportEncoding twoPointLaw.support := by
   intro a ha b hb hab
   cases a <;> cases b <;>
     simp [twoPointLaw, twoPointSupport, supportEncoding] at ha hb hab ⊢
 
-/-- Support-restricted injectivity is enough to preserve entropy. -/
+/-- Support-restricted injectivity is enough to preserve entropy.
+@isnad1 id=eq.0h0v.s3.70102060d767 from=translated src=- shape=61caed72 vocab=0655092b
+-/
 theorem supportEncoding_preserves_entropy :
     entropyOf twoPointLaw supportEncoding = entropyOf twoPointLaw id := by
   exact
@@ -111,7 +122,9 @@ theorem supportEncoding_preserves_entropy :
       twoPointLaw id supportEncoding).2 (by
         simpa using supportEncoding_injOn_support)
 
-/-- The first variable is a function of the second on the source support. -/
+/-- The first variable is a function of the second on the source support.
+@isnad1 id=eq.0h0v.s4.782297fb6731 from=translated src=- shape=fde6cd3c vocab=04dc5179
+-/
 theorem functionalDependence_on_support :
     condEntropyOf twoPointLaw supportEncoding supportWitness = 0 := by
   apply
@@ -122,7 +135,9 @@ theorem functionalDependence_on_support :
   cases omega <;>
     simp [twoPointLaw, twoPointSupport, supportEncoding, supportWitness] at homega ⊢
 
-/-- The same functional relation fails at the unsupported ambient point. -/
+/-- The same functional relation fails at the unsupported ambient point.
+@isnad1 id=ne.0h0v.s3.7d2d3d182301 from=translated src=- shape=366b9172 vocab=cc70c6a5
+-/
 theorem functionalDependence_not_global :
     supportEncoding outside ≠ id (supportWitness outside) := by
   decide
@@ -130,7 +145,9 @@ theorem functionalDependence_not_global :
 /-- A pure joint law with one positive and one null conditioning fiber. -/
 def fiberLaw : PMF (Bool × Bool) := PMF.pure (false, false)
 
-/-- A null conditioning fiber contributes numeric zero by convention. -/
+/-- A null conditioning fiber contributes numeric zero by convention.
+@isnad1 id=and.0h0v.s5.23ba5908ce6b from=translated src=- shape=2fcad080 vocab=81197e85
+-/
 theorem nullFiber_zero :
     sndMarginal fiberLaw true = 0 ∧
       condEntropyFstGivenSnd fiberLaw true = 0 := by
@@ -140,18 +157,24 @@ theorem nullFiber_zero :
     ⟨hnull,
       condEntropyFstGivenSnd_of_sndMarginal_eq_zero fiberLaw hnull⟩
 
-/-- The other conditioning fiber has positive mass. -/
+/-- The other conditioning fiber has positive mass.
+@isnad1 id=ne.0h0v.s4.379c112f78eb from=translated src=- shape=75a4ecff vocab=c6d9fb34
+-/
 theorem positiveFiber_ne_zero : sndMarginal fiberLaw false ≠ 0 := by
   simp [fiberLaw, sndMarginal]
 
-/-- On the positive fiber, zero entropy is equivalent to a pure conditional PMF. -/
+/-- On the positive fiber, zero entropy is equivalent to a pure conditional PMF.
+@isnad1 id=iff.0h0v.s5.13949f4d80f1 from=translated src=- shape=cffd93ed vocab=04d048cd
+-/
 theorem positiveFiber_zero_iff_pure :
     condEntropyFstGivenSnd fiberLaw false = 0 ↔
       ∃ a, condFstGivenSnd fiberLaw false positiveFiber_ne_zero = PMF.pure a :=
   condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero
     fiberLaw positiveFiber_ne_zero
 
-/-- The positive conditional fiber in `fiberLaw` is pure at `false`. -/
+/-- The positive conditional fiber in `fiberLaw` is pure at `false`.
+@isnad1 id=eq.0h0v.s3.350394b20efa from=translated src=- shape=32926e5b vocab=41de6211
+-/
 theorem positiveFiber_is_pure :
     condFstGivenSnd fiberLaw false positiveFiber_ne_zero = PMF.pure false := by
   have hmarginal : sndMarginal fiberLaw = PMF.pure false := by
@@ -162,7 +185,9 @@ theorem positiveFiber_is_pure :
   rw [condFstGivenSnd_apply, hmarginal]
   cases a <;> simp [fiberLaw]
 
-/-- The positive fiber therefore has zero entropy for the substantive pure-law reason. -/
+/-- The positive fiber therefore has zero entropy for the substantive pure-law reason.
+@isnad1 id=eq.0h0v.s3.eb816b4a6e56 from=translated src=- shape=c9f18549 vocab=f096ae1b
+-/
 theorem positiveFiber_zero : condEntropyFstGivenSnd fiberLaw false = 0 := by
   exact positiveFiber_zero_iff_pure.2 ⟨false, positiveFiber_is_pure⟩
 
@@ -182,7 +207,9 @@ def forgetSecond : Bool × Bool -> Bool := Prod.fst
 def recoverWithSideInfo (observation : Bool × Bool) : Bool × Bool :=
   (false, observation.2)
 
-/-- Without side information, `forgetSecond` does not preserve entropy. -/
+/-- Without side information, `forgetSecond` does not preserve entropy.
+@isnad1 id=ne.0h0v.s4.a899b2a27e37 from=translated src=- shape=c1bbe890 vocab=c07395fc
+-/
 theorem forgetSecond_loses_entropy :
     entropyOf recoveryLaw (fun omega => forgetSecond (recoveryX omega)) ≠
       entropyOf recoveryLaw recoveryX := by
@@ -201,7 +228,9 @@ theorem forgetSecond_loses_entropy :
   have : false = true := congrArg Prod.snd hpair
   cases this
 
-/-- Side information restores the exact conditional-entropy equality contract. -/
+/-- Side information restores the exact conditional-entropy equality contract.
+@isnad1 id=eq.0h0v.s4.b0b930de9922 from=translated src=- shape=60ad71ad vocab=d6b92b85
+-/
 theorem sideInfo_preserves_condEntropy :
     condEntropyOf recoveryLaw
         (fun omega => forgetSecond (recoveryX omega)) recoverySideInfo =

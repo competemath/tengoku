@@ -68,7 +68,9 @@ omit [NeZero n] in
 Given the disjoint-split reduction `hsplit`, the per-family `univ`-filter reductions `hred*`,
 and the per-family tip characterizations `h*tip`, every tip `w` is covered exactly once by the
 matching: consumed → wheel hits it once; free & claimed → the clause triple; free & unclaimed →
-the garbage triple. -/
+the garbage triple.
+@isnad1 id=eq.11h12v.s10.ca3bbf871c33 from=translated src=- shape=978ece3e vocab=9ba25e9c
+-/
 theorem wfibre_cover (φ : Formula n m) (a : Assignment n)
     (slotStar : Fin m → Fin 3)
     (wheelTriple : Fin n × Fin m → TripleIdx n m)
@@ -204,7 +206,9 @@ omit [NeZero n] in
 /-- The **X-node cover condition** of the forward matching, factored out of `forward`.
 
 Each a-node `inl (i,j)` is hit by exactly one wheel triple (the cyclic spoke shift); each
-s1-node by exactly its clause triple; each g1-node by exactly its garbage triple. -/
+s1-node by exactly its clause triple; each g1-node by exactly its garbage triple.
+@isnad1 id=eq.3h9v.s9.dd31e6235824 from=translated src=- shape=c03cd90d vocab=529926a3
+-/
 theorem xnode_cover (φ : Formula n m) (a : Assignment n)
     (slotStar : Fin m → Fin 3)
     (wheelTriple : Fin n × Fin m → TripleIdx n m)
@@ -339,7 +343,9 @@ omit [NeZero n] in
 /-- The **Y-node cover condition** of the forward matching, factored out of `forward`.
 
 Each b-node `inl (i,j)` is hit by exactly one wheel triple (no cyclic shift on the Y side); each
-s2-node by exactly its clause triple; each g2-node by exactly its garbage triple. -/
+s2-node by exactly its clause triple; each g2-node by exactly its garbage triple.
+@isnad1 id=eq.2h8v.s9.6c62a779dd60 from=translated src=- shape=b5f55032 vocab=23b9c6b8
+-/
 theorem ynode_cover (φ : Formula n m)
     (slotStar : Fin m → Fin 3)
     (wheelTriple : Fin n × Fin m → TripleIdx n m)
@@ -445,6 +451,9 @@ theorem ynode_cover (φ : Formula n m)
       · rintro rfl; exact ⟨beta g, rfl⟩
     rw [hw0, hc0, hg1]
 
+/--
+@isnad1 id=threedmi.1h3v.s8.75de1c078270 from=translated src=- shape=2b95fca1 vocab=0d880477
+-/
 theorem forward (φ : Formula n m) (h : Satisfiable φ) :
     threeDMI (tripleFn φ) := by
   obtain ⟨a, hsat⟩ := h

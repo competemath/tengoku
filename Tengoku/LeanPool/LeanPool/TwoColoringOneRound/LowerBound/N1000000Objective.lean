@@ -254,6 +254,9 @@ private lemma avg_corrEmb_eq_avg_corrEdge (f : Coloring n) :
         = (∑ e : Edge n, corrEdge f e) / (Fintype.card Emb4 : Q) := by rw [hsum]
     _ = (∑ e : Edge n, corrEdge f e) / (edgeCount n : Q) := by rw [hcard]
 
+/--
+@isnad1 id=eq.0h1v.s3.350c31a71637 from=translated src=- shape=c20c125d vocab=88cda4f1
+-/
 theorem xEdge_xFromColoring_eq_edgeCorrelation (f : Coloring n) :
     xEdge (xFromColoring f) = edgeCorrelation f := by
   classical

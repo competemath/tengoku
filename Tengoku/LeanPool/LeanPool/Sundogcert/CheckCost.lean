@@ -63,7 +63,9 @@ variable (S : Scheme F)
     `dotProduct`, each row is an `n`-term inner product, so this counts exactly the field mults. -/
 def syndromeMulCost : ℕ := ∑ _i : Fin S.m, ∑ _j : Fin S.n, 1
 
-/-- The structural mult-count equals `m·n` — the count is `m` rows of `n` terms each. -/
+/-- The structural mult-count equals `m·n` — the count is `m` rows of `n` terms each.
+@isnad1 id=eq.0h2v.s5.e1f95a93afc6 from=translated src=- shape=8d6c025f vocab=f1870ec7
+-/
 theorem syndromeMulCost_eq : syndromeMulCost S = S.m * S.n := by
   unfold syndromeMulCost
   simp [Finset.sum_const, Fintype.card_fin, Nat.mul_comm]
@@ -81,7 +83,9 @@ def verifyCost : ℕ :=
 
 /-- **CHECK-COST is linear in `|H| = m·n`.**  One verification query costs at most
     `2·(m·n) + n + m + 2` operations — `O(m·n)`, linear in the parity-check size.  The check is
-    cheap by THEOREM (the FIND side stays an imported ISD/SIS hardness assumption; see header). -/
+    cheap by THEOREM (the FIND side stays an imported ISD/SIS hardness assumption; see header).
+@isnad1 id=le.0h2v.s6.3f5c038aeaa8 from=translated src=- shape=7853c566 vocab=d43d5c0e
+-/
 theorem verifyCost_le : verifyCost S ≤ 2 * (S.m * S.n) + S.n + S.m + 2 := by
   unfold verifyCost
   rw [syndromeMulCost_eq]
@@ -113,7 +117,9 @@ def verifyCostMN (m n : ℕ) : ℕ := m * n + m * (n - 1) + n + m + 2
 
 /-- Trust anchor: the structural mult-count `syndromeMulCost` agrees with the raw formula for any
     scheme whose dimensions are `(m, n)` — the model is internally consistent, not two unrelated
-    numbers.  (Stated at the deployed size via the proved `syndromeMulCost_eq`.) -/
+    numbers.  (Stated at the deployed size via the proved `syndromeMulCost_eq`.)
+@isnad1 id=eq.0h2v.s5.a0274ec38e2e from=translated src=- shape=97230703 vocab=96fdfcaa
+-/
 theorem syndromeMulCost_eq_raw : syndromeMulCost S = syndromeMulCostMN S.m S.n :=
   syndromeMulCost_eq S
 

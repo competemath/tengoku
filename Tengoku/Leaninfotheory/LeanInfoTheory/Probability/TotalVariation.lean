@@ -51,12 +51,16 @@ variable {α : Type u} [Fintype α]
 noncomputable def totalVariation (p q : PMF α) : ℝ :=
   (1 / 2 : ℝ) * ∑ a, |(p a).toReal - (q a).toReal|
 
-/-- Total variation is nonnegative. -/
+/-- Total variation is nonnegative.
+@isnad1 id=le.0h3v.s4.7fa7c4a480b3 from=translated src=- shape=f29d4371 vocab=3b80b4e9
+-/
 theorem totalVariation_nonneg (p q : PMF α) : 0 ≤ totalVariation p q := by
   unfold totalVariation
   exact mul_nonneg (by norm_num) (Finset.sum_nonneg fun _ _ => abs_nonneg _)
 
-/-- Total variation of probability laws is at most one. -/
+/-- Total variation of probability laws is at most one.
+@isnad1 id=le.0h3v.s4.bf12f7a8d751 from=translated src=- shape=71357903 vocab=3b80b4e9
+-/
 theorem totalVariation_le_one (p q : PMF α) : totalVariation p q ≤ 1 := by
   have hs : (∑ a, |(p a).toReal - (q a).toReal|) ≤
       ∑ a, ((p a).toReal + (q a).toReal) := by
@@ -70,17 +74,23 @@ theorem totalVariation_le_one (p q : PMF α) : totalVariation p q ≤ 1 := by
   unfold totalVariation
   linarith
 
-/-- A PMF has zero total variation from itself. -/
+/-- A PMF has zero total variation from itself.
+@isnad1 id=eq.0h2v.s4.dc55eb32c18d from=translated src=- shape=b81717d3 vocab=8b1185da
+-/
 theorem totalVariation_self (p : PMF α) : totalVariation p p = 0 := by
   simp [totalVariation]
 
-/-- Total variation is symmetric in its two PMFs. -/
+/-- Total variation is symmetric in its two PMFs.
+@isnad1 id=eq.0h3v.s4.7c9ec654f5f8 from=translated src=- shape=04554202 vocab=8b1185da
+-/
 theorem totalVariation_comm (p q : PMF α) : totalVariation p q = totalVariation q p := by
   unfold totalVariation
   congr 1
   exact Finset.sum_congr rfl fun _ _ => abs_sub_comm _ _
 
-/-- Two finite PMFs have zero total variation exactly when they are equal. -/
+/-- Two finite PMFs have zero total variation exactly when they are equal.
+@isnad1 id=iff.0h3v.s4.e20da189d1e9 from=translated src=- shape=22704dfc vocab=8b1185da
+-/
 theorem totalVariation_eq_zero_iff (p q : PMF α) : totalVariation p q = 0 ↔ p = q := by
   classical
   constructor
@@ -97,7 +107,9 @@ theorem totalVariation_eq_zero_iff (p q : PMF α) : totalVariation p q = 0 ↔ p
   · rintro rfl
     exact totalVariation_self p
 
-/-- Total variation satisfies the triangle inequality. -/
+/-- Total variation satisfies the triangle inequality.
+@isnad1 id=le.0h4v.s5.7984858c4a58 from=translated src=- shape=16eb78ac vocab=1dbe6c9e
+-/
 theorem totalVariation_triangle (p q r : PMF α) :
     totalVariation p r ≤ totalVariation p q + totalVariation q r := by
   have hs : (∑ a, |(p a).toReal - (r a).toReal|) ≤
@@ -107,7 +119,9 @@ theorem totalVariation_triangle (p q r : PMF α) :
   unfold totalVariation
   linarith
 
-/-- On a finite type, event probability is the sum of the real masses in the event. -/
+/-- On a finite type, event probability is the sum of the real masses in the event.
+@isnad1 id=eq.0h3v.s5.c9d5f426da34 from=translated src=- shape=af93c932 vocab=65f3c80a
+-/
 theorem toOuterMeasure_toReal_eq_sum (p : PMF α) (s : Set α) :
     (p.toOuterMeasure s).toReal = ∑ a, s.indicator (fun a => (p a).toReal) a := by
   classical
@@ -118,7 +132,9 @@ theorem toOuterMeasure_toReal_eq_sum (p : PMF α) (s : Set α) :
   · intro a _
     by_cases ha : a ∈ s <;> simp [ha, p.apply_ne_top a]
 
-/-- Total variation is the total excess mass where the first law dominates the second. -/
+/-- Total variation is the total excess mass where the first law dominates the second.
+@isnad1 id=eq.0h3v.s6.d8539114dace from=translated src=- shape=3295b233 vocab=fcc59409
+-/
 theorem totalVariation_eq_sum_pos (p q : PMF α) :
     totalVariation p q =
       ∑ a ∈ Finset.univ.filter (fun a => (q a).toReal ≤ (p a).toReal),
@@ -155,7 +171,9 @@ private theorem toOuterMeasure_sub_le_totalVariation (p q : PMF α) (s : Set α)
     · exact sub_nonneg.mpr h
     · exact le_rfl
 
-/-- The discrepancy of any event is bounded by total variation. -/
+/-- The discrepancy of any event is bounded by total variation.
+@isnad1 id=le.0h4v.s6.da58d2a5e42c from=translated src=- shape=4034eb1c vocab=06bcf414
+-/
 theorem abs_toOuterMeasure_sub_le_totalVariation (p q : PMF α) (s : Set α) :
     |(p.toOuterMeasure s).toReal - (q.toOuterMeasure s).toReal| ≤ totalVariation p q := by
   apply abs_le.mpr
@@ -165,7 +183,9 @@ theorem abs_toOuterMeasure_sub_le_totalVariation (p q : PMF α) (s : Set α) :
     linarith
   · exact toOuterMeasure_sub_le_totalVariation p q s
 
-/-- The event where the first law has at least as much mass attains total variation. -/
+/-- The event where the first law has at least as much mass attains total variation.
+@isnad1 id=eq.0h3v.s6.ecbe6f6f88b5 from=translated src=- shape=e692f052 vocab=a9f5e9f2
+-/
 theorem totalVariation_eq_toOuterMeasure_sub (p q : PMF α) :
     totalVariation p q =
       (p.toOuterMeasure {a | (q a).toReal ≤ (p a).toReal}).toReal -
@@ -177,7 +197,9 @@ theorem totalVariation_eq_toOuterMeasure_sub (p q : PMF α) :
   intro a _
   by_cases h : (q a).toReal ≤ (p a).toReal <;> simp [h]
 
-/-- Total variation is the greatest signed discrepancy among all events. -/
+/-- Total variation is the greatest signed discrepancy among all events.
+@isnad1 id=isgreate.0h3v.s6.da8181ad7a94 from=translated src=- shape=6e087fc6 vocab=381d26ca
+-/
 theorem totalVariation_isGreatest_event (p q : PMF α) :
     IsGreatest (Set.range (fun s : Set α =>
       (p.toOuterMeasure s).toReal - (q.toOuterMeasure s).toReal)) (totalVariation p q) := by
@@ -186,7 +208,9 @@ theorem totalVariation_isGreatest_event (p q : PMF α) :
   · rintro _ ⟨s, rfl⟩
     exact toOuterMeasure_sub_le_totalVariation p q s
 
-/-- Total variation is the greatest absolute discrepancy among all events. -/
+/-- Total variation is the greatest absolute discrepancy among all events.
+@isnad1 id=isgreate.0h3v.s6.bcb1f960a05a from=translated src=- shape=2cad5ad2 vocab=aea3e473
+-/
 theorem totalVariation_isGreatest_abs_event (p q : PMF α) :
     IsGreatest (Set.range (fun s : Set α =>
       |(p.toOuterMeasure s).toReal - (q.toOuterMeasure s).toReal|)) (totalVariation p q) := by
@@ -198,7 +222,9 @@ theorem totalVariation_isGreatest_abs_event (p q : PMF α) :
   · rintro _ ⟨s, rfl⟩
     exact abs_toOuterMeasure_sub_le_totalVariation p q s
 
-/-- Total variation is the first law's mass remaining after removing the common minimum. -/
+/-- Total variation is the first law's mass remaining after removing the common minimum.
+@isnad1 id=eq.0h3v.s6.d837c3608f5f from=translated src=- shape=b70ad81f vocab=70f88d40
+-/
 theorem totalVariation_eq_sum_sub_min (p q : PMF α) :
     totalVariation p q = ∑ a, ((p a).toReal - min (p a).toReal (q a).toReal) := by
   rw [totalVariation_eq_sum_pos, Finset.sum_filter]
@@ -208,12 +234,16 @@ theorem totalVariation_eq_sum_sub_min (p q : PMF α) :
   · rw [min_eq_right h]
   · rw [min_eq_left (le_of_not_ge h), sub_self]
 
-/-- Total variation is one minus the common mass of the two finite laws. -/
+/-- Total variation is one minus the common mass of the two finite laws.
+@isnad1 id=eq.0h3v.s6.75baf950cdac from=translated src=- shape=51779bef vocab=70f88d40
+-/
 theorem totalVariation_eq_one_sub_sum_min (p q : PMF α) :
     totalVariation p q = 1 - ∑ a, min (p a).toReal (q a).toReal := by
   rw [totalVariation_eq_sum_sub_min, Finset.sum_sub_distrib, p.sum_toReal]
 
-/-- The ENNReal common mass is the finite overlap complement of total variation. -/
+/-- The ENNReal common mass is the finite overlap complement of total variation.
+@isnad1 id=eq.0h3v.s6.d127669502f6 from=translated src=- shape=3b426001 vocab=ec57d352
+-/
 theorem sum_min_eq_ofReal_one_sub_totalVariation (p q : PMF α) :
     (∑ a, min (p a) (q a)) = ENNReal.ofReal (1 - totalVariation p q) := by
   have h : 1 - totalVariation p q = ∑ a, min (p a).toReal (q a).toReal := by
@@ -226,7 +256,9 @@ theorem sum_min_eq_ofReal_one_sub_totalVariation (p q : PMF α) :
   rw [ENNReal.ofReal_min, ENNReal.ofReal_toReal (p.apply_ne_top a),
     ENNReal.ofReal_toReal (q.apply_ne_top a)]
 
-/-- Total variation is the ENNReal total of the first law's truncated excess masses. -/
+/-- Total variation is the ENNReal total of the first law's truncated excess masses.
+@isnad1 id=eq.0h3v.s5.8f8a6f11c5cf from=translated src=- shape=ce57ae79 vocab=4bef0598
+-/
 theorem ofReal_totalVariation_eq_sum_sub (p q : PMF α) :
     ENNReal.ofReal (totalVariation p q) = ∑ a, (p a - q a) := by
   rw [totalVariation_eq_sum_sub_min,
@@ -237,7 +269,9 @@ theorem ofReal_totalVariation_eq_sum_sub (p q : PMF α) :
     ENNReal.ofReal_min, ENNReal.ofReal_toReal (p.apply_ne_top a),
     ENNReal.ofReal_toReal (q.apply_ne_top a), tsub_min]
 
-/-- Two finite laws have total variation one exactly when their supports are disjoint. -/
+/-- Two finite laws have total variation one exactly when their supports are disjoint.
+@isnad1 id=iff.0h3v.s5.0b279c6aee71 from=translated src=- shape=119f3309 vocab=59f3ebfe
+-/
 theorem totalVariation_eq_one_iff_disjoint_support (p q : PMF α) :
     totalVariation p q = 1 ↔ Disjoint p.support q.support := by
   classical
@@ -290,7 +324,9 @@ private theorem sum_sub_le_interval_mul_totalVariation (p q : PMF α) (f : α �
     exact mul_nonpos_of_nonpos_of_nonneg (sub_nonpos.mpr (le_of_not_ge h))
       (sub_nonneg.mpr (hf a).1)
 
-/-- A test taking values in a closed interval has discrepancy at most its width times TV. -/
+/-- A test taking values in a closed interval has discrepancy at most its width times TV.
+@isnad1 id=le.2h6v.s7.d10c70098da4 from=translated src=- shape=8e60b9f6 vocab=952fb3ec
+-/
 theorem abs_sum_sub_le_totalVariation_of_mem_Icc (p q : PMF α) (f : α → ℝ)
     (l u : ℝ) (_hlu : l ≤ u) (hf : ∀ a, l ≤ f a ∧ f a ≤ u) :
     |(∑ a, (p a).toReal * f a) - (∑ a, (q a).toReal * f a)| ≤
@@ -302,7 +338,9 @@ theorem abs_sum_sub_le_totalVariation_of_mem_Icc (p q : PMF α) (f : α → ℝ)
     linarith
   · exact sum_sub_le_interval_mul_totalVariation p q f l u hf
 
-/-- A test bounded in absolute value by `M` has discrepancy at most `2 * M` times TV. -/
+/-- A test bounded in absolute value by `M` has discrepancy at most `2 * M` times TV.
+@isnad1 id=le.2h5v.s7.591b7258ab69 from=translated src=- shape=58d3ad4f vocab=c0290fe5
+-/
 theorem abs_sum_sub_le_mul_totalVariation (p q : PMF α) (f : α → ℝ)
     (M : ℝ) (hM : 0 ≤ M) (hf : ∀ a, |f a| ≤ M) :
     |(∑ a, (p a).toReal * f a) - (∑ a, (q a).toReal * f a)| ≤
@@ -330,7 +368,9 @@ private theorem sum_sub_indicator_eq_totalVariation (p q : PMF α) :
   rw [sum_mul_indicator_one, sum_mul_indicator_one,
     ← totalVariation_eq_toOuterMeasure_sub]
 
-/-- Total variation is the greatest absolute discrepancy of tests valued in `[0, 1]`. -/
+/-- Total variation is the greatest absolute discrepancy of tests valued in `[0, 1]`.
+@isnad1 id=isgreate.0h3v.s7.843e2f7a1f6b from=translated src=- shape=7764e22a vocab=b06b1982
+-/
 theorem totalVariation_isGreatest_unitInterval (p q : PMF α) :
     IsGreatest {d : ℝ | ∃ f : α → ℝ,
       (∀ a, 0 ≤ f a ∧ f a ≤ 1) ∧
@@ -376,7 +416,9 @@ private theorem sum_sub_sign_eq_two_mul_totalVariation (p q : PMF α) :
   have h := sum_sub_indicator_eq_totalVariation p q
   linarith
 
-/-- Twice total variation is the greatest absolute discrepancy of tests bounded by one. -/
+/-- Twice total variation is the greatest absolute discrepancy of tests bounded by one.
+@isnad1 id=isgreate.0h3v.s7.8c3e07e7e74a from=translated src=- shape=a945c299 vocab=2f11e222
+-/
 theorem two_mul_totalVariation_isGreatest_bounded (p q : PMF α) :
     IsGreatest {d : ℝ | ∃ f : α → ℝ,
       (∀ a, |f a| ≤ 1) ∧
@@ -398,7 +440,9 @@ universe v
 
 variable {β : Type v} [Fintype β]
 
-/-- Applying the same finite channel to two laws cannot increase total variation. -/
+/-- Applying the same finite channel to two laws cannot increase total variation.
+@isnad1 id=le.0h5v.s5.b88fda5f7d68 from=translated src=- shape=55d258ac vocab=c2f1f3e9
+-/
 theorem totalVariation_bind_le (p q : PMF α) (W : α → PMF β) :
     totalVariation (p.bind W) (q.bind W) ≤ totalVariation p q := by
   have hpoint (b : β) :
@@ -428,12 +472,16 @@ theorem totalVariation_bind_le (p q : PMF α) (W : α → PMF β) :
   unfold totalVariation
   linarith
 
-/-- A deterministic map cannot increase total variation. -/
+/-- A deterministic map cannot increase total variation.
+@isnad1 id=le.0h5v.s5.69e50b569d71 from=translated src=- shape=70182d8a vocab=168d8162
+-/
 theorem totalVariation_map_le (p q : PMF α) (f : α → β) :
     totalVariation (p.map f) (q.map f) ≤ totalVariation p q := by
   exact totalVariation_bind_le p q (pure ∘ f)
 
-/-- Relabeling a finite alphabet by an equivalence preserves total variation. -/
+/-- Relabeling a finite alphabet by an equivalence preserves total variation.
+@isnad1 id=eq.0h5v.s6.7862c882d1de from=translated src=- shape=2e762d72 vocab=7bd68ba5
+-/
 theorem totalVariation_map_equiv (p q : PMF α) (e : α ≃ β) :
     totalVariation (p.map e) (q.map e) = totalVariation p q := by
   apply le_antisymm

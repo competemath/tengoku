@@ -47,10 +47,16 @@ abbrev AvailFrom3 := AvailFrom (s := 3)
 
 noncomputable instance : Fintype G := by infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s6.379ab25cd35a from=translated src=- shape=d883aa90 vocab=458ef356
+-/
 theorem dirMask_smul (σ : G) (u v : V) : dirMask (σ • u) (σ • v) = dirMask u v := by
   classical
   simp [N1000000PairTransitivity.dirMask, N1000000PairTransitivity.bit]
 
+/--
+@isnad1 id=ispartia.0h2v.s3.44fba1dfe205 from=translated src=- shape=b794339c vocab=4839ccef
+-/
 theorem dirMask_isPartialPermMask (u v : V) : IsPartialPermMask (dirMask u v) := by
   classical
   constructor
@@ -77,6 +83,9 @@ theorem dirMask_isPartialPermMask (u v : V) : IsPartialPermMask (dirMask u v) :=
         (Finset.mem_filter.1 hi₂).2
     exact u.2 (h₁.trans h₂.symm)
 
+/--
+@isnad1 id=ex.0h2v.s3.94bf4e719391 from=translated src=- shape=05f3d7d8 vocab=4b7bad83
+-/
 theorem exists_dirIdx_of_dirMask (u v : V) : ∃ d : DirIdx, maskAt d = dirMask u v := by
   have hm : dirMask u v < (1 <<< 9) := by
     simpa [Nat.shiftLeft_eq] using (dirMask_lt (u := u) (v := v))
@@ -86,6 +95,9 @@ theorem exists_dirIdx_of_dirMask (u v : V) : ∃ d : DirIdx, maskAt d = dirMask 
 noncomputable def dirIdxOfDirMask (u v : V) : DirIdx :=
   Classical.choose (exists_dirIdx_of_dirMask (u := u) (v := v))
 
+/--
+@isnad1 id=eq.0h2v.s3.8949f2e35bb4 from=translated src=- shape=35a82e60 vocab=c4656bbe
+-/
 theorem maskAt_dirIdxOfDirMask (u v : V) : maskAt (dirIdxOfDirMask u v) = dirMask u v :=
   Classical.choose_spec (exists_dirIdx_of_dirMask (u := u) (v := v))
 
@@ -93,9 +105,15 @@ theorem maskAt_dirIdxOfDirMask (u v : V) : maskAt (dirIdxOfDirMask u v) = dirMas
 noncomputable def dirIdxBase (u : V) : DirIdx :=
   dirIdxOfDirMask baseVertex u
 
+/--
+@isnad1 id=eq.0h1v.s3.3c7f30236246 from=translated src=- shape=fe6545dc vocab=4a4f9f2d
+-/
 theorem maskAt_dirIdxBase (u : V) : maskAt (dirIdxBase u) = dirMask baseVertex u :=
   maskAt_dirIdxOfDirMask (u := baseVertex) (v := u)
 
+/--
+@isnad1 id=ex.0h1v.s5.b6daac348b22 from=translated src=- shape=b6607405 vocab=599695df
+-/
 theorem exists_perm_send_to_base (u : V) : ∃ σ : G, σ • u = baseVertex := by
   classical
   have hmtp : MulAction.IsMultiplyPretransitive G SymN 3 :=
@@ -113,6 +131,9 @@ theorem exists_perm_send_to_base (u : V) : ∃ σ : G, σ • u = baseVertex := 
   simpa [x, y] using this
 
 -- Stabilizer transitivity within a fixed base orbit.
+/--
+@isnad1 id=ex.0h3v.s6.d41cc0e54610 from=translated src=- shape=bbcc87cf vocab=b7ce8d45
+-/
 theorem exists_perm_fixing_base_of_baseOrbit (k : DirIdx) (w w' : BaseOrbit k) :
     ∃ τ : G, τ • baseVertex = baseVertex ∧ τ • w.1 = w'.1 := by
   classical
@@ -200,6 +221,9 @@ theorem exists_perm_fixing_base_of_baseOrbit (k : DirIdx) (w w' : BaseOrbit k) :
 
 -- Full pair transitivity: equality of directed masks implies existence of a symbol permutation
 -- mapping the pair.
+/--
+@isnad1 id=ex.1h4v.s6.99106284a61d from=translated src=- shape=ee6dce74 vocab=458ef356
+-/
 theorem exists_perm_of_dirMask_eq {u v u' v' : V} (h : dirMask u v = dirMask u' v') :
     ∃ σ : G, σ • u = u' ∧ σ • v = v' := by
   classical
@@ -240,6 +264,9 @@ theorem exists_perm_of_dirMask_eq {u v u' v' : V} (h : dirMask u v = dirMask u' 
         change σ2.symm • (σ2 • v') = v'
         exact inv_smul_smul σ2 v'
 
+/--
+@isnad1 id=eq.1h5v.s5.baba68a39090 from=translated src=- shape=b29b60b6 vocab=229475f2
+-/
 theorem corrAvg_eq_of_dirMask_eq (f : Coloring n) {u v u' v' : V}
     (h : dirMask u v = dirMask u' v') : corrAvg f u v = corrAvg f u' v' := by
   classical

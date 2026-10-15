@@ -44,16 +44,28 @@ abbrev Big5 : Type := Set.Ici two5
 def round5 (a : Sym 5) : Bool :=
   decide (two5 ≤ a)
 
+/--
+@isnad1 id=iff.0h1v.s4.8ef2b0ab521c from=translated src=- shape=053eeeb0 vocab=288220a8
+-/
 @[simp] lemma round5_eq_true {a : Sym 5} : round5 a = true ↔ two5 ≤ a := by simp [round5]
 
+/--
+@isnad1 id=iff.0h1v.s4.ec84e288c02a from=translated src=- shape=5ce0f6fb vocab=acf3e437
+-/
 @[simp] lemma round5_eq_false {a : Sym 5} : round5 a = false ↔ a < two5 := by simp [round5, not_le]
 
 /-- Imported auxiliary declaration for the 2-coloring one-round formalization. -/
 abbrev f5 : Coloring 5 :=
   fun v => g (round5 (Vertex.a v)) (round5 (Vertex.b v)) (round5 (Vertex.c v))
 
+/--
+@isnad1 id=eq.0h0v.s5.c6a311950ff3 from=translated src=- shape=b0ae1d2b vocab=cf0560f7
+-/
 lemma card_Small5 : Fintype.card Small5 = 2 := by norm_num [Small5, two5]
 
+/--
+@isnad1 id=eq.0h0v.s5.9d937b77e1c7 from=translated src=- shape=b0ae1d2b vocab=0de02295
+-/
 lemma card_Big5 : Fintype.card Big5 = 3 := by norm_num [Big5, two5]
 
 private lemma not_all_small (e : Edge 5) : ¬ (∀ i : Fin 4, e.1 i < two5) := by
@@ -137,6 +149,9 @@ private lemma card_pat0110 : Fintype.card {e : Edge 5 // pat0110 e} = 12 := by
     exact EdgePatterns.card_pat0110 (n := 5) (two := two5)
   simp_all
 
+/--
+@isnad1 id=eq.0h0v.s3.8a2a09e227b8 from=translated src=- shape=3c26ae4f vocab=501c7c52
+-/
 theorem edgeCount_5 : edgeCount 5 = 120 := by
   classical
   -- `Edge 5` is equivalent to the type of embeddings `Fin 4 ↪ Fin 5`.
@@ -150,6 +165,9 @@ theorem edgeCount_5 : edgeCount 5 = 120 := by
     simpa [edgeCount] using this
   simp_all
 
+/--
+@isnad1 id=eq.0h0v.s3.8b2dffa384bc from=translated src=- shape=e67f34a4 vocab=4aabedda
+-/
 theorem monoCount_f5 : monoCount f5 = 24 := by
   classical
   have hsub :
@@ -174,6 +192,9 @@ theorem monoCount_f5 : monoCount f5 = 24 := by
     _ = 12 + 12 := by simp [card_pat1001, card_pat0110]
     _ = 24 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s4.3e3b90a5d64f from=translated src=- shape=63c0f1ba vocab=e9588485
+-/
 theorem monoFraction_f5 : monoFraction f5 = (1 : ℚ) / 5 := by
   norm_num [monoFraction, monoCount_f5, edgeCount_5]
 

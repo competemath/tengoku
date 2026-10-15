@@ -31,7 +31,9 @@ open FiniteCombinatorics
 variable {G : Type u} [AddCommGroup G] [DecidableEq G]
 
 omit [DecidableEq G] in
-/-- A short-relation-free old/new pair is disjoint as soon as the height bound contains `1`. -/
+/-- A short-relation-free old/new pair is disjoint as soon as the height bound contains `1`.
+@isnad1 id=disjoint.2h4v.s5.71f317675a62 from=translated src=- shape=79fae319 vocab=0659e092
+-/
 theorem disjoint_of_mixedRelationFree {A Y : Finset G} {Q : ℕ} (hQ : 1 ≤ Q)
     (hfree : MixedRelationFree Q A Y) : Disjoint A Y := by
   classical
@@ -149,7 +151,9 @@ private theorem sum_stageTarget_eq_sum_old
             rw [ite_eq_right (hYA y hy), smul_zero]
           rw [hsumA, hsumY, add_zero]
 
-/-- Bounded deletion makes the finite fusion target compatible with every relation up to `Q`. -/
+/-- Bounded deletion makes the finite fusion target compatible with every relation up to `Q`.
+@isnad1 id=respects.2h5v.s6.db160c6900cd from=translated src=- shape=59bb9621 vocab=d4496750
+-/
 theorem stageTarget_respectsRelationsUpTo
     {A Y : Finset G} {Q : ℕ} (hQ : 1 ≤ Q)
     (hfree : MixedRelationFree Q A Y) (old : G →+ UnitAddCircle) :
@@ -196,7 +200,9 @@ theorem stageTarget_respectsRelationsUpTo
     intro x hx
     simp [hold x hx]
 
-/-- One application of uniform Kronecker performs a finite fusion stage. -/
+/-- One application of uniform Kronecker performs a finite fusion stage.
+@isnad1 id=ex.3h6v.s9.65edc9d38259 from=translated src=- shape=a4f3945b vocab=b3d64f4d
+-/
 theorem exists_character_fusion_stage
     {A Y : Finset G} {Q : ℕ} (hQ : 1 ≤ Q)
     (hfree : MixedRelationFree Q A Y) (old : G →+ UnitAddCircle)

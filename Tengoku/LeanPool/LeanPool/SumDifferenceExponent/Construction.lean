@@ -25,17 +25,26 @@ def rowLabel (l i : ℕ) : ℕ := i + rowScale l * i ^ 2
 /-- A modulus large enough that sums of the relevant row labels do not carry. -/
 def rowBase (l : ℕ) : ℕ := 40 * l ^ 3 + 1
 
+/--
+@isnad1 id=lt.2h3v.s5.0e31a30c8b11 from=translated src=- shape=c26ff899 vocab=36b12d42
+-/
 theorem index_sum_lt_scale
     {l i j : ℕ} (hi : i < 2 * l) (hj : j < 2 * l) :
     i + j < rowScale l := by
   simp only [rowScale]
   omega
 
+/--
+@isnad1 id=eq.1h2v.s4.2c0c6dde1ec7 from=translated src=- shape=99b30edc vocab=dddb710c
+-/
 theorem rowLabel_mod
     {l i : ℕ} (hi : i < rowScale l) :
     rowLabel l i % rowScale l = i := by
   simp [rowLabel, Nat.add_mod, Nat.mod_eq_of_lt hi]
 
+/--
+@isnad1 id=eq.3h3v.s6.bfd1d738a587 from=translated src=- shape=7604fefc vocab=d5991ce6
+-/
 theorem rowLabel_sum_mod
     {l i j : ℕ} (hl : 0 < l)
     (hi : i < 2 * l) (hj : j < 2 * l) :
@@ -46,6 +55,9 @@ theorem rowLabel_sum_mod
   simp [Nat.add_mod, rowLabel_mod hi', rowLabel_mod hj',
     Nat.mod_eq_of_lt hij]
 
+/--
+@isnad1 id=and.8h5v.s7.82edf264cf4c from=translated src=- shape=10d66ee3 vocab=da723838
+-/
 theorem rowLabel_sum_injective
     {l i j p q : ℕ} (hl : 0 < l)
     (hi : i < 2 * l) (hj : j < 2 * l)
@@ -79,6 +91,9 @@ theorem rowLabel_sum_injective
     have : p = j := by omega
     omega
 
+/--
+@isnad1 id=injectiv.1h1v.s5.4870a06e1137 from=translated src=- shape=d3b2e7b7 vocab=da9e56d3
+-/
 theorem cross_row_sum_injective (l : ℕ) (hl : 0 < l) :
     Function.Injective
       (fun p : Fin l × Fin l =>
@@ -97,6 +112,9 @@ theorem cross_row_sum_injective (l : ℕ) (hl : 0 < l) :
   · apply Fin.ext
     omega
 
+/--
+@isnad1 id=lt.2h2v.s5.ca3fdbbe8cae from=translated src=- shape=4833c286 vocab=89481c77
+-/
 theorem rowLabel_lt_base
     {l i : ℕ} (hl : 0 < l) (hi : i < 2 * l) :
     rowLabel l i < rowBase l := by
@@ -106,6 +124,9 @@ theorem rowLabel_lt_base
   simp only [rowLabel, rowScale, rowBase]
   nlinarith [Nat.zero_le i, Nat.zero_le l]
 
+/--
+@isnad1 id=lt.3h3v.s6.f8ddcb1c8e77 from=translated src=- shape=95a17ded vocab=4f917f8d
+-/
 theorem rowLabel_sum_lt_base
     {l i j : ℕ} (hl : 0 < l)
     (hi : i < 2 * l) (hj : j < 2 * l) :
@@ -123,6 +144,9 @@ def depth (l : ℕ) : ℕ := 28 * l
 /-- The range length of the full column at the chosen digit depth. -/
 def columnModulus (l : ℕ) : ℕ := 39 ^ depth l
 
+/--
+@isnad1 id=le.0h1v.s5.a44a1fa881e4 from=translated src=- shape=1cc095f9 vocab=ad2cb68d
+-/
 theorem sparse_difference_negligible (l : ℕ) :
     2 * l * 37 ^ depth l ≤ columnModulus l := by
   have hcoeff : 2 * l ≤ 2 ^ (2 * l) := by
@@ -143,6 +167,9 @@ theorem sparse_difference_negligible (l : ℕ) :
       congr 1
       omega
 
+/--
+@isnad1 id=le.0h1v.s5.80d9948d6a03 from=translated src=- shape=1cc095f9 vocab=ad2cb68d
+-/
 theorem sparse_size_negligible (l : ℕ) :
     2 * l * 12 ^ depth l ≤ columnModulus l := by
   calc
@@ -168,12 +195,18 @@ def ANat (l : ℕ) : Finset ℕ := fullNat l ∪ sparseNat l
 def A (l : ℕ) : Finset ℤ :=
   (ANat l).image fun n : ℕ => (n : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s3.3f1904dbb3d9 from=translated src=- shape=f5f172d0 vocab=96749a63
+-/
 theorem fullNat_card (l : ℕ) : (fullNat l).card = columnModulus l := by
   rw [fullNat, Finset.card_image_iff.mpr]
   · simp
   · intro a _ b _ hab
     exact Nat.eq_of_mul_eq_mul_left (by simp [rowBase]) hab
 
+/--
+@isnad1 id=le.0h1v.s5.a798c8ed3b51 from=translated src=- shape=7bf408f6 vocab=93f785d5
+-/
 theorem sparseNat_card_le (l : ℕ) :
     (sparseNat l).card ≤ 2 * l * 12 ^ depth l := by
   calc
@@ -183,17 +216,26 @@ theorem sparseNat_card_le (l : ℕ) :
     _ = 2 * l * 12 ^ depth l := by
       simp [ZNat_card]
 
+/--
+@isnad1 id=eq.0h1v.s3.fc08364cf6ad from=translated src=- shape=bd8bbd46 vocab=821e0053
+-/
 theorem A_card_eq_ANat_card (l : ℕ) :
     (A l).card = (ANat l).card := by
   rw [A, Finset.card_image_iff.mpr]
   intro a _ b _ hab
   exact Int.ofNat_inj.mp hab
 
+/--
+@isnad1 id=le.0h1v.s3.17e23b7cc1fa from=translated src=- shape=0e3773ea vocab=b6bdb614
+-/
 theorem columnModulus_le_A_card (l : ℕ) :
     columnModulus l ≤ (A l).card := by
   rw [A_card_eq_ANat_card, ← fullNat_card l]
   exact Finset.card_le_card (Finset.subset_union_left)
 
+/--
+@isnad1 id=le.0h1v.s4.331a72d83467 from=translated src=- shape=76195f73 vocab=3bfe2886
+-/
 theorem A_card_le_two_mul_modulus (l : ℕ) :
     (A l).card ≤ 2 * columnModulus l := by
   rw [A_card_eq_ANat_card]
@@ -213,6 +255,9 @@ def sumWitnessValue (l : ℕ)
   rowLabel l p.1.1 + rowLabel l (l + p.1.2) +
     rowBase l * p.2
 
+/--
+@isnad1 id=injectiv.1h1v.s4.687c8144e6ba from=translated src=- shape=c3619fd7 vocab=cd31a366
+-/
 theorem sumWitnessValue_injective
     (l : ℕ) (hl : 0 < l) :
     Function.Injective (sumWitnessValue l) := by
@@ -250,6 +295,9 @@ def sumWitnessSet (l : ℕ) : Finset ℤ :=
     Finset ((Fin l × Fin l) × Fin (columnModulus l))).image
       (fun p => (sumWitnessValue l p : ℤ))
 
+/--
+@isnad1 id=eq.1h1v.s5.5f8bbe6cb008 from=translated src=- shape=660816ef vocab=733bcbe9
+-/
 theorem sumWitnessSet_card
     (l : ℕ) (hl : 0 < l) :
     (sumWitnessSet l).card = l ^ 2 * columnModulus l := by
@@ -257,6 +305,9 @@ theorem sumWitnessSet_card
   · simp [pow_two]
   · exact (Int.ofNat_injective.comp (sumWitnessValue_injective l hl)).injOn
 
+/--
+@isnad1 id=le.0h1v.s5.c755f434b6fc from=translated src=- shape=086c6250 vocab=147eedbf
+-/
 theorem sumWitnessSet_subset_add
     (l : ℕ) :
     sumWitnessSet l ⊆ A l + A l := by
@@ -291,6 +342,9 @@ theorem sumWitnessSet_subset_add
   rw [← hz]
   ring
 
+/--
+@isnad1 id=le.1h1v.s5.47c5722285be from=translated src=- shape=1094d1eb vocab=fa17faa9
+-/
 theorem A_add_A_card_lower
     (l : ℕ) (hl : 0 < l) :
     l ^ 2 * columnModulus l ≤ (A l + A l).card := by
@@ -302,6 +356,9 @@ noncomputable def columnInterval (l : ℕ) : Finset ℤ :=
   Finset.Icc (-((columnModulus l : ℤ) - 1))
     ((columnModulus l : ℤ) - 1)
 
+/--
+@isnad1 id=eq.0h1v.s5.febfaf97122e from=translated src=- shape=b25ace09 vocab=305aee8c
+-/
 theorem columnInterval_card (l : ℕ) :
     (columnInterval l).card = 2 * columnModulus l - 1 := by
   rw [columnInterval, Int.card_Icc]
@@ -334,6 +391,9 @@ noncomputable def differenceCover (l : ℕ) : Finset ℤ :=
   zeroDiffCover l ∪ rightDiffCover l ∪
     leftDiffCover l ∪ sparseDiffCover l
 
+/--
+@isnad1 id=mem.2h3v.s5.db967d1f1308 from=translated src=- shape=7f923e1b vocab=e80002f7
+-/
 theorem nat_difference_mem_columnInterval
     {l a b : ℕ}
     (ha : a < columnModulus l) (hb : b < columnModulus l) :
@@ -341,6 +401,9 @@ theorem nat_difference_mem_columnInterval
   rw [columnInterval, Finset.mem_Icc]
   constructor <;> omega
 
+/--
+@isnad1 id=le.0h1v.s5.624fa35c1256 from=translated src=- shape=b30c64d3 vocab=b8ec04dd
+-/
 theorem A_sub_A_subset_differenceCover (l : ℕ) :
     A l - A l ⊆ differenceCover l := by
   intro x hx
@@ -416,6 +479,9 @@ theorem A_sub_A_subset_differenceCover (l : ℕ) :
     · push_cast
       ring
 
+/--
+@isnad1 id=le.0h1v.s4.9a3647463337 from=translated src=- shape=76195f73 vocab=ac759178
+-/
 theorem zeroDiffCover_card_le (l : ℕ) :
     (zeroDiffCover l).card ≤ 2 * columnModulus l := by
   calc
@@ -437,14 +503,23 @@ private theorem mixedRow_image_card_le (l : ℕ) (f : ℕ × ℤ → ℤ) :
       exact Nat.sub_le _ _
     _ = 4 * l * columnModulus l := by ring
 
+/--
+@isnad1 id=le.0h1v.s4.ee28f88024ec from=translated src=- shape=210d42b7 vocab=b9980a6a
+-/
 theorem rightDiffCover_card_le (l : ℕ) :
     (rightDiffCover l).card ≤ 4 * l * columnModulus l :=
   mixedRow_image_card_le l _
 
+/--
+@isnad1 id=le.0h1v.s4.a2e7c5efd041 from=translated src=- shape=210d42b7 vocab=dd7af555
+-/
 theorem leftDiffCover_card_le (l : ℕ) :
     (leftDiffCover l).card ≤ 4 * l * columnModulus l :=
   mixedRow_image_card_le l _
 
+/--
+@isnad1 id=le.0h1v.s6.37b16117db31 from=translated src=- shape=4816d20e vocab=33b1fa03
+-/
 theorem sparseDiffCover_card_le (l : ℕ) :
     (sparseDiffCover l).card ≤ 4 * l ^ 2 * 37 ^ depth l := by
   calc
@@ -460,6 +535,9 @@ theorem sparseDiffCover_card_le (l : ℕ) :
       exact differenceRepresentations_card_le (depth l)
     _ = 4 * l ^ 2 * 37 ^ depth l := by ring
 
+/--
+@isnad1 id=le.1h1v.s5.baebc567b49e from=translated src=- shape=e665cd36 vocab=72ae4a12
+-/
 theorem A_sub_A_card_upper
     (l : ℕ) (hl : 0 < l) :
     (A l - A l).card ≤ 12 * l * columnModulus l := by

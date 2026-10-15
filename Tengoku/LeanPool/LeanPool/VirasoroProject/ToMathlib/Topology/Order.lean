@@ -18,6 +18,9 @@ section
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=iff.0h5v.s5.3e5cc2efd4bc from=translated src=- shape=c60af822 vocab=d320e51a
+-/
 lemma DiscreteTopology.tendsto_nhds_iff_eventually_eq
     {X : Type*} [TopologicalSpace X] [DiscreteTopology X] {ι : Type*} {F : Filter ι}
     (f : ι → X) (x : X) :

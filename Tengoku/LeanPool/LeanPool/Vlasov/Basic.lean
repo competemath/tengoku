@@ -119,7 +119,9 @@ omit [NeZero d] in
 /-- The zero potential satisfies the standing assumption ass:W — a
 machine-checked witness that the hypothesis class `AssW` is non-vacuous
 (interaction-free transport is an admissible instance of every headline
-theorem). -/
+theorem).
+@isnad1 id=assw.0h1v.s3.809b25517c96 from=translated src=- shape=bfbcd277 vocab=11703dc5
+-/
 theorem assW_zero : AssW (fun _ : PhysSpace d => (0 : ℝ)) where
   differentiable := differentiable_const 0
   even _ := rfl
@@ -130,7 +132,9 @@ theorem assW_zero : AssW (fun _ : PhysSpace d => (0 : ℝ)) where
 omit [NeZero d] in
 /-- The zero potential satisfies the strengthened assumption ass:W2 — a
 machine-checked witness that `AssW2` (and hence the hypothesis class of the
-weak ⟹ Lagrangian bridge) is non-vacuous. -/
+weak ⟹ Lagrangian bridge) is non-vacuous.
+@isnad1 id=assw2.0h1v.s3.301ec86cadf5 from=translated src=- shape=bfbcd277 vocab=f8aa1d45
+-/
 theorem assW2_zero : AssW2 (fun _ : PhysSpace d => (0 : ℝ)) where
   toAssW := assW_zero
   gradContDiff := by simpa only [fderiv_fun_const, Pi.zero_apply] using contDiff_const
@@ -145,7 +149,9 @@ Mathematical content: differentiating `W(-x) = W(x)` at `x = 0` and using
 this forces `gradient W 0 = 0`.
 
 Used by `empiricalMeasureSolvesVlasov` (cor:empirical-vlasov) to kill the
-diagonal correction term in `weakEvolutionEmpiricalMeasure`. -/
+diagonal correction term in `weakEvolutionEmpiricalMeasure`.
+@isnad1 id=eq.0h2v.s7.fdfafef7e91f from=translated src=- shape=ca8b97ba vocab=65ce6f9c
+-/
 lemma gradient_zero_of_even (W : PhysSpace d → ℝ) [hW : AssW W] :
     gradient W 0 = 0 := by
   -- Step A: the claim that the gradient at 0 equals its own negation.
@@ -229,7 +235,9 @@ When N ≥ 1 the empirical measure is a probability measure.
 
 Proof: μ(univ) = (1/N) · Σᵢ δ_{zᵢ}(univ) = (1/N) · N · 1 = 1, where each
 Dirac mass evaluates to 1 on the universal set via the
-`Measure.dirac.isProbabilityMeasure` instance. -/
+`Measure.dirac.isProbabilityMeasure` instance.
+@isnad1 id=isprobab.0h4v.s6.393fd91d6f98 from=translated src=- shape=afbc3ea7 vocab=8fe81f6f
+-/
 lemma empiricalMeasure_isProbabilityMeasure (N : ℕ) [NeZero N]
     (X V : Fin N → PhysSpace d) :
     IsProbabilityMeasure (empiricalMeasure N X V) := by
@@ -266,7 +274,9 @@ noncomputable def spatialMarginal (μ : Measure (PhaseSpace d)) :
 
 omit [NeZero d] in
 /-- The integral of a function φ against the empirical measure `empiricalMeasure N X V`
-equals `(1/N) * ∑ i, φ(X i, V i)`, by unfolding the weighted sum of Dirac masses. -/
+equals `(1/N) * ∑ i, φ(X i, V i)`, by unfolding the weighted sum of Dirac masses.
+@isnad1 id=eq.0h5v.s7.88ce85d4b7c7 from=translated src=- shape=46a89151 vocab=f37ee794
+-/
 lemma empiricalMeasure_integral_eq (N : ℕ)
     (X V : Fin N → PhysSpace d)
     (φ : PhaseSpace d → ℝ) :
@@ -288,7 +298,9 @@ inside the helper, keeping the body a straight composition:
   · `(hφ_fderiv (X t i, V t i)).comp_hasDerivAt` composes through φ.
   · Unfolding `gradXφ`/`gradVφ` via `hgradXφ`/`hgradVφ` and rewriting the
     Fréchet derivative's action via inner-product partial-derivative
-    identities gives the target inner-product form. -/
+    identities gives the target inner-product form.
+@isnad1 id=hasderiv.5h11v.s10.1b52faebe3e9 from=translated src=- shape=583eff46 vocab=c3b54e74
+-/
 lemma hasDerivAt_phi_along_trajectory (N : ℕ)
     (X V : ℝ → Fin N → PhysSpace d)
     (hX : ∀ t i, HasDerivAt (fun t => X t i) (V t i) t)
@@ -343,7 +355,9 @@ omit [NeZero d] in
 expression `(1/N) * Σᵢ [⟨V t i, gradXφ (X t i, V t i)⟩ + ⟨aᵢ, gradVφ (X t i, V t i)⟩]`
 where `aᵢ = -(1/N) Σ_{j≠i} gradW(X t i - X t j)` is the Newton acceleration,
 obtained by combining `empiricalMeasure_integral_eq` and `hasDerivAt_phi_along_trajectory`
-with `HasDerivAt.sum` and `HasDerivAt.const_smul`. -/
+with `HasDerivAt.sum` and `HasDerivAt.const_smul`.
+@isnad1 id=hasderiv.4h9v.s10.b849eb2e5252 from=translated src=- shape=c78dc878 vocab=44a46a47
+-/
 lemma hasDerivAt_empiricalIntegral_sum (N : ℕ)
     (gradW : PhysSpace d → PhysSpace d)
     (X V : ℝ → Fin N → PhysSpace d)
@@ -410,7 +424,9 @@ Proof strategy:
      scalar; `integral_finsetSum_measure` (`Integral/Bochner/Basic.lean`)
      distributes integration over the finite sum of Diracs;
      `integral_dirac'` (`Integral/Bochner/Basic.lean`) collapses each
-     summand to `gradW(X t i − X t j)`. -/
+     summand to `gradW(X t i − X t j)`.
+@isnad1 id=eq.1h7v.s8.ab895a49e433 from=translated src=- shape=66a07d0c vocab=f3c04a2c
+-/
 lemma convolveFunctionMeasure_empiricalSpatial_eq (N : ℕ)
     (gradW : PhysSpace d → PhysSpace d)
     (hgradW_meas : Measurable gradW)
@@ -451,7 +467,9 @@ This lemma is pure inner-product algebra atop
 `convolveFunctionMeasure_empiricalSpatial_eq`: extend `Σ_{j≠i}` to `Σⱼ` via
 `Finset.sum_ite_ne` or `Finset.sum_compl_add_sum`, distribute the inner
 product with `inner_sub_left`/`inner_smul_left`, recognise the
-`(1/N) • Σⱼ gradW` factor as the convolveFunctionMeasure unfolding. -/
+`(1/N) • Σⱼ gradW` factor as the convolveFunctionMeasure unfolding.
+@isnad1 id=eq.1h7v.s9.7d0842007cbe from=translated src=- shape=546ea6a7 vocab=eebba290
+-/
 lemma diagonalCorrection_eq (N : ℕ)
     (gradW : PhysSpace d → PhysSpace d)
     (hgradW_meas : Measurable gradW)
@@ -530,7 +548,9 @@ assumes L^∞ boundedness; making it explicit here keeps the lemma
 honest. (For `gradVφ`: it comes from `∇_v φ` of a smooth compactly
 supported `φ`, so the bound is a consequence of `HasCompactSupport`
 — but expressing that derivation requires Mathlib API that's awkward
-to assemble; easier to pass the bound as a hypothesis.) -/
+to assemble; easier to pass the bound as a hypothesis.)
+@isnad1 id=le.2h7v.s8.82d482e6e86e from=translated src=- shape=5b24c85e vocab=463aa8b5
+-/
 lemma diagonalCorrection_bound (N : ℕ) [NeZero N]
     (gradW : PhysSpace d → PhysSpace d)
     (X V : ℝ → Fin N → PhysSpace d)
@@ -585,7 +605,9 @@ correction `(1/N²) Σᵢ ⟨∇W(0), ∇_v φ(zᵢ)⟩`.  The `BddAbove` hypoth
 `weakEvolutionEmpiricalMeasure` feed only its quantitative
 `(1/N)‖∇W‖_∞‖∇_vφ‖_∞` bound conjunct, not this identity — keeping them out
 here is what lets `empiricalMeasureSolvesVlasov` (and the packaged
-`empiricalMeasure_isVlasovSolution`) run hypothesis-free beyond ass:W. -/
+`empiricalMeasure_isVlasovSolution`) run hypothesis-free beyond ass:W.
+@isnad1 id=hasderiv.5h10v.s10.05179f365d88 from=translated src=- shape=66013550 vocab=ac8ab1a5
+-/
 theorem weakEvolutionEmpiricalMeasure_hasDerivAt
     (N : ℕ)
     (W : PhysSpace d → ℝ) [AssW W]
@@ -680,7 +702,9 @@ content of `empiricalMeasureSolvesVlasov` below.
 
 The remainder is quantified existentially because `HasDerivAt` has a
 unique derivative — a free `R_N` parameter would make the statement
-false. -/
+false.
+@isnad1 id=ex.8h10v.s10.1b8e9c030dea from=translated src=- shape=f7190809 vocab=d2bf7bc0
+-/
 theorem weakEvolutionEmpiricalMeasure
     (N : ℕ) [NeZero N]
     (W : PhysSpace d → ℝ) [AssW W]
@@ -770,6 +794,7 @@ Under Assumption ass:W, the empirical measure μ_t^N satisfies the distributiona
 Vlasov equation eq:vlasov with remainder R_N ≡ 0: for every φ ∈ C_c^∞(ℝ^d × ℝ^d),
 
   d/dt ⟨μ_t^N, φ⟩ = ⟨μ_t^N, v · ∇_x φ − (∇W * ρ_t^N) · ∇_v φ⟩.
+@isnad1 id=weakevol.6h9v.s9.1e1f64a6a42e from=translated src=- shape=db1c1d4c vocab=4f16ec9d
 -/
 theorem empiricalMeasureSolvesVlasov
     (N : ℕ)
@@ -844,7 +869,9 @@ this discharges the weak-PDE and moment sides of the solution predicates on
 empirical curves; the remaining gap to the `IsLagrangianVlasovSolution` that
 `dobrushin` consumes is the characteristic-flow witness (the linear flow of
 the empirical field, with atoms following characteristics), which is not yet
-formalized. -/
+formalized.
+@isnad1 id=isvlasov.2h6v.s6.72ec8dd93769 from=translated src=- shape=8b0715c4 vocab=eef0640d
+-/
 theorem empiricalMeasure_isVlasovSolution
     (N : ℕ)
     (W : PhysSpace d → ℝ) [AssW W]
@@ -871,7 +898,9 @@ omit [NeZero d] in
 /-- Empirical measures lie in `𝒫₁`: probability (for `N ≥ 1`) plus finite
 first moment — the latter because integration against a finite weighted sum
 of Dirac masses is a finite sum.  Discharges, pointwise in time, the moment
-hypotheses that the Dobrushin-type estimates place on empirical curves. -/
+hypotheses that the Dobrushin-type estimates place on empirical curves.
+@isnad1 id=hasfinit.0h4v.s4.d31d0b140ae4 from=translated src=- shape=29f1dd16 vocab=500710ee
+-/
 lemma empiricalMeasure_hasFiniteFirstMoment
     (N : ℕ) [NeZero N] (X V : Fin N → PhysSpace d) :
     HasFiniteFirstMoment (empiricalMeasure N X V) := by
@@ -883,7 +912,9 @@ lemma empiricalMeasure_hasFiniteFirstMoment
 
 omit [NeZero d] in
 /-- Curve version of `empiricalMeasure_hasFiniteFirstMoment`: the empirical
-measure of a particle configuration lies in `𝒫₁` at every time. -/
+measure of a particle configuration lies in `𝒫₁` at every time.
+@isnad1 id=hasfinit.0h5v.s5.273a2c2d11f5 from=translated src=- shape=2dfbaef0 vocab=02e205ed
+-/
 lemma empiricalMeasureCurve_hasFiniteFirstMoment
     (N : ℕ) [NeZero N] (X V : ℝ → Fin N → PhysSpace d) (t : ℝ) :
     HasFiniteFirstMoment (empiricalMeasureCurve N X V t) :=
@@ -991,7 +1022,9 @@ A Cauchy sequence in W₁ with a uniform first-moment bound has a W₁-limit in
 Used to lift the Picard iteration's Cauchy sequence (from the
 `Phi_supW1_contraction` contraction estimate) to a W₁-limit in the curve
 space; the limit is a fixed point of the Picard iteration, yielding a
-self-consistent characteristic flow + Vlasov solution on `[0, T₀]`. -/
+self-consistent characteristic flow + Vlasov solution on `[0, T₀]`.
+@isnad1 id=ex.3h3v.s9.51ef34bc78fb from=translated src=- shape=ea3e6671 vocab=e2757fca
+-/
 theorem exists_wasserstein1_limit_of_cauchy {d : ℕ}
     (ν : ℕ → Measure (PhysSpace d)) [∀ n, IsProbabilityMeasure (ν n)]
     (M : ℝ) (hMom : ∀ n, ∫ y, ‖y‖ ∂(ν n) ≤ M)
@@ -1199,7 +1232,9 @@ via `wasserstein1_lt_top_of_finite_moment`.  See `formalize/DESIGN.md` (in the s
 `y ↦ @inner ℝ (PhysSpace d) _ (gradW (x - y)) v` is LipschitzWith `(L * ‖v‖₊)`.
 Proof: the map `y ↦ gradW (x - y)` is L-Lipschitz (composition of the L-Lipschitz `gradW`
 with the 1-Lipschitz subtraction `y ↦ x - y`), and `w ↦ ⟨w, v⟩` is `‖v‖₊`-Lipschitz
-(bounded linear map with operator norm `‖v‖`); compose via `LipschitzWith.comp`. -/
+(bounded linear map with operator norm `‖v‖`); compose via `LipschitzWith.comp`.
+@isnad1 id=lipschit.1h5v.s8.faeea4c21aaf from=translated src=- shape=39c85630 vocab=7e6867d2
+-/
 lemma convolveLipschitz_inner_lipschitz
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1231,7 +1266,9 @@ lemma convolveLipschitz_inner_lipschitz
 `∫ φ dρ − ∫ φ dσ ≤ (wasserstein1 ρ σ).toReal`.
 This follows directly from the Kantorovich–Rubinstein definition of `wasserstein1` as the
 supremum of integral differences over 1-Lipschitz test functions, together with
-`ENNReal.toReal_iSup` and `ENNReal.ofReal_toReal` to convert between ENNReal and ℝ. -/
+`ENNReal.toReal_iSup` and `ENNReal.ofReal_toReal` to convert between ENNReal and ℝ.
+@isnad1 id=le.2h4v.s6.ae2d5b1ab7d7 from=translated src=- shape=c0242d39 vocab=850e08d4
+-/
 lemma convolveLipschitz_KR_le
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (ρ σ : Measure α) (φ : α → ℝ) (hφ : LipschitzWith 1 φ)
@@ -1256,7 +1293,9 @@ commute the inner product `⟨·, v⟩` (a continuous linear map) through each i
 `ContinuousLinearMap.integral_comp_comm`; then the integrand function
 `y ↦ ⟨gradW(x−y), v⟩` has Lipschitz constant `L * ‖v‖` ≤ `L`
 (from `convolveLipschitz_inner_lipschitz`), so `(1/L) * (that integrand)` is 1-Lipschitz and
-`convolveLipschitz_KR_le` closes the estimate. -/
+`convolveLipschitz_KR_le` closes the estimate.
+@isnad1 id=le.5h7v.s9.8435adc99178 from=translated src=- shape=015476c9 vocab=5fe89efe
+-/
 lemma convolveLipschitz_inner_bound
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1362,7 +1401,9 @@ lemma convolveLipschitz_inner_bound
 `@inner ℝ (PhysSpace d) _ z v ≤ C`, then `‖z‖ ≤ C`.
 Proof: in the `z = 0` case, `‖0‖ = 0 ≤ C` (from `C ≥ ⟨0, 0⟩ = 0`); in the `z ≠ 0` case,
 take `v = z / ‖z‖` (which satisfies `‖v‖ = 1`); then
-`‖z‖ = ⟨z, z/‖z‖⟩ = ⟨z, v⟩ ≤ C` by hypothesis via `real_inner_self_eq_norm_mul_norm`. -/
+`‖z‖ = ⟨z, z/‖z‖⟩ = ⟨z, v⟩ ≤ C` by hypothesis via `real_inner_self_eq_norm_mul_norm`.
+@isnad1 id=le.1h3v.s7.6138955ddc7d from=translated src=- shape=5bdc43da vocab=1e0a223e
+-/
 lemma convolveLipschitz_norm_le_of_inner_forall
     {d : ℕ}
     (z : PhysSpace d) (C : ℝ)
@@ -1389,6 +1430,9 @@ lemma convolveLipschitz_norm_le_of_inner_forall
 -- Mathlib gap: pointwise Lipschitz estimate for the convolution ∇W * ρ.
 -- Requires Wasserstein-1 Kantorovich–Rubinstein duality, which is not yet
 -- in Mathlib's stable API for general metric spaces.
+/--
+@isnad1 id=le.4h6v.s9.83d3f0b6a39f from=translated src=- shape=b44dac8e vocab=02b6b787
+-/
 theorem norm_convolveFunctionMeasure_sub_le
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1416,7 +1460,9 @@ pushforward equation `f t = Measure.map (charX t, charV t) (f 0)` and
 `integral_map`, `∫ φ d(f t) = ∫ (φ ∘ (charX t, charV t)) d(f 0)`.  Continuity
 in `t` then reduces to dominated convergence on the *fixed* measure `f 0`,
 with pointwise continuity from the flow's `HasDerivAt` and an integrable
-dominator from `HasFiniteFirstMoment (f 0)` + a flow-growth bound. -/
+dominator from `HasFiniteFirstMoment (f 0)` + a flow-growth bound.
+@isnad1 id=continuo.9h7v.s9.b7444dd2fac6 from=translated src=- shape=676b4a95 vocab=4ea07b7f
+-/
 lemma continuousOn_integral_of_isLagrangianVlasovSolution
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1592,7 +1638,9 @@ lemma continuousOn_integral_of_isLagrangianVlasovSolution
 /-- Given per-1-Lipschitz LSC of each summand `t ↦ ENNReal.ofReal(∫φd(f t) - ∫φd(g t))`,
 the Wasserstein-1 distance `wasserstein1 (f t) (g t) = ⨆ φ (_ : LipschitzWith 1 φ), …`
 is LowerSemicontinuousOn `Set.Icc 0 T` as a double supremum of LSC functions
-via `lowerSemicontinuousOn_iSup` applied twice. -/
+via `lowerSemicontinuousOn_iSup` applied twice.
+@isnad1 id=lowersem.1h4v.s9.3761ca2278d0 from=translated src=- shape=1fc55934 vocab=80a07995
+-/
 lemma w1_lscNarrow_of_summands
     {d : ℕ}
     (f g : ℝ → Measure (PhaseSpace d))
@@ -1609,7 +1657,9 @@ lemma w1_lscNarrow_of_summands
 right-derivative liminf bounded by C * h(s) for all s ∈ [0, T),
 Gronwall's inequality gives h(t) ≤ δ * Real.exp(C * t) for all t ∈ [0, T].
 This wraps Mathlib's `le_gronwallBound_of_liminf_deriv_right_le` with ε = 0
-and then simplifies via `gronwallBound_ε0`. -/
+and then simplifies via `gronwallBound_ε0`.
+@isnad1 id=le.5h5v.s7.2166331ee6d0 from=translated src=- shape=e0269bea vocab=3a4a494c
+-/
 lemma wassersteinGronwallCoupling_gronwall_le
     (h : ℝ → ℝ) (δ C T : ℝ) (_hT : 0 ≤ T)
     (hcont : ContinuousOn h (Set.Icc 0 T))
@@ -1635,7 +1685,9 @@ per-trajectory FTC + Tonelli on a nonnegative integrand), sidestepping the
 reverse-Fatou difference-quotient interchange.  Proof: apply Mathlib's
 `norm_le_gronwallBound_of_norm_deriv_right_le` to the C¹ primitive
 `G t = q0 + K · ∫₀ᵗ Q` (with `G' t = K · Q t ≤ K · G t` since `Q ≤ G`), then
-`Q ≤ G`. -/
+`Q ≤ G`.
+@isnad1 id=le.6h5v.s7.99ca07861513 from=translated src=- shape=bfe9f663 vocab=f2ed4894
+-/
 lemma gronwall_mild_le (Q : ℝ → ℝ) (q0 K T : ℝ) (hK : 0 ≤ K) (hq0 : 0 ≤ q0)
     (hQcont : Continuous Q) (hQnn : ∀ t, 0 ≤ Q t)
     (hmild : ∀ t ∈ Set.Icc 0 T, Q t ≤ q0 + K * ∫ s in (0 : ℝ)..t, Q s) :
@@ -1679,7 +1731,9 @@ lemma gronwall_mild_le (Q : ℝ → ℝ) (q0 K T : ℝ) (hK : 0 ≤ K) (hq0 : 0 
 
 /-- For reals δ ≥ 0 and C > 0 and t ≥ 0, if r ≤ δ * Real.exp(C * t) then
 ENNReal.ofReal r ≤ ENNReal.ofReal (Real.exp (C * t)) * ENNReal.ofReal δ.
-Uses ENNReal.ofReal_mul and mul_comm to reorder the product. -/
+Uses ENNReal.ofReal_mul and mul_comm to reorder the product.
+@isnad1 id=eq.1h3v.s6.3bf2ca285cc3 from=translated src=- shape=c71c2845 vocab=055f3120
+-/
 lemma wassersteinGronwallCoupling_ennreal_mul_comm
     (δ : ℝ) (hδ : 0 ≤ δ) (C t : ℝ) :
     ENNReal.ofReal (δ * Real.exp (C * t)) =
@@ -1691,7 +1745,9 @@ omit [NeZero d] in
 on PhysSpace d, ‖(∇W*ρ)(x) − (∇W*σ)(x)‖ ≤ L · W₁(ρ,σ).toReal.
 This is the key estimate: the convolution ∇W * ρ is Lipschitz in ρ with respect to
 the Wasserstein-1 distance, via Kantorovich–Rubinstein duality.
-A thin wrapper around `norm_convolveFunctionMeasure_sub_le`. -/
+A thin wrapper around `norm_convolveFunctionMeasure_sub_le`.
+@isnad1 id=le.4h6v.s9.83d3f0b6a39f from=translated src=- shape=b44dac8e vocab=02b6b787
+-/
 lemma convolveDiff_norm_le
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -1737,6 +1793,7 @@ f_t is the unique Vlasov solution with initial datum f_0 (Theorem thm:vlasov-wp)
 The .tex names the initial data `(X_0^N, V_0^N)`; here we identify them with
 `X N 0` and `V N 0` rather than introducing redundant `X₀, V₀` parameters
 that would need a separate hypothesis to link them to the trajectory.
+@isnad1 id=tendsto.10h10v.s9.ee5947d76c43 from=translated src=- shape=c5523db2 vocab=b558696c
 -/
 theorem meanFieldLimit
     (W : PhysSpace d → ℝ)

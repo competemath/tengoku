@@ -101,6 +101,9 @@ def cSat : Clause 2 := ![(0, true), (1, true), (0, true)]
 /-- The satisfiable formula with one clause. -/
 def fSat : Formula 2 1 := ![cSat]
 
+/--
+@isnad1 id=satisfia.0h0v.s3.87f5347223f0 from=translated src=- shape=5ad26cac vocab=60626e7f
+-/
 theorem ex_sat : Satisfiable fSat := by decide
 
 /-! ### Concrete validation (B): an UNSATISFIABLE formula.
@@ -118,6 +121,9 @@ def cNeg : Clause 1 := ![(0, false), (0, false), (0, false)]
 /-- The unsatisfiable formula with the two contradictory clauses. -/
 def fUnsat : Formula 1 2 := ![cPos, cNeg]
 
+/--
+@isnad1 id=not.0h0v.s3.4c028f218bf8 from=translated src=- shape=d95b6075 vocab=9040a97c
+-/
 theorem ex_unsat : ¬ Satisfiable fUnsat := by decide
 
 /-! ### Axiom audit.

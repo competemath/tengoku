@@ -67,6 +67,7 @@ def condFstGivenSnd {alpha : Type u} {beta : Type v} [Fintype alpha]
 /--
 Atom formula for the conditional law:
 `P_{A | B=b}(a) = P_{A,B}(a,b) / P_B(b)`.
+@isnad1 id=eq.1h5v.s6.52d3547cc658 from=translated src=- shape=48f765d1 vocab=ecdaa89a
 -/
 @[simp]
 theorem condFstGivenSnd_apply {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -77,6 +78,7 @@ theorem condFstGivenSnd_apply {alpha : Type u} {beta : Type v} [Fintype alpha]
 /--
 The conditional PMF does not depend on which proof of nonzero marginal mass was
 used to construct it.
+@isnad1 id=eq.2h4v.s6.03db284572d2 from=translated src=- shape=80ff5cf8 vocab=1b934397
 -/
 theorem condFstGivenSnd_proof_irrel {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) (b : beta)
@@ -88,6 +90,7 @@ theorem condFstGivenSnd_proof_irrel {alpha : Type u} {beta : Type v} [Fintype al
 /--
 An atom has zero conditional mass exactly when the corresponding joint atom has
 zero mass.
+@isnad1 id=iff.1h5v.s6.4335069192e0 from=translated src=- shape=4f95191c vocab=663fa994
 -/
 @[simp]
 theorem condFstGivenSnd_apply_eq_zero_iff {alpha : Type u} {beta : Type v}
@@ -107,6 +110,7 @@ theorem condFstGivenSnd_apply_eq_zero_iff {alpha : Type u} {beta : Type v}
 /--
 An atom has nonzero conditional mass exactly when the corresponding joint atom
 has nonzero mass.
+@isnad1 id=iff.1h5v.s6.d18d4c5adbe1 from=translated src=- shape=99fccd27 vocab=663fa994
 -/
 @[simp]
 theorem condFstGivenSnd_apply_ne_zero_iff {alpha : Type u} {beta : Type v}
@@ -117,6 +121,7 @@ theorem condFstGivenSnd_apply_ne_zero_iff {alpha : Type u} {beta : Type v}
 
 /--
 The support of `P_{A | B=b}` is the fiber of the joint support over `b`.
+@isnad1 id=eq.1h4v.s6.41ec26f8ec70 from=translated src=- shape=cdfeb7e2 vocab=ac230538
 -/
 @[simp]
 theorem support_condFstGivenSnd {alpha : Type u} {beta : Type v}
@@ -129,6 +134,7 @@ theorem support_condFstGivenSnd {alpha : Type u} {beta : Type v}
 /--
 Joint mass factors as conditional mass times the conditioning marginal:
 `P_{A | B=b}(a) * P_B(b) = P_{A,B}(a,b)`.
+@isnad1 id=eq.1h5v.s6.f450562f4c54 from=translated src=- shape=353ea1b0 vocab=507f5fca
 -/
 theorem condFstGivenSnd_mul_sndMarginal {alpha : Type u} {beta : Type v}
     [Fintype alpha] (p : PMF (alpha × beta)) (b : beta)
@@ -140,6 +146,7 @@ theorem condFstGivenSnd_mul_sndMarginal {alpha : Type u} {beta : Type v}
 /--
 Joint mass factors as the conditioning marginal times conditional mass:
 `P_B(b) * P_{A | B=b}(a) = P_{A,B}(a,b)`.
+@isnad1 id=eq.1h5v.s6.bfe4ba1f97da from=translated src=- shape=db38aa6f vocab=507f5fca
 -/
 theorem sndMarginal_mul_condFstGivenSnd {alpha : Type u} {beta : Type v}
     [Fintype alpha] (p : PMF (alpha × beta)) (b : beta)
@@ -151,6 +158,7 @@ theorem sndMarginal_mul_condFstGivenSnd {alpha : Type u} {beta : Type v}
 /--
 Real-valued version of the joint factorization:
 `P_B(b) * P_{A | B=b}(a) = P_{A,B}(a,b)` after converting masses to `Real`.
+@isnad1 id=eq.1h5v.s6.44e8619eff39 from=translated src=- shape=6c2c9be8 vocab=ea7e7eed
 -/
 theorem sndMarginal_toReal_mul_condFstGivenSnd_toReal
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -175,7 +183,9 @@ def condEntropyFstGivenSnd {alpha : Type u} {beta : Type v}
   else
     entropy (condFstGivenSnd p b hb)
 
-/-- Zero-marginal conditioning atoms contribute zero to conditional-fiber entropy. -/
+/-- Zero-marginal conditioning atoms contribute zero to conditional-fiber entropy.
+@isnad1 id=eq.1h4v.s5.d799db12f874 from=translated src=- shape=f2adfa53 vocab=ac56b8bd
+-/
 @[simp]
 theorem condEntropyFstGivenSnd_of_sndMarginal_eq_zero
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -186,6 +196,7 @@ theorem condEntropyFstGivenSnd_of_sndMarginal_eq_zero
 /--
 On nonzero conditioning atoms, `condEntropyFstGivenSnd` is the entropy of the
 canonical conditional PMF `P_{A | B=b}`.
+@isnad1 id=eq.1h4v.s5.c65a9ecc2ad1 from=translated src=- shape=fee33d31 vocab=b31398b7
 -/
 theorem condEntropyFstGivenSnd_of_sndMarginal_ne_zero
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -201,6 +212,7 @@ For each conditioning atom `b`,
 `h(x) = -x log x`. If `p_B(b)=0`, the left side uses the explicit zero branch
 of `condEntropyFstGivenSnd`, and the right side is zero because every joint
 atom over `b` has zero mass.
+@isnad1 id=eq.0h4v.s6.0e05718cd466 from=translated src=- shape=edd80c76 vocab=e53060f5
 -/
 theorem sndMarginal_toReal_mul_condEntropyFstGivenSnd
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -269,6 +281,7 @@ Expected conditional entropy formula for the finite conditional-law API:
 The right-hand side is written using `condEntropyFstGivenSnd`, whose value is
 `0` on zero-marginal conditioning atoms and the entropy of the canonical
 conditional PMF on nonzero atoms.
+@isnad1 id=eq.0h3v.s5.32435e9ab7c4 from=translated src=- shape=a9670546 vocab=5299a0d8
 -/
 theorem condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
@@ -312,7 +325,9 @@ abbrev pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) : PMF ((alpha × beta) × gamma) :=
   p.map (Equiv.prodAssoc alpha beta gamma).symm
 
-/-- Atom formula for the reassociated law `((A,B),C)`. -/
+/-- Atom formula for the reassociated law `((A,B),C)`.
+@isnad1 id=eq.0h7v.s6.2dea5394bdf0 from=translated src=- shape=8c921ebc vocab=dcaa42eb
+-/
 @[simp]
 theorem pairThirdLaw_apply {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) (a : alpha) (b : beta) (c : gamma) :
@@ -330,7 +345,9 @@ private theorem map_pair_eq_pairThirdLaw
   rcases z with ⟨a, b, c⟩
   rfl
 
-/-- The second marginal of the reassociated law `((A,B),C)` is the law of `C`. -/
+/-- The second marginal of the reassociated law `((A,B),C)` is the law of `C`.
+@isnad1 id=eq.0h4v.s4.c6730da88193 from=translated src=- shape=f5ab8b9b vocab=1f085c57
+-/
 @[simp]
 theorem sndMarginal_pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) :
@@ -339,7 +356,9 @@ theorem sndMarginal_pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type 
   rw [PMF.map_comp]
   rfl
 
-/-- Reassociating `(A,B,C)` as `((A,B),C)` preserves entropy. -/
+/-- Reassociating `(A,B,C)` as `((A,B),C)` preserves entropy.
+@isnad1 id=eq.0h4v.s6.fc20418fc179 from=translated src=- shape=f1e7d0da vocab=15474219
+-/
 theorem entropy_pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
     (p : PMF (alpha × beta × gamma)) :
@@ -349,6 +368,7 @@ theorem entropy_pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type w}
 /--
 PMF form of the triple conditional-entropy chain rule:
 `H(A,B|C) = H(B|C) + H(A|B,C)`.
+@isnad1 id=eq.0h4v.s6.7cf9342e2755 from=translated src=- shape=77bfd424 vocab=a1386eab
 -/
 theorem condEntropy_pairThirdLaw_chain_rule
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -373,6 +393,7 @@ theorem condEntropy_pairThirdLaw_chain_rule
 /--
 Swapped PMF form of the triple conditional-entropy chain rule:
 `H(A,B|C) = H(A|C) + H(B|A,C)`.
+@isnad1 id=eq.0h4v.s6.9d939e6a992d from=translated src=- shape=6034ca1b vocab=242a0414
 -/
 theorem condEntropy_pairThirdLaw_chain_rule_swap
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -418,7 +439,9 @@ def condFstSndGivenThird {alpha : Type u} {beta : Type v} {gamma : Type w}
       _ = 1 := by
             exact ENNReal.mul_inv_cancel hc (pmf_apply_ne_top (thirdMarginal p) c))
 
-/-- Atom formula for `P_{A,B | C=c}`. -/
+/-- Atom formula for `P_{A,B | C=c}`.
+@isnad1 id=eq.1h7v.s7.1ffcbb9d1795 from=translated src=- shape=c7d31382 vocab=d187f191
+-/
 @[simp]
 theorem condFstSndGivenThird_apply
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -431,6 +454,7 @@ theorem condFstSndGivenThird_apply
 /--
 Joint mass factors through the conditional joint law:
 `P_C(c) * P_{A,B|C=c}(a,b) = P_{A,B,C}(a,b,c)`.
+@isnad1 id=eq.1h7v.s7.5797dd6c65a0 from=translated src=- shape=e12b0b36 vocab=23b7eebd
 -/
 theorem thirdMarginal_mul_condFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -444,6 +468,7 @@ theorem thirdMarginal_mul_condFstSndGivenThird
 /--
 Real-valued joint factorization for the conditional joint law:
 `P_C(c) * P_{A,B|C=c}(a,b) = P_{A,B,C}(a,b,c)`.
+@isnad1 id=eq.1h7v.s7.d9370cb9f80b from=translated src=- shape=560f1a3e vocab=e815abca
 -/
 theorem thirdMarginal_toReal_mul_condFstSndGivenThird_toReal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -457,7 +482,9 @@ theorem thirdMarginal_toReal_mul_condFstSndGivenThird_toReal
     (thirdMarginal_mul_condFstSndGivenThird p c hc a b)
   simpa [ENNReal.toReal_mul] using h
 
-/-- The second marginal of the `(A,C)` law is the law of `C`. -/
+/-- The second marginal of the `(A,C)` law is the law of `C`.
+@isnad1 id=eq.0h4v.s5.283ce147102a from=translated src=- shape=ab6a044b vocab=03724e04
+-/
 @[simp]
 theorem sndMarginal_fstThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -473,7 +500,9 @@ theorem sndMarginal_fstThirdMarginal
   intro a _ha
   rw [fstThirdMarginal_apply]
 
-/-- The second marginal of the `(B,C)` law is the law of `C`. -/
+/-- The second marginal of the `(B,C)` law is the law of `C`.
+@isnad1 id=eq.0h4v.s5.d0030837c212 from=translated src=- shape=c06ed4a0 vocab=52756a06
+-/
 @[simp]
 theorem sndMarginal_sndThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -496,6 +525,7 @@ theorem sndMarginal_sndThirdMarginal
 
 /--
 The first marginal of `P_{A,B|C=c}` is the conditional law `P_{A|C=c}`.
+@isnad1 id=eq.1h5v.s6.50f32d8e6466 from=translated src=- shape=5eba3d25 vocab=8b0394c5
 -/
 theorem fstMarginal_condFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -526,6 +556,7 @@ theorem fstMarginal_condFstSndGivenThird
 
 /--
 The second marginal of `P_{A,B|C=c}` is the conditional law `P_{B|C=c}`.
+@isnad1 id=eq.1h5v.s6.bd71a9d29c39 from=translated src=- shape=ab547b02 vocab=062363be
 -/
 theorem sndMarginal_condFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -557,6 +588,7 @@ theorem sndMarginal_condFstSndGivenThird
 /--
 The conditional law of `(A,B)` given `C=c`, obtained by conditioning the
 reassociated law `((A,B),C)`, is the same as `condFstSndGivenThird`.
+@isnad1 id=eq.1h5v.s6.3c9f5c72f8e2 from=translated src=- shape=3924e7bd vocab=ae07b274
 -/
 theorem condFstGivenSnd_pairThirdLaw_eq_condFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -587,7 +619,9 @@ def condMutualInfoFstSndGivenThird
   else
     mutualInfo (condFstSndGivenThird p c hc)
 
-/-- Zero-marginal conditioning atoms contribute zero fiber mutual information. -/
+/-- Zero-marginal conditioning atoms contribute zero fiber mutual information.
+@isnad1 id=eq.1h5v.s5.93c76cc2b115 from=translated src=- shape=81c95e84 vocab=6e8b890b
+-/
 @[simp]
 theorem condMutualInfoFstSndGivenThird_of_thirdMarginal_eq_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -600,6 +634,7 @@ theorem condMutualInfoFstSndGivenThird_of_thirdMarginal_eq_zero
 /--
 On nonzero third-coordinate atoms, the fiber CMI is the mutual information of
 `P_{A,B|C=c}`.
+@isnad1 id=eq.1h5v.s6.cd26845d7d72 from=translated src=- shape=0cccc42f vocab=0cf88161
 -/
 theorem condMutualInfoFstSndGivenThird_of_thirdMarginal_ne_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -613,6 +648,7 @@ theorem condMutualInfoFstSndGivenThird_of_thirdMarginal_ne_zero
 /--
 Conditional mutual information can be rewritten as
 `H(A|C) + H(B|C) - H(A,B|C)`.
+@isnad1 id=eq.0h4v.s6.39430f88e9aa from=translated src=- shape=1580f4cf vocab=72a33a21
 -/
 theorem condMutualInfo_eq_condEntropy_marginals
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -630,6 +666,7 @@ theorem condMutualInfo_eq_condEntropy_marginals
 On a nonzero third-coordinate atom, fiber CMI is the entropy identity for the
 three conditional fibers:
 `I(A;B | C=c) = H(A|C=c) + H(B|C=c) - H(A,B|C=c)`.
+@isnad1 id=eq.1h5v.s6.3b2884562817 from=translated src=- shape=b01bc808 vocab=325d0752
 -/
 theorem condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -659,6 +696,7 @@ theorem condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero
 /--
 Weighted pointwise bridge between fiber CMI and the three conditional entropy
 fibers. The zero-marginal case is killed by the factor `P_C(c)`.
+@isnad1 id=eq.0h5v.s6.a397cd86a6d8 from=translated src=- shape=1908b462 vocab=18753f28
 -/
 theorem thirdMarginal_toReal_mul_condMutualInfoFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -681,6 +719,7 @@ Expected conditional mutual information formula:
 
 The fiber term is zero on zero-marginal `c` and otherwise the mutual
 information of `P_{A,B|C=c}`.
+@isnad1 id=eq.0h4v.s6.3a95d9949135 from=translated src=- shape=70a2bf20 vocab=610e0a56
 -/
 theorem condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}

@@ -31,7 +31,9 @@ namespace LeanPoolSensitivity
 /-- A finset-flavoured restatement of Mathlib's
 `LeanPoolSensitivity.Huang.huang_degree_theorem`: any subset `H` of the hypercube of size
 at least `2^m + 1` contains a vertex `q` with at least `√(m+1)` neighbours
-in `H`, where neighbours are bit-flip images `flipBit q i`. -/
+in `H`, where neighbours are bit-flip images `flipBit q i`.
+@isnad1 id=ex.1h2v.s8.c30aea48f339 from=translated src=- shape=78302c65 vocab=f9f478e5
+-/
 theorem huang_finset {m : ℕ} (H : Finset (Fin (m + 1) → Bool))
     (hH : 2 ^ m + 1 ≤ H.card) :
     ∃ q ∈ H, Real.sqrt (↑m + 1) ≤

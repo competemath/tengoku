@@ -59,20 +59,32 @@ Given functions β : V × V → V and φ : V × V → W where W has additive str
 def cyclicTripleSum [Add W] (β : V → V → V) (φ : V → V → W) (x y z : V) : W :=
   φ x (β y z) + φ y (β z x) + φ z (β x y)
 
+/--
+@isnad1 id=eq.0h7v.s6.59432ffd3e41 from=translated src=- shape=60fdec43 vocab=f270ec42
+-/
 lemma cyclicTripleSum_apply [Add W] (β : V → V → V) (φ : V → V → W) (x y z : V) :
     cyclicTripleSum β φ x y z = φ x (β y z) + φ y (β z x) + φ z (β x y) := rfl
 
 variable [AddCommMonoid W]
 
+/--
+@isnad1 id=eq.0h7v.s5.4b8ede83cf6d from=translated src=- shape=4e42ff49 vocab=6cc46aeb
+-/
 lemma cyclicTripleSum_cyclic (β : V → V → V) (φ : V → V → W) (x y z : V) :
     cyclicTripleSum β φ x y z = cyclicTripleSum β φ y z x := by
   simp only [cyclicTripleSum]
   ac_rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.19628bbc5f3a from=translated src=- shape=2d58bbba vocab=6cc46aeb
+-/
 lemma cyclicTripleSum_cyclic' (β : V → V → V) (φ : V → V → W) (x y z : V) :
     cyclicTripleSum β φ x y z = cyclicTripleSum β φ z x y := by
   simp_rw [cyclicTripleSum_cyclic]
 
+/--
+@isnad1 id=eq.1h8v.s7.a5b273acaa34 from=translated src=- shape=0b6cc7e2 vocab=82db4d7f
+-/
 lemma cyclicTripleSum_map_add_fst_of_map_add [Add V] (β : V → V → V) (φ : V → V → W)
     (h : ∀ x y z₁ z₂ : V, cyclicTripleSum β φ x y (z₁ + z₂)
       = cyclicTripleSum β φ x y z₁ + cyclicTripleSum β φ x y z₂) (x₁ x₂ y z : V) :
@@ -80,6 +92,9 @@ lemma cyclicTripleSum_map_add_fst_of_map_add [Add V] (β : V → V → V) (φ : 
       = cyclicTripleSum β φ x₁ y z + cyclicTripleSum β φ x₂ y z := by
   simpa only [cyclicTripleSum_cyclic _ _ _ y] using h y z x₁ x₂
 
+/--
+@isnad1 id=eq.1h8v.s7.948962ba878a from=translated src=- shape=c575cae2 vocab=82db4d7f
+-/
 lemma cyclicTripleSum_map_add_snd_of_map_add [Add V] (β : V → V → V) (φ : V → V → W)
     (h : ∀ x y z₁ z₂ : V, cyclicTripleSum β φ x y (z₁ + z₂)
       = cyclicTripleSum β φ x y z₁ + cyclicTripleSum β φ x y z₂) (x y₁ y₂ z : V) :
@@ -87,6 +102,9 @@ lemma cyclicTripleSum_map_add_snd_of_map_add [Add V] (β : V → V → V) (φ : 
       = cyclicTripleSum β φ x y₁ z + cyclicTripleSum β φ x y₂ z := by
   simpa only [cyclicTripleSum_cyclic' _ _ x] using h z x y₁ y₂
 
+/--
+@isnad1 id=eq.1h9v.s7.8649629cf0d1 from=translated src=- shape=35e11977 vocab=96615e27
+-/
 lemma cyclicTripleSum_map_smul_fst_of_map_smul {R : Type*} [SMul R V] [SMul R W]
     (β : V → V → V) (φ : V → V → W)
     (h : ∀ c : R, ∀ x y z : V,
@@ -94,6 +112,9 @@ lemma cyclicTripleSum_map_smul_fst_of_map_smul {R : Type*} [SMul R V] [SMul R W]
     cyclicTripleSum β φ (c • x) y z = c • cyclicTripleSum β φ x y z := by
   simpa only [cyclicTripleSum_cyclic _ _ _ y] using h c y z x
 
+/--
+@isnad1 id=eq.1h9v.s7.e9dd39b5a9f0 from=translated src=- shape=531b01ab vocab=96615e27
+-/
 lemma cyclicTripleSum_map_smul_snd_of_map_smul {R : Type*} [SMul R V] [SMul R W]
     (β : V → V → V) (φ : V → V → W)
     (h : ∀ c : R, ∀ x y z : V,

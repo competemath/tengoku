@@ -19,18 +19,27 @@ namespace Distributed2Coloring.LowerBound
 namespace N1000000BCompressionCompute
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `3` and variable `20`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.c64c3f2517d4 from=translated src=- shape=27f1885d vocab=8967cb3f
+-/
 theorem siIntGoal_block3_var20 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨3, by decide⟩ : Block)) (i := (⟨20, by decide⟩ : Var)) p q := by
   decide +kernel
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `3` and variable `21`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.0008bbe51ec1 from=translated src=- shape=27f1885d vocab=a5c7b45c
+-/
 theorem siIntGoal_block3_var21 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨3, by decide⟩ : Block)) (i := (⟨21, by decide⟩ : Var)) p q := by
   decide +kernel
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `3` and variable `22`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.5295ec790bf2 from=translated src=- shape=27f1885d vocab=aed788af
+-/
 theorem siIntGoal_block3_var22 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨3, by decide⟩ : Block)) (i := (⟨22, by decide⟩ : Var)) p q := by

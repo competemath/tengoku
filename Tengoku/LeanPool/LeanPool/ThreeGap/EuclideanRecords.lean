@@ -39,7 +39,9 @@ open ThreeGap.SimApprox ThreeGap.Chevallier ThreeGap.DeltaCost ThreeGap.SimDiric
 /-- The **Euclidean defect cost** as a function of a natural denominator. -/
 noncomputable def deltaE (α : Fin 2 → ℝ) : ℕ → ℝ := fun q => deltaN (euclNorm 2) α (q : ℤ)
 
-/-- The Euclidean norm is at most `√2 ·` the sup norm in the plane. -/
+/-- The Euclidean norm is at most `√2 ·` the sup norm in the plane.
+@isnad1 id=le.0h1v.s6.bf87e81b9253 from=translated src=- shape=d36d0962 vocab=00324f1e
+-/
 theorem euclNorm_le_sqrt_two_mul (x : Fin 2 → ℝ) : euclNorm 2 x ≤ Real.sqrt 2 * ‖x‖ := by
   rw [euclNorm_eq]
   have hb : ∀ i : Fin 2, (x i) ^ 2 ≤ ‖x‖ ^ 2 := by
@@ -52,7 +54,9 @@ theorem euclNorm_le_sqrt_two_mul (x : Fin 2 → ℝ) : euclNorm 2 x ≤ Real.sqr
     _ = Real.sqrt 2 * ‖x‖ := by
         simp_all
 
-/-- **Dirichlet transferred to the Euclidean defect:** `δ^E_q ≤ √2 · δ_q`. -/
+/-- **Dirichlet transferred to the Euclidean defect:** `δ^E_q ≤ √2 · δ_q`.
+@isnad1 id=le.0h2v.s5.b0ce240b7d31 from=translated src=- shape=1699bfef vocab=e0ba4d88
+-/
 theorem deltaE_le_sqrt_two_mul (α : Fin 2 → ℝ) (q : ℤ) :
     deltaN (euclNorm 2) α q ≤ Real.sqrt 2 * delta α q := by
   calc deltaN (euclNorm 2) α q ≤ euclNorm 2 (rem α q (nearestInt α q)) :=
@@ -60,7 +64,9 @@ theorem deltaE_le_sqrt_two_mul (α : Fin 2 → ℝ) (q : ℤ) :
     _ ≤ Real.sqrt 2 * ‖rem α q (nearestInt α q)‖ := euclNorm_le_sqrt_two_mul _
     _ = Real.sqrt 2 * delta α q := by rw [delta_attained]
 
-/-- **Euclidean Dirichlet:** the defect gets arbitrarily small. -/
+/-- **Euclidean Dirichlet:** the defect gets arbitrarily small.
+@isnad1 id=ex.1h2v.s5.8c6ee933f925 from=translated src=- shape=75860df1 vocab=4420441d
+-/
 theorem exists_deltaE_lt (α : Fin 2 → ℝ) {ε : ℝ} (hε : 0 < ε) :
     ∃ q : ℕ, 1 ≤ q ∧ deltaE α q < ε := by
   have hs2 : (0:ℝ) < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
@@ -70,7 +76,9 @@ theorem exists_deltaE_lt (α : Fin 2 → ℝ) {ε : ℝ} (hε : 0 < ε) :
     _ < Real.sqrt 2 * (ε / Real.sqrt 2) := by exact mul_lt_mul_of_pos_left hq2 hs2
     _ = ε := by field_simp
 
-/-- **Euclidean positivity:** `δ^E_q > 0` for `q ≥ 1` when some coordinate is irrational. -/
+/-- **Euclidean positivity:** `δ^E_q > 0` for `q ≥ 1` when some coordinate is irrational.
+@isnad1 id=lt.2h3v.s5.274e540416d7 from=translated src=- shape=40eef019 vocab=de0eeff2
+-/
 theorem deltaE_pos (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀)) {q : ℕ} (hq : 1 ≤ q) :
     0 < deltaE α q := by
   have hirrq : Irrational ((q : ℝ) * α k₀) := hirr.natCast_mul (by omega : q ≠ 0)
@@ -84,7 +92,9 @@ theorem deltaE_pos (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k�
     _ = |rem α (q : ℤ) p k₀| := by rw [rem]; simp [Pi.smul_apply, smul_eq_mul]
     _ ≤ euclNorm 2 (rem α (q : ℤ) p) := abs_le_euclNorm _ k₀
 
-/-- **`RecordsContinue (deltaE α)` from irrationality.** -/
+/-- **`RecordsContinue (deltaE α)` from irrationality.**
+@isnad1 id=recordsc.1h2v.s4.c687c5e216d4 from=translated src=- shape=48fcca85 vocab=5104f9bb
+-/
 theorem recordsContinue_deltaE (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀)) :
     RecordsContinue (deltaE α) := by
   intro q hq
@@ -108,7 +118,9 @@ theorem recordsContinue_deltaE (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrat
   obtain ⟨q', hq'1, hq'2⟩ := exists_deltaE_lt α hδ₀pos
   exact absurd (hlb q' hq'1) (not_le.mpr hq'2)
 
-/-- `hbest` for the Euclidean record denominators (strict best-approximation property). -/
+/-- `hbest` for the Euclidean record denominators (strict best-approximation property).
+@isnad1 id=lt.3h3v.s6.921e34ee99b4 from=translated src=- shape=bfc6759e vocab=a13d5fea
+-/
 theorem bestDenom_hbest (α : Fin 2 → ℝ) (hr : RecordsContinue (deltaE α)) (k : ℕ) (m : ℤ)
     (hpos : 0 < m) (hlt : m < (bestDenom (deltaE α) hr k : ℤ)) :
     deltaN (euclNorm 2) α (bestDenom (deltaE α) hr k : ℤ) < deltaN (euclNorm 2) α m := by
@@ -120,7 +132,9 @@ theorem bestDenom_hbest (α : Fin 2 → ℝ) (hr : RecordsContinue (deltaE α)) 
   simp only [deltaE] at this
   simp_all
 
-/-- **The Euclidean growth `2 q_k ≤ q_{k+5}` for the record denominators (unconditional).** -/
+/-- **The Euclidean growth `2 q_k ≤ q_{k+5}` for the record denominators (unconditional).**
+@isnad1 id=le.2h3v.s6.c622ee7d5d39 from=translated src=- shape=0046bed0 vocab=cde233b9
+-/
 theorem bestDenom_euclidean_growth (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀))
     (hr : RecordsContinue (deltaE α)) (k : ℕ) :
     2 * bestDenom (deltaE α) hr k ≤ bestDenom (deltaE α) hr (k + 5) := by
@@ -140,7 +154,9 @@ theorem bestDenom_euclidean_growth (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : I
 /-- **`g₂ ≤ 6` (Euclidean five-distance count, combinatorial, unconditional).** For any `α : Fin 2 →
 ℝ`
 with an irrational coordinate and `N ≥ 2`, the number of distinct values of the Euclidean
-nearest-neighbour distance `gapVal (deltaE α) N q` is at most `6`. -/
+nearest-neighbour distance `gapVal (deltaE α) N q` is at most `6`.
+@isnad1 id=le.2h3v.s6.945887634063 from=translated src=- shape=1bb887b1 vocab=5b224c27
+-/
 theorem gap_count_euclidean (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀)) {N : ℕ}
     (hN : 2 ≤ N) :
     ((Finset.range (N + 1)).image (gapVal (deltaE α) N)).card ≤ 6 := by

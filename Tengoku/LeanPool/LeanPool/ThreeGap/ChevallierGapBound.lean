@@ -74,26 +74,36 @@ noncomputable def bestDenomAux (hr : RecordsContinue r) : ℕ → {q : ℕ // 1 
 cost `r`. `q₀ = 1`; `qₙ₊₁` is the *smallest* `q > qₙ` with `r q < r qₙ`. -/
 noncomputable def bestDenom (hr : RecordsContinue r) (n : ℕ) : ℕ := (bestDenomAux r hr n).1
 
-/-- Every best-approximation denominator is `≥ 1` (carried by the subtype). -/
+/-- Every best-approximation denominator is `≥ 1` (carried by the subtype).
+@isnad1 id=le.1h2v.s4.a8b58bfb084a from=translated src=- shape=27f89f38 vocab=aaeffe98
+-/
 theorem bestDenom_pos (hr : RecordsContinue r) (n : ℕ) : 1 ≤ bestDenom r hr n :=
   (bestDenomAux r hr n).2
 
-/-- The defining unfolding of `bestDenom` at a successor (with the positivity proof discharged). -/
+/-- The defining unfolding of `bestDenom` at a successor (with the positivity proof discharged).
+@isnad1 id=eq.1h2v.s6.b8aec51c3918 from=translated src=- shape=1e2aac90 vocab=4ac8833c
+-/
 theorem bestDenom_succ (hr : RecordsContinue r) (n : ℕ) :
     bestDenom r hr (n + 1) = Nat.find (hr (bestDenom r hr n) (bestDenom_pos r hr n)) := rfl
 
-/-- Each best-approximation denominator is strictly larger than the previous. -/
+/-- Each best-approximation denominator is strictly larger than the previous.
+@isnad1 id=lt.1h2v.s5.8866ebf62567 from=translated src=- shape=2cd3b991 vocab=6995bdb0
+-/
 theorem bestDenom_lt (hr : RecordsContinue r) (n : ℕ) :
     bestDenom r hr n < bestDenom r hr (n + 1) := by
   rw [bestDenom_succ]
   exact (Nat.find_spec (hr (bestDenom r hr n) (bestDenom_pos r hr n))).1
 
-/-- The best-approximation denominators are **strictly increasing**. -/
+/-- The best-approximation denominators are **strictly increasing**.
+@isnad1 id=strictmo.1h1v.s3.e557454cfb24 from=translated src=- shape=7d37e0fd vocab=0d4f763f
+-/
 theorem bestDenom_strictMono (hr : RecordsContinue r) : StrictMono (bestDenom r hr) :=
   strictMono_nat_of_lt_succ (bestDenom_lt r hr)
 
 /-- The costs `r qₙ` are **strictly decreasing** (each new denominator approximates strictly
-better). -/
+better).
+@isnad1 id=lt.1h2v.s5.7fcef55a7814 from=translated src=- shape=d728aedb vocab=6995bdb0
+-/
 theorem bestDenom_cost_lt (hr : RecordsContinue r) (n : ℕ) :
     r (bestDenom r hr (n + 1)) < r (bestDenom r hr n) := by
   rw [bestDenom_succ]
@@ -101,7 +111,9 @@ theorem bestDenom_cost_lt (hr : RecordsContinue r) (n : ℕ) :
 
 /-- **Minimality (the record property).** No denominator strictly between `qₙ` and `qₙ₊₁`
 approximates better than `qₙ`: for `qₙ < q < qₙ₊₁`, `r qₙ ≤ r q`. This is exactly what makes the
-`qₙ` *best* approximations. -/
+`qₙ` *best* approximations.
+@isnad1 id=le.3h3v.s5.f21996316901 from=translated src=- shape=a6505894 vocab=4cc4fa4d
+-/
 theorem bestDenom_record (hr : RecordsContinue r) (n : ℕ) {q : ℕ}
     (hlo : bestDenom r hr n < q) (hhi : q < bestDenom r hr (n + 1)) :
     r (bestDenom r hr n) ≤ r q := by
@@ -113,7 +125,9 @@ theorem bestDenom_record (hr : RecordsContinue r) (n : ℕ) {q : ℕ}
   omega
 
 /-- The best-approximation denominators, as a strictly-increasing **integer** sequence — the input
-to `index_bound` / `gap_count_le`. -/
+to `index_bound` / `gap_count_le`.
+@isnad1 id=strictmo.1h1v.s4.c7e6a4a3e5c6 from=translated src=- shape=32bb1d9b vocab=c42b37dc
+-/
 theorem bestDenom_int_strictMono (hr : RecordsContinue r) :
     StrictMono (fun n => (bestDenom r hr n : ℤ)) := by
   intro a b h
@@ -121,7 +135,9 @@ theorem bestDenom_int_strictMono (hr : RecordsContinue r) :
   exact_mod_cast bestDenom_strictMono r hr h
 
 /-- **General bracketing.** A strictly-increasing `ℕ`-sequence `f` brackets every `N ≥ f 0`:
-`∃ m, f m ≤ N < f (m+1)`. -/
+`∃ m, f m ≤ N < f (m+1)`.
+@isnad1 id=ex.2h2v.s5.8bfbe538e112 from=translated src=- shape=213f3f99 vocab=62a954ba
+-/
 theorem strictMono_bracket (f : ℕ → ℕ) (hf : StrictMono f) {N : ℕ} (hN : f 0 ≤ N) :
     ∃ m, f m ≤ N ∧ N < f (m + 1) := by
   classical
@@ -140,14 +156,18 @@ theorem strictMono_bracket (f : ℕ → ℕ) (hf : StrictMono f) {N : ℕ} (hN :
   omega
 
 /-- **Bracketing (the `n`-index).** For any `N ≥ 1` there is `n` with `qₙ ≤ N < qₙ₊₁` — the index
-Chevallier's Lemma reads off `N`. -/
+Chevallier's Lemma reads off `N`.
+@isnad1 id=ex.2h2v.s5.597b43a53153 from=translated src=- shape=7230b869 vocab=4cc4fa4d
+-/
 theorem bestDenom_bracket (hr : RecordsContinue r) {N : ℕ} (hN : 1 ≤ N) :
     ∃ n, bestDenom r hr n ≤ N ∧ N < bestDenom r hr (n + 1) :=
   strictMono_bracket _ (bestDenom_strictMono r hr)
     (by rw [show bestDenom r hr 0 = 1 from rfl]; omega)
 
 /-- **Bracketing (the `m`-index).** For any `N ≥ 2` there is `m` with `2qₘ ≤ N < 2qₘ₊₁` — the second
-index of Chevallier's Lemma (bracketing `N/2`). -/
+index of Chevallier's Lemma (bracketing `N/2`).
+@isnad1 id=ex.2h2v.s6.9854bd0a27db from=translated src=- shape=7b8d0364 vocab=b56d3387
+-/
 theorem bestDenom_bracket2 (hr : RecordsContinue r) {N : ℕ} (hN : 2 ≤ N) :
     ∃ m, 2 * bestDenom r hr m ≤ N ∧ N < 2 * bestDenom r hr (m + 1) :=
   strictMono_bracket (fun k => 2 * bestDenom r hr k)
@@ -159,7 +179,9 @@ theorem bestDenom_bracket2 (hr : RecordsContinue r) {N : ℕ} (hN : 2 ≤ N) :
 /-- **The index bound.** For a strictly increasing positive sequence `q` (the best-approximation
 denominators) obeying the growth inequality `qₙ₊₁ + qₙ ≤ qₙ₊ₖ`, the index `n` (with `qₙ ≤ N`) and
 the index `m` (with `N < 2qₘ₊₁`) satisfy `n ≤ m + K`. Proof: if `n ≥ m+1+K`, then
-`qₙ ≥ qₘ₊₁₊ₖ ≥ qₘ₊₂ + qₘ₊₁ > 2qₘ₊₁ > N ≥ qₙ`, a contradiction. -/
+`qₙ ≥ qₘ₊₁₊ₖ ≥ qₘ₊₂ + qₘ₊₁ > 2qₘ₊₁ > N ≥ qₙ`, a contradiction.
+@isnad1 id=le.4h5v.s6.5eaee77c49c3 from=translated src=- shape=f6b2532c vocab=a093e723
+-/
 theorem index_bound (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
     (hgrowth : ∀ n, q (n + 1) + q n ≤ q (n + K))
     {N : ℤ} {m n : ℕ} (hnN : q n ≤ N) (hNm : N < 2 * q (m + 1)) :
@@ -176,7 +198,9 @@ theorem index_bound (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
 `2qₙ ≤ qₙ₊ₖ` (the denominators at least double every `K` steps). This is the elementary form proved
 for the sup norm by the orthant pigeonhole (`q_{n+2^d} ≥ 2q_n`, Chevallier survey §2.4.1 /
 Lagarias),
-and it already suffices: with `N < 2qₘ₊₁ ≤ qₘ₊₁₊ₖ ≤ qₙ ≤ N` we get a contradiction. -/
+and it already suffices: with `N < 2qₘ₊₁ ≤ qₘ₊₁₊ₖ ≤ qₙ ≤ N` we get a contradiction.
+@isnad1 id=le.4h5v.s6.671f52fead48 from=translated src=- shape=902320dc vocab=a093e723
+-/
 theorem index_bound_doubling (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
     (hgrowth : ∀ n, 2 * q n ≤ q (n + K))
     {N : ℤ} {m n : ℕ} (hnN : q n ≤ N) (hNm : N < 2 * q (m + 1)) :
@@ -190,7 +214,9 @@ theorem index_bound_doubling (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
 
 /-- **The gap-count bound, doubling form.** `g ≤ K + 1` from Chevallier's Lemma conclusion and the
 doubling growth inequality `2qₙ ≤ qₙ₊ₖ`. For the sup norm with `K = 2^d` (orthant pigeonhole) this
-gives the unconditional (modulo Chevallier's Lemma) bound `g_∞ ≤ 2^d + 1`. -/
+gives the unconditional (modulo Chevallier's Lemma) bound `g_∞ ≤ 2^d + 1`.
+@isnad1 id=le.5h6v.s7.1a450d312432 from=translated src=- shape=2bd68241 vocab=09303cb2
+-/
 theorem gap_count_doubling (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
     (hgrowth : ∀ n, 2 * q n ≤ q (n + K))
     {N : ℤ} {m n g : ℕ} (hnN : q n ≤ N) (hNm : N < 2 * q (m + 1))
@@ -204,7 +230,9 @@ theorem gap_count_doubling (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
 nearest-neighbour distances is `g ≤ K + 1`. The constant `K` is the growth constant of the
 best-approximation denominators (`q_{k+K} ≥ q_{k+1} + q_k`); via Lagarias's Theorem 2 one may take
 `K` = the contact (kissing) number of the unit ball, and sharper norm-specific values are known
-(see `gap_count_five`). -/
+(see `gap_count_five`).
+@isnad1 id=le.5h6v.s7.680e9fc16df5 from=translated src=- shape=d9bd7cca vocab=09303cb2
+-/
 theorem gap_count_le (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
     (hgrowth : ∀ n, q (n + 1) + q n ≤ q (n + K))
     {N : ℤ} {m n g : ℕ} (hnN : q n ≤ N) (hNm : N < 2 * q (m + 1))
@@ -217,7 +245,9 @@ theorem gap_count_le (q : ℕ → ℤ) (hmono : StrictMono q) (K : ℕ)
 instance of the reduction — conditional on Chevallier's Lemma and the `L^∞` growth inequality
 `qₙ₊₂^d ≥ qₙ₊₁ + qₙ` (Shutov 2024, where `2^d` is the claimed growth constant for the sup norm).
 NB: this is the *growth constant*, which need not equal the sup-norm contact number; the theorem
-below is exactly the `K = 2^d` instance of `gap_count_le`, valid whenever that growth holds. -/
+below is exactly the `K = 2^d` instance of `gap_count_le`, valid whenever that growth holds.
+@isnad1 id=le.5h6v.s7.9a83c62c3daa from=translated src=- shape=c857c0f2 vocab=dc60f776
+-/
 theorem gap_count_Linfty (d : ℕ) (q : ℕ → ℤ) (hmono : StrictMono q)
     (hgrowth : ∀ n, q (n + 1) + q n ≤ q (n + 2 ^ d))
     {N : ℤ} {m n g : ℕ} (hnN : q n ≤ N) (hNm : N < 2 * q (m + 1))
@@ -230,7 +260,9 @@ instance — conditional on Chevallier's Lemma and the Euclidean growth inequali
 `qₙ₊₄ ≥ qₙ₊₁ + qₙ`. **Verified attribution** (Ermakov, arXiv:1002.2713): the `K = 4` here is
 *Romanov's improvement* (Moscow Univ. Math. Bull. 61 (2006)), **not** the contact number. The
 contact-number route (Lagarias Thm 2) gives only `K = 6` for the Euclidean plane (the kissing number
-of circles), hence `g ≤ 7`; Romanov sharpened the growth constant to `4`, yielding `g ≤ 5`. -/
+of circles), hence `g ≤ 7`; Romanov sharpened the growth constant to `4`, yielding `g ≤ 5`.
+@isnad1 id=le.5h5v.s7.338e9b082190 from=translated src=- shape=cdc9f968 vocab=09303cb2
+-/
 theorem gap_count_five (q : ℕ → ℤ) (hmono : StrictMono q)
     (hgrowth : ∀ n, q (n + 1) + q n ≤ q (n + 4))
     {N : ℤ} {m n g : ℕ} (hnN : q n ≤ N) (hNm : N < 2 * q (m + 1))
@@ -243,7 +275,9 @@ denominators `qₙ = bestDenom r hr n` (Shutov's Sequence 2), given the growth i
 `K`) and Chevallier's index structure, the gap count is `g ≤ K + 1`. This ties the *definition* of
 best approximation to the bound; the two remaining inputs — Chevallier's Lemma (the hypothesis
 `hg`) and the growth inequality (`hgrowth`, where the kissing number enters) — are the geometric
-pieces (Chevallier 1996, Lagarias 1980), now sitting on a fully formalized denominator framework. -/
+pieces (Chevallier 1996, Lagarias 1980), now sitting on a fully formalized denominator framework.
+@isnad1 id=le.5h6v.s7.de2b61384e24 from=translated src=- shape=e123e5bb vocab=00ea4a74
+-/
 theorem gap_count_bestDenom (hr : RecordsContinue r) (K : ℕ)
     (hgrowth : ∀ n, (bestDenom r hr (n + 1) : ℤ) + bestDenom r hr n ≤ bestDenom r hr (n + K))
     {N : ℤ} {m n g : ℕ} (hnN : (bestDenom r hr n : ℤ) ≤ N)
@@ -259,7 +293,9 @@ bracketing indices `n` (`qₙ ≤ N < qₙ₊₁`) and `m` (`2qₘ ≤ N < 2qₘ
 the
 denominator framework. So the entire combinatorial machine — definition of best approximation →
 bracketing → index bound → gap bound — is closed; the *only* remaining inputs are the two
-elementary, dynamics-free geometric results (Chevallier's Lemma and the growth inequality). -/
+elementary, dynamics-free geometric results (Chevallier's Lemma and the growth inequality).
+@isnad1 id=le.4h4v.s7.917858fc325b from=translated src=- shape=86bf3235 vocab=00ea4a74
+-/
 theorem gap_count_complete (hr : RecordsContinue r) (K : ℕ)
     (hgrowth : ∀ n, (bestDenom r hr (n + 1) : ℤ) + bestDenom r hr n ≤ bestDenom r hr (n + K))
     {N : ℕ} (hN : 2 ≤ N) {g : ℕ}

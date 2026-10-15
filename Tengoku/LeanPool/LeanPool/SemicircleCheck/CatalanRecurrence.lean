@@ -689,7 +689,9 @@ private lemma deleteAdjacent_crossing_projects {n : ℕ} (p : Pairing (n + 1))
 /-- Bridge direction 1: recursive noncrossing implies no arc crossings.
     Proof: induction on n. An adjacent pair cannot participate in any
     crossing. Any crossing among other vertices lifts to a crossing in
-    the contracted pairing, contradicting the induction hypothesis. -/
+    the contracted pairing, contradicting the induction hypothesis.
+@isnad1 id=not.1h2v.s3.1c0595b39992 from=translated src=- shape=0467682d vocab=221dadc7
+-/
 theorem IsNoncrossing_imp_no_crossing {n : ℕ} (p : Pairing n)
     (h : p.IsNoncrossing) : ¬p.HasCrossing := by
   induction n with
@@ -703,7 +705,9 @@ theorem IsNoncrossing_imp_no_crossing {n : ℕ} (p : Pairing n)
 /-- Bridge direction 2: no arc crossings implies recursive noncrossing.
     Proof: find an adjacent pair (by no_crossing_has_adjacent), delete it,
     and show the contracted pairing is also crossing-free (contrapositively:
-    a crossing in the contracted pairing lifts to one in the original). -/
+    a crossing in the contracted pairing lifts to one in the original).
+@isnad1 id=isnoncro.1h2v.s3.5a8a1b714565 from=translated src=- shape=e776bb1b vocab=221dadc7
+-/
 theorem no_crossing_imp_IsNoncrossing {n : ℕ} (p : Pairing n)
     (h : ¬p.HasCrossing) : p.IsNoncrossing := by
   induction n with
@@ -723,7 +727,9 @@ even-cardinality lemma for fixed-point-free involutions. -/
 /-- Shadow closure: if p has no crossings, the shadow of
     the chord (0, p(0)) is closed under p.
     Proof: p(x) > 0 by involution, p(x) < p(0) by contradiction
-    (otherwise 0 < x < p(0) < p(x) is a crossing). -/
+    (otherwise 0 < x < p(0) < p(x) is a crossing).
+@isnad1 id=and.3h3v.s9.3b0121a98cd5 from=translated src=- shape=00b5e838 vocab=56ae0134
+-/
 lemma shadow_closed_of_no_crossing {n : ℕ} (p : Pairing n)
     (h_nc : ¬p.HasCrossing) (x : Fin (2 * n))
     (hx_pos : 0 < x.val) (hx_shadow : x.val < (p.val ⟨0, by omega⟩).val) :
@@ -751,7 +757,9 @@ lemma shadow_closed_of_no_crossing {n : ℕ} (p : Pairing n)
       have h_cross : (p.val ⟨0, hn⟩).val < (p.val x).val := by omega
       exact absurd ⟨⟨0, hn⟩, x, hx_pos, hx_sh, h_cross⟩ h_nc
 
-/-- Shadow closure from the recursive noncrossing definition, via the bridge. -/
+/-- Shadow closure from the recursive noncrossing definition, via the bridge.
+@isnad1 id=and.3h3v.s9.c124a95b917e from=translated src=- shape=03a792f2 vocab=6981aa16
+-/
 lemma noncrossing_mapsTo_shadow {n : ℕ} {p : Pairing n}
     (h_nc : p.IsNoncrossing) (x : Fin (2 * n))
     (hx_low : 0 < x.val) (hx_high : x.val < (p.val ⟨0, by omega⟩).val) :
@@ -763,7 +771,9 @@ lemma noncrossing_mapsTo_shadow {n : ℕ} {p : Pairing n}
     Proof by contradiction: if p(0) is even = 2k, define the shadow
     S = {i : Fin(2(n+1)) | 0 < i < 2k}. Its cardinality is 2k - 1 (odd).
     Shadow closure shows S is closed under p. Since p is a fixed-point-free
-    involution, S must have even cardinality. Parity contradiction. -/
+    involution, S must have even cardinality. Parity contradiction.
+@isnad1 id=odd.1h2v.s8.f55830a7f845 from=translated src=- shape=2208beb7 vocab=216ebfaa
+-/
 theorem noncrossing_zero_target_odd {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) :
     Odd (p.val ⟨0, by omega⟩).val := by
@@ -844,7 +854,9 @@ noncomputable def extractK {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossi
   have ht_lt := (p.val ⟨0, by omega⟩).isLt
   ⟨t / 2, by omega⟩
 
-/-- The target of 0 equals 2 * extractK + 1. -/
+/-- The target of 0 equals 2 * extractK + 1.
+@isnad1 id=eq.1h2v.s8.8172f9ab86ec from=translated src=- shape=3e481c81 vocab=cbb14e07
+-/
 lemma extractK_spec {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
     (p.val ⟨0, by omega⟩).val = 2 * (extractK p h_nc).val + 1 := by
   unfold extractK
@@ -853,7 +865,9 @@ lemma extractK_spec {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
   obtain ⟨m, hm⟩ := hodd
   rw [hm]; omega
 
-/-- extractK gives a value ≤ n (so k ≤ n). -/
+/-- extractK gives a value ≤ n (so k ≤ n).
+@isnad1 id=le.1h2v.s5.0f0d93edac1e from=translated src=- shape=42546738 vocab=ad2bf145
+-/
 lemma extractK_le {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
     (extractK p h_nc).val ≤ n := by
   have := (extractK p h_nc).isLt; omega
@@ -865,7 +879,9 @@ lemma extractK_le {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
 
     Proof: p(x) cannot be 0 (involution would force p(0)=x, but p(0)<x).
     p(x) cannot equal p(0) (injectivity, x≠0). p(x) cannot be in the
-    shadow (shadow closure would force x into the shadow). So p(x) > 2k+1. -/
+    shadow (shadow closure would force x into the shadow). So p(x) > 2k+1.
+@isnad1 id=lt.2h3v.s9.e427857bd8e2 from=translated src=- shape=ab0c536f vocab=2129bcb4
+-/
 lemma outside_closed_of_noncrossing {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) (x : Fin (2 * (n + 1)))
     (hx : 2 * (extractK p h_nc).val + 1 < x.val) :
@@ -2043,7 +2059,9 @@ instance instDecidableIsNoncrossing {n : ℕ} (p : Pairing n) : Decidable p.IsNo
 instance instFintypeNoncrossingPairing {n : ℕ} : Fintype (NoncrossingPairing n) :=
   Subtype.fintype _
 
-/-- The number of noncrossing pairings on 2n points equals the nth Catalan number. -/
+/-- The number of noncrossing pairings on 2n points equals the nth Catalan number.
+@isnad1 id=eq.0h1v.s3.0ff8f29f3305 from=translated src=- shape=c52356c6 vocab=82aa9a77
+-/
 theorem card_noncrossingPairing_eq_catalan (n : ℕ) :
     Fintype.card (NoncrossingPairing n) = catalan n := by
   induction n using Nat.strongRecOn with
@@ -2071,7 +2089,9 @@ theorem card_noncrossingPairing_eq_catalan (n : ℕ) :
       intro k _
       rw [ih k.val (by omega), ih (n - k.val) (by omega)]
 
-/-- **Corollary**: the number of genus-zero pairings equals Cₙ. -/
+/-- **Corollary**: the number of genus-zero pairings equals Cₙ.
+@isnad1 id=eq.0h1v.s5.225499c155f6 from=translated src=- shape=b15f01a9 vocab=d56cf0d4
+-/
 theorem Pairing.genus_zero_count {n : ℕ} :
     Fintype.card { p : Pairing n // p.genus = 0 } = catalan n := by
   rw [show Fintype.card { p : Pairing n // p.genus = 0 } =

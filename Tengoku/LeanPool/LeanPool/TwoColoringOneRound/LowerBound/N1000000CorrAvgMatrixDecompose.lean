@@ -78,6 +78,9 @@ noncomputable def repEmb (k : DirIdx) : FreeCol k ↪ AvailFrom3 :=
 noncomputable def repVertex (d : DirIdx) : V :=
   decodeVertex d (repEmb d)
 
+/--
+@isnad1 id=eq.0h1v.s3.91cbd9402cf4 from=translated src=- shape=981f0160 vocab=1e3fe885
+-/
 theorem dirMask_base_repVertex (d : DirIdx) :
     dirMask baseVertex (repVertex d) = N1000000StructureConstants.maskAt d := by
   simpa [repVertex] using decodeVertex_mask (k := d) (g := repEmb d)
@@ -87,6 +90,9 @@ theorem dirMask_base_repVertex (d : DirIdx) :
 noncomputable def coeff (f : Coloring n) (d : DirIdx) : Q :=
   corrAvg f baseVertex (repVertex d)
 
+/--
+@isnad1 id=eq.1h4v.s4.06dc1ba8a5ea from=translated src=- shape=900d4f1f vocab=34330561
+-/
 theorem corrAvg_eq_coeff_of_dirMask_eq (f : Coloring n) {u v : V} (d : DirIdx)
     (h : dirMask u v = N1000000StructureConstants.maskAt d) : corrAvg f u v = coeff (f := f) d := by
   classical
@@ -97,6 +103,9 @@ theorem corrAvg_eq_coeff_of_dirMask_eq (f : Coloring n) {u v : V} (d : DirIdx)
   simpa [coeff] using (corrAvg_eq_of_dirMask_eq (f := f) (u := u) (v := v) (u' := baseVertex)
     (v' := repVertex d) this)
 
+/--
+@isnad1 id=eq.0h3v.s4.6dfe56c99f7c from=translated src=- shape=93b50e72 vocab=44641e1f
+-/
 theorem corrAvg_symmetric (f : Coloring n) (u v : V) : corrAvg f u v = corrAvg f v u := by
   classical
   unfold corrAvg corr
@@ -104,6 +113,9 @@ theorem corrAvg_symmetric (f : Coloring n) (u v : V) : corrAvg f u v = corrAvg f
   simp [mul_comm]
 
 -- Decompose the orbit-averaged correlation matrix into the directed orbital basis `A`.
+/--
+@isnad1 id=eq.0h1v.s5.48c1ee49dec5 from=translated src=- shape=cd6ec3d5 vocab=cdea91a7
+-/
 theorem corrAvgMatrix_eq_sum_coeff_A (f : Coloring n) :
     corrAvgMatrix (f := f) = ∑ d : DirIdx, (coeff (f := f) d) • A d := by
   classical

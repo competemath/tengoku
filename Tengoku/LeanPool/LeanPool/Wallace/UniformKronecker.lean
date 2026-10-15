@@ -35,6 +35,9 @@ def relationMap {G : Type u} [AddCommGroup G] {m : ℕ} (z : Fin m → G) :
     simp only [Pi.add_apply, add_zsmul]
     exact Finset.sum_add_distrib
 
+/--
+@isnad1 id=eq.0h4v.s7.af05b66b42c7 from=translated src=- shape=110f83a0 vocab=91e94e9e
+-/
 @[simp]
 theorem relationMap_single {G : Type u} [AddCommGroup G] {m : ℕ}
     (z : Fin m → G) (i : Fin m) :
@@ -47,6 +50,9 @@ def torusRelationMap {m : ℕ} (t : Fin m → UnitAddCircle) :
     (Fin m → ℤ) →+ UnitAddCircle :=
   relationMap t
 
+/--
+@isnad1 id=eq.0h3v.s7.17eb332032be from=translated src=- shape=54554fa3 vocab=ba5ee81d
+-/
 @[simp]
 theorem torusRelationMap_single {m : ℕ} (t : Fin m → UnitAddCircle) (i : Fin m) :
     torusRelationMap t (Pi.single i 1) = t i :=
@@ -62,6 +68,9 @@ def RespectsRelations {G : Type u} [AddCommGroup G] {m : ℕ}
     (z : Fin m → G) (t : Fin m → UnitAddCircle) : Prop :=
   (relationMap z).ker ≤ (torusRelationMap t).ker
 
+/--
+@isnad1 id=iff.0h4v.s7.85c08db66dfd from=translated src=- shape=ed5d8022 vocab=46951589
+-/
 theorem respectsRelations_iff {G : Type u} [AddCommGroup G] {m : ℕ}
     (z : Fin m → G) (t : Fin m → UnitAddCircle) :
     RespectsRelations z t ↔
@@ -72,6 +81,9 @@ theorem respectsRelations_iff {G : Type u} [AddCommGroup G] {m : ℕ}
 def intVectorHeight {m : ℕ} (a : Fin m → ℤ) : ℕ :=
   Finset.univ.sup fun i => (a i).natAbs
 
+/--
+@isnad1 id=le.0h3v.s4.f3070afb95ca from=translated src=- shape=63c32350 vocab=603acc80
+-/
 theorem natAbs_le_intVectorHeight {m : ℕ} (a : Fin m → ℤ) (i : Fin m) :
     (a i).natAbs ≤ intVectorHeight a := by
   exact Finset.le_sup (f := fun j => (a j).natAbs) (Finset.mem_univ i)
@@ -100,6 +112,9 @@ def homOnTupleRange {G : Type u} [AddCommGroup G] {m : ℕ}
     ⟨torusRelationMap t, by
       simpa only [AddMonoidHom.ker_rangeRestrict, RespectsRelations] using h⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.dad72e6ccc4e from=translated src=- shape=b1437c43 vocab=960d9150
+-/
 theorem homOnTupleRange_comp {G : Type u} [AddCommGroup G] {m : ℕ}
     (z : Fin m → G) (t : Fin m → UnitAddCircle)
     (h : RespectsRelations z t) :
@@ -112,7 +127,9 @@ theorem homOnTupleRange_comp {G : Type u} [AddCommGroup G] {m : ℕ}
       simpa only [AddMonoidHom.ker_rangeRestrict, RespectsRelations] using h⟩
 
 /-- Exact finite Kronecker extension: a target tuple which respects all integer relations is the
-restriction of a character of the ambient Abelian group. -/
+restriction of a character of the ambient Abelian group.
+@isnad1 id=ex.1h4v.s7.ea08311dbc99 from=translated src=- shape=8d56984c vocab=bd016856
+-/
 theorem exists_character_of_respectsRelations
     {G : Type u} [AddCommGroup G] {m : ℕ}
     (z : Fin m → G) (t : Fin m → UnitAddCircle)
@@ -152,6 +169,9 @@ private theorem rationalCircleToUnit_eq_zero
   norm_num at hn ⊢
   exact_mod_cast hn
 
+/--
+@isnad1 id=injectiv.0h0v.s7.bed99eb6140f from=translated src=- shape=f9a0900f vocab=2aa599ab
+-/
 theorem rationalCircleToUnit_injective : Function.Injective rationalCircleToUnit := by
   intro x y hxy
   rw [← sub_eq_zero]
@@ -160,7 +180,9 @@ theorem rationalCircleToUnit_injective : Function.Injective rationalCircleToUnit
 
 /-- Characters into the real unit circle separate points of every Abelian group.  The
 `CharacterModule` theorem supplies a rational-circle character and the preceding embedding changes
-the codomain without losing its nonzero value. -/
+the codomain without losing its nonzero value.
+@isnad1 id=ex.1h2v.s7.78a761b39b45 from=translated src=- shape=a6d073c0 vocab=9008e1d9
+-/
 theorem exists_unit_character_apply_ne_zero
     {A : Type u} [AddCommGroup A] {a : A} (ha : a ≠ 0) :
     ∃ c : A →+ UnitAddCircle, c a ≠ 0 := by
@@ -191,6 +213,9 @@ def integerAnnihilator {m : ℕ} (R : AddSubgroup (Fin m → ℤ)) :
     change ∑ i, a i • (-x i) = 0
     simp_rw [smul_neg, Finset.sum_neg_distrib, hx a ha, neg_zero]
 
+/--
+@isnad1 id=isclosed.0h2v.s6.47ae01103eda from=translated src=- shape=86118f69 vocab=2f1c11c4
+-/
 theorem isClosed_integerAnnihilator {m : ℕ} (R : AddSubgroup (Fin m → ℤ)) :
     IsClosed (integerAnnihilator R : Set (UnitAddTorus (Fin m))) := by
   rw [show (integerAnnihilator R : Set (UnitAddTorus (Fin m))) =
@@ -208,12 +233,18 @@ def annihilatorDistance {m : ℕ} (R : AddSubgroup (Fin m → ℤ)) :
     (⟨fun x ↦ Metric.infDist x (integerAnnihilator R),
       Metric.continuous_infDist_pt _⟩ : C(UnitAddTorus (Fin m), ℝ))
 
+/--
+@isnad1 id=eq.0h3v.s7.4e0a461058a5 from=translated src=- shape=e9176b9e vocab=dfe49ab8
+-/
 @[simp]
 theorem annihilatorDistance_apply {m : ℕ} (R : AddSubgroup (Fin m → ℤ))
     (x : UnitAddTorus (Fin m)) :
     annihilatorDistance R x = Metric.infDist x (integerAnnihilator R) :=
   rfl
 
+/--
+@isnad1 id=lipschit.0h2v.s7.0815142f12ce from=translated src=- shape=2a43690f vocab=452a2123
+-/
 theorem annihilatorDistance_lipschitz {m : ℕ} (R : AddSubgroup (Fin m → ℤ)) :
     LipschitzWith 1 (annihilatorDistance R) :=
   Metric.lipschitz_infDist_pt _
@@ -224,7 +255,9 @@ private theorem intTuple_eq_sum_single {m : ℕ} (a : Fin m → ℤ) :
   exact (pi_eq_sum_univ' a).symm
 
 /-- The algebraic double-annihilator direction needed below: if an integer vector is not in
-`R`, some point of `R⁺` detects it. -/
+`R`, some point of `R⁺` detects it.
+@isnad1 id=ex.1h3v.s8.1f9d02b53811 from=translated src=- shape=7688d2a6 vocab=968e7feb
+-/
 theorem exists_mem_integerAnnihilator_not_annihilate {m : ℕ}
     (R : AddSubgroup (Fin m → ℤ)) {a : Fin m → ℤ} (ha : a ∉ R) :
     ∃ x ∈ integerAnnihilator R, torusRelationMap x a ≠ 0 := by
@@ -259,6 +292,9 @@ theorem exists_mem_integerAnnihilator_not_annihilate {m : ℕ}
     rw [hb0, map_zero]
   · simpa only [heval] using hc
 
+/--
+@isnad1 id=eq.0h3v.s8.0c3da8fbd7cc from=translated src=- shape=6e888412 vocab=e0962464
+-/
 theorem mFourier_eq_toCircle_relation {m : ℕ} (a : Fin m → ℤ)
     (x : UnitAddTorus (Fin m)) :
     UnitAddTorus.mFourier a x = (AddCircle.toCircle (torusRelationMap x a) : ℂ) := by
@@ -291,7 +327,9 @@ def oneLipschitzHalfRangeFamily (m : ℕ) :
 
 /-- Arzelà--Ascoli compactness for the family in the uniform-frequency-set lemma.  We retain
 the closure in the statement because that is exactly the form supplied by Mathlib's version of
-Arzelà--Ascoli; membership of the original family is enough for every application below. -/
+Arzelà--Ascoli; membership of the original family is enough for every application below.
+@isnad1 id=iscompac.0h1v.s8.56349c24bcfc from=translated src=- shape=fbc08cc3 vocab=56177f9f
+-/
 theorem isCompact_closure_oneLipschitzHalfRangeFamily (m : ℕ) :
     IsCompact (closure (oneLipschitzHalfRangeFamily m)) := by
   apply BoundedContinuousFunction.arzela_ascoli (Set.Icc (0 : ℝ) (1 / 2)) isCompact_Icc
@@ -370,7 +408,9 @@ private theorem exists_finite_frequency_approximation_of_compact
 For every dimension and every positive error there is a finite set of integer frequencies such
 that every real-valued `1`-Lipschitz function with values in `[0, 1 / 2]` is uniformly approximated
 by a trigonometric polynomial supported on that same set.  The paper assumes `1 ≤ m`; the
-formal statement is slightly stronger, since it also holds for `m = 0`. -/
+formal statement is slightly stronger, since it also holds for `m = 0`.
+@isnad1 id=ex.1h2v.s9.6960e2572ea7 from=translated src=- shape=3e5fa0a4 vocab=fd556e20
+-/
 theorem exists_uniform_frequency_set (m : ℕ) {η : ℝ} (hη : 0 < η) :
     ∃ S : Finset (Fin m → ℤ),
       ∀ f : BoundedContinuousFunction (UnitAddTorus (Fin m)) ℝ,
@@ -397,7 +437,9 @@ theorem exists_uniform_frequency_set (m : ℕ) {η : ℝ} (hη : 0 < η) :
 
 /-- Uniform finite Fourier approximation for all annihilator-distance functions of a fixed
 dimension.  Compactness is used only here: it turns the frequency support, initially depending on
-the subgroup, into one finite set. -/
+the subgroup, into one finite set.
+@isnad1 id=ex.1h2v.s9.ad24348a0cbd from=translated src=- shape=dbd81abf vocab=04923636
+-/
 theorem exists_finite_frequency_approximation (m : ℕ) {δ : ℝ} (hδ : 0 < δ) :
     ∃ S : Finset (Fin m → ℤ), ∀ R : AddSubgroup (Fin m → ℤ),
       ∃ c : (Fin m → ℤ) →₀ ℂ, c.support ⊆ S ∧
@@ -546,7 +588,9 @@ private theorem integral_fourierPolynomial_translate {m : ℕ}
         MeasureTheory.integrableOn_univ.mp
 
 /-- A target satisfying all frequencies in `c.support` is close to the corresponding annihilator.
-This is the quantitative conclusion extracted from the averaged finite Fourier approximation. -/
+This is the quantitative conclusion extracted from the averaged finite Fourier approximation.
+@isnad1 id=le.2h5v.s9.73f53f5d7a6b from=translated src=- shape=2f018388 vocab=6adf9373
+-/
 theorem infDist_integerAnnihilator_lt_of_finite_relations {m : ℕ} {δ : ℝ}
     {S : Finset (Fin m → ℤ)}
     (hS : ∀ R : AddSubgroup (Fin m → ℤ),
@@ -642,7 +686,9 @@ theorem infDist_integerAnnihilator_lt_of_finite_relations {m : ℕ} {δ : ℝ}
   simpa [annihilatorDistance_apply, Complex.norm_real, Real.norm_eq_abs,
     abs_of_nonneg Metric.infDist_nonneg] using hnorm
 
-/-- A uniform Kronecker bound remains valid when the permitted relation height is increased. -/
+/-- A uniform Kronecker bound remains valid when the permitted relation height is increased.
+@isnad1 id=isunifor.2h4v.s4.820275563ba9 from=translated src=- shape=dbfc35c9 vocab=1c94fc49
+-/
 theorem IsUniformKroneckerBound.mono {m q q' : ℕ} {ε : ℝ}
     (h : IsUniformKroneckerBound.{u} m ε q) (hqq' : q ≤ q') :
     IsUniformKroneckerBound.{u} m ε q' := by
@@ -654,7 +700,9 @@ theorem IsUniformKroneckerBound.mono {m q q' : ℕ} {ε : ℝ}
 /-- Unconditional uniform finite-dimensional Kronecker theorem.
 
 For every tuple length and every positive error, a single finite height bound detects enough
-integer relations to guarantee approximation by a character of every Abelian group. -/
+integer relations to guarantee approximation by a character of every Abelian group.
+@isnad1 id=ex.1h2v.s4.f7e2257657ff from=translated src=- shape=5befd695 vocab=9ce3fa2e
+-/
 theorem exists_uniform_kronecker_bound (m : ℕ) {ε : ℝ} (hε : 0 < ε) :
     ∃ q : ℕ, IsUniformKroneckerBound.{u} m ε q := by
   classical
@@ -689,7 +737,9 @@ theorem exists_uniform_kronecker_bound (m : ℕ) {ε : ℝ} (hε : 0 < ε) :
   have hi : dist (t i) (x i) < ε := (dist_pi_lt_iff hε).mp htx i
   simpa only [hχ i, ← dist_eq_norm, dist_comm] using hi
 
-/-- Camel-case compatibility spelling for downstream modules. -/
+/-- Camel-case compatibility spelling for downstream modules.
+@isnad1 id=ex.1h2v.s4.f7e2257657ff from=translated src=- shape=5befd695 vocab=9ce3fa2e
+-/
 theorem exists_uniformKroneckerBound (m : ℕ) {ε : ℝ} (hε : 0 < ε) :
     ∃ q : ℕ, IsUniformKroneckerBound.{u} m ε q :=
   exists_uniform_kronecker_bound m hε

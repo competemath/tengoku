@@ -84,6 +84,9 @@ def evaluation (C : SeparationPackage I) :
     TopologicalSpace (I →₀ ℤ) :=
   TopologicalSpace.induced C.evaluation inferInstance
 
+/--
+@isnad1 id=injectiv.0h2v.s9.dcac62f59ebb from=translated src=- shape=65b152f7 vocab=81002c4e
+-/
 theorem evaluation_injective (C : SeparationPackage I) :
     Function.Injective C.evaluation := by
   intro x y hxy
@@ -96,12 +99,17 @@ theorem evaluation_injective (C : SeparationPackage I) :
   have hcoord : C.character z x = C.character z y := congrFun hxy z
   rw [hcoord, sub_self]
 
+/--
+@isnad1 id=t2space.0h2v.s4.e44d78d07d2e from=translated src=- shape=43984f75 vocab=494bd67b
+-/
 theorem initial_t2Space (C : SeparationPackage I) :
     @T2Space (I →₀ ℤ) C.initialTopology := by
   let : TopologicalSpace (I →₀ ℤ) := C.initialTopology
   exact C.evaluation_injective.isEmbedding_induced.t2Space
 
-/-- The prepared subsequence converges to its prescribed basis point in the initial topology. -/
+/-- The prepared subsequence converges to its prescribed basis point in the initial topology.
+@isnad1 id=tendsto.0h3v.s7.3534a191e993 from=translated src=- shape=1ec51ec4 vocab=f69ccc32
+-/
 theorem prepared_tendsto_basis (C : SeparationPackage I) (c : C.Code) :
     Tendsto
       (fun n ↦ (C.codeEquiv c).1 (C.subsequence c n))
@@ -114,7 +122,9 @@ theorem prepared_tendsto_basis (C : SeparationPackage I) (c : C.Code) :
   refine tendsto_pi_nhds.2 fun x ↦ ?_
   simpa [evaluation, Function.comp_def] using C.character_limit c x
 
-/-- The package supplies the exact free-ultrafilter limit property used by the cone argument. -/
+/-- The package supplies the exact free-ultrafilter limit property used by the cone argument.
+@isnad1 id=haswalla.0h2v.s4.67e73a2b96f5 from=translated src=- shape=13e031cb vocab=4c58a596
+-/
 theorem positiveCone_hasWallaceLimitProperty (C : SeparationPackage I) :
     @HasWallaceLimitProperty (I →₀ ℤ) C.initialTopology _ (positiveCone I) := by
   let : TopologicalSpace (I →₀ ℤ) := C.initialTopology

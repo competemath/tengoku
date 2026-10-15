@@ -39,6 +39,9 @@ abbrev DirIdx := Fin masks.size
 def maskAt (d : DirIdx) : Mask :=
   masks[d.1]!
 
+/--
+@isnad1 id=lt.0h1v.s4.3e902b04c4ca from=translated src=- shape=838107a0 vocab=7401014a
+-/
 lemma maskAt_lt_512 (d : DirIdx) : maskAt d < (1 <<< 9) := by
   -- All canonical masks are 9-bit masks.
   fin_cases d <;> decide

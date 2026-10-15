@@ -62,13 +62,17 @@ namespace Sundog.SATReductionMain
 variable {n m : ℕ} [NeZero n] [NeZero m]
 
 /-- **Packaged correctness over the structured index** (m8 ∧ m7).  A satisfying assignment for `φ`
-    exists iff the gadget triple map has a perfect 3-dimensional matching over `TripleIdx n m`. -/
+    exists iff the gadget triple map has a perfect 3-dimensional matching over `TripleIdx n m`.
+@isnad1 id=iff.0h3v.s8.566a2ec3dbb6 from=translated src=- shape=6d58dbc3 vocab=0d880477
+-/
 theorem sat_iff_threeDM_I (φ : Formula n m) :
     Satisfiable φ ↔ threeDMI (tripleFn φ) :=
   ⟨forward φ, reverse φ⟩
 
 /-- **Correctness over the real `Fin s`-indexed matching** (through the m5 reindexing bridge).
-    `Satisfiable φ ↔ ThreeDM (reduce φ)`; `reduce φ` is defeq to the comp `tripleFn φ ∘ _.symm`. -/
+    `Satisfiable φ ↔ ThreeDM (reduce φ)`; `reduce φ` is defeq to the comp `tripleFn φ ∘ _.symm`.
+@isnad1 id=iff.0h3v.s9.d3042daea545 from=translated src=- shape=f7ca5dcc vocab=5124a97c
+-/
 theorem sat_iff_threeDM (φ : Formula n m) :
     Satisfiable φ ↔ ThreeDM (reduce φ) := by
   rw [sat_iff_threeDM_I φ]
@@ -77,7 +81,9 @@ theorem sat_iff_threeDM (φ : Formula n m) :
 /-- **THE HEADLINE.**  Closing the machine-checked reduction-correctness chain
     `3SAT ≤ 3DM ≤ X3C ≤ Decodes`: `Satisfiable φ` holds iff the reduced bounded-weight GF(2)
     decoding instance `Decodes (reduce3DM (reduce φ)) (2·m·n)` decodes.  Reduction CORRECTNESS only
-    — hardness (NP class, poly-time-ness, Cook–Levin) is the imported wall, never proved here. -/
+    — hardness (NP class, poly-time-ness, Cook–Levin) is the imported wall, never proved here.
+@isnad1 id=iff.0h3v.s10.d1f85ad1fb8c from=translated src=- shape=11246e9a vocab=6f5c8721
+-/
 theorem sat_iff_decodes (φ : Formula n m) :
     Satisfiable φ ↔ DecodingNPHard.Decodes (reduce3DM (reduce φ)) (2 * m * n) :=
   (sat_iff_threeDM φ).trans (reduce_chain_connects φ)

@@ -74,6 +74,7 @@ For a nonempty finite set of integers, `A - A` has at least
 With `a = min A`, the
 nonnegative differences `x - a` (`x ∈ A`) and the negative differences
 `a - x` (`x ∈ A \ {a}`) form two disjoint subsets of `A - A`.
+@isnad1 id=le.1h1v.s5.cce7df4580dd from=translated src=- shape=46f8f0da vocab=ffff9586
 -/
 theorem two_mul_card_sub_one_le_card_sub
     (A : Finset ℤ) (hA : A.Nonempty) :
@@ -117,7 +118,9 @@ theorem two_mul_card_sub_one_le_card_sub
   omega
 
 /-- A finite integer set with at least two elements has strictly more
-differences than elements. -/
+differences than elements.
+@isnad1 id=lt.1h1v.s5.f53e2d749439 from=translated src=- shape=8ed47533 vocab=c22415f9
+-/
 theorem card_lt_card_sub
     (A : Finset ℤ) (hcard : 2 ≤ A.card) :
     A.card < (A - A).card := by
@@ -131,6 +134,7 @@ translation parameters are equal.
 
 This is the precise finite-translation rigidity statement used in the
 equality case of the strict upper bound.
+@isnad1 id=injectiv.1h1v.s5.8ef2a24f6f00 from=translated src=- shape=a687aca9 vocab=28d0b396
 -/
 theorem add_singleton_right_injective
     (S : Finset ℤ) (hS : S.Nonempty) :
@@ -163,6 +167,7 @@ A cross-multiplied form of the minimal-growth-subset construction.
 The selected nonempty `U ⊆ -A` simultaneously satisfies the hypothesis of
 the Plünnecke--Petridis inequality and has growth ratio no larger than the
 ratio obtained from the candidate `-A`.
+@isnad1 id=ex.1h1v.s7.6e8af21c5d7c from=translated src=- shape=1ac01250 vocab=304d32aa
 -/
 theorem exists_minimal_growth_subset
     (A : Finset ℤ) (hA : A.Nonempty) :
@@ -217,6 +222,7 @@ The analytic part of the strict upper bound.
 The first hypothesis is exactly what makes the logarithmic denominator
 positive.  The second is the strict combinatorial inequality obtained by the
 minimal-growth/Petridis equality argument.
+@isnad1 id=lt.3h1v.s6.0e94a9b81fa7 from=translated src=- shape=10987264 vocab=d466ad1d
 -/
 theorem growthExponent_lt_two_of_card
     (A : Finset ℤ)
@@ -264,6 +270,7 @@ The universal non-strict cardinality inequality
 
 This is the `A = B = C` specialization of mathlib's additive
 Plünnecke--Ruzsa/Ruzsa triangle inequality.
+@isnad1 id=le.0h1v.s6.26c8b3454d05 from=translated src=- shape=40a7ff10 vocab=abfc662e
 -/
 theorem card_sum_mul_le_card_diff_sq (A : Finset ℤ) :
     (A + A).card * A.card ≤ (A - A).card ^ 2 := by
@@ -282,6 +289,7 @@ is fed into the Plünnecke--Petridis inequality.  Equality in the final Ruzsa
 bound forces `|U| = |A|`, hence `U = -A`, and then forces every translate
 `2A + x` (`x ∈ U`) to be the same set.  Translation rigidity makes `U` a
 singleton, contradicting `|A| ≥ 2`.
+@isnad1 id=lt.1h1v.s6.acd1b3b9e6d1 from=translated src=- shape=7e667fc7 vocab=df15175f
 -/
 theorem strict_cardinality_inequality
     (A : Finset ℤ) (hcard : 2 ≤ A.card) :
@@ -409,6 +417,7 @@ theorem strict_cardinality_inequality
 The non-strict exponent bound as a consequence of the strict inequality.
 The strict hypothesis on `|A - A|` is used only to make the
 logarithmic denominator positive.
+@isnad1 id=le.2h1v.s5.70db06160ed1 from=translated src=- shape=2550171e vocab=2b132a2e
 -/
 theorem growthExponent_le_two_of_card
     (A : Finset ℤ)
@@ -424,7 +433,9 @@ theorem growthExponent_le_two_of_card
     (strict_cardinality_inequality A hcard)).le
 
 /-- The universal non-strict exponent bound for every admissible finite
-integer set. -/
+integer set.
+@isnad1 id=le.1h1v.s4.dc546ff66d77 from=translated src=- shape=76e33fdd vocab=b2040feb
+-/
 theorem growthExponent_le_two
     (A : Finset ℤ) (hcard : 2 ≤ A.card) :
     growthExponent A ≤ 2 := by
@@ -435,6 +446,7 @@ theorem growthExponent_le_two
 Once the strict combinatorial inequality is available, the cardinality
 assumption from the optimization problem suffices for the strict exponent
 bound.
+@isnad1 id=lt.2h1v.s6.8ed28d6cb62d from=translated src=- shape=737a7eb6 vocab=c7609a37
 -/
 theorem growthExponent_lt_two_of_strict_cardinality
     (A : Finset ℤ)
@@ -444,7 +456,9 @@ theorem growthExponent_lt_two_of_strict_cardinality
   exact growthExponent_lt_two_of_card A
     (Finset.card_pos.mp (by omega)) (card_lt_card_sub A hcard) hstrict
 
-/-- The universal strict upper bound, including the equality-case refinement. -/
+/-- The universal strict upper bound, including the equality-case refinement.
+@isnad1 id=lt.1h1v.s4.2401dff908a5 from=translated src=- shape=6d5cbaa8 vocab=eb601e85
+-/
 theorem growthExponent_lt_two
     (A : Finset ℤ) (hcard : 2 ≤ A.card) :
     growthExponent A < 2 :=

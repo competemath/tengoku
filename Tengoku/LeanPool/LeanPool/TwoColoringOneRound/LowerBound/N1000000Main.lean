@@ -44,6 +44,7 @@ Definitions:
 - `Coloring` / `monoFraction` / `Edge.monochromatic` are in `Distributed2Coloring.LowerBound.Defs`.
 - The proof combines a precomputed exact rational dual certificate with weak duality, and shows the
   required PSD constraints for `xFromColoring f` via a compression/congruence argument.
+@isnad1 id=le.0h1v.s4.7a04f818e183 from=translated src=- shape=7d95156c vocab=c320f6cd
 -/
 theorem monoFraction_ge_23879 (f : Coloring n) :
     (23879 : Q) / 100000 ≤ monoFraction f := by

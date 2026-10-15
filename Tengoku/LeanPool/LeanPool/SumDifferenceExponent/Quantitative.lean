@@ -40,15 +40,27 @@ def quantitativeIndex : ℕ := powerOfTwo quantitativePower
 abbrev quantitativeSet : Finset ℤ :=
   approximatingSet quantitativeIndex
 
+/--
+@isnad1 id=lt.0h0v.s3.f81bf7c587ca from=translated src=- shape=ff3a10fc vocab=85f15a8d
+-/
 theorem quantitativeScale_pos : 0 < quantitativeScale := by
   exact pow_pos (by norm_num) _
 
+/--
+@isnad1 id=lt.0h0v.s3.6160643d2cd4 from=translated src=- shape=ff3a10fc vocab=0222083d
+-/
 theorem quantitativePower_pos : 0 < quantitativePower := by
   exact Nat.mul_pos (by norm_num) quantitativeScale_pos
 
+/--
+@isnad1 id=le.0h0v.s3.f6cef607b490 from=translated src=- shape=ff3a10fc vocab=5b72fa3d
+-/
 theorem quantitativeIndex_two_le : 2 ≤ quantitativeIndex := by
   exact two_le_powerOfTwo quantitativePower quantitativePower_pos
 
+/--
+@isnad1 id=lt.0h0v.s5.913c78d3232d from=translated src=- shape=bbdbfd92 vocab=d28e12bf
+-/
 theorem log_constant_lt_twenty_three :
     Real.log 2 + 2 * Real.log 12 < 23 := by
   have h2 : Real.log 2 < 1 := by
@@ -61,6 +73,9 @@ theorem log_constant_lt_twenty_three :
     nlinarith
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s5.da21dc5ffaaa from=translated src=- shape=d7767534 vocab=34dd01b1
+-/
 theorem quantitative_denominator_gt :
     (quantitativePower : ℝ) / 2 <
       Real.log (quantitativeIndex : ℝ) + Real.log 12 := by
@@ -79,6 +94,9 @@ theorem quantitative_denominator_gt :
   have h12 : 0 < Real.log 12 := Real.log_pos (by norm_num)
   nlinarith
 
+/--
+@isnad1 id=lt.0h0v.s5.439d4e4abcfc from=translated src=- shape=bd919eaa vocab=68410c4c
+-/
 theorem forty_six_div_quantitativePower_lt :
     (46 : ℝ) / quantitativePower < (10 : ℝ) ^ (-999 : ℤ) := by
   have hQ : (0 : ℝ) < quantitativeScale := by
@@ -102,6 +120,9 @@ theorem forty_six_div_quantitativePower_lt :
       rw [zpow_neg]
       congr 1
 
+/--
+@isnad1 id=lt.0h0v.s5.9dfdd2acaf64 from=translated src=- shape=7ed51cf2 vocab=c9349ed7
+-/
 theorem exponentLower_quantitative :
     2 - (10 : ℝ) ^ (-999 : ℤ) <
       ColumnConstruction.exponentLower quantitativeIndex := by
@@ -127,6 +148,9 @@ theorem exponentLower_quantitative :
   have htiny := forty_six_div_quantitativePower_lt
   linarith
 
+/--
+@isnad1 id=and.0h0v.s5.0f479bf1d547 from=translated src=- shape=1590a6b0 vocab=7a19261e
+-/
 theorem quantitative_example :
     2 - (10 : ℝ) ^ (-999 : ℤ) <
         growthExponent quantitativeSet ∧

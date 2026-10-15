@@ -144,7 +144,9 @@ nonvanishing criteria; L5 (`carryfree_combine`), combining the carry-free
 conditions; then the assembly lemmas `cwit_ne_zero` and `Sdk_coeff_eq_finsum`. -/
 
 /-- **L2 (finite-field power sum).** For a finite field `Fq` and `m : ℕ`,
-`∑_{x∈Fq} x ^ m = -1` if `m > 0 ∧ (q - 1) ∣ m`, and `= 0` otherwise (`0 ^ 0 = 1`). -/
+`∑_{x∈Fq} x ^ m = -1` if `m > 0 ∧ (q - 1) ∣ m`, and `= 0` otherwise (`0 ^ 0 = 1`).
+@isnad1 id=eq.0h2v.s7.1141b8054d60 from=translated src=- shape=6ed48a59 vocab=19723d2e
+-/
 theorem finField_pow_sum (Fq : Type) [Field Fq] [Fintype Fq] (m : ℕ) :
     (∑ x : Fq, x ^ m) =
       if (0 < m ∧ (Fintype.card Fq - 1) ∣ m) then -1 else 0 := by
@@ -164,7 +166,9 @@ theorem finField_pow_sum (Fq : Type) [Field Fq] [Fintype Fq] (m : ℕ) :
 
 /-- **L3 (Lucas, binomial).** The integer `binom(-k, y) = (-1) ^ y · C(k+y-1, y)`
 has nonzero image in `F_q` (char `p`) iff the addition `(k - 1) + y` is carry-free
-in base `p`, i.e. `CarryFree p [k-1, y]` (Kummer/Lucas). -/
+in base `p`, i.e. `CarryFree p [k-1, y]` (Kummer/Lucas).
+@isnad1 id=iff.3h4v.s7.78182fe1dc9d from=translated src=- shape=0168c273 vocab=107bf010
+-/
 theorem negChoose_cast_ne_zero_iff (Fq : Type) [Field Fq]
     (p k : ℕ) (hp : p.Prime) (hchar : CharP Fq p) (hk : 0 < k) (y : ℕ) :
     (((-1) ^ y * (Nat.choose (k + y - 1) y : ℤ)) : Fq) ≠ 0 ↔
@@ -270,7 +274,9 @@ theorem negChoose_cast_ne_zero_iff (Fq : Type) [Field Fq]
 /-- **L4 (Lucas, multinomial).** With `y = ∑ i, m i`, the multinomial coefficient
 `multinomial(y; m_1,…,m_d)` has nonzero image in `F_q` iff the addition
 `m_1 ⊕ m_2 ⊕ … ⊕ m_d` is carry-free in base `p`, i.e. `CarryFree p (List.ofFn m)`.
-(Telescoping product of binomial-Lucas, informal.tex Lemma 1.6.) -/
+(Telescoping product of binomial-Lucas, informal.tex Lemma 1.6.)
+@isnad1 id=iff.2h4v.s6.a25610b773fb from=translated src=- shape=b883125c vocab=51160f38
+-/
 theorem multinomial_cast_ne_zero_iff (Fq : Type) [Field Fq]
     (p d : ℕ) (hp : p.Prime) (hchar : CharP Fq p) (m : Fin d → ℕ) :
     ((Nat.multinomial Finset.univ m : ℤ) : Fq) ≠ 0 ↔
@@ -460,7 +466,9 @@ theorem multinomial_cast_ne_zero_iff (Fq : Type) [Field Fq]
 
 /-- Crux (division form). If, at every base-`p` digit position, the digits of `a`
 and `b` sum to at most `p - 1` (no carry), then dividing by `p ^ e` distributes
-over the sum `a + b`. Requires `1 < p`. -/
+over the sum `a + b`. Requires `1 < p`.
+@isnad1 id=eq.2h4v.s7.0387dcf74c24 from=translated src=- shape=37607533 vocab=bf029df7
+-/
 theorem crux_div (p a b : ℕ) (hp : 1 < p)
     (h : ∀ e, digit p a e + digit p b e ≤ p - 1) :
     ∀ e, (a + b) / p ^ e = a / p ^ e + b / p ^ e := by
@@ -482,7 +490,9 @@ theorem crux_div (p a b : ℕ) (hp : 1 < p)
     omega
 
 /-- Crux (two-summand digit form). Under the no-carry hypothesis, the digit of the
-sum equals the sum of digits at every position. -/
+sum equals the sum of digits at every position.
+@isnad1 id=eq.2h4v.s6.6d5b57ebf03f from=translated src=- shape=078ea88a vocab=ad8f1ecb
+-/
 theorem crux_digit_two (p a b : ℕ) (hp : 1 < p)
     (h : ∀ e, digit p a e + digit p b e ≤ p - 1) :
     ∀ e, digit p (a + b) e = digit p a e + digit p b e := by
@@ -497,7 +507,9 @@ theorem crux_digit_two (p a b : ℕ) (hp : 1 < p)
 
 /-- Crux (list form, all `p`). If the addition of the entries of `L` is carry-free
 in base `p`, then for every digit position the digit of `L.sum` equals the sum of
-the digits of the entries. (Holds unconditionally for `p ≤ 1`.) -/
+the digits of the entries. (Holds unconditionally for `p ≤ 1`.)
+@isnad1 id=eq.1h3v.s6.b73acc072fd4 from=translated src=- shape=297b176a vocab=2ca81b3b
+-/
 theorem crux_list (p : ℕ) (L : List ℕ)
     (h : ∀ e, (L.map (fun x => digit p x e)).sum ≤ p - 1) :
     ∀ e, digit p L.sum e = (L.map (fun x => digit p x e)).sum := by
@@ -537,7 +549,9 @@ theorem crux_list (p : ℕ) (L : List ℕ)
 /-- **L5 (carry-free combination).** With `y = ∑ i, m i`, the two carry-free
 conditions `CarryFree p [k-1, y]` (binomial) and `CarryFree p (List.ofFn m)`
 (multinomial) hold simultaneously iff the combined addition is carry-free, i.e.
-`CarryFree p ((k - 1) :: List.ofFn m)`. -/
+`CarryFree p ((k - 1) :: List.ofFn m)`.
+@isnad1 id=iff.0h4v.s5.74e8f4e2f11c from=translated src=- shape=20e48043 vocab=2cc774c4
+-/
 theorem carryfree_combine (p kk d : ℕ) (m : Fin d → ℕ) :
     (CarryFree p [kk, ∑ i, m i] ∧ CarryFree p (List.ofFn m)) ↔
       CarryFree p (kk :: List.ofFn m) := by
@@ -573,7 +587,9 @@ finite-vs-finsum bookkeeping. -/
 power series `g` with zero constant term, the `e`-th coefficient of
 `((1 + g) ^ k)⁻¹` is the finite sum `∑_{y ≤ e} binom(-k, y) · coeff_e (g ^ y)`,
 where `binom(-k, y) = (-1) ^ y · C(k+y-1, y)`. (Only `y ≤ e` contribute since
-`order (g ^ y) ≥ y`.) -/
+`order (g ^ y) ≥ y`.)
+@isnad1 id=eq.1h4v.s9.23a94591b43c from=translated src=- shape=f70aae09 vocab=2fb2e1e1
+-/
 theorem coeff_inv_one_add_pow
     (Fq : Type) [Field Fq] (k e : ℕ) (g : PowerSeries Fq)
     (hg : PowerSeries.constantCoeff (R := Fq) g = 0) :
@@ -649,7 +665,9 @@ theorem coeff_inv_one_add_pow
 
 /-- **Assembly (b): nonvanishing of `cwit` on the index set.** For `m ∈ T_{d,k-1}`,
 `cwit Fq d k m ≠ 0`.  From L3, L4, and L5: membership in `Tindex` supplies both
-carry-free conditions, and the global `(-1) ^ d` is a unit. -/
+carry-free conditions, and the global `(-1) ^ d` is a unit.
+@isnad1 id=ne.7h6v.s7.5b2bc8f8bbab from=translated src=- shape=9ef95478 vocab=f9ba62f2
+-/
 theorem cwit_ne_zero (Fq : Type) [Field Fq] [Fintype Fq]
     (p f d k : ℕ) (hp : p.Prime) (_hf : 1 ≤ f) (_hd : 1 ≤ d) (hk : 0 < k)
     (hchar : CharP Fq p) (_hq : Fintype.card Fq = p ^ f)
@@ -677,7 +695,9 @@ The following auxiliary statements pin down that `monicOf` is the intended
 enumeration of the monic polynomials of degree exactly `d`, justifying that
 `Sdk` is the power sum `S_d(k) = ∑_{a ∈ A_d ^ +} a ^ {-k}`. -/
 
-/-- The lower-degree part `∑_{i<d} C(θ i) X ^ i` has degree `< d`. -/
+/-- The lower-degree part `∑_{i<d} C(θ i) X ^ i` has degree `< d`.
+@isnad1 id=lt.0h3v.s8.bd51c437a5b4 from=translated src=- shape=30ce3588 vocab=6286452f
+-/
 theorem monicOf_lower_degree (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq) :
     (∑ i : Fin d, C (θ i) * X ^ (i : ℕ)).degree < (d : WithBot ℕ) := by
   apply lt_of_le_of_lt (degree_sum_le Finset.univ _)
@@ -686,7 +706,9 @@ theorem monicOf_lower_degree (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq
   apply lt_of_le_of_lt (degree_C_mul_X_pow_le _ _)
   exact_mod_cast i.isLt
 
-/-- `monicOf` always produces a monic polynomial. -/
+/-- `monicOf` always produces a monic polynomial.
+@isnad1 id=monic.0h3v.s4.9820ffa0faf4 from=translated src=- shape=257e37f2 vocab=c5558f07
+-/
 theorem monicOf_monic (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq) :
     (monicOf Fq d θ).Monic := by
   unfold monicOf
@@ -694,7 +716,9 @@ theorem monicOf_monic (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq) :
   apply monic_X_pow_add
   exact hlt
 
-/-- `monicOf` produces a polynomial of degree exactly `d`. -/
+/-- `monicOf` produces a polynomial of degree exactly `d`.
+@isnad1 id=eq.0h3v.s4.c8a0fcedd710 from=translated src=- shape=f9ea0b78 vocab=d7a8b0a6
+-/
 theorem monicOf_natDegree (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq) :
     (monicOf Fq d θ).natDegree = d := by
   have hm := monicOf_monic Fq d θ
@@ -706,7 +730,9 @@ theorem monicOf_natDegree (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq) :
     · rw [degree_X_pow]; exact hlt
   exact natDegree_eq_of_degree_eq_some hdeg
 
-/-- The coefficient of `X ^ i` (for `i < d`) in `monicOf θ` is `θ i`. -/
+/-- The coefficient of `X ^ i` (for `i < d`) in `monicOf θ` is `θ i`.
+@isnad1 id=eq.0h4v.s5.dc890682bbe1 from=translated src=- shape=42d7469e vocab=33c36c8d
+-/
 theorem monicOf_coeff (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq)
     (i : Fin d) : (monicOf Fq d θ).coeff (i : ℕ) = θ i := by
   unfold monicOf
@@ -721,7 +747,9 @@ theorem monicOf_coeff (Fq : Type) [Field Fq] (d : ℕ) (θ : Fin d → Fq)
   · intro h; exact absurd (Finset.mem_univ i) h
 
 /-- Distinct coefficient tuples give distinct polynomials, so the parameterization
-of `A_d ^ +` by `Fin d → Fq` has no repetitions. -/
+of `A_d ^ +` by `Fin d → Fq` has no repetitions.
+@isnad1 id=injectiv.0h2v.s4.4a24bf32c4cb from=translated src=- shape=d16947c9 vocab=cce320cc
+-/
 theorem monicOf_injective (Fq : Type) [Field Fq] (d : ℕ) :
     Function.Injective (monicOf Fq d) := by
   intro θ θ' h
@@ -733,7 +761,9 @@ theorem monicOf_injective (Fq : Type) [Field Fq] (d : ℕ) :
   exact h2
 
 /-- The parameterization is surjective onto `A_d ^ +`: every monic polynomial of
-degree exactly `d` arises as `monicOf` of its lower coefficients. -/
+degree exactly `d` arises as `monicOf` of its lower coefficients.
+@isnad1 id=ex.2h3v.s6.1d57a01e9d2e from=translated src=- shape=dc347738 vocab=c928a143
+-/
 theorem monicOf_surjective (Fq : Type) [Field Fq] (d : ℕ) (a : Polynomial Fq)
     (ha : a.Monic) (hdeg : a.natDegree = d) :
     ∃ θ : Fin d → Fq, monicOf Fq d θ = a := by

@@ -76,13 +76,22 @@ instance : SMul 𝕜 (LieOneCochain 𝕜 𝓰 𝓪) where
 
 namespace LieOneCochain
 
+/--
+@isnad1 id=eq.0h3v.s7.bad61584d154 from=translated src=- shape=2fa205af vocab=aaf4b49f
+-/
 @[simp]
 lemma toLinearMap_zero : (0 : LieOneCochain 𝕜 𝓰 𝓪).toLinearMap = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.b81c2a105d3f from=translated src=- shape=ba725611 vocab=fd5be8a8
+-/
 @[simp]
 lemma toLinearMap_add (β β' : LieOneCochain 𝕜 𝓰 𝓪) :
     (β + β').toLinearMap = β.toLinearMap + β'.toLinearMap := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.71c997466c00 from=translated src=- shape=59396ada vocab=b727f2d9
+-/
 @[simp]
 lemma toLinearMap_smul (c : 𝕜) (β : LieOneCochain 𝕜 𝓰 𝓪) :
     (c • β).toLinearMap = c • β.toLinearMap := rfl
@@ -127,17 +136,29 @@ instance : LinearMapClass (LieOneCochain 𝕜 𝓰 𝓪) 𝕜 𝓰 𝓪 where
   map_add β X Y := β.toLinearMap.map_add X Y
   map_smulₛₗ β c X := LinearMap.CompatibleSMul.map_smul β.toLinearMap c X
 
+/--
+@isnad1 id=eq.0h4v.s6.8175454a6fa0 from=translated src=- shape=89fe1485 vocab=e70213db
+-/
 @[simp]
 lemma zero_apply (X : 𝓰) : (0 : LieOneCochain 𝕜 𝓰 𝓪) X = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.1951a1a83510 from=translated src=- shape=1be27bab vocab=3cf0c27a
+-/
 @[simp]
 lemma add_apply (β β' : LieOneCochain 𝕜 𝓰 𝓪) (X : 𝓰) :
     (β + β') X = β X + β' X := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.f829fe057e6c from=translated src=- shape=d4ca8afd vocab=b49b4070
+-/
 @[simp]
 lemma smul_apply (c : 𝕜) (β : LieOneCochain 𝕜 𝓰 𝓪) (X : 𝓰) :
     (c • β) X = c • β X := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.957c7083f08b from=translated src=- shape=efd899f3 vocab=049745e7
+-/
 @[simp]
 lemma neg_apply (β : LieOneCochain 𝕜 𝓰 𝓪) (X : 𝓰) :
     (-β) X = -β X := by

@@ -92,11 +92,15 @@ def Jset (q k : ℕ) : Set ℕ :=
 
 -- Helper lemmas
 
-/-- The `e`-th base-`q` digit equals `x / q ^ e % q`. -/
+/-- The `e`-th base-`q` digit equals `x / q ^ e % q`.
+@isnad1 id=eq.1h3v.s5.de9744d90b44 from=translated src=- shape=07d81a78 vocab=feed8874
+-/
 theorem qdigit_eq (q x e : ℕ) (hq : 2 ≤ q) : qdigit q x e = x / q ^ e % q := by
   unfold qdigit; exact Nat.getD_digits x e hq
 
-/-- `a % q ^ i` is the base-`q` number formed by the first `i` digits. -/
+/-- `a % q ^ i` is the base-`q` number formed by the first `i` digits.
+@isnad1 id=eq.0h3v.s6.10219f4dbf37 from=translated src=- shape=56f60cfe vocab=2a4df00b
+-/
 theorem digit_mod (q a i : ℕ) :
     a % q ^ i = ∑ e ∈ Finset.range i, (a / q ^ e % q) * q ^ e := by
   induction i with
@@ -104,7 +108,9 @@ theorem digit_mod (q a i : ℕ) :
   | succ n ih =>
     rw [Finset.sum_range_succ, ← ih, Nat.mod_pow_succ]; ring
 
-/-- `(q - 1) * ∑_{e<i} q ^ e = q ^ i - 1`. -/
+/-- `(q - 1) * ∑_{e<i} q ^ e = q ^ i - 1`.
+@isnad1 id=eq.1h2v.s6.7769c1c69f48 from=translated src=- shape=1a17aca5 vocab=e6f1a7a1
+-/
 theorem geom_pred (q i : ℕ) (hq : 1 ≤ q) :
     (q - 1) * ∑ e ∈ Finset.range i, q ^ e = q ^ i - 1 := by
   induction i with
@@ -117,7 +123,9 @@ theorem geom_pred (q i : ℕ) (hq : 1 ≤ q) :
     rw [h2]; omega
 
 /-- If two numbers add without carry in the first `i` positions, then their
-truncations to `i` digits sum to less than `q ^ i`. -/
+truncations to `i` digits sum to less than `q ^ i`.
+@isnad1 id=lt.2h4v.s7.b051ba9618d3 from=translated src=- shape=5412de1e vocab=c97aa512
+-/
 theorem noCarry_mod (q a b i : ℕ) (hq : 1 < q)
     (h : ∀ e, e < i → (a / q ^ e % q) + (b / q ^ e % q) ≤ q - 1) :
     a % q ^ i + b % q ^ i < q ^ i := by
@@ -136,7 +144,9 @@ theorem noCarry_mod (q a b i : ℕ) (hq : 1 < q)
   omega
 
 /-- Kummer's theorem (one direction): if adding `k` and `n-k` produces no carry in
-any base-`q` position, then `q ∤ C(n,k)`. -/
+any base-`q` position, then `q ∤ C(n,k)`.
+@isnad1 id=not.3h3v.s6.a2dcbd490e9e from=translated src=- shape=7576be40 vocab=47da6732
+-/
 theorem not_dvd_choose (q n k : ℕ) (hq : q.Prime) (hkn : k ≤ n)
     (hcarry : ∀ i, k % q ^ i + (n - k) % q ^ i < q ^ i) :
     ¬ q ∣ Nat.choose n k := by
@@ -150,7 +160,9 @@ theorem not_dvd_choose (q n k : ℕ) (hq : q.Prime) (hkn : k ≤ n)
   have := (Nat.Prime.dvd_iff_one_le_factorization hq (by omega)).mp hdvd
   omega
 
-/-- The `e`-th digit of `(q - 1) * q ^ L`: equal to `q-1` at position `L`, else `0`. -/
+/-- The `e`-th digit of `(q - 1) * q ^ L`: equal to `q-1` at position `L`, else `0`.
+@isnad1 id=eq.1h3v.s6.ffc97d660131 from=translated src=- shape=7d506cd3 vocab=903d05f0
+-/
 theorem digit_special (q L e : ℕ) (hq : 2 ≤ q) :
     ((q - 1) * q ^ L) / q ^ e % q = if e = L then q - 1 else 0 := by
   rcases lt_trichotomy e L with h | h | h
@@ -176,7 +188,9 @@ theorem digit_special (q L e : ℕ) (hq : 2 ≤ q) :
 -- Main Statement(s)
 
 /-- `0` is admissible: `0 ∈ J`. This nontrivial admissibility fact makes the
-uniqueness-of-minimizer statement meaningful. -/
+uniqueness-of-minimizer statement meaningful.
+@isnad1 id=mem.3h3v.s5.1333bde49678 from=translated src=- shape=f6b83c32 vocab=c610bada
+-/
 theorem main_zero_mem (q : ℕ) (hq : q.Prime) (d k : ℕ) (_hd : 1 < d) (hk : 0 < k) :
     (0 : ℕ) ∈ Jset q k := by
   have hq2 : 2 ≤ q := hq.two_le
@@ -241,7 +255,9 @@ theorem main_zero_mem (q : ℕ) (hq : q.Prime) (d k : ℕ) (_hd : 1 < d) (hk : 0
   exact hh
 
 /-- Carry-free addition is digit-additive (fact D2): if at every position the
-base-`q` digits of `a` and `b` sum to `≤ q-1`, then the truncated sums agree. -/
+base-`q` digits of `a` and `b` sum to `≤ q-1`, then the truncated sums agree.
+@isnad1 id=eq.2h4v.s7.0e6210a9492d from=translated src=- shape=eef350e6 vocab=c97aa512
+-/
 theorem add_mod_eq (q a b i : ℕ) (hq : 1 < q)
     (h : ∀ e, e < i → (a / q ^ e % q) + (b / q ^ e % q) ≤ q - 1) :
     (a + b) % q ^ i = a % q ^ i + b % q ^ i := by
@@ -250,7 +266,9 @@ theorem add_mod_eq (q a b i : ℕ) (hq : 1 < q)
   rw [Nat.mod_eq_of_lt hlt]
 
 /-- Digit additivity (fact D2): if `a` and `b` add without carry in every base-`q`
-position, then each digit of `a + b` is the sum of the corresponding digits. -/
+position, then each digit of `a + b` is the sum of the corresponding digits.
+@isnad1 id=eq.2h4v.s7.e311b4ee5e3a from=translated src=- shape=00e649f1 vocab=26d35f17
+-/
 theorem qdigit_add (q a b e : ℕ) (hq : 2 ≤ q)
     (h : ∀ f, (a / q ^ f % q) + (b / q ^ f % q) ≤ q - 1) :
     (a + b) / q ^ e % q = a / q ^ e % q + b / q ^ e % q := by
@@ -284,7 +302,9 @@ theorem qdigit_add (q a b e : ℕ) (hq : 2 ≤ q)
 /-- The objective value set for `TSet q d (k - 1)` is nonempty: an explicit witness
 places each coordinate at a distinct high power `(q - 1)·q ^ (k+i)`, which is positive,
 divisible by `q-1`, and carry-free with `k-1` (the powers are distinct and exceed
-`log_q (k - 1)`). This generalises the `Fin 1` nonemptiness in `main_zero_mem`. -/
+`log_q (k - 1)`). This generalises the `Fin 1` nonemptiness in `main_zero_mem`.
+@isnad1 id=nonempty.2h3v.s6.fb09b0ffe8aa from=translated src=- shape=77204411 vocab=ed93e29d
+-/
 theorem tset_value_nonempty (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
     {v : ℕ | ∃ m ∈ TSet q d (k - 1), v = ∑ i : Fin d, (i.val + 1) * m i}.Nonempty := by
   classical
@@ -333,7 +353,9 @@ theorem tset_value_nonempty (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
       rw [hk1z]; simpa using hsum
 
 /-- Minimizer extraction: since the objective value set is nonempty, its `sInf`
-is attained by some `m ∈ TSet q d (k - 1)`, giving the value identity for `s`. -/
+is attained by some `m ∈ TSet q d (k - 1)`, giving the value identity for `s`.
+@isnad1 id=ex.2h3v.s7.c37e47ad1012 from=translated src=- shape=58b9a8ac vocab=d8170d76
+-/
 theorem s_minimizer (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
     ∃ m ∈ TSet q d (k - 1), s q d k = d * k + ∑ i : Fin d, (i.val + 1) * m i := by
   have hne := tset_value_nonempty q d k hq hk
@@ -356,7 +378,9 @@ and `u > β₁` gives strictness.
 /-- Easy direction of the composition identity:
 `s_d(k) ≤ s_{d-1}(s_1(k)) + s_1(k)`. Constructive: combine a minimizer `μ₁` for
 `s_1` (placed at top weight `d`) with a minimizer of `s_{d-1}` at argument
-`s_1(k)`; the combined tuple lies in `TSet q d (k - 1)`. -/
+`s_1(k)`; the combined tuple lies in `TSet q d (k - 1)`.
+@isnad1 id=le.3h3v.s6.d577e1a686f0 from=translated src=- shape=f208dc05 vocab=1908d322
+-/
 theorem comp_id_le (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d) (hk : 0 < k) :
     s q d k ≤ s q (d - 1) (s q 1 k) + s q 1 k := by
   have hq2 : 2 ≤ q := hq.two_le
@@ -456,14 +480,18 @@ def slotLen (q d k : ℕ) : ℕ :=
   if q = q then k + d * (k + 1) + 1 else k + d * (k + 1) + 1
 
 /-- `slotList` is monotone in the truncation length: a larger `L` only appends
-more slots. -/
+more slots.
+@isnad1 id=ex.1h4v.s5.04aa0a0082b0 from=translated src=- shape=2aa6dc4a vocab=5b016511
+-/
 theorem slotList_prefix (q k1 L₁ L₂ : ℕ) (h : L₁ ≤ L₂) :
     ∃ t, slotList q k1 L₂ = slotList q k1 L₁ ++ t := by
   unfold slotList
   obtain ⟨c, rfl⟩ := Nat.exists_eq_add_of_le h
   rw [List.range_add, List.flatMap_append]; exact ⟨_, rfl⟩
 
-/-- Digits of `k1` beyond position `k1` (in fact beyond `log_q k1`) vanish. -/
+/-- Digits of `k1` beyond position `k1` (in fact beyond `log_q k1`) vanish.
+@isnad1 id=eq.2h3v.s5.70ae394830ea from=translated src=- shape=b8346441 vocab=473ef487
+-/
 theorem qdigit_zero_of_ge (q k1 e : ℕ) (hq : 2 ≤ q) (he : k1 + 1 ≤ e) :
     qdigit q k1 e = 0 := by
   unfold qdigit
@@ -475,7 +503,9 @@ theorem qdigit_zero_of_ge (q k1 e : ℕ) (hq : 2 ≤ q) (he : k1 + 1 ≤ e) :
   omega
 
 /-- Lower bound on the length of `slotList`: positions `e ∈ [k1+1, L)` each
-contribute `q-1` slots (since the digits of `k1` vanish there). -/
+contribute `q-1` slots (since the digits of `k1` vanish there).
+@isnad1 id=le.1h3v.s6.3c85930399de from=translated src=- shape=a2935758 vocab=b5508262
+-/
 theorem slotList_length_ge (q k1 L : ℕ) (hq : 2 ≤ q) :
     (q - 1) * (L - (k1 + 1)) ≤ (slotList q k1 L).length := by
   unfold slotList
@@ -493,7 +523,9 @@ theorem slotList_length_ge (q k1 L : ℕ) (hq : 2 ≤ q) :
           Finset.sum_le_sum_of_subset hsub
 
 /-- `blockSum` is independent of the truncation length once `L` is large enough
-to contain the first `r` blocks. -/
+to contain the first `r` blocks.
+@isnad1 id=eq.3h5v.s6.a5b17eb9e25b from=translated src=- shape=221f6445 vocab=a0160566
+-/
 theorem blockSum_Lindep (q k1 L₁ L₂ r : ℕ) (h : L₁ ≤ L₂) (hr : 1 ≤ r)
     (hlen : r * (q - 1) ≤ (slotList q k1 L₁).length) :
     blockSum q k1 L₂ r = blockSum q k1 L₁ r := by
@@ -506,7 +538,9 @@ theorem blockSum_Lindep (q k1 L₁ L₂ r : ℕ) (h : L₁ ≤ L₂) (hr : 1 ≤
       List.take_append_of_le_length (by rw [List.length_drop]; omega)]
 
 /-- (L3, pure reindexing) Split off the first block of `Φ_d`:
-`Φ_d(M) = d·β₁ + ∑_{r<d-1} (d-1-r)·β_{r+2}`. -/
+`Φ_d(M) = d·β₁ + ∑_{r<d-1} (d-1-r)·β_{r+2}`.
+@isnad1 id=eq.1h4v.s6.5625ae31a2cd from=translated src=- shape=52455a95 vocab=970a49fa
+-/
 theorem Phi_split (q k1 d L : ℕ) (hd : 1 ≤ d) :
     Phi q k1 d L = d * blockSum q k1 L 1
       + ∑ r ∈ Finset.range (d - 1), (d - 1 - r) * blockSum q k1 L (r + 2) := by
@@ -518,6 +552,9 @@ theorem Phi_split (q k1 d L : ℕ) (hd : 1 ≤ d) :
   simp_all
 
 -- Recurrence for `slotList`: appending the slots at position `Lx`.
+/--
+@isnad1 id=eq.0h3v.s6.87fa0c2801d8 from=translated src=- shape=e1a12245 vocab=16307bc1
+-/
 theorem slotList_succ (q k1 Lx : ℕ) :
     slotList q k1 (Lx+1)
       = slotList q k1 Lx ++ List.replicate ((q - 1) - qdigit q k1 Lx) (q ^ Lx) := by
@@ -525,6 +562,9 @@ theorem slotList_succ (q k1 Lx : ℕ) :
   rw [List.range_succ, List.flatMap_append]; simp
 
 -- Length of `slotList` as a sum of slot multiplicities.
+/--
+@isnad1 id=eq.0h3v.s5.de4feb60191b from=translated src=- shape=24ebc7f3 vocab=e2e8c2d6
+-/
 theorem slotList_length (q k1 Lx : ℕ) :
     (slotList q k1 Lx).length = ∑ e ∈ Finset.range Lx, ((q - 1) - qdigit q k1 e) := by
   induction Lx with
@@ -533,6 +573,9 @@ theorem slotList_length (q k1 Lx : ℕ) :
     rw [slotList_succ, List.length_append, List.length_replicate, Finset.sum_range_succ, ih]
 
 -- `slotList` length is monotone in the truncation length.
+/--
+@isnad1 id=le.1h4v.s4.8e6909ef0b39 from=translated src=- shape=01aa8552 vocab=01f5c647
+-/
 theorem slotList_length_mono (q k1 : ℕ) {a b : ℕ} (h : a ≤ b) :
     (slotList q k1 a).length ≤ (slotList q k1 b).length := by
   rw [slotList_length, slotList_length]
@@ -540,6 +583,9 @@ theorem slotList_length_mono (q k1 : ℕ) {a b : ℕ} (h : a ≤ b) :
   intro x hx; simp only [Finset.mem_range] at hx ⊢; omega
 
 -- Sum of `slotList`: the base-`q` value contributed by all slots.
+/--
+@isnad1 id=eq.0h3v.s6.255565ba3341 from=translated src=- shape=78f51cd9 vocab=803795f6
+-/
 theorem slotList_sum (q k1 L : ℕ) :
     (slotList q k1 L).sum = ∑ e ∈ Finset.range L, ((q - 1) - qdigit q k1 e) * q ^ e := by
   induction L with
@@ -550,6 +596,9 @@ theorem slotList_sum (q k1 L : ℕ) :
 
 -- Greedy structure of `take n`: the first `n` slots are all slots up to some
 -- position `p`, plus a residual `r` slots at position `p`.
+/--
+@isnad1 id=ex.1h4v.s6.0f6894b39e5d from=translated src=- shape=699588f0 vocab=eec3e8f8
+-/
 theorem slotList_take (q k1 L : ℕ) :
     ∀ n, n ≤ (slotList q k1 L).length →
       ∃ p, p ≤ L ∧ ∃ r, (slotList q k1 L).take n = slotList q k1 p ++ List.replicate r (q ^ p)
@@ -578,6 +627,9 @@ theorem slotList_take (q k1 L : ℕ) :
       omega
 
 -- `take` of `c·n` slots equals the sum of the first `c` blocks.
+/--
+@isnad1 id=eq.0h4v.s6.68e8071d50d3 from=translated src=- shape=0299035e vocab=4a8c66e0
+-/
 theorem take_blocks (q k1 L c : ℕ) :
     ((slotList q k1 L).take (c * (q - 1))).sum
       = ∑ r ∈ Finset.range c, blockSum q k1 L (r+1) := by
@@ -591,6 +643,9 @@ theorem take_blocks (q k1 L c : ℕ) :
     rw [hn, List.take_add, List.sum_append]
 
 -- Abel-summation swap identity for the block functional.
+/--
+@isnad1 id=eq.0h2v.s6.3f4d593b3a59 from=translated src=- shape=66d3fe0e vocab=dc645f82
+-/
 theorem abel_swap (d : ℕ) (b : ℕ → ℕ) :
     ∑ r ∈ Finset.range d, (d - r) * b (r + 1)
       = ∑ c ∈ Finset.range d, ∑ r ∈ Finset.range (c + 1), b (r+1) := by
@@ -610,7 +665,9 @@ theorem abel_swap (d : ℕ) (b : ℕ → ℕ) :
     ring
 
 /-- Abel reformulation of `Φ_d(M)`: the layer-cake identity
-`Φ_d(M) = ∑_{c<d} (sum of the smallest (c + 1)·n slots)`. -/
+`Φ_d(M) = ∑_{c<d} (sum of the smallest (c + 1)·n slots)`.
+@isnad1 id=eq.0h4v.s6.ef10beba24f8 from=translated src=- shape=9f39c25a vocab=ff0f043c
+-/
 theorem Phi_eq_take_sum (q k1 d L : ℕ) :
     Phi q k1 d L = ∑ c ∈ Finset.range d, ((slotList q k1 L).take ((c + 1) * (q - 1))).sum := by
   unfold Phi
@@ -622,6 +679,9 @@ theorem Phi_eq_take_sum (q k1 d L : ℕ) :
 -- Pure arithmetic greedy core: the smallest `m = ∑_{e<p} s_e + r` slots
 -- (values `q ^ e`) have the least value among any selection `b` with `b e ≤ s e`
 -- and total count `≥ m`.
+/--
+@isnad1 id=le.4h6v.s7.65334b176694 from=translated src=- shape=f817ab2b vocab=c8c50a15
+-/
 theorem greedy_core (q p L : ℕ) (hq : 2 ≤ q) (hpL : p ≤ L)
     (b s : ℕ → ℕ) (r : ℕ)
     (hbs : ∀ e, e < L → b e ≤ s e)
@@ -687,7 +747,9 @@ theorem greedy_core (q p L : ℕ) (hq : 2 ≤ q) (hpL : p ≤ L)
 
 /-- Bridge: the value of the smallest `m` slots of `M(k - 1)` is at most any `N`
 that adds to `k-1` without carry and whose total slot count (digit sum) is `≥ m`.
-The greedy/exchange argument in closed arithmetic form. -/
+The greedy/exchange argument in closed arithmetic form.
+@isnad1 id=le.4h5v.s7.f99aef8dcc54 from=translated src=- shape=4cb82109 vocab=9e09c7be
+-/
 theorem slot_value_le (q d k : ℕ) (hq : 2 ≤ q) (N m : ℕ)
     (hcarry : ∀ e, qdigit q (k - 1) e + qdigit q N e ≤ q - 1)
     (hm_len : m ≤ (slotList q (k - 1) (slotLen q d k)).length)
@@ -726,6 +788,9 @@ theorem slot_value_le (q d k : ℕ) (hq : 2 ≤ q) (N m : ℕ)
 
 -- Finite-family digit additivity: if a family adds without carry then each digit
 -- of the sum is the sum of the digits.
+/--
+@isnad1 id=eq.2h5v.s6.f89972f57d1d from=translated src=- shape=f1d256a5 vocab=7495850f
+-/
 theorem qdigit_sum {ι : Type*} (q : ℕ) (hq : 2 ≤ q) (I : Finset ι) (f : ι → ℕ)
     (h : ∀ e, ∑ i ∈ I, qdigit q (f i) e ≤ q - 1) :
     ∀ e, qdigit q (∑ i ∈ I, f i) e = ∑ i ∈ I, qdigit q (f i) e := by
@@ -747,6 +812,9 @@ theorem qdigit_sum {ι : Type*} (q : ℕ) (hq : 2 ≤ q) (I : Finset ι) (f : ι
     rw [← qdigit_eq _ _ _ hq, ← qdigit_eq _ _ _ hq, iheq e]
 
 -- `∑ d_e q ^ e ≡ ∑ d_e  (mod q-1)`, since `q ≡ 1 (mod q-1)`.
+/--
+@isnad1 id=modeq.1h3v.s6.445f764309d7 from=translated src=- shape=b87b7e5a vocab=154d842c
+-/
 theorem sum_pow_modEq (q L : ℕ) (hq : 2 ≤ q) (d : ℕ → ℕ) :
     ∑ e ∈ Finset.range L, d e * q ^ e ≡ ∑ e ∈ Finset.range L, d e [MOD (q - 1)] := by
   have hpow : ∀ e, q ^ e ≡ 1 [MOD (q - 1)] := by
@@ -766,6 +834,9 @@ theorem sum_pow_modEq (q L : ℕ) (hq : 2 ≤ q) (d : ℕ → ℕ) :
     simp_all
 
 -- The digit sum (slot count) of a positive multiple of `q-1` is at least `q-1`.
+/--
+@isnad1 id=le.4h3v.s6.4b023aac81b0 from=translated src=- shape=b3a458dd vocab=86dbfbbf
+-/
 theorem digitsum_ge (q x L : ℕ) (hq : 2 ≤ q) (hdvd : (q - 1) ∣ x) (hpos : 0 < x)
     (hxL : x < q ^ L) :
     q - 1 ≤ ∑ e ∈ Finset.range L, qdigit q x e := by
@@ -796,6 +867,9 @@ theorem digitsum_ge (q x L : ℕ) (hq : 2 ≤ q) (hdvd : (q - 1) ∣ x) (hpos : 
 
 -- Reindexing the objective `∑ (i+1)·m_i` as a sum over weight levels: the `c`-th
 -- level groups the top `c+1` coordinates `{i : d-1-c ≤ i}`.
+/--
+@isnad1 id=eq.0h2v.s7.90114314abdc from=translated src=- shape=364eb3c5 vocab=2fc59b55
+-/
 theorem rhs_reindex (d : ℕ) (m : Fin d → ℕ) :
     ∑ i : Fin d, (i.val + 1) * m i
       = ∑ c ∈ Finset.range d,
@@ -822,7 +896,9 @@ theorem rhs_reindex (d : ℕ) (m : Fin d → ℕ) :
 /-- Optimality lower bound (the `≥` half of the slot formula): every tuple in
 `TSet q d (k - 1)` has objective at least `Φ_d(M)` (informal.tex Lem. H2-block-min).
 Proof idea: reindex the objective by weight levels and bound each level by the
-greedy bound `slot_value_le`. -/
+greedy bound `slot_value_le`.
+@isnad1 id=le.3h4v.s6.52e1ebe31cb9 from=translated src=- shape=e0ec283b vocab=40847424
+-/
 theorem slot_lower_bound (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k)
     (m : Fin d → ℕ) (hm : m ∈ TSet q d (k - 1)) :
     Phi q (k - 1) d (slotLen q d k) ≤ ∑ i : Fin d, (i.val + 1) * m i := by
@@ -906,7 +982,9 @@ theorem slot_lower_bound (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k)
           Finset.sum_le_sum hterm
 
 /-- The `f`-th base-`q` digit of a bounded expansion `∑_{e<m} coeff e · q ^ e`
-is `coeff f`. -/
+is `coeff f`.
+@isnad1 id=eq.3h4v.s6.fdfa60301060 from=translated src=- shape=17133fa1 vocab=ecf7fd68
+-/
 theorem digit_of_sum_aux (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
     (hc : ∀ e, e < m → coeff e < q) (f : ℕ) (hf : f < m) :
     (∑ e ∈ Finset.range m, coeff e * q ^ e) / q ^ f % q = coeff f := by
@@ -944,6 +1022,9 @@ theorem digit_of_sum_aux (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ
   rw [Nat.add_mul_mod_self_left]
   exact Nat.mod_eq_of_lt (hc f hf)
 
+/--
+@isnad1 id=lt.2h3v.s6.2f29478c1dfa from=translated src=- shape=1e81f4a1 vocab=4c610f15
+-/
 theorem sum_lt_pow_aux (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
     (hc : ∀ e, e < m → coeff e < q) :
     (∑ e ∈ Finset.range m, coeff e * q ^ e) < q ^ m := by
@@ -957,9 +1038,15 @@ theorem sum_lt_pow_aux (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
   have : 1 ≤ q ^ m := Nat.one_le_pow _ _ (by omega)
   omega
 
+/--
+@isnad1 id=le.1h3v.s5.7ca91dfbf53a from=translated src=- shape=a68c6454 vocab=7053a6bb
+-/
 theorem qdigit_le_aux (q k1 e : ℕ) (hq : 2 ≤ q) : qdigit q k1 e ≤ q - 1 := by
   rw [qdigit_eq _ _ _ hq]; have := Nat.mod_lt (k1 / q ^ e) (by omega : 0 < q); omega
 
+/--
+@isnad1 id=eq.0h2v.s4.56d141617754 from=translated src=- shape=a9bb263e vocab=049204a6
+-/
 theorem list_map_range_sum (n : ℕ) (g : ℕ → ℕ) :
     ((List.range n).map g).sum = ∑ i ∈ Finset.range n, g i := by
   induction n with
@@ -967,6 +1054,9 @@ theorem list_map_range_sum (n : ℕ) (g : ℕ → ℕ) :
   | succ m ih =>
     rw [List.range_succ, List.map_append, List.sum_append, ih, Finset.sum_range_succ]; simp
 
+/--
+@isnad1 id=eq.2h3v.s6.2964f9f9aeee from=translated src=- shape=c627c6ef vocab=a4d9bfbd
+-/
 theorem wsum_eq (q L : ℕ) (hq : 2 ≤ q) (w : List ℕ)
     (hpow : ∀ x ∈ w, ∃ e, e < L ∧ x = q ^ e) :
     w.sum = ∑ e ∈ Finset.range L, (w.count (q ^ e)) * q ^ e := by
@@ -998,6 +1088,9 @@ theorem wsum_eq (q L : ℕ) (hq : 2 ≤ q) (w : List ℕ)
       rw [hcount e, Nat.add_mul]
     simp_all
 
+/--
+@isnad1 id=eq.3h4v.s7.d813505c5a1c from=translated src=- shape=742e914d vocab=e76eb3e0
+-/
 theorem qdigit_window (q L : ℕ) (hq : 2 ≤ q) (w : List ℕ)
     (hpow : ∀ x ∈ w, ∃ e, e < L ∧ x = q ^ e)
     (hlt : ∀ e, w.count (q ^ e) < q) (f : ℕ) :
@@ -1012,6 +1105,9 @@ theorem qdigit_window (q L : ℕ) (hq : 2 ≤ q) (w : List ℕ)
     have hle : q ^ L ≤ q ^ f := Nat.pow_le_pow_right (by omega) (by omega)
     rw [Nat.div_eq_of_lt (by omega), Nat.zero_mod]
 
+/--
+@isnad1 id=ex.1h4v.s5.7d28b9884dc9 from=translated src=- shape=df968f67 vocab=e87dc71a
+-/
 theorem slotList_pow (q k1 L : ℕ) : ∀ x ∈ slotList q k1 L, ∃ e, e < L ∧ x = q ^ e := by
   intro x hx
   unfold slotList at hx
@@ -1021,6 +1117,9 @@ theorem slotList_pow (q k1 L : ℕ) : ∀ x ∈ slotList q k1 L, ∃ e, e < L �
   rw [List.mem_range] at he
   exact ⟨e, he, hx2.2⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.51d13d247053 from=translated src=- shape=56fe68ff vocab=3d81eb6a
+-/
 theorem slotList_count (q k1 L : ℕ) (hq : 2 ≤ q) (e : ℕ) (he : e < L) :
     (slotList q k1 L).count (q ^ e) = (q - 1) - qdigit q k1 e := by
   unfold slotList
@@ -1039,6 +1138,9 @@ theorem slotList_count (q k1 L : ℕ) (hq : 2 ≤ q) (e : ℕ) (he : e < L) :
     exact hb (Nat.pow_right_injective hq hcontra)
   · intro hcontra; exact absurd (Finset.mem_range.mpr he) hcontra
 
+/--
+@isnad1 id=eq.0h5v.s5.dc90b8ac8adf from=translated src=- shape=6732dd91 vocab=5c152304
+-/
 theorem take_blocks_count {α : Type*} [BEq α] (L : List α) (n c : ℕ) (x : α) :
     ∑ s ∈ Finset.range c, ((L.drop (s * n)).take n).count x = (L.take (c * n)).count x := by
   induction c with
@@ -1047,11 +1149,17 @@ theorem take_blocks_count {α : Type*} [BEq α] (L : List α) (n c : ℕ) (x : �
     rw [Finset.sum_range_succ, ih]
     rw [show (c + 1)*n = c*n + n from by ring, List.take_add, List.count_append]
 
+/--
+@isnad1 id=eq.1h4v.s5.f21665eb3956 from=translated src=- shape=a62e36a2 vocab=e74d3fb7
+-/
 theorem window_len {α : Type*} (L : List α) (a n : ℕ) (h : a + n ≤ L.length) :
     ((L.drop a).take n).length = n := by
   rw [List.length_take, List.length_drop]
   omega
 
+/--
+@isnad1 id=modeq.2h2v.s6.dd4cd53cd683 from=translated src=- shape=881b0529 vocab=699908cd
+-/
 theorem pow_sum_modEq (q : ℕ) (hq : 2 ≤ q) (w : List ℕ)
     (hpow : ∀ x ∈ w, ∃ e, x = q ^ e) :
     w.sum ≡ w.length [MOD (q - 1)] := by
@@ -1074,7 +1182,9 @@ theorem pow_sum_modEq (q : ℕ) (hq : 2 ≤ q) (w : List ℕ)
 
 /-- Optimality upper bound (the `≤` half of the slot formula): the tuple sending
 the `r`-th smallest block to the coordinate of weight `d-r+1` lies in
-`TSet q d (k - 1)` and has objective exactly `Φ_d(M)`. -/
+`TSet q d (k - 1)` and has objective exactly `Φ_d(M)`.
+@isnad1 id=le.2h3v.s7.762720ad9331 from=translated src=- shape=1e7990b9 vocab=23646808
+-/
 theorem slot_upper_bound (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
     sInf {v : ℕ | ∃ m ∈ TSet q d (k - 1), v = ∑ i : Fin d, (i.val + 1) * m i}
       ≤ Phi q (k - 1) d (slotLen q d k) := by
@@ -1238,7 +1348,9 @@ theorem slot_upper_bound (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
 
 /-- **The reciprocal slot formula** `s_d(k) = d·k + Φ_d(M)`. Assembled by
 antisymmetry from `slot_lower_bound` (every value `≥ Φ_d`, hence `sInf ≥ Φ_d`)
-and `slot_upper_bound` (`sInf ≤ Φ_d`). -/
+and `slot_upper_bound` (`sInf ≤ Φ_d`).
+@isnad1 id=eq.2h3v.s6.67f0b27370a8 from=translated src=- shape=71d29773 vocab=1a666d79
+-/
 theorem slot_formula (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
     s q d k = d * k + Phi q (k - 1) d (slotLen q d k) := by
   unfold s
@@ -1250,7 +1362,9 @@ theorem slot_formula (q d k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
   exact slot_lower_bound q d k hq hk m hm
 
 /-- (L1) The `d=1` corollary `s_1(k) = k + β₁`: the slot formula at `d=1` gives
-`Φ_1(M) = β₁` (the smallest block sum). -/
+`Φ_1(M) = β₁` (the smallest block sum).
+@isnad1 id=eq.2h2v.s6.c004a6c373da from=translated src=- shape=35f1224d vocab=2a83bd82
+-/
 theorem s_one_eq (q k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
     s q 1 k = k + blockSum q (k - 1) (slotLen q 1 k) 1 := by
   rw [slot_formula q 1 k hq hk]
@@ -1258,7 +1372,9 @@ theorem s_one_eq (q k : ℕ) (hq : 2 ≤ q) (hk : 0 < k) :
 
 /-- Dropping the first `(slotList q k1 p).length + r` slots: the result is a
 flatMap with the slots at positions `< p` removed, `r` removed at position `p`,
-and all positions `> p` intact. -/
+and all positions `> p` intact.
+@isnad1 id=eq.1h5v.s7.780b0d1af779 from=translated src=- shape=49690fc4 vocab=71e96239
+-/
 theorem slotList_drop (q k1 p r : ℕ)
     (hr : r ≤ (q - 1) - qdigit q k1 p) :
     ∀ Lx, (slotList q k1 Lx).drop ((slotList q k1 p).length + r)
@@ -1313,6 +1429,9 @@ theorem slotList_drop (q k1 p r : ℕ)
     simp_all
 
 -- Digit extraction from a base-`q` expansion with bounded coefficients.
+/--
+@isnad1 id=eq.3h4v.s6.fdfa60301060 from=translated src=- shape=17133fa1 vocab=ecf7fd68
+-/
 theorem digit_of_sum (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
     (hc : ∀ e, e < m → coeff e < q) (f : ℕ) (hf : f < m) :
     (∑ e ∈ Finset.range m, coeff e * q ^ e) / q ^ f % q = coeff f := by
@@ -1351,6 +1470,9 @@ theorem digit_of_sum (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
   exact Nat.mod_eq_of_lt (hc f hf)
 
 -- A bounded base-`q` expansion of length `m` is `< q ^ m`.
+/--
+@isnad1 id=lt.2h3v.s6.2f29478c1dfa from=translated src=- shape=1e81f4a1 vocab=4c610f15
+-/
 theorem sum_lt_pow (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
     (hc : ∀ e, e < m → coeff e < q) :
     (∑ e ∈ Finset.range m, coeff e * q ^ e) < q ^ m := by
@@ -1365,11 +1487,17 @@ theorem sum_lt_pow (q : ℕ) (hq : 2 ≤ q) (m : ℕ) (coeff : ℕ → ℕ)
   omega
 
 -- A base-`q` digit is at most `q - 1`.
+/--
+@isnad1 id=le.1h3v.s5.7ca91dfbf53a from=translated src=- shape=a68c6454 vocab=7053a6bb
+-/
 theorem qdigit_le (q k1 e : ℕ) (hq : 2 ≤ q) : qdigit q k1 e ≤ q - 1 := by
   rw [qdigit_eq _ _ _ hq]; have := Nat.mod_lt (k1 / q ^ e) (by omega : 0 < q); omega
 
 -- The digits of `β = (slotList q k1 p).sum + r·q ^ p`: slot multiplicities below
 -- `p`, the residual `r` at `p`, and `0` above `p`.
+/--
+@isnad1 id=eq.2h5v.s7.bd2eaaea0fff from=translated src=- shape=82b6bf7a vocab=2a806d88
+-/
 theorem beta_digit (q k1 p r : ℕ) (hq : 2 ≤ q)
     (hr : r ≤ (q - 1) - qdigit q k1 p) (f : ℕ) :
     qdigit q ((slotList q k1 p).sum + r * q ^ p) f
@@ -1405,6 +1533,9 @@ theorem beta_digit (q k1 p r : ℕ) (hq : 2 ≤ q)
 
 -- The new slot multiplicity of `k1 + β` at each position: positions `< p` are
 -- spent (multiplicity `0`), position `p` loses `r`, positions `> p` are intact.
+/--
+@isnad1 id=eq.2h5v.s7.6ade00b35a8d from=translated src=- shape=c5471e47 vocab=2a806d88
+-/
 theorem newmult_eq (q k1 p r : ℕ) (hq : 2 ≤ q)
     (hr : r ≤ (q - 1) - qdigit q k1 p) (e : ℕ) :
     (q - 1) - qdigit q (k1 + ((slotList q k1 p).sum + r * q ^ p)) e
@@ -1438,7 +1569,9 @@ theorem newmult_eq (q k1 p r : ℕ) (hq : 2 ≤ q)
 /-- (L2, slot subtraction) The slot list of `k1 + β₁`, where `β₁` is the sum of
 the `q-1` smallest slots of `k1`, equals the slot list of `k1` with its first
 block removed: `M(k1 + β₁) = M(k1) \ B₁`. Adding `β₁` is carry-free and "spends"
-exactly the digit positions occupied by the `q-1` smallest slots. -/
+exactly the digit positions occupied by the `q-1` smallest slots.
+@isnad1 id=eq.2h4v.s6.8084dc80b87e from=translated src=- shape=092c4c56 vocab=2fbc8ca4
+-/
 theorem slot_subtraction (q k1 L₀ : ℕ) (hq : 2 ≤ q)
     (hβ : (q - 1) ≤ (slotList q k1 L₀).length) :
     ∀ Lx : ℕ, slotList q (k1 + blockSum q k1 L₀ 1) Lx
@@ -1470,7 +1603,9 @@ theorem slot_subtraction (q k1 L₀ : ℕ) (hq : 2 ≤ q)
 `Φ_{d-1}` at argument `s_1(k)` (whose slot set is `M \ B₁`):
 `d·k + Φ_d(M(k - 1)) = (d-1)·s_1(k) + Φ_{d-1}(M(s_1(k)-1)) + s_1(k)`.
 Combines (L1) `s_1(k)=k+β₁`, (L2) slot subtraction `M(s_1(k)-1)=M\B₁`, and
-(L3) `Φ_d(M)=d·β₁+Φ_{d-1}(M\B₁)`; pure block-reindexing algebra. -/
+(L3) `Φ_d(M)=d·β₁+Φ_{d-1}(M\B₁)`; pure block-reindexing algebra.
+@isnad1 id=eq.3h3v.s7.920724a66461 from=translated src=- shape=ca1fbe22 vocab=1a666d79
+-/
 theorem layer_cake (q d k : ℕ) (hq : 2 ≤ q) (hd : 1 < d) (hk : 0 < k) :
     d * k + Phi q (k - 1) d (slotLen q d k)
       = (d - 1) * s q 1 k + Phi q (s q 1 k - 1) (d - 1) (slotLen q (d - 1) (s q 1 k))
@@ -1580,7 +1715,9 @@ theorem layer_cake (q d k : ℕ) (hq : 2 ≤ q) (hd : 1 < d) (hk : 0 < k) :
 
 /-- Hard direction of the composition identity:
 `s_{d-1}(s_1(k)) + s_1(k) ≤ s_d(k)`. Assembled from the slot formula on `s_d`
-and `s_{d-1}` plus the `layer_cake` reindexing. -/
+and `s_{d-1}` plus the `layer_cake` reindexing.
+@isnad1 id=le.3h3v.s6.7e7556f53c68 from=translated src=- shape=79aaca5a vocab=1908d322
+-/
 theorem comp_id_ge (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d) (hk : 0 < k) :
     s q (d - 1) (s q 1 k) + s q 1 k ≤ s q d k := by
   have hq2 : 2 ≤ q := hq.two_le
@@ -1596,7 +1733,9 @@ theorem comp_id_ge (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d) (hk : 0 < k
   rw [hsd, hsd1, layer_cake q d k hq2 hd hk]
 
 /-- Pillar 1, the composition identity: `s_{d-1}(s_1(k)) + s_1(k) = s_d(k)`,
-i.e. `F(0) = s_d(k)`. Antisymmetry of `comp_id_le` and `comp_id_ge`. -/
+i.e. `F(0) = s_d(k)`. Antisymmetry of `comp_id_le` and `comp_id_ge`.
+@isnad1 id=eq.3h3v.s6.4d4121bbd1cd from=translated src=- shape=79aaca5a vocab=ff03fab3
+-/
 theorem composition_identity (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d)
     (hk : 0 < k) :
     s q (d - 1) (s q 1 k) + s q 1 k = s q d k := by
@@ -1613,7 +1752,9 @@ strict because `u > β` when `j > 0`.
 
 -- Helper lemmas for `extraction_core` (the layer-cake / removal-bound argument).
 
-/-- Length of a list of powers `q ^ e` (`e < L`) is the sum of its value-counts. -/
+/-- Length of a list of powers `q ^ e` (`e < L`) is the sum of its value-counts.
+@isnad1 id=eq.2h3v.s6.25a300e52684 from=translated src=- shape=d6eb8008 vocab=cdcaa63e
+-/
 theorem wlen_eq (q L : ℕ) (hq : 2 ≤ q) (w : List ℕ)
     (hpow : ∀ x ∈ w, ∃ e, e < L ∧ x = q ^ e) :
     w.length = ∑ e ∈ Finset.range L, (w.count (q ^ e)) := by
@@ -1644,7 +1785,9 @@ theorem wlen_eq (q L : ℕ) (hq : 2 ≤ q) (w : List ℕ)
       simp_all
     rw [hrw, hfirst]; omega
 
-/-- Carry-free digit additivity for two numbers. -/
+/-- Carry-free digit additivity for two numbers.
+@isnad1 id=eq.2h4v.s6.52b35a55ac68 from=translated src=- shape=eab1aa6a vocab=31fdb70e
+-/
 theorem qdigit_add2 (q k1 u e : ℕ) (hq : 2 ≤ q)
     (hcf : ∀ f, qdigit q k1 f + qdigit q u f ≤ q - 1) :
     qdigit q (k1 + u) e = qdigit q k1 e + qdigit q u e := by
@@ -1653,7 +1796,9 @@ theorem qdigit_add2 (q k1 u e : ℕ) (hq : 2 ≤ q)
   intro f; have := hcf f
   rw [qdigit_eq _ _ _ hq, qdigit_eq _ _ _ hq] at this; exact this
 
-/-- Slot multiplicity of `k1+u` (carry-free): smaller than `k1`'s by `qdigit u e`. -/
+/-- Slot multiplicity of `k1+u` (carry-free): smaller than `k1`'s by `qdigit u e`.
+@isnad1 id=eq.2h4v.s6.6f4e8bef8a75 from=translated src=- shape=f4152aa4 vocab=31fdb70e
+-/
 theorem newmult_gen (q k1 u e : ℕ) (hq : 2 ≤ q)
     (hcf : ∀ f, qdigit q k1 f + qdigit q u f ≤ q - 1) :
     (q - 1) - qdigit q (k1 + u) e + qdigit q u e = (q - 1) - qdigit q k1 e := by
@@ -1662,7 +1807,9 @@ theorem newmult_gen (q k1 u e : ℕ) (hq : 2 ≤ q)
   have := hcf e
   omega
 
-/-- Digit sum of `u` over `range L` (with `u < q ^ L`) is the multiset size `m`. -/
+/-- Digit sum of `u` over `range L` (with `u < q ^ L`) is the multiset size `m`.
+@isnad1 id=eq.2h3v.s6.15654268b88a from=translated src=- shape=447424f0 vocab=1eeb3873
+-/
 theorem digitsum_eq (q u L : ℕ) (hq : 2 ≤ q) (huL : u < q ^ L) :
     u = ∑ e ∈ Finset.range L, qdigit q u e * q ^ e := by
   have h1 : u % q ^ L = ∑ e ∈ Finset.range L, (u / q ^ e % q) * q ^ e := digit_mod q u L
@@ -1675,7 +1822,9 @@ theorem digitsum_eq (q u L : ℕ) (hq : 2 ≤ q) (huL : u < q ^ L) :
 /-- Removal bound: with `u` adding to `k1` carry-free (so `M' = slotList q (k1+u)`
 is `M = slotList q k1` with a size-`m` submultiset `U` of total value `u` removed),
 the value of the smallest `t+m` slots of `M` is at most the value of the smallest
-`t` slots of `M'` plus `u`. -/
+`t` slots of `M'` plus `u`.
+@isnad1 id=le.5h6v.s7.ae44d1b3f11f from=translated src=- shape=15a19575 vocab=427c4e42
+-/
 theorem removal_bound (q k1 u Lbig : ℕ) (hq : 2 ≤ q)
     (hcf : ∀ f, qdigit q k1 f + qdigit q u f ≤ q - 1)
     (huL : u < q ^ Lbig)
@@ -1760,7 +1909,9 @@ theorem removal_bound (q k1 u Lbig : ℕ) (hq : 2 ≤ q)
 
 /-- Converse Kummer/Lucas: if `k`+`(n - k)` has a carry in base `q` at some
 position (`q ^ i ≤ k%q ^ i + (n - k)%q ^ i`), then `q ∣ C(n,k)`. Proved via
-`Nat.factorization_choose`. -/
+`Nat.factorization_choose`.
+@isnad1 id=dvd.3h3v.s6.8f75fd6245e2 from=translated src=- shape=d85f98e4 vocab=91e7f330
+-/
 theorem dvd_choose_of_carry (q n k : ℕ) (hq : q.Prime) (hkn : k ≤ n)
     (hcarry : ∃ i, q ^ i ≤ k % q ^ i + (n - k) % q ^ i) :
     q ∣ Nat.choose n k := by
@@ -1793,7 +1944,9 @@ theorem dvd_choose_of_carry (q n k : ℕ) (hq : q.Prime) (hkn : k ≤ n)
 `β = blockSum q (k - 1) (slotLen q 1 k) 1` and `u = β + j`. Then `u` adds to `k-1`
 carry-free in base `q`, i.e. per position the digit sum is `≤ q-1`. Uses
 `s_one_eq` (so `s q 1 k - 1 = (k - 1) + β`, hence `s q 1 k + j - 1 = (k - 1) + u`),
-the admissibility `¬ q ∣ C((k - 1)+u, k-1)`, and `dvd_choose_of_carry`. -/
+the admissibility `¬ q ∣ C((k - 1)+u, k-1)`, and `dvd_choose_of_carry`.
+@isnad1 id=le.3h4v.s6.c524010387d0 from=translated src=- shape=bc61935f vocab=8e0c2369
+-/
 theorem admissible_carryfree (q : ℕ) (hq : q.Prime) (k : ℕ) (hk : 0 < k)
     (j : ℕ) (hj : j ∈ Jset q k) :
     ∀ e, qdigit q (k - 1) e
@@ -1839,7 +1992,9 @@ theorem admissible_carryfree (q : ℕ) (hq : q.Prime) (k : ℕ) (hk : 0 < k)
   have h1' : k1 % q ^ (e + 1) + u % q ^ (e + 1) < q ^ e * q := by rw [← hpe]; exact h1
   nlinarith [hbound, hmul, h1']
 
-/-- Prefix-sum monotonicity: taking more (nonneg ℕ) elements never decreases the sum. -/
+/-- Prefix-sum monotonicity: taking more (nonneg ℕ) elements never decreases the sum.
+@isnad1 id=le.1h3v.s5.26e2c43a3a4c from=translated src=- shape=ec1aff9a vocab=3e997d54
+-/
 theorem take_sum_mono (w : List ℕ) {a b : ℕ} (h : a ≤ b) :
     (w.take a).sum ≤ (w.take b).sum := by
   have hsplit : w.take b = w.take a ++ (w.take b).drop a := by
@@ -1850,7 +2005,9 @@ theorem take_sum_mono (w : List ℕ) {a b : ℕ} (h : a ≤ b) :
         conv_rhs => rw [hsplit]
         rw [List.sum_append]
 
-/-- `Phi` is independent of the truncation length once it contains the first `d` blocks. -/
+/-- `Phi` is independent of the truncation length once it contains the first `d` blocks.
+@isnad1 id=eq.2h5v.s5.63c3c480e1db from=translated src=- shape=ba4fe88c vocab=57fbc63c
+-/
 theorem Phi_Lindep (q k1 d L₁ Lbig : ℕ) (h : L₁ ≤ Lbig)
     (hlen : d * (q - 1) ≤ (slotList q k1 L₁).length) :
     Phi q k1 d Lbig = Phi q k1 d L₁ := by
@@ -1867,7 +2024,9 @@ theorem Phi_Lindep (q k1 d L₁ Lbig : ℕ) (h : L₁ ≤ Lbig)
 `L₁`, `L₂` large enough to contain the relevant blocks,
 `Φ_d(M) < d·u + Φ_{d-1}(M\U)`, i.e. `Phi q k1 d L₁ < d*u + Phi q (k1+u) (d-1) L₂`.
 Proof idea: expand both `Phi`s into prefix sums, bound each prefix sum of `M\U`
-below via `removal_bound`, and use `u > β₁` for strictness. -/
+below via `removal_bound`, and use `u > β₁` for strictness.
+@isnad1 id=lt.8h7v.s7.72a488eed37d from=translated src=- shape=4e863439 vocab=d2044db0
+-/
 theorem extraction_core (q : ℕ) (hq : 2 ≤ q) (k1 : ℕ) (d : ℕ) (hd : 1 < d)
     (u : ℕ) (hudvd : (q - 1) ∣ u)
     (hcf : ∀ e, qdigit q k1 e + qdigit q u e ≤ q - 1)
@@ -1992,7 +2151,9 @@ theorem extraction_core (q : ℕ) (hq : 2 ≤ q) (k1 : ℕ) (d : ℕ) (hd : 1 < 
 /-- Pillar 2, the extraction inequality in strict form: for admissible `j > 0`,
 `s_d(k) < F(j)` (informal.tex Lem. lem:H2-extraction). With `u = β₁ + j`,
 admissibility makes `u` carry-free with `k-1`; the slot formula reduces the goal
-to `extraction_core`, strict since `j > 0` gives `u > β₁`. -/
+to `extraction_core`, strict since `j > 0` gives `u > β₁`.
+@isnad1 id=lt.5h4v.s6.d25918757f09 from=translated src=- shape=7cdf7253 vocab=180d66c8
+-/
 theorem extraction_strict (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d)
     (hk : 0 < k) (j : ℕ) (hj : j ∈ Jset q k) (hjpos : 0 < j) :
     s q d k < F q d k j := by
@@ -2109,7 +2270,9 @@ theorem extraction_strict (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d)
 `j ∈ J` with `j > 0` we have `F(0) < F(j)`.
 
 Assembled from `composition_identity` (`F(0) = s_d(k)`) and `extraction_strict`
-(`s_d(k) < F(j)` for admissible `j > 0`). -/
+(`s_d(k) < F(j)` for admissible `j > 0`).
+@isnad1 id=lt.5h4v.s6.11309bcf72d4 from=translated src=- shape=0fe85501 vocab=878b39b7
+-/
 theorem main (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d) (hk : 0 < k) :
     ∀ j ∈ Jset q k, 0 < j → F q d k 0 < F q d k j := by
   intro j hj hjpos

@@ -54,27 +54,36 @@ noncomputable def delta (α : Fin n → ℝ) (q : ℤ) : ℝ :=
 noncomputable def deltaN (N : (Fin n → ℝ) → ℝ) (α : Fin n → ℝ) (q : ℤ) : ℝ :=
   ⨅ p : Fin n → ℤ, N (rem α q p)
 
-/-- For a nonnegative `N`, the defect `δ^N_q` is a lower bound on every concrete approximation. -/
+/-- For a nonnegative `N`, the defect `δ^N_q` is a lower bound on every concrete approximation.
+@isnad1 id=le.1h5v.s5.2a222b2f0b20 from=translated src=- shape=6bdbd7c7 vocab=a8a2f78a
+-/
 theorem deltaN_le (N : (Fin n → ℝ) → ℝ) (hN : ∀ x, 0 ≤ N x) (α : Fin n → ℝ) (q : ℤ)
     (p : Fin n → ℤ) : deltaN N α q ≤ N (rem α q p) :=
   ciInf_le ⟨0, by rintro _ ⟨p, rfl⟩; exact hN _⟩ p
 
-/-- The range of `p ↦ ‖rem α q p‖` is bounded below (by `0`), so the infimum is genuine. -/
+/-- The range of `p ↦ ‖rem α q p‖` is bounded below (by `0`), so the infimum is genuine.
+@isnad1 id=bddbelow.0h3v.s5.3a479ef91fa5 from=translated src=- shape=9ddb13cf vocab=2dba3b97
+-/
 theorem bddBelow_rem (α : Fin n → ℝ) (q : ℤ) :
     BddBelow (Set.range fun p : Fin n → ℤ => ‖rem α q p‖) :=
   ⟨0, by rintro _ ⟨p, rfl⟩; exact norm_nonneg _⟩
 
 /-- `δ_q` is a lower bound for every concrete approximation: `δ_q ≤ ‖q • α − p‖` for all `p ∈ ℤⁿ`.
+@isnad1 id=le.0h4v.s5.a1bf706b80c8 from=translated src=- shape=dcf7c075 vocab=cf384b56
 -/
 theorem delta_le (α : Fin n → ℝ) (q : ℤ) (p : Fin n → ℤ) : delta α q ≤ ‖rem α q p‖ :=
   ciInf_le (bddBelow_rem α q) p
 
-/-- `δ_q ≥ 0`. -/
+/-- `δ_q ≥ 0`.
+@isnad1 id=le.0h3v.s4.8ac92030f8f3 from=translated src=- shape=1b3c4496 vocab=ff342287
+-/
 theorem delta_nonneg (α : Fin n → ℝ) (q : ℤ) : 0 ≤ delta α q :=
   le_ciInf fun _p => norm_nonneg _
 
 /-- **The remainder-vector difference is an approximation remainder for the difference of
-denominators.** Algebraically, `(qᵢ • α − pᵢ) − (qⱼ • α − pⱼ) = (qᵢ − qⱼ) • α − (pᵢ − pⱼ)`. -/
+denominators.** Algebraically, `(qᵢ • α − pᵢ) − (qⱼ • α − pⱼ) = (qᵢ − qⱼ) • α − (pᵢ − pⱼ)`.
+@isnad1 id=eq.0h6v.s6.5673ea28dc98 from=translated src=- shape=89877124 vocab=6308b797
+-/
 theorem rem_sub (α : Fin n → ℝ) (qi qj : ℤ) (pi pj : Fin n → ℤ) :
     rem α qi pi - rem α qj pj = rem α (qi - qj) (pi - pj) := by
   funext k
@@ -84,7 +93,9 @@ theorem rem_sub (α : Fin n → ℝ) (qi qj : ℤ) (pi pj : Fin n → ℤ) :
 
 /-- **Halving homogeneity.** `r(2q, 2p) = 2 · r(q, p)` — doubling both the denominator and the
 integer translate doubles the remainder vector. Used in the mod-2 pigeonhole growth argument, where
-two best approximations agreeing mod 2 produce a half-integer combination. -/
+two best approximations agreeing mod 2 produce a half-integer combination.
+@isnad1 id=eq.0h4v.s6.2d9e366a6d3a from=translated src=- shape=53db46ef vocab=1fb9a177
+-/
 theorem rem_two_smul (α : Fin n → ℝ) (q : ℤ) (p : Fin n → ℤ) :
     rem α (2 * q) (fun k => 2 * p k) = (2 : ℝ) • rem α q p := by
   funext k
@@ -99,7 +110,9 @@ vectors is at least the approximation defect of the difference of their denomina
 
 Combined with the best-approximation property (every nonzero denominator below `qₖ₊₁` has defect
 `≥ δ_{qₖ}`), this makes the remainder vectors `r(qₖ), …, r(qₖ₊ₖ)` pairwise `≥ δ_{qₖ}` apart — the
-input to the convex-geometry/contact-number count that yields the growth inequality. -/
+input to the convex-geometry/contact-number count that yields the growth inequality.
+@isnad1 id=le.0h6v.s6.d7f0bb327c12 from=translated src=- shape=c9a3ebb7 vocab=2e852b45
+-/
 theorem delta_diff_le (α : Fin n → ℝ) (qi qj : ℤ) (pi pj : Fin n → ℤ) :
     delta α (qi - qj) ≤ ‖rem α qi pi - rem α qj pj‖ := by
   rw [rem_sub]

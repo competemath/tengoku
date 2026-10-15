@@ -68,7 +68,9 @@ omit [NeZero n] in
 /-- **X-incidence at an a-node.**  The X-coordinate of `tripleFn φ idx` is `inl (i₀, j₀)` iff `idx`
     is the positive triple `posT i₀ j₀` or the negative triple `negT i₀ (j₀-1)` (the negative
     triple's X-coord is `inl (i, j+1)`; the cyclic predecessor `j₀-1` is the spoke that lands it on
-    `j₀`). -/
+    `j₀`).
+@isnad1 id=iff.0h6v.s7.2805c4667752 from=translated src=- shape=eedeb5ba vocab=91571c82
+-/
 theorem xcoord_inl (φ : Formula n m) (i0 : Fin n) (j0 : Fin m) (idx : TripleIdx n m) :
     (tripleFn φ idx).2.1 = Sum.inl (i0, j0) ↔ idx = posT i0 j0 ∨ idx = negT i0 (j0 - 1) := by
   rcases idx with ⟨i, j⟩ | ⟨i, j⟩ | ⟨k, slot⟩ | ⟨g, w⟩ <;>
@@ -78,7 +80,9 @@ theorem xcoord_inl (φ : Formula n m) (i0 : Fin n) (j0 : Fin m) (idx : TripleIdx
 
 omit [NeZero n] in
 /-- **X-incidence at an s1-node.**  The X-coordinate is `inr (inl k)` iff `idx` is a clause-`k`
-    slot triple (for some `slot`). -/
+    slot triple (for some `slot`).
+@isnad1 id=iff.0h5v.s7.16a44b6d42f6 from=translated src=- shape=7cd56011 vocab=3c92ac86
+-/
 theorem xcoord_s1 (φ : Formula n m) (k : Fin m) (idx : TripleIdx n m) :
     (tripleFn φ idx).2.1 = Sum.inr (Sum.inl k) ↔ ∃ slot, idx = clauseT k slot := by
   rcases idx with ⟨i, j⟩ | ⟨i, j⟩ | ⟨k', slot⟩ | ⟨g, w⟩ <;>
@@ -86,7 +90,9 @@ theorem xcoord_s1 (φ : Formula n m) (k : Fin m) (idx : TripleIdx n m) :
 
 omit [NeZero n] in
 /-- **X-incidence at a g1-node.**  The X-coordinate is `inr (inr g)` iff `idx` is a garbage-`g`
-    triple (for some tip `w`). -/
+    triple (for some tip `w`).
+@isnad1 id=iff.0h5v.s7.e1c32c0710c2 from=translated src=- shape=6bcd7713 vocab=b5294f57
+-/
 theorem xcoord_g1 (φ : Formula n m) (g : Fin (m * (n - 1))) (idx : TripleIdx n m) :
     (tripleFn φ idx).2.1 = Sum.inr (Sum.inr g) ↔ ∃ w, idx = garbageT g w := by
   rcases idx with ⟨i, j⟩ | ⟨i, j⟩ | ⟨k, slot⟩ | ⟨g', w⟩ <;>
@@ -95,7 +101,9 @@ theorem xcoord_g1 (φ : Formula n m) (g : Fin (m * (n - 1))) (idx : TripleIdx n 
 omit [NeZero n] in
 /-- **Y-incidence at a b-node.**  The Y-coordinate is `inl (i₀, j₀)` iff `idx` is the positive
     triple `posT i₀ j₀` or the negative triple `negT i₀ j₀` (both have Y-coord `inl (i, j)` — no
-    cyclic shift on the Y side). -/
+    cyclic shift on the Y side).
+@isnad1 id=iff.0h6v.s6.5fc70e20069f from=translated src=- shape=477624fd vocab=750954ed
+-/
 theorem ycoord_inl (φ : Formula n m) (i0 : Fin n) (j0 : Fin m) (idx : TripleIdx n m) :
     (tripleFn φ idx).2.2 = Sum.inl (i0, j0) ↔ idx = posT i0 j0 ∨ idx = negT i0 j0 := by
   rcases idx with ⟨i, j⟩ | ⟨i, j⟩ | ⟨k, slot⟩ | ⟨g, w⟩ <;>
@@ -103,7 +111,9 @@ theorem ycoord_inl (φ : Formula n m) (i0 : Fin n) (j0 : Fin m) (idx : TripleIdx
 
 omit [NeZero n] in
 /-- **Y-incidence at an s2-node.**  The Y-coordinate is `inr (inl k)` iff `idx` is a clause-`k`
-    slot triple (for some `slot`). -/
+    slot triple (for some `slot`).
+@isnad1 id=iff.0h5v.s7.ab01a2e772af from=translated src=- shape=0f502bb1 vocab=74e61fe0
+-/
 theorem ycoord_s2 (φ : Formula n m) (k : Fin m) (idx : TripleIdx n m) :
     (tripleFn φ idx).2.2 = Sum.inr (Sum.inl k) ↔ ∃ slot, idx = clauseT k slot := by
   rcases idx with ⟨i, j⟩ | ⟨i, j⟩ | ⟨k', slot⟩ | ⟨g, w⟩ <;>
@@ -111,7 +121,9 @@ theorem ycoord_s2 (φ : Formula n m) (k : Fin m) (idx : TripleIdx n m) :
 
 omit [NeZero n] in
 /-- **Y-incidence at a g2-node.**  The Y-coordinate is `inr (inr g)` iff `idx` is a garbage-`g`
-    triple (for some tip `w`). -/
+    triple (for some tip `w`).
+@isnad1 id=iff.0h5v.s7.fc1d043abe0b from=translated src=- shape=246cf8f6 vocab=9de97db2
+-/
 theorem ycoord_g2 (φ : Formula n m) (g : Fin (m * (n - 1))) (idx : TripleIdx n m) :
     (tripleFn φ idx).2.2 = Sum.inr (Sum.inr g) ↔ ∃ w, idx = garbageT g w := by
   rcases idx with ⟨i, j⟩ | ⟨i, j⟩ | ⟨k, slot⟩ | ⟨g', w⟩ <;>

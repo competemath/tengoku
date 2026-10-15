@@ -76,6 +76,9 @@ variable {ι}
 /-- The basis of `jᵢ` generators of the abelian Lie algebra (indices `i : ι`). -/
 noncomputable def jgen : Basis ι 𝕜 (AbelianLieAlgebraOn ι 𝕜) := Finsupp.basisFun _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.8bb3944358ed from=translated src=- shape=ee8cb830 vocab=9aa9ad9a
+-/
 lemma jgen_eq_single (i : ι) : jgen 𝕜 i = Finsupp.single i 1 := rfl
 
 /-- The Lie ring structure on the Witt algebra `WittAlgebra`. -/
@@ -86,6 +89,9 @@ noncomputable instance : LieRing (AbelianLieAlgebraOn ι 𝕜) where
   lie_self X := by simp
   leibniz_lie X Y Z := by simp
 
+/--
+@isnad1 id=eq.0h4v.s6.5c762cbb83e8 from=translated src=- shape=366a7a78 vocab=d2f7dd25
+-/
 @[simp] lemma lie_def (X Y : AbelianLieAlgebraOn ι 𝕜) : ⁅X, Y⁆ = 0 := rfl
 
 /-- The Lie algebra structure on the Witt algebra `WittAlgebra`. -/

@@ -25,7 +25,9 @@ noncomputable section
 universe u
 
 /-- Every nonzero element of a torsion-free Abelian group can be sent exactly to `1/2` in the
-unit additive circle. -/
+unit additive circle.
+@isnad1 id=ex.1h2v.s7.4b5dfa4460ec from=translated src=- shape=fa0d303e vocab=7b929a82
+-/
 theorem exists_character_apply_eq_half
     {G : Type u} [AddCommGroup G] [IsAddTorsionFree G]
     {x : G} (hx : x ≠ 0) :

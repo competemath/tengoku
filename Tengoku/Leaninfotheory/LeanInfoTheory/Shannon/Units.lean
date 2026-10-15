@@ -56,13 +56,16 @@ Change a real quantity from logarithm base `b` to logarithm base `c`.
 If `x` is measured in nats, then `x / Real.log b` is its value in base-`b`
 units. Thus the theorem is the usual change-of-base identity
 `x_c = log_c(b) * x_b`.
+@isnad1 id=eq.2h3v.s6.81227272983b from=translated src=- shape=c9002f63 vocab=b0142e50
 -/
 theorem div_log_change_base (x b c : Real) (hb : 1 < b) (hc : 1 < c) :
     x / Real.log c = Real.logb c b * (x / Real.log b) := by
   rw [← Real.log_div_log]
   field_simp [ne_of_gt (Real.log_pos hb), ne_of_gt (Real.log_pos hc)]
 
-/-- A `Real.negMulLog` summand in base-`b` units. -/
+/-- A `Real.negMulLog` summand in base-`b` units.
+@isnad1 id=eq.0h2v.s5.a488254810f6 from=translated src=- shape=a553fd68 vocab=2b4f6cbf
+-/
 theorem negMulLog_div_log (x b : Real) :
     Real.negMulLog x / Real.log b = -x * Real.logb b x := by
   rw [Real.negMulLog, ← Real.log_div_log]
@@ -71,6 +74,7 @@ theorem negMulLog_div_log (x b : Real) :
 /--
 Finite PMF entropy converted from nats to base-`b` units is the usual
 `-sum_x p(x) log_b p(x)` formula.
+@isnad1 id=eq.0h3v.s6.f8158c993ad4 from=translated src=- shape=02e3178e vocab=0f773425
 -/
 theorem entropy_div_log {alpha : Type u} [Fintype alpha]
     (p : PMF alpha) (b : Real) :
@@ -83,6 +87,7 @@ theorem entropy_div_log {alpha : Type u} [Fintype alpha]
 
 /--
 Finite-valued random-variable entropy converted from nats to base-`b` units.
+@isnad1 id=eq.0h5v.s6.16a5e0720347 from=translated src=- shape=eacb4829 vocab=06f66a3c
 -/
 theorem entropyOf_div_log
     {omega : Type u} {alpha : Type v} [Fintype alpha]

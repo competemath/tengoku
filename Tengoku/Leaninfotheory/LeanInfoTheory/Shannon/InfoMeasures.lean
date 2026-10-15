@@ -42,6 +42,7 @@ abbrev sndMarginal {alpha : Type u} {beta : Type v} (p : PMF (alpha × beta)) : 
 /--
 Taking the first marginal after pushing a PMF forward to a pair is the same as
 pushing forward by the first coordinate of that pair-valued map.
+@isnad1 id=eq.0h5v.s5.98cd4d1e70f0 from=translated src=- shape=f6b8d974 vocab=a6925069
 -/
 @[simp]
 theorem fstMarginal_map {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -53,6 +54,7 @@ theorem fstMarginal_map {omega : Type u} {alpha : Type v} {beta : Type w}
 /--
 Taking the second marginal after pushing a PMF forward to a pair is the same as
 pushing forward by the second coordinate of that pair-valued map.
+@isnad1 id=eq.0h5v.s5.bc41b6e43566 from=translated src=- shape=3ada8f2c vocab=d2add0d3
 -/
 @[simp]
 theorem sndMarginal_map {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -61,35 +63,45 @@ theorem sndMarginal_map {omega : Type u} {alpha : Type v} {beta : Type w}
   simpa [sndMarginal, Function.comp_def] using
     PMF.map_comp (p := p) (f := f) Prod.snd
 
-/-- For a joint law built from random variables `(X, Y)`, the first marginal is the law of `X`. -/
+/-- For a joint law built from random variables `(X, Y)`, the first marginal is the law of `X`.
+@isnad1 id=eq.0h6v.s5.134e981694dd from=translated src=- shape=d4a9b534 vocab=20218391
+-/
 @[simp]
 theorem fstMarginal_map_pair {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
     fstMarginal (p.map fun omega => (X omega, Y omega)) = p.map X := by
   simp
 
-/-- For a joint law built from random variables `(X, Y)`, the second marginal is the law of `Y`. -/
+/-- For a joint law built from random variables `(X, Y)`, the second marginal is the law of `Y`.
+@isnad1 id=eq.0h6v.s5.7fcb95bec566 from=translated src=- shape=33306e3f vocab=7ab05355
+-/
 @[simp]
 theorem sndMarginal_map_pair {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
     sndMarginal (p.map fun omega => (X omega, Y omega)) = p.map Y := by
   simp
 
-/-- Swapping the two coordinates turns the first marginal into the original second marginal. -/
+/-- Swapping the two coordinates turns the first marginal into the original second marginal.
+@isnad1 id=eq.0h3v.s4.89dabeecb724 from=translated src=- shape=0b4ace56 vocab=092d209e
+-/
 @[simp]
 theorem fstMarginal_map_swap {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) :
     fstMarginal (p.map Prod.swap) = sndMarginal p := by
   simp [sndMarginal]
 
-/-- Swapping the two coordinates turns the second marginal into the original first marginal. -/
+/-- Swapping the two coordinates turns the second marginal into the original first marginal.
+@isnad1 id=eq.0h3v.s4.e330c2274b3a from=translated src=- shape=013c699a vocab=092d209e
+-/
 @[simp]
 theorem sndMarginal_map_swap {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) :
     sndMarginal (p.map Prod.swap) = fstMarginal p := by
   simp [fstMarginal]
 
-/-- The mass of the first marginal is the sum of the joint masses over the second coordinate. -/
+/-- The mass of the first marginal is the sum of the joint masses over the second coordinate.
+@isnad1 id=eq.0h4v.s5.776c068c9c08 from=translated src=- shape=fd6ba2ed vocab=2a21047f
+-/
 theorem fstMarginal_apply {alpha : Type u} {beta : Type v} [Fintype beta]
     (p : PMF (alpha × beta)) (a : alpha) :
     fstMarginal p a = ∑ b, p (a, b) := by
@@ -116,7 +128,9 @@ theorem fstMarginal_apply {alpha : Type u} {beta : Type v} [Fintype beta]
       intro b _ b' _ h
       exact congrArg Prod.snd h
 
-/-- The mass of the second marginal is the sum of the joint masses over the first coordinate. -/
+/-- The mass of the second marginal is the sum of the joint masses over the first coordinate.
+@isnad1 id=eq.0h4v.s5.a4877dd05e8c from=translated src=- shape=8c9699af vocab=18a053b0
+-/
 theorem sndMarginal_apply {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) (b : beta) :
     sndMarginal p b = ∑ a, p (a, b) := by
@@ -151,6 +165,7 @@ abbrev fstSndMarginal {alpha : Type u} {beta : Type v} {gamma : Type w}
 /--
 Projection formula for the first-second marginal of a pushed-forward triple
 law.
+@isnad1 id=eq.0h6v.s6.6468d2acbb1c from=translated src=- shape=5459f73f vocab=e50fa7dc
 -/
 @[simp]
 theorem fstSndMarginal_map
@@ -164,6 +179,7 @@ theorem fstSndMarginal_map
 /--
 For a joint law built from `(X, Y, Z)`, the first-second marginal is the joint
 law of `(X, Y)`.
+@isnad1 id=eq.0h8v.s6.4221d0280c46 from=translated src=- shape=85c668cb vocab=4a82bab8
 -/
 @[simp]
 theorem fstSndMarginal_map_triple
@@ -191,6 +207,7 @@ abbrev thirdMarginal {alpha : Type u} {beta : Type v} {gamma : Type w}
 /--
 Projection formula for the first-third marginal of a pushed-forward triple
 law. This is the triple analogue of `fstMarginal_map`.
+@isnad1 id=eq.0h6v.s6.47d2b9e4af25 from=translated src=- shape=f1f0eab9 vocab=ed6f51b4
 -/
 @[simp]
 theorem fstThirdMarginal_map
@@ -204,6 +221,7 @@ theorem fstThirdMarginal_map
 /--
 Projection formula for the second-third marginal of a pushed-forward triple
 law. The product `alpha × beta × gamma` is right-associated in Lean.
+@isnad1 id=eq.0h6v.s6.38a8325a7e7c from=translated src=- shape=b2f1c7e9 vocab=8712d255
 -/
 @[simp]
 theorem sndThirdMarginal_map
@@ -213,7 +231,9 @@ theorem sndThirdMarginal_map
       p.map fun omega => ((f omega).2.1, (f omega).2.2) := by
   simp
 
-/-- Projection formula for the third-coordinate marginal of a pushed-forward triple law. -/
+/-- Projection formula for the third-coordinate marginal of a pushed-forward triple law.
+@isnad1 id=eq.0h6v.s5.fefddcfe4a83 from=translated src=- shape=39a66b20 vocab=953510dc
+-/
 @[simp]
 theorem thirdMarginal_map
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -225,6 +245,7 @@ theorem thirdMarginal_map
 /--
 For a joint law built from `(X, Y, Z)`, the first-third marginal is the joint
 law of `(X, Z)`.
+@isnad1 id=eq.0h8v.s6.ade3fb18d428 from=translated src=- shape=42723dc0 vocab=21c20bb4
 -/
 @[simp]
 theorem fstThirdMarginal_map_triple
@@ -237,6 +258,7 @@ theorem fstThirdMarginal_map_triple
 /--
 For a joint law built from `(X, Y, Z)`, the second-third marginal is the joint
 law of `(Y, Z)`.
+@isnad1 id=eq.0h8v.s6.f02e5a1db4d9 from=translated src=- shape=20d7c11e vocab=9c90b837
 -/
 @[simp]
 theorem sndThirdMarginal_map_triple
@@ -246,7 +268,9 @@ theorem sndThirdMarginal_map_triple
       p.map fun omega => (Y omega, Z omega) := by
   simp
 
-/-- For a joint law built from `(X, Y, Z)`, the third marginal is the law of `Z`. -/
+/-- For a joint law built from `(X, Y, Z)`, the third marginal is the law of `Z`.
+@isnad1 id=eq.0h8v.s5.70ffd4d18299 from=translated src=- shape=f9ec1830 vocab=ae3b78ee
+-/
 @[simp]
 theorem thirdMarginal_map_triple
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -257,6 +281,7 @@ theorem thirdMarginal_map_triple
 /--
 After swapping the first two coordinates of `(A, B, C)`, the first-third
 marginal is the original second-third marginal.
+@isnad1 id=eq.0h4v.s6.525d65540bec from=translated src=- shape=3f13c402 vocab=bf7b4d68
 -/
 @[simp]
 theorem fstThirdMarginal_map_swap12
@@ -268,6 +293,7 @@ theorem fstThirdMarginal_map_swap12
 /--
 After swapping the first two coordinates of `(A, B, C)`, the second-third
 marginal is the original first-third marginal.
+@isnad1 id=eq.0h4v.s6.60c63fa8e4a8 from=translated src=- shape=a9f1656b vocab=bf7b4d68
 -/
 @[simp]
 theorem sndThirdMarginal_map_swap12
@@ -276,7 +302,9 @@ theorem sndThirdMarginal_map_swap12
     sndThirdMarginal (p.map fun x => (x.2.1, x.1, x.2.2)) = fstThirdMarginal p := by
   simp [fstThirdMarginal]
 
-/-- Swapping the first two coordinates leaves the third marginal unchanged. -/
+/-- Swapping the first two coordinates leaves the third marginal unchanged.
+@isnad1 id=eq.0h4v.s6.74ce4e1f748c from=translated src=- shape=83f1d60b vocab=3bba6709
+-/
 @[simp]
 theorem thirdMarginal_map_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -287,6 +315,7 @@ theorem thirdMarginal_map_swap12
 /--
 The mass of the first-third marginal is the sum of the triple joint masses over
 the second coordinate.
+@isnad1 id=eq.0h6v.s6.b3bde1d9972f from=translated src=- shape=642b25ba vocab=8ca7d48f
 -/
 theorem fstThirdMarginal_apply
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype beta]
@@ -325,6 +354,7 @@ theorem fstThirdMarginal_apply
 /--
 The mass of the second-third marginal is the sum of the triple joint masses over
 the first coordinate.
+@isnad1 id=eq.0h6v.s6.1b44ef168766 from=translated src=- shape=11f0f27a vocab=22563cee
 -/
 theorem sndThirdMarginal_apply
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype alpha]
@@ -363,6 +393,7 @@ theorem sndThirdMarginal_apply
 /--
 The mass of the third marginal is the sum of the triple joint masses over the
 first two coordinates.
+@isnad1 id=eq.0h5v.s6.420cf9b3f9fa from=translated src=- shape=ad91cffa vocab=da785795
 -/
 theorem thirdMarginal_apply
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype alpha] [Fintype beta]
@@ -414,6 +445,7 @@ private theorem finset_apply_le_sum {ι : Type u} [Fintype ι]
 /--
 A joint atom mass is bounded by the mass of its first marginal atom. This is
 the basic support/domination fact behind conditioning on the first coordinate.
+@isnad1 id=le.0h5v.s5.65f253ba0db8 from=translated src=- shape=69c5366c vocab=ed598b14
 -/
 theorem apply_le_fstMarginal {alpha : Type u} {beta : Type v} [Finite beta]
     (p : PMF (alpha × beta)) (a : alpha) (b : beta) :
@@ -425,6 +457,7 @@ theorem apply_le_fstMarginal {alpha : Type u} {beta : Type v} [Finite beta]
 
 /--
 A joint atom mass is bounded by the mass of its second marginal atom.
+@isnad1 id=le.0h5v.s5.7e1ba9ff2164 from=translated src=- shape=8653f32e vocab=0e20b73d
 -/
 theorem apply_le_sndMarginal {alpha : Type u} {beta : Type v} [Finite alpha]
     (p : PMF (alpha × beta)) (a : alpha) (b : beta) :
@@ -437,6 +470,7 @@ theorem apply_le_sndMarginal {alpha : Type u} {beta : Type v} [Finite alpha]
 /--
 In a triple law, a full atom is bounded by the corresponding `(first, third)`
 marginal atom.
+@isnad1 id=le.0h7v.s6.c24782186830 from=translated src=- shape=acd1e8d6 vocab=135803e8
 -/
 theorem apply_le_fstThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite beta]
@@ -450,6 +484,7 @@ theorem apply_le_fstThirdMarginal
 /--
 In a triple law, a full atom is bounded by the corresponding `(second, third)`
 marginal atom.
+@isnad1 id=le.0h7v.s6.33a3bf621ed3 from=translated src=- shape=05d676aa vocab=1f9c0857
 -/
 theorem apply_le_sndThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite alpha]
@@ -463,6 +498,7 @@ theorem apply_le_sndThirdMarginal
 /--
 In a triple law, a full atom is bounded by the mass of its third-coordinate
 marginal atom. This is the support fact needed for conditioning on `gamma`.
+@isnad1 id=le.0h7v.s6.277689b23e0b from=translated src=- shape=18befff8 vocab=3e50b45a
 -/
 theorem apply_le_thirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite alpha] [Finite beta]
@@ -484,6 +520,7 @@ theorem apply_le_thirdMarginal
 /--
 If a first marginal atom has zero mass, then every joint atom over that first
 coordinate has zero mass.
+@isnad1 id=eq.1h5v.s6.09379eebee12 from=translated src=- shape=0ac355fe vocab=4cbce6eb
 -/
 theorem apply_eq_zero_of_fstMarginal_eq_zero {alpha : Type u} {beta : Type v}
     [Finite beta] (p : PMF (alpha × beta)) {a : alpha}
@@ -494,6 +531,7 @@ theorem apply_eq_zero_of_fstMarginal_eq_zero {alpha : Type u} {beta : Type v}
 /--
 If a second marginal atom has zero mass, then every joint atom over that second
 coordinate has zero mass.
+@isnad1 id=eq.1h5v.s6.2309fe826bed from=translated src=- shape=eecd14b9 vocab=c7351f0e
 -/
 theorem apply_eq_zero_of_sndMarginal_eq_zero {alpha : Type u} {beta : Type v}
     [Finite alpha] (p : PMF (alpha × beta)) (a : alpha) {b : beta}
@@ -503,6 +541,7 @@ theorem apply_eq_zero_of_sndMarginal_eq_zero {alpha : Type u} {beta : Type v}
 
 /--
 Nonzero joint mass forces the corresponding first marginal mass to be nonzero.
+@isnad1 id=ne.1h5v.s6.0d324168aa2d from=translated src=- shape=684ebe1a vocab=4cbce6eb
 -/
 theorem fstMarginal_ne_zero_of_apply_ne_zero {alpha : Type u} {beta : Type v}
     [Finite beta] (p : PMF (alpha × beta)) {a : alpha} {b : beta}
@@ -513,6 +552,7 @@ theorem fstMarginal_ne_zero_of_apply_ne_zero {alpha : Type u} {beta : Type v}
 
 /--
 Nonzero joint mass forces the corresponding second marginal mass to be nonzero.
+@isnad1 id=ne.1h5v.s6.09b787e305c4 from=translated src=- shape=2614f197 vocab=c7351f0e
 -/
 theorem sndMarginal_ne_zero_of_apply_ne_zero {alpha : Type u} {beta : Type v}
     [Finite alpha] (p : PMF (alpha × beta)) {a : alpha} {b : beta}
@@ -524,6 +564,7 @@ theorem sndMarginal_ne_zero_of_apply_ne_zero {alpha : Type u} {beta : Type v}
 /--
 If a `(first, third)` marginal atom has zero mass, then every triple atom over
 that pair has zero mass.
+@isnad1 id=eq.1h7v.s6.b5070942aedc from=translated src=- shape=ccc41409 vocab=d974e5fa
 -/
 theorem apply_eq_zero_of_fstThirdMarginal_eq_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite beta]
@@ -535,6 +576,7 @@ theorem apply_eq_zero_of_fstThirdMarginal_eq_zero
 /--
 If a `(second, third)` marginal atom has zero mass, then every triple atom over
 that pair has zero mass.
+@isnad1 id=eq.1h7v.s6.e68196ed4ba2 from=translated src=- shape=a94dfbbe vocab=9cf85756
 -/
 theorem apply_eq_zero_of_sndThirdMarginal_eq_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite alpha]
@@ -546,6 +588,7 @@ theorem apply_eq_zero_of_sndThirdMarginal_eq_zero
 /--
 If a third marginal atom has zero mass, then every triple atom over that third
 coordinate has zero mass.
+@isnad1 id=eq.1h7v.s6.7d103e737a7a from=translated src=- shape=91636de9 vocab=4680cd3b
 -/
 theorem apply_eq_zero_of_thirdMarginal_eq_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite alpha] [Finite beta]
@@ -557,6 +600,7 @@ theorem apply_eq_zero_of_thirdMarginal_eq_zero
 /--
 Nonzero triple mass forces the corresponding `(first, third)` marginal mass to
 be nonzero.
+@isnad1 id=ne.1h7v.s6.d0214e5b2387 from=translated src=- shape=c7b2d4c1 vocab=d974e5fa
 -/
 theorem fstThirdMarginal_ne_zero_of_apply_ne_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite beta]
@@ -569,6 +613,7 @@ theorem fstThirdMarginal_ne_zero_of_apply_ne_zero
 /--
 Nonzero triple mass forces the corresponding `(second, third)` marginal mass to
 be nonzero.
+@isnad1 id=ne.1h7v.s6.010e32ae9712 from=translated src=- shape=3a5b38e2 vocab=9cf85756
 -/
 theorem sndThirdMarginal_ne_zero_of_apply_ne_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite alpha]
@@ -581,6 +626,7 @@ theorem sndThirdMarginal_ne_zero_of_apply_ne_zero
 /--
 Nonzero triple mass forces the corresponding third-coordinate marginal mass to
 be nonzero.
+@isnad1 id=ne.1h7v.s6.23440846f72d from=translated src=- shape=30fa2bdb vocab=4680cd3b
 -/
 theorem thirdMarginal_ne_zero_of_apply_ne_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Finite alpha] [Finite beta]
@@ -632,7 +678,9 @@ def condMutualInfoOf {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : 
 
 /-! ## Symmetry Theorems -/
 
-/-- Mutual information is symmetric under swapping the two coordinates of a joint law. -/
+/-- Mutual information is symmetric under swapping the two coordinates of a joint law.
+@isnad1 id=eq.0h3v.s5.e4f8bc092248 from=translated src=- shape=8b2ff41d vocab=d9cca271
+-/
 @[simp]
 theorem mutualInfo_map_swap {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -641,7 +689,9 @@ theorem mutualInfo_map_swap {alpha : Type u} {beta : Type v}
   rw [fstMarginal_map_swap, sndMarginal_map_swap, entropy_map_swap]
   ring
 
-/-- Mutual information of finite-valued random variables is symmetric: `I(Y;X) = I(X;Y)`. -/
+/-- Mutual information of finite-valued random variables is symmetric: `I(Y;X) = I(X;Y)`.
+@isnad1 id=eq.0h6v.s5.4b76b7bc2d6a from=translated src=- shape=4e80999d vocab=29709049
+-/
 theorem mutualInfoOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -654,6 +704,7 @@ theorem mutualInfoOf_swap
 /--
 Conditional mutual information is symmetric in its first two coordinates:
 `I(B;A | C) = I(A;B | C)`.
+@isnad1 id=eq.0h4v.s6.76ba355765db from=translated src=- shape=f62ea10a vocab=ccaca198
 -/
 @[simp]
 theorem condMutualInfo_map_swap12
@@ -681,6 +732,7 @@ theorem condMutualInfo_map_swap12
 /--
 Conditional mutual information of finite-valued random variables is symmetric
 in the first two variables: `I(Y;X | Z) = I(X;Y | Z)`.
+@isnad1 id=eq.0h8v.s5.6e3f44f5b4fc from=translated src=- shape=49364615 vocab=3053b00a
 -/
 theorem condMutualInfoOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -693,14 +745,18 @@ theorem condMutualInfoOf_swap
 
 /-! ## Coordinate Projection Identities -/
 
-/-- Entropy of the first coordinate projection is entropy of the first marginal. -/
+/-- Entropy of the first coordinate projection is entropy of the first marginal.
+@isnad1 id=eq.0h3v.s4.9d3cd1e4b584 from=translated src=- shape=aba829dd vocab=71a6eb57
+-/
 @[simp]
 theorem entropyOf_fst {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) :
     entropyOf p Prod.fst = entropy (fstMarginal p) :=
   rfl
 
-/-- Entropy of the second coordinate projection is entropy of the second marginal. -/
+/-- Entropy of the second coordinate projection is entropy of the second marginal.
+@isnad1 id=eq.0h3v.s4.ec2b86af96a2 from=translated src=- shape=dc606da8 vocab=6fb1e964
+-/
 @[simp]
 theorem entropyOf_snd {alpha : Type u} {beta : Type v} [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -710,6 +766,7 @@ theorem entropyOf_snd {alpha : Type u} {beta : Type v} [Fintype beta]
 /--
 The joint entropy of the two coordinate projections of an existing pair law is
 the entropy of that pair law itself.
+@isnad1 id=eq.0h3v.s5.79b2711b30be from=translated src=- shape=5889bc1c vocab=dc3f3413
 -/
 @[simp]
 theorem jointEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
@@ -725,6 +782,7 @@ theorem jointEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
 /--
 Conditional entropy of the coordinate projections of a pair law recovers the
 PMF-level conditional entropy of that pair law.
+@isnad1 id=eq.0h3v.s5.5ea58ad85980 from=translated src=- shape=5889bc1c vocab=3f697328
 -/
 @[simp]
 theorem condEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
@@ -740,6 +798,7 @@ theorem condEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
 /--
 Mutual information of the coordinate projections of a pair law recovers the
 PMF-level mutual information of that pair law.
+@isnad1 id=eq.0h3v.s5.73b24d5a433f from=translated src=- shape=5889bc1c vocab=d428c00f
 -/
 @[simp]
 theorem mutualInfoOf_fst_snd {alpha : Type u} {beta : Type v}
@@ -752,7 +811,9 @@ theorem mutualInfoOf_fst_snd {alpha : Type u} {beta : Type v}
     rfl]
   simp [PMF.map_id]
 
-/-- Entropy of the third coordinate projection is entropy of the third marginal. -/
+/-- Entropy of the third coordinate projection is entropy of the third marginal.
+@isnad1 id=eq.0h4v.s5.33699e425ad4 from=translated src=- shape=8f895980 vocab=f8eb1ee6
+-/
 @[simp]
 theorem entropyOf_third
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype gamma]
@@ -763,6 +824,7 @@ theorem entropyOf_third
 /--
 Joint entropy of the first and third coordinate projections is the entropy of
 the first-third marginal.
+@isnad1 id=eq.0h4v.s6.7f3b847d5db8 from=translated src=- shape=880626f9 vocab=51e7266d
 -/
 @[simp]
 theorem jointEntropyOf_fst_third
@@ -775,6 +837,7 @@ theorem jointEntropyOf_fst_third
 /--
 Joint entropy of the second and third coordinate projections is the entropy of
 the second-third marginal.
+@isnad1 id=eq.0h4v.s6.a0bc1f34e394 from=translated src=- shape=4191657b vocab=26a12076
 -/
 @[simp]
 theorem jointEntropyOf_snd_third
@@ -787,6 +850,7 @@ theorem jointEntropyOf_snd_third
 /--
 Conditional mutual information of the coordinate projections of a triple law
 recovers the PMF-level `I(first; second | third)` quantity.
+@isnad1 id=eq.0h4v.s6.8240cdaa50be from=translated src=- shape=09d5562c vocab=81da6589
 -/
 @[simp]
 theorem condMutualInfoOf_fst_snd_third
@@ -805,13 +869,17 @@ theorem condMutualInfoOf_fst_snd_third
 
 /-! ## Definitional Identities -/
 
-/-- Unfolding lemma for the entropy-identity definition of conditional entropy. -/
+/-- Unfolding lemma for the entropy-identity definition of conditional entropy.
+@isnad1 id=eq.0h3v.s5.94574143d1d2 from=translated src=- shape=ec43cb17 vocab=8a6ba585
+-/
 theorem condEntropy_eq {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     condEntropy p = entropy p - entropy (sndMarginal p) :=
   rfl
 
-/-- Unfolding lemma for the entropy-identity definition of mutual information. -/
+/-- Unfolding lemma for the entropy-identity definition of mutual information.
+@isnad1 id=eq.0h3v.s5.aeaf50e0ec31 from=translated src=- shape=2829e29a vocab=1be22e11
+-/
 theorem mutualInfo_eq {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     mutualInfo p = entropy (fstMarginal p) + entropy (sndMarginal p) - entropy p :=
@@ -820,6 +888,7 @@ theorem mutualInfo_eq {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype 
 /--
 Unfolding lemma for the entropy-identity definition of conditional mutual
 information.
+@isnad1 id=eq.0h4v.s6.a074bb840684 from=translated src=- shape=28553738 vocab=d6caf128
 -/
 theorem condMutualInfo_eq {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -834,6 +903,7 @@ theorem condMutualInfo_eq {alpha : Type u} {beta : Type v} {gamma : Type w}
 /--
 Conditional entropy chain rule for a joint PMF:
 `H(A,B) = H(B) + H(A | B)`.
+@isnad1 id=eq.0h3v.s5.9ee6b871977a from=translated src=- shape=8eba3cd6 vocab=7ff55ce2
 -/
 theorem entropy_eq_entropy_sndMarginal_add_condEntropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
@@ -845,6 +915,7 @@ theorem entropy_eq_entropy_sndMarginal_add_condEntropy
 /--
 Swapped conditional entropy chain rule for a joint PMF:
 `H(A,B) = H(A) + H(B | A)`.
+@isnad1 id=eq.0h3v.s5.9a5b2b46bcd1 from=translated src=- shape=5fe8dbbb vocab=b7183a23
 -/
 theorem entropy_eq_entropy_fstMarginal_add_condEntropy_swap
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
@@ -860,6 +931,7 @@ theorem entropy_eq_entropy_fstMarginal_add_condEntropy_swap
 /--
 Conditional entropy chain rule for finite-valued random variables:
 `H(X,Y) = H(Y) + H(X | Y)`.
+@isnad1 id=eq.0h6v.s5.c4a200c68b9d from=translated src=- shape=8333f402 vocab=3912d808
 -/
 theorem jointEntropyOf_eq_entropyOf_add_condEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -873,6 +945,7 @@ theorem jointEntropyOf_eq_entropyOf_add_condEntropyOf
 /--
 Swapped conditional entropy chain rule for finite-valued random variables:
 `H(X,Y) = H(X) + H(Y | X)`.
+@isnad1 id=eq.0h6v.s5.b8f5db20018f from=translated src=- shape=91f7dc70 vocab=3912d808
 -/
 theorem jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -884,21 +957,27 @@ theorem jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap
 
 /-! ## Textbook-Facing Chain-Rule Aliases -/
 
-/-- Right-oriented PMF entropy chain rule: `H(A,B) = H(B) + H(A|B)`. -/
+/-- Right-oriented PMF entropy chain rule: `H(A,B) = H(B) + H(A|B)`.
+@isnad1 id=eq.0h3v.s5.9ee6b871977a from=translated src=- shape=8eba3cd6 vocab=7ff55ce2
+-/
 theorem entropy_chain_rule_right
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     entropy p = entropy (sndMarginal p) + condEntropy p :=
   entropy_eq_entropy_sndMarginal_add_condEntropy p
 
-/-- Left-oriented PMF entropy chain rule: `H(A,B) = H(A) + H(B|A)`. -/
+/-- Left-oriented PMF entropy chain rule: `H(A,B) = H(A) + H(B|A)`.
+@isnad1 id=eq.0h3v.s5.9a5b2b46bcd1 from=translated src=- shape=5fe8dbbb vocab=b7183a23
+-/
 theorem entropy_chain_rule_left
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     entropy p = entropy (fstMarginal p) + condEntropy (p.map Prod.swap) :=
   entropy_eq_entropy_fstMarginal_add_condEntropy_swap p
 
-/-- Right-oriented random-variable entropy chain rule. -/
+/-- Right-oriented random-variable entropy chain rule.
+@isnad1 id=eq.0h6v.s5.c4a200c68b9d from=translated src=- shape=8333f402 vocab=3912d808
+-/
 theorem jointEntropyOf_chain_rule_right
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -906,7 +985,9 @@ theorem jointEntropyOf_chain_rule_right
     jointEntropyOf p X Y = entropyOf p Y + condEntropyOf p X Y :=
   jointEntropyOf_eq_entropyOf_add_condEntropyOf p X Y
 
-/-- Left-oriented random-variable entropy chain rule. -/
+/-- Left-oriented random-variable entropy chain rule.
+@isnad1 id=eq.0h6v.s5.b8f5db20018f from=translated src=- shape=91f7dc70 vocab=3912d808
+-/
 theorem jointEntropyOf_chain_rule_left
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -919,6 +1000,7 @@ theorem jointEntropyOf_chain_rule_left
 /--
 Random-variable conditional entropy rewrites to joint entropy minus entropy of
 the conditioning variable.
+@isnad1 id=eq.0h6v.s5.6806ae065c3c from=translated src=- shape=06c36894 vocab=623975d2
 -/
 theorem condEntropyOf_eq {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -931,6 +1013,7 @@ theorem condEntropyOf_eq {omega : Type u} {alpha : Type v} {beta : Type w}
 /--
 Conditional joint entropy is invariant under swapping the two variables being
 conditioned: `H(Y,X|Z) = H(X,Y|Z)`.
+@isnad1 id=eq.0h8v.s6.7a12627647da from=translated src=- shape=891d2deb vocab=d15f86d2
 -/
 theorem condEntropyOf_pair_swap
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -969,6 +1052,7 @@ theorem condEntropyOf_pair_swap
 /--
 Triple conditional-entropy chain rule:
 `H(X,Y|Z) = H(Y|Z) + H(X|Y,Z)`.
+@isnad1 id=eq.0h8v.s6.e940ea44436d from=translated src=- shape=e4b48f27 vocab=75255dd0
 -/
 theorem condEntropyOf_pair_chain_rule
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -985,6 +1069,7 @@ theorem condEntropyOf_pair_chain_rule
 /--
 Swapped triple conditional-entropy chain rule:
 `H(X,Y|Z) = H(X|Z) + H(Y|X,Z)`.
+@isnad1 id=eq.0h8v.s6.b63e4f5fdcb3 from=translated src=- shape=491c9300 vocab=75255dd0
 -/
 theorem condEntropyOf_pair_chain_rule_swap
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1004,6 +1089,7 @@ theorem condEntropyOf_pair_chain_rule_swap
 /--
 Random-variable mutual information rewrites to the standard entropy identity
 `H(X) + H(Y) - H(X,Y)`.
+@isnad1 id=eq.0h6v.s6.196304977cdb from=translated src=- shape=bdf59471 vocab=460dd630
 -/
 theorem mutualInfoOf_eq {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -1015,6 +1101,7 @@ theorem mutualInfoOf_eq {omega : Type u} {alpha : Type v} {beta : Type w}
 /--
 Random-variable conditional mutual information rewrites to the entropy identity
 `H(X,Z) + H(Y,Z) - H(Z) - H(X,Y,Z)`.
+@isnad1 id=eq.0h8v.s7.20fa9ad7f91b from=translated src=- shape=8661be7d vocab=d01c2f22
 -/
 theorem condMutualInfoOf_eq
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1030,6 +1117,7 @@ theorem condMutualInfoOf_eq
 /--
 Conditional mutual information as a difference of conditional entropies:
 `I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`.
+@isnad1 id=eq.0h8v.s6.7aee8aa84496 from=translated src=- shape=505a49c8 vocab=9266233d
 -/
 theorem condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1045,6 +1133,7 @@ theorem condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf
 /--
 Symmetric conditional-entropy difference form:
 `I(X;Y|Z) = H(Y|Z) - H(Y|X,Z)`.
+@isnad1 id=eq.0h8v.s6.927f25c5fa93 from=translated src=- shape=2e679f51 vocab=9266233d
 -/
 theorem condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1064,6 +1153,7 @@ theorem condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap
 Conditional mutual information as conditional marginal entropies minus
 conditional joint entropy:
 `I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)`.
+@isnad1 id=eq.0h8v.s6.a2793e314e5f from=translated src=- shape=6c1032e9 vocab=ae2cfc83
 -/
 theorem condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1079,7 +1169,9 @@ theorem condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pa
 
 /-! ## Elementary Mutual Information Identities -/
 
-/-- Mutual information as `I(A;B) = H(A) - H(A|B)`. -/
+/-- Mutual information as `I(A;B) = H(A) - H(A|B)`.
+@isnad1 id=eq.0h3v.s5.5ce93e1ebb45 from=translated src=- shape=c612e60b vocab=5284139f
+-/
 theorem mutualInfo_eq_entropy_fstMarginal_sub_condEntropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -1087,7 +1179,9 @@ theorem mutualInfo_eq_entropy_fstMarginal_sub_condEntropy
   rw [mutualInfo_eq, condEntropy_eq]
   ring
 
-/-- Mutual information as `I(A;B) = H(B) - H(B|A)`. -/
+/-- Mutual information as `I(A;B) = H(B) - H(B|A)`.
+@isnad1 id=eq.0h3v.s5.10bb334a8b41 from=translated src=- shape=e5fe1da8 vocab=89accfb4
+-/
 theorem mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -1096,7 +1190,9 @@ theorem mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap
   rw [mutualInfo_eq, condEntropy_eq, sndMarginal_map_swap, entropy_map_swap]
   ring
 
-/-- Random-variable form `I(X;Y) = H(X) - H(X|Y)`. -/
+/-- Random-variable form `I(X;Y) = H(X) - H(X|Y)`.
+@isnad1 id=eq.0h6v.s5.4d052c8585a9 from=translated src=- shape=256d6047 vocab=d319accb
+-/
 theorem mutualInfoOf_eq_entropyOf_sub_condEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -1105,7 +1201,9 @@ theorem mutualInfoOf_eq_entropyOf_sub_condEntropyOf
   rw [mutualInfoOf_eq, condEntropyOf_eq]
   ring
 
-/-- Symmetric random-variable form `I(X;Y) = H(Y) - H(Y|X)`. -/
+/-- Symmetric random-variable form `I(X;Y) = H(Y) - H(Y|X)`.
+@isnad1 id=eq.0h6v.s5.c1db26a2802a from=translated src=- shape=903f811f vocab=d319accb
+-/
 theorem mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -1124,6 +1222,7 @@ In canonical nats,
 `I(Y;Z) = H(Y|X) - I(X;Z|Y) - H(Y|(X,Z)) + I(X;Z)`,
 where `(X,Z)` is the ordered conditioning pair. The source type is arbitrary;
 only the three observed alphabets are finite.
+@isnad1 id=eq.0h8v.s6.a9e1af078e7f from=translated src=- shape=f7580562 vocab=355409e5
 -/
 theorem mutualInfoOf_condEntropyOf_decomposition
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1140,7 +1239,9 @@ theorem mutualInfoOf_condEntropyOf_decomposition
   unfold jointEntropyOf
   ring
 
-/-- A diagonal joint law has mutual information equal to its source entropy. -/
+/-- A diagonal joint law has mutual information equal to its source entropy.
+@isnad1 id=eq.0h2v.s5.01d139e7cfb2 from=translated src=- shape=04676e03 vocab=ca7f0b54
+-/
 @[simp]
 theorem mutualInfo_map_diag
     {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
@@ -1159,7 +1260,9 @@ theorem mutualInfo_map_diag
   rw [mutualInfo_eq, hfst, hsnd, entropy_map_injective p hdiag]
   ring
 
-/-- The mutual information of a finite-valued variable with itself is its entropy. -/
+/-- The mutual information of a finite-valued variable with itself is its entropy.
+@isnad1 id=eq.0h4v.s4.d8cac570110e from=translated src=- shape=fcf1cba9 vocab=ac2b0fef
+-/
 @[simp]
 theorem mutualInfoOf_self
     {omega : Type u} {alpha : Type v} [Fintype alpha]

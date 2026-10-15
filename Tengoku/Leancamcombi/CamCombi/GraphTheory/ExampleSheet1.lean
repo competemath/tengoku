@@ -47,6 +47,9 @@ description of all graphs that satisfy this equality?
 Show that every graph $$G$$, with $$|G| > 2$$, has two vertices of the same degree.
 -/
 
+/--
+@isnad1 id=ex.0h2v.s6.080bdd5c347a from=translated src=- shape=beae3c36 vocab=926d12ad
+-/
 lemma q3 [Fintype α] [Nontrivial α] (G : SimpleGraph α) [DecidableRel G.Adj] :
     ∃ a b, a ≠ b ∧ G.degree a = G.degree b := by
   suffices ¬Injective (fun v ↦ G.degree v) by
@@ -82,6 +85,9 @@ Show that if $$G$$ is acyclic and $$|G| ≥ 1$$, then $$e(G) ≤ n − 1$$.
 -/
 
 -- Note: The statement is true without `nonempty α` due to nat subtraction.
+/--
+@isnad1 id=le.1h2v.s5.f61384e0f912 from=translated src=- shape=23ab75e6 vocab=67f3244e
+-/
 lemma q5 [Fintype α] (G : SimpleGraph α) [DecidableRel G.Adj] (hG : G.IsAcyclic) :
     G.edgeFinset.card ≤ card α - 1 := by
   cases isEmpty_or_nonempty α

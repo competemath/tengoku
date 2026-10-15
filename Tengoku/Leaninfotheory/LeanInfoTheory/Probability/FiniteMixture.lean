@@ -39,7 +39,9 @@ def binaryMixture (t : NNReal) (ht : t <= 1)
       (by simp [ht])).bind fun b =>
     if b then p else q
 
-/-- Pointwise mass formula for a binary PMF mixture. -/
+/-- Pointwise mass formula for a binary PMF mixture.
+@isnad1 id=eq.1h5v.s6.ea7498e4e0c2 from=translated src=- shape=fb544407 vocab=3b549ba2
+-/
 theorem binaryMixture_apply (t : NNReal) (ht : t <= 1)
     (p q : PMF alpha) (a : alpha) :
     binaryMixture t ht p q a =
@@ -47,7 +49,9 @@ theorem binaryMixture_apply (t : NNReal) (ht : t <= 1)
   rw [binaryMixture, PMF.bind_apply, tsum_fintype]
   simp [PMF.ofFintype_apply, ENNReal.coe_sub]
 
-/-- A binary mixture of weight zero is its second component. -/
+/-- A binary mixture of weight zero is its second component.
+@isnad1 id=eq.1h3v.s5.4cf90fb0aa6b from=translated src=- shape=7ac15d26 vocab=7517e0de
+-/
 @[simp]
 theorem binaryMixture_zero (h0 : (0 : NNReal) <= 1)
     (p q : PMF alpha) :
@@ -57,7 +61,9 @@ theorem binaryMixture_zero (h0 : (0 : NNReal) <= 1)
   rw [binaryMixture_apply]
   simp
 
-/-- A binary mixture of weight one is its first component. -/
+/-- A binary mixture of weight one is its first component.
+@isnad1 id=eq.1h3v.s5.33adb1dd9d50 from=translated src=- shape=47ac99f7 vocab=7517e0de
+-/
 @[simp]
 theorem binaryMixture_one (h1 : (1 : NNReal) <= 1)
     (p q : PMF alpha) :

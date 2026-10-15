@@ -69,7 +69,9 @@ def IsPositivityImproving' {Ω : Type*} [MeasureSpace Ω]
     (∀ᵐ x ∂(volume : Measure (Ω)), 0 < (T f : (Ω) → ℝ) x)
 
 /-- Positivity-improving implies positivity-preserving.
-    If f ≥ 0 and f ≠ 0, then Tf > 0 a.e. ≥ 0. If f = 0, then Tf = 0 ≥ 0. -/
+    If f ≥ 0 and f ≠ 0, then Tf > 0 a.e. ≥ 0. If f = 0, then Tf = 0 ≥ 0.
+@isnad1 id=ispositi.1h2v.s11.6d33c01cda55 from=translated src=- shape=705bafec vocab=c815ab7c
+-/
 theorem IsPositivityImproving'.toPreserving {Ω : Type*} [MeasureSpace Ω]
     {T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))}
@@ -87,7 +89,9 @@ theorem IsPositivityImproving'.toPreserving {Ω : Type*} [MeasureSpace Ω]
 /-- `IsPositivityImproving` (ae conditions) implies `IsPositivityImproving'` (Lp lattice).
 The definitions differ only in whether the hypotheses use ae-filter or Lp order/equality:
 - `0 ≤ f` in Lp ↔ `0 ≤ᵐ[μ] f` (by `Lp.coeFn_nonneg`)
-- `f ≠ 0` in Lp ↔ `¬ f =ᵐ[μ] 0` (by `Lp.eq_zero_iff_ae_eq_zero`) -/
+- `f ≠ 0` in Lp ↔ `¬ f =ᵐ[μ] 0` (by `Lp.eq_zero_iff_ae_eq_zero`)
+@isnad1 id=ispositi.1h2v.s11.07d854d2f3c3 from=translated src=- shape=705bafec vocab=59933cbc
+-/
 theorem IsPositivityImproving.toPI' {Ω : Type*} [MeasureSpace Ω]
     {T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))}
@@ -107,7 +111,9 @@ Tf⁺ ≥ 0 and Tf⁻ ≥ 0. Then:
   |Tf| = |Tf⁺ - Tf⁻| ≤ Tf⁺ + Tf⁻ = T(f⁺ + f⁻) = T|f|
 -/
 
-/-- Phase 1: Absolute value inequality for positivity-preserving operators. -/
+/-- Phase 1: Absolute value inequality for positivity-preserving operators.
+@isnad1 id=le.1h3v.s14.66b1eb3829e3 from=translated src=- shape=89bc9c4d vocab=710aaa8a
+-/
 theorem abs_apply_le_apply_abs {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω)))
@@ -180,7 +186,9 @@ private theorem abs_inner_le_inner_abs_abs {Ω : Type*} [MeasureSpace Ω]
         simp only [inner, Inner.inner, star_trivial, RCLike.re_to_real]
         rw [hf_abs, hg_abs, Real.norm_eq_abs, abs_mul, mul_comm]
 
-/-- Phase 2: Inner product inequality. -/
+/-- Phase 2: Inner product inequality.
+@isnad1 id=le.1h3v.s14.1944a2605041 from=translated src=- shape=32e88f85 vocab=5f90e1c6
+-/
 theorem abs_inner_le_inner_abs {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω)))
@@ -218,7 +226,9 @@ T|f| > 0 a.e. But T|f| = lam₀|f|, so |f| > 0 a.e.
 -/
 
 /-- Phase 4: The ground state eigenvector (after taking absolute value)
-is strictly positive almost everywhere. -/
+is strictly positive almost everywhere.
+@isnad1 id=eventual.5h4v.s13.ea85cab24133 from=translated src=- shape=b74b9923 vocab=3851f07c
+-/
 theorem ground_state_strictly_positive {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω)))

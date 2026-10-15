@@ -43,6 +43,9 @@ abbrev n1000000 : ℕ := LowerBound.N1000000.n
 /-- Convert `Fin 2` colors to `Bool`. -/
 def colorToBool : Color → Bool := finTwoEquiv
 
+/--
+@isnad1 id=injectiv.0h0v.s2.59d0431aae10 from=translated src=- shape=54c8eceb vocab=df05e80c
+-/
 lemma colorToBool_injective : Function.Injective colorToBool :=
   finTwoEquiv.injective
 
@@ -56,11 +59,17 @@ def coloringOfSeeds {n : ℕ} (alg : ClassicalAlgorithm) (S : Samples n) : Lower
 def pick4 {n : ℕ} (emb : Fin 4 ↪ Fin n) : Samples n → Samples 4 :=
   fun S i => S (emb i)
 
+/--
+@isnad1 id=measurab.0h2v.s6.f3cadcc48181 from=translated src=- shape=623c0ad8 vocab=cbd31332
+-/
 lemma measurable_pick4 {n : ℕ} (emb : Fin 4 ↪ Fin n) : Measurable (pick4 emb) := by
   classical
   rw [measurable_pi_iff]
   exact fun i => by simpa [pick4] using (measurable_pi_apply (emb i))
 
+/--
+@isnad1 id=measurep.0h2v.s7.818687efe839 from=translated src=- shape=d44b7204 vocab=cb1270b1
+-/
 lemma measurePreserving_pick4 {n : ℕ} (emb : Fin 4 ↪ Fin n) :
     MeasurePreserving
       (pick4 emb)
@@ -117,6 +126,9 @@ lemma measurePreserving_pick4 {n : ℕ} (emb : Fin 4 ↪ Fin n) :
 def edgeEvent (alg : ClassicalAlgorithm) {n : ℕ} (e : LowerBound.Edge n) : Set (Samples n) :=
   (pick4 ⟨e.1, e.2⟩) ⁻¹' ClassicalAlgorithm.pEvent alg
 
+/--
+@isnad1 id=measurab.0h3v.s5.4dcd9d84138f from=translated src=- shape=281fc0e1 vocab=041c5b31
+-/
 lemma measurableSet_edgeEvent (alg : ClassicalAlgorithm) {n : ℕ} (e : LowerBound.Edge n) :
     MeasurableSet (edgeEvent alg e) := by
   classical
@@ -124,6 +136,9 @@ lemma measurableSet_edgeEvent (alg : ClassicalAlgorithm) {n : ℕ} (e : LowerBou
     (ClassicalAlgorithm.measurableSet_pEvent alg).preimage
       (measurable_pick4 (n := n) ⟨e.1, e.2⟩)
 
+/--
+@isnad1 id=eq.0h3v.s6.1425363a2534 from=translated src=- shape=aa1791a3 vocab=a6f6ee23
+-/
 lemma edgeEvent_measure_eq_p (alg : ClassicalAlgorithm) {n : ℕ} (e : LowerBound.Edge n) :
     (volume : Measure (Samples n)) (edgeEvent alg e) = ClassicalAlgorithm.p alg := by
   classical
@@ -137,6 +152,9 @@ lemma edgeEvent_measure_eq_p (alg : ClassicalAlgorithm) {n : ℕ} (e : LowerBoun
   simpa [edgeEvent, ClassicalAlgorithm.p] using
     hmp.measure_preimage (s := ClassicalAlgorithm.pEvent alg) hnull
 
+/--
+@isnad1 id=iff.0h4v.s5.79f984a334bd from=translated src=- shape=7d2c055d vocab=18a8b73b
+-/
 lemma edgeMonochromatic_iff {n : ℕ} (alg : ClassicalAlgorithm) (S : Samples n)
     (e : LowerBound.Edge n) :
     LowerBound.Edge.monochromatic (coloringOfSeeds alg S) e ↔ S ∈ edgeEvent alg e := by
@@ -183,6 +201,9 @@ This avoids casting/division lemmas for `ENNReal.ofReal` that can lead to kernel
 when `n` is very large (here `n = 1_000_000`).
 -/
 
+/--
+@isnad1 id=eq.0h3v.s7.73cbda212391 from=translated src=- shape=81dd20c3 vocab=ac98d5e4
+-/
 lemma monoCount_eq_sum_edgeEvent_indicator {n : ℕ} (alg : ClassicalAlgorithm) (S : Samples n) :
     (LowerBound.monoCount (coloringOfSeeds alg S) : ENNReal) =
       (Finset.univ : Finset (LowerBound.Edge n)).sum (fun e =>
@@ -204,6 +225,9 @@ lemma monoCount_eq_sum_edgeEvent_indicator {n : ℕ} (alg : ClassicalAlgorithm) 
       fun hs => hme ((edgeMonochromatic_iff (alg := alg) S e).2 hs)
     simp [hme, Set.indicator_of_notMem, this]
 
+/--
+@isnad1 id=eq.1h2v.s6.6283baaf7d37 from=translated src=- shape=ed609188 vocab=5ce38394
+-/
 lemma lintegral_monoCount_eq_edgeCount_mul_p {n : ℕ} (_hn : 4 ≤ n) (alg : ClassicalAlgorithm) :
     (∫⁻ S : Samples n, (LowerBound.monoCount (coloringOfSeeds alg S) : ENNReal)) =
       (LowerBound.edgeCount n : ENNReal) * ClassicalAlgorithm.p alg := by
@@ -243,6 +267,9 @@ lemma lintegral_monoCount_eq_edgeCount_mul_p {n : ℕ} (_hn : 4 ≤ n) (alg : Cl
       rw [Finset.sum_const, nsmul_eq_mul, Finset.card_univ]
       rfl
 
+/--
+@isnad1 id=le.0h1v.s5.860fe70d0734 from=translated src=- shape=a5a91a7c vocab=6a558b45
+-/
 theorem p_ge_23879 (alg : ClassicalAlgorithm) :
     ENNReal.ofReal (23879 / 100000 : ℝ) ≤ ClassicalAlgorithm.p alg := by
   classical
@@ -309,6 +336,9 @@ theorem p_ge_23879 (alg : ClassicalAlgorithm) :
   rw [mul_comm _ (ENNReal.ofReal _), mul_comm _ (ClassicalAlgorithm.p alg)] at hbound'
   exact (ENNReal.mul_le_mul_iff_left hedgeCount_ne_zero hedgeCount_ne_top).1 hbound'
 
+/--
+@isnad1 id=ex.0h0v.s5.3a2308e08c11 from=translated src=- shape=fcccf011 vocab=6a558b45
+-/
 theorem exists_algorithm_p_le_24118 :
     ∃ alg : ClassicalAlgorithm, ClassicalAlgorithm.p alg ≤ ENNReal.ofReal (24118 / 100000 : ℝ) := by
   rcases UpperBound.Recursive3Param.exists_algorithm_p_lt with ⟨alg, hlt⟩
@@ -316,12 +346,16 @@ theorem exists_algorithm_p_le_24118 :
 
 end Reduction
 
-/-- Certified lower bound: every one-round `ClassicalAlgorithm` satisfies `0.23879 ≤ p`. -/
+/-- Certified lower bound: every one-round `ClassicalAlgorithm` satisfies `0.23879 ≤ p`.
+@isnad1 id=le.0h1v.s5.860fe70d0734 from=translated src=- shape=a5a91a7c vocab=6a558b45
+-/
 theorem p_ge_23879 (alg : ClassicalAlgorithm) :
     ENNReal.ofReal (23879 / 100000 : ℝ) ≤ ClassicalAlgorithm.p alg :=
   Reduction.p_ge_23879 alg
 
-/-- A one-round `ClassicalAlgorithm` exists with `p ≤ 0.24118`. -/
+/-- A one-round `ClassicalAlgorithm` exists with `p ≤ 0.24118`.
+@isnad1 id=ex.0h0v.s5.3a2308e08c11 from=translated src=- shape=fcccf011 vocab=6a558b45
+-/
 theorem exists_algorithm_p_le_24118 :
     ∃ alg : ClassicalAlgorithm, ClassicalAlgorithm.p alg ≤ ENNReal.ofReal (24118 / 100000 : ℝ) :=
   Reduction.exists_algorithm_p_le_24118

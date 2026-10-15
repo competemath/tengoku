@@ -43,7 +43,9 @@ def Matrix.NonnegOffDiag (L : Matrix n n ℝ) : Prop :=
 def Matrix.Nonneg (M : Matrix n n ℝ) : Prop :=
   ∀ i j, 0 ≤ M i j
 
-/-- A nonneg matrix has nonneg powers. -/
+/-- A nonneg matrix has nonneg powers.
+@isnad1 id=nonneg.1h3v.s5.3cb7a5dd36ce from=translated src=- shape=4c543d5b vocab=39306e2c
+-/
 theorem Matrix.Nonneg.pow {M : Matrix n n ℝ} (hM : M.Nonneg) (k : ℕ) :
     (M ^ k).Nonneg := by
   induction k with
@@ -56,7 +58,9 @@ theorem Matrix.Nonneg.pow {M : Matrix n n ℝ} (hM : M.Nonneg) (k : ℕ) :
     exact mul_nonneg (ih i l) (hM l j)
 
 omit [Fintype n] [DecidableEq n] in
-/-- Sum of nonneg matrices is nonneg. -/
+/-- Sum of nonneg matrices is nonneg.
+@isnad1 id=nonneg.1h4v.s5.0dfeb5f3d621 from=translated src=- shape=05561ac4 vocab=28d9f5a8
+-/
 theorem Matrix.Nonneg.sum {ι : Type*} {s : Finset ι}
     {M : ι → Matrix n n ℝ} (hM : ∀ i ∈ s, (M i).Nonneg) :
     (∑ i ∈ s, M i).Nonneg := by
@@ -67,13 +71,17 @@ theorem Matrix.Nonneg.sum {ι : Type*} {s : Finset ι}
   exact hM k hk i j
 
 omit [Fintype n] [DecidableEq n] in
-/-- Scalar multiple of a nonneg matrix by a nonneg scalar is nonneg. -/
+/-- Scalar multiple of a nonneg matrix by a nonneg scalar is nonneg.
+@isnad1 id=nonneg.2h3v.s5.034d53ca6546 from=translated src=- shape=f8b376a8 vocab=ea1cd8c0
+-/
 theorem Matrix.Nonneg.smul {M : Matrix n n ℝ} (hM : M.Nonneg) {c : ℝ} (hc : 0 ≤ c) :
     (c • M).Nonneg := by
   intro i j; simp only [smul_apply, smul_eq_mul]; exact mul_nonneg hc (hM i j)
 
 /-- The truncated matrix exponential Σ_{k=0}^{N} (tM)^k / k! is nonneg
-when M is nonneg and t ≥ 0. -/
+when M is nonneg and t ≥ 0.
+@isnad1 id=nonneg.2h4v.s7.bf9f75dd605d from=translated src=- shape=790a97c6 vocab=47d004ad
+-/
 theorem truncated_exp_nonneg {M : Matrix n n ℝ} (hM : M.Nonneg) {t : ℝ} (ht : 0 ≤ t)
     (N : ℕ) :
     (∑ k ∈ range (N + 1), (1 / k.factorial : ℝ) • (t • M) ^ k).Nonneg := by
@@ -84,7 +92,9 @@ theorem truncated_exp_nonneg {M : Matrix n n ℝ} (hM : M.Nonneg) {t : ℝ} (ht 
   · positivity
 
 /-- For a Markov operator M (nonneg entries), the generator L = M - I has
-nonneg off-diagonal entries: L_{xy} = M_{xy} ≥ 0 for x ≠ y. -/
+nonneg off-diagonal entries: L_{xy} = M_{xy} ≥ 0 for x ≠ y.
+@isnad1 id=nonnegof.1h2v.s5.ee9a36cd13a4 from=translated src=- shape=015b853f vocab=336aa6b7
+-/
 theorem markov_generator_nonneg_offdiag {m : Type*} [DecidableEq m]
     (M : Matrix m m ℝ) (hM : M.Nonneg) :
     (M - 1).NonnegOffDiag := by

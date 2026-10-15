@@ -59,22 +59,41 @@ def lowerHalf : Set ℝ := Icc 0 (1 / 2)
 overlap in the midpoint: that is the seam. -/
 def upperHalf : Set ℝ := Icc (1 / 2) 1
 
+/--
+@isnad1 id=le.0h0v.s2.d842ab737642 from=translated src=- shape=836e6cbb vocab=ec999608
+-/
 theorem lowerHalf_subset_I : lowerHalf ⊆ I := Icc_subset_Icc le_rfl (by norm_num)
 
+/--
+@isnad1 id=le.0h0v.s2.5efe52d699bd from=translated src=- shape=836e6cbb vocab=69688f41
+-/
 theorem upperHalf_subset_I : upperHalf ⊆ I := Icc_subset_Icc (by norm_num) le_rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.79abda530222 from=translated src=- shape=077b60bb vocab=fcafc078
+-/
 theorem halves_union : lowerHalf ∪ upperHalf = I :=
   Icc_union_Icc_eq_Icc (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=isclosed.0h0v.s3.50b2de608089 from=translated src=- shape=25b03439 vocab=77ed6cb7
+-/
 theorem isClosed_lowerHalf : IsClosed lowerHalf := isClosed_Icc
 
+/--
+@isnad1 id=isclosed.0h0v.s3.7a6af53ef290 from=translated src=- shape=25b03439 vocab=2a924b9b
+-/
 theorem isClosed_upperHalf : IsClosed upperHalf := isClosed_Icc
 
-/-- Doubling a parameter below the midpoint reaches at most one. -/
+/-- Doubling a parameter below the midpoint reaches at most one.
+@isnad1 id=mem.1h1v.s5.232ecfb3c166 from=translated src=- shape=edc2df86 vocab=53f21695
+-/
 theorem double_mem_I {t : ℝ} (ht : t ∈ lowerHalf) : 2 * t ∈ I :=
   ⟨by linarith [ht.1], by linarith [ht.2]⟩
 
-/-- Doubling a parameter above the midpoint and stepping back reaches at least zero. -/
+/-- Doubling a parameter above the midpoint and stepping back reaches at least zero.
+@isnad1 id=mem.1h1v.s5.db924722d84f from=translated src=- shape=34cbf887 vocab=5e8d20ba
+-/
 theorem doubleBack_mem_I {t : ℝ} (ht : t ∈ upperHalf) : 2 * t - 1 ∈ I :=
   ⟨by linarith [ht.1], by linarith [ht.2]⟩
 
@@ -87,17 +106,29 @@ noncomputable def concatenate (f g : ℝ → Plane) : ℝ → Plane :=
 
 variable {f g : ℝ → Plane}
 
+/--
+@isnad1 id=eq.1h3v.s5.17737d129687 from=translated src=- shape=082d6c50 vocab=9a1678f9
+-/
 theorem concatenate_of_le {t : ℝ} (ht : t ≤ 1 / 2) : concatenate f g t = f (2 * t) :=
   ite_eq_left ht
 
+/--
+@isnad1 id=eq.1h3v.s6.2c19b74b5601 from=translated src=- shape=21ea84c8 vocab=7b0779ff
+-/
 theorem concatenate_of_not_le {t : ℝ} (ht : ¬t ≤ 1 / 2) :
     concatenate f g t = g (2 * t - 1) :=
   ite_eq_right ht
 
+/--
+@isnad1 id=eq.0h2v.s4.77497177b524 from=translated src=- shape=14ef3ede vocab=9bf28ed0
+-/
 theorem concatenate_zero : concatenate f g 0 = f 0 := by
   rw [concatenate_of_le (by norm_num)]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s4.70c5f980caf5 from=translated src=- shape=df9b3ed1 vocab=9bf28ed0
+-/
 theorem concatenate_one : concatenate f g 1 = g 1 := by
   rw [concatenate_of_not_le (by norm_num)]
   norm_num
@@ -105,7 +136,9 @@ theorem concatenate_one : concatenate f g 1 = g 1 := by
 /-- On the *closed* upper half the glued map is the retimed second arc — at the midpoint
 included, where the `if` still takes the first branch. The two branches agree there only
 because the first arc finishes where the second starts, which is what makes the glued map
-well defined. -/
+well defined.
+@isnad1 id=eq.2h3v.s6.34032dbe25e2 from=translated src=- shape=39f06094 vocab=6b2f2b2d
+-/
 theorem concatenate_upperHalf (hmid : f 1 = g 0) {t : ℝ} (ht : t ∈ upperHalf) :
     concatenate f g t = g (2 * t - 1) := by
   by_cases h : t ≤ 1 / 2
@@ -120,7 +153,9 @@ theorem concatenate_upperHalf (hmid : f 1 = g 0) {t : ℝ} (ht : t ∈ upperHalf
 /-! ### Continuity -/
 
 /-- Continuity of the glued map: each half carries a composition, and the halves are closed
-and cover. -/
+and cover.
+@isnad1 id=continuo.3h2v.s7.4351cd62e27b from=translated src=- shape=2251092f vocab=1b660583
+-/
 theorem continuousOn_concatenate (hf : ContinuousOn f I) (hg : ContinuousOn g I)
     (hmid : f 1 = g 0) : ContinuousOn (concatenate f g) I := by
   rw [← halves_union]
@@ -140,21 +175,33 @@ At a point where two of the pieces meet, the value is one of the shared points, 
 injectivity of the arc it belongs to pins the parameter. Each half needs its own statement,
 since they retime differently; the loop needs the outer ends as well as the middle. -/
 
+/--
+@isnad1 id=eq.3h2v.s6.1f8aea3e1006 from=translated src=- shape=35f4e0f4 vocab=c63e8847
+-/
 theorem lowerHalf_at_finish (hfi : InjOn f I) {t : ℝ} (ht : t ∈ lowerHalf)
     (h : f (2 * t) = f 1) : t = 1 / 2 := by
   have := hfi (double_mem_I ht) one_mem_I h
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s5.bf2aebb0162a from=translated src=- shape=df58195a vocab=ec8fd882
+-/
 theorem lowerHalf_at_start (hfi : InjOn f I) {t : ℝ} (ht : t ∈ lowerHalf)
     (h : f (2 * t) = f 0) : t = 0 := by
   have := hfi (double_mem_I ht) zero_mem_I h
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s6.15fd969b4aee from=translated src=- shape=a437b430 vocab=069025c8
+-/
 theorem upperHalf_at_start (hgi : InjOn g I) {t : ℝ} (ht : t ∈ upperHalf)
     (h : g (2 * t - 1) = g 0) : t = 1 / 2 := by
   have := hgi (doubleBack_mem_I ht) zero_mem_I h
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s6.97959df75ee6 from=translated src=- shape=8d69c036 vocab=637e6716
+-/
 theorem upperHalf_at_finish (hgi : InjOn g I) {t : ℝ} (ht : t ∈ upperHalf)
     (h : g (2 * t - 1) = g 1) : t = 1 := by
   have := hgi (doubleBack_mem_I ht) one_mem_I h
@@ -165,7 +212,9 @@ theorem upperHalf_at_finish (hgi : InjOn g I) {t : ℝ} (ht : t ∈ upperHalf)
 /-- Across the seam: the common value lies on both arcs, so it is the shared endpoint, and
 each half's injectivity pins its own parameter to the midpoint. Stated for a parameter of
 each half rather than for `x` and `y`, so that the two orderings of the case split are the
-same theorem. -/
+same theorem.
+@isnad1 id=eq.7h4v.s6.82dbbd721739 from=translated src=- shape=6f6fe736 vocab=f9bc3990
+-/
 theorem concatenate_seam (hfi : InjOn f I) (hgi : InjOn g I) (hmid : f 1 = g 0)
     (hmeet : ∀ z ∈ f '' I, z ∈ g '' I → z = f 1) {x y : ℝ}
     (hx : x ∈ lowerHalf) (hy : y ∈ upperHalf)
@@ -176,7 +225,9 @@ theorem concatenate_seam (hfi : InjOn f I) (hgi : InjOn g I) (hmid : f 1 = g 0)
   have hy' : g (2 * y - 1) = g 0 := by rw [← h, hz]; exact hmid
   rw [lowerHalf_at_finish hfi hx hz, upperHalf_at_start hgi hy hy']
 
-/-- Two arcs meeting only at the endpoint they share glue to an injective map. -/
+/-- Two arcs meeting only at the endpoint they share glue to an injective map.
+@isnad1 id=injon.4h2v.s6.536e01e399d3 from=translated src=- shape=5757424a vocab=a0c88a15
+-/
 theorem injOn_concatenate (hfi : InjOn f I) (hgi : InjOn g I) (hmid : f 1 = g 0)
     (hmeet : ∀ z ∈ f '' I, z ∈ g '' I → z = f 1) : InjOn (concatenate f g) I := by
   intro x hx y hy h
@@ -197,7 +248,9 @@ theorem injOn_concatenate (hfi : InjOn f I) (hgi : InjOn g I) (hmid : f 1 = g 0)
 /-! ### What the glued map covers -/
 
 /-- Each half retimes *onto* the whole interval, so the glued map's image is exactly the two
-arcs together. -/
+arcs together.
+@isnad1 id=eq.1h2v.s5.37b49d6ee5bf from=translated src=- shape=b5e922d2 vocab=2f422f31
+-/
 theorem image_concatenate (hmid : f 1 = g 0) : concatenate f g '' I = f '' I ∪ g '' I := by
   ext z
   constructor
@@ -222,7 +275,9 @@ theorem image_concatenate (hmid : f 1 = g 0) : concatenate f g '' I = f '' I ∪
 This is the form the rest of the development speaks: a piece is an arc between two named
 points, the parametrisations are chosen inside the proofs and never seen again. -/
 
-/-- Two pieces meeting only at the point where they are joined make one piece. -/
+/-- Two pieces meeting only at the point where they are joined make one piece.
+@isnad1 id=isarcbet.3h5v.s5.85863c68da94 from=translated src=- shape=cc60407a vocab=a87a3e8b
+-/
 theorem IsArcBetween.concatenate {A B : Set Plane} {a b c : Plane} (hA : IsArcBetween A a b)
     (hB : IsArcBetween B b c) (hmeet : ∀ z ∈ A, z ∈ B → z = b) :
     IsArcBetween (A ∪ B) a c := by
@@ -241,7 +296,9 @@ theorem IsArcBetween.concatenate {A B : Set Plane} {a b c : Plane} (hA : IsArcBe
   · rw [concatenate_zero]; exact hf0
   · rw [concatenate_one]; exact hg1
 
-/-- Two arcs meeting only at the endpoint they share glue to an arc. -/
+/-- Two arcs meeting only at the endpoint they share glue to an arc.
+@isnad1 id=isarc.3h5v.s5.00c7578310a4 from=translated src=- shape=45d73a5d vocab=b34ae7a1
+-/
 theorem IsArc.concatenate {A B : Set Plane} {a b c : Plane} (hA : IsArcBetween A a b)
     (hB : IsArcBetween B b c) (hmeet : ∀ z ∈ A, z ∈ B → z = b) : IsArc (A ∪ B) :=
   (hA.concatenate hB hmeet).isArc
@@ -256,7 +313,9 @@ is exactly the repetition `IsLoop` allows itself at the finish. -/
 
 /-- Across the seam, when the two arcs also share their outer ends. At the middle the
 argument is the one for arcs; at the outer ends the second arc is at its finish, so its
-parameter is `1` — which the hypothesis has excluded. -/
+parameter is `1` — which the hypothesis has excluded.
+@isnad1 id=eq.9h4v.s7.ead768f8717f from=translated src=- shape=ca26dfb1 vocab=f9bc3990
+-/
 theorem concatenate_seam_loop (hfi : InjOn f I) (hgi : InjOn g I) (hmid : f 1 = g 0)
     (hclose : g 1 = f 0)
     (hmeet : ∀ z ∈ f '' I, z ∈ g '' I → z = f 0 ∨ z = f 1) {x y : ℝ}
@@ -270,7 +329,9 @@ theorem concatenate_seam_loop (hfi : InjOn f I) (hgi : InjOn g I) (hmid : f 1 = 
   · have hy' : g (2 * y - 1) = g 0 := by rw [← h, hz]; exact hmid
     rw [lowerHalf_at_finish hfi hx hz, upperHalf_at_start hgi hy hy']
 
-/-- Two arcs glued along both of their ends make a loop. -/
+/-- Two arcs glued along both of their ends make a loop.
+@isnad1 id=isloop.7h2v.s7.4e682e345b3b from=translated src=- shape=4ecb4233 vocab=6c4b8bd0
+-/
 theorem IsLoop.concatenate (hfc : ContinuousOn f I) (hfi : InjOn f I) (hgc : ContinuousOn g I)
     (hgi : InjOn g I) (hmid : f 1 = g 0) (hclose : g 1 = f 0)
     (hmeet : ∀ z ∈ f '' I, z ∈ g '' I → z = f 0 ∨ z = f 1) :
@@ -298,7 +359,9 @@ theorem IsLoop.concatenate (hfc : ContinuousOn f I) (hfi : InjOn f I) (hgc : Con
 
 /-- Two pieces meeting exactly at their two shared endpoints make a Jordan curve. This is the
 converse of the two-arcs decomposition, and the form every construction of a curve takes: a
-cycle of a plane graph arrives as a path and one more edge back to where it started. -/
+cycle of a plane graph arrives as a path and one more edge back to where it started.
+@isnad1 id=isjordan.3h4v.s5.be8bc064e133 from=translated src=- shape=1d73f9af vocab=f8068257
+-/
 theorem IsJordanCurve.of_two_arcs {A B : Set Plane} {a b : Plane} (hA : IsArcBetween A a b)
     (hB : IsArcBetween B b a) (hmeet : ∀ z ∈ A, z ∈ B → z = a ∨ z = b) :
     IsJordanCurve (A ∪ B) := by

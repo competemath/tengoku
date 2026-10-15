@@ -275,7 +275,9 @@ private lemma singular_annulus_symmDiff_vol_via_ae
 
 /-- Explicit `ε`-independent bound on the singular annular integral for `C²` curves with
 nonzero derivative: the integral `∫ a..b (1[ε₂ < ‖γ t − γ t₀‖ ≤ ε₁]) · (t − t₀)⁻¹` is at most
-`Csing · ε₁` for all sufficiently small `ε₁` with `ε₂ ≤ ε₁ ≤ 2 ε₂`. -/
+`Csing · ε₁` for all sufficiently small `ε₁` with `ε₂ ≤ ε₁ ≤ 2 ε₂`.
+@isnad1 id=ex.7h5v.s8.c3a722d18a7c from=translated src=- shape=f4c23d80 vocab=30f2e2fa
+-/
 lemma singular_annulus_bound_explicit {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (hab : a < b)
     (hat₀ : t₀ ∈ Set.Ioo a b) (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L)
     (hL : L ≠ 0) (hγ_cont : ContinuousOn γ (Set.Icc a b))

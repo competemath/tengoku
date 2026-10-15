@@ -57,7 +57,9 @@ private lemma measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ} (ε : ℝ)
     MeasurableSet ({t | ε < ‖f t‖} ∩ Icc a b) :=
   measurableSet_norm_gt_of_continuousOn ε hf isClosed_Icc.measurableSet
 
-/-- A function continuous off a finite set is a.e. strongly measurable on `Icc a b`. -/
+/-- A function continuous off a finite set is a.e. strongly measurable on `Icc a b`.
+@isnad1 id=aestrong.1h4v.s6.b6989af703e6 from=translated src=- shape=b1ab36b8 vocab=2a7d24e1
+-/
 theorem aEStronglyMeasurable_of_continuousOn_off_finite {f : ℝ → ℂ} {a b : ℝ} {P : Finset ℝ}
     (hf_cont : ContinuousOn f (Icc a b \ P)) :
     AEStronglyMeasurable f (volume.restrict (Icc a b)) := by
@@ -188,6 +190,9 @@ private lemma goodset_piecewise_ae_eq_decomposed {g_reg : ℂ → ℂ} {γ : ℝ
       by_contra h_not; push Not at h_not; exact ht_good ⟨h_not, ht⟩
     rw [ite_eq_right ht_good]; simp only [this, ite_true]
 
+/--
+@isnad1 id=aestrong.4h8v.s8.d2cd7c6f0685 from=translated src=- shape=58a01ed6 vocab=d5a285b9
+-/
 theorem aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b ε : ℝ} {P : Finset ℝ} (S : Finset ℂ) (coeffs : ℂ → ℂ) (hε : 0 < ε)
     (hg : ContinuousOn g_reg (γ '' Icc a b)) (hγ : ContinuousOn γ (Icc a b))
@@ -200,6 +205,9 @@ theorem aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ :
     aestronglyMeasurable_const).mono_measure Measure.restrict_le_self).congr
     (goodset_piecewise_ae_eq_decomposed S coeffs).symm
 
+/--
+@isnad1 id=integrab.2h4v.s6.09baca6d50dc from=translated src=- shape=f3835b0b vocab=2fac3216
+-/
 theorem integrableOn_of_bounded_aeMeasurable {f : ℝ → ℂ} {a b : ℝ} (M : ℝ)
     (hf_meas : AEStronglyMeasurable f (volume.restrict (Icc a b)))
     (hf_bound : ∀ x ∈ Icc a b, ‖f x‖ ≤ M) :
@@ -209,6 +217,9 @@ theorem integrableOn_of_bounded_aeMeasurable {f : ℝ → ℂ} {a b : ℝ} (M : 
   calc ‖f x‖ ≤ M := hf_bound x hx
     _ ≤ max M 0 := le_max_left M 0
 
+/--
+@isnad1 id=tendsto.4h5v.s8.5a098bb7b540 from=translated src=- shape=93386ef2 vocab=db4a0ad0
+-/
 theorem tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f : ℝ → ℂ} {g : ℝ → ℝ}
     (hF_meas : ∀ ε > 0, AEStronglyMeasurable (F ε) (volume.restrict (Ι a b)))
     (hF_le : ∀ ε > 0, ∀ᵐ t ∂volume, t ∈ Ι a b → ‖F ε t‖ ≤ g t)
@@ -221,7 +232,9 @@ theorem tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f 
     (by filter_upwards [self_mem_nhdsWithin] with ε (hε : 0 < ε); exact hF_le ε hε)
     hg_int hF_lim
 
-/-- Continuous functions on a compact image are bounded. -/
+/-- Continuous functions on a compact image are bounded.
+@isnad1 id=ex.2h4v.s6.e62d89957ddd from=translated src=- shape=4c51d630 vocab=5d68a4f5
+-/
 lemma continuousOn_image_bounded {g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     (hγ_cont : ContinuousOn γ (Icc a b)) (hg_cont : ContinuousOn g (γ '' Icc a b)) :
     ∃ Mg : ℝ, ∀ z ∈ γ '' Icc a b, ‖g z‖ ≤ Mg :=
@@ -239,7 +252,9 @@ private lemma piecewiseC1Immersion_deriv_continuousOn_off_partition (γ : Piecew
         γ.toPiecewiseC1Curve.endpoints_in_partition.2) ht_notP
     · exact absurd (h ▸ γ.toPiecewiseC1Curve.endpoints_in_partition.1) ht_notP
 
-/-- Residue term integrand is interval integrable. -/
+/-- Residue term integrand is interval integrable.
+@isnad1 id=interval.1h4v.s7.42ed4873558b from=translated src=- shape=8d6f7d6c vocab=a479cb57
+-/
 lemma intervalIntegrable_residueTerm {γ : PiecewiseC1Immersion} {s c : ℂ} {ε : ℝ}
     (hε : 0 < ε) :
     IntervalIntegrable
@@ -267,6 +282,9 @@ lemma intervalIntegrable_residueTerm {γ : PiecewiseC1Immersion} {s c : ℂ} {ε
   rw [intervalIntegrable_iff_integrableOn_Ioc_of_le γ.hab.le]
   exact (integrableOn_of_bounded_aeMeasurable M h_meas h_bound).mono_set Ioc_subset_Icc_self
 
+/--
+@isnad1 id=aestrong.3h7v.s8.d55ba170e469 from=translated src=- shape=ec89e0ff vocab=ed3b70b5
+-/
 lemma aEStronglyMeasurable_pv_sum_residue (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (ε : ℝ) (hε : 0 < ε) (a b : ℝ) {P : Finset ℝ} (hγ_cont : ContinuousOn γ (Icc a b))
     (hγ'_off_P : ContinuousOn (deriv γ) (Icc a b \ P)) :

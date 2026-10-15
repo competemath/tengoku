@@ -36,6 +36,9 @@ noncomputable instance (s : Nat) : Fintype (AvailFrom (s := s)) := by
   dsimp [AvailFrom]
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s4.1d2d73fcc47a from=translated src=- shape=9367511e vocab=ca318543
+-/
 theorem card_availFrom (s : Nat) : Fintype.card (AvailFrom (s := s)) = n - s := by
   classical
   let e : Fin (n - s) ≃ AvailFrom (s := s) :=

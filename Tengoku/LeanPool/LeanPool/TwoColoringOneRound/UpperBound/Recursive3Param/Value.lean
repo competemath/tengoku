@@ -30,6 +30,9 @@ open scoped ENNReal
 -- 1. Prove piecewise formulas for `innerBC` for our concrete dyadic parameters.
 -- 2. Evaluate the resulting iterated integrals as an exact rational.
 
+/--
+@isnad1 id=eq.2h2v.s7.f3ee5b70da8d from=translated src=- shape=2474be8b vocab=b1314027
+-/
 lemma aSlice_eq_of_t2_le_b_lt_t {b c : Rand} (hb1 : t2 ≤ b) (hb2 : b < t) :
     aSlice b c = if c < t2 then Set.Iic t else if c < t then Set.Iio t2 else ∅ := by
   classical
@@ -121,6 +124,9 @@ lemma aSlice_eq_of_t2_le_b_lt_t {b c : Rand} (hb1 : t2 ≤ b) (hb2 : b < t) :
         · simp_all
       exact (hL.trans hR.symm)
 
+/--
+@isnad1 id=eq.1h2v.s7.9d3aee04b0df from=translated src=- shape=26711361 vocab=4c1e793d
+-/
 lemma aSlice_eq_of_t_lt_b {b c : Rand} (hb : t < b) :
     aSlice b c = if c < t then Set.univ else if (c : ℝ) < 1 then Set.Iio t else ∅ := by
   classical
@@ -368,6 +374,9 @@ private lemma mem_aSlice_of_t1_le_b_lt_t2_of_not_c_lt_t {a b c : Rand}
     exact hct (show c < t from this)
   · simp_all
 
+/--
+@isnad1 id=eq.2h2v.s8.406386627422 from=translated src=- shape=36ad5fab vocab=78d550f3
+-/
 lemma aSlice_eq_of_t1_le_b_lt_t2 {b c : Rand} (hb1 : t1 ≤ b) (hb2 : b < t2) :
     aSlice b c =
       if c < t1 then Set.Iic t
@@ -424,11 +433,17 @@ private lemma lintegral_ofReal_of_integral_eq {f : ℝ → ℝ} {a b v : ℝ} (h
     rw [MeasureTheory.integral_Icc_eq_integral_Ioc, ← intervalIntegral.integral_of_le hab, hint]
   rw [hlin, hIcc]
 
+/--
+@isnad1 id=eq.2h2v.s6.d3528cbb3906 from=translated src=- shape=0db78002 vocab=92c08ea8
+-/
 lemma lintegral_ofReal_id_Icc (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal x ∂(volume : Measure ℝ)) =
       ENNReal.ofReal ((b ^ 2 - a ^ 2) / 2) :=
   lintegral_ofReal_of_integral_eq hab continuous_id (fun _ hx => le_trans ha hx.1) (by simp)
 
+/--
+@isnad1 id=eq.2h3v.s7.75978324e363 from=translated src=- shape=dab3fe8c vocab=b2b5c243
+-/
 lemma lintegral_ofReal_sub_id_Icc (r a b : ℝ) (hbr : b ≤ r) (hab : a ≤ b) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal (r - x) ∂(volume : Measure ℝ)) =
       ENNReal.ofReal (r * (b - a) - (b ^ 2 - a ^ 2) / 2) :=
@@ -442,6 +457,9 @@ lemma lintegral_ofReal_sub_id_Icc (r a b : ℝ) (hbr : b ≤ r) (hab : a ≤ b) 
       simp [intervalIntegral.integral_const]
       ring
 
+/--
+@isnad1 id=eq.3h3v.s7.d973f58f6a7d from=translated src=- shape=9ffaaa09 vocab=b2b5c243
+-/
 lemma lintegral_ofReal_mul_sub_Icc (r a b : ℝ) (ha : 0 ≤ a) (hbr : b ≤ r) (hab : a ≤ b) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal (x * (r - x)) ∂(volume : Measure ℝ)) =
       ENNReal.ofReal (r * (b ^ 2 - a ^ 2) / 2 - (b ^ 3 - a ^ 3) / 3) :=
@@ -458,6 +476,9 @@ lemma lintegral_ofReal_mul_sub_Icc (r a b : ℝ) (ha : 0 ≤ a) (hbr : b ≤ r) 
       simp
       ring
 
+/--
+@isnad1 id=eq.2h3v.s7.554961f4c9a1 from=translated src=- shape=b183904c vocab=785168db
+-/
 lemma lintegral_ofReal_pow_Icc (n : ℕ) (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal (x ^ n) ∂(volume : Measure ℝ)) =
       ENNReal.ofReal ((b ^ (n + 1) - a ^ (n + 1)) / (n + 1)) :=
@@ -494,6 +515,9 @@ private lemma setLIntegral_ofReal_lift (a b : Rand) (g : ℝ → ℝ) (v : ℝ)
         (s := Set.Icc (0 : ℝ) 1) hs (t := Set.Icc a b) (f := fun y : ℝ => ENNReal.ofReal (g y)))
   rwa [hsub, image_val_Icc]
 
+/--
+@isnad1 id=eq.1h2v.s7.db196c364ecf from=translated src=- shape=6b84e1a1 vocab=d7aab6b2
+-/
 lemma setLIntegral_ofReal_id_Icc (a b : Rand) (hab : a ≤ b) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal (x : ℝ) ∂(volume : Measure Rand)) =
       ENNReal.ofReal (((b : ℝ) ^ 2 - (a : ℝ) ^ 2) / 2) :=
@@ -517,17 +541,26 @@ private lemma setLIntegral_Ico_of_Icc (a b : Rand) (h : Rand → ℝ≥0∞) (v 
     simpa using (MeasureTheory.Ico_ae_eq_Icc (μ := (volume : Measure Rand)) (a := a) (b := b))
   rw [MeasureTheory.setLIntegral_congr (μ := (volume : Measure Rand)) hIco, hIcc]
 
+/--
+@isnad1 id=eq.0h1v.s6.73c448037e0b from=translated src=- shape=d87be5d0 vocab=182dfdd5
+-/
 lemma setLIntegral_ofReal_id_Iio (b : Rand) :
     (∫⁻ x in Set.Iio b, ENNReal.ofReal (x : ℝ) ∂(volume : Measure Rand)) =
       ENNReal.ofReal (((b : ℝ) ^ 2 - (0 : ℝ) ^ 2) / 2) :=
   setLIntegral_Iio_of_Icc b _ _
     (by simpa using setLIntegral_ofReal_id_Icc (a := (0 : Rand)) (b := b) b.property.1)
 
+/--
+@isnad1 id=eq.1h2v.s7.bb37dd3aa452 from=translated src=- shape=6b84e1a1 vocab=49c8bfe5
+-/
 lemma setLIntegral_ofReal_id_Ico (a b : Rand) (hab : a ≤ b) :
     (∫⁻ x in Set.Ico a b, ENNReal.ofReal (x : ℝ) ∂(volume : Measure Rand)) =
       ENNReal.ofReal (((b : ℝ) ^ 2 - (a : ℝ) ^ 2) / 2) :=
   setLIntegral_Ico_of_Icc a b _ _ (setLIntegral_ofReal_id_Icc a b hab)
 
+/--
+@isnad1 id=eq.1h3v.s7.8e51492dbb34 from=translated src=- shape=e68c9512 vocab=e8d53131
+-/
 lemma setLIntegral_ofReal_pow_Icc (n : ℕ) (a b : Rand) (hab : a ≤ b) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal ((x : ℝ) ^ n) ∂(volume : Measure Rand)) =
       ENNReal.ofReal (((b : ℝ) ^ (n + 1) - (a : ℝ) ^ (n + 1)) / (n + 1)) :=
@@ -536,6 +569,9 @@ lemma setLIntegral_ofReal_pow_Icc (n : ℕ) (a b : Rand) (hab : a ≤ b) :
 
 open scoped Real Interval
 
+/--
+@isnad1 id=eq.2h3v.s8.176839df9e99 from=translated src=- shape=f85bda5a vocab=9d1126fd
+-/
 lemma setLIntegral_ofReal_sub_id_Icc (r a b : Rand) (hab : a ≤ b) (hbr : (b : ℝ) ≤ (r : ℝ)) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal ((r : ℝ) - x) ∂(volume : Measure Rand)) =
       ENNReal.ofReal
@@ -543,6 +579,9 @@ lemma setLIntegral_ofReal_sub_id_Icc (r a b : Rand) (hab : a ≤ b) (hbr : (b : 
   setLIntegral_ofReal_lift a b (fun y => (r : ℝ) - y) _
     (RealHelpers.lintegral_ofReal_sub_id_Icc (r := (r : ℝ)) (a := (a : ℝ)) (b := (b : ℝ)) hbr hab)
 
+/--
+@isnad1 id=eq.2h3v.s8.13719695a49a from=translated src=- shape=7a9c844f vocab=9d1126fd
+-/
 lemma setLIntegral_ofReal_mul_sub_Icc (r a b : Rand) (hab : a ≤ b) (hbr : (b : ℝ) ≤ (r : ℝ)) :
     (∫⁻ x in Set.Icc a b, ENNReal.ofReal ((x : ℝ) * ((r : ℝ) - x)) ∂(volume : Measure Rand)) =
       ENNReal.ofReal
@@ -551,18 +590,27 @@ lemma setLIntegral_ofReal_mul_sub_Icc (r a b : Rand) (hab : a ≤ b) (hbr : (b :
     (RealHelpers.lintegral_ofReal_mul_sub_Icc (r := (r : ℝ)) (a := (a : ℝ)) (b := (b : ℝ))
       a.property.1 hbr hab)
 
+/--
+@isnad1 id=eq.2h3v.s8.19421f74914d from=translated src=- shape=f85bda5a vocab=b39a6e30
+-/
 lemma setLIntegral_ofReal_sub_id_Ico (r a b : Rand) (hab : a ≤ b) (hbr : (b : ℝ) ≤ (r : ℝ)) :
     (∫⁻ x in Set.Ico a b, ENNReal.ofReal ((r : ℝ) - x) ∂(volume : Measure Rand)) =
       ENNReal.ofReal
         ((r : ℝ) * ((b : ℝ) - (a : ℝ)) - (((b : ℝ) ^ 2 - (a : ℝ) ^ 2) / 2)) :=
   setLIntegral_Ico_of_Icc a b _ _ (setLIntegral_ofReal_sub_id_Icc r a b hab hbr)
 
+/--
+@isnad1 id=eq.2h3v.s8.ce6141b2f535 from=translated src=- shape=7a9c844f vocab=b39a6e30
+-/
 lemma setLIntegral_ofReal_mul_sub_Ico (r a b : Rand) (hab : a ≤ b) (hbr : (b : ℝ) ≤ (r : ℝ)) :
     (∫⁻ x in Set.Ico a b, ENNReal.ofReal ((x : ℝ) * ((r : ℝ) - x)) ∂(volume : Measure Rand)) =
       ENNReal.ofReal
         ((r : ℝ) * ((b : ℝ) ^ 2 - (a : ℝ) ^ 2) / 2 - (((b : ℝ) ^ 3 - (a : ℝ) ^ 3) / 3)) :=
   setLIntegral_Ico_of_Icc a b _ _ (setLIntegral_ofReal_mul_sub_Icc r a b hab hbr)
 
+/--
+@isnad1 id=eq.1h2v.s7.7902c7c07163 from=translated src=- shape=636884de vocab=9d275297
+-/
 lemma setLIntegral_ofReal_sub_id_Iio (r b : Rand) (hbr : (b : ℝ) ≤ (r : ℝ)) :
     (∫⁻ x in Set.Iio b, ENNReal.ofReal ((r : ℝ) - x) ∂(volume : Measure Rand)) =
       ENNReal.ofReal
@@ -570,6 +618,9 @@ lemma setLIntegral_ofReal_sub_id_Iio (r b : Rand) (hbr : (b : ℝ) ≤ (r : ℝ)
   setLIntegral_Iio_of_Icc b _ _
     (by simpa using setLIntegral_ofReal_sub_id_Icc r (0 : Rand) b b.property.1 hbr)
 
+/--
+@isnad1 id=eq.1h2v.s8.49c1dce2b9a8 from=translated src=- shape=a3f97f40 vocab=9d275297
+-/
 lemma setLIntegral_ofReal_mul_sub_Iio (r b : Rand) (hbr : (b : ℝ) ≤ (r : ℝ)) :
     (∫⁻ x in Set.Iio b, ENNReal.ofReal ((x : ℝ) * ((r : ℝ) - x)) ∂(volume : Measure Rand)) =
       ENNReal.ofReal

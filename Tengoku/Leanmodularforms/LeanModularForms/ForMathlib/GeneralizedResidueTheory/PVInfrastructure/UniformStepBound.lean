@@ -24,7 +24,9 @@ open scoped Real Interval
 
 noncomputable section
 
-/-- Uniform step bound with epsilon-independent constant. -/
+/-- Uniform step bound with epsilon-independent constant.
+@isnad1 id=ex.9h5v.s9.cf09e6c23324 from=translated src=- shape=9a3231e5 vocab=0a2d6f62
+-/
 lemma pv_step_bound_ratio_two_uniform {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (hab : a < b)
     (hat₀ : t₀ ∈ Set.Ioo a b) (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L)
     (hL : L ≠ 0) (hγ_meas : Measurable γ)

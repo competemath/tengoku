@@ -33,6 +33,9 @@ integral `x ↦ ∫ τ in a..x, μ τ` is differentiable at any interior point `
 and its derivative is `μ t`.
 -/
 
+/--
+@isnad1 id=hasderiv.2h4v.s6.532a54a437b7 from=translated src=- shape=d8d5bbfa vocab=037e7297
+-/
 lemma hasDerivAt_integral {a b : ℝ} {μ : ℝ → ℝ}
     (hμ : ContinuousOn μ (Icc a b)) (t : ℝ) (ht : t ∈ Ioo a b) :
     HasDerivAt (fun x ↦ ∫ τ in a..x, μ τ) (μ t) t :=
@@ -49,6 +52,9 @@ This is a wrapper of `intervalIntegral.continuousOn_primitive_interval`
 that avoids unordered interval (`uIcc`) issues by explicitly requiring `a ≤ t`.
 -/
 
+/--
+@isnad1 id=continuo.2h3v.s6.0d8abbe1f244 from=translated src=- shape=587750eb vocab=01fdafdd
+-/
 lemma continuousOn_integral_Icc {a t : ℝ} {f : ℝ → ℝ} (h : a ≤ t)
     (hf_int : IntegrableOn f (Icc a t) volume) :
     ContinuousOn (fun s ↦ ∫ τ in a..s, f τ) (Icc a t) := by

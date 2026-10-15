@@ -46,6 +46,7 @@ Real-valued first-marginal mass formula.
 Mathematically, for a finite joint PMF `p` on `alpha × beta`,
 `p_A(a) = sum_b p(a,b)`, now stated after converting all finite masses to
 real numbers.
+@isnad1 id=eq.0h4v.s6.0883dd36ea97 from=translated src=- shape=bd96e79b vocab=90a6621c
 -/
 theorem fstMarginal_toReal_apply {alpha : Type u} {beta : Type v} [Fintype beta]
     (p : PMF (alpha × beta)) (a : alpha) :
@@ -62,6 +63,7 @@ Real-valued second-marginal mass formula.
 Mathematically, for a finite joint PMF `p` on `alpha × beta`,
 `p_B(b) = sum_a p(a,b)`, now stated after converting all finite masses to
 real numbers.
+@isnad1 id=eq.0h4v.s6.7ddc59fb253c from=translated src=- shape=b446f8b8 vocab=3a280322
 -/
 theorem sndMarginal_toReal_apply {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) (b : beta) :
@@ -76,6 +78,7 @@ theorem sndMarginal_toReal_apply {alpha : Type u} {beta : Type v} [Fintype alpha
 Rewrite an expectation of a first-coordinate observable under the joint law as
 an expectation under the first marginal:
 `sum_{a,b} p(a,b) f(a) = sum_a p_A(a) f(a)`.
+@isnad1 id=eq.0h4v.s6.255926723626 from=translated src=- shape=8ef363e7 vocab=b3181906
 -/
 theorem sum_toReal_mul_fstMarginal {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) (f : alpha -> Real) :
@@ -99,6 +102,7 @@ theorem sum_toReal_mul_fstMarginal {alpha : Type u} {beta : Type v}
 Rewrite an expectation of a second-coordinate observable under the joint law as
 an expectation under the second marginal:
 `sum_{a,b} p(a,b) f(b) = sum_b p_B(b) f(b)`.
+@isnad1 id=eq.0h4v.s6.264f4a27b0b4 from=translated src=- shape=89e8f0dc vocab=feb1697e
 -/
 theorem sum_toReal_mul_sndMarginal {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) (f : beta -> Real) :
@@ -127,6 +131,7 @@ Entropy as the elementary finite sum `sum_a p(a) * (-log p(a))`.
 
 This is definitionally the same as the `Real.negMulLog` formula, but this shape
 is better for comparing entropy identities with KL-divergence sums.
+@isnad1 id=eq.0h2v.s5.bc7d6e9d993d from=translated src=- shape=8b900c2c vocab=12c04650
 -/
 theorem entropy_eq_sum_toReal_mul_neg_log {alpha : Type u} [Fintype alpha]
     (p : PMF alpha) :
@@ -141,6 +146,7 @@ theorem entropy_eq_sum_toReal_mul_neg_log {alpha : Type u} [Fintype alpha]
 /--
 First-marginal entropy as a joint-law expectation:
 `H(A) = sum_{a,b} p(a,b) * (-log p_A(a))`.
+@isnad1 id=eq.0h3v.s6.701dd1a63d45 from=translated src=- shape=acde7ae9 vocab=3d9a9d7d
 -/
 theorem entropy_fstMarginal_eq_sum_joint {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -160,6 +166,7 @@ theorem entropy_fstMarginal_eq_sum_joint {alpha : Type u} {beta : Type v}
 /--
 Second-marginal entropy as a joint-law expectation:
 `H(B) = sum_{a,b} p(a,b) * (-log p_B(b))`.
+@isnad1 id=eq.0h3v.s6.5ccbbc7b67f0 from=translated src=- shape=760b3906 vocab=d6283ef3
 -/
 theorem entropy_sndMarginal_eq_sum_joint {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -182,6 +189,7 @@ summands:
 
 `I(A;B) = sum_{a,b} p(a,b) *
   (-log p_A(a) + -log p_B(b) - -log p(a,b))`.
+@isnad1 id=eq.0h3v.s7.e02daa076787 from=translated src=- shape=c6b7940b vocab=d7ecf381
 -/
 theorem mutualInfo_eq_sum_neg_log {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -203,6 +211,7 @@ Pointwise algebra behind the KL formula for mutual information.
 For every atom `(a,b)`, the weighted entropy summand equals
 `p(a,b) * log (p(a,b) / (p_A(a) * p_B(b)))`. If `p(a,b)=0`, both sides are
 zero; otherwise nonzero joint mass forces both marginal masses to be nonzero.
+@isnad1 id=eq.0h4v.s8.a20a0a515fb6 from=translated src=- shape=d7771a92 vocab=4a49a312
 -/
 theorem mutualInfo_summand_eq_log_ratio {alpha : Type u} {beta : Type v}
     [Finite alpha] [Finite beta] (p : PMF (alpha × beta)) (x : alpha × beta) :
@@ -235,6 +244,7 @@ theorem mutualInfo_summand_eq_log_ratio {alpha : Type u} {beta : Type v}
 Finite log-ratio formula for mutual information:
 
 `I(A;B) = sum_{a,b} p(a,b) log (p(a,b) / (p_A(a) p_B(b)))`.
+@isnad1 id=eq.0h3v.s7.427953c7d776 from=translated src=- shape=634ea6dc vocab=56ae9ecd
 -/
 theorem mutualInfo_eq_sum_log_ratio {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :

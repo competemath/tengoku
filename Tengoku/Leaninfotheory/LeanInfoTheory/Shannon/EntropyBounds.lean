@@ -34,6 +34,7 @@ Finite Shannon entropy is bounded above by the logarithm of the alphabet size.
 
 The proof is Jensen's inequality for the concave function `Real.negMulLog`,
 applied with uniform weights over the finite alphabet.
+@isnad1 id=le.0h2v.s4.6a7283c82bb4 from=translated src=- shape=09f1f2c5 vocab=761cbc4c
 -/
 theorem entropy_le_log_card {alpha : Type u} [Fintype alpha] [Nonempty alpha]
     (p : PMF alpha) :
@@ -193,6 +194,7 @@ nonzero mass.
 
 Unlike `entropy_le_log_card`, this theorem counts only the PMF support and does
 not require a separate nonempty-alphabet instance.
+@isnad1 id=le.0h2v.s4.f947f3c70e4f from=translated src=- shape=16e94f2d vocab=07ff1e2b
 -/
 theorem entropy_le_log_support_ncard {alpha : Type u} [Fintype alpha]
     (p : PMF alpha) :
@@ -208,6 +210,7 @@ theorem entropy_le_log_support_ncard {alpha : Type u} [Fintype alpha]
 /--
 The entropy of a finite-valued random variable is bounded by the logarithm of
 the support size of its pushforward law.
+@isnad1 id=le.0h4v.s5.dcde7cb79900 from=translated src=- shape=d59064ef vocab=9fdee24f
 -/
 theorem entropyOf_le_log_support_ncard
     {omega : Type u} {alpha : Type v} [Fintype alpha]
@@ -220,6 +223,7 @@ The uniform distribution reaches the finite entropy upper bound.
 
 Mathematically, this is the equality case `H(U_alpha) = log |alpha|` for the
 uniform law on a nonempty finite alphabet.
+@isnad1 id=eq.0h1v.s4.390eefbf58e7 from=translated src=- shape=5b4618b6 vocab=8a7b0580
 -/
 theorem entropy_uniformOfFintype {alpha : Type u} [Fintype alpha] [Nonempty alpha] :
     entropy (PMF.uniformOfFintype alpha) = Real.log (Fintype.card alpha) := by
@@ -260,6 +264,7 @@ theorem entropy_uniformOfFintype {alpha : Type u} [Fintype alpha] [Nonempty alph
 /--
 Finite Shannon entropy reaches the alphabet-cardinality bound exactly at the
 uniform distribution.
+@isnad1 id=iff.0h2v.s5.637958e17ba3 from=translated src=- shape=923c48b1 vocab=025ade6c
 -/
 theorem entropy_eq_log_card_iff_eq_uniformOfFintype
     {alpha : Type u} [Fintype alpha] [Nonempty alpha] (p : PMF alpha) :
@@ -386,6 +391,7 @@ private theorem entropy_uniformOfFinset {alpha : Type u} [Fintype alpha]
 /--
 Finite Shannon entropy reaches its support-cardinality bound exactly when the
 distribution is uniform on its support.
+@isnad1 id=iff.0h2v.s5.f992465b5126 from=translated src=- shape=5109bce2 vocab=237f0c28
 -/
 theorem entropy_eq_log_support_ncard_iff_eq_uniformOnSupport
     {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
@@ -432,6 +438,7 @@ theorem entropy_eq_log_support_ncard_iff_eq_uniformOnSupport
 /--
 A finite-valued random variable reaches the alphabet-cardinality entropy bound
 exactly when its law is uniform on the alphabet.
+@isnad1 id=iff.0h4v.s5.71ae271f0a83 from=translated src=- shape=6d46979f vocab=ce987c8f
 -/
 theorem entropyOf_eq_log_card_iff_map_eq_uniformOfFintype
     {omega : Type u} {alpha : Type v} [Fintype alpha] [Nonempty alpha]
@@ -444,6 +451,7 @@ theorem entropyOf_eq_log_card_iff_map_eq_uniformOfFintype
 /--
 A finite-valued random variable reaches its law-support entropy bound exactly
 when that law is uniform on its support.
+@isnad1 id=iff.0h4v.s5.45706f7be62c from=translated src=- shape=96352aba vocab=d8687368
 -/
 theorem entropyOf_eq_log_support_ncard_iff_map_eq_uniformOnSupport
     {omega : Type u} {alpha : Type v} [Fintype alpha]

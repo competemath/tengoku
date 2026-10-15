@@ -36,11 +36,17 @@ elsewhere. -/
 def indicator (S : Finset (Fin n)) : Fin n → Bool :=
   fun i => decide (i ∈ S)
 
+/--
+@isnad1 id=iff.0h3v.s5.4615d1214d61 from=translated src=- shape=3bdfe1d3 vocab=bd660f57
+-/
 @[simp]
 theorem indicator_mem {S : Finset (Fin n)} {i : Fin n} :
     indicator S i = true ↔ i ∈ S := by
   simp [indicator]
 
+/--
+@isnad1 id=iff.0h3v.s5.eb5e466b9913 from=translated src=- shape=f86b8d2e vocab=24458069
+-/
 @[simp]
 theorem indicator_not_mem {S : Finset (Fin n)} {i : Fin n} :
     indicator S i = false ↔ i ∉ S := by
@@ -49,7 +55,13 @@ theorem indicator_not_mem {S : Finset (Fin n)} {i : Fin n} :
 /-- Integer encoding of a Boolean value: `true ↦ 1` and `false ↦ 0`. -/
 def boolToInt (b : Bool) : ℤ := if b then 1 else 0
 
+/--
+@isnad1 id=eq.0h0v.s3.796bcdb0fe95 from=translated src=- shape=b0ae1d2b vocab=c272ac20
+-/
 @[simp] theorem boolToInt_true : boolToInt true = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.82bfe5aa783e from=translated src=- shape=b0ae1d2b vocab=a8f19653
+-/
 @[simp] theorem boolToInt_false : boolToInt false = 0 := rfl
 
 namespace BoolFun
@@ -68,7 +80,9 @@ noncomputable def degree (f : BoolFun n) : ℕ :=
   ((Finset.univ : Finset (Finset (Fin n))).filter (fun S => f.moebius S ≠ 0)).sup
     Finset.card
 
-/-- The multilinear degree of `f` is at most `n`. -/
+/-- The multilinear degree of `f` is at most `n`.
+@isnad1 id=le.0h2v.s3.97d018a6675b from=translated src=- shape=26d77ceb vocab=5ed003d8
+-/
 theorem degree_le (f : BoolFun n) : f.degree ≤ n := by
   apply Finset.sup_le
   intro S hS
@@ -77,7 +91,9 @@ theorem degree_le (f : BoolFun n) : f.degree ≤ n := by
 
 /-- If the multilinear degree is positive, there exists a "witness" set `S`
 of cardinality equal to the degree at which the Möbius coefficient is
-nonzero. -/
+nonzero.
+@isnad1 id=ex.1h2v.s5.9fa230220451 from=translated src=- shape=419e1144 vocab=26720aff
+-/
 theorem exists_degree_witness (f : BoolFun n) (hd : 0 < f.degree) :
     ∃ S : Finset (Fin n), S.card = f.degree ∧ f.moebius S ≠ 0 := by
   unfold degree at hd ⊢

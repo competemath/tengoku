@@ -110,6 +110,9 @@ def dualObjective : Q :=
 def PrimalFeasibleForCertificate (x : Var → Q) : Prop :=
   (∀ k : Mu, aDot k x ≤ (1 : Q)) ∧ ∀ r : Block, (S x r).PosSemidef
 
+/--
+@isnad1 id=le.0h1v.s3.d44298047a17 from=translated src=- shape=b9369acb vocab=89631057
+-/
 theorem muVal_nonneg (k : Mu) : 0 ≤ muVal k := by
   have hDpos : 0 < (D : Q) := by exact_mod_cast (show 0 < D by decide)
   have hnum : 0 ≤ muNumD k := by fin_cases k <;> decide
@@ -285,6 +288,9 @@ private theorem stationarity (i : Var) :
             simpa [sub_eq_add_neg, add_assoc, add_left_comm, add_comm] using this
     _ = 0 := by by_cases h : i.1 = edgeVar <;> simp [h]
 
+/--
+@isnad1 id=le.1h1v.s3.b8b9b01e0a19 from=translated src=- shape=8e35cb49 vocab=80637683
+-/
 theorem weakDuality (x : Var → Q) (hx : PrimalFeasibleForCertificate x) :
     dualObjective ≤ xEdge x := by
   classical

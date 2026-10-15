@@ -138,6 +138,7 @@ def familyCondMutualInfoOf
 /--
 Restricting a finite family marginal to a smaller atom gives the marginal on
 that smaller atom.
+@isnad1 id=eq.1h5v.s7.a743594ae756 from=translated src=- shape=547f05e6 vocab=0012c262
 -/
 theorem familyMarginal_restrict {Var : Type u} {alpha : Var -> Type v}
     (q : PMF ((i : Var) -> alpha i)) {s t : Finset Var} (hst : s ⊆ t) :
@@ -149,6 +150,7 @@ theorem familyMarginal_restrict {Var : Type u} {alpha : Var -> Type v}
 /--
 The finite marginal of a source-indexed family is the joint law of its
 selected coordinates.
+@isnad1 id=eq.0h6v.s6.c0dbae7ae554 from=translated src=- shape=977d9de9 vocab=a910f21e
 -/
 theorem familyMarginal_familyLawOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -162,7 +164,9 @@ theorem familyMarginal_familyLawOf
     rfl
   rw [hcomp]
 
-/-- Family entropy is ordinary random-variable entropy of finite restriction. -/
+/-- Family entropy is ordinary random-variable entropy of finite restriction.
+@isnad1 id=eq.0h4v.s7.bb4893ff9a29 from=translated src=- shape=0cebe934 vocab=30d58579
+-/
 theorem familyEntropy_eq_entropyOf
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -173,6 +177,7 @@ theorem familyEntropy_eq_entropyOf
 /--
 Source-family entropy is ordinary entropy of the selected coordinates under
 the source law.
+@isnad1 id=eq.0h6v.s8.b082d6fc5a16 from=translated src=- shape=b237f59d vocab=d26dd8ca
 -/
 theorem familyEntropyOf_eq_entropyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -185,6 +190,7 @@ theorem familyEntropyOf_eq_entropyOf
 
 /--
 Family entropy on `s` depends only on the source variables selected by `s`.
+@isnad1 id=eq.1h7v.s7.288b5ff4f835 from=translated src=- shape=98a28b56 vocab=b67b4290
 -/
 theorem familyEntropyOf_congr
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -199,7 +205,9 @@ theorem familyEntropyOf_congr
 
 /-! ## Base cases and nonnegativity -/
 
-/-- The entropy of the empty family is zero. -/
+/-- The entropy of the empty family is zero.
+@isnad1 id=eq.0h3v.s5.9a9bc1c7244f from=translated src=- shape=70fd9b27 vocab=70c1479a
+-/
 @[simp]
 theorem familyEntropy_empty
     {Var : Type u} {alpha : Var -> Type v}
@@ -217,7 +225,9 @@ theorem familyEntropy_empty
     simp at hi
   rw [familyEntropy, familyMarginal, hrestrict, PMF.map_const, entropy_pure]
 
-/-- The entropy of the empty source-indexed family is zero. -/
+/-- The entropy of the empty source-indexed family is zero.
+@isnad1 id=eq.0h5v.s5.d18c6cadc871 from=translated src=- shape=bb74774d vocab=410d1dc3
+-/
 @[simp]
 theorem familyEntropyOf_empty
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -244,7 +254,9 @@ private theorem singletonFamilyOutcomeEval_injective
   subst j
   exact hxy
 
-/-- The entropy of a singleton family is the entropy of that coordinate. -/
+/-- The entropy of a singleton family is the entropy of that coordinate.
+@isnad1 id=eq.0h4v.s5.a1d81b06e219 from=translated src=- shape=7e9b62c6 vocab=ca9d60b8
+-/
 theorem familyEntropy_singleton
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -259,6 +271,7 @@ theorem familyEntropy_singleton
 /--
 The entropy of a singleton source-indexed family is the entropy of that source
 variable.
+@isnad1 id=eq.0h6v.s5.1f722c32c9c8 from=translated src=- shape=4b615baf vocab=b1f78cb4
 -/
 theorem familyEntropyOf_singleton
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -268,7 +281,9 @@ theorem familyEntropyOf_singleton
   rw [familyEntropyOf, familyEntropy_singleton]
   simp [entropyOf, familyLawOf, PMF.map_comp, Function.comp_def]
 
-/-- Entropy of every finite subfamily is nonnegative. -/
+/-- Entropy of every finite subfamily is nonnegative.
+@isnad1 id=le.0h4v.s5.900df48c3f9e from=translated src=- shape=915c3338 vocab=f4285a97
+-/
 theorem familyEntropy_nonneg
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -276,7 +291,9 @@ theorem familyEntropy_nonneg
     0 <= familyEntropy q s := by
   exact entropy_nonneg (familyMarginal q s)
 
-/-- Entropy of every finite source-indexed subfamily is nonnegative. -/
+/-- Entropy of every finite source-indexed subfamily is nonnegative.
+@isnad1 id=le.0h6v.s5.66bef21444eb from=translated src=- shape=bc4d6cf9 vocab=b17a7ea9
+-/
 theorem familyEntropyOf_nonneg
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -348,6 +365,7 @@ private theorem splitTripleUnion_injective
 Entropy on a union is the joint entropy of the two restricted subfamilies.
 
 The atoms may overlap; no disjointness or support assumption is required.
+@isnad1 id=eq.0h5v.s8.a981685e0878 from=translated src=- shape=372e90e3 vocab=1e7ffea2
 -/
 theorem familyEntropy_union
     {Var : Type u} {alpha : Var -> Type v}
@@ -374,6 +392,7 @@ theorem familyEntropy_union
 /--
 Source-family entropy on a union is the joint entropy of the two selected
 subfamilies.
+@isnad1 id=eq.0h7v.s8.36514b0a962c from=translated src=- shape=efbf1e56 vocab=84d0ee86
 -/
 theorem familyEntropyOf_union
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -407,6 +426,7 @@ Entropy on a three-way union is entropy of the right-associated triple of
 restricted subfamilies.
 
 All three atoms may overlap.
+@isnad1 id=eq.0h6v.s9.d173c375157a from=translated src=- shape=202849f3 vocab=dad665fd
 -/
 theorem familyEntropy_tripleUnion
     {Var : Type u} {alpha : Var -> Type v}
@@ -437,6 +457,7 @@ theorem familyEntropy_tripleUnion
 /--
 Source-family entropy on a three-way union is entropy of the right-associated
 triple of selected subfamilies.
+@isnad1 id=eq.0h8v.s10.af820bad7bd3 from=translated src=- shape=42ae6e11 vocab=4565fe95
 -/
 theorem familyEntropyOf_tripleUnion
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -475,6 +496,7 @@ theorem familyEntropyOf_tripleUnion
 /--
 Family conditional entropy is ordinary conditional entropy of the two
 restriction-valued random variables.
+@isnad1 id=eq.0h5v.s8.3688f9bd7e3e from=translated src=- shape=394a2150 vocab=a1e58497
 -/
 theorem familyCondEntropy_eq_condEntropyOf
     {Var : Type u} {alpha : Var -> Type v}
@@ -488,6 +510,7 @@ theorem familyCondEntropy_eq_condEntropyOf
 /--
 Source-family conditional entropy is ordinary conditional entropy of the two
 selected subfamilies.
+@isnad1 id=eq.0h7v.s8.c49b4a320da4 from=translated src=- shape=9089b537 vocab=4fae291b
 -/
 theorem familyCondEntropyOf_eq_condEntropyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -517,6 +540,7 @@ theorem familyCondEntropyOf_eq_condEntropyOf
 /--
 Family mutual information is ordinary mutual information of the two
 restriction-valued random variables.
+@isnad1 id=eq.0h5v.s8.c58ceecb5b2e from=translated src=- shape=394a2150 vocab=fe0ef02e
 -/
 theorem familyMutualInfo_eq_mutualInfoOf
     {Var : Type u} {alpha : Var -> Type v}
@@ -531,6 +555,7 @@ theorem familyMutualInfo_eq_mutualInfoOf
 /--
 Source-family mutual information is ordinary mutual information of the two
 selected subfamilies.
+@isnad1 id=eq.0h7v.s8.d1adef2bc5ec from=translated src=- shape=9089b537 vocab=22b6f847
 -/
 theorem familyMutualInfoOf_eq_mutualInfoOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -560,6 +585,7 @@ theorem familyMutualInfoOf_eq_mutualInfoOf
 /--
 Family conditional mutual information is ordinary conditional mutual
 information of the three restriction-valued random variables.
+@isnad1 id=eq.0h6v.s9.42ccebdb7e73 from=translated src=- shape=787aa3ef vocab=185986ce
 -/
 theorem familyCondMutualInfo_eq_condMutualInfoOf
     {Var : Type u} {alpha : Var -> Type v}
@@ -575,6 +601,7 @@ theorem familyCondMutualInfo_eq_condMutualInfoOf
 /--
 Source-family conditional mutual information is ordinary conditional mutual
 information of the three selected subfamilies.
+@isnad1 id=eq.0h8v.s9.1c889c6895fa from=translated src=- shape=e160ae0e vocab=47c71968
 -/
 theorem familyCondMutualInfoOf_eq_condMutualInfoOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -672,7 +699,9 @@ private theorem entropyOf_restrict_singleton_triple
             ({k} : Finset Var).restrict x)))
       hf)
 
-/-- Singleton atoms recover conditional entropy of ordinary coordinates. -/
+/-- Singleton atoms recover conditional entropy of ordinary coordinates.
+@isnad1 id=eq.0h5v.s6.0225b2dacdf2 from=translated src=- shape=bb57acc4 vocab=04cf4a9b
+-/
 theorem familyCondEntropy_singletons
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -701,6 +730,7 @@ theorem familyCondEntropy_singletons
 /--
 Singleton source-family atoms recover conditional entropy of the corresponding
 ordinary random variables.
+@isnad1 id=eq.0h7v.s6.4a7417a4223a from=translated src=- shape=e08e7b74 vocab=47842ca0
 -/
 theorem familyCondEntropyOf_singletons
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -712,7 +742,9 @@ theorem familyCondEntropyOf_singletons
     PMF.map_comp, Function.comp_def] using
     (familyCondEntropy_singletons (q := familyLawOf p X) i j)
 
-/-- Singleton atoms recover mutual information of ordinary coordinates. -/
+/-- Singleton atoms recover mutual information of ordinary coordinates.
+@isnad1 id=eq.0h5v.s6.2376cb37a842 from=translated src=- shape=bb57acc4 vocab=2999f9c0
+-/
 theorem familyMutualInfo_singletons
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -746,6 +778,7 @@ theorem familyMutualInfo_singletons
 /--
 Singleton source-family atoms recover mutual information of the corresponding
 ordinary random variables.
+@isnad1 id=eq.0h7v.s6.503fc185264b from=translated src=- shape=e08e7b74 vocab=11d032a9
 -/
 theorem familyMutualInfoOf_singletons
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -760,6 +793,7 @@ theorem familyMutualInfoOf_singletons
 /--
 Singleton atoms recover conditional mutual information of ordinary
 coordinates.
+@isnad1 id=eq.0h6v.s6.bffc3f094588 from=translated src=- shape=8a5c10dc vocab=fc38462a
 -/
 theorem familyCondMutualInfo_singletons
     {Var : Type u} {alpha : Var -> Type v}
@@ -803,6 +837,7 @@ theorem familyCondMutualInfo_singletons
 /--
 Singleton source-family atoms recover conditional mutual information of the
 corresponding ordinary random variables.
+@isnad1 id=eq.0h8v.s6.ab2cb8984313 from=translated src=- shape=7206a62d vocab=d6ea14d5
 -/
 theorem familyCondMutualInfoOf_singletons
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -816,7 +851,9 @@ theorem familyCondMutualInfoOf_singletons
 
 /-! ## Elementary family information identities -/
 
-/-- Family mutual information is symmetric: `I(B;A) = I(A;B)`. -/
+/-- Family mutual information is symmetric: `I(B;A) = I(A;B)`.
+@isnad1 id=eq.0h5v.s5.da598f1ae0a3 from=translated src=- shape=992371dc vocab=b8567fa4
+-/
 theorem familyMutualInfo_swap
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -826,7 +863,9 @@ theorem familyMutualInfo_swap
   rw [Finset.union_comm b a]
   ring
 
-/-- Source-family mutual information is symmetric. -/
+/-- Source-family mutual information is symmetric.
+@isnad1 id=eq.0h7v.s5.03c111a191fc from=translated src=- shape=a2cef725 vocab=ae3a1d29
+-/
 theorem familyMutualInfoOf_swap
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -839,6 +878,7 @@ theorem familyMutualInfoOf_swap
 /--
 Family conditional mutual information is symmetric in its first two atoms:
 `I(B;A|C) = I(A;B|C)`.
+@isnad1 id=eq.0h6v.s5.74c51633a923 from=translated src=- shape=7c1cee36 vocab=8d0c5732
 -/
 theorem familyCondMutualInfo_swap
     {Var : Type u} {alpha : Var -> Type v}
@@ -849,7 +889,9 @@ theorem familyCondMutualInfo_swap
   rw [Finset.union_comm b a]
   ring
 
-/-- Source-family conditional mutual information is symmetric in its first two atoms. -/
+/-- Source-family conditional mutual information is symmetric in its first two atoms.
+@isnad1 id=eq.0h8v.s5.11a603496328 from=translated src=- shape=7e0623cc vocab=997dbb12
+-/
 theorem familyCondMutualInfoOf_swap
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -860,7 +902,9 @@ theorem familyCondMutualInfoOf_swap
   simpa only [familyCondMutualInfoOf] using
     (familyCondMutualInfo_swap (familyLawOf p X) a b c)
 
-/-- Conditioning on the empty atom leaves family entropy unchanged. -/
+/-- Conditioning on the empty atom leaves family entropy unchanged.
+@isnad1 id=eq.0h4v.s5.05c254440434 from=translated src=- shape=bfe4225d vocab=2a598d41
+-/
 @[simp]
 theorem familyCondEntropy_empty_right
     {Var : Type u} {alpha : Var -> Type v}
@@ -869,7 +913,9 @@ theorem familyCondEntropy_empty_right
     familyCondEntropy q a ∅ = familyEntropy q a := by
   simp [familyCondEntropy, familyEntropy_empty]
 
-/-- The empty atom has zero conditional entropy. -/
+/-- The empty atom has zero conditional entropy.
+@isnad1 id=eq.0h4v.s5.c82864fd8eeb from=translated src=- shape=98c3110f vocab=24de6fed
+-/
 @[simp]
 theorem familyCondEntropy_empty_left
     {Var : Type u} {alpha : Var -> Type v}
@@ -878,7 +924,9 @@ theorem familyCondEntropy_empty_left
     familyCondEntropy q ∅ b = 0 := by
   simp [familyCondEntropy]
 
-/-- Mutual information with the empty right atom is zero. -/
+/-- Mutual information with the empty right atom is zero.
+@isnad1 id=eq.0h4v.s5.55c8ac94938c from=translated src=- shape=94fcb244 vocab=6c07281f
+-/
 @[simp]
 theorem familyMutualInfo_empty_right
     {Var : Type u} {alpha : Var -> Type v}
@@ -887,7 +935,9 @@ theorem familyMutualInfo_empty_right
     familyMutualInfo q a ∅ = 0 := by
   simp [familyMutualInfo, familyEntropy_empty]
 
-/-- Conditional mutual information with the empty second atom is zero. -/
+/-- Conditional mutual information with the empty second atom is zero.
+@isnad1 id=eq.0h5v.s5.6af5a606c9d1 from=translated src=- shape=f09bebc8 vocab=fe32a063
+-/
 @[simp]
 theorem familyCondMutualInfo_empty_right
     {Var : Type u} {alpha : Var -> Type v}
@@ -898,7 +948,9 @@ theorem familyCondMutualInfo_empty_right
   simp only [Finset.empty_union, Finset.union_empty]
   ring
 
-/-- Empty conditioning reduces conditional mutual information to mutual information. -/
+/-- Empty conditioning reduces conditional mutual information to mutual information.
+@isnad1 id=eq.0h5v.s5.504b1a128b4e from=translated src=- shape=34ba46e8 vocab=d5394f38
+-/
 @[simp]
 theorem familyCondMutualInfo_empty_conditioning
     {Var : Type u} {alpha : Var -> Type v}
@@ -910,7 +962,9 @@ theorem familyCondMutualInfo_empty_conditioning
   simp only [Finset.union_empty]
   ring
 
-/-- The mutual information of an atom with itself is its entropy. -/
+/-- The mutual information of an atom with itself is its entropy.
+@isnad1 id=eq.0h4v.s5.799ea4aa8ca7 from=translated src=- shape=a4d97da3 vocab=1f4763b1
+-/
 @[simp]
 theorem familyMutualInfo_self
     {Var : Type u} {alpha : Var -> Type v}
@@ -921,7 +975,9 @@ theorem familyMutualInfo_self
   rw [Finset.union_self]
   ring
 
-/-- Family mutual information as `I(A;B) = H(A) - H(A|B)`. -/
+/-- Family mutual information as `I(A;B) = H(A) - H(A|B)`.
+@isnad1 id=eq.0h5v.s5.01e363ff18db from=translated src=- shape=f4f5baec vocab=e5f71445
+-/
 theorem familyMutualInfo_eq_entropy_sub_condEntropy
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -931,7 +987,9 @@ theorem familyMutualInfo_eq_entropy_sub_condEntropy
   unfold familyMutualInfo familyCondEntropy
   ring
 
-/-- Source-family mutual information as `I(A;B) = H(A) - H(A|B)`. -/
+/-- Source-family mutual information as `I(A;B) = H(A) - H(A|B)`.
+@isnad1 id=eq.0h7v.s6.c8f56bcbffbc from=translated src=- shape=28c7e977 vocab=181da1d3
+-/
 theorem familyMutualInfoOf_eq_entropyOf_sub_condEntropyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -946,6 +1004,7 @@ theorem familyMutualInfoOf_eq_entropyOf_sub_condEntropyOf
 /--
 Family conditional mutual information as
 `I(A;B|C) = H(A|C) - H(A|B ∪ C)`.
+@isnad1 id=eq.0h6v.s6.3966ecb332a9 from=translated src=- shape=f7638414 vocab=b0e4809a
 -/
 theorem familyCondMutualInfo_eq_condEntropy_sub_condEntropy
     {Var : Type u} {alpha : Var -> Type v}
@@ -960,6 +1019,7 @@ theorem familyCondMutualInfo_eq_condEntropy_sub_condEntropy
 /--
 Source-family conditional mutual information as
 `I(A;B|C) = H(A|C) - H(A|B ∪ C)`.
+@isnad1 id=eq.0h8v.s6.3df3073eab2f from=translated src=- shape=aff3ff6f vocab=fecc579c
 -/
 theorem familyCondMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -975,7 +1035,9 @@ theorem familyCondMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf
 
 /-! ## Binary set chain rules -/
 
-/-- Right-oriented entropy chain rule: `H(A ∪ B) = H(B) + H(A | B)`. -/
+/-- Right-oriented entropy chain rule: `H(A ∪ B) = H(B) + H(A | B)`.
+@isnad1 id=eq.0h5v.s6.c846cc56b57c from=translated src=- shape=9355a4d3 vocab=7297bd1c
+-/
 theorem familyEntropy_union_chain_rule_right
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -985,7 +1047,9 @@ theorem familyEntropy_union_chain_rule_right
   unfold familyCondEntropy
   ring
 
-/-- Left-oriented entropy chain rule: `H(A ∪ B) = H(A) + H(B | A)`. -/
+/-- Left-oriented entropy chain rule: `H(A ∪ B) = H(A) + H(B | A)`.
+@isnad1 id=eq.0h5v.s6.adf62e2f573c from=translated src=- shape=7a85caca vocab=7297bd1c
+-/
 theorem familyEntropy_union_chain_rule_left
     {Var : Type u} {alpha : Var -> Type v}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -996,7 +1060,9 @@ theorem familyEntropy_union_chain_rule_left
   rw [Finset.union_comm b a]
   ring
 
-/-- Right-oriented source-family entropy chain rule. -/
+/-- Right-oriented source-family entropy chain rule.
+@isnad1 id=eq.0h7v.s6.37823fd586b1 from=translated src=- shape=f6a4f1fb vocab=af4735e2
+-/
 theorem familyEntropyOf_union_chain_rule_right
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1007,7 +1073,9 @@ theorem familyEntropyOf_union_chain_rule_right
   simpa only [familyEntropyOf, familyCondEntropyOf] using
     (familyEntropy_union_chain_rule_right (familyLawOf p X) a b)
 
-/-- Left-oriented source-family entropy chain rule. -/
+/-- Left-oriented source-family entropy chain rule.
+@isnad1 id=eq.0h7v.s6.a724d200546a from=translated src=- shape=41d8961b vocab=af4735e2
+-/
 theorem familyEntropyOf_union_chain_rule_left
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1021,6 +1089,7 @@ theorem familyEntropyOf_union_chain_rule_left
 /--
 Mutual-information union chain rule:
 `I(A ∪ B; C) = I(A; C) + I(B; C | A)`.
+@isnad1 id=eq.0h6v.s6.751b6cd1e750 from=translated src=- shape=488d1537 vocab=aa7084db
 -/
 theorem familyMutualInfo_union_chain_rule
     {Var : Type u} {alpha : Var -> Type v}
@@ -1036,7 +1105,9 @@ theorem familyMutualInfo_union_chain_rule
   rw [Finset.union_comm b a, Finset.union_comm c a, htriple]
   ring
 
-/-- Source-family mutual-information union chain rule. -/
+/-- Source-family mutual-information union chain rule.
+@isnad1 id=eq.0h8v.s6.c974d3ca1632 from=translated src=- shape=4f63c7c8 vocab=c96d7bed
+-/
 theorem familyMutualInfoOf_union_chain_rule
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1053,6 +1124,7 @@ Conditional-mutual-information union chain rule:
 `I(A ∪ B; C | D) = I(A; C | D) + I(B; C | A ∪ D)`.
 
 The four atoms may overlap; no disjointness hypothesis is required.
+@isnad1 id=eq.0h7v.s6.50586783fae9 from=translated src=- shape=72c0d201 vocab=aa603131
 -/
 theorem familyCondMutualInfo_union_chain_rule
     {Var : Type u} {alpha : Var -> Type v}
@@ -1066,7 +1138,9 @@ theorem familyCondMutualInfo_union_chain_rule
   simp only [Finset.union_left_comm, Finset.union_comm]
   ring
 
-/-- Source-family conditional-mutual-information union chain rule. -/
+/-- Source-family conditional-mutual-information union chain rule.
+@isnad1 id=eq.0h9v.s6.c328ebfbde6d from=translated src=- shape=c4be8a22 vocab=d1aaa543
+-/
 theorem familyCondMutualInfoOf_union_chain_rule
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1178,6 +1252,7 @@ Entropy chain rule for an arbitrary ordered list of variable names.
 
 Repeated names are allowed: once a name has appeared, its later conditional
 entropy contribution is zero.
+@isnad1 id=eq.0h4v.s5.e6effc5236a0 from=translated src=- shape=d18728e7 vocab=b3f2a73c
 -/
 theorem familyEntropy_eq_entropyChain
     {Var : Type u} {alpha : Var -> Type v}
@@ -1193,7 +1268,9 @@ theorem familyEntropy_eq_entropyChain
     _ = familyEntropyChain q l :=
       (familyEntropyChain_eq_aux q l).symm
 
-/-- Source-family entropy chain rule for an arbitrary ordered list. -/
+/-- Source-family entropy chain rule for an arbitrary ordered list.
+@isnad1 id=eq.0h6v.s5.eb2cb9f061d9 from=translated src=- shape=20db30be vocab=026d61e7
+-/
 theorem familyEntropyOf_eq_entropyChain
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1208,6 +1285,7 @@ Textbook entropy chain rule for a list of distinct variable names.
 
 The `Nodup` assumption records the textbook indexing convention; the primary
 chain rule above is stronger and also handles repeated names.
+@isnad1 id=eq.1h4v.s6.90bc755b7f90 from=translated src=- shape=da748c44 vocab=fb79eeb4
 -/
 theorem familyEntropy_chain_rule_of_nodup
     {Var : Type u} {alpha : Var -> Type v}
@@ -1219,7 +1297,9 @@ theorem familyEntropy_chain_rule_of_nodup
   simpa only [familyEntropyChain] using
     familyEntropy_eq_entropyChain q l
 
-/-- Source-family textbook entropy chain rule for distinct variable names. -/
+/-- Source-family textbook entropy chain rule for distinct variable names.
+@isnad1 id=eq.1h6v.s6.27519dbec5c0 from=translated src=- shape=fc0d77bb vocab=2363d37a
+-/
 theorem familyEntropyOf_chain_rule_of_nodup
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1292,6 +1372,7 @@ private theorem familyMutualInfoChain_eq_aux
 Mutual-information chain rule for an arbitrary ordered list of variable names.
 
 Repeated names are allowed, and the atom `b` may overlap the list.
+@isnad1 id=eq.0h5v.s5.263bebbc1063 from=translated src=- shape=c7063a02 vocab=4cb506d5
 -/
 theorem familyMutualInfo_eq_mutualInfoChain
     {Var : Type u} {alpha : Var -> Type v}
@@ -1315,7 +1396,9 @@ theorem familyMutualInfo_eq_mutualInfoChain
     _ = familyMutualInfoChain q l b :=
       (familyMutualInfoChain_eq_aux q l b).symm
 
-/-- Source-family mutual-information chain rule for an arbitrary ordered list. -/
+/-- Source-family mutual-information chain rule for an arbitrary ordered list.
+@isnad1 id=eq.0h7v.s5.0bb33f46d2ce from=translated src=- shape=543ff3cb vocab=b7713095
+-/
 theorem familyMutualInfoOf_eq_mutualInfoChain
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
     [DecidableEq Var] [forall i, Fintype (alpha i)]
@@ -1330,6 +1413,7 @@ theorem familyMutualInfoOf_eq_mutualInfoChain
 Textbook mutual-information chain rule for distinct variable names.
 
 The primary chain rule above is stronger and also handles repeated names.
+@isnad1 id=eq.1h5v.s6.23566fd2fa53 from=translated src=- shape=ed271e75 vocab=483e0285
 -/
 theorem familyMutualInfo_chain_rule_of_nodup
     {Var : Type u} {alpha : Var -> Type v}
@@ -1346,6 +1430,7 @@ theorem familyMutualInfo_chain_rule_of_nodup
 /--
 Source-family textbook mutual-information chain rule for distinct variable
 names.
+@isnad1 id=eq.1h7v.s6.9fb985b4d1aa from=translated src=- shape=bfa49fd3 vocab=bb49441e
 -/
 theorem familyMutualInfoOf_chain_rule_of_nodup
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -1368,6 +1453,7 @@ variable names:
 
 Repeated names are allowed, including names already present in the
 conditioning atom.
+@isnad1 id=eq.0h6v.s6.41158256a0dc from=translated src=- shape=01586175 vocab=1e6bcc6a
 -/
 theorem familyCondMutualInfo_chain_rule
     {Var : Type u} {alpha : Var -> Type v}
@@ -1415,6 +1501,7 @@ theorem familyCondMutualInfo_chain_rule
 Source-family ordered conditional-mutual-information chain rule. As in the
 law-facing theorem, repeated names and names already in the conditioning atom
 are allowed.
+@isnad1 id=eq.0h8v.s6.faa2af4b1f58 from=translated src=- shape=00e35d01 vocab=44c9ae66
 -/
 theorem familyCondMutualInfoOf_chain_rule
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}

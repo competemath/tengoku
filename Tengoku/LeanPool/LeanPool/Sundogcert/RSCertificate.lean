@@ -71,6 +71,9 @@ def encode (f : F[X]) : Fin S.n → F := fun i => f.eval (S.nodes i)
 def agree (f : F[X]) (y : Fin S.n → F) : Finset (Fin S.n) :=
   Finset.univ.filter (fun i => f.eval (S.nodes i) = y i)
 
+/--
+@isnad1 id=iff.0h5v.s6.ad4435169baf from=translated src=- shape=91212f87 vocab=c8400030
+-/
 lemma mem_agree {f : F[X]} {y : Fin S.n → F} {i : Fin S.n} :
     i ∈ agree S f y ↔ f.eval (S.nodes i) = y i := by
   simp [agree]
@@ -87,7 +90,9 @@ omit [DecidableEq F] in
 **CORE (cheap-check soundness) — `k` evaluations DETERMINE the degree-`<k` polynomial.**
 Two polys of `natDegree < k` agreeing on a set `s` of `≥k` distinct nodes are EQUAL, by
 `Polynomial.eq_of_natDegree_lt_card_of_eval_eq` (`max deg < #s`, nodes restricted to `s` injective).
-The deductive core: the evaluation map is injective on degree-`<k` messages. -/
+The deductive core: the evaluation map is injective on degree-`<k` messages.
+@isnad1 id=eq.4h5v.s7.43ad94f563d2 from=translated src=- shape=bd1c7dbd vocab=99958e44
+-/
 theorem rs_unique {p q : F[X]} {s : Finset (Fin S.n)} (hp : p.natDegree < S.k)
     (hq : q.natDegree < S.k) (hk : S.k ≤ s.card)
     (hagree : ∀ i ∈ s, p.eval (S.nodes i) = q.eval (S.nodes i)) : p = q := by
@@ -99,7 +104,9 @@ theorem rs_unique {p q : F[X]} {s : Finset (Fin S.n)} (hp : p.natDegree < S.k)
 
 omit [DecidableEq F] in
 /-- **Node-distinctness is a one-determinant certificate.** A single nonzero Vandermonde determinant
-cheaply certifies the scheme's trust-surface hypothesis `hnodes`. -/
+cheaply certifies the scheme's trust-surface hypothesis `hnodes`.
+@isnad1 id=iff.0h2v.s6.efb00cea53b5 from=translated src=- shape=f3a0c66a vocab=1bf50e9b
+-/
 theorem nodes_distinct_cert :
     (Matrix.vandermonde S.nodes).det ≠ 0 ↔ Function.Injective S.nodes :=
   Matrix.det_vandermonde_ne_zero_iff
@@ -127,7 +134,9 @@ def Verifier.run (V : Verifier S) (y : Fin S.n → F) : Verdict :=
   | some _ => Verdict.accept
   | none => Verdict.quarantine
 
-/-- **Accept-soundness (by construction).** accept ⟹ Safe — the exhibited decoding IS a witness. -/
+/-- **Accept-soundness (by construction).** accept ⟹ Safe — the exhibited decoding IS a witness.
+@isnad1 id=safe.1h4v.s5.fe24b124f3fc from=translated src=- shape=b6bdb76b vocab=51804083
+-/
 theorem accept_sound (V : Verifier S) (y : Fin S.n → F) :
     V.run S y = Verdict.accept → Safe S y := by
   intro h
@@ -139,7 +148,9 @@ theorem accept_sound (V : Verifier S) (y : Fin S.n → F) :
 **UNIQUE DECODING (the quantitative half) — within the radius the decoding is THE unique one.** If
 `2τ+k ≤ n` (the unique-decoding radius `2τ ≤ n−k`), two valid decodings of a word are equal. Each
 agrees with `y` in `≥ n−τ` positions, so (inclusion–exclusion) they agree with EACH OTHER in
-`≥ n−2τ ≥ k` positions — whence `rs_unique`. So `accept` returns the unique message. -/
+`≥ n−2τ ≥ k` positions — whence `rs_unique`. So `accept` returns the unique message.
+@isnad1 id=eq.3h5v.s6.36297f7418a7 from=translated src=- shape=be78460a vocab=43c915c4
+-/
 theorem unique_decoding (hrad : 2 * S.τ + S.k ≤ S.n) (y : Fin S.n → F)
     {p q : F[X]} (hp : Decodes S p y) (hq : Decodes S q y) : p = q := by
   have h1 : S.n ≤ (agree S p y).card + S.τ := hp.2
@@ -158,7 +169,9 @@ theorem unique_decoding (hrad : 2 * S.τ + S.k ≤ S.n) (y : Fin S.n → F)
 and radius `τ ≥ 1` (`n ≥ 1`), at least TWO distinct words decode to the same `f`: the clean codeword
 `encode f`, and `encode f` with one position corrupted (still `≤ τ` errors). So it DETERMINES
 the message but LOSES which corruptions were applied — the determine/lose split, on the
-polynomial-evaluation core. -/
+polynomial-evaluation core.
+@isnad1 id=ex.3h3v.s6.e4bfde4c4da3 from=translated src=- shape=8aa11c8b vocab=80af88a0
+-/
 theorem corruption_fiber_nontrivial (hτ : 1 ≤ S.τ) (hn : 1 ≤ S.n)
     {f : F[X]} (hf : f.natDegree < S.k) :
     ∃ y₁ y₂ : Fin S.n → F, y₁ ≠ y₂ ∧ Decodes S f y₁ ∧ Decodes S f y₂ := by

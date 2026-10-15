@@ -50,7 +50,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
     `colWeightLb S z ≤ S.m / colBound S.H`.  The densest column CAPS the cheap bound at
     (#checks) / (column density): as density grows `1 → m`, the ceiling shrinks `m → 1`.
     Proof: `hammingNorm z ≤ Fintype.card (Fin S.m) = S.m` (a filtered support is at most the
-    whole index set), then monotonicity of `Nat`-division on the numerator. -/
+    whole index set), then monotonicity of `Nat`-division on the numerator.
+@isnad1 id=le.0h3v.s6.0ae4730bae13 from=translated src=- shape=d305d016 vocab=ba17f0d9
+-/
 theorem colWeightLb_le_card_div (S : Scheme F) (z : Fin S.m → F) :
     colWeightLb S z ≤ S.m / colBound S.H := by
   unfold colWeightLb
@@ -105,7 +107,9 @@ def curve (m : ℕ) : List (ℕ × ℕ × ℕ × ℕ) :=
     contiguous block of `< c` rows when clipped).  So the sup is exactly `c`. -/
 
 /-- Each column `j` of `bandLowerTri m c` has support cardinality `≤ c`: the nonzero rows form
-    the interval `[j, j+c)` (clipped to `< m`), of length at most `c`. -/
+    the interval `[j, j+c)` (clipped to `< m`), of length at most `c`.
+@isnad1 id=le.0h3v.s7.92ad52c07f6a from=translated src=- shape=452d30e4 vocab=070b1f38
+-/
 theorem colSupp_bandLowerTri_le (m c : ℕ) (j : Fin m) :
     (Finset.univ.filter (fun i : Fin m => bandLowerTri m c i j ≠ 0)).card ≤ c := by
   -- The support injects into `Finset.range c` via `i ↦ i - j`; bound the card by that.
@@ -139,7 +143,9 @@ theorem colSupp_bandLowerTri_le (m c : ℕ) (j : Fin m) :
   rwa [Finset.card_range] at hle
 
 /-- Column `0` of `bandLowerTri m c` (for `c ≤ m`) has support cardinality exactly `c`: the
-    nonzero rows are precisely `0, …, c-1`. -/
+    nonzero rows are precisely `0, …, c-1`.
+@isnad1 id=eq.2h2v.s8.6bffb466d1fc from=translated src=- shape=93264107 vocab=546b5b6f
+-/
 theorem colSupp_bandLowerTri_col0 (m c : ℕ) (hc : c ≤ m) (hc0 : 0 < c) :
     (Finset.univ.filter
       (fun i : Fin m => bandLowerTri m c i (⟨0, by omega⟩ : Fin m) ≠ 0)).card = c := by
@@ -169,7 +175,9 @@ theorem colSupp_bandLowerTri_col0 (m c : ℕ) (hc : c ≤ m) (hc0 : 0 < c) :
   rw [hcard, Nat.min_eq_right hc]
 
 /-- **colBound (bandLowerTri m c) = c** for `1 ≤ c ≤ m`: column `0` attains `c`, no column
-    exceeds `c`.  The c-axis of the degradation curve is a PROVEN density. -/
+    exceeds `c`.  The c-axis of the degradation curve is a PROVEN density.
+@isnad1 id=eq.2h2v.s5.8b2d84e1120a from=translated src=- shape=37780854 vocab=7caa2bdc
+-/
 theorem colBound_bandLowerTri (m c : ℕ) (hc0 : 0 < c) (hc : c ≤ m) :
     colBound (bandLowerTri m c) = c := by
   apply le_antisymm
@@ -193,7 +201,9 @@ theorem colBound_bandLowerTri (m c : ℕ) (hc0 : 0 < c) (hc : c ≤ m) :
 
 /-- `bandLowerTri m c` is lower-triangular: entries strictly above the diagonal vanish.
     Phrased as `BlockTriangular … OrderDual.toDual` (the orientation whose diagonal product is
-    `det`).  `j > i ⟹ ¬ (j ≤ i)` ⟹ entry `0`. -/
+    `det`).  `j > i ⟹ ¬ (j ≤ i)` ⟹ entry `0`.
+@isnad1 id=blocktri.0h2v.s6.ceac081667f4 from=translated src=- shape=f93728b6 vocab=085a8a65
+-/
 theorem bandLowerTri_blockTriangular (m c : ℕ) :
     (bandLowerTri m c).BlockTriangular (OrderDual.toDual : Fin m → (Fin m)ᵒᵈ) := by
   intro i j hij
@@ -203,14 +213,18 @@ theorem bandLowerTri_blockTriangular (m c : ℕ) :
   simp only [bandLowerTri, Matrix.of_apply]
   rw [ite_eq_right (by omega)]
 
-/-- Every diagonal entry of `bandLowerTri m c` is `1` (for `c ≥ 1`): `(i,i) = [i ≤ i ∧ i < i+c]`. -/
+/-- Every diagonal entry of `bandLowerTri m c` is `1` (for `c ≥ 1`): `(i,i) = [i ≤ i ∧ i < i+c]`.
+@isnad1 id=eq.1h3v.s6.30cfdfd6c0e5 from=translated src=- shape=8983e45b vocab=c011ecc0
+-/
 theorem bandLowerTri_diag (m c : ℕ) (hc0 : 0 < c) (i : Fin m) :
     bandLowerTri m c i i = 1 := by
   simp only [bandLowerTri, Matrix.of_apply]
   rw [ite_eq_left ⟨le_refl _, by omega⟩]
 
 /-- **det (bandLowerTri m c) = 1** for `c ≥ 1`: a unit lower-triangular matrix has unit
-    determinant (product of the all-`1` diagonal). -/
+    determinant (product of the all-`1` diagonal).
+@isnad1 id=eq.1h2v.s6.d38c28934613 from=translated src=- shape=b34aa740 vocab=d9a3b18d
+-/
 theorem det_bandLowerTri (m c : ℕ) (hc0 : 0 < c) :
     (bandLowerTri m c).det = 1 := by
   rw [Matrix.det_of_isLowerTriangular (bandLowerTri m c) (bandLowerTri_blockTriangular m c)]
@@ -218,7 +232,9 @@ theorem det_bandLowerTri (m c : ℕ) (hc0 : 0 < c) :
   intro i _
   exact bandLowerTri_diag m c hc0 i
 
-/-- `bandLowerTri m c` is INVERTIBLE for `c ≥ 1` (det = 1 over GF(2)). -/
+/-- `bandLowerTri m c` is INVERTIBLE for `c ≥ 1` (det = 1 over GF(2)).
+@isnad1 id=isunit.1h2v.s6.3d0a245ff70c from=translated src=- shape=1ca1fd8d vocab=10046a4b
+-/
 theorem bandLowerTri_isUnit_det (m c : ℕ) (hc0 : 0 < c) :
     IsUnit (bandLowerTri m c).det := by
   rw [det_bandLowerTri m c hc0]; exact isUnit_one
@@ -231,14 +247,18 @@ theorem bandLowerTri_isUnit_det (m c : ℕ) (hc0 : 0 < c) :
   Matrix.invertibleOfDetInvertible (bandLowerTri m c)
 
 /-- `bandDenseH` factors through `projH`:
-    `bandDenseH m c *ᵥ v = bandLowerTri m c *ᵥ (projH m *ᵥ v)`. -/
+    `bandDenseH m c *ᵥ v = bandLowerTri m c *ᵥ (projH m *ᵥ v)`.
+@isnad1 id=eq.0h3v.s7.4700a00b1ed3 from=translated src=- shape=be99299b vocab=e2addd4d
+-/
 theorem bandDenseH_mulVec (m c : ℕ) (v : Fin (2 * m) → ZMod 2) :
     bandDenseH m c *ᵥ v = bandLowerTri m c *ᵥ (projH m *ᵥ v) := by
   rw [bandDenseH, Matrix.mulVec_mulVec]
 
 /-- **SAME-CODE syndrome equivalence (parametric in `c`, for `c ≥ 1`).**  `bandDenseH` and the
     sparse `projH` have the SAME kernel relation, because `bandDenseH = band · projH` with `band`
-    INVERTIBLE (hence `mulVec`-injective).  The whole density sweep `c = 1..m` is the SAME code. -/
+    INVERTIBLE (hence `mulVec`-injective).  The whole density sweep `c = 1..m` is the SAME code.
+@isnad1 id=iff.1h4v.s8.413695f1656a from=translated src=- shape=c02ac240 vocab=3f7e3852
+-/
 theorem bandDense_syndrome_iff (m c : ℕ) (hc0 : 0 < c) (a b : Fin (2 * m) → ZMod 2) :
     bandDenseH m c *ᵥ a = bandDenseH m c *ᵥ b ↔ projH m *ᵥ a = projH m *ᵥ b := by
   have : Invertible (bandLowerTri m c) := bandLowerTriInvertible m c hc0
@@ -249,7 +269,9 @@ theorem bandDense_syndrome_iff (m c : ℕ) (hc0 : 0 < c) (a b : Fin (2 * m) → 
   · intro h
     rw [h]
 
-/-- The dual-pair law for the band-dense parity-check: `bandDenseH m c *ᵥ (s ᵥ* projG m) = 0`. -/
+/-- The dual-pair law for the band-dense parity-check: `bandDenseH m c *ᵥ (s ᵥ* projG m) = 0`.
+@isnad1 id=eq.0h3v.s7.efcd98299af0 from=translated src=- shape=39d46dae vocab=6f431c3b
+-/
 theorem hHG_bandDense (m c : ℕ) :
     ∀ s : Fin m → ZMod 2, bandDenseH m c *ᵥ (s ᵥ* projG m) = 0 := by
   intro s
@@ -269,7 +291,9 @@ def bandScheme (m c : ℕ) : Scheme (ZMod 2) where
 /-- **SAME-CODE (parametric in `c`).**  `Safe (bandScheme m c) y ↔ Safe (projScheme m) y` for
     every density `c ≥ 1`.  SAME code, SAME safety predicate, SAME true min coset weight `m` —
     only the parity-check `H` (its density `c`) differs.  Hence the WHOLE degradation curve is
-    one fixed code; only the bound's STRENGTH degrades with `c`, never SOUNDNESS. -/
+    one fixed code; only the bound's STRENGTH degrades with `c`, never SOUNDNESS.
+@isnad1 id=iff.1h3v.s6.74f8a16459e2 from=translated src=- shape=ddcff28b vocab=8422b611
+-/
 theorem safe_band_iff_proj (m c : ℕ) (hc0 : 0 < c) (y : Fin (2 * m) → ZMod 2) :
     Safe (bandScheme m c) y ↔ Safe (projScheme m) y := by
   constructor
@@ -284,7 +308,9 @@ theorem safe_band_iff_proj (m c : ℕ) (hc0 : 0 < c) (y : Fin (2 * m) → ZMod 2
     `colWeightLb (bandScheme m c) z ≤ m / c`. -/
 
 /-- The general ceiling specialized to the band scheme: at density `c`,
-    `colWeightLb (bandScheme m c) z ≤ m / colBound (bandDenseH m c)`. -/
+    `colWeightLb (bandScheme m c) z ≤ m / colBound (bandDenseH m c)`.
+@isnad1 id=le.0h3v.s6.64b58be7f9d2 from=translated src=- shape=820192cd vocab=8bf51cf5
+-/
 theorem colWeightLb_bandScheme_le (m c : ℕ) (z : Fin m → ZMod 2) :
     colWeightLb (bandScheme m c) z ≤ m / colBound (bandDenseH m c) :=
   colWeightLb_le_card_div (bandScheme m c) z

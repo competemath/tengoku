@@ -61,7 +61,9 @@ def pmfChannelKernel
     (W : alpha -> PMF beta) : Kernel alpha beta :=
   Kernel.ofFunOfCountable fun a => (W a).toMeasure
 
-/-- A PMF-valued channel induces a Markov kernel through `pmfChannelKernel`. -/
+/-- A PMF-valued channel induces a Markov kernel through `pmfChannelKernel`.
+@isnad1 id=ismarkov.0h3v.s5.9f0474f24f76 from=translated src=- shape=88ebdc50 vocab=cf2e1a91
+-/
 instance pmfChannelKernel.instIsMarkovKernel
     {alpha : Type u} {beta : Type v}
     [MeasurableSpace alpha] [Countable alpha] [MeasurableSingletonClass alpha]
@@ -71,7 +73,9 @@ instance pmfChannelKernel.instIsMarkovKernel
     change IsProbabilityMeasure (W a).toMeasure
     infer_instance⟩
 
-/-- Evaluating the kernel associated to a PMF channel recovers its PMF measure. -/
+/-- Evaluating the kernel associated to a PMF channel recovers its PMF measure.
+@isnad1 id=eq.0h4v.s5.c32b716fc55c from=translated src=- shape=f5045a70 vocab=a03d6863
+-/
 @[simp]
 theorem pmfChannelKernel_apply
     {alpha : Type u} {beta : Type v}
@@ -84,6 +88,7 @@ theorem pmfChannelKernel_apply
 /--
 The measure of an induced PMF joint law is the composition-product of the
 input measure and the associated Markov kernel.
+@isnad1 id=eq.0h4v.s6.03d814b9eae3 from=translated src=- shape=cd65b23f vocab=97fc7d0e
 -/
 theorem channelJoint_toMeasure
     {alpha : Type u} {beta : Type v}
@@ -118,6 +123,7 @@ def channelPosterior
 /--
 Sampling the posterior from the channel output law reconstructs the induced
 joint law in output-input order.
+@isnad1 id=eq.0h4v.s5.a5eade993978 from=translated src=- shape=cd413ac1 vocab=391a5313
 -/
 theorem channelPosterior_reconstructs_joint
     {alpha : Type u} {beta : Type v}
@@ -139,6 +145,7 @@ supporting model may determine `R b`; if `b` is null for the entire family,
 that row is wholly unconstrained. The support guard prevents the arbitrary
 fallback used by the total posterior on a null fiber from acquiring
 conditional-probability meaning.
+@isnad1 id=iff.0h5v.s6.33ccc9a1030e from=translated src=- shape=654a7449 vocab=9ecacf9f
 -/
 theorem isSufficientChannel_iff_exists_common_posterior
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -238,6 +245,7 @@ The first term is the divergence between the output laws. The remainder is the
 divergence between the two posterior kernels over the first output law, stated
 with mathlib composition-product measures. No support-inclusion assumption is
 needed because the identity is `ENNReal`-valued.
+@isnad1 id=eq.0h5v.s7.dc50f81f8008 from=translated src=- shape=45c4e418 vocab=dd2bc767
 -/
 theorem klDiv_channel_eq_add_posterior
     {alpha : Type u} {beta : Type v}
@@ -294,6 +302,7 @@ stochastic channel.
 
 This is the primary channel data-processing inequality. It is unconditional
 because KL divergence is valued in `ENNReal`.
+@isnad1 id=le.0h5v.s6.9ed916f2220d from=translated src=- shape=90ae11f1 vocab=3c7e3522
 -/
 theorem klDiv_channel_le
     {alpha : Type u} {beta : Type v}
@@ -348,6 +357,7 @@ Input support inclusion excludes the uninformative infinite-divergence case.
 This is the measure-level equality bridge; finite pointwise posterior forms can
 be derived by replacing almost-everywhere equality with equality on supported
 output atoms.
+@isnad1 id=iff.1h5v.s7.7d77f8ea56b4 from=translated src=- shape=9061d8b9 vocab=70c07a8d
 -/
 theorem klDiv_channel_eq_iff_posterior_ae_eq
     {alpha : Type u} {beta : Type v}
@@ -371,6 +381,7 @@ agree on every output atom reached by the first input law.
 This is the primary finite-facing equality theorem. The input support condition
 excludes infinite KL divergence, while the output support condition in the
 conclusion leaves the total posterior's arbitrary null-fiber values irrelevant.
+@isnad1 id=iff.1h5v.s6.f73729b8d0f7 from=translated src=- shape=4723e7a3 vocab=00b14c91
 -/
 theorem klDiv_channel_eq_iff_posterior_eq_on_support
     {alpha : Type u} {beta : Type v}
@@ -395,6 +406,7 @@ channel when the first input law is supported by the second.
 
 Only the input support condition is needed; no separate support hypothesis on
 the output laws is required.
+@isnad1 id=le.1h5v.s6.ebe65022ad52 from=translated src=- shape=63a7a820 vocab=58919191
 -/
 theorem toReal_klDiv_channel_le
     {alpha : Type u} {beta : Type v}
@@ -415,6 +427,7 @@ posterior PMFs agree on every output atom reached by the first input law.
 
 Input support inclusion makes both KL divergences finite, so this theorem has
 no `ENNReal.toReal` top-branch ambiguity.
+@isnad1 id=iff.1h5v.s6.815bcde16c6e from=translated src=- shape=dbf48870 vocab=0b31f294
 -/
 theorem toReal_klDiv_channel_eq_iff_posterior_eq_on_support
     {alpha : Type u} {beta : Type v}
@@ -437,7 +450,9 @@ theorem toReal_klDiv_channel_eq_iff_posterior_eq_on_support
   rw [ENNReal.toReal_eq_toReal_iff' houtput hinput,
     klDiv_channel_eq_iff_posterior_eq_on_support p q W h]
 
-/-- KL data processing for a deterministic map of a finite alphabet. -/
+/-- KL data processing for a deterministic map of a finite alphabet.
+@isnad1 id=le.0h5v.s6.bc4b81dac150 from=translated src=- shape=d27dffcb vocab=9a6c7a23
+-/
 theorem klDiv_map_le
     {alpha : Type u} {beta : Type v}
     [Finite alpha] [Finite beta]
@@ -452,6 +467,7 @@ theorem klDiv_map_le
 /--
 Real-valued KL data processing for a deterministic map, under input support
 inclusion.
+@isnad1 id=le.1h5v.s6.dcba96c278ab from=translated src=- shape=058a182f vocab=7f703210
 -/
 theorem toReal_klDiv_map_le
     {alpha : Type u} {beta : Type v}
@@ -480,6 +496,7 @@ private theorem support_bind_mono
 /--
 Appending a common channel stage cannot increase the KL divergence between
 the two intermediate output laws.
+@isnad1 id=le.0h7v.s6.2c1b62661838 from=translated src=- shape=ffee9139 vocab=ce573004
 -/
 theorem klDiv_channelComp_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -494,7 +511,9 @@ theorem klDiv_channelComp_le
   simpa only [PMF.bind_channelComp] using
     klDiv_channel_le (p.bind W) (q.bind W) V
 
-/-- Textbook-facing alias for `ENNReal`-valued KL contraction along a cascade. -/
+/-- Textbook-facing alias for `ENNReal`-valued KL contraction along a cascade.
+@isnad1 id=le.0h7v.s6.2c1b62661838 from=translated src=- shape=ffee9139 vocab=ce573004
+-/
 theorem klDiv_channel_cascade_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Finite beta] [Finite gamma]
@@ -510,6 +529,7 @@ theorem klDiv_channel_cascade_le
 /--
 Real-valued KL contraction for a channel cascade. The original input support
 condition suffices for the intermediate laws as well.
+@isnad1 id=le.1h7v.s6.85bb613d27d5 from=translated src=- shape=e4f906d9 vocab=2e97c268
 -/
 theorem toReal_klDiv_channelComp_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -527,7 +547,9 @@ theorem toReal_klDiv_channelComp_le
     toReal_klDiv_channel_le (p.bind W) (q.bind W) V
       (support_bind_mono p q W h)
 
-/-- Textbook-facing alias for real-valued KL contraction along a cascade. -/
+/-- Textbook-facing alias for real-valued KL contraction along a cascade.
+@isnad1 id=le.1h7v.s6.85bb613d27d5 from=translated src=- shape=e4f906d9 vocab=2e97c268
+-/
 theorem toReal_klDiv_channel_cascade_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Finite beta] [Finite gamma]
@@ -547,6 +569,7 @@ theorem toReal_klDiv_channel_cascade_le
 /--
 KL divergence to an invariant reference law cannot increase after one step of
 a finite stochastic channel.
+@isnad1 id=le.1h4v.s5.9ef0bf51798c from=translated src=- shape=271d50ae vocab=3c7e3522
 -/
 theorem klDiv_channel_invariant_le
     {alpha : Type u}
@@ -561,6 +584,7 @@ theorem klDiv_channel_invariant_le
 /--
 Real-valued KL divergence to an invariant reference law contracts when the
 input law is supported by that reference.
+@isnad1 id=le.2h4v.s6.e2ee6f6999e9 from=translated src=- shape=bc390e2d vocab=58919191
 -/
 theorem toReal_klDiv_channel_invariant_le
     {alpha : Type u}
@@ -578,6 +602,7 @@ entropy.
 
 The discrete measurable structure used by the KL proof remains local, so the
 statement has only the natural finite nonempty alphabet assumptions.
+@isnad1 id=le.1h3v.s5.584bec42aa22 from=translated src=- shape=ec69f0e3 vocab=564c2034
 -/
 theorem entropy_le_entropy_bind_of_uniform_invariant
     {alpha : Type u} [Fintype alpha] [Nonempty alpha]
@@ -599,6 +624,7 @@ A finite doubly stochastic channel cannot decrease Shannon entropy.
 Each `W a` is already a probability law, hence supplies the row-stochastic
 condition. The displayed hypothesis is the remaining column-sum condition.
 No transition-matrix representation is introduced.
+@isnad1 id=le.1h3v.s6.7b51ba6f29b2 from=translated src=- shape=6f44b240 vocab=7b97656b
 -/
 theorem entropy_le_entropy_bind_of_doublyStochastic
     {alpha : Type u} [Fintype alpha] [Nonempty alpha]

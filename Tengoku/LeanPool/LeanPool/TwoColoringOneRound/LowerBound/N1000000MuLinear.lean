@@ -617,6 +617,9 @@ private lemma tri_case (f : Coloring n) (k : Mu) (hk : muBoxCoeff[k.1]! = 0) :
       simp [cuv, cuw, cvw, hform3]
     simpa [haDot', hEq] using h3
 
+/--
+@isnad1 id=le.0h2v.s4.c04ece9f2352 from=translated src=- shape=f5657b35 vocab=ad306478
+-/
 theorem xFromColoring_muLinear (f : Coloring n) :
     ∀ k : Mu, aDot k (xFromColoring f) ≤ (1 : Q) := by
   classical

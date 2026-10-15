@@ -93,14 +93,18 @@ private theorem statistic_sufficient_for
 def model (t : Bool) : PMF (Bool × Bool) :=
   observationLaw (PMF.pure t)
 
-/-- The first-coordinate statistic is not globally injective. -/
+/-- The first-coordinate statistic is not globally injective.
+@isnad1 id=not.0h0v.s2.ca4c9ed591b6 from=translated src=- shape=0a791a79 vocab=dfe202ef
+-/
 theorem statistic_not_injective : Not (Function.Injective statistic) := by
   intro h
   have hpair : (false, false) = (false, true) := h rfl
   have : false = true := congrArg Prod.snd hpair
   cases this
 
-/-- For each parameter, two supported observations collide under the statistic. -/
+/-- For each parameter, two supported observations collide under the statistic.
+@isnad1 id=ex.0h1v.s6.aba9a008a279 from=translated src=- shape=ec4c4269 vocab=aecbc6ce
+-/
 theorem statistic_collides_on_support (t : Bool) :
     ∃ x y : Bool × Bool,
       x ∈ (model t).support ∧ y ∈ (model t).support ∧
@@ -109,7 +113,9 @@ theorem statistic_collides_on_support (t : Bool) :
   · simp [model, observationLaw, noiseChannel, fairBit]
   · simp [model, observationLaw, noiseChannel, fairBit]
 
-/-- Discarding the nuisance bit is sufficient for the whole model family. -/
+/-- Discarding the nuisance bit is sufficient for the whole model family.
+@isnad1 id=issuffic.0h0v.s3.8e3417c86c0c from=translated src=- shape=3217f290 vocab=28cca1b7
+-/
 theorem statistic_isSufficient : IsSufficientStatistic model statistic := by
   change IsSufficientStatistic
     (fun t : Bool => observationLaw (PMF.pure t)) statistic
@@ -118,7 +124,9 @@ theorem statistic_isSufficient : IsSufficientStatistic model statistic := by
 /-- A full-support prior used for the fixed-prior view. -/
 def fairPrior : PMF Bool := PMF.uniformOfFintype Bool
 
-/-- The fair prior reaches both parameter values. -/
+/-- The fair prior reaches both parameter values.
+@isnad1 id=eq.0h0v.s3.710823c74681 from=translated src=- shape=d672ce25 vocab=22a5f9f2
+-/
 theorem fairPrior_support : fairPrior.support = Set.univ := by
   simpa only [fairPrior, Set.top_eq_univ] using
     PMF.support_uniformOfFintype Bool
@@ -127,7 +135,9 @@ theorem fairPrior_support : fairPrior.support = Set.univ := by
 def experimentLaw : PMF (Bool × (Bool × Bool)) :=
   PMF.channelJoint fairPrior model
 
-/-- Family sufficiency gives fixed-prior sufficiency under the fair prior. -/
+/-- Family sufficiency gives fixed-prior sufficiency under the fair prior.
+@isnad1 id=issuffic.0h0v.s5.ff884695c252 from=translated src=- shape=a500c6a4 vocab=c083db84
+-/
 theorem statistic_isSufficient_fixedPrior :
     IsSufficientStatisticOf experimentLaw
       (fun z => z.1) (fun z => z.2) statistic := by
@@ -135,7 +145,9 @@ theorem statistic_isSufficient_fixedPrior :
     (isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ
       fairPrior fairPrior_support model statistic).mp statistic_isSufficient
 
-/-- The fixed-prior statistic preserves parameter-observation mutual information. -/
+/-- The fixed-prior statistic preserves parameter-observation mutual information.
+@isnad1 id=eq.0h0v.s6.5f043956df75 from=translated src=- shape=094fa1b3 vocab=83cf486b
+-/
 theorem mutualInfo_preserved_fixedPrior :
     mutualInfoOf experimentLaw (fun z => z.1)
         (fun z => statistic z.2) =
@@ -145,7 +157,9 @@ theorem mutualInfo_preserved_fixedPrior :
       experimentLaw (fun z => z.1) (fun z => z.2) statistic).mp
         statistic_isSufficient_fixedPrior
 
-/-- Fixed-prior sufficiency supplies an exact complete-law recovery channel. -/
+/-- Fixed-prior sufficiency supplies an exact complete-law recovery channel.
+@isnad1 id=ex.0h0v.s6.57b2701a8fd8 from=translated src=- shape=59e2adb2 vocab=c9e0644d
+-/
 theorem exists_exactRecovery_fixedPrior :
     ∃ R : Bool -> PMF (Bool × Bool),
       statisticTripleLawOf experimentLaw
@@ -157,7 +171,9 @@ theorem exists_exactRecovery_fixedPrior :
       experimentLaw (fun z => z.1) (fun z => z.2) statistic).mp
         statistic_isSufficient_fixedPrior
 
-/-- The same statistic is sufficient under every parameter prior. -/
+/-- The same statistic is sufficient under every parameter prior.
+@isnad1 id=issuffic.0h1v.s5.f06f38fe1540 from=translated src=- shape=5c7e34d2 vocab=d1326699
+-/
 theorem statistic_isSufficient_forall_prior :
     ∀ prior : PMF Bool,
       IsSufficientStatisticOf (PMF.channelJoint prior model)
@@ -166,7 +182,9 @@ theorem statistic_isSufficient_forall_prior :
     (isSufficientStatistic_iff_forall_isSufficientStatisticOf
       model statistic).mp statistic_isSufficient
 
-/-- The sufficient statistic satisfies the finite Fisher-Neyman factorization. -/
+/-- The sufficient statistic satisfies the finite Fisher-Neyman factorization.
+@isnad1 id=ex.0h0v.s6.7fa01c52d56a from=translated src=- shape=6f8f6c96 vocab=d8516dd3
+-/
 theorem exists_fisherNeymanFactorization :
     ∃ g : Bool -> Bool -> ENNReal, ∃ h : Bool × Bool -> ENNReal,
       (∀ t b, g t b ≠ ⊤) ∧
@@ -176,7 +194,9 @@ theorem exists_fisherNeymanFactorization :
     (isSufficientStatistic_iff_exists_fisherNeymanFactorization
       model statistic).mp statistic_isSufficient
 
-/-- The statistic preserves KL divergence between every pair of model laws. -/
+/-- The statistic preserves KL divergence between every pair of model laws.
+@isnad1 id=eq.0h2v.s5.990957238ab3 from=translated src=- shape=5ffe698a vocab=4c603dda
+-/
 theorem klDiv_preserved (s t : Bool) :
     InformationTheory.klDiv
         ((model s).map statistic).toMeasure
@@ -209,7 +229,9 @@ def overlapSignalModel : Bool -> PMF Bool
 def overlapModel (t : Bool) : PMF (Bool × Bool) :=
   observationLaw (overlapSignalModel t)
 
-/-- The overlapping model has the support inclusion required by the KL converse. -/
+/-- The overlapping model has the support inclusion required by the KL converse.
+@isnad1 id=le.0h0v.s4.7149f1dd9f8a from=translated src=- shape=7763f817 vocab=d7a56120
+-/
 theorem overlap_support_subset :
     (overlapModel false).support ⊆ (overlapModel true).support := by
   rintro ⟨b, n⟩ _
@@ -223,14 +245,18 @@ theorem overlap_support_subset :
     · simp [overlapSignalModel, biasedSignal]
   · simp [noiseChannel, fairBit]
 
-/-- The first-coordinate statistic is sufficient for the overlapping model. -/
+/-- The first-coordinate statistic is sufficient for the overlapping model.
+@isnad1 id=issuffic.0h0v.s3.738cc33a17b7 from=translated src=- shape=3217f290 vocab=aede800f
+-/
 theorem overlap_statistic_isSufficient :
     IsSufficientStatistic overlapModel statistic := by
   change IsSufficientStatistic
     (fun t : Bool => observationLaw (overlapSignalModel t)) statistic
   exact statistic_sufficient_for overlapSignalModel
 
-/-- The channel-facing binary KL equality characterizes this sufficient model. -/
+/-- The channel-facing binary KL equality characterizes this sufficient model.
+@isnad1 id=iff.0h0v.s6.87a2c1a046f3 from=translated src=- shape=2e272830 vocab=250cd7b3
+-/
 theorem overlap_channel_iff_klDiv_eq :
     IsSufficientChannel overlapModel (PMF.deterministicChannel statistic) ↔
       InformationTheory.klDiv
@@ -241,7 +267,9 @@ theorem overlap_channel_iff_klDiv_eq :
   isSufficientChannel_iff_klDiv_eq_bool overlapModel
     (PMF.deterministicChannel statistic) overlap_support_subset
 
-/-- The statistic-facing binary KL equality gives the same characterization. -/
+/-- The statistic-facing binary KL equality gives the same characterization.
+@isnad1 id=iff.0h0v.s6.ba67acc83742 from=translated src=- shape=c8eaa2b1 vocab=b7f1b2ca
+-/
 theorem overlap_statistic_iff_klDiv_eq :
     IsSufficientStatistic overlapModel statistic ↔
       InformationTheory.klDiv
@@ -262,7 +290,9 @@ def model (t : Bool) : PMF Bool := PMF.pure t
 /-- A statistic that discards the observation completely. -/
 def statistic (_ : Bool) : Unit := ()
 
-/-- The constant statistic is not sufficient for the separated model. -/
+/-- The constant statistic is not sufficient for the separated model.
+@isnad1 id=not.0h0v.s2.765c982e68a0 from=translated src=- shape=738ff70a vocab=1f6a3789
+-/
 theorem statistic_not_sufficient : Not (IsSufficientStatistic model statistic) := by
   intro h
   rw [IsSufficientStatistic, IsSufficientChannel] at h
@@ -287,13 +317,17 @@ def law : PMF Bool := PMF.uniformOfFintype Bool
 /-- A recovery channel that forgets its input and resamples the fair law. -/
 def resetRecovery (_ : Bool) : PMF Bool := law
 
-/-- The reset channel recovers the input marginal after the identity statistic. -/
+/-- The reset channel recovers the input marginal after the identity statistic.
+@isnad1 id=eq.0h0v.s3.45d268316aae from=translated src=- shape=057671f8 vocab=265c9f17
+-/
 theorem recovers_marginal : (law.map id).bind resetRecovery = law := by
   rw [PMF.map_id]
   change law.bind (fun _ => law) = law
   exact PMF.bind_const _ _
 
-/-- Marginal recovery does not reconstruct the identity input-output coupling. -/
+/-- Marginal recovery does not reconstruct the identity input-output coupling.
+@isnad1 id=ne.0h0v.s5.b61081eb45f3 from=translated src=- shape=7b97e7de vocab=96ffedc5
+-/
 theorem does_not_recover_fullJoint :
     PMF.channelJoint (law.map id) resetRecovery ≠
       (PMF.channelJoint law (PMF.deterministicChannel id)).map Prod.swap := by

@@ -72,7 +72,9 @@ def reduce3DM : Fin s → Finset (W ⊕ X ⊕ Y) :=
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
 /-- A W-tagged point `inl w` is in the reduce-set of triple `i` iff that triple's W-coordinate is
-    `w` (the other two slots are `inr`, never equal to `inl w`). -/
+    `w` (the other two slots are `inr`, never equal to `inl w`).
+@isnad1 id=iff.0h7v.s6.1f58aba89760 from=translated src=- shape=fe584652 vocab=7b270cc3
+-/
 theorem mem_reduce_inl (i : Fin s) (w : W) :
     Sum.inl w ∈ reduce3DM t i ↔ (t i).1 = w := by
   unfold reduce3DM
@@ -80,7 +82,9 @@ theorem mem_reduce_inl (i : Fin s) (w : W) :
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
 /-- An X-tagged point `inr (inl x)` is in the reduce-set of triple `i` iff that triple's
-    X-coordinate is `x`. -/
+    X-coordinate is `x`.
+@isnad1 id=iff.0h7v.s6.49eb06b4ab98 from=translated src=- shape=b91997d7 vocab=01609126
+-/
 theorem mem_reduce_inr_inl (i : Fin s) (x : X) :
     Sum.inr (Sum.inl x) ∈ reduce3DM t i ↔ (t i).2.1 = x := by
   unfold reduce3DM
@@ -88,7 +92,9 @@ theorem mem_reduce_inr_inl (i : Fin s) (x : X) :
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
 /-- A Y-tagged point `inr (inr y)` is in the reduce-set of triple `i` iff that triple's
-    Y-coordinate is `y`. -/
+    Y-coordinate is `y`.
+@isnad1 id=iff.0h7v.s6.ba9cf6669bb2 from=translated src=- shape=e9a23f21 vocab=109f90e7
+-/
 theorem mem_reduce_inr_inr (i : Fin s) (y : Y) :
     Sum.inr (Sum.inr y) ∈ reduce3DM t i ↔ (t i).2.2 = y := by
   unfold reduce3DM
@@ -97,7 +103,9 @@ theorem mem_reduce_inr_inr (i : Fin s) (y : Y) :
 /-! ### The cover counts of the reduced instance ARE the per-part filter counts. -/
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
-/-- The X3C cover count of a W-tagged point equals the W-part matching count. -/
+/-- The X3C cover count of a W-tagged point equals the W-part matching count.
+@isnad1 id=eq.0h7v.s6.c60a3eebd160 from=translated src=- shape=4dc14334 vocab=6cff7bf8
+-/
 theorem coverCount_inl (T : Finset (Fin s)) (w : W) :
     DecodingNPHard.coverCount (reduce3DM t) T (Sum.inl w)
       = (T.filter (fun i => (t i).1 = w)).card := by
@@ -107,7 +115,9 @@ theorem coverCount_inl (T : Finset (Fin s)) (w : W) :
   rw [mem_reduce_inl]
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
-/-- The X3C cover count of an X-tagged point equals the X-part matching count. -/
+/-- The X3C cover count of an X-tagged point equals the X-part matching count.
+@isnad1 id=eq.0h7v.s7.5a77ead5fbeb from=translated src=- shape=d88bface vocab=02ad9f88
+-/
 theorem coverCount_inr_inl (T : Finset (Fin s)) (x : X) :
     DecodingNPHard.coverCount (reduce3DM t) T (Sum.inr (Sum.inl x))
       = (T.filter (fun i => (t i).2.1 = x)).card := by
@@ -117,7 +127,9 @@ theorem coverCount_inr_inl (T : Finset (Fin s)) (x : X) :
   rw [mem_reduce_inr_inl]
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
-/-- The X3C cover count of a Y-tagged point equals the Y-part matching count. -/
+/-- The X3C cover count of a Y-tagged point equals the Y-part matching count.
+@isnad1 id=eq.0h7v.s7.975b3c0775be from=translated src=- shape=dfa2e38b vocab=3cc69989
+-/
 theorem coverCount_inr_inr (T : Finset (Fin s)) (y : Y) :
     DecodingNPHard.coverCount (reduce3DM t) T (Sum.inr (Sum.inr y))
       = (T.filter (fun i => (t i).2.2 = y)).card := by
@@ -135,7 +147,9 @@ omit [Fintype W] [Fintype X] [Fintype Y] in
     `Sum.forall` (applied twice, for `W ⊕ (X ⊕ Y)`) into the three slots, and the cover-count
     lemmas rewrite each slot into the corresponding per-part matching count.  So the X3C condition
     is EXACTLY `ThreeDM`'s three-fold "covered once" condition — no gadgets, just the Sum
-    bookkeeping. -/
+    bookkeeping.
+@isnad1 id=iff.0h5v.s6.63f50f9e2c9c from=translated src=- shape=b1dbc338 vocab=a228cb1c
+-/
 theorem threeDM_iff_X3C : ThreeDM t ↔ DecodingNPHard.X3C (reduce3DM t) := by
   unfold ThreeDM DecodingNPHard.X3C
   refine exists_congr (fun T => ?_)
@@ -149,7 +163,9 @@ theorem threeDM_iff_X3C : ThreeDM t ↔ DecodingNPHard.X3C (reduce3DM t) := by
 /-! ### Card lemmas — the hypotheses frontier #1 needs. -/
 
 omit [Fintype W] [Fintype X] [Fintype Y] in
-/-- Each reduce-set is a genuine 3-set: its three Sum-tagged elements are pairwise distinct. -/
+/-- Each reduce-set is a genuine 3-set: its three Sum-tagged elements are pairwise distinct.
+@isnad1 id=eq.0h6v.s5.94a3d63cf1a3 from=translated src=- shape=8d5645a2 vocab=41dce714
+-/
 theorem reduce3DM_card (i : Fin s) : (reduce3DM t i).card = 3 := by
   unfold reduce3DM
   rw [Finset.card_insert_of_notMem, Finset.card_insert_of_notMem,
@@ -158,7 +174,9 @@ theorem reduce3DM_card (i : Fin s) : (reduce3DM t i).card = 3 := by
   · simp
 
 omit [DecidableEq W] [DecidableEq X] [DecidableEq Y] in
-/-- With each part of size `q`, the X3C universe `W ⊕ X ⊕ Y` has `3q` points. -/
+/-- With each part of size `q`, the X3C universe `W ⊕ X ⊕ Y` has `3q` points.
+@isnad1 id=eq.3h4v.s6.c46213ffe74e from=translated src=- shape=02366dea vocab=a6bc5809
+-/
 theorem reduce3DM_univ_card (hW : Fintype.card W = q) (hX : Fintype.card X = q)
     (hY : Fintype.card Y = q) : Fintype.card (W ⊕ X ⊕ Y) = 3 * q := by
   rw [Fintype.card_sum, Fintype.card_sum, hW, hX, hY]
@@ -171,7 +189,9 @@ theorem reduce3DM_univ_card (hW : Fintype.card W = q) (hX : Fintype.card X = q)
     `3q` points) are discharged by `reduce3DM_card` and `reduce3DM_univ_card` — yields
     `ThreeDM t ↔ Decodes (reduce3DM t) q`.  The formalized hardness chain `3DM ≤ X3C ≤ Decodes`
     is now complete end to end; only the COMPLEXITY WRAPPING (NP class, poly-time-ness, 3DM's own
-    NP-hardness Garey–Johnson GT2, ultimately Cook–Levin) stays the named imported wall. -/
+    NP-hardness Garey–Johnson GT2, ultimately Cook–Levin) stays the named imported wall.
+@isnad1 id=iff.3h6v.s6.c25a18c8d7d5 from=translated src=- shape=a99c1111 vocab=b627db84
+-/
 theorem threeDM_iff_Decodes (hW : Fintype.card W = q) (hX : Fintype.card X = q)
     (hY : Fintype.card Y = q) :
     ThreeDM t ↔ DecodingNPHard.Decodes (reduce3DM t) q :=

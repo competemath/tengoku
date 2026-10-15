@@ -35,12 +35,16 @@ noncomputable section
 def entropy {alpha : Type u} [Fintype alpha] (p : PMF alpha) : Real :=
   ∑ a, Real.negMulLog (p a).toReal
 
-/-- The defining finite-sum formula for Shannon entropy. -/
+/-- The defining finite-sum formula for Shannon entropy.
+@isnad1 id=eq.0h2v.s5.672689c55027 from=translated src=- shape=97cbb95b vocab=55160376
+-/
 theorem entropy_eq_sum {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
     entropy p = ∑ a, Real.negMulLog (p a).toReal :=
   rfl
 
-/-- Shannon entropy is nonnegative for finite PMFs. -/
+/-- Shannon entropy is nonnegative for finite PMFs.
+@isnad1 id=le.0h2v.s4.7b19489ea8c2 from=translated src=- shape=38fc717e vocab=a8b75a04
+-/
 theorem entropy_nonneg {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
     0 <= entropy p := by
   classical
@@ -56,6 +60,7 @@ Entropy is invariant under relabeling the alphabet by an equivalence.
 
 This is one of the basic sanity checks for finite entropy: only the masses
 matter, not the names of the atoms.
+@isnad1 id=eq.0h4v.s5.5c374e7303f1 from=translated src=- shape=6a538058 vocab=d0374b38
 -/
 theorem entropy_map_equiv {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF alpha) (e : alpha ≃ beta) :
@@ -71,6 +76,7 @@ theorem entropy_map_equiv {alpha : Type u} {beta : Type v}
 /--
 Entropy is invariant under injective relabeling into a larger finite alphabet.
 Atoms outside the image of the relabeling have zero pushed-forward mass.
+@isnad1 id=eq.1h4v.s5.f762d1271f86 from=translated src=- shape=d9cb2bf6 vocab=bd0316e6
 -/
 theorem entropy_map_injective {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta]
@@ -103,7 +109,9 @@ theorem entropy_map_injective {alpha : Type u} {beta : Type v}
       intro a _ha
       rw [PMF.map_apply_of_injective p hf a]
 
-/-- A deterministic finite PMF has entropy zero. -/
+/-- A deterministic finite PMF has entropy zero.
+@isnad1 id=eq.0h2v.s4.7ed3d970dcc1 from=translated src=- shape=8eeced41 vocab=8c4e8ab4
+-/
 @[simp]
 theorem entropy_pure {alpha : Type u} [Fintype alpha] (a : alpha) :
     entropy (PMF.pure a) = 0 := by
@@ -132,7 +140,9 @@ private theorem negMulLog_eq_zero_iff_of_nonneg_of_le_one
       exact hpos.ne' hx
   · rintro (rfl | rfl) <;> simp
 
-/-- A finite PMF has entropy zero exactly when it is a pure law. -/
+/-- A finite PMF has entropy zero exactly when it is a pure law.
+@isnad1 id=iff.0h2v.s5.51ee7a038516 from=translated src=- shape=7bf9cd29 vocab=74919b3c
+-/
 theorem entropy_eq_zero_iff {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
     entropy p = 0 ↔ ∃ a, p = PMF.pure a := by
   classical
@@ -195,6 +205,7 @@ private theorem map_eq_pure_iff_eq_on_support
 /--
 The entropy of a finite-valued random variable is zero exactly when the
 variable is constant on the support of the source PMF.
+@isnad1 id=iff.0h4v.s5.4d2661c2b528 from=translated src=- shape=b6421a50 vocab=e1fcfb83
 -/
 theorem entropyOf_eq_zero_iff
     {omega : Type u} {alpha : Type v} [Fintype alpha]
@@ -204,13 +215,17 @@ theorem entropyOf_eq_zero_iff
   rw [entropyOf, entropy_eq_zero_iff]
   exact exists_congr fun a => map_eq_pure_iff_eq_on_support p X a
 
-/-- Entropy of the identity random variable is the entropy of the original law. -/
+/-- Entropy of the identity random variable is the entropy of the original law.
+@isnad1 id=eq.0h2v.s4.34326c778126 from=translated src=- shape=b62a0ce4 vocab=2615333d
+-/
 @[simp]
 theorem entropyOf_id {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
     entropyOf p id = entropy p := by
   simp [entropyOf, PMF.map_id]
 
-/-- Relabeling a finite-valued random variable by an equivalence preserves its entropy. -/
+/-- Relabeling a finite-valued random variable by an equivalence preserves its entropy.
+@isnad1 id=eq.0h6v.s5.d67b2757aff7 from=translated src=- shape=f7ffa924 vocab=12e41aa8
+-/
 theorem entropyOf_comp_equiv
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -218,7 +233,9 @@ theorem entropyOf_comp_equiv
     entropyOf p (fun omega => e (X omega)) = entropyOf p X := by
   simpa [entropyOf, Function.comp_def, PMF.map_comp] using entropy_map_equiv (p := p.map X) e
 
-/-- Applying an injective relabeling to a finite-valued random variable preserves its entropy. -/
+/-- Applying an injective relabeling to a finite-valued random variable preserves its entropy.
+@isnad1 id=eq.1h6v.s5.9371525f8f24 from=translated src=- shape=5d20147e vocab=a5aa85a5
+-/
 theorem entropyOf_comp_injective
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -233,7 +250,9 @@ abbrev jointEntropy {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) : Real :=
   entropy p
 
-/-- Swapping the two coordinates of a joint law preserves entropy. -/
+/-- Swapping the two coordinates of a joint law preserves entropy.
+@isnad1 id=eq.0h3v.s5.6eca8639393f from=translated src=- shape=b8d363ab vocab=b9435eed
+-/
 theorem entropy_map_swap {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     entropy (p.map Prod.swap) = entropy p := by
@@ -244,6 +263,7 @@ Reassociating a left-associated triple alphabet preserves entropy.
 
 This records that `H((A, B), C)` and `H(A, B, C)` are the same entropy after
 the canonical product reassociation equivalence.
+@isnad1 id=eq.0h4v.s7.0eb81c893620 from=translated src=- shape=da788cae vocab=6809491f
 -/
 theorem entropy_map_prodAssoc {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -251,7 +271,9 @@ theorem entropy_map_prodAssoc {alpha : Type u} {beta : Type v} {gamma : Type w}
     entropy (p.map (Equiv.prodAssoc alpha beta gamma)) = entropy p := by
   exact entropy_map_equiv (p := p) (Equiv.prodAssoc alpha beta gamma)
 
-/-- Reassociating a right-associated triple alphabet back to the left preserves entropy. -/
+/-- Reassociating a right-associated triple alphabet back to the left preserves entropy.
+@isnad1 id=eq.0h4v.s7.de7631b0739c from=translated src=- shape=95add795 vocab=75a9a89a
+-/
 theorem entropy_map_prodAssoc_symm
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -259,7 +281,9 @@ theorem entropy_map_prodAssoc_symm
     entropy (p.map (Equiv.prodAssoc alpha beta gamma).symm) = entropy p := by
   exact entropy_map_equiv (p := p) (Equiv.prodAssoc alpha beta gamma).symm
 
-/-- Swapping the two coordinates of a joint law preserves joint entropy. -/
+/-- Swapping the two coordinates of a joint law preserves joint entropy.
+@isnad1 id=eq.0h3v.s5.bda04ad8e5d3 from=translated src=- shape=8b2ff41d vocab=bb81b9c2
+-/
 theorem jointEntropy_map_swap {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     jointEntropy (p.map Prod.swap) = jointEntropy p :=
@@ -271,7 +295,9 @@ def jointEntropyOf {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) : Real :=
   entropyOf p fun omega => (X omega, Y omega)
 
-/-- Joint entropy of two random variables is invariant under swapping their order. -/
+/-- Joint entropy of two random variables is invariant under swapping their order.
+@isnad1 id=eq.0h6v.s5.73e467ffa8b0 from=translated src=- shape=4e80999d vocab=f08be226
+-/
 theorem jointEntropyOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -285,6 +311,7 @@ theorem jointEntropyOf_swap
 /--
 Entropy of three finite-valued random variables is invariant under reassociating
 the product alphabet.
+@isnad1 id=eq.0h8v.s6.2140aaae7b06 from=translated src=- shape=9a021f4d vocab=26419c41
 -/
 theorem entropyOf_prodAssoc
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}

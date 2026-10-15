@@ -52,7 +52,9 @@ private lemma deterministic_of_all_zero_or_one {α : Type} [Fintype α]
 
 Forward: `H = 0` means each `negMulLog(pᵢ) = 0`, forcing each `pᵢ ∈ {0, 1}`;
 the sum constraint `∑ pᵢ = 1` then gives exactly one `pᵢ = 1`.
-Backward: `1 · log 1 = 0` and `0 · log 0 = 0`. -/
+Backward: `1 · log 1 = 0` and `0 · log 0 = 0`.
+@isnad1 id=iff.0h2v.s4.8d2e19e72a9f from=translated src=- shape=c7e4316e vocab=dc431303
+-/
 theorem entropyNat_eq_zero_iff {α : Type} [Fintype α]
     (p : ProbDist α) :
     entropyNat p = 0 ↔ IsDeterministic p := by
@@ -95,7 +97,9 @@ theorem entropyNat_eq_zero_iff {α : Type} [Fintype α]
 /-- **Property 2**: `H(p) = log |α|` if and only if `p` is uniform.
 
 The forward direction uses strict concavity of `negMulLog` (strict Jensen):
-if any `pᵢ ≠ 1/|α|`, then `H(p) < log |α|`, contradicting `H(p) = log |α|`. -/
+if any `pᵢ ≠ 1/|α|`, then `H(p) < log |α|`, contradicting `H(p) = log |α|`.
+@isnad1 id=iff.0h2v.s6.4762ffc95087 from=translated src=- shape=46fe1368 vocab=964e223b
+-/
 theorem entropyNat_eq_log_card_iff {α : Type} [Fintype α] [Nonempty α]
     (p : ProbDist α) :
     entropyNat p = Real.log (Fintype.card α) ↔
@@ -148,7 +152,9 @@ theorem entropyNat_eq_log_card_iff {α : Type} [Fintype α] [Nonempty α]
 
 The proof applies `gibbs_inequality` with `q = prodDist (marginalFst p) (marginalSnd p)`,
 i.e., the product of marginals. The Gibbs sum telescopes to
-`H(X,Y) - H(X) - H(Y) ≤ 0`. -/
+`H(X,Y) - H(X) - H(Y) ≤ 0`.
+@isnad1 id=le.0h3v.s5.8daa80eb96b9 from=translated src=- shape=186e06c2 vocab=451e23a8
+-/
 theorem entropyNat_jointLe_add {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist (α × β)) :
     entropyNat p ≤ entropyNat (marginalFst p) + entropyNat (marginalSnd p) := by
@@ -210,7 +216,9 @@ open Matrix in
 /-- **Property 4** (Schur-concavity): `H(p) ≤ H(Ap)` for doubly stochastic `A`.
 
 The proof applies Jensen's inequality for `negMulLog` row-by-row with weights
-`A_{ij}`, then sums over rows and uses column-stochasticity to collapse. -/
+`A_{ij}`, then sums over rows and uses column-stochasticity to collapse.
+@isnad1 id=le.1h3v.s6.6a440409e9fd from=translated src=- shape=57ca1b04 vocab=ea0aa3af
+-/
 theorem entropyNat_doublyStochastic_le {n : Type} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℝ) (hA : A ∈ doublyStochastic ℝ n) (p : ProbDist n) :
     entropyNat p ≤ entropyNat (doublyStochasticApply A hA p) := by
@@ -235,7 +243,9 @@ theorem entropyNat_doublyStochastic_le {n : Type} [Fintype n] [DecidableEq n]
 /-- **Property 6**: conditional entropy is nonnegative.
 
 Each ratio `p(x,y)/p_X(x) ≤ 1` (since `p(x,y) ≤ ∑_y p(x,y) = p_X(x)`),
-so `log(p(x,y)/p_X(x)) ≤ 0` and each summand is nonpositive. -/
+so `log(p(x,y)/p_X(x)) ≤ 0` and each summand is nonpositive.
+@isnad1 id=le.0h3v.s5.9d376585da0e from=translated src=- shape=1233f2b4 vocab=2027816a
+-/
 theorem condEntropy_nonneg {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist (α × β)) :
     0 ≤ condEntropy p := by
@@ -254,7 +264,9 @@ theorem condEntropy_nonneg {α β : Type} [Fintype α] [Fintype β]
 /-- **Property 5**: conditioning reduces entropy, `H_X(Y) ≤ H(Y)`.
 
 From the chain rule `H(X,Y) = H(X) + H_X(Y)` and subadditivity
-`H(X,Y) ≤ H(X) + H(Y)`, we get `H_X(Y) ≤ H(Y)`. -/
+`H(X,Y) ≤ H(X) + H(Y)`, we get `H_X(Y) ≤ H(Y)`.
+@isnad1 id=le.0h3v.s5.0b33f2de0186 from=translated src=- shape=cd47186b vocab=71846af8
+-/
 theorem condEntropy_le_entropyNat {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist (α × β)) :
     condEntropy p ≤ entropyNat (marginalSnd p) :=

@@ -86,14 +86,18 @@ def mutualInfo {α β : Type} [Fintype α] [Fintype β]
 /-! ## Support lemmas -/
 
 /-- If a first marginal is zero, every joint probability with that first
-coordinate is zero (since the marginal is a sum of nonnegative terms). -/
+coordinate is zero (since the marginal is a sum of nonnegative terms).
+@isnad1 id=eq.1h5v.s6.32a27018a365 from=translated src=- shape=b42dbe7e vocab=f44a1e55
+-/
 lemma prob_eq_zero_of_marginalFst_eq_zero {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist (α × β)) (a : α) (ha : marginalFst p a = 0) (b : β) :
     p (a, b) = 0 :=
   (Finset.sum_eq_zero_iff_of_nonneg (fun b' _ => prob_nonneg p (a, b'))).mp ha b
     (Finset.mem_univ b)
 
-/-- A positive joint probability implies a positive first marginal. -/
+/-- A positive joint probability implies a positive first marginal.
+@isnad1 id=lt.1h5v.s6.594891dd3c72 from=translated src=- shape=a1ee9769 vocab=4c70077c
+-/
 lemma marginalFst_pos_of_prob_pos {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist (α × β)) (a : α) (b : β) (h : 0 < p (a, b)) :
     0 < marginalFst p a :=
@@ -102,13 +106,17 @@ lemma marginalFst_pos_of_prob_pos {α β : Type} [Fintype α] [Fintype β]
 
 /-! ## Marginals of product distributions -/
 
-/-- The first marginal of a product distribution recovers the first factor. -/
+/-- The first marginal of a product distribution recovers the first factor.
+@isnad1 id=eq.0h4v.s5.ecb6477bfbeb from=translated src=- shape=0ce20a85 vocab=54a6bc14
+-/
 theorem marginalFst_prodDist {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist α) (q : ProbDist β) :
     marginalFst (prodDist p q) = p := by
   ext a; change ∑ b, p a * q b = p a; rw [← Finset.mul_sum, prob_sum_eq_one q, mul_one]
 
-/-- The second marginal of a product distribution recovers the second factor. -/
+/-- The second marginal of a product distribution recovers the second factor.
+@isnad1 id=eq.0h4v.s5.d8b5379be812 from=translated src=- shape=9cfd0fc7 vocab=c64d107b
+-/
 theorem marginalSnd_prodDist {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist α) (q : ProbDist β) :
     marginalSnd (prodDist p q) = q := by
@@ -119,7 +127,9 @@ theorem marginalSnd_prodDist {α β : Type} [Fintype α] [Fintype β]
 /-- **Chain rule for entropy**: `H(X,Y) = H(X) + H_X(Y)`.
 
 The proof expands `H(X)` over the product type by distributing the marginal
-weight, then combines termwise using `log(p/m) = log p - log m`. -/
+weight, then combines termwise using `log(p/m) = log p - log m`.
+@isnad1 id=eq.0h3v.s5.ace5573eb80b from=translated src=- shape=a5e6aad4 vocab=e7f0f340
+-/
 theorem chain_rule {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist (α × β)) :
     entropyNat p = entropyNat (marginalFst p) + condEntropy p := by
@@ -146,7 +156,9 @@ theorem chain_rule {α β : Type} [Fintype α] [Fintype β]
 /-- **Additivity for independent distributions**: `H(X × Y) = H(X) + H(Y)`.
 
 The proof uses `log(p(a) * q(b)) = log p(a) + log q(b)` for each nonzero term,
-then separates the double sum using `∑ qᵢ = 1` and `∑ pᵢ = 1`. -/
+then separates the double sum using `∑ qᵢ = 1` and `∑ pᵢ = 1`.
+@isnad1 id=eq.0h4v.s5.ed95137a0589 from=translated src=- shape=0aec0dc8 vocab=24685701
+-/
 theorem entropyNat_prodDist {α β : Type} [Fintype α] [Fintype β]
     (p : ProbDist α) (q : ProbDist β) :
     entropyNat (prodDist p q) = entropyNat p + entropyNat q := by

@@ -28,6 +28,9 @@ open scoped unitInterval ENNReal
 namespace UpperBound
 namespace Recursive3Param
 
+/--
+@isnad1 id=eq.0h0v.s4.bb909d73efd3 from=translated src=- shape=1fb9ff8b vocab=ff429a58
+-/
 lemma p_recursive3ParamAlg_eq :
     ClassicalAlgorithm.p recursive3ParamAlg = ENNReal.ofReal (94835 / 393216 : ℝ) := by
   classical
@@ -117,11 +120,17 @@ lemma p_recursive3ParamAlg_eq :
     ← ENNReal.ofReal_add (by norm_num) (by norm_num)]
   norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.83e923051502 from=translated src=- shape=1fb9ff8b vocab=5917866f
+-/
 lemma p_recursive3ParamAlg_lt :
     ClassicalAlgorithm.p recursive3ParamAlg < ENNReal.ofReal (24118 / 100000 : ℝ) := by
   rw [p_recursive3ParamAlg_eq]
   exact (ENNReal.ofReal_lt_ofReal_iff (by norm_num)).2 (by norm_num)
 
+/--
+@isnad1 id=ex.0h0v.s5.7ed49785df10 from=translated src=- shape=fcccf011 vocab=30bc1aa2
+-/
 theorem exists_algorithm_p_lt :
     ∃ alg : ClassicalAlgorithm, ClassicalAlgorithm.p alg < ENNReal.ofReal (24118 / 100000 : ℝ) :=
   ⟨recursive3ParamAlg, p_recursive3ParamAlg_lt⟩

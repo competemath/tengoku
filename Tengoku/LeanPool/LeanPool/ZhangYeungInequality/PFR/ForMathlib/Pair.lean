@@ -23,6 +23,9 @@ abbrev prod {Ω S T : Type*} (X : Ω → S) (Y : Ω → T) (ω : Ω) : S × T :=
 
 open scoped ZhangYeungPFR
 
+/--
+@isnad1 id=eq.0h6v.s5.b6286202e5de from=translated src=- shape=648288e8 vocab=93269e07
+-/
 @[simp]
 lemma prod_eq {Ω S T : Type*} {X : Ω → S} {Y : Ω → T} {ω : Ω} :
     (⟨ X, Y ⟩ : Ω → S × T) ω = (X ω, Y ω) := rfl

@@ -44,7 +44,9 @@ product of two distinct primes (the "split" case) — iff the Legendre symbol
 `(d/p) = 1`. This is the remaining case of the prime-classification iff
 trichotomy, complementing `prime_inert_iff` (`(d/p) = -1`) and
 `prime_ramified_iff` (`(d/p) = 0`). The proof composes the latter two with
-the trichotomy of `legendreSym p d ∈ {-1, 0, 1}`. -/
+the trichotomy of `legendreSym p d ∈ {-1, 0, 1}`.
+@isnad1 id=iff.2h2v.s7.62a5c750f351 from=translated src=- shape=4ec74287 vocab=b25a477e
+-/
 theorem prime_split_iff [Fact p.Prime] (hp2 : p ≠ 2)
     (hd : d % 4 = 0 ∨ d % 4 = 1) :
     ((Ideal.span {(p : QuadraticOrder d)}).IsRadical

@@ -50,7 +50,9 @@ def RemainingDomain (n : ℕ) : Set (Fin (2 * n + 2)) :=
     Proof: for x ≥ 2, π(x) ≠ 0 because π(1) = 0 and π is injective,
     so x = 1, contradicting x ≥ 2. Similarly π(x) ≠ 1 because
     π(0) = 1 and π is injective, so x = 0, contradicting x ≥ 2.
-    Therefore π(x) ≥ 2. -/
+    Therefore π(x) ≥ 2.
+@isnad1 id=mapsto.2h2v.s9.6cae0fcc7aaf from=translated src=- shape=7ddc8fbe vocab=f8c964a7
+-/
 lemma mapsTo_remaining {π : Equiv.Perm (Fin (2 * n + 2))}
     (h₀ : π ⟨0, by omega⟩ = ⟨1, by omega⟩)
     (h₁ : π ⟨1, by omega⟩ = ⟨0, by omega⟩) :
@@ -101,7 +103,9 @@ def contractZeroOne (π : Equiv.Perm (Fin (2 * n + 2)))
 
 /-- contractZeroOne preserves the pairing property.
     If π is a fixed-point-free involution on Fin(2n+2) with π(0)=1,
-    then contractZeroOne π is a fixed-point-free involution on Fin(2n). -/
+    then contractZeroOne π is a fixed-point-free involution on Fin(2n).
+@isnad1 id=other.4h2v.s10.2c56d67bf102 from=translated src=- shape=87f3bbca vocab=416a228e
+-/
 theorem contractZeroOne_isPairing {π : Equiv.Perm (Fin (2 * n + 2))}
     (h₀ : π ⟨0, by omega⟩ = ⟨1, by omega⟩)
     (h₁ : π ⟨1, by omega⟩ = ⟨0, by omega⟩)

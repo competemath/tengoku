@@ -92,7 +92,9 @@ and every coupling `π` of `(μ, ν)`:
 is `⊤` the bound is trivial; otherwise `edist`-integrability of `π` gives
 `dist`-integrability, change of variables through the marginals rewrites
 `∫φ dμ - ∫φ dν = ∫(φ(z.1) - φ(z.2)) dπ`, and `|φ(z.1) - φ(z.2)| ≤ dist(z.1, z.2)`
-(1-Lipschitz) closes it (integrability via the finite first moments of `μ`, `ν`). -/
+(1-Lipschitz) closes it (integrability via the finite first moments of `μ`, `ν`).
+@isnad1 id=le.2h4v.s6.c13d028c3ff9 from=translated src=- shape=c1aeb058 vocab=ac77f523
+-/
 theorem wasserstein1_le_wasserstein1Coupling
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α]
@@ -223,7 +225,9 @@ noncomputable def wassersteinCostCoupling
     ∫⁻ z, ENNReal.ofReal (c z.1 z.2) ∂π
 
 /-- At `c = dist`, the cost-generic coupling cost reduces to `wasserstein1Coupling`
-(since `edist x y = ofReal (dist x y)`). -/
+(since `edist x y = ofReal (dist x y)`).
+@isnad1 id=eq.0h3v.s5.7726ead08d35 from=translated src=- shape=28cdbab7 vocab=ac28b8b3
+-/
 lemma wasserstein1Coupling_eq
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] (μ ν : Measure α) :
     wasserstein1Coupling μ ν = wassersteinCostCoupling (fun x y => dist x y) μ ν := by
@@ -240,7 +244,9 @@ Vlasov-specific), stated cost-generically over a continuous pseudometric cost.
 
 /-- **Symmetry of the coupling cost.**
 For a symmetric cost, `wassersteinCostCoupling c μ ν = wassersteinCostCoupling c ν μ`
-(push a coupling forward under `Prod.swap`). -/
+(push a coupling forward under `Prod.swap`).
+@isnad1 id=eq.2h4v.s6.316f8f28d7a9 from=translated src=- shape=6ffc8d3a vocab=77277332
+-/
 theorem wassersteinCostCoupling_comm
     {α : Type*} [MeasurableSpace α]
     (c : α → α → ℝ) (hc_symm : ∀ x y, c x y = c y x)
@@ -274,7 +280,9 @@ its `ρ`-marginal (`condKernel`) and re-binding along `π₁`'s `ρ`-marginal yi
 coupling `π₃` of `(μ, ν)` whose cost is at most the sum of the two costs (ground-cost
 triangle `c x z ≤ c x y + c y z`).  The load-bearing facts are the two marginals
 (`map fst π₃ = μ` via `fst_compProd`; `map snd π₃ = ν` via `snd_compProd` + the
-`bind`/`map`/`comap` law). -/
+`bind`/`map`/`comap` law).
+@isnad1 id=ex.4h7v.s7.94644eb55ca0 from=translated src=- shape=0c853e95 vocab=7b345573
+-/
 theorem exists_coupling_glue
     {α : Type*} [MeasurableSpace α] [StandardBorelSpace α]
     (c : α → α → ℝ)
@@ -383,7 +391,9 @@ theorem exists_coupling_glue
 
 /-- **Triangle inequality for the
 coupling cost.**  Gluing of couplings through a common middle measure
-(`exists_coupling_glue`), then the `iInf` arithmetic. -/
+(`exists_coupling_glue`), then the `iInf` arithmetic.
+@isnad1 id=le.2h5v.s6.f3ee33a1e631 from=translated src=- shape=c202c307 vocab=40cb37cd
+-/
 theorem wassersteinCostCoupling_triangle
     {α : Type*} [MeasurableSpace α] [StandardBorelSpace α]
     (c : α → α → ℝ)
@@ -435,7 +445,9 @@ theorem wassersteinCostCoupling_triangle
 /-- **Graph-coupling bound.**  The
 coupling cost between `μ` and a pushforward `Measure.map T μ` is at most the
 integrated transport cost of `T`, witnessed by the graph coupling
-`(id, T)_# μ`. -/
+`(id, T)_# μ`.
+@isnad1 id=le.2h4v.s6.7ab6ca917133 from=translated src=- shape=5f27c0bd vocab=df831654
+-/
 theorem wassersteinCostCoupling_map_le
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α]
@@ -462,7 +474,9 @@ theorem wassersteinCostCoupling_map_le
 Given a measurable pairwise-disjoint partition `As : ℕ → Set α` covering `univ` with
 representatives `as : ℕ → α` and a fallback point `x₀`, the truncated step map
 `T x = as n` when `x ∈ As n` for some `n < N`, `T x = x₀` otherwise, is measurable
-and has finite range contained in `{as n | n < N} ∪ {x₀}`. -/
+and has finite range contained in `{as n | n < N} ∪ {x₀}`.
+@isnad1 id=ex.2h5v.s7.d9f18aa6e603 from=translated src=- shape=6d37345a vocab=53590683
+-/
 lemma finiteRange_approxMap_measurable
     {α : Type*} [MeasurableSpace α]
     (As : ℕ → Set α) (hAs_mble : ∀ n, MeasurableSet (As n))
@@ -551,7 +565,9 @@ lemma finiteRange_approxMap_measurable
 /-- **Integrable nonneg → lintegral ofReal finite.**
 If `f : α → ℝ` is integrable with respect to `μ` and a.e. nonneg, then
 `∫⁻ x, ENNReal.ofReal (f x) ∂μ ≠ ∞`.
-Key tools: `hasFiniteIntegral_iff_ofReal` and `Integrable.hasFiniteIntegral`. -/
+Key tools: `hasFiniteIntegral_iff_ofReal` and `Integrable.hasFiniteIntegral`.
+@isnad1 id=ne.2h3v.s6.a55fad796af4 from=translated src=- shape=38132fe4 vocab=04e60cc0
+-/
 lemma lintegral_ofReal_ne_top_of_integrable_nonneg
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f : α → ℝ} (hf : Integrable f μ) (hfnn : ∀ᵐ x ∂μ, 0 ≤ f x) :
@@ -562,7 +578,9 @@ lemma lintegral_ofReal_ne_top_of_integrable_nonneg
 /-- **Tail cost control via absolute continuity.**
 If `∫⁻ x, ENNReal.ofReal (f x) ∂μ ≠ ∞` and `μ ((S n)ᶜ) → 0` as `n → ∞`, then the tail
 costs `∫⁻ x in (S n)ᶜ, ENNReal.ofReal (f x) ∂μ → 0`.
-Follows from `MeasureTheory.tendsto_setLIntegral_zero` (absolute continuity of the integral). -/
+Follows from `MeasureTheory.tendsto_setLIntegral_zero` (absolute continuity of the integral).
+@isnad1 id=tendsto.2h4v.s6.373094428b27 from=translated src=- shape=aa7ab15c vocab=4e8712dd
+-/
 lemma lintegral_ofReal_tail_tendsto_zero
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f : α → ℝ} (hfint : ∫⁻ x, ENNReal.ofReal (f x) ∂μ ≠ ∞)
@@ -576,7 +594,9 @@ lemma lintegral_ofReal_tail_tendsto_zero
 For a step map `T` with `T x = as n` on `As n` (for `n < N`), where we have a pointwise
 bound `∀ n < N, ∀ x ∈ As n, c x (T x) ≤ δ` (established from the cell diameter), the
 lintegral of `ENNReal.ofReal (c x (T x))` over the kept cells is at most `ENNReal.ofReal δ`
-since `μ univ = 1`. -/
+since `μ univ = 1`.
+@isnad1 id=le.1h7v.s6.ead14de8d337 from=translated src=- shape=b8332fa0 vocab=d5a56910
+-/
 lemma lintegral_ofReal_kept_cells_le
     {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ]
@@ -603,7 +623,9 @@ lemma lintegral_ofReal_kept_cells_le
 /-- **Tail mass of a measurable cover → 0.**
 For a finite measure and a measurable cover `⋃ n, As n = univ`, the mass of the complement
 of the partial unions `⋃ j < n, As j` tends to `0` (continuity from above:
-`⋂ n (⋃ j<n As j)ᶜ = ∅`). -/
+`⋂ n (⋃ j<n As j)ᶜ = ∅`).
+@isnad1 id=tendsto.2h3v.s6.c50b8bc4502f from=translated src=- shape=76898fe3 vocab=9c6f239c
+-/
 lemma measure_compl_biUnion_range_tendsto_zero
     {α : Type*} [MeasurableSpace α] {μ : Measure α} [IsFiniteMeasure μ]
     {As : ℕ → Set α} (hAs_mble : ∀ n, MeasurableSet (As n))
@@ -639,7 +661,9 @@ lemma measure_compl_biUnion_range_tendsto_zero
 /-- **Finite-range approximation.**
 For a probability measure with finite first moment, the transport cost to a
 finite-range pushforward can be made arbitrarily small (partition into
-small-diameter cells + finite-moment tail control). -/
+small-diameter cells + finite-moment tail control).
+@isnad1 id=ex.4h5v.s7.5640f4d2ad72 from=translated src=- shape=01692ecf vocab=ab9a6e68
+-/
 theorem exists_finiteRange_map_cost_le
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α]
@@ -747,7 +771,9 @@ variable {m n : Type*} [Fintype m] [Fintype n]
 /-- **Primal attainment for the finite transportation LP.**  The feasible polytope
 `{P ≥ 0 : rowsums = a, colsums = b}` is compact (closed + bounded in finite dimension) and
 nonempty (it contains the product `a ⊗ b`), so the linear cost
-`⟨Cost, P⟩ = ∑ᵢⱼ Costᵢⱼ Pᵢⱼ` attains its minimum on it. -/
+`⟨Cost, P⟩ = ∑ᵢⱼ Costᵢⱼ Pᵢⱼ` attains its minimum on it.
+@isnad1 id=ex.4h5v.s8.cd3dc5ec1ebe from=translated src=- shape=4abcec29 vocab=9c3f0da6
+-/
 theorem exists_transport_min
     (a : m → ℝ) (b : n → ℝ) (Cost : m → n → ℝ)
     (ha : ∀ i, 0 ≤ a i) (hb : ∀ j, 0 ≤ b j)
@@ -810,7 +836,9 @@ Farkas).  The image of the orthant `{(P, s) : P ≥ 0, s ≥ 0}` under the affin
 relaxed-cost map `Φ(P, s) = (rowsums P, colsums P, ⟨Cost, P⟩ + s)` is closed.  Proof by
 Bolzano–Weierstrass: a convergent sequence in the image has convergent marginals, hence the
 matrices `Pₖ` are bounded (mass conservation), so a subsequence converges to a feasible limit
-`P*` matching the limit marginals; the slack `s* = (limit cost coord) − ⟨Cost, P*⟩ ≥ 0`. -/
+`P*` matching the limit marginals; the slack `s* = (limit cost coord) − ⟨Cost, P*⟩ ≥ 0`.
+@isnad1 id=isclosed.0h3v.s7.683e9c273942 from=translated src=- shape=7732f004 vocab=17cf4863
+-/
 theorem isClosed_transport_cone (Cost : m → n → ℝ) :
     IsClosed {w : (m → ℝ) × (n → ℝ) × ℝ |
       ∃ (P : m → n → ℝ) (s : ℝ), (∀ i j, 0 ≤ P i j) ∧ 0 ≤ s ∧
@@ -950,7 +978,9 @@ for every `ε > 0` there is a dual-feasible pair `(u, v)` whose value exceeds `V
 `ProperCone.hyperplane_separation_point` yields a separating functional `f`; reading off
 `λ = f(0,0,1)`, `Uᵢ = f(eᵢ,0,0)`, `Wⱼ = f(0,eⱼ,0)` gives `Uᵢ + Wⱼ + λ·Costᵢⱼ ≥ 0` and
 `∑aᵢUᵢ + ∑bⱼWⱼ + λ(V−ε) < 0`; `λ > 0` is forced (else the optimal `P` contradicts the
-strict inequality), and `u = −U/λ`, `v = −W/λ` are feasible with value `> V − ε`. -/
+strict inequality), and `u = −U/λ`, `v = −W/λ` are feasible with value `> V − ε`.
+@isnad1 id=ex.5h7v.s8.0011a39591c8 from=translated src=- shape=bacce7bf vocab=211ec220
+-/
 theorem finiteTransport_dual_eps
     (a : m → ℝ) (b : n → ℝ) (Cost : m → n → ℝ)
     (P : m → n → ℝ) (hPnn : ∀ i j, 0 ≤ P i j)
@@ -1102,7 +1132,9 @@ theorem finiteTransport_dual_eps
 `P` (`exists_transport_min`) with an ε-optimal dual pair (`finiteTransport_dual_eps`): for
 every `ε > 0`, an optimal feasible plan `P` and a dual-feasible `(u, v)` with the primal
 cost `⟨Cost, P⟩` within `ε` of the dual value.  The downstream KR bridge then sends the ε to
-the Kantorovich sup (no attainment needed — ε-optimal throughout). -/
+the Kantorovich sup (no attainment needed — ε-optimal throughout).
+@isnad1 id=ex.5h6v.s8.bbb050fe0781 from=translated src=- shape=7cd6dd52 vocab=211ec220
+-/
 theorem finiteTransport_dual_eps_plan
     (a : m → ℝ) (b : n → ℝ) (Cost : m → n → ℝ)
     (ha : ∀ i, 0 ≤ a i) (hb : ∀ j, 0 ≤ b j)
@@ -1128,7 +1160,9 @@ plan `P` and a dual pair within `ε`; the matrix→measure bridge sends `P` to a
 realising `coupling-inf ≤ ofReal⟨Cost,P⟩` and identifies `∫u dμ' = ∑ aᵢ uᵢ` (integral against
 a finitely-supported pushforward), and the dual potentials lift to measurable `α → ℝ`.  The `ε`
 is consumed at the Kantorovich sup downstream — no attainment needed.  **Metric-free**: no
-symmetry/triangle (those enter only in the c-transform `cTransform_dual_witness`). -/
+symmetry/triangle (those enter only in the c-transform `cTransform_dual_witness`).
+@isnad1 id=ex.6h7v.s8.5cd551c6cc9d from=translated src=- shape=f44a4157 vocab=0cc55add
+-/
 theorem finiteRange_transportation_dual
     {α : Type*} [MeasurableSpace α]
     [MeasurableSingletonClass α]
@@ -1329,7 +1363,9 @@ supports and `c` a (pseudo)metric cost, the c-transform
 `g a ≥ u a` (the `a' = a` term, `c a a = 0`) and `g b ≤ −v b`
 (from `u a − c a b ≤ −v b`), so `∫u dμ' + ∫v dν' ≤ ∫g dμ' − ∫g dν'`.  **This is where
 `hc_triangle`/`hc_symm` are load-bearing** — it converts the Farkas dual *pair* into the
-single 1-Lipschitz potential the Kantorovich dual sup ranges over. -/
+single 1-Lipschitz potential the Kantorovich dual sup ranges over.
+@isnad1 id=ex.11h8v.s8.565729f67a51 from=translated src=- shape=2fa4fb8c vocab=977d8bfe
+-/
 theorem cTransform_dual_witness
     {α : Type*} [MeasurableSpace α]
     (c : α → α → ℝ) (hc_self : ∀ x, c x x = 0)
@@ -1432,7 +1468,9 @@ duality.**  For finitely-supported (finite-range pushforward) probability measur
 the coupling-infimum is at most the dual-supremum.  Proof = finite transportation LP
 duality (Farkas, `finiteRange_transportation_dual`) producing a dual pair, then the
 c-transform (`cTransform_dual_witness`) converting it to a single globally-admissible
-potential, which the dual sup dominates (`le_iSup₂`). -/
+potential, which the dual sup dominates (`le_iSup₂`).
+@isnad1 id=le.9h6v.s7.d39d0cdfbffd from=translated src=- shape=e96aa3fe vocab=840e4d37
+-/
 theorem wassersteinCostCoupling_le_dual_of_finiteRange
     {α : Type*} [MeasurableSpace α]
     [MeasurableSingletonClass α]
@@ -1473,7 +1511,9 @@ dual cost between a pushforward `Measure.map T μ` and `μ` is at most the integ
 transport cost of `T`.  Direct dual-side analogue of `wassersteinCostCoupling_map_le`:
 for any `c`-admissible test `f` (oscillation `≤ c`, hence continuous), the change of
 variables `∫ f d(T_# μ) = ∫ f∘T dμ` plus `|f(Tx) − f x| ≤ c x (Tx)` gives the bound;
-the finite `c`-moment `hμ_cm` controls test-function integrability. -/
+the finite `c`-moment `hμ_cm` controls test-function integrability.
+@isnad1 id=le.6h5v.s7.48c3debbbd3a from=translated src=- shape=16186e87 vocab=91e316f9
+-/
 theorem wassersteinCost_dual_singleMap_le
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α]
@@ -1563,7 +1603,9 @@ pushforward.**  A `c`-admissible test function changes value by at most the
 transport cost, so the dual sup over `(T_# μ, S_# ν)` exceeds that over `(μ, ν)`
 by at most the two transport costs.  Dual triangle (`wassersteinCost_triangle`)
 through `μ` then `ν`, with each single-map leg bounded by
-`wassersteinCost_dual_singleMap_le`. -/
+`wassersteinCost_dual_singleMap_le`.
+@isnad1 id=le.8h7v.s8.6985fd88e359 from=translated src=- shape=f7cf05f9 vocab=d979b43e
+-/
 theorem wassersteinCost_dual_le_add_map
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α]
@@ -1623,7 +1665,9 @@ is reached ε-optimally.  Stated cost-generically over a continuous pseudometric
 ε/2` (`wassersteinCost_dual_le_add_map`).  Chain → `W_c(μ,ν) ≤ dual(μ,ν) + ε`;
 `ε → 0` (`ENNReal.le_of_forall_pos_le_add`).  The triangle step needs
 `StandardBorelSpace α` (disintegration); consumers instantiate at the Polish
-`PhaseSpace d`. -/
+`PhaseSpace d`.
+@isnad1 id=le.8h5v.s8.d325e7858761 from=translated src=- shape=1759490a vocab=82dabcc0
+-/
 theorem wassersteinCostCoupling_le_dual
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α] [StandardBorelSpace α]
@@ -1692,7 +1736,9 @@ theorem wassersteinCostCoupling_le_dual
 
 /-- KR duality at `c = dist`: `wasserstein1 = wasserstein1Coupling`.  Combines the
 hard-direction inequality `wassersteinCostCoupling_le_dual` with the easy direction
-`wasserstein1_le_wasserstein1Coupling`. -/
+`wasserstein1_le_wasserstein1Coupling`.
+@isnad1 id=eq.2h4v.s7.27354c6fca03 from=translated src=- shape=fc6d2ea3 vocab=12949ff6
+-/
 theorem wasserstein1_eq_coupling
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α] [StandardBorelSpace α]
@@ -1722,7 +1768,9 @@ This is the *generic α/β shape* — the codomain types `α'`, `β'` can be
 arbitrary measurable spaces, not necessarily equal to the domain.  This
 matters because the characteristic-flow application uses
 `(Prod.map Φ Ψ)` with `Φ` and `Ψ` distinct maps; the diagonal
-case `α' = α, Φ = Ψ` is a specialization. -/
+case `α' = α, Φ = Ψ` is a specialization.
+@isnad1 id=iscoupli.3h9v.s6.8a20fe669d81 from=translated src=- shape=9e747762 vocab=3ff50822
+-/
 lemma IsCoupling.map {α β α' β' : Type*}
     [MeasurableSpace α] [MeasurableSpace β]
     [MeasurableSpace α'] [MeasurableSpace β']
@@ -1753,7 +1801,9 @@ pushed-forward cost.  This is the "iInf trick":
 Used in the dobrushin proof: applied with `Φ`, `Ψ` the characteristic
 flows of `f`, `g` at time `t` (or the difference flow), this turns a
 W₁-bound on `(f_t, g_t)` into a coupling-cost bound on `(f_0, g_0)`
-that can be controlled by Gronwall. -/
+that can be controlled by Gronwall.
+@isnad1 id=le.6h6v.s8.5b0e52cb5dc3 from=translated src=- shape=317b57b2 vocab=d4faf4fd
+-/
 lemma wasserstein1_pushforward_le_iInf
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α] [BorelSpace α]
     [SecondCountableTopology α]

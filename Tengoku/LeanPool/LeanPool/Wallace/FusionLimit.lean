@@ -43,7 +43,9 @@ def pointwiseLimitCharacter
     have hy := (hf y).tendsto_limUnder
     simpa only [map_add] using hx.add hy
 
-/-- The defining sequence converges pointwise to `pointwiseLimitCharacter`. -/
+/-- The defining sequence converges pointwise to `pointwiseLimitCharacter`.
+@isnad1 id=tendsto.1h3v.s8.583bc3d63c65 from=translated src=- shape=9b3057c4 vocab=10a23bf5
+-/
 theorem tendsto_pointwiseLimitCharacter
     (f : ℕ → G →+ UnitAddCircle)
     (hf : ∀ x, CauchySeq (fun n ↦ f n x)) (x : G) :

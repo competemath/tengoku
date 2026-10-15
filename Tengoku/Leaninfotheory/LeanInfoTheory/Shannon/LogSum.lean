@@ -384,12 +384,16 @@ def logSumTerm (a b : NNReal) : EReal :=
   ((a : ENNReal) : EReal) *
     ENNReal.log ((a : ENNReal) / (b : ENNReal))
 
-/-- A zero numerator contributes zero to the extended log-sum. -/
+/-- A zero numerator contributes zero to the extended log-sum.
+@isnad1 id=eq.0h1v.s4.e62f4a129c80 from=translated src=- shape=d7485c18 vocab=8dd44234
+-/
 theorem logSumTerm_zero_left (b : NNReal) :
     logSumTerm 0 b = 0 := by
   simp [logSumTerm]
 
-/-- A positive numerator over a zero denominator contributes `top`. -/
+/-- A positive numerator over a zero denominator contributes `top`.
+@isnad1 id=eq.1h1v.s4.9e0f7f59e7c5 from=translated src=- shape=cea6ae05 vocab=fef91278
+-/
 theorem logSumTerm_pos_zero {a : NNReal} (ha : a ≠ 0) :
     logSumTerm a 0 = ⊤ := by
   have ha' : (a : ENNReal) ≠ 0 := ENNReal.coe_ne_zero.mpr ha
@@ -400,7 +404,9 @@ theorem logSumTerm_pos_zero {a : NNReal} (ha : a ≠ 0) :
   rw [hdiv, ENNReal.log_top]
   exact EReal.coe_ennreal_mul_top ha'
 
-/-- An extended log-sum term is never `bottom`. -/
+/-- An extended log-sum term is never `bottom`.
+@isnad1 id=ne.0h2v.s3.ba7e7803c828 from=translated src=- shape=20072a53 vocab=2578c980
+-/
 theorem logSumTerm_ne_bot (a b : NNReal) :
     logSumTerm a b ≠ ⊥ := by
   rw [logSumTerm, EReal.mul_ne_bot]
@@ -416,7 +422,9 @@ theorem logSumTerm_ne_bot (a b : NNReal) :
     intro hlog
     exact hratio (ENNReal.log_eq_bot_iff.1 hlog)
 
-/-- Every finite selected sum of extended log-sum terms is never `bottom`. -/
+/-- Every finite selected sum of extended log-sum terms is never `bottom`.
+@isnad1 id=ne.0h4v.s5.2c8b66f8eb88 from=translated src=- shape=df0af9e8 vocab=e565aff1
+-/
 theorem sum_logSumTerm_ne_bot {ι : Type u}
     (s : Finset ι) (a b : ι → NNReal) :
     (∑ i ∈ s, logSumTerm (a i) (b i)) ≠ ⊥ := by
@@ -488,6 +496,7 @@ Finite log-sum inequality with the zero-safe conventions of `logSumTerm`.
 
 In particular, a selected positive numerator over a zero denominator makes the
 right-hand side `top`; no support or positivity guard is required.
+@isnad1 id=le.0h4v.s5.a044dbe204f9 from=translated src=- shape=c048006c vocab=1b2a701d
 -/
 theorem logSum_inequality {ι : Type u}
     (s : Finset ι) (a b : ι → NNReal) :
@@ -540,6 +549,7 @@ Equality in the zero-safe finite log-sum inequality.
 Equality holds exactly when all active selected pairs have one common
 `ENNReal` numerator-to-denominator ratio. Selected `(0, 0)` pairs are inactive;
 the common ratio may be finite or `top`.
+@isnad1 id=iff.0h4v.s6.54e031592953 from=translated src=- shape=61113b8d vocab=d3d7bd8d
 -/
 theorem logSum_eq_iff_exists_constant_ratio {ι : Type u}
     (s : Finset ι) (a b : ι → NNReal) :
@@ -687,6 +697,7 @@ Guarded Real finite log-sum inequality.
 
 The support guard excludes positive-over-zero selected pairs while permitting
 selected `(0, 0)` pairs.
+@isnad1 id=le.1h4v.s7.5c2d0e8cf69c from=translated src=- shape=9b87ed4e vocab=a4ea911f
 -/
 theorem real_logSum_inequality_of_support {ι : Type u}
     (s : Finset ι) (a b : ι → NNReal)
@@ -702,6 +713,7 @@ theorem real_logSum_inequality_of_support {ι : Type u}
 /--
 Equality in the guarded Real finite log-sum inequality holds exactly when all
 active selected pairs have one common finite ratio.
+@isnad1 id=iff.1h4v.s7.7841277e77cf from=translated src=- shape=d939e042 vocab=a6e74f3a
 -/
 theorem real_logSum_eq_iff_exists_constant_ratio_of_support
     {ι : Type u} (s : Finset ι) (a b : ι → NNReal)

@@ -148,6 +148,9 @@ private lemma sum_A_over_baseOrbit_eq_N {k : DirIdx} (u : BaseOrbit k) (a d : Di
   exact hsum_sub.trans hcardInter
 
 -- `A`-compression: `(B_r)ᴴ * A_d * (B_r)` computed via intersection numbers.
+/--
+@isnad1 id=eq.0h2v.s8.cbc5205ddca8 from=translated src=- shape=0418fd77 vocab=c3fc3e27
+-/
 theorem congr_A_eq_compBasis (r : Block) (d : DirIdx) :
     (B r)ᴴ * (A d) * (B r) = compBasis r d := by
   classical
@@ -268,6 +271,9 @@ theorem congr_A_eq_compBasis (r : Block) (d : DirIdx) :
     Finset.mul_sum]
 
 -- Symmetric basis compression.
+/--
+@isnad1 id=eq.0h2v.s8.2f71d4a3095f from=translated src=- shape=0418fd77 vocab=7a5ac463
+-/
 theorem congr_ASymm_eq_compBasisSymm (r : Block) (d : DirIdx) :
     (B r)ᴴ * (ASymm d) * (B r) = compBasisSymm r d := by
   classical
@@ -315,6 +321,9 @@ theorem congr_ASymm_eq_compBasisSymm (r : Block) (d : DirIdx) :
               simp [hEq]
 
 -- The concrete scaled compression identity for our chosen `B`.
+/--
+@isnad1 id=eq.0h2v.s8.ae986b3a47cb from=translated src=- shape=dfc4dab1 vocab=9d2b288c
+-/
 theorem compressionHypScaledForB :
     ∀ f : Coloring n, ∀ r : Block,
       (blockScales[r.1]! : Q) • S (xFromColoring f) r =
@@ -394,6 +403,9 @@ theorem compressionHypScaledForB :
           simp [N1000000WeakDuality.S, smul_add, Finset.smul_sum, hComm]
     _ = (B r)ᴴ * (corrAvgMatrix (f := f)) * (B r) := by simpa using hCompressed.symm
 
+/--
+@isnad1 id=compress.0h0v.s0.04ef4aa99b38 from=translated src=- shape=45709ebd vocab=04ef4aa9
+-/
 theorem compressionHypScaled :
     N1000000RelaxationPsdSoundness.CompressionHypScaled :=
   ⟨B, compressionHypScaledForB⟩

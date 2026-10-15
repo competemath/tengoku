@@ -27,14 +27,23 @@ noncomputable def half : Rand :=
 noncomputable def threshold (x : Rand) : Color :=
   if x < half then 0 else 1
 
+/--
+@isnad1 id=iff.0h1v.s5.2716def92682 from=translated src=- shape=1e0826fb vocab=72ed4973
+-/
 lemma threshold_eq_zero_iff (x : Rand) : threshold x = 0 ↔ x < half := by
   by_cases hx : x < half <;> simp [threshold, hx]
 
+/--
+@isnad1 id=iff.0h1v.s5.2152e945b616 from=translated src=- shape=8177cc79 vocab=c0bc38a3
+-/
 lemma threshold_eq_one_iff (x : Rand) : threshold x = 1 ↔ half ≤ x := by
   by_cases hx : x < half
   · simp [threshold, hx, hx.not_ge]
   · simp [threshold, hx, not_lt.mp hx]
 
+/--
+@isnad1 id=measurab.0h0v.s4.00cf64096901 from=translated src=- shape=54c8eceb vocab=5c64c155
+-/
 lemma measurable_threshold : Measurable threshold := by
   classical
   refine Measurable.ite (hp := (measurableSet_Iio : MeasurableSet (Set.Iio half))) ?_ ?_
@@ -47,6 +56,9 @@ def g : Color → Color → Color → Color
   | 1, 1, 1 => 0
   | _, b, _ => b
 
+/--
+@isnad1 id=measurab.0h0v.s6.103d4760673f from=translated src=- shape=8330c2af vocab=3a371f0c
+-/
 lemma measurable_g : Measurable (fun t : Color × Color × Color => g t.1 t.2.1 t.2.2) := by
   classical
   exact measurable_of_finite _
@@ -73,9 +85,15 @@ noncomputable def simpleUpperAlg : ClassicalAlgorithm where
 def side (b : Color) : Set Rand :=
   if b = 0 then Set.Iio half else Set.Ici half
 
+/--
+@isnad1 id=eq.1h1v.s4.54f42d243861 from=translated src=- shape=23aa8b17 vocab=34f2c87b
+-/
 lemma fin2_eq_one_of_ne_zero {b : Color} (hb : b ≠ 0) : b = 1 := by
   fin_cases b <;> first | cases hb rfl | rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.6d963a2df6b7 from=translated src=- shape=93a62538 vocab=5557294b
+-/
 lemma side_measure (b : Color) : (volume : Measure Rand) (side b) = (1 / 2 : ENNReal) := by
   fin_cases b
   · simp [side, half]
@@ -90,15 +108,24 @@ lemma side_measure (b : Color) : (volume : Measure Rand) (side b) = (1 / 2 : ENN
 def cell (w : Fin 4 → Color) : Set (Samples 4) :=
   Set.univ.pi fun i => side (w i)
 
+/--
+@isnad1 id=measurab.0h1v.s5.bdbae289b36e from=translated src=- shape=1c3416fc vocab=43564e68
+-/
 lemma measurableSet_cell (w : Fin 4 → Color) : MeasurableSet (cell w) := by
   classical
   refine MeasurableSet.univ_pi fun i => ?_
   by_cases h : w i = 0 <;> simp [side, h, measurableSet_Iio, measurableSet_Ici]
 
+/--
+@isnad1 id=eq.0h0v.s6.143725a845a8 from=translated src=- shape=dbd5e137 vocab=e2fb7b31
+-/
 lemma one_half_pow_four : ((1 / 2 : ENNReal) ^ 4) = (1 / 16 : ENNReal) := by
   rw [show (1 / 2 : ENNReal) = (2 : ENNReal)⁻¹ by simp [div_eq_mul_inv], ← ENNReal.inv_pow]
   norm_num [div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h1v.s7.ec5be7c09caa from=translated src=- shape=9224e7e5 vocab=ed27ab1d
+-/
 lemma cell_measure (w : Fin 4 → Color) :
     (volume : Measure (Samples 4)) (cell w) = (1 / 16 : ENNReal) := by
   classical
@@ -121,6 +148,9 @@ lemma cell_measure (w : Fin 4 → Color) :
 def good (w : Fin 4 → Color) : Prop :=
   g (w 0) (w 1) (w 2) = g (w 1) (w 2) (w 3)
 
+/--
+@isnad1 id=iff.0h2v.s5.df16b6ad8cbe from=translated src=- shape=43a118f6 vocab=bb83a220
+-/
 lemma mem_cell_iff_threshold_eq (x : Samples 4) (w : Fin 4 → Color) :
     x ∈ cell w ↔ ∀ i, threshold (x i) = w i := by
   classical
@@ -141,6 +171,9 @@ lemma mem_cell_iff_threshold_eq (x : Samples 4) (w : Fin 4 → Color) :
       have : half ≤ x i := (threshold_eq_one_iff (x := x i)).1 (by simpa [hwi] using hx i)
       simpa [cell, side, hw, hwi] using this
 
+/--
+@isnad1 id=eq.1h1v.s5.8db0c7600f98 from=translated src=- shape=10167c32 vocab=8ed60374
+-/
 lemma pEvent_inter_cell_of_good {w : Fin 4 → Color} (hw : good w) :
     ClassicalAlgorithm.pEvent simpleUpperAlg ∩ cell w = cell w := by
   classical
@@ -156,6 +189,9 @@ lemma pEvent_inter_cell_of_good {w : Fin 4 → Color} (hw : good w) :
       simpa [ClassicalAlgorithm.pEvent, simpleUpperAlg] using this
     exact ⟨hxE, hxC⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.50f3616ebfcc from=translated src=- shape=958c7d22 vocab=4d1d770b
+-/
 lemma pEvent_inter_cell_of_not_good {w : Fin 4 → Color} (hw : ¬ good w) :
     ClassicalAlgorithm.pEvent simpleUpperAlg ∩ cell w = ∅ := by
   classical
@@ -171,6 +207,9 @@ lemma pEvent_inter_cell_of_not_good {w : Fin 4 → Color} (hw : ¬ good w) :
     exact (hw hw').elim
   · simp_all
 
+/--
+@isnad1 id=eq.0h0v.s4.4dfbb4009430 from=translated src=- shape=c29dca45 vocab=44173ac0
+-/
 theorem p_simpleUpperAlg : ClassicalAlgorithm.p simpleUpperAlg = (1 / 4 : ENNReal) := by
   classical
   let all : Finset (Fin 4 → Color) := Finset.univ
@@ -265,6 +304,9 @@ theorem p_simpleUpperAlg : ClassicalAlgorithm.p simpleUpperAlg = (1 / 4 : ENNRea
         (ENNReal.mul_div_mul_left (a := (1 : ENNReal)) (b := (4 : ENNReal))
           (c := (4 : ENNReal)) (by norm_num) (by norm_num))
 
+/--
+@isnad1 id=ex.0h0v.s5.b34ab1dabedd from=translated src=- shape=a889a178 vocab=204eba53
+-/
 theorem exists_algorithm_p_le_one_quarter :
     ∃ alg : ClassicalAlgorithm, ClassicalAlgorithm.p alg ≤ (1 / 4 : ENNReal) :=
   ⟨simpleUpperAlg, by simp [p_simpleUpperAlg]⟩
@@ -272,6 +314,9 @@ theorem exists_algorithm_p_le_one_quarter :
 lemma eq_of_ne_of_ne {x y z : Color} (hxy : x ≠ y) (hyz : y ≠ z) : z = x := by
   fin_cases x <;> fin_cases y <;> fin_cases z <;> simp at hxy hyz <;> decide
 
+/--
+@isnad1 id=ex.0h1v.s6.9467850c4c74 from=translated src=- shape=5cd6cb03 vocab=ff40600e
+-/
 lemma exists_monochromatic_edge (c : Fin 5 → Color) : ∃ i : Fin 5, c i = c (i + 1) := by
   classical
   by_contra h
@@ -294,6 +339,9 @@ noncomputable def nodeColor (alg : ClassicalAlgorithm) (x : Samples 5) (i : Fin 
 def edgeEvent (alg : ClassicalAlgorithm) (i : Fin 5) : Set (Samples 5) :=
   {x | nodeColor alg x i = nodeColor alg x (i + 1)}
 
+/--
+@isnad1 id=measurab.0h2v.s6.a78a8199d937 from=translated src=- shape=a95435b2 vocab=0fad25b3
+-/
 lemma measurable_nodeColor (alg : ClassicalAlgorithm) (i : Fin 5) :
     Measurable fun x : Samples 5 => nodeColor alg x i := by
   have htriple :
@@ -304,12 +352,18 @@ lemma measurable_nodeColor (alg : ClassicalAlgorithm) (i : Fin 5) :
   exact show Measurable (alg.f ∘ fun x : Samples 5 => (x (i - 1), x i, x (i + 1))) from
     alg.measurable_f.comp htriple
 
+/--
+@isnad1 id=measurab.0h2v.s5.c808da18b415 from=translated src=- shape=8d095746 vocab=71fe65fd
+-/
 lemma measurableSet_edgeEvent (alg : ClassicalAlgorithm) (i : Fin 5) :
     MeasurableSet (edgeEvent alg i) := by
   classical
   simpa [edgeEvent] using
     measurableSet_eq_fun (measurable_nodeColor alg i) (measurable_nodeColor alg (i + 1))
 
+/--
+@isnad1 id=eq.0h1v.s5.c10ba08b96ff from=translated src=- shape=976903ff vocab=cb7dfe49
+-/
 lemma iUnion_edgeEvent_eq_univ (alg : ClassicalAlgorithm) :
     (⋃ i : Fin 5, edgeEvent alg i) = Set.univ := by
   classical
@@ -321,6 +375,9 @@ lemma iUnion_edgeEvent_eq_univ (alg : ClassicalAlgorithm) :
     refine Set.mem_iUnion.2 ⟨i, ?_⟩
     simpa [edgeEvent] using hi
 
+/--
+@isnad1 id=eq.0h1v.s7.3daf359df581 from=translated src=- shape=dddac9ed vocab=fc2c2788
+-/
 lemma edgeEvent_one_measure_eq_p (alg : ClassicalAlgorithm) :
     (volume : Measure (Samples 5)) (edgeEvent alg 1) = ClassicalAlgorithm.p alg := by
   classical
@@ -353,6 +410,9 @@ lemma edgeEvent_one_measure_eq_p (alg : ClassicalAlgorithm) :
           simpa using hproj.measure_preimage hnull
     _ = ClassicalAlgorithm.p alg := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.1b8ba3112c7f from=translated src=- shape=2277f167 vocab=68456027
+-/
 lemma edgeEvent_measure_eq_edgeEvent_one (alg : ClassicalAlgorithm) (i : Fin 5) :
     (volume : Measure (Samples 5)) (edgeEvent alg i) =
       (volume : Measure (Samples 5)) (edgeEvent alg 1) := by
@@ -385,6 +445,9 @@ lemma edgeEvent_measure_eq_edgeEvent_one (alg : ClassicalAlgorithm) (i : Fin 5) 
   -- `measure_preimage` gives `volume (φ ⁻¹' s) = volume s`.
   simpa [hpre] using this
 
+/--
+@isnad1 id=not.0h0v.s5.b86dc55998af from=translated src=- shape=ed98c41c vocab=ed5ea165
+-/
 theorem no_algorithm_p_lt_one_fifth :
     ¬ ∃ alg : ClassicalAlgorithm, ClassicalAlgorithm.p alg < (1 / 5 : ENNReal) := by
   classical

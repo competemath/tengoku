@@ -25,6 +25,9 @@ def countableFinsuppEnumeration {I : Type u} {R : Type v} [Zero R] [Countable R]
   letI : Countable D := hD.to_subtype
   exact Classical.choose (exists_surjective_nat (D →₀ R))
 
+/--
+@isnad1 id=surjecti.1h3v.s5.a566385a898c from=translated src=- shape=ac658346 vocab=64567390
+-/
 theorem countableFinsuppEnumeration_surjective {I : Type u} {R : Type v}
     [Zero R] [Countable R] (D : Set I) (hD : D.Countable) :
     Function.Surjective (countableFinsuppEnumeration D hD : ℕ → (D →₀ R)) := by

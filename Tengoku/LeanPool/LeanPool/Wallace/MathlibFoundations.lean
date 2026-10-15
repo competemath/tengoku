@@ -30,7 +30,9 @@ noncomputable section
 
 /-! ## Families with the finite-intersection property -/
 
-/-- Any proper filter extending the cofinite filter admits a free ultrafilter refinement. -/
+/-- Any proper filter extending the cofinite filter admits a free ultrafilter refinement.
+@isnad1 id=ex.1h2v.s5.f3c083fbe735 from=translated src=- shape=3b1957ab vocab=8f61eee8
+-/
 theorem exists_free_ultrafilter_le_filter {α : Type u} (l : Filter α) [l.NeBot]
     (hl : l ≤ cofinite) :
     ∃ p : Ultrafilter α,
@@ -41,7 +43,9 @@ theorem exists_free_ultrafilter_le_filter {α : Type u} (l : Filter α) [l.NeBot
 /-! ## Cardinal bookkeeping for the continuum-indexed free group -/
 
 /-- König's theorem gives the strict uncountable cofinality of the continuum.  This is the
-precise fact used to bound a countable union of supports below the initial ordinal of `𝔠`. -/
+precise fact used to bound a countable union of supports below the initial ordinal of `𝔠`.
+@isnad1 id=lt.0h0v.s3.cd0096453cff from=translated src=- shape=d7d8806b vocab=3ba86836
+-/
 theorem aleph0_lt_cof_continuum : ℵ₀ < (𝔠 : Cardinal).ord.cof := by
   rw [← Cardinal.two_power_aleph0]
   exact Cardinal.lt_cof_ord_power le_rfl (by simp)
@@ -59,12 +63,17 @@ def binaryPrefix (x : ℕ → Bool) (n : ℕ) : BinaryTreeNode :=
 def binaryBranch (x : ℕ → Bool) : Set BinaryTreeNode :=
   Set.range (binaryPrefix x)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.d6c83582ec3d from=translated src=- shape=1e9937ac vocab=e5386e95
+-/
 theorem binaryPrefix_injective (x : ℕ → Bool) :
     Function.Injective (binaryPrefix x) := by
   intro m n h
   exact congrArg Sigma.fst h
 
-/-- Every branch is infinite. -/
+/-- Every branch is infinite.
+@isnad1 id=infinite.0h1v.s3.c4fe307db972 from=translated src=- shape=4a1c1a5f vocab=76ade526
+-/
 theorem binaryBranch_infinite (x : ℕ → Bool) : (binaryBranch x).Infinite := by
   exact Set.infinite_range_of_injective (binaryPrefix_injective x)
 
@@ -80,7 +89,9 @@ theorem eq_on_Iio_of_binaryPrefix_eq {x y : ℕ → Bool} {m n : ℕ}
   intro k hk
   exact congrFun hfun ⟨k, hk⟩
 
-/-- Distinct binary streams define branches with finite intersection. -/
+/-- Distinct binary streams define branches with finite intersection.
+@isnad1 id=finite.1h2v.s4.305f5f0ac659 from=translated src=- shape=bd6b6c05 vocab=bf493914
+-/
 theorem binaryBranch_inter_finite {x y : ℕ → Bool} (hxy : x ≠ y) :
     (binaryBranch x ∩ binaryBranch y).Finite := by
   obtain ⟨k, hk⟩ : ∃ k, x k ≠ y k := by
@@ -96,7 +107,9 @@ theorem binaryBranch_inter_finite {x y : ℕ → Bool} (hxy : x ≠ y) :
   have hkm : k < m := Nat.lt_of_not_ge hmk
   exact hk ((eq_on_Iio_of_binaryPrefix_eq hmn).2 k hkm).symm
 
-/-- The binary-tree node type is infinite. -/
+/-- The binary-tree node type is infinite.
+@isnad1 id=infinite.0h0v.s1.84dd71b85cf8 from=translated src=- shape=49959d42 vocab=139fa655
+-/
 theorem binaryTreeNode_infinite : Infinite BinaryTreeNode :=
   Infinite.of_injective (binaryPrefix fun _ => false)
     (binaryPrefix_injective fun _ => false)
@@ -112,10 +125,16 @@ def binaryTreeNodeEquivNat : BinaryTreeNode ≃ ℕ := by
 def binaryBranchOnNat (x : ℕ → Bool) : Set ℕ :=
   binaryTreeNodeEquivNat '' binaryBranch x
 
+/--
+@isnad1 id=infinite.0h1v.s3.19dca76acce0 from=translated src=- shape=47a19bcc vocab=25c38418
+-/
 theorem binaryBranchOnNat_infinite (x : ℕ → Bool) :
     (binaryBranchOnNat x).Infinite := by
   exact (binaryBranch_infinite x).image binaryTreeNodeEquivNat.injective.injOn
 
+/--
+@isnad1 id=finite.1h2v.s4.948a49735984 from=translated src=- shape=35972d29 vocab=28f067ba
+-/
 theorem binaryBranchOnNat_inter_finite {x y : ℕ → Bool} (hxy : x ≠ y) :
     (binaryBranchOnNat x ∩ binaryBranchOnNat y).Finite := by
   change (binaryTreeNodeEquivNat '' binaryBranch x ∩

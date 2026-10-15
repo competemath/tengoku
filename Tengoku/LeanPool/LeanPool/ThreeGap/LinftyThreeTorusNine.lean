@@ -49,7 +49,9 @@ open ThreeGap.EuclideanRecords (inf_lt_inf)
 noncomputable def astar : Fin 3 → ℝ := ![-785 / 50000, -11872 / 50000, -2875 / 50000]
 
 /-- **The witness defect is coordinatewise-exact**: `delta α* d = M/50000` with
-`M = max(|r₀|,|r₁|,|r₂|)`, the balanced residues of `−785d, −11872d, −2875d` mod `50000`. -/
+`M = max(|r₀|,|r₁|,|r₂|)`, the balanced residues of `−785d, −11872d, −2875d` mod `50000`.
+@isnad1 id=eq.10h8v.s8.a494480555f0 from=translated src=- shape=a2ec8458 vocab=098df6aa
+-/
 theorem delta_astar (d n₀ n₁ n₂ r₀ r₁ r₂ M : ℤ)
     (hr0 : -785 * d = r₀ + 50000 * n₀) (hr1 : -11872 * d = r₁ + 50000 * n₁)
     (hr2 : -2875 * d = r₂ + 50000 * n₂)
@@ -123,297 +125,514 @@ theorem delta_astar (d n₀ n₁ n₂ r₀ r₁ r₂ M : ℤ)
           (p 2)
       linarith
 
-/-- The witness defects `delta α* m = M_m/50000` for `m = 1,…,72`. -/
+/-- The witness defects `delta α* m = M_m/50000` for `m = 1,…,72`.
+@isnad1 id=eq.0h0v.s5.95467792d598 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar1 : delta astar 1 = (11872 : ℝ) / 50000 := by
   rw [delta_astar 1 0 0 0 (-785) (-11872) (-2875) 11872 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.e052be6cf792 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar2 : delta astar 2 = (23744 : ℝ) / 50000 := by
   rw [delta_astar 2 0 0 0 (-1570) (-23744) (-5750) 23744 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.37e5288c6d50 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar3 : delta astar 3 = (14384 : ℝ) / 50000 := by
   rw [delta_astar 3 0 (-1) 0 (-2355) 14384 (-8625) 14384 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.278d4730ffd8 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar4 : delta astar 4 = (11500 : ℝ) / 50000 := by
   rw [delta_astar 4 0 (-1) 0 (-3140) 2512 (-11500) 11500 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.5052d56eae75 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar5 : delta astar 5 = (14375 : ℝ) / 50000 := by
   rw [delta_astar 5 0 (-1) 0 (-3925) (-9360) (-14375) 14375 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.4c9cb6d47e65 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar6 : delta astar 6 = (21232 : ℝ) / 50000 := by
   rw [delta_astar 6 0 (-1) 0 (-4710) (-21232) (-17250) 21232 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.b2ea9f6c74ed from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar7 : delta astar 7 = (20125 : ℝ) / 50000 := by
   rw [delta_astar 7 0 (-2) 0 (-5495) 16896 (-20125) 20125 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.3e9c1db7b45a from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar8 : delta astar 8 = (23000 : ℝ) / 50000 := by
   rw [delta_astar 8 0 (-2) 0 (-6280) 5024 (-23000) 23000 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.76d1936801d6 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar9 : delta astar 9 = (24125 : ℝ) / 50000 := by
   rw [delta_astar 9 0 (-2) (-1) (-7065) (-6848) 24125 24125 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.77a9fa93c73c from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar10 : delta astar 10 = (21250 : ℝ) / 50000 := by
   rw [delta_astar 10 0 (-2) (-1) (-7850) (-18720) 21250 21250 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.7aa5065dca5b from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar11 : delta astar 11 = (19408 : ℝ) / 50000 := by
   rw [delta_astar 11 0 (-3) (-1) (-8635) 19408 18375 19408 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.2cb3effb8122 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar12 : delta astar 12 = (15500 : ℝ) / 50000 := by
   rw [delta_astar 12 0 (-3) (-1) (-9420) 7536 15500 15500 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.296703e7ac08 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar13 : delta astar 13 = (12625 : ℝ) / 50000 := by
   rw [delta_astar 13 0 (-3) (-1) (-10205) (-4336) 12625 12625 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.39983fb71942 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar14 : delta astar 14 = (16208 : ℝ) / 50000 := by
   rw [delta_astar 14 0 (-3) (-1) (-10990) (-16208) 9750 16208 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.adf2bdaeb00c from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar15 : delta astar 15 = (21920 : ℝ) / 50000 := by
   rw [delta_astar 15 0 (-4) (-1) (-11775) 21920 6875 21920 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.77b7b0bedc28 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar16 : delta astar 16 = (12560 : ℝ) / 50000 := by
   rw [delta_astar 16 0 (-4) (-1) (-12560) 10048 4000 12560 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.6cbd6c6a2d72 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar17 : delta astar 17 = (13345 : ℝ) / 50000 := by
   rw [delta_astar 17 0 (-4) (-1) (-13345) (-1824) 1125 13345 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.8c0f685235ba from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar18 : delta astar 18 = (14130 : ℝ) / 50000 := by
   rw [delta_astar 18 0 (-4) (-1) (-14130) (-13696) (-1750) 14130 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.e66e76236ade from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar19 : delta astar 19 = (24432 : ℝ) / 50000 := by
   rw [delta_astar 19 0 (-5) (-1) (-14915) 24432 (-4625) 24432 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.fb4e7b4ced60 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar20 : delta astar 20 = (15700 : ℝ) / 50000 := by
   rw [delta_astar 20 0 (-5) (-1) (-15700) 12560 (-7500) 15700 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.ed1a72bcf9b0 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar21 : delta astar 21 = (16485 : ℝ) / 50000 := by
   rw [delta_astar 21 0 (-5) (-1) (-16485) 688 (-10375) 16485 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.21aeb08dc254 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar22 : delta astar 22 = (17270 : ℝ) / 50000 := by
   rw [delta_astar 22 0 (-5) (-1) (-17270) (-11184) (-13250) 17270 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.907520ada35b from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar23 : delta astar 23 = (23056 : ℝ) / 50000 := by
   rw [delta_astar 23 0 (-5) (-1) (-18055) (-23056) (-16125) 23056 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.cdb57d3dc547 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar24 : delta astar 24 = (19000 : ℝ) / 50000 := by
   rw [delta_astar 24 0 (-6) (-1) (-18840) 15072 (-19000) 19000 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.30d48c3a0fc3 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar25 : delta astar 25 = (21875 : ℝ) / 50000 := by
   rw [delta_astar 25 0 (-6) (-1) (-19625) 3200 (-21875) 21875 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.54fe5678d1d6 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar26 : delta astar 26 = (24750 : ℝ) / 50000 := by
   rw [delta_astar 26 0 (-6) (-1) (-20410) (-8672) (-24750) 24750 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.0d7e1fc81b25 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar27 : delta astar 27 = (22375 : ℝ) / 50000 := by
   rw [delta_astar 27 0 (-6) (-2) (-21195) (-20544) 22375 22375 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.5c9bdc09a8b9 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar28 : delta astar 28 = (21980 : ℝ) / 50000 := by
   rw [delta_astar 28 0 (-7) (-2) (-21980) 17584 19500 21980 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.85a049e17973 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar29 : delta astar 29 = (22765 : ℝ) / 50000 := by
   rw [delta_astar 29 0 (-7) (-2) (-22765) 5712 16625 22765 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.7d051127cea9 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar30 : delta astar 30 = (23550 : ℝ) / 50000 := by
   rw [delta_astar 30 0 (-7) (-2) (-23550) (-6160) 13750 23550 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.dc9fb1f822f2 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar31 : delta astar 31 = (24335 : ℝ) / 50000 := by
   rw [delta_astar 31 0 (-7) (-2) (-24335) (-18032) 10875 24335 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.a7f2e421e0bd from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar32 : delta astar 32 = (24880 : ℝ) / 50000 := by
   rw [delta_astar 32 (-1) (-8) (-2) 24880 20096 8000 24880 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.78eedd866882 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar33 : delta astar 33 = (24095 : ℝ) / 50000 := by
   rw [delta_astar 33 (-1) (-8) (-2) 24095 8224 5125 24095 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.10d33749b881 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar34 : delta astar 34 = (23310 : ℝ) / 50000 := by
   rw [delta_astar 34 (-1) (-8) (-2) 23310 (-3648) 2250 23310 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.68a7f7cbe0ee from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar35 : delta astar 35 = (22525 : ℝ) / 50000 := by
   rw [delta_astar 35 (-1) (-8) (-2) 22525 (-15520) (-625) 22525 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.e1beff5480c2 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar36 : delta astar 36 = (22608 : ℝ) / 50000 := by
   rw [delta_astar 36 (-1) (-9) (-2) 21740 22608 (-3500) 22608 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.5d94087e350f from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar37 : delta astar 37 = (20955 : ℝ) / 50000 := by
   rw [delta_astar 37 (-1) (-9) (-2) 20955 10736 (-6375) 20955 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.0c0759f61fb7 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar38 : delta astar 38 = (20170 : ℝ) / 50000 := by
   rw [delta_astar 38 (-1) (-9) (-2) 20170 (-1136) (-9250) 20170 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.d3aeec1bbf51 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar39 : delta astar 39 = (19385 : ℝ) / 50000 := by
   rw [delta_astar 39 (-1) (-9) (-2) 19385 (-13008) (-12125) 19385 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.60ea00482bbd from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar40 : delta astar 40 = (24880 : ℝ) / 50000 := by
   rw [delta_astar 40 (-1) (-9) (-2) 18600 (-24880) (-15000) 24880 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.efdbd3b75c1f from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar41 : delta astar 41 = (17875 : ℝ) / 50000 := by
   rw [delta_astar 41 (-1) (-10) (-2) 17815 13248 (-17875) 17875 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.8ae56f1ccc86 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar42 : delta astar 42 = (20750 : ℝ) / 50000 := by
   rw [delta_astar 42 (-1) (-10) (-2) 17030 1376 (-20750) 20750 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.193ddfad0e04 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar43 : delta astar 43 = (23625 : ℝ) / 50000 := by
   rw [delta_astar 43 (-1) (-10) (-2) 16245 (-10496) (-23625) 23625 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.b15f602e42cf from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar44 : delta astar 44 = (23500 : ℝ) / 50000 := by
   rw [delta_astar 44 (-1) (-10) (-3) 15460 (-22368) 23500 23500 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.74bc2fba24cf from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar45 : delta astar 45 = (20625 : ℝ) / 50000 := by
   rw [delta_astar 45 (-1) (-11) (-3) 14675 15760 20625 20625 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.ed2e3ced7fdc from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar46 : delta astar 46 = (17750 : ℝ) / 50000 := by
   rw [delta_astar 46 (-1) (-11) (-3) 13890 3888 17750 17750 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.52de555f95ef from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar47 : delta astar 47 = (14875 : ℝ) / 50000 := by
   rw [delta_astar 47 (-1) (-11) (-3) 13105 (-7984) 14875 14875 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.24def31f0dfe from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar48 : delta astar 48 = (19856 : ℝ) / 50000 := by
   rw [delta_astar 48 (-1) (-11) (-3) 12320 (-19856) 12000 19856 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.6386feff0ec6 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar49 : delta astar 49 = (18272 : ℝ) / 50000 := by
   rw [delta_astar 49 (-1) (-12) (-3) 11535 18272 9125 18272 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.980cc7aa20f7 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar50 : delta astar 50 = (10750 : ℝ) / 50000 := by
   rw [delta_astar 50 (-1) (-12) (-3) 10750 6400 6250 10750 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.1fde18555a2c from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar51 : delta astar 51 = (9965 : ℝ) / 50000 := by
   rw [delta_astar 51 (-1) (-12) (-3) 9965 (-5472) 3375 9965 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.6c36a35f25db from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar52 : delta astar 52 = (17344 : ℝ) / 50000 := by
   rw [delta_astar 52 (-1) (-12) (-3) 9180 (-17344) 500 17344 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.e2c0313aaea4 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar53 : delta astar 53 = (20784 : ℝ) / 50000 := by
   rw [delta_astar 53 (-1) (-13) (-3) 8395 20784 (-2375) 20784 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.b6f2c1d2721e from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar54 : delta astar 54 = (8912 : ℝ) / 50000 := by
   rw [delta_astar 54 (-1) (-13) (-3) 7610 8912 (-5250) 8912 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.8116cfc9255e from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar55 : delta astar 55 = (8125 : ℝ) / 50000 := by
   rw [delta_astar 55 (-1) (-13) (-3) 6825 (-2960) (-8125) 8125 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.6de7e2b5f6c3 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar56 : delta astar 56 = (14832 : ℝ) / 50000 := by
   rw [delta_astar 56 (-1) (-13) (-3) 6040 (-14832) (-11000) 14832 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.ae157431c570 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar57 : delta astar 57 = (23296 : ℝ) / 50000 := by
   rw [delta_astar 57 (-1) (-14) (-3) 5255 23296 (-13875) 23296 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.e1ae0b0933e8 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar58 : delta astar 58 = (16750 : ℝ) / 50000 := by
   rw [delta_astar 58 (-1) (-14) (-3) 4470 11424 (-16750) 16750 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.3e25552806fc from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar59 : delta astar 59 = (19625 : ℝ) / 50000 := by
   rw [delta_astar 59 (-1) (-14) (-3) 3685 (-448) (-19625) 19625 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.5a0b51f01be9 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar60 : delta astar 60 = (22500 : ℝ) / 50000 := by
   rw [delta_astar 60 (-1) (-14) (-3) 2900 (-12320) (-22500) 22500 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.fc818c24ab57 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar61 : delta astar 61 = (24625 : ℝ) / 50000 := by
   rw [delta_astar 61 (-1) (-14) (-4) 2115 (-24192) 24625 24625 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.0cedc241977d from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar62 : delta astar 62 = (21750 : ℝ) / 50000 := by
   rw [delta_astar 62 (-1) (-15) (-4) 1330 13936 21750 21750 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.7bbfa21ceaed from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar63 : delta astar 63 = (18875 : ℝ) / 50000 := by
   rw [delta_astar 63 (-1) (-15) (-4) 545 2064 18875 18875 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.390bab76bcb7 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar64 : delta astar 64 = (16000 : ℝ) / 50000 := by
   rw [delta_astar 64 (-1) (-15) (-4) (-240) (-9808) 16000 16000 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.80d43d2311da from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar65 : delta astar 65 = (21680 : ℝ) / 50000 := by
   rw [delta_astar 65 (-1) (-15) (-4) (-1025) (-21680) 13125 21680 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.edb175d65db3 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar66 : delta astar 66 = (16448 : ℝ) / 50000 := by
   rw [delta_astar 66 (-1) (-16) (-4) (-1810) 16448 10250 16448 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.6502b61c8e3d from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar67 : delta astar 67 = (7375 : ℝ) / 50000 := by
   rw [delta_astar 67 (-1) (-16) (-4) (-2595) 4576 7375 7375 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.f5d14484431e from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar68 : delta astar 68 = (7296 : ℝ) / 50000 := by
   rw [delta_astar 68 (-1) (-16) (-4) (-3380) (-7296) 4500 7296 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.51a4dd6a6a0d from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar69 : delta astar 69 = (19168 : ℝ) / 50000 := by
   rw [delta_astar 69 (-1) (-16) (-4) (-4165) (-19168) 1625 19168 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.7d042ffc241b from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar70 : delta astar 70 = (18960 : ℝ) / 50000 := by
   rw [delta_astar 70 (-1) (-17) (-4) (-4950) 18960 (-1250) 18960 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.a381588d95d6 from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar71 : delta astar 71 = (7088 : ℝ) / 50000 := by
   rw [delta_astar 71 (-1) (-17) (-4) (-5735) 7088 (-4125) 7088 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.9e165b112b9c from=translated src=- shape=f2618047 vocab=e7e10a2b
+-/
 theorem dstar72 : delta astar 72 = (7000 : ℝ) / 50000 := by
   rw [delta_astar 72 (-1) (-17) (-4) (-6520) (-4784) (-7000) 7000 (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) ]; norm_num
 
-/-- **Nine strictly-decreasing sample values force ≥ 9 distinct images.** -/
+/-- **Nine strictly-decreasing sample values force ≥ 9 distinct images.**
+@isnad1 id=le.17h11v.s8.3ad12154927e from=translated src=- shape=ad939e50 vocab=86dacb88
+-/
 theorem nine_le_card_image {N : ℕ} (f : ℕ → ℝ) {q₀ q₁ q₂ q₃ q₄ q₅ q₆ q₇ q₈ : ℕ}
     (m₀ : q₀ ∈ Finset.range (N + 1)) (m₁ : q₁ ∈ Finset.range (N + 1))
     (m₂ : q₂ ∈ Finset.range (N + 1)) (m₃ : q₃ ∈ Finset.range (N + 1))
@@ -491,14 +710,18 @@ theorem nine_le_card_image {N : ℕ} (f : ℕ → ℝ) {q₀ q₁ q₂ q₃ q₄
   calc 9 = _ := hcard.symm
     _ ≤ _ := Finset.card_le_card hsub
 
-/-- **`nnDist` as a prefix-minimum of the `L∞` defect** (`d = 3`, `N = 73`). -/
+/-- **`nnDist` as a prefix-minimum of the `L∞` defect** (`d = 3`, `N = 73`).
+@isnad1 id=eq.2h2v.s6.7dfd22f753ba from=translated src=- shape=e5c450db vocab=f632f241
+-/
 theorem nnDist_eq_inf (α : Fin 3 → ℝ) {q : ℕ} (hq : q ≤ 73)
     (hne : (Finset.Icc 1 (max q (73 - q))).Nonempty) :
     nnDist α 73 q = (Finset.Icc 1 (max q (73 - q))).inf' hne (fun n => delta α (n : ℤ)) := by
   rw [← gapVal_eq_nnDist α (by norm_num) hq, gapVal, dite_eq_left hne]; rfl
 
 /-- **`card ≥ 9` from the eight record drops** at `m = 50,51,54,55,67,68,71,72`, realized at
-`q = 24,23,22,19,18,6,5,2,1` (cutoffs `D = 49,50,51,54,55,67,68,71,72`). -/
+`q = 24,23,22,19,18,6,5,2,1` (cutoffs `D = 49,50,51,54,55,67,68,71,72`).
+@isnad1 id=le.8h1v.s8.460c7c6be7ab from=translated src=- shape=181f602d vocab=c8c0af78
+-/
 theorem card_ge_nine (α : Fin 3 → ℝ)
     (H1 : ∀ n ∈ Finset.Icc (1 : ℕ) 49, delta α 50 < delta α (n : ℤ))
     (H2 : ∀ n ∈ Finset.Icc (1 : ℕ) 50, delta α 51 < delta α (n : ℤ))
@@ -567,6 +790,9 @@ theorem card_ge_nine (α : Fin 3 → ℝ)
 
 /-! ### Rational → irrational upgrade by Lipschitz-openness -/
 
+/--
+@isnad1 id=le.0h3v.s7.9bf5ca8bb464 from=translated src=- shape=21f6d980 vocab=3864d51f
+-/
 theorem delta_sub_le (α β : Fin 3 → ℝ) (d : ℤ) :
     delta α d ≤ delta β d + |(d : ℝ)| * ‖α - β‖ := by
   have hC : ∀ p : Fin 3 → ℤ, delta α d ≤ ‖rem β d p‖ + |(d : ℝ)| * ‖α - β‖ := by
@@ -584,11 +810,17 @@ theorem delta_sub_le (α β : Fin 3 → ℝ) (d : ℤ) :
 /-- The perturbed witness `α* + (s,0,0)`. -/
 noncomputable def aprt (s : ℝ) : Fin 3 → ℝ := ![-785 / 50000 + s, -11872 / 50000, -2875 / 50000]
 
+/--
+@isnad1 id=irration.1h1v.s4.96fe088dea10 from=translated src=- shape=ffc67196 vocab=dc24e297
+-/
 theorem aprt_irrational {s : ℝ} (hs : Irrational s) : Irrational (aprt s 0) := by
   have h : aprt s 0 = ((-785 / 50000 : ℚ) : ℝ) + s := by
     rw [show ((-785 / 50000 : ℚ) : ℝ) = -785 / 50000 by norm_num]; simp [aprt]
   rw [h]; exact hs.ratCast_add _
 
+/--
+@isnad1 id=eq.1h1v.s6.c155be1ab940 from=translated src=- shape=065f5d6b vocab=12ba8d9e
+-/
 theorem norm_aprt (s : ℝ) (hs : 0 ≤ s) : ‖aprt s - astar‖ = s := by
   have e0 : (aprt s - astar) 0 = s := by
     simp only [Pi.sub_apply, aprt, astar, Matrix.cons_val_zero]; ring
@@ -608,6 +840,9 @@ theorem norm_aprt (s : ℝ) (hs : 0 ≤ s) : ‖aprt s - astar‖ = s := by
   · calc s = ‖(aprt s - astar) 0‖ := by rw [e0, Real.norm_eq_abs, abs_of_nonneg hs]
       _ ≤ ‖aprt s - astar‖ := norm_le_pi_norm _ 0
 
+/--
+@isnad1 id=eq.1h1v.s6.cf418d4ee15b from=translated src=- shape=7d1e690d vocab=12ba8d9e
+-/
 theorem norm_aprt' (s : ℝ) (hs : 0 ≤ s) : ‖astar - aprt s‖ = s := by
   have e0 : (astar - aprt s) 0 = -s := by
     simp only [Pi.sub_apply, aprt, astar, Matrix.cons_val_zero]; ring
@@ -627,6 +862,9 @@ theorem norm_aprt' (s : ℝ) (hs : 0 ≤ s) : ‖astar - aprt s‖ = s := by
   · calc s = ‖(astar - aprt s) 0‖ := by rw [e0, Real.norm_eq_abs, abs_neg, abs_of_nonneg hs]
       _ ≤ ‖astar - aprt s‖ := norm_le_pi_norm _ 0
 
+/--
+@isnad1 id=lt.4h5v.s7.f44425b59017 from=translated src=- shape=704c4aa0 vocab=ffba144a
+-/
 theorem transport (s : ℝ) (hs0 : 0 ≤ s) (m n : ℤ) (Mm Mn : ℝ)
     (hm : delta astar m = Mm / 50000) (hn : delta astar n = Mn / 50000)
     (hgap : 50000 * ((|(m : ℝ)| + |(n : ℝ)|) * s) < Mn - Mm) :
@@ -644,6 +882,9 @@ theorem transport (s : ℝ) (hs0 : 0 ≤ s) (m n : ℤ) (Mm Mn : ℝ)
   rw [hV] at hd2 hgap
   linarith [hd1, hd2, hgap]
 
+/--
+@isnad1 id=lt.6h5v.s7.b07c8d7905f5 from=translated src=- shape=256896b8 vocab=86405e19
+-/
 theorem Hpair (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) (m n Mm Mn : ℤ)
     (hm : delta astar m = (Mm : ℝ) / 50000) (hn : delta astar n = (Mn : ℝ) / 50000)
     (hc : |(m : ℝ)| + |(n : ℝ)| ≤ 144) (hgapZ : Mm + 1 ≤ Mn) :
@@ -653,6 +894,9 @@ theorem Hpair (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) (m n Mm Mn : 
   have h2 : (Mm : ℝ) + 1 ≤ (Mn : ℝ) := by exact_mod_cast hgapZ
   linarith [h1, h2, hsmall]
 
+/--
+@isnad1 id=lt.3h2v.s6.aef2e333ef84 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H1_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 49, delta (aprt s) 50 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -707,6 +951,9 @@ theorem H1_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 50 48 10750 19856 dstar50 dstar48 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 50 49 10750 18272 dstar50 dstar49 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.a2f0a314d7d1 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H2_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 50, delta (aprt s) 51 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -762,6 +1009,9 @@ theorem H2_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 51 49 9965 18272 dstar51 dstar49 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 51 50 9965 10750 dstar51 dstar50 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.6b380490379b from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H3_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 51, delta (aprt s) 54 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -818,6 +1068,9 @@ theorem H3_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 54 50 8912 10750 dstar54 dstar50 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 54 51 8912 9965 dstar54 dstar51 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.efda19219395 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H4_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 54, delta (aprt s) 55 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -877,6 +1130,9 @@ theorem H4_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 55 53 8125 20784 dstar55 dstar53 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 55 54 8125 8912 dstar55 dstar54 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.d138e702de97 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H5_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 55, delta (aprt s) 67 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -937,6 +1193,9 @@ theorem H5_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 67 54 7375 8912 dstar67 dstar54 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 67 55 7375 8125 dstar67 dstar55 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.b28a87615387 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H6_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 67, delta (aprt s) 68 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -1009,6 +1268,9 @@ theorem H6_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 68 66 7296 16448 dstar68 dstar66 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 68 67 7296 7375 dstar68 dstar67 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.4b16e6d1f476 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H7_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 68, delta (aprt s) 71 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -1082,6 +1344,9 @@ theorem H7_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
   · exact Hpair s hs0 hsmall 71 67 7088 7375 dstar71 dstar67 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 71 68 7088 7296 dstar71 dstar68 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.e504e8b49fa0 from=translated src=- shape=45c48fd9 vocab=e019f498
+-/
 theorem H8_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 7200000 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 71, delta (aprt s) 72 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -1166,7 +1431,9 @@ this gives `g_∞(3) = 9` — the Shutov bound `2^d+1` is attained (Haynes–Ram
 witness
 is `α = (−785/50000 + s, −11872/50000, −2875/50000)` for a small irrational `s`; `card ≥ 9`
 transports
-from the rational `α*` by the dynamics-free Lipschitz argument. -/
+from the rational `α*` by the dynamics-free Lipschitz argument.
+@isnad1 id=ex.0h0v.s6.739e99f19dee from=translated src=- shape=4d6da788 vocab=987f128a
+-/
 theorem nine_attained : ∃ α : Fin 3 → ℝ, (∃ k, Irrational (α k)) ∧
     ∃ N, 2 ≤ N ∧ 9 ≤ ((Finset.range (N + 1)).image (nnDist α N)).card := by
   obtain ⟨s, hs_irr, hs_pos, hs_lt⟩ :=

@@ -92,25 +92,33 @@ def Verifier.run (V : Verifier S) (y : Fin S.n → F) : Verdict :=
 /-! ### CORE — clean, by-construction; formalize first. -/
 
 /-- **Lossiness by algebra.**  syndrome(sG+e) = syndrome(e): independent of the secret `s`.
-    `H (sG + e) = H(sG) + He = 0 + He` since codewords have zero syndrome (`hHG`). -/
+    `H (sG + e) = H(sG) + He = 0 + He` since codewords have zero syndrome (`hHG`).
+@isnad1 id=eq.0h4v.s7.b53d7093f52d from=translated src=- shape=4863176d vocab=204ae287
+-/
 theorem syndrome_independent_of_secret (s : Fin S.k → F) (e : Fin S.n → F) :
     S.H *ᵥ body S s e = S.H *ᵥ e := by
   unfold body
   rw [Matrix.mulVec_add, S.hHG s, zero_add]
 
 /-- **Secret indistinguishability.**  With `e` fixed, the syndrome separates no two secrets —
-    the fiber is the whole message space (the content of "s is gone"). -/
+    the fiber is the whole message space (the content of "s is gone").
+@isnad1 id=eq.0h3v.s7.75c44aa1534b from=translated src=- shape=2b57b960 vocab=b82848c1
+-/
 theorem secret_fiber_eq_univ (e : Fin S.n → F) :
     {s : Fin S.k → F | S.H *ᵥ body S s e = S.H *ᵥ e} = Set.univ :=
   Set.eq_univ_of_forall fun s => syndrome_independent_of_secret S s e
 
-/-- **`|F|ᵏ`-to-one.**  The shadow loses `k·log|F|` bits. -/
+/-- **`|F|ᵏ`-to-one.**  The shadow loses `k·log|F|` bits.
+@isnad1 id=eq.0h2v.s6.bc811f1a6aae from=translated src=- shape=a62901da vocab=4477086c
+-/
 theorem secret_bits_lost :
     Fintype.card (Fin S.k → F) = (Fintype.card F) ^ S.k := by
   simp
 
 /-- **Accept-soundness (the by-construction core).**  accept ⟹ Safe.
-    The only way to `accept` is via an exhibited witness, which *is* a proof of `Safe`. -/
+    The only way to `accept` is via an exhibited witness, which *is* a proof of `Safe`.
+@isnad1 id=safe.1h4v.s5.1f8cf227d1e9 from=translated src=- shape=aa4bc494 vocab=107e80e3
+-/
 theorem accept_sound (V : Verifier S) (y : Fin S.n → F) :
     V.run S y = Verdict.accept → Safe S y := by
   intro h
@@ -119,7 +127,9 @@ theorem accept_sound (V : Verifier S) (y : Fin S.n → F) :
   | some e' => exact ⟨e', V.witness_sound y e' hw⟩
   | none => simp only [hw] at h; split at h <;> simp at h
 
-/-- **Spoof impossibility** (corollary): no accepted body is unsafe. -/
+/-- **Spoof impossibility** (corollary): no accepted body is unsafe.
+@isnad1 id=not.0h3v.s6.0fbf9d9f0e95 from=translated src=- shape=edf3376d vocab=107e80e3
+-/
 theorem no_passing_unsafe (V : Verifier S) :
     ¬ ∃ y, V.run S y = Verdict.accept ∧ ¬ Safe S y := by
   rintro ⟨y, hacc, hunsafe⟩
@@ -133,7 +143,9 @@ def LbSound (V : Verifier S) : Prop :=
 
 /-- **Reject-soundness.**  If the cheap bound is sound (`LbSound`) and the verifier rejects, the
     body is unsafe: a light witness forces `lb ≤ wt e' ≤ τ`, contradicting the `τ < lb` that fired
-    the reject. -/
+    the reject.
+@isnad1 id=not.2h4v.s5.07d28b442307 from=translated src=- shape=b6169754 vocab=9e2f42bd
+-/
 theorem reject_sound (V : Verifier S) (hLb : LbSound S V) (y : Fin S.n → F) :
     V.run S y = Verdict.reject → ¬ Safe S y := by
   intro h hsafe
@@ -155,6 +167,9 @@ theorem reject_sound (V : Verifier S) (hLb : LbSound S V) (y : Fin S.n → F) :
     `wt e ≥ ⌈hammingNorm (H y) / maxColWeight H⌉` is the documented next target. -/
 def supportLb (z : Fin S.m → F) : ℕ := if z = 0 then 0 else 1
 
+/--
+@isnad1 id=le.1h4v.s7.a7c438946cc0 from=translated src=- shape=2b3e01aa vocab=7f121cb0
+-/
 theorem supportLb_sound (y e' : Fin S.n → F) (he : S.H *ᵥ e' = S.H *ᵥ y) :
     supportLb S (S.H *ᵥ y) ≤ wt e' := by
   unfold supportLb
@@ -165,13 +180,17 @@ theorem supportLb_sound (y e' : Fin S.n → F) (he : S.H *ᵥ e' = S.H *ᵥ y) :
     have hnz : hammingNorm e' ≠ 0 := fun h => hne (hammingNorm_eq_zero.mp h)
     rw [wt]; omega
 
-/-- `supportLb` is `LbSound` for any verifier that uses it. -/
+/-- `supportLb` is `LbSound` for any verifier that uses it.
+@isnad1 id=lbsound.1h3v.s5.c08e15f593a6 from=translated src=- shape=5a9b98ac vocab=3584d94b
+-/
 theorem supportLb_lbSound (V : Verifier S) (hlb : V.lb = supportLb S) : LbSound S V := by
   intro y e' he
   rw [hlb]
   exact supportLb_sound S y e' he
 
-/-- **Unconditional reject-soundness** for the concrete `supportLb` verifier (no hypothesis). -/
+/-- **Unconditional reject-soundness** for the concrete `supportLb` verifier (no hypothesis).
+@isnad1 id=not.2h4v.s6.6852af7d5e6a from=translated src=- shape=9dca200f vocab=5b5e96de
+-/
 theorem reject_sound_support (V : Verifier S) (hlb : V.lb = supportLb S) (y : Fin S.n → F) :
     V.run S y = Verdict.reject → ¬ Safe S y :=
   reject_sound S V (supportLb_lbSound S V hlb) y
@@ -188,7 +207,9 @@ def vsupp {n : ℕ} (v : Fin n → F) : Finset (Fin n) :=
   Finset.univ.filter (fun i => v i ≠ 0)
 
 omit [Fintype F] in
-/-- `hammingNorm` is the cardinality of the support. -/
+/-- `hammingNorm` is the cardinality of the support.
+@isnad1 id=eq.0h3v.s5.11b09030d8cb from=translated src=- shape=a0277f56 vocab=c7112ab6
+-/
 theorem hammingNorm_eq_card_vsupp {n : ℕ} (v : Fin n → F) :
     hammingNorm v = (vsupp v).card := by
   simp only [hammingNorm, vsupp]
@@ -198,7 +219,9 @@ def colBound (M : Matrix (Fin a) (Fin b) F) : ℕ :=
   Finset.univ.sup (fun j => (Finset.univ.filter (fun i => M i j ≠ 0)).card)
 
 omit [Fintype F] in
-/-- Every column's support is no larger than `colBound M`. -/
+/-- Every column's support is no larger than `colBound M`.
+@isnad1 id=le.0h5v.s6.2664873663d2 from=translated src=- shape=ddd418e2 vocab=1584df29
+-/
 theorem card_colSupp_le (M : Matrix (Fin a) (Fin b) F) (j : Fin b) :
     (Finset.univ.filter (fun i => M i j ≠ 0)).card ≤ colBound M :=
   Finset.le_sup (f := fun j => (Finset.univ.filter (fun i => M i j ≠ 0)).card)
@@ -206,7 +229,9 @@ theorem card_colSupp_le (M : Matrix (Fin a) (Fin b) F) (j : Fin b) :
 
 omit [Fintype F] in
 /-- Support inclusion: `support(M *ᵥ e) ⊆ ⋃_{j ∈ support e} support(col j)`.  A product coordinate
-    is nonzero only if some term `M i j * e j` is — i.e. both factors are. -/
+    is nonzero only if some term `M i j * e j` is — i.e. both factors are.
+@isnad1 id=le.0h5v.s7.08204b8df345 from=translated src=- shape=c82244ea vocab=47347a69
+-/
 theorem vsupp_mulVec_subset (M : Matrix (Fin a) (Fin b) F) (e : Fin b → F) :
     vsupp (M *ᵥ e) ⊆ (vsupp e).biUnion (fun j => Finset.univ.filter (fun i => M i j ≠ 0)) := by
   intro i hi
@@ -220,7 +245,9 @@ theorem vsupp_mulVec_subset (M : Matrix (Fin a) (Fin b) F) (e : Fin b → F) :
 
 omit [Fintype F] in
 /-- **Key lemma.**  A heavy syndrome forces a heavy error — each error coordinate lights up at most
-    `colBound M` rows: `hammingNorm (M *ᵥ e) ≤ colBound M * hammingNorm e`. -/
+    `colBound M` rows: `hammingNorm (M *ᵥ e) ≤ colBound M * hammingNorm e`.
+@isnad1 id=le.0h5v.s6.e86b5ea5d45f from=translated src=- shape=f9a73b19 vocab=115fa706
+-/
 theorem hammingNorm_mulVec_le (M : Matrix (Fin a) (Fin b) F) (e : Fin b → F) :
     hammingNorm (M *ᵥ e) ≤ colBound M * hammingNorm e := by
   rw [hammingNorm_eq_card_vsupp, hammingNorm_eq_card_vsupp]
@@ -237,7 +264,9 @@ theorem hammingNorm_mulVec_le (M : Matrix (Fin a) (Fin b) F) (e : Fin b → F) :
     direction (it only under-estimates weight); `colBound = 0` ⟹ `H = 0` ⟹ syndrome `= 0`, sound. -/
 def colWeightLb (z : Fin S.m → F) : ℕ := hammingNorm z / colBound S.H
 
-/-- `colWeightLb` never exceeds any same-syndrome witness weight (soundness). -/
+/-- `colWeightLb` never exceeds any same-syndrome witness weight (soundness).
+@isnad1 id=le.1h4v.s7.80876dfa07fa from=translated src=- shape=2b3e01aa vocab=c77516f8
+-/
 theorem colWeightLb_sound (y e' : Fin S.n → F) (he : S.H *ᵥ e' = S.H *ᵥ y) :
     colWeightLb S (S.H *ᵥ y) ≤ wt e' := by
   unfold colWeightLb wt
@@ -245,13 +274,17 @@ theorem colWeightLb_sound (y e' : Fin S.n → F) (he : S.H *ᵥ e' = S.H *ᵥ y)
     rw [← he]; exact hammingNorm_mulVec_le S.H e'
   exact Nat.div_le_of_le_mul hkey
 
-/-- `colWeightLb` is `LbSound` for any verifier that adopts it. -/
+/-- `colWeightLb` is `LbSound` for any verifier that adopts it.
+@isnad1 id=lbsound.1h3v.s5.8dd2d88f1865 from=translated src=- shape=5a9b98ac vocab=171013a5
+-/
 theorem colWeightLb_lbSound (V : Verifier S) (hlb : V.lb = colWeightLb S) : LbSound S V := by
   intro y e' he
   rw [hlb]
   exact colWeightLb_sound S y e' he
 
-/-- **Unconditional, non-degenerate reject-soundness** for the column-weight verifier. -/
+/-- **Unconditional, non-degenerate reject-soundness** for the column-weight verifier.
+@isnad1 id=not.2h4v.s6.2c5b13b30dc0 from=translated src=- shape=9dca200f vocab=bf8dc0d9
+-/
 theorem reject_sound_colweight (V : Verifier S) (hlb : V.lb = colWeightLb S) (y : Fin S.n → F) :
     V.run S y = Verdict.reject → ¬ Safe S y :=
   reject_sound S V (colWeightLb_lbSound S V hlb) y

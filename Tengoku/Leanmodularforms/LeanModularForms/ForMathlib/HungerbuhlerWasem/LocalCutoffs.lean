@@ -347,7 +347,9 @@ derivative limit `L ≠ 0`, there exists `r > 0` such that the chord quotient
 
 Pure repackaging of `exists_slitPlane_chord_quotient_right`. Provided as a
 companion to the exact-radius API so that callers can derive their per-crossing
-threshold radius before invoking `cpvFullSetup_local_exact`. -/
+threshold radius before invoking `cpvFullSetup_local_exact`.
+@isnad1 id=ex.3h4v.s7.82c52b7f43f4 from=translated src=- shape=31b5a84c vocab=955c550e
+-/
 theorem exists_chord_slitPlane_radius_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Set.Ioi t₀) t₀)
@@ -361,7 +363,9 @@ left one-sided derivative limit `L ≠ 0`, there exists `r > 0` such that the
 chord quotient `(γ(b) - s) / (γ(a) - s) ∈ Complex.slitPlane` for all
 `t₀ - r ≤ a ≤ b < t₀`.
 
-Pure repackaging of `exists_slitPlane_chord_quotient_left_forward`. -/
+Pure repackaging of `exists_slitPlane_chord_quotient_left_forward`.
+@isnad1 id=ex.3h4v.s7.90e93d194645 from=translated src=- shape=dc8346e5 vocab=ab939e0a
+-/
 theorem exists_chord_slitPlane_radius_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Set.Iio t₀) t₀)
@@ -378,7 +382,9 @@ derivative limit `L ≠ 0`, there exists `r > 0` such that for every
 The proof uses the normalized chord bound
 `‖(γ(t₀ + r') - s) / (L · r') - 1‖ ≤ 1/4`, which yields
 `Re((γ(t₀ + r') - s) / (L · r')) ≥ 3/4`. Multiplying by the positive real
-`r'` (which preserves slit-plane membership) gives the desired result. -/
+`r'` (which preserves slit-plane membership) gives the desired result.
+@isnad1 id=ex.3h4v.s7.b00def3431f0 from=translated src=- shape=a34620e1 vocab=955c550e
+-/
 theorem exists_chord_div_endpoint_slitPlane_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Set.Ioi t₀) t₀)
@@ -425,7 +431,9 @@ derivative limit `L ≠ 0`, there exists `r > 0` such that for every
 The `γ(t₀ - r') ≠ s` hypothesis is supplied by the caller (typically via
 local uniqueness on the window). The proof uses `‖−q − 1‖ ≤ 1/4` where
 `q = (γ(t₀ - r') - s) / (L · r')`, then deduces `‖q‖ ≥ 3/4`, then
-`‖−1/q − 1‖ ≤ 1/3`, then `Re(−1/q) ≥ 2/3`, and finally multiplies by `1/r' > 0`. -/
+`‖−1/q − 1‖ ≤ 1/3`, then `Re(−1/q) ≥ 2/3`, and finally multiplies by `1/r' > 0`.
+@isnad1 id=ex.3h4v.s7.defc4123be47 from=translated src=- shape=6f01bc74 vocab=4c043c4f
+-/
 theorem exists_chord_div_endpoint_slitPlane_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s L : ℂ}
     (h_deriv : HasDerivWithinAt γ L (Set.Iio t₀) t₀)
@@ -488,7 +496,9 @@ theorem exists_chord_div_endpoint_slitPlane_left
 nonzero one-sided derivatives `L_R, L_L` and the corresponding
 `HasDerivWithinAt` witnesses on `Ioi t₀, Iio t₀` from the immersion
 infrastructure. This is the radius-independent substrate of
-`cpvFullSetup_local`. -/
+`cpvFullSetup_local`.
+@isnad1 id=ex.1h3v.s8.934546f3b976 from=translated src=- shape=a1be4b82 vocab=385e9463
+-/
 theorem oneSided_deriv_setup
     (γ : ClosedPwC1Immersion x) {t₀ : ℝ}
     (ht₀ : t₀ ∈ Set.Ioo (0 : ℝ) 1) :
@@ -525,7 +535,9 @@ Given a finite set of crossings `crossings : Finset ℝ` (each in `Icc 0 1`,
 with `γ(t) = s` only when `t ∈ crossings`), and a common radius function
 `r_at : crossings → ℝ` with each `r_at t_i > 0`, the function `t ↦ ‖γ(t) - s‖`
 has a positive minimum on the **closed complement** `[0, 1] \ ⋃_i (t_i - r_at t_i,
-t_i + r_at t_i)`. -/
+t_i + r_at t_i)`.
+@isnad1 id=ex.2h5v.s8.f599a4ad5f56 from=translated src=- shape=e5848575 vocab=f09d20dd
+-/
 theorem multi_pole_smooth_complement_far_bound
     (γ : ClosedPwC1Immersion x) {s : ℂ}
     {crossings : Finset ℝ}

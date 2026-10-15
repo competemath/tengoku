@@ -423,7 +423,9 @@ private theorem mutuallyIndependent_union_of_restrict_and_pair
 
 /-! ## Empty and singleton atoms -/
 
-/-- Every dependent PMF family is mutually independent on the empty atom. -/
+/-- Every dependent PMF family is mutually independent on the empty atom.
+@isnad1 id=ismutual.0h3v.s4.dc95534a9cef from=translated src=- shape=2d1a2ba0 vocab=1fe52587
+-/
 @[simp] theorem isMutuallyIndependentFamily_empty
     {Var : Type u} {alpha : Var -> Type v}
     (q : PMF ((i : Var) -> alpha i)) :
@@ -459,7 +461,9 @@ private theorem singletonFamilyEval_injective
   subst j
   exact hxy
 
-/-- Every one-coordinate marginal is mutually independent. -/
+/-- Every one-coordinate marginal is mutually independent.
+@isnad1 id=ismutual.0h4v.s4.1ee93ee8d1bd from=translated src=- shape=87d922b0 vocab=1d0db048
+-/
 @[simp] theorem isMutuallyIndependentFamily_singleton
     {Var : Type u} {alpha : Var -> Type v}
     (q : PMF ((i : Var) -> alpha i)) (i : Var) :
@@ -640,6 +644,7 @@ exactly independence of the corresponding pair of random variables.
 Distinctness is essential: when the indices coincide, the selected atom
 collapses to a singleton and is automatically mutually independent, whereas a
 random variable need not be independent of itself.
+@isnad1 id=iff.1h7v.s6.70974e4b9fba from=translated src=- shape=6f92464b vocab=00068dbc
 -/
 theorem isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
@@ -663,6 +668,7 @@ Mutual independence of a finite atom is inherited by each of its subatoms.
 Here the atom is finite because it is a `Finset`; the additional typeclass
 assumption says that the ambient family has pointwise-finite coordinate
 alphabets.
+@isnad1 id=ismutual.2h5v.s5.4d25e1c994e0 from=translated src=- shape=75650d22 vocab=8b5d123d
 -/
 theorem isMutuallyIndependentFamily_mono
     {Var : Type u} {alpha : Var -> Type v}
@@ -701,6 +707,7 @@ private theorem familyEntropy_union_eq_add_iff_isIndependent_pairLaw
 The entropy of a finite dependent-family marginal is the sum of its
 one-coordinate entropies exactly when the selected family is mutually
 independent.
+@isnad1 id=iff.0h4v.s5.3d0228775926 from=translated src=- shape=17701e6f vocab=dbc196ae
 -/
 theorem familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily
     {Var : Type u} {alpha : Var -> Type v}
@@ -799,6 +806,7 @@ theorem familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily
 /--
 The source-family form of the finite entropy-additivity characterization of
 mutual independence.
+@isnad1 id=iff.0h6v.s6.8b8e8cf01521 from=translated src=- shape=994eacd2 vocab=5e74b446
 -/
 theorem familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf
     {Var : Type u} {alpha : Var -> Type v} {omega : Type w}

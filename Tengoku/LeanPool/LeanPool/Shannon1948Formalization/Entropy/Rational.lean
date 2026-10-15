@@ -29,6 +29,9 @@ open scoped Topology
 
 /-! ## Phase 2: Rational Probabilities via Grouping -/
 
+/--
+@isnad1 id=eq.3h5v.s7.585e53a5fb57 from=translated src=- shape=4fa04087 vocab=c932e1e4
+-/
 lemma relabel_compose_rational_eq_uniform
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -48,6 +51,9 @@ lemma relabel_compose_rational_eq_uniform
   simp [relabelProb, composeProb, uniformPNat, hp]
   field_simp [hN_ne, hn_ne]
 
+/--
+@isnad1 id=eq.5h5v.s7.62bfa4351a66 from=translated src=- shape=06dff84c vocab=a42068bd
+-/
 lemma grouping_on_rational_counts
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -80,6 +86,9 @@ lemma grouping_on_rational_counts
     _ = H p + ∑ a, p a * H (q a) := hgroup
     _ = H p + ∑ a, p a * Apos H ⟨n a, hpos a⟩ := by rw [hsumA]
 
+/--
+@isnad1 id=eq.5h5v.s7.0b06344f679f from=translated src=- shape=e675887b vocab=02a2282f
+-/
 lemma entropyNat_of_rational_counts_aux
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -106,6 +115,9 @@ lemma entropyNat_of_rational_counts_aux
       simpa using congrArg (p a * ·) (Apos_eq_K_mul_log H hH ⟨n a, hpos a⟩)
   linarith [hgroup, hA_N, hA_n]
 
+/--
+@isnad1 id=eq.5h5v.s7.ef8de4ff2833 from=translated src=- shape=dbea8814 vocab=e09c32a0
+-/
 lemma entropyNat_of_rational_counts
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -180,6 +192,7 @@ def workedCompose : ProbDist (Sigma workedFib) :=
 Masses in the worked decomposition:
 `(true, 0)` has mass `1/2`, `(false, 0)` has mass `1/3`,
 and `(false, 1)` has mass `1/6`.
+@isnad1 id=and.0h0v.s7.58cd20b55752 from=translated src=- shape=c781d87f vocab=1bdec18c
 -/
 lemma workedCompose_masses :
     workedCompose ⟨true, (0 : Fin 1)⟩ = (1 : ℝ) / 2 ∧
@@ -200,6 +213,7 @@ lemma workedCompose_masses :
 Worked grouping identity corresponding to Shannon's `(1/2, 1/3, 1/6)` narrative:
 first choose `true/false` with probabilities `(1/2, 1/2)`, then if `false`
 choose between two outcomes with probabilities `(2/3, 1/3)`.
+@isnad1 id=eq.1h1v.s6.7d376b59440d from=translated src=- shape=7e3bd80a vocab=1e4b295f
 -/
 theorem worked_grouping_identity
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)

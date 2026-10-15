@@ -35,6 +35,9 @@ noncomputable abbrev JJENN (n : ℕ) : ENNReal :=
     ((x.2.1 * (1 - x.2.1) * x.2.2 * (1 - x.2.2) * x.1 * (1 - x.1) /
     (1 - (1 - x.2.1 * x.2.2) * x.1)) ^ n / (1 - (1 - x.2.1 * x.2.2) * x.1))
 
+/--
+@isnad1 id=lt.1h1v.s7.8808b498df11 from=translated src=- shape=246c2040 vocab=15740c9d
+-/
 lemma pos_aux (x : ℝ × ℝ × ℝ)
     (hx : (0 < x.1 ∧ x.1 < 1) ∧ (0 < x.2.1 ∧ x.2.1 < 1) ∧
       0 < x.2.2 ∧ x.2.2 < 1) :
@@ -61,6 +64,9 @@ private lemma JJ'_nonneg (x : ℝ × ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ Se
     · linarith [pos_aux x ⟨⟨hx0, hx1⟩, ⟨hy0, hy1⟩, hz0, hz1⟩]
   · linarith [pos_aux x ⟨⟨hx0, hx1⟩, ⟨hy0, hy1⟩, hz0, hz1⟩]
 
+/--
+@isnad1 id=le.0h1v.s7.3869bb105a9f from=translated src=- shape=2f3031b2 vocab=5c3e95e0
+-/
 lemma JJENN_upper (n : ℕ) : JJENN n ≤
     ENNReal.ofReal (2 * (1 / 30) ^ n * ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3) := by
   calc
@@ -120,6 +126,9 @@ lemma JJENN_upper (n : ℕ) : JJENN n ≤
     rw [← ENNReal.ofReal_mul (by norm_num), ← mul_assoc]
     nth_rw 2 [mul_comm]
 
+/--
+@isnad1 id=integrab.0h1v.s8.62705299a954 from=translated src=- shape=288a2943 vocab=7f11633a
+-/
 lemma integrableOn_JJ' (n : ℕ) : MeasureTheory.Integrable (fun (x : ℝ × ℝ × ℝ) ↦
     (x.2.1 * (1 - x.2.1) * x.2.2 * (1 - x.2.2) * x.1 * (1 - x.1) /
       (1 - (1 - x.2.1 * x.2.2) * x.1)) ^ n /
@@ -157,6 +166,9 @@ lemma integrableOn_JJ' (n : ℕ) : MeasureTheory.Integrable (fun (x : ℝ × ℝ
     apply LE.le.trans_lt (JJENN_upper n)
     simp only [one_div, inv_pow, ENNReal.ofReal_lt_top]
 
+/--
+@isnad1 id=measurab.0h0v.s6.7766c8bc3228 from=translated src=- shape=22405c80 vocab=e497dd65
+-/
 lemma Measurable_one_div_aux :
     Measurable fun (x : ℝ × ℝ × ℝ) ↦
       ENNReal.ofReal (1 / (1 - (1 - x.2.1 * x.2.2) * x.1)) := by
@@ -169,6 +181,9 @@ lemma Measurable_one_div_aux :
   · exact Measurable.fun_comp measurable_fst measurable_snd
   · exact Measurable.fun_comp measurable_snd measurable_snd
 
+/--
+@isnad1 id=and.2h2v.s7.2f8f47612481 from=translated src=- shape=81d96b21 vocab=6ea7e3e1
+-/
 lemma ineq_aux (x : ℝ × ℝ) (z : ℝ)
     (hx : (0 < x.1 ∧ x.1 < 1) ∧ 0 < x.2 ∧ x.2 < 1) (hz : 0 ≤ z ∧ z ≤ 1) :
     0 ≤ (1 - z) / (1 - (1 - x.1 * x.2) * z) ∧
@@ -194,6 +209,9 @@ lemma ineq_aux (x : ℝ × ℝ) (z : ℝ)
       suffices z * (1 - x.1 * x.2) ≤ (1 - x.1 * x.2) by nlinarith
       apply mul_le_of_le_one_left (by nlinarith) hz.2
 
+/--
+@isnad1 id=ne.2h2v.s7.7a60511528af from=translated src=- shape=86272e1c vocab=2b02f4f0
+-/
 lemma ineq_aux1 (x : ℝ × ℝ) (z : ℝ)
     (hx : (0 < x.1 ∧ x.1 < 1) ∧ 0 < x.2 ∧ x.2 < 1) (hz : 0 ≤ z ∧ z ≤ 1) :
     1 - (1 - x.1 * x.2) * z ≠ 0 := by
@@ -202,6 +220,9 @@ lemma ineq_aux1 (x : ℝ × ℝ) (z : ℝ)
   suffices z * (1 - x.1 * x.2) ≤ (1 - x.1 * x.2) by nlinarith
   apply mul_le_of_le_one_left (by nlinarith) hz.2
 
+/--
+@isnad1 id=eq.2h2v.s8.37cd1926aa37 from=translated src=- shape=b655ea6c vocab=e8c1b4b7
+-/
 lemma fun_eq_aux (x : ℝ × ℝ) (y : ℝ)
     (hx : (0 < x.1 ∧ x.1 < 1) ∧ 0 < x.2 ∧ x.2 < 1) (hy : 0 ≤ y ∧ y ≤ 1) :
     deriv (fun z => (1 - z) / (1 - (1 - x.1 * x.2) * z)) y =
@@ -215,12 +236,18 @@ lemma fun_eq_aux (x : ℝ × ℝ) (y : ℝ)
   · apply DifferentiableAt.const_sub (DifferentiableAt.const_mul differentiableAt_id _)
   · exact ineq_aux1 x y hx hy
 
+/--
+@isnad1 id=summable.0h0v.s5.f6f427d6493f from=translated src=- shape=8f57b2fc vocab=72262d31
+-/
 lemma Summable_of_zeta_two' : Summable (fun (n : ℕ) ↦ 1 / ((n : ℝ) + 1) ^ 2) := by
   norm_cast
   simp only [Nat.cast_pow]
   rw [summable_nat_add_iff (k := 1) (f := fun k => 1 / (k ^ 2 : ℝ))]
   simp
 
+/--
+@isnad1 id=lt.0h0v.s6.de1123a5d64a from=translated src=- shape=72d47527 vocab=6a944134
+-/
 lemma zeta3_pos : 0 < ∑' (n : ℕ), 1 / ((n : ℝ) + 1) ^ 3 := by
   apply Summable.tsum_pos (g := fun n : ℕ => 1 / ((n : ℝ) + 1) ^ 3) (i := 1)
   · apply summable_of_sum_range_le (c := Real.pi ^ 2 / 6)
@@ -256,6 +283,9 @@ lemma zeta3_pos : 0 < ∑' (n : ℕ), 1 / ((n : ℝ) + 1) ^ 3 := by
     positivity
   · positivity
 
+/--
+@isnad1 id=lt.0h0v.s6.5d075ad3ec4d from=translated src=- shape=7db04f45 vocab=6a944134
+-/
 lemma zeta3_le_zeta2 :
     ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3 <
       ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 2 := by
@@ -272,6 +302,9 @@ lemma zeta3_le_zeta2 :
   · norm_num
   · exact Summable_of_zeta_two'
 
+/--
+@isnad1 id=eventual.0h0v.s6.75b27d08859b from=translated src=- shape=0765a9ad vocab=4aa41fc0
+-/
 lemma eventually_d_pow_three_le_exp :
     ∀ᶠ n : ℕ in Filter.atTop,
       (d (Finset.Icc 1 n) : ℝ) ^ 3 ≤ (Real.exp (339 / 100 : ℝ)) ^ n := by

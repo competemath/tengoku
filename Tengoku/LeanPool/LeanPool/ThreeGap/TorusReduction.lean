@@ -41,14 +41,18 @@ variable {d : ℕ}
 
 /-! ## Symmetry of the defect -/
 
-/-- Negating both the denominator and the integer translate negates the remainder vector. -/
+/-- Negating both the denominator and the integer translate negates the remainder vector.
+@isnad1 id=eq.0h4v.s6.64e35cafb275 from=translated src=- shape=4236a5cc vocab=a1fcea3f
+-/
 theorem rem_neg_neg (α : Fin d → ℝ) (q : ℤ) (p : Fin d → ℤ) :
     rem α (-q) (-p) = - rem α q p := by
   funext k
   simp only [rem, Pi.sub_apply, Pi.smul_apply, Pi.neg_apply, smul_eq_mul]
   push_cast; ring
 
-/-- One inequality of the symmetry `delta α (−q) ≤ delta α q`. -/
+/-- One inequality of the symmetry `delta α (−q) ≤ delta α q`.
+@isnad1 id=le.0h3v.s4.1d30b216098d from=translated src=- shape=4d8850f2 vocab=798bb049
+-/
 theorem delta_neg_le (α : Fin d → ℝ) (q : ℤ) : delta α (-q) ≤ delta α q := by
   unfold delta
   refine le_ciInf (fun p => ?_)
@@ -56,7 +60,9 @@ theorem delta_neg_le (α : Fin d → ℝ) (q : ℤ) : delta α (-q) ≤ delta α
   rwa [rem_neg_neg, norm_neg] at h
 
 /-- **The defect is symmetric:** `delta α (−q) = delta α q`. (The torus distance to the origin is
-unchanged by reflection.) -/
+unchanged by reflection.)
+@isnad1 id=eq.0h3v.s4.6c3e3949de59 from=translated src=- shape=4d8850f2 vocab=dc9f820b
+-/
 theorem delta_neg_eq (α : Fin d → ℝ) (q : ℤ) : delta α (-q) = delta α q :=
   le_antisymm (delta_neg_le α q) (by have := delta_neg_le α (-q); rwa [neg_neg] at this)
 
@@ -75,7 +81,9 @@ equals the genuine torus nearest-neighbour distance:
 
 Proof: each side is an infimum; the offset map `j ↦ |q − j|` is a value-preserving correspondence
 between `{0,…,N}\{q}` and `[1, max(q, N−q)]` (using `delta α (−t) = delta α t`), so the two infima
-agree. -/
+agree.
+@isnad1 id=eq.2h4v.s5.dd8e09f07b79 from=translated src=- shape=c5a2e519 vocab=8fe78af9
+-/
 theorem gapVal_eq_nnDist (α : Fin d → ℝ) {N : ℕ} (hN : 2 ≤ N) {q : ℕ} (hq : q ≤ N) :
     gapVal (deltaCost α) N q = nnDist α N q := by
   have hIcc : (Finset.Icc 1 (max q (N - q))).Nonempty := by
@@ -145,7 +153,9 @@ bound in `L^∞`).** For every `N ≥ 2`, the number of distinct nearest-neighbo
 `{nnDist α N q : 0 ≤ q ≤ N}` of the orbit `{0, α, …, Nα}` on the torus `𝕋ᵈ` is at most `2^d + 1`.
 The only hypothesis is `RecordsContinue` (the best approximations of `α` improve without bound — the
 appropriate irrationality). The growth geometry is fully discharged (orthant pigeonhole), and the
-geometric identification `gapVal = nnDist` is now proven. -/
+geometric identification `gapVal = nnDist` is now proven.
+@isnad1 id=le.2h3v.s6.a31de5bb25fe from=translated src=- shape=610e4d45 vocab=a22b649c
+-/
 theorem nnDist_count_le (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α)) {N : ℕ} (hN : 2 ≤ N) :
     ((Finset.range (N + 1)).image (nnDist α N)).card ≤ 2 ^ d + 1 := by
   have hcongr : (Finset.range (N + 1)).image (nnDist α N)
@@ -165,7 +175,9 @@ orthant pigeonhole and the geometric identification `gapVal = nnDist` is proven.
 
 NB: this is the **sup-norm** (`L^∞`) five-distance theorem. The *Euclidean* five-distance bound
 `g₂ ≤ 5` (Haynes–Marklof) is a distinct statement requiring Romanov's sharper growth constant
-`K = 4`; the contact-number route gives only the Euclidean `g₂ ≤ 7`. -/
+`K = 4`; the contact-number route gives only the Euclidean `g₂ ≤ 7`.
+@isnad1 id=le.2h2v.s6.05b9572b7a95 from=translated src=- shape=dcfa96b9 vocab=5331a80d
+-/
 theorem nnDist_count_le_plane (α : Fin 2 → ℝ) (hr : RecordsContinue (deltaCost α)) {N : ℕ}
     (hN : 2 ≤ N) : ((Finset.range (N + 1)).image (nnDist α N)).card ≤ 5 := by
   have h := nnDist_count_le (d := 2) α hr hN

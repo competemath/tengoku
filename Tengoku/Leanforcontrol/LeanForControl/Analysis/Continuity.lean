@@ -2,12 +2,17 @@ import Tengoku
 
 open MeasureTheory intervalIntegral Real Set Filter
 
+/--
+@isnad1 id=mem.3h1v.s5.402192cef8cf from=translated src=- shape=0bd92678 vocab=0ad79133
+-/
 lemma sSup_mem_of_isClosed {S : Set ℝ}
     (hS : S.Nonempty) (hBdd : BddAbove S) (hCl : IsClosed S) : sSup S ∈ S :=
   hCl.csSup_mem hS hBdd
 
 /-- If a continuous function starts ≤ 0 and ends > 0, it has a last root `a` in `[t₀, t₁)`,
-    after which it is strictly positive on `(a, t₁]`. -/
+    after which it is strictly positive on `(a, t₁]`.
+@isnad1 id=ex.4h3v.s6.85fd70471433 from=translated src=- shape=c26a24eb vocab=eaa88c87
+-/
 lemma ContinuousOn.exists_greatest_zero_of_nonpos_of_pos {g : ℝ → ℝ} {t₀ t₁ : ℝ}
     (hg_cont : ContinuousOn g (Icc t₀ t₁))
     (ht : t₀ < t₁) (hg_start : g t₀ ≤ 0) (hg_end : 0 < g t₁) :

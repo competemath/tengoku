@@ -317,6 +317,7 @@ private lemma hasDerivAt_segmentIntegral {f : ℂ → ℂ}
 
 **Construction**: For f holomorphic on convex open S and c ∈ S,
 F(z) = ∫₀¹ f(c + t(z-c))·(z-c) dt is a primitive with F'(z) = f(z).
+@isnad1 id=ex.4h2v.s7.4e983515ca1e from=translated src=- shape=f68bc477 vocab=98c3d0a2
 -/
 theorem holomorphic_convex_primitive
     {f : ℂ → ℂ} {S : Set ℂ} (hS_convex : Convex ℝ S)

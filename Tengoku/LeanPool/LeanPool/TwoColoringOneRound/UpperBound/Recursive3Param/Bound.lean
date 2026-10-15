@@ -31,6 +31,9 @@ open scoped ENNReal
 /-- Imported auxiliary declaration for the 2-coloring one-round formalization. -/
 noncomputable abbrev μ : Measure Rand := (volume : Measure Rand)
 
+/--
+@isnad1 id=eventual.0h0v.s6.de771836b009 from=translated src=- shape=5b5acd40 vocab=f0f14457
+-/
 lemma Iio_one_ae_eq_univ : (Set.Iio (1 : Rand) : Set Rand) =ᵐ[μ] (Set.univ : Set Rand) := by
   -- `Iio 1` and `univ` differ by a singleton, hence are a.e. equal.
   simp [μ]
@@ -195,6 +198,9 @@ private lemma ofReal_affine_linear {x T : ℝ} (hx0 : 0 ≤ x) (h1x0 : 0 ≤ 1 -
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.da480100725b from=translated src=- shape=6c5a81ab vocab=4563aea7
+-/
 lemma gCt_eq_linear (c : Rand) :
     gCt c =
       ENNReal.ofReal ((2 * (t : ℝ) - 1) * (c : ℝ)) + ENNReal.ofReal (1 - (t : ℝ)) := by
@@ -202,6 +208,9 @@ lemma gCt_eq_linear (c : Rand) :
     (sub_nonneg.2 c.property.2) t.property.1 (sub_nonneg.2 (le_of_lt t_lt_one))
     (by simp only [t]; norm_num)]
 
+/--
+@isnad1 id=eq.0h1v.s6.01cf70f52b33 from=translated src=- shape=6c5a81ab vocab=c186c943
+-/
 lemma gCt2_eq_linear (c : Rand) :
     gCt2 c =
       ENNReal.ofReal ((2 * (t2 : ℝ) - 1) * (c : ℝ)) + ENNReal.ofReal (1 - (t2 : ℝ)) := by
@@ -209,6 +218,9 @@ lemma gCt2_eq_linear (c : Rand) :
     (sub_nonneg.2 c.property.2) t2.property.1 (sub_nonneg.2 t2.property.2)
     (by simp only [t2]; norm_num)]
 
+/--
+@isnad1 id=eq.0h1v.s6.4a67527f8385 from=translated src=- shape=6c5a81ab vocab=a8659448
+-/
 lemma gTB_eq_linear (b : Rand) :
     gTB b =
       ENNReal.ofReal ((2 * (t : ℝ) - 1) * (b : ℝ)) + ENNReal.ofReal (1 - (t : ℝ)) := by
@@ -217,6 +229,9 @@ lemma gTB_eq_linear (b : Rand) :
     (sub_nonneg.2 b.property.2) t.property.1 (sub_nonneg.2 (le_of_lt t_lt_one))
     (by simp only [t]; norm_num)]
 
+/--
+@isnad1 id=eq.0h1v.s6.a586acd58e8b from=translated src=- shape=6c5a81ab vocab=01407625
+-/
 lemma gT2B_eq_linear (b : Rand) :
     gT2B b =
       ENNReal.ofReal ((2 * (t2 : ℝ) - 1) * (b : ℝ)) + ENNReal.ofReal (1 - (t2 : ℝ)) := by
@@ -225,6 +240,9 @@ lemma gT2B_eq_linear (b : Rand) :
     (sub_nonneg.2 b.property.2) t2.property.1 (sub_nonneg.2 t2.property.2)
     (by simp only [t2]; norm_num)]
 
+/--
+@isnad1 id=eq.3h2v.s6.2721a6ea6f21 from=translated src=- shape=f5af2ec6 vocab=d9cf8eda
+-/
 lemma innerBC_eq_constAboveT_of_t_lt_b {b c : Rand} (hb : t < b) (htc : t ≤ c)
     (hc1 : c ∈ (Set.Iio (1 : Rand) : Set Rand)) : innerBC b c = constAboveT := by
   have hc1' : (c : ℝ) < 1 := by simpa using hc1
@@ -236,6 +254,9 @@ lemma innerBC_eq_constAboveT_of_t_lt_b {b c : Rand} (hb : t < b) (htc : t ≤ c)
   -- Now unfold `innerBC` and compute all measures.
   simp [innerBC, constAboveT, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.2h2v.s5.2850fe870365 from=translated src=- shape=15c12c24 vocab=44d31b55
+-/
 lemma innerBC_eq_zero_of_t_lt_b_of_c_lt_t {b c : Rand} (hb : t < b) (hc : c < t) :
     innerBC b c = 0 := by
   have haSlice : aSlice b c = Set.univ := by simp [aSlice_eq_of_t_lt_b (b := b) (c := c) hb, hc]
@@ -243,6 +264,9 @@ lemma innerBC_eq_zero_of_t_lt_b_of_c_lt_t {b c : Rand} (hb : t < b) (hc : c < t)
     z0_eq_zero_of_lt_t_le (fun h => (not_le_of_gt hb) h.1.2) hc hb.le
   simp [innerBC, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.3h2v.s6.6ae28d3947f2 from=translated src=- shape=d433beb2 vocab=09ecf95e
+-/
 lemma innerBC_eq_gCt_of_t2_le_b_lt_t_of_c_lt_t1 {b c : Rand} (hb1 : t2 ≤ b) (hb2 : b < t)
     (hc : c < t1) : innerBC b c = gCt c := by
   have hc2 : c < t2 := lt_trans hc t1_lt_t2
@@ -253,6 +277,9 @@ lemma innerBC_eq_gCt_of_t2_le_b_lt_t_of_c_lt_t1 {b c : Rand} (hb1 : t2 ≤ b) (h
       (lt_trans hc (lt_trans t1_lt_t2 t2_lt_t)) hb2 (lt_of_lt_of_le (lt_trans hc t1_lt_t2) hb1)
   simp [innerBC, gCt, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.4h2v.s6.f3b8fbe459ec from=translated src=- shape=86a3f9fc vocab=22090b49
+-/
 lemma innerBC_eq_constT1T_of_t2_le_b_lt_t_of_t1_le_c_of_c_lt_t2 {b c : Rand} (hb1 : t2 ≤ b)
     (hb2 : b < t) (hc1 : t1 ≤ c) (hc2 : c < t2) : innerBC b c = constT1T := by
   have haSlice : aSlice b c = Set.Iic t := by
@@ -261,6 +288,9 @@ lemma innerBC_eq_constT1T_of_t2_le_b_lt_t_of_t1_le_c_of_c_lt_t2 {b c : Rand} (hb
     z0_inSquare_eq_t1 ⟨⟨le_trans t1_le_t2 hb1, hb2.le⟩, hc1, le_trans hc2.le t2_le_t⟩ hc2 hb1
   simp [innerBC, constT1T, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.4h2v.s6.07f1f3fb4218 from=translated src=- shape=1a1445aa vocab=83510322
+-/
 lemma innerBC_eq_constT2T2_of_t2_le_b_lt_t_of_t2_le_c_of_c_lt_t {b c : Rand} (hb1 : t2 ≤ b)
     (hb2 : b < t) (hc1 : t2 ≤ c) (hc2 : c < t) : innerBC b c = constT2T2 := by
   have haSlice : aSlice b c = Set.Iio t2 := by
@@ -278,6 +308,9 @@ For `b < t1` and for `t1 ≤ b < t2`, `innerBC b c` is still piecewise polynomia
 and can be integrated explicitly.
 -/
 
+/--
+@isnad1 id=eq.2h2v.s5.b32fe9d4ef73 from=translated src=- shape=812f2dea vocab=183e7ba4
+-/
 lemma innerBC_eq_gCt_of_b_lt_t1_of_c_lt_b {b c : Rand} (hb : b < t1) (hc : c < b) :
     innerBC b c = gCt c := by
   have haSlice : aSlice b c = Set.Iio t := by simp [aSlice_eq_of_b_lt_t1 (b := b) (c := c) hb, hc]
@@ -287,6 +320,9 @@ lemma innerBC_eq_gCt_of_b_lt_t1_of_c_lt_b {b c : Rand} (hb : b < t1) (hc : c < b
       (lt_trans hb (lt_trans t1_lt_t2 t2_lt_t)) hc
   simp [innerBC, gCt, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.3h2v.s6.4dc86ded025a from=translated src=- shape=d55386b8 vocab=abb2f384
+-/
 lemma innerBC_eq_gTB_of_b_lt_t1_of_b_le_c_of_c_lt_t {b c : Rand} (hb : b < t1) (hc1 : b ≤ c)
     (hc2 : c < t) : innerBC b c = gTB b := by
   have hcb : ¬ c < b := not_lt_of_ge hc1
@@ -297,6 +333,9 @@ lemma innerBC_eq_gTB_of_b_lt_t1_of_b_le_c_of_c_lt_t {b c : Rand} (hb : b < t1) (
       (lt_trans hb (lt_trans t1_lt_t2 t2_lt_t)) hc1
   simp [innerBC, gTB, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.2h2v.s5.2dede7262006 from=translated src=- shape=583cbe67 vocab=22e28a2a
+-/
 lemma innerBC_eq_zero_of_b_lt_t1_of_t_le_c {b c : Rand} (hb : b < t1) (hc : t ≤ c) :
     innerBC b c = 0 := by
   have hbt : (b : ℝ) < t := lt_trans hb (lt_trans t1_lt_t2 t2_lt_t)
@@ -308,6 +347,9 @@ lemma innerBC_eq_zero_of_b_lt_t1_of_t_le_c {b c : Rand} (hb : b < t1) (hc : t �
     z0_eq_one_of_lt_t_le (fun h => (not_le_of_gt hb) h.1.1) hbt hc
   simp [innerBC, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.3h2v.s6.b8a77fb92122 from=translated src=- shape=c6e16dd4 vocab=0a71f457
+-/
 lemma innerBC_eq_gCt_of_t1_le_b_lt_t2_of_c_lt_t1 {b c : Rand} (hb1 : t1 ≤ b) (hb2 : b < t2)
     (hc : c < t1) : innerBC b c = gCt c := by
   have haSlice : aSlice b c = Set.Iic t := by
@@ -318,6 +360,9 @@ lemma innerBC_eq_gCt_of_t1_le_b_lt_t2_of_c_lt_t1 {b c : Rand} (hb1 : t1 ≤ b) (
       (lt_of_lt_of_le hc hb1)
   simp [innerBC, gCt, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.4h2v.s6.f3a0b74b7f6d from=translated src=- shape=96911b10 vocab=6d0b62f9
+-/
 lemma innerBC_eq_gCt2_of_t1_le_b_lt_t2_of_t1_le_c_of_c_lt_b {b c : Rand} (hb1 : t1 ≤ b)
     (hb2 : b < t2) (hc1 : t1 ≤ c) (hc2 : c < b) : innerBC b c = gCt2 c := by
   have hc2' : (c : ℝ) < t2 := lt_trans hc2 hb2
@@ -329,6 +374,9 @@ lemma innerBC_eq_gCt2_of_t1_le_b_lt_t2_of_t1_le_c_of_c_lt_b {b c : Rand} (hb1 : 
       hc2' hb2 hc2
   simp [innerBC, gCt2, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.4h2v.s6.842b4db0457a from=translated src=- shape=748d26f9 vocab=17bbe9d2
+-/
 lemma innerBC_eq_gT2B_of_t1_le_b_lt_t2_of_b_le_c_of_c_lt_t2 {b c : Rand} (hb1 : t1 ≤ b)
     (hb2 : b < t2) (hc1 : b ≤ c) (hc2 : c < t2) : innerBC b c = gT2B b := by
   have hct1 : ¬ c < t1 := not_lt_of_ge (le_trans hb1 hc1)
@@ -340,6 +388,9 @@ lemma innerBC_eq_gT2B_of_t1_le_b_lt_t2_of_b_le_c_of_c_lt_t2 {b c : Rand} (hb1 : 
       ⟨⟨hb1, le_trans hb2.le t2_le_t⟩, le_trans hb1 hc1, le_trans hc2.le t2_le_t⟩ hc2 hb2 hc1
   simp [innerBC, gT2B, z0I, hz0, haSlice]
 
+/--
+@isnad1 id=eq.4h2v.s6.db61f07f8726 from=translated src=- shape=5a4ca22e vocab=22090b49
+-/
 lemma innerBC_eq_constT1T_of_t1_le_b_lt_t2_of_t2_le_c_of_c_lt_t {b c : Rand} (hb1 : t1 ≤ b)
     (hb2 : b < t2) (hc1 : t2 ≤ c) (hc2 : c < t) : innerBC b c = constT1T := by
   have hct1 : ¬ c < t1 := not_lt_of_ge (le_trans t1_le_t2 hc1)
@@ -352,6 +403,9 @@ lemma innerBC_eq_constT1T_of_t1_le_b_lt_t2_of_t2_le_c_of_c_lt_t {b c : Rand} (hb
   simp [innerBC, constT1T, z0I, hz0, haSlice]
   ac_rfl
 
+/--
+@isnad1 id=eq.3h2v.s6.f3e708adc061 from=translated src=- shape=2420c307 vocab=b1dffee2
+-/
 lemma innerBC_eq_zero_of_t1_le_b_lt_t2_of_t_lt_c {b c : Rand} (hb1 : t1 ≤ b) (hb2 : b < t2)
     (hc : t < c) : innerBC b c = 0 := by
   have hc2 : ¬ c < t2 := by exact not_lt_of_ge (le_trans t2_le_t (le_of_lt hc))
@@ -373,6 +427,9 @@ We use Tonelli/Fubini to evaluate integrals over regions of the form `{(b,c) | c
 introducing subtractions at the `ℝ≥0∞` level.
 -/
 
+/--
+@isnad1 id=eq.1h2v.s7.ec09822c1598 from=translated src=- shape=5b9c2dec vocab=a6787a06
+-/
 lemma lintegral_triangle_Iio (B : Rand) (f : Rand → ℝ≥0∞) (hf : Measurable f) :
     (∫⁻ b in Set.Iio B, ∫⁻ c in Set.Iio b, f c ∂μ ∂μ) =
       ∫⁻ c in Set.Iio B, f c * μ (Set.Ioo c B) ∂μ := by
@@ -453,6 +510,9 @@ lemma lintegral_triangle_Iio (B : Rand) (f : Rand → ℝ≥0∞) (hf : Measurab
   -- Put it together.
   simp_all
 
+/--
+@isnad1 id=eq.1h1v.s7.5340b3291920 from=translated src=- shape=0bdd98ad vocab=bc4f8a0d
+-/
 lemma lintegral_innerBC_Iio_one_of_t_lt_b {b : Rand} (hb : t < b) :
     (∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ) =
       constAboveT * (μ (Set.Ico t (1 : Rand))) := by
@@ -490,6 +550,9 @@ lemma lintegral_innerBC_Iio_one_of_t_lt_b {b : Rand} (hb : t < b) :
   -- Use the splitting identity.
   simp_all
 
+/--
+@isnad1 id=eq.0h0v.s8.09a3a35d96dd from=translated src=- shape=f7375df1 vocab=2fb82768
+-/
 lemma lintegral_b_above_t :
     (∫⁻ b in Set.Ico t (1 : Rand), ∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ ∂μ) =
       constAboveT * (μ (Set.Ico t (1 : Rand))) * (μ (Set.Ico t (1 : Rand))) := by
@@ -543,6 +606,9 @@ private lemma lintegral_innerBC_Ico_t_one_eq_zero_of_t2_le_b_lt_t {b : Rand}
   simpa using
     (MeasureTheory.setLIntegral_congr (μ := μ) (f := fun c => innerBC b c) hIoo.symm) ▸ hIoo0
 
+/--
+@isnad1 id=eq.0h0v.s8.90bcb3ff057f from=translated src=- shape=4f2ca2ca vocab=92dccb21
+-/
 lemma lintegral_b_t2_t :
     (∫⁻ b in Set.Ico t2 t, ∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ ∂μ) =
       μ (Set.Ico t2 t) *
@@ -689,24 +755,33 @@ private lemma ofReal_prodSum {x y : ℝ} (hx0 : 0 ≤ x) (h1x0 : 0 ≤ 1 - x)
   rw [← ENNReal.ofReal_mul hx0, ← ENNReal.ofReal_mul h1x0,
     ← ENNReal.ofReal_add (mul_nonneg hx0 hy0) (mul_nonneg h1x0 h1y0)]
 
-/-- Exact value of the constant `constAboveT = t^2 + (1-t)^2`. -/
+/-- Exact value of the constant `constAboveT = t^2 + (1-t)^2`.
+@isnad1 id=eq.0h0v.s4.ecb940683271 from=translated src=- shape=4f039536 vocab=3fe234b4
+-/
 lemma constAboveT_eq : constAboveT = ENNReal.ofReal (17 / 32 : ℝ) := by
   rw [constAboveT, ofReal_prodSum t.property.1 (sub_nonneg.2 (le_of_lt t_lt_one))
     t.property.1 (sub_nonneg.2 (le_of_lt t_lt_one))]
   norm_num [t]
 
-/-- Exact value of the constant `constT1T = t1*t + (1-t1)*(1-t)`. -/
+/-- Exact value of the constant `constT1T = t1*t + (1-t1)*(1-t)`.
+@isnad1 id=eq.0h0v.s4.8e5128cf2c6f from=translated src=- shape=4f039536 vocab=94faf621
+-/
 lemma constT1T_eq : constT1T = ENNReal.ofReal (15 / 32 : ℝ) := by
   rw [constT1T, ofReal_prodSum t1.property.1 (sub_nonneg.2 t1.property.2)
     t.property.1 (sub_nonneg.2 (le_of_lt t_lt_one))]
   norm_num [t1, t]
 
-/-- Exact value of the constant `constT2T2 = t2^2 + (1-t2)^2`. -/
+/-- Exact value of the constant `constT2T2 = t2^2 + (1-t2)^2`.
+@isnad1 id=eq.0h0v.s4.47a9e0b90050 from=translated src=- shape=4f039536 vocab=d8bcf862
+-/
 lemma constT2T2_eq : constT2T2 = ENNReal.ofReal (257 / 512 : ℝ) := by
   rw [constT2T2, ofReal_prodSum t2.property.1 (sub_nonneg.2 t2.property.2)
     t2.property.1 (sub_nonneg.2 t2.property.2)]
   norm_num [t2]
 
+/--
+@isnad1 id=eq.0h0v.s6.e5b447ff1c47 from=translated src=- shape=9f3b6a5b vocab=f82b64ca
+-/
 lemma lintegral_gCt_Iio_t1 :
     (∫⁻ c in Set.Iio t1, gCt c ∂μ) = ENNReal.ofReal (81 / 512 : ℝ) := by
   have ha0 : 0 ≤ (1 / 4 : ℝ) := by norm_num
@@ -764,7 +839,9 @@ lemma lintegral_gCt_Iio_t1 :
   simp only [t1]
   norm_num
 
-/-- Evaluate the `b ≥ t` region as an explicit rational value. -/
+/-- Evaluate the `b ≥ t` region as an explicit rational value.
+@isnad1 id=eq.0h0v.s7.78300e7f0e05 from=translated src=- shape=b5f25362 vocab=223122d2
+-/
 lemma lintegral_b_above_t_value :
     (∫⁻ b in Set.Ico t (1 : Rand), ∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ ∂μ) =
       ENNReal.ofReal (153 / 2048 : ℝ) := by
@@ -777,6 +854,9 @@ lemma lintegral_b_above_t_value :
   rw [hμ, ← ENNReal.ofReal_mul h17, ← ENNReal.ofReal_mul (mul_nonneg h17 h3)]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s7.fdc757f52f9b from=translated src=- shape=c59db94a vocab=52ed9c72
+-/
 lemma lintegral_b_t2_t_value :
     (∫⁻ b in Set.Ico t2 t, ∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ ∂μ) =
       ENNReal.ofReal (13689 / 524288 : ℝ) := by

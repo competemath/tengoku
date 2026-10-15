@@ -26,6 +26,9 @@ open Distributed2Coloring.LowerBound.N1000000Z
 
 -- This file performs large, mostly-automatic simplifications over big rational expressions;
 -- increasing `maxHeartbeats` avoids spurious timeouts in the kernel reduction.
+/--
+@isnad1 id=eq.0h1v.s6.405e59989695 from=translated src=- shape=8f97776f vocab=dbf9acae
+-/
 theorem compBasis_id_matches_S0 :
     ∀ r : Block, compBasis r idDirIdx = (blockScales[r.1]! : Q) • S0 r := by
   intro r

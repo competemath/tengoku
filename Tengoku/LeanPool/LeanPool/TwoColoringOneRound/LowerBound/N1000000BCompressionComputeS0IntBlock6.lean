@@ -19,6 +19,9 @@ namespace Distributed2Coloring.LowerBound
 namespace N1000000BCompressionCompute
 
 -- This proof is a large `decide` check; we increase `maxHeartbeats` to avoid timeouts.
+/--
+@isnad1 id=s0intgoa.0h2v.s4.0b476f2a8a22 from=translated src=- shape=88530bb6 vocab=116e68ad
+-/
 theorem s0IntGoal_block6 :
     ∀ p q : Fin 3, S0IntGoal (r := (⟨6, by decide⟩ : Block)) p q := by
   decide +kernel

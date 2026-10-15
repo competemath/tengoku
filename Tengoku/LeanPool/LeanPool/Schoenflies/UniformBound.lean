@@ -34,7 +34,9 @@ namespace Schoenflies
 
 variable {ι : Type*}
 
-/-- A finite family of positive reals is bounded below by a positive real. -/
+/-- A finite family of positive reals is bounded below by a positive real.
+@isnad1 id=ex.2h3v.s6.a0a2b6bbd304 from=translated src=- shape=cb6ea94e vocab=db3cd9f4
+-/
 theorem exists_pos_le_of_finite {S : Set ι} (hS : S.Finite) {f : ι → ℝ}
     (hf : ∀ i ∈ S, 0 < f i) : ∃ ε > 0, ∀ i ∈ S, ε ≤ f i := by
   classical
@@ -49,7 +51,9 @@ theorem exists_pos_le_of_finite {S : Set ι} (hS : S.Finite) {f : ι → ℝ}
 
 /-- The form the geometry uses: if a property that only gets easier as the bound shrinks holds
 at *some* positive bound for each member of a finite family, then it holds at *one* positive
-bound for all of them at once. -/
+bound for all of them at once.
+@isnad1 id=ex.2h4v.s6.5a29d629d166 from=translated src=- shape=e428cadc vocab=db3cd9f4
+-/
 theorem exists_pos_forall_of_finite {S : Set ι} (hS : S.Finite) {P : ι → ℝ → Prop}
     (hmono : ∀ i, ∀ ⦃δ ε : ℝ⦄, 0 < δ → δ ≤ ε → P i ε → P i δ)
     (hex : ∀ i ∈ S, ∃ ε > 0, P i ε) :

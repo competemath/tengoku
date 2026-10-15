@@ -21,7 +21,9 @@ namespace ZetaZeros
 open Filter Topology
 
 /-- Dividing two quantities normalized by the same eventually non-zero scale preserves their
-quotient limit. -/
+quotient limit.
+@isnad1 id=tendsto.3h4v.s7.514fb76c922c from=translated src=- shape=c4e08f88 vocab=0cd8b31f
+-/
 theorem tendsto_ratio_of_tendsto_div_scale
     (N S scale : ℝ → ℝ) (C : ℝ)
     (hN : Tendsto (fun T => N T / scale T) atTop (nhds 1))
@@ -36,7 +38,9 @@ theorem tendsto_ratio_of_tendsto_div_scale
   simpa only [div_one] using hdiv.congr' heq.symm
 
 /-- The simple-real lower bound gives the eventual simple-zero proportion once the kernel energy
-per zero tends to `C`. -/
+per zero tends to `C`.
+@isnad1 id=eventual.4h5v.s7.5b1f54665bf7 from=translated src=- shape=75072aa0 vocab=4cb3abfd
+-/
 theorem eventually_simple_proportion
     (N A S : ℝ → ℝ) (C ε : ℝ) (hε : 0 < ε)
     (hNpos : ∀ᶠ T in atTop, 0 < N T)
@@ -51,7 +55,9 @@ theorem eventually_simple_proportion
   nlinarith
 
 /-- The distinct-element lower bound gives the eventual distinct-zero proportion once the kernel
-energy per zero tends to `C`. -/
+energy per zero tends to `C`.
+@isnad1 id=eventual.4h5v.s7.1f918aa0e338 from=translated src=- shape=bcd32d2b vocab=4cb3abfd
+-/
 theorem eventually_distinct_proportion
     (N A S : ℝ → ℝ) (C ε : ℝ) (hε : 0 < ε)
     (hNpos : ∀ᶠ T in atTop, 0 < N T)

@@ -61,13 +61,24 @@ def reparam (a b : ℝ) : ℝ → ℝ := fun t => a + t * (b - a)
 
 variable {a b : ℝ}
 
+/--
+@isnad1 id=eq.0h2v.s4.989cf2d4dece from=translated src=- shape=2d8bf611 vocab=8d317612
+-/
 @[simp] theorem reparam_zero : reparam a b 0 = a := by simp [reparam]
 
+/--
+@isnad1 id=eq.0h2v.s4.2f3721c48928 from=translated src=- shape=bc06ed63 vocab=8d317612
+-/
 @[simp] theorem reparam_one : reparam a b 1 = b := by simp [reparam]
 
+/--
+@isnad1 id=continuo.0h2v.s4.571130fcc160 from=translated src=- shape=443e0365 vocab=393e5794
+-/
 theorem continuous_reparam : Continuous (reparam a b) := by unfold reparam; fun_prop
 
-/-- The reparametrisation is injective as soon as it is not constant. -/
+/-- The reparametrisation is injective as soon as it is not constant.
+@isnad1 id=injectiv.1h2v.s3.f6438083c084 from=translated src=- shape=5b6270ae vocab=693639cc
+-/
 theorem reparam_injective (hab : a ≠ b) : Function.Injective (reparam a b) := by
   intro s t hst
   have hba : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm hab)
@@ -78,18 +89,25 @@ theorem reparam_injective (hab : a ≠ b) : Function.Injective (reparam a b) := 
   exact mul_right_cancel₀ hba this
 
 /-- `reparam a b` carries the unit interval exactly onto `uIcc a b`. This is `segment_eq_image'`
-read through the identification of a real segment with an unordered closed interval. -/
+read through the identification of a real segment with an unordered closed interval.
+@isnad1 id=eq.0h2v.s4.f365d7210cba from=translated src=- shape=1e1fa15a vocab=5de4f2f1
+-/
 theorem image_reparam_I : reparam a b '' I = uIcc a b := by
   change (fun θ : ℝ => a + θ * (b - a)) '' Icc (0 : ℝ) 1 = uIcc a b
   have h : (fun θ : ℝ => a + θ • (b - a)) '' Icc (0 : ℝ) 1 = uIcc a b := by
     rw [← segment_eq_image' ℝ a b, segment_eq_uIcc]
   simpa [reparam, smul_eq_mul] using h
 
+/--
+@isnad1 id=mapsto.0h2v.s4.5d2ffbd8691c from=translated src=- shape=2fd9a620 vocab=737343f0
+-/
 theorem mapsTo_reparam : MapsTo (reparam a b) I (uIcc a b) :=
   mapsTo_iff_image_subset.mpr image_reparam_I.subset
 
 /-- A subinterval of the unit interval stays inside it: `uIcc` is the convex hull of its two
-endpoints, and the unit interval is convex. -/
+endpoints, and the unit interval is convex.
+@isnad1 id=le.2h2v.s5.7496811a4fe6 from=translated src=- shape=5b804914 vocab=ea5a258f
+-/
 theorem uIcc_subset_I (ha : a ∈ I) (hb : b ∈ I) : uIcc a b ⊆ I :=
   uIcc_subset_Icc ha hb
 
@@ -101,50 +119,75 @@ def subarc (f : ℝ → Plane) (a b : ℝ) : ℝ → Plane := fun t => f (repara
 
 variable {f : ℝ → Plane}
 
+/--
+@isnad1 id=eq.0h3v.s4.0dc4dc6a0037 from=translated src=- shape=19b20658 vocab=5f0d3178
+-/
 @[simp] theorem subarc_zero : subarc f a b 0 = f a := by simp [subarc]
 
+/--
+@isnad1 id=eq.0h3v.s4.507843405960 from=translated src=- shape=6f13d292 vocab=5f0d3178
+-/
 @[simp] theorem subarc_one : subarc f a b 1 = f b := by simp [subarc]
 
 /-- The image of a subarc is the arc restricted to the subinterval — which is what "sub"
-means, and the form every consumer wants. -/
+means, and the form every consumer wants.
+@isnad1 id=eq.0h3v.s4.f83b7122dd75 from=translated src=- shape=1e4276d7 vocab=6a541ff2
+-/
 theorem subarc_image : subarc f a b '' I = f '' uIcc a b := by
   rw [show subarc f a b = f ∘ reparam a b from rfl, image_comp, image_reparam_I]
 
+/--
+@isnad1 id=le.2h3v.s5.b411788a734f from=translated src=- shape=616b6415 vocab=9e13e259
+-/
 theorem subarc_image_subset (ha : a ∈ I) (hb : b ∈ I) : subarc f a b '' I ⊆ f '' I := by
   rw [subarc_image]
   exact image_mono (uIcc_subset_I ha hb)
 
+/--
+@isnad1 id=continuo.3h3v.s7.1796de21299d from=translated src=- shape=b343cb15 vocab=7ba22b68
+-/
 theorem continuousOn_subarc (hc : ContinuousOn f I) (ha : a ∈ I) (hb : b ∈ I) :
     ContinuousOn (subarc f a b) I :=
   hc.comp continuous_reparam.continuousOn
     (mapsTo_reparam.mono_right (uIcc_subset_I ha hb))
 
-/-- Injectivity of the subarc needs injectivity of `f` only where the subarc runs. -/
+/-- Injectivity of the subarc needs injectivity of `f` only where the subarc runs.
+@isnad1 id=injon.2h3v.s4.df9fb33f0adc from=translated src=- shape=bd2662c8 vocab=aaeef2af
+-/
 theorem injOn_subarc (hi : InjOn f (uIcc a b)) (hab : a ≠ b) : InjOn (subarc f a b) I := by
   intro s hs t ht hst
   exact reparam_injective hab (hi (mapsTo_reparam hs) (mapsTo_reparam ht) hst)
 
 /-- A subarc between two distinct parameters is an arc between the two values there. The
 injectivity hypothesis is confined to the traversed interval, so this applies to a piece of a
-Jordan curve as well as to a piece of an arc. -/
+Jordan curve as well as to a piece of an arc.
+@isnad1 id=isarcbet.5h3v.s6.af93f57c644f from=translated src=- shape=3e124ccc vocab=f6912876
+-/
 theorem isArcBetween_subarc (hc : ContinuousOn f I) (hi : InjOn f (uIcc a b))
     (ha : a ∈ I) (hb : b ∈ I) (hab : a ≠ b) :
     IsArcBetween (f '' uIcc a b) (f a) (f b) :=
   ⟨subarc f a b, continuousOn_subarc hc ha hb, injOn_subarc hi hab,
     subarc_image, subarc_zero, subarc_one⟩
 
+/--
+@isnad1 id=isarc.5h3v.s6.b9653b45b3bc from=translated src=- shape=d2ade583 vocab=a24fbda0
+-/
 theorem isArc_subarc (hc : ContinuousOn f I) (hi : InjOn f (uIcc a b))
     (ha : a ∈ I) (hb : b ∈ I) (hab : a ≠ b) : IsArc (f '' uIcc a b) :=
   (isArcBetween_subarc hc hi ha hb hab).isArc
 
-/-- The version for an arc, whose parametrisation is injective everywhere. -/
+/-- The version for an arc, whose parametrisation is injective everywhere.
+@isnad1 id=isarcbet.5h3v.s6.ab230ae454d2 from=translated src=- shape=e9ccd8e4 vocab=f6912876
+-/
 theorem isArcBetween_subarc_of_injOn_I (hc : ContinuousOn f I) (hi : InjOn f I)
     (ha : a ∈ I) (hb : b ∈ I) (hab : a ≠ b) :
     IsArcBetween (f '' uIcc a b) (f a) (f b) :=
   isArcBetween_subarc hc (hi.mono (uIcc_subset_I ha hb)) ha hb hab
 
 /-- Any two distinct points of an arc are the endpoints of a subarc of it. The set-level
-form, for the consumers that never see a parametrisation. -/
+form, for the consumers that never see a parametrisation.
+@isnad1 id=ex.4h3v.s5.69069726ba85 from=translated src=- shape=e211976b vocab=78722bfa
+-/
 theorem IsArc.exists_isArcBetween_subset {A : Set Plane} (h : IsArc A) {p q : Plane}
     (hp : p ∈ A) (hq : q ∈ A) (hpq : p ≠ q) : ∃ B ⊆ A, IsArcBetween B p q := by
   obtain ⟨f, hc, hi, rfl⟩ := h
@@ -163,13 +206,21 @@ Injectivity then says it is also the arc minus the two endpoint *values*, which 
 blueprint reads it (`openArc_eq_diff`). -/
 def openArc (f : ℝ → Plane) : Set Plane := f '' Ioo 0 1
 
+/--
+@isnad1 id=le.0h0v.s4.ec18c06f6643 from=translated src=- shape=59b9d6da vocab=5ccf388d
+-/
 theorem Ioo_subset_I : Ioo (0 : ℝ) 1 ⊆ I := Ioo_subset_Icc_self
 
+/--
+@isnad1 id=le.0h1v.s4.1a77328f336c from=translated src=- shape=470d06dd vocab=80cc996a
+-/
 theorem openArc_subset : openArc f ⊆ f '' I := image_mono Ioo_subset_I
 
 /-- On an arc the two readings of "without its endpoints" agree: dropping the endpoints of the
 parameter interval drops exactly the two endpoint values, since injectivity means no other
-parameter shares them. -/
+parameter shares them.
+@isnad1 id=eq.1h1v.s5.2c55ca9e9a2f from=translated src=- shape=fb744f50 vocab=c81ecc95
+-/
 theorem openArc_eq_diff (hi : InjOn f I) : openArc f = f '' I \ {f 0, f 1} := by
   have hIoo : Ioo (0 : ℝ) 1 = I \ {0, 1} := by
     ext t
@@ -181,7 +232,9 @@ theorem openArc_eq_diff (hi : InjOn f I) : openArc f = f '' I \ {f 0, f 1} := by
   rw [openArc, hIoo, hi.image_sdiff_subset (by
         rintro t (rfl | rfl); exacts [zero_mem_I, one_mem_I]), hpair]
 
-/-- The open arc of a subarc is the arc restricted to the *open* subinterval. -/
+/-- The open arc of a subarc is the arc restricted to the *open* subinterval.
+@isnad1 id=eq.1h3v.s4.15836e53eb22 from=translated src=- shape=857fdd78 vocab=81f1d557
+-/
 theorem openArc_subarc (hab : a ≠ b) : openArc (subarc f a b) = f '' uIoo a b := by
   have h : reparam a b '' Ioo 0 1 = uIoo a b := by
     rcases lt_trichotomy a b with hlt | rfl | hgt
@@ -215,7 +268,9 @@ names. Two of those copies were literally the same statement in modules that do 
 other, so the build never noticed: alpha-equivalent `Prop`s are defeq under proof irrelevance,
 and Lean's import checker accepts them. They live here now. -/
 
-/-- The two ends of an arc are distinct: they are the images of `0` and `1`. -/
+/-- The two ends of an arc are distinct: they are the images of `0` and `1`.
+@isnad1 id=ne.1h3v.s4.4f421c2d5b3d from=translated src=- shape=9977171c vocab=9f6d8e13
+-/
 theorem IsArcBetween.ne {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) : p ≠ q := by
   obtain ⟨f, -, hinj, -, hf0, hf1⟩ := h
   intro he
@@ -223,34 +278,44 @@ theorem IsArcBetween.ne {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
   norm_num at h01
 
 /-- **The interior of an arc is the image of the open parameter interval.** The bridge from
-`IsArcBetween`, which is about the set, to `openArc`, which is about a parametrisation. -/
+`IsArcBetween`, which is about the set, to `openArc`, which is about a parametrisation.
+@isnad1 id=ex.1h3v.s6.15509022b955 from=translated src=- shape=55da1c9f vocab=e51e89ee
+-/
 theorem IsArcBetween.diff_eq_openArc {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
     ∃ f : ℝ → Plane, ContinuousOn f I ∧ A \ {p, q} = f '' Ioo 0 1 := by
   obtain ⟨f, hc, hi, himg, h0, h1⟩ := h
   exact ⟨f, hc, by rw [← himg, ← h0, ← h1, ← openArc_eq_diff hi, openArc]⟩
 
-/-- **The interior of an arc is connected.** It is the continuous image of `Ioo 0 1`. -/
+/-- **The interior of an arc is connected.** It is the continuous image of `Ioo 0 1`.
+@isnad1 id=isprecon.1h3v.s6.732dc077d954 from=translated src=- shape=c1c8e7ce vocab=e5423325
+-/
 theorem IsArcBetween.isPreconnected_diff {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
     IsPreconnected (A \ {p, q}) := by
   obtain ⟨f, hc, hEq⟩ := h.diff_eq_openArc
   rw [hEq]
   exact isPreconnected_Ioo.image _ (hc.mono Ioo_subset_I)
 
-/-- The interior of an arc is nonempty: `Ioo 0 1` is. -/
+/-- The interior of an arc is nonempty: `Ioo 0 1` is.
+@isnad1 id=nonempty.1h3v.s5.eb90e38ae55f from=translated src=- shape=c1c8e7ce vocab=714d37dd
+-/
 theorem IsArcBetween.nonempty_diff {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
     (A \ {p, q}).Nonempty := by
   obtain ⟨f, -, hEq⟩ := h.diff_eq_openArc
   rw [hEq]
   exact ⟨f (1 / 2), 1 / 2, by norm_num, rfl⟩
 
-/-- The interior of an arc is connected in the nonempty sense. -/
+/-- The interior of an arc is connected in the nonempty sense.
+@isnad1 id=isconnec.1h3v.s6.9be3e4342835 from=translated src=- shape=c1c8e7ce vocab=79fbba4a
+-/
 theorem IsArcBetween.isConnected_diff {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
     IsConnected (A \ {p, q}) :=
   ⟨h.nonempty_diff, h.isPreconnected_diff⟩
 
 /-- **An endpoint of an arc is a limit of its interior.** This is what turns "the closure of a
 cell meets the curve in one arc only" into a statement about the *endpoints* of a crosscut, and
-it is what says an ear's two ends lie on the boundary of the face its interior lies in. -/
+it is what says an ear's two ends lie on the boundary of the face its interior lies in.
+@isnad1 id=mem.1h3v.s6.1dac9ad7508d from=translated src=- shape=d7afac8d vocab=b13216df
+-/
 theorem IsArcBetween.left_mem_closure_diff {A : Set Plane} {p q : Plane}
     (h : IsArcBetween A p q) : p ∈ closure (A \ {p, q}) := by
   obtain ⟨f, hc, hi, himg, h0, h1⟩ := h
@@ -262,6 +327,9 @@ theorem IsArcBetween.left_mem_closure_diff {A : Set Plane} {p q : Plane}
   rw [closure_Ioo (by norm_num : (0 : ℝ) ≠ 1)]
   exact zero_mem_I
 
+/--
+@isnad1 id=mem.1h3v.s6.b1d0021bc420 from=translated src=- shape=892f08de vocab=b13216df
+-/
 theorem IsArcBetween.right_mem_closure_diff {A : Set Plane} {p q : Plane}
     (h : IsArcBetween A p q) : q ∈ closure (A \ {p, q}) := by
   rw [Set.pair_comm]
@@ -269,7 +337,9 @@ theorem IsArcBetween.right_mem_closure_diff {A : Set Plane} {p q : Plane}
 
 /-- **An arc is the closure of its interior.** The arc is compact, hence closed, so the closure
 of the interior is inside it; conversely the interior is inside its own closure and each of the
-two endpoints is a limit of it. -/
+two endpoints is a limit of it.
+@isnad1 id=eq.1h3v.s6.2310f0b3bf69 from=translated src=- shape=28f8a06a vocab=3464dfd3
+-/
 theorem IsArcBetween.closure_diff {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
     closure (A \ {p, q}) = A := by
   refine Subset.antisymm (h.isArc.isClosed.closure_subset_iff.2 sdiff_subset) fun z hz => ?_
@@ -288,7 +358,9 @@ No inverse is constructed. The complement piece `I \ U` is compact, so its image
 so it is closed; and by injectivity the image of `U ∩ I` is exactly the arc minus that closed
 set. Stated for a relatively open *piece* `U ∩ I` rather than for a subarc, because at an
 endpoint the basic neighbourhood is half-open — `openArc` of a subarc is the interior case,
-and this covers both. -/
+and this covers both.
+@isnad1 id=ex.3h2v.s7.744346341f12 from=translated src=- shape=ef453ff0 vocab=f9f0fc51
+-/
 theorem image_isRelOpen (hc : ContinuousOn f I) (hi : InjOn f I) {U : Set ℝ} (hU : IsOpen U) :
     ∃ V : Set Plane, IsOpen V ∧ f '' (U ∩ I) = V ∩ f '' I := by
   refine ⟨(f '' (I \ U))ᶜ, ?_, ?_⟩
@@ -303,7 +375,9 @@ theorem image_isRelOpen (hc : ContinuousOn f I) (hi : InjOn f I) {U : Set ℝ} (
 
 /-- The pointwise reading of the previous theorem, and the one consumers use: around every
 point of the image of a relatively open piece there is a ball meeting the arc only inside that
-image. This is precisely the continuity of the inverse parametrisation. -/
+image. This is precisely the continuity of the inverse parametrisation.
+@isnad1 id=ex.4h3v.s7.28271e83c234 from=translated src=- shape=5a57194c vocab=a6d4b7be
+-/
 theorem exists_ball_inter_subset_image (hc : ContinuousOn f I) (hi : InjOn f I)
     {U : Set ℝ} (hU : IsOpen U) {x : Plane} (hx : x ∈ f '' (U ∩ I)) :
     ∃ ε > 0, Metric.ball x ε ∩ f '' I ⊆ f '' (U ∩ I) := by
@@ -313,14 +387,18 @@ theorem exists_ball_inter_subset_image (hc : ContinuousOn f I) (hi : InjOn f I)
   exact ⟨ε, hε, fun y hy => hV ▸ ⟨hball hy.1, hy.2⟩⟩
 
 /-- The open arc is relatively open in the arc: the blueprint's `P°` is a relatively open
-subarc. -/
+subarc.
+@isnad1 id=ex.2h1v.s6.1645632e657a from=translated src=- shape=2a8300c0 vocab=965da9ad
+-/
 theorem openArc_isRelOpen (hc : ContinuousOn f I) (hi : InjOn f I) :
     ∃ V : Set Plane, IsOpen V ∧ openArc f = V ∩ f '' I := by
   obtain ⟨V, hVopen, hV⟩ := image_isRelOpen hc hi (isOpen_Ioo (a := (0 : ℝ)) (b := 1))
   exact ⟨V, hVopen, by rwa [inter_eq_self_of_subset_left Ioo_subset_I] at hV⟩
 
 /-- A subarc without its endpoints is relatively open in the arc. These are the "relatively
-open subarcs" the blueprint speaks of. -/
+open subarcs" the blueprint speaks of.
+@isnad1 id=ex.4h3v.s7.30cd51eb5de8 from=translated src=- shape=7b7b356d vocab=c3022950
+-/
 theorem openArc_subarc_isRelOpen (hc : ContinuousOn f I) (hi : InjOn f I)
     (ha : a ∈ I) (hb : b ∈ I) :
     ∃ V : Set Plane, IsOpen V ∧ f '' uIoo a b = V ∩ f '' I := by
@@ -336,7 +414,9 @@ around its parameter.** With `image_isRelOpen`, which says those images are rela
 this makes them a basis of the arc's subspace topology.
 
 The piece is the parameter interval cut by an interval around the parameter, which is
-half-open exactly when the point is an endpoint. -/
+half-open exactly when the point is an endpoint.
+@isnad1 id=ex.3h3v.s7.2faf36fa89ce from=translated src=- shape=31b0ea18 vocab=79b542bb
+-/
 theorem basic_piece_inside_ball (hc : ContinuousOn f I) {x : Plane} (hx : x ∈ f '' I)
     {r : ℝ} (hr : 0 < r) :
     ∃ c d : ℝ, x ∈ f '' (Ioo c d ∩ I) ∧ f '' (Ioo c d ∩ I) ⊆ Metric.ball x r := by

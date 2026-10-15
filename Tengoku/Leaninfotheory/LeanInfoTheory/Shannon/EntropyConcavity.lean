@@ -35,6 +35,7 @@ Entropy is concave under a finite PMF-valued selector.
 
 This is the general finite-selector form of the textbook binary entropy
 concavity inequality.
+@isnad1 id=le.0h4v.s5.43c82dbf13de from=translated src=- shape=fbe290ef vocab=8f066a5f
 -/
 theorem sum_mul_entropy_le_entropy_bind
     {iota : Type u} {alpha : Type v}
@@ -66,6 +67,7 @@ theorem sum_mul_entropy_le_entropy_bind
 
 /--
 Entropy is concave under a binary PMF mixture.
+@isnad1 id=le.1h4v.s6.5dc15896fcec from=translated src=- shape=0a75ea72 vocab=60d2f07c
 -/
 theorem binaryMixture_entropy_concave
     {alpha : Type u} [Fintype alpha]
@@ -94,6 +96,7 @@ theorem binaryMixture_entropy_concave
 /--
 For an interior binary weight, equality in entropy concavity holds exactly
 when the two component PMFs are equal.
+@isnad1 id=iff.3h4v.s6.7dc65814abc7 from=translated src=- shape=d3792a97 vocab=965a03b9
 -/
 theorem binaryMixture_entropy_eq_iff
     {alpha : Type u} [Fintype alpha]

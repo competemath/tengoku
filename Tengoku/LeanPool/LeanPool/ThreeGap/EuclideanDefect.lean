@@ -31,20 +31,26 @@ open scoped BigOperators
 
 variable {n : ℕ}
 
-/-- The Euclidean norm on `Fin n → ℝ` as a square root of a sum of squares. -/
+/-- The Euclidean norm on `Fin n → ℝ` as a square root of a sum of squares.
+@isnad1 id=eq.0h2v.s5.fba8c7e0290b from=translated src=- shape=5c7920b8 vocab=fcbc389c
+-/
 theorem euclNorm_eq (x : Fin n → ℝ) : euclNorm n x = Real.sqrt (∑ i, (x i) ^ 2) := by
   unfold euclNorm
   rw [EuclideanSpace.norm_eq]
   simp_all
 
-/-- Each coordinate is bounded by the Euclidean norm: `|x k| ≤ euclNorm n x`. -/
+/-- Each coordinate is bounded by the Euclidean norm: `|x k| ≤ euclNorm n x`.
+@isnad1 id=le.0h3v.s4.6e9008cfa8ad from=translated src=- shape=539b3566 vocab=793f525c
+-/
 theorem abs_le_euclNorm (x : Fin n → ℝ) (k : Fin n) : |x k| ≤ euclNorm n x := by
   rw [euclNorm_eq, ← Real.sqrt_sq (abs_nonneg (x k)), sq_abs]
   exact Real.sqrt_le_sqrt (Finset.single_le_sum (fun i _ => sq_nonneg (x i)) (Finset.mem_univ k))
 
 /-- **The Euclidean defect is attained.** For every denominator `q` there is an integer translate
 `p`
-with `euclNorm n (rem α q p) = δ_q` (the nearest lattice point to `q • α`). -/
+with `euclNorm n (rem α q p) = δ_q` (the nearest lattice point to `q • α`).
+@isnad1 id=ex.0h3v.s5.105864113140 from=translated src=- shape=e3d23256 vocab=f9abc363
+-/
 theorem deltaN_euclNorm_attained (α : Fin n → ℝ) (q : ℤ) :
     ∃ p : Fin n → ℤ, euclNorm n (rem α q p) = deltaN (euclNorm n) α q := by
   classical

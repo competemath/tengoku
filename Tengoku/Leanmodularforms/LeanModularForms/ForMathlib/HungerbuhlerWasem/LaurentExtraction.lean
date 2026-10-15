@@ -87,7 +87,9 @@ Laurent expansion `f z = g z + ∑ k : Fin N, a k / (z - s)^(k+1)` near `s`
 This is the higher-order generalization of `residue_eq_of_simple_pole_decomp`:
 the analytic part contributes zero, the order-0 Laurent term `a_0/(z-s)`
 contributes `a_0`, and higher-order terms `a_k/(z-s)^(k+1)` for `k ≥ 1` all
-have circle integral zero. -/
+have circle integral zero.
+@isnad1 id=eq.2h5v.s7.1a1d5e4721eb from=translated src=- shape=1d85c665 vocab=4a734959
+-/
 theorem residue_of_laurent_expansion {f g : ℂ → ℂ} {s : ℂ} (N : ℕ) (a : Fin N → ℂ)
     (hg : AnalyticAt ℂ g s)
     (hf_eq : ∀ᶠ z in 𝓝[≠] s,
@@ -255,7 +257,9 @@ private lemma reindex_sum_fin_neg {k : ℕ} (_hk : 0 < k) (c : Fin k → ℂ) (w
 
 /-- **Generic Laurent data extraction from `MeromorphicAt`.** For any meromorphic
 function `f` at `s`, there exist `(N, a, g)` such that `g` is analytic at `s` and
-`f =ᶠ[𝓝[≠] s] g + ∑ k : Fin N, a k / (z - s)^(k+1)`. -/
+`f =ᶠ[𝓝[≠] s] g + ∑ k : Fin N, a k / (z - s)^(k+1)`.
+@isnad1 id=ex.1h2v.s7.5f39b6728a94 from=translated src=- shape=76e799bd vocab=5f73e126
+-/
 theorem mero_laurent_data_exists {f : ℂ → ℂ} {s : ℂ} (hMero : MeromorphicAt f s) :
     ∃ (N : ℕ) (a : Fin N → ℂ) (g : ℂ → ℂ),
       AnalyticAt ℂ g s ∧
@@ -319,13 +323,17 @@ noncomputable def meroAnalyticPartAt {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) : ℂ → ℂ :=
   (mero_laurent_data_exists hMero).choose_spec.choose_spec.choose
 
-/-- The analytic part is `AnalyticAt ℂ` at `s`. -/
+/-- The analytic part is `AnalyticAt ℂ` at `s`.
+@isnad1 id=analytic.1h2v.s5.48a253eb931e from=translated src=- shape=7b129d6f vocab=44013840
+-/
 theorem meroAnalyticPartAt_analyticAt {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) : AnalyticAt ℂ (meroAnalyticPartAt hMero) s :=
   (mero_laurent_data_exists hMero).choose_spec.choose_spec.choose_spec.1
 
 /-- **Local Laurent decomposition** from `MeromorphicAt`: near `s`,
-`f = analyticPart + polarPart` (in the punctured neighborhood). -/
+`f = analyticPart + polarPart` (in the punctured neighborhood).
+@isnad1 id=eventual.1h2v.s6.a583fd810dcd from=translated src=- shape=8dd76bac vocab=cfadfbae
+-/
 theorem mero_f_eq_analyticPart_plus_polarPart_eventually {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) :
     ∀ᶠ z in 𝓝[≠] s, f z = meroAnalyticPartAt hMero z + meroPolarPartAt hMero z := by
@@ -335,7 +343,9 @@ theorem mero_f_eq_analyticPart_plus_polarPart_eventually {f : ℂ → ℂ} {s : 
   rw [hz]
   rfl
 
-/-- `meroPolarPartAt s` is differentiable at any point `z ≠ s`. -/
+/-- `meroPolarPartAt s` is differentiable at any point `z ≠ s`.
+@isnad1 id=differen.2h3v.s6.68fb89dab794 from=translated src=- shape=71bed72d vocab=8b88c0b8
+-/
 theorem meroPolarPartAt_differentiableAt {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) {z : ℂ} (hz : z ≠ s) :
     DifferentiableAt ℂ (meroPolarPartAt hMero) z := by
@@ -345,7 +355,9 @@ theorem meroPolarPartAt_differentiableAt {f : ℂ → ℂ} {s : ℂ}
     ((differentiableAt_id.sub (differentiableAt_const _)).pow _)
     (pow_ne_zero _ (sub_ne_zero.mpr hz))
 
-/-- `meroPolarPartAt s` is `AnalyticAt ℂ` at any point `w ≠ s`. -/
+/-- `meroPolarPartAt s` is `AnalyticAt ℂ` at any point `w ≠ s`.
+@isnad1 id=analytic.2h3v.s5.29194374b9c6 from=translated src=- shape=71bed72d vocab=c4512807
+-/
 theorem meroPolarPartAt_analyticAt_off {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) {w : ℂ} (hw : w ≠ s) :
     AnalyticAt ℂ (meroPolarPartAt hMero) w := by
@@ -354,7 +366,9 @@ theorem meroPolarPartAt_analyticAt_off {f : ℂ → ℂ} {s : ℂ}
   exact analyticAt_const.div ((analyticAt_id.sub analyticAt_const).pow _)
     (pow_ne_zero _ (sub_ne_zero.mpr hw))
 
-/-- Polar part written as the explicit Laurent sum using order/coeff. -/
+/-- Polar part written as the explicit Laurent sum using order/coeff.
+@isnad1 id=eq.1h3v.s6.32c9b7002305 from=translated src=- shape=e9ca1d0d vocab=4ebbb93a
+-/
 theorem meroPolarPartAt_eq_sum {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) (z : ℂ) :
     meroPolarPartAt hMero z =
@@ -363,7 +377,9 @@ theorem meroPolarPartAt_eq_sum {f : ℂ → ℂ} {s : ℂ}
   unfold meroPolarPartAt meroPolarCoeffAt meroPolarOrderAt
   rfl
 
-/-- The leading Laurent coefficient `a_0` equals the residue of `f` at `s`. -/
+/-- The leading Laurent coefficient `a_0` equals the residue of `f` at `s`.
+@isnad1 id=eq.2h2v.s5.304913ae658c from=translated src=- shape=44735e0e vocab=740c093b
+-/
 theorem meroPolarCoeffAt_zero_eq_residue {f : ℂ → ℂ} {s : ℂ}
     (hMero : MeromorphicAt f s) (h_pos : 0 < meroPolarOrderAt hMero) :
     meroPolarCoeffAt hMero ⟨0, h_pos⟩ = residue f s := by

@@ -32,6 +32,7 @@ The entropy of a Boolean PMF is the binary entropy of its `true` mass.
 
 The identity includes the endpoint laws without separate positivity
 assumptions.
+@isnad1 id=eq.0h1v.s4.fdb6aaf971e0 from=translated src=- shape=09e5705a vocab=00f4d9da
 -/
 theorem entropy_bool (p : PMF Bool) :
     entropy p = Real.binEntropy (p true).toReal := by

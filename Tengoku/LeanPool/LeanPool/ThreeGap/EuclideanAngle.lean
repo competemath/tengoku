@@ -50,14 +50,18 @@ open scoped Real
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- **The algebraic heart.** For `0 ≤ a, b ≤ δ`, `a² + b² − ab ≤ δ²` (equality iff `a = b = δ`).
-Proof: `a² ≤ aδ`, `b² ≤ bδ`, and `aδ + bδ − ab ≤ δ²` since `(δ − a)(δ − b) ≥ 0`. -/
+Proof: `a² ≤ aδ`, `b² ≤ bδ`, and `aδ + bδ − ab ≤ δ²` since `(δ − a)(δ − b) ≥ 0`.
+@isnad1 id=le.4h3v.s6.63a3e89c4342 from=translated src=- shape=b44562e7 vocab=c0564ed8
+-/
 theorem sq_add_sq_sub_mul_le {a b δ : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (haδ : a ≤ δ) (hbδ : b ≤ δ) :
     a ^ 2 + b ^ 2 - a * b ≤ δ ^ 2 := by
   nlinarith [mul_nonneg (sub_nonneg.2 haδ) (sub_nonneg.2 hbδ), mul_nonneg ha (sub_nonneg.2 haδ),
     mul_nonneg hb (sub_nonneg.2 hbδ)]
 
 /-- **Strict algebraic heart.** For *positive* `a, b ≤ δ`, if moreover `a < δ` or `b < δ`, the
-inequality is strict. (Positivity is needed: `(a, b) = (0, δ)` gives equality `δ²`.) -/
+inequality is strict. (Positivity is needed: `(a, b) = (0, δ)` gives equality `δ²`.)
+@isnad1 id=lt.5h3v.s7.18f3653071f3 from=translated src=- shape=308c717a vocab=d8e6b3e9
+-/
 theorem sq_add_sq_sub_mul_lt {a b δ : ℝ} (ha : 0 < a) (hb : 0 < b) (haδ : a ≤ δ) (hbδ : b ≤ δ)
     (hstrict : a < δ ∨ b < δ) : a ^ 2 + b ^ 2 - a * b < δ ^ 2 := by
   rcases hstrict with h | h
@@ -67,7 +71,9 @@ theorem sq_add_sq_sub_mul_lt {a b δ : ℝ} (ha : 0 < a) (hb : 0 < b) (haδ : a 
       mul_nonneg ha.le (sub_nonneg.2 haδ)]
 
 /-- **Separation ⟹ inner-product bound.** If `‖u‖, ‖v‖ ≤ δ` and the vectors are `δ`-separated
-(`δ ≤ ‖u − v‖`), then `⟪u, v⟫ ≤ ‖u‖ ‖v‖ / 2`. (Law of cosines + the algebraic heart.) -/
+(`δ ≤ ‖u − v‖`), then `⟪u, v⟫ ≤ ‖u‖ ‖v‖ / 2`. (Law of cosines + the algebraic heart.)
+@isnad1 id=le.3h4v.s6.22dbf5e4433a from=translated src=- shape=8d5a0fdc vocab=290b0b6d
+-/
 theorem inner_le_half_mul_norm {u v : E} {δ : ℝ} (hu : ‖u‖ ≤ δ) (hv : ‖v‖ ≤ δ)
     (hsep : δ ≤ ‖u - v‖) : ⟪u, v⟫ ≤ ‖u‖ * ‖v‖ / 2 := by
   have hδ0 : 0 ≤ δ := le_trans (norm_nonneg _) hu
@@ -77,7 +83,9 @@ theorem inner_le_half_mul_norm {u v : E} {δ : ℝ} (hu : ‖u‖ ≤ δ) (hv : 
   nlinarith [halg, hsq]
 
 /-- **The angular crux (non-strict).** `δ`-separated vectors of norm `≤ δ` subtend an angle `≥ π/3`.
-This is the contact-number input: pairwise `≥ 60°` ⟹ at most `6` such vectors in the plane. -/
+This is the contact-number input: pairwise `≥ 60°` ⟹ at most `6` such vectors in the plane.
+@isnad1 id=le.5h4v.s6.2070f8731426 from=translated src=- shape=15e268b6 vocab=e399dbcf
+-/
 theorem angle_ge_pi_div_three {u v : E} {δ : ℝ} (hu0 : 0 < ‖u‖) (hv0 : 0 < ‖v‖) (hu : ‖u‖ ≤ δ)
     (hv : ‖v‖ ≤ δ) (hsep : δ ≤ ‖u - v‖) : π / 3 ≤ InnerProductGeometry.angle u v := by
   have hbound := inner_le_half_mul_norm hu hv hsep
@@ -93,7 +101,9 @@ theorem angle_ge_pi_div_three {u v : E} {δ : ℝ} (hu0 : 0 < ‖u‖) (hv0 : 0 
 holds for every remainder vector after the first, since the defects strictly decrease — the angle is
 strictly `> π/3`. This strictness is what upgrades the count from `≤ 6` to `≤ 5` (`6 × (>60°) >
 360°`);
-the sharp `≤ 4` is Romanov's finer argument. -/
+the sharp `≤ 4` is Romanov's finer argument.
+@isnad1 id=lt.6h4v.s7.2117521855f3 from=translated src=- shape=5d085625 vocab=e399dbcf
+-/
 theorem angle_gt_pi_div_three {u v : E} {δ : ℝ} (hu0 : 0 < ‖u‖) (hv0 : 0 < ‖v‖) (hu : ‖u‖ ≤ δ)
     (hv : ‖v‖ ≤ δ) (hsep : δ ≤ ‖u - v‖) (hstrict : ‖u‖ < δ ∨ ‖v‖ < δ) :
     π / 3 < InnerProductGeometry.angle u v := by
@@ -119,7 +129,9 @@ bound `g₂ ≤ 5`, Haynes–Marklof, *IMRN* 2022, arXiv:2009.08444). If the ang
 is `< π/3`, then `‖u − v‖ < max ‖u‖ ‖v‖`. This is the clean two-vector statement that *replaces*
 Romanov's growth lemma and the angular↔magnitude coupling: within any `< π/3` cone of directions,
 two
-distinct nearest-neighbour distances cannot both occur. -/
+distinct nearest-neighbour distances cannot both occur.
+@isnad1 id=lt.3h3v.s7.9f949a3b4d10 from=translated src=- shape=abc14fe9 vocab=7a6b0d3f
+-/
 theorem norm_sub_lt_max_of_angle_lt {u v : E} (hu : u ≠ 0) (hv : v ≠ 0)
     (hang : InnerProductGeometry.angle u v < π / 3) : ‖u - v‖ < max ‖u‖ ‖v‖ := by
   have hu0 : 0 < ‖u‖ := norm_pos_iff.mpr hu
@@ -145,7 +157,9 @@ theorem norm_sub_lt_max_of_angle_lt {u v : E} (hu : u ≠ 0) (hv : v ≠ 0)
 is
 shorter than `w` but their difference is *longer* than `w` (`‖w‖ < ‖u − w‖`), then the angle between
 them is `≥ π/3`. For the record vectors `v₁,…,v_{K-1}` (increasing norms, `‖vᵢ − vⱼ‖ > ‖vⱼ‖`), this
-gives the pairwise `≥ π/3` separation feeding the `5`-on-a-circle count. -/
+gives the pairwise `≥ π/3` separation feeding the `5`-on-a-circle count.
+@isnad1 id=le.4h3v.s7.0418260f2c59 from=translated src=- shape=9ae566b0 vocab=e399dbcf
+-/
 theorem angle_ge_pi_div_three_of_norm_sub_gt {u w : E} (hu : u ≠ 0) (hw : w ≠ 0)
     (hnorm : ‖u‖ ≤ ‖w‖) (hsub : ‖w‖ < ‖u - w‖) : π / 3 ≤ InnerProductGeometry.angle u w := by
   by_contra h

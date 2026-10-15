@@ -28,6 +28,9 @@ open scoped Topology
 
 /-! ## Phase 1: Equiprobable Characterization -/
 
+/--
+@isnad1 id=eq.0h2v.s6.7585655182fa from=translated src=- shape=d39888a4 vocab=f5e625d7
+-/
 lemma relabel_compose_uniform_eq_uniform_mul (n m : ℕ+) :
     relabelProb (sigmaConstFinEquivFinMul n m)
       (composeProb (uniformPNat n) (fun _ : Fin n => uniformPNat m))
@@ -38,6 +41,9 @@ lemma relabel_compose_uniform_eq_uniform_mul (n m : ℕ+) :
   have hm : (m : ℝ) ≠ 0 := by exact_mod_cast Nat.ne_of_gt m.2
   field_simp [hn, hm]
 
+/--
+@isnad1 id=eq.1h3v.s6.65b1e81758a1 from=translated src=- shape=4ff509c2 vocab=db3a4e96
+-/
 lemma Apos_mul
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -63,6 +69,9 @@ lemma Apos_mul
     _ = H p + H (uniformPNat m) := by rw [hsum]
     _ = Apos H n + Apos H m := by simp [Apos, p]
 
+/--
+@isnad1 id=eq.1h1v.s5.2a6b66f14072 from=translated src=- shape=e782a33c vocab=50d26cd0
+-/
 lemma Apos_one_zero
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H) :
@@ -70,6 +79,9 @@ lemma Apos_one_zero
   have h11 := Apos_mul H hH 1 1
   simp_all
 
+/--
+@isnad1 id=eq.1h3v.s6.b937438f5425 from=translated src=- shape=1551dd69 vocab=f033f2e2
+-/
 lemma Apos_pow
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -84,6 +96,9 @@ lemma Apos_pow
         rw [pow_succ]; exact Apos_mul H hH (n ^ k) n
       rw [h1, ih, Nat.cast_add, Nat.cast_one]; ring
 
+/--
+@isnad1 id=le.1h2v.s5.724dfdb68d7c from=translated src=- shape=bb8e5010 vocab=491eadcb
+-/
 lemma Apos_nonneg
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -93,6 +108,9 @@ lemma Apos_nonneg
   have hmono : Apos H 1 ≤ Apos H n := hH.uniformMonotone.monotone h1n
   linarith [hmono, Apos_one_zero H hH]
 
+/--
+@isnad1 id=lt.1h1v.s5.571e9e4becbe from=translated src=- shape=bfa89d50 vocab=76760a41
+-/
 lemma Apos_pos_two
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H) :
@@ -101,7 +119,9 @@ lemma Apos_pos_two
   have hmono : Apos H 1 < Apos H 2 := hH.uniformMonotone h12
   linarith [hmono, Apos_one_zero H hH]
 
-/-- Strict monotonicity gives positivity of `Apos` for any alphabet size `> 1`. -/
+/-- Strict monotonicity gives positivity of `Apos` for any alphabet size `> 1`.
+@isnad1 id=lt.2h2v.s6.9189b958b734 from=translated src=- shape=ab24fa20 vocab=76760a41
+-/
 lemma Apos_pos_of_one_lt
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -111,7 +131,9 @@ lemma Apos_pos_of_one_lt
   have hmono : Apos H 1 < Apos H n := hH.uniformMonotone hn
   linarith [hmono, Apos_one_zero H hH]
 
-/-- If two reals are in the same closed interval, their distance is interval width. -/
+/-- If two reals are in the same closed interval, their distance is interval width.
+@isnad1 id=le.4h4v.s5.7ab4d6eb507f from=translated src=- shape=609506cd vocab=881e8232
+-/
 lemma abs_sub_le_of_mem_interval
     {a b l u : ℝ}
     (haL : l ≤ a)
@@ -126,12 +148,18 @@ def K
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ) : ℝ :=
   Apos H 2 / Real.log 2
 
+/--
+@isnad1 id=lt.1h1v.s5.a10c4fd3eb14 from=translated src=- shape=05d76cd6 vocab=d4b14427
+-/
 lemma K_pos
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H) :
     0 < K H :=
   div_pos (Apos_pos_two H hH) (Real.log_pos (by norm_num))
 
+/--
+@isnad1 id=le.2h4v.s6.3500c81bf6c7 from=translated src=- shape=ca0be837 vocab=df23a044
+-/
 lemma Apos_ratio_logb_close
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -218,6 +246,9 @@ lemma Apos_ratio_logb_close
   have habs' : |ratioA - ratioL| ≤ 1 / nR := habs.trans_eq hwidth
   simpa [ratioA, ratioL, nR] using habs'
 
+/--
+@isnad1 id=eq.2h3v.s6.48a639c3d6c8 from=translated src=- shape=789ed8cc vocab=7f3818c6
+-/
 lemma Apos_ratio_eq_logb
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -236,6 +267,9 @@ lemma Apos_ratio_eq_logb
     simpa [n, Nat.succPNat_coe] using hN
   exact (not_lt_of_ge hbound) hsmall
 
+/--
+@isnad1 id=eq.1h2v.s5.3f88da354d9b from=translated src=- shape=bc6b3129 vocab=a41d55f8
+-/
 lemma Apos_eq_K_mul_log
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -251,6 +285,9 @@ lemma Apos_eq_K_mul_log
     _ = (Apos H 2 / Real.log 2) * Real.log (n : ℝ) := by field_simp [hlog2_ne]
     _ = K H * Real.log (n : ℝ) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.e80f7debfe13 from=translated src=- shape=89e4ac3e vocab=e9323983
+-/
 lemma Apos_pow_two_eq_K_log_pow
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -264,6 +301,9 @@ lemma Apos_pow_two_eq_K_log_pow
           field_simp [show Real.log 2 ≠ 0 from Real.log_ne_zero.mpr (by norm_num)]
     _ = (Apos H 2 / Real.log 2) * Real.log ((2 : ℝ) ^ k) := by rw [Real.log_pow]
 
+/--
+@isnad1 id=monotone.1h1v.s5.7d306563fdf4 from=translated src=- shape=f14067ca vocab=6d408b48
+-/
 lemma A_monotone
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H) :
@@ -278,6 +318,9 @@ lemma A_monotone
         Nat.cast_succ]) <;>
     rfl
 
+/--
+@isnad1 id=monotone.1h1v.s5.4a0e6550a05e from=translated src=- shape=f14067ca vocab=02d06006
+-/
 lemma Apos_monotone
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H) :
@@ -297,6 +340,9 @@ def entropyBase
     (p : ProbDist α) : ℝ :=
   -∑ a, p a * Real.logb b (p a)
 
+/--
+@isnad1 id=continuo.0h1v.s5.8829ed4e564f from=translated src=- shape=ed0230ee vocab=5f3d3f94
+-/
 lemma continuous_entropyNat
     {α : Type} [Fintype α] :
     Continuous (fun p : ProbDist α => entropyNat p) := by
@@ -309,6 +355,9 @@ lemma continuous_entropyNat
     (continuous_apply a).comp continuous_subtype_val
   simpa using Real.Continuous.mul_log hcont_eval
 
+/--
+@isnad1 id=nonempty.0h2v.s3.92a98de1fecb from=translated src=- shape=17207180 vocab=fe71c3f4
+-/
 lemma nonempty_of_probDist
     {α : Type} [Fintype α]
     (p : ProbDist α) :
@@ -318,6 +367,9 @@ lemma nonempty_of_probDist
   have hsum0 : (∑ a, p a) = 0 := by simp
   linarith [hsum0, prob_sum_eq_one p]
 
+/--
+@isnad1 id=eq.2h3v.s6.99cf4ca4b818 from=translated src=- shape=51660b99 vocab=36fa481f
+-/
 lemma Apos_eq_K_mul_logb
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)

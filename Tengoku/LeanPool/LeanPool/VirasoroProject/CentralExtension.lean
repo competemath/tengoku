@@ -63,6 +63,9 @@ variable {γ : LieTwoCocycle 𝕜 𝓰 𝓪}
 
 namespace CentralExtension
 
+/--
+@isnad1 id=eq.2h6v.s6.b6d46ceb8281 from=translated src=- shape=09e32600 vocab=5126ec27
+-/
 @[ext] lemma ext {Z W : γ.CentralExtension} (hX : Z.1 = W.1) (hA : Z.2 = W.2) :
     Z = W := Prod.ext hX hA
 
@@ -73,21 +76,39 @@ instance : AddCommGroup (γ.CentralExtension) := Prod.instAddCommGroup
 
 instance : Module 𝕜 (γ.CentralExtension) := Prod.instModule
 
+/--
+@isnad1 id=eq.0h6v.s7.7167fa8db414 from=translated src=- shape=70324f43 vocab=4e5e90ed
+-/
 lemma add_def (Z₁ Z₂ : γ.CentralExtension) :
   Z₁ + Z₂ = ⟨Z₁.1 + Z₂.1, Z₁.2 + Z₂.2⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.f7b5d61f05ca from=translated src=- shape=d97a8f0a vocab=67be37b5
+-/
 lemma smul_def (c : 𝕜) (Z : γ.CentralExtension) :
   c • Z = ⟨c • Z.1, c • Z.2⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.2c095f49de08 from=translated src=- shape=1071fb67 vocab=f9980a07
+-/
 @[simp] lemma add_fst (Z W : γ.CentralExtension) :
     (Z + W).1 = Z.1 + W.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.191932cb07d2 from=translated src=- shape=a0e72eb1 vocab=9194d37f
+-/
 @[simp] lemma add_snd (Z W : γ.CentralExtension) :
     (Z + W).2 = Z.2 + W.2 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.6c42bf12c9ea from=translated src=- shape=c8e587a8 vocab=d63d6036
+-/
 @[simp] lemma smul_fst (c : 𝕜) (Z : γ.CentralExtension) :
     (c • Z).1 = c • Z.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.6710d61d7f66 from=translated src=- shape=338b623e vocab=0e65cf48
+-/
 @[simp] lemma smul_snd (c : 𝕜) (Z : γ.CentralExtension) :
     (c • Z).2 = c • Z.2 := rfl
 
@@ -121,17 +142,29 @@ def bracket : γ.CentralExtension
     · change (γ (m • X)) Y = m • (γ X) Y
       exact congrArg (fun f => f Y) (map_smul γ m X)
 
+/--
+@isnad1 id=eq.0h6v.s10.2bb4eec7ca53 from=translated src=- shape=975e18e4 vocab=88ed2957
+-/
 @[simp] lemma bracket_apply (Z W : γ.CentralExtension) :
     γ.bracket Z W = ⟨⁅Z.fst, W.fst⁆, γ Z.fst W.fst⟩ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.f6fb879e490f from=translated src=- shape=c5b0c4c3 vocab=85f375a8
+-/
 lemma bracket_self (Z : γ.CentralExtension) :
     γ.bracket Z Z = 0 := by
   simp; rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.d76ce1fd5591 from=translated src=- shape=eadd44ba vocab=4de71639
+-/
 lemma bracket_smul (c : 𝕜) (Z W : γ.CentralExtension) :
     γ.bracket Z (c • W) = c • γ.bracket Z W := by
   simp only [LinearMapClass.map_smul, LieTwoCocycle.bracket_apply]
 
+/--
+@isnad1 id=eq.0h7v.s12.42d193d1c71c from=translated src=- shape=16ce8f32 vocab=296b07f7
+-/
 lemma bracket_leibniz (Z W₁ W₂ : γ.CentralExtension) :
     γ.bracket Z (γ.bracket W₁ W₂)
       = γ.bracket (γ.bracket Z W₁) W₂ + γ.bracket W₁ (γ.bracket Z W₂) := by
@@ -154,12 +187,21 @@ instance : LieRing γ.CentralExtension where
 instance : LieAlgebra 𝕜 γ.CentralExtension where
   lie_smul := γ.bracket_smul
 
+/--
+@isnad1 id=eq.0h6v.s8.96945bb8aa05 from=translated src=- shape=b992afed vocab=d2ddb12e
+-/
 lemma lie_def (Z W : γ.CentralExtension) :
     ⁅Z, W⁆ = ⟨⁅Z.1, W.1⁆, γ Z.1 W.1⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.e83c07da2f9b from=translated src=- shape=cfc2f0c2 vocab=1486df8e
+-/
 @[simp] lemma lie_fst (Z W : γ.CentralExtension) :
     ⁅Z, W⁆.1 = ⁅Z.1, W.1⁆ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.36e62c0ac672 from=translated src=- shape=8d62c3d5 vocab=e90fe2ee
+-/
 @[simp] lemma lie_snd (Z W : γ.CentralExtension) :
     ⁅Z, W⁆.2 = γ Z.1 W.1 := rfl
 
@@ -212,21 +254,36 @@ def congr {γ₁ γ₂ : LieTwoCocycle 𝕜 𝓰 𝓪} (h : γ₁ = γ₂) :
     intro Z
     ext <;> dsimp only
 
+/--
+@isnad1 id=eq.1h6v.s8.4fd8e224f273 from=translated src=- shape=2df995d4 vocab=fdbbdfbc
+-/
 lemma congr_apply {γ₁ γ₂ : LieTwoCocycle 𝕜 𝓰 𝓪} (h : γ₁ = γ₂) (Z : γ₁.CentralExtension) :
     congr h Z = ⟨Z.1, Z.2⟩ := rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.ae10d7a10a6a from=translated src=- shape=b024cdc1 vocab=e4628d83
+-/
 @[simp] lemma congr_trans {γ₁ γ₂ γ₃ : LieTwoCocycle 𝕜 𝓰 𝓪} (h₁₂ : γ₁ = γ₂) (h₂₃ : γ₂ = γ₃) :
     (congr h₁₂).trans (congr h₂₃) = (congr (h₁₂.trans h₂₃)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.cdc710e69bc2 from=translated src=- shape=03111dca vocab=5951e016
+-/
 lemma congr_congr_symm {γ₁ γ₂ : LieTwoCocycle 𝕜 𝓰 𝓪} (h : γ₁ = γ₂) :
     (congr h).trans (congr h.symm) = LieEquiv.refl :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.500e986f7f69 from=translated src=- shape=57a18e5a vocab=3bbf1441
+-/
 lemma hom_of_coboundary_refl (γ : LieTwoCocycle 𝕜 𝓰 𝓪) :
     congr (Eq.refl γ) = LieEquiv.refl (R := 𝕜) (L₁ := γ.CentralExtension) :=
   rfl
 
+/--
+@isnad1 id=eq.2h8v.s11.335bb3c63112 from=translated src=- shape=106d6757 vocab=03b0f91b
+-/
 lemma hom_of_coboundary_add (γ₁ γ₂ γ₃ : LieTwoCocycle 𝕜 𝓰 𝓪)
     (β₁ β₂ : LieOneCochain 𝕜 𝓰 𝓪) (h₂ : γ₁ + β₁.bdry = γ₂) (h₃ : γ₂ + β₂.bdry = γ₃) :
     ((congr h₃).toLieHom.comp (β₂.bdryHom γ₂)).comp ((congr h₂).toLieHom.comp (β₁.bdryHom γ₁))

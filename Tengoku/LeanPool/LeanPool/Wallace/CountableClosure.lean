@@ -43,12 +43,17 @@ def dependencyClosure (index : Code ↪ I) (dependency : Code → Set I)
     (D₀ : Set I) : Set I :=
   ⋃ n, dependencyClosureStages index dependency D₀ n
 
+/--
+@isnad1 id=le.0h5v.s4.c0d561b484e2 from=translated src=- shape=8de2fac3 vocab=176ee445
+-/
 theorem subset_dependencyClosure (index : Code ↪ I) (dependency : Code → Set I)
     (D₀ : Set I) : D₀ ⊆ dependencyClosure index dependency D₀ := by
   intro x hx
   exact Set.mem_iUnion.mpr ⟨0, hx⟩
 
-/-- The closure is closed under every dependency whose code index it contains. -/
+/-- The closure is closed under every dependency whose code index it contains.
+@isnad1 id=le.1h6v.s5.b0a610526649 from=translated src=- shape=2d804ffe vocab=c5d63fad
+-/
 theorem dependency_subset_closure_of_index_mem
     (index : Code ↪ I) (dependency : Code → Set I) (D₀ : Set I)
     {c : Code} (hc : index c ∈ dependencyClosure index dependency D₀) :
@@ -58,12 +63,17 @@ theorem dependency_subset_closure_of_index_mem
   refine Set.mem_iUnion.mpr ⟨n + 1, ?_⟩
   exact Or.inr (Set.mem_iUnion.mpr ⟨c, Set.mem_iUnion.mpr ⟨hcn, hx⟩⟩)
 
+/--
+@isnad1 id=countabl.1h4v.s5.8260959355f7 from=translated src=- shape=e482d085 vocab=15c04c9a
+-/
 theorem countable_preimage_of_injective
     (index : Code ↪ I) {D : Set I} (hD : D.Countable) :
     {c : Code | index c ∈ D}.Countable := by
   exact hD.preimage index.injective
 
-/-- A countable set remains countable after one dependency-closure step. -/
+/-- A countable set remains countable after one dependency-closure step.
+@isnad1 id=countabl.2h5v.s5.fb6bb252f70b from=translated src=- shape=4c2dffdd vocab=2a75de02
+-/
 theorem countable_dependencyClosureStep
     (index : Code ↪ I) (dependency : Code → Set I)
     (hdep : ∀ c, (dependency c).Countable)
@@ -74,7 +84,9 @@ theorem countable_dependencyClosureStep
     countable_preimage_of_injective index hD
   exact hcodes.biUnion fun c _hc ↦ hdep c
 
-/-- Closing a countable set under countable triangular dependencies is countable. -/
+/-- Closing a countable set under countable triangular dependencies is countable.
+@isnad1 id=countabl.2h5v.s5.746cd2240773 from=translated src=- shape=4c2dffdd vocab=9db0c5de
+-/
 theorem countable_dependencyClosure
     (index : Code ↪ I) (dependency : Code → Set I)
     (hdep : ∀ c, (dependency c).Countable)
@@ -94,6 +106,9 @@ variable {R : Type w} [Zero R]
 def preparedDependency (prepared : Code → ℕ → I →₀ R) (c : Code) : Set I :=
   ⋃ n, ↑(prepared c n).support
 
+/--
+@isnad1 id=countabl.0h5v.s4.63f9779dc2bf from=translated src=- shape=4536b0fc vocab=fc9771db
+-/
 theorem preparedDependency_countable (prepared : Code → ℕ → I →₀ R) (c : Code) :
     (preparedDependency prepared c).Countable := by
   apply Set.countable_iUnion
@@ -105,18 +120,26 @@ def preparedClosure (index : Code ↪ I) (prepared : Code → ℕ → I →₀ R
     (x : I →₀ R) : Set I :=
   dependencyClosure index (preparedDependency prepared) ↑x.support
 
+/--
+@isnad1 id=le.0h6v.s5.fb0abb2bd4a2 from=translated src=- shape=f932540e vocab=57062626
+-/
 theorem support_subset_preparedClosure (index : Code ↪ I)
     (prepared : Code → ℕ → I →₀ R) (x : I →₀ R) :
     ↑x.support ⊆ preparedClosure index prepared x :=
   subset_dependencyClosure index (preparedDependency prepared) ↑x.support
 
+/--
+@isnad1 id=countabl.0h6v.s5.8256e9b6218c from=translated src=- shape=8f67d0c8 vocab=34317697
+-/
 theorem preparedClosure_countable (index : Code ↪ I)
     (prepared : Code → ℕ → I →₀ R) (x : I →₀ R) :
     (preparedClosure index prepared x).Countable :=
   countable_dependencyClosure index (preparedDependency prepared)
     (preparedDependency_countable prepared) x.support.finite_toSet.countable
 
-/-- The closure contains every coordinate in a prepared sequence whose code index it contains. -/
+/-- The closure contains every coordinate in a prepared sequence whose code index it contains.
+@isnad1 id=le.1h8v.s6.940bcc9ec4c2 from=translated src=- shape=cba7ef67 vocab=33d29b45
+-/
 theorem preparedSupport_subset_preparedClosure (index : Code ↪ I)
     (prepared : Code → ℕ → I →₀ R) (x : I →₀ R) (c : Code)
     (hc : index c ∈ preparedClosure index prepared x) (n : ℕ) :

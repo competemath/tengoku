@@ -40,7 +40,9 @@ namespace ThreeGap.EuclideanPacking
 open Real InnerProductGeometry
 
 /-- **The circular distance never exceeds the representative distance:** `|(↑x).toReal| ≤ |x|`.
-(If `|x| ≥ π` use `|toReal| ≤ π`; if `|x| < π` then `x ∈ (−π, π]` and `(↑x).toReal = x`.) -/
+(If `|x| ≥ π` use `|toReal| ≤ π`; if `|x| < π` then `x ∈ (−π, π]` and `(↑x).toReal = x`.)
+@isnad1 id=le.0h1v.s4.3185e76c230c from=translated src=- shape=a22711e9 vocab=3751c155
+-/
 theorem abs_toReal_coe_le (x : ℝ) : |(↑x : Real.Angle).toReal| ≤ |x| := by
   rcases le_or_gt π |x| with h | h
   · exact le_trans (Real.Angle.abs_toReal_le_pi _) h
@@ -50,7 +52,9 @@ theorem abs_toReal_coe_le (x : ℝ) : |(↑x : Real.Angle).toReal| ≤ |x| := by
 /-! ## The combinatorial core: six points on the circle -/
 
 /-- **Six points of `ℝ/2πℤ` cannot be pairwise more than `π/3` apart** (in the `toReal` circular
-metric). -/
+metric).
+@isnad1 id=false.1h1v.s6.5ee049b270a0 from=translated src=- shape=75ce3674 vocab=80aec349
+-/
 theorem not_six_circle (φ : Fin 6 → Real.Angle)
     (h : ∀ i j, i ≠ j → π / 3 < |(φ i - φ j).toReal|) : False := by
   -- representatives in `(−π, π]`
@@ -103,7 +107,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [Fact (Module.finrank ℝ E = 2)]
 
 /-- **At most 5 vectors pairwise more than `π/3` apart** (the planar packing count). For an oriented
-plane `E` there are no six nonzero vectors that are pairwise strictly more than `π/3` apart. -/
+plane `E` there are no six nonzero vectors that are pairwise strictly more than `π/3` apart.
+@isnad1 id=false.2h3v.s7.a31d821b2e9d from=translated src=- shape=001d656c vocab=2a4daa5c
+-/
 theorem not_six_separated (o : Orientation ℝ E (Fin 2)) (v : Fin 6 → E) (hv : ∀ i, v i ≠ 0)
     (hsep : ∀ i j, i ≠ j → π / 3 < InnerProductGeometry.angle (v i) (v j)) : False := by
   set φ : Fin 6 → Real.Angle := fun i => o.oangle (v 0) (v i) with hφ

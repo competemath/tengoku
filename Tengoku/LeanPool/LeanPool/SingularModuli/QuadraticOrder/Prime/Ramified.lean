@@ -46,7 +46,9 @@ variable {d : ℤ} {p : ℕ}
 `τ²` lies in `(p) ⊆ QuadraticOrder d`. Combined with `τ ∉ (p)` (which holds
 generally because `τ` is a Z-basis element), this exhibits `τ + (p)` as a
 nonzero nilpotent of order 2 in `QuadraticOrder d / (p)` — the algebraic
-fingerprint of ramification of `p` in `QuadraticOrder d`. -/
+fingerprint of ramification of `p` in `QuadraticOrder d`.
+@isnad1 id=mem.3h2v.s7.35f7093fdfa1 from=translated src=- shape=c582a161 vocab=51ad7201
+-/
 theorem tau_sq_mem_span_p_of_p_dvd_d
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1)
     (hpd : (p : ℤ) ∣ d) :
@@ -91,7 +93,9 @@ of `p ≥ 2`.
 
 Together with `tau_sq_mem_span_p_of_p_dvd_d`, this shows that when `p ∣ d`,
 the image of `τ` in `QuadraticOrder d / (p)` is a nonzero element with
-`τ² = 0` — a genuine order-2 nilpotent witnessing ramification. -/
+`τ² = 0` — a genuine order-2 nilpotent witnessing ramification.
+@isnad1 id=not.0h2v.s7.3ee5d31b7c32 from=translated src=- shape=a2bfd6e8 vocab=a9e8b70d
+-/
 theorem tau_not_mem_span_p [Fact p.Prime] :
     tau (d := d) ∉ Ideal.span {(p : QuadraticOrder d)} := by
   intro hmem
@@ -112,7 +116,9 @@ theorem tau_not_mem_span_p [Fact p.Prime] :
 radical ideal. The witness is `τ`: `τ² ∈ (p)` (by
 `tau_sq_mem_span_p_of_p_dvd_d`) but `τ ∉ (p)` (by `tau_not_mem_span_p`).
 This is the algebraic fingerprint of ramification — the quotient
-`QuadraticOrder d / (p)` has a nonzero nilpotent. -/
+`QuadraticOrder d / (p)` has a nonzero nilpotent.
+@isnad1 id=not.3h2v.s6.5fd974f99bf0 from=translated src=- shape=88cdda21 vocab=4a9f8ce5
+-/
 theorem span_p_not_isRadical_of_p_dvd_d
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1)
     (hpd : (p : ℤ) ∣ d) :
@@ -171,7 +177,9 @@ be radical in `QuadraticOrder d` exactly when `p ∣ d`. The forward direction
 (`p ∣ d → ¬ IsRadical`) is `span_p_not_isRadical_of_p_dvd_d`. The reverse
 (`p ∤ d → IsRadical`) is proved by transporting squarefreeness of
 `polyMod d p` (from `polyMod_squarefree_of_not_p_dvd_d`) along the ring
-isomorphism `quadraticOrderModPEquivPolyModQuot`. -/
+isomorphism `quadraticOrderModPEquivPolyModQuot`.
+@isnad1 id=iff.2h2v.s6.2bd01fbc1675 from=translated src=- shape=22fa2f8e vocab=4a9f8ce5
+-/
 theorem prime_ramified_iff [Fact p.Prime] (hp2 : p ≠ 2)
     (hd : d % 4 = 0 ∨ d % 4 = 1) :
     ¬ (Ideal.span {(p : QuadraticOrder d)}).IsRadical ↔ (p : ℤ) ∣ d := by

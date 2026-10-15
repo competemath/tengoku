@@ -43,14 +43,18 @@ namespace HungerbuhlerWasem
 variable {x : ℂ}
 
 /-- Build `h_close` from a closed piecewise-`C¹` curve: the extended path takes
-the same value at `0` and `1` (both equal the basepoint `x`). -/
+the same value at `0` and `1` (both equal the basepoint `x`).
+@isnad1 id=eq.0h2v.s7.be01ee43b37b from=translated src=- shape=ad94527a vocab=eedc8d5c
+-/
 theorem closed_immersion_extend_zero_eq_one (γ : ClosedPwC1Immersion x) :
     γ.toPwC1Immersion.toPiecewiseC1Path.toPath.extend 0 =
     γ.toPwC1Immersion.toPiecewiseC1Path.toPath.extend 1 := by
   simp
 
 /-- At an off-partition interior point, the right and left derivative limits both
-equal `deriv γ t₀` and are nonzero. -/
+equal `deriv γ t₀` and are nonzero.
+@isnad1 id=other.2h3v.s9.0b626ff239a1 from=translated src=- shape=fdb490b3 vocab=d0af9ac8
+-/
 theorem deriv_limit_eq_at_off_partition
     (γ : ClosedPwC1Immersion x) {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1)
     (h_off : t₀ ∉ γ.toPwC1Immersion.toPiecewiseC1Path.partition) :
@@ -66,7 +70,9 @@ theorem deriv_limit_eq_at_off_partition
 
 /-- For a function `γ` with `Tendsto (deriv γ) (𝓝[>] t₀) (𝓝 L)` and eventual
 differentiability on `(t₀, ∞)`, plus continuity at `t₀`, we have
-`HasDerivWithinAt γ L (Ioi t₀) t₀`. -/
+`HasDerivWithinAt γ L (Ioi t₀) t₀`.
+@isnad1 id=hasderiv.3h3v.s8.b61cb3b0628a from=translated src=- shape=8e7035d3 vocab=b6bdc5d6
+-/
 theorem hasDerivWithinAt_Ioi_of_tendsto
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_cont : ContinuousAt γ t₀)
@@ -81,7 +87,9 @@ theorem hasDerivWithinAt_Ioi_of_tendsto
 
 /-- For a function `γ` with `Tendsto (deriv γ) (𝓝[<] t₀) (𝓝 L)` and eventual
 differentiability on `(-∞, t₀)`, plus continuity at `t₀`, we have
-`HasDerivWithinAt γ L (Iio t₀) t₀`. -/
+`HasDerivWithinAt γ L (Iio t₀) t₀`.
+@isnad1 id=hasderiv.3h3v.s8.468f79e455af from=translated src=- shape=8e7035d3 vocab=c46eebb3
+-/
 theorem hasDerivWithinAt_Iio_of_tendsto
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_cont : ContinuousAt γ t₀)

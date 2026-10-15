@@ -39,11 +39,17 @@ abbrev E : Set (Samples 4) := ClassicalAlgorithm.pEvent recursive3ParamAlg
 noncomputable def pInd : Samples 4 → ℝ≥0∞ :=
   Set.indicator E (fun _ => (1 : ℝ≥0∞))
 
+/--
+@isnad1 id=measurab.0h0v.s5.976c6906c55b from=translated src=- shape=bfe16b09 vocab=d8de1653
+-/
 lemma measurable_pInd : Measurable pInd := by
   classical
   simpa [pInd] using
     (measurable_const.indicator (ClassicalAlgorithm.measurableSet_pEvent recursive3ParamAlg))
 
+/--
+@isnad1 id=eq.0h0v.s6.ced96936f3c5 from=translated src=- shape=85adc1b4 vocab=ed445f51
+-/
 lemma p_eq_lintegral_pInd :
     ClassicalAlgorithm.p recursive3ParamAlg =
       ∫⁻ x : Samples 4, pInd x ∂(volume : Measure (Samples 4)) := by
@@ -61,6 +67,9 @@ lemma p_eq_lintegral_pInd :
 noncomputable def dSlice (x : Samples 4) : Set Rand :=
   {d | Function.update x 3 d ∈ E}
 
+/--
+@isnad1 id=measurab.0h1v.s4.54b5eff0f088 from=translated src=- shape=f3e6f14a vocab=3ff06e9b
+-/
 lemma measurableSet_dSlice (x : Samples 4) : MeasurableSet (dSlice x) := by
   classical
   have hE : MeasurableSet E := ClassicalAlgorithm.measurableSet_pEvent recursive3ParamAlg
@@ -69,6 +78,9 @@ lemma measurableSet_dSlice (x : Samples 4) : MeasurableSet (dSlice x) := by
   change MeasurableSet ((fun d : Rand => Function.update x (3 : Fin 4) d) ⁻¹' E)
   simpa [Set.preimage, E] using hE.preimage hupd
 
+/--
+@isnad1 id=eq.0h1v.s8.8242b4449a08 from=translated src=- shape=99d09d87 vocab=a87da582
+-/
 lemma dSlice_eq (x : Samples 4) :
     dSlice x =
       if x 2 < z0I (x 0) (x 1) then Set.Iio (z0I (x 1) (x 2)) else Set.Ici (z0I (x 1) (x 2)) := by
@@ -97,6 +109,9 @@ lemma dSlice_eq (x : Samples 4) :
       simp [hc']
     exact hL.trans hR.symm
 
+/--
+@isnad1 id=eq.0h1v.s8.13bfcdbf79c4 from=translated src=- shape=2120d8ed vocab=672f2bac
+-/
 lemma lmarginal_D (x : Samples 4) :
     (∫⋯∫⁻_{(3 : Fin 4)}, pInd ∂μ4) x =
       if x 2 < z0I (x 0) (x 1) then ENNReal.ofReal (z0I (x 1) (x 2))
@@ -132,6 +147,9 @@ For our concrete dyadic parameters, `aSlice b c = {a | c < z0(a,b)}` is (away fr
 always an interval in `a`. The following lemmas give exact set descriptions under hypotheses on `b`.
 -/
 
+/--
+@isnad1 id=eq.1h2v.s7.b5d4394ee1df from=translated src=- shape=c7a81f46 vocab=f46f6a70
+-/
 lemma aSlice_eq_of_b_lt_t1 {b c : Rand} (hb : b < t1) :
     aSlice b c =
       if c < b then Set.Iio t else if c < t then Set.Iic b else ∅ := by
@@ -208,6 +226,9 @@ lemma aSlice_eq_of_b_lt_t1 {b c : Rand} (hb : b < t1) :
         · exact fun hf => hf.elim
       exact (hL.trans hR.symm)
 
+/--
+@isnad1 id=measurab.0h2v.s4.43d2e4f65c84 from=translated src=- shape=80310a19 vocab=6161a1fe
+-/
 lemma measurableSet_aSlice (b c : Rand) : MeasurableSet (aSlice b c) := by
   classical
   have mz0 : Measurable fun ab : Rand × Rand => z0 ab.1 ab.2 := measurable_z0
@@ -226,6 +247,9 @@ lemma measurableSet_aSlice (b c : Rand) : MeasurableSet (aSlice b c) := by
     rfl
   simpa [this] using hmeas.preimage mPair
 
+/--
+@isnad1 id=eq.1h5v.s6.bfa171299f73 from=translated src=- shape=720ace1c vocab=35a52cf5
+-/
 lemma lintegral_ite_const {α : Type*} [MeasurableSpace α] (μ : Measure α) {s : Set α}
     [DecidablePred (· ∈ s)] (hs : MeasurableSet s) (a b : ℝ≥0∞) :
     (∫⁻ x, (if x ∈ s then a else b) ∂μ) = a * μ s + b * μ sᶜ := by
@@ -242,6 +266,9 @@ lemma lintegral_ite_const {α : Type*} [MeasurableSpace α] (μ : Measure α) {s
       a * μ s + b * μ sᶜ
   simp_all
 
+/--
+@isnad1 id=eq.0h1v.s8.0ecf68d66393 from=translated src=- shape=10af7d93 vocab=7e8437b4
+-/
 lemma lmarginal_AD (x : Samples 4) :
     (∫⋯∫⁻_({0, 3} : Finset (Fin 4)), pInd ∂μ4) x =
       ENNReal.ofReal (z0I (x 1) (x 2)) * (volume : Measure Rand) (aSlice (x 1) (x 2)) +
@@ -317,11 +344,17 @@ noncomputable def innerBC (b c : Rand) : ℝ≥0∞ :=
   ENNReal.ofReal (z0I b c) * (volume : Measure Rand) (aSlice b c) +
     ENNReal.ofReal (1 - (z0I b c : ℝ)) * (volume : Measure Rand) (aSlice b c)ᶜ
 
+/--
+@isnad1 id=eq.0h1v.s7.f3eb65741a99 from=translated src=- shape=39fa6945 vocab=d3fc28e1
+-/
 lemma lmarginal_AD_eq_innerBC (x : Samples 4) :
     (∫⋯∫⁻_({0, 3} : Finset (Fin 4)), pInd ∂μ4) x = innerBC (x 1) (x 2) := by
   classical
   simpa [innerBC] using (lmarginal_AD (x := x))
 
+/--
+@isnad1 id=eq.0h0v.s4.5fcd826c2ef6 from=translated src=- shape=b4966447 vocab=713390f7
+-/
 lemma p_eq_lintegral_innerBC :
     ClassicalAlgorithm.p recursive3ParamAlg =
       ∫⁻ b : Rand, ∫⁻ c : Rand, innerBC b c ∂(volume : Measure Rand) ∂(volume : Measure Rand) := by

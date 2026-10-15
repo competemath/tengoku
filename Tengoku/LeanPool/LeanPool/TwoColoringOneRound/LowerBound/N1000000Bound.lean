@@ -39,6 +39,9 @@ private theorem edgeCount_ne_zero : edgeCount n ≠ 0 := by
   have : Nonempty (Edge n) := ⟨edgeRep⟩
   exact Fintype.card_ne_zero
 
+/--
+@isnad1 id=le.0h0v.s4.83c180a4eeda from=translated src=- shape=fd11a80f vocab=62156dcc
+-/
 theorem dualObjective_ge_target :
     ((-26121 : Q) / 50000) ≤ (dualObjective : Q) := by
   -- Rewrite `dualObjective` to the closed-form constant `dualObjectiveD2 / D^2`.
@@ -66,6 +69,9 @@ theorem dualObjective_ge_target :
         (c := ((N1000000Data.dualObjectiveD2 : Int) : Q)) (d := ((D : Q) * (D : Q))) hb hd).2 hCross
   simpa [N1000000Data.dualObjectiveD2, mul_assoc, mul_comm, mul_left_comm] using h
 
+/--
+@isnad1 id=le.1h1v.s5.7475a48d52fe from=translated src=- shape=74312a85 vocab=511d937d
+-/
 theorem monoFraction_ge_23879_of_psd (f : Coloring n)
     (hpsd : ∀ r : Block, (S (xFromColoring f) r).PosSemidef) :
     (23879 : Q) / 100000 ≤ monoFraction f := by

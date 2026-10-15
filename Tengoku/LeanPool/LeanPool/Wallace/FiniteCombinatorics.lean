@@ -66,6 +66,9 @@ def Forbidden (M : ℕ) (B : Finset G) (x : G) : Prop :=
 def boundedIntFinset (M : ℕ) : Finset ℤ :=
   Finset.Icc (-(M : ℤ)) (M : ℤ)
 
+/--
+@isnad1 id=iff.0h2v.s4.31e85815e727 from=translated src=- shape=3b82e6d2 vocab=3d740857
+-/
 @[simp]
 theorem mem_boundedIntFinset_iff {M : ℕ} {z : ℤ} :
     z ∈ boundedIntFinset M ↔ Int.natAbs z ≤ M := by
@@ -89,6 +92,9 @@ def coefficientPatterns (M : ℕ) (B : Finset G) : Finset (B → ℤ) := by
   exact Fintype.piFinset fun _ ↦ boundedIntFinset M
 
 omit [AddCommGroup G] in
+/--
+@isnad1 id=iff.0h4v.s7.d321c4ab8c58 from=translated src=- shape=972de6cc vocab=c0a15694
+-/
 @[simp] theorem mem_coefficientPatterns_iff {M : ℕ} {B : Finset G} {c : B → ℤ} :
     c ∈ coefficientPatterns M B ↔ ∀ b, Int.natAbs (c b) ≤ M := by
   classical
@@ -115,6 +121,9 @@ noncomputable def forbiddenFinset (M : ℕ) (B : Finset G) : Finset G :=
     exact ((boundedIntFinset M).erase 0 ×ˢ coefficientPatterns M B).image
       (fun p ↦ equationSolution B p.1 p.2)
 
+/--
+@isnad1 id=mem.1h4v.s5.dc9c6cde0429 from=translated src=- shape=ed937b5f vocab=d88674dc
+-/
 theorem forbidden_mem_forbiddenFinset [IsAddTorsionFree G]
     {M : ℕ} {B : Finset G} {x : G} (hx : Forbidden M B x) :
     x ∈ forbiddenFinset M B := by
@@ -134,6 +143,9 @@ theorem forbidden_mem_forbiddenFinset [IsAddTorsionFree G]
   rw [hxeq]
   exact Finset.mem_image.mpr ⟨(q, c), Finset.mem_product.mpr ⟨hqmem, hcmem⟩, rfl⟩
 
+/--
+@isnad1 id=boundedi.3h4v.s5.feb3fc14150a from=translated src=- shape=6b045853 vocab=c9377ffc
+-/
 theorem boundedIndependent_insert_of_not_forbidden [DecidableEq G]
     {M : ℕ} {Y : Finset G} {x : G}
     (hY : BoundedIndependent M Y) (hxY : x ∉ Y)
@@ -165,7 +177,9 @@ section IntegerDependence
 /-- `s+1` integer vectors in `ℤ^s` have a nontrivial integer dependence.
 
 We first obtain a rational dependence by the dimension theorem and then clear all denominators
-using mathlib's localization API. -/
+using mathlib's localization API.
+@isnad1 id=ex.0h2v.s7.31ed00ab83a9 from=translated src=- shape=7db2a34d vocab=6f364694
+-/
 theorem exists_integer_dependence (s : ℕ) (b : Fin (s + 1) → Fin s → ℤ) :
     ∃ coeff : Fin (s + 1) → ℤ,
       (∃ i, coeff i ≠ 0) ∧ ∀ j, ∑ i, coeff i * b i j = 0 := by
@@ -238,6 +252,9 @@ uniformity; no unproved determinant estimate is used. -/
 noncomputable def integerDependenceBound (r Q : ℕ) : ℕ :=
   Finset.univ.sup fun B : BoundedVectorFamily r Q ↦ familyDependenceBound B
 
+/--
+@isnad1 id=ex.2h4v.s7.0fb1bf8b6910 from=translated src=- shape=654ed1a2 vocab=9a0a0a48
+-/
 theorem exists_uniform_integer_dependence
     {r Q s : ℕ} (hs : s ≤ r) (b : Fin (s + 1) → Fin s → ℤ)
     (hb : ∀ i j, Int.natAbs (b i j) ≤ Q) :
@@ -277,13 +294,18 @@ def HasMixedRelation (Q : ℕ) (A Y : Finset G) : Prop :=
 def MixedRelationFree (Q : ℕ) (A Y : Finset G) : Prop :=
   ¬ HasMixedRelation Q A Y
 
+/--
+@isnad1 id=mixedrel.0h3v.s4.bd0cb2d0a2bd from=translated src=- shape=71fdf30f vocab=d77bced2
+-/
 theorem mixedRelationFree_empty (Q : ℕ) (A : Finset G) :
     MixedRelationFree Q A ∅ := by
   rintro ⟨b, c, hb, hc, hb0, hc0, hsum⟩
   simp at hc0
 
 /-- A maximal relation-free subset of `X`.  Maximality is by cardinality and therefore implies
-that adjoining any omitted point creates a mixed relation. -/
+that adjoining any omitted point creates a mixed relation.
+@isnad1 id=ex.0h4v.s6.f74c798b57f4 from=translated src=- shape=41458488 vocab=663bb958
+-/
 theorem exists_maximal_mixedRelationFree [DecidableEq G] (Q : ℕ) (A X : Finset G) :
     ∃ Y : Finset G, Y ⊆ X ∧ MixedRelationFree Q A Y ∧
       ∀ x ∈ X, x ∉ Y → HasMixedRelation Q A (insert x Y) := by
@@ -313,6 +335,9 @@ theorem exists_maximal_mixedRelationFree [DecidableEq G] (Q : ℕ) (A X : Finset
   rw [hYmax, Finset.card_insert_of_notMem hxY] at hle
   omega
 
+/--
+@isnad1 id=ex.3h5v.s8.405cf7df4703 from=translated src=- shape=8502ba82 vocab=7e48d666
+-/
 theorem mixedRelation_insert_witness [DecidableEq G]
     {Q : ℕ} {A Y : Finset G} {x : G}
     (hY : MixedRelationFree Q A Y) (hxY : x ∉ Y)
@@ -345,7 +370,9 @@ noncomputable def deletionIndependenceBound (r Q : ℕ) : ℕ :=
 
 From an adequately bounded-independent finite set `X`, delete at most `|A|` points so that no
 bounded relation uses both `A` and the retained set.  The threshold and the conclusion—including
-the sharp deletion count `|X \ Y| ≤ |A|`—are the ones in the paper. -/
+the sharp deletion count `|X \ Y| ≤ |A|`—are the ones in the paper.
+@isnad1 id=ex.2h5v.s6.e9d1831a6c50 from=translated src=- shape=d39e10f7 vocab=d54298bc
+-/
 theorem bounded_deletion [DecidableEq G]
     (r Q : ℕ) (A X : Finset G) (hAr : A.card ≤ r)
     (hX : BoundedIndependent (deletionIndependenceBound r Q) X) :

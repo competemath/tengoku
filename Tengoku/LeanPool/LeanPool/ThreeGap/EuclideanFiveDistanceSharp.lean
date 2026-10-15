@@ -32,7 +32,9 @@ namespace ThreeGap.EuclideanRecords
 open scoped Real
 open ThreeGap.SimApprox ThreeGap.Chevallier
 
-/-- **The sharp Euclidean growth `2 qₖ ≤ qₖ₊₄` for the record denominators (Haynes–Marklof).** -/
+/-- **The sharp Euclidean growth `2 qₖ ≤ qₖ₊₄` for the record denominators (Haynes–Marklof).**
+@isnad1 id=le.2h3v.s6.4b1991b82725 from=translated src=- shape=0046bed0 vocab=cde233b9
+-/
 theorem bestDenom_euclidean_growth_four (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀))
     (hr : RecordsContinue (deltaE α)) (k : ℕ) :
     2 * bestDenom (deltaE α) hr k ≤ bestDenom (deltaE α) hr (k + 4) := by
@@ -49,7 +51,9 @@ theorem bestDenom_euclidean_growth_four (α : Fin 2 → ℝ) {k₀ : Fin 2} (hir
       k
   exact_mod_cast hint
 
-/-- **`g₂ ≤ 5` (sharp Euclidean five-distance count, `gapVal` form).** -/
+/-- **`g₂ ≤ 5` (sharp Euclidean five-distance count, `gapVal` form).**
+@isnad1 id=le.2h3v.s6.c32dbd3bce26 from=translated src=- shape=1bb887b1 vocab=5b224c27
+-/
 theorem gap_count_euclidean_five (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀)) {N : ℕ}
     (hN : 2 ≤ N) :
     ((Finset.range (N + 1)).image (gapVal (deltaE α) N)).card ≤ 5 := by
@@ -60,7 +64,9 @@ theorem gap_count_euclidean_five (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irr
 /-- **The sharp Euclidean five-distance theorem `g₂ ≤ 5`.** For any `α : Fin 2 → ℝ` with an
 irrational
 coordinate and `N ≥ 2`, the number of distinct values of the Euclidean nearest-neighbour distance
-`nnDistE α N q` over `q ∈ {0, …, N}` is at most **5**. -/
+`nnDistE α N q` over `q ∈ {0, …, N}` is at most **5**.
+@isnad1 id=le.2h3v.s6.09d2a422b068 from=translated src=- shape=3a355db3 vocab=496cf482
+-/
 theorem nnDistE_count_le_five (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀)) {N : ℕ}
     (hN : 2 ≤ N) : ((Finset.range (N + 1)).image (nnDistE α N)).card ≤ 5 := by
   have hsymm : ∀ t : ℤ, deltaN (euclNorm 2) α (-t) = deltaN (euclNorm 2) α t :=

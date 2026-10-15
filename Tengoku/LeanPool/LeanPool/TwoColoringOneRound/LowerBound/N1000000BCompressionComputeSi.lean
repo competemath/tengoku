@@ -40,6 +40,9 @@ private lemma rat_scale_mul_reduced_eq (q0 : Q) (s' : Int) (D' : Nat) :
 
 -- This is the Si-analogue of `compBasis_id_matches_S0`, proved entrywise by reducing to
 -- finitely-many integer identities (precomputed in `N1000000BCompressionComputeSiInt`).
+/--
+@isnad1 id=eq.0h2v.s6.756202be0a54 from=translated src=- shape=8a19fd24 vocab=24113cc4
+-/
 theorem compBasisSymm_var_matches_Si :
     ∀ r : Block, ∀ i : Var,
       compBasisSymm r (varOrbit i) = (blockScales[r.1]! : Q) • Si r i := by

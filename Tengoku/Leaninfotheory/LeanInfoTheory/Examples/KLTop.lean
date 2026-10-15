@@ -39,26 +39,34 @@ def leftLaw : PMF Bool := PMF.pure false
 /-- The pure law at `true`, whose support is disjoint from `leftLaw`. -/
 def rightLaw : PMF Bool := PMF.pure true
 
-/-- The two pure laws are unequal. -/
+/-- The two pure laws are unequal.
+@isnad1 id=ne.0h0v.s2.5f402a06084d from=translated src=- shape=836e6cbb vocab=d63296fc
+-/
 theorem laws_ne : leftLaw ≠ rightLaw := by
   intro h
   have hmass := congrArg (fun p : PMF Bool => p false) h
   simp [leftLaw, rightLaw] at hmass
 
-/-- `leftLaw` is not absolutely continuous with respect to `rightLaw`. -/
+/-- `leftLaw` is not absolutely continuous with respect to `rightLaw`.
+@isnad1 id=not.0h0v.s3.22ac735a84b3 from=translated src=- shape=10b7b816 vocab=1b69be4b
+-/
 theorem not_absolutelyContinuous :
     Not (MeasureTheory.Measure.AbsolutelyContinuous
       leftLaw.toMeasure rightLaw.toMeasure) := by
   rw [toMeasure_absolutelyContinuous_iff_support_subset]
   simp [leftLaw, rightLaw]
 
-/-- Failed support inclusion makes the KL divergence infinite. -/
+/-- Failed support inclusion makes the KL divergence infinite.
+@isnad1 id=eq.0h0v.s4.57cc8c786291 from=translated src=- shape=74013df7 vocab=65ff3d40
+-/
 theorem klDiv_eq_top :
     InformationTheory.klDiv leftLaw.toMeasure rightLaw.toMeasure = ⊤ := by
   apply (klDiv_pmf_eq_top_iff_not_support_subset leftLaw rightLaw).2
   simp [leftLaw, rightLaw]
 
-/-- Taking `ENNReal.toReal` sends the infinite KL value to zero. -/
+/-- Taking `ENNReal.toReal` sends the infinite KL value to zero.
+@isnad1 id=eq.0h0v.s4.5acd24cc1ab5 from=translated src=- shape=6d39fe5e vocab=625c3f40
+-/
 theorem toReal_klDiv_eq_zero :
     (InformationTheory.klDiv leftLaw.toMeasure rightLaw.toMeasure).toReal = 0 := by
   rw [klDiv_eq_top]
@@ -67,6 +75,7 @@ theorem toReal_klDiv_eq_zero :
 /--
 Without absolute continuity, real-valued KL can be zero for two unequal laws;
 this is the branch excluded by `toReal_klDiv_pmf_eq_zero_iff`.
+@isnad1 id=and.0h0v.s5.0dc1281d8529 from=translated src=- shape=08f80bdd vocab=7432c03b
 -/
 theorem toReal_zero_trap :
     (InformationTheory.klDiv leftLaw.toMeasure rightLaw.toMeasure).toReal = 0 ∧

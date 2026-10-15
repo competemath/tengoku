@@ -32,7 +32,9 @@ variable {n : ℕ}
 namespace BoolFun
 
 /-- The local sensitivity of the negation of `f` equals the local sensitivity
-of `f`. -/
+of `f`.
+@isnad1 id=eq.0h3v.s4.c1801d37cffd from=translated src=- shape=56a25a3d vocab=ecd79864
+-/
 theorem localSensitivity_not (f : BoolFun n) (x : Fin n → Bool) :
     BoolFun.localSensitivity (fun y => !f y) x = f.localSensitivity x := by
   have not_ne_not_iff (a b : Bool) : ((!a) ≠ (!b)) ↔ a ≠ b := by
@@ -49,26 +51,34 @@ theorem localSensitivity_not (f : BoolFun n) (x : Fin n → Bool) :
   intro i _
   exact not_ne_not_iff (f (flipBit x i)) (f x)
 
-/-- The sensitivity of the negation of `f` equals the sensitivity of `f`. -/
+/-- The sensitivity of the negation of `f` equals the sensitivity of `f`.
+@isnad1 id=eq.0h2v.s4.3579d1367ea8 from=translated src=- shape=00c3a5e4 vocab=4adb1253
+-/
 theorem sensitivity_not (f : BoolFun n) :
     BoolFun.sensitivity (fun y => !f y) = f.sensitivity := by
   simp [sensitivity, f.localSensitivity_not]
 
-/-- The local sensitivity of `f` at any input `x` is at most `n`. -/
+/-- The local sensitivity of `f` at any input `x` is at most `n`.
+@isnad1 id=le.0h3v.s4.7f8ee1ce7ec0 from=translated src=- shape=9f24d95b vocab=dc10f991
+-/
 theorem localSensitivity_le (f : BoolFun n) (x : Fin n → Bool) :
     f.localSensitivity x ≤ n := by
   unfold localSensitivity
   exact (Finset.card_filter_le _ _).trans (by simp)
 
 /-- Unfolding lemma: `f` is sensitive at `x` in coordinate `i` iff flipping
-that coordinate changes the value of `f`. -/
+that coordinate changes the value of `f`.
+@isnad1 id=iff.0h4v.s4.2260b18068f3 from=translated src=- shape=71291b32 vocab=fe39a468
+-/
 theorem sensitiveAt_iff (f : BoolFun n) (x : Fin n → Bool) (i : Fin n) :
     f.sensitiveAt x i ↔ f (flipBit x i) ≠ f x :=
   Iff.rfl
 
 /-- Sensitivity at `x` is symmetric in the following sense: `f` is sensitive
 at `x` in direction `i` iff `f` is sensitive at `flipBit x i` in direction
-`i`. -/
+`i`.
+@isnad1 id=iff.0h4v.s4.5a096b0f7399 from=translated src=- shape=8bb41b04 vocab=fe39a468
+-/
 theorem sensitiveAt_flipBit (f : BoolFun n) (x : Fin n → Bool) (i : Fin n) :
     f.sensitiveAt (flipBit x i) i ↔ f.sensitiveAt x i := by
   simp [sensitiveAt, flipBit_flipBit_same, eq_comm]

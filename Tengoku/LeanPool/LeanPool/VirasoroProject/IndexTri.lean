@@ -29,6 +29,9 @@ def indexTri (ε : SignType) : Set (Option ℤ) := match ε with
   | SignType.pos => some '' {n : ℤ | 0 < n}
   | SignType.neg => some '' {n : ℤ | n < 0}
 
+/--
+@isnad1 id=pairwise.0h0v.s5.a80da3b98ca2 from=translated src=- shape=94333dbb vocab=a4fb1a87
+-/
 lemma pairwise_disjoint_indexTri :
     Pairwise fun ε₁ ε₂ ↦ Disjoint (indexTri ε₁) (indexTri ε₂) := by
   intro ε₁ ε₂ h
@@ -50,6 +53,9 @@ lemma pairwise_disjoint_indexTri :
       linarith
     · aesop
 
+/--
+@isnad1 id=eq.0h0v.s3.e1f4cc7139a9 from=translated src=- shape=2fa40b2f vocab=2828f3b5
+-/
 lemma iUnion_indexTri :
     ⋃ ε, indexTri ε = Set.univ := by
   simp only [indexTri, Set.iUnion_eq_univ_iff]

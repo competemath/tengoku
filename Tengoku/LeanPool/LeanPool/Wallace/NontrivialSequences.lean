@@ -40,7 +40,9 @@ def HasNonzeroLimitProperty
         Tendsto (s ∘ φ) p (nhds x)
 
 /-- A separation package has the nonzero ultrafilter-limit property: its prescribed limit is
-the fresh basis vector attached to the code of the sequence. -/
+the fresh basis vector attached to the code of the sequence.
+@isnad1 id=hasnonze.0h2v.s4.f54e71fc5bae from=translated src=- shape=43984f75 vocab=af3c8981
+-/
 theorem SeparationPackage.hasNonzeroLimitProperty
     {I : Type u} (C : SeparationPackage I) :
     @HasNonzeroLimitProperty (I →₀ ℤ) C.initialTopology _ := by
@@ -57,7 +59,9 @@ theorem SeparationPackage.hasNonzeroLimitProperty
     exact C.prepared_tendsto_basis c
 
 /-- In a Hausdorff topological group, the nonzero ultrafilter-limit property prevents every
-injective sequence from converging. -/
+injective sequence from converging.
+@isnad1 id=not.2h2v.s5.e1f75e2c6a54 from=translated src=- shape=7e09856a vocab=e9632994
+-/
 theorem no_injective_sequence_converges_of_nonzeroLimitProperty
     {G : Type u} [TopologicalSpace G] [AddGroup G]
     [IsTopologicalAddGroup G] [T2Space G]
@@ -83,7 +87,9 @@ theorem no_injective_sequence_converges_of_nonzeroLimitProperty
   have hp0 : Tendsto (t ∘ φ) p (nhds 0) := hsub0.mono_left hfree'
   exact hy (tendsto_nhds_unique hpy hp0)
 
-/-- Any sequence with infinite range has a strictly reindexed injective subsequence. -/
+/-- Any sequence with infinite range has a strictly reindexed injective subsequence.
+@isnad1 id=ex.1h2v.s5.5f80ce3b5604 from=translated src=- shape=ffc6f8b3 vocab=1ed1fabf
+-/
 theorem exists_injective_subsequence_of_infinite_range
     {X : Type u} {s : ℕ → X} (hinf : (Set.range s).Infinite) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ Function.Injective (s ∘ φ) := by
@@ -113,7 +119,9 @@ theorem exists_injective_subsequence_of_infinite_range
   rw [← hi, ← hj, hij]
 
 /-- In a T1 space where no injective sequence converges, every convergent sequence is eventually
-equal to its limit. -/
+equal to its limit.
+@isnad1 id=eventual.2h3v.s6.25455648df8e from=translated src=- shape=3908c5dc vocab=96662bec
+-/
 theorem eventually_eq_limit_of_no_injective_sequence_converges
     {X : Type u} [TopologicalSpace X] [T1Space X]
     (hno : ∀ s : ℕ → X, Function.Injective s →

@@ -40,20 +40,26 @@ Properties (under appropriate hypotheses, requiring monotonicity arguments):
 noncomputable def firstExitTimeRight (γ : ℝ → ℂ) (t₀ δ : ℝ) (s : ℂ) (ε : ℝ) : ℝ :=
   sInf {t ∈ Icc t₀ (t₀ + δ) | ε ≤ ‖γ t - s‖}
 
-/-- The set defining `firstExitTimeRight` is nonempty when `γ(t₀+δ)` is far enough. -/
+/-- The set defining `firstExitTimeRight` is nonempty when `γ(t₀+δ)` is far enough.
+@isnad1 id=mem.2h5v.s6.e05c6945d7d6 from=translated src=- shape=7c700449 vocab=797b892d
+-/
 theorem firstExitTimeRight_set_nonempty
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     (hδ : 0 ≤ δ) (h_far : ε ≤ ‖γ (t₀ + δ) - s‖) :
     (t₀ + δ) ∈ {t ∈ Icc t₀ (t₀ + δ) | ε ≤ ‖γ t - s‖} :=
   ⟨⟨by linarith, le_rfl⟩, h_far⟩
 
-/-- The set defining `firstExitTimeRight` is bounded below by t₀. -/
+/-- The set defining `firstExitTimeRight` is bounded below by t₀.
+@isnad1 id=le.1h6v.s6.b58c1cefead1 from=translated src=- shape=3f312393 vocab=797b892d
+-/
 theorem firstExitTimeRight_set_lb
     (γ : ℝ → ℂ) (t₀ δ ε : ℝ) (s : ℂ) :
     ∀ t ∈ {t ∈ Icc t₀ (t₀ + δ) | ε ≤ ‖γ t - s‖}, t₀ ≤ t :=
   fun _ ⟨hmem, _⟩ => hmem.1
 
-/-- **First exit time lies in `[t₀, t₀+δ]`.** -/
+/-- **First exit time lies in `[t₀, t₀+δ]`.**
+@isnad1 id=and.2h5v.s6.e999e9a01755 from=translated src=- shape=fcd9dc34 vocab=7b7436d2
+-/
 theorem firstExitTimeRight_mem_Icc
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ} (hδ : 0 ≤ δ)
     (hε_le : ε ≤ ‖γ (t₀ + δ) - s‖) :
@@ -69,7 +75,9 @@ with `γ(t₀+δ)` at distance ≥ ε from s, the radius at the first exit time
 satisfies `ε ≤ ‖γ (firstExitTimeRight ...) - s‖`.
 
 This shows the first exit time IS an exit time (membership in S is preserved
-at the infimum). -/
+at the infimum).
+@isnad1 id=le.3h5v.s6.c0ab504453d7 from=translated src=- shape=9204103d vocab=c4cd3b77
+-/
 theorem ε_le_norm_at_firstExitTimeRight
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     (hδ : 0 < δ) (hγ_cont : ContinuousOn γ (Icc t₀ (t₀ + δ)))
@@ -82,7 +90,9 @@ theorem ε_le_norm_at_firstExitTimeRight
 
 /-- **Strict-positive first exit time (right).** For `γ(t₀) = s` and `ε > 0`, the
 first exit time is strictly `> t₀`: at `t₀` itself, `γ` is at distance `0 < ε`,
-so `t₀` is not in the defining set. -/
+so `t₀` is not in the defining set.
+@isnad1 id=lt.5h5v.s6.4ae4ec18f5e7 from=translated src=- shape=3ae6923b vocab=c4cd3b77
+-/
 theorem t₀_lt_firstExitTimeRight
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ} (hδ : 0 < δ)
     (hγ_cont : ContinuousOn γ (Icc t₀ (t₀ + δ)))
@@ -106,7 +116,9 @@ theorem t₀_lt_firstExitTimeRight
 bound `ε ≤ ‖γ (firstExitTime...) - s‖` with the upper bound from continuity at
 the supremum-via-sInf, the first exit time is at *exactly* distance `ε`.
 
-Requires `γ(t₀) = s` (so `firstExitTime > t₀`) and `ε > 0`. -/
+Requires `γ(t₀) = s` (so `firstExitTime > t₀`) and `ε > 0`.
+@isnad1 id=eq.5h5v.s6.4450d4ddec1f from=translated src=- shape=2b7a28b0 vocab=c4cd3b77
+-/
 theorem norm_at_firstExitTimeRight_eq
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     (hδ : 0 < δ) (hγ_cont : ContinuousOn γ (Icc t₀ (t₀ + δ)))
@@ -142,20 +154,26 @@ approaching `t₀` from the left. -/
 noncomputable def firstExitTimeLeft (γ : ℝ → ℂ) (t₀ δ : ℝ) (s : ℂ) (ε : ℝ) : ℝ :=
   sSup {t ∈ Icc (t₀ - δ) t₀ | ε ≤ ‖γ t - s‖}
 
-/-- The set defining `firstExitTimeLeft` is nonempty when `γ(t₀-δ)` is far enough. -/
+/-- The set defining `firstExitTimeLeft` is nonempty when `γ(t₀-δ)` is far enough.
+@isnad1 id=mem.2h5v.s6.32cb44264a3b from=translated src=- shape=e8e35b1c vocab=66f0214a
+-/
 theorem firstExitTimeLeft_set_nonempty
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     (hδ : 0 ≤ δ) (h_far : ε ≤ ‖γ (t₀ - δ) - s‖) :
     (t₀ - δ) ∈ {t ∈ Icc (t₀ - δ) t₀ | ε ≤ ‖γ t - s‖} :=
   ⟨⟨le_rfl, by linarith⟩, h_far⟩
 
-/-- The set defining `firstExitTimeLeft` is bounded above by `t₀`. -/
+/-- The set defining `firstExitTimeLeft` is bounded above by `t₀`.
+@isnad1 id=le.1h6v.s6.801ccec55f0d from=translated src=- shape=10896441 vocab=66f0214a
+-/
 theorem firstExitTimeLeft_set_ub
     (γ : ℝ → ℂ) (t₀ δ ε : ℝ) (s : ℂ) :
     ∀ t ∈ {t ∈ Icc (t₀ - δ) t₀ | ε ≤ ‖γ t - s‖}, t ≤ t₀ :=
   fun _ ⟨hmem, _⟩ => hmem.2
 
-/-- **First exit time (left) lies in `[t₀-δ, t₀]`.** -/
+/-- **First exit time (left) lies in `[t₀-δ, t₀]`.**
+@isnad1 id=and.2h5v.s6.02c74bdb7e1f from=translated src=- shape=4d2b15c8 vocab=5205e7b5
+-/
 theorem firstExitTimeLeft_mem_Icc
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ} (hδ : 0 ≤ δ)
     (hε_le : ε ≤ ‖γ (t₀ - δ) - s‖) :
@@ -171,7 +189,9 @@ theorem firstExitTimeLeft_mem_Icc
 first exit time satisfies `ε ≤ ‖γ (firstExitTimeLeft ...) - s‖`.
 
 The closed-and-bounded set of "outside-the-ball" times has a supremum that
-itself is "outside the ball" (closed under sequential limits). -/
+itself is "outside the ball" (closed under sequential limits).
+@isnad1 id=le.3h5v.s6.130055fd20d9 from=translated src=- shape=1d80228a vocab=2cf253b2
+-/
 theorem ε_le_norm_at_firstExitTimeLeft
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     (hδ : 0 < δ) (hγ_cont : ContinuousOn γ (Icc (t₀ - δ) t₀))
@@ -184,7 +204,9 @@ theorem ε_le_norm_at_firstExitTimeLeft
 
 /-- **Strict-positive first exit time (left).** For `γ(t₀) = s` and `ε > 0`, the
 left first exit time is strictly `< t₀`: at `t₀` itself, `γ` is at distance `0 < ε`,
-so `t₀` is not in the defining set. -/
+so `t₀` is not in the defining set.
+@isnad1 id=lt.5h5v.s6.fbc93fc49e43 from=translated src=- shape=7870031e vocab=2cf253b2
+-/
 theorem firstExitTimeLeft_lt_t₀
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ} (hδ : 0 < δ)
     (hγ_cont : ContinuousOn γ (Icc (t₀ - δ) t₀))
@@ -206,7 +228,9 @@ theorem firstExitTimeLeft_lt_t₀
 
 /-- **Exact-radius equality at first exit time (left).** Combining the lower
 bound with the continuity-at-sSup upper bound, the (left) first exit time is at
-*exactly* distance `ε`. -/
+*exactly* distance `ε`.
+@isnad1 id=eq.5h5v.s6.4867ae7a27fe from=translated src=- shape=9274380d vocab=2cf253b2
+-/
 theorem norm_at_firstExitTimeLeft_eq
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     (hδ : 0 < δ) (hγ_cont : ContinuousOn γ (Icc (t₀ - δ) t₀))
@@ -232,7 +256,9 @@ theorem norm_at_firstExitTimeLeft_eq
   linarith
 
 /-- **Right-side upper bound.** For any `t₁ ∈ [t₀, t₀+δ]` with `ε ≤ ‖γ t₁ - s‖`,
-the first exit time is at most `t₁`. -/
+the first exit time is at most `t₁`.
+@isnad1 id=le.2h6v.s6.a8f5f45c6e00 from=translated src=- shape=7b8d3e91 vocab=1ab47c87
+-/
 theorem firstExitTimeRight_le_of_mem
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     {t₁ : ℝ} (ht₁ : t₁ ∈ Icc t₀ (t₀ + δ))
@@ -241,7 +267,9 @@ theorem firstExitTimeRight_le_of_mem
   csInf_le ⟨t₀, firstExitTimeRight_set_lb γ t₀ δ ε s⟩ ⟨ht₁, h_far⟩
 
 /-- **Left-side lower bound.** For any `t₁ ∈ [t₀-δ, t₀]` with `ε ≤ ‖γ t₁ - s‖`,
-the first exit time (sup) is at least `t₁`. -/
+the first exit time (sup) is at least `t₁`.
+@isnad1 id=le.2h6v.s6.8866fc7c4801 from=translated src=- shape=1d940ced vocab=46cc9169
+-/
 theorem firstExitTimeLeft_ge_of_mem
     {γ : ℝ → ℂ} {t₀ δ ε : ℝ} {s : ℂ}
     {t₁ : ℝ} (ht₁ : t₁ ∈ Icc (t₀ - δ) t₀)
@@ -254,7 +282,9 @@ and `γ(t) ≠ s` for `t ∈ (t₀, t₀+δ]`, the first exit time tends to `t�
 as `ε → 0⁺`.
 
 The "γ leaves the pole" hypothesis ensures the defining set is nonempty for
-arbitrarily small ε, and convergence to `t₀` follows from continuity. -/
+arbitrarily small ε, and convergence to `t₀` follows from continuity.
+@isnad1 id=tendsto.4h4v.s7.da8fe33791a1 from=translated src=- shape=7ef97bbf vocab=2d8ac3ac
+-/
 theorem firstExitTimeRight_tendsto_t₀
     {γ : ℝ → ℂ} {t₀ δ : ℝ} {s : ℂ} (hδ : 0 < δ)
     (hγ_cont : ContinuousOn γ (Icc t₀ (t₀ + δ)))
@@ -284,7 +314,9 @@ theorem firstExitTimeRight_tendsto_t₀
 
 /-- **Left-side asymptotic.** Symmetric to `firstExitTimeRight_tendsto_t₀`:
 the left first exit time tends to `t₀` (from below) as `ε → 0⁺`, given
-`γ(t) ≠ s` for `t ∈ [t₀-δ, t₀)`. -/
+`γ(t) ≠ s` for `t ∈ [t₀-δ, t₀)`.
+@isnad1 id=tendsto.4h4v.s7.754a238bcd76 from=translated src=- shape=b367de7e vocab=087c8b94
+-/
 theorem firstExitTimeLeft_tendsto_t₀
     {γ : ℝ → ℂ} {t₀ δ : ℝ} {s : ℂ} (hδ : 0 < δ)
     (hγ_cont : ContinuousOn γ (Icc (t₀ - δ) t₀))
@@ -316,7 +348,9 @@ theorem firstExitTimeLeft_tendsto_t₀
 /-- **Right-side eventual exact radius.** For `γ` continuous with `γ(t₀) = s`
 and `γ` leaving `s` on `(t₀, t₀+δ]`, the equality `‖γ (firstExitTimeRight ε) - s‖ = ε`
 holds for all sufficiently small `ε > 0`. This is the form expected by
-`hw_theorem_3_3_odd_transverse_parametric`. -/
+`hw_theorem_3_3_odd_transverse_parametric`.
+@isnad1 id=eventual.4h4v.s7.36b3b48f92a8 from=translated src=- shape=8a121839 vocab=757f42e8
+-/
 theorem firstExitTimeRight_radius_eventually
     {γ : ℝ → ℂ} {t₀ δ : ℝ} {s : ℂ} (hδ : 0 < δ)
     (hγ_cont : ContinuousOn γ (Icc t₀ (t₀ + δ)))
@@ -327,7 +361,9 @@ theorem firstExitTimeRight_radius_eventually
   filter_upwards [Ioo_mem_nhdsGT h_far_pos] with ε hε
   exact norm_at_firstExitTimeRight_eq hδ hγ_cont h_s hε.1 hε.2.le
 
-/-- **Left-side eventual exact radius.** Symmetric to the right-side. -/
+/-- **Left-side eventual exact radius.** Symmetric to the right-side.
+@isnad1 id=eventual.4h4v.s7.78984ef36f3f from=translated src=- shape=9864fc7f vocab=c5c85129
+-/
 theorem firstExitTimeLeft_radius_eventually
     {γ : ℝ → ℂ} {t₀ δ : ℝ} {s : ℂ} (hδ : 0 < δ)
     (hγ_cont : ContinuousOn γ (Icc (t₀ - δ) t₀))

@@ -32,6 +32,9 @@ private lemma g_eq_affine_aux {x : Rand} {slope const : ℝ} {g : ℝ≥0∞} (h
     g = ENNReal.ofReal slope * ENNReal.ofReal (x : ℝ) + ENNReal.ofReal const := by
   rw [hg, ENNReal.ofReal_mul hslope]
 
+/--
+@isnad1 id=eq.0h1v.s6.394776310157 from=translated src=- shape=3a76fc05 vocab=4fe868aa
+-/
 lemma gCt_eq_affine (c : Rand) :
     gCt c =
       ENNReal.ofReal (1 / 4 : ℝ) * ENNReal.ofReal (c : ℝ) + ENNReal.ofReal (3 / 8 : ℝ) :=
@@ -40,6 +43,9 @@ lemma gCt_eq_affine (c : Rand) :
     have hconst : (1 - (t : ℝ)) = (3 / 8 : ℝ) := by norm_num [t]
     simpa [ht, hconst] using gCt_eq_linear c)
 
+/--
+@isnad1 id=eq.0h1v.s6.86aeacc1ac9c from=translated src=- shape=3a76fc05 vocab=13273f49
+-/
 lemma gTB_eq_affine (b : Rand) :
     gTB b =
       ENNReal.ofReal (1 / 4 : ℝ) * ENNReal.ofReal (b : ℝ) + ENNReal.ofReal (3 / 8 : ℝ) :=
@@ -48,6 +54,9 @@ lemma gTB_eq_affine (b : Rand) :
     have hconst : (1 - (t : ℝ)) = (3 / 8 : ℝ) := by norm_num [t]
     simpa [ht, hconst] using gTB_eq_linear b)
 
+/--
+@isnad1 id=eq.0h1v.s6.762efdefd5c5 from=translated src=- shape=3a76fc05 vocab=71a1a9ab
+-/
 lemma gCt2_eq_affine (c : Rand) :
     gCt2 c =
       ENNReal.ofReal (1 / 16 : ℝ) * ENNReal.ofReal (c : ℝ) + ENNReal.ofReal (15 / 32 : ℝ) :=
@@ -56,6 +65,9 @@ lemma gCt2_eq_affine (c : Rand) :
     have hconst : (1 - (t2 : ℝ)) = (15 / 32 : ℝ) := by norm_num [t2]
     simpa [ht, hconst] using gCt2_eq_linear c)
 
+/--
+@isnad1 id=eq.0h1v.s6.bfa894420dfb from=translated src=- shape=3a76fc05 vocab=7e2a71e6
+-/
 lemma gT2B_eq_affine (b : Rand) :
     gT2B b =
       ENNReal.ofReal (1 / 16 : ℝ) * ENNReal.ofReal (b : ℝ) + ENNReal.ofReal (15 / 32 : ℝ) :=
@@ -154,6 +166,9 @@ private lemma lintegral_affine_mul_length {g : Rand → ℝ≥0∞} {slope const
       rw [MeasureTheory.lintegral_const_mul (μ := μ.restrict S) _ mMoment,
         MeasureTheory.lintegral_const_mul (μ := μ.restrict S) _ mLength]
 
+/--
+@isnad1 id=eq.1h1v.s7.08772232394b from=translated src=- shape=eb429251 vocab=40bdcf60
+-/
 lemma lintegral_innerBC_Iio_one_of_b_lt_t1 {b : Rand} (hb : b < t1) :
     (∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ) =
       (∫⁻ c in Set.Iio b, gCt c ∂μ) + gTB b * μ (Set.Ico b t) := by
@@ -276,6 +291,9 @@ private lemma lintegral_b_below_t1_gTB_value :
   exact ofReal_add_eq (by norm_num) (by norm_num)
     (by norm_num : (27 / 4096 : ℝ) + (63 / 1024 : ℝ) = 279 / 4096)
 
+/--
+@isnad1 id=eq.0h0v.s7.a188ce621b59 from=translated src=- shape=bd3cbc38 vocab=2c01ebd9
+-/
 lemma lintegral_b_below_t1_value :
     (∫⁻ b in Set.Iio t1, ∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ ∂μ) =
       ENNReal.ofReal (99 / 1024 : ℝ)
@@ -330,6 +348,9 @@ For `t1 ≤ b < t2`, the integrand splits into four `c`-regions:
 `c < t1`, `t1 ≤ c < b`, `b ≤ c < t2`, and `t2 ≤ c < t` (with zero contribution for `c ≥ t`).
 -/
 
+/--
+@isnad1 id=eq.2h1v.s8.2dfda729d935 from=translated src=- shape=d5864ca7 vocab=bfbfe98d
+-/
 lemma lintegral_innerBC_Iio_one_of_t1_le_b_lt_t2 {b : Rand} (hb1 : t1 ≤ b) (hb2 : b < t2) :
     (∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ) =
       ((∫⁻ c in Set.Iio t1, gCt c ∂μ) + gT2B b * μ (Set.Ico b t2) +
@@ -655,6 +676,9 @@ private lemma lintegral_t1_t2_main_value :
   rw [hsplitMain, lintegral_gT2B_rect_t1_t2_value, hconstInt]
   simp [add_comm]
 
+/--
+@isnad1 id=eq.0h0v.s7.0b644637ff44 from=translated src=- shape=c59db94a vocab=beaaca81
+-/
 lemma lintegral_b_t1_t2_value :
     (∫⁻ b in Set.Ico t1 t2, ∫⁻ c in (Set.Iio (1 : Rand) : Set Rand), innerBC b c ∂μ ∂μ) =
       ENNReal.ofReal (68705 / 1572864 : ℝ)

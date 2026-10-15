@@ -51,6 +51,9 @@ instance : NeZero n := ⟨by
 def symOfNat (k : Nat) : SymN :=
   Fin.ofNat n k
 
+/--
+@isnad1 id=eq.3h2v.s4.da06b73eab05 from=translated src=- shape=fce08944 vocab=53da9dd2
+-/
 lemma symOfNat_injective_of_lt {a b : Nat} (ha : a < n) (hb : b < n) :
     symOfNat a = symOfNat b → a = b := by
   intro hab
@@ -75,6 +78,9 @@ def labelGetNat (t : LabelTriple) (i : Fin 3) : Nat :=
   | 1 => t.2.1
   | _ => t.2.2
 
+/--
+@isnad1 id=eq.0h2v.s4.781b3a62ad70 from=translated src=- shape=c9c1d1f3 vocab=ae7f523c
+-/
 lemma labelGet_eq_symOfNat_labelGetNat (t : LabelTriple) (i : Fin 3) :
     labelGet t i = symOfNat (labelGetNat t i) := by
   fin_cases i <;> rfl
@@ -95,6 +101,9 @@ instance (t : LabelTriple) : Decidable (LabelsInRange t) := by
   unfold LabelsInRange
   infer_instance
 
+/--
+@isnad1 id=lt.1h2v.s4.29f6d56fca7a from=translated src=- shape=03cef256 vocab=c05133e0
+-/
 lemma labelGetNat_lt (t : LabelTriple) (hr : LabelsInRange (t := t)) (i : Fin 3) :
     labelGetNat t i < n := by
   fin_cases i
@@ -102,6 +111,9 @@ lemma labelGetNat_lt (t : LabelTriple) (hr : LabelsInRange (t := t)) (i : Fin 3)
   · simpa [labelGetNat] using hr.2.1
   · simpa [labelGetNat] using hr.2.2
 
+/--
+@isnad1 id=injectiv.1h1v.s3.b94b2ab9330a from=translated src=- shape=bace3479 vocab=d66cd1d2
+-/
 lemma labelGetNat_injective_of_labelsDistinct (t : LabelTriple) (h : LabelsDistinct t) :
     Function.Injective (labelGetNat t) := by
   intro i j hij
@@ -109,6 +121,9 @@ lemma labelGetNat_injective_of_labelsDistinct (t : LabelTriple) (h : LabelsDisti
   fin_cases i <;> fin_cases j <;>
     simp_all [labelGetNat, eq_comm]
 
+/--
+@isnad1 id=injectiv.2h1v.s4.36b268f66ea8 from=translated src=- shape=f09e0ad6 vocab=75b89189
+-/
 lemma tupleOfLabels_injective_of_labelsDistinct (t : LabelTriple) (h : LabelsDistinct t)
     (hr : LabelsInRange (t := t)) :
     Function.Injective (tupleOfLabels t) := by
@@ -118,10 +133,16 @@ lemma tupleOfLabels_injective_of_labelsDistinct (t : LabelTriple) (h : LabelsDis
   exact labelGetNat_injective_of_labelsDistinct (t := t) h
     (symOfNat_injective_of_lt (labelGetNat_lt (t := t) hr i) (labelGetNat_lt (t := t) hr j) hijSym)
 
+/--
+@isnad1 id=injectiv.0h1v.s5.4ccb39c06a31 from=translated src=- shape=87a02855 vocab=02568d65
+-/
 theorem varRepU_injective : ∀ i : Var, Function.Injective (tupleOfLabels (varRepU[i.1]!)) := by
   intro i
   fin_cases i <;> exact tupleOfLabels_injective_of_labelsDistinct _ (by decide) (by decide)
 
+/--
+@isnad1 id=injectiv.0h1v.s5.cee57c0f42c3 from=translated src=- shape=87a02855 vocab=cfaffbde
+-/
 theorem varRepV_injective : ∀ i : Var, Function.Injective (tupleOfLabels (varRepV[i.1]!)) := by
   intro i
   fin_cases i <;> exact tupleOfLabels_injective_of_labelsDistinct _ (by decide) (by decide)
@@ -134,20 +155,38 @@ abbrev varRepUAt (i : Var) : LabelTriple :=
 abbrev varRepVAt (i : Var) : LabelTriple :=
   varRepV[i.1]!
 
+/--
+@isnad1 id=labelsdi.0h1v.s2.88b884accfc1 from=translated src=- shape=76a08d12 vocab=61b666bd
+-/
 theorem varRepUAt_labelsDistinct (i : Var) : LabelsDistinct (varRepUAt i) := by
   fin_cases i <;> decide
 
+/--
+@isnad1 id=labelsdi.0h1v.s2.f8a2255d4942 from=translated src=- shape=76a08d12 vocab=18933efa
+-/
 theorem varRepVAt_labelsDistinct (i : Var) : LabelsDistinct (varRepVAt i) := by
   fin_cases i <;> decide
 
+/--
+@isnad1 id=labelsin.0h1v.s2.e2e967c44211 from=translated src=- shape=76a08d12 vocab=98e3fcac
+-/
 theorem varRepUAt_labelsInRange (i : Var) : LabelsInRange (varRepUAt i) := by fin_cases i <;> decide
 
+/--
+@isnad1 id=labelsin.0h1v.s2.9fbd58422b14 from=translated src=- shape=76a08d12 vocab=f03da991
+-/
 theorem varRepVAt_labelsInRange (i : Var) : LabelsInRange (varRepVAt i) := by fin_cases i <;> decide
 
+/--
+@isnad1 id=injectiv.0h1v.s3.4eb8ff8bb4ba from=translated src=- shape=9fb9fa4f vocab=ab4a50d0
+-/
 theorem varRepUAt_injective : ∀ i : Var, Function.Injective (tupleOfLabels (varRepUAt i)) := by
   intro i
   fin_cases i <;> exact tupleOfLabels_injective_of_labelsDistinct _ (by decide) (by decide)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.1db5ee4b90ad from=translated src=- shape=9fb9fa4f vocab=7c093a9d
+-/
 theorem varRepVAt_injective : ∀ i : Var, Function.Injective (tupleOfLabels (varRepVAt i)) := by
   intro i
   fin_cases i <;> exact tupleOfLabels_injective_of_labelsDistinct _ (by decide) (by decide)
@@ -178,6 +217,9 @@ def edgeRepTuple : Tuple 4 n :=
     | 2 => symOfNat 1
     | _ => symOfNat 2
 
+/--
+@isnad1 id=injectiv.0h0v.s3.07600ce6b00d from=translated src=- shape=b032868b vocab=90d2199b
+-/
 lemma edgeRepTuple_injective : Function.Injective edgeRepTuple := by
   intro i j hij
   have hmod0 : (0 : Nat) % n = 0 := Nat.mod_eq_of_lt (by decide : (0 : Nat) < n)
@@ -193,6 +235,9 @@ lemma edgeRepTuple_injective : Function.Injective edgeRepTuple := by
 def edgeRep : Edge n :=
   ⟨edgeRepTuple, edgeRepTuple_injective⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.ac669a85a094 from=translated src=- shape=2c256329 vocab=968ca03c
+-/
 theorem edgeRep_src : Edge.src edgeRep = varRepVertexV edgeVarVar := by
   have hV : varRepVAt edgeVarVar = (3, 0, 1) := by decide
   apply Subtype.ext
@@ -202,6 +247,9 @@ theorem edgeRep_src : Edge.src edgeRep = varRepVertexV edgeVarVar := by
       Distributed2Coloring.LowerBound.N1000000Relaxation.labelGet,
       Distributed2Coloring.LowerBound.N1000000Relaxation.symOfNat, hV]
 
+/--
+@isnad1 id=eq.0h0v.s3.29554e0f32bd from=translated src=- shape=2c256329 vocab=903facd9
+-/
 theorem edgeRep_dst : Edge.dst edgeRep = varRepVertexU edgeVarVar := by
   have hU : varRepUAt edgeVarVar = (0, 1, 2) := by decide
   apply Subtype.ext

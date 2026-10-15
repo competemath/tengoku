@@ -57,7 +57,9 @@ noncomputable def box (α : Fin d → ℝ) (Q : ℕ) (hQ : 1 ≤ Q) (i : ℕ) : 
 
 /-- **Dirichlet's simultaneous approximation theorem (inverse-resolution form).** For `Q ≥ 1` there
 is
-a denominator `1 ≤ q` with `delta α q < 1/Q`. -/
+a denominator `1 ≤ q` with `delta α q < 1/Q`.
+@isnad1 id=ex.1h3v.s5.04faca895a26 from=translated src=- shape=293e06ef vocab=c38c2d7a
+-/
 theorem exists_delta_lt_inv (α : Fin d → ℝ) (Q : ℕ) (hQ : 1 ≤ Q) :
     ∃ q : ℕ, 1 ≤ q ∧ delta α q < 1 / Q := by
   have hQ0 : (0 : ℝ) < Q := by exact_mod_cast hQ
@@ -109,7 +111,9 @@ theorem exists_delta_lt_inv (α : Fin d → ℝ) (Q : ℕ) (hQ : 1 ≤ Q) :
         rw [pi_norm_lt_iff (by positivity)]
         simp_all
 
-/-- **Dirichlet's theorem (ε form).** For every `ε > 0` there is `q ≥ 1` with `delta α q < ε`. -/
+/-- **Dirichlet's theorem (ε form).** For every `ε > 0` there is `q ≥ 1` with `delta α q < ε`.
+@isnad1 id=ex.1h3v.s5.0c4c27e73530 from=translated src=- shape=73d95f06 vocab=58e071d9
+-/
 theorem exists_delta_lt (α : Fin d → ℝ) {ε : ℝ} (hε : 0 < ε) :
     ∃ q : ℕ, 1 ≤ q ∧ delta α q < ε := by
   obtain ⟨Q, hQ⟩ := exists_nat_gt (1 / ε)
@@ -127,7 +131,9 @@ theorem exists_delta_lt (α : Fin d → ℝ) {ε : ℝ} (hε : 0 < ε) :
 /-! ## Positivity from irrationality -/
 
 /-- If some coordinate `α k` is irrational, the defect is **strictly positive** at every `q ≥ 1`
-(then `q αₖ ∉ ℤ`, so its distance to the nearest integer is positive). -/
+(then `q αₖ ∉ ℤ`, so its distance to the nearest integer is positive).
+@isnad1 id=lt.2h4v.s5.cd6bc276ecad from=translated src=- shape=584f5613 vocab=83149451
+-/
 theorem delta_pos (α : Fin d → ℝ) {k₀ : Fin d} (hirr : Irrational (α k₀)) {q : ℕ} (hq : 1 ≤ q) :
     0 < delta α q := by
   -- lower bound: delta α q ≥ |q αₖ₀ − round(q αₖ₀)|
@@ -151,7 +157,9 @@ theorem delta_pos (α : Fin d → ℝ) {k₀ : Fin d} (hirr : Irrational (α k�
 /-- **`RecordsContinue (deltaCost α)` from irrationality.** If some coordinate of `α` is irrational,
 the best simultaneous approximations improve without bound: every `q ≥ 1` is beaten by a larger
 denominator. (Else `delta α` would have a positive lower bound on all of `ℕ₊`, contradicting
-Dirichlet.) -/
+Dirichlet.)
+@isnad1 id=recordsc.1h3v.s4.7988e2776e4c from=translated src=- shape=73e1b47a vocab=df66e21a
+-/
 theorem recordsContinue_deltaCost (α : Fin d → ℝ) {k₀ : Fin d} (hirr : Irrational (α k₀)) :
     RecordsContinue (deltaCost α) := by
   intro q hq
@@ -185,7 +193,9 @@ any
 `N ≥ 2`, the orbit `{0, α, …, Nα}` on the torus `𝕋ᵈ` has at most `2^d + 1` distinct
 nearest-neighbour
 distances in the sup-norm metric. No `RecordsContinue` hypothesis — it is discharged from
-irrationality via Dirichlet. -/
+irrationality via Dirichlet.
+@isnad1 id=le.2h4v.s6.2ea62218d0c3 from=translated src=- shape=7068ba73 vocab=23b3002c
+-/
 theorem nnDist_count_unconditional (α : Fin d → ℝ) {k₀ : Fin d} (hirr : Irrational (α k₀)) {N : ℕ}
     (hN : 2 ≤ N) : ((Finset.range (N + 1)).image (nnDist α N)).card ≤ 2 ^ d + 1 :=
   nnDist_count_le α (recordsContinue_deltaCost α hirr) hN
@@ -193,7 +203,9 @@ theorem nnDist_count_unconditional (α : Fin d → ℝ) {k₀ : Fin d} (hirr : I
 /-- **The `L^∞` five-distance theorem on `𝕋²`, unconditional.** For any `α : Fin 2 → ℝ` with an
 irrational coordinate and any `N ≥ 2`, the orbit `{0, α, …, Nα}` on `𝕋²` has at most **five**
 distinct
-nearest-neighbour distances in the sup-norm metric. -/
+nearest-neighbour distances in the sup-norm metric.
+@isnad1 id=le.2h3v.s6.b119f7075cee from=translated src=- shape=9f7b914c vocab=987f128a
+-/
 theorem nnDist_count_plane_unconditional (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀))
     {N : ℕ} (hN : 2 ≤ N) : ((Finset.range (N + 1)).image (nnDist α N)).card ≤ 5 :=
   nnDist_count_le_plane α (recordsContinue_deltaCost α hirr) hN

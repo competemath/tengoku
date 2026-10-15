@@ -65,6 +65,9 @@ namespace WittAlgebra
 /-- The basis of `ℓₙ` generators of the Witt algebra (indices `n : ℤ`). -/
 noncomputable def lgen : Basis ℤ 𝕜 (WittAlgebra 𝕜) := Finsupp.basisFun _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.272d7f0d2d4f from=translated src=- shape=9d9d6f43 vocab=857d4b22
+-/
 lemma lgen_eq_single (n : ℤ) : lgen 𝕜 n = Finsupp.single n 1 := rfl
 
 /-- The Lie bracket for the Witt algebra `WittAlgebra` as a bilinear map. -/
@@ -72,12 +75,17 @@ noncomputable def bracket :
     (WittAlgebra 𝕜) →ₗ[𝕜] (WittAlgebra 𝕜) →ₗ[𝕜] (WittAlgebra 𝕜) :=
   (lgen 𝕜).constr 𝕜 <| fun n ↦ (lgen 𝕜).constr 𝕜 <| fun m ↦ (n - m : 𝕜) • lgen 𝕜 (n + m)
 
-/-- `⁅ℓ(n), ℓ(m)⁆ = (n-m) • ℓ(n+m)` in `WittAlgebra`. -/
+/-- `⁅ℓ(n), ℓ(m)⁆ = (n-m) • ℓ(n+m)` in `WittAlgebra`.
+@isnad1 id=eq.0h3v.s9.f254de273167 from=translated src=- shape=c12b5834 vocab=56b71f11
+-/
 @[simp]
 lemma bracket_lgen_lgen' (n m : ℤ) :
     bracket 𝕜 (lgen 𝕜 n) (lgen 𝕜 m) = (n - m : 𝕜) • lgen 𝕜 (n + m) := by
   simp only [bracket, Basis.constr_basis]
 
+/--
+@isnad1 id=eq.0h1v.s9.342e46f6c5f2 from=translated src=- shape=b6d26282 vocab=15fab4e3
+-/
 lemma bracket_eq_neg_flip :
     bracket 𝕜 = -(bracket 𝕜).flip := by
   apply LinearMap.ext_basis (lgen _) (lgen _)
@@ -86,12 +94,16 @@ lemma bracket_eq_neg_flip :
 
 variable {𝕜}
 
-/-- Antisymmetry of the Lie bracket of the Witt algebra `WittAlgebra`. -/
+/-- Antisymmetry of the Lie bracket of the Witt algebra `WittAlgebra`.
+@isnad1 id=eq.0h3v.s10.f03547688dba from=translated src=- shape=fc27ce69 vocab=39cbb9b2
+-/
 lemma bracket_antisymm (X Y : WittAlgebra 𝕜) :
     bracket 𝕜 X Y = - bracket 𝕜 Y X := by
   simpa using LinearMap.congr_fun (LinearMap.congr_fun (bracket_eq_neg_flip 𝕜) X) Y
 
-/-- Antisymmetry (`⁅X, X⁆ = 0` form) of the Lie bracket of the Witt algebra `WittAlgebra`. -/
+/-- Antisymmetry (`⁅X, X⁆ = 0` form) of the Lie bracket of the Witt algebra `WittAlgebra`.
+@isnad1 id=eq.0h2v.s9.48c5fb57c070 from=translated src=- shape=a0a6cfb0 vocab=0d7ad526
+-/
 lemma bracket_self [CharZero 𝕜] [NoZeroSMulDivisors 𝕜 (WittAlgebra 𝕜)] (X : WittAlgebra 𝕜) :
     bracket 𝕜 X X = 0 := by
   have aux : (2 : 𝕜) • bracket 𝕜 X X = 0 := by
@@ -102,7 +114,9 @@ lemma bracket_self [CharZero 𝕜] [NoZeroSMulDivisors 𝕜 (WittAlgebra 𝕜)] 
 
 variable (𝕜)
 
-/-- The Jacobi identity of the Lie bracket of the Witt algebra `WittAlgebra`. -/
+/-- The Jacobi identity of the Lie bracket of the Witt algebra `WittAlgebra`.
+@isnad1 id=eq.0h1v.s11.47f115d1ebb9 from=translated src=- shape=6fb6279f vocab=6e91f33c
+-/
 lemma bracketCyclic_eq_zero :
     cyclicTripleSumHom (bracket 𝕜) (bracket 𝕜) = 0 := by
   apply LinearMap.ext_basis (lgen _) (lgen _)
@@ -119,7 +133,9 @@ lemma bracketCyclic_eq_zero :
 
 variable {𝕜}
 
-/-- The Leibniz property (Jacobi identity) of the Lie bracket of the Witt algebra `WittAlgebra`. -/
+/-- The Leibniz property (Jacobi identity) of the Lie bracket of the Witt algebra `WittAlgebra`.
+@isnad1 id=eq.0h4v.s11.7146a0afafab from=translated src=- shape=e31fa8d8 vocab=a53d6a10
+-/
 lemma bracket_leibniz (X Y Z : WittAlgebra 𝕜) :
     bracket 𝕜 X (bracket 𝕜 Y Z) =
       bracket 𝕜 (bracket 𝕜 X Y) Z + bracket 𝕜 Y (bracket 𝕜 X Z) := by
@@ -147,7 +163,9 @@ noncomputable instance : LieAlgebra 𝕜 (WittAlgebra 𝕜) where
 
 variable (𝕜)
 
-/-- `⁅ℓ(n), ℓ(m)⁆ = (n-m) • ℓ(n+m)` in `WittAlgebra`. -/
+/-- `⁅ℓ(n), ℓ(m)⁆ = (n-m) • ℓ(n+m)` in `WittAlgebra`.
+@isnad1 id=eq.0h3v.s9.1cb82cbf46c4 from=translated src=- shape=45a74ead vocab=97f2e049
+-/
 @[simp]
 lemma bracket_lgen_lgen (n m : ℤ) :
     ⁅lgen 𝕜 n, lgen 𝕜 m⁆ = (n - m : 𝕜) • lgen 𝕜 (n + m) :=

@@ -128,7 +128,9 @@ def IsLinearVlasovSolutionOn
 
 omit [NeZero d] in
 /-- A self-consistent weak solution is a linear solution driven by its **own** spatial marginal.
-The two differ only by `WeakEvolutionEqOn`'s `+ (fun _ => 0) t = + 0` remainder. -/
+The two differ only by `WeakEvolutionEqOn`'s `+ (fun _ => 0) t = + 0` remainder.
+@isnad1 id=islinear.1h4v.s6.60e72c71e614 from=translated src=- shape=e55a8c5c vocab=ad794f17
+-/
 lemma IsVlasovSolutionOn.toLinearSelf
     {gradW : PhysSpace d → PhysSpace d} {f : ℝ → Measure (PhaseSpace d)} {T : ℝ}
     (h : IsVlasovSolutionOn gradW f T) :
@@ -145,7 +147,9 @@ driven by that same `ρ`.  Proof: the generic SC.1–SC.3 machinery (change of v
 chain rule + differentiation-under-the-integral, all parametric in `ρ`) recomposed at this `ρ`,
 with SC.4's push-back inlined as `integral_map` (SC.4's packaged form hard-codes the
 self-consistent marginal).  This is `vlasovSolutionViaPushforward_isVlasovSolutionOn` with `ρ`
-left free — the `_hself` self-consistency hypothesis is unused. -/
+left free — the `_hself` self-consistency hypothesis is unused.
+@isnad1 id=islinear.14h9v.s10.af4ed1a206a2 from=translated src=- shape=f23791fb vocab=311060e2
+-/
 theorem vlasov_frozenField_pushforward_isLinearVlasovSolutionOn
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -270,7 +274,9 @@ Build the characteristic flow for the *given* external curve `ρ` on `Ioo 0 T` (
 regularity), from probability/moment/integrability/continuity data on the window `[0,T]` only.
 `exists_vlasov_characteristicFlow_global_smallT` demands *universal*-in-`t` instances; we clamp
 `t ↦ ρ (max 0 (min t T))` into the window (L11), apply the universal producer to the clamped
-curve, and transfer on `[0,T]` where the clamp is the identity. -/
+curve, and transfer on `[0,T]` where the clamp is the identity.
+@isnad1 id=ex.10h7v.s10.a85fe339486e from=translated src=- shape=2db0e4a4 vocab=3c82e805
+-/
 theorem exists_frozenField_charFlow_On
     (W : PhysSpace d → ℝ)
     (gradW : PhysSpace d → PhysSpace d) (hgradW : ∀ x, gradW x = gradient W x)
@@ -361,7 +367,9 @@ theorem exists_frozenField_charFlow_On
 If a real function is continuous on `[0,T]` and has zero derivative throughout the open
 interval, its endpoint values agree.  This is the dual argument's payoff step: `s ↦ ∫ ψ_s dμ_s`
 is constant, so its value at `T` (= `∫ φ dμ_T`) equals its value at `0` (= `∫ ψ_0 dμ_0`). Mean
-value theorem (`exists_hasDerivAt_eq_slope`). -/
+value theorem (`exists_hasDerivAt_eq_slope`).
+@isnad1 id=eq.3h2v.s6.b33398ba624c from=translated src=- shape=35b151a8 vocab=85542cad
+-/
 lemma transportedIntegral_const_On {h : ℝ → ℝ} {T : ℝ} (hT : 0 < T)
     (hcont : ContinuousOn h (Set.Icc 0 T))
     (hderiv : ∀ s ∈ Set.Ioo (0 : ℝ) T, HasDerivAt h 0 s) :
@@ -380,7 +388,9 @@ If `∫ φ dμ = ∫ φ dν` for every smooth compactly-supported `φ`, then `μ
 phase space).  The dual argument yields equality of integrals against the `IsVlasovSolution` test
 class `C_c^∞`; this closes the bridge's final step `f T = g T`.  Route: extend `C_c^∞ →`
 bounded-continuous (smooth approximation), then the in-house bounded-continuous extensionality
-`ext_of_forall_integral_eq_of_IsFiniteMeasure` (cf. `Wasserstein.lean`). -/
+`ext_of_forall_integral_eq_of_IsFiniteMeasure` (cf. `Wasserstein.lean`).
+@isnad1 id=eq.1h3v.s9.256a5c23e15c from=translated src=- shape=62b980a6 vocab=9f6bbc66
+-/
 lemma measure_eq_of_forall_Cc_integral_eq {μ ν : Measure (PhaseSpace d)}
     [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (h : ∀ φ : PhaseSpace d → ℝ, ContDiff ℝ (⊤ : ℕ∞) φ → HasCompactSupport φ →
@@ -466,7 +476,9 @@ omit [NeZero d] in
 
 `AssW2.gradContDiff` gives `ContDiff ℝ 1 (fun x => fderiv ℝ W x)`; composing with the (smooth,
 linear) Riesz isometry `gradient W x = (toDual ℝ _).symm (fderiv ℝ W x)` and rewriting by `hgradW`
-yields `ContDiff ℝ 1 gradW`. -/
+yields `ContDiff ℝ 1 gradW`.
+@isnad1 id=contdiff.1h3v.s8.7bb3cd0ba52c from=translated src=- shape=ec0733af vocab=610f06c6
+-/
 lemma assW2_contDiff_gradW (W : PhysSpace d → ℝ) [AssW2 W]
     (gradW : PhysSpace d → PhysSpace d) (hgradW : ∀ x, gradW x = gradient W x) :
     ContDiff ℝ 1 gradW := by
@@ -503,7 +515,9 @@ equation (#3): it makes `D_z (vlasovVectorField …)` exist and continuous, so t
 Differentiation under the integral sign (`hasFDerivAt_integral_of_dominated_loc_of_lip`): the
 per-fibre map `x ↦ gradW (x − y)` is `L`-Lipschitz (a uniform, integrable bound against a
 probability measure) and differentiable, so the parametric integral differentiates with derivative
-the integral of the fibrewise derivatives. -/
+the integral of the fibrewise derivatives.
+@isnad1 id=hasfderi.3h5v.s10.d10a7fb6410e from=translated src=- shape=617068bd vocab=fd859d90
+-/
 theorem convolveFunctionMeasure_hasFDerivAt
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -554,7 +568,9 @@ omit [NeZero d] in
 At fixed time `t`, `vlasovVectorField gradW ρ t = fun (x,v) ↦ (v, −conv(x))` is
 Fréchet-differentiable in `z = (x,v)` with derivative the block continuous-linear map
 `δ ↦ (δ.2, −(D_x conv)(δ.1))`, where `D_x conv = ∫ y, fderiv ℝ gradW (z.1 − y) ∂(ρ t)` (F1).
-This is the coefficient `A(t) := D_z b(t, Φ_t z)` of the variational ODE `M' = A(t)·M`. -/
+This is the coefficient `A(t) := D_z b(t, Φ_t z)` of the variational ODE `M' = A(t)·M`.
+@isnad1 id=hasfderi.3h6v.s12.6ecf9e8b5e47 from=translated src=- shape=b70ba7fb vocab=2ee4ea2f
+-/
 theorem vlasovVectorField_hasFDerivAt_in_z
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -587,7 +603,9 @@ omit [NeZero d] in
 convergence: the integrand is continuous in `x` and bounded by `‖fderiv gradW‖ ≤ L` (a constant,
 integrable against the probability measure `ρ`).  Continuity of the variational coefficient
 `A(t)` in its spatial argument — half of the `t`-continuity of `A` (the other half is the
-measure-curve regularity `t ↦ ρ t`, supplied at the V1c ODE-existence step). -/
+measure-curve regularity `t ↦ ρ t`, supplied at the V1c ODE-existence step).
+@isnad1 id=continuo.2h4v.s11.9afba1118c86 from=translated src=- shape=b831aab2 vocab=a6807adf
+-/
 theorem convolveFunctionMeasure_fderiv_continuous
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -612,9 +630,15 @@ noncomputable def picardIter {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
   | 0, _ => x₀
   | (n + 1), t => ∫ s in (0 : ℝ)..t, 𝒜 s (picardIter 𝒜 x₀ n s)
 
+/--
+@isnad1 id=eq.0h4v.s6.f624951fdcde from=translated src=- shape=79c6c0c7 vocab=33fac1de
+-/
 @[simp] lemma picardIter_zero {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (x₀ : E) (t : ℝ) : picardIter 𝒜 x₀ 0 t = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.dc8027d589fa from=translated src=- shape=12321832 vocab=cc0928b5
+-/
 lemma picardIter_succ {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (x₀ : E) (n : ℕ) (t : ℝ) :
     picardIter 𝒜 x₀ (n + 1) t = ∫ s in (0 : ℝ)..t, 𝒜 s (picardIter 𝒜 x₀ n s) := rfl
@@ -622,7 +646,9 @@ lemma picardIter_succ {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- **C3 V1c-engine — the Picard iterates are continuous and satisfy the geometric
 `(Kt)ⁿ/n!`-bound on `[0,T]`.**  Proved by simultaneous induction (continuity feeds
 integrability, which feeds the next bound).  This `Σ (KT)ⁿ/n! = e^{KT}`-summable bound is the
-convergence driver for the V1c fixed point. -/
+convergence driver for the V1c fixed point.
+@isnad1 id=and.4h6v.s8.3dec76947943 from=translated src=- shape=888d4acf vocab=af0a68c7
+-/
 lemma picardIter_continuousOn_and_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (x₀ : E)
     (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -687,7 +713,9 @@ lemma picardIter_continuousOn_and_bound {E : Type*} [NormedAddCommGroup E] [Norm
 /-- **C3 V1c-conv — the Dyson sum `M := ∑ₙ Iₙ` is continuous on `[0,T]`.**  Weierstrass M-test:
 the terms are dominated by the summable majorant `(KT)ⁿ/n!·‖x₀‖`, so the series converges
 uniformly; the uniform limit of the continuous partial sums is continuous.  (`M` is the candidate
-solution: `M = x₀ + ∫₀ᵗ 𝒜(s)(M s) ds`, proved next.) -/
+solution: `M = x₀ + ∫₀ᵗ 𝒜(s)(M s) ds`, proved next.)
+@isnad1 id=continuo.4h5v.s8.5e76edbc07e1 from=translated src=- shape=dffb5b38 vocab=d8d39ca9
+-/
 lemma picardSum_continuousOn {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
     (hcont𝒜 : ContinuousOn 𝒜 (Set.Icc 0 T)) (hbound𝒜 : ∀ t ∈ Set.Icc 0 T, ‖𝒜 t‖ ≤ K) :
@@ -719,7 +747,9 @@ primitive `continuous_parametric_primitive_of_continuous`), and the M-test major
 is **`z`-independent**, so the uniform-in-`z` limit of continuous maps is continuous.  This is what
 makes the variational fundamental matrix `z ↦ M z t` continuous (V2) — the property the abstract
 `exists_fundamentalMatrix` + `choose` cannot supply (the `choose`'d witness is an arbitrary
-fiberwise section; see lesson L14). -/
+fiberwise section; see lesson L14).
+@isnad1 id=continuo.5h7v.s8.2549847f0321 from=translated src=- shape=7eece3fb vocab=80c1f764
+-/
 lemma picardSum_continuous_param
     {Z E : Type*} [TopologicalSpace Z] [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : Z → ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -770,7 +800,9 @@ lemma picardSum_continuous_param
 The coefficient is clamped into `[0,T]` (`projIcc`, L11) so the global parametric-primitive lemma
 applies, then transferred back by agreement of the iterates on `[0,T]` (they only integrate over
 `[0,t] ⊆ [0,T]`).  This is the form the variational coefficient `A(s,z) = D_z b(s, Φ_s z)` needs —
-it is jointly continuous only on the window `[0,T]` (the flow `Φ_s z` is). -/
+it is jointly continuous only on the window `[0,T]` (the flow `Φ_s z` is).
+@isnad1 id=continuo.5h7v.s8.a241ae51a416 from=translated src=- shape=34076322 vocab=73cf9447
+-/
 lemma picardSum_continuous_param_Icc
     {Z E : Type*} [TopologicalSpace Z] [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : Z → ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -814,7 +846,9 @@ lemma picardSum_continuous_param_Icc
 /-- **C3 V1c-rec — finite Picard recurrence.**  The `(N+1)`-th partial Dyson sum equals
 `x₀ + ∫₀ᵗ 𝒜(s)(Sₙ(s)) ds`, where `Sₙ = ∑_{n<N} Iₙ`.  Only finite-sum swaps
 (`integral_finsetSum`, `map_sum`); no infinite interchange.  Passing `N → ∞` against the
-uniform convergence (`picardSum_continuousOn`'s M-test) yields the integral equation for `M`. -/
+uniform convergence (`picardSum_continuousOn`'s M-test) yields the integral equation for `M`.
+@isnad1 id=eq.5h7v.s9.a65d3ec5f31d from=translated src=- shape=385b2571 vocab=105c59f8
+-/
 lemma picardSum_finset_recurrence
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -840,7 +874,9 @@ lemma picardSum_finset_recurrence
 /-- **C3 V1c-inteq — the Dyson sum solves the integral equation.**
 `M(t) = x₀ + ∫₀ᵗ 𝒜(s)(M s) ds` on `[0,T]`, where `M = ∑'ₙ Iₙ`.  Pass `N → ∞` in the finite
 recurrence: LHS → `M t` (partial sums of the summable series); RHS via DCT (the terms
-`𝒜(s)(S_N s) → 𝒜(s)(M s)` pointwise, dominated by the constant `K·∑'ₙ (KT)ⁿ/n!·‖x₀‖`). -/
+`𝒜(s)(S_N s) → 𝒜(s)(M s)` pointwise, dominated by the constant `K·∑'ₙ (KT)ⁿ/n!·‖x₀‖`).
+@isnad1 id=eq.5h6v.s9.6d95ee37cf75 from=translated src=- shape=c5c04344 vocab=078d5b3c
+-/
 lemma picardSum_solves_integralEq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -921,7 +957,9 @@ makes the Picard window-condition `K·e^{KT}·T ≤ e^{KT}−1` fail for a singl
 so `𝒯` has a unique fixed point by the iterated-contraction Banach theorem
 (`ContractingWith` + `exists_fixedPoint`, `Mathlib/Topology/MetricSpace/Contracting.lean`).
 Differentiating the fixed-point integral equation (FTC, `HasDerivWithinAt` of `t ↦ ∫_0^t …`)
-recovers `x' = 𝒜(t) x`; `x(0) = x₀` from the lower integral limit. -/
+recovers `x' = 𝒜(t) x`; `x(0) = x₀` from the lower integral limit.
+@isnad1 id=ex.2h4v.s8.4c0e9fcd73c0 from=translated src=- shape=ae59d277 vocab=0d7cf8e5
+-/
 theorem exists_linearODE_solution_Icc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : ℝ → (E →L[ℝ] E)) (T : ℝ) (hT : 0 ≤ T)
@@ -956,7 +994,9 @@ theorem exists_linearODE_solution_Icc
 `exists_linearODE_solution_Icc` to the operator space `E := F →L[ℝ] F` with `𝒜(s) := A(s) ∘ (·)`
 (left composition) and `x₀ := id` gives the fundamental solution `M' = A(t)∘M`, `M(0) = id`.
 This `M(t)` is the candidate `Dflow t z` of the variational equation (#3), once `A` is the Vlasov
-field Jacobian `A(s) = D_z b(s, Φ_s z)` along the flow (F2). -/
+field Jacobian `A(s) = D_z b(s, Φ_s z)` along the flow (F2).
+@isnad1 id=ex.2h3v.s9.7ef563deba9d from=translated src=- shape=4da590b7 vocab=8f8efbf5
+-/
 lemma exists_fundamentalMatrix
     {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
     (A : ℝ → (F →L[ℝ] F)) (T : ℝ) (hT : 0 ≤ T) (hA : ContinuousOn A (Set.Icc 0 T)) :
@@ -975,7 +1015,9 @@ omit [NeZero d] in
 `s`-varying part is the convolution-derivative integral, continuous via `hρD_cont` composed with
 the flow.  The block CLM is reassembled with `inl∘snd + inr∘(·)` (Mathlib has no `clm_prod`
 continuity combinator).  This `ContinuousOn` is the coefficient input to `exists_fundamentalMatrix`
-that produces the fundamental matrix `M_t(z) = Dflow t z` for `#3`. -/
+that produces the fundamental matrix `M_t(z) = Dflow t z` for `#3`.
+@isnad1 id=continuo.2h7v.s12.9cfd365033eb from=translated src=- shape=2e0331f7 vocab=951e6888
+-/
 lemma vlasovVariationalCoeff_continuousOn
     (gradW : PhysSpace d → PhysSpace d)
     (ρ : ℝ → Measure (PhysSpace d))
@@ -1037,7 +1079,9 @@ along the trajectory*.  Proof: the flow image `{Φ_s z : s ∈ [0,T]}` is compac
 `[0,T]`), `A = D_w b` is jointly `(s,w)`-continuous (from `hρD_cont`), so `A` is **uniformly**
 continuous on the compact tube `Γ = {(s, Φ_s z + e) : s ∈ [0,T], ‖e‖ ≤ 1}` (Heine–Cantor); the
 mean-value inequality on `closedBall (Φ_s z) δ` then converts the modulus into the remainder
-bound. -/
+bound.
+@isnad1 id=ex.6h9v.s12.3665e027b883 from=translated src=- shape=97fd4977 vocab=fdf7d7f6
+-/
 lemma vlasovField_taylorRemainder_uniform
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -1155,7 +1199,9 @@ lemma vlasovField_taylorRemainder_uniform
 omit [NeZero d] in
 /-- **C3 (shared) — joint continuity of the Jacobian** on `Icc 0 T ×ˢuniv` (used by V2's
 `hA_contOn`).  The block CLM `vlasovFieldJacobian` is reassembled `inl∘snd + inr∘(·)` and its
-varying part is continuous via `hρD_cont`. -/
+varying part is continuous via `hρD_cont`.
+@isnad1 id=continuo.1h4v.s11.e9b6fbb18f11 from=translated src=- shape=d0f2578f vocab=036ce787
+-/
 lemma vlasovFieldJacobian_continuousOn
     (gradW : PhysSpace d → PhysSpace d) (ρ : ℝ → Measure (PhysSpace d)) (T : ℝ)
     (hρD_cont : ContinuousOn
@@ -1190,7 +1236,9 @@ lemma vlasovFieldJacobian_continuousOn
 A generic upgrade: if `G z ·` is `ContinuousOn (Icc 0 T)` for each `z` and `z ↦ G z s` is
 `C`-Lipschitz uniformly over `s ∈ [0,T]`, then `(z,s) ↦ G z s` is jointly continuous on
 `univ ×ˢ Icc 0 T`.  Used to derive flow joint continuity `(z,s) ↦ Φ_s z` from
-`charFlow_lipschitzInZ_via_gronwall_Ioo` (Lipschitz-in-`z`) + per-`z` continuity in `s`. -/
+`charFlow_lipschitzInZ_via_gronwall_Ioo` (Lipschitz-in-`z`) + per-`z` continuity in `s`.
+@isnad1 id=continuo.2h5v.s7.596d5d8e8c64 from=translated src=- shape=17465d7e vocab=2807f2df
+-/
 lemma continuousOn_prod_of_lipschitz_continuousOn
     {Z E : Type*} [PseudoMetricSpace Z] [PseudoMetricSpace E]
     (G : Z → ℝ → E) (T C : ℝ)
@@ -1230,7 +1278,9 @@ noncomputable def fundamentalMatrix {F : Type*} [NormedAddCommGroup F] [NormedSp
     (ContinuousLinearMap.id ℝ F) n t
 
 /-- `fundamentalMatrix A` solves the fundamental-matrix IVP on `[0,T]` (the non-existential form of
-`exists_fundamentalMatrix`; same proof through the picardSum lemmas). -/
+`exists_fundamentalMatrix`; same proof through the picardSum lemmas).
+@isnad1 id=and.2h3v.s9.e78ab9c7ffae from=translated src=- shape=b595c6c0 vocab=3f5f59f5
+-/
 lemma fundamentalMatrix_spec {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
     (A : ℝ → (F →L[ℝ] F)) (T : ℝ) (hT : 0 ≤ T) (hA : ContinuousOn A (Set.Icc 0 T)) :
     fundamentalMatrix A 0 = ContinuousLinearMap.id ℝ F ∧
@@ -1280,7 +1330,9 @@ lemma fundamentalMatrix_spec {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ
 
 /-- **C3 V2 — the fundamental matrix is continuous in a PARAMETER** (closes V2 via Route A).
 Specialises `picardSum_continuous_param_Icc` to `𝒜 := compL∘A`, `x₀ := id`; the `compL` factor is
-`1`-bounded so the `K`-bound transfers from `A`. -/
+`1`-bounded so the `K`-bound transfers from `A`.
+@isnad1 id=continuo.5h6v.s9.8908f9474d6b from=translated src=- shape=68dca115 vocab=93fe0109
+-/
 lemma fundamentalMatrix_continuous_param
     {Z F : Type*} [TopologicalSpace Z] [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
     (A : Z → ℝ → (F →L[ℝ] F)) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -1308,7 +1360,9 @@ instead of per-`t` continuity in `z`.  The proof reuses the same joint iterate c
 (`hiter_cont` on `Z × ℝ`) and the same `(z,s)`-independent M-test majorant `(KT)ⁿ/n!·‖x₀‖`; only
 the final `tendstoUniformlyOn` ranges over `univ ×ˢ Icc 0 T`.  Used to make the variational
 fundamental matrix `(z,s) ↦ M z s` jointly continuous (the partial-derivative continuity the
-two-time-flow joint `C¹`-ness needs). -/
+two-time-flow joint `C¹`-ness needs).
+@isnad1 id=continuo.4h6v.s8.066a1e81b939 from=translated src=- shape=01e1f3a5 vocab=73cf9447
+-/
 lemma picardSum_continuous_param_joint
     {Z E : Type*} [TopologicalSpace Z] [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : Z → ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -1354,7 +1408,9 @@ lemma picardSum_continuous_param_joint
 
 /-- **Step 3 (i) — joint `(z,s)` continuity of the Dyson sum** (window / `ContinuousOn`-hypothesis
 form).  Mirror of `picardSum_continuous_param_Icc`: clamp `s` into `[0,T]` (`projIcc`, L11) so the
-global form applies, then transfer back by iterate-agreement on `[0,T]`. -/
+global form applies, then transfer back by iterate-agreement on `[0,T]`.
+@isnad1 id=continuo.4h6v.s8.4ff19bdd44e9 from=translated src=- shape=02e3b41c vocab=7d68537c
+-/
 lemma picardSum_continuous_param_Icc_joint
     {Z E : Type*} [TopologicalSpace Z] [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (𝒜 : Z → ℝ → (E →L[ℝ] E)) (x₀ : E) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -1398,7 +1454,9 @@ lemma picardSum_continuous_param_Icc_joint
 /-- **Step 3 (i) — the fundamental matrix is jointly `(z,s)`-continuous.**  Joint companion of
 `fundamentalMatrix_continuous_param`; specialises `picardSum_continuous_param_Icc_joint` to
 `𝒜 := compL∘A`, `x₀ := id`.  This is the partial-`z`-derivative continuity input to the joint
-`C¹`-ness of the forward flow `(s,z) ↦ Φ_s z` (Step 3 (iii)). -/
+`C¹`-ness of the forward flow `(s,z) ↦ Φ_s z` (Step 3 (iii)).
+@isnad1 id=continuo.4h5v.s9.17d828437f4d from=translated src=- shape=bd1108d9 vocab=b2fb5763
+-/
 lemma fundamentalMatrix_continuous_param_joint
     {Z F : Type*} [TopologicalSpace Z] [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
     (A : Z → ℝ → (F →L[ℝ] F)) (T : ℝ) (hT : 0 ≤ T) (K : ℝ) (hK : 0 ≤ K)
@@ -1428,7 +1486,9 @@ open Filter Topology
 `uh, mh` that approximately solve the same linear ODE `w' = vlin·w` on `Ioo 0 T` from the same datum
 (`uh 0 = mh 0`), with `mh` exact and `uh`'s defect uniformly `≤ εf`, satisfy
 `dist (uh t) (mh t) ≤ gronwallBound 0 K εf t`.  `vlin` is abstract (kept opaque to avoid unfolding
-the heavy `vlasovFieldJacobian` integral in the Grönwall application). -/
+the heavy `vlasovFieldJacobian` integral in the Grönwall application).
+@isnad1 id=le.8h9v.s9.4a0d1e653f9b from=translated src=- shape=66c7acdb vocab=22a3e6a2
+-/
 lemma gronwall_diffQuotient_bound
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (vlin : ℝ → (E →L[ℝ] E)) (K : NNReal) (hvlin_lip : ∀ s, LipschitzWith K (vlin s))
@@ -1509,7 +1569,9 @@ The frozen field's two-sided ODE holds only on `Ioo 0 T`, so apply
 defect `dist(u_h s₀, m_h s₀) → 0` by continuity), giving `‖u_h t − m_h t‖ ≤ gronwallBound 0 K εf t =
 εf·(exp(K t)−1)/K`.  Since `η` is arbitrary this is `o(‖h‖)`.  `K := max 1 L` is the uniform field
 Lipschitz constant; `‖A(s,·)‖ ≤ K` via `norm_fderiv_le_of_lipschitz`.  (`hcontIcc` is universal in
-the initial point because the `s₀→0⁺` limit needs continuity of `Φ_·(z+h)`, M2.) -/
+the initial point because the `s₀→0⁺` limit needs continuity of `Φ_·(z+h)`, M2.)
+@isnad1 id=hasfderi.11h10v.s13.851c0adbf8bd from=translated src=- shape=3a81f59b vocab=1bf1e7f9
+-/
 theorem charFlow_hasFDerivAt_of_fundamentalMatrix
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -1692,7 +1754,9 @@ bounded continuous, `‖·‖ ≤ L`), which is in turn derivable from `IsVlasov
 upgrade — a self-contained measure-theory lemma not yet in the codebase.  We thread it as a
 hypothesis (Option A) to unblock the variational-equation grind; folding it into a derived fact
 (so the bridge assumes only the weak solution + moments) is the **Option-B extension**, tracked as
-a follow-up. -/
+a follow-up.
+@isnad1 id=ex.7h7v.s12.2fedbb9b5ec6 from=translated src=- shape=4b001886 vocab=ed83d389
+-/
 theorem charFlow_hasFDerivAt_in_initialPoint
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -1784,7 +1848,9 @@ injective with closed range and `M_t = DΦ_t` invertible (no Liouville needed).
 Proof: time-reverse the two trajectories on each `[s₀,t] ⊆ (0,T)` (so they solve
 `w' = −b_{s₀+t−r}(w)`, still K-Lipschitz) and apply the existing forward
 `dist_le_of_trajectories_ODE`; take `s₀→0⁺`.  `h_deriv2` is the two-sided `HasDerivAt` on the open
-interval, supplied by `IsCharacteristicFlowOn`. -/
+interval, supplied by `IsCharacteristicFlowOn`.
+@isnad1 id=le.6h10v.s10.9c204212b471 from=translated src=- shape=70d458e4 vocab=26506b62
+-/
 theorem charFlow_antilipschitzInZ_via_gronwall_Ioo
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -1889,7 +1955,9 @@ open Filter Topology
 /-- **Step 2a (dual core, generic) — antilipschitz map ⇒ antilipschitz derivative.**
 If `f` is antilipschitz and Fréchet-differentiable at `x`, its derivative `f'` is antilipschitz
 (hence injective) with the same constant.  `f' u` is the limit of slopes `n•(f(x+n⁻¹•u)−f x)`, each
-of norm `≥ ‖u‖/C` by antilipschitz; pass to the limit.  (Mathlib lacks this producer.) -/
+of norm `≥ ‖u‖/C` by antilipschitz; pass to the limit.  (Mathlib lacks this producer.)
+@isnad1 id=antilips.2h6v.s8.fb40931021eb from=translated src=- shape=fac88f27 vocab=27f0df3a
+-/
 theorem antilipschitzWith_fderiv_of_antilipschitz
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -1924,7 +1992,9 @@ If `Φ : E → E` (finite-dim) is `C¹` (derivative `M z` at `z`), antilipschitz
 each `M z` is invertible, `Φ` is bijective, and the global inverse `Ψ` is Lipschitz with
 `HasFDerivAt Ψ (M (Ψ w))⁻¹ w`.  No Liouville/Hadamard: open range
 (`isOpenMap_of_hasStrictFDerivAt_equiv`) + closed range (`AntilipschitzWith.isClosed_range`) ⇒
-clopen ⇒ surjective; inverse derivative from `HasStrictFDerivAt.to_local_left_inverse`. -/
+clopen ⇒ surjective; inverse derivative from `HasStrictFDerivAt.to_local_left_inverse`.
+@isnad1 id=ex.4h5v.s9.50cd4e7d57b7 from=translated src=- shape=7d886b89 vocab=179039e1
+-/
 theorem exists_global_c1_inverse_of_antilipschitz
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {Φ : E → E} {M : E → (E →L[ℝ] E)} {Ca Cl : NNReal}
@@ -1981,7 +2051,9 @@ Instantiates the generic global-inverse machinery at `Φ_t := (charX t, charV t)
 `e z` (= `#3`'s `Dflow t z`) is invertible, `Φ_t` is bijective, and the inverse `Ψ` is continuous
 with `HasFDerivAt Ψ (e (Ψ w))⁻¹ w`.  `hanti` comes from Step 1
 (`charFlow_antilipschitzInZ_via_gronwall_Ioo`), `hlip` from the existing upper Grönwall bound
-(`charFlow_lipschitzInZ_via_gronwall_Ioo`), the derivative family from `#3`. -/
+(`charFlow_lipschitzInZ_via_gronwall_Ioo`), the derivative family from `#3`.
+@isnad1 id=ex.8h8v.s12.535907d68484 from=translated src=- shape=47c0e614 vocab=8475ebfc
+-/
 theorem exists_charFlow_inverse_On
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -2062,7 +2134,9 @@ Fréchet partial derivative in the `E` factor is Fréchet-differentiable" — fi
 `Mathlib/Analysis/Calculus`.  Generalisation worth doing before a PR: replace the `ℝ` factor by an
 arbitrary first factor with an analogous "integrate the partial along segments" hypothesis, and
 weaken `Continuous Ds` to `ContinuousAt Ds` at the base point (the proof only uses a neighbourhood
-of `(s₀,z₀)`). -/
+of `(s₀,z₀)`).
+@isnad1 id=hasfderi.3h7v.s10.6f95336ff258 from=translated src=- shape=08c55d43 vocab=ef1af144
+-/
 theorem hasFDerivAt_of_continuous_partials
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
@@ -2164,7 +2238,9 @@ NOTE (consolidation TODO): the global `hasFDerivAt_of_continuous_partials` above
 special case of this; a follow-up cleanup should rewrite it as the one-line corollary
 `hasFDerivAt_of_continuous_partials_open isOpen_univ (Set.mem_univ _) (fun p _ => hDs p)
 hDs_cont.continuousOn hDz₀` to drop the duplicated proof.  **PR-ABLE** (the more
-general statement). -/
+general statement).
+@isnad1 id=hasfderi.5h8v.s10.40c657b12082 from=translated src=- shape=2d8bc31e vocab=fb97da49
+-/
 theorem hasFDerivAt_of_continuous_partials_open
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
@@ -2277,7 +2353,9 @@ omit [NeZero d] in
 /-- **Step 3 — the forward flow `(s,z) ↦ Φ_s z` is jointly continuous** on `Icc 0 T ×ˢ univ`
 (`(s,z)`-order).  Gronwall Lipschitz-in-`z` (uniform over `[0,T]`) + per-`z` continuity-in-`s`, via
 the generic `continuousOn_prod_of_lipschitz_continuousOn`, then a prod-order swap.  Extracted from
-`#3`'s V2-branch pattern so the joint `C¹`-ness (Step 3 (iii)) can reuse it directly. -/
+`#3`'s V2-branch pattern so the joint `C¹`-ness (Step 3 (iii)) can reuse it directly.
+@isnad1 id=continuo.6h7v.s10.1f79703c4f1f from=translated src=- shape=bbfedc0e vocab=c5a4c8a1
+-/
 lemma charFlow_continuousOn_joint
     (gradW : PhysSpace d → PhysSpace d) (L : NNReal) (hL : LipschitzWith L gradW)
     (ρ : ℝ → Measure (PhysSpace d)) [∀ s, IsProbabilityMeasure (ρ s)]
@@ -2315,7 +2393,9 @@ omit [NeZero d] in
 `Icc 0 T ×ˢ univ`.  First component `charV` from flow joint continuity; second component
 `-(∇W ∗ ρ_s)(charX s z)` from `(s,x) ↦ (∇W∗ρ_s)(x)` jointly continuous (equi-Lipschitz-in-`x` from
 `convolveFunctionMeasure_lipschitz_in_x` + continuous-in-`s` from `hf_cont`) composed with the flow.
-This is the partial-`s`-derivative continuity input to the joint `C¹`-ness (Step 3 (iii)). -/
+This is the partial-`s`-derivative continuity input to the joint `C¹`-ness (Step 3 (iii)).
+@isnad1 id=continuo.4h7v.s9.9e5e3703d4c4 from=translated src=- shape=8b13c72c vocab=e940389b
+-/
 lemma vlasovField_along_flow_continuousOn
     (gradW : PhysSpace d → PhysSpace d) (L : NNReal) (hL : LipschitzWith L gradW)
     (ρ : ℝ → Measure (PhysSpace d)) [∀ s, IsProbabilityMeasure (ρ s)]
@@ -2368,7 +2448,9 @@ gating unification stays syntactic and never unfolds the `vlasovVectorField`/`vl
 integrals — the per-point derivative facts are established in terms of them *before* clearing.
 `A` is kept transparent through the D1c call (whose coefficient is
 `vlasovFieldJacobian`) and cleared
-only afterwards (before the projection-reduction defeqs).  No `maxHeartbeats` bump needed. -/
+only afterwards (before the projection-reduction defeqs).  No `maxHeartbeats` bump needed.
+@isnad1 id=ex.8h7v.s12.5388d65e60ff from=translated src=- shape=be4c63ee vocab=ce080f43
+-/
 theorem charFlow_hasFDerivAt_joint
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -2487,7 +2569,9 @@ theorem charFlow_hasFDerivAt_joint
 omit [NeZero d] in
 /-- **Step 3 (iv-A) — the forward flow `(s,z) ↦ Φ_s z` is `ContDiffAt ℝ 1`** at each point of the
 open window (the chart-IFT input for item (iv)).  Lifts item (iii)'s `HasFDerivAt`-everywhere +
-`ContinuousOn`-derivative to `ContDiffAt` via `contDiffAt_succ_iff_hasFDerivAt`. -/
+`ContinuousOn`-derivative to `ContDiffAt` via `contDiffAt_succ_iff_hasFDerivAt`.
+@isnad1 id=contdiff.9h8v.s11.935891a2a06d from=translated src=- shape=b6f8472d vocab=e873af28
+-/
 lemma charFlow_contDiffAt_joint
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -2556,7 +2640,9 @@ regularity via the space-time chart.
 4. **Bijectivity** is the per-slice `LeftInverse`/`RightInverse` from `exists_charFlow_inverse_On`,
    packaged into the `s`-indexed `Ψ`.
 The two-time flow `Φ_{s→t} = Φ_t ∘ Ψ_s` is then jointly `C¹` by composing with `Φ_t` (`C¹` in its
-argument, `#3`), and the dual core's transport identity differentiates it. -/
+argument, `#3`), and the dual core's transport identity differentiates it.
+@isnad1 id=ex.8h7v.s11.f53325668fb3 from=translated src=- shape=24d31b8f vocab=bb9e9f32
+-/
 theorem charFlow_inverse_contDiffOn_joint
     (gradW : PhysSpace d → PhysSpace d) (hgradW_C1 : ContDiff ℝ 1 gradW)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -2687,7 +2773,9 @@ omit [NeZero d] in
 The two-time flow `(s,w) ↦ (charX t (Ψ_s w), charV t (Ψ_s w))` is the composition of the terminal
 map `Φ_t = (charX t ·, charV t ·)` (`C¹` in its argument — `hΦt_C1`, from Step 2 / item (iii) at the
 fixed time `t`) with the jointly-`C¹` inverse family `(s,w) ↦ Ψ_s w` (`hΨ_C1`, item (iv)).  Proof:
-`ContDiff.comp_contDiffOn`. -/
+`ContDiff.comp_contDiffOn`.
+@isnad1 id=contdiff.2h6v.s10.22ce1d4f524f from=translated src=- shape=044cd7bc vocab=b490a364
+-/
 theorem twoTimeFlow_contDiffOn_joint
     (charX charV : ℝ → PhaseSpace d → PhysSpace d) (T t : ℝ)
     (Ψ : ℝ → PhaseSpace d → PhaseSpace d)
@@ -2718,7 +2806,9 @@ Proof:
   `c(s) = (s, w)`.  Chain rule: `0 = Dψ(s,w)(1, b_s w) = Dψ(s,w)(1,0) + Dψ(s,w)(0, b_s w)`.
 * `Dψ(s,w)(1,0) = ∂_s ψ_s(w)` (compose `uncurry ψ` with `s' ↦ (s', w)`) and
   `Dψ(s,w)(0,k) = (fderiv ℝ (ψ s) w) k` (compose with `w' ↦ (s, w')`).  Surjectivity (`hΨ_right`)
-  covers every `w`.  Rearrange to the claimed `HasDerivAt`. -/
+  covers every `w`.  Rearrange to the claimed `HasDerivAt`.
+@isnad1 id=hasderiv.7h11v.s11.93b294ccc4fe from=translated src=- shape=de03fccf vocab=4945723f
+-/
 theorem transportedTest_transport_identity
     (gradW : PhysSpace d → PhysSpace d)
     (ρ : ℝ → Measure (PhysSpace d))
@@ -2832,7 +2922,9 @@ omit [NeZero d] in
 The mollified family `ρ_n ⋆ g` converges to `g` **uniformly** (not just pointwise), the
 load-bearing analytic input the `C¹_c` test-class enlargement (#4) needs.  Proof: uniform
 continuity of `g` (compact support) gives a single `δ`; once `rOut_n < δ`, the pointwise bump
-estimate `dist_normed_convolution_le` fires at *every* base point simultaneously. -/
+estimate `dist_normed_convolution_le` fires at *every* base point simultaneously.
+@isnad1 id=tendstou.3h4v.s10.bd71db4ed52a from=translated src=- shape=5f13365d vocab=b1b5bcc9
+-/
 theorem mollifier_tendstoUniformly {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (g : PhaseSpace d → E) (hg_cont : Continuous g) (hg_cs : HasCompactSupport g)
@@ -2867,7 +2959,9 @@ omit [NeZero d] in
 `fderiv (ρ_n ⋆ χ) = ρ_n ⋆ (fderiv χ)` (convolution commutes onto the `C¹` factor via
 `HasCompactSupport.hasFDerivAt_convolution_right`, with `precompR` reconciled to `lsmul` on the
 operator codomain), and the right-hand side converges uniformly to `fderiv χ` by Helper 1 applied
-to the continuous, compactly-supported `fderiv χ`. -/
+to the continuous, compactly-supported `fderiv χ`.
+@isnad1 id=tendstou.3h3v.s11.626f4a66a111 from=translated src=- shape=fcbe63b4 vocab=a8783f85
+-/
 theorem mollifiedFDeriv_tendstoUniformly
     (χ : PhaseSpace d → ℝ) (hχ_C1 : ContDiff ℝ 1 χ) (hχc : HasCompactSupport χ)
     (φ : ℕ → ContDiffBump (0 : PhaseSpace d))
@@ -2908,7 +3002,9 @@ theorem mollifiedFDeriv_tendstoUniformly
 --    mathematical content is unchanged; each piece is generic in the test function). ──
 
 omit [NeZero d] in
-/-- Norm bound for the dual-composed difference of two Fréchet derivatives. -/
+/-- Norm bound for the dual-composed difference of two Fréchet derivatives.
+@isnad1 id=le.0h5v.s13.fefc16fc58ed from=translated src=- shape=9c8023e1 vocab=e322a43c
+-/
 lemma toDualSymm_comp_sub_norm_le (ψ ϕ : PhaseSpace d → ℝ)
     (z : PhaseSpace d) (e : PhysSpace d →L[ℝ] PhaseSpace d) :
     ‖(InnerProductSpace.toDual ℝ (PhysSpace d)).symm ((fderiv ℝ ψ z).comp e)
@@ -2918,7 +3014,9 @@ lemma toDualSymm_comp_sub_norm_le (ψ ϕ : PhaseSpace d → ℝ)
   exact ContinuousLinearMap.opNorm_comp_le _ _
 
 omit [NeZero d] in
-/-- Chain rule: the Fréchet derivative of an `x`-slice is the composition with `inl`. -/
+/-- Chain rule: the Fréchet derivative of an `x`-slice is the composition with `inl`.
+@isnad1 id=eq.1h3v.s11.50fa001b49e9 from=translated src=- shape=f7e004ac vocab=0871be7f
+-/
 lemma fderiv_slice_fst (ψ : PhaseSpace d → ℝ) (hψ : Differentiable ℝ ψ) (z : PhaseSpace d) :
     fderiv ℝ (fun x => ψ (x, z.2)) z.1
       = (fderiv ℝ ψ z).comp (ContinuousLinearMap.inl ℝ (PhysSpace d) (PhysSpace d)) := by
@@ -2928,7 +3026,9 @@ lemma fderiv_slice_fst (ψ : PhaseSpace d → ℝ) (hψ : Differentiable ℝ ψ)
   exact ((hψ z).hasFDerivAt.comp z.1 h2).fderiv
 
 omit [NeZero d] in
-/-- Chain rule: the Fréchet derivative of a `v`-slice is the composition with `inr`. -/
+/-- Chain rule: the Fréchet derivative of a `v`-slice is the composition with `inr`.
+@isnad1 id=eq.1h3v.s11.7643b525be8d from=translated src=- shape=d66fd994 vocab=e34abd11
+-/
 lemma fderiv_slice_snd (ψ : PhaseSpace d → ℝ) (hψ : Differentiable ℝ ψ) (z : PhaseSpace d) :
     fderiv ℝ (fun v => ψ (z.1, v)) z.2
       = (fderiv ℝ ψ z).comp (ContinuousLinearMap.inr ℝ (PhysSpace d) (PhysSpace d)) := by
@@ -2938,7 +3038,9 @@ lemma fderiv_slice_snd (ψ : PhaseSpace d → ℝ) (hψ : Differentiable ℝ ψ)
   exact ((hψ z).hasFDerivAt.comp z.2 h2).fderiv
 
 omit [NeZero d] in
-/-- Continuity of the first-slot partial-gradient field of a `C¹` test function. -/
+/-- Continuity of the first-slot partial-gradient field of a `C¹` test function.
+@isnad1 id=continuo.3h3v.s10.61f441d4a5f2 from=translated src=- shape=2b05143b vocab=5e4a74de
+-/
 lemma continuous_gradientSlice_fst (ψ : PhaseSpace d → ℝ) (g : PhaseSpace d → PhysSpace d)
     (hψ : Differentiable ℝ ψ) (hψ' : Continuous (fderiv ℝ ψ))
     (hg : ∀ z, g z = gradient (fun x => ψ (x, z.2)) z.1) : Continuous g := by
@@ -2950,7 +3052,9 @@ lemma continuous_gradientSlice_fst (ψ : PhaseSpace d → ℝ) (g : PhaseSpace d
     (hψ'.clm_comp continuous_const)
 
 omit [NeZero d] in
-/-- Continuity of the second-slot partial-gradient field of a `C¹` test function. -/
+/-- Continuity of the second-slot partial-gradient field of a `C¹` test function.
+@isnad1 id=continuo.3h3v.s10.cc797a66a85d from=translated src=- shape=1c2c2d83 vocab=5e4a74de
+-/
 lemma continuous_gradientSlice_snd (ψ : PhaseSpace d → ℝ) (g : PhaseSpace d → PhysSpace d)
     (hψ : Differentiable ℝ ψ) (hψ' : Continuous (fderiv ℝ ψ))
     (hg : ∀ z, g z = gradient (fun v => ψ (z.1, v)) z.2) : Continuous g := by
@@ -2962,7 +3066,9 @@ lemma continuous_gradientSlice_snd (ψ : PhaseSpace d → ℝ) (g : PhaseSpace d
     (hψ'.clm_comp continuous_const)
 
 omit [NeZero d] in
-/-- Compact support of the first-slot partial-gradient field. -/
+/-- Compact support of the first-slot partial-gradient field.
+@isnad1 id=hascompa.3h3v.s9.b79616c1abe1 from=translated src=- shape=68da6dc8 vocab=41ab9dcf
+-/
 lemma hasCompactSupport_gradientSlice_fst (ψ : PhaseSpace d → ℝ)
     (g : PhaseSpace d → PhysSpace d) (hψ : Differentiable ℝ ψ) (hψcs : HasCompactSupport ψ)
     (hg : ∀ z, g z = gradient (fun x => ψ (x, z.2)) z.1) : HasCompactSupport g := by
@@ -2972,7 +3078,9 @@ lemma hasCompactSupport_gradientSlice_fst (ψ : PhaseSpace d → ℝ)
   rw [hg z]; simp only [gradient]; rw [fderiv_slice_fst ψ hψ z, hf0]; simp
 
 omit [NeZero d] in
-/-- Compact support of the second-slot partial-gradient field. -/
+/-- Compact support of the second-slot partial-gradient field.
+@isnad1 id=hascompa.3h3v.s9.7a039777b34d from=translated src=- shape=da8df7e5 vocab=41ab9dcf
+-/
 lemma hasCompactSupport_gradientSlice_snd (ψ : PhaseSpace d → ℝ)
     (g : PhaseSpace d → PhysSpace d) (hψ : Differentiable ℝ ψ) (hψcs : HasCompactSupport ψ)
     (hg : ∀ z, g z = gradient (fun v => ψ (z.1, v)) z.2) : HasCompactSupport g := by
@@ -2983,7 +3091,9 @@ lemma hasCompactSupport_gradientSlice_snd (ψ : PhaseSpace d → ℝ)
 
 omit [NeZero d] in
 /-- First-slot partial gradients of two tests differ by at most the full
-Fréchet-derivative difference. -/
+Fréchet-derivative difference.
+@isnad1 id=le.4h6v.s12.3deeeda23d0d from=translated src=- shape=b2ec898c vocab=1837cbb8
+-/
 lemma gradientSlice_fst_sub_norm_le (ψ ϕ : PhaseSpace d → ℝ)
     (hψ : Differentiable ℝ ψ) (hϕ : Differentiable ℝ ϕ)
     (gψ gϕ : PhaseSpace d → PhysSpace d)
@@ -3005,7 +3115,9 @@ lemma gradientSlice_fst_sub_norm_le (ψ ϕ : PhaseSpace d → ℝ)
 
 omit [NeZero d] in
 /-- Second-slot partial gradients of two tests differ by at most the full
-Fréchet-derivative difference. -/
+Fréchet-derivative difference.
+@isnad1 id=le.4h6v.s12.273235872178 from=translated src=- shape=ba2add26 vocab=1837cbb8
+-/
 lemma gradientSlice_snd_sub_norm_le (ψ ϕ : PhaseSpace d → ℝ)
     (hψ : Differentiable ℝ ψ) (hϕ : Differentiable ℝ ϕ)
     (gψ gϕ : PhaseSpace d → PhysSpace d)
@@ -3027,7 +3139,9 @@ lemma gradientSlice_snd_sub_norm_le (ψ ϕ : PhaseSpace d → ℝ)
 
 omit [NeZero d] in
 /-- Integrability of the weak-evolution integrand against a probability measure:
-continuous with compact support (both gradient slots), continuous field. -/
+continuous with compact support (both gradient slots), continuous field.
+@isnad1 id=integrab.5h5v.s9.cc21810e4700 from=translated src=- shape=95956b03 vocab=d8eb3df2
+-/
 lemma inner_integrand_integrable
     (μ : Measure (PhaseSpace d)) [IsProbabilityMeasure μ]
     (fld : PhysSpace d → PhysSpace d) (hfld : Continuous fld)
@@ -3051,7 +3165,9 @@ lemma inner_integrand_integrable
 omit [NeZero d] in
 /-- Pointwise bound on the difference of two weak-evolution integrands: on the
 common support `K` it is `(R_K + B) * δ` (norm bound `R_K` on `K`, field bound `B`
-on `K`, gradient-slot distance `δ`); off `K` both integrands agree. -/
+on `K`, gradient-slot distance `δ`); off `K` both integrands agree.
+@isnad1 id=le.9h11v.s9.d4fffdae85f6 from=translated src=- shape=7fc94553 vocab=8fda2a5d
+-/
 lemma inner_integrand_sub_norm_le
     (K : Set (PhaseSpace d)) (R_K : ℝ) (hR_K_nn : 0 ≤ R_K) (hR_K : ∀ z ∈ K, ‖z‖ ≤ R_K)
     (fld : PhysSpace d → PhysSpace d) (B : ℝ) (hB_nn : 0 ≤ B)
@@ -3095,7 +3211,9 @@ lemma inner_integrand_sub_norm_le
 omit [NeZero d] in
 /-- On the window, the frozen convolution field over the spatial marginal is
 integrable (in force form), linearly bounded, and continuous — packaged for
-consumers that quantify over the window. -/
+consumers that quantify over the window.
+@isnad1 id=and.5h8v.s9.574fcdb86d61 from=translated src=- shape=79234458 vocab=abb5a461
+-/
 lemma convolveField_window_setup
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -3196,7 +3314,9 @@ lemma convolveField_window_setup
 omit [NeZero d] in
 open Filter Topology Metric in
 /-- Uniform convergence of integrands implies convergence of the integrals against
-a probability measure (every term integrable). -/
+a probability measure (every term integrable).
+@isnad1 id=tendsto.3h4v.s9.863d9a42803e from=translated src=- shape=71313a89 vocab=3579c877
+-/
 lemma integral_tendsto_of_tendstoUniformly
     (μ : Measure (PhaseSpace d)) [IsProbabilityMeasure μ]
     (g : ℕ → PhaseSpace d → ℝ) (g₀ : PhaseSpace d → ℝ)
@@ -3227,6 +3347,9 @@ lemma integral_tendsto_of_tendstoUniformly
 open Filter Topology Metric in
 open scoped Convolution Pointwise in
 omit [NeZero d] in
+/--
+@isnad1 id=hasderiv.10h10v.s10.232b21565c0a from=translated src=- shape=6c3648a0 vocab=404d4c2d
+-/
 theorem weakEvolution_test_C1c_On
     (gradW : PhysSpace d → PhysSpace d)
     (f : ℝ → Measure (PhaseSpace d)) (T : ℝ)
@@ -3467,6 +3590,9 @@ theorem weakEvolution_test_C1c_On
 -- NC (consumption form): integral of a jointly-continuous, uniformly-compactly-supported
 -- family against the weak-solution measure curve is continuous in time.
 omit [NeZero d] in
+/--
+@isnad1 id=continuo.5h5v.s9.b93e72c85a55 from=translated src=- shape=27d06b99 vocab=1db9cf83
+-/
 theorem vlasovSolutionOn_integral_continuousOn
     (f : ℝ → Measure (PhaseSpace d)) (T : ℝ)
     (hf_mom : ∀ t ∈ Set.Icc (0 : ℝ) T, HasFiniteFirstMoment (f t))
@@ -3547,7 +3673,9 @@ theorem vlasovSolutionOn_integral_continuousOn
 
 omit [NeZero d] in
 /-- Per-`z` phase-space ODE of a characteristic flow on the open window, in
-`vlasovVectorField` form. -/
+`vlasovVectorField` form.
+@isnad1 id=hasderiv.2h8v.s9.461ff3ff3f7a from=translated src=- shape=31a284b5 vocab=afe9ebb9
+-/
 lemma charFlow_ode_of_isCharacteristicFlowOn
     (gradW : PhysSpace d → PhysSpace d) (ρ : ℝ → Measure (PhysSpace d))
     (charX charV : ℝ → PhaseSpace d → PhysSpace d) (T : ℝ)
@@ -3562,7 +3690,9 @@ lemma charFlow_ode_of_isCharacteristicFlowOn
 
 omit [NeZero d] in
 /-- A Fréchet derivative applied to a phase-space vector decomposes as inner
-products against the two partial-gradient slices. -/
+products against the two partial-gradient slices.
+@isnad1 id=eq.1h5v.s11.f8283692eb73 from=translated src=- shape=3f0fd7db vocab=e1290afa
+-/
 lemma fderiv_apply_eq_inner_gradientSlices (θ : PhaseSpace d → ℝ) (z : PhaseSpace d)
     (hθ : DifferentiableAt ℝ θ z) (p q : PhysSpace d) :
     (fderiv ℝ θ z) ((p, q) : PhaseSpace d)
@@ -3602,7 +3732,9 @@ lemma fderiv_apply_eq_inner_gradientSlices (θ : PhaseSpace d → ℝ) (z : Phas
 
 /-- FTC bound on the linearization remainder of a real function: if `F` has
 derivative `D r` along the segment and `D` stays within `ε` of `D s` there,
-then `|F σ − F s − (σ−s)·D s| ≤ ε·|σ−s|`. -/
+then `|F σ − F s − (σ−s)·D s| ≤ ε·|σ−s|`.
+@isnad1 id=le.3h5v.s7.c0300dafdedb from=translated src=- shape=ad771c79 vocab=bce9cda4
+-/
 lemma abs_linearization_remainder_le (F D : ℝ → ℝ) (s σ ε : ℝ)
     (hderiv : ∀ r ∈ Set.uIcc s σ, HasDerivAt F (D r) r)
     (hD_cont : ContinuousOn D (Set.uIcc s σ))
@@ -3625,7 +3757,9 @@ omit [NeZero d] in
 open Filter Topology Asymptotics in
 /-- The transported-integral difference `σ ↦ ∫ ψ_σ d(f σ) − ∫ ψ_s d(f σ)` has
 derivative `−Vb = ∫ D d(f s)` at `s`, from a uniform linearization of `r ↦ ψ_r`
-(term `T1`) and narrow continuity of `σ ↦ ∫ D d(f σ)` (term `T2`). -/
+(term `T1`) and narrow continuity of `σ ↦ ∫ D d(f σ)` (term `T2`).
+@isnad1 id=hasderiv.9h9v.s9.0c5626592319 from=translated src=- shape=ff68d11b vocab=53d818fe
+-/
 lemma hasDerivAt_integral_sub_of_uniform_linearization
     (f : ℝ → Measure (PhaseSpace d)) (T : ℝ)
     (hf_mom : ∀ t ∈ Set.Icc (0 : ℝ) T, HasFiniteFirstMoment (f t))
@@ -3717,7 +3851,9 @@ on — the two partials are combined by hand):
   `T2 = (σ−s)·(∫ DQ_s d(f σ) − ∫ DQ_s d(f s))` is `o(σ−s)` by narrow continuity (`hf_narrow`).
 * The cancellation `Vb = −∫ DQ_s d(f s)` comes from the Step-4 transport identity
   (`transportedTest_transport_identity`, giving `DQ_s = −(fderiv ψ_s)·b_s`) composed with the
-  gradient↔fderiv partial decomposition (matching #4's RHS). -/
+  gradient↔fderiv partial decomposition (matching #4's RHS).
+@isnad1 id=hasderiv.16h12v.s11.c2aaa9d3e257 from=translated src=- shape=65e993aa vocab=d570aa81
+-/
 theorem transportedIntegral_hasDerivAt_zero
     (gradW : PhysSpace d → PhysSpace d)
     (f : ℝ → Measure (PhaseSpace d)) (T : ℝ)
@@ -3976,6 +4112,9 @@ theorem transportedIntegral_hasDerivAt_zero
 -- continuous on the closed interval [0,t].
 open Filter Topology in
 omit [NeZero d] in
+/--
+@isnad1 id=continuo.12h10v.s11.241de10c2528 from=translated src=- shape=02202cbc vocab=aa3aebf1
+-/
 theorem transportedIntegral_continuousOn
     (gradW : PhysSpace d → PhysSpace d)
     (f : ℝ → Measure (PhaseSpace d)) (T : ℝ)
@@ -4220,6 +4359,9 @@ theorem transportedIntegral_continuousOn
 -- if-patched constancy argument).  Obtains Ψ from item (iv), assembles #6a + #6b +
 -- transportedIntegral_const_On + the endpoint identities.
 omit [NeZero d] in
+/--
+@isnad1 id=eq.16h11v.s11.b15ffcf4304d from=translated src=- shape=287fc8f4 vocab=cad2772a
+-/
 theorem dualCore_main
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -4283,6 +4425,9 @@ theorem dualCore_main
 -- four facts dualCore_main consumes, from the raw dual core hypotheses (L11 clamp for the
 -- universal probability instance, h_int from hL + moments, etc.).
 omit [NeZero d] in
+/--
+@isnad1 id=ex.9h9v.s12.477688193893 from=translated src=- shape=8ad0fac9 vocab=cb0071df
+-/
 theorem frozenFlow_inverse_On
     (W : PhysSpace d → ℝ) [AssW2 W]
     (gradW : PhysSpace d → PhysSpace d) (hgradW : ∀ x, gradW x = gradient W x)
@@ -4424,6 +4569,9 @@ theorem frozenFlow_inverse_On
 -- measure f 0 (joint flow continuity for measurability + per-z continuity for the pointwise limit).
 open Filter Topology in
 omit [NeZero d] in
+/--
+@isnad1 id=eq.8h6v.s10.0a6ca009a131 from=translated src=- shape=328e8e52 vocab=6988722f
+-/
 theorem dualCore_terminal
     (f : ℝ → Measure (PhaseSpace d)) (T : ℝ) (hT : 0 < T)
     (hf_mom : ∀ t ∈ Set.Icc (0 : ℝ) T, HasFiniteFirstMoment (f t))
@@ -4511,7 +4659,9 @@ The constancy rests on six leaves (all proven, axiom-clean):
 * **`dualCore_terminal`** — the `t = T` endpoint.
 
 The pushforward side is `integral_map` by definition, so the dual argument is needed only for `f`
-(the plan's `#1` pushforward-solves-linear lemma is not on this path). -/
+(the plan's `#1` pushforward-solves-linear lemma is not on this path).
+@isnad1 id=eq.16h11v.s11.de151524a681 from=translated src=- shape=8e236345 vocab=b15b3b02
+-/
 theorem weak_eq_frozenField_pushforward_dualCore
     (W : PhysSpace d → ℝ) [AssW2 W]
     (gradW : PhysSpace d → PhysSpace d) (hgradW : ∀ x, gradW x = gradient W x)
@@ -4572,7 +4722,9 @@ this to per-`C_c^∞`-test integral equality, and `integral_map` turns the pushf
 `∫ φ∘Φ_t d(f 0)` — leaving exactly the dual-transport core
 `weak_eq_frozenField_pushforward_dualCore`.  Flow measurability on the window (needed by
 `integral_map` and the probability-measure instances) comes from an L11 clamp of `ρ^f` into
-`[0,T]` + `charFlow_measurable_via_gronwall_Ioo`. -/
+`[0,T]` + `charFlow_measurable_via_gronwall_Ioo`.
+@isnad1 id=eq.15h10v.s11.c4d2231636a4 from=translated src=- shape=80431b98 vocab=d353221d
+-/
 theorem weak_eq_frozenField_pushforward_On
     (W : PhysSpace d → ℝ) [AssW2 W]
     (gradW : PhysSpace d → PhysSpace d) (hgradW : ∀ x, gradW x = gradient W x)
@@ -4674,7 +4826,9 @@ extension that would let the bridge assume only the weak solution + moments; see
 Proof (complete, axiom-clean; built over C1–C4 per the roadmap above):
 freeze the field at `ρ^f`, build its flow `Φ` (#2) and the pushforward `g := (Φ_t)_# (f 0)` which
 solves the frozen linear weak eq (#1); show `f = g` by the dual-transported-test-function
-uniqueness (#3–#9, the variational-equation crux); conclude `f` is Lagrangian (#10). -/
+uniqueness (#3–#9, the variational-equation crux); conclude `f` is Lagrangian (#10).
+@isnad1 id=islagran.11h7v.s11.9548f7faeff0 from=translated src=- shape=f130fbb1 vocab=59baf409
+-/
 theorem weak_isLagrangianVlasovSolutionOn
     (W : PhysSpace d → ℝ) [AssW2 W]
     (gradW : PhysSpace d → PhysSpace d) (hgradW : ∀ x, gradW x = gradient W x)

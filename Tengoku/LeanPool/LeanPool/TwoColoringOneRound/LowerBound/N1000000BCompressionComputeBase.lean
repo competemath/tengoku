@@ -74,6 +74,9 @@ def compBasis (r : Block) (d : DirIdx) : Matrix (Fin 3) (Fin 3) Q :=
 
 private theorem D_pos : 0 < N1000000Data.D := by decide
 
+/--
+@isnad1 id=other.0h1v.s5.b60f33b3ac3b from=translated src=- shape=7948de00 vocab=24668c5b
+-/
 theorem div_by_D_eq_div_by_div_gcd (s : Int) :
     let g : Nat := Nat.gcd s.natAbs D
     (s : Q) / (D : Q) = ((s / (g : Int)) : Q) / ((D / g : Nat) : Q) := by
@@ -132,7 +135,9 @@ def compBasisIntEntry (r : Block) (d : DirIdx) (p q : Fin 3) : Int :=
     iOfNat (baseTypeCount k) * bValNum r p k * columns.sum fun a =>
       iOfNat (N k a d) * bValNum r q a
 
-/-- Skipping zero coordinates and factoring row coefficients preserves the defining double sum. -/
+/-- Skipping zero coordinates and factoring row coefficients preserves the defining double sum.
+@isnad1 id=eq.0h4v.s6.47457eafb918 from=translated src=- shape=dfa91c37 vocab=6e356937
+-/
 theorem compBasisIntEntry_eq_sum (r : Block) (d : DirIdx) (p q : Fin 3) :
     compBasisIntEntry r d p q =
       (Finset.univ : Finset DirIdx).sum fun k =>
@@ -154,9 +159,15 @@ theorem compBasisIntEntry_eq_sum (r : Block) (d : DirIdx) (p q : Fin 3) :
 
 private theorem basisDen_pos (r : Block) : 0 < basisDen r := by fin_cases r <;> decide
 
+/--
+@isnad1 id=ne.0h1v.s3.f2b1acc9f44e from=translated src=- shape=562e4a6d vocab=9b036a82
+-/
 theorem basisDenQ_ne_zero (r : Block) : (basisDen r : Q) ≠ 0 := by
   exact_mod_cast (Nat.ne_of_gt (basisDen_pos r))
 
+/--
+@isnad1 id=eq.0h4v.s5.32d2b3b98892 from=translated src=- shape=090dafd8 vocab=7d23a648
+-/
 theorem compBasis_entry_eq_div (r : Block) (d : DirIdx) (p q : Fin 3) :
     compBasis r d p q =
       ((compBasisIntEntry r d p q : Int) : Q) / ((basisDen r : Q) * (basisDen r : Q)) := by

@@ -25,6 +25,9 @@ namespace Distributed2Coloring.LowerBound
 
 namespace N1000000BCompressionCompute
 
+/--
+@isnad1 id=s0intgoa.0h3v.s4.85fdce15f0a1 from=translated src=- shape=412bd570 vocab=6161bc05
+-/
 theorem s0IntGoal_all (r : Block) (p q : Fin 3) : S0IntGoal r p q := by
   fin_cases r <;> first
     | simpa using (s0IntGoal_block0 (p := p) (q := q))

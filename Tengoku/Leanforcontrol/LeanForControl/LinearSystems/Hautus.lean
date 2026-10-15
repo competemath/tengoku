@@ -53,7 +53,9 @@ noncomputable def hautusObservabilityMatrix
   Matrix.fromRows (μ • (1 : Matrix (Fin n) (Fin n) ℂ) - A) C
 
 /-- A vector `v` is in the kernel of `H_{A, C}(μ) *ᵥ ·` iff `v` is an
-eigenvector (or zero) of `A` with eigenvalue `μ` and is annihilated by `C`. -/
+eigenvector (or zero) of `A` with eigenvalue `μ` and is annihilated by `C`.
+@isnad1 id=iff.0h6v.s7.45b9ca3bba49 from=translated src=- shape=b5d76416 vocab=92e6d659
+-/
 lemma hautusObservabilityMatrix_mulVec_eq_zero_iff
     (A : Matrix (Fin n) (Fin n) ℂ) (C : Matrix (Fin p) (Fin n) ℂ)
     (μ : ℂ) (v : Fin n → ℂ) :
@@ -108,7 +110,9 @@ noncomputable def hautusControllabilityMatrix
   Matrix.fromCols (μ • (1 : Matrix (Fin n) (Fin n) ℂ) - A) B
 
 /-- The transpose of the Hautus controllability matrix is the Hautus
-observability matrix of the transposed system. -/
+observability matrix of the transposed system.
+@isnad1 id=eq.0h5v.s5.dcd916e294e5 from=translated src=- shape=88b60936 vocab=48c79640
+-/
 lemma hautusControllabilityMatrix_transpose
     (A : Matrix (Fin n) (Fin n) ℂ) (B : Matrix (Fin n) (Fin m) ℂ) (μ : ℂ) :
     (hautusControllabilityMatrix A B μ)ᵀ = hautusObservabilityMatrix Aᵀ Bᵀ μ := by

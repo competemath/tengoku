@@ -49,17 +49,23 @@ noncomputable def recVec (α : Fin 2 → ℝ) (t : ℤ) (p : Fin 2 → ℤ) : Eu
 
 /-- **Antipodal record symmetry (atom HM-1).** The record at the reflected offset `(−t, −p)` is the
 negation of the record at `(t, p)`. This realizes the symmetry `θ ↦ θ + π` on the circle of record
-directions — the structure Haynes–Marklof's *largest symmetric subset* `S` is built from. -/
+directions — the structure Haynes–Marklof's *largest symmetric subset* `S` is built from.
+@isnad1 id=eq.0h3v.s7.b80a31a3d32c from=translated src=- shape=48eeafb6 vocab=b1ced064
+-/
 theorem recVec_neg (α : Fin 2 → ℝ) (t : ℤ) (p : Fin 2 → ℤ) :
     recVec α (-t) (-p) = -(recVec α t p) := by
   rw [recVec, recVec, rem_neg_neg', map_neg]
 
-/-- The reflected record has the same length: antipodal records are equidistant. -/
+/-- The reflected record has the same length: antipodal records are equidistant.
+@isnad1 id=eq.0h3v.s7.c1cbff1e78bb from=translated src=- shape=621e049c vocab=651d876d
+-/
 theorem norm_recVec_neg (α : Fin 2 → ℝ) (t : ℤ) (p : Fin 2 → ℤ) :
     ‖recVec α (-t) (-p)‖ = ‖recVec α t p‖ := by
   rw [recVec_neg, norm_neg]
 
-/-- A record and its antipode point in exactly opposite directions (`angle = π`), when nonzero. -/
+/-- A record and its antipode point in exactly opposite directions (`angle = π`), when nonzero.
+@isnad1 id=eq.1h3v.s8.64d78a95be5b from=translated src=- shape=3fe7b9d9 vocab=9895d7eb
+-/
 theorem angle_recVec_neg (α : Fin 2 → ℝ) (t : ℤ) (p : Fin 2 → ℤ) (h : recVec α t p ≠ 0) :
     InnerProductGeometry.angle (recVec α t p) (recVec α (-t) (-p)) = Real.pi := by
   rw [recVec_neg]; exact InnerProductGeometry.angle_self_neg_of_nonzero h
@@ -72,16 +78,22 @@ the "time" axis of the `SL(3)` lattice reformulation, the extra datum (beyond th
 noncomputable def height (N : ℕ) (t : ℤ) : ℝ := (t : ℝ) / (N : ℝ)
 
 /-- **Heights subtract along offset differences:** `u(t₁ − t₂) = u(t₁) − u(t₂)`. (The record
-difference at offsets `t₁, t₂` lives at height `u(t₁) − u(t₂)`.) -/
+difference at offsets `t₁, t₂` lives at height `u(t₁) − u(t₂)`.)
+@isnad1 id=eq.0h3v.s5.824b48068ee5 from=translated src=- shape=b51cb01a vocab=1e0dee98
+-/
 theorem height_sub (N : ℕ) (t₁ t₂ : ℤ) : height N (t₁ - t₂) = height N t₁ - height N t₂ := by
   simp only [height]; push_cast; ring
 
-/-- The antipodal record has the opposite height. -/
+/-- The antipodal record has the opposite height.
+@isnad1 id=eq.0h2v.s4.af4c2c785a67 from=translated src=- shape=eb092467 vocab=1065a10a
+-/
 theorem height_neg (N : ℕ) (t : ℤ) : height N (-t) = -height N t := by
   simp only [height]; push_cast; ring
 
 /-- A record offset `|t| ≤ N` has height in `[−1, 1]`. (The relevant records live in the unit
-height-slab `|u| ≤ 1`; HM's Proposition 3 uses the finer threshold `|u| < 1/2`.) -/
+height-slab `|u| ≤ 1`; HM's Proposition 3 uses the finer threshold `|u| < 1/2`.)
+@isnad1 id=le.2h2v.s5.ff20c9bce627 from=translated src=- shape=239614aa vocab=4ab174ef
+-/
 theorem abs_height_le_one (N : ℕ) (t : ℤ) (hN : 0 < N) (ht : |t| ≤ (N : ℤ)) :
     |height N t| ≤ 1 := by
   have hNR : (0 : ℝ) < (N : ℝ) := by exact_mod_cast hN
@@ -136,7 +148,9 @@ the closed positive cone of `vⱼ, vₖ`) and `vᵢ ≠ 0`, then `∠(vⱼ,vₖ)
 particular, if both `∠(vⱼ,vᵢ) > π/3` and `∠(vᵢ,vₖ) > π/3` then `∠(vⱼ,vₖ) > 2π/3` — the angle bound
 the
 cone-exclusion estimate (HM-7b) consumes. Direct from Mathlib's
-`InnerProductGeometry.angle_eq_angle_add_add_angle_add_of_mem_span`. -/
+`InnerProductGeometry.angle_eq_angle_add_add_angle_add_of_mem_span`.
+@isnad1 id=eq.4h5v.s9.0c60e2f0dee4 from=translated src=- shape=ddaa23c1 vocab=15d45a6f
+-/
 theorem angle_add_of_mem_cone {vi vj vk : EuclideanSpace ℝ (Fin 2)} (hi : vi ≠ 0) {s t : ℝ}
     (hs : 0 ≤ s) (ht : 0 ≤ t) (hcone : vi = s • vj + t • vk) :
     InnerProductGeometry.angle vj vk
@@ -151,7 +165,9 @@ theorem angle_add_of_mem_cone {vi vj vk : EuclideanSpace ℝ (Fin 2)} (hi : vi �
 of
 `vⱼ, vₖ` and is more than `π/3` from each, then `∠(vⱼ,vₖ) > 2π/3`. This is the obtuse-angle bound
 the
-cone-exclusion estimate (HM-7b: `C = ⟪vⱼ,vₖ⟫`, `2C + ‖vⱼ‖‖vₖ‖ < 0`) consumes. -/
+cone-exclusion estimate (HM-7b: `C = ⟪vⱼ,vₖ⟫`, `2C + ‖vⱼ‖‖vₖ‖ < 0`) consumes.
+@isnad1 id=lt.6h5v.s9.2c5565ac8bfa from=translated src=- shape=79bcab40 vocab=963d76a5
+-/
 theorem angle_gt_two_pi_div_three_of_cone {vi vj vk : EuclideanSpace ℝ (Fin 2)} (hi : vi ≠ 0)
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (hcone : vi = s • vj + t • vk)
     (hij : π / 3 < InnerProductGeometry.angle vj vi)
@@ -161,7 +177,9 @@ theorem angle_gt_two_pi_div_three_of_cone {vi vj vk : EuclideanSpace ℝ (Fin 2)
 
 /-- **HM Proposition 17(a).** Two record vectors `v, w` with `‖v‖ < ‖w‖` and the separation
 `‖w‖ ≤ ‖v − w‖` (Prop 16, eq. 5.2) make an angle `> π/3`. (The metric→angle crux with `δ = ‖w‖`:
-`‖v‖, ‖w‖ ≤ ‖w‖`, `‖w‖ ≤ ‖v − w‖`, and `‖v‖ < ‖w‖` strict.) -/
+`‖v‖, ‖w‖ ≤ ‖w‖`, `‖w‖ ≤ ‖v − w‖`, and `‖v‖ < ‖w‖` strict.)
+@isnad1 id=lt.3h2v.s9.0d404dbedce2 from=translated src=- shape=6c07fc23 vocab=70d46180
+-/
 theorem angle_gt_of_norm_sub_ge {v w : EuclideanSpace ℝ (Fin 2)} (hv0 : v ≠ 0)
     (hlt : ‖v‖ < ‖w‖) (hsep : ‖w‖ ≤ ‖v - w‖) :
     π / 3 < InnerProductGeometry.angle v w := by
@@ -176,7 +194,9 @@ this is `2 sin(βⱼ/2)·(c sin(βⱼ/2+βₖ) − b sin(βⱼ/2)) ≥ 0`, and `
 `βⱼ/2+βₖ ∈ [βⱼ/2, π−βⱼ/2]` (using `βⱼ+βₖ ≤ π`). This replaces HM's claimed SOS kernel: numerically
 the cone-exclusion estimate needs *only* the obtuse-cone and `‖v₀‖<‖vⱼ‖` constraints (the two
 realizability constraints are unnecessary), and the resulting reduced inequality has this clean
-trigonometric proof. -/
+trigonometric proof.
+@isnad1 id=le.7h4v.s6.57840ab38c52 from=translated src=- shape=cf5e4ae8 vocab=b706f004
+-/
 theorem cone_trig_crux (b c βj βk : ℝ) (hb : 0 < b) (hbc : b ≤ c)
     (hj0 : 0 ≤ βj) (hjπ : βj ≤ π) (hk0 : 0 ≤ βk) (hkπ : βk ≤ π) (hsum : βj + βk ≤ π) :
     b * (1 - Real.cos βj) ≤ c * (Real.cos βk - Real.cos (βj + βk)) := by
@@ -217,7 +237,9 @@ HM's claimed SOS): set `r=‖v₀‖, b=‖vⱼ‖, c=‖vₖ‖, βⱼ=∠(v₀
 `‖v₀−vⱼ−vₖ‖² − c² = r² − 2r(b cosβⱼ + c cosβₖ) + (b²+2⟪vⱼ,vₖ⟫)`, an upward parabola in `r` that is
 `< 0` at `r=0` (obtuse cone) and `≤ 0` at `r=b` (`cone_trig_crux`), hence `< 0` on `r ∈ (0,b)` by
 the
-interpolation `b·F(r) = (b−r)F(0) + r·F(b) − b·r·(b−r)`. -/
+interpolation `b·F(r) = (b−r)F(0) + r·F(b) − b·r·(b−r)`.
+@isnad1 id=lt.10h5v.s10.d1214183c793 from=translated src=- shape=b0cc157d vocab=8a76fceb
+-/
 theorem cone_exclusion {vj vk v0 : EuclideanSpace ℝ (Fin 2)}
     (hj : vj ≠ 0) (hk : vk ≠ 0) (hv0 : v0 ≠ 0)
     {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) (hcone : v0 = s • vj + t • vk)

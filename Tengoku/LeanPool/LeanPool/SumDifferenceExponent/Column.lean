@@ -24,10 +24,19 @@ def VInt : Finset ℤ := V.image fun n : ℕ => (n : ℤ)
 /-- The integer digit differences used to cover differences of columns. -/
 def VDiff : Finset ℤ := VInt - VInt
 
+/--
+@isnad1 id=eq.0h0v.s3.b03df7bf30e5 from=translated src=- shape=3701a056 vocab=949b34be
+-/
 theorem V_card_certificate : V.card = 12 := by decide +kernel
 
+/--
+@isnad1 id=eq.0h0v.s4.d0c03accf28a from=translated src=- shape=210183f7 vocab=05ebe9a8
+-/
 theorem V_sum_certificate : V + V = Finset.range 39 := by decide +kernel
 
+/--
+@isnad1 id=eq.0h0v.s3.3922f72d32f1 from=translated src=- shape=b3c4969c vocab=39edded4
+-/
 theorem VDiff_card_certificate : VDiff.card = 37 := by decide +kernel
 
 /-- Evaluate a fixed-length digit vector in base `b`, with the least significant digit first. -/
@@ -38,11 +47,17 @@ def baseValue (b m : ℕ) (w : Fin m → ℕ) : ℕ :=
 def digitSet (b : ℕ) (D : Finset ℕ) (m : ℕ) : Finset ℕ :=
   (Fintype.piFinset fun _ : Fin m => D).image (baseValue b m)
 
+/--
+@isnad1 id=eq.0h3v.s4.cc8c2b02db51 from=translated src=- shape=1c54a45c vocab=c865d679
+-/
 theorem baseValue_eq_ofDigits (b m : ℕ) (w : Fin m → ℕ) :
     baseValue b m w = Nat.ofDigits b (List.ofFn w) := by
   simp [baseValue, Nat.ofDigits_eq_sum_mapIdx, List.mapIdx_eq_ofFn,
     List.length_ofFn, List.sum_ofFn]
 
+/--
+@isnad1 id=injon.2h3v.s6.8249e22a0962 from=translated src=- shape=7afd937c vocab=b4df7793
+-/
 theorem baseValue_injOn
     {b : ℕ} (hb : 1 < b) {D : Finset ℕ}
     (hD : ∀ x ∈ D, x < b) (m : ℕ) :
@@ -60,6 +75,9 @@ theorem baseValue_injOn
     exact hD _ ((Fintype.mem_piFinset.mp hg) i)
   · simpa only [← baseValue_eq_ofDigits] using hfg
 
+/--
+@isnad1 id=eq.2h3v.s5.0acedf68556f from=translated src=- shape=1b0d46b8 vocab=168f6805
+-/
 theorem digitSet_card
     {b : ℕ} (hb : 1 < b) {D : Finset ℕ}
     (hD : ∀ x ∈ D, x < b) (m : ℕ) :
@@ -67,6 +85,9 @@ theorem digitSet_card
   rw [digitSet, Finset.card_image_iff.mpr (baseValue_injOn hb hD m)]
   simp [Fintype.piFinset]
 
+/--
+@isnad1 id=lt.2h3v.s5.30c7ab13373c from=translated src=- shape=a71e7c54 vocab=ff11bd1b
+-/
 theorem baseValue_lt_pow
     {b : ℕ} (hb : 1 < b) {m : ℕ} {w : Fin m → ℕ}
     (hw : ∀ i, w i < b) :
@@ -82,6 +103,9 @@ theorem baseValue_lt_pow
 def allValues (m : ℕ) : Finset ℕ :=
   digitSet 39 (Finset.range 39) m
 
+/--
+@isnad1 id=eq.0h1v.s4.30140929d6f7 from=translated src=- shape=e252d104 vocab=7fe454c2
+-/
 theorem allValues_eq_range (m : ℕ) :
     allValues m = Finset.range (39 ^ m) := by
   apply Finset.eq_of_subset_of_card_le
@@ -104,6 +128,9 @@ def ZNat (m : ℕ) : Finset ℕ := digitSet 39 V m
 /-- The sparse column set viewed as integers. -/
 def Z (m : ℕ) : Finset ℤ := (ZNat m).image fun n : ℕ => (n : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s4.013654d17e28 from=translated src=- shape=5238de5c vocab=e859ea60
+-/
 theorem ZNat_card (m : ℕ) : (ZNat m).card = 12 ^ m := by
   rw [ZNat, digitSet_card (by norm_num : 1 < 39)]
   · exact V_card_certificate ▸ rfl
@@ -111,12 +138,18 @@ theorem ZNat_card (m : ℕ) : (ZNat m).card = 12 ^ m := by
     simp [V] at hx
     omega
 
+/--
+@isnad1 id=eq.0h1v.s4.1a547d73447c from=translated src=- shape=e96f2693 vocab=3532aaf0
+-/
 theorem Z_card (m : ℕ) : (Z m).card = 12 ^ m := by
   rw [Z, Finset.card_image_iff.mpr]
   · exact ZNat_card m
   · intro a _ b _ hab
     exact Int.ofNat_inj.mp hab
 
+/--
+@isnad1 id=le.0h1v.s5.fe03ddca2694 from=translated src=- shape=ed54ae74 vocab=a8543ff7
+-/
 theorem range_pow_subset_ZNat_add (m : ℕ) :
     Finset.range (39 ^ m) ⊆ ZNat m + ZNat m := by
   rw [← allValues_eq_range]
@@ -145,6 +178,9 @@ theorem range_pow_subset_ZNat_add (m : ℕ) :
     intro i _
     rw [← hab i, Nat.add_mul]
 
+/--
+@isnad1 id=le.0h1v.s5.58c6ee23bf6d from=translated src=- shape=c41ff217 vocab=8243f28a
+-/
 theorem cast_range_pow_subset_Z_add (m : ℕ) :
     (Finset.range (39 ^ m)).image (fun n : ℕ => (n : ℤ)) ⊆ Z m + Z m := by
   intro x hx
@@ -165,6 +201,9 @@ def differenceValue (m : ℕ) (w : Fin m → ℤ) : ℤ :=
 def differenceRepresentations (m : ℕ) : Finset ℤ :=
   (Fintype.piFinset fun _ : Fin m => VDiff).image (differenceValue m)
 
+/--
+@isnad1 id=le.0h1v.s5.11b2814f131a from=translated src=- shape=b30c64d3 vocab=9a1611a0
+-/
 theorem Z_sub_Z_subset_representations (m : ℕ) :
     Z m - Z m ⊆ differenceRepresentations m := by
   intro x hx
@@ -191,6 +230,9 @@ theorem Z_sub_Z_subset_representations (m : ℕ) :
     simp_rw [sub_mul]
     rw [Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=le.0h1v.s5.a6fa990f6020 from=translated src=- shape=505d5b8e vocab=1eb6c1a1
+-/
 theorem Z_sub_Z_card_le (m : ℕ) : (Z m - Z m).card ≤ 37 ^ m := by
   calc
     (Z m - Z m).card ≤ (differenceRepresentations m).card :=
@@ -200,6 +242,9 @@ theorem Z_sub_Z_card_le (m : ℕ) : (Z m - Z m).card ≤ 37 ^ m := by
     _ = 37 ^ m := by
       simp [Fintype.piFinset, VDiff_card_certificate]
 
+/--
+@isnad1 id=le.0h1v.s4.72e16236df09 from=translated src=- shape=e96f2693 vocab=3ee25a1a
+-/
 theorem differenceRepresentations_card_le (m : ℕ) :
     (differenceRepresentations m).card ≤ 37 ^ m := by
   calc
@@ -209,6 +254,9 @@ theorem differenceRepresentations_card_le (m : ℕ) :
     _ = 37 ^ m := by
       simp [Fintype.piFinset, VDiff_card_certificate]
 
+/--
+@isnad1 id=lt.1h2v.s5.aa5ac3ac6397 from=translated src=- shape=84b8d755 vocab=038e0fbc
+-/
 theorem mem_ZNat_lt_pow
     {m z : ℕ} (hz : z ∈ ZNat m) :
     z < 39 ^ m := by
