@@ -50,6 +50,7 @@ noncomputable section
     Uses `freePropagatorMomentumMathlib` which accounts for the 2π factor in Mathlib's Fourier
     convention.
     Defined in FourierTransforms.lean as `parseval_covariance_schwartz_regulated`.
+@isnad1 id=eq.1h3v.s11.78dff8a74a68 from=translated src=- shape=5848d170 vocab=16aef5da
 -/
 theorem parseval_covariance_schwartz_regulated' (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
   TestFunctionℂ) :
@@ -63,6 +64,7 @@ theorem parseval_covariance_schwartz_regulated' (α : ℝ) (hα : 0 < α) (m : �
     Integrating a function over spacetime is unchanged when both variables are composed with
     geometric time reflection.  This packages the measure-preserving property of time reflection
     together with Fubini's theorem for later use in reflection-positivity arguments.
+@isnad1 id=eq.1h1v.s10.f061f5375790 from=translated src=- shape=9bf56c0d vocab=2a5ec8e8
 -/
 lemma double_integral_timeReflection
   (G : SpaceTime → SpaceTime → ℂ)
@@ -83,6 +85,7 @@ lemma double_integral_timeReflection
     observation that `compTimeReflection` is just composition with
     `timeReflection`, so we can reuse the general measure-preserving lemma
     without re-establishing integrability each time.
+@isnad1 id=eq.1h3v.s12.c16ffda8bb67 from=translated src=- shape=c3ba320a vocab=3a68b569
 -/
 lemma double_integral_timeReflection_covariance
   (m : ℝ) (f g : TestFunctionℂ)
@@ -137,6 +140,7 @@ All results assume m > 0 (positive mass) which is required for integrability.
 
 /-- The position-space integrand for the complex covariance bilinear form is integrable
     for Schwartz test functions, using translation-invariant L¹ kernel integrability.
+@isnad1 id=integrab.0h3v.s9.619f45fc54ea from=translated src=- shape=c06a79db vocab=d1c0236f
 -/
 theorem freeCovarianceℂ_bilinear_integrable
     (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
@@ -147,6 +151,7 @@ theorem freeCovarianceℂ_bilinear_integrable
 /-- Integrability of the covariance kernel evaluated on a time-reflected test function.
     This follows directly from `freeCovarianceℂ_bilinear_integrable` since `compTimeReflection`
     maps test functions to test functions.
+@isnad1 id=integrab.0h2v.s11.3da63398e78a from=translated src=- shape=74c02c3a vocab=a9f54fb8
 -/
 lemma integrable_compTimeReflection_covariance
   (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
@@ -158,6 +163,7 @@ lemma integrable_compTimeReflection_covariance
 
 /-- Relationship between compTimeReflection of toComplex and compTimeReflectionReal:
     they agree pointwise as complex values.
+@isnad1 id=eq.0h2v.s11.ece434595180 from=translated src=- shape=a89ffe2f vocab=d44383ab
 -/
 lemma compTimeReflection_toComplex_eq_ofReal
   (f : OSforGFF.TestFunction) (x : SpaceTime) :
@@ -167,6 +173,7 @@ lemma compTimeReflection_toComplex_eq_ofReal
 
 /-- The real part of a complex integral of a real-valued function equals the real integral.
     This uses `integral_ofReal_eq` and `Complex.ofReal_re`.
+@isnad1 id=eq.1h3v.s6.4a44f2ff723c from=translated src=- shape=df164845 vocab=69a3b0bb
 -/
 lemma re_integral_ofReal {α : Type*} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
     (hf : Integrable h μ) :
@@ -174,7 +181,9 @@ lemma re_integral_ofReal {α : Type*} [MeasurableSpace α] (μ : Measure α) (h 
   rw [integral_ofReal_eq μ h hf]
   exact Complex.ofReal_re _
 
-/-- Integrability of the real covariance kernel obtained from a real test function. -/
+/-- Integrability of the real covariance kernel obtained from a real test function.
+@isnad1 id=integrab.0h2v.s10.2cde655183a8 from=translated src=- shape=69f743e5 vocab=74d08871
+-/
 lemma integrable_real_covariance_kernel
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   Integrable (fun p : SpaceTime × SpaceTime =>
@@ -215,7 +224,9 @@ lemma integrable_real_covariance_kernel
   · -- ‖real_integrand‖ ≤ ‖complex_integrand‖ a.e. (actually equal)
     simp_all
 
-/-- Fubini helper: rewrite the real kernel double integral over the product measure. -/
+/-- Fubini helper: rewrite the real kernel double integral over the product measure.
+@isnad1 id=eq.0h2v.s11.6e542505e617 from=translated src=- shape=623d2cd9 vocab=c277b97e
+-/
 lemma integral_prod_real_covariance_kernel
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   ∫ p : SpaceTime × SpaceTime,
@@ -226,7 +237,9 @@ lemma integral_prod_real_covariance_kernel
   rw [MeasureTheory.integral_prod]
   exact integrable_real_covariance_kernel m f
 
-/-- Complex Fubini helper mirroring `integral_prod_real_covariance_kernel`. -/
+/-- Complex Fubini helper mirroring `integral_prod_real_covariance_kernel`.
+@isnad1 id=eq.0h2v.s12.6cbc1e3222c6 from=translated src=- shape=702cd540 vocab=92d02d8a
+-/
 lemma integral_prod_complex_covariance_kernel
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   ∫ p : SpaceTime × SpaceTime,
@@ -247,6 +260,7 @@ lemma integral_prod_complex_covariance_kernel
   (using `compTimeReflection_toComplex_eq_ofReal` and `toComplex_apply`).
   For real-valued integrands, the `.re` of the complex integral equals the real integral
   via `integral_ofReal_eq` applied twice.
+@isnad1 id=eq.0h2v.s11.ddde32b98cfd from=translated src=- shape=7555db21 vocab=0be57843
 -/
 lemma real_integral_eq_complex_re
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
@@ -285,6 +299,7 @@ lemma real_integral_eq_complex_re
 /-- ** (Complex Conjugate Identity for Real Functions):**
   For real-valued test functions lifted to complex, the complex conjugate equals the original.
   This allows us to match the Parseval identity which uses starRingEnd.
+@isnad1 id=eq.0h2v.s8.ef3c486d53b9 from=translated src=- shape=42db9c19 vocab=96954fd7
 -/
 lemma toComplex_star_eq
   (f : OSforGFF.TestFunction) (x : SpaceTime) :
@@ -292,7 +307,9 @@ lemma toComplex_star_eq
   -- toComplex f x = (f x : ℂ) by definition
   simp_all
 
-/-- The time-reflected complexification of a real test function remains real-valued. -/
+/-- The time-reflected complexification of a real test function remains real-valued.
+@isnad1 id=eq.0h2v.s11.c9f2b097fd82 from=translated src=- shape=1b84be60 vocab=23846347
+-/
 lemma compTimeReflection_toComplex_star_eq
   (f : OSforGFF.TestFunction) (x : SpaceTime) :
   starRingEnd ℂ ((QFT.compTimeReflection (toComplex f)) x)
@@ -308,6 +325,7 @@ lemma compTimeReflection_toComplex_star_eq
 /-- Euclidean invariance of the free covariance.
     Since freeCovariance only depends on ‖x - y‖ (via the Bessel form), and Euclidean
     transformations preserve distances, this follows immediately.
+@isnad1 id=eq.0h4v.s4.05ae45a9a4fc from=translated src=- shape=f22db6dc vocab=0a919bc6
 -/
 theorem freeCovariance_euclidean_invariant (m : ℝ)
   (g : QFT.E) (x y : SpaceTime) :
@@ -322,7 +340,9 @@ theorem freeCovariance_euclidean_invariant (m : ℝ)
 /-- Time reflection as an element of the Euclidean group (rotation with no translation). -/
 def timeReflectionE : QFT.E := ⟨QFT.timeReflectionLE.toLinearIsometry, 0⟩
 
-/-- The Euclidean action of timeReflectionE equals timeReflection. -/
+/-- The Euclidean action of timeReflectionE equals timeReflection.
+@isnad1 id=eq.0h1v.s3.610c8260644c from=translated src=- shape=25ac9e83 vocab=3ef8ab55
+-/
 lemma act_timeReflectionE (x : SpaceTime) : QFT.act timeReflectionE x = QFT.timeReflection x := by
   simp only [timeReflectionE, QFT.act, add_zero, LinearIsometryEquiv.coe_toLinearIsometry]
   rfl
@@ -330,6 +350,7 @@ lemma act_timeReflectionE (x : SpaceTime) : QFT.act timeReflectionE x = QFT.time
 /-- ** (Time Reflection Invariance - Position Space):**
   The position-space covariance kernel is invariant under geometric time reflection.
   This follows from general Euclidean invariance since time reflection is in O(4).
+@isnad1 id=eq.0h3v.s4.df9113c71d6c from=translated src=- shape=da649dde vocab=e76a8bd9
 -/
 lemma covariance_timeReflection_invariant (m : ℝ) :
     ∀ x y, freeCovariance m (QFT.timeReflection x) (QFT.timeReflection y) = freeCovariance m x y :=
@@ -346,6 +367,7 @@ The following lemmas prove properties of this bilinear form.
 
 /-- For each fixed `x`, the inner integral in the complex bilinear form is absolutely integrable.
     This follows from product integrability (`freeCovarianceℂ_bilinear_integrable`) plus Fubini.
+@isnad1 id=integrab.0h3v.s9.3275e5badb73 from=translated src=- shape=92318404 vocab=f8344777
 -/
 lemma freeCovarianceℂ_bilinear_inner_integrable
   (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
@@ -357,6 +379,7 @@ lemma freeCovarianceℂ_bilinear_inner_integrable
 /-- For each fixed `x`, the inner integral defining the bilinear form is integrable in `y`.
     Together with the previous lemma, this allows iterated integration.
     Follows from product integrability via Fubini (`Integrable.prod_right_ae`).
+@isnad1 id=eventual.0h3v.s9.6a1b16d4f533 from=translated src=- shape=abae68c4 vocab=4523bd11
 -/
 lemma freeCovarianceℂ_bilinear_slice_integrable
   (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
@@ -365,7 +388,9 @@ lemma freeCovarianceℂ_bilinear_slice_integrable
   rw [Measure.volume_eq_prod] at h
   exact h.prod_right_ae
 
-/-- Generalized bilinearity in the first argument: scalar multiplication and addition combined. -/
+/-- Generalized bilinearity in the first argument: scalar multiplication and addition combined.
+@isnad1 id=eq.0h5v.s8.668079cb88b3 from=translated src=- shape=e06e7412 vocab=ae6a4908
+-/
 theorem freeCovarianceℂ_bilinear_add_smul_left
   (m : ℝ) [Fact (0 < m)] (c : ℂ) (f₁ f₂ g : TestFunctionℂ) :
     freeCovarianceℂBilinear m (c • f₁ + f₂) g
@@ -418,12 +443,18 @@ theorem freeCovarianceℂ_bilinear_add_smul_left
     _ = c * (∫ x, F₁ x ∂volume) + (∫ x, F₂ x ∂volume) := by
         congr 1; exact MeasureTheory.integral_const_mul _ _
 
+/--
+@isnad1 id=eq.0h4v.s7.c42c00e62e7e from=translated src=- shape=6916336b vocab=0dcbd362
+-/
 theorem freeCovarianceℂ_bilinear_add_left
   (m : ℝ) [Fact (0 < m)] (f₁ f₂ g : TestFunctionℂ) :
     freeCovarianceℂBilinear m (f₁ + f₂) g
       = freeCovarianceℂBilinear m f₁ g + freeCovarianceℂBilinear m f₂ g := by
   simpa only [one_smul, one_mul] using freeCovarianceℂ_bilinear_add_smul_left m 1 f₁ f₂ g
 
+/--
+@isnad1 id=eq.0h4v.s7.92285ad46564 from=translated src=- shape=29e4c3f4 vocab=9bd8721c
+-/
 theorem freeCovarianceℂ_bilinear_smul_left
   (m : ℝ) [Fact (0 < m)] (c : ℂ) (f g : TestFunctionℂ) :
     freeCovarianceℂBilinear m (c • f) g = c * freeCovarianceℂBilinear m f g := by
@@ -435,7 +466,9 @@ theorem freeCovarianceℂ_bilinear_smul_left
     simp_all
   rwa [zero_bilinear, add_zero] at h
 
-/-- Symmetry of the complex bilinear form: swapping arguments gives the same result. -/
+/-- Symmetry of the complex bilinear form: swapping arguments gives the same result.
+@isnad1 id=eq.0h3v.s4.a26f0c0471aa from=translated src=- shape=7679722a vocab=31bf6ca3
+-/
 theorem freeCovarianceℂ_bilinear_symm
   (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
     freeCovarianceℂBilinear m f g = freeCovarianceℂBilinear m g f := by
@@ -449,6 +482,9 @@ theorem freeCovarianceℂ_bilinear_symm
   rw [freeCovariance_symmetric m y x]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.8559af796be8 from=translated src=- shape=ab9fa6d4 vocab=9bd8721c
+-/
 theorem freeCovarianceℂ_bilinear_smul_right
   (m : ℝ) [Fact (0 < m)] (c : ℂ) (f g : TestFunctionℂ) :
     freeCovarianceℂBilinear m f (c • g) = c * freeCovarianceℂBilinear m f g := by
@@ -461,6 +497,9 @@ theorem freeCovarianceℂ_bilinear_smul_right
   -- Use symmetry again: c * freeCovarianceℂBilinear m g f = c * freeCovarianceℂBilinear m f g
   rw [freeCovarianceℂ_bilinear_symm m g f]
 
+/--
+@isnad1 id=eq.0h4v.s7.bcb56a0930d5 from=translated src=- shape=30be7be1 vocab=0dcbd362
+-/
 theorem freeCovarianceℂ_bilinear_add_right
   (m : ℝ) [Fact (0 < m)] (f g₁ g₂ : TestFunctionℂ) :
     freeCovarianceℂBilinear m f (g₁ + g₂)
@@ -482,7 +521,9 @@ def freeCovarianceℂRegulated (α : ℝ) (m : ℝ) (f g : TestFunctionℂ) : �
     (f x) * freeCovarianceRegulated α m x y * starRingEnd ℂ (g y)
       ∂volume ∂volume
 
-/-- The regulated complex covariance is positive definite for any α > 0. -/
+/-- The regulated complex covariance is positive definite for any α > 0.
+@isnad1 id=le.1h3v.s5.6f89494ad125 from=translated src=- shape=dbed4b42 vocab=9f8c5111
+-/
 theorem freeCovarianceℂ_regulated_positive (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
   TestFunctionℂ) :
   0 ≤ (freeCovarianceℂRegulated α m f f).re := by
@@ -496,7 +537,9 @@ theorem freeCovarianceℂ_regulated_positive (α : ℝ) (hα : 0 < α) (m : ℝ)
 def freeCovarianceℂ (m : ℝ) (f g : TestFunctionℂ) : ℂ :=
   ∫ x, ∫ y, (f x) * (freeCovariance m x y) * (starRingEnd ℂ (g y)) ∂volume ∂volume
 
-/-- The complex covariance (Bessel form) is positive definite. -/
+/-- The complex covariance (Bessel form) is positive definite.
+@isnad1 id=le.0h2v.s4.b2677bd71464 from=translated src=- shape=a5e65406 vocab=2c769c41
+-/
 theorem freeCovarianceℂ_positive (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     0 ≤ (freeCovarianceℂ m f f).re := by
   -- The regulated form converges to the Bessel form as α → 0⁺ (DCT in momentum space);
@@ -522,6 +565,7 @@ theorem freeCovarianceℂ_positive (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ
     Note: Unlike the regulated form, this uses freeCovariance (Bessel K₁ form) which is
     well-defined pointwise. The equality holds because the Bessel form equals the limit
     of the regulated forms.
+@isnad1 id=eq.0h2v.s11.7653fff7e84c from=translated src=- shape=5133dcfe vocab=946560cf
 -/
 theorem parseval_covariance_schwartz_bessel (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     (freeCovarianceℂ m f f).re

@@ -76,49 +76,67 @@ def Periodic {A : Type*} (c : Configuration A) : Prop :=
 def difference {A : Type*} [AddCommGroup A] (h : Lattice)
     (c : Configuration A) : Configuration A := shift h c - c
 
-/-- Evaluation of the forward shift from Section 1.1. -/
+/-- Evaluation of the forward shift from Section 1.1.
+@isnad1 id=eq.0h4v.s4.b742b721a117 from=translated src=- shape=0fe24940 vocab=17dbaaa2
+-/
 @[simp] theorem shift_apply {A : Type*} (h : Lattice) (c : Configuration A) (z) :
     shift h c z = c (z + h) := rfl
 
-/-- The zero translation acts as the identity (Section 1.1). -/
+/-- The zero translation acts as the identity (Section 1.1).
+@isnad1 id=eq.0h2v.s4.e56aa0ce4566 from=translated src=- shape=0b509e3d vocab=f450a653
+-/
 @[simp] theorem shift_zero {A : Type*} (c : Configuration A) : shift 0 c = c := by
   funext z
   simp [shift]
 
-/-- Composition of the shift operators from Section 1.1. -/
+/-- Composition of the shift operators from Section 1.1.
+@isnad1 id=eq.0h4v.s5.d031b9758296 from=translated src=- shape=f6e9c0e9 vocab=17dbaaa2
+-/
 theorem shift_add {A : Type*} (h t : Lattice) (c : Configuration A) :
     shift (h + t) c = shift h (shift t c) := by
   funext z
   simp [shift, add_assoc]
 
-/-- Shift operators commute, as used throughout Section 1.1. -/
+/-- Shift operators commute, as used throughout Section 1.1.
+@isnad1 id=eq.0h4v.s4.682cef1bf095 from=translated src=- shape=03e1f7fa vocab=28cd6eac
+-/
 theorem shift_comm {A : Type*} (h t : Lattice) (c : Configuration A) :
     shift h (shift t c) = shift t (shift h c) := by
   rw [← shift_add, ← shift_add, add_comm h t]
 
-/-- The pointwise period condition is equivalent to `Tʰc = c` (Section 1.1). -/
+/-- The pointwise period condition is equivalent to `Tʰc = c` (Section 1.1).
+@isnad1 id=iff.0h3v.s4.0053c5b25edc from=translated src=- shape=edeed0f2 vocab=24132a21
+-/
 theorem isPeriod_iff_shift_eq {A : Type*} (c : Configuration A) (h : Lattice) :
     IsPeriod c h ↔ shift h c = c := by
   exact ⟨fun hc => funext hc, fun hc => congrFun hc⟩
 
-/-- The zero vector fixes every configuration (Section 1.1). -/
+/-- The zero vector fixes every configuration (Section 1.1).
+@isnad1 id=isperiod.0h2v.s4.201a7101459e from=translated src=- shape=3832f936 vocab=92f5e770
+-/
 theorem IsPeriod.zero {A : Type*} (c : Configuration A) : IsPeriod c 0 := by
   intro z
   simp
 
-/-- The sum of two periods is a period (Section 1.1). -/
+/-- The sum of two periods is a period (Section 1.1).
+@isnad1 id=isperiod.2h4v.s5.a8b2f579c1e4 from=translated src=- shape=40e00867 vocab=45dcf5c9
+-/
 theorem IsPeriod.add {A : Type*} {c : Configuration A} {h t : Lattice}
     (hh : IsPeriod c h) (ht : IsPeriod c t) : IsPeriod c (h + t) := by
   intro z
   rw [← add_assoc, ht, hh]
 
-/-- Reversing a period preserves periodicity (Section 1.1). -/
+/-- Reversing a period preserves periodicity (Section 1.1).
+@isnad1 id=isperiod.1h3v.s4.90cf32e69686 from=translated src=- shape=00e2d4fc vocab=ff770785
+-/
 theorem IsPeriod.neg {A : Type*} {c : Configuration A} {h : Lattice}
     (hh : IsPeriod c h) : IsPeriod c (-h) := by
   intro z
   simpa using (hh (z + -h)).symm
 
-/-- Every natural multiple of a period is a period (Section 1.1). -/
+/-- Every natural multiple of a period is a period (Section 1.1).
+@isnad1 id=isperiod.1h4v.s5.fd93ae059e83 from=translated src=- shape=f01375f5 vocab=7614c6c3
+-/
 theorem IsPeriod.nsmul {A : Type*} {c : Configuration A} {h : Lattice}
     (hh : IsPeriod c h) (n : ℕ) : IsPeriod c (n • h) := by
   induction n with
@@ -127,7 +145,9 @@ theorem IsPeriod.nsmul {A : Type*} {c : Configuration A} {h : Lattice}
     rw [add_nsmul, one_nsmul]
     exact ih.add hh
 
-/-- Every integer multiple of a period is a period (Section 1.1). -/
+/-- Every integer multiple of a period is a period (Section 1.1).
+@isnad1 id=isperiod.1h4v.s5.faf851de70fd from=translated src=- shape=f01375f5 vocab=2dd44145
+-/
 theorem IsPeriod.zsmul {A : Type*} {c : Configuration A} {h : Lattice}
     (hh : IsPeriod c h) (n : ℤ) : IsPeriod c (n • h) := by
   cases n with
@@ -140,7 +160,9 @@ theorem IsPeriod.zsmul {A : Type*} {c : Configuration A} {h : Lattice}
     rw [neg_zsmul, natCast_zsmul]
     exact (hh.nsmul (n + 1)).neg
 
-/-- A configuration and any translate have the same periods (Section 1.1). -/
+/-- A configuration and any translate have the same periods (Section 1.1).
+@isnad1 id=iff.0h4v.s4.88a19d71d7c1 from=translated src=- shape=8ac2c94b vocab=24132a21
+-/
 theorem isPeriod_shift_iff {A : Type*} (c : Configuration A) (h t : Lattice) :
     IsPeriod (shift t c) h ↔ IsPeriod c h := by
   constructor
@@ -149,49 +171,67 @@ theorem isPeriod_shift_iff {A : Type*} (c : Configuration A) (h t : Lattice) :
   · intro hp z
     simpa [shift, add_assoc, add_left_comm, add_comm] using hp (z + t)
 
-/-- Periodicity is invariant under translation (Section 1.1). -/
+/-- Periodicity is invariant under translation (Section 1.1).
+@isnad1 id=iff.0h3v.s4.38ff54c815d2 from=translated src=- shape=05a3989f vocab=54c151d0
+-/
 theorem periodic_shift_iff {A : Type*} (c : Configuration A) (t : Lattice) :
     Periodic (shift t c) ↔ Periodic c := by
   simp only [Periodic, isPeriod_shift_iff]
 
-/-- Applying a function to a finite alphabet preserves finite range (Section 1.1). -/
+/-- Applying a function to a finite alphabet preserves finite range (Section 1.1).
+@isnad1 id=finitera.1h4v.s4.43fb7d0c8a23 from=translated src=- shape=02820421 vocab=e60b9754
+-/
 theorem FiniteRange.map {A B : Type*} {c : Configuration A}
     (hc : FiniteRange c) (f : A → B) : FiniteRange (f ∘ c) := by
   simpa only [FiniteRange, Set.range_comp] using hc.image f
 
-/-- Translations preserve finite range (Section 1.1). -/
+/-- Translations preserve finite range (Section 1.1).
+@isnad1 id=finitera.1h3v.s4.793f55133cec from=translated src=- shape=744988fd vocab=ded0de5c
+-/
 theorem FiniteRange.shift {A : Type*} {c : Configuration A}
     (hc : FiniteRange c) (h : Lattice) : FiniteRange (shift h c) := by
   apply hc.subset
   rintro _ ⟨z, rfl⟩
   exact ⟨z + h, rfl⟩
 
-/-- A configuration over a finite alphabet has finite range (Section 1.1). -/
+/-- A configuration over a finite alphabet has finite range (Section 1.1).
+@isnad1 id=finitera.0h2v.s3.662131101714 from=translated src=- shape=1df4a4a2 vocab=746d6a8d
+-/
 theorem finiteRange_of_finite {A : Type*} [Finite A] (c : Configuration A) :
     FiniteRange c := Set.toFinite _
 
-/-- Injective alphabet labels preserve each period vector (Section 1.1). -/
+/-- Injective alphabet labels preserve each period vector (Section 1.1).
+@isnad1 id=iff.1h5v.s5.a1dc2b51927a from=translated src=- shape=52cfe19c vocab=cfa4fb62
+-/
 theorem isPeriod_map_iff {A B : Type*} (c : Configuration A) {f : A → B}
     (hf : Function.Injective f) (h : Lattice) :
     IsPeriod (f ∘ c) h ↔ IsPeriod c h := by
   simp only [IsPeriod, Function.comp_apply, hf.eq_iff]
 
-/-- Injective alphabet labels preserve periodicity (Section 1.1). -/
+/-- Injective alphabet labels preserve periodicity (Section 1.1).
+@isnad1 id=iff.1h4v.s4.4dfbd7684843 from=translated src=- shape=c5575213 vocab=fee9b2d2
+-/
 theorem periodic_map_iff {A B : Type*} (c : Configuration A) {f : A → B}
     (hf : Function.Injective f) : Periodic (f ∘ c) ↔ Periodic c := by
   simp only [Periodic, isPeriod_map_iff c hf]
 
-/-- The pointwise formula for `Δₕc` in Section 1.1. -/
+/-- The pointwise formula for `Δₕc` in Section 1.1.
+@isnad1 id=eq.0h4v.s5.ed68742c0718 from=translated src=- shape=b990373a vocab=a1c98120
+-/
 @[simp] theorem difference_apply {A : Type*} [AddCommGroup A]
     (h : Lattice) (c : Configuration A) (z) :
     difference h c z = c (z + h) - c z := rfl
 
-/-- Vanishing of `Δₕc` is exactly the period condition (Section 1.1). -/
+/-- Vanishing of `Δₕc` is exactly the period condition (Section 1.1).
+@isnad1 id=iff.0h3v.s5.f5c235dbdbe7 from=translated src=- shape=64e1a6f3 vocab=bf256994
+-/
 theorem difference_eq_zero_iff {A : Type*} [AddCommGroup A]
     (h : Lattice) (c : Configuration A) : difference h c = 0 ↔ IsPeriod c h := by
   simp only [funext_iff, difference_apply, Pi.zero_apply, sub_eq_zero, IsPeriod]
 
-/-- Difference operators commute (Section 1.1). -/
+/-- Difference operators commute (Section 1.1).
+@isnad1 id=eq.0h4v.s5.85a8dc3295be from=translated src=- shape=adcb5904 vocab=76129430
+-/
 theorem difference_comm {A : Type*} [AddCommGroup A]
     (h t : Lattice) (c : Configuration A) :
     difference h (difference t c) = difference t (difference h c) := by

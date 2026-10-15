@@ -50,6 +50,9 @@ noncomputable def fractionalIdealElementUnitMulEquiv
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s7.f222347ad32d from=translated src=- shape=9b893ce0 vocab=9b8610a6
+-/
 theorem complexPlaceGaussian_mul_unit
     (u : (𝓞 K)ˣ) (x : K) (q : InfinitePlace K → ℝ) :
     complexPlaceGaussian K x
@@ -65,6 +68,9 @@ theorem complexPlaceGaussian_mul_unit
   ring
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s8.e74019bb3ebd from=translated src=- shape=7bc355f1 vocab=a36f3bc8
+-/
 theorem fractionalShapeIdealTheta_add_unitCoordinateShift
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (y : mixedEmbedding.realSpace K)

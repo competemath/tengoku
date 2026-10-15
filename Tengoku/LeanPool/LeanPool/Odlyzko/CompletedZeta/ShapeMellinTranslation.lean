@@ -33,6 +33,9 @@ noncomputable def logarithmicMellinWeight
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s6.aaae3fdca595 from=translated src=- shape=5d7705ab vocab=47d0d03f
+-/
 @[simp]
 theorem logarithmicMellinWeight_apply
     (s : ℂ) (y : mixedEmbedding.realSpace K) :
@@ -43,6 +46,9 @@ theorem logarithmicMellinWeight_apply
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s7.6ea1ad1269f8 from=translated src=- shape=d1363c8b vocab=cc1dcc39
+-/
 theorem logarithmicMellinWeight_vadd_unitCoordinateLattice
     (s : ℂ) (g : unitCoordinateLattice (K := K))
     (y : mixedEmbedding.realSpace K) :
@@ -55,6 +61,9 @@ theorem logarithmicMellinWeight_vadd_unitCoordinateLattice
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s6.65238263565e from=translated src=- shape=093b1cc6 vocab=83bf3caa
+-/
 theorem logarithmicMellinWeight_add
     (s : ℂ) (y a : mixedEmbedding.realSpace K) :
     logarithmicMellinWeight K s (y + a) =

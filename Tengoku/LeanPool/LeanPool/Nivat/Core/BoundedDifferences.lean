@@ -56,7 +56,9 @@ the orbit-closure difference in Corollary 3.6 (`cor:periodic-difference`).
 namespace Nivat
 
 /-- Pointwise subtraction preserves finite range, as needed for the orbit-closure difference in
-Corollary 3.6 (`cor:periodic-difference`). -/
+Corollary 3.6 (`cor:periodic-difference`).
+@isnad1 id=finitera.2h3v.s5.3a1d085115c2 from=translated src=- shape=1333e5f0 vocab=b2671cba
+-/
 theorem FiniteRange.sub {A : Type*} [Sub A] {c d : Configuration A}
     (hc : FiniteRange c) (hd : FiniteRange d) : FiniteRange (c - d) := by
   apply ((hc.prod hd).image (fun p : A × A => p.1 - p.2)).subset
@@ -64,14 +66,18 @@ theorem FiniteRange.sub {A : Type*} [Sub A] {c d : Configuration A}
   exact ⟨(c z, d z), ⟨⟨z, rfl⟩, ⟨z, rfl⟩⟩, rfl⟩
 
 /-- A directional difference preserves finite range, as used when applying Lemma 3.4
-(`lem:repeated`). -/
+(`lem:repeated`).
+@isnad1 id=finitera.1h3v.s4.0a27a29a96fa from=translated src=- shape=f7953426 vocab=7091615f
+-/
 theorem FiniteRange.difference {A : Type*} [AddCommGroup A]
     {c : Configuration A} (hc : FiniteRange c) (h : Lattice) :
     FiniteRange (difference h c) := (hc.shift h).sub hc
 
 /-- A bounded rational configuration with zero second difference has zero first difference: a
 nonzero affine slope would contradict its uniform absolute bound. This is the affine-sequence
-step in Lemma 3.4 (`lem:repeated`). -/
+step in Lemma 3.4 (`lem:repeated`).
+@isnad1 id=eq.2h3v.s6.0d7c7addc7ae from=translated src=- shape=63a37d20 vocab=53c46826
+-/
 theorem difference_eq_zero_of_second_of_bounded (c : Configuration ℚ) (B : ℚ)
     (hc : ∀ z, |c z| ≤ B)
     (h : Lattice) (h2 : difference h (difference h c) = 0) : difference h c = 0 := by
@@ -101,14 +107,18 @@ theorem difference_eq_zero_of_second_of_bounded (c : Configuration ℚ) (B : ℚ
   exact (not_lt_of_ge hbound) hgrow
 
 /-- A finite rational range has a uniform absolute bound, as needed to apply Lemma 3.4
-(`lem:repeated`) to finite-range configurations. -/
+(`lem:repeated`) to finite-range configurations.
+@isnad1 id=ex.1h1v.s4.93536cad6e49 from=translated src=- shape=d1666ac1 vocab=8f2fb5bb
+-/
 theorem FiniteRange.exists_abs_le {c : Configuration ℚ} (hc : FiniteRange c) :
     ∃ B : ℚ, ∀ z, |c z| ≤ B := by
   obtain ⟨B, hB⟩ := (hc.image abs).bddAbove
   exact ⟨B, fun z => hB ⟨c z, ⟨z, rfl⟩, rfl⟩⟩
 
 /-- A finite-range rational configuration with zero second difference has zero first difference.
-This is the affine-sequence case of Lemma 3.4 (`lem:repeated`). -/
+This is the affine-sequence case of Lemma 3.4 (`lem:repeated`).
+@isnad1 id=eq.2h2v.s6.2a5a1e72fb53 from=translated src=- shape=12478327 vocab=deae8c7b
+-/
 theorem difference_eq_zero_of_second (c : Configuration ℚ) (hc : FiniteRange c)
     (h : Lattice) (h2 : difference h (difference h c) = 0) : difference h c = 0 := by
   obtain ⟨B, hB⟩ := hc.exists_abs_le
@@ -116,7 +126,9 @@ theorem difference_eq_zero_of_second (c : Configuration ℚ) (hc : FiniteRange c
 
 /-- A uniform absolute bound on a rational configuration bounds each first difference by twice
 that bound. This preserves boundedness during the reduction of difference order in Lemma 3.4
-(`lem:repeated`). -/
+(`lem:repeated`).
+@isnad1 id=le.1h4v.s5.4e52b3ba50e8 from=translated src=- shape=f255c8da vocab=82383f8c
+-/
 theorem abs_difference_le (c : Configuration ℚ) (B : ℚ) (hc : ∀ z, |c z| ≤ B)
     (h z : Lattice) : |difference h c z| ≤ 2 * B := by
   rw [difference_apply]
@@ -124,7 +136,9 @@ theorem abs_difference_le (c : Configuration ℚ) (B : ℚ) (hc : ∀ z, |c z| �
 
 /-- Lemma 3.4 (`lem:repeated`): a bounded rational configuration annihilated by a positive iterate
 of a difference is annihilated by the first difference. The direction may also be zero, when
-the conclusion is immediate. -/
+the conclusion is immediate.
+@isnad1 id=eq.3h4v.s6.3d5ea29ab370 from=translated src=- shape=33dcca8c vocab=9202d4d4
+-/
 theorem difference_eq_zero_of_iterate_of_bounded (c : Configuration ℚ) (B : ℚ)
     (hc : ∀ z, |c z| ≤ B) (h : Lattice) (s : ℕ) (hs : 0 < s)
     (hpow : (difference h)^[s] c = 0) : difference h c = 0 := by
@@ -141,7 +155,9 @@ theorem difference_eq_zero_of_iterate_of_bounded (c : Configuration ℚ) (B : �
 
 /-- A finite-range rational configuration annihilated by a positive iterate of a directional
 difference is annihilated by its first difference. This is the finite-range specialization of
-Lemma 3.4 (`lem:repeated`). -/
+Lemma 3.4 (`lem:repeated`).
+@isnad1 id=eq.3h3v.s6.d2a152c4d709 from=translated src=- shape=683d172c vocab=d7cb7789
+-/
 theorem difference_eq_zero_of_iterate (c : Configuration ℚ) (hc : FiniteRange c)
     (h : Lattice) (s : ℕ) (hs : 0 < s) (hpow : (difference h)^[s] c = 0) :
     difference h c = 0 := by
@@ -150,7 +166,9 @@ theorem difference_eq_zero_of_iterate (c : Configuration ℚ) (hc : FiniteRange 
 
 /-- A common integer multiple of two mixed-difference directions is a period of a finite-range
 rational configuration. This is the repeated-difference argument in the parallel case of
-Theorem 5.1; the integer coefficients may have either sign. -/
+Theorem 5.1; the integer coefficients may have either sign.
+@isnad1 id=eq.3h5v.s7.aac9977366f0 from=translated src=- shape=2f28a476 vocab=e74ae4d6
+-/
 theorem difference_eq_zero_of_mixed_common_multiple (c : Configuration ℚ)
     (hc : FiniteRange c) (h t : Lattice)
     (hmix : difference h (difference t c) = 0) (a b : ℤ)
@@ -169,7 +187,9 @@ theorem difference_eq_zero_of_mixed_common_multiple (c : Configuration ℚ)
 
 /-- The parallel case of Theorem 5.1: two nonzero parallel directions with vanishing mixed
 difference force periodicity of a finite-range rational configuration. This case needs no
-complexity hypothesis. -/
+complexity hypothesis.
+@isnad1 id=periodic.5h3v.s6.d46bb761dd87 from=translated src=- shape=04e34c8d vocab=47eec96b
+-/
 theorem periodic_of_parallel_mixed_difference (c : Configuration ℚ)
     (hc : FiniteRange c) (h t : Lattice) (hh : h ≠ 0) (ht : t ≠ 0)
     (hparallel : h.1 * t.2 = h.2 * t.1)

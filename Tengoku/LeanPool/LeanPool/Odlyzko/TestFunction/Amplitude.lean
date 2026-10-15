@@ -16,10 +16,16 @@ open Set Filter
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h1v.s6.1301b875851c from=translated src=- shape=f5046806 vocab=95e1b2ac
+-/
 theorem tartarAmplitude_eq_of_ne {x : ℝ} (hx : x ≠ 0) :
     Tartar.amplitude x = 3 * (Real.sin x - x * Real.cos x) / x ^ 3 := by
   simp [Tartar.amplitude, hx]
 
+/--
+@isnad1 id=continuo.1h1v.s4.62aa51e94314 from=translated src=- shape=9008da95 vocab=c4f8d332
+-/
 theorem tartarAmplitude_continuousAt_of_ne {x : ℝ} (hx : x ≠ 0) :
     ContinuousAt Tartar.amplitude x := by
   let f : ℝ → ℝ := fun y ↦ 3 * (Real.sin y - y * Real.cos y) / y ^ 3
@@ -41,6 +47,9 @@ private theorem tartarAmplitude_measurable : Measurable Tartar.amplitude := by
   exact measurable_of_continuousOn_compl_singleton 0
     tartarAmplitude_continuousOn_compl_singleton
 
+/--
+@isnad1 id=measurab.0h0v.s2.2b091d6a59fa from=translated src=- shape=e3d48bcb vocab=5d96885e
+-/
 theorem tartarTestFunction_measurable : Measurable Tartar.testFunction := by
   exact tartarAmplitude_measurable.pow_const 2
 

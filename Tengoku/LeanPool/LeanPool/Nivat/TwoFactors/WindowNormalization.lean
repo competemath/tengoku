@@ -67,13 +67,17 @@ def normalAffineEquiv (ε : ℤ) (hε : ε = 1 ∨ ε = -1) (start edge : ℤ) :
   (normalSignEquiv ε hε).toEquiv.trans (Equiv.addRight (start, edge))
 
 /-- The normalization map translates the horizontal coordinate and translates the signed normal
-coordinate. Lemma 5.5 (`lem:boundary-window`). -/
+coordinate. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=eq.1h4v.s6.c0f289a18a92 from=translated src=- shape=357b121f vocab=b3d913a2
+-/
 @[simp] theorem normalAffineEquiv_apply (ε : ℤ) (hε : ε = 1 ∨ ε = -1)
     (start edge : ℤ) (z : Lattice) :
     normalAffineEquiv ε hε start edge z = (z.1 + start, ε * z.2 + edge) := rfl
 
 /-- The linear part of the affine normalization transports a translation vector by the chosen
-normal sign. Lemma 5.5 (`lem:boundary-window`). -/
+normal sign. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=eq.1h5v.s7.cb5d8f017dcd from=translated src=- shape=5da481f1 vocab=8aa569ce
+-/
 theorem normalAffineEquiv_add (ε : ℤ) (hε : ε = 1 ∨ ε = -1)
     (start edge : ℤ) (z u : Lattice) :
     normalAffineEquiv ε hε start edge (z + u) =
@@ -109,7 +113,9 @@ structure NormalizedWindow {A : Type*} (c : Configuration A) where
 
 /-- Translate the first edge site to the origin and orient the normal coordinate so that the
 interior lies above it, preserving the actual pattern inequality and row-block witnesses.
-Lemma 5.5 (`lem:boundary-window`). -/
+Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=nonempty.0h4v.s4.e74b92407320 from=translated src=- shape=4de95b04 vocab=00e5320b
+-/
 theorem ShapeWindow.normalize {A : Type*} {c : Configuration A} {D₀ : Finset Lattice}
     (w : ShapeWindow c D₀) : Nonempty (NormalizedWindow c) := by
   classical

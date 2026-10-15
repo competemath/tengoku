@@ -21,7 +21,9 @@ namespace OddPrimeValuationDistribution
 open Nat
 
 /-- Kummer's digit-sum formula specialized to central binomial
-coefficients. -/
+coefficients.
+@isnad1 id=eq.0h2v.s6.4ab49c7f083b from=translated src=- shape=8a0679cf vocab=32179416
+-/
 theorem sub_one_mul_padicValNat_centralBinom
     (p : ℕ) [Fact p.Prime] (n : ℕ) :
     (p - 1) * padicValNat p (Nat.centralBinom n) =

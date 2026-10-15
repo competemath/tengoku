@@ -51,6 +51,9 @@ def lossSum (next : ℕ → ℕ) (loss : ℕ → ℝ) : ℕ → ℕ → ℝ
   | 0, _n => 0
   | k + 1, n => loss n + lossSum next loss k (next n)
 
+/--
+@isnad1 id=le.1h4v.s5.49abe0f11119 from=translated src=- shape=0187c99d vocab=eed689b9
+-/
 theorem lossProduct_nonneg {next : ℕ → ℕ} {loss : ℕ → ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n) (k n : ℕ) :
     0 ≤ lossProduct next loss k n := by
@@ -61,7 +64,9 @@ theorem lossProduct_nonneg {next : ℕ → ℕ} {loss : ℕ → ℝ}
       exact mul_nonneg (add_nonneg zero_le_one (hloss n)) (ih (next n))
 
 /-- Iterating a normalized recurrence gives a finite product of the losses
-times the terminal normalized cost. -/
+times the terminal normalized cost.
+@isnad1 id=le.3h6v.s6.4da11136b664 from=translated src=- shape=d9b94ffc vocab=067d216f
+-/
 theorem cost_le_lossProduct
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 : ℕ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -96,7 +101,9 @@ theorem cost_le_lossProduct
               simp [lossProduct, iterate, mul_assoc]
 
 /-- Version of `cost_le_lossProduct` with the terminal cost bounded by a
-specified base constant. -/
+specified base constant.
+@isnad1 id=le.4h7v.s6.bafad7b4f9d3 from=translated src=- shape=2a4e9d59 vocab=067d216f
+-/
 theorem cost_le_lossProduct_mul_base
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 k n : ℕ} {B : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -111,7 +118,9 @@ theorem cost_le_lossProduct_mul_base
   exact hrec.trans (mul_le_mul_of_nonneg_left hbase hprod_nonneg)
 
 /-- A finite product of factors `1 + loss` is bounded by the exponential of
-the corresponding finite sum. -/
+the corresponding finite sum.
+@isnad1 id=le.1h4v.s5.e476af24b90c from=translated src=- shape=96d5e23d vocab=00deda46
+-/
 theorem lossProduct_le_exp_lossSum {next : ℕ → ℕ} {loss : ℕ → ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n) (k n : ℕ) :
     lossProduct next loss k n ≤ Real.exp (lossSum next loss k n) := by
@@ -137,7 +146,9 @@ theorem lossProduct_le_exp_lossSum {next : ℕ → ℕ} {loss : ℕ → ℝ}
         _ = Real.exp (lossSum next loss (k + 1) n) := by
               simp [lossSum]
 
-/-- Exponential version of the finite recurrence bound. -/
+/-- Exponential version of the finite recurrence bound.
+@isnad1 id=le.5h7v.s6.366bc70da7da from=translated src=- shape=936e169d vocab=647b0392
+-/
 theorem cost_le_exp_lossSum_mul_base
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 k n : ℕ} {B : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -155,7 +166,9 @@ theorem cost_le_exp_lossSum_mul_base
   exact hrec.trans (mul_le_mul_of_nonneg_right hprod hB)
 
 /-- If the accumulated additive loss is at most `L`, the normalized cost is
-bounded by `exp L` times the terminal base bound. -/
+bounded by `exp L` times the terminal base bound.
+@isnad1 id=le.6h8v.s7.b15c81534533 from=translated src=- shape=29affcd5 vocab=647b0392
+-/
 theorem cost_le_exp_lossBound_mul_base
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 k n : ℕ} {B L : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -174,7 +187,9 @@ theorem cost_le_exp_lossBound_mul_base
   exact hrec.trans (mul_le_mul_of_nonneg_right hexp hB)
 
 /-- A strictly decreasing dimension map always reaches the finite base range
-after finitely many recursive steps. -/
+after finitely many recursive steps.
+@isnad1 id=ex.1h3v.s5.ecf681aa5367 from=translated src=- shape=e02ee766 vocab=8c86b8db
+-/
 theorem exists_terminal_iterate_of_decreasing
     {next : ℕ → ℕ} {n0 : ℕ}
     (hnext : ∀ n : ℕ, n0 ≤ n → next n < n) (n : ℕ) :
@@ -191,6 +206,9 @@ theorem exists_terminal_iterate_of_decreasing
 def geomSum (q : ℝ) (k : ℕ) : ℝ :=
   ∑ i ∈ Finset.range k, q ^ i
 
+/--
+@isnad1 id=le.2h2v.s5.3923d502758c from=translated src=- shape=544aeac4 vocab=187b3da1
+-/
 theorem geomSum_le_two_of_le_half {q : ℝ}
     (hq_nonneg : 0 ≤ q) (hq_half : q ≤ (1 : ℝ) / 2) (k : ℕ) :
     geomSum q k ≤ 2 := by
@@ -205,7 +223,9 @@ theorem geomSum_le_two_of_le_half {q : ℝ}
 
 /-- If every active loss is at most `q` times the next active loss, and active
 losses are bounded by `M`, then the first loss in a path of length `k+1` is at
-most `q^k M`. -/
+most `q^k M`.
+@isnad1 id=le.4h7v.s6.30621e1addb0 from=translated src=- shape=b25650fb vocab=fc1e3f0a
+-/
 theorem first_loss_le_pow_mul_bound
     {next : ℕ → ℕ} {loss : ℕ → ℝ} {n0 : ℕ} {q M : ℝ}
     (hq_nonneg : 0 ≤ q)
@@ -235,7 +255,9 @@ theorem first_loss_le_pow_mul_bound
               rw [pow_succ]
               ring
 
-/-- Geometric domination of a finite loss sum along an active recursive path. -/
+/-- Geometric domination of a finite loss sum along an active recursive path.
+@isnad1 id=le.4h7v.s6.38a58dafa948 from=translated src=- shape=9c5eb7b4 vocab=d480d8fe
+-/
 theorem lossSum_le_geomSum_mul_bound
     {next : ℕ → ℕ} {loss : ℕ → ℝ} {n0 : ℕ} {q M : ℝ}
     (hq_nonneg : 0 ≤ q)
@@ -269,7 +291,9 @@ theorem lossSum_le_geomSum_mul_bound
               ring
 
 /-- Uniform normalized-cost bound when the loss sequence decays geometrically
-along recursive paths. -/
+along recursive paths.
+@isnad1 id=le.10h9v.s7.d01b3d1b756c from=translated src=- shape=c18dd6b2 vocab=8a28c935
+-/
 theorem cost_uniform_bound_of_geometric_loss
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 : ℕ} {B q M G : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -303,7 +327,9 @@ theorem cost_uniform_bound_of_geometric_loss
 /-- Convenient geometric-loss bound for ratio at most `1/2`, giving total
 loss at most `2M`.  The paper's recursion has a much smaller ratio (`1/16`)
 after increasing the base threshold, so this intentionally uses a relaxed
-constant. -/
+constant.
+@isnad1 id=le.10h8v.s8.939324fa24b8 from=translated src=- shape=abc9817e vocab=22a0aaf1
+-/
 theorem cost_uniform_bound_of_geometric_loss_le_two
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 : ℕ} {B q M : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -326,7 +352,9 @@ theorem cost_uniform_bound_of_geometric_loss_le_two
     (geomSum_le_two_of_le_half hq_nonneg hq_half) n
 
 /-- Uniform normalized-cost bound from an explicit terminal path and a bound
-on the loss accumulated along that path. -/
+on the loss accumulated along that path.
+@isnad1 id=le.5h7v.s7.3bd20b931101 from=translated src=- shape=578c0b4c vocab=979ff8a9
+-/
 theorem cost_uniform_bound_of_terminal_lossBound
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 : ℕ} {B L : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -348,7 +376,9 @@ theorem cost_uniform_bound_of_terminal_lossBound
     hloss hB hstep hactive (hbase _ hterm) hsum
 
 /-- Uniform normalized-cost bound for a decreasing dimension map, assuming a
-separate estimate on every terminal loss sum. -/
+separate estimate on every terminal loss sum.
+@isnad1 id=le.6h7v.s7.25dd2dd6ccfd from=translated src=- shape=deca5c3e vocab=979ff8a9
+-/
 theorem cost_uniform_bound_of_decreasing_lossBound
     {next : ℕ → ℕ} {loss R : ℕ → ℝ} {n0 : ℕ} {B L : ℝ}
     (hloss : ∀ n : ℕ, 0 ≤ loss n)
@@ -377,6 +407,9 @@ end LossRecurrence
 noncomputable def normalizedCost (costBound : ℕ → ℕ) (n : ℕ) : ℝ :=
   (costBound n : ℝ) / (((4 : ℝ) / 3) ^ n)
 
+/--
+@isnad1 id=le.0h2v.s4.4f03ca5d6abb from=translated src=- shape=7544a74c vocab=e3f136c1
+-/
 theorem normalizedCost_nonneg (costBound : ℕ → ℕ) (n : ℕ) :
     0 ≤ normalizedCost costBound n := by
   unfold normalizedCost
@@ -387,11 +420,17 @@ not optimized; it is just a convenient way to discharge finite base cases. -/
 noncomputable def finiteBaseNormalizedBound (costBound : ℕ → ℕ) (n0 : ℕ) : ℝ :=
   ∑ n ∈ Finset.range n0, normalizedCost costBound n
 
+/--
+@isnad1 id=le.0h2v.s4.09f7ed8e3bcd from=translated src=- shape=7544a74c vocab=446bf372
+-/
 theorem finiteBaseNormalizedBound_nonneg (costBound : ℕ → ℕ) (n0 : ℕ) :
     0 ≤ finiteBaseNormalizedBound costBound n0 := by
   unfold finiteBaseNormalizedBound
   exact Finset.sum_nonneg fun n _hn => normalizedCost_nonneg costBound n
 
+/--
+@isnad1 id=le.1h3v.s4.e7831585d01e from=translated src=- shape=7f3138d5 vocab=32c7db5d
+-/
 theorem normalizedCost_le_finiteBaseNormalizedBound_of_lt
     (costBound : ℕ → ℕ) {n0 n : ℕ} (hn : n < n0) :
     normalizedCost costBound n ≤ finiteBaseNormalizedBound costBound n0 := by
@@ -408,6 +447,9 @@ def HasRealHypercubePebblingUpperBound (C : ℝ) : Prop :=
     Pebbling.HasSolvableAtMostSize (graph n) 1 k ∧
       (k : ℝ) ≤ C * (((4 : ℝ) / 3) ^ n)
 
+/--
+@isnad1 id=le.1h3v.s6.4b2b64b570dc from=translated src=- shape=29232a62 vocab=900978c4
+-/
 theorem costBound_le_of_normalizedCost_le
     {costBound : ℕ → ℕ} {C : ℝ}
     (hnorm : ∀ n : ℕ, normalizedCost costBound n ≤ C) (n : ℕ) :
@@ -416,7 +458,9 @@ theorem costBound_le_of_normalizedCost_le
   exact (div_le_iff₀ hpow_pos).mp (by simpa [normalizedCost] using hnorm n)
 
 /-- Convert an integer-valued cost-bound construction plus a real normalized
-cost estimate into the real asymptotic upper-bound statement. -/
+cost estimate into the real asymptotic upper-bound statement.
+@isnad1 id=hasrealh.2h2v.s4.af1301d38084 from=translated src=- shape=55f04b30 vocab=6aa91463
+-/
 theorem hasRealHypercubePebblingUpperBound_of_normalizedCost
     {costBound : ℕ → ℕ} {C : ℝ}
     (hupper : HasHypercubePebblingUpperBound costBound)
@@ -428,7 +472,9 @@ theorem hasRealHypercubePebblingUpperBound_of_normalizedCost
 
 /-- Final abstract bridge from the geometric normalized-cost recurrence to the
 real asymptotic upper-bound statement.  After the numerical parameter choices
-prove the hypotheses here, this is the formal end of the upper-bound proof. -/
+prove the hypotheses here, this is the formal end of the upper-bound proof.
+@isnad1 id=hasrealh.11h7v.s7.6596020dc0d1 from=translated src=- shape=f22b3d12 vocab=f1e09ab1
+-/
 theorem hasRealHypercubePebblingUpperBound_of_geometric_normalizedCost_loss
     {costBound next : ℕ → ℕ} {loss : ℕ → ℝ} {n0 : ℕ}
     {B q M : ℝ}

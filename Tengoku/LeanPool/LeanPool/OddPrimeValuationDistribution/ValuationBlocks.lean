@@ -29,6 +29,9 @@ def oddCarryWordValue {half length : ℕ}
     (word : List.Vector (Fin (oddBase half)) length) : ℕ :=
   Nat.ofDigits (oddBase half) (oddCarryWordDigits word)
 
+/--
+@isnad1 id=lt.1h3v.s5.6c6e9771e121 from=translated src=- shape=65890cbe vocab=6e876598
+-/
 lemma oddCarryWordValue_lt {half length : ℕ} (hhalf : 0 < half)
     (word : List.Vector (Fin (oddBase half)) length) :
     oddCarryWordValue word < oddBase half ^ length := by
@@ -44,6 +47,9 @@ def oddCarryWordValueFin {half length : ℕ} (hhalf : 0 < half)
     Fin (oddBase half ^ length) :=
   ⟨oddCarryWordValue word, oddCarryWordValue_lt hhalf word⟩
 
+/--
+@isnad1 id=injectiv.1h2v.s5.2afd9840173c from=translated src=- shape=99c7698e vocab=b898682e
+-/
 lemma oddCarryWordValueFin_injective
     (half : ℕ) (hhalf : 0 < half) (length : ℕ) :
     Function.Injective
@@ -70,6 +76,9 @@ noncomputable def oddCarryWordValueEquiv
     (Fintype.bijective_iff_injective_and_card _).2
       ⟨oddCarryWordValueFin_injective half hhalf length, by simp⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.41354038b605 from=translated src=- shape=a2c86112 vocab=06caa03c
+-/
 lemma padicValNat_oddPrime_centralBinom_word_eq_carryCount
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime]
     {length : ℕ} (word : List.Vector (Fin (oddBase half)) length) :
@@ -87,7 +96,9 @@ noncomputable def oddPrimeValuationPolynomial
     X ^ padicValNat (oddBase half) (Nat.centralBinom n.val)
 
 /-- The odd-prime valuation distribution is exactly the doubling-carry
-distribution. -/
+distribution.
+@isnad1 id=eq.1h2v.s4.7b42d18358e7 from=translated src=- shape=22f9a9a5 vocab=d566ea6f
+-/
 theorem oddPrimeValuationPolynomial_eq_carryPolynomial
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime]
     (length : ℕ) :
@@ -110,7 +121,9 @@ abbrev OddPrimeBlockWithValuation (half length value : ℕ) :=
     padicValNat (oddBase half) (Nat.centralBinom n.val) = value}
 
 /-- Literal coefficient interpretation of the odd-prime valuation
-polynomial. -/
+polynomial.
+@isnad1 id=eq.0h3v.s7.622e9e3b451b from=translated src=- shape=b40e679b vocab=e23202c2
+-/
 theorem coeff_oddPrimeValuationPolynomial
     (half length value : ℕ) :
     (oddPrimeValuationPolynomial half length).coeff value =
@@ -124,7 +137,9 @@ theorem coeff_oddPrimeValuationPolynomial
   simp [eq_comm]
 
 /-- Headline exact-distribution recurrence for every odd prime
-`p = 2 * half + 1`. -/
+`p = 2 * half + 1`.
+@isnad1 id=eq.1h2v.s7.9b545571e840 from=translated src=- shape=54f65955 vocab=2344d315
+-/
 theorem oddPrimeValuationPolynomial_recurrence
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime]
     (length : ℕ) :

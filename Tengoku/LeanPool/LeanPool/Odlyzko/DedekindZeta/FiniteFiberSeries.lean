@@ -13,6 +13,9 @@ public import Tengoku
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.2h4v.s7.93ce50162000 from=translated src=- shape=ec12b8c7 vocab=dcc68ece
+-/
 theorem tsum_sigma_of_summable {β E : Type*} [AddCommMonoid E] [TopologicalSpace E]
     [ContinuousAdd E] [T3Space E]
     {γ : β → Type*} (w : (Σ b, γ b) → E)
@@ -21,6 +24,9 @@ theorem tsum_sigma_of_summable {β E : Type*} [AddCommMonoid E] [TopologicalSpac
     (∑' x, w x) = ∑' b, ∑' x, w ⟨b, x⟩ :=
   Summable.tsum_sigma' hfiber hw
 
+/--
+@isnad1 id=hassum.2h3v.s7.a5eeeadd08f9 from=translated src=- shape=8a1caa1c vocab=ae4f7403
+-/
 theorem hasSum_inversePower_eq_lSeries_fiberCard
     {α : Type*} (ν : α → ℕ) [∀ n, Finite {a : α // ν a = n}]
     (hν : ∀ a, ν a ≠ 0) {s : ℂ}
@@ -67,6 +73,9 @@ theorem hasSum_inversePower_eq_lSeries_fiberCard
           (Nat.card {a : α // ν a = n} : ℂ)) s := rfl
   exact heq ▸ hsigma.hasSum
 
+/--
+@isnad1 id=summable.2h3v.s6.687e91b23173 from=translated src=- shape=0de0be1a vocab=7dadf67a
+-/
 theorem summable_inversePower_of_lSeriesSummable_fiberCard
     {α : Type*} (ν : α → ℕ) [∀ n, Finite {a : α // ν a = n}]
     (hν : ∀ a, ν a ≠ 0) {s : ℂ}

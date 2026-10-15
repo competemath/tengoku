@@ -48,11 +48,15 @@ private theorem norm_pow_mul_lt_one {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖
 noncomputable def cauchyCoeff (a q : ℂ) (n : ℕ) : ℂ :=
   qPochhammer a q n / qPochhammer q q n
 
-/-- The zeroth Cauchy coefficient $c_0 = 1$. -/
+/-- The zeroth Cauchy coefficient $c_0 = 1$.
+@isnad1 id=eq.0h2v.s4.fa9eadb60b94 from=translated src=- shape=4f096759 vocab=04d7ab9d
+-/
 @[simp] theorem cauchyCoeff_zero (a q : ℂ) : cauchyCoeff a q 0 = 1 := by
   simp [cauchyCoeff]
 
-/-- **Coefficient recurrence.** $c_{n+1}(1 - q^{n+1}) = c_n(1 - aq^n)$. -/
+/-- **Coefficient recurrence.** $c_{n+1}(1 - q^{n+1}) = c_n(1 - aq^n)$.
+@isnad1 id=eq.1h3v.s7.f7f8af922698 from=translated src=- shape=cce327a5 vocab=88078624
+-/
 theorem cauchyCoeff_succ_mul {q : ℂ} (hq : ‖q‖ < 1) (a : ℂ) (n : ℕ) :
     cauchyCoeff a q (n + 1) * (1 - q ^ (n + 1))
       = cauchyCoeff a q n * (1 - a * q ^ n) := by
@@ -68,7 +72,9 @@ theorem cauchyCoeff_succ_mul {q : ℂ} (hq : ‖q‖ < 1) (a : ℂ) (n : ℕ) :
 
 /-- **Boundedness of the coefficients.**
 
-The quotients `(a;q)_n / (q;q)_n` converge, hence form a bounded sequence. -/
+The quotients `(a;q)_n / (q;q)_n` converge, hence form a bounded sequence.
+@isnad1 id=ex.1h2v.s5.29c3a1ba021a from=translated src=- shape=d2233a03 vocab=126b1af2
+-/
 theorem exists_norm_cauchyCoeff_le {q : ℂ} (hq : ‖q‖ < 1) (a : ℂ) :
     ∃ C, ∀ n, ‖cauchyCoeff a q n‖ ≤ C := by
   have h : Tendsto (fun n => ‖cauchyCoeff a q n‖) atTop
@@ -78,7 +84,9 @@ theorem exists_norm_cauchyCoeff_le {q : ℂ} (hq : ‖q‖ < 1) (a : ℂ) :
   obtain ⟨C, hC⟩ := h.bddAbove_range
   exact ⟨C, fun n => hC ⟨n, rfl⟩⟩
 
-/-- The series $\sum_n c_n z^n$ is summable for $\|z\| < 1$. -/
+/-- The series $\sum_n c_n z^n$ is summable for $\|z\| < 1$.
+@isnad1 id=summable.2h3v.s6.e9ead2896f36 from=translated src=- shape=15b2fba9 vocab=4830f089
+-/
 theorem summable_cauchyCoeff_mul_pow {a q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     Summable (fun n : ℕ => cauchyCoeff a q n * z ^ n) := by
   obtain ⟨C, hC⟩ := exists_norm_cauchyCoeff_le hq a
@@ -89,7 +97,9 @@ theorem summable_cauchyCoeff_mul_pow {a q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z
   exact mul_le_mul (hC n) le_rfl (pow_nonneg (norm_nonneg z) n) hCnn
 
 /-- **Functional equation for $G$.**
-$(1-z)\, G(z) = (1 - az)\, G(qz)$. -/
+$(1-z)\, G(z) = (1 - az)\, G(qz)$.
+@isnad1 id=eq.2h3v.s7.2b3ba4d65c86 from=translated src=- shape=60c5dfc2 vocab=0d5224a7
+-/
 theorem one_sub_mul_qPochhammerInf_div_eq (a z : ℂ) {q : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     (1 - z) * (qPochhammerInf (a * z) q / qPochhammerInf z q)
       = (1 - a * z) *
@@ -151,7 +161,9 @@ private theorem hasSum_one_sub_mul_tsum_cauchyCoeff_mul_pow {a q z : ℂ} (hq : 
       (by simp) hd
 
 /-- **Functional equation for $F$.**
-$(1-z)\, F(z) = (1 - az)\, F(qz)$. -/
+$(1-z)\, F(z) = (1 - az)\, F(qz)$.
+@isnad1 id=eq.2h3v.s7.3cd7c002ce88 from=translated src=- shape=58f3f5b1 vocab=50cd498f
+-/
 theorem one_sub_mul_tsum_cauchyCoeff_eq {a q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     (1 - z) * ∑' n, cauchyCoeff a q n * z ^ n
       = (1 - a * z) * ∑' n, cauchyCoeff a q n * (q * z) ^ n := by
@@ -171,7 +183,9 @@ theorem one_sub_mul_tsum_cauchyCoeff_eq {a q z : ℂ} (hq : ‖q‖ < 1) (hz : �
   rw [hfunc] at hL
   exact hL.unique (hasSum_one_sub_mul_tsum_cauchyCoeff_mul_pow hq hz)
 
-/-- **Iterated functional equation.** -/
+/-- **Iterated functional equation.**
+@isnad1 id=eq.3h5v.s7.feff29e0b760 from=translated src=- shape=c7b7a79c vocab=35c1fdee
+-/
 theorem mul_qPochhammer_eq_of_functional_eq {H : ℂ → ℂ} {a q : ℂ} (hq : ‖q‖ < 1)
     (hH : ∀ w, ‖w‖ < 1 → (1 - w) * H w = (1 - a * w) * H (q * w))
     {z : ℂ} (hz : ‖z‖ < 1) :
@@ -186,7 +200,9 @@ theorem mul_qPochhammer_eq_of_functional_eq {H : ℂ → ℂ} {a q : ℂ} (hq : 
       rw [qPochhammer_succ z q n, qPochhammer_succ (a * z) q n]
       linear_combination (1 - q ^ n * z) * ih + qPochhammer (a * z) q n * key
 
-/-- **$F(q^n z) \to 1$ as $n \to \infty$**, by Tannery's theorem. -/
+/-- **$F(q^n z) \to 1$ as $n \to \infty$**, by Tannery's theorem.
+@isnad1 id=tendsto.2h3v.s7.7c491a8e98b7 from=translated src=- shape=5118a5ba vocab=c5906496
+-/
 theorem tendsto_tsum_cauchyCoeff_mul_pow {a q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     Tendsto (fun n : ℕ => ∑' k, cauchyCoeff a q k * (q ^ n * z) ^ k)
       atTop (𝓝 1) := by
@@ -225,7 +241,9 @@ theorem tendsto_tsum_cauchyCoeff_mul_pow {a q z : ℂ} (hq : ‖q‖ < 1) (hz : 
 /-- **Infinite q-binomial / Cauchy identity.**
 
 For $\|q\| < 1$ and $\|z\| < 1$,
-$$\sum_{n=0}^{\infty} \frac{(a;q)_n}{(q;q)_n} z^n = \frac{(az;q)_\infty}{(z;q)_\infty}.$$ -/
+$$\sum_{n=0}^{\infty} \frac{(a;q)_n}{(q;q)_n} z^n = \frac{(az;q)_\infty}{(z;q)_\infty}.$$
+@isnad1 id=hassum.2h3v.s6.99d00a2d1b04 from=translated src=- shape=5e1de749 vocab=63fc3d53
+-/
 theorem hasSum_qPochhammer_div_mul_pow (a z q : ℂ) (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     HasSum (fun n : ℕ => qPochhammer a q n / qPochhammer q q n * z ^ n)
       (qPochhammerInf (a * z) q / qPochhammerInf z q) := by

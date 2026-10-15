@@ -82,6 +82,9 @@ noncomputable abbrev odlyzkoExpPolynomial (x : ℝ) : ℝ :=
 noncomputable abbrev odlyzkoExpAntiderivative : ℝ → ℝ :=
   -((Real.exp ∘ Neg.neg) * odlyzkoExpPolynomial)
 
+/--
+@isnad1 id=eq.0h1v.s7.de7bc69bfb6a from=translated src=- shape=f2a1c813 vocab=4c47be75
+-/
 theorem deficit_polynomial_expansion (x : ℝ) :
     odlyzkoDeficitPolynomial x =
       deficitC2 * x ^ 2 + deficitC4 * x ^ 4 + deficitC6 * x ^ 6 +
@@ -90,6 +93,9 @@ theorem deficit_polynomial_expansion (x : ℝ) :
     deficitC6, deficitC8, deficitC10, deficitC12]
   ring
 
+/--
+@isnad1 id=le.2h1v.s5.d3771870cdbf from=translated src=- shape=e20b5f70 vocab=3efb669e
+-/
 theorem tartarAmplitudeLowerSix_odlyzkoScale_nonneg {x : ℝ}
     (hx0 : 0 ≤ x) (hx4 : x ≤ 4) :
     0 ≤ tartarAmplitudeLowerSix (odlyzkoScale * x) := by
@@ -115,6 +121,9 @@ theorem tartarAmplitudeLowerSix_odlyzkoScale_nonneg {x : ℝ}
     have hzfour : 100 ≤ z ^ 4 := by nlinarith [sq_nonneg (z ^ 2 - 10)]
     nlinarith
 
+/--
+@isnad1 id=le.2h1v.s5.6cf24325df8c from=translated src=- shape=5a113224 vocab=358cb460
+-/
 theorem one_sub_tartarTestFunction_le_odlyzkoDeficitPolynomial {x : ℝ}
     (hx0 : 0 ≤ x) (hx4 : x ≤ 4) :
     1 - Tartar.testFunction (odlyzkoScale * x) ≤ odlyzkoDeficitPolynomial x := by
@@ -132,6 +141,9 @@ theorem one_sub_tartarTestFunction_le_odlyzkoDeficitPolynomial {x : ℝ}
   simpa only [odlyzkoDeficitPolynomial, Tartar.testFunction] using
     (sub_le_sub_left hsquares 1)
 
+/--
+@isnad1 id=le.2h1v.s5.a8a742a75950 from=translated src=- shape=05b24c01 vocab=db416cf9
+-/
 theorem odlyzkoDeficitPolynomial_nonneg {x : ℝ} (hx0 : 0 ≤ x) (hx4 : x ≤ 4) :
     0 ≤ odlyzkoDeficitPolynomial x := by
   have hq0 := tartarAmplitudeLowerSix_odlyzkoScale_nonneg hx0 hx4
@@ -146,6 +158,9 @@ theorem odlyzkoDeficitPolynomial_nonneg {x : ℝ} (hx0 : 0 ≤ x) (hx4 : x ≤ 4
   simp only [odlyzkoDeficitPolynomial]
   nlinarith
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.17705eb2e1a3 from=translated src=- shape=93ab0555 vocab=fdc7a734
+-/
 theorem hasDerivAt_odlyzkoExpAntiderivative (x : ℝ) :
     HasDerivAt odlyzkoExpAntiderivative
       (odlyzkoDeficitPolynomial x * Real.exp (-x)) x := by
@@ -161,6 +176,9 @@ theorem hasDerivAt_odlyzkoExpAntiderivative (x : ℝ) :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.7af191347a71 from=translated src=- shape=37a8636d vocab=7896a8ae
+-/
 theorem integral_odlyzkoDeficitPolynomial_mul_exp (a b : ℝ) :
     ∫ x in a..b, odlyzkoDeficitPolynomial x * Real.exp (-x) =
       odlyzkoExpAntiderivative b - odlyzkoExpAntiderivative a := by
@@ -177,6 +195,9 @@ private theorem exp_neg_nat (n : ℕ) :
   rw [← Real.exp_nat_mul]
   norm_num
 
+/--
+@isnad1 id=lt.0h0v.s6.287e23e1d0ad from=translated src=- shape=d5285498 vocab=faf4246d
+-/
 theorem integral_odlyzkoDeficitPolynomial_mul_exp_one_two_lt :
     ∫ x in (1 : ℝ)..2, odlyzkoDeficitPolynomial x * Real.exp (-x) < 29 / 500 := by
   rw [integral_odlyzkoDeficitPolynomial_mul_exp]
@@ -189,6 +210,9 @@ theorem integral_odlyzkoDeficitPolynomial_mul_exp_one_two_lt :
   rw [show (-2 : ℝ) = -(2 : ℕ) by norm_num, exp_neg_nat]
   nlinarith [sq_nonneg (Real.exp (-1) - 36787944116 / 10 ^ 11)]
 
+/--
+@isnad1 id=lt.0h0v.s6.d63271d5d7f5 from=translated src=- shape=d5285498 vocab=faf4246d
+-/
 theorem integral_odlyzkoDeficitPolynomial_mul_exp_two_four_lt :
     ∫ x in (2 : ℝ)..4, odlyzkoDeficitPolynomial x * Real.exp (-x) < 3 / 40 := by
   rw [integral_odlyzkoDeficitPolynomial_mul_exp]
@@ -212,12 +236,18 @@ noncomputable def odlyzkoDeficitQuotient (x : ℝ) : ℝ :=
   deficitC2 * x + deficitC4 * x ^ 3 + deficitC6 * x ^ 5 +
     deficitC8 * x ^ 7 + deficitC10 * x ^ 9 + deficitC12 * x ^ 11
 
+/--
+@isnad1 id=eq.0h1v.s4.fac3fdeef42c from=translated src=- shape=a0ca9807 vocab=a772a296
+-/
 theorem odlyzkoDeficitPolynomial_div (x : ℝ) :
     odlyzkoDeficitPolynomial x / x = odlyzkoDeficitQuotient x := by
   rw [deficit_polynomial_expansion]
   simp only [odlyzkoDeficitQuotient]
   grind
 
+/--
+@isnad1 id=eq.0h0v.s6.7c30f444462d from=translated src=- shape=8f0804ec vocab=a2517a8f
+-/
 theorem integral_odlyzkoDeficitPolynomial_div_id_zero_one :
     ∫ x in (0 : ℝ)..1, odlyzkoDeficitPolynomial x / x =
       43765751791833997513324237919 / 669768750000000000000000000000 := by
@@ -270,6 +300,9 @@ private theorem integrableOn_scaled_deficit_exp_Ioc (c a b : ℝ) :
   exact (hc.continuousOn.integrableOn_Icc.mono_set fun _ hx ↦
     ⟨hx.1.le, hx.2⟩)
 
+/--
+@isnad1 id=le.0h0v.s6.eda0324b7f51 from=translated src=- shape=bed5f0b8 vocab=ead706f1
+-/
 theorem integral_archimedean_odlyzkoScale_Ioc_zero_one_le :
     (∫ x in Set.Ioc (0 : ℝ) 1, archimedeanIntegrand odlyzkoScale x) ≤
       43765751791833997513324237919 / 669768750000000000000000000000 := by
@@ -344,6 +377,9 @@ private theorem integral_archimedean_Ioc_le_mul (c lo hi : ℝ)
     _ = c * ∫ x in lo..hi, odlyzkoDeficitPolynomial x * Real.exp (-x) := by
           rw [intervalIntegral.integral_of_le hle, integral_const_mul]
 
+/--
+@isnad1 id=le.0h0v.s6.54ba30562ad6 from=translated src=- shape=bed5f0b8 vocab=ead706f1
+-/
 theorem integral_archimedean_odlyzkoScale_Ioc_zero_four_le :
     (∫ x in Set.Ioc (0 : ℝ) 4, archimedeanIntegrand odlyzkoScale x) ≤ 9 / 25 := by
   have h01 := integral_archimedean_odlyzkoScale_Ioc_zero_one_le
@@ -384,6 +420,9 @@ end
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h1v.s6.42c5e55fc8db from=translated src=- shape=a9aba2b1 vocab=ffab06c9
+-/
 theorem abs_archimedeanIntegrand_odlyzkoScale_le_exp {x : ℝ} (hx : 4 ≤ x) :
     |archimedeanIntegrand odlyzkoScale x| ≤
       37 * ((8 / 3 : ℝ) * Real.exp (-x)) := by
@@ -406,6 +445,9 @@ theorem abs_archimedeanIntegrand_odlyzkoScale_le_exp {x : ℝ} (hx : 4 ≤ x) :
       gcongr
       exact one_div_sinh_le_exp_tail (by linarith)
 
+/--
+@isnad1 id=integrab.0h0v.s5.0d9895e655f3 from=translated src=- shape=3f29bb9d vocab=a07c274d
+-/
 theorem integrableOn_archimedeanIntegrand_odlyzkoScale_Ioi_four :
     MeasureTheory.IntegrableOn (archimedeanIntegrand odlyzkoScale) (Set.Ioi 4) := by
   have hmajor :
@@ -419,11 +461,17 @@ theorem integrableOn_archimedeanIntegrand_odlyzkoScale_Ioi_four :
   · filter_upwards [MeasureTheory.ae_restrict_mem measurableSet_Ioi] with x hx
     exact abs_archimedeanIntegrand_odlyzkoScale_le_exp hx.le
 
+/--
+@isnad1 id=lt.0h0v.s6.342b028762a2 from=translated src=- shape=f9cff70c vocab=efc44165
+-/
 theorem NumericalCertificate.odlyzkoScale_tail_lt :
     (∫ x in Set.Ioi (4 : ℝ), archimedeanIntegrand odlyzkoScale x) < 1 / 25 :=
   NumericalCertificate.integral_archimedeanIntegrand_Ioi_four_lt
     integrableOn_archimedeanIntegrand_odlyzkoScale_Ioi_four
 
+/--
+@isnad1 id=le.2h0v.s7.5b82a28de8cd from=translated src=- shape=1949a273 vocab=7b2acae7
+-/
 theorem NumericalCertificate.archimedeanIntegral_le_of_compact_bound
     (hcompactInt :
       MeasureTheory.IntegrableOn (archimedeanIntegrand odlyzkoScale) (Set.Ioc 0 4))
@@ -437,6 +485,9 @@ theorem NumericalCertificate.archimedeanIntegral_le_of_compact_bound
       integrableOn_archimedeanIntegrand_odlyzkoScale_Ioi_four]
   linarith [NumericalCertificate.odlyzkoScale_tail_lt]
 
+/--
+@isnad1 id=le.0h0v.s4.a1ab2944ee63 from=translated src=- shape=c29dca45 vocab=f14acd09
+-/
 theorem NumericalCertificate.archimedeanIntegral_le :
     archimedeanIntegral odlyzkoScale ≤ 2 / 5 :=
   NumericalCertificate.archimedeanIntegral_le_of_compact_bound

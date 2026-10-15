@@ -25,10 +25,16 @@ open Filter Set Topology
 def parameterInclusion : ℝ →L[ℝ] ℝ × ℝ :=
   ContinuousLinearMap.inl ℝ ℝ ℝ
 
+/--
+@isnad1 id=eq.0h1v.s7.a410ade76d13 from=translated src=- shape=e2cf4722 vocab=980f7ed6
+-/
 @[simp]
 theorem parameterInclusion_apply (value : ℝ) :
     parameterInclusion value = (value, 0) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.f6dcb4330bc0 from=translated src=- shape=c5886e2c vocab=a55c5f9c
+-/
 @[simp]
 theorem norm_parameterInclusion : ‖parameterInclusion‖ = 1 := by
   exact ContinuousLinearMap.norm_inl ℝ ℝ ℝ
@@ -40,7 +46,9 @@ noncomputable def jointBallFiberSeries
   (jointSeries.changeOrigin (0, time - centerTime)).compContinuousLinearMap
     parameterInclusion
 
-/-- A joint analytic ball gives all nearby time fibers a common parameter radius. -/
+/-- A joint analytic ball gives all nearby time fibers a common parameter radius.
+@isnad1 id=hasfpowe.4h8v.s7.6f3d17a58fbc from=translated src=- shape=a667fdde vocab=9d0e2cf3
+-/
 theorem hasFPowerSeriesOnBall_fiber_of_joint_ball
     {function : ℝ × ℝ → ℝ} {jointSeries : FormalMultilinearSeries ℝ (ℝ × ℝ) ℝ}
     {centerParameter centerTime time : ℝ}

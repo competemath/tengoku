@@ -27,15 +27,23 @@ namespace LeanPool.PoincareThreeBody
 noncomputable def energyLeafAction (energy firstAction : ℝ) : ActionSpace :=
   ![firstAction, -1 / (2 * firstAction ^ 2) - energy]
 
+/--
+@isnad1 id=eq.0h2v.s4.ee75e0c67e31 from=translated src=- shape=6ccc22ed vocab=d472e0d0
+-/
 @[simp] theorem energyLeafAction_zero (energy firstAction : ℝ) :
     energyLeafAction energy firstAction 0 = firstAction :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.5363cb2919c6 from=translated src=- shape=7f381623 vocab=0e21b9bc
+-/
 @[simp] theorem energyLeafAction_one (energy firstAction : ℝ) :
     energyLeafAction energy firstAction 1 = -1 / (2 * firstAction ^ 2) - energy :=
   rfl
 
-/-- The straightened leaf really has the prescribed Delaunay energy. -/
+/-- The straightened leaf really has the prescribed Delaunay energy.
+@isnad1 id=eq.1h2v.s4.d003490c169c from=translated src=- shape=a04d5f1f vocab=25493316
+-/
 theorem delaunayHamiltonian_energyLeafAction
     {energy firstAction : ℝ} (_hfirstAction : firstAction ≠ 0) :
     delaunayHamiltonian (energyLeafAction energy firstAction) = energy := by
@@ -43,7 +51,9 @@ theorem delaunayHamiltonian_energyLeafAction
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
   ring
 
-/-- Tangent vector to a straightened Kepler energy leaf. -/
+/-- Tangent vector to a straightened Kepler energy leaf.
+@isnad1 id=hasderiv.1h2v.s7.dc6903f35b15 from=translated src=- shape=facb3ca9 vocab=119aff28
+-/
 theorem hasDerivAt_energyLeafAction
     (energy : ℝ) {firstAction : ℝ} (hfirstAction : firstAction ≠ 0) :
     HasDerivAt (energyLeafAction energy)
@@ -56,7 +66,9 @@ theorem hasDerivAt_energyLeafAction
       hasDerivAt_delaunayHamiltonian_firstAction hfirstAction energy
 
 /-- The wedge obstruction is precisely vanishing of the candidate differential along a
-fixed-energy tangent. -/
+fixed-energy tangent.
+@isnad1 id=eq.1h2v.s6.532ab1fc2bab from=translated src=- shape=914ea948 vocab=5320d534
+-/
 theorem dot_energyLeafTangent_eq_zero_of_wedge_frequency_eq_zero
     {firstAction : ℝ} {differential : ActionSpace}
     (hwedge : wedge (delaunayFrequency firstAction) differential = 0) :
@@ -68,7 +80,9 @@ theorem dot_energyLeafTangent_eq_zero_of_wedge_frequency_eq_zero
   linarith
 
 /-- Under density of the classical Poincaré set, the leading coefficient has zero derivative in
-the `L` direction while its Kepler energy is held fixed. -/
+the `L` direction while its Kepler energy is held fixed.
+@isnad1 id=hasderiv.5h4v.s7.2657c1c36820 from=translated src=- shape=39a5a897 vocab=df950464
+-/
 theorem IsFirstIntegralFamily.hasDerivAt_leadingActionCoefficient_energyLeaf_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -98,7 +112,9 @@ theorem IsFirstIntegralFamily.hasDerivAt_leadingActionCoefficient_energyLeaf_zer
     hδ hanalytic hfirstIntegral haction hapoapsis
 
 /-- The leading coefficient is constant between two actions on the same Kepler energy leaf,
-provided the whole intervening leaf segment stays in the interior collision-free elliptic chart. -/
+provided the whole intervening leaf segment stays in the interior collision-free elliptic chart.
+@isnad1 id=eq.5h5v.s7.02a7992065f3 from=translated src=- shape=34d47f31 vocab=75926eb8
+-/
 theorem IsFirstIntegralFamily.leadingActionCoefficient_eq_of_same_energyLeaf
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -148,7 +164,9 @@ theorem IsFirstIntegralFamily.leadingActionCoefficient_eq_of_same_energyLeaf
   exact hequal.symm
 
 /-- The explicit inverse relation between the original action coordinates and the straightened
-`(L,E)` coordinates. -/
+`(L,E)` coordinates.
+@isnad1 id=eq.0h1v.s4.0ec8a47f7de5 from=translated src=- shape=5cbc5c36 vocab=bb46a04d
+-/
 theorem energyLeafAction_delaunayHamiltonian (action : ActionSpace) :
     energyLeafAction (delaunayHamiltonian action) (action 0) = action := by
   funext coordinate
@@ -162,7 +180,9 @@ noncomputable def leadingEnergyCoefficient
     (F : ℝ → PhaseSpace → ℝ) (referenceFirstAction energy : ℝ) : ℝ :=
   leadingActionCoefficient F (energyLeafAction energy referenceFirstAction)
 
-/-- The explicit fixed-`L` energy section is analytic. -/
+/-- The explicit fixed-`L` energy section is analytic.
+@isnad1 id=analytic.0h2v.s6.ebdc2babd5c2 from=translated src=- shape=9eef3714 vocab=249f6023
+-/
 theorem analyticAt_energyLeafAction
     (referenceFirstAction energy : ℝ) :
     AnalyticAt ℝ (fun candidateEnergy ↦
@@ -174,7 +194,9 @@ theorem analyticAt_energyLeafAction
   · exact analyticAt_const.sub analyticAt_id
 
 /-- The energy representative is analytic wherever its reference section remains in the
-interior elliptic chart. -/
+interior elliptic chart.
+@isnad1 id=analytic.4h4v.s6.e41bdbcf25ef from=translated src=- shape=7a8cc5d8 vocab=89c51072
+-/
 theorem IsJointlyAnalytic.analyticAt_leadingEnergyCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -195,7 +217,9 @@ theorem IsJointlyAnalytic.analyticAt_leadingEnergyCoefficient
 
 /-- On any connected energy-leaf segment inside the chart, the leading action coefficient is
 the analytic one-variable energy representative based at the other endpoint.  This is the local
-functional-dependence statement used in Poincaré's coefficient normalization. -/
+functional-dependence statement used in Poincaré's coefficient normalization.
+@isnad1 id=eq.5h4v.s7.19a0595ab312 from=translated src=- shape=3b9cbf11 vocab=2ae4f25f
+-/
 theorem IsFirstIntegralFamily.leadingActionCoefficient_eq_leadingEnergyCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

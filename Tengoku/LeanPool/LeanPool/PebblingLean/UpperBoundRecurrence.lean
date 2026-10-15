@@ -31,7 +31,9 @@ def HasHypercubePebblingUpperBound (costBound : ℕ → ℕ) : Prop :=
   ∀ n : ℕ, Pebbling.HasSolvableAtMostSize (graph n) 1 (costBound n)
 
 /-- Forget the strengthened high-demand invariant and retain only the ordinary
-one-pebble solvability upper bound. -/
+one-pebble solvability upper bound.
+@isnad1 id=hashyper.1h2v.s4.b2440f359e6d from=translated src=- shape=c9f75e6f vocab=38ef49d5
+-/
 theorem hasHypercubePebblingUpperBound_of_highDemandDistribution
     {costBound minPile : ℕ → ℕ}
     (h : ∀ n : ℕ, HasHighDemandDistribution n 1 (costBound n) (minPile n)) :
@@ -41,7 +43,9 @@ theorem hasHypercubePebblingUpperBound_of_highDemandDistribution
 
 /-- Abstract strong-induction wrapper for recursive high-demand constructions.
 The actual upper bound will instantiate `costBound` and `minPile` with the
-chosen recursive dimension split and parameter estimates. -/
+chosen recursive dimension split and parameter estimates.
+@isnad1 id=hashighd.2h4v.s6.60b898b98183 from=translated src=- shape=ba8b4c55 vocab=f2001771
+-/
 theorem highDemandDistribution_of_recursive_step
     {costBound minPile : ℕ → ℕ} {n0 : ℕ}
     (hbase :
@@ -62,7 +66,9 @@ theorem highDemandDistribution_of_recursive_step
 
 /-- Base-case helper: the trivial distribution with one pebble on every vertex
 solves demand `1`, and can be weakened to any larger cost bound and any
-minimum-pile lower bound at most `1`. -/
+minimum-pile lower bound at most `1`.
+@isnad1 id=hashighd.2h3v.s5.2b7039497eba from=translated src=- shape=a07de82c vocab=01865de0
+-/
 theorem hasHighDemandDistribution_constant_base
     {n costBound minPile : ℕ}
     (hcost : 2 ^ n ≤ costBound)
@@ -72,7 +78,9 @@ theorem hasHighDemandDistribution_constant_base
 
 /-- Base-case helper with large occupied piles: putting `S` pebbles on every
 vertex gives ordinary solvability when `S ≥ 1`, while retaining any requested
-minimum-pile lower bound at most `S`. -/
+minimum-pile lower bound at most `S`.
+@isnad1 id=hashighd.3h4v.s6.2608c64d8243 from=translated src=- shape=a5833466 vocab=da3bbaef
+-/
 theorem hasHighDemandDistribution_constant_base_with_minPile
     {n S costBound minPile : ℕ}
     (hS : 1 ≤ S)
@@ -89,7 +97,9 @@ The probabilistic construction supplies a `Tbase`-solvable distribution on
 `Q_m` of size at most `N * 2^rOut`, with occupied piles of size at least
 `2^rOut`.  If `Q_a` can solve demand `N * 2^rOut` at cost `2^rOut * K`, then
 the product step gives a solvable distribution on `Q_(a+m)` of cost
-`(N * 2^rOut) * K`. -/
+`(N * 2^rOut) * K`.
+@isnad1 id=hassolva.5h8v.s8.4f0cf03ecea5 from=translated src=- shape=2b4a4de3 vocab=f2f7d078
+-/
 theorem hasSolvableAtMostSize_split_product_of_optimized_chord
     {a m N rIn rOut Tbase K : ℕ} {gap : ℝ}
     (hTbase : 1 ≤ Tbase)
@@ -124,7 +134,9 @@ An existing high-demand construction on `Q_m` supplies the demands.  The
 optimized-chord construction on `Q_a` solves the largest possible demand
 `costBound`, with fiber cost bounded by `S * K`; occupied-pile compression then
 gives a high-demand distribution on `Q_(a+m)` with cost `costBound * K` and new
-minimum pile size `2^rOut`. -/
+minimum pile size `2^rOut`.
+@isnad1 id=hashighd.6h10v.s8.be229ac4fe92 from=translated src=- shape=f80bb500 vocab=70892c05
+-/
 theorem hasHighDemandDistribution_split_product_of_optimized_chord_fiber
     {a m Tbase costBound S K N rIn rOut : ℕ} {gap : ℝ}
     (hTbase : 1 ≤ Tbase)
@@ -154,7 +166,9 @@ theorem hasHighDemandDistribution_split_product_of_optimized_chord_fiber
     hTbase hbase hfiber
 
 /-- Same recursive high-demand step, with the new pile-size invariant weakened
-to any specified lower bound below `2^rOut`. -/
+to any specified lower bound below `2^rOut`.
+@isnad1 id=hashighd.7h11v.s8.a2419476cd13 from=translated src=- shape=92c210cf vocab=70892c05
+-/
 theorem hasHighDemandDistribution_split_product_of_optimized_chord_fiber_min
     {a m Tbase costBound S K N rIn rOut minNext : ℕ} {gap : ℝ}
     (hTbase : 1 ≤ Tbase)
@@ -183,7 +197,9 @@ For every occupied pile size `t ≥ S` in the recursive `Q_m` distribution, the
 optimized-chord construction supplies a `t`-solvable fiber in `Q_a` of cost
 `t*K`.  This is the recurrence used in the paper: costs add as
 `∑_z E z * K = |E|*K`, rather than paying for a worst-case demand in every
-occupied fiber. -/
+occupied fiber.
+@isnad1 id=hashighd.7h11v.s8.507c9f893a2a from=translated src=- shape=fd556a74 vocab=70892c05
+-/
 theorem hasHighDemandDistribution_split_product_of_optimized_chord_fiber_variable_min
     {a m Tbase costBound S K rIn rOut minNext : ℕ}
     {N : ℕ → ℕ} {gap : ℕ → ℝ}
@@ -227,7 +243,9 @@ base high-demand distribution on `Q_{splitM n}`; the optimized-chord annulus
 construction supplies the fiber distribution on `Q_{splitA n}` for demand
 `costBound (splitM n)`.  The hypotheses here are exactly the numerical
 conditions that remain after all graph-theoretic, probabilistic, and product
-bookkeeping has been formalized. -/
+bookkeeping has been formalized.
+@isnad1 id=hashighd.9h11v.s8.6592ad8957f2 from=translated src=- shape=5d7cfe63 vocab=70892c05
+-/
 theorem highDemandDistribution_of_recursive_split_schedule
     {costBound minPile splitA splitM K N rIn rOut : ℕ → ℕ}
     {gap : ℕ → ℝ} {n0 : ℕ}
@@ -287,7 +305,9 @@ theorem highDemandDistribution_of_recursive_split_schedule
 The fixed-demand schedule above asks the `Q_a` fiber construction to solve the
 maximum possible pile size in every occupied fiber.  The paper instead applies
 the high-demand lemma separately to each occupied pile size `t`; this theorem
-packages that sharper recurrence. -/
+packages that sharper recurrence.
+@isnad1 id=hashighd.9h11v.s9.67c5b91b385e from=translated src=- shape=945335a4 vocab=70892c05
+-/
 theorem highDemandDistribution_of_recursive_split_schedule_variable
     {costBound minPile splitA splitM K rIn rOut : ℕ → ℕ}
     {N : ℕ → ℕ → ℕ} {gap : ℕ → ℕ → ℝ} {n0 : ℕ}
@@ -349,7 +369,9 @@ theorem highDemandDistribution_of_recursive_split_schedule_variable
   exact hrec_n.mono_cost (hcost n hn)
 
 /-- Same recursive split schedule, with the finite base range discharged by
-the constant one-pebble-per-vertex distribution. -/
+the constant one-pebble-per-vertex distribution.
+@isnad1 id=hashighd.10h11v.s8.391f392316e3 from=translated src=- shape=a3a07992 vocab=70892c05
+-/
 theorem highDemandDistribution_of_recursive_split_schedule_constant_base
     {costBound minPile splitA splitM K N rIn rOut : ℕ → ℕ}
     {gap : ℕ → ℝ} {n0 : ℕ}
@@ -394,7 +416,9 @@ theorem highDemandDistribution_of_recursive_split_schedule_constant_base
 /-- Same recursive split schedule, with finite base cases discharged by the
 constant distribution having exactly the requested minimum pile size on every
 vertex.  This is the base-case form used by the paper recursion, where the
-large-pile invariant is maintained even below the cutoff dimension. -/
+large-pile invariant is maintained even below the cutoff dimension.
+@isnad1 id=hashighd.10h11v.s9.56ddb2ac1a70 from=translated src=- shape=7c20e859 vocab=70892c05
+-/
 theorem highDemandDistribution_of_recursive_split_schedule_large_constant_base
     {costBound minPile splitA splitM K N rIn rOut : ℕ → ℕ}
     {gap : ℕ → ℝ} {n0 : ℕ}
@@ -439,7 +463,9 @@ theorem highDemandDistribution_of_recursive_split_schedule_large_constant_base
 
 /-- Variable-demand recursive split schedule, with finite base cases discharged
 by the constant distribution having the requested minimum pile size on every
-vertex. -/
+vertex.
+@isnad1 id=hashighd.10h11v.s9.e268a52f5562 from=translated src=- shape=bd8aa88a vocab=70892c05
+-/
 theorem highDemandDistribution_of_recursive_split_schedule_variable_large_constant_base
     {costBound minPile splitA splitM K rIn rOut : ℕ → ℕ}
     {N : ℕ → ℕ → ℕ} {gap : ℕ → ℕ → ℝ} {n0 : ℕ}
@@ -487,7 +513,9 @@ theorem highDemandDistribution_of_recursive_split_schedule_variable_large_consta
     hsplit hsmaller hgap_pos hmean hlog hfiberCost hcost hminPile
 
 /-- Ordinary upper-bound form of the recursive split schedule with constant
-base cases. -/
+base cases.
+@isnad1 id=hashyper.10h10v.s8.7b4c8bffe017 from=translated src=- shape=dcfaa834 vocab=dd44813b
+-/
 theorem hasHypercubePebblingUpperBound_of_recursive_split_schedule_constant_base
     {costBound minPile splitA splitM K N rIn rOut : ℕ → ℕ}
     {gap : ℕ → ℝ} {n0 : ℕ}
@@ -528,7 +556,9 @@ theorem hasHypercubePebblingUpperBound_of_recursive_split_schedule_constant_base
       hmean hlog hfiberCost hcost hminPile)
 
 /-- Ordinary upper-bound form of the recursive split schedule with large-pile
-constant base cases. -/
+constant base cases.
+@isnad1 id=hashyper.10h10v.s8.26db7b2ad8f3 from=translated src=- shape=818a8742 vocab=dd44813b
+-/
 theorem hasHypercubePebblingUpperBound_of_recursive_split_schedule_large_constant_base
     {costBound minPile splitA splitM K N rIn rOut : ℕ → ℕ}
     {gap : ℕ → ℝ} {n0 : ℕ}
@@ -569,7 +599,9 @@ theorem hasHypercubePebblingUpperBound_of_recursive_split_schedule_large_constan
       hgap_pos hmean hlog hfiberCost hcost hminPile)
 
 /-- Ordinary upper-bound form of the variable-demand recursive split schedule
-with large-pile constant base cases. -/
+with large-pile constant base cases.
+@isnad1 id=hashyper.10h10v.s9.979864935145 from=translated src=- shape=3e1f93f4 vocab=dd44813b
+-/
 theorem hasHypercubePebblingUpperBound_of_recursive_split_schedule_variable_large_constant_base
     {costBound minPile splitA splitM K rIn rOut : ℕ → ℕ}
     {N : ℕ → ℕ → ℕ} {gap : ℕ → ℕ → ℝ} {n0 : ℕ}

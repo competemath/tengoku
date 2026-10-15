@@ -91,6 +91,9 @@ private lemma contDiff_adjoint
       simp_all⟩
   }
 
+/--
+@isnad1 id=contdiff.1h4v.s10.af55923ac8f6 from=translated src=- shape=6cc83242 vocab=8944dabb
+-/
 lemma optimalityEqn_contDiff
     {V : Submodule ℝ E} {φ : V → V.orthogonal}
     (hφ : ContDiff ℝ 2 φ) (m : E) :
@@ -113,7 +116,9 @@ lemma optimalityEqn_contDiff
     ((hDφ_adj.comp contDiff_snd).clm_apply
       ((V.orthogonal.orthogonalProjectionOnto : E →L[ℝ] V.orthogonal).contDiff.comp hres))
 
-/-- If v' locally minimizes g(v) = ‖r - v↑ - (φ v)↑‖², then F(r, v') = 0. -/
+/-- If v' locally minimizes g(v) = ‖r - v↑ - (φ v)↑‖², then F(r, v') = 0.
+@isnad1 id=eq.2h6v.s10.8d79bd371fcf from=translated src=- shape=73f7ea47 vocab=adc42254
+-/
 lemma localMin_sq_dist_implies_optimalityEqn
     {V : Submodule ℝ E} {φ : V → V.orthogonal}
     (hφC2 : ContDiff ℝ 2 φ) (m : E) {r : E} {v' : V}

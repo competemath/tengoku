@@ -17,6 +17,9 @@ open MeasureTheory Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.0h0v.s6.4b9847fba4af from=translated src=- shape=37375708 vocab=c0ae3809
+-/
 theorem integral_tartarWeight_mul_sq :
     ∫ t : ℝ, Tartar.weight t * t ^ 2 = 4 / 15 := by
   rw [tartarWeight_eq_indicator]
@@ -37,6 +40,9 @@ theorem integral_tartarWeight_mul_sq :
     integral_pow, integral_pow]
   norm_num
 
+/--
+@isnad1 id=integrab.0h0v.s5.6a895f1af3c0 from=translated src=- shape=448bca2e vocab=b5314ede
+-/
 theorem tartarWeight_mul_sq_integrable :
     Integrable (fun t : ℝ ↦ Tartar.weight t * t ^ 2) := by
   rw [tartarWeight_eq_indicator]
@@ -51,6 +57,9 @@ theorem tartarWeight_mul_sq_integrable :
   exact (by fun_prop : Continuous (fun t : ℝ ↦ (1 - t ^ 2) * t ^ 2)).continuousOn
     |>.integrableOn_Icc.integrable_indicator measurableSet_Icc
 
+/--
+@isnad1 id=le.0h1v.s5.cb2115b1f41f from=translated src=- shape=7a4f80b1 vocab=7beef0a8
+-/
 theorem one_sub_sq_div_ten_le_tartarAmplitude (x : ℝ) :
     1 - x ^ 2 / 10 ≤ Tartar.amplitude x := by
   rw [tartarAmplitude_eq_cosineTransform]
@@ -92,6 +101,9 @@ theorem one_sub_sq_div_ten_le_tartarAmplitude (x : ℝ) :
         ring
   grind
 
+/--
+@isnad1 id=le.0h1v.s5.a43657419e89 from=translated src=- shape=cd6ec0a4 vocab=eb38f653
+-/
 theorem one_sub_tartarTestFunction_le_sq_div_five (x : ℝ) :
     1 - Tartar.testFunction x ≤ x ^ 2 / 5 := by
   rw [Tartar.testFunction]

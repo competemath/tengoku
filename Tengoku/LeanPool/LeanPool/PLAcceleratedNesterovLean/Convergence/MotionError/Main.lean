@@ -25,7 +25,9 @@ namespace PLAcceleratedNesterovLean
 
 open scoped NNReal
 
-/-- If gradient is L-Lipschitz on V and ∇f(y) = 0, then ‖∇f(x)‖ ≤ L·‖x - y‖. -/
+/-- If gradient is L-Lipschitz on V and ∇f(y) = 0, then ‖∇f(x)‖ ≤ L·‖x - y‖.
+@isnad1 id=le.4h6v.s8.abd48f86f582 from=translated src=- shape=9ad46f8c vocab=acbbef16
+-/
 theorem gradient_bound_from_lipschitz {d : ℕ}
     (f : E d → ℝ) (L : ℝ≥0)
     {V : Set (E d)}
@@ -37,7 +39,9 @@ theorem gradient_bound_from_lipschitz {d : ℕ}
   rw [dist_eq_norm, dist_eq_norm] at h
   simp_all
 
-/-- Velocity bound: ‖v_{n+1}‖ = ‖ρ(v_n - √η g_n)‖ ≤ |ρ|(‖v_n‖ + √η ‖g_n‖). -/
+/-- Velocity bound: ‖v_{n+1}‖ = ‖ρ(v_n - √η g_n)‖ ≤ |ρ|(‖v_n‖ + √η ‖g_n‖).
+@isnad1 id=le.0h5v.s8.ed7adff354f9 from=translated src=- shape=2395ec63 vocab=94ba93f4
+-/
 theorem velocity_bound_from_step (v g : E d) (ρ sqrtη : ℝ) :
     ‖ρ • (v - sqrtη • g)‖ ≤ |ρ| * (‖v‖ + |sqrtη| * ‖g‖) := by
   calc ‖ρ • (v - sqrtη • g)‖
@@ -47,7 +51,9 @@ theorem velocity_bound_from_step (v g : E d) (ρ sqrtη : ℝ) :
         exact abs_nonneg ρ
     _ = |ρ| * (‖v‖ + |sqrtη| * ‖g‖) := by rw [norm_smul, Real.norm_eq_abs]
 
-/-- Step bound: h_n = √η v_{n+1} - η g_n, so ‖h_n‖ ≤ √η‖v_{n+1}‖ + η‖g_n‖. -/
+/-- Step bound: h_n = √η v_{n+1} - η g_n, so ‖h_n‖ ≤ √η‖v_{n+1}‖ + η‖g_n‖.
+@isnad1 id=le.0h5v.s8.fa4035a6cbbf from=translated src=- shape=eb0f10e2 vocab=94ba93f4
+-/
 theorem step_bound (v_next g : E d) (sqrtη η : ℝ) :
     ‖sqrtη • v_next - η • g‖ ≤ |sqrtη| * ‖v_next‖ + |η| * ‖g‖ := by
   calc ‖sqrtη • v_next - η • g‖

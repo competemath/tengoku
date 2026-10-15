@@ -32,10 +32,16 @@ def massScale (t : ℝ) : ParameterPhase →L[ℝ] ParameterPhase :=
   (t • ContinuousLinearMap.fst ℝ ℝ PhaseSpace).prod
     (ContinuousLinearMap.snd ℝ ℝ PhaseSpace)
 
+/--
+@isnad1 id=eq.0h2v.s8.2b25626f410e from=translated src=- shape=e2817ecf vocab=401969a8
+-/
 @[simp] theorem massScale_apply (t : ℝ) (z : ℝ × PhaseSpace) :
     massScale t z = (t * z.1, z.2) := by
   simp [massScale]
 
+/--
+@isnad1 id=continuo.0h0v.s8.213a18aa7a53 from=translated src=- shape=5a983c63 vocab=715485cf
+-/
 theorem continuous_massScale : Continuous massScale := by
   change Continuous (fun t ↦
     ContinuousLinearMap.prodₗᵢ ℝ
@@ -47,14 +53,25 @@ theorem continuous_massScale : Continuous massScale := by
 /-- The distinguished unit direction in the mass coordinate. -/
 def massDirection : ParameterPhase := (1, 0)
 
+/--
+@isnad1 id=eq.0h0v.s3.77d1b017c88d from=translated src=- shape=f751f94f vocab=639cf742
+-/
 @[simp] theorem massDirection_fst : massDirection.1 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.dc0263559b19 from=translated src=- shape=b9f78388 vocab=a88c2a3c
+-/
 @[simp] theorem massDirection_snd : massDirection.2 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.4098bf3b5b31 from=translated src=- shape=b3c4969c vocab=d1d8b967
+-/
 @[simp] theorem norm_massDirection : ‖massDirection‖ = 1 := by
   simp [massDirection, Prod.norm_def]
 
-/-- On the unit interval, the mass-scaling homotopy is norm nonexpanding. -/
+/-- On the unit interval, the mass-scaling homotopy is norm nonexpanding.
+@isnad1 id=le.1h1v.s9.b766c7187aaa from=translated src=- shape=f1beacd7 vocab=9f05221c
+-/
 theorem norm_massScale_le_one {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     ‖massScale t‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ (by norm_num)
@@ -79,6 +96,9 @@ noncomputable def massPartialSeries
   (ContinuousLinearMap.apply ℝ ℝ massDirection).compFormalMultilinearSeries
     (p.derivSeries.compContinuousLinearMap (massScale t))
 
+/--
+@isnad1 id=eq.0h4v.s12.802d773c8114 from=translated src=- shape=778e8954 vocab=0d27882f
+-/
 theorem massPartialSeries_apply
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ) (t : ℝ)
     (n : ℕ) (v : Fin n → ParameterPhase) :
@@ -86,6 +106,9 @@ theorem massPartialSeries_apply
       p.derivSeries n (fun i ↦ massScale t (v i)) massDirection :=
   rfl
 
+/--
+@isnad1 id=continuo.0h2v.s8.42aae843bfd5 from=translated src=- shape=e86dc655 vocab=dfaaca5a
+-/
 theorem continuous_massPartialSeries_coeff
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ) (n : ℕ) :
     Continuous (fun t ↦ massPartialSeries p t n) := by
@@ -119,6 +142,9 @@ noncomputable def massPartialTerm
     (ContinuousMultilinearMap.apply ℝ (fun _ : Fin n ↦ ParameterPhase) ℝ
       (fun _ ↦ x)).continuous.comp (continuous_massPartialSeries_coeff p n)
 
+/--
+@isnad1 id=eq.0h4v.s8.d9a46b25faca from=translated src=- shape=7992ee3b vocab=0949afe6
+-/
 @[simp] theorem massPartialTerm_apply
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ)
     (x : ParameterPhase) (n : ℕ) (t : ℝ) :
@@ -135,7 +161,9 @@ noncomputable def massPartialTermUnit
     (x : ParameterPhase) (n : ℕ) : C(unitIntervalCompact, ℝ) :=
   (massPartialTerm p x n).restrict unitIntervalCompact
 
-/-- Uniform coefficient bound along the unit homotopy interval. -/
+/-- Uniform coefficient bound along the unit homotopy interval.
+@isnad1 id=le.1h3v.s11.48b960daa0a4 from=translated src=- shape=bf2ecc0f vocab=9fe4e800
+-/
 theorem norm_massPartialSeries_le
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ) (n : ℕ)
     {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
@@ -164,6 +192,9 @@ theorem norm_massPartialSeries_le
           exact norm_massScale_le_one ht
         _ = ‖p.derivSeries n‖ := by simp
 
+/--
+@isnad1 id=le.0h3v.s11.4d3e46fcb183 from=translated src=- shape=8bf88a8a vocab=5d282034
+-/
 theorem norm_massPartialTerm_restrict_le
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ)
     (x : ParameterPhase) (n : ℕ) :
@@ -185,6 +216,9 @@ theorem norm_massPartialTerm_restrict_le
       have ht : (t.1 : ℝ) ∈ Set.uIcc (0 : ℝ) 1 := t.2
       rwa [Set.uIcc_of_le zero_le_one] at ht
 
+/--
+@isnad1 id=summable.1h2v.s10.2d33b13ccba2 from=translated src=- shape=c7fa9564 vocab=184978f7
+-/
 theorem summable_norm_massPartialTerm_restrict
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ)
     {x : ParameterPhase} (hx : x ∈ Metric.eball (0 : ParameterPhase) p.derivSeries.radius) :
@@ -204,6 +238,9 @@ noncomputable def integratedMassPartialSeries
     FormalMultilinearSeries ℝ ParameterPhase ℝ :=
   fun n ↦ ∫ t in (0 : ℝ)..1, massPartialSeries p t n
 
+/--
+@isnad1 id=eq.0h3v.s9.89a899b62456 from=translated src=- shape=d4fcaf0b vocab=f976f2f6
+-/
 theorem integratedMassPartialSeries_apply
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ)
     (n : ℕ) (v : Fin n → ParameterPhase) :
@@ -214,6 +251,9 @@ theorem integratedMassPartialSeries_apply
     |>.intervalIntegral_comp_comm
       ((continuous_massPartialSeries_coeff p n).intervalIntegrable 0 1)).symm
 
+/--
+@isnad1 id=hassum.1h2v.s10.3797cb333019 from=translated src=- shape=657ddafb vocab=2c7bab1b
+-/
 theorem hasSum_integratedMassPartialSeries
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ)
     {x : ParameterPhase} (hx : x ∈ Metric.eball (0 : ParameterPhase) p.derivSeries.radius) :
@@ -232,6 +272,9 @@ noncomputable def parameterizedMassIntegral
   ∫ t in (0 : ℝ)..1,
     fderiv ℝ f (base + massScale t (z - base)) massDirection
 
+/--
+@isnad1 id=eq.3h6v.s10.7a4e956e95e8 from=translated src=- shape=861255b1 vocab=11d4a98e
+-/
 theorem HasFPowerSeriesOnBall.tsum_massPartialTerm_eq_massDerivative
     {f : ParameterPhase → ℝ} {p : FormalMultilinearSeries ℝ ParameterPhase ℝ}
     {base : ParameterPhase} {r : ENNReal}
@@ -257,6 +300,9 @@ theorem HasFPowerSeriesOnBall.tsum_massPartialTerm_eq_massDerivative
   simpa only [massPartialTerm_apply, massPartialSeries_apply,
     ContinuousLinearMap.apply_apply] using hsum.tsum_eq
 
+/--
+@isnad1 id=hassum.2h5v.s9.0434b29fc6e1 from=translated src=- shape=32747842 vocab=324578e9
+-/
 theorem HasFPowerSeriesOnBall.hasSum_parameterizedMassIntegral
     {f : ParameterPhase → ℝ} {p : FormalMultilinearSeries ℝ ParameterPhase ℝ}
     {base : ParameterPhase} {r : ENNReal}
@@ -286,7 +332,9 @@ theorem HasFPowerSeriesOnBall.hasSum_parameterizedMassIntegral
   rwa [hintegral] at hsum
 
 /-- Integration over the unit interval does not reduce the convergence radius supplied by the
-derivative series. -/
+derivative series.
+@isnad1 id=le.0h2v.s11.abe3f46ed808 from=translated src=- shape=c853aee4 vocab=e69cc843
+-/
 theorem norm_integratedMassPartialSeries_le
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ) (n : ℕ) :
     ‖integratedMassPartialSeries p n‖ ≤ ‖p.derivSeries n‖ := by
@@ -299,6 +347,9 @@ theorem norm_integratedMassPartialSeries_le
       exact Set.uIoc_subset_uIcc ht)
   simpa using hbound
 
+/--
+@isnad1 id=le.0h1v.s10.9b6edff45fa6 from=translated src=- shape=a645e1ef vocab=a85f0c5b
+-/
 theorem derivSeries_radius_le_integratedMassPartialSeries_radius
     (p : FormalMultilinearSeries ℝ ParameterPhase ℝ) :
     p.derivSeries.radius ≤ (integratedMassPartialSeries p).radius :=
@@ -306,7 +357,9 @@ theorem derivSeries_radius_le_integratedMassPartialSeries_radius
     (fun n ↦ norm_integratedMassPartialSeries_le p n)
 
 /-- The homotopy integral has the integrated derivative series as a genuine power series on the
-same ball as the original analytic function. -/
+same ball as the original analytic function.
+@isnad1 id=hasfpowe.1h4v.s8.142c5f9a84c0 from=translated src=- shape=d3ae32a4 vocab=2595623e
+-/
 theorem HasFPowerSeriesOnBall.parameterizedMassIntegral
     {f : ParameterPhase → ℝ} {p : FormalMultilinearSeries ℝ ParameterPhase ℝ}
     {base : ParameterPhase} {r : ENNReal}
@@ -318,7 +371,9 @@ theorem HasFPowerSeriesOnBall.parameterizedMassIntegral
   r_pos := hp.r_pos
   hasSum := HasFPowerSeriesOnBall.hasSum_parameterizedMassIntegral hp
 
-/-- Parameterized analytic Hadamard lemma in integral form. -/
+/-- Parameterized analytic Hadamard lemma in integral form.
+@isnad1 id=analytic.1h2v.s8.79ad2fff0adc from=translated src=- shape=35bbe273 vocab=889dfcf0
+-/
 theorem AnalyticAt.analyticAt_parameterizedMassIntegral
     {f : ParameterPhase → ℝ} {base : ParameterPhase}
     (hf : AnalyticAt ℝ f base) :
@@ -327,7 +382,9 @@ theorem AnalyticAt.analyticAt_parameterizedMassIntegral
   exact ⟨integratedMassPartialSeries p, r,
     HasFPowerSeriesOnBall.parameterizedMassIntegral hp⟩
 
-/-- The derivative of a mass slice is the joint derivative in the pure mass direction. -/
+/-- The derivative of a mass slice is the joint derivative in the pure mass direction.
+@isnad1 id=eq.1h4v.s9.57dcf5e02464 from=translated src=- shape=9023ee23 vocab=d2ba6f8b
+-/
 theorem deriv_curry_left_at
     {B : Type*} [NormedAddCommGroup B] [NormedSpace ℝ B]
     {G : ℝ × B → ℝ} {mass : ℝ} {b : B}
@@ -340,7 +397,9 @@ theorem deriv_curry_left_at
   rw [hderivative]
   rfl
 
-/-- Fundamental-theorem identity behind parameterized division. -/
+/-- Fundamental-theorem identity behind parameterized division.
+@isnad1 id=eq.2h5v.s9.6f81a9ef686d from=translated src=- shape=404f8346 vocab=cca8ec06
+-/
 theorem HasFPowerSeriesOnBall.mass_mul_parameterizedMassIntegral
     {f : ParameterPhase → ℝ} {p : FormalMultilinearSeries ℝ ParameterPhase ℝ}
     {baseState : PhaseSpace} {r : ENNReal}
@@ -404,7 +463,9 @@ theorem HasFPowerSeriesOnBall.mass_mul_parameterizedMassIntegral
     add_sub_cancel_left] using hfundamental
 
 /-- The parameterized integral supplies the removable analytic extension of the normalized
-residual at every collision-free point of the mass-zero slice. -/
+residual at every collision-free point of the mass-zero slice.
+@isnad1 id=analytic.5h4v.s8.b9e559f4c6fd from=translated src=- shape=2e0b32c4 vocab=5707cf8b
+-/
 theorem analyticAt_uncurry_domainMassNormalizedCandidate_mass_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} {energyFunction : ℝ → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -486,7 +547,9 @@ theorem analyticAt_uncurry_domainMassNormalizedCandidate_mass_zero
     simpa only [mul_comm] using hmul'
 
 /-- Analytic Hadamard division by the mass parameter, with cancellation required only on the
-actual collision-free mass-zero domain. -/
+actual collision-free mass-zero domain.
+@isnad1 id=jointana.0h0v.s0.17e8d64e6ec7 from=translated src=- shape=45709ebd vocab=17e8d64e
+-/
 theorem jointAnalyticMassDivisionPrinciple : JointAnalyticMassDivisionPrinciple := by
   rw [jointAnalyticMassDivisionPrinciple_iff_massZero]
   intro δ F energyFunction hδ hanalytic henergy hcancel state hcollision

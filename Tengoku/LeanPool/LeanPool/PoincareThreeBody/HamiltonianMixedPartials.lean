@@ -24,7 +24,9 @@ Poincaré's first homological equation.
 namespace LeanPool.PoincareThreeBody
 
 /-- Near a collision-free phase point, the joint parameter coefficient of the Hamiltonian is the
-explicit first mass perturbation. -/
+explicit first mass perturbation.
+@isnad1 id=eventual.1h1v.s7.a9a80f7356e4 from=translated src=- shape=2144e7bf vocab=9e4e8c91
+-/
 theorem parameterCoefficient_hamiltonian_eventuallyEq
     {s : PhaseSpace} (hs : (0, s) ∈ collisionFree) :
     parameterCoefficient (Function.uncurry hamiltonian) =ᶠ[nhds s]
@@ -49,7 +51,9 @@ theorem parameterCoefficient_hamiltonian_eventuallyEq
   exact deriv_hamiltonian_mass_zero hy
 
 /-- The mass derivative of every phase partial of the Hamiltonian is the corresponding phase
-partial of the explicit perturbation. -/
+partial of the explicit perturbation.
+@isnad1 id=hasderiv.1h2v.s9.e7aba7bbaa29 from=translated src=- shape=7066a865 vocab=3f6111ff
+-/
 theorem hasDerivAt_hamiltonian_phasePartial_mass_zero
     {s : PhaseSpace} (hs : (0, s) ∈ collisionFree) (i : Fin 4) :
     HasDerivAt
@@ -65,7 +69,9 @@ theorem hasDerivAt_hamiltonian_phasePartial_mass_zero
   exact hmixed.congr_deriv hderivative
 
 /-- A jointly `C²` candidate which commutes with the physical Hamiltonian satisfies the explicit
-first homological equation at every collision-free phase point over `μ = 0`. -/
+first homological equation at every collision-free phase point over `μ = 0`.
+@isnad1 id=eq.3h2v.s8.9b3a2d55dcd4 from=translated src=- shape=9e6f7f99 vocab=504a4210
+-/
 theorem firstHomologicalEquation_cr3bp_of_contDiffAt
     {F : ℝ → PhaseSpace → ℝ} {s : PhaseSpace}
     (hs : (0, s) ∈ collisionFree)
@@ -82,7 +88,9 @@ theorem firstHomologicalEquation_cr3bp_of_contDiffAt
   · exact hcommutes
 
 /-- The hypotheses used in the challenge imply the explicit first homological equation at every
-collision-free phase point over the Kepler limit. -/
+collision-free phase point over the Kepler limit.
+@isnad1 id=eq.4h3v.s7.9d9e2004fe15 from=translated src=- shape=584b9f42 vocab=e511c071
+-/
 theorem IsFirstIntegralFamily.firstHomologicalEquation_mass_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)

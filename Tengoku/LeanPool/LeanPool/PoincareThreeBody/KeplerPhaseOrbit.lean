@@ -49,7 +49,9 @@ noncomputable def orientedResonantKeplerPhasePoint
     (orientedResonantEllipsePosition p q eccentricity orientation time)
     (orientedResonantEllipseMomentum p q eccentricity orientation time)
 
-/-- Every coordinate of the true rotating-frame momentum is analytic in time. -/
+/-- Every coordinate of the true rotating-frame momentum is analytic in time.
+@isnad1 id=analytic.2h6v.s6.fa7398d1ae73 from=translated src=- shape=ac901201 vocab=85cb3f1b
+-/
 theorem analyticAt_orientedResonantEllipseMomentum_coordinate
     (p q : ℕ) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -107,7 +109,9 @@ theorem analyticAt_orientedResonantEllipseMomentum_coordinate
         Real.cos (argument - orientation) * velocityY argument) time
     exact (hsinAngle.neg.mul hvelocityX).add (hcosAngle.mul hvelocityY)
 
-/-- The genuine full resonant phase-space trajectory is analytic in time. -/
+/-- The genuine full resonant phase-space trajectory is analytic in time.
+@isnad1 id=analytic.2h5v.s7.0248fcaeb216 from=translated src=- shape=2df1ed95 vocab=57f5cd98
+-/
 theorem analyticAt_orientedResonantKeplerPhasePoint
     (p q : ℕ) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -124,6 +128,9 @@ theorem analyticAt_orientedResonantKeplerPhasePoint
   · exact analyticAt_orientedResonantEllipseMomentum_coordinate p q heccentricity
       heccentricityOne 1
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.05348badfc0f from=translated src=- shape=a26f3993 vocab=4791626f
+-/
 theorem hasDerivAt_resonantMeanAnomaly (p q : ℕ) (time : ℝ) :
     HasDerivAt (resonantMeanAnomaly p q) (resonantMeanMotion p q) time := by
   have h := (hasDerivAt_id time).const_mul (resonantMeanMotion p q)
@@ -131,6 +138,9 @@ theorem hasDerivAt_resonantMeanAnomaly (p q : ℕ) (time : ℝ) :
   filter_upwards [] with argument
   simp [resonantMeanAnomaly]
 
+/--
+@isnad1 id=hasderiv.2h4v.s6.859f8faa3d5a from=translated src=- shape=bbe1b7ed vocab=b798a678
+-/
 theorem hasDerivAt_resonantEccentricAnomaly
     (p q : ℕ) {eccentricity time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -145,7 +155,9 @@ theorem hasDerivAt_resonantEccentricAnomaly
   simp [resonantEccentricAnomaly, div_eq_mul_inv, mul_comm]
 
 /-- The position part of the full resonant state satisfies the first two canonical Hamilton
-equations in the rotating frame. -/
+equations in the rotating frame.
+@isnad1 id=and.2h5v.s7.a1fda6a6b9aa from=translated src=- shape=7679df53 vocab=f717357c
+-/
 theorem hasDerivAt_orientedResonantKeplerPhasePoint_position
     (p q : ℕ) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -227,7 +239,9 @@ theorem hasDerivAt_orientedResonantKeplerPhasePoint_position
       ring
 
 /-- In inertial coordinates, the resonant ellipse satisfies Newton's inverse-square acceleration
-law. -/
+law.
+@isnad1 id=hasderiv.4h5v.s7.750fe990c1ca from=translated src=- shape=f3882881 vocab=fe313dbc
+-/
 theorem hasDerivAt_inertialEllipseVelocity_resonant
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity time : ℝ}
@@ -305,7 +319,9 @@ theorem hasDerivAt_inertialEllipseVelocity_resonant
         inertialEllipsePosition, eccentricRadius] using halgebra
 
 /-- The momentum part of the rotating resonant state satisfies the remaining two Kepler
-Hamilton equations. -/
+Hamilton equations.
+@isnad1 id=other.4h5v.s8.19ba2239ec39 from=translated src=- shape=b8507dd9 vocab=f723f944
+-/
 theorem hasDerivAt_orientedResonantKeplerPhasePoint_momentum
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -368,17 +384,25 @@ theorem hasDerivAt_orientedResonantKeplerPhasePoint_momentum
         positionInRotatingFrame, Matrix.cons_val_zero, Matrix.cons_val_one]
       dsimp [xInertial, yInertial, vxInertial, vyInertial, anomaly, radius, angle]
       ring
+/--
+@isnad1 id=eq.0h5v.s5.bbcd6b76ada2 from=translated src=- shape=82de5e7a vocab=cf394d53
+-/
 @[simp] lemma orientedResonantKeplerPhasePoint_position_zero
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     orientedResonantKeplerPhasePoint p q eccentricity orientation time 0 =
       orientedResonantEllipsePosition p q eccentricity orientation time 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.d9f1ec1ef747 from=translated src=- shape=82de5e7a vocab=cf394d53
+-/
 @[simp] lemma orientedResonantKeplerPhasePoint_position_one
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     orientedResonantKeplerPhasePoint p q eccentricity orientation time 1 =
       orientedResonantEllipsePosition p q eccentricity orientation time 1 := rfl
 
-/-- Adding the common resonant period preserves the true canonical momentum. -/
+/-- Adding the common resonant period preserves the true canonical momentum.
+@isnad1 id=eq.3h5v.s6.9f2576d448f5 from=translated src=- shape=a5ad4bde vocab=de66d212
+-/
 lemma orientedResonantEllipseMomentum_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity orientation : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -394,7 +418,9 @@ lemma orientedResonantEllipseMomentum_add_period {p q : ℕ} (hp : 0 < p)
   funext coordinate
   fin_cases coordinate <;> simp [inertialEllipseVelocity]
 
-/-- The full resonant phase-space trajectory has the common period. -/
+/-- The full resonant phase-space trajectory has the common period.
+@isnad1 id=eq.3h5v.s6.070e10bba0b4 from=translated src=- shape=a5ad4bde vocab=3069b20c
+-/
 lemma orientedResonantKeplerPhasePoint_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity orientation : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -406,7 +432,9 @@ lemma orientedResonantKeplerPhasePoint_add_period {p q : ℕ} (hp : 0 < p)
     orientedResonantEllipseMomentum_add_period hp heccentricity heccentricityOne]
 
 /-- Replacing the momentum placeholder by the true momentum does not change the first mass
-perturbation. -/
+perturbation.
+@isnad1 id=eq.0h5v.s4.37c31585e975 from=translated src=- shape=d03df2e7 vocab=728ee183
+-/
 lemma firstMassPerturbation_orientedResonantKeplerPhasePoint
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     firstMassPerturbation
@@ -417,7 +445,9 @@ lemma firstMassPerturbation_orientedResonantKeplerPhasePoint
     positionMomentumPhasePoint, positionPhasePoint]
 
 /-- Collision-freeness at mass zero depends only on the position, so the full phase-space orbit
-inherits the collision exclusion proved for the interior ellipse. -/
+inherits the collision exclusion proved for the interior ellipse.
+@isnad1 id=mem.5h5v.s7.b6db2a140589 from=translated src=- shape=0769fb28 vocab=8d6cebed
+-/
 lemma orientedResonantKeplerPhasePoint_collisionFree_mass_zero
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)

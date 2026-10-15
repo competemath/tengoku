@@ -27,12 +27,16 @@ namespace QSeries
 
 noncomputable section
 
-/-- Telescoping factorisation: $(q;q)_\infty = (q;q)_n \cdot (q \cdot q^n; q)_\infty$. -/
+/-- Telescoping factorisation: $(q;q)_\infty = (q;q)_n \cdot (q \cdot q^n; q)_\infty$.
+@isnad1 id=eq.1h2v.s5.b01edd2f5484 from=translated src=- shape=c6479eb7 vocab=13d4325a
+-/
 theorem qPochhammerInf_self_eq_qPochhammer_mul {q : ℂ} (hq : ‖q‖ < 1) (n : ℕ) :
     qPochhammerInf q q = qPochhammer q q n * qPochhammerInf (q * q ^ n) q := by
   rw [qPochhammerInf_mul_pow_eq_div hq n, mul_div_cancel₀ _ (qPochhammer_self_ne_zero hq n)]
 
-/-- Euler's second identity evaluated at $z = -q^{n+1}$, giving $(q^{n+1}; q)_\infty$. -/
+/-- Euler's second identity evaluated at $z = -q^{n+1}$, giving $(q^{n+1}; q)_\infty$.
+@isnad1 id=hassum.1h2v.s7.34a2f36b5519 from=translated src=- shape=7205b447 vocab=89110169
+-/
 theorem euler_second_identity_neg_pow {q : ℂ} (hq : ‖q‖ < 1) (n : ℕ) :
     HasSum (fun m : ℕ => q ^ m.choose 2 * (-q ^ (n + 1)) ^ m / qPochhammer q q m)
       (qPochhammerInf (q ^ (n + 1)) q) := by
@@ -41,7 +45,9 @@ theorem euler_second_identity_neg_pow {q : ℂ} (hq : ‖q‖ < 1) (n : ℕ) :
   · simpa using pow_lt_one₀ (norm_nonneg q) hq (by omega)
 
 /-- The product $(q;q)_\infty (-z;q)_\infty$ equals
-$\sum_n q^{\binom{n}{2}} z^n (q^{n+1};q)_\infty$, via Euler's second identity. -/
+$\sum_n q^{\binom{n}{2}} z^n (q^{n+1};q)_\infty$, via Euler's second identity.
+@isnad1 id=hassum.2h2v.s7.7ea241ad3c7e from=translated src=- shape=5c6943da vocab=9d01afcb
+-/
 theorem hasSum_pow_choose_two_mul_pow_mul_qPochhammerInf {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     HasSum (fun n : ℕ => q ^ n.choose 2 * z ^ n * qPochhammerInf (q * q ^ n) q)
       (qPochhammerInf q q * qPochhammerInf (-z) q) := by
@@ -51,12 +57,16 @@ theorem hasSum_pow_choose_two_mul_pow_mul_qPochhammerInf {q z : ℂ} (hq : ‖q�
 
 /-- Key identity: the n-th coefficient of the product (q;q)_∞ (-z;q)_∞
 expanded using Euler 2nd, multiplied by (q;q)_∞, gives the JTP coefficient.
-Specifically: qPochhammerInf (q * q^n) q = qPochhammerInf (q^(n+1)) q. -/
+Specifically: qPochhammerInf (q * q^n) q = qPochhammerInf (q^(n+1)) q.
+@isnad1 id=eq.0h2v.s5.2fb10db3c1d3 from=translated src=- shape=feb0862e vocab=dc4ab73c
+-/
 theorem qPochhammerInf_mul_pow {q : ℂ} (n : ℕ) :
     qPochhammerInf (q * q ^ n) q = qPochhammerInf (q ^ (n + 1)) q := by
   congr 1; ring
 
-/-- The Jacobi triple product identity at $q = 0$, verified directly. -/
+/-- The Jacobi triple product identity at $q = 0$, verified directly.
+@isnad1 id=eq.1h1v.s7.95227bb6e71a from=translated src=- shape=1ce99236 vocab=4399cc27
+-/
 theorem jacobiTripleProduct_zero {z : ℂ} (hz' : z ≠ 0) :
     qPochhammerInf 0 0 * qPochhammerInf (-z) 0 * qPochhammerInf (-0 / z) 0 =
     (∑' k : ℕ, z ^ k * (0 : ℂ) ^ k.choose 2) +
@@ -71,7 +81,9 @@ theorem jacobiTripleProduct_zero {z : ℂ} (hz' : z ≠ 0) :
     · intro b hb; rcases b with (_ | _ | b) <;> simp_all [Nat.choose]
   · aesop
 
-/-- Euler's second identity evaluated at $z = -q/z$, giving $(-q/z; q)_\infty$. -/
+/-- Euler's second identity evaluated at $z = -q/z$, giving $(-q/z; q)_\infty$.
+@isnad1 id=hassum.3h2v.s7.cc1ad3a7abd8 from=translated src=- shape=9498a473 vocab=84c7722d
+-/
 theorem euler_second_identity_div {q z : ℂ} (hq : ‖q‖ < 1) (hzq : ‖q‖ < ‖z‖)
     (hz' : z ≠ 0) :
     HasSum (fun m : ℕ => q ^ m.choose 2 * q ^ m * z⁻¹ ^ m / qPochhammer q q m)
@@ -103,7 +115,9 @@ private theorem hasSum_split_diagonal {f : ℕ × ℕ → ℂ} {a b : ℂ}
   diagonalEquiv.hasSum_iff.mp (HasSum.sum (f := f ∘ diagonalEquiv) h1 h2)
 
 /-- Splitting a summable family over `ℕ × ℕ` along the diagonal:
-$\sum_p f(p) = \sum_k \sum_m f(m+k, m) + \sum_l \sum_n f(n, n+l+1)$. -/
+$\sum_p f(p) = \sum_k \sum_m f(m+k, m) + \sum_l \sum_n f(n, n+l+1)$.
+@isnad1 id=eq.1h1v.s7.a15713e8b6e8 from=translated src=- shape=2cdb25ba vocab=bce2b672
+-/
 theorem tsum_split_diagonal {f : ℕ × ℕ → ℂ} (hf : Summable f) :
     ∑' p : ℕ × ℕ, f p =
       (∑' k : ℕ, ∑' m : ℕ, f (m + k, m)) + ∑' l : ℕ, ∑' n : ℕ, f (n, n + (l + 1)) := by

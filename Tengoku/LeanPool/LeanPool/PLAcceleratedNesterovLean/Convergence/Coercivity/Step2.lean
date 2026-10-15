@@ -35,7 +35,9 @@ noncomputable section
 namespace PLAcceleratedNesterovLean
 
 /-- Resolve coupled system: A ≤ c₁ + B, B ≤ c₂ + a*(A + T), with 0 ≤ a < 1.
-    Gives B ≤ (c₂ + a*c₁ + a*T)/(1-a). -/
+    Gives B ≤ (c₂ + a*c₁ + a*T)/(1-a).
+@isnad1 id=le.7h6v.s7.03f5d3054935 from=translated src=- shape=f026c612 vocab=1b82c742
+-/
 theorem resolve_coupled_bounds (A B T c₁ c₂ a : ℝ)
     (ha_nn : 0 ≤ a) (ha_lt : a < 1)
     (hA : A ≤ c₁ + B)
@@ -48,7 +50,9 @@ theorem resolve_coupled_bounds (A B T c₁ c₂ a : ℝ)
   rw [le_div_iff₀ h3]
   nlinarith
 
-/-- After resolving the coupled system, get a bound on A. -/
+/-- After resolving the coupled system, get a bound on A.
+@isnad1 id=le.3h4v.s5.d9aaba6d165c from=translated src=- shape=271dfdfc vocab=06893b8a
+-/
 theorem resolve_coupled_A_bound (A B c₁ c₂_prime : ℝ)
     (hA : A ≤ c₁ + B)
     (hB : B ≤ c₂_prime)
@@ -56,7 +60,9 @@ theorem resolve_coupled_A_bound (A B c₁ c₂_prime : ℝ)
     A ≤ c₁ + c₂_prime := by
   linarith
 
-/-- For Ψ: dist(x, M)² ≤ 2(η‖v‖² + ‖e‖²) from (a+b)² ≤ 2(a²+b²). -/
+/-- For Ψ: dist(x, M)² ≤ 2(η‖v‖² + ‖e‖²) from (a+b)² ≤ 2(a²+b²).
+@isnad1 id=le.2h2v.s6.0eeeac0cd109 from=translated src=- shape=50dfb77d vocab=cef4cf1d
+-/
 theorem dist_bound_from_v_e (a b : ℝ) (_ha : 0 ≤ a) (_hb : 0 ≤ b) :
     (a + b) ^ 2 ≤ 2 * (a ^ 2 + b ^ 2) := by
   nlinarith [sq_nonneg (a - b)]

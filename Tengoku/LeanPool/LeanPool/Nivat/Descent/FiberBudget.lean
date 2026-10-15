@@ -124,7 +124,9 @@ private theorem representative_index_budget (F : V → W) {P : Set V} (hP : P.Fi
   exact Set.ncard_sdiff_add_ncard_of_subset (fiberRepresentatives_subset F P) hP
 
 /-- A finite input set yields a finite-dimensional space of same-fiber differences.
-This is the finite-span step in Theorem 2.2 (`thm:descent`). -/
+This is the finite-span step in Theorem 2.2 (`thm:descent`).
+@isnad1 id=finitedi.1h5v.s7.1c938792a0c8 from=translated src=- shape=86312b9f vocab=a85231b3
+-/
 theorem finiteDimensional_fiberDifferences (F : V → W) {P : Set V} (hP : P.Finite) :
     FiniteDimensional K (Submodule.span K (fiberDifferences F P)) := by
   rw [span_fiberDifferences_eq]
@@ -132,7 +134,9 @@ theorem finiteDimensional_fiberDifferences (F : V → W) {P : Set V} (hP : P.Fin
 
 /-- The fiber-counting inequality in Theorem 2.2 (`thm:descent`).
 It holds for any function on a finite set of vectors; neither linearity nor a
-finite-dimensional ambient space is needed. -/
+finite-dimensional ambient space is needed.
+@isnad1 id=le.1h5v.s7.0729675b04cc from=translated src=- shape=6b954790 vocab=c8e52437
+-/
 theorem finite_fiber_budget (F : V → W) {P : Set V} (hP : P.Finite) :
     Module.finrank K (Submodule.span K (fiberDifferences F P)) +
       (F '' P).ncard ≤ P.ncard := by

@@ -16,6 +16,9 @@ Imported Lean Pool material for `LeanPool.PentagonalNumberTheorem.Partition`.
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.0h1v.s6.056490df0b70 from=translated src=- shape=523d3a35 vocab=0b35a43f
+-/
 theorem two_pentagonal (k : ℤ) : 2 * (k * (3 * k - 1) / 2) = k * (3 * k - 1) := by
   refine Int.two_mul_ediv_two_of_even ?_
   obtain h | h := Int.even_or_odd k
@@ -26,6 +29,9 @@ theorem two_pentagonal (k : ℤ) : 2 * (k * (3 * k - 1) / 2) = k * (3 * k - 1) :
     refine Odd.mul ?_ h
     decide
 
+/--
+@isnad1 id=le.0h1v.s5.1ade7b6cf879 from=translated src=- shape=81d07cb0 vocab=cf232d13
+-/
 theorem pentagonal_nonneg (k : ℤ) : 0 ≤ k * (3 * k - 1) / 2 := by
   suffices 0 ≤ 2 * (k * (3 * k - 1) / 2) by simpa
   rw [two_pentagonal]
@@ -33,6 +39,9 @@ theorem pentagonal_nonneg (k : ℤ) : 0 ≤ k * (3 * k - 1) / 2 := by
   · exact mul_nonneg h.le (by linarith)
   · exact mul_nonneg_of_nonpos_of_nonpos h (by linarith)
 
+/--
+@isnad1 id=eq.1h2v.s6.cc0731430ae4 from=translated src=- shape=55b184f6 vocab=0e4a4b68
+-/
 theorem two_pentagonal_inj {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1)) : x = y := by
   simp_rw [mul_sub_one] at h
   rw [sub_eq_sub_iff_sub_eq_sub, mul_left_comm x, mul_left_comm y, ← mul_sub,

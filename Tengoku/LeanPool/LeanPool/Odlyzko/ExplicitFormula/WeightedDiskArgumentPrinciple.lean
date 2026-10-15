@@ -28,18 +28,27 @@ namespace NumberField.Odlyzko
 noncomputable def fillFinitePunctures (f : ℂ → ℂ) (S : Finset ℂ) : ℂ → ℂ :=
   fun z ↦ if z ∈ S then Filter.limUnder (𝓝[≠] z) f else f z
 
+/--
+@isnad1 id=eq.1h3v.s6.88416b945c5e from=translated src=- shape=93fcbb1a vocab=7bb047a2
+-/
 @[simp]
 theorem fillFinitePunctures_apply_of_mem {f : ℂ → ℂ} {S : Finset ℂ} {z : ℂ}
     (hz : z ∈ S) :
     fillFinitePunctures f S z = Filter.limUnder (𝓝[≠] z) f := by
   simp [fillFinitePunctures, hz]
 
+/--
+@isnad1 id=eq.1h3v.s5.5dc806e89d6a from=translated src=- shape=ce69e94f vocab=0ea80f04
+-/
 @[simp]
 theorem fillFinitePunctures_apply_of_notMem {f : ℂ → ℂ} {S : Finset ℂ} {z : ℂ}
     (hz : z ∉ S) :
     fillFinitePunctures f S z = f z := by
   simp [fillFinitePunctures, hz]
 
+/--
+@isnad1 id=eventual.0h3v.s5.07b3cd044ec6 from=translated src=- shape=0412037a vocab=3deb0f2d
+-/
 theorem fillFinitePunctures_eventuallyEq_nhdsNE
     (f : ℂ → ℂ) (S : Finset ℂ) (p : ℂ) :
     fillFinitePunctures f S =ᶠ[𝓝[≠] p] f := by
@@ -50,6 +59,9 @@ theorem fillFinitePunctures_eventuallyEq_nhdsNE
   filter_upwards [(nhdsNE_le_cofinite p) hcompl] with z hz
   simp_all
 
+/--
+@isnad1 id=analytic.3h4v.s6.f6ef5ca5e764 from=translated src=- shape=dc8ca2b8 vocab=8a6ec706
+-/
 theorem analyticAt_fillFinitePunctures_of_mem
     {f g : ℂ → ℂ} {S : Finset ℂ} {p : ℂ}
     (hp : p ∈ S) (hg : AnalyticAt ℂ g p)
@@ -64,6 +76,9 @@ theorem analyticAt_fillFinitePunctures_of_mem
       (fillFinitePunctures_eventuallyEq_nhdsNE f S p).symm
   · simp [hp, hlim]
 
+/--
+@isnad1 id=analytic.2h3v.s6.74093287b47e from=translated src=- shape=5c9b2fe5 vocab=cace64e3
+-/
 theorem analyticAt_fillFinitePunctures_of_notMem
     {f : ℂ → ℂ} {S : Finset ℂ} {p : ℂ}
     (hp : p ∉ S) (hf : AnalyticAt ℂ f p) :
@@ -89,6 +104,9 @@ noncomputable def weightedLogDerivFiniteRemainder
   fun z ↦ h z * logDeriv f z -
     ∑ p ∈ S, (h p * (order p : ℂ)) / (z - p)
 
+/--
+@isnad1 id=ex.4h5v.s7.1dbad74eab8c from=translated src=- shape=a8d489e2 vocab=0d629af8
+-/
 theorem exists_analytic_weightedLogDerivFiniteRemainder_of_mem
     {f h : ℂ → ℂ} {S : Finset ℂ} {order : ℂ → ℤ} {p : ℂ}
     (hp : p ∈ S) (hf : MeromorphicAt f p)
@@ -126,6 +144,9 @@ theorem exists_analytic_weightedLogDerivFiniteRemainder_of_mem
   simp only [slope, vsub_eq_sub, smul_eq_mul]
   grind
 
+/--
+@isnad1 id=analytic.4h5v.s6.34e060e02b65 from=translated src=- shape=1325443d vocab=25c0def3
+-/
 theorem analyticAt_weightedLogDerivFiniteRemainder_of_notMem
     {f h : ℂ → ℂ} {S : Finset ℂ} {order : ℂ → ℤ} {z : ℂ}
     (hz : z ∉ S) (hf : AnalyticAt ℂ f z) (hfz : f z ≠ 0)
@@ -144,6 +165,9 @@ theorem analyticAt_weightedLogDerivFiniteRemainder_of_notMem
   ext w
   simp
 
+/--
+@isnad1 id=analytic.4h5v.s7.9d55bd502b28 from=translated src=- shape=e97de744 vocab=e9c6fe96
+-/
 theorem analyticAt_fill_weightedLogDerivFiniteRemainder
     {f h : ℂ → ℂ} {S : Finset ℂ} {order : ℂ → ℤ} {z : ℂ}
     (hf : AnalyticAt ℂ f z) (hh : AnalyticAt ℂ h z)

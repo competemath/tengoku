@@ -27,6 +27,9 @@ noncomputable def actionCovector (vector : ActionSpace) : ActionSpace →L[ℝ] 
   ((ContinuousLinearMap.proj 0 : ActionSpace →L[ℝ] ℝ).smulRight (vector 0)) +
     ((ContinuousLinearMap.proj 1 : ActionSpace →L[ℝ] ℝ).smulRight (vector 1))
 
+/--
+@isnad1 id=eq.0h2v.s7.d65aaea6b0f4 from=translated src=- shape=e7daf357 vocab=7c44d893
+-/
 lemma actionCovector_apply (vector direction : ActionSpace) :
     actionCovector vector direction = dot vector direction := by
   rw [dot_eq]
@@ -53,7 +56,9 @@ def cartesianAngularAction (state : PhaseSpace) : ℝ :=
 noncomputable def cartesianDelaunayActions (state : PhaseSpace) : ActionSpace :=
   ![cartesianFirstAction state, cartesianAngularAction state]
 
-/-- The inertial Kepler energy is analytic away from the central collision. -/
+/-- The inertial Kepler energy is analytic away from the central collision.
+@isnad1 id=analytic.1h1v.s7.53be9e7087e6 from=translated src=- shape=4bf3ee19 vocab=052710fb
+-/
 theorem analyticAt_cartesianKeplerEnergy
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0) :
     AnalyticAt ℝ cartesianKeplerEnergy state := by
@@ -81,7 +86,9 @@ theorem analyticAt_cartesianKeplerEnergy
   unfold cartesianKeplerEnergy
   exact hkinetic.sub hinverseRadius
 
-/-- Angular action is an analytic polynomial in Cartesian phase variables. -/
+/-- Angular action is an analytic polynomial in Cartesian phase variables.
+@isnad1 id=analytic.0h1v.s6.581088577df5 from=translated src=- shape=6c774435 vocab=6a90a66f
+-/
 theorem analyticAt_cartesianAngularAction (state : PhaseSpace) :
     AnalyticAt ℝ cartesianAngularAction state := by
   have hcoordinate : ∀ coordinate : Fin 4,
@@ -93,7 +100,9 @@ theorem analyticAt_cartesianAngularAction (state : PhaseSpace) :
     ((hcoordinate 1).mul (hcoordinate 2))
 
 /-- The reconstructed first action is analytic wherever the central distance is nonzero and the
-inertial Kepler energy is negative. -/
+inertial Kepler energy is negative.
+@isnad1 id=analytic.2h1v.s7.8b7cf57fec75 from=translated src=- shape=c0685fc3 vocab=5c002b08
+-/
 theorem analyticAt_cartesianFirstAction
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) :
@@ -107,7 +116,9 @@ theorem analyticAt_cartesianFirstAction
   exact (analyticAt_inv_sqrt hpositive).comp
     (f := fun candidate : PhaseSpace ↦ -2 * cartesianKeplerEnergy candidate) hargument
 
-/-- The Cartesian Delaunay action map is analytic on the negative-energy, noncollision region. -/
+/-- The Cartesian Delaunay action map is analytic on the negative-energy, noncollision region.
+@isnad1 id=analytic.2h1v.s8.c8c3e8c8f6a9 from=translated src=- shape=ff8c26bb vocab=340b55f7
+-/
 theorem analyticAt_cartesianDelaunayActions
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) :
@@ -118,7 +129,9 @@ theorem analyticAt_cartesianDelaunayActions
   · exact analyticAt_cartesianFirstAction hposition henergy
   · exact analyticAt_cartesianAngularAction state
 
-/-- A common planar rotation preserves the determinant of two vectors. -/
+/-- A common planar rotation preserves the determinant of two vectors.
+@isnad1 id=eq.0h3v.s7.100f1dda5908 from=translated src=- shape=ec229a97 vocab=ce901498
+-/
 lemma positionInRotatingFrame_cross
     (angle : ℝ) (first second : ActionSpace) :
     positionInRotatingFrame angle first 0 * positionInRotatingFrame angle second 1 -
@@ -128,7 +141,9 @@ lemma positionInRotatingFrame_cross
   simp only [positionInRotatingFrame, Matrix.cons_val_zero, Matrix.cons_val_one]
   linear_combination (first 0 * second 1 - first 1 * second 0) * htrig
 
-/-- A common planar rotation preserves the squared norm. -/
+/-- A common planar rotation preserves the squared norm.
+@isnad1 id=eq.0h2v.s7.15633e03f2a6 from=translated src=- shape=c24a0130 vocab=cf1d45ab
+-/
 lemma positionInRotatingFrame_momentum_sq
     (angle : ℝ) (momentum : ActionSpace) :
     (positionInRotatingFrame angle momentum 0) ^ 2 +
@@ -137,7 +152,9 @@ lemma positionInRotatingFrame_momentum_sq
   positionInRotatingFrame_sq angle momentum
 
 /-- The eccentric-anomaly position and velocity carry angular action
-`L * sqrt (1 - e²)`. -/
+`L * sqrt (1 - e²)`.
+@isnad1 id=eq.3h3v.s7.44397f9eb39b from=translated src=- shape=f9e2dc5f vocab=e62d44cb
+-/
 lemma inertialEllipsePosition_velocity_cross
     {firstAction eccentricity anomaly : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -159,7 +176,9 @@ lemma inertialEllipsePosition_velocity_cross
   linear_combination Real.sqrt (1 - eccentricity ^ 2) * htrig
 
 /-- The velocity norm on an elliptic Kepler orbit has the vis-viva value needed for its energy
-shell. -/
+shell.
+@isnad1 id=eq.3h3v.s8.c5b9f582cde6 from=translated src=- shape=d0ea9d05 vocab=8784efc7
+-/
 lemma inertialEllipseVelocity_energy_identity
     {firstAction eccentricity anomaly : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -181,7 +200,9 @@ lemma inertialEllipseVelocity_energy_identity
   field_simp [hfirstAction, hdenominator]
   nlinarith
 
-/-- The explicit lifted Delaunay chart realizes its prescribed second action. -/
+/-- The explicit lifted Delaunay chart realizes its prescribed second action.
+@isnad1 id=eq.3h4v.s5.5d0dec9eb797 from=translated src=- shape=b25a8857 vocab=6449afad
+-/
 theorem cartesianAngularAction_liftedDelaunayPhasePoint
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -209,7 +230,9 @@ theorem cartesianAngularAction_liftedDelaunayPhasePoint
   rw [positionInRotatingFrame_cross]
   exact inertialEllipsePosition_velocity_cross hfirstAction heccentricity heccentricityOne
 
-/-- The first action of the lifted chart is its negative Kepler energy action. -/
+/-- The first action of the lifted chart is its negative Kepler energy action.
+@isnad1 id=eq.3h4v.s6.b89c9872732c from=translated src=- shape=8113ecf3 vocab=3e321a56
+-/
 theorem cartesianKeplerEnergy_liftedDelaunayPhasePoint
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -250,7 +273,9 @@ theorem cartesianKeplerEnergy_liftedDelaunayPhasePoint
     heccentricity heccentricityOne
 
 /-- Reconstructing the first action from the energy of a positive-action lifted ellipse returns
-the original `L`. -/
+the original `L`.
+@isnad1 id=eq.3h4v.s5.77216071c084 from=translated src=- shape=f153a1a6 vocab=9a44c545
+-/
 theorem cartesianFirstAction_liftedDelaunayPhasePoint
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -268,7 +293,9 @@ theorem cartesianFirstAction_liftedDelaunayPhasePoint
   rw [hinverseSquare, Real.sqrt_sq_eq_abs, abs_of_pos (one_div_pos.mpr hfirstAction)]
   field_simp [hfirstAction.ne']
 
-/-- The complete Cartesian action map is a left inverse of the lifted Delaunay chart. -/
+/-- The complete Cartesian action map is a left inverse of the lifted Delaunay chart.
+@isnad1 id=eq.3h4v.s6.4bbbbf835a3e from=translated src=- shape=b44535ca vocab=c9b0e780
+-/
 theorem cartesianDelaunayActions_liftedDelaunayPhasePoint
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -284,7 +311,9 @@ theorem cartesianDelaunayActions_liftedDelaunayPhasePoint
   · exact cartesianAngularAction_liftedDelaunayPhasePoint hfirstAction.ne'
       heccentricity heccentricityOne
 
-/-- The Cartesian action map is analytic at every nondegenerate lifted elliptic point. -/
+/-- The Cartesian action map is analytic at every nondegenerate lifted elliptic point.
+@isnad1 id=analytic.3h4v.s7.0cb5f74ee78e from=translated src=- shape=e1662c25 vocab=3be00880
+-/
 theorem analyticAt_cartesianDelaunayActions_liftedDelaunayPhasePoint
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -317,7 +346,9 @@ theorem analyticAt_cartesianDelaunayActions_liftedDelaunayPhasePoint
       (mul_pos (by norm_num) (sq_pos_of_pos hfirstAction))
   exact analyticAt_cartesianDelaunayActions hposition henergy
 
-/-- The Delaunay Hamiltonian is analytic whenever its first action is nonzero. -/
+/-- The Delaunay Hamiltonian is analytic whenever its first action is nonzero.
+@isnad1 id=analytic.1h1v.s7.3b469cc541ce from=translated src=- shape=5ef506ee vocab=b4a46ca7
+-/
 theorem analyticAt_delaunayHamiltonian
     {action : ActionSpace} (hfirstAction : action 0 ≠ 0) :
     AnalyticAt ℝ delaunayHamiltonian action := by
@@ -333,7 +364,9 @@ theorem analyticAt_delaunayHamiltonian
   exact (analyticAt_const.div hdenominator hdenominatorNe).sub (hcoordinate 1)
 
 /-- The Fréchet differential of the Delaunay Hamiltonian is the covector represented by its
-frequency vector. -/
+frequency vector.
+@isnad1 id=eq.1h1v.s8.db230d750d82 from=translated src=- shape=9c3a49c5 vocab=a965825d
+-/
 theorem fderiv_delaunayHamiltonian_eq_actionCovector
     {action : ActionSpace} (hfirstAction : action 0 ≠ 0) :
     fderiv ℝ delaunayHamiltonian action =
@@ -400,7 +433,9 @@ theorem fderiv_delaunayHamiltonian_eq_actionCovector
   ring
 
 /-- At every noncentral phase point, the zero-mass rotating Hamiltonian is inertial Kepler energy
-minus angular action. -/
+minus angular action.
+@isnad1 id=eq.0h1v.s4.d9a5368dc8f0 from=translated src=- shape=126c2534 vocab=576d8ab4
+-/
 theorem hamiltonian_zero_eq_cartesianKeplerEnergy_sub_angularAction
     (state : PhaseSpace) :
     hamiltonian 0 state =
@@ -410,7 +445,9 @@ theorem hamiltonian_zero_eq_cartesianKeplerEnergy_sub_angularAction
   ring
 
 /-- On the negative-energy region, the Cartesian action reconstruction puts the physical
-Hamiltonian into Delaunay normal form. -/
+Hamiltonian into Delaunay normal form.
+@isnad1 id=eq.1h1v.s4.e449632f5435 from=translated src=- shape=02ff43b7 vocab=e5eda972
+-/
 theorem delaunayHamiltonian_cartesianDelaunayActions
     {state : PhaseSpace} (henergy : cartesianKeplerEnergy state < 0) :
     delaunayHamiltonian (cartesianDelaunayActions state) = hamiltonian 0 state := by
@@ -427,7 +464,9 @@ theorem delaunayHamiltonian_cartesianDelaunayActions
   nlinarith
 
 /-- The physical and action-coordinate zero-mass Hamiltonians agree on a whole neighborhood of
-every negative-energy, noncentral phase point. -/
+every negative-energy, noncentral phase point.
+@isnad1 id=eventual.2h1v.s7.0df7b9db12b6 from=translated src=- shape=cb19be33 vocab=72c6159d
+-/
 theorem hamiltonian_zero_eventuallyEq_delaunayHamiltonian_comp_actions
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) :
@@ -441,7 +480,9 @@ theorem hamiltonian_zero_eventuallyEq_delaunayHamiltonian_comp_actions
   filter_upwards [heventually] with candidate hcandidate
   exact (delaunayHamiltonian_cartesianDelaunayActions hcandidate).symm
 
-/-- Differential form of the action-coordinate normal form for the zero-mass Hamiltonian. -/
+/-- Differential form of the action-coordinate normal form for the zero-mass Hamiltonian.
+@isnad1 id=eq.2h1v.s9.35ecce7b5887 from=translated src=- shape=e9c6bf79 vocab=a2b60c86
+-/
 theorem fderiv_hamiltonian_zero_eq_delaunay_comp_actions
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) :
@@ -471,7 +512,9 @@ theorem fderiv_hamiltonian_zero_eq_delaunay_comp_actions
       exact fderiv_comp state houter hinner
 
 /-- The physical Hamiltonian differential is the pullback of the Kepler frequency covector by the
-Cartesian action map. -/
+Cartesian action map.
+@isnad1 id=eq.2h1v.s9.0292063abc8f from=translated src=- shape=66a5f219 vocab=c718b2bd
+-/
 theorem fderiv_hamiltonian_zero_eq_frequencyCovector_comp_actions
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) :
@@ -485,7 +528,9 @@ theorem fderiv_hamiltonian_zero_eq_frequencyCovector_comp_actions
     positivity
   rw [fderiv_delaunayHamiltonian_eq_actionCovector hfirstAction]
 
-/-- The physical zero-mass Hamiltonian pulls back to the Delaunay Hamiltonian. -/
+/-- The physical zero-mass Hamiltonian pulls back to the Delaunay Hamiltonian.
+@isnad1 id=eq.3h4v.s6.5cd8e9f45e6b from=translated src=- shape=d153461f vocab=800e8afd
+-/
 theorem hamiltonian_zero_liftedDelaunayPhasePoint
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : firstAction ≠ 0)

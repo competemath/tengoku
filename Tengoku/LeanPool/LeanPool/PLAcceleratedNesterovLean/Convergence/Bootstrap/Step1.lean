@@ -26,7 +26,9 @@ noncomputable section
 
 namespace PLAcceleratedNesterovLean
 
-/-- Geometric decay: if f(n+1) ≤ c * f(n) for all n, then f(n) ≤ c^n * f(0). -/
+/-- Geometric decay: if f(n+1) ≤ c * f(n) for all n, then f(n) ≤ c^n * f(0).
+@isnad1 id=le.2h3v.s6.f571b07df360 from=translated src=- shape=c64519ef vocab=cef4cf1d
+-/
 theorem geometric_decay (f : ℕ → ℝ) (c : ℝ) (hc : 0 ≤ c)
     (hstep : ∀ n, f (n + 1) ≤ c * f n) :
     ∀ n, f n ≤ c ^ n * f 0 := by
@@ -39,7 +41,9 @@ theorem geometric_decay (f : ℕ → ℝ) (c : ℝ) (hc : 0 ≤ c)
       _ = c ^ (n + 1) * f 0 := by ring
 
 /-- Geometric decay with invariant: if contraction holds whenever P(n) is true,
-    and P is preserved, then both the invariant and the decay hold for all n. -/
+    and P is preserved, then both the invariant and the decay hold for all n.
+@isnad1 id=and.4h5v.s7.8f854159106f from=translated src=- shape=95cdc2d1 vocab=cef4cf1d
+-/
 theorem geometric_decay_with_invariant (f : ℕ → ℝ) (P : ℕ → Prop)
     (c : ℝ) (hc : 0 ≤ c) (_hc1 : c ≤ 1) (_hf0 : 0 ≤ f 0)
     (hP0 : P 0)
@@ -56,7 +60,9 @@ theorem geometric_decay_with_invariant (f : ℕ → ℝ) (P : ℕ → Prop)
       _ ≤ c * (c ^ n * f 0) := by nlinarith [pow_nonneg hc n]
       _ = c ^ (n + 1) * f 0 := by ring
 
-/-- Partial geometric series: Σ_{k=0}^{n-1} r^k ≤ 1/(1-r) for 0 ≤ r < 1. -/
+/-- Partial geometric series: Σ_{k=0}^{n-1} r^k ≤ 1/(1-r) for 0 ≤ r < 1.
+@isnad1 id=le.2h2v.s6.3af8a87d1c95 from=translated src=- shape=e5f27e19 vocab=5604d48c
+-/
 theorem partial_geom_series_bound (r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) (n : ℕ) :
     (Finset.range n).sum (fun k => r ^ k) ≤ 1 / (1 - r) := by
   have h1r : (0 : ℝ) < 1 - r := by linarith
@@ -72,7 +78,9 @@ theorem partial_geom_series_bound (r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) (n : �
   apply div_le_div_of_nonneg_right _ (le_of_lt h1r)
   linarith [pow_nonneg hr0 n]
 
-/-- Telescoping sum: ‖x_{n+1} - x_1‖ ≤ Σ_{k=0}^{n-1} ‖x_{k+1} - x_k‖. -/
+/-- Telescoping sum: ‖x_{n+1} - x_1‖ ≤ Σ_{k=0}^{n-1} ‖x_{k+1} - x_k‖.
+@isnad1 id=le.0h3v.s7.bf7f68dd3cc4 from=translated src=- shape=b7511ff8 vocab=3ab63c45
+-/
 theorem telescoping_norm_bound {d : ℕ} (x : ℕ → E d) (n : ℕ) :
     ‖x n - x 0‖ ≤ (Finset.range n).sum (fun k => ‖x (k + 1) - x k‖) := by
   induction n with

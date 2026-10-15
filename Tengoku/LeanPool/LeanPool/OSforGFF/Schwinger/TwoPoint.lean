@@ -44,7 +44,9 @@ noncomputable def bumpToSchwartz (φ : ContDiffBump (0 : SpaceTime)) : OSforGFF.
   -- The normed bump has compact support and is C^∞, hence Schwartz
   (φ.hasCompactSupport_normed (μ := volume)).toSchwartzMap φ.contDiff_normed
 
-/-- bumpToSchwartz produces the L¹-normalized bump function. -/
+/-- bumpToSchwartz produces the L¹-normalized bump function.
+@isnad1 id=eq.0h2v.s8.8ff0cba3a8e3 from=translated src=- shape=42649375 vocab=99cdd928
+-/
 @[simp]
 theorem bumpToSchwartz_apply (φ : ContDiffBump (0 : SpaceTime)) (x : SpaceTime) :
     bumpToSchwartz φ x = φ.normed volume x := rfl
@@ -112,7 +114,9 @@ noncomputable def SchwingerTwoPointFunction
       (fun n : ℕ => if hn : n = 0 then 0 else SmearedTwoPointFunction dμ_config
          (standardBumpSequence n hn) x)
 
-/-- SchwingerTwoPointFunction vanishes at coincident points by definition. -/
+/-- SchwingerTwoPointFunction vanishes at coincident points by definition.
+@isnad1 id=eq.0h1v.s8.f9ef9ab59675 from=translated src=- shape=98672205 vocab=365a357f
+-/
 @[simp]
 theorem schwingerTwoPointFunction_zero
     (dμ_config : ProbabilityMeasure FieldConfiguration) :
@@ -131,6 +135,7 @@ theorem schwingerTwoPointFunction_zero
     This holds for Gaussian measures where C is the covariance kernel.
 
     The proof uses `double_mollifier_convergence` from FunctionalAnalysis.lean.
+@isnad1 id=tendsto.4h6v.s10.94721e096f4d from=translated src=- shape=28f6392d vocab=70adcd8a
 -/
 theorem smearedTwoPoint_tendsto_schwingerTwoPoint
     (dμ_config : ProbabilityMeasure FieldConfiguration) (x : SpaceTime) (hx : x ≠ 0)
@@ -169,6 +174,7 @@ theorem smearedTwoPoint_tendsto_schwingerTwoPoint
 
     Note: For x = 0, the SchwingerTwoPointFunction is defined to be 0 by regularization,
     so this theorem requires x ≠ 0.
+@isnad1 id=eq.3h3v.s10.d558233c8cbf from=translated src=- shape=670fa49a vocab=d3eeeb7b
 -/
 theorem schwingerTwoPointFunction_eq_kernel
     (dμ_config : ProbabilityMeasure FieldConfiguration) (x : SpaceTime) (hx : x ≠ 0)

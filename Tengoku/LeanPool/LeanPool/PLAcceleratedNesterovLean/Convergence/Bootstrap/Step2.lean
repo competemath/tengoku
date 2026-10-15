@@ -30,7 +30,9 @@ noncomputable section
 namespace PLAcceleratedNesterovLean
 
 /-- If Ψ is continuous, Ψ(m) = 0, and R > 0, there exists α > 0 with Ψ(x) < R²
-    for all x in B(m, α). -/
+    for all x in B(m, α).
+@isnad1 id=ex.3h4v.s7.1705a07d4911 from=translated src=- shape=8a530ceb vocab=4d5c29f1
+-/
 theorem exists_alpha_psi_small {d : ℕ} (m : E d) (Ψ : E d → ℝ)
     (hcont : ContinuousAt Ψ m) (hzero : Ψ m = 0) (R : ℝ) (hR : 0 < R) :
     ∃ α : ℝ, 0 < α ∧ ∀ x, dist x m < α → Ψ x < R ^ 2 := by
@@ -43,14 +45,18 @@ theorem exists_alpha_psi_small {d : ℕ} (m : E d) (Ψ : E d → ℝ)
   linarith
 
 /-- Ball containment: if ‖x - m‖ < α and α < r and 4r ≤ dist(m, ∂Ω), then x ∈ Ω.
-    Stated as: if dist(x, m) < α, α + displacement < dist(m, ∂Ω), then x ∈ Ω. -/
+    Stated as: if dist(x, m) < α, α + displacement < dist(m, ∂Ω), then x ∈ Ω.
+@isnad1 id=mem.3h5v.s7.b04cfbcf23d2 from=translated src=- shape=69ba39db vocab=08c5728e
+-/
 theorem ball_mem_of_dist_lt {d : ℕ} (x m : E d) (α : ℝ)
     (Ω : Set (E d)) (_hΩ : IsOpen Ω) (_hm : m ∈ Ω)
     (hx : dist x m < α) :
     x ∈ Metric.ball m α := by
   exact Metric.mem_ball.mpr hx
 
-/-- Sum bound: if f(k) ≤ C · r^k for all k, then Σ f(k) ≤ C · Σ r^k. -/
+/-- Sum bound: if f(k) ≤ C · r^k for all k, then Σ f(k) ≤ C · Σ r^k.
+@isnad1 id=le.3h4v.s6.74a5c6361e10 from=translated src=- shape=b4c53980 vocab=6afb6aba
+-/
 theorem series_bound_from_geometric (f : ℕ → ℝ) (C r : ℝ) (n : ℕ)
     (_hC : 0 ≤ C) (_hr : 0 ≤ r) (hf : ∀ k, k < n → f k ≤ C * r ^ k) :
     (Finset.range n).sum f ≤ C * (Finset.range n).sum (fun k => r ^ k) := by

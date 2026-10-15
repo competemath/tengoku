@@ -57,7 +57,9 @@ noncomputable def rationalLabel (A : Type*) [Finite A] : A ↪ ℚ := by
         (Fin.ext (Nat.cast_injective h)) }
 
 /-- The rational alphabet reduction in Section 1.1 and the proof of Theorem 1.1
-in Section 6: the labeling preserves every pattern count and every period vector. -/
+in Section 6: the labeling preserves every pattern count and every period vector.
+@isnad1 id=ex.0h2v.s5.fd86c23da2cd from=translated src=- shape=8b588b49 vocab=5c9ace4f
+-/
 theorem exists_rational_model {A : Type*} [Finite A] (c : Configuration A) :
     ∃ d : Configuration ℚ, FiniteRange d ∧
       (∀ D : Finset Lattice, complexity d D = complexity c D) ∧

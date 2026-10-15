@@ -19,6 +19,9 @@ open MeasureTheory Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.0h0v.s4.be9700571b2b from=translated src=- shape=66c352d6 vocab=f1774588
+-/
 theorem support_tartarWeight_subset :
     Function.support Tartar.weight ⊆ Set.Icc (-1 : ℝ) 1 := by
   intro x hx
@@ -30,13 +33,22 @@ theorem support_tartarWeight_subset :
   · exact hx (tartarWeight_eq_zero_of_one_le_abs (by
       grind))
 
+/--
+@isnad1 id=hascompa.0h0v.s3.b7881981cc2a from=translated src=- shape=e3d48bcb vocab=b288b88c
+-/
 theorem tartarWeight_hasCompactSupport : HasCompactSupport Tartar.weight :=
   IsCompact.of_isClosed_subset isCompact_Icc isClosed_closure
     (closure_minimal support_tartarWeight_subset isClosed_Icc)
 
+/--
+@isnad1 id=integrab.0h0v.s4.e945674a39e4 from=translated src=- shape=e14394ff vocab=7eb3ad70
+-/
 theorem tartarWeight_integrable : Integrable Tartar.weight :=
   tartarWeight_continuous.integrable_of_hasCompactSupport tartarWeight_hasCompactSupport
 
+/--
+@isnad1 id=eq.0h0v.s5.bdbabcaa607c from=translated src=- shape=59ef8cb2 vocab=27178edb
+-/
 theorem tartarWeight_eq_indicator :
     Tartar.weight = (Set.Icc (-1 : ℝ) 1).indicator (fun x ↦ 1 - x ^ 2) := by
   funext x
@@ -47,6 +59,9 @@ theorem tartarWeight_eq_indicator :
     apply tartarWeight_eq_zero_of_one_le_abs
     grind
 
+/--
+@isnad1 id=eq.0h0v.s5.a1c6025bb92f from=translated src=- shape=71d3640f vocab=1bbdeee3
+-/
 theorem integral_tartarWeight :
     ∫ x : ℝ, Tartar.weight x = 4 / 3 := by
   rw [tartarWeight_eq_indicator, integral_indicator measurableSet_Icc,
@@ -68,6 +83,9 @@ open MeasureTheory Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h1v.s7.5c941573876e from=translated src=- shape=ff8a6d74 vocab=111e2124
+-/
 theorem intervalIntegral_one_sub_sq_mul_cos {x : ℝ} (hx : x ≠ 0) :
     ∫ t : ℝ in (-1)..1, (1 - t ^ 2) * Real.cos (x * t) =
       4 * (Real.sin x - x * Real.cos x) / x ^ 3 := by
@@ -99,6 +117,9 @@ theorem intervalIntegral_one_sub_sq_mul_cos {x : ℝ} (hx : x ≠ 0) :
   · exact (by fun_prop : Continuous (fun t : ℝ ↦
       (1 - t ^ 2) * Real.cos (x * t))).intervalIntegrable _ _
 
+/--
+@isnad1 id=eq.0h1v.s6.fc69595bab70 from=translated src=- shape=88a0ad35 vocab=764d30a6
+-/
 theorem tartarAmplitude_eq_cosineTransform (x : ℝ) :
     Tartar.amplitude x = (3 / 4 : ℝ) * ∫ t : ℝ, Tartar.weight t * Real.cos (x * t) := by
   by_cases hx : x = 0
@@ -119,6 +140,9 @@ theorem tartarAmplitude_eq_cosineTransform (x : ℝ) :
       intervalIntegral_one_sub_sq_mul_cos hx, tartarAmplitude_eq_of_ne hx]
     grind
 
+/--
+@isnad1 id=integrab.0h1v.s5.c7c8ad4dceea from=translated src=- shape=a7355a5f vocab=10487abd
+-/
 theorem tartarWeight_mul_cos_integrable (x : ℝ) :
     Integrable (fun t : ℝ ↦ Tartar.weight t * Real.cos (x * t)) := by
   apply tartarWeight_integrable.mul_bdd
@@ -126,6 +150,9 @@ theorem tartarWeight_mul_cos_integrable (x : ℝ) :
   · filter_upwards [] with t
     simpa [Real.norm_eq_abs] using Real.abs_cos_le_one (x * t)
 
+/--
+@isnad1 id=le.0h1v.s6.025b79d88fbc from=translated src=- shape=be8f70e6 vocab=edc70635
+-/
 theorem norm_integral_tartarWeight_mul_cos_le (x : ℝ) :
     ‖∫ t : ℝ, Tartar.weight t * Real.cos (x * t)‖ ≤ 4 / 3 := by
   calc
@@ -137,6 +164,9 @@ theorem norm_integral_tartarWeight_mul_cos_le (x : ℝ) :
           (mul_one _)
     _ = 4 / 3 := integral_tartarWeight
 
+/--
+@isnad1 id=le.0h1v.s4.54f8c6659c1b from=translated src=- shape=38becc55 vocab=bb059b28
+-/
 theorem abs_tartarAmplitude_le_one (x : ℝ) : |Tartar.amplitude x| ≤ 1 := by
   rw [tartarAmplitude_eq_cosineTransform, abs_mul]
   have h := norm_integral_tartarWeight_mul_cos_le x
@@ -144,6 +174,9 @@ theorem abs_tartarAmplitude_le_one (x : ℝ) : |Tartar.amplitude x| ≤ 1 := by
   norm_num
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s3.919153072c9f from=translated src=- shape=b14ee516 vocab=d1780e24
+-/
 theorem tartarTestFunction_le_one (x : ℝ) : Tartar.testFunction x ≤ 1 := by
   rw [Tartar.testFunction]
   have h := (sq_le_sq₀ (abs_nonneg (Tartar.amplitude x)) zero_le_one).mpr

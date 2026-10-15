@@ -22,7 +22,9 @@ phase differential is the pullback of the differential of the action-space repre
 namespace LeanPool.PoincareThreeBody
 
 /-- The rows of the derivative of the physical action map are the derivatives of its two scalar
-components. -/
+components.
+@isnad1 id=eq.2h2v.s8.256c1973e79f from=translated src=- shape=fe4676f8 vocab=5ca4c584
+-/
 theorem actionDerivativeCovector_cartesianDelaunayActions
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0) (coordinate : Fin 2) :
@@ -32,7 +34,9 @@ theorem actionDerivativeCovector_cartesianDelaunayActions
   intro direction
   exact fderiv_cartesianDelaunayActions_coordinate hposition henergy coordinate
 
-/-- The Hamiltonian vector of the angular-action differential is simultaneous planar rotation. -/
+/-- The Hamiltonian vector of the angular-action differential is simultaneous planar rotation.
+@isnad1 id=eq.0h1v.s6.764737bbc193 from=translated src=- shape=e68dbf1a vocab=af9bab89
+-/
 theorem phaseHamiltonianVector_fderiv_cartesianAngularAction (state : PhaseSpace) :
     phaseHamiltonianVector (fderiv ℝ cartesianAngularAction state) =
       angularActionVectorField state := by
@@ -42,7 +46,9 @@ theorem phaseHamiltonianVector_fderiv_cartesianAngularAction (state : PhaseSpace
     simp [phaseHamiltonianVector, angularActionVectorField, coordinateVector]
 
 /-- At a lifted elliptic point, the Hamiltonian vector of the second row of the action derivative
-is the angular-action vector field. -/
+is the angular-action vector field.
+@isnad1 id=other.3h4v.s7.344fb1b38f69 from=translated src=- shape=d91f0f5b vocab=75681d1e
+-/
 theorem phaseHamiltonianVector_actionDerivativeCovector_one
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -82,7 +88,9 @@ theorem phaseHamiltonianVector_actionDerivativeCovector_one
   exact phaseHamiltonianVector_fderiv_cartesianAngularAction state
 
 /-- The physical action derivative kills the angular-action Hamiltonian vector at every lifted
-elliptic point. -/
+elliptic point.
+@isnad1 id=other.3h4v.s9.0f2b3b6b79f8 from=translated src=- shape=3c853a35 vocab=c5607500
+-/
 theorem fderiv_cartesianDelaunayActions_angularActionVectorField_eq_zero
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -115,7 +123,9 @@ theorem fderiv_cartesianDelaunayActions_angularActionVectorField_eq_zero
   simp
 
 /-- The two rows of the physical action derivative are symplectically orthogonal on every lifted
-elliptic point. -/
+elliptic point.
+@isnad1 id=other.3h4v.s8.ad159e6100d2 from=translated src=- shape=4638525b vocab=2945ffdd
+-/
 theorem phasePoissonPairing_actionDerivativeCovectors_eq_zero
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -137,7 +147,9 @@ theorem phasePoissonPairing_actionDerivativeCovectors_eq_zero
   rfl
 
 /-- Pairing a phase differential with a row of the physical action derivative recovers the
-corresponding component of the action Poisson vector. -/
+corresponding component of the action Poisson vector.
+@isnad1 id=eq.2h3v.s8.a078b74f9db8 from=translated src=- shape=a1ed72f1 vocab=167231ac
+-/
 theorem phasePoissonPairing_actionDerivativeCovector_eq_actionPoissonVector
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0)
@@ -153,7 +165,9 @@ theorem phasePoissonPairing_actionDerivativeCovector_eq_actionPoissonVector
   · rfl
 
 /-- Once an observable differential factors through the action map, its bracket with any second
-observable is contraction against the negative action Poisson vector of that observable. -/
+observable is contraction against the negative action Poisson vector of that observable.
+@isnad1 id=eq.3h4v.s9.774bf9374723 from=translated src=- shape=523ce285 vocab=2cc9dd64
+-/
 theorem poissonBracket_eq_neg_dot_actionPoissonVector_of_fderiv_factors
     {state : PhaseSpace} (hposition : state 0 ^ 2 + state 1 ^ 2 ≠ 0)
     (henergy : cartesianKeplerEnergy state < 0)
@@ -170,7 +184,9 @@ theorem poissonBracket_eq_neg_dot_actionPoissonVector_of_fderiv_factors
 
 /-- The differential of the leading integral factors through the physical action derivative at
 every interior noncircular lifted elliptic point.  This form records the factor using an explicit
-moving action section through the point. -/
+moving action section through the point.
+@isnad1 id=other.7h6v.s10.cee340f3e66e from=translated src=- shape=cedb5e99 vocab=1de98aa2
+-/
 theorem IsFirstIntegralFamily.fderiv_mass_zero_factors_through_actions_section
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -240,7 +256,9 @@ theorem IsFirstIntegralFamily.fderiv_mass_zero_factors_through_actions_section
     (fderiv ℝ (F 0) state) hzero
 
 /-- Differentiating the moving action section through a lifted point gives exactly the
-differential of the action-space leading coefficient. -/
+differential of the action-space leading coefficient.
+@isnad1 id=other.7h6v.s10.a78cadb31726 from=translated src=- shape=d13d468d vocab=72045902
+-/
 theorem IsFirstIntegralFamily.fderiv_mass_zero_comp_section_eq_leadingActionCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -335,7 +353,9 @@ theorem IsFirstIntegralFamily.fderiv_mass_zero_comp_section_eq_leadingActionCoef
     _ = fderiv ℝ (leadingActionCoefficient F) action := heventual.fderiv_eq
 
 /-- Pointwise differential form of angle-independence: the leading phase differential is the
-pullback of the represented action differential. -/
+pullback of the represented action differential.
+@isnad1 id=other.7h6v.s9.4c2b74eb1440 from=translated src=- shape=630bf7b8 vocab=156ae1b5
+-/
 theorem IsFirstIntegralFamily.fderiv_mass_zero_eq_actionDifferential_comp_actions
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)

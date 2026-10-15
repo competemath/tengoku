@@ -15,7 +15,9 @@ public import Tengoku
 open MeasureTheory TopologicalSpace
 
 /-- A continuous map on a second-countable source is almost everywhere strongly measurable.
-Specifying the source avoids a search for second countability of the codomain. -/
+Specifying the source avoids a search for second countability of the codomain.
+@isnad1 id=aestrong.1h4v.s5.953445a8f6be from=translated src=- shape=ff06b624 vocab=9d6994d2
+-/
 theorem Continuous.aestronglyMeasurable_of_secondCountable
     {α β : Type*} [MeasurableSpace α] [TopologicalSpace α] [OpensMeasurableSpace α]
     [SecondCountableTopology α] [TopologicalSpace β] [PseudoMetrizableSpace β]

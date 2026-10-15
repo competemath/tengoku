@@ -45,6 +45,9 @@ instance (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
   infer_instance
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s10.3c69d7e237b0 from=translated src=- shape=967c4155 vocab=9932b155
+-/
 theorem covolume_euclideanIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ZLattice.covolume (euclideanIdealLattice K I) =
@@ -154,6 +157,9 @@ private theorem sum_embeddings_eq_sum_places (z : K) :
     simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s9.f2633bbd1b9c from=translated src=- shape=5596a5fd vocab=d0f23f6e
+-/
 theorem mixedTracePairing_mixedEmbedding (x y : K) :
     mixedTracePairing K (mixedEmbedding K x) (mixedEmbedding K y) =
       Algebra.trace ℚ K (x * y) := by
@@ -215,6 +221,9 @@ noncomputable def divideBySqrtTwo : ℂ ≃L[ℝ] ℂ :=
         (inv_ne_zero (ne_of_gt (Real.sqrt_pos.2 (by norm_num)))))
 
 open Classical in
+/--
+@isnad1 id=eq.0h1v.s8.f0dac52816e7 from=translated src=- shape=bce612cc vocab=989c50cd
+-/
 @[simp]
 theorem divideBySqrtTwo_symm_apply (z : ℂ) :
     divideBySqrtTwo.symm z = Real.sqrt 2 • z := by
@@ -267,6 +276,9 @@ instance (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
   infer_instance
 
 open Classical in
+/--
+@isnad1 id=iff.0h3v.s10.d92c4afbbb58 from=translated src=- shape=28803e8e vocab=306c8021
+-/
 theorem traceEmbedding_mem_traceIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {x : K} :
     traceEmbedding K x ∈ traceIdealLattice K I ↔
@@ -283,6 +295,9 @@ theorem traceEmbedding_mem_traceIdealLattice
     exact ⟨x, hx, rfl⟩
 
 open Classical in
+/--
+@isnad1 id=ex.1h3v.s10.0c6d4b364185 from=translated src=- shape=596e5743 vocab=306c8021
+-/
 theorem exists_traceEmbedding_eq_of_mem_traceIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     {v : mixedEmbedding.euclidean.mixedSpace K}
@@ -308,6 +323,9 @@ noncomputable def traceConjugation :
     (LinearIsometryEquiv.piLpCongrRight 2 fun _ ↦ Complex.conjLIE)
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s13.a4d6647c4f9e from=translated src=- shape=c57391eb vocab=86b4009c
+-/
 @[simp]
 theorem traceConjugation_involutive
     (x : mixedEmbedding.euclidean.mixedSpace K) :
@@ -321,6 +339,9 @@ theorem traceConjugation_involutive
     simp [traceConjugation]
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s12.7976570c3132 from=translated src=- shape=fca616ce vocab=bbcf9b3e
+-/
 theorem inner_traceEmbedding_traceConjugation (x y : K) :
     inner ℝ (traceEmbedding K x)
         (traceConjugation K (traceEmbedding K y)) =
@@ -378,6 +399,9 @@ noncomputable def traceIdealRealBasis
     (traceToMixed K).symm.toLinearEquiv
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s13.767eed8728c7 from=translated src=- shape=5561ed2f vocab=773cc82a
+-/
 @[simp]
 theorem traceIdealRealBasis_apply
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
@@ -389,6 +413,9 @@ theorem traceIdealRealBasis_apply
   rfl
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s12.38fdac21af36 from=translated src=- shape=15cc270a vocab=2c746a0d
+-/
 theorem span_traceIdealRealBasis
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     span ℤ (Set.range (traceIdealRealBasis K I)) =
@@ -419,6 +446,9 @@ theorem span_traceIdealRealBasis
       exact Submodule.map_equiv_eq_comap_symm eZ.symm _
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s14.2821f44fc705 from=translated src=- shape=90f61c3e vocab=59b8b2e8
+-/
 theorem innerDualBasis_traceIdealRealBasis_apply
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (i : Free.ChooseBasisIndex ℤ I) :
@@ -450,6 +480,9 @@ theorem innerDualBasis_traceIdealRealBasis_apply
   exact congrFun h i
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s13.7dd4775862f3 from=translated src=- shape=18eb9495 vocab=a4c06197
+-/
 theorem span_traceDual_basisOfFractionalIdeal
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     span ℤ (Set.range
@@ -473,6 +506,9 @@ noncomputable def traceEmbeddingIntLinearMap :
     (mixedEmbedding K).toIntAlgHom.toLinearMap
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s9.6e4ab5bd9b02 from=translated src=- shape=e3bec4d9 vocab=b2cc001e
+-/
 @[simp]
 theorem traceEmbeddingIntLinearMap_apply (x : K) :
     traceEmbeddingIntLinearMap K x = traceEmbedding K x :=
@@ -487,6 +523,9 @@ noncomputable def conjugateTraceIdealLattice
     ((traceConjugation K).toLinearEquiv.restrictScalars ℤ).toLinearMap
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s9.6d91f8652ba3 from=translated src=- shape=eb5d618b vocab=e2c69ae1
+-/
 theorem map_traceEmbeddingIntLinearMap_fractionalIdeal
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ((I : Submodule (𝓞 K) K).restrictScalars ℤ).map
@@ -502,6 +541,9 @@ theorem map_traceEmbeddingIntLinearMap_fractionalIdeal
     exact ⟨x, hx, by simpa using hxv⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s13.48ea24c7ca35 from=translated src=- shape=f4a44aed vocab=d5cafe24
+-/
 theorem span_conjugate_traceDual_basisOfFractionalIdeal
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     span ℤ (Set.range fun i : Free.ChooseBasisIndex ℤ I ↦
@@ -541,6 +583,9 @@ theorem span_conjugate_traceDual_basisOfFractionalIdeal
       rfl
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s10.039070fb55df from=translated src=- shape=4bdf184a vocab=c856c44a
+-/
 theorem dualLattice_traceIdealLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     dualLattice (traceIdealLattice K I) =

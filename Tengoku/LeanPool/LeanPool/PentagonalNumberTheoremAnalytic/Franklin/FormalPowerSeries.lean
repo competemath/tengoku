@@ -35,6 +35,7 @@ noncomputable def pGenFun : ℤ⟦X⟧ := Nat.Partition.genFun fun _ _ => (1 : �
 /--
 **Lemma 3 (combinatorial side).** The `n`-th coefficient of the partition
 generating function is `p(n)`.
+@isnad1 id=eq.0h1v.s6.91ef8b53d54e from=translated src=- shape=170e6c82 vocab=fdc1a481
 -/
 theorem coeff_pGenFun_eq_p_count (n : ℕ) :
     (coeff n) pGenFun = (pCount n : ℤ) := by
@@ -45,6 +46,7 @@ theorem coeff_pGenFun_eq_p_count (n : ℕ) :
 `∏_{k≥1} (1 + X^k + X^{2k} + ...)` (the geometric series expansion of each
 `(1 - X^k)^{-1}`). The product is taken in the X-adic topology on `ℤ⟦X⟧`,
 where it converges (each `[X^n]` only sees finitely many factors).
+@isnad1 id=eq.0h0v.s7.bcd37fb2bb71 from=translated src=- shape=c1a8ebd6 vocab=12ba4194
 -/
 theorem pGenFun_eq_prod :
     pGenFun
@@ -54,6 +56,7 @@ theorem pGenFun_eq_prod :
 /--
 The coefficient of `X^n` in `∏_{k ∈ T} (-X^k)` is `(-1)^|T|` if `∑_{k ∈ T} k = n`,
 and `0` otherwise: the product collapses to `(-1)^|T| · X^{T.sum id}`.
+@isnad1 id=eq.0h2v.s7.cb3d4bdacd4b from=translated src=- shape=4c16fa1d vocab=adfb738f
 -/
 theorem coeff_prod_neg_X_pow (n : ℕ) (T : Finset ℕ) :
     (coeff n) (∏ k ∈ T, (-(X ^ k) : ℤ⟦X⟧)) = if T.sum id = n then (-1 : ℤ) ^ T.card else 0 := by
@@ -72,6 +75,7 @@ expansion of a product of `1 + a_k` over subsets (`Finset.prod_one_add`):
 Since `coeff n` is linear, `coeff_prod_neg_X_pow` turns the coefficient into a sum of
 `if T.sum id = n then (-1)^|T| else 0` over the powerset, and that is by definition the
 sum over `distinctPartitions n` (`Finset.sum_filter`).
+@isnad1 id=eq.0h1v.s7.6772d79131b8 from=translated src=- shape=2fe3d6f3 vocab=9ae4338a
 -/
 theorem coeff_prod_eq_signed_partition_sum (n : ℕ) :
     (coeff n) (∏ k ∈ Finset.Icc 1 n, (1 - X^k : ℤ⟦X⟧)) =
@@ -88,6 +92,7 @@ The sum splits over the partition
 On `distinctPartitionsEven`, `(-1)^|S| = 1`; on `distinctPartitionsOdd`, `(-1)^|S| = -1`.
 The two pieces give `|distinctPartitionsEven|` and `-|distinctPartitionsOdd|`,
 i.e. `p_e(n)` and `-p_o(n)`.
+@isnad1 id=eq.0h1v.s5.386aa23e6f1f from=translated src=- shape=de4bce0a vocab=2d424f3f
 -/
 theorem signed_partition_sum_eq_pe_sub_po (n : ℕ) :
     ∑ S ∈ distinctPartitions n, (-1 : ℤ)^S.card = (pe n : ℤ) - po n := by
@@ -107,6 +112,7 @@ truncated product `∏_{k=1}^{n}(1 - X^k)` in `ℤ⟦X⟧` equals `p_e(n) - p_o(
 
 (The truncation matches the infinite product `∏_{k≥1}(1 - X^k)` on this
 coefficient because factors with `k > n` are `≡ 1 mod X^{n+1}`.)
+@isnad1 id=eq.0h1v.s7.b76973be1e14 from=translated src=- shape=642f8155 vocab=78f680bb
 -/
 theorem coeff_prod_eq_pe_sub_po (n : ℕ) :
     (coeff n) (∏ k ∈ Finset.Icc 1 n, (1 - X^k : ℤ⟦X⟧)) = (pe n : ℤ) - po n := by
@@ -116,6 +122,7 @@ theorem coeff_prod_eq_pe_sub_po (n : ℕ) :
 **PNT (Euler), zero case.** `[X^0] ∏_{k=1}^{0}(1 - X^k) = 1`.
 (The product is empty, so this is just `coeff 0 1 = 1`; we state it via
 `coeff_prod_eq_pe_sub_po` for uniformity with the other cases.)
+@isnad1 id=eq.0h0v.s7.725d9d06ad6f from=translated src=- shape=6fb4f236 vocab=802535ad
 -/
 theorem coeff_prod_pentagonal_zero :
     (coeff 0) (∏ k ∈ Finset.Icc 1 0, (1 - X^k : ℤ⟦X⟧)) = 1 := by
@@ -125,6 +132,7 @@ theorem coeff_prod_pentagonal_zero :
 **PNT (Euler), non-pentagonal case.** For `n ≥ 1` with `2n` not of the
 form `3k² - k` nor `3k² + k` for any `k ≥ 1`,
 `[X^n] ∏_{k=1}^{n}(1 - X^k) = 0`.
+@isnad1 id=eq.3h1v.s8.0e58bdbb0592 from=translated src=- shape=1c144823 vocab=bad77e69
 -/
 theorem coeff_prod_pentagonal_nonpent (n : ℕ) (hn : 1 ≤ n)
     (h1 : ∀ k, 1 ≤ k → 2 * n ≠ 3 * k ^ 2 - k)
@@ -136,6 +144,7 @@ theorem coeff_prod_pentagonal_nonpent (n : ℕ) (hn : 1 ≤ n)
 **PNT (Euler), pentagonal `(3k²-k)/2` case.** If `2n = 3k² - k` for some
 `k ≥ 1` (equivalently, `n = (3k²-k)/2`), then
 `[X^n] ∏_{k'=1}^{n}(1 - X^{k'}) = (-1)^k`.
+@isnad1 id=eq.2h2v.s7.a3e9fa94188d from=translated src=- shape=06cb89db vocab=e47848b0
 -/
 theorem coeff_prod_pentagonal_minus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 - k) :
     (coeff n) (∏ k' ∈ Finset.Icc 1 n, (1 - X^k' : ℤ⟦X⟧)) = (-1)^k := by
@@ -145,13 +154,16 @@ theorem coeff_prod_pentagonal_minus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 *
 **PNT (Euler), pentagonal `(3k²+k)/2` case.** If `2n = 3k² + k` for some
 `k ≥ 1` (equivalently, `n = (3k²+k)/2`), then
 `[X^n] ∏_{k'=1}^{n}(1 - X^{k'}) = (-1)^k`.
+@isnad1 id=eq.2h2v.s7.49ec87ba3bad from=translated src=- shape=d597eb8b vocab=3012632c
 -/
 theorem coeff_prod_pentagonal_plus (n k : ℕ) (hk : 1 ≤ k) (hn : 2 * n = 3 * k ^ 2 + k) :
     (coeff n) (∏ k' ∈ Finset.Icc 1 n, (1 - X^k' : ℤ⟦X⟧)) = (-1)^k := by
   rw [coeff_prod_eq_pe_sub_po]; exact pe_minus_po_pent_plus n k hk hn
 
 /-- `k * (3 * k - 1)` is always even, so over `ℤ` the generalized pentagonal equation
-`n = k(3k-1)/2` is equivalent to its subtraction-free form `2n = k(3k-1)`. -/
+`n = k(3k-1)/2` is equivalent to its subtraction-free form `2n = k(3k-1)`.
+@isnad1 id=iff.0h2v.s6.823c560bf2df from=translated src=- shape=3062b565 vocab=ec40edd8
+-/
 lemma natCast_eq_gen_pent_div_two_iff (n : ℕ) (k : ℤ) :
     (n : ℤ) = k * (3 * k - 1) / 2 ↔ 2 * (n : ℤ) = k * (3 * k - 1) := by
   obtain ⟨m, hm⟩ := Int.even_mul_pred_self k
@@ -161,7 +173,9 @@ lemma natCast_eq_gen_pent_div_two_iff (n : ℕ) (k : ℤ) :
 /-- **Franklin/Euler in unified integer-index form.** If `2n = k(3k-1)` for some `k : ℤ`,
 then `p_e(n) - p_o(n) = (-1)^|k|`. This subsumes the three pentagonal cases:
 `k = 0` forces `n = 0`, `k = j > 0` gives `2n = 3j² - j`, and `k = -j < 0` gives
-`2n = 3j² + j`. -/
+`2n = 3j² + j`.
+@isnad1 id=eq.1h2v.s6.c1385c75898d from=translated src=- shape=24125289 vocab=211cc90d
+-/
 theorem pe_minus_po_of_gen_pent (n : ℕ) (k : ℤ) (hk : 2 * (n : ℤ) = k * (3 * k - 1)) :
     (pe n : ℤ) - po n = (-1 : ℤ) ^ k.natAbs := by
   rcases lt_trichotomy k 0 with h | rfl | h
@@ -179,7 +193,9 @@ theorem pe_minus_po_of_gen_pent (n : ℕ) (k : ℤ) (hk : 2 * (n : ℤ) = k * (3
     omega
 
 /-- Converse bookkeeping: both `ℕ`-indexed pentagonal families `2n = 3j² ∓ j` (with `j ≥ 1`)
-produce an integer index `k` with `2n = k(3k-1)`, namely `k = j` and `k = -j`. -/
+produce an integer index `k` with `2n = k(3k-1)`, namely `k = j` and `k = -j`.
+@isnad1 id=ex.2h2v.s7.acc98332775c from=translated src=- shape=0485e340 vocab=e78cf8aa
+-/
 lemma exists_gen_pent_of_pent (n j : ℕ) (hj : 1 ≤ j)
     (h : 2 * n = 3 * j ^ 2 - j ∨ 2 * n = 3 * j ^ 2 + j) :
     ∃ k : ℤ, 2 * (n : ℤ) = k * (3 * k - 1) := by
@@ -200,6 +216,7 @@ This repackages the four cases (`pe_minus_po_zero`, `pe_minus_po_pent_minus`,
 (with `m = |k|`) gives the `(3m²+m)/2` family. All the arithmetic lives in
 `natCast_eq_gen_pent_div_two_iff`, `pe_minus_po_of_gen_pent` and
 `exists_gen_pent_of_pent`; what is left here is pure case bookkeeping.
+@isnad1 id=or.0h1v.s7.0c9bb1f06b03 from=translated src=- shape=1f0183d9 vocab=3d95f5f5
 -/
 theorem euler_pentagonal_number_theorem_packaged (n : ℕ) :
   (∃ k : ℤ, (n = (k * (3 * k - 1)) / 2) ∧

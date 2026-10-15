@@ -52,7 +52,9 @@ namespace Nivat.TwoFactors
 
 /-- A finite-range bilateral sequence with a uniquely determined successor has a positive period
 bounded by its number of occurring states. Bilaterality makes the successor map surjective
-on those states. Lemma 5.2 (`lem:finite-states`). -/
+on those states. Lemma 5.2 (`lem:finite-states`).
+@isnad1 id=ex.2h2v.s6.57c4f1eaf6df from=translated src=- shape=c9c06e18 vocab=47a75b9a
+-/
 theorem periodic_of_deterministic_successor_bounded {A : Type*} (s : ℤ → A)
     (hs : (Set.range s).Finite)
     (hdet : ∀ i j : ℤ, s i = s j → s (i + 1) = s (j + 1)) :
@@ -98,7 +100,9 @@ theorem periodic_of_deterministic_successor_bounded {A : Type*} (s : ℤ → A)
     (Function.minimalPeriod_le_card (f := next) (x := t 0))
 
 /-- A finite-range bilateral sequence whose next state is determined by its current state has a
-positive period. Lemma 5.2 (`lem:finite-states`). -/
+positive period. Lemma 5.2 (`lem:finite-states`).
+@isnad1 id=ex.2h2v.s6.7028d7c5cdaa from=translated src=- shape=492276a9 vocab=976ab576
+-/
 theorem periodic_of_deterministic_successor {A : Type*} (s : ℤ → A)
     (hs : (Set.range s).Finite)
     (hdet : ∀ i j : ℤ, s i = s j → s (i + 1) = s (j + 1)) :
@@ -107,7 +111,9 @@ theorem periodic_of_deterministic_successor {A : Type*} (s : ℤ → A)
   exact ⟨p, hp, hper⟩
 
 /-- A uniquely determined predecessor gives a positive period bounded by the number of occurring
-states, by reversing the integer index. Lemma 5.2 (`lem:finite-states`). -/
+states, by reversing the integer index. Lemma 5.2 (`lem:finite-states`).
+@isnad1 id=ex.2h2v.s6.1fce2afc2299 from=translated src=- shape=c9c06e18 vocab=32919c77
+-/
 theorem periodic_of_deterministic_predecessor_bounded {A : Type*} (s : ℤ → A)
     (hs : (Set.range s).Finite)
     (hdet : ∀ i j : ℤ, s i = s j → s (i - 1) = s (j - 1)) :
@@ -129,7 +135,9 @@ theorem periodic_of_deterministic_predecessor_bounded {A : Type*} (s : ℤ → A
   convert (hper (-i - (p : ℤ))).symm using 1 <;> congr 1 <;> ring
 
 /-- A finite-range bilateral sequence with a uniquely determined predecessor is periodic; this
-is the form applied to strip states. Lemma 5.2 (`lem:finite-states`). -/
+is the form applied to strip states. Lemma 5.2 (`lem:finite-states`).
+@isnad1 id=ex.2h2v.s6.dc3d64e916e3 from=translated src=- shape=492276a9 vocab=d732c5cd
+-/
 theorem periodic_of_deterministic_predecessor {A : Type*} (s : ℤ → A)
     (hs : (Set.range s).Finite)
     (hdet : ∀ i j : ℤ, s i = s j → s (i - 1) = s (j - 1)) :
@@ -138,7 +146,9 @@ theorem periodic_of_deterministic_predecessor {A : Type*} (s : ℤ → A)
   exact ⟨p, hp, hper⟩
 
 /-- Equal residues modulo a period give equal parameter values, so the residue class records all
-the forcing information needed in a finite state. Lemma 5.4 (`lem:forcing`). -/
+the forcing information needed in a finite state. Lemma 5.4 (`lem:forcing`).
+@isnad1 id=eq.2h5v.s5.888cb224277b from=translated src=- shape=ab8d136d vocab=093dd8c9
+-/
 theorem periodic_eq_of_emod_eq {F : Type*} (f : ℤ → F) (p : ℤ)
     (hf : Function.Periodic f p) {i j : ℤ} (h : i % p = j % p) : f i = f j := by
   have hrem (z : ℤ) : f (z % p) = f z := by
@@ -149,7 +159,9 @@ theorem periodic_eq_of_emod_eq {F : Type*} (f : ℤ → F) (p : ℤ)
 
 /-- A finite-range word with a periodic parameter and a uniquely determined next letter from its
 occurring memory data has a positive period. The state contains the phase and `k + 1`
-letters, including when `k = 0`. Lemma 5.4 (`lem:forcing`). -/
+letters, including when `k = 0`. Lemma 5.4 (`lem:forcing`).
+@isnad1 id=ex.4h6v.s7.4eb2bef5e3cd from=translated src=- shape=012584bc vocab=ced2defe
+-/
 theorem periodic_of_periodic_forcing {A F : Type*} (a : ℤ → A) (f : ℤ → F)
     (ha : (Set.range a).Finite) (p k : ℕ) (hp : 0 < p)
     (hf : Function.Periodic f (p : ℤ))
@@ -202,7 +214,9 @@ noncomputable def wordComplexity {A : Type*} (a : ℤ → A) (k : ℕ) : ℕ :=
   (Set.range (word a k)).ncard
 
 /-- A finite alphabet gives only finitely many occurring words of any fixed finite length.
-Corollary 5.3 (`cor:morse`). -/
+Corollary 5.3 (`cor:morse`).
+@isnad1 id=finite.1h3v.s4.21b73ee6e000 from=translated src=- shape=c44efe25 vocab=8a563b94
+-/
 theorem finite_word_range {A : Type*} (a : ℤ → A) (ha : (Set.range a).Finite) (k : ℕ) :
     (Set.range (word a k)).Finite := by
   refine (Set.Finite.pi' (fun _ : Fin k => ha)).subset ?_
@@ -210,7 +224,9 @@ theorem finite_word_range {A : Type*} (a : ℤ → A) (ha : (Set.range a).Finite
   exact ⟨i + (r : ℕ), rfl⟩
 
 /-- There is exactly one empty word, providing the initial value `p(0) = 1` in the plateau
-argument. Corollary 5.3 (`cor:morse`). -/
+argument. Corollary 5.3 (`cor:morse`).
+@isnad1 id=eq.0h2v.s4.2adeed381799 from=translated src=- shape=b8097fd7 vocab=6a8855c6
+-/
 @[simp] theorem wordComplexity_zero {A : Type*} (a : ℤ → A) : wordComplexity a 0 = 1 := by
   have hrange : Set.range (word a 0) = {word a 0 0} := by
     ext b
@@ -223,7 +239,9 @@ argument. Corollary 5.3 (`cor:morse`). -/
   simp only [wordComplexity, hrange, Set.ncard_singleton]
 
 /-- Taking the initial subword maps the occurring longer words onto all occurring shorter words.
-Corollary 5.3 (`cor:morse`). -/
+Corollary 5.3 (`cor:morse`).
+@isnad1 id=eq.1h4v.s6.d9e259e06f32 from=translated src=- shape=d2116d7d vocab=4506680a
+-/
 theorem word_restriction_image {A : Type*} (a : ℤ → A) {m n : ℕ} (hmn : m ≤ n) :
     (fun b : Fin n → A => fun r : Fin m => b ⟨r, lt_of_lt_of_le r.isLt hmn⟩) ''
       Set.range (word a n) = Set.range (word a m) := by
@@ -235,7 +253,9 @@ theorem word_restriction_image {A : Type*} (a : ℤ → A) {m n : ℕ} (hmn : m 
     exact ⟨word a n i, ⟨i, rfl⟩, rfl⟩
 
 /-- Word complexity is nondecreasing with word length because initial restriction is surjective.
-Corollary 5.3 (`cor:morse`). -/
+Corollary 5.3 (`cor:morse`).
+@isnad1 id=monotone.1h2v.s4.ebc55adc8559 from=translated src=- shape=ac3b6ac6 vocab=2c1c3a13
+-/
 theorem wordComplexity_mono {A : Type*} (a : ℤ → A) (ha : (Set.range a).Finite) :
     Monotone (wordComplexity a) := by
   intro m n hmn
@@ -244,7 +264,9 @@ theorem wordComplexity_mono {A : Type*} (a : ℤ → A) (ha : (Set.range a).Fini
   exact Set.ncard_image_le (finite_word_range a ha n)
 
 /-- If length-`k` complexity is at most `k`, one of the first `k` increases is zero, since
-empty-word complexity is one. Corollary 5.3 (`cor:morse`). -/
+empty-word complexity is one. Corollary 5.3 (`cor:morse`).
+@isnad1 id=ex.3h3v.s6.7b169f8bf88e from=translated src=- shape=beff51f1 vocab=4d430998
+-/
 theorem exists_wordComplexity_plateau {A : Type*} (a : ℤ → A)
     (ha : (Set.range a).Finite) (k : ℕ) (_hk : 0 < k) (hbound : wordComplexity a k ≤ k) :
     ∃ j < k, wordComplexity a (j + 1) = wordComplexity a j := by
@@ -264,7 +286,9 @@ theorem exists_wordComplexity_plateau {A : Type*} (a : ℤ → A)
   omega
 
 /-- At a complexity plateau, initial restriction is bijective on occurring words, so a word
-determines its following letter. Corollary 5.3 (`cor:morse`). -/
+determines its following letter. Corollary 5.3 (`cor:morse`).
+@isnad1 id=eq.3h5v.s6.8eeef1e66f25 from=translated src=- shape=d4b61c1f vocab=87eead54
+-/
 theorem word_extension_unique_of_complexity_eq {A : Type*} (a : ℤ → A)
     (ha : (Set.range a).Finite) (k : ℕ)
     (heq : wordComplexity a (k + 1) = wordComplexity a k) :
@@ -281,7 +305,9 @@ theorem word_extension_unique_of_complexity_eq {A : Type*} (a : ℤ → A)
 
 /-- A bilateral finite-range word with at most `k` length-`k` words has a positive period at
 most `k`. The states at a plateau use one extra letter so projection to the original word
-also covers a plateau at zero. Corollary 5.3 (`cor:morse`). -/
+also covers a plateau at zero. Corollary 5.3 (`cor:morse`).
+@isnad1 id=ex.3h3v.s5.36ff041df8a6 from=translated src=- shape=87b1b7df vocab=d38661bb
+-/
 theorem morse_hedlund {A : Type*} (a : ℤ → A) (ha : (Set.range a).Finite)
     (k : ℕ) (hk : 0 < k) (hbound : wordComplexity a k ≤ k) :
     ∃ p : ℕ, 0 < p ∧ p ≤ k ∧ Function.Periodic a (p : ℤ) := by

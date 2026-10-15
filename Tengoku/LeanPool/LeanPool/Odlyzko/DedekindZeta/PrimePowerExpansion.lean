@@ -22,6 +22,9 @@ open Complex
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.aa3debd244d2 from=translated src=- shape=78d66e8d vocab=8fc4e5b7
+-/
 theorem hasDerivAt_localFactor {q : ℕ} (hq : 1 < q) {s : ℂ} (hs : 0 < s.re) :
     HasDerivAt (localFactor q)
       (-(inverseNormPower q s * Complex.log q /
@@ -33,6 +36,9 @@ theorem hasDerivAt_localFactor {q : ℕ} (hq : 1 < q) {s : ℂ} (hs : 0 < s.re) 
   apply (hx.const_sub 1).fun_inv hden |>.congr_deriv
   ring
 
+/--
+@isnad1 id=eq.2h2v.s6.ded816cf1f8b from=translated src=- shape=8a263466 vocab=06312622
+-/
 theorem logDeriv_localFactor {q : ℕ} (hq : 1 < q) {s : ℂ} (hs : 0 < s.re) :
     logDeriv (localFactor q) s =
       -(Complex.log q * inverseNormPower q s /
@@ -41,6 +47,9 @@ theorem logDeriv_localFactor {q : ℕ} (hq : 1 < q) {s : ℂ} (hs : 0 < s.re) :
   simp only [localFactor]
   grind
 
+/--
+@isnad1 id=hassum.2h2v.s6.293a7f1a5f2d from=translated src=- shape=757e309f vocab=57c86117
+-/
 theorem hasSum_logDeriv_localFactor {q : ℕ} (hq : 1 < q) {s : ℂ} (hs : 0 < s.re) :
     HasSum
       (fun e : ℕ ↦ Complex.log q * inverseNormPower q s ^ (e + 1))
@@ -68,6 +77,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.1h3v.s6.eb8a6ba53c03 from=translated src=- shape=0e433ac3 vocab=81d84b01
+-/
 theorem logDeriv_primeIdealFactor (P : HeightOneSpectrum (𝓞 K)) {s : ℂ}
     (hs : 0 < s.re) :
     logDeriv (primeIdealFactor K P) s =
@@ -76,6 +88,9 @@ theorem logDeriv_primeIdealFactor (P : HeightOneSpectrum (𝓞 K)) {s : ℂ}
           (1 - inverseNormPower (primeIdealNorm K P) s)) := by
   exact logDeriv_localFactor (one_lt_primeIdealNorm K P) hs
 
+/--
+@isnad1 id=hassum.1h3v.s6.8f7f075f64b1 from=translated src=- shape=6dcc6503 vocab=e03cce76
+-/
 theorem hasSum_neg_logDeriv_primeIdealFactor
     (P : HeightOneSpectrum (𝓞 K)) {s : ℂ} (hs : 0 < s.re) :
     HasSum
@@ -99,9 +114,15 @@ variable (K : Type*) [Field K] [NumberField K]
 /-- A dedekind zeta half plane used in the Odlyzko-bound argument. -/
 def dedekindZetaHalfPlane : Set ℂ := {s | 1 < s.re}
 
+/--
+@isnad1 id=isopen.0h0v.s4.daa83e5b5a5f from=translated src=- shape=25b03439 vocab=37563d06
+-/
 lemma isOpen_dedekindZetaHalfPlane : IsOpen dedekindZetaHalfPlane := by
   exact isOpen_lt continuous_const Complex.continuous_re
 
+/--
+@isnad1 id=multipli.0h1v.s5.f8ff8ecfda23 from=translated src=- shape=fb641908 vocab=8637b2a6
+-/
 theorem multipliableLocallyUniformlyOn_primeIdealFactor :
     MultipliableLocallyUniformlyOn
       (primeIdealFactor K) dedekindZetaHalfPlane := by
@@ -163,6 +184,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=summable.1h2v.s6.6e3543747489 from=translated src=- shape=6c43a655 vocab=485acd5a
+-/
 theorem summable_logDeriv_primeIdealFactor {s : ℂ} (hs : 1 < s.re) :
     Summable
       (fun P : HeightOneSpectrum (𝓞 K) ↦
@@ -225,6 +249,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.1h2v.s6.2e84a01b87c6 from=translated src=- shape=d3e4dfdc vocab=cf081082
+-/
 theorem logDeriv_dedekindZeta_eq_tsum_primeIdeal {s : ℂ} (hs : 1 < s.re) :
     logDeriv (dedekindZeta K) s =
       ∑' P : HeightOneSpectrum (𝓞 K),
@@ -253,6 +280,9 @@ theorem logDeriv_dedekindZeta_eq_tsum_primeIdeal {s : ℂ} (hs : 1 < s.re) :
   rw [logDeriv_apply, logDeriv_apply, heq.deriv_eq,
     dedekindZeta_primeIdeal_eulerProduct_tprod K hs]
 
+/--
+@isnad1 id=eq.1h2v.s6.78e7d3cf1482 from=translated src=- shape=fde58956 vocab=bd7841e7
+-/
 theorem neg_logDeriv_dedekindZeta_eq_tsum_primeIdeal {s : ℂ}
     (hs : 1 < s.re) :
     -logDeriv (dedekindZeta K) s =
@@ -279,6 +309,9 @@ noncomputable def primePowerLogTerm
   Complex.log (primeIdealNorm K P) *
     inverseNormPower (primeIdealNorm K P) s ^ (e + 1)
 
+/--
+@isnad1 id=eq.0h4v.s6.04635560bb4d from=translated src=- shape=a39d0a4b vocab=08e1d16c
+-/
 theorem primePowerLogTerm_eq_log_mul_cexp_neg
     (P : HeightOneSpectrum (𝓞 K)) (e : ℕ) (s : ℂ) :
     primePowerLogTerm K P e s =
@@ -295,6 +328,9 @@ theorem primePowerLogTerm_eq_log_mul_cexp_neg
   push_cast
   ring_nf
 
+/--
+@isnad1 id=eq.0h4v.s6.717e00dae528 from=translated src=- shape=5cd144b4 vocab=3649eaf6
+-/
 lemma norm_primePowerLogTerm
     (P : HeightOneSpectrum (𝓞 K)) (e : ℕ) (s : ℂ) :
     ‖primePowerLogTerm K P e s‖ =
@@ -313,6 +349,9 @@ lemma norm_primePowerLogTerm
   rw [primePowerLogTerm, norm_mul, norm_pow, hlog,
     norm_inverseNormPower q (Nat.zero_lt_of_lt hq)]
 
+/--
+@isnad1 id=summable.1h2v.s6.65a8ab8c83db from=translated src=- shape=9b584507 vocab=8ee3e7e8
+-/
 theorem summable_norm_primePowerLogTerm {s : ℂ} (hs : 1 < s.re) :
     Summable (fun pe : HeightOneSpectrum (𝓞 K) × ℕ ↦
       ‖primePowerLogTerm K pe.1 pe.2 s‖) := by
@@ -366,6 +405,9 @@ theorem summable_norm_primePowerLogTerm {s : ℂ} (hs : 1 < s.re) :
         nlinarith
       _ = 2 * (Real.log q * (q : ℝ) ^ (-s.re)) := by grind
 
+/--
+@isnad1 id=eq.1h2v.s6.5cddc6079ad0 from=translated src=- shape=9e9f7743 vocab=07970263
+-/
 theorem neg_logDeriv_dedekindZeta_eq_tsum_primePower {s : ℂ}
     (hs : 1 < s.re) :
     -logDeriv (dedekindZeta K) s =

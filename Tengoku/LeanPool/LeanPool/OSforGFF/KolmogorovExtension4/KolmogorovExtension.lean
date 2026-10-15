@@ -30,6 +30,9 @@ section InnerRegular
 variable [∀ i, TopologicalSpace (α i)] [∀ i, OpensMeasurableSpace (α i)]
   [∀ i, SecondCountableTopology (α i)] [∀ I, IsFiniteMeasure (P I)]
 
+/--
+@isnad1 id=ex.3h6v.s10.6c585b1a51f4 from=translated src=- shape=811e0592 vocab=a4095528
+-/
 theorem exists_compact
     (hP_inner : ∀ J, (P J).InnerRegularWRT (fun s ↦ IsCompact s ∧ IsClosed s) MeasurableSet)
     (J : Finset ι) (A : Set (Π i : J, α i)) (hA : MeasurableSet A) (ε : ℝ≥0∞) (hε : 0 < ε) :
@@ -49,6 +52,9 @@ local notation "Js" => measurableCylinders.finset
 
 local notation "As" => measurableCylinders.set
 
+/--
+@isnad1 id=ex.4h5v.s10.ecfb2114fca0 from=translated src=- shape=b85bc678 vocab=ef701beb
+-/
 lemma innerRegular_projectiveFamilyContent (hP : IsProjectiveMeasureFamily P)
     (hP_inner : ∀ J, (P J).InnerRegularWRT (fun s ↦ IsCompact s ∧ IsClosed s) MeasurableSet)
     {s : Set (Π i, α i)} (hs : s ∈ measurableCylinders α) (ε : ℝ≥0∞) (hε : 0 < ε) :
@@ -78,6 +84,9 @@ lemma innerRegular_projectiveFamilyContent (hP : IsProjectiveMeasureFamily P)
   · have : IsEmpty (Π i, α i) := isEmpty_pi.mpr (by simpa using hα)
     exact ⟨∅, empty_mem_closedCompactCylinders α, empty_subset _, by simp [eq_empty_of_isEmpty s]⟩
 
+/--
+@isnad1 id=eq.5h4v.s10.d9781555355b from=translated src=- shape=a0417c0d vocab=1d23228a
+-/
 theorem projectiveFamilyContent_sigma_additive_of_innerRegular (hP : IsProjectiveMeasureFamily P)
     (hP_inner : ∀ J, (P J).InnerRegularWRT (fun s ↦ IsCompact s ∧ IsClosed s) MeasurableSet)
     ⦃f : ℕ → Set (Π i, α i)⦄ (hf : ∀ i, f i ∈ measurableCylinders α)
@@ -89,6 +98,9 @@ theorem projectiveFamilyContent_sigma_additive_of_innerRegular (hP : IsProjectiv
     (fun _ ↦ mem_measurableCylinders_of_mem_closedCompactCylinders)
     (fun _ ↦ innerRegular_projectiveFamilyContent hP hP_inner) hf hf_Union h_disj
 
+/--
+@isnad1 id=le.4h4v.s10.4a1fb2a77733 from=translated src=- shape=d291c985 vocab=b3f4969b
+-/
 theorem projectiveFamilyContent_iUnion_le_sum_of_innerRegular (hP : IsProjectiveMeasureFamily P)
     (hP_inner : ∀ J, (P J).InnerRegularWRT (fun s ↦ IsCompact s ∧ IsClosed s) MeasurableSet)
     ⦃f : ℕ → Set (Π i, α i)⦄ (hf : ∀ i, f i ∈ measurableCylinders α)

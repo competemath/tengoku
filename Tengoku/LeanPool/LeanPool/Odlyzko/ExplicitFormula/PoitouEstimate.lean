@@ -30,6 +30,9 @@ open scoped FourierTransform Real Topology
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h4v.s7.c0301b057c1a from=translated src=- shape=8bc41f51 vocab=b1469e7a
+-/
 theorem sq_abs_mul_norm_poitouTransform_regularized_eq_norm_fourier_second
     {δ : ℝ} (hδ : 0 < δ) (y σ t : ℝ) :
     |t| ^ 2 *
@@ -60,6 +63,9 @@ theorem sq_abs_mul_norm_poitouTransform_regularized_eq_norm_fourier_second
   rw [poitouTransform_regularizedScaledTartar_eq_fourier]
   grind
 
+/--
+@isnad1 id=tendsto.1h3v.s6.caba9bf0eddf from=translated src=- shape=8cb9f97a vocab=2f15d4d1
+-/
 theorem tendsto_sq_abs_mul_norm_poitouTransform_regularized_atTop
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Tendsto
@@ -96,6 +102,9 @@ theorem tendsto_sq_abs_mul_norm_poitouTransform_regularized_atTop
   exact sq_abs_mul_norm_poitouTransform_regularized_eq_norm_fourier_second
     hδ y σ t
 
+/--
+@isnad1 id=tendsto.1h3v.s6.a7fe3fae97f0 from=translated src=- shape=8cb9f97a vocab=2b54f9bf
+-/
 theorem tendsto_sq_abs_mul_norm_poitouTransform_regularized_atBot
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Tendsto
@@ -160,6 +169,9 @@ noncomputable def regularizedPoitouStripQuadraticDecayConstant
   ∫ x : ℝ, regularizedPoitouProfileSecondDerivativeMajorant y δ
     (max |a - 1 / 2| |b - 1 / 2|) x
 
+/--
+@isnad1 id=integrab.1h3v.s5.0a21ffd51446 from=translated src=- shape=95261f00 vocab=9466e53f
+-/
 theorem regularizedPoitouProfileSecondDerivativeMajorant_integrable
     {δ : ℝ} (hδ : 0 < δ) (y M : ℝ) :
     Integrable (regularizedPoitouProfileSecondDerivativeMajorant y δ M) := by
@@ -186,6 +198,9 @@ theorem regularizedPoitouProfileSecondDerivativeMajorant_integrable
   unfold regularizedPoitouProfileSecondDerivativeMajorant
   grind
 
+/--
+@isnad1 id=le.3h5v.s6.d6a8303ab73e from=translated src=- shape=c43ae699 vocab=ab53a90e
+-/
 theorem norm_poitouVerticalProfileSecondDerivative_regularized_le_majorant
     {δ M : ℝ} (hδ : 0 < δ) (_hM : 0 ≤ M)
     (y : ℝ) {σ : ℝ} (hσ : |σ - 1 / 2| ≤ M) (x : ℝ) :
@@ -209,6 +224,9 @@ theorem norm_poitouVerticalProfileSecondDerivative_regularized_le_majorant
   · positivity
   · positivity
 
+/--
+@isnad1 id=le.2h6v.s7.953541b79f30 from=translated src=- shape=fc360c84 vocab=287a23a7
+-/
 theorem sq_abs_mul_norm_poitouTransform_regularized_le_strip
     {δ a b : ℝ} (hδ : 0 < δ) (y t : ℝ)
     {σ : ℝ} (hσ : σ ∈ Set.Icc a b) :
@@ -270,6 +288,9 @@ noncomputable def completedZetaSelectedHeightSeparation (A : ℝ) : ℝ :=
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=lt.0h2v.s4.2f2d5cd75c50 from=translated src=- shape=664eb244 vocab=8ab26f2b
+-/
 theorem completedZetaSelectedHeightSeparation_pos (A : ℝ) :
     0 < completedZetaSelectedHeightSeparation K A :=
   finiteSetAvoidanceRadiusOnLength_pos one_pos _
@@ -293,6 +314,9 @@ noncomputable def completedZetaMovingVerticalCoefficient (R : ℝ) : ℝ :=
       (2 - |R|) (2 + |R|))
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h2v.s4.06e0946be622 from=translated src=- shape=664eb244 vocab=93352059
+-/
 theorem one_le_completedZetaMovingVerticalCoefficient (R : ℝ) :
     1 ≤ completedZetaMovingVerticalCoefficient K R :=
   le_max_left _ _
@@ -309,6 +333,9 @@ noncomputable def completedZetaMovingCenterLogLinearBound
       (nrComplexPlaces K : ℝ) / 2 * Real.pi * |t|
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h3v.s6.1999aebf9c54 from=translated src=- shape=108c5745 vocab=d99420ca
+-/
 theorem log_completedZetaMovingCircleBound_le
     (R t : ℝ) :
     Real.log (completedZetaMovingCircleBound K R t) ≤
@@ -364,6 +391,9 @@ noncomputable def completedZetaMovingCenterLinearCoefficient (R : ℝ) : ℝ :=
     completedZetaMovingCenterSlope K
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h2v.s4.81b5a5ac1b9c from=translated src=- shape=664eb244 vocab=a48684f4
+-/
 theorem one_le_completedZetaMovingCenterLinearCoefficient (R : ℝ) :
     1 ≤ completedZetaMovingCenterLinearCoefficient K R := by
   have hD : 0 ≤ completedZetaMovingVerticalCoefficient K R :=
@@ -379,6 +409,9 @@ theorem one_le_completedZetaMovingCenterLinearCoefficient (R : ℝ) :
       Real.pi_pos.le]
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h3v.s5.3176af703a04 from=translated src=- shape=f53a8a0e vocab=31b06d83
+-/
 theorem completedZetaMovingCenterLogLinearBound_le
     (R t : ℝ) :
     completedZetaMovingCenterLogLinearBound K R t ≤
@@ -426,6 +459,9 @@ theorem completedZetaMovingCenterLogLinearBound_le
         nlinarith [abs_nonneg t, mul_nonneg hP (abs_nonneg t)]
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=eq.0h2v.s4.e8b5530afe6b from=translated src=- shape=e7804aec vocab=c5ba34e0
+-/
 theorem completedZetaCenterLogLinearBound_eq_moving (t : ℝ) :
     completedZetaCenterLogLinearBound K t =
       completedZetaMovingCenterLogLinearBound K 6 t := by
@@ -481,6 +517,9 @@ private theorem completedZetaSelectedHeightZeroCountLinearCoefficient_nonneg :
     (Real.log_pos (by norm_num : (1 : ℝ) < 9 / 8)).le
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.1h2v.s5.7383c1935c0e from=translated src=- shape=888d7755 vocab=dff1636f
+-/
 theorem completedZetaSelectedHeightZeroCountBound_le_linear
     {A : ℝ} (hA : 6 ≤ A) :
     completedZetaSelectedHeightZeroCountBound K A ≤
@@ -517,6 +556,9 @@ noncomputable def completedZetaSelectedHeightCenterLinearCoefficient : ℝ :=
   2 * completedZetaMovingCenterLinearCoefficient K 6
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h1v.s4.ab6fce790421 from=translated src=- shape=31b077a1 vocab=6e83c76a
+-/
 theorem completedZetaSelectedHeightCenterLinearCoefficient_nonneg :
     0 ≤ completedZetaSelectedHeightCenterLinearCoefficient K := by
   unfold completedZetaSelectedHeightCenterLinearCoefficient
@@ -533,6 +575,9 @@ noncomputable def completedZetaSelectedHeightLogDerivativeQuadraticCoefficient :
       completedZetaCanonicalJensenCoefficient + 32)
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h1v.s4.1905e4481bcd from=translated src=- shape=31b077a1 vocab=534f80ee
+-/
 theorem completedZetaSelectedHeightLogDerivativeQuadraticCoefficient_nonneg :
     0 ≤ completedZetaSelectedHeightLogDerivativeQuadraticCoefficient K := by
   unfold completedZetaSelectedHeightLogDerivativeQuadraticCoefficient

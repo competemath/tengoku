@@ -39,6 +39,9 @@ noncomputable def completedDedekindZetaZeroDivisor :
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=finite.1h2v.s6.ace9eaccff62 from=translated src=- shape=0b4b4295 vocab=ab8afd7a
+-/
 theorem completedDedekindZetaZeroDivisor_support_inter_compact_finite
     {S : Set ℂ} (hS : IsCompact S) :
     (S ∩ (completedDedekindZetaZeroDivisor K).support).Finite := by
@@ -105,6 +108,9 @@ noncomputable def completedDedekindZetaZerosInClosedRectangle
       (isCompact_Icc.reProdIm isCompact_Icc)).toFinset
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=iff.0h6v.s6.c3c06b2e4441 from=translated src=- shape=ffd33db8 vocab=70e3f26b
+-/
 theorem mem_completedDedekindZetaZerosInClosedRectangle_iff
     {a b u v : ℝ} {z : ℂ} :
     z ∈ completedDedekindZetaZerosInClosedRectangle K a b u v ↔

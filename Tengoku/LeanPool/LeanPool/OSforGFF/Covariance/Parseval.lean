@@ -107,6 +107,7 @@ The lemma `parseval_covariance_schwartz` now correctly uses
 
 /-- The relationship between physics and Mathlib propagators under rescaling.
     `freePropagatorMomentumMathlib` is defined in Covariance.Momentum.
+@isnad1 id=eq.0h2v.s6.53f8f7c264d9 from=translated src=- shape=b6bd5342 vocab=593b7806
 -/
 lemma freePropagatorMomentum_rescale (m : ℝ) (k : SpaceTime) :
     freePropagatorMomentum m ((2 * Real.pi) • k) = freePropagatorMomentumMathlib m k := by
@@ -118,8 +119,14 @@ lemma freePropagatorMomentum_rescale (m : ℝ) (k : SpaceTime) :
 /-- The scaling factor for momentum integration change of variables. -/
 noncomputable def momentumScaleFactor : ℝ := 2 * Real.pi
 
+/--
+@isnad1 id=lt.0h0v.s3.a753e25b2cd0 from=translated src=- shape=ff3a10fc vocab=6c66ce34
+-/
 lemma momentumScaleFactor_pos : 0 < momentumScaleFactor := Real.two_pi_pos
 
+/--
+@isnad1 id=ne.0h0v.s3.611c19b66f84 from=translated src=- shape=ffdda526 vocab=a3a7756c
+-/
 lemma momentumScaleFactor_ne_zero : momentumScaleFactor ≠ 0 := momentumScaleFactor_pos.ne'
 
 /-- The scaling map on momentum space: k ↦ 2πk -/
@@ -147,6 +154,7 @@ noncomputable def physicsFourierTransform (f : TestFunctionℂ) (k : SpaceTime) 
 /-- The regulated Fourier covariance equals the full complex Fourier integral, not just the
     real part.
     The regulator exp(-α‖k‖²) ensures absolute convergence.
+@isnad1 id=eq.0h4v.s8.f89528f1dd6f from=translated src=- shape=3cbf6432 vocab=12f4dd21
 -/
 lemma freeCovariance_regulated_eq_complex_integral (α : ℝ) (m : ℝ) (x y : SpaceTime) :
     (freeCovarianceRegulated α m x y : ℂ) =
@@ -183,7 +191,9 @@ The proof uses:
 - Change of variables from physics to Mathlib Fourier convention
 -/
 
-/-- The phase factor exp(-i⟨k,x-y⟩) is bounded by 1 in norm. -/
+/-- The phase factor exp(-i⟨k,x-y⟩) is bounded by 1 in norm.
+@isnad1 id=le.0h3v.s6.20edb4361228 from=translated src=- shape=1b858e1c vocab=6d546e3e
+-/
 lemma phase_bound (k x y : SpaceTime) :
     ‖Complex.exp (-Complex.I * Complex.ofReal ⟪k, x - y⟫_ℝ)‖ ≤ 1 := by
   have h : -Complex.I * Complex.ofReal ⟪k, x - y⟫_ℝ = Complex.ofReal (-⟪k,
@@ -192,27 +202,37 @@ lemma phase_bound (k x y : SpaceTime) :
     ring
   rw [h, Complex.norm_exp_ofReal_mul_I]
 
-/-- The free propagator is bounded by 1/m². -/
+/-- The free propagator is bounded by 1/m².
+@isnad1 id=le.0h2v.s5.2cc590903094 from=translated src=- shape=cd3c488b vocab=c3c1b09b
+-/
 lemma freePropagatorMomentum_le_inv_sq (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
     freePropagatorMomentum m k ≤ 1 / m^2 :=
   freePropagator_bounded k
 
-/-- The free propagator is strictly positive. -/
+/-- The free propagator is strictly positive.
+@isnad1 id=lt.0h2v.s4.047e07191088 from=translated src=- shape=37e27660 vocab=c2f85106
+-/
 lemma freePropagatorMomentum_pos' (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
     0 < freePropagatorMomentum m k :=
   freePropagator_pos k
 
-/-- The Gaussian regulator exp(-α‖k‖²) is integrable for α > 0. -/
+/-- The Gaussian regulator exp(-α‖k‖²) is integrable for α > 0.
+@isnad1 id=integrab.1h1v.s7.8dc3d0f49a6d from=translated src=- shape=07a43773 vocab=86fe18a9
+-/
 lemma gaussian_regulator_integrable (α : ℝ) (hα : 0 < α) :
     Integrable (fun k : SpaceTime => Real.exp (-α * ‖k‖^2)) volume :=
   gaussian_regulator_integrable' α hα
 
-/-- The Gaussian regulator is continuous. -/
+/-- The Gaussian regulator is continuous.
+@isnad1 id=continuo.0h1v.s6.f2f5af7ccdc3 from=translated src=- shape=846b194f vocab=a009b544
+-/
 lemma gaussian_regulator_continuous (α : ℝ) :
     Continuous (fun k : SpaceTime => Real.exp (-α * ‖k‖^2)) := by
   fun_prop
 
-/-- The norm of the regulated propagator as a complex number. -/
+/-- The norm of the regulated propagator as a complex number.
+@isnad1 id=eq.0h3v.s7.94dcd71614ca from=translated src=- shape=1b91a7c2 vocab=51f74b04
+-/
 lemma regulated_propagator_norm (α : ℝ) (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
     ‖(Real.exp (-α * ‖k‖^2) * freePropagatorMomentum m k / (2 * Real.pi) ^ STDimension : ℂ)‖ =
     Real.exp (-α * ‖k‖^2) * freePropagatorMomentum m k / (2 * Real.pi) ^ STDimension := by
@@ -226,32 +246,42 @@ lemma regulated_propagator_norm (α : ℝ) (m : ℝ) [Fact (0 < m)] (k : SpaceTi
     push_cast; ring]
   rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hval_nonneg]
 
-/-- The inner product function is measurable. -/
+/-- The inner product function is measurable.
+@isnad1 id=measurab.0h1v.s6.7845f2a37ad1 from=translated src=- shape=838e89c1 vocab=af4cb0ad
+-/
 lemma measurable_inner_fixed (k : SpaceTime) : Measurable (fun x : SpaceTime => ⟪k, x⟫_ℝ) :=
   measurable_const.inner measurable_id
 
-/-- The phase exponential exp(-i⟨k,x⟩) is measurable. -/
+/-- The phase exponential exp(-i⟨k,x⟩) is measurable.
+@isnad1 id=measurab.0h1v.s6.4348dc80c845 from=translated src=- shape=2dad8d50 vocab=f14b98c6
+-/
 lemma measurable_phase_exp (k : SpaceTime) :
     Measurable (fun x : SpaceTime => Complex.exp (-Complex.I * Complex.ofReal ⟪k, x⟫_ℝ)) := by
   apply Complex.measurable_exp.comp
   apply Measurable.const_mul
   exact Complex.measurable_ofReal.comp (measurable_inner_fixed k)
 
-/-- The conjugate phase exponential exp(i⟨k,x⟩) is measurable. -/
+/-- The conjugate phase exponential exp(i⟨k,x⟩) is measurable.
+@isnad1 id=measurab.0h1v.s6.433831e5803e from=translated src=- shape=3ea49400 vocab=9eb1172c
+-/
 lemma measurable_phase_exp_conj (k : SpaceTime) :
     Measurable (fun x : SpaceTime => Complex.exp (Complex.I * Complex.ofReal ⟪k, x⟫_ℝ)) := by
   apply Complex.measurable_exp.comp
   apply Measurable.const_mul
   exact Complex.measurable_ofReal.comp (measurable_inner_fixed k)
 
-/-- A Schwartz function times the phase exp(-i⟨k,x⟩) is integrable. -/
+/-- A Schwartz function times the phase exp(-i⟨k,x⟩) is integrable.
+@isnad1 id=integrab.0h2v.s8.e2304e74bcd8 from=translated src=- shape=f5024cf3 vocab=4f833aa4
+-/
 lemma schwartz_mul_phase_integrable (f : TestFunctionℂ) (k : SpaceTime) :
     Integrable (fun x => f x * Complex.exp (-Complex.I * Complex.ofReal ⟪k, x⟫_ℝ)) volume := by
   apply SchwartzMap.integrable_mul_bounded (μ := volume) f _ (measurable_phase_exp k)
   intro x
   rw [norm_exp_neg_I_mul_real]
 
-/-- The conjugate of a Schwartz function times the phase exp(i⟨k,y⟩) is integrable. -/
+/-- The conjugate of a Schwartz function times the phase exp(i⟨k,y⟩) is integrable.
+@isnad1 id=integrab.0h2v.s8.fd0bc4633ada from=translated src=- shape=8c34a3d1 vocab=cd529ac9
+-/
 lemma schwartz_conj_mul_phase_integrable (f : TestFunctionℂ) (k : SpaceTime) :
     Integrable (fun y => starRingEnd ℂ (f y) * Complex.exp (Complex.I * Complex.ofReal ⟪k,
       y⟫_ℝ)) volume := by
@@ -264,7 +294,9 @@ lemma schwartz_conj_mul_phase_integrable (f : TestFunctionℂ) (k : SpaceTime) :
   convert h using 1
   ext y; ring
 
-/-- The bounding function for the triple integrand is integrable. -/
+/-- The bounding function for the triple integrand is integrable.
+@isnad1 id=integrab.1h3v.s10.c2659a371724 from=translated src=- shape=6f03528d vocab=2896d514
+-/
 lemma triple_bound_integrable (α : ℝ) (hα : 0 < α) (m : ℝ) (f : TestFunctionℂ) :
     Integrable (fun p : SpaceTime × SpaceTime × SpaceTime =>
       ‖f p.1‖ * ((1 / m^2 / (2 * Real.pi) ^ STDimension) * Real.exp (-α * ‖p.2.2‖^2)) * ‖f p.2.1‖)
@@ -283,7 +315,9 @@ lemma triple_bound_integrable (α : ℝ) (hα : 0 < α) (m : ℝ) (f : TestFunct
   ext ⟨x, y, k⟩
   ring
 
-/-- The triple integrand is bounded by the integrable bounding function. -/
+/-- The triple integrand is bounded by the integrable bounding function.
+@isnad1 id=le.0h6v.s9.ae412ec1e551 from=translated src=- shape=1e97575b vocab=288b174b
+-/
 lemma triple_integrand_norm_le (α : ℝ) (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (x y k : SpaceTime) :
     ‖f x * (Real.exp (-α * ‖k‖^2) * freePropagatorMomentum m k / (2 * Real.pi) ^ STDimension : ℂ) *
@@ -316,7 +350,9 @@ lemma triple_integrand_norm_le (α : ℝ) (m : ℝ) [Fact (0 < m)] (f : TestFunc
             gcongr
         _ = 1 / m^2 / (2 * Real.pi) ^ STDimension * Real.exp (-α * ‖k‖^2) := by ring
 
-/-- The regulated integrand is integrable in all variables jointly. -/
+/-- The regulated integrand is integrable in all variables jointly.
+@isnad1 id=integrab.1h3v.s10.35a4ae1824da from=translated src=- shape=4cde974c vocab=6c19ff49
+-/
 lemma regulated_triple_integrable (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     Integrable (fun p : SpaceTime × SpaceTime × SpaceTime =>
       let (x, y, k) := p
@@ -360,7 +396,9 @@ lemma regulated_triple_integrable (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 <
     filter_upwards with ⟨x, y, k⟩
     exact triple_integrand_norm_le α m f x y k
 
-/-- Phase factorization: exp(-i⟨k,x-y⟩) = exp(-i⟨k,x⟩) · exp(i⟨k,y⟩) -/
+/-- Phase factorization: exp(-i⟨k,x-y⟩) = exp(-i⟨k,x⟩) · exp(i⟨k,y⟩)
+@isnad1 id=eq.0h3v.s7.8b164fb5151f from=translated src=- shape=fd726995 vocab=d9e68150
+-/
 lemma phase_factorization (k x y : SpaceTime) :
     Complex.exp (-Complex.I * Complex.ofReal ⟪k, x - y⟫_ℝ) =
     Complex.exp (-Complex.I * Complex.ofReal ⟪k,
@@ -375,13 +413,17 @@ lemma phase_factorization (k x y : SpaceTime) :
 noncomputable def physicsFT (f : TestFunctionℂ) (k : SpaceTime) : ℂ :=
   ∫ x, f x * Complex.exp (-Complex.I * Complex.ofReal ⟪k, x⟫_ℝ) ∂volume
 
-/-- Norm squared rescaling: ‖c • x‖² = c² ‖x‖² for c ≥ 0. -/
+/-- Norm squared rescaling: ‖c • x‖² = c² ‖x‖² for c ≥ 0.
+@isnad1 id=eq.1h2v.s7.6e303506e9d3 from=translated src=- shape=6c07008b vocab=319a3347
+-/
 lemma norm_sq_smul_eq (c : ℝ) (hc : 0 ≤ c) (x : SpaceTime) :
     ‖c • x‖^2 = c^2 * ‖x‖^2 := by
   rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg hc]
   ring
 
-/-- The physics FT at 2πξ equals the Mathlib FT at ξ. -/
+/-- The physics FT at 2πξ equals the Mathlib FT at ξ.
+@isnad1 id=eq.0h2v.s11.a5acc6e46375 from=translated src=- shape=7a4d8f11 vocab=63f3d1bf
+-/
 lemma physicsFT_rescale (f : TestFunctionℂ) (ξ : SpaceTime) :
     physicsFT f ((2 * Real.pi) • ξ) = (SchwartzMap.fourierTransformCLM ℂ f) ξ := by
   simp only [physicsFT, SchwartzMap.fourierTransformCLM_apply]
@@ -398,7 +440,9 @@ lemma physicsFT_rescale (f : TestFunctionℂ) (ξ : SpaceTime) :
   simp only [mul_neg, Complex.ofReal_neg, neg_mul]
   ring
 
-/-- The integrand transforms correctly under k = 2π•p. -/
+/-- The integrand transforms correctly under k = 2π•p.
+@isnad1 id=eq.0h4v.s11.a0198f5759cc from=translated src=- shape=cd4b92d9 vocab=dbc0606d
+-/
 lemma integrand_rescale (α : ℝ) (m : ℝ) (f : TestFunctionℂ) (p : SpaceTime) :
     Real.exp (-α * ‖(2 * Real.pi) • p‖^2) * freePropagatorMomentum m ((2 * Real.pi) • p) /
       (2 * Real.pi) ^ STDimension * ‖physicsFT f ((2 * Real.pi) • p)‖^2
@@ -414,6 +458,9 @@ lemma integrand_rescale (α : ℝ) (m : ℝ) (f : TestFunctionℂ) (p : SpaceTim
   rw [exp_eq]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s11.a0f52d85cd2a from=translated src=- shape=8ce8067c vocab=05480eca
+-/
 lemma change_of_variables_momentum (α : ℝ) (m : ℝ) (f : TestFunctionℂ) :
     ∫ k, Real.exp (-α * ‖k‖^2) * freePropagatorMomentum m k / (2 * Real.pi) ^ STDimension *
         ‖physicsFT f k‖^2 ∂volume
@@ -453,7 +500,9 @@ lemma change_of_variables_momentum (α : ℝ) (m : ℝ) (f : TestFunctionℂ) :
   rw [abs_of_pos h2pi_pos]
   field_simp
 
-/-- After Fubini, the inner k-integral factorizes. -/
+/-- After Fubini, the inner k-integral factorizes.
+@isnad1 id=eq.1h3v.s10.97b136f37021 from=translated src=- shape=0fc08c64 vocab=a5a6836c
+-/
 lemma regulated_fubini_factorization (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
   TestFunctionℂ) :
     (∫ x, ∫ y,
@@ -544,11 +593,15 @@ lemma regulated_fubini_factorization (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (
   simp only [F]
   exact h_factor_xy k
 
-/-- The x-integral in the factorized form equals the physics FT. -/
+/-- The x-integral in the factorized form equals the physics FT.
+@isnad1 id=eq.0h2v.s8.6661324bcc3a from=translated src=- shape=958bda00 vocab=edd64940
+-/
 lemma x_integral_eq_physicsFT (f : TestFunctionℂ) (k : SpaceTime) :
     ∫ x, f x * Complex.exp (-Complex.I * Complex.ofReal ⟪k, x⟫_ℝ) ∂volume = physicsFT f k := rfl
 
-/-- The y-integral with conjugate equals the conjugate of the physics FT. -/
+/-- The y-integral with conjugate equals the conjugate of the physics FT.
+@isnad1 id=eq.0h2v.s8.43fd90020a8f from=translated src=- shape=18c76653 vocab=8dd8c597
+-/
 lemma y_integral_eq_physicsFT_conj (f : TestFunctionℂ) (k : SpaceTime) :
     ∫ y, starRingEnd ℂ (f y) * Complex.exp (Complex.I * Complex.ofReal ⟪k, y⟫_ℝ) ∂volume =
     starRingEnd ℂ (physicsFT f k) := by
@@ -565,12 +618,16 @@ lemma y_integral_eq_physicsFT_conj (f : TestFunctionℂ) (k : SpaceTime) :
   congr 1
   simp only [map_neg, map_mul, Complex.conj_I, Complex.conj_ofReal, neg_neg, neg_mul]
 
-/-- The product physicsFT f k * conj(physicsFT f k) = ‖physicsFT f k‖² -/
+/-- The product physicsFT f k * conj(physicsFT f k) = ‖physicsFT f k‖²
+@isnad1 id=eq.0h2v.s6.06e4ad40ec77 from=translated src=- shape=6d66f265 vocab=65f10507
+-/
 lemma physicsFT_mul_conj (f : TestFunctionℂ) (k : SpaceTime) :
     physicsFT f k * starRingEnd ℂ (physicsFT f k) = (‖physicsFT f k‖^2 : ℂ) :=
   mul_conj' (physicsFT f k)
 
-/-- The factorized form simplifies to an integral of |physics FT|². -/
+/-- The factorized form simplifies to an integral of |physics FT|².
+@isnad1 id=eq.0h3v.s10.36fc0ca798c1 from=translated src=- shape=98b6f381 vocab=a0a3e1b3
+-/
 lemma factorized_to_physicsFT_norm_sq (α : ℝ) (m : ℝ) (f : TestFunctionℂ) :
     (∫ k,
       ((Real.exp (-α * ‖k‖^2) * freePropagatorMomentum m k / (2 * Real.pi) ^ STDimension : ℝ) : ℂ) *
@@ -609,6 +666,7 @@ lemma factorized_to_physicsFT_norm_sq (α : ℝ) (m : ℝ) (f : TestFunctionℂ)
     3. Factoring the phase using phase_factorization
     4. Recognizing the x and y integrals as Fourier transforms
     5. Accounting for normalization factors via change of variables
+@isnad1 id=eq.1h3v.s11.78dff8a74a68 from=translated src=- shape=5848d170 vocab=16aef5da
 -/
 theorem parseval_covariance_schwartz_regulated (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
   TestFunctionℂ) :
@@ -623,7 +681,9 @@ theorem parseval_covariance_schwartz_regulated (α : ℝ) (hα : 0 < α) (m : �
   -- Step 3: Change of variables k = 2πp
   rw [change_of_variables_momentum]
 
-/-- Continuity of the mathlib propagator. -/
+/-- Continuity of the mathlib propagator.
+@isnad1 id=continuo.0h1v.s5.62b4a854b2e5 from=translated src=- shape=7443d561 vocab=f925fee6
+-/
 lemma continuous_freePropagatorMomentum_mathlib (m : ℝ) [Fact (0 < m)] :
     Continuous fun k => freePropagatorMomentumMathlib m k := by
   unfold freePropagatorMomentumMathlib
@@ -634,7 +694,9 @@ lemma continuous_freePropagatorMomentum_mathlib (m : ℝ) [Fact (0 < m)] :
   have hmpos : 0 < m := Fact.out
   positivity
 
-/-- The integrand ‖f̂(k)‖² * P(k) is integrable for Schwartz f. -/
+/-- The integrand ‖f̂(k)‖² * P(k) is integrable for Schwartz f.
+@isnad1 id=integrab.0h2v.s11.3d182ca1ec4f from=translated src=- shape=b5fa6406 vocab=ea428a2f
+-/
 lemma integrable_schwartz_propagator_mathlib (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     Integrable (fun k => ‖(SchwartzMap.fourierTransformCLM ℂ f) k‖^2 *
       freePropagatorMomentumMathlib m k) volume := by
@@ -670,6 +732,7 @@ lemma integrable_schwartz_propagator_mathlib (m : ℝ) [Fact (0 < m)] (f : TestF
 
     The proof uses dominated convergence to pass from the regulated identity
     (parseval_covariance_schwartz_regulated) to the unregulated limit.
+@isnad1 id=tendsto.0h2v.s11.c9f2ac90d7ac from=translated src=- shape=ad0c8832 vocab=dd56513b
 -/
 theorem parseval_covariance_schwartz_correct (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     Filter.Tendsto
@@ -796,6 +859,7 @@ private lemma aestronglyMeasurable_bilinear_prod {f g : TestFunctionℂ}
     1. Pointwise convergence: `freeCovariance_regulated_limit_eq_freeCovariance`
     2. Dominator: exp(m²) × |f(x)| × |C_Bessel(x,y)| × |g(y)| is integrable
     3. Bound: `freeCovariance_regulated_le_const_mul_freeCovariance` gives the uniform bound
+@isnad1 id=tendsto.0h3v.s10.ff59621e76f7 from=translated src=- shape=12ec9663 vocab=6b8e7347
 -/
 theorem bilinear_covariance_regulated_tendstoℂ (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
     Filter.Tendsto
@@ -943,6 +1007,7 @@ theorem bilinear_covariance_regulated_tendstoℂ (m : ℝ) [Fact (0 < m)] (f g :
 The regulated bilinear form converges to the Bessel form in ℂ when both test functions are the same.
 
 This is a direct corollary of `bilinear_covariance_regulated_tendstoℂ` with g = f.
+@isnad1 id=tendsto.0h2v.s10.9c0144da8b89 from=translated src=- shape=22951522 vocab=6b8e7347
 -/
 theorem bilinear_covariance_regulated_tendsto_self (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     Filter.Tendsto

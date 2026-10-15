@@ -33,6 +33,9 @@ noncomputable def radialLogVector (t : ℝ) :
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s4.c6e4bebb4eac from=translated src=- shape=a7ee3081 vocab=416f808f
+-/
 @[simp]
 theorem radialLogVector_apply_w₀ (t : ℝ) :
     radialLogVector K t w₀ = t := by
@@ -40,6 +43,9 @@ theorem radialLogVector_apply_w₀ (t : ℝ) :
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s5.df0d16faccec from=translated src=- shape=1faa28b4 vocab=439cc8a1
+-/
 theorem radialLogVector_neg (t : ℝ) :
     radialLogVector K (-t) = -radialLogVector K t := by
   ext w
@@ -47,6 +53,9 @@ theorem radialLogVector_neg (t : ℝ) :
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=lt.0h2v.s7.11a324084a9c from=translated src=- shape=698b10a9 vocab=e6dd6e9d
+-/
 theorem fractionalShapeCovolumeConstant_pos
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     0 < fractionalShapeCovolumeConstant K I := by
@@ -73,6 +82,9 @@ noncomputable def fractionalShapeCovolumeCenter
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.5493f64da41e from=translated src=- shape=bc550a2d vocab=b804f07e
+-/
 theorem fractionalShapeCovolumeCenter_traceDual
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     fractionalShapeCovolumeCenter K (traceDualIdealUnit K I) =
@@ -92,6 +104,9 @@ noncomputable def centeredFractionalShapeCoordinates
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.91df03c9bc28 from=translated src=- shape=dbe9541a vocab=91fe05b3
+-/
 theorem centeredFractionalShapeCoordinates_traceDual_neg
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (y : mixedEmbedding.realSpace K) :
@@ -104,6 +119,9 @@ theorem centeredFractionalShapeCoordinates_traceDual_neg
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s10.59703e17b398 from=translated src=- shape=cc14a6bd vocab=aca2850a
+-/
 theorem covolume_shapeIdealLattice_centered
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (y : mixedEmbedding.realSpace K) :

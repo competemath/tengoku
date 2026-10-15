@@ -111,7 +111,9 @@ def HasSeparatingResonantAverages : Prop :=
         resonantDisturbingAverage p q witness phaseB ≠ 0
 
 /-- Compact parameter integration supplies the analytic clause automatically, so the classical
-Fourier calculation only has to provide a separating value at each resonance. -/
+Fourier calculation only has to provide a separating value at each resonance.
+@isnad1 id=hasanaly.1h0v.s1.691debcfd1da from=translated src=- shape=1d48f1ac vocab=8a4d38b4
+-/
 theorem hasAnalyticSeparatingResonantAverages_of_separation
     (hseparation : HasSeparatingResonantAverages) :
     HasAnalyticSeparatingResonantAverages := by
@@ -122,7 +124,9 @@ theorem hasAnalyticSeparatingResonantAverages_of_separation
   exact (analyticOnNhd_resonantDisturbingAverage_eccentricity hp hq phaseA).sub
     (analyticOnNhd_resonantDisturbingAverage_eccentricity hp hq phaseB)
 
-/-- The admissible eccentricity domain is open. -/
+/-- The admissible eccentricity domain is open.
+@isnad1 id=isopen.0h2v.s3.1a19d79d420f from=translated src=- shape=215a98a0 vocab=cf143d90
+-/
 theorem isOpen_admissibleResonantEccentricitySet (p q : ℕ) :
     IsOpen (admissibleResonantEccentricitySet p q) := by
   unfold admissibleResonantEccentricitySet
@@ -131,7 +135,9 @@ theorem isOpen_admissibleResonantEccentricitySet (p q : ℕ) :
       (isOpen_lt (by fun_prop) continuous_const))
 
 /-- A positive resonance admits an interior eccentric ellipse exactly when its semimajor axis is
-strictly inside the unit primary orbit. -/
+strictly inside the unit primary orbit.
+@isnad1 id=iff.2h2v.s5.a37a27b91d0b from=translated src=- shape=4ddcdce2 vocab=af538dad
+-/
 theorem admissibleResonantEccentricitySet_nonempty_iff
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     (admissibleResonantEccentricitySet p q).Nonempty ↔
@@ -171,7 +177,9 @@ theorem admissibleResonantEccentricitySet_nonempty_iff
       nlinarith
     exact ⟨eccentricity, heccentricity, heccentricityOne, hapoapsis⟩
 
-/-- A nonempty admissible eccentricity domain is connected. -/
+/-- A nonempty admissible eccentricity domain is connected.
+@isnad1 id=isconnec.1h2v.s4.b7cfd08e8992 from=translated src=- shape=01d25807 vocab=e387cf2e
+-/
 theorem isConnected_admissibleResonantEccentricitySet
     {p q : ℕ} (hnonempty : (admissibleResonantEccentricitySet p q).Nonempty) :
     IsConnected (admissibleResonantEccentricitySet p q) := by
@@ -191,7 +199,9 @@ theorem isConnected_admissibleResonantEccentricitySet
   · simpa [add_comm] using
       hapoapsisMono.trans_lt (by simpa [add_comm] using hz.2.2)
 
-/-- The Kepler frequency varies continuously on the full interior action subtype. -/
+/-- The Kepler frequency varies continuously on the full interior action subtype.
+@isnad1 id=continuo.0h0v.s6.28646de4e04a from=translated src=- shape=06a5ea01 vocab=41cd143f
+-/
 theorem continuous_interiorDelaunayFrequency :
     Continuous (fun action : InteriorProgradeEllipticAction ↦
       delaunayFrequency (action.1 0)) := by
@@ -211,7 +221,9 @@ theorem continuous_interiorDelaunayFrequency :
   · exact continuousAt_const
 
 /-- The represented leading differential varies continuously on the full interior action
-subtype. -/
+subtype.
+@isnad1 id=continuo.2h2v.s6.d0361e0b4f1b from=translated src=- shape=27470f26 vocab=17a76ff6
+-/
 theorem IsJointlyAnalytic.continuous_interiorLeadingActionDifferential
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) :
@@ -223,7 +235,9 @@ theorem IsJointlyAnalytic.continuous_interiorLeadingActionDifferential
     hδ hanalytic action.2.1 action.2.2).comp continuousAt_subtype_val
 
 /-- Every member of the classical Poincaré set forces the leading differential and Kepler
-frequency to have zero wedge. -/
+frequency to have zero wedge.
+@isnad1 id=eq.4h3v.s6.ce26052dd805 from=translated src=- shape=31b25789 vocab=c1bb4a54
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_mem_poincareSet
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -262,7 +276,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_mem_poi
   simpa only [resonantLeadingActionDifferential, hresonantAction] using horthogonal
 
 /-- Density of the classical Poincaré set propagates its resonant obstruction to every interior
-prograde elliptic action. -/
+prograde elliptic action.
+@isnad1 id=eq.4h3v.s6.8b1f6f0b92f9 from=translated src=- shape=f4f1d6ec vocab=0591e8af
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_densePoincareSet
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -281,7 +297,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_densePo
 
 /-- Nonvanishing at every interior rational resonance implies density of the classical Poincaré
 set.  The proof uses density of rational Kepler frequencies along the fixed-eccentricity curve
-through each action. -/
+through each action.
+@isnad1 id=hasdense.1h0v.s1.2063fe6e0b44 from=translated src=- shape=1d48f1ac vocab=7b4392ae
+-/
 theorem hasDenseClassicalPoincareSet_of_nondegeneracy
     (hnondegenerate : ClassicalDisturbingNondegeneracy) :
     HasDenseClassicalPoincareSet := by
@@ -346,7 +364,9 @@ theorem hasDenseClassicalPoincareSet_of_nondegeneracy
   rwa [hrecover] at himage
 
 /-- Density in eccentricity on each rational resonance is enough to make the full classical
-Poincaré set dense in the two-dimensional interior action region. -/
+Poincaré set dense in the two-dimensional interior action region.
+@isnad1 id=hasdense.1h0v.s1.fb09a2501377 from=translated src=- shape=1d48f1ac vocab=78750177
+-/
 theorem hasDenseClassicalPoincareSet_of_dense_resonant_eccentricities
     (hdense : HasDenseNondegenerateResonantEccentricities) :
     HasDenseClassicalPoincareSet := by
@@ -433,7 +453,9 @@ theorem hasDenseClassicalPoincareSet_of_dense_resonant_eccentricities
 
 /-- Analyticity plus one separating value at each resonance makes the nondegenerate
 eccentricities dense.  Thus the classical calculation need only prove a nonidentity statement,
-not pointwise nonvanishing at every eccentricity. -/
+not pointwise nonvanishing at every eccentricity.
+@isnad1 id=hasdense.1h0v.s1.27e05a7d3e7d from=translated src=- shape=1d48f1ac vocab=d085ea23
+-/
 theorem hasDenseNondegenerateResonantEccentricities_of_analytic_separation
     (hseparation : HasAnalyticSeparatingResonantAverages) :
     HasDenseNondegenerateResonantEccentricities := by
@@ -465,7 +487,9 @@ theorem hasDenseNondegenerateResonantEccentricities_of_analytic_separation
   exact sub_ne_zero.mp heccentricity
 
 /-- The analytic nonidentity statement at each rational resonance supplies the full dense
-classical Poincaré set. -/
+classical Poincaré set.
+@isnad1 id=hasdense.1h0v.s1.2d9af96f4e00 from=translated src=- shape=1d48f1ac vocab=c9daeb38
+-/
 theorem hasDenseClassicalPoincareSet_of_analytic_separation
     (hseparation : HasAnalyticSeparatingResonantAverages) :
     HasDenseClassicalPoincareSet :=
@@ -473,7 +497,9 @@ theorem hasDenseClassicalPoincareSet_of_analytic_separation
     (hasDenseNondegenerateResonantEccentricities_of_analytic_separation hseparation)
 
 /-- The original pointwise nondegeneracy condition implies the more flexible fiberwise density
-condition. -/
+condition.
+@isnad1 id=hasdense.1h0v.s1.2817144d8800 from=translated src=- shape=1d48f1ac vocab=f35217c8
+-/
 theorem hasDenseNondegenerateResonantEccentricities_of_nondegeneracy
     (hnondegenerate : ClassicalDisturbingNondegeneracy) :
     HasDenseNondegenerateResonantEccentricities := by

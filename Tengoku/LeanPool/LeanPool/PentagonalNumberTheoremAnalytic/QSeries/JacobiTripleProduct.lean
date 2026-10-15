@@ -45,7 +45,9 @@ private theorem one_sub_pow_ne_zero {q : ℂ} (hq : ‖q‖ < 1) (n : ℕ) :
   have h2 : ‖q‖ ^ (n + 1) < 1 := pow_lt_one₀ (norm_nonneg q) hq (Nat.succ_ne_zero n)
   linarith
 
-/-- Summability of the non-negative part $\sum_{k \geq 0} z^k q^{\binom{k}{2}}$. -/
+/-- Summability of the non-negative part $\sum_{k \geq 0} z^k q^{\binom{k}{2}}$.
+@isnad1 id=summable.2h2v.s6.d4764f9e5d75 from=translated src=- shape=0ce40c5c vocab=73f7f99f
+-/
 theorem summable_pow_mul_pow_choose_two {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     Summable (fun k : ℕ => z ^ k * q ^ k.choose 2) := by
   refine Summable.of_norm ?_
@@ -55,7 +57,9 @@ theorem summable_pow_mul_pow_choose_two {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖
     (summable_geometric_of_lt_one (by positivity) hz)
 
 /-- Summability of the negative-index part $\sum_{m \geq 0} z^{-(m+1)} q^{\binom{m+2}{2}}$
-for $\|q\| < 1$ and $z \neq 0$. -/
+for $\|q\| < 1$ and $z \neq 0$.
+@isnad1 id=summable.1h2v.s6.474a097d1b35 from=translated src=- shape=2d9482a3 vocab=fd2c1b0b
+-/
 theorem summable_inv_pow_mul_pow_choose_two {q z : ℂ} (hq : ‖q‖ < 1) :
     Summable (fun m : ℕ => (z⁻¹) ^ (m + 1) * q ^ (m + 2).choose 2) := by
   have hr : (0 : ℝ) < ‖q‖ + (1 - ‖q‖) / 2 := by linarith [norm_nonneg q]
@@ -93,7 +97,9 @@ def jacobiBilateralNeg (q z : ℂ) : ℂ :=
 def jacobiBilateral (q z : ℂ) : ℂ :=
   jacobiBilateralPos q z + jacobiBilateralNeg q z
 
-/-- **Telescoping for $(-z;q)_\infty$**: $(-z;q)_\infty = (1+z)(-zq;q)_\infty$. -/
+/-- **Telescoping for $(-z;q)_\infty$**: $(-z;q)_\infty = (1+z)(-zq;q)_\infty$.
+@isnad1 id=eq.1h2v.s5.e58675bcff76 from=translated src=- shape=f7a9aef0 vocab=c9e5fff8
+-/
 theorem qPochhammerInf_neg_eq_one_add_mul {z q : ℂ} (hq : ‖q‖ < 1) :
     qPochhammerInf (-z) q = (1 + z) * qPochhammerInf (-(z * q)) q := by
   have h := qPochhammerInf_eq_one_sub_mul (z := -z) hq
@@ -101,7 +107,9 @@ theorem qPochhammerInf_neg_eq_one_add_mul {z q : ℂ} (hq : ‖q‖ < 1) :
       show -z * q = -(z * q) from by ring] at h
   exact h
 
-/-- The product satisfies $f(qz) = f(z)/z$ when $q \neq 0$ and $z \neq 0$. -/
+/-- The product satisfies $f(qz) = f(z)/z$ when $q \neq 0$ and $z \neq 0$.
+@isnad1 id=eq.3h2v.s6.5e8fac6b15d4 from=translated src=- shape=6a1e44ea vocab=59a686d9
+-/
 theorem jacobiProd_mul_eq_div {q z : ℂ} (hq : ‖q‖ < 1) (hq' : q ≠ 0) (hz : z ≠ 0) :
     jacobiProd q (q * z) = jacobiProd q z / z := by
   unfold jacobiProd
@@ -117,7 +125,9 @@ theorem jacobiProd_mul_eq_div {q z : ℂ} (hq : ‖q‖ < 1) (hq' : q ≠ 0) (hz
   ring
 
 /-- The bilateral Jacobi series satisfies the same functional equation $f(qz) = f(z)/z$
-as the triple product. -/
+as the triple product.
+@isnad1 id=eq.4h2v.s6.970e64303067 from=translated src=- shape=903ae2a0 vocab=45702263
+-/
 theorem jacobiBilateral_mul_eq_div {q z : ℂ} (hq : ‖q‖ < 1) (hq' : q ≠ 0) (hz : ‖z‖ < 1)
     (hz' : z ≠ 0) :
     jacobiBilateral q (q * z) = jacobiBilateral q z / z := by
@@ -171,7 +181,9 @@ theorem jacobiBilateral_mul_eq_div {q z : ℂ} (hq : ‖q‖ < 1) (hq' : q ≠ 0
     · exact summable_pow_mul_pow_choose_two hq hz
 
 /-- Summability of the Euler second series $\sum_{n \geq 0} q^{\binom{n}{2}} z^n / (q;q)_n$
-for all $z$ when $\|q\| < 1$. -/
+for all $z$ when $\|q\| < 1$.
+@isnad1 id=summable.1h2v.s6.3a4798134bc2 from=translated src=- shape=a52ebaa0 vocab=5bcb71fc
+-/
 theorem summable_euler_second' {q z : ℂ} (hq : ‖q‖ < 1) :
     Summable (fun n : ℕ => q ^ n.choose 2 * z ^ n / qPochhammer q q n) := by
   have hr : (0 : ℝ) < ‖q‖ + (1 - ‖q‖) / 2 := by linarith [norm_nonneg q]
@@ -194,7 +206,9 @@ theorem summable_euler_second' {q z : ℂ} (hq : ‖q‖ < 1) :
         mul_le_mul_of_nonneg_left hn.le (norm_nonneg _)
     _ = _ := by ring
 
-/-- The Euler second series satisfies the recursion $E(z) = (1+z) \cdot E(qz)$. -/
+/-- The Euler second series satisfies the recursion $E(z) = (1+z) \cdot E(qz)$.
+@isnad1 id=eq.1h2v.s7.e83622af867c from=translated src=- shape=0dc70c13 vocab=67cf64f5
+-/
 theorem tsum_euler_second_eq_one_add_mul {q z : ℂ} (hq : ‖q‖ < 1) :
     (∑' n : ℕ, q ^ n.choose 2 * z ^ n / qPochhammer q q n) =
     (1 + z) * (∑' n : ℕ, q ^ n.choose 2 * (z * q) ^ n / qPochhammer q q n) := by
@@ -239,7 +253,9 @@ private theorem qPochhammerInf_neg_eq_prod_mul {q z : ℂ} (hq : ‖q‖ < 1) (N
     ring
 
 /-- Euler second identity for all $z$: the series $\sum_{n \geq 0} q^{\binom{n}{2}} z^n / (q;q)_n$
-has sum $(-z;q)_\infty$. -/
+has sum $(-z;q)_\infty$.
+@isnad1 id=hassum.1h2v.s6.6e8538b2d1ea from=translated src=- shape=dccd9772 vocab=704933db
+-/
 theorem euler_second_identity' {q z : ℂ} (hq : ‖q‖ < 1) :
     HasSum (fun n : ℕ => q ^ n.choose 2 * z ^ n / qPochhammer q q n)
       (qPochhammerInf (-z) q) := by
@@ -266,7 +282,9 @@ theorem euler_second_identity' {q z : ℂ} (hq : ‖q‖ < 1) :
   exact (summable_euler_second' hq).hasSum
 
 /-- Euler second identity evaluated at $q/z$: the series
-$\sum_{m \geq 0} q^{\binom{m}{2}+m} z^{-m} / (q;q)_m$ has sum $(-q/z;q)_\infty$. -/
+$\sum_{m \geq 0} q^{\binom{m}{2}+m} z^{-m} / (q;q)_m$ has sum $(-q/z;q)_\infty$.
+@isnad1 id=hassum.1h2v.s7.3e29983fc138 from=translated src=- shape=41c6436f vocab=84c7722d
+-/
 theorem euler_second_identity_div' {q z : ℂ} (hq : ‖q‖ < 1) :
     HasSum (fun m : ℕ => q ^ m.choose 2 * q ^ m * z⁻¹ ^ m / qPochhammer q q m)
       (qPochhammerInf (-q / z) q) := by

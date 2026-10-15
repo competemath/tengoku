@@ -34,6 +34,9 @@ noncomputable def liftedDelaunayEccentricAnomalyAlongFlow
   eccentricAnomaly eccentricity
     (liftedDelaunayMeanAnomalyAlongFlow firstAction meanAnomaly time)
 
+/--
+@isnad1 id=eq.0h4v.s5.1faf9df8c4d7 from=translated src=- shape=be7a3380 vocab=5efbf7cf
+-/
 @[simp] lemma liftedDelaunayEccentricAnomaly_flow_argument
     (firstAction eccentricity meanAnomaly time : ℝ) :
     liftedDelaunayEccentricAnomaly eccentricity
@@ -41,6 +44,9 @@ noncomputable def liftedDelaunayEccentricAnomalyAlongFlow
       liftedDelaunayEccentricAnomalyAlongFlow
         firstAction eccentricity meanAnomaly time := rfl
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.47c774e85431 from=translated src=- shape=4e4dbc10 vocab=2aa9daea
+-/
 theorem hasDerivAt_liftedDelaunayMeanAnomalyAlongFlow
     (firstAction meanAnomaly time : ℝ) :
     HasDerivAt (liftedDelaunayMeanAnomalyAlongFlow firstAction meanAnomaly)
@@ -51,6 +57,9 @@ theorem hasDerivAt_liftedDelaunayMeanAnomalyAlongFlow
   filter_upwards [] with argument
   rfl
 
+/--
+@isnad1 id=hasderiv.2h4v.s7.52b4705e97d8 from=translated src=- shape=dc3c8e90 vocab=1932af91
+-/
 theorem hasDerivAt_liftedDelaunayEccentricAnomalyAlongFlow
     {firstAction eccentricity meanAnomaly time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -68,7 +77,9 @@ theorem hasDerivAt_liftedDelaunayEccentricAnomalyAlongFlow
   · simp [liftedDelaunayEccentricAnomalyAlongFlow, div_eq_mul_inv, mul_comm]
 
 /-- The position coordinates of a general Delaunay flow line satisfy the first two Hamilton
-equations. -/
+equations.
+@isnad1 id=and.2h5v.s7.f05166e1c989 from=translated src=- shape=cf482fee vocab=cb776be4
+-/
 theorem hasDerivAt_liftedDelaunayFlowLine_position
     {firstAction eccentricity meanAnomaly periapsisAngle time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -161,7 +172,9 @@ theorem hasDerivAt_liftedDelaunayFlowLine_position
       ring_nf
 
 /-- In inertial coordinates, a general Delaunay ellipse satisfies the inverse-square acceleration
-law. -/
+law.
+@isnad1 id=hasderiv.3h5v.s7.b3c41ea85244 from=translated src=- shape=84d10101 vocab=d2a8a3de
+-/
 theorem hasDerivAt_inertialEllipseVelocity_liftedDelaunayFlow
     {firstAction eccentricity meanAnomaly time : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -241,7 +254,9 @@ theorem hasDerivAt_inertialEllipseVelocity_liftedDelaunayFlow
         eccentricRadius] using halgebra
 
 /-- The momentum coordinates of a general Delaunay flow line satisfy the remaining two Hamilton
-equations. -/
+equations.
+@isnad1 id=other.3h5v.s8.bb331e6b9e75 from=translated src=- shape=3e9eca41 vocab=bb416120
+-/
 theorem hasDerivAt_liftedDelaunayFlowLine_momentum
     {firstAction eccentricity meanAnomaly periapsisAngle time : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -317,7 +332,9 @@ theorem hasDerivAt_liftedDelaunayFlowLine_momentum
       dsimp [xInertial, yInertial, vxInertial, vyInertial, anomaly, radius, angle]
       ring_nf
 
-/-- The position norm of a lifted Delaunay flow point is its eccentric radius. -/
+/-- The position norm of a lifted Delaunay flow point is its eccentric radius.
+@isnad1 id=eq.3h5v.s7.0def05fe2d9a from=translated src=- shape=04528f23 vocab=2492beee
+-/
 lemma sqrt_positionSq_liftedDelaunayFlowLine
     {firstAction eccentricity meanAnomaly periapsisAngle time : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -345,7 +362,9 @@ lemma sqrt_positionSq_liftedDelaunayFlowLine
         inertialEllipsePosition_sq heccentricity heccentricityOne.le]]
   exact (Real.sqrt_sq_eq_abs _).trans (abs_of_pos hradius)
 
-/-- A general lifted Delaunay flow line has derivative equal to the rotating Kepler vector field. -/
+/-- A general lifted Delaunay flow line has derivative equal to the rotating Kepler vector field.
+@isnad1 id=hasderiv.3h5v.s7.0234ceeb1bd1 from=translated src=- shape=aa06f554 vocab=ad959ed5
+-/
 theorem hasDerivAt_liftedDelaunayFlowLine
     {firstAction eccentricity meanAnomaly periapsisAngle time : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -395,7 +414,9 @@ theorem hasDerivAt_liftedDelaunayFlowLine
     exact hmomentum.2
 
 /-- Along a general lifted Delaunay flow line, the derivative of any differentiable observable is
-its Poisson bracket with the mass-zero Hamiltonian. -/
+its Poisson bracket with the mass-zero Hamiltonian.
+@isnad1 id=hasderiv.4h6v.s7.15163cbeb002 from=translated src=- shape=d05d1f16 vocab=f54e586e
+-/
 theorem DifferentiableAt.hasDerivAt_comp_liftedDelaunayFlowLine
     {F : PhaseSpace → ℝ}
     {firstAction eccentricity meanAnomaly periapsisAngle time : ℝ}
@@ -434,7 +455,9 @@ theorem DifferentiableAt.hasDerivAt_comp_liftedDelaunayFlowLine
   exact (poissonBracket_hamiltonian_zero_eq_fderiv_apply F horigin).symm
 
 /-- A lifted Delaunay ellipse lying strictly inside the unit primary's orbit is collision-free at
-mass zero for all time. -/
+mass zero for all time.
+@isnad1 id=mem.4h5v.s6.932d15d6e636 from=translated src=- shape=d68f229e vocab=27e8f7c7
+-/
 lemma liftedDelaunayFlowLine_collisionFree_mass_zero
     {firstAction eccentricity meanAnomaly periapsisAngle time : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -477,7 +500,9 @@ lemma liftedDelaunayFlowLine_collisionFree_mass_zero
     rw [hpositionSq]
     exact (sq_pos_of_pos hradius).ne'
 
-/-- Collision-freeness of a static lifted Delaunay chart point. -/
+/-- Collision-freeness of a static lifted Delaunay chart point.
+@isnad1 id=mem.4h4v.s6.7a4b22835141 from=translated src=- shape=4bbbd5da vocab=08dffcb3
+-/
 lemma liftedDelaunayPhasePoint_collisionFree_mass_zero
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : firstAction ≠ 0)
@@ -500,7 +525,9 @@ def irrationalFrequencyInteriorPositiveActions (eccentricity : ℝ) :
     Set (InteriorPositiveAction eccentricity) :=
   {action | Irrational (1 / action.1.1 ^ 3)}
 
-/-- Irrational Kepler tori are dense among the ellipses staying inside the primary orbit. -/
+/-- Irrational Kepler tori are dense among the ellipses staying inside the primary orbit.
+@isnad1 id=dense.0h1v.s6.3317007067e6 from=translated src=- shape=fc2c1e2b vocab=9248b653
+-/
 theorem irrationalFrequencyInteriorPositiveActions_dense
     (eccentricity : ℝ) :
     Dense (irrationalFrequencyInteriorPositiveActions eccentricity) := by
@@ -529,7 +556,9 @@ theorem irrationalFrequencyInteriorPositiveActions_dense
   exact hclosures.symm ▸ hclosure
 
 /-- The mass-zero member of an exact analytic first-integral family is invariant along every
-interior lifted Delaunay flow line. -/
+interior lifted Delaunay flow line.
+@isnad1 id=eq.7h7v.s7.7249a2dc603f from=translated src=- shape=f3828db1 vocab=c0bcf46e
+-/
 theorem IsFirstIntegralFamily.liftedDelaunayFlowLine_invariant
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -573,7 +602,9 @@ theorem IsFirstIntegralFamily.liftedDelaunayFlowLine_invariant
   exact is_const_of_deriv_eq_zero hdifferentiable hderivativeZero time 0
 
 /-- On every irrational interior Kepler torus, the mass-zero term of a candidate exact analytic
-first integral is independent of both Delaunay angles. -/
+first integral is independent of both Delaunay angles.
+@isnad1 id=eq.8h6v.s7.9b3196ed441e from=translated src=- shape=384db761 vocab=33ead725
+-/
 theorem IsFirstIntegralFamily.mass_zero_liftedDelaunayPhasePoint_eq_of_irrational
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -633,7 +664,9 @@ theorem IsFirstIntegralFamily.mass_zero_liftedDelaunayPhasePoint_eq_of_irrationa
 
 /-- On every interior Kepler torus, including the rationally resonant ones, the mass-zero term of
 an exact analytic first-integral family is independent of both Delaunay angles.  This is the
-continuity extension of the irrational-torus theorem. -/
+continuity extension of the irrational-torus theorem.
+@isnad1 id=eq.7h6v.s7.f9f342eb2824 from=translated src=- shape=0fb86686 vocab=a3dc1dcb
+-/
 theorem IsFirstIntegralFamily.mass_zero_liftedDelaunayPhasePoint_eq
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)

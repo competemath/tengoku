@@ -19,7 +19,9 @@ closure `ReflTransGen` and the transitive closure `TransGen`.
 
 namespace PDL
 
-/-- A version of `Relation.ReflTransGen.cases_tail` also giving (in)equalities. -/
+/-- A version of `Relation.ReflTransGen.cases_tail` also giving (in)equalities.
+@isnad1 id=or.1h4v.s5.54202016fabd from=translated src=- shape=313c2f7e vocab=20e92fbd
+-/
 theorem ReflTransGen.cases_tail_eq_neq {r : α → α → Prop} (h : Relation.ReflTransGen r x z) :
     x = z ∨ (x ≠ z ∧ ∃ y, x ≠ y ∧ r x y ∧ Relation.ReflTransGen r y z) := by
   induction h using Relation.ReflTransGen.head_induction_on
@@ -54,7 +56,9 @@ theorem ReflTransGen.cases_tail_eq_neq {r : α → α → Prop} (h : Relation.Re
           · use b
 
 /-- `ReflTransGen r a b` implies `∃ x₀ ... xₙ, a = x₀ ∧ r x₀ x₁ ∧ ... ∧ xₙ = b`.
-Similar to `List.exists_chain_of_relationReflTransGen`. -/
+Similar to `List.exists_chain_of_relationReflTransGen`.
+@isnad1 id=ex.1h4v.s6.be20a7d83399 from=translated src=- shape=fcb422f4 vocab=f7fd9b9f
+-/
 theorem ReflTransGen.to_finitelyManySteps {r : α → α → Prop} (h : Relation.ReflTransGen r x z) :
     ∃ (n : ℕ) (ys : List.Vector α n.succ),
       x = ys.head ∧ z = ys.last ∧ ∀ i : Fin n, r (ys.get i.castSucc) (ys.get (i.succ)) := by
@@ -74,7 +78,9 @@ theorem ReflTransGen.to_finitelyManySteps {r : α → α → Prop} (h : Relation
       all_goals aesop
 
 /-- `a = x₀ ∧ r x₀ x₁ ∧ ... ∧ xₙ = b` implies `ReflTransGen r a b`.
-Similar to `List.relationReflTransGen_of_exists_chain` in mathlib. -/
+Similar to `List.relationReflTransGen_of_exists_chain` in mathlib.
+@isnad1 id=refltran.1h6v.s5.d4c2993acc41 from=translated src=- shape=fb2d1a1c vocab=f7fd9b9f
+-/
 theorem ReflTransGen.from_finitelyManySteps (r : α → α → Prop) {n : ℕ} :
     ∀ (x z : α) (ys : List.Vector α (Nat.succ n)),
       (x = ys.head ∧ z = ys.last ∧ ∀ i : Fin n, r (ys.get i.castSucc) (ys.get (i.succ)))
@@ -117,7 +123,9 @@ theorem ReflTransGen.from_finitelyManySteps (r : α → α → Prop) {n : ℕ} :
         induction i
         all_goals aesop
 
-/-- `ReflTransGen r a b` is equivalent to `∃ x₀ ... xₙ, a = x₀ ∧ r x₀ x₁ ∧ ... ∧ r xₙ = b` -/
+/-- `ReflTransGen r a b` is equivalent to `∃ x₀ ... xₙ, a = x₀ ∧ r x₀ x₁ ∧ ... ∧ r xₙ = b`
+@isnad1 id=iff.0h4v.s6.3da11d20a973 from=translated src=- shape=e1e8e7ee vocab=f7fd9b9f
+-/
 theorem ReflTransGen.iff_finitelyManySteps (r : α → α → Prop) (x z : α) :
     Relation.ReflTransGen r x z ↔
       ∃ (n : ℕ) (ys : List.Vector α n.succ),
@@ -126,6 +134,9 @@ theorem ReflTransGen.iff_finitelyManySteps (r : α → α → Prop) (x z : α) :
   fun ⟨_, ys, x_is_head, z_is_last, rhs⟩ =>
     ReflTransGen.from_finitelyManySteps r x z ys ⟨x_is_head, z_is_last, rhs⟩⟩
 
+/--
+@isnad1 id=refltran.1h5v.s5.eac76d954ada from=translated src=- shape=8e06fe1f vocab=20e92fbd
+-/
 theorem Relation.ReflTransGen_or_left {r r' : α → α → Prop} {a b : α} :
     Relation.ReflTransGen r a b
     → Relation.ReflTransGen (fun x y => r x y ∨ r' x y) a b := by
@@ -134,6 +145,9 @@ theorem Relation.ReflTransGen_or_left {r r' : α → α → Prop} {a b : α} :
   case refl => exact _root_.Relation.ReflTransGen.refl
   case tail _ b_c IH => exact _root_.Relation.ReflTransGen.tail IH (Or.inl b_c)
 
+/--
+@isnad1 id=refltran.1h5v.s5.aa7e8cb55309 from=translated src=- shape=8c26b0e9 vocab=20e92fbd
+-/
 theorem Relation.ReflTransGen_or_right {r r' : α → α → Prop} {a b : α} :
     Relation.ReflTransGen r a b
     → Relation.ReflTransGen (fun x y => r' x y ∨ r x y) a b := by
@@ -142,6 +156,9 @@ theorem Relation.ReflTransGen_or_right {r r' : α → α → Prop} {a b : α} :
   case refl => exact _root_.Relation.ReflTransGen.refl
   case tail _ b_c IH => exact _root_.Relation.ReflTransGen.tail IH (Or.inr b_c)
 
+/--
+@isnad1 id=refltran.1h6v.s5.4d31abcf9cdd from=translated src=- shape=78549162 vocab=20e92fbd
+-/
 theorem Relation.ReflTransGen_imp {r r' : α → α → Prop} {a b : α} :
     (∀ x y, r x y → r' x y)
     → Relation.ReflTransGen r a b
@@ -151,6 +168,9 @@ theorem Relation.ReflTransGen_imp {r r' : α → α → Prop} {a b : α} :
   case refl => exact _root_.Relation.ReflTransGen.refl
   case tail _ b_c IH => exact _root_.Relation.ReflTransGen.tail IH (hyp _ _ b_c)
 
+/--
+@isnad1 id=transgen.1h5v.s5.8041128cac31 from=translated src=- shape=6e73a18b vocab=387346c0
+-/
 theorem Relation.TransGen_or_left {r r' : α → α → Prop} {a b : α} :
     Relation.TransGen r a b
     → Relation.TransGen (fun x y => r x y ∨ r' x y) a b := by
@@ -159,6 +179,9 @@ theorem Relation.TransGen_or_left {r r' : α → α → Prop} {a b : α} :
   case single => apply _root_.Relation.TransGen.single; left; assumption
   case tail _ b_c IH => exact _root_.Relation.TransGen.tail IH (Or.inl b_c)
 
+/--
+@isnad1 id=transgen.1h5v.s5.7f5999ad68cb from=translated src=- shape=4d21cf82 vocab=387346c0
+-/
 theorem Relation.TransGen_or_right {r r' : α → α → Prop} {a b : α} :
     Relation.TransGen r a b
     → Relation.TransGen (fun x y => r' x y ∨ r x y) a b := by
@@ -167,6 +190,9 @@ theorem Relation.TransGen_or_right {r r' : α → α → Prop} {a b : α} :
   case single => apply _root_.Relation.TransGen.single; right; assumption
   case tail _ b_c IH => exact _root_.Relation.TransGen.tail IH (Or.inr b_c)
 
+/--
+@isnad1 id=transgen.1h6v.s5.94759a6dc5b2 from=translated src=- shape=432d19bc vocab=387346c0
+-/
 theorem Relation.TransGen_imp {r r' : α → α → Prop} {a b : α} :
     (∀ x y, r x y → r' x y)
     → Relation.TransGen r a b
@@ -176,6 +202,9 @@ theorem Relation.TransGen_imp {r r' : α → α → Prop} {a b : α} :
   case single => apply _root_.Relation.TransGen.single; apply hyp; assumption
   case tail _ b_c IH => exact _root_.Relation.TransGen.tail IH (hyp _ _ b_c)
 
+/--
+@isnad1 id=transgen.2h4v.s4.d7d8b6f8655c from=translated src=- shape=3d52b607 vocab=a433e510
+-/
 theorem Relation.TransGen_of_ReflTransGen {α : Type} {r : α → α → Prop}
   {a b : α} (h : Relation.ReflTransGen r a b) (hne : a ≠ b) : Relation.TransGen r a b :=
   by induction h
@@ -185,6 +214,9 @@ theorem Relation.TransGen_of_ReflTransGen {α : Type} {r : α → α → Prop}
                       simp_all
       | inr a_ne_c => apply Relation.TransGen.tail (ih a_ne_c) c_b
 
+/--
+@isnad1 id=iff.0h4v.s4.379567d5b493 from=translated src=- shape=c76de497 vocab=aa6601c3
+-/
 lemma Relation.TransGen.flip_iff (α : Type) {r : α → α → Prop} {a b : α} :
     (Relation.TransGen (flip r)) a b ↔ (Relation.TransGen r) b a := by
   exact @Relation.transGen_swap α r a b

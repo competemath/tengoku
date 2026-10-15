@@ -59,28 +59,43 @@ def positiveUnitFundamentalParamSet :
   unitFundamentalParamSet K ∩ positiveRadialHalfSpace (K := K)
 
 open Classical in
+/--
+@isnad1 id=measurab.0h1v.s4.1f4c8d8fec47 from=translated src=- shape=da9a72aa vocab=46ce9834
+-/
 theorem measurableSet_negativeRadialHalfSpace :
     MeasurableSet (negativeRadialHalfSpace (K := K)) :=
   measurableSet_lt (measurable_pi_apply w₀) measurable_const
 
 open Classical in
+/--
+@isnad1 id=measurab.0h1v.s4.2c6b3863adbf from=translated src=- shape=da9a72aa vocab=2e6870ad
+-/
 theorem measurableSet_positiveRadialHalfSpace :
     MeasurableSet (positiveRadialHalfSpace (K := K)) :=
   measurableSet_lt measurable_const (measurable_pi_apply w₀)
 
 open Classical in
+/--
+@isnad1 id=measurab.0h1v.s4.e3fb295faffd from=translated src=- shape=da9a72aa vocab=01ef98ed
+-/
 theorem measurableSet_negativeUnitFundamentalParamSet :
     MeasurableSet (negativeUnitFundamentalParamSet (K := K)) :=
   measurableSet_unitFundamentalParamSet.inter
     measurableSet_negativeRadialHalfSpace
 
 open Classical in
+/--
+@isnad1 id=measurab.0h1v.s4.60cf1eb49938 from=translated src=- shape=da9a72aa vocab=5d26fd97
+-/
 theorem measurableSet_positiveUnitFundamentalParamSet :
     MeasurableSet (positiveUnitFundamentalParamSet (K := K)) :=
   measurableSet_unitFundamentalParamSet.inter
     measurableSet_positiveRadialHalfSpace
 
 open Classical in
+/--
+@isnad1 id=disjoint.0h1v.s6.77271db85e49 from=translated src=- shape=6746b013 vocab=2d1dbcb5
+-/
 theorem disjoint_nonnegative_negativeUnitFundamentalParamSet :
     Disjoint (nonnegativeUnitFundamentalParamSet (K := K))
       (negativeUnitFundamentalParamSet (K := K)) := by
@@ -91,6 +106,9 @@ theorem disjoint_nonnegative_negativeUnitFundamentalParamSet :
     (show y w₀ < 0 from hny.2)
 
 open Classical in
+/--
+@isnad1 id=eq.0h1v.s5.96ce0bd13bda from=translated src=- shape=858cd761 vocab=5416dff0
+-/
 theorem union_nonnegative_negativeUnitFundamentalParamSet :
     nonnegativeUnitFundamentalParamSet (K := K) ∪
         negativeUnitFundamentalParamSet (K := K) =
@@ -103,6 +121,9 @@ theorem union_nonnegative_negativeUnitFundamentalParamSet :
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s8.f61b65f17245 from=translated src=- shape=b922fe60 vocab=bbf44444
+-/
 theorem setIntegral_unitFundamentalParamSet_eq_add_radialHalves
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E)
@@ -124,11 +145,17 @@ def negUnitFundamentalParamSet :
   (fun y ↦ -y) ⁻¹' unitFundamentalParamSet K
 
 open Classical in
+/--
+@isnad1 id=measurab.0h1v.s4.8cc75cd4f9af from=translated src=- shape=da9a72aa vocab=bc792c38
+-/
 theorem measurableSet_negUnitFundamentalParamSet :
     MeasurableSet (negUnitFundamentalParamSet (K := K)) :=
   measurable_neg measurableSet_unitFundamentalParamSet
 
 open Classical in
+/--
+@isnad1 id=isaddfun.0h1v.s9.d97670f2daa8 from=translated src=- shape=35b8c568 vocab=d99dc14e
+-/
 theorem isAddFundamentalDomain_negUnitFundamentalParamSet :
     IsAddFundamentalDomain (unitCoordinateLattice (K := K))
       (negUnitFundamentalParamSet (K := K)) volume := by
@@ -154,6 +181,9 @@ theorem isAddFundamentalDomain_negUnitFundamentalParamSet :
     simpa [g] using congrArg Neg.neg heq
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s8.2b41e34dfc66 from=translated src=- shape=c83036eb vocab=489e784f
+-/
 theorem setIntegral_negUnitFundamentalParamSet_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E)
@@ -165,6 +195,9 @@ theorem setIntegral_negUnitFundamentalParamSet_eq
     isAddFundamentalDomain_unitFundamentalParamSet hf
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.18a332a90bbe from=translated src=- shape=3b4f7824 vocab=c51fa173
+-/
 theorem setIntegral_positive_comp_neg_eq_negSlab_negative
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E) :
@@ -189,6 +222,9 @@ theorem setIntegral_positive_comp_neg_eq_negSlab_negative
   simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s8.9851b877234f from=translated src=- shape=85dcedb0 vocab=3055f43c
+-/
 theorem setIntegral_negative_eq_positive_comp_neg
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E)
@@ -224,6 +260,9 @@ theorem setIntegral_negative_eq_positive_comp_neg
   simp_all
 
 open Classical in
+/--
+@isnad1 id=iff.1h3v.s8.c7d5545839a6 from=translated src=- shape=4c76106e vocab=6618b01d
+-/
 theorem integrableOn_negative_iff_positive_comp_neg
     {E : Type*} [NormedAddCommGroup E]
     (f : mixedEmbedding.realSpace K → E)
@@ -330,6 +369,9 @@ theorem integrableOn_negative_iff_positive_comp_neg
     simp [F, hy.2]
 
 open Classical in
+/--
+@isnad1 id=eq.2h4v.s8.f0c3f630ec27 from=translated src=- shape=42987625 vocab=cae295f1
+-/
 theorem setIntegral_positiveUnitFundamentalParamSet_add_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : mixedEmbedding.realSpace K → E)

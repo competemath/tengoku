@@ -27,14 +27,18 @@ noncomputable section
 namespace HermiteLEAN
 
 -- to_mathlib: Mathlib/Data/Finset/Intervals
-/-- Square blocks have the expected odd cardinality. -/
+/-- Square blocks have the expected odd cardinality.
+@isnad1 id=eq.0h1v.s5.428a04760380 from=translated src=- shape=034a6fc2 vocab=24735873
+-/
 theorem squareBlock_card (ℓ : ℕ) : (squareBlock ℓ).card = 2 * ℓ + 1 := by
   rw [squareBlock, Nat.card_Ico]
   ring_nf
   omega
 
 -- to_mathlib: Mathlib/Data/Real/Interval
-/-- A convenient interval-distance lower bound for annulus arguments. -/
+/-- A convenient interval-distance lower bound for annulus arguments.
+@isnad1 id=le.0h2v.s6.5e12a1ff4ea8 from=translated src=- shape=a051279a vocab=9935e563
+-/
 theorem annulus_distance_lower_bound (j : ℕ) (x : ℝ) :
     posPart (|((j : ℕ) : ℝ) - x| - 1)
       ≤ min |((j : ℕ) : ℝ) - x| |(((j + 1 : ℕ) : ℝ) - x)| := by
@@ -53,7 +57,9 @@ theorem annulus_distance_lower_bound (j : ℕ) (x : ℝ) :
   linarith [(abs_sub_le_iff.mp habs).1]
 
 -- to_mathlib: Mathlib/Analysis/SpecialFunctions/Gaussian/Basic
-/-- A reusable Gaussian absorption lemma. -/
+/-- A reusable Gaussian absorption lemma.
+@isnad1 id=ex.1h2v.s7.3a02dc965a90 from=translated src=- shape=5c53d316 vocab=597a0a46
+-/
 theorem polynomial_times_gaussian_le_gaussian
     {a : ℝ}
     (ha : 0 < a)

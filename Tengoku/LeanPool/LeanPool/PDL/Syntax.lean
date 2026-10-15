@@ -114,6 +114,9 @@ def Program.isAtomic : Program → Prop
 | ·_ => true
 | _ => false
 
+/--
+@isnad1 id=ne.0h1v.s2.9908a28aa1f7 from=translated src=- shape=e63234f4 vocab=79d13f17
+-/
 lemma Formula.neq_neg_self (φ : Formula) : φ ≠ ~φ := by
   intro h
   cases φ <;> simp_all only [reduceCtorEq, neg.injEq]
@@ -127,6 +130,9 @@ instance : DecidablePred Program.isAtomic
 | ∗_ => decidable_of_decidable_of_iff (by simp [Program.isAtomic] : False ↔ _)
 | ?'_ => decidable_of_decidable_of_iff (by simp [Program.isAtomic] : False ↔ _)
 
+/--
+@isnad1 id=iff.0h1v.s3.8a2eb0937d8e from=translated src=- shape=ac6503a8 vocab=c15e9924
+-/
 theorem Program.isAtomic_iff {α : Program} : α.isAtomic ↔ ∃ a, α = (·a : Program) := by
   cases α <;> simp_all [isAtomic]
 
@@ -142,26 +148,44 @@ instance : DecidablePred Program.isStar := by
     try exact instDecidableTrue
     try exact instDecidableFalse
 
+/--
+@isnad1 id=iff.0h1v.s3.bc3cf289c9e2 from=translated src=- shape=6952cb13 vocab=3bfa5205
+-/
 theorem Program.isStar_iff {α : Program} : α.isStar ↔ ∃ β, α = (∗β) := by
   cases α <;> simp_all [isStar]
 
 /-! ## Tools for Box Formulas -/
 
+/--
+@isnad1 id=eq.0h1v.s3.9d4117029f0e from=translated src=- shape=f104d3d9 vocab=be0c34ca
+-/
 @[simp]
 theorem Formula.boxes_nil {φ : Formula} : Formula.boxes [] φ = φ := by simp [Formula.boxes]
 
+/--
+@isnad1 id=eq.0h3v.s4.bf59e98dd911 from=translated src=- shape=8ce36672 vocab=0a68cc4f
+-/
 @[simp]
 theorem Formula.boxes_cons {β δ φ} : Formula.boxes (β :: δ) φ = ⌈β⌉(Formula.boxes δ φ) := by
   simp [Formula.boxes]
 
+/--
+@isnad1 id=iff.0h3v.s4.1ebb05504e92 from=translated src=- shape=1705f1b1 vocab=c91cdb33
+-/
 @[simp]
 lemma Formula.boxes_injective {αs φ ψ} : (⌈⌈αs⌉⌉φ) = (⌈⌈αs⌉⌉ψ) ↔ φ = ψ := by
   induction αs <;> simp_all
 
+/--
+@isnad1 id=eq.0h3v.s5.bd21e1c4e59d from=translated src=- shape=ec1e2949 vocab=57d2b6a5
+-/
 theorem boxes_last {δ α φ} : Formula.boxes (δ ++ [α]) φ = Formula.boxes δ (⌈α⌉φ) :=
   by
   induction δ <;> simp [Formula.boxes]
 
+/--
+@isnad1 id=eq.0h3v.s4.c661d7b4424d from=translated src=- shape=96a587c4 vocab=ef7412c5
+-/
 theorem boxes_append {as bs P} :
     Formula.boxes (as ++ bs) P = Formula.boxes as (Formula.boxes bs P) :=
   by
@@ -172,6 +196,9 @@ def boxesOf : Formula → List Program × Formula
 | (Formula.box prog nextf) => let (rest,endf) := boxesOf nextf; ⟨prog::rest, endf⟩
 | f => ([], f)
 
+/--
+@isnad1 id=eq.1h3v.s4.6682c4de18f8 from=translated src=- shape=9ad42e55 vocab=4acffb3b
+-/
 lemma def_of_boxesOf_def {φ γ ψ} (h : boxesOf φ = (γ, ψ)) : φ = ⌈⌈γ⌉⌉ψ := by
   induction γ generalizing φ
   · unfold boxesOf at h
@@ -185,6 +212,9 @@ def Formula.isBox : Formula → Prop
 | (Formula.box _ _ ) => True
 | _ => False
 
+/--
+@isnad1 id=not.0h1v.s3.03861dfce12d from=translated src=- shape=f5b67c07 vocab=10f47c1d
+-/
 @[simp]
 lemma boxesOf_output_not_isBox {φ : Formula} : ¬ (boxesOf φ).2.isBox := by
   cases φ
@@ -194,14 +224,22 @@ lemma boxesOf_output_not_isBox {φ : Formula} : ¬ (boxesOf φ).2.isBox := by
   all_goals
     simp_all [boxesOf, Formula.isBox]
 
+/--
+@isnad1 id=not.1h3v.s4.822abb80bc55 from=translated src=- shape=e2c7fcb0 vocab=67f6b106
+-/
 lemma nonBox_of_boxesOf_def {φ L ψ} (bdef : boxesOf φ = (L, ψ)) : ¬ ψ.isBox := by
   have := @boxesOf_output_not_isBox φ; simp_all
 
+/--
+@isnad1 id=eq.1h1v.s4.e8ae4d55b940 from=translated src=- shape=4a510de6 vocab=12b17092
+-/
 lemma boxesOf_nonBox {φ} (notBox : ¬ φ.isBox) : boxesOf φ = ([], φ) := by
   cases φ <;> simp_all [Formula.isBox, boxesOf]
 
 /-- If φ is not a box then we know the result of `boxesOf (⌈⌈δs⌉⌉⌈α⌉φ)`.
-A more general version without α should also hold. -/
+A more general version without α should also hold.
+@isnad1 id=eq.1h3v.s5.3404ee63da51 from=translated src=- shape=4c17c6f6 vocab=42300514
+-/
 lemma defs_of_boxesOf_last_of_nonBox {φ}
     (notBox : ¬ φ.isBox) δs α : boxesOf (⌈⌈δs⌉⌉⌈α⌉φ) = (δs ++ [α], φ) := by
   cases δs
@@ -211,6 +249,9 @@ lemma defs_of_boxesOf_last_of_nonBox {φ}
     have IH := defs_of_boxesOf_last_of_nonBox notBox δs
     simp_all [boxesOf]
 
+/--
+@isnad1 id=ne.0h3v.s3.2cee566361a4 from=translated src=- shape=24bb6463 vocab=bfcbfe65
+-/
 lemma Formula.boxes_cons_neq_self φ β δ : (⌈β⌉⌈⌈δ⌉⌉φ) ≠ φ := by
   cases φ <;> try grind [Formula.boxes]
   case box α φ =>
@@ -259,9 +300,15 @@ inductive AnyNegFormula
 def loadMulti : List Program → Program → Formula → LoadFormula
 | bs, α, φ => List.foldr (fun β lf => LoadFormula.box β lf) (LoadFormula.box α φ) bs
 
+/--
+@isnad1 id=eq.0h2v.s3.e9f46f68d33c from=translated src=- shape=61d81d04 vocab=82a6ba2f
+-/
 @[simp]
 theorem loadMulti_nil {α φ} : loadMulti [] α φ = LoadFormula.box α φ := by simp [loadMulti]
 
+/--
+@isnad1 id=eq.0h4v.s4.4efd9804be4b from=translated src=- shape=6c0a5256 vocab=bc2584dc
+-/
 @[simp]
 theorem loadMulti_cons {β δ α φ} :
     loadMulti (β :: δ) α φ = LoadFormula.box β (loadMulti δ α φ) := by simp [loadMulti]
@@ -270,9 +317,15 @@ theorem loadMulti_cons {β δ α φ} :
 def LoadFormula.boxes : List Program → LoadFormula → LoadFormula
 | δ, χ => List.foldr (fun β lf => LoadFormula.box β lf) χ δ
 
+/--
+@isnad1 id=eq.0h1v.s3.33e09d75b52f from=translated src=- shape=f104d3d9 vocab=dcff194e
+-/
 @[simp]
 lemma LoadFormula.boxes_nil {χ} : LoadFormula.boxes [] χ = χ := by simp [LoadFormula.boxes]
 
+/--
+@isnad1 id=eq.0h3v.s4.acea2103b19d from=translated src=- shape=28a695b4 vocab=273a69cf
+-/
 lemma LoadFormula.boxes_cons {b bs φ} :
     LoadFormula.boxes (b :: bs) φ = LoadFormula.box b (LoadFormula.boxes bs φ) :=
   by
@@ -284,6 +337,9 @@ def LoadFormula.unload : LoadFormula → Formula
 | LoadFormula.box α (.normal φ) => ⌈α⌉φ
 | LoadFormula.box α (.loaded χ) => ⌈α⌉(unload χ)
 
+/--
+@isnad1 id=eq.0h3v.s4.9953c384cbff from=translated src=- shape=3b76cb55 vocab=a1e329dd
+-/
 @[simp]
 theorem unload_loadMulti : (loadMulti δ α φ).unload  = ⌈⌈δ⌉⌉⌈α⌉φ := by
   induction δ
@@ -309,16 +365,25 @@ scoped notation "~''" φ:arg => AnyNegFormula.neg φ
 def negUnload : NegLoadFormula → Formula
 | NegLoadFormula.neg χ => ~ χ.unload
 
+/--
+@isnad1 id=eq.0h2v.s3.0f4ba8c693e0 from=translated src=- shape=c0f13c27 vocab=55e04403
+-/
 @[simp]
 theorem unload_boxes {δ φ} : (⌊⌊δ⌋⌋φ).unload = ⌈⌈δ⌉⌉φ.unload := by
   induction δ
   · simp only [LoadFormula.boxes, List.foldr_nil, Formula.boxes]
   · simpa [Formula.boxes, LoadFormula.boxes]
 
+/--
+@isnad1 id=eq.0h2v.s4.23b91980e5a7 from=translated src=- shape=8a8d0995 vocab=d509275f
+-/
 @[simp]
 theorem unload_neg_loaded {α χ} : (~'⌊α⌋(.loaded χ)).1.unload = ⌈α⌉(χ.unload) := by
   simp [LoadFormula.unload]
 
+/--
+@isnad1 id=eq.0h2v.s4.7b9184c0bb65 from=translated src=- shape=1fece3fb vocab=d3fdc25b
+-/
 @[simp]
 theorem unload_neg_normal {α φ} : (~'⌊α⌋(.normal φ)).1.unload = ⌈α⌉φ := by
   simp [LoadFormula.unload]
@@ -328,20 +393,32 @@ The result is loaded iff δ≠[] or χ was loaded. -/
 def AnyFormula.loadBoxes : List Program → AnyFormula → AnyFormula
 | δ, χ => List.foldr (fun β lf => LoadFormula.box β lf) χ δ
 
+/--
+@isnad1 id=eq.0h1v.s3.6c88adb3f2ca from=translated src=- shape=f104d3d9 vocab=882f0fb8
+-/
 @[simp]
 lemma AnyFormula.boxes_nil {ξ} : AnyFormula.loadBoxes [] ξ = ξ := by
   simp [AnyFormula.loadBoxes]
 
+/--
+@isnad1 id=eq.0h3v.s4.be9ffc3e6d72 from=translated src=- shape=2a728ef9 vocab=3d2ab112
+-/
 @[simp]
 lemma AnyFormula.loadBoxes_cons {α γ ξ} :
     AnyFormula.loadBoxes (α :: γ) ξ = ⌊α⌋ (AnyFormula.loadBoxes γ ξ) := by
   simp [AnyFormula.loadBoxes]
 
+/--
+@isnad1 id=eq.0h3v.s4.8e9266000839 from=translated src=- shape=96a587c4 vocab=52b1fae0
+-/
 theorem AnyFormula.loadBoxes_append {as bs φ} :
     AnyFormula.loadBoxes (as ++ bs) φ = AnyFormula.loadBoxes as (AnyFormula.loadBoxes bs φ) :=
   by
   induction as <;> simp [AnyFormula.loadBoxes]
 
+/--
+@isnad1 id=eq.0h2v.s3.4392d7508507 from=translated src=- shape=816001f3 vocab=5590429c
+-/
 lemma AnyFormula.loadBoxes_loaded_eq_loaded_boxes {δ χ} :
     AnyFormula.loadBoxes δ (AnyFormula.loaded χ) = AnyFormula.loaded (⌊⌊δ⌋⌋χ) := by
   induction δ
@@ -356,6 +433,9 @@ def AnyFormula.unload : AnyFormula → Formula
   | .normal φ => φ
   | .loaded χ => χ.unload
 
+/--
+@isnad1 id=eq.1h5v.s5.0eb613a49dae from=translated src=- shape=266f2975 vocab=9c49fa7b
+-/
 lemma box_loadBoxes_append_eq_of_loaded_eq_loadBoxes {αs}
     (h : AnyFormula.loaded χ' = AnyFormula.loadBoxes αs (AnyFormula.normal φ))
     : (⌊d⌋AnyFormula.loadBoxes (δ ++ αs) (AnyFormula.normal φ)) = ⌊⌊d :: δ⌋⌋χ' := by
@@ -369,12 +449,18 @@ lemma box_loadBoxes_append_eq_of_loaded_eq_loadBoxes {αs}
     simp only [LoadFormula.box.injEq, true_and] -- d gone
     apply AnyFormula.loadBoxes_loaded_eq_loaded_boxes
 
+/--
+@isnad1 id=eq.0h3v.s4.e220cbbb4974 from=translated src=- shape=2cae0a41 vocab=110572d7
+-/
 @[simp]
 lemma AnyFormulaBoxBoxes_eq_FormulaBoxLoadBoxes_inside_unload {αs} :
       ((⌊α⌋  AnyFormula.loadBoxes αs (AnyFormula.normal φ)).unload)
     = ( ⌈α⌉((AnyFormula.loadBoxes αs (AnyFormula.normal φ)).unload)) := by
   cases αs <;> simp_all [AnyFormula.loadBoxes, AnyFormula.unload]
 
+/--
+@isnad1 id=eq.0h2v.s3.98c856aa681c from=translated src=- shape=ec0760d8 vocab=38141be5
+-/
 lemma AnyFormula.loadBoxes_unload_eq_boxes {βs φ} :
     (AnyFormula.loadBoxes βs (AnyFormula.normal φ)).unload = ⌈⌈βs⌉⌉φ := by
   induction βs
@@ -384,6 +470,9 @@ lemma AnyFormula.loadBoxes_unload_eq_boxes {βs φ} :
       Formula.boxes_cons, Formula.box.injEq, true_and];
     exact ih
 
+/--
+@isnad1 id=eq.1h3v.s4.51b3779ff4ba from=translated src=- shape=53e836e6 vocab=44836435
+-/
 lemma loaded_eq_to_unload_eq χ αs φ
     (h : AnyFormula.loaded χ = AnyFormula.loadBoxes αs (AnyFormula.normal φ))
     : χ.unload = ⌈⌈αs⌉⌉φ
@@ -421,6 +510,9 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=eq.0h3v.s5.3a9ba090603e from=translated src=- shape=e0cd2ab5 vocab=5ef5b9a8
+-/
 lemma LoadFormula.split_boxes_cons {βs α φ} :
     (⌊⌊βs⌋⌋⌊α⌋AnyFormula.normal φ).split = (βs ++ [α], φ) := by
   induction βs
@@ -430,14 +522,23 @@ lemma LoadFormula.split_boxes_cons {βs α φ} :
     simp only [split, AnyFormula.split, Prod.mk.injEq, List.cons.injEq, true_and]
     grind
 
+/--
+@isnad1 id=eq.0h1v.s4.5eaff1848053 from=translated src=- shape=03a56f7e vocab=8085454f
+-/
 @[simp]
 theorem AnyFormula.split_normal (φ : Formula) : (AnyFormula.normal φ).split = ([],φ) := by
   simp [AnyFormula.split]
 
+/--
+@isnad1 id=eq.1h2v.s4.d7f3ab4720eb from=translated src=- shape=625bc216 vocab=179ad48d
+-/
 theorem AnyFormula.split_eq_nil_is_normal (ξ φ) : ξ.split = ([],φ) → ξ = AnyFormula.normal φ := by
   rcases ξ with _|⟨_,_⟩ <;> simp [AnyFormula.split]
 
 mutual
+/--
+@isnad1 id=eq.1h2v.s4.e630ad29c30e from=translated src=- shape=e4ac657a vocab=700b7a98
+-/
 lemma LoadFormula.split_inj {ξ ξ' : LoadFormula} (h : ξ.split = ξ'.split) : ξ = ξ' := by
   rcases ξ with ⟨α, ξ⟩
   rcases ξ' with ⟨α', ξ'⟩
@@ -448,6 +549,9 @@ lemma LoadFormula.split_inj {ξ ξ' : LoadFormula} (h : ξ.split = ξ'.split) : 
     apply AnyFormula.split_inj
     aesop
 
+/--
+@isnad1 id=eq.1h2v.s4.90c944a7dc8e from=translated src=- shape=e4ac657a vocab=28d5578a
+-/
 lemma AnyFormula.split_inj {ξ ξ' : AnyFormula} (h : ξ.split = ξ'.split) : ξ = ξ' := by
   rcases ξ with φ|ξ <;> rcases ξ' with φ'|ξ'
   case normal.normal =>
@@ -466,10 +570,16 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=eq.0h2v.s5.b5c8b5706ecf from=translated src=- shape=7c0344b7 vocab=7984a073
+-/
 theorem AnyFormula.box_split (af : AnyFormula) :
   (⌊α⌋af).split = (α :: af.split.1, af.split.2) := by
   cases af <;> simp
 
+/--
+@isnad1 id=ne.0h1v.s3.7e07058871f3 from=translated src=- shape=51f419af vocab=8fc35755
+-/
 @[simp]
 theorem LoadFormula.split_list_not_empty (lf : LoadFormula) : lf.split.1 ≠ [] := by
   cases lf
@@ -482,6 +592,9 @@ def loadMultiNonEmpty : (δ : List Program) → (h : δ ≠ []) → Formula → 
 | (α :: []),     _, φ => LoadFormula.box α φ
 | (α :: d :: δ), _, φ => LoadFormula.box α (loadMultiNonEmpty (d :: δ) (by simp) φ)
 
+/--
+@isnad1 id=eq.2h3v.s5.e47ddf6a871c from=translated src=- shape=2d9d3b96 vocab=2c91474c
+-/
 @[simp]
 theorem loadMulti_nonEmpty_box (h : δ ≠ []) :
     loadMultiNonEmpty (α :: δ) h' φ = ⌊α⌋(loadMultiNonEmpty δ h φ) := by
@@ -489,10 +602,16 @@ theorem loadMulti_nonEmpty_box (h : δ ≠ []) :
   · absurd h; rfl
   · simp at *
 
+/--
+@isnad1 id=eq.0h3v.s5.b30df9f464d6 from=translated src=- shape=75f7cc70 vocab=ab6a466f
+-/
 @[simp]
 lemma loadMulti_split {αs} : (loadMulti αs α φ).split = (αs ++ [α], φ) := by
   induction αs <;> simp_all
 
+/--
+@isnad1 id=eq.1h2v.s4.057ffe8c7cbd from=translated src=- shape=7e311db8 vocab=96137fff
+-/
 @[simp]
 lemma loadMulti_nonEmpty_unload {δ h φ} : (loadMultiNonEmpty δ h φ).unload  = ⌈⌈δ⌉⌉φ := by
   induction δ
@@ -501,6 +620,9 @@ lemma loadMulti_nonEmpty_unload {δ h φ} : (loadMultiNonEmpty δ h φ).unload  
     unfold loadMultiNonEmpty
     cases αs <;> simp_all
 
+/--
+@isnad1 id=eq.1h3v.s4.72d24cb5f8b4 from=translated src=- shape=d7246b74 vocab=2b8e99f8
+-/
 theorem LoadFormula.split_eq_loadMulti_nonEmpty {δ φ} (lf : LoadFormula) : (h : lf.split = (δ,φ)) →
     lf = loadMultiNonEmpty δ (by have := split_list_not_empty lf; simp_all) φ := by
   induction δ generalizing φ lf
@@ -537,20 +659,32 @@ theorem LoadFormula.split_eq_loadMulti_nonEmpty {δ φ} (lf : LoadFormula) : (h 
           subst_eqs
           simp
 
+/--
+@isnad1 id=eq.2h3v.s5.a9f902de4415 from=translated src=- shape=14b4bf3f vocab=e55527f6
+-/
 theorem LoadFormula.split_eq_loadMulti_nonEmpty' {δ φ} (lf : LoadFormula) (h : δ ≠ [])
     (h2 : lf.split = (δ, φ)) : lf = loadMultiNonEmpty δ h φ := by
   have := LoadFormula.split_eq_loadMulti_nonEmpty lf h2
   rw [this]
 
+/--
+@isnad1 id=eq.1h3v.s5.9aa64e69b7fe from=translated src=- shape=280971e0 vocab=0479c227
+-/
 theorem loadMulti_nonEmpty_eq_loadMulti {δ α h φ} :
     loadMultiNonEmpty (δ ++ [α]) h φ = loadMulti δ α φ := by
   induction δ <;> simp_all
 
+/--
+@isnad1 id=eq.1h4v.s5.d88f2f3386db from=translated src=- shape=0e093349 vocab=84fd2d3a
+-/
 theorem LoadFormula.split_eq_loadMulti (lf : LoadFormula) {δ α φ}
     (h : lf.split = (δ ++ [α], φ)) : lf = loadMulti δ α φ := by
   rw [LoadFormula.split_eq_loadMulti_nonEmpty' lf (by simp) h]
   apply loadMulti_nonEmpty_eq_loadMulti
 
+/--
+@isnad1 id=ex.0h1v.s5.f62d795e7f2a from=translated src=- shape=01880520 vocab=8d93076e
+-/
 theorem LoadFormula.exists_splitLast (lf : LoadFormula) :
     ∃ δ α, lf.split.1 = δ ++ [α] := by
   rcases lf with ⟨α, af⟩
@@ -565,6 +699,9 @@ theorem LoadFormula.exists_splitLast (lf : LoadFormula) :
     use α :: δ', α'
     simp
 
+/--
+@isnad1 id=ex.0h1v.s4.652a91deb690 from=translated src=- shape=f172947d vocab=129de23d
+-/
 theorem LoadFormula.exists_loadMulti (lf : LoadFormula) :
     ∃ δ α φ, lf = loadMulti δ α φ := by
   rcases LoadFormula.exists_splitLast lf with ⟨δ, α, split1_def⟩
@@ -575,6 +712,9 @@ theorem LoadFormula.exists_loadMulti (lf : LoadFormula) :
   rw [lfs_def] at split1_def
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s5.04276447f776 from=translated src=- shape=34ec67a4 vocab=f959414d
+-/
 lemma loadMulti_eq_loadBoxes :
     AnyFormula.loaded (loadMulti δ α φ) = AnyFormula.loadBoxes (δ ++ [α]) φ := by
   induction δ <;> aesop
@@ -588,12 +728,21 @@ def splitLast : List α → Option (List α × α)
   | none => ([], x)
   | some (ys, y) => (x::ys, y)
 
+/--
+@isnad1 id=eq.0h1v.s4.49035b4e90f7 from=translated src=- shape=aed3599f vocab=39efc26f
+-/
 @[simp]
 theorem splitLast_nil : splitLast [] = (none : Option (List α × α)) := by simp [splitLast]
 
+/--
+@isnad1 id=eq.1h2v.s4.d20f4ebe1a29 from=translated src=- shape=4665a9b7 vocab=39efc26f
+-/
 theorem nil_of_splitLast_none {δs : List α} : splitLast δs = none → δs = [] := by
   cases δs <;> simp [splitLast]
 
+/--
+@isnad1 id=eq.0h3v.s5.d3339b46ef14 from=translated src=- shape=cfb5dde6 vocab=ceef44cc
+-/
 theorem splitLast_cons_eq_some (x : α) (xs : List α) :
     splitLast (x :: xs) = some ((x :: xs).dropLast, (x :: xs).getLast (List.cons_ne_nil x xs)) := by
   cases xs
@@ -604,11 +753,17 @@ theorem splitLast_cons_eq_some (x : α) (xs : List α) :
     rw [this]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s5.03e249e00e8e from=translated src=- shape=77327f87 vocab=e3ae8069
+-/
 @[simp]
 theorem splitLast_append_singleton {α} {xs : List α} {x : α} :
     splitLast (xs ++ [x]) = some (xs, x) := by
   induction xs <;> simp_all [splitLast]
 
+/--
+@isnad1 id=eq.1h3v.s4.daa7e5e721f2 from=translated src=- shape=a4513e5c vocab=dfa41828
+-/
 lemma splitLast_inj {α} {xs ys : List α} (h : splitLast xs = splitLast ys) :
     xs = ys := by
   induction xs using List.reverseRecOn <;> induction ys using List.reverseRecOn
@@ -619,6 +774,9 @@ lemma splitLast_inj {α} {xs ys : List α} (h : splitLast xs = splitLast ys) :
     simp_all
   aesop
 
+/--
+@isnad1 id=eq.2h5v.s6.5517718aa761 from=translated src=- shape=aa51e320 vocab=137aa159
+-/
 lemma LoadFormula.split_splitLast_to_loadBoxes {δs φ δs_ δ ξ}
     (ξsp_def : ξ.split = (δs, φ))
     (sp_def : splitLast δs = some (δs_, δ))
@@ -629,6 +787,9 @@ lemma LoadFormula.split_splitLast_to_loadBoxes {δs φ δs_ δ ξ}
   have := AnyFormula.split_inj (this ▸ ξsp_def)
   exact this ▸ loadMulti_eq_loadBoxes
 
+/--
+@isnad1 id=eq.1h3v.s5.ab0e94238714 from=translated src=- shape=e9fda79c vocab=c2e9d2b4
+-/
 lemma splitLast_undo_of_some {αs : List α} {βs_b : List α × α} (h : splitLast αs = some βs_b) :
     βs_b.1 ++ [βs_b.2] = αs := by
   rcases αs with _ |⟨α,αs⟩
@@ -641,6 +802,9 @@ lemma splitLast_undo_of_some {αs : List α} {βs_b : List α × α} (h : splitL
   simp only
   apply List.dropLast_append_getLast
 
+/--
+@isnad1 id=eq.1h5v.s5.874169b263c4 from=translated src=- shape=7f73c20c vocab=b60a6fa8
+-/
 lemma loadMulti_of_splitLast_cons {α αs βs β φ} (h : splitLast (α :: αs) = some ⟨βs, β⟩) :
     loadMulti βs β φ = ⌊α⌋AnyFormula.loadBoxes αs (AnyFormula.normal φ) := by
   have : (α :: αs) = βs ++ [β] := by
@@ -709,11 +873,15 @@ instance programHasLength : HasLength Program := ⟨lengthOfProgram⟩
 @[simp]
 instance setProgramHasLength : HasLength (Finset Program) := ⟨fun X => X.sum lengthOfProgram⟩
 
-/-- No formula is its own double negation. -/
+/-- No formula is its own double negation.
+@isnad1 id=ne.0h1v.s3.4c2517629c52 from=translated src=- shape=e89738c0 vocab=79d13f17
+-/
 lemma Formula.ne_neg_neg_self (φ : Formula) : φ ≠ ~~φ := by
   intro h; have := congrArg lengthOfFormula h; simp at this; omega
 
-/-- A pair `{φ, ~φ}` is never a singleton. -/
+/-- A pair `{φ, ~φ}` is never a singleton.
+@isnad1 id=ne.0h2v.s4.32f2aaf8e0b9 from=translated src=- shape=f59ecd97 vocab=e3c27e25
+-/
 lemma pair_neg_ne_singleton (φ ψ : Formula) : ({φ, ~φ} : Finset Formula) ≠ {ψ} := by
   intro h
   have h1 : φ ∈ ({ψ} : Finset Formula) := h ▸ (by simp)
@@ -721,7 +889,9 @@ lemma pair_neg_ne_singleton (φ ψ : Formula) : ({φ, ~φ} : Finset Formula) ≠
   simp only [Finset.mem_singleton] at h1 h2
   exact Formula.neq_neg_self φ (h1.trans h2.symm)
 
-/-- The pairs `{φ, ~φ}` determine `φ`. -/
+/-- The pairs `{φ, ~φ}` determine `φ`.
+@isnad1 id=eq.1h2v.s5.2bbe7024c565 from=translated src=- shape=81b85f1a vocab=e3c27e25
+-/
 lemma pair_neg_inj {φ ψ : Formula} (h : ({φ, ~φ} : Finset Formula) = {ψ, ~ψ}) : φ = ψ := by
   have h1 : φ ∈ ({ψ, ~ψ} : Finset Formula) := h ▸ (by simp)
   have h2 : (~φ) ∈ ({ψ, ~ψ} : Finset Formula) := h ▸ (by simp)
@@ -907,7 +1077,9 @@ private theorem lex_total {A B : Type} {leA : A → A → Prop} {leB : B → B �
 
 mutual
 
-/-- The order on formulas is reflexive. -/
+/-- The order on formulas is reflexive.
+@isnad1 id=le.0h1v.s2.51cf8819547c from=translated src=- shape=b3bac8d8 vocab=f4a272b8
+-/
 theorem Formula.le_rfl : ∀ (φ : Formula), φ.le φ
   | .bottom => trivial
   | .atom_prop p => Nat.le_refl p
@@ -915,7 +1087,9 @@ theorem Formula.le_rfl : ∀ (φ : Formula), φ.le φ
   | .and φ1 φ2 => lex_rfl (Formula.le_rfl φ1) (Formula.le_rfl φ2)
   | .box α φ => lex_rfl (Program.le_rfl α) (Formula.le_rfl φ)
 
-/-- The order on programs is reflexive. -/
+/-- The order on programs is reflexive.
+@isnad1 id=le.0h1v.s2.bbd03ea9fc7a from=translated src=- shape=b3bac8d8 vocab=8f743887
+-/
 theorem Program.le_rfl : ∀ (α : Program), α.le α
   | .atom_prog a => Nat.le_refl a
   | .sequence α β => lex_rfl (Program.le_rfl α) (Program.le_rfl β)
@@ -932,7 +1106,9 @@ open HasLength
 
 mutual
 
-/-- The order on formulas is antisymmetric. -/
+/-- The order on formulas is antisymmetric.
+@isnad1 id=eq.2h2v.s4.d65e04464ad0 from=translated src=- shape=5f71b5ec vocab=f4a272b8
+-/
 theorem Formula.le_antisymm : ∀ (φ ψ : Formula), φ.le ψ → ψ.le φ → φ = ψ
   | .bottom, .bottom, _, _ => rfl
   | .bottom, .atom_prop _, _, h2 => (h2 : False).elim
@@ -968,7 +1144,9 @@ theorem Formula.le_antisymm : ∀ (φ ψ : Formula), φ.le ψ → ψ.le φ → �
       subst e1
       rw [Formula.le_antisymm φ ψ (h1.2 rfl) (h2.2 rfl)]
 
-/-- The order on programs is antisymmetric. -/
+/-- The order on programs is antisymmetric.
+@isnad1 id=eq.2h2v.s4.415cc11ec8bf from=translated src=- shape=5f71b5ec vocab=8f743887
+-/
 theorem Program.le_antisymm : ∀ (α β : Program), α.le β → β.le α → α = β
   | .atom_prog _, .atom_prog _, h1, h2 => by
       simp only [Program.atom_prog.injEq]
@@ -1013,7 +1191,9 @@ open HasLength
 
 mutual
 
-/-- The order on formulas is total. -/
+/-- The order on formulas is total.
+@isnad1 id=or.0h2v.s3.3704a831b9fb from=translated src=- shape=62a40b99 vocab=f4a272b8
+-/
 theorem Formula.le_total : ∀ (φ ψ : Formula), φ.le ψ ∨ ψ.le φ
   | .bottom, .bottom => Or.inl trivial
   | .bottom, .atom_prop _ => Or.inl trivial
@@ -1043,7 +1223,9 @@ theorem Formula.le_total : ∀ (φ ψ : Formula), φ.le ψ ∨ ψ.le φ
   | .box α φ, .box β ψ =>
       lex_total (Program.le_rfl α) (Program.le_total α β) (Formula.le_total φ ψ)
 
-/-- The order on programs is total. -/
+/-- The order on programs is total.
+@isnad1 id=or.0h2v.s3.9a9c92ba723a from=translated src=- shape=62a40b99 vocab=8f743887
+-/
 theorem Program.le_total : ∀ (α β : Program), α.le β ∨ β.le α
   | .atom_prog a, .atom_prog a' => Nat.le_total a a'
   | .atom_prog _, .sequence _ _ => Or.inl trivial
@@ -1082,7 +1264,9 @@ open HasLength
 
 mutual
 
-/-- The order on formulas is transitive. -/
+/-- The order on formulas is transitive.
+@isnad1 id=le.2h3v.s4.4c95f60d70c3 from=translated src=- shape=0bc0c4a6 vocab=f4a272b8
+-/
 theorem Formula.le_trans_aux : ∀ (φ ψ χ : Formula), φ.le ψ → ψ.le χ → φ.le χ := by
   intro φ ψ χ h1 h2
   cases φ <;> cases ψ <;> cases χ <;>
@@ -1101,7 +1285,9 @@ theorem Formula.le_trans_aux : ∀ (φ ψ χ : Formula), φ.le ψ → ψ.le χ �
     have e : α = β := Program.le_antisymm α β h1.1 (by rw [he]; exact h2.1)
     exact Formula.le_trans_aux φ ψ χ (h1.2 e) (h2.2 (by rw [← e]; exact he))
 
-/-- The order on programs is transitive. -/
+/-- The order on programs is transitive.
+@isnad1 id=le.2h3v.s4.ec7700f1b163 from=translated src=- shape=0bc0c4a6 vocab=8f743887
+-/
 theorem Program.le_trans_aux : ∀ (α β γ : Program), α.le β → β.le γ → α.le γ := by
   intro α β γ h1 h2
   cases α <;> cases β <;> cases γ <;>
@@ -1128,9 +1314,15 @@ namespace PDL
 
 open HasLength
 
+/--
+@isnad1 id=le.2h3v.s4.d26e209fbfdf from=translated src=- shape=8b2dd8a3 vocab=34e00371
+-/
 lemma Formula.le_trans : ∀ (f g h : Formula), f ≤ g → g ≤ h → f ≤ h :=
   Formula.le_trans_aux
 
+/--
+@isnad1 id=istrans.0h0v.s3.25b4a29c55e1 from=translated src=- shape=9944374c vocab=86b501ca
+-/
 instance instIsTransFormulaLe : IsTrans Formula (fun (a b : Formula) ↦ a ≤ b) :=
   ⟨Formula.le_trans⟩
 
@@ -1141,6 +1333,9 @@ instance : Std.Total (fun (a b : Formula) ↦ a ≤ b) := ⟨Formula.le_total⟩
 /-- List the elements of a formula finset in the fixed formula order. -/
 def _root_.Finset.pdlSort : Finset Formula → List Formula | FS => FS.sort
 
+/--
+@isnad1 id=iff.0h2v.s4.b674e30d9314 from=translated src=- shape=5a4bb582 vocab=81471a1b
+-/
 @[simp]
 lemma Formula.mem_pdlSort {X : Finset Formula} : φ ∈ X.pdlSort ↔ φ ∈ X := by simp [Finset.pdlSort]
 

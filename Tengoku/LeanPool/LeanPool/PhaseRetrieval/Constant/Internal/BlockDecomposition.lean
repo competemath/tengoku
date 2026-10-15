@@ -101,7 +101,9 @@ private lemma mem_freqBlock_sqrt (n : ℕ) : n ∈ freqBlock (Nat.sqrt n) := by
   exact ⟨by have := Nat.sqrt_le n; nlinarith,
          by have h1 := Nat.lt_succ_sqrt' n; simp only [Nat.succ_eq_add_one] at h1; omega⟩
 
-/-- The cardinality of `freqBlock ℓ` is `2ℓ + 1`. -/
+/-- The cardinality of `freqBlock ℓ` is `2ℓ + 1`.
+@isnad1 id=eq.0h1v.s5.5b0e919aaf2a from=translated src=- shape=034a6fc2 vocab=9a9ac34a
+-/
 lemma freqBlock_card (ℓ : ℕ) : (freqBlock ℓ).card = 2 * ℓ + 1 := by
   simp only [freqBlock]; rw [Nat.card_Icc]
   have h : (ℓ + 1) ^ 2 = ℓ ^ 2 + 2 * ℓ + 1 := by ring
@@ -205,6 +207,9 @@ private lemma integral_cross_term_eq_zero {D : ℕ} (a : Fin D → ℂ) (r : ℝ
 
 For `ℓ₁ ≠ ℓ₂` with `ℓ₁, ℓ₂ ≥ 1`: `I_{ℓ₁} ∩ I_{ℓ₂} = ∅`.
 -/
+/--
+@isnad1 id=disjoint.3h2v.s5.0e81bd04a7d9 from=translated src=- shape=77df9ccd vocab=5d0a9f3c
+-/
 theorem blocks_disjoint {ℓ₁ ℓ₂ : ℕ} (h₁ : 1 ≤ ℓ₁) (h₂ : 1 ≤ ℓ₂) (hne : ℓ₁ ≠ ℓ₂) :
     Disjoint (freqBlock ℓ₁) (freqBlock ℓ₂) := by
   rw [Finset.disjoint_left]
@@ -228,6 +233,9 @@ theorem blocks_disjoint {ℓ₁ ℓ₂ : ℕ} (h₁ : 1 ≤ ℓ₁) (h₂ : 1 �
 
 Every `n ∈ {1, …, D}` belongs to exactly one block `I_ℓ`.
 -/
+/--
+@isnad1 id=ex.2h2v.s5.f94d9169f7a2 from=translated src=- shape=b6c67b14 vocab=e4727852
+-/
 theorem blocks_cover (D : ℕ) (n : ℕ) (hn : 1 ≤ n) (_hnD : n ≤ D) :
     ∃ ℓ, 1 ≤ ℓ ∧ n ∈ freqBlock ℓ := by
   refine ⟨Nat.sqrt n, ?_, ?_⟩
@@ -243,6 +251,9 @@ theorem blocks_cover (D : ℕ) (n : ℕ) (hn : 1 ≤ n) (_hnD : n ≤ D) :
 `fockNormSq(U) = ∑_{ℓ=1}^Λ fockNormSq(U_ℓ)` (up to tail).
 
 **Proof**: The blocks are frequency-disjoint, and `fockNormSq` is a sum over frequencies.
+-/
+/--
+@isnad1 id=eq.0h2v.s7.a7769ccd326c from=translated src=- shape=3ea7579e vocab=f5dba976
 -/
 theorem fockNorm_decomposes {D : ℕ} (a : Fin D → ℂ) :
     fockNormSq a = ∑ ℓ ∈ Finset.Icc 1 (maxBlockIndex D),
@@ -269,6 +280,9 @@ For `ℓ₁ ≠ ℓ₂`, `r ≥ 0`:
   `∫ U_{ℓ₁}(r e^{it}) * conj(U_{ℓ₂}(r e^{it})) d(haar)(t) = 0`
 
 **Proof**: Disjoint frequency supports ⟹ orthogonality of exponentials.
+-/
+/--
+@isnad1 id=eq.4h5v.s8.664cbeba3a9e from=translated src=- shape=ede8f7ec vocab=30d2dba8
 -/
 theorem blocks_orthogonal_circle {D : ℕ} (a : Fin D → ℂ) {ℓ₁ ℓ₂ : ℕ}
     (_h₁ : 1 ≤ ℓ₁) (_h₂ : 1 ≤ ℓ₂) (hne : ℓ₁ ≠ ℓ₂) (r : ℝ) (_hr : 0 ≤ r) :
@@ -302,7 +316,9 @@ For `0 ≤ j ≤ M`:
 - Frequency support ⊆ `[1, (j+M+1)²)`.
 - Number of frequencies ≤ `(j+M+1)² − 1`.
 -/
-/-- Frequencies of `V_j` are all ≥ `(j−M)²` when `j ≥ M + 1`. -/
+/-- Frequencies of `V_j` are all ≥ `(j−M)²` when `j ≥ M + 1`.
+@isnad1 id=le.4h4v.s6.bc9dabc5f91e from=translated src=- shape=530aa910 vocab=ac51cbfc
+-/
 theorem freq_support_localPoly_lower {M j : ℕ} (_hM : 1 ≤ M) (hj : M + 1 ≤ j) :
     ∀ n ∈ freqBlock ℓ,
       ℓ ∈ Finset.Icc (max 1 (j - M)) (j + M) → (j - M) ^ 2 ≤ n := by
@@ -321,7 +337,9 @@ private lemma sum_odd_Icc_eq (a : ℕ) :
     rw [show a + (n + 1) = (a + n) + 1 from by omega]
     rw [Finset.sum_Icc_succ_top (by omega)]; rw [ih]; ring_nf; omega
 
-/-- The number of frequencies in `V_j` for `j ≥ M + 1` is `(2M+1)(2j+1)`. -/
+/-- The number of frequencies in `V_j` for `j ≥ M + 1` is `(2M+1)(2j+1)`.
+@isnad1 id=eq.2h2v.s7.0363024ff191 from=translated src=- shape=8fa42420 vocab=1c5f6e40
+-/
 theorem freq_count_localPoly {M j : ℕ} (hM : 1 ≤ M) (hj : M + 1 ≤ j) :
     (Finset.Icc (max 1 (j - M)) (j + M)).sum
       (fun ℓ => (freqBlock ℓ).card) =
@@ -343,6 +361,9 @@ i.e., `r_n = √(n + 1/2) ∈ (ℓ, ℓ+1)`.
 
 **Proof**: `n ≥ ℓ²` gives `n + 1/2 > ℓ²`, so `√(n+1/2) > ℓ`.
 `n < (ℓ+1)²` gives `n + 1/2 < (ℓ+1)²`, so `√(n+1/2) < ℓ+1`.
+-/
+/--
+@isnad1 id=and.2h2v.s6.e82cd68699fd from=translated src=- shape=b35726e9 vocab=de130c7f
 -/
 theorem monomial_peak_localization {n ℓ : ℕ} (hℓ : 1 ≤ ℓ)
     (hn : n ∈ freqBlock ℓ) :

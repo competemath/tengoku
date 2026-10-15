@@ -26,11 +26,17 @@ open Filter Set Topology
 def interiorFirstActionSet (eccentricity : ℝ) : Set ℝ :=
   {firstAction | 0 < firstAction ∧ firstAction ^ 2 * (1 + eccentricity) < 1}
 
+/--
+@isnad1 id=isopen.0h1v.s3.161fce2f6e94 from=translated src=- shape=6da4ece3 vocab=bdb866bd
+-/
 theorem isOpen_interiorFirstActionSet (eccentricity : ℝ) :
     IsOpen (interiorFirstActionSet eccentricity) := by
   exact (isOpen_lt continuous_const continuous_id).and
     (isOpen_lt ((continuous_id.pow 2).mul continuous_const) continuous_const)
 
+/--
+@isnad1 id=isconnec.2h1v.s5.7797c7c08767 from=translated src=- shape=3867cfb0 vocab=a83a5764
+-/
 theorem isConnected_interiorFirstActionSet
     {eccentricity : ℝ} (heccentricity : 0 < eccentricity)
     (heccentricityOne : eccentricity < 1) :
@@ -57,6 +63,9 @@ noncomputable def fixedEccentricityWedge
     (leadingActionDifferential F
       (fixedEccentricityAction eccentricity firstAction))
 
+/--
+@isnad1 id=analytic.0h2v.s6.274ebb787ce5 from=translated src=- shape=980de2e6 vocab=60c50df6
+-/
 theorem analyticAt_fixedEccentricityAction
     (eccentricity firstAction : ℝ) :
     AnalyticAt ℝ (fixedEccentricityAction eccentricity) firstAction := by
@@ -68,6 +77,9 @@ theorem analyticAt_fixedEccentricityAction
       (fun candidate ↦ candidate * Real.sqrt (1 - eccentricity ^ 2)) firstAction
     exact analyticAt_id.mul analyticAt_const
 
+/--
+@isnad1 id=analytic.1h1v.s6.d8c0e230a72c from=translated src=- shape=4b22b724 vocab=017f40af
+-/
 theorem analyticAt_delaunayFrequency
     {firstAction : ℝ} (hfirstAction : firstAction ≠ 0) :
     AnalyticAt ℝ delaunayFrequency firstAction := by
@@ -78,6 +90,9 @@ theorem analyticAt_delaunayFrequency
     exact analyticAt_const.div (analyticAt_id.pow 3) (pow_ne_zero 3 hfirstAction)
   · exact analyticAt_const
 
+/--
+@isnad1 id=analytic.5h4v.s6.0c5c72c215eb from=translated src=- shape=36bb7f2f vocab=df71f253
+-/
 theorem IsJointlyAnalytic.analyticAt_fixedEccentricityWedge
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -114,6 +129,9 @@ theorem IsJointlyAnalytic.analyticAt_fixedEccentricityWedge
   exact (hfrequencyZero.mul hdifferentialOne).sub
     (hfrequencyOne.mul hdifferentialZero)
 
+/--
+@isnad1 id=nonempty.2h1v.s4.cd83cc2c38a3 from=translated src=- shape=8d2519ec vocab=fd354d93
+-/
 theorem collisionBandInteriorPositiveAction_nonempty
     {eccentricity : ℝ} (heccentricity : 0 < eccentricity)
     (heccentricityOne : eccentricity < 1) :
@@ -142,7 +160,9 @@ theorem collisionBandInteriorPositiveAction_nonempty
     rw [hfirstActionSq]
     exact hsquareHalf⟩⟩
 
-/-- The collision-band obstruction analytically continues to every interior first action. -/
+/-- The collision-band obstruction analytically continues to every interior first action.
+@isnad1 id=eq.6h4v.s6.27e78fb12289 from=translated src=- shape=1e72f51c vocab=3de45f82
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_collisionBand
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -177,7 +197,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_collisi
     (isConnected_interiorFirstActionSet heccentricity heccentricityOne).isPreconnected
       hcenterDomain heventuallyZero hfirstAction
 
-/-- Global action-space form of the collision-band obstruction. -/
+/-- Global action-space form of the collision-band obstruction.
+@isnad1 id=eq.5h3v.s7.c076c348fe3b from=translated src=- shape=4894e68a vocab=0f537834
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_collisionBand_global
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

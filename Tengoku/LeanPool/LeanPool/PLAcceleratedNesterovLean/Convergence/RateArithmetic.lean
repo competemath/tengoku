@@ -30,7 +30,9 @@ open Real Finset
 
 /-! ## Exponential bounds for geometric contraction -/
 
-/-- (1 - r)^n ≤ exp(-n·r) for 0 ≤ r ≤ 1. -/
+/-- (1 - r)^n ≤ exp(-n·r) for 0 ≤ r ≤ 1.
+@isnad1 id=le.2h2v.s6.7fd38989f022 from=translated src=- shape=e253d262 vocab=2b8c9761
+-/
 theorem one_sub_pow_le_exp_neg {r : ℝ} (_hr0 : 0 ≤ r) (hr1 : r ≤ 1) (n : ℕ) :
     (1 - r) ^ n ≤ Real.exp (-(↑n * r)) := by
   have h1r : 0 ≤ 1 - r := by linarith
@@ -44,13 +46,17 @@ theorem one_sub_pow_le_exp_neg {r : ℝ} (_hr0 : 0 ≤ r) (hr1 : r ≤ 1) (n : �
 
 /-! ## Rate deficit bounds -/
 
-/-- 2^k · 4^{-k} = (1/2)^k -/
+/-- 2^k · 4^{-k} = (1/2)^k
+@isnad1 id=eq.0h1v.s6.432e295dd718 from=translated src=- shape=71b5ced9 vocab=3c915705
+-/
 theorem two_pow_mul_four_inv_pow (k : ℕ) :
     (2 : ℝ) ^ k * ((4 : ℝ)⁻¹ ^ k) = ((1 : ℝ) / 2) ^ k := by
   rw [show (4 : ℝ)⁻¹ = (1 : ℝ) / 4 from by norm_num, ← mul_pow]
   congr 1; norm_num
 
-/-- Σ_{k=0}^{K-1} 2^k · 4^{-k} = Σ (1/2)^k ≤ 2. -/
+/-- Σ_{k=0}^{K-1} 2^k · 4^{-k} = Σ (1/2)^k ≤ 2.
+@isnad1 id=le.0h1v.s6.911ce2cdd687 from=translated src=- shape=febfd610 vocab=ee37801b
+-/
 theorem rate_deficit_sum_le (K : ℕ) :
     ∑ k ∈ range K, (2 : ℝ) ^ k * ((4 : ℝ)⁻¹ ^ k) ≤ 2 := by
   simp_rw [two_pow_mul_four_inv_pow]
@@ -63,7 +69,9 @@ theorem rate_deficit_sum_le (K : ℕ) :
       partial_geometric_half_le K
     linarith
 
-/-- Σ_{k=0}^{K-1} 2^k · C · 4^{-k} ≤ 2·C for C ≥ 0. -/
+/-- Σ_{k=0}^{K-1} 2^k · C · 4^{-k} ≤ 2·C for C ≥ 0.
+@isnad1 id=le.1h2v.s6.f54b41776286 from=translated src=- shape=7c46c3b1 vocab=ee37801b
+-/
 theorem weighted_deficit_sum_le {C : ℝ} (hC : 0 ≤ C) (K : ℕ) :
     ∑ k ∈ range K, (2 : ℝ) ^ k * (C * (4 : ℝ)⁻¹ ^ k) ≤ 2 * C := by
   have hfact : ∀ k : ℕ, (2 : ℝ) ^ k * (C * (4 : ℝ)⁻¹ ^ k) =
@@ -76,7 +84,9 @@ theorem weighted_deficit_sum_le {C : ℝ} (hC : 0 ≤ C) (K : ℕ) :
 /-! ## HasAcceleratedRate from geometric decay -/
 
 /-- If f(xₖ) - f⋆ ≤ L₀ · rᵏ for r ∈ (0,1) where r ≤ exp(-1/√(L/μ)),
-    then HasAcceleratedRate holds. -/
+    then HasAcceleratedRate holds.
+@isnad1 id=hasaccel.5h7v.s7.db73b8b7eacc from=translated src=- shape=9dec0967 vocab=0352441b
+-/
 theorem hasAcceleratedRate_of_geometric_decay
     (f : E d → ℝ) (iterates : ℕ → E d) (L μ L₀ r : ℝ)
     (hL₀ : 0 < L₀) (hr : 0 < r) (_hr1 : r < 1)

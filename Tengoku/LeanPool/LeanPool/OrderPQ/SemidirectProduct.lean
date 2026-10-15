@@ -17,6 +17,9 @@ variable {N₁ N₂ H₁ H₂ : Type*} [Group N₁] [Group N₂] [Group H₁] [G
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=eq.3h5v.s7.841229507575 from=translated src=- shape=cfca1012 vocab=b9bf7cf7
+-/
 lemma Subgroup.comm_of_normal_and_inf_eq_bot
     (N H : Subgroup G) (hN : Subgroup.Normal N) (hH : Subgroup.Normal H)
     (inf_eq_bot : N ⊓ H = ⊥) (n : N) (h : H) :
@@ -69,6 +72,9 @@ def Subgroup.subgroupOfMulEquiv {G : Type*} [Group G] (H K : Subgroup G) (h : H 
   right_inv _ := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.a0e12e5dab86 from=translated src=- shape=c0a39082 vocab=b5e0bab9
+-/
 @[to_additive]
 theorem Subgroup.subgroupOf_inf {H K L : Subgroup G} :
     (H ⊓ K).subgroupOf L = H.subgroupOf L ⊓ K.subgroupOf L :=

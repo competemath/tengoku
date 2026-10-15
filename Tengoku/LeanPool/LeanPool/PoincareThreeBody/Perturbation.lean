@@ -20,18 +20,27 @@ homological equation.
 
 namespace LeanPool.PoincareThreeBody
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.e4175ebeb894 from=translated src=- shape=5a9e586a vocab=d23594df
+-/
 lemma hasDerivAt_firstPrimaryDistanceSq (μ : ℝ) (s : PhaseSpace) :
     HasDerivAt (fun mass ↦ firstPrimaryDistanceSq mass s) (2 * (s 0 - 1 + μ)) μ := by
   have hlinear := (hasDerivAt_const μ (s 0 - 1)).add (hasDerivAt_id μ)
   have hsquare := hlinear.pow 2
   simpa [firstPrimaryDistanceSq] using hsquare.add_const ((s 1) ^ 2)
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.5c902aac804b from=translated src=- shape=dd4e0d75 vocab=5cdff6c5
+-/
 lemma hasDerivAt_secondPrimaryDistanceSq (μ : ℝ) (s : PhaseSpace) :
     HasDerivAt (fun mass ↦ secondPrimaryDistanceSq mass s) (2 * (s 0 + μ)) μ := by
   have hlinear := (hasDerivAt_const μ (s 0)).add (hasDerivAt_id μ)
   have hsquare := hlinear.pow 2
   simpa [secondPrimaryDistanceSq] using hsquare.add_const ((s 1) ^ 2)
 
+/--
+@isnad1 id=hasderiv.2h3v.s7.b1b6bb8b79e7 from=translated src=- shape=d5a1deed vocab=59e48034
+-/
 lemma hasDerivAt_inverseSqrt_comp {f : ℝ → ℝ} {f' x : ℝ}
     (hf : HasDerivAt f f' x) (hpositive : 0 < f x) :
     HasDerivAt (fun y ↦ 1 / Real.sqrt (f y))
@@ -48,6 +57,9 @@ noncomputable def firstMassPerturbation (s : PhaseSpace) : ℝ :=
     s 0 / (Real.sqrt ((s 0) ^ 2 + (s 1) ^ 2)) ^ 3 -
       1 / Real.sqrt ((s 0 - 1) ^ 2 + (s 1) ^ 2)
 
+/--
+@isnad1 id=eq.1h1v.s8.169bf0d3f806 from=translated src=- shape=e18a9322 vocab=0155b429
+-/
 lemma firstMassPerturbation_eq_source_form {s : PhaseSpace}
     (hsecond : secondPrimaryDistanceSq 0 s ≠ 0) :
     firstMassPerturbation s =
@@ -64,7 +76,9 @@ lemma firstMassPerturbation_eq_source_form {s : PhaseSpace}
   field_simp [hroot]
   nlinarith
 
-/-- The explicit disturbing function is the mass derivative of the Hamiltonian at `μ = 0`. -/
+/-- The explicit disturbing function is the mass derivative of the Hamiltonian at `μ = 0`.
+@isnad1 id=hasderiv.1h1v.s6.5d16f6df04bc from=translated src=- shape=63388bc4 vocab=f7914b80
+-/
 theorem hasDerivAt_hamiltonian_mass_zero {s : PhaseSpace} (hs : (0, s) ∈ collisionFree) :
     HasDerivAt (fun μ ↦ hamiltonian μ s) (firstMassPerturbation s) 0 := by
   rcases hs with ⟨hfirst, hsecond⟩
@@ -124,6 +138,9 @@ theorem hasDerivAt_hamiltonian_mass_zero {s : PhaseSpace} (hs : (0, s) ∈ colli
     unfold firstMassPerturbation firstPrimaryDistanceSq secondPrimaryDistanceSq
     ring_nf
 
+/--
+@isnad1 id=eq.1h1v.s6.2f3315007569 from=translated src=- shape=2caba6f5 vocab=ff40e5f2
+-/
 theorem deriv_hamiltonian_mass_zero {s : PhaseSpace} (hs : (0, s) ∈ collisionFree) :
     deriv (fun μ ↦ hamiltonian μ s) 0 = firstMassPerturbation s :=
   (hasDerivAt_hamiltonian_mass_zero hs).deriv

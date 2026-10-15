@@ -30,7 +30,9 @@ variable {X Y : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 def source (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X →L[ℝ] X →L[ℝ] Y) (u : X) : Y :=
   -(P (r + A u + B u u))
 
-/-- The actual quadratic source is jointly continuous in every coefficient and its unknown. -/
+/-- The actual quadratic source is jointly continuous in every coefficient and its unknown.
+@isnad1 id=continuo.4h7v.s10.2a1e0366e17c from=translated src=- shape=0769f17e vocab=51835dd4
+-/
 theorem source_continuous {T : Type*} [TopologicalSpace T]
     (P : T → Y →L[ℝ] Y) (r : T → Y) (A : T → X →L[ℝ] Y) (B : T → X →L[ℝ] X →L[ℝ] Y)
     (hP : Continuous P) (hr : Continuous r) (hA : Continuous A) (hB : Continuous B) :
@@ -39,13 +41,17 @@ theorem source_continuous {T : Type*} [TopologicalSpace T]
     ((hA.comp continuous_fst).clm_apply continuous_snd)).add
       (((hB.comp continuous_fst).clm_apply continuous_snd).clm_apply continuous_snd))).neg
 
-/-- The exact product difference identity needs no symmetry of the bilinear source. -/
+/-- The exact product difference identity needs no symmetry of the bilinear source.
+@isnad1 id=eq.0h5v.s11.3ede01dd577e from=translated src=- shape=510d9845 vocab=c4059a53
+-/
 theorem quadratic_sub (B : X →L[ℝ] X →L[ℝ] Y) (u v : X) :
     B u u - B v v = B (u-v) u + B v (u-v) := by
   simp only [map_sub, sub_apply]
   abel
 
-/-- The quadratic source has the genuine pointwise bound used for Picard existence. -/
+/-- The quadratic source has the genuine pointwise bound used for Picard existence.
+@isnad1 id=le.2h8v.s10.b28f1f1d5e17 from=translated src=- shape=b5e13320 vocab=7e521871
+-/
 theorem source_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X →L[ℝ] X →L[ℝ] Y)
     (R : ℝ) (hR : 0 ≤ R) (u : X) (hu : ‖u‖ ≤ R) :
     ‖source P r A B u‖ ≤ ‖P‖ * (‖r‖ + ‖A‖ * R + ‖B‖ * R^2) := by
@@ -62,7 +68,9 @@ theorem source_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X →L
   simpa only [source, norm_neg] using (P.le_opNorm (r + A u + B u u)).trans
     (mul_le_mul_of_nonneg_left hs (norm_nonneg P))
 
-/-- The quadratic source is Lipschitz on each norm ball, with an explicit finite constant. -/
+/-- The quadratic source is Lipschitz on each norm ball, with an explicit finite constant.
+@isnad1 id=le.3h9v.s10.25aba7c9bf5e from=translated src=- shape=4e28f797 vocab=8f36b0fb
+-/
 theorem source_sub_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X →L[ℝ] X →L[ℝ] Y)
     (R : ℝ) (_hR : 0 ≤ R) (u v : X) (hu : ‖u‖ ≤ R) (hv : ‖v‖ ≤ R) :
     ‖source P r A B u - source P r A B v‖ ≤ ‖P‖ * (‖A‖ + 2 * ‖B‖ * R) * ‖u-v‖ := by
@@ -84,7 +92,9 @@ theorem source_sub_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X 
   exact (P.le_opNorm _).trans ((mul_le_mul_of_nonneg_left hs (norm_nonneg P)).trans_eq (mul_assoc _
       _ _).symm)
 
-/-- Uniform pointwise coefficient bounds imply the actual source bound on every ball. -/
+/-- Uniform pointwise coefficient bounds imply the actual source bound on every ball.
+@isnad1 id=le.6h12v.s10.471009ad4f18 from=translated src=- shape=48a9e2bd vocab=7e521871
+-/
 theorem source_uniform_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X →L[ℝ] X →L[ℝ] Y)
     (p₀ r₀ a₀ b₀ R : ℝ) (hp : ‖P‖ ≤ p₀) (hr : ‖r‖ ≤ r₀) (ha : ‖A‖ ≤ a₀) (hb : ‖B‖ ≤ b₀)
     (hR : 0 ≤ R) (u : X) (hu : ‖u‖ ≤ R) :
@@ -96,7 +106,9 @@ theorem source_uniform_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B 
   · positivity
   · exact (norm_nonneg P).trans hp
 
-/-- Uniform coefficient bounds imply the required local Lipschitz constant. -/
+/-- Uniform coefficient bounds imply the required local Lipschitz constant.
+@isnad1 id=le.6h12v.s10.10a9fa422ad1 from=translated src=- shape=ebc32bf5 vocab=8f36b0fb
+-/
 theorem source_uniform_sub_bound (P : Y →L[ℝ] Y) (r : Y) (A : X →L[ℝ] Y) (B : X →L[ℝ] X →L[ℝ] Y)
     (p₀ a₀ b₀ R : ℝ) (hp : ‖P‖ ≤ p₀) (ha : ‖A‖ ≤ a₀) (hb : ‖B‖ ≤ b₀)
     (hR : 0 ≤ R) (u v : X) (hu : ‖u‖ ≤ R) (hv : ‖v‖ ≤ R) :
@@ -143,7 +155,9 @@ structure Coefficients (T : Type*) [TopologicalSpace T] (X Y : Type*)
 def Coefficients.apply (C : Coefficients T X Y) (t : T) (u : X) : Y :=
   source (C.projection t) (C.forcing t) (C.linear t) (C.quadratic t) u
 
-/-- The source is jointly continuous in time and the Sobolev unknown. -/
+/-- The source is jointly continuous in time and the Sobolev unknown.
+@isnad1 id=continuo.0h4v.s6.dc257ca07e16 from=translated src=- shape=edd74069 vocab=b694ef7f
+-/
 theorem Coefficients.continuous (C : Coefficients T X Y) :
     Continuous (fun p : T × X => C.apply p.1 p.2) :=
   source_continuous _ _ _ _ C.projection.continuous C.forcing.continuous C.linear.continuous
@@ -157,6 +171,9 @@ def Coefficients.comp {U : Type*} [TopologicalSpace U] (C : Coefficients T X Y) 
   linear := C.linear.comp f
   quadratic := C.quadratic.comp f
 
+/--
+@isnad1 id=eq.0h8v.s6.59404b4899e0 from=translated src=- shape=77afe8ad vocab=dc7ce91d
+-/
 @[simp] theorem Coefficients.comp_apply {U : Type*} [TopologicalSpace U]
     (C : Coefficients T X Y) (f : C(U, T)) (t : U) (u : X) : (C.comp f).apply t u = C.apply (f t) u
         := rfl
@@ -175,13 +192,20 @@ def Coefficients.ballBound (C : Coefficients T X Y) (R : ℝ) : ℝ :=
 def Coefficients.ballLipschitz (C : Coefficients T X Y) (R : ℝ) : ℝ :=
   ‖C.projection‖ * (‖C.linear‖ + 2*‖C.quadratic‖*R)
 
+/--
+@isnad1 id=le.1h5v.s6.655a4e1eae25 from=translated src=- shape=174df2e4 vocab=170ef5df
+-/
 theorem Coefficients.ballBound_nonneg (C : Coefficients T X Y) (R : ℝ) (hR : 0 ≤ R) :
     0 ≤ C.ballBound R := by unfold Coefficients.ballBound; positivity
 
+/--
+@isnad1 id=le.1h5v.s6.c74131d6ae05 from=translated src=- shape=174df2e4 vocab=e70a2546
+-/
 theorem Coefficients.ballLipschitz_nonneg (C : Coefficients T X Y) (R : ℝ) (hR : 0 ≤ R) :
     0 ≤ C.ballLipschitz R := by unfold Coefficients.ballLipschitz; positivity
 
 /-- The uniform source bound follows from actual operator norms, with no assumed nonlinear estimate.
+@isnad1 id=le.2h7v.s6.829f63870088 from=translated src=- shape=d6b34913 vocab=00439d73
 -/
 theorem Coefficients.apply_bound (C : Coefficients T X Y) (R : ℝ) (hR : 0 ≤ R)
     (t : T) (u : X) (hu : ‖u‖ ≤ R) : ‖C.apply t u‖ ≤ C.ballBound R :=
@@ -189,7 +213,9 @@ theorem Coefficients.apply_bound (C : Coefficients T X Y) (R : ℝ) (hR : 0 ≤ 
     (C.projection.norm_coe_le_norm t) (C.forcing.norm_coe_le_norm t)
     (C.linear.norm_coe_le_norm t) (C.quadratic.norm_coe_le_norm t) hR u hu
 
-/-- The uniform local Lipschitz estimate follows from the proved quadratic difference identity. -/
+/-- The uniform local Lipschitz estimate follows from the proved quadratic difference identity.
+@isnad1 id=le.3h8v.s7.ee6321eec3e6 from=translated src=- shape=cf593576 vocab=a9f602e7
+-/
 theorem Coefficients.apply_sub_bound (C : Coefficients T X Y) (R : ℝ) (hR : 0 ≤ R)
     (t : T) (u v : X) (hu : ‖u‖ ≤ R) (hv : ‖v‖ ≤ R) :
     ‖C.apply t u-C.apply t v‖ ≤ C.ballLipschitz R * ‖u-v‖ :=

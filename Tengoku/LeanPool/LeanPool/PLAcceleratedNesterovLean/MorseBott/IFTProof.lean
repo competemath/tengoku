@@ -125,6 +125,9 @@ private lemma fderiv_eq_zero_of_locally_const_comp
   simp only [h4, zero_apply]
 
 -- Needed: nlinarith/linarith proofs exceed default heartbeat limit
+/--
+@isnad1 id=ex.4h4v.s13.a7e057920ca4 from=translated src=- shape=11255b61 vocab=4a2c63a1
+-/
 lemma ift_gives_graph_impl (f : E → ℝ) (μ : ℝ) (x₀ : E) (hμ : 0 < μ)
     (hf : ContDiffAt ℝ 2 f x₀)
     (hgrad : fderiv ℝ f x₀ = 0)
@@ -328,7 +331,9 @@ lemma ift_gives_graph_impl (f : E → ℝ) (μ : ℝ) (x₀ : E) (hμ : 0 < μ)
   obtain ⟨U, hU, hUprop⟩ := h_iff.exists_mem
   exact ⟨U, hU, φ, hφ_smooth, hφ_zero, hφ_deriv, fun x hx => hUprop x hx⟩
 
-/-- C³ version: when `f` is C³ at `x₀`, the IFT gives a C² graph. -/
+/-- C³ version: when `f` is C³ at `x₀`, the IFT gives a C² graph.
+@isnad1 id=ex.4h4v.s13.e3a2414a2a71 from=translated src=- shape=11255b61 vocab=4a2c63a1
+-/
 lemma ift_gives_graph_impl₂ (f : E → ℝ) (μ : ℝ) (x₀ : E) (hμ : 0 < μ)
     (hf : ContDiffAt ℝ 3 f x₀)
     (hgrad : fderiv ℝ f x₀ = 0)

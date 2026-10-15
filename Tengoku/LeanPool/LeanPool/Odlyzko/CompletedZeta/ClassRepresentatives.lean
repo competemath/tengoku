@@ -50,6 +50,9 @@ private noncomputable def idealNormFiberEquivNonzero
     simp
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s6.1d4edb746918 from=translated src=- shape=9904d473 vocab=46dae0e3
+-/
 theorem sum_classIdealNormCount {n : ℕ} (hn : n ≠ 0) :
     ∑ C : ClassGroup (𝓞 K), classIdealNormCount K C n =
       idealNormCount K n := by
@@ -87,6 +90,9 @@ theorem sum_classIdealNormCount {n : ℕ} (hn : n ≠ 0) :
       exact Nat.card_congr (idealNormFiberEquivNonzero K hn).symm
 
 open Classical in
+/--
+@isnad1 id=le.0h3v.s5.2e601739a6d9 from=translated src=- shape=cdb4551f vocab=f4adb7e9
+-/
 theorem classIdealNormCount_le_idealNormCount
     (C : ClassGroup (𝓞 K)) (n : ℕ) :
     classIdealNormCount K C n ≤ idealNormCount K n := by
@@ -102,6 +108,9 @@ theorem classIdealNormCount_le_idealNormCount
     grind
 
 open Classical in
+/--
+@isnad1 id=lseriess.1h3v.s5.2b437ae2b7fe from=translated src=- shape=f92df03a vocab=6c290006
+-/
 theorem lSeriesSummable_classIdealNormCount
     (C : ClassGroup (𝓞 K)) {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (classIdealNormCount K C n : ℂ)) s := by
@@ -128,6 +137,9 @@ private def classIdealNormFiberEquiv
     (fun I ↦ absNorm (I : Ideal (𝓞 K)) = n)
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s6.d55190dbf6bd from=translated src=- shape=9d2ef084 vocab=a0187add
+-/
 theorem sum_partialDedekindZeta {s : ℂ} (hs : 1 < s.re) :
     ∑ C : ClassGroup (𝓞 K), partialDedekindZeta K C s =
       NumberField.dedekindZeta K s := by
@@ -233,6 +245,9 @@ noncomputable def inverseClassIdealRepresentative
     (ClassGroup.mk0_surjective (R := 𝓞 K) C⁻¹)
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s11.88ec4ead48e6 from=translated src=- shape=05e2d067 vocab=ab4a0d6c
+-/
 @[simp]
 theorem mk0_inverseClassIdealRepresentative
     (C : ClassGroup (𝓞 K)) :

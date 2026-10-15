@@ -46,7 +46,9 @@ noncomputable def liftedDelaunayPhasePoint
     (liftedDelaunayPosition firstAction eccentricity meanAnomaly periapsisAngle)
     (liftedDelaunayMomentum firstAction eccentricity meanAnomaly periapsisAngle)
 
-/-- The chart agrees exactly with the previously constructed resonant Kepler orbit. -/
+/-- The chart agrees exactly with the previously constructed resonant Kepler orbit.
+@isnad1 id=eq.2h5v.s5.107ae5e4e987 from=translated src=- shape=c5ab510c vocab=97411032
+-/
 theorem liftedDelaunayPhasePoint_resonant
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (eccentricity orientation time : ℝ) :
@@ -64,7 +66,9 @@ theorem liftedDelaunayPhasePoint_resonant
   rw [hmotion]
   congr 2 <;> ring_nf
 
-/-- The lifted chart is periodic in mean anomaly. -/
+/-- The lifted chart is periodic in mean anomaly.
+@isnad1 id=eq.2h4v.s6.ceeea4872125 from=translated src=- shape=322dcee4 vocab=e39505e0
+-/
 lemma liftedDelaunayPhasePoint_add_mean_period
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -80,7 +84,9 @@ lemma liftedDelaunayPhasePoint_add_mean_period
       inertialEllipseVelocity]
 
 /-- Rotating a vector through a negated angle is unchanged when a full turn is added to that
-angle. -/
+angle.
+@isnad1 id=eq.0h2v.s5.620d27cfe2b2 from=translated src=- shape=2c06d596 vocab=7496e407
+-/
 lemma positionInRotatingFrame_neg_add_two_pi
     (periapsisAngle : ℝ) (vector : ActionSpace) :
     positionInRotatingFrame (-(periapsisAngle + 2 * Real.pi)) vector =
@@ -104,7 +110,9 @@ lemma positionInRotatingFrame_neg_add_two_pi
         -Real.sin (-periapsisAngle) * vector 0 + Real.cos (-periapsisAngle) * vector 1
     rw [hcos, hsin]
 
-/-- The lifted chart is periodic in the rotating periapsis angle. -/
+/-- The lifted chart is periodic in the rotating periapsis angle.
+@isnad1 id=eq.0h4v.s5.306136e0ebeb from=translated src=- shape=1dca12d0 vocab=00f63507
+-/
 lemma liftedDelaunayPhasePoint_add_periapsis_period
     (firstAction eccentricity meanAnomaly periapsisAngle : ℝ) :
     liftedDelaunayPhasePoint firstAction eccentricity meanAnomaly
@@ -122,7 +130,9 @@ noncomputable def liftedDelaunayFlowLine
     (meanAnomaly + time / firstAction ^ 3) (periapsisAngle - time)
 
 /-- At a rational Kepler resonance and zero initial mean anomaly, the general lifted flow line is
-the previously verified resonant trajectory. -/
+the previously verified resonant trajectory.
+@isnad1 id=eq.2h5v.s5.a52dd10fbb2f from=translated src=- shape=b34eb474 vocab=83edf514
+-/
 theorem liftedDelaunayFlowLine_resonant
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (eccentricity orientation time : ℝ) :
@@ -138,7 +148,9 @@ theorem liftedDelaunayFlowLine_resonant
   exact liftedDelaunayPhasePoint_resonant hp hq eccentricity orientation time
 
 /-- For fixed elliptic actions, the lifted Delaunay chart is jointly analytic in its two angle
-variables. -/
+variables.
+@isnad1 id=analytic.2h3v.s7.41683b64f60f from=translated src=- shape=c6caf693 vocab=f7174c35
+-/
 theorem analyticAt_liftedDelaunayPhasePoint_angles
     {firstAction eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -223,7 +235,9 @@ theorem analyticAt_liftedDelaunayPhasePoint_angles
         Real.cos (-angle.2) * vyInertial angle) angles
     exact (hsinPeriapsis.neg.mul hvx).add (hcosPeriapsis.mul hvy)
 
-/-- Continuity form of the angle chart. -/
+/-- Continuity form of the angle chart.
+@isnad1 id=continuo.2h2v.s6.bad3cab9ec55 from=translated src=- shape=93165501 vocab=d7e997d9
+-/
 theorem continuous_liftedDelaunayPhasePoint_angles
     {firstAction eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -235,7 +249,9 @@ theorem continuous_liftedDelaunayPhasePoint_angles
     heccentricity heccentricityOne angles).continuousAt
 
 /-- Away from the degenerate value `I₁ = 0`, the lifted chart varies continuously with the
-first Delaunay action. -/
+first Delaunay action.
+@isnad1 id=continuo.1h4v.s5.9423a3a1cfcc from=translated src=- shape=996c46fe vocab=85f2df7e
+-/
 theorem continuousAt_liftedDelaunayPhasePoint_firstAction
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : firstAction ≠ 0) :

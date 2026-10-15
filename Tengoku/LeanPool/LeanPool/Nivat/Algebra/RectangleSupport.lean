@@ -65,7 +65,9 @@ def erosion (Φ : Laurent) (R : Finset Lattice) : Set Lattice :=
   {z | ∀ a ∈ Φ.coeff.support, z + a ∈ R}
 
 /-- Auxiliary to Lemma 2.1 (`lem:supported`): erosion by a nonzero filter is finite because any one
-support point embeds it into a translate of the finite target window. -/
+support point embeds it into a translate of the finite target window.
+@isnad1 id=finite.1h2v.s5.ed74166f2ef6 from=translated src=- shape=6268ca41 vocab=1b5aff3b
+-/
 theorem erosion_finite (Φ : Laurent) (hΦ : Φ ≠ 0) (R : Finset Lattice) :
     (erosion Φ R).Finite := by
   have hS : Φ.coeff.support.Nonempty := by simpa [Finsupp.support_nonempty_iff] using hΦ
@@ -78,7 +80,9 @@ theorem erosion_finite (Φ : Laurent) (hΦ : Φ ≠ 0) (R : Finset Lattice) :
 noncomputable def erodedWindow (Φ : Laurent) (hΦ : Φ ≠ 0) (R : Finset Lattice) :
     Finset Lattice := (erosion_finite Φ hΦ R).toFinset
 
-/-- The membership condition for the eroded window of Lemma 2.1 (`lem:supported`). -/
+/-- The membership condition for the eroded window of Lemma 2.1 (`lem:supported`).
+@isnad1 id=iff.1h3v.s6.901d259f57f4 from=translated src=- shape=f554ba12 vocab=fda13131
+-/
 @[simp] theorem mem_erodedWindow (Φ : Laurent) (hΦ : Φ ≠ 0) (R : Finset Lattice)
     (z : Lattice) : z ∈ erodedWindow Φ hΦ R ↔ ∀ a ∈ Φ.coeff.support, z + a ∈ R := by
   simp [erodedWindow, erosion]

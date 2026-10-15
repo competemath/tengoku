@@ -24,7 +24,9 @@ namespace LeanPool.PoincareThreeBody
 open Filter MeasureTheory Set Topology
 
 /-- The resonant disturbing average is analytic in eccentricity throughout the collision-free
-interior range. -/
+interior range.
+@isnad1 id=analytic.5h4v.s7.df1db6eddbd7 from=translated src=- shape=caa98579 vocab=56bdc863
+-/
 theorem analyticAt_resonantDisturbingAverage_eccentricity
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation : ℝ}
@@ -75,7 +77,9 @@ theorem analyticAt_resonantDisturbingAverage_eccentricity
   unfold resonantDisturbingAverage
   rw [intervalIntegral.integral_of_le hperiod, ← integral_Icc_eq_integral_Ioc]
 
-/-- Analyticity assembled over the entire admissible eccentricity interval. -/
+/-- Analyticity assembled over the entire admissible eccentricity interval.
+@isnad1 id=analytic.2h3v.s7.48713540756b from=translated src=- shape=d3731413 vocab=df680b1f
+-/
 theorem analyticOnNhd_resonantDisturbingAverage_eccentricity
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) (orientation : ℝ) :
     AnalyticOnNhd ℝ (fun eccentricity ↦

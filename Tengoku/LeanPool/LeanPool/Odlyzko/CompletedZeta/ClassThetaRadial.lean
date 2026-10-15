@@ -41,6 +41,9 @@ noncomputable def nonzeroFractionalShapeThetaMellinKernel
       (fun w ↦ (expMapBasis_pos y w).ne') - 1)
 
 open Classical in
+/--
+@isnad1 id=integrab.1h3v.s9.3ce38b8c4a51 from=translated src=- shape=1c02b72e vocab=8c6dc012
+-/
 theorem integrableOn_nonzeroShapeThetaMellinKernel
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (nonzeroShapeThetaMellinKernel K J s)

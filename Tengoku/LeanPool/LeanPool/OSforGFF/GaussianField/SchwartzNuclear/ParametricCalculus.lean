@@ -62,6 +62,7 @@ Proof by induction on `l'`. The key difficulty is a typeclass diamond: the
 differ from those derived from `NormedAddCommGroup`, preventing direct use of
 `LinearIsometryEquiv.norm_iteratedFDeriv_comp_left`. We resolve this by rebuilding the
 currying isometry with explicit `NormedAddCommGroup` instances via `curryLeftLIE`.
+@isnad1 id=eq.0h6v.s10.0bc3a27e13ce from=translated src=- shape=acebf50b vocab=30131860
 -/
 lemma norm_iteratedFDeriv_iteratedFDeriv {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -107,6 +108,7 @@ a parametric embedding `ι : H → ℝ → E`, if:
 then `y ↦ ∫_t f(ι(y,t)) · g(t) dt` is C^∞ and `D^m` commutes with `∫`.
 
 **Reference**: Folland, "Real Analysis", Theorem 2.27 (iterated version).
+@isnad1 id=and.3h5v.s10.4876672007f3 from=translated src=- shape=e7f784a4 vocab=459e254e
 -/
 lemma contDiff_schwartz_parametric_integral
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]

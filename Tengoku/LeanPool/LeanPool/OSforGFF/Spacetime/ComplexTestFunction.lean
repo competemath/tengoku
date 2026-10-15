@@ -61,6 +61,7 @@ private lemma im_of_complex_combination (a b : ℂ) (u v : ℂ) :
 /-- ω-linearity of the real component of the complex test-function decomposition under
     complex linear combinations. This follows from ℝ-linearity of ω and pointwise
     behavior of complex operations on Schwartz functions.
+@isnad1 id=eq.0h5v.s11.64e86e18864e from=translated src=- shape=39d6cfef vocab=b5094aae
 -/
 lemma ω_re_decompose_linear
   (ω : FieldConfiguration) (f g : TestFunctionℂ) (t s : ℂ) :
@@ -90,6 +91,7 @@ lemma ω_re_decompose_linear
 
 /-- ω-linearity of the imaginary component of the complex test-function decomposition under
     complex linear combinations.
+@isnad1 id=eq.0h5v.s11.727b271e5981 from=translated src=- shape=38d136d6 vocab=acd1a0d5
 -/
 lemma ω_im_decompose_linear
   (ω : FieldConfiguration) (f g : TestFunctionℂ) (t s : ℂ) :
@@ -117,7 +119,9 @@ lemma ω_im_decompose_linear
   -- Apply ω (a real-linear functional) to both sides
   simp_all
 
-/-- Linearity of the complex pairing in the test-function argument. -/
+/-- Linearity of the complex pairing in the test-function argument.
+@isnad1 id=eq.0h5v.s8.83fc035a1ffc from=translated src=- shape=8b920dfd vocab=36f442fb
+-/
 lemma pairing_linear_combo
   (ω : FieldConfiguration) (f g : TestFunctionℂ) (t s : ℂ) :
   distributionPairingℂReal ω (t • f + s • g)
@@ -169,12 +173,15 @@ lemma pairing_linear_combo
 
 /-! ## Helper lemmas for real→complex Schwartz embedding -/
 
-/-- The norm of the ℝ-linear embedding ℝ → ℂ is exactly 1. -/
+/-- The norm of the ℝ-linear embedding ℝ → ℂ is exactly 1.
+@isnad1 id=eq.0h0v.s7.ad8a8ad7195f from=translated src=- shape=ed3d5df8 vocab=652b34fc
+-/
 lemma Complex.norm_ofRealCLM : ‖Complex.ofRealCLM‖ = 1 :=
   ofRealCLM_norm
 
 /-- Composing a continuous multilinear map (to ℝ) with the real→complex embedding
     preserves the operator norm, since the embedding is an isometry.
+@isnad1 id=eq.0h3v.s8.b3c1cb922934 from=translated src=- shape=6895b44b vocab=832817bf
 -/
 lemma norm_compContinuousMultilinearMap_ofReal {n : ℕ} {E : Fin n → Type*}
     [∀ i, NormedAddCommGroup (E i)] [∀ i, NormedSpace ℝ (E i)]
@@ -193,6 +200,7 @@ lemma norm_compContinuousMultilinearMap_ofReal {n : ℕ} {E : Fin n → Type*}
     real→complex embedding equals the norm of the n-th iterated derivative of the
     original Schwartz function. This follows from the chain rule and the fact that
     the embedding is an isometry.
+@isnad1 id=eq.0h3v.s10.2900d758c3b5 from=translated src=- shape=d9f69312 vocab=66fad376
 -/
 lemma iteratedFDeriv_ofReal_norm_eq (f : OSforGFF.TestFunction) (n : ℕ) (x : SpaceTime) :
     ‖iteratedFDeriv ℝ n (fun x ↦ (f x : ℂ)) x‖ = ‖iteratedFDeriv ℝ n f.toFun x‖ := by
@@ -221,26 +229,41 @@ def toComplex (f : OSforGFF.TestFunction) : TestFunctionℂ :=
     exact hC x
   )
 
+/--
+@isnad1 id=eq.0h2v.s7.fbee0b3c71d9 from=translated src=- shape=26a50a30 vocab=9039409b
+-/
 @[simp] lemma toComplex_apply (f : OSforGFF.TestFunction) (x : SpaceTime) :
   toComplex f x = (f x : ℂ) := by
   -- Follows from definition of toComplex
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.b3ddf54abb72 from=translated src=- shape=a6e9c78a vocab=4e2ca2db
+-/
 @[simp] lemma complex_testfunction_decompose_toComplex_fst (f : OSforGFF.TestFunction) :
   (complexTestFunctionDecompose (toComplex f)).1 = f := by
   ext x
   simp [complexTestFunctionDecompose, toComplex_apply]
 
+/--
+@isnad1 id=eq.0h1v.s6.eda4da84a6ac from=translated src=- shape=2fea9a4b vocab=988a91e9
+-/
 @[simp] lemma complex_testfunction_decompose_toComplex_snd (f : OSforGFF.TestFunction) :
   (complexTestFunctionDecompose (toComplex f)).2 = 0 := by
   ext x
   simp [complexTestFunctionDecompose, toComplex_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.d61f6482749c from=translated src=- shape=0438c7a3 vocab=f5e99f2b
+-/
 @[simp] lemma toComplex_add (f g : OSforGFF.TestFunction) :
   toComplex (f + g) = toComplex f + toComplex g := by
   ext x
   simp [toComplex_apply]
 
+/--
+@isnad1 id=eq.0h2v.s8.c6707a23378f from=translated src=- shape=8699b9cb vocab=557f2b9b
+-/
 @[simp] lemma toComplex_smul (c : ℝ) (f : OSforGFF.TestFunction) :
   toComplex (c • f) = (c : ℂ) • toComplex f := by
   ext x
@@ -267,11 +290,17 @@ noncomputable def toComplexCLM : OSforGFF.TestFunction →L[ℝ] TestFunctionℂ
       rw [iteratedFDeriv_ofReal_norm_eq]
       exact SchwartzMap.le_seminorm ℝ k n f x)
 
+/--
+@isnad1 id=eq.0h1v.s10.623bf020f534 from=translated src=- shape=ff234ce8 vocab=296d8d3b
+-/
 @[simp] lemma toComplexCLM_apply (f : OSforGFF.TestFunction) :
     toComplexCLM f = toComplex f := by
   ext x
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.753c79843799 from=translated src=- shape=582c4f88 vocab=8eaac291
+-/
 @[simp] lemma distributionPairingℂ_real_toComplex
   (ω : FieldConfiguration) (f : OSforGFF.TestFunction) :
   distributionPairingℂReal ω (toComplex f) = distributionPairing ω f := by
@@ -279,6 +308,9 @@ noncomputable def toComplexCLM : OSforGFF.TestFunction →L[ℝ] TestFunctionℂ
 
 variable (dμ_config : ProbabilityMeasure FieldConfiguration)
 
+/--
+@isnad1 id=eq.0h2v.s8.357069dbf771 from=translated src=- shape=3f6e24c4 vocab=4dbaabaf
+-/
 @[simp] lemma GJGeneratingFunctionalℂ_toComplex
   (f : OSforGFF.TestFunction) :
   GJGeneratingFunctionalℂ dμ_config (toComplex f) = GJGeneratingFunctional dμ_config f := by
@@ -329,11 +361,16 @@ noncomputable def conjSchwartz {E : Type*} [NormedAddCommGroup E] [NormedSpace �
       _ ≤ C := hC x
 }
 
+/--
+@isnad1 id=eq.0h3v.s7.c0ec85325b3b from=translated src=- shape=582a97d8 vocab=b7ccb713
+-/
 @[simp] lemma conjSchwartz_apply {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : SchwartzMap E ℂ) (x : E) :
     conjSchwartz f x = starRingEnd ℂ (f x) := rfl
 
-/-- Conjugation is involutive: conj(conj(f)) = f -/
+/-- Conjugation is involutive: conj(conj(f)) = f
+@isnad1 id=eq.0h2v.s5.52798a641a60 from=translated src=- shape=d175da22 vocab=95b6c5db
+-/
 @[simp] lemma conjSchwartz_conjSchwartz {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : SchwartzMap E ℂ) : conjSchwartz (conjSchwartz f) = f := by
   ext x
@@ -349,6 +386,7 @@ noncomputable def conjSchwartz {E : Type*} [NormedAddCommGroup E] [NormedSpace �
     - conj(⟨ω, f⟩) = ⟨ω, f_re⟩ - i⟨ω, f_im⟩
     - ⟨ω, conj(f)⟩ = ⟨ω, conj(f)_re⟩ + i⟨ω, conj(f)_im⟩
     - conj(f)_re = f_re and conj(f)_im = -f_im
+@isnad1 id=eq.0h2v.s7.5c96fcafc0b5 from=translated src=- shape=179553a9 vocab=d7f57810
 -/
 lemma distributionPairingℂ_real_conj (ω : FieldConfiguration) (f : TestFunctionℂ) :
     starRingEnd ℂ (distributionPairingℂReal ω f) = distributionPairingℂReal ω (conjSchwartz f) :=

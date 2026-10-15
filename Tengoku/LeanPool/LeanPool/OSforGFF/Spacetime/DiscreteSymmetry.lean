@@ -34,6 +34,9 @@ abbrev timeReflection (x : SpaceTime) : SpaceTime :=
 def timeReflectionMatrix : Matrix (Fin STDimension) (Fin STDimension) ℝ :=
   Matrix.diagonal (fun i => if i = 0 then -1 else 1)
 
+/--
+@isnad1 id=mem.0h0v.s6.ef209929024b from=translated src=- shape=e39c3288 vocab=979063d8
+-/
 lemma timeReflectionMatrix_is_orthogonal :
    timeReflectionMatrix ∈ Matrix.orthogonalGroup (Fin STDimension) ℝ := by
       rw [Matrix.mem_orthogonalGroup_iff]
@@ -68,7 +71,9 @@ timeReflectionLinear.toContinuousLinearMap (E := SpaceTime) (F' := SpaceTime)
 
 open InnerProductSpace
 
-/-- Time reflection preserves inner products -/
+/-- Time reflection preserves inner products
+@isnad1 id=eq.0h2v.s6.91acca40cc8a from=translated src=- shape=7f61b38a vocab=cd83a2a6
+-/
 lemma timeReflection_inner_map (x y : SpaceTime) :
     ⟪timeReflection x, timeReflection y⟫_ℝ = ⟪x, y⟫_ℝ := by
   -- Direct proof using fintype inner product
@@ -78,7 +83,9 @@ lemma timeReflection_inner_map (x y : SpaceTime) :
   simp only [timeReflection]
   rcases eq_or_ne i 0 with h | h <;> simp [h]
 
-/-- Time reflection as a linear isometry equivalence -/
+/-- Time reflection as a linear isometry equivalence
+@isnad1 id=eq.0h1v.s3.907a28572ca4 from=translated src=- shape=47dcad53 vocab=3c2ad1d9
+-/
 @[simp] lemma timeReflection_involutive (x : SpaceTime) :
     timeReflection (timeReflection x) = x := by
   refine PiLp.ext fun i => ?_
@@ -98,7 +105,9 @@ def timeReflectionLE : SpaceTime ≃ₗᵢ[ℝ] SpaceTime :=
     rw [← sq_eq_sq₀ (norm_nonneg _) (norm_nonneg _), ← real_inner_self_eq_norm_sq,
       ← real_inner_self_eq_norm_sq, timeReflection_inner_map x x] }
 
-/-- Time reflection preserves Lebesgue measure. -/
+/-- Time reflection preserves Lebesgue measure.
+@isnad1 id=measurep.0h0v.s8.96144433c0b1 from=translated src=- shape=41b74a9e vocab=7290f746
+-/
 lemma timeReflection_measurePreserving :
     MeasurePreserving timeReflection volume volume := by
   -- Any linear isometry equivalence preserves the volume measure.
@@ -133,7 +142,9 @@ noncomputable def compTimeReflectionReal : OSforGFF.TestFunction →L[ℝ] OSfor
     (hg := timeReflectionCLM.hasTemperateGrowth)
     (hg_upper := by exact timeReflection_hg_upper)
 
-/-- Time reflection is linear on real test functions. -/
+/-- Time reflection is linear on real test functions.
+@isnad1 id=eq.0h3v.s11.26913e8687bb from=translated src=- shape=83af19c4 vocab=30cb0a47
+-/
 lemma compTimeReflectionReal_linear_combination {n : ℕ}
     (f : Fin n → OSforGFF.TestFunction) (c : Fin n → ℝ) :
     compTimeReflectionReal (∑ i, c i • f i) = ∑ i, c i • compTimeReflectionReal (f i) := by

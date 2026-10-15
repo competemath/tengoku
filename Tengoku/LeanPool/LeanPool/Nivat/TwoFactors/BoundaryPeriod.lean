@@ -51,7 +51,9 @@ all the interior rows; Morse–Hedlund gives one period for those rows.
 namespace Nivat.TwoFactors
 
 /-- An agreeing boundary block extends indefinitely to the right when the next value is
-determined by the preceding `k` agreeing letters. Lemma 5.7 (`lem:periodic-interior`). -/
+determined by the preceding `k` agreeing letters. Lemma 5.7 (`lem:periodic-interior`).
+@isnad1 id=eq.3h7v.s7.efd8a07285e4 from=translated src=- shape=15113d44 vocab=ccb0fbfc
+-/
 theorem agreement_extends_right {A : Type*} (a b : ℤ → A) (k e : ℕ) (hke : k < e)
     (hrule : ∀ i : ℤ, (∀ r : Fin k, a (i + (r : ℕ)) = b (i + (r : ℕ))) →
       a (i + k) = b (i + k)) (i : ℤ)
@@ -71,7 +73,9 @@ theorem agreement_extends_right {A : Type*} (a b : ℤ → A) (k e : ℕ) (hke :
       convert hm using 1 <;> congr 1 <;> omega
 
 /-- A periodic difference that vanishes on a right half-line vanishes at every integer index.
-Lemma 5.7 (`lem:periodic-interior`). -/
+Lemma 5.7 (`lem:periodic-interior`).
+@isnad1 id=eq.3h5v.s6.9b7978dd753f from=translated src=- shape=1924fa46 vocab=9dd5f58a
+-/
 theorem periodic_zero_of_right_ray {G : Type*} [AddGroup G]
     (d : ℤ → G) (q : ℕ) (hq : 0 < q) (hp : Function.Periodic d (q : ℤ))
     (i : ℤ) (hz : ∀ n : ℕ, d (i + n) = 0) : ∀ j, d j = 0 := by
@@ -90,7 +94,9 @@ theorem periodic_zero_of_right_ray {G : Type*} [AddGroup G]
   exact hz r.toNat
 
 /-- The occurring-pattern boundary rule holds for every translate of the configuration, because
-translating both test positions preserves the rule. Lemma 5.8 (`lem:row-lifting`). -/
+translating both test positions preserves the rule. Lemma 5.8 (`lem:row-lifting`).
+@isnad1 id=boundary.1h5v.s4.3f8947ff0d55 from=translated src=- shape=476dac91 vocab=d8e94cdb
+-/
 theorem boundaryRule_shift {A : Type*} (c : Configuration A) (C : Finset Lattice)
     (k : ℕ) (hr : BoundaryRule c C k) (u : Lattice) : BoundaryRule (shift u c) C k := by
   intro z z' hC hmem
@@ -103,7 +109,9 @@ theorem boundaryRule_shift {A : Type*} (c : Configuration A) (C : Finset Lattice
 
 /-- Two translates with agreeing interiors and a nonzero periodic boundary difference cannot
 agree on any complete translated boundary edge: agreement would propagate to a half-line and
-then to the whole boundary. Lemma 5.7 (`lem:periodic-interior`). -/
+then to the whole boundary. Lemma 5.7 (`lem:periodic-interior`).
+@isnad1 id=ne.6h8v.s7.647131cfe357 from=translated src=- shape=c100deec vocab=0d2998a0
+-/
 theorem every_edge_differs (c : Configuration ℚ) (C : Finset Lattice) (k e q : ℕ)
     (hke : k < e) (hq : 0 < q) (hrule : BoundaryRule c C k) (u v : Lattice)
     (hinner : ∀ i : ℤ, patternAt (shift u c) C (i, 0) =
@@ -146,7 +154,9 @@ def innerOrbit {A : Type*} (x : Configuration A) (C : Finset Lattice) : Set (C �
   Set.range (fun i : ℤ => patternAt x C (i, 0))
 
 /-- The horizontal interior orbit is finite because it is a subset of the patterns of a
-finite-range configuration on a finite window. Lemma 5.7 (`lem:periodic-interior`). -/
+finite-range configuration on a finite window. Lemma 5.7 (`lem:periodic-interior`).
+@isnad1 id=finite.1h3v.s5.3c2f9ab2c2b1 from=translated src=- shape=7bc34a8e vocab=0e49ac8c
+-/
 theorem innerOrbit_finite {A : Type*} {x : Configuration A} (hx : FiniteRange x)
     (C : Finset Lattice) : (innerOrbit x C).Finite := by
   apply (patterns_finite hx C).subset
@@ -155,7 +165,9 @@ theorem innerOrbit_finite {A : Type*} {x : Configuration A} (hx : FiniteRange x)
 
 /-- When every horizontally translated edge differs but the interiors agree, each encountered
 interior pattern has two boundary extensions, so their number is bounded by the total
-boundary cost. Lemma 5.7 (`lem:periodic-interior`). -/
+boundary cost. Lemma 5.7 (`lem:periodic-interior`).
+@isnad1 id=le.3h6v.s7.b2a530176316 from=translated src=- shape=264a25a9 vocab=8ad235c4
+-/
 theorem innerOrbit_budget {A : Type*} (c : Configuration A) (hc : FiniteRange c)
     (C : Finset Lattice) (e : ℕ) (u v : Lattice)
     (hinner : ∀ i : ℤ, patternAt (shift u c) C (i, 0) =
@@ -185,7 +197,9 @@ theorem innerOrbit_budget {A : Type*} (c : Configuration A) (hc : FiniteRange c)
 
 /-- Collecting one staggered coordinate from each interior row gives a finite-alphabet word
 whose length-`r` complexity is at most `r`; Morse–Hedlund supplies one period for every
-entire interior row. Lemma 5.7 (`lem:periodic-interior`). -/
+entire interior row. Lemma 5.7 (`lem:periodic-interior`).
+@isnad1 id=ex.4h6v.s7.5e94578b95c5 from=translated src=- shape=5bf3173e vocab=8e651eb3
+-/
 theorem common_inner_period {A : Type*} (x : Configuration A) (hx : FiniteRange x)
     (C : Finset Lattice) (H r : ℕ) (hr : 0 < r) (α : Fin H → ℤ)
     (hblocks : ∀ j : Fin H, ∀ t : Fin r,

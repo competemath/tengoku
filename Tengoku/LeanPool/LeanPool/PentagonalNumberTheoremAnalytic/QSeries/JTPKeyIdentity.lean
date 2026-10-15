@@ -39,7 +39,9 @@ def keySum (q : ℂ) (k : ℕ) : ℂ :=
 def keySummand (q : ℂ) (k : ℕ) (m : ℕ) : ℂ :=
   q ^ (m * (m + k)) / (qPochhammer q q m * qPochhammer q q (m + k))
 
-/-- Unfolds `keySum` as the tsum of `keySummand`. -/
+/-- Unfolds `keySum` as the tsum of `keySummand`.
+@isnad1 id=eq.0h2v.s5.69e01b36346a from=translated src=- shape=3e0437c8 vocab=fe649c53
+-/
 theorem keySum_eq_tsum (q : ℂ) (k : ℕ) :
     keySum q k = ∑' m, keySummand q k m := rfl
 
@@ -56,13 +58,17 @@ private theorem exists_pos_le_of_tendsto {f : ℕ → ℝ} {L : ℝ} (hL : 0 < L
     · exact (min_le_left _ _).trans (hN n h.le).le
 
 /-- The finite q-Pochhammer symbols `(q;q)_n` are bounded away from `0` uniformly in `n`,
-since they converge to the nonzero limit `(q;q)_∞`. -/
+since they converge to the nonzero limit `(q;q)_∞`.
+@isnad1 id=ex.1h1v.s5.9caf869ca067 from=translated src=- shape=4ac0e167 vocab=61fbbbce
+-/
 theorem exists_pos_le_norm_qPochhammer_self {q : ℂ} (hq : ‖q‖ < 1) :
     ∃ C > 0, ∀ n : ℕ, C ≤ ‖qPochhammer q q n‖ :=
   exists_pos_le_of_tendsto (norm_pos_iff.mpr (qPochhammerInf_ne_zero hq hq))
     (tendsto_qPochhammer hq).norm fun n => norm_pos_iff.mpr (qPochhammer_self_ne_zero hq n)
 
-/-- The series defining $S_k(q)$ is summable for $\|q\| < 1$. -/
+/-- The series defining $S_k(q)$ is summable for $\|q\| < 1$.
+@isnad1 id=summable.1h2v.s5.12370668570b from=translated src=- shape=571a36be vocab=81b2523b
+-/
 theorem summable_keySummand {q : ℂ} (hq : ‖q‖ < 1) (k : ℕ) :
     Summable (keySummand q k) := by
   obtain ⟨C, hC₀, hC⟩ := exists_pos_le_norm_qPochhammer_self hq
@@ -78,7 +84,9 @@ theorem summable_keySummand {q : ℂ} (hq : ‖q‖ < 1) (k : ℕ) :
   rw [keySummand, norm_div, norm_pow, norm_mul, ← div_eq_mul_inv]
   exact div_le_div₀ (by positivity) h1 (by positivity) h2
 
-/-- As $k \to \infty$, $S_k(q)$ converges to $1/(q;q)_\infty$. -/
+/-- As $k \to \infty$, $S_k(q)$ converges to $1/(q;q)_\infty$.
+@isnad1 id=tendsto.1h1v.s5.1ba8360f5a34 from=translated src=- shape=313dc6c4 vocab=988767fd
+-/
 theorem tendsto_keySum {q : ℂ} (hq : ‖q‖ < 1) :
     Tendsto (keySum q) atTop (𝓝 (1 / qPochhammerInf q q)) := by
   obtain ⟨C, hC₀, hC⟩ := exists_pos_le_norm_qPochhammer_self hq
@@ -131,7 +139,9 @@ theorem tendsto_keySum {q : ℂ} (hq : ‖q‖ < 1) :
   · exact summable_keySummand hq _
 
 /-- For `‖q‖ < 1` and `n ≥ 1` the tail factor `1 - qⁿ` is bounded away from zero,
-uniformly in `n`, by the constant `1 - ‖q‖`. -/
+uniformly in `n`, by the constant `1 - ‖q‖`.
+@isnad1 id=le.2h2v.s6.0c4894736c5c from=translated src=- shape=7ef6a77a vocab=53fdcbe5
+-/
 theorem one_sub_norm_le_norm_one_sub_pow {q : ℂ} (hq : ‖q‖ < 1) {n : ℕ} (hn : 1 ≤ n) :
     1 - ‖q‖ ≤ ‖1 - q ^ n‖ := by
   refine le_trans ?_ (norm_sub_norm_le (1 : ℂ) (q ^ n))
@@ -140,7 +150,9 @@ theorem one_sub_norm_le_norm_one_sub_pow {q : ℂ} (hq : ‖q‖ < 1) {n : ℕ} 
   linarith
 
 /-- The shifted family `q ^ (m * (m + k)) / ((q;q)_m (q;q)_{m+k+1})` is summable:
-it is `keySummand q k` scaled by the uniformly bounded factor `(1 - q ^ (m+k+1))⁻¹`. -/
+it is `keySummand q k` scaled by the uniformly bounded factor `(1 - q ^ (m+k+1))⁻¹`.
+@isnad1 id=summable.1h2v.s6.701f040ae9e4 from=translated src=- shape=df96429d vocab=4482d65a
+-/
 theorem summable_pow_div_qPochhammer_succ {q : ℂ} (hq : ‖q‖ < 1) (k : ℕ) :
     Summable fun m : ℕ =>
       q ^ (m * (m + k)) / (qPochhammer q q m * qPochhammer q q (m + k + 1)) := by
@@ -153,7 +165,9 @@ theorem summable_pow_div_qPochhammer_succ {q : ℂ} (hq : ‖q‖ < 1) (k : ℕ)
   gcongr
   exact one_sub_norm_le_norm_one_sub_pow hq (by omega)
 
-/-- Multiplying the shifted family by the bounded factor `1 - q ^ m` preserves summability. -/
+/-- Multiplying the shifted family by the bounded factor `1 - q ^ m` preserves summability.
+@isnad1 id=summable.1h2v.s7.432144dfd394 from=translated src=- shape=5c69c49c vocab=0e1cce10
+-/
 theorem summable_pow_mul_one_sub_pow_div_qPochhammer {q : ℂ} (hq : ‖q‖ < 1) (k : ℕ) :
     Summable fun m : ℕ =>
       q ^ (m * (m + k)) * (1 - q ^ m) / (qPochhammer q q m * qPochhammer q q (m + k + 1)) := by
@@ -178,7 +192,9 @@ private lemma qPochhammerInf_eq_qPochhammer_mul {q : ℂ} (hq : ‖q‖ < 1) (n 
     rw [qPochhammerInf_eq_one_sub_mul hq]
     ring_nf
 
-/-- `qPochhammerInf (q * q^n) q = (q;q)_∞ / (q;q)_n`. -/
+/-- `qPochhammerInf (q * q^n) q = (q;q)_∞ / (q;q)_n`.
+@isnad1 id=eq.1h2v.s6.bd1ea20f3762 from=translated src=- shape=9de53da5 vocab=dfc3d790
+-/
 theorem qPochhammerInf_mul_pow_eq_div {q : ℂ} (hq : ‖q‖ < 1) (n : ℕ) :
     qPochhammerInf (q * q ^ n) q = qPochhammerInf q q / qPochhammer q q n := by
   rw [eq_div_iff (qPochhammer_self_ne_zero hq n), mul_comm]

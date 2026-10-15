@@ -27,6 +27,9 @@ variable (R : Type*) [CommRing R]
 
 namespace Pentagonal
 
+/--
+@isnad1 id=summable.0h2v.s5.601e9669fbea from=translated src=- shape=b782fe53 vocab=6b1d4da3
+-/
 theorem summable_gamma_powerSeries [TopologicalSpace R] (k : ℕ) :
     Summable (gamma k · (X : R⟦X⟧)) := by
   rw [PowerSeries.WithPiTopology.summable_iff_summable_coeff]
@@ -40,6 +43,9 @@ theorem summable_gamma_powerSeries [TopologicalSpace R] (k : ℕ) :
     exact h.trans_le <| Nat.le_mul_of_pos_left i (by simp)
   simp [PowerSeries.coeff_X_pow_mul', this]
 
+/--
+@isnad1 id=multipli.0h2v.s6.6749a35426da from=translated src=- shape=45c763d6 vocab=7e5a8ffc
+-/
 theorem multipliable_pentagonalLhs_powerSeries' [Nontrivial R] [TopologicalSpace R] (k : ℕ) :
     Multipliable (fun n ↦ (1 : R⟦X⟧) - X ^ (n + k + 1)) := by
   simp_rw [sub_eq_add_neg]
@@ -56,6 +62,9 @@ end Pentagonal
 
 open Pentagonal
 
+/--
+@isnad1 id=summable.0h1v.s8.b874cfeecf7f from=translated src=- shape=1d669d09 vocab=3e6efb8f
+-/
 theorem summable_pentagonalRhs_powerSeries
     [Nontrivial R] [TopologicalSpace R] :
     Summable (fun (k : ℕ) ↦
@@ -74,7 +83,9 @@ theorem summable_pentagonalRhs_powerSeries
 /-- **Pentagonal number theorem** for formal power series, summation over natural numbers.
 
 $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} =
-\sum_{k=0}^{\infty} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) $$ -/
+\sum_{k=0}^{\infty} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) $$
+@isnad1 id=eq.0h1v.s8.e1ffc262c25a from=translated src=- shape=389a1aea vocab=484d7daa
+-/
 theorem pentagonalNumberTheorem_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     ∏' n, (1 - X ^ (n + 1) : R⟦X⟧) =
@@ -96,6 +107,9 @@ theorem pentagonalNumberTheorem_powerSeries
     rw [order_X_pow, Nat.cast_lt, ← Nat.add_one_le_iff, Nat.le_div_iff_mul_le (by simp)]
     apply Nat.mul_le_mul <;> linarith
 
+/--
+@isnad1 id=summable.0h1v.s7.43ad5d932651 from=translated src=- shape=0fc14ac9 vocab=deb8cb28
+-/
 theorem summable_pentagonalRhs_intNeg_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] :
     Summable (fun (k : ℤ) ↦ (Int.negOnePow k : R⟦X⟧) * X ^ (k * (3 * k + 1) / 2).toNat) := by
@@ -111,7 +125,9 @@ theorem summable_pentagonalRhs_intNeg_powerSeries
 
 /-- **Pentagonal number theorem** for formal power series, summation over integers, opposite order.
 
-$$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k + 1)/2} $$ -/
+$$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k + 1)/2} $$
+@isnad1 id=eq.0h1v.s8.82cae33bec67 from=translated src=- shape=82516fa0 vocab=c1d709f9
+-/
 theorem pentagonalNumberTheorem_intNeg_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     ∏' n, (1 - X ^ (n + 1)) =
@@ -125,6 +141,9 @@ theorem pentagonalNumberTheorem_intNeg_powerSeries
   · ring
   · norm_cast
 
+/--
+@isnad1 id=summable.0h1v.s7.1c619b39b615 from=translated src=- shape=0fc14ac9 vocab=b2befc81
+-/
 theorem summable_pentagonalRhs_intPos_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] :
     Summable (fun (k : ℤ) ↦ (Int.negOnePow k : R⟦X⟧) * X ^ (k * (3 * k - 1) / 2).toNat) := by
@@ -135,7 +154,9 @@ theorem summable_pentagonalRhs_intPos_powerSeries
 
 /-- **Pentagonal number theorem** for formal power series, summation over integers, classic order.
 
-$$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k - 1)/2} $$ -/
+$$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k - 1)/2} $$
+@isnad1 id=eq.0h1v.s8.95d72652be98 from=translated src=- shape=f7930cd4 vocab=c1d709f9
+-/
 theorem pentagonalNumberTheorem_intPos_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     ∏' n, (1 - X ^ (n + 1)) =

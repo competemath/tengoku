@@ -44,6 +44,9 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=eq.0h3v.s4.1b57aaf5fb8a from=translated src=- shape=62abca2e vocab=6e759d8a
+-/
 theorem repl_in_con : replInF x ψ (con l) = con (l.map (replInF x ψ)) := by
   cases l
   · simp [Top.top, Bot.bot]
@@ -54,9 +57,15 @@ theorem repl_in_con : replInF x ψ (con l) = con (l.map (replInF x ψ)) := by
       simp only [con, replInF, List.map_cons, Formula.and.injEq, true_and]
       apply repl_in_con
 
+/--
+@isnad1 id=eq.0h4v.s4.199fb9b1b5cf from=translated src=- shape=e5dda6fb vocab=3879fe84
+-/
 theorem repl_in_or : replInF x ψ (φ1 ⋁ φ2) = replInF x ψ φ1 ⋁ replInF x ψ φ2 := by
   simp
 
+/--
+@isnad1 id=eq.0h3v.s4.d234fa7b14f5 from=translated src=- shape=62abca2e vocab=afd2ad2c
+-/
 theorem repl_in_dis : replInF x ψ (dis l) = dis (l.map (replInF x ψ)) := by
   cases l
   · simp
@@ -69,6 +78,9 @@ theorem repl_in_dis : replInF x ψ (dis l) = dis (l.map (replInF x ψ)) := by
       apply repl_in_dis
 
 mutual
+/--
+@isnad1 id=eq.1h3v.s5.b5ff2daed64c from=translated src=- shape=40bdcbe9 vocab=8dba9f67
+-/
 theorem repl_in_F_non_occ_eq {x φ ρ} :
     (Sum.inl x) ∉ φ.voc → replInF x ρ φ = φ := by
   intro x_notin_phi
@@ -90,6 +102,9 @@ theorem repl_in_F_non_occ_eq {x φ ρ} :
     · apply repl_in_P_non_occ_eq; tauto
     · apply repl_in_F_non_occ_eq; tauto
 
+/--
+@isnad1 id=eq.1h3v.s5.c0a1dfe5fff7 from=translated src=- shape=e9ba8f2f vocab=06fe10c6
+-/
 theorem repl_in_P_non_occ_eq {x α ρ} :
     (Sum.inl x) ∉ α.voc → replInP x ρ α = α := by
   intro x_notin_alpha
@@ -111,6 +126,9 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=eq.1h3v.s5.7d50827736ad from=translated src=- shape=f8a901de vocab=59271100
+-/
 theorem repl_in_boxes_non_occ_eq_neg (δ : List Program) :
     (Sum.inl x) ∉ Vocab.fromList (δ.map Program.voc) → replInF x ψ (⌈⌈δ⌉⌉~·x) = ⌈⌈δ⌉⌉~ψ := by
   intro nonOcc
@@ -125,6 +143,9 @@ theorem repl_in_boxes_non_occ_eq_neg (δ : List Program) :
       clear IH
       simp_all [Vocab.fromList]
 
+/--
+@isnad1 id=eq.1h3v.s5.7cfd622b8ada from=translated src=- shape=6bab14bb vocab=39015e01
+-/
 theorem repl_in_boxes_non_occ_eq_pos (δ : List Program) :
     (Sum.inl x) ∉ Vocab.fromList (δ.map Program.voc) → replInF x ψ (⌈⌈δ⌉⌉·x) = ⌈⌈δ⌉⌉ψ := by
   intro nonOcc
@@ -139,6 +160,9 @@ theorem repl_in_boxes_non_occ_eq_pos (δ : List Program) :
       clear IH
       simp_all [Vocab.fromList]
 
+/--
+@isnad1 id=eq.1h3v.s5.5e0d73d881e6 from=translated src=- shape=d77b79f3 vocab=13f66c1f
+-/
 theorem repl_in_list_non_occ_eq (F : List Formula) :
      (Sum.inl x) ∉ Vocab.fromList (F.map Formula.voc) → F.map (replInF x ρ) = F := by
   intro nonOcc
@@ -165,6 +189,9 @@ def replInModel (x : Nat) (ψ : Formula) : KripkeModel W → KripkeModel W
 | M@⟨V,R⟩ => ⟨fun w c => if c == x then (M,w) ⊨ ψ else V w c,R⟩
 
 mutual
+/--
+@isnad1 id=iff.0h6v.s5.98f7106c3819 from=translated src=- shape=e41d9d32 vocab=60f1013b
+-/
 theorem repl_in_model_sat_iff x ψ φ {W} (M : KripkeModel W) (w : W) :
     (M, w) ⊨ replInF x ψ φ ↔ (replInModel x ψ M, w) ⊨ φ := by
   cases φ
@@ -193,6 +220,9 @@ theorem repl_in_model_sat_iff x ψ φ {W} (M : KripkeModel W) (w : W) :
       specialize hyp v
       tauto
 
+/--
+@isnad1 id=iff.0h7v.s5.835b9f7b51d4 from=translated src=- shape=2498c1be vocab=097d7675
+-/
 theorem repl_in_model_rel_iff x ψ α {W} (M : KripkeModel W) (w v : W) :
     relate M (replInP x ψ α) w v ↔ relate (replInModel x ψ M) α w v := by
   cases α
@@ -226,6 +256,9 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=semequiv.1h4v.s4.a4b7a8f96d97 from=translated src=- shape=ebdcef65 vocab=db64c196
+-/
 theorem repl_in_F_equiv x ψ :
     (φ1 ≡ φ2) → (replInF x ψ φ1) ≡ (replInF x ψ φ2) := by
   intro hyp W M w
@@ -238,6 +271,9 @@ theorem repl_in_F_equiv x ψ :
   simp only [evaluatePoint, vDash.SemImplies] at *
   exact this
 
+/--
+@isnad1 id=eq.0h6v.s6.1ad0ef7659da from=translated src=- shape=465994bd vocab=d12437e8
+-/
 theorem repl_in_disMap x ρ (L : List α) (p : α → Prop) (f : α → Formula) [DecidablePred p] :
     replInF x ρ (dis (L.map (fun Fδ => if p Fδ then Formula.bottom else f Fδ))) =
     dis (L.map (fun Fδ => if p Fδ then Formula.bottom else replInF x ρ (f Fδ))) := by
@@ -248,7 +284,9 @@ theorem repl_in_disMap x ρ (L : List α) (p : α → Prop) (f : α → Formula)
 /-! ## Cancellation of replacements -/
 
 mutual
-/-- Replacing `p` with a fresh `q` and then replacing `q` by `p` results in the same formula. -/
+/-- Replacing `p` with a fresh `q` and then replacing `q` by `p` results in the same formula.
+@isnad1 id=eq.1h3v.s5.24bbed13959e from=translated src=- shape=5baf74f5 vocab=ca88d948
+-/
 @[simp]
 lemma repl_in_F_cancel_via_non_occ φ p q : Sum.inl q ∉ φ.voc →
     replInF q (·p) (replInF p (·q) φ) = φ := by
@@ -269,7 +307,9 @@ lemma repl_in_F_cancel_via_non_occ φ p q : Sum.inl q ∉ φ.voc →
     have := repl_in_F_cancel_via_non_occ φ p q
     have := repl_in_P_cancel_via_non_occ α p q
     aesop
-/-- Replacing `p` with a fresh `q` and then replacing `q` by `p` results in the same program. -/
+/-- Replacing `p` with a fresh `q` and then replacing `q` by `p` results in the same program.
+@isnad1 id=eq.1h3v.s5.8fab34fc2edd from=translated src=- shape=5baf74f5 vocab=c98bc179
+-/
 lemma repl_in_P_cancel_via_non_occ α p q : Sum.inl q ∉ α.voc →
     replInP q (·p) (replInP p (·q) α) = α := by
   intro q_not_in_α

@@ -33,10 +33,16 @@ open Pebbling
 def N0 : ℕ :=
   PaperParameters.explicitCutoff
 
+/--
+@isnad1 id=eq.0h0v.s3.a1d2db09f228 from=translated src=- shape=ffdda526 vocab=ec554edc
+-/
 theorem N0_eq :
     N0 = 36_329_454_321_664 := by
   rfl
 
+/--
+@isnad1 id=lt.0h0v.s3.3e3e465e6cd4 from=translated src=- shape=ff3a10fc vocab=45fe6a34
+-/
 theorem N0_pos : 0 < N0 := by
   simpa [N0] using PaperParameters.explicitCutoff_pos
 
@@ -46,12 +52,17 @@ noncomputable def CLean : ℝ :=
     finiteBaseNormalizedBound
       (PaperParameters.recursiveCostBound (217 : ℝ) N0) N0
 
+/--
+@isnad1 id=le.0h0v.s3.de889ffccfab from=translated src=- shape=ff3a10fc vocab=a9f3e272
+-/
 theorem CLean_nonneg : 0 ≤ CLean := by
   unfold CLean
   exact mul_nonneg (Real.exp_nonneg _)
     (finiteBaseNormalizedBound_nonneg _ _)
 
-/-- The same constant in the displayed form used in the paper. -/
+/-- The same constant in the displayed form used in the paper.
+@isnad1 id=eq.0h0v.s7.844e87a41597 from=translated src=- shape=f23299f9 vocab=102ec5aa
+-/
 theorem CLean_eq_paper_formula :
     CLean =
       Real.exp (4 / (N0 : ℝ) ^ 2) *
@@ -85,6 +96,9 @@ theorem CLean_eq_paper_formula :
     rw [Nat.mul_comm]
   rw [hexp, hsum]
 
+/--
+@isnad1 id=le.0h0v.s6.a232e9fe56e7 from=translated src=- shape=11d2931b vocab=7bcec7e1
+-/
 theorem one_le_CLean_sum :
     (1 : ℝ) ≤
       ∑ j ∈ Finset.range N0,
@@ -102,13 +116,18 @@ theorem one_le_CLean_sum :
     simp [f]
   simpa [f, hf0] using hsingle
 
+/--
+@isnad1 id=lt.0h0v.s3.8a58157a18f8 from=translated src=- shape=ff3a10fc vocab=81d00ac7
+-/
 theorem CLean_pos : 0 < CLean := by
   rw [CLean_eq_paper_formula]
   exact mul_pos (Real.exp_pos _)
     (lt_of_lt_of_le zero_lt_one one_le_CLean_sum)
 
 /-- There is always at least one solvable distribution on `Q_n`: put one pebble
-on every vertex. -/
+on every vertex.
+@isnad1 id=ex.0h1v.s5.fe7fe9674c91 from=translated src=- shape=bf91e6c9 vocab=54642466
+-/
 theorem exists_solvable_size (n : ℕ) :
     ∃ k : ℕ, HasSolvableSize (graph n) k := by
   refine ⟨2 ^ n, ?_⟩
@@ -124,12 +143,18 @@ noncomputable def optimalPebblingNumber (n : ℕ) : ℕ :=
     classical
     exact Nat.find (exists_solvable_size n)
 
+/--
+@isnad1 id=hassolva.0h1v.s5.d56e9c3aa780 from=translated src=- shape=ca92e646 vocab=14787ec4
+-/
 theorem optimalPebblingNumber_hasSolvableSize (n : ℕ) :
     HasSolvableSize (graph n) (optimalPebblingNumber n) := by
   classical
   simpa [optimalPebblingNumber] using
     Nat.find_spec (exists_solvable_size n)
 
+/--
+@isnad1 id=isoptima.0h1v.s5.70ead626be32 from=translated src=- shape=ca92e646 vocab=a1301fb4
+-/
 theorem isOptimalNumber_optimalPebblingNumber (n : ℕ) :
     IsOptimalNumber (graph n) (optimalPebblingNumber n) := by
   classical
@@ -139,13 +164,17 @@ theorem isOptimalNumber_optimalPebblingNumber (n : ℕ) :
     simpa [optimalPebblingNumber] using
       Nat.find_min (exists_solvable_size n) hl
 
-/-- Paper lower bound: `o(Q_n) ≥ (4/3)^n`. -/
+/-- Paper lower bound: `o(Q_n) ≥ (4/3)^n`.
+@isnad1 id=le.0h1v.s5.eda301d74ee4 from=translated src=- shape=cd8f9070 vocab=554fa330
+-/
 theorem lower_bound (n : ℕ) :
     ((4 : ℚ) / 3) ^ n ≤ (optimalPebblingNumber n : ℚ) :=
   lower_bound_of_isOptimalNumber
     (isOptimalNumber_optimalPebblingNumber n)
 
-/-- Real-valued form of the paper lower bound. -/
+/-- Real-valued form of the paper lower bound.
+@isnad1 id=le.0h1v.s5.05ed4a4d0554 from=translated src=- shape=cd8f9070 vocab=35f6052d
+-/
 theorem lower_bound_real (n : ℕ) :
     ((4 : ℝ) / 3) ^ n ≤ (optimalPebblingNumber n : ℝ) := by
   have hcast :
@@ -154,7 +183,9 @@ theorem lower_bound_real (n : ℕ) :
     exact_mod_cast lower_bound n
   simpa using hcast
 
-/-- Paper upper bound with the explicit Lean constant. -/
+/-- Paper upper bound with the explicit Lean constant.
+@isnad1 id=le.0h1v.s5.5ccf10c02fb9 from=translated src=- shape=f8502796 vocab=4c520278
+-/
 theorem upper_bound (n : ℕ) :
     (optimalPebblingNumber n : ℝ) ≤
       CLean * (((4 : ℝ) / 3) ^ n) := by
@@ -163,7 +194,9 @@ theorem upper_bound (n : ℕ) :
       (isOptimalNumber_optimalPebblingNumber n)
 
 /-- The two inequalities in the final theorem, stated directly for
-`optimalPebblingNumber`. -/
+`optimalPebblingNumber`.
+@isnad1 id=and.0h1v.s6.966036a7f9ae from=translated src=- shape=5374a70d vocab=4c520278
+-/
 theorem bounds (n : ℕ) :
     ((4 : ℝ) / 3) ^ n ≤ (optimalPebblingNumber n : ℝ) ∧
       (optimalPebblingNumber n : ℝ) ≤
@@ -171,7 +204,9 @@ theorem bounds (n : ℕ) :
   ⟨lower_bound_real n, upper_bound n⟩
 
 /-- Paper conclusion: the optimal pebbling number of the hypercube has order
-`(4/3)^n`.  This is stated as an explicit two-sided big-Theta witness. -/
+`(4/3)^n`.  This is stated as an explicit two-sided big-Theta witness.
+@isnad1 id=ex.0h0v.s6.001de1ad2a3f from=translated src=- shape=d7c24920 vocab=279657ea
+-/
 theorem optimalPebblingNumber_theta :
     ∃ C : ℝ, 0 < C ∧
       ∀ n : ℕ,

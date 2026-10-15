@@ -57,7 +57,9 @@ namespace Nivat.TwoFactors
 
 /-- The word complexity of any row is bounded by the configuration's horizontal-edge complexity,
 which counts translations on all rows. Theorem 5.1 (`thm:twofactor`), one-row case using
-Corollary 5.3 (`cor:morse`). -/
+Corollary 5.3 (`cor:morse`).
+@isnad1 id=le.1h4v.s5.bf0b7689d813 from=translated src=- shape=dc3620b6 vocab=e3c3d9d3
+-/
 theorem wordComplexity_row_le {A : Type*} (c : Configuration A) (hc : FiniteRange c)
     (e : ℕ) (j : ℤ) :
     wordComplexity (fun i : ℤ => c (i, j)) e ≤ complexity c (rowPrefix e) := by
@@ -74,7 +76,9 @@ theorem wordComplexity_row_le {A : Type*} (c : Configuration A) (hc : FiniteRang
 
 /-- In the one-row case of Theorem 5.1 (`thm:twofactor`), Corollary 5.3
 bounds every row period by the edge length, so its factorial is a period of
-all rows simultaneously. -/
+all rows simultaneously.
+@isnad1 id=isperiod.3h3v.s5.458977cfd846 from=translated src=- shape=dfad61c0 vocab=8ee9bab8
+-/
 theorem isPeriod_factorial_of_lowcomplex_rowPrefix {A : Type*} (c : Configuration A)
     (hc : FiniteRange c) (e : ℕ) (he : 0 < e)
     (hlow : complexity c (rowPrefix e) ≤ e) :
@@ -90,7 +94,9 @@ theorem isPeriod_factorial_of_lowcomplex_rowPrefix {A : Type*} (c : Configuratio
   simpa only [Prod.mk_add_mk, add_zero, hk, Nat.cast_mul, mul_comm] using h
 
 /-- Reversing the transverse direction preserves the mixed-difference identity, by commutation
-and negation of a period. Theorem 5.1 (`thm:twofactor`). -/
+and negation of a period. Theorem 5.1 (`thm:twofactor`).
+@isnad1 id=eq.1h4v.s6.df3174b2da23 from=translated src=- shape=c7a78927 vocab=866108db
+-/
 theorem mixed_difference_neg_right {A : Type*} [AddCommGroup A]
     (c : Configuration A) (h t : Lattice) (hmix : difference h (difference t c) = 0) :
     difference h (difference (-t) c) = 0 := by
@@ -105,7 +111,9 @@ end Nivat.TwoFactors
 namespace Nivat
 
 /-- Difference operators distribute over sums, the algebraic observation after
-Theorem 5.1 (`thm:twofactor`) that gives the two-periodic-summand corollary. -/
+Theorem 5.1 (`thm:twofactor`) that gives the two-periodic-summand corollary.
+@isnad1 id=eq.0h4v.s6.8950d82f96b0 from=translated src=- shape=57204a64 vocab=0d61b25c
+-/
 theorem difference_add {A : Type*} [AddCommGroup A] (h : Lattice)
     (a b : Configuration A) : difference h (a + b) = difference h a + difference h b := by
   funext z

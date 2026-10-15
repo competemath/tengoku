@@ -30,6 +30,9 @@ noncomputable section
 
 namespace PLAcceleratedNesterovLean
 
+/--
+@isnad1 id=differen.1h1v.s6.fc2e4f372f7b from=translated src=- shape=c21726d2 vocab=98bfec93
+-/
 lemma differentiable_deriv_of_contDiff2 {φ : ℝ → ℝ} (hφ : ContDiff ℝ 2 φ) :
     Differentiable ℝ (deriv φ) := by
   have hfderiv_C1 : ContDiff ℝ 1 (fderiv ℝ φ) :=
@@ -40,10 +43,16 @@ lemma differentiable_deriv_of_contDiff2 {φ : ℝ → ℝ} (hφ : ContDiff ℝ 2
     ext x; exact fderiv_apply_one_eq_deriv.symm
   rw [h2]; exact h1.differentiable (by norm_num)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.36a28bccd28f from=translated src=- shape=c1400f8b vocab=60c3c6f6
+-/
 lemma hasDerivAt_const_mul_id (c x : ℝ) : HasDerivAt (fun t => c * t) c x := by
   have h := (hasDerivAt_id x).const_mul c
   simp only [mul_one] at h; exact h
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.ad88445b9fda from=translated src=- shape=7d0150eb vocab=d7450735
+-/
 lemma hasDerivAt_quad (c x : ℝ) :
     HasDerivAt (fun t => c / 2 * t ^ 2) (c * x) x := by
   have h1 : HasDerivAt (fun t : ℝ => t * t) (1 * x + x * 1) x :=
@@ -54,16 +63,24 @@ lemma hasDerivAt_quad (c x : ℝ) :
   have : c / 2 * (1 * x + x * 1) = c * x := by ring
   rwa [this] at h3
 
+/--
+@isnad1 id=differen.0h0v.s6.c7e556953406 from=translated src=- shape=f98f5ecc vocab=dec0160b
+-/
 lemma differentiable_sq : Differentiable ℝ (fun (t : ℝ) => t ^ 2) := by
   simp_all
 
+/--
+@isnad1 id=continuo.0h0v.s5.ea7eb3427ba0 from=translated src=- shape=2f3558bb vocab=a53b02ca
+-/
 lemma continuous_sq : Continuous (fun (t : ℝ) => t ^ 2) := by
   have : (fun t : ℝ => t ^ 2) = (fun t => t * t) := by ext; ring
   rw [this]; exact continuous_id.mul continuous_id
 
 /-- If φ''(t) ≥ c for all t ∈ [0,1] and φ'(0) = 0, then φ(1) - φ(0) ≥ c/2.
     (Quadratic growth from Hessian lower bound.)
-    Localized version: only requires ContinuousOn/DifferentiableOn on [0,1]. -/
+    Localized version: only requires ContinuousOn/DifferentiableOn on [0,1].
+@isnad1 id=le.6h2v.s8.442955a55e6f from=translated src=- shape=5851a829 vocab=97096591
+-/
 theorem quadratic_growth_from_hessian (φ : ℝ → ℝ) (c : ℝ)
     (hφ_cont : ContinuousOn φ (Set.Icc 0 1))
     (hφ_diff : DifferentiableOn ℝ φ (Set.Ioo 0 1))
@@ -122,7 +139,9 @@ theorem quadratic_growth_from_hessian (φ : ℝ → ℝ) (c : ℝ)
 
 /-- If φ''(t) ≥ c for all t ∈ [0,1] and φ'(0) = 0, then φ'(1) ≥ φ(1) - φ(0) + c/2.
     (Strong aiming from integration by parts.)
-    Localized version: only requires ContinuousOn/DifferentiableOn on [0,1]. -/
+    Localized version: only requires ContinuousOn/DifferentiableOn on [0,1].
+@isnad1 id=le.6h2v.s8.725bb8c07927 from=translated src=- shape=6d3d2e37 vocab=19269c34
+-/
 theorem strong_aiming_from_hessian (φ : ℝ → ℝ) (c : ℝ)
     (hφ_cont : ContinuousOn φ (Set.Icc 0 1))
     (hφ_diff : DifferentiableOn ℝ φ (Set.Ioo 0 1))
@@ -182,7 +201,9 @@ theorem strong_aiming_from_hessian (φ : ℝ → ℝ) (c : ℝ)
   simp only [ψ] at h
   linarith [hψ0]
 
-/-- The fiber function φ(t) = f(m + t·e) has φ'(t) = ⟨∇f(m+te), e⟩. -/
+/-- The fiber function φ(t) = f(m + t·e) has φ'(t) = ⟨∇f(m+te), e⟩.
+@isnad1 id=eq.1h5v.s9.b612e03fdd8d from=translated src=- shape=7d448001 vocab=b27fcee4
+-/
 theorem fiber_deriv {d : ℕ} (f : E d → ℝ) (m e : E d)
     (hf : Differentiable ℝ f) :
     ∀ t : ℝ, deriv (fun (s : ℝ) => f (m + s • e)) t =

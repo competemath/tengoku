@@ -37,7 +37,9 @@ noncomputable def resonantPerturbationActionPoisson
     (orientedResonantKeplerPhasePoint p q eccentricity orientation time)
 
 /-- Varying the inertial orientation at fixed time follows the angular-action Hamiltonian vector
-field on the full resonant phase trajectory. -/
+field on the full resonant phase trajectory.
+@isnad1 id=hasderiv.2h5v.s7.0d45c5407a94 from=translated src=- shape=e7e9fca4 vocab=0ef889a1
+-/
 theorem hasDerivAt_orientedResonantKeplerPhasePoint_orientation
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (eccentricity orientation time : ℝ) :
@@ -69,7 +71,9 @@ theorem hasDerivAt_orientedResonantKeplerPhasePoint_orientation
     (Filter.Eventually.of_forall fun phase ↦ (congrFun hcurve phase).symm)
 
 /-- The first mass perturbation is differentiable at every collision-free point of an interior
-resonant ellipse. -/
+resonant ellipse.
+@isnad1 id=differen.5h5v.s7.6f697147c24b from=translated src=- shape=e4c14b91 vocab=98fe7ccd
+-/
 theorem differentiableAt_firstMassPerturbation_orientedResonantKeplerPhasePoint
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -89,7 +93,9 @@ theorem differentiableAt_firstMassPerturbation_orientedResonantKeplerPhasePoint
       (by norm_num)
 
 /-- The angular component of the perturbation action vector is the explicit orientation
-derivative used in the disturbing average. -/
+derivative used in the disturbing average.
+@isnad1 id=eq.5h5v.s7.68304d734976 from=translated src=- shape=fe4fc206 vocab=a16c4737
+-/
 theorem resonantPerturbationActionPoisson_one
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -135,7 +141,9 @@ theorem resonantPerturbationActionPoisson_one
   exact hchainDisturbing.unique hexplicit
 
 /-- Along the unperturbed resonant flow, the time derivative of the disturbing function is the
-Kepler frequency contracted with the perturbation action Poisson vector. -/
+Kepler frequency contracted with the perturbation action Poisson vector.
+@isnad1 id=hasderiv.5h5v.s7.934a50b027ef from=translated src=- shape=e42dddca vocab=52dd3673
+-/
 theorem hasDerivAt_resonantDisturbingFunction_time_actionPoisson
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -194,7 +202,9 @@ theorem hasDerivAt_resonantDisturbingFunction_time_actionPoisson
   exact htimeFrequency
 
 /-- The candidate forcing is the negative contraction of its leading action differential with
-the perturbation action Poisson vector. -/
+the perturbation action Poisson vector.
+@isnad1 id=eq.8h7v.s7.5e850b511661 from=translated src=- shape=5af8a926 vocab=85dddfaa
+-/
 theorem IsFirstIntegralFamily.resonantCandidateForcing_eq_neg_dot_actionPoisson
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -269,7 +279,9 @@ noncomputable def resonantCombinedCorrectionDerivative
       (parameterCoefficient (Function.uncurry F)) (hamiltonian 0)
       (orientedResonantKeplerPhasePoint p q eccentricity orientation time)
 
-/-- The combined correction has the displayed derivative. -/
+/-- The combined correction has the displayed derivative.
+@isnad1 id=hasderiv.7h7v.s7.c41d323a2710 from=translated src=- shape=ae154f2b vocab=de3b2547
+-/
 theorem IsJointlyAnalytic.hasDerivAt_resonantCombinedCorrection
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -291,7 +303,9 @@ theorem IsJointlyAnalytic.hasDerivAt_resonantCombinedCorrection
   have hsecond := hcorrection.const_mul (q : ℝ)
   exact hfirst.sub hsecond
 
-/-- The derivative of the combined correction is continuous, hence interval integrable. -/
+/-- The derivative of the combined correction is continuous, hence interval integrable.
+@isnad1 id=continuo.7h6v.s7.8534019eaba6 from=translated src=- shape=fbec64a0 vocab=b2e90fd1
+-/
 theorem continuous_resonantCombinedCorrectionDerivative
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -317,7 +331,9 @@ theorem continuous_resonantCombinedCorrectionDerivative
   unfold resonantCombinedCorrectionDerivative
   fun_prop
 
-/-- The combined correction inherits the common resonant period. -/
+/-- The combined correction inherits the common resonant period.
+@isnad1 id=eq.3h5v.s6.2b0a4e3c93f4 from=translated src=- shape=b6864faa vocab=7574da29
+-/
 lemma resonantCombinedCorrection_periodic
     (F : ℝ → PhaseSpace → ℝ) {p q : ℕ} (hp : 0 < p)
     {eccentricity orientation : ℝ} (heccentricity : 0 ≤ eccentricity)
@@ -331,7 +347,9 @@ lemma resonantCombinedCorrection_periodic
   rw [resonantCandidateCorrection_periodic F hp heccentricity heccentricityOne]
 
 /-- The exact homological equation, after combining its time-derivative part with the perturbation
-time derivative, has coefficient `k · d f₀` multiplying the orientation forcing. -/
+time derivative, has coefficient `k · d f₀` multiplying the orientation forcing.
+@isnad1 id=eq.8h7v.s7.f5f8d02f33b1 from=translated src=- shape=73ea7fcb vocab=aeb1d810
+-/
 theorem IsFirstIntegralFamily.resonantCombinedHomologicalEquation
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -385,7 +403,9 @@ theorem IsFirstIntegralFamily.resonantCombinedHomologicalEquation
   linear_combination -(q : ℝ) * hhomological
 
 /-- A nonzero derivative of Poincaré's disturbing average forces the leading action differential
-to annihilate the integer resonance vector. -/
+to annihilate the integer resonance vector.
+@isnad1 id=eq.9h6v.s7.2ac9233d2d1b from=translated src=- shape=0bb46805 vocab=b796a0fe
+-/
 theorem IsFirstIntegralFamily.resonantLeadingDifferential_orthogonal
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -418,7 +438,9 @@ theorem IsFirstIntegralFamily.resonantLeadingDifferential_orthogonal
       hδ hanalytic hfirstIntegral hp hq heccentricity heccentricityOne hapoapsis
 
 /-- A nonzero derivative of Poincaré's disturbing average forces dependence of the Hamiltonian
-and leading-integral differentials at that resonant action. -/
+and leading-integral differentials at that resonant action.
+@isnad1 id=not.9h6v.s7.d057e1d1e07f from=translated src=- shape=af58f97d vocab=981f8caa
+-/
 theorem IsFirstIntegralFamily.resonantLeadingDifferential_obstruction
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)

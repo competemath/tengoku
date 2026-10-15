@@ -26,12 +26,18 @@ namespace NumberField.Odlyzko
 def finiteSetAvoidanceRadiusOnLength (L : ℝ) (S : Finset ℝ) : ℝ :=
   L / (4 * (S.card + 1))
 
+/--
+@isnad1 id=lt.1h2v.s4.0a82f65ad14a from=translated src=- shape=b38bba07 vocab=00d9b0ac
+-/
 theorem finiteSetAvoidanceRadiusOnLength_pos {L : ℝ} (hL : 0 < L)
     (S : Finset ℝ) :
     0 < finiteSetAvoidanceRadiusOnLength L S := by
   unfold finiteSetAvoidanceRadiusOnLength
   positivity
 
+/--
+@isnad1 id=ex.1h3v.s6.863a488b79c4 from=translated src=- shape=e695d0ad vocab=5f673e6b
+-/
 theorem exists_mem_Ioo_abs_sub_ge_finiteSetAvoidanceRadiusOnLength
     (S : Finset ℝ) (A : ℝ) {L : ℝ} (hL : 0 < L) :
     ∃ T ∈ Ioo A (A + L), ∀ u ∈ S,

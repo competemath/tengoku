@@ -31,6 +31,9 @@ namespace NumberField.Odlyzko
 noncomputable def tartarAmplitudeSecondDerivativeIntegrand (x t : ℝ) : ℝ :=
   -(t ^ 2) * Tartar.weight t * Real.cos (x * t)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.5b4497b29cb7 from=translated src=- shape=04d1a23c vocab=cfdc38d3
+-/
 theorem hasDerivAt_tartarAmplitudeDerivativeIntegrand (x t : ℝ) :
     HasDerivAt (fun z : ℝ ↦ tartarAmplitudeDerivativeIntegrand z t)
       (tartarAmplitudeSecondDerivativeIntegrand x t) x := by
@@ -40,12 +43,18 @@ theorem hasDerivAt_tartarAmplitudeDerivativeIntegrand (x t : ℝ) :
     (-t * Tartar.weight t))
   grind
 
+/--
+@isnad1 id=integrab.0h0v.s5.6da050446ed7 from=translated src=- shape=9c4389d5 vocab=b5314ede
+-/
 theorem sq_mul_tartarWeight_integrable :
     Integrable (fun t : ℝ ↦ t ^ 2 * Tartar.weight t) := by
   apply Continuous.integrable_of_hasCompactSupport
   · exact (continuous_id.pow 2).mul tartarWeight_continuous
   · exact tartarWeight_hasCompactSupport.mul_left
 
+/--
+@isnad1 id=le.0h2v.s5.6d6952990923 from=translated src=- shape=a50b8258 vocab=8f653d95
+-/
 theorem norm_tartarAmplitudeSecondDerivativeIntegrand_le (x t : ℝ) :
     ‖tartarAmplitudeSecondDerivativeIntegrand x t‖ ≤
       t ^ 2 * Tartar.weight t := by
@@ -56,6 +65,9 @@ theorem norm_tartarAmplitudeSecondDerivativeIntegrand_le (x t : ℝ) :
     mul_le_mul_of_nonneg_left (Real.abs_cos_le_one (x * t))
       (mul_nonneg (sq_nonneg t) (tartarWeight_nonneg t))
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.c23e068f19d1 from=translated src=- shape=d90429ec vocab=513f9b5d
+-/
 theorem hasDerivAt_integral_tartarAmplitudeDerivativeIntegrand (x : ℝ) :
     HasDerivAt
       (fun z : ℝ ↦ ∫ t : ℝ, tartarAmplitudeDerivativeIntegrand z t)
@@ -101,6 +113,9 @@ noncomputable def tartarAmplitudeSecondDerivative (x : ℝ) : ℝ :=
   (3 / 4 : ℝ) *
     ∫ t : ℝ, tartarAmplitudeSecondDerivativeIntegrand x t
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.cc4c3f764442 from=translated src=- shape=93b49b0d vocab=f2cb005e
+-/
 theorem hasDerivAt_deriv_tartarAmplitude (x : ℝ) :
     HasDerivAt (deriv Tartar.amplitude)
       (tartarAmplitudeSecondDerivative x) x := by
@@ -111,6 +126,9 @@ theorem hasDerivAt_deriv_tartarAmplitude (x : ℝ) :
     exact deriv_tartarAmplitude z]
   exact (hasDerivAt_integral_tartarAmplitudeDerivativeIntegrand x).const_mul _
 
+/--
+@isnad1 id=le.0h1v.s6.dd20b53667a4 from=translated src=- shape=d465667e vocab=71e12db3
+-/
 theorem abs_tartarAmplitudeSecondDerivative_le (x : ℝ) :
     |tartarAmplitudeSecondDerivative x| ≤
       (3 / 4 : ℝ) * ∫ t : ℝ, t ^ 2 * Tartar.weight t := by
@@ -126,6 +144,9 @@ noncomputable def tartarTestFunctionSecondDerivativeBound : ℝ :=
   2 * tartarAmplitudeDerivativeBound ^ 2 +
     2 * ((3 / 4 : ℝ) * ∫ t : ℝ, t ^ 2 * Tartar.weight t)
 
+/--
+@isnad1 id=le.0h0v.s3.2488eaa86fd6 from=translated src=- shape=ff3a10fc vocab=695506c9
+-/
 theorem tartarTestFunctionSecondDerivativeBound_nonneg :
     0 ≤ tartarTestFunctionSecondDerivativeBound := by
   unfold tartarTestFunctionSecondDerivativeBound
@@ -139,6 +160,9 @@ noncomputable def tartarTestFunctionSecondDerivative (x : ℝ) : ℝ :=
   2 * deriv Tartar.amplitude x ^ 2 +
     2 * Tartar.amplitude x * tartarAmplitudeSecondDerivative x
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.c27cc1ac5ff0 from=translated src=- shape=93b49b0d vocab=053fa4dc
+-/
 theorem hasDerivAt_deriv_tartarTestFunction (x : ℝ) :
     HasDerivAt (deriv Tartar.testFunction)
       (tartarTestFunctionSecondDerivative x) x := by
@@ -156,6 +180,9 @@ theorem hasDerivAt_deriv_tartarTestFunction (x : ℝ) :
     (Filter.Eventually.of_forall fun z ↦ rfl)).congr_deriv ?_
   ring
 
+/--
+@isnad1 id=le.0h1v.s3.511c6a88f110 from=translated src=- shape=6ab1a693 vocab=c44ea25f
+-/
 theorem abs_tartarTestFunctionSecondDerivative_le (x : ℝ) :
     |tartarTestFunctionSecondDerivative x| ≤
       tartarTestFunctionSecondDerivativeBound := by
@@ -194,6 +221,9 @@ open Complex
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.0h1v.s3.6fe6b8ef2c61 from=translated src=- shape=f5f172d0 vocab=ae51cccb
+-/
 theorem abs_sinh_le_cosh (x : ℝ) :
     |Real.sinh x| ≤ Real.cosh x := by
   have hid := Real.cosh_sq_sub_sinh_sq x
@@ -208,6 +238,9 @@ noncomputable def poitouKernelDerivative
   f' x / Real.cosh (x / 2) -
     f x * Real.sinh (x / 2) / (2 * Real.cosh (x / 2) ^ 2)
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.a442e0a48ed8 from=translated src=- shape=0129bbe3 vocab=4636ecc8
+-/
 theorem hasDerivAt_poitouKernel
     {f f' : ℝ → ℝ} (hf : ∀ x, HasDerivAt f (f' x) x) (x : ℝ) :
     HasDerivAt (poitouKernel f)
@@ -222,6 +255,9 @@ theorem hasDerivAt_poitouKernel
   exact h.congr_deriv (by
     grind)
 
+/--
+@isnad1 id=le.0h3v.s5.0e4a07dc411d from=translated src=- shape=e57bfb21 vocab=1527916f
+-/
 theorem abs_poitouKernelDerivative_le
     (f f' : ℝ → ℝ) (x : ℝ) :
     |poitouKernelDerivative f f' x| ≤ |f' x| + |f x| / 2 := by
@@ -273,6 +309,9 @@ noncomputable def poitouVerticalProfileDerivative
     (poitouKernel f x : ℂ) *
       ((σ - 1 / 2) * Complex.exp ((σ - 1 / 2) * x))
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.79c90d7215b6 from=translated src=- shape=7ee73a86 vocab=0e09fee5
+-/
 theorem hasDerivAt_poitouVerticalProfile
     {f f' : ℝ → ℝ} (hf : ∀ x, HasDerivAt f (f' x) x)
     (σ x : ℝ) :
@@ -302,6 +341,9 @@ open Complex MeasureTheory Real
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.0h3v.s5.68555a021154 from=translated src=- shape=85736b0d vocab=7d6b5212
+-/
 theorem abs_regularizedScaledTartar_le_gaussian
     (y δ x : ℝ) :
     |regularizedScaledTartar y δ x| ≤ Real.exp (-δ * x ^ 2) := by
@@ -310,6 +352,9 @@ theorem abs_regularizedScaledTartar_le_gaussian
   exact mul_le_of_le_one_left (Real.exp_pos _).le
     (tartarTestFunction_le_one _)
 
+/--
+@isnad1 id=le.0h3v.s5.480f909fc4c4 from=translated src=- shape=4a63b00f vocab=0e870a7f
+-/
 theorem abs_poitouKernel_regularizedScaledTartar_le_gaussian
     (y δ x : ℝ) :
     |poitouKernel (regularizedScaledTartar y δ) x| ≤
@@ -322,6 +367,9 @@ theorem abs_poitouKernel_regularizedScaledTartar_le_gaussian
           (Real.one_le_cosh (x / 2))
           (Real.exp_pos (-δ * x ^ 2)).le))
 
+/--
+@isnad1 id=le.1h4v.s8.ba7b4643c577 from=translated src=- shape=5d1847e5 vocab=b2ca9096
+-/
 theorem norm_poitouVerticalProfileDerivative_regularized_le
     {δ : ℝ} (hδ : 0 < δ) (y σ x : ℝ) :
     ‖poitouVerticalProfileDerivative
@@ -424,6 +472,9 @@ theorem norm_poitouVerticalProfileDerivative_regularized_le
       exact exp_neg_mul_sq_add_mul_le hδ a x
     _ = _ := by grind
 
+/--
+@isnad1 id=integrab.1h3v.s5.5b366bd6f3d8 from=translated src=- shape=abbdcafc vocab=c188944e
+-/
 theorem poitouVerticalProfileDerivative_regularized_integrable
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Integrable
@@ -493,6 +544,9 @@ noncomputable def regularizedPoitouVerticalProfile
   (poitouKernel (regularizedScaledTartar y δ) x : ℂ) *
     Complex.exp ((σ - 1 / 2) * x)
 
+/--
+@isnad1 id=integrab.1h3v.s5.4aa436e6ea56 from=translated src=- shape=0ec90c44 vocab=05c2f5bc
+-/
 theorem regularizedPoitouVerticalProfile_integrable
     {y δ : ℝ} (hδ : 0 < δ) (σ : ℝ) :
     Integrable (regularizedPoitouVerticalProfile y δ σ) := by
@@ -500,6 +554,9 @@ theorem regularizedPoitouVerticalProfile_integrable
     hδ (σ : ℂ)).congr (ae_of_all _ fun x ↦
       (by rw [regularizedPoitouVerticalProfile, poitouTransformIntegrand]))
 
+/--
+@isnad1 id=eq.0h4v.s6.5bf84d155ba6 from=translated src=- shape=4872ce4c vocab=c8fc3da1
+-/
 theorem poitouTransform_regularizedScaledTartar_eq_fourier
     (y δ σ t : ℝ) :
     poitouTransform (regularizedScaledTartar y δ) (σ + t * I) =
@@ -532,6 +589,9 @@ open scoped FourierTransform Real
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=differen.0h3v.s6.42ef0cad7304 from=translated src=- shape=e865e451 vocab=b1e0d1ad
+-/
 theorem differentiable_regularizedPoitouVerticalProfile
     (y δ σ : ℝ) :
     Differentiable ℝ (regularizedPoitouVerticalProfile y δ σ) := by
@@ -540,6 +600,9 @@ theorem differentiable_regularizedPoitouVerticalProfile
   exact (hasDerivAt_poitouVerticalProfile
     (hasDerivAt_regularizedScaledTartar y δ) σ x).differentiableAt
 
+/--
+@isnad1 id=eq.0h4v.s6.7286706a7a7e from=translated src=- shape=08b6672b vocab=309cd992
+-/
 theorem deriv_regularizedPoitouVerticalProfile
     (y δ σ x : ℝ) :
     deriv (regularizedPoitouVerticalProfile y δ σ) x =
@@ -550,6 +613,9 @@ theorem deriv_regularizedPoitouVerticalProfile
   exact (hasDerivAt_poitouVerticalProfile
     (hasDerivAt_regularizedScaledTartar y δ) σ x).deriv
 
+/--
+@isnad1 id=eq.1h4v.s7.9db6b062385d from=translated src=- shape=090e59fb vocab=42e617df
+-/
 theorem fourier_poitouVerticalProfileDerivative_regularized
     {δ : ℝ} (hδ : 0 < δ) (y σ w : ℝ) :
     𝓕 (poitouVerticalProfileDerivative
@@ -595,6 +661,9 @@ noncomputable def poitouKernelSecondDerivative
     f x * Real.sinh (x / 2) ^ 2 /
       (2 * Real.cosh (x / 2) ^ 3)
 
+/--
+@isnad1 id=hasderiv.2h4v.s6.3917e8e0e150 from=translated src=- shape=3277a8c5 vocab=92b70516
+-/
 theorem hasDerivAt_poitouKernelDerivative
     {f f' f'' : ℝ → ℝ}
     (hf : ∀ x, HasDerivAt f (f' x) x)
@@ -640,6 +709,9 @@ theorem hasDerivAt_poitouKernelDerivative
     ring
   grind
 
+/--
+@isnad1 id=le.0h4v.s6.57dfc839c4fa from=translated src=- shape=f4f5c73e vocab=dd6de332
+-/
 theorem abs_poitouKernelSecondDerivative_le
     (f f' f'' : ℝ → ℝ) (x : ℝ) :
     |poitouKernelSecondDerivative f f' f'' x| ≤
@@ -706,6 +778,9 @@ noncomputable def poitouVerticalProfileSecondDerivative
     (σ - 1 / 2) ^ 2 * (poitouKernel f x : ℂ) *
       Complex.exp ((σ - 1 / 2) * x)
 
+/--
+@isnad1 id=hasderiv.2h5v.s7.2ce9d1ec5374 from=translated src=- shape=bc532a68 vocab=6ad4ffef
+-/
 theorem hasDerivAt_poitouVerticalProfileDerivative
     {f f' f'' : ℝ → ℝ}
     (hf : ∀ x, HasDerivAt f (f' x) x)
@@ -778,6 +853,9 @@ private theorem hasDerivAt_scaledTartarTestFunctionDerivative (y x : ℝ) :
     ((hasDerivAt_id x).const_mul y)
   exact h.const_mul y |>.congr_deriv (by ring)
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.e4f23ef36ff4 from=translated src=- shape=fef50917 vocab=29ab7dea
+-/
 theorem hasDerivAt_regularizedScaledTartarDerivative (y δ x : ℝ) :
     HasDerivAt (regularizedScaledTartarDerivative y δ)
       (regularizedScaledTartarSecondDerivative y δ x) x := by
@@ -812,6 +890,9 @@ theorem hasDerivAt_regularizedScaledTartarDerivative (y δ x : ℝ) :
   dsimp [f, f', g] at hprod
   exact hprod.congr_deriv (by ring)
 
+/--
+@isnad1 id=le.1h3v.s7.705d8fa6622a from=translated src=- shape=7f67048c vocab=042cf401
+-/
 theorem abs_regularizedScaledTartarSecondDerivative_le
     {δ : ℝ} (hδ : 0 ≤ δ) (y x : ℝ) :
     |regularizedScaledTartarSecondDerivative y δ x| ≤
@@ -875,6 +956,9 @@ open Complex MeasureTheory Real
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.a73341273ae5 from=translated src=- shape=2d4fc295 vocab=636da4f6
+-/
 theorem hasDerivAt_regularizedPoitouVerticalProfileDerivative
     (y δ σ x : ℝ) :
     HasDerivAt
@@ -889,6 +973,9 @@ theorem hasDerivAt_regularizedPoitouVerticalProfileDerivative
     (hasDerivAt_regularizedScaledTartar y δ)
     (hasDerivAt_regularizedScaledTartarDerivative y δ) σ x
 
+/--
+@isnad1 id=differen.0h3v.s6.cacab541d6ed from=translated src=- shape=88f690fe vocab=223d4832
+-/
 theorem differentiable_regularizedPoitouVerticalProfileDerivative
     (y δ σ : ℝ) :
     Differentiable ℝ
@@ -899,6 +986,9 @@ theorem differentiable_regularizedPoitouVerticalProfileDerivative
     (hasDerivAt_regularizedPoitouVerticalProfileDerivative
       y δ σ x).differentiableAt
 
+/--
+@isnad1 id=eq.0h4v.s6.dda74bf5373d from=translated src=- shape=fc2a3e9e vocab=a0484292
+-/
 theorem deriv_regularizedPoitouVerticalProfileDerivative
     (y δ σ x : ℝ) :
     deriv
@@ -912,6 +1002,9 @@ theorem deriv_regularizedPoitouVerticalProfileDerivative
   (hasDerivAt_regularizedPoitouVerticalProfileDerivative
     y δ σ x).deriv
 
+/--
+@isnad1 id=integrab.1h4v.s7.7b2c4fc0999f from=translated src=- shape=b718a72a vocab=213adc0f
+-/
 theorem integrable_quadratic_abs_mul_exp_neg_mul_sq
     {b : ℝ} (hb : 0 < b) (A B C : ℝ) :
     Integrable (fun x : ℝ ↦
@@ -937,6 +1030,9 @@ theorem integrable_quadratic_abs_mul_exp_neg_mul_sq
       simp only [Pi.add_apply]
       ring)
 
+/--
+@isnad1 id=le.1h4v.s9.c9706d91e66f from=translated src=- shape=90e57533 vocab=d09dd437
+-/
 theorem norm_poitouVerticalProfileSecondDerivative_regularized_le
     {δ : ℝ} (hδ : 0 < δ) (y σ x : ℝ) :
     ‖poitouVerticalProfileSecondDerivative
@@ -1129,6 +1225,9 @@ theorem norm_poitouVerticalProfileSecondDerivative_regularized_le
           (exp_neg_mul_sq_add_mul_le hδ a x) hP
     _ = _ := by grind
 
+/--
+@isnad1 id=integrab.1h3v.s6.740179468f62 from=translated src=- shape=3d6255bf vocab=a003e076
+-/
 theorem poitouVerticalProfileSecondDerivative_regularized_integrable
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Integrable
@@ -1174,6 +1273,9 @@ open scoped FourierTransform Real
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h4v.s7.b2465904dade from=translated src=- shape=9c5e77a1 vocab=81a48b02
+-/
 theorem fourier_poitouVerticalProfileSecondDerivative_regularized
     {δ : ℝ} (hδ : 0 < δ) (y σ w : ℝ) :
     𝓕 (poitouVerticalProfileSecondDerivative
@@ -1206,6 +1308,9 @@ theorem fourier_poitouVerticalProfileSecondDerivative_regularized
             hδ y σ)) w
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s7.d0de45ff8956 from=translated src=- shape=87c246f2 vocab=32bc1d65
+-/
 theorem fourier_poitouVerticalProfileSecondDerivative_regularized_eq_sq
     {δ : ℝ} (hδ : 0 < δ) (y σ w : ℝ) :
     𝓕 (poitouVerticalProfileSecondDerivative
@@ -1219,6 +1324,9 @@ theorem fourier_poitouVerticalProfileSecondDerivative_regularized_eq_sq
   simp only [smul_smul]
   ring
 
+/--
+@isnad1 id=le.1h4v.s6.99eb7bfba111 from=translated src=- shape=19bd38eb vocab=3d109107
+-/
 theorem sq_abs_mul_norm_poitouTransform_regularized_le
     {δ : ℝ} (hδ : 0 < δ) (y σ t : ℝ) :
     |t| ^ 2 *

@@ -27,7 +27,9 @@ namespace PLAcceleratedNesterovLean
 variable {d : ℕ}
 
 /-- The Nesterov step satisfies hn = -η·gn + √η·ρ·(vn - √η·gn), so
-    ‖hn‖ ≤ η·‖gn‖ + √η·|ρ|·(‖vn‖ + √η·‖gn‖). -/
+    ‖hn‖ ≤ η·‖gn‖ + √η·|ρ|·(‖vn‖ + √η·‖gn‖).
+@isnad1 id=le.1h5v.s8.3e14f95e4ce6 from=translated src=- shape=a31f64f1 vocab=956cbe55
+-/
 theorem nesterov_step_bound (f : E d → ℝ) (η ρ : ℝ) (s : NesterovState d) (hη : 0 ≤ η) :
     ‖(nesterovStep f η ρ s).lookahead η - s.lookahead η‖ ≤
     η * ‖gradient f (s.lookahead η)‖ +
@@ -58,7 +60,9 @@ theorem nesterov_step_bound (f : E d → ℝ) (η ρ : ℝ) (s : NesterovState d
     _ = η * ‖gradient f (s.lookahead η)‖ +
         Real.sqrt η * |ρ| * (‖s.v‖ + Real.sqrt η * ‖gradient f (s.lookahead η)‖) := by ring
 
-/-- If Dπ(π x) kills (x - π x) and ‖Dπ(π x) - P‖ ≤ ε₁, then ‖P(x - π x)‖ ≤ ε₁·‖x - π x‖. -/
+/-- If Dπ(π x) kills (x - π x) and ‖Dπ(π x) - P‖ ≤ ε₁, then ‖P(x - π x)‖ ≤ ε₁·‖x - π x‖.
+@isnad1 id=le.2h5v.s12.fccac8b5f077 from=translated src=- shape=68c032bc vocab=7700df93
+-/
 theorem proj_normal_bound (P : E d →L[ℝ] E d) (π : E d → E d) (x : E d)
     (hkills : fderiv ℝ π (π x) (x - π x) = 0)
     (ε₁ : ℝ) (hDπ_close : ‖fderiv ℝ π (π x) - P‖ ≤ ε₁) :
@@ -82,7 +86,9 @@ conclude δ_curv + proj_err ≤ a/2 * Ln.
 The key algebraic steps are:
 - Young's inequality: sm·‖w‖·‖h‖ ≤ (sm²·‖w‖² + ‖h‖²)/2  (absorbs √μ')
 - ε₁² ≤ ε₁ (since ε₁ ≤ 1), so ‖ξ‖² ≤ ε₁·‖h‖²
-- Everything factors as ε₁ · K · Ln, and ε₁ · K ≤ a/2 by hypothesis -/
+- Everything factors as ε₁ · K · Ln, and ε₁ · K ≤ a/2 by hypothesis
+@isnad1 id=le.15h15v.s9.fb9979d34504 from=translated src=- shape=2cc764cd vocab=b8ab9dfe
+-/
 theorem curv_absorption_algebraic
     {E' : Type*} [NormedAddCommGroup E'] [InnerProductSpace ℝ E']
     (wn ξn gn Pen hn en : E') (sm sa Ln : ℝ)

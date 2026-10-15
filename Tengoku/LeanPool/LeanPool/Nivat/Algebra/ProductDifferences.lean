@@ -101,7 +101,9 @@ noncomputable def coefficientAct (f : AddMonoidAlgebra R Lattice)
     (c : Configuration R) : Configuration R := coefficientActionHom f c
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): the coefficient-ring
-action is the finite sum of coefficients times translated values. -/
+action is the finite sum of coefficients times translated values.
+@isnad1 id=eq.0h4v.s6.89ee203b6433 from=translated src=- shape=ab78138d vocab=61a927cc
+-/
 theorem coefficientAct_apply (f : AddMonoidAlgebra R Lattice) (c : Configuration R) (z : Lattice) :
     coefficientAct f c z = f.coeff.sum (fun h a => a * c (z + h)) := by
   classical
@@ -109,34 +111,46 @@ theorem coefficientAct_apply (f : AddMonoidAlgebra R Lattice) (c : Configuration
     coefficientShiftRepresentation, coefficientShift, shift, Finset.sum_apply]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): the zero
-coefficient-ring filter has zero output. -/
+coefficient-ring filter has zero output.
+@isnad1 id=eq.0h2v.s6.a19817c6fd05 from=translated src=- shape=be290467 vocab=1970c02d
+-/
 @[simp] theorem coefficientAct_zero (c : Configuration R) : coefficientAct 0 c = 0 := by
   simp [coefficientAct]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): the identity
-coefficient-ring filter acts identically. -/
+coefficient-ring filter acts identically.
+@isnad1 id=eq.0h2v.s5.c1db4b35c467 from=translated src=- shape=2e036723 vocab=1970c02d
+-/
 @[simp] theorem coefficientAct_one (c : Configuration R) : coefficientAct 1 c = c := by
   simp [coefficientAct]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): every
-coefficient-ring filter annihilates the zero configuration. -/
+coefficient-ring filter annihilates the zero configuration.
+@isnad1 id=eq.0h2v.s6.f31ddd92d683 from=translated src=- shape=318fd476 vocab=2a138c57
+-/
 @[simp] theorem coefficientAct_config_zero (f : AddMonoidAlgebra R Lattice) :
     coefficientAct f 0 = 0 := map_zero (coefficientActionHom f)
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): adding
-coefficient-ring filters adds their outputs. -/
+coefficient-ring filters adds their outputs.
+@isnad1 id=eq.0h4v.s7.cd296ddb47ed from=translated src=- shape=c4714af5 vocab=7aaaf2f3
+-/
 theorem coefficientAct_add (f g : AddMonoidAlgebra R Lattice) (c : Configuration R) :
     coefficientAct (f + g) c = coefficientAct f c + coefficientAct g c := by
   simp [coefficientAct]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): multiplying
-coefficient-ring filters composes their actions. -/
+coefficient-ring filters composes their actions.
+@isnad1 id=eq.0h4v.s6.30cc15e6feb3 from=translated src=- shape=c74b963e vocab=c43315eb
+-/
 theorem coefficientAct_mul (f g : AddMonoidAlgebra R Lattice) (c : Configuration R) :
     coefficientAct (f * g) c = coefficientAct f (coefficientAct g c) := by
   simp [coefficientAct, Module.End.mul_apply]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): the action of a
-finite filter sum is the corresponding sum of outputs. -/
+finite filter sum is the corresponding sum of outputs.
+@isnad1 id=eq.0h5v.s6.504782e3f870 from=translated src=- shape=22352cd2 vocab=742800bc
+-/
 theorem coefficientAct_finset_sum {ι : Type*} (S : Finset ι)
     (f : ι → AddMonoidAlgebra R Lattice) (c : Configuration R) :
     coefficientAct (∑ j ∈ S, f j) c = ∑ j ∈ S, coefficientAct (f j) c := by
@@ -145,20 +159,26 @@ theorem coefficientAct_finset_sum {ι : Type*} (S : Finset ι)
   exact LinearMap.sum_apply _ _ _
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): a single coefficient
-acts as a scaled forward shift over the coefficient ring. -/
+acts as a scaled forward shift over the coefficient ring.
+@isnad1 id=eq.0h4v.s5.3f65ebf6305b from=translated src=- shape=78b3d411 vocab=9219c17e
+-/
 @[simp] theorem coefficientAct_single (h : Lattice) (a : R) (c : Configuration R) :
     coefficientAct (AddMonoidAlgebra.single h a) c = a • shift h c := by
   simp [coefficientAct, coefficientActionHom, coefficientShiftRepresentation, coefficientShift]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): the general
-coefficient-ring action agrees with the rational action from Section 1.1. -/
+coefficient-ring action agrees with the rational action from Section 1.1.
+@isnad1 id=eq.0h2v.s4.284a9a1696d1 from=translated src=- shape=1d37f709 vocab=a988ed0c
+-/
 theorem coefficientAct_rat (f : Laurent) (c : Configuration ℚ) : coefficientAct f c = act f c := by
   funext z
   rw [coefficientAct_apply, act_apply]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): changing the
 coefficient ring commutes with the action on the configuration, in particular for reduction
-modulo a prime. -/
+modulo a prime.
+@isnad1 id=eq.0h5v.s8.95f5ad792ed5 from=translated src=- shape=180064f3 vocab=df11efec
+-/
 theorem coefficientAct_map (ρ : R →+* S) (f : AddMonoidAlgebra R Lattice)
     (c : Configuration R) :
     coefficientAct (AddMonoidAlgebra.mapRingHom Lattice ρ f) (ρ ∘ c) =
@@ -188,13 +208,17 @@ noncomputable def dilate (n : ℕ) : AddMonoidAlgebra R Lattice →+* AddMonoidA
   AddMonoidAlgebra.mapDomainRingHom R (dilationLattice n)
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): dilation scales the
-exponent of a single coefficient without changing that coefficient. -/
+exponent of a single coefficient without changing that coefficient.
+@isnad1 id=eq.0h4v.s7.1ffccc8229eb from=translated src=- shape=8baab5f4 vocab=04fbb1d2
+-/
 @[simp] theorem dilate_single (n : ℕ) (h : Lattice) (a : R) :
     dilate n (AddMonoidAlgebra.single h a) = AddMonoidAlgebra.single (n • h) a := by
   simp [dilate, dilationLattice]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): dilation by one fixes
-the filter. -/
+the filter.
+@isnad1 id=eq.0h2v.s7.88ba6b438020 from=translated src=- shape=be3d5234 vocab=10f0bda4
+-/
 @[simp] theorem dilate_one (f : AddMonoidAlgebra R Lattice) : dilate 1 f = f := by
   induction f using AddMonoidAlgebra.induction_linear with
   | zero => simp
@@ -202,7 +226,9 @@ the filter. -/
   | single h a => simp
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): composition of
-dilations multiplies their scaling parameters. -/
+dilations multiplies their scaling parameters.
+@isnad1 id=eq.0h4v.s8.66e7a85287fd from=translated src=- shape=58db54c7 vocab=f33c9370
+-/
 theorem dilate_dilate (m n : ℕ) (f : AddMonoidAlgebra R Lattice) :
     dilate m (dilate n f) = dilate (m * n) f := by
   induction f using AddMonoidAlgebra.induction_linear with
@@ -211,7 +237,9 @@ theorem dilate_dilate (m n : ℕ) (f : AddMonoidAlgebra R Lattice) :
   | single h a => simp only [dilate_single, smul_smul]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): a coefficient-ring
-homomorphism commutes with dilation of the exponents. -/
+homomorphism commutes with dilation of the exponents.
+@isnad1 id=eq.0h5v.s9.df70e9665f4c from=translated src=- shape=ca90f4db vocab=916989b5
+-/
 theorem map_dilate (ρ : R →+* S) (n : ℕ) (f : AddMonoidAlgebra R Lattice) :
     AddMonoidAlgebra.mapRingHom Lattice ρ (dilate n f) =
       dilate n (AddMonoidAlgebra.mapRingHom Lattice ρ f) := by
@@ -221,7 +249,9 @@ theorem map_dilate (ρ : R →+* S) (n : ℕ) (f : AddMonoidAlgebra R Lattice) :
   | single h a => simp
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): every positive power
-of an annihilator still annihilates the configuration. -/
+of an annihilator still annihilates the configuration.
+@isnad1 id=eq.2h4v.s7.f8ba0f083f27 from=translated src=- shape=bd4eca5a vocab=9e580d7b
+-/
 theorem coefficientAct_pow_eq_zero (f : AddMonoidAlgebra R Lattice) (c : Configuration R)
     (hf : coefficientAct f c = 0) {n : ℕ} (hn : 0 < n) :
     coefficientAct (f ^ n) c = 0 := by
@@ -230,7 +260,9 @@ theorem coefficientAct_pow_eq_zero (f : AddMonoidAlgebra R Lattice) (c : Configu
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): a fixed finite filter
 on a finite-range configuration has finitely many outputs across all dilation exponents and
-lattice sites. -/
+lattice sites.
+@isnad1 id=finite.1h3v.s7.de8dfdc83077 from=translated src=- shape=7e57cbc8 vocab=3cfd0f36
+-/
 theorem finite_dilate_values (f : AddMonoidAlgebra R Lattice) {c : Configuration R}
     (hc : FiniteRange c) :
     (Set.range (fun nz : ℕ × Lattice => coefficientAct (dilate nz.1 f) c nz.2)).Finite := by
@@ -252,7 +284,9 @@ end CoefficientAction
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): Frobenius in
 characteristic `p` identifies the `p`th power of a Laurent filter over `ZMod p` with its
-dilation by `p`. -/
+dilation by `p`.
+@isnad1 id=eq.0h2v.s8.97b60ff05b86 from=translated src=- shape=3c7dbb89 vocab=1b5bfb52
+-/
 theorem zmod_pow_eq_dilate (p : ℕ) [Fact p.Prime]
     (f : AddMonoidAlgebra (ZMod p) Lattice) : f ^ p = dilate p f := by
   let : CharP (AddMonoidAlgebra (ZMod p) Lattice) p :=
@@ -265,7 +299,9 @@ theorem zmod_pow_eq_dilate (p : ℕ) [Fact p.Prime]
     rw [AddMonoidAlgebra.single_pow, dilate_single, ZMod.pow_card]
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): the finite set of all
-dilated integer outputs has a common natural absolute-value bound. -/
+dilated integer outputs has a common natural absolute-value bound.
+@isnad1 id=ex.1h2v.s7.3ec5b198378a from=translated src=- shape=f6b5d81f vocab=bfed3b74
+-/
 theorem exists_uniform_dilate_bound (f : IntegerLaurent) {c : Configuration ℤ}
     (hc : FiniteRange c) :
     ∃ B : ℕ, ∀ n : ℕ, ∀ z : Lattice, (coefficientAct (dilate n f) c z).natAbs ≤ B := by
@@ -276,7 +312,9 @@ theorem exists_uniform_dilate_bound (f : IntegerLaurent) {c : Configuration ℤ}
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): dilation by a prime
 larger than the common output bound preserves annihilation. Frobenius makes each output
-divisible by that prime, and the strict absolute-value bound forces zero. -/
+divisible by that prime, and the strict absolute-value bound forces zero.
+@isnad1 id=eq.4h5v.s8.c3fe4e46db50 from=translated src=- shape=95b4a722 vocab=eff763c7
+-/
 theorem prime_dilate_annihilates (f : IntegerLaurent) (c : Configuration ℤ)
     (B : ℕ)
     (hbound : ∀ n : ℕ, ∀ z : Lattice, (coefficientAct (dilate n f) c z).natAbs ≤ B)
@@ -317,7 +355,9 @@ private theorem prime_gt_of_coprime_factorial {B n p : ℕ} (hp : p.Prime)
     (Nat.dvd_factorial hp.pos (Nat.le_of_not_gt hle))
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): prime factorization
-extends preservation of annihilation to every positive exponent coprime to the factorial bound. -/
+extends preservation of annihilation to every positive exponent coprime to the factorial bound.
+@isnad1 id=eq.4h4v.s8.91a8c958de84 from=translated src=- shape=8d5a5e35 vocab=7bbac1bf
+-/
 theorem coprime_dilate_annihilates (f : IntegerLaurent) (c : Configuration ℤ)
     (B : ℕ)
     (hbound : ∀ n : ℕ, ∀ z : Lattice, (coefficientAct (dilate n f) c z).natAbs ≤ B)
@@ -341,7 +381,9 @@ theorem coprime_dilate_annihilates (f : IntegerLaurent) (c : Configuration ℤ)
   exact hall n hn hcop
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): equation
-(`eq:dilation-family`): all dilations at exponents `1 + j * B!` annihilate. -/
+(`eq:dilation-family`): all dilations at exponents `1 + j * B!` annihilate.
+@isnad1 id=eq.2h4v.s8.16a2bd082be5 from=translated src=- shape=ba361039 vocab=238b0dba
+-/
 theorem progression_dilate_annihilates (f : IntegerLaurent) (c : Configuration ℤ)
     (B : ℕ)
     (hbound : ∀ n : ℕ, ∀ z : Lattice, (coefficientAct (dilate n f) c z).natAbs ≤ B)
@@ -375,7 +417,9 @@ private theorem single_affine_dilate (j r : ℕ) (h : Lattice) (a : R) :
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): equation
 (`eq:interpolation`): linear combinations of dilations along an arithmetic progression are
-evaluations of the coefficient polynomial at the corresponding lattice monomials. -/
+evaluations of the coefficient polynomial at the corresponding lattice monomials.
+@isnad1 id=eq.0h4v.s8.c3f6fefb74da from=translated src=- shape=87bea12c vocab=e1e71df5
+-/
 theorem dilation_interpolation_identity (r : ℕ) (f : AddMonoidAlgebra R Lattice)
     (H : Polynomial (AddMonoidAlgebra R Lattice)) :
     H.sum (fun j b => b * dilate (1 + j * r) f) =
@@ -396,7 +440,9 @@ end Interpolation
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): interpolation for an
 integral annihilator with nonzero constant coefficient produces a product of nonzero-exponent
-difference factors. The auxiliary factors `C(M) - X` evaluate at one to `M - 1`. -/
+difference factors. The auxiliary factors `C(M) - X` evaluate at one to `M - 1`.
+@isnad1 id=ex.3h2v.s8.a1b946549efb from=translated src=- shape=3800e088 vocab=0987f0ce
+-/
 theorem integer_centered_product (f : IntegerLaurent) (hf0 : f.coeff 0 ≠ 0)
     (c : Configuration ℤ) (hc : FiniteRange c) (hf : coefficientAct f c = 0) :
     ∃ r : ℕ, 0 < r ∧ coefficientAct
@@ -443,7 +489,9 @@ theorem integer_centered_product (f : IntegerLaurent) (hf0 : f.coeff 0 ≠ 0)
 
 /-- Auxiliary to Proposition 3.3 (`prop:product`), Appendix A (`app:product`): translate a nonzero
 coefficient to exponent zero and apply interpolation. Nonzeroness of the configuration forces a
-nonempty factor list, and positive dilation preserves each nonzero direction. -/
+nonempty factor list, and positive dilation preserves each nonzero direction.
+@isnad1 id=ex.4h2v.s8.6f7548ce40c2 from=translated src=- shape=bcecfe9e vocab=43ddf221
+-/
 theorem exists_integer_product_differences {c : Configuration ℤ} (hc : FiniteRange c)
     (hcne : c ≠ 0) {f : IntegerLaurent} (hfne : f ≠ 0) (hf : coefficientAct f c = 0) :
     ∃ hs : List Lattice, hs ≠ [] ∧ (∀ h ∈ hs, h ≠ 0) ∧
@@ -473,7 +521,9 @@ theorem exists_integer_product_differences {c : Configuration ℤ} (hc : FiniteR
 
 /-- Proposition 3.3 (`prop:product`), proved in Appendix A (`app:product`): every nonzero
 finite-range rational configuration with a nonzero Laurent annihilator has a nonempty product of
-differences in nonzero lattice directions as an annihilator. -/
+differences in nonzero lattice directions as an annihilator.
+@isnad1 id=ex.4h2v.s7.5675b019a31a from=translated src=- shape=3c259931 vocab=003d43c0
+-/
 theorem exists_product_differences_of_annihilator {c : Configuration ℚ}
     (hc : FiniteRange c) (hcne : c ≠ 0) {f : Laurent} (hfne : f ≠ 0)
     (hf : act f c = 0) :

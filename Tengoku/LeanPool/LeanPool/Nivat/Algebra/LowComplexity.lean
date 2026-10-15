@@ -61,14 +61,18 @@ noncomputable def windowPolynomial (D : Finset Lattice) (a : D → ℚ) : Lauren
   ∑ z : D, AddMonoidAlgebra.single z.1 (a z)
 
 /-- Auxiliary construction for Lemma 3.2 (`lem:ann-exists`): the supported polynomial recovers each
-input coefficient on the window. -/
+input coefficient on the window.
+@isnad1 id=eq.0h3v.s6.3de2f2bb9b7a from=translated src=- shape=ac0a1a31 vocab=a8ab82e2
+-/
 theorem windowPolynomial_coeff (D : Finset Lattice) (a : D → ℚ) (z : D) :
     (windowPolynomial D a).coeff z.1 = a z := by
   classical
   simp [windowPolynomial, AddMonoidAlgebra.coeff_sum, Finsupp.single_apply]
 
 /-- Auxiliary construction for Lemma 3.2 (`lem:ann-exists`): the coefficient-vector identification
-is injective. -/
+is injective.
+@isnad1 id=injectiv.0h1v.s4.32dd2c4aab76 from=translated src=- shape=45f47f26 vocab=50254df8
+-/
 theorem windowPolynomial_injective (D : Finset Lattice) :
     Function.Injective (windowPolynomial D) := by
   intro a b hab
@@ -76,7 +80,9 @@ theorem windowPolynomial_injective (D : Finset Lattice) :
   simpa only [windowPolynomial_coeff] using congrArg (fun f : Laurent => f.coeff z.1) hab
 
 /-- Auxiliary construction for Lemma 3.2 (`lem:ann-exists`): the polynomial associated with a window
-vector is supported inside that window. -/
+vector is supported inside that window.
+@isnad1 id=le.0h2v.s5.a65ea9ce9642 from=translated src=- shape=d21cb642 vocab=76200eda
+-/
 theorem windowPolynomial_support (D : Finset Lattice) (a : D → ℚ) :
     (windowPolynomial D a).coeff.support ⊆ D := by
   classical
@@ -88,7 +94,9 @@ theorem windowPolynomial_support (D : Finset Lattice) (a : D → ℚ) :
   exact (Finsupp.mem_support_iff.mp hz) hzero
 
 /-- Auxiliary construction for Lemma 3.2 (`lem:ann-exists`): the associated Laurent action is the
-coefficient pairing with a translated restriction. -/
+coefficient pairing with a translated restriction.
+@isnad1 id=eq.0h4v.s7.5ad02eb0b11f from=translated src=- shape=379f46e2 vocab=30c304c1
+-/
 theorem act_windowPolynomial (D : Finset Lattice) (a : D → ℚ)
     (c : Configuration ℚ) (u : Lattice) :
     act (windowPolynomial D a) c u = ∑ z : D, a z * c (u + z.1) := by
@@ -96,7 +104,9 @@ theorem act_windowPolynomial (D : Finset Lattice) (a : D → ℚ)
     shiftRepresentation, shiftLinear, shift, Finset.sum_apply]
 
 /-- Auxiliary construction for Lemma 3.2 (`lem:ann-exists`): restriction of a supported polynomial
-followed by reconstruction returns that polynomial. -/
+followed by reconstruction returns that polynomial.
+@isnad1 id=eq.1h2v.s6.3a5412a739b6 from=translated src=- shape=c9e46fdd vocab=f1868098
+-/
 theorem windowPolynomial_reconstruct (D : Finset Lattice) (f : Laurent)
     (hf : f.coeff.support ⊆ D) : windowPolynomial D (fun z => f.coeff z.1) = f := by
   classical
@@ -118,7 +128,9 @@ noncomputable def windowPolynomialLinear (D : Finset Lattice) : (D → ℚ) →�
     simp [windowPolynomial, Finset.smul_sum, AddMonoidAlgebra.smul_single]
 
 /-- Auxiliary construction for Lemma 3.2 (`lem:ann-exists`): affine dependence among the occurring
-patterns gives a nonzero supported filter with constant output. -/
+patterns gives a nonzero supported filter with constant output.
+@isnad1 id=ex.2h2v.s6.f47a532b5440 from=translated src=- shape=dcd1cd41 vocab=c7837455
+-/
 theorem exists_affine_annihilator (c : Configuration ℚ) (hc : FiniteRange c)
     (D : Finset Lattice) (hlow : complexity c D ≤ D.card) :
     ∃ g : Laurent, g ≠ 0 ∧ g.coeff.support ⊆ D ∧
@@ -175,7 +187,9 @@ theorem exists_affine_annihilator (c : Configuration ℚ) (hc : FiniteRange c)
     exact eq_neg_of_add_eq_zero_right h
 
 /-- Lemma 3.2 (`lem:ann-exists`): low complexity gives a nonzero Laurent annihilator. A nonzero
-difference polynomial annihilates the constant output of the affine relation. -/
+difference polynomial annihilates the constant output of the affine relation.
+@isnad1 id=ex.2h2v.s6.d0b4a6a54e61 from=translated src=- shape=d4456ed3 vocab=d8dd5473
+-/
 theorem exists_nonzero_annihilator (c : Configuration ℚ) (hc : FiniteRange c)
     (D : Finset Lattice) (hlow : complexity c D ≤ D.card) :
     ∃ f : Laurent, f ≠ 0 ∧ act f c = 0 := by

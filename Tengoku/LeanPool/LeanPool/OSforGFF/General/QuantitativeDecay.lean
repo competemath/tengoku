@@ -117,6 +117,7 @@ def schwartzHasPolynomialDecayReal (f : SchwartzMap E ℂ) (N : ℝ) (_hN : N > 
     exp(-mx) ≤ C * (1 + x)^{-α} for all x ≥ 0.
 
 This uses the fact that x^α * exp(-mx) is bounded (it tends to 0 at infinity).
+@isnad1 id=ex.2h2v.s6.be153550d3f0 from=translated src=- shape=7f408445 vocab=8466c757
 -/
 lemma exp_decay_implies_polynomial_decay (m α : ℝ) (hm : m > 0) (hα : α > 0) :
     ∃ C : ℝ, C > 0 ∧ ∀ x : ℝ, x ≥ 0 → Real.exp (-m * x) ≤ C * (1 + x)^(-α) := by
@@ -228,6 +229,7 @@ def normExpDecayImpliesPolynomialDecay {F : Type*} [NormedAddCommGroup F]
 /-- Helper: (1 + x/2)^{-N} ≤ 2^N * (1 + x)^{-N} for x ≥ 0 and N > 0.
 
 This follows from 1 + x ≤ 2 + x = 2(1 + x/2), so (1+x)^N ≤ 2^N(1+x/2)^N.
+@isnad1 id=le.2h2v.s6.453131dcf8d6 from=translated src=- shape=d01c12ea vocab=f83af973
 -/
 lemma one_add_half_pow_le (x : ℝ) (hx : x ≥ 0) (N : ℝ) (hN : N > 0) :
     (1 + x/2)^(-N) ≤ (2:ℝ)^N * (1 + x)^(-N) := by
@@ -737,6 +739,7 @@ The proof structure:
 2. Show H(y) = ∫ f(x) K(x-y) dx = H_sing(y) + H_tail(y) has polynomial decay
 3. The integral I(a) = ∫ H(y) g(y-a) dy = (H ⋆ gtilde)(a) where gtilde(z) = g(-z)
 4. Apply convolutionPolynomialDecay to get the result
+@isnad1 id=ex.8h8v.s9.04b4bd0c0630 from=translated src=- shape=398406ad vocab=be0da3c3
 -/
 theorem schwartz_bilinear_translation_decay_polynomial_proof
     (f g : SchwartzMap E ℂ)

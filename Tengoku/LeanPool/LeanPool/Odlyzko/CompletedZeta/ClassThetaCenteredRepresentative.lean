@@ -37,6 +37,9 @@ noncomputable def centeredNumeratorTranslation
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s12.cc4f64f88a89 from=translated src=- shape=228ac37a vocab=85cd6097
+-/
 theorem centeredFractionalShapeCoordinates_numerator
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (y : mixedEmbedding.realSpace K) :

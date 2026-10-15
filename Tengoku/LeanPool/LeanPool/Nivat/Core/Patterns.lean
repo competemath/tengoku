@@ -56,12 +56,16 @@ namespace Nivat
 noncomputable def rectangle (m n : ℕ) : Finset Lattice :=
   (Finset.Ico (0 : ℤ) (m : ℤ)).product (Finset.Ico (0 : ℤ) (n : ℤ))
 
-/-- Coordinate inequalities describing the rectangle of Section 1. -/
+/-- Coordinate inequalities describing the rectangle of Section 1.
+@isnad1 id=iff.0h3v.s6.f903379c5fdf from=translated src=- shape=5a1e6a48 vocab=0f69ce38
+-/
 @[simp] theorem mem_rectangle (z : Lattice) (m n : ℕ) :
     z ∈ rectangle m n ↔ 0 ≤ z.1 ∧ z.1 < m ∧ 0 ≤ z.2 ∧ z.2 < n := by
   simp [rectangle, and_assoc]
 
-/-- The rectangle `Rₘ,ₙ` has `m * n` sites (Section 1). -/
+/-- The rectangle `Rₘ,ₙ` has `m * n` sites (Section 1).
+@isnad1 id=eq.0h2v.s4.acf1d828b074 from=translated src=- shape=eb0f209d vocab=b547e672
+-/
 @[simp] theorem card_rectangle (m n : ℕ) : (rectangle m n).card = m * n := by
   simp [rectangle, Int.card_Ico]
 
@@ -83,23 +87,31 @@ noncomputable def complexity {A : Type*} (c : Configuration A) (D : Finset Latti
 noncomputable def discrepancy {A : Type*} (c : Configuration A) (D : Finset Lattice) : ℤ :=
   (complexity c D : ℤ) - (D.card : ℤ)
 
-/-- The origin supplies an occurring pattern on every window (Section 1.1). -/
+/-- The origin supplies an occurring pattern on every window (Section 1.1).
+@isnad1 id=nonempty.0h3v.s4.5af0b73a478b from=translated src=- shape=b25dc1ac vocab=8f2d6f97
+-/
 theorem patterns_nonempty {A : Type*} (c : Configuration A) (D : Finset Lattice) :
     (patterns c D).Nonempty := ⟨patternAt c D 0, 0, rfl⟩
 
-/-- A finite alphabet gives finitely many patterns on a finite window (Section 1.1). -/
+/-- A finite alphabet gives finitely many patterns on a finite window (Section 1.1).
+@isnad1 id=finite.1h3v.s5.b6163fc137fe from=translated src=- shape=7bc34a8e vocab=e0f4ba77
+-/
 theorem patterns_finite {A : Type*} {c : Configuration A} (hc : FiniteRange c)
     (D : Finset Lattice) : (patterns c D).Finite := by
   apply (Set.Finite.pi' (fun _ : D => hc)).subset
   rintro _ ⟨u, rfl⟩ z
   exact ⟨z.1 + u, rfl⟩
 
-/-- Every finite window has at least one occurring pattern (Section 1.1). -/
+/-- Every finite window has at least one occurring pattern (Section 1.1).
+@isnad1 id=lt.1h3v.s4.352a17eb65c6 from=translated src=- shape=9a3354aa vocab=2713b777
+-/
 theorem complexity_pos {A : Type*} {c : Configuration A} (hc : FiniteRange c)
     (D : Finset Lattice) : 0 < complexity c D :=
   (Set.ncard_pos (patterns_finite hc D)).2 (patterns_nonempty c D)
 
-/-- The empty window has exactly one pattern (Section 1.1). -/
+/-- The empty window has exactly one pattern (Section 1.1).
+@isnad1 id=eq.0h2v.s4.22b076d000e7 from=translated src=- shape=703d22fc vocab=6633553f
+-/
 @[simp] theorem complexity_empty {A : Type*} (c : Configuration A) :
     complexity c ∅ = 1 := by
   apply Set.ncard_eq_one.mpr
@@ -111,7 +123,9 @@ theorem complexity_pos {A : Type*} {c : Configuration A} (hc : FiniteRange c)
   · rintro rfl
     exact ⟨0, rfl⟩
 
-/-- Translations of the configuration preserve its pattern sets (Section 1.1). -/
+/-- Translations of the configuration preserve its pattern sets (Section 1.1).
+@isnad1 id=eq.0h4v.s5.410d023d8c39 from=translated src=- shape=6c7a63fa vocab=7a1363a9
+-/
 theorem patterns_shift {A : Type*} (c : Configuration A) (D : Finset Lattice)
     (h : Lattice) : patterns (shift h c) D = patterns c D := by
   ext p
@@ -121,7 +135,9 @@ theorem patterns_shift {A : Type*} (c : Configuration A) (D : Finset Lattice)
   · rintro ⟨u, rfl⟩
     exact ⟨u - h, by ext z; simp [patternAt, shift, sub_eq_add_neg, add_assoc]⟩
 
-/-- Translations of the configuration preserve complexity (Section 1.1). -/
+/-- Translations of the configuration preserve complexity (Section 1.1).
+@isnad1 id=eq.0h4v.s4.3033b3c1a9c4 from=translated src=- shape=eea7a6b2 vocab=f0cd2467
+-/
 @[simp] theorem complexity_shift {A : Type*} (c : Configuration A) (D : Finset Lattice)
     (h : Lattice) : complexity (shift h c) D = complexity c D := by
   simp only [complexity, patterns_shift]
@@ -130,7 +146,9 @@ theorem patterns_shift {A : Type*} (c : Configuration A) (D : Finset Lattice)
 def restrictPattern {A : Type*} {C D : Finset Lattice} (hCD : C ⊆ D)
     (p : D → A) : C → A := fun z => p ⟨z.1, hCD z.2⟩
 
-/-- Restriction maps onto all occurring patterns on the smaller window (Section 1.1). -/
+/-- Restriction maps onto all occurring patterns on the smaller window (Section 1.1).
+@isnad1 id=eq.1h4v.s6.716855ed0b4a from=translated src=- shape=1c5934be vocab=04b5895b
+-/
 theorem restrict_patterns {A : Type*} (c : Configuration A) {C D : Finset Lattice}
     (hCD : C ⊆ D) : restrictPattern hCD '' patterns c D = patterns c C := by
   ext p
@@ -140,14 +158,18 @@ theorem restrict_patterns {A : Type*} (c : Configuration A) {C D : Finset Lattic
   · rintro ⟨u, rfl⟩
     exact ⟨patternAt c D u, ⟨u, rfl⟩, rfl⟩
 
-/-- Pattern complexity is monotone under inclusion of windows (Section 1.1). -/
+/-- Pattern complexity is monotone under inclusion of windows (Section 1.1).
+@isnad1 id=le.2h4v.s5.2b496f2d5aa3 from=translated src=- shape=28bf762b vocab=04fa3535
+-/
 theorem complexity_mono {A : Type*} {c : Configuration A} (hc : FiniteRange c)
     {C D : Finset Lattice} (hCD : C ⊆ D) : complexity c C ≤ complexity c D := by
   unfold complexity
   rw [← restrict_patterns c hCD]
   exact Set.ncard_image_le (patterns_finite hc D)
 
-/-- The effect of relabeling symbols on the occurring patterns (Section 1.1). -/
+/-- The effect of relabeling symbols on the occurring patterns (Section 1.1).
+@isnad1 id=eq.0h5v.s6.466e338980ba from=translated src=- shape=db3880c3 vocab=770273f2
+-/
 theorem patterns_map {A B : Type*} (c : Configuration A) (f : A → B)
     (D : Finset Lattice) : patterns (f ∘ c) D = (fun p => f ∘ p) '' patterns c D := by
   ext p
@@ -157,7 +179,9 @@ theorem patterns_map {A B : Type*} (c : Configuration A) (f : A → B)
   · rintro ⟨_, ⟨u, rfl⟩, rfl⟩
     exact ⟨u, rfl⟩
 
-/-- Injective alphabet labeling preserves every finite-window complexity (Section 1.1). -/
+/-- Injective alphabet labeling preserves every finite-window complexity (Section 1.1).
+@isnad1 id=eq.1h5v.s5.ee06d70c7cb6 from=translated src=- shape=776efbf4 vocab=d7ab8b61
+-/
 theorem complexity_map {A B : Type*} (c : Configuration A) {f : A → B}
     (hf : Function.Injective f) (D : Finset Lattice) :
     complexity (f ∘ c) D = complexity c D := by
@@ -169,7 +193,9 @@ theorem complexity_map {A B : Type*} (c : Configuration A) {f : A → B}
   exact hf (congrFun hpq z)
 
 /-- Equal pattern counts imply unique extension between the two windows.
-This is the restriction-bijection step in Lemma 5.5 (`lem:boundary-window`). -/
+This is the restriction-bijection step in Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=eq.4h6v.s6.0eb60127a691 from=translated src=- shape=afc09dd9 vocab=11048b2a
+-/
 theorem equal_complexity_unique_extension {A : Type*} {c : Configuration A}
     (hc : FiniteRange c) {C D : Finset Lattice} (hCD : C ⊆ D)
     (hcard : complexity c C = complexity c D) {u v : Lattice}
@@ -181,7 +207,9 @@ theorem equal_complexity_unique_extension {A : Type*} {c : Configuration A}
   exact hi ⟨u, rfl⟩ ⟨v, rfl⟩ huv
 
 /-- Occurrence of every finite origin pattern implies occurrence at every translate.
-This implements the finite-pattern inheritance used in Theorem 2.2 (`thm:descent`). -/
+This implements the finite-pattern inheritance used in Theorem 2.2 (`thm:descent`).
+@isnad1 id=mem.1h5v.s7.52fdbea784ff from=translated src=- shape=82f55ebe vocab=2e55dc6a
+-/
 theorem patternAt_mem_of_language {A : Type*} {x c : Configuration A}
     (hx : ∀ D : Finset Lattice, patternAt x D 0 ∈ patterns c D)
     (D : Finset Lattice) (u : Lattice) : patternAt x D u ∈ patterns c D := by
@@ -194,7 +222,9 @@ theorem patternAt_mem_of_language {A : Type*} {x c : Configuration A}
   have h := congrFun hv ⟨z.1 + u, hz⟩
   simpa only [patternAt, add_zero, add_assoc] using h
 
-/-- Translating the window preserves its complexity (Section 1.1). -/
+/-- Translating the window preserves its complexity (Section 1.1).
+@isnad1 id=eq.0h4v.s5.d3f707057ca9 from=translated src=- shape=fd7541a1 vocab=aa73dbe2
+-/
 theorem complexity_translate_window {A : Type*} (c : Configuration A)
     (D : Finset Lattice) (u : Lattice) :
     complexity c (D.image (fun z => z + u)) = complexity c D := by

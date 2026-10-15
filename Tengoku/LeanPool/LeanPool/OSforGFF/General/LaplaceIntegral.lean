@@ -47,19 +47,27 @@ Note: we use (c/u - u) not (u - c/u) to match the form after our substitutions.
 Since (c/u - u)² = (u - c/u)², these are equivalent.
 -/
 
-/-- The Glasser quadratic form is symmetric: (c/u - u)² = (u - c/u)² -/
+/-- The Glasser quadratic form is symmetric: (c/u - u)² = (u - c/u)²
+@isnad1 id=eq.0h2v.s6.1ba475504035 from=translated src=- shape=cbe6a693 vocab=489bae9a
+-/
 lemma glasser_sq_symm (c u : ℝ) : (c / u - u)^2 = (u - c / u)^2 := by ring
 
-/-- Expansion: (c/u - u)² = c²/u² - 2c + u² -/
+/-- Expansion: (c/u - u)² = c²/u² - 2c + u²
+@isnad1 id=eq.1h2v.s7.b936a81555c9 from=translated src=- shape=13608f76 vocab=4d09f77c
+-/
 lemma glasser_expand (c u : ℝ) (hu : u ≠ 0) : (c / u - u)^2 = c^2 / u^2 - 2*c + u^2 := by
   field_simp; ring
 
-/-- Lower bound: (c/u - u)² ≥ u² - 2c -/
+/-- Lower bound: (c/u - u)² ≥ u² - 2c
+@isnad1 id=le.1h2v.s6.a8609d73bda1 from=translated src=- shape=ea908c13 vocab=eae2e0a2
+-/
 lemma glasser_lower_bound (c u : ℝ) (hu : u ≠ 0) : (c / u - u)^2 ≥ u^2 - 2*c := by
   rw [glasser_expand c u hu]; have : 0 ≤ c^2 / u^2 := div_nonneg (sq_nonneg c) (sq_nonneg u);
     linarith
 
-/-- The derivative of u ↦ c/u - u is -c/u² - 1 -/
+/-- The derivative of u ↦ c/u - u is -c/u² - 1
+@isnad1 id=hasderiv.1h2v.s6.9b4ca016ec34 from=translated src=- shape=141193de vocab=e8b15a4e
+-/
 lemma hasDerivAt_glasser_map (c : ℝ) (u : ℝ) (hu : u ≠ 0) :
     HasDerivAt (fun x => c / x - x) (-c / u^2 - 1) u := by
   have h := ((hasDerivAt_inv hu).const_mul c).sub (hasDerivAt_id u)
@@ -99,6 +107,7 @@ Therefore I = √π/2.
 -/
 /-- The substitution u ↦ c/u shows that the Glasser integral is invariant under
     multiplication by c/u². This is the key identity that enables the proof.
+@isnad1 id=eq.1h1v.s7.b55afbc05ee0 from=translated src=- shape=08e433d3 vocab=e386b816
 -/
 lemma glasser_integral_substitution_identity (c : ℝ) (hc : 0 < c) :
     ∫ u in Ioi 0, exp (-(c/u - u)^2) =
@@ -136,6 +145,7 @@ private lemma Ioi_zero_eq_Ioc_union_Ioi : Ioi (0 : ℝ) = Ioc 0 1 ∪ Ioi 1 := b
 /-- The Glasser integrand is integrable on (0, ∞).
     Proof: On (0, 1], bounded by 1 on finite measure set.
            On (1, ∞), dominated by e^{2c} · e^{-u²} which is Gaussian-integrable.
+@isnad1 id=integrab.1h1v.s6.318f22c018e8 from=translated src=- shape=ad5f10e7 vocab=a707f7b4
 -/
 theorem glasser_integrable (c : ℝ) (_hc : 0 < c) :
     IntegrableOn (fun u => exp (-(c/u - u)^2)) (Ioi 0) := by
@@ -184,6 +194,7 @@ theorem glasser_integrable (c : ℝ) (_hc : 0 < c) :
 /-- The weighted Glasser integrand is integrable on (0, ∞).
     Proof: Use change of variables v = c/u which maps (0,1] → [c,∞) and (1,∞) → (0,c].
     On each piece, the weighted integrand transforms to the unweighted one on a subset of (0,∞).
+@isnad1 id=integrab.1h1v.s6.46bc575515d8 from=translated src=- shape=b817cae0 vocab=54351681
 -/
 theorem glasser_weighted_integrable (c : ℝ) (hc : 0 < c) :
     IntegrableOn (fun u => (c/u^2) * exp (-(c/u - u)^2)) (Ioi 0) := by
@@ -299,6 +310,9 @@ theorem glasser_weighted_integrable (c : ℝ) (hc : 0 < c) :
       apply ae_of_all; intro u hu; exact h_bound u hu
     exact Integrable.mono h_dom_int (h_contOn.aestronglyMeasurable measurableSet_Ioi) h_ae_bound
 
+/--
+@isnad1 id=eq.1h1v.s7.5131e834a3d3 from=translated src=- shape=10cf6c21 vocab=a592ca30
+-/
 lemma glasser_integral_double (c : ℝ) (hc : 0 < c) :
     2 * ∫ u in Ioi 0, exp (-(c/u - u)^2) =
     ∫ u in Ioi 0, (1 + c/u^2) * exp (-(c/u - u)^2) := by
@@ -306,7 +320,9 @@ lemma glasser_integral_double (c : ℝ) (hc : 0 < c) :
   rw [← integral_add (glasser_integrable c hc) (glasser_weighted_integrable c hc)]
   exact setIntegral_congr_fun measurableSet_Ioi fun _ _ => by ring
 
-/-- The Glasser map w = c/u - u tends to +∞ as u → 0⁺. -/
+/-- The Glasser map w = c/u - u tends to +∞ as u → 0⁺.
+@isnad1 id=tendsto.1h1v.s5.74b388e8535d from=translated src=- shape=753aa8a4 vocab=a983145b
+-/
 lemma glasser_tendsto_atTop_at_zero (c : ℝ) (hc : 0 < c) :
     Tendsto (fun u => c / u - u) (𝓝[>] 0) atTop := by
   have h1 : Tendsto (fun (u : ℝ) => u⁻¹) (nhdsWithin (0 : ℝ) (Ioi 0)) atTop :=
@@ -329,17 +345,23 @@ lemma glasser_tendsto_atTop_at_zero (c : ℝ) (hc : 0 < c) :
   rw [h_eq]
   exact tendsto_atTop_add_left_of_le' _ (-1) h_bdd h3
 
-/-- The Glasser map w = c/u - u tends to -∞ as u → +∞. -/
+/-- The Glasser map w = c/u - u tends to -∞ as u → +∞.
+@isnad1 id=tendsto.1h1v.s5.20bef939508c from=translated src=- shape=7f4b19cc vocab=e3ffe5ba
+-/
 lemma glasser_tendsto_atBot_at_top (c : ℝ) (_hc : 0 < c) :
     Tendsto (fun u => c / u - u) atTop atBot := by
   have h1 : Tendsto (fun u => c / u) atTop (𝓝 0) := Filter.Tendsto.const_div_atTop tendsto_id c
   simpa [sub_eq_add_neg] using h1.add_atBot tendsto_neg_atTop_atBot
 
-/-- The Glasser map is continuous on (0, ∞). -/
+/-- The Glasser map is continuous on (0, ∞).
+@isnad1 id=continuo.0h1v.s5.887afe2e1465 from=translated src=- shape=db3740e3 vocab=2259dd58
+-/
 lemma glasser_continuousOn (c : ℝ) : ContinuousOn (fun u => c / u - u) (Ioi 0) :=
   (continuousOn_const.div continuousOn_id fun _ hu => ne_of_gt hu).sub continuousOn_id
 
-/-- The Glasser map is strictly decreasing on (0, ∞). -/
+/-- The Glasser map is strictly decreasing on (0, ∞).
+@isnad1 id=strictan.1h1v.s5.3398521c271d from=translated src=- shape=25826b92 vocab=8e54e437
+-/
 lemma glasser_strictAntiOn (c : ℝ) (hc : 0 < c) : StrictAntiOn (fun u => c / u - u) (Ioi 0) := by
   intro x hx y hy hxy
   simp only [mem_Ioi] at hx hy
@@ -361,16 +383,22 @@ lemma glasser_strictAntiOn (c : ℝ) (hc : 0 < c) : StrictAntiOn (fun u => c / u
     _ < c / x - x + 0 := by linarith
     _ = c / x - x := by ring
 
-/-- The Glasser map is injective on (0, ∞). -/
+/-- The Glasser map is injective on (0, ∞).
+@isnad1 id=injon.1h1v.s5.10bdc00ad9eb from=translated src=- shape=25826b92 vocab=2b3f9830
+-/
 lemma glasser_injOn (c : ℝ) (hc : 0 < c) : InjOn (fun u => c / u - u) (Ioi 0) :=
   (glasser_strictAntiOn c hc).injOn
 
-/-- The Glasser map has the stated derivative on (0, ∞). -/
+/-- The Glasser map has the stated derivative on (0, ∞).
+@isnad1 id=hasderiv.1h2v.s6.009fe7679711 from=translated src=- shape=969b6541 vocab=5472b4a4
+-/
 lemma glasser_hasDerivWithinAt (c : ℝ) (u : ℝ) (hu : 0 < u) :
     HasDerivWithinAt (fun x => c / x - x) (-c / u^2 - 1) (Ioi 0) u :=
   (hasDerivAt_glasser_map c u hu.ne').hasDerivWithinAt
 
-/-- The image of (0, ∞) under the Glasser map is all of ℝ. -/
+/-- The image of (0, ∞) under the Glasser map is all of ℝ.
+@isnad1 id=eq.1h1v.s5.f3bb456ddec4 from=translated src=- shape=fb725fd9 vocab=1b3c96f6
+-/
 lemma glasser_image_eq_univ (c : ℝ) (hc : 0 < c) :
     (fun u => c / u - u) '' (Ioi 0) = univ := by
   apply eq_univ_of_forall
@@ -402,7 +430,9 @@ lemma glasser_image_eq_univ (c : ℝ) (hc : 0 < c) :
     rw [h_at_sqrt] at h_ivt
     exact h_ivt (mem_Ici.mpr (le_of_lt hw))
 
-/-- The absolute value of the Glasser map derivative is 1 + c/u². -/
+/-- The absolute value of the Glasser map derivative is 1 + c/u².
+@isnad1 id=eq.2h2v.s6.60b0230419a1 from=translated src=- shape=35bf270e vocab=596a282b
+-/
 lemma glasser_deriv_abs (c : ℝ) (hc : 0 < c) (u : ℝ) (hu : u ∈ Ioi 0) :
     |(-c / u^2 - 1)| = 1 + c / u^2 := by
   have h : 0 < c / u^2 := div_pos hc (sq_pos_of_pos hu)
@@ -410,6 +440,7 @@ lemma glasser_deriv_abs (c : ℝ) (hc : 0 < c) (u : ℝ) (hu : u ∈ Ioi 0) :
 
 /-- The weighted integral equals √π via change of variables w = c/u - u.
     This is the core analytical step.
+@isnad1 id=eq.1h1v.s7.a2974aa312a4 from=translated src=- shape=621c5112 vocab=3d67dc42
 -/
 theorem weighted_glasser_integral_eq_gaussian (c : ℝ) (hc : 0 < c) :
     ∫ u in Ioi 0, (1 + c/u^2) * exp (-(c/u - u)^2) = sqrt π := by
@@ -441,13 +472,18 @@ theorem weighted_glasser_integral_eq_gaussian (c : ℝ) (hc : 0 < c) :
   -- Now h_cov : ∫ w, exp(-w²) = ∫ u in Ioi 0, (1 + c/u²) * exp(-(c/u - u)²)
   rw [← h_cov, Measure.restrict_univ, h_gaussian]
 
+/--
+@isnad1 id=eq.1h1v.s6.433ee4a3de0b from=translated src=- shape=06eb192f vocab=2ebe9170
+-/
 theorem glasser_gaussian_integral (c : ℝ) (hc : 0 < c) :
     ∫ u in Ioi 0, exp (-(c/u - u)^2) = sqrt π / 2 := by
   linarith [glasser_integral_double c hc, weighted_glasser_integral_eq_gaussian c hc]
 
 /-! ## Part 4: Completing the square -/
 
-/-- Completing the square: a/t² + b·t² = (√a/t - √b·t)² + 2√(ab) -/
+/-- Completing the square: a/t² + b·t² = (√a/t - √b·t)² + 2√(ab)
+@isnad1 id=eq.3h3v.s7.4f6c74a76ef0 from=translated src=- shape=8dad807e vocab=aa1e8c7b
+-/
 lemma complete_square (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (t : ℝ) (ht : 0 < t) :
     a / t^2 + b * t^2 = (sqrt a / t - sqrt b * t)^2 + 2 * sqrt (a * b) := by
   have expand : (sqrt a / t - sqrt b * t)^2 = a / t^2 - 2 * sqrt a * sqrt b + b * t^2 := by
@@ -456,7 +492,9 @@ lemma complete_square (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (t : ℝ) (ht : 0 < 
 
 /-! ## Part 5: The main substitutions -/
 
-/-- First substitution: s = t² transforms s^{-1/2} ds to 2 dt -/
+/-- First substitution: s = t² transforms s^{-1/2} ds to 2 dt
+@isnad1 id=eq.2h2v.s7.081cc9de2aeb from=translated src=- shape=e3c7dbf8 vocab=e386b816
+-/
 lemma laplace_integral_subst_sq (a b : ℝ) (_ha : 0 < a) (_hb : 0 < b) :
     ∫ s in Ioi 0, s^(-(1/2 : ℝ)) * exp (-a/s - b*s) =
     2 * ∫ t in Ioi 0, exp (-a/t^2 - b*t^2) := by
@@ -508,7 +546,9 @@ lemma laplace_integral_subst_sq (a b : ℝ) (_ha : 0 < a) (_hb : 0 < b) :
   -- Now all powers should be natural, ring can solve
   ring
 
-/-- After completing the square, factor out exp(-2√(ab)) -/
+/-- After completing the square, factor out exp(-2√(ab))
+@isnad1 id=eq.2h2v.s7.df06f9482554 from=translated src=- shape=ffdf693c vocab=044b764b
+-/
 lemma laplace_integral_factor (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     ∫ t in Ioi 0, exp (-a/t^2 - b*t^2) =
     exp (-2 * sqrt (a * b)) * ∫ t in Ioi 0, exp (-(sqrt a / t - sqrt b * t)^2) := by
@@ -518,7 +558,9 @@ lemma laplace_integral_factor (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     exp_add]
   ring_nf
 
-/-- Second substitution: u = √b · t, so √a/t - √b·t = √(ab)/u - u -/
+/-- Second substitution: u = √b · t, so √a/t - √b·t = √(ab)/u - u
+@isnad1 id=eq.2h2v.s7.1475345fbcc1 from=translated src=- shape=8f427c2a vocab=044b764b
+-/
 lemma laplace_integral_subst_scale (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     ∫ t in Ioi 0, exp (-(sqrt a / t - sqrt b * t)^2) =
     (1 / sqrt b) * ∫ u in Ioi 0, exp (-(sqrt (a * b) / u - u)^2) := by
@@ -536,6 +578,7 @@ lemma laplace_integral_subst_scale (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     ∫₀^∞ s^{-1/2} exp(-a/s - b*s) ds = √(π/b) exp(-2√(ab))
 
     This is Gradshteyn & Ryzhik 3.471.9 with ν = 1/2.
+@isnad1 id=eq.2h2v.s7.9d426a077789 from=translated src=- shape=76bacfad vocab=3429cdc5
 -/
 theorem laplace_integral_half_power (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     ∫ s in Ioi 0, s^(-(1/2 : ℝ)) * exp (-a/s - b*s) =
@@ -552,6 +595,7 @@ theorem laplace_integral_half_power (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
       ∫₀^∞ s^{-1/2} exp(-b·s) ds = Γ(1/2) / √b = √(π/b)
 
     which matches √(π/b) · exp(-2√(0·b)) = √(π/b) · 1 = √(π/b).
+@isnad1 id=eq.2h2v.s7.ff8ca2dbbdbd from=translated src=- shape=6aa58c9c vocab=96b2cea8
 -/
 theorem laplace_integral_half_power_nonneg (a b : ℝ) (ha : 0 ≤ a) (hb : 0 < b) :
     ∫ s in Ioi 0, s^(-(1/2 : ℝ)) * exp (-a/s - b*s) =

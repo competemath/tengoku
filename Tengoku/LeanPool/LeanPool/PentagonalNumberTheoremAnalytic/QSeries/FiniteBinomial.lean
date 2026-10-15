@@ -29,7 +29,9 @@ namespace QSeries
 variable {R : Type*}
 
 /-- **Finite q-binomial theorem.**
-$$\prod_{k=0}^{n-1}(1 + z q^k) = \sum_{k=0}^{n} q^{\binom{k}{2}} \binom{n}{k}_q z^k.$$ -/
+$$\prod_{k=0}^{n-1}(1 + z q^k) = \sum_{k=0}^{n} q^{\binom{k}{2}} \binom{n}{k}_q z^k.$$
+@isnad1 id=eq.0h4v.s7.41f83a454e87 from=translated src=- shape=a791e798 vocab=5c94b10f
+-/
 theorem prod_one_add_mul_pow_eq_sum_qBinom [CommRing R] (q z : R) (n : ℕ) :
     ∏ k ∈ Finset.range n, (1 + z * q ^ k)
       = ∑ k ∈ Finset.range (n + 1), q ^ k.choose 2 * qBinom n k q * z ^ k := by

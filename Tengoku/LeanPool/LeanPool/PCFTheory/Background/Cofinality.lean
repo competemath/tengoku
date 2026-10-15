@@ -22,11 +22,16 @@ open Cardinal Set
 
 namespace Ordinal
 
-/-- A version of `lift_iSup_lt_of_lt_cof` with more general universes. -/
+/-- A version of `lift_iSup_lt_of_lt_cof` with more general universes.
+@isnad1 id=lt.2h3v.s5.9b2cf7e23918 from=translated src=- shape=2a10285d vocab=64ec2e6b
+-/
 theorem iSup_lt_ord_lift' {ι : Type v} {f : ι → Ordinal.{u}} {c : Ordinal.{u}}
     (hι : Cardinal.lift.{u} #ι < Cardinal.lift.{v} c.cof) : (∀ i, f i < c) → iSup f < c :=
   fun h ↦ lift_iSup_lt_of_lt_cof (by rw [← lift_cof]; exact hι) h
 
+/--
+@isnad1 id=lt.2h3v.s6.7d55bbff0ed3 from=translated src=- shape=12b462a8 vocab=68884450
+-/
 theorem iSup_Iio_lt_ord {δ : Ordinal.{u}} {ℓ : Ordinal.{v}} {f : Iio ℓ → Ordinal.{u}}
     (hf : ∀ i, f i < δ) (hcard : Cardinal.lift.{u} ℓ.card < Cardinal.lift.{v} δ.cof) :
     iSup f < δ := by

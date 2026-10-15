@@ -26,6 +26,9 @@ noncomputable def resonantRegularPart
   1 / Real.sqrt (position 0 ^ 2 + position 1 ^ 2) +
     position 0 / (Real.sqrt (position 0 ^ 2 + position 1 ^ 2)) ^ 3
 
+/--
+@isnad1 id=eq.0h5v.s5.ec5304ce065d from=translated src=- shape=bca49e29 vocab=f53e8c38
+-/
 lemma resonantDisturbingFunction_eq_regularPart_sub_primaryInverse
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     resonantDisturbingFunction p q eccentricity orientation time =
@@ -34,6 +37,9 @@ lemma resonantDisturbingFunction_eq_regularPart_sub_primaryInverse
   simp [resonantDisturbingFunction, resonantRegularPart, resonantPrimaryInverse,
     orientedResonantEllipsePhasePoint, positionPhasePoint, firstMassPerturbation]
 
+/--
+@isnad1 id=eq.4h5v.s7.f975a3058873 from=translated src=- shape=dd2b2d76 vocab=7d632753
+-/
 theorem sqrt_orientedResonantEllipse_origin_sq
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -49,13 +55,17 @@ theorem sqrt_orientedResonantEllipse_origin_sq
     heccentricity heccentricityOne
 
 /-- The pericenter radius at the collision boundary is `2a - 1`, which is positive precisely in
-the interior band `a > 1/2`. -/
+the interior band `a > 1/2`.
+@isnad1 id=lt.1h2v.s6.33e50d3a4275 from=translated src=- shape=593f49a3 vocab=7714bb13
+-/
 theorem collision_radius_floor_pos
     {p q : ℕ} (haxisHalf : 1 / 2 < resonantSemimajorAxis p q) :
     0 < 2 * resonantSemimajorAxis p q - 1 := by
   linarith
 
-/-- Every radius before collision is bounded below by the boundary pericenter radius. -/
+/-- Every radius before collision is bounded below by the boundary pericenter radius.
+@isnad1 id=le.5h4v.s6.4838c9c6f0a6 from=translated src=- shape=91444b61 vocab=90ef1f35
+-/
 theorem collision_radius_floor_le_eccentricRadius
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -82,6 +92,9 @@ theorem collision_radius_floor_le_eccentricRadius
     _ = eccentricRadius (resonantFirstAction p q) eccentricity anomaly := by
       rfl
 
+/--
+@isnad1 id=lt.3h3v.s6.d173dd71698d from=translated src=- shape=7429227d vocab=150786d5
+-/
 theorem resonant_apoapsis_lt_one_of_eccentricity_lt_collision
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity : ℝ}
     (heccentricityBoundary : eccentricity < resonantCollisionEccentricity p q) :
@@ -96,7 +109,9 @@ theorem resonant_apoapsis_lt_one_of_eccentricity_lt_collision
       field_simp [haxisPositive.ne']
       ring
 
-/-- Explicit uniform absolute bound for the regular part throughout the pre-collision family. -/
+/-- Explicit uniform absolute bound for the regular part throughout the pre-collision family.
+@isnad1 id=le.6h5v.s7.5147021fec25 from=translated src=- shape=4b61caa4 vocab=498ca72e
+-/
 theorem abs_resonantRegularPart_le_collision_bound
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -143,6 +158,9 @@ theorem abs_resonantRegularPart_le_collision_bound
       gcongr
     _ ≤ 1 / floor + 1 / floor ^ 2 := add_le_add hinverse hinverseSq
 
+/--
+@isnad1 id=interval.5h6v.s6.b009cf39eef2 from=translated src=- shape=315212c3 vocab=2585b3d7
+-/
 theorem intervalIntegrable_resonantRegularPart
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation start finish : ℝ}
@@ -166,7 +184,9 @@ theorem intervalIntegrable_resonantRegularPart
   rw [resonantDisturbingFunction_eq_regularPart_sub_primaryInverse]
   ring
 
-/-- The integral of the regular part is uniformly bounded throughout the pre-collision family. -/
+/-- The integral of the regular part is uniformly bounded throughout the pre-collision family.
+@isnad1 id=le.6h4v.s7.268865a25016 from=translated src=- shape=44ca3936 vocab=3ae660b3
+-/
 theorem abs_integral_resonantRegularPart_le_collision_bound
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)

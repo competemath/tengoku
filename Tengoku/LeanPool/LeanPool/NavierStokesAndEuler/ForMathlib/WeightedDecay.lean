@@ -24,7 +24,9 @@ namespace NavierStokesAndEuler.WeightedDecay
 open Set
 
 /-- Extend a weighted bound on `[a, T]` to a reciprocal-weight estimate for all
-`t ≥ a`, when the field vanishes for `t > T`. -/
+`t ≥ a`, when the field vanishes for `t > T`.
+@isnad1 id=ex.3h6v.s7.15d522fe979b from=translated src=- shape=0a8be5d4 vocab=5c484a60
+-/
 theorem exists_pos_norm_le_div_of_slab_bound {X V : Type*} [SeminormedAddCommGroup V]
     {J : ℝ × X → V} {w : ℝ × X → ℝ} {a T : ℝ}
     (hw : ∀ t : ℝ, a ≤ t → ∀ x : X, 0 < w (t, x))

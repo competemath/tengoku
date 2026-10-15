@@ -37,11 +37,17 @@ variable {V : Type u} {W : Type v} {G : Graph V} {H : Graph W}
 def mapDistribution (iso : GraphIso G H) (D : Pebbling V) : Pebbling W :=
   fun w => D (iso.toEquiv.symm w)
 
+/--
+@isnad1 id=eq.0h7v.s5.079c8436e31c from=translated src=- shape=e75d2ee7 vocab=c3a4a7f3
+-/
 @[simp]
 theorem mapDistribution_apply (iso : GraphIso G H) (D : Pebbling V) (v : V) :
     iso.mapDistribution D (iso.toEquiv v) = D v := by
   simp [mapDistribution]
 
+/--
+@isnad1 id=eq.0h6v.s5.49d61b4dc13a from=translated src=- shape=8cf31e80 vocab=3347a4a9
+-/
 theorem size_mapDistribution [Fintype V] [Fintype W]
     (iso : GraphIso G H) (D : Pebbling V) :
     Pebbling.size (iso.mapDistribution D) = Pebbling.size D := by
@@ -56,6 +62,9 @@ def symm (iso : GraphIso G H) : GraphIso H G where
     simpa using
       (iso.adj_iff (x := iso.toEquiv.symm x) (y := iso.toEquiv.symm y)).symm
 
+/--
+@isnad1 id=move.1h7v.s5.302377ec117b from=translated src=- shape=428d3f58 vocab=4ee4500d
+-/
 theorem map_move [DecidableEq V] [DecidableEq W]
     (iso : GraphIso G H) {D E : Pebbling V}
     (hmove : Pebbling.Move G D E) :
@@ -89,6 +98,9 @@ theorem map_move [DecidableEq V] [DecidableEq W]
               _ = iso.toEquiv v := by rw [h])
         simp [mapDistribution, Pebbling.moveDistribution, hwu, hwv, hsymm_u, hsymm_v]
 
+/--
+@isnad1 id=reaches.1h7v.s5.8cc4d105f577 from=translated src=- shape=428d3f58 vocab=a8ec384e
+-/
 theorem map_reaches [DecidableEq V] [DecidableEq W]
     (iso : GraphIso G H) {D E : Pebbling V}
     (hreach : Pebbling.Reaches G D E) :
@@ -99,6 +111,9 @@ theorem map_reaches [DecidableEq V] [DecidableEq W]
   · intro A B hmove _ ih
     exact Relation.ReflTransGen.head (iso.map_move hmove) ih
 
+/--
+@isnad1 id=canreach.1h8v.s6.23a36449fd13 from=translated src=- shape=84d11478 vocab=9b35ed77
+-/
 theorem map_canReachAtLeast [DecidableEq V] [DecidableEq W]
     (iso : GraphIso G H) {D : Pebbling V} {target : W} {T : ℕ}
     (hcan : Pebbling.CanReachAtLeast G D (iso.toEquiv.symm target) T) :
@@ -107,6 +122,9 @@ theorem map_canReachAtLeast [DecidableEq V] [DecidableEq W]
   refine ⟨iso.mapDistribution E, iso.map_reaches hreach, ?_⟩
   simpa [mapDistribution] using htarget
 
+/--
+@isnad1 id=solvable.1h7v.s5.0836b56bb16c from=translated src=- shape=c82dcf93 vocab=3a29f35e
+-/
 theorem map_solvableAtLeast [DecidableEq V] [DecidableEq W]
     (iso : GraphIso G H) {D : Pebbling V} {T : ℕ}
     (hsolv : Pebbling.SolvableAtLeast G D T) :
@@ -114,12 +132,18 @@ theorem map_solvableAtLeast [DecidableEq V] [DecidableEq W]
   intro target
   exact iso.map_canReachAtLeast (hsolv (iso.toEquiv.symm target))
 
+/--
+@isnad1 id=minoccup.1h7v.s5.d02d9ae165e6 from=translated src=- shape=0c63e4b9 vocab=16db9626
+-/
 theorem map_minOccupiedPileSize (iso : GraphIso G H) {D : Pebbling V} {S : ℕ}
     (hmin : Pebbling.MinOccupiedPileSize D S) :
     Pebbling.MinOccupiedPileSize (iso.mapDistribution D) S := by
   intro w hw
   exact hmin (iso.toEquiv.symm w) hw
 
+/--
+@isnad1 id=hassolva.1h7v.s5.00191bfaddd4 from=translated src=- shape=3e40a919 vocab=98884eb1
+-/
 theorem map_hasSolvableAtMostSize [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W]
     (iso : GraphIso G H) {T k : ℕ}
     (h : Pebbling.HasSolvableAtMostSize G T k) :

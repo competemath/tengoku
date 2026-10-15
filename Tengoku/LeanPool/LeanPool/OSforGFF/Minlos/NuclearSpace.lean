@@ -98,7 +98,9 @@ variable {E : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E]
 instance instMeasurableSpaceWeakDualRealLeanPool : MeasurableSpace (WeakDual ℝ E) :=
   ⨆ (f : E), (borel ℝ).comap (fun l : WeakDual ℝ E => (l : E →L[ℝ] ℝ) f)
 
-/-- Each evaluation map `l ↦ l(f)` is measurable w.r.t. the cylinder σ-algebra. -/
+/-- Each evaluation map `l ↦ l(f)` is measurable w.r.t. the cylinder σ-algebra.
+@isnad1 id=measurab.0h2v.s6.19b7861ee799 from=translated src=- shape=8c9b473e vocab=d4d9f40d
+-/
 lemma WeakDual.eval_measurable (f : E) :
     Measurable (fun l : WeakDual ℝ E => (l : E →L[ℝ] ℝ) f) := by
   rw [measurable_iff_comap_le]

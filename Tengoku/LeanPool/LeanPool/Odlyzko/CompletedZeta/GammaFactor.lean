@@ -21,11 +21,17 @@ namespace NumberField.Odlyzko
 def CompletedZeta.complexPlaceGammaFactor (s : ℂ) : ℂ :=
   Complex.Gammaℂ s / 2
 
+/--
+@isnad1 id=eq.0h1v.s5.6f6888ba838f from=translated src=- shape=e80511cd vocab=739cc049
+-/
 theorem complexPlaceGammaFactor_eq (s : ℂ) :
     CompletedZeta.complexPlaceGammaFactor s = (2 * (Real.pi : ℂ)) ^ (-s) * Complex.Gamma s := by
   rw [CompletedZeta.complexPlaceGammaFactor, Complex.Gammaℂ_def]
   ring
 
+/--
+@isnad1 id=ne.1h1v.s4.546627978d1f from=translated src=- shape=555d9df8 vocab=51e4d9ce
+-/
 theorem complexPlaceGammaFactor_ne_zero_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     CompletedZeta.complexPlaceGammaFactor s ≠ 0 := by
   rw [complexPlaceGammaFactor_eq]
@@ -34,6 +40,9 @@ theorem complexPlaceGammaFactor_ne_zero_of_re_pos {s : ℂ} (hs : 0 < s.re) :
       ofReal_ne_zero.mpr Real.pi_ne_zero)
     (Complex.Gamma_ne_zero_of_re_pos hs)
 
+/--
+@isnad1 id=differen.1h1v.s6.08d8ea6de7cc from=translated src=- shape=f4fff64d vocab=e5c83a22
+-/
 theorem differentiableAt_complexPlaceGammaFactor_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     DifferentiableAt ℂ CompletedZeta.complexPlaceGammaFactor s := by
   rw [show CompletedZeta.complexPlaceGammaFactor =
@@ -48,6 +57,9 @@ theorem differentiableAt_complexPlaceGammaFactor_of_re_pos {s : ℂ} (hs : 0 < s
       simp only [neg_re, natCast_re, neg_pos] at this
       grind
 
+/--
+@isnad1 id=eq.1h2v.s5.dd72e8a6a226 from=translated src=- shape=24020b76 vocab=10795679
+-/
 theorem logDeriv_const_cpow_neg {c : ℂ} (hc : c ≠ 0) (s : ℂ) :
     logDeriv (fun z : ℂ ↦ c ^ (-z)) s = -Complex.log c := by
   rw [logDeriv_apply]
@@ -62,6 +74,9 @@ theorem logDeriv_const_cpow_neg {c : ℂ} (hc : c ≠ 0) (s : ℂ) :
   have hpow : c ^ (-s) ≠ 0 := cpow_ne_zero_iff.mpr (Or.inl hc)
   grind
 
+/--
+@isnad1 id=eq.1h1v.s5.40b6ece38493 from=translated src=- shape=7e3f6c44 vocab=8a94d413
+-/
 theorem logDeriv_complexPlaceGammaFactor_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     logDeriv CompletedZeta.complexPlaceGammaFactor s =
       Complex.digamma s - Complex.log (2 * (Real.pi : ℂ)) := by

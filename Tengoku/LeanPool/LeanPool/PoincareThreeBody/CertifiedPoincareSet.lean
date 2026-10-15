@@ -57,7 +57,9 @@ structure ClassicalPoincareCertificate
           (eccentricityFromActions action.1) phaseA phaseB)
         steps 0 (resonantOrbitPeriod p)|
 
-/-- Any action carrying a finite certificate belongs to the exact classical Poincaré set. -/
+/-- Any action carrying a finite certificate belongs to the exact classical Poincaré set.
+@isnad1 id=mem.0h2v.s3.ccd4a93d24ca from=translated src=- shape=cb36a8e1 vocab=811bcadb
+-/
 theorem ClassicalPoincareCertificate.mem_classicalPoincareSet
     {action : InteriorProgradeEllipticAction}
     (certificate : ClassicalPoincareCertificate action) :
@@ -84,13 +86,18 @@ validated numerical data. -/
 def certifiedClassicalPoincareSet : Set InteriorProgradeEllipticAction :=
   {action | Nonempty (ClassicalPoincareCertificate action)}
 
+/--
+@isnad1 id=le.0h0v.s2.496a57be9392 from=translated src=- shape=836e6cbb vocab=6b4c49d9
+-/
 theorem certifiedClassicalPoincareSet_subset_classicalPoincareSet :
     certifiedClassicalPoincareSet ⊆ classicalPoincareSet := by
   intro action hcertificate
   exact hcertificate.some.mem_classicalPoincareSet
 
 /-- Density of finitely certified actions is sufficient for the exact classical Poincaré-set
-hypothesis used by the nonintegrability argument. -/
+hypothesis used by the nonintegrability argument.
+@isnad1 id=hasdense.1h0v.s5.e687ed897af3 from=translated src=- shape=20ee7280 vocab=46af05da
+-/
 theorem hasDenseClassicalPoincareSet_of_dense_certified
     (hdense : Dense certifiedClassicalPoincareSet) :
     HasDenseClassicalPoincareSet :=

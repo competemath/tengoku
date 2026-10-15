@@ -31,6 +31,9 @@ abbrev unitShiftIndex :=
   {w : InfinitePlace K // w ≠ w₀} → ℤ
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.1293a95c324a from=translated src=- shape=d3007646 vocab=03537683
+-/
 theorem fundamentalUnitForShift_add (z z' : unitShiftIndex K) :
     fundamentalUnitForShift (z + z') =
       fundamentalUnitForShift z * fundamentalUnitForShift z' := by
@@ -43,12 +46,18 @@ theorem fundamentalUnitForShift_add (z z' : unitShiftIndex K) :
   rw [zpow_add]
 
 open Classical in
+/--
+@isnad1 id=eq.0h1v.s7.bc543cf4bb3c from=translated src=- shape=aef0cf50 vocab=8e17ac6a
+-/
 @[simp]
 theorem fundamentalUnitForShift_zero :
     fundamentalUnitForShift (0 : unitShiftIndex K) = 1 := by
   simp [fundamentalUnitForShift]
 
 open Classical in
+/--
+@isnad1 id=eq.0h2v.s7.40b6841704ba from=translated src=- shape=59b851a8 vocab=cac9161a
+-/
 @[simp]
 theorem fundamentalUnitForShift_neg (z : unitShiftIndex K) :
     fundamentalUnitForShift (-z) =
@@ -68,12 +77,18 @@ noncomputable def idealSetInteger
   preimageOfMemIntegerSet (idealSetEquiv K J a).val
 
 open Classical in
+/--
+@isnad1 id=mem.0h3v.s10.50e689905b9d from=translated src=- shape=c8acd3ce vocab=08200a76
+-/
 theorem idealSetInteger_mem
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     idealSetInteger K J a ∈ (J : Ideal (𝓞 K)) := by
   exact (idealSetEquiv K J a).prop
 
 open Classical in
+/--
+@isnad1 id=ne.0h3v.s9.bad6277a9a4c from=translated src=- shape=098411d3 vocab=d72424fe
+-/
 theorem idealSetInteger_ne_zero
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     idealSetInteger K J a ≠ 0 := by
@@ -81,6 +96,9 @@ theorem idealSetInteger_ne_zero
     (preimageOfMemIntegerSet (idealSetEquiv K J a).val).2
 
 open Classical in
+/--
+@isnad1 id=injectiv.0h2v.s9.4a634f87575d from=translated src=- shape=90a3821c vocab=24711b23
+-/
 theorem idealSetInteger_injective (J : (Ideal (𝓞 K))⁰) :
     Function.Injective (idealSetInteger K J) := by
   intro a b hab
@@ -100,6 +118,9 @@ noncomputable def idealElementDecompositionMap
       mul_ne_zero (Units.ne_zero _) (idealSetInteger_ne_zero K J p.1)⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s10.32825080cb53 from=translated src=- shape=3caa2dad vocab=47925a3a
+-/
 @[simp]
 theorem idealElementDecompositionMap_coe
     (J : (Ideal (𝓞 K))⁰) (p : idealSet K J × unitShiftIndex K) :
@@ -109,6 +130,9 @@ theorem idealElementDecompositionMap_coe
   rfl
 
 open Classical in
+/--
+@isnad1 id=injectiv.0h2v.s9.8e5e0ee45d85 from=translated src=- shape=f55dcd0c vocab=2a71c0f4
+-/
 theorem injective_idealElementDecompositionMap
     (J : (Ideal (𝓞 K))⁰) :
     Function.Injective (idealElementDecompositionMap K J) := by
@@ -171,6 +195,9 @@ theorem injective_idealElementDecompositionMap
   · simp
 
 open Classical in
+/--
+@isnad1 id=surjecti.0h2v.s9.f8b2e6f908ca from=translated src=- shape=f55dcd0c vocab=f3dcaa79
+-/
 theorem surjective_idealElementDecompositionMap
     (J : (Ideal (𝓞 K))⁰) :
     Function.Surjective (idealElementDecompositionMap K J) := by
@@ -273,6 +300,9 @@ noncomputable def idealElementDecompositionEquiv
       surjective_idealElementDecompositionMap K J⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s9.2b4c96bd8681 from=translated src=- shape=fb4e4164 vocab=95395095
+-/
 @[simp]
 theorem idealElementDecompositionEquiv_apply
     (J : (Ideal (𝓞 K))⁰)
@@ -298,6 +328,9 @@ noncomputable def idealElementMulDecompositionEquiv
     (idealElementDecompositionEquiv K J)
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s10.d967fb95f9b7 from=translated src=- shape=07a0ebc8 vocab=273b4248
+-/
 @[simp]
 theorem idealElementMulDecompositionEquiv_coe
     (J : (Ideal (𝓞 K))⁰)

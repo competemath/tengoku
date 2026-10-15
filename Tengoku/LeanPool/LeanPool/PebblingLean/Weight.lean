@@ -34,12 +34,17 @@ distance function. -/
 noncomputable def weight [Fintype V] (dist : V → V → ℕ) (D : Pebbling V) (target : V) : ℚ :=
   ∑ u, (D u : ℚ) * unitWeight dist target u
 
+/--
+@isnad1 id=eq.0h3v.s5.4fc2cd62aacf from=translated src=- shape=ff61d4cb vocab=b48b37bd
+-/
 @[simp]
 theorem weight_zero [Fintype V] (dist : V → V → ℕ) (target : V) :
     weight dist (fun _ : V => 0) target = 0 := by
   simp [weight]
 
-/-- Algebraic effect of one legal move on a weighted sum. -/
+/-- Algebraic effect of one legal move on a weighted sum.
+@isnad1 id=eq.2h5v.s6.9a1690864cc7 from=translated src=- shape=31ebbb1b vocab=3612be30
+-/
 theorem sum_moveDistribution_mul [Fintype V] [DecidableEq V] (D : Pebbling V)
     (w : V → ℚ) {u v : V} (huv : u ≠ v) (hD : 2 ≤ D u) :
     (∑ x, ((moveDistribution D u v x : ℕ) : ℚ) * w x)
@@ -96,7 +101,9 @@ theorem sum_moveDistribution_mul [Fintype V] [DecidableEq V] (D : Pebbling V)
           rw [hdelta]
           ring_nf
 
-/-- Exact change in target weight under one legal move. -/
+/-- Exact change in target weight under one legal move.
+@isnad1 id=eq.2h6v.s6.b6703ea088fa from=translated src=- shape=99b6f2ae vocab=f19ded71
+-/
 theorem weight_moveDistribution [Fintype V] [DecidableEq V] (dist : V → V → ℕ)
     (D : Pebbling V) {u v target : V} (huv : u ≠ v) (hD : 2 ≤ D u) :
     weight dist (moveDistribution D u v) target
@@ -106,7 +113,9 @@ theorem weight_moveDistribution [Fintype V] [DecidableEq V] (dist : V → V → 
 
 /-- If moving from `u` to `v` moves at most one step closer to the target, then
 the new pebble at `v` contributes no more weight than the two pebbles removed
-from `u`. -/
+from `u`.
+@isnad1 id=le.1h5v.s5.14fd3b7ed12f from=translated src=- shape=69843a45 vocab=a0398efe
+-/
 theorem unitWeight_le_two_mul_of_dist_le_succ (dist : V → V → ℕ) {u v target : V}
     (h : dist u target ≤ dist v target + 1) :
     unitWeight dist target v ≤ 2 * unitWeight dist target u := by
@@ -121,7 +130,9 @@ theorem unitWeight_le_two_mul_of_dist_le_succ (dist : V → V → ℕ) {u v targ
   linarith
 
 /-- A single legal move cannot increase target weight, provided the supplied
-distance function changes by at most one along graph edges. -/
+distance function changes by at most one along graph edges.
+@isnad1 id=le.3h6v.s6.5498f20d0002 from=translated src=- shape=6964f071 vocab=89ca1c9d
+-/
 theorem weight_moveDistribution_le [Fintype V] [DecidableEq V] (dist : V → V → ℕ)
     (D : Pebbling V) {u v target : V} (huv : u ≠ v) (hD : 2 ≤ D u)
     (hdist : dist u target ≤ dist v target + 1) :
@@ -132,7 +143,9 @@ theorem weight_moveDistribution_le [Fintype V] [DecidableEq V] (dist : V → V �
     (target := target) huv hD]
   linarith
 
-/-- Relational version of `weight_moveDistribution_le` for `Move`. -/
+/-- Relational version of `weight_moveDistribution_le` for `Move`.
+@isnad1 id=le.2h6v.s6.071445dc3c3b from=translated src=- shape=42391608 vocab=e038574a
+-/
 theorem weight_move_le_of_dist [Fintype V] [DecidableEq V] (G : Graph V)
     (dist : V → V → ℕ) {D E : Pebbling V} {target : V}
     (hmove : Move G D E)
@@ -146,7 +159,9 @@ theorem weight_move_le_of_dist [Fintype V] [DecidableEq V] (G : Graph V)
   exact weight_moveDistribution_le (dist := dist) (D := D) (u := u) (v := v)
     (target := target) huv hD (hdist huv_adj)
 
-/-- A sequence of legal moves cannot increase target weight. -/
+/-- A sequence of legal moves cannot increase target weight.
+@isnad1 id=le.2h6v.s6.c0442c54a2b6 from=translated src=- shape=42391608 vocab=d87b06bc
+-/
 theorem weight_reaches_le_of_dist [Fintype V] [DecidableEq V] (G : Graph V)
     (dist : V → V → ℕ) {D E : Pebbling V} {target : V}
     (hreach : Reaches G D E)
@@ -160,7 +175,9 @@ theorem weight_reaches_le_of_dist [Fintype V] [DecidableEq V] (G : Graph V)
       (target := target) hmove hdist)
 
 /-- If a reachable distribution has a pebble on the target, then its target
-weight is at least one. -/
+weight is at least one.
+@isnad1 id=le.3h5v.s6.074bff741999 from=translated src=- shape=66dd1431 vocab=9bc130c5
+-/
 theorem one_le_weight_of_canReach [Fintype V] [DecidableEq V] (G : Graph V)
     (dist : V → V → ℕ) {D : Pebbling V} {target : V}
     (hcan : CanReach G D target)
