@@ -1,1 +1,0 @@
--- Prismriver: a factory bundle (data/intake/prismriver). This file only marks the library for Tengoku/All.lean.
