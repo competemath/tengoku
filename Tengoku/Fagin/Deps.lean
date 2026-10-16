@@ -1,0 +1,1 @@
+-- Fagin: a factory bundle (data/intake/fagin). This file only marks the library for Tengoku/All.lean.
