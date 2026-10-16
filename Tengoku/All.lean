@@ -18,6 +18,7 @@ import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.Erdos1196
 import Tengoku.OpenaiMath
+import Tengoku.ImmermanVardi
 import Tengoku.Prismriver
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
