@@ -11,6 +11,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 spec = importlib.util.spec_from_file_location("isnad", ROOT / "scripts" / "isnad.py")
@@ -342,6 +343,77 @@ class Laws(unittest.TestCase):
         self.assertIn("#isnad_laws", script)
         self.assertNotIn("def main", script)  # the executable's entry point is not part of the checked code
         self.assertNotIn("importModules", script)
+
+
+class Batches(unittest.TestCase):
+    """One `tengoku-isnad` process over a whole 400-module tag part held the import closure of every module and the hosted runner was shut down for memory
+    (exit 143, 'The runner has received a shutdown signal', three tag runs on 2026-10-15/16): the facts of a part come from one process per batch."""
+
+    MODULES = [f"Tengoku.Lib.M{i}" for i in range(7)]
+
+    def run_facts(self, batch, names=()):
+        calls = []
+
+        def fake_exe(args, exe=None, **_):
+            calls.append(("recs", list(args)))
+            return [f"rec:{a}" for a in args if a.startswith("Tengoku.")]
+
+        def fake_lines(args, exe=None, **_):
+            calls.append(("ranges", list(args)))
+            return [f"range:{a}" for a in args if a.startswith("Tengoku.")]
+
+        with mock.patch.object(isnad, "run_exe", fake_exe), mock.patch.object(isnad, "run_exe_lines", fake_lines):
+            recs, ranges = isnad.facts(self.MODULES, list(names), None, batch)
+        return recs, ranges, calls
+
+    def test_seven_modules_in_batches_of_three_make_three_processes_per_kind(self):
+        _, _, calls = self.run_facts(3)
+        sizes = [sum(1 for a in args if a == "--module") for kind, args in calls if kind == "recs"]
+        self.assertEqual(sizes, [3, 3, 1])
+        self.assertEqual([k for k, _ in calls], ["recs", "ranges"] * 3)
+
+    def test_the_batches_together_give_what_one_process_gives(self):
+        recs, ranges, _ = self.run_facts(3)
+        one_recs, one_ranges, _ = self.run_facts(100)
+        self.assertEqual((recs, ranges), (one_recs, one_ranges))
+        self.assertEqual(recs, [f"rec:{m}" for m in self.MODULES])
+        self.assertEqual(ranges, [f"range:{m}" for m in self.MODULES])
+
+    def test_the_names_filter_goes_to_every_batch_and_ranges_asks_for_the_same_modules(self):
+        _, _, calls = self.run_facts(4, names=["foo"])
+        self.assertTrue(all(args.count("--name") == 1 for _, args in calls))
+        for (k1, a1), (k2, a2) in zip(calls[::2], calls[1::2]):
+            self.assertEqual((k1, k2, a2[0], a2[1:]), ("recs", "ranges", "--ranges", a1))
+
+    def test_a_batch_of_zero_or_less_means_one_process(self):
+        for batch in (0, -5):
+            _, _, calls = self.run_facts(batch)
+            self.assertEqual(len(calls), 2)
+
+    def test_both_commands_hand_their_batch_option_to_facts(self):
+        seen = []
+
+        def fake_facts(modules, names, exe, batch=None):
+            seen.append((list(modules), list(names), batch))
+            return [], []
+
+        ap = isnad.build_parser()
+        with (
+            mock.patch.object(isnad, "facts", fake_facts),
+            mock.patch.object(isnad, "plan_tags", lambda *a, **k: ({}, [])),
+            mock.patch.object(isnad, "tag_files", lambda *a, **k: ({"added": 0, "replaced": 0, "same": 0, "created": 0}, [])),
+            mock.patch.object(isnad, "check_tags", lambda *a, **k: ([], "")),
+            mock.patch("builtins.print"),
+        ):
+            isnad.cmd_tag(ap.parse_args(["tag", "--module", "A", "--module", "B", "--name", "n", "--batch", "7"]))
+            isnad.cmd_check_tags(ap.parse_args(["check-tags", "--module", "A", "--batch", "9"]))
+        self.assertEqual(seen, [(["A", "B"], ["n"], 7), (["A"], [], 9)])
+
+    def test_both_commands_take_a_batch_option_with_the_default(self):
+        ap = isnad.build_parser()
+        for cmd in ("tag", "check-tags"):
+            self.assertEqual(ap.parse_args([cmd, "--module", "A"]).batch, isnad.BATCH)
+            self.assertEqual(ap.parse_args([cmd, "--module", "A", "--batch", "7"]).batch, 7)
 
 
 if __name__ == "__main__":
