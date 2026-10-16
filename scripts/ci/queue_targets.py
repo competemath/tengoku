@@ -72,13 +72,17 @@ def generate(lib: str, extra: list[str]) -> None:
 # An intake library (a factory bundle: scripts/ci/intake_check.py) has no records to generate from: its modules ARE the content. The
 # queue builds the library root and skips generation and the derived-files comparison for it.
 intake: set[str] = set()
+razed: set[str] = set()
 for st, p in changed_files(base, head):
     m = re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p)
-    if (
-        m and st != "D"
-    ):  # a raze PR (scripts/ci/raze_check.py) that removes a whole library deletes its manifest: there is no root to build, `Tengoku.All` is built after
+    if m and st != "D":
         intake.add(m.group(1))
+    elif m:  # a raze PR (scripts/ci/raze_check.py) that removes a whole library deletes its manifest: there is no root to build, `Tengoku.All` is built after
+        razed.add(m.group(1))
 intake_ns = {pascal(lib) for lib in intake}
+# A razed library has nothing to regenerate either: a registered library that is also an intake bundle (navier-stokes-euler) would otherwise be regenerated from its corpus for the
+# modules the raze deletes, and the generator rewrites Tengoku/All.lean as it would write it, which is not what the raze edits (2026-10-16, tengoku#579: ejected at this check)
+gone_ns = intake_ns | {pascal(lib) for lib in razed}
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging
 left_out: dict[str, set[str]] = {}  # library -> garbled records the generator leaves out (they stay in staging)
 touched: set[str] = set()  # libraries with any data change (staging or trusted)
@@ -101,7 +105,7 @@ for st, p in changed_files(base, head):
         touched.add(library_of(p))
     elif regenerate:
         lib = library_of_module(p, corpora)
-        if lib and pascal(lib) not in intake_ns:
+        if lib and pascal(lib) not in gone_ns:
             touched.add(lib)  # a derived module edited by hand is caught by regenerating its library
 
 if regenerate:
