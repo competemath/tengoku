@@ -2705,7 +2705,6 @@ import Tengoku.LeanPool.LeanPool.Polylean.ConjInvLength.LengthBound
 import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.AddFreeGroup
 import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.EnumDecide
 import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.FreeModule
-import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.GroupRing
 import Tengoku.LeanPool.LeanPool.PolynomialMethodRestrictedSums.VandermondeCoefficientFormula
 import Tengoku.LeanPool.LeanPool.Polytopes.Cutspace
 import Tengoku.LeanPool.LeanPool.Polytopes.Halfspace
