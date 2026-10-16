@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "6c09c98ea2c4f590fdacfdccee74d4d10f831d3fc89414a91d1c3525634fa61d",
+ "library": "fagin",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 1
+}
