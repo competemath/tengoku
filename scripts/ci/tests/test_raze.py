@@ -488,6 +488,7 @@ class Raze(unittest.TestCase):
         self.assertEqual(rc, 0, out)
         self.assertEqual(generated.count("--libraries"), 1)
         self.assertIn("--libraries lib", generated)
+        self.assertNotIn("fx-lib", generated)  # one run for `lib` alone, not `--libraries lib fx-lib`
 
 
 if __name__ == "__main__":
