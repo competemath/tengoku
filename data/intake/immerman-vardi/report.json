@@ -1,0 +1,8 @@
+{
+ "bundle_sha256": "2d4d9bf5595f1ad7a1559655d8b5a8f0242eea4d322350519836fddff256b281",
+ "library": "immerman-vardi",
+ "lint_mode": "proposed",
+ "modules": 43,
+ "part": 1,
+ "theorems": 132
+}
