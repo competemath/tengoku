@@ -216,6 +216,23 @@ def run_exe(args: list[str], exe: str | None = None, cwd: Path = ROOT, extra_pat
     return [Record(ln) for ln in run_exe_lines(args, exe, cwd, extra_path)]
 
 
+BATCH = 25  # modules per `tengoku-isnad` process (see facts)
+
+
+def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BATCH) -> tuple[list[Record], list[str]]:
+    """The records and the range lines of the modules, from one `tengoku-isnad` process per `batch` modules (all of them in one process when batch < 1). One
+    process over a whole 400-module tag part held the import closure and the analysis of every module, and the hosted runner was shut down for memory (exit 143,
+    'The runner has received a shutdown signal': three tag runs on 2026-10-15/16); a batch frees it before the next."""
+    size = batch if batch > 0 else max(len(modules), 1)
+    recs: list[Record] = []
+    ranges: list[str] = []
+    for i in range(0, len(modules), size):
+        args = [x for m in modules[i : i + size] for x in ("--module", m)] + [x for n in names for x in ("--name", n)]
+        recs += run_exe(args, exe)
+        ranges += run_exe_lines(["--ranges", *args], exe)
+    return recs, ranges
+
+
 def golden() -> list[tuple[str, str, str, str]]:
     """(import module, theorem, expected id, expected shape+vocab) rows of tools/isnad/golden.tsv."""
     rows = []
@@ -455,8 +472,8 @@ def tagtest(exe: str | None = None) -> int:
 
 
 def cmd_tag(a: argparse.Namespace) -> int:
-    mods = [x for m in a.module for x in ("--module", m)] + [x for n in a.name for x in ("--name", n)]
-    plan, skipped = plan_tags(run_exe(mods, a.exe), run_exe_lines(["--ranges", *mods], a.exe), a.origin, a.src)
+    recs, ranges = facts(a.module, a.name, a.exe, a.batch)
+    plan, skipped = plan_tags(recs, ranges, a.origin, a.src)
     counts, more = tag_files(plan, ROOT, a.write)
     for name, why in skipped + more:
         print(f"skipped {name}: {why}")
@@ -537,8 +554,8 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
 
 
 def cmd_check_tags(a: argparse.Namespace) -> int:
-    mods = [x for m in a.module for x in ("--module", m)]
-    problems, summary = check_tags(run_exe(mods, a.exe), run_exe_lines(["--ranges", *mods], a.exe), a.module, ROOT)
+    recs, ranges = facts(a.module, [], a.exe, a.batch)
+    problems, summary = check_tags(recs, ranges, a.module, ROOT)
     if problems:
         print("isnad check-tags: " + "; ".join(problems[:10]) + (f"; and {len(problems) - 10} more" if len(problems) > 10 else ""))
         return 1
@@ -589,9 +606,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--src", help="default: 0 for seed and novel, - for translated")
     s.add_argument("--write", action="store_true")
     s.add_argument("--exe")
+    s.add_argument("--batch", type=int, default=BATCH, help=f"modules per tengoku-isnad process (default {BATCH}; below 1: all in one)")
     s = sub.add_parser("check-tags")
     s.add_argument("--module", action="append", required=True)
     s.add_argument("--exe")
+    s.add_argument("--batch", type=int, default=BATCH, help=f"modules per tengoku-isnad process (default {BATCH}; below 1: all in one)")
     s = sub.add_parser("strip")
     s.add_argument("paths", nargs="+")
     s.add_argument("--write", action="store_true")
