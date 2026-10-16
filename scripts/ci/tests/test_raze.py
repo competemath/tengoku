@@ -53,15 +53,21 @@ def record(key: str) -> str:
     )
 
 
+# stands in for scripts/generate.py: records that the queue ran it (it would rewrite Tengoku/All.lean as the real one does)
+GENERATOR_STUB = "import pathlib, sys\n\nwith pathlib.Path('generated.txt').open('a') as f:\n    f.write(' '.join(sys.argv[1:]) + '\\n')\n"
+
+
 def umbrella(keys) -> str:
     return "".join(f"import {mod_name(k)}\n" for k in keys)
 
 
 class Raze(unittest.TestCase):
-    def repo(self, other_importing=None, parts=True, ghost=False, garbage=False):
+    def repo(self, other_importing=None, parts=True, ghost=False, garbage=False, corpora=()):
         r = Repo()
         r.write("lean-toolchain", TOOLCHAIN + "\n")
-        r.write("schemas/sources.json", json.dumps({"corpora": {}}))
+        r.write("schemas/sources.json", json.dumps({"corpora": {lib: {"repo": "x", "commit": "c"} for lib in corpora}}))
+        if corpora:
+            r.write("scripts/generate.py", GENERATOR_STUB)
         r.write("Tengoku.lean", "")  # the roots every module imports
         r.write("Tengoku/Lib.lean", "import Tengoku.Lib.Basic\n")
         r.write("Tengoku/All.lean", "import Tengoku.Lib\nimport Tengoku.FxLib\n")
@@ -437,6 +443,51 @@ class Raze(unittest.TestCase):
         rc, out = r.gate("queue_targets.py")
         self.assertEqual(rc, 0, out)
         self.assertEqual([ln for ln in out.splitlines() if ln.startswith("Tengoku.")], [])
+
+    # --- the queue regenerates the derived files of the libraries a group touches, and a library that is also registered with a corpus (navier-stokes-euler) must not be one of them
+
+    def regenerated(self, r, corpora):
+        for lib in corpora:
+            (r.dir / "corpora" / lib / ".git").mkdir(parents=True)  # the corpus is already 'cloned'
+        rc, out = r.gate("queue_targets.py", "main", "pr", "--regenerate")
+        gen = r.dir / "generated.txt"
+        return rc, out, (gen.read_text() if gen.exists() else "")
+
+    def test_a_whole_library_raze_does_not_regenerate_the_library_it_removes(self):
+        # 2026-10-16, tengoku#579: navier-stokes-euler is an intake bundle AND has a corpus; the manifest the raze deletes took it out of the intake set, so the modules the raze
+        # deletes made the queue regenerate it, and the generator rewrote Tengoku/All.lean as it writes it ("regenerated derived files differ from the PR")
+        r = self.repo(parts=False, corpora=("fx-lib",))
+        self.raze_all(r)
+        rc, out, generated = self.regenerated(r, ("fx-lib",))
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(generated, "", "the generator ran for a library that was razed whole")
+
+    def test_a_partial_raze_does_not_regenerate_either(self):
+        r = self.repo(corpora=("fx-lib",))
+        self.raze(r, ["C"])
+        rc, out, generated = self.regenerated(r, ("fx-lib",))
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(generated, "")
+
+    def test_a_derived_module_edited_by_hand_still_regenerates_its_library(self):
+        # the rule the exclusion must not break: a library with a corpus and no intake bundle is regenerated for the modules a group touches
+        r = self.repo(corpora=("fx-lib", "lib"))
+        r.write("Tengoku/Lib/Basic.lean", "/-\nAuthors: Someone\n-/\ntheorem Lib.old : 1 + 1 = 2 := by decide\n")
+        r.commit("edit a derived module")
+        rc, out, generated = self.regenerated(r, ("fx-lib", "lib"))
+        self.assertEqual(rc, 0, out)
+        self.assertIn("--libraries lib", generated)
+        self.assertNotIn("fx-lib", generated)
+
+    def test_a_whole_raze_next_to_a_hand_edited_library_regenerates_only_the_latter(self):
+        r = self.repo(parts=False, corpora=("fx-lib", "lib"))
+        self.raze_all(r)
+        r.write("Tengoku/Lib/Basic.lean", "/-\nAuthors: Someone\n-/\ntheorem Lib.old : 1 + 1 = 2 := by decide\n")
+        r.commit("and an edit")
+        rc, out, generated = self.regenerated(r, ("fx-lib", "lib"))
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(generated.count("--libraries"), 1)
+        self.assertIn("--libraries lib", generated)
 
 
 if __name__ == "__main__":
