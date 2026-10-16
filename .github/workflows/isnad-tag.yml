@@ -86,6 +86,11 @@ jobs:
         if: steps.plan.outputs.any == 'true'
         env: { GH_TOKEN: "${{ github.token }}" }
         run: scripts/cache.sh get 2>&1 | tail -3 && lake build Tengoku.All 2>&1 | tail -1
+      # Three tag runs were shut down by the runner ten to thirteen minutes into the tagging (exit 143, "The runner has received a shutdown signal") and the
+      # cause (memory, disk, time) was not in the job. A sample every 20 s (scripts/ci/runner_telemetry.py) and a summary on the job's page leave it there.
+      - name: Runner telemetry (disk, memory, kernel out-of-memory kills)
+        if: steps.plan.outputs.any == 'true'
+        run: nohup python3 scripts/ci/runner_telemetry.py watch >/dev/null 2>&1 &
       - name: Tag the part
         id: tag
         if: steps.plan.outputs.any == 'true'
@@ -130,6 +135,12 @@ jobs:
             grep '^skipped' tag.log 2>/dev/null | head -40 || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+      - name: Runner telemetry summary
+        if: always() && steps.plan.outputs.any == 'true'
+        run: python3 scripts/ci/runner_telemetry.py summary >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always() && steps.plan.outputs.any == 'true'
+        with: { name: runner-telemetry, path: telemetry.jsonl, retention-days: 3, if-no-files-found: ignore }
       - name: The patch
         if: steps.tag.outputs.branch != ''
         run: git format-patch -1 --stdout > tags.patch && ls -la tags.patch
