@@ -17,6 +17,9 @@ def pointEquiv (n : Nat) : Fin n ≃ Point n where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=ex.1h2v.s6.88eca8ad26c0 from=translated src=- shape=432b6f68 vocab=209ff440
+-/
 theorem enumerate {n : Nat} (r : Fin n → Fin n → Prop) (hr : StrictTotal r) :
     ∃ e : Fin n ≃ Fin n, ∀ i j, r (e i) (e j) ↔ i < j := by
   classical

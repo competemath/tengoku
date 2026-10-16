@@ -21,6 +21,9 @@ def rename (f : K → L) : Program (fun _ : K => Γ) σ → Program (fun _ : L =
 def project (f : K → L) (s : Store (fun _ : L => Γ) σ) : Store (fun _ : K => Γ) σ :=
   ⟨s.state, fun k => s.stk (f k)⟩
 
+/--
+@isnad1 id=eq.1h7v.s6.b489537bc923 from=translated src=- shape=a97d574b vocab=abdad497
+-/
 theorem op_project (f : K → L) (hf : Function.Injective f)
     (o : Op (fun _ : K => Γ) σ) (s : Store (fun _ : L => Γ) σ) :
     project f ((renameOp f o).apply s) = o.apply (project f s) := by
@@ -36,6 +39,9 @@ theorem op_project (f : K → L) (hf : Function.Injective f)
   | peek k g | load g => rfl
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.1h8v.s6.0e4838abaaaa from=translated src=- shape=d934b666 vocab=1af03514
+-/
 theorem op_frame (f : K → L) (o : Op (fun _ : K => Γ) σ)
     (s : Store (fun _ : L => Γ) σ) (key : L) (hk : key ∉ Set.range f) :
     ((renameOp f o).apply s).stk key = s.stk key := by
@@ -43,7 +49,9 @@ theorem op_frame (f : K → L) (o : Op (fun _ : K => Γ) σ)
   cases o <;> simp [renameOp, Op.apply, hne]
 
 /-- A verified program can be embedded in a larger finite stack layout.
-The execution cost is unchanged, and every extra stack is preserved. -/
+The execution cost is unchanged, and every extra stack is preserved.
+@isnad1 id=ex.3h10v.s7.fb2763fb3260 from=translated src=- shape=6eca7f70 vocab=dfe99d78
+-/
 theorem rename_executes (f : K → L) (hf : Function.Injective f)
     {p : Program (fun _ : K => Γ) σ} {s t : Store (fun _ : K => Γ) σ} {cost : Nat}
     (h : Executes p s t cost) (s' : Store (fun _ : L => Γ) σ) (hs : project f s' = s) :
@@ -83,6 +91,9 @@ theorem rename_executes (f : K → L) (hf : Function.Injective f)
 def sumStore (s : Store (fun _ : K => Γ) σ) (extra : L → List Γ) : Store (fun _ : K ⊕ L => Γ) σ :=
   ⟨s.state, Sum.elim s.stk extra⟩
 
+/--
+@isnad1 id=executes.1h9v.s6.7dd4608e6d01 from=translated src=- shape=409c1aa5 vocab=162c055a
+-/
 theorem executes_in_sum {p : Program (fun _ : K => Γ) σ} {s t : Store (fun _ : K => Γ) σ}
     {cost : Nat} (h : Executes p s t cost) (extra : L → List Γ) :
     Executes (rename Sum.inl p) (sumStore s extra) (sumStore t extra) cost := by

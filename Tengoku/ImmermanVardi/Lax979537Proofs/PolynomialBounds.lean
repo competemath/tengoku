@@ -5,6 +5,9 @@ namespace Lax979537Proofs.PolynomialBounds
 
 open Polynomial
 
+/--
+@isnad1 id=le.1h3v.s4.c68f761cdc44 from=translated src=- shape=75568de1 vocab=840fc35b
+-/
 theorem eval_mono (p : Polynomial Nat) {n m : Nat} (h : n ≤ m) :
     p.eval n ≤ p.eval m := by
   induction p using Polynomial.induction_on' with

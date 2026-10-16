@@ -16,6 +16,9 @@ def Bounded (H : Records (Node Initial) Γ) (t : Nat) : Prop :=
   ∀ n a p, (n, a, p) ∈ H → Before t n
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=bounded.2h6v.s5.0b13e0ca7f18 from=translated src=- shape=af10515e vocab=202630ea
+-/
 theorem bounded_mono {H : Records (Node Initial) Γ} {t u : Nat} (h : Bounded H t) (htu : t ≤ u) :
     Bounded H u := by
   intro n a p hn
@@ -25,10 +28,16 @@ theorem bounded_mono {H : Records (Node Initial) Γ} {t u : Nat} (h : Bounded H 
   | inr v => exact Nat.lt_of_lt_of_le hb htu
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=fresh.1h5v.s5.1311f294e20c from=translated src=- shape=ffbf6c41 vocab=1f1db634
+-/
 theorem bounded_fresh {H : Records (Node Initial) Γ} {t : Nat} (h : Bounded H t) : Fresh H (.inr t) := by
   intro a p hm
   exact Nat.lt_irrefl t (h (.inr t) a p hm)
 
+/--
+@isnad1 id=bounded.2h11v.s6.ad51146b6b1f from=translated src=- shape=665b2daa vocab=cfc38a70
+-/
 theorem step_bounded {M : Λ → TM2.Stmt Γ Λ State} {t : Nat} {H G : Records (Node Initial) Γ}
     {c d : NodeMachine.Cfg Γ Λ State (Node Initial)} (h : Step M (.inr t) H c G d) (hH : Bounded H t) :
     Bounded G (t + 1) := by
@@ -48,6 +57,9 @@ inductive Run (M : Λ → TM2.Stmt Γ Λ State) (H₀ : Records (Node Initial) �
   | zero : Run M H₀ c₀ 0 H₀ c₀
   | succ {t H c G d} : Run M H₀ c₀ t H c → Step M (.inr t) H c G d → Run M H₀ c₀ (t + 1) G d
 
+/--
+@isnad1 id=and.4h12v.s7.29c393fd2a84 from=translated src=- shape=8106fc90 vocab=fa6cd7a1
+-/
 theorem run_sound {M : Λ → TM2.Stmt Γ Λ State} {H₀ H : Records (Node Initial) Γ}
     {c₀ c : NodeMachine.Cfg Γ Λ State (Node Initial)} {t : Nat}
     (h : Run M H₀ c₀ t H c) (hF : Functional H₀) (hB : Bounded H₀ 0)
@@ -62,6 +74,9 @@ theorem run_sound {M : Λ → TM2.Stmt Γ Λ State} {H₀ H : Records (Node Init
       refine ⟨hG, step_bounded hs ih.2.1, ?_⟩
       simpa only [Function.iterate_succ_apply'] using hmatch
 
+/--
+@isnad1 id=ex.3h10v.s6.37afca089a61 from=translated src=- shape=15785f71 vocab=3a738994
+-/
 theorem run_exists (M : Λ → TM2.Stmt Γ Λ State) (H₀ : Records (Node Initial) Γ)
     (c₀ : NodeMachine.Cfg Γ Λ State (Node Initial)) (hF : Functional H₀) (hB : Bounded H₀ 0)
     (d₀ : TM2Micro.Cfg Γ Λ State) (hM : Matches H₀ c₀ d₀) (t : Nat) :
@@ -74,6 +89,9 @@ theorem run_exists (M : Λ → TM2.Stmt Γ Λ State) (H₀ : Records (Node Initi
       obtain ⟨G, d, hs⟩ := step_exists M (.inr t) H c ((TM2Micro.next M)^[t] d₀).stk hmatch.2.2
       exact ⟨G, d, .succ hr hs⟩
 
+/--
+@isnad1 id=and.5h14v.s7.5978596f204c from=translated src=- shape=8cfe1c22 vocab=3a738994
+-/
 theorem run_unique {M : Λ → TM2.Stmt Γ Λ State} {H₀ H G : Records (Node Initial) Γ}
     {c₀ c d : NodeMachine.Cfg Γ Λ State (Node Initial)} {t : Nat}
     (hF : Functional H₀) (hB : Bounded H₀ 0) (d₀ : TM2Micro.Cfg Γ Λ State) (hM : Matches H₀ c₀ d₀)

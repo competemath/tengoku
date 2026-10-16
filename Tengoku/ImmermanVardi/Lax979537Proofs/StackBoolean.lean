@@ -35,13 +35,22 @@ def binary (port : K) (op : Bool → Bool → Bool) (p q : EvalProgram K Aux) : 
 def saved (port : K) (b : Bool) (s : EvalStore K Aux) : EvalStore K Aux :=
   ⟨(result b s).state, Function.update s.stk port (b :: s.stk port)⟩
 
+/--
+@isnad1 id=returns.0h4v.s4.9487105f7a31 from=translated src=- shape=e3262d55 vocab=42351bde
+-/
 theorem answer_returns (b : Bool) (s : EvalStore K Aux) : Returns (answer b) s b 1 :=
   Executes.atom _ _
 
+/--
+@isnad1 id=returns.1h6v.s6.13d16a9785fc from=translated src=- shape=d72dbd4e vocab=0a883e28
+-/
 theorem negate_returns {p : EvalProgram K Aux} {s : EvalStore K Aux} {b : Bool} {cost : Nat}
     (h : Returns p s b cost) : Returns (.seq p negate) s (!b) (cost + 1) := by
   exact Executes.seq h (Executes.atom _ _)
 
+/--
+@isnad1 id=eq.0h7v.s7.8856a94f2017 from=translated src=- shape=d965f412 vocab=68aacba1
+-/
 theorem combine_saved (port : K) (op : Bool → Bool → Bool) (b d : Bool) (s : EvalStore K Aux) :
     Op.apply (.pop port (fun s : ((Aux × Bool) × Bool) × Option Bool => fun a =>
       (((s.1.1.1, true), op (a.getD false) s.1.2), none))) (result d (saved port b s)) =

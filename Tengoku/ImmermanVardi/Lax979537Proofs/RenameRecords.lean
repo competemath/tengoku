@@ -9,11 +9,16 @@ variable {α β Symbol : Type}
 def entries (e : α → β) (xs : List (α × Symbol)) : List (β × Symbol) :=
   xs.map (fun p => (e p.1, p.2))
 
+/--
+@isnad1 id=eq.0h5v.s5.ca2b09fae9fe from=translated src=- shape=57fc8918 vocab=9ddaffe0
+-/
 theorem head_entries (e : α → β) (xs : List (α × Symbol)) :
     head (entries e xs) = (head xs).map e := by
   simp [head, entries, Option.map_map, Function.comp_def]
 
-/-- Renaming nodes maps both the record key and its optional parent. -/
+/-- Renaming nodes maps both the record key and its optional parent.
+@isnad1 id=iff.0h8v.s6.607959814a7c from=translated src=- shape=c67ceae7 vocab=6a107402
+-/
 theorem records_entries (e : α → β) (xs : List (α × Symbol))
     (n : β) (a : Symbol) (parent : Option β) :
     (n, a, parent) ∈ records (entries e xs) ↔

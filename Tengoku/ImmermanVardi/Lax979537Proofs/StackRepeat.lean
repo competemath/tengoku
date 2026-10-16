@@ -10,10 +10,16 @@ variable {K Aux : Type} [DecidableEq K]
 def readStore (counter : K) (s : BitStore K Aux) : BitStore K Aux :=
   Op.apply (.pop counter (fun q b => (q.1, b))) s
 
+/--
+@isnad1 id=eq.0h4v.s5.de7faf48175f from=translated src=- shape=7e6e6c6e vocab=26667a5f
+-/
 @[simp] theorem readStore_counter (counter : K) (s : BitStore K Aux) :
     (readStore counter s).stk counter = (s.stk counter).tail := by
   simp [readStore, Op.apply]
 
+/--
+@isnad1 id=eq.0h4v.s5.755442d961a6 from=translated src=- shape=b58e45bf vocab=e47d96c0
+-/
 @[simp] theorem readStore_scratch (counter : K) (s : BitStore K Aux) :
     (readStore counter s).state.2 = (s.stk counter).head? := rfl
 
@@ -32,6 +38,9 @@ def result (counter : K) (f : BitStore K Aux → BitStore K Aux) :
   | 0, s => readStore counter s
   | n + 1, s => result counter f n (f (readStore counter s))
 
+/--
+@isnad1 id=ex.2h11v.s7.5fc19b975a85 from=translated src=- shape=1b40ee65 vocab=2ade6d85
+-/
 theorem repeatLoop_executes (counter : K) (body : BitProgram K Aux)
     (f : BitStore K Aux → BitStore K Aux) (Valid : BitStore K Aux → Prop) (B : Nat)
     (hread : ∀ s, Valid s → Valid (readStore counter s))
@@ -68,6 +77,9 @@ theorem repeatLoop_executes (counter : K) (body : BitProgram K Aux)
       simp only [Nat.mul_succ]
       omega
 
+/--
+@isnad1 id=ex.2h11v.s7.81e97fa92de0 from=translated src=- shape=93614540 vocab=f937a84f
+-/
 theorem repeat_executes (counter : K) (body : BitProgram K Aux)
     (f : BitStore K Aux → BitStore K Aux) (Valid : BitStore K Aux → Prop) (B : Nat)
     (hread : ∀ s, Valid s → Valid (readStore counter s))
@@ -80,6 +92,9 @@ theorem repeat_executes (counter : K) (body : BitProgram K Aux)
   obtain ⟨c, hc, hh⟩ := repeatLoop_executes counter body f Valid B hread hf hframe hbody s hs
   exact ⟨1 + c, by omega, Executes.seq (Executes.atom _ _) hh⟩
 
+/--
+@isnad1 id=other.1h9v.s7.19064d058629 from=translated src=- shape=c4fcf132 vocab=daaf0b0d
+-/
 theorem result_spec (counter : K) (f : BitStore K Aux → BitStore K Aux)
     (Valid : BitStore K Aux → Prop)
     (hread : ∀ s, Valid s → Valid (readStore counter s))
