@@ -1,0 +1,1 @@
+{"library": "navier-stokes-euler", "all": true, "reason": "the library is razed whole so it can come back with the authors' own imports (faithful), because the umbrella import made names ambiguous and stopped the headline results from building"}
