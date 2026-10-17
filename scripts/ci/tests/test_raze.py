@@ -80,9 +80,9 @@ class Raze(unittest.TestCase):
             + (json.dumps({"name": "Fx.ghost", "module": P + "Ghost"}) + "\n" if ghost else "")
             + ('not json at all "source_url"\n' if garbage else ""),
         )
-        r.write("data/intake/fx-lib/report.json", json.dumps({"library": "fx-lib", "part": 1}) + "\n")
+        r.write("data/intake/fx-lib/report.json", json.dumps({"library": "fx-lib", "part": 1, "gate2_unjudged": []}) + "\n")
         if parts:
-            r.write("data/intake/fx-lib/parts/002.json", json.dumps({"library": "fx-lib", "part": 2}) + "\n")
+            r.write("data/intake/fx-lib/parts/002.json", json.dumps({"library": "fx-lib", "part": 2, "gate2_unjudged": []}) + "\n")
         if other_importing:
             r.write("Tengoku/OtherLib/Use.lean", f"import Tengoku\nimport {mod_name(other_importing)}\n\ntheorem u : True := trivial\n")
             r.write("Tengoku/OtherLib.lean", "import Tengoku.OtherLib.Use\n")

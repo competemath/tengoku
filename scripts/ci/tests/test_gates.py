@@ -1275,7 +1275,7 @@ class Intake(unittest.TestCase):
         r.write("Tengoku/FxLib/Fx/Basic.lean", mod if mod is not None else self.MOD)
         r.write("Tengoku/FxLib.lean", "import Tengoku.FxLib.Fx.Basic\n")
         r.write("data/intake/fx-lib/manifest.jsonl", json.dumps(manifest) + "\n")
-        r.write("data/intake/fx-lib/report.json", "{}\n")
+        r.write("data/intake/fx-lib/report.json", '{"gate2_unjudged": []}\n')
         r.write("Tengoku/All.lean", "import Tengoku.Lib\nimport Tengoku.FxLib\n")
         r.commit("intake fx-lib")
 

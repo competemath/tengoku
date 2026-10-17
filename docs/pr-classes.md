@@ -174,6 +174,10 @@ The class is recognised by the new `parts/NNN.json` file and must come from `TEN
 checks of an intake PR on the new modules and manifest lines (allow-list lint, tree imports only, names unique and not the library's own earlier ones, toolchain)
 and with these: the library is in the tree already, the part number is the next one, `Tengoku/All.lean` is untouched, a part has at most 400 modules, and the
 factory's build attestation matches the part's archive (its modules, the root file, its own manifest lines and its report), rebuilt from the PR's files.
+Both classes also require two things of the factory (2026-10-17; navier-stokes-euler part 1 had shipped 89 modules, 504 theorem commands, that Gate 2 never judged):
+the report says `"gate2_unjudged": []` (the factory cuts every module Gate 2 gave no verdict, with its importers, and records the field in the report inside the archive; a
+report without the field, with anything else in it, or that is not a JSON object fails), and the build attestation is of a run **from the factory's main branch**
+(`--source-ref refs/heads/main`): a workflow dispatched from a branch carries a valid attestation of the same workflow file, built from code nobody reviewed.
 The `imports` gate checks that every `import` of the part resolves, in the tree it joins. The merge queue builds and scans the part's own modules (`Tengoku.<Library>.<Module>` for each new
 module, `queue_targets.py`), not the library's root: the earlier parts are in the cache, and the root would re-check every declaration of every earlier part.
 
