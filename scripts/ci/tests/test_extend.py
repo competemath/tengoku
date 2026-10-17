@@ -67,7 +67,10 @@ class Extend(unittest.TestCase):
         r.write("Tengoku/FxLib.lean", umbrella if umbrella is not None else f"import {self.A}\nimport {self.B}\n")
         old = (r.dir / "data/intake/fx-lib/manifest.jsonl").read_text() if (r.dir / "data/intake/fx-lib/manifest.jsonl").exists() else ""
         r.write("data/intake/fx-lib/manifest.jsonl", old + (manifest if manifest is not None else record("b", self.B)))
-        r.write("data/intake/fx-lib/parts/002.json", report if report is not None else json.dumps({"library": "fx-lib", "part": 2, "gate2_unjudged": []}) + "\n")
+        r.write(
+            "data/intake/fx-lib/parts/002.json",
+            report if report is not None else json.dumps({"library": "fx-lib", "part": 2, "gate2_unjudged": []}) + "\n",
+        )
         for p, s in (extra or {}).items():
             r.write(p, s)
         r.commit("part 2 of fx-lib")
@@ -173,7 +176,9 @@ class Extend(unittest.TestCase):
         r.write("Tengoku/FxLib/Fx/C.lean", module("c"))
         r.write("Tengoku/FxLib.lean", f"import {self.A}\nimport {self.B}\nimport Tengoku.FxLib.Fx.C\n")
         r.write("data/intake/fx-lib/manifest.jsonl", record("a", self.A) + record("b", self.B) + record("c", "Tengoku.FxLib.Fx.C"))
-        r.write("data/intake/fx-lib/parts/002.json", json.dumps({"library": "fx-lib", "part": 2, "gate2_unjudged": []}) + "\n")  # modified, not added
+        r.write(
+            "data/intake/fx-lib/parts/002.json", json.dumps({"library": "fx-lib", "part": 2, "gate2_unjudged": []}) + "\n"
+        )  # modified, not added
         r.commit("part 2 again")
         rc, out = r.gate("intake_check.py", "main", "pr2")
         self.assertNotEqual(rc, 0)
@@ -330,7 +335,9 @@ class Extend(unittest.TestCase):
 
     def test_two_parts_in_one_pr_are_refused(self):
         r = self.repo()
-        self.part2(r, extra={"data/intake/fx-lib/parts/003.json": json.dumps({"library": "fx-lib", "part": 3, "gate2_unjudged": []}) + "\n"})
+        self.part2(
+            r, extra={"data/intake/fx-lib/parts/003.json": json.dumps({"library": "fx-lib", "part": 3, "gate2_unjudged": []}) + "\n"}
+        )
         rc, out = self.check(r)
         self.assertNotEqual(rc, 0)
         self.assertIn("adds one part", out)

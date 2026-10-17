@@ -70,7 +70,16 @@ class Verdicts(unittest.TestCase):
 
     def test_every_other_shape_of_the_field_is_refused_too(self):
         # `if not unjudged` or `== []`-by-truthiness would let these through
-        for what, value in (("null", None), ("false", False), ("zero", 0), ("empty string", ""), ("string", "[]"), ("empty object", {}), ("list in a list", [[]]), ("blank name", [""])):
+        for what, value in (
+            ("null", None),
+            ("false", False),
+            ("zero", 0),
+            ("empty string", ""),
+            ("string", "[]"),
+            ("empty object", {}),
+            ("list in a list", [[]]),
+            ("blank name", [""]),
+        ):
             self.refused(self.part2_with(value), f"extend, {what}")
 
     def test_a_report_that_is_not_json_or_not_an_object_is_refused(self):
@@ -93,12 +102,18 @@ class Verdicts(unittest.TestCase):
     def test_the_field_in_the_wrong_file_does_not_count(self):
         # the part's own report is what is checked: the tree's part 1 report, or an extra file, cannot vouch for it
         r = self.repo()
-        self.part2(r, report=json.dumps({"library": "fx-lib", "part": 2}) + "\n", extra={"data/intake/fx-lib/report.json": json.dumps({"library": "fx-lib", "part": 1, "gate2_unjudged": []}) + "\n"})
+        self.part2(
+            r,
+            report=json.dumps({"library": "fx-lib", "part": 2}) + "\n",
+            extra={"data/intake/fx-lib/report.json": json.dumps({"library": "fx-lib", "part": 1, "gate2_unjudged": []}) + "\n"},
+        )
         self.refused(r, "field only in the old report")
 
     def test_the_field_must_be_a_real_key_not_a_word_in_another_one(self):
         r = self.repo()
-        self.part2(r, report=json.dumps({"library": "fx-lib", "part": 2, "note": "gate2_unjudged: []", "gate2_unjudged_modules": []}) + "\n")
+        self.part2(
+            r, report=json.dumps({"library": "fx-lib", "part": 2, "note": "gate2_unjudged: []", "gate2_unjudged_modules": []}) + "\n"
+        )
         self.refused(r, "a look-alike")
 
     def test_the_gate_still_names_the_factory_requirement(self):
@@ -130,7 +145,7 @@ class Provenance(unittest.TestCase):
     def test_both_factory_workflows_are_still_accepted_and_nothing_else(self):
         step = self.step()
         self.assertIn("for wf in bump-library bump-sharded; do", (ROOT / ".github" / "workflows" / "pr-gate.yml").read_text())
-        self.assertNotIn("--signer-workflow \"competemath/emissary-archangel/.github/workflows/$wf.yml\" ||", step)
+        self.assertNotIn('--signer-workflow "competemath/emissary-archangel/.github/workflows/$wf.yml" ||', step)
 
     def test_a_missing_attestation_fails_the_job(self):
         text = (ROOT / ".github" / "workflows" / "pr-gate.yml").read_text()
