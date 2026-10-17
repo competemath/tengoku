@@ -32,12 +32,18 @@ def dualMap (D : Derivation k R R) : R →ₐ[k] TrivSqZeroExt K K where
         ← IsScalarTower.algebraMap_apply k R K]
 
 omit [IsFractionRing R K] in
+/--
+@isnad1 id=eq.0h5v.s8.b7880484bc65 from=translated src=- shape=c6104af5 vocab=d5678bd5
+-/
 @[simp] lemma dualMap_fst (D : Derivation k R R) (r : R) :
     fst (dualMap D r : TrivSqZeroExt K K) = algebraMap R K r := by
   simp only [dualMap, AlgHom.coe_mk, RingHom.coe_mk, MonoidHom.coe_mk,
     OneHom.coe_mk, fst_add, fst_inl, fst_inr, add_zero]
 
 omit [IsFractionRing R K] in
+/--
+@isnad1 id=eq.0h5v.s9.05191e710dbd from=translated src=- shape=ced856c7 vocab=59077430
+-/
 @[simp] lemma dualMap_snd (D : Derivation k R R) (r : R) :
     snd (dualMap D r : TrivSqZeroExt K K) = algebraMap R K (D r) := by
   simp only [dualMap, AlgHom.coe_mk, RingHom.coe_mk, MonoidHom.coe_mk,
@@ -50,10 +56,16 @@ def dualLift (D : Derivation k R R) : K →ₐ[k] TrivSqZeroExt K K :=
     rw [dualMap_fst]
     exact IsLocalization.map_units K y)
 
+/--
+@isnad1 id=eq.0h5v.s9.21236253d04f from=translated src=- shape=f5ac7313 vocab=5ff3db79
+-/
 lemma dualLift_algebraMap (D : Derivation k R R) (r : R) :
     dualLift D (algebraMap R K r) = dualMap D r :=
   IsLocalization.lift_eq _ r
 
+/--
+@isnad1 id=eq.0h5v.s8.5fdcdea1a432 from=translated src=- shape=07bb1ed8 vocab=b516e4e4
+-/
 lemma dualLift_fst (D : Derivation k R R) (z : K) : fst (dualLift D z) = z := by
   have h : (fstHom k K K).comp (dualLift D) = AlgHom.id k K := by
     apply AlgHom.coe_ringHom_injective
@@ -71,12 +83,18 @@ def extend (D : Derivation k R R) : Derivation k K K :=
     rw [map_mul, snd_mul, dualLift_fst, dualLift_fst]
     simp only [smul_eq_mul, op_smul_eq_mul, mul_comm])
 
+/--
+@isnad1 id=eq.0h5v.s8.26242fd124ae from=translated src=- shape=11a23e08 vocab=5724c8b0
+-/
 @[simp] lemma extend_algebraMap (D : Derivation k R R) (r : R) :
     extend D (algebraMap R K r) = algebraMap R K (D r) := by
   change snd (dualLift D (algebraMap R K r)) = _
   rw [dualLift_algebraMap]
   exact dualMap_snd D r
 
+/--
+@isnad1 id=eq.0h6v.s8.0c67572b2328 from=translated src=- shape=febcf48c vocab=23ee6d81
+-/
 lemma iterate_algebraMap (D : Derivation k R R) (r : R) (n : ℕ) :
     (extend D : K → K)^[n] (algebraMap R K r) = algebraMap R K ((D : R → R)^[n] r) := by
   induction n with

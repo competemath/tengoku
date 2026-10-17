@@ -18,6 +18,9 @@ def lookup (index table : K) : BitProgram K (Aux × Option Bool) :=
   .seq (repeatCount index (discard table))
     (.atom (.pop table (fun s b => ((s.1.1, b), none))))
 
+/--
+@isnad1 id=eq.0h9v.s5.39654ad34bab from=translated src=- shape=147e4188 vocab=4a90c3a1
+-/
 theorem discard_working (base : K → List Bool) (index table : K)
     (xs ys : List Bool) (a : Aux) (scratch : Option Bool) :
     discardStore table (working base index table xs ys a scratch) =

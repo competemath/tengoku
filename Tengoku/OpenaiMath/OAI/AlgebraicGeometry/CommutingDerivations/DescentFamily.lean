@@ -12,6 +12,9 @@ namespace AbhyankarSathaye.CommutingDerivations
 variable {K A L I : Type*} [CommRing K] [CommRing A] [CommRing L]
   [Algebra K A] [Algebra K L]
 
+/--
+@isnad1 id=eq.3h8v.s9.f49fe666bd21 from=translated src=- shape=ca1f47b5 vocab=b9909ee7
+-/
 theorem descended_fixes_parameter (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
     (c : A) (N : ℕ) (D : Derivation K L L) (d : Derivation K A A)
     (hdesc : ∀ a, ι (d a) = (ι c)^N * D (ι a)) (hfix : D (ι c) = 0) :
@@ -19,6 +22,9 @@ theorem descended_fixes_parameter (ι : A →ₐ[K] L) (hinj : Function.Injectiv
   apply hinj
   simpa [hfix] using hdesc c
 
+/--
+@isnad1 id=iff.3h9v.s9.ba7f842b59d3 from=translated src=- shape=63fce3fa vocab=8d0316a9
+-/
 theorem descended_kernel (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
     (c : A) (hu : IsUnit (ι c)) (N : ℕ)
     (D : Derivation K L L) (d : Derivation K A A)
@@ -33,6 +39,9 @@ theorem descended_kernel (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
     apply hinj
     simpa [hz] using hdesc a
 
+/--
+@isnad1 id=locallyn.4h8v.s9.a73581290f1f from=translated src=- shape=f713d6c1 vocab=1597fdcf
+-/
 theorem descended_locallyNilpotent (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
     (c : A) (N : ℕ) (D : Derivation K L L) (d : Derivation K A A)
     (hdesc : ∀ a, ι (d a) = (ι c)^N * D (ι a))
@@ -42,6 +51,9 @@ theorem descended_locallyNilpotent (ι : A →ₐ[K] L) (hinj : Function.Injecti
     (by simpa only [Derivation.smul_apply, smul_eq_mul] using hdesc)
     (scaleDerivation_locallyNilpotent D ((ι c)^N) hp hD)
 
+/--
+@isnad1 id=eq.6h11v.s10.d1530e1b34a8 from=translated src=- shape=27137a79 vocab=b9909ee7
+-/
 theorem descended_commute (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
     (c : A) (N : ℕ) (D E : Derivation K L L) (d e : Derivation K A A)
     (hd : ∀ a, ι (d a) = (ι c)^N * D (ι a))
@@ -58,7 +70,9 @@ theorem descended_commute (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
 /-- Localized coordinate slices prove independence over the original ring.
 Each slice is required to have an actual denominator-clearing witness. This is
 provided by the defining surjectivity of localization, with no assumption that
-the slices already lie in A. -/
+the slices already lie in A.
+@isnad1 id=linearin.6h10v.s10.079f3d3abfda from=translated src=- shape=df2e093c vocab=b5fc43c0
+-/
 theorem descended_linearIndependent [Fintype I] [DecidableEq I]
     (ι : A →ₐ[K] L) (hinj : Function.Injective ι) (c : A)
     (hu : IsUnit (ι c)) (N : ℕ)

@@ -7,6 +7,9 @@ noncomputable section
 namespace ComplexCancellation.GradedLND
 variable {k R : Type*} [CommRing k] [CommRing R] [Algebra k R]
 variable (G : ℤ → Submodule k R) [GradedAlgebra G]
+/--
+@isnad1 id=eq.1h6v.s9.c29f333d3917 from=translated src=- shape=1c7740fb vocab=df718910
+-/
 lemma linear_projection (H : R →ₗ[k] R) (hH : ∀ i r, r ∈ G i → H r ∈ G i) (i : ℤ) (r : R) :
     H (proj G i r)=proj G i (H r) := by
   induction r using DirectSum.Decomposition.inductionOn G with
@@ -17,6 +20,9 @@ lemma linear_projection (H : R →ₗ[k] R) (hH : ∀ i r, r ∈ G i → H r ∈
       rw [proj_of_mem G r.2,proj_of_mem G (hH i r r.2)]
     · rw [proj_of_mem_ne G r.2 hj,proj_of_mem_ne G (hH j r r.2) hj,map_zero]
   | add r s hr hs => simp only [map_add,hr,hs]
+/--
+@isnad1 id=eq.2h7v.s10.f2fbded909cf from=translated src=- shape=511ea8d6 vocab=057fab2a
+-/
 lemma component_commute (D H : Derivation k R R) (hH : ∀ i r, r ∈ G i → H r ∈ G i)
     (hc : ∀ r, H (D r)=D (H r)) (j : ℤ) (r : R) :
     H (component G D j r)=component G D j (H r) := by

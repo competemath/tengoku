@@ -37,6 +37,9 @@ def constants (D : Derivation k K K) : Subfield K where
     rw [Derivation.leibniz_inv, hr, smul_zero]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.1h5v.s12.6b59501abeea from=translated src=- shape=75a96fb5 vocab=6db7ce08
+-/
 lemma derivative_eval (D : Derivation k K K) {t : K} (ht : D t = 1)
     (p : Polynomial (constants D)) :
     D (aeval t p) = aeval t p.derivative := by
@@ -51,6 +54,9 @@ lemma derivative_eval (D : Derivation k K K) {t : K} (ht : D t = 1)
     rw [hc]
     ring
 
+/--
+@isnad1 id=injectiv.1h4v.s10.9e0d0926f742 from=translated src=- shape=422c8295 vocab=0a742674
+-/
 lemma eval_injective (D : Derivation k K K) {t : K} (ht : D t = 1) :
     Function.Injective (aeval t : Polynomial (constants D) →ₐ[constants D] K) := by
   apply (injective_iff_map_eq_zero _).mpr
@@ -69,6 +75,9 @@ lemma eval_injective (D : Derivation k K K) {t : K} (ht : D t = 1) :
       simp only [aeval_C, map_eq_zero] at hp ⊢
       exact hp
 
+/--
+@isnad1 id=ex.0h2v.s8.c0161bc19c0f from=translated src=- shape=41473af5 vocab=db1e322b
+-/
 lemma exists_antiderivative {F : Type*} [Field F] [CharZero F] (p : Polynomial F) :
     ∃ q : Polynomial F, q.derivative = p := by
   induction p using Polynomial.induction_on' with
@@ -82,6 +91,9 @@ lemma exists_antiderivative {F : Type*} [Field F] [CharZero F] (p : Polynomial F
     have hn : (n:F)+1 ≠ 0 := by exact_mod_cast Nat.succ_ne_zero n
     simp [hn]
 
+/--
+@isnad1 id=ex.2h5v.s10.60eaf0eb6f23 from=translated src=- shape=351d9e9d vocab=743f0340
+-/
 lemma nilpotent_is_polynomial (D : Derivation k K K) {t r : K} (ht : D t = 1)
     (hr : ∃ n : ℕ, (D : K → K)^[n] r = 0) :
     ∃ p : Polynomial (constants D), aeval t p = r := by

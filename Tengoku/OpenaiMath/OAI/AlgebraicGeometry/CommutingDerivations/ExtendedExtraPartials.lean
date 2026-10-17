@@ -11,6 +11,9 @@ noncomputable section
 namespace AbhyankarSathaye.CommutingDerivations
 open MvPolynomial
 
+/--
+@isnad1 id=eq.0h5v.s11.3567281ab33c from=translated src=- shape=9f6adbee vocab=1229c579
+-/
 theorem pderiv_sumAlgEquiv_symm {K I J : Type*} [CommRing K]
     (i : I) (p : MvPolynomial I (MvPolynomial J K)) :
     pderiv (Sum.inl i) ((sumAlgEquiv K I J).symm p) =
@@ -18,6 +21,9 @@ theorem pderiv_sumAlgEquiv_symm {K I J : Type*} [CommRing K]
   apply (sumAlgEquiv K I J).injective
   simpa using (pderiv_sumAlgEquiv i ((sumAlgEquiv K I J).symm p)).symm
 
+/--
+@isnad1 id=eq.1h3v.s11.fee5f3deb6cb from=translated src=- shape=6d732d98 vocab=ebadee3a
+-/
 theorem splitAmbient_extra_pderiv {n : ℕ} (hn : 4 ≤ n)
     (i : Fin (n-4)) (p : MvPolynomial (Fin n) ℂ) :
     pderiv i (splitAmbient hn p) =
@@ -31,6 +37,9 @@ theorem splitAmbient_extra_pderiv {n : ℕ} (hn : 4 ≤ n)
       (rename (blocksToAmbient hn).symm (pderiv (blocksToAmbient hn (Sum.inl i)) p))
   rw [pderiv_sumAlgEquiv, he]
 
+/--
+@isnad1 id=eq.1h3v.s12.08d2634f887f from=translated src=- shape=8c2595a7 vocab=558667e8
+-/
 theorem extendedLocMap_extra_pderiv {n : ℕ} (hn : 4 ≤ n)
     (i : Fin (n-4)) (p : MvPolynomial (Fin n) ℂ) :
     pderiv i (extendedLocMap hn p) =
@@ -40,6 +49,9 @@ theorem extendedLocMap_extra_pderiv {n : ℕ} (hn : 4 ≤ n)
       (splitAmbient hn (pderiv (blocksToAmbient hn (Sum.inl i)) p))
   rw [pderiv_map, splitAmbient_extra_pderiv]
 
+/--
+@isnad1 id=eq.1h3v.s13.3c75e0933ade from=translated src=- shape=8f84c37e vocab=e3b24f2d
+-/
 theorem extendedLocalizationEquiv_extra_pderiv {n : ℕ} (hn : 4 ≤ n)
     (i : Fin (n-4)) (p : ExtendedLocalizedAmbient n) :
     pderiv (blocksToOutput hn (Sum.inl i)) (extendedLocalizationEquiv hn p) =
@@ -54,7 +66,9 @@ theorem extendedLocalizationEquiv_extra_pderiv {n : ℕ} (hn : 4 ≤ n)
   rw [pderiv_rename (blocksToOutput hn).injective, pderiv_sumAlgEquiv_symm, pderiv_map]
 
 /-- The transported derivative indexed by an added coordinate agrees exactly
-with the ordinary partial derivative in the full original n-variable ring. -/
+with the ordinary partial derivative in the full original n-variable ring.
+@isnad1 id=eq.1h3v.s12.6ed8549c1b56 from=translated src=- shape=aacaf4e9 vocab=3865bd7c
+-/
 theorem localized_extra_is_ordinary_partial {n : ℕ} (hn : 4 ≤ n)
     (i : Fin (n-4)) (p : MvPolynomial (Fin n) ℂ) :
     localizedPartial (extendedLocalizationEquiv hn) (blocksToOutput hn (Sum.inl i))

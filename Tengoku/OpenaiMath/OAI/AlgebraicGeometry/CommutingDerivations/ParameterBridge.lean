@@ -46,6 +46,9 @@ def qBeta (c d : K) : Q K c :=
 def qT (c d : K) : Q K c :=
   parameter (qAlpha K c d) (qBeta K c d) (qU K c) (qV K c) (qW K c)
 
+/--
+@isnad1 id=eq.0h2v.s9.197fd4f0b391 from=translated src=- shape=8ef40466 vocab=a793f773
+-/
 theorem quotient_relation (c : K) :
     qH K c = coeff K c c+P (qX K c) (qY K c) (qS K c) := by
   have hz : qmap K c (relation K c) = 0 :=
@@ -57,11 +60,17 @@ theorem quotient_relation (c : K) :
         (coeff K c c+P (qX K c) (qY K c) (qS K c)) := by ring
     _ = _ := by rw [he, zero_add]
 
+/--
+@isnad1 id=eq.0h2v.s9.d3e6055749c5 from=translated src=- shape=4b58bc75 vocab=4674ab8b
+-/
 theorem quotient_cusp (c : K) : (qX K c)^2+(qY K c)^3 = qS K c*qH K c := by
   have he := congrArg (qmap K c)
     (cusp_universal (rawH K) (rawU K) (rawV K) (rawW K))
   simpa [qX, qY, qS, qH, rawX, rawY, rawS, mul_comm] using he
 
+/--
+@isnad1 id=eq.1h3v.s9.3aafe5061f85 from=translated src=- shape=bd1a83bf vocab=c5399a65
+-/
 theorem quotient_bezout (c d : K) (hunit : c*d=1) :
     qAlpha K c d*qH K c+qBeta K c d*qY K c = 1 := by
   have hu : coeff K c c*coeff K c d=1 := by
@@ -69,6 +78,9 @@ theorem quotient_bezout (c d : K) (hunit : c*d=1) :
   exact parameter_bezout_unit _ _ _ _ _ _
     (quotient_cusp K c) (quotient_relation K c) hu
 
+/--
+@isnad1 id=eq.1h3v.s10.f8cc0cbec34c from=translated src=- shape=23649e44 vocab=b73af7e2
+-/
 theorem quotient_recover_s (c d : K) (hunit : c*d=1) :
     coeff K c d*((qX K c+(qS K c)^3)^2+(qY K c-(qS K c)^2)^3) = qS K c := by
   have hu : coeff K c c*coeff K c d=1 := by
@@ -96,6 +108,9 @@ def freeW (c d : K) : MvPolynomial (Fin 3) K :=
 def freeV (c d : K) : MvPolynomial (Fin 3) K :=
   inverseV (freeU K c d) (freeG K c d) (freeW K c d)
 
+/--
+@isnad1 id=eq.1h3v.s8.41654dc5e808 from=translated src=- shape=b974c7b6 vocab=754654f2
+-/
 theorem free_cusp (c d : K) (hunit : c*d=1) :
     (freeX K d)^2+(freeY K d)^3=freeS K d*freeH K c d := by
   have hu : (C c : MvPolynomial (Fin 3) K)*C d=1 := by
@@ -111,12 +126,18 @@ theorem free_cusp (c d : K) (hunit : c*d=1) :
       (eq_sub_iff_add_eq.mp he).symm
     _ = _ := by unfold freeH; ring
 
+/--
+@isnad1 id=eq.1h3v.s8.2a56201ba378 from=translated src=- shape=e05a72c2 vocab=63a8e34e
+-/
 theorem free_bezout (c d : K) (hunit : c*d=1) :
     freeAlpha K c d*freeH K c d+freeBeta K c d*freeY K d=1 := by
   have hu : (C c : MvPolynomial (Fin 3) K)*C d=1 := by
     simpa using congrArg (C : K →+* MvPolynomial (Fin 3) K) hunit
   exact parameter_bezout_unit _ _ _ _ _ _ (free_cusp K c d hunit) rfl hu
 
+/--
+@isnad1 id=and.1h3v.s9.5980def1563f from=translated src=- shape=cfb6b40e vocab=b41db716
+-/
 theorem free_relations (c d : K) (hunit : c*d=1) :
     (freeU K c d)^3+freeH K c d*freeV K c d=freeX K d ∧
     -(freeU K c d)^2+freeH K c d*freeW K c d=freeY K d ∧
@@ -129,24 +150,48 @@ def values (c d : K) : Fin 4 → MvPolynomial (Fin 3) K :=
 def evaluation (c d : K) : MvPolynomial (Fin 4) K →ₐ[K] MvPolynomial (Fin 3) K :=
   aeval (values K c d)
 
+/--
+@isnad1 id=eq.0h3v.s8.8df745ef462b from=translated src=- shape=c3a8aee5 vocab=a057594a
+-/
 @[simp] theorem evaluation_h (c d : K) : evaluation K c d (rawH K)=freeH K c d := by
   simp [evaluation, values, rawH]
+/--
+@isnad1 id=eq.0h3v.s8.d10af1c50794 from=translated src=- shape=c3a8aee5 vocab=0f1f27af
+-/
 @[simp] theorem evaluation_u (c d : K) : evaluation K c d (rawU K)=freeU K c d := by
   simp [evaluation, values, rawU]
+/--
+@isnad1 id=eq.0h3v.s8.061d1a5d56f0 from=translated src=- shape=c3a8aee5 vocab=c4c71f31
+-/
 @[simp] theorem evaluation_v (c d : K) : evaluation K c d (rawV K)=freeV K c d := by
   simp [evaluation, values, rawV]
+/--
+@isnad1 id=eq.0h3v.s8.f1bf130942eb from=translated src=- shape=c3a8aee5 vocab=29b74434
+-/
 @[simp] theorem evaluation_w (c d : K) : evaluation K c d (rawW K)=freeW K c d := by
   simp [evaluation, values, rawW]
+/--
+@isnad1 id=eq.1h3v.s8.252e0d8c0c83 from=translated src=- shape=f4f5ee2e vocab=8bb38763
+-/
 @[simp] theorem evaluation_x (c d : K) (hunit : c*d=1) :
     evaluation K c d (rawX K)=freeX K d := by
   simpa [rawX] using (free_relations K c d hunit).1
+/--
+@isnad1 id=eq.1h3v.s8.86a55bd04fd8 from=translated src=- shape=f4f5ee2e vocab=0cab641f
+-/
 @[simp] theorem evaluation_y (c d : K) (hunit : c*d=1) :
     evaluation K c d (rawY K)=freeY K d := by
   simpa [rawY] using (free_relations K c d hunit).2.1
+/--
+@isnad1 id=eq.1h3v.s8.5e1bd391b9db from=translated src=- shape=f4f5ee2e vocab=76c18d18
+-/
 @[simp] theorem evaluation_s (c d : K) (hunit : c*d=1) :
     evaluation K c d (rawS K)=freeS K d := by
   simpa [rawS] using (free_relations K c d hunit).2.2
 
+/--
+@isnad1 id=eq.1h3v.s8.d34ca72f1e26 from=translated src=- shape=1a955ac5 vocab=9c3da525
+-/
 theorem evaluation_relation (c d : K) (hunit : c*d=1) :
     evaluation K c d (relation K c)=0 := by
   simp only [relation, map_sub, map_P, evaluation_h, evaluation_x K c d hunit,
@@ -162,39 +207,66 @@ def forward (c d : K) (hunit : c*d=1) : Q K c →ₐ[K] MvPolynomial (Fin 3) K :
     exact evaluation_relation K c d hunit
   exact Ideal.Quotient.liftₐ _ (evaluation K c d) (fun z hz => hi hz)
 
+/--
+@isnad1 id=eq.1h4v.s10.91fd188957d1 from=translated src=- shape=4ce9b8e1 vocab=3e00ca4f
+-/
 @[simp] theorem forward_qmap (c d : K) (hunit : c*d=1) (f) :
     forward K c d hunit (qmap K c f)=evaluation K c d f := rfl
 
 def backward (c d : K) : MvPolynomial (Fin 3) K →ₐ[K] Q K c :=
   aeval ![qX K c+(qS K c)^3, qY K c-(qS K c)^2, qT K c d]
 
+/--
+@isnad1 id=eq.0h3v.s9.3523a7989d86 from=translated src=- shape=f128338d vocab=7b11d43f
+-/
 @[simp] theorem backward_X2 (c d : K) :
     backward K c d (X 2)=qT K c d := by simp [backward]
 
+/--
+@isnad1 id=eq.1h3v.s9.0ca017f34cf3 from=translated src=- shape=a2a48330 vocab=db6e8f5a
+-/
 @[simp] theorem backward_freeS (c d : K) (hunit : c*d=1) :
     backward K c d (freeS K d)=qS K c := by
   simpa [backward, freeS, coeff] using quotient_recover_s K c d hunit
+/--
+@isnad1 id=eq.1h3v.s9.e6dcd17c8a7c from=translated src=- shape=a2a48330 vocab=d0c8092e
+-/
 @[simp] theorem backward_freeX (c d : K) (hunit : c*d=1) :
     backward K c d (freeX K d)=qX K c := by
   simp only [freeX, map_sub, map_pow, backward_freeS K c d hunit]
   simp [backward]
+/--
+@isnad1 id=eq.1h3v.s9.955ba1ef8276 from=translated src=- shape=a2a48330 vocab=062ea479
+-/
 @[simp] theorem backward_freeY (c d : K) (hunit : c*d=1) :
     backward K c d (freeY K d)=qY K c := by
   simp only [freeY, map_add, map_pow, backward_freeS K c d hunit]
   simp [backward]
+/--
+@isnad1 id=eq.1h3v.s9.ae0b2ae76f18 from=translated src=- shape=833e5df2 vocab=e3512291
+-/
 @[simp] theorem backward_freeH (c d : K) (hunit : c*d=1) :
     backward K c d (freeH K c d)=qH K c := by
   simpa [freeH, backward_freeX K c d hunit, backward_freeY K c d hunit,
     backward_freeS K c d hunit, coeff] using (quotient_relation K c).symm
+/--
+@isnad1 id=eq.1h3v.s9.3dff89396450 from=translated src=- shape=bd920e8a vocab=800c3e84
+-/
 @[simp] theorem backward_freeAlpha (c d : K) (hunit : c*d=1) :
     backward K c d (freeAlpha K c d)=qAlpha K c d := by
   simp [freeAlpha, qAlpha, coeff, backward_freeX K c d hunit,
     backward_freeS K c d hunit]
+/--
+@isnad1 id=eq.1h3v.s9.68f1d8bc6431 from=translated src=- shape=bd920e8a vocab=6ac8b19e
+-/
 @[simp] theorem backward_freeBeta (c d : K) (hunit : c*d=1) :
     backward K c d (freeBeta K c d)=qBeta K c d := by
   simp [freeBeta, qBeta, coeff, backward_freeX K c d hunit,
     backward_freeY K c d hunit, backward_freeS K c d hunit]
 
+/--
+@isnad1 id=and.1h3v.s11.2b1e0e4b4ad5 from=translated src=- shape=02724f24 vocab=fa849af1
+-/
 theorem backward_free_original (c d : K) (hunit : c*d=1) :
     backward K c d (freeU K c d)=qU K c ∧
     backward K c d (freeV K c d)=qV K c ∧
@@ -212,6 +284,9 @@ theorem backward_free_original (c d : K) (hunit : c*d=1) :
     backward_freeS K c d hunit, backward_freeAlpha K c d hunit,
     backward_freeBeta K c d hunit, backward_X2, qT] using he
 
+/--
+@isnad1 id=eq.1h3v.s9.83fcee226242 from=translated src=- shape=1ab110c8 vocab=5b0d8418
+-/
 theorem forward_backward (c d : K) (hunit : c*d=1) :
     (forward K c d hunit).comp (backward K c d)=AlgHom.id K _ := by
   apply MvPolynomial.algHom_ext
@@ -227,6 +302,9 @@ theorem forward_backward (c d : K) (hunit : c*d=1) :
       evaluation_x K c d hunit, evaluation_y K c d hunit, evaluation_s K c d hunit,
       freeAlpha, freeBeta, freeU, freeV, freeW, freeG] using ht
 
+/--
+@isnad1 id=eq.1h3v.s10.0c2da56a6195 from=translated src=- shape=00ccbcbe vocab=5b0d8418
+-/
 theorem backward_forward (c d : K) (hunit : c*d=1) :
     (backward K c d).comp (forward K c d hunit)=AlgHom.id K _ := by
   apply Ideal.Quotient.algHom_ext

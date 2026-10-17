@@ -24,6 +24,9 @@ def Matches (H : Records Node Γ) (c : Cfg Γ Λ State Node) (d : TM2Micro.Cfg �
   c.cursor = d.cursor ∧ c.var = d.var ∧ Represents H c.heads d.stk
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.1h8v.s5.d401c637a71f from=translated src=- shape=68945bcc vocab=643df305
+-/
 theorem Matches.expand_eq {H : Records Node Γ} {c : Cfg Γ Λ State Node} {d : TM2Micro.Cfg Γ Λ State}
     (h : Matches H c d) : expand c d.stk = d := by
   cases c with
@@ -56,6 +59,9 @@ inductive Step (M : Λ → TM2.Stmt Γ Λ State) (fresh : Node) :
       Step M fresh H ⟨.instruction (.goto f), v, heads⟩ H ⟨.boundary (some (f v)), v, heads⟩
   | halt (H) (v) (heads) : Step M fresh H ⟨.instruction .halt, v, heads⟩ H ⟨.boundary none, v, heads⟩
 
+/--
+@isnad1 id=and.4h12v.s7.1d83d93a3235 from=translated src=- shape=06b12ef1 vocab=c8bec3df
+-/
 theorem step_sound {M : Λ → TM2.Stmt Γ Λ State} {fresh : Node} {H G : Records Node Γ}
     {c d : Cfg Γ Λ State Node} (h : Step M fresh H c G d)
     (hH : Functional H) (hf : Fresh H fresh) (stk : (k : K) → List (Γ k)) (hs : Represents H c.heads stk) :
@@ -84,6 +90,9 @@ theorem step_sound {M : Λ → TM2.Stmt Γ Λ State} {fresh : Node} {H G : Recor
       have ha := (read_map_correct (Sigma.mk k) (fun _ _ he => by simpa using he) hH (hs k) hread).1
       exact ⟨hH, rfl, congrArg (f v) ha, hs⟩
 
+/--
+@isnad1 id=ex.1h10v.s6.6036f21a90e6 from=translated src=- shape=86f74732 vocab=c8f92e1b
+-/
 theorem step_exists (M : Λ → TM2.Stmt Γ Λ State) (fresh : Node) (H : Records Node Γ)
     (c : Cfg Γ Λ State Node) (stk : (k : K) → List (Γ k)) (hs : Represents H c.heads stk) :
     ∃ G d, Step M fresh H c G d := by
@@ -108,6 +117,9 @@ theorem step_exists (M : Λ → TM2.Stmt Γ Λ State) (fresh : Node) (H : Record
           | goto f => exact ⟨_, _, .goto H f v heads⟩
           | halt => exact ⟨_, _, .halt H v heads⟩
 
+/--
+@isnad1 id=ex.2h12v.s6.552d83c6dff3 from=translated src=- shape=a3fffc6f vocab=535a806b
+-/
 theorem step_mono {M : Λ → TM2.Stmt Γ Λ State} {fresh : Node} {H G J : Records Node Γ}
     {c d : Cfg Γ Λ State Node} (h : Step M fresh H c G d) (hHJ : H ⊆ J) :
     ∃ J', Step M fresh J c J' d ∧ G ⊆ J' := by
@@ -122,6 +134,9 @@ theorem step_mono {M : Λ → TM2.Stmt Γ Λ State} {fresh : Node} {H G J : Reco
   | goto => exact ⟨_, .goto _ _ _ _, hHJ⟩
   | halt => exact ⟨_, .halt _ _ _, hHJ⟩
 
+/--
+@isnad1 id=and.3h13v.s6.64d66564d42c from=translated src=- shape=3472c58d vocab=b0b47041
+-/
 theorem step_unique {M : Λ → TM2.Stmt Γ Λ State} {fresh : Node} {H G J : Records Node Γ}
     {c d e : Cfg Γ Λ State Node} (hF : Functional H)
     (hd : Step M fresh H c G d) (he : Step M fresh H c J e) : G = J ∧ d = e := by
@@ -147,6 +162,9 @@ def added (fresh : Node) (c : Cfg Γ Λ State Node) : Option (Node × Sigma Γ �
   | .instruction (.push k f _) => some (fresh, Sigma.mk k (f c.var), c.heads k)
   | _ => none
 
+/--
+@isnad1 id=iff.1h12v.s7.20dce236ea4e from=translated src=- shape=7d2d51e3 vocab=64283799
+-/
 theorem step_records {M : Λ → TM2.Stmt Γ Λ State} {fresh : Node} {H G : Records Node Γ}
     {c d : Cfg Γ Λ State Node} (h : Step M fresh H c G d) (r : Node × Sigma Γ × Option Node) :
     r ∈ G ↔ r ∈ H ∨ added fresh c = some r := by
