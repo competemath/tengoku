@@ -12,21 +12,36 @@ def scale (p : ℝ) : ℝ := (p - 1) / p
 
 def multiplier (p : ℝ) (v : unitInterval) : ℝ := scale p * (v : ℝ) ^ (-1 / p)
 
+/--
+@isnad1 id=lt.1h1v.s4.f41252eae1b6 from=translated src=- shape=35bd48ee vocab=050487a1
+-/
 lemma scale_pos {p : ℝ} (hp : 1 < p) : 0 < scale p := by
   dsimp [scale]; positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.a6aaf73105b5 from=translated src=- shape=3965f485 vocab=050487a1
+-/
 lemma scale_lt_one {p : ℝ} (hp : 1 < p) : scale p < 1 := by
   unfold scale
   rw [div_lt_one (by linarith : 0 < p)]
   linarith
 
+/--
+@isnad1 id=le.1h2v.s4.d22e2fa55df7 from=translated src=- shape=ffc2f2eb vocab=5976b76f
+-/
 lemma multiplier_nonneg {p : ℝ} (hp : 1 < p) (v : unitInterval) :
     0 ≤ multiplier p v := mul_nonneg (scale_pos hp).le (Real.rpow_nonneg v.property.1 _)
 
+/--
+@isnad1 id=measurab.0h1v.s4.750bcee94b34 from=translated src=- shape=5352fdf6 vocab=251e2794
+-/
 lemma measurable_multiplier (p : ℝ) : Measurable (multiplier p) := by
   unfold multiplier
   fun_prop
 
+/--
+@isnad1 id=integrab.1h1v.s5.8d16f1a1f951 from=translated src=- shape=7c15cb4d vocab=a75c9e2a
+-/
 lemma integrable_multiplier {p : ℝ} (hp : 1 < p) :
     Integrable (multiplier p) (volume : Measure unitInterval) := by
   have hp0 : 0 < p := by linarith
@@ -37,6 +52,9 @@ lemma integrable_multiplier {p : ℝ} (hp : 1 < p) :
   have hc := (unitInterval.measurePreserving_coe.integrable_comp hi.aestronglyMeasurable).mpr hi
   exact hc.const_mul (scale p)
 
+/--
+@isnad1 id=eq.1h1v.s5.3aae3c4f6522 from=translated src=- shape=293c0be0 vocab=03f83b88
+-/
 lemma integral_multiplier {p : ℝ} (hp : 1 < p) :
     ∫ v : unitInterval, multiplier p v = 1 := by
   have hp0 : 0 < p := by linarith
@@ -52,6 +70,9 @@ lemma integral_multiplier {p : ℝ} (hp : 1 < p) :
   field_simp [hp0.ne', show p - 1 ≠ 0 by linarith, show -1 + p ≠ 0 by linarith]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s6.c9ac438cd502 from=translated src=- shape=cf29b90f vocab=02cb9682
+-/
 lemma multiplier_tail {p u : ℝ} (hp : 1 < p) (hu : scale p ≤ u) :
     (volume : Measure unitInterval).real {v | u < multiplier p v} = (scale p / u) ^ p := by
   have hs : 0 < scale p := scale_pos hp
@@ -81,6 +102,9 @@ lemma multiplier_tail {p u : ℝ} (hp : 1 < p) (hu : scale p ≤ u) :
   rw [measureReal_congr haeq, measureReal_def, unitInterval.volume_Iio,
     ENNReal.toReal_ofReal hq.le]
 
+/--
+@isnad1 id=le.2h2v.s6.4cd15d19b1ce from=translated src=- shape=5d1aab91 vocab=02cb9682
+-/
 lemma multiplier_tail_le {p u : ℝ} (hp : 1 < p) (hu : 0 < u) :
     (volume : Measure unitInterval).real {v | u < multiplier p v} ≤ (scale p / u) ^ p := by
   by_cases hs : scale p ≤ u
@@ -95,10 +119,16 @@ abbrev pairedMeasure : Measure (unitInterval × unitInterval) :=
 def difference (p : ℝ) (v : unitInterval × unitInterval) : ℝ :=
   multiplier p v.1 - multiplier p v.2
 
+/--
+@isnad1 id=measurab.0h1v.s5.eaed439a97bf from=translated src=- shape=fca95677 vocab=df4996ec
+-/
 lemma measurable_difference (p : ℝ) : Measurable (difference p) :=
   ((measurable_multiplier p).comp measurable_fst).sub
     ((measurable_multiplier p).comp measurable_snd)
 
+/--
+@isnad1 id=integrab.1h1v.s6.97100674325c from=translated src=- shape=815187b1 vocab=1da22e61
+-/
 lemma integrable_difference {p : ℝ} (hp : 1 < p) :
     Integrable (difference p) pairedMeasure := by
   exact ((measurePreserving_fst.integrable_comp
@@ -106,6 +136,9 @@ lemma integrable_difference {p : ℝ} (hp : 1 < p) :
     ((measurePreserving_snd.integrable_comp
     (integrable_multiplier hp).aestronglyMeasurable).mpr (integrable_multiplier hp))
 
+/--
+@isnad1 id=identdis.0h1v.s6.f8bdf5de0c11 from=translated src=- shape=4ad552f5 vocab=b964f9bf
+-/
 lemma difference_symmetric (p : ℝ) :
     IdentDistrib (difference p) (fun v => -difference p v) pairedMeasure pairedMeasure := by
   have hcomp : (fun v => -difference p v) = difference p ∘ Prod.swap := by
@@ -115,6 +148,9 @@ lemma difference_symmetric (p : ℝ) :
     (measurable_difference p).neg.aemeasurable, ?_⟩
   rw [hcomp, ← Measure.map_map (measurable_difference p) measurable_swap, Measure.prod_swap]
 
+/--
+@isnad1 id=le.2h2v.s7.4d8f0387ed77 from=translated src=- shape=68955b8d vocab=e4555ff5
+-/
 lemma difference_tail_upper {p u : ℝ} (hp : 1 < p) (hu : 0 < u) :
     pairedMeasure.real {v | u < |difference p v|} ≤ 2 * (scale p / u) ^ p := by
   let A := {v : unitInterval | u < multiplier p v}
@@ -138,6 +174,9 @@ lemma difference_tail_upper {p u : ℝ} (hp : 1 < p) (hu : 0 < u) :
       ring
     _ ≤ _ := mul_le_mul_of_nonneg_left (multiplier_tail_le hp hu) (by norm_num)
 
+/--
+@isnad1 id=le.3h2v.s7.8c91614ef682 from=translated src=- shape=ef6fdb49 vocab=e4555ff5
+-/
 lemma difference_tail_lower {p u : ℝ} (hp : 1 < p) (hpmax : p ≤ 3 / 2)
     (hu : scale p ≤ u) :
     (1 / 18) * (scale p / u) ^ p ≤ pairedMeasure.real {v | u < |difference p v|} := by

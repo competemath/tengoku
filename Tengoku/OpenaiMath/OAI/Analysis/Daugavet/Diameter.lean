@@ -11,13 +11,18 @@ universe uX uY uIota
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=le.1h3v.s8.fa7618373b62 from=translated src=- shape=3c460ae6 vocab=708301f7
+-/
 lemma dual_apply_le_norm (φ : X →L[ℝ] ℝ) (hφ : ‖φ‖ ≤ 1) (z : X) : φ z ≤ ‖z‖ := by
   have hb := φ.le_opNorm z
   rw [Real.norm_eq_abs] at hb
   have hc := mul_le_mul_of_nonneg_right hφ (norm_nonneg z)
   linarith [le_abs_self (φ z)]
 
-/-- One induction step in the diametral argument, with additive rather than multiplicative error. -/
+/-- One induction step in the diametral argument, with additive rather than multiplicative error.
+@isnad1 id=ex.5h7v.s8.5c4e06a96e83 from=translated src=- shape=6ced2d23 vocab=3b7db23e
+-/
 lemma slice_add_almost (hsp : UnitSliceProperty X) {w₀ : X} (hw₀ : ‖w₀‖ = 1)
     (ell : X →L[ℝ] ℝ) (β : ℝ) (hne : ∃ y : X, ‖y‖ ≤ 1 ∧ β < ell y)
     (z : X) {a δ : ℝ} (ha : 0 ≤ a) (hδ : 0 < δ) :
@@ -51,6 +56,9 @@ lemma slice_add_almost (hsp : UnitSliceProperty X) {w₀ : X} (hw₀ : ‖w₀�
     have hb₂ := mul_le_mul_of_nonneg_left hlowy ha
     exact ⟨y, hy, hβ, by nlinarith⟩
 
+/--
+@isnad1 id=ex.5h9v.s9.c516afe90e61 from=translated src=- shape=3da4f87d vocab=035be245
+-/
 lemma slices_finite_sum (hsp : UnitSliceProperty X) {w₀ : X} (hw₀ : ‖w₀‖ = 1)
     {ι : Type uIota} (a : ι → ℝ) (ell : ι → X →L[ℝ] ℝ) (β : ι → ℝ)
     (ha : ∀ i, 0 ≤ a i) (hne : ∀ i, ∃ y : X, ‖y‖ ≤ 1 ∧ β i < ell i y)
@@ -89,7 +97,9 @@ lemma slices_finite_sum (hsp : UnitSliceProperty X) {w₀ : X} (hw₀ : ‖w₀�
 
 variable {Y : Type uY} [NormedAddCommGroup Y] [InnerProductSpace ℝ Y] [FiniteDimensional ℝ Y]
 
-/-- The weak-open diametral lemma in finite-dimensional coordinates. -/
+/-- The weak-open diametral lemma in finite-dimensional coordinates.
+@isnad1 id=ex.5h7v.s9.f5516e211e0c from=translated src=- shape=de168357 vocab=25a810f1
+-/
 theorem diametral_finite_image (hsp : UnitSliceProperty X) {x u : X} (hx : ‖x‖ = 1)
     (hu : ‖u‖ ≤ 1) (T : X →L[ℝ] Y) {r δ : ℝ} (hr : 0 < r) (hδ : 0 < δ) :
     ∃ v : X, ‖v‖ ≤ 1 ∧ ‖T v - T u‖ < r ∧ 2 - δ ≤ ‖v - x‖ := by
@@ -110,6 +120,9 @@ namespace ExactModuli
 variable {X : Type uX} {Y : Type uY} [NormedAddCommGroup X] [NormedSpace ℝ X]
   [NormedAddCommGroup Y] [NormedSpace ℝ Y] [FiniteDimensional ℝ Y]
 
+/--
+@isnad1 id=ex.5h7v.s8.12f612865fb7 from=translated src=- shape=3bd52df0 vocab=b321f7c6
+-/
 lemma diametral_finite_norm (hsp : UnitSliceProperty X) {x u : X} (hx : ‖x‖ = 1)
     (hu : ‖u‖ ≤ 1) (T : X →L[ℝ] Y) {r δ : ℝ} (hr : 0 < r) (hδ : 0 < δ) :
     ∃ v : X, ‖v‖ ≤ 1 ∧ ‖T v - T u‖ < r ∧ 2 - δ ≤ ‖v - x‖ := by
@@ -132,7 +145,9 @@ lemma diametral_finite_norm (hsp : UnitSliceProperty X) {x u : X} (hx : ‖x‖ 
   rw [mul_div_cancel₀ _ hCp.ne'] at hstrict
   exact hb'.trans_lt hstrict
 
-/-- Finite quotient correction, retaining the small error vector for equivalent-norm estimates. -/
+/-- Finite quotient correction, retaining the small error vector for equivalent-norm estimates.
+@isnad1 id=ex.4h4v.s7.12083d6de13f from=translated src=- shape=a4282b29 vocab=d7f44b0f
+-/
 lemma cofinite_diametral_correction (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖ = 1)
     {F : Submodule ℝ X} (hF : Cofinite F) {ε : ℝ} (hε : 0 < ε) :
     ∃ v e : X, ‖v‖ ≤ 1 ∧ ‖e‖ < ε ∧ v - x - e ∈ F ∧ 2 - ε ≤ ‖v - x‖ := by
@@ -148,6 +163,9 @@ lemma cofinite_diametral_correction (hsp : UnitSliceProperty X) {x : X} (hx : �
   change F.mkQL (v - x) - Submodule.Quotient.mk e = 0
   rw [he, sub_self]
 
+/--
+@isnad1 id=ex.4h4v.s7.c846198ef50f from=translated src=- shape=b772c6c3 vocab=6de87678
+-/
 lemma cofinite_antipodal_endpoint (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖ = 1)
     {F : Submodule ℝ X} (hF : Cofinite F) {ε : ℝ} (hε : 0 < ε) :
     ∃ z ∈ F, 2 - 2 * ε < ‖z‖ ∧ ‖z‖ ≤ 2 + ε ∧ ‖x + z‖ ≤ 1 + ε := by

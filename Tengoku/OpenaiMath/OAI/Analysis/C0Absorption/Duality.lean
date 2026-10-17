@@ -17,6 +17,9 @@ variable {S : Type*} [MetricSpace S] (L : ℕ → Set (S → ℝ)) (o : S)
 def BoundedTest (f : S → ℝ) : Prop :=
   ∃ K : ℝ≥0, ∀ m : PreSpace L o, |pairing S f m| ≤ K*‖m‖
 
+/--
+@isnad1 id=ex.1h5v.s9.33fd3115ba4d from=translated src=- shape=395f4694 vocab=12420933
+-/
 theorem class_pairing_bound (j : ℕ) (K : ℝ≥0)
     (hK : ∀ f ∈ L j, LipschitzWith K f) :
     ∃ A : ℝ≥0, ∀ f ∈ L j, ∀ m : PreSpace L o, |pairing S f m| ≤ A*‖m‖ := by
@@ -31,6 +34,9 @@ theorem class_pairing_bound (j : ℕ) (K : ℝ≥0)
     rw [hn]
     exact_mod_cast (show (K : ℝ) ≤ (C : ℝ)+1 by linarith)
 
+/--
+@isnad1 id=tendsto.2h6v.s8.c80063c54683 from=translated src=- shape=433bd9e3 vocab=3977b115
+-/
 theorem BoundedTest.weak_null {f : S → ℝ} (hf : BoundedTest L o f)
     (m : ℕ → TestSpace L o) (M : ℝ)
     (hm : ∀ n (ε : Fin n → Bool), ‖∑ i, realSign (ε i) • m i‖ ≤ M) :
@@ -38,12 +44,18 @@ theorem BoundedTest.weak_null {f : S → ℝ} (hf : BoundedTest L o f)
   obtain ⟨K,hK⟩ := hf
   simpa only [completedTest_eq] using bounded_signs_weak_null m M hm (completedTest L o f K hK)
 
+/--
+@isnad1 id=eq.0h4v.s10.98b01e0fc510 from=translated src=- shape=f571593b vocab=7fbffff8
+-/
 theorem pairing_add {S : Type*} [MetricSpace S]
     (f g : S → ℝ) (m : Molecule S) :
     pairing S (fun s => f s+g s) m = pairing S f m+pairing S g m := by
   simp only [pairing, LinearMap.comp_apply, Submodule.subtype_apply,
     Finsupp.linearCombination_apply, smul_eq_mul, mul_add, Finsupp.sum, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s10.39a36be5d7c7 from=translated src=- shape=7b783f73 vocab=c284ff30
+-/
 theorem pairing_smul {S : Type*} [MetricSpace S]
     (a : ℝ) (f : S → ℝ) (m : Molecule S) :
     pairing S (fun s => a*f s) m = a*pairing S f m := by
@@ -53,6 +65,9 @@ theorem pairing_smul {S : Type*} [MetricSpace S]
   intro i hi
   ring
 
+/--
+@isnad1 id=boundedt.2h5v.s5.e94b9d5400e0 from=translated src=- shape=157e659c vocab=986d11bc
+-/
 theorem BoundedTest.add {f g : S → ℝ} (hf : BoundedTest L o f) (hg : BoundedTest L o g) :
     BoundedTest L o (fun s => f s+g s) := by
   obtain ⟨K,hK⟩ := hf
@@ -61,6 +76,9 @@ theorem BoundedTest.add {f g : S → ℝ} (hf : BoundedTest L o f) (hg : Bounded
   erw [pairing_add]
   exact (abs_add_le _ _).trans ((add_le_add (hK m) (hA m)).trans_eq (by push_cast; ring))
 
+/--
+@isnad1 id=boundedt.1h5v.s5.90244b0a1409 from=translated src=- shape=73702f13 vocab=ca1d58d2
+-/
 theorem BoundedTest.smul {f : S → ℝ} (hf : BoundedTest L o f) (a : ℝ) :
     BoundedTest L o (fun s => a*f s) := by
   obtain ⟨K,hK⟩ := hf
@@ -69,6 +87,9 @@ theorem BoundedTest.smul {f : S → ℝ} (hf : BoundedTest L o f) (a : ℝ) :
   exact (mul_le_mul_of_nonneg_left (hK m) (abs_nonneg a)).trans_eq (by
     simp only [NNReal.coe_mul, coe_nnnorm, Real.norm_eq_abs]; ring)
 
+/--
+@isnad1 id=eq.2h6v.s6.ce9bb0a9e1e9 from=translated src=- shape=5f198f22 vocab=04ff4f7b
+-/
 theorem completedPairing_add (f g : S → ℝ) (hf : BoundedTest L o f) (hg : BoundedTest L o g)
     (z : TestSpace L o) : completedPairing L o (fun s => f s+g s) z =
       completedPairing L o f z+completedPairing L o g z := by
@@ -85,6 +106,9 @@ theorem completedPairing_add (f g : S → ℝ) (hf : BoundedTest L o f) (hg : Bo
       completedPairing_coe L o _ A hA]
     exact pairing_add f g m
 
+/--
+@isnad1 id=eq.1h6v.s6.932c005178e5 from=translated src=- shape=3a9f00de vocab=df64dad0
+-/
 theorem completedPairing_smul (a : ℝ) (f : S → ℝ) (hf : BoundedTest L o f)
     (z : TestSpace L o) : completedPairing L o (fun s => a*f s) z = a*completedPairing L o f z := by
   obtain ⟨K,hK⟩ := hf
@@ -105,20 +129,32 @@ variable {Γ : Type*} {B : CylinderBases Γ}
 def c0Origin : C0Ball := ⟨0,by simp⟩
 abbrev SourceSpace (B : CylinderBases Γ) := TestSpace (sourceClasses B) c0Origin
 
+/--
+@isnad1 id=le.1h4v.s5.397af83581d4 from=translated src=- shape=e9672661 vocab=79f633a6
+-/
 theorem TClass_mono {h k : ℕ} (hk : h ≤ k) : TClass B h ⊆ TClass B k := by
   rintro f ⟨γ,r,hr,rfl⟩
   exact ⟨γ,r,hr.trans hk,rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s5.86872167e37e from=translated src=- shape=e9672661 vocab=2702e067
+-/
 theorem VClass_mono {h k : ℕ} (hk : h ≤ k) : VClass B h ⊆ VClass B k := by
   rintro f ⟨γ,r,ts,hr,hj,ht,hs,rfl⟩
   exact ⟨γ,r,ts,hr.trans hk,hj.trans hk,ht.trans hk,fun t hm => (hs t hm).trans hk,rfl⟩
 
+/--
+@isnad1 id=mem.2h5v.s6.6a7ae240334b from=translated src=- shape=19de2276 vocab=5c461cb0
+-/
 theorem representation_mem_VClass {γ : Γ} (r : GeneratedRepresentation B γ) {h : ℕ}
     (hr : r.operations.length ≤ h) (hj : B.band γ ≤ h) : r.value ∈ VClass B h := by
   refine ⟨γ,r,[],hr,hj,by simp,by simp,?_⟩
   funext s
   simp
 
+/--
+@isnad1 id=ex.0h3v.s6.5041596d3759 from=translated src=- shape=69f0cc9b vocab=2c11eeff
+-/
 theorem sourceClasses_lipschitz (B : CylinderBases Γ) (n : ℕ) :
     ∃ K : ℝ≥0, ∀ f ∈ sourceClasses B n, LipschitzWith K f := by
   unfold sourceClasses
@@ -126,6 +162,9 @@ theorem sourceClasses_lipschitz (B : CylinderBases Γ) (n : ℕ) :
   · exact ⟨_, fun _ hf => TClass_lipschitz B _ hf⟩
   · exact ⟨_, fun _ hf => VClass_lipschitz B _ hf⟩
 
+/--
+@isnad1 id=ex.0h3v.s9.ddb325a2ae21 from=translated src=- shape=9c81b5e5 vocab=48110f1e
+-/
 theorem TClass_pairing_bound (B : CylinderBases Γ) (h : ℕ) :
     ∃ A : ℝ≥0, ∀ f ∈ TClass B h, ∀ m : PreSpace (sourceClasses B) c0Origin,
       |pairing C0Ball f m| ≤ A*‖m‖ := by
@@ -134,6 +173,9 @@ theorem TClass_pairing_bound (B : CylinderBases Γ) (h : ℕ) :
   obtain ⟨A,hA⟩ := hh
   exact ⟨A,fun f hf => hA f (by simpa only [sourceClasses_even] using TClass_mono (Nat.le_succ h) hf)⟩
 
+/--
+@isnad1 id=ex.0h3v.s9.bd3d94a3b67a from=translated src=- shape=9c81b5e5 vocab=137e3c6d
+-/
 theorem VClass_pairing_bound (B : CylinderBases Γ) (h : ℕ) :
     ∃ A : ℝ≥0, ∀ f ∈ VClass B h, ∀ m : PreSpace (sourceClasses B) c0Origin,
       |pairing C0Ball f m| ≤ A*‖m‖ := by
@@ -143,11 +185,17 @@ theorem VClass_pairing_bound (B : CylinderBases Γ) (h : ℕ) :
   obtain ⟨A,hA⟩ := hh
   exact ⟨A,fun f hf => hA f (by simpa only [sourceClasses_odd] using VClass_mono (Nat.le_succ h) hf)⟩
 
+/--
+@isnad1 id=boundedt.1h4v.s6.6871b136bbb9 from=translated src=- shape=3cd2bc58 vocab=3d09ef65
+-/
 theorem TClass_bounded {h : ℕ} {f : C0Ball → ℝ} (hf : f ∈ TClass B h) :
     BoundedTest (sourceClasses B) c0Origin f := by
   obtain ⟨A,hA⟩ := TClass_pairing_bound B h
   exact ⟨A,hA f hf⟩
 
+/--
+@isnad1 id=boundedt.1h4v.s6.4d6d43120408 from=translated src=- shape=3cd2bc58 vocab=cefbfd9d
+-/
 theorem VClass_bounded {h : ℕ} {f : C0Ball → ℝ} (hf : f ∈ VClass B h) :
     BoundedTest (sourceClasses B) c0Origin f := by
   obtain ⟨A,hA⟩ := VClass_pairing_bound B h
@@ -164,15 +212,27 @@ open scoped NNReal BigOperators ZeroAtInfty
 def flattenOperation (I : Finset ℕ) (a : ℕ) (v : Cube I) : CylinderOperation I :=
   ⟨a,nearestOperationGrid I a v,true⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.351dec2bd331 from=translated src=- shape=a6b159b6 vocab=f816edd1
+-/
 @[simp] theorem flattenOperation_scale (I : Finset ℕ) (a : ℕ) (v : Cube I) :
     (flattenOperation I a v).scale = dyadic a := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.4fb5c5e5fd38 from=translated src=- shape=a71c22bb vocab=9df1d415
+-/
 @[simp] theorem flattenOperation_act (I : Finset ℕ) (a : ℕ) (v : Cube I) (u : Cube I → ℝ) :
     (flattenOperation I a v).act u = localG (flattenOperation I a v).point (dyadic a) u := rfl
 
+/--
+@isnad1 id=le.0h3v.s7.b9218a747ddc from=translated src=- shape=857a8dfd vocab=359b34e7
+-/
 theorem flattenOperation_center (I : Finset ℕ) (a : ℕ) (v : Cube I) :
     dist v (flattenOperation I a v).point ≤ dyadic a/16 := nearestOperationGrid_dist I a v
 
+/--
+@isnad1 id=eq.1h5v.s8.059a52b8d186 from=translated src=- shape=26bb5cd7 vocab=58a7b00c
+-/
 theorem flattenOperation_plateau (I : Finset ℕ) (a : ℕ) (v : Cube I) (u : Cube I → ℝ)
     (x : Cube I) (hx : dist x v < 3*dyadic a/8) :
     (flattenOperation I a v).act u x = u (flattenOperation I a v).point := by
@@ -181,6 +241,9 @@ theorem flattenOperation_plateau (I : Finset ℕ) (a : ℕ) (v : Cube I) (u : Cu
   have hc := flattenOperation_center I a v
   linarith [dyadic_pos a]
 
+/--
+@isnad1 id=le.1h6v.s8.766853a3b0c4 from=translated src=- shape=64d44cd4 vocab=27a844a2
+-/
 theorem flattenOperation_difference (I : Finset ℕ) (a : ℕ) (v : Cube I)
     {u : Cube I → ℝ} {K : ℝ≥0} (hu : LipschitzWith K u) (x : Cube I) :
     |(flattenOperation I a v).act u x-u x| ≤ dyadic a*K := by
@@ -190,6 +253,9 @@ theorem flattenOperation_difference (I : Finset ℕ) (a : ℕ) (v : Cube I)
 namespace GeneratedRepresentation
 variable {Γ : Type*} {B : CylinderBases Γ} {γ : Γ}
 
+/--
+@isnad1 id=ex.6h10v.s9.a5f13369c1ef from=translated src=- shape=2e697c48 vocab=c64fe401
+-/
 theorem exists_flatten (r : GeneratedRepresentation B γ) (ts : List TailOperation)
     (h : ℕ) (hr : r.operations.length ≤ h) (hj : B.band γ ≤ h)
     (ht : ts.length ≤ h) (hs : ∀ t ∈ ts, t.scaleIndex ≤ h)
@@ -244,6 +310,9 @@ theorem exists_flatten (r : GeneratedRepresentation B γ) (ts : List TailOperati
     rw [show (rr n).cubeValue = (op n).act r.cubeValue from r.append_cubeValue _ _ _]
     exact localG_sup _ _ _ _ r.cubeValue_sup _
 
+/--
+@isnad1 id=ex.3h9v.s8.c5223ec48dde from=translated src=- shape=b644c0bd vocab=8364c2c3
+-/
 theorem exists_flatten_T (r : GeneratedRepresentation B γ)
     (h : ℕ) (hr : r.operations.length ≤ h)
     (v : Cube (B.coordinates γ)) (z : SourceSpace B) {δ cap : ℝ}

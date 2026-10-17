@@ -19,6 +19,9 @@ variable [NormedAddCommGroup Z] [NormedSpace ℝ Z]
 def absorptionMap (Q : Z →L[ℝ] U) (K : E × U → Z) (x : Z × E) : Z :=
   x.1 + K (x.2, Q x.1)
 
+/--
+@isnad1 id=surjecti.2h6v.s8.8c9a96f83387 from=translated src=- shape=84e564ae vocab=77fb5688
+-/
 theorem absorption_onto {E U Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup Z] [NormedSpace ℝ Z]
     (Q : Z →L[ℝ] U) (K : E × U → Z) (g : E × U → U)
@@ -32,6 +35,9 @@ theorem absorption_onto {E U Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ 
   simp only [absorptionMap, hQ]
   abel
 
+/--
+@isnad1 id=le.2h8v.s8.4c4b057dafda from=translated src=- shape=2285461b vocab=e64948f6
+-/
 theorem absorption_upper {E U Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup Z] [NormedSpace ℝ Z]
     (Q : Z →L[ℝ] U) (K : E × U → Z) {LK : ℝ}
@@ -57,6 +63,9 @@ theorem absorption_upper {E U Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
       add_le_add ((by rw [Prod.dist_eq]; exact le_max_left _ _ : dist x.1 y.1 ≤ dist x y)) ((hK _ _).trans (mul_le_mul_of_nonneg_left hinput hLK))
     _ = _ := by ring
 
+/--
+@isnad1 id=le.5h10v.s9.6007dec956be from=translated src=- shape=c3b018db vocab=436bbac8
+-/
 theorem absorption_inverse_bound {E U Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup Z] [NormedSpace ℝ Z]
     (Q : Z →L[ℝ] U) (K : E × U → Z) (g : E × U → U)
@@ -106,11 +115,17 @@ noncomputable section
 variable {E Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 variable [NormedAddCommGroup Z] [NormedSpace ℝ Z]
 
+/--
+@isnad1 id=le.0h2v.s5.db49502a7f25 from=translated src=- shape=9054a343 vocab=1011ecd4
+-/
 theorem normalize_norm_le_one (x : E) : ‖normalize x‖ ≤ 1 := by
   by_cases hx : x = 0
   · simp [hx]
   · exact (norm_normalize hx).le
 
+/--
+@isnad1 id=le.0h3v.s6.8ae57170d63a from=translated src=- shape=36fe55cd vocab=4e7bf7d5
+-/
 theorem normalization_bound (x y : E) :
     ‖x‖ * dist (normalize x) (normalize y) ≤ 2 * dist x y := by
   have he : ‖x‖ • (normalize x-normalize y) = x-y+(‖y‖-‖x‖) • normalize y := by
@@ -136,6 +151,9 @@ def normalizedBall (x : E) : Metric.closedBall (0 : E) 1 :=
 
 def zeroBall : Metric.closedBall (0 : E) 1 := ⟨0, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.0cbf691d254e from=translated src=- shape=07f1b915 vocab=92b009f2
+-/
 @[simp] theorem normalizedBall_zero : normalizedBall (0 : E) = zeroBall := by
   apply Subtype.ext
   simp [normalizedBall, zeroBall]
@@ -143,9 +161,15 @@ def zeroBall : Metric.closedBall (0 : E) 1 := ⟨0, by simp⟩
 def radialLift (ζ : Metric.closedBall (0 : E) 1 → Z) (x : E) : Z :=
   ‖x‖ • ζ (normalizedBall x)
 
+/--
+@isnad1 id=eq.0h3v.s6.14ff2a33addc from=translated src=- shape=e61bb1cf vocab=6990f69c
+-/
 @[simp] theorem radialLift_zero (ζ : Metric.closedBall (0 : E) 1 → Z) : radialLift ζ 0 = 0 := by
   simp [radialLift]
 
+/--
+@isnad1 id=le.2h4v.s7.f2f43427a2bc from=translated src=- shape=d33ccabc vocab=30c1399b
+-/
 theorem norm_pointMap_le_one {E Z : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup Z] [NormedSpace ℝ Z]
     (ζ : Metric.closedBall (0 : E) 1 → Z)
@@ -156,6 +180,9 @@ theorem norm_pointMap_le_one {E Z : Type*} [NormedAddCommGroup E] [NormedSpace �
   have hb : dist s zeroBall ≤ 1 := s.property
   exact hh.trans hb
 
+/--
+@isnad1 id=lipschit.2h3v.s7.21668588595b from=translated src=- shape=00b88575 vocab=6b6b46f6
+-/
 theorem radialLift_lipschitz (ζ : Metric.closedBall (0 : E) 1 → Z)
     (hζ : LipschitzWith 1 ζ) (h0 : ζ zeroBall = 0) : LipschitzWith 3 (radialLift ζ) := by
   apply LipschitzWith.of_dist_le_mul
@@ -185,6 +212,9 @@ theorem radialLift_lipschitz (ζ : Metric.closedBall (0 : E) 1 → Z)
       · simpa only [dist_comm] using normalization_bound y x
     _ = (3 : ℝ≥0)*dist x y := by norm_num; ring
 
+/--
+@isnad1 id=eq.1h5v.s7.3ee3a4eabdb9 from=translated src=- shape=a3a6448d vocab=f462e74d
+-/
 theorem radialLift_homogeneous (ζ : Metric.closedBall (0 : E) 1 → Z) {r : ℝ}
     (hr : 0 ≤ r) (x : E) : radialLift ζ (r • x) = r • radialLift ζ x := by
   rcases hr.eq_or_lt with rfl | hr

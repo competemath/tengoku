@@ -14,10 +14,16 @@ abbrev infiniteCube := ℕ → unitInterval
 abbrev infiniteCubeMeasure : Measure infiniteCube :=
   Measure.infinitePi (fun _ : ℕ => (volume : Measure unitInterval))
 
+/--
+@isnad1 id=measurep.0h1v.s5.2c1d45bf2e18 from=translated src=- shape=dbd3d545 vocab=9ebc3255
+-/
 lemma infinite_coordinate_mp (i : ℕ) :
     MeasurePreserving (fun ω : infiniteCube => ω i) infiniteCubeMeasure volume :=
   ⟨measurable_pi_apply i, Measure.infinitePi_map_eval _ i⟩
 
+/--
+@isnad1 id=measurep.1h2v.s6.818111c1dca2 from=translated src=- shape=0a8b993c vocab=fc8ebb20
+-/
 lemma finite_coordinates_mp {ι : Type uIota} [Fintype ι] (c : ι → ℕ) (hc : Function.Injective c) :
     MeasurePreserving (fun ω : infiniteCube => fun i => ω (c i)) infiniteCubeMeasure (cubeMeasure ι) := by
   refine ⟨by fun_prop, ?_⟩

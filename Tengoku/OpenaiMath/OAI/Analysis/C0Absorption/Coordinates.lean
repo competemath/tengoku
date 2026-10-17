@@ -12,9 +12,15 @@ abbrev C0Ball := Metric.closedBall (0 : C0) 1
 
 abbrev Cube (I : Finset ℕ) := (i : I) → Icc (-1 : ℝ) 1
 
+/--
+@isnad1 id=le.0h2v.s5.7dfb2d4c9e3c from=translated src=- shape=390f5fd0 vocab=457e5a10
+-/
 theorem c0_norm_apply_le (s : C0) (i : ℕ) : |s i| ≤ ‖s‖ := by
   exact s.toBCF.norm_coe_le_norm i
 
+/--
+@isnad1 id=le.2h2v.s5.f44cad37ece0 from=translated src=- shape=e253e220 vocab=457e5a10
+-/
 theorem c0_norm_le (s : C0) {a : ℝ} (ha : 0 ≤ a) (hs : ∀ i, |s i| ≤ a) : ‖s‖ ≤ a := by
   exact (s.toBCF.norm_le ha).mpr hs
 
@@ -24,6 +30,9 @@ def c0Eval (i : ℕ) : C0 →L[ℝ] ℝ :=
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl } 1 (fun s => by simpa using c0_norm_apply_le s i)
 
+/--
+@isnad1 id=eq.0h2v.s7.3e745213f645 from=translated src=- shape=1869673a vocab=cd0c6f54
+-/
 @[simp] theorem c0Eval_apply (i : ℕ) (s : C0) : c0Eval i s = s i := rfl
 
 def cubeRestrict (I : Finset ℕ) (s : C0Ball) : Cube I := fun i =>
@@ -40,13 +49,22 @@ def finsuppToC0 (f : ℕ →₀ ℝ) : C0 where
   zero_at_infty' := (HasCompactSupport.of_support_subset_isCompact
     f.hasFiniteSupport.isCompact (Set.Subset.refl _)).is_zero_at_infty
 
+/--
+@isnad1 id=eq.0h2v.s5.11a3418e7765 from=translated src=- shape=4760bf6a vocab=90fb677a
+-/
 @[simp] theorem finsuppToC0_apply (f : ℕ →₀ ℝ) (i : ℕ) : finsuppToC0 f i = f i := rfl
 
 def atom (i : ℕ) : C0 := finsuppToC0 (Finsupp.single i 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.102f24d5fced from=translated src=- shape=3c46471e vocab=12e7389f
+-/
 @[simp] theorem atom_apply (i j : ℕ) : atom i j = if i=j then 1 else 0 := by
   simp [atom, Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.0h1v.s4.ffb18fb8b7c5 from=translated src=- shape=8e1bdd70 vocab=a68a7efc
+-/
 @[simp] theorem atom_norm (i : ℕ) : ‖atom i‖ = 1 := by
   apply le_antisymm
   · apply c0_norm_le _ zero_le_one
@@ -57,6 +75,9 @@ def atom (i : ℕ) : C0 := finsuppToC0 (Finsupp.single i 1)
 
 def truncate (N : ℕ) (s : C0) : C0 := ∑ i ∈ Finset.range N, s i • atom i
 
+/--
+@isnad1 id=eq.0h3v.s5.2c59a3f4e231 from=translated src=- shape=49df6420 vocab=fc4c4faa
+-/
 @[simp] theorem truncate_apply (N : ℕ) (s : C0) (i : ℕ) :
     truncate N s i = if i < N then s i else 0 := by
   classical
@@ -73,9 +94,15 @@ def truncate (N : ℕ) (s : C0) : C0 := ∑ i ∈ Finset.range N, s i • atom i
     have hji : j ≠ i := by intro h; subst j; exact hi (Finset.mem_range.mp hj)
     simp [hji]
 
+/--
+@isnad1 id=tendsto.0h1v.s5.076bb7bf99d9 from=translated src=- shape=f811c551 vocab=4a670bab
+-/
 theorem c0_tendsto_zero (s : C0) : Tendsto s atTop (nhds 0) := by
   simpa only [cocompact_eq_cofinite, Nat.cofinite_eq_atTop] using zero_at_infty s
 
+/--
+@isnad1 id=tendsto.0h1v.s4.290a1dbddc65 from=translated src=- shape=06118bb5 vocab=586e3eab
+-/
 theorem truncate_tendsto (s : C0) : Tendsto (fun N => truncate N s) atTop (nhds s) := by
   rw [Metric.tendsto_nhds]
   intro ε hε
@@ -94,17 +121,26 @@ theorem truncate_tendsto (s : C0) : Tendsto (fun N => truncate N s) atTop (nhds 
   · simp only [ite_eq_right hi, zero_sub, abs_neg]
     exact (hN i (hn.trans (Nat.le_of_not_gt hi))).le
 
+/--
+@isnad1 id=mem.0h2v.s7.9dce546403d5 from=translated src=- shape=3b25d505 vocab=401dbb2a
+-/
 theorem truncate_mem_span (N : ℕ) (s : C0) :
     truncate N s ∈ Submodule.span ℝ (Set.range atom) := by
   apply Submodule.sum_mem
   intro i hi
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=dense.0h0v.s6.89322b618516 from=translated src=- shape=7672031b vocab=f912c27f
+-/
 theorem c0_span_dense : Dense (↑(Submodule.span ℝ (Set.range atom)) : Set C0) := by
   intro s
   exact mem_closure_of_tendsto (truncate_tendsto s)
     (Filter.Eventually.of_forall (fun N => truncate_mem_span N s))
 
+/--
+@isnad1 id=separabl.0h0v.s3.db10b3d87a8f from=translated src=- shape=49959d42 vocab=32c7b4c3
+-/
 instance c0_separable : TopologicalSpace.SeparableSpace C0 := by
   apply TopologicalSpace.isSeparable_univ_iff.mp
   have hh := (Set.countable_range atom).isSeparable.span (R := ℝ)
@@ -116,11 +152,17 @@ def extendFinite (I : Finset ℕ) (x : I → ℝ) : C0 := by
   exact finsuppToC0 (Finsupp.onFinset I (fun j => if h : j ∈ I then x ⟨j,h⟩ else 0)
     (by intro j hj; by_contra h; simp [h] at hj))
 
+/--
+@isnad1 id=eq.0h3v.s6.ab623952ff95 from=translated src=- shape=80dc4e0b vocab=d2bd9691
+-/
 @[simp] theorem extendFinite_apply (I : Finset ℕ) (x : I → ℝ) (j : ℕ) :
     extendFinite I x j = if h : j ∈ I then x ⟨j,h⟩ else 0 := by
   classical
   rfl
 
+/--
+@isnad1 id=le.2h3v.s6.a15980cf3574 from=translated src=- shape=c520d11c vocab=7bbd6c99
+-/
 theorem extendFinite_norm_le (I : Finset ℕ) (x : I → ℝ) {a : ℝ}
     (ha : 0 ≤ a) (hx : ∀ i, |x i| ≤ a) : ‖extendFinite I x‖ ≤ a := by
   classical
@@ -138,6 +180,9 @@ def cubeExtend (I : Finset ℕ) (x : Cube I) : C0Ball :=
     intro i
     exact abs_le.mpr (x i).property⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.975e6df3666e from=translated src=- shape=5d018461 vocab=819e7794
+-/
 @[simp] theorem cubeRestrict_extend (I : Finset ℕ) (x : Cube I) :
     cubeRestrict I (cubeExtend I x) = x := by
   classical
@@ -145,6 +190,9 @@ def cubeExtend (I : Finset ℕ) (x : Cube I) : C0Ball :=
   change extendFinite I (fun i => (x i).val) i = (x i).val
   simp
 
+/--
+@isnad1 id=lipschit.0h1v.s7.c7a418587747 from=translated src=- shape=ceab345f vocab=db96bfb3
+-/
 theorem cubeRestrict_lipschitz (I : Finset ℕ) : LipschitzWith 1 (cubeRestrict I) := by
   apply LipschitzWith.of_dist_le_mul
   intro s t
@@ -154,6 +202,9 @@ theorem cubeRestrict_lipschitz (I : Finset ℕ) : LipschitzWith 1 (cubeRestrict 
   change dist (s.val i) (t.val i) ≤ dist s.val t.val
   exact BoundedContinuousFunction.dist_coe_le_dist (f := s.val.toBCF) (g := t.val.toBCF) i
 
+/--
+@isnad1 id=lipschit.0h1v.s7.792f9bcca177 from=translated src=- shape=9c77e110 vocab=b7a8be90
+-/
 theorem cubeExtend_lipschitz (I : Finset ℕ) : LipschitzWith 1 (cubeExtend I) := by
   classical
   apply LipschitzWith.of_dist_le_mul
@@ -167,6 +218,9 @@ theorem cubeExtend_lipschitz (I : Finset ℕ) : LipschitzWith 1 (cubeExtend I) :
   · exact dist_le_pi_dist s t _
   · simp
 
+/--
+@isnad1 id=isometry.0h1v.s7.41b8d8a13fab from=translated src=- shape=af4652e5 vocab=5a806faa
+-/
 theorem cubeExtend_isometry (I : Finset ℕ) : Isometry (cubeExtend I) := by
   rw [isometry_iff_dist_eq]
   intro x y
@@ -200,6 +254,9 @@ def nearestGridIndex (n : ℕ) (_hn : 0 < n) (x : Icc (-1 : ℝ) 1) : GridIndex 
       have hh' : (n : ℝ)+1 ≤ (round ((n : ℝ) * x.val) : ℝ) := by exact_mod_cast hh
       linarith⟩
 
+/--
+@isnad1 id=le.1h2v.s7.6b4e2bd5ec28 from=translated src=- shape=ae32f793 vocab=e3304f3b
+-/
 theorem nearestGrid_dist (n : ℕ) (hn : 0 < n) (x : Icc (-1 : ℝ) 1) :
     dist x (gridPoint n hn (nearestGridIndex n hn x)) ≤ 1 / (2*(n : ℝ)) := by
   have hn' : (0 : ℝ) < n := by exact_mod_cast hn
@@ -213,8 +270,14 @@ theorem nearestGrid_dist (n : ℕ) (hn : 0 < n) (x : Icc (-1 : ℝ) 1) :
 
 def dyadic (a : ℕ) : ℝ := ((2 : ℝ)^a)⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s3.34d80a9b03a1 from=translated src=- shape=b9369acb vocab=2b95c09f
+-/
 theorem dyadic_pos (a : ℕ) : 0 < dyadic a := by unfold dyadic; positivity
 
+/--
+@isnad1 id=tendsto.0h0v.s4.9ff2f5ef1519 from=translated src=- shape=8e2810f0 vocab=9c4dd2cc
+-/
 theorem dyadic_tendsto : Tendsto dyadic atTop (nhds 0) := by
   change Tendsto (fun a : ℕ => ((2 : ℝ)^a)⁻¹) atTop (nhds 0)
   simpa only [inv_pow] using tendsto_pow_atTop_nhds_zero_of_lt_one
@@ -228,9 +291,15 @@ def operationGridPoint (I : Finset ℕ) (a : ℕ) (q : OperationGrid I a) : Cube
 def nearestOperationGrid (I : Finset ℕ) (a : ℕ) (x : Cube I) : OperationGrid I a :=
   fun i => nearestGridIndex _ (by positivity) (x i)
 
+/--
+@isnad1 id=eq.0h1v.s6.c39eb14707bd from=translated src=- shape=edb3b6ea vocab=56290340
+-/
 theorem operationGrid_mesh (a : ℕ) : (1 : ℝ) / (2^(a+3)) = dyadic a / 8 := by
   rw [dyadic, pow_add]; norm_num; ring
 
+/--
+@isnad1 id=le.0h3v.s7.c187050f90f1 from=translated src=- shape=dcafdd3e vocab=492aecea
+-/
 theorem nearestOperationGrid_dist (I : Finset ℕ) (a : ℕ) (x : Cube I) :
     dist x (operationGridPoint I a (nearestOperationGrid I a x)) ≤ dyadic a / 16 := by
   apply (dist_pi_le_iff (div_nonneg (dyadic_pos a).le (by norm_num) : 0 ≤ dyadic a / 16)).mpr
@@ -245,6 +314,9 @@ theorem nearestOperationGrid_dist (I : Finset ℕ) (a : ℕ) (x : Cube I) :
 
 def coordinateTail (N : ℕ) (s : C0) : C0 := s - truncate (N+1) s
 
+/--
+@isnad1 id=eq.0h3v.s5.c1c7e2ffd67c from=translated src=- shape=69c65c40 vocab=8086bf9f
+-/
 @[simp] theorem coordinateTail_apply (N : ℕ) (s : C0) (i : ℕ) :
     coordinateTail N s i = if N < i then s i else 0 := by
   simp only [coordinateTail, ZeroAtInftyContinuousMap.sub_apply, truncate_apply]
@@ -252,14 +324,23 @@ def coordinateTail (N : ℕ) (s : C0) : C0 := s - truncate (N+1) s
 
 def tau (N : ℕ) (s : C0) : ℝ := ‖coordinateTail N s‖
 
+/--
+@isnad1 id=le.0h2v.s4.de02a31a71fd from=translated src=- shape=0d4521f5 vocab=6139a34e
+-/
 theorem tau_nonneg (N : ℕ) (s : C0) : 0 ≤ tau N s := norm_nonneg _
 
+/--
+@isnad1 id=eq.0h3v.s5.de213be9786d from=translated src=- shape=c66a92ec vocab=d4ec60e6
+-/
 theorem coordinateTail_sub (N : ℕ) (s t : C0) :
     coordinateTail N (s-t) = coordinateTail N s-coordinateTail N t := by
   ext i
   simp only [coordinateTail_apply, ZeroAtInftyContinuousMap.sub_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=le.0h2v.s4.91c7fb5c3f1c from=translated src=- shape=d1a84a08 vocab=14a53cf6
+-/
 theorem tau_le_norm (N : ℕ) (s : C0) : tau N s ≤ ‖s‖ := by
   apply c0_norm_le _ (norm_nonneg s)
   intro i
@@ -268,6 +349,9 @@ theorem tau_le_norm (N : ℕ) (s : C0) : tau N s ≤ ‖s‖ := by
   · exact c0_norm_apply_le s i
   · simp
 
+/--
+@isnad1 id=lipschit.0h1v.s4.b1e99b7aa574 from=translated src=- shape=93503a0a vocab=3eb5c628
+-/
 theorem tau_lipschitz (N : ℕ) : LipschitzWith 1 (tau N) := by
   apply LipschitzWith.of_dist_le_mul
   intro s t
@@ -278,6 +362,9 @@ theorem tau_lipschitz (N : ℕ) : LipschitzWith 1 (tau N) := by
     _ ≤ ‖s-t‖ := tau_le_norm _ _
     _ = dist s t := (dist_eq_norm _ _).symm
 
+/--
+@isnad1 id=antitone.0h1v.s3.97a453aa7799 from=translated src=- shape=704e683e vocab=f254660c
+-/
 theorem tau_antitone (s : C0) : Antitone (fun N => tau N s) := by
   intro M N hMN
   apply c0_norm_le _ (tau_nonneg M s)
@@ -288,6 +375,9 @@ theorem tau_antitone (s : C0) : Antitone (fun N => tau N s) := by
     simpa [tau, coordinateTail_apply, lt_of_le_of_lt hMN hi] using hh
   · simpa using tau_nonneg M s
 
+/--
+@isnad1 id=tendsto.0h1v.s4.c7583305ecfa from=translated src=- shape=35eee1ba vocab=75f6bac5
+-/
 theorem tau_tendsto_zero (s : C0) : Tendsto (fun N => tau N s) atTop (nhds 0) := by
   have hh := ((show Tendsto (fun _ : ℕ => s) atTop (nhds s) from tendsto_const_nhds).sub (truncate_tendsto s)).norm
   have hshift : Tendsto (fun N : ℕ => N+1) atTop atTop := tendsto_add_atTop_nat 1
@@ -295,11 +385,20 @@ theorem tau_tendsto_zero (s : C0) : Tendsto (fun N => tau N s) atTop (nhds 0) :=
 
 def tailFactor (c : ℝ) (N : ℕ) (s : C0) : ℝ := min 1 (max (2-tau N s/c) 0)
 
+/--
+@isnad1 id=le.0h3v.s4.88dd24e97fcf from=translated src=- shape=7cb9e64f vocab=9e92a94d
+-/
 theorem tailFactor_nonneg (c : ℝ) (N : ℕ) (s : C0) : 0 ≤ tailFactor c N s := by
   exact le_min zero_le_one (le_max_right _ _)
 
+/--
+@isnad1 id=le.0h3v.s4.d7229367f199 from=translated src=- shape=36f8cc75 vocab=9e92a94d
+-/
 theorem tailFactor_le_one (c : ℝ) (N : ℕ) (s : C0) : tailFactor c N s ≤ 1 := min_le_left _ _
 
+/--
+@isnad1 id=eq.2h3v.s5.b4e5e25e7290 from=translated src=- shape=b4a4b53d vocab=53355bec
+-/
 theorem tailFactor_eq_one {c : ℝ} (hc : 0 < c) (N : ℕ) (s : C0) (hs : tau N s ≤ c) :
     tailFactor c N s = 1 := by
   apply min_eq_left
@@ -307,11 +406,17 @@ theorem tailFactor_eq_one {c : ℝ} (hc : 0 < c) (N : ℕ) (s : C0) (hs : tau N 
   have hdiv := (div_le_one hc).mpr hs
   linarith
 
+/--
+@isnad1 id=eq.2h3v.s5.20d876bc5548 from=translated src=- shape=46707987 vocab=48ccc5c4
+-/
 theorem tailFactor_eq_zero {c : ℝ} (hc : 0 < c) (N : ℕ) (s : C0) (hs : 2*c ≤ tau N s) :
     tailFactor c N s = 0 := by
   have hdiv : 2 ≤ tau N s/c := (le_div_iff₀ hc).mpr hs
   simp [tailFactor, max_eq_right (show 2-tau N s/c ≤ 0 by linarith)]
 
+/--
+@isnad1 id=lipschit.1h2v.s5.137205eae3e9 from=translated src=- shape=27af60da vocab=d21d94c7
+-/
 theorem tailFactor_lipschitz {c : ℝ} (hc : 0 < c) (N : ℕ) :
     LipschitzWith ⟨c⁻¹, inv_nonneg.mpr hc.le⟩ (tailFactor c N) := by
   have ht : LipschitzWith ⟨c⁻¹, inv_nonneg.mpr hc.le⟩ (fun s => (2 : ℝ)-tau N s/c) := by
@@ -331,6 +436,9 @@ theorem tailFactor_lipschitz {c : ℝ} (hc : 0 < c) (N : ℕ) :
   apply hh.weaken
   exact max_le bot_le (max_le le_rfl bot_le)
 
+/--
+@isnad1 id=tendsto.1h2v.s5.e9093e2c718c from=translated src=- shape=ba5341bd vocab=34a74dac
+-/
 theorem tailFactor_tendsto_one {c : ℝ} (hc : 0 < c) (s : C0) :
     Tendsto (fun N => tailFactor c N s) atTop (nhds 1) := by
   have hh : ∀ᶠ N in atTop, tau N s ≤ c :=
@@ -339,6 +447,9 @@ theorem tailFactor_tendsto_one {c : ℝ} (hc : 0 < c) (s : C0) :
   filter_upwards [hh] with N hN
   exact (tailFactor_eq_one hc N s hN).symm
 
+/--
+@isnad1 id=le.1h2v.s5.6755e1ae6205 from=translated src=- shape=17d2389f vocab=9046420e
+-/
 theorem tailFactor_support {c : ℝ} (hc : 0 < c) (N : ℕ) :
     tsupport (tailFactor c N) ⊆ {s | tau N s ≤ 2*c} := by
   apply closure_minimal
@@ -347,6 +458,9 @@ theorem tailFactor_support {c : ℝ} (hc : 0 < c) (N : ℕ) :
     exact hs (tailFactor_eq_zero hc N s (le_of_not_ge hh))
   · exact isClosed_le (tau_lipschitz N).continuous continuous_const
 
+/--
+@isnad1 id=le.1h2v.s6.c9ac230d3439 from=translated src=- shape=21994727 vocab=cd02119c
+-/
 theorem remainderTail_support {c : ℝ} (hc : 0 < c) (N : ℕ) :
     tsupport (fun s => tailFactor c N s-1) ⊆ {s | c ≤ tau N s} := by
   apply closure_minimal

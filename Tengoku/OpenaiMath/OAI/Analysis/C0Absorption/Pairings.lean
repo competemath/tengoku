@@ -21,6 +21,9 @@ def initialPairing (f : S → ℝ) (K : ℝ≥0)
   (show PreSpace L o →ₗ[ℝ] ℝ from pairing S f).mkContinuous (E := PreSpace L o) K
     (fun m => h m)
 
+/--
+@isnad1 id=lipschit.1h5v.s9.ded437417f43 from=translated src=- shape=69f79f18 vocab=12420933
+-/
 theorem initialPairing_lipschitz (f : S → ℝ) (K : ℝ≥0)
     (h : ∀ m : PreSpace L o, |pairing S f m| ≤ K * ‖m‖) :
     LipschitzWith K (fun m : PreSpace L o => pairing S f m) := by
@@ -31,11 +34,17 @@ theorem initialPairing_lipschitz (f : S → ℝ) (K : ℝ≥0)
   rw [dist_eq_norm, dist_eq_norm, ← map_sub]
   exact h (x-y)
 
+/--
+@isnad1 id=eq.1h6v.s10.35b3ea5ad929 from=translated src=- shape=7139e0dc vocab=c99425bc
+-/
 @[simp] theorem completedPairing_coe (f : S → ℝ) (K : ℝ≥0)
     (h : ∀ m : PreSpace L o, |pairing S f m| ≤ K * ‖m‖) (m : PreSpace L o) :
     completedPairing L o f (toTestSpace L o m) = pairing S f m :=
   Completion.extension_coe (initialPairing_lipschitz L o f K h).uniformContinuous m
 
+/--
+@isnad1 id=lipschit.1h5v.s9.dbc0ec8deb19 from=translated src=- shape=287f7f8b vocab=1836f196
+-/
 theorem completedPairing_lipschitz (f : S → ℝ) (K : ℝ≥0)
     (h : ∀ m : PreSpace L o, |pairing S f m| ≤ K * ‖m‖) :
     LipschitzWith K (completedPairing L o f) :=
@@ -45,6 +54,9 @@ def completedTest (f : S → ℝ) (K : ℝ≥0)
     (h : ∀ m : PreSpace L o, |pairing S f m| ≤ K * ‖m‖) : TestSpace L o →L[ℝ] ℝ :=
   (initialPairing L o f K h).extend (toTestSpace L o)
 
+/--
+@isnad1 id=eq.1h6v.s9.c8d7f79c59bc from=translated src=- shape=9da0ffb5 vocab=03fb029b
+-/
 theorem completedTest_eq (f : S → ℝ) (K : ℝ≥0)
     (h : ∀ m : PreSpace L o, |pairing S f m| ≤ K * ‖m‖) (z : TestSpace L o) :
     completedTest L o f K h z = completedPairing L o f z := by
@@ -68,6 +80,9 @@ def AdmissibleList.singleton {L₀ : Set (S → ℝ)} {C : ℝ≥0}
     simp only [Fin.sum_univ_one, Real.dist_eq, ← mul_sub, abs_mul, hε, one_mul]
     exact hC.dist_le_mul s t
 
+/--
+@isnad1 id=eq.2h6v.s10.76b7f1d9c1c7 from=translated src=- shape=50275828 vocab=f08871d2
+-/
 theorem singleton_norm {L₀ : Set (S → ℝ)} {C : ℝ≥0}
     (f : S → ℝ) (hf : f ∈ L₀) (hC : LipschitzWith C f)
     (p : ℝ≥0∞) [Fact (1 ≤ p)] (m : Molecule S) :
@@ -78,6 +93,9 @@ theorem singleton_norm {L₀ : Set (S → ℝ)} {C : ℝ≥0}
       finite_lp_norm_le_sum p (WithLp.toLp p (fun _ : Fin 1 => pairing S f m))
   · exact PiLp.norm_apply_le (WithLp.toLp p (fun _ : Fin 1 => pairing S f m)) 0
 
+/--
+@isnad1 id=le.2h6v.s9.74a49b1223f6 from=translated src=- shape=35edb229 vocab=a6e8d722
+-/
 theorem test_pairing_bound (n : ℕ) (f : S → ℝ) (hf : f ∈ L (triple n).1)
     (hC : LipschitzWith (listConstant n) f) (m : PreSpace L o) :
     |pairing S f m| ≤ (squareWeight n)⁻¹ * ‖m‖ := by
@@ -88,6 +106,9 @@ theorem test_pairing_bound (n : ℕ) (f : S → ℝ) (hf : f ∈ L (triple n).1)
   rw [hs] at h₁
   exact h₁.trans (sigma_le_preNorm L o n m)
 
+/--
+@isnad1 id=le.0h7v.s9.82207a6928d9 from=translated src=- shape=a59e05c3 vocab=1f53124a
+-/
 theorem list_test_pairing_bound (n : ℕ)
     (l : AdmissibleList (L (triple n).1) (listConstant n)) (i : Fin l.length)
     (m : PreSpace L o) : |pairing S (l.test i) m| ≤ (squareWeight n)⁻¹ * ‖m‖ := by
@@ -95,6 +116,9 @@ theorem list_test_pairing_bound (n : ℕ)
   change |pairing S (l.test i) m| ≤ ‖l.eval (listExponent n) m‖ at h
   exact h.trans ((list_le_sigma _ _ _ o l m).trans (sigma_le_preNorm L o n m))
 
+/--
+@isnad1 id=eq.0h7v.s10.3bddf13bc3d3 from=translated src=- shape=ab40ac98 vocab=99341f9f
+-/
 theorem completedList_apply (n : ℕ)
     (l : AdmissibleList (L (triple n).1) (listConstant n)) (z : TestSpace L o) (i : Fin l.length) :
     completedList L o n l z i = completedPairing L o (l.test i) z := by
@@ -109,6 +133,9 @@ theorem completedList_apply (n : ℕ)
       (list_test_pairing_bound L o n l i)]
     rfl
 
+/--
+@isnad1 id=tendsto.1h4v.s10.9dfdecfec693 from=translated src=- shape=5b6b356e vocab=957ba8de
+-/
 theorem pairing_tendsto {S : Type*} [MetricSpace S]
     (f : ℕ → S → ℝ) (g : S → ℝ)
     (h : ∀ s, Filter.Tendsto (fun n => f n s) Filter.atTop (nhds (g s)))
@@ -118,6 +145,9 @@ theorem pairing_tendsto {S : Type*} [MetricSpace S]
     Finsupp.linearCombination_apply, smul_eq_mul, Finsupp.sum]
   exact tendsto_finsetSum _ (fun s _ => (h s).const_mul (m.val s))
 
+/--
+@isnad1 id=and.2h6v.s10.762666762cf8 from=translated src=- shape=ceb6cad0 vocab=7cb149b9
+-/
 theorem completedPairing_tendsto (f : ℕ → S → ℝ) (g : S → ℝ) (K : ℝ≥0)
     (hbound : ∀ n (m : PreSpace L o), |pairing S (f n) m| ≤ K * ‖m‖)
     (hpoint : ∀ s, Filter.Tendsto (fun n => f n s) Filter.atTop (nhds (g s))) :
@@ -151,10 +181,16 @@ def transferredList (n n' : ℕ) (hL : (triple n').1 = (triple n).1)
   mem i := by rw [hL]; exact l.mem i
   signed_lipschitz ε hε := by rw [hC]; exact l.signed_lipschitz ε hε
 
+/--
+@isnad1 id=lt.0h1v.s3.0cc24766c4e8 from=translated src=- shape=25e12683 vocab=3d470dd3
+-/
 theorem listExponent_toReal_pos (n : ℕ) : 0 < (listExponent n).toReal := by
   rw [listExponent_toReal]
   positivity
 
+/--
+@isnad1 id=ex.0h1v.s5.ec2bb255ae2e from=translated src=- shape=31bc2eec vocab=95cfd4f2
+-/
 theorem exists_smaller_exponent (n : ℕ) :
     ∃ n', (triple n').1 = (triple n).1 ∧ listConstant n' = listConstant n ∧
       (listExponent n').toReal < (listExponent n).toReal := by
@@ -166,6 +202,9 @@ theorem exists_smaller_exponent (n : ℕ) :
     one_div_lt_one_div_of_lt (by positivity) (by linarith)
   linarith
 
+/--
+@isnad1 id=ex.2h6v.s9.bb15f85139bd from=translated src=- shape=10401732 vocab=c8dc6123
+-/
 theorem fixed_sigma_detector (n : ℕ) (a M : ℝ) (ha : 0 < a) (hM : 0 < M) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ z : TestSpace L o,
       a ≤ completedSigma L o n z → ‖z‖ ≤ M →
@@ -211,6 +250,9 @@ end CompletedPairings
 
 section FurtherDetectors
 
+ /--
+ @isnad1 id=ex.2h1v.s6.00152d07bb60 from=translated src=- shape=287310dd vocab=7066175b
+ -/
  theorem nonnegative_has_positive_subsequence (f : ℕ → ℝ) (hf : ∀ i, 0 ≤ f i)
     (hn : ¬ Filter.Tendsto f Filter.atTop (nhds 0)) :
     ∃ a : ℝ, 0 < a ∧ ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, a ≤ f (φ i) := by
@@ -222,6 +264,9 @@ section FurtherDetectors
   obtain ⟨φ, hm, hl⟩ := Filter.extraction_of_frequently_atTop hf'
   exact ⟨a, ha, φ, hm, hl⟩
 
+/--
+@isnad1 id=le.1h4v.s7.4560a0e2b217 from=translated src=- shape=38dc8694 vocab=c08283f8
+-/
 theorem bounded_signs_norm_each {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (m : ℕ → X) (M : ℝ)
     (hsum : ∀ n (ε : Fin n → Bool), ‖∑ i, realSign (ε i) • m i‖ ≤ M) (i : ℕ) :
@@ -236,6 +281,9 @@ theorem bounded_signs_norm_each {X : Type*} [NormedAddCommGroup X] [NormedSpace 
     ‖∑ k : Fin (i+1), realSign (flipSign j ε k) • m k‖ ^ 2 at h
   nlinarith [norm_nonneg (m i)]
 
+/--
+@isnad1 id=tendsto.1h4v.s8.2410c53d18ca from=translated src=- shape=d9811742 vocab=3fd51942
+-/
 theorem bounded_signs_weak_null {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (m : ℕ → X) (M : ℝ)
     (hsum : ∀ n (ε : Fin n → Bool), ‖∑ i, realSign (ε i) • m i‖ ≤ M)
@@ -264,12 +312,18 @@ theorem bounded_signs_weak_null {X : Type*} [NormedAddCommGroup X] [NormedSpace 
 
 variable {S : Type*} [MetricSpace S] (L : ℕ → Set (S → ℝ)) (o : S)
 
+/--
+@isnad1 id=eq.0h5v.s9.ae86afb451de from=translated src=- shape=6a66c177 vocab=ef2c0142
+-/
 theorem completedCoordinate_eq_weight_sigma (n : ℕ) (z : TestSpace L o) :
     completedCoordinate L o n z = (squareWeight n : ℝ) * completedSigma L o n z := by
   change completedCoordinate L o n z = (squareWeight n : ℝ) *
     ((squareWeight n : ℝ)⁻¹ * completedCoordinate L o n z)
   rw [← mul_assoc, mul_inv_cancel₀ (ne_of_gt (squareWeight_pos n)), one_mul]
 
+/--
+@isnad1 id=ex.3h6v.s8.cc87695d25a7 from=translated src=- shape=012010ab vocab=82afc3c4
+-/
 theorem one_class_detects (m : ℕ → TestSpace L o) (M r : ℝ) (hr : 0 < r)
     (hlower : ∀ i, r ≤ ‖m i‖)
     (hsum : ∀ n (ε : Fin n → Bool), ‖∑ i, realSign (ε i) • m i‖ ≤ M) :

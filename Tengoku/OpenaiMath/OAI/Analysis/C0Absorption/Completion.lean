@@ -14,6 +14,9 @@ open UniformSpace Completion
 
 variable {X : Type*} [SeminormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=lipschit.1h3v.s8.77d493afbae1 from=translated src=- shape=42bffbc7 vocab=91f47efc
+-/
 theorem seminorm_lipschitz (q : Seminorm ℝ X) (C : ℝ≥0)
     (h : ∀ x, q x ≤ C * ‖x‖) : LipschitzWith C q := by
   apply LipschitzWith.of_dist_le_mul
@@ -21,6 +24,9 @@ theorem seminorm_lipschitz (q : Seminorm ℝ X) (C : ℝ≥0)
   rw [Real.dist_eq, dist_eq_norm]
   exact (seminorm_abs_sub_le q x y).trans (h (x - y))
 
+/--
+@isnad1 id=lipschit.1h4v.s6.981595957ab3 from=translated src=- shape=cf493239 vocab=0e4ef141
+-/
 theorem completion_lipschitz {X : Type*} [SeminormedAddCommGroup X] [NormedSpace ℝ X]
     {Y : Type*} [MetricSpace Y] [CompleteSpace Y]
     {f : X → Y} {C : ℝ≥0} (hf : LipschitzWith C f) :
@@ -59,14 +65,23 @@ def completedSeminorm (q : Seminorm ℝ X) (C : ℝ≥0) (h : ∀ x, q x ≤ C *
           Completion.extension_coe (seminorm_lipschitz q C h).uniformContinuous] using
           map_smul_eq_mul q a x)
 
+/--
+@isnad1 id=eq.1h4v.s9.9430da3f1116 from=translated src=- shape=e9405c3c vocab=e4867ab7
+-/
 @[simp] theorem completedSeminorm_coe (q : Seminorm ℝ X) (C : ℝ≥0)
     (h : ∀ x, q x ≤ C * ‖x‖) (x : X) : completedSeminorm q C h (x : Completion X) = q x :=
   Completion.extension_coe (seminorm_lipschitz q C h).uniformContinuous x
 
+/--
+@isnad1 id=continuo.1h3v.s8.c3b430260054 from=translated src=- shape=71f6a46f vocab=5342b77f
+-/
 theorem completedSeminorm_continuous (q : Seminorm ℝ X) (C : ℝ≥0)
     (h : ∀ x, q x ≤ C * ‖x‖) : Continuous (completedSeminorm q C h) :=
   Completion.continuous_extension
 
+/--
+@isnad1 id=le.1h4v.s9.04539b2df1d3 from=translated src=- shape=6ed4583e vocab=02e9c899
+-/
 theorem completedSeminorm_le (q : Seminorm ℝ X) (C : ℝ≥0)
     (h : ∀ x, q x ≤ C * ‖x‖) (x : Completion X) : completedSeminorm q C h x ≤ C * ‖x‖ := by
   induction x using Completion.induction_on with
@@ -106,12 +121,18 @@ instance : CompleteSpace (TestSpace L o) :=
 def toTestSpace : PreSpace L o →L[ℝ] TestSpace L o :=
   (Completion.toComplL : PreSpace L o →L[ℝ] Completion (PreSpace L o))
 
+/--
+@isnad1 id=eq.0h4v.s10.4ee024262bef from=translated src=- shape=eb51ef17 vocab=ac55ca2e
+-/
 @[simp] theorem norm_toTestSpace (m : PreSpace L o) :
     ‖toTestSpace L o m‖ = selectedNorm L o m := Completion.norm_coe m
 
 def initialCoordinates (m : PreSpace L o) : lp (fun _ : ℕ => ℝ) 2 :=
   squareVector (selectedCoordinate L) (selectedCoordinate_summable L o) m
 
+/--
+@isnad1 id=lipschit.0h3v.s9.2fb2341757ec from=translated src=- shape=dd7aba0b vocab=68cc5c7a
+-/
 theorem initialCoordinates_lipschitz : LipschitzWith 1 (initialCoordinates L o) := by
   apply LipschitzWith.of_dist_le_mul
   intro x y
@@ -121,13 +142,22 @@ theorem initialCoordinates_lipschitz : LipschitzWith 1 (initialCoordinates L o) 
 def normCoordinates : TestSpace L o → lp (fun _ : ℕ => ℝ) 2 :=
   Completion.extension (initialCoordinates L o)
 
+/--
+@isnad1 id=continuo.0h3v.s9.5703ab7cbffa from=translated src=- shape=9cfabfcb vocab=541fd7ce
+-/
 theorem normCoordinates_continuous : Continuous (normCoordinates L o) :=
   Completion.continuous_extension
 
+/--
+@isnad1 id=eq.0h4v.s8.7ac31f68d005 from=translated src=- shape=e41c0797 vocab=2128cc4b
+-/
 @[simp] theorem normCoordinates_coe (m : PreSpace L o) :
     normCoordinates L o (toTestSpace L o m) = initialCoordinates L o m :=
   Completion.extension_coe (initialCoordinates_lipschitz L o).uniformContinuous m
 
+/--
+@isnad1 id=eq.0h4v.s7.f5745d06ef98 from=translated src=- shape=e7911f1d vocab=b7127ec1
+-/
 theorem normCoordinates_norm (z : TestSpace L o) : ‖normCoordinates L o z‖ = ‖z‖ := by
   induction z using Completion.induction_on with
   | hp => exact isClosed_eq (normCoordinates_continuous L o).norm continuous_norm
@@ -136,6 +166,9 @@ theorem normCoordinates_norm (z : TestSpace L o) : ‖normCoordinates L o z‖ =
     rw [normCoordinates_coe, norm_toTestSpace]
     rfl
 
+/--
+@isnad1 id=le.0h5v.s9.7e1e148c65f0 from=translated src=- shape=29a5ea65 vocab=2f459af2
+-/
 theorem selectedCoordinate_le_norm (n : ℕ) (m : PreSpace L o) :
     selectedCoordinate L n m ≤ (1 : ℝ≥0) * ‖m‖ := by
   change selectedCoordinate L n m ≤ (1 : ℝ) * selectedNorm L o m
@@ -146,13 +179,22 @@ def completedCoordinate (n : ℕ) : Seminorm ℝ (TestSpace L o) :=
   completedSeminorm (X := PreSpace L o) (selectedCoordinate L n) 1
     (selectedCoordinate_le_norm L o n)
 
+/--
+@isnad1 id=continuo.0h4v.s8.6b004dadfe0a from=translated src=- shape=b0310bac vocab=eb5cac94
+-/
 theorem completedCoordinate_continuous (n : ℕ) : Continuous (completedCoordinate L o n) :=
   completedSeminorm_continuous _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s10.0edc5680cce2 from=translated src=- shape=a6ed472f vocab=7297a2f0
+-/
 @[simp] theorem completedCoordinate_coe (n : ℕ) (m : PreSpace L o) :
     completedCoordinate L o n (toTestSpace L o m) = selectedCoordinate L n m :=
   completedSeminorm_coe _ _ _ m
 
+/--
+@isnad1 id=eq.0h5v.s9.d4a54c9b944c from=translated src=- shape=77d158a1 vocab=49e3ca4a
+-/
 theorem normCoordinates_apply (z : TestSpace L o) (n : ℕ) :
     normCoordinates L o z n = completedCoordinate L o n z := by
   induction z using Completion.induction_on with
@@ -166,12 +208,18 @@ theorem normCoordinates_apply (z : TestSpace L o) (n : ℕ) :
     rw [normCoordinates_coe, completedCoordinate_coe]
     rfl
 
+/--
+@isnad1 id=summable.0h4v.s8.35e259180dff from=translated src=- shape=014f9338 vocab=11aaefb7
+-/
 theorem completedCoordinate_summable (z : TestSpace L o) :
     Summable (fun n => (completedCoordinate L o n z) ^ 2) := by
   have h := (lp.memℓp (normCoordinates L o z)).summable (by norm_num : (0 : ℝ) < (2 : ℝ≥0∞).toReal)
   simpa only [ENNReal.toReal_ofNat, Real.rpow_two, Real.norm_eq_abs, sq_abs,
     normCoordinates_apply] using h
 
+/--
+@isnad1 id=eq.0h4v.s9.49ab54e1bbfc from=translated src=- shape=f18f97e5 vocab=b7f86e1d
+-/
 theorem completedNorm_sq (z : TestSpace L o) :
     ‖z‖ ^ 2 = ∑' n, (completedCoordinate L o n z) ^ 2 := by
   have h := lp.norm_rpow_eq_tsum
@@ -181,6 +229,9 @@ theorem completedNorm_sq (z : TestSpace L o) :
 
 def prePoint (s : S) : PreSpace L o := molecule s o
 
+/--
+@isnad1 id=lipschit.0h3v.s5.2196e6012be6 from=translated src=- shape=adb3c060 vocab=d829ff86
+-/
 theorem prePoint_lipschitz : LipschitzWith 1 (prePoint L o) := by
   apply LipschitzWith.of_dist_le_mul
   intro s t
@@ -189,6 +240,9 @@ theorem prePoint_lipschitz : LipschitzWith 1 (prePoint L o) := by
   rw [molecule_sub_molecule, one_mul]
   exact selectedNorm_molecule_le L o s t
 
+/--
+@isnad1 id=eq.0h3v.s7.97bda26438c3 from=translated src=- shape=171bcb4e vocab=3ba9dc8c
+-/
 theorem prePoint_span : Submodule.span ℝ (Set.range (prePoint L o)) = ⊤ := by
   classical
   apply Submodule.eq_top_iff'.mpr
@@ -209,10 +263,16 @@ instance [TopologicalSpace.SeparableSpace S] : TopologicalSpace.SeparableSpace (
 
 def zeta (s : S) : TestSpace L o := toTestSpace L o (prePoint L o s)
 
+/--
+@isnad1 id=eq.0h3v.s6.6a31dfc78502 from=translated src=- shape=fe6c77d1 vocab=d3443c22
+-/
 @[simp] theorem zeta_base : zeta L o o = 0 := by
   have h : prePoint L o o = (0 : PreSpace L o) := molecule_self o
   rw [zeta, h, map_zero]
 
+/--
+@isnad1 id=lipschit.0h3v.s5.5ecf235a21e3 from=translated src=- shape=adb3c060 vocab=8e82333b
+-/
 theorem zeta_lipschitz : LipschitzWith 1 (zeta L o) := by
   apply LipschitzWith.of_dist_le_mul
   intro s t

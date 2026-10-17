@@ -15,6 +15,9 @@ variable {β : Type uBeta} {κ : Type uKappa} {ι : Type uIota} [Fintype β] [Fi
 def joinedCoordinates (d : β ⊕ (κ × ι) → ℕ) (ω : KWOmega) : cube β × (κ → cube ι) :=
   splitCoordinates (fun i => ω (d i))
 
+/--
+@isnad1 id=measurep.1h4v.s7.1de987384a77 from=translated src=- shape=fd23053e vocab=2381064f
+-/
 lemma joinedCoordinates_mp (d : β ⊕ (κ × ι) → ℕ) (hd : Function.Injective d) :
     MeasurePreserving (joinedCoordinates d) kwMeasure ((cubeMeasure β).prod (arrayMeasure κ ι)) :=
   splitCoordinates_mp.comp (finite_coordinates_mp d hd)
@@ -23,12 +26,18 @@ def joinedL1 (d : β ⊕ (κ × ι) → ℕ) (hd : Function.Injective d) :
     Lp ℝ 1 ((cubeMeasure β).prod (arrayMeasure κ ι)) →ₗᵢ[ℝ] KWL1 :=
   Lp.compMeasurePreservingₗᵢ ℝ _ (joinedCoordinates_mp d hd)
 
+/--
+@isnad1 id=le.1h4v.s14.0e23845a8c0c from=translated src=- shape=77bae570 vocab=92768db5
+-/
 lemma joinedL1_range (d : β ⊕ (κ × ι) → ℕ) (hd : Function.Injective d) :
     (joinedL1 d hd).toLinearMap.range ≤ (coordinatesL1 d hd).toLinearMap.range := by
   rintro g ⟨f, rfl⟩
   refine ⟨Lp.compMeasurePreserving splitCoordinates splitCoordinates_mp f, ?_⟩
   exact (Lp.compMeasurePreserving_comp_apply f splitCoordinates_mp (finite_coordinates_mp d hd)).symm
 
+/--
+@isnad1 id=eq.3h6v.s14.dcbbc0f75511 from=translated src=- shape=2a80ec92 vocab=3649c467
+-/
 lemma joinedL1_old (c : β → ℕ) (hc : Function.Injective c)
     (d : β ⊕ (κ × ι) → ℕ) (hd : Function.Injective d) (hdc : ∀ b, d (Sum.inl b) = c b)
     (f : Lp ℝ 1 (cubeMeasure β)) :
@@ -42,6 +51,9 @@ lemma joinedL1_old (c : β → ℕ) (hc : Function.Injective c)
   simp only [he]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s14.76d351bd13f5 from=translated src=- shape=ee02c219 vocab=5aa957bc
+-/
 lemma joinedL1_measureDistance (d : β ⊕ (κ × ι) → ℕ) (hd : Function.Injective d)
     (f g : Lp ℝ 1 ((cubeMeasure β).prod (arrayMeasure κ ι))) :
     measureDistance kwMeasure (joinedL1 d hd f) (joinedL1 d hd g) =
@@ -54,6 +66,9 @@ section Model
 variable {X : Type uX} {Y : Type uY} [NormedAddCommGroup X] [NormedSpace ℝ X]
   [NormedAddCommGroup Y] [NormedSpace ℝ Y]
 
+/--
+@isnad1 id=finitedi.0h4v.s9.3209aada135a from=translated src=- shape=bc2f8d35 vocab=a6629a80
+-/
 lemma finiteDimensional_model (L : X →ₗᵢ[ℝ] Y) (G : Submodule ℝ Y) [FiniteDimensional ℝ G] :
     FiniteDimensional ℝ (G.comap L.toLinearMap) := by
   let T : G.comap L.toLinearMap →ₗ[ℝ] G :=
@@ -71,6 +86,9 @@ variable {B : Type uB} [MeasurableSpace B] {μ : Measure B} [IsProbabilityMeasur
 variable {κ : Type uKappa} {ι : Type uIota} [Fintype κ] [Fintype ι]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=ex.1h8v.s13.464cac5be415 from=translated src=- shape=f16f0312 vocab=d6150d4b
+-/
 lemma productOperator_single [IsProbabilityMeasure μ] {p : ℝ} (hp : 1 < p)
     (u : κ → Lp ℝ 1 μ) (k : κ) (j : ι) :
     ∃ a : κ → ι → ℝ, productOperator hp u (0,a) = atomL1 hp (u k) k j := by

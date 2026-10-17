@@ -15,10 +15,16 @@ variable {ι : Type uIota} [Fintype ι]
 
 def coefficientNorm (p : ℝ) (a : ι → ℝ) : ℝ := (∑ j, |a j| ^ p) ^ (1 / p)
 
+/--
+@isnad1 id=le.0h3v.s4.c3632065d292 from=translated src=- shape=f5081c45 vocab=e6361464
+-/
 lemma coefficientNorm_nonneg (p : ℝ) (a : ι → ℝ) : 0 ≤ coefficientNorm p a :=
   Real.rpow_nonneg (Finset.sum_nonneg
     (fun index _ => Real.rpow_nonneg (abs_nonneg (a index)) _)) _
 
+/--
+@isnad1 id=eq.1h3v.s5.3e1bf3fb4116 from=translated src=- shape=707bdd60 vocab=164b45bd
+-/
 lemma coefficientNorm_rpow {p : ℝ} (hp : 0 < p) (a : ι → ℝ) :
     coefficientNorm p a ^ p = ∑ j, |a j| ^ p := by
   unfold coefficientNorm
@@ -26,12 +32,18 @@ lemma coefficientNorm_rpow {p : ℝ} (hp : 0 < p) (a : ι → ℝ) :
   have he : (1 / p) * p = 1 := by field_simp
   rw [he, Real.rpow_one]
 
+/--
+@isnad1 id=le.1h4v.s5.3fa0c3afd414 from=translated src=- shape=b7e067c3 vocab=c0be7f18
+-/
 lemma abs_le_coefficientNorm {p : ℝ} (hp : 0 < p) (a : ι → ℝ) (j : ι) :
     |a j| ≤ coefficientNorm p a := by
   apply (Real.rpow_le_rpow_iff (abs_nonneg _) (coefficientNorm_nonneg p a) hp).mp
   rw [coefficientNorm_rpow hp a]
   exact Finset.single_le_sum (fun i _ => Real.rpow_nonneg (abs_nonneg _) p) (Finset.mem_univ j)
 
+/--
+@isnad1 id=eq.2h4v.s6.d837b2b31d0f from=translated src=- shape=1afda8fd vocab=dc9aa556
+-/
 lemma sum_scaled_coefficients {p s : ℝ} (hp : 0 < p) (hs : 0 ≤ s) (a : ι → ℝ) :
     ∑ j, (s * |a j|) ^ p = (s * coefficientNorm p a) ^ p := by
   rw [Real.mul_rpow hs (coefficientNorm_nonneg p a), coefficientNorm_rpow hp a, Finset.mul_sum]
@@ -42,12 +54,18 @@ lemma sum_scaled_coefficients {p s : ℝ} (hp : 0 < p) (hs : 0 ≤ s) (a : ι �
 variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h5v.s7.13a0ffa432c0 from=translated src=- shape=3e023398 vocab=1e6e1c05
+-/
 lemma difference_law_tail [IsProbabilityMeasure μ] {Y : Ω → ℝ} {p u : ℝ}
     (hY : IdentDistrib Y (difference p) μ pairedMeasure) :
     μ.real {ω | u < |Y ω|} = pairedMeasure.real {v | u < |difference p v|} := by
   exact congrArg ENNReal.toReal (hY.measure_mem_eq
     (measurableSet_lt measurable_const measurable_abs))
 
+/--
+@isnad1 id=le.3h6v.s7.2be29d812afe from=translated src=- shape=9705e4cb vocab=edb2511d
+-/
 lemma scaled_difference_tail_upper {Y : Ω → ℝ} {p u : ℝ}
     (hp : 1 < p) (hY : IdentDistrib Y (difference p) μ pairedMeasure)
     (a : ℝ) (hu : 0 < u) :
@@ -66,6 +84,9 @@ lemma scaled_difference_tail_upper {Y : Ω → ℝ} {p u : ℝ}
   rw [hdiv, Real.div_rpow (by positivity [scale_pos hp]) hu.le, Real.rpow_neg hu.le]
   ring
 
+/--
+@isnad1 id=le.5h6v.s7.98da69a3a2cd from=translated src=- shape=de98d655 vocab=61f9bd56
+-/
 lemma scaled_difference_tail_lower {Y : Ω → ℝ} {p u : ℝ}
     (hp : 1 < p) (hpmax : p ≤ 3 / 2) (hY : IdentDistrib Y (difference p) μ pairedMeasure)
     (a : ℝ) (hu : 0 < u) (husa : scale p * |a| ≤ u) :
@@ -87,6 +108,9 @@ lemma scaled_difference_tail_lower {Y : Ω → ℝ} {p u : ℝ}
   ring
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=identdis.1h5v.s6.1cdf5213955e from=translated src=- shape=0b25c7a0 vocab=178a0b29
+-/
 lemma scaled_difference_symmetric [IsProbabilityMeasure μ] {Y : Ω → ℝ} {p : ℝ}
     (hY : IdentDistrib Y (difference p) μ pairedMeasure) (a : ℝ) :
     IdentDistrib (fun ω => a * Y ω) (fun ω => -(a * Y ω)) μ μ := by
@@ -94,6 +118,9 @@ lemma scaled_difference_symmetric [IsProbabilityMeasure μ] {Y : Ω → ℝ} {p 
   have ha := hs.const_mul a
   simpa only [Pi.neg_apply, mul_neg] using ha
 
+/--
+@isnad1 id=le.6h7v.s7.e182f5e21937 from=translated src=- shape=9f90b0ad vocab=eb027678
+-/
 theorem heavy_tail_upper (Y : ι → Ω → ℝ) (hY : ∀ j, Measurable (Y j))
     (hind : iIndepFun Y μ) {p : ℝ} (hp : 1 < p) (hpmax : p ≤ 3 / 2)
     (hlaw : ∀ j, IdentDistrib (Y j) (difference p) μ pairedMeasure)

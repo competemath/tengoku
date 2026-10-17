@@ -11,10 +11,16 @@ universe uX u_1
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=cofinite.0h1v.s5.55773454586e from=translated src=- shape=f787e61f vocab=6f273a99
+-/
 lemma cofinite_top : Cofinite (⊤ : Submodule ℝ X) := by
   refine ⟨?_, inferInstance⟩
   simpa only [Submodule.top_coe] using isClosed_univ (X := X)
 
+/--
+@isnad1 id=nontrivi.2h2v.s6.63f4a5624082 from=translated src=- shape=11235a9c vocab=8f1fca2e
+-/
 lemma cofinite_nontrivial (hinf : ¬ FiniteDimensional ℝ X) {F : Submodule ℝ X}
     (hF : Cofinite F) : Nontrivial F := by
   by_contra hn
@@ -22,12 +28,18 @@ lemma cofinite_nontrivial (hinf : ¬ FiniteDimensional ℝ X) {F : Submodule ℝ
   have : FiniteDimensional ℝ (X ⧸ F) := hF.2
   exact hinf (Module.Finite.of_submodule_quotient F)
 
+/--
+@isnad1 id=ex.2h2v.s7.a38c51db160c from=translated src=- shape=983f884b vocab=0c86aa09
+-/
 lemma cofinite_has_unit (hinf : ¬ FiniteDimensional ℝ X) {F : Submodule ℝ X}
     (hF : Cofinite F) : ∃ y ∈ F, ‖y‖ = 1 := by
   have : Nontrivial F := cofinite_nontrivial hinf hF
   obtain ⟨y, hy⟩ := exists_norm_eq F (show (0 : ℝ) ≤ 1 by norm_num)
   exact ⟨y, y.property, hy⟩
 
+/--
+@isnad1 id=le.2h4v.s8.84014ef96408 from=translated src=- shape=8e5c3650 vocab=c5b48e5c
+-/
 lemma norm_average_scale_le (x z : X) {r : ℝ} (hr₀ : 0 ≤ r) (hr₁ : r ≤ 1) :
     (‖x + r • z‖ + ‖x - r • z‖) / 2 ≤ (‖x + z‖ + ‖x - z‖) / 2 := by
   have h₁ : x + r • z = ((1 + r) / 2) • (x + z) + ((1 - r) / 2) • (x - z) := by
@@ -44,6 +56,9 @@ lemma norm_average_scale_le (x z : X) {r : ℝ} (hr₀ : 0 ≤ r) (hr₁ : r ≤
     abs_of_nonneg hpos, abs_of_nonneg hneg] at hm
   nlinarith
 
+/--
+@isnad1 id=le.1h4v.s7.814416ca962c from=translated src=- shape=c5b37029 vocab=40805200
+-/
 lemma increment_normalize_le (x y : X) {t : ℝ} (hy : 1 ≤ ‖y‖) :
     averagedIncrement (normSeminorm ℝ X) x t (‖y‖⁻¹ • y) ≤
       averagedIncrement (normSeminorm ℝ X) x t y := by
@@ -53,6 +68,9 @@ lemma increment_normalize_le (x y : X) {t : ℝ} (hy : 1 ≤ ‖y‖) :
   simpa only [averagedIncrement, coe_normSeminorm, smul_smul, mul_comm t,
     sub_le_sub_iff_right] using h
 
+/--
+@isnad1 id=le.1h4v.s5.16455d4dd73d from=translated src=- shape=8df68a90 vocab=4fff61b9
+-/
 lemma averagedIncrement_nonneg {x y : X} (hx : ‖x‖ = 1) (t : ℝ) :
     0 ≤ averagedIncrement (normSeminorm ℝ X) x t y := by
   have h := norm_add_le (x + t • y) (x - t • y)
@@ -62,6 +80,9 @@ lemma averagedIncrement_nonneg {x y : X} (hx : ‖x‖ = 1) (t : ℝ) :
   change 0 ≤ (‖x + t • y‖ + ‖x - t • y‖) / 2 - 1
   linarith
 
+/--
+@isnad1 id=le.3h4v.s6.e32b31d7bd15 from=translated src=- shape=2ab84106 vocab=4fff61b9
+-/
 lemma averagedIncrement_le {x y : X} (hx : ‖x‖ = 1) (hy : ‖y‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) : averagedIncrement (normSeminorm ℝ X) x t y ≤ t := by
   have hp := norm_add_le x (t • y)
@@ -70,6 +91,9 @@ lemma averagedIncrement_le {x y : X} (hx : ‖x‖ = 1) (hy : ‖y‖ = 1)
   change (‖x + t • y‖ + ‖x - t • y‖) / 2 - 1 ≤ t
   linarith
 
+/--
+@isnad1 id=le.2h4v.s6.df0f12aa5e72 from=translated src=- shape=2aedf142 vocab=289d02ac
+-/
 lemma averagedIncrement_ge_t_sub_one {x y : X} {t : ℝ} (ht : 0 ≤ t) (hy : 1 ≤ ‖y‖) :
     t - 1 ≤ averagedIncrement (normSeminorm ℝ X) x t y := by
   have h := norm_sub_le (x + t • y) (x - t • y)
@@ -90,11 +114,17 @@ def averageValues (x : X) (t : ℝ) (F : Submodule ℝ X) : Set ℝ :=
 def oneSidedValues (x : X) (t : ℝ) (F : Submodule ℝ X) : Set ℝ :=
   {a | ∃ y ∈ F, ‖y‖ = 1 ∧ a = ‖x + t • y‖ - 1}
 
+/--
+@isnad1 id=nonempty.2h4v.s6.47c2778027da from=translated src=- shape=e6af4fec vocab=68437f42
+-/
 lemma averageValues_nonempty (hinf : ¬ FiniteDimensional ℝ X) (x : X) (t : ℝ)
     {F : Submodule ℝ X} (hF : Cofinite F) : (averageValues x t F).Nonempty := by
   obtain ⟨y, hy, hny⟩ := cofinite_has_unit hinf hF
   exact ⟨_, y, hy, hny.ge, rfl⟩
 
+/--
+@isnad1 id=bddbelow.0h4v.s5.73e922929225 from=translated src=- shape=c3b81d0c vocab=9e4ef156
+-/
 lemma averageValues_bddBelow (x : X) (t : ℝ) (F : Submodule ℝ X) :
     BddBelow (averageValues x t F) := by
   refine ⟨-1, ?_⟩
@@ -102,17 +132,26 @@ lemma averageValues_bddBelow (x : X) (t : ℝ) (F : Submodule ℝ X) :
   change -1 ≤ (‖x + t • y‖ + ‖x - t • y‖) / 2 - 1
   linarith [norm_nonneg (x + t • y), norm_nonneg (x - t • y)]
 
+/--
+@isnad1 id=nonempty.2h4v.s6.58229a72db50 from=translated src=- shape=e6af4fec vocab=2bf0d0a8
+-/
 lemma oneSidedValues_nonempty (hinf : ¬ FiniteDimensional ℝ X) (x : X) (t : ℝ)
     {F : Submodule ℝ X} (hF : Cofinite F) : (oneSidedValues x t F).Nonempty := by
   obtain ⟨y, hy, hny⟩ := cofinite_has_unit hinf hF
   exact ⟨_, y, hy, hny, rfl⟩
 
+/--
+@isnad1 id=bddbelow.0h4v.s5.c9523a83e41e from=translated src=- shape=c3b81d0c vocab=538898d5
+-/
 lemma oneSidedValues_bddBelow (x : X) (t : ℝ) (F : Submodule ℝ X) :
     BddBelow (oneSidedValues x t F) := by
   refine ⟨-1, ?_⟩
   rintro a ⟨y, hy, hny, rfl⟩
   linarith [norm_nonneg (x + t • y)]
 
+/--
+@isnad1 id=bddabove.3h3v.s6.2c21970f31a0 from=translated src=- shape=eb20b45e vocab=bd8bafb9
+-/
 lemma H_outer_bddAbove (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) :
     BddAbove {r | ∃ F : Submodule ℝ X, Cofinite F ∧ r = sInf (averageValues x t F)} := by
@@ -122,6 +161,9 @@ lemma H_outer_bddAbove (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖
   exact (csInf_le (averageValues_bddBelow x t F) ⟨y, hy, hny.ge, rfl⟩).trans
     (averagedIncrement_le hx hny ht)
 
+/--
+@isnad1 id=bddabove.3h3v.s6.477564ed23da from=translated src=- shape=eb20b45e vocab=2f3c9486
+-/
 lemma D_outer_bddAbove (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) :
     BddAbove {r | ∃ F : Submodule ℝ X, Cofinite F ∧ r = sInf (oneSidedValues x t F)} := by
@@ -133,6 +175,9 @@ lemma D_outer_bddAbove (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖
   rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg ht, hny, mul_one, hx] at h
   linarith
 
+/--
+@isnad1 id=le.5h5v.s7.38f3955bd463 from=translated src=- shape=d3ff0c35 vocab=41294185
+-/
 lemma le_H_of_cofinite (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) {F : Submodule ℝ X} (hF : Cofinite F) {a : ℝ}
     (ha : ∀ y ∈ F, 1 ≤ ‖y‖ → a ≤ averagedIncrement (normSeminorm ℝ X) x t y) :
@@ -143,6 +188,9 @@ lemma le_H_of_cofinite (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖
     exact ha y hy hny
   · exact le_csSup (H_outer_bddAbove hinf hx ht) ⟨F, hF, rfl⟩
 
+/--
+@isnad1 id=le.5h5v.s8.085948646693 from=translated src=- shape=bf8fbac7 vocab=925872b8
+-/
 lemma le_D_of_cofinite (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) {F : Submodule ℝ X} (hF : Cofinite F) {a : ℝ}
     (ha : ∀ y ∈ F, ‖y‖ = 1 → a ≤ ‖x + t • y‖ - 1) :
@@ -153,6 +201,9 @@ lemma le_D_of_cofinite (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖
     exact ha y hy hny
   · exact le_csSup (D_outer_bddAbove hinf hx ht) ⟨F, hF, rfl⟩
 
+/--
+@isnad1 id=le.3h3v.s6.2f89666f1137 from=translated src=- shape=a8abf2f1 vocab=0073de73
+-/
 lemma H_ge_t_sub_one (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) : t - 1 ≤ H (normSeminorm ℝ X) x t :=
   le_H_of_cofinite hinf hx ht cofinite_top
@@ -165,6 +216,9 @@ end ExactModuli
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=le.3h4v.s7.63f1f9e2e519 from=translated src=- shape=427cda9c vocab=c3bafd86
+-/
 lemma norm_ray_ge_t_sub_one {x y : X} (hx : ‖x‖ = 1) (hy : ‖y‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) : t - 1 ≤ ‖x + t • y‖ := by
   have h := norm_sub_le (x + t • y) x
@@ -172,7 +226,9 @@ lemma norm_ray_ge_t_sub_one {x y : X} (hx : ‖x‖ = 1) (hy : ‖y‖ = 1)
   rw [heq, norm_smul, Real.norm_eq_abs, abs_of_nonneg ht, hy, mul_one, hx] at h
   linarith
 
-/-- The one-sided lower estimate needs only a norming functional. -/
+/-- The one-sided lower estimate needs only a norming functional.
+@isnad1 id=le.3h3v.s6.2359b0ea019b from=translated src=- shape=aaea288d vocab=595991e5
+-/
 theorem oneSided_lower_bound (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) : max 0 (t - 2) ≤ D (normSeminorm ℝ X) x t := by
   obtain ⟨φ, hφnorm, hφx⟩ := exists_dual_vector ℝ x (by rw [hx]; norm_num)
@@ -188,7 +244,9 @@ theorem oneSided_lower_bound (hinf : ¬ FiniteDimensional ℝ X) {x : X} (hx : �
   have hrev := norm_ray_ge_t_sub_one hx hny ht
   exact max_le (by linarith) (by linarith)
 
-/-- A single almost antipodal endpoint controls all radii, including the corner t=2. -/
+/-- A single almost antipodal endpoint controls all radii, including the corner t=2.
+@isnad1 id=le.6h6v.s8.0d556b2da407 from=translated src=- shape=db9e3841 vocab=a1fd5ce9
+-/
 lemma norm_ray_endpoint_bound {x y : X} (hx : ‖x‖ = 1) (hy : ‖y‖ = 1)
     {L ε t : ℝ} (hL : 0 < L) (hε : 0 ≤ ε) (ht : 0 ≤ t)
     (hend : ‖x + L • y‖ ≤ 1 + ε) :

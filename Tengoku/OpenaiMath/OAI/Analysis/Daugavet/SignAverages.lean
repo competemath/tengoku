@@ -20,6 +20,9 @@ def signAverage (b : ι → ℝ) : ℝ := by
   classical
   exact (∑ ε : ι → Bool, |signSum ε b|) / Fintype.card (ι → Bool)
 
+/--
+@isnad1 id=le.0h2v.s5.d40bfc30bc84 from=translated src=- shape=db33e91a vocab=dce84db8
+-/
 lemma norm_le_signAverage (b : ι → ℝ) : ‖b‖ ≤ signAverage b := by
   classical
   have hcard : 0 < (Fintype.card (ι → Bool) : ℝ) := by exact_mod_cast Fintype.card_pos
@@ -61,6 +64,9 @@ lemma norm_le_signAverage (b : ι → ℝ) : ‖b‖ ≤ signAverage b := by
 variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=identdis.3h5v.s6.a27a1e72ac22 from=translated src=- shape=4096088b vocab=b183b1a7
+-/
 lemma signSum_identDistrib [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (hX : ∀ j, Measurable (X j))
     (hind : iIndepFun X μ) (hsym : ∀ j, IdentDistrib (X j) (fun ω => -X j ω) μ μ)
@@ -77,6 +83,9 @@ lemma signSum_identDistrib [IsProbabilityMeasure μ]
   exact (IdentDistrib.pi hdist (hind.comp g hg) hind).comp
     (show Measurable (fun b : ι → ℝ => ∑ j, b j) by fun_prop)
 
+/--
+@isnad1 id=le.4h4v.s7.939204b4dd57 from=translated src=- shape=267b72c3 vocab=16926ea8
+-/
 lemma expected_max_le_expected_abs_sum (X : ι → Ω → ℝ) (hX : ∀ j, Measurable (X j))
     (hi : ∀ j, Integrable (X j) μ) (hind : iIndepFun X μ)
     (hsym : ∀ j, IdentDistrib (X j) (fun ω => -X j ω) μ μ) :
@@ -102,6 +111,9 @@ lemma expected_max_le_expected_abs_sum (X : ι → Ω → ℝ) (hX : ∀ j, Meas
     ((integrable_finsetSum _ (fun ε _ => hsignI ε)).div_const _)
     (fun ω => norm_le_signAverage (fun j => X j ω))
 
+/--
+@isnad1 id=le.2h1v.s5.5693a35ca220 from=translated src=- shape=a40daae4 vocab=652a836c
+-/
 lemma one_sub_exp_neg_ge_half {v : ℝ} (hv : 0 ≤ v) (hv1 : v ≤ 1) :
     v / 2 ≤ 1 - Real.exp (-v) := by
   rw [Real.exp_neg]
@@ -113,6 +125,9 @@ lemma one_sub_exp_neg_ge_half {v : ℝ} (hv : 0 ≤ v) (hv1 : v ≤ 1) :
   rw [one_div] at hb
   linarith
 
+/--
+@isnad1 id=integrab.2h3v.s7.8d7fe19aa53f from=translated src=- shape=eea14446 vocab=ea51bf08
+-/
 lemma integrable_real_tail {X : Ω → ℝ} (hX : Integrable X μ) (hX0 : 0 ≤ᵐ[μ] X) :
     IntegrableOn (fun t : ℝ => μ.real {ω | t < X ω}) (Ioi 0) volume := by
   refine ⟨(measurable_real_tail X).aestronglyMeasurable,
@@ -125,6 +140,9 @@ lemma integrable_real_tail {X : Ω → ℝ} (hX : Integrable X μ) (hX0 : 0 ≤�
   rw [heq, ← lintegral_eq_lintegral_meas_lt μ hX0 hX.aemeasurable]
   exact hX.lintegral_lt_top
 
+/--
+@isnad1 id=le.6h6v.s7.e3703e275bc5 from=translated src=- shape=4ca6e96a vocab=431da306
+-/
 lemma expectation_lower_from_power_tail {X : Ω → ℝ} (hX : Integrable X μ)
     (hX0 : 0 ≤ᵐ[μ] X) {p c d : ℝ} (hp : 1 < p) (hc : 0 ≤ c) (hd : 0 < d)
     (htail : ∀ t, d ≤ t → c * t ^ (-p) ≤ μ.real {ω | t < X ω}) :

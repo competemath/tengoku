@@ -14,6 +14,9 @@ section ProductModels
 variable {κ : Type uKappa} {ι : Type uIota} [Fintype κ] [Fintype ι]
 variable {B : Type uB} [MeasurableSpace B] {μ : Measure B} [IsProbabilityMeasure μ]
 
+/--
+@isnad1 id=and.14h12v.s9.ba1db8ff849f from=translated src=- shape=fb078d1d vocab=0892247f
+-/
 lemma whole_ball_estimate {R : Type uR} [MeasurableSpace R] {ν : Measure R}
     [IsProbabilityMeasure ν] {g : B × R → ℝ} {ψ U : B → ℝ}
     (hg : Integrable g (μ.prod ν)) (hψ : Integrable ψ μ) (hU : Integrable U μ)
@@ -79,11 +82,17 @@ def oldCombination (x : B → ℝ) (u : κ → B → ℝ) (c : κ → ℝ) (b : 
   x b + ∑ k, c k * u k b
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=integrab.2h6v.s6.a4c74388b9f9 from=translated src=- shape=83a960c8 vocab=878a9cc4
+-/
 lemma integrable_oldCombination [IsProbabilityMeasure μ] {x : B → ℝ} {u : κ → B → ℝ}
     (hx : Integrable x μ) (hu : ∀ k, Integrable (u k) μ) (c : κ → ℝ) :
     Integrable (oldCombination x u c) μ := by
   exact hx.add (integrable_finsetSum _ (fun k _ => (hu k).const_mul (c k)))
 
+/--
+@isnad1 id=ex.3h2v.s8.7b712bd3978f from=translated src=- shape=22bf0206 vocab=a704f6e9
+-/
 lemma enlargement_parameters {m h : ℝ} (_hm : 0 < m) (hh : 0 < h) (_hh1 : h < 1) :
     ∃ c r q p : ℝ, 0 < c ∧ c < h / 4 ∧ 0 < r ∧ 0 < q ∧ 1 < p ∧ p ≤ 3/2 ∧
       m * q < 1 ∧ m * q + h⁻¹ * (2 * m * r + (1 - m * q)⁻¹ - 1) < h ∧
