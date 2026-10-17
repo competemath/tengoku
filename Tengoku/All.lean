@@ -3,6 +3,7 @@ import Tengoku.LeanPool
 import Tengoku.MerelyTrue
 import Tengoku.Algolean
 import Tengoku.AndersonConjecture
+import Tengoku.Prismriver
 import Tengoku.InfinityCosmos
 import Tengoku.ArchonFirstproofResults
 import Tengoku.Carleson
