@@ -12,6 +12,9 @@ open MvPolynomial
 variable {K A B L I : Type*} [CommRing K] [CommRing A] [CommRing B] [CommRing L]
   [Algebra K A] [Algebra K B] [Algebra K L]
 
+/--
+@isnad1 id=eq.6h12v.s10.bf2f6a7ab946 from=translated src=- shape=c824391d vocab=b9909ee7
+-/
 theorem mixed_descended_commute (ι : A →ₐ[K] L) (hinj : Function.Injective ι)
     (c : A) (N M : ℕ) (D E : Derivation K L L) (d e : Derivation K A A)
     (hd : ∀ a, ι (d a) = (ι c)^N * D (ι a))
@@ -25,6 +28,9 @@ theorem mixed_descended_commute (ι : A →ₐ[K] L) (hinj : Function.Injective 
     (by simpa only [Derivation.smul_apply, smul_eq_mul] using he)
     (scaleDerivation_commute D E ((ι c)^N) ((ι c)^M) hDp hEp hDE) a
 
+/--
+@isnad1 id=linearin.6h10v.s10.0c9476f6eeec from=translated src=- shape=0bb9a6b9 vocab=b5fc43c0
+-/
 theorem mixed_descended_linearIndependent [Fintype I] [DecidableEq I]
     (ι : A →ₐ[K] L) (hinj : Function.Injective ι) (c : A)
     (hu : IsUnit (ι c)) (N : I → ℕ)

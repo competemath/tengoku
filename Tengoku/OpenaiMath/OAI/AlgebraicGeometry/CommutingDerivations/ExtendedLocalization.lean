@@ -29,11 +29,17 @@ def extendedAlgebra {n : ℕ} (hn : 4 ≤ n) :
     Algebra (MvPolynomial (Fin n) ℂ) (ExtendedLocalizedAmbient n) :=
   (extendedLocMap hn).toAlgebra
 
+/--
+@isnad1 id=isscalar.1h1v.s9.400b1b2771c1 from=translated src=- shape=43b39d3d vocab=c9f67346
+-/
 theorem extendedScalarTower {n : ℕ} (hn : 4 ≤ n) :
     letI := extendedAlgebra hn
     IsScalarTower ℂ (MvPolynomial (Fin n) ℂ) (ExtendedLocalizedAmbient n) :=
   IsScalarTower.of_algHom (extendedLocAlgHom hn)
 
+/--
+@isnad1 id=eq.1h1v.s10.c9776f9310d3 from=translated src=- shape=d9ce2cb1 vocab=523c7e49
+-/
 @[simp] theorem extendedLocMap_c {n : ℕ} (hn : 4 ≤ n) :
     extendedLocMap hn (extendedF hn+1) = C (loc ambientC) := by
   simp [extendedLocMap, extendedLocAlgHom, splitAmbient_F, ambientC, loc]
@@ -42,7 +48,9 @@ theorem extendedScalarTower {n : ℕ} (hn : 4 ≤ n) :
   exact map_C _ _
 
 /-- This polynomial extension is the localization of the exact full ambient
-ring at the powers of extendedF+1, with the displayed structural map. -/
+ring at the powers of extendedF+1, with the displayed structural map.
+@isnad1 id=away.1h1v.s8.9be13fe4bc0a from=translated src=- shape=41ee716d vocab=faff91d5
+-/
 theorem extended_isLocalization {n : ℕ} (hn : 4 ≤ n) :
     letI := extendedAlgebra hn
     IsLocalization.Away (extendedF hn+1) (ExtendedLocalizedAmbient n) := by
@@ -69,6 +77,9 @@ def extendedLocalizationEquiv {n : ℕ} (hn : 4 ≤ n) :
     (((sumAlgEquiv LaurentCoefficients (Fin (n-4)) (Fin 3)).symm.restrictScalars ℂ).trans
       ((renameEquiv LaurentCoefficients (blocksToOutput hn)).restrictScalars ℂ))
 
+/--
+@isnad1 id=eq.1h2v.s11.fbc171f8db35 from=translated src=- shape=de745d18 vocab=5b498916
+-/
 @[simp] theorem extendedLocalizationEquiv_coefficient {n : ℕ} (hn : 4 ≤ n)
     (a : LaurentCoefficients) :
     extendedLocalizationEquiv hn (extendedCoefficientMap n a) = C a := by
@@ -83,6 +94,9 @@ def extendedLocalizationEquiv {n : ℕ} (hn : 4 ≤ n) :
       (C (localizationComplexEquiv (coefficientMap a)))) = C a
   rw [ha, sumAlgEquiv_symm_C_C, rename_C]
 
+/--
+@isnad1 id=eq.1h1v.s11.3eee911d0442 from=translated src=- shape=192019f2 vocab=059d2ada
+-/
 @[simp] theorem extendedLocalizationEquiv_c {n : ℕ} (hn : 4 ≤ n) :
     extendedLocalizationEquiv hn (extendedLocMap hn (extendedF hn+1)) = C coefficientC := by
   rw [extendedLocMap_c, ← coefficientMap_C]

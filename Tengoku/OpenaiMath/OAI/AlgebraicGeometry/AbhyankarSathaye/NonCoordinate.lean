@@ -13,6 +13,9 @@ noncomputable section
 namespace AbhyankarSathaye
 open MvPolynomial
 
+/--
+@isnad1 id=eq.0h6v.s10.3bc6bf5a22b3 from=translated src=- shape=c8bf3327 vocab=09dc31ae
+-/
 theorem polynomial_chain_rule {σ τ B : Type*} [Fintype σ] [CommRing B]
     (φ : MvPolynomial σ B →ₐ[B] MvPolynomial τ B)
     (f : MvPolynomial σ B) (j : τ) :
@@ -32,6 +35,9 @@ theorem polynomial_chain_rule {σ τ B : Type*} [Fintype σ] [CommRing B]
       simp only [hite, Finset.sum_add_distrib]
       simp
 
+/--
+@isnad1 id=not.1h4v.s9.52801c6e1340 from=translated src=- shape=fa1ac0ea vocab=5c1a93bb
+-/
 theorem no_coordinate_of_critical {σ B : Type*} [Fintype σ] [CommRing B]
     [Nontrivial B] (f : MvPolynomial σ B) (point : σ → B)
     (hc : ∀ i, eval point (pderiv i f) = 0) :
@@ -45,6 +51,9 @@ theorem no_coordinate_of_critical {σ B : Type*} [Fintype σ] [CommRing B]
   have hz := congrArg (fun q => eval point (e q)) hchain
   simp [map_sum, hc] at hz
 
+/--
+@isnad1 id=not.0h0v.s8.44cfc1e05257 from=translated src=- shape=66c0e61f vocab=f7df13b8
+-/
 theorem F_not_coordinate : ¬ ∃ (e : R ≃ₐ[ℂ] R) (i : Fin 4), e (X i) = F :=
   no_coordinate_of_critical F criticalPoint critical_derivatives
 
