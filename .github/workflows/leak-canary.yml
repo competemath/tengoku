@@ -1,0 +1,48 @@
+# Is `import Tengoku.All` usable on the Leak space the provers use? scripts/ci/canary/Canary.lean is ordinary Lean and Mathlib (`-(3 * x)` on a real number, a variable
+# named `v` or `ω`, omega, positivity, linarith, …); the space compiles it on its pinned tree. A red run is a library of the tree that leaks into everybody else
+# (2026-10-17: lean-pool's global `prefix:80 "-"` made `-(3 * x)` "Ambiguous term", and its notations reserved `v`, `na`, `ω` as words, on Leak IV for days).
+# The merge queue runs the same file on every group that changes Lean (queue-gate.yml, step "Canary"); this is the check of what is DEPLOYED: after each promotion
+# (the space is asked to refresh by topup-promote.yml and follows within minutes) and every six hours.
+name: leak-canary
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_run:
+    workflows: [topup-promote]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      space: { description: "the Leak space to ask", default: "https://barkingtree-leak-iv.hf.space" }
+permissions: {}
+concurrency:
+  group: leak-canary
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  canary:
+    # a promotion that failed has nothing new to look at
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions: { contents: read }
+    env:
+      SPACE: ${{ inputs.space || 'https://barkingtree-leak-iv.hf.space' }}
+    steps:
+      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+        with: { egress-policy: audit }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { ref: main, sparse-checkout: scripts/ci/canary, persist-credentials: false }
+      - name: Let the space finish a refresh it was asked for
+        if: github.event_name == 'workflow_run'
+        run: |
+          sleep 90
+          for _ in $(seq 1 40); do
+            j="$(curl -fsS -m 30 "$SPACE/refresh" || true)"; echo "$j"
+            case "$j" in *'"refreshing":false'*) break ;; esac
+            sleep 30
+          done
+      - name: The canary
+        run: python3 scripts/ci/canary/leak_canary.py --space "$SPACE" | tee -a "$GITHUB_STEP_SUMMARY"
