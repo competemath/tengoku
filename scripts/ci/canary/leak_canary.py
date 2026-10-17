@@ -16,6 +16,7 @@ catches it within six hours, and the merge queue's own canary judges every group
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 import re
 import sys
@@ -134,7 +135,7 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
                                 # the stream says where to post; only the session id is taken from it: the address is this client's (base + the path every Leak space serves)
                                 m = ENDPOINT.fullmatch("\n".join(data).strip())
                                 if m:
-                                    state["endpoint"] = f"{base}/messages/?session_id={m.group(1)}"
+                                    state["endpoint"] = f"/messages/?session_id={m.group(1)}"
                                 else:
                                     state["dead"] = Unreachable(
                                         f"the stream names an endpoint that is not /messages/?session_id=<hex>: {chr(10).join(data)[:120]!r}"
@@ -170,16 +171,21 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
                 cond.wait(min(left, 5))
 
     def post(body: dict) -> None:
-        req = urllib.request.Request(
-            state["endpoint"],
-            data=json.dumps(body).encode(),
-            headers={"content-type": "application/json"},
-            method="POST",
-        )
+        # http.client, not urllib: no redirect is followed and no scheme other than the connection's is possible (Snyk flagged the script travelling in a urllib Request)
+        u = urlsplit(base)
+        conn = (http.client.HTTPSConnection if u.scheme == "https" else http.client.HTTPConnection)(u.hostname, u.port, timeout=60)
         try:
-            urllib.request.urlopen(req, timeout=60).read()
+            conn.request("POST", state["endpoint"], body=json.dumps(body).encode(), headers={"content-type": "application/json"})
+            resp = conn.getresponse()
+            resp.read()
+            if resp.status >= 400:
+                raise Unreachable(f"{base}: POST answered {resp.status}")
+        except Unreachable:
+            raise
         except Exception as e:
             raise Unreachable(f"{base}: POST failed: {e!r}") from e
+        finally:
+            conn.close()
 
     wait(lambda: state["endpoint"] is not None)
     post(
