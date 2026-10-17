@@ -22,6 +22,8 @@ from urllib.parse import urljoin
 HERE = Path(__file__).resolve().parent
 DEFAULT_SPACE = "https://barkingtree-leak-iv.hf.space"
 ERROR = re.compile(r"^Line (\d+) \((Error|Warning)\): (.*)$", re.M)
+RETRY_PAUSE = 30  # seconds, times the number of the attempt that failed
+MIN_CALL = 60  # an attempt that would get less than this is not started
 
 
 class Unreachable(Exception):
@@ -143,7 +145,18 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--file", default=str(HERE / "Canary.lean"))
     ap.add_argument("--known", default=str(HERE / "CanaryKnown.lean"))
     ap.add_argument("--timeout", type=float, default=900.0)
-    ap.add_argument("--retries", type=int, default=2)
+    ap.add_argument(
+        "--retries",
+        type=int,
+        default=2,
+        help="more attempts at the canary when the space could not be asked (the known-open file gets one)",
+    )
+    ap.add_argument(
+        "--budget",
+        type=float,
+        default=1800.0,
+        help="seconds for the whole run, retries and pauses included (the workflow's job must outlast it)",
+    )
     a = ap.parse_args(argv)
     try:  # which tree the space has pinned, for the log
         with urllib.request.urlopen(f"{a.space.rstrip('/')}/refresh", timeout=60) as r:
@@ -151,19 +164,30 @@ def main(argv: list[str]) -> int:
     except Exception as e:
         print(f"space: /refresh not readable ({e!r})")
     results = {}
+    start = time.monotonic()
+
+    def left() -> float:
+        return a.budget - (time.monotonic() - start)
+
     for label, path in (("canary", a.file), ("known open", a.known)):
         if not Path(path).is_file():
             continue
         script = Path(path).read_text(encoding="utf-8")
-        for attempt in range(a.retries + 1):
+        tries = (
+            a.retries + 1 if label == "canary" else 1
+        )  # the known-open file is only reported: a slow space must not eat the canary's time
+        for attempt in range(tries):
+            if left() < MIN_CALL:
+                kind, errors, text = "infra", [], f"the {a.budget:.0f} s budget of this run is used up"
+                break
             try:
-                text = call_tool(a.space, "verify_full_script", {"script": script}, a.timeout)
+                text = call_tool(a.space, "verify_full_script", {"script": script}, min(a.timeout, left()))
                 kind, errors = verdict(text)
             except Unreachable as e:
                 kind, errors, text = "infra", [], str(e)
-            if kind != "infra" or attempt == a.retries:
+            if kind != "infra" or attempt == tries - 1:
                 break
-            time.sleep(30 * (attempt + 1))
+            time.sleep(max(0.0, min(RETRY_PAUSE * (attempt + 1), left())))
         results[label] = (kind, errors, script, text)
         print(f"{label}: {kind}")
         if kind == "failed":

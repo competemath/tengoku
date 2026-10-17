@@ -26,7 +26,8 @@ jobs:
     # a promotion that failed has nothing new to look at
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    # worst case: 90 s + 40 x (a 30 s poll and a 30 s pause) = 41.5 min of waiting for the refresh, then the client's own budget (--budget 1800 s = 30 min)
+    timeout-minutes: 90
     permissions: { contents: read }
     env:
       SPACE: ${{ inputs.space || 'https://barkingtree-leak-iv.hf.space' }}
@@ -39,10 +40,17 @@ jobs:
         if: github.event_name == 'workflow_run'
         run: |
           sleep 90
+          ready=0
           for _ in $(seq 1 40); do
-            j="$(curl -fsS -m 30 "$SPACE/refresh" || true)"; echo "$j"
-            case "$j" in *'"refreshing":false'*) break ;; esac
+            if j="$(curl -fsS -m 30 "$SPACE/refresh")"; then
+              echo "$j"
+              case "$j" in *'"refreshing":false'*) ready=1; break ;; esac
+            else
+              echo "refresh poll failed" >&2
+            fi
             sleep 30
           done
+          # no completed refresh seen: the canary would judge whatever tree the space had before, and could pass for a promotion it never looked at
+          if [ "$ready" -ne 1 ]; then echo "::error::the space did not report a finished refresh"; exit 1; fi
       - name: The canary
-        run: python3 scripts/ci/canary/leak_canary.py --space "$SPACE" | tee -a "$GITHUB_STEP_SUMMARY"
+        run: python3 scripts/ci/canary/leak_canary.py --space "$SPACE" --budget 1800 | tee -a "$GITHUB_STEP_SUMMARY"

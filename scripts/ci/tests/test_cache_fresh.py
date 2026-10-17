@@ -34,7 +34,7 @@ class TimeBudget(unittest.TestCase):
         caps = re.findall(r"timeout -k \d+ (\d+)m lake build Tengoku\.All", text)
         self.assertEqual((len(restores), len(caps)), (1, 1), "the restore step or the build's own cap was not found")
         restore, cap = int(restores[0]), int(caps[0])
-        canary = re.findall(r"timeout -k \d+ (\d+)m lake env lean scripts/ci/canary/Canary\.lean", text)
+        canary = re.findall(r"timeout -k \d+ (\d+)m lake env lean \"\$canary_src\"", text)
         self.assertEqual(len(canary), 1, "the canary step or its own cap was not found")
         self.assertLessEqual(int(canary[0]), self.CANARY, "the canary's cap is what the budget below allows for it")
         worst = self.BEFORE + restore + self.SEED + self.MIDDLE + cap + int(canary[0]) + self.PACK

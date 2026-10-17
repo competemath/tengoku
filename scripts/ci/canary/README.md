@@ -14,7 +14,8 @@
 
 Where it runs
 - **the merge queue** (`queue-gate.yml`, step "Canary"), on a group that changes Lean, after the library is built as main will have it. Mode `report` (a warning and a summary) or `enforce`
-  (the group leaves the queue): the repository variable `TENGOKU_CANARY`, else the word in `mode`.
+  (the group leaves the queue): the repository variable `TENGOKU_CANARY`, else the word in `mode`. The mode and the probes (`Canary.lean`) are the BASE's copies: a group cannot lower its gate
+  or delete the probe that would catch it (its own `Canary.lean` is used only when the base has none, on the first PR).
 - **the Leak space** (`leak-canary.yml`): `leak_canary.py` asks the space the provers use (`verify_full_script` over MCP/SSE) to compile the same file, after each promotion and every six hours.
   Exit 0 compiled, 1 did not compile (lines and messages printed), 2 the space could not be asked.
 

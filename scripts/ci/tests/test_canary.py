@@ -99,9 +99,10 @@ class Client(unittest.TestCase):
                 "--known",
                 str(k),
                 "--retries",
-                "0",
+                str(kw.get("retries", 0)),
                 "--timeout",
                 str(kw.get("timeout", 20)),
+                *(["--budget", str(kw["budget"])] if "budget" in kw else []),
             ]
         )
 
@@ -126,6 +127,36 @@ class Client(unittest.TestCase):
             with tempfile.TemporaryDirectory() as d:
                 self.assertEqual(self.run_main(base, d), 0)
             self.assertEqual(len(seen), 2)  # the known-open file was asked as well, and its failure did not decide
+        finally:
+            close()
+            srv.shutdown()
+
+    def test_only_the_canary_is_asked_again_when_the_space_cannot_be_asked(self):
+        """CodeRabbit on #599: a slow known-open file turned a run whose canary compiled into a cancelled one. The known-open file gets one attempt."""
+        import tempfile
+
+        seen = []
+        slow = "❌ Verification Error: verify exceeded 180s"
+        srv, base, close = fake_space(lambda s: (seen.append("known" if "resolve" in s else "canary"), slow)[1])
+        lc.RETRY_PAUSE = 0
+        try:
+            with tempfile.TemporaryDirectory() as d:
+                self.assertEqual(self.run_main(base, d, retries=2), 2)
+            self.assertEqual(seen, ["canary", "canary", "canary", "known"])
+        finally:
+            close()
+            srv.shutdown()
+            lc.RETRY_PAUSE = 30
+
+    def test_a_run_never_starts_an_attempt_after_its_budget_is_used_up(self):
+        import tempfile
+
+        seen = []
+        srv, base, close = fake_space(lambda s: (seen.append(s), OK)[1])
+        try:
+            with tempfile.TemporaryDirectory() as d:
+                self.assertEqual(self.run_main(base, d, retries=2, budget=lc.MIN_CALL - 1), 2)  # no verdict, and no call at all
+            self.assertEqual(seen, [])
         finally:
             close()
             srv.shutdown()
@@ -171,7 +202,7 @@ class QueueStep(unittest.TestCase):
         wf = yaml.safe_load((ROOT / ".github" / "workflows" / "queue-gate.yml").read_text(encoding="utf-8"))
         return next(s for s in wf["jobs"]["queue-build"]["steps"] if str(s.get("name", "")).startswith("Canary"))
 
-    def run_step(self, lake_rc, var="", base_mode="report\n", base_has_file=True):
+    def run_step(self, lake_rc, var="", base_mode="report\n", base_has_file=True, base_has_probes=True):
         import os
         import subprocess
         import tempfile
@@ -179,8 +210,16 @@ class QueueStep(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             bin_ = Path(d) / "bin"
             bin_.mkdir()
-            (bin_ / "lake").write_text(f"#!/bin/bash\necho 'Line 3 (Error): ambiguous' >&2; exit {lake_rc}\n")
-            (bin_ / "git").write_text("#!/bin/bash\n" + (f"printf '%s' '{base_mode}'\n" if base_has_file else "exit 128\n"))
+            # the fake lake records which file it was asked to compile, and what that file said
+            (bin_ / "lake").write_text(
+                f'#!/bin/bash\necho "${{@: -1}}" > lake_file.txt; cat "${{@: -1}}" > lake_saw.txt 2>/dev/null\necho \'Line 3 (Error): ambiguous\' >&2; exit {lake_rc}\n'
+            )
+            (bin_ / "git").write_text(
+                '#!/bin/bash\ncase "$*" in\n'
+                + (f"  *canary/mode*) printf '%s' '{base_mode}' ;;\n" if base_has_file else "  *canary/mode*) exit 128 ;;\n")
+                + ("  *Canary.lean*) printf '%s' 'BASE PROBES' ;;\n" if base_has_probes else "  *Canary.lean*) exit 128 ;;\n")
+                + "esac\n"
+            )
             (bin_ / "timeout").write_text('#!/bin/bash\nshift 2; shift; "$@"\n')  # timeout -k 30 3m CMD...
             for f in bin_.iterdir():
                 f.chmod(0o755)
@@ -189,9 +228,14 @@ class QueueStep(unittest.TestCase):
                 "PATH": f"{bin_}:{os.environ['PATH']}",
                 "CANARY_MODE_VAR": var,
                 "BASE_SHA": "a" * 40,
+                "RUNNER_TEMP": d,
                 "GITHUB_STEP_SUMMARY": str(Path(d) / "summary.md"),
             }
             r = subprocess.run(["bash", "-e", "-o", "pipefail", "-c", self.step()["run"]], cwd=d, env=env, capture_output=True, text=True)
+            self.lake_file = (
+                (Path(d) / "lake_file.txt").read_text().strip() if (Path(d) / "lake_file.txt").exists() else None
+            )  # the step may stop before lake
+            self.lake_saw = (Path(d) / "lake_saw.txt").read_text() if (Path(d) / "lake_saw.txt").exists() else None
             return r.returncode, r.stdout + r.stderr
 
     def test_report_mode_warns_and_lets_the_group_through(self):
@@ -208,6 +252,18 @@ class QueueStep(unittest.TestCase):
     def test_a_canary_that_compiles_passes_in_every_mode(self):
         for kw in ({}, {"var": "enforce"}, {"base_mode": "enforce\n"}):
             self.assertEqual(self.run_step(0, **kw)[0], 0, kw)
+
+    def test_the_probes_are_the_bases_copy_so_a_group_cannot_delete_the_probe_that_catches_it(self):
+        """CodeRabbit on #599: the mode was read from the base, the probes from the group's own checkout."""
+        rc, out = self.run_step(0)
+        self.assertEqual(rc, 0, out)
+        self.assertTrue(self.lake_file.endswith("Canary.base.lean"), self.lake_file)
+        self.assertEqual(self.lake_saw, "BASE PROBES")
+
+    def test_the_groups_own_probes_are_used_only_when_the_base_has_none(self):
+        rc, out = self.run_step(0, base_has_probes=False)
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(self.lake_file, "scripts/ci/canary/Canary.lean")
 
     def test_the_variable_wins_over_the_base_file(self):
         self.assertEqual(self.run_step(1, var="report", base_mode="enforce\n")[0], 0)
@@ -298,6 +354,21 @@ class Files(unittest.TestCase):
             i,
             "the tree is built before the canary imports it",
         )
+
+    def test_the_job_outlasts_the_refresh_wait_and_the_clients_budget_and_fails_when_no_refresh_finished(self):
+        import yaml
+
+        text = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8")
+        wf = yaml.safe_load(text)
+        job = wf["jobs"]["canary"]
+        wait = next(s for s in job["steps"] if str(s.get("name", "")).startswith("Let the space finish"))["run"]
+        polls = int(re.search(r"seq 1 (\d+)", wait).group(1))
+        sleep = int(re.search(r"^\s*sleep (\d+)$", wait, re.M).group(1))
+        worst_wait = sleep + polls * (30 + 30)  # each poll: curl -m 30, then sleep 30
+        budget = int(re.search(r"leak_canary\.py .*--budget (\d+)", text).group(1))
+        self.assertLessEqual(worst_wait + budget + 5 * 60, job["timeout-minutes"] * 60)
+        self.assertIn("exit 1", wait.split("ready")[-1])  # no finished refresh seen: red, not a canary run against the old tree
+        self.assertNotIn("|| true", wait)
 
     def test_the_leak_space_is_asked_on_a_schedule_and_after_every_promotion(self):
         wf = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8")
