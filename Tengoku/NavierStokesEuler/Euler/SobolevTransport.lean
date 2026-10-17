@@ -1,0 +1,76 @@
+import Tengoku.NavierStokesEuler.Euler.SobolevProduct
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Actual one-derivative-losing nonlinear transport on the complete cylinder Sobolev spaces. -/
+
+noncomputable section
+
+namespace EulerSobolevTransport
+
+open MeasureTheory EulerLiftedGradientSpace EulerPressureSpatialRegularity EulerCylinderSobolev
+  EulerCylinderSobolevSpace EulerSobolevL2Product EulerMetricTransport EulerTransportDerivatives
+open scoped Topology ContDiff ENNReal
+
+variable (period : ℝ) [Fact (0 < period)]
+
+local instance sobolevGroup (q : ℕ) : NormedAddCommGroup (SobolevSpace period q) := inferInstance
+local instance sobolevRealSpace (q : ℕ) : NormedSpace ℝ (SobolevSpace period q) := inferInstance
+
+/-- The genuine transport bilinear map, with one actual coordinate derivative on its second input. -/
+def transportBilinear {q : ℕ} (hq : 6 ≤ q)
+    (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1) :
+    SobolevSpace period (q+1) →L[ℝ] SobolevSpace period (q+1) →L[ℝ] SobolevSpace period q :=
+  ∑ i : Fin 4, (productHqBilinear period hq (L i) (hL i)).bilinearComp
+    (truncateOperator period q) (derivativeOperator period q i)
+
+/-- Transport is the finite sum of the actual Sobolev products and strong coordinate derivatives. -/
+theorem transportBilinear_apply {q : ℕ} (hq : 6 ≤ q)
+    (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
+    (u v : SobolevSpace period (q+1)) :
+    transportBilinear period hq L hL u v = ∑ i : Fin 4,
+      productHq period hq (L i) (hL i) (truncateOperator period q u) (derivativeOperator period q i v) := by
+  simp only [transportBilinear, sum_apply, ContinuousLinearMap.bilinearComp_apply,
+    productHqBilinear_apply]
+
+/-- The genuine transport is represented by the literal sum of pointwise directional products. -/
+theorem transportBilinear_value {q : ℕ} (hq : 6 ≤ q)
+    (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
+    (u v : SobolevSpace period (q+1)) :
+    value period (transportBilinear period hq L hL u v) =
+      ∑ i : Fin 4, scalarProduct period (by omega : 3 ≤ q) (L i)
+        (truncateOperator period q u) (value period (derivativeOperator period q i v)) := by
+  rw [transportBilinear_apply]
+  change (valueOperator period q) (∑ i : Fin 4, _) = _
+  rw [map_sum]
+  apply Finset.sum_congr rfl
+  intro i _
+  exact productHq_value period hq (L i) (hL i) _ _
+
+/-- On smooth representatives the nonlinear transport is exactly the classical cylinder differential operator. -/
+theorem transportBilinear_ae {q : ℕ} (hq : 6 ≤ q)
+    (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
+    (u v : SobolevSpace period (q+1)) (f g : LiftDomain period → Vector3)
+    (hu : (value period u : LiftDomain period → Vector3) =ᵐ[liftMeasure period] f)
+    (hv : (value period v : LiftDomain period → Vector3) =ᵐ[liftMeasure period] g)
+    (hg : ∀ x, ContDiff ℝ ∞ (localFieldLift period g x)) :
+    (value period (transportBilinear period hq L hL u v) : LiftDomain period → Vector3) =ᵐ[liftMeasure period]
+      (fun x => ∑ i : Fin 4, L i (f x) • fieldDerivative period (standardDirection i) g x) := by
+  rw [transportBilinear_value]
+  have hprod (i : Fin 4) :
+      (scalarProduct period (by omega : 3 ≤ q) (L i) (truncateOperator period q u)
+        (value period (derivativeOperator period q i v)) : LiftDomain period → Vector3) =ᵐ[liftMeasure period]
+        (fun x => L i (f x) • fieldDerivative period (standardDirection i) g x) := by
+    have hd := EulerStrongSmoothJet.translation_derivative_ae period (standardDirection i)
+      (value period v) (value period (derivativeOperator period q i v)) g hv hg
+      (derivativeOperator_hasDerivAt period i v)
+    filter_upwards [scalarProduct_ae period (by omega : 3 ≤ q) (L i) (truncateOperator period q u)
+      (value period (derivativeOperator period q i v)), hu, hd] with x h1 h2 h3
+    exact h1.trans (by rw [value_truncateOperator, h2, h3])
+  filter_upwards [Lp.coeFn_finsetSum Finset.univ (fun i : Fin 4 =>
+    scalarProduct period (by omega : 3 ≤ q) (L i) (truncateOperator period q u)
+      (value period (derivativeOperator period q i v))), ae_all_iff.mpr hprod] with x hx hall
+  simp only [Finset.sum_apply] at hx
+  exact hx.trans (Finset.sum_congr rfl (fun i _ => hall i))
+
+end EulerSobolevTransport
