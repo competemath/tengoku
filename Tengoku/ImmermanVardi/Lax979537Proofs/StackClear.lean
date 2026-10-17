@@ -15,6 +15,9 @@ def working (base : K → List Bool) (src : K) (xs : List Bool)
     (a : Aux) (scratch : Option Bool) : BitStore K Aux :=
   ⟨(a, scratch), Function.update base src xs⟩
 
+/--
+@isnad1 id=eq.0h7v.s6.306cb87c154c from=translated src=- shape=30288c95 vocab=ec066486
+-/
 theorem pop_working (base : K → List Bool) (src : K) (xs : List Bool)
     (a : Aux) (scratch : Option Bool) :
     Op.apply (.pop src (fun s : Aux × Option Bool => fun b => (s.1, b)))

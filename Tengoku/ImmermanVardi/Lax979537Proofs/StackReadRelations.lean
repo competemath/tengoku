@@ -29,6 +29,9 @@ def Ready (w : Workspace K) (n : Nat) (s : BitStore K (Aux × Bool)) : Prop :=
 def oneTable (w : Workspace K) (arity : Nat) (table : K) : BitProgram K (Aux × Bool) :=
   StackReadTable.readTable w.domain w.input table w.count w.tmp w.rev (w.counters.take arity)
 
+/--
+@isnad1 id=ready.2h7v.s5.6c742a0467ac from=translated src=- shape=1ad6077c vocab=37bfcdf5
+-/
 theorem result_ready (w : Workspace K) (table : K) (hf : Fresh w table)
     (n arity : Nat) (s : BitStore K (Aux × Bool)) (hs : Ready w n s) :
     Ready w n (StackReadTable.result w.input table n arity s) := by
@@ -70,12 +73,18 @@ def cost : List (Nat × K) → Nat → Nat
   | (arity, _) :: rest, n => StackReadTable.cost arity n + cost rest n
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.0h3v.s4.5c9d9fa06941 from=translated src=- shape=cba51b48 vocab=24107c48
+-/
 theorem eval_costPolynomial (tables : List (Nat × K)) (n : Nat) :
     (costPolynomial tables).eval n = cost tables n := by
   induction tables with
   | nil => simp [costPolynomial, cost]
   | cons r rest ih => cases r; simp [costPolynomial, cost, StackReadTable.eval_costPolynomial, ih]
 
+/--
+@isnad1 id=eq.2h7v.s6.bcd56dcde36b from=translated src=- shape=88a8d741 vocab=b04d0b40
+-/
 theorem result_preserves (w : Workspace K) (n : Nat) (tables : List (Nat × K))
     (key : K) (hi : key ≠ w.input) (ht : ∀ r ∈ tables, key ≠ r.2)
     (s : BitStore K (Aux × Bool)) : (result w n tables s).stk key = s.stk key := by
@@ -86,6 +95,9 @@ theorem result_preserves (w : Workspace K) (n : Nat) (tables : List (Nat × K))
       rw [result, ih (fun r hm => ht r (by simp [hm]))]
       exact StackReadTable.result_preserves _ _ _ hi (ht (arity, table) (by simp)) _ _ _
 
+/--
+@isnad1 id=ready.2h6v.s6.d1567d834b7b from=translated src=- shape=77baab49 vocab=6e5320e8
+-/
 theorem tables_ready (w : Workspace K) (n : Nat) (tables : List (Nat × K))
     (hf : ∀ r ∈ tables, Fresh w r.2) (s : BitStore K (Aux × Bool)) (hs : Ready w n s) :
     Ready w n (result w n tables s) := by
@@ -96,6 +108,9 @@ theorem tables_ready (w : Workspace K) (n : Nat) (tables : List (Nat × K))
       exact ih (fun r hm => hf r (by simp [hm])) _
         (result_ready w table (hf (arity, table) (by simp)) n arity s hs)
 
+/--
+@isnad1 id=le.1h6v.s6.097b6c9893d7 from=translated src=- shape=ec439626 vocab=5d896aa5
+-/
 theorem input_length_le (w : Workspace K) (n : Nat) (tables : List (Nat × K))
     (hf : ∀ r ∈ tables, Fresh w r.2) (s : BitStore K (Aux × Bool)) :
     ((result w n tables s).stk w.input).length ≤ (s.stk w.input).length := by

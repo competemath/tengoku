@@ -23,6 +23,9 @@ def existsValues (domain counter coord tmp acc : K) (body : EvalProgram K Aux) :
 def payload (s : EvalStore K Aux) (acc : K) (a : Bool) : EvalStore K Aux :=
   ⟨(result false s).state, Function.update s.stk acc (a :: s.stk acc)⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.4f9cc0c9f85f from=translated src=- shape=712ef83e vocab=cd071a56
+-/
 theorem fold_or (b : Nat → Bool) (start count : Nat) (a : Bool) :
     foldRange (fun i a => a || b i) start count a =
       (a || (List.range' start count).any b) := by
@@ -30,6 +33,9 @@ theorem fold_or (b : Nat → Bool) (start count : Nat) (a : Bool) :
   | zero => simp [foldRange]
   | succ count ih => simp [foldRange, ih, List.range'_succ, Bool.or_assoc]
 
+/--
+@isnad1 id=iff.0h2v.s4.a49d53587153 from=translated src=- shape=dc820564 vocab=4c38ae4a
+-/
 theorem any_range_iff (b : Nat → Bool) (n : Nat) :
     (List.range n).any b = true ↔ ∃ i, i < n ∧ b i = true := by simp
 

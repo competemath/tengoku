@@ -7,6 +7,9 @@ open StackProgram StackTransfer StackBoolean
 
 variable {K Aux : Type} [DecidableEq K]
 
+/--
+@isnad1 id=le.0h6v.s6.fca09d209bb2 from=translated src=- shape=141cd3f4 vocab=11cd9901
+-/
 theorem length_op {Γ : K → Type} {State : Type} (o : Op Γ State) (s : Store Γ State) (key : K) :
     ((o.apply s).stk key).length ≤ (s.stk key).length + 1 := by
   cases o with
@@ -20,7 +23,9 @@ theorem length_op {Γ : K → Type} {State : Type} (o : Op Γ State) (s : Store 
       · simp [Op.apply, h]
   | peek k f | load f => simp [Op.apply]
 
-/-- A deliberately coarse space bound, valid also on malformed inputs. -/
+/-- A deliberately coarse space bound, valid also on malformed inputs.
+@isnad1 id=le.1h8v.s6.da8532965f5e from=translated src=- shape=b829de5b vocab=5f2fa55b
+-/
 theorem length_executes {Γ : K → Type} {State : Type} {p : Program Γ State}
     {s t : Store Γ State} {c : Nat} (h : Executes p s t c) (key : K) :
     (t.stk key).length ≤ (s.stk key).length + c := by

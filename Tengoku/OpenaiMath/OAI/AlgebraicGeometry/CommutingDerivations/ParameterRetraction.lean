@@ -10,7 +10,9 @@ noncomputable section
 namespace AbhyankarSathaye.CommutingDerivations
 
 /-- A retract of a domain is saturated by powers of any nonzero element of
-the retract. The maps and their left-inverse law are explicit hypotheses. -/
+the retract. The maps and their left-inverse law are explicit hypotheses.
+@isnad1 id=eq.3h8v.s8.f8949f390168 from=translated src=- shape=d941b84a vocab=f2e2abdb
+-/
 theorem retract_power_saturated {A B : Type*} [CommRing A] [IsDomain A]
     [CommRing B] (ι : B →+* A) (ρ : A →+* B)
     (hρι : ∀ b, ρ (ι b) = b) (b q : B) (a : A) (n : ℕ)
@@ -29,30 +31,47 @@ def ambientParameter : R := F + 1
 def parameterSlice : R →ₐ[ℂ] Polynomial ℂ :=
   MvPolynomial.aeval (fun i : Fin 4 => if i = 0 then Polynomial.X else 0)
 
+/--
+@isnad1 id=eq.0h0v.s7.67079402986f from=translated src=- shape=8bafb89c vocab=067977f9
+-/
 @[simp] theorem parameterSlice_parameter : parameterSlice ambientParameter = Polynomial.X := by
   simp [parameterSlice, ambientParameter, F, p, P, x, y, s, S, h, u, v, w]
 
+/--
+@isnad1 id=eq.0h0v.s7.122170fe6bb5 from=translated src=- shape=931aa340 vocab=da3acf25
+-/
 theorem parameterSlice_aeval :
     parameterSlice.comp (Polynomial.aeval ambientParameter) = AlgHom.id ℂ (Polynomial ℂ) := by
   apply Polynomial.algHom_ext
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.39772f9387d7 from=translated src=- shape=e083fad9 vocab=9e957782
+-/
 @[simp] theorem parameterSlice_aeval_apply (q : Polynomial ℂ) :
     parameterSlice (Polynomial.aeval ambientParameter q) = q := by
   exact AlgHom.congr_fun parameterSlice_aeval q
 
+/--
+@isnad1 id=injectiv.0h0v.s7.f9ec02a446c9 from=translated src=- shape=479f44c2 vocab=eb5f5d22
+-/
 theorem parameter_aeval_injective :
     Function.Injective (Polynomial.aeval ambientParameter : Polynomial ℂ →ₐ[ℂ] R) :=
   (show Function.LeftInverse parameterSlice
     (Polynomial.aeval ambientParameter : Polynomial ℂ →ₐ[ℂ] R) from
       parameterSlice_aeval_apply).injective
 
+/--
+@isnad1 id=ne.0h0v.s5.4d737b91dad6 from=translated src=- shape=ffdda526 vocab=1f936647
+-/
 theorem parameter_ne_zero : ambientParameter ≠ 0 := by
   intro hh
   have he := congrArg parameterSlice hh
   simp at he
 
-/-- Exact polynomial witness for descent from a Laurent expression. -/
+/-- Exact polynomial witness for descent from a Laurent expression.
+@isnad1 id=eq.1h3v.s9.af0f58aa5333 from=translated src=- shape=12952762 vocab=944ef7de
+-/
 theorem parameter_power_saturated (a : R) (q : Polynomial ℂ) (n : ℕ)
     (he : ambientParameter^n * a = Polynomial.aeval ambientParameter q) :
     a = Polynomial.aeval ambientParameter (parameterSlice a) := by
@@ -65,6 +84,9 @@ theorem parameter_power_saturated (a : R) (q : Polynomial ℂ) (n : ℕ)
       parameterSlice_aeval_apply, Polynomial.aeval_X] using hh
   exact he.trans hh'.symm
 
+/--
+@isnad1 id=injectiv.0h1v.s7.ef3191c7acda from=translated src=- shape=df155444 vocab=5d1acc98
+-/
 theorem parameter_localization_injective (L : Type*) [CommRing L] [Algebra R L]
     [IsLocalization.Away ambientParameter L] : Function.Injective (algebraMap R L) := by
   apply IsLocalization.injective L (M := Submonoid.powers ambientParameter)
@@ -75,7 +97,9 @@ theorem parameter_localization_injective (L : Type*) [CommRing L] [Algebra R L]
 /-- Exact intersection with the ambient ring, in denominator-cleared form.
 The left side says that the localized image has a Laurent expression in `c`.
 The right side supplies an ordinary polynomial expression in `c`.
-There is no fraction-field-intersection hypothesis. -/
+There is no fraction-field-intersection hypothesis.
+@isnad1 id=iff.0h2v.s9.e73eb145267f from=translated src=- shape=6d6d3f86 vocab=515f379e
+-/
 theorem parameter_laurent_intersection (L : Type*) [CommRing L] [Algebra R L]
     [IsLocalization.Away ambientParameter L] (a : R) :
     (∃ (n : ℕ) (q : Polynomial ℂ),

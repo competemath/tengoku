@@ -45,17 +45,26 @@ noncomputable def costPolynomial (B : Polynomial Nat) : Nat → Polynomial Nat
   | 0 => B + 1
   | k + 1 => (costPolynomial B k + 12) * Polynomial.X + 8
 
+/--
+@isnad1 id=eq.0h3v.s4.7c08d4f0ca2c from=translated src=- shape=68564914 vocab=0124301f
+-/
 theorem eval_costPolynomial (B : Polynomial Nat) (n k : Nat) :
     (costPolynomial B k).eval n = cost n (B.eval n) k := by
   induction k with
   | zero => simp [costPolynomial, cost]
   | succ k ih => simp [costPolynomial, cost, ih]
 
+/--
+@isnad1 id=eq.2h11v.s6.09a31ba5ccbd from=translated src=- shape=e3d65440 vocab=11cbf875
+-/
 theorem pack_fresh (base : α → BitStore K Aux) (c x key : K)
     (hc : key ≠ c) (hx : key ≠ x) (a : α) (i remaining : Nat) (scratch : Option Bool) :
     (pack base c x a i remaining scratch).stk key = (base a).stk key := by
   simp [pack, working, hc, hx]
 
+/--
+@isnad1 id=eq.0h14v.s6.3b0bcadfe551 from=translated src=- shape=bb50219e vocab=1f4f885f
+-/
 theorem packTuple_pack_scratch (base : α → BitStore K Aux) (counter coord : K)
     (i remaining : Nat) (initial : Option Bool) (slots : List (K × K))
     (a : α) (values counters : List Nat) (scratch : Option Bool) :
@@ -63,6 +72,9 @@ theorem packTuple_pack_scratch (base : α → BitStore K Aux) (counter coord : K
       packTuple (fun a => pack base counter coord a i remaining none) slots a values counters scratch := by
   cases slots <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.20f6c46627eb from=translated src=- shape=fa6247dc vocab=edf70d30
+-/
 theorem foldTuples_eq_foldl (n k : Nat) (f : List Nat → α → α) (a : α) :
     foldTuples n k f a = (tuples n k).foldl (fun a xs => f xs a) a := by
   induction k generalizing f a with
@@ -75,10 +87,16 @@ theorem foldTuples_eq_foldl (n k : Nat) (f : List Nat → α → α) (a : α) :
 
 def tupleValues {n k : Nat} (v : Fin k → Fin n) : List Nat := List.ofFn (fun i => (v i).val)
 
+/--
+@isnad1 id=eq.0h4v.s5.6411b094b50d from=translated src=- shape=e4d577b7 vocab=f9205569
+-/
 theorem tupleValues_cons {n k : Nat} (i : Fin n) (v : Fin k → Fin n) :
     tupleValues (Fin.cons i v) = i.val :: tupleValues v := by
   simp [tupleValues, List.ofFn_succ]
 
+/--
+@isnad1 id=eq.0h9v.s5.373421923504 from=translated src=- shape=a9ac96ea vocab=15739b3b
+-/
 theorem packTuple_const (s : BitStore K Aux) (slots : List (K × K))
     (a : α) (values remaining : List Nat) (scratch : Option Bool) :
     packTuple (fun _ : α => s) slots a values remaining scratch =
@@ -87,6 +105,9 @@ theorem packTuple_const (s : BitStore K Aux) (slots : List (K × K))
   | nil => rfl
   | cons slot slots ih => exact ih _ _ _
 
+/--
+@isnad1 id=eq.0h9v.s6.edf7d5c2f24b from=translated src=- shape=e76f7fe5 vocab=65b068b7
+-/
 theorem packTuple_state (base : α → BitStore K Aux) (slots : List (K × K))
     (a : α) (values remaining : List Nat) (scratch : Option Bool) :
     (packTuple base slots a values remaining scratch).state = ((base a).state.1, scratch) := by
@@ -94,6 +115,9 @@ theorem packTuple_state (base : α → BitStore K Aux) (slots : List (K × K))
   | nil => rfl
   | cons slot slots ih => exact ih _ _ _
 
+/--
+@isnad1 id=eq.0h9v.s6.5c77b89be9d6 from=translated src=- shape=68d684bf vocab=5198cdb4
+-/
 theorem packTuple_stk_scratch (base : α → BitStore K Aux) (slots : List (K × K))
     (a : α) (values remaining : List Nat) (scratch : Option Bool) :
     (packTuple base slots a values remaining scratch).stk =
@@ -104,6 +128,9 @@ theorem packTuple_stk_scratch (base : α → BitStore K Aux) (slots : List (K ×
       rw [packTuple, ih, packTuple_pack_scratch]
       rfl
 
+/--
+@isnad1 id=eq.1h10v.s6.ab84d3e721a4 from=translated src=- shape=752e73ad vocab=a7b26ab5
+-/
 theorem packTuple_fresh (base : α → BitStore K Aux) (slots : List (K × K))
     (key : K) (hfresh : key ∉ ports slots) (a : α) (values remaining : List Nat)
     (scratch : Option Bool) :
@@ -118,6 +145,9 @@ theorem packTuple_fresh (base : α → BitStore K Aux) (slots : List (K × K))
 def setStack (s : BitStore K Aux) (key : K) (bits : List Bool) : BitStore K Aux :=
   ⟨s.state, Function.update s.stk key bits⟩
 
+/--
+@isnad1 id=eq.2h12v.s6.80d6ee58c4e3 from=translated src=- shape=1da1069c vocab=b4271511
+-/
 theorem pack_setStack (base : α → BitStore K Aux) (counter coord key : K)
     (hcounter : key ≠ counter) (hcoord : key ≠ coord) (bits : α → List Bool)
     (a : α) (i remaining : Nat) (scratch : Option Bool) :
@@ -128,6 +158,9 @@ theorem pack_setStack (base : α → BitStore K Aux) (counter coord key : K)
   · funext j
     by_cases hj : j = key <;> simp_all [pack, working, setStack, Function.update_apply]
 
+/--
+@isnad1 id=eq.1h11v.s6.757f6840e213 from=translated src=- shape=e2c6b220 vocab=d2d741e1
+-/
 theorem packTuple_setStack (base : α → BitStore K Aux) (slots : List (K × K))
     (key : K) (hfresh : key ∉ ports slots) (bits : α → List Bool)
     (a : α) (values remaining : List Nat) (scratch : Option Bool) :

@@ -24,6 +24,9 @@ def qmap (h x y : B) : MvPolynomial (Fin 2) B →ₐ[B] A h x y :=
 def qvar (h x y : B) (i : Fin 2) : A h x y := qmap h x y (X i)
 def coeff (h x y : B) : B →+* A h x y := algebraMap B _
 
+/--
+@isnad1 id=eq.0h4v.s9.c5d7b9d62d9e from=translated src=- shape=f70f4363 vocab=53805494
+-/
 theorem linear_relation (h x y : B) :
     coeff h x y h*qvar h x y 1-coeff h x y y*qvar h x y 0 = coeff h x y x := by
   have hz : qmap h x y (relation h x y) = 0 :=
@@ -51,6 +54,9 @@ def forward (h x y α β : B) (hb : α*h+β*y = 1) : A h x y →ₐ[B] Polynomia
     exact he
   exact Ideal.Quotient.liftₐ _ ev (fun z hz => hi hz)
 
+/--
+@isnad1 id=eq.1h7v.s8.6fe4acf269e7 from=translated src=- shape=a837d7e9 vocab=8909cfb6
+-/
 @[simp] theorem forward_qvar (h x y α β : B) (hb) (i : Fin 2) :
     forward h x y α β hb (qvar h x y i) = values h x y α β i := by
   change (aeval (values h x y α β) : MvPolynomial (Fin 2) B →ₐ[B] Polynomial B) (X i) = _
@@ -59,6 +65,9 @@ def forward (h x y α β : B) (hb : α*h+β*y = 1) : A h x y →ₐ[B] Polynomia
 def backward (h x y α β : B) : Polynomial B →ₐ[B] A h x y :=
   Polynomial.aeval (coeff h x y α*qvar h x y 0+coeff h x y β*qvar h x y 1)
 
+/--
+@isnad1 id=eq.1h6v.s8.e233479c56a3 from=translated src=- shape=48b9d984 vocab=40c1fe22
+-/
 theorem forward_backward (h x y α β : B) (hb) :
     (forward h x y α β hb).comp (backward h x y α β) = AlgHom.id B _ := by
   apply Polynomial.algHom_ext
@@ -69,6 +78,9 @@ theorem forward_backward (h x y α β : B) (hb) :
     linear_parameter_inverse (Polynomial.C h) (Polynomial.C x) (Polynomial.C y)
       (Polynomial.C α) (Polynomial.C β) Polynomial.X hb'
 
+/--
+@isnad1 id=eq.1h6v.s9.06133c7d7431 from=translated src=- shape=c9dad02c vocab=40c1fe22
+-/
 theorem backward_forward (h x y α β : B) (hb) :
     (backward h x y α β).comp (forward h x y α β hb) = AlgHom.id B _ := by
   apply Ideal.Quotient.algHom_ext
@@ -99,18 +111,27 @@ def r (h x y α β : B) : A h x y := coeff h x y α*(1+coeff h x y β*coeff h x 
 def q (h x y β : B) : A h x y := (coeff h x y β)^2
 def W0 (h x y s α β : B) : A h x y := r h x y α β*a h x y+q h x y β*b h x y s
 
+/--
+@isnad1 id=eq.1h5v.s9.577fd40ef9cf from=translated src=- shape=a78d2b2a vocab=9c3a526a
+-/
 theorem compatible (h x y s : B) (hc : x^2+y^3 = h*s) :
     (coeff h x y y)^2*a h x y = coeff h x y h*b h x y s := by
   have hc' : (coeff h x y x)^2+(coeff h x y y)^3 = coeff h x y h*coeff h x y s := by
     simpa using congrArg (coeff h x y) hc
   exact compatibility _ _ _ _ _ _ hc' (linear_relation h x y)
 
+/--
+@isnad1 id=eq.1h6v.s9.2780a93ec9c4 from=translated src=- shape=d7c18792 vocab=c610009b
+-/
 theorem bezout_squared (h x y α β : B) (hb : α*h+β*y = 1) :
     r h x y α β*coeff h x y h+q h x y β*(coeff h x y y)^2 = 1 := by
   have hb' : coeff h x y α*coeff h x y h+coeff h x y β*coeff h x y y = 1 := by
     simpa using congrArg (coeff h x y) hb
   exact squared_bezout _ _ _ _ hb'
 
+/--
+@isnad1 id=eq.2h7v.s12.e21dbf1a21dd from=translated src=- shape=66977810 vocab=19b7149b
+-/
 theorem W_ideal (h x y s α β : B) (hc : x^2+y^3 = h*s) (hb : α*h+β*y = 1) :
     Ideal.span ({Polynomial.C (coeff h x y h)*Polynomial.X-Polynomial.C (a h x y),
       Polynomial.C ((coeff h x y y)^2)*Polynomial.X-Polynomial.C (b h x y s)} :

@@ -21,6 +21,9 @@ noncomputable def costPolynomial : Nat → Polynomial Nat
   | 0 => 1
   | k + 1 => (7 * Polynomial.X + 9) + (Polynomial.X + 1) * costPolynomial k
 
+/--
+@isnad1 id=eq.0h2v.s3.289259df481d from=translated src=- shape=e1571409 vocab=e30270e1
+-/
 theorem eval_costPolynomial (n k : Nat) : (costPolynomial k).eval n = budget n k := by
   induction k with
   | zero => simp [costPolynomial, budget]

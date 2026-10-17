@@ -16,7 +16,9 @@ of unused variables.
 namespace AbhyankarSathaye
 
 /-- The explicit hypersurface has a polynomial coordinate ring but its defining
-polynomial is not a coordinate, in every ambient dimension at least four. -/
+polynomial is not a coordinate, in every ambient dimension at least four.
+@isnad1 id=and.0h0v.s11.0c8598d36019 from=translated src=- shape=f01c6ce3 vocab=47ac2760
+-/
 theorem counterexample :
     Nonempty ((R ⧸ Ideal.span {F}) ≃ₐ[ℂ] MvPolynomial (Fin 3) ℂ) ∧
     (∀ index : Fin 4, MvPolynomial.eval criticalPoint (MvPolynomial.pderiv index F) = 0) ∧
@@ -31,7 +33,9 @@ theorem counterexample :
     fun _ bound => ⟨⟨extendedFiberEquiv bound⟩, extendedF_not_coordinate bound⟩⟩
 
 /-- In every dimension at least four, a polynomial can define affine space
-without being a coordinate of the ambient polynomial ring. -/
+without being a coordinate of the ambient polynomial ring.
+@isnad1 id=ex.1h1v.s9.cd2e6a87da85 from=translated src=- shape=b2e2414e vocab=f40a6c46
+-/
 theorem exists_noncoordinate_polynomial (n : ℕ) (hn : 4 ≤ n) :
     ∃ F : MvPolynomial (Fin n) ℂ,
       Nonempty ((MvPolynomial (Fin n) ℂ ⧸ Ideal.span {F}) ≃ₐ[ℂ]

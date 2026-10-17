@@ -24,9 +24,15 @@ noncomputable def costPolynomial (k : Nat) : Polynomial Nat :=
 
 def cost (k n : Nat) : Nat := StackPower.cost k n + 7 * n ^ k + 4
 
+/--
+@isnad1 id=eq.0h2v.s3.3b6c4ae875d8 from=translated src=- shape=0b115670 vocab=f21542b5
+-/
 theorem eval_costPolynomial (k n : Nat) : (costPolynomial k).eval n = cost k n := by
   simp [costPolynomial, cost, StackPower.eval_costPolynomial]
 
+/--
+@isnad1 id=eq.2h8v.s6.1958be49cb03 from=translated src=- shape=5e64dcb4 vocab=554e8e48
+-/
 theorem result_preserves (input table key : K) (hi : key ≠ input) (ht : key ≠ table)
     (n k : Nat) (s : BitStore K (Aux × Bool)) :
     (result input table n k s).stk key = s.stk key := by

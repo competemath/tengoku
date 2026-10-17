@@ -10,6 +10,9 @@ open AssociativeElimination
 variable {R α β : Type*} [CommRing R]
 variable (f : A R α →ₐ[R] A R β) (wa : α → ℕ) (wb : β → ℕ)
 
+/--
+@isnad1 id=mem.2h8v.s9.c93849d96b2b from=translated src=- shape=51cf2da6 vocab=40cbc66e
+-/
 theorem algHom_homogeneous (hf : ∀ a,f (atom a)∈homogeneous wb (wa a))
     {n : ℕ} {p : A R α} (hp : p∈homogeneous wa n) : f p∈homogeneous wb n := by
   have hw (w : FreeMonoid α) : f (word w)∈homogeneous wb (degree wa w) := by
@@ -26,6 +29,9 @@ theorem algHom_homogeneous (hf : ∀ a,f (atom a)∈homogeneous wb (wa a))
   rw [← h]
   exact hw w
 
+/--
+@isnad1 id=mem.2h8v.s9.0256af16d857 from=translated src=- shape=51cf2da6 vocab=33db2121
+-/
 theorem algHom_above (hf : ∀ a,f (atom a)∈above wb (wa a))
     {n : ℕ} {p : A R α} (hp : p∈above wa n) : f p∈above wb n := by
   have hw (w : FreeMonoid α) : f (word w)∈above wb (degree wa w) := by
@@ -40,6 +46,9 @@ theorem algHom_above (hf : ∀ a,f (atom a)∈above wb (wa a))
   intro w hn
   exact space_mono (by intro v hv; change n≤degree wa w at hn; change degree wa w≤degree wb v at hv; omega) (hw w)
 
+/--
+@isnad1 id=mem.2h8v.s9.7e629628af28 from=translated src=- shape=51cf2da6 vocab=5d39455d
+-/
 theorem algHom_below (hf : ∀ a,f (atom a)∈below wb (wa a))
     {n : ℕ} {p : A R α} (hp : p∈below wa n) : f p∈below wb n := by
   have hw (w : FreeMonoid α) : f (word w)∈below wb (degree wa w) := by
@@ -62,12 +71,18 @@ variable {R α β γ : Type*} [CommRing R]
 
 def merge : V (R:=R) (α:=α) (β:=β) →ₗ[R] A R (Sum α β) :=
   interpret fiberIn baseIn
+/--
+@isnad1 id=eq.0h5v.s10.435022bb75c5 from=translated src=- shape=6d2cd32d vocab=d05b3962
+-/
 @[simp] theorem merge_tmul (p : A R α) (q : A R β) :
     merge (p⊗ₜ q)=fiberIn p*baseIn q := rfl
 
 def ordered (δ : β → α → A R α) : A R (Sum α β) →ₗ[R] A R (Sum α β) :=
   merge.comp (normalize δ)
 
+/--
+@isnad1 id=eq.0h5v.s9.c52a7ea05bfc from=translated src=- shape=7a5a235a vocab=9056c448
+-/
 theorem normalize_merge (δ : β → α → A R α) (z : V (R:=R) (α:=α) (β:=β)) :
     normalize δ (merge z)=z := by
   have h : (normalize δ).comp merge=LinearMap.id := by
@@ -76,10 +91,16 @@ theorem normalize_merge (δ : β → α → A R α) (z : V (R:=R) (α:=α) (β:=
     exact normalize_product δ p q
   exact LinearMap.congr_fun h z
 
+/--
+@isnad1 id=injectiv.0h3v.s8.0564cdac163c from=translated src=- shape=bd6a2c82 vocab=8269964b
+-/
 theorem merge_injective : Function.Injective (merge (R:=R) (α:=α) (β:=β)) :=
   Function.LeftInverse.injective (normalize_merge (fun _ _ => 0))
 
 variable (wa : α → ℕ) (wb : β → ℕ)
+/--
+@isnad1 id=mem.1h7v.s9.32d8c91b6ce7 from=translated src=- shape=551e30dd vocab=c95c7a93
+-/
 theorem fiberIn_homogeneous {n : ℕ} {p : A R α} (hp : p∈homogeneous wa n) :
     fiberIn (β:=β) p∈homogeneous (Sum.elim wa wb) n := by
   apply algHom_homogeneous _ wa _ ?_ hp
@@ -88,6 +109,9 @@ theorem fiberIn_homogeneous {n : ℕ} {p : A R α} (hp : p∈homogeneous wa n) :
   rw [fiberIn,lift_atom]
   exact word_mem (FreeMonoid.of (.inl a : Sum α β)) (degree_of (Sum.elim wa wb) (.inl a))
 
+/--
+@isnad1 id=mem.1h7v.s9.288be07f15b8 from=translated src=- shape=1dce5b07 vocab=ca6e5342
+-/
 theorem baseIn_homogeneous {n : ℕ} {p : A R β} (hp : p∈homogeneous wb n) :
     baseIn (α:=α) p∈homogeneous (Sum.elim wa wb) n := by
   apply algHom_homogeneous _ wb _ ?_ hp
@@ -96,17 +120,26 @@ theorem baseIn_homogeneous {n : ℕ} {p : A R β} (hp : p∈homogeneous wb n) :
   rw [baseIn,lift_atom]
   exact word_mem (FreeMonoid.of (.inr a : Sum α β)) (degree_of (Sum.elim wa wb) (.inr a))
 
+/--
+@isnad1 id=mem.0h7v.s9.82b857b2bc83 from=translated src=- shape=b0fa71b4 vocab=3e3316bd
+-/
 theorem merge_word_homogeneous (u : FreeMonoid α) (v : FreeMonoid β) :
     merge (word (R:=R) u⊗ₜ word (R:=R) v)∈homogeneous (Sum.elim wa wb) (degree wa u+degree wb v) := by
   exact homogeneous_mul (fiberIn_homogeneous wa wb (word_mem u rfl))
     (baseIn_homogeneous wa wb (word_mem v rfl))
 
+/--
+@isnad1 id=mem.1h7v.s10.268d2767d832 from=translated src=- shape=b986e47a vocab=0225d968
+-/
 theorem merge_homogeneous {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)}
     (hz : z∈TensorGrading.homogeneous wa wb n) : merge z∈homogeneous (Sum.elim wa wb) n := by
   apply TensorGrading.map_space merge _ ?_ hz
   intro u v h
   simpa only [h] using merge_word_homogeneous (R:=R) wa wb u v
 
+/--
+@isnad1 id=mem.1h7v.s10.a0e985541e2c from=translated src=- shape=b986e47a vocab=afbb47b7
+-/
 theorem merge_above {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)}
     (hz : z∈TensorGrading.above wa wb n) : merge z∈above (Sum.elim wa wb) n := by
   apply TensorGrading.map_space merge _ ?_ hz
@@ -114,6 +147,9 @@ theorem merge_above {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)}
   exact space_mono (by intro w hw; change n≤degree wa u+degree wb v at h; change degree (Sum.elim wa wb) w=degree wa u+degree wb v at hw; omega)
     (merge_word_homogeneous (R:=R) wa wb u v)
 
+/--
+@isnad1 id=mem.1h7v.s10.d6475a695a26 from=translated src=- shape=b986e47a vocab=2a216055
+-/
 theorem merge_strictlyBelow {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)}
     (hz : z∈TensorGrading.strictlyBelow wa wb n) : merge z∈strictlyBelow (Sum.elim wa wb) n := by
   apply TensorGrading.map_space merge _ ?_ hz
@@ -122,6 +158,9 @@ theorem merge_strictlyBelow {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)}
     (merge_word_homogeneous (R:=R) wa wb u v)
 
 variable {δ δ₀ : β → α → A R α}
+/--
+@isnad1 id=and.4h9v.s10.80b44e2993f2 from=translated src=- shape=8699b40b vocab=01766d65
+-/
 theorem ordered_comparison_above (h0 : ∀ b a,δ₀ b a∈homogeneous wa (wb b+wa a))
     (hδ : ∀ b a,δ b a∈above wa (wb b+wa a))
     (hd : ∀ b a,δ b a-δ₀ b a∈above wa (wb b+wa a+1))
@@ -131,6 +170,9 @@ theorem ordered_comparison_above (h0 : ∀ b a,δ₀ b a∈homogeneous wa (wb b+
   obtain ⟨h1,h2⟩ := TensorGrading.comparison_above h0 hδ hd hp
   exact ⟨merge_homogeneous wa wb h1,by simpa only [ordered,LinearMap.comp_apply,map_sub] using merge_above wa wb h2⟩
 
+/--
+@isnad1 id=and.4h9v.s10.fc1af190f98b from=translated src=- shape=f3ff57ae vocab=bd990959
+-/
 theorem ordered_comparison_below (h0 : ∀ b a,δ₀ b a∈homogeneous wa (wb b+wa a))
     (hδ : ∀ b a,δ b a∈below wa (wb b+wa a))
     (hd : ∀ b a,δ b a-δ₀ b a∈strictlyBelow wa (wb b+wa a))
@@ -139,6 +181,9 @@ theorem ordered_comparison_below (h0 : ∀ b a,δ₀ b a∈homogeneous wa (wb b+
     ordered δ p-ordered δ₀ p∈strictlyBelow (Sum.elim wa wb) n := by
   obtain ⟨h1,h2⟩ := TensorGrading.comparison_below h0 hδ hd hp
   exact ⟨merge_homogeneous wa wb h1,by simpa only [ordered,LinearMap.comp_apply,map_sub] using merge_strictlyBelow wa wb h2⟩
+/--
+@isnad1 id=mem.2h8v.s10.8ac679e6ce08 from=translated src=- shape=38ba45cd vocab=563d905b
+-/
 theorem normalize_homogeneous (hδ : ∀ b a,δ b a∈homogeneous wa (wb b+wa a))
     {n : ℕ} {p : A R (Sum α β)} (hp : p∈homogeneous (Sum.elim wa wb) n) :
     normalize δ p∈TensorGrading.homogeneous wa wb n := by
@@ -156,6 +201,9 @@ theorem normalize_homogeneous (hδ : ∀ b a,δ b a∈homogeneous wa (wb b+wa a)
   rw [← hn]
   exact hw w
 
+/--
+@isnad1 id=mem.2h8v.s10.f042ccb586fb from=translated src=- shape=38ba45cd vocab=678426f6
+-/
 theorem normalize_above (hδ : ∀ b a,δ b a∈above wa (wb b+wa a))
     {n : ℕ} {p : A R (Sum α β)} (hp : p∈above (Sum.elim wa wb) n) :
     normalize δ p∈TensorGrading.above wa wb n := by
@@ -172,6 +220,9 @@ theorem normalize_above (hδ : ∀ b a,δ b a∈above wa (wb b+wa a))
   intro w hn
   exact TensorGrading.space_mono (by intro u v huv; change n≤degree (Sum.elim wa wb) w at hn; change degree (Sum.elim wa wb) w≤degree wa u+degree wb v at huv; omega) (hw w)
 
+/--
+@isnad1 id=mem.2h8v.s10.a6fe13b27e69 from=translated src=- shape=9f15fe83 vocab=edf7cbb5
+-/
 theorem normalize_strictlyBelow (hδ : ∀ b a,δ b a∈below wa (wb b+wa a))
     {n : ℕ} {p : A R (Sum α β)} (hp : p∈strictlyBelow (Sum.elim wa wb) n) :
     normalize δ p∈TensorGrading.strictlyBelow wa wb n := by
@@ -190,9 +241,15 @@ theorem normalize_strictlyBelow (hδ : ∀ b a,δ b a∈below wa (wb b+wa a))
 
 def baseStage (f : A R β →ₗ[R] A R β) : V (R:=R) (α:=α) (β:=β) →ₗ[R] A R (Sum α β) :=
   merge.comp (TensorProduct.map LinearMap.id f)
+/--
+@isnad1 id=eq.0h6v.s10.8a1ecffba4b5 from=translated src=- shape=91ee6005 vocab=21de5528
+-/
 @[simp] theorem baseStage_tmul (f : A R β →ₗ[R] A R β) (p : A R α) (q : A R β) :
     baseStage f (p⊗ₜ q)=fiberIn p*baseIn (f q) := rfl
 
+/--
+@isnad1 id=mem.2h8v.s10.46eb16297b34 from=translated src=- shape=0050c1a5 vocab=15d6dd92
+-/
 theorem baseStage_homogeneous (f : A R β →ₗ[R] A R β)
     (hf : ∀ n p,p∈homogeneous wb n → f p∈homogeneous wb n)
     {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)} (hz : z∈TensorGrading.homogeneous wa wb n) :
@@ -203,12 +260,18 @@ theorem baseStage_homogeneous (f : A R β →ₗ[R] A R β)
   exact homogeneous_mul (fiberIn_homogeneous wa wb (word_mem u rfl))
     (baseIn_homogeneous wa wb (hf _ _ (word_mem v rfl)))
 
+/--
+@isnad1 id=mem.1h7v.s9.891e2e782638 from=translated src=- shape=1dce5b07 vocab=826ce832
+-/
 theorem baseIn_above {n : ℕ} {p : A R β} (hp : p∈above wb n) :
     baseIn (α:=α) p∈above (Sum.elim wa wb) n := by
   apply algHom_above _ wb _ ?_ hp
   intro a
   exact homogeneous_above (baseIn_homogeneous wa wb (word_mem (FreeMonoid.of a) (degree_of wb a)))
 
+/--
+@isnad1 id=mem.1h7v.s9.aca48076f45e from=translated src=- shape=1dce5b07 vocab=4f8ad889
+-/
 theorem baseIn_strictlyBelow {n : ℕ} {p : A R β} (hp : p∈strictlyBelow wb n) :
     baseIn (α:=α) p∈strictlyBelow (Sum.elim wa wb) n := by
   apply WordGrading.map_space baseIn.toLinearMap _ ?_ hp
@@ -216,6 +279,9 @@ theorem baseIn_strictlyBelow {n : ℕ} {p : A R β} (hp : p∈strictlyBelow wb n
   exact space_mono (by intro v hv; change degree wb w<n at hn; change degree (Sum.elim wa wb) v=degree wb w at hv; omega)
     (baseIn_homogeneous (R:=R) wa wb (word_mem w rfl))
 
+/--
+@isnad1 id=mem.2h8v.s10.143ace5f4ffb from=translated src=- shape=0050c1a5 vocab=2626fd48
+-/
 theorem baseStage_above (f : A R β →ₗ[R] A R β)
     (hf : ∀ n p,p∈above wb n → f p∈above wb n)
     {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)} (hz : z∈TensorGrading.above wa wb n) :
@@ -226,6 +292,9 @@ theorem baseStage_above (f : A R β →ₗ[R] A R β)
     (baseIn_above wa wb (hf _ _ (word_mem v (le_refl _))))
   exact space_mono (by intro w hw; change n≤degree wa u+degree wb v at hn; change degree wa u+degree wb v≤degree (Sum.elim wa wb) w at hw; omega) h
 
+/--
+@isnad1 id=mem.2h8v.s10.fdb6d5501eb8 from=translated src=- shape=b6061bf3 vocab=f09d17ad
+-/
 theorem baseStage_strictlyBelow (f : A R β →ₗ[R] A R β)
     (hf : ∀ n p,p∈below wb n → f p∈below wb n)
     {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)} (hz : z∈TensorGrading.strictlyBelow wa wb n) :
@@ -239,6 +308,9 @@ theorem baseStage_strictlyBelow (f : A R β →ₗ[R] A R β)
   have h := below_mul (homogeneous_below (fiberIn_homogeneous wa wb (word_mem (R:=R) u rfl))) hb
   exact space_mono (by intro w hw; change degree wa u+degree wb v<n at hn; change degree (Sum.elim wa wb) w≤degree wa u+degree wb v at hw; omega) h
 
+/--
+@isnad1 id=mem.2h9v.s11.248bf525db4b from=translated src=- shape=5b41afe3 vocab=ffff2cc5
+-/
 theorem baseStage_difference_above (f g : A R β →ₗ[R] A R β)
     (hfg : ∀ n p,p∈homogeneous wb n → f p-g p∈above wb (n+1))
     {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)} (hz : z∈TensorGrading.homogeneous wa wb n) :
@@ -252,6 +324,9 @@ theorem baseStage_difference_above (f g : A R β →ₗ[R] A R β)
     (baseIn_above wa wb (hfg _ _ (word_mem v rfl)))
   simpa only [← Nat.add_assoc,hn] using h
 
+/--
+@isnad1 id=mem.2h9v.s11.b7e543b20b82 from=translated src=- shape=993bf8c5 vocab=bd3b4a49
+-/
 theorem baseStage_difference_below (f g : A R β →ₗ[R] A R β)
     (hfg : ∀ n p,p∈homogeneous wb n → f p-g p∈strictlyBelow wb n)
     {n : ℕ} {z : V (R:=R) (α:=α) (β:=β)} (hz : z∈TensorGrading.homogeneous wa wb n) :
@@ -268,6 +343,9 @@ theorem baseStage_difference_below (f g : A R β →ₗ[R] A R β)
 def iterated (δ : β → α → A R α) (f : A R β →ₗ[R] A R β) :
     A R (Sum α β) →ₗ[R] A R (Sum α β) := (baseStage f).comp (normalize δ)
 
+/--
+@isnad1 id=and.7h11v.s11.831b2a1a905e from=translated src=- shape=b23ccc37 vocab=a809b271
+-/
 theorem iterated_comparison_above (f g : A R β →ₗ[R] A R β)
     (hg : ∀ n p,p∈homogeneous wb n → g p∈homogeneous wb n)
     (hf : ∀ n p,p∈above wb n → f p∈above wb n)
@@ -290,6 +368,9 @@ theorem iterated_comparison_above (f g : A R β →ₗ[R] A R β)
   rw [he]
   exact (above (Sum.elim wa wb) (n+1)).add_mem hf1 hfg1
 
+/--
+@isnad1 id=and.7h11v.s11.274c907f4fb3 from=translated src=- shape=047528fd vocab=a33ff604
+-/
 theorem iterated_comparison_below (f g : A R β →ₗ[R] A R β)
     (hg : ∀ n p,p∈homogeneous wb n → g p∈homogeneous wb n)
     (hf : ∀ n p,p∈below wb n → f p∈below wb n)
@@ -312,6 +393,9 @@ theorem iterated_comparison_below (f g : A R β →ₗ[R] A R β)
   rw [he]
   exact (strictlyBelow (Sum.elim wa wb) n).add_mem hf1 hfg1
 
+/--
+@isnad1 id=mem.3h9v.s10.fdbd77551852 from=translated src=- shape=8a9d0a30 vocab=349b73ab
+-/
 theorem iterated_above (f : A R β →ₗ[R] A R β)
     (hf : ∀ n p,p∈above wb n → f p∈above wb n)
     (hδ : ∀ b a,δ b a∈above wa (wb b+wa a))
@@ -332,6 +416,9 @@ theorem eq_zero_of_homogeneous_above (wt : α → ℕ) (n : ℕ) {p : A R α}
   · exact coeff_support hq w (by omega)
   · exact coeff_support hp w hw
 
+/--
+@isnad1 id=and.5h9v.s11.f86f8bbdc4b3 from=translated src=- shape=839aaa65 vocab=4f48b283
+-/
 theorem count_transfer (wt : α → ℕ) (S C T : A R α →ₗ[R] A R α)
     (n : ℕ) (p e : A R α)
     (hC : C p∈homogeneous wt n)
@@ -355,7 +442,13 @@ namespace AlphabetTransport
 open AssociativeElimination WordGrading
 variable {R α β : Type*} [CommRing R]
 def map (e : α → β) : A R α →ₐ[R] A R β := lift (fun a => atom (e a))
+/--
+@isnad1 id=eq.0h5v.s7.ccde1afa022b from=translated src=- shape=53a5b820 vocab=8563d268
+-/
 @[simp] theorem map_atom (e : α → β) (a : α) : map (R:=R) e (atom a)=atom (e a) := lift_atom _ _
+/--
+@isnad1 id=eq.0h5v.s8.4b92f6bf4be8 from=translated src=- shape=5b277276 vocab=37baea45
+-/
 theorem map_inverse (e : α ≃ β) (p : A R α) : map e.symm (map e p)=p := by
   have h : (map (R:=R) e.symm).comp (map e)=AlgHom.id R (A R α) := by
     apply hom_ext
@@ -363,6 +456,9 @@ theorem map_inverse (e : α ≃ β) (p : A R α) : map e.symm (map e p)=p := by
     simp
   exact AlgHom.congr_fun h p
 
+/--
+@isnad1 id=mem.2h8v.s9.ed9eeddc5214 from=translated src=- shape=4c474c56 vocab=b58b1322
+-/
 theorem map_homogeneous (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
     (he : ∀ a,wb (e a)=wa a) {n : ℕ} {p : A R α} (hp : p∈homogeneous wa n) :
     map e p∈homogeneous wb n := by
@@ -371,6 +467,9 @@ theorem map_homogeneous (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
   rw [map_atom]
   exact word_mem (FreeMonoid.of (e a)) (by simp [he])
 
+/--
+@isnad1 id=mem.2h8v.s9.242784fbdc4d from=translated src=- shape=4c474c56 vocab=3f09dd22
+-/
 theorem map_above (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
     (he : ∀ a,wb (e a)=wa a) {n : ℕ} {p : A R α} (hp : p∈above wa n) :
     map e p∈above wb n := by
@@ -379,6 +478,9 @@ theorem map_above (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
   rw [map_atom]
   exact word_mem (FreeMonoid.of (e a)) (by simp [he])
 
+/--
+@isnad1 id=mem.2h8v.s9.743d27ed9159 from=translated src=- shape=4c474c56 vocab=0d75f30f
+-/
 theorem map_below (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
     (he : ∀ a,wb (e a)=wa a) {n : ℕ} {p : A R α} (hp : p∈below wa n) :
     map e p∈below wb n := by
@@ -387,6 +489,9 @@ theorem map_below (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
   rw [map_atom]
   exact word_mem (FreeMonoid.of (e a)) (by simp [he])
 
+/--
+@isnad1 id=mem.2h8v.s9.f29585c7b543 from=translated src=- shape=4c474c56 vocab=8b1c4aa0
+-/
 theorem map_strictlyBelow (e : α → β) (wa : α → ℕ) (wb : β → ℕ)
     (he : ∀ a,wb (e a)=wa a) {n : ℕ} {p : A R α} (hp : p∈strictlyBelow wa n) :
     map e p∈strictlyBelow wb n := by
@@ -418,18 +523,30 @@ def fc : F → ℕ | 1 => 1 | _ => 0
 def bc : B → ℕ := fun _ => 0
 def count : E → ℕ := Sum.elim fc bc
 
+/--
+@isnad1 id=eq.0h1v.s3.940f81b980db from=translated src=- shape=7718e021 vocab=22b3478c
+-/
 theorem count_toOld (s : E) : CountTables.baseCount (toOld s)=count s := by
   cases s with
   | inl a => fin_cases a <;> rfl
   | inr a => rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.7c07c63c771b from=translated src=- shape=7718e021 vocab=37c935de
+-/
 theorem count_fromOld (a : Old) : count (fromOld a)=CountTables.baseCount a := by
   fin_cases a <;> rfl
 
 def outward : A K E →ₐ[K] A K Old := AlphabetTransport.map toOld
 def inward : A K Old →ₐ[K] A K E := AlphabetTransport.map fromOld
+/--
+@isnad1 id=eq.0h1v.s9.495d599e7d3e from=translated src=- shape=4bd89fc6 vocab=88f84c15
+-/
 @[simp] theorem outward_inward (p : A K Old) : outward (inward p)=p :=
   AlphabetTransport.map_inverse equiv.symm p
+/--
+@isnad1 id=eq.0h1v.s9.7f19de92fba7 from=translated src=- shape=4bd89fc6 vocab=88f84c15
+-/
 @[simp] theorem inward_outward (p : A K E) : inward (outward p)=p :=
   AlphabetTransport.map_inverse equiv p
 
@@ -446,21 +563,39 @@ def higher (_ : B) : F → A K F
   | _ => 0
 def source (b : B) (a : F) := common b a+higher b a
 
+/--
+@isnad1 id=mem.0h0v.s7.e25ef37e0a6e from=translated src=- shape=d8bcab5c vocab=75d89ce3
+-/
 theorem H_homo : H∈homogeneous fc 0 := word_mem (FreeMonoid.of 0) rfl
+/--
+@isnad1 id=mem.0h0v.s7.6ab9e41c769f from=translated src=- shape=d8bcab5c vocab=0577473f
+-/
 theorem U_homo : U∈homogeneous fc 1 := word_mem (FreeMonoid.of 1) rfl
+/--
+@isnad1 id=mem.0h0v.s7.47cbcd84043a from=translated src=- shape=d8bcab5c vocab=c6a1ccfe
+-/
 theorem V_homo : V∈homogeneous fc 0 := word_mem (FreeMonoid.of 2) rfl
+/--
+@isnad1 id=mem.2h4v.s9.884b682e878c from=translated src=- shape=d4bec97f vocab=529cdcd0
+-/
 theorem bracket_homo {n m : ℕ} {p q : A K F}
     (hp : p∈homogeneous fc n) (hq : q∈homogeneous fc m) :
     bracket p q∈homogeneous fc (n+m) := by
   apply (homogeneous fc (n+m)).sub_mem (homogeneous_mul hp hq)
   simpa only [Nat.add_comm] using homogeneous_mul hq hp
 
+/--
+@isnad1 id=mem.0h2v.s8.cf51d5be6a4e from=translated src=- shape=ac841708 vocab=b6b17971
+-/
 theorem common_homo (b : B) (a : F) : common b a∈homogeneous fc (bc b+fc a) := by
   fin_cases a
   · exact bracket_homo H_homo V_homo
   · exact bracket_homo ((homogeneous fc 0).add_mem H_homo V_homo) U_homo
   · exact bracket_homo H_homo V_homo
 
+/--
+@isnad1 id=mem.0h2v.s8.6d68d83bba94 from=translated src=- shape=da1b7501 vocab=3da2e3a9
+-/
 theorem higher_homo (b : B) (a : F) : higher b a∈homogeneous fc (bc b+fc a+2) := by
   fin_cases a
   · have h := bracket_homo (bracket_homo H_homo U_homo) U_homo
@@ -469,9 +604,15 @@ theorem higher_homo (b : B) (a : F) : higher b a∈homogeneous fc (bc b+fc a+2) 
   · have h := bracket_homo (bracket_homo V_homo U_homo) U_homo
     exact h
 
+/--
+@isnad1 id=mem.0h2v.s8.f248cb8f0472 from=translated src=- shape=ac841708 vocab=bf816da3
+-/
 theorem source_above (b : B) (a : F) : source b a∈above fc (bc b+fc a) := by
   apply (above fc _).add_mem (homogeneous_above (common_homo b a))
   exact space_mono (by intro w hw; change degree fc w=bc b+fc a+2 at hw; omega) (higher_homo b a)
+/--
+@isnad1 id=mem.0h2v.s8.480dbda5283d from=translated src=- shape=7b13c01f vocab=681809f0
+-/
 theorem source_difference (b : B) (a : F) : source b a-common b a∈above fc (bc b+fc a+1) := by
   rw [source,add_sub_cancel_left]
   exact space_mono (by intro w hw; change degree fc w=bc b+fc a+2 at hw; omega) (higher_homo b a)
@@ -479,6 +620,9 @@ theorem source_difference (b : B) (a : F) : source b a-common b a∈above fc (bc
 def order (δ : B → F → A K F) : A K Old →ₗ[K] A K Old :=
   outward.toLinearMap.comp ((ordered δ).comp inward.toLinearMap)
 
+/--
+@isnad1 id=mem.1h2v.s9.8ba145b7d9ea from=translated src=- shape=b3663640 vocab=79dc768b
+-/
 theorem order_common_homogeneous (n : ℕ) (p : A K Old)
     (hp : p∈homogeneous CountTables.baseCount n) : order common p∈homogeneous CountTables.baseCount n := by
   apply AlphabetTransport.map_homogeneous toOld count _ count_toOld
@@ -486,6 +630,9 @@ theorem order_common_homogeneous (n : ℕ) (p : A K Old)
   apply normalize_homogeneous fc bc common_homo
   exact AlphabetTransport.map_homogeneous fromOld _ count count_fromOld hp
 
+/--
+@isnad1 id=mem.1h2v.s9.358b9aa29d4c from=translated src=- shape=b3663640 vocab=8db2aa7f
+-/
 theorem order_source_above (n : ℕ) (p : A K Old)
     (hp : p∈above CountTables.baseCount n) : order source p∈above CountTables.baseCount n := by
   apply AlphabetTransport.map_above toOld count _ count_toOld
@@ -493,6 +640,9 @@ theorem order_source_above (n : ℕ) (p : A K Old)
   apply normalize_above fc bc source_above
   exact AlphabetTransport.map_above fromOld _ count count_fromOld hp
 
+/--
+@isnad1 id=mem.1h2v.s10.ed35a1d42b5c from=translated src=- shape=4bc95955 vocab=36cf1c40
+-/
 theorem order_difference (n : ℕ) (p : A K Old)
     (hp : p∈homogeneous CountTables.baseCount n) :
     order source p-order common p∈above CountTables.baseCount (n+1) := by
@@ -502,6 +652,9 @@ theorem order_difference (n : ℕ) (p : A K Old)
   exact (ordered_comparison_above fc bc common_homo source_above source_difference
     (AlphabetTransport.map_homogeneous fromOld _ count count_fromOld hp)).2
 
+/--
+@isnad1 id=mem.1h2v.s9.b0a7626f710f from=translated src=- shape=b3663640 vocab=0ca4ad74
+-/
 theorem order_common_below (n : ℕ) (p : A K Old)
     (hp : p∈below CountTables.baseCount n) : order common p∈below CountTables.baseCount n := by
   apply map_space (order common) _ ?_ hp
@@ -519,12 +672,18 @@ def S : A K E →ₗ[K] A K E := iterated CountTables.source (SecondStage.order 
 def C : A K E →ₗ[K] A K E := iterated CountTables.common (SecondStage.order SecondStage.common)
 def T : A K E →ₗ[K] A K E := iterated CountTables.target (SecondStage.order SecondStage.common)
 
+/--
+@isnad1 id=and.1h2v.s10.6391c8a1e218 from=translated src=- shape=fdf52f7d vocab=2127258d
+-/
 theorem source_comparison {n : ℕ} {p : A K E} (hp : p∈homogeneous count n) :
     C p∈homogeneous count n ∧ S p-C p∈above count (n+1) :=
   iterated_comparison_above CountTables.fiberCount CountTables.baseCount _ _
     SecondStage.order_common_homogeneous SecondStage.order_source_above SecondStage.order_difference
     CountTables.common_homo CountTables.source_above CountTables.source_difference hp
 
+/--
+@isnad1 id=and.1h2v.s10.352aa3689fae from=translated src=- shape=66301e30 vocab=37dff935
+-/
 theorem target_comparison {n : ℕ} {p : A K E} (hp : p∈homogeneous count n) :
     C p∈homogeneous count n ∧ T p-C p∈strictlyBelow count n := by
   apply iterated_comparison_below CountTables.fiberCount CountTables.baseCount _ _
@@ -534,10 +693,16 @@ theorem target_comparison {n : ℕ} {p : A K E} (hp : p∈homogeneous count n) :
   rw [sub_self]
   exact (strictlyBelow CountTables.baseCount _).zero_mem
 
+/--
+@isnad1 id=mem.1h2v.s9.b968072df91c from=translated src=- shape=6c23d2d9 vocab=8ea9aae8
+-/
 theorem source_above {n : ℕ} {p : A K E} (hp : p∈above count n) : S p∈above count n :=
   iterated_above CountTables.fiberCount CountTables.baseCount _ SecondStage.order_source_above
     CountTables.source_above hp
 
+/--
+@isnad1 id=and.3h3v.s11.4ba51fc46b9b from=translated src=- shape=4d5de1a9 vocab=b9375594
+-/
 theorem transfer (n : ℕ) (p e : A K E) (hp : p∈homogeneous count n)
     (he : e∈above count (n+1)) (hzero : S (p+e)=0) :
     C p=0 ∧ T p∈strictlyBelow count n := by
@@ -551,6 +716,9 @@ open scoped TensorProduct
 variable {R α β U : Type*} [CommRing R] [Ring U] [Algebra R U]
 variable (f : A R α →ₐ[R] U) (g : A R β →ₐ[R] U)
 
+/--
+@isnad1 id=eq.0h7v.s9.edcd57bb7365 from=translated src=- shape=1d0a2726 vocab=4fae9166
+-/
 @[simp] theorem evaluate_fiber (p : A R α) : evaluate f g (fiberIn p)=f p := by
   have h : (evaluate f g).comp fiberIn=f := by
     apply hom_ext
@@ -558,6 +726,9 @@ variable (f : A R α →ₐ[R] U) (g : A R β →ₐ[R] U)
     simp [evaluate,fiberIn]
   exact AlgHom.congr_fun h p
 
+/--
+@isnad1 id=eq.0h7v.s9.fb84bccda059 from=translated src=- shape=0bf5722e vocab=7c688316
+-/
 @[simp] theorem evaluate_base (p : A R β) : evaluate f g (baseIn p)=g p := by
   have h : (evaluate f g).comp baseIn=g := by
     apply hom_ext
@@ -565,6 +736,9 @@ variable (f : A R α →ₐ[R] U) (g : A R β →ₐ[R] U)
     simp [evaluate,baseIn]
   exact AlgHom.congr_fun h p
 
+/--
+@isnad1 id=eq.0h7v.s10.1452e70c4e6a from=translated src=- shape=9f4deddc vocab=896c5f0a
+-/
 theorem evaluate_merge (z : V (R:=R) (α:=α) (β:=β)) :
     evaluate f g (merge z)=interpret f g z := by
   have h : (evaluate f g).toLinearMap.comp merge=interpret f g := by
@@ -573,12 +747,18 @@ theorem evaluate_merge (z : V (R:=R) (α:=α) (β:=β)) :
     simp
   exact LinearMap.congr_fun h z
 
+/--
+@isnad1 id=eq.1h8v.s10.a5f81ed232e5 from=translated src=- shape=bd648f4f vocab=1cc419ea
+-/
 theorem evaluate_ordered (δ : β → α → A R α)
     (hδ : ∀ b a,g (atom b)*f (atom a)-f (atom a)*g (atom b)=f (δ b a))
     (p : A R (Sum α β)) : evaluate f g (ordered δ p)=evaluate f g p := by
   change evaluate f g (merge (normalize δ p))=_
   rw [evaluate_merge,interpret_normalize δ f g hδ]
 
+/--
+@isnad1 id=eq.1h8v.s10.e8b356dd99f9 from=translated src=- shape=2ff30dac vocab=428cae4f
+-/
 theorem evaluate_baseStage (s : A R β →ₗ[R] A R β) (hs : ∀ q,g (s q)=g q)
     (z : V (R:=R) (α:=α) (β:=β)) : evaluate f g (baseStage s z)=interpret f g z := by
   have h : (evaluate f g).toLinearMap.comp (baseStage s)=interpret f g := by
@@ -588,6 +768,9 @@ theorem evaluate_baseStage (s : A R β →ₗ[R] A R β) (hs : ∀ q,g (s q)=g q
       evaluate_fiber,evaluate_base,hs,interpret_tmul]
   exact LinearMap.congr_fun h z
 
+/--
+@isnad1 id=eq.2h9v.s10.000df4200370 from=translated src=- shape=0b6a782c vocab=aad286ca
+-/
 theorem evaluate_iterated (δ : β → α → A R α)
     (hδ : ∀ b a,g (atom b)*f (atom a)-f (atom a)*g (atom b)=f (δ b a))
     (s : A R β →ₗ[R] A R β) (hs : ∀ q,g (s q)=g q)
@@ -605,12 +788,18 @@ abbrev Env (α : Type*) := GenericBraid.Env K α
 open scoped TensorProduct
 
 def augment (α : Type*) : Env α →ₐ[K] K := UniversalEnvelopingAlgebra.lift K 0
+/--
+@isnad1 id=charp.0h1v.s7.cbc18573caca from=translated src=- shape=aa4b1c99 vocab=1534b2ec
+-/
 instance envCharP (α : Type*) : CharP (Env α) 2 :=
   charP_of_injective_algebraMap (R:=K) (by
     intro a b h
     have hh := congrArg (augment α) h
     simpa only [AlgHom.commutes,Algebra.algebraMap_self,RingHom.id_apply] using hh) 2
 
+/--
+@isnad1 id=injectiv.0h1v.s9.d900af1bdbd6 from=translated src=- shape=e2c97664 vocab=d76fbe0a
+-/
 theorem fiberIn_injective (α : Type*) [DecidableEq α] :
     Function.Injective (GenericBraid.fiberIn (R:=K) (α:=α)) := by
   intro p q h
@@ -622,41 +811,68 @@ theorem fiberIn_injective (α : Type*) [DecidableEq α] :
   simpa only [TensorProduct.map_tmul,LinearMap.id_apply,AlgHom.toLinearMap_apply,map_one,
     TensorProduct.rid_tmul,one_smul] using hh'
 
+/--
+@isnad1 id=eq.0h2v.s11.d197d23790d3 from=translated src=- shape=ce81b956 vocab=ab63a05e
+-/
 @[simp] theorem fiberIn_atom {α : Type*} [DecidableEq α] (a : α) :
     GenericBraid.fiberIn (atom a : A K α)=
       UniversalEnvelopingAlgebra.ι K (GenericBraid.t none (some a)) := by
   simp [GenericBraid.fiberIn]
 
+/--
+@isnad1 id=eq.0h2v.s12.60b43bd19b66 from=translated src=- shape=5aa02a06 vocab=bec77d1f
+-/
 @[simp] theorem baseIn_ι {α : Type*} [DecidableEq α] (g : GenericBraid.T K α) :
     GenericBraid.baseIn (UniversalEnvelopingAlgebra.ι K g)=
       UniversalEnvelopingAlgebra.ι K (GenericBraid.baseLie g) := by
   simp [GenericBraid.baseIn]
 
 def chord {α : Type*} (i j : α) : Env α := UniversalEnvelopingAlgebra.ι K (GenericBraid.t i j)
+/--
+@isnad1 id=eq.0h2v.s7.b0fe481cab50 from=translated src=- shape=0b3cc4f3 vocab=b9f97e2a
+-/
 @[simp] theorem chord_self {α : Type*} (i : α) : chord i i=0 := by simp [chord]
+/--
+@isnad1 id=eq.0h3v.s4.95a14a47cdd0 from=translated src=- shape=1cee542d vocab=842a358b
+-/
 theorem chord_comm {α : Type*} (i j : α) : chord i j=chord j i := by
   rw [chord,GenericBraid.t_comm]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.0962a280788e from=translated src=- shape=36421b50 vocab=e26ab345
+-/
 @[simp] theorem base_chord {α : Type*} [DecidableEq α] (i j : α) :
     GenericBraid.baseIn (chord i j)=chord (some i) (some j) := by
   change GenericBraid.baseIn (UniversalEnvelopingAlgebra.ι K (GenericBraid.t i j))=_
   rw [baseIn_ι,GenericBraid.baseLie_t]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.fc390385ae0e from=translated src=- shape=1c487b18 vocab=cbb8d7ae
+-/
 @[simp] theorem fiber_chord {α : Type*} [DecidableEq α] (a : α) :
     GenericBraid.fiberIn (atom a : A K α)=chord none (some a) := fiberIn_atom a
 
+/--
+@isnad1 id=eq.0h3v.s9.6547f20812dc from=translated src=- shape=0cf482c0 vocab=f5bb8738
+-/
 theorem base_fiber_left {α : Type*} [DecidableEq α] (i j : α) :
     ⁅chord (some i) (some j),chord none (some i)⁆=
     ⁅chord none (some i),chord none (some j)⁆ := by
   simp only [chord,← LieHom.map_lie,GenericBraid.t_base_fiber_left]
 
+/--
+@isnad1 id=eq.0h3v.s9.d26202a2033c from=translated src=- shape=e3cc51dc vocab=f5bb8738
+-/
 theorem base_fiber_right {α : Type*} [DecidableEq α] (i j : α) :
     ⁅chord (some i) (some j),chord none (some j)⁆=
     ⁅chord none (some j),chord none (some i)⁆ := by
   rw [chord_comm (some i) (some j)]
   exact base_fiber_left j i
 
+/--
+@isnad1 id=eq.2h4v.s9.782ef0e394f9 from=translated src=- shape=fe8526e4 vocab=f5bb8738
+-/
 theorem base_fiber_other {α : Type*} [DecidableEq α] (i j k : α) (hi : k≠i) (hj : k≠j) :
     ⁅chord (some i) (some j),chord none (some k)⁆=0 := by
   rw [chord,chord,← LieHom.map_lie]
@@ -669,6 +885,9 @@ namespace AssociativeAction
 open AssociativeElimination
 attribute [local instance] LieRing.ofAssociativeRing
 variable {R α U : Type*} [CommRing R] [Ring U] [Algebra R U]
+/--
+@isnad1 id=eq.1h7v.s9.3c7109a78cfd from=translated src=- shape=271a3b56 vocab=c7b9cab6
+-/
 theorem of_atoms (f : A R α →ₐ[R] U) (u : U) (d : α → A R α)
     (h : ∀ a,⁅u,f (atom a)⁆=f (d a)) (p : A R α) :
     ⁅u,f p⁆=f (deriv d p) := by
@@ -690,6 +909,9 @@ namespace SourceAlphabet
 open AssociativeElimination AlphabetTransport
 abbrev K := ZMod 2
 variable {α β : Type*}
+/--
+@isnad1 id=eq.1h5v.s9.ab7255e6d773 from=translated src=- shape=8111a1be vocab=936bc643
+-/
 theorem map_cancel (f : α → β) (g : β → α) (he : ∀ a,g (f a)=a) (p : A K α) :
     map g (map f p)=p := by
   have h : (map (R:=K) g).comp (map f)=AlgHom.id K (A K α) := by
@@ -698,6 +920,9 @@ theorem map_cancel (f : α → β) (g : β → α) (he : ∀ a,g (f a)=a) (p : A
     simp [he]
   exact AlgHom.congr_fun h p
 
+/--
+@isnad1 id=injectiv.1h4v.s8.69f2d62181df from=translated src=- shape=3aba03b1 vocab=70dcab5f
+-/
 theorem map_injective (f : α → β) (g : β → α) (he : ∀ a,g (f a)=a) :
     Function.Injective (map (R:=K) f) :=
   Function.LeftInverse.injective (map_cancel f g he)
@@ -719,6 +944,9 @@ def letter3 : CountTables.G ≃ Option (Fin 2) where
     | none => rfl
     | some i => fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h0v.s9.e7927e7c8c39 from=translated src=- shape=2f171537 vocab=0655336a
+-/
 theorem realize_factor : (map (R:=K) letter3).comp CountTables.realize=
     RestrictedAlphabet.substitution.comp (map letter5) := by
   apply hom_ext
@@ -728,6 +956,9 @@ theorem realize_factor : (map (R:=K) letter3).comp CountTables.realize=
     RestrictedAlphabet.y,
     Ring.lie_def]
 
+/--
+@isnad1 id=injectiv.0h0v.s8.1f04b47a498c from=translated src=- shape=ee835b2a vocab=12251c99
+-/
 theorem realize_injective : Function.Injective CountTables.realize := by
   intro p q h
   apply (map_injective letter5 letter5.symm letter5.symm_apply_apply)
@@ -760,12 +991,18 @@ def smallLetters : SecondStage.F ≃ RestrictedAlphabet.Letter Unit where
 
 def secondRealize : A K SecondStage.F →ₐ[K] A K S1 :=
   (map swap).comp (RestrictedAlphabet.substitution.comp (map smallLetters))
+/--
+@isnad1 id=injectiv.0h0v.s8.6bd7b50c5da4 from=translated src=- shape=ee835b2a vocab=fab1369b
+-/
 theorem secondRealize_injective : Function.Injective secondRealize :=
   (SourceAlphabet.map_injective swap swap.symm swap.symm_apply_apply).comp
     (RestrictedAlphabet.injective.comp
       (SourceAlphabet.map_injective smallLetters smallLetters.symm smallLetters.symm_apply_apply))
 
 def square : A K Unit →ₐ[K] A K Unit := lift (fun _ => atom ()*atom ())
+/--
+@isnad1 id=injectiv.0h0v.s8.812dc7c2e91c from=translated src=- shape=638cf886 vocab=16237404
+-/
 theorem square_injective : Function.Injective square := by
   intro p q h
   apply SourceAlphabet.map_injective (fun _ : Unit => (0 : SecondStage.F)) (fun _ => ())
@@ -783,6 +1020,9 @@ theorem square_injective : Function.Injective square := by
   rw [hp,hq,h]
 
 def tail : A K Unit →ₐ[K] Env S1 := GenericBraid.fiberIn.comp square
+/--
+@isnad1 id=injectiv.0h0v.s9.6bc111ebb868 from=translated src=- shape=5f8cdfc3 vocab=2cd21aa2
+-/
 theorem tail_injective : Function.Injective tail := fiberIn_injective Unit|>.comp square_injective
 
 def secondFiber : A K SecondStage.F →ₐ[K] Env S2 := GenericBraid.fiberIn.comp secondRealize
@@ -790,9 +1030,15 @@ def secondBase : A K Unit →ₐ[K] Env S2 := GenericBraid.baseIn.comp tail
 
 def secondNormal : (A K SecondStage.F ⊗[K] A K Unit) →ₗ[K] Env S2 :=
   GenericBraid.normal.comp (TensorProduct.map secondRealize.toLinearMap tail.toLinearMap)
+/--
+@isnad1 id=eq.0h2v.s11.00e828e5246e from=translated src=- shape=11e3e2d4 vocab=7f84e055
+-/
 @[simp] theorem secondNormal_tmul (p : A K SecondStage.F) (q : A K Unit) :
     secondNormal (p⊗ₜ[K]q)=secondFiber p*secondBase q := rfl
 
+/--
+@isnad1 id=injectiv.0h0v.s11.765075ac18d3 from=translated src=- shape=af63f958 vocab=ff44e206
+-/
 theorem secondNormal_injective : Function.Injective secondNormal :=
   GenericBraid.normal_injective.comp (TensorProduct.map_injective_of_flat_flat
     secondRealize.toLinearMap tail.toLinearMap secondRealize_injective tail_injective)
@@ -813,6 +1059,9 @@ def topFiber : A K CountTables.F →ₐ[K] Env S3 := GenericBraid.fiberIn.comp t
 def tripleNormal : (A K CountTables.F ⊗[K] (A K SecondStage.F ⊗[K] A K Unit)) →ₗ[K] Env S3 :=
   GenericBraid.normal.comp (TensorProduct.map topRealize.toLinearMap secondNormal)
 
+/--
+@isnad1 id=injectiv.0h0v.s12.eff5c7aaaf55 from=translated src=- shape=b300f4af vocab=02d62953
+-/
 theorem tripleNormal_injective : Function.Injective tripleNormal :=
   GenericBraid.normal_injective.comp (TensorProduct.map_injective_of_flat_flat
     topRealize.toLinearMap secondNormal
@@ -824,8 +1073,14 @@ end SourceModel
 namespace CharTwoAction
 attribute [local instance] LieRing.ofAssociativeRing
 variable {U : Type*} [Ring U] [CharP U 2]
+/--
+@isnad1 id=eq.0h3v.s6.5bb6c957462f from=translated src=- shape=c946dba7 vocab=8f54631e
+-/
 theorem symm (u v : U) : ⁅u,v⁆=⁅v,u⁆ := by
   simp only [Ring.lie_def,CharTwo.sub_eq_add,add_comm]
+/--
+@isnad1 id=eq.0h3v.s6.8b3ef69ee62f from=translated src=- shape=a83307b9 vocab=b5e1554a
+-/
 theorem square (u v : U) : ⁅u*u,v⁆=⁅u,⁅u,v⁆⁆ := by
   simp only [Ring.lie_def,CharTwo.sub_eq_add,mul_add,add_mul,mul_assoc]
   have h : u*(u*v)+v*(u*u)+(u*(v*u)+u*(v*u))=
@@ -850,24 +1105,48 @@ def rawFiber : A K CountTables.G →ₐ[K] Env S3 :=
 def baseX (i : Fin 2) : Env S3 := GenericBraid.baseIn (oldX i)
 def baseU : Env S3 := GenericBraid.baseIn oldU
 
+/--
+@isnad1 id=eq.0h1v.s9.d02ce1463a7d from=translated src=- shape=96f6336d vocab=7933442a
+-/
 @[simp] theorem rawFiber_atom (a : CountTables.G) :
     rawFiber (atom a)=SourceEnveloping.chord none (some (topLetters a)) := by
   change GenericBraid.fiberIn (AlphabetTransport.map topLetters (atom a))=_
   rw [map_atom]
   exact fiber_chord _
+/--
+@isnad1 id=eq.0h0v.s9.2827122d11ba from=translated src=- shape=bd46511c vocab=f083a15d
+-/
 @[simp] theorem rawFiber_X : rawFiber CountTables.X=SourceEnveloping.chord none (some root) := by
   simp [CountTables.X,topLetters,root]
+/--
+@isnad1 id=eq.0h1v.s9.e14e0cd8afc8 from=translated src=- shape=f2df24aa vocab=d1883671
+-/
 @[simp] theorem rawFiber_Y (i : Fin 2) :
     rawFiber (CountTables.Y i)=SourceEnveloping.chord none (some (if i=0 then one else two)) := by
   fin_cases i <;> simp [CountTables.Y,topLetters,one,two]
+/--
+@isnad1 id=eq.0h1v.s11.856bb9bd2050 from=translated src=- shape=9126b7b5 vocab=8366dc6d
+-/
 @[simp] theorem rawFiber_C (i : Fin 2) :
     rawFiber (CountTables.C i)=⁅rawFiber CountTables.X,rawFiber (CountTables.Y i)⁆ := by
   simp [CountTables.C,CountTables.bracket,Ring.lie_def]
 
+/--
+@isnad1 id=eq.0h0v.s4.8f0b5f296b27 from=translated src=- shape=fd9a350e vocab=5b8f0293
+-/
 @[simp] theorem baseX_zero : baseX 0=SourceEnveloping.chord (some root) (some one) := by simp [baseX,oldX]
+/--
+@isnad1 id=eq.0h0v.s4.82bb0aef0432 from=translated src=- shape=fd9a350e vocab=4a9dbcea
+-/
 @[simp] theorem baseX_one : baseX 1=SourceEnveloping.chord (some root) (some two) := by simp [baseX,oldX]
+/--
+@isnad1 id=eq.0h0v.s3.4a68e6f13c07 from=translated src=- shape=d79151fd vocab=4bb17cec
+-/
 @[simp] theorem baseU_eq : baseU=SourceEnveloping.chord (some one) (some two) := by simp [baseU,oldU]
 
+/--
+@isnad1 id=eq.0h2v.s11.3adf2da42754 from=translated src=- shape=eb80f77d vocab=45830c0a
+-/
 theorem raw_delta_atoms (i : Fin 2) (a : CountTables.G) :
     ⁅baseX i,rawFiber (atom a)⁆=rawFiber (CountTables.δ i (atom a)) := by
   fin_cases i <;> fin_cases a <;>
@@ -879,11 +1158,17 @@ theorem raw_delta_atoms (i : Fin 2) (a : CountTables.G) :
   · exact base_fiber_other root two one (by decide) (by decide)
   · exact (base_fiber_right root two).trans (CharTwoAction.symm _ _)
 
+/--
+@isnad1 id=eq.0h2v.s11.ad12f3cfa853 from=translated src=- shape=14c36bb7 vocab=876af8e8
+-/
 theorem raw_delta (i : Fin 2) (p : A K CountTables.G) :
     ⁅baseX i,rawFiber p⁆=rawFiber (CountTables.δ i p) := by
   exact AssociativeAction.of_atoms rawFiber (baseX i) _
     (fun a => by simpa only [CountTables.δ,deriv_atom] using raw_delta_atoms i a) p
 
+/--
+@isnad1 id=eq.0h1v.s11.b8299edb9827 from=translated src=- shape=4c263388 vocab=d1e98cef
+-/
 theorem raw_epsilon_atoms (a : CountTables.G) :
     ⁅baseU,rawFiber (atom a)⁆=rawFiber (CountTables.ε (atom a)) := by
   fin_cases a <;>
@@ -892,6 +1177,9 @@ theorem raw_epsilon_atoms (a : CountTables.G) :
   · exact base_fiber_left one two
   · exact (base_fiber_right one two).trans (CharTwoAction.symm _ _)
 
+/--
+@isnad1 id=eq.0h1v.s11.5ee6d0342e45 from=translated src=- shape=317ccca4 vocab=68a1ac8e
+-/
 theorem raw_epsilon (p : A K CountTables.G) :
     ⁅baseU,rawFiber p⁆=rawFiber (CountTables.ε p) := by
   exact AssociativeAction.of_atoms rawFiber baseU _
@@ -904,6 +1192,9 @@ def oldBase : A K CountTables.B →ₐ[K] Env S2 := lift (fun b => match b with
   | _ => ⁅oldX 0,oldU⁆)
 def topBase : A K CountTables.B →ₐ[K] Env S3 := GenericBraid.baseIn.comp oldBase
 
+/--
+@isnad1 id=eq.0h2v.s11.29451f9afaf1 from=translated src=- shape=c289479c vocab=51983277
+-/
 theorem baseDeriv_action (b : CountTables.B) (p : A K CountTables.G) :
     ⁅topBase (atom b),rawFiber p⁆=rawFiber (CountTables.baseDeriv b p) := by
   fin_cases b
@@ -922,8 +1213,14 @@ theorem baseDeriv_action (b : CountTables.B) (p : A K CountTables.G) :
     change _=rawFiber (CountTables.δ 0 (CountTables.ε p)-CountTables.ε (CountTables.δ 0 p))
     rw [map_sub]
 
+/--
+@isnad1 id=eq.0h1v.s10.352137eb3c30 from=translated src=- shape=0f09c666 vocab=c7ea9b32
+-/
 theorem topFiber_eq (p : A K CountTables.F) : topFiber p=rawFiber (CountTables.realize p) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.4d710aa76b06 from=translated src=- shape=909e59b8 vocab=1c2f0683
+-/
 theorem top_action (b : CountTables.B) (a : CountTables.F) :
     topBase (atom b)*topFiber (atom a)-topFiber (atom a)*topBase (atom b)=
       topFiber (CountTables.source b a) := by
@@ -942,6 +1239,9 @@ def smallD : Module.End K (A K S1) := deriv (fun _ => ⁅smallX,smallY⁆)
 def squash : A K CountTables.G →ₐ[K] A K S1 := lift (fun a => match a with
   | 0 => smallX | 1 => smallY | _ => 0)
 
+/--
+@isnad1 id=eq.0h1v.s10.5c3ef8676f2c from=translated src=- shape=3127f85a vocab=45461c1e
+-/
 theorem squash_delta (p : A K CountTables.G) :
     squash (CountTables.δ 0 p)=smallD (squash p) := by
   induction p using QuadraticAlphabet.algebra_induction with
@@ -959,6 +1259,9 @@ theorem squash_delta (p : A K CountTables.G) :
 
 def smallIndex : SecondStage.F → CountTables.F | 0 => 0 | 1 => 1 | 2 => 3
 
+/--
+@isnad1 id=eq.0h0v.s9.3fd326d125b7 from=translated src=- shape=5a6a3d5e vocab=ee2343d5
+-/
 theorem secondRealize_factor : secondRealize=
     squash.comp (CountTables.realize.comp (map smallIndex)) := by
   apply hom_ext
@@ -968,6 +1271,9 @@ theorem secondRealize_factor : secondRealize=
       RestrictedAlphabet.y,smallIndex,CountTables.realize,CountTables.X,CountTables.Y,
       CountTables.C,CountTables.bracket,squash,smallX,smallY,Ring.lie_def]
 
+/--
+@isnad1 id=eq.0h1v.s8.97d11665a4ed from=translated src=- shape=907b2c48 vocab=da5e8ccf
+-/
 theorem small_source (a : SecondStage.F) :
     map smallIndex (SecondStage.source () a)=CountTables.source 0 (smallIndex a) := by
   fin_cases a <;>
@@ -975,6 +1281,9 @@ theorem small_source (a : SecondStage.F) :
       SecondStage.V,CountTables.source,CountTables.common,CountTables.higher,CountTables.R',
       CountTables.H,CountTables.U,CountTables.V,CountTables.Q,CountTables.bracket,smallIndex] <;> noncomm_ring
 
+/--
+@isnad1 id=eq.0h1v.s10.ae5b5e5e5dda from=translated src=- shape=bb8ba1af vocab=84aed045
+-/
 theorem second_realization (a : SecondStage.F) :
     smallD (smallD (secondRealize (atom a)))=secondRealize (SecondStage.source () a) := by
   have hf (p) := AlgHom.congr_fun secondRealize_factor p
@@ -986,6 +1295,9 @@ theorem second_realization (a : SecondStage.F) :
 def smallRaw : A K S1 →ₐ[K] Env S2 := GenericBraid.fiberIn
 def smallBase : Env S2 := SourceEnveloping.chord (some none) (some (some ()))
 
+/--
+@isnad1 id=eq.0h1v.s10.1b2d375f6fc6 from=translated src=- shape=12c68603 vocab=4fd7816c
+-/
 theorem small_action (p : A K S1) : ⁅smallBase,smallRaw p⁆=smallRaw (smallD p) := by
   apply AssociativeAction.of_atoms
   intro a
@@ -1000,10 +1312,16 @@ theorem small_action (p : A K S1) : ⁅smallBase,smallRaw p⁆=smallRaw (smallD 
     simpa only [smallBase,smallRaw,smallX,smallY,Ring.lie_def,map_sub,map_mul,fiber_chord] using
       base_fiber_right (none : S1) (some ())
 
+/--
+@isnad1 id=eq.0h0v.s9.cefab68e797c from=translated src=- shape=aa160db2 vocab=5ae353ad
+-/
 @[simp] theorem secondBase_atom : secondBase (atom ())=smallBase*smallBase := by
   simp only [secondBase,tail,square,AlgHom.comp_apply,lift_atom,map_mul,fiber_chord,base_chord]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.2a03821fdb0a from=translated src=- shape=1d6bd129 vocab=9dbbb250
+-/
 theorem second_action (b : SecondStage.B) (a : SecondStage.F) :
     secondBase (atom b)*secondFiber (atom a)-secondFiber (atom a)*secondBase (atom b)=
       secondFiber (SecondStage.source b a) := by
@@ -1014,28 +1332,49 @@ theorem second_action (b : SecondStage.B) (a : SecondStage.F) :
     smallRaw (secondRealize (SecondStage.source () a))
   rw [small_action,small_action,second_realization]
 
+/--
+@isnad1 id=eq.0h0v.s9.c22e588de0cd from=translated src=- shape=aa6128ab vocab=6612d019
+-/
 @[simp] theorem secondFiber_H : secondFiber (atom 0)=
     SourceEnveloping.chord none (some (some ()))*SourceEnveloping.chord none (some (some ())) := by
   simp only [secondFiber,secondRealize,AlgHom.comp_apply,map_atom,smallLetters,Equiv.coe_fn_mk]
   simp only [RestrictedAlphabet.substitution,lift_atom,RestrictedAlphabet.x,map_mul,map_atom,
     swap,Equiv.coe_fn_mk,fiber_chord]
+/--
+@isnad1 id=eq.0h0v.s9.d030d63e8faa from=translated src=- shape=6b708bf4 vocab=b45f921c
+-/
 @[simp] theorem secondFiber_U : secondFiber (atom 1)=SourceEnveloping.chord none (some none) := by
   simp only [secondFiber,secondRealize,AlgHom.comp_apply,map_atom,smallLetters,Equiv.coe_fn_mk]
   simp only [RestrictedAlphabet.substitution,lift_atom,RestrictedAlphabet.y,map_atom,
     swap,Equiv.coe_fn_mk,fiber_chord]
+/--
+@isnad1 id=eq.0h0v.s10.a3ed877dc4a1 from=translated src=- shape=56c4e093 vocab=29212b75
+-/
 @[simp] theorem secondFiber_V : secondFiber (atom 2)=
     ⁅SourceEnveloping.chord none (some (some ())),SourceEnveloping.chord none (some none)⁆ := by
   simp only [secondFiber,secondRealize,AlgHom.comp_apply,map_atom,smallLetters,Equiv.coe_fn_mk]
   simp only [RestrictedAlphabet.substitution,lift_atom,RestrictedAlphabet.x,RestrictedAlphabet.y,
     Ring.lie_def,map_sub,map_mul,map_atom,swap,Equiv.coe_fn_mk,fiber_chord]
 
+/--
+@isnad1 id=eq.0h0v.s4.f25acfb1e346 from=translated src=- shape=751e5260 vocab=805185f6
+-/
 theorem oldX_zero : oldX 0=smallBase := by
   exact SourceEnveloping.chord_comm _ _
+/--
+@isnad1 id=eq.0h0v.s5.f5f8a6755709 from=translated src=- shape=54101077 vocab=7a773c5f
+-/
 theorem oldX_one : oldX 1=SourceEnveloping.chord none (some (some ())) := by
   exact SourceEnveloping.chord_comm _ _
+/--
+@isnad1 id=eq.0h0v.s4.51ed7da85f51 from=translated src=- shape=6baf0a30 vocab=9483ada8
+-/
 theorem oldU_eq : oldU=SourceEnveloping.chord none (some none) := by
   exact SourceEnveloping.chord_comm _ _
 
+/--
+@isnad1 id=eq.0h0v.s9.7b4f6ba3bbb4 from=translated src=- shape=644d57ec vocab=6731c9a9
+-/
 theorem oldBase_factor : oldBase=
     (PolynomialOrdering.evaluate secondFiber secondBase).comp SecondStage.inward := by
   apply hom_ext
@@ -1052,6 +1391,9 @@ open scoped TensorProduct
 def normal2 : A K CountTables.B →ₗ[K] (A K SecondStage.F ⊗[K] A K Unit) :=
   (normalize SecondStage.source).comp SecondStage.inward.toLinearMap
 
+/--
+@isnad1 id=eq.0h1v.s11.ce28891e35fe from=translated src=- shape=7942d3e6 vocab=64e64449
+-/
 theorem normal2_correct (q : A K CountTables.B) : secondNormal (normal2 q)=oldBase q := by
   have h : secondNormal=interpret secondFiber secondBase := by
     apply TensorProduct.ext'
@@ -1066,10 +1408,16 @@ def normal3 : A K ExactCountOrdering.E →ₗ[K]
     (A K CountTables.F ⊗[K] (A K SecondStage.F ⊗[K] A K Unit)) :=
   (TensorProduct.map LinearMap.id normal2).comp (normalize CountTables.source)
 
+/--
+@isnad1 id=eq.0h2v.s13.061ecabb3a42 from=translated src=- shape=3918c060 vocab=7ba3f71e
+-/
 @[simp] theorem tripleNormal_tmul (p : A K CountTables.F)
     (z : A K SecondStage.F ⊗[K] A K Unit) :
     tripleNormal (p⊗ₜ[K]z)=topFiber p*GenericBraid.baseIn (secondNormal z) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s13.43d57d99a70b from=translated src=- shape=4f1df5e2 vocab=1d49bd60
+-/
 theorem normal3_correct (q : A K ExactCountOrdering.E) :
     tripleNormal (normal3 q)=evaluate topFiber topBase q := by
   have h : tripleNormal.comp (TensorProduct.map LinearMap.id normal2)=interpret topFiber topBase := by
@@ -1087,9 +1435,15 @@ def collect2 : (A K SecondStage.F ⊗[K] A K Unit) →ₗ[K] A K CountTables.B :
 def collect3 : (A K CountTables.F ⊗[K] (A K SecondStage.F ⊗[K] A K Unit)) →ₗ[K]
     A K ExactCountOrdering.E := merge.comp (TensorProduct.map LinearMap.id collect2)
 
+/--
+@isnad1 id=eq.0h1v.s11.dfaf547f0445 from=translated src=- shape=6c1c1aab vocab=8941daea
+-/
 theorem collect2_normal2 (q : A K CountTables.B) :
     collect2 (normal2 q)=SecondStage.order SecondStage.source q := rfl
 
+/--
+@isnad1 id=eq.0h1v.s13.eacd8563e2d8 from=translated src=- shape=75209468 vocab=19ea0cea
+-/
 theorem collect3_normal3 (q : A K ExactCountOrdering.E) :
     collect3 (normal3 q)=ExactCountOrdering.S q := by
   have h : collect3.comp (TensorProduct.map LinearMap.id normal2)=
@@ -1099,6 +1453,9 @@ theorem collect3_normal3 (q : A K ExactCountOrdering.E) :
     rfl
   exact LinearMap.congr_fun h (normalize CountTables.source q)
 
+/--
+@isnad1 id=eq.1h1v.s10.913920a47a75 from=translated src=- shape=f43d71a2 vocab=47714adb
+-/
 theorem source_zero (q : A K ExactCountOrdering.E)
     (hq : evaluate topFiber topBase q=0) : ExactCountOrdering.S q=0 := by
   have h : normal3 q=0 := by
@@ -1113,12 +1470,18 @@ namespace WeightedDeletion
 section
 open AssociativeElimination WordGrading
 variable {R α : Type*} [CommRing R]
+/--
+@isnad1 id=sublist.1h7v.s5.a4bbaf782ef7 from=translated src=- shape=8a334e48 vocab=620e410c
+-/
 theorem Step.sublist {κ : α → α → α → R} {r l : α} {s t : List α}
     (h : Step κ r l s t) : t.Sublist s := by
   induction h with
   | head l a s h => exact List.Sublist.cons _ (List.Sublist.refl _)
   | tail l a s t h ih => exact List.Sublist.cons_cons _ ih
 
+/--
+@isnad1 id=mem.2h9v.s9.87e244e4de32 from=translated src=- shape=c27579c4 vocab=3fbe6f81
+-/
 theorem op_above (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → wt a≤c)
     {n : ℕ} {p : A R α} (hp : p∈above wt n) : op κ l r p∈above wt (n-c) := by
@@ -1137,9 +1500,15 @@ theorem op_above (κ : α → α → α → R) (l r : α)
 variable {β : Type*}
 def action (κ : β → α → α → α → R) (l r : α) : A R β →ₐ[R] Module.End R (A R α) :=
   lift (fun b => op (κ b) l r)
+/--
+@isnad1 id=eq.0h7v.s9.1c4c4b277eca from=translated src=- shape=a612cea8 vocab=42eb8054
+-/
 @[simp] theorem action_atom (κ : β → α → α → α → R) (l r : α) (b : β) :
     action κ l r (atom b)=op (κ b) l r := lift_atom _ _
 
+/--
+@isnad1 id=mem.2h11v.s10.631b84a5fb25 from=translated src=- shape=361c3af4 vocab=27b92ef9
+-/
 theorem action_word_above (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → wt a≤cost b)
     (w : FreeMonoid β) {n : ℕ} {p : A R α} (hp : p∈above wt n) :
@@ -1152,6 +1521,9 @@ theorem action_word_above (κ : β → α → α → α → R) (l r : α)
     have h := op_above (κ b) l r wt (cost b) (hc b) ih
     simpa only [degree_mul,degree_of,Nat.sub_sub,Nat.add_comm] using h
 
+/--
+@isnad1 id=eq.2h10v.s9.8ade19d3e6aa from=translated src=- shape=60dd4e62 vocab=bebbb627
+-/
 theorem test_word_zero (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → wt a≤cost b)
     (w : FreeMonoid β) (s : FreeMonoid α) (hs : degree cost w<degree wt s) :
@@ -1165,6 +1537,9 @@ end
 
 open AssociativeElimination WordGrading
 variable {R α β : Type*} [CommRing R]
+/--
+@isnad1 id=eq.1h5v.s8.97f11a0941f5 from=translated src=- shape=2c14c909 vocab=b42cb553
+-/
 theorem linear_ext {M : Type*} [AddCommGroup M] [Module R M]
     {f g : A R α →ₗ[R] M} (h : ∀ w : FreeMonoid α,f (word w)=g (word w)) : f=g := by
   apply LinearMap.ext
@@ -1174,12 +1549,18 @@ theorem linear_ext {M : Type*} [AddCommGroup M] [Module R M]
   | add p q hp hq => simp only [map_add,hp,hq]
   | smul c p hp => simp only [map_smul,hp]
 
+/--
+@isnad1 id=eq.0h7v.s7.452cf194b574 from=translated src=- shape=6a737486 vocab=2434923a
+-/
 theorem raw_sub (κ μ : α → α → α → R) (l r : α) (s : List α) :
     raw (fun l a b => κ l a b-μ l a b) l r s=raw κ l r s-raw μ l r s := by
   induction s generalizing l with
   | nil => simp [raw]
   | cons a s ih => simp only [raw,ih,sub_smul,mul_sub]; abel
 
+/--
+@isnad1 id=eq.0h6v.s8.ba56e202c902 from=translated src=- shape=71bce1f2 vocab=f7873769
+-/
 theorem op_sub (κ μ : α → α → α → R) (l r : α) :
     op (fun l a b => κ l a b-μ l a b) l r=op κ l r-op μ l r := by
   apply linear_ext
@@ -1190,11 +1571,17 @@ theorem op_sub (κ μ : α → α → α → R) (l r : α) :
 def cut (κ : β → α → α → α → R) (wt : α → ℕ) (cost : β → ℕ)
     (b : β) (l a r : α) : R := if wt a=cost b then κ b l a r else 0
 
+/--
+@isnad1 id=eq.1h10v.s6.8f6a539016f0 from=translated src=- shape=1124fe41 vocab=dd7e1fb3
+-/
 theorem cut_bound (κ : β → α → α → α → R) (wt : α → ℕ) (cost : β → ℕ)
     (b : β) (l a r : α) (h : cut κ wt cost b l a r≠0) : wt a=cost b := by
   by_contra he
   exact h (ite_eq_right he)
 
+/--
+@isnad1 id=lt.2h10v.s7.ea61ecf6c3ff from=translated src=- shape=6a60de99 vocab=eff0661f
+-/
 theorem diff_bound (κ : β → α → α → α → R) (wt : α → ℕ) (cost : β → ℕ)
     (hc : ∀ b l a r,κ b l a r≠0 → wt a≤cost b)
     (b : β) (l a r : α) (h : κ b l a r-cut κ wt cost b l a r≠0) : wt a<cost b := by
@@ -1203,6 +1590,9 @@ theorem diff_bound (κ : β → α → α → α → R) (wt : α → ℕ) (cost 
   · rw [cut,ite_eq_right he,sub_zero] at h
     exact lt_of_le_of_ne (hc b l a r h) he
 
+/--
+@isnad1 id=eq.2h9v.s6.4b77825e0120 from=translated src=- shape=3c210a82 vocab=59b88d4f
+-/
 theorem Step.count_eq {κ : α → α → α → R} {r l : α} {s t : List α}
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → wt a=c)
     (h : Step κ r l s t) : count wt s=c+count wt t := by
@@ -1210,6 +1600,9 @@ theorem Step.count_eq {κ : α → α → α → R} {r l : α} {s t : List α}
   | head l a s h => rw [count_cons,hc l a _ h]
   | tail l a s t h ih => simp only [count_cons]; omega
 
+/--
+@isnad1 id=lt.2h9v.s6.52acb791ffc4 from=translated src=- shape=3c210a82 vocab=e2c2ddd2
+-/
 theorem Step.count_strict {κ : α → α → α → R} {r l : α} {s t : List α}
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → wt a<c)
     (h : Step κ r l s t) : count wt s<c+count wt t := by
@@ -1217,6 +1610,9 @@ theorem Step.count_strict {κ : α → α → α → R} {r l : α} {s t : List �
   | head l a s h => simp only [count_cons]; exact Nat.add_lt_add_right (hc l a _ h) _
   | tail l a s t h ih => simp only [count_cons]; omega
 
+/--
+@isnad1 id=mem.2h9v.s9.4225d6a00961 from=translated src=- shape=c27579c4 vocab=927a9279
+-/
 theorem op_homogeneous (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → wt a=c)
     {n : ℕ} {p : A R α} (hp : p∈homogeneous wt n) : op κ l r p∈homogeneous wt (n-c) := by
@@ -1233,6 +1629,9 @@ theorem op_homogeneous (κ : α → α → α → R) (l r : α)
   simp only [count,degree,FreeMonoid.toList_ofList] at hb hw ⊢
   omega
 
+/--
+@isnad1 id=mem.3h9v.s9.3be1fc38b08a from=translated src=- shape=64d82f94 vocab=9b88bd35
+-/
 theorem op_strict (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → wt a<c)
     {n : ℕ} (hn : c≤n) {p : A R α} (hp : p∈homogeneous wt n) :
@@ -1250,6 +1649,9 @@ theorem op_strict (κ : α → α → α → R) (l r : α)
   simp only [count,degree,FreeMonoid.toList_ofList] at hb hw ⊢
   omega
 
+/--
+@isnad1 id=and.3h11v.s11.2dff438d9b14 from=translated src=- shape=801b5f6b vocab=29e1d936
+-/
 theorem exact_allocation (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → wt a≤cost b)
     (w : FreeMonoid β) {n : ℕ} (hn : degree cost w≤n) {p : A R α} (hp : p∈homogeneous wt n) :
@@ -1288,6 +1690,9 @@ theorem exact_allocation (κ : β → α → α → α → R) (l r : α)
       · simpa only [he'] using h1
       · simpa only [he] using h2
 
+/--
+@isnad1 id=eq.2h10v.s10.682297ccf4f0 from=translated src=- shape=472d9f7e vocab=e7c109a9
+-/
 theorem exact_allocation_test (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → wt a≤cost b)
     (w : FreeMonoid β) {p : A R α} (hp : p∈homogeneous wt (degree cost w)) :
@@ -1313,9 +1718,15 @@ def κ : Slot → Letter → Letter → Letter → K
 
 def Good (s : List Letter) : Prop := s.Pairwise (fun a b => a=.e → b=.e)
 
+/--
+@isnad1 id=and.1h4v.s6.bea252d22d7b from=translated src=- shape=0dbe30f2 vocab=5348c0e6
+-/
 theorem head_character : ∀ k l a b,κ k l a b≠0 →
     (a=.e → b=.w) ∧ (l=.e → b=.e ∨ b=.w → a=.e) := by decide
 
+/--
+@isnad1 id=good.3h4v.s6.3b378abc976f from=translated src=- shape=e3186bfb vocab=29a1b4a9
+-/
 theorem head_good (k : Slot) (l a : Letter) (s : List Letter)
     (hw : .w∉s) (hk : κ k l a (s.headD .w)≠0) (hg : Good (l::s)) :
     Good (l::a::s) := by
@@ -1347,6 +1758,9 @@ theorem head_good (k : Slot) (l a : Letter) (s : List Letter)
     · intro b hb he
       exact False.elim (ha he)
 
+/--
+@isnad1 id=good.3h4v.s5.19d2e27b9c93 from=translated src=- shape=4afcb4d0 vocab=13593299
+-/
 theorem step_good (k : Slot) {l : Letter} {s t : List Letter}
     (h : Step (κ k) .w l s t) (hw : .w∉s) (hg : Good (l::t)) : Good (l::s) := by
   induction h with
@@ -1363,6 +1777,9 @@ theorem step_good (k : Slot) {l : Letter} {s t : List Letter}
     · exact ha
     · exact (List.pairwise_cons.mp h2).1 b hb ha
 
+/--
+@isnad1 id=not.3h4v.s5.a34e27d33129 from=translated src=- shape=7e8aa239 vocab=13593299
+-/
 theorem step_bad (k : Slot) {l : Letter} {s t : List Letter}
     (h : Step (κ k) .w l s t) (hw : .w∉s) (hg : ¬Good (l::s)) : ¬Good (l::t) :=
   fun ht => hg (step_good k h hw ht)
@@ -1370,6 +1787,9 @@ theorem step_bad (k : Slot) {l : Letter} {s t : List Letter}
 def badSpace : Submodule K (A K Letter) :=
   space (fun w => .w∉w.toList ∧ ¬Good (.o::w.toList))
 
+/--
+@isnad1 id=mem.1h2v.s9.85479b89559d from=translated src=- shape=afc612d0 vocab=e38a832c
+-/
 theorem op_bad (k : Slot) {p : A K Letter} (hp : p∈badSpace) :
     op (κ k) .o .w p∈badSpace := by
   apply map_space (op (κ k) .o .w) _ ?_ hp
@@ -1382,6 +1802,9 @@ theorem op_bad (k : Slot) {p : A K Letter} (hp : p∈badSpace) :
   simp only [FreeMonoid.toList_ofList]
   exact ⟨fun h => hw.1 (ht.sublist.subset h),step_bad k ht hw.1 hw.2⟩
 
+/--
+@isnad1 id=mem.1h2v.s10.4aa354f18f12 from=translated src=- shape=a3c3c7b8 vocab=52e1afd7
+-/
 theorem word_action_bad (v : FreeMonoid Slot) {p : A K Letter} (hp : p∈badSpace) :
     action κ .o .w (word v) p∈badSpace := by
   induction v using FreeMonoid.inductionOn' with
@@ -1390,6 +1813,9 @@ theorem word_action_bad (v : FreeMonoid Slot) {p : A K Letter} (hp : p∈badSpac
     rw [word_mul,word_of,map_mul,action_atom]
     exact op_bad k ih
 
+/--
+@isnad1 id=mem.1h2v.s10.6930ceeee110 from=translated src=- shape=12e283f7 vocab=499f0634
+-/
 theorem action_bad (v : A K Slot) {p : A K Letter} (hp : p∈badSpace) :
     action κ .o .w v p∈badSpace := by
   induction v using MonoidAlgebra.induction_on with
@@ -1399,6 +1825,9 @@ theorem action_bad (v : A K Slot) {p : A K Letter} (hp : p∈badSpace) :
   | smul c v hv =>
     simpa only [map_smul,LinearMap.smul_apply] using badSpace.smul_mem c hv
 
+/--
+@isnad1 id=eq.2h2v.s10.2020e925e83d from=translated src=- shape=e0551d43 vocab=c271fd20
+-/
 theorem test_zero (v : A K Slot) (s : List Letter) (hw : .w∉s) (hb : ¬Good (.o::s)) :
     (action κ .o .w v (word (FreeMonoid.ofList s))).coeff 1=0 := by
   have hp : word (R:=K) (FreeMonoid.ofList s)∈badSpace :=
@@ -1413,6 +1842,9 @@ namespace WeightedDeletion
 open AssociativeElimination WordGrading
 variable {R α β : Type*} [CommRing R]
 
+/--
+@isnad1 id=le.2h9v.s6.0239d85a768a from=translated src=- shape=f71c1b20 vocab=271bab42
+-/
 theorem Step.count_lower {κ : α → α → α → R} {r l : α} {s t : List α}
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → c≤wt a)
     (h : Step κ r l s t) : c+count wt t≤count wt s := by
@@ -1420,6 +1852,9 @@ theorem Step.count_lower {κ : α → α → α → R} {r l : α} {s t : List α
   | head l a s h => simpa only [count_cons] using Nat.add_le_add_right (hc l a _ h) (count wt s)
   | tail l a s t h ih => simp only [count_cons]; omega
 
+/--
+@isnad1 id=mem.2h10v.s9.2b45b57f56a1 from=translated src=- shape=0d5dc66c vocab=6bbedbc3
+-/
 theorem op_count_lower (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → c≤wt a)
     {n d : ℕ} {p : A R α} (hp : p∈space (fun w => d+degree wt w≤n)) :
@@ -1435,6 +1870,9 @@ theorem op_count_lower (κ : α → α → α → R) (l r : α)
   simp only [FreeMonoid.toList_ofList,degree,count] at hl hw ⊢
   omega
 
+/--
+@isnad1 id=mem.2h11v.s10.0390b99684a1 from=translated src=- shape=dc0e7822 vocab=0f85b4b2
+-/
 theorem action_count_lower (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → cost b≤wt a)
     (w : FreeMonoid β) {n : ℕ} {p : A R α} (hp : p∈below wt n) :
@@ -1446,6 +1884,9 @@ theorem action_count_lower (κ : β → α → α → α → R) (l r : α)
     have h := op_count_lower (κ b) l r wt (cost b) (hc b) ih
     simpa only [degree_mul,degree_of,Nat.add_comm (degree cost w) (cost b)] using h
 
+/--
+@isnad1 id=eq.2h10v.s9.bb05f7ad3b75 from=translated src=- shape=cf8ff05f vocab=bebbb627
+-/
 theorem test_excess_cost (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → cost b≤wt a)
     (w : FreeMonoid β) (s : FreeMonoid α) (hs : degree wt s<degree cost w) :
@@ -1463,6 +1904,9 @@ variable {R α : Type*} [CommRing R] [DecidableEq α]
 
 def κ (k : α) (_ a b : Option α) : R := if a=some k ∧ b=none then 1 else 0
 
+/--
+@isnad1 id=eq.0h6v.s7.62e710eb13f1 from=translated src=- shape=f31035a0 vocab=5719bbef
+-/
 theorem raw_snoc (k a : α) (l : Option α) (s : List α) :
     raw (κ (R:=R) k) l none ((s++[a]).map some)=
       if k=a then word (FreeMonoid.ofList (s.map some)) else 0 := by
@@ -1478,6 +1922,9 @@ theorem raw_snoc (k a : α) (l : Option α) (s : List α) :
     · rw [← word_of (some b),← word_mul,← FreeMonoid.ofList_cons]
     · simp
 
+/--
+@isnad1 id=eq.0h4v.s9.e3061b4ed216 from=translated src=- shape=22664967 vocab=371d603c
+-/
 theorem scalar_word (w s : List α) :
     (action (κ (R:=R)) none none (word (FreeMonoid.ofList w))
       (word (FreeMonoid.ofList (s.map some)))).coeff 1 = if w=s then 1 else 0 := by
@@ -1516,6 +1963,9 @@ theorem scalar_word (w s : List α) :
           exact h (Option.some.inj this)
         simp only [MonoidAlgebra.coeff_zero,Finsupp.zero_apply,ite_eq_right he]
 
+/--
+@isnad1 id=eq.0h4v.s9.764940c89a6c from=translated src=- shape=ca5b9013 vocab=bacd0d18
+-/
 theorem test (p : A R α) (s : List α) :
     (action (κ (R:=R)) none none p (word (FreeMonoid.ofList (s.map some)))).coeff 1=
       p.coeff (FreeMonoid.ofList s) := by
@@ -1539,6 +1989,9 @@ def commSum (ν : ι → α → α → R) (pairs : List (ι×ι)) (l r : α) :
     Module.End R (A R α) :=
   (pairs.map (fun ij => ⁅op (ν ij.2) l r,op (ν ij.1) l r⁆)).sum
 
+/--
+@isnad1 id=eq.0h8v.s9.bfd78ca1d158 from=translated src=- shape=2ba68890 vocab=df14346b
+-/
 theorem commSum_apply (ν : ι → α → α → R) (pairs : List (ι×ι)) (l r : α) (p : A R α) :
     commSum ν pairs l r p=
       (pairs.map (fun ij => op (ν ij.2) l r (op (ν ij.1) l r p)-
@@ -1550,6 +2003,9 @@ theorem commSum_apply (ν : ι → α → α → R) (pairs : List (ι×ι)) (l r
       Ring.lie_def,LinearMap.sub_apply,Module.End.mul_apply] at ih ⊢
     rw [ih]
 
+/--
+@isnad1 id=eq.0h10v.s9.f82f7c66766c from=translated src=- shape=ecc4e2ed vocab=a1364720
+-/
 theorem commSum_cons (ν : ι → α → α → R) (pairs : List (ι×ι))
     (l r a b : α) (s : List α) :
     commSum ν pairs l r (word (a::b::s))=
@@ -1564,6 +2020,9 @@ theorem commSum_cons (ν : ι → α → α → R) (pairs : List (ι×ι))
     simp only [add_smul,mul_add]
     abel
 
+/--
+@isnad1 id=eq.1h7v.s8.f2ba63ec86d1 from=translated src=- shape=30639547 vocab=b6f42b7f
+-/
 theorem commSum_eq_zero (ν : ι → α → α → R) (pairs : List (ι×ι))
     (hc : ∀ l a b c,(pairs.map (fun ij => curvature (ν ij.1) (ν ij.2) l a b c)).sum=0)
     (l r : α) : commSum ν pairs l r=0 := by
@@ -1621,11 +2080,17 @@ def extra : B → F → List (F×F)
 def pairs (b : B) (a : F) : List (E×E) :=
   (Sum.inl a,Sum.inr b)::(extra b a).map (fun ij => (Sum.inl ij.2,Sum.inl ij.1))
 
+/--
+@isnad1 id=eq.0h6v.s6.70bfb299af96 from=translated src=- shape=160d4e67 vocab=62e9ff38
+-/
 theorem table_curvature (b : B) (a : F) : ∀ l x y z : Letter,
     ((pairs b a).map (fun ij => Deletion.curvature (ν ij.1) (ν ij.2) l x y z)).sum=0 := by
   revert b a
   decide
 
+/--
+@isnad1 id=eq.0h2v.s7.48f712468c6d from=translated src=- shape=fd2eb94e vocab=026372a4
+-/
 theorem target_eq (b : B) (a : F) : CountTables.target b a=
     ((extra b a).map (fun ij => CountTables.bracket (atom ij.1) (atom ij.2))).sum := by
   fin_cases b <;> fin_cases a <;>
@@ -1641,11 +2106,20 @@ def evalFiber (l r : α) : A K F →ₐ[K] Module.End K (A K α) :=
 def evalBase (l r : α) : A K B →ₐ[K] Module.End K (A K α) :=
   lift (fun b => Deletion.op (ν (.inr b)) l r)
 
+/--
+@isnad1 id=eq.0h5v.s10.6048f7357136 from=translated src=- shape=8738b9b7 vocab=2bfeaeb3
+-/
 @[simp] theorem evalFiber_atom (l r : α) (a : F) :
     evalFiber ν l r (atom a)=Deletion.op (ν (.inl a)) l r := lift_atom _ _
+/--
+@isnad1 id=eq.0h5v.s10.53c597dad418 from=translated src=- shape=0fe3ec5e vocab=80f1d2f2
+-/
 @[simp] theorem evalBase_atom (l r : α) (b : B) :
     evalBase ν l r (atom b)=Deletion.op (ν (.inr b)) l r := lift_atom _ _
 
+/--
+@isnad1 id=eq.0h6v.s11.bfc6fbcb1496 from=translated src=- shape=0cf48715 vocab=bf794463
+-/
 theorem sum_extra (l r : α) (b : B) (a : F) :
     (((extra b a).map (fun ij : F×F =>
       ⁅Deletion.op (ν (.inl ij.1)) l r,Deletion.op (ν (.inl ij.2)) l r⁆)).sum)=
@@ -1655,6 +2129,9 @@ theorem sum_extra (l r : α) (b : B) (a : F) :
   funext ij
   simp only [Function.comp_apply,CountTables.bracket,map_sub,map_mul,evalFiber_atom,Ring.lie_def]
 
+/--
+@isnad1 id=eq.1h6v.s12.3455eff301a9 from=translated src=- shape=640a9086 vocab=c277de93
+-/
 theorem action_table
     (hc : ∀ b a l x y z,((pairs b a).map
       (fun ij => Deletion.curvature (ν ij.1) (ν ij.2) l x y z)).sum=0)
@@ -1675,6 +2152,9 @@ namespace WeightedDeletion
 open AssociativeElimination WordGrading
 variable {R α β : Type*} [CommRing R]
 
+/--
+@isnad1 id=mem.2h10v.s9.984a601fdd6c from=translated src=- shape=3c01f924 vocab=b93bd9b2
+-/
 theorem op_count_exact (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → wt a=c)
     {n d : ℕ} {p : A R α} (hp : p∈space (fun w => d+degree wt w=n)) :
@@ -1690,6 +2170,9 @@ theorem op_count_exact (κ : α → α → α → R) (l r : α)
   simp only [FreeMonoid.toList_ofList,degree,count] at hl hw ⊢
   omega
 
+/--
+@isnad1 id=mem.2h10v.s9.19b8e7c1d061 from=translated src=- shape=169ae14c vocab=8445b2b0
+-/
 theorem op_count_lt (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → c≤wt a)
     {n d : ℕ} {p : A R α} (hp : p∈space (fun w => d+degree wt w<n)) :
@@ -1705,6 +2188,9 @@ theorem op_count_lt (κ : α → α → α → R) (l r : α)
   simp only [FreeMonoid.toList_ofList,degree,count] at hl hw ⊢
   omega
 
+/--
+@isnad1 id=mem.2h10v.s9.81a192d7b98c from=translated src=- shape=fc338f49 vocab=77d633fd
+-/
 theorem op_count_lt_of_exact (κ : α → α → α → R) (l r : α)
     (wt : α → ℕ) (c : ℕ) (hc : ∀ l a b,κ l a b≠0 → c<wt a)
     {n d : ℕ} {p : A R α} (hp : p∈space (fun w => d+degree wt w=n)) :
@@ -1720,6 +2206,9 @@ theorem op_count_lt_of_exact (κ : α → α → α → R) (l r : α)
   simp only [FreeMonoid.toList_ofList,degree,count] at hl hw ⊢
   omega
 
+/--
+@isnad1 id=lt.2h10v.s7.5a5d326052b6 from=translated src=- shape=75e1903a vocab=eff0661f
+-/
 theorem diff_lower_bound (κ : β → α → α → α → R) (wt : α → ℕ) (cost : β → ℕ)
     (hc : ∀ b l a r,κ b l a r≠0 → cost b≤wt a)
     (b : β) (l a r : α) (h : κ b l a r-cut κ wt cost b l a r≠0) : cost b<wt a := by
@@ -1728,6 +2217,9 @@ theorem diff_lower_bound (κ : β → α → α → α → R) (wt : α → ℕ) 
   · rw [cut,ite_eq_right he,sub_zero] at h
     exact lt_of_le_of_ne (hc b l a r h) (Ne.symm he)
 
+/--
+@isnad1 id=and.2h11v.s11.56ca68238367 from=translated src=- shape=3bd301e5 vocab=d79eff34
+-/
 theorem exact_allocation_lower (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → cost b≤wt a)
     (w : FreeMonoid β) {n : ℕ} {p : A R α} (hp : p∈homogeneous wt n) :
@@ -1764,6 +2256,9 @@ theorem exact_allocation_lower (κ : β → α → α → α → R) (l r : α)
       · simpa only [degree_mul,degree_of,Nat.add_comm (degree cost w) (cost b)] using h1
       · simpa only [degree_mul,degree_of,Nat.add_comm (degree cost w) (cost b)] using h2
 
+/--
+@isnad1 id=eq.2h10v.s10.c5f9b8fac672 from=translated src=- shape=cf856e62 vocab=e7c109a9
+-/
 theorem exact_allocation_lower_test (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ) (hc : ∀ b l a t,κ b l a t≠0 → cost b≤wt a)
     (w : FreeMonoid β) {p : A R α} (hp : p∈homogeneous wt (degree cost w)) :
@@ -1777,6 +2272,9 @@ def scalar (κ : β → α → α → α → R) (l r : α) (s : FreeMonoid α) :
   map_add' p q := by simp only [map_add,LinearMap.add_apply,MonoidAlgebra.coeff_add,Finsupp.add_apply]
   map_smul' c p := by simp only [map_smul,LinearMap.smul_apply,MonoidAlgebra.coeff_smul,Finsupp.smul_apply,RingHom.id_apply]
 
+/--
+@isnad1 id=eq.2h10v.s9.78c5017dad20 from=translated src=- shape=eabf2984 vocab=2d8afe60
+-/
 theorem scalar_cut_of_leading (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ)
     (hc : ∀ b l a t,κ b l a t≠0 → cost b≤wt a)
@@ -1800,6 +2298,9 @@ theorem scalar_cut_of_leading (κ : β → α → α → α → R) (l r : α)
   | add p q _ _ hp hq => simp only [map_add,hp,hq]
   | smul c p _ hp => simp only [map_smul,hp]
 
+/--
+@isnad1 id=eq.3h11v.s8.c1aedbf03cc3 from=translated src=- shape=616f0694 vocab=886625bb
+-/
 theorem scalar_zero_of_cost (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ)
     (hc : ∀ b l a t,κ b l a t≠0 → cost b≤wt a)
@@ -1821,6 +2322,9 @@ variable {R α β : Type*} [CommRing R] [DecidableEq α] [DecidableEq β]
 def κ (enc : α → β) (r : β) (k : α) (_ a b : β) : R :=
   if a=enc k ∧ b=r then 1 else 0
 
+/--
+@isnad1 id=eq.2h9v.s7.1710f7d2014a from=translated src=- shape=be04b2a8 vocab=7f5ad59f
+-/
 theorem raw_snoc (enc : α → β) (hi : Function.Injective enc) (r : β)
     (hr : ∀ a,enc a≠r) (k a : α) (l : β) (s : List α) :
     raw (κ (R:=R) enc r k) l r ((s++[a]).map enc)=
@@ -1840,6 +2344,9 @@ theorem raw_snoc (enc : α → β) (hi : Function.Injective enc) (r : β)
     · rw [← word_of (enc b),← word_mul,← FreeMonoid.ofList_cons]
     · simp
 
+/--
+@isnad1 id=eq.2h8v.s8.4f3b5205bec8 from=translated src=- shape=557944f8 vocab=a38e0668
+-/
 theorem scalar_word (enc : α → β) (hi : Function.Injective enc) (l r : β)
     (hr : ∀ a,enc a≠r) (w s : List α) :
     scalar (κ (R:=R) enc r) l r (FreeMonoid.ofList (s.map enc)) (word (FreeMonoid.ofList w)) =
@@ -1882,6 +2389,9 @@ theorem scalar_word (enc : α → β) (hi : Function.Injective enc) (l r : β)
           exact h (Option.some.inj this)
         simp only [MonoidAlgebra.coeff_zero,Finsupp.zero_apply,ite_eq_right he]
 
+/--
+@isnad1 id=eq.2h8v.s8.25c6617013bd from=translated src=- shape=cb935bfe vocab=be44fae7
+-/
 theorem test (enc : α → β) (hi : Function.Injective enc) (l r : β)
     (hr : ∀ a,enc a≠r) (p : A R α) (s : List α) :
     scalar (κ (R:=R) enc r) l r (FreeMonoid.ofList (s.map enc)) p=p.coeff (FreeMonoid.ofList s) := by
@@ -1905,14 +2415,26 @@ def rev : A R α →ₗ[R] A R α :=
   (Finsupp.linearCombination R (fun w : FreeMonoid α => word w.reverse)).comp
     (MonoidAlgebra.coeffLinearEquiv R).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s7.8a9fcb9556d7 from=translated src=- shape=958c71b6 vocab=b571452c
+-/
 @[simp] theorem rev_word (w : FreeMonoid α) : rev (word (R:=R) w)=word w.reverse := by
   change Finsupp.linearCombination R (fun monoidWord : FreeMonoid α => word monoidWord.reverse) (Finsupp.single w 1) = _; simp
 
+/--
+@isnad1 id=eq.0h3v.s7.de25aba5aa6a from=translated src=- shape=f75f5f84 vocab=b750e2a6
+-/
 @[simp] theorem rev_atom (a : α) : rev (atom a : A R α)=atom a := by
   simpa only [word_of,FreeMonoid.reverse_of] using rev_word (R:=R) (FreeMonoid.of a)
 
+/--
+@isnad1 id=eq.0h2v.s8.e52949ef63f6 from=translated src=- shape=c7072ffc vocab=897d567d
+-/
 @[simp] theorem rev_one : rev (1 : A R α)=1 := rev_word 1
 
+/--
+@isnad1 id=eq.0h4v.s9.f280721f4e73 from=translated src=- shape=9766dbac vocab=19862d28
+-/
 theorem rev_mul (p q : A R α) : rev (p*q)=rev q*rev p := by
   induction p using MonoidAlgebra.induction_on with
   | of u =>
@@ -1926,6 +2448,9 @@ theorem rev_mul (p q : A R α) : rev (p*q)=rev q*rev p := by
   | add p r hp hr => simp only [add_mul,map_add,hp,hr,mul_add]
   | smul c p hp => simp only [smul_mul_assoc,map_smul,hp,mul_smul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s8.9c2c30e1dd62 from=translated src=- shape=c2f14ee0 vocab=6ca1bb4c
+-/
 theorem rev_coeff (p : A R α) (w : FreeMonoid α) :
     (rev p).coeff w=p.coeff w.reverse := by
   classical
@@ -1944,6 +2469,9 @@ theorem rev_coeff (p : A R α) (w : FreeMonoid α) :
   | add p q hp hq => simp only [map_add,MonoidAlgebra.coeff_add,Finsupp.add_apply,hp,hq]
   | smul c p hp => simp only [map_smul,MonoidAlgebra.coeff_smul,Finsupp.smul_apply,hp]
 
+/--
+@isnad1 id=eq.0h3v.s9.b341b9eaefd4 from=translated src=- shape=19f10f97 vocab=146241b0
+-/
 theorem rev_lie_charTwo [CharP R 2] (q : FreeLieAlgebra R α) : rev (embed q)=embed q := by
   induction q using freeLie_induction with
   | h0 => simp
@@ -1961,6 +2489,9 @@ theorem rev_lie_charTwo [CharP R 2] (q : FreeLieAlgebra R α) : rev (embed q)=em
     rw [sub_eq_add_neg, sub_eq_add_neg, hn, hn]
     exact add_comm _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.b5a2ce031607 from=translated src=- shape=56dc96b2 vocab=f1c3886e
+-/
 theorem coeff_reverse_charTwo [CharP R 2] (q : FreeLieAlgebra R α) (w : FreeMonoid α) :
     (embed q).coeff w.reverse=(embed q).coeff w := by
   rw [← rev_coeff,rev_lie_charTwo]
@@ -1992,11 +2523,23 @@ def κ : Row → Slot → Letter → Letter → Letter → K
 
 def enc : Slot → Letter | .A => .e | .C => .p | .B => .o
 
+/--
+@isnad1 id=injectiv.0h0v.s2.215312c1f078 from=translated src=- shape=54c8eceb vocab=46590213
+-/
 theorem enc_injective : Function.Injective enc := by intro a b; cases a <;> cases b <;> decide
 
+/--
+@isnad1 id=ne.0h1v.s2.91a9276a624d from=translated src=- shape=f0bb1bdd vocab=6ecb9857
+-/
 theorem enc_not_w (a : Slot) : enc a≠.w := by cases a <;> decide
 
+/--
+@isnad1 id=iff.0h1v.s3.c5062db0d39c from=translated src=- shape=0289b14f vocab=044b1f3c
+-/
 @[simp] theorem enc_eq_e (a : Slot) : enc a=.e ↔ a=.A := by cases a <;> decide
+/--
+@isnad1 id=iff.0h1v.s3.721b12916fe5 from=translated src=- shape=0289b14f vocab=6466ead5
+-/
 @[simp] theorem enc_eq_p (a : Slot) : enc a=.p ↔ a=.C := by cases a <;> decide
 
 def aCount (a : Slot) : ℕ := if a=.A then 1 else 0
@@ -2004,28 +2547,49 @@ def cCount (a : Slot) : ℕ := if a=.C then 1 else 0
 def eCount (a : Letter) : ℕ := if a=.e then 1 else 0
 def pCount (a : Letter) : ℕ := if a=.p then 1 else 0
 
+/--
+@isnad1 id=eq.0h1v.s6.af5d09b24df8 from=translated src=- shape=127814b3 vocab=6aaf5f1d
+-/
 theorem count_enc_e (s : List Slot) :
     degree eCount (FreeMonoid.ofList (s.map enc))=degree aCount (FreeMonoid.ofList s) := by
   simp only [degree,FreeMonoid.toList_ofList,List.map_map,eCount,enc_eq_e,Function.comp_def]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.239ed625dadd from=translated src=- shape=127814b3 vocab=aeb83e9e
+-/
 theorem count_enc_p (s : List Slot) :
     degree pCount (FreeMonoid.ofList (s.map enc))=degree cCount (FreeMonoid.ofList s) := by
   simp only [degree,FreeMonoid.toList_ofList,List.map_map,pCount,enc_eq_p,Function.comp_def]
   rfl
 
+/--
+@isnad1 id=le.1h5v.s5.1eed96a7ce04 from=translated src=- shape=d4b53301 vocab=7e104962
+-/
 theorem a_cost (i : Row) : ∀ k l a b,κ i k l a b≠0 → aCount k≤eCount a := by
   cases i <;> decide
 
+/--
+@isnad1 id=le.1h4v.s5.5cb7218d455f from=translated src=- shape=c61d3ea4 vocab=5758cc9b
+-/
 theorem one_cost : ∀ k l a b,κ .one k l a b≠0 → pCount a≤0 := by decide
 
+/--
+@isnad1 id=le.1h4v.s5.94ff3eb5dcad from=translated src=- shape=cb1ece07 vocab=3156de9d
+-/
 theorem three_cost : ∀ k l a b,κ .three k l a b≠0 → aCount k≤0 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s4.107fbef42d0c from=translated src=- shape=acf1e664 vocab=82dce509
+-/
 theorem cut_two : cut (κ .two) eCount aCount=RowTwo.κ := by
   funext k l a b
   revert k l a b
   decide
 
+/--
+@isnad1 id=eq.0h0v.s5.f8ac6b1bfb2b from=translated src=- shape=09be11ab vocab=3411c8da
+-/
 theorem cut_four : cut (κ .four) eCount aCount=EmbeddedTerminal.κ enc .w := by
   funext k l a b
   revert k l a b
@@ -2033,9 +2597,15 @@ theorem cut_four : cut (κ .four) eCount aCount=EmbeddedTerminal.κ enc .w := by
 
 def good (s : List Slot) : Prop := s.Pairwise (fun a b => a=.A → b=.A)
 
+/--
+@isnad1 id=iff.0h1v.s3.cfe63677b4f6 from=translated src=- shape=81eb46ea vocab=e763f14f
+-/
 theorem good_enc (s : List Slot) : RowTwo.Good (.o::s.map enc) ↔ good s := by
   simp [RowTwo.Good,good,List.pairwise_map]
 
+/--
+@isnad1 id=not.0h1v.s4.5b3b84138745 from=translated src=- shape=00af79d0 vocab=5fb02f23
+-/
 theorem enc_no_w (s : List Slot) : .w∉s.map enc := by
   intro h
   obtain ⟨a,_,h⟩ := List.mem_map.mp h
@@ -2044,15 +2614,24 @@ theorem enc_no_w (s : List Slot) : .w∉s.map enc := by
 def test (i : Row) (s : List Slot) : A K Slot →ₗ[K] K :=
   scalar (κ i) .o .w (FreeMonoid.ofList (s.map enc))
 
+/--
+@isnad1 id=eq.1h3v.s9.23b2b58d52df from=translated src=- shape=6f80698c vocab=97817b05
+-/
 theorem test_cut (i : Row) (s : List Slot) {p : A K Slot}
     (hp : p∈above aCount (degree aCount (FreeMonoid.ofList s))) :
     test i s p=scalar (cut (κ i) eCount aCount) .o .w (FreeMonoid.ofList (s.map enc)) p := by
   exact scalar_cut_of_leading (κ i) .o .w eCount aCount (a_cost i) _
     (by simpa only [count_enc_e] using hp)
 
+/--
+@isnad1 id=eq.0h2v.s4.cc9bbbf40293 from=translated src=- shape=2b4272fd vocab=cbb3bb71
+-/
 theorem degree_zero {α : Type*} (w : FreeMonoid α) : degree (fun _ => 0) w=0 := by
   simp [degree,List.map_const']
 
+/--
+@isnad1 id=eq.1h2v.s8.9cde1b4e4a2d from=translated src=- shape=280d539c vocab=3cfaebb5
+-/
 theorem test_one (s : List Slot) (hs : 0<degree cCount (FreeMonoid.ofList s))
     (p : A K Slot) : test .one s p=0 := by
   induction p using MonoidAlgebra.induction_on with
@@ -2064,16 +2643,25 @@ theorem test_one (s : List Slot) (hs : 0<degree cCount (FreeMonoid.ofList s))
   | add p q hp hq => simp only [map_add,hp,hq,add_zero]
   | smul c p hp => simp only [map_smul,hp,smul_zero]
 
+/--
+@isnad1 id=eq.2h2v.s9.1cb3e7c02ef0 from=translated src=- shape=880ea082 vocab=f0e4f84b
+-/
 theorem test_two (s : List Slot) (hs : ¬good s) {p : A K Slot}
     (hp : p∈above aCount (degree aCount (FreeMonoid.ofList s))) : test .two s p=0 := by
   rw [test_cut .two s hp,cut_two]
   exact RowTwo.test_zero p (s.map enc) (enc_no_w s) (fun h => hs ((good_enc s).mp h))
 
+/--
+@isnad1 id=eq.2h2v.s9.186fa965604a from=translated src=- shape=aea64564 vocab=1e36ed0a
+-/
 theorem test_three (s : List Slot) (hs : 0<degree aCount (FreeMonoid.ofList s)) {p : A K Slot}
     (hp : p∈above aCount (degree aCount (FreeMonoid.ofList s))) : test .three s p=0 := by
   apply scalar_zero_of_cost (κ .three) .o .w (fun _ => 0) aCount three_cost _ ?_ hp
   simpa only [degree_zero] using hs
 
+/--
+@isnad1 id=eq.1h2v.s9.00c2868db5bc from=translated src=- shape=b39d6236 vocab=b468b148
+-/
 theorem test_four (s : List Slot) {p : A K Slot}
     (hp : p∈above aCount (degree aCount (FreeMonoid.ofList s))) :
     test .four s p=p.coeff (FreeMonoid.ofList s) := by
@@ -2083,6 +2671,9 @@ theorem test_four (s : List Slot) {p : A K Slot}
 def Equation (p : A K Slot) (s : List Slot) : Prop :=
   test .one s p+test .two s p+test .three s p+test .four s p=0
 
+/--
+@isnad1 id=eq.5h2v.s8.0b1295acc315 from=translated src=- shape=ec8f3719 vocab=5a62be56
+-/
 theorem coefficient_bad {p : A K Slot} (s : List Slot) (heq : Equation p s)
     (ha : 0<degree aCount (FreeMonoid.ofList s))
     (hc : 0<degree cCount (FreeMonoid.ofList s))
@@ -2093,10 +2684,16 @@ theorem coefficient_bad {p : A K Slot} (s : List Slot) (heq : Equation p s)
     zero_add,zero_add,zero_add] at heq
   exact heq
 
+/--
+@isnad1 id=eq.0h3v.s6.f308b152020c from=translated src=- shape=210095e5 vocab=87360aa1
+-/
 theorem degree_reverse {α : Type*} (wt : α → ℕ) (s : List α) :
     degree wt (FreeMonoid.ofList s.reverse)=degree wt (FreeMonoid.ofList s) := by
   simp only [degree,FreeMonoid.toList_ofList,List.map_reverse,List.sum_reverse]
 
+/--
+@isnad1 id=eq.0h1v.s5.ec7f8c5c2912 from=translated src=- shape=d757e04c vocab=fba72d86
+-/
 theorem aCount_eq_count (s : List Slot) : degree aCount (FreeMonoid.ofList s)=s.count .A := by
   induction s with
   | nil => rfl
@@ -2105,6 +2702,9 @@ theorem aCount_eq_count (s : List Slot) : degree aCount (FreeMonoid.ofList s)=s.
     rw [ih,List.count_cons]
     simp [aCount,Nat.add_comm]
 
+/--
+@isnad1 id=eq.0h1v.s5.e0ca47a38a37 from=translated src=- shape=d757e04c vocab=2bda9044
+-/
 theorem cCount_eq_count (s : List Slot) : degree cCount (FreeMonoid.ofList s)=s.count .C := by
   induction s with
   | nil => rfl
@@ -2113,6 +2713,9 @@ theorem cCount_eq_count (s : List Slot) : degree cCount (FreeMonoid.ofList s)=s.
     rw [ih,List.count_cons]
     simp [cCount,Nat.add_comm]
 
+/--
+@isnad1 id=eq.4h2v.s5.362d0d8dbf1f from=translated src=- shape=4d314c2e vocab=c90c9000
+-/
 theorem all_A_of_good_both (s : List Slot) (hg : good s) (hr : good s.reverse)
     (ha : .A∈s) : ∀ b∈s,b=.A := by
   cases s with
@@ -2129,6 +2732,9 @@ theorem all_A_of_good_both (s : List Slot) (hg : good s) (hr : good s.reverse)
     · exact hb.trans he
     · exact hfirst b hb he
 
+/--
+@isnad1 id=not.3h1v.s6.5283e603e9c7 from=translated src=- shape=2fbb7264 vocab=f7410a98
+-/
 theorem not_good_reverse (s : List Slot) (hg : good s)
     (ha : 0<degree aCount (FreeMonoid.ofList s))
     (hc : 0<degree cCount (FreeMonoid.ofList s)) : ¬good s.reverse := by
@@ -2138,6 +2744,9 @@ theorem not_good_reverse (s : List Slot) (hg : good s)
   have h := all_A_of_good_both s hg hr ha .C hc
   cases h
 
+/--
+@isnad1 id=eq.5h2v.s10.bc0d726a8205 from=translated src=- shape=b7943ff6 vocab=1ce90e96
+-/
 theorem coefficient_minimal (q : FreeLieAlgebra K Slot) (s : List Slot)
     (heq : Equation (embed q) s) (heqr : Equation (embed q) s.reverse)
     (ha : 0<degree aCount (FreeMonoid.ofList s))
@@ -2158,11 +2767,17 @@ def acCount (k : Slot) : ℕ := aCount k+cCount k
 
 def bCount (k : Slot) : ℕ := if k=.B then 1 else 0
 
+/--
+@isnad1 id=eq.0h1v.s4.5abfd0f01665 from=translated src=- shape=5972d6e2 vocab=16e87a37
+-/
 theorem degree_ac (w : FreeMonoid Slot) : degree acCount w=degree aCount w+degree cCount w := by
   induction w using FreeMonoid.inductionOn' with
   | one => simp
   | of_mul k w ih => simp only [degree_mul,degree_of,acCount,ih]; omega
 
+/--
+@isnad1 id=mem.4h3v.s11.c281f8284e8a from=translated src=- shape=be0d3f0d vocab=fce9a433
+-/
 theorem kernel_support (q : FreeLieAlgebra K Slot) (m r : ℕ)
     (hm : embed q∈homogeneous acCount m) (hr : embed q∈homogeneous bCount r)
     (hzero : ∀ w,degree aCount w=0 → (embed q).coeff w=0)
@@ -2213,12 +2828,21 @@ def assoc : A R α →ₐ[R] A R α := lift (fun a => if P a then atom a else 0)
 def lie : FreeLieAlgebra R α →ₗ⁅R⁆ FreeLieAlgebra R α :=
   FreeLieAlgebra.lift R (fun a => if P a then FreeLieAlgebra.of R a else 0)
 
+/--
+@isnad1 id=eq.0h4v.s8.dfbe8b4acaf2 from=translated src=- shape=8d74d7fe vocab=c9d35a1f
+-/
 @[simp] theorem assoc_atom (a : α) : assoc (R:=R) P (atom a)=if P a then atom a else 0 := by
   simp [assoc]
 
+/--
+@isnad1 id=eq.0h4v.s7.c521a2388cf3 from=translated src=- shape=8d74d7fe vocab=677c470c
+-/
 @[simp] theorem lie_of (a : α) : lie (R:=R) P (FreeLieAlgebra.of R a)=
     if P a then FreeLieAlgebra.of R a else 0 := by simp [lie]
 
+/--
+@isnad1 id=eq.0h4v.s9.d49450b9ba29 from=translated src=- shape=50eb5a8c vocab=ee688565
+-/
 theorem embed_lie (q : FreeLieAlgebra R α) : embed (lie P q)=assoc P (embed q) := by
   have h : embed.comp (lie (R:=R) P)=(assoc P).toLieHom.comp embed := by
     apply FreeLieAlgebra.hom_ext
@@ -2227,6 +2851,9 @@ theorem embed_lie (q : FreeLieAlgebra R α) : embed (lie P q)=assoc P (embed q) 
     split_ifs <;> simp
   exact LieHom.congr_fun h q
 
+/--
+@isnad1 id=eq.0h4v.s8.0b2c6f725f2d from=translated src=- shape=8dae7c51 vocab=adbb68bd
+-/
 theorem assoc_word (w : FreeMonoid α) : assoc (R:=R) P (word w)=
     if ∀ a∈w.toList,P a then word w else 0 := by
   induction w using FreeMonoid.inductionOn' with
@@ -2238,6 +2865,9 @@ theorem assoc_word (w : FreeMonoid α) : assoc (R:=R) P (word w)=
       forall_eq_or_imp]
     split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.0h5v.s8.31638f7a3c60 from=translated src=- shape=6560f695 vocab=3929eef0
+-/
 theorem coeff (q : A R α) (w : FreeMonoid α) :
     (assoc P q).coeff w=if ∀ a∈w.toList,P a then q.coeff w else 0 := by
   have h : (assoc (R:=R) P).toLinearMap=project (fun w => ∀ a∈w.toList,P a) := by
@@ -2250,6 +2880,9 @@ theorem coeff (q : A R α) (w : FreeMonoid α) :
   change ((assoc P).toLinearMap q).coeff w=_
   rw [h,project_coeff]
 
+/--
+@isnad1 id=eq.1h4v.s8.d08b0ea58d37 from=translated src=- shape=386fee5f vocab=e58c1240
+-/
 theorem assoc_eq_self {q : A R α} (hq : q∈space (fun w => ∀ a∈w.toList,P a)) : assoc P q=q := by
   apply MonoidAlgebra.ext
   apply Finsupp.ext
@@ -2259,6 +2892,9 @@ theorem assoc_eq_self {q : A R α} (hq : q∈space (fun w => ∀ a∈w.toList,P 
   · rfl
   · exact (coeff_support hq w hw).symm
 
+/--
+@isnad1 id=eq.1h4v.s8.a4cfca6437ac from=translated src=- shape=0d5e5f8e vocab=763772f0
+-/
 theorem lie_eq_self {q : FreeLieAlgebra R α}
     (hq : embed q∈space (fun w => ∀ a∈w.toList,P a)) : lie P q=q := by
   apply UniversalEmbedding.injective
@@ -2267,6 +2903,9 @@ theorem lie_eq_self {q : FreeLieAlgebra R α}
 def sub : LieSubalgebra R (FreeLieAlgebra R α) :=
   LieSubalgebra.lieSpan R (FreeLieAlgebra R α) {p | ∃ a,P a ∧ p=FreeLieAlgebra.of R a}
 
+/--
+@isnad1 id=mem.0h4v.s7.4562642e4b49 from=translated src=- shape=93acc461 vocab=275e3cb7
+-/
 theorem lie_mem (q : FreeLieAlgebra R α) : lie P q∈sub P := by
   induction q using freeLie_induction with
   | h0 => simp
@@ -2279,6 +2918,9 @@ theorem lie_mem (q : FreeLieAlgebra R α) : lie P q∈sub P := by
   | hs r p hp => simpa only [map_smul] using (sub P).smul_mem r hp
   | hl p q hp hq => simpa only [LieHom.map_lie] using (sub P).lie_mem hp hq
 
+/--
+@isnad1 id=mem.1h4v.s8.03b257ba5b28 from=translated src=- shape=a0451103 vocab=bf8c8204
+-/
 theorem mem_of_support {q : FreeLieAlgebra R α}
     (hq : embed q∈space (fun w => ∀ a∈w.toList,P a)) : q∈sub P := by
   rw [← lie_eq_self P hq]
@@ -2288,6 +2930,9 @@ end LetterRetraction
 namespace RowKernel
 open AssociativeElimination WordGrading WeightedDeletion RowTwo
 
+/--
+@isnad1 id=iff.0h3v.s6.e712090c7e2d from=translated src=- shape=545d68fe vocab=5e319050
+-/
 theorem degree_indicator_zero {α : Type*} (P : α → Prop) [DecidablePred P] (s : List α) :
     degree (fun a => if P a then 1 else 0) (FreeMonoid.ofList s)=0 ↔ ∀ a∈s,¬P a := by
   induction s with
@@ -2297,6 +2942,9 @@ theorem degree_indicator_zero {α : Type*} (P : α → Prop) [DecidablePred P] (
     simp only [Nat.add_eq_zero_iff,List.mem_cons,forall_eq_or_imp,ih]
     split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.2h2v.s9.5c5ff460b73a from=translated src=- shape=95e1a015 vocab=5cdc92a2
+-/
 theorem no_A_coeff {q : FreeLieAlgebra K Slot}
     (hq : LetterRetraction.lie (fun a => a≠Slot.A) q=0)
     (w : FreeMonoid Slot) (hw : degree RowKernel.aCount w=0) : (embed q).coeff w=0 := by
@@ -2307,6 +2955,9 @@ theorem no_A_coeff {q : FreeLieAlgebra K Slot}
   rw [LetterRetraction.embed_lie,LetterRetraction.coeff,ite_eq_left hp] at h
   simpa using h
 
+/--
+@isnad1 id=mem.4h3v.s10.62e49ddef1f6 from=translated src=- shape=43e5ed79 vocab=ee5f2835
+-/
 theorem kernel_no_C (q : FreeLieAlgebra K Slot) (m r : ℕ)
     (hm : embed q∈homogeneous acCount m) (hr : embed q∈homogeneous bCount r)
     (hzero : LetterRetraction.lie (fun a => a≠Slot.A) q=0)
@@ -2325,12 +2976,18 @@ namespace WeightedDeletion
 open AssociativeElimination WordGrading
 variable {R α β : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h6v.s6.a58c13709b26 from=translated src=- shape=8f2d0b2d vocab=04b9cdfc
+-/
 theorem edge_raw (ν : α → α → R) (l r : α) (s : List α) :
     raw (fun l a b => ν a b-ν l a) l r s=Deletion.raw ν l r s := by
   induction s generalizing l with
   | nil => rfl
   | cons a s ih => simp only [raw,Deletion.raw,ih]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.23ed182b88ad from=translated src=- shape=df2430f3 vocab=b070fb00
+-/
 theorem edge_op (ν : α → α → R) (l r : α) :
     op (fun l a b => ν a b-ν l a) l r=Deletion.op ν l r := by
   apply linear_ext
@@ -2338,6 +2995,9 @@ theorem edge_op (ν : α → α → R) (l r : α) :
   have h := edge_raw ν l r w.toList
   simpa only [← op_word,← Deletion.op_word,Deletion.word,word,FreeMonoid.ofList_toList] using h
 
+/--
+@isnad1 id=mem.1h7v.s9.42e92f7ddb1e from=translated src=- shape=b1be0a97 vocab=d5364f41
+-/
 theorem op_support (κ : α → α → α → R) (l r : α) (P : α → Prop)
     {p : A R α} (hp : p∈space (fun w => ∀ a∈w.toList,P a)) :
     op κ l r p∈space (fun w => ∀ a∈w.toList,P a) := by
@@ -2351,6 +3011,9 @@ theorem op_support (κ : α → α → α → R) (l r : α) (P : α → Prop)
   simp only [FreeMonoid.toList_ofList]
   exact fun a ha => hw a (ht.sublist.subset ha)
 
+/--
+@isnad1 id=mem.1h9v.s10.214dee7e07f0 from=translated src=- shape=3a89d27a vocab=f0174ef5
+-/
 theorem action_word_support (κ : β → α → α → α → R) (l r : α) (P : α → Prop)
     (w : FreeMonoid β) {p : A R α} (hp : p∈space (fun w => ∀ a∈w.toList,P a)) :
     action κ l r (word w) p∈space (fun w => ∀ a∈w.toList,P a) := by
@@ -2360,6 +3023,9 @@ theorem action_word_support (κ : β → α → α → α → R) (l r : α) (P :
     rw [word_mul,word_of,map_mul,action_atom]
     exact op_support (κ b) l r P ih
 
+/--
+@isnad1 id=eq.1h10v.s6.aebe04f49714 from=translated src=- shape=1dfab0aa vocab=969a2267
+-/
 theorem raw_congr_on (κ μ : α → α → α → R) (P : α → Prop)
     (he : ∀ l a b,P l → P a → κ l a b=μ l a b) (l r : α) (hl : P l)
     (s : List α) (hs : ∀ a∈s,P a) : raw κ l r s=raw μ l r s := by
@@ -2369,6 +3035,9 @@ theorem raw_congr_on (κ μ : α → α → α → R) (P : α → Prop)
     rw [raw,raw,he l a _ hl (hs a (by simp)),ih a (hs a (by simp))]
     exact fun b hb => hs b (by simp [hb])
 
+/--
+@isnad1 id=eq.2h9v.s9.52a8e7044ca0 from=translated src=- shape=ab48dd05 vocab=d5364f41
+-/
 theorem op_congr_on (κ μ : α → α → α → R) (P : α → Prop)
     (he : ∀ l a b,P l → P a → κ l a b=μ l a b) (l r : α) (hl : P l)
     {p : A R α} (hp : p∈space (fun w => ∀ a∈w.toList,P a)) : op κ l r p=op μ l r p := by
@@ -2381,6 +3050,9 @@ theorem op_congr_on (κ μ : α → α → α → R) (P : α → Prop)
     simpa only [← op_word,FreeMonoid.ofList_toList] using h
   exact sub_eq_zero.mp (hker hp)
 
+/--
+@isnad1 id=eq.2h11v.s10.479bf87680e0 from=translated src=- shape=493005ae vocab=da727ebb
+-/
 theorem action_congr_on (κ μ : β → α → α → α → R) (P : α → Prop)
     (he : ∀ k l a b,P l → P a → κ k l a b=μ k l a b) (l r : α) (hl : P l)
     (q : A R β) {p : A R α} (hp : p∈space (fun w => ∀ a∈w.toList,P a)) :
@@ -2397,6 +3069,9 @@ theorem action_congr_on (κ μ : β → α → α → α → R) (P : α → Prop
   | add q z hq hz => simp only [map_add,LinearMap.add_apply,hq,hz]
   | smul c q hq => simp only [map_smul,LinearMap.smul_apply,hq]
 
+/--
+@isnad1 id=eq.2h10v.s9.07f6da02e818 from=translated src=- shape=d7987130 vocab=7bff8c43
+-/
 theorem scalar_cut_of_homogeneous (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ)
     (hc : ∀ b l a t,κ b l a t≠0 → wt a≤cost b)
@@ -2410,6 +3085,9 @@ theorem scalar_cut_of_homogeneous (κ : β → α → α → α → R) (l r : α
   | add p q _ _ hp hq => simp only [map_add,hp,hq]
   | smul c p _ hp => simp only [map_smul,hp]
 
+/--
+@isnad1 id=eq.2h10v.s8.039fda865939 from=translated src=- shape=4bad6cda vocab=31b22039
+-/
 theorem scalar_zero_of_low (κ : β → α → α → α → R) (l r : α)
     (wt : α → ℕ) (cost : β → ℕ)
     (hc : ∀ b l a t,κ b l a t≠0 → wt a≤cost b)
@@ -2458,9 +3136,15 @@ def κ₀ (i : Row) (k : Slot) (l a b : Letter) : K := slotEdge i k a b-slotEdge
 
 def zeroCount (a : Letter) : ℕ := if a=.o then 1 else 0
 
+/--
+@isnad1 id=le.1h5v.s5.1c1b7bbd7835 from=translated src=- shape=a74068ea vocab=7dc8b03c
+-/
 theorem zero_cost (i : Row) : ∀ k l a b,κ₀ i k l a b≠0 → zeroCount a≤bCount k := by
   cases i <;> decide
 
+/--
+@isnad1 id=eq.2h5v.s5.cacf64cc4e68 from=translated src=- shape=07a57e01 vocab=ca9ddb01
+-/
 theorem cut_table (i : Row) : ∀ k l a b,l≠.w → a≠.w →
     cut (κ₀ i) zeroCount bCount k l a b=RowKernel.κ i k l a b := by
   cases i <;> decide
@@ -2468,6 +3152,9 @@ theorem cut_table (i : Row) : ∀ k l a b,l≠.w → a≠.w →
 def operators (l r : Letter) : A K E →ₐ[K] Module.End K (A K Letter) :=
   lift (fun e => Deletion.op (edge e) l r)
 
+/--
+@isnad1 id=eq.0h3v.s9.5db119aaa134 from=translated src=- shape=1ab61e21 vocab=e43b72ec
+-/
 theorem substituted_action (i : Row) (l r : Letter) :
     (operators l r).comp (subst i)=action (κ₀ i) l r := by
   apply hom_ext
@@ -2478,6 +3165,9 @@ theorem substituted_action (i : Row) (l r : Letter) :
   rw [← Deletion.op_list_sum,← edge_op]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.6dc1e8bf2ca4 from=translated src=- shape=127814b3 vocab=501489cf
+-/
 theorem count_enc_zero (s : List Slot) :
     degree zeroCount (FreeMonoid.ofList (s.map RowKernel.enc))=degree bCount (FreeMonoid.ofList s) := by
   simp only [degree,FreeMonoid.toList_ofList,List.map_map,Function.comp_def]
@@ -2485,6 +3175,9 @@ theorem count_enc_zero (s : List Slot) :
   funext a
   cases a <;> rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.e32145e37e95 from=translated src=- shape=e3c4d8ef vocab=aec30998
+-/
 theorem scalar_allocated (i : Row) (s : List Slot) {q : A K Slot}
     (hq : q∈homogeneous bCount (degree bCount (FreeMonoid.ofList s))) :
     scalar (κ₀ i) .o .w (FreeMonoid.ofList (s.map RowKernel.enc)) q=RowKernel.test i s q := by
@@ -2506,9 +3199,15 @@ theorem scalar_allocated (i : Row) (s : List Slot) {q : A K Slot}
 def namedCount : E → ℕ := Sum.elim CountTables.fiberCount CountTables.baseCount
 def namedκ (i : E) (l a b : Letter) : K := edge i a b-edge i l a
 
+/--
+@isnad1 id=le.1h4v.s5.33cef49df26b from=translated src=- shape=526a3aa2 vocab=16819f20
+-/
 theorem named_zero_cost : ∀ i l a b,namedκ i l a b≠0 → zeroCount a≤namedCount i := by
   decide
 
+/--
+@isnad1 id=eq.0h2v.s8.509409adfcdd from=translated src=- shape=e00dddc7 vocab=a605921b
+-/
 theorem named_action (l r : Letter) : operators l r=action namedκ l r := by
   apply hom_ext
   intro i
@@ -2517,6 +3216,9 @@ theorem named_action (l r : Letter) : operators l r=action namedκ l r := by
 
 def P (q : A K Slot) : A K E := subst .one q+subst .two q+subst .three q+subst .four q
 
+/--
+@isnad1 id=eq.0h3v.s9.4cdd0d423aae from=translated src=- shape=05f34025 vocab=60978145
+-/
 theorem scalar_subst (i : Row) (s : List Slot) (q : A K Slot) :
     scalar namedκ .o .w (FreeMonoid.ofList (s.map RowKernel.enc)) (subst i q)=
       scalar (κ₀ i) .o .w (FreeMonoid.ofList (s.map RowKernel.enc)) q := by
@@ -2527,6 +3229,9 @@ theorem scalar_subst (i : Row) (s : List Slot) (q : A K Slot) :
   rw [h]
   rfl
 
+/--
+@isnad1 id=equation.4h4v.s11.f2d58385a791 from=translated src=- shape=21185a6e vocab=3bea766b
+-/
 theorem equation_of_low_interpretation (q : A K Slot) (r : ℕ)
     (hq : q∈homogeneous bCount r)
     (z : A K E) (hz : z∈strictlyBelow namedCount r)
@@ -2555,10 +3260,16 @@ def secondPairs (a : SecondStage.F) : List (SecondStage.E×SecondStage.E) :=
   (.inl a,.inr ())::(secondExtra a).map (fun ij => (.inl ij.2,.inl ij.1))
 def secondEdge (e : SecondStage.E) : Letter → Letter → K := edge (.inr (SecondStage.toOld e))
 
+/--
+@isnad1 id=eq.0h5v.s6.142917b81127 from=translated src=- shape=6ec9184c vocab=19c44db7
+-/
 theorem second_curvature : ∀ a l x y z,((secondPairs a).map
     (fun ij => Deletion.curvature (secondEdge ij.1) (secondEdge ij.2) l x y z)).sum=0 := by
   decide
 
+/--
+@isnad1 id=eq.0h2v.s7.d3c3fae4f7d2 from=translated src=- shape=35965ede vocab=70814806
+-/
 theorem second_common (b : SecondStage.B) (a : SecondStage.F) : SecondStage.common b a=
     ((secondExtra a).map (fun ij => CountTables.bracket (atom ij.1) (atom ij.2))).sum := by
   fin_cases a <;> simp [SecondStage.common,SecondStage.H,SecondStage.U,SecondStage.V,
@@ -2569,6 +3280,9 @@ def secondFiber (l r : Letter) : A K SecondStage.F →ₐ[K] Module.End K (A K L
 def secondBase (l r : Letter) : A K SecondStage.B →ₐ[K] Module.End K (A K Letter) :=
   lift (fun b => Deletion.op (secondEdge (.inr b)) l r)
 
+/--
+@isnad1 id=eq.0h3v.s11.b5ff6d7cd931 from=translated src=- shape=f4ec0edf vocab=1826bb4d
+-/
 theorem second_sum (l r : Letter) (a : SecondStage.F) :
     ((secondExtra a).map (fun ij => ⁅Deletion.op (secondEdge (.inl ij.1)) l r,
       Deletion.op (secondEdge (.inl ij.2)) l r⁆)).sum=
@@ -2578,6 +3292,9 @@ theorem second_sum (l r : Letter) (a : SecondStage.F) :
   funext ij
   simp only [Function.comp_apply,CountTables.bracket,map_sub,map_mul,secondFiber,lift_atom,Ring.lie_def]
 
+/--
+@isnad1 id=eq.0h4v.s12.3d4336121ca4 from=translated src=- shape=82efa310 vocab=3cc12eb5
+-/
 theorem second_action (l r : Letter) (b : SecondStage.B) (a : SecondStage.F) :
     secondBase l r (atom b)*secondFiber l r (atom a)-
       secondFiber l r (atom a)*secondBase l r (atom b)=
@@ -2591,6 +3308,9 @@ theorem second_action (l r : Letter) (b : SecondStage.B) (a : SecondStage.F) :
   rw [← map_neg,CharTwo.neg_eq] at he
   simpa only [Ring.lie_def,secondBase,secondFiber,lift_atom] using he
 
+/--
+@isnad1 id=eq.0h2v.s10.eaba753684e6 from=translated src=- shape=92cabbf1 vocab=9f4008d4
+-/
 theorem second_evaluate (l r : Letter) : (TargetDeletion.evalBase edge l r).comp SecondStage.outward=
     evaluate (secondFiber l r) (secondBase l r) := by
   apply hom_ext
@@ -2599,6 +3319,9 @@ theorem second_evaluate (l r : Letter) : (TargetDeletion.evalBase edge l r).comp
     TargetDeletion.evalBase_atom,evaluate,lift_atom,Sum.elim_inl,Sum.elim_inr,secondFiber,secondBase]
   all_goals rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.0d58da4c4209 from=translated src=- shape=85c60ebb vocab=2ff1c525
+-/
 theorem second_order_correct (l r : Letter) (q : A K CountTables.B) :
     TargetDeletion.evalBase edge l r (SecondStage.order SecondStage.common q)=
       TargetDeletion.evalBase edge l r q := by
@@ -2608,6 +3331,9 @@ theorem second_order_correct (l r : Letter) (q : A K CountTables.B) :
   change ∀ p,TargetDeletion.evalBase edge l r (SecondStage.outward p)=_ at h
   rw [h,evaluate_ordered _ _ _ (second_action l r),← h,SecondStage.outward_inward]
 
+/--
+@isnad1 id=eq.0h4v.s12.6f842c9bfc7c from=translated src=- shape=26f4eecc vocab=5d81c725
+-/
 theorem main_action (l r : Letter) (b : CountTables.B) (a : CountTables.F) :
     TargetDeletion.evalBase edge l r (atom b)*TargetDeletion.evalFiber edge l r (atom a)-
       TargetDeletion.evalFiber edge l r (atom a)*TargetDeletion.evalBase edge l r (atom b)=
@@ -2616,18 +3342,27 @@ theorem main_action (l r : Letter) (b : CountTables.B) (a : CountTables.F) :
   intro b a l x y z
   exact TargetDeletion.table_curvature b a (toLetter l) (toLetter x) (toLetter y) (toLetter z)
 
+/--
+@isnad1 id=eq.0h2v.s9.e7ce8c98e9d1 from=translated src=- shape=e64ac0ec vocab=00686eb8
+-/
 theorem main_evaluate (l r : Letter) :
     evaluate (TargetDeletion.evalFiber edge l r) (TargetDeletion.evalBase edge l r)=operators l r := by
   apply hom_ext
   intro a
   cases a <;> simp [evaluate,operators]
 
+/--
+@isnad1 id=eq.0h3v.s11.3923016ee63e from=translated src=- shape=98014a98 vocab=785d8760
+-/
 theorem target_order_correct (l r : Letter) (p : A K E) :
     operators l r (ExactCountOrdering.T p)=operators l r p := by
   rw [← main_evaluate]
   exact evaluate_iterated _ _ CountTables.target (main_action l r)
     (SecondStage.order SecondStage.common) (second_order_correct l r) p
 
+/--
+@isnad1 id=equation.5h4v.s10.8d9bdafd941c from=translated src=- shape=2e74e35f vocab=a8ff46c7
+-/
 theorem equation_from_source_order (q : A K Slot) (r : ℕ)
     (hq : q∈homogeneous bCount r)
     (hp : P q∈homogeneous namedCount r)
@@ -2644,6 +3379,9 @@ namespace WordGrading
 open AssociativeElimination
 variable {R α β : Type*} [CommRing R]
 
+/--
+@isnad1 id=mem.4h9v.s11.0bf81b8d8789 from=translated src=- shape=423fc11a vocab=8e50fa67
+-/
 theorem algHom_difference_above (f g : A R α →ₐ[R] A R β)
     (wa : α → ℕ) (wb : β → ℕ)
     (hf : ∀ a,f (atom a)∈above wb (wa a))
@@ -2692,9 +3430,15 @@ def weight : Slot → ℕ | .A | .C => 2 | .B => 1
 def full (p : A K Slot) : A K E :=
   subst .one p+exactTwo p+omitted p+subst .three p+subst .four p
 
+/--
+@isnad1 id=mem.0h1v.s8.bd66b6d41335 from=translated src=- shape=3eb7e1e5 vocab=f20e5030
+-/
 theorem atom_homo (a : E) : (atom a : A K E)∈homogeneous namedCount (namedCount a) :=
   word_mem (FreeMonoid.of a) (degree_of namedCount a)
 
+/--
+@isnad1 id=mem.0h2v.s9.968006caac2e from=translated src=- shape=6f70187a vocab=3cead5d2
+-/
 theorem subst_homo (i : Row) (k : Slot) :
     subst i (atom k)∈homogeneous namedCount (bCount k) := by
   rw [subst,lift_atom]
@@ -2706,15 +3450,27 @@ theorem subst_homo (i : Row) (k : Slot) :
   rw [← hc]
   exact atom_homo e
 
+/--
+@isnad1 id=mem.1h2v.s8.eb7171291982 from=translated src=- shape=55a6daec vocab=bef86ed0
+-/
 theorem P_homogeneous {q : A K Slot} {r : ℕ} (hq : q∈homogeneous bCount r) :
     P q∈homogeneous namedCount r := by
   have h (i : Row) := algHom_homogeneous (subst i) bCount namedCount (subst_homo i) hq
   exact (homogeneous namedCount r).add_mem
     ((homogeneous namedCount r).add_mem ((homogeneous namedCount r).add_mem (h .one) (h .two)) (h .three)) (h .four)
 
+/--
+@isnad1 id=mem.0h0v.s7.324ee87e4402 from=translated src=- shape=d8bcab5c vocab=154a9f58
+-/
 theorem u12_homo : u12∈homogeneous namedCount 1 := atom_homo (.inr 2)
+/--
+@isnad1 id=mem.0h0v.s7.07c5af9d06f6 from=translated src=- shape=d8bcab5c vocab=e7a68daf
+-/
 theorem u23_homo : u23∈homogeneous namedCount 1 := atom_homo (.inl 2)
 
+/--
+@isnad1 id=mem.0h1v.s7.d9011349474a from=translated src=- shape=16a6494f vocab=34b38bfe
+-/
 theorem extra_homo (k : Slot) : extra k∈homogeneous namedCount 2 := by
   cases k with
   | A =>
@@ -2726,6 +3482,9 @@ theorem extra_homo (k : Slot) : extra k∈homogeneous namedCount 2 := by
       exact (homogeneous namedCount 2).sub_mem h1 h2
   | B => exact (homogeneous namedCount 2).zero_mem
 
+/--
+@isnad1 id=mem.0h1v.s10.5f80713f2f72 from=translated src=- shape=51c7b749 vocab=435e0c8f
+-/
 theorem exactTwo_difference (k : Slot) :
     exactTwo (atom k)-subst .two (atom k)∈above namedCount (bCount k+1) := by
   simp only [exactTwo,lift_atom,add_sub_cancel_left]
@@ -2733,6 +3492,9 @@ theorem exactTwo_difference (k : Slot) :
   intro w hw
   cases k <;> simp_all [bCount]
 
+/--
+@isnad1 id=mem.0h1v.s9.cd296687214a from=translated src=- shape=951e8602 vocab=0944e7ab
+-/
 theorem exactTwo_above (k : Slot) : exactTwo (atom k)∈above namedCount (bCount k) := by
   rw [exactTwo,lift_atom]
   apply (above namedCount _).add_mem (homogeneous_above (subst_homo .two k))
@@ -2740,6 +3502,9 @@ theorem exactTwo_above (k : Slot) : exactTwo (atom k)∈above namedCount (bCount
   intro w hw
   cases k <;> simp_all [bCount]
 
+/--
+@isnad1 id=mem.0h1v.s9.81a0044c5097 from=translated src=- shape=951e8602 vocab=1d25c6a2
+-/
 theorem omitted_weight (k : Slot) : omitted (atom k)∈homogeneous namedCount (weight k) := by
   simp only [omitted,lift_atom]
   cases k with
@@ -2752,6 +3517,9 @@ theorem omitted_weight (k : Slot) : omitted (atom k)∈homogeneous namedCount (w
       exact (homogeneous namedCount 2).sub_mem h1 h2
   | B => exact u23_homo
 
+/--
+@isnad1 id=mem.4h4v.s10.fc774bab1088 from=translated src=- shape=2fff1608 vocab=07b0f62e
+-/
 theorem full_error {p q : A K Slot} {n r : ℕ}
     (hp : p∈homogeneous weight n) (hr : r<n)
     (hq : q∈homogeneous bCount r) (hhigh : p-q∈above bCount (r+1)) :
@@ -2772,6 +3540,9 @@ theorem full_error {p q : A K Slot} {n r : ℕ}
   exact (above namedCount _).add_mem ((above namedCount _).add_mem ((above namedCount _).add_mem
     ((above namedCount _).add_mem ((above namedCount _).add_mem (hi .one) htwo) hdiff) homit) (hi .three)) (hi .four)
 
+/--
+@isnad1 id=equation.6h5v.s10.d69304333870 from=translated src=- shape=16307e97 vocab=4b97aacd
+-/
 theorem row_equation {p q : A K Slot} {n r : ℕ}
     (hp : p∈homogeneous weight n) (hr : r<n)
     (hq : q∈homogeneous bCount r) (hhigh : p-q∈above bCount (r+1))
@@ -2789,6 +3560,9 @@ open AssociativeElimination
 attribute [local instance] LieRing.ofAssociativeRing
 variable {R α U : Type*} [CommRing R] [Ring U] [Algebra R U]
 
+/--
+@isnad1 id=eq.0h5v.s9.f6e1c539977a from=translated src=- shape=e1d369fa vocab=e77b163e
+-/
 theorem lift_embed (f : α → U) (q : FreeLieAlgebra R α) :
     lift f (embed q)=FreeLieAlgebra.lift R f q := by
   induction q using freeLie_induction with
@@ -2798,6 +3572,9 @@ theorem lift_embed (f : α → U) (q : FreeLieAlgebra R α) :
   | hs r p hp => simp [hp]
   | hl p q hp hq => simp only [LieHom.map_lie,Ring.lie_def,map_sub,map_mul,hp,hq]
 
+/--
+@isnad1 id=eq.0h7v.s7.a33db8fff06d from=translated src=- shape=0c668c1f vocab=4dbd6125
+-/
 theorem map_eval {M N : Type*} [LieRing M] [LieAlgebra R M] [LieRing N] [LieAlgebra R N]
     (f : M →ₗ⁅R⁆ N) (a b : M) (q : FreeLieAlgebra R Bool) :
     f (BaseChangeEquations.eval a b q)=BaseChangeEquations.eval (f a) (f b) q := by
@@ -2811,6 +3588,9 @@ end AssociativeEvaluation
 namespace CharTwoAction
 attribute [local instance] LieRing.ofAssociativeRing
 variable {U : Type*} [Ring U] [CharP U 2]
+/--
+@isnad1 id=eq.0h3v.s7.08e341e26f7f from=translated src=- shape=e78bbd87 vocab=0f6457a7
+-/
 theorem square_add (x y : U) : (x+y)*(x+y)=x*x+y*y+⁅x,y⁆ := by
   simp only [Ring.lie_def,CharTwo.sub_eq_add,mul_add,add_mul]
   abel
@@ -2838,6 +3618,9 @@ def quad : A K Slot →ₐ[K] A K Bool := lift (fun
 def quadEval {U : Type*} [Ring U] [Algebra K U] (x y : U) : A K Slot →ₐ[K] U :=
   lift (fun | .A => x*x | .C => x*y-y*x | .B => y)
 
+/--
+@isnad1 id=eq.0h3v.s8.c8b722b271d3 from=translated src=- shape=b3a0b0b2 vocab=d9fe9065
+-/
 theorem algEval_quad {U : Type*} [Ring U] [Algebra K U] (x y : U) :
     (algEval x y).comp quad=quadEval x y := by
   apply hom_ext
@@ -2846,41 +3629,80 @@ theorem algEval_quad {U : Type*} [Ring U] [Algebra K U] (x y : U) :
 
 def interpretation : A K E →ₐ[K] Env S3 := evaluate topFiber topBase
 
+/--
+@isnad1 id=eq.0h1v.s10.6ed4c1b8251c from=translated src=- shape=04af948d vocab=6045c4d7
+-/
 theorem interpretation_base (b : CountTables.B) : interpretation (atom (.inr b))=topBase (atom b) := by
   simp [interpretation,evaluate]
+/--
+@isnad1 id=eq.0h1v.s10.b71f86c3ff43 from=translated src=- shape=04af948d vocab=491aeab5
+-/
 theorem interpretation_fiber (b : CountTables.F) : interpretation (atom (.inl b))=topFiber (atom b) := by
   simp [interpretation,evaluate]
 
+/--
+@isnad1 id=eq.0h0v.s9.27c04bf9a13d from=translated src=- shape=25bccd5a vocab=cb8fac7f
+-/
 @[simp] theorem interpretation_a1 : interpretation (atom (.inr 0))=X1*X1 := by
   simp only [interpretation_base,topBase,AlgHom.comp_apply,oldBase,lift_atom,map_mul]
   rfl
+/--
+@isnad1 id=eq.0h0v.s9.18519a9b698b from=translated src=- shape=25bccd5a vocab=8054a0ac
+-/
 @[simp] theorem interpretation_a2 : interpretation (atom (.inr 1))=X2*X2 := by
   simp only [interpretation_base,topBase,AlgHom.comp_apply,oldBase,lift_atom,map_mul]
   rfl
+/--
+@isnad1 id=eq.0h0v.s9.2a3b86b2217e from=translated src=- shape=655432d5 vocab=04c1a5a1
+-/
 @[simp] theorem interpretation_u12 : interpretation u12=U12 := by
   simp only [u12,interpretation_base,topBase,AlgHom.comp_apply,oldBase,lift_atom]
   rfl
+/--
+@isnad1 id=eq.0h0v.s9.9aefba0fb0ab from=translated src=- shape=a63319aa vocab=0542a84c
+-/
 @[simp] theorem interpretation_u13 : interpretation (atom (.inl 1))=U13 := by
   rw [interpretation_fiber,topFiber_eq,CountTables.realize_atom_one]
+/--
+@isnad1 id=eq.0h0v.s9.369a83e7dcb6 from=translated src=- shape=655432d5 vocab=e24f3986
+-/
 @[simp] theorem interpretation_u23 : interpretation u23=U23 := by
   rw [interpretation_fiber,topFiber_eq,CountTables.realize_atom_two]
+/--
+@isnad1 id=eq.0h0v.s10.fb70d64306b9 from=translated src=- shape=cadb0aa9 vocab=8906a269
+-/
 @[simp] theorem interpretation_v12 : interpretation (atom (.inr 3))=⁅X1,U12⁆ := by
   simp only [interpretation_base,topBase,AlgHom.comp_apply,oldBase,lift_atom,Ring.lie_def,map_sub,map_mul]
   rfl
+/--
+@isnad1 id=eq.0h0v.s10.9a78a7fdfe09 from=translated src=- shape=5c3c0785 vocab=9c342971
+-/
 @[simp] theorem interpretation_v13 : interpretation (atom (.inl 3))=⁅X1,U13⁆ := by
   rw [interpretation_fiber,topFiber_eq,CountTables.realize_atom_three,raw_delta]
   simp [CountTables.δ,CountTables.Y,CountTables.C]
+/--
+@isnad1 id=eq.0h0v.s10.96df85827140 from=translated src=- shape=5c3c0785 vocab=acd0ef0b
+-/
 @[simp] theorem interpretation_v23 : interpretation (atom (.inl 4))=⁅X2,U23⁆ := by
   rw [interpretation_fiber,topFiber_eq,CountTables.realize_atom_four,raw_delta]
   simp [CountTables.δ,CountTables.Y,CountTables.C]
 
+/--
+@isnad1 id=eq.0h0v.s8.efef69089ff7 from=translated src=- shape=e30cfe43 vocab=f776dbab
+-/
 theorem cross13 : ⁅X2,U13⁆=0 := by
   rw [raw_delta]
   simp [CountTables.δ,CountTables.Y]
+/--
+@isnad1 id=eq.0h0v.s8.43c985394e9c from=translated src=- shape=e30cfe43 vocab=879a74a7
+-/
 theorem cross23 : ⁅X1,U23⁆=0 := by
   rw [raw_delta]
   simp [CountTables.δ,CountTables.Y]
 
+/--
+@isnad1 id=eq.0h0v.s9.2b15254a23a1 from=translated src=- shape=02e044c6 vocab=217d4777
+-/
 theorem base_triple : ⁅X1,X2⁆=⁅X1,U12⁆ := by
   have h := GenericBraid.t_three (R:=K) (some root : S3) (some one) (some two)
     (by decide) (by decide) (by decide)
@@ -2891,6 +3713,9 @@ theorem base_triple : ⁅X1,X2⁆=⁅X1,U12⁆ := by
   rw [← baseX_zero,← baseX_one,← baseU_eq,lie_add] at hh
   exact CharTwo.add_eq_zero.mp hh
 
+/--
+@isnad1 id=eq.0h0v.s9.6482a07c35cd from=translated src=- shape=82b00392 vocab=217d4777
+-/
 theorem base_triangle : ⁅X2,U12⁆=⁅X1,U12⁆ := by
   have h := GenericBraid.t_three (R:=K) (some one : S3) (some two) (some root)
     (by decide) (by decide) (by decide)
@@ -2903,6 +3728,9 @@ theorem base_triangle : ⁅X2,U12⁆=⁅X1,U12⁆ := by
   rw [CharTwoAction.symm U12 X1,CharTwoAction.symm U12 X2] at hh
   exact (CharTwo.add_eq_zero.mp hh).symm
 
+/--
+@isnad1 id=eq.0h0v.s10.57deec519ba3 from=translated src=- shape=9b5d555b vocab=35166893
+-/
 theorem interprets_one : interpretation.comp (subst .one)=quadEval X1 (U12+U13) := by
   apply hom_ext
   intro k
@@ -2911,18 +3739,27 @@ theorem interprets_one : interpretation.comp (subst .one)=quadEval X1 (U12+U13) 
     interpretation_v12,interpretation_v13,quadEval,lift_atom]
   all_goals simp only [Ring.lie_def]; noncomm_ring
 
+/--
+@isnad1 id=eq.0h0v.s9.2f80ce7c70f7 from=translated src=- shape=f45b1f7e vocab=709af076
+-/
 theorem interprets_four : interpretation.comp (subst .four)=quadEval X1 U12 := by
   apply hom_ext
   intro k
   cases k <;> simp only [AlgHom.comp_apply,subst,lift_atom,slots,List.map_cons,List.map_nil,List.sum_cons,
     List.sum_nil,add_zero,interpretation_a1,interpretation_u12,interpretation_v12,quadEval,lift_atom,Ring.lie_def]
 
+/--
+@isnad1 id=eq.0h0v.s9.767cb9e0d642 from=translated src=- shape=b731441c vocab=4f12caec
+-/
 theorem interprets_omitted : interpretation.comp omitted=quadEval U12 U23 := by
   apply hom_ext
   intro k
   cases k <;> simp only [AlgHom.comp_apply,omitted,lift_atom,map_mul,map_sub,interpretation_u12,
     interpretation_u23,quadEval,lift_atom]
 
+/--
+@isnad1 id=eq.0h0v.s10.ccad60cb2686 from=translated src=- shape=c375a24a vocab=f98d9639
+-/
 theorem interprets_two : interpretation.comp exactTwo=quadEval (X2+U12) U23 := by
   apply hom_ext
   intro k
@@ -2941,6 +3778,9 @@ theorem interprets_two : interpretation.comp exactTwo=quadEval (X2+U12) U23 := b
       simp only [AlgHom.comp_apply,exactTwo,lift_atom,subst,slots,List.map_cons,List.map_nil,List.sum_cons,
         List.sum_nil,add_zero,extra,interpretation_u23,quadEval,lift_atom]
 
+/--
+@isnad1 id=eq.0h0v.s10.36b2591ca116 from=translated src=- shape=9ce703cd vocab=cacf368e
+-/
 theorem interprets_three : interpretation.comp (subst .three)=quadEval (X1+X2) (U13+U23) := by
   apply hom_ext
   intro k
@@ -2959,6 +3799,9 @@ theorem interprets_three : interpretation.comp (subst .three)=quadEval (X1+X2) (
       simp only [AlgHom.comp_apply,subst,lift_atom,slots,List.map_cons,List.map_nil,List.sum_cons,
         List.sum_nil,add_zero,map_add,interpretation_u13,interpretation_u23,quadEval,lift_atom]
 
+/--
+@isnad1 id=eq.0h1v.s12.5937601ae5ad from=translated src=- shape=5ac9121f vocab=b48dfb62
+-/
 theorem full_interpretation (p : A K Slot) :
     interpretation (full p)=quadEval X1 (U12+U13) p+quadEval (X2+U12) U23 p+
       quadEval U12 U23 p+quadEval (X1+X2) (U13+U23) p+quadEval X1 U12 p := by
@@ -2985,29 +3828,50 @@ def labels : Fin 4 ≃ S3 where
 def sourceHom : GenericBraid.T K (Fin 4) →ₗ⁅K⁆ Env S3 :=
   (UniversalEnvelopingAlgebra.ι K).comp (GenericBraid.rename labels)
 
+/--
+@isnad1 id=eq.0h2v.s10.68857e7dc2ab from=translated src=- shape=6e2b150c vocab=a6d45d13
+-/
 @[simp] theorem sourceHom_t (i j : Fin 4) : sourceHom (GenericBraid.t i j)=
     SourceEnveloping.chord (labels i) (labels j) := by
   simp [sourceHom,SourceEnveloping.chord]
+/--
+@isnad1 id=eq.0h0v.s10.5a8e98e95787 from=translated src=- shape=3ce91a72 vocab=d06b99c7
+-/
 @[simp] theorem sourceHom_01 : sourceHom (GenericBraid.t 0 1)=X1 := by
   rw [sourceHom_t]
   exact baseX_zero.symm
+/--
+@isnad1 id=eq.0h0v.s10.c28a12dd533f from=translated src=- shape=3ce91a72 vocab=6b106dad
+-/
 @[simp] theorem sourceHom_02 : sourceHom (GenericBraid.t 0 2)=X2 := by
   rw [sourceHom_t]
   exact baseX_one.symm
+/--
+@isnad1 id=eq.0h0v.s10.fd8d102ef158 from=translated src=- shape=3ce91a72 vocab=c46863ac
+-/
 @[simp] theorem sourceHom_12 : sourceHom (GenericBraid.t 1 2)=U12 := by
   rw [sourceHom_t]
   exact baseU_eq.symm
+/--
+@isnad1 id=eq.0h0v.s10.4fe3756a2947 from=translated src=- shape=3ce91a72 vocab=7e0ad7de
+-/
 @[simp] theorem sourceHom_13 : sourceHom (GenericBraid.t 1 3)=U13 := by
   rw [sourceHom_t]
   change SourceEnveloping.chord (some one) none=rawFiber (CountTables.Y 0)
   rw [rawFiber_Y]
   exact SourceEnveloping.chord_comm _ _
+/--
+@isnad1 id=eq.0h0v.s10.61580eb3d351 from=translated src=- shape=3ce91a72 vocab=1d3b8163
+-/
 @[simp] theorem sourceHom_23 : sourceHom (GenericBraid.t 2 3)=U23 := by
   rw [sourceHom_t]
   change SourceEnveloping.chord (some two) none=rawFiber (CountTables.Y 1)
   rw [rawFiber_Y]
   exact SourceEnveloping.chord_comm _ _
 
+/--
+@isnad1 id=eq.1h4v.s11.3b269f6e52d8 from=translated src=- shape=709abc92 vocab=9049a01a
+-/
 theorem eval_quadratic {ψ : FreeLieAlgebra K Bool} {p : A K Slot}
     (hrep : embed ψ=quad p) (a b : Env S3) :
     BaseChangeEquations.eval a b ψ=quadEval a b p := by
@@ -3015,6 +3879,9 @@ theorem eval_quadratic {ψ : FreeLieAlgebra K Bool} {p : A K Slot}
     AssociativeEvaluation.lift_embed _ ψ,hrep]
   exact AlgHom.congr_fun (algEval_quad a b) p
 
+/--
+@isnad1 id=eq.2h2v.s10.c56d324a4751 from=translated src=- shape=6a3e93bf vocab=f2b427c3
+-/
 theorem full_zero {ψ : FreeLieAlgebra K Bool} {p : A K Slot}
     (hrep : embed ψ=quad p) (hpent : BaseChangeEquations.pentagon ψ=0) :
     interpretation (full p)=0 := by

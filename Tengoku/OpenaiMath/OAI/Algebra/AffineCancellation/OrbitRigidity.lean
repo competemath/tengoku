@@ -11,7 +11,9 @@ variable {k R K : Type*} [Field k] [CharZero k] [CommRing R] [Algebra k R]
   [Field K] [CharZero K] [Algebra k K]
 
 /-- Orbit rigidity for a locally nilpotent derivation, with the nonsquare condition
-in the original coefficient field. -/
+in the original coefficient field.
+@isnad1 id=and.8h8v.s10.5844e44a00b9 from=translated src=- shape=c6bc6c5a vocab=1284307d
+-/
 theorem fixed_of_square_cube (D : Derivation k R R) (hD : LocallyNilpotent D)
     (f : R →ₐ[k] K) (hf : Function.Injective f) {a d u : R}
     (ha : a ≠ 0) (hd : d ≠ 0) (hu : u ≠ 0) (hn : d ^ 2 + a ^ 2 * u ^ 3 ≠ 0)
