@@ -455,31 +455,6 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}", BODY: "${{ github.event.pull_request.body }}" }
         run: printf '%s' "$BODY" > body.txt && python3 scripts/ci/depends.py body.txt
 
-  # FOSSA's three verdicts (licences, dependency quality, known vulnerabilities) on the PR's head commit. ADVISORY since 2026-10-12: FOSSA stalled on some
-  # commits for hours ("is analyzing this commit", the same commit analysed in minutes on another attempt), held back a queue's worth of translation PRs and
-  # could be neither retried nor repaired from here. `pr-gate` does not wait for this job and does not judge it, the job cannot fail the run, and FOSSA's own
-  # three statuses stay on the PR for a reviewer to read. FOSSA reports on PR commits only, never on a queue entry, so it was never a ruleset check.
-  fossa:
-    if: github.event_name == 'pull_request_target'
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    permissions: { contents: read, statuses: read }
-    steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
-        with: { egress-policy: audit }
-      # The base commit with plain git, not actions/checkout (as the scope-fix and queue-recheck jobs): the repository is public, nothing needs a token,
-      # and none is written into the checkout. Only main's script runs here; the PR is read as commit statuses.
-      - name: The base commit (the checks are main's)
-        run: |
-          git init -q .
-          git remote add origin "https://github.com/$GITHUB_REPOSITORY"
-          git fetch -q --no-tags --filter=blob:none origin "+$SCRIPTS:refs/remotes/origin/scripts" "$BASE"
-          git checkout -q --detach origin/scripts
-      - name: fossa
-        env: { GH_TOKEN: "${{ github.token }}", FOSSA_WAIT_MINUTES: "15" }
-        run: python3 scripts/ci/fossa_check.py "$GITHUB_REPOSITORY" "$HEAD"
-
   # The merge queue's re-check of an entry (the PR merged onto what is ahead of it) against its new base. It reads the entry's commits as data
   # and runs main's scripts; it holds no write token. The privileged `pr-gate` job below never touches the entry's commits.
   queue-recheck:
