@@ -17,6 +17,9 @@ open scoped ContDiff
 variable {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h3v.s7.94fef57e8deb from=translated src=- shape=33e568bf vocab=7c44bb11
+-/
 theorem rawPrimitive_fixed_interval (f : ℝ → E) (θ : ℝ) :
     rawPrimitive f θ = θ • (∫ s in (0 : ℝ)..1, f (θ*s)) := by
   simpa only [rawPrimitive, mul_zero, mul_one] using
@@ -24,6 +27,9 @@ theorem rawPrimitive_fixed_interval (f : ℝ → E) (θ : ℝ) :
 
 variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X] [ProperSpace X]
 
+/--
+@isnad1 id=contdiff.1h3v.s7.e88dcdd26eec from=translated src=- shape=e4f838e4 vocab=5c3f04af
+-/
 theorem rawPrimitive_joint_contDiff (F : X × ℝ → E) (hF : ContDiff ℝ ∞ F) :
     ContDiff ℝ ∞ (fun p : X × ℝ => rawPrimitive (fun θ => F (p.1,θ)) p.2) := by
   have hG : ContDiff ℝ ∞ (fun z : (X × ℝ) × ℝ => F (z.1.1,z.1.2*z.2)) :=
@@ -31,6 +37,9 @@ theorem rawPrimitive_joint_contDiff (F : X × ℝ → E) (hF : ContDiff ℝ ∞ 
   have hi := integral_contDiff 0 1 zero_le_one _ hG
   simpa only [rawPrimitive_fixed_interval, Pi.smul_def'] using contDiff_snd.smul hi
 
+/--
+@isnad1 id=contdiff.2h4v.s7.69d06504b105 from=translated src=- shape=6650c859 vocab=b234d72f
+-/
 theorem primitive_joint_contDiff (P : ℝ) (hP : 0 ≤ P) (F : X × ℝ → E)
     (hF : ContDiff ℝ ∞ F) :
     ContDiff ℝ ∞ (fun p : X × ℝ => primitive P (fun θ => F (p.1,θ)) p.2) := by
@@ -43,6 +52,9 @@ section Continuous
 variable {Y : Type*} [TopologicalSpace Y] [FirstCountableTopology Y] [LocallyCompactSpace Y]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=continuo.1h3v.s6.f1839c641f18 from=translated src=- shape=1005c704 vocab=422a379f
+-/
 theorem rawPrimitive_joint_continuous (F : Y × ℝ → E) (hF : Continuous F) :
     Continuous (fun p : Y × ℝ => rawPrimitive (fun θ => F (p.1,θ)) p.2) := by
   have hG : Continuous (fun z : (Y × ℝ) × ℝ => F (z.1.1,z.1.2*z.2)) :=
@@ -56,6 +68,9 @@ theorem rawPrimitive_joint_continuous (F : Y × ℝ → E) (hF : Continuous F) :
   simpa only [rawPrimitive_fixed_interval, Pi.smul_def'] using continuous_snd.smul hi'
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=continuo.2h4v.s6.cafb66191cc0 from=translated src=- shape=40c691bb vocab=c5a1f36c
+-/
 theorem primitive_joint_continuous (P : ℝ) (hP : 0 ≤ P) (F : Y × ℝ → E)
     (hF : Continuous F) :
     Continuous (fun p : Y × ℝ => primitive P (fun θ => F (p.1,θ)) p.2) := by

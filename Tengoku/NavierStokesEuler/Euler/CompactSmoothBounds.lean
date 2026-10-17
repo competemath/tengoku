@@ -21,6 +21,9 @@ variable {u₀ : ℝ³ → ℝ³} {v : ℝ³ → ℝ → ℝ³} {p : ℝ³ → �
 
 include h
 
+/--
+@isnad1 id=eq.2h5v.s11.9c8715902f67 from=translated src=- shape=4ddad9bf vocab=58362e57
+-/
 theorem spatial_fderiv_eq_within (x : ℝ³) (t : ℝ) (ht : 0 ≤ t) :
     fderiv ℝ (v · t) x =
       (fderivWithin ℝ (Function.uncurry v) (univ ×ˢ Ici 0) (x, t)).comp
@@ -31,6 +34,9 @@ theorem spatial_fderiv_eq_within (x : ℝ³) (t : ℝ) (ht : 0 ≤ t) :
     (hasFDerivAt_prodMk_left (𝕜 := ℝ) x t)
     (Eventually.of_forall (fun y => ⟨mem_univ y, ht⟩))).fderiv
 
+/--
+@isnad1 id=continuo.1h3v.s10.482947d236e5 from=translated src=- shape=de7092b7 vocab=675f508c
+-/
 theorem spatial_fderiv_continuousOn :
     ContinuousOn (fun z : ℝ³ × ℝ => fderiv ℝ (v · z.2) z.1)
       (univ ×ˢ Ici 0) := by
@@ -40,6 +46,9 @@ theorem spatial_fderiv_continuousOn :
   intro z hz
   exact h.spatial_fderiv_eq_within z.1 z.2 hz.2
 
+/--
+@isnad1 id=ex.2h5v.s10.b8a102fbe797 from=translated src=- shape=6c32e7aa vocab=9e265f8d
+-/
 theorem spatial_fderiv_bounded_on_compact (K : Set ℝ³) (hK : IsCompact K)
     (T : ℝ) : ∃ C : ℝ, ∀ x ∈ K, ∀ t ∈ Icc (0 : ℝ) T,
       ‖fderiv ℝ (v · t) x‖ ≤ C := by

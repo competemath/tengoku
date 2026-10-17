@@ -13,6 +13,9 @@ open scoped ContDiff Topology
 
 namespace EulerComparatorRecovery
 
+/--
+@isnad1 id=contdiff.1h3v.s8.60e80958bcdf from=translated src=- shape=7821091d vocab=410af29c
+-/
 theorem joint_scalar_partialDerivative_contDiffOn
     {u : ℝ × Space → ℝ} {S : Set ℝ}
     (hu : ContDiffOn ℝ ∞ u (S ×ˢ (univ : Set Space))) (i : Fin 3) :
@@ -38,6 +41,9 @@ theorem joint_scalar_partialDerivative_contDiffOn
     simpa only [fderivWithin_univ] using hf'
   exact hd.clm_apply contDiffOn_const
 
+/--
+@isnad1 id=contdiff.1h3v.s8.ea14a4e80980 from=translated src=- shape=4cc033bc vocab=9a4e5ad2
+-/
 theorem joint_wordDerivative_contDiffOn
     {u : ℝ × Space → ℝ} {S : Set ℝ}
     (hu : ContDiffOn ℝ ∞ u (S ×ˢ (univ : Set Space))) (word : List (Fin 3)) :
@@ -47,6 +53,9 @@ theorem joint_wordDerivative_contDiffOn
   | nil => exact hu
   | cons i word ih => exact joint_scalar_partialDerivative_contDiffOn ih i
 
+/--
+@isnad1 id=contdiff.1h2v.s9.f6fe838cc720 from=translated src=- shape=242d6e97 vocab=c0f3a154
+-/
 theorem joint_scalar_laplacian_contDiffOn
     {u : ℝ × Space → ℝ} {S : Set ℝ}
     (hu : ContDiffOn ℝ ∞ u (S ×ˢ (univ : Set Space))) :
@@ -63,6 +72,9 @@ theorem joint_scalar_laplacian_contDiffOn
     hu.comp_contDiff (contDiff_const.prodMk contDiff_id) (fun y => ⟨hz.1, mem_univ _⟩)
   exact laplacian_eq_coordinate_sum _ hs z.2
 
+/--
+@isnad1 id=le.0h2v.s6.389f6d7b0944 from=translated src=- shape=1671d6c9 vocab=e6264cc3
+-/
 theorem tsupport_wordDerivative_subset (word : List (Fin 3)) (f : Space → ℝ) :
     tsupport (wordDerivative word f) ⊆ tsupport f := by
   induction word with
@@ -70,6 +82,9 @@ theorem tsupport_wordDerivative_subset (word : List (Fin 3)) (f : Space → ℝ)
   | cons i word ih =>
     exact (tsupport_fderiv_apply_subset ℝ (EuclideanSpace.single i 1)).trans ih
 
+/--
+@isnad1 id=ex.3h4v.s9.e4ef5c585260 from=translated src=- shape=e2aa9831 vocab=27fd09e4
+-/
 theorem uniform_energy_of_compact_support
     {E : Type*} [NormedAddCommGroup E]
     (f : ℝ × Space → E) (T : ℝ) (K : Set Space) (hK : IsCompact K)
@@ -93,6 +108,9 @@ theorem uniform_energy_of_compact_support
   rw [Real.norm_eq_abs, abs_of_nonneg (sq_nonneg _)]
   exact pow_le_pow_left₀ (norm_nonneg _) ((hC (t, x) ⟨ht, hx⟩).trans (le_max_left _ _)) 2
 
+/--
+@isnad1 id=ex.3h4v.s9.6f1ff2302ceb from=translated src=- shape=9179bdb0 vocab=9a7e0a11
+-/
 theorem wordDerivative_energy_uniform_of_compact_support
     (f : ℝ × Space → ℝ) (T : ℝ) (K : Set Space) (hK : IsCompact K)
     (hf : ContDiffOn ℝ ∞ f (Icc (0 : ℝ) T ×ˢ (univ : Set Space)))

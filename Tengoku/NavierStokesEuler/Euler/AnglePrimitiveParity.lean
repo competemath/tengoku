@@ -13,13 +13,18 @@ open MeasureTheory
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h3v.s6.94f49d492f36 from=translated src=- shape=4696cce6 vocab=1f7822b0
+-/
 theorem primitive_neg (P : ℝ) (f : ℝ → E) :
     primitive P (fun θ => -f θ)=fun θ => -primitive P f θ := by
   funext θ
   simp only [primitive, rawPrimitive, intervalIntegral.integral_neg, smul_neg]
   abel
 
-/-- Reflection of the argument contributes one minus sign to a primitive. -/
+/-- Reflection of the argument contributes one minus sign to a primitive.
+@isnad1 id=eq.4h3v.s7.463026bd9087 from=translated src=- shape=2339c2a4 vocab=1fb133df
+-/
 theorem primitive_reflection (P : ℝ) (hP : P ≠ 0) (f : ℝ → E) (hf : Continuous f)
     (hper : Function.Periodic f P) (hmean : ∫ θ in 0..P, f θ=0) :
     primitive P (fun θ => -f (-θ))=fun θ => primitive P f (-θ) := by

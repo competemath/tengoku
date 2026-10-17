@@ -29,7 +29,9 @@ variable {u₀ : Space → Space} {v : Space → ℝ → Space} {p : Space → �
 include h
 
 /-- One compact spacetime cylinder supplies a common local speed bound and
-one positive trapping time for every truncation agreeing on that cylinder. -/
+one positive trapping time for every truncation agreeing on that cylinder.
+@isnad1 id=ex.2h3v.s8.6222434b5e30 from=translated src=- shape=519e3f92 vocab=6cab71fe
+-/
 theorem exists_local_trapping_constants
     (hc : HasCompactSupport (vectorCurl u₀)) :
     ∃ A M δ : ℝ, 0 < A ∧ 0 < M ∧ 0 < δ ∧ δ ≤ 1 ∧ δ * M < 1 ∧
@@ -155,7 +157,9 @@ def locallyTrappedBackwardFlows
     simpa only [Z, X, ComparatorBridge.TruncatedBackwardFlow.endpointPath_end] using hz.le
 
 /-- Finite-energy solenoidal truncations imply compact vorticity for a
-uniform positive interval, using only the Comparator solution assumptions. -/
+uniform positive interval, using only the Comparator solution assumptions.
+@isnad1 id=ex.2h4v.s8.61d182023567 from=translated src=- shape=6731cf75 vocab=b5c8f976
+-/
 theorem local_compact_vorticity_of_truncationFamily
     (F : ComparatorBridge.FiniteEnergyTruncationFamily v)
     (hc : HasCompactSupport (vectorCurl u₀)) :
@@ -172,7 +176,9 @@ theorem local_compact_vorticity_of_truncationFamily
 
 /-- Compact initial vorticity stays in one compact ball for a positive time
 for every Comparator solution. The auxiliary global trajectories are those
-of the explicitly constructed finite-energy solenoidal truncations. -/
+of the explicitly constructed finite-energy solenoidal truncations.
+@isnad1 id=ex.2h3v.s8.16dbda7d6840 from=translated src=- shape=71d111a1 vocab=ee64893b
+-/
 theorem local_compact_vorticity (hc : HasCompactSupport (vectorCurl u₀)) :
     ∃ δ B : ℝ, 0 < δ ∧ ∀ t ∈ Icc 0 δ,
       tsupport (vectorCurl (v · t)) ⊆ Metric.closedBall (0 : Space) B :=

@@ -17,7 +17,9 @@ open MeasureTheory InnerProductSpace EulerSmoothLimit EulerVectorCalculus
 open scoped ContDiff
 
 /-- Integration by parts with compact support on the vector test, rather than
-on the scalar potential. -/
+on the scalar potential.
+@isnad1 id=eq.3h2v.s10.398f8a41cccc from=translated src=- shape=bfd9af71 vocab=8be55bfd
+-/
 theorem compact_vector_gradient_integration_by_parts (φ : Space → Space)
     (hφ : ContDiff ℝ ∞ φ) (hc : HasCompactSupport φ)
     (p : Space → ℝ) (hp : ContDiff ℝ ∞ p) :
@@ -62,7 +64,9 @@ theorem compact_vector_gradient_integration_by_parts (φ : Space → Space)
   simp only [hibp, Finset.sum_neg_distrib]
 
 /-- An arbitrary smooth scalar pressure cancels against a compact smooth
-divergence-free vector test. -/
+divergence-free vector test.
+@isnad1 id=eq.4h2v.s10.ff03801affef from=translated src=- shape=b8960d53 vocab=66a636c9
+-/
 theorem compact_solenoidal_pressure_pairing_zero (φ : Space → Space)
     (hφ : ContDiff ℝ ∞ φ) (hc : HasCompactSupport φ)
     (hdiv : ∀ x, divergence φ x = 0)

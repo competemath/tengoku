@@ -17,6 +17,9 @@ local notation "ℝ³" => EuclideanSpace ℝ (Fin 3)
 
 variable {u₀ : ℝ³ → ℝ³} {v : ℝ³ → ℝ → ℝ³} {p : ℝ³ → ℝ → ℝ}
 
+/--
+@isnad1 id=eulerexi.2h4v.s7.b92d1ae4521f from=translated src=- shape=38a5fbf5 vocab=ee94b445
+-/
 theorem shiftTime (h : EulerExistenceAndSmoothnessR3 u₀ v p)
     (a : ℝ) (ha : 0 ≤ a) :
     EulerExistenceAndSmoothnessR3 (v · a)

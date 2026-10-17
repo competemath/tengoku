@@ -20,17 +20,25 @@ def gradientFiveNorm {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (f : LiftDomain period → F) : ℝ :=
   ∑ i : Fin 4, liftSobolevNorm period 5 (fieldDerivative period (standardDirection i) f)
 
+/--
+@isnad1 id=le.0h3v.s5.3d515a9ba490 from=translated src=- shape=6fa5df9d vocab=cfd5da70
+-/
 theorem gradientFiveNorm_nonneg {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (f : LiftDomain period → F) : 0 ≤ gradientFiveNorm period f :=
   Finset.sum_nonneg fun _ _ => liftSobolevNorm_nonneg period 5 _
 
+/--
+@isnad1 id=le.0h4v.s6.f4e0ef3b8697 from=translated src=- shape=3cadd880 vocab=af73d86a
+-/
 theorem derivative_le_gradientFiveNorm {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (f : LiftDomain period → F) (i : Fin 4) :
     liftSobolevNorm period 5 (fieldDerivative period (standardDirection i) f) ≤ gradientFiveNorm period f :=
   Finset.single_le_sum (f := fun j : Fin 4 => liftSobolevNorm period 5 (fieldDerivative period (standardDirection j) f))
     (fun j _ => liftSobolevNorm_nonneg period 5 (fieldDerivative period (standardDirection j) f)) (Finset.mem_univ i)
 
-/-- Six actual derivatives of a field give five derivatives of each first derivative. -/
+/-- Six actual derivatives of a field give five derivatives of each first derivative.
+@isnad1 id=memlp.2h6v.s8.9413f4de47d4 from=translated src=- shape=fffd509b vocab=c2a87394
+-/
 theorem derivative_memLp_five {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (f : LiftDomain period → F)
     (hfL : ∀ j ≤ 6, ∀ w : Fin j → Fin 4, MemLp (iteratedFieldDerivative period w f) 2 (liftMeasure period))
@@ -46,7 +54,9 @@ def scalarCommutator {n : ℕ} (w : Fin n → Fin 4)
     (fun x => f x • iteratedFieldDerivative period w g x)
 
 omit [Fact (0 < period)] in
-/-- Exact commutator recurrence isolates one actual derivative of the scalar coefficient. -/
+/-- Exact commutator recurrence isolates one actual derivative of the scalar coefficient.
+@isnad1 id=eq.2h5v.s10.63c9058c043b from=translated src=- shape=3bcdf907 vocab=c9d4bd22
+-/
 theorem scalarCommutator_recurrence {n : ℕ} (w : Fin (n+1) → Fin 4)
     (f : LiftDomain period → ℝ) (g : LiftDomain period → Vector3)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift period f x))
@@ -68,7 +78,9 @@ theorem scalarCommutator_recurrence {n : ℕ} (w : Fin (n+1) → Fin 4)
   simp only [Pi.add_apply, Pi.sub_apply]
   abel
 
-/-- The commutator cancels its apparent highest derivative before the L² estimate is applied. -/
+/-- The commutator cancels its apparent highest derivative before the L² estimate is applied.
+@isnad1 id=and.5h7v.s11.c56aed58fe5b from=translated src=- shape=aeb453b5 vocab=fb81c1c5
+-/
 theorem mixed_scalarCommutator_bound {n l : ℕ} (hnl : n+l ≤ 6)
     (w : Fin n → Fin 4) (v : Fin l → Fin 4)
     (f : LiftDomain period → ℝ) (g : LiftDomain period → Vector3)
@@ -100,7 +112,9 @@ theorem mixed_scalarCommutator_bound {n l : ℕ} (hnl : n+l ≤ 6)
     have hh := fieldL2_add_le period _ _ h1.1 h2.1
     exact hh.trans ((add_le_add h3 h2.2).trans_eq (by rw [pow_succ]; ring))
 
-/-- The actual base commutator through six derivatives has the source's H⁵×H⁵ bound. -/
+/-- The actual base commutator through six derivatives has the source's H⁵×H⁵ bound.
+@isnad1 id=and.5h5v.s10.a1ac4444480f from=translated src=- shape=c390c59f vocab=d97847b5
+-/
 theorem scalarCommutator_bound {n : ℕ} (hn : n ≤ 6) (w : Fin n → Fin 4)
     (f : LiftDomain period → ℝ) (g : LiftDomain period → Vector3)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift period f x))

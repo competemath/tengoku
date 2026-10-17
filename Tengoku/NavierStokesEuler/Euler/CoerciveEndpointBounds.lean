@@ -22,6 +22,9 @@ variable {S E V F G W : Type*}
   [NormedAddCommGroup G] [NormedSpace ℝ G]
   [NormedAddCommGroup W] [NormedSpace ℝ W]
 
+/--
+@isnad1 id=le.0h7v.s10.0f1d17b52633 from=translated src=- shape=6307b45f vocab=7e5f74b5
+-/
 theorem norm_comp_sub_le (A B : F →L[ℝ] G) (C D : W →L[ℝ] F) :
     ‖A.comp C - B.comp D‖ ≤ ‖A - B‖ * ‖C‖ + ‖B‖ * ‖C - D‖ := by
   have he : A.comp C - B.comp D = (A - B).comp C + B.comp (C - D) := by
@@ -38,6 +41,9 @@ def correctionOperator (D : S →L[ℝ] E) (R : S →L[ℝ] S) (A : E →L[ℝ] 
 def endpointOperator (D : S →L[ℝ] E) (R : S →L[ℝ] S) (A : E →L[ℝ] E)
     (L : V →L[ℝ] E) : V →L[ℝ] E := L - (correctionOperator D R A).comp L
 
+/--
+@isnad1 id=le.3h8v.s9.ad00c6f48611 from=translated src=- shape=1dbb84de vocab=e04e776a
+-/
 theorem correctionOperator_norm_le (D : S →L[ℝ] E) (R : S →L[ℝ] S) (A : E →L[ℝ] E)
     (d r a : ℝ) (hd : ‖D‖ ≤ d) (hr : ‖R‖ ≤ r) (ha : ‖A‖ ≤ a) :
     ‖correctionOperator D R A‖ ≤ d ^ 2 * r * a := by
@@ -53,6 +59,9 @@ theorem correctionOperator_norm_le (D : S →L[ℝ] E) (R : S →L[ℝ] S) (A : 
   exact ((opNorm_comp_le _ _).trans
     (mul_le_mul hd hRDA (norm_nonneg _) hd0)).trans_eq (by ring)
 
+/--
+@isnad1 id=le.9h14v.s11.ccb27162dbc1 from=translated src=- shape=4a86f903 vocab=e00c88a2
+-/
 theorem correctionOperator_sub_norm_le
     (D D' : S →L[ℝ] E) (R R' : S →L[ℝ] S) (A A' : E →L[ℝ] E)
     (d r a δd δr δa : ℝ)
@@ -90,6 +99,9 @@ theorem correctionOperator_sub_norm_le
       (mul_le_mul hd' hRDAδ (norm_nonneg _) hd0))).trans_eq
   ring
 
+/--
+@isnad1 id=le.4h11v.s9.575a3259fdb6 from=translated src=- shape=eea085b3 vocab=63a42e87
+-/
 theorem endpointOperator_norm_le (D : S →L[ℝ] E) (R : S →L[ℝ] S) (A : E →L[ℝ] E)
     (L : V →L[ℝ] E) (d r a l : ℝ)
     (hd : ‖D‖ ≤ d) (hr : ‖R‖ ≤ r) (ha : ‖A‖ ≤ a) (hl : ‖L‖ ≤ l) :
@@ -100,6 +112,9 @@ theorem endpointOperator_norm_le (D : S →L[ℝ] E) (R : S →L[ℝ] S) (A : E 
     (mul_le_mul hs hl (norm_nonneg _) hs0)))).trans_eq
   ring
 
+/--
+@isnad1 id=le.11h19v.s11.22a2fbd17833 from=translated src=- shape=8335b47c vocab=93d7ea65
+-/
 theorem endpointOperator_sub_norm_le
     (D D' : S →L[ℝ] E) (R R' : S →L[ℝ] S) (A A' : E →L[ℝ] E)
     (L L' : V →L[ℝ] E) (d r a l δd δr δa δl : ℝ)
@@ -130,6 +145,9 @@ theorem endpointOperator_sub_norm_le
 def formOperator (D : S →L[ℝ] E) (A : E →L[ℝ] E) : S →L[ℝ] S :=
   D.adjoint.comp (A.comp D)
 
+/--
+@isnad1 id=le.6h10v.s11.f2efd9201cd8 from=translated src=- shape=0c577781 vocab=43347cee
+-/
 theorem formOperator_sub_norm_le
     (D D' : S →L[ℝ] E) (A A' : E →L[ℝ] E) (d a δd δa : ℝ)
     (hd : ‖D‖ ≤ d) (hd' : ‖D'‖ ≤ d) (ha : ‖A‖ ≤ a) (ha' : ‖A'‖ ≤ a)

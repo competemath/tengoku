@@ -32,11 +32,17 @@ def acceleration (P P₁ P₂ D D₁ D₂ : SmoothTimeField K E E) : SmoothTimeF
   (((((P₂.compDisplacement D).add (firstTerm P₁ D D₁)).add
     (firstTerm P₁ D D₁)).add (secondTerm P D D₁)).add D₂).add (firstTerm P D D₂)
 
+/--
+@isnad1 id=eq.0h7v.s10.18d25c7a28af from=translated src=- shape=931a7711 vocab=0d4cd633
+-/
 @[simp] theorem firstTerm_apply (P D V : SmoothTimeField K E E) (t : K) (x : E) :
     (firstTerm P D V).field t x = fderiv ℝ (P.field t : E → E) (x+D.field t x) (V.field t x) := by
   change P.derivativeField t (x+D.field t x) (V.field t x) = _
   rw [P.derivativeField_eq]
 
+/--
+@isnad1 id=eq.0h7v.s11.63da905fa852 from=translated src=- shape=ea27b8a4 vocab=0a6f0501
+-/
 @[simp] theorem secondTerm_apply (P D V : SmoothTimeField K E E) (t : K) (x : E) :
     (secondTerm P D V).field t x =
       fderiv ℝ (fderiv ℝ (P.field t : E → E)) (x+D.field t x) (V.field t x) (V.field t x) := by
@@ -46,14 +52,23 @@ def acceleration (P P₁ P₂ D D₁ D₂ : SmoothTimeField K E E) : SmoothTimeF
     funext (P.derivativeField_eq t)
   rw [he]
 
+/--
+@isnad1 id=eq.0h6v.s9.0025a61e198c from=translated src=- shape=bcb8595f vocab=93831bd9
+-/
 @[simp] theorem displacement_apply (P D : SmoothTimeField K E E) (t : K) (x : E) :
     (displacement P D).field t x = P.field t (x+D.field t x)+D.field t x := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.9135708b61ef from=translated src=- shape=39b8bcfc vocab=88fba0ef
+-/
 @[simp] theorem velocity_apply (P P₁ D D₁ : SmoothTimeField K E E) (t : K) (x : E) :
     (velocity P P₁ D D₁).field t x = P₁.field t (x+D.field t x)+D₁.field t x+
       fderiv ℝ (P.field t : E → E) (x+D.field t x) (D₁.field t x) := by
   simp only [velocity,SmoothTimeField.add_apply,compDisplacement_apply,firstTerm_apply]
 
+/--
+@isnad1 id=eq.0h10v.s12.a7287cc50f09 from=translated src=- shape=fa4ae624 vocab=1783b140
+-/
 @[simp] theorem acceleration_apply (P P₁ P₂ D D₁ D₂ : SmoothTimeField K E E) (t : K) (x : E) :
     (acceleration P P₁ P₂ D D₁ D₂).field t x = P₂.field t (x+D.field t x)+
       fderiv ℝ (P₁.field t : E → E) (x+D.field t x) (D₁.field t x)+
@@ -62,6 +77,9 @@ def acceleration (P P₁ P₂ D D₁ D₂ : SmoothTimeField K E E) : SmoothTimeF
       D₂.field t x+fderiv ℝ (P.field t : E → E) (x+D.field t x) (D₂.field t x) := by
   simp only [acceleration,SmoothTimeField.add_apply,compDisplacement_apply,firstTerm_apply,secondTerm_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.8374d358e4e7 from=translated src=- shape=9fcfd5ac vocab=93831bd9
+-/
 theorem map_composition (P D : SmoothTimeField K E E) (t : K) (x : E) :
     x+(displacement P D).field t x =
       (x+D.field t x)+P.field t (x+D.field t x) := by
@@ -73,6 +91,9 @@ section Time
 variable {T : ℝ} {hT : 0 ≤ T} [CompleteSpace E]
   {P P₁ P₂ D D₁ D₂ : SmoothTimeField (Icc (0 : ℝ) T) E E}
 
+/--
+@isnad1 id=timederi.3h6v.s8.8a86c4e168ac from=translated src=- shape=1317d185 vocab=b2797cf8
+-/
 theorem displacement_time (hP : TimeDerivative T hT P P₁) (hD : TimeDerivative T hT D D₁) :
     TimeDerivative T hT (displacement P D) (velocity P P₁ D D₁) := by
   have h := (hP.compDisplacement hD).add hD
@@ -83,6 +104,9 @@ theorem displacement_time (hP : TimeDerivative T hT P P₁) (hD : TimeDerivative
 
 variable [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=timederi.5h8v.s8.83692e8b9977 from=translated src=- shape=c0b8e850 vocab=11bafa2c
+-/
 theorem velocity_time (hP : TimeDerivative T hT P P₁) (hP₁ : TimeDerivative T hT P₁ P₂)
     (hD : TimeDerivative T hT D D₁) (hD₁ : TimeDerivative T hT D₁ D₂) :
     TimeDerivative T hT (velocity P P₁ D D₁) (acceleration P P₁ P₂ D D₁ D₂) := by

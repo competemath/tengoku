@@ -22,6 +22,9 @@ def unitSqrtTime : C(Icc (0 : ℝ) 1, Icc (0 : ℝ) 1) where
     simpa only [Real.sqrt_one] using Real.sqrt_le_sqrt t.property.2⟩
   continuous_toFun := (Real.continuous_sqrt.comp continuous_subtype_val).subtype_mk _
 
+/--
+@isnad1 id=eq.0h1v.s8.ac042974c022 from=translated src=- shape=0c4aab02 vocab=f3273223
+-/
 @[simp] theorem unitSqrtTime_apply (t : Icc (0 : ℝ) 1) :
     (unitSqrtTime t : ℝ) = Real.sqrt t := rfl
 
@@ -50,6 +53,9 @@ def finiteEnergyTruncationTimeField (R : ℝ) (hR : 0 < R) :
     SmoothTimeField (Icc (0 : ℝ) 1) Space Space :=
   (h.finiteEnergyTruncationSquareTimeField R hR).reparametrize unitSqrtTime
 
+/--
+@isnad1 id=eq.2h6v.s10.cdab3da4718c from=translated src=- shape=9a55d298 vocab=c4c73b1f
+-/
 @[simp] theorem finiteEnergyTruncationTimeField_apply (R : ℝ) (hR : 0 < R)
     (t : Icc (0 : ℝ) 1) (x : Space) :
     (h.finiteEnergyTruncationTimeField R hR).field t x =
@@ -57,6 +63,9 @@ def finiteEnergyTruncationTimeField (R : ℝ) (hR : 0 < R) :
   change finiteEnergyTruncation (fun y => v y ((Real.sqrt (t : ℝ)) ^ 2)) R x = _
   rw [Real.sq_sqrt t.property.1]
 
+/--
+@isnad1 id=eq.2h5v.s10.3dfa3ac492d4 from=translated src=- shape=cb7a1889 vocab=c4c73b1f
+-/
 theorem finiteEnergyTruncationTimeField_field (R : ℝ) (hR : 0 < R)
     (t : Icc (0 : ℝ) 1) :
     ((h.finiteEnergyTruncationTimeField R hR).field t : Space → Space) =
