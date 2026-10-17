@@ -844,17 +844,9 @@ import Tengoku.LeanPool.LeanPool.DistanceGeometry.Schoenberg
 import Tengoku.LeanPool.LeanPool.DistanceGeometry.SchoenbergHard
 import Tengoku.LeanPool.LeanPool.DistanceGeometry.Trilateration
 import Tengoku.LeanPool.LeanPool.DomainTheory.Constructive
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.Constructions
 import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.Injective
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.ScottMaps
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.Specialization
 import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.WayBelow
 import Tengoku.LeanPool.LeanPool.CaffarelliKohnNirenberg.Setting.UTensor
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.FunctionSpaceTower
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.FunctionSpaces
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.InverseLimits
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.MilnerCorrection
-import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.Theorem212
 import Tengoku.LeanPool.LeanPool.DomainTheory.Neighborhood.Approximable
 import Tengoku.LeanPool.LeanPool.DomainTheory.Neighborhood.ApproximableExercises
 import Tengoku.LeanPool.LeanPool.DomainTheory.Neighborhood.Basic
@@ -2705,7 +2697,6 @@ import Tengoku.LeanPool.LeanPool.Polylean.ConjInvLength.LengthBound
 import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.AddFreeGroup
 import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.EnumDecide
 import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.FreeModule
-import Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.GroupRing
 import Tengoku.LeanPool.LeanPool.PolynomialMethodRestrictedSums.VandermondeCoefficientFormula
 import Tengoku.LeanPool.LeanPool.Polytopes.Cutspace
 import Tengoku.LeanPool.LeanPool.Polytopes.Halfspace
