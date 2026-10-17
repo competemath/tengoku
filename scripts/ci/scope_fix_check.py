@@ -74,12 +74,14 @@ def mask(text: str) -> str:
     return "".join(out)
 
 
-def local_insertion(old: str, new: str) -> bool:
-    """new is old with `local ` inserted once, in code, before `instance` or `simp`"""
+def local_insertion(old: str, new: str, new_code: str | None = None) -> bool:
+    """new is old with `local ` inserted once, in code, before `instance` or `simp`. `new_code`: the line of the masked WHOLE file (a block comment or a string
+    may open on an earlier line); without it, the line is masked on its own"""
     k = next((i for i, (a, b) in enumerate(zip(old, new)) if a != b), min(len(old), len(new)))
     if not (new[k : k + 6] == "local " and new[k + 6 :] == old[k:]):
         return False
-    return mask(new)[k : k + 6] == "local " and bool(KEYWORD.match(new, k + 6))
+    code = mask(new) if new_code is None else new_code
+    return code[k : k + 6] == "local " and bool(KEYWORD.match(new, k + 6))
 
 
 def last(name: str) -> str:
@@ -97,11 +99,11 @@ OPENER = re.compile(r"^\s*(?:namespace\s+\S+|(?:@\[expose\]\s+)?(?:(?:public|non
 CLOSER = re.compile(r"^\s*end\b")
 
 
-def notation_insertion(old: str, new: str) -> str | None:
+def notation_insertion(old: str, new: str, new_code: str | None = None) -> str | None:
     """ "scoped" or "local" when new is old with that word inserted once, in code, right before the keyword of a notation / syntax / macro / elab command that starts the line
-    (after attributes and modifiers only); None otherwise"""
+    (after attributes and modifiers only); None otherwise. `new_code`: the line of the masked WHOLE file (a block comment or a string may open on an earlier line)"""
     k = next((i for i, (a, b) in enumerate(zip(old, new)) if a != b), min(len(old), len(new)))
-    code = mask(new)
+    code = mask(new) if new_code is None else new_code
     for word in ("scoped ", "local "):
         if new[k : k + len(word)] == word and new[k + len(word) :] == old[k:] and code[k : k + len(word)] == word:
             if NOTATION_KEYWORD.match(new, k + len(word)) and BEFORE_KEYWORD.fullmatch(code[:k]):
@@ -140,16 +142,18 @@ def code_end(text: str) -> int:
     return len(text.rstrip())
 
 
-def allowed_edit(old: str, new: str) -> bool:
-    return new == old or local_insertion(old, new) or notation_insertion(old, new) is not None
+def allowed_edit(old: str, new: str, new_code: str | None = None) -> bool:
+    return new == old or local_insertion(old, new, new_code) or notation_insertion(old, new, new_code) is not None
 
 
-def pair_up(o: list[str], n: list[str], i1: int, i2: int, j1: int, j2: int) -> tuple[list[tuple[int, int]], list[int], bool]:
+def pair_up(
+    o: list[str], n: list[str], i1: int, i2: int, j1: int, j2: int, new_code: list[str] | None = None
+) -> tuple[list[tuple[int, int]], list[int], bool]:
     """A replace block that does not have as many new lines as old ones (an edited line next to an added one, e.g. the last line of a file and the note after it): every old
     line must meet, in order, a new line that is the same or an allowed edit of it; the new lines in between and after are additions. (pairs, additions, every old line met)"""
     pairs, added, b = [], [], j1
     for a in range(i1, i2):
-        while b < j2 and not allowed_edit(o[a], n[b]):
+        while b < j2 and not allowed_edit(o[a], n[b], new_code[b] if new_code else None):
             added.append(b)
             b += 1
         if b == j2:
@@ -159,25 +163,76 @@ def pair_up(o: list[str], n: list[str], i1: int, i2: int, j1: int, j2: int) -> t
     return pairs, added + list(range(b, j2)), True
 
 
+GREP_NAMESPACES = r"(^[[:space:]]*(public[[:space:]]+|noncomputable[[:space:]]+)*(namespace|section)([[:space:]]|$))|(^[[:space:]]*end([[:space:]]|$))|(scoped)"
+SCOPED_USE = re.compile(
+    r"(?:^|[\s@\[,])scoped(?:\[(?P<ns>[\w.«»']+)\])?[ \t]+(?:instance|notation3?|infix[lr]?|prefix|postfix|macro|syntax|elab|attribute|simp|irreducible_def|def|abbrev|theorem|lemma)\b"
+    r"|@\[[^\]]*\bscoped\b"
+)
+
+
+def scoped_namespaces(rev: str, pathspec: str) -> set[str]:
+    """The namespaces in which the modules under `pathspec` at `rev` declare something `scoped` (`scoped instance`, `scoped notation`, `@[scoped simp]`, `scoped[N] …`), read from
+    the lines of one `git grep` (a docstring that happens to say 'scoped notation' only makes the set larger)."""
+    out: set[str] = set()
+    blocks: list[list[str]] = []
+    current = None
+    for line in run("grep", "-n", "-I", "-E", GREP_NAMESPACES, rev, "--", pathspec, check=False).splitlines():
+        m = re.match(r"^[^:]*:(?P<path>[^:]+):(?P<n>\d+):(?P<text>.*)$", line)
+        if not m:
+            continue
+        if m.group("path") != current:
+            current, blocks = m.group("path"), []
+        text = m.group("text")
+        if nm := NAMESPACE.match(text):
+            blocks.append(nm.group(1).split("."))
+        elif OPENER.match(text):
+            blocks.append([])
+        elif CLOSER.match(text):
+            if blocks:
+                blocks.pop()
+        elif use := SCOPED_USE.search(text):
+            out.add(use.group("ns") or ".".join(c for blk in blocks for c in blk))
+    return out
+
+
+def namespace_errors(notes: Notes, libraries: set[str]) -> list[str]:
+    """`open scoped N` turns on EVERY scoped entry of N: a namespace of core or Mathlib with scoped entries (`Real`: `π`, `Classical`: instances) would change how the
+    library's statements elaborate, and so would a library's own scoped entries that the importer did not have. Both are refused."""
+    if not notes.opened:
+        return []
+    seed = scoped_namespaces(base, "Tengoku/Seed")
+    own: set[str] = set()
+    for lib in sorted(libraries):
+        own |= scoped_namespaces(base, f"Tengoku/{lib}")
+    return [
+        f"`{ns}`: core or Mathlib declare scoped entries in this namespace, `open scoped {ns}` would turn them on"
+        for ns in sorted(notes.opened & seed)
+    ] + [
+        f"`{ns}`: the library already has scoped entries in this namespace, `open scoped {ns}` would turn them on in the modules that import it"
+        for ns in sorted((notes.opened & own) - seed)
+    ]
+
+
 class Notes:
     """what a PR makes of notation: the namespaces of the commands it made `scoped`, the text of the commands it made `local`"""
 
     def __init__(self) -> None:
         self.ns: set[str] = set()
         self.cmds: set[str] = set()
+        self.opened: set[str] = set()  # the namespaces an accepted `open scoped N` line names
 
 
 def collect_notes(old: str, new: str, notes: Notes) -> list[str]:
     """add the notation edits of one file to `notes`; the errors are the `scoped` ones that have no namespace around them"""
     o, n = old.split("\n"), new.split("\n")
-    code = mask(old).split("\n")
+    code, new_code = mask(old).split("\n"), mask(new).split("\n")
     errors = []
     for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, o, n, autojunk=False).get_opcodes():
         if tag != "replace":
             continue
-        pairs = list(zip(range(i1, i2), range(j1, j2))) if i2 - i1 == j2 - j1 else pair_up(o, n, i1, i2, j1, j2)[0]
+        pairs = list(zip(range(i1, i2), range(j1, j2))) if i2 - i1 == j2 - j1 else pair_up(o, n, i1, i2, j1, j2, new_code)[0]
         for a, b in pairs:
-            mode = notation_insertion(o[a], n[b])
+            mode = notation_insertion(o[a], n[b], new_code[b])
             if mode == "scoped":
                 ns = namespace_at(code, a)
                 if ns:
@@ -226,6 +281,7 @@ def added_line_errors(path: str, lineno: int, line: str, known: dict[str, set[st
     if not line or NOTE.fullmatch(line) or NOTE_NOTATION.fullmatch(line):
         return []
     if OPEN_SCOPED.fullmatch(line):
+        notes.opened.update(ns for ns in line.split()[2:] if ns in notes.ns)
         return [
             f"{path}:{lineno}: `{ns}` is not a namespace this PR made a `scoped` notation for"
             for ns in line.split()[2:]
@@ -246,7 +302,15 @@ def added_line_errors(path: str, lineno: int, line: str, known: dict[str, set[st
     ]
 
 
-def opcode_errors(path: str, o: list[str], n: list[str], op: tuple, known: dict[str, set[str]], notes: Notes | None = None) -> list[str]:
+def opcode_errors(
+    path: str,
+    o: list[str],
+    n: list[str],
+    op: tuple,
+    known: dict[str, set[str]],
+    notes: Notes | None = None,
+    new_code: list[str] | None = None,
+) -> list[str]:
     """the problems with one edit of a file (an `equal` stretch has none)"""
     tag, i1, i2, j1, j2 = op
     if tag == "equal":
@@ -257,10 +321,10 @@ def opcode_errors(path: str, o: list[str], n: list[str], op: tuple, known: dict[
         return [
             f"{path}:{b + 1}: a changed line may only gain `local ` before `instance`/`simp`, or `scoped `/`local ` before a notation command: `{o[a][:60]}` -> `{n[b][:60]}`"
             for a, b in zip(range(i1, i2), range(j1, j2))
-            if not local_insertion(o[a], n[b]) and not notation_insertion(o[a], n[b])
+            if not allowed_edit(o[a], n[b], new_code[b] if new_code else None)
         ]
     if tag == "replace":
-        pairs, added, whole = pair_up(o, n, i1, i2, j1, j2)
+        pairs, added, whole = pair_up(o, n, i1, i2, j1, j2, new_code)
         if whole:
             return [e for k in added for e in added_line_errors(path, k + 1, n[k], known, notes)]
     return [f"{path}:{j1 + 1}: lines were removed or replaced by a different number of lines ({tag}: {i2 - i1} -> {j2 - j1})"]
@@ -273,7 +337,8 @@ def check_file(path: str, old: str, new: str, known: dict[str, set[str]], notes:
         notes = Notes()
         errors += [f"{path}:{e}" for e in collect_notes(old, new, notes)]
     ops = difflib.SequenceMatcher(None, o, n, autojunk=False).get_opcodes()
-    return errors + [e for op in ops for e in opcode_errors(path, o, n, op, known, notes)]
+    new_code = mask(new).split("\n")
+    return errors + [e for op in ops for e in opcode_errors(path, o, n, op, known, notes, new_code)]
 
 
 def intake_namespaces() -> set[str]:
@@ -315,6 +380,7 @@ def main(argv: list[str]) -> None:
             except UnicodeDecodeError:
                 pass  # file_errors reports it
     errors += [e for st, p in files for e in file_errors(st, p, intake, known_by_ns, notes)]
+    errors += namespace_errors(notes, {m.group(1) for _, p in files if (m := re.match(r"Tengoku/([^/]+)/", p))})
     if not files:
         errors.append("an empty diff")
     if errors:

@@ -116,6 +116,70 @@ class ScopedNotation(unittest.TestCase):
             rc, _ = self.judge(self.repo(), basic, self.USE_OPEN)
             self.assertNotEqual(rc, 0, basic)
 
+    def test_a_namespace_in_which_mathlib_has_scoped_entries_is_refused(self):
+        # `open scoped Real` would also turn on Mathlib's scoped `π`
+        base = 'import Tengoku\n\nnamespace Real\n\ndef complement (x : Nat) : Nat := x\n\nprefix:80 "-" => complement\n\nend Real\n\nlemma outside : -1 = 1 := rfl\n'
+        edited = base.replace('prefix:80 "-"', 'scoped prefix:80 "-"').replace("end Real\n", "end Real\nopen scoped Real\n") + NOTE
+        r = self.repo(base)
+        r.write("Tengoku/Seed/Mathlib/Real.lean", 'namespace Real\nscoped notation "π" => pi\nend Real\n')
+        r.commit("the seed has scoped entries in Real")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        rc, out = self.judge(r, edited)
+        self.assertNotEqual(rc, 0, out)
+        self.assertIn("core or Mathlib declare scoped entries", out)
+        # the same edit without the `open scoped Real` line opens nothing: scoping the notation alone is fine
+        r2 = self.repo(base)
+        r2.write("Tengoku/Seed/Mathlib/Real.lean", 'namespace Real\nscoped notation "π" => pi\nend Real\n')
+        r2.commit("the seed has scoped entries in Real")
+        r2.git("checkout", "-q", "main")
+        r2.git("merge", "-q", "--ff-only", "pr")
+        r2.git("checkout", "-q", "pr")
+        rc, out = self.judge(r2, base.replace('prefix:80 "-"', 'scoped prefix:80 "-"') + NOTE)
+        self.assertEqual(rc, 0, out)
+
+    def test_a_namespace_in_which_the_library_already_has_scoped_entries_is_refused(self):
+        base = BASIC.replace("lemma outside", "scoped instance : Coe Nat Int := ⟨Int.ofNat⟩\n\nlemma outside")
+        base = base.replace("end Fx\n", "end Fx\n")
+        r = self.repo(BASIC, USE)
+        r.write(
+            "Tengoku/FxLib/Fx/Other.lean",
+            "import Tengoku\n\nnamespace Fx.Mod\n\nscoped instance : Coe Nat Int := ⟨Int.ofNat⟩\n\nend Fx.Mod\n",
+        )
+        r.write("Tengoku/FxLib.lean", "import Tengoku.FxLib.Fx.Basic\nimport Tengoku.FxLib.Fx.Use\nimport Tengoku.FxLib.Fx.Other\n")
+        r.commit("the library has a scoped entry in Fx.Mod")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        rc, out = self.judge(r, self.SCOPED, self.USE_OPEN)
+        self.assertNotEqual(rc, 0, out)
+        self.assertIn("the library already has scoped entries in this namespace", out)
+
+    def test_a_scoped_notation_in_a_namespace_nothing_else_uses_is_not_blocked_by_the_guard(self):
+        r = self.repo()
+        r.write("Tengoku/Seed/Mathlib/Other.lean", 'namespace Real\nscoped notation "π" => pi\nend Real\n')
+        r.commit("unrelated scoped entries in the seed")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        rc, out = self.judge(r, self.SCOPED, self.USE_OPEN)
+        self.assertEqual(rc, 0, out)
+
+    def test_a_word_added_to_a_line_that_a_block_comment_opened_earlier_does_not_count(self):
+        # a doc example inside `/-! … -/` is text, not code: a `local` in front of it makes no notation, and must not license a `local notation` line elsewhere
+        base = 'import Tengoku\n\n/-!\n# Example\nnotation "ℝ≥0" => NNReal\n-/\n\ntheorem g : True := trivial\n'
+        edited = base.replace('\nnotation "ℝ≥0"', '\nlocal notation "ℝ≥0"')
+        sneaked = USE.replace("\ntheorem use", '\nlocal notation "ℝ≥0" => NNReal\n\ntheorem use').replace("=> NNReal", "=> NNReal")
+        rc, out = self.judge(self.repo(base), edited, sneaked)
+        self.assertNotEqual(rc, 0, out)
+
+    def test_a_changed_line_inside_a_block_comment_is_not_an_edit_even_alone(self):
+        base = 'import Tengoku\n\n/-!\n# Example\nnotation "ℝ≥0" => NNReal\n-/\n\ntheorem g : True := trivial\n'
+        rc, out = self.judge(self.repo(base), base.replace('\nnotation "ℝ≥0"', '\nlocal notation "ℝ≥0"'))
+        self.assertNotEqual(rc, 0, out)
+        self.assertIn("a changed line may only gain", out)
+
     def test_the_edited_line_may_be_the_last_one_of_the_file(self):
         # the changed line and the note after it are one block for the diff: 1 line -> 2 lines
         base = 'import Tengoku\n\ntheorem g : True := trivial\n\nnotation "Gal("K ", "F")" => K ≃ₐ[F] K\n'
