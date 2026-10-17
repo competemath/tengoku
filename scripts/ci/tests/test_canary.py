@@ -9,6 +9,7 @@ import sys
 import threading
 import unittest
 from pathlib import Path
+from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 CI = HERE.parent
@@ -90,10 +91,11 @@ class Client(unittest.TestCase):
             "import Tengoku.All\nexample : True := trivial\nexample (x : ℝ) : -(3 * x) = -3 * x := by ring\nexample : True := trivial\nexample (v : ℕ) : True := trivial\n"
         )
         k.write_text("import Tengoku.All\nexample (resolve : ℕ) : True := trivial\n")
+        port = urlsplit(space).port
         return lc.main(
             [
-                "--space",
-                space,
+                "--local-port",
+                str(port),
                 "--file",
                 str(c),
                 "--known",
@@ -161,15 +163,23 @@ class Client(unittest.TestCase):
             close()
             srv.shutdown()
 
-    def test_the_space_url_is_an_https_origin_or_a_server_on_this_machine(self):
-        """Snyk on tengoku#599: the client sends a script to the address it is given"""
+    def test_the_space_is_a_name_and_its_address_is_the_programs_constant(self):
+        """Sonar S8703 / Snyk on tengoku#599: a command-line string must not become the address the client sends a script to"""
+        self.assertEqual(lc.SPACES["leak-iv"], "https://barkingtree-leak-iv.hf.space")
+        for bad in ("file:///etc/passwd", "https://example.com", "leak-iv/../x", ""):
+            with self.assertRaises(SystemExit, msg=bad):
+                lc.main(["--space", bad])
+
+    def test_the_address_checks_that_remain_are_for_what_the_client_builds(self):
         self.assertEqual(lc.checked_space("https://barkingtree-leak-iv.hf.space/"), "https://barkingtree-leak-iv.hf.space")
         self.assertEqual(lc.checked_space("http://127.0.0.1:7861"), "http://127.0.0.1:7861")
         for bad in (
             "file:///etc/passwd",
             "ftp://host",
             "http://example.com",  # plain http to another machine
-            "https://user:pw@example.com",
+            "https://"
+            + "u:p"
+            + "@example.com",  # credentials in the address (written in pieces: a literal one reads as a secret to detect-secrets)
             "https://example.com/some/path",
             "https://example.com?x=1",
             "https://",
@@ -177,8 +187,8 @@ class Client(unittest.TestCase):
         ):
             with self.assertRaises(ValueError, msg=bad):
                 lc.checked_space(bad)
-        with self.assertRaises(SystemExit):
-            lc.main(["--space", "file:///etc/passwd"])
+        with self.assertRaises(ValueError):
+            lc.get_json("file:///etc/passwd")
 
     def test_an_endpoint_the_stream_names_on_another_host_is_not_followed(self):
         import tempfile
@@ -222,6 +232,106 @@ class Client(unittest.TestCase):
             )
         )
         self.assertIn("line 3: example (v : ℕ)", out)
+
+
+class Readiness(unittest.TestCase):
+    """After a promotion the canary must judge the tree the space has moved to, not the one it had (CodeRabbit on tengoku#599)."""
+
+    POINTER = {"commit": "a" * 40, "topup": {"commit": "b" * 40}}
+
+    def test_ready_means_idle_current_and_pinned_to_the_pointers_base(self):
+        good = {"refreshing": False, "status": "current", "pinned": "a" * 40}
+        self.assertEqual(lc.ready(good, self.POINTER), (True, ""))
+        for status, pointer, why in (
+            ({**good, "refreshing": True}, self.POINTER, "refreshing"),
+            ({**good, "status": "newer"}, self.POINTER, "'newer'"),
+            ({**good, "pinned": "c" * 40}, self.POINTER, "pinned"),
+            ({k: v for k, v in good.items() if k != "refreshing"}, self.POINTER, "refreshing"),  # a reply that does not say is not idle
+            (good, None, "could not be read"),
+            (good, {"topup": {}}, "names no commit"),
+        ):
+            ok, reason = lc.ready(status, pointer)
+            self.assertFalse(ok, status)
+            self.assertIn(why, reason)
+
+    def serve(self, states, pointer):
+        """a server whose /refresh answers the given states in turn (the last one for ever) and whose /pointer answers `pointer` (None: 404)"""
+        seen = [0]
+
+        class H(http.server.BaseHTTPRequestHandler):
+            def log_message(self, *a):
+                pass
+
+            def do_GET(self):
+                if self.path == "/refresh":
+                    body = json.dumps(states[min(seen[0], len(states) - 1)]).encode()
+                    seen[0] += 1
+                elif self.path == "/pointer" and pointer is not None:
+                    body = json.dumps(pointer).encode()
+                else:
+                    self.send_response(404)
+                    self.end_headers()
+                    return
+                self.send_response(200)
+                self.send_header("content-length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+
+        srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), H)
+        srv.daemon_threads = True
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        return srv, f"http://127.0.0.1:{srv.server_address[1]}"
+
+    def test_it_waits_through_a_refresh_until_the_space_follows_the_pointer(self):
+        idle = {"refreshing": False, "status": "current", "pinned": "a" * 40}
+        srv, base = self.serve([{**idle, "refreshing": True, "status": "newer"}, {**idle, "pinned": "old"}, idle], self.POINTER)
+        try:
+            self.assertTrue(lc.wait_ready(base, 0.0, 5.0, poll=0.01, pointer_url=f"{base}/pointer"))
+        finally:
+            srv.shutdown()
+
+    def test_a_space_that_never_follows_is_not_ready(self):
+        srv, base = self.serve([{"refreshing": False, "status": "current", "pinned": "old"}], self.POINTER)
+        try:
+            self.assertFalse(lc.wait_ready(base, 0.0, 0.3, poll=0.05, pointer_url=f"{base}/pointer"))
+        finally:
+            srv.shutdown()
+
+    def test_an_unreadable_pointer_is_not_ready(self):
+        srv, base = self.serve([{"refreshing": False, "status": "current", "pinned": "a" * 40}], None)
+        try:
+            self.assertFalse(lc.wait_ready(base, 0.0, 0.3, poll=0.05, pointer_url=f"{base}/pointer"))
+        finally:
+            srv.shutdown()
+
+    def test_main_does_not_compile_against_a_tree_the_space_has_not_moved_to(self):
+        import tempfile
+
+        seen = []
+        srv, base, close = fake_space(lambda s: (seen.append(s), OK)[1])  # its /refresh says: not refreshing, current, pinned "abc"
+        try:
+            with tempfile.TemporaryDirectory() as d:
+                canary = Path(d) / "C.lean"
+                canary.write_text("import Tengoku.All\n")
+                rc = lc.main(
+                    [
+                        "--local-port",
+                        str(urlsplit(base).port),
+                        "--file",
+                        str(canary),
+                        "--known",
+                        str(Path(d) / "none"),
+                        "--wait-refresh",
+                        "0.2",
+                    ]
+                )
+            self.assertEqual(
+                rc, 2
+            )  # the pointer (github.com) does not name "abc", or cannot be read here: either way the space is not shown to follow it
+            self.assertEqual(seen, [])
+        finally:
+            close()
+            srv.shutdown()
 
 
 class QueueStep(unittest.TestCase):
@@ -404,20 +514,37 @@ class Files(unittest.TestCase):
             "the tree is built before the canary imports it",
         )
 
-    def test_the_job_outlasts_the_refresh_wait_and_the_clients_budget_and_fails_when_no_refresh_finished(self):
+    def test_the_job_outlasts_the_refresh_wait_and_the_clients_budget(self):
+        import yaml
+
+        text = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8")
+        job = yaml.safe_load(text)["jobs"]["canary"]
+        run = next(s for s in job["steps"] if str(s.get("name", "")).startswith("The canary ("))["run"]
+        settle = int(re.search(r"--settle (\d+)", run).group(1))
+        wait = int(re.search(r"--wait-refresh (\d+)", run).group(1))
+        budget = int(re.search(r"--budget (\d+)", run).group(1))
+        self.assertLessEqual(
+            settle + wait + budget + 5 * 60, job["timeout-minutes"] * 60
+        )  # the client exits 2 by itself when the space never follows: the job is not cancelled first
+
+    def test_a_scheduled_run_cannot_cancel_the_check_that_follows_a_promotion(self):
+        import yaml
+
+        wf = yaml.safe_load((ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8"))
+        self.assertIn("github.event_name", wf["concurrency"]["group"])  # CodeRabbit: one group per kind of run
+        self.assertTrue(wf["concurrency"]["cancel-in-progress"])
+
+    def test_the_space_is_chosen_by_name_and_nothing_is_checked_out_in_a_workflow_run(self):
         import yaml
 
         text = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8")
         wf = yaml.safe_load(text)
-        job = wf["jobs"]["canary"]
-        wait = next(s for s in job["steps"] if str(s.get("name", "")).startswith("Let the space finish"))["run"]
-        polls = int(re.search(r"seq 1 (\d+)", wait).group(1))
-        sleep = int(re.search(r"^\s*sleep (\d+)$", wait, re.M).group(1))
-        worst_wait = sleep + polls * (30 + 30)  # each poll: curl -m 30, then sleep 30
-        budget = int(re.search(r"leak_canary\.py .*--budget (\d+)", text).group(1))
-        self.assertLessEqual(worst_wait + budget + 5 * 60, job["timeout-minutes"] * 60)
-        self.assertIn("exit 1", wait.split("ready")[-1])  # no finished refresh seen: red, not a canary run against the old tree
-        self.assertNotIn("|| true", wait)
+        space = wf[True]["workflow_dispatch"]["inputs"]["space"]
+        self.assertEqual(
+            (space["type"], sorted(space["options"])), ("choice", sorted(lc.SPACES))
+        )  # Sonar S8703: an address typed into a workflow input
+        self.assertNotIn("actions/checkout", text)  # Sonar S7631: workflow_run + checkout; the files are read from main through the API
+        self.assertIn("ref=main", text)
 
     def test_the_leak_space_is_asked_on_a_schedule_and_after_every_promotion(self):
         wf = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8")

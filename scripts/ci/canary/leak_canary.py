@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""leak_canary.py [--space URL] [--file Canary.lean] [--known CanaryKnown.lean] — compile the canary on a Leak space and fail when it does not compile.
+"""leak_canary.py [--space NAME] [--wait-refresh S] [--file Canary.lean] [--known CanaryKnown.lean] — compile the canary on a Leak space and fail when it does not compile.
 
 The canary (scripts/ci/canary/Canary.lean) is ordinary Lean and Mathlib that must elaborate under `import Tengoku.All`. A Leak space (`verify_full_script` over MCP/SSE, the same
 tool the provers use) compiles it on its pinned tree; a failure is a library of the tree that leaks into everybody else (a global instance, notation or reserved word). Exit status:
 0 compiled, 1 did not compile (the lines and messages are printed), 2 the space could not be asked (unreachable, timed out): a red run either way, with a different message.
 CanaryKnown.lean (bugs known to be open) is compiled too and only reported.
+
+The space is named, not addressed: `--space` is one of SPACES (the address is the program's own constant, never a string from the command line or the workflow input), and
+`--local-port` is the tests' fake space on this machine. `--wait-refresh S` (after a promotion): first `--settle` seconds for the space to start its refresh, then up to S
+seconds until it reports `refreshing: false`, `status: current`, and a pinned tree that is the base of the published cache pointer; exit 2 when it never does.
+The space reports the base commit it has pinned, not the top-up commit it loaded on top: a promotion that only changes the top-up cannot be told apart (the scheduled run
+catches it within six hours, and the merge queue's own canary judges every group before it merges).
 """
 
 from __future__ import annotations
@@ -20,7 +26,8 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
 HERE = Path(__file__).resolve().parent
-DEFAULT_SPACE = "https://barkingtree-leak-iv.hf.space"
+SPACES = {"leak-iv": "https://barkingtree-leak-iv.hf.space"}  # the Leak spaces this client knows; another one is one more line here
+POINTER = "https://github.com/competemath/tengoku/releases/download/cache-latest/cache-latest.json"  # the published cache pointer the spaces follow
 ERROR = re.compile(r"^Line (\d+) \((Error|Warning)\): (.*)$", re.M)
 RETRY_PAUSE = 30  # seconds, times the number of the attempt that failed
 MIN_CALL = 60  # an attempt that would get less than this is not started
@@ -42,6 +49,67 @@ def checked_space(url: str) -> str:
     if not u.hostname or u.username or u.password or u.query or u.fragment or u.path not in ("", "/"):
         raise ValueError(f"the space must be an origin (https://host[:port]), not {url!r}")
     return f"{u.scheme}://{u.netloc}"
+
+
+def get_json(url: str, timeout: float = 30.0) -> dict:
+    with urllib.request.urlopen(checked_get(url), timeout=timeout) as r:  # noqa: S310 — the URL is one of this module's constants or a checked origin + /refresh
+        data = json.loads(r.read().decode("utf-8", "replace"))
+    if not isinstance(data, dict):
+        raise ValueError("not a JSON object")
+    return data
+
+
+def checked_get(url: str) -> urllib.request.Request:
+    u = urlsplit(url)
+    if u.scheme != "https" and not (u.scheme == "http" and u.hostname in LOCAL_HOSTS):
+        raise ValueError(f"not an https URL: {url!r}")
+    return urllib.request.Request(url)
+
+
+def ready(status: dict, pointer: dict | None) -> tuple[bool, str]:
+    """is the space on the tree the cache pointer names, and not busy: (yes/no, why not)"""
+    if status.get("refreshing") is not False:
+        return False, "it is refreshing"
+    if status.get("status") != "current":
+        return False, f"its status is {status.get('status')!r}, not 'current'"
+    if pointer is None:
+        return False, "the published cache pointer could not be read"
+    want = pointer.get("commit")
+    if not isinstance(want, str) or not want:
+        return False, "the published cache pointer names no commit"
+    if status.get("pinned") != want:
+        return False, f"it has pinned {str(status.get('pinned'))[:12]}, the pointer names {want[:12]}"
+    return True, ""
+
+
+def wait_ready(base: str, settle: float, wait: float, poll: float = 30.0, pointer_url: str = POINTER) -> bool:
+    """after a promotion: let the space start its refresh, then poll until it is ready or `wait` seconds are over"""
+    time.sleep(settle)
+    deadline = time.monotonic() + wait
+    why = "never asked"
+    while True:
+        try:
+            status = get_json(f"{base}/refresh")
+        except Exception as e:
+            status, why = None, f"/refresh not readable ({e!r})"
+        if status is not None:
+            try:
+                pointer = get_json(pointer_url)
+            except Exception:
+                pointer = None
+            print("space:", json.dumps(status)[:400])
+            ok, why = ready(status, pointer)
+            if ok:
+                print("the space follows the published cache pointer")
+                if pointer and (pointer.get("topup") or {}).get("commit"):
+                    print(
+                        f"(the pointer also names the top-up {pointer['topup']['commit'][:12]}; the space does not report which top-up it loaded)"
+                    )
+                return True
+        if time.monotonic() + poll > deadline:
+            print(f"the space did not become ready: {why}")
+            return False
+        time.sleep(poll)
 
 
 def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
@@ -161,7 +229,15 @@ def report(name: str, script: str, errors: list[tuple[int, str]]) -> list[str]:
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--space", default=DEFAULT_SPACE)
+    ap.add_argument("--space", choices=sorted(SPACES), default="leak-iv", help="the Leak space (its address is SPACES' constant)")
+    ap.add_argument("--local-port", type=int, default=0, help="ask a server on this machine instead (the tests' fake space)")
+    ap.add_argument("--settle", type=float, default=0.0, help="with --wait-refresh: seconds to let the space start its refresh first")
+    ap.add_argument(
+        "--wait-refresh",
+        type=float,
+        default=0.0,
+        help="after a promotion: seconds to wait for the space to follow the published cache pointer",
+    )
     ap.add_argument("--file", default=str(HERE / "Canary.lean"))
     ap.add_argument("--known", default=str(HERE / "CanaryKnown.lean"))
     ap.add_argument("--timeout", type=float, default=900.0)
@@ -178,13 +254,11 @@ def main(argv: list[str]) -> int:
         help="seconds for the whole run, retries and pauses included (the workflow's job must outlast it)",
     )
     a = ap.parse_args(argv)
-    try:
-        a.space = checked_space(a.space)
-    except ValueError as e:
-        ap.error(str(e))
+    base = f"http://127.0.0.1:{int(a.local_port)}" if a.local_port else SPACES[a.space]
+    if a.wait_refresh > 0 and not wait_ready(base, a.settle, a.wait_refresh):
+        return 2
     try:  # which tree the space has pinned, for the log
-        with urllib.request.urlopen(f"{a.space}/refresh", timeout=60) as r:
-            print("space:", r.read().decode()[:400])
+        print("space:", json.dumps(get_json(f"{base}/refresh"))[:400])
     except Exception as e:
         print(f"space: /refresh not readable ({e!r})")
     results = {}
@@ -205,7 +279,7 @@ def main(argv: list[str]) -> int:
                 kind, errors, text = "infra", [], f"the {a.budget:.0f} s budget of this run is used up"
                 break
             try:
-                text = call_tool(a.space, "verify_full_script", {"script": script}, min(a.timeout, left()))
+                text = call_tool(base, "verify_full_script", {"script": script}, min(a.timeout, left()))
                 kind, errors = verdict(text)
             except Unreachable as e:
                 kind, errors, text = "infra", [], str(e)
