@@ -16,7 +16,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal
+from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal, removed_lines
 from allowlist import violations
 from lean_lex import code_only
 from restructure_check import is_restructure
@@ -58,6 +58,58 @@ FORBIDDEN = [
     (re.compile(r"\bIO\.(Process|FS)\b|\bSystem\.(FilePath|Platform)\b"), "IO.Process / IO.FS"),
 ]
 SET_OPTION = re.compile(r"set_option\s+([A-Za-z_][\w.]*)")
+
+# A PR of the scope-fix class (scripts/ci/scope_fix_check.py judges every line of it) makes a library's global notation `scoped` or `local`: the line of the command is
+# edited, so the PR "adds" a notation command, and the importers get a `local` copy of a command that was made local. Neither is a new declaration: the text is the
+# one the tree already has, in a narrower scope. 2026-10-17: tengoku#601 was ejected from the queue by "notation declarations" on 64 such modules.
+COMMAND_WORDS = "prefix|infixl|infixr|infix|postfix|notation3|notation|syntax|macro|elab"
+COMMAND = re.compile(
+    rf"^[ \t]*(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|public|noncomputable)[ \t]+)*(?:(?:local|scoped)[ \t]+)?(?P<kw>{COMMAND_WORDS})(?![\w'.])"
+)
+NARROWED = re.compile(rf"^(?P<pre>[ \t]*(?:@\[[^\]]*\][ \t]*)*)(?P<mod>local|scoped)[ \t]+(?P<cmd>(?:{COMMAND_WORDS})(?![\w'.]).*)$")
+
+
+def code_end(text: str) -> int:
+    """the column where the code of this line ends: before a `--` comment that is not inside a string literal"""
+    inside, i = False, 0
+    while i < len(text):
+        c = text[i]
+        if inside:
+            if c == "\\":
+                i += 2
+                continue
+            inside = c != '"'
+        elif c == '"':
+            inside = True
+        elif text.startswith("--", i):
+            return len(text[:i].rstrip())
+        i += 1
+    return len(text.rstrip())
+
+
+def removed_sources(base: str, head: str) -> tuple[set[str], set[str]]:
+    """what the PR takes out of the Lean modules it changes: the lines (stripped), and the commands among them (from the command word to the end of the code)"""
+    lines: set[str] = set()
+    cmds: set[str] = set()
+    for st, p in changed_files(base, head):
+        if st == "M" and p.endswith(".lean") and p.startswith("Tengoku/"):
+            for _, text in removed_lines(base, head, p):
+                lines.add(text.strip())
+                if m := COMMAND.match(text):
+                    cmds.add(text[m.start("kw") : code_end(text)].strip())
+    return lines, cmds
+
+
+def narrows(line: str, removed: tuple[set[str], set[str]]) -> bool:
+    """An added line that is a line the PR removes with `scoped` or `local` put in front of its command, or `local <command>` for a command the PR removes (the copy an importer
+    declares again when the command was made local). Anything else that starts with a command word is a new declaration."""
+    m = NARROWED.match(line)
+    if not m:
+        return False
+    lines, cmds = removed
+    if (line[: m.start("mod")] + line[m.start("cmd") :]).strip() in lines:
+        return True
+    return m.group("mod") == "local" and not m.group("pre").strip() and line[m.start("cmd") : code_end(line)].strip() in cmds
 
 
 def intake_modules(base: str, head: str) -> tuple[str, ...]:
@@ -116,7 +168,14 @@ def lint_record_file(base: str, head: str, p: str, allowed: set[str]) -> list[st
 
 
 def lint_module(
-    base: str, head: str, p: str, allowed: set[str], notation_ok: bool, added: bool = False, macro_ok: bool = False
+    base: str,
+    head: str,
+    p: str,
+    allowed: set[str],
+    notation_ok: bool,
+    added: bool = False,
+    macro_ok: bool = False,
+    removed: tuple[set[str], set[str]] = (set(), set()),
 ) -> list[str]:
     """The lines a PR adds to a module. `import` lines in a module are the generator's own (a promotion regenerates them); records may not contain one.
     A module the PR adds is read whole and without its comments and string literals (lean_lex.code_only): the words this list refuses are
@@ -136,7 +195,9 @@ def lint_module(
             notation_ok=notation_ok,
             macro_ok=macro_ok,
         )
-    added_here = added_lines(base, head, p)
+    added_here = [
+        (no, t) for no, t in added_lines(base, head, p) if not narrows(t, removed)
+    ]  # the narrowed ones declare nothing the tree does not have
     raw_head = blob(head, p)
     if raw_head is not None:
         # The module is read whole and lexed like an added one, and only the lines the PR adds are judged, as code: an isnad tag moves the `-/` of a docstring to its own line, which makes the
@@ -167,6 +228,7 @@ def main() -> None:
     else:
         base, head = sys.argv[1], sys.argv[2]
         intake = intake_modules(base, head)
+        removed = removed_sources(base, head)
         moved_seed = is_restructure(
             base, head
         )  # the seed's move is recomputed by restructure_check.py; it is upstream code, never banked content
@@ -187,6 +249,7 @@ def main() -> None:
                     notation_ok=own,
                     added=st == "A",
                     macro_ok=own and os.environ.get("TENGOKU_INTAKE_LINT") == "wide",
+                    removed=removed,
                 )
     if errors:
         fail("banked content lint:\n  " + "\n  ".join(errors[:20]))

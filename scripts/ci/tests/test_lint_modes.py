@@ -335,5 +335,97 @@ class ChangedModules(unittest.TestCase):
         self.assertIn("#eval", out)
 
 
+class NarrowedNotation(unittest.TestCase):
+    """2026-10-17: tengoku#601 (the scope-fix of lean-pool's global notation) was ejected from the merge queue by `banked content lint: …: notation declarations` on 64 modules. Making a
+    notation `scoped` or `local` edits the line of its command, so the PR "adds" a notation command; an importer gets `local <command>` for a command that was made local. The text is
+    the tree's own, in a narrower scope: it is not a new declaration (scope_fix_check.py judges every line of such a PR). Everything else that starts with a command word still is."""
+
+    GL = 'namespace GL\n\n/-- doc -/\nprefix:80 "-" => complement -- the complement\n\nend GL\n'
+    GAL = 'notation "Gal("K ", "F")" => K ≃ₐ[F] K -- Galois group\n'
+
+    def changed(self, before: dict, after: dict, env=None):
+        r = Repo()
+        r.git("checkout", "-q", "main")
+        for p, s in before.items():
+            r.write(p, s)
+        r.commit("modules")
+        r.git("checkout", "-q", "-B", "pr")
+        for p, s in after.items():
+            r.write(p, s)
+        r.commit("scope fix")
+        return r.gate("lint_banked.py", env=env)
+
+    def test_a_notation_made_scoped_or_local_is_not_a_new_declaration_in_any_mode(self):
+        for mode in (None, "strict", "proposed", "wide"):
+            env = {"TENGOKU_INTAKE_LINT": mode} if mode else None
+            rc, out = self.changed(
+                {"Tengoku/Lib/Modal.lean": self.GL},
+                {
+                    "Tengoku/Lib/Modal.lean": self.GL.replace('prefix:80 "-"', 'scoped prefix:80 "-"').replace(
+                        "end GL\n",
+                        "end GL\n\nopen scoped GL\n-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)\n",
+                    )
+                },
+                env,
+            )
+            self.assertEqual(rc, 0, f"{mode}: {out}")
+
+    def test_the_importers_copy_of_a_command_made_local_is_not_a_new_declaration(self):
+        rc, out = self.changed(
+            {"Tengoku/Lib/Gal.lean": self.GAL, "Tengoku/Lib/Use.lean": "theorem u : True := trivial\n"},
+            {
+                "Tengoku/Lib/Gal.lean": "local " + self.GAL,
+                "Tengoku/Lib/Use.lean": 'local notation "Gal("K ", "F")" => K ≃ₐ[F] K\n\ntheorem u : True := trivial\n',
+            },
+        )
+        self.assertEqual(rc, 0, out)
+
+    def test_attributes_stay_in_front_and_the_macro_family_and_elab_narrow_too(self):
+        for src in (
+            '@[inherit_doc X] infix : 120 " ∈ " => f\n',
+            'macro "m" : term => `(1)\n',
+            'syntax "m2" : term\n',
+            'elab "x" : term => pure (Lean.mkNatLit 1)\n',
+        ):
+            word = "scoped " if not src.startswith("@") else "scoped "
+            after = src.replace("infix", "scoped infix", 1) if src.startswith("@") else word + src
+            rc, out = self.changed(
+                {"Tengoku/Lib/Modal.lean": "namespace GL\n" + src + "end GL\n"},
+                {"Tengoku/Lib/Modal.lean": "namespace GL\n" + after + "end GL\n"},
+            )
+            self.assertEqual(rc, 0, f"{src}: {out}")
+
+    def test_a_notation_that_is_not_the_old_line_with_a_word_in_front_is_a_new_declaration(self):
+        for after in (
+            self.GL.replace('prefix:80 "-" => complement', 'scoped prefix:80 "-" => evil'),  # another right-hand side
+            self.GL.replace('prefix:80 "-" => complement', 'scoped prefix:80 "~" => complement'),
+            self.GL + 'scoped notation "ℓ" => 1\n',  # nothing was removed for it
+            self.GL.replace("prefix:80", "notation:80", 1).replace("complement", "complement", 1),
+        ):
+            rc, out = self.changed({"Tengoku/Lib/Modal.lean": self.GL}, {"Tengoku/Lib/Modal.lean": after})
+            self.assertEqual(rc, 1, f"{after}: {out}")
+            self.assertIn("notation declarations", out)
+
+    def test_a_local_copy_needs_a_removed_command_to_be_a_copy_of(self):
+        rc, out = self.changed(
+            {"Tengoku/Lib/Gal.lean": self.GAL, "Tengoku/Lib/Use.lean": "theorem u : True := trivial\n"},
+            {
+                "Tengoku/Lib/Gal.lean": self.GAL,
+                "Tengoku/Lib/Use.lean": 'local notation "Gal("K ", "F")" => K ≃ₐ[F] K\n\ntheorem u : True := trivial\n',
+            },  # nothing was made local
+        )
+        self.assertEqual(rc, 1, out)
+        self.assertIn("notation declarations", out)
+
+    def test_a_narrowed_line_hides_nothing_else(self):
+        rc, out = self.changed(
+            {"Tengoku/Lib/Modal.lean": self.GL},
+            {"Tengoku/Lib/Modal.lean": self.GL.replace('prefix:80 "-"', 'scoped prefix:80 "-"') + "#eval 1\n"},
+        )
+        self.assertEqual(rc, 1, out)
+        self.assertIn("#eval", out)
+        self.assertNotIn("notation declarations", out)
+
+
 if __name__ == "__main__":
     unittest.main()
