@@ -63,9 +63,9 @@ scoped infixr:6 "v" => or
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:50 "~" => Formula.neg
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-notation:55 φ:56 " ↣ " ψ:55 => (~ φ) v ψ
+scoped notation:55 φ:56 " ↣ " ψ:55 => (~ φ) v ψ
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-notation:55 φ:56 " ⟷ " ψ:55 => (φ ↣ ψ) & (ψ ↣ φ)
+scoped notation:55 φ:56 " ⟷ " ψ:55 => (φ ↣ ψ) & (ψ ↣ φ)
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:50 " ⊡ " => fun φ ↦ φ & (□ φ)
 
@@ -697,4 +697,4 @@ lemma Finset.sum_diff_singleton_lt {α : Type} [DecidableEq α] {A C : Finset α
             (by simp)
       · exact C_lt_B
 end Lean4GlCoalgebras
--- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: 4 notation(s) of this module made scoped so they do not change other libraries (generated)
