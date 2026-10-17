@@ -1,6 +1,7 @@
 """The canary (scripts/ci/canary): `import Tengoku.All` must stay usable. The client talks MCP over SSE to a Leak space; here against a fake one, and the files that run it are pinned
 (the 2026-10-17 bug: lean-pool's global `prefix:80 "-"` made `-(3 * x)` on a real number "Ambiguous term", and its notations reserved `v`, `na`, `ω` as words, on Leak IV for days)."""
 
+import contextlib
 import http.server
 import json
 import queue
@@ -182,7 +183,7 @@ class Client(unittest.TestCase):
             with self.assertRaises(ValueError, msg=bad):
                 lc.checked_space(bad)
         with self.assertRaises(ValueError):
-            lc.get_json("file:///etc/passwd")
+            lc.read_status("file:///etc/passwd")
 
     def test_an_endpoint_the_stream_names_on_another_host_is_not_followed(self):
         import tempfile
@@ -248,6 +249,15 @@ class Readiness(unittest.TestCase):
             self.assertFalse(ok, status)
             self.assertIn(why, reason)
 
+    @contextlib.contextmanager
+    def pointer_at(self, base):
+        """the published pointer is the module's constant URL: the tests point it at their fake"""
+        saved, lc.POINTER = lc.POINTER, f"{base}/pointer"
+        try:
+            yield
+        finally:
+            lc.POINTER = saved
+
     def serve(self, states, pointer):
         """a server whose /refresh answers the given states in turn (the last one for ever) and whose /pointer answers `pointer` (None: 404)"""
         seen = [0]
@@ -280,21 +290,24 @@ class Readiness(unittest.TestCase):
         idle = {"refreshing": False, "status": "current", "pinned": "a" * 40}
         srv, base = self.serve([{**idle, "refreshing": True, "status": "newer"}, {**idle, "pinned": "old"}, idle], self.POINTER)
         try:
-            self.assertTrue(lc.wait_ready(base, 0.0, 5.0, poll=0.01, pointer_url=f"{base}/pointer"))
+            with self.pointer_at(base):
+                self.assertTrue(lc.wait_ready(base, 0.0, 5.0, poll=0.01))
         finally:
             srv.shutdown()
 
     def test_a_space_that_never_follows_is_not_ready(self):
         srv, base = self.serve([{"refreshing": False, "status": "current", "pinned": "old"}], self.POINTER)
         try:
-            self.assertFalse(lc.wait_ready(base, 0.0, 0.3, poll=0.05, pointer_url=f"{base}/pointer"))
+            with self.pointer_at(base):
+                self.assertFalse(lc.wait_ready(base, 0.0, 0.3, poll=0.05))
         finally:
             srv.shutdown()
 
     def test_an_unreadable_pointer_is_not_ready(self):
         srv, base = self.serve([{"refreshing": False, "status": "current", "pinned": "a" * 40}], None)
         try:
-            self.assertFalse(lc.wait_ready(base, 0.0, 0.3, poll=0.05, pointer_url=f"{base}/pointer"))
+            with self.pointer_at(base):
+                self.assertFalse(lc.wait_ready(base, 0.0, 0.3, poll=0.05))
         finally:
             srv.shutdown()
 

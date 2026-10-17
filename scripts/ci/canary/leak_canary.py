@@ -54,9 +54,7 @@ def checked_space(url: str) -> str:
     return f"{u.scheme}://{u.netloc}"
 
 
-def get_json(url: str, timeout: float = 30.0) -> dict:
-    with urllib.request.urlopen(checked_get(url), timeout=timeout) as r:  # noqa: S310 — the URL is one of this module's constants or a checked origin + /refresh
-        raw = r.read(MAX_JSON + 1)  # a status or a cache pointer is a few hundred bytes: nothing longer is read
+def as_object(raw: bytes) -> dict:
     if len(raw) > MAX_JSON:
         raise ValueError(f"more than {MAX_JSON} bytes")
     data = json.loads(raw.decode("utf-8", "replace"))
@@ -65,11 +63,26 @@ def get_json(url: str, timeout: float = 30.0) -> dict:
     return data
 
 
-def checked_get(url: str) -> urllib.request.Request:
-    u = urlsplit(url)
-    if u.scheme != "https" and not (u.scheme == "http" and u.hostname in LOCAL_HOSTS):
-        raise ValueError(f"not an https URL: {url!r}")
-    return urllib.request.Request(url)
+def read_status(base: str, timeout: float = 30.0) -> dict:
+    """GET {base}/refresh of the space: http.client, so no redirect is followed and no scheme but the space's own is possible"""
+    u = urlsplit(checked_space(base))
+    conn = (http.client.HTTPSConnection if u.scheme == "https" else http.client.HTTPConnection)(u.hostname, u.port, timeout=timeout)
+    try:
+        conn.request("GET", "/refresh")
+        resp = conn.getresponse()
+        raw = resp.read(MAX_JSON + 1)  # a status is a few hundred bytes: nothing longer is read
+        if resp.status != 200:
+            raise ValueError(f"/refresh answered {resp.status}")
+    finally:
+        conn.close()
+    return as_object(raw)
+
+
+def read_pointer(timeout: float = 30.0) -> dict:
+    """the published cache pointer: this module's own constant URL (GitHub answers with a redirect to its CDN, which urllib follows)"""
+    with urllib.request.urlopen(POINTER, timeout=timeout) as r:  # noqa: S310 — a constant https URL
+        raw = r.read(MAX_JSON + 1)
+    return as_object(raw)
 
 
 def ready(status: dict, pointer: dict | None) -> tuple[bool, str]:
@@ -88,19 +101,19 @@ def ready(status: dict, pointer: dict | None) -> tuple[bool, str]:
     return True, ""
 
 
-def wait_ready(base: str, settle: float, wait: float, poll: float = 30.0, pointer_url: str | None = None) -> bool:
+def wait_ready(base: str, settle: float, wait: float, poll: float = 30.0) -> bool:
     """after a promotion: let the space start its refresh, then poll until it is ready or `wait` seconds are over"""
     time.sleep(settle)
     deadline = time.monotonic() + wait
     why = "never asked"
     while True:
         try:
-            status = get_json(f"{base}/refresh")
+            status = read_status(base)
         except Exception as e:
             status, why = None, f"/refresh not readable ({e!r})"
         if status is not None:
             try:
-                pointer = get_json(pointer_url or POINTER)
+                pointer = read_pointer()
             except Exception:
                 pointer = None
             print("space:", json.dumps(status)[:400])
@@ -277,7 +290,7 @@ def run(base: str, a: argparse.Namespace) -> int:
     if a.wait_refresh > 0 and not wait_ready(base, a.settle, a.wait_refresh):
         return 2
     try:  # which tree the space has pinned, for the log
-        print("space:", json.dumps(get_json(f"{base}/refresh"))[:400])
+        print("space:", json.dumps(read_status(base))[:400])
     except Exception as e:
         print(f"space: /refresh not readable ({e!r})")
     results = {}
