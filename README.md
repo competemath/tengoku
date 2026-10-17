@@ -76,7 +76,7 @@ Tengoku makes extensive use of the Lean and Mathlib ecosystem - to the authors w
 
 <a href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" height="18" alt="Snyk"></a>&nbsp;**Security, with [Snyk](https://snyk.io).** Tengoku is proud to be a member of Snyk's [Secure Developer Program](https://snyk.io/open-source/), which arms open-source maintainers with its advanced developer-security platform.
 
-<a href="https://gitar.ai"><img src="docs/img/gitar.svg" height="18" alt="Gitar"></a>&nbsp;**Code review and CI repair, with [Gitar](https://gitar.ai).** Tengoku is proud to have been admitted, for a year, to Gitar's open-source program, which gives open-source maintainers its AI code-review and CI-fixing agent.
+<a href="https://gitar.ai"><img src="docs/img/gitar.svg" height="18" alt="Gitar"></a>&nbsp;**Code review and CI repair, with [Gitar](https://gitar.ai).** Tengoku is proud to have been admitted to Gitar's open-source program, which gives open-source maintainers its AI code-review and CI-fixing agent.
 
 ## Funding and affiliation
 
