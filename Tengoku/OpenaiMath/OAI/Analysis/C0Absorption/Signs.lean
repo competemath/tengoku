@@ -12,10 +12,22 @@ section Signs
 
 def realSign (b : Bool) : ℝ := if b then 1 else -1
 
+/--
+@isnad1 id=eq.0h0v.s3.66f6cdc74549 from=translated src=- shape=b0ae1d2b vocab=48493385
+-/
 @[simp] theorem realSign_true : realSign true = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.1e8b0f2dcc17 from=translated src=- shape=f7285ee8 vocab=ede13096
+-/
 @[simp] theorem realSign_false : realSign false = -1 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.5f639715d389 from=translated src=- shape=562e4a6d vocab=722cccd4
+-/
 @[simp] theorem abs_realSign (b : Bool) : |realSign b| = 1 := by cases b <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s7.e51401b206cd from=translated src=- shape=9f7e1918 vocab=62aef9c7
+-/
 theorem sum_sign_sq (n : ℕ) (a : Fin n → ℝ) :
     ∑ ε : Fin n → Bool, (∑ i, realSign (ε i) * a i) ^ 2 =
       (2 : ℝ) ^ n * ∑ i, a i ^ 2 := by
@@ -38,6 +50,9 @@ theorem sum_sign_sq (n : ℕ) (a : Fin n → ℝ) :
       Nat.cast_pow, Nat.cast_ofNat, pow_succ]
     ring
 
+/--
+@isnad1 id=le.5h7v.s8.75da06efc8ac from=translated src=- shape=f0c1a492 vocab=34fb6790
+-/
 theorem finite_detector_bound {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (n : ℕ) (m : Fin n → X) (u : Fin n → X →ₗ[ℝ] ℝ)
     (α M δ : ℝ) (hα : 0 ≤ α) (_hM : 0 ≤ M)
@@ -78,6 +93,9 @@ theorem finite_detector_bound {X : Type*} [NormedAddCommGroup X] [NormedSpace �
       mul_le_mul_of_nonneg_left hdiag hα
     _ ≤ M ^ 2 := ht
 
+/--
+@isnad1 id=false.6h6v.s8.da5f7f1b5563 from=translated src=- shape=584df77b vocab=ba876a2e
+-/
 theorem no_infinite_detectors {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (m : ℕ → X) (u : ℕ → X →ₗ[ℝ] ℝ) (α M δ : ℝ)
     (hα : 0 < α) (hM : 0 ≤ M) (hδ : 0 < δ)
@@ -100,9 +118,15 @@ def flipSign {n : ℕ} (i : Fin n) : (Fin n → Bool) ≃ (Fin n → Bool) where
   left_inv ε := by funext j; by_cases h : j = i <;> simp [h]
   right_inv ε := by funext j; by_cases h : j = i <;> simp [h]
 
+/--
+@isnad1 id=eq.0h1v.s3.987acdaefd92 from=translated src=- shape=d2189a58 vocab=d25d7e21
+-/
 @[simp] theorem realSign_not (b : Bool) : realSign (!b) = -realSign b := by
   cases b <;> norm_num
 
+/--
+@isnad1 id=eq.0h5v.s8.a25407d83ce0 from=translated src=- shape=30631213 vocab=d5340209
+-/
 theorem signed_sum_sub_flip {X : Type*} [AddCommGroup X] [Module ℝ X]
     {n : ℕ} (m : Fin n → X) (ε : Fin n → Bool) (i : Fin n) :
     (∑ j, realSign (ε j) • m j) - (∑ j, realSign (flipSign i ε j) • m j) =
@@ -115,6 +139,9 @@ theorem signed_sum_sub_flip {X : Type*} [AddCommGroup X] [Module ℝ X]
     simp [flipSign, hji]
   · simp
 
+/--
+@isnad1 id=le.0h6v.s9.27a8a5bb8763 from=translated src=- shape=68f8927b vocab=cf3fede7
+-/
 theorem seminorm_sign_pair {X : Type*} [AddCommGroup X] [Module ℝ X]
     (q : Seminorm ℝ X) {n : ℕ} (m : Fin n → X) (ε : Fin n → Bool) (i : Fin n) :
     2 * (q (m i)) ^ 2 ≤
@@ -133,6 +160,9 @@ theorem seminorm_sign_pair {X : Type*} [AddCommGroup X] [Module ℝ X]
   nlinarith [sq_nonneg (q (∑ j, realSign (ε j) • m j) -
     q (∑ j, realSign (flipSign i ε j) • m j))]
 
+/--
+@isnad1 id=le.0h5v.s8.fb606f33c014 from=translated src=- shape=c8412786 vocab=00a1ff45
+-/
 theorem sum_sign_seminorm_sq_ge {X : Type*} [AddCommGroup X] [Module ℝ X]
     (q : Seminorm ℝ X) {n : ℕ} (m : Fin n → X) (i : Fin n) :
     (2 : ℝ) ^ n * (q (m i)) ^ 2 ≤
@@ -148,6 +178,9 @@ theorem sum_sign_seminorm_sq_ge {X : Type*} [AddCommGroup X] [Module ℝ X]
     Fintype.card_fin, nsmul_eq_mul, Nat.cast_pow, Nat.cast_ofNat] at h
   linarith
 
+/--
+@isnad1 id=le.2h6v.s9.36a04e42be6d from=translated src=- shape=33b55a98 vocab=1ab6ce18
+-/
 theorem sum_coordinate_choice_le {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (q : ℕ → Seminorm ℝ X)
     (hdom : ∀ (s : Finset ℕ) x, ∑ d ∈ s, (q d x) ^ 2 ≤ ‖x‖ ^ 2)
@@ -178,6 +211,9 @@ theorem sum_coordinate_choice_le {X : Type*} [NormedAddCommGroup X] [NormedSpace
       _ = (2 : ℝ) ^ n * M ^ 2 := by simp
   exact le_of_mul_le_mul_left hmain (by positivity)
 
+/--
+@isnad1 id=le.1h5v.s5.3f4e18484984 from=translated src=- shape=555ab29a vocab=42c2157d
+-/
 theorem sum_ciSup_le_of_forall_choice {ι κ : Type*} [Nonempty κ]
     (a : ι → κ → ℝ) (s : Finset ι) (K : ℝ)
     (h : ∀ f : ι → κ, ∑ d ∈ s, a d (f d) ≤ K) :
@@ -203,6 +239,9 @@ theorem sum_ciSup_le_of_forall_choice {ι κ : Type*} [Nonempty κ]
       linarith
     linarith
 
+/--
+@isnad1 id=and.2h4v.s9.be081415f48a from=translated src=- shape=648ee8b0 vocab=2d9d3ec9
+-/
 theorem coordinate_envelope_summable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (q : ℕ → Seminorm ℝ X)
     (hdom : ∀ (s : Finset ℕ) x, ∑ d ∈ s, (q d x) ^ 2 ≤ ‖x‖ ^ 2)
@@ -225,6 +264,9 @@ theorem coordinate_envelope_summable {X : Type*} [NormedAddCommGroup X] [NormedS
       exact fun f => sum_coordinate_choice_le q hdom m M hsum s f
   · exact hle
 
+/--
+@isnad1 id=tendsto.4h4v.s9.46bf3672de86 from=translated src=- shape=44891859 vocab=0e03ac9e
+-/
 theorem square_norm_tendsto_zero {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (q : ℕ → Seminorm ℝ X)
     (hq : ∀ x, Summable (fun d => (q d x) ^ 2))
@@ -244,6 +286,9 @@ theorem square_norm_tendsto_zero {X : Type*} [NormedAddCommGroup X] [NormedSpace
       simpa only [Real.norm_of_nonneg (sq_nonneg _)] using hle d i)
   simpa only [← hnorm, tsum_zero] using ht
 
+/--
+@isnad1 id=ex.5h5v.s9.432e74ef211e from=translated src=- shape=63bdb42e vocab=71959f7c
+-/
 theorem exists_nonzero_coordinate {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (q : ℕ → Seminorm ℝ X)
     (hq : ∀ x, Summable (fun d => (q d x) ^ 2))

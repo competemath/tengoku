@@ -14,7 +14,9 @@ section ProductModels
 variable {κ : Type uKappa} {ι : Type uIota} [Fintype κ] [Fintype ι]
 variable {B : Type uB} [MeasurableSpace B] {μ : Measure B} [IsProbabilityMeasure μ]
 
-/-- Near-disjointness from every old unit vector, using only the new scalar tail. -/
+/-- Near-disjointness from every old unit vector, using only the new scalar tail.
+@isnad1 id=le.9h8v.s8.8dec02e5d074 from=translated src=- shape=ad2f0759 vocab=00178811
+-/
 lemma near_additivity {R : Type uR} [MeasurableSpace R] {ν : Measure R}
     [IsProbabilityMeasure ν] {w u : B → ℝ} {f : R → ℝ}
     (hw : Integrable w μ) (hu : Integrable u μ) (hf : Integrable f ν)
@@ -70,11 +72,17 @@ def normalizeFunction (μ : Measure B) (f : B → ℝ) (b : B) : ℝ :=
   f b / max 1 (∫ b, |f b| ∂μ)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=integrab.1h3v.s6.ac1735f0f8a5 from=translated src=- shape=bceffc5f vocab=28d3e70b
+-/
 lemma integrable_normalizeFunction [IsProbabilityMeasure μ]
     {f : B → ℝ} (hf : Integrable f μ) :
     Integrable (normalizeFunction μ f) μ := hf.div_const _
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=and.3h4v.s7.fc1b331e58b7 from=translated src=- shape=a386c531 vocab=9859673d
+-/
 lemma normalizeFunction_bounds [IsProbabilityMeasure μ]
     {f : B → ℝ} (_hf : Integrable f μ) {R : ℝ}
     (hR : 1 ≤ R) (hN : (∫ b, |f b| ∂μ) ≤ R) :
@@ -113,7 +121,9 @@ lemma normalizeFunction_bounds [IsProbabilityMeasure μ]
       rw [div_mul_cancel₀ _ hNpos.ne']
       exact sub_le_sub_right hN 1
 
-/-- Markov's inequality after discarding a small exceptional set. -/
+/-- Markov's inequality after discarding a small exceptional set.
+@isnad1 id=le.7h6v.s7.0af8de3a7216 from=translated src=- shape=feffbdb2 vocab=8cf6e098
+-/
 lemma restricted_markov {R : Type uR} [MeasurableSpace R] {ν : Measure R}
     [IsFiniteMeasure ν] {f b : R → ℝ} (hf : Integrable f ν) (hb : Integrable b ν)
     (hf0 : ∀ v, 0 ≤ f v) (hb0 : ∀ v, 0 ≤ b v)
@@ -142,7 +152,9 @@ lemma restricted_markov {R : Type uR} [MeasurableSpace R] {ν : Measure R}
   exact (measureReal_mono (μ := ν) hsub).trans
     ((measureReal_union_le _ _).trans (add_le_add le_rfl hprob))
 
-/-- Fubini on the good event controls the old approximant before normalization. -/
+/-- Fubini on the good event controls the old approximant before normalization.
+@isnad1 id=le.10h10v.s8.52ccae31419b from=translated src=- shape=e37a502c vocab=71101219
+-/
 lemma old_norm_on_good_set {R : Type uR} [MeasurableSpace R] {ν : Measure R}
     [IsProbabilityMeasure ν] {g : B × R → ℝ} {ψ U : B → ℝ}
     (hg : Integrable g (μ.prod ν)) (hψ : Integrable ψ μ) (hU : Integrable U μ)

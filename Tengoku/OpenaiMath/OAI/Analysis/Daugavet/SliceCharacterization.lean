@@ -11,6 +11,9 @@ universe uX
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=ex.2h3v.s8.2b04fdb05198 from=translated src=- shape=0d94ca56 vocab=3fda1f40
+-/
 lemma normalized_functional_slice_nonempty (ell : X →L[ℝ] ℝ) (hell : ‖ell‖ = 1)
     {η : ℝ} (hη : 0 < η) : ∃ y : X, ‖y‖ ≤ 1 ∧ 1 - η < ell y := by
   obtain ⟨u, hu, hval⟩ := ell.exists_lt_apply_of_lt_opNorm
@@ -22,7 +25,9 @@ lemma normalized_functional_slice_nonempty (ell : X →L[ℝ] ℝ) (hell : ‖el
     rw [abs_of_neg (lt_of_not_ge hs)] at hval
     simpa only [map_neg] using hval
 
-/-- Converse slice characterization, needed for the explicitly constructed example. -/
+/-- Converse slice characterization, needed for the explicitly constructed example.
+@isnad1 id=daugavet.1h1v.s4.020e53c76483 from=translated src=- shape=2da9e0b4 vocab=dac7523d
+-/
 theorem unitSlice_daugavet [Nontrivial X] (hsp : UnitSliceProperty X) : Daugavet X := by
   intro ell v
   by_cases he0 : ell = 0

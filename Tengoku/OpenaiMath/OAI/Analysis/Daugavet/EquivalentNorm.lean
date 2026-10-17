@@ -11,15 +11,24 @@ universe uX
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=lt.2h3v.s8.6f2973232067 from=translated src=- shape=172352aa vocab=449c4d59
+-/
 lemma equivalentNorm_pos {N : Seminorm ℝ X} (hN : EquivalentNorm N) {x : X} (hx : x ≠ 0) :
     0 < N x := by
   obtain ⟨a, b, ha, hb, hbound⟩ := hN
   exact (mul_pos ha (norm_pos_iff.mpr hx)).trans_le (hbound x).1
 
+/--
+@isnad1 id=eq.1h3v.s9.d75550d87d49 from=translated src=- shape=5dd00a68 vocab=5c89b1cf
+-/
 lemma seminorm_normalize (N : Seminorm ℝ X) {x : X} (hx : 0 < N x) :
     N ((N x)⁻¹ • x) = 1 := by
   rw [map_smul_eq_mul, Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hx), inv_mul_cancel₀ hx.ne']
 
+/--
+@isnad1 id=ex.3h3v.s8.e2c49fd968b8 from=translated src=- shape=01d2d8f3 vocab=a0db8de7
+-/
 lemma cofinite_has_Nunit (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     (hN : EquivalentNorm N) {F : Submodule ℝ X} (hF : Cofinite F) :
     ∃ y ∈ F, N y = 1 := by
@@ -30,18 +39,27 @@ lemma cofinite_has_Nunit (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X
 def normOneSidedValues (N : Seminorm ℝ X) (x : X) (t : ℝ) (F : Submodule ℝ X) : Set ℝ :=
   {a | ∃ y ∈ F, N y = 1 ∧ a = N (x + t • y) - 1}
 
+/--
+@isnad1 id=bddbelow.0h5v.s6.99c5d1ff91ff from=translated src=- shape=2866163d vocab=9972cfe7
+-/
 lemma normOneSidedValues_bddBelow (N : Seminorm ℝ X) (x : X) (t : ℝ) (F : Submodule ℝ X) :
     BddBelow (normOneSidedValues N x t F) := by
   refine ⟨-1, ?_⟩
   rintro a ⟨y, hyF, hy, rfl⟩
   linarith [apply_nonneg N (x + t • y)]
 
+/--
+@isnad1 id=nonempty.3h5v.s7.80f2849c6c0d from=translated src=- shape=64c98cdf vocab=c37cc1ea
+-/
 lemma normOneSidedValues_nonempty (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     (hN : EquivalentNorm N) (x : X) (t : ℝ) {F : Submodule ℝ X} (hF : Cofinite F) :
     (normOneSidedValues N x t F).Nonempty := by
   obtain ⟨y, hyF, hy⟩ := cofinite_has_Nunit hinf hN hF
   exact ⟨_, y, hyF, hy, rfl⟩
 
+/--
+@isnad1 id=bddabove.4h4v.s8.816d9dd2567e from=translated src=- shape=205ae18b vocab=36fe6124
+-/
 lemma normD_outer_bddAbove (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     (hN : EquivalentNorm N) {x : X} (hx : N x = 1) {t : ℝ} (ht : 0 ≤ t) :
     BddAbove {r | ∃ F : Submodule ℝ X, Cofinite F ∧ r = sInf (normOneSidedValues N x t F)} := by
@@ -53,6 +71,9 @@ lemma normD_outer_bddAbove (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ
   rw [map_smul_eq_mul, Real.norm_eq_abs, abs_of_nonneg ht, hx, hy, mul_one] at hb
   linarith
 
+/--
+@isnad1 id=le.4h4v.s8.417b946f3476 from=translated src=- shape=aa49ef9a vocab=51feb498
+-/
 lemma normD_ge_neg_one (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     (hN : EquivalentNorm N) {x : X} (hx : N x = 1) {t : ℝ} (ht : 0 ≤ t) : -1 ≤ D N x t := by
   apply le_trans (b := sInf (normOneSidedValues N x t ⊤))
@@ -61,6 +82,9 @@ lemma normD_ge_neg_one (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     linarith [apply_nonneg N (x + t • y)]
   · exact le_csSup (normD_outer_bddAbove hinf hN hx ht) ⟨⊤, cofinite_top, rfl⟩
 
+/--
+@isnad1 id=bddbelow.3h3v.s8.84a4cda71c4b from=translated src=- shape=926c1e4d vocab=3f74916d
+-/
 lemma normD_centers_bddBelow (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     (hN : EquivalentNorm N) {t : ℝ} (ht : 0 ≤ t) :
     BddBelow {r | ∃ x : X, N x = 1 ∧ r = D N x t} := by
@@ -68,7 +92,9 @@ lemma normD_centers_bddBelow (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm �
   rintro r ⟨x, hx, rfl⟩
   exact normD_ge_neg_one hinf hN hx ht
 
-/-- Seminorm convexity with an explicit common endpoint bound. -/
+/-- Seminorm convexity with an explicit common endpoint bound.
+@isnad1 id=le.4h6v.s9.1dac2e91de1d from=translated src=- shape=0e101c88 vocab=0a308d34
+-/
 lemma seminorm_segment_le (N : Seminorm ℝ X) {x y : X} {r M : ℝ}
     (hr : 0 ≤ r) (hr' : r ≤ 1) (hx : N x ≤ M) (hy : N y ≤ M) :
     N ((1 - r) • x + r • y) ≤ M := by
@@ -84,6 +110,9 @@ end ExactModuli
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=ex.2h2v.s9.4833905c89e9 from=translated src=- shape=2ac86537 vocab=63e71b40
+-/
 lemma equivalentNorm_supremum (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm ℝ X}
     (hN : EquivalentNorm N) :
     ∃ R : ℝ, 0 < R ∧ (∀ u : X, ‖u‖ ≤ 1 → N u ≤ R) ∧
@@ -121,6 +150,9 @@ lemma equivalentNorm_supremum (hinf : ¬ FiniteDimensional ℝ X) {N : Seminorm 
     obtain ⟨r, ⟨x, hx, rfl⟩, hr⟩ := exists_lt_of_lt_csSup hS hlt
     exact ⟨x, hx, hr⟩
 
+/--
+@isnad1 id=le.6h6v.s10.640957ee61ab from=translated src=- shape=591df30b vocab=15265bb0
+-/
 lemma seminorm_normalized_segment (N : Seminorm ℝ X) {x z : X} (hx : 0 < N x)
     (hz : 0 < N z) {t M : ℝ} (ht : 0 ≤ t) (htz : t * N x ≤ N z)
     (hxM : N x ≤ M) (hzM : N (x + z) ≤ M) :
@@ -145,6 +177,9 @@ end ExactModuli
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=le.6h6v.s10.9695e2203436 from=translated src=- shape=efeef158 vocab=88178f7a
+-/
 lemma normD_bound_at_original_unit (hsp : UnitSliceProperty X) (N : Seminorm ℝ X)
     {a b R : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hab : ∀ u : X, a * ‖u‖ ≤ N u ∧ N u ≤ b * ‖u‖)

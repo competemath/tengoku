@@ -27,10 +27,16 @@ noncomputable def molecule (s t : S) : Molecule S :=
   ⟨Finsupp.single s 1 - Finsupp.single t 1, by
     simp [MoleculeSpace, LinearMap.mem_ker]⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.1ba7051b0051 from=translated src=- shape=e41db8f8 vocab=ecf17ecf
+-/
 @[simp] theorem pairing_molecule (f : S → ℝ) (s t : S) :
     pairing S f (molecule s t) = f s - f t := by
   simp [pairing, molecule]
 
+/--
+@isnad1 id=eq.0h3v.s9.348f9964aa34 from=translated src=- shape=7fe0d3da vocab=031d208d
+-/
 @[simp] theorem pairing_const (c : ℝ) (m : Molecule S) :
     pairing S (fun _ => c) m = 0 := by
   have hm := m.property
@@ -40,6 +46,9 @@ noncomputable def molecule (s t : S) : Molecule S :=
     Finsupp.linearCombination_apply, smul_eq_mul]
   rw [← Finsupp.sum_mul, hm, zero_mul]
 
+/--
+@isnad1 id=eq.0h3v.s9.d37c4e318258 from=translated src=- shape=5c3ba977 vocab=34b162e4
+-/
 theorem molecule_decomposition (m : Molecule S) (o : S) :
     m = ∑ s ∈ m.val.support, m.val s • molecule s o := by
   classical
@@ -52,10 +61,16 @@ theorem molecule_decomposition (m : Molecule S) (o : S) :
   rw [Finset.sum_sub_distrib, ← Finset.sum_smul, hm, zero_smul, sub_zero]
   simpa only [Finsupp.smul_single, smul_eq_mul, mul_one, Finsupp.sum] using (Finsupp.sum_single m.val).symm
 
+/--
+@isnad1 id=eq.0h2v.s8.a34de89c10de from=translated src=- shape=360bad6b vocab=6d8aa6b6
+-/
 @[simp] theorem molecule_self (s : S) : molecule s s = 0 := by
   apply Subtype.ext
   simp [molecule]
 
+/--
+@isnad1 id=eq.0h4v.s8.f83088cb8712 from=translated src=- shape=776128b4 vocab=f0fef91c
+-/
 theorem molecule_sub_molecule (s t o : S) : molecule s o - molecule t o = molecule s t := by
   apply Subtype.ext
   change (Finsupp.single s 1 - Finsupp.single o 1) -
@@ -88,6 +103,9 @@ def AdmissibleList.empty (L : Set (S → ℝ)) (C : ℝ≥0) : AdmissibleList L 
 instance (L : Set (S → ℝ)) (C : ℝ≥0) : Nonempty (AdmissibleList L C) :=
   ⟨AdmissibleList.empty L C⟩
 
+/--
+@isnad1 id=le.0h6v.s6.4d862029caa5 from=translated src=- shape=5ff1e0bd vocab=14dfce73
+-/
 theorem AdmissibleList.sum_abs_sub_le {L : Set (S → ℝ)} {C : ℝ≥0}
     (l : AdmissibleList L C) (s t : S) :
     ∑ i, |l.test i s - l.test i t| ≤ C * dist s t := by
@@ -109,6 +127,9 @@ theorem AdmissibleList.sum_abs_sub_le {L : Set (S → ℝ)} {C : ℝ≥0}
   simp_rw [← mul_sub, heq] at h
   rwa [abs_of_nonneg (Finset.sum_nonneg fun _ _ => abs_nonneg _)] at h
 
+/--
+@isnad1 id=le.0h3v.s6.4a88bef0fce1 from=translated src=- shape=a5795d70 vocab=13927f6d
+-/
 theorem finite_lp_norm_le_sum {ι : Type*} [Fintype ι] (p : ℝ≥0∞) [Fact (1 ≤ p)]
     (f : PiLp p (fun _ : ι => ℝ)) : ‖f‖ ≤ ∑ i, |f i| := by
   classical
@@ -127,6 +148,9 @@ def AdmissibleList.eval {L : Set (S → ℝ)} {C : ℝ≥0}
   (WithLp.linearEquiv p ℝ _).symm.toLinearMap.comp
     (LinearMap.pi fun i => pairing S (l.test i))
 
+/--
+@isnad1 id=eq.0h7v.s10.a57fdf5bcc51 from=translated src=- shape=c94f0de8 vocab=91b850ef
+-/
 @[simp] theorem AdmissibleList.eval_apply {L : Set (S → ℝ)} {C : ℝ≥0}
     (l : AdmissibleList L C) (p : ℝ≥0∞) (m : Molecule S) (i : Fin l.length) :
     (l.eval p m) i = pairing S (l.test i) m := rfl
@@ -135,10 +159,16 @@ def AdmissibleList.seminorm {L : Set (S → ℝ)} {C : ℝ≥0}
     (l : AdmissibleList L C) (p : ℝ≥0∞) [Fact (1 ≤ p)] : Seminorm ℝ (Molecule S) :=
   (normSeminorm ℝ (PiLp p (fun _ : Fin l.length => ℝ))).comp (l.eval p)
 
+/--
+@isnad1 id=eq.0h6v.s10.12f5f4b7fbe9 from=translated src=- shape=fdca4d98 vocab=a11c5fe6
+-/
 @[simp] theorem AdmissibleList.seminorm_apply {L : Set (S → ℝ)} {C : ℝ≥0}
     (l : AdmissibleList L C) (p : ℝ≥0∞) [Fact (1 ≤ p)] (m : Molecule S) :
     l.seminorm p m = ‖l.eval p m‖ := rfl
 
+/--
+@isnad1 id=le.0h7v.s9.b0850055453c from=translated src=- shape=c009f17d vocab=e97346ea
+-/
 theorem AdmissibleList.seminorm_molecule_le {L : Set (S → ℝ)} {C : ℝ≥0}
     (l : AdmissibleList L C) (p : ℝ≥0∞) [Fact (1 ≤ p)] (s t : S) :
     l.seminorm p (molecule s t) ≤ C * dist s t := by
@@ -148,6 +178,9 @@ theorem AdmissibleList.seminorm_molecule_le {L : Set (S → ℝ)} {C : ℝ≥0}
     _ = ∑ i, |l.test i s - l.test i t| := by simp
     _ ≤ C * dist s t := l.sum_abs_sub_le s t
 
+/--
+@isnad1 id=le.0h7v.s10.4c47986b2f54 from=translated src=- shape=b9413fc8 vocab=3666db24
+-/
 theorem AdmissibleList.seminorm_le {L : Set (S → ℝ)} {C : ℝ≥0}
     (l : AdmissibleList L C) (p : ℝ≥0∞) [Fact (1 ≤ p)] (o : S) (m : Molecule S) :
     l.seminorm p m ≤ C * ∑ s ∈ m.val.support, |m.val s| * dist s o := by
@@ -173,6 +206,9 @@ def sigma (L : Set (S → ℝ)) (C : ℝ≥0) (p : ℝ≥0∞) [Fact (1 ≤ p)] 
     Seminorm ℝ (Molecule S) :=
   ⨆ l : AdmissibleList L C, l.seminorm p
 
+/--
+@isnad1 id=bddabove.0h5v.s10.d738ed8800ca from=translated src=- shape=c13e272f vocab=180d5cb6
+-/
 theorem list_seminorms_bddAbove (L : Set (S → ℝ)) (C : ℝ≥0)
     (p : ℝ≥0∞) [Fact (1 ≤ p)] (o : S) :
     BddAbove (Set.range fun l : AdmissibleList L C => l.seminorm p) := by
@@ -182,22 +218,34 @@ theorem list_seminorms_bddAbove (L : Set (S → ℝ)) (C : ℝ≥0)
   rintro _ ⟨l, rfl⟩
   exact l.seminorm_le p o m
 
+/--
+@isnad1 id=eq.0h6v.s10.d724e25a611a from=translated src=- shape=804b9775 vocab=e7309617
+-/
 theorem sigma_apply (L : Set (S → ℝ)) (C : ℝ≥0)
     (p : ℝ≥0∞) [Fact (1 ≤ p)] (o : S) (m : Molecule S) :
     sigma L C p m = ⨆ l : AdmissibleList L C, ‖l.eval p m‖ := by
   exact Seminorm.iSup_apply (list_seminorms_bddAbove L C p o)
 
+/--
+@isnad1 id=le.0h6v.s9.9d5cbc62485b from=translated src=- shape=c4b5bdb4 vocab=82bf94b7
+-/
 theorem sigma_molecule_le (L : Set (S → ℝ)) (C : ℝ≥0)
     (p : ℝ≥0∞) [Fact (1 ≤ p)] (s t : S) :
     sigma L C p (molecule s t) ≤ C * dist s t := by
   rw [sigma_apply L C p s]
   exact ciSup_le fun l => l.seminorm_molecule_le p s t
 
+/--
+@isnad1 id=le.0h6v.s10.c4f58c97e693 from=translated src=- shape=e5da8f67 vocab=06359466
+-/
 theorem list_le_sigma (L : Set (S → ℝ)) (C : ℝ≥0)
     (p : ℝ≥0∞) [Fact (1 ≤ p)] (o : S) (l : AdmissibleList L C) :
     l.seminorm p ≤ sigma L C p :=
   le_ciSup (list_seminorms_bddAbove L C p o) l
 
+/--
+@isnad1 id=le.0h6v.s9.bfa6a6aae071 from=translated src=- shape=59fd2a5a vocab=acffa3f7
+-/
 theorem sigma_le (L : Set (S → ℝ)) (C : ℝ≥0)
     (p : ℝ≥0∞) [Fact (1 ≤ p)] (o : S) (m : Molecule S) :
     sigma L C p m ≤ C * ∑ s ∈ m.val.support, |m.val s| * dist s o := by
@@ -217,6 +265,9 @@ def squareVector (x : M) : lp (fun _ : ℕ => ℝ) 2 :=
     simpa only [ENNReal.toReal_ofNat, Real.rpow_two, Real.norm_eq_abs, sq_abs]
       using hq x)⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.585bebfeac81 from=translated src=- shape=65dd6639 vocab=4bcb768e
+-/
 @[simp] theorem squareVector_apply (x : M) (n : ℕ) :
     squareVector q hq x n = q n x := rfl
 
@@ -242,21 +293,33 @@ def squareSeminorm : Seminorm ℝ M :=
         exact map_smul_eq_mul _ _ _
       rw [h, norm_smul, norm_norm])
 
+/--
+@isnad1 id=eq.1h3v.s9.529221a6730c from=translated src=- shape=af6afa83 vocab=f5b29841
+-/
 @[simp] theorem squareSeminorm_apply (x : M) :
     squareSeminorm q hq x = ‖squareVector q hq x‖ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.610a23d7fbe1 from=translated src=- shape=c57b4e2c vocab=6efff48d
+-/
 theorem squareSeminorm_sq (x : M) :
     (squareSeminorm q hq x) ^ 2 = ∑' n, (q n x) ^ 2 := by
   simpa only [squareSeminorm_apply, ENNReal.toReal_ofNat, Real.rpow_two,
     Real.norm_eq_abs, sq_abs, squareVector_apply] using
     lp.norm_rpow_eq_tsum (by norm_num : 0 < (2 : ℝ≥0∞).toReal) (squareVector q hq x)
 
+/--
+@isnad1 id=le.1h4v.s8.35f9ef13dd9b from=translated src=- shape=9ae5f928 vocab=4409b876
+-/
 theorem coordinate_le_squareSeminorm (n : ℕ) (x : M) :
     q n x ≤ squareSeminorm q hq x := by
   simpa only [squareSeminorm_apply, squareVector_apply,
     Real.norm_of_nonneg (apply_nonneg _ _)] using
     lp.norm_apply_le_norm (by norm_num : (2 : ℝ≥0∞) ≠ 0) (squareVector q hq x) n
 
+/--
+@isnad1 id=le.0h4v.s8.c804e05c9383 from=translated src=- shape=98faec29 vocab=26ce8ccb
+-/
 theorem seminorm_abs_sub_le (r : Seminorm ℝ M) (x y : M) :
     |r x - r y| ≤ r (x - y) := by
   have hxy := map_add_le_add r (x - y) y
@@ -267,6 +330,9 @@ theorem seminorm_abs_sub_le (r : Seminorm ℝ M) (x y : M) :
   apply abs_le.mpr
   constructor <;> linarith
 
+/--
+@isnad1 id=le.1h4v.s10.f27ad087c17f from=translated src=- shape=2261d3a8 vocab=bc70284f
+-/
 theorem squareVector_sub_norm_le (x y : M) :
     ‖squareVector q hq x - squareVector q hq y‖ ≤ squareSeminorm q hq (x - y) := by
   apply lp.norm_mono (by norm_num : (2 : ℝ≥0∞) ≠ 0)

@@ -10,6 +10,9 @@ open Finset
 
 open Set Filter Topology
 
+/--
+@isnad1 id=le.3h5v.s7.b995c467a24b from=translated src=- shape=10632c5f vocab=41bb5e1e
+-/
 theorem dist_le_of_local_interval {Y : Type*} [PseudoMetricSpace Y]
     {a b K : ℝ} (hab : a ≤ b) {f : ℝ → Y}
     (hf : ContinuousOn f (Icc a b))
@@ -40,6 +43,9 @@ theorem dist_le_of_local_interval {Y : Type*} [PseudoMetricSpace Y]
     _ ≤ K * (x-a) + K * (z-x) := add_le_add hx hz
     _ = K * (z-a) := by ring
 
+/--
+@isnad1 id=lipschit.3h5v.s7.478bafa4dc3a from=translated src=- shape=16a72967 vocab=5d6ca4b9
+-/
 theorem lipschitzOn_convex_of_local {E Y : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [PseudoMetricSpace Y]
     {B : Set E} (hB : Convex ℝ B) {f : E → Y} {K : ℝ≥0}
@@ -68,6 +74,9 @@ theorem lipschitzOn_convex_of_local {E Y : Type*}
   have h := dist_le_of_local_interval (by norm_num : (0 : ℝ) ≤ 1) hc hh
   simpa [g, Function.comp_def] using h
 
+/--
+@isnad1 id=lipschit.3h5v.s7.9aba3f3870fd from=translated src=- shape=c2de85ad vocab=a36be9ef
+-/
 theorem lipschitz_convex_subtype_of_local {E Y : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [PseudoMetricSpace Y]
     {B : Set E} (hB : Convex ℝ B) {f : B → Y} {K : ℝ≥0}
@@ -92,11 +101,17 @@ theorem lipschitz_convex_subtype_of_local {E Y : Type*}
   have hh := (lipschitzOn_convex_of_local hB hc hl).dist_le_mul x x.property y y.property
   simpa only [hF, Subtype.dist_eq] using hh
 
+/--
+@isnad1 id=eventual.1h3v.s5.eaefad088329 from=translated src=- shape=9516e582 vocab=f9268389
+-/
 theorem eventually_zero_of_not_tsupport {X : Type*} [TopologicalSpace X]
     {f : X → ℝ} {x : X} (hx : x ∉ tsupport f) : ∀ᶠ y in nhds x, f y = 0 := by
   filter_upwards [(isClosed_tsupport f).isOpen_compl.mem_nhds hx] with y hy
   exact image_eq_zero_of_notMem_tsupport hy
 
+/--
+@isnad1 id=lipschit.4h6v.s8.807167cc0a48 from=translated src=- shape=be61eb1e vocab=62719941
+-/
 theorem disjoint_supports_signed_lipschitz {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {B : Set E} (hB : Convex ℝ B)
     {ι : Type*} [Fintype ι] (f : ι → B → ℝ) (K : ℝ≥0)
@@ -138,6 +153,9 @@ theorem disjoint_supports_signed_lipschitz {E : Type*}
     simp only [hx, hy, mul_zero, Finset.sum_const_zero, dist_self]
     positivity
 
+/--
+@isnad1 id=lipschit.8h10v.s9.b8e918104a19 from=translated src=- shape=16e31bb9 vocab=1dd380a8
+-/
 theorem nested_supports_signed_lipschitz {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {B : Set E} (hB : Convex ℝ B)
     (n : ℕ) (u b : Fin n → B → ℝ) (e : Fin n → ℝ)
@@ -225,43 +243,67 @@ def localG {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) (u : X → ℝ) 
 def localR {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) (u : X → ℝ) (x : X) : ℝ :=
   localG q ε u x-u x
 
+/--
+@isnad1 id=le.0h4v.s4.faaf20f8e150 from=translated src=- shape=c2b65d15 vocab=f560604f
+-/
 theorem cutoff_nonneg {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) (x : X) :
     0 ≤ cutoff q ε x := by
   dsimp [cutoff, chi]
   have := min_le_left (1 : ℝ) (max 0 (2 * (dist x q / ε) - 1))
   linarith
 
+/--
+@isnad1 id=le.0h4v.s4.1dfbe5255f57 from=translated src=- shape=b1b074ac vocab=f560604f
+-/
 theorem cutoff_le_one {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) (x : X) :
     cutoff q ε x ≤ 1 := by
   dsimp [cutoff, chi]
   have : 0 ≤ min (1 : ℝ) (max 0 (2 * (dist x q / ε) - 1)) := by positivity
   linarith
 
+/--
+@isnad1 id=eq.0h5v.s5.52a93f98a1c3 from=translated src=- shape=f624fd9a vocab=2a0b2291
+-/
 theorem localR_eq {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) (u : X → ℝ) (x : X) :
     localR q ε u x = cutoff q ε x * (u q-u x) := by
   dsimp [localR, localG, cutoff]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s5.cf3bf7810c0e from=translated src=- shape=c85cc5f9 vocab=8e02e7ae
+-/
 theorem localG_eq {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) (u : X → ℝ) (x : X) :
     localG q ε u x = u x + localR q ε u x := by
   simp [localR]
 
+/--
+@isnad1 id=eq.2h4v.s5.00e9a5a74d72 from=translated src=- shape=d38a46e3 vocab=3d73d3ef
+-/
 theorem cutoff_eq_zero {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ} (hε : 0 < ε)
     (x : X) (hx : ε ≤ dist x q) : cutoff q ε x = 0 := by
   have hh : 1 ≤ dist x q / ε := (le_div_iff₀ hε).mpr (by simpa using hx)
   simp [cutoff, chi, max_eq_right (by linarith : 0 ≤ 2*(dist x q/ε)-1),
     min_eq_left (by linarith : (1:ℝ) ≤ 2*(dist x q/ε)-1)]
 
+/--
+@isnad1 id=lt.2h4v.s5.d512ea6d5b94 from=translated src=- shape=0926b155 vocab=80f1052e
+-/
 theorem dist_lt_of_cutoff_ne_zero {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     (hε : 0 < ε) (x : X) (hx : cutoff q ε x ≠ 0) : dist x q < ε := by
   by_contra! hh
   exact hx (cutoff_eq_zero q hε x hh)
 
+/--
+@isnad1 id=eq.2h5v.s6.cf73651a8281 from=translated src=- shape=1e095a3b vocab=9ad4f9bc
+-/
 theorem localG_plateau {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ} (hε : 0 < ε)
     (u : X → ℝ) (x : X) (hx : dist x q ≤ ε/2) : localG q ε u x = u q := by
   have hh : dist x q / ε ≤ 1/2 := (div_le_iff₀ hε).mpr (by linarith)
   simp [localG, chi, max_eq_left (by linarith : 2*(dist x q/ε)-1 ≤ 0)]
 
+/--
+@isnad1 id=lipschit.0h0v.s4.afddb175538e from=translated src=- shape=9b6bf902 vocab=f78e7d27
+-/
 theorem chi_lipschitz : LipschitzWith 2 chi := by
   have h : LipschitzWith 2 (fun t : ℝ => 2*t-1) := by
     apply LipschitzWith.of_dist_le_mul
@@ -271,6 +313,9 @@ theorem chi_lipschitz : LipschitzWith 2 chi := by
   change LipschitzWith 2 (fun t : ℝ => min 1 (max 0 (2*t-1)))
   exact (h.const_max 0).const_min 1
 
+/--
+@isnad1 id=le.1h5v.s6.3c62ea684c4d from=translated src=- shape=72f4082b vocab=41389491
+-/
 theorem cutoff_dist_le {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     (hε : 0 < ε) (x y : X) :
     |cutoff q ε x-cutoff q ε y| ≤ (2 / ε) * dist x y := by
@@ -286,6 +331,9 @@ theorem cutoff_dist_le {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     _ ≤ (2/ε)*dist x y := mul_le_mul_of_nonneg_left
       (abs_dist_sub_le x y q) (by positivity)
 
+/--
+@isnad1 id=le.2h6v.s6.f88aa1e1a0a3 from=translated src=- shape=a5d7f347 vocab=69f0dfce
+-/
 theorem localR_sup_lip {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     (hε : 0 < ε) (u : X → ℝ) {L : ℝ≥0} (hu : LipschitzWith L u) (x : X) :
     |localR q ε u x| ≤ ε * L := by
@@ -300,6 +348,9 @@ theorem localR_sup_lip {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
       _ = ε*L := mul_comm _ _
   exact (mul_le_mul_of_nonneg_right (cutoff_le_one q ε x) (abs_nonneg _)).trans (by simpa using hb)
 
+/--
+@isnad1 id=lipschit.2h5v.s6.1887a8fd3045 from=translated src=- shape=4b471717 vocab=c8fcf93d
+-/
 theorem localR_lipschitz {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     (hε : 0 < ε) (u : X → ℝ) {L : ℝ≥0} (hu : LipschitzWith L u) :
     LipschitzWith (3*L) (localR q ε u) := by
@@ -342,6 +393,9 @@ theorem localR_lipschitz {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     · simpa only [abs_sub_comm, dist_comm] using hb y x hx
   · exact hb x y hy
 
+/--
+@isnad1 id=lipschit.2h5v.s6.1b9072701eb1 from=translated src=- shape=4b471717 vocab=cd3808af
+-/
 theorem localG_lipschitz {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
     (hε : 0 < ε) (u : X → ℝ) {L : ℝ≥0} (hu : LipschitzWith L u) :
     LipschitzWith (4*L) (localG q ε u) := by
@@ -351,6 +405,9 @@ theorem localG_lipschitz {X : Type*} [PseudoMetricSpace X] (q : X) {ε : ℝ}
   rw [← hc]
   exact hu.add (localR_lipschitz q hε u hu)
 
+/--
+@isnad1 id=le.1h6v.s5.705b5ab91dd5 from=translated src=- shape=3b8a95fe vocab=007f2ebd
+-/
 theorem localG_sup {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ)
     (u : X → ℝ) (A : ℝ) (hu : ∀ x, |u x| ≤ A) (x : X) :
     |localG q ε u x| ≤ A := by
@@ -368,6 +425,9 @@ theorem localG_sup {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ)
       (mul_le_mul_of_nonneg_left (hu x) (by linarith)) (mul_le_mul_of_nonneg_left (hu q) ha)
     _ = A := by ring
 
+/--
+@isnad1 id=le.1h6v.s5.800ce988a411 from=translated src=- shape=73393509 vocab=d10e44da
+-/
 theorem localR_sup {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ)
     (u : X → ℝ) (A : ℝ) (hu : ∀ x, |u x| ≤ A) (x : X) :
     |localR q ε u x| ≤ 2*A := by
@@ -386,12 +446,18 @@ def localGLinear {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) :
 def localRLinear {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ) :
     (X → ℝ) →ₗ[ℝ] (X → ℝ) := localGLinear q ε - LinearMap.id
 
+/--
+@isnad1 id=eq.0h4v.s7.ed97f41f4a41 from=translated src=- shape=a2ac5563 vocab=8fe4cf00
+-/
 @[simp] theorem localRLinear_apply {X : Type*} [PseudoMetricSpace X] (q : X) (ε : ℝ)
     (u : X → ℝ) : localRLinear q ε u = localR q ε u := rfl
 
 def localOp {X : Type*} [PseudoMetricSpace X] (isG : Bool) (q : X) (ε : ℝ) :
     (X → ℝ) →ₗ[ℝ] (X → ℝ) := if isG then localGLinear q ε else localRLinear q ε
 
+/--
+@isnad1 id=ex.2h6v.s7.e7d1162b72e8 from=translated src=- shape=5c95be68 vocab=15220aa7
+-/
 theorem localOp_nonzero_old {X : Type*} [PseudoMetricSpace X] (isG : Bool) (q : X)
     {ε : ℝ} (hε : 0 < ε) (u : X → ℝ) (x : X) (hx : localOp isG q ε u x ≠ 0) :
     ∃ y, u y ≠ 0 ∧ dist x y ≤ ε := by
@@ -409,6 +475,9 @@ theorem localOp_nonzero_old {X : Type*} [PseudoMetricSpace X] (isG : Bool) (q : 
       exact (dist_lt_of_cutoff_ne_zero q hε x ha).le
   · exact ⟨x, hu, by simpa using hε.le⟩
 
+/--
+@isnad1 id=le.1h5v.s7.08e972e52045 from=translated src=- shape=42f84c33 vocab=d59d28d5
+-/
 theorem localOp_support {X : Type*} [PseudoMetricSpace X] (isG : Bool) (q : X)
     {ε : ℝ} (hε : 0 < ε) (u : X → ℝ) :
     tsupport (localOp isG q ε u) ⊆ Metric.cthickening ε (tsupport u) := by
@@ -417,6 +486,9 @@ theorem localOp_support {X : Type*} [PseudoMetricSpace X] (isG : Bool) (q : X)
   obtain ⟨y, hy, hd⟩ := localOp_nonzero_old isG q hε u x hx
   exact Metric.mem_cthickening_of_dist_le x y ε (tsupport u) (subset_tsupport u hy) hd
 
+/--
+@isnad1 id=le.1h4v.s5.3e089566c903 from=translated src=- shape=16ba5196 vocab=a7eb0965
+-/
 theorem localR_support_ball {X : Type*} [PseudoMetricSpace X] (q : X)
     {ε : ℝ} (hε : 0 < ε) (u : X → ℝ) :
     tsupport (localR q ε u) ⊆ Metric.closedBall q ε := by
@@ -428,6 +500,9 @@ theorem localR_support_ball {X : Type*} [PseudoMetricSpace X] (q : X)
     simp [localR_eq, ha] at hx'
   exact (dist_lt_of_cutoff_ne_zero q hε x ha).le
 
+/--
+@isnad1 id=le.4h9v.s7.0a19e93472c1 from=translated src=- shape=93fc0447 vocab=0c61f0d3
+-/
 theorem localOp_support_bound {X : Type*} [PseudoMetricSpace X] (isG : Bool) (q : X)
     {ε : ℝ} (hε : 0 < ε) (u v : X → ℝ) {K : ℝ≥0} (hv : LipschitzWith K v)
     (a : ℝ) (ha : ∀ x ∈ tsupport u, v x ≤ a) :

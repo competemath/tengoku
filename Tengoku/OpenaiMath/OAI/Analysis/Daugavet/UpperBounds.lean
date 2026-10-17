@@ -11,6 +11,9 @@ universe uX u_1
 namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
+/--
+@isnad1 id=eq.0h1v.s6.986875c6b729 from=translated src=- shape=4dcb6432 vocab=cb0fa95b
+-/
 lemma half_envelope (t : ℝ) : (t + max 0 (t - 2)) / 2 = max (t / 2) (t - 1) := by
   by_cases h : t ≤ 2
   · rw [max_eq_left (sub_nonpos.mpr h), max_eq_left (by linarith)]
@@ -18,6 +21,9 @@ lemma half_envelope (t : ℝ) : (t + max 0 (t - 2)) / 2 = max (t / 2) (t - 1) :=
   · rw [max_eq_right (sub_nonneg.mpr (le_of_not_ge h)), max_eq_right (by linarith)]
     ring
 
+/--
+@isnad1 id=ex.6h5v.s8.21c0438f8d23 from=translated src=- shape=3bbdf03f vocab=4ef7e765
+-/
 lemma cofinite_direction_upper (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖ = 1)
     {F : Submodule ℝ X} (hF : Cofinite F) {ε t : ℝ} (hε : 0 < ε) (hε' : ε < 1 / 2)
     (ht : 0 ≤ t) :
@@ -37,7 +43,9 @@ lemma cofinite_direction_upper (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖
     · linarith [le_max_right (0 : ℝ) (t - 2)]
   exact ⟨y, F.smul_mem _ hzF, hy, by linarith⟩
 
-/-- Matching averaged upper curve, from one family of cofinite directions. -/
+/-- Matching averaged upper curve, from one family of cofinite directions.
+@isnad1 id=le.3h3v.s6.75fc119e489b from=translated src=- shape=00cca6e5 vocab=8df0a3ea
+-/
 theorem averaged_upper_bound (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) : H (normSeminorm ℝ X) x t ≤ max (t / 2) (t - 1) := by
   unfold H
@@ -59,7 +67,9 @@ theorem averaged_upper_bound (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖ =
   rw [← half_envelope]
   linarith
 
-/-- Matching one-sided upper curve, including the radius-two corner. -/
+/-- Matching one-sided upper curve, including the radius-two corner.
+@isnad1 id=le.3h3v.s6.d074b8a77ae9 from=translated src=- shape=0d255803 vocab=96cc01a8
+-/
 theorem oneSided_upper_bound (hsp : UnitSliceProperty X) {x : X} (hx : ‖x‖ = 1)
     {t : ℝ} (ht : 0 ≤ t) : D (normSeminorm ℝ X) x t ≤ max 0 (t - 2) := by
   unfold D

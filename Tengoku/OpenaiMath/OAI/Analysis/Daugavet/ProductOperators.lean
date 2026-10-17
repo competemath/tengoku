@@ -15,26 +15,41 @@ variable {κ : Type uKappa} {ι : Type uIota} [Fintype κ] [Fintype ι]
 
 def arrayMultiplier (p : ℝ) (k : κ) (j : ι) (v : κ → cube ι) : ℝ := multiplier p (v k j)
 
+/--
+@isnad1 id=measurep.0h4v.s6.54ffcc5d2c83 from=translated src=- shape=45557a8e vocab=0341b39c
+-/
 lemma array_coordinate_mp (k : κ) (j : ι) :
     MeasurePreserving (fun v : κ → cube ι => v k j) (arrayMeasure κ ι) volume :=
   (measurePreserving_eval (fun _ : ι => (volume : Measure unitInterval)) j).comp
     (measurePreserving_eval (fun _ : κ => cubeMeasure ι) k)
 
+/--
+@isnad1 id=integrab.1h5v.s6.0e8a6b19c5b2 from=translated src=- shape=03c69863 vocab=eb846d12
+-/
 lemma integrable_arrayMultiplier {p : ℝ} (hp : 1 < p) (k : κ) (j : ι) :
     Integrable (arrayMultiplier p k j) (arrayMeasure κ ι) :=
   ((array_coordinate_mp k j).integrable_comp (integrable_multiplier hp).aestronglyMeasurable).mpr
     (integrable_multiplier hp)
 
+/--
+@isnad1 id=eq.1h5v.s6.1feebd20e5b0 from=translated src=- shape=06d9c3c1 vocab=47f93184
+-/
 lemma integral_arrayMultiplier {p : ℝ} (hp : 1 < p) (k : κ) (j : ι) :
     (∫ v, arrayMultiplier p k j v ∂arrayMeasure κ ι) = 1 :=
   (mp_integral (array_coordinate_mp k j) (integrable_multiplier hp).aestronglyMeasurable).trans
     (integral_multiplier hp)
 
 omit [Fintype κ] [Fintype ι] in
+/--
+@isnad1 id=measurab.0h5v.s5.c52ad29d23c4 from=translated src=- shape=3413ec30 vocab=54ddffe6
+-/
 lemma measurable_arrayMultiplier [Fintype κ] [Fintype ι] (p : ℝ) (k : κ) (j : ι) :
     Measurable (arrayMultiplier p k j) :=
   (measurable_multiplier p).comp (by fun_prop)
 
+/--
+@isnad1 id=eq.2h6v.s6.0072dce76639 from=translated src=- shape=f55fc708 vocab=bc0d738d
+-/
 lemma arrayMultiplier_tail {p c : ℝ} (hp : 1 < p) (hc : scale p ≤ c) (k : κ) (j : ι) :
     (arrayMeasure κ ι).real {v | c < arrayMultiplier p k j v} = (scale p / c)^p := by
   have he := (array_coordinate_mp k j).measureReal_preimage
@@ -47,11 +62,17 @@ def atomL1 {p : ℝ} (hp : 1 < p) (u : Lp ℝ 1 μ) (k : κ) (j : ι) :
     ((L1.integrable_coeFn u).mul_prod (integrable_arrayMultiplier hp k j))
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eventual.1h8v.s10.84a043157850 from=translated src=- shape=a3c4e49e vocab=dc73145a
+-/
 lemma atomL1_ae [IsProbabilityMeasure μ] {p : ℝ} (hp : 1 < p)
     (u : Lp ℝ 1 μ) (k : κ) (j : ι) :
     atomL1 hp u k j =ᵐ[μ.prod (arrayMeasure κ ι)]
       fun z => u z.1 * arrayMultiplier p k j z.2 := integrableL1_ae _ _
 
+/--
+@isnad1 id=eq.1h8v.s10.e7bb83926fce from=translated src=- shape=54b26ce8 vocab=6270807f
+-/
 lemma norm_atomL1 {p : ℝ} (hp : 1 < p) (u : Lp ℝ 1 μ) (k : κ) (j : ι) :
     ‖atomL1 hp u k j‖ = ‖u‖ := by
   rw [L1_norm_of_ae _ (atomL1_ae hp u k j)]
@@ -61,6 +82,9 @@ lemma norm_atomL1 {p : ℝ} (hp : 1 < p) (u : Lp ℝ 1 μ) (k : κ) (j : ι) :
     mul_one, L1.norm_eq_integral_norm]
   rfl
 
+/--
+@isnad1 id=le.6h11v.s13.2a8b4e124fd7 from=translated src=- shape=79dd3c46 vocab=d254ec35
+-/
 lemma atomL1_near_additive {p c h : ℝ} (hp : 1 < p) (hc : 0 ≤ c) (hpc : scale p ≤ c)
     (herr : 2 * ((scale p / c)^p + c) < h) {w u : Lp ℝ 1 μ}
     (hw : ‖w‖ = 1) (hu : ‖u‖ = 1) (k : κ) (j : ι) :
@@ -99,6 +123,9 @@ def productOperator {p : ℝ} (hp : 1 < p) (u : κ → Lp ℝ 1 μ) :
     (Lp ℝ 1 μ × (κ → ι → ℝ)) →ₗ[ℝ] Lp ℝ 1 (μ.prod (arrayMeasure κ ι)) :=
   oldL1.toLinearMap.coprod (matrixCombination (fun k j => atomL1 hp (u k) k j))
 
+/--
+@isnad1 id=eventual.1h8v.s13.9fb270b07e90 from=translated src=- shape=6e2f33f0 vocab=c4c6d517
+-/
 lemma productOperator_ae {p : ℝ} (hp : 1 < p) (x : Lp ℝ 1 μ) (u : κ → Lp ℝ 1 μ) (a : κ → ι → ℝ) :
     productOperator hp u (x,a) =ᵐ[μ.prod (arrayMeasure κ ι)]
       enlargedFunction p x (fun k => (u k : B → ℝ)) a := by
@@ -125,6 +152,9 @@ lemma productOperator_ae {p : ℝ} (hp : 1 < p) (x : Lp ℝ 1 μ) (u : κ → Lp
   exact Finset.sum_congr rfl (fun k _ => hzrow k)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h7v.s14.d67069e044cb from=translated src=- shape=bfe4ca83 vocab=d99febfb
+-/
 lemma productOperator_zero_coeff [IsProbabilityMeasure μ] {p : ℝ} (hp : 1 < p)
     (u : κ → Lp ℝ 1 μ) (x : Lp ℝ 1 μ) :
     productOperator (ι := ι) hp u (x,0) = oldL1 x := by

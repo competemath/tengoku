@@ -16,6 +16,9 @@ variable {S : Type*} [MetricSpace S] (L : ℕ → Set (S → ℝ)) (o : S)
 def completedSigma (n : ℕ) : Seminorm ℝ (TestSpace L o) :=
   (squareWeight n)⁻¹ • completedCoordinate L o n
 
+/--
+@isnad1 id=eq.0h5v.s10.14f35ceac8a9 from=translated src=- shape=7a86113e vocab=069278c2
+-/
 @[simp] theorem completedSigma_coe (n : ℕ) (m : PreSpace L o) :
     completedSigma L o n (toTestSpace L o m) =
       sigma (L (triple n).1) (listConstant n) (listExponent n) m := by
@@ -25,9 +28,15 @@ def completedSigma (n : ℕ) : Seminorm ℝ (TestSpace L o) :=
     sigma (L (triple n).1) (listConstant n) (listExponent n) m) = _
   rw [← mul_assoc, inv_mul_cancel₀ (ne_of_gt (squareWeight_pos n)), one_mul]
 
+/--
+@isnad1 id=continuo.0h4v.s8.16f1b7e808ca from=translated src=- shape=b0310bac vocab=109ca155
+-/
 theorem completedSigma_continuous (n : ℕ) : Continuous (completedSigma L o n) :=
   continuous_const.mul (completedCoordinate_continuous L o n)
 
+/--
+@isnad1 id=le.0h5v.s9.5d30bf63e0ce from=translated src=- shape=d65b8b62 vocab=67c81fce
+-/
 theorem sigma_le_preNorm (n : ℕ) (m : PreSpace L o) :
     sigma (L (triple n).1) (listConstant n) (listExponent n) m ≤
       (squareWeight n : ℝ)⁻¹ * ‖m‖ := by
@@ -38,6 +47,9 @@ theorem sigma_le_preNorm (n : ℕ) (m : PreSpace L o) :
   have hm := mul_le_mul_of_nonneg_left h (inv_nonneg.mpr (squareWeight n).coe_nonneg)
   simpa only [← mul_assoc, inv_mul_cancel₀ (ne_of_gt (squareWeight_pos n)), one_mul] using hm
 
+/--
+@isnad1 id=le.0h5v.s8.d754dc64c0bb from=translated src=- shape=15343ed9 vocab=591376a7
+-/
 theorem completedSigma_le (n : ℕ) (z : TestSpace L o) :
     completedSigma L o n z ≤ (squareWeight n : ℝ)⁻¹ * ‖z‖ := by
   induction z using Completion.induction_on with
@@ -58,12 +70,18 @@ def completedList (n : ℕ) (l : AdmissibleList (L (triple n).1) (listConstant n
     TestSpace L o →L[ℝ] PiLp (listExponent n) (fun _ : Fin l.length => ℝ) :=
   (initialList L o n l).extend (toTestSpace L o)
 
+/--
+@isnad1 id=eq.0h6v.s11.5fc1fc4d1c89 from=translated src=- shape=a459d1e9 vocab=56728d0e
+-/
 @[simp] theorem completedList_coe (n : ℕ)
     (l : AdmissibleList (L (triple n).1) (listConstant n)) (m : PreSpace L o) :
     completedList L o n l (toTestSpace L o m) = l.eval (listExponent n) m :=
   ContinuousLinearMap.extend_eq _ Completion.denseRange_coe
     (Completion.isUniformInducing_coe (PreSpace L o)) m
 
+/--
+@isnad1 id=le.0h6v.s10.e7d90c0b0e0e from=translated src=- shape=1675b4a9 vocab=b7142a3e
+-/
 theorem completedList_le_sigma (n : ℕ)
     (l : AdmissibleList (L (triple n).1) (listConstant n)) (z : TestSpace L o) :
     ‖completedList L o n l z‖ ≤ completedSigma L o n z := by
@@ -81,6 +99,9 @@ def completedListNorm (n : ℕ)
     (l : AdmissibleList (L (triple n).1) (listConstant n)) : Seminorm ℝ (TestSpace L o) :=
   (normSeminorm ℝ _).comp (completedList L o n l).toLinearMap
 
+/--
+@isnad1 id=bddabove.0h4v.s10.4b2b54a15c56 from=translated src=- shape=1f4b15bd vocab=200e246e
+-/
 theorem completedListNorm_bddAbove (n : ℕ) :
     BddAbove (Set.range (completedListNorm L o n)) := by
   refine ⟨completedSigma L o n, ?_⟩
@@ -90,12 +111,18 @@ theorem completedListNorm_bddAbove (n : ℕ) :
 def sigmaFromLists (n : ℕ) : Seminorm ℝ (TestSpace L o) :=
   ⨆ l, completedListNorm L o n l
 
+/--
+@isnad1 id=le.0h5v.s8.c46ca50e8233 from=translated src=- shape=15343ed9 vocab=ba919294
+-/
 theorem sigmaFromLists_le (n : ℕ) (z : TestSpace L o) :
     sigmaFromLists L o n z ≤ (squareWeight n : ℝ)⁻¹ * ‖z‖ := by
   rw [sigmaFromLists, Seminorm.iSup_apply (completedListNorm_bddAbove L o n)]
   exact ciSup_le fun l => (completedList_le_sigma L o n l z).trans
     (completedSigma_le L o n z)
 
+/--
+@isnad1 id=eq.0h5v.s9.93024665111f from=translated src=- shape=fcbdcc04 vocab=26935391
+-/
 theorem sigmaFromLists_eq (n : ℕ) (z : TestSpace L o) :
     sigmaFromLists L o n z = completedSigma L o n z := by
   induction z using Completion.induction_on with
@@ -112,6 +139,9 @@ theorem sigmaFromLists_eq (n : ℕ) (z : TestSpace L o) :
     funext l
     exact congrArg norm (completedList_coe L o n l m)
 
+/--
+@isnad1 id=eq.0h5v.s10.fa846ddbd60d from=translated src=- shape=d92153ad vocab=1ef95982
+-/
 theorem completedSigma_eq_iSup (n : ℕ) (z : TestSpace L o) :
     completedSigma L o n z =
       ⨆ l : AdmissibleList (L (triple n).1) (listConstant n), ‖completedList L o n l z‖ := by
@@ -123,6 +153,9 @@ end CompletedLists
 
 section InterpolationAndDenseLimits
 
+ /--
+ @isnad1 id=eq.1h3v.s6.e43534e5ec11 from=translated src=- shape=d77fa4c3 vocab=c79c8ada
+ -/
  theorem finite_lp_norm_rpow {ι : Type*} [Fintype ι]
     (p : ℝ≥0∞) (hp : 0 < p.toReal) (x : PiLp p (fun _ : ι => ℝ)) :
     ‖x‖ ^ p.toReal = ∑ i, |x i| ^ p.toReal := by
@@ -131,6 +164,9 @@ section InterpolationAndDenseLimits
   rw [one_div_mul_cancel hp.ne', Real.rpow_one]
   simp only [Real.norm_eq_abs]
 
+ /--
+ @isnad1 id=le.4h5v.s7.bc0476fde7f6 from=translated src=- shape=f19f8699 vocab=b5705c3c
+ -/
  theorem finite_lp_interpolation {ι : Type*} [Fintype ι]
     (p q : ℝ≥0∞) (hp : 0 < p.toReal) (hq : 0 < q.toReal)
     (hqp : q.toReal < p.toReal) (x : ι → ℝ) (δ : ℝ)
@@ -149,6 +185,9 @@ section InterpolationAndDenseLimits
         (Real.rpow_le_rpow (abs_nonneg _) (hδ i) (sub_nonneg.mpr hqp.le))
         (Real.rpow_nonneg (abs_nonneg _) _)
 
+/--
+@isnad1 id=ex.5h4v.s7.c3f6163aab18 from=translated src=- shape=e06a4adf vocab=02761052
+-/
 theorem exists_uniform_lp_detector (p q : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
     (hp : 0 < p.toReal) (hq : 0 < q.toReal) (hqp : q.toReal < p.toReal)
     (a B : ℝ) (ha : 0 < a) (hB : 0 < B) :
@@ -178,6 +217,9 @@ theorem exists_uniform_lp_detector (p q : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 
   rw [heq] at hb
   linarith
 
+/--
+@isnad1 id=tendsto.4h8v.s6.9cfaec2b7262 from=translated src=- shape=f00c1a01 vocab=34b723d3
+-/
 theorem tendsto_of_dense_lipschitz {A X Y : Type*} [PseudoMetricSpace X] [PseudoMetricSpace Y]
     (d : A → X) (hd : DenseRange d) (f : ℕ → X → Y) (g : X → Y) (K : ℝ≥0)
     (hf : ∀ n, LipschitzWith K (f n)) (hg : LipschitzWith K g)

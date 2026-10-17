@@ -12,6 +12,9 @@ namespace ExactModuli
 
 variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
+/--
+@isnad1 id=eq.0h3v.s7.17f0f6c6889f from=translated src=- shape=306746fe vocab=575afdc9
+-/
 lemma measureDistance_self (f : Lp ℝ 1 μ) : measureDistance μ f f = 0 := by
   apply le_antisymm _ (measureDistance_nonneg f f)
   apply le_of_forall_pos_le_add
@@ -19,10 +22,16 @@ lemma measureDistance_self (f : Lp ℝ 1 μ) : measureDistance μ f f = 0 := by
   simpa only [zero_add] using (measureDistance_le_of_tail f f hε (by simpa [not_lt_of_ge hε.le] using hε))
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h4v.s8.44904beca235 from=translated src=- shape=2fd376fa vocab=575afdc9
+-/
 lemma measureDistance_symm [IsProbabilityMeasure μ] (f g : Lp ℝ 1 μ) :
     measureDistance μ f g = measureDistance μ g f := by
   simp only [measureDistance, abs_sub_comm (f _) (g _)]
 
+/--
+@isnad1 id=le.0h5v.s9.0f8a4d6c1477 from=translated src=- shape=b97316b8 vocab=7659b9d0
+-/
 lemma measureDistance_triangle (f g k : Lp ℝ 1 μ) :
     measureDistance μ f k ≤ measureDistance μ f g + measureDistance μ g k := by
   apply le_of_forall_pos_le_add
@@ -46,7 +55,9 @@ lemma measureDistance_triangle (f g k : Lp ℝ 1 μ) :
   dsimp [a,b] at hh
   linarith
 
-/-- Markov's norm-to-measure estimate, in a form avoiding an unnecessary metric instance. -/
+/-- Markov's norm-to-measure estimate, in a form avoiding an unnecessary metric instance.
+@isnad1 id=le.2h5v.s10.83c82ce789f6 from=translated src=- shape=cbceae4f vocab=9fcf1a7d
+-/
 lemma measureDistance_le_of_norm_sub_lt_sq (f g : Lp ℝ 1 μ) {ε : ℝ} (hε : 0 < ε)
     (hfg : ‖f - g‖ < ε ^ 2) : measureDistance μ f g ≤ ε := by
   have hi : Integrable (fun ω => |f ω - g ω|) μ :=
@@ -67,6 +78,9 @@ end ExactModuli
 
 namespace ExactModuli.KW
 
+/--
+@isnad1 id=le.1h4v.s11.1657636c3120 from=translated src=- shape=23cef90d vocab=4260090f
+-/
 lemma normalizeL1_approx {B : Type uB} [MeasurableSpace B] {μ : Measure B}
     (x y : Lp ℝ 1 μ) (hx : ‖x‖ ≤ 1) :
     ‖x - normalizeL1 y‖ ≤ 2 * ‖x-y‖ := by
@@ -90,6 +104,9 @@ lemma normalizeL1_approx {B : Type uB} [MeasurableSpace B] {μ : Measure B}
       rw [norm_sub_rev] at ht
       linarith
 
+/--
+@isnad1 id=le.2h3v.s7.183b04207285 from=translated src=- shape=72ef598e vocab=8faaacc1
+-/
 lemma sphere_normalize_approx {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (x y : X) (hx : ‖x‖ = 1) (hy : y ≠ 0) :
     ‖x - ‖y‖⁻¹ • y‖ ≤ 2 * ‖x-y‖ := by

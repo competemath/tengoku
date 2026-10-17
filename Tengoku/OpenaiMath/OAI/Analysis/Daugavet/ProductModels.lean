@@ -24,6 +24,9 @@ abbrev pairedArrayMeasure (κ : Type uKappa) (ι : Type uIota) [Fintype κ] [Fin
     Measure (κ → ι → unitInterval × unitInterval) :=
   Measure.pi (fun _ => pairCubeMeasure ι)
 
+/--
+@isnad1 id=eq.2h6v.s6.d861e133e6b7 from=translated src=- shape=2a14dac5 vocab=262b2dc1
+-/
 lemma mp_integral {α : Type uAlpha} {β : Type uBeta} [MeasurableSpace α] [MeasurableSpace β]
     {μ : Measure α} {ν : Measure β} {f : α → β} (hf : MeasurePreserving f μ ν)
     {g : β → ℝ} (hg : AEStronglyMeasurable g ν) :
@@ -31,6 +34,9 @@ lemma mp_integral {α : Type uAlpha} {β : Type uBeta} [MeasurableSpace α] [Mea
   have hm : AEStronglyMeasurable g (μ.map f) := hf.map_eq.symm ▸ hg
   exact (integral_map hf.aemeasurable hm).symm.trans (congrArg (fun P => ∫ y, g y ∂P) hf.map_eq)
 
+/--
+@isnad1 id=identdis.2h7v.s5.0f862726f781 from=translated src=- shape=78043bc4 vocab=824b6b53
+-/
 lemma mp_ident {α : Type uAlpha} {β : Type uBeta} {γ : Type uGamma}
     [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     {μ : Measure α} {ν : Measure β} {f : α → β} (hf : MeasurePreserving f μ ν)
@@ -45,14 +51,23 @@ def rowSum (p : ℝ) (a : ι → ℝ) (v : cube ι) : ℝ := ∑ j, a j * multip
 def diffRowSum (p : ℝ) (a : ι → ℝ) (v : ι → unitInterval × unitInterval) : ℝ :=
   ∑ j, a j * difference p (v j)
 
+/--
+@isnad1 id=measurab.0h3v.s5.b0574d8b5207 from=translated src=- shape=8ef66173 vocab=8b2bdcbe
+-/
 lemma measurable_rowSum (p : ℝ) (a : ι → ℝ) : Measurable (rowSum p a) := by
   unfold rowSum
   exact Finset.measurable_sum _ (fun j _ => measurable_const.mul ((measurable_multiplier p).comp (measurable_pi_apply j)))
 
+/--
+@isnad1 id=measurab.0h3v.s6.d59da444f261 from=translated src=- shape=2c46b669 vocab=05676607
+-/
 lemma measurable_diffRowSum (p : ℝ) (a : ι → ℝ) : Measurable (diffRowSum p a) := by
   unfold diffRowSum
   exact Finset.measurable_sum _ (fun j _ => measurable_const.mul ((measurable_difference p).comp (measurable_pi_apply j)))
 
+/--
+@isnad1 id=integrab.1h3v.s6.81525b476c37 from=translated src=- shape=193ae763 vocab=42328ba9
+-/
 lemma integrable_rowSum {p : ℝ} (hp : 1 < p) (a : ι → ℝ) :
     Integrable (rowSum p a) (cubeMeasure ι) := by
   apply integrable_finsetSum
@@ -60,6 +75,9 @@ lemma integrable_rowSum {p : ℝ} (hp : 1 < p) (a : ι → ℝ) :
   exact ((measurePreserving_eval (fun _ : ι => (volume : Measure unitInterval)) j).integrable_comp (integrable_multiplier hp).aestronglyMeasurable
     |>.mpr (integrable_multiplier hp)).const_mul _
 
+/--
+@isnad1 id=integrab.1h3v.s6.be3071c50717 from=translated src=- shape=a6724f44 vocab=50aa7356
+-/
 lemma integrable_diffRowSum {p : ℝ} (hp : 1 < p) (a : ι → ℝ) :
     Integrable (diffRowSum p a) (pairCubeMeasure ι) := by
   apply integrable_finsetSum
@@ -67,6 +85,9 @@ lemma integrable_diffRowSum {p : ℝ} (hp : 1 < p) (a : ι → ℝ) :
   exact ((measurePreserving_eval (fun _ : ι => pairedMeasure) j).integrable_comp (integrable_difference hp).aestronglyMeasurable
     |>.mpr (integrable_difference hp)).const_mul _
 
+/--
+@isnad1 id=le.3h4v.s7.35b7c7182fdf from=translated src=- shape=b423e535 vocab=ec6ed73d
+-/
 lemma diffRowSum_tail {p : ℝ} (hp : 1 < p) (hpmax : p ≤ 3/2) (a : ι → ℝ)
     {r : ℝ} (hr : 0 < r) :
     (pairCubeMeasure ι).real {v | r < |diffRowSum p a v|} ≤
@@ -80,6 +101,9 @@ lemma diffRowSum_tail {p : ℝ} (hp : 1 < p) (hpmax : p ≤ 3/2) (a : ι → ℝ
 def selectRows (b : κ → Bool) (v : κ → ι → unitInterval × unitInterval) : κ → cube ι :=
   fun k j => if b k then (v k j).2 else (v k j).1
 
+/--
+@isnad1 id=measurep.0h3v.s7.aa89379a9f65 from=translated src=- shape=395291eb vocab=ccc61066
+-/
 lemma measurePreserving_selectRows (b : κ → Bool) :
     MeasurePreserving (selectRows (ι := ι) b) (pairedArrayMeasure κ ι) (arrayMeasure κ ι) := by
   unfold selectRows

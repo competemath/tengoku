@@ -12,6 +12,9 @@ namespace ExactModuli
 variable {X : Type uX} {Y : Type uY} [NormedAddCommGroup X] [NormedSpace ℝ X]
   [NormedAddCommGroup Y] [NormedSpace ℝ Y]
 
+/--
+@isnad1 id=ex.2h4v.s8.e71447265c8f from=translated src=- shape=3f797c15 vocab=184e93e0
+-/
 lemma exists_unit_near_opNorm (T : X →L[ℝ] Y) {r : ℝ} (hr : 0 ≤ r) (hrT : r < ‖T‖) :
     ∃ y : X, ‖y‖ = 1 ∧ r < ‖T y‖ := by
   obtain ⟨u, hu, hTu⟩ := T.exists_lt_apply_of_lt_opNorm hrT
@@ -26,6 +29,9 @@ lemma exists_unit_near_opNorm (T : X →L[ℝ] Y) {r : ℝ} (hr : 0 ≤ r) (hrT 
   have := mul_le_mul_of_nonneg_right hinv (norm_nonneg (T u))
   exact hTu.trans_le (by simpa only [one_mul] using this)
 
+/--
+@isnad1 id=ex.5h5v.s8.bc72582288ed from=translated src=- shape=789fc7b6 vocab=350f09ca
+-/
 lemma daugavet_normalized_slice (hd : Daugavet X) {w : X} (hw : ‖w‖ = 1)
     (ell : X →L[ℝ] ℝ) (hell : ‖ell‖ = 1) {α ρ : ℝ} (hα : α < 1) (hρ : 0 < ρ) :
     ∃ y : X, ‖y‖ = 1 ∧ α < ell y ∧ 2 - ρ ≤ ‖w + y‖ := by
@@ -69,7 +75,9 @@ lemma daugavet_normalized_slice (hd : Daugavet X) {w : X} (hw : ‖w‖ = 1)
     mul_one] at hb
   linarith
 
-/-- Forward half of the actual rank-one/slice equivalence, with a unit-sphere witness. -/
+/-- Forward half of the actual rank-one/slice equivalence, with a unit-sphere witness.
+@isnad1 id=unitslic.1h1v.s4.31c50faa55b6 from=translated src=- shape=8e42a0f8 vocab=b6148c17
+-/
 theorem daugavet_unitSlice (hd : Daugavet X) : UnitSliceProperty X := by
   intro w hw ell α hne ρ hρ
   obtain ⟨u, hu, hau⟩ := hne
@@ -98,6 +106,9 @@ namespace ExactModuli
 open scoped RealInnerProductSpace
 variable {Y : Type uY} [NormedAddCommGroup Y] [InnerProductSpace ℝ Y]
 
+/--
+@isnad1 id=ex.3h5v.s8.a3ac5267b5ed from=translated src=- shape=f1d59072 vocab=9e415dbb
+-/
 lemma exposed_support_approx {K : Set Y} (hK : IsCompact K) {q : Y} (hq : q ∈ K)
     (ell : Y →L[ℝ] ℝ) {ε : ℝ} (hε : 0 < ε) :
     ∃ p ∈ K.exposedPoints ℝ, ell q - ε < ell p := by
@@ -132,6 +143,9 @@ lemma exposed_support_approx {K : Set Y} (hK : IsCompact K) {q : Y} (hq : q ∈ 
     change ell q + c * ‖q‖ ^ 2 ≤ ell p + c * ‖p‖ ^ 2 at hcomp
     nlinarith [sq_nonneg ‖q‖]
 
+/--
+@isnad1 id=eq.2h2v.s7.cbe59bcca422 from=translated src=- shape=93843897 vocab=07068b22
+-/
 lemma closure_convexHull_exposed {K : Set Y} (hK : IsCompact K) (hconv : Convex ℝ K) :
     closure (convexHull ℝ (K.exposedPoints ℝ)) = K := by
   apply (closure_minimal (convexHull_min exposedPoints_subset hconv) hK.isClosed).antisymm
@@ -143,7 +157,9 @@ lemma closure_convexHull_exposed {K : Set Y} (hK : IsCompact K) (hconv : Convex 
   have hb := ha p (subset_closure (subset_convexHull ℝ _ hp))
   linarith
 
-/-- Compactness shrinks a slice about its uniquely exposed maximizer. -/
+/-- Compactness shrinks a slice about its uniquely exposed maximizer.
+@isnad1 id=ex.3h4v.s8.fbdce3174d51 from=translated src=- shape=d3728af3 vocab=34e46885
+-/
 lemma exposed_small_slice {K : Set Y} (hK : IsCompact K) {p : Y}
     (hp : p ∈ K.exposedPoints ℝ) {r : ℝ} (hr : 0 < r) :
     ∃ (ell : Y →L[ℝ] ℝ) (β : ℝ), β < ell p ∧
@@ -176,7 +192,9 @@ variable {X : Type uX} {Y : Type uY} [NormedAddCommGroup X] [NormedSpace ℝ X]
   [NormedAddCommGroup Y] [InnerProductSpace ℝ Y] [FiniteDimensional ℝ Y]
 
 /-- Bourgain's finite-dimensional slice-combination lemma, in the exact form needed for
-finite-quotient neighborhoods. Zero weights are harmless and allowed. -/
+finite-quotient neighborhoods. Zero weights are harmless and allowed.
+@isnad1 id=ex.2h5v.s9.cf5af226d85a from=translated src=- shape=ff0b4a55 vocab=61a776ea
+-/
 lemma bourgain_image (T : X →L[ℝ] Y) {u : X} (hu : ‖u‖ ≤ 1) {r : ℝ} (hr : 0 < r) :
     ∃ (ι : Type) (_ : Fintype ι) (a : ι → ℝ) (ell : ι → X →L[ℝ] ℝ) (β : ι → ℝ),
       (∀ i, 0 ≤ a i) ∧ (∑ i, a i = 1) ∧

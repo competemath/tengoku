@@ -19,6 +19,9 @@ def enlargedFunction (p : ℝ) (x : B → ℝ) (u : κ → B → ℝ) (a : κ �
     (z : B × (κ → cube ι)) : ℝ :=
   x z.1 + ∑ k, u k z.1 * rowSum p (a k) (z.2 k)
 
+/--
+@isnad1 id=measurab.2h7v.s6.c0248a549978 from=translated src=- shape=129c1ee9 vocab=35fc69e8
+-/
 lemma measurable_enlargedFunction (p : ℝ) {x : B → ℝ} {u : κ → B → ℝ}
     (hx : Measurable x) (hu : ∀ k, Measurable (u k)) (a : κ → ι → ℝ) :
     Measurable (enlargedFunction p x u a) := by
@@ -27,6 +30,9 @@ lemma measurable_enlargedFunction (p : ℝ) {x : B → ℝ} {u : κ → B → �
     ((measurable_rowSum p (a k)).comp ((measurable_pi_apply k).comp measurable_snd)))
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=integrab.3h8v.s7.d45d5b852da4 from=translated src=- shape=e855d9c8 vocab=144ff17a
+-/
 lemma integrable_enlargedFunction [IsProbabilityMeasure μ]
     {p : ℝ} (hp : 1 < p) {x : B → ℝ} {u : κ → B → ℝ}
     (hx : Integrable x μ) (hu : ∀ k, Integrable (u k) μ) (a : κ → ι → ℝ) :
@@ -38,6 +44,9 @@ lemma integrable_enlargedFunction [IsProbabilityMeasure μ]
     (integrable_rowSum hp (a k)).aestronglyMeasurable |>.mpr (integrable_rowSum hp (a k)))
 
 omit [MeasurableSpace B] in
+/--
+@isnad1 id=eq.0h9v.s7.6fd00cefaa88 from=translated src=- shape=2f3a2447 vocab=4988795b
+-/
 lemma resampling_difference [MeasurableSpace B] [DecidableEq κ]
     (p : ℝ) (x : B → ℝ) (u : κ → B → ℝ) (a : κ → ι → ℝ)
     (k : κ) (z : B × (κ → ι → unitInterval × unitInterval)) :
@@ -56,7 +65,9 @@ lemma resampling_difference [MeasurableSpace B] [DecidableEq κ]
     rw [heq, sub_self]
   · simp
 
-/-- Averaging over the resampled copy produces a deterministic center. -/
+/-- Averaging over the resampled copy produces a deterministic center.
+@isnad1 id=ex.2h5v.s6.ccbdd391218b from=translated src=- shape=e2da6dbd vocab=6f90dea6
+-/
 lemma concentration_center {R : Type uR} [MeasurableSpace R] {ν : Measure R}
     [IsProbabilityMeasure ν] {z : R → ℝ} (hz : Measurable z) {r q : ℝ}
     (h : (ν.prod ν).real {v | r < |z v.1 - z v.2|} < q) :
@@ -85,6 +96,9 @@ lemma concentration_center {R : Type uR} [MeasurableSpace R] {ν : Measure R}
   rw [← htotal] at hq
   exact (not_lt_of_ge hq) h
 
+/--
+@isnad1 id=eq.0h4v.s8.d0bf34ca2556 from=translated src=- shape=37d0890e vocab=ea8899ef
+-/
 lemma diffRowSum_prod_tail (p : ℝ) (a : ι → ℝ) (r : ℝ) :
     ((cubeMeasure ι).prod (cubeMeasure ι)).real {v | r < |rowSum p a v.1 - rowSum p a v.2|} =
       (pairCubeMeasure ι).real {v | r < |diffRowSum p a v|} := by
@@ -101,6 +115,9 @@ lemma diffRowSum_prod_tail (p : ℝ) (a : ι → ℝ) (r : ℝ) :
     simp [rowSum, diffRowSum, difference, Finset.sum_sub_distrib, mul_sub]
   simp only [measureReal_def, ← heq, hset]
 
+/--
+@isnad1 id=ex.5h5v.s7.1b2f3c18c13c from=translated src=- shape=90ab0cc4 vocab=32c5a5ea
+-/
 lemma rowSum_concentration {p r q : ℝ} (hp : 1 < p) (hpmax : p ≤ 3/2)
     (hr : 0 < r) (hpq : 10 * (108 * scale p / r) ^ p < q)
     (a : ι → ℝ) (ha : coefficientNorm p a ≤ 108) :
@@ -116,6 +133,9 @@ lemma rowSum_concentration {p r q : ℝ} (hp : 1 < p) (hpmax : p ≤ 3/2)
     nlinarith [scale_pos hp]
   · linarith
 
+/--
+@isnad1 id=le.0h2v.s6.6c3c0e91049e from=translated src=- shape=5679200f vocab=b49a950d
+-/
 lemma abs_add_lower (a b : ℝ) : |a| + |b| - 2 * min |a| |b| ≤ |a + b| := by
   have h₁ : |a| ≤ |a + b| + |b| := by
     simpa only [Real.norm_eq_abs, add_neg_cancel_right, abs_neg] using (norm_add_le (a + b) (-b))

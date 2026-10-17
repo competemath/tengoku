@@ -12,7 +12,9 @@ namespace ExactModuli
 variable {X : Type uX} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- The renorming obstruction is a consequence of the weak-neighborhood geometry, not merely
-of the vanishing inherited-norm one-sided modulus. -/
+of the vanishing inherited-norm one-sided modulus.
+@isnad1 id=not.3h2v.s6.71df4e86c0e7 from=translated src=- shape=e6a1e4e7 vocab=865ff6ed
+-/
 theorem no_equivalent_auc (hinf : ¬ FiniteDimensional ℝ X) (hsp : UnitSliceProperty X)
     (N : Seminorm ℝ X) (hN : EquivalentNorm N) : ¬ AUC N := by
   obtain ⟨R, hRpos, hRball, hRapprox⟩ := equivalentNorm_supremum hinf hN

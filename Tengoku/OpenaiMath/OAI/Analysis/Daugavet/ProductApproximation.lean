@@ -14,11 +14,17 @@ variable {B : Type uB} {R : Type uR} [MeasurableSpace B] [MeasurableSpace R]
   {μ : Measure B} {ν : Measure R} [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=le.2h5v.s9.787843b9f724 from=translated src=- shape=6869122f vocab=94e11892
+-/
 lemma measureDistance_le_of_tail [IsProbabilityMeasure μ] (f g : Lp ℝ 1 μ) {h : ℝ} (hh : 0 < h)
     (ht : μ.real {b | h < |f b - g b|} < h) : measureDistance μ f g ≤ h :=
   csInf_le ⟨0, fun _ ha => ha.1.le⟩ ⟨hh, ht⟩
 
 omit [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] in
+/--
+@isnad1 id=eq.1h7v.s13.13d09f474aba from=translated src=- shape=0b1b5011 vocab=56ce2beb
+-/
 lemma measureDistance_pullback [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {F : B → R} (hF : MeasurePreserving F μ ν) (f g : Lp ℝ 1 ν) :
     measureDistance μ (Lp.compMeasurePreserving F hF f) (Lp.compMeasurePreserving F hF g) =
@@ -45,6 +51,9 @@ section ProductAverages
 variable {B : Type uB} [MeasurableSpace B] {μ : Measure B} [IsProbabilityMeasure μ]
 variable {κ : Type uKappa} [Fintype κ]
 
+/--
+@isnad1 id=eq.2h7v.s15.ad49075f681c from=translated src=- shape=7006cddd vocab=2efb584d
+-/
 lemma atoms_average_norm {p : ℝ} (hp : 1 < p) {n : ℕ} (u : Lp ℝ 1 μ) (hu : ‖u‖ = 1) (k : κ) :
     ‖oldL1 u - (n : ℝ)⁻¹ • ∑ j : Fin n, atomL1 hp u k j‖ =
       ∫ v : cube (Fin n), |(n : ℝ)⁻¹ * (∑ j, multiplier p (v j)) - 1| ∂cubeMeasure (Fin n) := by
@@ -78,15 +87,24 @@ variable {B : Type uB} [MeasurableSpace B] {μ : Measure B}
 
 def normalizeL1 (f : Lp ℝ 1 μ) : Lp ℝ 1 μ := (max 1 ‖f‖)⁻¹ • f
 
+/--
+@isnad1 id=mem.1h4v.s11.0809569983b1 from=translated src=- shape=2e143a0a vocab=4fe5f391
+-/
 lemma normalizeL1_mem (G : Submodule ℝ (Lp ℝ 1 μ)) {f : Lp ℝ 1 μ} (hf : f ∈ G) :
     normalizeL1 f ∈ G := G.smul_mem _ hf
 
+/--
+@isnad1 id=le.0h3v.s8.5655e5af2b78 from=translated src=- shape=d7a0bb4e vocab=2389ed8c
+-/
 lemma normalizeL1_norm (f : Lp ℝ 1 μ) : ‖normalizeL1 f‖ ≤ 1 := by
   have hm : 0 < max 1 ‖f‖ := lt_of_lt_of_le zero_lt_one (le_max_left _ _)
   rw [normalizeL1, norm_smul, Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hm)]
   rw [← div_eq_inv_mul, div_le_one hm]
   exact le_max_right _ _
 
+/--
+@isnad1 id=eventual.1h4v.s9.fff16ea8f4aa from=translated src=- shape=d1128fb3 vocab=9abdce78
+-/
 lemma normalizeL1_ae (f : Lp ℝ 1 μ) {g : B → ℝ} (hfg : f =ᵐ[μ] g) :
     normalizeL1 f =ᵐ[μ] normalizeFunction μ g := by
   have hn := L1_norm_of_ae f hfg
@@ -95,6 +113,9 @@ lemma normalizeL1_ae (f : Lp ℝ 1 μ) {g : B → ℝ} (hfg : f =ᵐ[μ] g) :
   rw [hb]
   simp only [Pi.smul_apply, smul_eq_mul, hb', hn, normalizeFunction, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=eventual.0h6v.s12.2598ec36da4b from=translated src=- shape=7330a9d8 vocab=d817a250
+-/
 lemma oldCombination_ae (x : Lp ℝ 1 μ) {κ : Type uKappa} [Fintype κ]
     (u : κ → Lp ℝ 1 μ) (c : κ → ℝ) :
     (x + ∑ k, c k • u k : Lp ℝ 1 μ) =ᵐ[μ] oldCombination x (fun k => (u k : B → ℝ)) c := by

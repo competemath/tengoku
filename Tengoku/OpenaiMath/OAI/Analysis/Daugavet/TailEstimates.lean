@@ -13,12 +13,17 @@ namespace ExactModuli.KW
 section TailMoments
 variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
+/--
+@isnad1 id=measurab.0h3v.s5.d565cc834ec5 from=translated src=- shape=2d38d7ee vocab=9542667e
+-/
 lemma measurable_real_tail (X : Ω → ℝ) : Measurable (fun t : ℝ => μ.real {ω | t < X ω}) := by
   apply Antitone.measurable
   intro a b hab
   exact measureReal_mono (fun _ ht => hab.trans_lt ht)
 
-/-- The bounded weighted layer-cake identity used for truncation variances. -/
+/-- The bounded weighted layer-cake identity used for truncation variances.
+@isnad1 id=eq.2h4v.s7.60d0ee16a7ae from=translated src=- shape=13cb67be vocab=9f55b0e1
+-/
 lemma integral_min_abs_sq {X : Ω → ℝ} (hX : Measurable X) {u : ℝ} (hu : 0 < u) :
     ∫ ω, (min |X ω| u) ^ 2 ∂μ =
       ∫ t in Ioc 0 u, 2 * t * μ.real {ω | t < |X ω|} := by
@@ -71,7 +76,9 @@ lemma integral_min_abs_sq {X : Ω → ℝ} (hX : Measurable X) {u : ℝ} (hu : 0
   · exact ((measurable_const.mul measurable_id).mul
       (measurable_real_tail (fun ω => |X ω|))).aestronglyMeasurable
 
-/-- A truncated symmetric summand has second moment controlled using its tail. -/
+/-- A truncated symmetric summand has second moment controlled using its tail.
+@isnad1 id=le.6h6v.s8.503cf0d2728c from=translated src=- shape=296789ce vocab=fa744673
+-/
 lemma integral_min_sq_tail_bound {X : Ω → ℝ} (hX : Measurable X)
     {p C u : ℝ} (_hp : 0 < p) (hp2 : p < 2) (_hC : 0 ≤ C) (hu : 0 < u)
     (htail : ∀ t : ℝ, 0 < t → μ.real {ω | t < |X ω|} ≤ C * t ^ (-p)) :
@@ -101,19 +108,31 @@ lemma integral_min_sq_tail_bound {X : Ω → ℝ} (hX : Measurable X)
 
 def hardTruncate (u x : ℝ) : ℝ := if |x| ≤ u then x else 0
 
+/--
+@isnad1 id=measurab.0h1v.s3.937a117867b3 from=translated src=- shape=f736e2c1 vocab=8acc5407
+-/
 lemma measurable_hardTruncate (u : ℝ) : Measurable (hardTruncate u) :=
   Measurable.ite (measurableSet_le measurable_abs measurable_const) measurable_id measurable_const
 
+/--
+@isnad1 id=eq.0h2v.s4.1d5d02244ce7 from=translated src=- shape=52cedbb1 vocab=9ff4d24c
+-/
 lemma hardTruncate_neg (u x : ℝ) : hardTruncate u (-x) = -hardTruncate u x := by
   simp only [hardTruncate, abs_neg]
   split_ifs <;> simp
 
+/--
+@isnad1 id=le.1h2v.s4.3d359bdb1463 from=translated src=- shape=22ddeb98 vocab=ee870422
+-/
 lemma abs_hardTruncate_le {u : ℝ} (hu : 0 ≤ u) (x : ℝ) : |hardTruncate u x| ≤ u := by
   unfold hardTruncate
   split_ifs with h
   · exact h
   · simpa using hu
 
+/--
+@isnad1 id=le.1h2v.s6.7090b272a678 from=translated src=- shape=217b4fea vocab=49e11e33
+-/
 lemma hardTruncate_sq_le_min_sq {u : ℝ} (_hu : 0 ≤ u) (x : ℝ) :
     (hardTruncate u x) ^ 2 ≤ (min |x| u) ^ 2 := by
   unfold hardTruncate
@@ -123,6 +142,9 @@ lemma hardTruncate_sq_le_min_sq {u : ℝ} (_hu : 0 ≤ u) (x : ℝ) :
     exact sq_nonneg _
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h4v.s6.6dd1b4ca3fae from=translated src=- shape=41f2e06d vocab=270c9dd2
+-/
 lemma integral_hardTruncate_zero [IsProbabilityMeasure μ] {X : Ω → ℝ} {u : ℝ}
     (hsym : IdentDistrib X (fun ω => -X ω) μ μ) :
     ∫ ω, hardTruncate u (X ω) ∂μ = 0 := by
@@ -132,11 +154,17 @@ lemma integral_hardTruncate_zero [IsProbabilityMeasure μ] {X : Ω → ℝ} {u :
   rw [integral_neg] at h
   linarith
 
+/--
+@isnad1 id=memlp.2h4v.s6.b86591aeb149 from=translated src=- shape=02378927 vocab=5c1ed9ee
+-/
 lemma hardTruncate_memLp {X : Ω → ℝ} (hX : Measurable X) {u : ℝ} (hu : 0 ≤ u) :
     MemLp (fun ω => hardTruncate u (X ω)) 2 μ := by
   exact MemLp.of_bound ((measurable_hardTruncate u).comp hX).aestronglyMeasurable u
     (ae_of_all _ (fun ω => by simpa only [Real.norm_eq_abs] using abs_hardTruncate_le hu (X ω)))
 
+/--
+@isnad1 id=le.6h6v.s7.ff79bc033982 from=translated src=- shape=72d92d93 vocab=cd05df27
+-/
 lemma hardTruncate_variance_bound {X : Ω → ℝ} (hX : Measurable X)
     {p C u : ℝ} (hp : 0 < p) (hp2 : p < 2) (hC : 0 ≤ C) (hu : 0 < u)
     (htail : ∀ t : ℝ, 0 < t → μ.real {ω | t < |X ω|} ≤ C * t ^ (-p)) :
@@ -153,7 +181,9 @@ lemma hardTruncate_variance_bound {X : Ω → ℝ} (hX : Measurable X)
     nlinarith
   · exact ae_of_all _ (fun ω => hardTruncate_sq_le_min_sq hu.le (X ω))
 
-/-- Truncation, the union bound, and Chebyshev, uniformly in the number of summands. -/
+/-- Truncation, the union bound, and Chebyshev, uniformly in the number of summands.
+@isnad1 id=le.8h7v.s8.7e57c70b577d from=translated src=- shape=d578dc40 vocab=8fafeac9
+-/
 lemma independent_symmetric_sum_tail {ι : Type uIota} [Fintype ι]
     (X : ι → Ω → ℝ) (hX : ∀ j, Measurable (X j)) (hind : iIndepFun X μ)
     (hsym : ∀ j, IdentDistrib (X j) (fun ω => -X j ω) μ μ)

@@ -13,19 +13,31 @@ namespace ExactModuli
 /-- Scalar clipping, equivalently sign(a) * min(|a|,h) when h >= 0. -/
 def scalarClip (h a : ℝ) : ℝ := max (-h) (min h a)
 
+/--
+@isnad1 id=and.1h2v.s5.2aec47c60688 from=translated src=- shape=3ded7a5f vocab=59871c1d
+-/
 lemma scalarClip_bounds {h a : ℝ} (hh : 0 ≤ h) :
     -h ≤ scalarClip h a ∧ scalarClip h a ≤ h := by
   constructor
   · exact le_max_left _ _
   · exact max_le (by linarith) (min_le_left _ _)
 
+/--
+@isnad1 id=le.1h2v.s4.30c36a48ef61 from=translated src=- shape=536b8512 vocab=84a2963f
+-/
 lemma abs_scalarClip_le {h a : ℝ} (hh : 0 ≤ h) : |scalarClip h a| ≤ h :=
   abs_le.mpr (scalarClip_bounds hh)
 
+/--
+@isnad1 id=eq.2h2v.s4.7b4ee350538c from=translated src=- shape=746be0e2 vocab=59871c1d
+-/
 lemma scalarClip_eq_of_mem {h a : ℝ} (ha : -h ≤ a) (hb : a ≤ h) :
     scalarClip h a = a := by
   simp [scalarClip, min_eq_right hb, max_eq_right ha]
 
+/--
+@isnad1 id=eq.1h2v.s5.43263625e6e8 from=translated src=- shape=bb3d2825 vocab=471374c2
+-/
 lemma abs_sub_scalarClip {h a : ℝ} (hh : 0 ≤ h) :
     |a - scalarClip h a| = |a| - |scalarClip h a| := by
   by_cases ha : a < -h
@@ -43,6 +55,9 @@ lemma abs_sub_scalarClip {h a : ℝ} (hh : 0 ≤ h) :
     · rw [scalarClip_eq_of_mem (le_of_not_gt ha) (le_of_not_gt hb)]
       simp
 
+/--
+@isnad1 id=eq.1h2v.s5.5348f07f905f from=translated src=- shape=180775ce vocab=bd3323ed
+-/
 lemma abs_scalarClip_eq_min {h a : ℝ} (hh : 0 ≤ h) :
     |scalarClip h a| = min |a| h := by
   by_cases ha : a < -h
@@ -58,16 +73,25 @@ lemma abs_scalarClip_eq_min {h a : ℝ} (hh : 0 ≤ h) :
     · rw [scalarClip_eq_of_mem (le_of_not_gt ha) (le_of_not_gt hb)]
       exact (min_eq_left (abs_le.mpr ⟨le_of_not_gt ha, le_of_not_gt hb⟩)).symm
 
+/--
+@isnad1 id=monotone.0h1v.s3.22ccfa3fefa0 from=translated src=- shape=f736e2c1 vocab=d1f07d25
+-/
 lemma scalarClip_mono (h : ℝ) : Monotone (scalarClip h) := by
   intro a b hab
   exact max_le_max_left _ (min_le_min_left _ hab)
 
+/--
+@isnad1 id=le.1h3v.s5.d17b5696cbe4 from=translated src=- shape=ab838e9e vocab=aa68ec41
+-/
 lemma scalarClip_sub_le {h a b : ℝ} (hab : b ≤ a) :
     scalarClip h a - scalarClip h b ≤ a - b := by
   unfold scalarClip
   simp only [min_def, max_def]
   split_ifs <;> linarith
 
+/--
+@isnad1 id=le.0h3v.s5.94e385cb94a9 from=translated src=- shape=cacf8110 vocab=471374c2
+-/
 lemma abs_scalarClip_sub_le (h a b : ℝ) :
     |scalarClip h a - scalarClip h b| ≤ |a - b| := by
   rcases le_total b a with hab | hab
@@ -79,6 +103,9 @@ lemma abs_scalarClip_sub_le (h a b : ℝ) :
       abs_of_nonneg (sub_nonneg.mpr hab)]
     exact scalarClip_sub_le hab
 
+/--
+@isnad1 id=eq.0h2v.s6.a2fd85dfc282 from=translated src=- shape=41a5357d vocab=49325234
+-/
 lemma scalar_average_abs (a b : ℝ) :
     (|a + b| + |a - b|) / 2 = max |a| |b| := by
   rcases le_total 0 a with ha | ha <;> rcases le_total 0 b with hb | hb
@@ -108,12 +135,18 @@ variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω}
 /-- Clip at a nonnegative L1 height. Clips are not required to belong to E. -/
 def clip (h y : Lp ℝ 1 μ) : Lp ℝ 1 μ := (-h) ⊔ (h ⊓ y)
 
+/--
+@isnad1 id=eventual.0h4v.s9.d023f2ea37cb from=translated src=- shape=c9f2ece8 vocab=08f55a94
+-/
 lemma coeFn_clip (h y : Lp ℝ 1 μ) :
     ⇑(clip h y) =ᵐ[μ] fun ω => scalarClip (h ω) (y ω) := by
   filter_upwards [Lp.coeFn_sup (-h) (h ⊓ y), Lp.coeFn_inf h y,
     Lp.coeFn_neg h] with ω h₁ h₂ h₃
   simp only [clip, h₁, h₂, h₃, Pi.sup_apply, Pi.inf_apply, Pi.neg_apply, scalarClip]
 
+/--
+@isnad1 id=eq.1h4v.s11.c2e5c3c92094 from=translated src=- shape=042575c7 vocab=36bce565
+-/
 lemma norm_sub_clip (h y : Lp ℝ 1 μ) (hh : 0 ≤ h) :
     ‖y - clip h y‖ = ‖y‖ - ‖clip h y‖ := by
   rw [L1.norm_eq_integral_norm, L1.norm_eq_integral_norm y,
@@ -130,6 +163,9 @@ namespace ExactModuli
 variable {X : Type uX} {Y : Type uY} [NormedAddCommGroup X] [NormedSpace ℝ X]
   [NormedAddCommGroup Y] [NormedSpace ℝ Y]
 
+/--
+@isnad1 id=cofinite.0h3v.s7.8fb29dcd2cf7 from=translated src=- shape=f795f29d vocab=ea479889
+-/
 lemma cofinite_ker [FiniteDimensional ℝ Y] (P : X →L[ℝ] Y) :
     Cofinite P.toLinearMap.ker := by
   refine ⟨P.isClosed_ker, ?_⟩
@@ -138,7 +174,9 @@ lemma cofinite_ker [FiniteDimensional ℝ Y] (P : X →L[ℝ] Y) :
     (LinearMap.quotKerEquivRange P.toLinearMap).injective
 
 /-- The finite norming-functional step of the clipping argument. In L1 the
-    functionals can be taken to be signs; Hahn--Banach gives the same estimate. -/
+    functionals can be taken to be signs; Hahn--Banach gives the same estimate.
+@isnad1 id=ex.0h4v.s8.1f639228ee6b from=translated src=- shape=9a41636f vocab=c08e0f3c
+-/
 lemma finite_norming_kernel (j : X →L[ℝ] Y) (s : Finset Y) :
     ∃ F : Submodule ℝ X, Cofinite F ∧
       ∀ y ∈ F, ∀ b ∈ s, ‖b‖ ≤ ‖b - j y‖ := by
@@ -162,7 +200,9 @@ end ExactModuli
 
 namespace ExactModuli
 
-/-- The quantitative half-mass estimate, before the net radius tends to zero. -/
+/-- The quantitative half-mass estimate, before the net radius tends to zero.
+@isnad1 id=lt.4h5v.s7.7ac6e7a37fff from=translated src=- shape=2ce5c0df vocab=6d4d7c9c
+-/
 lemma half_mass_of_norming {Y : Type uY} [NormedAddCommGroup Y] [NormedSpace ℝ Y]
     {b c u : Y} {ε : ℝ}
     (hunit : ‖u‖ = 1) (hres : ‖u - c‖ = ‖u‖ - ‖c‖)
@@ -180,15 +220,24 @@ end ExactModuli
 namespace ExactModuli
 variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω}
 
+/--
+@isnad1 id=nonempty.0h4v.s9.2d29f78e3c0a from=translated src=- shape=84f2d9f9 vocab=47fc7870
+-/
 lemma measureDistance_threshold_nonempty [IsProbabilityMeasure μ] (f g : Lp ℝ 1 μ) :
     {a : ℝ | 0 < a ∧ μ.real {ω | a < |f ω - g ω|} < a}.Nonempty := by
   refine ⟨2, by norm_num, ?_⟩
   exact lt_of_le_of_lt measureReal_le_one (by norm_num)
 
+/--
+@isnad1 id=le.0h4v.s8.a2675db6a51d from=translated src=- shape=7da44b1d vocab=1e8e92d9
+-/
 lemma measureDistance_nonneg [IsProbabilityMeasure μ] (f g : Lp ℝ 1 μ) :
     0 ≤ measureDistance μ f g := by
   exact le_csInf (measureDistance_threshold_nonempty f g) (fun _ ha => ha.1.le)
 
+/--
+@isnad1 id=lt.1h5v.s9.cd86074e90eb from=translated src=- shape=13205b71 vocab=cf0661e0
+-/
 lemma tail_lt_of_measureDistance_lt [IsProbabilityMeasure μ] (f g : Lp ℝ 1 μ)
     {ε : ℝ} (h : measureDistance μ f g < ε) :
     μ.real {ω | ε < |f ω - g ω|} < ε := by
@@ -198,6 +247,9 @@ lemma tail_lt_of_measureDistance_lt [IsProbabilityMeasure μ] (f g : Lp ℝ 1 μ
     fun _ hω => lt_trans haε hω
   exact lt_trans (lt_of_le_of_lt (measureReal_mono hsub) htail) haε
 
+/--
+@isnad1 id=le.1h3v.s5.eb66abddfc75 from=translated src=- shape=8a84904c vocab=89865df4
+-/
 lemma scalarClip_diff_le_two {h a b : ℝ} (hh : 0 ≤ h) :
     |scalarClip h a - scalarClip h b| ≤ 2 * h := by
   have hab : |scalarClip h a - scalarClip h b| ≤
@@ -209,6 +261,9 @@ end ExactModuli
 
 namespace ExactModuli
 
+/--
+@isnad1 id=eq.1h3v.s7.7a9c244f3398 from=translated src=- shape=ba4d57bc vocab=303e44e8
+-/
 lemma scalar_overlap (a b t : ℝ) (ht : 0 < t) :
     (|a + t * b| + |a - t * b|) / 2 =
       |a| + t * (|b| - |scalarClip (|a| / t) b|) := by
@@ -229,11 +284,17 @@ variable {Ω : Type u_1} [MeasurableSpace Ω] {μ : Measure Ω}
 
 def clipHeight (x : Lp ℝ 1 μ) (t : ℝ) : Lp ℝ 1 μ := t⁻¹ • |x|
 
+/--
+@isnad1 id=eventual.0h4v.s9.5b054c943783 from=translated src=- shape=b0772b7f vocab=2f7c2047
+-/
 lemma coeFn_clipHeight (x : Lp ℝ 1 μ) (t : ℝ) :
     ⇑(clipHeight x t) =ᵐ[μ] fun ω => |x ω| / t := by
   filter_upwards [Lp.coeFn_smul t⁻¹ |x|, Lp.coeFn_abs x] with ω h₁ h₂
   simp only [clipHeight, h₁, h₂, Pi.smul_apply, smul_eq_mul, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=le.1h4v.s9.9e80025786aa from=translated src=- shape=b21c7ca9 vocab=b8db4816
+-/
 lemma clipHeight_nonneg (x : Lp ℝ 1 μ) {t : ℝ} (ht : 0 < t) :
     0 ≤ clipHeight x t := by
   apply (Lp.coeFn_nonneg _).mp
@@ -241,6 +302,9 @@ lemma clipHeight_nonneg (x : Lp ℝ 1 μ) {t : ℝ} (ht : 0 < t) :
   rw [hω]
   exact div_nonneg (abs_nonneg _) ht.le
 
+/--
+@isnad1 id=eq.1h5v.s13.84267798505c from=translated src=- shape=c2e9a98b vocab=30e7f8fd
+-/
 lemma overlap_identity (x y : Lp ℝ 1 μ) {t : ℝ} (ht : 0 < t) :
     (‖x + t • y‖ + ‖x - t • y‖) / 2 =
       ‖x‖ + t * (‖y‖ - ‖clip (clipHeight x t) y‖) := by
