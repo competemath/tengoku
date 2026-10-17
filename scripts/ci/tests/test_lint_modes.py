@@ -435,11 +435,16 @@ class NarrowedNotation(unittest.TestCase):
         rc, out = self.changed({"Tengoku/Lib/Doc.lean": doc}, {"Tengoku/Lib/Doc.lean": code})
         self.assertEqual(rc, 1, out)
         self.assertIn("elab declarations", out)
+
+    def test_a_line_that_was_prose_in_the_base_does_not_come_back_as_a_local_copy(self):
+        # the same through the importer-copy path: the docstring line equals the added line minus `local`
+        doc = '/-- Intro.\nelab "e" : term => pure (Lean.mkNatLit 1)\n-/\ntheorem Lib.t : True := trivial\n'
         rc, out = self.changed(
-            {"Tengoku/Lib/Doc.lean": doc.replace("/-- Intro.\n", "/-- Intro.\n").replace('elab "e"', 'local notation "e"')},
-            {"Tengoku/Lib/Doc.lean": 'local notation "e" : term => 1\n'},
+            {"Tengoku/Lib/Doc.lean": doc.replace('elab "e" : term => pure (Lean.mkNatLit 1)', 'notation "e" => 1')},
+            {"Tengoku/Lib/Doc.lean": 'local notation "e" => 1\ntheorem Lib.t : True := trivial\n'},
         )
         self.assertEqual(rc, 1, out)
+        self.assertIn("notation declarations", out)
 
     def test_a_line_removed_from_one_module_does_not_excuse_the_same_text_in_another(self):
         other = "namespace GL\n\nend GL\n"
@@ -460,14 +465,17 @@ class NarrowedNotation(unittest.TestCase):
         ):
             rc, out = self.changed({"Tengoku/Lib/Modal.lean": self.GL}, {"Tengoku/Lib/Modal.lean": scoped}, **kw)
             self.assertEqual(rc, 1, f"{kw}: {out}")
+            self.assertIn("Modal.lean: notation declarations", out)
         rc, out = self.changed(
             {"Tengoku/Lib/Modal.lean": self.GL}, {"Tengoku/Lib/Modal.lean": scoped, "Tengoku/Lib/New.lean": "theorem n : True := trivial\n"}
         )  # also adds a module
         self.assertEqual(rc, 1, out)
+        self.assertIn("Modal.lean: notation declarations", out)
         rc, out = self.changed(
             {"Tengoku/Lib/Modal.lean": self.GL}, {"Tengoku/Lib/Modal.lean": scoped, "scripts/x.py": "print(2)\n"}
         )  # also touches a tool
         self.assertEqual(rc, 1, out)
+        self.assertIn("Modal.lean: notation declarations", out)
 
 
 if __name__ == "__main__":
