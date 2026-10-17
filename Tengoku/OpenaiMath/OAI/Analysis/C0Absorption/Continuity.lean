@@ -11,6 +11,9 @@ noncomputable section
 open Set Filter Topology NormedSpace
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=tendsto.0h3v.s6.798b325cb41b from=translated src=- shape=6df80630 vocab=839e3372
+-/
 theorem mixed_vector_tendsto (s : C0Ball) (lev : Level) (b : Block lev) :
     Tendsto (fun p : C0Ball × C0Ball => (mixedWeights p.1 p.2).vector lev b)
       (nhds (s,s)) (nhds ((stateWeights s).vector lev b)) := by
@@ -27,6 +30,9 @@ theorem mixed_vector_tendsto (s : C0Ball) (lev : Level) (b : Block lev) :
   rw [he]
   exact h1.if' h2
 
+/--
+@isnad1 id=tendsto.0h3v.s6.1d375e8fb5ad from=translated src=- shape=6df80630 vocab=21956640
+-/
 theorem mixed_row_tendsto (s : C0Ball) (lev : Level) (b : Block lev) :
     Tendsto (fun p : C0Ball × C0Ball => (mixedWeights p.1 p.2).row lev b)
       (nhds (s,s)) (nhds ((stateWeights s).row lev b)) := by
@@ -45,11 +51,17 @@ theorem mixed_row_tendsto (s : C0Ball) (lev : Level) (b : Block lev) :
 
 variable {N : ℕ}
 
+/--
+@isnad1 id=tendsto.0h4v.s7.ad3ae30a4bac from=translated src=- shape=e860ba32 vocab=3aed3132
+-/
 theorem finiteRow_mixed_tendsto (s : C0Ball) (l : FLevel N) (x : FInput N) :
     Tendsto (fun p : C0Ball × C0Ball => finiteRow (mixedWeights p.1 p.2) l x)
       (nhds (s,s)) (nhds (finiteRow (stateWeights s) l x)) := by
   exact tendsto_finsetSum _ (fun b _ => (mixed_row_tendsto s _ b).mul_const _)
 
+/--
+@isnad1 id=tendsto.0h4v.s7.db27b89e6406 from=translated src=- shape=e860ba32 vocab=5be82bb8
+-/
 theorem finitePrev_mixed_tendsto (s : C0Ball) (l : FLevel N) (x : FInput N) :
     Tendsto (fun p : C0Ball × C0Ball => finitePrev (mixedWeights p.1 p.2) l x)
       (nhds (s,s)) (nhds (finitePrev (stateWeights s) l x)) := by
@@ -58,6 +70,9 @@ theorem finitePrev_mixed_tendsto (s : C0Ball) (l : FLevel N) (x : FInput N) :
   · exact tendsto_const_nhds
   · exact finiteRow_mixed_tendsto s _ x
 
+/--
+@isnad1 id=tendsto.0h3v.s8.cb8052101fab from=translated src=- shape=acd7a0c2 vocab=ef62a888
+-/
 theorem finiteFrozen_mixed_apply_tendsto (s : C0Ball) (x : FInput N) :
     Tendsto (fun p : C0Ball × C0Ball => finiteFrozen N (mixedWeights p.1 p.2) x)
       (nhds (s,s)) (nhds (finiteFrozen N (stateWeights s) x)) := by
@@ -67,22 +82,34 @@ theorem finiteFrozen_mixed_apply_tendsto (s : C0Ball) (x : FInput N) :
   · exact tendsto_const_nhds.add ((mixed_vector_tendsto s _ b).mul
       ((finitePrev_mixed_tendsto s l x).sub (finiteRow_mixed_tendsto s l x)))
 
+/--
+@isnad1 id=tendsto.0h2v.s8.521823510150 from=translated src=- shape=aaf691e3 vocab=41b51ff3
+-/
 theorem finiteFrozen_mixed_tendsto (N : ℕ) (s : C0Ball) :
     Tendsto (fun p : C0Ball × C0Ball => finiteFrozen N (mixedWeights p.1 p.2))
       (nhds (s,s)) (nhds (finiteFrozen N (stateWeights s))) := by
   classical
   exact tendsto_finiteOperator_of_columns _ _ (fun a => finiteFrozen_mixed_apply_tendsto s _)
 
+/--
+@isnad1 id=continuo.1h2v.s7.41437f359ff0 from=translated src=- shape=0c6f2bb4 vocab=1f831e30
+-/
 theorem normalizedBall_continuousAt {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {x : E} (hx : x≠0) : ContinuousAt (@normalizedBall E _ _ ) x := by
   apply tendsto_subtype_rng.mpr
   exact (continuousAt_id.norm.inv₀ (norm_ne_zero_iff.mpr hx)).smul continuousAt_id
 
+/--
+@isnad1 id=continuo.1h2v.s11.d319ab1ef7b2 from=translated src=- shape=c1f18002 vocab=5abab885
+-/
 theorem finite_normalized_continuousAt {x : FInput N} (hx : x≠0) :
     ContinuousAt (fun y => normalizedBall (finiteEmbed N y)) x := by
   have he : finiteEmbed N x≠0 := fun he => hx ((finiteEmbed N).injective (he.trans (map_zero _).symm))
   exact (normalizedBall_continuousAt he).comp (finiteEmbed N).continuous.continuousAt
 
+/--
+@isnad1 id=ex.1h2v.s14.0db2873c2d6c from=translated src=- shape=3e9ab538 vocab=ab05695a
+-/
 theorem finite_mixed_operator_near {x : FInput N} (hx : x≠0) :
     ∃ s : Set (FInput N), s∈nhds x ∧ ∀ y∈s, ∀ z∈s,
       ‖finiteFrozen N (mixedWeights (normalizedBall (finiteEmbed N y)) (normalizedBall (finiteEmbed N z)))-
@@ -92,6 +119,9 @@ theorem finite_mixed_operator_near {x : FInput N} (hx : x≠0) :
     (finiteFrozen N (stateWeights (normalizedBall (finiteEmbed N x))))
     (finiteFrozen_mixed_tendsto N _) (by norm_num)
 
+/--
+@isnad1 id=mem.1h2v.s6.23258e5915a3 from=translated src=- shape=d3e1a2aa vocab=cd9a4779
+-/
 theorem finiteRecomputed_local_onto {x : FInput N} (hx : x≠0) :
     Set.range (finiteRecomputed N)∈nhds (finiteRecomputed N x) := by
   let W := stateWeights (normalizedBall (finiteEmbed N x))

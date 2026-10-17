@@ -18,11 +18,17 @@ def earlierCut (q : ℕ → M) (r : ℝ) : ℕ → M → ℝ
   | 0, _ => r
   | n+1, x => min (earlierCut q r n x) (dist x (q n)-r/4)
 
+/--
+@isnad1 id=le.0h5v.s4.6b9071b2dfcb from=translated src=- shape=0594cc25 vocab=0bdf0e9e
+-/
 theorem earlierCut_le_scale (q : ℕ → M) (r : ℝ) (n : ℕ) (x : M) : earlierCut q r n x≤ r := by
   induction n with
   | zero => exact le_rfl
   | succ n ih => exact (min_le_left _ _).trans ih
 
+/--
+@isnad1 id=le.1h6v.s6.6062c201c848 from=translated src=- shape=5e23af40 vocab=8b9c8818
+-/
 theorem earlierCut_le_point (q : ℕ → M) (r : ℝ) {n j : ℕ} (hj : j< n) (x : M) :
     earlierCut q r n x≤ dist x (q j)-r/4 := by
   induction n with
@@ -32,12 +38,18 @@ theorem earlierCut_le_point (q : ℕ → M) (r : ℝ) {n j : ℕ} (hj : j< n) (x
     · subst j; exact min_le_right _ _
     · exact (min_le_left _ _).trans (ih (by omega))
 
+/--
+@isnad1 id=le.2h6v.s6.bae9c06d4083 from=translated src=- shape=0e620bdf vocab=8b9c8818
+-/
 theorem le_earlierCut (q : ℕ → M) (r : ℝ) (n : ℕ) (x : M) {b : ℝ}
     (hb : b≤ r) (h : ∀ j< n,b≤ dist x (q j)-r/4) : b≤ earlierCut q r n x := by
   induction n with
   | zero => exact hb
   | succ n ih => exact le_min (ih (fun j hj => h j (by omega))) (h n (by omega))
 
+/--
+@isnad1 id=lipschit.0h4v.s5.f3c5746168b7 from=translated src=- shape=723ee87b vocab=0e17ca85
+-/
 theorem earlierCut_lipschitz (q : ℕ → M) (r : ℝ) (n : ℕ) : LipschitzWith 1 (earlierCut q r n) := by
   induction n with
   | zero => exact (LipschitzWith.const r).weaken (by norm_num)
@@ -49,19 +61,34 @@ theorem earlierCut_lipschitz (q : ℕ → M) (r : ℝ) (n : ℕ) : LipschitzWith
 def metricBump (q : ℕ → M) (r : ℝ) (n : ℕ) (x : M) : ℝ :=
   max 0 (min (r-dist x (q n)) (min (dist x (q 0)-r) (earlierCut q r n x)))
 
+/--
+@isnad1 id=le.0h5v.s4.2957638bf5c0 from=translated src=- shape=fe0891d2 vocab=2c4f1e6a
+-/
 theorem metricBump_nonneg (q : ℕ → M) (r : ℝ) (n : ℕ) (x : M) : 0≤ metricBump q r n x := le_max_left _ _
 
+/--
+@isnad1 id=le.1h5v.s5.8b9a67b4cf64 from=translated src=- shape=c2875940 vocab=2c4f1e6a
+-/
 theorem metricBump_le_scale (q : ℕ → M) {r : ℝ} (hr : 0≤ r) (n : ℕ) (x : M) : metricBump q r n x≤ r :=
   max_le hr ((min_le_left _ _).trans (sub_le_self _ dist_nonneg))
 
+/--
+@isnad1 id=eq.1h5v.s5.8c91ba308298 from=translated src=- shape=9ea8648f vocab=2de74ebf
+-/
 theorem metricBump_zero_of_far (q : ℕ → M) {r : ℝ} (n : ℕ) (x : M) (h : r≤ dist x (q n)) :
     metricBump q r n x=0 :=
   max_eq_left ((min_le_left _ _).trans (sub_nonpos.mpr h))
 
+/--
+@isnad1 id=eq.1h5v.s5.022e7a70d275 from=translated src=- shape=8eb0e24f vocab=2de74ebf
+-/
 theorem metricBump_zero_of_base (q : ℕ → M) {r : ℝ} (n : ℕ) (x : M) (h : dist x (q 0)≤ r) :
     metricBump q r n x=0 :=
   max_eq_left ((min_le_right _ _).trans ((min_le_left _ _).trans (sub_nonpos.mpr h)))
 
+/--
+@isnad1 id=lipschit.0h4v.s5.e2dc64bb28e3 from=translated src=- shape=723ee87b vocab=d25e997e
+-/
 theorem metricBump_lipschitz (q : ℕ → M) (r : ℝ) (n : ℕ) : LipschitzWith 1 (metricBump q r n) := by
   have ha : LipschitzWith 1 (fun x => r-dist x (q n)) := by
     simpa only [zero_add] using (LipschitzWith.const r).sub (LipschitzWith.dist_left (q n))
@@ -71,6 +98,9 @@ theorem metricBump_lipschitz (q : ℕ → M) (r : ℝ) (n : ℕ) : LipschitzWith
   unfold metricBump
   simpa only [max_self] using hh
 
+/--
+@isnad1 id=ex.2h4v.s5.2a8a19e81886 from=translated src=- shape=b570d41b vocab=a5c683a7
+-/
 theorem metricBump_eventually_zero (q : ℕ → M) (hq : DenseRange q) {r : ℝ} (hr : 0< r) (x : M) :
     ∃ N : ℕ, ∀ n, N≤ n → metricBump q r n x=0 := by
   obtain ⟨j,hj⟩ := hq.exists_dist_lt x (show 0< r/4 by positivity)
@@ -81,9 +111,15 @@ theorem metricBump_eventually_zero (q : ℕ → M) (hq : DenseRange q) {r : ℝ}
 
 def dyadicBump (q : ℕ → M) (p : ℤ × ℕ) (x : M) : ℝ := metricBump q ((2 : ℝ)^p.1) p.2 x
 
+/--
+@isnad1 id=le.0h4v.s4.5eb1155278f0 from=translated src=- shape=f8626c87 vocab=23442b7d
+-/
 theorem dyadicBump_nonneg (q : ℕ → M) (p : ℤ × ℕ) (x : M) : 0 ≤ dyadicBump q p x :=
   metricBump_nonneg q _ _ x
 
+/--
+@isnad1 id=finite.2h4v.s5.bc4d413390c4 from=translated src=- shape=1e71de4b vocab=af963e09
+-/
 theorem dyadicBump_finite_large (q : ℕ → M) (hq : DenseRange q) (x : M) {ε : ℝ} (hε : 0<ε) :
     {p : ℤ × ℕ | ε≤ dyadicBump q p x}.Finite := by
   classical
@@ -113,6 +149,9 @@ theorem dyadicBump_finite_large (q : ℕ → M) (hq : DenseRange q) (x : M) {ε 
     exact hnonzero (hN k n (le_of_not_gt hh))
   exact Set.mem_iUnion.mpr ⟨k,Set.mem_iUnion.mpr ⟨⟨hkL,hkU⟩,⟨rfl,hn⟩⟩⟩
 
+/--
+@isnad1 id=tendsto.1h3v.s5.077ec7f01cf5 from=translated src=- shape=86703529 vocab=ee4cec90
+-/
 theorem dyadicBump_tendsto (q : ℕ → M) (hq : DenseRange q) (x : M) :
     Tendsto (fun p => dyadicBump q p x) cofinite (nhds 0) := by
   apply Metric.tendsto_nhds.mpr
@@ -124,9 +163,15 @@ theorem dyadicBump_tendsto (q : ℕ → M) (hq : DenseRange q) (x : M) :
 def dyadicC0 (q : ℕ → M) (hq : DenseRange q) (x : M) : C₀(ℤ × ℕ,ℝ) :=
   cfunOfTendsto (fun p => dyadicBump q p x) (dyadicBump_tendsto q hq x)
 
+/--
+@isnad1 id=eq.1h4v.s6.29ba75f1d1f0 from=translated src=- shape=5b1557ee vocab=677a0d69
+-/
 @[simp] theorem dyadicC0_apply (q : ℕ → M) (hq : DenseRange q) (x : M) (p : ℤ × ℕ) :
     dyadicC0 q hq x p=dyadicBump q p x := rfl
 
+/--
+@isnad1 id=le.1h4v.s6.29dce390c1b9 from=translated src=- shape=76149eec vocab=a32d88a7
+-/
 theorem dyadicC0_upper (q : ℕ → M) (hq : DenseRange q) (x y : M) : dist (dyadicC0 q hq x) (dyadicC0 q hq y)≤ dist x y := by
   rw [dist_eq_norm]
   apply cfun_norm_le _ dist_nonneg
@@ -147,6 +192,9 @@ open scoped NNReal BigOperators ZeroAtInfty
 section AharoniLower
 variable {M : Type*} [MetricSpace M]
 
+/--
+@isnad1 id=ex.3h4v.s7.22d19403d490 from=translated src=- shape=6b470dc6 vocab=53e3ca8f
+-/
 theorem dyadicBump_separates (q : ℕ → M) (hq : DenseRange q) (x y : M)
     (hxy : 0 < dist x y) (hbase : dist x y/2 ≤ dist x (q 0)) :
     ∃ p : ℤ × ℕ, dist x y/32 ≤ dyadicBump q p x ∧ dyadicBump q p y=0 := by
@@ -175,6 +223,9 @@ theorem dyadicBump_separates (q : ℕ → M) (hq : DenseRange q) (x y : M)
   exact ⟨(k,n),(by change dist x y/32≤ metricBump q r n x; linarith),
     metricBump_zero_of_far q n y hyfar⟩
 
+/--
+@isnad1 id=le.1h4v.s6.b7322106ff2c from=translated src=- shape=9bd458ed vocab=fbc1c1cf
+-/
 theorem dyadicC0_lower (q : ℕ → M) (hq : DenseRange q) (x y : M) :
     (1/32 : ℝ)*dist x y≤ dist (dyadicC0 q hq x) (dyadicC0 q hq y) := by
   by_cases hxy : x=y
@@ -206,6 +257,9 @@ section C0Reindex
 variable {A B : Type*} [TopologicalSpace A] [TopologicalSpace B]
   [DiscreteTopology A] [DiscreteTopology B]
 
+/--
+@isnad1 id=eq.2h5v.s7.b783dcf267f6 from=translated src=- shape=f30f4663 vocab=322986b9
+-/
 theorem cfunPull_dist_eq_of_surjective (j : A → B) (hj : Tendsto j cofinite cofinite)
     (hs : Function.Surjective j) (f g : C₀(B,ℝ)) :
     dist (cfunPull j hj f) (cfunPull j hj g)=dist f g := by
@@ -229,10 +283,16 @@ def dyadicEnumeration : (ℤ × ℕ) ≃ ℕ := Denumerable.eqv _
 def aharoniEmbedding (q : ℕ → M) (hq : DenseRange q) (x : M) : C0 :=
   cfunPull dyadicEnumeration.symm dyadicEnumeration.symm.injective.tendsto_cofinite (dyadicC0 q hq x)
 
+/--
+@isnad1 id=eq.1h4v.s6.f2445eb432a7 from=translated src=- shape=0ca42ea7 vocab=ef873de3
+-/
 theorem aharoniEmbedding_dist (q : ℕ → M) (hq : DenseRange q) (x y : M) :
     dist (aharoniEmbedding q hq x) (aharoniEmbedding q hq y)=dist (dyadicC0 q hq x) (dyadicC0 q hq y) :=
   cfunPull_dist_eq_of_surjective _ _ dyadicEnumeration.symm.surjective _ _
 
+/--
+@isnad1 id=bilip.1h2v.s5.3a31dd109b83 from=translated src=- shape=c180e37d vocab=92d002cd
+-/
 theorem aharoniEmbedding_bilip (q : ℕ → M) (hq : DenseRange q) : BiLip (aharoniEmbedding q hq) := by
   refine ⟨1/32,1,by norm_num,by norm_num,fun x y => ?_⟩
   rw [aharoniEmbedding_dist,one_mul]
@@ -240,6 +300,9 @@ theorem aharoniEmbedding_bilip (q : ℕ → M) (hq : DenseRange q) : BiLip (ahar
 
 end AharoniEmbedding
 
+/--
+@isnad1 id=metricun.0h0v.s3.48ea9cc05dba from=translated src=- shape=49959d42 vocab=1d7b4fd9
+-/
 theorem c0_metricUniversal : MetricUniversal C0 := by
   intro M instM instSep
   rcases isEmpty_or_nonempty M with hM|hM

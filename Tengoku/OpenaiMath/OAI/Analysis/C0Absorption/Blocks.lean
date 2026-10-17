@@ -39,8 +39,14 @@ def rowIndex (i : ℕ) : ℕ := coordinateEnumeration (Sum.inl i)
 def labelIndex (γ : Label) : ℕ := coordinateEnumeration (Sum.inr γ)
 def blockLabel (lev : Level) (b : Block lev) : Label := ⟨lev,b.1,b.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.4cbe0f19d78d from=translated src=- shape=93f5b8f2 vocab=ab9d7f1c
+-/
 @[simp] theorem blockLabel_level (lev : Level) (b : Block lev) : (blockLabel lev b).level=lev := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s3.06273e31702c from=translated src=- shape=64d36d98 vocab=94ee8ab2
+-/
 theorem blockLabel_injective (lev : Level) : Function.Injective (blockLabel lev) := by
   intro a b h
   cases a
@@ -48,14 +54,23 @@ theorem blockLabel_injective (lev : Level) : Function.Injective (blockLabel lev)
   cases h
   rfl
 
+/--
+@isnad1 id=injectiv.0h0v.s2.38469fef9942 from=translated src=- shape=54c8eceb vocab=7faac694
+-/
 theorem labelIndex_injective : Function.Injective labelIndex := by
   intro a b h
   exact Sum.inr.inj (coordinateEnumeration.injective h)
 
+/--
+@isnad1 id=injectiv.0h0v.s2.2f55bbd96a4f from=translated src=- shape=e3d48bcb vocab=5708984f
+-/
 theorem rowIndex_injective : Function.Injective rowIndex := by
   intro a b h
   exact Sum.inl.inj (coordinateEnumeration.injective h)
 
+/--
+@isnad1 id=ne.0h2v.s3.889c9a436d8a from=translated src=- shape=06ef7ff8 vocab=a810ee6d
+-/
 theorem rowIndex_ne_labelIndex (i : ℕ) (γ : Label) : rowIndex i≠labelIndex γ := by
   intro h
   cases coordinateEnumeration.injective h
@@ -64,6 +79,9 @@ def blockCoordinates (lev : Level) : Finset ℕ := by
   classical
   exact Finset.univ.image (fun b : Block lev => labelIndex (blockLabel lev b))
 
+/--
+@isnad1 id=iff.0h2v.s5.13f8240e90ad from=translated src=- shape=95c30787 vocab=e6259397
+-/
 theorem mem_blockCoordinates {lev : Level} {k : ℕ} : k ∈ blockCoordinates lev ↔
     ∃ γ : Label, γ.level=lev ∧ labelIndex γ=k := by
   classical
@@ -75,6 +93,9 @@ theorem mem_blockCoordinates {lev : Level} {k : ℕ} : k ∈ blockCoordinates le
     cases h
     exact Finset.mem_image.mpr ⟨⟨j,ξ⟩,Finset.mem_univ _,rfl⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s2.bed01d8adc64 from=translated src=- shape=1a6c1393 vocab=f9fb1d11
+-/
 theorem blockCoordinates_nonempty (lev : Level) : (blockCoordinates lev).Nonempty := by
   classical
   let j : Fin (levelJ lev+1) := ⟨0,by omega⟩
@@ -88,6 +109,9 @@ def predecessorCoordinates (lev : Level) : Finset ℕ :=
 
 def radiusCoordinates (lev : Level) : Finset ℕ := predecessorCoordinates lev ∪ blockCoordinates lev
 
+/--
+@isnad1 id=nonempty.0h1v.s2.2ef92a6b8c0a from=translated src=- shape=1a6c1393 vocab=45843b14
+-/
 theorem radiusCoordinates_nonempty (lev : Level) : (radiusCoordinates lev).Nonempty :=
   (blockCoordinates_nonempty lev).mono Finset.subset_union_right
 
@@ -99,6 +123,9 @@ def coordinateLevels (k : ℕ) : Finset Level := by
   | Sum.inl i => {(i,0)}
   | Sum.inr γ => {γ.level,levelSuccessor γ.level}
 
+/--
+@isnad1 id=iff.0h2v.s4.c95d8bb23052 from=translated src=- shape=ff5d01a9 vocab=5ff6c8bf
+-/
 theorem radius_incidence (lev : Level) (k : ℕ) :
     k ∈ radiusCoordinates lev ↔ lev ∈ coordinateLevels k := by
   classical
@@ -140,6 +167,9 @@ theorem radius_incidence (lev : Level) (k : ℕ) :
       simp only [predecessorCoordinates,hk,hγ,levelSuccessor,Prod.mk.injEq]
       omega
 
+/--
+@isnad1 id=finite.0h1v.s4.82198c4319df from=translated src=- shape=55c841b2 vocab=3a6899e4
+-/
 theorem radius_finite_exceptions (N : ℕ) :
     {lev : Level | ∃ k≤N, k ∈ radiusCoordinates lev}.Finite := by
   classical
@@ -166,6 +196,9 @@ def finiteProjection (I : Finset ℕ) : C0 →L[ℝ] C0 :=
       change ‖extendFinite I (fun k => s k)‖ ≤ 1 * ‖s‖
       simpa only [one_mul] using extendFinite_norm_le I (fun k => s k) (norm_nonneg s) (fun k => c0_norm_apply_le s k))
 
+/--
+@isnad1 id=eq.0h3v.s7.9475386d94b0 from=translated src=- shape=d31bbaa7 vocab=dda95461
+-/
 @[simp] theorem finiteProjection_apply (I : Finset ℕ) (s : C0) (k : ℕ) :
     finiteProjection I s k = if k∈I then s k else 0 := by
   classical
@@ -174,8 +207,14 @@ def finiteProjection (I : Finset ℕ) : C0 →L[ℝ] C0 :=
 def finiteRadius (I : Finset ℕ) (s : C0) : ℝ := ‖finiteProjection I s‖
 def localRadius (lev : Level) : C0 → ℝ := finiteRadius (radiusCoordinates lev)
 
+/--
+@isnad1 id=le.0h2v.s4.7f4350bd81fb from=translated src=- shape=493488e7 vocab=3977ae3e
+-/
 theorem finiteRadius_nonneg (I : Finset ℕ) (s : C0) : 0 ≤ finiteRadius I s := norm_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.d0c2d035ad80 from=translated src=- shape=f960b214 vocab=1ddca8bb
+-/
 theorem finiteRadius_le (I : Finset ℕ) (s : C0) : finiteRadius I s≤‖s‖ := by
   apply c0_norm_le _ (norm_nonneg s)
   intro k
@@ -184,10 +223,16 @@ theorem finiteRadius_le (I : Finset ℕ) (s : C0) : finiteRadius I s≤‖s‖ :
   · exact c0_norm_apply_le s k
   · simp
 
+/--
+@isnad1 id=le.1h3v.s5.2ab44eb1fed8 from=translated src=- shape=fd7c04b8 vocab=f8b97a86
+-/
 theorem coordinate_le_finiteRadius {I : Finset ℕ} (s : C0) {k : ℕ} (hk : k∈I) :
     |s k| ≤ finiteRadius I s := by
   simpa only [finiteRadius,finiteProjection_apply,hk,↓reduceIte] using c0_norm_apply_le (finiteProjection I s) k
 
+/--
+@isnad1 id=lipschit.0h1v.s4.939dd31e320f from=translated src=- shape=e5fbe362 vocab=144126ac
+-/
 theorem finiteRadius_lipschitz (I : Finset ℕ) : LipschitzWith 1 (finiteRadius I) := by
   apply LipschitzWith.of_dist_le_mul
   intro s t
@@ -196,6 +241,9 @@ theorem finiteRadius_lipschitz (I : Finset ℕ) : LipschitzWith 1 (finiteRadius 
   rw [← map_sub]
   exact finiteRadius_le I (s-t)
 
+/--
+@isnad1 id=le.1h3v.s5.577f83f125bc from=translated src=- shape=8f896c48 vocab=8803b091
+-/
 theorem finiteRadius_le_tau {I : Finset ℕ} (N : ℕ) (hI : ∀ k∈I, N<k) (s : C0) :
     finiteRadius I s ≤ tau N s := by
   apply c0_norm_le _ (tau_nonneg _ _)
@@ -206,10 +254,16 @@ theorem finiteRadius_le_tau {I : Finset ℕ} (N : ℕ) (hI : ∀ k∈I, N<k) (s 
     simpa only [tau,coordinateTail_apply,hI k hk,↓reduceIte] using hh
   · simpa using tau_nonneg N s
 
+/--
+@isnad1 id=eq.0h3v.s5.43cbae918295 from=translated src=- shape=eba5c70b vocab=eaeafccd
+-/
 theorem finiteRadius_smul (I : Finset ℕ) (a : ℝ) (s : C0) :
     finiteRadius I (a • s)=|a| * finiteRadius I s := by
   simp only [finiteRadius,map_smul,norm_smul,Real.norm_eq_abs]
 
+/--
+@isnad1 id=tendsto.0h1v.s4.d751e4ca239b from=translated src=- shape=35eee1ba vocab=682345e0
+-/
 theorem localRadius_tendsto (s : C0) : Tendsto (fun lev => localRadius lev s) cofinite (nhds 0) := by
   have ht := tau_tendsto_zero s
   rw [Metric.tendsto_atTop] at ht

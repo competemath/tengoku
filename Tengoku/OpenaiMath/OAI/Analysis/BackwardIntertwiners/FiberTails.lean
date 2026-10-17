@@ -15,12 +15,18 @@ def coordinateTail (h : ℤ) : Submodule ℂ Fiber where
   add_mem' := by intro v z hv hz j hj; simp [hv j hj, hz j hj]
   smul_mem' := by intro a v hv j hj; simp [hv j hj]
 
+/--
+@isnad1 id=ex.1h1v.s9.96e3df20b2cc from=translated src=- shape=fbf52a10 vocab=afb88a5d
+-/
 lemma fiber_exists_coordinate {v : Fiber} (hv : v ≠ 0) : ∃ j : ℤ, v j ≠ 0 := by
   by_contra! h
   apply hv
   ext j
   exact h j
 
+/--
+@isnad1 id=eq.2h5v.s14.25afc6a8cddc from=translated src=- shape=8a910d22 vocab=52e0f995
+-/
 lemma weighted_shift_pow {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
     {T : Fiber →L[ℂ] Fiber}
     (hT : ∀ v j, T v j = (w j / w (j-1) : ℂ) * v (j-1))
@@ -37,6 +43,9 @@ lemma weighted_shift_pow {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
     rw [hi]
     field_simp [hwC]
 
+/--
+@isnad1 id=lt.10h7v.s7.eadedd811364 from=translated src=- shape=656c0825 vocab=03e6777e
+-/
 lemma SupportSeparation.strict_order {w : ℤ → ℝ} (hsep : SupportSeparation w)
     {b c : ℤ → ℂ} (hbn : ∃ j, b j ≠ 0) (hcn : ∃ j, c j ≠ 0)
     {B C : ℝ} (hB : 0 < B) (hC : 0 < C)

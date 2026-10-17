@@ -14,13 +14,25 @@ open scoped NNReal BigOperators ZeroAtInfty
 def eta : ℝ := 1/1000
 def scheduleH : ℝ := 10000
 
+/--
+@isnad1 id=lt.0h0v.s3.523393f3abd7 from=translated src=- shape=ff3a10fc vocab=08f874fb
+-/
 theorem eta_pos : 0 < eta := by norm_num [eta]
+/--
+@isnad1 id=lt.0h0v.s3.6d8ee2238a70 from=translated src=- shape=ff3a10fc vocab=ee45cc80
+-/
 theorem scheduleH_pos : 0 < scheduleH := by norm_num [scheduleH]
+/--
+@isnad1 id=le.0h0v.s5.c5ed97fa9a14 from=translated src=- shape=30acf699 vocab=85d90799
+-/
 theorem schedule_speed : Real.pi/scheduleH ≤ eta/2 := by
   have h := Real.pi_lt_four
   norm_num [scheduleH,eta]
   linarith
 
+/--
+@isnad1 id=lt.0h1v.s3.e9164dc6aea3 from=translated src=- shape=25e12683 vocab=3671f413
+-/
 theorem bandL_pos (j : ℕ) : 0 < (bandL j : ℝ) := by
   let : Nonempty (BandGrid j) := ⟨fun _ => ⟨0,by constructor; exact neg_nonpos.mpr (Int.natCast_nonneg _); exact Int.natCast_nonneg _⟩⟩
   have hc : (0 : ℝ) < Fintype.card (BandGrid j) := by exact_mod_cast Fintype.card_pos
@@ -31,6 +43,9 @@ def rho : ℕ → ℝ
   | 0 => 1/2
   | j+1 => min (Real.exp (-scheduleH)*rho j/2) (eta/(8*bandL (j+1)))
 
+/--
+@isnad1 id=lt.0h1v.s3.a5d117e93436 from=translated src=- shape=b9369acb vocab=8ccab45d
+-/
 theorem rho_pos (j : ℕ) : 0 < rho j := by
   induction j with
   | zero => norm_num [rho]
@@ -38,15 +53,24 @@ theorem rho_pos (j : ℕ) : 0 < rho j := by
     change 0 < min _ _
     exact lt_min (by positivity) (div_pos eta_pos (mul_pos (by norm_num) (bandL_pos _)))
 
+/--
+@isnad1 id=lt.0h1v.s5.a4b644c379b9 from=translated src=- shape=44aede75 vocab=dd0e9ad7
+-/
 theorem rho_step (j : ℕ) : rho (j+1) < Real.exp (-scheduleH)*rho j := by
   have hp : 0 < Real.exp (-scheduleH)*rho j := mul_pos (Real.exp_pos _) (rho_pos j)
   exact (min_le_left _ _).trans_lt (by linarith)
 
+/--
+@isnad1 id=le.0h1v.s5.baa4f6110d58 from=translated src=- shape=d5f44acb vocab=078af8c2
+-/
 theorem rho_half_step (j : ℕ) : rho (j+1) ≤ rho j/2 := by
   have he : Real.exp (-scheduleH) ≤ 1 := Real.exp_le_one_iff.mpr (by norm_num [scheduleH])
   exact (min_le_left _ _).trans (div_le_div_of_nonneg_right
     (by nlinarith [rho_pos j]) (by norm_num))
 
+/--
+@isnad1 id=le.0h1v.s5.2858e0e4cf18 from=translated src=- shape=d8b7bfe7 vocab=9d2a0cac
+-/
 theorem rho_bound (j : ℕ) : rho j ≤ (1/2 : ℝ)^(j+1) := by
   induction j with
   | zero => norm_num [rho]
@@ -55,11 +79,17 @@ theorem rho_bound (j : ℕ) : rho j ≤ (1/2 : ℝ)^(j+1) := by
     rw [pow_succ]
     linarith
 
+/--
+@isnad1 id=lt.0h1v.s3.8c62a6ce5a6d from=translated src=- shape=a311c14d vocab=8ccab45d
+-/
 theorem rho_lt_one (j : ℕ) : rho j < 1 := by
   have hh := rho_bound j
   have hp : (1/2 : ℝ)^(j+1) < 1 := pow_lt_one₀ (by norm_num) (by norm_num) (by omega)
   exact hh.trans_lt hp
 
+/--
+@isnad1 id=le.1h1v.s5.d261b830d7fe from=translated src=- shape=277df1bb vocab=8251fde7
+-/
 theorem rho_lip_budget {j : ℕ} (hj : 0 < j) : bandL j*rho j ≤ eta/4 := by
   obtain ⟨k,rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hj)
   have hh : rho (k+1) ≤ eta/(8*bandL (k+1)) := min_le_right _ _
@@ -67,6 +97,9 @@ theorem rho_lip_budget {j : ℕ} (hj : 0 < j) : bandL j*rho j ≤ eta/4 := by
   have he := (le_div_iff₀ (mul_pos (by norm_num : (0:ℝ)<8) hp)).mp hh
   linarith [eta_pos]
 
+/--
+@isnad1 id=tendsto.0h0v.s4.91cc669e23ee from=translated src=- shape=8e2810f0 vocab=e00e743a
+-/
 theorem rho_tendsto : Tendsto rho atTop (nhds 0) := by
   apply squeeze_zero (fun j => (rho_pos j).le) rho_bound
   exact (tendsto_pow_atTop_nhds_zero_of_lt_one (by norm_num : (0:ℝ)≤1/2) (by norm_num)).comp
@@ -74,11 +107,20 @@ theorem rho_tendsto : Tendsto rho atTop (nhds 0) := by
 
 def ell (j : ℕ) : ℝ := Real.exp (-scheduleH)*rho (j+1)
 
+/--
+@isnad1 id=lt.0h1v.s3.94a32a5b7c3d from=translated src=- shape=b9369acb vocab=19594744
+-/
 theorem ell_pos (j : ℕ) : 0 < ell j := mul_pos (Real.exp_pos _) (rho_pos _)
+/--
+@isnad1 id=tendsto.0h0v.s4.42a27c90ff98 from=translated src=- shape=8e2810f0 vocab=dc4dfcb3
+-/
 theorem ell_tendsto : Tendsto ell atTop (nhds 0) := by
   change Tendsto (fun j => Real.exp (-scheduleH)*rho (j+1)) atTop (nhds 0)
   convert (tendsto_const_nhds (x := Real.exp (-scheduleH))).mul (rho_tendsto.comp (tendsto_add_atTop_nat 1)) using 1 <;> simp
 
+/--
+@isnad1 id=lt.0h1v.s4.e7118fbec403 from=translated src=- shape=7becccbc vocab=7067553f
+-/
 theorem log_rho_step (j : ℕ) : Real.log (rho (j+1)) < Real.log (rho j)-scheduleH := by
   have hh := Real.strictMonoOn_log (rho_pos (j+1))
     (mul_pos (Real.exp_pos _) (rho_pos j)) (rho_step j)
@@ -87,11 +129,17 @@ theorem log_rho_step (j : ℕ) : Real.log (rho (j+1)) < Real.log (rho j)-schedul
 def transitionAngle (j : ℕ) (u : ℝ) : ℝ :=
   Real.pi/(2*scheduleH) * min scheduleH (max 0 (Real.log (rho j)-u))
 
+/--
+@isnad1 id=le.0h2v.s4.dcf5a1db4ff6 from=translated src=- shape=787c1379 vocab=290a80e5
+-/
 theorem transitionAngle_nonneg (j : ℕ) (u : ℝ) : 0 ≤ transitionAngle j u := by
   unfold transitionAngle
   exact mul_nonneg (div_nonneg Real.pi_pos.le (by norm_num [scheduleH] : 0 ≤ 2*scheduleH))
     (le_min scheduleH_pos.le (le_max_left _ _))
 
+/--
+@isnad1 id=le.0h2v.s4.caa85a4b4ec0 from=translated src=- shape=4a030b7b vocab=bc2f3654
+-/
 theorem transitionAngle_le (j : ℕ) (u : ℝ) : transitionAngle j u ≤ Real.pi/2 := by
   have hh : min scheduleH (max 0 (Real.log (rho j)-u)) ≤ scheduleH := min_le_left _ _
   have hc : 0 ≤ Real.pi/(2*scheduleH) := div_nonneg Real.pi_pos.le (by norm_num [scheduleH])
@@ -99,11 +147,17 @@ theorem transitionAngle_le (j : ℕ) (u : ℝ) : transitionAngle j u ≤ Real.pi
   have he : Real.pi/(2*scheduleH)*scheduleH=Real.pi/2 := by norm_num [scheduleH]; ring
   exact hb.trans_eq he
 
+/--
+@isnad1 id=eq.1h2v.s4.5a7fb336ed7a from=translated src=- shape=2b6fc524 vocab=0fcbeed1
+-/
 theorem transitionAngle_zero (j : ℕ) {u : ℝ} (hu : Real.log (rho j) ≤ u) :
     transitionAngle j u=0 := by
   simp only [transitionAngle,max_eq_left (by linarith : Real.log (rho j)-u ≤ 0),
     min_eq_right scheduleH_pos.le,mul_zero]
 
+/--
+@isnad1 id=eq.1h2v.s5.6260f97d02ca from=translated src=- shape=d7c37fc4 vocab=da58f955
+-/
 theorem transitionAngle_full (j : ℕ) {u : ℝ} (hu : u ≤ Real.log (rho j)-scheduleH) :
     transitionAngle j u=Real.pi/2 := by
   unfold transitionAngle
@@ -111,6 +165,9 @@ theorem transitionAngle_full (j : ℕ) {u : ℝ} (hu : u ≤ Real.log (rho j)-sc
   norm_num [scheduleH]
   ring
 
+/--
+@isnad1 id=or.0h2v.s5.d3198a6b6ed9 from=translated src=- shape=0933b7c3 vocab=95bf2349
+-/
 theorem transitionAngle_dichotomy (j : ℕ) (u : ℝ) :
     transitionAngle (j+1) u=0 ∨ transitionAngle j u=Real.pi/2 := by
   by_cases hu : Real.log (rho (j+1)) ≤ u
@@ -119,11 +176,17 @@ theorem transitionAngle_dichotomy (j : ℕ) (u : ℝ) :
 
 def transitionInterval (j : ℕ) : Set ℝ := Icc (Real.log (rho j)-scheduleH) (Real.log (rho j))
 
+/--
+@isnad1 id=antitone.0h0v.s3.57b8a559cfb0 from=translated src=- shape=55d8b4ca vocab=187bfbd8
+-/
 theorem log_rho_antitone : Antitone (fun j => Real.log (rho j)) := by
   apply antitone_nat_of_succ_le
   intro j
   linarith [log_rho_step j,scheduleH_pos]
 
+/--
+@isnad1 id=pairwise.0h0v.s5.31d144519cbf from=translated src=- shape=700dfe29 vocab=f206ad70
+-/
 theorem transitionInterval_disjoint : Pairwise (fun i j => Disjoint (transitionInterval i) (transitionInterval j)) := by
   suffices ∀ i j, i<j → Disjoint (transitionInterval i) (transitionInterval j) by
     intro i j hij
@@ -144,6 +207,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=lipschit.3h4v.s7.e8c25389e29b from=translated src=- shape=3bd38abc vocab=b15af98b
+-/
 theorem finite_variation_sum_lipschitz {A : Type*} [Fintype A]
     (f : A → ℝ → ℝ) (C : A → Set ℝ) {K : ℝ≥0}
     (hdis : Pairwise (fun i j => Disjoint (C i) (C j)))
@@ -180,6 +246,9 @@ theorem finite_variation_sum_lipschitz {A : Type*} [Fintype A]
 
 def angleSpeed : ℝ≥0 := ⟨Real.pi/(2*scheduleH),div_nonneg Real.pi_pos.le (by norm_num [scheduleH])⟩
 
+/--
+@isnad1 id=lipschit.0h1v.s4.7ecff1368ed4 from=translated src=- shape=05bc78a8 vocab=a4c1ad01
+-/
 theorem transitionAngle_lipschitz (j : ℕ) : LipschitzWith angleSpeed (transitionAngle j) := by
   have hl : LipschitzWith 1 (fun u : ℝ => Real.log (rho j)-u) := by
     apply LipschitzWith.of_dist_le_mul
@@ -193,11 +262,17 @@ theorem transitionAngle_lipschitz (j : ℕ) : LipschitzWith angleSpeed (transiti
   rw [← mul_sub,abs_mul,abs_of_nonneg angleSpeed.coe_nonneg]
   exact mul_le_mul_of_nonneg_left (by simpa only [NNReal.coe_one,one_mul,Real.dist_eq] using hb.dist_le_mul u v) angleSpeed.coe_nonneg
 
+/--
+@isnad1 id=antitone.0h1v.s3.0538472d95fa from=translated src=- shape=8735051e vocab=3691745d
+-/
 theorem transitionAngle_antitone (j : ℕ) : Antitone (transitionAngle j) := by
   intro u v huv
   apply mul_le_mul_of_nonneg_left _ angleSpeed.coe_nonneg
   exact min_le_min_left _ (max_le_max_left _ (by linarith))
 
+/--
+@isnad1 id=eventual.1h2v.s5.d0657bc400c8 from=translated src=- shape=f719f4d1 vocab=963afdcb
+-/
 theorem transitionAngle_locally_constant (j : ℕ) (u : ℝ) (hu : u ∉ transitionInterval j) :
     ∀ᶠ v in nhds u, transitionAngle j v=transitionAngle j u := by
   have h : u < Real.log (rho j)-scheduleH ∨ Real.log (rho j)<u := by
@@ -213,6 +288,9 @@ theorem transitionAngle_locally_constant (j : ℕ) (u : ℝ) (hu : u ∉ transit
   · filter_upwards [eventually_gt_nhds h] with v hv
     rw [transitionAngle_zero j hv.le,transitionAngle_zero j h.le]
 
+/--
+@isnad1 id=le.0h3v.s6.cf960adc662f from=translated src=- shape=40593d28 vocab=b732b49a
+-/
 theorem angle_sum_distance (J : ℕ) (u v : ℝ) :
     (∑ j : Fin J, |transitionAngle (j+1) u-transitionAngle (j+1) v|) ≤
       angleSpeed*dist u v := by

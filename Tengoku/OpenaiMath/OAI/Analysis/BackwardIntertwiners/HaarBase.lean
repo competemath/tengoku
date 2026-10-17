@@ -11,16 +11,28 @@ open Topology MeasureTheory Set
 open scoped ENNReal
 
 instance padicBorel : MeasurableSpace (PadicInt 2) := borel _
+/--
+@isnad1 id=borelspa.0h0v.s5.9537ba5547bb from=translated src=- shape=8d7dbbf6 vocab=b42e11f6
+-/
 instance padicBorelSpace : BorelSpace (PadicInt 2) := ⟨rfl⟩
 
 def baseHaar : Measure (PadicInt 2) := Measure.addHaarMeasure ⊤
+/--
+@isnad1 id=isprobab.0h0v.s3.239fdafcb973 from=translated src=- shape=bfe16b09 vocab=7da14463
+-/
 instance baseHaar_probability : IsProbabilityMeasure baseHaar := by
   constructor
   exact Measure.addHaarMeasure_self
+/--
+@isnad1 id=isaddhaa.0h0v.s6.bce2260fb03c from=translated src=- shape=06f63001 vocab=c2a6d5aa
+-/
 instance baseHaar_addHaar : baseHaar.IsAddHaarMeasure :=
   inferInstanceAs ((Measure.addHaarMeasure ⊤).IsAddHaarMeasure)
 
 def odometerBorel (x : PadicInt 2) : PadicInt 2 := x + 1
+/--
+@isnad1 id=ergodic.0h0v.s3.826429292547 from=translated src=- shape=70b65532 vocab=b9b81ec6
+-/
 lemma odometerBorel_ergodic : Ergodic odometerBorel baseHaar := by
   have hd : DenseRange (fun n : ℤ => n • (1 : PadicInt 2)) := by
     simpa only [zsmul_one] using (PadicInt.denseRange_intCast (p := 2))
@@ -28,6 +40,9 @@ lemma odometerBorel_ergodic : Ergodic odometerBorel baseHaar := by
   rw [← he]
   exact ergodic_add_left_of_denseRange_zsmul hd baseHaar
 
+/--
+@isnad1 id=continuo.0h1v.s8.5f1b532a4439 from=translated src=- shape=24be9042 vocab=009dabdd
+-/
 lemma continuous_twoResidue (m : ℕ) : Continuous (PadicInt.toZModPow (p := 2) m) := by
   apply IsLocallyConstant.continuous
   rw [IsLocallyConstant.iff_eventually_eq]
@@ -40,10 +55,19 @@ lemma continuous_twoResidue (m : ℕ) : Continuous (PadicInt.toZModPow (p := 2) 
   exact hmem
 
 def twoResidue (m : ℕ) (x : PadicInt 2) : ℕ := (PadicInt.toZModPow m x).val
+/--
+@isnad1 id=lt.0h2v.s5.07cb44bcf622 from=translated src=- shape=75fafbe3 vocab=127c0946
+-/
 lemma twoResidue_lt (m : ℕ) (x : PadicInt 2) : twoResidue m x < 2^m := ZMod.val_lt _
+/--
+@isnad1 id=measurab.0h1v.s3.d9201fce1670 from=translated src=- shape=be067356 vocab=b2d6e366
+-/
 lemma measurable_twoResidue (m : ℕ) : Measurable (twoResidue m) :=
   (measurable_of_countable (f := ZMod.val)).comp (continuous_twoResidue m).measurable
 
+/--
+@isnad1 id=eq.0h2v.s7.2fd04c04a0cf from=translated src=- shape=ca9434f6 vocab=89f40be2
+-/
 lemma baseHaar_singleton_eq (x y : PadicInt 2) : baseHaar {x} = baseHaar {y} := by
   have he : (fun z : PadicInt 2 => (y-x)+z) ⁻¹' {y} = {x} := by
     ext z
@@ -58,6 +82,9 @@ lemma baseHaar_singleton_eq (x y : PadicInt 2) : baseHaar {x} = baseHaar {y} := 
   rw [← he]
   exact measure_preimage_add baseHaar (y-x) {y}
 
+/--
+@isnad1 id=nullsing.0h0v.s3.cc70ff4c80b1 from=translated src=- shape=bfe16b09 vocab=fc3a1053
+-/
 instance baseHaar_nullSingleton : NullSingletonClass baseHaar := by
   constructor
   intro x
@@ -73,6 +100,9 @@ instance baseHaar_nullSingleton : NullSingletonClass baseHaar := by
   rw [ENNReal.tsum_const_eq_top_of_ne_zero hx] at hs
   exact (not_le_of_gt ENNReal.one_lt_top) hs
 
+/--
+@isnad1 id=measurep.1h3v.s5.09377a35611a from=translated src=- shape=e38004db vocab=02ea0f23
+-/
 lemma measurePreserving_completion {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f : α → α} (hf : MeasurePreserving f μ μ) :
     @MeasurePreserving (NullMeasurableSpace α μ) (NullMeasurableSpace α μ) _ _
@@ -87,6 +117,9 @@ lemma measurePreserving_completion {α : Type*} [MeasurableSpace α] {μ : Measu
   rw [Measure.map_apply hm hs]
   exact hf.measure_preimage hs
 
+/--
+@isnad1 id=ergodic.1h3v.s5.00b93b92a250 from=translated src=- shape=1f6dda74 vocab=494e7ec3
+-/
 lemma ergodic_completion {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f : α → α} (hf : Ergodic f μ) :
     @Ergodic (NullMeasurableSpace α μ) _ f μ.completion := by
@@ -97,33 +130,60 @@ lemma ergodic_completion {α : Type*} [MeasurableSpace α] {μ : Measure α}
 
 abbrev Base := NullMeasurableSpace (PadicInt 2) baseHaar
 abbrev baseMeasure : Measure Base := baseHaar.completion
+/--
+@isnad1 id=isprobab.0h0v.s3.b5c48e8c3a3c from=translated src=- shape=cbe01679 vocab=5d318cf8
+-/
 instance base_probability : IsProbabilityMeasure baseMeasure := ⟨measure_univ (μ := baseHaar)⟩
+/--
+@isnad1 id=nullsing.0h0v.s3.6dbb9ff2bf9f from=translated src=- shape=cbe01679 vocab=88cd6d86
+-/
 instance base_nullSingleton : NullSingletonClass baseMeasure := by
   constructor
   intro x
   change baseHaar { (show PadicInt 2 from x) } = 0
   exact measure_singleton _
+/--
+@isnad1 id=measurab.0h0v.s3.4e2936efc1be from=translated src=- shape=49959d42 vocab=8fb3a585
+-/
 instance base_measurableSingleton : MeasurableSingletonClass Base := by
   constructor
   intro x
   exact measurableSet_of_null (μ := baseMeasure) (measure_singleton x)
 
 def odometer : Base → Base := odometerBorel
+/--
+@isnad1 id=ergodic.0h0v.s3.182e27ad0a6b from=translated src=- shape=0e6a3cff vocab=2054a730
+-/
 lemma odometer_ergodic : Ergodic odometer baseMeasure := by
   change @Ergodic (NullMeasurableSpace (PadicInt 2) baseHaar) _ odometerBorel baseHaar.completion
   exact ergodic_completion (α := PadicInt 2) odometerBorel_ergodic
 
 def residue (m : ℕ) (x : Base) : ℕ := twoResidue m x
+/--
+@isnad1 id=lt.0h2v.s4.24b8d8f28ab7 from=translated src=- shape=6eef215a vocab=ea27dad5
+-/
 lemma residue_lt (m : ℕ) (x : Base) : residue m x < 2^m := twoResidue_lt m x
+/--
+@isnad1 id=measurab.0h1v.s4.ac889935e85b from=translated src=- shape=6806422f vocab=5620dc43
+-/
 lemma measurable_residue (m : ℕ) : Measurable (residue m) :=
   (measurable_twoResidue m).nullMeasurable.measurable'
 
 def goodBase : Set Base := (Set.range (fun n : ℤ => (show Base from (n : PadicInt 2))))ᶜ
+/--
+@isnad1 id=measurab.0h0v.s3.f6ddc396c782 from=translated src=- shape=25b03439 vocab=ef56a2c7
+-/
 lemma measurableSet_goodBase : MeasurableSet goodBase := by
   apply MeasurableSet.compl
   exact (Set.countable_range _).measurableSet
+/--
+@isnad1 id=eventual.0h0v.s5.678e1eda6b59 from=translated src=- shape=e8200a5f vocab=a11cd914
+-/
 lemma ae_goodBase : ∀ᵐ x ∂baseMeasure, x ∈ goodBase :=
   (Set.countable_range (fun n : ℤ => (show Base from (n : PadicInt 2)))).ae_notMem baseMeasure
+/--
+@isnad1 id=iff.0h1v.s4.e03110df76f4 from=translated src=- shape=ca737c93 vocab=34a7f9b5
+-/
 lemma goodBase_odometer (x : Base) : odometer x ∈ goodBase ↔ x ∈ goodBase := by
   change ((show PadicInt 2 from x)+1:PadicInt 2) ∉ Set.range (Int.cast : ℤ → PadicInt 2) ↔
     x ∉ Set.range (Int.cast : ℤ → PadicInt 2)
@@ -138,16 +198,25 @@ lemma goodBase_odometer (x : Base) : odometer x ∈ goodBase ↔ x ∈ goodBase 
   · rintro ⟨n, rfl⟩
     exact ⟨n+1, by push_cast; rfl⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.a928a050ba06 from=translated src=- shape=4ddf8aca vocab=756a360b
+-/
 lemma zmod_val_neg_one {N : ℕ} (hN : 0 < N) : (-1 : ZMod N).val = N-1 := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hN)
   simp [ZMod.val_neg_one]
 
+/--
+@isnad1 id=iff.0h2v.s9.9f4921686dc7 from=translated src=- shape=8b6a6ce8 vocab=3d879b0d
+-/
 lemma residue_exceptional_iff (m : ℕ) (x : Base) :
     residue m x = 2^m-1 ↔ PadicInt.toZModPow m x = (-1 : ZMod (2^m)) := by
   change (PadicInt.toZModPow m x).val = _ ↔ _
   rw [← zmod_val_neg_one (pow_pos (by norm_num : 0 < 2) m)]
   exact (ZMod.val_injective (2^m)).eq_iff
 
+/--
+@isnad1 id=ex.1h1v.s5.133cb9786c60 from=translated src=- shape=1ec26788 vocab=9b1547f9
+-/
 lemma goodBase_eventually_nonexceptional {x : Base} (hx : x ∈ goodBase) :
     ∃ M : ℕ, ∀ m ≥ M, residue m x ≠ 2^m-1 := by
   have hx' : (show PadicInt 2 from x) ≠ -1 := by
@@ -167,6 +236,9 @@ lemma goodBase_eventually_nonexceptional {x : Base} (hx : x ∈ goodBase) :
   rw [PadicInt.cast_toZModPow M m hm] at hc
   simpa only [map_neg, map_one] using hc
 
+/--
+@isnad1 id=eq.1h2v.s6.be2fd1df1f32 from=translated src=- shape=d16a8177 vocab=1b37a320
+-/
 lemma residue_step {m : ℕ} (hm : 1 ≤ m) (x : Base) :
     residue m (odometer x) = if residue m x = 2^m-1 then 0 else residue m x + 1 := by
   have hN' : 2 ≤ 2^m := by simpa using Nat.pow_le_pow_right (by norm_num : 0 < 2) hm

@@ -17,10 +17,16 @@ def halfExponent (t : ℕ → ℕ) (k : ℕ) : ℝ :=
 
 def ResidueBounds (t : ℕ → ℕ) : Prop := ∀ m, t m < 2 ^ m
 
+/--
+@isnad1 id=le.0h1v.s3.4af71fee09f0 from=translated src=- shape=8a62b088 vocab=b3d78cfd
+-/
 lemma residueScale_ge_two (k : ℕ) : 2 ≤ residueScale k := by
   dsimp [residueScale, weightBlock]
   simpa using (Nat.pow_le_pow_right (by norm_num : 0 < 2) (by omega : 1 ≤ Nat.log 8 k + 1))
 
+/--
+@isnad1 id=le.0h2v.s4.a2b501fc2ec9 from=translated src=- shape=7544a74c vocab=f43ef087
+-/
 lemma residueCorrection_nonneg (t : ℕ → ℕ) (k : ℕ) : 0 ≤ residueCorrection t k := by
   dsimp [residueCorrection]
   split_ifs
@@ -28,6 +34,9 @@ lemma residueCorrection_nonneg (t : ℕ → ℕ) (k : ℕ) : 0 ≤ residueCorrec
   · have hh : (2:ℝ) ≤ residueScale k := by exact_mod_cast residueScale_ge_two k
     positivity
 
+/--
+@isnad1 id=le.1h2v.s5.9d2702a70446 from=translated src=- shape=712ef348 vocab=a1e9e4b5
+-/
 lemma residueCorrection_le {t : ℕ → ℕ} (ht : ResidueBounds t) (k : ℕ) :
     residueCorrection t k ≤ 200 * residueScale k := by
   have hN : (0:ℝ) ≤ residueScale k := Nat.cast_nonneg _
@@ -37,6 +46,9 @@ lemma residueCorrection_le {t : ℕ → ℕ} (ht : ResidueBounds t) (k : ℕ) :
   · have hr : (t (weightBlock k):ℝ) < residueScale k := by exact_mod_cast ht (weightBlock k)
     linarith
 
+/--
+@isnad1 id=monotone.1h1v.s3.f1b6fb673b9a from=translated src=- shape=e1e9efa4 vocab=8d35d752
+-/
 lemma residueCorrection_mono {t : ℕ → ℕ} (ht : ResidueBounds t) :
     Monotone (residueCorrection t) := by
   intro k l hkl
@@ -57,6 +69,9 @@ lemma residueCorrection_mono {t : ℕ → ℕ} (ht : ResidueBounds t) :
     have htl : (0:ℝ) ≤ t (weightBlock l) := Nat.cast_nonneg _
     linarith
 
+/--
+@isnad1 id=monotone.1h1v.s3.c238baf9f24d from=translated src=- shape=e1e9efa4 vocab=70d98293
+-/
 lemma halfExponent_mono {t : ℕ → ℕ} (ht : ResidueBounds t) : Monotone (halfExponent t) := by
   intro k l hkl
   have hc := residueCorrection_mono ht hkl
@@ -64,15 +79,24 @@ lemma halfExponent_mono {t : ℕ → ℕ} (ht : ResidueBounds t) : Monotone (hal
   dsimp [halfExponent]
   linarith
 
+/--
+@isnad1 id=le.0h2v.s5.b4fc6d56a929 from=translated src=- shape=0612b293 vocab=05e64ba6
+-/
 lemma halfExponent_lower (t : ℕ → ℕ) (k : ℕ) :
     10*((k:ℝ)+1) ≤ halfExponent t k := by
   have hh := residueCorrection_nonneg t k
   dsimp [halfExponent]
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s4.965cdfc8e7b9 from=translated src=- shape=ab70bd0f vocab=ecce743e
+-/
 @[simp] lemma halfExponent_zero (t : ℕ → ℕ) : halfExponent t 0 = 10 := by
   norm_num [halfExponent, residueCorrection]
 
+/--
+@isnad1 id=le.1h1v.s5.eb4435bfaf8d from=translated src=- shape=08e63c71 vocab=08583ae6
+-/
 lemma residueScale_sq_le {k : ℕ} (hk : k ≠ 0) : (residueScale k)^2 ≤ 4*k := by
   let q := Nat.log 8 k
   have hq : 8 ^ q ≤ k := Nat.pow_log_le_self 8 hk
@@ -85,6 +109,9 @@ lemma residueScale_sq_le {k : ℕ} (hk : k ≠ 0) : (residueScale k)^2 ≤ 4*k :
   rw [he]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.438a2a52dda7 from=translated src=- shape=5f09efc2 vocab=aaf61560
+-/
 lemma residueCorrection_sqrt_bound {t : ℕ → ℕ} (ht : ResidueBounds t) (k : ℕ) :
     residueCorrection t k ≤ 400 * Real.sqrt k := by
   by_cases hk : k = 0
@@ -98,10 +125,19 @@ lemma residueCorrection_sqrt_bound {t : ℕ → ℕ} (ht : ResidueBounds t) (k :
 
 def halfSum (t : ℕ → ℕ) (n : ℕ) : ℝ := ∑ k ∈ Finset.range n, halfExponent t k
 
+/--
+@isnad1 id=eq.0h1v.s4.8f34fe1618c4 from=translated src=- shape=ab70bd0f vocab=0da213f7
+-/
 @[simp] lemma halfSum_zero (t : ℕ → ℕ) : halfSum t 0 = 0 := by simp [halfSum]
+/--
+@isnad1 id=eq.0h2v.s5.25056157607a from=translated src=- shape=2fb94cda vocab=406317f4
+-/
 @[simp] lemma halfSum_succ (t : ℕ → ℕ) (n : ℕ) :
     halfSum t (n+1) = halfSum t n + halfExponent t n := by simp [halfSum, Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.0h1v.s6.27310685616d from=translated src=- shape=83b16797 vocab=56dce41d
+-/
 lemma halfSum_linear (n : ℕ) :
     (∑ k ∈ Finset.range n, (10:ℝ)*((k:ℝ)+1)) = 5*(n:ℝ)*((n:ℝ)+1) := by
   induction n with
@@ -111,6 +147,9 @@ lemma halfSum_linear (n : ℕ) :
     push_cast
     ring
 
+/--
+@isnad1 id=and.1h2v.s7.77ea93288a0b from=translated src=- shape=1936fabe vocab=a200df8c
+-/
 lemma halfSum_bounds {t : ℕ → ℕ} (ht : ResidueBounds t) (n : ℕ) :
     5*(n:ℝ)*((n:ℝ)+1) ≤ halfSum t n ∧
     halfSum t n ≤ 5*(n:ℝ)*((n:ℝ)+1) + 400*(n:ℝ)*Real.sqrt n := by
@@ -130,6 +169,9 @@ lemma halfSum_bounds {t : ℕ → ℕ} (ht : ResidueBounds t) (n : ℕ) :
     simp only [Finset.sum_const, Finset.card_range, nsmul_eq_mul] at hh
     nlinarith
 
+/--
+@isnad1 id=tendsto.1h1v.s5.903e890b87ff from=translated src=- shape=2d610af8 vocab=cad109f0
+-/
 lemma halfSum_quadratic {t : ℕ → ℕ} (ht : ResidueBounds t) :
     Tendsto (fun n : ℕ => halfSum t n / (n:ℝ)^2) atTop (𝓝 5) := by
   have hn : Tendsto (fun n : ℕ => (n:ℝ)) atTop atTop := tendsto_natCast_atTop_atTop
@@ -167,14 +209,23 @@ def bilateralWeight (t u : ℕ → ℕ) : ℤ → ℝ
   | .ofNat n => Real.exp (-halfSum t n)
   | .negSucc n => Real.exp (halfSum u (n+1))
 
+/--
+@isnad1 id=eq.0h3v.s4.7a29b71eae1a from=translated src=- shape=f6436834 vocab=3e40f35c
+-/
 @[simp] lemma bilateralWeight_nat (t u : ℕ → ℕ) (n : ℕ) :
     bilateralWeight t u n = Real.exp (-halfSum t n) := rfl
+/--
+@isnad1 id=eq.0h3v.s4.4115ff7340d2 from=translated src=- shape=e0792208 vocab=3e40f35c
+-/
 @[simp] lemma bilateralWeight_neg_nat (t u : ℕ → ℕ) (n : ℕ) :
     bilateralWeight t u (-(n:ℤ)) = Real.exp (halfSum u n) := by
   cases n with
   | zero => simp [bilateralWeight]
   | succ n => rfl
 
+/--
+@isnad1 id=le.0h3v.s4.942f31cb4ceb from=translated src=- shape=fd64a192 vocab=0c2b9b64
+-/
 lemma bilateralExponent_nonneg (t u : ℕ → ℕ) (j : ℤ) : 10 ≤ bilateralExponent t u j := by
   cases j with
   | ofNat n =>
@@ -188,9 +239,15 @@ lemma bilateralExponent_nonneg (t u : ℕ → ℕ) (j : ℤ) : 10 ≤ bilateralE
     have hn : (0:ℝ) ≤ n := Nat.cast_nonneg _
     linarith
 
+/--
+@isnad1 id=lt.0h3v.s4.d3d58d6bf228 from=translated src=- shape=fd64a192 vocab=e5ef98f9
+-/
 lemma bilateralWeight_pos (t u : ℕ → ℕ) (j : ℤ) : 0 < bilateralWeight t u j := by
   cases j <;> exact Real.exp_pos _
 
+/--
+@isnad1 id=eq.0h3v.s5.01ad0c31cc23 from=translated src=- shape=48756c56 vocab=a7801058
+-/
 lemma bilateralWeight_ratio (t u : ℕ → ℕ) (j : ℤ) :
     bilateralWeight t u (j+1) / bilateralWeight t u j = bilateralBeta t u j := by
   cases j with
@@ -210,6 +267,9 @@ lemma bilateralWeight_ratio (t u : ℕ → ℕ) (j : ℤ) :
       congr 1
       ring
 
+/--
+@isnad1 id=antitone.0h2v.s4.f7453f8ae7b9 from=translated src=- shape=121709cc vocab=64d9e925
+-/
 lemma bilateralWeight_antitone (t u : ℕ → ℕ) : Antitone (bilateralWeight t u) := by
   apply antitone_int_of_succ_le
   intro j
@@ -220,10 +280,16 @@ lemma bilateralWeight_antitone (t u : ℕ → ℕ) : Antitone (bilateralWeight t
     linarith
   exact (div_le_one (bilateralWeight_pos t u j)).mp (hr.le.trans he)
 
+/--
+@isnad1 id=discrete.1h1v.s3.de82a91597d2 from=translated src=- shape=aef97f5f vocab=7d2baa9a
+-/
 lemma halfSum_discreteConvex {t : ℕ → ℕ} (ht : ResidueBounds t) : DiscreteConvex (halfSum t) := by
   unfold DiscreteConvex
   simpa only [halfSum_succ, add_sub_cancel_left] using halfExponent_mono ht
 
+/--
+@isnad1 id=le.2h2v.s5.8ffc54dd0fd5 from=translated src=- shape=2317bf12 vocab=dba4a6c3
+-/
 lemma halfSum_root_bound {t : ℕ → ℕ} (ht : ResidueBounds t) {n : ℕ} (hn : 0 < n) :
     -halfSum t n / (n:ℝ) ≤ -5*(n:ℝ) := by
   have hn' : (0:ℝ) < n := Nat.cast_pos.mpr hn
@@ -231,6 +297,9 @@ lemma halfSum_root_bound {t : ℕ → ℕ} (ht : ResidueBounds t) {n : ℕ} (hn 
   have hh := (halfSum_bounds ht n).1
   nlinarith
 
+/--
+@isnad1 id=summable.2h2v.s6.cdab893b8b79 from=translated src=- shape=4958ca12 vocab=0c9e1442
+-/
 lemma bilateralWeight_roots_summable {t u : ℕ → ℕ} (ht : ResidueBounds t) (hu : ResidueBounds u) :
     Summable (fun j : ℤ => if j = 0 then (0:ℝ) else bilateralWeight t u j ^ (1/(j:ℝ))) := by
   have hs : Summable (fun n : ℕ => Real.exp (-5*(n:ℝ))) := by
@@ -263,6 +332,9 @@ lemma bilateralWeight_roots_summable {t u : ℕ → ℕ} (ht : ResidueBounds t) 
         simp only [Int.cast_neg, Int.cast_add, Int.cast_one, Int.cast_natCast, Nat.succ_eq_add_one, inv_neg,
           div_eq_mul_inv, Nat.cast_add, Nat.cast_one] ; ring
 
+/--
+@isnad1 id=quadrati.2h2v.s4.93f481bf9484 from=translated src=- shape=8c6fd761 vocab=05d196b3
+-/
 lemma bilateralWeight_quadratic {t u : ℕ → ℕ} (ht : ResidueBounds t) (hu : ResidueBounds u) :
     QuadraticWeights (bilateralWeight t u) where
   positive := bilateralWeight_pos t u

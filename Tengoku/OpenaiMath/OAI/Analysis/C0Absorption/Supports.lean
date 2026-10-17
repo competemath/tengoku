@@ -11,12 +11,18 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=le.0h3v.s5.573eb5e13dab from=translated src=- shape=7b4ee569 vocab=53542010
+-/
 theorem tsupport_product_subset_right {X : Type*} [TopologicalSpace X] (f g : X → ℝ) :
     tsupport (fun x => f x*g x) ⊆ tsupport g := by
   simpa only [mul_comm] using tsupport_product_subset_left g f
 
 variable {Γ : Type*} {B : CylinderBases Γ}
 
+/--
+@isnad1 id=mem.1h6v.s6.d0ef42446a72 from=translated src=- shape=7e7ffc34 vocab=fcf7ead7
+-/
 theorem VClass_mul_tail {h : ℕ} {f : C0Ball → ℝ} (hf : f ∈ VClass B h) (a N : ℕ) :
     (fun s => f s*tailFactor (dyadic a) (N+1) s.val) ∈ VClass B (h+a+1) := by
   obtain ⟨γ,r,ts,hr,hj,ht,hs,rfl⟩ := hf
@@ -30,6 +36,9 @@ theorem VClass_mul_tail {h : ℕ} {f : C0Ball → ℝ} (hf : f ∈ VClass B h) (
     simp only [tailProduct_cons, t, TailOperation.factor, ↓reduceIte]
     ring
 
+/--
+@isnad1 id=ex.6h8v.s8.72cb196f87ca from=translated src=- shape=20e7a1e6 vocab=bd61111d
+-/
 theorem tail_separation {h : ℕ} (F : ℕ → C0Ball → ℝ) (m : ℕ → SourceSpace B)
     (hF : ∀ i, F i ∈ VClass B h) {δ cstar : ℝ} (hδ : 0 < δ) (hcstar : 0 < cstar)
     (hdetect : ∀ i, δ ≤ |completedPairing (sourceClasses B) c0Origin (F i) (m i)|)
@@ -96,6 +105,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=le.0h3v.s5.95ed77d023e9 from=translated src=- shape=b029e264 vocab=558d7017
+-/
 theorem tau_cubeExtend_restrict_le (I : Finset ℕ) (N : ℕ) (s : C0Ball) :
     tau N (cubeExtend I (cubeRestrict I s)).val ≤ tau N s.val := by
   classical
@@ -122,6 +134,9 @@ structure RadiusLocalization {Γ : Type*} (B : CylinderBases Γ) where
 namespace RadiusLocalization
 variable {Γ : Type*} {B : CylinderBases Γ} (loc : RadiusLocalization B)
 
+/--
+@isnad1 id=le.3h7v.s7.8ef6ced32867 from=translated src=- shape=26d6b7b7 vocab=e175b65d
+-/
 theorem representation_tail_lower {γ : Γ} (r : GeneratedRepresentation B γ)
     (ht : ¬loc.terminal γ) (N : ℕ) (hN : N < loc.firstCoordinate γ)
     (s : C0Ball) (hs : s ∈ tsupport r.value) :
@@ -147,6 +162,9 @@ theorem representation_tail_lower {γ : Γ} (r : GeneratedRepresentation B γ)
 
 include loc in
 
+/--
+@isnad1 id=ex.8h10v.s8.dc328c8ac2d5 from=translated src=- shape=764dd069 vocab=a65b6123
+-/
 theorem low_bands_disjoint (γ : ℕ → Γ) (r : ∀ i, GeneratedRepresentation B (γ i))
     (ts : ℕ → List TailOperation) (h j : ℕ)
     (hr : ∀ i, (r i).operations.length ≤ h) (hj : ∀ i, B.band (γ i)=j) (hjh : j ≤ h)
@@ -187,6 +205,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=ex.11h11v.s9.fb73411a4856 from=translated src=- shape=f23b39ad vocab=9dfa90c5
+-/
 theorem small_supports_compatible {Γ : Type*} {B : CylinderBases Γ} {γ : Γ}
     (r : ℕ → GeneratedRepresentation B γ) (ts : ℕ → List TailOperation) (h : ℕ)
     (hr : ∀ i, (r i).operations.length ≤ h) (hj : B.band γ ≤ h)

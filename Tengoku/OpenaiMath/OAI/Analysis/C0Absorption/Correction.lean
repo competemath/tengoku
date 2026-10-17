@@ -17,18 +17,30 @@ def blockVector (lev : Level) (s : C0Ball) (b : Block lev) : ℝ :=
 def blockRow (lev : Level) (s : C0Ball) (b : Block lev) : ℝ :=
   theta (levelJ lev) (localRadius lev s.val) b.1 * bandRow b.1 b.2 (prefixRestrict b.1 s)
 
+/--
+@isnad1 id=le.0h3v.s4.fa53a609b86d from=translated src=- shape=de853914 vocab=ce829501
+-/
 theorem blockVector_nonneg (lev : Level) (s : C0Ball) (b : Block lev) :
     0≤blockVector lev s b := mul_nonneg (theta_nonneg _ _ _) (bandVector_nonneg _ _ _)
 
+/--
+@isnad1 id=le.0h3v.s4.d1cb425d2b54 from=translated src=- shape=72689439 vocab=ce829501
+-/
 theorem blockVector_le_one (lev : Level) (s : C0Ball) (b : Block lev) :
     blockVector lev s b ≤ 1 := by
   calc
     _ ≤ 1*1 := mul_le_mul (theta_le_one _ _ _) (bandVector_le_one _ _ _) (bandVector_nonneg _ _ _) zero_le_one
     _ = 1 := one_mul _
 
+/--
+@isnad1 id=le.0h3v.s4.a764c1ed4311 from=translated src=- shape=de853914 vocab=927db9da
+-/
 theorem blockRow_nonneg (lev : Level) (s : C0Ball) (b : Block lev) :
     0≤blockRow lev s b := mul_nonneg (theta_nonneg _ _ _) (bandRow_nonneg _ _ _)
 
+/--
+@isnad1 id=le.0h2v.s8.d5641b21c2de from=translated src=- shape=bdba191d vocab=0d29961c
+-/
 theorem blockRow_sum (lev : Level) (s : C0Ball) : ∑ b : Block lev,blockRow lev s b ≤ 2 := by
   change (∑ b : (j : Fin (levelJ lev+1)) × BandGrid j.val,
     theta (levelJ lev) (localRadius lev s.val) b.1 * bandRow b.1 b.2 (prefixRestrict b.1 s)) ≤ 2
@@ -36,6 +48,9 @@ theorem blockRow_sum (lev : Level) (s : C0Ball) : ∑ b : Block lev,blockRow lev
   simp only [← Finset.mul_sum,bandRow_sum,mul_one]
   exact theta_sum_le _ _
 
+/--
+@isnad1 id=eq.0h2v.s8.be1ec79fa51f from=translated src=- shape=3f41a218 vocab=e51caa79
+-/
 theorem blockRow_vector (lev : Level) (s : C0Ball) :
     ∑ b : Block lev, blockRow lev s b*blockVector lev s b=1 := by
   change (∑ b : (j : Fin (levelJ lev+1)) × BandGrid j.val,
@@ -56,17 +71,26 @@ theorem blockRow_vector (lev : Level) (s : C0Ball) :
   simp only [he]
   exact theta_squares _ _
 
+/--
+@isnad1 id=le.0h1v.s4.242ebcdf1d3a from=translated src=- shape=e8e7667b vocab=dcefc1e9
+-/
 theorem bandL_ge_dyadic_inv (j : ℕ) : (2 : ℝ)^j ≤ bandL j := by
   let : Nonempty (BandGrid j) := ⟨fun _ => ⟨0,by constructor; exact neg_nonpos.mpr (Int.natCast_nonneg _); exact Int.natCast_nonneg _⟩⟩
   have hc : (1 : ℝ) ≤ Fintype.card (BandGrid j) := by exact_mod_cast Fintype.card_pos
   simp only [bandL,NNReal.coe_mul,NNReal.coe_ofNat,NNReal.coe_natCast,NNReal.coe_pow]
   nlinarith [pow_pos (by norm_num : (0:ℝ)<2) j]
 
+/--
+@isnad1 id=le.0h4v.s6.1b89cc6f5f04 from=translated src=- shape=de6e68ce vocab=096484d0
+-/
 theorem bandVector_distance (j : ℕ) (ξ : BandGrid j) (s t : PrefixCube j) :
     |bandVector j ξ s-bandVector j ξ t| ≤ bandL j*dist s t := by
   exact ((bandVector_lipschitz j ξ).dist_le_mul s t).trans
     (mul_le_mul_of_nonneg_right (by exact_mod_cast bandL_ge_dyadic_inv j) dist_nonneg)
 
+/--
+@isnad1 id=le.5h6v.s7.d200af003b44 from=translated src=- shape=7e7c7ff5 vocab=f9c9fb34
+-/
 theorem theta_band_budget (J : ℕ) (j : Fin (J+1)) {r s δ D : ℝ}
     (hr : 0≤r) (hs : 0 ≤ s) (hδ : 0≤δ) (hD : D≤bandL j*δ) (hD0 : j.val=0 → D=0) :
     min r s*(theta J r j*D) ≤ (eta/4)*theta J r j*δ := by
@@ -88,6 +112,9 @@ theorem theta_band_budget (J : ℕ) (j : Fin (J+1)) {r s δ D : ℝ}
     _ ≤ (eta/4)*theta J r j*δ := mul_le_mul_of_nonneg_right
       (mul_le_mul_of_nonneg_right hL (theta_nonneg _ _ _)) hδ
 
+/--
+@isnad1 id=le.1h5v.s8.13d2464fd194 from=translated src=- shape=371d7cbf vocab=82fc2649
+-/
 theorem bandRow_scaled_difference {j : ℕ} (a b : ℝ) (ha : 0≤a) (s t : PrefixCube j) :
     (∑ ξ : BandGrid j,|a*bandRow j ξ s-b*bandRow j ξ t|) ≤
       |a-b|+a*(∑ ξ : BandGrid j,|bandRow j ξ s-bandRow j ξ t|) := by
@@ -100,6 +127,9 @@ theorem bandRow_scaled_difference {j : ℕ} (a b : ℝ) (ha : 0≤a) (s t : Pref
       simp only [abs_mul,abs_of_nonneg ha,abs_of_nonneg (bandRow_nonneg j ξ t)]
     _ = _ := by rw [Finset.sum_add_distrib,← Finset.mul_sum,← Finset.mul_sum,bandRow_sum,mul_one]
 
+/--
+@isnad1 id=le.0h3v.s9.a309b12d8bd3 from=translated src=- shape=aabab631 vocab=9d6e86f6
+-/
 theorem blockRow_distance_decompose (lev : Level) (s t : C0Ball) :
     (∑ b : Block lev,|blockRow lev s b-blockRow lev t b|) ≤
       ∑ j : Fin (levelJ lev+1), (|theta (levelJ lev) (localRadius lev s.val) j-
@@ -115,6 +145,9 @@ theorem blockRow_distance_decompose (lev : Level) (s t : C0Ball) :
     (theta (levelJ lev) (localRadius lev t.val) j.val)
     (theta_nonneg _ _ _) (prefixRestrict j.val s) (prefixRestrict j.val t)
 
+/--
+@isnad1 id=le.0h3v.s8.780bdceac6ab from=translated src=- shape=2fc7e4e2 vocab=38935acb
+-/
 theorem blockRow_weighted_distance (lev : Level) (s t : C0Ball) :
     min (localRadius lev s.val) (localRadius lev t.val)*
       (∑ b : Block lev,|blockRow lev s b-blockRow lev t b|) ≤ eta*dist s t := by
@@ -162,6 +195,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=le.2h4v.s6.ec1c1d865b23 from=translated src=- shape=4fe7aeea vocab=7729d30c
+-/
 theorem product_difference_bound {a b u v : ℝ} (ha : 0≤a) (hv : |v|≤1) :
     |a*u-b*v| ≤ |a-b|+a*|u-v| := by
   calc
@@ -171,12 +207,18 @@ theorem product_difference_bound {a b u v : ℝ} (ha : 0≤a) (hv : |v|≤1) :
     _ ≤ |a-b| *1+a*|u-v| := add_le_add (mul_le_mul_of_nonneg_left hv (abs_nonneg _)) le_rfl
     _ = _ := by rw [mul_one]
 
+/--
+@isnad1 id=le.2h4v.s7.80af11b033b7 from=translated src=- shape=1752b1af vocab=a74f15ea
+-/
 theorem theta_weighted_coordinate (J : ℕ) (j : Fin (J+1)) {r s : ℝ} (hr : 0≤r) (hs : 0 ≤ s) :
     min r s*|theta J r j-theta J s j| ≤ (Real.pi/scheduleH)*|r-s| := by
   apply le_trans _ (theta_weighted_distance J hr hs)
   apply mul_le_mul_of_nonneg_left _ (le_min hr hs)
   exact Finset.single_le_sum (fun (i : Fin (J+1)) _ => abs_nonneg (theta J r i-theta J s i)) (Finset.mem_univ j)
 
+/--
+@isnad1 id=le.0h4v.s6.5f3d3f3f83a0 from=translated src=- shape=df9058e4 vocab=0a553842
+-/
 theorem blockVector_weighted_distance (lev : Level) (s t : C0Ball) (b : Block lev) :
     min (localRadius lev s.val) (localRadius lev t.val)*
       |blockVector lev s b-blockVector lev t b| ≤ eta*dist s t := by
@@ -215,17 +257,29 @@ theorem blockVector_weighted_distance (lev : Level) (s t : C0Ball) (b : Block le
         (show 0≤eta/4 from div_nonneg eta_pos.le (by norm_num))) dist_nonneg)
     _ ≤ eta*dist s t := by dsimp [δ]; nlinarith [eta_pos,mul_nonneg eta_pos.le (dist_nonneg (x := s) (y := t))]
 
+/--
+@isnad1 id=continuo.0h2v.s6.830730a2cb9d from=translated src=- shape=cc4c7d09 vocab=5a9b4c99
+-/
 theorem bandRow_continuous (j : ℕ) (ξ : BandGrid j) : Continuous (bandRow j ξ) := by
   exact (bandBump_lipschitz j ξ).continuous.div
     (continuous_finsetSum _ (fun ζ _ => (bandBump_lipschitz j ζ).continuous)) (fun s => (bandDenominator_pos j s).ne')
 
+/--
+@isnad1 id=continuo.0h1v.s4.0e06dac28ad3 from=translated src=- shape=7000f90d vocab=f90c677d
+-/
 theorem localRadius_continuous (lev : Level) : Continuous (localRadius lev) :=
   (finiteRadius_lipschitz _).continuous
 
+/--
+@isnad1 id=continuo.0h2v.s5.18ff4c8a410b from=translated src=- shape=4e7a8218 vocab=e5bb1aab
+-/
 theorem blockVector_continuous (lev : Level) (b : Block lev) : Continuous (fun s => blockVector lev s b) :=
   ((theta_continuous (levelJ lev) b.1).comp ((localRadius_continuous lev).comp continuous_subtype_val)).mul
     ((bandVector_lipschitz b.1 b.2).continuous.comp (prefixRestrict_lipschitz b.1).continuous)
 
+/--
+@isnad1 id=continuo.0h2v.s5.d4ad85e7afbb from=translated src=- shape=4e7a8218 vocab=df6c6b56
+-/
 theorem blockRow_continuous (lev : Level) (b : Block lev) : Continuous (fun s => blockRow lev s b) :=
   ((theta_continuous (levelJ lev) b.1).comp ((localRadius_continuous lev).comp continuous_subtype_val)).mul
     ((bandRow_continuous b.1 b.2).comp (prefixRestrict_lipschitz b.1).continuous)

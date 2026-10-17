@@ -9,6 +9,9 @@ open NormedSpace
 namespace C0Absorption
 noncomputable section
 
+/--
+@isnad1 id=bilip.2h5v.s5.7781da921d7f from=translated src=- shape=42314fae vocab=6f8c1bf6
+-/
 theorem BiLip.comp {X Y Z : Type*} [MetricSpace X] [MetricSpace Y] [MetricSpace Z]
     {g : Y → Z} {f : X → Y} (hg : BiLip g) (hf : BiLip f) : BiLip (g ∘ f) := by
   obtain ⟨cg,Cg,hcg,hcgC,hg⟩ := hg
@@ -25,11 +28,17 @@ theorem BiLip.comp {X Y Z : Type*} [MetricSpace X] [MetricSpace Y] [MetricSpace 
       _ ≤ Cg*(Cf*dist x y) := mul_le_mul_of_nonneg_left (hf x y).2 hCg
       _ = Cg*Cf*dist x y := (mul_assoc _ _ _).symm
 
+/--
+@isnad1 id=metricun.0h0v.s4.3d5b5d066e48 from=translated src=- shape=49959d42 vocab=0ee8984f
+-/
 theorem concrete_metricUniversal : MetricUniversal ConcreteSpace := by
   intro M instM instSep
   obtain ⟨f,hf⟩ := c0_metricUniversal M
   exact ⟨concreteC0Embedding ∘ f,concreteC0Embedding_bilip.comp hf⟩
 
+/--
+@isnad1 id=mainconc.0h0v.s0.1e2ca3028b02 from=translated src=- shape=45709ebd vocab=1e2ca302
+-/
 theorem main_result : MainConclusion := by
   refine ⟨ConcreteSpace,inferInstance,inferInstance,inferInstance,inferInstance,
     concrete_noLinearC0,⟨concreteAbsorption,concreteAbsorption_surjective,concreteAbsorption_bilip⟩,
