@@ -11,6 +11,9 @@ noncomputable section
 namespace AbhyankarSathaye.CommutingDerivations
 open MvPolynomial
 
+/--
+@isnad1 id=eq.0h2v.s10.c9b349850b5b from=translated src=- shape=d1474b6a vocab=eae2cd8b
+-/
 @[simp] theorem extendedCoefficientMap_complex (n : ℕ) (a : ℂ) :
     extendedCoefficientMap n (algebraMap ℂ LaurentCoefficients a) =
       algebraMap ℂ (ExtendedLocalizedAmbient n) a := by
@@ -18,6 +21,9 @@ open MvPolynomial
   rw [coefficientMap_complex_intersection]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s10.eb3e70b3f8f0 from=translated src=- shape=bd5dfe40 vocab=67f996e1
+-/
 theorem extendedCoefficientMap_polynomial {n : ℕ} (hn : 4 ≤ n) (q : Polynomial ℂ) :
     extendedCoefficientMap n (algebraMap (Polynomial ℂ) LaurentCoefficients q) =
       extendedLocMap hn (Polynomial.aeval (extendedAmbientParameter hn) q) := by
@@ -34,13 +40,18 @@ theorem extendedCoefficientMap_polynomial {n : ℕ} (hn : 4 ≤ n) (q : Polynomi
     exact (extendedLocMap_c hn).symm
   exact AlgHom.congr_fun he q
 
+/--
+@isnad1 id=eq.1h1v.s9.913096318c39 from=translated src=- shape=e14fb689 vocab=c667ad5a
+-/
 theorem extendedCoefficientMap_parameter {n : ℕ} (hn : 4 ≤ n) :
     extendedCoefficientMap n coefficientC = extendedLocMap hn (extendedAmbientParameter hn) := by
   change C (coefficientMap coefficientC) = extendedLocMap hn (extendedF hn + 1)
   rw [coefficientMap_C, extendedLocMap_c]
 
 /-- Exact input to the generic commuting-family construction, specialized to
-the actual all-dimensional localization and coordinate equivalence. -/
+the actual all-dimensional localization and coordinate equivalence.
+@isnad1 id=iff.1h2v.s11.2245a814464b from=translated src=- shape=365c1958 vocab=cfbacfe2
+-/
 theorem extended_localization_kernel_intersection {n : ℕ} (hn : 4 ≤ n)
     (r : MvPolynomial (Fin n) ℂ) :
     (∃ b : LaurentCoefficients,

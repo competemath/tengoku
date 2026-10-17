@@ -25,9 +25,15 @@ def coefficientD : LaurentCoefficients :=
   IsLocalization.Away.invSelf (Polynomial.X : Polynomial ℂ)
 def localD : LocalizedAmbient := IsLocalization.Away.invSelf ambientC
 
+/--
+@isnad1 id=eq.0h0v.s7.47f6d0bd214e from=translated src=- shape=33aceabd vocab=979f7bc6
+-/
 theorem coefficient_unit : coefficientC * coefficientD = 1 :=
   IsLocalization.Away.mul_invSelf _
 
+/--
+@isnad1 id=eq.0h0v.s9.233ac8e2f895 from=translated src=- shape=dad3f95b vocab=639eb2a7
+-/
 theorem local_unit : loc ambientC * localD = 1 :=
   IsLocalization.Away.mul_invSelf _
 
@@ -41,9 +47,15 @@ def coefficientMap : LaurentCoefficients →+* LocalizedAmbient :=
       · simpa [polynomialCoefficientMap] using local_unit
       · simpa [polynomialCoefficientMap, mul_comm] using local_unit)
 
+/--
+@isnad1 id=eq.0h0v.s9.d6ffe0f4685d from=translated src=- shape=4ea32f46 vocab=53196f47
+-/
 @[simp] theorem coefficientMap_C : coefficientMap coefficientC = loc ambientC := by
   simp [coefficientMap, coefficientC, polynomialCoefficientMap]
 
+/--
+@isnad1 id=eq.0h0v.s8.ca950a1f675b from=translated src=- shape=501f93a1 vocab=de8a42eb
+-/
 @[simp] theorem coefficientMap_D : coefficientMap coefficientD = localD := by
   have h1 : loc ambientC * coefficientMap coefficientD = 1 := by
     simpa using congrArg coefficientMap coefficient_unit
@@ -59,16 +71,28 @@ def localBeta : LocalizedAmbient :=
 def localT : LocalizedAmbient := parameter localAlpha localBeta (loc u) (loc v) (loc w)
 def localCoordinates : Fin 3 → LocalizedAmbient := ![loc shiftX, loc shiftY, localT]
 
+/--
+@isnad1 id=eq.0h0v.s10.51680c8af736 from=translated src=- shape=386d5a4a vocab=ad6c4386
+-/
 theorem local_cusp : (loc x)^2 + (loc y)^3 = loc s * loc h := by
   simpa [mul_comm] using congrArg loc cusp
 
+/--
+@isnad1 id=eq.0h0v.s10.1e57f8c546dd from=translated src=- shape=9afadb2f vocab=9bd6937f
+-/
 theorem local_section : loc h = loc ambientC + P (loc x) (loc y) (loc s) := by
   have he : h = ambientC + P x y s := by unfold ambientC F p; ring
   simpa using congrArg loc he
 
+/--
+@isnad1 id=eq.0h0v.s10.65e008201567 from=translated src=- shape=22977525 vocab=e0abfed2
+-/
 theorem local_bezout : localAlpha * loc h + localBeta * loc y = 1 :=
   parameter_bezout_unit _ _ _ _ _ _ local_cusp local_section local_unit
 
+/--
+@isnad1 id=eq.0h0v.s10.71ebc0e0c6b0 from=translated src=- shape=a505f39d vocab=55a844c7
+-/
 theorem local_recover_s : localD * ((loc shiftX)^2 + (loc shiftY)^3) = loc s := by
   simpa [shiftX, shiftY] using
     parameter_recover_s _ _ _ _ _ _ local_cusp local_section local_unit
@@ -77,10 +101,16 @@ theorem local_recover_s : localD * ((loc shiftX)^2 + (loc shiftY)^3) = loc s := 
 def relativeBackward : RelativePlane →+* LocalizedAmbient :=
   eval₂Hom coefficientMap localCoordinates
 
+/--
+@isnad1 id=eq.0h1v.s10.fea48c5c1d28 from=translated src=- shape=bfc7bf48 vocab=9cbd35e1
+-/
 @[simp] theorem relativeBackward_C (a : LaurentCoefficients) :
     relativeBackward (C a) = coefficientMap a := by
   simp [relativeBackward]
 
+/--
+@isnad1 id=eq.0h1v.s8.40c110025ca7 from=translated src=- shape=dbf39def vocab=a054ef42
+-/
 @[simp] theorem relativeBackward_X (i : Fin 3) :
     relativeBackward (X i) = localCoordinates i := by
   simp [relativeBackward]

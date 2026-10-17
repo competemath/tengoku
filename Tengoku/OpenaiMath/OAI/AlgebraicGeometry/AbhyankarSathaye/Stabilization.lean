@@ -25,11 +25,17 @@ def extendedF {n : ℕ} (hn : 4 ≤ n) : MvPolynomial (Fin n) ℂ :=
 def blocksToAmbient {n : ℕ} (hn : 4 ≤ n) : Fin (n-4) ⊕ Fin 4 ≃ Fin n :=
   (Equiv.sumComm _ _).trans (finSumFinEquiv.trans (finCongr (by omega)))
 
+/--
+@isnad1 id=eq.1h2v.s7.ab21ad8424b2 from=translated src=- shape=f95bfc82 vocab=550370dc
+-/
 theorem blocksToAmbient_original {n : ℕ} (hn : 4 ≤ n) (i : Fin 4) :
     blocksToAmbient hn (Sum.inr i) = fourInclusion hn i := by
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.7a426cf6010c from=translated src=- shape=6c95a4fd vocab=17ef0404
+-/
 theorem blocksToAmbient_symm_original {n : ℕ} (hn : 4 ≤ n) (i : Fin 4) :
     (blocksToAmbient hn).symm (fourInclusion hn i) = Sum.inr i := by
   rw [← blocksToAmbient_original hn i, Equiv.symm_apply_apply]
@@ -39,6 +45,9 @@ def splitAmbient {n : ℕ} (hn : 4 ≤ n) :
   (renameEquiv ℂ (blocksToAmbient hn).symm).trans
     (sumAlgEquiv ℂ (Fin (n-4)) (Fin 4))
 
+/--
+@isnad1 id=eq.1h1v.s10.48025c7e1b7b from=translated src=- shape=3d9fa214 vocab=6f54149a
+-/
 theorem splitAmbient_comp_original {n : ℕ} (hn : 4 ≤ n) :
     (splitAmbient hn).toAlgHom.comp (rename (fourInclusion hn)) =
       IsScalarTower.toAlgHom ℂ R (MvPolynomial (Fin (n-4)) R) := by
@@ -49,6 +58,9 @@ theorem splitAmbient_comp_original {n : ℕ} (hn : 4 ≤ n) :
   rw [rename_X, rename_X, blocksToAmbient_symm_original]
   exact sumAlgEquiv_X_inr ℂ (Fin (n-4)) (Fin 4) i
 
+/--
+@isnad1 id=eq.1h1v.s9.239bdba8ab90 from=translated src=- shape=62cd6615 vocab=a64fadd9
+-/
 theorem splitAmbient_F {n : ℕ} (hn : 4 ≤ n) : splitAmbient hn (extendedF hn) = C F :=
   AlgHom.congr_fun (splitAmbient_comp_original hn) F
 
@@ -71,14 +83,23 @@ def extendedFiberEquiv {n : ℕ} (hn : 4 ≤ n) :
 def extendedPoint {n : ℕ} (_hn : 4 ≤ n) (i : Fin n) : ℂ :=
   if hi : i.val < 4 then criticalPoint ⟨i.val, hi⟩ else 0
 
+/--
+@isnad1 id=eq.1h2v.s4.6731d5d68199 from=translated src=- shape=9dd1f7c5 vocab=c8a5bc15
+-/
 theorem extendedPoint_original {n : ℕ} (hn : 4 ≤ n) (i : Fin 4) :
     extendedPoint hn (fourInclusion hn i) = criticalPoint i := by
   simp [extendedPoint, fourInclusion, i.isLt]
 
+/--
+@isnad1 id=eq.2h2v.s5.413cd0ed9aec from=translated src=- shape=14844e33 vocab=7a271921
+-/
 theorem extendedPoint_unused {n : ℕ} (hn : 4 ≤ n) (i : Fin n) (hi : 4 ≤ i.val) :
     extendedPoint hn i = 0 := by
   simp [extendedPoint, Nat.not_lt.mpr hi]
 
+/--
+@isnad1 id=eq.1h2v.s8.d461ad323497 from=translated src=- shape=b3551111 vocab=bb92eed8
+-/
 theorem extended_eval {n : ℕ} (hn : 4 ≤ n) (f : R) :
     eval (extendedPoint hn) (rename (fourInclusion hn) f) = eval criticalPoint f := by
   rw [eval_rename]
@@ -87,9 +108,15 @@ theorem extended_eval {n : ℕ} (hn : 4 ≤ n) (f : R) :
     exact extendedPoint_original hn i
   rw [he]
 
+/--
+@isnad1 id=eq.1h1v.s6.de994ad238ab from=translated src=- shape=8e77f56b vocab=2a2ed967
+-/
 theorem extendedF_eval {n : ℕ} (hn : 4 ≤ n) : eval (extendedPoint hn) (extendedF hn) = -1 := by
   rw [extendedF, extended_eval, eval_F]
 
+/--
+@isnad1 id=eq.1h2v.s8.07fcbdc9fc28 from=translated src=- shape=a8424d10 vocab=1d53fd2e
+-/
 theorem extendedF_critical {n : ℕ} (hn : 4 ≤ n) (i : Fin n) :
     eval (extendedPoint hn) (pderiv i (extendedF hn)) = 0 := by
   apply critical_of_ambient_identity
@@ -102,6 +129,9 @@ theorem extendedF_critical {n : ℕ} (hn : 4 ≤ n) (i : Fin n) :
   · rw [extended_eval, eval_s]
   · exact extendedF_eval hn
 
+/--
+@isnad1 id=not.1h1v.s8.4bc35f14fa30 from=translated src=- shape=d1331688 vocab=de410419
+-/
 theorem extendedF_not_coordinate {n : ℕ} (hn : 4 ≤ n) :
     ¬ ∃ (e : MvPolynomial (Fin n) ℂ ≃ₐ[ℂ] MvPolynomial (Fin n) ℂ) (i : Fin n),
       e (X i) = extendedF hn :=

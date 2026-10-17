@@ -13,6 +13,9 @@ with a single evaluation relation, over any commutative ring.
 noncomputable section
 namespace AbhyankarSathaye
 
+/--
+@isnad1 id=eq.2h8v.s8.6f274f1f8633 from=translated src=- shape=b90ca16b vocab=1f6aef73
+-/
 theorem linear_ideal {B : Type*} [CommRing B] (h c a b r q W : B)
     (hc : c*a = h*b) (hb : r*h+q*c = 1) :
     Ideal.span ({h*W-a, c*W-b} : Set B) = Ideal.span {W-(r*a+q*b)} := by
