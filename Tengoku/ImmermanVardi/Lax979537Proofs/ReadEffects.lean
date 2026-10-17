@@ -20,6 +20,9 @@ def nextHeads {tm : FinTM2} {Node : Type} (e : Effect tm)
     (heads : tm.K → Option Node) (parent : Option Node) : tm.K → Option Node :=
   if e.pop then Function.update heads e.key parent else heads
 
+/--
+@isnad1 id=step.2h10v.s7.5b3006939354 from=translated src=- shape=fc2d4876 vocab=5f3e810f
+-/
 theorem target_step (tm : FinTM2) {Node : Type} (fresh : Node)
     (H : NodeMachine.Records Node tm.Γ) (heads : tm.K → Option Node)
     {c : TM2Micro.Cursor tm.Γ tm.Λ tm.σ} {v : tm.σ} {e : Effect tm}
@@ -34,6 +37,9 @@ theorem target_step (tm : FinTM2) {Node : Type} (fresh : Node)
       | peek k f q => cases ht; exact .peek H k f q v heads a parent hr
       | push | load | branch | goto | halt => cases ht
 
+/--
+@isnad1 id=step.2h8v.s6.315ce8ea440c from=translated src=- shape=e6c75259 vocab=e78ae069
+-/
 theorem empty_step (tm : FinTM2) {Node : Type} (fresh : Node)
     (H : NodeMachine.Records Node tm.Γ) (heads : tm.K → Option Node)
     {c : TM2Micro.Cursor tm.Γ tm.Λ tm.σ} {v : tm.σ} {e : Effect tm}

@@ -15,7 +15,9 @@ open MvPolynomial
 variable {K σ τ L : Type*} [CommRing K] [CommRing L]
 
 /-- Leibniz extends a closure proof on the literal polynomial generators to
-the whole polynomial ring. No finite-variable or domain assumption is needed. -/
+the whole polynomial ring. No finite-variable or domain assumption is needed.
+@isnad1 id=ex.1h6v.s9.93e812fcba17 from=translated src=- shape=3bdaeafe vocab=b09dd165
+-/
 theorem derivation_preserves_polynomial_image [Algebra K L]
     (ι : MvPolynomial σ K →ₐ[K] L) (D : Derivation K L L)
     (hX : ∀ j : σ, ∃ q : MvPolynomial σ K, ι q = D (ι (X j))) :
@@ -41,7 +43,9 @@ variable [Fintype σ] [Fintype τ]
 
 /-- One exponent clears any finite collection of localization elements.
 The proof selects actual numerators and takes the finite maximum of exponents.
-It remains valid when the original coefficient ring has zero divisors. -/
+It remains valid when the original coefficient ring has zero divisors.
+@isnad1 id=ex.0h6v.s8.7952aa2eda0d from=translated src=- shape=fa514646 vocab=62e5a3dc
+-/
 theorem finite_localization_denominator_bound (c : MvPolynomial σ K)
     [IsLocalization.Away c L] (z : τ → σ → L) :
     ∃ N : ℕ, ∀ (i : τ) (j : σ), ∃ a : MvPolynomial σ K,
@@ -67,7 +71,9 @@ theorem finite_localization_denominator_bound (c : MvPolynomial σ K)
 variable [Algebra K L] [IsScalarTower K (MvPolynomial σ K) L]
 
 /-- Construct descended derivations with a common clearing exponent,
-assuming injectivity of the localization map. -/
+assuming injectivity of the localization map.
+@isnad1 id=ex.1h6v.s10.b200d990399a from=translated src=- shape=2291da30 vocab=5bdbd935
+-/
 theorem exists_common_denominator_descent (c : MvPolynomial σ K)
     [IsLocalization.Away c L]
     (hinj : Function.Injective (algebraMap (MvPolynomial σ K) L))

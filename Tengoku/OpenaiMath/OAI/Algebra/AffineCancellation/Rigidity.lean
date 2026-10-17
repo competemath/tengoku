@@ -10,7 +10,9 @@ open Polynomial UniqueFactorizationMonoid UniqueFactorizationDomain
 
 variable {k : Type*} [Field k]
 
-/-- A polynomial of degree at most one has no nonunit square divisor. -/
+/-- A polynomial of degree at most one has no nonunit square divisor.
+@isnad1 id=isunit.3h3v.s8.e2aee77dff75 from=translated src=- shape=47347456 vocab=52b4b170
+-/
 lemma isUnit_of_square_dvd {n t : k[X]} (hn : n ≠ 0) (hdeg : n.natDegree ≤ 1)
     (ht : t ^ 2 ∣ n) : IsUnit t := by
   have ht0 : t ≠ 0 := by
@@ -24,7 +26,9 @@ lemma isUnit_of_square_dvd {n t : k[X]} (hn : n ≠ 0) (hdeg : n.natDegree ≤ 1
   rw [Polynomial.isUnit_iff_degree_eq_zero, degree_eq_natDegree ht0, htdeg]
   rfl
 
-/-- Coprimality of the square and cube terms of an affine-linear orbit sum. -/
+/-- Coprimality of the square and cube terms of an affine-linear orbit sum.
+@isnad1 id=iscoprim.3h5v.s9.7936b52654d1 from=translated src=- shape=c71992b5 vocab=7e088048
+-/
 lemma orbit_coprime {a d u n : k[X]} (hn : n ≠ 0) (hdeg : n.natDegree ≤ 1)
     (heq : d ^ 2 + a ^ 2 * u ^ 3 = n) : IsCoprime (d ^ 2) (a ^ 2 * u ^ 3) := by
   have hda : IsRelPrime d a := by
@@ -42,7 +46,9 @@ lemma orbit_coprime {a d u n : k[X]} (hn : n ≠ 0) (hdeg : n.natDegree ≤ 1)
       ((pow_dvd_pow_of_dvd htu 2).trans (pow_dvd_pow u (by decide : 2 ≤ 3))) _
   exact (hda.isCoprime.pow_left.pow_right).mul_right (hdu.isCoprime.pow_left.pow_right)
 
-/-- The polynomial degree bound expressed with radicals. -/
+/-- The polynomial degree bound expressed with radicals.
+@isnad1 id=le.0h5v.s9.b1a3d2fc38b7 from=translated src=- shape=1d9947ea vocab=2a01a9a0
+-/
 lemma radical_orbit_bound [DecidableEq k] (a d u n : k[X]) :
     (radical (d ^ 2 * (a ^ 2 * u ^ 3) * (-n))).natDegree ≤
     d.natDegree + a.natDegree + u.natDegree + n.natDegree := by
@@ -70,7 +76,9 @@ lemma radical_orbit_bound [DecidableEq k] (a d u n : k[X]) :
   have hn : (radical n).natDegree ≤ n.natDegree := natDegree_radical_le
   omega
 
-/-- A nonsquare obstruction over the coefficient field forces constant polynomial orbits. -/
+/-- A nonsquare obstruction over the coefficient field forces constant polynomial orbits.
+@isnad1 id=and.7h5v.s10.49b39c329e23 from=translated src=- shape=0ee859f8 vocab=9314ef51
+-/
 theorem orbit_constant [CharZero k] {a d u n : k[X]}
     (ha : a ≠ 0) (hd : d ≠ 0) (hu : u ≠ 0) (hn : n ≠ 0)
     (hdeg : n.natDegree ≤ 1) (heq : d ^ 2 + a ^ 2 * u ^ 3 = n)
@@ -124,6 +132,9 @@ end ComplexCancellation.Rigidity
 
 namespace ComplexCancellation.Rigidity
 
+/--
+@isnad1 id=eq.1h3v.s6.b98d30624a29 from=translated src=- shape=07868f3b vocab=5323ffd4
+-/
 lemma ratFunc_intDegree_pow {K : Type*} [Field K] {z : RatFunc K}
     (hz : z ≠ 0) (n : ℕ) : (z ^ n).intDegree = (n : ℤ) * z.intDegree := by
   induction n with
@@ -133,7 +144,9 @@ lemma ratFunc_intDegree_pow {K : Type*} [Field K] {z : RatFunc K}
     push_cast
     ring
 
-/-- The cube of the rational parameter is not the negative of a square. -/
+/-- The cube of the rational parameter is not the negative of a square.
+@isnad1 id=ne.0h2v.s7.dd7fbe5b00e1 from=translated src=- shape=454fe7f3 vocab=b10a35d1
+-/
 theorem ratFunc_X_cube_nonsquare {K : Type*} [Field K] (z : RatFunc K) :
     z ^ 2 ≠ -(RatFunc.X : RatFunc K) ^ 3 := by
   intro hz

@@ -24,6 +24,9 @@ abbrev Q := MvPolynomial (Fin 4) K ⧸ ideal K
 def qmap : MvPolynomial (Fin 4) K →ₐ[K] Q K := Ideal.Quotient.mkₐ K (ideal K)
 def qvar (i : Fin 4) : Q K := qmap K (X i)
 
+/--
+@isnad1 id=eq.0h1v.s7.7ef355308dbd from=translated src=- shape=79ab9cfb vocab=649a5675
+-/
 theorem relation_h : qvar K 0 = 1+P (qvar K 1) (qvar K 2) (qvar K 3) := by
   have hz : qmap K (relH K) = 0 := quotient_pair_left (relH K) (relCusp K)
   have hh : qvar K 0-1-P (qvar K 1) (qvar K 2) (qvar K 3) = 0 := by
@@ -33,16 +36,25 @@ theorem relation_h : qvar K 0 = 1+P (qvar K 1) (qvar K 2) (qvar K 3) := by
         (1+P (qvar K 1) (qvar K 2) (qvar K 3)) := by ring
     _ = _ := by rw [hh, zero_add]
 
+/--
+@isnad1 id=eq.0h1v.s8.d55e090b1df6 from=translated src=- shape=c4875e88 vocab=7f20e960
+-/
 theorem relation_cusp : (qvar K 1)^2+(qvar K 2)^3 = qvar K 0*qvar K 3 := by
   have hz : qmap K (relCusp K) = 0 := quotient_pair_right (relH K) (relCusp K)
   have hh : (qvar K 1)^2+(qvar K 2)^3-qvar K 3*qvar K 0 = 0 := by
     simpa [relCusp, qvar] using hz
   simpa [mul_comm] using sub_eq_zero.mp hh
 
+/--
+@isnad1 id=eq.0h1v.s9.652fc3f49179 from=translated src=- shape=3eab41b1 vocab=e34bb8d6
+-/
 theorem shift_s : (qvar K 1+(qvar K 3)^3)^2+(qvar K 2-(qvar K 3)^2)^3 = qvar K 3 := by
   rw [shift_universal, relation_cusp, relation_h]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s8.ef89a02c566a from=translated src=- shape=2821da96 vocab=518f02ab
+-/
 theorem bezout : Alpha (qvar K 1) (qvar K 3)*qvar K 0+
     Beta (qvar K 1) (qvar K 2) (qvar K 3)*qvar K 2 = 1 := by
   have he := bezout_certificate (qvar K 0) (qvar K 1) (qvar K 2) (qvar K 3)
@@ -60,6 +72,9 @@ def planeH : MvPolynomial (Fin 2) K := 1+P (planeX K) (planeY K) (planeS K)
 def values : Fin 4 → MvPolynomial (Fin 2) K :=
   ![planeH K, planeX K, planeY K, planeS K]
 
+/--
+@isnad1 id=eq.0h1v.s8.40f697a40cd3 from=translated src=- shape=7ef71e15 vocab=d8b259cf
+-/
 theorem plane_cusp : (planeX K)^2+(planeY K)^3 = planeH K*planeS K := by
   have he := shift_universal (planeX K) (planeY K) (planeS K)
   have hx : planeX K+(planeS K)^3 = X 0 := by unfold planeX; ring
@@ -76,6 +91,9 @@ def forward : Q K →ₐ[K] MvPolynomial (Fin 2) K :=
     (by simp [relH, values, planeH])
     (by simp [relCusp, values, plane_cusp, mul_comm])
 
+/--
+@isnad1 id=eq.0h2v.s8.6b6f2fe2984c from=translated src=- shape=0a3c0b72 vocab=c33b7087
+-/
 @[simp] theorem forward_qvar (i : Fin 4) : forward K (qvar K i) = values K i := by
   change aeval (values K) (X i) = values K i
   exact aeval_X _ _
@@ -83,25 +101,43 @@ def forward : Q K →ₐ[K] MvPolynomial (Fin 2) K :=
 def backward : MvPolynomial (Fin 2) K →ₐ[K] Q K :=
   aeval ![qvar K 1+(qvar K 3)^3, qvar K 2-(qvar K 3)^2]
 
+/--
+@isnad1 id=eq.0h1v.s8.6c94b5f2fdcb from=translated src=- shape=627c255d vocab=abecfcdd
+-/
 @[simp] theorem backward_planeS : backward K (planeS K) = qvar K 3 := by
   simpa [backward, planeS] using shift_s K
 
+/--
+@isnad1 id=eq.0h1v.s8.00c93fcff065 from=translated src=- shape=627c255d vocab=6601912b
+-/
 @[simp] theorem backward_planeX : backward K (planeX K) = qvar K 1 := by
   simp only [planeX, map_sub, map_pow, backward_planeS]
   simp [backward]
 
+/--
+@isnad1 id=eq.0h1v.s8.caf8bf1b5bb9 from=translated src=- shape=627c255d vocab=a846eb68
+-/
 @[simp] theorem backward_planeY : backward K (planeY K) = qvar K 2 := by
   simp only [planeY, map_add, map_pow, backward_planeS]
   simp [backward]
 
+/--
+@isnad1 id=eq.0h1v.s8.edaa339d1f30 from=translated src=- shape=627c255d vocab=71f3d0c7
+-/
 @[simp] theorem backward_planeH : backward K (planeH K) = qvar K 0 := by
   simpa [planeH] using (relation_h K).symm
 
+/--
+@isnad1 id=eq.0h1v.s9.51cd4042f08e from=translated src=- shape=81b8aaeb vocab=c9cd4a22
+-/
 theorem forward_backward : (forward K).comp (backward K) = AlgHom.id K _ := by
   apply MvPolynomial.algHom_ext
   intro i
   fin_cases i <;> simp [backward, values, planeX, planeY]
 
+/--
+@isnad1 id=eq.0h1v.s9.1dee9fa1ac52 from=translated src=- shape=4961f72b vocab=c9cd4a22
+-/
 theorem backward_forward : (backward K).comp (forward K) = AlgHom.id K _ := by
   apply Ideal.Quotient.algHom_ext
   apply MvPolynomial.algHom_ext

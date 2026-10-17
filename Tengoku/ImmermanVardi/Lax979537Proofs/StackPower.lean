@@ -26,11 +26,17 @@ noncomputable def costPolynomial : Nat → Polynomial Nat
   | k + 1 => Polynomial.C 7 * Polynomial.X + Polynomial.C 6 +
       Polynomial.X * (costPolynomial k + Polynomial.C 2)
 
+/--
+@isnad1 id=eq.0h2v.s3.7db6ad9606d7 from=translated src=- shape=0b115670 vocab=d9330e95
+-/
 theorem eval_costPolynomial (k n : Nat) : (costPolynomial k).eval n = cost k n := by
   induction k with
   | zero => simp [costPolynomial, cost]
   | succ k ih => simp [costPolynomial, cost, ih]
 
+/--
+@isnad1 id=eq.0h10v.s6.7037300c9f93 from=translated src=- shape=3078193f vocab=fe3c4307
+-/
 theorem addTokens_working (base : K → List Bool) (counter out : K)
     (xs ys : List Bool) (a : Aux) (scratch : Option Bool) (m : Nat) :
     addTokens out m (working base counter out xs ys a scratch) =

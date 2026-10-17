@@ -22,6 +22,9 @@ def forkLoop (src left right : K) : BitProgram K Aux :=
 def fork (src left right : K) : BitProgram K Aux :=
   .seq (read src) (forkLoop src left right)
 
+/--
+@isnad1 id=eq.2h11v.s6.3ec8d68c1a11 from=translated src=- shape=b2a17556 vocab=a655e069
+-/
 theorem pop_working3 (base : K → List Bool) (src left right : K)
     (hl : src ≠ left) (hr : src ≠ right) (xs ys zs : List Bool)
     (a : Aux) (scratch : Option Bool) :
@@ -34,6 +37,9 @@ theorem pop_working3 (base : K → List Bool) (src left right : K)
     by_cases hs : k = src <;> by_cases hl : k = left <;> by_cases hr : k = right <;>
       simp_all [Op.apply, working3]
 
+/--
+@isnad1 id=eq.1h11v.s6.005c074a8b17 from=translated src=- shape=78b71757 vocab=8475e214
+-/
 theorem push_left (base : K → List Bool) (src left right : K)
     (h : left ≠ right) (xs ys zs : List Bool) (a : Aux) (b : Bool) :
     Op.apply (.push left (fun s : Aux × Option Bool => s.2.getD false))
@@ -45,6 +51,9 @@ theorem push_left (base : K → List Bool) (src left right : K)
     by_cases hl : k = left <;> by_cases hr : k = right <;>
       simp_all [Op.apply, working3]
 
+/--
+@isnad1 id=eq.0h11v.s6.609578f504fa from=translated src=- shape=c732799c vocab=8475e214
+-/
 theorem push_right (base : K → List Bool) (src left right : K)
     (xs ys zs : List Bool) (a : Aux) (b : Bool) :
     Op.apply (.push right (fun s : Aux × Option Bool => s.2.getD false))

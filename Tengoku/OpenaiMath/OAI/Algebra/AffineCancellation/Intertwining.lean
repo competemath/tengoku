@@ -23,6 +23,9 @@ def subalgebra (f : R →ₐ[k] S) (D : Derivation k R R) (E : Derivation k S S)
     change E (f s)=f (D s) at hs
     change E (f (r*s))=f (D (r*s))
     rw [map_mul,Derivation.leibniz,Derivation.leibniz,hr,hs,smul_eq_mul,smul_eq_mul,smul_eq_mul,smul_eq_mul,map_add,map_mul,map_mul]
+/--
+@isnad1 id=eq.1h9v.s10.bded5d118b24 from=translated src=- shape=da143f9a vocab=b09dd165
+-/
 lemma mvPolynomial (f : R →ₐ[k] S) (D : Derivation k R R) (E : Derivation k S S)
     {ι : Type*} (q : MvPolynomial ι k →ₐ[k] R) (p : MvPolynomial ι k)
     (hX : ∀ i, E (f (q (MvPolynomial.X i)))=f (D (q (MvPolynomial.X i)))) : E (f (q p))=f (D (q p)) := by

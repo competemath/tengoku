@@ -19,6 +19,9 @@ structure Store where
   state : σ
   stk : (k : K) → List (Γ k)
 
+/--
+@isnad1 id=eq.2h5v.s5.2a835a9c3b83 from=translated src=- shape=4fead3cd vocab=550144ab
+-/
 theorem Store.ext {s t : Store Γ σ} (hs : s.state = t.state) (hk : s.stk = t.stk) :
     s = t := by
   cases s
@@ -124,6 +127,9 @@ def Runs [DecidableEq K] {Λ : Type} (code : Λ → TM2.Stmt Γ Λ σ)
     (l : Option Λ) (s : Store Γ σ) (l' : Option Λ) (s' : Store Γ σ) (t : Nat) : Prop :=
   (fun c => c.bind (TM2.step code))^[t] (some (config l s)) = some (config l' s')
 
+/--
+@isnad1 id=runs.1h9v.s6.b29c160e7dc7 from=translated src=- shape=bc65fa6c vocab=c212776c
+-/
 theorem runs_one [DecidableEq K] {Λ : Type} (code : Λ → TM2.Stmt Γ Λ σ)
     (l : Λ) (s : Store Γ σ) (l' : Option Λ) (s' : Store Γ σ)
     (h : TM2.stepAux (code l) s.state s.stk = config l' s') :
@@ -131,6 +137,9 @@ theorem runs_one [DecidableEq K] {Λ : Type} (code : Λ → TM2.Stmt Γ Λ σ)
   simpa only [Runs, Function.iterate_one, Option.bind_some, config, TM2.step] using
     congrArg some h
 
+/--
+@isnad1 id=runs.2h13v.s6.2b1a4c27d803 from=translated src=- shape=ec0f3b91 vocab=a55ba396
+-/
 theorem runs_trans [DecidableEq K] {Λ : Type} {code : Λ → TM2.Stmt Γ Λ σ}
     {l m n : Option Λ} {s u t : Store Γ σ} {a b : Nat}
     (h : Runs code l s m u a) (h' : Runs code m u n t b) :
@@ -138,10 +147,16 @@ theorem runs_trans [DecidableEq K] {Λ : Type} {code : Λ → TM2.Stmt Γ Λ σ}
   unfold Runs at *
   rw [Nat.add_comm a b, Function.iterate_add_apply, h, h']
 
+/--
+@isnad1 id=eq.0h6v.s5.899afaa83f64 from=translated src=- shape=660f409b vocab=2326bc82
+-/
 theorem stepAux_jump [DecidableEq K] {Λ : Type} (next : Option Λ)
     (s : Store Γ σ) : TM2.stepAux (jump next) s.state s.stk = config next s := by
   cases next <;> rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.c140402b2853 from=translated src=- shape=64c233ec vocab=82f100c4
+-/
 theorem stepAux_op [DecidableEq K] {Λ : Type} (o : Op Γ σ) (next : Option Λ)
     (s : Store Γ σ) :
     TM2.stepAux (o.compile next) s.state s.stk = config next (o.apply s) := by

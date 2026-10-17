@@ -28,6 +28,9 @@ def qmap (h x y s : B) : MvPolynomial (Fin 3) B →ₐ[B] Q h x y s :=
   Ideal.Quotient.mkₐ B (ideal h x y s)
 def qvar (h x y s : B) (i : Fin 3) : Q h x y s := qmap h x y s (X i)
 
+/--
+@isnad1 id=other.0h5v.s10.7a153c308ae3 from=translated src=- shape=e0d693a7 vocab=96f68b14
+-/
 theorem quotient_relations (h x y s : B) :
     let c := algebraMap B (Q h x y s)
     let U := qvar h x y s 0
@@ -61,6 +64,9 @@ def polyV (h x y s α β : B) : Polynomial B :=
 def values (h x y s α β : B) : Fin 3 → Polynomial B :=
   ![polyU h x β, polyV h x y s α β, polyW h x y s α β]
 
+/--
+@isnad1 id=and.2h7v.s10.07f94d96893c from=translated src=- shape=6a52b425 vocab=f1112072
+-/
 theorem values_relations (h x y s α β : B)
     (hc : x^2+y^3 = h*s) (hb : α*h+β*y = 1) :
     (aeval (values h x y s α β)) (relX h x) = 0 ∧
@@ -88,6 +94,9 @@ def forward (h x y s α β : B) (hc : x^2+y^3 = h*s) (hb : α*h+β*y = 1) :
     (values_relations h x y s α β hc hb).2.1
     (values_relations h x y s α β hc hb).2.2
 
+/--
+@isnad1 id=eq.2h8v.s9.fa02347d867a from=translated src=- shape=7a945268 vocab=7f7e1d37
+-/
 @[simp] theorem forward_qvar (h x y s α β : B) (hc hb) (i : Fin 3) :
     forward h x y s α β hc hb (qvar h x y s i) = values h x y s α β i := by
   change aeval (values h x y s α β) (X i) = values h x y s α β i
@@ -97,6 +106,9 @@ def backward (h x y s α β : B) : Polynomial B →ₐ[B] Q h x y s :=
   Polynomial.aeval (parameter (algebraMap B _ α) (algebraMap B _ β)
     (qvar h x y s 0) (qvar h x y s 1) (qvar h x y s 2))
 
+/--
+@isnad1 id=eq.2h7v.s8.902e5ec6168d from=translated src=- shape=3674acd8 vocab=86176a90
+-/
 theorem forward_backward (h x y s α β : B) (hc hb) :
     (forward h x y s α β hc hb).comp (backward h x y s α β) = AlgHom.id B _ := by
   apply Polynomial.algHom_ext
@@ -106,6 +118,9 @@ theorem forward_backward (h x y s α β : B) (hc hb) :
     using inverse_parameter (Polynomial.C h) (Polynomial.C x) (Polynomial.C y)
       (Polynomial.C s) (Polynomial.C α) (Polynomial.C β) Polynomial.X hb'
 
+/--
+@isnad1 id=eq.2h7v.s9.ed471c1a7ef1 from=translated src=- shape=25580d29 vocab=86176a90
+-/
 theorem backward_forward (h x y s α β : B) (hc hb) :
     (backward h x y s α β).comp (forward h x y s α β hc hb) = AlgHom.id B _ := by
   apply Ideal.Quotient.algHom_ext

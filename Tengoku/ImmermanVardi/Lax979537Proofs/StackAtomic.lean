@@ -14,6 +14,9 @@ def equal (left right copyLeft copyRight tmp savedPort : K) : EvalProgram K Aux 
   .seq (binary savedPort (· || ·) (less left right copyLeft copyRight tmp)
     (less right left copyLeft copyRight tmp)) negate
 
+/--
+@isnad1 id=eq.0h2v.s5.e50cf58b20a0 from=translated src=- shape=6a28d338 vocab=8f9c3120
+-/
 theorem not_less_both (a b : Nat) : (!(decide (a < b) || decide (b < a))) = decide (a = b) := by
   by_cases h : a = b
   · subst b; simp

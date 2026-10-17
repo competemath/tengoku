@@ -14,6 +14,9 @@ noncomputable section
 namespace AbhyankarSathaye.CommutingDerivations
 open MvPolynomial
 
+/--
+@isnad1 id=eq.0h0v.s4.f48204365fda from=translated src=- shape=8c50eb68 vocab=50e27858
+-/
 theorem extendedF_four : extendedF (by decide : 4 ≤ 4) = F := by
   have hi : fourInclusion (by decide : 4 ≤ 4) = id := by
     funext i

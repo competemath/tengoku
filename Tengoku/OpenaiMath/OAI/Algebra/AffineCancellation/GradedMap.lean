@@ -8,6 +8,9 @@ namespace ComplexCancellation.GradedMap
 open MvPolynomial
 variable {k R S : Type*} [CommRing k] [CommRing R] [CommRing S]
   [Algebra k R] [Algebra k S]
+/--
+@isnad1 id=mem.2h8v.s9.62c5d5818aa3 from=translated src=- shape=75d9ab39 vocab=69073ec8
+-/
 lemma mvpolynomial {ι : Type*} (G : ℤ → Submodule k R) [GradedAlgebra G]
     (w : ι → ℤ) (f : MvPolynomial ι k →ₐ[k] R)
     (hX : ∀ i, f (X i) ∈ G (w i)) {p : MvPolynomial ι k} {e : ℤ}
@@ -25,6 +28,9 @@ lemma mvpolynomial {ι : Type*} (G : ℤ → Submodule k R) [GradedAlgebra G]
     convert ht using 1
     rw [← hd,Finsupp.weight_apply,Finsupp.sum]
 
+/--
+@isnad1 id=eq.1h8v.s9.d8fd7febecc7 from=translated src=- shape=c3dca619 vocab=d85be0ab
+-/
 lemma projection (G : ℤ → Submodule k R) (H : ℤ → Submodule k S)
     [GradedAlgebra G] [GradedAlgebra H] (f : R →ₐ[k] S)
     (hf : ∀ e r, r ∈ G e → f r ∈ H e) (e : ℤ) (r : R) :
@@ -39,6 +45,9 @@ lemma projection (G : ℤ → Submodule k R) (H : ℤ → Submodule k S)
     · rw [show GradedAlgebra.proj G e (r : R)=0 from DirectSum.decompose_of_mem_ne G r.2 hi,
         show GradedAlgebra.proj H e (f r)=0 from DirectSum.decompose_of_mem_ne H (hf i r r.2) hi,map_zero]
   | add r s hr hs => simp only [map_add,hr,hs]
+/--
+@isnad1 id=mem.3h8v.s9.dbe383a3ab96 from=translated src=- shape=cf94186a vocab=e4905340
+-/
 lemma reflect (G : ℤ → Submodule k R) (H : ℤ → Submodule k S)
     [GradedAlgebra G] [GradedAlgebra H] (f : R →ₐ[k] S)
     (hf : Function.Injective f) (hm : ∀ e r, r ∈ G e → f r ∈ H e)
