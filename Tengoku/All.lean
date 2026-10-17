@@ -46,7 +46,6 @@ import Tengoku.Apap
 import Tengoku.ChandraFurstLipton
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
-import Tengoku.NavierStokesEuler
 import Tengoku.Formalbook
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
