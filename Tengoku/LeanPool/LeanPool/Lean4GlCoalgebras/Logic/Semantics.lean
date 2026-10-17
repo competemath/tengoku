@@ -14,6 +14,8 @@ Here we supply the semantics of GL.
 -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 

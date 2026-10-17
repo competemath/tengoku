@@ -21,6 +21,8 @@ to show invariance under elementary moves and to prove that `R[G]` is a ring.
 -/
 
 @[expose] public section
+open scoped LeanPool.Polylean LeanPool.Polylean.FormalSum
+
 
 namespace LeanPool.Polylean
 

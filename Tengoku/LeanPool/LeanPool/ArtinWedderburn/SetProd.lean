@@ -17,6 +17,8 @@ characterisation.
 -/
 
 @[expose] public section
+open scoped LeanPool.ArtinWedderburn
+
 
 namespace LeanPool.ArtinWedderburn
 

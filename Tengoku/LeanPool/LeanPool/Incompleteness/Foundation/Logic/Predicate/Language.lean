@@ -129,7 +129,7 @@ def oRing : Language where
   Rel := ORing.Rel
 
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "ℒₒᵣ" => oRing
+scoped notation "ℒₒᵣ" => oRing
 
 namespace ORing
 
@@ -497,6 +497,7 @@ def _root_.LO.FirstOrder.Language.ORing.embedding (L : Language) [ORing L] : ℒ
     | 2, Eq.eq => Eq.eq
     | 2, LT.lt => LT.lt
 end Language
+open scoped LO.FirstOrder.Language
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected class _root_.LO.FirstOrder.Language.DecidableEq (L : Language) where
@@ -532,3 +533,4 @@ instance : Language.Finite ℒₒᵣ where
 end FirstOrder
 
 end LO
+-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)

@@ -14,6 +14,8 @@ Here we define the GL-proof system along with finitization and basic properties.
 -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 

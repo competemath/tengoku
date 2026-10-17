@@ -29,6 +29,8 @@ public import Tengoku.LeanPool.LeanPool.FoZfc.Axioms
 -/
 
 @[expose] public section
+open scoped FirstOrder.ZFC
+
 
 open FirstOrder
 open FirstOrder.Language

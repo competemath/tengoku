@@ -14,6 +14,8 @@ public import Tengoku
 /-! # Basic -/
 
 @[expose] public section
+open scoped LO.Axioms LO.IntProp LO.IntProp.Formula
+
 
 namespace LO
 namespace IntProp

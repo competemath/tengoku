@@ -94,7 +94,7 @@ variable [Dia F]
 /-- Imported declaration from the Incompleteness formalization. -/
 @[match_pattern] abbrev diadot [Vee F] (φ : F) : F := φ ⋎ ◇φ
 /-- Imported notation from the Incompleteness formalization. -/
-prefix:76 "diaDot" => diadot
+scoped prefix:76 "diaDot" => diadot
 
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev multidia (n : ℕ) : F → F := (◇ ·)^[n]
@@ -740,3 +740,4 @@ end «lp_section_9»
 end List
 
 end «lp_section_1»
+-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)

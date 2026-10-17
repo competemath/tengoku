@@ -19,6 +19,8 @@ This file defines a characterization of Tait style calculus and Gentzen style ca
 -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Entailment
+
 
 namespace LO
 

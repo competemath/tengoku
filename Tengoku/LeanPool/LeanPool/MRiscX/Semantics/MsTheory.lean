@@ -24,6 +24,8 @@ can apply these theorems with simp automatically.
 -/
 
 @[expose] public section
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 
 namespace MState
 

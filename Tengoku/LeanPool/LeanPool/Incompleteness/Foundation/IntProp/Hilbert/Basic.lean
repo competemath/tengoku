@@ -11,6 +11,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Logic.HilbertS
 /-! # Basic -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Entailment LO.IntProp LO.IntProp.Formula
+
 
 namespace LO
 namespace IntProp

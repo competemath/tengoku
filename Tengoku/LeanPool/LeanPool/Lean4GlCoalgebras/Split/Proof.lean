@@ -15,6 +15,8 @@ namespace Split to distinguish from our general GL-proofs.
 -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 
@@ -169,7 +171,7 @@ def equiv (φ : Formula) (ψ : Formula) : Prop :=
   (∃ (𝕏 : Proof), 𝕏 ⊢ {Sum.inl (~ψ), Sum.inr φ}) ∧
     (∃ (𝕏 : Proof), 𝕏 ⊢ {Sum.inr ψ, Sum.inl (~φ)})
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-infixr:7 "≅" => equiv
+scoped infixr:7 "≅" => equiv
 
 /-! # Fischer-Ladner properties of GL-split proofs -/
 
@@ -585,3 +587,4 @@ lemma in_vocab_of_path_right {𝕏 : Proof} {x y : 𝕏.X} (x_y : Relation.ReflT
 
 end Split
 end Lean4GlCoalgebras
+-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)

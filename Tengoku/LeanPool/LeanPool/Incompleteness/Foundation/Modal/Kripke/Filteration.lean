@@ -12,6 +12,8 @@ public import Tengoku
 /-! # Filteration -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment LO.Modal LO.Modal.Formula
+
 
 universe u v
 

@@ -94,7 +94,7 @@ instance {α β} [ToString α] [ToString β]: Repr (TMap (α : Type) (β :Type))
   reprPrec t _ := t.toString
 
 /-- Notation `(k ↦ v; m)` for inserting the binding `k ↦ v` into the total map `m`. -/
-notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 /--
 Partial map as recursive type with a key type α and value of type β is defined.
@@ -215,3 +215,4 @@ theorem p_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
   show (if k' == k then some v else p.get k') = p.get k'
   rw [ite_eq_right]
   simpa only [beq_iff_eq] using fun h => HNeq h.symm
+-- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)

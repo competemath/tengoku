@@ -12,6 +12,8 @@ import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Chain
 /-! # Tree -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment LO.Modal LO.Modal.Formula
+
 
 namespace LO
 namespace Modal

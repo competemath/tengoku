@@ -16,6 +16,8 @@ import Tengoku.LeanPool.LeanPool.MRiscX.AbstractSyntax.AbstractSyntax
 This module provides helpers reflecting Lean `Expr`s into MRiscX data.
 -/
 
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 public meta section
 open Lean Meta Elab
 

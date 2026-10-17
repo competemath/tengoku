@@ -11,6 +11,8 @@ public import Tengoku
 /-! # Coding -/
 
 @[expose] public section
+open scoped LO LO.FirstOrder.Language
+
 
 namespace LO
 

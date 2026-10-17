@@ -34,7 +34,7 @@ def subst (s : Substitution α) : Formula α → Formula α
   | φ ==> ψ   => φ.subst s ==> ψ.subst s
 
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:80 φ "⟦" s "⟧" => Formula.subst s φ
+scoped notation:80 φ "⟦" s "⟧" => Formula.subst s φ
 
 /--
 @isnad1 id=eq.0h3v.s4.342552e7ca50 from=translated src=- shape=38405f78 vocab=614c596b
@@ -77,6 +77,7 @@ notation:80 φ "⟦" s "⟧" => Formula.subst s φ
 @[simp] lemma subst_iff : (φ <=> ψ)⟦s⟧ = (φ⟦s⟧ <=> ψ⟦s⟧) := rfl
 
 end Formula
+open scoped LO.IntProp.Formula
 
 /--
 @isnad1 id=eq.0h2v.s3.fb368a85dec2 from=translated src=- shape=ff24a7f5 vocab=879db962
@@ -88,7 +89,7 @@ end Formula
 def _root_.LO.IntProp.Substitution.comp (s₁ s₂ : Substitution α) : Substitution α :=
   fun a => (s₁ a)⟦s₂⟧
 /-- Imported declaration from the Incompleteness formalization. -/
-infixr:80 " ∘ " => Substitution.comp
+scoped infixr:80 " ∘ " => Substitution.comp
 
 /--
 @isnad1 id=eq.0h4v.s4.eada3dc56551 from=translated src=- shape=f0aafd19 vocab=a83108d1
@@ -103,3 +104,4 @@ class SubstitutionClosed (S : Set (Formula α)) where
 
 end IntProp
 end LO
+-- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)

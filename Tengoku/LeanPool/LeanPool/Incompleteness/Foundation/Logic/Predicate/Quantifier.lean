@@ -30,13 +30,13 @@ class DeltaSymbol (α : Type*) where
   delta : α
 
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "Sg" => SigmaSymbol.sigma
+scoped notation "Sg" => SigmaSymbol.sigma
 
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "Pg" => PiSymbol.pi
+scoped notation "Pg" => PiSymbol.pi
 
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "Dlt" => DeltaSymbol.delta
+scoped notation "Dlt" => DeltaSymbol.delta
 
 attribute [match_pattern] SigmaSymbol.sigma PiSymbol.pi DeltaSymbol.delta
 
@@ -290,3 +290,4 @@ notation:64 "∃[" φ "] " ψ => bex φ ψ
 end «lp_section_4»
 
 end LO
+-- Tengoku: 3 notation(s) of this module made scoped so they do not change other libraries (generated)

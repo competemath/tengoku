@@ -11,6 +11,8 @@ public import Tengoku
 /-! # SimpleExtension -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment LO.Modal LO.Modal.Formula
+
 
 namespace LO
 namespace Modal

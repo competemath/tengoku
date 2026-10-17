@@ -30,6 +30,8 @@ This can be used to perform a structured proof later.
 -/
 
 @[expose] public section
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 /-- An assertion is a predicate on machine states. -/
 abbrev Assertion : Type := MState → Prop
 

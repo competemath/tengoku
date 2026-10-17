@@ -14,6 +14,8 @@ This module provides the operational `run` semantics of MRiscX.
 -/
 
 @[expose] public section
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 
 open Nat
 

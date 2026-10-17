@@ -80,44 +80,45 @@ protected abbrev EFQ := ⊥ ==> φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.EFQ.set : Set F := { Axioms.EFQ φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "EFQAx" => EFQ.set
+scoped notation "EFQAx" => EFQ.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev LEM := φ ⋎ ∼φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.LEM.set : Set F := { Axioms.LEM φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "LEMAx" => LEM.set
+scoped notation "LEMAx" => LEM.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev WeakLEM := ∼φ ⋎ ∼∼φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.WeakLEM.set : Set F := { Axioms.WeakLEM φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "WLEMAx" => WeakLEM.set
+scoped notation "WLEMAx" => WeakLEM.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev Dummett := (φ ==> ψ) ⋎ (ψ ==> φ)
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.Dummett.set : Set F := { Axioms.Dummett φ ψ | (φ) (ψ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "DummettAx" => Dummett.set
+scoped notation "DummettAx" => Dummett.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev DNE := ∼∼φ ==> φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.DNE.set : Set F := { Axioms.DNE φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "DNEAx" => DNE.set
+scoped notation "DNEAx" => DNE.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev Peirce := ((φ ==> ψ) ==> φ) ==> φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.Peirce.set : Set F := { Axioms.Peirce φ ψ | (φ) (ψ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation "PeirceAx" => Peirce.set
+scoped notation "PeirceAx" => Peirce.set
 
 end «lp_section_1»
 
 end Axioms
 end LO
+-- Tengoku: 6 notation(s) of this module made scoped so they do not change other libraries (generated)

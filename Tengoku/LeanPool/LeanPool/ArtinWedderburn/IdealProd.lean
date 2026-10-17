@@ -24,7 +24,7 @@ namespace LeanPool.ArtinWedderburn
 def bothMul {R : Type*} [Ring R] (a b : R) : Set R := {x | ∃ r : R, x = a * r * b}
 
 /-- Notation `(a ⬝ R ⬝ b)` for `bothMul R a b`. -/
-notation:55 "(" a:55 "⬝" R:55 "⬝" b:55 ")" => bothMul R a b
+scoped notation:55 "(" a:55 "⬝" R:55 "⬝" b:55 ")" => bothMul R a b
 
 variable {R : Type*} [Ring R]
 
@@ -328,3 +328,4 @@ instance MulTwoSidedisMonoid : Monoid (TwoSidedIdeal R) :=
 end TwoSidedIdealProd
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)

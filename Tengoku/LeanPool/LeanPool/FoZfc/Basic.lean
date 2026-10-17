@@ -116,8 +116,8 @@ variable {V : Type u}
 def notIsEltOf [ModelSets V] (a b : V) : Prop :=
   ¬ (ModelSets.isEltOf a b)
 
-@[inherit_doc ModelSets.isEltOf] infix : 120 " ∈ " => ModelSets.isEltOf
-@[inherit_doc notIsEltOf] infix : 120 " ∉ " => notIsEltOf
+@[inherit_doc ModelSets.isEltOf] scoped infix : 120 " ∈ " => ModelSets.isEltOf
+@[inherit_doc notIsEltOf] scoped infix : 120 " ∉ " => notIsEltOf
 
 /-- Realize a free varaible.
 @isnad1 id=eq.0h5v.s5.e21bbe2014a0 from=translated src=- shape=222569a3 vocab=da9bec93
@@ -204,3 +204,4 @@ theorem realize_bv'' [ModelSets V] {n : ℕ} [NeZero n] (s : ℕ → V) (xs : Fi
 
 end ZFC
 end FirstOrder
+-- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)
