@@ -38,9 +38,7 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
 
     def pump() -> None:
         try:
-            req = urllib.request.Request(
-                f"{base}/sse", headers={"accept": "text/event-stream"}
-            )
+            req = urllib.request.Request(f"{base}/sse", headers={"accept": "text/event-stream"})
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 event, data = None, []
                 for raw in resp:
@@ -52,10 +50,7 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
                             elif event == "message":
                                 try:
                                     msg = json.loads("\n".join(data))
-                                    if (
-                                        isinstance(msg, dict)
-                                        and msg.get("id") is not None
-                                    ):
+                                    if isinstance(msg, dict) and msg.get("id") is not None:
                                         replies[msg["id"]] = msg
                                 except ValueError:
                                     pass
@@ -121,24 +116,15 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
     out = replies[2]
     if out.get("error"):
         raise Unreachable(f"{base}: {json.dumps(out['error'])[:300]}")
-    return "\n".join(
-        c.get("text", "") for c in (out.get("result") or {}).get("content", [])
-    )
+    return "\n".join(c.get("text", "") for c in (out.get("result") or {}).get("content", []))
 
 
 def verdict(text: str) -> tuple[str, list[tuple[int, str]]]:
     """('ok' | 'failed' | 'infra', the (line, message) of every error): the reply of verify_full_script"""
     if "Compilation Successful" in text:
         return "ok", []
-    errors = [
-        (int(m.group(1)), m.group(3))
-        for m in ERROR.finditer(text)
-        if m.group(2) == "Error"
-    ]
-    if (
-        re.search(r"verify exceeded|timed out|timeout|Verification Error", text)
-        and not errors
-    ):
+    errors = [(int(m.group(1)), m.group(3)) for m in ERROR.finditer(text) if m.group(2) == "Error"]
+    if re.search(r"verify exceeded|timed out|timeout|Verification Error", text) and not errors:
         return "infra", []
     return ("failed" if errors or "Compilation Failed" in text else "infra"), errors
 
@@ -147,9 +133,7 @@ def report(name: str, script: str, errors: list[tuple[int, str]]) -> list[str]:
     src = script.split("\n")
     out = [f"{name}: {len(errors)} error(s)"]
     for n, msg in errors[:40]:
-        out.append(
-            f"  line {n}: {src[n - 1].strip()[:110] if 0 < n <= len(src) else '?'}\n    {msg[:220]}"
-        )
+        out.append(f"  line {n}: {src[n - 1].strip()[:110] if 0 < n <= len(src) else '?'}\n    {msg[:220]}")
     return out
 
 
@@ -173,9 +157,7 @@ def main(argv: list[str]) -> int:
         script = Path(path).read_text(encoding="utf-8")
         for attempt in range(a.retries + 1):
             try:
-                text = call_tool(
-                    a.space, "verify_full_script", {"script": script}, a.timeout
-                )
+                text = call_tool(a.space, "verify_full_script", {"script": script}, a.timeout)
                 kind, errors = verdict(text)
             except Unreachable as e:
                 kind, errors, text = "infra", [], str(e)
