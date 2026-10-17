@@ -139,6 +139,23 @@ class ScopedNotation(unittest.TestCase):
         rc, out = self.judge(r2, base.replace('prefix:80 "-"', 'scoped prefix:80 "-"') + NOTE)
         self.assertEqual(rc, 0, out)
 
+    def test_the_seed_namespaces_are_read_through_comments_and_mutual_blocks(self):
+        base = 'import Tengoku\n\nnamespace Real\n\ndef complement (x : Nat) : Nat := x\n\nprefix:80 "-" => complement\n\nend Real\n\nlemma outside : -1 = 1 := rfl\n'
+        edited = base.replace('prefix:80 "-"', 'scoped prefix:80 "-"').replace("end Real\n", "end Real\nopen scoped Real\n") + NOTE
+        for seed in (
+            'namespace Real -- the real numbers\nscoped notation "π" => pi\nend Real\n',  # a comment after the namespace
+            'namespace Real\nmutual\ndef a := 1\nend\nscoped notation "π" => pi\nend Real\n',  # a mutual block closes with `end`
+        ):
+            r = self.repo(base)
+            r.write("Tengoku/Seed/Mathlib/Real.lean", seed)
+            r.commit("the seed has scoped entries in Real")
+            r.git("checkout", "-q", "main")
+            r.git("merge", "-q", "--ff-only", "pr")
+            r.git("checkout", "-q", "pr")
+            rc, out = self.judge(r, edited)
+            self.assertNotEqual(rc, 0, seed)
+            self.assertIn("core or Mathlib declare scoped entries", out)
+
     def test_a_namespace_in_which_the_library_already_has_scoped_entries_is_refused(self):
         base = BASIC.replace("lemma outside", "scoped instance : Coe Nat Int := ⟨Int.ofNat⟩\n\nlemma outside")
         base = base.replace("end Fx\n", "end Fx\n")

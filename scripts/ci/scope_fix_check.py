@@ -163,7 +163,7 @@ def pair_up(
     return pairs, added + list(range(b, j2)), True
 
 
-GREP_NAMESPACES = r"(^[[:space:]]*(public[[:space:]]+|noncomputable[[:space:]]+)*(namespace|section)([[:space:]]|$))|(^[[:space:]]*end([[:space:]]|$))|(scoped)"
+GREP_NAMESPACES = r"(^[[:space:]]*(public[[:space:]]+|noncomputable[[:space:]]+)*(namespace|section|mutual)([[:space:]]|$))|(^[[:space:]]*end([[:space:]]|$))|(scoped)"
 SCOPED_USE = re.compile(
     r"(?:^|[\s@\[,])scoped(?:\[(?P<ns>[\w.«»']+)\])?[ \t]+(?:instance|notation3?|infix[lr]?|prefix|postfix|macro|syntax|elab|attribute|simp|irreducible_def|def|abbrev|theorem|lemma)\b"
     r"|@\[[^\]]*\bscoped\b"
@@ -183,14 +183,15 @@ def scoped_namespaces(rev: str, pathspec: str) -> set[str]:
         if m.group("path") != current:
             current, blocks = m.group("path"), []
         text = m.group("text")
-        if nm := NAMESPACE.match(text):
+        code = mask(text)  # `namespace N -- why` is the namespace N
+        if nm := NAMESPACE.match(code):
             blocks.append(nm.group(1).split("."))
-        elif OPENER.match(text):
+        elif OPENER.match(code):
             blocks.append([])
-        elif CLOSER.match(text):
+        elif CLOSER.match(code):
             if blocks:
                 blocks.pop()
-        elif use := SCOPED_USE.search(text):
+        elif use := SCOPED_USE.search(code):
             out.add(use.group("ns") or ".".join(c for blk in blocks for c in blk))
     return out
 
