@@ -7,6 +7,9 @@ noncomputable section
 namespace ComplexCancellation.Determinant
 open MvPolynomial
 
+/--
+@isnad1 id=isleftre.2h3v.s8.d082d8d7b470 from=translated src=- shape=fbc39715 vocab=40186730
+-/
 lemma regular_quotient_of_prime {R : Type*} [CommRing R] [IsDomain R]
     {p h : R} (hp : Prime p) (hph : ¬p ∣ h) :
     IsLeftRegular (Ideal.Quotient.mk (Ideal.span {h}) p) := by
@@ -44,16 +47,25 @@ def baseEmbedding : Base →ₐ[ℂ] K :=
     ((Polynomial.mapAlgHom (IsScalarTower.toAlgHom ℂ Coeff K₀)).comp
       (finSuccEquiv ℂ 3).toAlgHom)
 
+/--
+@isnad1 id=injectiv.0h0v.s10.4055b1c14338 from=translated src=- shape=91c1b9c9 vocab=473e2709
+-/
 lemma baseEmbedding_injective : Function.Injective baseEmbedding :=
   (RatFunc.algebraMap_injective K₀).comp
     ((Polynomial.map_injective _ (IsFractionRing.injective Coeff K₀)).comp
       (finSuccEquiv ℂ 3).injective)
 
+/--
+@isnad1 id=eq.0h0v.s10.9b4800ab7bd2 from=translated src=- shape=a7c3cdbf vocab=2b719fe8
+-/
 lemma baseEmbedding_X_zero : baseEmbedding (X 0) = RatFunc.X := by
   change algebraMap (Polynomial K₀) K
     (Polynomial.map (algebraMap Coeff K₀) ((finSuccEquiv ℂ 3) (X 0))) = _
   rw [finSuccEquiv_X_zero, Polynomial.map_X, RatFunc.algebraMap_X]
 
+/--
+@isnad1 id=eq.0h1v.s11.3e5bbf659b03 from=translated src=- shape=cef4f92b vocab=110f5cbf
+-/
 lemma baseEmbedding_X_succ (i : Fin 3) :
     baseEmbedding (X i.succ) = RatFunc.C (algebraMap Coeff K₀ (X i)) := by
   change algebraMap (Polynomial K₀) K
@@ -66,11 +78,17 @@ def targetValues : Fin 5 → K := ![baseEmbedding (X 1), baseEmbedding (X 2),
 
 def eval : Poly →ₐ[ℂ] K := aeval targetValues
 
+/--
+@isnad1 id=ne.0h0v.s10.6425a79e4141 from=translated src=- shape=2fc08d29 vocab=29bf236d
+-/
 lemma a_field_nonzero : baseEmbedding (X 1) ≠ 0 := by
   intro h
   have hz := baseEmbedding_injective (h.trans (map_zero _).symm)
   exact X_ne_zero (1 : Fin 4) hz
 
+/--
+@isnad1 id=eq.0h0v.s10.e364f9138e91 from=translated src=- shape=8cc970ed vocab=b5fc6c70
+-/
 lemma eval_relation : eval relation = 0 := by
   simp only [eval, relation, map_sub, map_mul, map_one, aeval_X]
   simp only [targetValues, Matrix.cons_val_zero, Matrix.cons_val_one,
@@ -83,13 +101,22 @@ def embedding : T →ₐ[ℂ] K := Ideal.Quotient.liftₐ _ eval (by
   obtain ⟨s, rfl⟩ := Ideal.mem_span_singleton.mp hr
   rw [map_mul, eval_relation, zero_mul])
 
+/--
+@isnad1 id=eq.0h1v.s11.1345e3549ee1 from=translated src=- shape=fd2727ee vocab=9faa9406
+-/
 @[simp] lemma embedding_π (r : Poly) : embedding (π r) = eval r :=
   Ideal.Quotient.lift_mk _ _ _
 
+/--
+@isnad1 id=eq.0h0v.s8.e39b373b89a6 from=translated src=- shape=468d9de9 vocab=41a9a7f5
+-/
 lemma determinant : a*c - b*d = 1 := by
   have h : π relation = 0 := Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span (by simp))
   simpa only [relation, map_sub, map_mul, map_one, a, b, c, d, sub_eq_zero] using h
 
+/--
+@isnad1 id=isleftre.0h0v.s6.a0d4096b0b94 from=translated src=- shape=25b03439 vocab=fc94a392
+-/
 lemma a_regular : IsLeftRegular a := by
   apply regular_quotient_of_prime (MvPolynomial.X_prime (i := 0))
   intro h
@@ -99,6 +126,9 @@ lemma a_regular : IsLeftRegular a := by
 def baseValues : Fin 4 → T := ![u,a,d,b]
 def baseMap : Base →ₐ[ℂ] T := aeval baseValues
 
+/--
+@isnad1 id=eq.0h1v.s11.2ee09e8049bb from=translated src=- shape=fd2727ee vocab=ec6a5989
+-/
 lemma embedding_baseMap (r : Base) : embedding (baseMap r) = baseEmbedding r := by
   have he : embedding.comp baseMap = baseEmbedding := by
     apply MvPolynomial.algHom_ext
@@ -106,11 +136,17 @@ lemma embedding_baseMap (r : Base) : embedding (baseMap r) = baseEmbedding r := 
     fin_cases i <;> simp [baseMap, baseValues, u, a, d, b, embedding_π, eval, targetValues]
   exact DFunLike.congr_fun he r
 
+/--
+@isnad1 id=injectiv.0h0v.s8.8fcb45fa2a96 from=translated src=- shape=91c1b9c9 vocab=4fcf2a9d
+-/
 lemma baseMap_injective : Function.Injective baseMap := by
   intro r s hrs
   apply baseEmbedding_injective
   rw [← embedding_baseMap, ← embedding_baseMap, hrs]
 
+/--
+@isnad1 id=ex.0h1v.s10.971393b81db7 from=translated src=- shape=c2c43323 vocab=6de9c157
+-/
 lemma clears_generator (i : Fin 5) :
     ∃ n : ℕ, ∃ f : Base, a^n * π (X i) = baseMap f := by
   fin_cases i
@@ -123,6 +159,9 @@ lemma clears_generator (i : Fin 5) :
     linear_combination determinant
   · exact ⟨0, X 0, by simp [baseMap, baseValues, u]⟩
 
+/--
+@isnad1 id=ex.0h1v.s9.b11aaaf80a24 from=translated src=- shape=08a4abc1 vocab=ffc50481
+-/
 lemma clears (r : T) : ∃ n : ℕ, ∃ f : Base, a^n * r = baseMap f := by
   obtain ⟨r, rfl⟩ := Ideal.Quotient.mkₐ_surjective ℂ (Ideal.span {relation}) r
   change ∃ n : ℕ, ∃ f : Base, a^n * π r = baseMap f
@@ -143,6 +182,9 @@ lemma clears (r : T) : ∃ n : ℕ, ∃ f : Base, a^n * r = baseMap f := by
     rw [map_mul, map_mul, ← hf, ← hg, pow_add]
     ring
 
+/--
+@isnad1 id=injectiv.0h0v.s10.9449069a1f83 from=translated src=- shape=91c1b9c9 vocab=1dc17af9
+-/
 lemma embedding_injective : Function.Injective embedding := by
   apply (injective_iff_map_eq_zero embedding).mpr
   intro r hr

@@ -19,15 +19,24 @@ def componentMap (i : ι) : G i →ₗ[k] pieces G q i :=
 def sourceDecompose : R →ₗ[k] ⨁ i, pieces G q i :=
   (DirectSum.lmap (componentMap G q)).comp (decomposeLinearEquiv G).toLinearMap
 
+/--
+@isnad1 id=eq.0h8v.s12.297e6dccba44 from=translated src=- shape=7db0ea7d vocab=8add9e59
+-/
 lemma sourceDecompose_apply (r : R) (i : ι) :
     ((sourceDecompose G q r i : pieces G q i) : Q) = q (decompose G r i) := rfl
 
+/--
+@isnad1 id=eq.2h7v.s11.a7eabf68f0f7 from=translated src=- shape=7c9eb187 vocab=40e19af4
+-/
 lemma sourceDecompose_zero (hK : (RingHom.ker q).IsHomogeneous G) {r : R}
     (hr : q r = 0) : sourceDecompose G q r = 0 := by
   ext i
   change q (decompose G r i) = 0
   exact (hK.mem_iff.mp hr) i
 
+/--
+@isnad1 id=eq.2h8v.s11.d0ac716b7f07 from=translated src=- shape=a91b92be vocab=40e19af4
+-/
 lemma sourceDecompose_eq (hK : (RingHom.ker q).IsHomogeneous G)
     {a b : R} (hab : q a = q b) : sourceDecompose G q a = sourceDecompose G q b := by
   ext i
@@ -52,11 +61,17 @@ def decomposeMap (hq : Function.Surjective q)
     apply sourceDecompose_eq G q hK
     simp only [map_smul, Classical.choose_spec (hq _)]
 
+/--
+@isnad1 id=eq.2h7v.s11.aef32fc9b699 from=translated src=- shape=258a5032 vocab=aaa8e479
+-/
 @[simp] lemma decomposeMap_q (hq : Function.Surjective q)
     (hK : (RingHom.ker q).IsHomogeneous G) (r : R) :
     decomposeMap G q hq hK (q r) = sourceDecompose G q r :=
   sourceDecompose_eq G q hK (Classical.choose_spec (hq (q r)))
 
+/--
+@isnad1 id=eq.0h7v.s11.0c10d9137ce9 from=translated src=- shape=e0819e38 vocab=081f997b
+-/
 lemma coe_sourceDecompose (r : R) :
     coeLinearMap (pieces G q) (sourceDecompose G q r) = q r := by
   induction r using DirectSum.Decomposition.inductionOn G with
@@ -71,6 +86,9 @@ lemma coe_sourceDecompose (r : R) :
     rfl
   | add r s hr hs => simp [hr, hs]
 
+/--
+@isnad1 id=eq.2h8v.s11.6bc36ae4dfe0 from=translated src=- shape=c9c2bfe4 vocab=ff3e99a5
+-/
 lemma decomposeMap_homogeneous (hq : Function.Surjective q)
     (hK : (RingHom.ker q).IsHomogeneous G) (i : ι) (r : pieces G q i) :
     decomposeMap G q hq hK r = DirectSum.lof k ι (fun i => pieces G q i) i r := by
@@ -110,6 +128,9 @@ def grading (hq : Function.Surjective q)
     obtain ⟨b, hb, rfl⟩ := hs
     exact ⟨a*b, SetLike.mul_mem_graded ha hb, map_mul q a b⟩
 
+/--
+@isnad1 id=eq.2h8v.s9.29eac0b76809 from=translated src=- shape=f8f25659 vocab=2cd37d61
+-/
 lemma projection_q (hq : Function.Surjective q)
     (hK : (RingHom.ker q).IsHomogeneous G) (r : R) (i : ι) :
     letI : GradedAlgebra (pieces G q) := grading G q hq hK

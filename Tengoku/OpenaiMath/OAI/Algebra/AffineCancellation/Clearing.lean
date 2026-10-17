@@ -24,8 +24,14 @@ def subalgebra (f : S →ₐ[k] R) (p : S) : Subalgebra k R where
     ring
   algebraMap_mem' c := ⟨0,algebraMap k S c,by simp⟩
 
+/--
+@isnad1 id=mem.0h6v.s7.2ca5dc53b863 from=translated src=- shape=a58ea21d vocab=1344901e
+-/
 lemma mem_base (f : S →ₐ[k] R) (p s : S) : f s ∈ subalgebra f p := ⟨0,s,by simp⟩
 
+/--
+@isnad1 id=injectiv.3h7v.s9.1c23726521e0 from=translated src=- shape=5fbdaf2e vocab=5d671c37
+-/
 lemma injective_of_clearing {K : Type*} [CommRing K] [Algebra k K]
     (e : R →ₐ[k] K) (f : S →ₐ[k] R) (p : S)
     (hef : Function.Injective (e.comp f)) (hp : IsLeftRegular (f p))
@@ -41,6 +47,9 @@ lemma injective_of_clearing {K : Type*} [CommRing K] [Algebra k K]
   rw [hz,map_zero] at hs
   exact isLeftRegular_iff_right_eq_zero_of_mul.mp (hp.pow n) r hs
 
+/--
+@isnad1 id=eq.2h7v.s9.d8c8929b4c91 from=translated src=- shape=745c76b1 vocab=4c7eaa9f
+-/
 lemma top_of_generators {ι : Type*} (q : MvPolynomial ι k →ₐ[k] R)
     (hq : Function.Surjective q) (f : S →ₐ[k] R) (p : S)
     (hX : ∀ i, q (MvPolynomial.X i) ∈ subalgebra f p) : subalgebra f p = ⊤ := by

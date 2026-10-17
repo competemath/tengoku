@@ -25,7 +25,13 @@ def subalgebra : Subalgebra k R where
     · simp only [map_mul]
       calc f (h c)*f (h d)*(r*s)=(f (h c)*r)*(f (h d)*s) := by ring
         _ = _ := by rw [hcb,hde]
+/--
+@isnad1 id=mem.0h8v.s7.9927aac8dc84 from=translated src=- shape=ac262325 vocab=1e86337f
+-/
 lemma image_mem (b : B) : f b ∈ subalgebra h f D := ⟨1,b,D.map_one_eq_zero,one_ne_zero,by simp⟩
+/--
+@isnad1 id=ex.1h9v.s9.c0fb7e82fd7e from=translated src=- shape=4c58f8c1 vocab=4e2988ce
+-/
 lemma uniform (s : Finset B) (E : Derivation k R R)
     (hc : ∀ b, E (f b) ∈ subalgebra h f D) :
     ∃ c : A, D c=0 ∧ c≠0 ∧ ∀ b∈s, ∃ t : B, f (h c)*E (f b)=f t := by
@@ -60,6 +66,9 @@ def stable (f : B →ₐ[k] R) (E : Derivation k R R) : Subalgebra k B where
   mul_mem' := by
     rintro r s ⟨t,ht⟩ ⟨u,hu⟩
     exact ⟨r*u+s*t,by rw [map_mul,Derivation.leibniz,ht,hu,smul_eq_mul,smul_eq_mul,map_add,map_mul,map_mul]⟩
+/--
+@isnad1 id=ex.2h7v.s9.9084fa9ec433 from=translated src=- shape=da62b559 vocab=0ab89931
+-/
 lemma stable_of_generators (f : B →ₐ[k] R) (E : Derivation k R R) (s : Set B)
     (hs : Algebra.adjoin k s=⊤) (he : ∀ b∈s, ∃ t, E (f b)=f t) : ∀ b, ∃ t, E (f b)=f t := by
   have h : Algebra.adjoin k s ≤ stable f E := Algebra.adjoin_le he

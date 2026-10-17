@@ -8,6 +8,9 @@ noncomputable section
 namespace ComplexCancellation.LND
 variable {k R : Type*} [Field k] [CharZero k] [CommRing R] [IsDomain R] [Algebra k R]
 omit [CharZero k] [IsDomain R] in
+/--
+@isnad1 id=eq.1h6v.s9.d6369f67a257 from=translated src=- shape=28606e90 vocab=558923b2
+-/
 lemma iterate_replica (D : Derivation k R R) (c : R) (hc : D c=0) (r : R) (n : ℕ) :
     ((c • D : Derivation k R R) : R → R)^[n] r=c^n*(D : R → R)^[n] r := by
   induction n with
@@ -20,6 +23,9 @@ lemma iterate_replica (D : Derivation k R R) (c : R) (hc : D c=0) (r : R) (n : �
     ring
 
 omit [CharZero k] [IsDomain R] in
+/--
+@isnad1 id=locallyn.2h4v.s8.6e5dc17d00bc from=translated src=- shape=571af39a vocab=09dbd04e
+-/
 lemma replica (D : Derivation k R R) (hD : LocallyNilpotent D) (c : R) (hc : D c=0) :
     LocallyNilpotent (c • D) := by
   intro r
@@ -27,7 +33,9 @@ lemma replica (D : Derivation k R R) (hD : LocallyNilpotent D) (c : R) (hc : D c
   exact ⟨n,by rw [iterate_replica D c hc,hn,mul_zero]⟩
 
 /-- Remove all common powers of a regular parameter from an LND.
-The termination certificate is the exact finite order of a single nonzero image. -/
+The termination certificate is the exact finite order of a single nonzero image.
+@isnad1 id=ex.6h8v.s9.96bbd4e07bac from=translated src=- shape=7991a8b1 vocab=278b1867
+-/
 lemma primitive_of_order (q : R) (hq : q ≠ 0) (w b s : R) (hs : ¬q ∣ s)
     (n : ℕ) (D : Derivation k R R) (hD : LocallyNilpotent D)
     (hDq : D q=0) (hDw : D w=0) (hb : D b=q^n*s) :

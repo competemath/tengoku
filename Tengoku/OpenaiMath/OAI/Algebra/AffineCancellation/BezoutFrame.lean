@@ -7,7 +7,9 @@ noncomputable section
 namespace ComplexCancellation.BezoutFrame
 
 /-- Principalization of an SL₂/diagonal-torus point over a Euclidean domain.
-This supplies the invariant-localization frame over the slice polynomial ring. -/
+This supplies the invariant-localization frame over the slice polynomial ring.
+@isnad1 id=ex.1h4v.s7.4ec6c4f2e2f3 from=translated src=- shape=d068f492 vocab=8900d758
+-/
 theorem exists_frame {R : Type*} [EuclideanDomain R] (x y z : R)
     (h : x*y = z*(z+1)) :
     ∃ a d b c : R, a*b = x ∧ d*c = y ∧ d*b = z ∧ a*c-d*b = 1 := by
