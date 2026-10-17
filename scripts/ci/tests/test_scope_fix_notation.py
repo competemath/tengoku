@@ -116,6 +116,31 @@ class ScopedNotation(unittest.TestCase):
             rc, _ = self.judge(self.repo(), basic, self.USE_OPEN)
             self.assertNotEqual(rc, 0, basic)
 
+    def test_the_edited_line_may_be_the_last_one_of_the_file(self):
+        # the changed line and the note after it are one block for the diff: 1 line -> 2 lines
+        base = 'import Tengoku\n\ntheorem g : True := trivial\n\nnotation "Gal("K ", "F")" => K ≃ₐ[F] K\n'
+        edited = (
+            base.replace("\nnotation", "\nlocal notation")
+            + "-- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)\n"
+        )
+        again = USE.replace("\ntheorem use", '\nlocal notation "Gal("K ", "F")" => K ≃ₐ[F] K\n\ntheorem use')
+        rc, out = self.judge(self.repo(base), edited, again)
+        self.assertEqual(rc, 0, out)
+
+    def test_an_unmatched_old_line_in_a_resized_block_is_still_a_removal(self):
+        base = 'import Tengoku\n\ntheorem g : True := trivial\n\nnotation "Gal("K ", "F")" => K ≃ₐ[F] K\n'
+        edited = 'import Tengoku\n\ntheorem g : True := trivial\n\nlocal notation "Gal("K ", "F")" => K ≃ₐ[F] K\nlemma sneaked : True := trivial\n'
+        rc, _ = self.judge(self.repo(base), edited)
+        self.assertNotEqual(rc, 0)
+        edited2 = 'import Tengoku\n\ntheorem g : True := trivial\n\nlocal notation "Gal("K ", "F")" => K ≃ₐ[F] K\n'
+        self.assertEqual(self.sf_pair(base.split("\n"), edited2.split("\n")), True)
+
+    def sf_pair(self, o, n):
+        sys.path.insert(0, str(CI))
+        import scope_fix_check as sf
+
+        return sf.pair_up(o, n, 4, 5, 4, 5)[2]
+
     def test_attributes_and_modifiers_may_stand_before_the_word(self):
         base = BASIC.replace('prefix:80 "-" => complement', '@[inherit_doc complement] private infix : 120 " ∈ " => complement')
         edited = base.replace("private infix", "private scoped infix").replace("end Mod\n", "end Mod\nopen scoped Fx.Mod\n") + NOTE
@@ -154,6 +179,17 @@ class Units(unittest.TestCase):
         self.assertIsNone(f("-- prefix x", "-- scoped prefix x"))  # inside a comment
         self.assertIsNone(f('prefix:80 "-" => c', 'prefix:80 "-" => c'))  # nothing inserted
         self.assertIsNone(f('prefix:80 "-" => c', 'scoped prefix:81 "-" => c'))  # something else changed too
+
+    def test_pair_up_a_resized_block(self):
+        f = self.sf.pair_up
+        old = ["lemma a : True := trivial", 'notation "x" => 1']
+        # the edited line and two added ones: the lemma is gone from the new text, so the block is not a pure edit
+        self.assertFalse(f(old, ['local notation "x" => 1', "-- n1", "-- n2"], 0, 2, 0, 3)[2])
+        # the edited line and the added note after it: every old line met
+        pairs, added, whole = f(['notation "x" => 1'], ['local notation "x" => 1', "-- note"], 0, 1, 0, 2)
+        self.assertEqual((pairs, added, whole), ([(0, 0)], [1], True))
+        # an addition before the line it precedes
+        self.assertEqual(f(['notation "x" => 1'], ["", 'local notation "x" => 1'], 0, 1, 0, 2), ([(0, 1)], [0], True))
 
     def test_namespace_at(self):
         code = self.sf.mask("namespace A.B\nsection\nnotation x\nend\nend A.B\nnotation y\nnamespace C\nnotation z\n").split("\n")

@@ -140,6 +140,25 @@ def code_end(text: str) -> int:
     return len(text.rstrip())
 
 
+def allowed_edit(old: str, new: str) -> bool:
+    return new == old or local_insertion(old, new) or notation_insertion(old, new) is not None
+
+
+def pair_up(o: list[str], n: list[str], i1: int, i2: int, j1: int, j2: int) -> tuple[list[tuple[int, int]], list[int], bool]:
+    """A replace block that does not have as many new lines as old ones (an edited line next to an added one, e.g. the last line of a file and the note after it): every old
+    line must meet, in order, a new line that is the same or an allowed edit of it; the new lines in between and after are additions. (pairs, additions, every old line met)"""
+    pairs, added, b = [], [], j1
+    for a in range(i1, i2):
+        while b < j2 and not allowed_edit(o[a], n[b]):
+            added.append(b)
+            b += 1
+        if b == j2:
+            return pairs, added, False
+        pairs.append((a, b))
+        b += 1
+    return pairs, added + list(range(b, j2)), True
+
+
 class Notes:
     """what a PR makes of notation: the namespaces of the commands it made `scoped`, the text of the commands it made `local`"""
 
@@ -154,9 +173,10 @@ def collect_notes(old: str, new: str, notes: Notes) -> list[str]:
     code = mask(old).split("\n")
     errors = []
     for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, o, n, autojunk=False).get_opcodes():
-        if tag != "replace" or i2 - i1 != j2 - j1:
+        if tag != "replace":
             continue
-        for a, b in zip(range(i1, i2), range(j1, j2)):
+        pairs = list(zip(range(i1, i2), range(j1, j2))) if i2 - i1 == j2 - j1 else pair_up(o, n, i1, i2, j1, j2)[0]
+        for a, b in pairs:
             mode = notation_insertion(o[a], n[b])
             if mode == "scoped":
                 ns = namespace_at(code, a)
@@ -239,6 +259,10 @@ def opcode_errors(path: str, o: list[str], n: list[str], op: tuple, known: dict[
             for a, b in zip(range(i1, i2), range(j1, j2))
             if not local_insertion(o[a], n[b]) and not notation_insertion(o[a], n[b])
         ]
+    if tag == "replace":
+        pairs, added, whole = pair_up(o, n, i1, i2, j1, j2)
+        if whole:
+            return [e for k in added for e in added_line_errors(path, k + 1, n[k], known, notes)]
     return [f"{path}:{j1 + 1}: lines were removed or replaced by a different number of lines ({tag}: {i2 - i1} -> {j2 - j1})"]
 
 
