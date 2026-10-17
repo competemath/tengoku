@@ -9,7 +9,6 @@ import sys
 import threading
 import unittest
 from pathlib import Path
-from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 CI = HERE.parent
@@ -39,7 +38,7 @@ def fake_space(reply, drop_stream=False, endpoint=None):
                 self.wfile.write(body)
                 return
             counter[0] += 1
-            sid = str(counter[0])
+            sid = f"{counter[0]:032x}"  # a Leak space names a 32-digit hex session
             sessions[sid] = q = queue.Queue()
             self.send_response(200)
             self.send_header("content-type", "text/event-stream")
@@ -91,21 +90,21 @@ class Client(unittest.TestCase):
             "import Tengoku.All\nexample : True := trivial\nexample (x : ℝ) : -(3 * x) = -3 * x := by ring\nexample : True := trivial\nexample (v : ℕ) : True := trivial\n"
         )
         k.write_text("import Tengoku.All\nexample (resolve : ℕ) : True := trivial\n")
-        port = urlsplit(space).port
-        return lc.main(
-            [
-                "--local-port",
-                str(port),
-                "--file",
-                str(c),
-                "--known",
-                str(k),
-                "--retries",
-                str(kw.get("retries", 0)),
-                "--timeout",
-                str(kw.get("timeout", 20)),
-                *(["--budget", str(kw["budget"])] if "budget" in kw else []),
-            ]
+        return lc.run(
+            space,
+            lc.parse(
+                [
+                    "--file",
+                    str(c),
+                    "--known",
+                    str(k),
+                    "--retries",
+                    str(kw.get("retries", 0)),
+                    "--timeout",
+                    str(kw.get("timeout", 20)),
+                    *(["--budget", str(kw["budget"])] if "budget" in kw else []),
+                ]
+            ),
         )
 
     def test_a_script_that_compiles_exits_zero_and_one_that_does_not_exits_one(self):
@@ -313,21 +312,17 @@ class Readiness(unittest.TestCase):
             with tempfile.TemporaryDirectory() as d:
                 canary = Path(d) / "C.lean"
                 canary.write_text("import Tengoku.All\n")
-                rc = lc.main(
-                    [
-                        "--local-port",
-                        str(urlsplit(base).port),
-                        "--file",
-                        str(canary),
-                        "--known",
-                        str(Path(d) / "none"),
-                        "--wait-refresh",
-                        "0.2",
-                    ]
-                )
-            self.assertEqual(
-                rc, 2
-            )  # the pointer (github.com) does not name "abc", or cannot be read here: either way the space is not shown to follow it
+                psrv, pbase = self.serve([{}], self.POINTER)  # the published pointer names "aaaa…", the space has pinned "abc"
+                saved, lc.POINTER = lc.POINTER, f"{pbase}/pointer"
+                try:
+                    rc = lc.run(
+                        base,
+                        lc.parse(["--file", str(canary), "--known", str(Path(d) / "none"), "--wait-refresh", "0.2"]),
+                    )
+                finally:
+                    lc.POINTER = saved
+                    psrv.shutdown()
+            self.assertEqual(rc, 2)  # the space is not shown to follow the pointer: nothing was compiled
             self.assertEqual(seen, [])
         finally:
             close()

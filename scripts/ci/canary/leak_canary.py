@@ -7,7 +7,7 @@ tool the provers use) compiles it on its pinned tree; a failure is a library of 
 CanaryKnown.lean (bugs known to be open) is compiled too and only reported.
 
 The space is named, not addressed: `--space` is one of SPACES (the address is the program's own constant, never a string from the command line or the workflow input), and
-`--local-port` is the tests' fake space on this machine. `--wait-refresh S` (after a promotion): first `--settle` seconds for the space to start its refresh, then up to S
+the tests call `run()` with a fake space on this machine. `--wait-refresh S` (after a promotion): first `--settle` seconds for the space to start its refresh, then up to S
 seconds until it reports `refreshing: false`, `status: current`, and a pinned tree that is the base of the published cache pointer; exit 2 when it never does.
 The space reports the base commit it has pinned, not the top-up commit it loaded on top: a promotion that only changes the top-up cannot be told apart (the scheduled run
 catches it within six hours, and the merge queue's own canary judges every group before it merges).
@@ -23,11 +23,12 @@ import threading
 import time
 import urllib.request
 from pathlib import Path
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 SPACES = {"leak-iv": "https://barkingtree-leak-iv.hf.space"}  # the Leak spaces this client knows; another one is one more line here
 POINTER = "https://github.com/competemath/tengoku/releases/download/cache-latest/cache-latest.json"  # the published cache pointer the spaces follow
+ENDPOINT = re.compile(r"/messages/\?session_id=([0-9a-fA-F-]{8,64})")
 ERROR = re.compile(r"^Line (\d+) \((Error|Warning)\): (.*)$", re.M)
 RETRY_PAUSE = 30  # seconds, times the number of the attempt that failed
 MIN_CALL = 60  # an attempt that would get less than this is not started
@@ -82,7 +83,7 @@ def ready(status: dict, pointer: dict | None) -> tuple[bool, str]:
     return True, ""
 
 
-def wait_ready(base: str, settle: float, wait: float, poll: float = 30.0, pointer_url: str = POINTER) -> bool:
+def wait_ready(base: str, settle: float, wait: float, poll: float = 30.0, pointer_url: str | None = None) -> bool:
     """after a promotion: let the space start its refresh, then poll until it is ready or `wait` seconds are over"""
     time.sleep(settle)
     deadline = time.monotonic() + wait
@@ -94,7 +95,7 @@ def wait_ready(base: str, settle: float, wait: float, poll: float = 30.0, pointe
             status, why = None, f"/refresh not readable ({e!r})"
         if status is not None:
             try:
-                pointer = get_json(pointer_url)
+                pointer = get_json(pointer_url or POINTER)
             except Exception:
                 pointer = None
             print("space:", json.dumps(status)[:400])
@@ -130,13 +131,14 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
                     if line == "":
                         with cond:
                             if event == "endpoint":
-                                endpoint = urljoin(f"{base}/", "\n".join(data))
-                                if (
-                                    urlsplit(endpoint)[:2] == urlsplit(base)[:2]
-                                ):  # the same scheme and host: the stream does not send the script elsewhere
-                                    state["endpoint"] = endpoint
+                                # the stream says where to post; only the session id is taken from it: the address is this client's (base + the path every Leak space serves)
+                                m = ENDPOINT.fullmatch("\n".join(data).strip())
+                                if m:
+                                    state["endpoint"] = f"{base}/messages/?session_id={m.group(1)}"
                                 else:
-                                    state["dead"] = Unreachable(f"the stream names an endpoint on another host: {endpoint[:120]}")
+                                    state["dead"] = Unreachable(
+                                        f"the stream names an endpoint that is not /messages/?session_id=<hex>: {chr(10).join(data)[:120]!r}"
+                                    )
                             elif event == "message":
                                 try:
                                     msg = json.loads("\n".join(data))
@@ -227,10 +229,9 @@ def report(name: str, script: str, errors: list[tuple[int, str]]) -> list[str]:
     return out
 
 
-def main(argv: list[str]) -> int:
+def parse(argv: list[str]) -> argparse.Namespace:
     ap = argparse.ArgumentParser()
     ap.add_argument("--space", choices=sorted(SPACES), default="leak-iv", help="the Leak space (its address is SPACES' constant)")
-    ap.add_argument("--local-port", type=int, default=0, help="ask a server on this machine instead (the tests' fake space)")
     ap.add_argument("--settle", type=float, default=0.0, help="with --wait-refresh: seconds to let the space start its refresh first")
     ap.add_argument(
         "--wait-refresh",
@@ -253,8 +254,16 @@ def main(argv: list[str]) -> int:
         default=1800.0,
         help="seconds for the whole run, retries and pauses included (the workflow's job must outlast it)",
     )
-    a = ap.parse_args(argv)
-    base = f"http://127.0.0.1:{int(a.local_port)}" if a.local_port else SPACES[a.space]
+    return ap.parse_args(argv)
+
+
+def main(argv: list[str]) -> int:
+    a = parse(argv)
+    # the address is the constant of the name that was given: nothing of the command line is in it
+    return run(next(url for name, url in SPACES.items() if name == a.space), a)
+
+
+def run(base: str, a: argparse.Namespace) -> int:
     if a.wait_refresh > 0 and not wait_ready(base, a.settle, a.wait_refresh):
         return 2
     try:  # which tree the space has pinned, for the log
