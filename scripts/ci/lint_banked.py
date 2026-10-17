@@ -93,7 +93,9 @@ def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
     """the diff is what classify.py calls a scope-fix PR: existing modules `Tengoku/<Library>/….lean` of a library that arrived as an intake bundle, modified in place, nothing else"""
     intake = {
         pascal(m.group(1))
-        for p in run("ls-tree", "-r", "--name-only", base, "data/intake").split("\n")
+        for p in run("ls-tree", "-r", "--name-only", base, "data/intake", check=False).split(
+            "\n"
+        )  # a base that is no revision (the fuzzers') has no intake libraries: no exemption
         if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))
     }
     return bool(files) and all(
