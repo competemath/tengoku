@@ -17,7 +17,7 @@ import threading
 import time
 import urllib.request
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_SPACE = "https://barkingtree-leak-iv.hf.space"
@@ -30,9 +30,23 @@ class Unreachable(Exception):
     pass
 
 
+LOCAL_HOSTS = ("127.0.0.1", "localhost", "::1")  # a server on this machine: the tests' fake space
+
+
+def checked_space(url: str) -> str:
+    """the origin of a Leak space: `https://host[:port]` (http only for a server on this machine), no credentials, no path, no query. A ValueError otherwise: the client
+    sends the script it compiles to this address and follows the endpoint its stream names, so it must not be a `file:` URL or somebody else's host."""
+    u = urlsplit(url.strip())
+    if not (u.scheme == "https" or (u.scheme == "http" and u.hostname in LOCAL_HOSTS)):
+        raise ValueError(f"the space must be an https URL (http only on this machine), not {url!r}")
+    if not u.hostname or u.username or u.password or u.query or u.fragment or u.path not in ("", "/"):
+        raise ValueError(f"the space must be an origin (https://host[:port]), not {url!r}")
+    return f"{u.scheme}://{u.netloc}"
+
+
 def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
     """One MCP tool call over SSE: open the stream, take the message endpoint it names, initialize, call, read the reply from the stream."""
-    base = base.rstrip("/")
+    base = checked_space(base)
     replies: dict[int, dict] = {}
     cond = threading.Condition()
     state: dict = {"endpoint": None, "dead": None}
@@ -48,7 +62,13 @@ def call_tool(base: str, tool: str, args: dict, timeout: float = 900.0) -> str:
                     if line == "":
                         with cond:
                             if event == "endpoint":
-                                state["endpoint"] = urljoin(f"{base}/", "\n".join(data))
+                                endpoint = urljoin(f"{base}/", "\n".join(data))
+                                if (
+                                    urlsplit(endpoint)[:2] == urlsplit(base)[:2]
+                                ):  # the same scheme and host: the stream does not send the script elsewhere
+                                    state["endpoint"] = endpoint
+                                else:
+                                    state["dead"] = Unreachable(f"the stream names an endpoint on another host: {endpoint[:120]}")
                             elif event == "message":
                                 try:
                                     msg = json.loads("\n".join(data))
@@ -158,8 +178,12 @@ def main(argv: list[str]) -> int:
         help="seconds for the whole run, retries and pauses included (the workflow's job must outlast it)",
     )
     a = ap.parse_args(argv)
+    try:
+        a.space = checked_space(a.space)
+    except ValueError as e:
+        ap.error(str(e))
     try:  # which tree the space has pinned, for the log
-        with urllib.request.urlopen(f"{a.space.rstrip('/')}/refresh", timeout=60) as r:
+        with urllib.request.urlopen(f"{a.space}/refresh", timeout=60) as r:
             print("space:", r.read().decode()[:400])
     except Exception as e:
         print(f"space: /refresh not readable ({e!r})")

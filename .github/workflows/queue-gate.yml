@@ -312,7 +312,14 @@ jobs:
           case "$mode" in report|enforce) ;; *) echo "error: unknown canary mode '$mode' (report or enforce)" | tee -a build.log; exit 1 ;; esac
           # the probes are a setting of the gate as well: the BASE's copy when it has one (a group cannot delete the probe that would catch it); the group's own only on the first PR
           canary_src=scripts/ci/canary/Canary.lean
-          if git show "$BASE_SHA:scripts/ci/canary/Canary.lean" > "${RUNNER_TEMP:-/tmp}/Canary.base.lean" 2>/dev/null; then canary_src="${RUNNER_TEMP:-/tmp}/Canary.base.lean"; fi
+          probes="${RUNNER_TEMP:-/tmp}/Canary.base.lean"
+          # whether the base has probes is read from its tree (trees are local in the partial clone); reading them may fetch a blob, and a fetch that fails is no verdict on the group
+          # (never the group's own copy: that is the case this is for)
+          have="$(git ls-tree "$BASE_SHA" -- scripts/ci/canary/Canary.lean)" || { echo "::warning::could not look at the base's canary probes: no verdict on this group (mode: $mode)"; exit 0; }
+          if [ -n "$have" ]; then
+            git show "$BASE_SHA:scripts/ci/canary/Canary.lean" > "$probes" 2>/dev/null || { echo "::warning::could not read the base's canary probes: no verdict on this group (mode: $mode)"; exit 0; }
+            canary_src="$probes"
+          fi
           set +e
           timeout -k 30 3m lake env lean "$canary_src" > canary.txt 2>&1
           rc=$?

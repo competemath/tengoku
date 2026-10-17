@@ -20,7 +20,7 @@ OK = "✅ Compilation Successful! The proof is 100% verified.\n[[LEAK_NORMALIZED
 BAD = "❌ Compilation Failed:\nLine 3 (Error): Ambiguous term -(3 * x) Possible interpretations: a b\nLine 5 (Warning): unused\nLine 5 (Error): unexpected token 'v'; expected ')'\n"
 
 
-def fake_space(reply, drop_stream=False):
+def fake_space(reply, drop_stream=False, endpoint=None):
     """a Leak space that answers verify_full_script with `reply(script)`; returns (server, base url, a function that ends the open streams)"""
     sessions: dict[str, queue.Queue] = {}
     counter = [0]
@@ -43,7 +43,7 @@ def fake_space(reply, drop_stream=False):
             self.send_response(200)
             self.send_header("content-type", "text/event-stream")
             self.end_headers()
-            self.wfile.write(f"event: endpoint\r\ndata: /messages/?session_id={sid}\r\n\r\n".encode())
+            self.wfile.write(f"event: endpoint\r\ndata: {endpoint or '/messages/'}?session_id={sid}\r\n\r\n".encode())
             self.wfile.flush()
             if drop_stream:
                 return
@@ -161,6 +161,38 @@ class Client(unittest.TestCase):
             close()
             srv.shutdown()
 
+    def test_the_space_url_is_an_https_origin_or_a_server_on_this_machine(self):
+        """Snyk on tengoku#599: the client sends a script to the address it is given"""
+        self.assertEqual(lc.checked_space("https://barkingtree-leak-iv.hf.space/"), "https://barkingtree-leak-iv.hf.space")
+        self.assertEqual(lc.checked_space("http://127.0.0.1:7861"), "http://127.0.0.1:7861")
+        for bad in (
+            "file:///etc/passwd",
+            "ftp://host",
+            "http://example.com",  # plain http to another machine
+            "https://user:pw@example.com",
+            "https://example.com/some/path",
+            "https://example.com?x=1",
+            "https://",
+            "example.com",
+        ):
+            with self.assertRaises(ValueError, msg=bad):
+                lc.checked_space(bad)
+        with self.assertRaises(SystemExit):
+            lc.main(["--space", "file:///etc/passwd"])
+
+    def test_an_endpoint_the_stream_names_on_another_host_is_not_followed(self):
+        import tempfile
+
+        seen = []
+        srv, base, close = fake_space(lambda s: (seen.append(s), OK)[1], endpoint="http://127.0.0.2:9/messages/")
+        try:
+            with tempfile.TemporaryDirectory() as d:
+                self.assertEqual(self.run_main(base, d, timeout=5), 2)  # unreachable: nothing was sent anywhere
+            self.assertEqual(seen, [])
+        finally:
+            close()
+            srv.shutdown()
+
     def test_a_space_that_cannot_be_asked_exits_two_not_one(self):
         import tempfile
 
@@ -202,7 +234,7 @@ class QueueStep(unittest.TestCase):
         wf = yaml.safe_load((ROOT / ".github" / "workflows" / "queue-gate.yml").read_text(encoding="utf-8"))
         return next(s for s in wf["jobs"]["queue-build"]["steps"] if str(s.get("name", "")).startswith("Canary"))
 
-    def run_step(self, lake_rc, var="", base_mode="report\n", base_has_file=True, base_has_probes=True):
+    def run_step(self, lake_rc, var="", base_mode="report\n", base_has_file=True, probes="base"):
         import os
         import subprocess
         import tempfile
@@ -217,7 +249,15 @@ class QueueStep(unittest.TestCase):
             (bin_ / "git").write_text(
                 '#!/bin/bash\ncase "$*" in\n'
                 + (f"  *canary/mode*) printf '%s' '{base_mode}' ;;\n" if base_has_file else "  *canary/mode*) exit 128 ;;\n")
-                + ("  *Canary.lean*) printf '%s' 'BASE PROBES' ;;\n" if base_has_probes else "  *Canary.lean*) exit 128 ;;\n")
+                + "  ls-tree*) "
+                + {
+                    "base": "echo '100644 blob abc\tscripts/ci/canary/Canary.lean'",
+                    "none": "true",
+                    "broken": "exit 128",
+                    "unreadable": "echo '100644 blob abc\tscripts/ci/canary/Canary.lean'",
+                }[probes]
+                + " ;;\n"
+                + ("  *Canary.lean*) exit 128 ;;\n" if probes == "unreadable" else "  *Canary.lean*) printf '%s' 'BASE PROBES' ;;\n")
                 + "esac\n"
             )
             (bin_ / "timeout").write_text('#!/bin/bash\nshift 2; shift; "$@"\n')  # timeout -k 30 3m CMD...
@@ -261,9 +301,18 @@ class QueueStep(unittest.TestCase):
         self.assertEqual(self.lake_saw, "BASE PROBES")
 
     def test_the_groups_own_probes_are_used_only_when_the_base_has_none(self):
-        rc, out = self.run_step(0, base_has_probes=False)
+        rc, out = self.run_step(0, probes="none")
         self.assertEqual(rc, 0, out)
         self.assertEqual(self.lake_file, "scripts/ci/canary/Canary.lean")
+
+    def test_probes_that_cannot_be_read_are_no_verdict_and_never_the_groups_own_copy(self):
+        """Gitar on tengoku#599: the base's blob is fetched lazily in the partial clone; a failed fetch must not make the step compile the probes the group edited"""
+        for probes in ("unreadable", "broken"):
+            for kw in ({}, {"var": "enforce"}):
+                rc, out = self.run_step(1, probes=probes, **kw)
+                self.assertEqual(rc, 0, f"{probes} {kw}: {out}")  # not even in enforce mode is it the group's fault
+                self.assertIn("no verdict on this group", out)
+                self.assertIsNone(self.lake_file, "the canary was compiled although its probes could not be read")
 
     def test_the_variable_wins_over_the_base_file(self):
         self.assertEqual(self.run_step(1, var="report", base_mode="enforce\n")[0], 0)
