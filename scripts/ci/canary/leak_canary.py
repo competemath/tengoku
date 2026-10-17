@@ -32,6 +32,7 @@ POINTER = "https://github.com/competemath/tengoku/releases/download/cache-latest
 ENDPOINT = re.compile(r"/messages/\?session_id=([0-9a-fA-F-]{8,64})")
 ERROR = re.compile(r"^Line (\d+) \((Error|Warning)\): (.*)$", re.M)
 RETRY_PAUSE = 30  # seconds, times the number of the attempt that failed
+MAX_JSON = 1_000_000  # bytes read of a /refresh status or the cache pointer
 MIN_CALL = 60  # an attempt that would get less than this is not started
 
 
@@ -55,7 +56,10 @@ def checked_space(url: str) -> str:
 
 def get_json(url: str, timeout: float = 30.0) -> dict:
     with urllib.request.urlopen(checked_get(url), timeout=timeout) as r:  # noqa: S310 — the URL is one of this module's constants or a checked origin + /refresh
-        data = json.loads(r.read().decode("utf-8", "replace"))
+        raw = r.read(MAX_JSON + 1)  # a status or a cache pointer is a few hundred bytes: nothing longer is read
+    if len(raw) > MAX_JSON:
+        raise ValueError(f"more than {MAX_JSON} bytes")
+    data = json.loads(raw.decode("utf-8", "replace"))
     if not isinstance(data, dict):
         raise ValueError("not a JSON object")
     return data
