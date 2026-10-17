@@ -41,7 +41,9 @@ def weight : TM2.Stmt Γ Λ State → Nat
   | .goto _ | .halt => 1
 
 /-- Executing one statement by individual operations agrees with the
-original macro-step, with a bound depending only on statement syntax. -/
+original macro-step, with a bound depending only on statement syntax.
+@isnad1 id=ex.0h8v.s6.abf0057f5cf9 from=translated src=- shape=79f8943e vocab=702cd5a5
+-/
 theorem statement_refines (M : Λ → TM2.Stmt Γ Λ State) (q : TM2.Stmt Γ Λ State)
     (v : State) (stk : (k : K) → List (Γ k)) :
     ∃ t, t ≤ weight q ∧ (next M)^[t] (instruction q v stk) = boundary (TM2.stepAux q v stk) := by
@@ -64,6 +66,9 @@ theorem statement_refines (M : Λ → TM2.Stmt Γ Λ State) (q : TM2.Stmt Γ Λ 
 def macroNext (M : Λ → TM2.Stmt Γ Λ State) (c : TM2.Cfg Γ Λ State) : TM2.Cfg Γ Λ State :=
   (TM2.step M c).getD c
 
+/--
+@isnad1 id=ex.1h7v.s6.f57ca89e5a9f from=translated src=- shape=2c06f29c vocab=a05c6e42
+-/
 theorem macro_refines (M : Λ → TM2.Stmt Γ Λ State) (C : Nat)
     (hC : ∀ l, weight (M l) + 1 ≤ C) (c : TM2.Cfg Γ Λ State) :
     ∃ t, t ≤ C ∧ (next M)^[t] (boundary c) = boundary (macroNext M c) := by
@@ -76,6 +81,9 @@ theorem macro_refines (M : Λ → TM2.Stmt Γ Λ State) (C : Nat)
           refine ⟨t + 1, (Nat.add_le_add_right ht 1).trans (hC l), ?_⟩
           simpa only [Function.iterate_succ_apply, next, boundary, macroNext, TM2.step, Option.getD_some] using hp
 
+/--
+@isnad1 id=ex.1h8v.s6.c945da37567b from=translated src=- shape=a8630d69 vocab=5b7a2035
+-/
 theorem iterate_refines (M : Λ → TM2.Stmt Γ Λ State) (C : Nat)
     (hC : ∀ l, weight (M l) + 1 ≤ C) (n : Nat) (c : TM2.Cfg Γ Λ State) :
     ∃ t, t ≤ C * n ∧ (next M)^[t] (boundary c) = boundary ((macroNext M)^[n] c) := by
@@ -92,6 +100,9 @@ noncomputable def factor (tm : FinTM2) : Nat :=
   letI := tm.ΛFin
   (Finset.univ.sum fun l : tm.Λ => weight (tm.m l)) + 1
 
+/--
+@isnad1 id=le.0h2v.s5.1772d2ef02e5 from=translated src=- shape=26adf1d6 vocab=2dfb7f92
+-/
 theorem weight_le_factor (tm : FinTM2) (l : tm.Λ) : weight (tm.m l) + 1 ≤ factor tm := by
   classical
   letI := tm.ΛFin
@@ -99,11 +110,17 @@ theorem weight_le_factor (tm : FinTM2) (l : tm.Λ) : weight (tm.m l) + 1 ≤ fac
   exact Nat.add_le_add_right
     (Finset.single_le_sum (fun j _ => Nat.zero_le (weight (tm.m j))) (Finset.mem_univ l)) 1
 
+/--
+@isnad1 id=ex.0h3v.s6.aa9c9c44621b from=translated src=- shape=a9d34e65 vocab=5a1382ef
+-/
 theorem finite_iterate_refines (tm : FinTM2) (n : Nat) (c : tm.Cfg) :
     ∃ t, t ≤ factor tm * n ∧
       (next tm.m)^[t] (boundary c) = boundary ((macroNext tm.m)^[n] c) :=
   iterate_refines tm.m (factor tm) (weight_le_factor tm) n c
 
+/--
+@isnad1 id=eq.1h8v.s6.f15c381f9b97 from=translated src=- shape=895c3f86 vocab=44720b5c
+-/
 theorem macro_matches (M : Λ → TM2.Stmt Γ Λ State) (n : Nat) {c d : TM2.Cfg Γ Λ State}
     (h : (fun q : Option (TM2.Cfg Γ Λ State) => q.bind (TM2.step M))^[n] (some c) = some d) :
     (macroNext M)^[n] c = d := by
@@ -122,7 +139,9 @@ theorem macro_matches (M : Λ → TM2.Stmt Γ Λ State) (n : Nat) {c d : TM2.Cfg
           simpa only [macroNext, hs, Option.getD_some] using ih he
 
 /-- Bounded actual TM2 runs are reproduced with only a fixed multiplicative
-overhead. No step-count composition assertion is assumed. -/
+overhead. No step-count composition assertion is assumed.
+@isnad1 id=ex.0h5v.s6.d47326570d47 from=translated src=- shape=bc158d9f vocab=a5d6b340
+-/
 theorem evals_refines (tm : FinTM2) {c d : tm.Cfg} {T : Nat}
     (h : StateTransition.EvalsToInTime tm.step c (some d) T) :
     ∃ t, t ≤ factor tm * T ∧ (next tm.m)^[t] (boundary c) = boundary d := by
@@ -130,12 +149,17 @@ theorem evals_refines (tm : FinTM2) {c d : tm.Cfg} {T : Nat}
   rw [macro_matches tm.m h.steps h.evals_in_steps] at hp
   exact ⟨t, ht.trans (Nat.mul_le_mul_left _ h.steps_le_m), hp⟩
 
+/--
+@isnad1 id=eq.1h6v.s6.f96bd5d4409e from=translated src=- shape=c16fc46b vocab=3eae9cb1
+-/
 theorem halt_fixed (M : Λ → TM2.Stmt Γ Λ State) (c : TM2.Cfg Γ Λ State) (hc : c.l = none) :
     next M (boundary c) = boundary c := by
   simp [next, boundary, hc]
 
 /-- After a bounded halting computation, any larger time gives the same
-terminal configuration. This permits a coarse tuple-sized time horizon. -/
+terminal configuration. This permits a coarse tuple-sized time horizon.
+@isnad1 id=eq.2h6v.s6.363d3f70fb15 from=translated src=- shape=4ecffa4b vocab=d8355dfd
+-/
 theorem evals_at_time (tm : FinTM2) {c d : tm.Cfg} {T N : Nat}
     (h : StateTransition.EvalsToInTime tm.step c (some d) T) (hd : d.l = none)
     (hN : factor tm * T ≤ N) : (next tm.m)^[N] (boundary c) = boundary d := by

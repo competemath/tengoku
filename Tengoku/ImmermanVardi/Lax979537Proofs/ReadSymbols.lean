@@ -18,6 +18,9 @@ open scoped Classical in
 noncomputable def values (tm : FinTM2) (k : tm.K) : List (tm.Γ k) :=
   (Finset.univ : Finset (Symbol tm k)).toList.map Subtype.val
 
+/--
+@isnad1 id=iff.0h3v.s6.e701573d3854 from=translated src=- shape=c8338be1 vocab=5503450c
+-/
 theorem mem_values (tm : FinTM2) (k : tm.K) (a : tm.Γ k) :
     a ∈ values tm k ↔ Sigma.mk k a ∈ TM2Alphabet.alphabet tm := by
   classical

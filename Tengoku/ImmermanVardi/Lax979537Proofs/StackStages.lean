@@ -20,6 +20,9 @@ def stages (domain bound counter coord tmp : K) (powerCounters : List K)
 noncomputable def costPolynomial (B : Polynomial Nat) (k : Nat) : Polynomial Nat :=
   StackPower.costPolynomial k + (B + 14) * Polynomial.X ^ k + 10
 
+/--
+@isnad1 id=eq.0h5v.s4.9cb978cbda09 from=translated src=- shape=aa4e3a5d vocab=fc88fbf1
+-/
 theorem foldRange_iterate (f : α → α) (start count : Nat) (a : α) :
     foldRange (fun _ => f) start count a = (f^[count]) a := by
   induction count generalizing start a with

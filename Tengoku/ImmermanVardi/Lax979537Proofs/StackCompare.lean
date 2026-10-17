@@ -31,6 +31,9 @@ def residue : List Bool → List Bool → Residue
   | xs, [] => ⟨xs.tail, [], xs.head?.isSome, none⟩
   | _ :: xs, _ :: ys => residue xs ys
 
+/--
+@isnad1 id=eq.0h2v.s5.29474bb25931 from=translated src=- shape=465e6643 vocab=1ea723e4
+-/
 theorem residue_less (xs ys : List Bool) :
     (!(residue xs ys).leftPresent && (residue xs ys).rightHead.isSome) =
       decide (xs.length < ys.length) := by
@@ -38,6 +41,9 @@ theorem residue_less (xs ys : List Bool) :
   | nil => cases ys <;> simp [residue]
   | cons b bs ih => cases ys <;> simp [residue, ih]
 
+/--
+@isnad1 id=le.0h2v.s5.9a50d9b772f4 from=translated src=- shape=af1ce76c vocab=b0e01234
+-/
 theorem residue_size (xs ys : List Bool) :
     (residue xs ys).left.length + (residue xs ys).right.length ≤ xs.length + ys.length := by
   induction xs generalizing ys with
@@ -47,6 +53,9 @@ theorem residue_size (xs ys : List Bool) :
       | nil => simp [residue]
       | cons c cs => have h := ih cs; simp only [residue, List.length_cons]; omega
 
+/--
+@isnad1 id=executes.1h10v.s6.ab49d880031f from=translated src=- shape=8eb94421 vocab=5d8fe2dc
+-/
 theorem readPair_executes (base : K → List Bool) (left right : K) (hne : left ≠ right)
     (xs ys : List Bool) (a : Aux) (flag : Bool) (scratch : Option Bool) :
     Executes (readPair left right) (working base left right xs ys (a, flag) scratch)
@@ -77,6 +86,9 @@ theorem readPair_executes (base : K → List Bool) (left right : K) (hne : left 
   rw [he'] at hq
   exact Executes.seq hp hq
 
+/--
+@isnad1 id=ex.1h8v.s7.79d6aca4e81d from=translated src=- shape=3e3118e2 vocab=03e4f45f
+-/
 theorem scanLoop_executes (base : K → List Bool) (left right : K) (hne : left ≠ right)
     (xs ys : List Bool) (a : Aux) :
     ∃ c, c ≤ 3 * (xs.length + ys.length) + 1 ∧
@@ -96,6 +108,9 @@ theorem scanLoop_executes (base : K → List Bool) (left right : K) (hne : left 
           · exact Executes.loop_true rfl
               (readPair_executes base left right hne bs ds a true (some d)) hh
 
+/--
+@isnad1 id=ex.1h10v.s7.a67448ac008f from=translated src=- shape=1d581eac vocab=af564a2e
+-/
 theorem scan_executes (base : K → List Bool) (left right : K) (hne : left ≠ right)
     (xs ys : List Bool) (a : Aux) (flag : Bool) (scratch : Option Bool) :
     ∃ c, c ≤ 3 * (xs.length + ys.length) + 3 ∧

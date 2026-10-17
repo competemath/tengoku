@@ -7,7 +7,9 @@ open StackProgram StackTransfer StackFor StackTuples
 variable {K Aux α : Type} [DecidableEq K]
 
 /-- Observe any coordinate installed by tuple traversal. The statement is
-uniform in arity and in the surrounding semantic payload and loop counters. -/
+uniform in arity and in the surrounding semantic payload and loop counters.
+@isnad1 id=eq.1h12v.s6.8e3a54bbb8a3 from=translated src=- shape=3266ef8d vocab=d282ace6
+-/
 theorem coordinate_ofFn (base : α → BitStore K Aux) {k : Nat}
     (counter coord : Fin k → K)
     (hsep : (ports (List.ofFn (fun i => (counter i, coord i)))).Nodup)
