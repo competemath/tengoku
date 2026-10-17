@@ -370,7 +370,8 @@ class QueueStep(unittest.TestCase):
                 "RUNNER_TEMP": d,
                 "GITHUB_STEP_SUMMARY": str(Path(d) / "summary.md"),
             }
-            r = subprocess.run(["bash", "-e", "-o", "pipefail", "-c", self.step()["run"]], cwd=d, env=env, capture_output=True, text=True)
+            (Path(d) / "step.sh").write_text(self.step()["run"])  # the step as the workflow has it, run as a script file
+            r = subprocess.run(["bash", "-e", "-o", "pipefail", "step.sh"], cwd=d, env=env, capture_output=True, text=True)
             self.lake_file = (
                 (Path(d) / "lake_file.txt").read_text().strip() if (Path(d) / "lake_file.txt").exists() else None
             )  # the step may stop before lake
