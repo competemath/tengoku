@@ -22,6 +22,7 @@ class TimeBudget(unittest.TestCase):
 
     LIMIT = 120
     BEFORE, SEED, MIDDLE, PACK = 4, 5, 60, 3  # minutes: worst cases of the real runs; MIDDLE = candidates, axioms, tags and the leak report
+    CANARY = 6  # the canary (scripts/ci/canary/Canary.lean) after the library build: its own `timeout 6m`
     WORKFLOW = HERE.parent.parent.parent / ".github" / "workflows" / "queue-gate.yml"
 
     def test_the_restore_and_what_follows_fit_the_queue_limit(self):
@@ -33,7 +34,10 @@ class TimeBudget(unittest.TestCase):
         caps = re.findall(r"timeout -k \d+ (\d+)m lake build Tengoku\.All", text)
         self.assertEqual((len(restores), len(caps)), (1, 1), "the restore step or the build's own cap was not found")
         restore, cap = int(restores[0]), int(caps[0])
-        worst = self.BEFORE + restore + self.SEED + self.MIDDLE + cap + self.PACK
+        canary = re.findall(r"timeout -k \d+ (\d+)m lake env lean scripts/ci/canary/Canary\.lean", text)
+        self.assertEqual(len(canary), 1, "the canary step or its own cap was not found")
+        self.assertLessEqual(int(canary[0]), self.CANARY, "the canary's cap is what the budget below allows for it")
+        worst = self.BEFORE + restore + self.SEED + self.MIDDLE + cap + int(canary[0]) + self.PACK
         job = int(re.search(r"queue-build:.*?timeout-minutes: (\d+)", text, re.S).group(1))
         self.assertLessEqual(
             job, self.LIMIT, f"the job's own timeout ({job} min) must end before the queue gives up on the check ({self.LIMIT})"
