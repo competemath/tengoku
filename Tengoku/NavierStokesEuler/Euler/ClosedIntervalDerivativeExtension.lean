@@ -21,16 +21,25 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 def affineExtension (f : ℝ → E) (g₀ gT : E) (T t : ℝ) : E :=
   if t < 0 then f 0 + t • g₀ else if T < t then f T + (t-T) • gT else f t
 
+/--
+@isnad1 id=eq.1h6v.s5.faef5b9cbffb from=translated src=- shape=e4216e20 vocab=89cc5bdb
+-/
 theorem affineExtension_eq {f : ℝ → E} {g₀ gT : E} {T t : ℝ}
     (ht : t ∈ Icc 0 T) : affineExtension f g₀ gT T t = f t := by
   simp only [affineExtension, not_lt.mpr ht.1, not_lt.mpr ht.2, ite_false]
 
+/--
+@isnad1 id=eq.2h6v.s7.ae93087b070d from=translated src=- shape=a76f329d vocab=7f700d06
+-/
 theorem affineExtension_eq_left {f : ℝ → E} {g₀ gT : E} {T t : ℝ}
     (hT : 0 ≤ T) (ht : t ≤ 0) : affineExtension f g₀ gT T t = f 0+t • g₀ := by
   rcases ht.eq_or_lt with rfl | ht
   · simp [affineExtension, not_lt.mpr hT]
   · simp only [affineExtension, ht, ite_true]
 
+/--
+@isnad1 id=eq.2h6v.s7.8a99fbcb21f4 from=translated src=- shape=45536163 vocab=840478c6
+-/
 theorem affineExtension_eq_right {f : ℝ → E} {g₀ gT : E} {T t : ℝ}
     (hT : 0 ≤ T) (ht : T ≤ t) : affineExtension f g₀ gT T t = f T+(t-T) • gT := by
   rcases ht.eq_or_lt with rfl | ht
@@ -38,7 +47,9 @@ theorem affineExtension_eq_right {f : ℝ → E} {g₀ gT : E} {T t : ℝ}
   · simp only [affineExtension, not_lt.mpr (hT.trans ht.le), ht, ite_false, ite_true]
 
 /-- No continuity of the derivative is needed: the matching endpoint slopes
-and the one-sided derivative suffice. -/
+and the one-sided derivative suffice.
+@isnad1 id=hasderiv.3h5v.s7.bda66b527a9a from=translated src=- shape=0e6d6d9e vocab=7dbdeb3f
+-/
 theorem affineExtension_hasDerivAt {f g : ℝ → E} {T t : ℝ}
     (hT : 0 < T) (ht : t ∈ Icc 0 T)
     (hf : HasDerivWithinAt f (g t) (Icc 0 T) t) :
@@ -64,6 +75,9 @@ theorem affineExtension_hasDerivAt {f g : ℝ → E} {T t : ℝ}
     · exact hwithin.hasDerivAt (Icc_mem_nhds (lt_of_le_of_ne ht.1 (Ne.symm ht0))
         (lt_of_le_of_ne ht.2 htT))
 
+/--
+@isnad1 id=ex.2h4v.s7.be0df34fe248 from=translated src=- shape=c5d6aace vocab=cd258ce5
+-/
 theorem exists_extension {f g : ℝ → E} {T : ℝ} (hT : 0 < T)
     (hf : ∀ t ∈ Icc 0 T, HasDerivWithinAt f (g t) (Icc 0 T) t) :
     ∃ F : ℝ → E, EqOn F f (Icc 0 T) ∧

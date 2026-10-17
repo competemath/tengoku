@@ -55,10 +55,16 @@ def generatorPath (c : ℝ) (hc : 0 < c) (Q Q₁ : C(K,α →ᵇ U →L[ℝ] E))
     (hQ : ∀ t x v, c*‖v‖^2 ≤ ‖Q t x v‖^2) : C(K,α →ᵇ U →L[ℝ] U) :=
   (-2 : ℝ) • pathCompositionMap (leftInversePath c hc Q hQ) Q₁
 
+/--
+@isnad1 id=eq.2h8v.s13.ccd1280bef80 from=translated src=- shape=851c5228 vocab=ead879f6
+-/
 @[simp] theorem leftInversePath_apply (c : ℝ) (hc : 0 < c) (Q : C(K,α →ᵇ U →L[ℝ] E))
     (hQ : ∀ t x v, c*‖v‖^2 ≤ ‖Q t x v‖^2) (t : K) (x : α) :
     leftInversePath c hc Q hQ t x = (gramInverse (Q t x) c hc (hQ t x)).comp (Q t x).adjoint := rfl
 
+/--
+@isnad1 id=eq.2h9v.s13.ffc8a873f1e1 from=translated src=- shape=1a29bdcf vocab=57c925cb
+-/
 @[simp] theorem generatorPath_apply (c : ℝ) (hc : 0 < c) (Q Q₁ : C(K,α →ᵇ U →L[ℝ] E))
     (hQ : ∀ t x v, c*‖v‖^2 ≤ ‖Q t x v‖^2) (t : K) (x : α) :
     generatorPath c hc Q Q₁ hQ t x =
@@ -66,13 +72,17 @@ def generatorPath (c : ℝ) (hc : 0 < c) (Q Q₁ : C(K,α →ᵇ U →L[ℝ] E))
 
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
-/-- Genuine parameter regularity of the actual projected-forcing coefficient. -/
+/-- Genuine parameter regularity of the actual projected-forcing coefficient.
+@isnad1 id=contdiff.3h8v.s11.0191a7686a2f from=translated src=- shape=7b85e344 vocab=cdcdd72e
+-/
 theorem leftInversePath_contDiff (c : ℝ) (hc : 0 < c) (Q : P → C(K,α →ᵇ U →L[ℝ] E))
     (hQ : ∀ y t x v, c*‖v‖^2 ≤ ‖Q y t x v‖^2) {n : ℕ∞ω} (hQr : ContDiff ℝ n Q) :
     ContDiff ℝ n (fun y => leftInversePath c hc (Q y) (hQ y)) :=
   pathComposition_contDiff _ _ (inversePath_contDiff c hc Q hQ hQr) ((pathAdjointMap (α := α) (K := K) (U := U) (E := E)).contDiff.comp hQr)
 
-/-- Genuine parameter regularity of the actual source generator. -/
+/-- Genuine parameter regularity of the actual source generator.
+@isnad1 id=contdiff.4h9v.s11.f412145825d4 from=translated src=- shape=628440c2 vocab=d5596fdd
+-/
 theorem generatorPath_contDiff (c : ℝ) (hc : 0 < c) (Q Q₁ : P → C(K,α →ᵇ U →L[ℝ] E))
     (hQ : ∀ y t x v, c*‖v‖^2 ≤ ‖Q y t x v‖^2) {n : ℕ∞ω}
     (hQr : ContDiff ℝ n Q) (hQ₁r : ContDiff ℝ n Q₁) :
@@ -88,7 +98,9 @@ variable (Q Q₁ : P → C(K,α →ᵇ U →L[ℝ] E))
   (hbQ₁ : ∀ n x, ‖iteratedFDeriv ℝ n Q₁ x‖ ≤ C₁*majorant Rc 0 n)
 
 include hQr hRc hC₀ hRi hbQ in
-/-- The projected-forcing coefficient has a polynomial shift-zero amplitude. -/
+/-- The projected-forcing coefficient has a polynomial shift-zero amplitude.
+@isnad1 id=le.7h12v.s13.e6d35faf529a from=translated src=- shape=084ae8f9 vocab=d99e7f96
+-/
 theorem leftInversePath_bound (n : ℕ) (x : P) :
     ‖iteratedFDeriv ℝ n (fun y => leftInversePath c hc (Q y) (hQ y)) x‖ ≤
       (3*Ri*C₀)*majorant (4*Ri) 0 n := by
@@ -105,7 +117,9 @@ theorem leftInversePath_bound (n : ℕ) (x : P) :
     hbAdj n x
 
 include hQr hQ₁r hRc hC₀ hC₁ hRi hbQ hbQ₁ in
-/-- The literal generator in (12) satisfies the source's polynomial coefficient bound. -/
+/-- The literal generator in (12) satisfies the source's polynomial coefficient bound.
+@isnad1 id=le.10h14v.s14.aa61efd47e31 from=translated src=- shape=4ad2462a vocab=ef1eb0b1
+-/
 theorem generatorPath_bound (n : ℕ) (x : P) :
     ‖iteratedFDeriv ℝ n (fun y => generatorPath c hc (Q y) (Q₁ y) (hQ y)) x‖ ≤
       (18*Ri*C₀*C₁)*majorant (4*Ri) 0 n := by

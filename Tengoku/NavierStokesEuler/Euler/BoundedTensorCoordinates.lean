@@ -30,6 +30,9 @@ def coordinates (b : Module.Basis ι ℝ E) (n : ℕ) :
     (ContinuousLinearMap.id ℝ (E [×n]→L[ℝ] V)).flipMultilinear (fun i => b (w i)))
 
 omit [FiniteDimensional ℝ E] [FiniteDimensional ℝ V] [Fintype ι] in
+/--
+@isnad1 id=injectiv.0h5v.s9.6fd537e41275 from=translated src=- shape=a21913bb vocab=404cee27
+-/
 theorem coordinates_injective (b : Module.Basis ι ℝ E) (n : ℕ) :
     Function.Injective (coordinates (V := V) b n) := by
   intro A B h
@@ -43,6 +46,9 @@ def reassembly (b : Module.Basis ι ℝ E) (n : ℕ) :
   ((coordinates (V := V) b n).toLinearMap.leftInverse).toContinuousLinearMap
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h6v.s10.5c9f8aa227f9 from=translated src=- shape=96550066 vocab=ac2c0622
+-/
 theorem reassembly_coordinates (b : Module.Basis ι ℝ E) (n : ℕ) (A : E [×n]→L[ℝ] V) :
     reassembly b n (coordinates b n A) = A :=
   LinearMap.leftInverse_apply_of_inj
@@ -56,6 +62,9 @@ def tupleBounded {j : Type*} [Fintype j] :
       (ContinuousLinearMap.proj i)
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.0h6v.s9.ad9a45df7e28 from=translated src=- shape=882b5a0b vocab=a0cb8b1c
+-/
 theorem tupleBounded_apply {j : Type*} [Fintype j]
     (u : j → (X →ᵇ V)) (x : X) (i : j) :
     tupleBounded u x i = u i x := by
@@ -72,6 +81,9 @@ def coordinatePath (b : Module.Basis ι ℝ E) (n : ℕ)
         (continuous_pi (fun w => (u w).continuous)))
 
 omit [CompactSpace K] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.1h11v.s10.61fe04b6c982 from=translated src=- shape=3e5d92be vocab=23016182
+-/
 theorem coordinatePath_eq (b : Module.Basis ι ℝ E) (n : ℕ)
     (u : (Fin n → ι) → C(K, X →ᵇ V)) (t : K) (x : X)
     (A : E [×n]→L[ℝ] V) (hu : ∀ w, u w t x = A (fun i => b (w i))) :

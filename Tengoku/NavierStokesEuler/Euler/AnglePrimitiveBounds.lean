@@ -13,6 +13,9 @@ open Set MeasureTheory
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=le.3h5v.s6.5fb1f7697212 from=translated src=- shape=98e86794 vocab=cb0973d3
+-/
 theorem rawPrimitive_bound (P M : ℝ) (hM : 0 ≤ M) (f : ℝ → E)
     (hf : ∀ θ ∈ Icc 0 P, ‖f θ‖ ≤ M) (θ : ℝ) (hθ : θ ∈ Icc 0 P) :
     ‖rawPrimitive f θ‖ ≤ M*P := by
@@ -24,6 +27,9 @@ theorem rawPrimitive_bound (P M : ℝ) (hM : 0 ≤ M) (f : ℝ → E)
   exact h.trans (mul_le_mul_of_nonneg_left hθ.2 hM)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=le.4h5v.s7.0afcd5105dcf from=translated src=- shape=0c149c83 vocab=540f0f01
+-/
 theorem primitive_bound (P M : ℝ) (hP : 0 < P) (hM : 0 ≤ M) (f : ℝ → E)
     (hf : ∀ θ ∈ Icc 0 P, ‖f θ‖ ≤ M) (θ : ℝ) (hθ : θ ∈ Icc 0 P) :
     ‖primitive P f θ‖ ≤ 2*P*M := by

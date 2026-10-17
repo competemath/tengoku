@@ -19,7 +19,9 @@ open Set MeasureTheory InnerProductSpace Laplacian EulerSmoothLimit EulerVectorC
 open scoped ContDiff Topology
 open Filter
 
-/-- A distributionally harmonic vector field on all of ℝ³ vanishes if it lies in L². -/
+/-- A distributionally harmonic vector field on all of ℝ³ vanishes if it lies in L².
+@isnad1 id=eq.1h1v.s13.34aa927009a5 from=translated src=- shape=69a51875 vocab=0029a1d8
+-/
 theorem weakHarmonicOn_univ_eq_zero (u : EulerMeanSolenoidal.L2)
     (hu : WeakHarmonicOn Set.univ u) : u = 0 := by
   have hball (n : ℕ) : WeakHarmonicOn
@@ -81,19 +83,31 @@ def compactCurlGenerators : Set L2 :=
 def compactCurlSpace : Submodule ℝ L2 :=
   (Submodule.span ℝ compactCurlGenerators).topologicalClosure
 
+/--
+@isnad1 id=isclosed.0h0v.s15.39fc3953ccdf from=translated src=- shape=89a9072b vocab=fc46fa3e
+-/
 theorem compactCurlSpace_closed : IsClosed (compactCurlSpace : Set L2) :=
   (Submodule.span ℝ compactCurlGenerators).isClosed_topologicalClosure
 
 instance : CompleteSpace compactCurlSpace := compactCurlSpace_closed.completeSpace_coe
 
+/--
+@isnad1 id=mem.0h1v.s14.69824e016456 from=translated src=- shape=b0e39fb6 vocab=198e4890
+-/
 theorem compactCurl_mem_solenoidal (f : Test) :
     testValue (curlTest f) ∈ solenoidalSpace :=
   curl_mem_solenoidal _ ((contDiff_piLp 2).mp f.smooth) (test_memLp (curlTest f))
 
+/--
+@isnad1 id=mem.0h1v.s14.c29ac84cb7c0 from=translated src=- shape=b0e39fb6 vocab=4d7d9858
+-/
 theorem compactCurl_mem (f : Test) : testValue (curlTest f) ∈ compactCurlSpace :=
   (Submodule.span ℝ compactCurlGenerators).le_topologicalClosure
     (Submodule.subset_span ⟨f, rfl⟩)
 
+/--
+@isnad1 id=le.0h0v.s14.27a75148910a from=translated src=- shape=ef469fda vocab=1c96e21b
+-/
 theorem compactCurlSpace_le_solenoidal : compactCurlSpace ≤ solenoidalSpace := by
   apply (Submodule.span ℝ compactCurlGenerators).topologicalClosure_minimal
     _ gradientSpace.isClosed_orthogonal
@@ -101,7 +115,9 @@ theorem compactCurlSpace_le_solenoidal : compactCurlSpace ≤ solenoidalSpace :=
   rintro _ ⟨f, rfl⟩
   exact compactCurl_mem_solenoidal f
 
-/-- A solenoidal field annihilating compact smooth curls is weakly harmonic. -/
+/-- A solenoidal field annihilating compact smooth curls is weakly harmonic.
+@isnad1 id=weakharm.2h1v.s15.35e268f6313f from=translated src=- shape=8cf84096 vocab=ae2aa31a
+-/
 theorem weakHarmonicOn_univ_of_compactCurl_pairing_zero
     (u : L2) (hu : u ∈ solenoidalSpace)
     (htest : ∀ f : Test, ⟪u, testValue (curlTest f)⟫_ℝ = 0) :
@@ -113,7 +129,9 @@ theorem weakHarmonicOn_univ_of_compactCurl_pairing_zero
   have hz : ⟪u, testValue (laplacianTest f)⟫_ℝ = 0 := by linarith
   exact (l2_test_pairing u (laplacianTest f)).symm.trans hz
 
-/-- Compact smooth curls span the entire solenoidal Hilbert space densely. -/
+/-- Compact smooth curls span the entire solenoidal Hilbert space densely.
+@isnad1 id=eq.0h0v.s12.d43e7ed52097 from=translated src=- shape=ef469fda vocab=5e47ad03
+-/
 theorem compactCurlSpace_eq_solenoidal : compactCurlSpace = solenoidalSpace := by
   have hbot : compactCurlSpace.orthogonal ⊓ solenoidalSpace = ⊥ := by
     apply eq_bot_iff.mpr
@@ -127,7 +145,9 @@ theorem compactCurlSpace_eq_solenoidal : compactCurlSpace = solenoidalSpace := b
   simpa only [hbot, sup_bot_eq] using
     (Submodule.sup_orthogonal_inf_of_hasOrthogonalProjection compactCurlSpace_le_solenoidal)
 
-/-- Linearity makes the closure of the generator set itself the full solenoidal space. -/
+/-- Linearity makes the closure of the generator set itself the full solenoidal space.
+@isnad1 id=eq.0h0v.s15.7746c413fc14 from=translated src=- shape=485ddfd6 vocab=80d8b958
+-/
 theorem closure_compactCurlGenerators :
     closure compactCurlGenerators = (solenoidalSpace : Set L2) := by
   have hspan : Submodule.span ℝ compactCurlGenerators = compactCurlMap.range := by
@@ -143,7 +163,9 @@ theorem closure_compactCurlGenerators :
 def compactSolenoidalTests : Set solenoidalSpace :=
   {u | (u : L2) ∈ compactCurlGenerators}
 
-/-- Every member is represented by an actual compact smooth divergence-free field. -/
+/-- Every member is represented by an actual compact smooth divergence-free field.
+@isnad1 id=ex.1h1v.s17.025266653b9d from=translated src=- shape=d8aa974f vocab=7716a5ee
+-/
 theorem compactSolenoidalTests_representation (u : solenoidalSpace)
     (hu : u ∈ compactSolenoidalTests) :
     ∃ φ : Space → Space, ContDiff ℝ ∞ φ ∧ HasCompactSupport φ ∧
@@ -154,7 +176,9 @@ theorem compactSolenoidalTests_representation (u : solenoidalSpace)
   rw [← hf]
   exact testValue_ae (curlTest f)
 
-/-- A bundled compact smooth solenoidal test has the prescribed L² class. -/
+/-- A bundled compact smooth solenoidal test has the prescribed L² class.
+@isnad1 id=ex.1h1v.s17.6aac42a43981 from=translated src=- shape=d2eceb24 vocab=833cc1af
+-/
 theorem compactSolenoidalTests_testValue (u : solenoidalSpace)
     (hu : u ∈ compactSolenoidalTests) :
     ∃ f : Test, (∀ x, divergence (f : Space → Space) x = 0) ∧
@@ -162,7 +186,9 @@ theorem compactSolenoidalTests_testValue (u : solenoidalSpace)
   obtain ⟨f, hf⟩ := hu
   exact ⟨curlTest f, divergence_curl _ ((contDiff_piLp 2).mp f.smooth), hf⟩
 
-/-- The compact test fields form a dense subset of the actual solenoidal L² space. -/
+/-- The compact test fields form a dense subset of the actual solenoidal L² space.
+@isnad1 id=dense.0h0v.s16.72fbfcf1b666 from=translated src=- shape=fc6fc9ef vocab=02168a7f
+-/
 theorem compactSolenoidalTests_dense : Dense compactSolenoidalTests := by
   apply Subtype.dense_iff.mpr
   change (solenoidalSpace : Set L2) ⊆
@@ -181,7 +207,9 @@ theorem compactSolenoidalTests_dense : Dense compactSolenoidalTests := by
       exact ⟨⟨x, hxS⟩, hx, rfl⟩
   rw [himage, closure_compactCurlGenerators]
 
-/-- Pairings against compact smooth solenoidal tests determine a solenoidal field. -/
+/-- Pairings against compact smooth solenoidal tests determine a solenoidal field.
+@isnad1 id=eq.2h1v.s15.7564b670c3e3 from=translated src=- shape=fe2286e1 vocab=b7db2ccb
+-/
 theorem solenoidal_eq_zero_of_compact_test_pairing_zero
     (u : L2) (hu : u ∈ solenoidalSpace)
     (htest : ∀ f : Test, (∀ x, divergence (f : Space → Space) x = 0) →

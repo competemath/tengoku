@@ -22,7 +22,9 @@ variable {P E V : Type}
   [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 /-- Taking a spatial derivative preserves joint smoothness on an arbitrary
-parameter set. Only the spatial domain needs unique derivatives. -/
+parameter set. Only the spatial domain needs unique derivatives.
+@isnad1 id=contdiff.1h5v.s8.a5abaf0ba304 from=translated src=- shape=a4640983 vocab=436b1077
+-/
 theorem contDiffOn_spatial_fderiv {s : Set P} {u : P × E → V}
     (hu : ContDiffOn ℝ ∞ u (s ×ˢ univ)) :
     ContDiffOn ℝ ∞ (fun z : P × E => fderiv ℝ (fun x => u (z.1, x)) z.2)
@@ -40,7 +42,9 @@ theorem contDiffOn_spatial_fderiv {s : Set P} {u : P × E → V}
   simpa only [fderivWithin_univ] using hb
 
 /-- Every actual spatial jet is jointly smooth, including at the boundary of
-the parameter set. -/
+the parameter set.
+@isnad1 id=contdiff.1h6v.s8.160769369f1c from=translated src=- shape=f9b443a3 vocab=ac075b5d
+-/
 theorem contDiffOn_spatial_jet {s : Set P} {u : P × E → V}
     (hu : ContDiffOn ℝ ∞ u (s ×ˢ univ)) (n : ℕ) :
     ContDiffOn ℝ ∞
@@ -72,9 +76,15 @@ def reparametrize (A : SmoothTimeField K E V) (r : C(L, K)) : SmoothTimeField L 
   jet n := (A.jet n).comp r
   jet_eq n t x := A.jet_eq n (r t) x
 
+/--
+@isnad1 id=eq.0h8v.s9.3d10ee397b4a from=translated src=- shape=e271df48 vocab=47a998e8
+-/
 @[simp] theorem reparametrize_apply (A : SmoothTimeField K E V) (r : C(L, K))
     (t : L) (x : E) : (A.reparametrize r).field t x = A.field (r t) x := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.64605dc16153 from=translated src=- shape=dfbfeec8 vocab=74d04ff5
+-/
 @[simp] theorem reparametrize_jet_apply (A : SmoothTimeField K E V) (r : C(L, K))
     (n : ℕ) (t : L) (x : E) : (A.reparametrize r).jet n t x = A.jet n (r t) x := rfl
 
@@ -105,6 +115,9 @@ def ofCompactSupportJets (u : A × E → V) (hu : Continuous u)
     (fun t => (tsupport_iteratedFDeriv_subset n).trans (hsupp t))
   jet_eq _ _ _ := rfl
 
+/--
+@isnad1 id=eq.5h7v.s9.a3b1c80aa2ef from=translated src=- shape=05c0a6e1 vocab=524f81ad
+-/
 @[simp] theorem ofCompactSupportJets_apply (u : A × E → V) (hu : Continuous u)
     (hsmooth : ∀ t, ContDiff ℝ ∞ (fun x => u (t, x)))
     (hjet : ∀ n : ℕ, Continuous
@@ -142,12 +155,18 @@ def ofContDiffOnCompactSupport (s : Set P) [CompactSpace s]
       (fun z => ⟨z.1.property, mem_univ _⟩))
     K hK (fun t => hsupp t t.property)
 
+/--
+@isnad1 id=eq.3h8v.s9.0174f929cbaf from=translated src=- shape=81a868d8 vocab=b4a57fa8
+-/
 @[simp] theorem ofContDiffOnCompactSupport_apply (s : Set P) [CompactSpace s]
     (u : P × E → V) (hu : ContDiffOn ℝ ∞ u (s ×ˢ univ))
     (K : Set E) (hK : IsCompact K)
     (hsupp : ∀ t ∈ s, tsupport (fun x => u (t, x)) ⊆ K) (t : s) (x : E) :
     (ofContDiffOnCompactSupport s u hu K hK hsupp).field t x = u (t, x) := rfl
 
+/--
+@isnad1 id=eq.3h9v.s10.64aae808baca from=translated src=- shape=bfa3f02f vocab=45da8575
+-/
 @[simp] theorem ofContDiffOnCompactSupport_jet_apply (s : Set P) [CompactSpace s]
     (u : P × E → V) (hu : ContDiffOn ℝ ∞ u (s ×ˢ univ))
     (K : Set E) (hK : IsCompact K)
