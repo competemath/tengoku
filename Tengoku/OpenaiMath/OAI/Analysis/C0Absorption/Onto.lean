@@ -11,6 +11,9 @@ noncomputable section
 open Set Filter Topology NormedSpace
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=surjecti.1h1v.s4.625093d2dc7a from=translated src=- shape=c29e7f92 vocab=b03001fa
+-/
 theorem finiteRecomputed_surjective (N : ℕ) (hN : 0 < N) : Function.Surjective (finiteRecomputed N) := by
   apply surjective_of_punctured_local_onto (finiteRecomputed N)
     (finiteRecomputed_antilipschitz N) (finiteRecomputed_lipschitz N) (finiteRecomputed_zero N)
@@ -28,15 +31,24 @@ variable {N : ℕ}
 
 def finiteTarget (N : ℕ) (y : BlockC0) : FInput N := Sum.elim (fun _ => 0) (fun γ => y (fLabel γ))
 
+/--
+@isnad1 id=eq.0h3v.s11.07581ed33066 from=translated src=- shape=84fd1df4 vocab=ac284a62
+-/
 theorem finiteRecomputed_block (x : FInput N) (γ : FLabel N) :
     finiteRecomputed N x (.inr γ)=recomputedShift (finiteEmbed N x) (fLabel γ) :=
   finiteFrozen_block _ x γ
 
+/--
+@isnad1 id=eq.0h3v.s12.93e8cfaf41d1 from=translated src=- shape=f1cea5d2 vocab=cfdba577
+-/
 theorem finiteRecomputed_row (x : FInput N) (i : Fin (N+1)) :
     finiteRecomputed N x (.inl i)=
       rowScalar (stateWeights (normalizedBall (finiteEmbed N x))) (i.val,N) (finiteEmbed N x) :=
   finiteRow_eq _ (i,Fin.last N) x
 
+/--
+@isnad1 id=eq.1h4v.s11.aaad6b480c7d from=translated src=- shape=79324fa2 vocab=c346bced
+-/
 theorem finiteEmbed_rowScalar_outside (W : FrozenWeights) (x : FInput N) (lev : Level)
     (hl : N < lev.1 ∨ N < lev.2) : rowScalar W lev (finiteEmbed N x)=0 := by
   classical
@@ -46,6 +58,9 @@ theorem finiteEmbed_rowScalar_outside (W : FrozenWeights) (x : FInput N) (lev : 
   change W.row lev b*finiteEmbed N x (labelIndex (blockLabel lev b))=0
   rw [finiteEmbed_block_outside x (blockLabel lev b) hl,mul_zero]
 
+/--
+@isnad1 id=eq.2h3v.s11.66ad6f2143bb from=translated src=- shape=ba7668ef vocab=eb184e7a
+-/
 theorem finite_solution_gives_infinite (y : BlockC0) (x : FInput N)
     (hy : ∀ γ : Label, N < γ.level.1 ∨ N < γ.level.2 → y γ=0)
     (hx : finiteRecomputed N x=finiteTarget N y) : recomputedShift (finiteEmbed N x)=y := by
@@ -88,6 +103,9 @@ theorem finite_solution_gives_infinite (y : BlockC0) (x : FInput N)
     rw [hp]
     ring
 
+/--
+@isnad1 id=mem.2h2v.s6.d781501f1b2e from=translated src=- shape=32e91fff vocab=f1605026
+-/
 theorem finite_target_mem_range (N : ℕ) (hN : 0 < N) (y : BlockC0)
     (hy : ∀ γ : Label, N < γ.level.1 ∨ N < γ.level.2 → y γ=0) : y∈Set.range recomputedShift := by
   obtain ⟨x,hx⟩ := finiteRecomputed_surjective N hN (finiteTarget N y)
@@ -97,13 +115,22 @@ def blockSquare (N : ℕ) (y : BlockC0) : BlockC0 :=
   cfunOfTendsto (fun γ => if γ.level.1≤N ∧ γ.level.2≤N then y γ else 0)
     ((cfun_tendsto y).if' tendsto_const_nhds)
 
+/--
+@isnad1 id=eq.0h3v.s6.1239c0fda4a1 from=translated src=- shape=19110c1f vocab=a68157c8
+-/
 @[simp] theorem blockSquare_apply (N : ℕ) (y : BlockC0) (γ : Label) :
     blockSquare N y γ=if γ.level.1≤N ∧ γ.level.2≤N then y γ else 0 := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.19e0b1e549a9 from=translated src=- shape=49b9d1d9 vocab=91ff09c4
+-/
 theorem blockSquare_outside (N : ℕ) (y : BlockC0) (γ : Label)
     (hγ : N < γ.level.1 ∨ N < γ.level.2) : blockSquare N y γ=0 := by
   rw [blockSquare_apply,ite_eq_right (by omega)]
 
+/--
+@isnad1 id=tendsto.0h1v.s4.2aebe764d4f9 from=translated src=- shape=06118bb5 vocab=c02c5020
+-/
 theorem blockSquare_tendsto (y : BlockC0) : Tendsto (fun N => blockSquare N y) atTop (nhds y) := by
   classical
   apply Metric.tendsto_atTop.mpr
@@ -133,6 +160,9 @@ theorem blockSquare_tendsto (y : BlockC0) : Tendsto (fun N => blockSquare N y) a
     have h2 := (le_max_right γ.level.1 γ.level.2).trans (hb.trans hn)
     exact hγ ⟨h1,h2⟩
 
+/--
+@isnad1 id=surjecti.0h0v.s2.012b454081cb from=translated src=- shape=54c8eceb vocab=c5027f85
+-/
 theorem recomputedShift_surjective : Function.Surjective recomputedShift := by
   have hclosed : IsClosed (Set.range recomputedShift) :=
     recomputed_antilipschitz.isClosed_range recomputed_lipschitz.uniformContinuous

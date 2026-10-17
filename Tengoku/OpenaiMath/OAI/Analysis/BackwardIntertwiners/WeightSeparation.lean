@@ -27,22 +27,37 @@ def SupportSeparation (w : ℤ → ℝ) : Prop :=
 
 def reflectedWeight (w : ℤ → ℝ) (j : ℤ) : ℝ := (w (-j))⁻¹
 
+/--
+@isnad1 id=lt.1h2v.s5.0e59aa400887 from=translated src=- shape=fc3c31a9 vocab=8126791d
+-/
 lemma reflectedWeight_pos {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) (j : ℤ) :
     0 < reflectedWeight w j := inv_pos.mpr (hw _)
 
+/--
+@isnad1 id=antitone.2h1v.s5.334f712ec2c7 from=translated src=- shape=7d087dae vocab=e93c9701
+-/
 lemma reflectedWeight_antitone {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) (hdec : Antitone w) :
     Antitone (reflectedWeight w) := by
   intro i j hij
   exact (inv_le_inv₀ (hw _) (hw _)).mpr (hdec (neg_le_neg hij))
 
+/--
+@isnad1 id=eq.0h1v.s3.e53ec5047107 from=translated src=- shape=20ceaafa vocab=25e53a8c
+-/
 lemma reflected_positiveLog (w : ℤ → ℝ) : positiveLog (reflectedWeight w) = negativeLog w := by
   funext n
   simp [positiveLog, negativeLog, reflectedWeight, Real.log_inv]
 
+/--
+@isnad1 id=eq.0h1v.s3.676c69160b4a from=translated src=- shape=20ceaafa vocab=25e53a8c
+-/
 lemma reflected_negativeLog (w : ℤ → ℝ) : negativeLog (reflectedWeight w) = positiveLog w := by
   funext n
   simp [positiveLog, negativeLog, reflectedWeight, Real.log_inv]
 
+/--
+@isnad1 id=summable.1h1v.s5.9dddddd37da3 from=translated src=- shape=38048da5 vocab=641542f8
+-/
 lemma reflected_stepRatio_summable {w : ℤ → ℝ} (hs : Summable (stepRatio w)) :
     Summable (stepRatio (reflectedWeight w)) := by
   have hh := hs.comp_injective (i := fun j : ℤ => -j-1) (by
@@ -54,6 +69,9 @@ lemma reflected_stepRatio_summable {w : ℤ → ℝ} (hs : Summable (stepRatio w
   have e₂ : -(j+1) = -j-1 := by omega
   rw [e₁, e₂, inv_div_inv]
 
+/--
+@isnad1 id=eq.2h3v.s7.07fcb146b097 from=translated src=- shape=92e9aacd vocab=d95e310c
+-/
 lemma reflected_correlations {b c : ℤ → ℂ}
     (hz : ∀ r : ℕ, 1 ≤ r → (∑' j : ℤ, b j * c (j-r)) = 0) :
     ∀ r : ℕ, 1 ≤ r → (∑' j : ℤ, c (-j) * b (-(j-r))) = 0 := by
@@ -70,6 +88,9 @@ lemma reflected_correlations {b c : ℤ → ℂ}
     _ = ∑' j : ℤ, b j * c (j-r) := e.tsum_eq (fun j : ℤ => b j * c (j-r))
     _ = 0 := hz r hr
 
+/--
+@isnad1 id=and.3h3v.s6.e8b298d4f9a1 from=translated src=- shape=f7ada667 vocab=4bf438e1
+-/
 lemma reflected_bounds {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) {b c : ℤ → ℂ}
     (hb : ∀ j, ‖b j‖ ≤ w j) (hc : ∀ j, ‖c j‖*w j ≤ 1) :
     (∀ j, ‖c (-j)‖ ≤ reflectedWeight w j) ∧
@@ -82,6 +103,9 @@ lemma reflected_bounds {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) {b c : ℤ → �
     rw [← div_eq_mul_inv]
     exact (div_le_one (hw _)).mpr (hb _)
 
+/--
+@isnad1 id=supports.9h3v.s7.a058a9280387 from=translated src=- shape=d560c82a vocab=b170b52c
+-/
 theorem normalized_support_separation {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
     (hdec : Antitone w) (hw0 : w 0 = 1)
     (hP : DiscreteConvex (negativeLog w)) (hQ : DiscreteConvex (positiveLog w))
@@ -162,11 +186,17 @@ theorem normalized_support_separation {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
   rw [he] at hzero
   exact (mul_ne_zero hbt hch) hzero
 
+/--
+@isnad1 id=discrete.1h2v.s4.fabb38acf4b8 from=translated src=- shape=6c4a4593 vocab=7447f3aa
+-/
 lemma DiscreteConvex.add_const {G : ℕ → ℝ} (h : DiscreteConvex G) (c : ℝ) :
     DiscreteConvex (fun n => G n+c) := by
   intro i j hij
   simpa only [add_sub_add_right_eq_sub] using h hij
 
+/--
+@isnad1 id=eventual.2h3v.s6.474da278adce from=translated src=- shape=e5df30f2 vocab=e633e5c9
+-/
 lemma eventually_quadratic_lower {G : ℕ → ℝ} {a δ : ℝ} (hδa : δ < a)
     (ht : Tendsto (fun n => G n / (n:ℝ)^2) atTop (𝓝 a)) :
     ∀ᶠ n : ℕ in atTop, δ*(n:ℝ)^2 ≤ G n := by
@@ -174,6 +204,9 @@ lemma eventually_quadratic_lower {G : ℕ → ℝ} {a δ : ℝ} (hδa : δ < a)
   have hnpos : 0 < (n:ℝ)^2 := sq_pos_of_pos (Nat.cast_pos.mpr (by omega))
   exact ((lt_div_iff₀ hnpos).mp hn).le
 
+/--
+@isnad1 id=supports.1h1v.s3.76fb0deed8e1 from=translated src=- shape=cdb3b71b vocab=18d617b6
+-/
 theorem quadratic_support_separation (w : ℤ → ℝ) (hw : QuadraticWeights w) :
     SupportSeparation w := by
   let W := fun j : ℤ => w j / w 0
@@ -249,6 +282,9 @@ theorem quadratic_support_separation (w : ℤ → ℝ) (hw : QuadraticWeights w)
   have hh := hsep b' c' hbn' hcn' hb' hc' hz'
   simpa [b', c', hC] using hh
 
+/--
+@isnad1 id=ex.8h5v.s8.05cd92289f2b from=translated src=- shape=7e42ba67 vocab=03e6777e
+-/
 lemma SupportSeparation.of_bounded {w : ℤ → ℝ} (hsep : SupportSeparation w)
     {b c : ℤ → ℂ} (hbn : ∃ j, b j ≠ 0) (hcn : ∃ j, c j ≠ 0)
     {B C : ℝ} (hB : 0 < B) (hC : 0 < C)

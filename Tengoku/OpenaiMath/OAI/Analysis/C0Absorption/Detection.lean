@@ -12,6 +12,9 @@ open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 variable {Γ : Type*} {B : CylinderBases Γ}
 
+/--
+@isnad1 id=false.4h6v.s7.bf8a5eeb6fde from=translated src=- shape=227c79b0 vocab=42b41ad2
+-/
 theorem constant_detector_false (f : C0Ball → ℝ) (hf : BoundedTest (sourceClasses B) c0Origin f)
     (m : ℕ → SourceSpace B) (M : ℝ) (hm : SignedBound m M) {δ : ℝ} (hδ : 0 < δ)
     (hd : ∀ i, δ ≤ |completedPairing (sourceClasses B) c0Origin f (m i)|) : False := by
@@ -21,6 +24,9 @@ theorem constant_detector_false (f : C0Ball → ℝ) (hf : BoundedTest (sourceCl
   obtain ⟨i,hi⟩ := he.exists
   exact (not_lt_of_ge (hd i)) hi
 
+/--
+@isnad1 id=false.8h10v.s8.b90312cde957 from=translated src=- shape=570d0089 vocab=4eadf938
+-/
 theorem tail_remainder_false (f : ℕ → C0Ball → ℝ) (ts : ℕ → List TailOperation)
     (t : ℕ → TailOperation) (ht : ∀ i, t i ∈ ts i) (hg : ∀ i, (t i).isBasic=false)
     (a : ℕ) (ha : ∀ i, (t i).scaleIndex=a) (hN : Tendsto (fun i => (t i).tailIndex) atTop atTop)
@@ -33,6 +39,9 @@ theorem tail_remainder_false (f : ℕ → C0Ball → ℝ) (ts : ℕ → List Tai
   intro i s hs
   simpa only [ha i,Set.mem_ofPred_eq] using full_tail_support (f i) (ts i) (t i) (ht i) (hg i) hs
 
+/--
+@isnad1 id=false.8h11v.s8.775badc8b398 from=translated src=- shape=9d46f5f5 vocab=553bbdc7
+-/
 theorem fixed_cylinder_tails_false_aux {γ : Γ} (r : GeneratedRepresentation B γ) (h : ℕ)
     (hr : r.operations.length ≤ h) (hj : B.band γ ≤ h) (n : ℕ) :
     ∀ (pre : List TailOperation) (post : ℕ → List TailOperation),
@@ -135,6 +144,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=false.7h9v.s7.a98b5f72b86f from=translated src=- shape=2003236e vocab=e259e428
+-/
 theorem fixed_cylinder_tails_false {Γ : Type*} {B : CylinderBases Γ} {γ : Γ}
     (r : GeneratedRepresentation B γ) (ts : ℕ → List TailOperation) (h : ℕ)
     (hr : r.operations.length ≤ h) (hj : B.band γ ≤ h)
@@ -159,6 +171,9 @@ open scoped NNReal BigOperators ZeroAtInfty
 
 variable {Γ : Type*} {B : CylinderBases Γ} {γ : Γ}
 
+/--
+@isnad1 id=false.9h12v.s8.6703c9f000d6 from=translated src=- shape=c9f82eb1 vocab=553bbdc7
+-/
 theorem repeated_label_false_aux (h : ℕ) (hj : B.band γ ≤ h) (n : ℕ) :
     ∀ (pre : List (CylinderOperation (B.coordinates γ)))
       (post : ℕ → List (CylinderOperation (B.coordinates γ)))
@@ -257,6 +272,9 @@ theorem repeated_label_false_aux (h : ℕ) (hj : B.band γ ≤ h) (n : ℕ) :
             (fun i => hcubeB _) (m ∘ ψ ∘ η) M (hm.subsequence (hψ.comp hη).injective)
             (half_pos hδ) hdB
 
+/--
+@isnad1 id=false.7h9v.s7.682e6712104c from=translated src=- shape=8e5a7e31 vocab=e259e428
+-/
 theorem repeated_label_false (r : ℕ → GeneratedRepresentation B γ)
     (ts : ℕ → List TailOperation) (h : ℕ)
     (hr : ∀ i, (r i).operations.length ≤ h) (hj : B.band γ ≤ h)
@@ -284,13 +302,22 @@ namespace GeneratedRepresentation
 
 def relabel {γ γ' : Γ} (r : GeneratedRepresentation B γ) (he : γ=γ') : GeneratedRepresentation B γ' := he ▸ r
 
+/--
+@isnad1 id=eq.1h5v.s5.84a6e8467940 from=translated src=- shape=57e189c9 vocab=673a194a
+-/
 @[simp] theorem relabel_length {γ γ' : Γ} (r : GeneratedRepresentation B γ) (he : γ=γ') :
     (r.relabel he).operations.length=r.operations.length := by subst γ'; rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.c526df4ae9be from=translated src=- shape=b5eb5ce7 vocab=cb59b467
+-/
 @[simp] theorem relabel_value {γ γ' : Γ} (r : GeneratedRepresentation B γ) (he : γ=γ') :
     (r.relabel he).value=r.value := by subst γ'; rfl
 end GeneratedRepresentation
 
+/--
+@isnad1 id=false.7h10v.s7.31739ca7fcf8 from=translated src=- shape=6bf0cd80 vocab=e9338164
+-/
 theorem bounded_band_detectors_false (loc : RadiusLocalization B)
     (γ : ℕ → Γ) (r : ∀ i, GeneratedRepresentation B (γ i))
     (ts : ℕ → List TailOperation) (h : ℕ)
@@ -316,6 +343,9 @@ theorem bounded_band_detectors_false (loc : RadiusLocalization B)
     exact VClass_disjoint_false (m ∘ ψ ∘ η ∘ φ) M (hm.subsequence ((hψ.comp hη).comp hφ).injective)
       F H hF hdis (half_pos hδ) hdF
 
+/--
+@isnad1 id=false.4h9v.s7.8e66c6a80d1b from=translated src=- shape=6b3b1ce9 vocab=29406f8a
+-/
 theorem source_detectors_false (locT : TagLocalization B) (locR : RadiusLocalization B)
     (m : ℕ → SourceSpace B) (M : ℝ) (hm : SignedBound m M)
     (F : ℕ → C0Ball → ℝ) (d : ℕ) (hF : ∀ i, F i ∈ sourceClasses B d)
@@ -344,6 +374,9 @@ theorem source_detectors_false (locT : TagLocalization B) (locR : RadiusLocaliza
     intro i
     simpa only [he i] using hd i
 
+/--
+@isnad1 id=false.3h7v.s7.57bc3127b605 from=translated src=- shape=edc0023c vocab=64cb112d
+-/
 theorem source_no_bounded_signs_lower (locT : TagLocalization B) (locR : RadiusLocalization B)
     (m : ℕ → SourceSpace B) (M r : ℝ) (hm : SignedBound m M) (hr : 0 < r)
     (hlower : ∀ i, r ≤ ‖m i‖) : False := by
@@ -351,6 +384,9 @@ theorem source_no_bounded_signs_lower (locT : TagLocalization B) (locR : RadiusL
   exact source_detectors_false locT locR (m ∘ φ) M (hm.subsequence hφ.injective) F h
     (fun i => (hF i).1) hδ (fun i => (hF i).2)
 
+/--
+@isnad1 id=signedbo.0h0v.s5.e59ec631efbc from=translated src=- shape=aeae7466 vocab=e2af9ad2
+-/
 theorem atoms_signed_bound : SignedBound atom 1 := by
   classical
   intro n ι hι ε
@@ -369,6 +405,9 @@ theorem atoms_signed_bound : SignedBound atom 1 := by
   · push Not at hex
     simp only [hex,ite_false,mul_zero,Finset.sum_const_zero,abs_zero,zero_le_one]
 
+/--
+@isnad1 id=nolinear.0h4v.s6.0aeabcf41a96 from=translated src=- shape=22c7f355 vocab=dadb719d
+-/
 theorem source_noLinearC0 (locT : TagLocalization B) (locR : RadiusLocalization B) :
     NoLinearC0 (SourceSpace B) := by
   intro T hT

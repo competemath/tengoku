@@ -15,6 +15,9 @@ section LocalOnto
 variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=mem.3h7v.s9.3b1ee6a982a9 from=translated src=- shape=b89e91fc vocab=0c714e4c
+-/
 theorem range_mem_nhds_of_approx {f : E → F} {a : E} (S : E ≃L[ℝ] F)
     (s : Set E) (hs : s∈nhds a) (c : ℝ≥0)
     (hc : c<‖(S.symm : F →L[ℝ] E)‖₊⁻¹) (ha : ApproximatesLinearOn f (S : E →L[ℝ] F) s c) :
@@ -22,6 +25,9 @@ theorem range_mem_nhds_of_approx {f : E → F} {a : E} (S : E ≃L[ℝ] F)
   have hh := ha.image_mem_nhds S.toNonlinearRightInverse hs (Or.inr hc)
   exact mem_of_superset hh (Set.image_subset_range f s)
 
+/--
+@isnad1 id=surjecti.5h5v.s7.951ef6a90f23 from=translated src=- shape=3fc45a54 vocab=64e4f937
+-/
 theorem surjective_of_punctured_local_onto {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]

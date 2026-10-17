@@ -14,14 +14,23 @@ namespace DiscreteConvex
 
 variable {F : ℕ → ℝ}
 
+/--
+@isnad1 id=discrete.1h1v.s6.bdf623b1fac1 from=translated src=- shape=9ceb98c8 vocab=d2da10ba
+-/
 lemma of_step (h : ∀ n, F (n+1) - F n ≤ F (n+2) - F (n+1)) :
     DiscreteConvex F := by
   exact monotone_nat_of_le_succ h
 
+/--
+@isnad1 id=le.1h2v.s6.02af3d6d7e2a from=translated src=- shape=ceef50c3 vocab=d2da10ba
+-/
 lemma step (h : DiscreteConvex F) (n : ℕ) :
     F (n+1) - F n ≤ F (n+2) - F (n+1) := by
   exact h (Nat.le_succ n)
 
+/--
+@isnad1 id=le.1h2v.s6.ff85a29ab04b from=translated src=- shape=173cc315 vocab=2f689f14
+-/
 lemma sub_zero_le (h : DiscreteConvex F) (n : ℕ) :
     F n - F 0 ≤ (n : ℝ) * (F (n+1) - F n) := by
   induction n with
@@ -32,6 +41,9 @@ lemma sub_zero_le (h : DiscreteConvex F) (n : ℕ) :
     push_cast
     nlinarith
 
+/--
+@isnad1 id=le.2h3v.s6.c0d08b6d1a6e from=translated src=- shape=707f9b64 vocab=208db317
+-/
 lemma secant_le (h : DiscreteConvex F) {n m : ℕ} (hnm : n ≤ m) :
     (m : ℝ) * (F n - F 0) ≤ (n : ℝ) * (F m - F 0) := by
   induction m, hnm using Nat.le_induction with
@@ -46,6 +58,9 @@ lemma secant_le (h : DiscreteConvex F) {n m : ℕ} (hnm : n ≤ m) :
     push_cast
     nlinarith
 
+/--
+@isnad1 id=le.6h4v.s6.89f0e1f0cebb from=translated src=- shape=8e42103d vocab=985b3a91
+-/
 lemma le_endpoint (h : DiscreteConvex F) (h0 : F 0 = 0)
     {n m : ℕ} (hnm : n ≤ m) (hm : 0 < m) (B : ℝ) (hB : 0 ≤ B)
     (hend : F m ≤ B) : F n ≤ B := by
@@ -60,6 +75,9 @@ lemma le_endpoint (h : DiscreteConvex F) (h0 : F 0 = 0)
     _ ≤ (m : ℝ) * B := mul_le_mul_of_nonneg_right hnm' hB
   exact (mul_le_mul_iff_right₀ hm0).mp hh
 
+/--
+@isnad1 id=discrete.3h3v.s7.7f4045912c08 from=translated src=- shape=41fc3fbe vocab=8e90c44f
+-/
 lemma bump (h : DiscreteConvex F) (n : ℕ) {ε : ℝ} (hε : 0 ≤ ε)
     (hgap : 2 * ε ≤ F (n+2) - 2 * F (n+1) + F n) :
     DiscreteConvex (fun k => F k + if k = n+1 then ε else 0) := by
@@ -95,6 +113,9 @@ variable (hunbounded : ∀ n : ℕ, ∃ k, n < k ∧ k ∈ I)
 variable (hne : (convexMinorants I f).Nonempty)
 
 include hunbounded in
+/--
+@isnad1 id=bddabove.1h3v.s5.93372467d69e from=translated src=- shape=b5299021 vocab=4d8cfa81
+-/
 lemma bddAbove (n : ℕ) :
     BddAbove ((fun F : ℕ → ℝ => F n) '' convexMinorants I f) := by
   obtain ⟨k, hnk, hkI⟩ := hunbounded n
@@ -104,11 +125,17 @@ lemma bddAbove (n : ℕ) :
     _ (le_max_left _ _) ((hF.2.2 k hkI).trans (le_max_right _ _))
 
 include hunbounded in
+/--
+@isnad1 id=le.2h4v.s5.6d25cc4589e9 from=translated src=- shape=88ed28e5 vocab=8019a530
+-/
 lemma le_envelope {F : ℕ → ℝ} (hF : F ∈ convexMinorants I f) (n : ℕ) :
     F n ≤ convexEnvelope I f n := by
   exact le_csSup (bddAbove hunbounded n) ⟨F, hF, rfl⟩
 
 include hunbounded hne in
+/--
+@isnad1 id=eq.2h2v.s5.d9a4431ae58d from=translated src=- shape=c707890d vocab=9d65910b
+-/
 lemma zero : convexEnvelope I f 0 = 0 := by
   apply le_antisymm
   · apply csSup_le (hne.image _)
@@ -118,6 +145,9 @@ lemma zero : convexEnvelope I f 0 = 0 := by
     simpa only [hF.1] using le_envelope hunbounded hF 0
 
 include hunbounded hne in
+/--
+@isnad1 id=discrete.2h2v.s5.907e478cc2df from=translated src=- shape=51ab81b0 vocab=1c12e50e
+-/
 lemma convex : DiscreteConvex (convexEnvelope I f) := by
   apply DiscreteConvex.of_step
   intro n
@@ -132,17 +162,26 @@ lemma convex : DiscreteConvex (convexEnvelope I f) := by
   linarith
 
 include hne in
+/--
+@isnad1 id=le.2h3v.s5.fef1618cbb3d from=translated src=- shape=a2cc486b vocab=48d59f1d
+-/
 lemma below {n : ℕ} (hn : n ∈ I) : convexEnvelope I f n ≤ f n := by
   apply csSup_le (hne.image _)
   rintro _ ⟨F, hF, rfl⟩
   exact hF.2.2 n hn
 
 include hunbounded hne in
+/--
+@isnad1 id=mem.2h2v.s5.650d3ddc55d5 from=translated src=- shape=47b60038 vocab=9d65910b
+-/
 lemma mem : convexEnvelope I f ∈ convexMinorants I f :=
   ⟨zero hunbounded hne, convex hunbounded hne, fun _ hn => below hne hn⟩
 
 include hunbounded hne in
 
+/--
+@isnad1 id=and.3h3v.s7.1e999e1fd892 from=translated src=- shape=a0f08356 vocab=c2839b5b
+-/
 lemma contact (n : ℕ)
     (hgap : 0 < convexEnvelope I f (n+2) - 2 * convexEnvelope I f (n+1) +
       convexEnvelope I f n) :
@@ -186,6 +225,9 @@ namespace DiscreteConvex
 
 variable {F : ℕ → ℝ}
 
+/--
+@isnad1 id=tendsto.4h2v.s6.a725d22d7944 from=translated src=- shape=1162060c vocab=fa95c94a
+-/
 lemma slopes_tendsto (h : DiscreteConvex F) (h0 : F 0 = 0)
     {δ : ℝ} (hδ : 0 < δ)
     (hq : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ)^2 ≤ F n) :
@@ -205,6 +247,9 @@ lemma slopes_tendsto (h : DiscreteConvex F) (h0 : F 0 = 0)
 
 end DiscreteConvex
 
+/--
+@isnad1 id=le.1h4v.s7.e84c922ce730 from=translated src=- shape=1b35a206 vocab=a702d4de
+-/
 lemma quadratic_upper_of_curvature {F : ℕ → ℝ} {lam : ℝ} (N : ℕ)
     (h : ∀ n, N ≤ n → F (n+2) - 2*F (n+1) + F n ≤ 2*lam) (k : ℕ) :
     F (N+k) ≤ F N + (k : ℝ) * (F (N+1) - F N) + lam * k * (k-1) := by
@@ -228,6 +273,9 @@ lemma quadratic_upper_of_curvature {F : ℕ → ℝ} {lam : ℝ} (N : ℕ)
     push_cast
     nlinarith
 
+/--
+@isnad1 id=ex.3h4v.s7.fd6205e14413 from=translated src=- shape=bbfa7152 vocab=087d6bec
+-/
 lemma large_curvature {F : ℕ → ℝ} {lam μ : ℝ} (hμ : 0 < μ) (hlamμ : lam < μ)
     (hq : ∀ᶠ n : ℕ in atTop, μ * (n : ℝ)^2 ≤ F n) :
     ∀ N : ℕ, ∃ n, N ≤ n ∧ 2*lam < F (n+2) - 2*F (n+1) + F n := by
@@ -264,6 +312,9 @@ namespace DiscreteConvex
 
 variable {F : ℕ → ℝ}
 
+/--
+@isnad1 id=le.2h4v.s6.345d43de079a from=translated src=- shape=37aec637 vocab=d2da10ba
+-/
 lemma increment_mono (h : DiscreteConvex F) {i j : ℕ} (hij : i ≤ j) (k : ℕ) :
     F (i+k) - F i ≤ F (j+k) - F j := by
   induction k with
@@ -275,6 +326,9 @@ lemma increment_mono (h : DiscreteConvex F) {i j : ℕ} (hij : i ≤ j) (k : ℕ
     rw [e₁, e₂]
     linarith
 
+/--
+@isnad1 id=le.1h3v.s6.f3bad79078bd from=translated src=- shape=56975ad8 vocab=2f689f14
+-/
 lemma increment_lower (h : DiscreteConvex F) (q k : ℕ) :
     (k : ℝ) * (F (q+1) - F q) ≤ F (q+k) - F q := by
   induction k with
@@ -286,6 +340,9 @@ lemma increment_lower (h : DiscreteConvex F) (q k : ℕ) :
     push_cast
     nlinarith
 
+/--
+@isnad1 id=le.2h4v.s6.1540d5330d99 from=translated src=- shape=1b41ca63 vocab=2f689f14
+-/
 lemma increment_upper (h : DiscreteConvex F) (q k r : ℕ) (hkr : q+k ≤ r+1) :
     F (q+k) - F q ≤ (k : ℝ) * (F (r+1) - F r) := by
   induction k with
@@ -298,6 +355,9 @@ lemma increment_upper (h : DiscreteConvex F) (q k r : ℕ) (hkr : q+k ≤ r+1) :
     push_cast
     nlinarith
 
+/--
+@isnad1 id=summable.4h2v.s6.3fa71f435949 from=translated src=- shape=cc3db89c vocab=1615da9e
+-/
 lemma summable_exp_neg_slope (h : DiscreteConvex F) (h0 : F 0 = 0)
     {δ : ℝ} (hδ : 0 < δ)
     (hq : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ)^2 ≤ F n) :
@@ -322,6 +382,9 @@ namespace DiscreteConvex
 
 variable {F : ℕ → ℝ}
 
+/--
+@isnad1 id=le.2h3v.s6.9e96d3f815f8 from=translated src=- shape=12394658 vocab=de5f2874
+-/
 lemma tail_term_bound (h : DiscreteConvex F) {q : ℕ} (hq : 1 ≤ q) (k : ℕ) :
     normalizedTailTerm F q k ≤
       Real.exp (F 1) * Real.exp (-(F (k+2) - F (k+1))) := by
@@ -332,6 +395,9 @@ lemma tail_term_bound (h : DiscreteConvex F) {q : ℕ} (hq : 1 ≤ q) (k : ℕ) 
   rw [normalizedTailTerm, ← Real.exp_add]
   exact Real.exp_le_exp.mpr (by linarith)
 
+/--
+@isnad1 id=tendsto.2h2v.s6.4d1f9277a3ba from=translated src=- shape=5c4cabff vocab=0dce66d7
+-/
 lemma tail_term_tendsto (h : DiscreteConvex F)
     (hs : Tendsto (fun n => F (n+1) - F n) atTop atTop) (k : ℕ) :
     Tendsto (fun q => normalizedTailTerm F q k) atTop (𝓝 0) := by
@@ -350,6 +416,9 @@ lemma tail_term_tendsto (h : DiscreteConvex F)
   change F (k+1) + F q - F (q+k+1) ≤ b
   nlinarith
 
+/--
+@isnad1 id=summable.3h2v.s6.7889dacd7004 from=translated src=- shape=58fa2adf vocab=636dfc6d
+-/
 lemma tail_summable (h : DiscreteConvex F)
     (hsum : Summable (fun n => Real.exp (-(F (n+1) - F n))))
     {q : ℕ} (hq : 1 ≤ q) : Summable (normalizedTailTerm F q) := by
@@ -359,6 +428,9 @@ lemma tail_summable (h : DiscreteConvex F)
   rw [Real.norm_eq_abs, abs_of_pos (show 0 < normalizedTailTerm F q k from Real.exp_pos _)]
   simpa only [Nat.add_assoc] using h.tail_term_bound hq k
 
+/--
+@isnad1 id=tendsto.3h1v.s6.59f78c21b494 from=translated src=- shape=a1163cd3 vocab=4cc33146
+-/
 lemma tail_tsum_tendsto (h : DiscreteConvex F)
     (hsum : Summable (fun n => Real.exp (-(F (n+1) - F n))))
     (hs : Tendsto (fun n => F (n+1) - F n) atTop atTop) :

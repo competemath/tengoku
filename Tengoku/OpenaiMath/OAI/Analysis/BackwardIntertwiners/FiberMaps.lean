@@ -13,22 +13,34 @@ open scoped ENNReal
 def coordinateDistance (j : ℤ) : ℤ := max (j+1) (-j)
 def powerCost (n : ℕ) : ℕ := (n+1)^2/4
 
+/--
+@isnad1 id=eq.0h1v.s5.61ba987b0608 from=translated src=- shape=308efd28 vocab=1a42916f
+-/
 lemma powerCost_add_two (n : ℕ) : powerCost (n+2) = powerCost n + n+2 := by
   unfold powerCost
   have he : (n+2+1)^2 = (n+1)^2 + 4*(n+2) := by ring
   rw [he]
   omega
 
+/--
+@isnad1 id=le.0h1v.s3.01ed6abc799d from=translated src=- shape=8a62b088 vocab=55e8abec
+-/
 lemma coordinateDistance_pos (j : ℤ) : 1 ≤ coordinateDistance j := by
   unfold coordinateDistance
   omega
 
+/--
+@isnad1 id=le.0h2v.s5.6dc4ce7b43b9 from=translated src=- shape=397d845c vocab=c93c9bdd
+-/
 lemma coordinateDistance_endpoints (j : ℤ) (n : ℕ) :
     (n:ℤ)+2 ≤ coordinateDistance j + coordinateDistance (j+(n:ℤ)+1) := by
   have h₁ : -j ≤ coordinateDistance j := le_max_right _ _
   have h₂ : j+(n:ℤ)+1+1 ≤ coordinateDistance (j+(n:ℤ)+1) := le_max_left _ _
   omega
 
+/--
+@isnad1 id=le.0h2v.s5.fd4887934edb from=translated src=- shape=2d6c27ff vocab=3dc68692
+-/
 lemma sum_coordinateDistance_lower (n : ℕ) (j : ℤ) :
     (powerCost n : ℤ) ≤ ∑ r ∈ Finset.range n, coordinateDistance (j+(r:ℤ)) := by
   induction n using Nat.twoStepInduction generalizing j with
@@ -60,6 +72,9 @@ def fiberReindexVector (e : ℤ ≃ ℤ) (v : Fiber) : Fiber :=
     apply memℓp_gen
     exact ((lp.memℓp v).summable (by norm_num)).comp_injective e.injective⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.27adc77a5898 from=translated src=- shape=01db7a17 vocab=4fbcb3e3
+-/
 lemma fiberReindex_norm (e : ℤ ≃ ℤ) (v : Fiber) : ‖fiberReindexVector e v‖ = ‖v‖ := by
   have he : ‖fiberReindexVector e v‖^2 = ‖v‖^2 := by
     have h₁ := lp.norm_rpow_eq_tsum (by norm_num : (0:ℝ) < (2:ENNReal).toReal) (fiberReindexVector e v)
@@ -78,9 +93,15 @@ def fiberReindex (e : ℤ ≃ ℤ) : Fiber ≃ₗᵢ[ℂ] Fiber where
   map_smul' c v := by ext j; rfl
   norm_map' := fiberReindex_norm e
 
+/--
+@isnad1 id=eq.0h3v.s11.8616537362f6 from=translated src=- shape=974cbeda vocab=6a506ac2
+-/
 @[simp] lemma fiberReindex_apply (e : ℤ ≃ ℤ) (v : Fiber) (j : ℤ) :
     (fiberReindex e v) j = v (e j) := rfl
 
+/--
+@isnad1 id=memp.2h3v.s8.cfe9a5622d19 from=translated src=- shape=43b522cf vocab=b9f2db90
+-/
 lemma fiberMultiplier_mem {a : ℤ → ℂ} {C : ℝ} (hC : 0 ≤ C)
     (ha : ∀ j, ‖a j‖ ≤ C) (v : Fiber) : Memℓp (fun j => a j*v j) 2 := by
   apply ((lp.memℓp v).const_smul (C:ℂ)).mono'
@@ -91,6 +112,9 @@ lemma fiberMultiplier_mem {a : ℤ → ℂ} {C : ℝ} (hC : 0 ≤ C)
 def fiberMultiplierVector (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C) (ha : ∀ j, ‖a j‖ ≤ C)
     (v : Fiber) : Fiber := ⟨fun j => a j*v j, fiberMultiplier_mem hC ha v⟩
 
+/--
+@isnad1 id=le.2h3v.s8.99853e53f168 from=translated src=- shape=ad766c98 vocab=284d5e57
+-/
 lemma fiberMultiplierVector_bound (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C) (ha : ∀ j, ‖a j‖ ≤ C)
     (v : Fiber) : ‖fiberMultiplierVector a C hC ha v‖ ≤ C*‖v‖ := by
   calc
@@ -110,9 +134,15 @@ def fiberMultiplier (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C) (ha : ∀ j, ‖a
       map_smul' := by intro c v; ext j; exact mul_left_comm _ _ _ }
     C (fiberMultiplierVector_bound a C hC ha)
 
+/--
+@isnad1 id=eq.2h4v.s11.18a88b702c69 from=translated src=- shape=671743f5 vocab=d336db3d
+-/
 @[simp] lemma fiberMultiplier_apply (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C) (ha : ∀ j, ‖a j‖ ≤ C)
     (v : Fiber) (j : ℤ) : fiberMultiplier a C hC ha v j = a j*v j := rfl
 
+/--
+@isnad1 id=le.2h2v.s11.5a888133f0ff from=translated src=- shape=cd0ebb58 vocab=b2891ce5
+-/
 lemma fiberMultiplier_norm_le (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C) (ha : ∀ j, ‖a j‖ ≤ C) :
     ‖fiberMultiplier a C hC ha‖ ≤ C :=
   ContinuousLinearMap.opNorm_le_bound _ hC (fiberMultiplierVector_bound a C hC ha)
@@ -121,10 +151,16 @@ def fiberWeightedPermutation (e : ℤ ≃ ℤ) (a : ℤ → ℂ) (C : ℝ) (hC :
     (ha : ∀ j, ‖a j‖ ≤ C) : Fiber →L[ℂ] Fiber :=
   (fiberReindex e).toLinearIsometry.toContinuousLinearMap.comp (fiberMultiplier a C hC ha)
 
+/--
+@isnad1 id=eq.2h5v.s11.7aebb60d16ac from=translated src=- shape=79849872 vocab=589ff1f4
+-/
 @[simp] lemma fiberWeightedPermutation_apply (e : ℤ ≃ ℤ) (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (ha : ∀ j, ‖a j‖ ≤ C) (v : Fiber) (j : ℤ) :
     fiberWeightedPermutation e a C hC ha v j = a (e j)*v (e j) := rfl
 
+/--
+@isnad1 id=le.2h3v.s11.d311fb819283 from=translated src=- shape=109ef20f vocab=9ce50443
+-/
 lemma fiberWeightedPermutation_norm_le (e : ℤ ≃ ℤ) (a : ℤ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (ha : ∀ j, ‖a j‖ ≤ C) : ‖fiberWeightedPermutation e a C hC ha‖ ≤ C := by
   apply ContinuousLinearMap.opNorm_le_bound _ hC
@@ -133,6 +169,9 @@ lemma fiberWeightedPermutation_norm_le (e : ℤ ≃ ℤ) (a : ℤ → ℂ) (C : 
   rw [(fiberReindex e).norm_map]
   exact fiberMultiplierVector_bound a C hC ha v
 
+/--
+@isnad1 id=strongly.1h2v.s9.067caccb4dc2 from=translated src=- shape=255e51af vocab=0c0252ca
+-/
 lemma fiberCoordinates_stronglyMeasurable {X : Type*} [MeasurableSpace X]
     (f : X → Fiber) (hf : ∀ n : ℤ, Measurable (fun x => f x n)) : StronglyMeasurable f := by
   apply stronglyMeasurable_of_tendsto (atTop : Filter (Finset ℤ))

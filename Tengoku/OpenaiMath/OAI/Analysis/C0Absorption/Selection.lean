@@ -10,6 +10,9 @@ namespace C0Absorption
 noncomputable section
 open Set Filter Topology
 
+/--
+@isnad1 id=ex.1h1v.s5.c2ad7e6a8170 from=translated src=- shape=30df9296 vocab=e0fbf9b3
+-/
 theorem thin_sequence {r : ℕ → ℕ → Prop} (hr : ∀ i, ∀ᶠ j in atTop, r i j) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i j, i < j → r (φ i) (φ j) := by
   have he (t : Set ℕ) (ht : t.Finite) : ∀ᶠ j in atTop, ∀ i ∈ t, i<j ∧ r i j :=
@@ -18,6 +21,9 @@ theorem thin_sequence {r : ℕ → ℕ → Prop} (hr : ∀ i, ∀ᶠ j in atTop,
   simp only [forall_mem_image, forall_and, mem_Iio] at hφ
   exact ⟨φ, forall_comm.mp hφ.1, forall_comm.mp hφ.2⟩
 
+/--
+@isnad1 id=ex.0h2v.s5.336f4ee82829 from=translated src=- shape=367078fa vocab=e64e7b07
+-/
 theorem finite_constant_subsequence {A : Type*} [Finite A] (f : ℕ → A) :
     ∃ a, ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, f (φ i)=a := by
   have hh : ∃ a, ∃ᶠ i in atTop, f i=a := by
@@ -30,6 +36,9 @@ theorem finite_constant_subsequence {A : Type*} [Finite A] (f : ℕ → A) :
   obtain ⟨φ,hm,hp⟩ := extraction_of_frequently_atTop ha
   exact ⟨a,φ,hm,hp⟩
 
+/--
+@isnad1 id=or.0h2v.s5.fc378c238870 from=translated src=- shape=6ca87849 vocab=b16e22ec
+-/
 theorem constant_or_injective_subsequence {A : Type*} (f : ℕ → A) :
     (∃ a, ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, f (φ i)=a) ∨
     (∃ φ : ℕ → ℕ, StrictMono φ ∧ Function.Injective (f ∘ φ)) := by
@@ -46,6 +55,9 @@ theorem constant_or_injective_subsequence {A : Type*} (f : ℕ → A) :
     · exact hp j i (lt_of_not_ge hn) hij.symm
     · exact hp i j (lt_of_not_ge hn) hij
 
+/--
+@isnad1 id=or.0h1v.s5.f47c48464f2c from=translated src=- shape=0bfda869 vocab=0846507f
+-/
 theorem nat_constant_or_tendsto (f : ℕ → ℕ) :
     (∃ a, ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, f (φ i)=a) ∨
     Tendsto f atTop atTop := by
@@ -63,6 +75,9 @@ theorem nat_constant_or_tendsto (f : ℕ → ℕ) :
     by_contra hn
     exact hi (f i) (Finset.mem_range.mpr (lt_of_not_ge hn)) rfl
 
+/--
+@isnad1 id=ex.1h3v.s6.26c1c8482c36 from=translated src=- shape=aaf59432 vocab=bce00bda
+-/
 theorem finite_subsequence_selection {A : Type*} [Finite A]
     (P : A → (ℕ → ℕ) → Prop)
     (hstable : ∀ a (φ ψ : ℕ → ℕ), StrictMono φ → StrictMono ψ → P a φ → P a (φ ∘ ψ))
@@ -84,6 +99,9 @@ theorem finite_subsequence_selection {A : Type*} [Finite A]
     · exact hq
     · exact hstable b φ ψ hm hn (hp b hb)
 
+/--
+@isnad1 id=ex.1h1v.s5.4420b48e8055 from=translated src=- shape=001dc085 vocab=75282669
+-/
 theorem choose_mono_sequence {P : ℕ → ℕ → Prop} (hP : ∀ i, ∀ᶠ j in atTop, P i j) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, P i (φ i) := by
   have he (i j : ℕ) : ∃ k, j<k ∧ P i k := ((eventually_gt_atTop j).and (hP i)).exists
@@ -105,6 +123,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=ex.8h8v.s9.29da2deda786 from=translated src=- shape=036c1b51 vocab=cd19f2f8
+-/
 theorem nested_selection_lipschitz {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {S : Set E} (hS : Convex ℝ S) (u b : ℕ → S → ℝ) (C : ℕ → Set S) (e : ℕ → ℝ)
     (K Kb : ℝ≥0) (hu : ∀ i, Continuous (u i)) (hb : ∀ i, LipschitzWith Kb (b i))
@@ -160,6 +181,9 @@ structure TagLocalization {Γ : Type*} (B : CylinderBases Γ) where
 namespace TagLocalization
 variable {Γ : Type*} {B : CylinderBases Γ} (loc : TagLocalization B)
 
+/--
+@isnad1 id=le.2h7v.s7.eafde30bc23c from=translated src=- shape=0f596c6e vocab=9fede3cf
+-/
 theorem representation_support {γ : Γ} (r : GeneratedRepresentation B γ)
     (k : ℕ) (hk : k < B.band γ) (s : C0Ball) (hs : s ∈ tsupport r.value) :
     dist (s.val k) (loc.tag γ k).val ≤ 2*dyadic (B.band γ)+B.ell (B.band γ)/2 := by
@@ -170,6 +194,9 @@ theorem representation_support {γ : Γ} (r : GeneratedRepresentation B γ)
   have hp := r.support_bound hφ (loc.base_support γ l hk) s hs
   exact hp.trans (add_le_add le_rfl r.budget.le)
 
+/--
+@isnad1 id=eventual.3h8v.s8.4db90e142c23 from=translated src=- shape=a16128a9 vocab=24bcfa5b
+-/
 theorem projected_concentration (γ : ℕ → Γ) (r : ∀ i, GeneratedRepresentation B (γ i))
     (hj : Tendsto (fun i => B.band (γ i)) atTop atTop)
     (v : ℕ → Icc (-1 : ℝ) 1) (hv : Tendsto (fun i => loc.tag (γ i)) atTop (nhds v))
@@ -208,6 +235,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=ex.4h8v.s8.da5e943e0cec from=translated src=- shape=1eb0631d vocab=f567ac35
+-/
 theorem high_bands_compatible {Γ : Type*} {B : CylinderBases Γ} (loc : TagLocalization B)
     (γ : ℕ → Γ) (r : ∀ i, GeneratedRepresentation B (γ i)) (h : ℕ)
     (hr : ∀ i, (r i).operations.length ≤ h)

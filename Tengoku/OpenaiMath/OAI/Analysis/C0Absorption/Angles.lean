@@ -14,12 +14,24 @@ open scoped NNReal BigOperators ZeroAtInfty
 def boundedAngle (J : ℕ) (u : ℝ) (j : ℕ) : ℝ :=
   if j=0 then Real.pi/2 else if J<j then 0 else transitionAngle j u
 
+/--
+@isnad1 id=eq.0h2v.s5.3d2e6050c448 from=translated src=- shape=24058709 vocab=1fcbddfb
+-/
 @[simp] theorem boundedAngle_zero (J : ℕ) (u : ℝ) : boundedAngle J u 0=Real.pi/2 := by simp [boundedAngle]
+/--
+@isnad1 id=eq.0h2v.s4.2cadcd9e6763 from=translated src=- shape=42b1652b vocab=b108fc5f
+-/
 @[simp] theorem boundedAngle_last (J : ℕ) (u : ℝ) : boundedAngle J u (J+1)=0 := by simp [boundedAngle]
 
+/--
+@isnad1 id=eq.2h3v.s4.257d6fc0a460 from=translated src=- shape=9bafd2b7 vocab=c207b1d5
+-/
 theorem boundedAngle_inner {J j : ℕ} (hj : 0<j) (hJ : j≤J) (u : ℝ) :
     boundedAngle J u j=transitionAngle j u := by simp [boundedAngle,hj.ne',not_lt.mpr hJ]
 
+/--
+@isnad1 id=and.0h3v.s5.69b2d70f6219 from=translated src=- shape=67fb9508 vocab=585e6cb5
+-/
 theorem boundedAngle_range (J j : ℕ) (u : ℝ) :
     0 ≤ boundedAngle J u j ∧ boundedAngle J u j ≤ Real.pi/2 := by
   unfold boundedAngle
@@ -28,6 +40,9 @@ theorem boundedAngle_range (J j : ℕ) (u : ℝ) :
   · exact ⟨le_rfl,by positivity⟩
   · exact ⟨transitionAngle_nonneg j u,transitionAngle_le j u⟩
 
+/--
+@isnad1 id=or.0h3v.s5.40aa19fff9dc from=translated src=- shape=4df91a49 vocab=ee9004bf
+-/
 theorem boundedAngle_dichotomy (J j : ℕ) (u : ℝ) :
     boundedAngle J u (j+1)=0 ∨ boundedAngle J u j=Real.pi/2 := by
   by_cases hj : j=0
@@ -40,10 +55,16 @@ theorem boundedAngle_dichotomy (J j : ℕ) (u : ℝ) :
 def thetaLog (J : ℕ) (u : ℝ) (j : ℕ) : ℝ :=
   Real.sin (boundedAngle J u j)+Real.cos (boundedAngle J u (j+1))-1
 
+/--
+@isnad1 id=eq.0h3v.s5.0723f52ade2d from=translated src=- shape=2b2f5e35 vocab=0bee0e59
+-/
 theorem thetaLog_mul (J j : ℕ) (u : ℝ) : thetaLog J u j=
     Real.sin (boundedAngle J u j)*Real.cos (boundedAngle J u (j+1)) := by
   rcases boundedAngle_dichotomy J j u with h|h <;> simp [thetaLog,h]
 
+/--
+@isnad1 id=le.0h3v.s4.acc2877d935d from=translated src=- shape=1ab57037 vocab=5c9f8811
+-/
 theorem thetaLog_nonneg (J j : ℕ) (u : ℝ) : 0 ≤ thetaLog J u j := by
   rw [thetaLog_mul]
   apply mul_nonneg
@@ -53,11 +74,17 @@ theorem thetaLog_nonneg (J j : ℕ) (u : ℝ) : 0 ≤ thetaLog J u j := by
       (by linarith [(boundedAngle_range J (j+1) u).1,Real.pi_pos])
       (boundedAngle_range J (j+1) u).2
 
+/--
+@isnad1 id=le.0h3v.s4.21e3b27100fe from=translated src=- shape=909332b2 vocab=5c9f8811
+-/
 theorem thetaLog_le_one (J j : ℕ) (u : ℝ) : thetaLog J u j ≤ 1 := by
   rcases boundedAngle_dichotomy J j u with h|h
   · simpa only [thetaLog,h,Real.cos_zero,add_sub_cancel_right] using Real.sin_le_one (boundedAngle J u j)
   · simpa only [thetaLog,h,Real.sin_pi_div_two,add_sub_cancel_left] using Real.cos_le_one (boundedAngle J u (j+1))
 
+/--
+@isnad1 id=eq.0h3v.s6.080a117c00fa from=translated src=- shape=5b994163 vocab=994c5191
+-/
 theorem thetaLog_sq (J j : ℕ) (u : ℝ) : thetaLog J u j^2=
     Real.sin (boundedAngle J u j)^2-Real.sin (boundedAngle J u (j+1))^2 := by
   rcases boundedAngle_dichotomy J j u with h|h
@@ -66,17 +93,26 @@ theorem thetaLog_sq (J j : ℕ) (u : ℝ) : thetaLog J u j^2=
     simp only [thetaLog,h,Real.sin_pi_div_two,one_pow]
     nlinarith
 
+/--
+@isnad1 id=eq.0h2v.s5.acd318bffda7 from=translated src=- shape=c31de196 vocab=4b1bed3f
+-/
 theorem sum_range_differences (f : ℕ → ℝ) (n : ℕ) :
     ∑ j ∈ Finset.range n, (f j-f (j+1))=f 0-f n := by
   induction n with
   | zero => simp
   | succ n ih => rw [Finset.sum_range_succ,ih]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.78792d819b04 from=translated src=- shape=7d16e3d9 vocab=3eb67a28
+-/
 theorem thetaLog_squares (J : ℕ) (u : ℝ) : ∑ j : Fin (J+1), thetaLog J u j^2=1 := by
   simp_rw [thetaLog_sq]
   rw [Fin.sum_univ_eq_sum_range (fun j => Real.sin (boundedAngle J u j)^2-Real.sin (boundedAngle J u (j+1))^2),sum_range_differences]
   simp
 
+/--
+@isnad1 id=subsingl.0h1v.s5.7e977abc0eea from=translated src=- shape=90851ea5 vocab=67c27d8f
+-/
 theorem transitionAngle_unique (u : ℝ) :
     Set.Subsingleton {j | transitionAngle j u ≠ 0 ∧ transitionAngle j u ≠ Real.pi/2} := by
   intro i hi j hj
@@ -90,6 +126,9 @@ theorem transitionAngle_unique (u : ℝ) :
       exact hk.1 (transitionAngle_zero k (by linarith))
   exact Set.disjoint_left.mp (transitionInterval_disjoint hij) (mem i hi) (mem j hj)
 
+/--
+@isnad1 id=eq.0h2v.s7.91c9ec2046a1 from=translated src=- shape=b81cd8f3 vocab=32050bc1
+-/
 theorem thetaLog_sum_formula (J : ℕ) (u : ℝ) :
     (∑ j : Fin (J+1),thetaLog J u j)=1+
       ∑ j : Fin J, (Real.sin (transitionAngle (j+1) u)+Real.cos (transitionAngle (j+1) u)-1) := by
@@ -113,6 +152,9 @@ theorem thetaLog_sum_formula (J : ℕ) (u : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.8533924a3043 from=translated src=- shape=4c082d8a vocab=aca9f218
+-/
 theorem thetaLog_sum_le (J : ℕ) (u : ℝ) : (∑ j : Fin (J+1),thetaLog J u j) ≤ 2 := by
   classical
   rw [thetaLog_sum_formula]
@@ -137,6 +179,9 @@ theorem thetaLog_sum_le (J : ℕ) (u : ℝ) : (∑ j : Fin (J+1),thetaLog J u j)
       tauto
     simp only [hh,Finset.sum_const_zero,zero_le_one]
 
+/--
+@isnad1 id=eq.0h3v.s8.d7ba755e93ca from=translated src=- shape=23226900 vocab=afe8f606
+-/
 theorem boundedAngle_difference_sum (J : ℕ) (u v : ℝ) :
     (∑ j : Fin (J+1), (|boundedAngle J u j-boundedAngle J v j|+
       |boundedAngle J u (j+1)-boundedAngle J v (j+1)|)) =
@@ -157,6 +202,9 @@ theorem boundedAngle_difference_sum (J : ℕ) (u v : ℝ) :
   rw [hh]
   ring
 
+/--
+@isnad1 id=le.0h3v.s7.51d48629abd3 from=translated src=- shape=aecb2fc0 vocab=ab8257e5
+-/
 theorem thetaLog_distance (J : ℕ) (u v : ℝ) :
     (∑ j : Fin (J+1), |thetaLog J u j-thetaLog J v j|) ≤ (Real.pi/scheduleH)*dist u v := by
   calc
@@ -186,14 +234,23 @@ open scoped NNReal BigOperators ZeroAtInfty
 def theta (J : ℕ) (r : ℝ) (j : ℕ) : ℝ :=
   if r≤0 then if j=J then 1 else 0 else thetaLog J (Real.log r) j
 
+/--
+@isnad1 id=le.0h3v.s4.8c35f59816fe from=translated src=- shape=1ab57037 vocab=176215e3
+-/
 theorem theta_nonneg (J j : ℕ) (r : ℝ) : 0 ≤ theta J r j := by
   unfold theta
   split_ifs <;> first | exact thetaLog_nonneg J j _ | norm_num
 
+/--
+@isnad1 id=le.0h3v.s4.83ab406817a4 from=translated src=- shape=909332b2 vocab=176215e3
+-/
 theorem theta_le_one (J j : ℕ) (r : ℝ) : theta J r j ≤ 1 := by
   unfold theta
   split_ifs <;> first | exact thetaLog_le_one J j _ | norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.798cc5468a34 from=translated src=- shape=7d16e3d9 vocab=84dcadb3
+-/
 theorem theta_squares (J : ℕ) (r : ℝ) : (∑ j : Fin (J+1),theta J r j^2)=1 := by
   classical
   by_cases hr : r≤0
@@ -203,6 +260,9 @@ theorem theta_squares (J : ℕ) (r : ℝ) : (∑ j : Fin (J+1),theta J r j^2)=1 
   · simp only [theta,hr,↓reduceIte]
     exact thetaLog_squares J _
 
+/--
+@isnad1 id=le.0h2v.s6.049a6ec86b5a from=translated src=- shape=4c082d8a vocab=dca666dd
+-/
 theorem theta_sum_le (J : ℕ) (r : ℝ) : (∑ j : Fin (J+1),theta J r j) ≤ 2 := by
   classical
   by_cases hr : r≤0
@@ -213,11 +273,17 @@ theorem theta_sum_le (J : ℕ) (r : ℝ) : (∑ j : Fin (J+1),theta J r j) ≤ 2
   · simp only [theta,hr,↓reduceIte]
     exact thetaLog_sum_le J _
 
+/--
+@isnad1 id=le.2h2v.s5.6f2976375c8c from=translated src=- shape=2bc2e272 vocab=4fa61436
+-/
 theorem log_radius_lower {r : ℝ} (hr : 0<r) (j : ℕ)
     (hle : r ≤ Real.exp (-scheduleH)*rho j) : Real.log r ≤ Real.log (rho j)-scheduleH := by
   have hh := (Real.log_le_log_iff hr (mul_pos (Real.exp_pos _) (rho_pos j))).mpr hle
   rwa [Real.log_mul (Real.exp_pos _).ne' (rho_pos j).ne',Real.log_exp,neg_add_eq_sub] at hh
 
+/--
+@isnad1 id=eq.3h3v.s6.ea8e3193115b from=translated src=- shape=0365e834 vocab=d8ae1a63
+-/
 theorem boundedAngle_full_of_small {J j : ℕ} (hj : j≤J) {r : ℝ} (hr : 0<r)
     (hle : r≤Real.exp (-scheduleH)*rho J) : boundedAngle J (Real.log r) j=Real.pi/2 := by
   by_cases hz : j=0
@@ -225,6 +291,9 @@ theorem boundedAngle_full_of_small {J j : ℕ} (hj : j≤J) {r : ℝ} (hr : 0<r)
   · rw [boundedAngle_inner (by omega) hj]
     exact transitionAngle_full j ((log_radius_lower hr J hle).trans (sub_le_sub_right (log_rho_antitone hj) _))
 
+/--
+@isnad1 id=eq.1h3v.s5.1b205a3533df from=translated src=- shape=238ee83a vocab=40236b5c
+-/
 theorem theta_terminal (J j : ℕ) {r : ℝ} (hr : r ≤ Real.exp (-scheduleH)*rho J) :
     theta J r j=if j=J then 1 else 0 := by
   by_cases h : r≤0
@@ -241,6 +310,9 @@ theorem theta_terminal (J j : ℕ) {r : ℝ} (hr : r ≤ Real.exp (-scheduleH)*r
   · simp only [boundedAngle,show j≠0 by omega,show j+1≠0 by omega,hj,
       show J<j+1 by omega,↓reduceIte,Real.sin_zero,Real.cos_zero,ite_eq_right hj.ne',zero_add,sub_self]
 
+/--
+@isnad1 id=continuo.0h2v.s4.9517cbf1ef48 from=translated src=- shape=e0b879dd vocab=3262169a
+-/
 theorem boundedAngle_continuous (J j : ℕ) : Continuous (fun u => boundedAngle J u j) := by
   unfold boundedAngle
   split_ifs
@@ -248,9 +320,15 @@ theorem boundedAngle_continuous (J j : ℕ) : Continuous (fun u => boundedAngle 
   · exact continuous_const
   · exact (transitionAngle_lipschitz j).continuous
 
+/--
+@isnad1 id=continuo.0h2v.s4.713ca9244f2c from=translated src=- shape=e0b879dd vocab=f694cc32
+-/
 theorem thetaLog_continuous (J j : ℕ) : Continuous (fun u => thetaLog J u j) :=
   ((Real.continuous_sin.comp (boundedAngle_continuous J j)).add (Real.continuous_cos.comp (boundedAngle_continuous J (j+1)))).sub continuous_const
 
+/--
+@isnad1 id=continuo.0h2v.s4.c1e7458f66d9 from=translated src=- shape=e0b879dd vocab=91d27655
+-/
 theorem theta_continuous (J j : ℕ) : Continuous (fun r => theta J r j) := by
   rw [continuous_iff_continuousAt]
   intro r
@@ -264,6 +342,9 @@ theorem theta_continuous (J j : ℕ) : Continuous (fun r => theta J r j) := by
     filter_upwards [eventually_lt_nhds hR] with s hs
     exact theta_terminal J j hs.le
 
+/--
+@isnad1 id=le.4h3v.s5.6b92805cb235 from=translated src=- shape=737f6011 vocab=c7fc8b31
+-/
 theorem theta_upper_support {J j : ℕ} (hj : 0<j) (hJ : j≤J) {r : ℝ}
     (_hr : 0≤r) (ht : theta J r j≠0) : r≤rho j := by
   by_contra hn
@@ -274,6 +355,9 @@ theorem theta_upper_support {J j : ℕ} (hj : 0<j) (hJ : j≤J) {r : ℝ}
   apply ht
   simp only [theta,not_le.mpr hp,↓reduceIte,thetaLog_mul,boundedAngle_inner hj hJ,ha,Real.sin_zero,zero_mul]
 
+/--
+@isnad1 id=le.3h3v.s5.2a9c3620358f from=translated src=- shape=c01bf27e vocab=841c30b1
+-/
 theorem theta_lower_support {J j : ℕ} (hj : j<J) {r : ℝ}
     (_hr : 0≤r) (ht : theta J r j≠0) : ell j≤r := by
   by_contra hn
@@ -287,6 +371,9 @@ theorem theta_lower_support {J j : ℕ} (hj : j<J) {r : ℝ}
   simp only [theta,not_le.mpr hp,↓reduceIte,thetaLog_mul,
     boundedAngle_inner (by omega : 0<j+1) (by omega : j+1≤J),ha,Real.cos_pi_div_two,mul_zero]
 
+/--
+@isnad1 id=le.2h2v.s6.e49af657b90b from=translated src=- shape=c49c182b vocab=e2d0e909
+-/
 theorem min_mul_log_distance {r s : ℝ} (hr : 0<r) (hs : 0<s) :
     min r s*|Real.log r-Real.log s| ≤ |r-s| := by
   have oneOrder (r s : ℝ) (hr : 0<r) (hs : 0<s) (hle : r ≤ s) :
@@ -304,6 +391,9 @@ theorem min_mul_log_distance {r s : ℝ} (hr : 0<r) (hs : 0<s) :
   · rw [min_eq_right h,abs_sub_comm (Real.log r),abs_sub_comm r]
     exact oneOrder s r hs hr h
 
+/--
+@isnad1 id=le.2h3v.s7.13b33c25b4af from=translated src=- shape=b7273cf5 vocab=04e197c6
+-/
 theorem theta_weighted_distance (J : ℕ) {r s : ℝ} (hr : 0≤r) (hs : 0 ≤ s) :
     min r s*(∑ j : Fin (J+1),|theta J r j-theta J s j|) ≤
       (Real.pi/scheduleH)*|r-s| := by

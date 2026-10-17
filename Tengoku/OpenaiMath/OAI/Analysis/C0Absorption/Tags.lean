@@ -20,26 +20,47 @@ def correctionCoordinates (lev : Level) : Finset ℕ :=
   (Finset.range (levelJ lev) ∪ {rowIndex lev.1}) ∪
     (radiusCoordinates lev ∪ earlierRadiusCoordinates lev)
 
+/--
+@isnad1 id=nonempty.0h1v.s2.1afe606b805f from=translated src=- shape=1a6c1393 vocab=b783b003
+-/
 theorem correctionCoordinates_nonempty (lev : Level) : (correctionCoordinates lev).Nonempty := by
   exact (radiusCoordinates_nonempty lev).mono (fun k hk => Finset.mem_union_right _ (Finset.mem_union_left _ hk))
 
+/--
+@isnad1 id=le.0h1v.s4.b40e623f7078 from=translated src=- shape=d403cf25 vocab=ba1d1b40
+-/
 theorem correctionCoordinates_prefix (lev : Level) : Finset.range (levelJ lev) ⊆ correctionCoordinates lev :=
   fun _ hk => Finset.mem_union_left _ (Finset.mem_union_left _ hk)
 
+/--
+@isnad1 id=le.0h1v.s4.e063a8d6f8ff from=translated src=- shape=ffc59986 vocab=35101908
+-/
 theorem correctionCoordinates_radius (lev : Level) : radiusCoordinates lev ⊆ correctionCoordinates lev :=
   fun _ hk => Finset.mem_union_right _ (Finset.mem_union_left _ hk)
 
+/--
+@isnad1 id=le.0h2v.s5.9db72306dbbb from=translated src=- shape=2520639e vocab=9f72e040
+-/
 theorem correctionCoordinates_previous (i n : ℕ) : radiusCoordinates (i,n) ⊆ correctionCoordinates (i,n+1) :=
   fun _ hk => Finset.mem_union_right _ (Finset.mem_union_right _ hk)
 
+/--
+@isnad1 id=mem.0h1v.s4.7ec24e0c3942 from=translated src=- shape=9f05c454 vocab=56ad7ffc
+-/
 theorem correctionCoordinates_row (lev : Level) : rowIndex lev.1∈correctionCoordinates lev :=
   Finset.mem_union_left _ (Finset.mem_union_right _ (Finset.mem_singleton_self _))
 
+/--
+@isnad1 id=eq.1h3v.s6.18da8932eaed from=translated src=- shape=9ee1ec10 vocab=36f40378
+-/
 theorem prefixRestrict_eq_of_agree {j : ℕ} {s t : C0Ball}
     (h : ∀ k<j,s.val k=t.val k) : prefixRestrict j s=prefixRestrict j t := by
   ext k
   exact h k k.isLt
 
+/--
+@isnad1 id=eq.1h3v.s6.7931860a34b9 from=translated src=- shape=bd6b1c69 vocab=20524550
+-/
 theorem finiteRadius_eq_of_agree {I : Finset ℕ} {x y : C0}
     (h : ∀ k∈I,x k=y k) : finiteRadius I x=finiteRadius I y := by
   unfold finiteRadius
@@ -50,6 +71,9 @@ theorem finiteRadius_eq_of_agree {I : Finset ℕ} {x y : C0}
   · exact h k hk
   · rfl
 
+/--
+@isnad1 id=eq.2h3v.s7.766340c5f7a6 from=translated src=- shape=1203b4a1 vocab=a6b4f8a3
+-/
 theorem blockVector_eq_of_agree {lev : Level} {s t : C0Ball}
     (hp : ∀ k<levelJ lev,s.val k=t.val k)
     (hr : ∀ k∈radiusCoordinates lev,s.val k=t.val k) :
@@ -59,6 +83,9 @@ theorem blockVector_eq_of_agree {lev : Level} {s t : C0Ball}
   have he : localRadius lev s.val=localRadius lev t.val := finiteRadius_eq_of_agree hr
   simp only [blockVector,he,hb]
 
+/--
+@isnad1 id=eq.2h3v.s7.6dfc65753eea from=translated src=- shape=1203b4a1 vocab=7da0e604
+-/
 theorem blockRow_eq_of_agree {lev : Level} {s t : C0Ball}
     (hp : ∀ k<levelJ lev,s.val k=t.val k)
     (hr : ∀ k∈radiusCoordinates lev,s.val k=t.val k) :
@@ -68,6 +95,9 @@ theorem blockRow_eq_of_agree {lev : Level} {s t : C0Ball}
   have he : localRadius lev s.val=localRadius lev t.val := finiteRadius_eq_of_agree hr
   simp only [blockRow,he,hb]
 
+/--
+@isnad1 id=eq.2h3v.s8.a27aa5ee6094 from=translated src=- shape=22795506 vocab=26778363
+-/
 theorem state_rowScalar_eq_of_agree {lev : Level} {s t : C0Ball}
     (hp : ∀ k<levelJ lev,s.val k=t.val k)
     (hr : ∀ k∈radiusCoordinates lev,s.val k=t.val k) :
@@ -79,6 +109,9 @@ theorem state_rowScalar_eq_of_agree {lev : Level} {s t : C0Ball}
     hr _ (Finset.mem_union_right _ (mem_blockCoordinates.mpr ⟨blockLabel lev b,rfl,rfl⟩))
   rw [blockRow_eq_of_agree hp hr,hb]
 
+/--
+@isnad1 id=eq.1h3v.s6.df146c8bcacd from=translated src=- shape=1f26dc9c vocab=354916d7
+-/
 theorem correction_eq_of_agree (γ : Label) {s t : C0Ball}
     (h : ∀ k∈correctionCoordinates γ.level,s.val k=t.val k) : correction γ s=correction γ t := by
   have hp : ∀ k<levelJ γ.level,s.val k=t.val k := fun k hk => h k (correctionCoordinates_prefix γ.level (Finset.mem_range.mpr hk))
@@ -104,6 +137,9 @@ theorem correction_eq_of_agree (γ : Label) {s t : C0Ball}
 def correctionBase (γ : Label) : Cube (correctionCoordinates γ.level) → ℝ :=
   correction γ ∘ cubeExtend (correctionCoordinates γ.level)
 
+/--
+@isnad1 id=eq.0h2v.s4.f9f0a721dd9d from=translated src=- shape=c6f8f2b5 vocab=03ab2c4f
+-/
 theorem correctionBase_restrict (γ : Label) (s : C0Ball) :
     correctionBase γ (cubeRestrict (correctionCoordinates γ.level) s)=correction γ s := by
   apply correction_eq_of_agree
@@ -111,9 +147,15 @@ theorem correctionBase_restrict (γ : Label) (s : C0Ball) :
   change extendFinite _ _ k=s.val k
   simp only [extendFinite_apply,hk,↓reduceDIte,cubeRestrict]
 
+/--
+@isnad1 id=le.0h2v.s4.62f8d0ccfe4f from=translated src=- shape=4e25a57b vocab=03baaaef
+-/
 theorem correctionBase_bound (γ : Label) (x : Cube (correctionCoordinates γ.level)) : |correctionBase γ x|≤4 :=
   correction_bound γ _
 
+/--
+@isnad1 id=lipschit.0h1v.s7.7bbbd787e336 from=translated src=- shape=098164ed vocab=e2576f8b
+-/
 theorem correctionBase_lipschitz (γ : Label) : LipschitzWith correctionL (correctionBase γ) := by
   simpa only [mul_one,correctionBase] using (correction_lipschitz γ).comp (cubeExtend_lipschitz (correctionCoordinates γ.level))
 
@@ -140,8 +182,14 @@ open scoped NNReal BigOperators ZeroAtInfty
 def fullTag (γ : Label) (k : ℕ) : Icc (-1 : ℝ) 1 :=
   if h : k<γ.band.val then bandPoint γ.band γ.tag ⟨k,h⟩ else ⟨0,by norm_num⟩
 
+/--
+@isnad1 id=le.0h1v.s4.8aeb996d348c from=translated src=- shape=f68abf01 vocab=115488ce
+-/
 theorem band_le_level (γ : Label) : γ.band.val≤levelJ γ.level := Nat.le_of_lt_succ γ.band.isLt
 
+/--
+@isnad1 id=le.2h3v.s8.c7fd40c76e62 from=translated src=- shape=ed4a7878 vocab=7db8ae20
+-/
 theorem tag_support_base (γ : Label) (k : correctionCoordinates γ.level) (hk : k.val<γ.band.val) :
     ∀ x∈tsupport (correctionBase γ), dist (x k) (fullTag γ k.val)≤2*dyadic γ.band := by
   have hc : IsClosed {x : Cube (correctionCoordinates γ.level) | dist (x k) (fullTag γ k.val)≤2*dyadic γ.band} :=
@@ -163,12 +211,21 @@ def concreteTagLocalization : TagLocalization concreteBases where
 
 def firstRadiusCoordinate (lev : Level) : ℕ := (radiusCoordinates lev).min' (radiusCoordinates_nonempty lev)
 
+/--
+@isnad1 id=mem.0h1v.s4.59f9fbc5fa9d from=translated src=- shape=b5ca9b95 vocab=9246faef
+-/
 theorem firstRadiusCoordinate_mem (lev : Level) : firstRadiusCoordinate lev∈radiusCoordinates lev :=
   Finset.min'_mem _ _
 
+/--
+@isnad1 id=le.1h2v.s4.7ca95b678b2b from=translated src=- shape=69875c81 vocab=3595bbee
+-/
 theorem firstRadiusCoordinate_le (lev : Level) {k : ℕ} (hk : k∈radiusCoordinates lev) :
     firstRadiusCoordinate lev≤k := Finset.min'_le _ _ hk
 
+/--
+@isnad1 id=finite.0h1v.s3.0e0f866b39eb from=translated src=- shape=4cfe8e1f vocab=93707df3
+-/
 theorem boundedLevels_finite (j : ℕ) : {lev : Level | levelJ lev≤j}.Finite := by
   apply ((Set.finite_Iic j).prod (Set.finite_Iic j)).subset
   intro lev h
@@ -176,6 +233,9 @@ theorem boundedLevels_finite (j : ℕ) : {lev : Level | levelJ lev≤j}.Finite :
   change lev.1+lev.2+2≤j at h
   omega
 
+/--
+@isnad1 id=finite.0h1v.s3.6496e2703531 from=translated src=- shape=4cfe8e1f vocab=9993cdea
+-/
 theorem labels_at_level_finite (lev : Level) : {γ : Label | γ.level=lev}.Finite := by
   apply (Set.finite_range (blockLabel lev)).subset
   rintro ⟨μ,j,ξ⟩ h
@@ -183,11 +243,17 @@ theorem labels_at_level_finite (lev : Level) : {γ : Label | γ.level=lev}.Finit
   cases h
   exact ⟨⟨j,ξ⟩,rfl⟩
 
+/--
+@isnad1 id=finite.1h1v.s4.a5fd88810fb6 from=translated src=- shape=80c1ed1c vocab=2a321f39
+-/
 theorem labels_over_finite {F : Set Level} (hF : F.Finite) : {γ : Label | γ.level∈F}.Finite := by
   apply (hF.biUnion (fun lev _ => labels_at_level_finite lev)).subset
   intro γ hγ
   exact Set.mem_iUnion.mpr ⟨γ.level,Set.mem_iUnion.mpr ⟨hγ,rfl⟩⟩
 
+/--
+@isnad1 id=finite.0h2v.s6.ff88d502100a from=translated src=- shape=300db678 vocab=82f2cef4
+-/
 theorem bounded_or_early_finite (j N : ℕ) :
     {γ : Label | γ.band.val≤j ∧ (γ.band.val=levelJ γ.level ∨ firstRadiusCoordinate γ.level≤N)}.Finite := by
   let F : Set Level := {lev | levelJ lev≤j} ∪ {lev | ∃ k≤N,k∈radiusCoordinates lev}
@@ -198,6 +264,9 @@ theorem bounded_or_early_finite (j N : ℕ) :
   · exact Or.inl (by change levelJ γ.level≤j; rw [← ht]; exact hγ.1)
   · exact Or.inr ⟨firstRadiusCoordinate γ.level,he,firstRadiusCoordinate_mem _⟩
 
+/--
+@isnad1 id=le.3h3v.s7.71e0d8dcb5e3 from=translated src=- shape=efbae4ae vocab=6e48454d
+-/
 theorem radius_support_base (γ : Label) (ht : γ.band.val≠levelJ γ.level) (N : ℕ)
     (hN : N<firstRadiusCoordinate γ.level) :
     ∀ x∈tsupport (correctionBase γ), ell γ.band≤tau N (cubeExtend (correctionCoordinates γ.level) x).val := by
@@ -221,6 +290,9 @@ def concreteRadiusLocalization : RadiusLocalization concreteBases where
 
 abbrev ConcreteSpace := SourceSpace concreteBases
 
+/--
+@isnad1 id=nolinear.0h0v.s5.448adbe4eeaf from=translated src=- shape=49959d42 vocab=3b5e593f
+-/
 theorem concrete_noLinearC0 : NoLinearC0 ConcreteSpace :=
   source_noLinearC0 concreteTagLocalization concreteRadiusLocalization
 

@@ -10,6 +10,9 @@ noncomputable section
 open Topology MeasureTheory Set
 open scoped ENNReal
 
+/--
+@isnad1 id=ex.5h6v.s7.52439ec5029a from=translated src=- shape=cdc345e4 vocab=56494c60
+-/
 lemma ergodic_late_intersection {X : Type*} [MeasurableSpace X] {μ : Measure X}
     [IsFiniteMeasure μ] {θ : X → X} (hθ : Ergodic θ μ)
     {A B : Set X} (_ : MeasurableSet A) (hB : MeasurableSet B)
@@ -55,10 +58,16 @@ section Localization
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X} [finiteMeasure : IsFiniteMeasure μ]
 
 omit finiteMeasure in
+/--
+@isnad1 id=measurab.0h4v.s13.8b0f9cee243e from=translated src=- shape=9ba99aea vocab=45a09807
+-/
 lemma measurable_global_coordinate [IsFiniteMeasure μ] (f : Lp Fiber 2 μ) (j : ℤ) : Measurable (fun x => f x j) :=
   ((lp.evalCLM ℂ (fun _ : ℤ => ℂ) 2 j).continuous.comp_stronglyMeasurable (Lp.stronglyMeasurable f)).measurable
 
 omit finiteMeasure in
+/--
+@isnad1 id=ex.1h3v.s15.2efdd19920ee from=translated src=- shape=4929fb02 vocab=41831a13
+-/
 lemma exists_coordinate_support_nonnull [IsFiniteMeasure μ] {f : Lp Fiber 2 μ} (hf : f ≠ 0) :
     ∃ j : ℤ, μ {x | f x j ≠ 0} ≠ 0 := by
   by_contra! h
@@ -70,6 +79,9 @@ lemma exists_coordinate_support_nonnull [IsFiniteMeasure μ] {f : Lp Fiber 2 μ}
   ext j
   exact hx j
 
+/--
+@isnad1 id=eventual.3h5v.s19.d274bf042cd5 from=translated src=- shape=e0d84186 vocab=bfc8cc44
+-/
 lemma scalar_invariant_pointwise_orthogonal {L : Submodule ℂ (Lp Fiber 2 μ)}
     (hL : ∀ g : Lp ℂ ∞ μ, ∀ f ∈ L, scalarMultiplier g f ∈ L)
     {f z : Lp Fiber 2 μ} (hf : f ∈ L) (hz : z ∈ L.orthogonal) :
@@ -91,6 +103,9 @@ lemma scalar_invariant_pointwise_orthogonal {L : Submodule ℂ (Lp Fiber 2 μ)}
     _ = 0 := Submodule.inner_left_of_mem_orthogonal (hL g f hf) hz
 end Localization
 
+/--
+@isnad1 id=lt.5h6v.s14.287908a32fc1 from=translated src=- shape=afa8a095 vocab=358bd438
+-/
 lemma fiber_cyclic_orthogonal_order {w : ℤ → ℝ} (hw : QuadraticWeights w)
     {T : Fiber →L[ℂ] Fiber}
     (hT : ∀ v j, T v j = (w j / w (j-1) : ℂ) * v (j-1))
@@ -124,17 +139,29 @@ lemma fiber_cyclic_orthogonal_order {w : ℤ → ℝ} (hw : QuadraticWeights w)
   exact (quadratic_support_separation w hw).strict_order ⟨i,hbi⟩ ⟨j,hcj⟩
     (by positivity : 0 < ‖z‖+1) (by positivity : 0 < ‖v‖+1) hb hc hcor hbi hcj
 
+/--
+@isnad1 id=quadrati.0h1v.s2.62fccab7dbe0 from=translated src=- shape=76a08d12 vocab=ce0ec64d
+-/
 lemma explicitWeight_quadratic (x : Base) : QuadraticWeights (explicitWeight x) :=
   bilateralWeight_quadratic (plusResidue_bounds x) (minusResidue_bounds x)
 
+/--
+@isnad1 id=eq.0h3v.s11.2269695e52ce from=translated src=- shape=cbe5bec7 vocab=a82928cb
+-/
 lemma forwardFiber_weight_coordinates (x : Base) (v : Fiber) (j : ℤ) :
     forwardFiber x v j = (explicitWeight x j / explicitWeight x (j-1) : ℂ) * v (j-1) := by
   rw [forwardFiber_apply, ← explicitWeight_ratio x (j-1)]
   simp only [sub_add_cancel, Complex.ofReal_div]
 
+/--
+@isnad1 id=ergodic.0h0v.s3.0b129d4d277b from=translated src=- shape=0e6a3cff vocab=72835b7c
+-/
 lemma inverseOdometer_ergodic : Ergodic inverseOdometer baseMeasure :=
   Ergodic.symm (e := odometerMeasurableEquiv) odometer_ergodic
 
+/--
+@isnad1 id=eventual.0h3v.s19.7dc101dfb391 from=translated src=- shape=64d31284 vocab=dffce444
+-/
 lemma backwardOperator_power_nonzero (n : ℕ) (f : GlobalHilbert) (j : ℤ) :
     ∀ᵐ x ∂baseMeasure, f (inverseOdometer^[n] x) j ≠ 0 →
       ((backwardOperator^n) f) x (j-n) ≠ 0 := by
@@ -155,6 +182,9 @@ lemma backwardOperator_power_nonzero (n : ℕ) (f : GlobalHilbert) (j : ℤ) :
     · apply hi
       simpa only [Function.iterate_succ_apply] using hn
 
+/--
+@isnad1 id=mem.2h4v.s19.c3c03c045b11 from=translated src=- shape=a5676f0d vocab=458c5bc0
+-/
 lemma global_invariant_pow {T : GlobalHilbert →L[ℂ] GlobalHilbert}
     {L : Submodule ℂ GlobalHilbert} (hi : OperatorInvariant L T)
     {v : GlobalHilbert} (hv : v ∈ L) (n : ℕ) : (T^n) v ∈ L := by
@@ -162,6 +192,9 @@ lemma global_invariant_pow {T : GlobalHilbert →L[ℂ] GlobalHilbert}
   | zero => simpa using hv
   | succ n ih => simpa only [pow_succ', mul_apply_eq_comp] using hi _ ih
 
+/--
+@isnad1 id=eventual.4h3v.s18.ca2d13a9970b from=translated src=- shape=6f2607e1 vocab=1b54dce6
+-/
 lemma invariant_pointwise_order {L : Submodule ℂ GlobalHilbert}
     (hS : OperatorInvariant L forwardOperator)
     (hM : ∀ g : Lp ℂ ∞ baseMeasure, OperatorInvariant L (scalarMultiplier g))
@@ -177,6 +210,9 @@ lemma invariant_pointwise_order {L : Submodule ℂ GlobalHilbert}
   rw [← hxpow r]
   exact hx r
 
+/--
+@isnad1 id=or.4h1v.s17.f69501394039 from=translated src=- shape=018578e8 vocab=0b349f42
+-/
 lemma forward_backward_scalar_transitive (L : Submodule ℂ GlobalHilbert)
     (hclosed : IsClosed (L : Set GlobalHilbert))
     (hS : OperatorInvariant L forwardOperator)
@@ -220,6 +256,9 @@ def explicitDirectModel : DirectModelData :=
 
 def rankOneCoordinate (i j : ℤ) : Fiber →L[ℂ] Fiber :=
   (lp.singleContinuousLinearMap ℂ (fun _ : ℤ => ℂ) 2 i).comp (lp.evalCLM ℂ (fun _ : ℤ => ℂ) 2 j)
+/--
+@isnad1 id=eq.0h3v.s11.ad2c0f9c1c3e from=translated src=- shape=1abbf320 vocab=81027618
+-/
 @[simp] lemma rankOneCoordinate_apply (i j : ℤ) (v : Fiber) :
     rankOneCoordinate i j v = lp.single 2 i (v j) := rfl
 
@@ -234,12 +273,21 @@ def coordinateL2 (j : ℤ) : GlobalHilbert →L[ℂ] ScalarHilbert :=
 def singleL2 (j : ℤ) : ScalarHilbert →L[ℂ] GlobalHilbert :=
   (lp.singleContinuousLinearMap ℂ (fun _ : ℤ => ℂ) 2 j).compLpL 2 baseMeasure
 
+/--
+@isnad1 id=eventual.0h2v.s16.dd1f71bf2b05 from=translated src=- shape=92cdeba1 vocab=aad39917
+-/
 lemma coordinateL2_ae (j : ℤ) (f : GlobalHilbert) :
     coordinateL2 j f =ᵐ[baseMeasure] fun x => f x j :=
   ContinuousLinearMap.coeFn_compLpL _ _
+/--
+@isnad1 id=eventual.0h2v.s16.87240b36ed7e from=translated src=- shape=9630e084 vocab=f0369fbc
+-/
 lemma singleL2_ae (j : ℤ) (f : ScalarHilbert) :
     singleL2 j f =ᵐ[baseMeasure] fun x => lp.single 2 j (f x) :=
   ContinuousLinearMap.coeFn_compLpL _ _
+/--
+@isnad1 id=eq.0h2v.s17.eb08f6e5bb48 from=translated src=- shape=8e5f3261 vocab=3ba1650f
+-/
 lemma coordinateL2_singleL2 (j : ℤ) (f : ScalarHilbert) :
     coordinateL2 j (singleL2 j f) = f := by
   apply Lp.ext

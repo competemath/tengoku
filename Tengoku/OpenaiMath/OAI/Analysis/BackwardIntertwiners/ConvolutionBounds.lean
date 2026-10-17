@@ -13,6 +13,9 @@ structure EnvelopeBounds (A B : ℕ → ℝ) (b c : ℤ → ℂ) : Prop where
   c_pos : ∀ n : ℕ, ‖c n‖ ≤ Real.exp (B n)
   c_neg : ∀ n : ℕ, ‖c (-(n : ℤ))‖ ≤ Real.exp (-A n)
 
+/--
+@isnad1 id=le.5h6v.s7.33ecb1de8660 from=translated src=- shape=98f91a2d vocab=f26138cf
+-/
 lemma middle_exponent {A B : ℕ → ℝ} (hA : DiscreteConvex A) (hB : DiscreteConvex B)
     {m : ℕ} (hm : 1 ≤ m) (p k : ℕ) (hk : k ≤ m) {lam : ℝ}
     (hbridge : A m - A (m-1) + lam ≤ B (p+1) - B p) :
@@ -30,6 +33,9 @@ namespace EnvelopeBounds
 
 variable {A B : ℕ → ℝ} {b c : ℤ → ℂ}
 
+/--
+@isnad1 id=envelope.1h4v.s5.8618f543a554 from=translated src=- shape=76e1cc0d vocab=3b78e29f
+-/
 lemma reflected (hb : EnvelopeBounds A B b c) :
     EnvelopeBounds B A (fun n => c (-n)) (fun n => b (-n)) where
   b_pos := hb.c_neg
@@ -37,6 +43,9 @@ lemma reflected (hb : EnvelopeBounds A B b c) :
   c_pos := hb.b_neg
   c_neg := by simpa only [neg_neg] using hb.b_pos
 
+/--
+@isnad1 id=eq.3h6v.s6.aaf0c8a1ded8 from=translated src=- shape=6d23f86b vocab=00c7914d
+-/
 lemma central_norm (_ : EnvelopeBounds A B b c) {m p : ℕ}
     (hp : ‖b (p : ℤ)‖ = Real.exp (-B p))
     (hm : ‖c (-(m : ℤ))‖ = Real.exp (-A m)) :
@@ -45,6 +54,9 @@ lemma central_norm (_ : EnvelopeBounds A B b c) {m p : ℕ}
   rw [← Real.exp_add]
   congr 1
 
+/--
+@isnad1 id=le.6h8v.s7.0c990f03c9fc from=translated src=- shape=a5c74112 vocab=bb425a44
+-/
 lemma middle_pos (hb : EnvelopeBounds A B b c)
     (hA : DiscreteConvex A) (hB : DiscreteConvex B)
     {m : ℕ} (hm : 1 ≤ m) (p k : ℕ) (hk : k ≤ m) {lam : ℝ}
@@ -61,6 +73,9 @@ lemma middle_pos (hb : EnvelopeBounds A B b c)
       apply Real.exp_le_exp.mpr
       simpa only [sub_eq_add_neg, neg_mul] using middle_exponent hA hB hm p k hk hbridge
 
+/--
+@isnad1 id=le.6h8v.s7.7384a5bb8779 from=translated src=- shape=842158f2 vocab=bb425a44
+-/
 lemma middle_neg (hb : EnvelopeBounds A B b c)
     (hA : DiscreteConvex A) (hB : DiscreteConvex B)
     {p : ℕ} (hp : 1 ≤ p) (m k : ℕ) (hk : k ≤ p) {lam : ℝ}
@@ -71,6 +86,9 @@ lemma middle_neg (hb : EnvelopeBounds A B b c)
   simpa only [centeredCorrelation, neg_add, neg_neg, mul_comm, neg_add_rev,
     sub_eq_add_neg, add_comm] using hh
 
+/--
+@isnad1 id=le.2h7v.s6.ec9288363143 from=translated src=- shape=6a4a67aa vocab=6d99b6a3
+-/
 lemma tail_pos (hb : EnvelopeBounds A B b c) (m p k : ℕ)
     (hend : B p + A m ≤ B (m+p)) :
     ‖centeredCorrelation b c m p ((m+k+1 : ℕ) : ℤ)‖ ≤
@@ -85,6 +103,9 @@ lemma tail_pos (hb : EnvelopeBounds A B b c) (m p k : ℕ)
       rw [normalizedTailTerm, ← Real.exp_add, ← Real.exp_add]
       exact Real.exp_le_exp.mpr (by linarith)
 
+/--
+@isnad1 id=le.2h7v.s7.9dc6086d00c7 from=translated src=- shape=4fcb212e vocab=6d99b6a3
+-/
 lemma tail_neg (hb : EnvelopeBounds A B b c) (m p k : ℕ)
     (hend : B p + A m ≤ A (m+p)) :
     ‖centeredCorrelation b c m p (-((p+k+1 : ℕ) : ℤ))‖ ≤
@@ -95,6 +116,9 @@ lemma tail_neg (hb : EnvelopeBounds A B b c) (m p k : ℕ)
 
 end EnvelopeBounds
 
+/--
+@isnad1 id=and.7h5v.s7.27a1c62847c2 from=translated src=- shape=bdbe01d5 vocab=437dcf4d
+-/
 lemma tsum_bound_middle_tail {g t u : ℕ → ℝ} {M : ℝ} (hM : 0 ≤ M) (m : ℕ)
     (hg : ∀ k, 0 ≤ g k) (ht : ∀ k, 0 ≤ t k)
     (hst : Summable t) (hsu : Summable u)
@@ -117,6 +141,9 @@ lemma tsum_bound_middle_tail {g t u : ℕ → ℝ} {M : ℝ} (hM : 0 ≤ M) (m :
   · calc ∑' k, g (k+m) ≤ ∑' k, M * u k := htailSum.tsum_le_tsum htail (hsu.mul_left M)
       _ = M * ∑' k, u k := tsum_mul_left
 
+/--
+@isnad1 id=le.3h1v.s7.2d74cca05b5f from=translated src=- shape=417bdcaa vocab=52428bec
+-/
 lemma central_norm_le_of_correlation_zero (f : ℤ → ℂ)
     (hp : Summable (fun n : ℕ => ‖f (n+1)‖))
     (hn : Summable (fun n : ℕ => ‖f (-(n+1))‖))
@@ -130,6 +157,9 @@ lemma central_norm_le_of_correlation_zero (f : ℤ → ℂ)
 
 def geometricMiddle (lam : ℝ) (k : ℕ) : ℝ := Real.exp (-lam * ((k : ℝ)+1))
 
+/--
+@isnad1 id=hassum.1h1v.s5.870398a532d8 from=translated src=- shape=cfc555c6 vocab=6e1fbef0
+-/
 lemma geometricMiddle_hasSum {lam : ℝ} (hlam : 0 < lam) :
     HasSum (geometricMiddle lam) (Real.exp (-lam) / (1-Real.exp (-lam))) := by
   have hr : Real.exp (-lam) < 1 := by simpa using hlam
@@ -142,6 +172,9 @@ lemma geometricMiddle_hasSum {lam : ℝ} (hlam : 0 < lam) :
   rw [heq, div_eq_mul_inv]
   exact hh
 
+/--
+@isnad1 id=lt.1h1v.s5.101a2a92a989 from=translated src=- shape=cfa24c97 vocab=15622420
+-/
 lemma geometricMiddle_budget {lam : ℝ} (hlam : Real.log 3 < lam) :
     2 * (∑' k, geometricMiddle lam k) < 1 := by
   have hl0 : 0 < lam := (Real.log_pos (by norm_num : (1 : ℝ) < 3)).trans hlam
@@ -165,6 +198,9 @@ namespace EnvelopeBounds
 
 variable {A B : ℕ → ℝ} {b c : ℤ → ℂ}
 
+/--
+@isnad1 id=le.15h7v.s8.80e165fc3318 from=translated src=- shape=0dcb6694 vocab=c2e081a4
+-/
 lemma correlation_budget (hb : EnvelopeBounds A B b c)
     (hA : DiscreteConvex A) (hB : DiscreteConvex B)
     (hA0 : A 0 = 0) (hB0 : B 0 = 0)
@@ -226,6 +262,9 @@ lemma correlation_budget (hb : EnvelopeBounds A B b c)
 
 end EnvelopeBounds
 
+/--
+@isnad1 id=false.12h6v.s8.a3f85ba720e3 from=translated src=- shape=d4470355 vocab=d55428b8
+-/
 theorem no_correlation_of_envelopes {A B : ℕ → ℝ} {b c : ℤ → ℂ}
     (hb : EnvelopeBounds A B b c)
     (hA : DiscreteConvex A) (hB : DiscreteConvex B)

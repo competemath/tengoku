@@ -22,17 +22,29 @@ variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 include hm
 
+/--
+@isnad1 id=le.1h5v.s7.52f366308fae from=translated src=- shape=8797416d vocab=4459b854
+-/
 theorem initial : ∀ n (ε : Fin n → Bool), ‖∑ i, realSign (ε i) • m i‖ ≤ M :=
   fun n ε => hm n Fin.val Fin.val_injective ε
 
+/--
+@isnad1 id=signedbo.2h4v.s5.6db998954f68 from=translated src=- shape=93a8bb6d vocab=2835e8be
+-/
 theorem subsequence {φ : ℕ → ℕ} (hφ : Function.Injective φ) : SignedBound (m ∘ φ) M :=
   fun n ι hι ε => hm n (φ ∘ ι) (hφ.comp hι) ε
 
+/--
+@isnad1 id=le.1h3v.s5.9a657b346717 from=translated src=- shape=6fabdf36 vocab=abba136e
+-/
 theorem nonneg : 0 ≤ M := by
   simpa using hm.initial 0 (fun i => Fin.elim0 i)
 
 end SignedBound
 
+/--
+@isnad1 id=false.5h9v.s7.26b6b08b5257 from=translated src=- shape=4ea8fbc2 vocab=85d477ae
+-/
 theorem compatible_detectors_false {S : Type*} [MetricSpace S]
     (L : ℕ → Set (S → ℝ)) (o : S)
     (m : ℕ → TestSpace L o) (M : ℝ) (hm : SignedBound m M)
@@ -84,6 +96,9 @@ theorem compatible_detectors_false {S : Type*} [MetricSpace S]
 
 variable {Γ : Type*} {B : CylinderBases Γ}
 
+/--
+@isnad1 id=false.5h8v.s8.e31132c70c50 from=translated src=- shape=f0753ab6 vocab=21103fdc
+-/
 theorem VClass_compatible_false (m : ℕ → SourceSpace B) (M : ℝ) (hm : SignedBound m M)
     (F : ℕ → C0Ball → ℝ) (h : ℕ) (K : ℝ≥0) (hF : ∀ i, F i ∈ VClass B h)
     (hLip : ∀ n (ε : Fin n → ℝ), (∀ i, |ε i|=1) →
@@ -102,6 +117,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=or.1h3v.s7.00db51c35212 from=translated src=- shape=47662359 vocab=4156a577
+-/
 theorem detection_split (a b : ℕ → ℝ) {δ : ℝ}
     (hd : ∀ i, δ ≤ |a i+b i|) :
     (∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, δ/2 ≤ |a (φ i)|) ∨
@@ -121,11 +139,23 @@ namespace CylinderOperation
 variable {I : Finset ℕ}
 
 def remainder (op : CylinderOperation I) : CylinderOperation I := {op with isG := false}
+/--
+@isnad1 id=eq.0h2v.s4.4ad203e644e0 from=translated src=- shape=3e40f453 vocab=b902c066
+-/
 @[simp] theorem remainder_scale (op : CylinderOperation I) : op.remainder.scale=op.scale := rfl
+/--
+@isnad1 id=eq.0h2v.s4.ba834ed0f624 from=translated src=- shape=7053fe75 vocab=01cec734
+-/
 @[simp] theorem remainder_point (op : CylinderOperation I) : op.remainder.point=op.point := rfl
+/--
+@isnad1 id=eq.0h3v.s8.a9eabcba3310 from=translated src=- shape=81f0f133 vocab=be0bbdb3
+-/
 @[simp] theorem remainder_act (op : CylinderOperation I) (u : Cube I → ℝ) :
     op.remainder.act u = localR op.point op.scale u := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.1ab3c91a69de from=translated src=- shape=d761cf89 vocab=8350bab0
+-/
 theorem act_split (op : CylinderOperation I) (hG : op.isG=true) (u : Cube I → ℝ) :
     op.act u = u+op.remainder.act u := by
   rw [remainder_act]
@@ -137,6 +167,9 @@ theorem act_split (op : CylinderOperation I) (hG : op.isG=true) (u : Cube I → 
   ext x
   exact localG_eq op.point op.scale u x
 
+/--
+@isnad1 id=finite.0h2v.s4.6c2eceb6a6a5 from=translated src=- shape=bd723403 vocab=a06b149d
+-/
 theorem finite_scale_fiber (a : ℕ) : Finite {op : CylinderOperation I // op.scaleIndex=a} := by
   apply Finite.of_surjective
     (fun p : OperationGrid I a × Bool => (⟨⟨a,p.1,p.2⟩,rfl⟩ : {op : CylinderOperation I // op.scaleIndex=a}))
@@ -145,6 +178,9 @@ theorem finite_scale_fiber (a : ℕ) : Finite {op : CylinderOperation I // op.sc
   subst a'
   exact ⟨(c,g),rfl⟩
 
+/--
+@isnad1 id=or.0h2v.s6.7d181fcd7e2a from=translated src=- shape=61357b09 vocab=53c40da0
+-/
 theorem constant_or_small (op : ℕ → CylinderOperation I) :
     (∃ p, ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, op (φ i)=p) ∨
     (∃ φ : ℕ → ℕ, StrictMono φ ∧ Tendsto (fun i => (op (φ i)).scale) atTop (nhds 0) ∧
@@ -181,6 +217,9 @@ def sameScales (r : GeneratedRepresentation B γ) (ops : List (CylinderOperation
     exact List.pairwise_map.mpr r.ordered
   budget := by rw [hs]; exact r.budget
 
+/--
+@isnad1 id=le.2h7v.s6.32eb1f34ead8 from=translated src=- shape=0eae500c vocab=596669fe
+-/
 theorem length_le_of_prefix (r : GeneratedRepresentation B γ)
     (pre suf : List (CylinderOperation (B.coordinates γ))) (he : r.operations=pre++suf) {h : ℕ}
     (hh : r.operations.length ≤ h) : pre.length ≤ h := by
@@ -191,6 +230,9 @@ end GeneratedRepresentation
 
 variable {Γ : Type*} {B : CylinderBases Γ}
 
+/--
+@isnad1 id=false.5h7v.s8.3be9c984065e from=translated src=- shape=670c8700 vocab=9275b800
+-/
 theorem VClass_disjoint_false (m : ℕ → SourceSpace B) (M : ℝ) (hm : SignedBound m M)
     (F : ℕ → C0Ball → ℝ) (h : ℕ) (hF : ∀ i, F i ∈ VClass B h)
     (hdisj : Pairwise (fun i j => Disjoint (tsupport (F i)) (tsupport (F j))))
@@ -203,6 +245,9 @@ theorem VClass_disjoint_false (m : ℕ → SourceSpace B) (M : ℝ) (hm : Signed
   intro i j hij
   exact hdisj (show (i : ℕ) ≠ (j : ℕ) from fun he => hij (Fin.ext he))
 
+/--
+@isnad1 id=false.7h9v.s8.1d3233c234b6 from=translated src=- shape=ef49c5c5 vocab=25b119bf
+-/
 theorem tail_escape_false (F : ℕ → C0Ball → ℝ) (m : ℕ → SourceSpace B)
     (h : ℕ) (hF : ∀ i, F i ∈ VClass B h) (M : ℝ) (hm : SignedBound m M)
     {δ cstar : ℝ} (hδ : 0 < δ) (hcstar : 0 < cstar)
@@ -220,6 +265,9 @@ noncomputable section
 open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
+/--
+@isnad1 id=false.12h13v.s9.4c8a2d13d3cc from=translated src=- shape=c995dda5 vocab=361e32a8
+-/
 theorem small_remainders_false {Γ : Type*} {B : CylinderBases Γ} {γ : Γ}
     (r : ℕ → GeneratedRepresentation B γ) (ts : ℕ → List TailOperation) (h : ℕ)
     (hr : ∀ i, (r i).operations.length ≤ h) (hj : B.band γ ≤ h)
@@ -276,18 +324,36 @@ open Set Filter Topology
 open scoped NNReal BigOperators ZeroAtInfty
 
 namespace TailOperation
+/--
+@isnad1 id=eq.3h2v.s4.1b6cfafefdcc from=translated src=- shape=47acadca vocab=17fbab97
+-/
 @[ext] theorem ext' {a b : TailOperation} (hs : a.scaleIndex=b.scaleIndex)
     (hn : a.tailIndex=b.tailIndex) (hg : a.isBasic=b.isBasic) : a=b := by
   cases a; cases b; simp_all
 
 def remainder (t : TailOperation) : TailOperation := {t with isBasic := false}
+/--
+@isnad1 id=eq.0h1v.s3.41eb2e73d116 from=translated src=- shape=8d4cac31 vocab=7b22dd4e
+-/
 @[simp] theorem remainder_scaleIndex (t : TailOperation) : t.remainder.scaleIndex=t.scaleIndex := rfl
+/--
+@isnad1 id=eq.0h1v.s3.ec9bdfa03212 from=translated src=- shape=8d4cac31 vocab=323e1a5a
+-/
 @[simp] theorem remainder_tailIndex (t : TailOperation) : t.remainder.tailIndex=t.tailIndex := rfl
+/--
+@isnad1 id=eq.0h1v.s3.bf7154d8a0c9 from=translated src=- shape=d8823979 vocab=c9bef4ec
+-/
 @[simp] theorem remainder_isBasic (t : TailOperation) : t.remainder.isBasic=false := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.5b70be80828f from=translated src=- shape=7294113b vocab=86e1bb92
+-/
 theorem factor_split (t : TailOperation) (ht : t.isBasic=true) (s : C0Ball) :
     t.factor s = 1+t.remainder.factor s := by simp [factor,remainder,ht]
 
+/--
+@isnad1 id=or.1h2v.s6.8261abf1ad33 from=translated src=- shape=5710eeff vocab=ea7666cc
+-/
 theorem constant_or_escape (t : ℕ → TailOperation) (h : ℕ) (ht : ∀ i, (t i).scaleIndex ≤ h) :
     (∃ p, ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ i, t (φ i)=p) ∨
     (∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ a g,
@@ -302,16 +368,25 @@ theorem constant_or_escape (t : ℕ → TailOperation) (h : ℕ) (ht : ∀ i, (t
   · exact Or.inr ⟨ψ,hψ,ag.1.val,ag.2,ha,hg,hN⟩
 end TailOperation
 
+/--
+@isnad1 id=eq.0h3v.s5.70729e52fff4 from=translated src=- shape=9820a5f1 vocab=8e2c337f
+-/
 @[simp] theorem tailProduct_append (pre post : List TailOperation) (s : C0Ball) :
     tailProduct (pre++post) s = tailProduct pre s*tailProduct post s := by
   simp only [tailProduct,List.map_append,List.prod_append]
 
+/--
+@isnad1 id=eq.2h3v.s5.387be213940b from=translated src=- shape=22134395 vocab=6d039a43
+-/
 theorem tailProduct_eq_zero (ts : List TailOperation) (t : TailOperation) (ht : t ∈ ts)
     (s : C0Ball) (hz : t.factor s=0) : tailProduct ts s=0 := by
   unfold tailProduct
   apply List.prod_eq_zero
   exact List.mem_map.mpr ⟨t,ht,hz⟩
 
+/--
+@isnad1 id=le.2h3v.s6.f7e1b9f5eafc from=translated src=- shape=06a690dc vocab=56ee18bc
+-/
 theorem full_tail_support (f : C0Ball → ℝ) (ts : List TailOperation) (t : TailOperation)
     (ht : t ∈ ts) (hg : t.isBasic=false) :
     tsupport (fun s => f s*tailProduct ts s) ⊆ {s | dyadic t.scaleIndex ≤ tau (t.tailIndex+1) s.val} := by

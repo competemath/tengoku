@@ -20,12 +20,18 @@ variable (hG : DiscreteConvex G) (hG0 : G 0 = 0)
 variable (hb : ∀ n, ‖d n‖ ≤ Real.exp (-G n))
 
 include hu in
+/--
+@isnad1 id=ex.1h2v.s5.37e33c10f630 from=translated src=- shape=ace2a05b vocab=7611d6f9
+-/
 lemma unbounded : ∀ n : ℕ, ∃ k, n < k ∧ k ∈ coefficientObstacle d := by
   intro n
   obtain ⟨k, hk, hd⟩ := hu n
   exact ⟨k, hk, by exact ⟨by omega, hd⟩⟩
 
 include hG hG0 hb in
+/--
+@isnad1 id=mem.3h2v.s6.3218cfee7c64 from=translated src=- shape=c0a88ebb vocab=ee0da683
+-/
 lemma minorant : G ∈ convexMinorants (coefficientObstacle d) (fun n => -Real.log ‖d n‖) := by
   refine ⟨hG0, hG, ?_⟩
   intro n hn
@@ -35,6 +41,9 @@ lemma minorant : G ∈ convexMinorants (coefficientObstacle d) (fun n => -Real.l
   linarith
 
 include hu hG hG0 hb in
+/--
+@isnad1 id=and.4h2v.s7.7af8d66cd37d from=translated src=- shape=a147ef8d vocab=a2f2ffde
+-/
 lemma properties :
     coefficientEnvelope d 0 = 0 ∧ DiscreteConvex (coefficientEnvelope d) ∧
     (∀ n, G n ≤ coefficientEnvelope d n) ∧
@@ -64,6 +73,9 @@ lemma properties :
 
 end CoefficientEnvelope
 
+/--
+@isnad1 id=false.12h6v.s8.945d947c9b40 from=translated src=- shape=71a5e48f vocab=f32c5f86
+-/
 theorem no_both_unbounded {P Q : ℕ → ℝ} {b c : ℤ → ℂ}
     (hb : EnvelopeBounds P Q b c) (hP : DiscreteConvex P) (hQ : DiscreteConvex Q)
     (hP0 : P 0 = 0) (hQ0 : Q 0 = 0) {lam δ : ℝ}
@@ -92,9 +104,15 @@ theorem no_both_unbounded {P Q : ℕ → ℝ} {b c : ℤ → ℂ}
 def boundedSideTail (B : ℕ → ℝ) (c : ℤ → ℂ) (h : ℤ) (p k : ℕ) : ℝ :=
   Real.exp (B p - B (p+k+1)) * ‖c (h+(k:ℤ)+1)‖
 
+/--
+@isnad1 id=le.0h5v.s4.87b8d24ca42c from=translated src=- shape=db459a19 vocab=391a6c07
+-/
 lemma boundedSideTail_nonneg (B : ℕ → ℝ) (c : ℤ → ℂ) (h : ℤ) (p k : ℕ) :
     0 ≤ boundedSideTail B c h p k := mul_nonneg (Real.exp_pos _).le (norm_nonneg _)
 
+/--
+@isnad1 id=le.2h6v.s5.a48c91694ef0 from=translated src=- shape=f5e140db vocab=1774f6bb
+-/
 lemma boundedSideTail_mono {B : ℕ → ℝ} (hB : DiscreteConvex B)
     (c : ℤ → ℂ) (h : ℤ) {p₀ p : ℕ} (hpp : p₀ ≤ p) (k : ℕ) :
     boundedSideTail B c h p k ≤ boundedSideTail B c h p₀ k := by
@@ -105,6 +123,9 @@ lemma boundedSideTail_mono {B : ℕ → ℝ} (hB : DiscreteConvex B)
   simp only [← Nat.add_assoc] at hh
   linarith
 
+/--
+@isnad1 id=tendsto.3h4v.s6.57b6e8eb0ece from=translated src=- shape=a364202a vocab=6ff413e3
+-/
 lemma boundedSideTail_tendsto {B : ℕ → ℝ} (hB : DiscreteConvex B)
     (hs : Tendsto (fun n => B (n+1)-B n) atTop atTop)
     (c : ℤ → ℂ) (h : ℤ) {p₀ : ℕ} (hsum : Summable (boundedSideTail B c h p₀)) :
@@ -128,6 +149,9 @@ lemma boundedSideTail_tendsto {B : ℕ → ℝ} (hB : DiscreteConvex B)
     rw [Real.norm_eq_abs, abs_of_nonneg (boundedSideTail_nonneg _ _ _ _ _)]
     exact boundedSideTail_mono hB c h hp k
 
+/--
+@isnad1 id=false.10h6v.s8.664d756898bb from=translated src=- shape=cdcb92f3 vocab=5e8b5aef
+-/
 theorem no_unbounded_against_min {B : ℕ → ℝ} {b c : ℤ → ℂ}
     (hB : DiscreteConvex B) (hB0 : B 0 = 0) {δ : ℝ} (hδ : 0 < δ)
     (hquad : ∀ᶠ n : ℕ in atTop, δ*(n:ℝ)^2 ≤ B n)
@@ -201,6 +225,9 @@ def positiveLog (w : ℤ → ℝ) (n : ℕ) : ℝ := -Real.log (w n)
 def negativeLog (w : ℤ → ℝ) (n : ℕ) : ℝ := Real.log (w (-(n:ℤ)))
 def stepRatio (w : ℤ → ℝ) (j : ℤ) : ℝ := w (j+1) / w j
 
+/--
+@isnad1 id=summable.7h2v.s7.bf7e3beccfc7 from=translated src=- shape=f7a58511 vocab=66fc831e
+-/
 lemma stepRatio_summable {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) (hw0 : w 0 = 1)
     (hP : DiscreteConvex (negativeLog w)) (hQ : DiscreteConvex (positiveLog w))
     {δ : ℝ} (hδ : 0 < δ)
@@ -227,6 +254,9 @@ lemma stepRatio_summable {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) (hw0 : w 0 = 1)
     push_cast
     rw [neg_sub, Real.exp_sub, Real.exp_log (hw _), Real.exp_log (hw _)]
 
+/--
+@isnad1 id=envelope.3h3v.s6.c009fea9b8ff from=translated src=- shape=1315cdb7 vocab=3d07df8e
+-/
 lemma bounds_of_weight {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) {b c : ℤ → ℂ}
     (hb : ∀ j, ‖b j‖ ≤ w j) (hc : ∀ j, ‖c j‖ * w j ≤ 1) :
     EnvelopeBounds (negativeLog w) (positiveLog w) b c := by
@@ -242,6 +272,9 @@ lemma bounds_of_weight {w : ℤ → ℝ} (hw : ∀ j, 0 < w j) {b c : ℤ → �
   · intro n
     simpa [negativeLog, Real.exp_neg, Real.exp_log (hw _)] using hc' (-(n:ℤ))
 
+/--
+@isnad1 id=summable.6h5v.s7.c1a16d834090 from=translated src=- shape=61096c32 vocab=b8eb93ee
+-/
 lemma boundedSideTail_summable {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
     (hdec : Antitone w) (hs : Summable (stepRatio w))
     {B : ℕ → ℝ} (hBw : ∀ n : ℕ, Real.exp (-B n) ≤ w n)
@@ -266,6 +299,9 @@ lemma boundedSideTail_summable {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
         mul_le_mul hwle hcw (norm_nonneg _) (hw _).le
     _ = _ := by ring
 
+/--
+@isnad1 id=ex.1h2v.s5.20eb34ef5466 from=translated src=- shape=867995e4 vocab=578736e3
+-/
 lemma nat_support_unbounded {d : ℤ → ℂ}
     (hu : ¬∃ m : ℤ, ∀ j : ℤ, d j ≠ 0 → j ≤ m) :
     ∀ n : ℕ, ∃ k, n < k ∧ d (k:ℤ) ≠ 0 := by
@@ -276,6 +312,9 @@ lemma nat_support_unbounded {d : ℤ → ℂ}
   have he : (j.toNat:ℤ) = j := by omega
   simpa only [he] using hd
 
+/--
+@isnad1 id=ex.12h5v.s8.fcbc5a5df4c6 from=translated src=- shape=dc2eff92 vocab=be04c8ca
+-/
 lemma bounded_above_of_min {w : ℤ → ℝ} (hw : ∀ j, 0 < w j)
     (hdec : Antitone w) (hw0 : w 0 = 1) (hs : Summable (stepRatio w))
     (hQ : DiscreteConvex (positiveLog w)) {δ : ℝ} (hδ : 0 < δ)

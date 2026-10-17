@@ -21,12 +21,21 @@ def sparseC0 (j : A → ℕ) (x : A → ℝ) : C0 :=
     filter_upwards [(Set.finite_range j).compl_mem_cofinite] with k hk
     exact Function.extend_apply' _ _ _ hk)
 
+/--
+@isnad1 id=eq.1h4v.s5.c9afa8a8c254 from=translated src=- shape=1c0ee367 vocab=1ad720fb
+-/
 @[simp] theorem sparseC0_apply (j : A → ℕ) (hj : Function.Injective j) (x : A → ℝ) (a : A) :
     sparseC0 j x (j a)=x a := hj.extend_apply _ _ a
 
+/--
+@isnad1 id=eq.1h4v.s5.5ae81399b4f4 from=translated src=- shape=8bd76408 vocab=f03d646d
+-/
 theorem sparseC0_outside (j : A → ℕ) (x : A → ℝ) (k : ℕ) (hk : k∉Set.range j) :
     sparseC0 j x k=0 := Function.extend_apply' _ _ _ hk
 
+/--
+@isnad1 id=le.1h3v.s5.da5b0b2b689b from=translated src=- shape=1b463921 vocab=082358f0
+-/
 theorem sparseC0_norm_le (j : A → ℕ) (hj : Function.Injective j) (x : A → ℝ) : ‖sparseC0 j x‖≤‖x‖ := by
   apply cfun_norm_le _ (norm_nonneg x)
   intro k
@@ -58,6 +67,9 @@ def sparseC0L (j : A → ℕ) (hj : Function.Injective j) : (A → ℝ) →L[ℝ
       change ‖sparseC0 j x‖≤1*‖x‖
       simpa only [one_mul] using sparseC0_norm_le j hj x)
 
+/--
+@isnad1 id=eq.1h3v.s5.d1830dd943b0 from=translated src=- shape=1b463921 vocab=7735a207
+-/
 theorem sparseC0_norm (j : A → ℕ) (hj : Function.Injective j) (x : A → ℝ) : ‖sparseC0 j x‖=‖x‖ := by
   apply le_antisymm (sparseC0_norm_le j hj x)
   apply (pi_norm_le_iff_of_nonneg (norm_nonneg _)).mpr
@@ -78,6 +90,9 @@ abbrev FInput (N : ℕ) := FCoord N → ℝ
 
 def fLabel {N : ℕ} (γ : FLabel N) : Label := blockLabel (γ.1.1.val,γ.1.2.val) γ.2
 
+/--
+@isnad1 id=injectiv.0h1v.s3.3fa372cd9f0c from=translated src=- shape=64d36d98 vocab=9bfe18f6
+-/
 theorem fLabel_injective (N : ℕ) : Function.Injective (@fLabel N) := by
   rintro ⟨⟨i,n⟩,b⟩ ⟨⟨i',n'⟩,b'⟩ he
   have hl := congrArg Label.level he
@@ -91,6 +106,9 @@ theorem fLabel_injective (N : ℕ) : Function.Injective (@fLabel N) := by
 
 def fCoord {N : ℕ} : FCoord N → ℕ := Sum.elim (fun i => rowIndex i.val) (fun γ => labelIndex (fLabel γ))
 
+/--
+@isnad1 id=injectiv.0h1v.s3.fa386a128e73 from=translated src=- shape=9ef37d6b vocab=e109d1ad
+-/
 theorem fCoord_injective (N : ℕ) : Function.Injective (@fCoord N) := by
   rintro (i|γ) (j|δ) he
   · exact congrArg Sum.inl (Fin.ext (rowIndex_injective he))
@@ -100,15 +118,27 @@ theorem fCoord_injective (N : ℕ) : Function.Injective (@fCoord N) := by
 
 def finiteEmbed (N : ℕ) : FInput N →ₗᵢ[ℝ] C0 := sparseC0Isometry fCoord (fCoord_injective N)
 
+/--
+@isnad1 id=eq.0h3v.s11.4045b9e2d2d4 from=translated src=- shape=f3e41dc4 vocab=7b9ecac9
+-/
 @[simp] theorem finiteEmbed_apply {N : ℕ} (x : FInput N) (a : FCoord N) :
     finiteEmbed N x (fCoord a)=x a := sparseC0_apply _ (fCoord_injective N) x a
 
+/--
+@isnad1 id=eq.0h3v.s11.a84e6d228e77 from=translated src=- shape=bceea4e0 vocab=333542d6
+-/
 @[simp] theorem finiteEmbed_row {N : ℕ} (x : FInput N) (i : Fin (N+1)) :
     finiteEmbed N x (rowIndex i.val)=x (.inl i) := finiteEmbed_apply x (.inl i)
 
+/--
+@isnad1 id=eq.0h4v.s11.c121b2cc870f from=translated src=- shape=5428e32f vocab=41bd6e10
+-/
 @[simp] theorem finiteEmbed_block {N : ℕ} (x : FInput N) (l : FLevel N) (b : Block (l.1.val,l.2.val)) :
     finiteEmbed N x (labelIndex (blockLabel (l.1.val,l.2.val) b))=x (.inr ⟨l,b⟩) := finiteEmbed_apply x (.inr ⟨l,b⟩)
 
+/--
+@isnad1 id=eq.1h3v.s11.98e20a6c5916 from=translated src=- shape=b9628b37 vocab=498a3170
+-/
 theorem finiteEmbed_row_outside {N : ℕ} (x : FInput N) (i : ℕ) (hi : N < i) : finiteEmbed N x (rowIndex i)=0 := by
   apply sparseC0_outside
   rintro ⟨a,ha⟩
@@ -116,6 +146,9 @@ theorem finiteEmbed_row_outside {N : ℕ} (x : FInput N) (i : ℕ) (hi : N < i) 
   | inl a => have he := rowIndex_injective ha; have := a.isLt; omega
   | inr γ => exact rowIndex_ne_labelIndex i (fLabel γ) ha.symm
 
+/--
+@isnad1 id=eq.1h3v.s11.2396e4241273 from=translated src=- shape=e1915b82 vocab=b18f7511
+-/
 theorem finiteEmbed_block_outside {N : ℕ} (x : FInput N) (γ : Label)
     (hγ : N < γ.level.1 ∨ N < γ.level.2) : finiteEmbed N x (labelIndex γ)=0 := by
   apply sparseC0_outside
@@ -144,11 +177,17 @@ variable {N : ℕ}
 def finiteRow (W : FrozenWeights) (l : FLevel N) (x : FInput N) : ℝ :=
   ∑ b : Block (l.1.val,l.2.val), W.row (l.1.val,l.2.val) b*x (.inr ⟨l,b⟩)
 
+/--
+@isnad1 id=eq.0h4v.s11.79c6d4049ae1 from=translated src=- shape=59e1ac57 vocab=237a3c57
+-/
 theorem finiteRow_eq (W : FrozenWeights) (l : FLevel N) (x : FInput N) :
     finiteRow W l x=rowScalar W (l.1.val,l.2.val) (finiteEmbed N x) := by
   rw [rowScalar_apply]
   simp only [finiteRow,blockInput,finiteEmbed_block]
 
+/--
+@isnad1 id=le.0h4v.s10.4f97e75d9f36 from=translated src=- shape=c08e3e74 vocab=1412101e
+-/
 theorem finiteRow_bound (W : FrozenWeights) (l : FLevel N) (x : FInput N) : |finiteRow W l x|≤2*‖x‖ := by
   unfold finiteRow
   exact (abs_finite_dot_le _ _ (fun b => norm_le_pi_norm x (.inr ⟨l,b⟩))).trans
@@ -159,6 +198,9 @@ def finPred (n : Fin (N+1)) : Fin (N+1) := ⟨n.val-1,(Nat.sub_le _ _).trans_lt 
 def finitePrev (W : FrozenWeights) (l : FLevel N) (x : FInput N) : ℝ :=
   if l.2.val=0 then x (.inl l.1) else finiteRow W (l.1,finPred l.2) x
 
+/--
+@isnad1 id=eq.0h4v.s11.72db1d4517a0 from=translated src=- shape=59e1ac57 vocab=4d9678ff
+-/
 theorem finitePrev_eq (W : FrozenWeights) (l : FLevel N) (x : FInput N) :
     finitePrev W l x=previousScalar W (l.1.val,l.2.val) (finiteEmbed N x) := by
   rcases l with ⟨i,⟨n,hn⟩⟩
@@ -172,9 +214,15 @@ def finiteFrozenFunction (W : FrozenWeights) (x : FInput N) : FInput N := fun a 
   | .inl i => finiteRow W (i,Fin.last N) x
   | .inr ⟨l,b⟩ => x (.inr ⟨l,b⟩)+W.vector (l.1.val,l.2.val) b*(finitePrev W l x-finiteRow W l x)
 
+/--
+@isnad1 id=eq.0h4v.s6.fe9617a58eda from=translated src=- shape=2e2d2a9e vocab=31593923
+-/
 @[simp] theorem finiteFrozen_row (W : FrozenWeights) (x : FInput N) (i : Fin (N+1)) :
     finiteFrozenFunction W x (.inl i)=finiteRow W (i,Fin.last N) x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.9b010a374bca from=translated src=- shape=5614dda0 vocab=96d99fb4
+-/
 @[simp] theorem finiteFrozen_block (W : FrozenWeights) (x : FInput N) (γ : FLabel N) :
     finiteFrozenFunction W x (.inr γ)=frozenShift W (finiteEmbed N x) (fLabel γ) := by
   rcases γ with ⟨l,b⟩
@@ -184,6 +232,9 @@ def finiteFrozenFunction (W : FrozenWeights) (x : FInput N) : FInput N := fun a 
       (previousScalar W (l.1.val,l.2.val) (finiteEmbed N x)-rowScalar W (l.1.val,l.2.val) (finiteEmbed N x))
   rw [finiteEmbed_block,finitePrev_eq,finiteRow_eq]
 
+/--
+@isnad1 id=le.0h3v.s11.0dc3e5dc5ef3 from=translated src=- shape=8b521fe6 vocab=9eb1c82e
+-/
 theorem finiteFrozen_bound (W : FrozenWeights) (x : FInput N) : ‖finiteFrozenFunction W x‖≤5*‖x‖ := by
   apply (pi_norm_le_iff_of_nonneg (mul_nonneg (by norm_num) (norm_nonneg x))).mpr
   rintro (i|γ)
@@ -212,6 +263,9 @@ def finiteFrozen (N : ℕ) (W : FrozenWeights) : FInput N →L[ℝ] FInput N :=
 def finiteNext (W : FrozenWeights) (l : FLevel N) (y : FInput N) : ℝ :=
   if h : l.2.val<N then finiteRow W (l.1,⟨l.2.val+1,by omega⟩) y else y (.inl l.1)
 
+/--
+@isnad1 id=le.0h4v.s10.ed22ffcdbd5a from=translated src=- shape=c08e3e74 vocab=2839b4da
+-/
 theorem finiteNext_bound (W : FrozenWeights) (l : FLevel N) (y : FInput N) : |finiteNext W l y|≤2*‖y‖ := by
   unfold finiteNext
   split_ifs
@@ -223,12 +277,21 @@ def finiteInverseFunction (W : FrozenWeights) (y : FInput N) : FInput N := fun a
   | .inl i => finiteRow W (i,0) y
   | .inr ⟨l,b⟩ => y (.inr ⟨l,b⟩)-W.vector (l.1.val,l.2.val) b*(finiteRow W l y-finiteNext W l y)
 
+/--
+@isnad1 id=eq.0h4v.s6.16a33a784865 from=translated src=- shape=aa254f60 vocab=60adcd08
+-/
 @[simp] theorem finiteInverse_row (W : FrozenWeights) (y : FInput N) (i : Fin (N+1)) :
     finiteInverseFunction W y (.inl i)=finiteRow W (i,0) y := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.851818d75db6 from=translated src=- shape=1576b9d6 vocab=efdfa4ab
+-/
 @[simp] theorem finiteInverse_block (W : FrozenWeights) (y : FInput N) (l : FLevel N) (b : Block (l.1.val,l.2.val)) :
     finiteInverseFunction W y (.inr ⟨l,b⟩)=y (.inr ⟨l,b⟩)-W.vector (l.1.val,l.2.val) b*(finiteRow W l y-finiteNext W l y) := rfl
 
+/--
+@isnad1 id=le.0h3v.s11.e0347003a82d from=translated src=- shape=8b521fe6 vocab=a36006ec
+-/
 theorem finiteInverse_bound (W : FrozenWeights) (y : FInput N) : ‖finiteInverseFunction W y‖≤5*‖y‖ := by
   apply (pi_norm_le_iff_of_nonneg (mul_nonneg (by norm_num) (norm_nonneg y))).mpr
   rintro (i|⟨l,b⟩)
@@ -244,6 +307,9 @@ theorem finiteInverse_bound (W : FrozenWeights) (y : FInput N) : ‖finiteInvers
     have hy : |y (.inr ⟨l,b⟩)|≤‖y‖ := norm_le_pi_norm y _
     linarith
 
+/--
+@isnad1 id=eq.0h4v.s4.d85805486b5b from=translated src=- shape=bd52e334 vocab=637c16b1
+-/
 theorem finiteRow_inverse (W : FrozenWeights) (y : FInput N) (l : FLevel N) :
     finiteRow W l (finiteInverseFunction W y)=finiteNext W l y := by
   unfold finiteRow
@@ -252,6 +318,9 @@ theorem finiteRow_inverse (W : FrozenWeights) (y : FInput N) (l : FLevel N) :
   change finiteRow W l y-(finiteRow W l y-finiteNext W l y)=_
   ring
 
+/--
+@isnad1 id=eq.0h4v.s4.3412748d614a from=translated src=- shape=bd52e334 vocab=d25ed484
+-/
 theorem finitePrev_inverse (W : FrozenWeights) (y : FInput N) (l : FLevel N) :
     finitePrev W l (finiteInverseFunction W y)=finiteRow W l y := by
   unfold finitePrev
@@ -269,6 +338,9 @@ theorem finitePrev_inverse (W : FrozenWeights) (y : FInput N) (l : FLevel N) :
     dsimp [finPred]
     omega
 
+/--
+@isnad1 id=eq.0h3v.s7.447bc838d868 from=translated src=- shape=c00bd62f vocab=a30bdd06
+-/
 theorem finiteFrozen_inverse (W : FrozenWeights) (y : FInput N) : finiteFrozen N W (finiteInverseFunction W y)=y := by
   funext a
   cases a with
@@ -282,6 +354,9 @@ theorem finiteFrozen_inverse (W : FrozenWeights) (y : FInput N) : finiteFrozen N
     rw [finiteInverse_block,finitePrev_inverse,finiteRow_inverse]
     ring
 
+/--
+@isnad1 id=eq.0h4v.s7.6409f75761b1 from=translated src=- shape=067d29b4 vocab=3d56274d
+-/
 theorem finiteRow_frozen (W : FrozenWeights) (x : FInput N) (l : FLevel N) :
     finiteRow W l (finiteFrozen N W x)=finitePrev W l x := by
   unfold finiteRow
@@ -291,6 +366,9 @@ theorem finiteRow_frozen (W : FrozenWeights) (x : FInput N) (l : FLevel N) :
   change finiteRow W l x+(finitePrev W l x-finiteRow W l x)=_
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.f93e7e04125e from=translated src=- shape=067d29b4 vocab=9cd00b2c
+-/
 theorem finiteNext_frozen (W : FrozenWeights) (x : FInput N) (l : FLevel N) :
     finiteNext W l (finiteFrozen N W x)=finiteRow W l x := by
   unfold finiteNext
@@ -302,6 +380,9 @@ theorem finiteNext_frozen (W : FrozenWeights) (x : FInput N) (l : FLevel N) :
     change finiteRow W (l.1,Fin.last N) x=finiteRow W l x
     rw [← he]
 
+/--
+@isnad1 id=eq.0h3v.s7.8c583cfefbe2 from=translated src=- shape=eb7e0c68 vocab=a30bdd06
+-/
 theorem finiteInverse_frozen (W : FrozenWeights) (x : FInput N) : finiteInverseFunction W (finiteFrozen N W x)=x := by
   funext a
   cases a with
@@ -321,15 +402,24 @@ def finiteEquiv (N : ℕ) (W : FrozenWeights) : FInput N ≃L[ℝ] FInput N :=
       simpa only [finiteInverse_frozen] using congrArg (finiteInverseFunction W) h))
     (LinearMap.range_eq_top.mpr (fun y => ⟨finiteInverseFunction W y,finiteFrozen_inverse W y⟩))
 
+/--
+@isnad1 id=eq.0h3v.s8.c3ca6f515866 from=translated src=- shape=920bd410 vocab=71bdd5d5
+-/
 theorem finiteEquiv_symm_apply (N : ℕ) (W : FrozenWeights) (y : FInput N) :
     (finiteEquiv N W).symm y=finiteInverseFunction W y := by
   apply (finiteEquiv N W).injective
   rw [ContinuousLinearEquiv.apply_symm_apply]
   exact (finiteFrozen_inverse W y).symm
 
+/--
+@isnad1 id=le.0h3v.s11.5c99f6dbc27d from=translated src=- shape=acc75ad0 vocab=8e4e8368
+-/
 theorem finiteFrozen_lower (W : FrozenWeights) (x : FInput N) : ‖x‖≤5*‖finiteFrozen N W x‖ := by
   simpa only [finiteInverse_frozen] using finiteInverse_bound W (finiteFrozen N W x)
 
+/--
+@isnad1 id=le.0h2v.s12.b993a632dc6a from=translated src=- shape=757c0aaf vocab=84c18655
+-/
 theorem finiteEquiv_symm_norm (N : ℕ) (W : FrozenWeights) : ‖((finiteEquiv N W).symm : FInput N →L[ℝ] FInput N)‖≤5 := by
   apply ContinuousLinearMap.opNorm_le_bound _ (by norm_num)
   intro y
