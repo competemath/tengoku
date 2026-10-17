@@ -90,22 +90,17 @@ class Client(unittest.TestCase):
             "import Tengoku.All\nexample : True := trivial\nexample (x : ℝ) : -(3 * x) = -3 * x := by ring\nexample : True := trivial\nexample (v : ℕ) : True := trivial\n"
         )
         k.write_text("import Tengoku.All\nexample (resolve : ℕ) : True := trivial\n")
-        return lc.run(
-            space,
-            lc.parse(
-                [
-                    "--file",
-                    str(c),
-                    "--known",
-                    str(k),
-                    "--retries",
-                    str(kw.get("retries", 0)),
-                    "--timeout",
-                    str(kw.get("timeout", 20)),
-                    *(["--budget", str(kw["budget"])] if "budget" in kw else []),
-                ]
-            ),
+        args = lc.parse(
+            [
+                "--retries",
+                str(kw.get("retries", 0)),
+                "--timeout",
+                str(kw.get("timeout", 20)),
+                *(["--budget", str(kw["budget"])] if "budget" in kw else []),
+            ]
         )
+        args.file, args.known = str(c), str(k)
+        return lc.run(space, args)
 
     def test_a_script_that_compiles_exits_zero_and_one_that_does_not_exits_one(self):
         import tempfile
@@ -315,10 +310,9 @@ class Readiness(unittest.TestCase):
                 psrv, pbase = self.serve([{}], self.POINTER)  # the published pointer names "aaaa…", the space has pinned "abc"
                 saved, lc.POINTER = lc.POINTER, f"{pbase}/pointer"
                 try:
-                    rc = lc.run(
-                        base,
-                        lc.parse(["--file", str(canary), "--known", str(Path(d) / "none"), "--wait-refresh", "0.2"]),
-                    )
+                    args = lc.parse(["--wait-refresh", "0.2"])
+                    args.file, args.known = str(canary), str(Path(d) / "none")
+                    rc = lc.run(base, args)
                 finally:
                     lc.POINTER = saved
                     psrv.shutdown()

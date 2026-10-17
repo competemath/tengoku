@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""leak_canary.py [--space NAME] [--wait-refresh S] [--file Canary.lean] [--known CanaryKnown.lean] — compile the canary on a Leak space and fail when it does not compile.
+"""leak_canary.py [--space NAME] [--wait-refresh S] — compile the canary on a Leak space and fail when it does not compile.
 
 The canary (scripts/ci/canary/Canary.lean) is ordinary Lean and Mathlib that must elaborate under `import Tengoku.All`. A Leak space (`verify_full_script` over MCP/SSE, the same
 tool the provers use) compiles it on its pinned tree; a failure is a library of the tree that leaks into everybody else (a global instance, notation or reserved word). Exit status:
@@ -239,8 +239,8 @@ def parse(argv: list[str]) -> argparse.Namespace:
         default=0.0,
         help="after a promotion: seconds to wait for the space to follow the published cache pointer",
     )
-    ap.add_argument("--file", default=str(HERE / "Canary.lean"))
-    ap.add_argument("--known", default=str(HERE / "CanaryKnown.lean"))
+    # the two files are this directory's, not a path from the command line (Snyk: path traversal); the tests set `file` and `known` on the parsed arguments
+    ap.set_defaults(file=str(HERE / "Canary.lean"), known=str(HERE / "CanaryKnown.lean"))
     ap.add_argument("--timeout", type=float, default=900.0)
     ap.add_argument(
         "--retries",
