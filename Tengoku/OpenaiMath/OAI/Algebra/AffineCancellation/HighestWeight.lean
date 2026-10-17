@@ -8,7 +8,9 @@ namespace ComplexCancellation.SL2
 variable {R : Type*} [AddCommGroup R] [Module ℂ R]
 
 /-- A highest weight vector in a locally finite sl₂ representation has nonnegative
-weight. Only local nilpotence of the lowering operator on this vector is needed. -/
+weight. Only local nilpotence of the lowering operator on this vector is needed.
+@isnad1 id=eq.6h6v.s9.aacd67db0c16 from=translated src=- shape=25d0942d vocab=adbc8109
+-/
 lemma no_negative_highest (δ η H : R →ₗ[ℂ] R)
     (hcomm : ∀ r, δ (η r) - η (δ r) = H r)
     (hlower : ∀ r, H (η r) = η (H r) - (2 : ℂ) • η r)

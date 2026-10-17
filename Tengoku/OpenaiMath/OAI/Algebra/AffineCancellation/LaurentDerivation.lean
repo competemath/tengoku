@@ -10,12 +10,18 @@ variable {k R : Type*} [CommRing k] [CommRing R] [Algebra k R]
 def linear (D : Derivation k R R) : LaurentPolynomial R →ₗ[k] LaurentPolynomial R :=
   (AddMonoidAlgebra.coeffLinearEquiv k).symm.toLinearMap ∘ₗ
     Finsupp.mapRange.linearMap D.toLinearMap ∘ₗ (AddMonoidAlgebra.coeffLinearEquiv k).toLinearMap
+/--
+@isnad1 id=eq.0h5v.s9.abeee6d4ca32 from=translated src=- shape=038d0ba1 vocab=1069b111
+-/
 @[simp] lemma linear_single (D : Derivation k R R) (n : ℤ) (r : R) :
     linear D (C r*T n)=C (D r)*T n := by
   rw [← single_eq_C_mul_T,← single_eq_C_mul_T]
   apply AddMonoidAlgebra.coeff_injective
   change Finsupp.mapRange D (map_zero D) (Finsupp.single n r)=Finsupp.single n (D r)
   exact Finsupp.mapRange_single
+/--
+@isnad1 id=eq.0h5v.s9.afdf4cc647ff from=translated src=- shape=b5af8abf vocab=8232e26d
+-/
 lemma linear_mul (D : Derivation k R R) (r s : LaurentPolynomial R) :
     linear D (r*s)=r*linear D s+s*linear D r := by
   induction r using LaurentPolynomial.induction_on' with
@@ -31,18 +37,33 @@ lemma linear_mul (D : Derivation k R R) (r s : LaurentPolynomial R) :
 
 def extension (D : Derivation k R R) : Derivation k (LaurentPolynomial R) (LaurentPolynomial R) :=
   Derivation.mk' (linear D) (by intro r s; exact linear_mul D r s)
+/--
+@isnad1 id=eq.0h5v.s9.cd6268a50df7 from=translated src=- shape=22818b09 vocab=9412a4fd
+-/
 @[simp] lemma extension_monomial (D : Derivation k R R) (n : ℤ) (r : R) :
     extension D (C r*T n)=C (D r)*T n := linear_single D n r
+/--
+@isnad1 id=eq.0h4v.s9.e0cf049ffe68 from=translated src=- shape=e5e34b0b vocab=d87d2dce
+-/
 @[simp] lemma extension_C (D : Derivation k R R) (r : R) : extension D (C r)=C (D r) := by
   simpa using extension_monomial D 0 r
+/--
+@isnad1 id=eq.0h4v.s8.4ffb7fb1d5f9 from=translated src=- shape=e10a5e97 vocab=d7a9727b
+-/
 @[simp] lemma extension_T (D : Derivation k R R) (n : ℤ) : extension D (T n)=0 := by
   simpa using extension_monomial D n 1
+/--
+@isnad1 id=eq.0h6v.s9.2917fa1264d4 from=translated src=- shape=ccaa6f6d vocab=2cbf1714
+-/
 lemma iterate_monomial (D : Derivation k R R) (n : ℤ) (r : R) (i : ℕ) :
     (extension D : LaurentPolynomial R → LaurentPolynomial R)^[i] (C r*T n)=
       C ((D : R → R)^[i] r)*T n := by
   induction i with
   | zero => rfl
   | succ i ih => rw [Function.iterate_succ_apply',ih,extension_monomial,Function.iterate_succ_apply']
+/--
+@isnad1 id=ex.1h4v.s8.65be2b47f94b from=translated src=- shape=f0edabd1 vocab=0a71688c
+-/
 lemma locallyNilpotent (D : Derivation k R R)
     (hD : ∀ r : R, ∃ n, (D : R → R)^[n] r=0) :
     ∀ p : LaurentPolynomial R, ∃ n,
