@@ -43,9 +43,7 @@ def fake_space(reply, drop_stream=False):
             self.send_response(200)
             self.send_header("content-type", "text/event-stream")
             self.end_headers()
-            self.wfile.write(
-                f"event: endpoint\r\ndata: /messages/?session_id={sid}\r\n\r\n".encode()
-            )
+            self.wfile.write(f"event: endpoint\r\ndata: /messages/?session_id={sid}\r\n\r\n".encode())
             self.wfile.flush()
             if drop_stream:
                 return
@@ -53,9 +51,7 @@ def fake_space(reply, drop_stream=False):
                 item = q.get()
                 if item is None:
                     return
-                self.wfile.write(
-                    f"event: message\r\ndata: {json.dumps(item)}\r\n\r\n".encode()
-                )
+                self.wfile.write(f"event: message\r\ndata: {json.dumps(item)}\r\n\r\n".encode())
                 self.wfile.flush()
 
         def do_POST(self):
@@ -125,15 +121,11 @@ class Client(unittest.TestCase):
         import tempfile
 
         seen = []
-        srv, base, close = fake_space(
-            lambda s: (seen.append(s), BAD if "resolve" in s else OK)[1]
-        )
+        srv, base, close = fake_space(lambda s: (seen.append(s), BAD if "resolve" in s else OK)[1])
         try:
             with tempfile.TemporaryDirectory() as d:
                 self.assertEqual(self.run_main(base, d), 0)
-            self.assertEqual(
-                len(seen), 2
-            )  # the known-open file was asked as well, and its failure did not decide
+            self.assertEqual(len(seen), 2)  # the known-open file was asked as well, and its failure did not decide
         finally:
             close()
             srv.shutdown()
@@ -155,9 +147,7 @@ class Client(unittest.TestCase):
         kind, errors = lc.verdict(BAD)
         self.assertEqual(kind, "failed")
         self.assertEqual([n for n, _ in errors], [3, 5])  # the warning is not an error
-        self.assertEqual(
-            lc.verdict("❌ Verification Error: verify exceeded 180s")[0], "infra"
-        )
+        self.assertEqual(lc.verdict("❌ Verification Error: verify exceeded 180s")[0], "infra")
         self.assertEqual(lc.verdict("")[0], "infra")
 
     def test_the_report_names_the_line_of_the_canary(self):
@@ -171,6 +161,77 @@ class Client(unittest.TestCase):
         self.assertIn("line 3: example (v : ℕ)", out)
 
 
+class QueueStep(unittest.TestCase):
+    """the shell of the queue's canary step, run against a fake `lake` and a fake `git`: every mode and every outcome"""
+
+    @staticmethod
+    def step():
+        import yaml
+
+        wf = yaml.safe_load((ROOT / ".github" / "workflows" / "queue-gate.yml").read_text(encoding="utf-8"))
+        return next(s for s in wf["jobs"]["queue-build"]["steps"] if str(s.get("name", "")).startswith("Canary"))
+
+    def run_step(self, lake_rc, var="", base_mode="report\n", base_has_file=True):
+        import os
+        import subprocess
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as d:
+            bin_ = Path(d) / "bin"
+            bin_.mkdir()
+            (bin_ / "lake").write_text(f"#!/bin/bash\necho 'Line 3 (Error): ambiguous' >&2; exit {lake_rc}\n")
+            (bin_ / "git").write_text("#!/bin/bash\n" + (f"printf '%s' '{base_mode}'\n" if base_has_file else "exit 128\n"))
+            (bin_ / "timeout").write_text('#!/bin/bash\nshift 2; shift; "$@"\n')  # timeout -k 30 3m CMD...
+            for f in bin_.iterdir():
+                f.chmod(0o755)
+            env = {
+                **os.environ,
+                "PATH": f"{bin_}:{os.environ['PATH']}",
+                "CANARY_MODE_VAR": var,
+                "BASE_SHA": "a" * 40,
+                "GITHUB_STEP_SUMMARY": str(Path(d) / "summary.md"),
+            }
+            r = subprocess.run(["bash", "-e", "-o", "pipefail", "-c", self.step()["run"]], cwd=d, env=env, capture_output=True, text=True)
+            return r.returncode, r.stdout + r.stderr
+
+    def test_report_mode_warns_and_lets_the_group_through(self):
+        rc, out = self.run_step(1)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("::warning::the canary does not compile", out)
+
+    def test_enforce_mode_from_the_variable_or_from_the_base_fails_the_group(self):
+        for kw in ({"var": "enforce"}, {"base_mode": "enforce\n"}):
+            rc, out = self.run_step(1, **kw)
+            self.assertEqual(rc, 1, (kw, out))
+            self.assertIn("the tree is no longer usable", out)
+
+    def test_a_canary_that_compiles_passes_in_every_mode(self):
+        for kw in ({}, {"var": "enforce"}, {"base_mode": "enforce\n"}):
+            self.assertEqual(self.run_step(0, **kw)[0], 0, kw)
+
+    def test_the_variable_wins_over_the_base_file(self):
+        self.assertEqual(self.run_step(1, var="report", base_mode="enforce\n")[0], 0)
+
+    def test_a_missing_mode_file_is_report_and_an_unknown_word_is_an_error(self):
+        self.assertEqual(self.run_step(1, base_has_file=False)[0], 0)
+        rc, out = self.run_step(1, base_mode="Enforce\n")
+        self.assertEqual(rc, 1)
+        self.assertIn("unknown canary mode", out)
+
+    def test_no_verdict_in_time_is_a_warning_even_when_enforcing(self):
+        for rc_lake in (124, 137):
+            rc, out = self.run_step(rc_lake, var="enforce")
+            self.assertEqual(rc, 0, out)
+            self.assertIn("did not finish in 3 minutes", out)
+
+    def test_it_runs_whenever_the_library_built_and_not_when_it_did_not(self):
+        s = self.step()
+        self.assertIn("steps.delta.outputs.built == 'yes'", s["if"])
+        self.assertNotIn("needs-nightly", s["if"])  # a delta too big to publish has nothing to do with whether the tree is usable
+        wf = (ROOT / ".github" / "workflows" / "queue-gate.yml").read_text(encoding="utf-8")
+        self.assertIn('echo "built=$([ "$rc" = 0 ] && echo yes || echo no)" >> "$GITHUB_OUTPUT"', wf)
+
+
 class Files(unittest.TestCase):
     """What the canary must keep catching: one probe per kind of failure that has happened."""
 
@@ -179,9 +240,7 @@ class Files(unittest.TestCase):
 
     def test_it_imports_the_whole_tree_and_sets_the_options_that_keep_it_honest(self):
         self.assertTrue(self.canary.startswith("import Tengoku.All\n"))
-        self.assertIn(
-            "set_option Elab.async false", self.canary
-        )  # errors come back on the line that has them
+        self.assertIn("set_option Elab.async false", self.canary)  # errors come back on the line that has them
 
     def test_notation_words_and_tactics_are_all_probed(self):
         for probe in (
@@ -228,9 +287,7 @@ class Files(unittest.TestCase):
     def test_the_queue_runs_it_after_the_library_is_built_and_it_can_be_made_to_fail_the_group(
         self,
     ):
-        wf = (ROOT / ".github" / "workflows" / "queue-gate.yml").read_text(
-            encoding="utf-8"
-        )
+        wf = (ROOT / ".github" / "workflows" / "queue-gate.yml").read_text(encoding="utf-8")
         i = wf.index("name: Canary")
         step = wf[i : wf.index("\n      - ", i + 10)]
         self.assertIn("merge_group", step)
@@ -243,18 +300,12 @@ class Files(unittest.TestCase):
         )
 
     def test_the_leak_space_is_asked_on_a_schedule_and_after_every_promotion(self):
-        wf = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(
-            encoding="utf-8"
-        )
+        wf = (ROOT / ".github" / "workflows" / "leak-canary.yml").read_text(encoding="utf-8")
         self.assertIn("schedule:", wf)
         self.assertIn("topup-promote", wf)
         self.assertIn("leak_canary.py", wf)
-        self.assertNotIn(
-            "secrets.", wf
-        )  # the space is public; nothing here needs a token
-        self.assertTrue(
-            re.search(r"permissions:\s*\{\s*\}", wf) or "permissions: {}" in wf
-        )
+        self.assertNotIn("secrets.", wf)  # the space is public; nothing here needs a token
+        self.assertTrue(re.search(r"permissions:\s*\{\s*\}", wf) or "permissions: {}" in wf)
 
 
 if __name__ == "__main__":

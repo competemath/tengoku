@@ -22,7 +22,7 @@ class TimeBudget(unittest.TestCase):
 
     LIMIT = 120
     BEFORE, SEED, MIDDLE, PACK = 4, 5, 60, 3  # minutes: worst cases of the real runs; MIDDLE = candidates, axioms, tags and the leak report
-    CANARY = 6  # the canary (scripts/ci/canary/Canary.lean) after the library build: its own `timeout 6m`
+    CANARY = 3  # the canary (scripts/ci/canary/Canary.lean) after the library build: its own `timeout 3m`
     WORKFLOW = HERE.parent.parent.parent / ".github" / "workflows" / "queue-gate.yml"
 
     def test_the_restore_and_what_follows_fit_the_queue_limit(self):
