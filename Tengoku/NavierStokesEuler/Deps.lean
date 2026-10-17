@@ -1,1 +1,0 @@
--- NavierStokesEuler: a factory bundle (data/intake/navier-stokes-euler). This file only marks the library for Tengoku/All.lean.
