@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "7fa0f2e30c8b50406372cb1480ef7cca6fcf46558fec3c37bae145d1643c7177",
+ "gate2_unjudged": [],
+ "library": "lean-pool",
+ "lint_mode": "proposed",
+ "modules": 28,
+ "part": 13,
+ "theorems": 324
+}
