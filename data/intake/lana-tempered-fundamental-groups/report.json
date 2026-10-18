@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "d1e8998c5eb70763d8217ba72b65f34db5aa2b4acd588c6910e15f11d989f82c",
+ "gate2_unjudged": [],
+ "library": "lana-tempered-fundamental-groups",
+ "lint_mode": "proposed",
+ "modules": 19,
+ "part": 1,
+ "theorems": 241
+}
