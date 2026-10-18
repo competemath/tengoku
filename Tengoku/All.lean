@@ -36,6 +36,7 @@ import Tengoku.LanaHeights
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
 import Tengoku.Certifyinginvariantsnf
+import Tengoku.LanaOrbicurveCores
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
 import Tengoku.SphereEversion
