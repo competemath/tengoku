@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "f3d06dad15ea2d0cf2e7ce4d95367aba7bcbf9438f1c5b82a7403395c49629f9",
+ "gate2_unjudged": [],
+ "library": "leancert",
+ "lint_mode": "proposed",
+ "modules": 184,
+ "part": 1,
+ "theorems": 1700
+}

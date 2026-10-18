@@ -44,6 +44,7 @@ import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.Apap
+import Tengoku.Leancert
 import Tengoku.ChandraFurstLipton
 import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
