@@ -14,6 +14,7 @@ import Tengoku.Seed.Data.Set.Defs
 import Lean
 import Tengoku.Seed.Logic.Basic
 import Tengoku.EquationalTheories.Deps.Equations
+open scoped EquationalTheories
 
 set_option linter.all false
 
