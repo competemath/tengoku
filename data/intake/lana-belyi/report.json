@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "8806e268392322063e8399e85e3285360fdbc6984fc6f69907df87fd5431aa11",
+ "gate2_unjudged": [],
+ "library": "lana-belyi",
+ "lint_mode": "proposed",
+ "modules": 85,
+ "part": 1,
+ "theorems": 644
+}
