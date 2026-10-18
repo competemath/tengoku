@@ -69,6 +69,7 @@ import Tengoku.Formalslt
 import Tengoku.Physlib
 import Tengoku.TaoAnalysis
 import Tengoku.Tautology
+import Tengoku.Absorptioncutoff
 import Tengoku.Complexitylib
 import Tengoku.Tauceti
 import Tengoku.Fagin
