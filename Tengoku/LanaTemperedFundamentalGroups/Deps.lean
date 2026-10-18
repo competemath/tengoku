@@ -1,0 +1,1 @@
+-- LanaTemperedFundamentalGroups: a factory bundle (data/intake/lana-tempered-fundamental-groups). This file only marks the library for Tengoku/All.lean.
