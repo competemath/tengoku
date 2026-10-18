@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "eccc5221c270ba400eaa9219fa2073b8058e0bc9edd29408bce835ed432e4ef9",
+ "gate2_unjudged": [],
+ "library": "absorptioncutoff",
+ "lint_mode": "proposed",
+ "modules": 46,
+ "part": 1,
+ "theorems": 1306
+}

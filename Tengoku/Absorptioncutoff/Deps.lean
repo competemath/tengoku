@@ -1,0 +1,1 @@
+-- Absorptioncutoff: a factory bundle (data/intake/absorptioncutoff). This file only marks the library for Tengoku/All.lean.
