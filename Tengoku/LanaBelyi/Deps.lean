@@ -1,0 +1,1 @@
+-- LanaBelyi: a factory bundle (data/intake/lana-belyi). This file only marks the library for Tengoku/All.lean.
