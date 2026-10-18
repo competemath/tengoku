@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "721ba27fa410c47d114cf4cdfde6feb12066b4e5403046209136ccbaeec9b1c6",
+ "gate2_unjudged": [],
+ "library": "lana-heights",
+ "lint_mode": "proposed",
+ "modules": 45,
+ "part": 1,
+ "theorems": 432
+}
