@@ -70,3 +70,14 @@ example : Fintype.card (Fin 5) = 5 := by simp
 example (n : ℕ) (h : n < 3) : n * n < 9 := by interval_cases n <;> omega
 example (p q : Prop) (h : p ∧ q) : q ∧ p := by obtain ⟨a, b⟩ := h; exact ⟨b, a⟩
 example (x : ℝ) : |x| ≥ 0 := by positivity
+
+/-! ## reserved words: the atoms of a library's `elab`/`macro`/`syntax` must not be tokens of the whole tree
+
+equational-theories (a generated library) kept these global until its notation was scoped by the generator (scripts/scope_notation.py, tengoku#615/#618, 2026-10-18). -/
+
+example (resolve : ℕ) : True := trivial
+example (superpose : ℕ) : True := trivial
+example (Facts : ℕ) : True := trivial
+example (memoFinOp : ℕ) : True := trivial
+example (finOpTable : ℕ) : True := trivial
+example (mod_symm : ℕ) : True := trivial

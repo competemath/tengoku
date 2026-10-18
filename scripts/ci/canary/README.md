@@ -24,7 +24,7 @@ Where it runs
   the one before it; the six-hourly run catches it, and the merge queue judges every group with the same file before it merges. The workflow reads the three files from main
   through the API (no checkout in a `workflow_run` workflow).
 
-`CanaryKnown.lean` holds the same kind of failure in libraries that are not fixed yet (equational-theories is a generated library, outside the scope-fix class). It is reported, never a gate.
-A line moves into `Canary.lean` the day its example compiles.
+`CanaryKnown.lean` holds the same kind of failure in libraries that are not fixed yet. It is reported, never a gate. It is empty today: the six words of equational-theories (a generated
+library) moved into `Canary.lean` on 2026-10-18, when the generator began to scope what it writes. A line moves into `Canary.lean` the day its example compiles.
 
 Adding a probe: write the `example`, run `python3 scripts/ci/canary/leak_canary.py` (it needs nothing but the network), and add the probe to the list in `tests/test_canary.py`.
