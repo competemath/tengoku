@@ -83,6 +83,15 @@ intake_ns = {pascal(lib) for lib in intake}
 # A razed library has nothing to regenerate either: a registered library that is also an intake bundle (navier-stokes-euler) would otherwise be regenerated from its corpus for the
 # modules the raze deletes, and the generator rewrites Tengoku/All.lean as it would write it, which is not what the raze edits (2026-10-16, tengoku#579: ejected at this check)
 gone_ns = intake_ns | {pascal(lib) for lib in razed}
+# A library that is an intake bundle at the BASE has no generator either, whatever this group changes in it: a scope-fix PR (scripts/ci/scope_fix_check.py) edits its modules in place and
+# touches no manifest, so the manifests of the group do not name it. Registered with a corpus as well (lean-pool, zflean), it was regenerated from nothing and every module came out
+# deleted (2026-10-18, tengoku#601: "regenerated derived files differ from the PR", 64 files, 20,302 deletions). The class gate decides which PRs may edit such a module at all.
+intake_at_base = {
+    pascal(m.group(1))
+    for p in run("ls-tree", "-r", "--name-only", base, "data/intake").split("\n")
+    if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))
+}
+gone_ns |= intake_at_base
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging
 left_out: dict[str, set[str]] = {}  # library -> garbled records the generator leaves out (they stay in staging)
 touched: set[str] = set()  # libraries with any data change (staging or trusted)
@@ -148,11 +157,6 @@ for st, p in changed_files(base, head):
         targets.append(f"Tengoku.{m.group(1)}.{m.group(2).replace('/', '.')}")
 # A scope-fix PR (scripts/ci/scope_fix_check.py) modifies existing modules of an intake library: the queue builds that library again, with its axiom
 # check and leak report, as it did when the library arrived.
-intake_at_base = {
-    pascal(m.group(1))
-    for p in run("ls-tree", "-r", "--name-only", base, "data/intake").split("\n")
-    if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))
-}
 for st, p in changed_files(base, head):
     m = re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)
     if st == "M" and m and m.group(1) in intake_at_base:
