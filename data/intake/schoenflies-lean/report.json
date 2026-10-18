@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "fdb15e7f27e16dbdc761df68ba789954d82d10d0c76f2bdb4d81742bbe8da486",
+ "gate2_unjudged": [],
+ "library": "schoenflies-lean",
+ "lint_mode": "proposed",
+ "modules": 71,
+ "part": 1,
+ "theorems": 2138
+}
