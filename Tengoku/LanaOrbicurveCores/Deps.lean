@@ -1,0 +1,1 @@
+-- LanaOrbicurveCores: a factory bundle (data/intake/lana-orbicurve-cores). This file only marks the library for Tengoku/All.lean.

@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "b2c6a3d23268ce92d3c180a7c1a0de853823f86d9a11f48b2114f1ba364205fa",
+ "gate2_unjudged": [],
+ "library": "lana-orbicurve-cores",
+ "lint_mode": "proposed",
+ "modules": 36,
+ "part": 1,
+ "theorems": 159
+}
