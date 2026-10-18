@@ -543,6 +543,28 @@ class NarrowedNotation(unittest.TestCase):
         self.assertEqual(rc, 1, out)
         self.assertIn("Modal.lean: notation declarations", out)
 
+    def test_a_scoped_line_added_elsewhere_does_not_scope_a_later_added_notation(self):
+        """Gitar on tengoku#615: the added lines of a module were joined, so a lone `scoped` line added far above made a `notation` added far below look scoped. The command is judged against the
+        module as it stands (the line before it is the module's own), and counted when it is on an added line."""
+        before = 'theorem t : True := trivial\n\nnotation "a" => 1\n\ntheorem u : True := trivial\n'
+        after = "scoped\n" + before + '\nnotation "-" => evil\n'
+        manifest = {
+            "data/intake/lib/manifest.jsonl": "{}\n{}\n"
+        }  # the PR also touches the bundle's manifest: the module is the bundle's own, where the mode allows notation
+        for mode in ("proposed", "wide"):
+            rc, out = self.changed(
+                {"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after, **manifest}, env={"TENGOKU_INTAKE_LINT": mode}
+            )
+            self.assertEqual(rc, 1, f"{mode}: {out}")
+            self.assertIn("`notation` without `scoped` or `local`", out)
+        # the same PR with the second notation really scoped passes: only the added line is judged, the old global one is the tree's
+        rc, out = self.changed(
+            {"Tengoku/Lib/Mod.lean": before},
+            {"Tengoku/Lib/Mod.lean": before + '\nscoped notation "-" => evil\n', **manifest},
+            env={"TENGOKU_INTAKE_LINT": "proposed"},
+        )
+        self.assertEqual(rc, 0, out)
+
     ET = "Tengoku/EquationalTheories/Asterix.lean"  # equational-theories has a corpus in schemas/sources.json: the generator rebuilds it, it is no intake bundle
 
     def test_a_regeneration_of_a_generated_library_may_narrow_its_notation_the_same_way(self):

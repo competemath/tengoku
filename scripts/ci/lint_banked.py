@@ -17,7 +17,7 @@ import tempfile
 from pathlib import Path
 
 from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal, removed_lines, run
-from allowlist import unscoped_violations, violations
+from allowlist import unscoped_matches, unscoped_violations, violations
 from lean_lex import code_only
 from restructure_check import is_restructure
 
@@ -179,10 +179,6 @@ def check_text(
     for opt in SET_OPTION.findall(text):
         if opt not in allowed:
             out.append(f"{label}: set_option {opt} is not on the allowlist")
-    if module:
-        # No module of the tree declares a GLOBAL notation or macro command, in any mode: the modes that allow them allow `scoped`/`local` ones only (a global one leaks into every other library),
-        # and the rules above read the start of a line, where Lean needs no line break between commands (`def a := 1 prefix:80 "-" => f`)
-        out += [f"{label}: {v}" for v in unscoped_violations(text, macro=True)]
     return out
 
 
@@ -235,13 +231,13 @@ def lint_module(
         # comments and strings first, THEN the import lines: a line `import X -/` inside a block comment closes it, and dropping it first would
         # turn the rest of the file into comment text (a `#eval` after it would go unread)
         code = code_only(raw.decode("utf-8", "replace"))
-        return check_text(
-            p,
-            "\n".join(ln for ln in code.split("\n") if not re.match(IMPORT_START, ln)),
-            allowed,
-            notation_ok=notation_ok,
-            macro_ok=macro_ok,
-            module=True,
+        body = "\n".join(ln for ln in code.split("\n") if not re.match(IMPORT_START, ln))
+        # no module of the tree declares a GLOBAL notation or macro command, in any mode (the rules above read the start of a line; Lean needs no line break between commands)
+        return list(
+            dict.fromkeys(
+                check_text(p, body, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+                + [f"{p}: {v}" for v in unscoped_violations(body, macro=True)]
+            )
         )
     added_here = [
         (no, t) for no, t in added_lines(base, head, p) if not (narrowing and narrowing.hides(p, t))
@@ -250,14 +246,24 @@ def lint_module(
     if raw_head is not None:
         # The module is read whole and lexed like an added one, and only the lines the PR adds are judged, as code: an isnad tag moves the `-/` of a docstring to its own line, which makes the
         # docstring's last line an added line, and prose that starts with `prefix` or `notation` was refused as a notation command (isnad tag PR #438, 2026-10-11: "prefix length](hyp:Z,p,k) …").
-        code = code_only(raw_head.decode("utf-8", "replace")).split("\n")
+        head_text = raw_head.decode("utf-8", "replace")
+        code = code_only(head_text).split("\n")
         if len(code) == len(
-            raw_head.decode("utf-8", "replace").split("\n")
+            head_text.split("\n")
         ):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
             text = "\n".join(code[no - 1] for no, _ in added_here if no - 1 < len(code) and not re.match(IMPORT_START, code[no - 1]))
-            return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok, module=True)
+            out = check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+            # a global command is judged against the module as it stands, and counted when it is on an added line: the `scoped` in front of it is the module's own line before it, never
+            # an added line that happens to come before it in the diff (Gitar on tengoku#615: a lone `scoped` line added far above made a later `notation` look scoped)
+            added_nos = {no for no, _ in added_here}
+            return list(dict.fromkeys(out + [f"{p}: {v}" for no, v in unscoped_matches(head_text, macro=True) if no in added_nos]))
     text = "\n".join(t for _, t in added_here if not re.match(IMPORT_START, t))
-    return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok, module=True)
+    return list(
+        dict.fromkeys(
+            check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+            + [f"{p}: {v}" for v in unscoped_violations(text, macro=True, same_line=True)]
+        )
+    )
 
 
 def checked_path(arg: str) -> Path:

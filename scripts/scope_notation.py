@@ -29,9 +29,14 @@ STRING_ATOM = re.compile(r'"((?:[^"\\]|\\.)*)"')
 IMPORT = re.compile(r"^\s*(?:public\s+|private\s+|meta\s+)*import\s+(\S+)")
 
 
-def mask(text: str) -> str:
-    """the text with every comment (line, nested block, doc) and string literal blanked to spaces: same length and columns, so a word found in the mask is code"""
+def mask(text: str, keep_strings: bool = False) -> str:
+    """the text with every comment (line, nested block, doc) blanked to spaces, and with `keep_strings=False` every string literal, character literal and escaped name too: same length and
+    columns, so a word found in the mask is code. With `keep_strings`, the literals stay (a notation is used inside strings of `macro_rules` quotations too, and a use is a use)."""
     out, i, n = [], 0, len(text)
+
+    def blank(seg: str) -> str:
+        return seg if keep_strings else "".join("\n" if ch == "\n" else " " for ch in seg)
+
     while i < n:
         c = text[i]
         if text.startswith("--", i):
@@ -50,21 +55,17 @@ def mask(text: str) -> str:
                     j += 1
             out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
             i = j
-        elif c == '"':
+        elif c == '"' or c == "«":
+            close = '"' if c == '"' else "»"
             j = i + 1
-            while j < n and text[j] != '"':
-                j += 2 if text[j] == "\\" else 1
+            while j < n and text[j] != close:
+                j += 2 if (c == '"' and text[j] == "\\") else 1
             j = min(j + 1, n)
-            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
+            out.append(blank(text[i:j]))
             i = j
         elif c == "'" and not (i and (text[i - 1].isalnum() or text[i - 1] in "_'!?.")) and (m := CHAR.match(text, i)):
-            out.append(" " * len(m.group()))  # `'"'` is a character, not the start of a string that would blank the rest of the file
+            out.append(blank(m.group()))  # `'"'` is a character, not the start of a string that would blank the rest of the file
             i = m.end()
-        elif c == "«":
-            j = text.find("»", i)
-            j = n if j < 0 else j + 1
-            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
-            i = j
         else:
             out.append(c)
             i += 1
@@ -135,28 +136,7 @@ def uses(code: list[str], atom: str) -> list[int]:
 
 def code_without_comments(text: str) -> list[str]:
     """like mask, but string literals stay: a notation is used inside `‹ … ›`-less terms and in strings of `macro_rules` quotations alike, and a use is a use"""
-    out, i, n = [], 0, len(text)
-    while i < n:
-        if text.startswith("--", i):
-            j = text.find("\n", i)
-            j = n if j < 0 else j
-            out.append(" " * (j - i))
-            i = j
-        elif text.startswith("/-", i):
-            depth, j = 1, i + 2
-            while j < n and depth:
-                if text.startswith("/-", j):
-                    depth, j = depth + 1, j + 2
-                elif text.startswith("-/", j):
-                    depth, j = depth - 1, j + 2
-                else:
-                    j += 1
-            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
-            i = j
-        else:
-            out.append(text[i])
-            i += 1
-    return "".join(out).split("\n")
+    return mask(text, keep_strings=True).split("\n")
 
 
 class Found:
@@ -309,10 +289,3 @@ def residual(texts: dict[Path, str]) -> list[tuple[Path, str]]:
         for f, text in texts.items()
         for v in allowlist.unscoped_violations(text, macro=True)
     ]
-
-
-if __name__ == "__main__":
-    import json
-
-    d = Path(sys.argv[1])
-    print(json.dumps(scope_library(d, d.name, write="--write" in sys.argv), indent=1))
