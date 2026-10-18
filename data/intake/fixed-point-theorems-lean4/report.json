@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "6344b5beac9ca62a1bf3c504c2ae0f4e3def996989f02811c4c3e963b1c24d73",
+ "gate2_unjudged": [],
+ "library": "fixed-point-theorems-lean4",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 52
+}
