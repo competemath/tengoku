@@ -474,6 +474,12 @@ class Files(unittest.TestCase):
             "a b c d e f g h i j k l m n o p q r s t u v w x y z",  # `v` was a reserved word
             "(na ih hx",
             "Δ ω",
+            "(resolve : ℕ)",  # equational-theories: a global `elab`
+            "(superpose : ℕ)",
+            "(Facts : ℕ)",
+            "(memoFinOp : ℕ)",
+            "(finOpTable : ℕ)",
+            "(mod_symm : ℕ)",
             "by omega",
             "by positivity",
             "by linarith",
@@ -489,18 +495,12 @@ class Files(unittest.TestCase):
         ):
             self.assertIn(probe, self.canary, probe)
 
-    def test_what_is_not_fixed_yet_is_in_the_known_open_file_not_in_the_gate(self):
+    def test_the_known_open_file_holds_no_fixed_probe_and_the_gate_has_what_was_fixed(self):
         known = (CI / "canary" / "CanaryKnown.lean").read_text(encoding="utf-8")
-        for word in (
-            "resolve",
-            "superpose",
-            "Facts",
-            "memoFinOp",
-            "finOpTable",
-            "mod_symm",
-        ):
-            self.assertIn(f"({word} : ℕ)", known)
-            self.assertNotIn(word, self.canary)
+        for word in ("resolve", "superpose", "Facts", "memoFinOp", "finOpTable", "mod_symm"):
+            self.assertIn(f"({word} : ℕ)", self.canary)  # compiled on Leak IV on 2026-10-18 and moved into the gate
+            self.assertNotIn(f"({word} : ℕ)", known)
+        self.assertTrue(known.startswith("import Tengoku.All\n"))
 
     def test_the_queue_runs_it_after_the_library_is_built_and_it_can_be_made_to_fail_the_group(
         self,
