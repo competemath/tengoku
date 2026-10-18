@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "6714ea450d7daa00a0b416a133b256c4622907e6f8c8e2628cb4304c32523499",
+ "gate2_unjudged": [],
+ "library": "lana-elliptic-curves",
+ "lint_mode": "proposed",
+ "modules": 147,
+ "part": 1,
+ "theorems": 1017
+}

@@ -48,6 +48,7 @@ import Tengoku.SpherePackingOrig
 import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
 import Tengoku.Pfr
+import Tengoku.LanaEllipticCurves
 import Tengoku.Apap
 import Tengoku.Leancert
 import Tengoku.ChandraFurstLipton
