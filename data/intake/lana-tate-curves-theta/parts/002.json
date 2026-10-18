@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "bb0b6a7e40323f07a7b84875b78fbe41c2be0b38cfd680dfe1451f321b04bd98",
+ "gate2_unjudged": [],
+ "library": "lana-tate-curves-theta",
+ "lint_mode": "proposed",
+ "modules": 21,
+ "part": 2,
+ "theorems": 207
+}
