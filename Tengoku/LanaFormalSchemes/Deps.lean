@@ -1,0 +1,1 @@
+-- LanaFormalSchemes: a factory bundle (data/intake/lana-formal-schemes). This file only marks the library for Tengoku/All.lean.
