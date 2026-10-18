@@ -10,6 +10,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Modal.Kripke.B
 /-! # AxiomDot3 -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment LO.Modal LO.Modal.Formula
+
 
 namespace LO
 namespace Modal

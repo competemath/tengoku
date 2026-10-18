@@ -15,6 +15,8 @@ This module provides core abstract-syntax types of the MRiscX assembly language.
 -/
 
 @[expose] public section
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 open Nat
 open Lean Lean.Elab
 /--

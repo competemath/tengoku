@@ -14,6 +14,8 @@ Imported Lean Pool material for `LeanPool.Polylean.Complexes.Structures.Category
 -/
 
 @[expose] public section
+open scoped LeanPool.Polylean
+
 
 namespace LeanPool.Polylean
 

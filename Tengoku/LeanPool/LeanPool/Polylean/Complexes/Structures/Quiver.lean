@@ -22,7 +22,7 @@ class Quiver (V : Sort u) where
   hom : V → V → Sort v
 
 /-- Arrow notation for the hom type of a quiver. -/
-infixr:10 " ⟶ " => Quiver.hom -- type using `\-->` or `\hom`
+scoped infixr:10 " ⟶ " => Quiver.hom -- type using `\-->` or `\hom`
 
 namespace Quiver
 
@@ -210,3 +210,4 @@ abbrev concat : Loop A → Loop A → Loop A := Path.append
 
 end Loop
 end LeanPool.Polylean
+-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)

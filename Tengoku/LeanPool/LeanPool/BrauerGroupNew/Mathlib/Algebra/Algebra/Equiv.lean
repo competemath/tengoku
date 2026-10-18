@@ -16,4 +16,5 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Mathlib.Algebra.Algebra
 @[expose] public section
 
 /-- Galois-group notation as algebra equivalences. -/
-notation "Gal("K ", "F")" => K ≃ₐ[F] K
+local notation "Gal("K ", "F")" => K ≃ₐ[F] K
+-- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)

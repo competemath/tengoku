@@ -14,6 +14,8 @@ Here we prove the fixed-point theorem for formulas of form `□φ` and `◇φ`.
 -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 

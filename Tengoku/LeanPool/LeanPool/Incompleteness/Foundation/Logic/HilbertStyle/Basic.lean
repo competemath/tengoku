@@ -12,6 +12,8 @@ public import Tengoku
 /-! # Basic -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Entailment
+
 
 namespace LO
 namespace Entailment

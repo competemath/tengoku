@@ -10,6 +10,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Logic.HilbertS
 /-! # Lukasiewicz -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Entailment
+
 
 namespace LO
 

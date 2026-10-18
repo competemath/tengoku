@@ -10,6 +10,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.IntProp.Hilber
 /-! # Int -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Entailment LO.IntProp LO.IntProp.Formula
+
 
 namespace LO
 namespace IntProp

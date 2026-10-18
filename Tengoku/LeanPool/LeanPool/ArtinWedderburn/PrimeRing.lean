@@ -18,6 +18,8 @@ Concludes that simple rings are prime.
 -/
 
 @[expose] public section
+open scoped LeanPool.ArtinWedderburn
+
 
 namespace LeanPool.ArtinWedderburn
 

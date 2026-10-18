@@ -13,6 +13,8 @@ public import Tengoku
 /-! ## Soundness of GL-split proof system. -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula Lean4GlCoalgebras.Split
+
 
 namespace Lean4GlCoalgebras
 

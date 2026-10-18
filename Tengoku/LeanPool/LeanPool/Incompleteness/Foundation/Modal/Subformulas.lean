@@ -10,6 +10,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Modal.Formula
 /-! # Subformulas -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment
+
 
 namespace LO
 namespace Modal

@@ -14,6 +14,8 @@ Imported Lean Pool material for `LeanPool.Polylean.Complexes.Structures.Groupoid
 -/
 
 @[expose] public section
+open scoped LeanPool.Polylean
+
 
 namespace LeanPool.Polylean
 
@@ -34,7 +36,7 @@ attribute [simp] comp_inv_id
 variable {S : Sort _} [G : Groupoid S] {X Y Z : S} (g g' : X ⟶ Y) (h h' : Y ⟶ Z)
 
 /-- Groupoid inverse notation. -/
-postfix:max " ⁻¹ " => Groupoid.inv -- type as `\inv`
+scoped postfix:max " ⁻¹ " => Groupoid.inv -- type as `\inv`
 
 /--
 @isnad1 id=eq.0h6v.s6.84121c56fb19 from=translated src=- shape=b939518d vocab=aad9930e
@@ -109,6 +111,7 @@ postfix:max " ⁻¹ " => Groupoid.inv -- type as `\inv`
   have := right_cancel e (𝟙 X) g; simp at this; exact this
 
 end Groupoid
+open scoped LeanPool.Polylean.Groupoid
 
 namespace Groupoid
 
@@ -139,3 +142,4 @@ end Functor
 
 end Groupoid
 end LeanPool.Polylean
+-- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)

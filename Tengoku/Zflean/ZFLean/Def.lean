@@ -37,7 +37,7 @@ A set `x` is transitive if every element of `x` is a subset of `x`:
 -/
 @[expose] def transitive (x : ZFSet) := ∀ y ∈ x, y ⊆ x
 
-notation "ω" => omega
+scoped notation "ω" => omega
 
 /--
 An inductive set is defined as a set that contains the empty set `∅` and is closed
@@ -112,7 +112,7 @@ theorem sdiff_subset {s t : ZFSet} : s \ t ⊆ s := by
 
 /-- Symmetric difference of two sets, denoted by `Δ`. -/
 def symmDiff (p q : ZFSet) : ZFSet := (p \ q) ∪ (q \ p)
-infix:70 " Δ " => symmDiff
+scoped infix:70 " Δ " => symmDiff
 
 @[simp]
 theorem mem_symmDiff (x p q : ZFSet) : x ∈ p Δ q ↔ (x ∈ p ∧ x ∉ q) ∨ (x ∈ q ∧ x ∉ p) := by
@@ -234,3 +234,4 @@ end ZFSet
 attribute [local simp] ZFSet.pair_inter ZFSet.pair_minus ZFSet.pair_union
 end
 -- Tengoku: 3 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)

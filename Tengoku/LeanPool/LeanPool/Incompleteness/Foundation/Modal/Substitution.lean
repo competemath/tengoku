@@ -10,6 +10,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Modal.Formula
 /-! # Substitution -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment
+
 
 namespace LO
 namespace Modal
@@ -32,7 +34,7 @@ def subst (s : Substitution α) : Formula α → Formula α
   | φ ==> ψ   => φ.subst s ==> ψ.subst s
 
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:80 φ "⟦" s "⟧" => Formula.subst s φ
+scoped notation:80 φ "⟦" s "⟧" => Formula.subst s φ
 
 /--
 @isnad1 id=eq.0h3v.s4.eba4f0208920 from=translated src=- shape=38405f78 vocab=ae39fe8a
@@ -96,6 +98,7 @@ notation:80 φ "⟦" s "⟧" => Formula.subst s φ
   | succ n ih => simp [ih]
 
 end Formula
+open scoped LO.Modal.Formula
 
 /--
 @isnad1 id=eq.0h2v.s3.49c2fa85fe24 from=translated src=- shape=ff24a7f5 vocab=d2f4c44b
@@ -107,7 +110,7 @@ end Formula
 def _root_.LO.Modal.Substitution.comp (s₁ s₂ : Substitution α) : Substitution α :=
   fun a => (s₁ a)⟦s₂⟧
 /-- Imported declaration from the Incompleteness formalization. -/
-infixr:80 " ∘ " => Substitution.comp
+scoped infixr:80 " ∘ " => Substitution.comp
 
 /--
 @isnad1 id=eq.0h4v.s4.84f198161af8 from=translated src=- shape=f0aafd19 vocab=760d7939
@@ -122,3 +125,4 @@ class SubstitutionClosed (S : Set (Formula α)) where
 
 end Modal
 end LO
+-- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)

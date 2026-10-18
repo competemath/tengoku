@@ -108,7 +108,7 @@ class WeakerThan (𝓢 : S) (𝓣 : T) : Prop where
   subset : theory 𝓢 ⊆ theory 𝓣
 
 /-- Imported declaration from the Incompleteness formalization. -/
-infix:40 " wkn " => WeakerThan
+scoped infix:40 " wkn " => WeakerThan
 
 /-- Imported declaration from the Incompleteness formalization. -/
 class StrictlyWeakerThan (𝓢 : S) (𝓣 : T) : Prop where
@@ -116,7 +116,7 @@ class StrictlyWeakerThan (𝓢 : S) (𝓣 : T) : Prop where
    notWT : ¬𝓣 wkn 𝓢
 
 /-- Imported declaration from the Incompleteness formalization. -/
-infix:40 " swkn " => StrictlyWeakerThan
+scoped infix:40 " swkn " => StrictlyWeakerThan
 
 /-- Imported declaration from the Incompleteness formalization. -/
 class Equiv (𝓢 : S) (𝓣 : T) : Prop where
@@ -589,6 +589,7 @@ end Compact
 end «lp_section_4»
 
 end Entailment
+open scoped LO.Entailment
 
 namespace Entailment
 
@@ -849,3 +850,4 @@ end Complete
 end «lp_section_8»
 
 end LO
+-- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)

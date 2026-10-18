@@ -12,6 +12,8 @@ public import Tengoku
 /-! # Axioms -/
 
 @[expose] public section
+open scoped LO.Dia
+
 
 namespace LO
 namespace Axioms
@@ -31,14 +33,14 @@ protected abbrev K := □(φ ==> ψ) ==> □φ ==> □ψ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.K.set : Set F := { Axioms.K φ ψ | (φ) (ψ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "KAx" => K.set
+scoped notation:max "KAx" => K.set
 
 /-- Axiom for reflexive -/
 protected abbrev T := □φ ==> φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.T.set : Set F := { Axioms.T φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "TAx" => T.set
+scoped notation:max "TAx" => T.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev DiaTc := φ ==> ◇φ
@@ -48,28 +50,28 @@ protected abbrev B := φ ==> □◇φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.B.set : Set F := { Axioms.B φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "BAx" => B.set
+scoped notation:max "BAx" => B.set
 
 /-- `□`-only version of axiom `BAx`. -/
 protected abbrev B₂ := □φ ==> □(∼□(∼φ))
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.B₂.set : Set F := { Axioms.B₂ φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "BBoxAx" => B₂.set
+scoped notation:max "BBoxAx" => B₂.set
 
 /-- Axiom for serial -/
 protected abbrev D := □φ ==> ◇φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.D.set : Set F := { Axioms.D φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "DAx" => D.set
+scoped notation:max "DAx" => D.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev P : F := ∼(□⊥)
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.P.set : Set F := { Axioms.P | }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "PAx" => P.set
+scoped notation:max "PAx" => P.set
 @[simp 1100] lemma _root_.LO.Axioms.P.set.def : PAx = {(∼(□⊥) : F)} := by ext; simp;
 
 /-- Axiom for transivity -/
@@ -105,21 +107,21 @@ protected abbrev C4 := □□φ ==> □φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.C4.set : Set F := { Axioms.C4 φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "C4Ax" => C4.set
+scoped notation:max "C4Ax" => C4.set
 
 /-- Axiom for functionality -/
 protected abbrev CD := ◇φ ==> □φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.CD.set : Set F := { Axioms.CD φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "CDAx" => CD.set
+scoped notation:max "CDAx" => CD.set
 
 /-- Axiom for coreflexivity -/
 protected abbrev Tc := φ ==> □φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.Tc.set : Set F := { Axioms.Tc φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "TcAx" => Tc.set
+scoped notation:max "TcAx" => Tc.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev DiaT := ◇φ ==> φ
@@ -129,7 +131,7 @@ protected abbrev Ver := □φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.Ver.set : Set F := { Axioms.Ver φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "VerAx" => Ver.set
+scoped notation:max "VerAx" => Ver.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev Dot3 := □(□φ ==> ψ) ⋎ □(□ψ ==> φ)
@@ -143,28 +145,28 @@ protected abbrev Grz := □(□(φ ==> □φ) ==> φ) ==> φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.Grz.set : Set F := { Axioms.Grz φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "GrzAx" => Grz.set
+scoped notation:max "GrzAx" => Grz.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev M := (□◇φ ==> ◇□φ)
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.M.set : Set F := { Axioms.M φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "MAx" => M.set
+scoped notation:max "MAx" => M.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev L := □(□φ ==> φ) ==> □φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.L.set : Set F := { Axioms.L φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "LAx" => L.set
+scoped notation:max "LAx" => L.set
 
 /-- Imported declaration from the Incompleteness formalization. -/
 protected abbrev H := □(□φ <=> φ) ==> □φ
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.LO.Axioms.H.set : Set F := { Axioms.H φ | (φ) }
 /-- Imported declaration from the Incompleteness formalization. -/
-notation:max "HAx" => H.set
+scoped notation:max "HAx" => H.set
 
 end «lp_section_1»
 
@@ -177,3 +179,4 @@ notation:max "GeachAx(" t ")" => Geach.set t
 
 end Axioms
 end LO
+-- Tengoku: 14 notation(s) of this module made scoped so they do not change other libraries (generated)

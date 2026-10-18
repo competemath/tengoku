@@ -10,6 +10,8 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Modal.Subformu
 /-! # Complement -/
 
 @[expose] public section
+open scoped LO.Axioms LO.Dia LO.Entailment
+
 
 namespace LO
 namespace Modal
@@ -21,7 +23,7 @@ def complement : Formula α → Formula α
   | ∼φ => φ
   | φ  => ∼φ
 /-- Imported declaration from the Incompleteness formalization. -/
-prefix:80 "-" => complement
+scoped prefix:80 "-" => complement
 
 namespace complement
 
@@ -82,6 +84,7 @@ lemma or (φ : Formula α) : -φ = ∼φ ∨ ∃ ψ, ∼ψ = φ := by
 end complement
 
 end Formula
+open scoped LO.Modal.Formula
 
 namespace FormulaFinset
 
@@ -90,7 +93,7 @@ variable [DecidableEq α]
 /-- Imported declaration from the Incompleteness formalization. -/
 def complementary (P : FormulaFinset α) : FormulaFinset α := P ∪ (P.image (Formula.complement))
 /-- Imported declaration from the Incompleteness formalization. -/
-postfix:80 "⁻" => complementary
+scoped postfix:80 "⁻" => complementary
 
 variable {P P₁ P₂ : FormulaFinset α} {φ ψ χ : Formula α}
 
@@ -164,3 +167,4 @@ end «lp_section_1»
 
 end Modal
 end LO
+-- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)

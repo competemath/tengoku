@@ -23,6 +23,8 @@ variables of `ξ`.
 -/
 
 @[expose] public section
+open scoped LO.FirstOrder.Language
+
 
 namespace LO
 

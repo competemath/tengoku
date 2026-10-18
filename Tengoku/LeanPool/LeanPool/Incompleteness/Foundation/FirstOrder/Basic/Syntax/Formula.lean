@@ -21,6 +21,8 @@ The quantification is represented by de Bruijn index.
 -/
 
 @[expose] public section
+open scoped LO LO.FirstOrder.Language
+
 
 namespace LO
 

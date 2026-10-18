@@ -16,6 +16,8 @@ evaluation should continue.
 -/
 
 @[expose] public section
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 /-- The state of the abstract machine: its memory, registers, program counter,
 loaded code, and termination flag. -/
 structure MState where

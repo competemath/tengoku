@@ -15,6 +15,8 @@ namespace ExtSkip to distinguish from our general GL-proofs.
 -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 

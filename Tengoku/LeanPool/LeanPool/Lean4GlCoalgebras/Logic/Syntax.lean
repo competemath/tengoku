@@ -36,7 +36,7 @@ namespace Formula
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:70 "at" => atom
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-prefix:70 "na" => negAtom
+scoped prefix:70 "na" => negAtom
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:70 "□" => box
 /-- Auxiliary declaration used in the GL coalgebra development. -/
@@ -44,7 +44,7 @@ prefix:70 "◇" => diamond
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 infixr:6 "&" => and
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-infixr:6 "v" => or
+scoped infixr:6 "v" => or
 
 @[simp] instance instBot : Bot (Formula) where bot := Formula.bottom
 @[simp] instance instTop : Top (Formula) where top := Formula.top
@@ -63,9 +63,9 @@ infixr:6 "v" => or
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:50 "~" => Formula.neg
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-notation:55 φ:56 " ↣ " ψ:55 => (~ φ) v ψ
+scoped notation:55 φ:56 " ↣ " ψ:55 => (~ φ) v ψ
 /-- Auxiliary declaration used in the GL coalgebra development. -/
-notation:55 φ:56 " ⟷ " ψ:55 => (φ ↣ ψ) & (ψ ↣ φ)
+scoped notation:55 φ:56 " ⟷ " ψ:55 => (φ ↣ ψ) & (ψ ↣ φ)
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:50 " ⊡ " => fun φ ↦ φ & (□ φ)
 
@@ -219,6 +219,7 @@ lemma FL_mon {φ ψ : Formula} (ψ_sub_φ : ψ ∈ FL φ) : FL ψ ⊆ FL φ := b
     · exact Or.inr (FL_mon ψ_sub x_in)
 
 end Formula
+open scoped Lean4GlCoalgebras.Formula
 
 namespace Sequent
 
@@ -696,3 +697,4 @@ lemma Finset.sum_diff_singleton_lt {α : Type} [DecidableEq α] {A C : Finset α
             (by simp)
       · exact C_lt_B
 end Lean4GlCoalgebras
+-- Tengoku: 4 notation(s) of this module made scoped so they do not change other libraries (generated)

@@ -15,6 +15,8 @@ Also, those lemmas can be used to deepen the understanding of the weak function.
 -/
 
 @[expose] public section
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 
 /--
 @isnad1 id=weak.1h6v.s5.20fbc85fc3f3 from=translated src=- shape=ac3ef74a vocab=e16e3d7b

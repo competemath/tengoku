@@ -17,6 +17,8 @@ import Tengoku.LeanPool.LeanPool.MRiscX.AbstractSyntax.AbstractSyntax
 This module provides label resolution inside MRiscX Hoare syntax.
 -/
 
+local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
+
 public meta section
 open Lean Elab Term
 

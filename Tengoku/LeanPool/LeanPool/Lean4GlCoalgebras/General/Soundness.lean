@@ -12,6 +12,8 @@ public import Tengoku
 /-! ## Soundness of GL-proof system. -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 

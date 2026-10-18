@@ -17,6 +17,8 @@ plays rule applications `R` in order to construct a proof.
 -/
 
 @[expose] public section
+open scoped Lean4GlCoalgebras.Formula
+
 
 namespace Lean4GlCoalgebras
 
