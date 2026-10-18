@@ -214,6 +214,32 @@ class Modes(unittest.TestCase):
     def test_a_plain_module_passes_every_mode(self):
         self.assertEqual(self.modes(self.MOD), {"strict": True, "proposed": True, "wide": True})
 
+    def test_the_linter_options_that_only_silence_a_warning_are_allowed_and_the_ones_that_change_elaboration_are_not(self):
+        """2026-10-18, the OpenAI release's dependencies: `set_option linter.style.header false` (lana-formal-schemes) cost every module that carries it, 693 theorems of one library,
+        `linter.unusedSectionVars` 294 of lana-tate-curves-theta: a linter option silences a warning and changes nothing a theorem says. `hygiene`, `quotPrecheck`, `backward.defeqAttrib.useBackward`
+        and a library's own options (`leancert.trust`) change how text elaborates, and stay refused."""
+        for opt in (
+            "linter.style.header",
+            "linter.unusedSectionVars",
+            "linter.unusedTactic",
+            "linter.flexible",
+            "linter.unnecessarySimpa",
+            "linter.unnecessarySeqFocus",
+            "linter.unusedSimpArgs",
+            "linter.unreachableTactic",
+        ):
+            self.assertEqual(
+                self.modes(self.MOD + f"\nset_option {opt} false in\ntheorem t2 : True := trivial\n"),
+                {"strict": True, "proposed": True, "wide": True},
+                opt,
+            )
+        for opt in ("hygiene", "quotPrecheck", "backward.defeqAttrib.useBackward", "leancert.trust"):
+            self.assertEqual(
+                self.modes(self.MOD + f"\nset_option {opt} false in\ntheorem t2 : True := trivial\n"),
+                {"strict": False, "proposed": False, "wide": False},
+                opt,
+            )
+
     def test_a_column_zero_continuation_passes_every_mode(self):
         mod = self.MOD + "\ndef f (n : Nat) : Nat :=\nmatch n with\n| 0 => 1\n| k + 1 => f k\ntermination_by n\ndecreasing_by omega\n"
         self.assertEqual(self.modes(mod), {"strict": True, "proposed": True, "wide": True})
