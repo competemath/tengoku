@@ -12,9 +12,10 @@ git objects only:
               and not already a trusted record of the tree or a theorem of an intake bundle in it
   lint        every module passes the content allow-list (scripts/ci/allowlist.py: known-inert commands, attributes, options; no code that
               runs while compiling) after its header; the header may only import the tree (Tengoku.*) and Lean/Std/Init.
-              `--lint proposed` additionally allows notation commands (notation, infix, prefix, postfix, notation3, scoped, local);
-              `--lint wide` also allows the macro family (macro, macro_rules, syntax, declare_syntax_cat): they run in Lean's pure macro monad, which cannot reach IO,
-              and every word that does (unsafe, IO., run_cmd, #eval, elab, initialize, implemented_by, extern, native_decide, ...) stays refused wherever it appears.
+              `--lint proposed` additionally allows notation commands (notation, infix, prefix, postfix, notation3), `scoped` or `local` only: a global one changes how every
+              other library parses (2026-10-17: a global `prefix:80 "-"` broke `-(3 * x)` on the reals tree-wide);
+              `--lint wide` also allows the macro family (macro, macro_rules, syntax, declare_syntax_cat), `macro`/`syntax` `scoped` or `local` only: they run in Lean's pure macro
+              monad, which cannot reach IO, and every word that does (unsafe, IO., run_cmd, #eval, elab, initialize, implemented_by, extern, native_decide, ...) stays refused wherever it appears.
               In every mode a word at column 0 starts a command only if it is a command keyword of the tree's Lean (schemas/command-keywords.json): any other word
               continues the command above (termination_by, by, fun, a proof term) and Lean itself refuses it if it does not parse
   verdicts    the report says `"gate2_unjudged": []`: Gate 2 judged every module the bundle ships (the factory's claim, inside the attested archive)
@@ -41,7 +42,7 @@ import re
 import sys
 
 from _git import ROOT, blob, changed_files, fail, module_name, module_stem, pascal, run
-from allowlist import violations
+from allowlist import unscoped_violations, violations
 from bundle_tar import write_tar
 from lean_lex import code_only
 
@@ -267,6 +268,11 @@ for p in sorted(p for _, p in files if p.endswith(LEAN) and p != ALL):
         vs = [v for v in vs if not NOTATION_OK.search(v)]
     if lint_mode == "wide":
         vs = [v for v in vs if not MACRO_OK.search(v)]
+    if lint_mode in (
+        "proposed",
+        "wide",
+    ):  # what these modes allow, they allow `scoped` or `local` only: a global notation leaks into every other library (2026-10-17)
+        vs += unscoped_violations("\n".join(body), macro=lint_mode == "wide")
     for v in vs[:3]:
         errors.append(f"{p}: {v}")
 if total > MAX_BYTES:

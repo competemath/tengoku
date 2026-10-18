@@ -218,17 +218,79 @@ class Modes(unittest.TestCase):
         mod = self.MOD + "\ndef f (n : Nat) : Nat :=\nmatch n with\n| 0 => 1\n| k + 1 => f k\ntermination_by n\ndecreasing_by omega\n"
         self.assertEqual(self.modes(mod), {"strict": True, "proposed": True, "wide": True})
 
-    def test_notation_needs_proposed_or_wide(self):
-        self.assertEqual(self.modes(self.MOD + '\nnotation "ℓ" => 1\n'), {"strict": False, "proposed": True, "wide": True})
-        self.assertEqual(self.modes(self.MOD + '\ninfixl:65 " +\' " => Nat.add\n'), {"strict": False, "proposed": True, "wide": True})
-
-    def test_the_macro_family_needs_wide(self):
+    def test_notation_needs_proposed_or_wide_and_scoped_or_local(self):
         for text in (
-            '\nmacro "m" : term => `(1)\n',
-            '\nsyntax "m2" : term\nmacro_rules\n| `(m2) => `(2)\n',
+            '\nscoped notation "ℓ" => 1\n',
+            '\nlocal infixl:65 " +\' " => Nat.add\n',
+            '\n@[inherit_doc] scoped prefix:80 "-" => Nat.succ\n',
+            '\nscoped notation3 "∑ᵢ " x ", " f => f x\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": True, "wide": True}, text)
+
+    def test_a_global_notation_is_refused_in_every_mode(self):
+        """2026-10-17: lean-pool's `prefix:80 "-" => complement` (global) made `-(3 * x)` on ℝ fail in the whole tree, and the atoms of a global notation/syntax/macro became reserved tokens. A mode that
+        allows notation allows it `scoped` or `local` only."""
+        for text in (
+            '\nnotation "ℓ" => 1\n',
+            '\ninfixl:65 " +\' " => Nat.add\n',
+            '\nprefix:80 "-" => Nat.succ\n',
+            '\npostfix:max "!" => Nat.succ\n',
+            '\n@[inherit_doc] infixr:35 " ∧ " => And\n',  # attributes in front do not make it scoped
+            '\nopen Nat in notation "ℓ" => 1\n',  # nor does an `open … in`
+            '\nset_option linter.unusedVariables false in notation "ℓ" => 1\n',
+            '\nnotation3 "∑ᵢ " x ", " f => f x\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+
+    def test_the_macro_family_needs_wide_and_macro_and_syntax_need_scoped_or_local(self):
+        for text in (
+            '\nscoped macro "m" : term => `(1)\n',
+            '\nlocal syntax "m2" : term\nmacro_rules\n| `(m2) => `(2)\n',
             "\ndeclare_syntax_cat foo\n",
         ):
             self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": True}, text)
+        for text in (
+            '\nmacro "m" : term => `(1)\n',
+            '\nsyntax "m2" : term\nmacro_rules\n| `(m2) => `(2)\n',
+            '\n@[inherit_doc] syntax "m3" : term\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+
+    def test_a_word_that_is_not_a_command_is_not_refused_for_being_global(self):
+        # a name that ends in the keyword, a dotted name, a docstring and a string: none is a command, so proposed stays as it was for them
+        mod = (
+            self.MOD
+            + "\n/-- The notation `prefix` of a list. -/\ntheorem tp (l : List Nat) (h : List.prefix l = l) (g : isPrefix l = l) : List.postfix l = l := h\n"
+            + 'def s : String := "notation \\"x\\" => 1"\n'
+        )
+        self.assertEqual(self.modes(mod)["proposed"], True)
+
+    def test_a_global_command_in_the_middle_of_a_line_is_refused_in_every_mode(self):
+        """gitar on tengoku#615: Lean needs no line break between commands, so the gate reads every occurrence of the keyword, not the start of a line"""
+        for text in (
+            '\ndef a : Nat := 1 prefix:80 "-" => Nat.succ\n',
+            '\ntheorem t2 : True := trivial notation "ℓ" => 1\n',
+            '\nprivate infix:50 " ~ " => Nat.add\n',
+            '\nprotected notation "ℓ" => 1\n',
+            '\nnoncomputable postfix:max "!" => Nat.succ\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+        for text in ('\ndef a : Nat := 1 syntax "m3" : term\n', '\ndef b : Nat := 1 macro "m4" : term => `(1)\n'):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+
+    def test_the_queue_reads_the_middle_of_a_line_too(self):
+        for text in ('\ndef a : Nat := 1 prefix:80 "-" => Nat.succ\n', '\ndef b : Nat := 1 elab "x" : term => pure (Lean.mkNatLit 1)\n'):
+            r = self.repo()
+            self.bundle(r, self.MOD + text)
+            for mode in ("strict", "proposed", "wide"):
+                rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": mode})
+                self.assertNotEqual(rc, 0, f"{mode}: {text}")
+
+    def test_scoped_with_a_namespace_argument_is_scoped(self):
+        self.assertEqual(self.modes(self.MOD + '\nscoped[Fx] notation "ℓ" => 1\n'), {"strict": False, "proposed": True, "wide": True})
+
+    def test_the_importers_open_scoped_is_not_a_notation_command(self):
+        self.assertEqual(self.modes(self.MOD + "\nopen scoped Fx\n"), {"strict": True, "proposed": True, "wide": True})
 
     def test_what_runs_code_is_refused_in_every_mode(self):
         for text in (
@@ -265,9 +327,13 @@ class Modes(unittest.TestCase):
     def test_the_queues_content_lint_follows_the_mode(self):
         # (module text, the verdict of the queue's lint in strict, proposed, wide): notation from proposed on, the macro family only in wide, elab never
         for text, want in (
-            ('\nnotation "ℓ" => 1\n', (False, True, True)),
-            ('\nmacro "m" : term => `(1)\n', (False, False, True)),
-            ('\nsyntax "m2" : term\n', (False, False, True)),
+            ('\nscoped notation "ℓ" => 1\n', (False, True, True)),
+            ('\nlocal notation "ℓ" => 1\n', (False, True, True)),
+            ('\nnotation "ℓ" => 1\n', (False, False, False)),  # global: refused in every mode
+            ('\nscoped macro "m" : term => `(1)\n', (False, False, True)),
+            ('\nmacro "m" : term => `(1)\n', (False, False, False)),
+            ('\nscoped syntax "m2" : term\n', (False, False, True)),
+            ('\nsyntax "m2" : term\n', (False, False, False)),
             ('\nelab "x" : term => pure (Lean.mkNatLit 1)\n', (False, False, False)),
             ("\nelab_rules : term\n| `(x) => pure (Lean.mkNatLit 1)\n", (False, False, False)),
             ('\nscoped elab "x" : term => pure (Lean.mkNatLit 1)\n', (False, False, False)),
@@ -476,6 +542,71 @@ class NarrowedNotation(unittest.TestCase):
         )  # also touches a tool
         self.assertEqual(rc, 1, out)
         self.assertIn("Modal.lean: notation declarations", out)
+
+    def test_a_scoped_line_added_elsewhere_does_not_scope_a_later_added_notation(self):
+        """Gitar on tengoku#615: the added lines of a module were joined, so a lone `scoped` line added far above made a `notation` added far below look scoped. The command is judged against the
+        module as it stands (the line before it is the module's own), and counted when it is on an added line."""
+        before = 'theorem t : True := trivial\n\nnotation "a" => 1\n\ntheorem u : True := trivial\n'
+        after = "scoped\n" + before + '\nnotation "-" => evil\n'
+        manifest = {
+            "data/intake/lib/manifest.jsonl": "{}\n{}\n"
+        }  # the PR also touches the bundle's manifest: the module is the bundle's own, where the mode allows notation
+        for mode in ("proposed", "wide"):
+            rc, out = self.changed(
+                {"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after, **manifest}, env={"TENGOKU_INTAKE_LINT": mode}
+            )
+            self.assertEqual(rc, 1, f"{mode}: {out}")
+            self.assertIn("`notation` without `scoped` or `local`", out)
+        # the same PR with the second notation really scoped passes: only the added line is judged, the old global one is the tree's
+        rc, out = self.changed(
+            {"Tengoku/Lib/Mod.lean": before},
+            {"Tengoku/Lib/Mod.lean": before + '\nscoped notation "-" => evil\n', **manifest},
+            env={"TENGOKU_INTAKE_LINT": "proposed"},
+        )
+        self.assertEqual(rc, 0, out)
+
+    def test_deleting_the_scoped_line_in_front_of_an_unchanged_notation_makes_it_global(self):
+        """CodeRabbit on tengoku#615: Lean allows a line break between `scoped` and the command. Deleting the `scoped` line leaves the notation's own line untouched, but the module declares one more
+        global command than the base did."""
+        before = 'theorem t : True := trivial\n\nscoped\nnotation "q" => 1\n'
+        after = 'theorem t : True := trivial\n\nnotation "q" => 1\n'
+        for mode in (None, "proposed", "wide"):
+            env = {"TENGOKU_INTAKE_LINT": mode} if mode else None
+            rc, out = self.changed({"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after}, env=env)
+            self.assertEqual(rc, 1, f"{mode}: {out}")
+            self.assertIn("`notation` without `scoped` or `local`", out)
+
+    def test_a_global_notation_the_tree_already_has_is_not_a_new_one(self):
+        before = 'theorem t : True := trivial\n\nnotation "q" => 1\n\n-- old\n'
+        after = 'theorem t : True := trivial\n\nnotation "q" => 1\n\n-- new\ntheorem u : True := trivial\n'
+        rc, out = self.changed({"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after})
+        self.assertEqual(rc, 0, out)
+        rc, out = self.changed(
+            {"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after + 'notation "q" => 1\n'}
+        )  # the same text a second time is one more
+        self.assertEqual(rc, 1, out)
+
+    ET = "Tengoku/EquationalTheories/Asterix.lean"  # equational-theories has a corpus in schemas/sources.json: the generator rebuilds it, it is no intake bundle
+
+    def test_a_regeneration_of_a_generated_library_may_narrow_its_notation_the_same_way(self):
+        """2026-10-18: equational-theories (generated) keeps 11 global notation commands that scripts/generate.py now scopes (scripts/scope_notation.py). The regenerated modules are the old ones with
+        `scoped`/`local` in front of those lines, a promotion PR, and only that is exempt."""
+        scoped = self.GL.replace('prefix:80 "-"', 'scoped prefix:80 "-"').replace("end GL\n", "end GL\n\nopen scoped GL\n")
+        rc, out = self.changed({self.ET: self.GL}, {self.ET: scoped}, intake=False)
+        self.assertEqual(rc, 0, out)
+        for after in (
+            self.GL.replace('prefix:80 "-" => complement', 'scoped prefix:80 "-" => evil'),  # another right-hand side
+            self.GL + 'scoped notation "ℓ" => 1\n',  # a command nothing was removed for
+            self.GL.replace('prefix:80 "-"', 'prefix:80 "-"') + 'notation "ℓ" => 1\n',  # a global one
+        ):
+            rc, out = self.changed({self.ET: self.GL}, {self.ET: after}, intake=False)
+            self.assertEqual(rc, 1, f"{after}: {out}")
+            self.assertIn("notation declarations", out)
+        rc, out = self.changed(
+            {self.ET: self.GL}, {self.ET: scoped, "Tengoku/EquationalTheories/New.lean": "theorem n : True := trivial\n"}, intake=False
+        )  # also adds a module
+        self.assertEqual(rc, 1, out)
+        self.assertIn("Asterix.lean: notation declarations", out)
 
 
 if __name__ == "__main__":

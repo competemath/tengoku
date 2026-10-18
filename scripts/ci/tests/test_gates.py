@@ -886,6 +886,17 @@ class LintScope(unittest.TestCase):
 
 
 class RecordNames(unittest.TestCase):
+    def test_a_name_that_is_not_a_string_is_refused_not_a_crash(self):
+        """fuzz_records found `{"name": ["Known.thm"], ...}` in a staging file: `n in seen` raised TypeError (a list is unhashable). A malformed name is a refusal with a reason."""
+        for bad in (["Known.thm"], {"a": 1}, 5, None):
+            r = Repo()
+            r.append("data/staging/lib.jsonl", json.dumps({**GOOD, "name": bad}) + "\n")
+            r.commit("bad name")
+            rc, out = r.gate("validate_records.py")
+            self.assertEqual(rc, 1, repr(bad))
+            self.assertIn("not a Lean identifier", out)
+            self.assertNotIn("Traceback", out)
+
     def test_name_with_space_or_comma_fails(self):
         for bad in ["Selftest.has space", "Selftest.a,b"]:
             r = Repo()
@@ -1321,12 +1332,19 @@ class Intake(unittest.TestCase):
         self.assertNotEqual(rc, 0)
         self.assertIn("not the tree", out)
 
-    def test_notation_needs_the_proposed_lint(self):
+    def test_notation_needs_the_proposed_lint_and_scoped_or_local(self):
         r = self.repo()
-        self.bundle(r, mod=self.MOD + '\nnotation "ℓ" => 1\n')
+        self.bundle(r, mod=self.MOD + '\nscoped notation "ℓ" => 1\n')
         self.assertNotEqual(r.gate("intake_check.py")[0], 0)
         rc, out = r.gate("intake_check.py", "main", "pr", "--lint", "proposed")
         self.assertEqual(rc, 0, out)
+        # a global one is refused in every mode: it would change how every other library parses (2026-10-17)
+        r = self.repo()
+        self.bundle(r, mod=self.MOD + '\nnotation "ℓ" => 1\n')
+        for mode in ("strict", "proposed", "wide"):
+            rc, out = r.gate("intake_check.py", "main", "pr", "--lint", mode)
+            self.assertNotEqual(rc, 0, mode)
+        self.assertIn("without `scoped` or `local`", out)
 
     def test_the_manifest_must_name_a_module_of_the_pr_and_the_trees_toolchain(self):
         r = self.repo()
@@ -1394,21 +1412,21 @@ class Intake(unittest.TestCase):
 
     def test_the_queues_content_lint_follows_the_intake_lint_policy(self):
         r = self.repo()
-        self.bundle(r, mod=self.MOD + '\nnotation "ℓ" => 1\n')
+        self.bundle(r, mod=self.MOD + '\nscoped notation "ℓ" => 1\n')
         rc, out = r.gate("lint_banked.py")
         self.assertNotEqual(rc, 0)  # strict: a notation command is not allowed anywhere
         self.assertIn("notation", out)
         rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
         self.assertEqual(rc, 0, out)
         # a sibling whose name merely starts like the bundle's root file is not the bundle's
-        r.write("Tengoku/FxLib.leanExtra.lean", 'notation "ℓ" => 1\n')
+        r.write("Tengoku/FxLib.leanExtra.lean", 'scoped notation "ℓ" => 1\n')
         r.commit("a sibling of the root file")
         rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
         self.assertNotEqual(rc, 0)
         self.assertIn("Tengoku/FxLib.leanExtra.lean", out)
         r.git("reset", "-q", "--hard", "HEAD~1")
         # and only inside the bundle's own modules: a notation in any other module of the tree is still refused
-        r.write("Tengoku/Lib/Basic.lean", 'theorem Lib.old : 1 + 1 = 2 := rfl\nnotation "ℓ" => 1\n')
+        r.write("Tengoku/Lib/Basic.lean", 'theorem Lib.old : 1 + 1 = 2 := rfl\nscoped notation "ℓ" => 1\n')
         r.commit("a notation in an older library")
         rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": "proposed"})
         self.assertNotEqual(rc, 0)

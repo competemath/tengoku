@@ -14,10 +14,11 @@ import os
 import re
 import sys
 import tempfile
+from collections import Counter
 from pathlib import Path
 
 from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal, removed_lines, run
-from allowlist import violations
+from allowlist import unscoped_matches, unscoped_violations, violations
 from lean_lex import code_only
 from restructure_check import is_restructure
 
@@ -64,6 +65,8 @@ SET_OPTION = re.compile(r"set_option\s+([A-Za-z_][\w.]*)")
 # gets a `local` copy of a command that was made local. Neither is a new declaration: the text is the one the tree already has, in a narrower scope. 2026-10-17: tengoku#601
 # was ejected from the queue by "notation declarations" on 64 such modules. Only in a diff of that shape, only for a line the SAME module had as code, and only for a copy of a
 # command some module of the PR makes local (Gitar on tengoku#603: a comment line removed in one PR must not come back as code in the next).
+# The same holds for a REGENERATION of a generated library (scripts/generate.py scopes the notation of the modules it writes, scripts/scope_notation.py): the modules of a library the
+# generator rebuilds from its corpus (schemas/sources.json `corpora`), modified in place, with the same lines narrowed and nothing else.
 COMMAND_WORDS = "prefix|infixl|infixr|infix|postfix|notation3|notation|syntax|macro|elab"
 COMMAND = re.compile(
     rf"^[ \t]*(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|public|noncomputable)[ \t]+)*(?:(?:local|scoped)[ \t]+)?(?P<kw>{COMMAND_WORDS})(?![\w'.])"
@@ -89,8 +92,8 @@ def code_end(text: str) -> int:
     return len(text.rstrip())
 
 
-def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
-    """the diff is what classify.py calls a scope-fix PR: existing modules `Tengoku/<Library>/….lean` of a library that arrived as an intake bundle, modified in place, nothing else"""
+def narrowable_libraries(base: str) -> set[str]:
+    """the libraries whose modules a narrowing may edit in place: an intake bundle at the base (the scope-fix class) or a library the generator rebuilds from a corpus (a regeneration)"""
     intake = {
         pascal(m.group(1))
         for p in run("ls-tree", "-r", "--name-only", base, "data/intake", check=False).split(
@@ -98,8 +101,15 @@ def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
         )  # a base that is no revision (the fuzzers') has no intake libraries: no exemption
         if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))
     }
+    return intake | {pascal(lib) for lib in load_schema("sources.json").get("corpora", {})}
+
+
+def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
+    """the diff is what classify.py calls a scope-fix PR, or a regeneration of the same kind: existing modules `Tengoku/<Library>/….lean` of a library that arrived as an intake bundle
+    or that the generator rebuilds from its corpus, modified in place, nothing else"""
+    libraries = narrowable_libraries(base)
     return bool(files) and all(
-        st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)) and m.group(1) in intake for st, p in files
+        st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)) and m.group(1) in libraries for st, p in files
     )
 
 
@@ -158,7 +168,9 @@ def in_intake(p: str, intake: tuple[str, ...]) -> bool:
     return p in intake or any(x.endswith("/") and p.startswith(x) for x in intake)
 
 
-def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = False, macro_ok: bool = False) -> list[str]:
+def check_text(
+    label: str, text: str, allowed: set[str], notation_ok: bool = False, macro_ok: bool = False, module: bool = False
+) -> list[str]:
     out = []
     for re_, why in FORBIDDEN:
         if (why == NOTATION and notation_ok) or (why == MACRO and macro_ok):
@@ -220,12 +232,13 @@ def lint_module(
         # comments and strings first, THEN the import lines: a line `import X -/` inside a block comment closes it, and dropping it first would
         # turn the rest of the file into comment text (a `#eval` after it would go unread)
         code = code_only(raw.decode("utf-8", "replace"))
-        return check_text(
-            p,
-            "\n".join(ln for ln in code.split("\n") if not re.match(IMPORT_START, ln)),
-            allowed,
-            notation_ok=notation_ok,
-            macro_ok=macro_ok,
+        body = "\n".join(ln for ln in code.split("\n") if not re.match(IMPORT_START, ln))
+        # no module of the tree declares a GLOBAL notation or macro command, in any mode (the rules above read the start of a line; Lean needs no line break between commands)
+        return list(
+            dict.fromkeys(
+                check_text(p, body, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+                + [f"{p}: {v}" for v in unscoped_violations(body, macro=True)]
+            )
         )
     added_here = [
         (no, t) for no, t in added_lines(base, head, p) if not (narrowing and narrowing.hides(p, t))
@@ -234,14 +247,36 @@ def lint_module(
     if raw_head is not None:
         # The module is read whole and lexed like an added one, and only the lines the PR adds are judged, as code: an isnad tag moves the `-/` of a docstring to its own line, which makes the
         # docstring's last line an added line, and prose that starts with `prefix` or `notation` was refused as a notation command (isnad tag PR #438, 2026-10-11: "prefix length](hyp:Z,p,k) …").
-        code = code_only(raw_head.decode("utf-8", "replace")).split("\n")
+        head_text = raw_head.decode("utf-8", "replace")
+        code = code_only(head_text).split("\n")
         if len(code) == len(
-            raw_head.decode("utf-8", "replace").split("\n")
+            head_text.split("\n")
         ):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
             text = "\n".join(code[no - 1] for no, _ in added_here if no - 1 < len(code) and not re.match(IMPORT_START, code[no - 1]))
-            return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+            out = check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+            # a global command is judged against the module as it stands (the line before it is the module's own, never an added line that happens to come before it in the diff:
+            # Gitar on tengoku#615), and it counts when it is on an added line OR when the module has more global commands of that text than the base had: deleting the `scoped` line
+            # in front of an unchanged `notation` makes it global without touching its line (CodeRabbit on tengoku#615)
+            added_nos = {no for no, _ in added_here}
+            base_raw = blob(base, p)
+            base_text = base_raw.decode("utf-8", "replace") if base_raw is not None else ""
+            base_code = code_only(base_text).split("\n")
+            had = Counter(base_code[no - 1].strip() for no, _ in unscoped_matches(base_text, macro=True))
+            seen: Counter = Counter()
+            new_global = []
+            for no, v in unscoped_matches(head_text, macro=True):
+                key = code[no - 1].strip()
+                seen[key] += 1
+                if no in added_nos or seen[key] > had[key]:
+                    new_global.append(f"{p}: {v}")
+            return list(dict.fromkeys(out + new_global))
     text = "\n".join(t for _, t in added_here if not re.match(IMPORT_START, t))
-    return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+    return list(
+        dict.fromkeys(
+            check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+            + [f"{p}: {v}" for v in unscoped_violations(text, macro=True, same_line=True)]
+        )
+    )
 
 
 def checked_path(arg: str) -> Path:
