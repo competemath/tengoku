@@ -18,6 +18,7 @@ import Tengoku.Seed.Data.Fintype.Perm
 import Tengoku.Seed.Tactic.Linarith
 import Tengoku.Seed.Tactic.NormNum
 import Tengoku.EquationalTheories.Deps.Equations
+open scoped EquationalTheories.MemoFinOp
 
 set_option linter.all false
 
@@ -31,7 +32,7 @@ set_option synthInstance.maxSize 4000
 
 set_option warn.classDefReducibility false
 
-@[inherit_doc] infix:65 " ◇ " => Magma.op
+@[inherit_doc] scoped infix:65 " ◇ " => Magma.op
 
 -- [Emissary prelude] equations regenerated from the corpus's `equation N := law` declarations
 universe uEq
@@ -41,7 +42,7 @@ namespace MemoFinOp
 
 open Lean Meta Elab Term
 
-elab "memoFinOp" fn:term:arg :term <= expectedType? => do
+scoped elab "memoFinOp" fn:term:arg :term <= expectedType? => do
   let fn ← elabTermAndSynthesize fn expectedType?
   Term.synthesizeSyntheticMVarsNoPostponing
   if (← Term.logUnassignedUsingErrorInfos (← getMVars fn)) then throwAbortTerm
@@ -65,6 +66,7 @@ elab "memoFinOp" fn:term:arg :term <= expectedType? => do
   return mkApp2 (mkConst ``opOfTable) nE (.lit (.natVal table))
 
 end MemoFinOp
+open scoped EquationalTheories.MemoFinOp
 
 -- proof-side construction of the witnessing magma
 private def ofMatrix {n : Nat} [Inhabited (Fin n)]

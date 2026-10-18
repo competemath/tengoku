@@ -61,7 +61,7 @@ single `Nat`, which it queries using `/` and `%`. This should perform decenetly 
 code, and make a big difference when using kernel reduction (e.g. `by decide`) because efficient
 arrays are not available there.
 -/
-elab "memoFinOp" fn:term:arg :term <= expectedType? => do
+scoped elab "memoFinOp" fn:term:arg :term <= expectedType? => do
   let fn ← elabTermAndSynthesize fn expectedType?
   Term.synthesizeSyntheticMVarsNoPostponing
   if (← Term.logUnassignedUsingErrorInfos (← getMVars fn)) then throwAbortTerm
@@ -128,7 +128,7 @@ def parseData (data : String) : IO (List (List Nat)) := do
 `finOpTable "[[0,1],[1,0]"` returns a method to compute the operation encoded by a given table, in
 a method specifically intended to be efficient for large tables.
 -/
-elab "finOpTable" str:str :term => do
+scoped elab "finOpTable" str:str :term => do
   let matrix ← parseData str.getString
   guard <| matrix.length < 256
   guard <| matrix.all (·.length == matrix.length)

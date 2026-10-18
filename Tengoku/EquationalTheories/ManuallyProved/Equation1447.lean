@@ -49,7 +49,7 @@ include hnofix
 
 def square_roots (x : M) : Set M := { y : M | S y = x }
 
-notation "√" => square_roots
+scoped notation "√" => square_roots
 
 omit hnofix in
 

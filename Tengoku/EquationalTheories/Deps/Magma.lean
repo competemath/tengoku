@@ -19,7 +19,7 @@ class Magma (α : Type _) where
   /-- `a ◇ b` denotes a binary operation of `a` and `b`. -/
   op : α → α → α
 
-@[inherit_doc] infix:65 " ◇ " => Magma.op
+@[inherit_doc] scoped infix:65 " ◇ " => Magma.op
 
 /-- This instance is (only) available after writing `open MagmaToMul` -/
 scoped instance MagmaToMul.inst {α : Type _} [Magma α] : Mul α where

@@ -58,7 +58,7 @@ def mkEqNeSymm (h : Expr) : MetaM Expr := do
     return ← mkAppM ``Ne.symm #[h]
   throwError "Nope!"
 
-elab "superpose " eq1:term:arg eq2:term:arg : term <= typ => do
+scoped elab "superpose " eq1:term:arg eq2:term:arg : term <= typ => do
   let eq1 ← elabTerm eq1 none
   let eq1type ← inferType eq1
   let eq2 ← elabTerm eq2 none
@@ -175,7 +175,7 @@ partial def doResolution (t1 : Q(Prop)) (t2 : Q(Prop)) (e2 : Q($t2)) (target : Q
     doResolutionSingle t1 t2 e2 target can_resolution (fun x _ ↦ pure x)
 
 
-elab "resolve " eq1:term:arg eq2:term:arg : term <= typ => do
+scoped elab "resolve " eq1:term:arg eq2:term:arg : term <= typ => do
   let eq1 ← elabTerm eq1 none
   let eq1type ← inferType eq1
   let eq2 ← elabTerm eq2 none
@@ -191,7 +191,7 @@ elab "resolve " eq1:term:arg eq2:term:arg : term <= typ => do
     s.restore
     return .app (← doResolution e2 e1 eq1 typ true) eq2
 
-elab "subsumption " eq1:term:arg eq2:term:arg : tactic => do
+scoped elab "subsumption " eq1:term:arg eq2:term:arg : tactic => do
   Lean.Elab.Tactic.withMainContext do
     let goal ← Lean.Elab.Tactic.getMainGoal
     let goalType ← Lean.Elab.Tactic.getMainTarget
@@ -221,6 +221,6 @@ elab "subsumption " eq1:term:arg eq2:term:arg : tactic => do
         mvar.assumption
       goal.assign expr
 
-macro "mod_symm " ar:term:arg : term => `(by first | exact $ar | exact Eq.symm $ar | exact Ne.symm $ar)
+scoped macro "mod_symm " ar:term:arg : term => `(by first | exact $ar | exact Eq.symm $ar | exact Ne.symm $ar)
 
 end EquationalTheories

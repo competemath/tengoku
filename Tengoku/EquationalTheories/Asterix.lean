@@ -561,7 +561,7 @@ theorem closure_prop (f : PartialSolution G) : ∀ x y, closure f x (closure f y
 universe uEq
 
 open Lean in
-macro "Facts " G:term:max "[" sat:num,* "]" "[" ref:num,* "]" : term => do
+scoped macro "Facts " G:term:max "[" sat:num,* "]" "[" ref:num,* "]" : term => do
   let mkEq (isRef : Bool) (n : Lean.TSyntax `num) : Lean.MacroM (Lean.TSyntax `term) := do
     let nm := Lean.mkIdent (Name.mkSimple s!"Equation{n.getNat}")
     if isRef then `(¬ $nm $G) else `($nm $G)
