@@ -1,0 +1,1 @@
+-- FixedPointTheoremsLean4: a factory bundle (data/intake/fixed-point-theorems-lean4). This file only marks the library for Tengoku/All.lean.
