@@ -274,8 +274,10 @@ def scope_library(lib_dir: Path, lib_ns: str, external: set[str] = frozenset(), 
     for f, why in residual({f: t for f, t in new_text.items() if f not in reported}):
         report["unscopable"].append((f"{f.relative_to(root)}", why))
     if write:
-        for f in set(edits) | set(after):
-            f.write_text(new_text[f], encoding="utf-8")
+        for f in files:  # the paths the walk of `lib_dir` found, never a key of what was read
+            if f in edits or f in after:
+                with open(f, "w", encoding="utf-8") as out_file:
+                    out_file.write(new_text[f])
     return report
 
 
