@@ -167,7 +167,9 @@ def in_intake(p: str, intake: tuple[str, ...]) -> bool:
     return p in intake or any(x.endswith("/") and p.startswith(x) for x in intake)
 
 
-def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = False, macro_ok: bool = False) -> list[str]:
+def check_text(
+    label: str, text: str, allowed: set[str], notation_ok: bool = False, macro_ok: bool = False, module: bool = False
+) -> list[str]:
     out = []
     for re_, why in FORBIDDEN:
         if (why == NOTATION and notation_ok) or (why == MACRO and macro_ok):
@@ -177,8 +179,10 @@ def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = Fal
     for opt in SET_OPTION.findall(text):
         if opt not in allowed:
             out.append(f"{label}: set_option {opt} is not on the allowlist")
-    if notation_ok:  # the modes that allow notation (and the macro family) allow it `scoped` or `local` only: a global one leaks into every other library
-        out += [f"{label}: {v}" for v in unscoped_violations(text, macro=macro_ok)]
+    if module:
+        # No module of the tree declares a GLOBAL notation or macro command, in any mode: the modes that allow them allow `scoped`/`local` ones only (a global one leaks into every other library),
+        # and the rules above read the start of a line, where Lean needs no line break between commands (`def a := 1 prefix:80 "-" => f`)
+        out += [f"{label}: {v}" for v in unscoped_violations(text, macro=True)]
     return out
 
 
@@ -237,6 +241,7 @@ def lint_module(
             allowed,
             notation_ok=notation_ok,
             macro_ok=macro_ok,
+            module=True,
         )
     added_here = [
         (no, t) for no, t in added_lines(base, head, p) if not (narrowing and narrowing.hides(p, t))
@@ -250,9 +255,9 @@ def lint_module(
             raw_head.decode("utf-8", "replace").split("\n")
         ):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
             text = "\n".join(code[no - 1] for no, _ in added_here if no - 1 < len(code) and not re.match(IMPORT_START, code[no - 1]))
-            return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+            return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok, module=True)
     text = "\n".join(t for _, t in added_here if not re.match(IMPORT_START, t))
-    return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
+    return check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok, module=True)
 
 
 def checked_path(arg: str) -> Path:

@@ -17,8 +17,8 @@ The merge queue's own content lint (`scripts/ci/lint_banked.py`) reads the same 
 module of the tree parses, whatever library it is in: lean-pool's `prefix:80 "-" => complement` made `-(3 * x)` on the reals fail on every Leak service ("Ambiguous term"), and the atoms of
 a global notation, syntax or macro (`v`, `ω`, `na`) became reserved tokens of the whole tree (`fun v => …`: "unexpected token 'v'"). Where a mode allows these commands it allows them with
 `scoped` or `local` in front, and nothing else; the factory scopes them before it cuts a bundle (`scripts/bump/scope_rewrite.py`), and `scripts/generate.py` scopes the modules it writes
-(`scripts/scope_notation.py`: `scoped` in front of the command, `open scoped <Namespace>` where the library uses it, and an error when a command cannot be scoped, so a leak stops the generator
-instead of reaching the tree). The lint reads the command position (after attributes and an `open … in`), so a hypothesis called `prefix` is not a command. A PR that makes an existing
+(`scripts/scope_notation.py`: `scoped` in front of the command, `open scoped <Namespace>` where the library uses it, and an error when a command cannot be scoped or when the gate's own check still finds a global one afterwards,
+so a leak stops the generator instead of reaching the tree). The lint reads every occurrence of the keyword, not the start of a line (Lean needs no line break between commands: `def a := 1 prefix:80 "-" => f`, `private infix …`, `open Nat in notation …`); a keyword is a token of Lean's, never an identifier, so a word in code is a command, and `scoped`, `local` or Mathlib's `scoped[NS]` directly before it is what makes it safe. Names (`List.prefix`, `«prefix»`), comments and strings are not commands. A PR that makes an existing
 notation `scoped` or `local` (the scope-fix class, or a regeneration of a generated library: modules modified in place, the old line with the word in front, nothing else) is not a new declaration.
 
 In every mode a word at column 0 starts a command only if it is a command keyword of the tree's Lean (`schemas/command-keywords.json`, the leading tokens of

@@ -13,12 +13,15 @@ The same rules, for bundles that arrive from the factory, are in emissary's scri
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 NOTATION_KW = re.compile(
-    r"^(?P<pre>[ \t]*(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|public|noncomputable)[ \t]+)*)(?P<mod>(?:local|scoped)[ \t]+)?"
+    r"^(?P<pre>[ \t]*(?:(?:open|set_option|variable|omit|include)\b[^\n]*?[ \t]in[ \t]+)*"  # `open Nat in notation …` on one line: `open Nat in scoped notation …` is the same command
+    r"(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|public|noncomputable)[ \t]+)*)(?P<mod>(?:local|scoped)[ \t]+)?"
     r"(?P<kw>prefix|infixl|infixr|infix|postfix|notation3|notation|syntax|macro|elab)(?![\w'.])"
 )
+CHAR = re.compile(r"'(?:\\(?:x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|.)|[^\\'\n])'")  # a character literal: `'"'` does not open a string
 NAMESPACE = re.compile(r"^\s*(?:(?:public|noncomputable)\s+)*namespace\s+(\S+)\s*$")
 OPENER = re.compile(r"^\s*(?:namespace\s+\S+|(?:@\[expose\]\s+)?(?:(?:public|noncomputable)\s+)*section\b.*|mutual\s*)$")
 CLOSER = re.compile(r"^\s*end\b")
@@ -52,6 +55,14 @@ def mask(text: str) -> str:
             while j < n and text[j] != '"':
                 j += 2 if text[j] == "\\" else 1
             j = min(j + 1, n)
+            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
+            i = j
+        elif c == "'" and not (i and (text[i - 1].isalnum() or text[i - 1] in "_'!?.")) and (m := CHAR.match(text, i)):
+            out.append(" " * len(m.group()))  # `'"'` is a character, not the start of a string that would blank the rest of the file
+            i = m.end()
+        elif c == "«":
+            j = text.find("»", i)
+            j = n if j < 0 else j + 1
             out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
             i = j
         else:
@@ -267,20 +278,41 @@ def scope_library(lib_dir: Path, lib_ns: str, external: set[str] = frozenset(), 
             else:
                 edits.setdefault(f, []).append((c.line, c.kw_col, c.mode + " "))
                 report["scoped"].append(c.label(root))
+    new_text: dict[Path, str] = {}
+    for f in files:
+        lines = info[f][1][:]
+        for line, col, word in edits.get(f, []):
+            lines[line] = lines[line][:col] + word + lines[line][col:]
+        for k, extra in sorted(after.get(f, {}).items(), reverse=True):
+            lines[k + 1 : k + 1] = extra
+        new_text[f] = "\n".join(lines)
+    # Whatever this pass did not read is checked the way the gate checks it (scripts/ci/allowlist.py `unscoped_violations`: every occurrence of the keyword, not the start of a line):
+    # a command in the middle of a line, or one that no reading above found, is global still, and the generator stops on it instead of writing it
+    reported = {
+        c.path for cmds, *_ in info.values() for c in cmds if c.problem
+    }  # those commands are left global on purpose and already named
+    for f, why in residual({f: t for f, t in new_text.items() if f not in reported}):
+        report["unscopable"].append((f"{f.relative_to(root)}", why))
     if write:
         for f in set(edits) | set(after):
-            lines = info[f][1][:]
-            for line, col, word in edits.get(f, []):
-                lines[line] = lines[line][:col] + word + lines[line][col:]
-            for k, extra in sorted(after.get(f, {}).items(), reverse=True):
-                lines[k + 1 : k + 1] = extra
-            f.write_text("\n".join(lines), encoding="utf-8")
+            f.write_text(new_text[f], encoding="utf-8")
     return report
+
+
+def residual(texts: dict[Path, str]) -> list[tuple[Path, str]]:
+    """(module, why) for every module of `texts` that still has a notation, macro, syntax or elab command that is neither `scoped` nor `local`"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "ci"))
+    import allowlist
+
+    return [
+        (f, "a global command is left that this pass does not read: " + v)
+        for f, text in texts.items()
+        for v in allowlist.unscoped_violations(text, macro=True)
+    ]
 
 
 if __name__ == "__main__":
     import json
-    import sys
 
     d = Path(sys.argv[1])
     print(json.dumps(scope_library(d, d.name, write="--write" in sys.argv), indent=1))

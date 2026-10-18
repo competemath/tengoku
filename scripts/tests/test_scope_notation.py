@@ -107,6 +107,46 @@ class Commands(Library):
         self.assertEqual(self.text(lib, "A.lean"), 'namespace Lx\nnotation "q" => 1\nend Lx\n')
 
 
+class WhatTheGateReads(Library):
+    """gitar/coderabbit on tengoku#615: the gate reads every occurrence of the keyword (Lean needs no line break between commands), so the pass must read the same places or stop"""
+
+    def test_a_command_after_open_in_on_the_same_line_is_scoped_in_place(self):
+        lib = self.make(
+            {
+                "A.lean": 'namespace Lx\nopen Nat in notation "ℓ" => 1\nset_option linter.all false in prefix:80 "~" => f\nend Lx\n',
+                "B.lean": 'open Nat in notation "m" => 2\n',
+            }
+        )
+        r = self.run_pass(lib)
+        self.assertEqual(r["unscopable"], [])
+        self.assertEqual(
+            self.text(lib, "A.lean"),
+            'namespace Lx\nopen Nat in scoped notation "ℓ" => 1\nset_option linter.all false in scoped prefix:80 "~" => f\nend Lx\n',
+        )
+        self.assertEqual(self.text(lib, "B.lean"), 'open Nat in local notation "m" => 2\n')
+
+    def test_a_command_in_the_middle_of_a_line_stops_the_pass_instead_of_staying_global(self):
+        for src in (
+            'namespace Lx\ndef a := 1 prefix:80 "-" => f\nend Lx\n',
+            'theorem t : True := trivial notation "q" => 1\n',
+        ):
+            lib = self.make({"A.lean": src})
+            r = self.run_pass(lib)
+            self.assertEqual(len(r["unscopable"]), 1, src)
+            self.assertIn("a global command is left", r["unscopable"][0][1])
+
+    def test_a_character_literal_with_a_quote_does_not_blank_the_rest_of_the_file(self):
+        lib = self.make({"A.lean": 'def quote : Char := \'"\'\n\nnamespace Lx\nnotation "q" => 1\nend Lx\n'})
+        r = self.run_pass(lib)
+        self.assertEqual((len(r["scoped"]), r["unscopable"]), (1, []))
+        self.assertIn('scoped notation "q"', self.text(lib, "A.lean"))
+
+    def test_a_keyword_inside_an_escaped_name_or_a_string_is_not_a_command(self):
+        lib = self.make({"A.lean": 'def «notation» := "notation \\"x\\" => 1"\n'})
+        r = self.run_pass(lib)
+        self.assertEqual((r["scoped"], r["unscopable"]), ([], []))
+
+
 class SameFile(Library):
     def test_a_use_after_the_namespace_ends_gets_an_open_scoped_after_the_end(self):
         lib = self.make({"A.lean": 'namespace Lx\nnotation "q" => 1\nend Lx\n\ntheorem t : q = 1 := rfl\n'})

@@ -257,13 +257,37 @@ class Modes(unittest.TestCase):
             self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
 
     def test_a_word_that_is_not_a_command_is_not_refused_for_being_global(self):
-        # a hypothesis or a field called `prefix`/`postfix`/`macro`, a docstring, a string: not commands, so proposed stays as it was for them
+        # a name that ends in the keyword, a dotted name, a docstring and a string: none is a command, so proposed stays as it was for them
         mod = (
             self.MOD
-            + "\n/-- The notation `prefix` of a list. -/\ntheorem tp (l : List Nat) (prefix : List Nat) (h : prefix = l) : prefix = l := h\n"
+            + "\n/-- The notation `prefix` of a list. -/\ntheorem tp (l : List Nat) (h : List.prefix l = l) (g : isPrefix l = l) : List.postfix l = l := h\n"
             + 'def s : String := "notation \\"x\\" => 1"\n'
         )
         self.assertEqual(self.modes(mod)["proposed"], True)
+
+    def test_a_global_command_in_the_middle_of_a_line_is_refused_in_every_mode(self):
+        """gitar on tengoku#615: Lean needs no line break between commands, so the gate reads every occurrence of the keyword, not the start of a line"""
+        for text in (
+            '\ndef a : Nat := 1 prefix:80 "-" => Nat.succ\n',
+            '\ntheorem t2 : True := trivial notation "ℓ" => 1\n',
+            '\nprivate infix:50 " ~ " => Nat.add\n',
+            '\nprotected notation "ℓ" => 1\n',
+            '\nnoncomputable postfix:max "!" => Nat.succ\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+        for text in ('\ndef a : Nat := 1 syntax "m3" : term\n', '\ndef b : Nat := 1 macro "m4" : term => `(1)\n'):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+
+    def test_the_queue_reads_the_middle_of_a_line_too(self):
+        for text in ('\ndef a : Nat := 1 prefix:80 "-" => Nat.succ\n', '\ndef b : Nat := 1 elab "x" : term => pure (Lean.mkNatLit 1)\n'):
+            r = self.repo()
+            self.bundle(r, self.MOD + text)
+            for mode in ("strict", "proposed", "wide"):
+                rc, out = r.gate("lint_banked.py", env={"TENGOKU_INTAKE_LINT": mode})
+                self.assertNotEqual(rc, 0, f"{mode}: {text}")
+
+    def test_scoped_with_a_namespace_argument_is_scoped(self):
+        self.assertEqual(self.modes(self.MOD + '\nscoped[Fx] notation "ℓ" => 1\n'), {"strict": False, "proposed": True, "wide": True})
 
     def test_the_importers_open_scoped_is_not_a_notation_command(self):
         self.assertEqual(self.modes(self.MOD + "\nopen scoped Fx\n"), {"strict": True, "proposed": True, "wide": True})
