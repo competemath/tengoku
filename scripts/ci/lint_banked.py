@@ -17,7 +17,7 @@ import tempfile
 from pathlib import Path
 
 from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal, removed_lines, run
-from allowlist import violations
+from allowlist import unscoped_violations, violations
 from lean_lex import code_only
 from restructure_check import is_restructure
 
@@ -64,6 +64,8 @@ SET_OPTION = re.compile(r"set_option\s+([A-Za-z_][\w.]*)")
 # gets a `local` copy of a command that was made local. Neither is a new declaration: the text is the one the tree already has, in a narrower scope. 2026-10-17: tengoku#601
 # was ejected from the queue by "notation declarations" on 64 such modules. Only in a diff of that shape, only for a line the SAME module had as code, and only for a copy of a
 # command some module of the PR makes local (Gitar on tengoku#603: a comment line removed in one PR must not come back as code in the next).
+# The same holds for a REGENERATION of a generated library (scripts/generate.py scopes the notation of the modules it writes, scripts/scope_notation.py): the modules of a library the
+# generator rebuilds from its corpus (schemas/sources.json `corpora`), modified in place, with the same lines narrowed and nothing else.
 COMMAND_WORDS = "prefix|infixl|infixr|infix|postfix|notation3|notation|syntax|macro|elab"
 COMMAND = re.compile(
     rf"^[ \t]*(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|public|noncomputable)[ \t]+)*(?:(?:local|scoped)[ \t]+)?(?P<kw>{COMMAND_WORDS})(?![\w'.])"
@@ -89,8 +91,8 @@ def code_end(text: str) -> int:
     return len(text.rstrip())
 
 
-def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
-    """the diff is what classify.py calls a scope-fix PR: existing modules `Tengoku/<Library>/….lean` of a library that arrived as an intake bundle, modified in place, nothing else"""
+def narrowable_libraries(base: str) -> set[str]:
+    """the libraries whose modules a narrowing may edit in place: an intake bundle at the base (the scope-fix class) or a library the generator rebuilds from a corpus (a regeneration)"""
     intake = {
         pascal(m.group(1))
         for p in run("ls-tree", "-r", "--name-only", base, "data/intake", check=False).split(
@@ -98,8 +100,15 @@ def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
         )  # a base that is no revision (the fuzzers') has no intake libraries: no exemption
         if (m := re.fullmatch(r"data/intake/([^/]+)/manifest\.jsonl", p))
     }
+    return intake | {pascal(lib) for lib in load_schema("sources.json").get("corpora", {})}
+
+
+def scope_fix_shape(base: str, files: list[tuple[str, str]]) -> bool:
+    """the diff is what classify.py calls a scope-fix PR, or a regeneration of the same kind: existing modules `Tengoku/<Library>/….lean` of a library that arrived as an intake bundle
+    or that the generator rebuilds from its corpus, modified in place, nothing else"""
+    libraries = narrowable_libraries(base)
     return bool(files) and all(
-        st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)) and m.group(1) in intake for st, p in files
+        st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)) and m.group(1) in libraries for st, p in files
     )
 
 
@@ -168,6 +177,8 @@ def check_text(label: str, text: str, allowed: set[str], notation_ok: bool = Fal
     for opt in SET_OPTION.findall(text):
         if opt not in allowed:
             out.append(f"{label}: set_option {opt} is not on the allowlist")
+    if notation_ok:  # the modes that allow notation (and the macro family) allow it `scoped` or `local` only: a global one leaks into every other library
+        out += [f"{label}: {v}" for v in unscoped_violations(text, macro=macro_ok)]
     return out
 
 

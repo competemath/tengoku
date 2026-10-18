@@ -218,17 +218,55 @@ class Modes(unittest.TestCase):
         mod = self.MOD + "\ndef f (n : Nat) : Nat :=\nmatch n with\n| 0 => 1\n| k + 1 => f k\ntermination_by n\ndecreasing_by omega\n"
         self.assertEqual(self.modes(mod), {"strict": True, "proposed": True, "wide": True})
 
-    def test_notation_needs_proposed_or_wide(self):
-        self.assertEqual(self.modes(self.MOD + '\nnotation "ℓ" => 1\n'), {"strict": False, "proposed": True, "wide": True})
-        self.assertEqual(self.modes(self.MOD + '\ninfixl:65 " +\' " => Nat.add\n'), {"strict": False, "proposed": True, "wide": True})
-
-    def test_the_macro_family_needs_wide(self):
+    def test_notation_needs_proposed_or_wide_and_scoped_or_local(self):
         for text in (
-            '\nmacro "m" : term => `(1)\n',
-            '\nsyntax "m2" : term\nmacro_rules\n| `(m2) => `(2)\n',
+            '\nscoped notation "ℓ" => 1\n',
+            '\nlocal infixl:65 " +\' " => Nat.add\n',
+            '\n@[inherit_doc] scoped prefix:80 "-" => Nat.succ\n',
+            '\nscoped notation3 "∑ᵢ " x ", " f => f x\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": True, "wide": True}, text)
+
+    def test_a_global_notation_is_refused_in_every_mode(self):
+        """2026-10-17: lean-pool's `prefix:80 "-" => complement` (global) made `-(3 * x)` on ℝ fail in the whole tree, and the atoms of a global notation/syntax/macro became reserved tokens. A mode that
+        allows notation allows it `scoped` or `local` only."""
+        for text in (
+            '\nnotation "ℓ" => 1\n',
+            '\ninfixl:65 " +\' " => Nat.add\n',
+            '\nprefix:80 "-" => Nat.succ\n',
+            '\npostfix:max "!" => Nat.succ\n',
+            '\n@[inherit_doc] infixr:35 " ∧ " => And\n',  # attributes in front do not make it scoped
+            '\nopen Nat in notation "ℓ" => 1\n',  # nor does an `open … in`
+            '\nset_option linter.unusedVariables false in notation "ℓ" => 1\n',
+            '\nnotation3 "∑ᵢ " x ", " f => f x\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+
+    def test_the_macro_family_needs_wide_and_macro_and_syntax_need_scoped_or_local(self):
+        for text in (
+            '\nscoped macro "m" : term => `(1)\n',
+            '\nlocal syntax "m2" : term\nmacro_rules\n| `(m2) => `(2)\n',
             "\ndeclare_syntax_cat foo\n",
         ):
             self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": True}, text)
+        for text in (
+            '\nmacro "m" : term => `(1)\n',
+            '\nsyntax "m2" : term\nmacro_rules\n| `(m2) => `(2)\n',
+            '\n@[inherit_doc] syntax "m3" : term\n',
+        ):
+            self.assertEqual(self.modes(self.MOD + text), {"strict": False, "proposed": False, "wide": False}, text)
+
+    def test_a_word_that_is_not_a_command_is_not_refused_for_being_global(self):
+        # a hypothesis or a field called `prefix`/`postfix`/`macro`, a docstring, a string: not commands, so proposed stays as it was for them
+        mod = (
+            self.MOD
+            + "\n/-- The notation `prefix` of a list. -/\ntheorem tp (l : List Nat) (prefix : List Nat) (h : prefix = l) : prefix = l := h\n"
+            + 'def s : String := "notation \\"x\\" => 1"\n'
+        )
+        self.assertEqual(self.modes(mod)["proposed"], True)
+
+    def test_the_importers_open_scoped_is_not_a_notation_command(self):
+        self.assertEqual(self.modes(self.MOD + "\nopen scoped Fx\n"), {"strict": True, "proposed": True, "wide": True})
 
     def test_what_runs_code_is_refused_in_every_mode(self):
         for text in (
@@ -265,9 +303,13 @@ class Modes(unittest.TestCase):
     def test_the_queues_content_lint_follows_the_mode(self):
         # (module text, the verdict of the queue's lint in strict, proposed, wide): notation from proposed on, the macro family only in wide, elab never
         for text, want in (
-            ('\nnotation "ℓ" => 1\n', (False, True, True)),
-            ('\nmacro "m" : term => `(1)\n', (False, False, True)),
-            ('\nsyntax "m2" : term\n', (False, False, True)),
+            ('\nscoped notation "ℓ" => 1\n', (False, True, True)),
+            ('\nlocal notation "ℓ" => 1\n', (False, True, True)),
+            ('\nnotation "ℓ" => 1\n', (False, False, False)),  # global: refused in every mode
+            ('\nscoped macro "m" : term => `(1)\n', (False, False, True)),
+            ('\nmacro "m" : term => `(1)\n', (False, False, False)),
+            ('\nscoped syntax "m2" : term\n', (False, False, True)),
+            ('\nsyntax "m2" : term\n', (False, False, False)),
             ('\nelab "x" : term => pure (Lean.mkNatLit 1)\n', (False, False, False)),
             ("\nelab_rules : term\n| `(x) => pure (Lean.mkNatLit 1)\n", (False, False, False)),
             ('\nscoped elab "x" : term => pure (Lean.mkNatLit 1)\n', (False, False, False)),
@@ -476,6 +518,28 @@ class NarrowedNotation(unittest.TestCase):
         )  # also touches a tool
         self.assertEqual(rc, 1, out)
         self.assertIn("Modal.lean: notation declarations", out)
+
+    ET = "Tengoku/EquationalTheories/Asterix.lean"  # equational-theories has a corpus in schemas/sources.json: the generator rebuilds it, it is no intake bundle
+
+    def test_a_regeneration_of_a_generated_library_may_narrow_its_notation_the_same_way(self):
+        """2026-10-18: equational-theories (generated) keeps 11 global notation commands that scripts/generate.py now scopes (scripts/scope_notation.py). The regenerated modules are the old ones with
+        `scoped`/`local` in front of those lines, a promotion PR, and only that is exempt."""
+        scoped = self.GL.replace('prefix:80 "-"', 'scoped prefix:80 "-"').replace("end GL\n", "end GL\n\nopen scoped GL\n")
+        rc, out = self.changed({self.ET: self.GL}, {self.ET: scoped}, intake=False)
+        self.assertEqual(rc, 0, out)
+        for after in (
+            self.GL.replace('prefix:80 "-" => complement', 'scoped prefix:80 "-" => evil'),  # another right-hand side
+            self.GL + 'scoped notation "ℓ" => 1\n',  # a command nothing was removed for
+            self.GL.replace('prefix:80 "-"', 'prefix:80 "-"') + 'notation "ℓ" => 1\n',  # a global one
+        ):
+            rc, out = self.changed({self.ET: self.GL}, {self.ET: after}, intake=False)
+            self.assertEqual(rc, 1, f"{after}: {out}")
+            self.assertIn("notation declarations", out)
+        rc, out = self.changed(
+            {self.ET: self.GL}, {self.ET: scoped, "Tengoku/EquationalTheories/New.lean": "theorem n : True := trivial\n"}, intake=False
+        )  # also adds a module
+        self.assertEqual(rc, 1, out)
+        self.assertIn("Asterix.lean: notation declarations", out)
 
 
 if __name__ == "__main__":
