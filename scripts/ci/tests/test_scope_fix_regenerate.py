@@ -70,6 +70,27 @@ class Regenerate(unittest.TestCase):
         self.assertIn("--libraries other", generated)  # caught the way it always was
         self.assertNotIn("--libraries fx-lib", generated)
 
+    def test_a_group_of_another_shape_is_regenerated_whatever_it_edits_in_an_intake_library(self):
+        # Gitar on tengoku#613: the skip is for the scope-fix shape, not for every class that can carry a Tengoku/ path
+        for extra in (
+            (
+                "Tengoku/FxLib/Fx/Extra.lean",
+                "import Tengoku\n\ntheorem e : True := trivial\n",
+            ),  # a module ADDED (an extend or a promotion adds)
+            ("Tengoku/FxLib/NOTES.md", "a file that is no module\n"),
+            (
+                "data/staging/fx-lib.jsonl",
+                json.dumps({"name": "Fx.n", "library": "fx-lib"}) + "\n",
+            ),  # a promotion-shaped group: a record beside the edit
+        ):
+            r = self.repo()
+            r.write("Tengoku/FxLib/Fx/Basic.lean", BASIC.replace("prefix:80", "scoped prefix:80"))
+            r.write(*extra)
+            r.commit("a group that is not a scope-fix")
+            rc, out, generated = self.regenerated(r, ("fx-lib",))
+            self.assertEqual(rc, 0, out)
+            self.assertIn("--libraries fx-lib", generated, f"{extra[0]}: the library was not regenerated")
+
     def test_the_queue_still_builds_the_library_of_a_scope_fix(self):
         r = self.repo()
         r.write("Tengoku/FxLib/Fx/Basic.lean", BASIC.replace("prefix:80", "scoped prefix:80"))
