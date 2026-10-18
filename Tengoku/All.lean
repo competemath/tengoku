@@ -28,6 +28,7 @@ import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
 import Tengoku.Flt
 import Tengoku.Toric
+import Tengoku.LanaGenl
 import Tengoku.MiscYd
 import Tengoku.Vcvio
 import Tengoku.Causalean

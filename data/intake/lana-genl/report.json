@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "4c92485c5e2a8d1ce84594bff1351848e06b277f7afbf5a2e6de37870b2a5c20",
+ "gate2_unjudged": [],
+ "library": "lana-genl",
+ "lint_mode": "proposed",
+ "modules": 6,
+ "part": 1,
+ "theorems": 42
+}
