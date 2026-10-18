@@ -1081,7 +1081,7 @@
     },
     "openai-math": {
       "repo": "https://github.com/openai/math",
-      "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "commit": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
       "path": "lean",
       "roots": [
         "OAI",
