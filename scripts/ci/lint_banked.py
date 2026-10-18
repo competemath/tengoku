@@ -14,6 +14,7 @@ import os
 import re
 import sys
 import tempfile
+from collections import Counter
 from pathlib import Path
 
 from _git import added_lines, blob, changed_files, fail, load_schema, match, pascal, removed_lines, run
@@ -253,10 +254,22 @@ def lint_module(
         ):  # the lexer keeps every line break; if it ever did not, the lines would not line up and the old reading stands
             text = "\n".join(code[no - 1] for no, _ in added_here if no - 1 < len(code) and not re.match(IMPORT_START, code[no - 1]))
             out = check_text(p, text, allowed, notation_ok=notation_ok, macro_ok=macro_ok)
-            # a global command is judged against the module as it stands, and counted when it is on an added line: the `scoped` in front of it is the module's own line before it, never
-            # an added line that happens to come before it in the diff (Gitar on tengoku#615: a lone `scoped` line added far above made a later `notation` look scoped)
+            # a global command is judged against the module as it stands (the line before it is the module's own, never an added line that happens to come before it in the diff:
+            # Gitar on tengoku#615), and it counts when it is on an added line OR when the module has more global commands of that text than the base had: deleting the `scoped` line
+            # in front of an unchanged `notation` makes it global without touching its line (CodeRabbit on tengoku#615)
             added_nos = {no for no, _ in added_here}
-            return list(dict.fromkeys(out + [f"{p}: {v}" for no, v in unscoped_matches(head_text, macro=True) if no in added_nos]))
+            base_raw = blob(base, p)
+            base_text = base_raw.decode("utf-8", "replace") if base_raw is not None else ""
+            base_code = code_only(base_text).split("\n")
+            had = Counter(base_code[no - 1].strip() for no, _ in unscoped_matches(base_text, macro=True))
+            seen: Counter = Counter()
+            new_global = []
+            for no, v in unscoped_matches(head_text, macro=True):
+                key = code[no - 1].strip()
+                seen[key] += 1
+                if no in added_nos or seen[key] > had[key]:
+                    new_global.append(f"{p}: {v}")
+            return list(dict.fromkeys(out + new_global))
     text = "\n".join(t for _, t in added_here if not re.match(IMPORT_START, t))
     return list(
         dict.fromkeys(

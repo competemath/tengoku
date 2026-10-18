@@ -565,6 +565,27 @@ class NarrowedNotation(unittest.TestCase):
         )
         self.assertEqual(rc, 0, out)
 
+    def test_deleting_the_scoped_line_in_front_of_an_unchanged_notation_makes_it_global(self):
+        """CodeRabbit on tengoku#615: Lean allows a line break between `scoped` and the command. Deleting the `scoped` line leaves the notation's own line untouched, but the module declares one more
+        global command than the base did."""
+        before = 'theorem t : True := trivial\n\nscoped\nnotation "q" => 1\n'
+        after = 'theorem t : True := trivial\n\nnotation "q" => 1\n'
+        for mode in (None, "proposed", "wide"):
+            env = {"TENGOKU_INTAKE_LINT": mode} if mode else None
+            rc, out = self.changed({"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after}, env=env)
+            self.assertEqual(rc, 1, f"{mode}: {out}")
+            self.assertIn("`notation` without `scoped` or `local`", out)
+
+    def test_a_global_notation_the_tree_already_has_is_not_a_new_one(self):
+        before = 'theorem t : True := trivial\n\nnotation "q" => 1\n\n-- old\n'
+        after = 'theorem t : True := trivial\n\nnotation "q" => 1\n\n-- new\ntheorem u : True := trivial\n'
+        rc, out = self.changed({"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after})
+        self.assertEqual(rc, 0, out)
+        rc, out = self.changed(
+            {"Tengoku/Lib/Mod.lean": before}, {"Tengoku/Lib/Mod.lean": after + 'notation "q" => 1\n'}
+        )  # the same text a second time is one more
+        self.assertEqual(rc, 1, out)
+
     ET = "Tengoku/EquationalTheories/Asterix.lean"  # equational-theories has a corpus in schemas/sources.json: the generator rebuilds it, it is no intake bundle
 
     def test_a_regeneration_of_a_generated_library_may_narrow_its_notation_the_same_way(self):
