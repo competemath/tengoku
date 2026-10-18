@@ -886,6 +886,17 @@ class LintScope(unittest.TestCase):
 
 
 class RecordNames(unittest.TestCase):
+    def test_a_name_that_is_not_a_string_is_refused_not_a_crash(self):
+        """fuzz_records found `{"name": ["Known.thm"], ...}` in a staging file: `n in seen` raised TypeError (a list is unhashable). A malformed name is a refusal with a reason."""
+        for bad in (["Known.thm"], {"a": 1}, 5, None):
+            r = Repo()
+            r.append("data/staging/lib.jsonl", json.dumps({**GOOD, "name": bad}) + "\n")
+            r.commit("bad name")
+            rc, out = r.gate("validate_records.py")
+            self.assertEqual(rc, 1, repr(bad))
+            self.assertIn("not a Lean identifier", out)
+            self.assertNotIn("Traceback", out)
+
     def test_name_with_space_or_comma_fails(self):
         for bad in ["Selftest.has space", "Selftest.a,b"]:
             r = Repo()
