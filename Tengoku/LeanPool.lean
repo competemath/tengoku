@@ -3491,3 +3491,8 @@ import Tengoku.LeanPool.LeanPool.RlTheoryInLean.MeasureTheory.Function.L1Space.I
 import Tengoku.LeanPool.LeanPool.VirasoroProject.ToMathlib.Topology.Algebra.Module.LinearMap.Defs
 import Tengoku.LeanPool.LeanPool.ZhangYeungInequality.PFR.Mathlib.MeasureTheory.Measure.Prod
 import Tengoku.LeanPool.LeanPool.ZhangYeungInequality.PFR.Mathlib.MeasureTheory.Measure.Real
+import Tengoku.LeanPool.LeanPool.Erdos1196.Preliminaries
+import Tengoku.LeanPool.LeanPool.FltRegular.CaseI.Statement
+import Tengoku.LeanPool.LeanPool.FltRegular.NumberTheory.Cyclotomic.CaseI
+import Tengoku.LeanPool.LeanPool.FltRegular.NumberTheory.Cyclotomic.UnitLemmas
+import Tengoku.LeanPool.LeanPool.LeanModularForms.Modularforms.ResToImagAxis
