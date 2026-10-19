@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "cb951de2187008d8a98441f7de6806c804b73a2e2f9166da4b16744f6a4cd0fe",
+ "gate2_unjudged": [],
+ "library": "lana-oka",
+ "lint_mode": "proposed",
+ "modules": 161,
+ "part": 1,
+ "theorems": 1484
+}

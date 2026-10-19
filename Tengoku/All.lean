@@ -62,6 +62,7 @@ import Tengoku.Formalbook
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
 import Tengoku.MeanFourier
+import Tengoku.LanaOka
 import Tengoku.EquationalTheories
 import Tengoku.ForbiddenMatrix
 import Tengoku.FormalMath
