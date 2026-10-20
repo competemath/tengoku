@@ -595,3 +595,16 @@ import Tengoku.NavierStokesEuler.NavierStokes.R3TimeLocalization
 import Tengoku.NavierStokesEuler.NavierStokes.R3UniformBounds
 import Tengoku.NavierStokesEuler.NavierStokes.R3WeakPressure
 import Tengoku.NavierStokesEuler.NavierStokes.R3WeightedLp
+import Tengoku.NavierStokesEuler.Euler.BoundedEvaluationDifferentiation
+import Tengoku.NavierStokesEuler.Euler.ClassicalBridge
+import Tengoku.NavierStokesEuler.Euler.ClosedIntervalDerivativeExtension
+import Tengoku.NavierStokesEuler.Euler.CompactParameterIntegral
+import Tengoku.NavierStokesEuler.Euler.CompactSmoothBounds
+import Tengoku.NavierStokesEuler.Euler.CompactSupportBoundedPath
+import Tengoku.NavierStokesEuler.Euler.ComparatorTimeShift
+import Tengoku.NavierStokesEuler.Euler.InitialDataBridge
+import Tengoku.NavierStokesEuler.Euler.LocalFlowTrap
+import Tengoku.NavierStokesEuler.Euler.PolynomialCostMajorant
+import Tengoku.NavierStokesEuler.Euler.SolutionDefinitions
+import Tengoku.NavierStokesEuler.Euler.VorticityTransport
+import Tengoku.NavierStokesEuler.Euler.WeakTimeContinuity
