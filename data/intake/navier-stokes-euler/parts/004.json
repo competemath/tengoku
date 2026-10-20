@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "436eb65ed8b4a93246879a5132fe6ac98dcbb1a7eaea5a87752f6076b6ea9948",
+ "gate2_unjudged": [],
+ "library": "navier-stokes-euler",
+ "lint_mode": "proposed",
+ "modules": 13,
+ "part": 4,
+ "theorems": 37
+}
