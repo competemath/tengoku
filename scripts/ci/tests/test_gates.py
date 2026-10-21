@@ -1684,7 +1684,8 @@ class QueuePlacement(unittest.TestCase):
         self.assertEqual(sfx, "__archon_firstproof_p6")
         renamed = f"namespace Problem6\ntheorem barrier_gap_pos{sfx} : True := trivial\nend Problem6\n"
         self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed], sfx), [])  # the last component renamed
-        self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed]), ["Problem6.barrier_gap_pos"])  # without the suffix the rename is not known (the old behaviour)
+        # without the suffix the rename is not known (the old behaviour)
+        self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed]), ["Problem6.barrier_gap_pos"])
         parent = f"namespace Parent{sfx}\ntheorem child : True := trivial\nend Parent{sfx}\n"
         self.assertEqual(unplaced({"Parent.child"}, [parent], sfx), [])  # a name below a renamed parent
         wrapped = f"namespace Lib\nnamespace Problem6\ntheorem x{sfx} : True := trivial\nend Problem6\nend Lib\n"
@@ -1693,6 +1694,13 @@ class QueuePlacement(unittest.TestCase):
         self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed], clash_suffix("other-lib")), ["Problem6.barrier_gap_pos"])
         self.assertEqual(unplaced({"Problem6.other"}, [renamed], sfx), ["Problem6.other"])
         self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [], sfx), ["Problem6.barrier_gap_pos"])
+        # the suffix is taken out at the end of a component only: `foo__fltextra` is not `foo` renamed for `flt`, and a name that carries the suffix twice loses one
+        flt = clash_suffix("flt")
+        self.assertEqual(unplaced({"fooextra"}, [f"theorem foo{flt}extra : True := trivial\n"], flt), ["fooextra"])
+        self.assertEqual(unplaced({"foo"}, [f"theorem foo{flt}extra : True := trivial\n"], flt), ["foo"])
+        twice = f"namespace Parent{flt}{flt}\ntheorem child : True := trivial\nend Parent{flt}{flt}\n"
+        self.assertEqual(unplaced({"Parent.child"}, [twice], flt), ["Parent.child"])
+        self.assertEqual(unplaced({f"Parent{flt}.child"}, [twice], flt), [])
 
     def test_the_suffix_is_the_generators(self):
         sys.path.insert(0, str(CI.parent))  # scripts/generate.py
