@@ -1675,6 +1675,33 @@ class QueuePlacement(unittest.TestCase):
         ncs = "namespace A\nnoncomputable section\ntheorem n : True := trivial\nend\ntheorem after2 : True := trivial\nend A\n"
         self.assertEqual(unplaced({"A.n", "A.after2"}, [ncs]), [])
 
+    def test_a_record_the_generator_renamed_for_a_clash_is_placed(self):
+        """The generator renames a record that another library declares (`clash_suffix`), and the record keeps the name it was banked under. archon-firstproof-p6, 2026-10-21: 16 renamed records were
+        'in no module the queue compiles' and the group was ejected for a rename the generator itself had made."""
+        from _git import clash_suffix, unplaced
+
+        sfx = clash_suffix("archon-firstproof-p6")
+        self.assertEqual(sfx, "__archon_firstproof_p6")
+        renamed = f"namespace Problem6\ntheorem barrier_gap_pos{sfx} : True := trivial\nend Problem6\n"
+        self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed], sfx), [])  # the last component renamed
+        self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed]), ["Problem6.barrier_gap_pos"])  # without the suffix the rename is not known (the old behaviour)
+        parent = f"namespace Parent{sfx}\ntheorem child : True := trivial\nend Parent{sfx}\n"
+        self.assertEqual(unplaced({"Parent.child"}, [parent], sfx), [])  # a name below a renamed parent
+        wrapped = f"namespace Lib\nnamespace Problem6\ntheorem x{sfx} : True := trivial\nend Problem6\nend Lib\n"
+        self.assertEqual(unplaced({"Problem6.x"}, [wrapped], sfx), [])  # in a library namespace too
+        # another library's suffix, a different name, or a record that is simply missing is still unplaced
+        self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [renamed], clash_suffix("other-lib")), ["Problem6.barrier_gap_pos"])
+        self.assertEqual(unplaced({"Problem6.other"}, [renamed], sfx), ["Problem6.other"])
+        self.assertEqual(unplaced({"Problem6.barrier_gap_pos"}, [], sfx), ["Problem6.barrier_gap_pos"])
+
+    def test_the_suffix_is_the_generators(self):
+        sys.path.insert(0, str(CI.parent))  # scripts/generate.py
+        import generate
+        from _git import clash_suffix
+
+        for lib in ("archon-firstproof-p6", "flt", "a.b c", "Équational-theories"):
+            self.assertEqual(clash_suffix(lib), generate.clash_suffix(lib))
+
     def test_a_garbled_record_is_left_out_like_the_generator_does(self):
         from _git import garbled
 
