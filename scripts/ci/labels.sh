@@ -14,6 +14,7 @@ label intake    1d76db "Bot: a verified library bundle from the translation fact
 label extend    1d76db "Bot: the next part of a library that arrived in parts (more modules, appended manifest, same checks)"
 label scope-fix 1d76db "Bot: a merged library's global instances/simp lemmas made local (checked line by line)"
 label tag 0e8a16 "Bot: isnad tags written into existing modules (nothing else changes; the queue recomputes each tag)"
+label studied 1d76db "Bot: theorems that Leak runs proved and rated four stars or more, re-derived and bundled by the memory intake (one code owner, or two independent contributors, approve)"
 label raze d93f0b "Takes modules of an intake library out of the tree, with their dependents (a code owner reviews it)"
 label restructure 1d76db "Bot: the seed moved into Tengoku/Seed/, recomputed from the base by scripts/restructure.py"
 label tooling   1d76db "Scripts, workflows, schemas, build files"
