@@ -21,6 +21,7 @@
 /Tengoku/All.lean         # a library's first part adds its line here: no owner; the gate (classify.py, intake_check.py) is what stands between a PR and this file
 # What the bots and the lane write, and the documents: no owner (the tests below say which paths).
 /data/intake/
+/data/studied/
 /data/staging/
 /data/tentative/
 /data/stats.json
