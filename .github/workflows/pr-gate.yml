@@ -235,7 +235,7 @@ jobs:
         run: |
           git init -q .
           git remote add origin "https://github.com/$GITHUB_REPOSITORY"
-          git fetch -q --no-tags --filter=blob:none origin "+$SCRIPTS:refs/remotes/origin/scripts"
+          git fetch -q --no-tags --filter=blob:none origin "+$SCRIPTS:refs/remotes/origin/scripts" "$BASE"
           git checkout -q --detach origin/scripts
       - name: approval (advisory here)
         env: { GH_TOKEN: "${{ github.token }}", PR: "${{ github.event.pull_request.number }}" }
