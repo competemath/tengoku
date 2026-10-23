@@ -1401,6 +1401,23 @@ class Intake(unittest.TestCase):
         with tarfile.open(tar) as t:
             self.assertEqual(t.extractfile("Tengoku/FxLib/Fx/Basic.lean").read(), self.MOD.replace("\n", "\r\n").encode())
 
+    def test_the_archive_is_the_factorys_raw_bytes_until_the_isnad_switch_is_on_then_the_canonical_form(self):
+        """CodeRabbit on tengoku#649: the gate canonicalised every module while the factory still archived the bytes it wrote, so a module with a one-line docstring
+        (`/-- Words. -/` is `/-- Words.-/` in the canonical form) failed attestation the day the lane merged. The canonical form belongs to TENGOKU_ISNAD_REQUIRED=1."""
+        mod = "import Tengoku\n\nnamespace Fx\n\n/-- Words. -/\ntheorem good : 1 + 1 = 2 := rfl\n\nend Fx\n"
+        sys.path.insert(0, str(CI.parent))
+        import isnad_tag as tg
+
+        self.assertNotEqual(tg.canonical_text(mod), mod)  # the module is one the two forms disagree on
+        for env, want in (({}, mod), ({"TENGOKU_ISNAD_REQUIRED": "1"}, tg.canonical_text(mod)), ({"TENGOKU_ISNAD_REQUIRED": "0"}, mod)):
+            r = self.repo()
+            self.bundle(r, mod=mod)
+            tar = Path(tempfile.mkdtemp()) / "bundle.tar"
+            rc, out = r.gate("intake_check.py", "main", "pr", "--tar", str(tar), env=env)
+            self.assertEqual(rc, 0, out)
+            with tarfile.open(tar) as t:
+                self.assertEqual(t.extractfile("Tengoku/FxLib/Fx/Basic.lean").read().decode(), want, env)
+
     def test_a_module_that_is_not_utf8_fails_cleanly(self):
         r = self.repo()
         self.bundle(r)

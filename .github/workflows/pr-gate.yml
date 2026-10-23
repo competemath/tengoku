@@ -168,7 +168,7 @@ jobs:
       - name: The PR's commits, as data (the checks are main's)
         run: git fetch -q --no-tags --filter=blob:none origin "+$PR_REF:refs/remotes/origin/pr-head" && git cat-file -e "$HEAD^{commit}"
       - name: intake checks
-        env: { LINT: "${{ vars.TENGOKU_INTAKE_LINT || 'strict' }}" }
+        env: { LINT: "${{ vars.TENGOKU_INTAKE_LINT || 'strict' }}", TENGOKU_ISNAD_REQUIRED: "${{ vars.TENGOKU_ISNAD_REQUIRED }}" }
         run: python3 scripts/ci/intake_check.py "$BASE" "$HEAD" --lint "$LINT" --tar "$RUNNER_TEMP/bundle.tar"
       # Born tagged (docs/isnad.md): once the repository variable TENGOKU_ISNAD_REQUIRED is 1 an intake PR carries its isnad tags, written into its branch by the autotag workflows;
       # until then this step passes at once. The merge queue recomputes every tag from the build (scripts/ci/tag_verify.py).

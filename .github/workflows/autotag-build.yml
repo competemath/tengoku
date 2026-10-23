@@ -6,7 +6,8 @@ name: autotag-build
 #
 # It runs only for a pull request from a branch of this repository, opened by one of the lane's Apps (the repository variable AUTOTAG_ACTORS; the default names the studied lane's
 # and the intake lane's), and only after the lane's own gate (the allow-list and the shape rules) passed on the PR with the tags pending: the PR's modules are elaborated here before
-# anyone approved them, which only those content rules make safe. One PR at a time: a tag build is a build of the tree.
+# anyone approved them, which only those content rules make safe. One build per PR: a newer push to a PR replaces its older build (the artifact of an older head would be refused
+# anyway), and a build of one PR never cancels the build waiting for another.
 on:
   pull_request:
     types: [opened, reopened, synchronize]
@@ -14,8 +15,8 @@ on:
 permissions: {}
 
 concurrency:
-  group: autotag-build
-  cancel-in-progress: false
+  group: autotag-build-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 defaults:
   run:
@@ -83,10 +84,14 @@ jobs:
           echo "a620ff1641616222c8d37c54845492004bb84d6877cdbc944dd65c1aa685bf53  elan-init.sh" | sha256sum -c -
           sh elan-init.sh -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: The compiled tree (the attested cache) and the PR's modules on top of it
+      - name: The compiled tree (the attested cache)
         if: steps.plan.outputs.any == 'true'
         env: { GH_TOKEN: "${{ github.token }}" }
-        run: scripts/cache.sh get 2>&1 | tail -3 && lake build Tengoku.All 2>&1 | tail -3
+        run: scripts/cache.sh get 2>&1 | tail -3
+      # the PR's modules are elaborated here: no token in this step's environment
+      - name: The PR's modules on top of it
+        if: steps.plan.outputs.any == 'true'
+        run: lake build Tengoku.All 2>&1 | tail -3
       - name: Tag the PR's modules
         if: steps.plan.outputs.any == 'true'
         run: |

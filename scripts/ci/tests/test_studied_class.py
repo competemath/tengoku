@@ -397,6 +397,18 @@ class Studied(unittest.TestCase):
                 "import Tengoku.Seed.Basic\nnamespace Elsewhere\nnamespace {m}\ntheorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\nend {m}\nend Elsewhere\n",
                 "inside exactly one `namespace",
             ),
+            "an indented namespace": (
+                "import Tengoku.Seed.Basic\nnamespace {m}\n  namespace Elsewhere\n  theorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n    omega\n  end Elsewhere\nend {m}\n",
+                "inside exactly one `namespace",
+            ),
+            "a section": (
+                "import Tengoku.Seed.Basic\nnamespace {m}\nsection\ntheorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\nend\nend {m}\n",
+                "inside exactly one `namespace",
+            ),
+            "a _root_ name": (
+                "import Tengoku.Seed.Basic\nnamespace {m}\ntheorem _root_.Nat.lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\nend {m}\n",
+                "`_root_` would declare a name outside",
+            ),
             "not closed": (
                 "import Tengoku.Seed.Basic\nnamespace {m}\ntheorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\n",
                 "the last line must be `end",

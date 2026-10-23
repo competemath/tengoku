@@ -307,5 +307,54 @@ class Plan(unittest.TestCase):
         self.assertEqual(self.run_plan(r)["lane"], "")
 
 
+class Workflows(unittest.TestCase):
+    """What CodeRabbit and Gitar found in the two workflows of tengoku#649 (the half that holds the bot's token is main's code, so these are the only rehearsal it gets off main)."""
+
+    @staticmethod
+    def load(name):
+        import yaml
+
+        return yaml.safe_load((TREE / ".github" / "workflows" / name).read_text(encoding="utf-8"))
+
+    def test_a_build_is_per_pr_and_a_push_per_branch_so_one_pr_never_cancels_anothers(self):
+        build, push = self.load("autotag-build.yml"), self.load("autotag-push.yml")
+        self.assertIn("github.event.pull_request.number", build["concurrency"]["group"])
+        self.assertIn("github.event.workflow_run.head_branch", push["concurrency"]["group"])
+        self.assertFalse(push["concurrency"]["cancel-in-progress"], "a push in flight is never cancelled")
+
+    def test_the_push_runs_only_for_this_repositorys_own_runs(self):
+        cond = self.load("autotag-push.yml")["jobs"]["push"]["if"]
+        self.assertIn("github.event.workflow_run.head_repository.full_name == github.repository", cond)
+
+    def test_the_artifact_is_data_its_pr_and_head_must_be_the_runs_own(self):
+        job = self.load("autotag-push.yml")["jobs"]["push"]
+        step = next(x for x in job["steps"] if x.get("name") == "The tags, onto the PR's branch")
+        self.assertEqual(step["env"]["RUN_HEAD"], "${{ github.event.workflow_run.head_sha }}")
+        self.assertIn("workflow_run.pull_requests", step["env"]["RUN_PRS"])
+        self.assertIn('"$head" != "$RUN_HEAD"', step["run"])
+        self.assertLess(
+            step["run"].index('"$head" != "$RUN_HEAD"'), step["run"].index("autotag_push.py"), "checked before anything is pushed"
+        )
+
+    def test_a_run_that_uploaded_nothing_is_skipped_not_failed(self):
+        steps = self.load("autotag-push.yml")["jobs"]["push"]["steps"]
+        has = next(x for x in steps if x.get("id") == "has")
+        self.assertIn("artifacts", has["run"])
+        for x in steps:
+            if "download-artifact" in x.get("uses", "") or x.get("name") == "The tags, onto the PR's branch":
+                self.assertEqual(x.get("if"), "steps.has.outputs.any == 'true'", x.get("name") or x["uses"])
+
+    def test_no_token_is_in_the_environment_of_the_step_that_builds_the_prs_modules(self):
+        doc = self.load("autotag-build.yml")
+        job = doc["jobs"]["tag"]
+        self.assertNotIn("GH_TOKEN", doc.get("env", {}))
+        self.assertNotIn("GH_TOKEN", job.get("env", {}))
+        builds = [x for x in job["steps"] if "lake build" in x.get("run", "")]
+        self.assertGreaterEqual(len(builds), 2)
+        for x in builds:
+            self.assertNotIn("GH_TOKEN", x.get("env", {}), x.get("name"))
+            self.assertNotIn("cache.sh", x["run"], "the cache fetch (which needs the token) is a step of its own")
+
+
 if __name__ == "__main__":
     unittest.main()

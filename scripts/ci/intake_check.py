@@ -38,6 +38,7 @@ What is NOT checked here is the Lean itself: the merge queue builds the library 
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -289,6 +290,9 @@ if errors:
 
 # the archive the factory attested, rebuilt from this PR's files (scripts/ci/bundle_tar.py: the same function as the factory's)
 if tar_out:
+    # Raw bytes while the lane's PRs are untagged: the factory archives the modules as it wrote them. In the canonical form once TENGOKU_ISNAD_REQUIRED is 1, when the factory
+    # archives that form too (a module with a one-line docstring is not the same bytes in both, and the attestation covers exactly one of them).
+    canonical = os.environ.get("TENGOKU_ISNAD_REQUIRED") == "1"
     members = {}
     for _, p in files:
         if p == ALL:
@@ -298,8 +302,8 @@ if tar_out:
             fail(f"{p} is not readable at {head}")
         if extending and p == MANIFEST:
             raw = manifest_new  # the part's archive holds its own lines only
-        if p.endswith(
-            ".lean"
+        if (
+            canonical and p.endswith(".lean")
         ):  # the factory attested the modules before their isnad tags existed: in the canonical form, which does not see them (born_tagged.py)
             try:
                 raw = tg.canonical_text(raw.decode("utf-8")).encode("utf-8")

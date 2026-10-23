@@ -344,8 +344,14 @@ def check(base: str, head: str, tar_out: str = "") -> None:
                 errors.append(f"{p}: imports {m.group(1)}, which is not the tree")
             body.append("" if m or MODULE_LINE.match(ln) else ln)
         opens = [k for k, ln in enumerate(code) if ln.strip() == f"namespace {mod}"]
-        if len(opens) != 1 or [ln.strip() for ln in code if ln.startswith("namespace ")] != [f"namespace {mod}"]:
-            errors.append(f"{p}: the declarations must be inside exactly one `namespace {mod}` and no other")
+        # every scope line, indented or not: the module opens and closes its own namespace and no other scope; and no `_root_` name, which Lean declares outside it
+        if len(opens) != 1 or [ln.strip() for ln in code if re.match(r"\s*(namespace|section|end)\b", ln)] != [
+            f"namespace {mod}",
+            f"end {mod}",
+        ]:
+            errors.append(f"{p}: the declarations must be inside exactly one `namespace {mod}` and no other scope")
+        if any("_root_" in ln for ln in code):
+            errors.append(f"{p}: `_root_` would declare a name outside the module's namespace")
         last = [ln.strip() for ln in code if ln.strip()][-1:]
         if last != [f"end {mod}"]:
             errors.append(f"{p}: the last line must be `end {mod}`")

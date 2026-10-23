@@ -180,6 +180,10 @@ takes each module through `isnad_tag.canonical_text` first: the tags out, and th
 `-/` onto its own line, which taking the tag out cannot undo). `equivalent(a, b)` holds exactly when `canonical_text(a) == canonical_text(b)`, so a module and the same module with its tags are one
 archive member. The lane's own archive is built from the same function.
 
+For the **studied** lane that holds from the start (its archive is built by `scripts/memory_intake` in emissary-archangel with `canonical_text`). For the **intake** lane the gate keeps the raw bytes the
+factory wrote (`scripts/bump/bundle_tar.py` there archives them as they are) until `TENGOKU_ISNAD_REQUIRED` is `1`: the two forms differ for a module with a one-line docstring, and the attestation
+covers exactly one. So the switch is flipped together with the factory's side (its bundle archive taking the same function, behind the same variable), never before.
+
 `Tengoku/Studied/` is `novel` content (`isnad.origin_of`).
 
 ## 4. What is not built yet
