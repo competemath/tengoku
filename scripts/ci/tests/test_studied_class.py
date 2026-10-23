@@ -446,10 +446,22 @@ class Studied(unittest.TestCase):
         self.bundle(r, [1], first=False)
         self.bad(r, "must gain exactly `import Tengoku.Studied.Erdos396`")
 
+    def test_a_report_may_leave_jinshi_out(self):
+        """Jinshi needs Lean and runs in the sandbox, advisory: the intake job's own mechanical checks are the report's `review`; a report that does list Jinshi must show it clean."""
+        r = self.base()
+        bid = self.bundle(r, [1])
+        path = f"data/studied/{T}/bundles/{bid[:16]}.json"
+        rep = json.loads((Path(r.dir) / path).read_text())
+        del rep["jinshi"]
+        r.write(path, json.dumps(rep) + "\n")
+        r.commit("a report without Jinshi")
+        self.ok(r)
+
     def test_the_report(self):
         cases = {
             "jinshi found a failure": ({"jinshi": {"fail": 1, "checks": ["x"]}}, "found no failure"),
             "jinshi did not run": ({"jinshi": {"fail": 0, "checks": []}}, "Jinshi must have run"),
+            "jinshi is not an object": ({"jinshi": "ran"}, "Jinshi must have run"),
             "a reviewer blocked": (
                 {"review": {"blocking": 1, "verdicts": [{"rubric": "g", "verdict": "pass"}]}},
                 "none may block or reject",

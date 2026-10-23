@@ -213,7 +213,8 @@ jobs:
       - name: Tags of a tag group are the build's
         if: github.event_name == 'merge_group' && steps.build.outputs.targets != ''
         shell: bash
-        env: { BASE: "${{ github.event.merge_group.base_sha }}" }
+        # a studied group is born tagged and verified the same way; so is an intake group once TENGOKU_ISNAD_REQUIRED is 1 (scripts/ci/born_tagged.py)
+        env: { BASE: "${{ github.event.merge_group.base_sha }}", TENGOKU_ISNAD_REQUIRED: "${{ vars.TENGOKU_ISNAD_REQUIRED }}" }
         run: |
           set -o pipefail
           python3 scripts/ci/tag_verify.py "$BASE" HEAD 2>&1 | tee -a build.log

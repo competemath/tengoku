@@ -170,6 +170,11 @@ jobs:
       - name: intake checks
         env: { LINT: "${{ vars.TENGOKU_INTAKE_LINT || 'strict' }}" }
         run: python3 scripts/ci/intake_check.py "$BASE" "$HEAD" --lint "$LINT" --tar "$RUNNER_TEMP/bundle.tar"
+      # Born tagged (docs/isnad.md): once the repository variable TENGOKU_ISNAD_REQUIRED is 1 an intake PR carries its isnad tags, written into its branch by the autotag workflows;
+      # until then this step passes at once. The merge queue recomputes every tag from the build (scripts/ci/tag_verify.py).
+      - name: born tagged (the isnad tags are in the PR)
+        env: { TENGOKU_ISNAD_REQUIRED: "${{ vars.TENGOKU_ISNAD_REQUIRED }}" }
+        run: python3 scripts/ci/born_tagged.py "$BASE" "$HEAD"
       - name: provenance (the factory built exactly these bytes)
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
@@ -203,6 +208,10 @@ jobs:
         run: git fetch -q --no-tags --filter=blob:none origin "+$PR_REF:refs/remotes/origin/pr-head" && git cat-file -e "$HEAD^{commit}"
       - name: studied checks
         run: python3 scripts/ci/studied_check.py "$BASE" "$HEAD" --tar "$RUNNER_TEMP/bundle.tar"
+      # Born tagged (docs/isnad.md): a studied PR always carries its isnad tags, written into its branch by the autotag workflows a few minutes after it is opened (this check is red until
+      # then, and green after the push). The merge queue recomputes every tag from the build (scripts/ci/tag_verify.py).
+      - name: born tagged (the isnad tags are in the PR)
+        run: python3 scripts/ci/born_tagged.py "$BASE" "$HEAD"
       - name: provenance (the memory intake built exactly these bytes, from main)
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
@@ -557,7 +566,7 @@ jobs:
           # A raze (docs/pr-classes.md, section 8) is checked again on the entry's base: a part of the library that merged meanwhile may import a module it razes.
           if [ "$CLASS" = raze ]; then python3 scripts/ci/raze_check.py "$BASE" "$HEAD"; exit 0; fi
           # A studied PR (docs/pr-classes.md, section 10) is checked again on the entry's base: another bundle of the same target may have merged ahead of it.
-          if [ "$CLASS" = studied ]; then python3 scripts/ci/studied_check.py "$BASE" "$HEAD"; exit 0; fi
+          if [ "$CLASS" = studied ]; then python3 scripts/ci/studied_check.py "$BASE" "$HEAD" && python3 scripts/ci/born_tagged.py "$BASE" "$HEAD"; exit $?; fi
           promotion=(); [ "$CLASS" = promotion ] && promotion=(--promotion)
           python3 scripts/ci/append_only.py "$BASE" "$HEAD" "${promotion[@]}"
           python3 scripts/ci/validate_records.py "$BASE" "$HEAD"

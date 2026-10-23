@@ -35,11 +35,14 @@ import hashlib
 import json
 import re
 import sys
+from pathlib import Path
 
-from _git import ROOT, blob, changed_files, fail, module_name, pascal, run
-from allowlist import violations
-from bundle_tar import write_tar
-from lean_lex import code_only
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # scripts/ of the checkout this file is in
+import isnad_tag as tg  # noqa: E402
+from _git import ROOT, blob, changed_files, fail, module_name, pascal, run  # noqa: E402
+from allowlist import violations  # noqa: E402
+from bundle_tar import write_tar  # noqa: E402
+from lean_lex import code_only  # noqa: E402
 
 MANIFEST_RE = re.compile(r"data/studied/([^/]+)/manifest\.jsonl")
 TARGET_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
@@ -59,6 +62,17 @@ MAX_TOTAL_BYTES = 600 * 1024
 TOP = "Tengoku/Studied.lean"
 ALL = "Tengoku/All.lean"
 LEAN = ".lean"
+
+
+def untagged(raw: bytes | None) -> bytes | None:
+    """A module's bytes as the intake job attested them: without isnad tags, in the canonical form (scripts/isnad_tag.py `canonical_text`); bytes that are not text
+    are left as they are."""
+    if raw is None:
+        return None
+    try:
+        return tg.canonical_text(raw.decode("utf-8")).encode("utf-8")
+    except UnicodeDecodeError:
+        return raw
 
 
 def studied_targets(files: list[tuple[str, str]]) -> set[str]:
@@ -268,9 +282,10 @@ def check(base: str, head: str, tar_out: str = "") -> None:
                 errors.append(
                     f"{rp}: entry {e[:8]} is rated {s!r} in the manifest and {rerated.get(e)!r} by the intake job's own rating (it needs 4 or more, both)"
                 )
-        jin = rep.get("jinshi") if isinstance(rep.get("jinshi"), dict) else {}
-        if jin.get("fail") != 0 or not isinstance(jin.get("checks"), list) or not jin["checks"]:
-            errors.append(f"{rp}: Jinshi must have run (checks listed) and found no failure (fail: {jin.get('fail')!r})")
+        if "jinshi" in rep:  # Jinshi needs Lean and runs in the sandbox, advisory: a report that lists it says it ran, and it found no failure
+            jin = rep["jinshi"] if isinstance(rep["jinshi"], dict) else {}
+            if jin.get("fail") != 0 or not isinstance(jin.get("checks"), list) or not jin["checks"]:
+                errors.append(f"{rp}: Jinshi must have run (checks listed) and found no failure (fail: {jin.get('fail')!r})")
         rev = rep.get("review") if isinstance(rep.get("review"), dict) else {}
         verdicts = rev.get("verdicts") if isinstance(rev.get("verdicts"), list) else []
         if (
@@ -347,7 +362,10 @@ def check(base: str, head: str, tar_out: str = "") -> None:
 
     # the archive the intake job attested, rebuilt from this PR's files (scripts/ci/bundle_tar.py: the same function)
     if tar_out:
-        members = {p: blob(head, p) for p in modules}
+        # the intake job attested the modules as it built them, before their isnad tags existed (the autotag workflow writes them into the PR's branch,
+        # docs/isnad.md "Born tagged"): the archive holds each module in its canonical form, which does not see tags, so the attestation covers the content and the
+        # tags are judged apart (born_tagged.py offline, tag_verify.py against the build). The intake job builds its archive from the same function.
+        members = {p: untagged(blob(head, p)) for p in modules}
         members["manifest.jsonl"] = manifest_new
         members["report.json"] = blob(head, rp)
         if any(v is None for v in members.values()):

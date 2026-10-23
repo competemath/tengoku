@@ -1,0 +1,53 @@
+name: autotag-push
+# BORN TAGGED, half two (docs/isnad.md, "Born tagged"; scripts/ci/autotag_push.py). It runs when autotag-build has finished, from this repository's default branch, so the code that holds the
+# bot's token is main's and never the PR's. The artifact the build uploaded comes from a job that ran the PR's Lean: it is DATA, and nothing in it is believed. The script takes the
+# PR from the API (open, a branch of this repository, its head the commit the build tagged, its author one of the lane's Apps), compares every file with the PR's own (only tags
+# changed) and adds one commit to the PR's branch through the git data API, with a ref update that is not forced. Without the secret TENGOKU_BOT_TOKEN it only says what it would
+# have done.
+on:
+  workflow_run:
+    workflows: [autotag-build]
+    types: [completed]
+
+permissions: {}
+
+concurrency:
+  group: autotag-push
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  push:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: { contents: read, actions: read, pull-requests: read }
+    steps:
+      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+        with: { egress-policy: audit }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { ref: main, filter: "blob:none", persist-credentials: false }
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: autotag
+          path: autotag
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+      - name: The tags, onto the PR's branch
+        env:
+          BOT_TOKEN: ${{ secrets.TENGOKU_BOT_TOKEN }}
+          READ_TOKEN: ${{ github.token }}
+          TENGOKU_BOT: ${{ vars.TENGOKU_BOT }}
+          AUTOTAG_ACTORS: ${{ vars.AUTOTAG_ACTORS || 'tengoku-supervisor[bot],tengoku-intake[bot]' }}
+        run: |  # pragma: allowlist secret (the token is a variable here, never a value)
+          read -r pr head < <(python3 -c 'import json; m = json.load(open("autotag/meta.json")); print(int(m["pr"]), str(m["head"]))')
+          args=(--repo "$GITHUB_REPOSITORY" --pr "$pr" --head "$head" --artifact autotag/tagged)
+          if [ -z "$BOT_TOKEN" ]; then
+            echo "::notice::no TENGOKU_BOT_TOKEN secret: the tags were computed and checked, but not pushed (a dry run follows)"
+            GH_TOKEN="$READ_TOKEN" python3 scripts/ci/autotag_push.py "${args[@]}" --dry-run
+            exit 0
+          fi
+          GH_TOKEN="$BOT_TOKEN" python3 scripts/ci/autotag_push.py "${args[@]}"

@@ -246,6 +246,20 @@ def normalise_doc_end(doc: str) -> str:
     return doc[:-2].rstrip(" \t\r\n") + "-/" if doc.endswith("-/") else doc
 
 
+def canonical_text(text: str) -> str:
+    """The text as a lane's build attestation sees it: the tags taken out and the whitespace before every docstring's closing `-/` normalised. This is the equality
+    `equivalent` judges, as a function: `equivalent(a, b)` holds exactly when `canonical_text(a) == canonical_text(b)`, so a module and the same module with its tags
+    written (the tagger moves a one-line docstring's closing `-/` onto its own line, which `strip_text` alone cannot undo) have one canonical form."""
+    text = strip_text(text)
+    out, last = [], 0
+    for kind, a, b in scan(text):
+        if kind == "doc":
+            out += [text[last:a], normalise_doc_end(text[a:b])]
+            last = b
+    out.append(text[last:])
+    return "".join(out)
+
+
 def equivalent(base: str, head: str) -> bool:
     """`head` is `base` with tags written (a tag that `base` had may be a different one in `head`): after the tags are taken out of both, the code is the same bytes and
     every docstring the same words."""
