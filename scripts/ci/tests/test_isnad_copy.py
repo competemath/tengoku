@@ -13,7 +13,7 @@ TREE = HERE.parents[2]
 sys.path.insert(0, str(TREE / "scripts"))
 import isnad_tag as tg  # noqa: E402
 
-PIN = "585bd7ea7eff7a0067cf1c1c4a4ef260f5f8267d6e571a537569eb4de619185c"  # sha256 of scripts/isnad_tag.py in competemath/tengoku, which scripts/bump/isnad_tag.py here is a verbatim copy of
+PIN = "585bd7ea7eff7a0067cf1c1c4a4ef260f5f8267d6e571a537569eb4de619185c"  # pragma: allowlist secret (a file hash). sha256 of scripts/isnad_tag.py in competemath/tengoku, which scripts/bump/isnad_tag.py here is a verbatim copy of
 GOLDEN = {
     "one-line docstring": ("/-- Words. -/\ntheorem a : True := trivial\n", "/-- Words.-/\ntheorem a : True := trivial\n"),
     "two-line docstring": ("/-- Two\nlines. -/\ntheorem g : True := trivial\n", "/-- Two\nlines.-/\ntheorem g : True := trivial\n"),
