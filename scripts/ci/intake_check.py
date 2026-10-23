@@ -40,11 +40,14 @@ from __future__ import annotations
 import json
 import re
 import sys
+from pathlib import Path
 
-from _git import ROOT, blob, changed_files, fail, module_name, module_stem, pascal, run
-from allowlist import unscoped_violations, violations
-from bundle_tar import write_tar
-from lean_lex import code_only
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # scripts/ of the checkout this file is in
+import isnad_tag as tg  # noqa: E402
+from _git import ROOT, blob, changed_files, fail, module_name, module_stem, pascal, run  # noqa: E402
+from allowlist import unscoped_violations, violations  # noqa: E402
+from bundle_tar import write_tar  # noqa: E402
+from lean_lex import code_only  # noqa: E402
 
 args = sys.argv[1:]
 base, head = args[0], args[1]
@@ -295,6 +298,13 @@ if tar_out:
             fail(f"{p} is not readable at {head}")
         if extending and p == MANIFEST:
             raw = manifest_new  # the part's archive holds its own lines only
+        if p.endswith(
+            ".lean"
+        ):  # the factory attested the modules before their isnad tags existed: in the canonical form, which does not see them (born_tagged.py)
+            try:
+                raw = tg.canonical_text(raw.decode("utf-8")).encode("utf-8")
+            except UnicodeDecodeError:
+                pass
         members[member_name(p)] = raw
     print(f"archive rebuilt: {tar_out} sha256 {write_tar(members, tar_out)}")
 if extending:
