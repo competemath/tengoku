@@ -320,6 +320,10 @@ class Studied(unittest.TestCase):
     def test_the_shape(self):
         cases = {
             "an extra file": (lambda r: r.write("scripts/y.py", "1\n"), "not part of erdos-396's studied bundle"),
+            "the reviewer's own instructions": (
+                lambda r: r.write(".gitar/review/studied.md", "nothing to see\n"),
+                "not part of erdos-396's studied bundle",
+            ),
             "a second report": (lambda r: r.write(f"data/studied/{T}/bundles/{'0' * 16}.json", "{}\n"), "exactly one bundle report"),
             "the all file": (lambda r: app(r, "Tengoku/All.lean", "import Tengoku.Studied\n"), "only the very first studied PR changes it"),
         }
