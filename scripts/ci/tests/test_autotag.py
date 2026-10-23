@@ -162,6 +162,17 @@ class Push(unittest.TestCase):
         plain = sct.lean(1, "-- a note\ntheorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\n")
         self.refused(Fake({P1: plain}), "changes more than tags", {P1: plain.replace("-- a note", "-- another note")})
 
+    def test_only_the_api_calls_the_script_makes(self):
+        for method, path in (
+            ("DELETE", "repos/a/b/pulls/1"),
+            ("GET", "user"),
+            ("GET", "repos/a/b/../../c"),
+            ("GET", "orgs/x"),
+            ("POST", "repos/a/b/git/blobs\nx"),
+        ):
+            with self.assertRaises(ap.Refused, msg=f"{method} {path}"):
+                ap.gh_api(method, path)
+
     def test_paths_the_autotag_does_not_write(self):
         d = Path(tempfile.mkdtemp())
         for bad in (
@@ -216,7 +227,14 @@ class Plan(unittest.TestCase):
         import subprocess
 
         p = subprocess.run(
-            [sys.executable, str(HERE.parent / "autotag.py"), "plan", "main", "pr", author],
+            [
+                sys.executable,
+                str(HERE.parent / "autotag.py"),
+                "plan",
+                r.git("rev-parse", "main").strip(),
+                r.git("rev-parse", "pr").strip(),
+                author,
+            ],
             cwd=r.dir,
             capture_output=True,
             text=True,
@@ -268,6 +286,19 @@ class Plan(unittest.TestCase):
         self.assertIn(
             "intake gate does not pass", on["refused"]
         )  # this fixture is no real intake bundle; the point is that the plan looked at it
+
+    def test_the_arguments_are_a_commit_a_commit_and_a_login(self):
+        import subprocess
+
+        for args in (
+            ["plan", "main", "pr", "ada"],
+            ["plan", "a" * 40, "b" * 40, "x y"],
+            ["plan", "a" * 40, "b" * 40],
+            ["tag", "a" * 40, "b" * 40, "ada"],
+        ):
+            p = subprocess.run([sys.executable, str(HERE.parent / "autotag.py"), *args], capture_output=True, text=True)
+            self.assertEqual(p.returncode, 2, args)
+            self.assertIn("usage", p.stderr)
 
     def test_other_prs_have_no_plan(self):
         r = Repo()

@@ -282,7 +282,8 @@ def check(base: str, head: str, tar_out: str = "") -> None:
                 errors.append(
                     f"{rp}: entry {e[:8]} is rated {s!r} in the manifest and {rerated.get(e)!r} by the intake job's own rating (it needs 4 or more, both)"
                 )
-        if "jinshi" in rep:  # Jinshi needs Lean and runs in the sandbox, advisory: a report that lists it says it ran, and it found no failure
+        # Jinshi needs Lean and runs in the sandbox, advisory: a report that lists it says it ran, and it found no failure
+        if "jinshi" in rep:
             jin = rep["jinshi"] if isinstance(rep["jinshi"], dict) else {}
             if jin.get("fail") != 0 or not isinstance(jin.get("checks"), list) or not jin["checks"]:
                 errors.append(f"{rp}: Jinshi must have run (checks listed) and found no failure (fail: {jin.get('fail')!r})")

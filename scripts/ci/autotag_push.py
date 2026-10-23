@@ -35,6 +35,7 @@ from born_tagged import ROOT_FILE, UMBRELLAS, module_errors  # noqa: E402
 REPO = re.compile(r"[A-Za-z0-9_.-]{1,100}/[A-Za-z0-9_.-]{1,100}")
 SHA40 = re.compile(r"[0-9a-f]{40}")
 BRANCH = re.compile(r"[A-Za-z0-9._/-]{1,200}")
+API_PATH = re.compile(r"repos/[A-Za-z0-9_.-]{1,100}/[A-Za-z0-9_.-]{1,100}/[^\x00-\x20\\]{1,400}")
 MODULE_PATH = re.compile(r"Tengoku/[^\x00-\x1f\\]{1,300}\.lean")
 
 Api = Callable[..., object]
@@ -46,6 +47,8 @@ class Refused(Exception):
 
 def gh_api(method: str, path: str, body: dict | None = None, raw: bool = False) -> object:
     """`gh api` with the token in GH_TOKEN. Raw: the file's bytes, not JSON."""
+    if method not in ("GET", "POST", "PATCH") or not API_PATH.fullmatch(path) or ".." in path.split("/"):
+        raise Refused(f"not an API call this script makes: {method} {path[:80]}")
     cmd = ["gh", "api", "-X", method, path]
     if raw:
         cmd += ["-H", "Accept: application/vnd.github.raw"]

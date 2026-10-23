@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -76,9 +77,13 @@ def plan(base: str, head: str, author: str, env: dict[str, str] | None = None) -
     return out
 
 
+SHA40 = re.compile(r"[0-9a-f]{40}")
+LOGIN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.\[\]-]{0,99}")
+
+
 def main(argv: list[str]) -> int:
-    if len(argv) != 5 or argv[1] != "plan":
-        print("usage: autotag.py plan <base> <head> <author>", file=sys.stderr)
+    if len(argv) != 5 or argv[1] != "plan" or not (SHA40.fullmatch(argv[2]) and SHA40.fullmatch(argv[3]) and LOGIN.fullmatch(argv[4])):
+        print("usage: autotag.py plan <base: 40 hex> <head: 40 hex> <author>", file=sys.stderr)
         return 2
     print(json.dumps(plan(argv[2], argv[3], argv[4])))
     return 0
