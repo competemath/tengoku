@@ -17,7 +17,7 @@ import studied_approval as sa  # noqa: E402
 import studied_check as sc  # noqa: E402
 from test_gates import Repo  # noqa: E402
 
-APP = {"PR_ACTOR": "tengoku-studied[bot]", "TENGOKU_BOT": "tengoku-bot", "TENGOKU_INTAKE_BOT": "tengoku-intake[bot]"}
+APP = {"PR_ACTOR": "tengoku-supervisor[bot]", "TENGOKU_BOT": "tengoku-bot", "TENGOKU_INTAKE_BOT": "tengoku-intake[bot]"}
 TOOLCHAIN = "leanprover/lean4:v4.34.0-rc2"
 T, NS = "erdos-396", "Erdos396"
 AUTHOR = "ada"
@@ -133,10 +133,19 @@ class Studied(unittest.TestCase):
             self.bundle(r)
             self.bad(
                 r,
-                "studied App",
+                "supervisor App",
                 "classify.py",
                 env={"PR_ACTOR": actor, "TENGOKU_BOT": "tengoku-bot", "TENGOKU_INTAKE_BOT": "tengoku-intake[bot]"},
             )
+
+    def test_the_app_name_is_a_repository_variable(self):
+        r = self.base()
+        self.bundle(r)
+        env = {**APP, "PR_ACTOR": "renamed[bot]", "TENGOKU_STUDIED_BOT": "renamed[bot]"}
+        self.assertIn("class=studied", self.ok(r, "classify.py", env=env))
+        self.bad(
+            r, "supervisor App (renamed[bot])", "classify.py", env={**env, "PR_ACTOR": "tengoku-supervisor[bot]"}
+        )  # the default is replaced, not added to
 
     def test_the_studied_app_may_send_no_other_class(self):
         r = Repo()
@@ -467,10 +476,10 @@ class Studied(unittest.TestCase):
 
     def data(self, reviews, **over):
         d = {
-            "author": "tengoku-studied[bot]",
+            "author": "tengoku-supervisor[bot]",
             "head": "H2",
             "owners": ["owner-main", "owner-alt"],
-            "committers": ["tengoku-studied[bot]"],
+            "committers": ["tengoku-supervisor[bot]"],
             "permissions": {"w1": "write", "w2": "maintain", "w3": "admin", "r1": "read", "owner-main": "admin", "owner-alt": "write"},
             "reviews": reviews,
         }
@@ -504,7 +513,7 @@ class Studied(unittest.TestCase):
         self.assertFalse(sa.decide(self.data([self.rv("w1"), self.rv("stranger")]))[0])
 
     def test_the_author_the_app_and_committers_never_count(self):
-        self.assertFalse(sa.decide(self.data([self.rv("tengoku-studied[bot]")]))[0])
+        self.assertFalse(sa.decide(self.data([self.rv("tengoku-supervisor[bot]")]))[0])
         self.assertFalse(sa.decide(self.data([self.rv("w1"), self.rv("w2")], committers=["w2"]))[0], "w2 committed to the PR")
         self.assertFalse(sa.decide(self.data([self.rv("w1"), self.rv("w2")], author="w2"))[0], "w2 is the author")
         self.assertFalse(

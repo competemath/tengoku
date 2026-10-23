@@ -107,9 +107,9 @@ if "studied" in by:
     others = [c for c in by if c not in ("studied", "docs")]
     if others or len(studied_set) != 1:
         fail(f"a studied PR is one target's bundle and nothing else (targets: {sorted(studied_set)}; also touches: {others})")
-    studied_bot = os.environ.get("TENGOKU_STUDIED_BOT", "tengoku-studied[bot]")
+    studied_bot = os.environ.get("TENGOKU_STUDIED_BOT", "tengoku-supervisor[bot]")
     if actor != studied_bot and os.environ.get("TENGOKU_ACTOR_CHECKED") != "1":
-        fail(f"a studied PR comes from the studied App ({studied_bot}), not from {actor or 'nobody'}")
+        fail(f"a studied PR comes from the supervisor App ({studied_bot}), not from {actor or 'nobody'}")
     print(f"class=studied ({len(files)} files, target {sorted(studied_set)[0]})")
     gh_output("class", "studied")
     gh_output("files", " ".join(p for _, p in files))

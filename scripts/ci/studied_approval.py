@@ -5,7 +5,7 @@ A studied PR (scripts/ci/studied_check.py) is approved by ONE CODE OWNER, or by 
 say "one code owner" or "two approvals" but not "either", so the PR gate asks this. The workflow gathers the facts with the API (the token never
 leaves the step) and writes them to a JSON file; this script only decides, so it is tested without a network:
 
-  {"author": "tengoku-studied[bot]", "head": "<sha>", "owners": ["a", "b"],
+  {"author": "tengoku-supervisor[bot]", "head": "<sha>", "owners": ["a", "b"],
    "committers": ["..."], "permissions": {"user": "write"},
    "reviews": [{"user": "x", "state": "APPROVED", "commit_id": "<sha>", "type": "User"}, ...]}   (oldest first)
 

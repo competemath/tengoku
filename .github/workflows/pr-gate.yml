@@ -54,6 +54,7 @@ jobs:
         env:
           PR_ACTOR: "${{ github.event.pull_request.user.login }}"
           TENGOKU_BOT: "${{ vars.TENGOKU_BOT || 'tengoku-bot' }}"
+          TENGOKU_STUDIED_BOT: "${{ vars.TENGOKU_STUDIED_BOT || 'tengoku-supervisor[bot]' }}"  # the App that sends studied PRs
           TENGOKU_ACTOR_CHECKED: "${{ github.event_name == 'merge_group' && '1' || '' }}"  # the PR's own gate verified the actor
         run: python3 scripts/ci/classify.py "$BASE" "$HEAD"
 
@@ -180,7 +181,7 @@ jobs:
           [ "${ok:-0}" = 1 ] || { echo "::error::no build attestation of competemath/emissary-archangel, built from its main branch, matches the bundle in this PR"; exit 1; }
 
   # A studied PR (theorems that Leak runs proved and rated four stars or more; the intake job in competemath/emissary-archangel re-derived them and opened it as the
-  # studied App) is judged by its shape, its manifest and report, the content lint on every module, and the intake job's build attestation over the very bytes of the PR
+  # supervisor App, tengoku-supervisor) is judged by its shape, its manifest and report, the content lint on every module, and the intake job's build attestation over the very bytes of the PR
   # (scripts/ci/studied_check.py). Nothing of the PR runs; the queue builds the modules, sealed, and checks every theorem's axioms.
   studied:
     needs: classify
