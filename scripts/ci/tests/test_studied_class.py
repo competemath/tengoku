@@ -59,6 +59,23 @@ def record(n: int, bundle: str, **over) -> dict:
     return {**r, **over}
 
 
+def harness(entry: str, **over) -> dict:
+    h = {
+        "entry": entry,
+        "build": "c" * 64,
+        "build_verified": True,
+        "ticket_age_s": 3600,
+        "seconds": 3590,
+        "verify_ok": 60,
+        "verify_fail": 40,
+        "searches": 3,
+        "attempts": 4,
+        "model": "claude-sonnet-5-5",
+        "strategy": "control-lucid-iv",
+    }
+    return {**h, **over}
+
+
 def report(ns_: list[int], bundle: str, **over) -> dict:
     ids = [entry_id(n) for n in ns_]
     r = {
@@ -70,6 +87,7 @@ def report(ns_: list[int], bundle: str, **over) -> dict:
         "preflight": {"compiled": len(ids), "entries": len(ids)},
         "rerated": [{"entry": i, "stars": 4} for i in ids],
         "jinshi": {"fail": 0, "warn": 1, "checks": ["kernel replay", "shadow", "nearname"]},
+        "harness": [harness(i) for i in ids],
         "review": {
             "model": "pinned",
             "blocking": 0,
@@ -457,6 +475,42 @@ class Studied(unittest.TestCase):
             rc, out = r.gate("studied_check.py")
             self.assertNotEqual(rc, 0, label)
             self.assertIn(why, out, label)
+
+    def test_the_harness_evidence(self):
+        ids = [entry_id(1), entry_id(2)]
+
+        def with_(**over):
+            return {"harness": [harness(ids[0], **over), harness(ids[1])]}
+
+        cases = {
+            "no evidence at all": ({"harness": []}, "one evidence record per entry"),
+            "an entry without a record": ({"harness": [harness(ids[0])]}, "one evidence record per entry"),
+            "a record of another entry": ({"harness": [harness(ids[0]), harness("9" * 28)]}, "one evidence record per entry"),
+            "not a list": ({"harness": {"x": 1}}, "one evidence record per entry"),
+            "the build not verified": (with_(build_verified=False), "manifest id the server verified"),
+            "the build not an id": (with_(build="abc"), "manifest id the server verified"),
+            "a run too young": (with_(ticket_age_s=600, seconds=600), "a long-running effort is 30 minutes to 49 hours"),
+            "a ticket too old": (with_(ticket_age_s=60 * 3600, seconds=60 * 3600), "a long-running effort is 30 minutes to 49 hours"),
+            "a receipt that disagrees": (with_(seconds=2000), "does not match the ticket's age"),
+            "a receipt shorter than the minimum": (with_(ticket_age_s=1800, seconds=1000), "does not match the ticket's age"),
+            "too few verifications": (with_(verify_ok=3, verify_fail=4), "not those of a prover run"),
+            "never failing": (with_(verify_ok=99, verify_fail=1), "not those of a prover run"),
+            "never passing": (with_(verify_ok=0, verify_fail=50), "not those of a prover run"),
+            "not a memory strategy": (with_(strategy="control-1"), "not a memory strategy"),
+            "no attempt": (with_(attempts=0), "not a memory strategy, or no attempt"),
+            "counters that are not whole numbers": (with_(verify_ok=60.5), "counters must be whole numbers"),
+            "a negative counter": (with_(searches=-1), "counters must be whole numbers"),
+        }
+        for label, (over, why) in cases.items():
+            r = self.base()
+            self.bundle(r, [1, 2], **over)
+            rc, out = r.gate("studied_check.py")
+            self.assertNotEqual(rc, 0, label)
+            self.assertIn(why, out, label)
+        r = self.base()
+        self.bundle(r, [1, 2], **with_(verify_ok=98, verify_fail=2, seconds=3900))
+        rc, out = r.gate("studied_check.py")
+        self.assertEqual(rc, 0, "the edges of the bands pass: " + out)
 
     def test_the_bundle_id_is_the_hash_of_what_it_holds(self):
         r = self.base()

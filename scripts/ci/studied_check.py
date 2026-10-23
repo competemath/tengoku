@@ -20,7 +20,8 @@ This runs no Lean. It checks, from the PR's git objects only:
   lint        every module passes the content allow-list (scripts/ci/allowlist.py) after its header; the header only imports the tree; the declarations
               are inside the module's own namespace, so a studied theorem can never shadow another library's name
   report      the bundle id is the hash of target, author and entries; the intake job compiled every theorem, re-rated each at 4 stars or more (the
-              producer's stars are only a claim), Jinshi's checks found no failure, and no reviewer blocked
+              producer's stars are only a claim), Jinshi's checks found no failure, no reviewer blocked, and every theorem carries the harness evidence the
+              server judged (the run's ticket at least 30 minutes old, a known build, plausible counters that agree with the ticket's age)
   provenance  with --tar, the bundle archive is rebuilt from the PR's files for the workflow to check against the intake job's build attestation:
               the bytes that job built are the bytes in this PR
 
@@ -49,6 +50,10 @@ IMPORT_LINE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s+(?:all\s+
 MODULE_LINE = re.compile(r"^\s*(?:module|prelude)\s*$")
 TREE_IMPORT = re.compile(r"(?:Tengoku|Lean|Std|Init)(?:\.|$)")
 MAX_THEOREMS = 10
+# What a run's harness evidence has to look like (competemath.com app/lib/leak-memory/harness.ts judges the same bands when it keeps a theorem; the intake job
+# records the result in the report, and this repeats the arithmetic on it so that a report that skips the server's judgement cannot pass). Keep in step.
+MIN_RUN_S, MAX_RUN_S = 30 * 60, 49 * 3600
+MEMORY_STRATEGY = re.compile(r"control-(?:honoured|flint|paragon|lucid)(?:-iv)?")
 MAX_MODULE_BYTES = 60 * 1024
 MAX_TOTAL_BYTES = 600 * 1024
 TOP = "Tengoku/Studied.lean"
@@ -274,6 +279,31 @@ def check(base: str, head: str, tar_out: str = "") -> None:
             or any(not isinstance(v, dict) or v.get("verdict") not in ("pass", "advisory") for v in verdicts)
         ):
             errors.append(f"{rp}: the reviewers must have given a verdict and none may block or reject (blocking: {rev.get('blocking')!r})")
+
+    # the harness evidence of every theorem: friction against a script passed off as the harness, never proof (docs/leak-memory.md in compete-math)
+    if rep:
+        ev = rep.get("harness")
+        if not isinstance(ev, list) or sorted(x.get("entry") if isinstance(x, dict) else "" for x in ev) != sorted(entries):
+            errors.append(f"{rp}: `harness` must hold one evidence record per entry, the manifest's")
+        else:
+            for x in ev:
+                tag = f"{rp}: harness of {str(x.get('entry'))[:8]}"
+                ok_n, fail_n = x.get("verify_ok"), x.get("verify_fail")
+                nums = [x.get(k) for k in ("ticket_age_s", "seconds", "verify_ok", "verify_fail", "searches", "attempts")]
+                if any(not isinstance(n, int) or isinstance(n, bool) or n < 0 for n in nums):
+                    errors.append(f"{tag}: counters must be whole numbers")
+                    continue
+                total_v = ok_n + fail_n
+                if not isinstance(x.get("build"), str) or not SHA256.fullmatch(x["build"]) or x.get("build_verified") is not True:
+                    errors.append(f"{tag}: the build must be a manifest id the server verified")
+                elif not MIN_RUN_S <= x["ticket_age_s"] <= MAX_RUN_S:
+                    errors.append(f"{tag}: the run's ticket is {x['ticket_age_s']} s old; a long-running effort is 30 minutes to 49 hours")
+                elif x["seconds"] < MIN_RUN_S - 60 or abs(x["ticket_age_s"] - x["seconds"]) > max(300, 0.25 * x["ticket_age_s"]):
+                    errors.append(f"{tag}: the receipt's time does not match the ticket's age")
+                elif total_v < 10 or ok_n < 1 or not 0.02 <= fail_n / total_v <= 0.95:
+                    errors.append(f"{tag}: the verification counts are not those of a prover run ({ok_n} passed, {fail_n} failed)")
+                elif x["attempts"] < 1 or not isinstance(x.get("strategy"), str) or not MEMORY_STRATEGY.fullmatch(x["strategy"]):
+                    errors.append(f"{tag}: not a memory strategy, or no attempt")
 
     # modules: the header, the namespace, the statement, the allow-list
     allowed_options = set(json.loads((ROOT / "schemas" / "allowed-options.json").read_text())["allowed"])
