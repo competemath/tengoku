@@ -405,6 +405,10 @@ class Studied(unittest.TestCase):
                 "import Tengoku.Seed.Basic\nnamespace {m}\nsection\ntheorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\nend\nend {m}\n",
                 "inside exactly one `namespace",
             ),
+            "scope commands on the line of a declaration": (
+                "import Tengoku.Seed.Basic\nnamespace {m}\ntheorem lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\ntheorem z : True := trivial end {m} namespace Elsewhere theorem b : 1 = 1 := rfl end Elsewhere namespace {m}\nend {m}\n",
+                "inside exactly one `namespace",
+            ),
             "a _root_ name": (
                 "import Tengoku.Seed.Basic\nnamespace {m}\ntheorem _root_.Nat.lemma_1 (a : Nat) : a + 1 = 1 + a := by\n  omega\nend {m}\n",
                 "`_root_` would declare a name outside",

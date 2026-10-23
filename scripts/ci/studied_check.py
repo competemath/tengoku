@@ -49,6 +49,9 @@ TARGET_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 ENTRY = re.compile(r"[0-9a-f]{8,64}")
 AUTHOR = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,99}")
 SHA256 = re.compile(r"[0-9a-f]{64}")
+SCOPE_COMMAND = re.compile(
+    r"(?<![\w.'])(namespace|section|end)\b[ \t]*([^\s]*)"
+)  # a scope keyword as a token (not `Foo.end`, not `end'`), with the name after it
 IMPORT_LINE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s+(?:all\s+)?(\S+)\s*$")
 MODULE_LINE = re.compile(r"^\s*(?:module|prelude)\s*$")
 TREE_IMPORT = re.compile(r"(?:Tengoku|Lean|Std|Init)(?:\.|$)")
@@ -344,11 +347,10 @@ def check(base: str, head: str, tar_out: str = "") -> None:
                 errors.append(f"{p}: imports {m.group(1)}, which is not the tree")
             body.append("" if m or MODULE_LINE.match(ln) else ln)
         opens = [k for k, ln in enumerate(code) if ln.strip() == f"namespace {mod}"]
-        # every scope line, indented or not: the module opens and closes its own namespace and no other scope; and no `_root_` name, which Lean declares outside it
-        if len(opens) != 1 or [ln.strip() for ln in code if re.match(r"\s*(namespace|section|end)\b", ln)] != [
-            f"namespace {mod}",
-            f"end {mod}",
-        ]:
+        # every scope command, wherever it sits (Lean needs no newline between commands: `theorem a : True := trivial end M namespace Other ...` is one line): the module opens
+        # and closes its own namespace and no other scope; and no `_root_` name, which Lean declares outside it
+        scopes = [f"{m.group(1)} {m.group(2)}".strip() for m in SCOPE_COMMAND.finditer("\n".join(code))]
+        if len(opens) != 1 or scopes != [f"namespace {mod}", f"end {mod}"]:
             errors.append(f"{p}: the declarations must be inside exactly one `namespace {mod}` and no other scope")
         if any("_root_" in ln for ln in code):
             errors.append(f"{p}: `_root_` would declare a name outside the module's namespace")
