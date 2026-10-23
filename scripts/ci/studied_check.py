@@ -117,7 +117,7 @@ def check(base: str, head: str, tar_out: str = "") -> None:
         fail(f"target {t!r}: Tengoku/Studied/{ns}/ is not a Lean namespace")
     MANIFEST, ROOT_FILE = f"data/studied/{t}/manifest.jsonl", f"Tengoku/Studied/{ns}.lean"
     report_files = [p for _, p in files if re.fullmatch(rf"data/studied/{re.escape(t)}/bundles/[0-9a-f]{{16}}\.json", p)]
-    mod_re = re.compile(rf"Tengoku/Studied/{ns}/S([0-9a-f]{{12}})\.lean")
+    mod_re = re.compile(rf"Tengoku/Studied/{re.escape(ns)}/S([0-9a-f]{{12}})\.lean")
     errors: list[str] = []
     first = blob(base, MANIFEST) is None  # the target arrives for the first time
     top_new = blob(base, TOP) is None  # ... and no studied theorem has ever arrived: this PR creates the top file
