@@ -155,6 +155,37 @@ gate on the commit, builds the modules and recomputes every tag from the build (
 token is held by a job that never runs the tree's code). Without `propose` it is a dry run: counts and the skipped theorems in the run summary, the patch as an artifact.
 The merge queue builds the PR's modules again and recomputes the tags once more.
 
+### Born tagged
+
+The sweep tags what is already in the tree. The lanes that put NEW theorems into it by themselves, the studied lane (Leak's best theorems, `docs/pr-classes.md` section 9) and the
+intake lane (translated libraries, section 2 and 6), used to leave the tags to a second pull request for every one they opened: one more PR to approve each time, the same
+process each time. A lane's PR now carries its tags:
+
+1. The lane opens its PR as always (an App's PR, untagged: the lane's attestation covers the modules as the lane built them).
+2. `autotag-build` (a `pull_request` workflow, no secret) runs for a PR from a branch of this repository whose author is one of the lane's Apps (`AUTOTAG_ACTORS`; the default names the studied
+   lane's and the intake lane's). First `scripts/ci/autotag.py plan` runs the lane's own gate on the PR **with the tags pending**: only content that already passed the allow-list and the
+   shape rules is elaborated before anyone approved it. Then, on the attested cache, it builds the PR's modules, tags them (`isnad.py tag`), builds them again and has `check-tags`
+   recompute every tag, and uploads the tagged modules as an artifact.
+3. `autotag-push` (a `workflow_run` workflow, main's code, holding `TENGOKU_BOT_TOKEN`) takes the artifact as **data**. `scripts/ci/autotag_push.py` reads the PR from the API (open, a branch of this
+   repository, its head the commit that was tagged, its author an App of the lane) and checks every file against the PR's own: a module the PR adds, `isnad_tag.equivalent` holds (only tags
+   changed), the tags are well formed and from the module's place. It adds ONE commit to the PR's branch through the git data API, signed off by the bot, with a ref update that is not forced:
+   a branch that moved since the check keeps what it has. Without the secret it only says what it would have done.
+4. The PR gate's `born tagged` step (`scripts/ci/born_tagged.py`) is red until the tags are there and green after: every module of a studied PR has well formed tags from `from=novel`, each the last
+   line of its docstring, and the theorem its manifest line names has one; an intake PR the same with `from=translated` once the repository variable `TENGOKU_ISNAD_REQUIRED` is `1` (until the
+   tagging stage is live the step passes at once). The merge queue builds the modules and `scripts/ci/tag_verify.py` recomputes every tag (`isnad.py check-tags`) for these groups as for a tag
+   group: a tag that is not the build's, a theorem left without one, a tag that belongs to no theorem, all eject the PR.
+
+**Provenance is the content, not the tags.** The lane's build attestation covers the modules as the lane built them. The gate rebuilds the archive from the PR's files for `gh attestation verify`, and
+takes each module through `isnad_tag.canonical_text` first: the tags out, and the whitespace before every docstring's closing `-/` normalised (the tagger moves a one-line docstring's closing
+`-/` onto its own line, which taking the tag out cannot undo). `equivalent(a, b)` holds exactly when `canonical_text(a) == canonical_text(b)`, so a module and the same module with its tags are one
+archive member. The lane's own archive is built from the same function.
+
+For the **studied** lane that holds from the start (its archive is built by `scripts/memory_intake` in emissary-archangel with `canonical_text`). For the **intake** lane the gate keeps the raw bytes the
+factory wrote (`scripts/bump/bundle_tar.py` there archives them as they are) until `TENGOKU_ISNAD_REQUIRED` is `1`: the two forms differ for a module with a one-line docstring, and the attestation
+covers exactly one. So the switch is flipped together with the factory's side (its bundle archive taking the same function, behind the same variable), never before.
+
+`Tengoku/Studied/` is `novel` content (`isnad.origin_of`).
+
 ## 4. What is not built yet
 
 | Piece | State |

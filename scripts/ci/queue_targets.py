@@ -32,6 +32,7 @@ from _git import (
     unplaced,
 )
 from restructure_check import is_restructure
+from studied_check import is_studied
 from tag_check import is_tag, module_of
 
 base, head = sys.argv[1], sys.argv[2]
@@ -45,6 +46,17 @@ if is_restructure(
 if is_tag(base, head):
     if not regenerate:
         print("\n".join(module_of(p) for _, p in changed_files(base, head)))
+    sys.exit(0)
+# a STUDIED PR (scripts/ci/studied_check.py): its theorems are modules, not records; the queue builds exactly the modules the PR adds (sealed, axioms checked)
+if is_studied(base, head):
+    if not regenerate:
+        print(
+            "\n".join(
+                module_of(p)
+                for st, p in changed_files(base, head)
+                if st == "A" and re.fullmatch(r"Tengoku/Studied/[^/]+/S[0-9a-f]{12}\.lean", p)
+            )
+        )
     sys.exit(0)
 corpora = load_schema("sources.json").get("corpora", {})
 

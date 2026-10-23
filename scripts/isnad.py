@@ -293,8 +293,9 @@ def parse_range_line(line: str) -> tuple[str, str, Range, Range]:
 
 
 def origin_of(module: str) -> str:
-    """Where a module's theorems come from: the seed (Mathlib, Batteries, …), CompeteMath's own (Native), or a translation (every library under Tengoku/)."""
-    for prefix, origin in (("Tengoku.Seed", "seed"), ("Tengoku.Native", "novel")):
+    """Where a module's theorems come from: the seed (Mathlib, Batteries, …), CompeteMath's own (Native, and the studied theorems of Leak runs), or a
+    translation (every library under Tengoku/)."""
+    for prefix, origin in (("Tengoku.Seed", "seed"), ("Tengoku.Native", "novel"), ("Tengoku.Studied", "novel")):
         if module == prefix or module.startswith(prefix + "."):
             return origin
     return "translated"
