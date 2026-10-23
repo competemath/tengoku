@@ -623,9 +623,12 @@ class Studied(unittest.TestCase):
             for reviews, code in (([self.rv("owner-main")], 0), ([], 1)):
                 p = Path(d) / "d.json"
                 p.write_text(json.dumps(self.data(reviews)))
-                r = subprocess.run([sys.executable, str(HERE.parent / "studied_approval.py"), str(p)], capture_output=True, text=True)
+                with p.open() as fh:
+                    r = subprocess.run([sys.executable, str(HERE.parent / "studied_approval.py")], stdin=fh, capture_output=True, text=True)
                 self.assertEqual(r.returncode, code, r.stdout + r.stderr)
-            r = subprocess.run([sys.executable, str(HERE.parent / "studied_approval.py")], capture_output=True, text=True)
+            r = subprocess.run([sys.executable, str(HERE.parent / "studied_approval.py"), "d.json"], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 2)
+            r = subprocess.run([sys.executable, str(HERE.parent / "studied_approval.py")], input="not json", capture_output=True, text=True)
             self.assertEqual(r.returncode, 2)
 
 

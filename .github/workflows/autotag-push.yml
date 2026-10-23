@@ -28,8 +28,15 @@ jobs:
     steps:
       - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
         with: { egress-policy: audit }
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with: { ref: main, filter: "blob:none", persist-credentials: false }
+      # main's scripts, read through the API: a workflow_run workflow never checks a ref out (the files it holds a token next to are main's and nobody else's)
+      - name: Main's scripts
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          for f in scripts/isnad.py scripts/isnad_tag.py scripts/ci/_git.py scripts/ci/allowlist.py scripts/ci/autotag.py scripts/ci/autotag_push.py scripts/ci/born_tagged.py \
+                   scripts/ci/bundle_tar.py scripts/ci/lean_lex.py scripts/ci/studied_check.py scripts/ci/tag_check.py; do
+            mkdir -p "$(dirname "$f")"
+            gh api "repos/$GITHUB_REPOSITORY/contents/$f?ref=main" -H "Accept: application/vnd.github.raw" > "$f"
+          done
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: autotag

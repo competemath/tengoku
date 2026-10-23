@@ -67,10 +67,15 @@ def decide(data: dict) -> tuple[bool, str]:
 
 
 def main() -> None:
-    if len(sys.argv) != 2:
-        print("usage: studied_approval.py <data.json>", file=sys.stderr)
+    if len(sys.argv) != 1:
+        print("usage: studied_approval.py < data.json", file=sys.stderr)
         sys.exit(2)
-    ok, why = decide(json.loads(open(sys.argv[1], encoding="utf-8").read()))
+    try:
+        data = json.load(sys.stdin)
+    except ValueError as e:
+        print(f"::error::approval data is not JSON: {e}")
+        sys.exit(2)
+    ok, why = decide(data)
     print(("approval ok: " if ok else "::error::approval missing: ") + why)
     sys.exit(0 if ok else 1)
 

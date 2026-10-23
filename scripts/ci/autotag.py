@@ -20,10 +20,12 @@ This is the first step of the build: it decides whether there is anything to tag
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import os
 import re
-import subprocess
+import runpy
 import sys
 from pathlib import Path
 
@@ -43,13 +45,28 @@ def actors(env: dict[str, str] | None = None) -> set[str]:
 
 
 def lane_gate(lane: str, base: str, head: str, env: dict[str, str] | None = None) -> tuple[bool, str]:
-    """The lane's own gate on the PR, with the tags pending: (passed, the end of its output)."""
+    """The lane's own gate on the PR, with the tags pending: (passed, the end of its output). The gate script runs IN this process (runpy), so no command line is built from
+    the arguments: it is the same file the PR gate runs, with the same arguments, and its `fail` is the SystemExit that says no."""
     e = {**os.environ, **(env or {}), "ISNAD_TAGS_PENDING": "1"}
-    cmd = [sys.executable, str(HERE / GATES[lane]), base, head]
-    if lane == "intake":
-        cmd += ["--lint", e.get("LINT") or e.get("TENGOKU_INTAKE_LINT") or "strict"]
-    r = subprocess.run(cmd, capture_output=True, text=True, env=e, check=False)
-    return r.returncode == 0, (r.stdout + r.stderr).strip()[-600:]
+    script = str(HERE / GATES[lane])
+    argv = [script, base, head] + (["--lint", e.get("LINT") or e.get("TENGOKU_INTAKE_LINT") or "strict"] if lane == "intake" else [])
+    saved_argv, saved_env, out, code = sys.argv, dict(os.environ), io.StringIO(), 0
+    try:
+        sys.argv = argv
+        os.environ.update(e)
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(out):
+            try:
+                runpy.run_path(script, run_name="__main__")
+            except SystemExit as exit_:
+                code = exit_.code if isinstance(exit_.code, int) else (0 if exit_.code is None else 1)
+            except Exception as exc:  # noqa: BLE001 - a gate that crashes has not passed
+                code = 1
+                out.write(f"{type(exc).__name__}: {exc}")
+    finally:
+        sys.argv = saved_argv
+        os.environ.clear()
+        os.environ.update(saved_env)
+    return code == 0, out.getvalue().strip()[-600:]
 
 
 def plan(base: str, head: str, author: str, env: dict[str, str] | None = None) -> dict:

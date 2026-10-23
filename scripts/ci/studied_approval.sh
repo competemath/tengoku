@@ -19,4 +19,4 @@ done
 out="${RUNNER_TEMP:-/tmp}/studied-approval.json"
 jq -n --arg author "$author" --arg head "$head" --argjson owners "$owners" --argjson committers "$committers" --argjson permissions "$perms" --argjson reviews "$reviews" \
   '{author: $author, head: $head, owners: $owners, committers: $committers, permissions: $permissions, reviews: $reviews}' >"$out"
-python3 scripts/ci/studied_approval.py "$out"
+python3 scripts/ci/studied_approval.py <"$out"

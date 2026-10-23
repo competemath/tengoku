@@ -107,18 +107,18 @@ def required(lane: str | None, env: dict[str, str] | None = None) -> bool:
     return lane == "studied" or (lane == "intake" and (env if env is not None else os.environ).get("TENGOKU_ISNAD_REQUIRED") == "1")
 
 
-def main(argv: list[str]) -> int:
+def main(argv: list[str]) -> None:
     base, head = argv[1], argv[2]
     lane = lane_of(base, head)
     if lane is None:
         print("not a lane PR: nothing to check")
-        return 0
+        return
     if pending():
         print("tags pending (the autotag workflow's own run): not checked")
-        return 0
+        return
     if not required(lane):
         print(f"{lane} PR: born-tagged is not required yet (TENGOKU_ISNAD_REQUIRED is not 1)")
-        return 0
+        return
     errors: list[str] = []
     names: dict[str, str] = {}
     if lane == "studied":
@@ -139,8 +139,7 @@ def main(argv: list[str]) -> int:
     if errors:
         fail(f"{lane} PR is not born tagged: " + "; ".join(errors[:8]) + (f"; and {len(errors) - 8} more" if len(errors) > 8 else ""))
     print(f"born tagged ok: {len(mods)} module(s) of a {lane} PR carry their tags")
-    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    main(sys.argv)

@@ -230,8 +230,13 @@ jobs:
     timeout-minutes: 5
     permissions: { contents: read, pull-requests: read }
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with: { ref: "${{ env.SCRIPTS }}", filter: "blob:none", persist-credentials: false }
+      # main's scripts with plain git (see the intake job), not actions/checkout
+      - name: The base commit (the checks are main's)
+        run: |
+          git init -q .
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY"
+          git fetch -q --no-tags --filter=blob:none origin "+$SCRIPTS:refs/remotes/origin/scripts"
+          git checkout -q --detach origin/scripts
       - name: approval (advisory here)
         env: { GH_TOKEN: "${{ github.token }}", PR: "${{ github.event.pull_request.number }}" }
         run: scripts/ci/studied_approval.sh "$PR"
