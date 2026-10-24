@@ -5,8 +5,8 @@ From an idea to a trusted theorem, in the order it happens. Each step names the 
 ## 1. Pick something worth adding
 
 - A goal from [GOALS.md](../GOALS.md): results people have asked for, with what they build on.
-- Your own theorems, or a translation of a library that is already registered.
-- A whole library: register it (step 8) and the pipeline translates it for you.
+- Your own theorems, or a translation of a source project that is already registered.
+- A whole source project: register it (step 8) and the pipeline translates it for you.
 
 ## 2. Write the records
 
@@ -67,7 +67,7 @@ it uses no `sorry` and only the standard axioms (`propext`, `Classical.choice`, 
 source, licence and credit travel with it. It is never deleted: a mistake is retracted with a tombstone that stays
 in the history, with a note on where to look instead.
 
-## 8. Adding a whole library
+## 8. Registering a source project
 
 A tooling PR that adds the library to `schemas/sources.json` (its repository, the commit, its Lean roots) and its
 licence. Once merged, Emissary-Archangel, the translation pipeline, picks it up within a quarter of an hour: it
