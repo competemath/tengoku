@@ -1,6 +1,6 @@
 # How credit and verification work
 
-- **Verification is automatic.** Leak checks every submission: it must compile
+- **Verification is automatic.** The repository checks every submission: it must compile
   cleanly and not be a longer route to something the tree already reaches. A
   maintainer then approves the merge, and promotion to `trusted` builds the
   record again from scratch.
@@ -23,4 +23,4 @@
   [bulk attribution tool](../tools/attribute/README.md) at the directory with your
   credit string once; it writes the docstrings for you.
 - **Tiers.** Submissions start in `tentative` or `staging` and are promoted to
-  `trusted` only once Leak's own toolchain has compiled them from scratch.
+  `trusted` only once the relevant library checks have compiled them from scratch.
