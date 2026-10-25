@@ -304,7 +304,18 @@
     "https://github.com/mhogrefe/azurite": "Apache-2.0",
     "https://github.com/itpplasma/stafford38-formal": "Apache-2.0",
     "https://github.com/fukubillueda-web/epsilon_SML": "Apache-2.0",
-    "https://github.com/WangFrankie/QuadraticNumberFields": "Apache-2.0"
+    "https://github.com/WangFrankie/QuadraticNumberFields": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/TStructure/ImageFactorisation.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/Deformation/SeminormComparison.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/Deformation/LocalInjectivity.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/Deformation/LocalComparison.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/Deformation/ConnectedComponent.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/Deformation/LocalHomeomorphism.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/PostnikovTower.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Weak/Foundation/Slicing.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Weak/Foundation/IntervalCategory.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/PreStabilityCondition.lean": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/StabilityCondition.lean": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
