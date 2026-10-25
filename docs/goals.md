@@ -18,7 +18,7 @@ anything its users want in it. Each goal opens into the same fields, so a reader
 | **How it was done** *(any other done goal)* | What finished it, with a link (the pull requests, the release). |
 | **Why it was retired** *(required once retired)* | Why the goal was given up: out of reach, no longer wanted, replaced by another goal. |
 
-The status in the title line is one of `open`, `in progress (early-stage)`, `done` or `retired` (`partly done`, the older word for in progress, is still accepted until GOALS.md has moved to the new one), and the goal sits in the
+The status in the title line is one of `open`, `in progress (early-stage)`, `done` or `retired`, and the goal sits in the
 page's section for it: **Open** (open and in progress), **Completed** (done) or **Retired**. A goal is never
 deleted: a finished one moves to Completed, one given up moves to Retired with its reason.
 
