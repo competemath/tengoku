@@ -20,6 +20,10 @@
 # is used when it is installed and logged in.
 set -euo pipefail
 cd "${TENGOKU_ROOT:-$(dirname "$0")/..}"   # TENGOKU_ROOT: the checkout, when a copy of this script runs (the build job packs with one)
+# The cache is ~7 GB and `get`/`pack` stage it in a `mktemp -d`. On ubuntu-26.04 runners (ubuntu-latest since October 2026) /tmp is a 7.9 GB
+# tmpfs with a user quota ("write …/tengoku-cache.tar.zst.part-ab: disk quota exceeded"; ubuntu-24.04 has it on the 145 GB root disk), so stage
+# on the runner's work disk when there is one.
+export TMPDIR="${RUNNER_TEMP:-${TMPDIR:-/tmp}}"
 REPO="${TENGOKU_REPO:-competemath/tengoku}"          # where `put` publishes
 SRC="${TENGOKU_CACHE_SOURCE:-$REPO}"                  # where `get`/`latest` read (a sandbox reads the library's caches)
 TOPUPS="${TENGOKU_TOPUPS:-0}"                         # 1 = follow top-ups (the small per-merge difference from the nightly base); 0 = nightly base only
