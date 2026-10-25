@@ -1,7 +1,7 @@
 # Acknowledgements
 
 What Tengoku is built with, and what shaped how it was designed. The mathematics itself comes from the libraries
-it gathers: the seeded packages in [LICENSE-THIRD-PARTY.md](../LICENSE-THIRD-PARTY.md) and every registered library
+it gathers: the seeded packages in [LICENSE-THIRD-PARTY.md](../LICENSE-THIRD-PARTY.md) and every registered source
 in [schemas/sources.json](../schemas/sources.json). Each theorem credits its own authors.
 
 ## The main technologies

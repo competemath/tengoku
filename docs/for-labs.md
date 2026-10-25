@@ -2,7 +2,7 @@
 
 For labs, and anyone building a model or dataset from Tengoku.
 
-Tengoku is Apache-2.0, and every library in it stays under its own licence; all of them permit training. This page says what those licences require, what we ask on top, and how commitments are recorded.
+Tengoku is Apache-2.0, and every registered source stays under its own licence; all of them permit training. This page says what those licences require, what we ask on top, and how commitments are recorded.
 
 ## Required
 
@@ -20,7 +20,7 @@ For the hosted services (the search API, the MCP tools, Leak): they are for inte
 2. **Keep provenance with each example.** A record's `library` and `source_url` (where its notices live) and its `Author:` line travel with it into any dataset you build or publish.
 3. **Honour retractions.** A retracted record (a tombstone line in `data/trusted/`) or a library removed from [the allowlist](../schemas/sources.json) is dropped from your next training run and from any data you publish. Re-sync at each release.
 4. **Keep evaluations clean.** Tengoku includes public formalisations of competition problems (Compfiles, IMO shortlist) and other solutions. Decontaminate before reporting results on miniF2F, PutnamBench or similar, and publish your method and hit counts.
-5. **Describe our labels accurately.** `trusted` means the tree compiles the theorem under Leak's checks. It does not mean a mathematician has read the statement.
+5. **Describe our labels accurately.** `trusted` means the relevant library checks have passed. It does not mean a mathematician has read the statement.
 6. **Report errors.** A wrong or misleading statement goes to [Issues](https://github.com/competemath/tengoku/issues/new).
 7. **Give back.** Proofs your models find for open statements, once verified, come in through [the usual route](how-a-pr-flows.md) with an `Author:` line.
 
