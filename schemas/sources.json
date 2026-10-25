@@ -136,7 +136,15 @@
     "https://github.com/BennyAvelin/AbsorptionCutoff",
     "https://github.com/abenenson/rellich-kondrachov",
     "https://github.com/ahhwuhu/zeta_3_irrational",
-    "https://github.com/harfe/fixed-point-theorems-lean4"
+    "https://github.com/harfe/fixed-point-theorems-lean4",
+    "https://github.com/adamtopaz/acl_geom",
+    "https://github.com/asving/splitting-density-rationality",
+    "https://github.com/stksk310/NS-P23-Lean",
+    "https://github.com/Vlado-V/chopped-plane-point-ideals",
+    "https://github.com/riccardobrasca/KummerCriterion",
+    "https://github.com/n-yamaguchi-0729/YamaguchiPapersFormalization",
+    "https://github.com/frenzymath/MiyaokaMori-CharZero",
+    "https://github.com/resolutionorg/hironaka"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -274,7 +282,15 @@
     "https://github.com/BennyAvelin/AbsorptionCutoff": "Apache-2.0",
     "https://github.com/abenenson/rellich-kondrachov": "Apache-2.0",
     "https://github.com/ahhwuhu/zeta_3_irrational": "Apache-2.0",
-    "https://github.com/harfe/fixed-point-theorems-lean4": "MIT"
+    "https://github.com/harfe/fixed-point-theorems-lean4": "MIT",
+    "https://github.com/adamtopaz/acl_geom": "Apache-2.0",
+    "https://github.com/asving/splitting-density-rationality": "Apache-2.0",
+    "https://github.com/stksk310/NS-P23-Lean": "Apache-2.0",
+    "https://github.com/Vlado-V/chopped-plane-point-ideals": "Apache-2.0",
+    "https://github.com/riccardobrasca/KummerCriterion": "Apache-2.0",
+    "https://github.com/n-yamaguchi-0729/YamaguchiPapersFormalization": "Apache-2.0",
+    "https://github.com/frenzymath/MiyaokaMori-CharZero": "Apache-2.0",
+    "https://github.com/resolutionorg/hironaka": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1124,6 +1140,67 @@
       "roots": [
         "OAI",
         "ComparatorChallenges"
+      ]
+    },
+    "acl-geom": {
+      "repo": "https://github.com/adamtopaz/acl_geom",
+      "commit": "293b8c387bf868940b0d16dd9b6b67f1710ba887",
+      "roots": [
+        "AclGeom",
+        "GroupConfig",
+        "AclGeomBook"
+      ]
+    },
+    "splitting-density-rationality": {
+      "repo": "https://github.com/asving/splitting-density-rationality",
+      "commit": "df3f13cb808e32168dd3595c8b32c70823fcf824",
+      "roots": [
+        "SurfaceBlowup",
+        "Tests"
+      ]
+    },
+    "ns-p23": {
+      "repo": "https://github.com/stksk310/NS-P23-Lean",
+      "commit": "cb782617f12909107480ccfd51d4450d05c8e5c3",
+      "roots": [
+        "P23"
+      ]
+    },
+    "chopped-plane-point-ideals": {
+      "repo": "https://github.com/Vlado-V/chopped-plane-point-ideals",
+      "commit": "4200d41342404e66f177d067763c0d1c1dd2d768",
+      "roots": [
+        "ChoppedPlane",
+        "Solution"
+      ]
+    },
+    "kummer-criterion": {
+      "repo": "https://github.com/riccardobrasca/KummerCriterion",
+      "commit": "a7fde210158e10171e083eeaffee4a093bcdf5a3",
+      "roots": [
+        "KummerCriterion"
+      ]
+    },
+    "yamaguchi-papers": {
+      "repo": "https://github.com/n-yamaguchi-0729/YamaguchiPapersFormalization",
+      "commit": "df1776498cd4725feb2cb2711bbb273945b3c8d4",
+      "roots": [
+        "Nyll"
+      ]
+    },
+    "miyaoka-mori-charzero": {
+      "repo": "https://github.com/frenzymath/MiyaokaMori-CharZero",
+      "commit": "19bb10861c147ef393d002cdb03489130b653880",
+      "roots": [
+        "MiyaokaMori"
+      ]
+    },
+    "hironaka": {
+      "repo": "https://github.com/resolutionorg/hironaka",
+      "commit": "044d89c9455859446fc5e986667319f910e15f4b",
+      "roots": [
+        "Hironaka",
+        "HironakaExamples"
       ]
     }
   },
