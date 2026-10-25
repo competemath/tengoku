@@ -6,8 +6,8 @@ Tengoku is one Lean 4 library assembled from many formal mathematics projects. I
 dependencies, and adds registered sources, translated onto a single pinned toolchain
 (`leanprover/lean4:v4.34.0-rc2` at the time of writing) so that they build together and import together.
 
-Tengoku has `trusted`, `tentative` and `staging` tiers. The current counts are published in the badge and
-`data/stats.json`; they are not repeated here so that this page does not become a second source of truth.
+Tengoku has `trusted`, `tentative` and `staging` tiers. The current counts are shown by the badge in the README;
+they are not repeated here so that this page does not become a second source of truth.
 
 ## What it checks
 
