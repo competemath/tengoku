@@ -4,7 +4,6 @@ On ubuntu-26.04 runners /tmp is a 7.9 GB tmpfs with a quota and the cache is ~7 
 "write …/tengoku-cache.tar.zst.part-ab: disk quota exceeded" and the merge queue threw the PR out (competemath/tengoku#668).
 """
 
-import importlib.util
 import os
 import subprocess
 import sys
@@ -26,14 +25,19 @@ class CacheSh(unittest.TestCase):
     def _tmpdir_after_the_export(self, env):
         out = subprocess.run(
             ["bash", "-c", 'export TMPDIR="${RUNNER_TEMP:-${TMPDIR:-/tmp}}"; d="$(mktemp -d)"; echo "$d"; rmdir "$d"'],
-            env={"PATH": os.environ["PATH"], **env}, capture_output=True, text=True, check=True,
+            env={"PATH": os.environ["PATH"], **env},
+            capture_output=True,
+            text=True,
+            check=True,
         )
         return out.stdout.strip()
 
     @unittest.skipUnless(sys.platform.startswith("linux"), "BSD mktemp (macOS) ignores TMPDIR; the runners are Linux")
     def test_mktemp_lands_under_runner_temp_when_there_is_one(self):
         with tempfile.TemporaryDirectory() as work:
-            self.assertTrue(os.path.realpath(self._tmpdir_after_the_export({"RUNNER_TEMP": work})).startswith(os.path.realpath(work) + os.sep))
+            self.assertTrue(
+                os.path.realpath(self._tmpdir_after_the_export({"RUNNER_TEMP": work})).startswith(os.path.realpath(work) + os.sep)
+            )
 
     @unittest.skipUnless(sys.platform.startswith("linux"), "BSD mktemp (macOS) ignores TMPDIR; the runners are Linux")
     def test_without_runner_temp_it_is_what_it_was(self):
@@ -50,7 +54,13 @@ class LakeCachePy(unittest.TestCase):
                 "m = importlib.util.module_from_spec(spec); sys.modules['lake_cache'] = m; spec.loader.exec_module(m); "
                 "print(tempfile.gettempdir())"
             )
-            out = subprocess.run([sys.executable, "-c", code], env={"PATH": os.environ["PATH"], "RUNNER_TEMP": work}, capture_output=True, text=True, check=True)
+            out = subprocess.run(
+                [sys.executable, "-c", code],
+                env={"PATH": os.environ["PATH"], "RUNNER_TEMP": work},
+                capture_output=True,
+                text=True,
+                check=True,
+            )
             self.assertEqual(os.path.realpath(out.stdout.strip()), os.path.realpath(work))
 
 
