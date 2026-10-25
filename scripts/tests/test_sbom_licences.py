@@ -36,6 +36,11 @@ class SbomLicences(unittest.TestCase):
         rows = [{"name": "y", "source_url": "https://github.com/o/plain/blob/" + "d" * 40 + "/P/A.lean#L1"}]
         self.assertEqual(ids(sbom.source_component("plain", rows, REGISTRY)), ["Apache-2.0"])
 
+    def test_an_entry_for_another_commit_does_not_describe_the_pinned_one(self):
+        registry = {**REGISTRY, "licences": {**REGISTRY["licences"], f"{REPO}/blob/{'e' * 40}/Lib/C.lean": "GPL-3.0"}}
+        rows = [{"name": "x", "source_url": f"{REPO}/blob/{'c' * 40}/Lib/A.lean#L1"}]
+        self.assertEqual(ids(sbom.source_component("lib", rows, registry)), ["MIT", "Apache-2.0"])
+
     def test_a_longer_entry_of_another_repository_with_a_similar_name_is_not_taken(self):
         registry = {**REGISTRY, "licences": {**REGISTRY["licences"], f"{REPO}-fork/blob/x/Lib/A.lean": "GPL-3.0"}}
         rows = [{"name": "x", "source_url": f"{REPO}/blob/{'c' * 40}/Lib/A.lean#L1"}]
