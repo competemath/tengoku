@@ -41,6 +41,10 @@ import time
 import urllib.request
 from pathlib import Path
 
+# Stage on the runner's work disk when there is one: /tmp is a 7.9 GB tmpfs with a quota on ubuntu-26.04 runners (see scripts/cache.sh).
+if os.environ.get("RUNNER_TEMP"):
+    tempfile.tempdir = os.environ["RUNNER_TEMP"]
+
 DELTA = re.compile(r"^d-([0-9a-f]{40})\.tar\.zst$")
 BUILT = re.compile(r"\bBuilt\s+(\S+)")
 IMPORT = re.compile(r"^import\s+(\S+)", re.M)  # the header's import lines, at the start of a line
