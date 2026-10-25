@@ -144,7 +144,14 @@
     "https://github.com/riccardobrasca/KummerCriterion",
     "https://github.com/n-yamaguchi-0729/YamaguchiPapersFormalization",
     "https://github.com/frenzymath/MiyaokaMori-CharZero",
-    "https://github.com/resolutionorg/hironaka"
+    "https://github.com/resolutionorg/hironaka",
+    "https://github.com/vaca22/grothendieck-riemann-roch",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean",
+    "https://github.com/macgregor-sudo/albert-frame-triple-invariants",
+    "https://github.com/mhogrefe/azurite",
+    "https://github.com/itpplasma/stafford38-formal",
+    "https://github.com/fukubillueda-web/epsilon_SML",
+    "https://github.com/WangFrankie/QuadraticNumberFields"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -290,7 +297,14 @@
     "https://github.com/riccardobrasca/KummerCriterion": "Apache-2.0",
     "https://github.com/n-yamaguchi-0729/YamaguchiPapersFormalization": "Apache-2.0",
     "https://github.com/frenzymath/MiyaokaMori-CharZero": "Apache-2.0",
-    "https://github.com/resolutionorg/hironaka": "Apache-2.0"
+    "https://github.com/resolutionorg/hironaka": "Apache-2.0",
+    "https://github.com/vaca22/grothendieck-riemann-roch": "Apache-2.0",
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean": "MIT",
+    "https://github.com/macgregor-sudo/albert-frame-triple-invariants": "Apache-2.0",
+    "https://github.com/mhogrefe/azurite": "Apache-2.0",
+    "https://github.com/itpplasma/stafford38-formal": "Apache-2.0",
+    "https://github.com/fukubillueda-web/epsilon_SML": "Apache-2.0",
+    "https://github.com/WangFrankie/QuadraticNumberFields": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1201,6 +1215,63 @@
       "roots": [
         "Hironaka",
         "HironakaExamples"
+      ]
+    },
+    "grothendieck-riemann-roch": {
+      "repo": "https://github.com/vaca22/grothendieck-riemann-roch",
+      "commit": "053ea2fbd24c2f675a28393a4e7b7af9fe4ae626",
+      "roots": [
+        "RiemannRoch"
+      ]
+    },
+    "derived-alg-geo-lean": {
+      "repo": "https://github.com/chris-dare-dev/derived-alg-geo-lean",
+      "commit": "af19c7943a8e9e346a5c26eea7ce41f17b3a7983",
+      "roots": [
+        "DerivedAlgGeo"
+      ]
+    },
+    "albert-frame-triple-invariants": {
+      "repo": "https://github.com/macgregor-sudo/albert-frame-triple-invariants",
+      "commit": "dd06ef5d423a0e4a5d814d2c221e999b98887ee1",
+      "roots": [
+        "AlbertLean",
+        "FrameInvariants",
+        "OneBit"
+      ]
+    },
+    "azurite": {
+      "repo": "https://github.com/mhogrefe/azurite",
+      "commit": "14454e33ec582c001f23b6c65689d13d56a721dc",
+      "roots": [
+        "Azurite"
+      ]
+    },
+    "stafford38-formal": {
+      "repo": "https://github.com/itpplasma/stafford38-formal",
+      "commit": "5a5b0edcbb02a57d5a53fe8929ccde88cb3b6af1",
+      "roots": [
+        "Stafford38",
+        "proofs"
+      ]
+    },
+    "epsilon-sml": {
+      "repo": "https://github.com/fukubillueda-web/epsilon_SML",
+      "commit": "5b55d3f6e7c053f733afb1be523e532d212d94d0",
+      "roots": [
+        "LanglandsSecondMainLemma"
+      ]
+    },
+    "quadratic-number-fields": {
+      "repo": "https://github.com/WangFrankie/QuadraticNumberFields",
+      "commit": "b02cc08db24a29c8a4e88af95848d8dae969a9fc",
+      "roots": [
+        "QuadraticNumberFields",
+        "QNFMathlib",
+        "FormClassGroup",
+        "BinaryQuadraticForms",
+        "ImaginaryClassNumberOne",
+        "Examples"
       ]
     }
   },
