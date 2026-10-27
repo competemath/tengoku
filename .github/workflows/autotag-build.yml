@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 300
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       # The base commit with plain git, as the PR gate does: the checks are main's, and the PR is read as git objects until the plan says it may be built.
       - name: The base commit (the checks are main's)

@@ -22,11 +22,11 @@ jobs:
     timeout-minutes: 10
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { filter: "blob:none", persist-credentials: false }
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with: { python-version: "3.12" }
       # pre-commit's hook environments (ruff and the rest), keyed by the config: building them took most of this job's two minutes
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -38,11 +38,11 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 2, filter: "blob:none", persist-credentials: false }   # 2: the merge commit and the base (the fuzz step's diff)
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with: { python-version: "3.12" }
       - run: pip install -q --require-hashes --only-binary ':all:' -r scripts/ci/requirements/yaml.txt -r scripts/ci/requirements/coverage.txt   # workflow_rules.py reads YAML; coverage.py measures
       # The unit tests, once, under coverage.py (.coveragerc): the report feeds the `sonar` job below and Codecov. They used to run here plain
@@ -89,7 +89,7 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read, pull-requests: read }
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       # everything but the Lean tree, the data and the widget, with the full history: the scanner blames lines to find new code
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -144,7 +144,7 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 2, filter: "blob:none", persist-credentials: false }   # 2: the merge commit and the base
@@ -179,7 +179,7 @@ jobs:
     timeout-minutes: 20
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 2, filter: "blob:none", persist-credentials: false }   # 2: the merge commit and the base
