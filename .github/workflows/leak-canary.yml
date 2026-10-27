@@ -34,7 +34,7 @@ jobs:
       SPACE: ${{ inputs.space || 'leak-iv' }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
       # no checkout in a workflow that a workflow_run starts (Sonar S7631: nothing a fork wrote may run here): the three files are read from main through the API, as data
       - name: The canary and its files, as main has them
