@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "ca568b3478cd0e8c6c3043bcdb012e0aa1f52c7e50c5ad891830747e891085d8",
+ "gate2_unjudged": [],
+ "library": "theorem-a-fp-groups",
+ "lint_mode": "proposed",
+ "modules": 51,
+ "part": 1,
+ "theorems": 580
+}
