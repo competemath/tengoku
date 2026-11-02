@@ -1,0 +1,244 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Azurite.Azurite.AzInt.Sub
+import Tengoku.Azurite.Azurite.AzInt.Equiv.Add
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace Azurite.AzInt
+
+/-- Correctness of `AzInt.subUInt64`.-/
+theorem toInt_subUInt64 (z : AzInt) (u : UInt64) :
+    (z.subUInt64 u).toInt = z.toInt - (u.toNat : Int) := by
+  unfold subUInt64
+  have h_tz : z.toInt = if z.sign then (z.abs.toNat : Int) else -(z.abs.toNat : Int) := rfl
+  rw [h_tz]
+  by_cases hs : z.sign = true
+  · simp only [hs, ↓reduceDIte, ↓reduceIte]
+    have h_eq := AzNat.compareUInt64_eq z.abs u
+    split <;> rename_i h_cmp
+    · rw [h_cmp] at h_eq
+      have h_lt : z.abs.toNat < u.toNat := Nat.compare_eq_lt.mp h_eq.symm
+      have h_sub_pos : u.toAzNat - z.abs ≠ 0 := by
+        intro hc
+        have hc' : (u.toAzNat - z.abs).toNat = 0 := by rw [hc]; rfl
+        rw [AzNat.toNat_sub, UInt64.toNat_toAzNat] at hc'; omega
+      rw [toInt_mkNonzero_false _ h_sub_pos, AzNat.toNat_sub, UInt64.toNat_toAzNat]
+      omega
+    · rw [h_cmp] at h_eq
+      have h_e : z.abs.toNat = u.toNat := Nat.compare_eq_eq.mp h_eq.symm
+      rw [toInt_zero]; omega
+    · rw [h_cmp] at h_eq
+      have h_gt : u.toNat < z.abs.toNat := Nat.compare_eq_gt.mp h_eq.symm
+      rw [Azurite.AzNat.toInt_toAzInt, AzNat.toNat_subUInt64]
+      omega
+  · simp only [hs, ↓reduceDIte, Bool.false_eq_true, ↓reduceIte]
+    have h_abs_ne : z.abs ≠ 0 := fun h0 => by
+      rw [z.zero_sign h0] at hs; exact hs rfl
+    have h_abs_pos : 0 < z.abs.toNat := by
+      rcases Nat.eq_zero_or_pos z.abs.toNat with h | h
+      · exact absurd
+          (AzNat.toNat_injective (by rw [h, AzNat.toNat_zero])) h_abs_ne
+      · exact h
+    have h_sum_pos : z.abs.addUInt64 u ≠ 0 := by
+      intro hc
+      have hc' : (z.abs.addUInt64 u).toNat = 0 := by rw [hc]; rfl
+      rw [AzNat.toNat_addUInt64] at hc'; omega
+    rw [toInt_mkNonzero_false _ h_sum_pos, AzNat.toNat_addUInt64]
+    omega
+
+/-- `ofInt`-version of `toInt_subUInt64`.-/
+theorem ofInt_subUInt64 (i : Int) (u : UInt64) :
+    ofInt (i - (u.toNat : Int)) = (ofInt i).subUInt64 u := by
+  have h : (ofInt (i - (u.toNat : Int))).toInt = ((ofInt i).subUInt64 u).toInt := by
+    rw [toInt_ofInt, toInt_subUInt64, toInt_ofInt]
+  have := congrArg ofInt h
+  rwa [ofInt_toInt, ofInt_toInt] at this
+
+/-- Correctness of `AzInt.addInt64`.-/
+theorem toInt_addInt64 (z : AzInt) (i : Int64) :
+    (z.addInt64 i).toInt = z.toInt + i.toInt := by
+  unfold addInt64
+  by_cases hi : i ≥ 0
+  · simp only [hi, ↓reduceIte]
+    rw [toInt_addUInt64]
+    have ht : (i.toUInt64.toNat : Int) = i.toBitVec.toNat := rfl
+    rw [ht, Int64.toInt_of_nonneg hi]
+  · simp only [hi, ↓reduceIte]
+    rw [toInt_subUInt64]
+    have hi_neg : i.toInt = (i.toBitVec.toNat : Int) - 2^64 := Int64.toInt_of_neg hi
+    have h_iLt : i.toBitVec.toNat < 2^64 := i.toBitVec.isLt
+    have hh_neg_int : ¬0 ≤ i.toBitVec.toInt := by
+      revert hi
+      change ¬(decide ((0 : Int64).toBitVec.toInt ≤ i.toBitVec.toInt) = true) →
+             ¬(0 ≤ i.toBitVec.toInt)
+      intro he
+      have h_dec : decide ((0 : Int64).toBitVec.toInt ≤ i.toBitVec.toInt) = false :=
+        Bool.eq_false_of_not_eq_true he
+      have he2 := of_decide_eq_false h_dec
+      have h0 : (0 : Int64).toBitVec.toInt = 0 := rfl
+      rw [h0] at he2
+      exact he2
+    unfold BitVec.toInt at hh_neg_int
+    have h_pos : i.toBitVec.toNat > 0 := by
+      split_ifs at hh_neg_int
+      · omega
+      · omega
+    have h_neg_u_toNat : ((-i).toUInt64.toNat : Int) = 2^64 - i.toBitVec.toNat := by
+      change (((-i).toBitVec).toNat : Int) = 2^64 - i.toBitVec.toNat
+      have h_neg_bv : (-i).toBitVec = -i.toBitVec := rfl
+      rw [h_neg_bv]
+      have h_mod : ((-i.toBitVec).toNat : Int)
+                  = ((2^64 - i.toBitVec.toNat) % 2^64 : Nat) := by
+        change ((((2^64 - i.toBitVec.toNat) % 2^64 : Nat)) : Int) =
+               ((2^64 - i.toBitVec.toNat) % 2^64 : Nat)
+        rfl
+      rw [h_mod]
+      have h_lt : 2^64 - i.toBitVec.toNat < 2^64 := by omega
+      rw [Nat.mod_eq_of_lt h_lt]
+      have h_le : i.toBitVec.toNat ≤ 2^64 := by omega
+      rw [Nat.cast_sub h_le]; rfl
+    rw [h_neg_u_toNat, hi_neg]
+    ring
+
+/-- `ofInt`-version of `toInt_addInt64`.-/
+theorem ofInt_addInt64 (i : Int) (j : Int64) :
+    ofInt (i + j.toInt) = (ofInt i).addInt64 j := by
+  have h : (ofInt (i + j.toInt)).toInt = ((ofInt i).addInt64 j).toInt := by
+    rw [toInt_ofInt, toInt_addInt64, toInt_ofInt]
+  have := congrArg ofInt h
+  rwa [ofInt_toInt, ofInt_toInt] at this
+
+/-- Correctness of `AzInt.subInt64`.-/
+theorem toInt_subInt64 (z : AzInt) (i : Int64) :
+    (z.subInt64 i).toInt = z.toInt - i.toInt := by
+  unfold subInt64
+  by_cases hi : i ≥ 0
+  · simp only [hi, ↓reduceIte]
+    rw [toInt_subUInt64]
+    have ht : (i.toUInt64.toNat : Int) = i.toBitVec.toNat := rfl
+    rw [ht, Int64.toInt_of_nonneg hi]
+  · simp only [hi, ↓reduceIte]
+    rw [toInt_addUInt64]
+    have hi_neg : i.toInt = (i.toBitVec.toNat : Int) - 2^64 := Int64.toInt_of_neg hi
+    have h_iLt : i.toBitVec.toNat < 2^64 := i.toBitVec.isLt
+    have hh_neg_int : ¬0 ≤ i.toBitVec.toInt := by
+      revert hi
+      change ¬(decide ((0 : Int64).toBitVec.toInt ≤ i.toBitVec.toInt) = true) →
+             ¬(0 ≤ i.toBitVec.toInt)
+      intro he
+      have h_dec : decide ((0 : Int64).toBitVec.toInt ≤ i.toBitVec.toInt) = false :=
+        Bool.eq_false_of_not_eq_true he
+      have he2 := of_decide_eq_false h_dec
+      have h0 : (0 : Int64).toBitVec.toInt = 0 := rfl
+      rw [h0] at he2
+      exact he2
+    unfold BitVec.toInt at hh_neg_int
+    have h_pos : i.toBitVec.toNat > 0 := by
+      split_ifs at hh_neg_int
+      · omega
+      · omega
+    have h_neg_u_toNat : ((-i).toUInt64.toNat : Int) = 2^64 - i.toBitVec.toNat := by
+      change (((-i).toBitVec).toNat : Int) = 2^64 - i.toBitVec.toNat
+      have h_neg_bv : (-i).toBitVec = -i.toBitVec := rfl
+      rw [h_neg_bv]
+      have h_mod : ((-i.toBitVec).toNat : Int)
+                  = ((2^64 - i.toBitVec.toNat) % 2^64 : Nat) := by
+        change ((((2^64 - i.toBitVec.toNat) % 2^64 : Nat)) : Int) =
+               ((2^64 - i.toBitVec.toNat) % 2^64 : Nat)
+        rfl
+      rw [h_mod]
+      have h_lt : 2^64 - i.toBitVec.toNat < 2^64 := by omega
+      rw [Nat.mod_eq_of_lt h_lt]
+      have h_le : i.toBitVec.toNat ≤ 2^64 := by omega
+      rw [Nat.cast_sub h_le]; rfl
+    rw [h_neg_u_toNat, hi_neg]
+    ring
+
+/-- `ofInt`-version of `toInt_subInt64`.-/
+theorem ofInt_subInt64 (i : Int) (j : Int64) :
+    ofInt (i - j.toInt) = (ofInt i).subInt64 j := by
+  have h : (ofInt (i - j.toInt)).toInt = ((ofInt i).subInt64 j).toInt := by
+    rw [toInt_ofInt, toInt_subInt64, toInt_ofInt]
+  have := congrArg ofInt h
+  rwa [ofInt_toInt, ofInt_toInt] at this
+
+/-- Correctness of `AzInt.sub`.-/
+theorem toInt_sub (a b : AzInt) : (a - b).toInt = a.toInt - b.toInt := by
+  show (sub a b).toInt = a.toInt - b.toInt
+  unfold sub
+  have h_ta : a.toInt = if a.sign then (a.abs.toNat : Int) else -(a.abs.toNat : Int) := rfl
+  have h_tb : b.toInt = if b.sign then (b.abs.toNat : Int) else -(b.abs.toNat : Int) := rfl
+  rw [h_ta, h_tb]
+  have h_cmp_eq := AzNat.compare_eq_compare_toNat a.abs b.abs
+  by_cases hsa : a.sign = true
+  · by_cases hsb : b.sign = true
+    · -- true, true: a.abs - b.abs
+      simp only [hsa, hsb, ↓reduceDIte, ↓reduceIte]
+      split <;> rename_i h_cmp
+      · rw [h_cmp] at h_cmp_eq
+        have h_lt : a.abs.toNat < b.abs.toNat := Nat.compare_eq_lt.mp h_cmp_eq.symm
+        have h_sub_ne : b.abs - a.abs ≠ 0 := by
+          intro hc
+          have : (b.abs - a.abs).toNat = 0 := by rw [hc]; rfl
+          rw [AzNat.toNat_sub] at this; omega
+        rw [toInt_mkNonzero_false _ h_sub_ne, AzNat.toNat_sub]
+        omega
+      · rw [h_cmp] at h_cmp_eq
+        have h_eq : a.abs.toNat = b.abs.toNat := Nat.compare_eq_eq.mp h_cmp_eq.symm
+        rw [toInt_zero]; omega
+      · rw [h_cmp] at h_cmp_eq
+        have h_gt : b.abs.toNat < a.abs.toNat := Nat.compare_eq_gt.mp h_cmp_eq.symm
+        rw [Azurite.AzNat.toInt_toAzInt, AzNat.toNat_sub]
+        omega
+    · -- true, false: a.abs - (-b.abs) = a.abs + b.abs
+      simp only [hsa, hsb, ↓reduceDIte, Bool.false_eq_true, ↓reduceIte]
+      rw [Azurite.AzNat.toInt_toAzInt, AzNat.toNat_add]
+      push_cast; ring
+  · have hanz : a.abs ≠ 0 := fun h0 => by
+      rw [a.zero_sign h0] at hsa; exact hsa rfl
+    by_cases hsb : b.sign = true
+    · -- false, true: -a.abs - b.abs = -(a.abs + b.abs)
+      simp only [hsa, hsb, ↓reduceDIte, Bool.false_eq_true, ↓reduceIte]
+      have h_sum_ne : a.abs + b.abs ≠ 0 := by
+        intro hc
+        have : (a.abs + b.abs).toNat = 0 := by rw [hc]; rfl
+        rw [AzNat.toNat_add] at this
+        have : a.abs.toNat = 0 := by omega
+        exact hanz (AzNat.toNat_injective (by rw [this, AzNat.toNat_zero]))
+      rw [toInt_mkNonzero_false _ h_sum_ne, AzNat.toNat_add]
+      push_cast; ring
+    · -- false, false: -a.abs - (-b.abs) = b.abs - a.abs
+      simp only [hsa, hsb, ↓reduceDIte, Bool.false_eq_true, ↓reduceIte]
+      split <;> rename_i h_cmp
+      · rw [h_cmp] at h_cmp_eq
+        have h_lt : a.abs.toNat < b.abs.toNat := Nat.compare_eq_lt.mp h_cmp_eq.symm
+        rw [Azurite.AzNat.toInt_toAzInt, AzNat.toNat_sub]
+        omega
+      · rw [h_cmp] at h_cmp_eq
+        have h_eq : a.abs.toNat = b.abs.toNat := Nat.compare_eq_eq.mp h_cmp_eq.symm
+        rw [toInt_zero]; omega
+      · rw [h_cmp] at h_cmp_eq
+        have h_gt : b.abs.toNat < a.abs.toNat := Nat.compare_eq_gt.mp h_cmp_eq.symm
+        have h_sub_ne : a.abs - b.abs ≠ 0 := by
+          intro hc
+          have : (a.abs - b.abs).toNat = 0 := by rw [hc]; rfl
+          rw [AzNat.toNat_sub] at this; omega
+        rw [toInt_mkNonzero_false _ h_sub_ne, AzNat.toNat_sub]
+        omega
+
+/-- `ofInt`-version of `toInt_sub`.-/
+theorem ofInt_sub (i j : Int) : ofInt (i - j) = ofInt i - ofInt j := by
+  have h : (ofInt (i - j)).toInt = (ofInt i - ofInt j).toInt := by
+    rw [toInt_ofInt, toInt_sub, toInt_ofInt, toInt_ofInt]
+  have := congrArg ofInt h
+  rwa [ofInt_toInt, ofInt_toInt] at this
+
+end Azurite.AzInt

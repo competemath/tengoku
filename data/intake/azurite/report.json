@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "a651ba7ce2f82f3850917bd2d691693fd455720aaf601764ef85e504c5455a23",
+ "gate2_unjudged": [],
+ "library": "azurite",
+ "lint_mode": "proposed",
+ "modules": 215,
+ "part": 1,
+ "theorems": 931
+}
