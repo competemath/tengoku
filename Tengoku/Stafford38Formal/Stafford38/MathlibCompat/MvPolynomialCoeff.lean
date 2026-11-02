@@ -1,0 +1,16 @@
+module
+public import Tengoku.Seed.Algebra.MvPolynomial.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+@[expose] public section
+
+/-! Compatibility spelling for sources using `MvPolynomial.coeff m p`.
+The canonical operation is the polynomial's coefficient at `m`. -/
+namespace MvPolynomial
+
+@[simp] theorem coeff_zero_compat {σ : Type*} {R : Type*} [CommSemiring R]
+    (m : σ →₀ ℕ) : MvPolynomial.coeff m (0 : MvPolynomial σ R) = 0 := by
+  simp [MvPolynomial.coeff]
+
+end MvPolynomial
