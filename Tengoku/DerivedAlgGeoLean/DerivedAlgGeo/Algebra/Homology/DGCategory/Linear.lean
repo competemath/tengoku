@@ -1,0 +1,196 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.Seed.Algebra.Category.ModuleCat.Basic
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.Algebra.Homology.DGCategory.Functor
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# `k`-linear dg categories
+
+`DGCategory` is stated over abelian groups so that its Hom-complexes are
+exactly the complexes `CochainComplex.HomComplex` produces. Linearity over a
+commutative ring is layered on top, the way `CategoryTheory.Linear` layers over
+`Preadditive` in Mathlib.
+
+`DGLinear.homComplex` exposes those same graded groups and differentials as a
+`ModuleCat k`-valued cochain complex.  It is an abbreviation rather than a
+second Hom-complex: only the already supplied module structures and
+`DGLinear.d_smul` are added.
+
+`ADR-0011` records why this is a refinement rather than part of the definition:
+a first draft that baked `ModuleCat k` into `dgHom` collided with the
+`AddCommGrpCat`-valued `HomComplex` three separate times.
+-/
+
+set_option autoImplicit false
+set_option relaxedAutoImplicit false
+
+universe v u u' u'' w
+
+namespace CategoryTheory
+
+open DGCategoryStruct DGCategory
+
+/-- A `k`-linear structure on a dg category: given `k`-module structures on the
+graded pieces of the Hom-complexes, both the differential and the composition
+are `k`-linear.
+
+The module structures are a parameter rather than a field. A field cannot be
+used as an instance inside the same class's later field types, and the version
+that tried produced a stuck `HSMul` metavariable on the first axiom.-/
+class DGLinear (k : Type w) [CommRing k] (C : Type u) [DGCategory.{v} C]
+    [∀ (X Y : C) (p : ℤ), Module k ((dgHom X Y).X p)] where
+  /-- The differential is `k`-linear.-/
+  d_smul {X Y : C} (p q : ℤ) (c : k) (f : (dgHom X Y).X p) :
+    ((dgHom X Y).d p q).hom (c • f) = c • ((dgHom X Y).d p q).hom f
+  /-- Composition is `k`-linear in its first argument.-/
+  comp_smul_left {X Y Z : C} (p q r : ℤ) (h : p + q = r) (c : k)
+      (f : (dgHom X Y).X p) (g : (dgHom Y Z).X q) :
+    dgComp p q r h (c • f) g = c • dgComp p q r h f g
+  /-- Composition is `k`-linear in its second argument.-/
+  comp_smul_right {X Y Z : C} (p q r : ℤ) (h : p + q = r) (c : k)
+      (f : (dgHom X Y).X p) (g : (dgHom Y Z).X q) :
+    dgComp p q r h f (c • g) = c • dgComp p q r h f g
+
+namespace DGLinear
+
+variable (k : Type w) [CommRing k]
+  {C : Type u} [DGCategory.{v} C]
+  [∀ (X Y : C) (p : ℤ), Module k ((dgHom X Y).X p)]
+  [DGLinear k C]
+
+/-- The Hom-complex of a `k`-linear dg category, regarded as a complex of
+`k`-modules.  Its underlying graded groups and differentials are unchanged.-/
+abbrev homComplex (X Y : C) : CochainComplex (ModuleCat.{v} k) ℤ where
+  X p := ModuleCat.of k ((dgHom X Y).X p)
+  d p q := ModuleCat.ofHom
+    { toFun := ((dgHom X Y).d p q).hom
+      map_add' := fun f g => map_add _ f g
+      map_smul' := fun c f => DGLinear.d_smul p q c f }
+  shape p q hpq := by
+    apply ModuleCat.hom_ext
+    ext f
+    change ((dgHom X Y).d p q).hom f = 0
+    exact ConcreteCategory.congr_hom ((dgHom X Y).shape p q hpq) f
+  d_comp_d' p q r _ _ := by
+    apply ModuleCat.hom_ext
+    ext f
+    change ((dgHom X Y).d q r).hom (((dgHom X Y).d p q).hom f) = 0
+    exact ConcreteCategory.congr_hom ((dgHom X Y).d_comp_d p q r) f
+
+@[simp]
+lemma homComplex_X (X Y : C) (p : ℤ) :
+    (homComplex k X Y).X p = ModuleCat.of k ((dgHom X Y).X p) :=
+  rfl
+
+@[simp]
+lemma homComplex_d_apply (X Y : C) (p q : ℤ) (f : (dgHom X Y).X p) :
+    ((homComplex k X Y).d p q).hom f = ((dgHom X Y).d p q).hom f :=
+  rfl
+
+/-- Right composition by a degree-`p` dg morphism, as a degree-`p` linear
+cochain between Hom-complexes with a fixed source.-/
+def postcompCochain (X : C) {Y Z : C} (p : ℤ) :
+    (homComplex k Y Z).X p →ₗ[k]
+      CochainComplex.HomComplex.Cochain
+        (homComplex k X Y) (homComplex k X Z) p where
+  toFun f := CochainComplex.HomComplex.Cochain.mk (fun i j h => ModuleCat.ofHom
+    { toFun := fun g => dgComp i p j h g f
+      map_add' := fun g g' => by
+        rw [← AddMonoidHom.add_apply]
+        exact congrArg (fun q => q f) (map_add (dgComp i p j h) g g')
+      map_smul' := fun c g => DGLinear.comp_smul_left i p j h c g f })
+  map_add' f f' := by
+    apply CochainComplex.HomComplex.Cochain.ext
+    intro i j hij
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro g
+    change dgComp i p j hij g (f + f') =
+      dgComp i p j hij g f + dgComp i p j hij g f'
+    rw [map_add]
+  map_smul' c f := by
+    apply CochainComplex.HomComplex.Cochain.ext
+    intro i j hij
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro g
+    change dgComp i p j hij g (c • f) = c • dgComp i p j hij g f
+    rw [DGLinear.comp_smul_right]
+
+@[simp]
+lemma postcompCochain_apply (X : C) {Y Z : C} (p : ℤ)
+    (f : (dgHom Y Z).X p) (i j : ℤ) (h : i + p = j)
+    (g : (dgHom X Y).X i) :
+    ((postcompCochain k X p f).v i j h).hom g = dgComp i p j h g f :=
+  rfl
+
+/-- Right composition intertwines the Hom-complex differential with the dg
+differential.  The two Koszul terms cancel because Mathlib's Hom differential
+uses the successor sign.-/
+lemma postcompCochain_d (X : C) {Y Z : C} (p q : ℤ)
+    (f : (dgHom Y Z).X p) :
+    CochainComplex.HomComplex.δ p q (postcompCochain k X p f) =
+      postcompCochain k X q (((dgHom Y Z).d p q).hom f) := by
+  by_cases hpq : p + 1 = q
+  · subst q
+    apply CochainComplex.HomComplex.Cochain.ext
+    intro i j hij
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro g
+    rw [CochainComplex.HomComplex.δ_v p (p + 1) rfl
+      (postcompCochain k X p f) i j hij (i + p) (i + 1) (by omega) rfl]
+    change ((dgHom X Z).d (i + p) j).hom
+          (dgComp i p (i + p) rfl g f) +
+        (p + 1).negOnePow •
+          dgComp (i + 1) p j (by omega)
+            (((dgHom X Y).d i (i + 1)).hom g) f =
+      dgComp i (p + 1) j hij g (((dgHom Y Z).d p (p + 1)).hom f)
+    have hleib := dgComp_leibniz (C := C) i p (i + p) j (by omega) (by omega) g f
+    rw [hleib, Int.negOnePow_succ, Units.neg_smul]
+    abel
+  · have hshape : ¬(ComplexShape.up ℤ).Rel p q := by
+      simpa [ComplexShape.up, ComplexShape.up'] using hpq
+    have hd : ((dgHom Y Z).d p q).hom f = 0 :=
+      ConcreteCategory.congr_hom ((dgHom Y Z).shape p q hshape) f
+    rw [CochainComplex.HomComplex.δ_shape p q hpq, hd, map_zero]
+
+end DGLinear
+
+namespace DGFunctor
+
+/-- A scalar-preserving dg functor between `k`-linear dg categories. This is a
+refinement of `DGFunctor`, parallel to Mathlib's `Functor.Linear`; it records
+only linearity of the maps on Hom-complexes.-/
+class Linear (k : Type w) [CommRing k]
+    {C : Type u} {D : Type u'} [DGCategory.{v} C] [DGCategory.{v} D]
+    [∀ (X Y : C) (p : ℤ), Module k ((dgHom X Y).X p)]
+    [∀ (X Y : D) (p : ℤ), Module k ((dgHom X Y).X p)]
+    [DGLinear k C] [DGLinear k D] (F : DGFunctor C D) : Prop where
+  /-- A linear dg functor preserves scalar multiplication in every degree.-/
+  map_smul {X Y : C} (p : ℤ) (c : k) (f : (dgHom X Y).X p) :
+    F.map p (c • f) = c • F.map p f
+
+variable {k : Type w} [CommRing k]
+  {C : Type u} {D : Type u'} {E : Type u''}
+  [DGCategory.{v} C] [DGCategory.{v} D] [DGCategory.{v} E]
+  [∀ (X Y : C) (p : ℤ), Module k ((dgHom X Y).X p)]
+  [∀ (X Y : D) (p : ℤ), Module k ((dgHom X Y).X p)]
+  [∀ (X Y : E) (p : ℤ), Module k ((dgHom X Y).X p)]
+  [DGLinear k C] [DGLinear k D] [DGLinear k E]
+
+variable {F : DGFunctor C D} {G : DGFunctor D E}
+
+/-- A linear dg functor preserves scalar multiplication in every degree.-/
+@[simp]
+lemma map_smul [F.Linear k] {X Y : C} (p : ℤ) (c : k) (f : (dgHom X Y).X p) :
+    F.map p (c • f) = c • F.map p f :=
+  Linear.map_smul _ _ _
+
+end DGFunctor
+
+end CategoryTheory
