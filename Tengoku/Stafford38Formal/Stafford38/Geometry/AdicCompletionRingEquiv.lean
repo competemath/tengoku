@@ -23,7 +23,9 @@ def mapOfRingEquiv (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
     AdicCompletion I A →+* AdicCompletion J B :=
   Stafford38.Geometry.AdicCompletionMap.mapOfRingHom (e : A →+* B) I J hJ
 
-/-- Evaluation at a finite quotient commutes with the canonical completion map.-/
+/-- Evaluation at a finite quotient commutes with the canonical completion map.
+@isnad1 id=eq.1h7v.s12.5ceed4af4dee from=translated src=- shape=077f1065 vocab=02e03d51
+-/
 theorem eval_mapOfRingEquiv (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
     (hJ : J = I.map (e : A →+* B)) (x : AdicCompletion I A) (n : ℕ) :
     AdicCompletion.evalₐ J n (mapOfRingEquiv e I J hJ x) =
@@ -33,7 +35,9 @@ theorem eval_mapOfRingEquiv (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
   rfl
 
 /-- The canonical map sends the dense polynomial copy through the given ring
-equivalence.-/
+equivalence.
+@isnad1 id=eq.1h6v.s10.cb8bd4086d71 from=translated src=- shape=1b7bd689 vocab=73b71312
+-/
 @[simp]
 theorem mapOfRingEquiv_apply_of (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
     (hJ : J = I.map (e : A →+* B)) (a : A) :
@@ -81,7 +85,9 @@ def ofRingEquiv (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
     exact (q n).apply_symm_apply _
 
 /-- Evaluation of the completion equivalence is the finite-quotient map induced by
-the original ring equivalence.-/
+the original ring equivalence.
+@isnad1 id=eq.1h7v.s12.71f973519ff7 from=translated src=- shape=c428e23c vocab=a6bac2de
+-/
 theorem eval_ofRingEquiv (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
     (hJ : J = I.map (e : A →+* B)) (x : AdicCompletion I A) (n : ℕ) :
     AdicCompletion.evalₐ J n (ofRingEquiv e I J hJ x) =
@@ -94,7 +100,9 @@ theorem eval_ofRingEquiv (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
   exact eval_mapOfRingEquiv e I J hJ x n
 
 /-- The completion equivalence sends the dense polynomial copy through the given
-ring equivalence.-/
+ring equivalence.
+@isnad1 id=eq.1h6v.s10.ddc560da6030 from=translated src=- shape=3efd7297 vocab=28d2aac0
+-/
 @[simp]
 theorem ofRingEquiv_apply_of (e : A ≃+* B) (I : Ideal A) (J : Ideal B)
     (hJ : J = I.map (e : A →+* B)) (a : A) :

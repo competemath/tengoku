@@ -146,7 +146,9 @@ private noncomputable def partialAtZero
     (Nat.zero_le N)
 
 /-- Every finite descending filtration of a finite-dimensional vector space
-has a `Fin`-indexed basis ordered by decreasing filtration level.-/
+has a `Fin`-indexed basis ordered by decreasing filtration level.
+@isnad1 id=ex.4h4v.s9.2a37ab621e11 from=translated src=- shape=c71d6bf6 vocab=bf4a3a1f
+-/
 theorem exists_filtrationAdaptedBasis
     [FiniteDimensional K V]
     {n : ℕ} (hdim : Module.finrank K V = n + 1)
@@ -214,7 +216,9 @@ variable [FiniteDimensional K V]
 local notation "𝔪" => IsLocalRing.maximalIdeal R
 
 /-- Maximal-ideal powers on a finite-dimensional module have the adapted
-basis required by the Artinian trace adapter.-/
+basis required by the Artinian trace adapter.
+@isnad1 id=ex.1h4v.s8.18729e523a10 from=translated src=- shape=ec96ba54 vocab=cd443ddb
+-/
 theorem exists_maximalIdealFiltrationAdaptedBasis
     {n : ℕ} (hdim : Module.finrank K V = n + 1) :
     ∃ (b : Module.Basis (Fin (n + 1)) K V) (level : Fin (n + 1) → ℕ),

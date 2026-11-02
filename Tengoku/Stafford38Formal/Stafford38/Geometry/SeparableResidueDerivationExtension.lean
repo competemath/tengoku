@@ -65,7 +65,9 @@ noncomputable def extendDerivation
   exact KaehlerDifferential.linearMapEquivDerivation k K pull
 
 /-- Restricting the extended derivation to `E` recovers the supplied
-`E -> K` derivation exactly.-/
+`E -> K` derivation exactly.
+@isnad1 id=eq.0h4v.s8.e5310e3249ef from=translated src=- shape=97d09da6 vocab=f3191fcb
+-/
 @[simp]
 theorem extendDerivation_compAlgebraMap
     (D : Derivation k E K) :
@@ -79,7 +81,9 @@ theorem extendDerivation_compAlgebraMap
     Derivation.liftKaehlerDifferential_comp_D]
 
 /-- A `k`-derivation of `K` is determined by its restriction to `E` when
-`K/E` is separable.-/
+`K/E` is separable.
+@isnad1 id=eq.1h5v.s8.2c560f354e14 from=translated src=- shape=694d3786 vocab=75bd0e32
+-/
 theorem derivation_ext_of_compAlgebraMap_eq
     {D₁ D₂ : Derivation k K K}
     (h : D₁.compAlgebraMap E = D₂.compAlgebraMap E) :
@@ -122,7 +126,9 @@ theorem derivation_ext_of_compAlgebraMap_eq
   simpa [Derivation.liftKaehlerDifferential_comp_D] using
     LinearMap.congr_fun hmaps (KaehlerDifferential.D k K x)
 
-/-- Existence and uniqueness in the direct form used by the boundary tower.-/
+/-- Existence and uniqueness in the direct form used by the boundary tower.
+@isnad1 id=existsun.0h4v.s8.cce5a6f6ceb7 from=translated src=- shape=6a01d404 vocab=9c78b9f0
+-/
 theorem existsUnique_derivation_extension
     (D : Derivation k E K) :
     ∃! D' : Derivation k K K, D'.compAlgebraMap E = D := by
@@ -149,6 +155,9 @@ noncomputable def derivationRestrictionEquiv :
     (fun D ↦ ⟨extendDerivation k E K D,
       extendDerivation_compAlgebraMap k E K D⟩)⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.d54e50fd6b3d from=translated src=- shape=82d4c42d vocab=fdac8248
+-/
 @[simp]
 theorem derivationRestrictionEquiv_apply
     (D : Derivation k K K) :
@@ -160,6 +169,9 @@ noncomputable def extendCoefficientDerivation
     (D : Derivation k E E) : Derivation k K K :=
   extendDerivation k E K ((Algebra.linearMap E K).compDer D)
 
+/--
+@isnad1 id=eq.0h4v.s10.d217257c5aec from=translated src=- shape=79470b9f vocab=ee7e9b64
+-/
 @[simp]
 theorem extendCoefficientDerivation_compAlgebraMap
     (D : Derivation k E E) :

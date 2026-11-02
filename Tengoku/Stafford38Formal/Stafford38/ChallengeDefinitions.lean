@@ -115,9 +115,15 @@ def oldIndex {n : ℕ} : PhaseVar n → PhaseVar (n + 1)
   | .inl i => .inl i.succ
   | .inr i => .inr i.succ
 
+/--
+@isnad1 id=eq.0h2v.s5.f37710f3a387 from=translated src=- shape=9ce11a0a vocab=060c96f4
+-/
 @[simp] theorem oldIndex_inl {n : ℕ} (i : Fin n) :
     oldIndex (.inl i) = .inl i.succ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.44edd64572aa from=translated src=- shape=9ce11a0a vocab=765920af
+-/
 @[simp] theorem oldIndex_inr {n : ℕ} (i : Fin n) :
     oldIndex (.inr i) = .inr i.succ := rfl
 

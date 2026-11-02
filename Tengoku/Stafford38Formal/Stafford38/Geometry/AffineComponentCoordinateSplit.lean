@@ -46,7 +46,9 @@ def componentCoordinate
 
 /-- On a prime affine component over an algebraically closed field, a
 coordinate is either represented by a ground-field constant or is
-transcendental in the component function field.-/
+transcendental in the component function field.
+@isnad1 id=or.0h4v.s11.5d166a4406c3 from=translated src=- shape=da80836a vocab=f3e9e913
+-/
 theorem coordinate_constant_or_transcendental
     [IsAlgClosed k]
     (P : PrimeSpectrum (MvPolynomial (Fin m) k)) (i : Fin m) :
@@ -93,7 +95,9 @@ theorem coordinate_constant_or_transcendental
 /-- Every proper affine ideal has a minimal-prime component on which the
 distinguished coordinate is either constant or transcendental in the
 component function field.  Radicality is not needed for this component
-selection theorem.-/
+selection theorem.
+@isnad1 id=ex.1h4v.s12.49656860b770 from=translated src=- shape=0541156e vocab=ff2d1b9c
+-/
 theorem exists_minimalPrime_coordinate_constant_or_transcendental
     [IsAlgClosed k]
     (I : Ideal (MvPolynomial (Fin m) k)) (hproper : I ≠ ⊤) (i : Fin m) :

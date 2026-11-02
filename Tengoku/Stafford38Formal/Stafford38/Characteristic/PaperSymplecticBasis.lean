@@ -133,6 +133,9 @@ private theorem pairIndex_right_succ (n : ℕ) (i : Fin n) :
   simp [symplecticPairIndex, splitTwo, rearrangePairIndex,
     Equiv.symm_trans_apply, Equiv.sumCongr_symm, finSumFinEquiv]
 
+/--
+@isnad1 id=ex.3h4v.s11.08382ec1c49d from=translated src=- shape=406f16b0 vocab=9732c17c
+-/
 theorem exists_symplectic_basis (n : ℕ) (B : BilinForm k V)
     [Module.Finite k V] (hAlt : ∀ x, B x x = 0) (hB : B.Nondegenerate)
     (hdim : Module.finrank k V = 2 * n) :
@@ -281,7 +284,9 @@ theorem exists_symplectic_basis (n : ℕ) (B : BilinForm k V)
             have h := hbWright i j
             simpa [hbFs] using h
 
-/-- Complete a prescribed normalized pair to a symplectic basis.-/
+/-- Complete a prescribed normalized pair to a symplectic basis.
+@isnad1 id=ex.4h6v.s11.b33255f37994 from=translated src=- shape=945b9132 vocab=ad5a23f8
+-/
 theorem exists_symplectic_basis_with_pair (n : ℕ) (B : BilinForm k V)
     [Module.Finite k V] (hAlt : ∀ x, B x x = 0) (hB : B.Nondegenerate)
     (hdim : Module.finrank k V = 2 * (n + 1)) (v w : V)
@@ -396,7 +401,9 @@ theorem exists_symplectic_basis_with_pair (n : ℕ) (B : BilinForm k V)
       · have h := hbWright i j
         simpa [hbFs] using h
 
-/-- The linear equivalence matching two symplectic bases preserves their forms.-/
+/-- The linear equivalence matching two symplectic bases preserves their forms.
+@isnad1 id=eq.8h7v.s12.8a7c9e6cdcc4 from=translated src=- shape=4c5a4095 vocab=ddf0191f
+-/
 theorem symplectic_basis_equiv (n : ℕ) (B₁ B₂ : BilinForm k V)
     (b₁ b₂ : Basis (Fin n ⊕ Fin n) k V)
     (hAlt₁ : ∀ x, B₁ x x = 0) (hAlt₂ : ∀ x, B₂ x x = 0)
@@ -437,7 +444,9 @@ theorem symplectic_basis_equiv (n : ℕ) (B₁ B₂ : BilinForm k V)
       | inr j => rw [hright₁ i j, hright₂ i j]
 
 /-- Given one nonzero vector in each space of the same symplectic dimension,
-there is a form-preserving linear automorphism taking the first to the second.-/
+there is a form-preserving linear automorphism taking the first to the second.
+@isnad1 id=ex.5h6v.s10.673b43a8dcf6 from=translated src=- shape=b06e538f vocab=39135dc4
+-/
 theorem exists_symplectic_equiv_sending_nonzero (n : ℕ) (B : BilinForm k V)
     [Module.Finite k V] (hAlt : ∀ x, B x x = 0) (hB : B.Nondegenerate)
     (hdim : Module.finrank k V = 2 * (n + 1)) (v e₀ : V)

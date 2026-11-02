@@ -17,7 +17,9 @@ universe u
 
 /-- Transport the numerator of a prescribed uniformizer across an actual
 local-ring equivalence. The denominator remains explicit, so the numerator is
-known to map to that uniformizer times a unit.-/
+known to map to that uniformizer times a unit.
+@isnad1 id=ex.1h5v.s11.a082163a4462 from=translated src=- shape=7208c907 vocab=e4e7619e
+-/
 theorem exists_numerator_of_local_equiv_with_span
     {B V : Type u} [CommRing B] [IsDomain B] [CommRing V]
     (P : Ideal B) [P.IsPrime]
@@ -57,7 +59,9 @@ theorem exists_numerator_of_local_equiv_with_span
         simp [πP]
 
 /-- Backwards-compatible projection of the local numerator data without its
-maximal-ideal generator identity.-/
+maximal-ideal generator identity.
+@isnad1 id=ex.1h5v.s11.c777b58e4590 from=translated src=- shape=250f09ef vocab=588c42a5
+-/
 theorem exists_numerator_of_local_equiv
     {B V : Type u} [CommRing B] [IsDomain B] [CommRing V]
     (P : Ideal B) [P.IsPrime]
@@ -76,7 +80,9 @@ theorem exists_numerator_of_local_equiv
 
 /-- Replace a local uniformizer by its global numerator in two power
 factorizations. The unit correction is explicit and is transported back
-through the local equivalence.-/
+through the local equivalence.
+@isnad1 id=ex.5h13v.s11.f6fd86047b59 from=translated src=- shape=ccc5d46d vocab=3d0cdc3c
+-/
 theorem transfer_two_unit_power_factorizations
     {B V : Type u} [CommRing B] [CommRing V]
     (P : Ideal B) [P.IsPrime]
@@ -143,7 +149,9 @@ theorem transfer_two_unit_power_factorizations
 
 /-- Actual numerator plus the transferred q₀/q₁ order factorizations. The
 only input about the numerator is the equivalence of the given local ring with
-the DVR; no numerator or unit-power conclusion is assumed.-/
+the DVR; no numerator or unit-power conclusion is assumed.
+@isnad1 id=ex.5h11v.s11.d8188f7a00d9 from=translated src=- shape=e89f83b8 vocab=3f352f7f
+-/
 theorem exists_numerator_with_two_unit_power_factorizations_and_span
     {B V : Type u} [CommRing B] [IsDomain B] [CommRing V]
     (P : Ideal B) [P.IsPrime]
@@ -173,7 +181,9 @@ theorem exists_numerator_with_two_unit_power_factorizations_and_span
       n₀ n₁ v₀ v₁ hfactor h₀ h₁ hv₀ hv₁
   exact ⟨s, b, u₀, u₁, hs0, hsP, hmk, hspan, hu₀, hu₁, hq₀, hq₁⟩
 
-/-- Backwards-compatible projection omitting the maximal-ideal identity.-/
+/-- Backwards-compatible projection omitting the maximal-ideal identity.
+@isnad1 id=ex.5h11v.s11.bd1f639ffa52 from=translated src=- shape=25640605 vocab=d6ad8c2d
+-/
 theorem exists_numerator_with_two_unit_power_factorizations
     {B V : Type u} [CommRing B] [IsDomain B] [CommRing V]
     (P : Ideal B) [P.IsPrime]

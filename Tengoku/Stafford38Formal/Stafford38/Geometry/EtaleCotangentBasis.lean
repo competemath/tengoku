@@ -31,7 +31,9 @@ noncomputable def basisOfFormallyEtale :
       (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale k
         (MvPolynomial σ k) B)
 
-/-- The transported basis is represented by the actual images of the polynomial coordinates.-/
+/-- The transported basis is represented by the actual images of the polynomial coordinates.
+@isnad1 id=eq.0h4v.s9.cba35621e062 from=translated src=- shape=c73b747f vocab=2664955c
+-/
 theorem basisOfFormallyEtale_apply (i : σ) :
     basisOfFormallyEtale (k := k) (σ := σ) i =
       KaehlerDifferential.D k B
@@ -57,7 +59,9 @@ noncomputable def basisAfterPoint
     Basis σ L (L ⊗[B] Ω[B⁄k]) :=
   Algebra.TensorProduct.basis L (basisOfFormallyEtale (k := k) (σ := σ))
 
-/-- Its scalar-extended basis vectors are the scalar extensions of the actual coordinate differentials.-/
+/-- Its scalar-extended basis vectors are the scalar extensions of the actual coordinate differentials.
+@isnad1 id=eq.0h5v.s10.16a9fe1ed08f from=translated src=- shape=ee1a9eac vocab=0cde9ffd
+-/
 theorem basisAfterPoint_apply
     {L : Type*} [Field L] [Algebra B L] (i : σ) :
     basisAfterPoint (k := k) (σ := σ) (B := B) (L := L) i =
@@ -82,6 +86,9 @@ noncomputable def derivationFromValues
   KaehlerDifferential.linearMapEquivDerivation k B
     ((basisOfFormallyEtale (k := k) (σ := σ)).constr B v)
 
+/--
+@isnad1 id=eq.0h6v.s9.2c1d630ce752 from=translated src=- shape=35eb86b7 vocab=bdda6228
+-/
 theorem coordinateDerivation_apply_parameter
     {L : Type*} [CommRing L] [Algebra B L] [Algebra k L]
     [IsScalarTower k B L] (i j : σ) :
@@ -92,7 +99,9 @@ theorem coordinateDerivation_apply_parameter
     KaehlerDifferential.linearMapEquivDerivation_apply_apply,
     ← basisOfFormallyEtale_apply, Basis.constr_basis]
 
-/-- The coordinate values of `derivationFromValues` are exactly the supplied values.-/
+/-- The coordinate values of `derivationFromValues` are exactly the supplied values.
+@isnad1 id=eq.0h6v.s9.f385eeec28b1 from=translated src=- shape=767b8f4a vocab=817ccd4b
+-/
 theorem derivationFromValues_apply_parameter
     {L : Type*} [CommRing L] [Algebra B L] [Algebra k L]
     [IsScalarTower k B L] (v : σ → L) (i : σ) :
@@ -104,7 +113,9 @@ theorem derivationFromValues_apply_parameter
 
 /-- Every derivation is uniquely determined by, and reconstructed from, its
 values on the polynomial parameters.  Thus the displayed derivations are an
-actual basis of the tangent directions, not merely candidate vectors.-/
+actual basis of the tangent directions, not merely candidate vectors.
+@isnad1 id=eq.0h5v.s9.71712bedd1a3 from=translated src=- shape=28970028 vocab=817ccd4b
+-/
 theorem derivation_eq_from_parameter_values
     {L : Type*} [CommRing L] [Algebra B L] [Algebra k L]
     [IsScalarTower k B L] (D : Derivation k B L) :
@@ -131,7 +142,9 @@ theorem derivation_eq_from_parameter_values
     _ = D := E.apply_symm_apply D
 
 /-- Applying a scalar-extension map to a coordinate derivative gives the
-coordinate derivative with values in the target algebra.-/
+coordinate derivative with values in the target algebra.
+@isnad1 id=eq.0h6v.s9.8200b549e74f from=translated src=- shape=ebdb7309 vocab=99c41709
+-/
 theorem coordinateDerivation_algebraMap
     {L : Type*} [CommRing L] [Algebra B L] [Algebra k L]
     [IsScalarTower k B L] [IsScalarTower B L L]
@@ -158,7 +171,9 @@ theorem coordinateDerivation_algebraMap
 /-- If two formally-etale charts carry the same polynomial parameters to one
 another, the coordinate derivation on the larger chart restricts to the
 coordinate derivation on the smaller chart.  The proof uses only the
-parameter-value uniqueness above; no separate uniqueness argument is needed.-/
+parameter-value uniqueness above; no separate uniqueness argument is needed.
+@isnad1 id=eq.1h5v.s10.9932077c951c from=translated src=- shape=c618be6b vocab=2309056c
+-/
 theorem coordinateDerivation_compAlgebraMap
     {C : Type*} [CommRing C]
     [Algebra (MvPolynomial σ k) C] [Algebra k C]
@@ -205,7 +220,9 @@ theorem coordinateDerivation_compAlgebraMap
     _ = Dright := derivation_eq_from_parameter_values Dright
 
 /-- The coordinate derivations form a basis: every derivation is their finite
-linear combination with coefficients given by its parameter derivatives.-/
+linear combination with coefficients given by its parameter derivatives.
+@isnad1 id=eq.0h5v.s9.4df68dd615b5 from=translated src=- shape=44876450 vocab=a509034c
+-/
 theorem derivation_eq_sum_coordinateDerivations
     {L : Type*} [CommRing L] [Algebra B L] [Algebra k L]
     [IsScalarTower k B L] (D : Derivation k B L) :

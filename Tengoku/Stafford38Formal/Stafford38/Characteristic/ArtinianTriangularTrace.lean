@@ -57,7 +57,9 @@ abbrev IsStrictUpperTriangular
     (M : Matrix (Fin (n + 1)) (Fin (n + 1)) K) : Prop :=
   Stafford38.Characteristic.ArtinianEquation33TraceProducer.IsStrictUpperTriangularOver M
 
-/-- A strictly upper triangular matrix has zero trace.-/
+/-- A strictly upper triangular matrix has zero trace.
+@isnad1 id=eq.1h3v.s6.2ff8d501513b from=translated src=- shape=4d6f1143 vocab=7e6aae60
+-/
 theorem trace_eq_zero_of_isStrictUpperTriangular
     {M : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
     (hM : IsStrictUpperTriangular M) :
@@ -74,7 +76,9 @@ def matrixCommutator
   X * Y - Y * X
 
 /-- Cyclicity of matrix trace kills a matrix commutator over the coefficient
-field.-/
+field.
+@isnad1 id=eq.0h4v.s7.ca08b91b240e from=translated src=- shape=ad1d135c vocab=6cc49e46
+-/
 theorem trace_matrixCommutator_eq_zero
     (X Y : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
     Matrix.trace (matrixCommutator X Y) = 0 := by
@@ -90,7 +94,9 @@ def adaptedFirstOrderMatrix
 
 /-- The adapted first-order matrix has trace zero.  No triangularity of
 `A`, `B`, `Γ`, or `Θ` is needed after the calculation has isolated the
-strictly triangular remainder `R`.-/
+strictly triangular remainder `R`.
+@isnad1 id=eq.1h7v.s7.98f3fea72369 from=translated src=- shape=32e4138e vocab=1125b7b1
+-/
 theorem trace_adaptedFirstOrderMatrix_eq_zero
     (R Θ A B Γ : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (hR : IsStrictUpperTriangular R) :
@@ -104,7 +110,9 @@ theorem trace_adaptedFirstOrderMatrix_eq_zero
 The source-specific work upstream proves that the induced operator `T` has
 trace zero.  The coefficient-field decomposition gives `q I + U = T`, where
 maximal-ideal multiplication makes `U` nilpotent.  Positive dimension and
-characteristic zero then force `q = 0`.-/
+characteristic zero then force `q = 0`.
+@isnad1 id=eq.3h5v.s9.174105d8a5ba from=translated src=- shape=4fb892a4 vocab=b7dd9e65
+-/
 theorem scalar_eq_zero_of_trace_identity
     [CharZero K]
     (q : K)
@@ -128,7 +136,9 @@ theorem scalar_eq_zero_of_trace_identity
 This implication is correct, but Proposition 3.2 does not directly provide its
 same-size coefficient-field matrix identity.  The source-specific adapter
 should instead establish the zero-trace hypothesis of
-`scalar_eq_zero_of_trace_identity`.-/
+`scalar_eq_zero_of_trace_identity`.
+@isnad1 id=eq.3h9v.s9.32d846dd4233 from=translated src=- shape=6d12a9be vocab=f2d06ef9
+-/
 theorem scalar_eq_zero_of_adapted_triangular_matrix_identity
     [CharZero K]
     (q : K)

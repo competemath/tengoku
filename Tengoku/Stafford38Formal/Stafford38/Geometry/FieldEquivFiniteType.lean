@@ -13,7 +13,9 @@ set_option autoImplicit false
 namespace Stafford38.Geometry.FieldEquivFiniteType
 
 /-- Finite generation is unchanged when the coefficient algebra is transported
-along an isomorphism of coefficient rings.-/
+along an isomorphism of coefficient rings.
+@isnad1 id=finitety.2h5v.s7.2a221e954ff5 from=translated src=- shape=eef48efa vocab=0e1f39a7
+-/
 theorem finiteType_of_equiv_base
     {k E₀ E A : Type*} [CommSemiring k] [CommSemiring E₀] [CommSemiring E]
     [CommSemiring A] [Algebra k E₀] [Algebra k E]
@@ -49,7 +51,9 @@ end Stafford38.Geometry.FieldEquivFiniteType
 namespace Stafford38.Geometry.FieldEquivFiniteType
 
 /-- An algebra isomorphic to a domain has the same fraction field after
-transporting the canonical map into the fraction field.-/
+transporting the canonical map into the fraction field.
+@isnad1 id=other.0h4v.s8.33a96a1c5210 from=translated src=- shape=91a25aa5 vocab=39f8838d
+-/
 theorem fractionField_of_equiv_domain
     {k P R : Type*} [CommSemiring k] [CommRing P] [IsDomain P]
     [CommRing R] [IsDomain R] [Algebra k P] [Algebra k R]
@@ -81,7 +85,9 @@ end Stafford38.Geometry.FieldEquivFiniteType
 namespace Stafford38.Geometry.FieldEquivFiniteType
 
 /-- Transfer the coefficient-localization finite-type theorem to an isomorphic
-fraction field, provided both coefficient actions agree along the isomorphism.-/
+fraction field, provided both coefficient actions agree along the isomorphism.
+@isnad1 id=finitety.1h5v.s10.854c8908fff9 from=translated src=- shape=673cbcde vocab=d8cd3f11
+-/
 theorem finiteType_localization_transport
     {k R B E : Type*} [Field k] [CommRing R] [IsDomain R] [CommRing B]
     [Algebra k R] [Algebra k B] [Algebra R B] [IsScalarTower k R B]
@@ -100,7 +106,9 @@ theorem finiteType_localization_transport
       (k := k) (R := R) (A := B)
   exact finiteType_of_equiv_base e hcompat inferInstance
 
-/-- The canonical localization of a domain embeds in its fraction field.-/
+/-- The canonical localization of a domain embeds in its fraction field.
+@isnad1 id=isdomain.1h3v.s7.bca1953f560a from=translated src=- shape=7381c4aa vocab=b090a86f
+-/
 theorem localized_domain_isDomain
     {k R B : Type*} [Field k] [CommRing R] [IsDomain R] [CommRing B] [IsDomain B]
     [Algebra k R] [Algebra k B] [Algebra R B] [IsScalarTower k R B]
@@ -111,7 +119,9 @@ theorem localized_domain_isDomain
 
 /-- A further localization of a domain with the same fraction field does not
 change that fraction field. The returned map is the canonical extension of
-`B → F`; every inverted coefficient is nonzero because `R → B` is injective.-/
+`B → F`; every inverted coefficient is nonzero because `R → B` is injective.
+@isnad1 id=ex.1h3v.s10.a5d4f6fec9dc from=translated src=- shape=eb6752cc vocab=7b0fb3c5
+-/
 theorem exists_localized_fractionField_map
     {R B F : Type*} [CommRing R] [IsDomain R] [CommRing B] [IsDomain B]
     [Field F] [Algebra R B] [Algebra B F] [Algebra R F] [IsScalarTower R B F]
@@ -161,7 +171,9 @@ namespace Stafford38.Geometry.FieldEquivFiniteType
 /-- The selected coefficient polynomial fraction field maps canonically to
 its normalization localization. The map extends the actual inclusion of each
 selected polynomial generator, transported through the chosen algebra
-isomorphism `eA`.-/
+isomorphism `eA`.
+@isnad1 id=ex.0h5v.s12.dd58e9ae76cc from=translated src=- shape=bd3222bb vocab=c85f8bec
+-/
 theorem exists_fractionField_map_to_localization
     {k P R B : Type*} [Field k] [CommRing P] [IsDomain P]
     [CommRing R] [IsDomain R] [CommRing B] [IsDomain B]
@@ -218,7 +230,9 @@ namespace Stafford38.Geometry.FieldEquivFiniteType
 
 /-- Finite generation of the normalized chart localization over the selected
 residue-coordinate fraction field. The returned algebra map is the canonical
-extension from the selected polynomial coordinates.-/
+extension from the selected polynomial coordinates.
+@isnad1 id=ex.0h5v.s11.8347eab747fd from=translated src=- shape=66cd5918 vocab=91ce6bb0
+-/
 theorem exists_finiteType_selected_localization
     {k P R B : Type*} [Field k] [CommRing P] [IsDomain P]
     [CommRing R] [IsDomain R] [CommRing B] [IsDomain B]
@@ -278,7 +292,9 @@ theorem exists_finiteType_selected_localization
 
 /-- Simultaneously package the selected-coordinate algebra structure, finite
 generation, domain structure, and unchanged fraction field on the coefficient
-localization. The map `fE` is the same canonical map produced above.-/
+localization. The map `fE` is the same canonical map produced above.
+@isnad1 id=ex.1h6v.s11.fd0dd6c72ed1 from=translated src=- shape=93df318a vocab=b26dd4cc
+-/
 theorem exists_finiteType_domain_fractionField_localization
     {k P R B F : Type*} [Field k] [CommRing P] [IsDomain P]
     [CommRing R] [IsDomain R] [CommRing B] [IsDomain B] [Field F]
@@ -320,7 +336,9 @@ theorem exists_finiteType_domain_fractionField_localization
 /-- If a path from the selected fraction field through a coefficient
 localization agrees with another field map on the original coefficient
 ring, localization uniqueness identifies the field maps and supplies the
-corresponding scalar tower.-/
+corresponding scalar tower.
+@isnad1 id=and.1h7v.s10.ef3209d16208 from=translated src=- shape=4e4e757d vocab=13f9fbba
+-/
 theorem fractionField_map_coherence
     {k P L F : Type*} [Field k] [CommRing P] [IsDomain P]
     [CommRing L] [CommRing F] [Algebra k P]

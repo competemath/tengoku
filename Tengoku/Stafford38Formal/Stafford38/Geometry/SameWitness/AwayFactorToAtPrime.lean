@@ -15,7 +15,9 @@ namespace Stafford38.Geometry.SameWitness
 universe u
 
 /-- Transport a unit-power factorization from an away localization to the
-localization at a prime avoiding its denominator.-/
+localization at a prime avoiding its denominator.
+@isnad1 id=ex.3h7v.s10.755525423065 from=translated src=- shape=469f3e76 vocab=e0227793
+-/
 theorem factorization_to_atPrime
     {B : Type u} [CommRing B] (M : Ideal B) [M.IsPrime]
     (f : B) (hf : f ∉ M) (q s : B) (n : ℕ)
@@ -47,7 +49,9 @@ theorem factorization_to_atPrime
       rw [map_mul, map_pow, hψb]
 
 /-- Transport both divisor-order factorizations from the one ground-point
-away open to its local ring.-/
+away open to its local ring.
+@isnad1 id=ex.5h10v.s11.63401e9897c8 from=translated src=- shape=a8203411 vocab=e0227793
+-/
 theorem pair_factorizations_to_atPrime
     {B : Type u} [CommRing B] (M : Ideal B) [M.IsPrime]
     (f : B) (hf : f ∉ M) (s q₀ q₁ : B) (e₀ e₁ : ℕ)

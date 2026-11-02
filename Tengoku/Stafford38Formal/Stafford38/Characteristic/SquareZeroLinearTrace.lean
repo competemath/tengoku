@@ -31,7 +31,9 @@ open Function
 
 variable {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
 
-/-- An endomorphism commuting with `C` preserves `range C`.-/
+/-- An endomorphism commuting with `C` preserves `range C`.
+@isnad1 id=mapsto.1h4v.s9.2ed1029a4de9 from=translated src=- shape=6d1d4e54 vocab=5df6781b
+-/
 lemma mapsTo_range_of_comp_comm (C F : V →ₗ[k] V)
     (hF : F.comp C = C.comp F) : Set.MapsTo F (LinearMap.range C) (LinearMap.range C) := by
   rintro _ ⟨v, rfl⟩
@@ -71,6 +73,9 @@ def quotientToRangeEquiv (C : V →ₗ[k] V) (hExact : LinearMap.ker C = LinearM
     refine ⟨Submodule.Quotient.mk x, ?_⟩
     exact Subtype.ext hx
 
+/--
+@isnad1 id=eq.1h4v.s11.e17ab2b03516 from=translated src=- shape=0dc39649 vocab=79301379
+-/
 @[simp]
 lemma quotientToRangeEquiv_apply_mk (C : V →ₗ[k] V)
     (hExact : LinearMap.ker C = LinearMap.range C) (v : V) :
@@ -118,7 +123,9 @@ def offDiagonal (C F : V →ₗ[k] V) (hF : F.comp C = C.comp F)
 
 /-- The exact square-zero trace lemma.  Exactness itself implies `C² = 0`,
 so neither a separate square-zero hypothesis nor a characteristic assumption
-is needed for this linear calculation.-/
+is needed for this linear calculation.
+@isnad1 id=eq.5h6v.s12.b5b8e1b1d433 from=translated src=- shape=96508199 vocab=8aaef51b
+-/
 theorem quotientEnd_trace_eq_zero
     [FiniteDimensional k V]
     (C A B Z : V →ₗ[k] V)

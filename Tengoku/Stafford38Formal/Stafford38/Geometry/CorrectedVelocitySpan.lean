@@ -21,7 +21,9 @@ variable [Field K] [AddCommGroup V] [Module K V]
 
 /-- Replacing one vector by a nonzero scalar multiple of itself plus a linear
 combination of a fixed finite family does not change the span with that family.
-The convention in `h` is `raw - Σ λᵢ zᵢ = c • corrected`.-/
+The convention in `h` is `raw - Σ λᵢ zᵢ = c • corrected`.
+@isnad1 id=eq.2h8v.s8.7811d9ccc341 from=translated src=- shape=b511c698 vocab=9a20017a
+-/
 theorem span_range_union_singleton_eq_of_corrected_velocity
     {ι : Type*} [Fintype ι]
     (z : ι → V) (coeff : ι → K) (corrected raw : V) (c : K)
@@ -80,7 +82,9 @@ theorem span_range_union_singleton_eq_of_corrected_velocity
 
 /-- The same replacement identity after applying a linear observation map.
 This form is convenient for tangent coordinates, where the vectors are first
-dehomogenized by a fixed linear map.-/
+dehomogenized by a fixed linear map.
+@isnad1 id=eq.2h10v.s9.001c92f390cb from=translated src=- shape=91c7b64f vocab=b0681854
+-/
 theorem span_map_range_union_singleton_eq_of_corrected_velocity
     [AddCommGroup W] [Module K W]
     (φ : V →ₗ[K] W) {ι : Type*} [Fintype ι]

@@ -28,7 +28,9 @@ noncomputable section
 universe u v
 
 /-- The canonical map from a Noetherian local ring into its proper-ideal
-adic completion is injective.-/
+adic completion is injective.
+@isnad1 id=injectiv.1h2v.s8.0bfefb217c3b from=translated src=- shape=acb60f3d vocab=91c355cb
+-/
 theorem adicCompletion_algebraMap_injective
     {R : Type u} [CommRing R] [IsNoetherianRing R] [IsLocalRing R]
     (I : Ideal R) (hI : I ≠ ⊤) :
@@ -46,7 +48,9 @@ theorem adicCompletion_algebraMap_injective
   rw [Ideal.iInf_pow_eq_bot_of_isLocalRing I hI] at hmem
   exact hmem
 
-/-- A finite family in a valuation ring has a member dividing every member.-/
+/-- A finite family in a valuation ring has a member dividing every member.
+@isnad1 id=ex.0h3v.s5.d05b908bca7e from=translated src=- shape=5e8301d3 vocab=bb714bd2
+-/
 theorem exists_index_dvd_all
     {R : Type u} [CommRing R] [IsDomain R] [ValuationRing R]
     {ι : Type v} [Fintype ι] [Nonempty ι] (a : ι → R) :
@@ -77,7 +81,9 @@ theorem exists_index_dvd_all
   exact hnot (hminimal hi hreverse)
 
 /-- A finite nonzero projective vector over a field has a common normalized
-lift to any valuation subring of that field.-/
+lift to any valuation subring of that field.
+@isnad1 id=ex.1h4v.s7.ee79b77ca48a from=translated src=- shape=10bb8675 vocab=c79604bc
+-/
 theorem exists_normalized_projective_lift
     {K : Type u} [Field K] (V : ValuationSubring K)
     {ι : Type v} [Fintype ι] [Nonempty ι]

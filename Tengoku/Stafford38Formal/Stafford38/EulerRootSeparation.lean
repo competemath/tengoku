@@ -46,14 +46,18 @@ namespace Stafford38.Evolution
 
 open Polynomial
 
-/-- Over `ℂ` regarded as a `ℂ`-algebra, `aeval` is ordinary evaluation.-/
+/-- Over `ℂ` regarded as a `ℂ`-algebra, `aeval` is ordinary evaluation.
+@isnad1 id=eq.0h2v.s6.7af9b075586a from=translated src=- shape=a8ed04b6 vocab=e40d59bb
+-/
 lemma aeval_eq_eval_complex (z : ℂ) (f : ℂ[X]) : aeval z f = f.eval z := by
   rfl
 
 /-! ## The factorwise comparison -/
 
 /-- The exact difference of squared moduli of one rising and one falling
-factor.  This single computation drives the whole file.-/
+factor.  This single computation drives the whole file.
+@isnad1 id=eq.0h2v.s7.87a4a87b70d9 from=translated src=- shape=61214d3b vocab=d5bab81c
+-/
 lemma normSq_sub_normSq (z : ℂ) (i : ℕ) :
     Complex.normSq (z + ((i : ℂ) + 1)) - Complex.normSq (z - (i : ℂ))
       = (2 * (i : ℝ) + 1) * (2 * z.re + 1) := by
@@ -61,6 +65,9 @@ lemma normSq_sub_normSq (z : ℂ) (i : ℕ) :
     Complex.sub_im, Complex.natCast_re, Complex.natCast_im, Complex.one_re, Complex.one_im]
   ring
 
+/--
+@isnad1 id=lt.1h2v.s6.1c989dce157c from=translated src=- shape=57ffc4ef vocab=6840f4eb
+-/
 lemma abs_lt_of_re_pos {z : ℂ} (hz : 0 < 2 * z.re + 1) (i : ℕ) :
     ‖z - (i : ℂ)‖ < ‖z + ((i : ℂ) + 1)‖ := by
   have hpos : 0 < (2 * (i : ℝ) + 1) * (2 * z.re + 1) := by positivity
@@ -69,6 +76,9 @@ lemma abs_lt_of_re_pos {z : ℂ} (hz : 0 < 2 * z.re + 1) (i : ℕ) :
   simpa [Complex.norm_def] using
     (Real.sqrt_lt_sqrt (Complex.normSq_nonneg _) hlt)
 
+/--
+@isnad1 id=lt.1h2v.s6.263f84d49283 from=translated src=- shape=edead76f vocab=6840f4eb
+-/
 lemma abs_lt_of_re_neg {z : ℂ} (hz : 2 * z.re + 1 < 0) (i : ℕ) :
     ‖z + ((i : ℂ) + 1)‖ < ‖z - (i : ℂ)‖ := by
   have hpos : 0 < (2 * (i : ℝ) + 1) := by positivity
@@ -80,6 +90,9 @@ lemma abs_lt_of_re_neg {z : ℂ} (hz : 2 * z.re + 1 < 0) (i : ℕ) :
 
 /-! ## Strict domination of the whole product -/
 
+/--
+@isnad1 id=lt.2h2v.s6.fe8369522d33 from=translated src=- shape=f2f62f05 vocab=fa4011ba
+-/
 lemma abs_falling_lt_rising {z : ℂ} (hz : 0 < 2 * z.re + 1) :
     ∀ r : ℕ, 1 ≤ r → ‖falling z r‖ < ‖rising z r‖
   | 0, h => absurd h (by norm_num)
@@ -91,6 +104,9 @@ lemma abs_falling_lt_rising {z : ℂ} (hz : 0 < 2 * z.re + 1) :
       rw [rising_succ, falling_succ, norm_mul, norm_mul]
       exact mul_lt_mul'' ih (by simpa using hfac) (by positivity) (by positivity)
 
+/--
+@isnad1 id=lt.2h2v.s6.136a2319174f from=translated src=- shape=8aa5496f vocab=fa4011ba
+-/
 lemma abs_rising_lt_falling {z : ℂ} (hz : 2 * z.re + 1 < 0) :
     ∀ r : ℕ, 1 ≤ r → ‖rising z r‖ < ‖falling z r‖
   | 0, h => absurd h (by norm_num)
@@ -103,7 +119,9 @@ lemma abs_rising_lt_falling {z : ℂ} (hz : 2 * z.re + 1 < 0) :
       exact mul_lt_mul'' ih (by simpa using hfac) (by positivity) (by positivity)
 
 /-- **The Euler root line.**  Every complex root of the corner polynomial `C_r`
-has real part `-1/2`.-/
+has real part `-1/2`.
+@isnad1 id=eq.2h2v.s5.d88d4de2dc61 from=translated src=- shape=0c0778c6 vocab=0c833216
+-/
 theorem re_eq_neg_half_of_isRoot {r : ℕ} (hr : 1 ≤ r) {z : ℂ}
     (hz : (cornerPoly ℂ r).IsRoot z) : z.re = -(1 / 2) := by
   have heval : rising z r - falling z r = 0 := by
@@ -119,12 +137,18 @@ theorem re_eq_neg_half_of_isRoot {r : ℕ} (hr : 1 ≤ r) {z : ℂ}
 
 /-! ## The corner polynomial is nonzero, and `R₊` has no root on the line -/
 
+/--
+@isnad1 id=eq.1h1v.s4.bf6c1dfd4d5e from=translated src=- shape=6bd94dc0 vocab=5a0f54ad
+-/
 lemma falling_zero_eq_zero : ∀ r : ℕ, 1 ≤ r → falling (0 : ℂ) r = 0
   | 0, h => absurd h (by norm_num)
   | 1, _ => by simp [falling_succ]
   | (r + 2), _ => by
       rw [falling_succ, falling_zero_eq_zero (r + 1) (by omega), zero_mul]
 
+/--
+@isnad1 id=ne.1h2v.s5.d12c902c1dc6 from=translated src=- shape=aa474969 vocab=ef5923a6
+-/
 lemma rising_ne_zero_of_re_neg_half {z : ℂ} (hz : z.re = -(1 / 2)) :
     ∀ r : ℕ, rising z r ≠ 0
   | 0 => by simp
@@ -137,6 +161,9 @@ lemma rising_ne_zero_of_re_neg_half {z : ℂ} (hz : z.re = -(1 / 2)) :
       have : (0 : ℝ) < (r : ℝ) + 1 := by positivity
       linarith
 
+/--
+@isnad1 id=ne.0h1v.s4.d31635ccf0dd from=translated src=- shape=e43bc6e4 vocab=65015d2f
+-/
 lemma rising_zero_ne_zero : ∀ r : ℕ, rising (0 : ℂ) r ≠ 0
   | 0 => by simp
   | (r + 1) => by
@@ -148,6 +175,9 @@ lemma rising_zero_ne_zero : ∀ r : ℕ, rising (0 : ℂ) r ≠ 0
       simp only [Complex.add_re, Complex.zero_re, Complex.natCast_re, Complex.one_re] at hre
       linarith
 
+/--
+@isnad1 id=ne.1h1v.s5.5b876769da0e from=translated src=- shape=37dd89ab vocab=b7c94241
+-/
 lemma cornerPoly_ne_zero {r : ℕ} (hr : 1 ≤ r) : cornerPoly ℂ r ≠ 0 := by
   intro hcon
   have h0 : aeval (0 : ℂ) (cornerPoly ℂ r) = 0 := by rw [hcon]; simp
@@ -156,6 +186,9 @@ lemma cornerPoly_ne_zero {r : ℕ} (hr : 1 ≤ r) : cornerPoly ℂ r ≠ 0 := by
 
 /-! ## Coprimality over `ℂ` -/
 
+/--
+@isnad1 id=iscoprim.2h2v.s5.733403053683 from=translated src=- shape=c031e9f5 vocab=195b2318
+-/
 lemma isCoprime_of_no_common_root {f g : ℂ[X]} (hf : f ≠ 0)
     (h : ∀ z : ℂ, f.IsRoot z → g.IsRoot z → False) : IsCoprime f g := by
   classical
@@ -173,7 +206,9 @@ lemma isCoprime_of_no_common_root {f g : ℂ[X]} (hf : f ≠ 0)
   exact h z hz.1 hz.2
 
 /-- `C_r` is coprime to the rising factorial `R₊`: the roots of `R₊` are
-negative integers, and none of them lies on the line `Re = -1/2`.-/
+negative integers, and none of them lies on the line `Re = -1/2`.
+@isnad1 id=iscoprim.1h1v.s4.ecb5b6bc44af from=translated src=- shape=d954ef45 vocab=d9d9a2af
+-/
 theorem isCoprime_corner_rising_complex {r : ℕ} (hr : 1 ≤ r) :
     IsCoprime (cornerPoly ℂ r) (risingPoly ℂ r) := by
   refine isCoprime_of_no_common_root (cornerPoly_ne_zero hr) ?_
@@ -185,7 +220,9 @@ theorem isCoprime_corner_rising_complex {r : ℕ} (hr : 1 ≤ r) :
   exact rising_ne_zero_of_re_neg_half hre r hzero
 
 /-- `C_r` is coprime to each of its own positive integer shifts: the line
-`Re = -1/2` is disjoint from every translate of itself.-/
+`Re = -1/2` is disjoint from every translate of itself.
+@isnad1 id=iscoprim.2h2v.s6.ff31d6fdec90 from=translated src=- shape=f0674992 vocab=ee0aad2e
+-/
 theorem isCoprime_corner_shift_complex {r : ℕ} (hr : 1 ≤ r) {n : ℕ} (hn : 1 ≤ n) :
     IsCoprime (cornerPoly ℂ r) ((cornerPoly ℂ r).comp (X + Polynomial.C (n : ℂ))) := by
   refine isCoprime_of_no_common_root (cornerPoly_ne_zero hr) ?_
@@ -204,18 +241,27 @@ section Transport
 
 variable {k K : Type*} [CommRing k] [CommRing K]
 
+/--
+@isnad1 id=eq.0h4v.s5.fe2026078e21 from=translated src=- shape=95d8142c vocab=e8e8ef94
+-/
 lemma map_risingPoly (φ : k →+* K) : ∀ n : ℕ, (risingPoly k n).map φ = risingPoly K n
   | 0 => by simp
   | (n + 1) => by
       rw [risingPoly_succ, Polynomial.map_mul, map_risingPoly φ n, risingPoly_succ]
       simp
 
+/--
+@isnad1 id=eq.0h4v.s5.08f421d1e247 from=translated src=- shape=95d8142c vocab=b91a42e5
+-/
 lemma map_fallingPoly (φ : k →+* K) : ∀ n : ℕ, (fallingPoly k n).map φ = fallingPoly K n
   | 0 => by simp
   | (n + 1) => by
       rw [fallingPoly_succ, Polynomial.map_mul, map_fallingPoly φ n, fallingPoly_succ]
       simp
 
+/--
+@isnad1 id=eq.0h4v.s5.74d42154e0cc from=translated src=- shape=95d8142c vocab=5dc16994
+-/
 lemma map_cornerPoly (φ : k →+* K) (r : ℕ) :
     (cornerPoly k r).map φ = cornerPoly K r := by
   simp [cornerPoly, Polynomial.map_sub, map_risingPoly, map_fallingPoly]
@@ -224,7 +270,9 @@ end Transport
 
 variable {k : Type*} [Field k] [CharZero k]
 
-/-- `C_r` and `R₊` are coprime over every characteristic-zero field.-/
+/-- `C_r` and `R₊` are coprime over every characteristic-zero field.
+@isnad1 id=iscoprim.1h2v.s5.82af6d9b17fb from=translated src=- shape=e90f4a94 vocab=7213fb4e
+-/
 theorem isCoprime_corner_rising {r : ℕ} (hr : 1 ≤ r) :
     IsCoprime (cornerPoly k r) (risingPoly k r) := by
   have hQ : IsCoprime (cornerPoly ℚ r) (risingPoly ℚ r) := by
@@ -234,7 +282,9 @@ theorem isCoprime_corner_rising {r : ℕ} (hr : 1 ≤ r) :
   simpa [Polynomial.coe_mapRingHom, map_cornerPoly, map_risingPoly] using this
 
 /-- `C_r` is coprime to each positive integer shift of itself, over every
-characteristic-zero field.-/
+characteristic-zero field.
+@isnad1 id=iscoprim.2h3v.s7.f1bcfa4e68de from=translated src=- shape=0c6a7ae5 vocab=40dea8ed
+-/
 theorem isCoprime_corner_shift {r : ℕ} (hr : 1 ≤ r) {n : ℕ} (hn : 1 ≤ n) :
     IsCoprime (cornerPoly k r) ((cornerPoly k r).comp (X + Polynomial.C (n : k))) := by
   have hQ : IsCoprime (cornerPoly ℚ r)
@@ -251,7 +301,9 @@ variable {D : Type*}
 
 /-- The full coprimality statement consumed by `evolution_stafford_certificate`:
 `C_r` is coprime to `R₊ · ∏ⱼ C_r(X + r + j)`, for every potential support.  The
-shifts are `r + j ≥ r ≥ 1`, so no shifted factor meets the root line.-/
+shifts are `r + j ≥ r ≥ 1`, so no shifted factor meets the root line.
+@isnad1 id=iscoprim.1h4v.s7.07b0bfba3832 from=translated src=- shape=8ca68204 vocab=438df195
+-/
 theorem isCoprime_corner_hyper {r : ℕ} (hr : 1 ≤ r) (terms : List (D × ℕ)) :
     IsCoprime (cornerPoly k r)
       (risingPoly k r * shiftedProd (cornerPoly k r) (shiftSupport terms r)) := by
@@ -266,7 +318,9 @@ theorem isCoprime_corner_hyper {r : ℕ} (hr : 1 ≤ r) (terms : List (D × ℕ)
 
 /-- **Existence of the Bézout pair.**  This is exactly the hypothesis
 `hbezout` of `evolution_stafford_certificate`, so the main theorem is
-unconditional for every `r ≥ 1`.-/
+unconditional for every `r ≥ 1`.
+@isnad1 id=ex.1h4v.s8.e79172051693 from=translated src=- shape=376f213f vocab=b8a30e67
+-/
 theorem exists_bezout {r : ℕ} (hr : 1 ≤ r) (terms : List (D × ℕ)) :
     ∃ α β : k[X], cornerPoly k r * α
       + (risingPoly k r * shiftedProd (cornerPoly k r) (shiftSupport terms r)) * β = 1 := by

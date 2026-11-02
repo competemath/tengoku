@@ -62,6 +62,9 @@ def freeWeylMap (M : Matrix ι ι k) (omega : Matrix ι ι k) :
   FreeAlgebra.lift k (fun i => freeWeylLinearCombination M
     (freeWeylGenerator omega) i)
 
+/--
+@isnad1 id=eq.0h4v.s6.bbc82360dbde from=translated src=- shape=27ab0d43 vocab=0d485f25
+-/
 lemma freeWeylLinearCombination_one
     (omega : Matrix ι ι k) (i : ι) :
     freeWeylLinearCombination (1 : Matrix ι ι k)

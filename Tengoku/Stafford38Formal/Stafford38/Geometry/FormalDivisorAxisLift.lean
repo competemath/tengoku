@@ -45,7 +45,9 @@ variable {k : Type u} [Field k]
 
 /-- The factor removed from the corrected transverse derivative has strictly
 smaller order than the axis row.  Therefore the normalized transverse tangent
-still vanishes at the closed point in the axis coordinate.-/
+still vanishes at the closed point in the axis coordinate.
+@isnad1 id=eq.6h12v.s9.6ff202c3bfa7 from=translated src=- shape=40a81789 vocab=09edd0e7
+-/
 theorem constantCoeff_normalizedTransverse_axis_eq_zero
     {ι : Type v} {κ : Type w} [Fintype κ]
     (q : ι → PowerSeries k)
@@ -96,7 +98,9 @@ theorem constantCoeff_normalizedTransverse_axis_eq_zero
 /-! ## The axis covector on the assembled tangent matrix -/
 
 /-- Vanishing of the position, divisor, and normalized transverse entries in
-the axis row gives residue-zero for every assembled tangent column.-/
+the axis row gives residue-zero for every assembled tangent column.
+@isnad1 id=eq.4h10v.s8.cc885a685dbc from=translated src=- shape=3a2368be vocab=5408b4d9
+-/
 theorem constantCoeff_formalTangentMatrix_axis_eq_zero
     {ι : Type v} {κ : Type w}
     (q : ι → PowerSeries k)
@@ -124,7 +128,9 @@ theorem constantCoeff_formalTangentMatrix_axis_eq_zero
   · simpa [formalTangentMatrix] using htauaxis
 
 /-- The pure axis covector annihilates the residue of the assembled tangent
-matrix.-/
+matrix.
+@isnad1 id=eq.1h7v.s8.f57d65cc5c3c from=translated src=- shape=2b2d1085 vocab=21308c79
+-/
 theorem axisRow_residue_formalTangentMatrix_eq_zero
     {ι : Type v} {κ : Type w} [Fintype ι] [DecidableEq ι]
     (q : ι → PowerSeries k)
@@ -143,7 +149,9 @@ theorem axisRow_residue_formalTangentMatrix_eq_zero
 /-! ## Complete local axis lift -/
 
 /-- A supplied correction constructs the axis annihilator and split tangent
-lattice. Constant corrections use this owner without a matrix inverse.-/
+lattice. Constant corrections use this owner without a matrix inverse.
+@isnad1 id=ex.11h14v.s10.13d821793d76 from=translated src=- shape=a653dbd3 vocab=8081bdfc
+-/
 theorem exists_formalDivisorAxisLift_of_selected_correction
     [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]
@@ -229,7 +237,9 @@ The correction and primitive normalization are constructed from the formal
 chart data.  The strict axis-order hypotheses force the pure axis covector to
 annihilate the reduced tangent matrix.  A left inverse derived from the same
 matrix then gives an exact power-series annihilator specializing to that
-covector.-/
+covector.
+@isnad1 id=ex.10h13v.s11.65e8e461cf88 from=translated src=- shape=cd33ad2e vocab=7562a030
+-/
 theorem exists_formalDivisorAxisLift
     [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]

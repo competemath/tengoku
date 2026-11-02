@@ -13,7 +13,9 @@ noncomputable section
 namespace Stafford38.Geometry.ClosedPointOnDivisor
 
 /-- Every principal open meeting a prime closed set in a Jacobson spectrum
-contains a closed point of the ambient spectrum.-/
+contains a closed point of the ambient spectrum.
+@isnad1 id=ex.2h3v.s7.06edb011762b from=translated src=- shape=2161f971 vocab=da861d8c
+-/
 theorem exists_maximal_over_prime_avoiding
     {R : Type*} [CommRing R] [IsJacobsonRing R]
     (p : Ideal R) (hp : p.IsPrime) (f : R) (hf : f ∉ p) :
@@ -28,7 +30,9 @@ theorem exists_maximal_over_prime_avoiding
   exact h ⟨M, hM.2, hM.1, hnot⟩
 
 /-- The residue field at a closed point of a finite-type algebra over an
-algebraically closed field is the ground field as an algebra.-/
+algebraically closed field is the ground field as an algebra.
+@isnad1 id=nonempty.0h3v.s6.2d8e291a2a4e from=translated src=- shape=05a4c2a0 vocab=6a0c6a08
+-/
 theorem quotient_algEquiv_ground_of_maximal
     {k R : Type*} [Field k] [IsAlgClosed k]
     [CommRing R] [Algebra k R] [Algebra.FiniteType k R]
@@ -42,7 +46,9 @@ theorem quotient_algEquiv_ground_of_maximal
 
 /-- A dense principal open on a prime closed subset of a finite-type affine model
 contains a ground-field closed point. The smoothness and parameter conditions
-must still be proved to hold on the chosen open.-/
+must still be proved to hold on the chosen open.
+@isnad1 id=ex.2h4v.s8.9607888403f2 from=translated src=- shape=d1a04118 vocab=80b62fb7
+-/
 theorem exists_ground_closed_point_over_prime_avoiding
     {k R : Type*} [Field k] [IsAlgClosed k]
     [CommRing R] [Algebra k R] [Algebra.FiniteType k R]

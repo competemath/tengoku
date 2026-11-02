@@ -137,19 +137,27 @@ def eulerPolynomialEval (x d : A) : Polynomial ℚ →+* A :=
   Polynomial.eval₂RingHom' (algebraMap ℚ A) (theta x d)
     (fun q => Algebra.commutes q (theta x d))
 
+/--
+@isnad1 id=eq.0h3v.s6.21b342096a75 from=translated src=- shape=b0800a57 vocab=662e78a8
+-/
 @[simp] theorem eulerPolynomialEval_X (x d : A) :
     eulerPolynomialEval x d Polynomial.X = x * d := by
   change Polynomial.eval₂ (algebraMap ℚ A) (theta x d) Polynomial.X = x * d
   rw [Polynomial.eval₂_X (algebraMap ℚ A) (theta x d)]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.e4255b4dfb4f from=translated src=- shape=c4bf92bd vocab=44dd8ffe
+-/
 @[simp] theorem eulerPolynomialEval_C (x d : A) (q : ℚ) :
     eulerPolynomialEval x d (Polynomial.C q) = algebraMap ℚ A q := by
   change Polynomial.eval₂ (algebraMap ℚ A) (theta x d) (Polynomial.C q) =
     algebraMap ℚ A q
   exact Polynomial.eval₂_C (algebraMap ℚ A) (theta x d)
 
-/-- Equal powers `x^n*d^n` are a rational polynomial in the Euler element.-/
+/-- Equal powers `x^n*d^n` are a rational polynomial in the Euler element.
+@isnad1 id=ex.1h4v.s7.cdd83f0002e1 from=translated src=- shape=5001e784 vocab=5fef711c
+-/
 theorem exists_eulerPolynomial_x_pow_mul_d_pow
     (x d : A) (h : d * x = x * d + 1) (n : ℕ) :
     ∃ f : Polynomial ℚ,
@@ -159,7 +167,9 @@ theorem exists_eulerPolynomial_x_pow_mul_d_pow
     (by rw [eulerPolynomialEval_X]; rfl) (by intro q; simp)]
   exact (x_pow_mul_d_pow x d h n).symm
 
-/-- Equal powers `d^n*x^n` are also a rational polynomial in `x*d`.-/
+/-- Equal powers `d^n*x^n` are also a rational polynomial in `x*d`.
+@isnad1 id=ex.1h4v.s7.c0e2c380ebea from=translated src=- shape=e227df1e vocab=5fef711c
+-/
 theorem exists_eulerPolynomial_d_pow_mul_x_pow
     (x d : A) (h : d * x = x * d + 1) (n : ℕ) :
     ∃ f : Polynomial ℚ,
@@ -170,7 +180,9 @@ theorem exists_eulerPolynomial_d_pow_mul_x_pow
   exact (d_pow_mul_x_pow x d h n).symm
 
 /-- The pure-power certificate, assuming the ordinary Euler products are
-coprime in the coefficient polynomial ring.-/
+coprime in the coefficient polynomial ring.
+@isnad1 id=ex.2h6v.s8.360a60f8e829 from=translated src=- shape=11c11b04 vocab=920b20c3
+-/
 theorem pure_power_weyl_certificate
     (x d : A) (h : d * x = x * d + 1) (n : ℕ)
     (a b : Polynomial ℚ)
@@ -204,6 +216,9 @@ theorem pure_power_weyl_certificate
 
 /- The Euler products are coprime over `ℚ`, so the coefficient hypothesis in
 the transfer theorem is available in every degree. -/
+/--
+@isnad1 id=ex.1h4v.s7.bfa1efd764fe from=translated src=- shape=e9c08e63 vocab=16ff5ba4
+-/
 theorem pure_power_weyl_certificate_exists
     (x d : A) (h : d * x = x * d + 1) (n : ℕ) :
     ∃ p q : A, 1 = p * (x ^ n) + q * (x ^ n * d ^ n) := by
@@ -211,7 +226,9 @@ theorem pure_power_weyl_certificate_exists
   exact pure_power_weyl_certificate x d h n a b hab
 
 /-- The two Euler products admit a Bezout identity with right cofactors.
-This is the orientation used by the canonical right quotient.-/
+This is the orientation used by the canonical right quotient.
+@isnad1 id=ex.1h4v.s7.54c243d61fde from=translated src=- shape=e086f337 vocab=16ff5ba4
+-/
 theorem euler_products_right_bezout_exists
     (x d : A) (h : d * x = x * d + 1) (n : ℕ) :
     ∃ u v : A,
@@ -245,7 +262,9 @@ theorem euler_products_right_bezout_exists
   exact ⟨ev b, ev a, hev⟩
 
 /-- The right Bezout cofactors may be retained as rational polynomials in the
-Euler element.-/
+Euler element.
+@isnad1 id=ex.1h4v.s8.0c371eb3e444 from=translated src=- shape=9c5f15b9 vocab=5fef711c
+-/
 theorem euler_products_polynomial_right_bezout_exists
     (x d : A) (h : d * x = x * d + 1) (n : ℕ) :
     ∃ u v : Polynomial ℚ,
@@ -269,6 +288,9 @@ theorem euler_products_polynomial_right_bezout_exists
   rw [map_add, map_mul, map_mul, hrise, hfall, map_one] at hev
   exact ⟨b, a, hev⟩
 
+/--
+@isnad1 id=ex.2h5v.s7.864ccc7f1329 from=translated src=- shape=3f823a5c vocab=38bc26cd
+-/
 theorem pure_power_translate_weyl_certificate_exists
     (x d c : A) (h : d * x = x * d + 1)
     (hcd : Commute c d) (n : ℕ) :
@@ -283,7 +305,9 @@ theorem pure_power_translate_weyl_certificate_exists
 /-- A nilpotent central constant can be added to a pure power without losing
 the Weyl--Bézout certificate.  This is the formal constant-coefficient
 instance of the nilpotent thickening step; the general nilpotent coefficient
-ideal is deliberately not hidden in this statement.-/
+ideal is deliberately not hidden in this statement.
+@isnad1 id=ex.3h5v.s8.e8636c451f23 from=translated src=- shape=86d5edb0 vocab=d7f32ced
+-/
 theorem nilpotent_constant_weyl_certificate_exists
     (x d e : A) (h : d * x = x * d + 1)
     (he : IsNilpotent e) (hcentral : ∀ a : A, Commute e a) (n : ℕ) :

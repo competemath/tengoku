@@ -237,7 +237,9 @@ noncomputable def genericOpenEquiv_pointLocalAway_overB
 
 /-- If the actual local chart `B_M` is formally étale over a parameter ring `R`,
 then so is the equivalent generic-open presentation. The denominator may lie
-in `M`; it is inverted only after passing to the generic open.-/
+in `M`; it is inverted only after passing to the generic open.
+@isnad1 id=formally.0h6v.s9.fff184575041 from=translated src=- shape=12e08162 vocab=35407d52
+-/
 theorem formallyEtale_genericOpenRing_of_pointLocal
     {R : Type*} [CommRing R]
     {Q : Type u} [CommRing Q] {B : Type v} [CommRing B] [Algebra Q B]

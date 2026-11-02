@@ -16,7 +16,9 @@ universe u
 /-- A uniformizer in a DVR localization of a domain has a numerator in the
 original prime ideal which remains a generator of the localized maximal ideal.
 The denominator is retained to identify the numerator with a unit multiple of
-the chosen uniformizer.-/
+the chosen uniformizer.
+@isnad1 id=ex.1h3v.s9.5dccecd16187 from=translated src=- shape=78146fc0 vocab=a27d11f5
+-/
 theorem exists_numerator_of_dvr_localization_of_irreducible
     {B : Type u} [CommRing B] [IsDomain B]
     (P : Ideal B) [P.IsPrime]
@@ -59,7 +61,9 @@ theorem exists_numerator_of_dvr_localization_of_irreducible
 /-- A uniformizer in a DVR localization of a domain has a numerator in the
  original prime ideal which remains a generator of the localized maximal ideal.
  The denominator is retained to identify the numerator with a unit multiple of
- the chosen uniformizer.-/
+ the chosen uniformizer.
+@isnad1 id=ex.0h2v.s9.2b73f80a8427 from=translated src=- shape=9a32d06f vocab=a27d11f5
+-/
 theorem exists_numerator_of_dvr_localization
     {B : Type u} [CommRing B] [IsDomain B]
     (P : Ideal B) [P.IsPrime]

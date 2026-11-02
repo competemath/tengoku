@@ -42,6 +42,9 @@ def selectedMinor {ι κ : Type*} (B : Matrix ι κ R) (rows : κ ↪ ι) : Matr
 def rowSelector {ι κ : Type*} [DecidableEq ι] (rows : κ ↪ ι) : Matrix κ ι R :=
   fun a i => if rows a = i then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.427f2b2f2386 from=translated src=- shape=5e1b6238 vocab=84def076
+-/
 theorem rowSelector_mul
     {ι κ : Type*} [Fintype ι] [DecidableEq ι]
     (B : Matrix ι κ R) (rows : κ ↪ ι) :
@@ -61,7 +64,9 @@ def selectedMinorLeftInverse
   (selectedMinor B rows)⁻¹ * rowSelector (R := R) rows
 
 /-- A unit determinant of the selected square minor makes the construction a
-left inverse of the original rectangular matrix.-/
+left inverse of the original rectangular matrix.
+@isnad1 id=eq.1h5v.s7.ed9e78891030 from=translated src=- shape=bb69f37a vocab=65c0a003
+-/
 theorem selectedMinorLeftInverse_mul
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -71,7 +76,9 @@ theorem selectedMinorLeftInverse_mul
   rw [selectedMinorLeftInverse, Matrix.mul_assoc, rowSelector_mul]
   exact Matrix.nonsing_inv_mul _ hdet
 
-/-- The selected-minor construction, packaged as an explicit split matrix.-/
+/-- The selected-minor construction, packaged as an explicit split matrix.
+@isnad1 id=ex.1h5v.s7.3e1c57234a9b from=translated src=- shape=151af627 vocab=d6af5fc5
+-/
 theorem exists_leftInverse_of_selectedMinor_det_isUnit
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -86,7 +93,9 @@ theorem exists_leftInverse_of_selectedMinor_det_isUnit
 variable {k : Type v} [Field k]
 
 /-- Over `k[[X]]`, a nonzero constant coefficient makes the selected
-determinant a unit and hence gives the same explicit left inverse.-/
+determinant a unit and hence gives the same explicit left inverse.
+@isnad1 id=eq.1h5v.s7.8e40c0a894b6 from=translated src=- shape=b47a0b52 vocab=92821014
+-/
 theorem powerSeries_selectedMinorLeftInverse_mul
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -97,7 +106,9 @@ theorem powerSeries_selectedMinorLeftInverse_mul
   rw [PowerSeries.isUnit_iff_constantCoeff]
   exact isUnit_iff_ne_zero.mpr hconst
 
-/-- Existence form used by the tangent-limit annihilator construction.-/
+/-- Existence form used by the tangent-limit annihilator construction.
+@isnad1 id=ex.1h5v.s7.ee326d834f4c from=translated src=- shape=235d9bd0 vocab=a9070972
+-/
 theorem powerSeries_exists_leftInverse_of_selectedMinor_constantCoeff_ne_zero
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]

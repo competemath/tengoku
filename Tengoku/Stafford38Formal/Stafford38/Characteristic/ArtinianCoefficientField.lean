@@ -44,7 +44,9 @@ universe u
 /-- Every extension of a characteristic-zero field is formally smooth.
 
 Mathlib's `Algebra.IsSeparable` describes algebraic separability, so the
-transcendental part is first isolated with a transcendence basis.-/
+transcendental part is first isolated with a transcendence basis.
+@isnad1 id=formally.0h2v.s5.b3d9accb0885 from=translated src=- shape=545c1c44 vocab=0a36089a
+-/
 theorem formallySmooth_fieldExtension_of_charZero
     (F E : Type u) [Field F] [Field E] [Algebra F E] [CharZero F] :
     Algebra.FormallySmooth F E := by
@@ -77,7 +79,9 @@ variable [CommRing R] [Algebra F R] [IsLocalRing R] [IsArtinianRing R]
 local notation "𝔪" => IsLocalRing.maximalIdeal R
 local notation "κ" => IsLocalRing.ResidueField R
 
-/-- The maximal ideal of a commutative Artinian local ring is nilpotent.-/
+/-- The maximal ideal of a commutative Artinian local ring is nilpotent.
+@isnad1 id=isnilpot.0h1v.s6.a0cfbe53da5f from=translated src=- shape=426cc398 vocab=f2cfe3a7
+-/
 lemma maximalIdeal_isNilpotent : IsNilpotent 𝔪 := by
   rw [← IsLocalRing.jacobson_eq_maximalIdeal (⊥ : Ideal R)]
   · exact IsArtinianRing.isNilpotent_jacobson_bot
@@ -85,7 +89,9 @@ lemma maximalIdeal_isNilpotent : IsNilpotent 𝔪 := by
 
 /-- An equal-characteristic-zero Artinian local algebra contains a coefficient
 field: the residue map has a section as an algebra homomorphism over the base
-field.-/
+field.
+@isnad1 id=ex.0h2v.s8.8badaf683c78 from=translated src=- shape=14973c07 vocab=84e4f93a
+-/
 theorem exists_residue_algHom_section :
     ∃ s : κ →ₐ[F] R,
       (Ideal.Quotient.mkₐ F 𝔪).comp s = AlgHom.id F κ := by
@@ -94,7 +100,9 @@ theorem exists_residue_algHom_section :
   exact Algebra.FormallySmooth.exists_lift 𝔪
     (maximalIdeal_isNilpotent (R := R)) (AlgHom.id F κ)
 
-/-- Pointwise form of `exists_residue_algHom_section`.-/
+/-- Pointwise form of `exists_residue_algHom_section`.
+@isnad1 id=ex.0h2v.s8.232116239a8f from=translated src=- shape=377bc212 vocab=7f487953
+-/
 theorem exists_residue_section :
     ∃ s : κ →ₐ[F] R, ∀ a : κ, IsLocalRing.residue R (s a) = a := by
   obtain ⟨s, hs⟩ := exists_residue_algHom_section F R

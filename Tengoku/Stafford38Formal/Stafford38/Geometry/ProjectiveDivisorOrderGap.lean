@@ -51,7 +51,9 @@ rehomogenization.
 
 The equation `q₁ = q₀ * ratio` is the local-ring form of
 `ratio = X₁ / X₀`; unlike division in the fraction field, it retains the
-integrality needed by the formal-divisor consumer.-/
+integrality needed by the formal-divisor consumer.
+@isnad1 id=ex.6h5v.s8.00d3435a35a7 from=translated src=- shape=6bd6709b vocab=4e4283bf
+-/
 theorem exists_uniformizer_strict_orderGap
     {R : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (uniformizer : R) (huniformizer : Irreducible uniformizer)
@@ -100,7 +102,9 @@ theorem exists_uniformizer_strict_orderGap
 /-- The DVR implication above specialized to the completed divisor chart.
 Vanishing is expressed by zero constant coefficient.  The output is exactly
 the pair of factorizations and strict inequality consumed by
-`exists_formalDivisorAxisLift`.-/
+`exists_formalDivisorAxisLift`.
+@isnad1 id=ex.5h4v.s9.bd0b73aded40 from=translated src=- shape=8c8ef0da vocab=9398fa47
+-/
 theorem exists_powerSeries_strict_projectiveOrderGap
     {k : Type u} [Field k]
     (q₀ ratio q₁ : PowerSeries k)
@@ -143,7 +147,9 @@ residue is the distinguished projective axis.
 The tangent divisibility assumptions are coordinate-free order statements:
 divisor-tangent derivatives of `q₀` and `q₁` remain divisible by those
 coordinates.  The theorem converts them to the explicit uniformizer powers
-required by `FormalDivisorAxisLift`.-/
+required by `FormalDivisorAxisLift`.
+@isnad1 id=ex.10h10v.s9.d37053cb93c2 from=translated src=- shape=b7326742 vocab=33b90948
+-/
 theorem exists_formalDivisorAxisLift_of_projectiveRatio
     {k : Type u} [Field k] [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]

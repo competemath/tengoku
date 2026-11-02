@@ -135,14 +135,18 @@ def kaehlerDifferentialBasisOfTranscendenceBasis
     KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale k E L
   exact (bE.baseChange L).map et
 
-/-- The dimension is the cardinality of a finite transcendence basis.-/
+/-- The dimension is the cardinality of a finite transcendence basis.
+@isnad1 id=eq.1h4v.s6.da6df2e2f6d9 from=translated src=- shape=6afdc6df vocab=dd4ea51c
+-/
 theorem kaehlerFinrankOfTranscendenceBasis
     (k L : Type u) [Field k] [CharZero k] [Field L] [Algebra k L]
     (ι : Type u) [Fintype ι] (x : ι → L) (hx : IsTranscendenceBasis k x) :
     Module.finrank L (KaehlerDifferential k L) = Fintype.card ι :=
   Module.finrank_eq_card_basis (kaehlerDifferentialBasisOfTranscendenceBasis k L ι x hx)
 
-/-- The Kähler differential module of such a field extension is finite-dimensional.-/
+/-- The Kähler differential module of such a field extension is finite-dimensional.
+@isnad1 id=finite.1h4v.s6.4f49567ab8de from=translated src=- shape=1df4d30e vocab=85da352d
+-/
 theorem kaehlerFiniteOfTranscendenceBasis
     (k L : Type u) [Field k] [CharZero k] [Field L] [Algebra k L]
     (ι : Type u) [Fintype ι] (x : ι → L) (hx : IsTranscendenceBasis k x) :

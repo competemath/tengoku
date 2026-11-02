@@ -57,10 +57,16 @@ def affineFibreTranslatePoint
   | Sum.inl i => y i
   | Sum.inr i => xi i + t * v i
 
+/--
+@isnad1 id=eq.0h7v.s5.0a8059294dea from=translated src=- shape=5bd96a76 vocab=68ac9a38
+-/
 @[simp] theorem affineFibreTranslatePoint_inl
     (y xi v : Fin n → k) (t : k) (i : Fin n) :
     affineFibreTranslatePoint y xi v t (Sum.inl i) = y i := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.51cc21eb2217 from=translated src=- shape=2ad3bb11 vocab=f77eabd4
+-/
 @[simp] theorem affineFibreTranslatePoint_inr
     (y xi v : Fin n → k) (t : k) (i : Fin n) :
     affineFibreTranslatePoint y xi v t (Sum.inr i) = xi i + t * v i := rfl
@@ -76,6 +82,9 @@ abbrev differentialTranslatePoint
     (y : Fin n → k) (f : MvPolynomial (Fin n) k) (t : k) : PhaseVar n → k :=
   affineFibreTranslatePoint y (fun _ => 0) (differentialAt y f) t
 
+/--
+@isnad1 id=eq.0h5v.s6.2cf27b5584c8 from=translated src=- shape=16e043e0 vocab=6a98ab2b
+-/
 theorem differentialTranslatePoint_eq_affineFibreTranslatePoint_zero
     (y : Fin n → k) (f : MvPolynomial (Fin n) k) (t : k) :
     differentialTranslatePoint y f t =
@@ -87,6 +96,9 @@ abbrev fibreLinePolynomial
     (y v : Fin n → k) (g : SymbolRing k n) : Polynomial k :=
   affineFibreLinePolynomial y (fun _ => 0) v g
 
+/--
+@isnad1 id=eq.0h5v.s6.0ef208f2ac28 from=translated src=- shape=0da27763 vocab=fbc77b80
+-/
 theorem fibreLinePolynomial_eq_affineFibreLinePolynomial_zero
     (y v : Fin n → k) (g : SymbolRing k n) :
     fibreLinePolynomial y v g = affineFibreLinePolynomial y (fun _ => 0) v g := rfl
@@ -95,14 +107,23 @@ theorem fibreLinePolynomial_eq_affineFibreLinePolynomial_zero
 def verticalDeriv (v : Fin n → k) (g : SymbolRing k n) : SymbolRing k n :=
   ∑ i, MvPolynomial.C (v i) * MvPolynomial.pderiv (Sum.inr i) g
 
+/--
+@isnad1 id=eq.0h4v.s7.be0029a17741 from=translated src=- shape=cfadfa59 vocab=39a31d50
+-/
 @[simp] theorem verticalDeriv_C (v : Fin n → k) (a : k) :
     verticalDeriv v (MvPolynomial.C a) = 0 := by
   simp [verticalDeriv]
 
+/--
+@isnad1 id=eq.0h5v.s7.cd9c47c1aa6b from=translated src=- shape=71802370 vocab=d7f5d10f
+-/
 theorem verticalDeriv_add (v : Fin n → k) (g h : SymbolRing k n) :
     verticalDeriv v (g + h) = verticalDeriv v g + verticalDeriv v h := by
   simp [verticalDeriv, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s8.2739076a3b51 from=translated src=- shape=29d65c85 vocab=6079a141
+-/
 theorem verticalDeriv_mul (v : Fin n → k) (g h : SymbolRing k n) :
     verticalDeriv v (g * h) = verticalDeriv v g * h + g * verticalDeriv v h := by
   simp only [verticalDeriv, MvPolynomial.pderiv_mul, mul_add,
@@ -117,46 +138,73 @@ theorem verticalDeriv_mul (v : Fin n → k) (g h : SymbolRing k n) :
     intro i hi
     ac_rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.28c61f20e81e from=translated src=- shape=8af65f9b vocab=38cac6db
+-/
 @[simp] theorem verticalDeriv_X_base (v : Fin n → k) (i : Fin n) :
     verticalDeriv v (MvPolynomial.X (Sum.inl i)) = 0 := by
   simp [verticalDeriv]
 
+/--
+@isnad1 id=eq.0h4v.s7.fb6ee9eb704a from=translated src=- shape=7555ff48 vocab=395952c1
+-/
 @[simp] theorem verticalDeriv_X_fibre (v : Fin n → k) (i : Fin n) :
     verticalDeriv v (MvPolynomial.X (Sum.inr i)) = MvPolynomial.C (v i) := by
   classical
   simp [verticalDeriv, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h5v.s7.3c087cba0749 from=translated src=- shape=e95c1b1a vocab=f7cbd216
+-/
 @[simp] theorem fibreLinePolynomial_C
     (y v : Fin n → k) (a : k) :
     fibreLinePolynomial y v (MvPolynomial.C a) = Polynomial.C a := by
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
+/--
+@isnad1 id=eq.0h4v.s6.4b825fc78f27 from=translated src=- shape=96876ad1 vocab=1ad0cded
+-/
 @[simp] theorem fibreLinePolynomial_zero (y v : Fin n → k) :
     fibreLinePolynomial y v 0 = 0 := by
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
+/--
+@isnad1 id=eq.0h6v.s7.035eda6496b1 from=translated src=- shape=70272549 vocab=0fe335cf
+-/
 @[simp] theorem fibreLinePolynomial_add
     (y v : Fin n → k) (g h : SymbolRing k n) :
     fibreLinePolynomial y v (g + h) =
       fibreLinePolynomial y v g + fibreLinePolynomial y v h := by
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
+/--
+@isnad1 id=eq.0h6v.s7.ec2bd0f1b673 from=translated src=- shape=70272549 vocab=d2dbdd89
+-/
 @[simp] theorem fibreLinePolynomial_mul
     (y v : Fin n → k) (g h : SymbolRing k n) :
     fibreLinePolynomial y v (g * h) =
       fibreLinePolynomial y v g * fibreLinePolynomial y v h := by
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
+/--
+@isnad1 id=eq.0h6v.s6.a137711469c7 from=translated src=- shape=44de4078 vocab=df90d563
+-/
 theorem fibreLinePolynomial_sum {ι : Type*} [Fintype ι]
     (y v : Fin n → k) (g : ι → SymbolRing k n) :
     fibreLinePolynomial y v (∑ i, g i) = ∑ i, fibreLinePolynomial y v (g i) := by
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
+/--
+@isnad1 id=eq.0h5v.s7.a1d09830b57a from=translated src=- shape=9c76aae0 vocab=9d6f132e
+-/
 @[simp] theorem fibreLinePolynomial_X_base
     (y v : Fin n → k) (i : Fin n) :
     fibreLinePolynomial y v (MvPolynomial.X (Sum.inl i)) = Polynomial.C (y i) := by
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
+/--
+@isnad1 id=eq.0h5v.s7.7dfa9492bfa9 from=translated src=- shape=50b84723 vocab=2d9ec925
+-/
 @[simp] theorem fibreLinePolynomial_X_fibre
     (y v : Fin n → k) (i : Fin n) :
     fibreLinePolynomial y v (MvPolynomial.X (Sum.inr i)) =
@@ -164,7 +212,9 @@ theorem fibreLinePolynomial_sum {ι : Type*} [Fintype ι]
   simp [fibreLinePolynomial, affineFibreLinePolynomial]
 
 /-- Evaluating the affine fibre-line polynomial at time `t` is evaluation at
-`(y, xi + t v)`.-/
+`(y, xi + t v)`.
+@isnad1 id=eq.0h7v.s7.be3fe6a9cae9 from=translated src=- shape=70e6ce21 vocab=61e3e0e9
+-/
 theorem eval_affineFibreLinePolynomial (y xi v : Fin n → k)
     (g : SymbolRing k n) (t : k) :
     Polynomial.eval t (affineFibreLinePolynomial y xi v g) =
@@ -187,6 +237,9 @@ theorem eval_affineFibreLinePolynomial (y xi v : Fin n → k)
     simp
     ring
 
+/--
+@isnad1 id=eq.0h5v.s8.a9adc1ef69a0 from=translated src=- shape=1c0e03fb vocab=23c3bf6f
+-/
 theorem derivative_fibreLinePolynomial
     (y v : Fin n → k) (g : SymbolRing k n) :
     Polynomial.derivative (fibreLinePolynomial y v g) =
@@ -205,6 +258,9 @@ theorem derivative_fibreLinePolynomial
           Polynomial.derivative_C, Polynomial.derivative_X, zero_mul, zero_add, mul_one, hp]
         simp [verticalDeriv_mul]
 
+/--
+@isnad1 id=eq.0h6v.s7.a93cf5e548ec from=translated src=- shape=090914c7 vocab=a82f85de
+-/
 theorem eval_fibreLinePolynomial (y v : Fin n → k)
     (g : SymbolRing k n) (t : k) :
     Polynomial.eval t (fibreLinePolynomial y v g) =
@@ -215,6 +271,9 @@ theorem eval_fibreLinePolynomial (y v : Fin n → k)
   intro i c hi hc
   rcases i with i | i <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s7.56d1ed89ff24 from=translated src=- shape=f0fee42a vocab=4d68bd64
+-/
 theorem eval_zero_fibreLinePolynomial (y v : Fin n → k)
     (g : SymbolRing k n) :
     Polynomial.eval 0 (fibreLinePolynomial y v g) =
@@ -224,11 +283,17 @@ theorem eval_zero_fibreLinePolynomial (y v : Fin n → k)
   intro i c hi hc
   rcases i with i | i <;> simp [zeroSectionPoint]
 
+/--
+@isnad1 id=eq.0h4v.s10.f27ce32111d6 from=translated src=- shape=6ecae5eb vocab=ff541e85
+-/
 theorem pderiv_baseLift_base (f : MvPolynomial (Fin n) k) (i : Fin n) :
     MvPolynomial.pderiv (Sum.inl i) (baseLift f) =
       baseLift (MvPolynomial.pderiv i f) := by
   exact MvPolynomial.pderiv_rename Sum.inl_injective i f
 
+/--
+@isnad1 id=eq.0h4v.s9.2174e9c7df49 from=translated src=- shape=f9445644 vocab=9a82b584
+-/
 theorem pderiv_baseLift_fibre (f : MvPolynomial (Fin n) k) (i : Fin n) :
     MvPolynomial.pderiv (Sum.inr i) (baseLift f) = 0 := by
   apply MvPolynomial.pderiv_eq_zero_of_notMem_vars
@@ -236,6 +301,9 @@ theorem pderiv_baseLift_fibre (f : MvPolynomial (Fin n) k) (i : Fin n) :
   rcases MvPolynomial.mem_vars_rename Sum.inl f hi with ⟨j, hj, hji⟩
   exact Sum.inl_ne_inr hji
 
+/--
+@isnad1 id=eq.0h5v.s9.41adcd821aa2 from=translated src=- shape=af87ed8c vocab=ac09cd2b
+-/
 theorem fibreLinePolynomial_baseLift
     (y v : Fin n → k) (f : MvPolynomial (Fin n) k) :
     fibreLinePolynomial y v (baseLift f) = Polynomial.C (MvPolynomial.eval y f) := by
@@ -248,6 +316,9 @@ theorem fibreLinePolynomial_baseLift
         MvPolynomial.eval_X, map_mul]
       simp [baseLift]
 
+/--
+@isnad1 id=eq.0h6v.s9.86310be4936b from=translated src=- shape=a008206e vocab=afb3f83b
+-/
 theorem fibreLinePolynomial_baseLift_pderiv
     (y v : Fin n → k) (f : MvPolynomial (Fin n) k) (i : Fin n) :
     fibreLinePolynomial y v
@@ -256,6 +327,9 @@ theorem fibreLinePolynomial_baseLift_pderiv
   rw [pderiv_baseLift_base, fibreLinePolynomial_baseLift]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.09be6a11eb03 from=translated src=- shape=c25bcc19 vocab=4ea78ad6
+-/
 theorem fibreLinePolynomial_poissonBracket_baseLift
     (y : Fin n → k) (f : MvPolynomial (Fin n) k) (g : SymbolRing k n) :
     fibreLinePolynomial y (differentialAt y f) (poissonBracket (baseLift f) g) =
@@ -274,6 +348,9 @@ def hamiltonIter (f : MvPolynomial (Fin n) k) : ℕ → SymbolRing k n → Symbo
   | 0, g => g
   | m + 1, g => poissonBracket (baseLift f) (hamiltonIter f m g)
 
+/--
+@isnad1 id=eq.0h6v.s8.f8c896a75f68 from=translated src=- shape=da46be2f vocab=f9210720
+-/
 theorem iterate_derivative_fibreLinePolynomial
     (y : Fin n → k) (f : MvPolynomial (Fin n) k)
     (g : SymbolRing k n) (m : ℕ) :
@@ -287,6 +364,9 @@ theorem iterate_derivative_fibreLinePolynomial
         ← fibreLinePolynomial_poissonBracket_baseLift]
       rfl
 
+/--
+@isnad1 id=mem.3h6v.s9.e76a6d8c2e32 from=translated src=- shape=0e8643c5 vocab=9ff0ac61
+-/
 theorem hamiltonIter_mem
     (J : Ideal (SymbolRing k n)) (hJ : IsPoisson J)
     (f : MvPolynomial (Fin n) k) (hf : baseLift f ∈ J)
@@ -297,6 +377,9 @@ theorem hamiltonIter_mem
   | zero => exact hg
   | succ m hm => exact hJ (baseLift f) hf (hamiltonIter f m g)
 
+/--
+@isnad1 id=eq.1h2v.s8.14d988cbf826 from=translated src=- shape=57786bc1 vocab=e745f989
+-/
 theorem polynomial_eq_zero_of_eval_iterate_derivative_zero
     [CharZero k]
     (q : Polynomial k)
@@ -313,6 +396,9 @@ theorem polynomial_eq_zero_of_eval_iterate_derivative_zero
     (mul_eq_zero.mp hm).resolve_left (by exact_mod_cast Nat.factorial_ne_zero m)
   simpa using hc
 
+/--
+@isnad1 id=eq.4h6v.s10.d36805727b67 from=translated src=- shape=0506babc vocab=410473a8
+-/
 theorem fibreLinePolynomial_eq_zero_of_poisson
     [CharZero k]
     (J : Ideal (SymbolRing k n)) (hJ : IsPoisson J)
@@ -334,7 +420,9 @@ vertical translation by `t df_y`, for every scalar `t`, whenever the base
 polynomial `f` belongs to the ideal.
 
 The radical hypothesis customary in the geometric application is unnecessary
-for this polynomial implication; see the wrapper below.-/
+for this polynomial implication; see the wrapper below.
+@isnad1 id=eq.4h7v.s10.3f2e485cba9f from=translated src=- shape=72982ac5 vocab=84c7bab5
+-/
 theorem zeroSection_stable_under_differential_translation
     [CharZero k]
     (J : Ideal (SymbolRing k n)) (hJ : IsPoisson J)
@@ -353,7 +441,9 @@ theorem zeroSection_stable_under_differential_translation
   rw [fibreLinePolynomial_eq_zero_of_poisson J hJ y hzero f hf g hg]
   exact Polynomial.eval_zero
 
-/-- The same statement with the radical hypothesis carried explicitly.-/
+/-- The same statement with the radical hypothesis carried explicitly.
+@isnad1 id=eq.5h7v.s10.d152fe04ac35 from=translated src=- shape=8f97e560 vocab=552869ee
+-/
 theorem radicalPoisson_zeroSection_stable_under_differential_translation
     [CharZero k]
     (J : Ideal (SymbolRing k n)) (_hJrad : J.IsRadical) (hJ : IsPoisson J)

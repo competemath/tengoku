@@ -21,7 +21,9 @@ variable {k : Type*} [Field k] {σ : Type*} [Fintype σ]
 
 /-- The actual affine-chart completion map sends the centered polynomial coordinate to the
 corresponding formal variable. The public `powerSeriesCompletionAtPoint` is defined by composing
-this translation-induced completion equivalence with the canonical power-series completion map.-/
+this translation-induced completion equivalence with the canonical power-series completion map.
+@isnad1 id=other.0h4v.s12.0d5315c65e70 from=translated src=- shape=5a4c380e vocab=cfdcd0f2
+-/
 theorem affinePointCompletion_variable_explicit (p : σ → k) (i : σ) :
     let I : Ideal (MvPolynomial σ k) := MvPolynomial.idealOfVars σ k
     let J : Ideal (MvPolynomial σ k) :=
@@ -45,7 +47,9 @@ theorem affinePointCompletion_variable_explicit (p : σ → k) (i : σ) :
   rw [Stafford38.Geometry.AdicCompletionRingEquiv.ofRingEquiv_apply_of]
   simp [Stafford38.Geometry.AffinePointCompletion.translate]
 
-/-- The affine chart completion fixes the ground-field constants.-/
+/-- The affine chart completion fixes the ground-field constants.
+@isnad1 id=other.0h4v.s12.d794ce772448 from=translated src=- shape=26eed3ab vocab=3ee0500b
+-/
 theorem affinePointCompletion_constant_explicit (p : σ → k) (c : k) :
     let I : Ideal (MvPolynomial σ k) := MvPolynomial.idealOfVars σ k
     let J : Ideal (MvPolynomial σ k) :=

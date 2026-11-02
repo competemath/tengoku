@@ -30,7 +30,9 @@ noncomputable def extendDerivation (D : Derivation k A L) : Derivation k U L := 
     KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale k A U
   exact KaehlerDifferential.linearMapEquivDerivation k U (T.comp E.symm.toLinearMap)
 
-/-- The extended derivation restricts to the original derivation on `A`.-/
+/-- The extended derivation restricts to the original derivation on `A`.
+@isnad1 id=eq.0h6v.s9.6d7ab4019936 from=translated src=- shape=18052e7a vocab=04dd5738
+-/
 theorem extendDerivation_algebraMap (D : Derivation k A L) (a : A) :
     extendDerivation (k := k) (A := A) (U := U) (L := L) D
       (algebraMap A U a) = D a := by

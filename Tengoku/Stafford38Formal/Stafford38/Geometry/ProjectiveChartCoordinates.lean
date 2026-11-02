@@ -50,6 +50,9 @@ def dehomogenizedTangentColumn {ι : Type*} (chart : ι)
     (q w : ι → K) : ChartAffineIndex ι chart → K :=
   fun i ↦ (w i.1 * q chart - q i.1 * w chart) / q chart ^ 2
 
+/--
+@isnad1 id=eq.0h6v.s7.2c4912eccff1 from=translated src=- shape=6ebd1ea0 vocab=c7560094
+-/
 @[simp] theorem dehomogenizedTangentColumn_apply {ι : Type*} (chart : ι)
     (q w : ι → K) (i : ChartAffineIndex ι chart) :
     dehomogenizedTangentColumn chart q w i =
@@ -64,7 +67,9 @@ def dehomogenizeProjectiveChart {m : ℕ} (chart : Fin (m + 1))
     if h : a = chart then 1 else MvPolynomial.X (e.symm ⟨a, h⟩)
 
 /-- Evaluation after dehomogenization is evaluation at the inserted chart
-point.-/
+point.
+@isnad1 id=eq.0h6v.s9.e7c6e03c671c from=translated src=- shape=b4a654ad vocab=30c7db0c
+-/
 theorem eval_dehomogenizeProjectiveChart {m : ℕ} (chart : Fin (m + 1))
     (e : Fin m ≃ ChartAffineIndex (Fin (m + 1)) chart)
     (p : MvPolynomial (Fin (m + 1)) K) (y : Fin m → K) :
@@ -96,7 +101,9 @@ def dehomogenizedEquationIdeal {m : ℕ} {ι : Type*}
   Ideal.span (Set.range fun i ↦ dehomogenizeProjectiveChart chart e (equations i))
 
 /-- Every member of the chart-dehomogenized equation ideal vanishes at an
-affine point whenever all inserted projective generators vanish there.-/
+affine point whenever all inserted projective generators vanish there.
+@isnad1 id=eq.2h8v.s9.03ac99892017 from=translated src=- shape=bae225db vocab=ddf56f27
+-/
 theorem eval_eq_zero_of_mem_dehomogenizedEquationIdeal
     {m : ℕ} {ι : Type*} (chart : Fin (m + 1))
     (e : Fin m ≃ ChartAffineIndex (Fin (m + 1)) chart)
@@ -133,15 +140,23 @@ def zerothChartEquiv {m : ℕ} :
         apply Subtype.ext
         exact hi.symm⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.7152a88a616f from=translated src=- shape=4510b12c vocab=96f49116
+-/
 @[simp] theorem zerothChartEquiv_apply {m : ℕ} (i : Fin m) :
     zerothChartEquiv (m := m) i = ⟨i.succ, Fin.succ_ne_zero i⟩ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.9d59cf4b5f9f from=translated src=- shape=d9497b1e vocab=7049407f
+-/
 @[simp] theorem zerothChartEquiv_symm_apply_succ {m : ℕ} (i : Fin m) :
     (zerothChartEquiv (m := m)).symm ⟨i.succ, Fin.succ_ne_zero i⟩ = i :=
   Equiv.apply_symm_apply _ i
 
 /-- The zeroth-chart specialization is exactly the standard tuple
-`(1,y₀,…,y_{m-1})`.-/
+`(1,y₀,…,y_{m-1})`.
+@isnad1 id=eq.0h3v.s6.961954774bd0 from=translated src=- shape=ee85af7b vocab=1d476c36
+-/
 @[simp] theorem insertProjectiveChart_zero {m : ℕ} (y : Fin m → K) :
     insertProjectiveChart (0 : Fin (m + 1)) (zerothChartEquiv (m := m)) y =
       Fin.cases 1 y := by
@@ -151,7 +166,9 @@ def zerothChartEquiv {m : ℕ} :
   · simp [insertProjectiveChart]
 
 /-- Changing the chosen zeroth-chart complement ordering only reindexes the
-affine tuple; the inserted projective point is unchanged.-/
+affine tuple; the inserted projective point is unchanged.
+@isnad1 id=eq.0h4v.s8.adce2453a96f from=translated src=- shape=aaf9a7cf vocab=2c2ed8d7
+-/
 theorem insertProjectiveChart_zero_transport {m : ℕ}
     (e : Fin m ≃ ChartAffineIndex (Fin (m + 1)) (0 : Fin (m + 1)))
     (y : Fin m → K) :
@@ -164,7 +181,9 @@ theorem insertProjectiveChart_zero_transport {m : ℕ}
   · simp [insertProjectiveChart]
 
 /-- The zeroth-chart polynomial map is exactly substitution
-`X₀ ↦ 1`, `X_(i+1) ↦ X_i`.-/
+`X₀ ↦ 1`, `X_(i+1) ↦ X_i`.
+@isnad1 id=eq.0h2v.s8.3040c9bd5718 from=translated src=- shape=05d2f8df vocab=4bc75e3f
+-/
 @[simp] theorem dehomogenizeProjectiveChart_zero {m : ℕ}
     : dehomogenizeProjectiveChart (0 : Fin (m + 1)) (zerothChartEquiv (m := m)) =
       MvPolynomial.aeval (R := K) (S₁ := MvPolynomial (Fin m) K)
@@ -176,7 +195,9 @@ theorem insertProjectiveChart_zero_transport {m : ℕ}
   · simp [dehomogenizeProjectiveChart]
 
 /-- Changing the chosen zeroth-chart complement ordering changes the
-dehomogenization map only by the corresponding affine-variable renaming.-/
+dehomogenization map only by the corresponding affine-variable renaming.
+@isnad1 id=eq.0h3v.s9.2df735cbf52a from=translated src=- shape=c7155125 vocab=85ae68af
+-/
 theorem dehomogenizeProjectiveChart_zero_transport {m : ℕ}
     (e : Fin m ≃ ChartAffineIndex (Fin (m + 1)) (0 : Fin (m + 1))) :
     (MvPolynomial.renameEquiv K

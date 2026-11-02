@@ -42,10 +42,16 @@ variable {k : Type u} [Field k]
 def axisRow {ι : Type*} [DecidableEq ι] (axis : ι) : ι → k :=
   fun i => if i = axis then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.cded667d5e7e from=translated src=- shape=d165d2c2 vocab=fb8b720a
+-/
 @[simp] theorem axisRow_apply_same {ι : Type*} [DecidableEq ι] (axis : ι) :
     axisRow (k := k) axis axis = 1 := by
   simp [axisRow]
 
+/--
+@isnad1 id=eq.1h4v.s5.4442fa0ea97c from=translated src=- shape=ad83a7c4 vocab=fb8b720a
+-/
 @[simp] theorem axisRow_apply_of_ne {ι : Type*} [DecidableEq ι]
     {axis i : ι} (hi : i ≠ axis) : axisRow (k := k) axis i = 0 := by
   simp [axisRow, hi]
@@ -65,7 +71,9 @@ def HasSelectedOrderGap {ι κ : Type*}
 
 /--
 Cancelling the common factor shows that the selected row of the normalized
-matrix still contains a positive power of `X`.-/
+matrix still contains a positive power of `X`.
+@isnad1 id=ex.2h9v.s7.6279e86e15f4 from=translated src=- shape=d47f5808 vocab=46a3f5a1
+-/
 theorem normalized_selectedRow_factor
     {ι κ : Type*} (T B : Matrix ι κ (PowerSeries k))
     (axis : ι) (m gap : ℕ)
@@ -83,7 +91,9 @@ theorem normalized_selectedRow_factor
     rw [← hnorm axis j, hu, pow_add, mul_assoc]
   exact mul_left_cancel₀ (pow_ne_zero m PowerSeries.X_ne_zero) hpow
 
-/-- The strict order gap makes the selected normalized row vanish modulo `X`.-/
+/-- The strict order gap makes the selected normalized row vanish modulo `X`.
+@isnad1 id=eq.2h9v.s7.fec75747529c from=translated src=- shape=c8d12cdb vocab=5838447c
+-/
 theorem residue_normalized_selectedRow_eq_zero
     {ι κ : Type*} (T B : Matrix ι κ (PowerSeries k))
     (axis : ι) (m gap : ℕ)
@@ -95,7 +105,9 @@ theorem residue_normalized_selectedRow_eq_zero
   rw [hu]
   simp [pow_succ]
 
-/-- The selected coordinate covector annihilates the residue tangent columns.-/
+/-- The selected coordinate covector annihilates the residue tangent columns.
+@isnad1 id=eq.2h8v.s7.92e1da5f451c from=translated src=- shape=a331192b vocab=d076ffe4
+-/
 theorem axisRow_residue_rowMul_eq_zero
     {ι κ : Type*} [Fintype ι] [DecidableEq ι]
     (T B : Matrix ι κ (PowerSeries k))
@@ -115,7 +127,9 @@ The returned row annihilates `B` exactly over `k[[X]]` and specializes to the
 selected coordinate covector.  Thus that residue covector is represented by a
 genuine power-series annihilator, not merely by a row annihilating the special
 fibre.  The left inverse `C` is an independent lattice-splitting hypothesis;
-it is not obtained from the common-power presentation.-/
+it is not obtained from the common-power presentation.
+@isnad1 id=ex.3h9v.s7.89f549b4cab2 from=translated src=- shape=bd98b6eb vocab=70075cd8
+-/
 theorem exists_annihilator_specializing_to_axis
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]

@@ -36,14 +36,18 @@ def IsBaseRelativePoisson (J : Ideal (SymbolRing k n)) : Prop :=
   ∀ f : MvPolynomial (Fin n) k, baseLift f ∈ J →
     ∀ g ∈ J, poissonBracket (baseLift f) g ∈ J
 
-/-- Full Poisson closure implies the base-relative fragment.-/
+/-- Full Poisson closure implies the base-relative fragment.
+@isnad1 id=isbasere.1h3v.s5.da67940ffd77 from=translated src=- shape=d8da6301 vocab=8698ad5b
+-/
 theorem IsPoisson.isBaseRelativePoisson
     (J : Ideal (SymbolRing k n)) (hJ : IsPoisson J) :
     IsBaseRelativePoisson J := by
   intro f hf g hg
   exact hJ (baseLift f) hf g
 
-/-- Base-relative closure is preserved through all iterated Hamiltonian brackets.-/
+/-- Base-relative closure is preserved through all iterated Hamiltonian brackets.
+@isnad1 id=mem.3h6v.s9.22c986141946 from=translated src=- shape=0e8643c5 vocab=0da4af9f
+-/
 theorem hamiltonIter_mem_of_isBaseRelativePoisson
     (J : Ideal (SymbolRing k n)) (hJ : IsBaseRelativePoisson J)
     (f : MvPolynomial (Fin n) k) (hf : baseLift f ∈ J)
@@ -56,7 +60,9 @@ theorem hamiltonIter_mem_of_isBaseRelativePoisson
 
 /--
 The fibre-line polynomial vanishes under the exact base-relative Gabber
-fragment; full Poisson closure is not needed.-/
+fragment; full Poisson closure is not needed.
+@isnad1 id=eq.4h6v.s10.0c8ee8295eb8 from=translated src=- shape=0506babc vocab=6b3a31e2
+-/
 theorem fibreLinePolynomial_eq_zero_of_isBaseRelativePoisson
     [CharZero k]
     (J : Ideal (SymbolRing k n)) (hJ : IsBaseRelativePoisson J)
@@ -72,7 +78,9 @@ theorem fibreLinePolynomial_eq_zero_of_isBaseRelativePoisson
 
 /--
 A zero-section common zero remains a common zero after translation by
-`t df_y`, assuming only `{J ∩ k[x], J} ⊆ J`.-/
+`t df_y`, assuming only `{J ∩ k[x], J} ⊆ J`.
+@isnad1 id=eq.4h7v.s10.398628a39ff6 from=translated src=- shape=72982ac5 vocab=8eab43ec
+-/
 theorem zeroSection_stable_under_differential_translation_of_isBaseRelativePoisson
     [CharZero k]
     (J : Ideal (SymbolRing k n)) (hJ : IsBaseRelativePoisson J)

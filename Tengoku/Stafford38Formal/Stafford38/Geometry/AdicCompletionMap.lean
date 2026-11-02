@@ -46,6 +46,9 @@ def mapOfRingHom (f : A →+* B) (I : Ideal A) (J : Ideal B)
     exact hmap
   exact AdicCompletion.liftRingHom J stage hstage
 
+/--
+@isnad1 id=eq.1h7v.s11.a3867c3aa013 from=translated src=- shape=e1ac233e vocab=5493b526
+-/
 theorem eval_mapOfRingHom (f : A →+* B) (I : Ideal A) (J : Ideal B)
     (hJ : J = I.map f) (x : AdicCompletion I A) (n : ℕ) :
     AdicCompletion.evalₐ J n (mapOfRingHom f I J hJ x) =
@@ -59,6 +62,9 @@ theorem eval_mapOfRingHom (f : A →+* B) (I : Ideal A) (J : Ideal B)
   simp only [AdicCompletion.evalₐ_liftRingHom]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.472f7ff73157 from=translated src=- shape=8211ec34 vocab=f53bee18
+-/
 @[simp]
 theorem mapOfRingHom_apply_of (f : A →+* B) (I : Ideal A) (J : Ideal B)
     (hJ : J = I.map f) (a : A) :
@@ -70,6 +76,9 @@ theorem mapOfRingHom_apply_of (f : A →+* B) (I : Ideal A) (J : Ideal B)
   rw [eval_mapOfRingHom]
   simp
 
+/--
+@isnad1 id=eq.2h8v.s9.c19b3e303fdc from=translated src=- shape=ff77f37e vocab=2459204e
+-/
 theorem mapOfRingHom_comp {C : Type*} [CommRing C]
     (f : A →+* B) (g : B →+* C) (I : Ideal A) (J : Ideal B) (K : Ideal C)
     (hJ : J = I.map f) (hK : K = J.map g) :

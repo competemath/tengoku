@@ -15,7 +15,9 @@ universe u v
 
 /-- If `L` is a localization of `B`, the local rings over compatible residue
 kernels are canonically equivalent. The center equality is derived from the
-commuting residue maps; no height or DVR hypothesis is used.-/
+commuting residue maps; no height or DVR hypothesis is used.
+@isnad1 id=ex.2h6v.s12.331a58094ceb from=translated src=- shape=ba62e711 vocab=ce95039f
+-/
 theorem kernel_center_localization_equiv
     {B : Type u} [CommRing B] {κ : Type v} [Field κ]
     (M : Submonoid B)

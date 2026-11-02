@@ -25,6 +25,9 @@ variable {k : Type u} {V : Type v} [Field k] [AddCommGroup V] [Module k V]
 /-- The two-dimensional candidate symplectic plane spanned by `v` and `w`.-/
 def pairPlane (v w : V) : Submodule k V := Submodule.span k {v, w}
 
+/--
+@isnad1 id=other.3h5v.s10.5d63dbf68346 from=translated src=- shape=8f6c71e2 vocab=c12fb0ee
+-/
 theorem pairComplementData [Module.Finite k V]
     (B : BilinForm k V) (hAlt : ∀ x, B x x = 0) (hB : B.Nondegenerate)
     (v w : V) (hvw : B v w = 1) :

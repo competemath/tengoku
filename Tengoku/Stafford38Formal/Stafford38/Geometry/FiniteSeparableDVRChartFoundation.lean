@@ -54,7 +54,9 @@ def finiteSeparableSection
   exact Algebra.FormallySmooth.liftOfSurjective
     (AlgHom.id E K) residue hsurj hnil
 
-/-- The canonical lift is a section of the residue homomorphism.-/
+/-- The canonical lift is a section of the residue homomorphism.
+@isnad1 id=eq.3h4v.s8.2bef8dc32d18 from=translated src=- shape=53c206f7 vocab=298bca3c
+-/
 @[simp]
 theorem residue_comp_finiteSeparableSection
     (hsep : Algebra.IsSeparable E K)
@@ -70,7 +72,9 @@ theorem residue_comp_finiteSeparableSection
     (AlgHom.id E K) residue hsurj hnil
 
 /-- Every coefficient-field lift through the same nilpotent thickening is the
-canonical one.  This is the formal-unramified half of separability.-/
+canonical one.  This is the formal-unramified half of separability.
+@isnad1 id=eq.4h5v.s8.248ef9a30b4e from=translated src=- shape=828c4a2b vocab=298bca3c
+-/
 theorem finiteSeparableSection_unique
     (hsep : Algebra.IsSeparable E K)
     (residue : R →ₐ[E] K)
@@ -86,7 +90,9 @@ theorem finiteSeparableSection_unique
   rw [hlift, residue_comp_finiteSeparableSection]
 
 /-- A separable residue field has a unique coefficient-field section through
-every surjective nilpotent `E`-algebra thickening.-/
+every surjective nilpotent `E`-algebra thickening.
+@isnad1 id=existsun.3h4v.s8.a5be7aa89450 from=translated src=- shape=b14d57bd vocab=8fcdd9d7
+-/
 theorem existsUnique_finiteSeparableSection
     (hsep : Algebra.IsSeparable E K)
     (residue : R →ₐ[E] K)
@@ -106,7 +112,9 @@ variable (S : Type u) [CommRing S] [Algebra E S]
 
 /-- The finite-level coefficient sections are compatible with every
 `E`-algebra transition map commuting with residue specialization.  Thus no
-extra choices have to be synchronized along an Artinian quotient tower.-/
+extra choices have to be synchronized along an Artinian quotient tower.
+@isnad1 id=eq.6h7v.s9.91279e94440c from=translated src=- shape=68bb48ab vocab=6c619fba
+-/
 theorem finiteSeparableSection_naturality
     (hsep : Algebra.IsSeparable E K)
     (residueR : R →ₐ[E] K)

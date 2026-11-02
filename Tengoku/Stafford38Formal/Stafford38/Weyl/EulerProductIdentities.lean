@@ -31,7 +31,9 @@ abbrev fallingEulerPolynomial : ℕ → Polynomial ℚ :=
 abbrev risingEulerPolynomial : ℕ → Polynomial ℚ :=
   Stafford38.Evolution.risingPoly ℚ
 
-/-- The falling polynomial is the product of the Euler factors `X-i`.-/
+/-- The falling polynomial is the product of the Euler factors `X-i`.
+@isnad1 id=eq.0h1v.s6.011785769603 from=translated src=- shape=ded08971 vocab=68789b05
+-/
 theorem fallingEulerPolynomial_eq_prod (n : ℕ) :
     fallingEulerPolynomial n = ∏ i ∈ Finset.range n,
       (Polynomial.X - Polynomial.C (i : ℚ)) := by
@@ -41,7 +43,9 @@ theorem fallingEulerPolynomial_eq_prod (n : ℕ) :
   | succ n ih =>
       rw [Stafford38.Evolution.fallingPoly_succ, ih, Finset.prod_range_succ]
 
-/-- The rising polynomial is the product of the Euler factors `X+(i+1)`.-/
+/-- The rising polynomial is the product of the Euler factors `X+(i+1)`.
+@isnad1 id=eq.0h1v.s6.847a52fb88c5 from=translated src=- shape=4d880e40 vocab=936d8849
+-/
 theorem risingEulerPolynomial_eq_prod (n : ℕ) :
     risingEulerPolynomial n = ∏ i ∈ Finset.range n,
       (Polynomial.X + Polynomial.C ((i + 1 : ℕ) : ℚ)) := by
@@ -53,7 +57,9 @@ theorem risingEulerPolynomial_eq_prod (n : ℕ) :
       push_cast
       rfl
 
-/-- Evaluation of the explicit falling Euler product gives `x^n * d^n`.-/
+/-- Evaluation of the explicit falling Euler product gives `x^n * d^n`.
+@isnad1 id=eq.1h4v.s7.cb705adc65d8 from=translated src=- shape=7db5e79e vocab=03a07fae
+-/
 theorem eulerPolynomialEval_falling (x d : A)
     (h : d * x = x * d + 1) (n : ℕ) :
     Stafford.eulerPolynomialEval x d (fallingEulerPolynomial n) = x ^ n * d ^ n := by
@@ -63,7 +69,9 @@ theorem eulerPolynomialEval_falling (x d : A)
   simpa [Stafford38.Evolution.euler] using
     (Stafford38.Evolution.pow_mul_pow_eq_falling (x := x) (p := d) h n).symm
 
-/-- Evaluation of the explicit rising Euler product gives `d^n * x^n`.-/
+/-- Evaluation of the explicit rising Euler product gives `d^n * x^n`.
+@isnad1 id=eq.1h4v.s7.28527e1d08fb from=translated src=- shape=07b186fb vocab=7bee9f54
+-/
 theorem eulerPolynomialEval_rising (x d : A)
     (h : d * x = x * d + 1) (n : ℕ) :
     Stafford.eulerPolynomialEval x d (risingEulerPolynomial n) = d ^ n * x ^ n := by
@@ -73,7 +81,9 @@ theorem eulerPolynomialEval_rising (x d : A)
   simpa [Stafford38.Evolution.euler] using
     (Stafford38.Evolution.pow_mul_pow_eq_rising (x := x) (p := d) h n).symm
 
-/-- Evaluation of the falling product written with a finite-product sign.-/
+/-- Evaluation of the falling product written with a finite-product sign.
+@isnad1 id=eq.1h4v.s8.ae2b61df4bea from=translated src=- shape=b9a56ba4 vocab=7f3d5c20
+-/
 theorem eval_fallingEulerProduct (x d : A)
     (h : d * x = x * d + 1) (n : ℕ) :
     Stafford.eulerPolynomialEval x d
@@ -82,7 +92,9 @@ theorem eval_fallingEulerProduct (x d : A)
   rw [← fallingEulerPolynomial_eq_prod n]
   exact eulerPolynomialEval_falling x d h n
 
-/-- Evaluation of the rising product written with a finite-product sign.-/
+/-- Evaluation of the rising product written with a finite-product sign.
+@isnad1 id=eq.1h4v.s8.0835391ddfd7 from=translated src=- shape=eb7fe0c3 vocab=adc4130f
+-/
 theorem eval_risingEulerProduct (x d : A)
     (h : d * x = x * d + 1) (n : ℕ) :
     Stafford.eulerPolynomialEval x d

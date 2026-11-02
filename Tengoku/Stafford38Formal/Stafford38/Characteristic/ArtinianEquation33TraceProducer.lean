@@ -75,7 +75,9 @@ def reducedEquation33Matrix
     (Q₂.map S.modParameter).map residue
 
 /-- A strict upper-triangular deformation-ring remainder stays strict upper
-triangular in the Artinian quotient.-/
+triangular in the Artinian quotient.
+@isnad1 id=isstrict.1h5v.s7.4fe0fd82b78c from=translated src=- shape=777dcafd vocab=68c08bd8
+-/
 theorem modParameter_isStrictUpperTriangular
     (S : ParameterIdealReduction B Abar)
     (R : Matrix (Fin (n + 1)) (Fin (n + 1)) B)
@@ -85,7 +87,9 @@ theorem modParameter_isStrictUpperTriangular
   simp [Matrix.map_apply, hR i j hji]
 
 /-- A strict upper-triangular matrix over the Artinian quotient has zero
-trace, before passing to the coefficient field.-/
+trace, before passing to the coefficient field.
+@isnad1 id=eq.1h5v.s7.622603f9cd74 from=translated src=- shape=abc82256 vocab=378a64cb
+-/
 theorem modParameter_remainder_trace_eq_zero
     (S : ParameterIdealReduction B Abar)
     (R : Matrix (Fin (n + 1)) (Fin (n + 1)) B)
@@ -98,7 +102,9 @@ theorem modParameter_remainder_trace_eq_zero
 
 /-- A correction can have nonzero trace before reduction.  Membership of that
 trace in the parameter ideal is exactly what makes its trace zero in the
-Artinian quotient.-/
+Artinian quotient.
+@isnad1 id=eq.1h5v.s7.9d7a344d92d7 from=translated src=- shape=10b1d26d vocab=5688755b
+-/
 theorem modParameter_correction_trace_eq_zero
     (S : ParameterIdealReduction B Abar)
     (Q : Matrix (Fin (n + 1)) (Fin (n + 1)) B)
@@ -112,7 +118,9 @@ theorem modParameter_correction_trace_eq_zero
     (AddMonoidHom.map_trace S.modParameter.toAddMonoidHom Q).symm.trans hreduce
 
 /-- Zero trace in the Artinian quotient remains zero after the separate
-residue/coefficient-field projection.-/
+residue/coefficient-field projection.
+@isnad1 id=eq.1h5v.s7.01ea5246c037 from=translated src=- shape=19413bcc vocab=518374a8
+-/
 theorem residue_trace_eq_zero
     (residue : Abar →+* K)
     (M : Matrix (Fin (n + 1)) (Fin (n + 1)) Abar)
@@ -124,7 +132,9 @@ theorem residue_trace_eq_zero
     _ = 0 := by rw [hM, map_zero]
 
 /-- The separate source reductions imply trace zero for the coefficient-field
-matrix represented by equation (3.3).-/
+matrix represented by equation (3.3).
+@isnad1 id=eq.3h9v.s7.401ac2423d3e from=translated src=- shape=34476a80 vocab=6f20adc6
+-/
 theorem reducedEquation33Matrix_trace_eq_zero
     (S : ParameterIdealReduction B Abar)
     (residue : Abar →+* K)

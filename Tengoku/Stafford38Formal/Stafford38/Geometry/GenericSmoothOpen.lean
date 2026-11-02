@@ -28,6 +28,9 @@ variable {k A : Type*} {n : ℕ} [Field k] [PerfectField k] [CommRing A]
   [IsDomain A] [Algebra k A] [Algebra.FiniteType k A]
   [Algebra.FinitePresentation k A]
 
+/--
+@isnad1 id=ex.0h2v.s7.60d291da848c from=translated src=- shape=ed462ed3 vocab=f60cb881
+-/
 theorem exists_nonzero_smooth_away
     : ∃ f : A, f ≠ 0 ∧ Algebra.Smooth k (Localization.Away f) := by
   letI : Algebra.IsSmoothAt k (⊥ : Ideal A) := by
@@ -43,6 +46,9 @@ theorem exists_nonzero_smooth_away
     Algebra.IsSmoothAt.exists_notMem_smooth k (⊥ : Ideal A)
   exact ⟨f, by simpa using hf, hsmooth⟩
 
+/--
+@isnad1 id=ex.0h3v.s11.ecac4055fcae from=translated src=- shape=38e8e458 vocab=d532bd21
+-/
 theorem exists_nonzero_smooth_away_quotient
     (P : Ideal (MvPolynomial (Fin n) k)) [P.IsPrime] :
     ∃ f : (MvPolynomial (Fin n) k ⧸ P), f ≠ 0 ∧

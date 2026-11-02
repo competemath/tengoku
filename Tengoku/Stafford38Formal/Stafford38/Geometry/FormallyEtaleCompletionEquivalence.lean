@@ -33,6 +33,9 @@ private theorem factor_evalₐ_comp (m n : ℕ) (hmn : m ≤ n) (x : AdicComplet
 
 def baseAlgHom : A →ₐ[A] B := IsScalarTower.toAlgHom A A B
 
+/--
+@isnad1 id=eq.1h5v.s8.dd9112de62b1 from=translated src=- shape=314cf35f vocab=a2d0ec44
+-/
 theorem idealPowMap_eq (n : ℕ) (hJ : J = I.map (algebraMap A B)) :
     (I ^ n).map (algebraMap A B) = J ^ n := by
   rw [Ideal.map_pow, hJ]
@@ -107,6 +110,9 @@ private theorem reverseStage_compatible (hJ : J = I.map (algebraMap A B))
     _ = reverseStage I J hJ ψ m (Ideal.Quotient.mkₐ A (J ^ m) b) := by
       exact (reverseStage_mk I J hJ ψ m b).symm
 
+/--
+@isnad1 id=eq.2h7v.s11.e3312c616635 from=translated src=- shape=1511536f vocab=cb6a62b1
+-/
 theorem reverseCompletionMap_compatible (hJ : J = I.map (algebraMap A B))
     (ψ : B →ₐ[A] AdicCompletion I A) {m n : ℕ} (hmn : m ≤ n) :
     (Ideal.Quotient.factorPow I hmn).comp
@@ -237,6 +243,9 @@ private theorem eval_forwardCompletionMap (hJ : J = I.map (algebraMap A B))
     (Stafford38.Geometry.AdicCompletionMap.eval_mapOfRingHom
       (algebraMap A B) I J hJ x n)
 
+/--
+@isnad1 id=eq.2h6v.s11.26918da46c2f from=translated src=- shape=f4c01ebc vocab=e7ef502b
+-/
 theorem forward_reverse_completion
     [Algebra.FormallyUnramified A B]
     (hJ : J = I.map (algebraMap A B))
@@ -251,6 +260,9 @@ theorem forward_reverse_completion
   exact DFunLike.congr_fun (forward_reverse_stage I J hJ ψ hres n)
     (AdicCompletion.evalₐ J n x)
 
+/--
+@isnad1 id=eq.1h6v.s9.5620546fa4e6 from=translated src=- shape=98f11508 vocab=bd29c300
+-/
 theorem reverse_forward_completion
     (hJ : J = I.map (algebraMap A B))
     (ψ : B →ₐ[A] AdicCompletion I A)

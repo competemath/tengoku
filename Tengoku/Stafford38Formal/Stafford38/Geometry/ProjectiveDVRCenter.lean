@@ -30,7 +30,9 @@ local instance subringAlgebra : Algebra R K := R.subtype.toAlgebra
 
 /-- A DVR subring of a field equals any valuation subring of that field which
 locally dominates it. The domination hypothesis is precisely the algebraic
-condition obtained after the center is known to be height one.-/
+condition obtained after the center is known to be height one.
+@isnad1 id=eq.1h3v.s7.a9445b1df77c from=translated src=- shape=2e9915d1 vocab=7a918bff
+-/
 theorem dvr_eq_of_dominated_by_valuationSubring
     [IsDiscreteValuationRing R] [IsFractionRing R K] (V : ValuationSubring K)
     (hdom : (LocalSubring.mk R : LocalSubring K) ≤ V.toLocalSubring) :

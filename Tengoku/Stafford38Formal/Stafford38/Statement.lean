@@ -24,7 +24,9 @@ abbrev WeylAlg (k : Type*) [Field k] (n : ℕ) :=
 /-- Exact proposition required for the publication theorem.-/
 abbrev UniversalStatement.{u} : Prop := Stafford38Challenge.UniversalStatement.{u}
 
-/-- The paper-facing name is definitionally the literal challenge predicate.-/
+/-- The paper-facing name is definitionally the literal challenge predicate.
+@isnad1 id=iff.0h0v.s1.129e3dfcc926 from=translated src=- shape=25b03439 vocab=abcdeb08
+-/
 theorem challenge_universalStatement_iff.{u} :
     Stafford38Challenge.UniversalStatement.{u} ↔ UniversalStatement.{u} := Iff.rfl
 

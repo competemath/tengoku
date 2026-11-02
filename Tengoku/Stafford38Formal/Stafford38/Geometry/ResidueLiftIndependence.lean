@@ -12,7 +12,9 @@ namespace Stafford38.Geometry.ResidueLiftIndependence
 
 /-- Algebraic independence survives lifting elements from a residue field into
 an injectively embedded local domain. A polynomial relation among the lifts
-would reduce to the same relation among their residues.-/
+would reduce to the same relation among their residues.
+@isnad1 id=algebrai.2h5v.s8.62e899c8d780 from=translated src=- shape=cd1d5384 vocab=a941450c
+-/
 theorem algebraicIndependent_of_residue
     {k V K ι : Type*} [Field k] [CommRing V] [IsLocalRing V]
     [Field K] [Algebra k V] [Algebra k K] [Algebra V K]

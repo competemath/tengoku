@@ -44,18 +44,27 @@ def symbolLinearAlgHom {n : ℕ}
     SymbolRing k n →ₐ[k] SymbolRing k n :=
   MvPolynomial.aeval (symbolLinearCombination k M)
 
+/--
+@isnad1 id=eq.0h4v.s8.49fa214e5bfd from=translated src=- shape=f0c5c88a vocab=5b277c14
+-/
 @[simp] theorem symbolLinearAlgHom_X {n : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k) (i : PhaseVar n) :
     symbolLinearAlgHom k M (MvPolynomial.X i) =
       symbolLinearCombination k M i := by
   rw [symbolLinearAlgHom, MvPolynomial.aeval_X]
 
+/--
+@isnad1 id=eq.0h4v.s9.585b2b59818f from=translated src=- shape=210a8d11 vocab=5de6127e
+-/
 @[simp] theorem symbolLinearAlgHom_C {n : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k) (c : k) :
     symbolLinearAlgHom k M (MvPolynomial.C c) = MvPolynomial.C c := by
   rw [symbolLinearAlgHom, MvPolynomial.aeval_C]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.00e9abcccf5a from=translated src=- shape=3f13e874 vocab=7d9e3040
+-/
 theorem symbolLinearAlgHom_comp {n : ℕ}
     (M N : Matrix (PhaseVar n) (PhaseVar n) k) :
     (symbolLinearAlgHom k M).comp (symbolLinearAlgHom k N) =
@@ -68,6 +77,9 @@ theorem symbolLinearAlgHom_comp {n : ℕ}
   simp only [Finset.mul_sum, Finset.sum_mul, mul_assoc]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h2v.s8.6487db33f0d2 from=translated src=- shape=da56106b vocab=a0f20f4a
+-/
 theorem symbolLinearAlgHom_one {n : ℕ} :
     symbolLinearAlgHom k (1 : Matrix (PhaseVar n) (PhaseVar n) k) =
       AlgHom.id k (SymbolRing k n) := by
@@ -85,6 +97,9 @@ def symbolLinearAlgEquivOfInverse {n : ℕ}
     (by rw [symbolLinearAlgHom_comp, hNM, symbolLinearAlgHom_one])
     (by rw [symbolLinearAlgHom_comp, hMN, symbolLinearAlgHom_one])
 
+/--
+@isnad1 id=eq.2h5v.s9.cfc7b5e87caa from=translated src=- shape=e2b4735a vocab=378dc46c
+-/
 @[simp] theorem symbolLinearAlgEquivOfInverse_X {n : ℕ}
     (M N : Matrix (PhaseVar n) (PhaseVar n) k)
     (hMN : M * N = 1) (hNM : N * M = 1) (i : PhaseVar n) :
@@ -92,6 +107,9 @@ def symbolLinearAlgEquivOfInverse {n : ℕ}
       symbolLinearCombination k M i :=
   symbolLinearAlgHom_X k M i
 
+/--
+@isnad1 id=eq.2h5v.s9.827b7786c660 from=translated src=- shape=5790f847 vocab=3237f5de
+-/
 @[simp] theorem symbolLinearAlgEquivOfInverse_symm_X {n : ℕ}
     (M N : Matrix (PhaseVar n) (PhaseVar n) k)
     (hMN : M * N = 1) (hNM : N * M = 1) (i : PhaseVar n) :

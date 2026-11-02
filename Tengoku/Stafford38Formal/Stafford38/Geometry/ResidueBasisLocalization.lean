@@ -20,7 +20,9 @@ open scoped TensorProduct
 namespace Stafford38.Geometry.ResidueBasisLocalization
 
 /-- Inverting a coefficient domain inside a finite-type algebra is a base change to its
-fraction field, hence remains finite type over that field.-/
+fraction field, hence remains finite type over that field.
+@isnad1 id=finitety.0h3v.s7.410248d8363e from=translated src=- shape=194cfa28 vocab=81489aa7
+-/
 theorem finiteType_fractionField_localization
     {k R A : Type*} [Field k] [CommRing R] [IsDomain R] [CommRing A]
     [Algebra k R] [Algebra k A] [Algebra R A] [IsScalarTower k R A]
@@ -36,7 +38,9 @@ theorem finiteType_fractionField_localization
     (inferInstance : Algebra.FiniteType (FractionRing R) (FractionRing R ⊗[R] A)) e
 
 /-- The localized coefficient field remains embedded when the original coefficient domain
-embeds in the finite-type domain.-/
+embeds in the finite-type domain.
+@isnad1 id=isdomain.1h3v.s7.bca1953f560a from=translated src=- shape=7381c4aa vocab=b090a86f
+-/
 theorem fractionField_localization_isDomain
     {k R A : Type*} [Field k] [CommRing R] [IsDomain R] [CommRing A] [IsDomain A]
     [Algebra k R] [Algebra k A] [Algebra R A] [IsScalarTower k R A]
@@ -54,7 +58,9 @@ theorem fractionField_localization_isDomain
     (R := A) (S := Localization (Algebra.algebraMapSubmonoid A (nonZeroDivisors R))) hM
 
 /-- A prime ideal which is the kernel of a map to a field algebraic over the ground field is
-maximal. This is the center-maximality step after the residue transcendence basis is inverted.-/
+maximal. This is the center-maximality step after the residue transcendence basis is inverted.
+@isnad1 id=ismaxima.0h4v.s7.424073610b19 from=translated src=- shape=6e548560 vocab=32dd7aea
+-/
 theorem ker_isMaximal_of_algebraic_residue
     {E A K : Type*} [Field E] [CommRing A] [Field K]
     [Algebra E A] [Algebra E K] [Algebra.IsAlgebraic E K]

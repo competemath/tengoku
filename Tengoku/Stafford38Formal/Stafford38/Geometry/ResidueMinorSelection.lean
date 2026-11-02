@@ -33,7 +33,9 @@ universe u v w
 variable {k : Type u} [Field k]
 
 /-- Full column rank produces an explicitly indexed square row minor with
-nonzero determinant.-/
+nonzero determinant.
+@isnad1 id=ex.1h4v.s6.7d689a90b306 from=translated src=- shape=334ea5b0 vocab=c1356207
+-/
 theorem exists_selectedMinor_det_ne_zero_of_rank_eq_card
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -73,7 +75,9 @@ theorem exists_selectedMinor_det_ne_zero_of_rank_eq_card
   exact ⟨rows, ((Matrix.isUnit_iff_isUnit_det _).mp hunit).ne_zero⟩
 
 /-- Injectivity of the residue matrix on column vectors is the usual
-hypothesis implying the existence of a nonsingular selected row minor.-/
+hypothesis implying the existence of a nonsingular selected row minor.
+@isnad1 id=ex.1h4v.s6.1416efeb302d from=translated src=- shape=c71bc379 vocab=3b35faf2
+-/
 theorem exists_selectedMinor_det_ne_zero_of_mulVec_injective
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -95,6 +99,9 @@ def residueMatrix
     {ι : Type v} {κ : Type w} (B : Matrix ι κ (PowerSeries k)) : Matrix ι κ k :=
   fun i j => PowerSeries.constantCoeff (B i j)
 
+/--
+@isnad1 id=eq.0h5v.s7.e89930ca7d3d from=translated src=- shape=f924be35 vocab=39963012
+-/
 theorem constantCoeff_selectedMinor_det
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]
     (B : Matrix ι κ (PowerSeries k)) (rows : κ ↪ ι) :
@@ -104,7 +111,9 @@ theorem constantCoeff_selectedMinor_det
   congr 1
 
 /-- Injectivity after reduction to constant coefficients selects a minor whose
-power-series determinant is a unit.-/
+power-series determinant is a unit.
+@isnad1 id=ex.1h4v.s7.37d1c3b7a551 from=translated src=- shape=c6539cba vocab=dce94732
+-/
 theorem powerSeries_exists_selectedMinor_constantCoeff_ne_zero_of_residue_mulVec_injective
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -117,7 +126,9 @@ theorem powerSeries_exists_selectedMinor_constantCoeff_ne_zero_of_residue_mulVec
   exact ⟨rows, by rwa [constantCoeff_selectedMinor_det]⟩
 
 /-- The residue-rank criterion composed with the selected-minor construction:
-the power-series matrix has an explicit left inverse.-/
+the power-series matrix has an explicit left inverse.
+@isnad1 id=ex.1h4v.s7.40388931190d from=translated src=- shape=09da5cbf vocab=0ad26203
+-/
 theorem powerSeries_exists_leftInverse_of_residue_mulVec_injective
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]

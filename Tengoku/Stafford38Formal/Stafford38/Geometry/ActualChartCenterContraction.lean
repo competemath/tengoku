@@ -24,7 +24,9 @@ namespace Stafford38.Geometry.ActualChartCenterContraction
 universe u v w
 
 /-- Contracting the kernel of a map on an algebra is the kernel of its
-restriction to the original algebra.-/
+restriction to the original algebra.
+@isnad1 id=eq.0h4v.s7.7272ebde0a3d from=translated src=- shape=4684cc6f vocab=2da0c820
+-/
 theorem under_ker_eq_ker_comp
     {B : Type u} {A : Type v} {K : Type w}
     [CommSemiring B] [CommSemiring A] [CommSemiring K] [Algebra B A]
@@ -35,7 +37,9 @@ theorem under_ker_eq_ker_comp
   simp [Ideal.under_def]
 
 /-- If a localized residue map extends the retained residue map, its kernel
-contracts to the original retained-residue kernel.-/
+contracts to the original retained-residue kernel.
+@isnad1 id=eq.1h5v.s7.a77b6f71d09c from=translated src=- shape=525d7594 vocab=2da0c820
+-/
 theorem under_ker_eq_ker_of_restriction
     {B : Type u} {A : Type v} {K : Type w}
     [CommSemiring B] [CommSemiring A] [CommSemiring K] [Algebra B A]

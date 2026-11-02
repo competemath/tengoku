@@ -64,6 +64,9 @@ def leftMultiplicationEnd (r : R) : Module.End K V where
   map_smul' a v := by exact smul_comm r a v
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=eq.0h5v.s8.bb91681a89a8 from=translated src=- shape=e5943fbc vocab=b68a1630
+-/
 @[simp] theorem leftMultiplicationEnd_apply (r : R) (v : V) :
     leftMultiplicationEnd (K := K) (V := V) r v = r • v := rfl
 
@@ -82,7 +85,9 @@ structure IsMaximalIdealFiltrationAdapted
       Submodule.span K (b '' {i | t ≤ level i})
 
 /-- Multiplication by a maximal-ideal element raises the power filtration by
-one.-/
+one.
+@isnad1 id=mem.2h5v.s9.f886ac406ced from=translated src=- shape=c1b778e4 vocab=a10023a5
+-/
 lemma maximalIdeal_smul_mem_succ_power
     {r : R} (hr : r ∈ 𝔪) {t : ℕ} {v : V}
     (hv : v ∈ 𝔪 ^ t • (⊤ : Submodule R V)) :
@@ -100,7 +105,9 @@ lemma maximalIdeal_smul_mem_succ_power
     exact Submodule.add_mem _ hx hy
 
 /-- The left multiplication matrix of a maximal-ideal element is strictly
-upper triangular in a maximal-ideal-filtration adapted basis.-/
+upper triangular in a maximal-ideal-filtration adapted basis.
+@isnad1 id=isstrict.2h7v.s10.a07adcc7c256 from=translated src=- shape=8856e62d vocab=848e6f42
+-/
 theorem leftMultiplicationMatrix_isStrictUpperTriangular
     (b : Module.Basis (Fin (n + 1)) K V) (level : Fin (n + 1) → ℕ)
     (hadapted : IsMaximalIdealFiltrationAdapted 𝔪 b level)
@@ -132,7 +139,9 @@ theorem leftMultiplicationMatrix_isStrictUpperTriangular
   omega
 
 /-- In the Artinian-local case, the matrix of multiplication by a
-maximal-ideal element is nilpotent.-/
+maximal-ideal element is nilpotent.
+@isnad1 id=isnilpot.1h6v.s10.c380dc146f98 from=translated src=- shape=d30f0574 vocab=3747b503
+-/
 theorem leftMultiplicationMatrix_isNilpotent
     [IsArtinianRing R]
     (b : Module.Basis (Fin (n + 1)) K V) {r : R} (hr : r ∈ 𝔪) :
@@ -164,7 +173,9 @@ theorem leftMultiplicationMatrix_isNilpotent
 
 /-- Matrix form of equation (3.1): the coefficient-field scalar contributes
 `q I`, and the maximal-ideal remainder contributes its multiplication
-matrix.-/
+matrix.
+@isnad1 id=eq.1h8v.s11.424ac4ecc45f from=translated src=- shape=f24b3e8d vocab=944b43b1
+-/
 theorem leftMultiplicationMatrix_decomposition
     (b : Module.Basis (Fin (n + 1)) K V) (q : K) (r z : R)
     (hz : z = algebraMap K R q + r) :
@@ -195,7 +206,9 @@ parameter to equality of the induced special-fibre operators.
 
 This is the exact square-zero quotient bridge: from
 `C ∘ Z = C ∘ T` and `ker C = range C`, the actions of `Z` and `T` agree on
-`W / range C`.-/
+`W / range C`.
+@isnad1 id=eq.4h5v.s10.73a43a4e332f from=translated src=- shape=d1314e85 vocab=04f0f9d9
+-/
 theorem quotientEnd_eq_of_parameter_comp_eq
     (C Z T : Module.End K W)
     (hExact : LinearMap.ker C = LinearMap.range C)
@@ -220,7 +233,9 @@ def strictTriangularSignedSum
   X - Y + Γ
 
 /-- A signed sum of strictly upper-triangular matrices is strictly upper
-triangular.-/
+triangular.
+@isnad1 id=isstrict.3h5v.s7.54938086098f from=translated src=- shape=471d7181 vocab=caf743a5
+-/
 theorem strictTriangularSignedSum_isStrictUpperTriangular
     (X Y Γ : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (hX : IsStrictUpperTriangular X)
@@ -237,7 +252,9 @@ upstream data has already produced the strict upper-triangular remainder
 `R₀`; `hdecomposition` assumes that the corrected quotient operator is a
 strictly triangular matrix plus commutators. This hypothesis already carries
 the trace-zero content and is not claimed to follow directly from equation
-(3.3). Square-zero exactness only replaces `T` by the quotient action of `Z`.-/
+(3.3). Square-zero exactness only replaces `T` by the quotient action of `Z`.
+@isnad1 id=and.6h12v.s14.9b3354a37ee6 from=translated src=- shape=74bcc12e vocab=42e4e18d
+-/
 theorem adaptedBasis_conditional_trace_assembler
     (C Z T : Module.End K W)
     (hExact : LinearMap.ker C = LinearMap.range C)
@@ -293,7 +310,9 @@ The conclusion packages strictness and nilpotence of the (3.1) remainder,
 trace zero conditional on the supplied decomposition, and the
 scalar-plus-remainder matrix identity.  It does not assume or prove the scalar
 conclusion `q = 0`. It does not derive the supplied matrix decomposition from
-Singh--Kumar equation (3.3).-/
+Singh--Kumar equation (3.3).
+@isnad1 id=and.12h21v.s14.963eed5344db from=translated src=- shape=47be239a vocab=7b104096
+-/
 theorem adaptedBasis_conditional_terminal_inputs
     (b : Module.Basis (Fin (n + 1)) K V) (level : Fin (n + 1) → ℕ)
     (hadapted : IsMaximalIdealFiltrationAdapted 𝔪 b level)

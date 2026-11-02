@@ -45,7 +45,9 @@ private theorem exists_unit_factorization_atPrime
 /-- A unit-power factorization at `B_P` can be cleared to elements outside `P`.
 After multiplying the four numerator/denominator elements, one principal open
 simultaneously makes both residual factors units while preserving the original
-`B`-coordinates.-/
+`B`-coordinates.
+@isnad1 id=ex.4h9v.s11.60f8dca82044 from=translated src=- shape=7d93a82b vocab=5b92573a
+-/
 theorem exists_common_away_unit_power_factorizations
     {B : Type*} [CommRing B] [IsDomain B]
     (P : Ideal B) [hp : P.IsPrime] (s q₀ q₁ : B) (a b : ℕ)

@@ -15,7 +15,9 @@ namespace Stafford38.Geometry
 subring, then the corresponding local ring is dominated by that valuation subring.
 
 This is the local algebra step in a center construction: it does not assert that the
-prime is height one or that the valuation comes from a specified projective model.-/
+prime is height one or that the valuation comes from a specified projective model.
+@isnad1 id=le.2h4v.s10.a7dfa849309c from=translated src=- shape=0795c71c vocab=e9dca840
+-/
 theorem localRing_at_contracted_maximalIdeal_le_valuationSubring
     {K : Type*} [Field K] (A : Subring K) (V : ValuationSubring K)
     (hAV : A ≤ V.toSubring) (p : Ideal A) [p.IsPrime]

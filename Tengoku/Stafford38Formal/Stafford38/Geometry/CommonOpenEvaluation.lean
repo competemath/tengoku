@@ -10,7 +10,9 @@ set_option autoImplicit false
 namespace Stafford38.Geometry.CommonOpenEvaluation
 
 /-- Polynomial evaluation follows the same common-open map and the same arc.
-This transports the nonvanishing numerator used to select the smooth locus.-/
+This transports the nonvanishing numerator used to select the smooth locus.
+@isnad1 id=eq.3h11v.s8.7cc42e0010d8 from=translated src=- shape=2ab397a9 vocab=c9f96b12
+-/
 theorem eval_map_eq_arc_eval₂
     {k Q E L σ : Type*} [CommSemiring k] [CommSemiring Q]
     [CommSemiring E] [CommSemiring L] [Algebra k Q] [Algebra k L]

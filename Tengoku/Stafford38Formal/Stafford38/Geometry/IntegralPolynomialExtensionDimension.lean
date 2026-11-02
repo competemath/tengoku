@@ -24,7 +24,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- If a domain `A` is integral over the image of a one-variable polynomial ring
-over a field, then every maximal ideal of `A` has height at most one.-/
+over a field, then every maximal ideal of `A` has height at most one.
+@isnad1 id=le.1h4v.s7.fac088dd3be1 from=translated src=- shape=499721af vocab=8759caa2
+-/
 theorem height_le_one_of_integral_polynomial_map
     {E A : Type*} [Field E] [CommRing A] [IsDomain A] [Algebra E A]
     (f : Polynomial E →ₐ[E] A) (hint : f.toRingHom.IsIntegral)

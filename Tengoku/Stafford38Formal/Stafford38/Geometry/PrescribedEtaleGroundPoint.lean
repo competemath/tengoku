@@ -14,7 +14,9 @@ namespace Stafford38.Geometry.PrescribedEtaleGroundPoint
 noncomputable section
 
 /-- Every prime in a formally étale principal open has a formally étale
-local ring for the original coordinate-algebra map.-/
+local ring for the original coordinate-algebra map.
+@isnad1 id=formally.1h4v.s7.27509acb9483 from=translated src=- shape=b3f9358e vocab=cfcddca5
+-/
 theorem formallyEtale_atPrime_of_away
     {R B : Type*} [CommRing R] [CommRing B] [Algebra R B]
     (f : B) (M : Ideal B) [M.IsPrime]
@@ -26,7 +28,9 @@ theorem formallyEtale_atPrime_of_away
   exact hopen (show (⟨M, inferInstance⟩ : PrimeSpectrum B) ∈ PrimeSpectrum.basicOpen f from hfM)
 
 /-- Choose a ground point on the divisor where both the original coordinate
-map is étale and an additional regularity function does not vanish.-/
+map is étale and an additional regularity function does not vanish.
+@isnad1 id=ex.2h5v.s9.a7a83c186997 from=translated src=- shape=b3b26ba4 vocab=7314fa2e
+-/
 theorem exists_standardEtale_neighborhood_and_formallyEtale_ground_point_avoiding
     {k R B : Type*} [Field k] [IsAlgClosed k] [CommRing R] [CommRing B]
     [Algebra k R] [Algebra R B] [Algebra k B] [IsScalarTower k R B]
@@ -60,7 +64,9 @@ theorem exists_standardEtale_neighborhood_and_formallyEtale_ground_point_avoidin
 /-- A formally etale local map from the prescribed coordinate algebra has a standard-etale
 neighborhood of the divisor prime, and that neighborhood contains a ground-rational closed
 point when the target is finite type over an algebraically closed field.  The coordinate map is
-the original algebra map `R → B`; this lemma does not alter or choose a replacement chart.-/
+the original algebra map `R → B`; this lemma does not alter or choose a replacement chart.
+@isnad1 id=ex.1h4v.s8.bd515bb3f4c9 from=translated src=- shape=eba8ce2b vocab=7314fa2e
+-/
 theorem exists_standardEtale_neighborhood_and_ground_point
     {k R B : Type*} [Field k] [IsAlgClosed k] [CommRing R] [CommRing B]
     [Algebra k R] [Algebra R B] [Algebra k B] [IsScalarTower k R B]
@@ -77,7 +83,9 @@ theorem exists_standardEtale_neighborhood_and_ground_point
   exact ⟨f, M, hfp, hM, hpM, hfM, hstd, hres⟩
 
 /-- The chosen ground point lies on the prescribed divisor and has a formally
-étale local ring for the same coordinate map used at the divisor prime.-/
+étale local ring for the same coordinate map used at the divisor prime.
+@isnad1 id=ex.1h4v.s9.f5ed81316b51 from=translated src=- shape=22730cce vocab=7314fa2e
+-/
 theorem exists_standardEtale_neighborhood_and_formallyEtale_ground_point
     {k R B : Type*} [Field k] [IsAlgClosed k] [CommRing R] [CommRing B]
     [Algebra k R] [Algebra R B] [Algebra k B] [IsScalarTower k R B]

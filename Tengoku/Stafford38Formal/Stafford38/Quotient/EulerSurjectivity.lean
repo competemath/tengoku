@@ -37,6 +37,9 @@ def rightMul (I : RightIdeal A) (a : A) (q : RightQuotient I) :
     RightQuotient I :=
   MulOpposite.op a • q
 
+/--
+@isnad1 id=eq.0h4v.s5.3000260c9664 from=translated src=- shape=d958be1b vocab=b48a9039
+-/
 lemma qmk_right_mul (I : RightIdeal A) (a b : A) :
     qmk I (a * b) = rightMul I b (qmk I a) := by
   exact Submodule.Quotient.mk_smul I (MulOpposite.op b) a
@@ -75,6 +78,9 @@ def preservers (I : RightIdeal A) (R : Subring A) : Subring A where
     rw [← qmk_right_mul, ← qmk_right_mul] at hright
     simpa [mul_assoc] using hright.trans ht
 
+/--
+@isnad1 id=le.0h3v.s5.5cadccac819d from=translated src=- shape=38f04065 vocab=c616367a
+-/
 lemma subring_le_preservers (I : RightIdeal A) (R : Subring A) :
     R ≤ preservers I R := by
   intro a ha r
@@ -85,7 +91,9 @@ The quotient form of the positive Euler argument.
 
 The relation `1 + U*x ∈ I`, normality `x*R ⊆ R*x`, the Euler element
 `E = x*p ∈ R`, and generation of `A` by `R` and `p` imply that right
-multiplication by `x` is onto `A/I`.-/
+multiplication by `x` is onto `A/I`.
+@isnad1 id=surjecti.4h5v.s8.597dfad641b0 from=translated src=- shape=46fa03f5 vocab=171239a7
+-/
 theorem rightMul_surjective_of_euler_normal
     (I : RightIdeal A) (R : Subring A) (x p : A)
     (hnormal : ∀ r : R, ∃ s : R, x * (r : A) = (s : A) * x)

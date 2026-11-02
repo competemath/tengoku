@@ -18,6 +18,9 @@ namespace Stafford38.Geometry.GeneralCoordinateAvoidance
 
 noncomputable section
 
+/--
+@isnad1 id=ex.1h4v.s9.9107e2ffa967 from=translated src=- shape=1260709f vocab=de673556
+-/
 theorem exists_coordinate_inverse_of_avoidance
     {k : Type*} [Field k] [IsAlgClosed k] {m : ℕ}
     (I : Ideal (MvPolynomial (Fin m) k)) (i : Fin m)

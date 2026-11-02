@@ -40,6 +40,9 @@ abbrev genericOpenRing
       Localization.Away (algebraMap Q B f)) : Type u :=
   Localization (genericOpenDenominators M f e)
 
+/--
+@isnad1 id=formally.0h5v.s9.5688943aae4b from=translated src=- shape=5a8dd7a6 vocab=c62df7fe
+-/
 theorem formallyEtale_genericOpenRing
     {Q : Type u} [CommRing Q] {B : Type v} [CommRing B] [Algebra Q B]
     (M : Ideal B) [M.IsPrime] (f : Q)
@@ -80,6 +83,9 @@ def localPointToField
     Localization.AtPrime M →+* L :=
   IsLocalization.lift (M := M.primeCompl) (g := ρ) (fun s => hunitM s.1 s.2)
 
+/--
+@isnad1 id=eq.1h5v.s9.dc2b3542708c from=translated src=- shape=f9a0d175 vocab=27f841e3
+-/
 @[simp] theorem localPointToField_apply
     {B : Type v} [CommRing B] {L : Type*} [Field L]
     (M : Ideal B) [M.IsPrime] (ρ : B →+* L)
@@ -118,6 +124,9 @@ def genericArcToGenericOpen
     exact hunitM b (by simpa using hbM)
   exact IsLocalization.lift hunit
 
+/--
+@isnad1 id=eq.0h6v.s10.bf25dbb6808b from=translated src=- shape=5b034a11 vocab=a8dafad1
+-/
 @[simp] theorem localPointToGenericOpen_apply
     {Q : Type u} [CommRing Q] {B : Type v} [CommRing B] [Algebra Q B]
     (M : Ideal B) [M.IsPrime] (f : Q)
@@ -128,6 +137,9 @@ def genericArcToGenericOpen
       (genericPointMap f e b) := by
   simp [localPointToGenericOpen, IsLocalization.lift_eq]
 
+/--
+@isnad1 id=eq.2h8v.s10.28a1a15972d9 from=translated src=- shape=62eff346 vocab=1db10ae1
+-/
 @[simp] theorem genericArcToGenericOpen_apply
     {Q : Type u} [CommRing Q] {B : Type v} [CommRing B] [Algebra Q B]
     {L : Type*} [Field L]
@@ -143,7 +155,9 @@ def genericArcToGenericOpen
   simp [genericArcToGenericOpen, genericPointMap, IsLocalization.lift_eq]
 
 /-- The generic-open map and the point-local map induce the same arc on the
-selected local ring. This does not require `f ∉ M`.-/
+selected local ring. This does not require `f ∉ M`.
+@isnad1 id=eq.2h7v.s9.3a5f35ed80d8 from=translated src=- shape=013c0f2a vocab=dce66be6
+-/
 theorem genericArcToGenericOpen_comp_localPointToGenericOpen
     {Q : Type u} [CommRing Q] {B : Type v} [CommRing B] [Algebra Q B]
     {L : Type*} [Field L]
@@ -160,6 +174,9 @@ theorem genericArcToGenericOpen_comp_localPointToGenericOpen
   simp [genericArcToGenericOpen_apply, localPointToGenericOpen_apply,
     localPointToField_apply]
 
+/--
+@isnad1 id=eq.2h8v.s10.8498946bdfe5 from=translated src=- shape=c8b1dbb4 vocab=debb9937
+-/
 @[simp] theorem genericArcToGenericOpen_base
     {Q : Type u} [CommRing Q] {B : Type v} [CommRing B] [Algebra Q B]
     {L : Type*} [Field L]

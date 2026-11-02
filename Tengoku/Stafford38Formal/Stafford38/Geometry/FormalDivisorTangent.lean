@@ -47,7 +47,9 @@ variable {k : Type u} [Field k]
 /-! ## The first nonzero derivative coefficient -/
 
 /-- Differentiating `X^(a+1) u` leaves the expected nonzero leading
-coefficient in degree `a`.-/
+coefficient in degree `a`.
+@isnad1 id=eq.0h3v.s9.0720d90eee67 from=translated src=- shape=e2dbf613 vocab=fce183fd
+-/
 theorem coeff_derivative_X_pow_succ_mul
     [CharZero k] (u : PowerSeries k) (a : ℕ) :
     PowerSeries.coeff a
@@ -61,7 +63,9 @@ theorem coeff_derivative_X_pow_succ_mul
   simp
 
 /-- In characteristic zero the leading derivative coefficient above cannot
-vanish when the leading coefficient of `u` is nonzero.-/
+vanish when the leading coefficient of `u` is nonzero.
+@isnad1 id=ne.1h3v.s9.d27f36fc111a from=translated src=- shape=a79dc1a2 vocab=3fe4d8f8
+-/
 theorem coeff_derivative_X_pow_succ_mul_ne_zero
     [CharZero k] (u : PowerSeries k) (a : ℕ)
     (hu : PowerSeries.constantCoeff u ≠ 0) :
@@ -73,7 +77,9 @@ theorem coeff_derivative_X_pow_succ_mul_ne_zero
 
 /-- The same leading-coefficient statement in the geometric indexing:
 `q = X^a u` with `a > 0` has a nonzero derivative coefficient in degree
-`a - 1`.-/
+`a - 1`.
+@isnad1 id=ne.3h4v.s9.5c0a7146253f from=translated src=- shape=3841eebf vocab=61965408
+-/
 theorem coeff_derivative_X_pow_mul_ne_zero
     [CharZero k] (q u : PowerSeries k) (a : ℕ)
     (ha : 0 < a)
@@ -101,7 +107,9 @@ def correctedVector
   fun i => v i - Z.mulVec (correctionCoefficients Z rows v) i
 
 /-- A selected minor with nonzero residue determinant eliminates every
-selected row exactly over the power-series ring.-/
+selected row exactly over the power-series ring.
+@isnad1 id=eq.1h7v.s7.5dc2a497e625 from=translated src=- shape=7d74e1aa vocab=97b8ac4a
+-/
 theorem correctedVector_selectedRow_eq_zero
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]
     (Z : Matrix ι κ (PowerSeries k)) (rows : κ ↪ ι)
@@ -133,7 +141,9 @@ theorem correctedVector_selectedRow_eq_zero
 primitive vector: at least one component has nonzero constant coefficient.
 
 No finiteness assumption on the coordinate type is needed; well-ordering of
-the coefficient degree supplies the minimum.-/
+the coefficient degree supplies the minimum.
+@isnad1 id=ex.1h5v.s8.29b196925967 from=translated src=- shape=4a306879 vocab=1dcd44b3
+-/
 theorem exists_primitive_commonPower_of_coeff_ne_zero
     {ι : Type v} (T : ι → PowerSeries k) (i₀ : ι) (bound : ℕ)
     (hcoeff : PowerSeries.coeff bound (T i₀) ≠ 0) :
@@ -188,7 +198,9 @@ def formalTangentMatrix
 
 /-- The chart row, selected divisor minor, and one primitive normalized entry
 give an explicit pivot proof that the normalized tangent matrix has full
-column rank after reduction modulo `X`.-/
+column rank after reduction modulo `X`.
+@isnad1 id=injectiv.6h8v.s8.54a34c70ebca from=translated src=- shape=7f20b119 vocab=70a81ebc
+-/
 theorem residue_formalTangentMatrix_mulVec_injective
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]
     (q : ι → PowerSeries k) (Z : Matrix ι κ (PowerSeries k))
@@ -248,7 +260,9 @@ theorem residue_formalTangentMatrix_mulVec_injective
   simpa [c] using hc_zero
 
 /-- The same explicit pivots construct a power-series left inverse for the
-assembled tangent matrix; no splitting hypothesis is used.-/
+assembled tangent matrix; no splitting hypothesis is used.
+@isnad1 id=ex.6h8v.s9.f1f999517aa3 from=translated src=- shape=6861252c vocab=f464e875
+-/
 theorem exists_formalTangentMatrix_leftInverse
     {ι : Type v} {κ : Type w} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -272,7 +286,9 @@ theorem exists_formalTangentMatrix_leftInverse
 
 /-- A supplied correction killing the selected rows admits the same primitive
 normalization. The noncancellation calculation has one owner; this theorem
-requires no inverse matrix and applies directly to constant corrections.-/
+requires no inverse matrix and applies directly to constant corrections.
+@isnad1 id=ex.5h10v.s10.c73d33184155 from=translated src=- shape=9d8a93a4 vocab=301400f4
+-/
 theorem exists_primitive_formalDivisorTangent_of_selected_correction
     [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]
@@ -331,7 +347,9 @@ The selected minor constructs `lambda` and kills its selected rows.  The
 distinguished coordinate equation and divisibility of the corresponding row
 of `Z` guarantee that the correction cannot cancel the first nonzero
 derivative coefficient.  Hence the corrected transverse derivative admits a
-primitive common-power normalization of order at most `a - 1`.-/
+primitive common-power normalization of order at most `a - 1`.
+@isnad1 id=ex.5h9v.s10.ae9d5e0c504d from=translated src=- shape=df0bc8db vocab=c97d0c52
+-/
 theorem exists_corrected_primitive_formalDivisorTangent
     [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]
@@ -370,7 +388,9 @@ theorem exists_corrected_primitive_formalDivisorTangent
   exact ⟨lambda, c, tau, rfl, hselected, htauselected, hc, hfactor, hprimitive⟩
 
 /-- A prescribed selected-row correction constructs the primitive tangent
-matrix and proves its residue columns independent.-/
+matrix and proves its residue columns independent.
+@isnad1 id=ex.8h11v.s10.474d72d7f46c from=translated src=- shape=8cf4db54 vocab=064bd58b
+-/
 theorem exists_formalDivisorTangent_residue_injective_of_selected_correction
     [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]
@@ -424,7 +444,9 @@ theorem exists_formalDivisorTangent_residue_injective_of_selected_correction
 /-- With an explicit affine chart row, the corrected primitive tangent above
 assembles into a matrix whose residue columns are injective.  This is the
 complete local formal-divisor producer: residue injectivity is a conclusion,
-not an input.-/
+not an input.
+@isnad1 id=ex.7h10v.s10.5804ed5ee3f9 from=translated src=- shape=7b3769cb vocab=2b340364
+-/
 theorem exists_formalDivisorTangent_residue_injective
     [CharZero k]
     {ι : Type v} {κ : Type w} [Fintype κ] [DecidableEq κ]

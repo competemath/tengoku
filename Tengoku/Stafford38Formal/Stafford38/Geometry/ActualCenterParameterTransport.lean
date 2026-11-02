@@ -29,6 +29,9 @@ noncomputable def atPrimeEquiv
   exact IsLocalization.ringEquivOfRingEquiv (Localization.AtPrime P)
     (Localization.AtPrime Q) e hcomplement
 
+/--
+@isnad1 id=eq.1h6v.s10.6e671f6d021c from=translated src=- shape=9aa48c11 vocab=7c5b1578
+-/
 @[simp] theorem atPrimeEquiv_algebraMap
     {B C : Type u} [CommRing B] [CommRing C]
     (e : B ≃+* C) (P : Ideal B) (Q : Ideal C) [P.IsPrime] [Q.IsPrime]
@@ -48,7 +51,9 @@ noncomputable def atPrimeEquiv
   exact IsLocalization.map_eq _ _
 
 /-- A principal maximal-ideal generator transports across the induced
-localization equivalence.-/
+localization equivalence.
+@isnad1 id=eq.2h6v.s10.9530eb654e63 from=translated src=- shape=137eecf1 vocab=28dcdd7a
+-/
 theorem span_transport_across_ring_equiv
     {B C : Type u} [CommRing B] [CommRing C]
     (e : B ≃+* C) (P : Ideal B) (Q : Ideal C) [P.IsPrime] [Q.IsPrime]
@@ -75,7 +80,9 @@ theorem span_transport_across_ring_equiv
 
 /-- Transport both order factorizations and the parameter selected on the
 normalization subring to the integral-closure algebra carrier. The image
-units are carried by the same induced local equivalence.-/
+units are carried by the same induced local equivalence.
+@isnad1 id=other.8h12v.s11.ca300f02878e from=translated src=- shape=7626a983 vocab=5166772b
+-/
 theorem transport_parameter_and_two_orders
     {B C : Type u} [CommRing B] [CommRing C]
     (e : B ≃+* C) (P : Ideal B) (Q : Ideal C) [P.IsPrime] [Q.IsPrime]

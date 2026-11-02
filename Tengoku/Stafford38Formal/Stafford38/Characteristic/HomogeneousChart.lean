@@ -41,6 +41,9 @@ noncomputable section
 universe u
 variable (k : Type u) [Field k]
 
+/--
+@isnad1 id=ex.2h4v.s7.eb6aa8ffc6d7 from=translated src=- shape=dbd4964d vocab=3b1197ff
+-/
 theorem exists_eval_ne_zero_of_homogeneous [CharZero k]
     {n N : ℕ} {P : SymbolRing k n}
     (hP : P.IsHomogeneous N) (hne : P ≠ 0) :
@@ -49,6 +52,9 @@ theorem exists_eval_ne_zero_of_homogeneous [CharZero k]
   push_neg at h
   exact hne (hP.eq_zero_of_forall_eval_eq_zero h)
 
+/--
+@isnad1 id=eq.0h5v.s9.c3dbac6fdd87 from=translated src=- shape=f9f5e8e0 vocab=ab73f47e
+-/
 theorem eval_symbolLinearAlgHom {n : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k)
     (v : PhaseVar n → k) (P : SymbolRing k n) :
@@ -63,6 +69,9 @@ theorem eval_symbolLinearAlgHom {n : ℕ}
   funext i
   simp [symbolLinearCombination]
 
+/--
+@isnad1 id=eq.1h3v.s8.951450fff5bf from=translated src=- shape=a3f4f0c3 vocab=9159080d
+-/
 theorem homogeneous_unit_eq_monomial {N : ℕ}
     (P : MvPolynomial Unit k) (hP : P.IsHomogeneous N) :
     P = MvPolynomial.monomial (Finsupp.single () N)
@@ -91,6 +100,9 @@ def axisPolynomial {n : ℕ} (t : PhaseVar n) :
     SymbolRing k n →ₐ[k] MvPolynomial Unit k :=
   MvPolynomial.aeval (fun i => if i = t then MvPolynomial.X () else 0)
 
+/--
+@isnad1 id=ishomoge.1h5v.s8.c5b413446618 from=translated src=- shape=09618882 vocab=06a59fbc
+-/
 theorem axisPolynomial_isHomogeneous {n N : ℕ}
     (t : PhaseVar n) {P : SymbolRing k n} (hP : P.IsHomogeneous N) :
     (axisPolynomial k t P).IsHomogeneous N := by
@@ -101,6 +113,9 @@ theorem axisPolynomial_isHomogeneous {n N : ℕ}
       · simp [hi, MvPolynomial.isHomogeneous_X]
       · simp [hi, MvPolynomial.isHomogeneous_zero])
 
+/--
+@isnad1 id=eq.0h4v.s9.4344a56bc802 from=translated src=- shape=35a53756 vocab=6e347481
+-/
 theorem eval_axis_eq_eval_axisPolynomial_one {n : ℕ}
     (t : PhaseVar n) (P : SymbolRing k n) :
     MvPolynomial.eval (axisPoint k t) P =
@@ -116,6 +131,9 @@ theorem eval_axis_eq_eval_axisPolynomial_one {n : ℕ}
   · simp [axisPoint, hi]
   · simp [axisPoint, hi]
 
+/--
+@isnad1 id=eq.1h5v.s8.c23e89996f69 from=translated src=- shape=88b6b30f vocab=d2da507f
+-/
 theorem eval_axis_eq_pureCoefficient {n N : ℕ}
     (t : PhaseVar n) {P : SymbolRing k n} (hP : P.IsHomogeneous N) :
     MvPolynomial.eval (axisPoint k t) P =
@@ -125,6 +143,9 @@ theorem eval_axis_eq_pureCoefficient {n N : ℕ}
     (axisPolynomial_isHomogeneous k t hP)]
   simp [MvPolynomial.eval_monomial]
 
+/--
+@isnad1 id=ishomoge.0h4v.s5.d2d1b7a6680b from=translated src=- shape=3b2ed6b4 vocab=57afe81e
+-/
 theorem symbolLinearCombination_isHomogeneous {n : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k) (i : PhaseVar n) :
     (symbolLinearCombination k M i).IsHomogeneous 1 := by
@@ -134,6 +155,9 @@ theorem symbolLinearCombination_isHomogeneous {n : ℕ}
   simpa using (MvPolynomial.isHomogeneous_C (PhaseVar n) (M i j)).mul
     (MvPolynomial.isHomogeneous_X (R := k) j)
 
+/--
+@isnad1 id=ishomoge.1h5v.s8.debbfbf8df15 from=translated src=- shape=ec1e6436 vocab=17f90802
+-/
 theorem symbolLinearAlgHom_isHomogeneous {n N : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k)
     {P : SymbolRing k n} (hP : P.IsHomogeneous N) :
@@ -142,6 +166,9 @@ theorem symbolLinearAlgHom_isHomogeneous {n N : ℕ}
     (symbolLinearCombination k M)
     (symbolLinearCombination_isHomogeneous k M)
 
+/--
+@isnad1 id=eq.0h5v.s9.3579708afd59 from=translated src=- shape=a2bf669e vocab=32c71058
+-/
 theorem eval_symbolLinearAlgHom_axis {n : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k)
     (t : PhaseVar n) (P : SymbolRing k n) :
@@ -152,6 +179,9 @@ theorem eval_symbolLinearAlgHom_axis {n : ℕ}
   funext i
   simp [axisPoint]
 
+/--
+@isnad1 id=eq.1h6v.s9.98487b4a186f from=translated src=- shape=feda0d54 vocab=521fb17c
+-/
 theorem pureCoefficient_symbolLinearAlgHom {n N : ℕ}
     (M : Matrix (PhaseVar n) (PhaseVar n) k)
     (t : PhaseVar n) {P : SymbolRing k n} (hP : P.IsHomogeneous N) :

@@ -17,7 +17,9 @@ def castAtPrimeLocalization
 
 /-- Transport a unit factorization in the localization at one prime along an
 equality of primes.  This preserves the same base elements and exponent; only
-the localization carrier of the unit changes.-/
+the localization carrier of the unit changes.
+@isnad1 id=and.3h7v.s10.7f52ff977131 from=translated src=- shape=7ee6f4ef vocab=da7ae508
+-/
 theorem unit_power_factor_transport
     {R : Type u} [CommRing R]
     (P Q : Ideal R) [P.IsPrime] [Q.IsPrime] (hPQ : P = Q)
@@ -33,7 +35,9 @@ theorem unit_power_factor_transport
   exact ⟨huQ, hfactor⟩
 
 /-- The two retained powers can be moved together without changing either
-exponent or the shared uniformizer.-/
+exponent or the shared uniformizer.
+@isnad1 id=ex.5h10v.s11.52634abbf749 from=translated src=- shape=e6af3677 vocab=8f0cdc68
+-/
 theorem two_unit_power_factors_transport
     {R : Type u} [CommRing R]
     (P Q : Ideal R) [P.IsPrime] [Q.IsPrime] (hPQ : P = Q)
@@ -60,7 +64,9 @@ theorem two_unit_power_factors_transport
 /-- The exact shape needed by the same-witness caller: the retained column
 factors are first obtained at `centerB`, while the public certificate is
 indexed by `PB`.  This changes only the localization of each unit; the same
-`s`, `q₀`, `q₁`, and strict-order exponents `a < a + e` remain.-/
+`s`, `q₀`, `q₁`, and strict-order exponents `a < a + e` remain.
+@isnad1 id=ex.5h10v.s11.90ffa17e7070 from=translated src=- shape=1d292f4f vocab=60d0b869
+-/
 theorem selected_center_retained_factors_at_canonical_prime
     {B : Type u} [CommRing B]
     (PB centerB : Ideal B) [PB.IsPrime] [centerB.IsPrime]
@@ -83,7 +89,9 @@ theorem selected_center_retained_factors_at_canonical_prime
 
 /-- The same explicit equality elimination transports the local maximal-ideal
 generator statement; rewriting under `AtPrime` can fail because its ring
-instance is indexed by the prime.-/
+instance is indexed by the prime.
+@isnad1 id=eq.2h4v.s9.735068d38eda from=translated src=- shape=045ba5fa vocab=092cb848
+-/
 theorem prime_span_eq_maximalIdeal_transport
     {R : Type u} [CommRing R]
     (P Q : Ideal R) [P.IsPrime] [Q.IsPrime] (hPQ : P = Q) (s : R)

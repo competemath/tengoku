@@ -55,6 +55,9 @@ variable {R : Type u} [CommRing R]
 def rowMul {ι κ : Type*} [Fintype ι] (a : ι → R) (B : Matrix ι κ R) : κ → R :=
   fun j => ∑ i, a i * B i j
 
+/--
+@isnad1 id=eq.0h7v.s6.28a95018d841 from=translated src=- shape=432787b8 vocab=ce3752b1
+-/
 theorem rowMul_mul {ι κ μ : Type*} [Fintype ι] [Fintype κ]
     (a : ι → R) (B : Matrix ι κ R) (C : Matrix κ μ R) :
     rowMul (rowMul a B) C = rowMul a (B * C) := by
@@ -75,6 +78,9 @@ theorem rowMul_mul {ι κ μ : Type*} [Fintype ι] [Fintype κ]
           intro x hx
           ring
 
+/--
+@isnad1 id=eq.0h8v.s7.18aaf9de8b57 from=translated src=- shape=768aea9b vocab=0b3a61e8
+-/
 theorem map_rowMul {S : Type v} [CommRing S]
     {ι κ : Type*} [Fintype ι] (f : R →+* S)
     (a : ι → R) (B : Matrix ι κ R) (j : κ) :
@@ -82,6 +88,9 @@ theorem map_rowMul {S : Type v} [CommRing S]
       rowMul (fun i => f (a i)) (fun i l => f (B i l)) j := by
   simp [rowMul]
 
+/--
+@isnad1 id=eq.0h6v.s6.72341947f698 from=translated src=- shape=002e0aa0 vocab=973d9599
+-/
 theorem rowMul_sub {ι κ : Type*} [Fintype ι]
     (a b : ι → R) (B : Matrix ι κ R) :
     rowMul (fun i => a i - b i) B =
@@ -89,6 +98,9 @@ theorem rowMul_sub {ι κ : Type*} [Fintype ι]
   funext j
   simp [rowMul, Finset.sum_sub_distrib, sub_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.84f3d691d0ae from=translated src=- shape=96b76afc vocab=53648e3b
+-/
 theorem rowMul_zero {ι κ : Type*} [Fintype ι]
     (B : Matrix ι κ R) : rowMul (fun _ => (0 : R)) B = 0 := by
   funext j
@@ -104,6 +116,9 @@ def annihilatorLift {ι κ : Type*} [Fintype ι] [Fintype κ]
     (a : ι → R) (B : Matrix ι κ R) (C : Matrix κ ι R) : ι → R :=
   fun i => a i - rowMul (rowMul a B) C i
 
+/--
+@isnad1 id=eq.1h6v.s7.ae4e4cce3dac from=translated src=- shape=82870447 vocab=9030571e
+-/
 theorem annihilatorLift_rowMul_eq_zero {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq κ]
     (a : ι → R) (B : Matrix ι κ R) (C : Matrix κ ι R)
@@ -115,6 +130,9 @@ theorem annihilatorLift_rowMul_eq_zero {ι κ : Type*} [Fintype ι] [Fintype κ]
   rw [hCB, Matrix.mul_one]
   exact funext (fun j => sub_self (rowMul a B j))
 
+/--
+@isnad1 id=eq.0h9v.s8.160af173cab5 from=translated src=- shape=8df106da vocab=9fec8744
+-/
 theorem map_annihilatorLift {S : Type v} [CommRing S]
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (f : R →+* S) (a : ι → R) (B : Matrix ι κ R) (C : Matrix κ ι R) (i : ι) :
@@ -138,7 +156,9 @@ Explicit residue-preserving annihilator lift.
 The input row is any coefficientwise lift of the residue row. The correction
 preserves that residue whenever the residue row annihilates the reduced
 columns. Exact annihilation is supplied separately by
-`annihilatorLift_rowMul_eq_zero` under the hypothesis `C * B = 1`.-/
+`annihilatorLift_rowMul_eq_zero` under the hypothesis `C * B = 1`.
+@isnad1 id=eq.2h10v.s7.0f4aa92330a0 from=translated src=- shape=14150b49 vocab=c8db8d3c
+-/
 theorem residue_annihilatorLift_eq
     {S : Type v} [CommRing S]
     {ι κ : Type*} [Fintype ι] [Fintype κ]
@@ -166,11 +186,17 @@ def constantColumn {k : Type*} [CommRing k] {ι : Type*}
     (a : ι → k) : PowerSeriesColumn k ι :=
   fun i => PowerSeries.C (a i)
 
+/--
+@isnad1 id=eq.0h3v.s4.c3d07fee9096 from=translated src=- shape=13b5a965 vocab=596b4cf5
+-/
 @[simp] theorem residueColumn_constantColumn {k : Type*} [CommRing k] {ι : Type*}
     (a : ι → k) : residueColumn (constantColumn a) = a := by
   funext i
   simp [residueColumn, constantColumn]
 
+/--
+@isnad1 id=eq.1h6v.s7.94a9a544a7e7 from=translated src=- shape=3be1b826 vocab=05af19a9
+-/
 theorem powerSeries_annihilatorLift_rowMul_eq_zero
     {k : Type*} [CommRing k] {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq κ]
@@ -179,6 +205,9 @@ theorem powerSeries_annihilatorLift_rowMul_eq_zero
     rowMul (annihilatorLift a B C) B = 0 :=
   annihilatorLift_rowMul_eq_zero a B C hCB
 
+/--
+@isnad1 id=eq.2h8v.s7.05e599cb6a35 from=translated src=- shape=1c65ae19 vocab=7284f0e9
+-/
 theorem residue_powerSeries_annihilatorLift_eq
     {k : Type*} [CommRing k] {ι κ : Type*} [Fintype ι] [Fintype κ]
     (a : PowerSeriesColumn k ι) (a₀ : ι → k)
@@ -192,7 +221,9 @@ theorem residue_powerSeries_annihilatorLift_eq
   · simpa [residueColumn] using h₀
 
 /-- A split column matrix admits a corrected row which both annihilates the
-matrix and retains the prescribed residue.-/
+matrix and retains the prescribed residue.
+@isnad1 id=and.3h7v.s8.543053b93a58 from=translated src=- shape=1d1218d2 vocab=1acae5d1
+-/
 theorem powerSeries_annihilatorLift_spec
     {k : Type*} [CommRing k] {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq κ]
@@ -208,6 +239,9 @@ theorem powerSeries_annihilatorLift_spec
 
 /-! ## Residue/evaluation commutation for multivariate polynomials -/
 
+/--
+@isnad1 id=eq.0h4v.s8.6e2d9e960db8 from=translated src=- shape=04934073 vocab=d8570329
+-/
 theorem residue_eval_map
     {k : Type*} [CommRing k] {σ : Type*}
     (P : MvPolynomial σ k) (v : σ → PowerSeries k) :
@@ -221,6 +255,9 @@ theorem residue_eval_map
   | mul_X p i hp =>
       simp [hp, residueColumn, mul_comm]
 
+/--
+@isnad1 id=eq.1h4v.s8.07a1b222fd1f from=translated src=- shape=4a8534aa vocab=c23ff371
+-/
 theorem residue_eval_eq_zero_of_eval_map_eq_zero
     {k : Type*} [CommRing k] {σ : Type*}
     (P : MvPolynomial σ k) (v : σ → PowerSeries k)
@@ -231,6 +268,9 @@ theorem residue_eval_eq_zero_of_eval_map_eq_zero
 
 /-! ## Polynomial-specialization contradiction -/
 
+/--
+@isnad1 id=false.3h5v.s8.bcc3c9c7e7ec from=translated src=- shape=3d5cf2a2 vocab=c23ff371
+-/
 theorem no_axis_specialization
     {k : Type*} [CommRing k] {σ : Type*}
     (P : MvPolynomial σ k) (v : σ → PowerSeries k) (axis : σ → k)

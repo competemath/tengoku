@@ -16,7 +16,9 @@ universe u v w x y z a b c
 /-- The actual residue map on the selected coefficient localization agrees
 with the residue map induced by the chosen coefficient-field embedding. The
 proof checks equality on the original polynomial ring, using the recorded
-generator identities at each stage of the same chart/normalization diagram.-/
+generator identities at each stage of the same chart/normalization diagram.
+@isnad1 id=eq.8h23v.s10.3245edaac5d8 from=translated src=- shape=a084a95f vocab=f5ad7bb8
+-/
 theorem residue_map_coherence
     {k : Type u} {P : Type v} {E : Type w} {R : Type x} {Q : Type y}
     {B : Type z} {L : Type a} {V : Type b} {κ : Type c}

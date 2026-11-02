@@ -30,7 +30,9 @@ universe u v
 variable {A : Type u} [Ring A]
 
 /-- The two displayed vectors generate the free rank-two right module. Right
-coordinates are represented as a left module over the opposite ring.-/
+coordinates are represented as a left module over the opposite ring.
+@isnad1 id=eq.0h3v.s8.f8e7f7f0431d from=translated src=- shape=fe8ef8d3 vocab=88fb46fb
+-/
 theorem matrix_pair_spans (a F : A) :
     Submodule.span Aᵐᵒᵖ
       ({(a, 1 - F * a), (1, -F)} : Set (A × A)) = ⊤ := by
@@ -59,7 +61,9 @@ theorem matrix_pair_spans (a F : A) :
 variable {M : Type v} [AddCommGroup M] [Module Aᵐᵒᵖ M]
 
 /-- Two torsion elements have a common nonzero right annihilator. The product
-order `d₂*e` is required for the right-module action.-/
+order `d₂*e` is required for the right-module action.
+@isnad1 id=ex.2h4v.s8.5b00b0f995b1 from=translated src=- shape=132b4a46 vocab=7094ccc8
+-/
 theorem common_right_annihilator
     (htorsion : ∀ m : M, ∃ d : A, d ≠ 0 ∧
       (MulOpposite.op d : Aᵐᵒᵖ) • m = 0)
@@ -79,7 +83,9 @@ theorem common_right_annihilator
     rw [← smul_smul, hdy, smul_zero]
 
 /-- The matrix calculation proves pair replacement for any right module over a
-ring satisfying the displayed coefficient identity.-/
+ring satisfying the displayed coefficient identity.
+@isnad1 id=eq.3h8v.s8.08108c3a31a7 from=translated src=- shape=f973569d vocab=6a88bd90
+-/
 theorem span_adjusted_pair_eq_span_pair
     (x y : M) (d F R S : A)
     (hxann : (MulOpposite.op d : Aᵐᵒᵖ) • x = 0)
@@ -183,7 +189,9 @@ theorem span_adjusted_pair_eq_span_pair
           exact Submodule.subset_span (by simp)
   simpa [P, H, g] using hgen.symm
 
-/-- A torsion pair can be replaced by one generator.-/
+/-- A torsion pair can be replaced by one generator.
+@isnad1 id=ex.3h4v.s8.7465e5e7a56e from=translated src=- shape=06078d7b vocab=6a88bd90
+-/
 theorem exists_adjusted_pair
     (hmul : ∀ a b : A, a ≠ 0 → b ≠ 0 → a * b ≠ 0)
     (hone : ∀ d : A, d ≠ 0 →
@@ -197,7 +205,9 @@ theorem exists_adjusted_pair
   obtain ⟨F, R, S, hcert⟩ := hone d hd
   exact ⟨F, span_adjusted_pair_eq_span_pair x y d F R S hx hy hcert⟩
 
-/-- Forget the explicit matrix coefficient and retain its generated singleton.-/
+/-- Forget the explicit matrix coefficient and retain its generated singleton.
+@isnad1 id=ex.3h4v.s8.05f14a625556 from=translated src=- shape=6f391bde vocab=85fc037d
+-/
 theorem exists_singleton_eq_span_pair
     (hmul : ∀ a b : A, a ≠ 0 → b ≠ 0 → a * b ≠ 0)
     (hone : ∀ d : A, d ≠ 0 →
@@ -210,7 +220,9 @@ theorem exists_singleton_eq_span_pair
   exact ⟨x - (MulOpposite.op F : Aᵐᵒᵖ) • y, hF⟩
 
 /-- Pair replacement iterated along a finite spanning set makes any finitely
-generated torsion right module cyclic.-/
+generated torsion right module cyclic.
+@isnad1 id=ex.3h2v.s8.0e79b7dc458b from=translated src=- shape=a65cb70f vocab=d6cf2bb9
+-/
 theorem finite_torsion_module_is_cyclic
     (hmul : ∀ a b : A, a ≠ 0 → b ≠ 0 → a * b ≠ 0)
     (hone : ∀ d : A, d ≠ 0 →

@@ -52,7 +52,9 @@ variable {D : Type*} [Ring D]
 
 /-- The certificate assembly.  `c` is the corner commutator `d * F - F * d`,
 `h` is the eliminated polynomial, `q` the elimination cofactor, and `a`, `b` a
-Bézout pair for `c` and `h`.  Nothing about `D` beyond ring axioms is used.-/
+Bézout pair for `c` and `h`.  Nothing about `D` beyond ring axioms is used.
+@isnad1 id=eq.3h9v.s8.7afe34e01244 from=translated src=- shape=514260e4 vocab=6be75f71
+-/
 theorem stafford_of_bezout (d F c h l q a b : D)
     (hcorner : d * F - F * d = c)
     (helim : d * F * l = h - c * q)
@@ -88,12 +90,24 @@ def falling (E : D) : ℕ → D
   | 0 => 1
   | (n + 1) => falling E n * (E - (n : D))
 
+/--
+@isnad1 id=eq.0h2v.s4.aa77e4d23ce7 from=translated src=- shape=4e114734 vocab=0dd9b728
+-/
 @[simp] lemma rising_zero (E : D) : rising E 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.48b58982e850 from=translated src=- shape=4e114734 vocab=af732847
+-/
 @[simp] lemma falling_zero (E : D) : falling E 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.ce269a4fadbd from=translated src=- shape=cd7f778b vocab=5a96956f
+-/
 lemma rising_succ (E : D) (n : ℕ) :
     rising E (n + 1) = rising E n * (E + ((n : D) + 1)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.a6b1a342b34d from=translated src=- shape=919f152c vocab=c6ccbd44
+-/
 lemma falling_succ (E : D) (n : ℕ) :
     falling E (n + 1) = falling E n * (E - (n : D)) := rfl
 
@@ -101,18 +115,24 @@ variable (hw : p * x = x * p + 1)
 
 include hw
 
-/-- `E * x = x * (E + 1)`.-/
+/-- `E * x = x * (E + 1)`.
+@isnad1 id=eq.1h3v.s7.d72750e42da0 from=translated src=- shape=4d470a1d vocab=737bf18a
+-/
 lemma euler_mul_x : euler x p * x = x * (euler x p + 1) := by
   simp only [euler]
   rw [mul_assoc, hw]
 
-/-- `E * p = p * (E - 1)`.-/
+/-- `E * p = p * (E - 1)`.
+@isnad1 id=eq.1h3v.s7.bdd0a1654b0b from=translated src=- shape=66dac82a vocab=f361d1b5
+-/
 lemma euler_mul_p : euler x p * p = p * (euler x p - 1) := by
   simp only [euler]
   rw [mul_sub, ← mul_assoc, hw]
   noncomm_ring
 
-/-- `E * x ^ n = x ^ n * (E + n)`.-/
+/-- `E * x ^ n = x ^ n * (E + n)`.
+@isnad1 id=eq.1h4v.s7.74c77fc608bb from=translated src=- shape=4167a5d9 vocab=32a0c0ea
+-/
 lemma euler_mul_x_pow (n : ℕ) :
     euler x p * x ^ n = x ^ n * (euler x p + (n : D)) := by
   induction n with
@@ -123,7 +143,9 @@ lemma euler_mul_x_pow (n : ℕ) :
       push_cast
       noncomm_ring
 
-/-- `E * p ^ n = p ^ n * (E - n)`.-/
+/-- `E * p ^ n = p ^ n * (E - n)`.
+@isnad1 id=eq.1h4v.s7.4ce008f433ee from=translated src=- shape=b6f43c33 vocab=18380e78
+-/
 lemma euler_mul_p_pow (n : ℕ) :
     euler x p * p ^ n = p ^ n * (euler x p - (n : D)) := by
   induction n with
@@ -134,7 +156,9 @@ lemma euler_mul_p_pow (n : ℕ) :
       push_cast
       noncomm_ring
 
-/-- `E ^ m * x ^ n = x ^ n * (E + n) ^ m`.-/
+/-- `E ^ m * x ^ n = x ^ n * (E + n) ^ m`.
+@isnad1 id=eq.1h5v.s7.95336082eadd from=translated src=- shape=99a50f7c vocab=32a0c0ea
+-/
 lemma euler_pow_mul_x_pow (m n : ℕ) :
     euler x p ^ m * x ^ n = x ^ n * (euler x p + (n : D)) ^ m := by
   induction m with
@@ -142,7 +166,9 @@ lemma euler_pow_mul_x_pow (m n : ℕ) :
   | succ m ih =>
       rw [pow_succ, mul_assoc, euler_mul_x_pow hw, ← mul_assoc, ih, mul_assoc, ← pow_succ]
 
-/-- The rising factorial identity `p ^ n * x ^ n = (E+1) ⋯ (E+n)`.-/
+/-- The rising factorial identity `p ^ n * x ^ n = (E+1) ⋯ (E+n)`.
+@isnad1 id=eq.1h4v.s7.d3a649614802 from=translated src=- shape=7ce75561 vocab=0913d64d
+-/
 lemma pow_mul_pow_eq_rising (n : ℕ) : p ^ n * x ^ n = rising (euler x p) n := by
   induction n with
   | zero => simp
@@ -156,7 +182,9 @@ lemma pow_mul_pow_eq_rising (n : ℕ) : p ^ n * x ^ n = rising (euler x p) n := 
             = x ^ n * (euler x p + ((n : D) + 1)) by noncomm_ring,
         ← mul_assoc, ih, rising_succ]
 
-/-- The falling factorial identity `x ^ n * p ^ n = E (E-1) ⋯ (E-(n-1))`.-/
+/-- The falling factorial identity `x ^ n * p ^ n = E (E-1) ⋯ (E-(n-1))`.
+@isnad1 id=eq.1h4v.s7.c37330889df5 from=translated src=- shape=a16e7788 vocab=705016ae
+-/
 lemma pow_mul_pow_eq_falling (n : ℕ) : x ^ n * p ^ n = falling (euler x p) n := by
   induction n with
   | zero => simp
@@ -177,7 +205,9 @@ variable {D : Type*} [Ring D] {x p : D}
 
 variable {k : Type*} [CommRing k] [Algebra k D]
 
-/-- `f(E) * x ^ n = x ^ n * f(E + n)` for every polynomial `f`.-/
+/-- `f(E) * x ^ n = x ^ n * f(E + n)` for every polynomial `f`.
+@isnad1 id=eq.1h6v.s8.093440bf9eab from=translated src=- shape=98ce9e85 vocab=86eecc43
+-/
 lemma aeval_euler_mul_x_pow (hw : p * x = x * p + 1) (n : ℕ) (f : k[X]) :
     aeval (euler x p) f * x ^ n = x ^ n * aeval (euler x p + (n : D)) f := by
   induction f using Polynomial.induction_on' with
@@ -187,7 +217,9 @@ lemma aeval_euler_mul_x_pow (hw : p * x = x * p + 1) (n : ℕ) (f : k[X]) :
       rw [mul_assoc, euler_pow_mul_x_pow hw, ← mul_assoc, ← mul_assoc,
         (Algebra.commutes a (x ^ n)).symm]
 
-/-- An element commuting with `E` commutes with every polynomial in `E`.-/
+/-- An element commuting with `E` commutes with every polynomial in `E`.
+@isnad1 id=eq.1h5v.s8.daf531701ee9 from=translated src=- shape=5545074b vocab=2e406919
+-/
 lemma commute_aeval_euler {a E : D} (h : a * E = E * a) (f : k[X]) :
     a * aeval E f = aeval E f * a := by
   have hc : Commute a E := h
@@ -213,28 +245,49 @@ commutator `p ^ r x ^ r - x ^ r p ^ r`.-/
 noncomputable def cornerPoly (k : Type*) [CommRing k] (r : ℕ) : k[X] :=
   risingPoly k r - fallingPoly k r
 
+/--
+@isnad1 id=eq.0h1v.s5.cfcbcfcb7f30 from=translated src=- shape=0cccbc47 vocab=f36735c3
+-/
 @[simp] lemma risingPoly_zero : risingPoly k 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.cae96f955c99 from=translated src=- shape=79b530d0 vocab=6ce5a108
+-/
 lemma risingPoly_succ (n : ℕ) :
     risingPoly k (n + 1) = risingPoly k n * (X + Polynomial.C ((n : k) + 1)) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.c33fc0382408 from=translated src=- shape=0cccbc47 vocab=ab5035bb
+-/
 @[simp] lemma fallingPoly_zero : fallingPoly k 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.420de9c8beb8 from=translated src=- shape=23b9d8bb vocab=16f16612
+-/
 lemma fallingPoly_succ (n : ℕ) :
     fallingPoly k (n + 1) = fallingPoly k n * (X - Polynomial.C (n : k)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.ce3491ff8ffd from=translated src=- shape=4bbb5e5c vocab=d53b6878
+-/
 lemma aeval_risingPoly (E : D) (n : ℕ) :
     aeval E (risingPoly k n) = rising E n := by
   induction n with
   | zero => simp [risingPoly_zero]
   | succ n ih => simp [risingPoly_succ, rising_succ, ih]
 
+/--
+@isnad1 id=eq.0h4v.s7.24da37652676 from=translated src=- shape=4bbb5e5c vocab=d4dd86f2
+-/
 lemma aeval_fallingPoly (E : D) (n : ℕ) :
     aeval E (fallingPoly k n) = falling E n := by
   induction n with
   | zero => simp [fallingPoly_zero]
   | succ n ih => simp [fallingPoly_succ, falling_succ, ih]
 
+/--
+@isnad1 id=eq.0h4v.s7.6659a5b5816a from=translated src=- shape=89345285 vocab=ed090f92
+-/
 lemma aeval_cornerPoly (E : D) (r : ℕ) :
     aeval E (cornerPoly k r) = rising E r - falling E r := by
   simp [cornerPoly, aeval_risingPoly, aeval_fallingPoly]
@@ -252,13 +305,22 @@ noncomputable def shiftedProd (C : k[X]) : List (D × ℕ) → k[X]
   | (t :: ts) => C.comp (X + Polynomial.C ((t.2 : ℕ) : k)) * shiftedProd C ts
 
 omit [Ring D] [Algebra k D] in
+/--
+@isnad1 id=eq.0h3v.s5.6e10565f0c8d from=translated src=- shape=cfafd989 vocab=f8950c9f
+-/
 @[simp] lemma shiftedProd_nil (C : k[X]) : shiftedProd C ([] : List (D × ℕ)) = 1 := rfl
 
 omit [Ring D] [Algebra k D] in
+/--
+@isnad1 id=eq.0h5v.s7.29e8fd00db27 from=translated src=- shape=15960688 vocab=cb1a573e
+-/
 lemma shiftedProd_cons (C : k[X]) (t : D × ℕ) (ts : List (D × ℕ)) :
     shiftedProd C (t :: ts)
       = C.comp (X + Polynomial.C ((t.2 : ℕ) : k)) * shiftedProd C ts := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.b3ab1af4cdce from=translated src=- shape=6691b18c vocab=c4f8f74d
+-/
 lemma aeval_comp_shift (E : D) (C : k[X]) (n : ℕ) :
     aeval E (C.comp (X + Polynomial.C ((n : ℕ) : k))) = aeval (E + (n : D)) C := by
   simp [aeval_comp]
@@ -266,7 +328,9 @@ lemma aeval_comp_shift (E : D) (C : k[X]) (n : ℕ) :
 /-- **Simultaneous shifted cancellation.**  Multiplying the potential on the
 right by one shift of the corner polynomial per term turns the whole potential
 into a left multiple of the corner polynomial.  Every coefficient is eliminated
-at once, and the coefficients are never assumed to commute with one another.-/
+at once, and the coefficients are never assumed to commute with one another.
+@isnad1 id=ex.2h6v.s8.04fcf2629ac4 from=translated src=- shape=07537e18 vocab=9d134482
+-/
 theorem potential_elimination (hw : p * x = x * p + 1) (C : k[X])
     (terms : List (D × ℕ)) (hcomm : ∀ t ∈ terms, t.1 * euler x p = euler x p * t.1) :
     ∃ q : D, potentialSum x terms * aeval (euler x p) (shiftedProd C terms)
@@ -305,6 +369,9 @@ theorem potential_elimination (hw : p * x = x * p + 1) (C : k[X])
 def shiftSupport (terms : List (D × ℕ)) (r : ℕ) : List (D × ℕ) :=
   terms.map fun t => (t.1, t.2 + r)
 
+/--
+@isnad1 id=eq.0h4v.s5.7d13bb2c89f7 from=translated src=- shape=b64e2f7b vocab=ee5be162
+-/
 lemma potentialSum_mul_pow (x : D) (terms : List (D × ℕ)) (r : ℕ) :
     potentialSum x terms * x ^ r = potentialSum x (shiftSupport terms r) := by
   induction terms with
@@ -314,6 +381,9 @@ lemma potentialSum_mul_pow (x : D) (terms : List (D × ℕ)) (r : ℕ) :
       rw [mul_assoc, ← pow_add]
       congr 1
 
+/--
+@isnad1 id=eq.1h3v.s6.ef95c6a37fa4 from=translated src=- shape=6c074828 vocab=5227c643
+-/
 lemma commute_potentialSum_x {terms : List (D × ℕ)}
     (h : ∀ t ∈ terms, t.1 * x = x * t.1) :
     potentialSum x terms * x = x * potentialSum x terms := by
@@ -327,6 +397,9 @@ lemma commute_potentialSum_x {terms : List (D × ℕ)}
             ← pow_succ']
         _ = x * (t.1 * x ^ t.2) := by rw [ht, mul_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s7.373f2370fb18 from=translated src=- shape=d0da9c7b vocab=798132fb
+-/
 lemma commute_potentialSum_x_pow {terms : List (D × ℕ)}
     (h : ∀ t ∈ terms, t.1 * x = x * t.1) (r : ℕ) :
     potentialSum x terms * x ^ r = x ^ r * potentialSum x terms := by
@@ -348,7 +421,9 @@ aggregate potential commutes with `x ^ r`; no coefficientwise commutation with
 Given a Bézout identity for the corner polynomial `C_r` against
 `R₊ · ∏ⱼ C_r(X + r + j)` (supplied by `Stafford38.EulerRootSeparation`), the right ideal
 generated by `d` and `x ^ r * d` is the whole ring, with the explicit
-certificate below.-/
+certificate below.
+@isnad1 id=ex.4h8v.s9.e820bd6f8f74 from=translated src=- shape=a6707b84 vocab=57965e05
+-/
 theorem evolution_stafford_certificate_of_aggregate_commutation
     (hw : p * x = x * p + 1) (r : ℕ) (terms : List (D × ℕ))
     (hcommE : ∀ t ∈ shiftSupport terms r,
@@ -390,6 +465,9 @@ theorem evolution_stafford_certificate_of_aggregate_commutation
 /-! The original coefficientwise theorem is a corollary of the aggregate
 interface.  Keeping it explicit preserves the existing API while exposing
 the strictly weaker hypotheses as a reusable producer contract. -/
+/--
+@isnad1 id=ex.4h8v.s9.eeb6b68745bc from=translated src=- shape=fdcb29fa vocab=f9ad3c28
+-/
 theorem evolution_stafford_certificate
     (hw : p * x = x * p + 1) (r : ℕ) (terms : List (D × ℕ))
     (hx : ∀ t ∈ terms, t.1 * x = x * t.1)

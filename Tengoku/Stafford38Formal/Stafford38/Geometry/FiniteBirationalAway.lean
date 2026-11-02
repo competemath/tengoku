@@ -19,7 +19,9 @@ universe u v w
 
 /-- A finite birational algebra becomes the original domain after inverting
 one nonzero element.  The common denominator is chosen for a finite module
-generating family, then linearity gives the localization map's surjectivity.-/
+generating family, then linearity gives the localization map's surjectivity.
+@isnad1 id=ex.1h3v.s9.36da3f0d0fb2 from=translated src=- shape=67759d3e vocab=3b02c4c7
+-/
 theorem exists_nonzero_away_equiv_of_finite
     {Q : Type u} [CommRing Q] [IsDomain Q]
     {F : Type v} [Field F] [Algebra Q F] [IsFractionRing Q F]
