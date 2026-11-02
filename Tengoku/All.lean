@@ -26,6 +26,7 @@ import Tengoku.OpenaiMath
 import Tengoku.ImmermanVardi
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
+import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
 import Tengoku.Flt
