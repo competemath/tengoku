@@ -29,6 +29,7 @@ import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
 import Tengoku.Flt
+import Tengoku.HasseMinkowski
 import Tengoku.Toric
 import Tengoku.LanaGenl
 import Tengoku.MiscYd
