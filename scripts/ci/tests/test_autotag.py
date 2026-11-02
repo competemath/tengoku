@@ -264,6 +264,17 @@ class Plan(unittest.TestCase):
         )
         self.assertEqual(p.returncode, 0, p.stderr)
         self.assertEqual(p.stdout.strip(), "['Tengoku/FxLib/Fx/A.lean']")
+        # a theorem placed in the marker is not hidden by its name
+        r.write("Tengoku/FxLib/Deps.lean", "-- marker\ntheorem sneaked : 1 + 1 = 2 := rfl\n")
+        r.commit("code in the marker")
+        p = subprocess.run(
+            [sys.executable, "-c", code, r.git("rev-parse", "main").strip(), r.git("rev-parse", "pr").strip()],
+            cwd=r.dir,
+            capture_output=True,
+            text=True,
+            env={**os.environ, "TENGOKU_CI_ROOT": str(r.dir), "PYTHONPATH": str(HERE.parent)},
+        )
+        self.assertEqual(p.stdout.strip(), "['Tengoku/FxLib/Deps.lean', 'Tengoku/FxLib/Fx/A.lean']")
 
     def test_a_studied_pr_from_the_app_is_planned(self):
         r = self.base()
