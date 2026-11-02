@@ -243,6 +243,28 @@ class Plan(unittest.TestCase):
         self.assertEqual(p.returncode, 0, p.stderr)
         return json.loads(p.stdout.strip().splitlines()[-1])
 
+    def test_the_marker_of_a_factory_bundle_is_not_a_module_to_tag(self):
+        """Tengoku/<Library>/Deps.lean only marks the library; nothing imports it, so the build has no olean and the tagger died on it
+        (azurite part 1, 2 Nov 2026)"""
+        import os
+        import subprocess
+
+        r = Repo()
+        r.write("Tengoku/FxLib/Deps.lean", "-- FxLib: a factory bundle. This file only marks the library for Tengoku/All.lean.\n")
+        r.write("Tengoku/FxLib/Fx/A.lean", "import Tengoku\n\ntheorem t0 : 1 + 1 = 2 := rfl\n")
+        r.write("Tengoku/FxLib.lean", "import Tengoku.FxLib.Fx.A\n")
+        r.commit("a library arrives")
+        code = "import sys, born_tagged as b; print(b.lane_modules(sys.argv[1], sys.argv[2], 'intake'))"
+        p = subprocess.run(
+            [sys.executable, "-c", code, r.git("rev-parse", "main").strip(), r.git("rev-parse", "pr").strip()],
+            cwd=r.dir,
+            capture_output=True,
+            text=True,
+            env={**os.environ, "TENGOKU_CI_ROOT": str(r.dir), "PYTHONPATH": str(HERE.parent)},
+        )
+        self.assertEqual(p.returncode, 0, p.stderr)
+        self.assertEqual(p.stdout.strip(), "['Tengoku/FxLib/Fx/A.lean']")
+
     def test_a_studied_pr_from_the_app_is_planned(self):
         r = self.base()
         self.bundle(r)

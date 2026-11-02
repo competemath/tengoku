@@ -37,6 +37,7 @@ INTAKE_MANIFEST = re.compile(r"data/intake/([^/]+)/manifest\.jsonl")
 STUDIED_MODULE = re.compile(r"Tengoku/Studied/[^/]+/S[0-9a-f]{12}\.lean")
 UMBRELLAS = ("Tengoku/All.lean", "Tengoku/Studied.lean")
 ROOT_FILE = re.compile(r"Tengoku/[^/]+\.lean")  # a library's (or a target's) file that only imports its modules
+MARKER = re.compile(r"Tengoku/[^/]+/Deps\.lean")  # a bundle's marker comment: no module imports it, so it is never built or tagged
 # a theorem a tagger tags: not private (it skips those by rule), one per line start; an approximation that only decides whether "no tag at all" is an error
 THEOREM = re.compile(r"^(?:@\[[^\]\n]*\][ \t]*)*(?:protected[ \t]+)?(?:theorem|lemma)[ \t]+\S", re.M)
 
@@ -54,7 +55,7 @@ def lane_modules(base: str, head: str, lane: str) -> list[str]:
     """The paths of the Lean modules the PR adds that a tagger tags: not the umbrella files, not a library's root file that only imports."""
     out = []
     for st, p in changed_files(base, head):
-        if st != "A" or not p.startswith("Tengoku/") or not p.endswith(".lean") or p in UMBRELLAS or ROOT_FILE.fullmatch(p):
+        if st != "A" or not p.startswith("Tengoku/") or not p.endswith(".lean") or p in UMBRELLAS or ROOT_FILE.fullmatch(p) or MARKER.fullmatch(p):
             continue
         if lane == "studied" and not STUDIED_MODULE.fullmatch(p):
             continue
