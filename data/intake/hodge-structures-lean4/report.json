@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "1a21a04c85d2d454c0ea956dee17520f8753689ffb911ee8d0ec4cd56c14ad6c",
+ "gate2_unjudged": [],
+ "library": "hodge-structures-lean4",
+ "lint_mode": "proposed",
+ "modules": 45,
+ "part": 1,
+ "theorems": 511
+}
