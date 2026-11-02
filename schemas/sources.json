@@ -151,7 +151,14 @@
     "https://github.com/mhogrefe/azurite",
     "https://github.com/itpplasma/stafford38-formal",
     "https://github.com/fukubillueda-web/epsilon_SML",
-    "https://github.com/WangFrankie/QuadraticNumberFields"
+    "https://github.com/WangFrankie/QuadraticNumberFields",
+    "https://github.com/apellis/dg-lean",
+    "https://github.com/haruhisa-enomoto/magnitude-conjecture",
+    "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution",
+    "https://github.com/thebookersmith/hodge-structures-lean4",
+    "https://github.com/laurentbartholdi/theorem-a-fp-groups",
+    "https://github.com/DongzheZheng/Kurosh-Problem-at-GK-Dimension-Two",
+    "https://github.com/jayyswan/hasse-minkowski"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -315,7 +322,14 @@
     "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Weak/Foundation/Slicing.lean": "Apache-2.0",
     "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Weak/Foundation/IntervalCategory.lean": "Apache-2.0",
     "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/PreStabilityCondition.lean": "Apache-2.0",
-    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/StabilityCondition.lean": "Apache-2.0"
+    "https://github.com/chris-dare-dev/derived-alg-geo-lean/blob/af19c7943a8e9e346a5c26eea7ce41f17b3a7983/DerivedAlgGeo/CategoryTheory/Triangulated/StabilityCondition/Foundation/StabilityCondition.lean": "Apache-2.0",
+    "https://github.com/apellis/dg-lean": "Apache-2.0",
+    "https://github.com/haruhisa-enomoto/magnitude-conjecture": "Apache-2.0",
+    "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution": "Apache-2.0",
+    "https://github.com/thebookersmith/hodge-structures-lean4": "Apache-2.0",
+    "https://github.com/laurentbartholdi/theorem-a-fp-groups": "Apache-2.0",
+    "https://github.com/DongzheZheng/Kurosh-Problem-at-GK-Dimension-Two": "MIT",
+    "https://github.com/jayyswan/hasse-minkowski": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1283,6 +1297,64 @@
         "BinaryQuadraticForms",
         "ImaginaryClassNumberOne",
         "Examples"
+      ]
+    },
+    "dg-lean": {
+      "repo": "https://github.com/apellis/dg-lean",
+      "commit": "161db4ede65f2dd359263a301c33ec39036988eb",
+      "roots": [
+        "DG"
+      ]
+    },
+    "magnitude-conjecture": {
+      "repo": "https://github.com/haruhisa-enomoto/magnitude-conjecture",
+      "commit": "127bbee7284d729d593b67c88fa36e7d9eedc450",
+      "roots": [
+        "Challenge",
+        "MagnitudeConjecture",
+        "QuotientSubmoduleEquidistribution",
+        "Solution"
+      ]
+    },
+    "quotient-submodule-equidistribution": {
+      "repo": "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution",
+      "commit": "20ee4b964a9174b15304ac96485beeb73be113d8",
+      "roots": [
+        "MainResults",
+        "QuotientSubmoduleEquidistribution"
+      ]
+    },
+    "hodge-structures-lean4": {
+      "repo": "https://github.com/thebookersmith/hodge-structures-lean4",
+      "commit": "34b95abdcf49fbe107884e1f65202107c7a2e52c",
+      "roots": [
+        "Challenge",
+        "ChallengeExt",
+        "HodgePilot",
+        "Solution",
+        "SolutionExt"
+      ]
+    },
+    "theorem-a-fp-groups": {
+      "repo": "https://github.com/laurentbartholdi/theorem-a-fp-groups",
+      "commit": "8970db6b7cc8ec2567dae486e48f34cf9226fe58",
+      "roots": [
+        "RequestProject"
+      ]
+    },
+    "kurosh-problem-at-gk-dimension-two": {
+      "repo": "https://github.com/DongzheZheng/Kurosh-Problem-at-GK-Dimension-Two",
+      "commit": "755cfd4aa1a018f0e8a9d31b62fe7904a3e350e7",
+      "roots": [
+        "CriticalGK2",
+        "Verification"
+      ]
+    },
+    "hasse-minkowski": {
+      "repo": "https://github.com/jayyswan/hasse-minkowski",
+      "commit": "47f0e9b5cba6e6354b882bc5856a11962ba61f4a",
+      "roots": [
+        "HasseMinkowski"
       ]
     }
   },
