@@ -30,6 +30,9 @@ attribute [local instance] Classical.propDecidable
 
 -- Theorem: for nonzero `a`, `b`, the Hilbert symbol `(a,b)` equals `1` exactly when the
 -- quadratic form `z² - a x² - b y²` has a nontrivial zero.
+/--
+@isnad1 id=iff.2h3v.s8.9d9dbce10ffc from=translated src=- shape=b06615db vocab=ea2eb76a
+-/
 theorem hilbertSym_eq_one_iff_sol {k : Type*} [Field k] {a b : k}
     (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym a b = 1 ↔
@@ -47,6 +50,9 @@ theorem hilbertSym_eq_one_iff_sol {k : Type*} [Field k] {a b : k}
 -- Theorem: (norm characterization) over a field of characteristic `≠ 2`, for nonzero `a` and
 -- nonsquare nonzero `b`, the Hilbert symbol `(a,b)` equals `1` exactly when `a` is the norm
 -- of an element of `QuadraticAlgebra k b 0`, viewed as the quadratic algebra `k(√b)`.
+/--
+@isnad1 id=iff.3h3v.s8.857ab9e2b563 from=translated src=- shape=3d277737 vocab=c6d0d3c0
+-/
 theorem hilbertSym_eq_one_iff_isNorm {k : Type*} [Field k]
     {a b : k} (ha : a ≠ 0) (hb : b ≠ 0) (hbsq : ¬ IsSquare b) :
     hilbertSym a b = 1 ↔ ∃ t : QuadraticAlgebra k b 0, a = QuadraticAlgebra.norm t := by

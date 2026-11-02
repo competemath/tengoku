@@ -67,16 +67,25 @@ noncomputable def hasseMinkowskiInvAux {n : ℕ} (w : Fin n → kˣ) : ℤ :=
   ∏ p : Fin n × Fin n with p.1 < p.2, hilbertSym (w p.1 : k) (w p.2 : k)
 
 -- Theorem: definitional unfolding of `hasseMinkowskiInvAux`.
+/--
+@isnad1 id=eq.0h3v.s7.5e7840c8d2ed from=translated src=- shape=75115c17 vocab=54959709
+-/
 theorem hasseMinkowskiInvAux_def {n : ℕ} (w : Fin n → kˣ) :
     hasseMinkowskiInvAux w =
       ∏ p : Fin n × Fin n with p.1 < p.2, hilbertSym (w p.1 : k) (w p.2 : k) := rfl
 
 -- Theorem: the invariant of the empty diagonal form (rank `0`) is `1`.
+/--
+@isnad1 id=eq.0h2v.s5.231be241ccab from=translated src=- shape=d6b7724d vocab=8549a362
+-/
 theorem hasseMinkowskiInvAux_zero (w : Fin 0 → kˣ) : hasseMinkowskiInvAux w = 1 := by
   rw [hasseMinkowskiInvAux_def]
   simp
 
 -- Theorem: the invariant of a rank-`1` diagonal form is `1` (the empty product).
+/--
+@isnad1 id=eq.0h2v.s5.329d3b152f89 from=translated src=- shape=d6b7724d vocab=8549a362
+-/
 theorem hasseMinkowskiInvAux_one (w : Fin 1 → kˣ) : hasseMinkowskiInvAux w = 1 := by
   rw [hasseMinkowskiInvAux_def]
   have h : ({p : Fin 1 × Fin 1 | p.1 < p.2} : Finset (Fin 1 × Fin 1)) = ∅ := by
@@ -86,6 +95,9 @@ theorem hasseMinkowskiInvAux_one (w : Fin 1 → kˣ) : hasseMinkowskiInvAux w = 
   rw [h, Finset.prod_empty]
 
 -- Theorem: the invariant of a rank-`2` diagonal form is the single Hilbert symbol of its weights.
+/--
+@isnad1 id=eq.0h2v.s6.8139f058e037 from=translated src=- shape=5897721a vocab=b8604d5e
+-/
 theorem hasseMinkowskiInvAux_two (w : Fin 2 → kˣ) :
     hasseMinkowskiInvAux w = hilbertSym (w 0 : k) (w 1 : k) := by
   rw [hasseMinkowskiInvAux_def]
@@ -98,6 +110,9 @@ theorem hasseMinkowskiInvAux_two (w : Fin 2 → kˣ) :
 
 -- Theorem: the invariant of a rank-`3` diagonal form is the product of the three pairwise
 -- Hilbert symbols.
+/--
+@isnad1 id=eq.0h2v.s7.b44f07fd40f5 from=translated src=- shape=b5fd0484 vocab=533dc972
+-/
 theorem hasseMinkowskiInvAux_three (w : Fin 3 → kˣ) :
     hasseMinkowskiInvAux w = hilbertSym (w 0 : k) (w 1 : k) * hilbertSym (w 0 : k) (w 2 : k) *
       hilbertSym (w 1 : k) (w 2 : k) := by
@@ -113,6 +128,9 @@ theorem hasseMinkowskiInvAux_three (w : Fin 3 → kˣ) :
 /-! ### The invariant only takes the values `1` and `-1` -/
 
 -- Theorem: for nonzero arguments the Hilbert symbol is `1` or `-1`.
+/--
+@isnad1 id=or.2h3v.s6.efcaa9cca2b7 from=translated src=- shape=5a0d265c vocab=a2a0b30e
+-/
 theorem hilbertSym_eq_one_or_neg_one_of_ne_zero {a b : k} (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym a b = 1 ∨ hilbertSym a b = -1 := by
   rcases hilbertSym_eq_one_or a b with h | h | h
@@ -121,6 +139,9 @@ theorem hilbertSym_eq_one_or_neg_one_of_ne_zero {a b : k} (ha : a ≠ 0) (hb : b
   · exact Or.inr h
 
 -- Theorem: the Hasse–Minkowski invariant of a diagonal form is `1` or `-1`.
+/--
+@isnad1 id=or.0h3v.s5.576f69085918 from=translated src=- shape=e630b981 vocab=001ca029
+-/
 theorem hasseMinkowskiInvAux_eq_one_or_neg_one {n : ℕ} (w : Fin n → kˣ) :
     hasseMinkowskiInvAux w = 1 ∨ hasseMinkowskiInvAux w = -1 := by
   rw [hasseMinkowskiInvAux_def, ← Int.isUnit_iff]
@@ -133,6 +154,9 @@ theorem hasseMinkowskiInvAux_eq_one_or_neg_one {n : ℕ} (w : Fin n → kˣ) :
 
 -- Theorem: prepending a rank-one weight multiplies the invariant by the product of the Hilbert
 -- symbols of the new weight against all the old ones.
+/--
+@isnad1 id=eq.0h4v.s7.76a25c5f122a from=translated src=- shape=3d3773c7 vocab=9c3a6a5d
+-/
 theorem hasseMinkowskiInvAux_cons {n : ℕ} (a : kˣ) (w : Fin n → kˣ) :
     hasseMinkowskiInvAux (Fin.cons a w) =
       (∏ i : Fin n, hilbertSym (a : k) (w i : k)) * hasseMinkowskiInvAux w := by
@@ -142,6 +166,9 @@ theorem hasseMinkowskiInvAux_cons {n : ℕ} (a : kˣ) (w : Fin n → kˣ) :
 
 -- Theorem: with a bilinear Hilbert symbol, prepending a rank-one weight multiplies the invariant
 -- by the Hilbert symbol of the new weight against the product (discriminant) of the old weights.
+/--
+@isnad1 id=eq.0h4v.s7.bdb5d7df12df from=translated src=- shape=49c6423c vocab=4ac4433c
+-/
 theorem hasseMinkowskiInvAux_prod_rank_one [HasBilinHilbertSym k] {n : ℕ} (a : kˣ)
     (w : Fin n → kˣ) :
     hasseMinkowskiInvAux (Fin.cons a w) =

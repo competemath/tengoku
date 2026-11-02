@@ -104,6 +104,9 @@ private lemma toZModPow_three_natCast (n : ℕ) :
 
 -- Theorem: if a `2`-adic unit is a square, then its Hilbert symbol against any other unit
 -- is `1`.
+/--
+@isnad1 id=eq.1h2v.s8.a7495df9fa45 from=translated src=- shape=0bbfe485 vocab=27e7511d
+-/
 theorem hilbertSym_padic_two_units_of_isSquare {u v : ℤ_[2]ˣ}
     (hu : IsSquare (u : ℤ_[2])) :
     hilbertSym (u : ℚ_[2]) (v : ℚ_[2]) = 1 := by
@@ -122,6 +125,9 @@ theorem hilbertSym_padic_two_units_of_isSquare {u v : ℤ_[2]ˣ}
 
 -- Theorem: a `2`-adic unit congruent to `1` modulo `8` is a square, so its Hilbert symbol
 -- against any other unit is `1`.
+/--
+@isnad1 id=eq.1h2v.s9.c5f082098c03 from=translated src=- shape=5ec599fd vocab=1f686cda
+-/
 theorem hilbertSym_padic_two_units_of_toZModPow_eq_one {u v : ℤ_[2]ˣ}
     (hu : (u : ℤ_[2]).toZModPow 3 = 1) :
     hilbertSym (u : ℚ_[2]) (v : ℚ_[2]) = 1 := by
@@ -237,6 +243,9 @@ private lemma exists_padicInt_solution_of_units {u v : ℤ_[2]ˣ} {x y z : ℚ_[
     · exact PadicInt.isUnit_iff.mpr hY1
 
 -- Theorem: if two `2`-adic units are both `3` modulo `4`, their Hilbert symbol is `-1`.
+/--
+@isnad1 id=eq.2h2v.s10.dd2d9588096b from=translated src=- shape=63549c86 vocab=4e660300
+-/
 theorem hilbertSym_padic_two_units_eq_neg_one_of_mod4 {u v : ℤ_[2]ˣ}
     (hu : (u : ℤ_[2]).toZModPow 2 = 3) (hv : (v : ℤ_[2]).toZModPow 2 = 3) :
     hilbertSym (u : ℚ_[2]) (v : ℚ_[2]) = -1 := by
@@ -410,6 +419,9 @@ private lemma hilbertSym_five_unit (v : ℤ_[2]ˣ) :
 
 -- Theorem: a `2`-adic unit congruent to `1` modulo `4` has Hilbert symbol `1` against
 -- every other unit.
+/--
+@isnad1 id=eq.1h2v.s9.c00a325a0d48 from=translated src=- shape=5ec599fd vocab=1f686cda
+-/
 theorem hilbertSym_padic_two_units_eq_one_of_mod4 (u v : ℤ_[2]ˣ)
     (hu : (u : ℤ_[2]).toZModPow 2 = 1) :
     hilbertSym (u : ℚ_[2]) (v : ℚ_[2]) = 1 := by
@@ -431,6 +443,9 @@ theorem hilbertSym_padic_two_units_eq_one_of_mod4 (u v : ℤ_[2]ˣ)
 
 -- Theorem: Serre's formula at `p = 2` for two units, in intrinsic form: the symbol is `-1`
 -- exactly when both units are `3` modulo `4`.
+/--
+@isnad1 id=eq.0h2v.s11.2661bfb66a0b from=translated src=- shape=56fc56d2 vocab=7c0b9b89
+-/
 theorem hilbertSym_padic_two_units (u v : ℤ_[2]ˣ) :
     hilbertSym (u : ℚ_[2]) (v : ℚ_[2])
       = if (u : ℤ_[2]).toZModPow 2 = 1 ∨ (v : ℤ_[2]).toZModPow 2 = 1
@@ -630,6 +645,9 @@ private theorem hilbertSym_two_five : hilbertSym (2 : ℚ_[2]) (5 : ℚ_[2]) = -
 
 -- Theorem: Serre's formula at `p = 2` for a unit and the element `2`: the symbol is `1` when
 -- `u ≡ ±1 (mod 8)` and `-1` otherwise.
+/--
+@isnad1 id=eq.0h1v.s11.016ff2eb8bc6 from=translated src=- shape=152f0e7c vocab=7c0b9b89
+-/
 theorem hilbertSym_padic_two_two_unit (u : ℤ_[2]ˣ) :
     hilbertSym (2 : ℚ_[2]) (u : ℚ_[2])
       = if (u : ℤ_[2]).toZModPow 3 = 1 ∨ (u : ℤ_[2]).toZModPow 3 = 7 then 1 else -1 := by
@@ -719,6 +737,9 @@ private lemma toZModPow_two_eq_of_three (u : ℤ_[2]ˣ) {c : ZMod 8}
 
 -- Theorem: Serre's formula at `p = 2` for the element `2` and a unit, in character form:
 -- `(2, u)_2 = (-1)^{ω(u)}`.
+/--
+@isnad1 id=eq.0h1v.s7.147205796018 from=translated src=- shape=d75f483a vocab=d6e6db46
+-/
 theorem hilbertSym_two_unit_char (u : ℤ_[2]ˣ) :
     hilbertSym (2 : ℚ_[2]) (u : ℚ_[2]) = parityPow (-1) (omg u) := by
   rw [hilbertSym_padic_two_two_unit]
@@ -1092,6 +1113,9 @@ private lemma hilbertSym_two_mul_rep_left (r : ℤ_[2]ˣ) (a : ℤ_[2]) (w : ℚ
     (b := w) (b' := (1 : ℚ_[2])) hs0 (by norm_num)
 
 -- Theorem: Serre's formula at `p = 2` for `2 · r` against a unit.
+/--
+@isnad1 id=eq.0h2v.s8.7ae75ddcf64b from=translated src=- shape=e02a13f4 vocab=5b58b9d5
+-/
 theorem hilbertSym_two_mul_unit (r w : ℤ_[2]ˣ) :
     hilbertSym (2 * (r : ℚ_[2])) (w : ℚ_[2])
       = parityPow (-1) (eps r * eps w + omg w) := by
@@ -1265,6 +1289,9 @@ private lemma parityPow_neg_mul (u v : ℤ_[2]ˣ) :
     (hd ▸ v.isUnit.map (PadicInt.toZModPow 3))
 
 -- Theorem: Serre's formula at `p = 2` for two elements of valuation `1`.
+/--
+@isnad1 id=eq.0h2v.s8.b4d80384629c from=translated src=- shape=07513903 vocab=5b58b9d5
+-/
 theorem hilbertSym_two_mul_two_mul (u v : ℤ_[2]ˣ) :
     hilbertSym (2 * (u : ℚ_[2])) (2 * (v : ℚ_[2]))
       = parityPow (-1) (eps u * eps v + omg v + omg u) := by
@@ -1431,6 +1458,9 @@ private lemma parity_two_11 {a b : ℚ_[2]} (u v : ℤ_[2]ˣ)
   exact (even_sub_mul_of_odd hαo (omg v)).add (even_sub_mul_of_odd hβo (omg u))
 
 -- Theorem: Serre's formula for the Hilbert symbol at p = 2.
+/--
+@isnad1 id=eq.2h2v.s7.3c441381d9bc from=translated src=- shape=037e094f vocab=9ceaf98d
+-/
 theorem hilbertSym_padic_two_eq {a b : ℚ_[2]} (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym a b
       = parityPow (-1) (eps (twoAdicUnit a ha) * eps (twoAdicUnit b hb)
@@ -1533,6 +1563,9 @@ private lemma even_omg_mul_sub (u v : ℤ_[2]ˣ) :
     (v.isUnit.map (PadicInt.toZModPow 3))
 
 -- Theorem: the Hilbert symbol on `ℚ_[2]` is multiplicative in the first argument.
+/--
+@isnad1 id=eq.0h3v.s6.1ecba19a9b8c from=translated src=- shape=b2ab467f vocab=774a34da
+-/
 theorem hilbertSym_padic_two_mul_left (a a' b : ℚ_[2]) :
     hilbertSym (a * a') b = hilbertSym a b * hilbertSym a' b := by
   rcases eq_or_ne a 0 with rfl | ha
@@ -1572,6 +1605,9 @@ theorem hilbertSym_padic_two_mul_left (a a' b : ℚ_[2]) :
   exact (even_mul_of_even hD1 (eps (twoAdicUnit b hb))).add
     (even_mul_of_even hD2 b.valuation)
 
+/--
+@isnad1 id=hasbilin.0h0v.s3.9293087c7ec1 from=translated src=- shape=8d7dbbf6 vocab=c2a6356b
+-/
 instance instHasBilinHilbertSym : HasBilinHilbertSym ℚ_[2] :=
   ⟨fun {a a' b} => hilbertSym_padic_two_mul_left a a' b⟩
 

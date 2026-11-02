@@ -44,18 +44,27 @@ open Polynomial
 namespace PadicInt
 
 -- Theorem: an element of `ℤ_[p]` is divisible by `p` iff its reduction modulo `p` vanishes.
+/--
+@isnad1 id=iff.0h2v.s7.31db8f6bfee3 from=translated src=- shape=a41c36aa vocab=a825640a
+-/
 lemma p_dvd_iff_toZMod_eq_zero {p : ℕ} [Fact (Nat.Prime p)] {m : ℤ_[p]} :
     (p : ℤ_[p]) ∣ m ↔ m.toZMod = 0 := by
   rw [← Ideal.mem_span_singleton, ← maximalIdeal_eq_span_p, ← RingHom.mem_ker, ker_toZMod]
 
 -- Theorem: an element of `ℤ_[p]` is divisible by `p ^ n` iff its reduction modulo `p ^ n`
 -- vanishes.
+/--
+@isnad1 id=iff.0h3v.s8.f4d5258b07a0 from=translated src=- shape=158ac3eb vocab=73dbd239
+-/
 lemma pow_p_dvd_iff_toZModPow_eq_zero {p : ℕ} [Fact (Nat.Prime p)] {m : ℤ_[p]} {n : ℕ} :
     (p : ℤ_[p]) ^ n ∣ m ↔ m.toZModPow n = 0 := by
   rw [← Ideal.mem_span_singleton, ← RingHom.mem_ker, ker_toZModPow]
 
 -- Theorem: an element in `ℤ_[p]` for odd `p` is a square if its reduction modulo `p` is a
 -- square.
+/--
+@isnad1 id=issquare.3h2v.s7.2051d4ffa8c8 from=translated src=- shape=65ba5af9 vocab=4e5b98e8
+-/
 lemma isSquare_of_zmod {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2)
     {m : ℤ_[p]} (hm : ¬ (p : ℤ_[p]) ∣ m) (hmod : IsSquare m.toZMod) : IsSquare m := by
   obtain ⟨r, hr⟩ := hmod
@@ -81,6 +90,9 @@ lemma isSquare_of_zmod {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2)
   exact ⟨z, by simp [← hz0, pow_two]⟩
 
 -- Theorem: an element in `ℤ_[2]` is a square if its reduction modulo `8` is a square.
+/--
+@isnad1 id=issquare.2h1v.s9.2c3aad3c0e06 from=translated src=- shape=33801998 vocab=2254fbad
+-/
 lemma isSquare_of_zmodPow {m : ℤ_[2]} (hm : ¬ (2 : ℤ_[2]) ∣ m)
     (hmod : IsSquare (m.toZModPow 3)) : IsSquare m := by
   obtain ⟨r, hr⟩ := hmod
@@ -119,6 +131,9 @@ namespace Padic
 variable (p : ℕ) [Fact (Nat.Prime p)]
 
 -- Theorem: for odd `p`, any `p`-adic number within distance `1` of `1` is a square.
+/--
+@isnad1 id=issquare.2h2v.s5.91a958db7b51 from=translated src=- shape=2365ac08 vocab=ce57e813
+-/
 lemma isSquare_of_dist_one_lt_one {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2) {x : ℚ_[p]}
     (hx : dist x 1 < 1) : IsSquare x := by
   let z : ℤ_[p] := ⟨x - 1, hx.le⟩
@@ -135,6 +150,9 @@ lemma isSquare_of_dist_one_lt_one {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2) 
   exact ⟨r, by simp [← PadicInt.coe_mul, ← hr]; aesop⟩
 
 -- Theorem: any `2`-adic number within distance `2⁻²` of `1` is a square.
+/--
+@isnad1 id=issquare.1h1v.s6.aa6d131db819 from=translated src=- shape=b89ac7f0 vocab=bb8535b0
+-/
 lemma isSquare_of_dist_one_lt_pow {x : ℚ_[2]} (hx : dist x 1 < 2 ^ (-(2 : ℤ))) : IsSquare x := by
   have hx1 : ‖x - 1‖ ≤ 1 := le_trans hx.le (by norm_num)
   let z : ℤ_[2] := ⟨x - 1, hx1⟩
@@ -154,6 +172,9 @@ lemma isSquare_of_dist_one_lt_pow {x : ℚ_[2]} (hx : dist x 1 < 2 ^ (-(2 : ℤ)
   exact ⟨r, by simp [← PadicInt.coe_mul, ← hr]; aesop⟩
 
 -- Theorem: there is a uniform `p`-adic neighbourhood of `1` consisting of squares.
+/--
+@isnad1 id=ex.0h1v.s6.0671b1a31d40 from=translated src=- shape=3ecb8130 vocab=a31541f5
+-/
 lemma exists_pow_isSquare_of_dist_one_lt (p : ℕ) [Fact (Nat.Prime p)] :
     ∃ (n : ℕ), ∀ (x : ℚ_[p]), dist x 1 < p ^ (-(n : ℤ)) → IsSquare x := by
   by_cases hp : p = 2
@@ -164,6 +185,9 @@ lemma exists_pow_isSquare_of_dist_one_lt (p : ℕ) [Fact (Nat.Prime p)] :
 open Pointwise Set
 
 -- Theorem: the nonzero `p`-adic squares form an open set.
+/--
+@isnad1 id=isopen.0h1v.s6.1796a6fe49c4 from=translated src=- shape=2389c160 vocab=80063517
+-/
 lemma isOpen_squares_sdiff_zero : IsOpen ({x : ℚ_[p] | IsSquare x} \ {0}) := by
   rw [isOpen_iff_forall_mem_open]
   intro x ⟨hx, hx0⟩

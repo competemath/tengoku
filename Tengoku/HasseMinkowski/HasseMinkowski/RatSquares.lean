@@ -32,6 +32,9 @@ namespace HasseMinkowski
 
 -- Theorem: a natural number is a square exactly when all the exponents in its prime
 -- factorization are even. (Not available in Mathlib in this toolchain, so proved here.)
+/--
+@isnad1 id=iff.0h1v.s5.5390c1a78f0d from=translated src=- shape=baec31d3 vocab=6a2a8782
+-/
 lemma isSquare_nat_iff_even_factorization {n : ℕ} :
     IsSquare n ↔ ∀ p : ℕ, p.Prime → Even (n.factorization p) := by
   constructor
@@ -66,6 +69,9 @@ lemma isSquare_nat_iff_even_factorization {n : ℕ} :
 
 -- Theorem: if `a` and `b` are coprime naturals, then for any prime `p` at most one of
 -- `a.factorization p`, `b.factorization p` is nonzero.
+/--
+@isnad1 id=or.2h3v.s6.b893377c5bf6 from=translated src=- shape=da12d7a4 vocab=0cbe4ff8
+-/
 lemma factorization_eq_zero_or_eq_zero_of_coprime {a b p : ℕ} (hp : p.Prime)
     (hab : Nat.Coprime a b) : a.factorization p = 0 ∨ b.factorization p = 0 := by
   rcases eq_or_ne (a.factorization p) 0 with h | h
@@ -93,6 +99,9 @@ of the difference therefore forces evenness of each exponent separately, which b
 
 -- Theorem: the `p`-adic valuation of a nonzero rational is the difference of the
 -- `p`-adic valuations (prime factorizations) of its numerator and denominator.
+/--
+@isnad1 id=even.2h2v.s4.718ae0725456 from=translated src=- shape=1272420c vocab=31dc29b5
+-/
 theorem even_padicValRat_of_isSquare {q : ℚ} (hq : IsSquare q) (p : ℕ) (hp : p.Prime) :
     Even (padicValRat p q) := by
   obtain ⟨r, rfl⟩ := hq
@@ -102,6 +111,9 @@ theorem even_padicValRat_of_isSquare {q : ℚ} (hq : IsSquare q) (p : ℕ) (hp :
     exact ⟨padicValRat p r, rfl⟩
 
 -- Theorem: a square rational is nonnegative.
+/--
+@isnad1 id=le.1h1v.s4.b6cfb44560a9 from=translated src=- shape=979a7069 vocab=49019991
+-/
 theorem nonneg_of_isSquare {q : ℚ} (hq : IsSquare q) : 0 ≤ q :=
   hq.nonneg
 

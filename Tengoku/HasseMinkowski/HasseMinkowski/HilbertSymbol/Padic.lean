@@ -37,7 +37,9 @@ attribute [local instance] Classical.propDecidable
 /-! ### General consequences of a nontrivial zero -/
 
 /-- A quadratic form `z² - a x² - b y²` with a nontrivial zero has Hilbert symbol `1`
-(provided `a` and `b` are nonzero).-/
+(provided `a` and `b` are nonzero).
+@isnad1 id=eq.3h3v.s8.5d8f83f961a0 from=translated src=- shape=4939ce13 vocab=ea2eb76a
+-/
 theorem hilbertSym_eq_one_of_sol {k : Type*} [Field k] {a b : k} (ha : a ≠ 0) (hb : b ≠ 0)
     (h : ∃ z x y : k, (z, x, y) ≠ (0, 0, 0) ∧ z ^ 2 - a * x ^ 2 - b * y ^ 2 = 0) :
     hilbertSym a b = 1 := by
@@ -46,18 +48,27 @@ theorem hilbertSym_eq_one_of_sol {k : Type*} [Field k] {a b : k} (ha : a ≠ 0) 
 
 -- Theorem: if the first argument of the Hilbert symbol is a nonzero square then the symbol
 -- is `1`.
+/--
+@isnad1 id=eq.2h3v.s6.a58df96e45f1 from=translated src=- shape=dd1d3a02 vocab=50ea17c6
+-/
 theorem hilbertSym_sq_left {k : Type*} [Field k] {a b : k} (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym (a ^ 2) b = 1 :=
   hilbertSym_eq_one_of_sol (pow_ne_zero 2 ha) hb ⟨a, 1, 0, by simp, by ring⟩
 
 -- Theorem: if the second argument of the Hilbert symbol is a nonzero square then the symbol
 -- is `1`.
+/--
+@isnad1 id=eq.2h3v.s6.60ef2bcdd6e1 from=translated src=- shape=9bf55bc0 vocab=50ea17c6
+-/
 theorem hilbertSym_sq_right {k : Type*} [Field k] {a b : k} (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym a (b ^ 2) = 1 :=
   hilbertSym_eq_one_of_sol ha (pow_ne_zero 2 hb) ⟨b, 0, 1, by simp, by ring⟩
 
 -- Theorem: the Hilbert symbol depends only on the square classes of its arguments: multiplying
 -- either argument by a nonzero square leaves it unchanged.
+/--
+@isnad1 id=eq.2h5v.s7.08b33fba97b0 from=translated src=- shape=04f825d1 vocab=58d9ea2c
+-/
 theorem hilbertSym_mul_square_eq {k : Type*} [Field k] {a a' b b' : k}
     (ha' : a' ≠ 0) (hb' : b' ≠ 0) :
     hilbertSym (a * a' ^ 2) (b * b' ^ 2) = hilbertSym a b := by
@@ -117,6 +128,9 @@ theorem hilbertSym_mul_square_eq {k : Type*} [Field k] {a a' b b' : k}
 -- Theorem: for odd `p` and units `u`, `v` in `ZMod p`, the equation `u x² + v y² = 1` has a
 -- solution.  If either coefficient is a square this is immediate; otherwise the quotient
 -- `v / u` is a square and one reduces to `ZMod.sq_add_sq`.
+/--
+@isnad1 id=ex.3h3v.s8.4b85605e1929 from=translated src=- shape=de4348a0 vocab=2f89bb01
+-/
 theorem zmod_sq_add_sq_eq_one {p : ℕ} [Fact (Nat.Prime p)] (_hp : p ≠ 2)
     {u v : ZMod p} (hu : u ≠ 0) (hv : v ≠ 0) :
     ∃ x y : ZMod p, u * x ^ 2 + v * y ^ 2 = 1 := by
@@ -169,6 +183,9 @@ theorem zmod_sq_add_sq_eq_one {p : ℕ} [Fact (Nat.Prime p)] (_hp : p ≠ 2)
 
 -- Theorem: the Hilbert symbol of two `p`-adic units is `1` for odd `p`.  This is case `00`
 -- of Serre's formula.
+/--
+@isnad1 id=eq.1h3v.s7.f20eb61fff4e from=translated src=- shape=b28e6f33 vocab=d6bf10b2
+-/
 theorem hilbertSym_padicInt_units {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2)
     (u v : ℤ_[p]ˣ) :
     hilbertSym (u : ℚ_[p]) (v : ℚ_[p]) = 1 := by
@@ -213,6 +230,9 @@ theorem hilbertSym_padicInt_units {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2)
 
 -- Theorem: case `00` of Serre's formula in `ℚ_[p]`-intrinsic form: two `p`-adic numbers of
 -- norm `1` (i.e. two units) have Hilbert symbol `1`.
+/--
+@isnad1 id=eq.3h3v.s6.b7a5267e3fa6 from=translated src=- shape=10c878dc vocab=093f3a41
+-/
 theorem hilbertSym_padic_odd_case00 {p : ℕ} [Fact (Nat.Prime p)] (hp : p ≠ 2)
     {a b : ℚ_[p]} (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) : hilbertSym a b = 1 := by
   let A : ℤ_[p] := ⟨a, le_of_eq ha⟩
@@ -419,6 +439,9 @@ private theorem isSquare_toZMod_of_sol (u : ℤ_[p]ˣ) {c : ℚ_[p]}
 -- Theorem: case `10` of Serre's formula for odd `p`: the Hilbert symbol of a `p`-adic unit
 -- `u` and an element `c` of norm `p⁻¹` (i.e. valuation `1`) is the Legendre symbol `(u/p)`,
 -- independently of the unit part of `c`.
+/--
+@isnad1 id=eq.2h3v.s8.b0574ecf9fe7 from=translated src=- shape=c8018ad2 vocab=626b6aa8
+-/
 theorem hilbertSym_padic_odd_case10 (hp : p ≠ 2) (u : ℤ_[p]ˣ) {c : ℚ_[p]}
     (hc : ‖c‖ = (p : ℝ)⁻¹) :
     hilbertSym (u : ℚ_[p]) c = (quadraticChar (ZMod p)) (PadicInt.toZMod (u : ℤ_[p])) := by
@@ -532,6 +555,9 @@ private theorem isSquare_neg_one_of_sol {z x y : ℚ_[p]}
 
 -- Theorem: case `11` of Serre's formula for odd `p`: `(p,p)_p = (-1)^{(p-1)/2}`, written
 -- here as the quadratic character of `-1` modulo `p`.
+/--
+@isnad1 id=eq.1h1v.s7.c948b654433f from=translated src=- shape=a41ed0a9 vocab=6b91a035
+-/
 theorem hilbertSym_padic_odd_case11 (hp : p ≠ 2) :
     hilbertSym (p : ℚ_[p]) (p : ℚ_[p]) = (quadraticChar (ZMod p)) (-1 : ZMod p) := by
   have hpQ_ne : (p : ℚ_[p]) ≠ 0 := by
@@ -623,6 +649,9 @@ private theorem isSquare_neg_mul_of_sol (u v : ℤ_[p]ˣ) {z x y : ℚ_[p]}
 
 -- Theorem: case `11` with unit parts: for units `u`, `v` and odd `p`,
 -- `(p u, p v)_p = (-1)^{(p-1)/2} (u/p) (v/p) = χ(-uv)`.
+/--
+@isnad1 id=eq.1h3v.s9.ae4db65c581b from=translated src=- shape=98f3490e vocab=a85069b4
+-/
 theorem hilbertSym_padic_odd_case11_units (hp : p ≠ 2) (u v : ℤ_[p]ˣ) :
     hilbertSym ((p : ℚ_[p]) * (u : ℚ_[p])) ((p : ℚ_[p]) * (v : ℚ_[p]))
       = (quadraticChar (ZMod p))
@@ -860,6 +889,9 @@ private lemma hilbertSym_reduce (a b : ℚ_[p]) (ha : a ≠ 0) (hb : b ≠ 0) :
   exact hilbertSym_mul_square_eq (zpow_ne_zero _ hp0) (zpow_ne_zero _ hp0)
 
 -- Theorem: Serre's formula for the Hilbert symbol at an odd prime `p`.
+/--
+@isnad1 id=eq.3h3v.s9.4d534238b5a1 from=translated src=- shape=c9410083 vocab=1e3e76c8
+-/
 theorem hilbertSym_padic_odd_eq (hp : p ≠ 2) {a b : ℚ_[p]} (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym a b
       = parityPow ((quadraticChar (ZMod p)) (-1 : ZMod p)) (a.valuation * b.valuation)
@@ -913,6 +945,9 @@ theorem hilbertSym_padic_odd_eq (hp : p ≠ 2) {a b : ℚ_[p]} (ha : a ≠ 0) (h
       ring
 
 -- Theorem: the Hilbert symbol on `ℚ_[p]` is additive in the first argument for odd `p`.
+/--
+@isnad1 id=eq.1h4v.s6.546132078cf8 from=translated src=- shape=12e37817 vocab=ddaf1094
+-/
 theorem hilbertSym_padic_odd_mul_left (hp : p ≠ 2) (a a' b : ℚ_[p]) :
     hilbertSym (a * a') b = hilbertSym a b * hilbertSym a' b := by
   rcases eq_or_ne a 0 with rfl | ha

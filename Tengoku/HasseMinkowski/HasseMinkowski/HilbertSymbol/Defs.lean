@@ -28,14 +28,23 @@ noncomputable def hilbertSym {k : Type*} [Field k] (a b : k) : ℤ :=
     then 1 else -1
 
 -- Theorem: the Hilbert symbol vanishes if either argument is zero.
+/--
+@isnad1 id=eq.0h2v.s5.87cb2409cbb5 from=translated src=- shape=744acb95 vocab=9e7eccc8
+-/
 theorem hilbertSym_zero_left {k : Type*} [Field k] (a : k) : hilbertSym 0 a = 0 := by
   simp [hilbertSym]
 
 -- Theorem: the Hilbert symbol vanishes if either argument is zero.
+/--
+@isnad1 id=eq.0h2v.s5.c3e4c60dc27f from=translated src=- shape=1b013241 vocab=9e7eccc8
+-/
 theorem hilbertSym_zero_right {k : Type*} [Field k] (a : k) : hilbertSym a 0 = 0 := by
   simp [hilbertSym]
 
 -- Theorem: `hilbertSym a b = 0` exactly when one of the arguments is zero.
+/--
+@isnad1 id=iff.0h3v.s5.e856dced3d82 from=translated src=- shape=7ce5e6c6 vocab=9e7eccc8
+-/
 theorem hilbertSym_eq_zero_iff {k : Type*} [Field k] (a b : k) :
     hilbertSym a b = 0 ↔ a = 0 ∨ b = 0 := by
   by_cases h : a = 0 ∨ b = 0
@@ -53,6 +62,9 @@ theorem hilbertSym_eq_zero_iff {k : Type*} [Field k] (a b : k) :
       norm_num at hz
 
 -- Theorem: the Hilbert symbol only takes values among `1`, `0`, `-1`.
+/--
+@isnad1 id=or.0h3v.s5.c1e966e971d8 from=translated src=- shape=86174141 vocab=a2a0b30e
+-/
 theorem hilbertSym_eq_one_or {k : Type*} [Field k] (a b : k) :
     hilbertSym a b = 1 ∨ hilbertSym a b = 0 ∨ hilbertSym a b = -1 := by
   by_cases h : a = 0 ∨ b = 0
@@ -69,6 +81,9 @@ theorem hilbertSym_eq_one_or {k : Type*} [Field k] (a b : k) :
       rw [ite_eq_right h, ite_eq_right hs]
 
 -- Theorem: the Hilbert symbol only takes values among `-1`, `0`, `1`.
+/--
+@isnad1 id=or.0h3v.s5.e39d6f0da71a from=translated src=- shape=4ccab150 vocab=a2a0b30e
+-/
 theorem hilbertSym_eq_neg_one_or {k : Type*} [Field k] (a b : k) :
     hilbertSym a b = -1 ∨ hilbertSym a b = 0 ∨ hilbertSym a b = 1 := by
   rcases hilbertSym_eq_one_or a b with h1 | h0 | hm1
@@ -77,6 +92,9 @@ theorem hilbertSym_eq_neg_one_or {k : Type*} [Field k] (a b : k) :
   · exact Or.inl hm1
 
 -- Theorem: the Hilbert symbol is symmetric in its two arguments.
+/--
+@isnad1 id=eq.0h3v.s4.d93da6b75d9b from=translated src=- shape=3ad41523 vocab=9e7eccc8
+-/
 theorem hilbertSym_comm {k : Type*} [Field k] (a b : k) :
     hilbertSym a b = hilbertSym b a := by
   by_cases h : a = 0 ∨ b = 0
@@ -111,6 +129,9 @@ namespace HasBilinHilbertSym
 variable {k : Type*} [Field k] [HasBilinHilbertSym k]
 
 -- Theorem: bilinearity in the second argument, derived from `mul_left_eq` and symmetry.
+/--
+@isnad1 id=eq.0h4v.s5.7f4366449bc8 from=translated src=- shape=6c54b2f0 vocab=f030bb33
+-/
 theorem mul_right_eq {a b b' : k} :
     hilbertSym a (b * b') = hilbertSym a b * hilbertSym a b' := by
   rw [hilbertSym_comm a (b * b'), mul_left_eq, hilbertSym_comm b a, hilbertSym_comm b' a]

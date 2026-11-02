@@ -36,7 +36,9 @@ namespace HasseMinkowski
 open Filter
 attribute [local instance] Classical.propDecidable
 
-/-- A prime bundled as a natural number carries its own `Fact` instance.-/
+/-- A prime bundled as a natural number carries its own `Fact` instance.
+@isnad1 id=fact.0h1v.s3.a3e3babf4cb6 from=translated src=- shape=e06a5d34 vocab=8dd00e84
+-/
 instance instFactPrimeCoeNat (p : Nat.Primes) : Fact (Nat.Prime (p : ℕ)) := ⟨p.2⟩
 
 /-! ### Almost all local symbols are trivial
@@ -56,6 +58,9 @@ private noncomputable def badPrimes (a b : ℚ) : Finset Nat.Primes :=
 
 -- Theorem: for fixed nonzero `a b : ℚ`, the Hilbert symbol `(a,b)_p` is `1` for all but
 -- finitely many primes `p`.
+/--
+@isnad1 id=eventual.2h2v.s7.01f3db9e900e from=translated src=- shape=0f134b26 vocab=379addbc
+-/
 theorem almost_all_one {a b : ℚ} (ha : a ≠ 0) (hb : b ≠ 0) :
     ∀ᶠ p : Nat.Primes in Filter.cofinite,
       hilbertSym (a : ℚ_[p]) (b : ℚ_[p]) = 1 := by
@@ -121,6 +126,9 @@ theorem almost_all_one {a b : ℚ} (ha : a ≠ 0) (hb : b ≠ 0) :
   simp [parityPow]
 
 -- Theorem: the set of primes at which `(a,b)_p` is nontrivial is finite.
+/--
+@isnad1 id=finite.2h2v.s7.1d9d160dbfb7 from=translated src=- shape=1e75f775 vocab=e846a57a
+-/
 theorem finite_nontrivial_hilbertSym {a b : ℚ} (ha : a ≠ 0) (hb : b ≠ 0) :
     {p : Nat.Primes | hilbertSym (a : ℚ_[p]) (b : ℚ_[p]) ≠ 1}.Finite :=
   Filter.eventually_cofinite.mp (almost_all_one ha hb)
@@ -133,6 +141,9 @@ the obvious point `(c, 1, 0)` with `a = c²`.  Consequently the product over all
 `1`; this is the special case of Hilbert reciprocity that needs no quadratic reciprocity. -/
 
 -- Theorem: if `a` is a nonzero rational square then `(a,b)_p = 1` for every prime `p`.
+/--
+@isnad1 id=eq.3h3v.s7.019e11fcee04 from=translated src=- shape=405c953c vocab=d7381af4
+-/
 theorem hilbertSym_rat_eq_one_of_isSquare_left {a b : ℚ} (ha0 : a ≠ 0) (ha : IsSquare a)
     (hb : b ≠ 0) (p : Nat.Primes) :
     hilbertSym (a : ℚ_[p]) (b : ℚ_[p]) = 1 := by
@@ -147,6 +158,9 @@ theorem hilbertSym_rat_eq_one_of_isSquare_left {a b : ℚ} (ha0 : a ≠ 0) (ha :
 
 -- Theorem: Hilbert reciprocity for the case where one argument is a square: the product of
 -- all local symbols (including the archimedean one) is `1`.
+/--
+@isnad1 id=eq.3h2v.s7.4d6d7b58869d from=translated src=- shape=7edce5a0 vocab=f070c48d
+-/
 theorem prod_eq_one_of_isSquare_left {a b : ℚ} (ha0 : a ≠ 0) (ha : IsSquare a)
     (hb : b ≠ 0) :
     (∏ᶠ p : Nat.Primes, hilbertSym (a : ℚ_[p]) (b : ℚ_[p]))
@@ -163,6 +177,9 @@ theorem prod_eq_one_of_isSquare_left {a b : ℚ} (ha0 : a ≠ 0) (ha : IsSquare 
     hilbertSym_sq_left (Rat.cast_ne_zero.mpr hc0) (Rat.cast_ne_zero.mpr hb), one_mul]
 
 -- Theorem: Hilbert reciprocity for the case where the second argument is a square.
+/--
+@isnad1 id=eq.3h2v.s7.2b3371900fa0 from=translated src=- shape=d9a56c57 vocab=f070c48d
+-/
 theorem prod_eq_one_of_isSquare_right {a b : ℚ} (ha : a ≠ 0) (hb0 : b ≠ 0)
     (hb : IsSquare b) :
     (∏ᶠ p : Nat.Primes, hilbertSym (a : ℚ_[p]) (b : ℚ_[p]))
@@ -174,6 +191,9 @@ theorem prod_eq_one_of_isSquare_right {a b : ℚ} (ha : a ≠ 0) (hb0 : b ≠ 0)
   exact prod_eq_one_of_isSquare_left hb0 hb ha
 
 -- Theorem: Hilbert reciprocity holds as soon as *either* argument is a square.
+/--
+@isnad1 id=eq.3h2v.s7.f753d96b009d from=translated src=- shape=ecf7e75e vocab=f070c48d
+-/
 theorem prod_eq_one_of_isSquare {a b : ℚ} (ha : a ≠ 0) (hb : b ≠ 0)
     (h : IsSquare a ∨ IsSquare b) :
     (∏ᶠ p : Nat.Primes, hilbertSym (a : ℚ_[p]) (b : ℚ_[p]))
@@ -235,6 +255,9 @@ private theorem hilbertSym_padic_mul_right (p : Nat.Primes) (a b b' : ℚ_[p]) :
   exact hilbertSym_padic_mul_left p b b' a
 
 -- Theorem: `hilbertProd` is multiplicative in the first argument.
+/--
+@isnad1 id=eq.3h3v.s5.dce5eae8752e from=translated src=- shape=4697ad2a vocab=4c79d0f6
+-/
 theorem hilbertProd_mul_left (a a' b : ℚ) (ha : a ≠ 0) (ha' : a' ≠ 0) (hb : b ≠ 0) :
     hilbertProd (a * a') b = hilbertProd a b * hilbertProd a' b := by
   unfold hilbertProd
@@ -251,6 +274,9 @@ theorem hilbertProd_mul_left (a a' b : ℚ) (ha : a ≠ 0) (ha' : a' ≠ 0) (hb 
   ring
 
 -- Theorem: `hilbertProd` is multiplicative in the second argument.
+/--
+@isnad1 id=eq.3h3v.s5.a9632ae57c2c from=translated src=- shape=11dbeac9 vocab=4c79d0f6
+-/
 theorem hilbertProd_mul_right (a b b' : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) (hb' : b' ≠ 0) :
     hilbertProd a (b * b') = hilbertProd a b * hilbertProd a b' := by
   unfold hilbertProd
@@ -271,11 +297,17 @@ theorem hilbertProd_mul_right (a b b' : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) (hb' 
   ring
 
 -- Theorem: `hilbertProd` is symmetric in its two arguments.
+/--
+@isnad1 id=eq.0h2v.s3.40b458c71a27 from=translated src=- shape=ab795eaa vocab=ed4e3fd1
+-/
 theorem hilbertProd_comm (a b : ℚ) : hilbertProd a b = hilbertProd b a := by
   unfold hilbertProd
   rw [finprod_congr (fun p => hilbertSym_comm _ _), hilbertSym_comm]
 
 -- Theorem: `hilbertProd a 1 = 1` for nonzero `a`.
+/--
+@isnad1 id=eq.1h1v.s4.bc78ea189e84 from=translated src=- shape=35893367 vocab=ed4e3fd1
+-/
 theorem hilbertProd_one_right (a : ℚ) (ha : a ≠ 0) : hilbertProd a 1 = 1 := by
   unfold hilbertProd
   have hp : ∀ p : Nat.Primes, hilbertSym (a : ℚ_[p]) (((1 : ℚ) : ℚ_[p])) = 1 := fun p => by
@@ -289,6 +321,9 @@ theorem hilbertProd_one_right (a : ℚ) (ha : a ≠ 0) : hilbertProd a 1 = 1 := 
   rw [hr, one_mul]
 
 -- Theorem: `hilbertProd 1 b = 1` for nonzero `b`.
+/--
+@isnad1 id=eq.1h1v.s4.2d5aced83626 from=translated src=- shape=688fd2fc vocab=ed4e3fd1
+-/
 theorem hilbertProd_one_left (b : ℚ) (hb : b ≠ 0) : hilbertProd 1 b = 1 := by
   unfold hilbertProd
   have hp : ∀ p : Nat.Primes, hilbertSym (((1 : ℚ) : ℚ_[p])) (b : ℚ_[p]) = 1 := fun p => by
@@ -302,6 +337,9 @@ theorem hilbertProd_one_left (b : ℚ) (hb : b ≠ 0) : hilbertProd 1 b = 1 := b
   rw [hr, one_mul]
 
 -- Theorem: multiplying the second argument by a nonzero square leaves `hilbertProd` unchanged.
+/--
+@isnad1 id=eq.3h3v.s6.5adb6b9e6cb7 from=translated src=- shape=9ae5ef32 vocab=a32369ef
+-/
 theorem hilbertProd_mul_square_right (a b c : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) :
     hilbertProd a (b * c ^ 2) = hilbertProd a b := by
   rw [hilbertProd_mul_right a b (c ^ 2) ha hb (pow_ne_zero 2 hc)]
@@ -310,6 +348,9 @@ theorem hilbertProd_mul_square_right (a b c : ℚ) (ha : a ≠ 0) (hb : b ≠ 0)
   rw [h, mul_one]
 
 -- Theorem: multiplying the first argument by a nonzero square leaves `hilbertProd` unchanged.
+/--
+@isnad1 id=eq.3h3v.s6.9115b947914b from=translated src=- shape=8f0ac04f vocab=a32369ef
+-/
 theorem hilbertProd_mul_square_left (a c b : ℚ) (ha : a ≠ 0) (hc : c ≠ 0) (hb : b ≠ 0) :
     hilbertProd (a * c ^ 2) b = hilbertProd a b := by
   rw [hilbertProd_mul_left a (c ^ 2) b ha (pow_ne_zero 2 hc) hb]
@@ -318,6 +359,9 @@ theorem hilbertProd_mul_square_left (a c b : ℚ) (ha : a ≠ 0) (hc : c ≠ 0) 
   rw [h, mul_one]
 
 -- Theorem: inverting the first argument leaves `hilbertProd` unchanged.
+/--
+@isnad1 id=eq.2h2v.s5.831f250cab60 from=translated src=- shape=09feb538 vocab=de436808
+-/
 theorem hilbertProd_inv_left (a b : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertProd a⁻¹ b = hilbertProd a b := by
   have h : a = a⁻¹ * a ^ 2 := by field_simp
@@ -330,11 +374,17 @@ theorem hilbertProd_inv_left (a b : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) :
   exact h2.symm
 
 -- Theorem: inverting the second argument leaves `hilbertProd` unchanged.
+/--
+@isnad1 id=eq.2h2v.s5.7ece48908b22 from=translated src=- shape=a4fd77a3 vocab=de436808
+-/
 theorem hilbertProd_inv_right (a b : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertProd a b⁻¹ = hilbertProd a b := by
   rw [hilbertProd_comm a b⁻¹, hilbertProd_inv_left b a hb ha, hilbertProd_comm]
 
 -- Theorem: `hilbertProd` is multiplicative over a finite product in the first argument.
+/--
+@isnad1 id=eq.2h4v.s6.2e89f3f1618a from=translated src=- shape=6ecac5b1 vocab=812bc2c0
+-/
 theorem hilbertProd_finset_prod_left {ι : Type*} (S : Finset ι) (f : ι → ℚ) (b : ℚ)
     (hf : ∀ i ∈ S, f i ≠ 0) (hb : b ≠ 0) :
     hilbertProd (∏ i ∈ S, f i) b = ∏ i ∈ S, hilbertProd (f i) b := by
@@ -348,6 +398,9 @@ theorem hilbertProd_finset_prod_left {ι : Type*} (S : Finset ι) (f : ι → �
         hilbertProd_mul_left (f i) (∏ j ∈ S, f j) b hfi hprod hb, ih hfS]
 
 -- Theorem: `hilbertProd` is multiplicative over a finite product in the second argument.
+/--
+@isnad1 id=eq.2h4v.s6.e3215f3829d2 from=translated src=- shape=e1e265be vocab=812bc2c0
+-/
 theorem hilbertProd_finset_prod_right {ι : Type*} (S : Finset ι) (f : ι → ℚ) (a : ℚ)
     (hf : ∀ i ∈ S, f i ≠ 0) (ha : a ≠ 0) :
     hilbertProd a (∏ i ∈ S, f i) = ∏ i ∈ S, hilbertProd a (f i) := by
@@ -368,6 +421,9 @@ Every nonzero rational is a generator product times a nonzero square.  Write `q 
 product of its (prime) factors. -/
 
 -- Theorem: a generator of `ℚ*/ℚ*²` is nonzero.
+/--
+@isnad1 id=ne.1h1v.s3.9af0425b9303 from=translated src=- shape=4f29f389 vocab=08512b75
+-/
 theorem IsGen.ne_zero {g : ℚ} (hg : IsGen g) : g ≠ 0 := by
   rcases hg with rfl | ⟨p, rfl⟩
   · norm_num
@@ -375,6 +431,9 @@ theorem IsGen.ne_zero {g : ℚ} (hg : IsGen g) : g ≠ 0 := by
 
 -- Theorem: every nonzero rational is a generator product times a nonzero square: `q = S.prod id
 -- * s²` with every element of `S` a generator and `s ≠ 0`.
+/--
+@isnad1 id=ex.1h1v.s6.7637c07051ca from=translated src=- shape=c52c91ae vocab=4f46d2b3
+-/
 theorem exists_gen_prod_mul_sq (q : ℚ) (hq : q ≠ 0) :
     ∃ (S : Finset ℚ) (s : ℚ), (∀ g ∈ S, IsGen g) ∧ s ≠ 0 ∧ q = S.prod id * s ^ 2 := by
   set u : ℕ := q.num.natAbs with hu_def
@@ -453,6 +512,9 @@ theorem exists_gen_prod_mul_sq (q : ℚ) (hq : q ≠ 0) :
 
 -- Theorem: `hilbertProd g b = 1` for a generator `g` and any nonzero `b`, assuming the
 -- generator cases of Hilbert reciprocity.
+/--
+@isnad1 id=eq.3h2v.s5.1a313f153d90 from=translated src=- shape=18319911 vocab=965881bf
+-/
 theorem hilbertProd_gen_left
     (hgen : ∀ g h : ℚ, IsGen g → IsGen h → hilbertProd g h = 1)
     (g : ℚ) (hg : IsGen g) (b : ℚ) (hb : b ≠ 0) : hilbertProd g b = 1 := by
@@ -470,6 +532,9 @@ theorem hilbertProd_gen_left
   rw [hsq, mul_one]
 
 -- Theorem: `hilbertProd a b = 1` for all nonzero `a b`, assuming the generator cases.
+/--
+@isnad1 id=eq.3h2v.s5.1ec05fb7fbd2 from=translated src=- shape=ec424cb8 vocab=965881bf
+-/
 theorem hilbertProd_eq_one
     (hgen : ∀ g h : ℚ, IsGen g → IsGen h → hilbertProd g h = 1)
     {a b : ℚ} (ha : a ≠ 0) (hb : b ≠ 0) : hilbertProd a b = 1 := by
@@ -487,6 +552,9 @@ theorem hilbertProd_eq_one
 
 -- Theorem: Hilbert reciprocity follows from its restriction to pairs of square-class
 -- generators `g ∈ {-1} ∪ {primes}`.
+/--
+@isnad1 id=hilbertr.1h0v.s4.af5770a60381 from=translated src=- shape=f6469d52 vocab=80d41585
+-/
 theorem hilbertReciprocity_of_generators
     (hgen : ∀ g h : ℚ, IsGen g → IsGen h → hilbertProd g h = 1) :
     HilbertReciprocity := by
@@ -813,6 +881,9 @@ private lemma prime_ne_twoPrime {p : Nat.Primes} (hp2 : (p : ℕ) ≠ 2) : p ≠
   fun h => hp2 (congrArg Subtype.val h)
 
 -- Theorem: Hilbert reciprocity for the pair `(-1,-1)`.
+/--
+@isnad1 id=eq.0h0v.s4.605f9b87f7cf from=translated src=- shape=01860ef4 vocab=dc484070
+-/
 theorem hilbertProd_neg_one_neg_one : hilbertProd (-1) (-1) = 1 := by
   unfold hilbertProd
   rw [finprod_hilbertSym_eq_finset_prod (S := {twoPrime}) ?_]
@@ -831,6 +902,9 @@ theorem hilbertProd_neg_one_neg_one : hilbertProd (-1) (-1) = 1 := by
       padic_valuation_neg_one padic_valuation_neg_one
 
 -- Theorem: Hilbert reciprocity for the pair `(-1,p)`.
+/--
+@isnad1 id=eq.0h1v.s4.0042bc11e390 from=translated src=- shape=cb29b8f4 vocab=96c3644b
+-/
 theorem hilbertProd_neg_one_prime (p : Nat.Primes) : hilbertProd (-1) (p : ℚ) = 1 := by
   by_cases hp2 : (p : ℕ) = 2
   · obtain rfl : p = twoPrime := Subtype.ext hp2
@@ -883,6 +957,9 @@ theorem hilbertProd_neg_one_prime (p : Nat.Primes) : hilbertProd (-1) (p : ℚ) 
         padic_valuation_neg_one (padic_valuation_prime_ne hℓp.symm)
 
 -- Theorem: Hilbert reciprocity for the pair `(p,p)`.
+/--
+@isnad1 id=eq.0h1v.s4.174041c0e066 from=translated src=- shape=46812c29 vocab=39776e2a
+-/
 theorem hilbertProd_prime_self (p : Nat.Primes) : hilbertProd (p : ℚ) (p : ℚ) = 1 := by
   by_cases hp2 : (p : ℕ) = 2
   · obtain rfl : p = twoPrime := Subtype.ext hp2
@@ -1034,6 +1111,9 @@ private lemma hilbertSym_padic_two_two_odd (p q : Nat.Primes) (hp2 : (p : ℕ) �
       ZMod.neg_one_pow_div_two_of_three_mod_four hq3]
 
 -- Theorem: Hilbert reciprocity for the pair `(2,q)`, `q` odd.
+/--
+@isnad1 id=eq.1h1v.s5.a16a2d4ff4a7 from=translated src=- shape=96a9ebd2 vocab=39776e2a
+-/
 theorem hilbertProd_two_prime (q : Nat.Primes) (hq2 : (q : ℕ) ≠ 2) :
     hilbertProd (2 : ℚ) (q : ℚ) = 1 := by
   have hq_nd : ¬ 2 ∣ (q : ℕ) := not_two_dvd_of_ne_two hq2
@@ -1068,6 +1148,9 @@ theorem hilbertProd_two_prime (q : Nat.Primes) (hq2 : (q : ℕ) ≠ 2) :
       (padic_valuation_two_cast h2) (padic_valuation_prime_ne hℓq.symm)
 
 -- Theorem: Hilbert reciprocity for the pair `(p,q)` of distinct primes.
+/--
+@isnad1 id=eq.1h2v.s5.42f7ed129077 from=translated src=- shape=d3f4ee1e vocab=39776e2a
+-/
 theorem hilbertProd_prime_prime (p q : Nat.Primes) (hpq : p ≠ q) :
     hilbertProd (p : ℚ) (q : ℚ) = 1 := by
   by_cases hp2 : (p : ℕ) = 2
@@ -1125,6 +1208,9 @@ theorem hilbertProd_prime_prime (p q : Nat.Primes) (hpq : p ≠ q) :
 
 -- Theorem: Hilbert reciprocity over `ℚ`: the product of the local Hilbert symbols over all
 -- places is `1`.
+/--
+@isnad1 id=hilbertr.0h0v.s0.ea6ef2a4bad9 from=translated src=- shape=45709ebd vocab=ea6ef2a4
+-/
 theorem hilbertReciprocity : HilbertReciprocity :=
   hilbertReciprocity_of_generators (fun g h hg hh => by
     rcases hg with rfl | ⟨p, rfl⟩

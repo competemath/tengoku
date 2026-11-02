@@ -35,7 +35,9 @@ namespace Rat
 open scoped BigOperators
 open scoped Function
 
-/-- The `n`-th prime is prime, as an instance.-/
+/-- The `n`-th prime is prime, as an instance.
+@isnad1 id=fact.0h1v.s3.a3e3babf4cb6 from=translated src=- shape=e06a5d34 vocab=8dd00e84
+-/
 local instance fact_prime_of_primes (p : Nat.Primes) : Fact (Nat.Prime (p : ℕ)) := ⟨p.2⟩
 
 /-- The finite embedding of `ℚ` into the product of the completions of `ℚ` at a finite set of
@@ -46,11 +48,17 @@ noncomputable abbrev finiteEmbedding (S : Finset Nat.Primes) (x : ℚ) : ℝ × 
 /-! ### Elementary lemmas -/
 
 -- Theorem: the norm of `p ^ k` in `ℚ_[p]` is `p ^ (-k)` (as a real number).
+/--
+@isnad1 id=eq.0h2v.s6.4316ec2cb722 from=translated src=- shape=1f17efeb vocab=914e5da4
+-/
 lemma norm_pow_eq (p : ℕ) [Fact p.Prime] (k : ℕ) :
     ‖(p : ℚ_[p]) ^ k‖ = (p : ℝ) ^ (-(k : ℤ)) := by
   rw [norm_pow, Padic.norm_p, inv_pow, ← zpow_natCast, zpow_neg]
 
 -- Theorem: the norm of a nonzero natural number `D` in `ℚ_[p]` is `p ^ (-v_p(D))`.
+/--
+@isnad1 id=eq.1h2v.s6.228808923ace from=translated src=- shape=b3d59296 vocab=9a5e2083
+-/
 lemma norm_natCast_eq (p : ℕ) [Fact p.Prime] {D : ℕ} (hD : D ≠ 0) :
     ‖(D : ℚ_[p])‖ = (p : ℝ) ^ (-(padicValNat p D : ℤ)) := by
   have hD' : (D : ℚ_[p]) ≠ 0 := by
@@ -59,6 +67,9 @@ lemma norm_natCast_eq (p : ℕ) [Fact p.Prime] {D : ℕ} (hD : D ≠ 0) :
 
 -- Theorem (per-place estimate): if `D * x - n = p ^ (m + v) * w` with `(n : ℚ) = D * c`,
 -- `‖D‖ = p ^ (-v)` and `‖w‖ ≤ 1`, then `‖x - c‖ ≤ p ^ (-m)`.
+/--
+@isnad1 id=le.5h8v.s7.9996e138c232 from=translated src=- shape=bae8befd vocab=713704fd
+-/
 lemma norm_sub_le (p : ℕ) [Fact p.Prime] {D : ℕ} (hD : D ≠ 0)
     {c x : ℚ} {n : ℤ} (hn : (n : ℚ) = D * c)
     {m v : ℕ} (hv : ‖(D : ℚ_[p])‖ = (p : ℝ) ^ (-(v : ℤ)))
@@ -96,6 +107,9 @@ lemma norm_sub_le (p : ℕ) [Fact p.Prime] {D : ℕ} (hD : D ≠ 0)
 
 -- Theorem (CRT): for pairwise coprime prime powers `(π i) ^ k i` and integer residues `a i`
 -- there is an integer `r` congruent to `a i` modulo `(π i) ^ k i` for every `i`.
+/--
+@isnad1 id=ex.1h5v.s6.9209fb2ff079 from=translated src=- shape=2611a2eb vocab=d6e2335e
+-/
 lemma exists_int_modEq {ι : Type*} (π : ι → Nat.Primes)
     (hπ : Function.Injective π) (t : Finset ι) (k : ι → ℕ) (a : ι → ℤ) :
     ∃ r : ℤ, ∀ i ∈ t, r ≡ a i [ZMOD ((π i : ℕ) : ℤ) ^ (k i)] := by
@@ -129,6 +143,9 @@ lemma exists_int_modEq {ι : Type*} (π : ι → Nat.Primes)
   exact h1.trans h3
 
 -- Theorem: a grid of spacing `1 / L ^ j` with `L > 1` hits every real to within one step.
+/--
+@isnad1 id=ex.1h3v.s6.7fce481c5c9d from=translated src=- shape=e4befd2e vocab=6c2af829
+-/
 lemma exists_int_grid (L : ℝ) (hL : 1 < L) (u : ℝ) (j : ℕ) :
     ∃ s : ℤ, |u - (s : ℝ) / L ^ j| < 1 / L ^ j := by
   refine ⟨⌊u * L ^ j⌋, ?_⟩
@@ -146,6 +163,9 @@ lemma exists_int_grid (L : ℝ) (hL : 1 < L) (u : ℝ) (j : ℕ) :
 
 -- Theorem: if `L` is a prime different from `p`, then `a + b * (c / L ^ j)` is `p`-adically
 -- integral for all integers `a`, `b`, `c` and every `j`.
+/--
+@isnad1 id=le.2h6v.s6.182b4f94e4e4 from=translated src=- shape=34563f6a vocab=35a542f6
+-/
 lemma norm_add_mul_div_le_one (p : ℕ) [Fact p.Prime] {L : ℕ} (hL : Nat.Prime L) (hpL : p ≠ L)
     (a : ℤ) (b : ℕ) (c : ℤ) (j : ℕ) :
     ‖(((a : ℚ) + (b : ℚ) * ((c : ℚ) / (L : ℚ) ^ j) : ℚ) : ℚ_[p])‖ ≤ 1 := by

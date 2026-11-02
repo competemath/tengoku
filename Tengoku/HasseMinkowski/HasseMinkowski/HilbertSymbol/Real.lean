@@ -26,6 +26,9 @@ attribute [local instance] Classical.propDecidable
 
 -- Theorem: over `ℝ`, for nonzero `a` and `b`, `hilbertSym a b = 1` iff `0 < a ∨ 0 < b`,
 -- and `hilbertSym a b = -1` otherwise.
+/--
+@isnad1 id=eq.2h2v.s6.639b3f621d13 from=translated src=- shape=7b7d19b4 vocab=522b5bc9
+-/
 theorem hilbertSym_real_eq {a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSym a b = if 0 < a ∨ 0 < b then 1 else -1 := by
   have hne : ¬ (a = 0 ∨ b = 0) := by tauto
@@ -60,6 +63,9 @@ theorem hilbertSym_real_eq {a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) :
   · rw [ite_eq_right (fun hs => h (key.mp hs)), ite_eq_right h]
 
 -- Theorem: the real Hilbert symbol is multiplicative in its first argument.
+/--
+@isnad1 id=eq.0h3v.s5.ab135f78b222 from=translated src=- shape=e8aee5c6 vocab=5068cb81
+-/
 theorem hilbertSym_real_mul_left (a a' b : ℝ) :
     hilbertSym (a * a') b = hilbertSym a b * hilbertSym a' b := by
   by_cases hb : b = 0
