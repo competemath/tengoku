@@ -1,0 +1,1 @@
+-- KuroshProblemAtGkDimensionTwo: a factory bundle (data/intake/kurosh-problem-at-gk-dimension-two). This file only marks the library for Tengoku/All.lean.

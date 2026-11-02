@@ -28,6 +28,7 @@ import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
 import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
+import Tengoku.KuroshProblemAtGkDimensionTwo
 import Tengoku.Flt
 import Tengoku.Toric
 import Tengoku.LanaGenl
