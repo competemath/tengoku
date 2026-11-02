@@ -1,0 +1,1 @@
+-- MagnitudeConjecture: a factory bundle (data/intake/magnitude-conjecture). This file only marks the library for Tengoku/All.lean.
