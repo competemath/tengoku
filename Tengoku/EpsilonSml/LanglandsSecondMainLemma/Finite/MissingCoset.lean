@@ -28,7 +28,9 @@ open scoped BigOperators
 
 Translation by `w` negates the summand off the image of `p`, while preserving
 that complement. On the image, every fiber of `p` has the same cardinality as
-its two-element kernel.-/
+its two-element kernel.
+@isnad1 id=eq.8h7v.s10.c907a443f886 from=translated src=- shape=6abc0c89 vocab=ec3e37d5
+-/
 theorem missingCoset
     {V Z : Type*} [AddCommGroup V] [Fintype V]
     [AddCommGroup Z] [Fintype Z]

@@ -670,6 +670,9 @@ def formalSubstitution {k : Type*} [Field k]
   substitutionHom u (hasSubst_of_order_eq u e he hu)
     (powerSeries_ne_zero_of_order_eq u e hu)
 
+/--
+@isnad1 id=eq.2h4v.s9.439d5546a436 from=translated src=- shape=e40b679f vocab=508bfc8a
+-/
 @[simp] lemma formalSubstitution_coe {k : Type*} [Field k]
     (u : k⟦X⟧) (e : ℕ) (he : 0 < e) (hu : u.order = e) (p : k⟦X⟧) :
     formalSubstitution u e he hu (p : k⸨X⸩) =
@@ -677,7 +680,9 @@ def formalSubstitution {k : Type*} [Field k]
   exact substitutionHom_coe u _ _ p
 
 /-- Formal substitution multiplies Laurent residues by the exact order of the
-substituted power series (paper Lemma B.1).-/
+substituted power series (paper Lemma B.1).
+@isnad1 id=eq.2h4v.s9.ef6ecdbedf90 from=translated src=- shape=c3151c58 vocab=6cad7fef
+-/
 theorem substitution {k : Type*} [Field k]
     (u : k⟦X⟧) (e : ℕ) (he : 0 < e) (hu : u.order = e)
     (H : k⸨X⸩) :
@@ -701,7 +706,9 @@ theorem substitution {k : Type*} [Field k]
   ring
 
 /-- A change of uniformizer is the exact-order-one case of formal substitution,
-so it preserves residue.-/
+so it preserves residue.
+@isnad1 id=eq.1h3v.s9.34c698ba355a from=translated src=- shape=5be8269b vocab=5c6d01b6
+-/
 theorem change_uniformizer {k : Type*} [Field k]
     (u : k⟦X⟧) (hu : u.order = 1) (H : k⸨X⸩) :
     residue (formalSubstitution u 1 (by omega) hu H *

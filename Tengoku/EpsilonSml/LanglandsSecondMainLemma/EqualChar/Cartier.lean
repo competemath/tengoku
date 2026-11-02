@@ -88,7 +88,9 @@ private lemma trace_squareRoot (a : k) :
   exact htrace.symm
 
 /-- Absolute trace of the residue is invariant under Cartier.  This is the
-third identity in (D:EQ:Cartier).-/
+third identity in (D:EQ:Cartier).
+@isnad1 id=eq.0h2v.s9.242337a52ced from=translated src=- shape=5b15dde9 vocab=4384c0fc
+-/
 theorem cartier_residueTrace (η : Residues.FormalDifferential k) :
     Algebra.trace (ZMod 2) k (Residues.residue (cartier η)) =
       Algebra.trace (ZMod 2) k (Residues.residue η) := by
@@ -179,7 +181,9 @@ private lemma coeff_sq_even (f : k⸨X⸩) (m : ℤ) :
 
 /-- Cartier is Frobenius-semilinear: a squared Laurent coefficient can be
 pulled through the operator with one power removed.  This is the first
-identity in (D:EQ:Cartier).-/
+identity in (D:EQ:Cartier).
+@isnad1 id=eq.0h3v.s8.902245761024 from=translated src=- shape=7bf7323b vocab=b97a119b
+-/
 theorem cartier_square_mul (f : k⸨X⸩) (η : Residues.FormalDifferential k) :
     cartier (f ^ 2 * η) = f * cartier η := by
   ext m
@@ -399,7 +403,9 @@ private lemma cartier_single_neg_one (c : k) (hc : c ^ 2 = c) :
     simp
 
 /-- The Cartier operator fixes the logarithmic differential of every nonzero Laurent
-series.  This is the coefficient form of `Cart(du/u) = du/u` in (4.2.1).-/
+series.  This is the coefficient form of `Cart(du/u) = du/u` in (4.2.1).
+@isnad1 id=eq.1h2v.s10.82c6fdc2f802 from=translated src=- shape=4adcf957 vocab=80e61ea1
+-/
 theorem cartier_dlog (u : k⸨X⸩) (hu : u ≠ 0) :
     cartier (u⁻¹ * LaurentSeries.derivative k u) =
       u⁻¹ * LaurentSeries.derivative k u := by

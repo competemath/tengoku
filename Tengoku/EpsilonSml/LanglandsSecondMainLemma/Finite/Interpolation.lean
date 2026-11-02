@@ -143,7 +143,9 @@ private lemma teichmullerUnits_shifted_power_sum {p i : ℕ} {zeta : K} (hp : 2 
       simp_rw [teichmullerUnits_power_sum hzeta]
       exact binomial_root_sum (K := K) (by omega) (Nat.le_sub_one_of_lt hi) Delta
 
-/-- The first power sum in paper Lemma `O:D:interpolation`.-/
+/-- The first power sum in paper Lemma `O:D:interpolation`.
+@isnad1 id=eq.3h5v.s8.6d3568ba42ba from=translated src=- shape=8b33ee43 vocab=f6b28127
+-/
 lemma teichmullerSet_shifted_power_sum {p i : ℕ} {zeta : K} (hp : 2 < p)
     (hzeta : IsPrimitiveRoot zeta (p - 1)) (hi : i < p) (Delta : K) :
     ∑ xi ∈ teichmullerSet K p, (Delta + xi) ^ i =
@@ -216,7 +218,9 @@ private lemma weighted_binomial_root_sum {n i : ℕ} (hn : 1 < n)
       rw [hzero]
       simp [hiTop, hiPred]
 
-/-- The weighted nonzero power sum in paper Lemma `O:D:interpolation`.-/
+/-- The weighted nonzero power sum in paper Lemma `O:D:interpolation`.
+@isnad1 id=eq.4h5v.s8.832cc6a6c066 from=translated src=- shape=973c47c9 vocab=20d29c8c
+-/
 lemma teichmullerUnits_weighted_shifted_power_sum {p i : ℕ} {zeta : K}
     (hp : 2 < p) (hzeta : IsPrimitiveRoot zeta (p - 1))
     (hi0 : 0 < i) (hi : i < p) (Delta : K) :
@@ -365,7 +369,9 @@ private lemma teichmullerSet_reciprocal_sum {p : ℕ} {zeta : K}
   simp only [add_zero]
   linear_combination (Z * (p - 1 : ℕ)) * hpowpred
 
-/-- Exact finite interpolation over `{0} ∪ μ_(p-1)`.-/
+/-- Exact finite interpolation over `{0} ∪ μ_(p-1)`.
+@isnad1 id=eq.5h6v.s8.515e1354aa77 from=translated src=- shape=e1c4a69c vocab=74979f3c
+-/
 theorem interpolation {p i : ℕ} {zeta : K}
     (hprime : p.Prime) (hp : 2 < p) (hzeta : IsPrimitiveRoot zeta (p - 1))
     (hi : i < p) (Delta Z : K) (hZ : -Z ∉ teichmullerSet K p) :
@@ -618,7 +624,9 @@ private lemma differentiated_step_algebra
   ring_nf
   linear_combination (D * Z ^ 2 * N * I) * hAB
 
-/-- The algebraically differentiated finite interpolation identity.-/
+/-- The algebraically differentiated finite interpolation identity.
+@isnad1 id=eq.5h6v.s9.836497d0f9e1 from=translated src=- shape=c182be8c vocab=74979f3c
+-/
 theorem interpolation_derivative {p i : ℕ} {zeta : K}
     (hprime : p.Prime) (hp : 2 < p) (hzeta : IsPrimitiveRoot zeta (p - 1))
     (hi : i < p) (Delta Z : K) (hZ : -Z ∉ teichmullerSet K p) :
