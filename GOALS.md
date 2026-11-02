@@ -303,6 +303,70 @@ large
 </details>
 <!-- /goal -->
 
+<!-- goal: benchmark-readiness -->
+<details>
+<summary><b>Be ready for the comparison benchmarks within two to three days</b> · in progress (early-stage)</summary>
+
+<!-- people -->
+<details><summary>The statement</summary>
+
+Tengoku is in a state where the comparison benchmarks (the controlled comparison described under "Prove that Tengoku is
+worth having") can start, by 5 November 2026 at the latest and sooner if possible. That means: the libraries chosen
+for their relevance to the benchmark problems are registered, translated and their theorems trusted in the tree; the
+tree builds and the search index covers it; and the list of included libraries is written down before the first run.
+Every extra day beyond the first is spent making the tree better for the benchmark (more relevant libraries, fewer
+refused modules), never on anything that does not move the start date.
+
+</details>
+<details><summary>Why it matters</summary>
+
+The comparison is the evidence that a many-source library helps provers. It cannot start until the libraries it is
+supposed to show the value of are in the tree, and every day of delay is a day without that evidence.
+
+</details>
+<details><summary>Why it looks doable</summary>
+
+The pipeline from a registered library to trusted theorems runs without a person at the keyboard (setup, bump,
+verification against the tree, intake pull requests, merge queue). Libraries are registered from a repository address
+alone by `register_libraries.py`, so adding one costs a pipeline run, not hand work. The scouted candidates are
+already listed, and the first seven libraries of this batch are through the bump.
+
+</details>
+<details><summary>What it builds on</summary>
+
+- [Translate the bulk of the source libraries](#translate-the-registered-libraries): the work this goal speeds up
+- [Prove that Tengoku is worth having](#prove-the-value-of-tengoku): the comparison this goal prepares
+- [Emissary-Archangel](https://github.com/competemath/emissary-archangel): the pipeline that brings libraries in
+- [schemas/sources.json](schemas/sources.json): the registered libraries
+
+</details>
+<details><summary>Already tried</summary>
+
+Giant libraries (hundreds of thousands of modules) take days of runner time by themselves; the plan is to prefer many
+mid-sized libraries that cover benchmark problems, and to leave the giants for after the start.
+
+</details>
+<details><summary>Built on the work of</summary>
+
+- The authors of every source library ([schemas/sources.json](schemas/sources.json)): the theorems the comparison will draw on
+
+</details>
+<details><summary>Size</summary>
+
+medium
+
+</details>
+<!-- /people -->
+
+<details><summary>Suggestions (AI)</summary>
+
+<!-- suggestions -->
+<!-- /suggestions -->
+
+</details>
+</details>
+<!-- /goal -->
+
 ## Completed
 
 None yet.
