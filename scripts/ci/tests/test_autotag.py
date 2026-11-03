@@ -148,6 +148,21 @@ class Push(unittest.TestCase):
     def test_an_untouched_module_is_not_a_tagged_one(self):
         self.refused(Fake(), "nothing was tagged", {P1: sct.lean(1), P2: tagged_lean(2)})
 
+    def test_a_module_that_declares_no_theorem_comes_out_as_it_went_in_and_is_not_written(self):
+        """azurite part 1: ExactDiv.lean has only definitions, the tagger leaves it alone, and the artifact carries it unchanged"""
+        defs = sct.lean(2, "def two : Nat := 2\n")
+        gh = Fake({P1: sct.lean(1), P2: defs})
+        out = self.go(gh, {P1: created(1), P2: defs})
+        self.assertIn("tagged 1 module(s)", out)
+        tree = next(b for m, p, b in gh.writes if p.endswith("/git/trees"))
+        self.assertEqual([e["path"] for e in tree["tree"]], [P1])  # type: ignore[index]
+
+    def test_a_pr_whose_modules_all_need_no_tag_writes_nothing(self):
+        defs = {P1: sct.lean(1, "def one : Nat := 1\n"), P2: sct.lean(2, "def two : Nat := 2\n")}
+        gh = Fake(defs)
+        self.assertIn("nothing to tag", self.go(gh, dict(defs)))
+        self.assertEqual(gh.writes, [])
+
     def test_a_docstring_with_words_is_not_something_the_tagger_adds(self):
         # the tag is right, but the docstring the artifact carries has words the PR did not have: that is a change a compiler's documentation reads
         self.refused(Fake(), "changes more than tags", {P1: tagged_lean(1), P2: created(2)})
