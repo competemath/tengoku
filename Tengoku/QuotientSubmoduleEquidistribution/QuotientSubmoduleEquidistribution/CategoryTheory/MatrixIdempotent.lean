@@ -41,6 +41,9 @@ def matrixOfLinearMap {X Y : Mat K}
     exact Matrix.transpose
       (LinearMap.toMatrix (Pi.basisFun K X) (Pi.basisFun K Y) f)
 
+/--
+@isnad1 id=eq.0h2v.s6.eb9c7a6b5916 from=translated src=- shape=229521d3 vocab=29b72dda
+-/
 @[simp]
 lemma matrixOfLinearMap_id (X : Mat K) :
     matrixOfLinearMap (LinearMap.id (R := K) (M := X → K)) = 𝟙 X := by
@@ -51,6 +54,9 @@ lemma matrixOfLinearMap_id (X : Mat K) :
     (LinearMap.id (R := K) (M := X → K))) = 1
   rw [LinearMap.toMatrix_id, Matrix.transpose_one]
 
+/--
+@isnad1 id=eq.0h6v.s9.b5aede02ae43 from=translated src=- shape=a463f830 vocab=c1d67e9d
+-/
 @[simp]
 lemma matrixOfLinearMap_comp {X Y Z : Mat K}
     (f : (X → K) →ₗ[K] (Y → K))
@@ -86,7 +92,9 @@ def linearMapOfMatrix {X Y : Mat K} (p : X ⟶ Y) :
   exact Matrix.toLin (Pi.basisFun K X) (Pi.basisFun K Y) (Matrix.transpose p)
 
 /-- A row-source matrix is recovered from the linear map represented by its
-transpose.-/
+transpose.
+@isnad1 id=eq.0h4v.s6.30821a890cbc from=translated src=- shape=dee64e78 vocab=d6531fe7
+-/
 @[simp]
 lemma matrixOfLinearMap_toLin_transpose {X Y : Mat K} (p : X ⟶ Y) :
     matrixOfLinearMap (linearMapOfMatrix p) = p := by
@@ -99,7 +107,9 @@ lemma matrixOfLinearMap_toLin_transpose {X Y : Mat K} (p : X ⟶ Y) :
   rw [LinearMap.toMatrix_toLin, Matrix.transpose_transpose]
 
 /-- Every idempotent matrix over a field splits through a matrix whose index
-type is a basis of the range of the associated linear projection.-/
+type is a basis of the range of the associated linear projection.
+@isnad1 id=ex.1h3v.s8.272ea0412372 from=translated src=- shape=63d2bc01 vocab=29b24f66
+-/
 theorem split_matrix_idempotent (X : Mat K) (p : X ⟶ X)
     (hp : p ≫ p = p) :
     ∃ (Y : Mat K) (i : Y ⟶ X) (e : X ⟶ Y),
@@ -165,12 +175,18 @@ def smallMatrixOfLinearMap {I J : Type} [Fintype I] [Fintype J]
   Matrix.transpose
     (LinearMap.toMatrix (Pi.basisFun K I) (Pi.basisFun K J) f)
 
+/--
+@isnad1 id=eq.0h2v.s6.9b120dc53216 from=translated src=- shape=d45c2272 vocab=33a0682d
+-/
 @[simp]
 lemma smallMatrixOfLinearMap_id (I : Type) [Fintype I] [DecidableEq I] :
     smallMatrixOfLinearMap (LinearMap.id (R := K) (M := I → K)) = 1 := by
   unfold smallMatrixOfLinearMap
   rw [LinearMap.toMatrix_id, Matrix.transpose_one]
 
+/--
+@isnad1 id=eq.0h6v.s9.dc2debc50baf from=translated src=- shape=fb123da0 vocab=9b6d8ed7
+-/
 @[simp]
 lemma smallMatrixOfLinearMap_comp
     {I J H : Type} [Fintype I] [Fintype J] [Fintype H]
@@ -196,6 +212,9 @@ def smallLinearMapOfMatrix {I J : Type} [Fintype I] [Fintype J]
     (p : Matrix I J K) : (I → K) →ₗ[K] (J → K) :=
   Matrix.toLin (Pi.basisFun K I) (Pi.basisFun K J) (Matrix.transpose p)
 
+/--
+@isnad1 id=eq.0h4v.s5.2ff93d018eaa from=translated src=- shape=f7eafecc vocab=fecfb7fe
+-/
 @[simp]
 lemma smallMatrixOfLinearMap_toLin_transpose
     {I J : Type} [Fintype I] [Fintype J]
@@ -206,7 +225,9 @@ lemma smallMatrixOfLinearMap_toLin_transpose
 
 /-- Every idempotent matrix with universe-zero index type splits through a
 matrix indexed by `Fin n`.  Thus the splitting index remains small even when
-the coefficient field lives in a higher universe.-/
+the coefficient field lives in a higher universe.
+@isnad1 id=ex.1h3v.s7.0206cb7fcfc4 from=translated src=- shape=e6b75cd6 vocab=0e60ec06
+-/
 theorem split_small_matrix_idempotent
     (I : Type) [Fintype I] (p : Matrix I I K)
     (hp : p * p = p) :

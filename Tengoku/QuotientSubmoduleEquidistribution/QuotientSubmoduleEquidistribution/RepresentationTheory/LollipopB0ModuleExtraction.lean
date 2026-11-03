@@ -51,6 +51,9 @@ def actionLinear (M : FGModuleCat.{u} (B0Model K)) (r : B0Model K) :
     RestrictedCarrier K M →ₗ[K] RestrictedCarrier K M :=
   (Algebra.lsmul K K (RestrictedCarrier K M)) r
 
+/--
+@isnad1 id=eq.0h4v.s10.10e14257be5c from=translated src=- shape=5fe658da vocab=c37abf22
+-/
 @[simp] theorem actionLinear_apply
     (M : FGModuleCat.{u} (B0Model K)) (r : B0Model K)
     (m : RestrictedCarrier K M) :
@@ -96,6 +99,9 @@ def extractedStemLinear (M : FGModuleCat.{u} (B0Model K)) :
     apply Subtype.ext
     exact (smul_comm c (a K) v.1).symm
 
+/--
+@isnad1 id=eq.0h3v.s13.be03baed1e3e from=translated src=- shape=dba07d49 vocab=0cec5b94
+-/
 theorem extractedLoop_sq
     (M : FGModuleCat.{u} (B0Model K)) (v : vertexOne K M) :
     extractedLoopLinear K M (extractedLoopLinear K M v) = 0 := by
@@ -103,6 +109,9 @@ theorem extractedLoop_sq
   change x K • (x K • (v.1 : RestrictedCarrier K M)) = 0
   rw [← mul_smul, x_sq, zero_smul]
 
+/--
+@isnad1 id=eq.0h3v.s13.4b463d19fcec from=translated src=- shape=8d0a0e6e vocab=ad11ce77
+-/
 theorem extractedStem_loop
     (M : FGModuleCat.{u} (B0Model K)) (v : vertexOne K M) :
     extractedStemLinear K M (extractedLoopLinear K M v) = 0 := by

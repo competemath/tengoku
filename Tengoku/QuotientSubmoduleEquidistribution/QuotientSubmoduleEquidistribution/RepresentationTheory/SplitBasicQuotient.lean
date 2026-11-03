@@ -43,7 +43,9 @@ variable (K Q : Type u)
   [Field K] [CommRing Q] [Algebra K Q] [IsArtinianRing Q] [IsReduced Q]
 
 /-- A reduced commutative Artinian algebra whose maximal residue factors
-split over the ground field is a finite product of copies of that field.-/
+split over the ground field is a finite product of copies of that field.
+@isnad1 id=ex.1h2v.s8.eb9c56f88af2 from=translated src=- shape=79a79ee3 vocab=e0679a0c
+-/
 theorem exists_algEquiv_pi_of_residueFactors_split
     (hsplit : ∀ m : MaximalSpectrum Q,
       Function.Surjective (algebraMap K (Q ⧸ m.asIdeal))) :
@@ -66,7 +68,9 @@ variable {K B : Type u}
   [Field K] [Ring B] [Algebra K B] [FiniteDimensional K B]
 
 /-- The split-basic quotient hypothesis supplies the explicit coordinate
-datum needed by the later Peirce-corner constructions.-/
+datum needed by the later Peirce-corner constructions.
+@isnad1 id=ex.1h2v.s6.f1882583ecc5 from=translated src=- shape=b4f9b3c8 vocab=658de03d
+-/
 theorem exists_quotientCoordinateData_of_isSplitBasicQuotient
     (h : IsSplitBasicQuotient K B) :
     ∃ n : ℕ,
@@ -89,7 +93,9 @@ variable (K B : Type u)
   [FiniteDimensional K B]
 
 /-- Over an algebraically closed field, commutativity of the semisimple
-quotient implies the split-residue-factor condition.-/
+quotient implies the split-residue-factor condition.
+@isnad1 id=issplitb.1h2v.s8.6082f7fed1fb from=translated src=- shape=c4094226 vocab=98fae206
+-/
 theorem isSplitBasicQuotient_of_quotient_mul_comm
     (hcomm : ∀ x y : B ⧸ Ring.jacobson B, x * y = y * x) :
     IsSplitBasicQuotient K B := by
@@ -106,7 +112,9 @@ theorem isSplitBasicQuotient_of_quotient_mul_comm
   exact IsAlgClosed.algebraMap_bijective_of_isIntegral.2
 
 /-- Over an algebraically closed field, commutativity of the semisimple
-quotient is enough to obtain split-basic coordinates.-/
+quotient is enough to obtain split-basic coordinates.
+@isnad1 id=ex.1h2v.s8.95196acae8a2 from=translated src=- shape=8c119e90 vocab=68d8c4ba
+-/
 theorem exists_quotientCoordinateData_of_quotient_mul_comm
     (hcomm : ∀ x y : B ⧸ Ring.jacobson B, x * y = y * x) :
     ∃ n : ℕ,

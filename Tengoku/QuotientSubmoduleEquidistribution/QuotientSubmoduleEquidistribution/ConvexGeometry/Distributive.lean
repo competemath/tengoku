@@ -34,7 +34,9 @@ def IsUnaryGeneration (c : SetClosure E) : Prop :=
     ∃ y ∈ S, x ∈ c ({y} : Set E)
 
 /-- If closed sets are closed under union, closure preserves binary unions
-as literal unions.-/
+as literal unions.
+@isnad1 id=eq.1h4v.s6.aa522e9d2e3e from=translated src=- shape=ca3fbc32 vocab=d3b5ff93
+-/
 theorem closure_union_eq_union_of_isClosedUnderBinaryUnion
     (hunion : c.IsClosedUnderBinaryUnion) (S T : Set E) :
     c (S ∪ T) = c S ∪ c T := by
@@ -47,7 +49,9 @@ theorem closure_union_eq_union_of_isClosedUnderBinaryUnion
       (c.monotone subset_union_right)
 
 /-- Closure under binary unions makes the closed-set lattice
-distributive.-/
+distributive.
+@isnad1 id=closedsi.1h2v.s3.791a0b46430a from=translated src=- shape=11db0672 vocab=7b5f7f30
+-/
 theorem closedsIsDistributive_of_isClosedUnderBinaryUnion
     (hunion : c.IsClosedUnderBinaryUnion) :
     c.ClosedsIsDistributive := by
@@ -64,7 +68,9 @@ theorem closedsIsDistributive_of_isClosedUnderBinaryUnion
 
 /-- In a finitary convex geometry, distributivity forces binary unions of
 closed sets to be closed.  The obstruction is the point closure of a new
-point in the join and its greatest proper closed predecessor.-/
+point in the join and its greatest proper closed predecessor.
+@isnad1 id=isclosed.4h2v.s5.27e48ae6b2f0 from=translated src=- shape=d262ecc6 vocab=4f8c3280
+-/
 theorem isClosedUnderBinaryUnion_of_closedsIsDistributive
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅)
@@ -103,7 +109,9 @@ theorem isClosedUnderBinaryUnion_of_closedsIsDistributive
   exact hxJs.2 (mem_singleton x)
 
 /-- Unary generation immediately implies that unions of closed sets are
-closed.-/
+closed.
+@isnad1 id=isclosed.1h2v.s3.a1a413991050 from=translated src=- shape=11db0672 vocab=35f3f919
+-/
 theorem isClosedUnderBinaryUnion_of_isUnaryGeneration
     (hunary : c.IsUnaryGeneration) :
     c.IsClosedUnderBinaryUnion := by
@@ -118,7 +126,9 @@ theorem isClosedUnderBinaryUnion_of_isUnaryGeneration
       (c.closure_min (singleton_subset_iff.mpr hyD) D.2 hxy)
 
 /-- Finitarity turns closure under binary unions into unary generation:
-first take a finite witness, then split it one point at a time.-/
+first take a finite witness, then split it one point at a time.
+@isnad1 id=isunaryg.3h2v.s5.aa8be51378a1 from=translated src=- shape=02a90936 vocab=5aa250fb
+-/
 theorem isUnaryGeneration_of_isClosedUnderBinaryUnion
     (hfin : c.IsFinitary) (hempty : c.IsClosed ∅)
     (hunion : c.IsClosedUnderBinaryUnion) :
@@ -147,7 +157,9 @@ theorem isUnaryGeneration_of_isClosedUnderBinaryUnion
   obtain ⟨y, hyT, hxy⟩ := hfinite T hTfin hxT
   exact ⟨y, hTS hyT, hxy⟩
 
-/-- Exact abstract form of the manuscript's distributivity criterion.-/
+/-- Exact abstract form of the manuscript's distributivity criterion.
+@isnad1 id=iff.3h2v.s5.34836ed667fc from=translated src=- shape=ddccdba6 vocab=529555e5
+-/
 theorem closedsIsDistributive_iff_closedUnderUnion_iff_unaryGeneration
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅) :
@@ -166,7 +178,9 @@ theorem closedsIsDistributive_iff_closedUnderUnion_iff_unaryGeneration
     exact closedsIsDistributive_of_isClosedUnderBinaryUnion hunion
 
 /-- Pairwise equivalence version matching the three numbered conditions in
-the manuscript.-/
+the manuscript.
+@isnad1 id=iff.3h2v.s5.039aefbdd4ed from=translated src=- shape=5ce35817 vocab=4f8c3280
+-/
 theorem closedsIsDistributive_iff_closedUnderBinaryUnion
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅) :
@@ -178,7 +192,9 @@ theorem closedsIsDistributive_iff_closedUnderBinaryUnion
   · exact closedsIsDistributive_of_isClosedUnderBinaryUnion
 
 /-- Pairwise equivalence between union closure and absence of collective
-generation.-/
+generation.
+@isnad1 id=iff.2h2v.s5.1a2e546bcb36 from=translated src=- shape=d8fa02d4 vocab=5aa250fb
+-/
 theorem isClosedUnderBinaryUnion_iff_isUnaryGeneration
     (hfin : c.IsFinitary) (hempty : c.IsClosed ∅) :
     c.IsClosedUnderBinaryUnion ↔ c.IsUnaryGeneration := by

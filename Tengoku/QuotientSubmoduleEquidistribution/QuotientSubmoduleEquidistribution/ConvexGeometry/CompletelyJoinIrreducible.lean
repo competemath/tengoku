@@ -28,7 +28,9 @@ namespace SetClosure
 variable {E : Type*} {c : SetClosure E}
 
 /-- An element with a greatest strict predecessor is completely
-join-irreducible.-/
+join-irreducible.
+@isnad1 id=iscomple.2h3v.s5.d4fcbb0daefb from=translated src=- shape=07b1210f vocab=788dd2a8
+-/
 theorem isCompletelyJoinIrreducible_of_greatest_lt
     {L : Type*} [CompleteLattice L] {j jₛ : L}
     (hₛ : jₛ < j) (hgreatest : ∀ ⦃a : L⦄, a < j → a ≤ jₛ) :
@@ -49,7 +51,9 @@ theorem isCompletelyJoinIrreducible_of_greatest_lt
   exact (not_le_of_gt hₛ) hjle
 
 /-- In a finitary convex geometry, a point closure is completely
-join-irreducible.-/
+join-irreducible.
+@isnad1 id=iscomple.3h3v.s6.6db1b0cea3ae from=translated src=- shape=d10733b7 vocab=66504d12
+-/
 theorem pointClosure_isCompletelyJoinIrreducible
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅) (x : E) :
@@ -77,7 +81,9 @@ theorem pointClosure_isCompletelyJoinIrreducible
     exact hAJ.2 hJA
 
 /-- The completely join-irreducible closed sets are exactly the point
-closures.-/
+closures.
+@isnad1 id=iff.3h3v.s6.7da64a13ba72 from=translated src=- shape=9bcb25dc vocab=66504d12
+-/
 theorem isCompletelyJoinIrreducible_iff_eq_pointClosure
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅) (J : c.Closeds) :
@@ -103,7 +109,9 @@ theorem isCompletelyJoinIrreducible_iff_eq_pointClosure
   · rintro ⟨x, rfl⟩
     exact pointClosure_isCompletelyJoinIrreducible hfin hae hempty x
 
-/-- The closed-set lattice of a finitary convex geometry is spatial.-/
+/-- The closed-set lattice of a finitary convex geometry is spatial.
+@isnad1 id=isspatia.3h2v.s6.29e629838721 from=translated src=- shape=ce0ade97 vocab=c2e4249e
+-/
 theorem isSpatial_closeds
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅) :

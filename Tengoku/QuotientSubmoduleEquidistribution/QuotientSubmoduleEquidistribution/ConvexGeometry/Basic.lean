@@ -49,12 +49,17 @@ def extremePoints (C : Set E) : Set E :=
 
 variable {c}
 
+/--
+@isnad1 id=iff.0h4v.s6.5e4a47efa5b2 from=translated src=- shape=c85c7494 vocab=4beca8f9
+-/
 theorem mem_extremePoints {C : Set E} {x : E} :
     x ∈ c.extremePoints C ↔ x ∈ C ∧ x ∉ c (C \ {x}) :=
   Iff.rfl
 
 /-- If deleting `x` from a closed set does not regenerate `x`, the
-deletion is closed.-/
+deletion is closed.
+@isnad1 id=isclosed.2h4v.s6.271181d2a92c from=translated src=- shape=df8b0ef3 vocab=626b6fad
+-/
 theorem isClosed_sdiff_singleton_of_not_mem_closure
     {C : Set E} {x : E} (hC : c.IsClosed C)
     (hx : x ∉ c (C \ {x})) :
@@ -64,7 +69,9 @@ theorem isClosed_sdiff_singleton_of_not_mem_closure
   exact ⟨c.closure_min sdiff_subset hC hy, fun hyx ↦ hx (hyx ▸ hy)⟩
 
 /-- For a point of a closed set, being extreme is equivalent to legal
-one-point deletion.-/
+one-point deletion.
+@isnad1 id=iff.2h4v.s6.9adc9a3d9910 from=translated src=- shape=2e8e5723 vocab=4e56b02c
+-/
 theorem mem_extremePoints_iff_isClosed_sdiff_singleton
     {C : Set E} {x : E} (hC : c.IsClosed C) (hxC : x ∈ C) :
     x ∈ c.extremePoints C ↔ c.IsClosed (C \ {x}) := by
@@ -74,7 +81,9 @@ theorem mem_extremePoints_iff_isClosed_sdiff_singleton
   · intro hdel hx
     simp [hdel.closure_eq] at hx
 
-/-- Every generating set contains every extreme point.-/
+/-- Every generating set contains every extreme point.
+@isnad1 id=le.1h4v.s5.dc9dd0175052 from=translated src=- shape=697710ca vocab=a0a78b8d
+-/
 theorem extremePoints_subset_of_closure_eq
     {B C : Set E} (hBC : c B = C) :
     c.extremePoints C ⊆ B := by
@@ -91,7 +100,9 @@ theorem extremePoints_subset_of_closure_eq
 the generating point from its point closure leaves a closed set.
 
 This is the key step behind complete join-irreducibility of point
-closures in the manuscript.-/
+closures in the manuscript.
+@isnad1 id=isclosed.3h3v.s6.431793c214f0 from=translated src=- shape=42250713 vocab=f241b4da
+-/
 theorem isClosed_pointClosure_sdiff_singleton
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     (hempty : c.IsClosed ∅) (x : E) :
@@ -156,7 +167,9 @@ theorem isClosed_pointClosure_sdiff_singleton
     exact singleton_subset_iff.mpr (mem_insert x K)
   exact (hae hKclosed hxK' hyK hxy hxInsert) hyInsert
 
-/-- Distinct points have distinct point closures in a convex geometry.-/
+/-- Distinct points have distinct point closures in a convex geometry.
+@isnad1 id=injectiv.2h2v.s6.17ad8599820e from=translated src=- shape=0349d520 vocab=632d45fa
+-/
 theorem pointClosure_injective
     (hae : c.IsAntiExchange) (hempty : c.IsClosed ∅) :
     Function.Injective (fun x : E ↦ c ({x} : Set E)) := by

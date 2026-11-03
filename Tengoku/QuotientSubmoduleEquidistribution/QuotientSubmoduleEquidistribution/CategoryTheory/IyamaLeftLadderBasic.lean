@@ -65,7 +65,9 @@ omit [HasFiniteBiproducts C] [IsIdempotentComplete C] in
 `p` is the split-epimorphic factor of the current essential arrow through
 `S.f`.  Its complementary successor is `d.inclusion ≫ S.g`.  An arrow
 isomorphism from that successor to `(bNext,0)` determines the entire explicit
-left-ladder rung and identifies it with `S`.-/
+left-ladder rung and identifies it with `S`.
+@isnad1 id=other.1h13v.s9.bb588079b82b from=translated src=- shape=297140d9 vocab=555aef6c
+-/
 theorem exists_stepComplex_iso_of_split_cofactor_and_padded_next
     (S : ShortComplex C) {YPrev ZPrev YNext ZNext U : C}
     (ePrev : S.X₁ ≅ YPrev)
@@ -190,6 +192,9 @@ variable {T : FiniteTauCategoryData C Ind} {Y : C}
 def b (s : SpecialCosplitState T Y) : Y ⟶ s.Z :=
   (T.leftTermIso Y).inv ≫ (T.leftMesh Y).f ≫ s.p
 
+/--
+@isnad1 id=isspecia.0h5v.s6.2357ec0313dd from=translated src=- shape=087f03fd vocab=b55d2699
+-/
 theorem b_special (s : SpecialCosplitState T Y) :
     IsSpecial T.radical s.b :=
   s.special

@@ -33,7 +33,9 @@ namespace MonicRightApproximation
 
 variable {P : ObjectProperty C} {X : C}
 
-/-- The factor through a monic approximation is unique.-/
+/-- The factor through a monic approximation is unique.
+@isnad1 id=eq.2h8v.s8.b76268c10ec4 from=translated src=- shape=7f1eb264 vocab=f0bde0fe
+-/
 theorem factor_unique
     (A : MonicRightApproximation P X)
     {Y : P.FullSubcategory}
@@ -162,7 +164,9 @@ private def approximationCoreHomEquiv :
         ← Category.assoc, hf]
 
 /-- Objectwise monic right approximations imply categorical right
-rejectivity.-/
+rejectivity.
+@isnad1 id=isrightr.1h2v.s4.fb8b755a9667 from=translated src=- shape=71da9c44 vocab=1f26dca1
+-/
 theorem isRightRejective_of_monicRightApproximations
     (hA : ∀ X : C,
       Nonempty (MonicRightApproximation P X)) :

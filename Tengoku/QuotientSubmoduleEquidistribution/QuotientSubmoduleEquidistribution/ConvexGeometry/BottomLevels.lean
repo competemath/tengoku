@@ -52,7 +52,9 @@ def closedSingletonEquivLevelOne (c : QuotientSubmoduleEquidistribution.SetClosu
         apply Subtype.ext
         exact hx.symm)
 
-/-- The level-one count is the number of closed singleton points.-/
+/-- The level-one count is the number of closed singleton points.
+@isnad1 id=eq.0h2v.s4.5d6664f2d7c5 from=translated src=- shape=9c0aa99d vocab=5cf16318
+-/
 theorem levelCount_one_eq_natCard_closedSingletons
     [Finite E] (c : QuotientSubmoduleEquidistribution.SetClosure E) :
     c.levelCount 1 = Nat.card (ClosedSingletons c) := by
@@ -64,7 +66,9 @@ theorem levelCount_one_eq_natCard_closedSingletons
     _ = Nat.card (ClosedSingletons c) :=
       Nat.card_congr (closedSingletonEquivLevelOne c).symm
 
-/-- If the empty set is closed, level zero consists of it alone.-/
+/-- If the empty set is closed, level zero consists of it alone.
+@isnad1 id=eq.1h2v.s5.3600ac70ee39 from=translated src=- shape=c5d0c3b4 vocab=3198eb10
+-/
 theorem levelCount_zero_eq_one_of_isClosed_empty
     [Finite E] (c : QuotientSubmoduleEquidistribution.SetClosure E)
     (hempty : c.IsClosed ∅) :

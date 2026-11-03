@@ -86,9 +86,15 @@ def normalRep : FiniteB1Rep K where
   stem := normalStem K S
   loop_sq := by intro z; rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.75a6279505ca from=translated src=- shape=b5d63d35 vocab=5bbb88e6
+-/
 @[simp] theorem normalLoop_apply (z : NormalVertexOne K S) :
     (normalRep K S).loop.hom.hom z = (0, ((z.1, 0), 0)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.7c6474bba927 from=translated src=- shape=07ecc80f vocab=a8571851
+-/
 @[simp] theorem normalStem_apply (z : NormalVertexOne K S) :
     (normalRep K S).stem.hom.hom z =
       ((((z.2.1.1.1.1.2, z.1.1.2),
@@ -145,12 +151,18 @@ def blockBasisEquiv (t : BlockTag) :
       (Fin (blockMultiplicity K S t) → K) :=
   (Module.finBasis K (multiplicitySpace K S t)).equivFun
 
+/--
+@isnad1 id=eq.0h4v.s9.6e98d682f489 from=translated src=- shape=f9d7c6c2 vocab=d5eb8ef8
+-/
 @[simp] theorem blockBasisEquiv_zero_apply (t : BlockTag)
     (j : Fin (blockMultiplicity K S t)) :
     blockBasisEquiv K S t (0 : multiplicitySpace K S t) j = 0 := by
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.1d90ca84d3b4 from=translated src=- shape=ca8c745d vocab=3c25f117
+-/
 @[simp] theorem s1BasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .s1)) :
     blockBasisEquiv K S .s1 (0 : S.s1) j = 0 := by
@@ -159,6 +171,9 @@ def blockBasisEquiv (t : BlockTag) :
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.986897f9b9b6 from=translated src=- shape=ca8c745d vocab=3da2bbf4
+-/
 @[simp] theorem s2BasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .s2)) :
     blockBasisEquiv K S .s2 (0 : S.s2) j = 0 := by
@@ -167,6 +182,9 @@ def blockBasisEquiv (t : BlockTag) :
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.0884bfde9fc8 from=translated src=- shape=ca8c745d vocab=3ede5cba
+-/
 @[simp] theorem xBasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .x)) :
     blockBasisEquiv K S .x (0 : S.x) j = 0 := by
@@ -175,6 +193,9 @@ def blockBasisEquiv (t : BlockTag) :
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.9a16c2e805b1 from=translated src=- shape=ca8c745d vocab=961603e4
+-/
 @[simp] theorem aBasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .a)) :
     blockBasisEquiv K S .a (0 : S.a) j = 0 := by
@@ -183,6 +204,9 @@ def blockBasisEquiv (t : BlockTag) :
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.ef20b403096e from=translated src=- shape=ca8c745d vocab=a7f02a6c
+-/
 @[simp] theorem uBasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .u)) :
     blockBasisEquiv K S .u (0 : S.u) j = 0 := by
@@ -191,6 +215,9 @@ def blockBasisEquiv (t : BlockTag) :
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.f8b9db7aae2b from=translated src=- shape=ca8c745d vocab=135c2b4a
+-/
 @[simp] theorem wBasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .w)) :
     blockBasisEquiv K S .w (0 : S.w) j = 0 := by
@@ -199,6 +226,9 @@ def blockBasisEquiv (t : BlockTag) :
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.446f45cee1d3 from=translated src=- shape=ca8c745d vocab=7bb8d748
+-/
 @[simp] theorem pBasisEquiv_zero_apply
     (j : Fin (blockMultiplicity K S .p)) :
     blockBasisEquiv K S .p (0 : S.p) j = 0 := by
@@ -219,127 +249,235 @@ def biproductIsoPiFG
     (G.mapBiproduct f ≪≫
       ModuleCat.biproductIsoPi (fun j ↦ G.obj (f j)))
 
+/--
+@isnad1 id=eq.0h4v.s7.1d7e58544400 from=translated src=- shape=8eb7fec3 vocab=a5eec134
+-/
 @[simp] theorem carrier_fst_add (E : FiniteB1Rep K)
     (v w : FiniteB1Rep.Carrier K E) :
     FiniteB1Rep.fst K E (v + w) =
       FiniteB1Rep.fst K E v + FiniteB1Rep.fst K E w := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.4b893bb15d95 from=translated src=- shape=8eb7fec3 vocab=45150a44
+-/
 @[simp] theorem carrier_snd_add (E : FiniteB1Rep K)
     (v w : FiniteB1Rep.Carrier K E) :
     FiniteB1Rep.snd K E (v + w) =
       FiniteB1Rep.snd K E v + FiniteB1Rep.snd K E w := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.5ee73486731c from=translated src=- shape=2ab070c8 vocab=0100f6b4
+-/
 @[simp] theorem carrier_fst_smul (E : FiniteB1Rep K)
     (c : K) (v : FiniteB1Rep.Carrier K E) :
     FiniteB1Rep.fst K E (c • v) =
       c • FiniteB1Rep.fst K E v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.dd0abf73f366 from=translated src=- shape=2ab070c8 vocab=56bb0e3a
+-/
 @[simp] theorem carrier_snd_smul (E : FiniteB1Rep K)
     (c : K) (v : FiniteB1Rep.Carrier K E) :
     FiniteB1Rep.snd K E (c • v) =
       c • FiniteB1Rep.snd K E v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.6de90b4312ee from=translated src=- shape=c32c605b vocab=f18107e5
+-/
 @[simp] theorem carrier_fst_mk (E : FiniteB1Rep K)
     (v₁ : E.V₁) (v₂ : E.V₂) :
     FiniteB1Rep.fst K E
       ((v₁, v₂) : FiniteB1Rep.Carrier K E) = v₁ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.0d0ea891295d from=translated src=- shape=9dbec2f8 vocab=f597644a
+-/
 @[simp] theorem carrier_snd_mk (E : FiniteB1Rep K)
     (v₁ : E.V₁) (v₂ : E.V₂) :
     FiniteB1Rep.snd K E
       ((v₁, v₂) : FiniteB1Rep.Carrier K E) = v₂ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d82b75335ecd from=translated src=- shape=2b604107 vocab=6f23c604
+-/
 @[simp] theorem carrier_fst_apply (E : FiniteB1Rep K)
     (v : FiniteB1Rep.Carrier K E) :
     FiniteB1Rep.fst K E v = v.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.ac8ab5e97e2c from=translated src=- shape=a72d6f40 vocab=20ad247e
+-/
 @[simp] theorem carrier_snd_apply (E : FiniteB1Rep K)
     (v : FiniteB1Rep.Carrier K E) :
     FiniteB1Rep.snd K E v = v.2 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.04c8f2f76c62 from=translated src=- shape=20c9369a vocab=e6d3bf3a
+-/
 @[simp] theorem normal_v1_fst_add (v w : NormalVertexOne K S) :
     (v + w).1 = v.1 + w.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.55fa553370e6 from=translated src=- shape=9600c0e0 vocab=1314d4e0
+-/
 @[simp] theorem normal_v1_snd_add (v w : NormalVertexOne K S) :
     (v + w).2 = v.2 + w.2 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.de2950567a1b from=translated src=- shape=ef80e3d2 vocab=8ea4732b
+-/
 @[simp] theorem normal_v2_fst_add (v w : NormalVertexTwo K S) :
     (v + w).1 = v.1 + w.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.baac68559aa3 from=translated src=- shape=1e922cae vocab=161a455d
+-/
 @[simp] theorem normal_v2_snd_add (v w : NormalVertexTwo K S) :
     (v + w).2 = v.2 + w.2 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.e62468df4d32 from=translated src=- shape=8a0b67ed vocab=b13801ea
+-/
 @[simp] theorem normal_v1_fst_smul (c : K) (v : NormalVertexOne K S) :
     (c • v).1 = c • v.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.855072571964 from=translated src=- shape=891170ad vocab=789d31b5
+-/
 @[simp] theorem normal_v1_snd_smul (c : K) (v : NormalVertexOne K S) :
     (c • v).2 = c • v.2 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.e788596b8909 from=translated src=- shape=8d614e67 vocab=36f12cfa
+-/
 @[simp] theorem normal_v2_fst_smul (c : K) (v : NormalVertexTwo K S) :
     (c • v).1 = c • v.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.2b068bbc347f from=translated src=- shape=1bdddf83 vocab=b5b3e880
+-/
 @[simp] theorem normal_v2_snd_smul (c : K) (v : NormalVertexTwo K S) :
     (c • v).2 = c • v.2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.71dd57f1fba7 from=translated src=- shape=302632ce vocab=a4cc5e98
+-/
 @[simp] theorem normal_v1_zero_eq :
     (0 : (normalRep K S).V₁) =
       ((0, 0) : NormalVertexOne K S) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.6f0a917291f1 from=translated src=- shape=2968e325 vocab=ddb63912
+-/
 @[simp] theorem normal_v2_zero_eq :
     (0 : (normalRep K S).V₂) =
       ((0, 0) : NormalVertexTwo K S) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.ca46d9de5d95 from=translated src=- shape=73f6f436 vocab=53bc6f38
+-/
 theorem rep_v1_zero_add (E : FiniteB1Rep K) :
     (0 : E.V₁) + 0 = 0 := zero_add 0
 
+/--
+@isnad1 id=eq.0h2v.s8.512806bca19c from=translated src=- shape=73f6f436 vocab=f7f8d16f
+-/
 theorem rep_v2_zero_add (E : FiniteB1Rep K) :
     (0 : E.V₂) + 0 = 0 := zero_add 0
 
+/--
+@isnad1 id=eq.0h3v.s9.bd75b8a69e8d from=translated src=- shape=44180987 vocab=b48a4d6d
+-/
 theorem rep_v1_smul_zero (E : FiniteB1Rep K) (c : K) :
     c • (0 : E.V₁) = 0 := smul_zero c
 
+/--
+@isnad1 id=eq.0h3v.s9.18bd336a8ffb from=translated src=- shape=44180987 vocab=d62b4569
+-/
 theorem rep_v2_smul_zero (E : FiniteB1Rep K) (c : K) :
     c • (0 : E.V₂) = 0 := smul_zero c
 
+/--
+@isnad1 id=eq.0h2v.s10.2d3dc9655a60 from=translated src=- shape=ce3ad5f6 vocab=fd0bbd68
+-/
 @[simp] theorem S1_loop_apply (z : (S1Data K).V₁) :
     (S1Data K).loop.hom.hom z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.f3b6cb11852a from=translated src=- shape=ce3ad5f6 vocab=bde4cc24
+-/
 @[simp] theorem S2_loop_apply (z : (S2Data K).V₁) :
     (S2Data K).loop.hom.hom z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.b7b872483dc7 from=translated src=- shape=346dbcc3 vocab=0b3bc9ed
+-/
 @[simp] theorem X_loop_apply (z : (XData K).V₁) :
     (XData K).loop.hom.hom z = (0, z.1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.797465be9c6d from=translated src=- shape=ce3ad5f6 vocab=a44eb465
+-/
 @[simp] theorem A_loop_apply (z : (AData K).V₁) :
     (AData K).loop.hom.hom z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.87be5a247cc2 from=translated src=- shape=346dbcc3 vocab=bf14282a
+-/
 @[simp] theorem U_loop_apply (z : (UData K).V₁) :
     (UData K).loop.hom.hom z = (0, z.1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.17b9c579fde3 from=translated src=- shape=346dbcc3 vocab=e470a382
+-/
 @[simp] theorem W_loop_apply (z : (WData K).V₁) :
     (WData K).loop.hom.hom z = (0, z.1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.5f7878ddff20 from=translated src=- shape=346dbcc3 vocab=61902988
+-/
 @[simp] theorem P_loop_apply (z : (PData K).V₁) :
     (PData K).loop.hom.hom z = (0, z.1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.4a52bf7ebb67 from=translated src=- shape=c1beb73a vocab=f6e97b78
+-/
 @[simp] theorem S1_stem_apply (z : (S1Data K).V₁) :
     (S1Data K).stem.hom.hom z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.cd19ea1e8d65 from=translated src=- shape=c1beb73a vocab=d9a12a96
+-/
 @[simp] theorem S2_stem_apply (z : (S2Data K).V₁) :
     (S2Data K).stem.hom.hom z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.797104af65b9 from=translated src=- shape=c1beb73a vocab=f75de654
+-/
 @[simp] theorem X_stem_apply (z : (XData K).V₁) :
     (XData K).stem.hom.hom z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.e07b1003e94d from=translated src=- shape=346577d5 vocab=3643f0e1
+-/
 @[simp] theorem A_stem_apply (z : (AData K).V₁) :
     (AData K).stem.hom.hom z = z := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.6cafc5451948 from=translated src=- shape=fb2e4d85 vocab=b203239e
+-/
 @[simp] theorem U_stem_apply (z : (UData K).V₁) :
     (UData K).stem.hom.hom z = z.2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.f29ff4f2ad64 from=translated src=- shape=fb2e4d85 vocab=940658d0
+-/
 @[simp] theorem W_stem_apply (z : (WData K).V₁) :
     (WData K).stem.hom.hom z = z.1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.62afd26e9bf3 from=translated src=- shape=346577d5 vocab=0af37ab8
+-/
 @[simp] theorem P_stem_apply (z : (PData K).V₁) :
     (PData K).stem.hom.hom z = z := rfl
 
@@ -512,6 +650,9 @@ def normalToBlockPi :
       (∀ i, namedBlockCarrier K S i) :=
   LinearMap.pi (blockComponent K S)
 
+/--
+@isnad1 id=eq.0h4v.s10.6ee6b4ef7ef4 from=translated src=- shape=a961e6cc vocab=ca1b4d03
+-/
 @[simp] theorem blockComponent_s1_apply
     (j : Fin (blockMultiplicity K S .s1))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -519,6 +660,9 @@ def normalToBlockPi :
       (blockBasisEquiv K S .s1
         (FiniteB1Rep.fst K (normalRep K S) v).2.1.2 j, 0) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.b54ad4dfc5ed from=translated src=- shape=a8baa7e2 vocab=2b66fc06
+-/
 @[simp] theorem blockComponent_s2_apply
     (j : Fin (blockMultiplicity K S .s2))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -526,6 +670,9 @@ def normalToBlockPi :
       (0, blockBasisEquiv K S .s2
         (FiniteB1Rep.snd K (normalRep K S) v).2 j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.27ad51a3bb24 from=translated src=- shape=8879cf2b vocab=9140c66e
+-/
 @[simp] theorem blockComponent_x_apply
     (j : Fin (blockMultiplicity K S .x))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -535,6 +682,9 @@ def normalToBlockPi :
         blockBasisEquiv K S .x
           (FiniteB1Rep.fst K (normalRep K S) v).2.1.1.1.1.1 j), 0) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.519881a4dd62 from=translated src=- shape=c40a7757 vocab=3b2e0281
+-/
 @[simp] theorem blockComponent_a_apply
     (j : Fin (blockMultiplicity K S .a))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -544,6 +694,9 @@ def normalToBlockPi :
         blockBasisEquiv K S .a
           (FiniteB1Rep.snd K (normalRep K S) v).1.2 j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.b2e7e9356769 from=translated src=- shape=240d3dd3 vocab=e41937e2
+-/
 @[simp] theorem blockComponent_u_apply
     (j : Fin (blockMultiplicity K S .u))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -555,6 +708,9 @@ def normalToBlockPi :
         blockBasisEquiv K S .u
           (FiniteB1Rep.snd K (normalRep K S) v).1.1.1.1 j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.f7ca61bcb19e from=translated src=- shape=528ea352 vocab=8b7f3993
+-/
 @[simp] theorem blockComponent_w_apply
     (j : Fin (blockMultiplicity K S .w))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -566,6 +722,9 @@ def normalToBlockPi :
         blockBasisEquiv K S .w
           (FiniteB1Rep.snd K (normalRep K S) v).1.1.1.2 j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.0dd1978025be from=translated src=- shape=878d8080 vocab=c0f8f904
+-/
 @[simp] theorem blockComponent_p_apply
     (j : Fin (blockMultiplicity K S .p))
     (v : FiniteB1Rep.Carrier K (normalRep K S)) :
@@ -638,7 +797,9 @@ def blockPiToNormal (g : ∀ i, namedBlockCarrier K S i) :
 
 /-! ## Genuine-module linearity and the biproduct endpoint -/
 
-/-- Coordinate expansion in the five distinguished algebra generators.-/
+/-- Coordinate expansion in the five distinguished algebra generators.
+@isnad1 id=eq.0h2v.s9.0a10145bde6a from=translated src=- shape=5a71a4f0 vocab=5017c10a
+-/
 theorem algebra_coordinate_decomposition (r : B1Model K) :
     r = (TrivSqZeroExt.fst r).1.fst • e1 K +
       (TrivSqZeroExt.fst r).2 • e2 K +

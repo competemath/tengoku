@@ -23,13 +23,17 @@ universe v u
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
-/-- The zero morphism is radical.-/
+/-- The zero morphism is radical.
+@isnad1 id=isradica.0h3v.s5.1ae144b51e30 from=translated src=- shape=9ca04576 vocab=342e06c2
+-/
 theorem isRadicalMorphism_zero {X Y : C} :
     IsRadicalMorphism (0 : X ⟶ Y) := by
   intro g
   simpa using inferInstanceAs (IsIso (𝟙 X))
 
-/-- The negative of a radical morphism is radical.-/
+/-- The negative of a radical morphism is radical.
+@isnad1 id=isradica.1h4v.s6.1560d0616b72 from=translated src=- shape=534669ed vocab=8f8353dc
+-/
 theorem isRadicalMorphism_neg {X Y : C} {f : X ⟶ Y}
     (hf : IsRadicalMorphism f) :
     IsRadicalMorphism (-f) := by
@@ -37,7 +41,9 @@ theorem isRadicalMorphism_neg {X Y : C} {f : X ⟶ Y}
   simpa only [Preadditive.neg_comp, Preadditive.comp_neg,
     sub_neg_eq_add] using hf (-g)
 
-/-- The sum of two radical morphisms is radical.-/
+/-- The sum of two radical morphisms is radical.
+@isnad1 id=isradica.2h5v.s7.5e9ee669702a from=translated src=- shape=dc374308 vocab=9c1111b8
+-/
 theorem isRadicalMorphism_add {X Y : C} {f r : X ⟶ Y}
     (hf : IsRadicalMorphism f) (hr : IsRadicalMorphism r) :
     IsRadicalMorphism (f + r) := by
@@ -66,6 +72,9 @@ def homIdeal : CategoricalIdeal.HomIdeal C where
   precomp := fun f _ hg ↦ isRadicalMorphism_precomp f hg
   postcomp := fun g hf ↦ isRadicalMorphism_postcomp g hf
 
+/--
+@isnad1 id=iff.0h4v.s7.958c737bb1f8 from=translated src=- shape=4e9ab829 vocab=4eb797ae
+-/
 @[simp]
 theorem mem_homIdeal_iff {X Y : C} (f : X ⟶ Y) :
     f ∈ (homIdeal : CategoricalIdeal.HomIdeal C).hom X Y ↔

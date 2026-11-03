@@ -37,6 +37,9 @@ variable {k : Type uk} {M : Type uM} {E : Type uE} [CommRing k]
 def annihilator (N : Submodule k M) : Submodule k (M →ₗ[k] E) :=
   LinearMap.ker (LinearMap.lcomp k E N.subtype)
 
+/--
+@isnad1 id=iff.0h5v.s9.0c7768219e1e from=translated src=- shape=a85730bd vocab=1d6ee2f3
+-/
 @[simp]
 theorem mem_annihilator_iff (N : Submodule k M) (phi : M →ₗ[k] E) :
     phi ∈ annihilator (E := E) N ↔ ∀ n ∈ N, phi n = 0 := by
@@ -76,6 +79,9 @@ def quotientDualEquivAnnihilator (N : Submodule k M) :
     ext x
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.5abe7fa0577b from=translated src=- shape=3d00e3a5 vocab=063d9fbb
+-/
 @[simp]
 theorem quotientDualEquivAnnihilator_apply
     (N : Submodule k M) (phi : (M ⧸ N) →ₗ[k] E) (m : M) :
@@ -84,7 +90,9 @@ theorem quotientDualEquivAnnihilator_apply
   rfl
 
 /-- For an injective coefficient module, precomposition by `t` has exactly
-the functionals annihilating `ker t` as its range.-/
+the functionals annihilating `ker t` as its range.
+@isnad1 id=eq.0h5v.s9.15762c3b8944 from=translated src=- shape=5705a220 vocab=fb0cbea9
+-/
 theorem range_lcomp_eq_annihilator_ker
     {N : Type uN} [AddCommGroup N] [Module k N]
     [Small.{uE} k] [Module.Injective k E]
@@ -153,7 +161,9 @@ def restrictToSubquotient (H : Submodule k M) (N : Submodule k H) :
     rfl
 
 /-- The kernel of restriction to `H / N` consists precisely of the
-functionals that vanish on all of `H`.-/
+functionals that vanish on all of `H`.
+@isnad1 id=eq.0h5v.s11.2e77c2accb47 from=translated src=- shape=2485c398 vocab=677cff38
+-/
 theorem ker_restrictToSubquotient
     (H : Submodule k M) (N : Submodule k H) :
     LinearMap.ker (restrictToSubquotient (E := E) H N) =
@@ -174,7 +184,9 @@ theorem ker_restrictToSubquotient
     exact (mem_annihilator_iff (E := E) H phi.1).mp hphi h.1 h.2
 
 /-- If `E` is injective, every functional on `H / N` extends to an ambient
-functional on `M` that vanishes on `N`.-/
+functional on `M` that vanishes on `N`.
+@isnad1 id=surjecti.0h5v.s12.958dd3aeabe1 from=translated src=- shape=73fc461f vocab=3ed5325c
+-/
 theorem restrictToSubquotient_surjective
     [Small.{uE} k] [Module.Injective k E]
     (H : Submodule k M) (N : Submodule k H) :
@@ -216,6 +228,9 @@ def nestedAnnihilatorQuotientEquiv
     ((restrictToSubquotient (E := E) H N).quotKerEquivOfSurjective
       (restrictToSubquotient_surjective (E := E) H N))
 
+/--
+@isnad1 id=eq.0h7v.s14.1c523b192416 from=translated src=- shape=5cfc39bd vocab=8c55d40b
+-/
 @[simp]
 theorem nestedAnnihilatorQuotientEquiv_mk_apply
     [Small.{uE} k] [Module.Injective k E]

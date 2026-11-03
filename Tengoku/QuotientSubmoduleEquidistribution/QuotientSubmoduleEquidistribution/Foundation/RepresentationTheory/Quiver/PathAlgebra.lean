@@ -187,37 +187,49 @@ open scoped Classical in
 noncomputable def mul? (x y : TotalPath Q) : Option (TotalPath Q) :=
   if h : y.2.1 = x.1 then some ⟨y.1, x.2.1, (h ▸ y.2.2).comp x.2.2⟩ else none
 
-/-- Composable indexed paths concatenate, the later factor written first.-/
+/-- Composable indexed paths concatenate, the later factor written first.
+@isnad1 id=eq.0h6v.s6.1dd2d63e9e62 from=translated src=- shape=c91867df vocab=63261683
+-/
 @[simp]
 theorem mul?_mk {a b c : Q} (p : _root_.Quiver.Path a b) (q : _root_.Quiver.Path c a) :
     mul? (⟨a, b, p⟩ : TotalPath Q) ⟨c, a, q⟩ = some ⟨c, b, q.comp p⟩ := by
   simp [mul?]
 
-/-- Indexed paths that do not meet have no concatenation.-/
+/-- Indexed paths that do not meet have no concatenation.
+@isnad1 id=eq.1h3v.s6.a1c57bf63ffc from=translated src=- shape=6ba03831 vocab=f2b33163
+-/
 theorem mul?_eq_none {x y : TotalPath Q} (h : y.2.1 ≠ x.1) : mul? x y = none := by
   simp only [mul?, dite_eq_right h]
 
-/-- The concatenation of two indexed paths is undefined exactly when they do not meet.-/
+/-- The concatenation of two indexed paths is undefined exactly when they do not meet.
+@isnad1 id=iff.0h3v.s6.19a19c486b26 from=translated src=- shape=e3e84521 vocab=f2b33163
+-/
 theorem mul?_eq_none_iff {x y : TotalPath Q} : mul? x y = none ↔ y.2.1 ≠ x.1 := by
   refine ⟨fun h hne => ?_, mul?_eq_none⟩
   rw [mul?, dite_eq_left hne] at h
   exact Option.some_ne_none _ h
 
-/-- The trivial path at the target of `x` is a left unit for `x`.-/
+/-- The trivial path at the target of `x` is a left unit for `x`.
+@isnad1 id=eq.0h2v.s7.c759ab3eb302 from=translated src=- shape=98dd698b vocab=55f93254
+-/
 @[simp]
 theorem mul?_nil_left (x : TotalPath Q) :
     mul? (⟨x.2.1, x.2.1, _root_.Quiver.Path.nil⟩ : TotalPath Q) x = some x := by
   obtain ⟨a, b, p⟩ := x
   simp
 
-/-- The trivial path at the source of `x` is a right unit for `x`.-/
+/-- The trivial path at the source of `x` is a right unit for `x`.
+@isnad1 id=eq.0h2v.s6.72eccc762740 from=translated src=- shape=688fecfd vocab=7ceef47f
+-/
 @[simp]
 theorem mul?_nil_right (x : TotalPath Q) :
     mul? x (⟨x.1, x.1, _root_.Quiver.Path.nil⟩ : TotalPath Q) = some x := by
   obtain ⟨a, b, p⟩ := x
   simp [_root_.Quiver.Path.nil_comp]
 
-/-- Concatenation of indexed paths is associative as a partial operation.-/
+/-- Concatenation of indexed paths is associative as a partial operation.
+@isnad1 id=eq.0h4v.s6.db35747aac19 from=translated src=- shape=9750af54 vocab=fe0913c0
+-/
 theorem mul?_assoc (x y z : TotalPath Q) :
     ((x.mul? y).bind fun w => w.mul? z) = (y.mul? z).bind fun w => x.mul? w := by
   obtain ⟨a, b, p⟩ := x
@@ -272,23 +284,31 @@ noncomputable def single (x : Quiver.TotalPath Q) (c : k) : pathAlgebra k Q :=
 private theorem single_def (x : Quiver.TotalPath Q) (c : k) :
     (single x c : pathAlgebra k Q) = Finsupp.single x c := rfl
 
-/-- A basis path with coefficient zero is zero.-/
+/-- A basis path with coefficient zero is zero.
+@isnad1 id=eq.0h3v.s6.5df10ab2d795 from=translated src=- shape=cdc4c9d5 vocab=b5ece6b7
+-/
 @[simp]
 theorem single_zero (x : Quiver.TotalPath Q) : (single x (0 : k) : pathAlgebra k Q) = 0 :=
   Finsupp.single_zero x
 
-/-- Basis paths are additive in their coefficient.-/
+/-- Basis paths are additive in their coefficient.
+@isnad1 id=eq.0h5v.s6.62fead675703 from=translated src=- shape=dd8ae129 vocab=706c00b0
+-/
 theorem single_add (x : Quiver.TotalPath Q) (c d : k) :
     (single x (c + d) : pathAlgebra k Q) = single x c + single x d :=
   Finsupp.single_add x c d
 
-/-- Scaling a basis path scales its coefficient.-/
+/-- Scaling a basis path scales its coefficient.
+@isnad1 id=eq.0h5v.s7.f2313f8d39a6 from=translated src=- shape=d1f8c83d vocab=1f56da84
+-/
 @[simp]
 theorem smul_single (r : k) (x : Quiver.TotalPath Q) (c : k) :
     r • (single x c : pathAlgebra k Q) = single x (r * c) :=
   Finsupp.smul_single r x c
 
-/-- Additive induction on the path algebra: it suffices to treat `0`, sums, and basis paths.-/
+/-- Additive induction on the path algebra: it suffices to treat `0`, sums, and basis paths.
+@isnad1 id=var.0h7v.s7.a7ee936a57e8 from=translated src=- shape=3c7ccdca vocab=706c00b0
+-/
 @[elab_as_elim]
 theorem induction_linear {motive : pathAlgebra k Q → Prop} (f : pathAlgebra k Q)
     (zero : motive 0) (add : ∀ f g, motive f → motive g → motive (f + g))
@@ -439,7 +459,9 @@ noncomputable instance : NonUnitalSemiring (pathAlgebra k Q) where
 /-! ### Products of basis paths -/
 
 /-- The defining product of two basis paths: their concatenation, later factor first, when they
-are composable, and `0` otherwise.-/
+are composable, and `0` otherwise.
+@isnad1 id=eq.0h6v.s7.22ec11cc6263 from=translated src=- shape=135486d9 vocab=468d63c9
+-/
 @[simp]
 theorem single_mul_single (x y : Quiver.TotalPath Q) (a b : k) :
     (single x a * single y b : pathAlgebra k Q)
@@ -447,7 +469,9 @@ theorem single_mul_single (x y : Quiver.TotalPath Q) (a b : k) :
   rw [mul_def, single_def, single_def, mul'_single_single]
   cases x.mul? y <;> rfl
 
-/-- Multiplying two composable basis paths concatenates them, later factor first.-/
+/-- Multiplying two composable basis paths concatenates them, later factor first.
+@isnad1 id=eq.0h9v.s7.6ae972d09db1 from=translated src=- shape=a435c214 vocab=f58b49cc
+-/
 theorem single_mul_single_of_comp {a b c : Q} (p : _root_.Quiver.Path a b)
     (q : _root_.Quiver.Path c a) (r s : k) :
     (single (⟨a, b, p⟩ : Quiver.TotalPath Q) r * single ⟨c, a, q⟩ s : pathAlgebra k Q)
@@ -455,7 +479,9 @@ theorem single_mul_single_of_comp {a b c : Q} (p : _root_.Quiver.Path a b)
   rw [single_mul_single, Quiver.TotalPath.mul?_mk]
   rfl
 
-/-- The product of two basis paths that are not composable vanishes.-/
+/-- The product of two basis paths that are not composable vanishes.
+@isnad1 id=eq.1h6v.s7.ef94e96d71d5 from=translated src=- shape=4f3611b2 vocab=f87e663d
+-/
 theorem single_mul_single_of_not_composable {x y : Quiver.TotalPath Q} (h : y.2.1 ≠ x.1) (r s : k) :
     (single x r * single y s : pathAlgebra k Q) = 0 := by
   rw [single_mul_single, Quiver.TotalPath.mul?_eq_none h]
@@ -465,11 +491,15 @@ theorem single_mul_single_of_not_composable {x y : Quiver.TotalPath Q} (h : y.2.
 noncomputable def ofPath (x : Quiver.TotalPath Q) : pathAlgebra k Q :=
   single x 1
 
-/-- A path is the basis element it indexes, with coefficient one.-/
+/-- A path is the basis element it indexes, with coefficient one.
+@isnad1 id=eq.0h3v.s5.0f8b151edf29 from=translated src=- shape=e7e3a1ce vocab=37c98be4
+-/
 theorem ofPath_eq_single (x : Quiver.TotalPath Q) :
     (ofPath x : pathAlgebra k Q) = single x 1 := (rfl)
 
-/-- Two composable paths multiply to their concatenation, later factor first.-/
+/-- Two composable paths multiply to their concatenation, later factor first.
+@isnad1 id=eq.0h7v.s7.a4cfcb53b55a from=translated src=- shape=95ddcd0a vocab=d9709d38
+-/
 @[simp]
 theorem ofPath_mul_ofPath_of_comp {a b c : Q} (p : _root_.Quiver.Path a b)
     (q : _root_.Quiver.Path c a) :
@@ -477,7 +507,9 @@ theorem ofPath_mul_ofPath_of_comp {a b c : Q} (p : _root_.Quiver.Path a b)
       = ofPath ⟨c, b, q.comp p⟩ := by
   rw [ofPath_eq_single, ofPath_eq_single, ofPath_eq_single, single_mul_single_of_comp, one_mul]
 
-/-- Two paths that do not meet multiply to zero.-/
+/-- Two paths that do not meet multiply to zero.
+@isnad1 id=eq.1h4v.s7.ed407342e7c5 from=translated src=- shape=735c56c6 vocab=cd88752f
+-/
 @[simp]
 theorem ofPath_mul_ofPath_of_not_composable {x y : Quiver.TotalPath Q} (h : y.2.1 ≠ x.1) :
     (ofPath x * ofPath y : pathAlgebra k Q) = 0 := by
@@ -491,39 +523,51 @@ variable (k) in
 noncomputable def vertexIdempotent (v : Q) : pathAlgebra k Q :=
   ofPath ⟨v, v, _root_.Quiver.Path.nil⟩
 
-/-- The vertex idempotent is the basis element of the trivial path, with coefficient one.-/
+/-- The vertex idempotent is the basis element of the trivial path, with coefficient one.
+@isnad1 id=eq.0h3v.s6.c4cb7b805a3d from=translated src=- shape=422debe3 vocab=398491b1
+-/
 theorem vertexIdempotent_eq_single (v : Q) :
     vertexIdempotent k v
       = single (⟨v, v, _root_.Quiver.Path.nil⟩ : Quiver.TotalPath Q) (1 : k) := (rfl)
 
-/-- The vertex idempotent at the target of a path is a left unit for it.-/
+/-- The vertex idempotent at the target of a path is a left unit for it.
+@isnad1 id=eq.0h4v.s6.e7bf430abac2 from=translated src=- shape=a4236382 vocab=cfc1a4c2
+-/
 @[simp]
 theorem vertexIdempotent_mul_single (x : Quiver.TotalPath Q) (r : k) :
     (vertexIdempotent k x.2.1 * single x r : pathAlgebra k Q) = single x r := by
   rw [vertexIdempotent_eq_single, single_mul_single, Quiver.TotalPath.mul?_nil_left,
     Option.elim_some, one_mul]
 
-/-- The vertex idempotent at the source of a path is a right unit for it.-/
+/-- The vertex idempotent at the source of a path is a right unit for it.
+@isnad1 id=eq.0h4v.s6.c5f1f32f40ca from=translated src=- shape=b15a7443 vocab=13530062
+-/
 @[simp]
 theorem single_mul_vertexIdempotent (x : Quiver.TotalPath Q) (r : k) :
     (single x r * vertexIdempotent k x.1 : pathAlgebra k Q) = single x r := by
   rw [vertexIdempotent_eq_single, single_mul_single, Quiver.TotalPath.mul?_nil_right,
     Option.elim_some, mul_one]
 
-/-- The vertex idempotent at the target of a path is a left unit for its canonical element.-/
+/-- The vertex idempotent at the target of a path is a left unit for its canonical element.
+@isnad1 id=eq.0h5v.s6.5759ce54a6a9 from=translated src=- shape=ee257ef5 vocab=936e17a1
+-/
 @[simp]
 theorem vertexIdempotent_mul_ofPath {a b : Q} (p : _root_.Quiver.Path a b) :
     (vertexIdempotent k b * ofPath ⟨a, b, p⟩ : pathAlgebra k Q) = ofPath ⟨a, b, p⟩ := by
   exact vertexIdempotent_mul_single (k := k) ⟨a, b, p⟩ 1
 
-/-- The vertex idempotent at the source of a path is a right unit for its canonical element.-/
+/-- The vertex idempotent at the source of a path is a right unit for its canonical element.
+@isnad1 id=eq.0h5v.s6.260fb71f1d49 from=translated src=- shape=4eac5f80 vocab=936e17a1
+-/
 @[simp]
 theorem ofPath_mul_vertexIdempotent {a b : Q} (p : _root_.Quiver.Path a b) :
     (ofPath ⟨a, b, p⟩ * vertexIdempotent k a : pathAlgebra k Q) = ofPath ⟨a, b, p⟩ := by
   exact single_mul_vertexIdempotent (k := k) ⟨a, b, p⟩ 1
 
 /-- A vertex idempotent not at the target of a path annihilates its canonical element on the
-left.-/
+left.
+@isnad1 id=eq.1h4v.s7.eb6c4c1599cb from=translated src=- shape=031eb866 vocab=9690d75c
+-/
 @[simp]
 theorem vertexIdempotent_mul_ofPath_of_ne {v : Q} (x : Quiver.TotalPath Q) (h : v ≠ x.2.1) :
     (vertexIdempotent k v * ofPath x : pathAlgebra k Q) = 0 := by
@@ -531,21 +575,27 @@ theorem vertexIdempotent_mul_ofPath_of_ne {v : Q} (x : Quiver.TotalPath Q) (h : 
   exact single_mul_single_of_not_composable h.symm 1 1
 
 /-- A vertex idempotent not at the source of a path annihilates its canonical element on the
-right.-/
+right.
+@isnad1 id=eq.1h4v.s6.c3eccb03f7bd from=translated src=- shape=6259ec7c vocab=7f7d165b
+-/
 @[simp]
 theorem ofPath_mul_vertexIdempotent_of_ne {v : Q} (x : Quiver.TotalPath Q) (h : v ≠ x.1) :
     (ofPath x * vertexIdempotent k v : pathAlgebra k Q) = 0 := by
   rw [ofPath_eq_single, vertexIdempotent_eq_single]
   exact single_mul_single_of_not_composable h 1 1
 
-/-- Distinct vertex idempotents are orthogonal.-/
+/-- Distinct vertex idempotents are orthogonal.
+@isnad1 id=eq.1h4v.s6.90e76d7b8336 from=translated src=- shape=485f42db vocab=4ed1e1a5
+-/
 @[simp]
 theorem vertexIdempotent_mul_vertexIdempotent_of_ne {u v : Q} (h : u ≠ v) :
     (vertexIdempotent k u * vertexIdempotent k v : pathAlgebra k Q) = 0 := by
   rw [vertexIdempotent_eq_single, vertexIdempotent_eq_single]
   exact single_mul_single_of_not_composable h.symm 1 1
 
-/-- The vertex idempotents are idempotent.-/
+/-- The vertex idempotents are idempotent.
+@isnad1 id=eq.0h3v.s5.de3bcddca6f8 from=translated src=- shape=a145b4e4 vocab=4ed1e1a5
+-/
 @[simp]
 theorem vertexIdempotent_mul_self (v : Q) :
     (vertexIdempotent k v * vertexIdempotent k v : pathAlgebra k Q) = vertexIdempotent k v := by
@@ -564,7 +614,9 @@ noncomputable instance : One (pathAlgebra k Q) :=
   ⟨∑ v : Q, vertexIdempotent k v⟩
 
 /-- The unit of the path algebra is the sum of the vertex idempotents: the vertex idempotents are
-a decomposition of the unit.-/
+a decomposition of the unit.
+@isnad1 id=eq.0h2v.s6.536e6b95cfe4 from=translated src=- shape=7198be05 vocab=fb242265
+-/
 theorem one_def [Fintype Q] : (1 : pathAlgebra k Q) = ∑ v : Q, vertexIdempotent k v :=
   Finset.sum_congr (congrArg (@Finset.univ Q) (Subsingleton.elim _ _)) fun _ _ => rfl
 
@@ -643,7 +695,9 @@ variable [Finite Q]
 noncomputable instance : Algebra k (pathAlgebra k Q) :=
   Algebra.ofModule (by exact fun r x y => smul_mul' r x y) (by exact fun r x y => mul'_smul r x y)
 
-/-- The image of a scalar in the path algebra spreads it over the vertex idempotents.-/
+/-- The image of a scalar in the path algebra spreads it over the vertex idempotents.
+@isnad1 id=eq.0h3v.s7.e698416d8fd5 from=translated src=- shape=a3b9fb51 vocab=5c4f789f
+-/
 theorem algebraMap_apply [Fintype Q] (r : k) :
     algebraMap k (pathAlgebra k Q) r = ∑ v : Q, r • vertexIdempotent k v := by
   rw [Algebra.algebraMap_eq_smul_one, one_def, Finset.smul_sum]
@@ -663,14 +717,18 @@ noncomputable def pathAlgebraBasis :
     Module.Basis (Quiver.TotalPath Q) k (pathAlgebra k Q) :=
   Finsupp.basisSingleOne
 
-/-- The path basis consists of the basis paths.-/
+/-- The path basis consists of the basis paths.
+@isnad1 id=eq.0h2v.s6.05d9fe50d88e from=translated src=- shape=933d6711 vocab=fd25c3ca
+-/
 @[simp]
 theorem coe_pathAlgebraBasis :
     ⇑(pathAlgebraBasis k Q)
       = fun x : Quiver.TotalPath Q => (PathAlgebra.ofPath x : pathAlgebra k Q) :=
   Finsupp.coe_basisSingleOne
 
-/-- The path algebra of a quiver with finitely many paths is a finite `k`-module.-/
+/-- The path algebra of a quiver with finitely many paths is a finite `k`-module.
+@isnad1 id=finite.0h2v.s5.7976a25c0bbc from=translated src=- shape=8d15920d vocab=4f4f9136
+-/
 theorem module_finite_pathAlgebra [Finite (Quiver.TotalPath Q)] :
     Module.Finite k (pathAlgebra k Q) :=
   Module.Finite.of_basis (pathAlgebraBasis k Q)
@@ -681,7 +739,9 @@ section DivisionRing
 
 variable (k : Type w) (Q : Type u) [DivisionRing k] [Quiver.{v} Q]
 
-/-- The dimension of the path algebra is the number of paths of `Q`.-/
+/-- The dimension of the path algebra is the number of paths of `Q`.
+@isnad1 id=eq.0h2v.s5.418d9e934a4b from=translated src=- shape=2b68d48b vocab=f55e163e
+-/
 theorem finrank_pathAlgebra [Fintype (Quiver.TotalPath Q)] :
     Module.finrank k (pathAlgebra k Q) = Fintype.card (Quiver.TotalPath Q) :=
   Module.finrank_eq_card_basis (pathAlgebraBasis k Q)
@@ -699,14 +759,18 @@ noncomputable def ofArrow {a b : Q} (e : a ⟶ b) : pathAlgebra k Q :=
   ofPath ⟨a, b, e.toPath⟩
 
 omit [Finite Q] in
-/-- An arrow is the basis element indexed by its length-one path.-/
+/-- An arrow is the basis element indexed by its length-one path.
+@isnad1 id=eq.0h5v.s6.9f8940984749 from=translated src=- shape=bf771c73 vocab=05f22e13
+-/
 @[simp]
 theorem ofArrow_eq_ofPath {a b : Q} (e : a ⟶ b) :
     (ofArrow e : pathAlgebra k Q) = ofPath ⟨a, b, e.toPath⟩ := by
   rw [ofArrow]
 
 /-- The vertex idempotents and arrows generate the path algebra. Vertex idempotents are necessary:
-arrows alone do not generate the path algebra of, for example, a discrete multi-vertex quiver.-/
+arrows alone do not generate the path algebra of, for example, a discrete multi-vertex quiver.
+@isnad1 id=eq.0h2v.s9.1db1ab932409 from=translated src=- shape=3b2df1d1 vocab=69630187
+-/
 theorem adjoin_vertexIdempotents_union_arrows :
     Algebra.adjoin k
         (Set.range (vertexIdempotent k) ∪
@@ -811,7 +875,9 @@ end OneLoop
 
 end PathAlgebra
 
-/-- Over a division ring, the path algebra of the one-loop quiver is infinite-dimensional.-/
+/-- Over a division ring, the path algebra of the one-loop quiver is infinite-dimensional.
+@isnad1 id=not.0h1v.s5.2b396169f60b from=translated src=- shape=fb363af9 vocab=7615452f
+-/
 theorem not_finiteDimensional_pathAlgebra_oneLoop
     (k : Type w) [DivisionRing k] :
     ¬ FiniteDimensional k (pathAlgebra k Quiver.OneLoop) := by

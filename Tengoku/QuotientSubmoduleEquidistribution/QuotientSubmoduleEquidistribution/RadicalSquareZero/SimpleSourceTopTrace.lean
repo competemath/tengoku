@@ -34,7 +34,9 @@ variable [Module S J] [Module Sᵐᵒᵖ J]
 variable [SMulCommClass S Sᵐᵒᵖ J]
 
 /-- A map from a semisimple source to a kernel-free square-zero target is zero
-on module tops.-/
+on module tops.
+@isnad1 id=eq.2h5v.s10.d7a21ecdbee9 from=translated src=- shape=6d0594a6 vocab=1a229256
+-/
 theorem moduleTopMapS_eq_zero_of_source_jacobson_eq_bot_of_target_kernelFree
     [IsSemisimpleRing S]
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J))
@@ -66,7 +68,9 @@ theorem moduleTopMapS_eq_zero_of_source_jacobson_eq_bot_of_target_kernelFree
   exact hkernel
 
 /-- Consequently the one-source top trace of a semisimple source in a
-kernel-free target is zero.-/
+kernel-free target is zero.
+@isnad1 id=eq.2h4v.s9.9a0cd74272cd from=translated src=- shape=d8454d57 vocab=4cf12ec6
+-/
 theorem moduleTopTrace_eq_bot_of_source_jacobson_eq_bot_of_target_kernelFree
     [IsSemisimpleRing S]
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J))
@@ -82,7 +86,9 @@ theorem moduleTopTrace_eq_bot_of_source_jacobson_eq_bot_of_target_kernelFree
   simp
 
 /-- If every source in the right half of a disjoint family has zero top
-trace, deleting that half does not change the family top trace.-/
+trace, deleting that half does not change the family top trace.
+@isnad1 id=eq.1h7v.s9.72315326e5cc from=translated src=- shape=40541fcf vocab=93992fba
+-/
 theorem moduleFamilyTopTrace_sum_eq_left_of_right_eq_bot
     {A B : Type*}
     (X : A → ModuleCat.{w} (TrivSqZeroExt S J))
@@ -100,7 +106,9 @@ theorem moduleFamilyTopTrace_sum_eq_left_of_right_eq_bot
   rw [hright, sup_bot_eq]
 
 /-- Split a selected family on a sum of labels and delete its right half when
-that half has zero target top trace.-/
+that half has zero target top trace.
+@isnad1 id=eq.1h8v.s9.e55156acf7b4 from=translated src=- shape=33af08ba vocab=83ce9c74
+-/
 theorem moduleFamilyTopTrace_selected_sum_eq_left
     {N V : Type*}
     (X : N → ModuleCat.{w} (TrivSqZeroExt S J))

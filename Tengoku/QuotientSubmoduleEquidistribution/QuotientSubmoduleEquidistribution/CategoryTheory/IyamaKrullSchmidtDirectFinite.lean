@@ -35,7 +35,9 @@ namespace FiniteRightTauCategoryData
 variable (T : FiniteRightTauCategoryData C Ind)
 
 /-- A retraction of a chosen indecomposable from a finite biproduct has an
-invertible coordinate.-/
+invertible coordinate.
+@isnad1 id=ex.1h8v.s8.8a0aa25b3252 from=translated src=- shape=7f41221a vocab=4806e7e0
+-/
 theorem exists_isIso_component_of_retraction_finBiproduct
     (p : Ind) (n : ℕ) (label : Fin n → Ind)
     (f : T.obj p ⟶ ⨁ fun i ↦ T.obj (label i))
@@ -357,7 +359,9 @@ noncomputable def finBiproductBiprodIsoSum
 
 include T in
 /-- A split-monic endomorphism is invertible in the finite Krull--Schmidt
-category recorded by `FiniteTauCategoryData`.-/
+category recorded by `FiniteTauCategoryData`.
+@isnad1 id=isiso.0h5v.s6.735aa84f69be from=translated src=- shape=684adabf vocab=958a31f1
+-/
 theorem isIso_of_isSplitMono_end
     {X : C} (f : X ⟶ X) [IsSplitMono f] : IsIso f := by
   classical

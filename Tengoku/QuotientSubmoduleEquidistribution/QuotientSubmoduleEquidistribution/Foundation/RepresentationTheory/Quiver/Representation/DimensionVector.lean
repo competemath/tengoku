@@ -51,20 +51,26 @@ noncomputable def dimVector (M : QuiverRep k Q) : Q → ℕ :=
   fun i ↦ Module.finrank k (M.obj ((Paths.of Q).obj i))
 
 /-- The value of the dimension vector at a vertex is the `Module.finrank` of the corresponding
-vector space.-/
+vector space.
+@isnad1 id=eq.0h4v.s7.f395ac9823e0 from=translated src=- shape=f36c86b1 vocab=99abf91f
+-/
 @[simp]
 theorem dimVector_apply (M : QuiverRep k Q) (i : Q) :
     dimVector M i = Module.finrank k (M.obj ((Paths.of Q).obj i)) :=
   (rfl)
 
-/-- Isomorphic quiver representations have the same dimension vector.-/
+/-- Isomorphic quiver representations have the same dimension vector.
+@isnad1 id=eq.0h5v.s6.30df3fe7ad14 from=translated src=- shape=d1e5ae4b vocab=97b2e295
+-/
 theorem dimVector_eq_of_iso {M N : QuiverRep k Q} (e : M ≅ N) :
     dimVector M = dimVector N := by
   funext i
   simp only [dimVector_apply]
   exact (e.app ((Paths.of Q).obj i)).toLinearEquiv.finrank_eq
 
-/-- The zero representation has zero dimension vector.-/
+/-- The zero representation has zero dimension vector.
+@isnad1 id=eq.0h2v.s6.7024c3b88717 from=translated src=- shape=72fb11a2 vocab=58397b88
+-/
 @[simp]
 theorem dimVector_zero :
     dimVector (0 : QuiverRep k Q) = 0 := by
@@ -77,7 +83,9 @@ theorem dimVector_zero :
   exact Module.finrank_zero_of_subsingleton (R := k)
 
 /-- The dimension vector is additive on biproducts of pointwise finite-dimensional
-representations.-/
+representations.
+@isnad1 id=eq.2h4v.s8.ca74a85ab80f from=translated src=- shape=a4d43bda vocab=776164fe
+-/
 @[simp]
 theorem dimVector_biprod (M N : QuiverRep k Q)
     (hM : ∀ i : Q, FiniteDimensional k (M.obj ((Paths.of Q).obj i)))
@@ -98,7 +106,9 @@ theorem dimVector_biprod (M N : QuiverRep k Q)
   rw [e.toLinearEquiv.finrank_eq, Module.finrank_prod]
 
 /-- In a short exact sequence of pointwise finite-dimensional quiver representations, the middle
-dimension vector is the sum of the outer dimension vectors.-/
+dimension vector is the sum of the outer dimension vectors.
+@isnad1 id=eq.3h3v.s10.e654fe7bdd74 from=translated src=- shape=fc5b40bc vocab=189f3c8b
+-/
 theorem dimVector_add_of_shortExact {S : ShortComplex (QuiverRep k Q)} (hS : S.ShortExact)
     (h₁ : ∀ i : Q, FiniteDimensional k (S.X₁.obj ((Paths.of Q).obj i)))
     (h₃ : ∀ i : Q, FiniteDimensional k (S.X₃.obj ((Paths.of Q).obj i))) :

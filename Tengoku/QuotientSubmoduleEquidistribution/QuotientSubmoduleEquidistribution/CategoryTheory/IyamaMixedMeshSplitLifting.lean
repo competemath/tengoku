@@ -69,7 +69,9 @@ def shortComplexBiproductHom
 
 omit [HasBinaryBiproducts C] [IsIdempotentComplete C] in
 /-- A componentwise biproduct morphism is invertible in degree three when
-all of its degree-three components are invertible.-/
+all of its degree-three components are invertible.
+@isnad1 id=isiso.1h5v.s7.d2fdf72eb0f8 from=translated src=- shape=a009acae vocab=97589426
+-/
 theorem isIso_shortComplexBiproductHom_τ₃
     {J : Type w} [Fintype J]
     {S R : J → ShortComplex C} (φ : ∀ j, S j ⟶ R j)
@@ -83,7 +85,9 @@ theorem isIso_shortComplexBiproductHom_τ₃
 
 omit [HasBinaryBiproducts C] [IsIdempotentComplete C] in
 /-- A componentwise biproduct morphism is split monic in degree one when
-all of its degree-one components are split monic.-/
+all of its degree-one components are split monic.
+@isnad1 id=issplitm.1h5v.s7.2e25344c35d9 from=translated src=- shape=a009acae vocab=241a0e45
+-/
 theorem isSplitMono_shortComplexBiproductHom_τ₁
     {J : Type w} [Fintype J]
     {S R : J → ShortComplex C} (φ : ∀ j, S j ⟶ R j)
@@ -162,7 +166,9 @@ structure RightCoreDecomposition
   third_isIso : IsIso inclusion.τ₃
 
 /-- Finite Krull--Schmidt decomposition and mesh compatibility construct the
-right core of every chosen left mesh.-/
+right core of every chosen left mesh.
+@isnad1 id=nonempty.0h4v.s5.44eb4645ed82 from=translated src=- shape=b3c1ac97 vocab=7ea87085
+-/
 theorem exists_rightCoreDecomposition
     (T : FiniteTauCategoryData C Ind) (X : C) :
     Nonempty (RightCoreDecomposition T X) := by
@@ -193,7 +199,9 @@ theorem exists_rightCoreDecomposition
 
 omit [Preadditive C] [HasFiniteBiproducts C] [HasBinaryBiproducts C]
   [IsIdempotentComplete C] in
-/-- A split-epic composite makes its second factor split epic.-/
+/-- A split-epic composite makes its second factor split epic.
+@isnad1 id=issplite.0h6v.s5.74efccc72ce5 from=translated src=- shape=c3f4ea18 vocab=7596956e
+-/
 theorem isSplitEpi_of_isSplitEpi_precomp
     {X Y Z : C} (r : X ⟶ Y) (f : Y ⟶ Z) [IsSplitEpi (r ≫ f)] :
     IsSplitEpi f := by
@@ -204,7 +212,9 @@ theorem isSplitEpi_of_isSplitEpi_precomp
 
 omit [Preadditive C] [HasFiniteBiproducts C] [HasBinaryBiproducts C]
   [IsIdempotentComplete C] in
-/-- A split-monic composite makes its first factor split monic.-/
+/-- A split-monic composite makes its first factor split monic.
+@isnad1 id=issplitm.0h6v.s5.78ed7189db78 from=translated src=- shape=8bd2b2a8 vocab=d46ed2d8
+-/
 theorem isSplitMono_of_isSplitMono_postcomp
     {X Y Z : C} (f : X ⟶ Y) (r : Y ⟶ Z) [IsSplitMono (f ≫ r)] :
     IsSplitMono f := by
@@ -245,7 +255,9 @@ def leftReplacement
         id := hA.eq_of_src _ _ }
 
 /-- Mixed left-to-right split lifting, Tau I, 3.5.2(1)(ii), for the chosen
-meshes of a finite tau category.-/
+meshes of a finite tau category.
+@isnad1 id=and.1h6v.s8.e44350fc9126 from=translated src=- shape=b2bec4c6 vocab=0492f5b0
+-/
 theorem splitEpi_components_of_leftMesh_hom_rightMesh
     (T : FiniteTauCategoryData C Ind) (X Y : C)
     (phi : T.leftMesh X ⟶ T.rightMesh Y)
@@ -277,7 +289,9 @@ theorem splitEpi_components_of_leftMesh_hom_rightMesh
 
 /-- Exact dual mixed lifting: a chain map from a chosen left mesh to a
 chosen right mesh which is split monic at the left endpoint is split monic
-in the other two degrees.-/
+in the other two degrees.
+@isnad1 id=and.1h6v.s8.37d6835f9eb8 from=translated src=- shape=b2bec4c6 vocab=240aabb2
+-/
 theorem splitMono_components_of_leftMesh_hom_rightMesh
     (T : FiniteTauCategoryData C Ind) (X Y : C)
     (phi : T.leftMesh X ⟶ T.rightMesh Y)
@@ -334,7 +348,9 @@ def HasMixedSplitEpiLifting (T : FiniteTauCategoryData C Ind) : Prop :=
   ∀ (X Y : C) (phi : T.leftMesh X ⟶ T.rightMesh Y),
     IsSplitEpi phi.τ₃ → IsSplitEpi phi.τ₁ ∧ IsSplitEpi phi.τ₂
 
-/-- The finite tau-category data prove the mixed split-lifting interface.-/
+/-- The finite tau-category data prove the mixed split-lifting interface.
+@isnad1 id=hasmixed.0h3v.s5.68b2a9f4398a from=translated src=- shape=3328c9b1 vocab=6acfd99e
+-/
 theorem hasMixedSplitEpiLifting (T : FiniteTauCategoryData C Ind) :
     HasMixedSplitEpiLifting T :=
   fun X Y phi hphi₃ ↦
@@ -345,7 +361,9 @@ def HasMixedSplitMonoLifting (T : FiniteTauCategoryData C Ind) : Prop :=
   ∀ (X Y : C) (phi : T.leftMesh X ⟶ T.rightMesh Y),
     IsSplitMono phi.τ₁ → IsSplitMono phi.τ₂ ∧ IsSplitMono phi.τ₃
 
-/-- Finite tau-category data prove the dual mixed split-lifting interface.-/
+/-- Finite tau-category data prove the dual mixed split-lifting interface.
+@isnad1 id=hasmixed.0h3v.s5.1c35d249bb10 from=translated src=- shape=3328c9b1 vocab=bd58f084
+-/
 theorem hasMixedSplitMonoLifting (T : FiniteTauCategoryData C Ind) :
     HasMixedSplitMonoLifting T :=
   fun X Y phi hphi₁ ↦

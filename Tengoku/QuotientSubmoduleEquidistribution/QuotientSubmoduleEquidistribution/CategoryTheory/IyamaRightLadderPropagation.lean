@@ -61,7 +61,9 @@ step, up to the complementary `U`-term.
 
 This is the literal calculation
 `sPrev = sNext ≫ g + t ≫ h` and `sNext ≫ bNext = 0` in the proof of
-Iyama 6.4.1(1)(i).-/
+Iyama 6.4.1(1)(i).
+@isnad1 id=ex.4h13v.s8.bc88556ca0a6 from=translated src=- shape=d12ed814 vocab=1e619174
+-/
 theorem exists_next_annihilator
     {ZPrev YPrev ZNext YNext U W : C}
     {bPrev : ZPrev ⟶ YPrev} {bNext : ZNext ⟶ YNext}
@@ -102,7 +104,9 @@ theorem exists_next_annihilator
 
 /-- If an explicit right-ladder step is isomorphic to a right tau-sequence,
 then all three visible components of its first map belong to the chosen
-categorical radical ideal.-/
+categorical radical ideal.
+@isnad1 id=and.3h14v.s9.a9a8fcb70843 from=translated src=- shape=b8b4a8da vocab=29852fe2
+-/
 theorem stepMaps_mem_radical_of_rightTauSequence_iso_stepComplex
     (R : NilpotentRadicalData C)
     {ZPrev YPrev ZNext YNext U : C}
@@ -143,7 +147,9 @@ theorem stepMaps_mem_radical_of_rightTauSequence_iso_stepComplex
           (biprod.inr : U ⟶ ZNext ⊞ U) hstep_mem)
     simpa [stepComplex, Category.assoc] using hcomponent
 
-/-- The next horizontal arrow in an explicit right-ladder step is radical.-/
+/-- The next horizontal arrow in an explicit right-ladder step is radical.
+@isnad1 id=mem.3h14v.s8.c42cd1fca616 from=translated src=- shape=c943c86a vocab=29852fe2
+-/
 theorem nextMap_mem_radical_of_rightTauSequence_iso_stepComplex
     (R : NilpotentRadicalData C)
     {ZPrev YPrev ZNext YNext U : C}
@@ -158,7 +164,9 @@ theorem nextMap_mem_radical_of_rightTauSequence_iso_stepComplex
     bNext ∈ R.ideal.hom ZNext YNext :=
   (stepMaps_mem_radical_of_rightTauSequence_iso_stepComplex R hS e).1
 
-/-- `Nonempty` form of radicality of the next horizontal arrow.-/
+/-- `Nonempty` form of radicality of the next horizontal arrow.
+@isnad1 id=mem.4h13v.s8.d1b4f2338932 from=translated src=- shape=70b5595c vocab=69f1cdb2
+-/
 theorem nextMap_mem_radical_of_rightTauSequence_nonempty_iso_stepComplex
     (R : NilpotentRadicalData C)
     {ZPrev YPrev ZNext YNext U : C}
@@ -176,7 +184,9 @@ theorem nextMap_mem_radical_of_rightTauSequence_nonempty_iso_stepComplex
   exact nextMap_mem_radical_of_rightTauSequence_iso_stepComplex R hS e
 
 /-- Both connecting components in an explicit right-ladder step are
-radical.-/
+radical.
+@isnad1 id=and.3h14v.s8.df7944a10340 from=translated src=- shape=b1e2912b vocab=29852fe2
+-/
 theorem connectingMaps_mem_radical_of_rightTauSequence_iso_stepComplex
     (R : NilpotentRadicalData C)
     {ZPrev YPrev ZNext YNext U : C}
@@ -193,7 +203,9 @@ theorem connectingMaps_mem_radical_of_rightTauSequence_iso_stepComplex
   (stepMaps_mem_radical_of_rightTauSequence_iso_stepComplex R hS e).2
 
 /-- `Nonempty` form matching the noncanonical mesh isomorphisms stored in
-Iyama ladder data.-/
+Iyama ladder data.
+@isnad1 id=and.4h13v.s8.4f20c6f96d37 from=translated src=- shape=66369ea5 vocab=69f1cdb2
+-/
 theorem connectingMaps_mem_radical_of_rightTauSequence_nonempty_iso_stepComplex
     (R : NilpotentRadicalData C)
     {ZPrev YPrev ZNext YNext U : C}
@@ -213,7 +225,9 @@ theorem connectingMaps_mem_radical_of_rightTauSequence_nonempty_iso_stepComplex
     R hS e
 
 /-- Family form aligned with the hypotheses of right-ladder radical-power
-propagation.-/
+propagation.
+@isnad1 id=and.4h10v.s10.360b55018e7a from=translated src=- shape=cd5b14b0 vocab=948160a3
+-/
 theorem connectingMaps_mem_radical_of_rightTauSequence_stepFamily
     (R : NilpotentRadicalData C)
     (S : ℕ → ShortComplex C)
@@ -243,7 +257,9 @@ theorem connectingMaps_mem_radical_of_rightTauSequence_stepFamily
         R (hS n) (e n)).2
 
 /-- A right tau-sequence isomorphic to an explicit right-ladder step makes
-that step a weak-kernel complex.-/
+that step a weak-kernel complex.
+@isnad1 id=isweakke.4h12v.s7.ca212baecabc from=translated src=- shape=4a192cbc vocab=ccb8711d
+-/
 theorem isWeakKernel_stepComplex_of_rightTauSequence_nonempty_iso
     {ZPrev YPrev ZNext YNext U : C}
     {bPrev : ZPrev ⟶ YPrev} {bNext : ZNext ⟶ YNext}
@@ -274,6 +290,9 @@ def backwardComposite
   | n + 1 => g n ≫ backwardComposite Z g n
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.0h3v.s6.033b876d13f1 from=translated src=- shape=6d1da79a vocab=f141d7e4
+-/
 @[simp]
 theorem backwardComposite_zero
     (Z : ℕ → C) (g : ∀ n : ℕ, Z (n + 1) ⟶ Z n) :
@@ -281,6 +300,9 @@ theorem backwardComposite_zero
   rfl
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.0h4v.s6.22c376836df5 from=translated src=- shape=06918a84 vocab=aed88326
+-/
 @[simp]
 theorem backwardComposite_succ
     (Z : ℕ → C) (g : ∀ n : ℕ, Z (n + 1) ⟶ Z n)
@@ -290,7 +312,9 @@ theorem backwardComposite_succ
   rfl
 
 /-- A chain of radical connecting maps has its length-`n` composite in the
-`n`th ideal power.-/
+`n`th ideal power.
+@isnad1 id=mem.1h5v.s9.c7d67f404d79 from=translated src=- shape=7ce3ec97 vocab=2dd4127e
+-/
 theorem backwardComposite_mem_pow
     (I : HomIdeal C)
     (Z : ℕ → C) (g : ∀ n : ℕ, Z (n + 1) ⟶ Z n)
@@ -315,7 +339,9 @@ def HasAnnihilatorPropagation
         s = sNext ≫ g n + t ≫ h n
 
 /-- A family of explicit weak-kernel right-ladder steps supplies the abstract
-annihilator-propagation property.-/
+annihilator-propagation property.
+@isnad1 id=hasannih.3h8v.s8.87a695fe5121 from=translated src=- shape=a7944431 vocab=5e5e21cd
+-/
 theorem hasAnnihilatorPropagation_of_weakKernels
     [HasBinaryBiproducts C]
     (Z Y U : ℕ → C)
@@ -333,7 +359,9 @@ theorem hasAnnihilatorPropagation_of_weakKernels
   exact exists_next_annihilator (hweak n) s hs
 
 /-- Right tau-sequence models of all explicit ladder steps supply the
-annihilator propagation used in radical-power iteration.-/
+annihilator propagation used in radical-power iteration.
+@isnad1 id=hasannih.4h9v.s9.13181541d4e4 from=translated src=- shape=3113ab18 vocab=5acc4ed1
+-/
 theorem hasAnnihilatorPropagation_of_rightTauSequence_stepFamily
     [HasBinaryBiproducts C]
     (S : ℕ → ShortComplex C)
@@ -355,7 +383,9 @@ theorem hasAnnihilatorPropagation_of_rightTauSequence_stepFamily
     (hS n) (e n)
 
 /-- If all complementary terms vanish after composing to the initial source,
-an initial annihilator propagates through every finite right-ladder prefix.-/
+an initial annihilator propagates through every finite right-ladder prefix.
+@isnad1 id=ex.3h10v.s8.0916a2f67140 from=translated src=- shape=cffc27f8 vocab=da6dd76d
+-/
 theorem exists_propagated_annihilator
     (Z Y U : ℕ → C)
     (b : ∀ n : ℕ, Z n ⟶ Y n)
@@ -386,7 +416,9 @@ Starting from a nonzero annihilator, some complementary morphism
 `hᵢ ≫ gᵢ₋₁ ≫ ⋯ ≫ g₁` is nonzero.  It automatically lies in the
 corresponding radical power.  Thus the hypothesis that every
 `Jⁱ(Uᵢ,Z₀)` vanishes is incompatible with the initial nonzero
-annihilator.-/
+annihilator.
+@isnad1 id=ex.5h10v.s10.cf0c6171b3a0 from=translated src=- shape=d52d04f0 vocab=03ce8a97
+-/
 theorem exists_nonzero_remainder_in_radical_power
     (R : NilpotentRadicalData C)
     (Z Y U : ℕ → C)

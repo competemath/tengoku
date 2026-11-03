@@ -25,7 +25,9 @@ variable {X : Type u} {V : Type v} {E : Type w} {U : Type z}
 def ClosedLevelThree (c : QuotientSubmoduleEquidistribution.SetClosure X) :=
   {C : c.Closeds // (C : Set X).ncard = 3}
 
-/-- `levelCount 3` is the cardinality of the actual closed-support type.-/
+/-- `levelCount 3` is the cardinality of the actual closed-support type.
+@isnad1 id=eq.0h2v.s4.f351b4e5c65a from=translated src=- shape=9c0aa99d vocab=8872b761
+-/
 theorem levelCount_three_eq_natCard_closedLevelThree
     [Finite X] (c : QuotientSubmoduleEquidistribution.SetClosure X) :
     c.levelCount 3 = Nat.card (ClosedLevelThree c) := by
@@ -50,7 +52,9 @@ namespace Classification
 variable [Finite X] [Fintype V] [Fintype E] [Fintype U]
   {c : QuotientSubmoduleEquidistribution.SetClosure X} {source target : E → V}
 
-/-- A supplied shape classification gives the exact third-level formula.-/
+/-- A supplied shape classification gives the exact third-level formula.
+@isnad1 id=eq.0h8v.s5.8750d7d59b39 from=translated src=- shape=2cfd2141 vocab=8fbceb7f
+-/
 theorem levelCount_three_eq_formula
     (D : Classification c (U := U) source target) :
     c.levelCount 3 =
@@ -83,7 +87,9 @@ variable [Finite X] [Fintype V] [Fintype E] [Fintype U]
   {qClosure sClosure : QuotientSubmoduleEquidistribution.SetClosure X}
   {source target : E → V}
 
-/-- The quotient-side third level has the five-family formula.-/
+/-- The quotient-side third level has the five-family formula.
+@isnad1 id=eq.0h9v.s6.2e672c5dba53 from=translated src=- shape=1da34b97 vocab=9b56d9ce
+-/
 theorem qLevelCount_three_eq_formula
     (D : SwappedPairClassification qClosure sClosure (U := U) source target) :
     qClosure.levelCount 3 =
@@ -91,7 +97,9 @@ theorem qLevelCount_three_eq_formula
   D.qClassification.levelCount_three_eq_formula
 
 /-- The submodule-side third level has the same formula after normalizing the
-source/target swap.-/
+source/target swap.
+@isnad1 id=eq.0h9v.s6.bc93cf5a5331 from=translated src=- shape=cf38fc52 vocab=9b56d9ce
+-/
 theorem sLevelCount_three_eq_formula
     (D : SwappedPairClassification qClosure sClosure (U := U) source target) :
     sClosure.levelCount 3 =
@@ -103,7 +111,9 @@ theorem sLevelCount_three_eq_formula
     _ = BottomThreeShape.formula (U := U) source target :=
       (BottomThreeShape.formula_swap source target).symm
 
-/-- Both third levels are given by one exact numerical expression.-/
+/-- Both third levels are given by one exact numerical expression.
+@isnad1 id=and.0h9v.s6.edfe237b521d from=translated src=- shape=07c7389e vocab=9b56d9ce
+-/
 theorem qAndSLevelCount_three_eq_formula
     (D : SwappedPairClassification qClosure sClosure (U := U) source target) :
     (qClosure.levelCount 3 =
@@ -113,7 +123,9 @@ theorem qAndSLevelCount_three_eq_formula
   ⟨D.qLevelCount_three_eq_formula, D.sLevelCount_three_eq_formula⟩
 
 /-- Source/target-swapped shape classifications imply equality at level
-three.-/
+three.
+@isnad1 id=eq.0h9v.s6.6d515ed7a2fd from=translated src=- shape=3ba13635 vocab=754ede00
+-/
 theorem levelCount_three_eq
     (D : SwappedPairClassification qClosure sClosure (U := U) source target) :
     qClosure.levelCount 3 = sClosure.levelCount 3 := by

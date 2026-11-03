@@ -61,19 +61,31 @@ def rep (V1 V2 : ModuleCat K) (loop : V1 ⟶ V1) (stem : V1 ⟶ V2) :
         | .loop => loop
         | .stem => stem }
 
+/--
+@isnad1 id=eq.0h5v.s6.0563cd8ecee4 from=translated src=- shape=9eb14033 vocab=f202ebbc
+-/
 @[simp]
 theorem rep_obj_one (V1 V2 : ModuleCat K) (loop : V1 ⟶ V1) (stem : V1 ⟶ V2) :
     (rep K V1 V2 loop stem).obj .one = V1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.b095f14eac5a from=translated src=- shape=50845bf0 vocab=2d3edf28
+-/
 @[simp]
 theorem rep_obj_two (V1 V2 : ModuleCat K) (loop : V1 ⟶ V1) (stem : V1 ⟶ V2) :
     (rep K V1 V2 loop stem).obj .two = V2 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.0f7485d32505 from=translated src=- shape=38a11950 vocab=145679bc
+-/
 @[simp]
 theorem rep_map_loop (V1 V2 : ModuleCat K) (loop : V1 ⟶ V1) (stem : V1 ⟶ V2) :
     (rep K V1 V2 loop stem).map loopPath = loop := by
   exact Paths.lift_toPath _ _
 
+/--
+@isnad1 id=eq.0h5v.s7.7721280506e1 from=translated src=- shape=e4891c31 vocab=67de24cb
+-/
 @[simp]
 theorem rep_map_stem (V1 V2 : ModuleCat K) (loop : V1 ⟶ V1) (stem : V1 ⟶ V2) :
     (rep K V1 V2 loop stem).map stemPath = stem := by
@@ -113,12 +125,21 @@ def A : QuotientSubmoduleEquidistribution.Foundation.QuiverRep K Vertex :=
 def P : QuotientSubmoduleEquidistribution.Foundation.QuiverRep K Vertex :=
   rep K (K2 K) (K1 K) (jordan K) (forkStem K)
 
+/--
+@isnad1 id=isb0repr.0h1v.s3.cf0ff182a296 from=translated src=- shape=84bfdc15 vocab=cca7e487
+-/
 theorem isB0_S1 : IsB0Representation K (S1 K) := by
   constructor <;> rfl
 
+/--
+@isnad1 id=isb0repr.0h1v.s3.04b1266e982f from=translated src=- shape=84bfdc15 vocab=0c8516a0
+-/
 theorem isB0_S2 : IsB0Representation K (S2 K) := by
   constructor <;> rfl
 
+/--
+@isnad1 id=isb0repr.0h1v.s3.e7fe268aef1c from=translated src=- shape=84bfdc15 vocab=e490da22
+-/
 theorem isB0_X : IsB0Representation K (X K) := by
   constructor
   · apply ModuleCat.hom_ext
@@ -127,9 +148,15 @@ theorem isB0_X : IsB0Representation K (X K) := by
     rfl
   · rfl
 
+/--
+@isnad1 id=isb0repr.0h1v.s3.aa09bf1a538a from=translated src=- shape=84bfdc15 vocab=e39628a1
+-/
 theorem isB0_A : IsB0Representation K (A K) := by
   constructor <;> rfl
 
+/--
+@isnad1 id=isb0repr.0h1v.s3.294746a63ee7 from=translated src=- shape=84bfdc15 vocab=63dc8c65
+-/
 theorem isB0_P : IsB0Representation K (P K) := by
   constructor
   · apply ModuleCat.hom_ext

@@ -59,7 +59,9 @@ def symm : GroupedRotationData sEdge qEdge I P where
       (R.incoming_iff (x := x) hy').symm
 
 /-- In a separated family of strongly connected supports, a vertex has an
-internal outgoing edge exactly when it has an internal incoming edge.-/
+internal outgoing edge exactly when it has an internal incoming edge.
+@isnad1 id=iff.3h5v.s7.0affdbe7e5b7 from=translated src=- shape=57435a12 vocab=49265932
+-/
 theorem exists_outgoing_iff_exists_incoming_supportFamilyUnion
     {C : Finset (Finset Vertex)}
     (hCandidates : ∀ S ∈ C,

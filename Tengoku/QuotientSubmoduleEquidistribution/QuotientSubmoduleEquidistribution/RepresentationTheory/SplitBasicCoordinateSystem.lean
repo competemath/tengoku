@@ -40,6 +40,9 @@ def quotientCoordinate (i : I) : B ⧸ Ring.jacobson B :=
   D.quotientEquiv.symm (Pi.single i 1)
 
 omit [IsArtinianRing B] in
+/--
+@isnad1 id=complete.0h4v.s6.1a2ee2e7d936 from=translated src=- shape=c75c592a vocab=0399465e
+-/
 theorem quotientCoordinate_complete :
     CompleteOrthogonalIdempotents D.quotientCoordinate := by
   change CompleteOrthogonalIdempotents
@@ -63,6 +66,9 @@ private theorem jacobson_element_nilpotent
   rw [show (Ring.jacobson B) ^ n = ⊥ from hn] at hxpow
   simpa using hxpow
 
+/--
+@isnad1 id=ex.0h4v.s7.ed95858df57e from=translated src=- shape=285d825a vocab=9ed97b0f
+-/
 theorem exists_liftedCoordinate :
     ∃ e : I → B,
       CompleteOrthogonalIdempotents e ∧
@@ -77,15 +83,24 @@ theorem exists_liftedCoordinate :
 noncomputable def liftedCoordinate (i : I) : B :=
   D.exists_liftedCoordinate.choose i
 
+/--
+@isnad1 id=complete.0h4v.s5.05507685a6bd from=translated src=- shape=c7c14457 vocab=0b818c04
+-/
 theorem liftedCoordinate_complete :
     CompleteOrthogonalIdempotents D.liftedCoordinate :=
   D.exists_liftedCoordinate.choose_spec.1
 
+/--
+@isnad1 id=eq.0h5v.s7.927d5767df0e from=translated src=- shape=284828f7 vocab=977fe333
+-/
 theorem quotient_mk_liftedCoordinate (i : I) :
     Ideal.Quotient.mk (Ring.jacobson B) (D.liftedCoordinate i) =
       D.quotientCoordinate i :=
   congrFun D.exists_liftedCoordinate.choose_spec.2 i
 
+/--
+@isnad1 id=ne.0h5v.s6.58eda5e5c656 from=translated src=- shape=970b3367 vocab=cf7248fe
+-/
 theorem liftedCoordinate_ne_zero (i : I) : D.liftedCoordinate i ≠ 0 := by
   intro hi
   have hq : D.quotientCoordinate i = 0 := by
@@ -99,7 +114,9 @@ theorem liftedCoordinate_ne_zero (i : I) : D.liftedCoordinate i ≠ 0 := by
   exact one_ne_zero hsi
 
 /-- A lifted coordinate is not the identity as soon as there is another
-coordinate.-/
+coordinate.
+@isnad1 id=ne.1h5v.s6.7274db311d9c from=translated src=- shape=5cd95199 vocab=cf7248fe
+-/
 theorem liftedCoordinate_ne_one_of_exists_ne
     (i : I) (hother : ∃ j : I, j ≠ i) : D.liftedCoordinate i ≠ 1 := by
   intro hi
@@ -110,7 +127,9 @@ theorem liftedCoordinate_ne_one_of_exists_ne
     D.liftedCoordinate_complete.ortho hji
   simpa [hi] using hzero
 
-/-- Distinct lifted coordinates have every Peirce corner in the radical.-/
+/-- Distinct lifted coordinates have every Peirce corner in the radical.
+@isnad1 id=mem.1h7v.s7.b2d2d5baa91b from=translated src=- shape=c360d6a8 vocab=b3ad3905
+-/
 theorem offDiagonal_mem_jacobson {i j : I} (hij : i ≠ j) (r : B) :
     D.liftedCoordinate i * r * D.liftedCoordinate j ∈ Ring.jacobson B := by
   rw [← Ideal.Quotient.eq_zero_iff_mem]
@@ -125,7 +144,9 @@ theorem offDiagonal_mem_jacobson {i j : I} (hij : i ≠ j) (r : B) :
   · simp [hki]
 
 /-- The corner from one lifted coordinate to its complementary idempotent is
-contained in the radical.-/
+contained in the radical.
+@isnad1 id=mem.0h6v.s7.6f3f46826526 from=translated src=- shape=42ef44e5 vocab=a9bb324e
+-/
 theorem coordinate_complement_mem_jacobson (i : I) (r : B) :
     D.liftedCoordinate i * r * (1 - D.liftedCoordinate i) ∈
       Ring.jacobson B := by
@@ -141,7 +162,9 @@ theorem coordinate_complement_mem_jacobson (i : I) (r : B) :
   · simp [hki]
 
 /-- The reverse corner from the complementary idempotent to one lifted
-coordinate is contained in the radical.-/
+coordinate is contained in the radical.
+@isnad1 id=mem.0h6v.s7.9583bbc4c02a from=translated src=- shape=ce604802 vocab=a9bb324e
+-/
 theorem complement_coordinate_mem_jacobson (i : I) (r : B) :
     (1 - D.liftedCoordinate i) * r * D.liftedCoordinate i ∈
       Ring.jacobson B := by
@@ -189,12 +212,17 @@ def coordinateSection : (I → K) →ₐ[K] B := by
     rw [D.liftedCoordinate_complete.complete]
     simp [Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h5v.s7.3d09b255add2 from=translated src=- shape=e0e37079 vocab=0db74d65
+-/
 theorem coordinateSection_apply (x : I → K) :
     D.coordinateSection x = ∑ i, x i • D.liftedCoordinate i :=
   rfl
 
 /-- Projecting the coordinate section back to the chosen semisimple
-coordinates is the identity.-/
+coordinates is the identity.
+@isnad1 id=eq.0h5v.s9.0b3feb70ac27 from=translated src=- shape=0c67c637 vocab=e6ea8f5d
+-/
 theorem quotient_coordinateSection (x : I → K) :
     D.quotientEquiv
         (Ideal.Quotient.mk (Ring.jacobson B) (D.coordinateSection x)) = x := by
@@ -214,12 +242,18 @@ def coordinateProjection : B →ₐ[K] (I → K) :=
   D.quotientEquiv.toAlgHom.comp
     (Ideal.Quotient.mkₐ K (Ring.jacobson B))
 
+/--
+@isnad1 id=eq.0h5v.s8.362517bf945e from=translated src=- shape=4f382459 vocab=13cadc59
+-/
 @[simp]
 theorem coordinateProjection_coordinateSection (x : I → K) :
     D.coordinateProjection (D.coordinateSection x) = x :=
   D.quotient_coordinateSection x
 
 omit [IsArtinianRing B] [Fintype I] [DecidableEq I] in
+/--
+@isnad1 id=eq.0h5v.s8.fc262857e70f from=translated src=- shape=ca4d5e49 vocab=32a6ba04
+-/
 @[simp]
 theorem coordinateProjection_radical (x : Ring.jacobson B) :
     D.coordinateProjection x = 0 := by
@@ -235,6 +269,9 @@ def radicalRemainder (b : B) : Ring.jacobson B :=
     apply D.quotientEquiv.injective
     simp [coordinateProjection, D.quotient_coordinateSection]⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.f588ca013261 from=translated src=- shape=51418899 vocab=fe82008e
+-/
 @[simp]
 theorem coe_radicalRemainder (b : B) :
     (D.radicalRemainder b : B) =
@@ -264,7 +301,9 @@ def splitRadicalLinearEquiv :
 
 omit [IsArtinianRing B] [Fintype I] [DecidableEq I] in
 /-- Products of radical elements vanish when the Jacobson radical is
-square-zero.-/
+square-zero.
+@isnad1 id=eq.1h3v.s8.d0b3aa20f04b from=translated src=- shape=1f3cb959 vocab=66164fac
+-/
 theorem radical_mul_eq_zero_of_sq_eq_bot
     (hJ : (Ring.jacobson B) ^ 2 = ⊥)
     (x y : Ring.jacobson B) : (x : B) * y = 0 := by
@@ -276,7 +315,9 @@ theorem radical_mul_eq_zero_of_sq_eq_bot
   simpa using hxy
 
 /-- Under `J² = 0`, multiplication in the split-radical decomposition is
-the usual square-zero-extension multiplication.-/
+the usual square-zero-extension multiplication.
+@isnad1 id=eq.1h6v.s11.2c702b199f99 from=translated src=- shape=a219dfe5 vocab=50231445
+-/
 theorem splitRadicalLinearEquiv_mul
     (hJ : (Ring.jacobson B) ^ 2 = ⊥)
     (x y : (I → K) × Ring.jacobson B) :

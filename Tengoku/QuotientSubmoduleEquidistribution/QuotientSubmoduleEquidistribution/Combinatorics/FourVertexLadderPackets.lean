@@ -46,7 +46,9 @@ variable {Killed : Type u}
   [Fintype Killed] [Fintype Hook] [Fintype Double]
   [Fintype Fixed] [Fintype Triangle]
 
-/-- Cardinal form of `K = W - B + F + T`, without truncated subtraction.-/
+/-- Cardinal form of `K = W - B + F + T`, without truncated subtraction.
+@isnad1 id=eq.0h6v.s6.0436c0d1c489 from=translated src=- shape=21b964f2 vocab=fc10333b
+-/
 theorem card_killed_add_card_double
     (D : Decomposition Killed Hook Double Fixed Triangle) :
     Fintype.card Killed + Fintype.card Double =
@@ -197,7 +199,9 @@ structure ReversalBalance
   fixed : Fintype.card QFixed = Fintype.card SFixed
 
 /-- Four-support packet classification plus strip and fixed-strip reversal
-balance gives equality of the quotient and submodule killed-ladder counts.-/
+balance gives equality of the quotient and submodule killed-ladder counts.
+@isnad1 id=eq.1h12v.s6.50a944291903 from=translated src=- shape=39a2e639 vocab=6f4fc61e
+-/
 theorem killed_card_eq_of_reversalBalance
     {QKilled : Type u} {QHook QDouble QFixed QTriangle : Type v}
     {SKilled : Type w} {SHook SDouble SFixed STriangle : Type x}

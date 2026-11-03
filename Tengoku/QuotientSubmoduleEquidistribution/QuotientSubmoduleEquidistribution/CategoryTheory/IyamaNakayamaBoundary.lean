@@ -46,7 +46,9 @@ private theorem isZero_of_isIso_zero (X : C) [IsIso (0 : X ⟶ X)] :
   rw [← cancel_epi (0 : X ⟶ X)]
   simp
 
-/-- A chosen right mesh ending at a zero object is componentwise zero.-/
+/-- A chosen right mesh ending at a zero object is componentwise zero.
+@isnad1 id=and.1h4v.s7.93bc3ce3fac2 from=translated src=- shape=0fe0d9b1 vocab=ba85a8b0
+-/
 theorem rightMesh_components_isZero_of_isZero (Y : C) (hY : IsZero Y) :
     IsZero (T.rightMesh Y).X₁ ∧
       IsZero (T.rightMesh Y).X₂ ∧
@@ -63,7 +65,9 @@ theorem rightMesh_components_isZero_of_isZero (Y : C) (hY : IsZero Y) :
     (T.rightTau Y).minimalWeakKernel.2 0 (by rw [zero_comp, hf])
   exact ⟨isZero_of_isIso_zero (T.rightMesh Y).X₁, h₂, h₃⟩
 
-/-- A chosen left mesh starting at a zero object is componentwise zero.-/
+/-- A chosen left mesh starting at a zero object is componentwise zero.
+@isnad1 id=and.1h4v.s6.a84d045e0324 from=translated src=- shape=da0b854b vocab=51072c44
+-/
 theorem leftMesh_components_isZero_of_isZero (X : C) (hX : IsZero X) :
     IsZero (T.leftMesh X).X₁ ∧
       IsZero (T.leftMesh X).X₂ ∧
@@ -88,7 +92,9 @@ def secondMapIso (A : T.Noninjective) :
   ShortComplex.gFunctor.mapIso (T.leftRightMeshIso A)
 
 /-- A split monomorphism between two chosen indecomposables is an
-isomorphism.-/
+isomorphism.
+@isnad1 id=isiso.0h6v.s7.a06241700c95 from=translated src=- shape=220b33e5 vocab=38aa5f92
+-/
 theorem isIso_of_isSplitMono_obj_obj
     {p q : Ind} (f : T.obj p ⟶ T.obj q) [IsSplitMono f] :
     IsIso f := by
@@ -109,7 +115,9 @@ theorem isIso_of_isSplitMono_obj_obj
 /-- A split embedding of a chosen indecomposable into a finite biproduct has
 a split-monic coordinate.  This is the local-ring form of finite
 Krull--Schmidt support detection, and does not require the target factors to
-be indecomposable.-/
+be indecomposable.
+@isnad1 id=ex.0h7v.s7.d9fddcf87778 from=translated src=- shape=2b9f2519 vocab=0271c4e9
+-/
 theorem exists_isSplitMono_component_finBiproduct
     (p : Ind) (n : ℕ) (F : Fin n → C)
     (j : T.obj p ⟶ ⨁ F) [IsSplitMono j] :
@@ -150,7 +158,9 @@ theorem exists_isSplitMono_component_finBiproduct
 /-- A split embedding of a chosen indecomposable into a displayed finite
 biproduct forces its label to occur among the displayed factors.  This is
 the finite-skeleton support detector needed by the projective-free-prefix
-argument.-/
+argument.
+@isnad1 id=ex.0h7v.s7.33768afd7b4c from=translated src=- shape=77409505 vocab=81411714
+-/
 theorem exists_label_eq_of_isSplitMono_finBiproduct
     (p : Ind) (n : ℕ) (label : Fin n → Ind)
     (j : T.obj p ⟶ ⨁ fun i ↦ T.obj (label i)) [IsSplitMono j] :
@@ -203,7 +213,9 @@ theorem exists_label_eq_of_isSplitMono_finBiproduct
       T.toFiniteRightTauCategoryData j).1 hjrad
     (inferInstance : IsSplitMono j)
 
-/-- Support on nonprojective labels is invariant under object isomorphism.-/
+/-- Support on nonprojective labels is invariant under object isomorphism.
+@isnad1 id=supporte.1h6v.s6.d5a852876a02 from=translated src=- shape=919c3a98 vocab=bd1d5dda
+-/
 theorem SupportedOnNonprojectives.of_iso
     {X Y : C} (hX : T.SupportedOnNonprojectives X) (e : Y ≅ X) :
     T.SupportedOnNonprojectives Y := by
@@ -213,7 +225,9 @@ theorem SupportedOnNonprojectives.of_iso
 /-- No projective chosen indecomposable can split-embed into the third term
 of a chosen left mesh.  After decomposing the mesh, a nonzero split
 component is either impossible (injective label, hence zero third term) or
-lands in the negative translate, which is nonprojective.-/
+lands in the negative translate, which is nonprojective.
+@isnad1 id=not.0h6v.s7.04f473d255a0 from=translated src=- shape=5c377fda vocab=a4205354
+-/
 theorem not_isProjective_of_isSplitMono_to_leftMesh_X₃
     (p : Ind) (X : C)
     (j : T.obj p ⟶ (T.leftMesh X).X₃) [IsSplitMono j] :
@@ -253,7 +267,9 @@ theorem not_isProjective_of_isSplitMono_to_leftMesh_X₃
     exact (T.tauPlusEquiv.symm A).2 hp
 
 /-- The third term of every chosen left mesh is supported entirely on
-nonprojective labels.-/
+nonprojective labels.
+@isnad1 id=supporte.0h4v.s6.e74ec5fdc362 from=translated src=- shape=21ea382d vocab=640a2cd8
+-/
 theorem supportedOnNonprojectives_leftMesh_X₃ (X : C) :
     T.SupportedOnNonprojectives (T.leftMesh X).X₃ := by
   obtain ⟨n, label, e⟩ := T.obj_decomposition (T.leftMesh X).X₃
@@ -284,7 +300,9 @@ def biprodDescIsoRightOfIsZero
       · simp)
 
 /-- Iyama 6.2.1's projective-free-prefix consequence, derived directly
-from the left-mesh identification in each invertible rung.-/
+from the left-mesh identification in each invertible rung.
+@isnad1 id=hasnonpr.0h3v.s5.d7f61959c9ae from=translated src=- shape=3328c9b1 vocab=d71c2c0a
+-/
 theorem hasNonprojectiveRightSupport :
     HasNonprojectiveRightSupport T := by
   intro n X Y a hstep i
@@ -295,7 +313,9 @@ theorem hasNonprojectiveRightSupport :
     (T.supportedOnNonprojectives_leftMesh_X₃ (X i.succ)) e₃.symm
 
 /-- In an invertible rung, a nonzero next source forces the previous right
-endpoint to be nonzero.-/
+endpoint to be nonzero.
+@isnad1 id=not.2h9v.s6.7cebfe973506 from=translated src=- shape=41f27e50 vocab=03d5062e
+-/
 theorem not_isZero_previousTarget_of_step
     {XPrev YPrev XNext YNext : C}
     {aPrev : XPrev ⟶ YPrev} {aNext : XNext ⟶ YNext}
@@ -312,7 +332,9 @@ theorem not_isZero_previousTarget_of_step
 
 /-- If the next source is a chosen indecomposable and the next target is
 zero, the previous vertical arrow is the second map of that source's left
-mesh, up to arrow isomorphism.-/
+mesh, up to arrow isomorphism.
+@isnad1 id=nonempty.2h9v.s7.b72117090a6e from=translated src=- shape=8999ab53 vocab=0dfe781f
+-/
 theorem nonempty_predecessor_iso_nuMinus_of_step_to_zeroTarget
     {XPrev YPrev YNext : C} {I : Ind}
     {aPrev : XPrev ⟶ YPrev} {aNext : T.obj I ⟶ YNext}
@@ -328,7 +350,9 @@ theorem nonempty_predecessor_iso_nuMinus_of_step_to_zeroTarget
   exact ⟨eStep.symm.trans eLeftG.symm⟩
 
 /-- The chosen indecomposable source of an invertible rung is noninjective.
-The proof uses both mesh identifications in the rung.-/
+The proof uses both mesh identifications in the rung.
+@isnad1 id=not.1h9v.s7.94e82604fbd5 from=translated src=- shape=8dd978fb vocab=a5101a30
+-/
 theorem not_isInjective_of_step_to_zeroTarget
     {XPrev YPrev YNext : C} {I : Ind}
     {aPrev : XPrev ⟶ YPrev} {aNext : T.obj I ⟶ YNext}
@@ -343,7 +367,9 @@ theorem not_isInjective_of_step_to_zeroTarget
     (ShortComplex.π₃.mapIso eLeft).symm
 
 /-- A terminal rung with chosen indecomposable source canonically exposes
-the nonprojective label at the preceding vertical arrow.-/
+the nonprojective label at the preceding vertical arrow.
+@isnad1 id=ex.2h9v.s8.d9dcdfc2f53d from=translated src=- shape=5572eaac vocab=2c9bf286
+-/
 theorem exists_nonprojective_muPlus_predecessor_of_step_to_zeroTarget
     {XPrev YPrev YNext : C} {I : Ind}
     {aPrev : XPrev ⟶ YPrev} {aNext : T.obj I ⟶ YNext}

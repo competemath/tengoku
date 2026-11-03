@@ -55,7 +55,9 @@ abbrev LastCut (L : ℕ) (x : ℕ → Label) :=
 
 omit [DecidableEq Label] in
 /-- Equality can be shifted backward through any prescribed number of
-simultaneous two-step moves.-/
+simultaneous two-step moves.
+@isnad1 id=iff.3h6v.s7.7ab57e94a73f from=translated src=- shape=a5eebf59 vocab=ebd7a482
+-/
 theorem iterate_shift_iff
     {L i j : ℕ} (x : ℕ → Label)
     (hshift : ∀ i j, i + 2 ≤ L → j + 2 ≤ L →
@@ -73,7 +75,9 @@ theorem iterate_shift_iff
 omit [DecidableEq Label] in
 /-- A last-cut equality away from the diagonal has an even second index.
 Otherwise shifting it to the left boundary would repeat the distinguished
-position `1`.-/
+position `1`.
+@isnad1 id=even.3h4v.s8.9343e7c697dc from=translated src=- shape=b323f6a3 vocab=ff100134
+-/
 theorem lastCut_index_even
     {L : ℕ} (x : ℕ → Label)
     (hshift : ∀ i j, i + 2 ≤ L → j + 2 ≤ L →
@@ -106,7 +110,9 @@ theorem lastCut_index_even
 omit [DecidableEq Label] in
 /-- A first-cut equality away from the diagonal has even distance from
 the right endpoint.  Otherwise shifting it to the right boundary would
-repeat the distinguished position `L - 1`.-/
+repeat the distinguished position `L - 1`.
+@isnad1 id=even.3h4v.s8.13378100b8e5 from=translated src=- shape=7e572b88 vocab=346dba89
+-/
 theorem firstCut_distance_even
     {L : ℕ} (x : ℕ → Label)
     (hshift : ∀ i j, i + 2 ≤ L → j + 2 ≤ L →
@@ -222,7 +228,9 @@ def firstCutEquivLastCut
     have hq := q.1.2
     omega
 
-/-- Cardinal form of the corrected diagonal-cut count.-/
+/-- Cardinal form of the corrected diagonal-cut count.
+@isnad1 id=eq.4h3v.s8.67d515cc357d from=translated src=- shape=725b9fbb vocab=d12906d1
+-/
 theorem firstCut_card_eq_lastCut_card
     {L : ℕ} (hL : 5 ≤ L) (x : ℕ → Label)
     (hshift : ∀ i j, i + 2 ≤ L → j + 2 ≤ L →

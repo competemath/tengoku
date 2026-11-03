@@ -112,7 +112,9 @@ def HasNonprojectiveRightSupport (T : FiniteTauCategoryData C Ind) : Prop :=
     ∀ i : Fin n, T.SupportedOnNonprojectives (Y i.castSucc)
 
 /-- Distance zero is precisely the endpoint-isomorphism case needed by the
-finite definition.-/
+finite definition.
+@isnad1 id=invertib.0h10v.s6.7ae3f02a41eb from=translated src=- shape=4b3938d5 vocab=eb1b36a1
+-/
 theorem invertibleLadderOfDistance_zero_of_arrowIso
     (T : FiniteTauCategoryData C Ind)
     {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
@@ -122,7 +124,9 @@ theorem invertibleLadderOfDistance_zero_of_arrowIso
     ⟨Iso.refl _⟩, ⟨e⟩, ?_⟩
   exact Fin.elim0
 
-/-- Arrow-isomorphic endpoints are connected by an invertible ladder.-/
+/-- Arrow-isomorphic endpoints are connected by an invertible ladder.
+@isnad1 id=invertib.0h10v.s6.1fa077107cbf from=translated src=- shape=7142b1dc vocab=32069ec6
+-/
 theorem invertibleLadder_of_arrowIso
     (T : FiniteTauCategoryData C Ind)
     {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
@@ -151,6 +155,9 @@ maps are connected by a finite invertible ladder.-/
 def NakayamaPair (A B : Ind) : Prop :=
   NakayamaLadder.InvertibleLadder T (T.muMinus A) (T.muPlus B)
 
+/--
+@isnad1 id=iff.0h5v.s6.718a3237e785 from=translated src=- shape=86be2808 vocab=5eed3ba3
+-/
 theorem nakayamaPair_iff_exists_distance (A B : Ind) :
     T.NakayamaPair A B ↔ ∃ n : ℕ, T.NakayamaPairOfDistance A B n :=
   Iff.rfl

@@ -27,6 +27,9 @@ instance separatedQuiver {V : Type u} [Quiver.{v} V] :
     | Sum.inl i, Sum.inr j => i ⟶ j
     | _, _ => PEmpty
 
+/--
+@isnad1 id=finite.0h3v.s4.ca824b1f87b4 from=translated src=- shape=46e1aa50 vocab=8a98e145
+-/
 instance separatedArrowFinite {V : Type u} [Quiver.{v} V]
     [∀ i j : V, Finite (i ⟶ j)] :
     ∀ a b : Vertex V, Finite (a ⟶ b)
@@ -35,6 +38,9 @@ instance separatedArrowFinite {V : Type u} [Quiver.{v} V]
   | Sum.inr _, Sum.inl _ => inferInstanceAs (Finite PEmpty)
   | Sum.inr _, Sum.inr _ => inferInstanceAs (Finite PEmpty)
 
+/--
+@isnad1 id=finite.0h1v.s3.434a7a6751b4 from=translated src=- shape=0902ff63 vocab=a83955fc
+-/
 noncomputable instance separatedVertexFinite {V : Type u} [Finite V] :
     Finite (Vertex V) := by
   letI : Fintype V := Fintype.ofFinite V
@@ -45,7 +51,9 @@ def height {V : Type u} : Vertex V → ℕ
   | Sum.inl _ => 0
   | Sum.inr _ => 1
 
-/-- Every separated-quiver arrow strictly increases height.-/
+/-- Every separated-quiver arrow strictly increases height.
+@isnad1 id=lt.0h4v.s4.b0ca543fa276 from=translated src=- shape=d8ccb418 vocab=8411450c
+-/
 theorem height_lt_of_arrow {V : Type u} [Quiver.{v} V]
     {a b : Vertex V} (e : a ⟶ b) : height a < height b := by
   cases a with
@@ -58,14 +66,18 @@ theorem height_lt_of_arrow {V : Type u} [Quiver.{v} V]
       | inl j => exact PEmpty.elim e
       | inr j => exact PEmpty.elim e
 
-/-- Height is nondecreasing along every separated-quiver path.-/
+/-- Height is nondecreasing along every separated-quiver path.
+@isnad1 id=le.0h4v.s4.e95ce1da1f75 from=translated src=- shape=d8ccb418 vocab=5fac9535
+-/
 theorem height_le_of_path {V : Type u} [Quiver.{v} V]
     {a b : Vertex V} (p : Path a b) : height a ≤ height b := by
   induction p with
   | nil => exact le_rfl
   | cons p e ih => exact ih.trans (height_lt_of_arrow e).le
 
-/-- Two separated-quiver arrows cannot be composed.-/
+/-- Two separated-quiver arrows cannot be composed.
+@isnad1 id=false.0h6v.s5.a1f0e96060ba from=translated src=- shape=3f4c394a vocab=f2d0e7b2
+-/
 theorem no_composable_arrows {V : Type u} [Quiver.{v} V]
     {a b c : Vertex V} (f : a ⟶ b) (e : b ⟶ c) : False := by
   cases b with
@@ -79,7 +91,9 @@ theorem no_composable_arrows {V : Type u} [Quiver.{v} V]
       | inr j => exact PEmpty.elim e
 
 /-- The separated quiver is acyclic, without any hypothesis on the original
-quiver.-/
+quiver.
+@isnad1 id=isacycli.0h1v.s3.ed8dbf9dd48f from=translated src=- shape=1666ae32 vocab=6812b202
+-/
 theorem isAcyclic {V : Type u} [Quiver.{v} V] :
     QuotientSubmoduleEquidistribution.Foundation.Quiver.IsAcyclic (Vertex V) := by
   intro a p
@@ -90,7 +104,9 @@ theorem isAcyclic {V : Type u} [Quiver.{v} V] :
         ((Nat.not_lt_of_ge (height_le_of_path p))
           (height_lt_of_arrow e))
 
-/-- Every path in the separated quiver has length at most one.-/
+/-- Every path in the separated quiver has length at most one.
+@isnad1 id=le.0h4v.s5.12388362ac95 from=translated src=- shape=88805746 vocab=99831358
+-/
 theorem path_length_le_one {V : Type u} [Quiver.{v} V]
     {a b : Vertex V} (p : Path a b) : p.length ≤ 1 := by
   cases p with
@@ -180,7 +196,9 @@ def underlyingGraphOppositeIso {V : Type u} [Quiver.{v} V] :
             simp
 
 /-- Over a division ring, the path algebra of a finite separated quiver with
-finite arrow types is finite-dimensional.-/
+finite arrow types is finite-dimensional.
+@isnad1 id=finitedi.0h2v.s5.8c8b1b1b3743 from=translated src=- shape=917ebb89 vocab=4dfac97d
+-/
 theorem finiteDimensional_pathAlgebra
     (k : Type w) (V : Type u) [DivisionRing k] [Quiver.{v} V]
     [Finite V] [∀ i j : V, Finite (i ⟶ j)] :

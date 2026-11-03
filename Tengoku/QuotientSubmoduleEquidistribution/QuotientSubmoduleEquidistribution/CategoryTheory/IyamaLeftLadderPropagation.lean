@@ -59,7 +59,9 @@ def stepComplex
 step, up to the complementary `U`-term.
 
 This is the dual identity
-`sPrev = g ≫ sNext + h ≫ t` with `bNext ≫ sNext = 0`.-/
+`sPrev = g ≫ sNext + h ≫ t` with `bNext ≫ sNext = 0`.
+@isnad1 id=ex.4h13v.s8.dfeb29c4754f from=translated src=- shape=03627ba1 vocab=2d1271b7
+-/
 theorem exists_next_coannihilator
     {YPrev ZPrev YNext ZNext U W : C}
     {bPrev : YPrev ⟶ ZPrev} {bNext : YNext ⟶ ZNext}
@@ -100,7 +102,9 @@ theorem exists_next_coannihilator
 
 /-- If an explicit left-ladder step is isomorphic to a left tau-sequence,
 then all three visible components of its second map belong to the chosen
-categorical radical ideal.-/
+categorical radical ideal.
+@isnad1 id=and.3h14v.s9.bb49c1b2f2fe from=translated src=- shape=92902b3a vocab=0dfa746a
+-/
 theorem stepMaps_mem_radical_of_leftTauSequence_iso_stepComplex
     (R : NilpotentRadicalData C)
     {YPrev ZPrev YNext ZNext U : C}
@@ -141,7 +145,9 @@ theorem stepMaps_mem_radical_of_leftTauSequence_iso_stepComplex
           (biprod.inr : ZPrev ⟶ YNext ⊞ ZPrev) hstep_mem)
     simpa [stepComplex, Category.assoc] using hcomponent
 
-/-- The next horizontal arrow in an explicit left-ladder step is radical.-/
+/-- The next horizontal arrow in an explicit left-ladder step is radical.
+@isnad1 id=mem.3h14v.s8.811e7443b8c3 from=translated src=- shape=d27fd958 vocab=0dfa746a
+-/
 theorem nextMap_mem_radical_of_leftTauSequence_iso_stepComplex
     (R : NilpotentRadicalData C)
     {YPrev ZPrev YNext ZNext U : C}
@@ -156,7 +162,9 @@ theorem nextMap_mem_radical_of_leftTauSequence_iso_stepComplex
     bNext ∈ R.ideal.hom YNext ZNext :=
   (stepMaps_mem_radical_of_leftTauSequence_iso_stepComplex R hS e).1
 
-/-- `Nonempty` form of radicality of the next horizontal arrow.-/
+/-- `Nonempty` form of radicality of the next horizontal arrow.
+@isnad1 id=mem.4h13v.s8.3d42ee857a2b from=translated src=- shape=356d26f0 vocab=b6a41651
+-/
 theorem nextMap_mem_radical_of_leftTauSequence_nonempty_iso_stepComplex
     (R : NilpotentRadicalData C)
     {YPrev ZPrev YNext ZNext U : C}
@@ -174,7 +182,9 @@ theorem nextMap_mem_radical_of_leftTauSequence_nonempty_iso_stepComplex
   exact nextMap_mem_radical_of_leftTauSequence_iso_stepComplex R hS e
 
 /-- Both connecting components in an explicit left-ladder step are
-radical.-/
+radical.
+@isnad1 id=and.3h14v.s8.303659426ba6 from=translated src=- shape=0325e25e vocab=0dfa746a
+-/
 theorem connectingMaps_mem_radical_of_leftTauSequence_iso_stepComplex
     (R : NilpotentRadicalData C)
     {YPrev ZPrev YNext ZNext U : C}
@@ -190,7 +200,9 @@ theorem connectingMaps_mem_radical_of_leftTauSequence_iso_stepComplex
       h ∈ R.ideal.hom ZPrev U :=
   (stepMaps_mem_radical_of_leftTauSequence_iso_stepComplex R hS e).2
 
-/-- `Nonempty` form matching noncanonical mesh isomorphisms.-/
+/-- `Nonempty` form matching noncanonical mesh isomorphisms.
+@isnad1 id=and.4h13v.s8.157656badf65 from=translated src=- shape=95ce8161 vocab=b6a41651
+-/
 theorem connectingMaps_mem_radical_of_leftTauSequence_nonempty_iso_stepComplex
     (R : NilpotentRadicalData C)
     {YPrev ZPrev YNext ZNext U : C}
@@ -209,7 +221,9 @@ theorem connectingMaps_mem_radical_of_leftTauSequence_nonempty_iso_stepComplex
   exact connectingMaps_mem_radical_of_leftTauSequence_iso_stepComplex
     R hS e
 
-/-- Family form aligned with left-ladder radical-power propagation.-/
+/-- Family form aligned with left-ladder radical-power propagation.
+@isnad1 id=and.4h10v.s10.8139b33cc674 from=translated src=- shape=57f5dfd1 vocab=828efe35
+-/
 theorem connectingMaps_mem_radical_of_leftTauSequence_stepFamily
     (R : NilpotentRadicalData C)
     (S : ℕ → ShortComplex C)
@@ -239,7 +253,9 @@ theorem connectingMaps_mem_radical_of_leftTauSequence_stepFamily
         R (hS n) (e n)).2
 
 /-- A left tau-sequence isomorphic to an explicit left-ladder step makes
-that step a weak-cokernel complex.-/
+that step a weak-cokernel complex.
+@isnad1 id=isweakco.4h12v.s7.cc1bb920bbbe from=translated src=- shape=9c29c4bc vocab=5cb1c34f
+-/
 theorem isWeakCokernel_stepComplex_of_leftTauSequence_nonempty_iso
     {YPrev ZPrev YNext ZNext U : C}
     {bPrev : YPrev ⟶ ZPrev} {bNext : YNext ⟶ ZNext}
@@ -270,6 +286,9 @@ def forwardComposite
   | n + 1 => forwardComposite Z g n ≫ g n
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.0h3v.s6.28c583a5534b from=translated src=- shape=1b26138f vocab=b98d20b2
+-/
 @[simp]
 theorem forwardComposite_zero
     (Z : ℕ → C) (g : ∀ n : ℕ, Z n ⟶ Z (n + 1)) :
@@ -277,6 +296,9 @@ theorem forwardComposite_zero
   rfl
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.0h4v.s6.dff67aad5368 from=translated src=- shape=ca1e1fe2 vocab=d7cfdad7
+-/
 @[simp]
 theorem forwardComposite_succ
     (Z : ℕ → C) (g : ∀ n : ℕ, Z n ⟶ Z (n + 1))
@@ -286,7 +308,9 @@ theorem forwardComposite_succ
   rfl
 
 /-- A chain of radical connecting maps has its length-`n` composite in the
-`n`th ideal power.-/
+`n`th ideal power.
+@isnad1 id=mem.1h5v.s9.b242bb93a5cf from=translated src=- shape=fd11cb55 vocab=c3c38787
+-/
 theorem forwardComposite_mem_pow
     (I : HomIdeal C)
     (Z : ℕ → C) (g : ∀ n : ℕ, Z n ⟶ Z (n + 1))
@@ -311,7 +335,9 @@ def HasCoannihilatorPropagation
         s = g n ≫ sNext + h n ≫ t
 
 /-- A family of explicit weak-cokernel left-ladder steps supplies the
-abstract coannihilator-propagation property.-/
+abstract coannihilator-propagation property.
+@isnad1 id=hascoann.3h8v.s8.c59f193713d0 from=translated src=- shape=7f9e905a vocab=23fbe6e7
+-/
 theorem hasCoannihilatorPropagation_of_weakCokernels
     [HasBinaryBiproducts C]
     (Y Z U : ℕ → C)
@@ -329,7 +355,9 @@ theorem hasCoannihilatorPropagation_of_weakCokernels
   exact exists_next_coannihilator (hweak n) s hs
 
 /-- Left tau-sequence models of all explicit ladder steps supply the
-coannihilator propagation used in radical-power iteration.-/
+coannihilator propagation used in radical-power iteration.
+@isnad1 id=hascoann.4h9v.s9.23083693431f from=translated src=- shape=52e64b5c vocab=37aa9a6b
+-/
 theorem hasCoannihilatorPropagation_of_leftTauSequence_stepFamily
     [HasBinaryBiproducts C]
     (S : ℕ → ShortComplex C)
@@ -353,7 +381,9 @@ theorem hasCoannihilatorPropagation_of_leftTauSequence_stepFamily
 
 /-- If all complementary terms vanish after composing from the initial
 target, an initial coannihilator propagates through every finite left-ladder
-prefix.-/
+prefix.
+@isnad1 id=ex.3h10v.s8.3f5a11b82bd0 from=translated src=- shape=08d1b512 vocab=fe576573
+-/
 theorem exists_propagated_coannihilator
     (Y Z U : ℕ → C)
     (b : ∀ n : ℕ, Y n ⟶ Z n)
@@ -387,7 +417,9 @@ theorem exists_propagated_coannihilator
 
 Starting from a nonzero coannihilator, some complementary morphism
 `g₁ ≫ ⋯ ≫ gᵢ₋₁ ≫ hᵢ` is nonzero and lies in the corresponding
-radical power.-/
+radical power.
+@isnad1 id=ex.5h10v.s10.ca1c71634eb4 from=translated src=- shape=d88b0cb4 vocab=4d9f1c63
+-/
 theorem exists_nonzero_coremainder_in_radical_power
     (R : NilpotentRadicalData C)
     (Y Z U : ℕ → C)

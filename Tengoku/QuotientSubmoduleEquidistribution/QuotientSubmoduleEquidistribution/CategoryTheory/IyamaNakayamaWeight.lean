@@ -47,7 +47,9 @@ namespace AdditiveObjectWeight
 variable {T : FiniteTauCategoryData C Ind}
 
 omit [HasFiniteBiproducts C] [IsIdempotentComplete C] in
-/-- An additive object weight vanishes on every zero object.-/
+/-- An additive object weight vanishes on every zero object.
+@isnad1 id=eq.1h3v.s5.59fe73940f8e from=translated src=- shape=697da6b4 vocab=902f7da2
+-/
 theorem weight_eq_zero_of_isZero
     (W : AdditiveObjectWeight C) {X : C} (hX : IsZero X) :
     W.weight X = 0 := by
@@ -58,7 +60,9 @@ theorem weight_eq_zero_of_isZero
 
 omit [IsIdempotentComplete C] in
 /-- A binary-additive object weight is additive on `Fin`-indexed
-biproducts.-/
+biproducts.
+@isnad1 id=eq.0h4v.s6.fded4175caf5 from=translated src=- shape=24b1cb14 vocab=21fe336a
+-/
 theorem weight_finBiproduct (W : AdditiveObjectWeight C) :
     ∀ (n : ℕ) (F : Fin n → C),
       W.weight (⨁ F) = ∑ i, W.weight (F i) := by
@@ -84,7 +88,9 @@ theorem weight_finBiproduct (W : AdditiveObjectWeight C) :
 
 omit [IsIdempotentComplete C] in
 /-- A binary-additive object weight is additive on every finite
-biproduct.-/
+biproduct.
+@isnad1 id=eq.0h4v.s6.1d384bc773d5 from=translated src=- shape=ba4eda54 vocab=98befbad
+-/
 theorem weight_biproduct
     (W : AdditiveObjectWeight C) {J : Type w} [Fintype J]
     (F : J → C) :
@@ -129,7 +135,9 @@ def IsRightMeshEulerOffProjectives (W : AdditiveObjectWeight C)
     W.IsRightMeshEulerAt T Y
 
 /-- Euler identities on the chosen nonprojective indecomposables propagate
-to every object supported on nonprojectives.-/
+to every object supported on nonprojectives.
+@isnad1 id=isrightm.1h4v.s6.dc2af1e095be from=translated src=- shape=eb78a994 vocab=d4055523
+-/
 theorem isRightMeshEulerOffProjectives_of_obj
     (W : AdditiveObjectWeight C)
     (hobj : ∀ x : Ind, ¬ T.IsProjective x →
@@ -172,7 +180,9 @@ theorem isRightMeshEulerOffProjectives_of_obj
   exact hobj (label i) (hnonprojective i)
 
 omit [HasFiniteBiproducts C] [IsIdempotentComplete C] in
-/-- Arrow isomorphisms preserve source-minus-target weight.-/
+/-- Arrow isomorphisms preserve source-minus-target weight.
+@isnad1 id=eq.0h9v.s6.ae29be6d8ae0 from=translated src=- shape=3534a707 vocab=34188402
+-/
 theorem morphismWeight_eq_of_arrowIso
     (W : AdditiveObjectWeight C)
     {X Y X' Y' : C} {f : X ⟶ Y} {g : X' ⟶ Y'}
@@ -185,7 +195,9 @@ theorem morphismWeight_eq_of_arrowIso
   simp only [morphismWeight]
   rw [hleft, hright]
 
-/-- One invertible ladder square preserves source-minus-target weight.-/
+/-- One invertible ladder square preserves source-minus-target weight.
+@isnad1 id=eq.2h10v.s7.ca94b1a20e14 from=translated src=- shape=032ee038 vocab=e3f1e3ec
+-/
 theorem morphismWeight_eq_of_invertibleLadderStep
     (W : AdditiveObjectWeight C)
     {XPrev YPrev XNext YNext : C}
@@ -208,7 +220,9 @@ theorem morphismWeight_eq_of_invertibleLadderStep
   omega
 
 /-- Every two vertical arrows in a finite invertible ladder have the same
-source-minus-target weight.-/
+source-minus-target weight.
+@isnad1 id=eq.2h11v.s7.43cf19b8d385 from=translated src=- shape=3c425f8e vocab=ce97739f
+-/
 theorem morphismWeight_eq_of_invertibleLadderOfDistance
     (W : AdditiveObjectWeight C) (hEuler : W.IsRightMeshEuler T) (n : ℕ)
     {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
@@ -233,7 +247,9 @@ theorem morphismWeight_eq_of_invertibleLadderOfDistance
   exact hstart.trans ((hchain (Fin.last n)).trans hfinish)
 
 /-- Source-minus-target weight is constant along any finite invertible
-ladder.-/
+ladder.
+@isnad1 id=eq.2h10v.s6.67245dd34002 from=translated src=- shape=aecc44c2 vocab=5ce1d774
+-/
 theorem morphismWeight_eq_of_invertibleLadder
     (W : AdditiveObjectWeight C) (hEuler : W.IsRightMeshEuler T)
     {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
@@ -244,7 +260,9 @@ theorem morphismWeight_eq_of_invertibleLadder
 
 /-- The exact right-additive version of finite-ladder transport.  Euler
 equality is required only on nonprojective-supported right endpoints, and
-`hSupport` is precisely Iyama's projective-free prefix theorem.-/
+`hSupport` is precisely Iyama's projective-free prefix theorem.
+@isnad1 id=eq.3h11v.s7.0f615220758f from=translated src=- shape=642fda6d vocab=1cd81b42
+-/
 theorem morphismWeight_eq_of_invertibleLadderOfDistance_offProjectives
     (W : AdditiveObjectWeight C)
     (hEuler : W.IsRightMeshEulerOffProjectives T)
@@ -272,7 +290,9 @@ theorem morphismWeight_eq_of_invertibleLadderOfDistance_offProjectives
   exact hstart.trans ((hchain (Fin.last n)).trans hfinish)
 
 /-- Source-minus-target weight is constant along a finite ladder under the
-precise off-projective Euler and support hypotheses.-/
+precise off-projective Euler and support hypotheses.
+@isnad1 id=eq.3h10v.s7.83cebcf02463 from=translated src=- shape=72b0e405 vocab=fd94b7f9
+-/
 theorem morphismWeight_eq_of_invertibleLadder_offProjectives
     (W : AdditiveObjectWeight C)
     (hEuler : W.IsRightMeshEulerOffProjectives T)
@@ -285,7 +305,9 @@ theorem morphismWeight_eq_of_invertibleLadder_offProjectives
     hEuler hSupport n hn
 
 /-- The two endpoint maps of a genuine Nakayama pair have equal
-source-minus-target weight.-/
+source-minus-target weight.
+@isnad1 id=eq.2h6v.s8.784580b033ed from=translated src=- shape=83a2a6f3 vocab=6463659a
+-/
 theorem morphismWeight_muMinus_eq_muPlus_of_nakayamaPair
     (W : AdditiveObjectWeight C) (hEuler : W.IsRightMeshEuler T) {A B : Ind}
     (h : T.NakayamaPair A B) :
@@ -294,7 +316,9 @@ theorem morphismWeight_muMinus_eq_muPlus_of_nakayamaPair
   W.morphismWeight_eq_of_invertibleLadder hEuler h
 
 /-- A genuine Nakayama pair has equal endpoint weights under Iyama's exact
-off-projective hypotheses.-/
+off-projective hypotheses.
+@isnad1 id=eq.3h6v.s8.d7e967db7c21 from=translated src=- shape=831dbac7 vocab=7df07285
+-/
 theorem morphismWeight_muMinus_eq_muPlus_of_nakayamaPair_offProjectives
     (W : AdditiveObjectWeight C)
     (hEuler : W.IsRightMeshEulerOffProjectives T)

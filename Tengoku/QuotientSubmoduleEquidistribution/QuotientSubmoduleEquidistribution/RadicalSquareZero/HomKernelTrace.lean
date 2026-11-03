@@ -32,7 +32,9 @@ def familyTrace {A : Type x} (f : A → M →ₗ[K] N) : Submodule K N :=
 preserves trace modulo `R`.
 
 For separated representations, `R` is the radical of the target module and
-the two indexing types are the original and separated Hom spaces.-/
+the two indexing types are the original and separated Hom spaces.
+@isnad1 id=eq.2h9v.s9.0ac708253c1a from=translated src=- shape=90abfdfe vocab=9f4c82af
+-/
 theorem familyTrace_sup_eq_of_surjective_mod
     {A : Type x} {B : Type*}
     (f : A → M →ₗ[K] N) (g : B → M →ₗ[K] N)

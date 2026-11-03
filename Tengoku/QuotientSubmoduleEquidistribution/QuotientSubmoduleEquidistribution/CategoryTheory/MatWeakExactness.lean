@@ -24,7 +24,9 @@ universe v u
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
 /-- Exactness of a matrix short complex against every singleton source is
-enough to make its first map a weak kernel of its second map.-/
+enough to make its first map a weak kernel of its second map.
+@isnad1 id=isweakke.1h2v.s8.da9c507b8c1e from=translated src=- shape=3f47ee38 vocab=1327fb4b
+-/
 theorem mat_isWeakKernel_of_exact_embedding
     (S : ShortComplex (Mat_ C))
     (hS : ∀ X : C,
@@ -51,7 +53,9 @@ theorem mat_isWeakKernel_of_exact_embedding
   exact hij
 
 /-- Exactness of a matrix short complex against every singleton target is
-enough to make its second map a weak cokernel of its first map.-/
+enough to make its second map a weak cokernel of its first map.
+@isnad1 id=isweakco.1h2v.s8.0beeb338f9fb from=translated src=- shape=3321ed2d vocab=37a95ef2
+-/
 theorem mat_isWeakCokernel_of_exact_embedding
     (S : ShortComplex (Mat_ C))
     (hS : ∀ X : C,

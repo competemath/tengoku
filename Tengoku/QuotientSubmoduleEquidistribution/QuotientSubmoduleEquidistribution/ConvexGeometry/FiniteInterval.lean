@@ -47,6 +47,9 @@ def intervalClosure (c : SetClosure E) (C D : Set E) :
       · exact Or.inl hzC
       · exact Or.inr ⟨y, c.le_closure _ (Or.inr ⟨y, hy, rfl⟩), rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s8.b84526eb756a from=translated src=- shape=3ee09a89 vocab=9df79d5b
+-/
 @[simp]
 theorem mem_intervalClosure {C D : Set E} {S : Set ↥(D \ C)}
     {x : ↥(D \ C)} :
@@ -55,7 +58,9 @@ theorem mem_intervalClosure {C D : Set E} {S : Set ↥(D \ C)}
   Iff.rfl
 
 /-- Closed subsets of the contracted interval give ambient closed sets after
-the fixed lower set is reattached.-/
+the fixed lower set is reattached.
+@isnad1 id=isclosed.3h5v.s7.9657f7ff6bd0 from=translated src=- shape=fc982d66 vocab=1d1d3435
+-/
 theorem isClosed_union_image_of_intervalClosed
     {C D : Set E} (hD : c.IsClosed D) (hCD : C ⊆ D)
     {S : Set ↥(D \ C)}
@@ -78,7 +83,9 @@ theorem isClosed_union_image_of_intervalClosed
   · exact c.le_closure _
 
 /-- Conversely, an ambient closed set of the form `C ∪ image S` gives a
-closed subset of the contracted interval.-/
+closed subset of the contracted interval.
+@isnad1 id=isclosed.1h5v.s7.1d309070ba67 from=translated src=- shape=a58dfb40 vocab=a56559e0
+-/
 theorem intervalClosed_of_union_image_isClosed
     {C D : Set E} {S : Set ↥(D \ C)}
     (hS : c.IsClosed (C ∪ Subtype.val '' S)) :
@@ -94,7 +101,9 @@ theorem intervalClosed_of_union_image_isClosed
     · simpa using Subtype.ext hyx ▸ hy
   · exact (c.intervalClosure C D).le_closure _
 
-/-- The contracted interval inherits anti-exchange from the ambient closure.-/
+/-- The contracted interval inherits anti-exchange from the ambient closure.
+@isnad1 id=isantiex.3h4v.s5.eae5cabd5bb2 from=translated src=- shape=9de69ca5 vocab=9de4077e
+-/
 theorem intervalClosure_isAntiExchange
     {C D : Set E} (hae : c.IsAntiExchange)
     (hD : c.IsClosed D) (hCD : C ⊆ D) :
@@ -124,14 +133,18 @@ theorem intervalClosure_isAntiExchange
   rw [← hinsert x] at hy'
   exact hy'
 
-/-- The empty contracted support is closed when the lower endpoint is.-/
+/-- The empty contracted support is closed when the lower endpoint is.
+@isnad1 id=isclosed.1h4v.s7.c2330aba57a3 from=translated src=- shape=cf051a86 vocab=bd18c290
+-/
 theorem intervalClosure_empty_closed
     {C D : Set E} (hC : c.IsClosed C) :
     (c.intervalClosure C D).IsClosed ∅ := by
   apply intervalClosed_of_union_image_isClosed
   simpa using hC
 
-/-- The full contracted support is closed when the upper endpoint is.-/
+/-- The full contracted support is closed when the upper endpoint is.
+@isnad1 id=isclosed.2h4v.s7.5c7a0f248f29 from=translated src=- shape=0beec362 vocab=5cbb6788
+-/
 theorem intervalClosure_univ_closed
     {C D : Set E} (hD : c.IsClosed D) (hCD : C ⊆ D) :
     (c.intervalClosure C D).IsClosed Set.univ := by
@@ -148,7 +161,9 @@ theorem intervalClosure_univ_closed
     · exact Or.inr ⟨⟨x, hxD, hxC⟩, Set.mem_univ _, rfl⟩
 
 /-- A proper finite interval has a legal first deletion, without assuming
-that the ambient ground type is finite.-/
+that the ambient ground type is finite.
+@isnad1 id=ex.6h4v.s7.b318b2856799 from=translated src=- shape=7c59cb60 vocab=a71b26a1
+-/
 theorem exists_closed_sdiff_singleton_between_of_finite_sdiff
     (_hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     {C D : Set E} (hC : c.IsClosed C) (hD : c.IsClosed D)
@@ -204,7 +219,9 @@ inductive FiniteIntervalDeletionChain (c : SetClosure E) (C : Set E) :
 
 /-- Literal finite-interval accessibility: if `D \ C` is finite, one can
 pass from `D` to `C` by successively deleting extreme points while remaining
-closed at every step.-/
+closed at every step.
+@isnad1 id=finitein.6h4v.s6.1d5ec7f8d0f0 from=translated src=- shape=41738292 vocab=cbe12952
+-/
 theorem finiteIntervalDeletionChain
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
     {C D : Set E} (hC : c.IsClosed C) (hD : c.IsClosed D)

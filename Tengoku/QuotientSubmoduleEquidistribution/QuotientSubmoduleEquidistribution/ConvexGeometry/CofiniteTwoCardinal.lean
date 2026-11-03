@@ -52,7 +52,9 @@ def mixedBoundaryDeletionSet : Set (Set E) :=
 namespace MixedBoundaryPair
 
 /-- Forgetting the canonical orientation of a mixed boundary pair is
-injective.-/
+injective.
+@isnad1 id=injectiv.0h2v.s3.6d12249fd856 from=translated src=- shape=780168e4 vocab=21b4d9b6
+-/
 theorem deletion_injective :
     Function.Injective (deletion (c := c)) := by
   intro p q h
@@ -76,7 +78,9 @@ theorem deletion_injective :
 
 end MixedBoundaryPair
 
-/-- The arbitrary-ambient two-deletion partition.-/
+/-- The arbitrary-ambient two-deletion partition.
+@isnad1 id=eq.1h2v.s4.9fe615cd19b3 from=translated src=- shape=7d24923f vocab=175fa12c
+-/
 theorem cofiniteTwoDeletionSet_eq_topExtremePairSet_union_mixedBoundary
     (hae : c.IsAntiExchange) :
     c.cofiniteTwoDeletionSet =
@@ -116,7 +120,9 @@ theorem cofiniteTwoDeletionSet_eq_topExtremePairSet_union_mixedBoundary
       exact ⟨Set.ncard_pair p.ne, p.2.2.2⟩
 
 /-- The top and mixed pieces of the arbitrary-ambient partition are
-disjoint.-/
+disjoint.
+@isnad1 id=disjoint.0h2v.s5.b2f1b06888a5 from=translated src=- shape=9509f660 vocab=329cdd71
+-/
 theorem disjoint_topExtremePairSet_mixedBoundaryDeletionSet :
     Disjoint c.topExtremePairSet c.mixedBoundaryDeletionSet := by
   rw [Set.disjoint_left]
@@ -129,7 +135,9 @@ theorem disjoint_topExtremePairSet_mixedBoundaryDeletionSet :
 
 /-- Extended-natural cardinal form of the arbitrary-ambient two-deletion
 partition.  It records finite cardinality exactly and collapses every infinite
-cardinality to `⊤`, so the statement remains valid if a boundary is infinite.-/
+cardinality to `⊤`, so the statement remains valid if a boundary is infinite.
+@isnad1 id=eq.1h2v.s5.90a44645045e from=translated src=- shape=71c04639 vocab=93f3dc75
+-/
 theorem encard_cofiniteTwoDeletionSet_eq
     (hae : c.IsAntiExchange) :
     c.cofiniteTwoDeletionSet.encard =
@@ -145,7 +153,9 @@ theorem encard_cofiniteTwoDeletionSet_eq
 
 /-- The two-deletion set is finite as soon as its two boundary pieces are
 finite.  This makes the manuscript's finiteness assertion explicit instead
-of relying only on the value of `Set.ncard`.-/
+of relying only on the value of `Set.ncard`.
+@isnad1 id=finite.2h2v.s4.4783e591ad4d from=translated src=- shape=9cc254ad vocab=5cd6db3f
+-/
 theorem finite_cofiniteTwoDeletionSet
     (hae : c.IsAntiExchange)
     (hextreme : c.topExtremeSet.Finite)
@@ -160,7 +170,9 @@ theorem finite_cofiniteTwoDeletionSet
 
 /-- Natural-number form of the arbitrary-ambient two-deletion formula.
 It assumes finiteness only of the top extreme boundary and the mixed boundary,
-not of the ground type.-/
+not of the ground type.
+@isnad1 id=eq.2h2v.s5.aa3104c71e31 from=translated src=- shape=6fbb3483 vocab=a6583fd4
+-/
 theorem ncard_cofiniteTwoDeletionSet_eq_choose_add
     (hae : c.IsAntiExchange)
     (hextreme : c.topExtremeSet.Finite)

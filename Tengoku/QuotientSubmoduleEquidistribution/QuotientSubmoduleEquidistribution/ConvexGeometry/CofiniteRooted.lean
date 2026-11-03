@@ -35,6 +35,9 @@ def rootedDeletions
     exact (deletionsOfCard (E := E) j).filter Rooted
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h4v.s5.66bdd012cc91 from=translated src=- shape=763691c7 vocab=12d8cd93
+-/
 @[simp]
 theorem mem_rootedDeletions
     {Rooted : Finset E → Prop} {j : ℕ} {D : Finset E} :
@@ -50,6 +53,9 @@ def badRootedDeletions
     exact (rootedDeletions Rooted j).filter Bad
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h5v.s5.9ffc4b2c8f07 from=translated src=- shape=7961852f vocab=a40f9391
+-/
 @[simp]
 theorem mem_badRootedDeletions
     {Rooted Bad : Finset E → Prop} {j : ℕ} {D : Finset E} :
@@ -65,6 +71,9 @@ def goodRootedDeletions
     exact (rootedDeletions Rooted j).filter fun D ↦ ¬ Bad D
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h5v.s5.af2eb3516837 from=translated src=- shape=a755b070 vocab=876d764a
+-/
 @[simp]
 theorem mem_goodRootedDeletions
     {Rooted Bad : Finset E → Prop} {j : ℕ} {D : Finset E} :
@@ -74,7 +83,9 @@ theorem mem_goodRootedDeletions
 
 omit [DecidableEq E] in
 /-- A closure characterization identifies legal cofinite deletions exactly
-with good rooted deletions.-/
+with good rooted deletions.
+@isnad1 id=eq.1h5v.s6.9044b5404ebe from=translated src=- shape=5d311a42 vocab=d0bc8b57
+-/
 theorem cofiniteDeletions_eq_goodRootedDeletions
     (c : SetClosure E) (j : ℕ)
     (Rooted Bad : Finset E → Prop)
@@ -93,7 +104,9 @@ theorem cofiniteDeletions_eq_goodRootedDeletions
 
 omit [DecidableEq E] in
 /-- Equal rooted counts and equal bad-rooted counts force equal
-good-rooted counts.-/
+good-rooted counts.
+@isnad1 id=eq.2h6v.s6.be2d3d612f18 from=translated src=- shape=9a06d260 vocab=fe74ea84
+-/
 theorem goodRootedDeletions_card_eq_of_rooted_bad_eq
     (j : ℕ)
     (qRooted qBad sRooted sBad : Finset E → Prop)
@@ -151,7 +164,9 @@ structure RootedBadCofiniteInput
       (badRootedDeletions sRooted sBad j).card
 
 /-- The arbitrary-`j` finite endpoint: rooted balance, bad-rooted balance,
-and the factor-ladder characterization imply equality at level `|E| - j`.-/
+and the factor-ladder characterization imply equality at level `|E| - j`.
+@isnad1 id=eq.1h5v.s5.e4f4c2c0839c from=translated src=- shape=760778b6 vocab=721ee30d
+-/
 theorem levelCount_card_sub_eq_of_rootedBadCofiniteInput
     (qClosure sClosure : SetClosure E) (j : ℕ)
     (hj : j ≤ Nat.card E)

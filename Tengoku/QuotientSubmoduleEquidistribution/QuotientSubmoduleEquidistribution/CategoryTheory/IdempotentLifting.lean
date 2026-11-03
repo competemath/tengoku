@@ -37,7 +37,9 @@ def FunctorKernelSquareZero (F : C ⥤ D) : Prop :=
 
 /-- A full additive functor with square-zero kernel reflects
 isomorphisms.  This is the categorical inverse-lifting argument used for
-separated representations.-/
+separated representations.
+@isnad1 id=isiso.1h6v.s6.9864b54d61b9 from=translated src=- shape=424d02d3 vocab=b9c24fd2
+-/
 theorem reflectsIso_of_kernelSquareZero
     (F : C ⥤ D) [F.Additive] [F.Full]
     (hF : FunctorKernelSquareZero F)
@@ -77,7 +79,9 @@ theorem reflectsIso_of_kernelSquareZero
   exact IsIso.mk ⟨leftInv, hleft, hEq.symm ▸ hright⟩
 
 /-- Package inverse lifting as the standard categorical reflection
-property.-/
+property.
+@isnad1 id=reflects.1h3v.s5.6d8d841b8fd8 from=translated src=- shape=3878b1c2 vocab=38f2ef1a
+-/
 theorem reflectsIsomorphisms_of_kernelSquareZero
     (F : C ⥤ D) [F.Additive] [F.Full]
     (hF : FunctorKernelSquareZero F) : F.ReflectsIsomorphisms where
@@ -98,7 +102,9 @@ def isoOfMapIsoOfKernelSquareZero
 
 /-- An idempotent on the image of an object splits when the endomorphism map
 is surjective, its kernel is elementwise nilpotent, and idempotents split in
-the source category.-/
+the source category.
+@isnad1 id=ex.3h5v.s8.b621b98b6cc7 from=translated src=- shape=ea3750d3 vocab=ec32db3c
+-/
 theorem image_idempotent_splits
     (F : C ⥤ D) [F.Additive] [IsIdempotentComplete C]
     (X : C)
@@ -129,7 +135,9 @@ theorem image_idempotent_splits
 
 /-- A full, essentially surjective additive functor with elementwise
 nilpotent endomorphism kernels transports idempotent completeness to its
-target.-/
+target.
+@isnad1 id=isidempo.1h3v.s7.866df0850594 from=translated src=- shape=b53b36a6 vocab=78ccd034
+-/
 theorem isIdempotentComplete_of_ker_mapEnd_isNilpotent
     (F : C ⥤ D) [F.Additive] [F.Full] [F.EssSurj]
     [IsIdempotentComplete C]
@@ -156,7 +164,9 @@ theorem isIdempotentComplete_of_ker_mapEnd_isNilpotent
 
 /-- It suffices to have, for each target object, one isomorphic functor image
 on whose endomorphism ring the functor kernel is elementwise nilpotent.  This
-form permits discarding direct summands which the functor sends to zero.-/
+form permits discarding direct summands which the functor sends to zero.
+@isnad1 id=isidempo.1h3v.s7.5c755a70c528 from=translated src=- shape=88b30e35 vocab=5a434319
+-/
 theorem isIdempotentComplete_of_objectwise_nilpotent_kernel
     (F : C ⥤ D) [F.Additive] [F.Full]
     [IsIdempotentComplete C]

@@ -38,6 +38,9 @@ def radicalMap (f : M →ₗ[R] N) :
   map_add' _ _ := by ext; simp
   map_smul' _ _ := by ext; simp
 
+/--
+@isnad1 id=eq.0h5v.s9.86ffaa617c34 from=translated src=- shape=e86d190a vocab=766618f8
+-/
 @[simp]
 theorem radicalMap_apply (f : M →ₗ[R] N)
     (m : Module.jacobson R M) :
@@ -51,6 +54,9 @@ def topMap (f : M →ₗ[R] N) :
   (Module.jacobson R M).mapQ (Module.jacobson R N) f
     (Module.le_comap_jacobson f)
 
+/--
+@isnad1 id=eq.0h5v.s9.b89733387e5c from=translated src=- shape=e07a12e4 vocab=4ba7bf81
+-/
 @[simp]
 theorem topMap_mk (f : M →ₗ[R] N) (m : M) :
     topMap f ((Module.jacobson R M).mkQ m) =
@@ -69,24 +75,36 @@ abbrev RadicalLayerHom (M : Type v) (N : Type w)
 def layerMap (f : M →ₗ[R] N) : RadicalLayerHom (R := R) M N :=
   (radicalMap f, topMap f)
 
+/--
+@isnad1 id=eq.0h2v.s8.b98d06c6fcd9 from=translated src=- shape=1fcd884e vocab=642c6892
+-/
 @[simp]
 theorem radicalMap_id : radicalMap (LinearMap.id (R := R) (M := M)) =
     LinearMap.id := by
   ext m
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.fbeebccf46fe from=translated src=- shape=4e47c506 vocab=eccd9b3a
+-/
 @[simp]
 theorem topMap_id : topMap (LinearMap.id (R := R) (M := M)) =
     LinearMap.id := by
   ext m
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.96ed331a1439 from=translated src=- shape=990b5c6d vocab=bff4a64b
+-/
 @[simp]
 theorem radicalMap_comp (g : N →ₗ[R] P) (f : M →ₗ[R] N) :
     radicalMap (g.comp f) = (radicalMap g).comp (radicalMap f) := by
   ext m
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.a71529ac49eb from=translated src=- shape=31328d5a vocab=35183834
+-/
 @[simp]
 theorem topMap_comp (g : N →ₗ[R] P) (f : M →ₗ[R] N) :
     topMap (g.comp f) = (topMap g).comp (topMap f) := by
@@ -94,7 +112,9 @@ theorem topMap_comp (g : N →ₗ[R] P) (f : M →ₗ[R] N) :
   rfl
 
 /-- Vanishing on the radical layer means literal vanishing on every radical
-element.-/
+element.
+@isnad1 id=iff.0h4v.s9.ec939caf4fe9 from=translated src=- shape=f7710342 vocab=ba9993ce
+-/
 theorem radicalMap_eq_zero_iff (f : M →ₗ[R] N) :
     radicalMap f = 0 ↔
       ∀ m : M, m ∈ Module.jacobson R M → f m = 0 := by
@@ -107,7 +127,9 @@ theorem radicalMap_eq_zero_iff (f : M →ₗ[R] N) :
     exact h m m.property
 
 /-- Vanishing on the top layer means that the whole image lies in the target
-radical.-/
+radical.
+@isnad1 id=iff.0h4v.s9.415530c952af from=translated src=- shape=76f74add vocab=4fc5d5db
+-/
 theorem topMap_eq_zero_iff (f : M →ₗ[R] N) :
     topMap f = 0 ↔
       ∀ m : M, f m ∈ Module.jacobson R N := by
@@ -122,7 +144,9 @@ theorem topMap_eq_zero_iff (f : M →ₗ[R] N) :
     rw [topMap_mk]
     exact (Submodule.Quotient.mk_eq_zero _).mpr (h q)
 
-/-- Exact kernel description for the top-and-radical comparison.-/
+/-- Exact kernel description for the top-and-radical comparison.
+@isnad1 id=iff.0h4v.s9.c7dbd88a7702 from=translated src=- shape=efbbc12e vocab=6d496541
+-/
 theorem layerMap_eq_zero_iff (f : M →ₗ[R] N) :
     layerMap f = 0 ↔
       (∀ m : M, m ∈ Module.jacobson R M → f m = 0) ∧
@@ -140,7 +164,9 @@ theorem layerMap_eq_zero_iff (f : M →ₗ[R] N) :
 
 /-- The kernel of the radical-layer comparison is a square-zero ideal: the
 first invisible map lands in the middle radical, while the second invisible
-map vanishes there.-/
+map vanishes there.
+@isnad1 id=eq.2h6v.s10.e9664a008760 from=translated src=- shape=062e5e47 vocab=c9d2396c
+-/
 theorem comp_eq_zero_of_layerMap_eq_zero
     (f : M →ₗ[R] N) (g : N →ₗ[R] P)
     (hf : layerMap f = 0) (hg : layerMap g = 0) :

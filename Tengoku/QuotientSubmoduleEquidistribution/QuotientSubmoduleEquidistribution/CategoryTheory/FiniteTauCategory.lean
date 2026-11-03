@@ -124,7 +124,9 @@ variable (T : FiniteRightTauCategoryData C Ind)
 
 /-- The chosen right mesh of an object is, up to isomorphism, the
 componentwise biproduct of the chosen right meshes in any displayed finite
-biproduct decomposition of that object.-/
+biproduct decomposition of that object.
+@isnad1 id=nonempty.0h7v.s6.68ff4646c7d0 from=translated src=- shape=463e787d vocab=aa47fd58
+-/
 theorem nonempty_rightMesh_iso_shortComplexBiproduct_of_iso
     {J : Type x} [Fintype J] (F : J → C) (X : C)
     (e : X ≅ ⨁ F) :
@@ -140,7 +142,9 @@ theorem nonempty_rightMesh_iso_shortComplexBiproduct_of_iso
       (biproduct.mapIso (fun j ↦ T.rightTermIso (F j))).symm)
 
 /-- The chosen right mesh commutes with every finite biproduct, up to a
-nonempty type of isomorphisms of short complexes.-/
+nonempty type of isomorphisms of short complexes.
+@isnad1 id=nonempty.0h5v.s6.19f6824cbb85 from=translated src=- shape=3f8c7b67 vocab=aa47fd58
+-/
 theorem nonempty_rightMesh_biproduct_iso
     {J : Type x} [Fintype J] (F : J → C) :
     Nonempty
@@ -149,7 +153,9 @@ theorem nonempty_rightMesh_biproduct_iso
   T.nonempty_rightMesh_iso_shortComplexBiproduct_of_iso F (⨁ F) (Iso.refl _)
 
 /-- Every recorded indecomposable decomposition of an object induces the
-corresponding decomposition of its chosen right mesh.-/
+corresponding decomposition of its chosen right mesh.
+@isnad1 id=ex.0h4v.s6.cda851db8a46 from=translated src=- shape=20ce1d74 vocab=ccc36a1e
+-/
 theorem exists_rightMesh_decomposition (X : C) :
     ∃ (n : ℕ) (label : Fin n → Ind),
       Nonempty
@@ -174,7 +180,9 @@ variable (T : FiniteTauCategoryData C Ind)
 
 /-- The chosen right mesh of an object is, up to isomorphism, the
 componentwise biproduct of the chosen right meshes in any displayed finite
-biproduct decomposition of that object.-/
+biproduct decomposition of that object.
+@isnad1 id=nonempty.0h7v.s7.4fc0360c065c from=translated src=- shape=a93374fb vocab=b4661577
+-/
 theorem nonempty_rightMesh_iso_shortComplexBiproduct_of_iso
     {J : Type x} [Fintype J] (F : J → C) (X : C)
     (e : X ≅ ⨁ F) :
@@ -190,7 +198,9 @@ theorem nonempty_rightMesh_iso_shortComplexBiproduct_of_iso
       (biproduct.mapIso (fun j ↦ T.rightTermIso (F j))).symm)
 
 /-- The chosen right mesh commutes with every finite biproduct, up to a
-nonempty type of isomorphisms of short complexes.-/
+nonempty type of isomorphisms of short complexes.
+@isnad1 id=nonempty.0h5v.s7.cabfbd7fd8b0 from=translated src=- shape=9e117e3c vocab=b4661577
+-/
 theorem nonempty_rightMesh_biproduct_iso
     {J : Type x} [Fintype J] (F : J → C) :
     Nonempty
@@ -200,7 +210,9 @@ theorem nonempty_rightMesh_biproduct_iso
     T F (⨁ F) (Iso.refl _)
 
 /-- Every recorded indecomposable decomposition of an object induces the
-corresponding decomposition of its chosen right mesh.-/
+corresponding decomposition of its chosen right mesh.
+@isnad1 id=ex.0h4v.s7.50ae81ed2dd2 from=translated src=- shape=42937918 vocab=e1705d5a
+-/
 theorem exists_rightMesh_decomposition (X : C) :
     ∃ (n : ℕ) (label : Fin n → Ind),
       Nonempty
@@ -214,7 +226,9 @@ theorem exists_rightMesh_decomposition (X : C) :
 
 /-- The chosen left mesh of an object is, up to isomorphism, the
 componentwise biproduct of the chosen left meshes in any displayed finite
-biproduct decomposition of that object.-/
+biproduct decomposition of that object.
+@isnad1 id=nonempty.0h7v.s6.f543b3f66195 from=translated src=- shape=463e787d vocab=14abf460
+-/
 theorem nonempty_leftMesh_iso_shortComplexBiproduct_of_iso
     {J : Type x} [Fintype J] (F : J → C) (X : C)
     (e : X ≅ ⨁ F) :
@@ -230,7 +244,9 @@ theorem nonempty_leftMesh_iso_shortComplexBiproduct_of_iso
       (biproduct.mapIso (fun j ↦ T.leftTermIso (F j))).symm)
 
 /-- The chosen left mesh commutes with every finite biproduct, up to a
-nonempty type of isomorphisms of short complexes.-/
+nonempty type of isomorphisms of short complexes.
+@isnad1 id=nonempty.0h5v.s6.6e72e0e302dc from=translated src=- shape=3f8c7b67 vocab=14abf460
+-/
 theorem nonempty_leftMesh_biproduct_iso
     {J : Type x} [Fintype J] (F : J → C) :
     Nonempty
@@ -239,7 +255,9 @@ theorem nonempty_leftMesh_biproduct_iso
   T.nonempty_leftMesh_iso_shortComplexBiproduct_of_iso F (⨁ F) (Iso.refl _)
 
 /-- Every recorded indecomposable decomposition of an object induces the
-corresponding decomposition of its chosen left mesh.-/
+corresponding decomposition of its chosen left mesh.
+@isnad1 id=ex.0h4v.s7.eebce62b3f2f from=translated src=- shape=55ccc1b5 vocab=0fff66d4
+-/
 theorem exists_leftMesh_decomposition (X : C) :
     ∃ (n : ℕ) (label : Fin n → Ind),
       Nonempty
@@ -283,14 +301,18 @@ abbrev tauPlus (X : T.Nonprojective) : Ind :=
 abbrev tauMinus (A : T.Noninjective) : Ind :=
   (T.tauPlusEquiv.symm A).1
 
-/-- Positive and negative translation cancel on nonprojective labels.-/
+/-- Positive and negative translation cancel on nonprojective labels.
+@isnad1 id=eq.0h4v.s9.279c845ac64e from=translated src=- shape=f878e115 vocab=e68b5fb6
+-/
 @[simp]
 theorem tauMinus_tauPlus (X : T.Nonprojective) :
     T.tauMinus (T.tauPlusEquiv X) = X.1 := by
   change (T.tauPlusEquiv.symm (T.tauPlusEquiv X)).1 = X.1
   rw [T.tauPlusEquiv.symm_apply_apply]
 
-/-- Negative and positive translation cancel on noninjective labels.-/
+/-- Negative and positive translation cancel on noninjective labels.
+@isnad1 id=eq.0h4v.s9.d35d754ac211 from=translated src=- shape=e4d9a838 vocab=96fea822
+-/
 @[simp]
 theorem tauPlus_tauMinus (A : T.Noninjective) :
     T.tauPlus (T.tauPlusEquiv.symm A) = A.1 := by
@@ -335,7 +357,9 @@ abbrev thetaPlus (X : Ind) : C := (T.rightMesh (T.obj X)).X₂
 abbrev thetaMinus (A : Ind) : C := (T.leftMesh (T.obj A)).X₂
 
 /-- The middle term of the chosen right mesh at a nonprojective label is
-nonzero.  This follows from minimality of the first mesh map.-/
+nonzero.  This follows from minimality of the first mesh map.
+@isnad1 id=not.0h4v.s6.14aeb4a440e7 from=translated src=- shape=87b2e32f vocab=a3efa53f
+-/
 theorem not_isZero_thetaPlus (X : T.Nonprojective) :
     ¬ IsZero (T.thetaPlus X.1) :=
   (T.rightTau (T.obj X.1)).not_isZero_X₂_of_not_isZero_X₁ X.2
@@ -352,14 +376,18 @@ def middleIso (X : T.Nonprojective) :
     T.thetaPlus X.1 ≅ T.thetaMinus (T.tauPlus X) :=
   ShortComplex.π₂.mapIso (T.rightLeftMeshIso X)
 
-/-- Monicity of the two compatible first mesh maps is equivalent.-/
+/-- Monicity of the two compatible first mesh maps is equivalent.
+@isnad1 id=iff.0h4v.s8.5984e5d49469 from=translated src=- shape=a45caa14 vocab=e310f0e5
+-/
 theorem mono_nuPlus_iff_mono_muMinus (X : T.Nonprojective) :
     Mono (T.nuPlus X.1) ↔
       Mono (T.muMinus (T.tauPlus X)) :=
   (MorphismProperty.monomorphisms C).arrow_mk_iso_iff
     (T.firstMapIso X)
 
-/-- A nonzero right middle term remains nonzero after mesh compatibility.-/
+/-- A nonzero right middle term remains nonzero after mesh compatibility.
+@isnad1 id=not.1h4v.s6.be6d28c68acc from=translated src=- shape=91b84d72 vocab=f5d635f6
+-/
 theorem not_isZero_thetaMinus_of_not_isZero_thetaPlus
     (X : T.Nonprojective)
     (hX : ¬ IsZero (T.thetaPlus X.1)) :
@@ -367,7 +395,9 @@ theorem not_isZero_thetaMinus_of_not_isZero_thetaPlus
   intro hzero
   exact hX ((T.middleIso X).isZero_iff.mpr hzero)
 
-/-- Nonmonicity of `nuPlus X` transports to `muMinus (tauPlus X)`.-/
+/-- Nonmonicity of `nuPlus X` transports to `muMinus (tauPlus X)`.
+@isnad1 id=not.1h4v.s8.4add6dec6049 from=translated src=- shape=7b7f1287 vocab=e310f0e5
+-/
 theorem not_mono_muMinus_of_not_mono_nuPlus
     (X : T.Nonprojective)
     (hX : ¬ Mono (T.nuPlus X.1)) :
@@ -388,7 +418,9 @@ def MuMinusNakayamaExtraction
         ¬ T.IsProjective B ∧ NakayamaPair A B
 
 /-- The right-mesh formulation follows formally from the `muMinus` theorem
-and right/left mesh compatibility.-/
+and right/left mesh compatibility.
+@isnad1 id=ex.3h5v.s8.a3554ce20d12 from=translated src=- shape=05c5b7e1 vocab=a7bd6ec3
+-/
 theorem exists_nakayamaPair_of_not_mono_nuPlus
     (NakayamaPair : Ind → Ind → Prop)
     (hExtract : T.MuMinusNakayamaExtraction NakayamaPair)

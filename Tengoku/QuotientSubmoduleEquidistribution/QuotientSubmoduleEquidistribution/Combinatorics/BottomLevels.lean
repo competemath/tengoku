@@ -72,7 +72,9 @@ def formula (source target : E → V) : ℕ :=
         Fintype.card U +
           ∑ x : V, Nat.choose (inDegree target x) 2
 
-/-- The five formal families have the displayed cardinality.-/
+/-- The five formal families have the displayed cardinality.
+@isnad1 id=eq.0h5v.s5.7c4c0963c4ed from=translated src=- shape=1f807722 vocab=bf367196
+-/
 theorem card (source target : E → V) :
     Nat.card (Shape (U := U) source target) =
       formula (U := U) source target := by
@@ -81,7 +83,9 @@ theorem card (source target : E → V) :
     Fintype.card_finset_len, outDegree, inDegree]
   ac_rfl
 
-/-- Swapping source and target leaves the formal counting expression fixed.-/
+/-- Swapping source and target leaves the formal counting expression fixed.
+@isnad1 id=eq.0h5v.s5.fcd7f1f854a6 from=translated src=- shape=dc8cd711 vocab=a437480f
+-/
 theorem formula_swap (source target : E → V) :
     formula (U := U) source target =
       formula (U := U) target source := by
@@ -89,7 +93,9 @@ theorem formula_swap (source target : E → V) :
   simp only [OutFiber, InFiber]
   ac_rfl
 
-/-- The two source/target-swapped formal shape types have equal cardinality.-/
+/-- The two source/target-swapped formal shape types have equal cardinality.
+@isnad1 id=eq.0h5v.s5.8c6b2de7487a from=translated src=- shape=c984a071 vocab=e1e3d0db
+-/
 theorem card_swap (source target : E → V) :
     Nat.card (Shape (U := U) source target) =
       Nat.card (Shape (U := U) target source) := by
@@ -160,7 +166,9 @@ def Data.of_contains
 omit [Finite E] in
 /--
 For an upward-closed faithfulness predicate, a closed set is faithful exactly
-when it contains the supplied minimal faithful core.-/
+when it contains the supplied minimal faithful core.
+@isnad1 id=iff.1h5v.s7.ce28bf0a8a48 from=translated src=- shape=c5b92aeb vocab=a7bb31ee
+-/
 theorem Data.faithful_iff_core_subset
     {c : QuotientSubmoduleEquidistribution.SetClosure E}
     {Faithful : Set E → Prop}
@@ -173,7 +181,9 @@ theorem Data.faithful_iff_core_subset
   · exact D.core_le C
   · exact fun h ↦ hFaithful h D.core_faithful
 
-/-- The faithful count is bounded by the full closure-system level count.-/
+/-- The faithful count is bounded by the full closure-system level count.
+@isnad1 id=le.0h4v.s4.282d01573236 from=translated src=- shape=bfe5abfa vocab=2c7ab41f
+-/
 theorem faithfulLevelCount_le_levelCount
     (c : QuotientSubmoduleEquidistribution.SetClosure E)
     (Faithful : Set E → Prop) (n : ℕ) :
@@ -186,7 +196,9 @@ theorem faithfulLevelCount_le_levelCount
     (fun _ hC ↦ hC.2)
     (Set.toFinite _)
 
-/-- No faithful closed set lies below the cardinality of its minimal core.-/
+/-- No faithful closed set lies below the cardinality of its minimal core.
+@isnad1 id=eq.1h5v.s6.0a5539bb556a from=translated src=- shape=5dc24c23 vocab=95b82f18
+-/
 theorem faithfulLevelCount_eq_zero_of_lt_core
     {c : QuotientSubmoduleEquidistribution.SetClosure E}
     {Faithful : Set E → Prop}
@@ -209,7 +221,9 @@ theorem faithfulLevelCount_eq_zero_of_lt_core
   rw [faithfulLevelCount, hlevel]
   simp
 
-/-- At the core's cardinality, the core is the unique faithful closed set.-/
+/-- At the core's cardinality, the core is the unique faithful closed set.
+@isnad1 id=eq.1h5v.s6.04aaa938f954 from=translated src=- shape=66ff9060 vocab=7d51d00e
+-/
 theorem faithfulLevelCount_eq_one_of_eq_core
     {c : QuotientSubmoduleEquidistribution.SetClosure E}
     {Faithful : Set E → Prop}
@@ -240,7 +254,9 @@ theorem faithfulLevelCount_eq_one_of_eq_core
 /--
 Equal core cardinalities force equality of faithful level counts at and below
 the two cores.  Taking `n = 4` gives precisely the formal `d > 4` and `d = 4`
-deduction, once the two module-theoretic cores have been constructed.-/
+deduction, once the two module-theoretic cores have been constructed.
+@isnad1 id=eq.2h8v.s7.855799643121 from=translated src=- shape=3f31d8ee vocab=c184cd98
+-/
 theorem faithfulLevelCount_eq_of_core_ncard_eq_of_level_le
     {cQ cS : QuotientSubmoduleEquidistribution.SetClosure E}
     {FaithfulQ FaithfulS : Set E → Prop}
@@ -270,6 +286,9 @@ ambient index type `I` need not be finite.-/
 def JointRange (left : L → I) (right : R → I) :=
   {i : I // i ∈ Set.range left ∪ Set.range right}
 
+/--
+@isnad1 id=finite.0h5v.s4.a92299227f31 from=translated src=- shape=82bdeb26 vocab=92496c37
+-/
 instance jointRangeFinite (left : L → I) (right : R → I) :
     Finite (JointRange left right) :=
   ((Set.finite_range left).union (Set.finite_range right)).to_subtype
@@ -297,6 +316,9 @@ def LeftFiber
     (i : JointRange left right) :=
   {x : L // toJointLeft left right x = i}
 
+/--
+@isnad1 id=finite.0h6v.s5.67900407bf38 from=translated src=- shape=02ee1000 vocab=27f4cb25
+-/
 instance leftFiberFinite
     (left : L → I) (right : R → I)
     (i : JointRange left right) :
@@ -309,13 +331,18 @@ def RightFiber
     (i : JointRange left right) :=
   {x : R // toJointRight left right x = i}
 
+/--
+@isnad1 id=finite.0h6v.s5.49e046906253 from=translated src=- shape=c9a8e108 vocab=28deb450
+-/
 instance rightFiberFinite
     (left : L → I) (right : R → I)
     (i : JointRange left right) :
     Finite (RightFiber left right i) :=
   Finite.of_injective Subtype.val Subtype.val_injective
 
-/-- Exact finite partition of the left type by its realized index.-/
+/-- Exact finite partition of the left type by its realized index.
+@isnad1 id=eq.0h5v.s6.ebc1ce2e20d3 from=translated src=- shape=aeeabd22 vocab=49370455
+-/
 theorem card_eq_sum_leftFibers
     (left : L → I) (right : R → I) :
     Fintype.card L =
@@ -333,7 +360,9 @@ theorem card_eq_sum_leftFibers
         Nat.card (LeftFiber left right i) :=
       Nat.card_sigma
 
-/-- Exact finite partition of the right type by its realized index.-/
+/-- Exact finite partition of the right type by its realized index.
+@isnad1 id=eq.0h5v.s6.dc6076c5e990 from=translated src=- shape=37ea4885 vocab=0e396dda
+-/
 theorem card_eq_sum_rightFibers
     (left : L → I) (right : R → I) :
     Fintype.card R =
@@ -351,7 +380,9 @@ theorem card_eq_sum_rightFibers
         Nat.card (RightFiber left right i) :=
       Nat.card_sigma
 
-/-- Fiberwise equality on the joint range implies equality of total sizes.-/
+/-- Fiberwise equality on the joint range implies equality of total sizes.
+@isnad1 id=eq.1h5v.s5.217d67e2a019 from=translated src=- shape=7d58977c vocab=6ab1277b
+-/
 theorem card_eq_of_fiber_card_eq
     (left : L → I) (right : R → I)
     (h : ∀ i : JointRange left right,
@@ -388,7 +419,9 @@ At a connected object, the representation-theoretic branch supplies equality
 of the current faithful counts.  At a disconnected object, product
 decomposition supplies equality of the current total counts from smaller
 total equalities.  The recurrence and the smaller faithful equalities recover
-the other equality in either branch.-/
+the other equality in either branch.
+@isnad1 id=and.5h10v.s7.942a5a6dabd1 from=translated src=- shape=19741155 vocab=aef64c1d
+-/
 theorem total_and_faithful_eq_of_recurrence
     (hsmaller :
       ∀ (b : B) (I : ProperFactor b),
@@ -457,7 +490,9 @@ theorem total_and_faithful_eq_of_recurrence
 
 /-- In a simultaneous annihilator induction, either equality of the
 current faithful counts or equality of the current total counts is enough;
-the recurrence and smaller faithful equalities recover the other one.-/
+the recurrence and smaller faithful equalities recover the other one.
+@isnad1 id=and.4h9v.s7.aab965fb158d from=translated src=- shape=a3edf48f vocab=aef64c1d
+-/
 theorem total_and_faithful_eq_of_recurrence_of_local_either
     (hsmaller :
       ∀ (b : B) (I : ProperFactor b),

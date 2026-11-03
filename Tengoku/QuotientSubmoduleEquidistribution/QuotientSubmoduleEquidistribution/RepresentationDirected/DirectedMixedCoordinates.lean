@@ -35,6 +35,9 @@ noncomputable def mixedMatrix (H : Matrix I I ℤ) (D : Finset I) : Matrix I I �
   exact fun a j => if j ∈ D then if a = j then 1 else 0 else H a j
 
 omit [Fintype I] in
+/--
+@isnad1 id=eq.1h5v.s5.eb503a52f9bc from=translated src=- shape=e30930ff vocab=063d5ff0
+-/
 @[simp]
 theorem mixedMatrix_apply_of_mem (H : Matrix I I ℤ) (D : Finset I)
     {a j : I} (hj : j ∈ D) :
@@ -42,6 +45,9 @@ theorem mixedMatrix_apply_of_mem (H : Matrix I I ℤ) (D : Finset I)
   simp [mixedMatrix, hj]
 
 omit [Fintype I] in
+/--
+@isnad1 id=eq.1h5v.s5.792dca7bc180 from=translated src=- shape=cfac90b3 vocab=069ef656
+-/
 @[simp]
 theorem mixedMatrix_apply_of_not_mem (H : Matrix I I ℤ) (D : Finset I)
     {a j : I} (hj : j ∉ D) :
@@ -49,6 +55,9 @@ theorem mixedMatrix_apply_of_not_mem (H : Matrix I I ℤ) (D : Finset I)
   simp [mixedMatrix, hj]
 
 omit [Fintype I] in
+/--
+@isnad1 id=blocktri.1h3v.s6.1a7cebeb1236 from=translated src=- shape=18d1373d vocab=eda87f13
+-/
 theorem mixedMatrix_blockTriangular (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) :
     (mixedMatrix H D).BlockTriangular id := by
@@ -62,11 +71,17 @@ theorem mixedMatrix_blockTriangular (H : Matrix I I ℤ) (D : Finset I)
   · simpa [mixedMatrix, hj] using hupper hji
 
 omit [Fintype I] in
+/--
+@isnad1 id=eq.1h4v.s5.ce613c7708f7 from=translated src=- shape=b9bf2889 vocab=15d608fe
+-/
 theorem mixedMatrix_diagonal (H : Matrix I I ℤ) (D : Finset I)
     (hdiag : ∀ i, H i i = 1) (i : I) :
     mixedMatrix H D i i = 1 := by
   by_cases hi : i ∈ D <;> simp [mixedMatrix, hi, hdiag]
 
+/--
+@isnad1 id=eq.2h3v.s6.4b6e22b9ada5 from=translated src=- shape=34607560 vocab=59532271
+-/
 theorem mixedMatrix_det (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1) :
     (mixedMatrix H D).det = 1 := by
@@ -74,6 +89,9 @@ theorem mixedMatrix_det (H : Matrix I I ℤ) (D : Finset I)
     (mixedMatrix_blockTriangular H D hupper)]
   simp [mixedMatrix_diagonal H D hdiag]
 
+/--
+@isnad1 id=isunit.2h3v.s6.81590a2fbc67 from=translated src=- shape=5486bfee vocab=472dcf78
+-/
 theorem mixedMatrix_isUnit (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1) :
     IsUnit (mixedMatrix H D) := by
@@ -84,6 +102,9 @@ theorem mixedMatrix_isUnit (H : Matrix I I ℤ) (D : Finset I)
 def coordinates (H : Matrix I I ℤ) (D : Finset I) (v : I → ℤ) : I → ℤ :=
   (mixedMatrix H D)⁻¹ *ᵥ v
 
+/--
+@isnad1 id=eq.2h4v.s6.3c21fa3ba708 from=translated src=- shape=8775d219 vocab=3b08d140
+-/
 theorem mixedMatrix_mulVec_coordinates (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)
     (v : I → ℤ) :
@@ -93,6 +114,9 @@ theorem mixedMatrix_mulVec_coordinates (H : Matrix I I ℤ) (D : Finset I)
       (by rw [mixedMatrix_det H D hupper hdiag]; exact isUnit_one),
     Matrix.one_mulVec]
 
+/--
+@isnad1 id=eq.3h5v.s6.a3e180ee0f29 from=translated src=- shape=8405c97a vocab=3b08d140
+-/
 theorem coordinates_eq_of_mulVec_eq (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)
     {v x : I → ℤ} (hx : mixedMatrix H D *ᵥ x = v) :
@@ -102,16 +126,24 @@ theorem coordinates_eq_of_mulVec_eq (H : Matrix I I ℤ) (D : Finset I)
       (by rw [mixedMatrix_det H D hupper hdiag]; exact isUnit_one),
     Matrix.one_mulVec]
 
+/--
+@isnad1 id=eq.0h5v.s6.b2faaa78fd89 from=translated src=- shape=fc75c0d1 vocab=aad75807
+-/
 theorem coordinates_add (H : Matrix I I ℤ) (D : Finset I)
     (v w : I → ℤ) :
     coordinates H D (v + w) = coordinates H D v + coordinates H D w := by
   simp [coordinates, Matrix.mulVec_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.2ab99e22a215 from=translated src=- shape=c8da0574 vocab=05c05517
+-/
 theorem coordinates_zero (H : Matrix I I ℤ) (D : Finset I) :
     coordinates H D 0 = 0 := by
   simp [coordinates]
 
-/-- Mixed coordinates commute with finite sums.-/
+/-- Mixed coordinates commute with finite sums.
+@isnad1 id=eq.0h5v.s6.82f81f14a098 from=translated src=- shape=3cee627b vocab=e5008089
+-/
 theorem coordinates_sum {J : Type*} [Fintype J]
     (H : Matrix I I ℤ) (D : Finset I) (v : J → I → ℤ) :
     coordinates H D (∑ j, v j) = ∑ j, coordinates H D (v j) := by
@@ -127,6 +159,9 @@ theorem coordinates_sum {J : Type*} [Fintype J]
         rw [coordinates_add, ih]
   exact hsum Finset.univ
 
+/--
+@isnad1 id=eq.3h4v.s6.48a533359a10 from=translated src=- shape=4017c542 vocab=b7ed47e7
+-/
 theorem coordinates_retained_column (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)
     {j : I} (hj : j ∉ D) :
@@ -142,6 +177,9 @@ def retainedMatrix (H : Matrix I I ℤ) (D : Finset I) :
   H.submatrix Subtype.val Subtype.val
 
 omit [Fintype I] in
+/--
+@isnad1 id=blocktri.1h3v.s7.d482fcb4e24f from=translated src=- shape=af1bcd8e vocab=eaef0baa
+-/
 theorem retainedMatrix_blockTriangular (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) :
     (retainedMatrix H D).BlockTriangular id := by
@@ -149,10 +187,16 @@ theorem retainedMatrix_blockTriangular (H : Matrix I I ℤ) (D : Finset I)
   exact hupper hji
 
 omit [Fintype I] [LinearOrder I] in
+/--
+@isnad1 id=eq.1h4v.s5.167f72a9917d from=translated src=- shape=999aeb45 vocab=18a2889e
+-/
 theorem retainedMatrix_diagonal (H : Matrix I I ℤ) (D : Finset I)
     (hdiag : ∀ i, H i i = 1) (i : {i // i ∉ D}) :
     retainedMatrix H D i i = 1 := hdiag i
 
+/--
+@isnad1 id=eq.2h3v.s7.824c98465e05 from=translated src=- shape=37c9ecfa vocab=5f749f69
+-/
 theorem retainedMatrix_det (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1) :
     (retainedMatrix H D).det = 1 := by
@@ -161,6 +205,9 @@ theorem retainedMatrix_det (H : Matrix I I ℤ) (D : Finset I)
     (retainedMatrix_blockTriangular H D hupper)]
   simp [retainedMatrix_diagonal H D hdiag]
 
+/--
+@isnad1 id=isunit.2h3v.s8.c7ea0a6046e6 from=translated src=- shape=ef26c3c4 vocab=5e0ca31e
+-/
 theorem retainedMatrix_isUnit (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1) :
     IsUnit (retainedMatrix H D) := by
@@ -168,6 +215,9 @@ theorem retainedMatrix_isUnit (H : Matrix I I ℤ) (D : Finset I)
   rw [Matrix.isUnit_iff_isUnit_det, retainedMatrix_det H D hupper hdiag]
   exact isUnit_one
 
+/--
+@isnad1 id=injectiv.2h3v.s7.0bedd89f73a3 from=translated src=- shape=caea7ddb vocab=990b9d98
+-/
 theorem retainedMatrix_mulVec_injective (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1) :
     Function.Injective (retainedMatrix H D).mulVec := by
@@ -176,7 +226,9 @@ theorem retainedMatrix_mulVec_injective (H : Matrix I I ℤ) (D : Finset I)
     (retainedMatrix_isUnit H D hupper hdiag)
 
 /-- On a retained row, omitted standard-basis columns vanish, so the mixed
-matrix equation is exactly the retained matrix equation.-/
+matrix equation is exactly the retained matrix equation.
+@isnad1 id=eq.1h5v.s7.276efb651fdb from=translated src=- shape=ab58fa62 vocab=e72282fa
+-/
 theorem mixedMatrix_mulVec_apply_retained (H : Matrix I I ℤ) (D : Finset I)
     (x : I → ℤ) {a : I} (ha : a ∉ D) :
     (mixedMatrix H D *ᵥ x) a =
@@ -203,7 +255,9 @@ theorem mixedMatrix_mulVec_apply_retained (H : Matrix I I ℤ) (D : Finset I)
       intro j _
       rw [mixedMatrix_apply_of_not_mem H D j.2]
 
-/-- The retained coordinates give the restricted vector expansion.-/
+/-- The retained coordinates give the restricted vector expansion.
+@isnad1 id=eq.3h5v.s7.2e331c591a37 from=translated src=- shape=016bac5b vocab=224485fc
+-/
 theorem retained_expansion (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)
     (v : I → ℤ) {a : I} (ha : a ∉ D) :
@@ -213,7 +267,9 @@ theorem retained_expansion (H : Matrix I I ℤ) (D : Finset I)
     mixedMatrix_mulVec_coordinates H D hupper hdiag]
 
 /-- A vector's retained mixed coordinates are determined uniquely by its
-values on the retained rows.-/
+values on the retained rows.
+@isnad1 id=eq.4h6v.s6.c0933b78f416 from=translated src=- shape=8b16ac37 vocab=b0bd5fa1
+-/
 theorem coordinates_eq_on_retained_of_eq_on_retained
     (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)
@@ -233,7 +289,9 @@ theorem coordinates_eq_on_retained_of_eq_on_retained
 
 /-- If two mixed-coordinate vectors agree at every retained position except
 `i`, then their values in row `i` differ by exactly the `i`-coordinate
-difference.-/
+difference.
+@isnad1 id=eq.3h6v.s7.268192ac0259 from=translated src=- shape=92d396ca vocab=5b399fd8
+-/
 theorem value_eq_add_coordinate_sub
     (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ j, H j j = 1)
@@ -281,7 +339,9 @@ theorem value_eq_add_coordinate_sub
 
 omit [Fintype I] in
 /-- If the newly omitted column is zero on all rows that remain retained,
-then inserting that column does not change those rows of the mixed matrix.-/
+then inserting that column does not change those rows of the mixed matrix.
+@isnad1 id=eq.3h6v.s6.773e524f806c from=translated src=- shape=a10826cc vocab=c6a7cc40
+-/
 theorem mixedMatrix_apply_insert_of_column_zero
     (H : Matrix I I ℤ) (D : Finset I) {i a j : I}
     (hi : i ∉ D) (ha : a ∉ insert i D) (hai : H a i = 0) :
@@ -304,7 +364,9 @@ theorem mixedMatrix_apply_insert_of_column_zero
 
 /-- One-step deletion transport for mixed coordinates.  The zero-column
 hypothesis is the numerical form of choosing a newly deleted object which
-receives no map from the remaining retained objects.-/
+receives no map from the remaining retained objects.
+@isnad1 id=eq.5h6v.s7.eabb9a789a14 from=translated src=- shape=76e139fe vocab=04246a49
+-/
 theorem coordinates_insert_eq_of_column_zero
     (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)
@@ -337,7 +399,9 @@ theorem coordinates_insert_eq_of_column_zero
   exact congrFun hcoordinates ⟨a, ha⟩
 
 /-- `Finset.cons` version of one-step deletion transport, avoiding a
-caller-visible decidable-equality choice.-/
+caller-visible decidable-equality choice.
+@isnad1 id=eq.5h6v.s7.17c4a140a396 from=translated src=- shape=5923a07b vocab=0b97ea45
+-/
 theorem coordinates_cons_eq_of_column_zero
     (H : Matrix I I ℤ) (D : Finset I)
     (hupper : H.BlockTriangular id) (hdiag : ∀ i, H i i = 1)

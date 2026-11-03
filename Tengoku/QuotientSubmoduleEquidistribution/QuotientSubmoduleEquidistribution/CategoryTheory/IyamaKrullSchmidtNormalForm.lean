@@ -44,6 +44,9 @@ def finTailInclusion {n : ℕ} (F : Fin (n + 1) → C) :
   biproduct.desc fun i ↦ biproduct.ι F i.succ
 
 omit [HasBinaryBiproducts C] in
+/--
+@isnad1 id=eq.0h3v.s8.87bd4d9c0516 from=translated src=- shape=12fae66f vocab=cabf7abc
+-/
 @[reassoc (attr := simp)]
 theorem fin_head_tailProjection {n : ℕ} (F : Fin (n + 1) → C) :
     biproduct.ι F 0 ≫ finTailProjection F = 0 := by
@@ -54,6 +57,9 @@ theorem fin_head_tailProjection {n : ℕ} (F : Fin (n + 1) → C) :
     zero_comp]
 
 omit [HasBinaryBiproducts C] in
+/--
+@isnad1 id=eq.0h4v.s7.4d0eb6e2722e from=translated src=- shape=d08f7a51 vocab=cabf7abc
+-/
 @[reassoc (attr := simp)]
 theorem fin_tailComponent_tailProjection {n : ℕ}
     (F : Fin (n + 1) → C) (j : Fin n) :
@@ -69,6 +75,9 @@ theorem fin_tailComponent_tailProjection {n : ℕ}
       biproduct.ι_π_ne _ h]
 
 omit [HasBinaryBiproducts C] in
+/--
+@isnad1 id=eq.0h3v.s8.7bf8d44504f5 from=translated src=- shape=ff40f57a vocab=df6ed684
+-/
 @[reassoc (attr := simp)]
 theorem fin_tailInclusion_head {n : ℕ} (F : Fin (n + 1) → C) :
     finTailInclusion F ≫ biproduct.π F 0 = 0 := by
@@ -79,6 +88,9 @@ theorem fin_tailInclusion_head {n : ℕ} (F : Fin (n + 1) → C) :
   simp
 
 omit [HasBinaryBiproducts C] in
+/--
+@isnad1 id=eq.0h4v.s7.74d466a7842e from=translated src=- shape=c1492600 vocab=df6ed684
+-/
 @[reassoc (attr := simp)]
 theorem fin_tailInclusion_component {n : ℕ}
     (F : Fin (n + 1) → C) (j : Fin n) :
@@ -94,6 +106,9 @@ theorem fin_tailInclusion_component {n : ℕ}
       biproduct.ι_π_ne _ h]
 
 omit [HasBinaryBiproducts C] in
+/--
+@isnad1 id=eq.0h3v.s7.41b3d754fe0d from=translated src=- shape=ac57271e vocab=4f3e92d1
+-/
 @[reassoc (attr := simp)]
 theorem fin_tailInclusion_tailProjection {n : ℕ}
     (F : Fin (n + 1) → C) :
@@ -142,6 +157,9 @@ def biprodShear {Z U : C} (c : U ⟶ Z) : biprod Z U ≅ biprod Z U where
     · simp
 
 omit [HasFiniteBiproducts C] in
+/--
+@isnad1 id=eq.0h7v.s7.0b9b596a8a89 from=translated src=- shape=f077aacd vocab=f22334b9
+-/
 @[reassoc]
 theorem biprodShear_hom_desc {Z U M : C} (c : U ⟶ Z)
     (j : Z ⟶ M) (r : U ⟶ M) :
@@ -169,6 +187,9 @@ def moveLeftPastFirstIso {P Q Z U : C} (e : Q ≅ biprod Z U) :
   inv_hom_id := by cat_disch
 
 omit [HasFiniteBiproducts C] in
+/--
+@isnad1 id=eq.1h11v.s8.52330ed442d9 from=translated src=- shape=ed0aeb21 vocab=90dd05b8
+-/
 theorem moveLeftPastFirstIso_inv_desc
     {P Q Z U M : C} (e : Q ≅ biprod Z U)
     (f : P ⟶ M) (q : Q ⟶ M) (j : Z ⟶ M) (r : U ⟶ M)
@@ -272,6 +293,9 @@ noncomputable def precomposeIso
 end SplitRadicalForm
 
 omit [HasFiniteBiproducts C] in
+/--
+@isnad1 id=eq.0h8v.s7.db6e2744fbc8 from=translated src=- shape=f60b5ad9 vocab=c734abe1
+-/
 theorem associator_hom_desc_desc {Z P U M : C}
     (j : Z ⟶ M) (a : P ⟶ M) (r : U ⟶ M) :
     (biprod.associator Z P U).hom ≫
@@ -286,7 +310,9 @@ variable [IsIdempotentComplete C]
 variable {Ind : Type w} [Fintype Ind]
 
 /-- A split monomorphism between two representatives in the finite right
-tau skeleton is an isomorphism.-/
+tau skeleton is an isomorphism.
+@isnad1 id=isiso.0h6v.s7.3935d548a8f1 from=translated src=- shape=84e20f62 vocab=e25bbf8d
+-/
 theorem FiniteRightTauCategoryData.isIso_of_isSplitMono_obj_obj
     (T : FiniteRightTauCategoryData C Ind)
     {p q : Ind} (f : T.obj p ⟶ T.obj q) [IsSplitMono f] :
@@ -522,7 +548,9 @@ noncomputable def FiniteRightTauCategoryData.splitRadicalForm
   exact h'.precomposeIso eX k rfl
 
 /-- Existential form: after an isomorphism `X ≅ Z ⨞ U`, the map is
-the pair of a split monomorphism and a categorical-radical morphism.-/
+the pair of a split monomorphism and a categorical-radical morphism.
+@isnad1 id=ex.0h6v.s7.0418b26d3882 from=translated src=- shape=9767d742 vocab=eb758f83
+-/
 theorem FiniteRightTauCategoryData.exists_splitMono_radical_normalForm
     (T : FiniteRightTauCategoryData C Ind) {X M : C} (k : X ⟶ M) :
     ∃ (Z U : C) (e : X ≅ biprod Z U)

@@ -29,7 +29,9 @@ open CategoricalRadical
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
 /-- In a preadditive category, failure of monicity has a literal nonzero
-left annihilator.-/
+left annihilator.
+@isnad1 id=ex.1h4v.s7.8740e32b6e1b from=translated src=- shape=0d80abb4 vocab=535ac5a7
+-/
 theorem exists_nonzero_comp_eq_zero_of_not_mono
     {X Y : C} {f : X ⟶ Y} (hf : ¬ Mono f) :
     ∃ (W : C) (s : W ⟶ X), s ≠ 0 ∧ s ≫ f = 0 := by
@@ -39,7 +41,9 @@ theorem exists_nonzero_comp_eq_zero_of_not_mono
   exact ⟨W, s, hs0, hs⟩
 
 /-- A nonzero morphism escapes some power of a nilpotent categorical
-radical.-/
+radical.
+@isnad1 id=ex.1h5v.s7.b3da324e0ab9 from=translated src=- shape=9885b948 vocab=2175b353
+-/
 theorem exists_power_not_mem_of_ne_zero
     (R : NilpotentRadicalData C)
     {X Y : C} {f : X ⟶ Y} (hf : f ≠ 0) :
@@ -54,7 +58,9 @@ variable {Ind : Type w} [Fintype Ind]
 
 /-- For a chosen indecomposable with local endomorphism ring, the intrinsic
 categorical radical consists exactly of the morphisms which are not split
-monomorphisms.  No module-category realization is used.-/
+monomorphisms.  No module-category realization is used.
+@isnad1 id=iff.0h6v.s6.cbe5f7d7c95c from=translated src=- shape=f44c48f6 vocab=2bc0c4ec
+-/
 theorem FiniteRightTauCategoryData.isRadicalMorphism_iff_not_isSplitMono_from_obj
     (T : FiniteRightTauCategoryData C Ind)
     {x : Ind} {Y : C} (f : T.obj x ⟶ Y) :
@@ -92,7 +98,9 @@ theorem FiniteRightTauCategoryData.isRadicalMorphism_iff_not_isSplitMono_from_ob
 
 /-- Dually, a morphism into a chosen indecomposable is radical exactly when
 it is not a split epimorphism.  This uses only the finite Krull--Schmidt
-skeleton, not any chosen left tau-sequences.-/
+skeleton, not any chosen left tau-sequences.
+@isnad1 id=iff.0h6v.s6.5088ac2a048b from=translated src=- shape=b13ee5a4 vocab=517b82a5
+-/
 theorem FiniteRightTauCategoryData.isRadicalMorphism_iff_not_isSplitEpi_to_obj
     (T : FiniteRightTauCategoryData C Ind)
     {x : Ind} {M : C} (f : M ⟶ T.obj x) :

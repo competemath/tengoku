@@ -30,7 +30,9 @@ noncomputable def levelPolynomial [Finite E]
   exact ∑ C : c.Closeds, X ^ (C : Set E).ncard
 
 /-- The coefficient of `X ^ n` is the number of closed sets at level
-`n`.-/
+`n`.
+@isnad1 id=eq.0h3v.s4.a19ad4e5394c from=translated src=- shape=868e1f23 vocab=6497cd62
+-/
 @[simp]
 theorem levelPolynomial_coeff [Finite E]
     (c : SetClosure E) (n : ℕ) :
@@ -49,7 +51,9 @@ theorem levelPolynomial_coeff [Finite E]
   ext C
   simp [eq_comm]
 
-/-- Evaluating the level polynomial at one counts all closed sets.-/
+/-- Evaluating the level polynomial at one counts all closed sets.
+@isnad1 id=eq.0h2v.s5.2f5bfcbd34e1 from=translated src=- shape=70f17b81 vocab=f38f0982
+-/
 @[simp]
 theorem levelPolynomial_eval_one [Finite E]
     (c : SetClosure E) :
@@ -60,7 +64,9 @@ theorem levelPolynomial_eval_one [Finite E]
     Nat.card_eq_fintype_card]
 
 /-- Equality of level polynomials is equivalent to equality at every
-cardinality level.-/
+cardinality level.
+@isnad1 id=iff.0h3v.s5.d9cbf47ad8ee from=translated src=- shape=f505bd78 vocab=847b12b6
+-/
 theorem levelPolynomial_eq_iff [Finite E]
     (c d : SetClosure E) :
     c.levelPolynomial = d.levelPolynomial ↔
@@ -73,7 +79,9 @@ theorem levelPolynomial_eq_iff [Finite E]
     simpa using h n
 
 /-- Enumerating the closed sets by a finite type rewrites the level
-polynomial as the corresponding cardinality sum.-/
+polynomial as the corresponding cardinality sum.
+@isnad1 id=eq.0h4v.s7.3b3121ade5be from=translated src=- shape=6cbbc9da vocab=a6c8d27a
+-/
 theorem levelPolynomial_eq_sum_equiv
     [Finite E] {W : Type*} [Fintype W]
     (c : SetClosure E) (e : W ≃ c.Closeds) :
@@ -88,7 +96,9 @@ theorem levelPolynomial_eq_sum_equiv
   rfl
 
 /-- If the enumerating parameter carries an explicit size statistic, that
-statistic is the exponent in the level polynomial.-/
+statistic is the exponent in the level polynomial.
+@isnad1 id=eq.1h5v.s8.9eabd1fb4fa5 from=translated src=- shape=acc98b48 vocab=a6c8d27a
+-/
 theorem levelPolynomial_eq_sum_stat
     [Finite E] {W : Type*} [Fintype W]
     (c : SetClosure E) (e : W ≃ c.Closeds)
@@ -100,7 +110,9 @@ theorem levelPolynomial_eq_sum_stat
   funext w
   rw [hstat w]
 
-/-- No subset of a finite ground type can occur above its cardinality.-/
+/-- No subset of a finite ground type can occur above its cardinality.
+@isnad1 id=eq.1h3v.s4.542c4b332afc from=translated src=- shape=2e2e94ac vocab=9d7bcb8d
+-/
 theorem levelCount_eq_zero_of_card_lt
     [Finite E] (c : SetClosure E)
     {n : ℕ} (hn : Nat.card E < n) :
@@ -117,7 +129,9 @@ theorem levelCount_eq_zero_of_card_lt
   omega
 
 /-- Equality through the bottom and top four levels determines the entire
-level polynomial when the ground set has at most nine elements.-/
+level polynomial when the ground set has at most nine elements.
+@isnad1 id=eq.3h3v.s6.3a30c2424c61 from=translated src=- shape=6902098c vocab=223b0139
+-/
 theorem levelPolynomial_eq_of_bottom_top_four
     [Finite E] (c d : SetClosure E)
     (hcard : Nat.card E ≤ 9)

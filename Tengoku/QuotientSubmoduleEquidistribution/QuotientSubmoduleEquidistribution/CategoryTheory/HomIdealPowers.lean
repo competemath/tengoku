@@ -29,11 +29,16 @@ def IdealLE (I J : HomIdeal C) : Prop :=
 
 instance : LE (HomIdeal C) := ⟨IdealLE⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.1727b1b83539 from=translated src=- shape=6cd1a49f vocab=1d23d3cc
+-/
 theorem le_def {I J : HomIdeal C} :
     I ≤ J ↔ ∀ X Y, I.hom X Y ≤ J.hom X Y :=
   Iff.rfl
 
-/-- Two Hom ideals are equal when their Hom subgroups agree pointwise.-/
+/-- Two Hom ideals are equal when their Hom subgroups agree pointwise.
+@isnad1 id=eq.1h3v.s6.7089e7d7dcea from=translated src=- shape=dbc2f966 vocab=82f6566b
+-/
 @[ext]
 theorem ext_hom {I J : HomIdeal C}
     (h : ∀ X Y, I.hom X Y = J.hom X Y) :
@@ -70,6 +75,9 @@ def zero (C : Type u) [Category.{v} C] [Preadditive C] : HomIdeal C where
 
 instance : Bot (HomIdeal C) := ⟨zero C⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.1e89f6cc51fc from=translated src=- shape=71f7bfdf vocab=e3b8827c
+-/
 @[simp]
 theorem bot_hom (X Y : C) :
     (⊥ : HomIdeal C).hom X Y = ⊥ :=
@@ -87,6 +95,9 @@ def whole (C : Type u) [Category.{v} C] [Preadditive C] : HomIdeal C where
 
 instance : Top (HomIdeal C) := ⟨whole C⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.63398dd72aef from=translated src=- shape=71f7bfdf vocab=625509d9
+-/
 @[simp]
 theorem top_hom (X Y : C) :
     (⊤ : HomIdeal C).hom X Y = ⊤ :=
@@ -135,7 +146,9 @@ def mul (I J : HomIdeal C) : HomIdeal C where
 
 scoped infixl:70 " ⋆ᵢ " => mul
 
-/-- A single allowed composite belongs to the product ideal.-/
+/-- A single allowed composite belongs to the product ideal.
+@isnad1 id=mem.2h8v.s8.80c49c5410cc from=translated src=- shape=61e49c44 vocab=d1bc2402
+-/
 theorem comp_mem_mul
     {I J : HomIdeal C} {X Y Z : C}
     {f : X ⟶ Y} {g : Y ⟶ Z}
@@ -143,7 +156,9 @@ theorem comp_mem_mul
     f ≫ g ∈ (I ⋆ᵢ J).hom X Z :=
   AddSubgroup.subset_closure ⟨Y, f, g, hf, hg, rfl⟩
 
-/-- Multiplication is monotone in both variables.-/
+/-- Multiplication is monotone in both variables.
+@isnad1 id=le.2h5v.s6.5a1bb3d7f417 from=translated src=- shape=95fec4f7 vocab=ee01df56
+-/
 theorem mul_mono
     {I I' J J' : HomIdeal C}
     (hI : I ≤ I') (hJ : J ≤ J') :
@@ -158,7 +173,9 @@ theorem mul_mono
   | neg f _ hf => exact neg_mem hf
 
 /-- Every product lies in its left factor, since the left factor is closed
-under postcomposition.-/
+under postcomposition.
+@isnad1 id=le.0h3v.s5.a14f9ac4b608 from=translated src=- shape=8a6a8c3f vocab=ee01df56
+-/
 theorem mul_le_left (I J : HomIdeal C) :
     I ⋆ᵢ J ≤ I := by
   intro X Z h hh
@@ -171,7 +188,9 @@ theorem mul_le_left (I J : HomIdeal C) :
   | neg f _ hf => exact neg_mem hf
 
 /-- Every product lies in its right factor, since the right factor is closed
-under precomposition.-/
+under precomposition.
+@isnad1 id=le.0h3v.s5.ef12c463c549 from=translated src=- shape=ba1887f1 vocab=ee01df56
+-/
 theorem mul_le_right (I J : HomIdeal C) :
     I ⋆ᵢ J ≤ J := by
   intro X Z h hh
@@ -183,6 +202,9 @@ theorem mul_le_right (I J : HomIdeal C) :
   | add f g _ _ hf hg => exact add_mem hf hg
   | neg f _ hf => exact neg_mem hf
 
+/--
+@isnad1 id=eq.0h2v.s5.4f3dcfb11cbf from=translated src=- shape=ce8322d4 vocab=dd58e515
+-/
 @[simp]
 theorem top_mul (I : HomIdeal C) :
     ⊤ ⋆ᵢ I = I := by
@@ -193,6 +215,9 @@ theorem top_mul (I : HomIdeal C) :
     comp_mem_mul (by simp) hf
   simpa using hcomp
 
+/--
+@isnad1 id=eq.0h2v.s5.acf3540a484b from=translated src=- shape=e281123e vocab=dd58e515
+-/
 @[simp]
 theorem mul_top (I : HomIdeal C) :
     I ⋆ᵢ ⊤ = I := by
@@ -203,18 +228,26 @@ theorem mul_top (I : HomIdeal C) :
     comp_mem_mul hf (by simp)
   simpa using hcomp
 
+/--
+@isnad1 id=eq.0h2v.s5.b9f59aa07f5a from=translated src=- shape=b05cccf3 vocab=074a0e63
+-/
 @[simp]
 theorem bot_mul (I : HomIdeal C) :
     ⊥ ⋆ᵢ I = ⊥ :=
   le_antisymm (mul_le_left _ _) bot_le
 
+/--
+@isnad1 id=eq.0h2v.s5.02299088d6ef from=translated src=- shape=c1c07f74 vocab=074a0e63
+-/
 @[simp]
 theorem mul_bot (I : HomIdeal C) :
     I ⋆ᵢ ⊥ = ⊥ :=
   le_antisymm (mul_le_right _ _) bot_le
 
 /-- Associativity follows from associativity and bilinearity of categorical
-composition; the closure induction accounts for finite additive sums.-/
+composition; the closure induction accounts for finite additive sums.
+@isnad1 id=eq.0h4v.s5.25a0c40b27fd from=translated src=- shape=177dbf37 vocab=bc04a0ce
+-/
 theorem mul_assoc (I J K : HomIdeal C) :
     (I ⋆ᵢ J) ⋆ᵢ K = I ⋆ᵢ (J ⋆ᵢ K) := by
   apply le_antisymm
@@ -259,20 +292,31 @@ def pow (I : HomIdeal C) : ℕ → HomIdeal C
   | 0 => ⊤
   | n + 1 => pow I n ⋆ᵢ I
 
+/--
+@isnad1 id=eq.0h2v.s5.7faab3325f8d from=translated src=- shape=0ef3ab35 vocab=5805728d
+-/
 @[simp]
 theorem pow_zero (I : HomIdeal C) : pow I 0 = ⊤ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.311a9c321c66 from=translated src=- shape=86a69b6f vocab=4e2df88f
+-/
 @[simp]
 theorem pow_succ (I : HomIdeal C) (n : ℕ) :
     pow I (n + 1) = pow I n ⋆ᵢ I :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.ba3679b0a5e9 from=translated src=- shape=cf7c878d vocab=e35770e8
+-/
 @[simp]
 theorem pow_one (I : HomIdeal C) : pow I 1 = I := by
   rw [show 1 = 0 + 1 by rfl, pow_succ, pow_zero, top_mul]
 
-/-- Powers also have the left-recursive form.-/
+/-- Powers also have the left-recursive form.
+@isnad1 id=eq.0h3v.s5.0c5070d128b5 from=translated src=- shape=10b9c016 vocab=4e2df88f
+-/
 theorem pow_succ_eq_mul_pow (I : HomIdeal C) :
     ∀ n : ℕ, pow I (n + 1) = I ⋆ᵢ pow I n
   | 0 => by simp
@@ -285,18 +329,24 @@ theorem pow_succ_eq_mul_pow (I : HomIdeal C) :
         _ = I ⋆ᵢ (pow I n ⋆ᵢ I) := mul_assoc I (pow I n) I
         _ = I ⋆ᵢ pow I (n + 1) := by rw [← pow_succ]
 
-/-- Pointwise inclusion is preserved by every power.-/
+/-- Pointwise inclusion is preserved by every power.
+@isnad1 id=le.1h4v.s5.c3a246227003 from=translated src=- shape=ae6211ce vocab=8ec17ce8
+-/
 theorem pow_mono {I J : HomIdeal C} (hIJ : I ≤ J) :
     ∀ n, pow I n ≤ pow J n
   | 0 => le_rfl
   | n + 1 => mul_mono (pow_mono hIJ n) hIJ
 
-/-- Ideal powers form a descending chain.-/
+/-- Ideal powers form a descending chain.
+@isnad1 id=le.0h3v.s5.43ec4776929d from=translated src=- shape=507d1029 vocab=454c5d54
+-/
 theorem pow_succ_le_pow (I : HomIdeal C) (n : ℕ) :
     pow I (n + 1) ≤ pow I n :=
   mul_le_left _ _
 
-/-- Larger exponents give smaller powers.-/
+/-- Larger exponents give smaller powers.
+@isnad1 id=le.1h4v.s5.19e567b5aef1 from=translated src=- shape=511b4df1 vocab=8ec17ce8
+-/
 theorem pow_le_pow_of_le (I : HomIdeal C) {m n : ℕ}
     (hmn : m ≤ n) :
     pow I n ≤ pow I m := by
@@ -319,6 +369,9 @@ def powerIntersection (I : HomIdeal C) : HomIdeal C where
     intro n
     exact (pow I n).postcomp g (hf n)
 
+/--
+@isnad1 id=iff.0h5v.s7.0a0ca82b8def from=translated src=- shape=7ac666be vocab=4abf4d0a
+-/
 @[simp]
 theorem mem_powerIntersection_iff
     {I : HomIdeal C} {X Y : C} {f : X ⟶ Y} :
@@ -330,7 +383,9 @@ theorem mem_powerIntersection_iff
 def IsNilpotent (I : HomIdeal C) : Prop :=
   ∃ N : ℕ, pow I N = ⊥
 
-/-- Nilpotence forces the intersection of all powers to vanish.-/
+/-- Nilpotence forces the intersection of all powers to vanish.
+@isnad1 id=eq.1h2v.s5.8122da56a992 from=translated src=- shape=4c7b0db4 vocab=b9c76234
+-/
 theorem powerIntersection_eq_bot_of_isNilpotent
     {I : HomIdeal C} (hI : IsNilpotent I) :
     powerIntersection I = ⊥ := by

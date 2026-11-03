@@ -33,7 +33,9 @@ def LayerNonzero (I : HomIdeal C) (n : ℕ) (X Y : C) : Prop :=
     f ∈ (I.pow n).hom X Y ∧
       f ∉ (I.pow (n + 1)).hom X Y
 
-/-- A nonzero layer contains a nonzero morphism.-/
+/-- A nonzero layer contains a nonzero morphism.
+@isnad1 id=ex.1h5v.s6.9a5d55af9599 from=translated src=- shape=892ccda7 vocab=dc37113a
+-/
 theorem exists_ne_zero_of_layerNonzero
     {I : HomIdeal C} {n : ℕ} {X Y : C}
     (h : I.LayerNonzero n X Y) :
@@ -44,7 +46,9 @@ theorem exists_ne_zero_of_layerNonzero
   exact zero_mem _
 
 /-- Under nilpotence, every nonzero morphism has a last power of `I` to
-which it belongs and hence determines a nonzero layer.-/
+which it belongs and hence determines a nonzero layer.
+@isnad1 id=ex.2h5v.s6.3270502debf1 from=translated src=- shape=07b1560f vocab=b5cfd78d
+-/
 theorem exists_layerNonzero_of_ne_zero
     {I : HomIdeal C} (hI : I.IsNilpotent)
     {X Y : C} {f : X ⟶ Y} (hf : f ≠ 0) :
@@ -74,7 +78,9 @@ theorem exists_layerNonzero_of_ne_zero
   · simpa [hn] using hknot
 
 /-- For a nilpotent Hom ideal, a Hom group is nonzero exactly when one of
-its ideal-power layers is nonzero.-/
+its ideal-power layers is nonzero.
+@isnad1 id=iff.1h4v.s6.050d35899205 from=translated src=- shape=371f57ff vocab=b5cfd78d
+-/
 theorem exists_ne_zero_iff_exists_layerNonzero
     {I : HomIdeal C} (hI : I.IsNilpotent) (X Y : C) :
     (∃ f : X ⟶ Y, f ≠ 0) ↔
@@ -86,7 +92,9 @@ theorem exists_ne_zero_iff_exists_layerNonzero
     exact exists_ne_zero_of_layerNonzero hn
 
 /-- Once a power is zero, no layer at that or a larger exponent can be
-nonzero.-/
+nonzero.
+@isnad1 id=not.2h6v.s5.d4cebfa92755 from=translated src=- shape=70f5e266 vocab=ce9c7bd9
+-/
 theorem not_layerNonzero_of_pow_eq_bot
     {I : HomIdeal C} {N n : ℕ} (hN : I.pow N = ⊥)
     (hn : N ≤ n) (X Y : C) :
@@ -100,7 +108,9 @@ theorem not_layerNonzero_of_pow_eq_bot
   subst f
   exact zero_mem _
 
-/-- Nilpotence makes all sufficiently high layers vanish.-/
+/-- Nilpotence makes all sufficiently high layers vanish.
+@isnad1 id=ex.1h4v.s5.44c1df9a23d8 from=translated src=- shape=0c53ddaf vocab=38d1af8c
+-/
 theorem eventually_not_layerNonzero
     {I : HomIdeal C} (hI : I.IsNilpotent) (X Y : C) :
     ∃ N, ∀ n, N ≤ n → ¬ I.LayerNonzero n X Y := by
@@ -134,14 +144,18 @@ def LayerNonzero (R : NilpotentRadicalData C)
   R.ideal.LayerNonzero n X Y
 
 /-- In a category with nilpotent radical, Hom is nonzero exactly when one
-of its radical layers is nonzero.-/
+of its radical layers is nonzero.
+@isnad1 id=iff.0h4v.s6.6235fe51284e from=translated src=- shape=9b84eb14 vocab=e4a2a4f0
+-/
 theorem exists_ne_zero_iff_exists_layerNonzero
     (R : NilpotentRadicalData C) (X Y : C) :
     (∃ f : X ⟶ Y, f ≠ 0) ↔
       ∃ n, R.LayerNonzero n X Y :=
   R.ideal.exists_ne_zero_iff_exists_layerNonzero R.nilpotent X Y
 
-/-- All sufficiently high radical layers between fixed objects vanish.-/
+/-- All sufficiently high radical layers between fixed objects vanish.
+@isnad1 id=ex.0h4v.s5.6dd9c651cf9a from=translated src=- shape=64e4e961 vocab=547c64fb
+-/
 theorem eventually_not_layerNonzero
     (R : NilpotentRadicalData C) (X Y : C) :
     ∃ N, ∀ n, N ≤ n → ¬ R.LayerNonzero n X Y :=

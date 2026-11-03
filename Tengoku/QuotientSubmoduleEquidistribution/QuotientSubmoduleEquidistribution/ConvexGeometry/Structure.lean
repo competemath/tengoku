@@ -24,7 +24,9 @@ others.  This is the literal predicate in
 def IsIndependent (c : SetClosure E) (B : Set E) : Prop :=
   ∀ ⦃b : E⦄, b ∈ B → b ∉ c (B \ {b})
 
-/-- Independence is exactly minimality as a generator of one's own closure.-/
+/-- Independence is exactly minimality as a generator of one's own closure.
+@isnad1 id=iff.0h3v.s5.72f6a7ffd5aa from=translated src=- shape=15f9046f vocab=9f5a37c6
+-/
 theorem isIndependent_iff_isMinimalGenerator_closure
     (c : SetClosure E) (B : Set E) :
     c.IsIndependent B ↔ c.IsMinimalGenerator B (c B) := by
@@ -109,7 +111,9 @@ structure InfiniteConvexStructure (c : SetClosure E) : Prop where
         B = c.extremePoints (C : Set E)
 
 /-- Every finitary anti-exchange closure with closed empty set has the full
-abstract infinite convex structure asserted in the manuscript.-/
+abstract infinite convex structure asserted in the manuscript.
+@isnad1 id=infinite.3h2v.s5.5c4c78dc86ab from=translated src=- shape=bae9c5c1 vocab=eaac5baf
+-/
 theorem infiniteConvexStructure
     {c : SetClosure E}
     (hfin : c.IsFinitary) (hae : c.IsAntiExchange)
@@ -153,7 +157,9 @@ structure FiniteConvexConsequences [Finite E] (c : SetClosure E) : Prop where
       (C : Set E).ncard + 1 = (D : Set E).ncard
 
 /-- Every finite convex geometry has the paper's finite structural
-consequences.-/
+consequences.
+@isnad1 id=finiteco.2h2v.s5.95d110d921e5 from=translated src=- shape=a3e4dc8b vocab=6aa837ff
+-/
 theorem finiteConvexConsequences [Finite E]
     {c : SetClosure E}
     (hae : c.IsAntiExchange) (hempty : c.IsClosed ∅) :

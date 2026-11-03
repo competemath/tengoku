@@ -36,7 +36,9 @@ def IsPrevious (Q : List L) (p x : Fin Q.length) : Prop :=
     ∀ z : Fin Q.length, p < z → z < x → label Q z ≠ label Q x
 
 /-- A position has a previous occurrence exactly when its label has occurred
-strictly earlier in the word.-/
+strictly earlier in the word.
+@isnad1 id=iff.0h3v.s5.01715fada609 from=translated src=- shape=c63aaa96 vocab=bdf54178
+-/
 theorem exists_isPrevious_iff_exists_lt_label_eq
     {Q : List L} {x : Fin Q.length} :
     (∃ p : Fin Q.length, IsPrevious Q p x) ↔
@@ -63,7 +65,9 @@ theorem exists_isPrevious_iff_exists_lt_label_eq
         ⟨Finset.mem_univ z, hzx, hzLabel⟩
     exact (not_le_of_gt hpz) (S.le_max' z hzS)
 
-/-- A previous occurrence, when it exists, is unique.-/
+/-- A previous occurrence, when it exists, is unique.
+@isnad1 id=eq.2h5v.s5.a3d4935390da from=translated src=- shape=cd4631c4 vocab=cb56ab6c
+-/
 theorem isPrevious_unique
     {Q : List L} {p q x : Fin Q.length}
     (hp : IsPrevious Q p x) (hq : IsPrevious Q q x) :
@@ -83,7 +87,9 @@ def IsMiddle (G : SimpleGraph L) (Q : List L)
     (∀ p : Fin Q.length, IsPrevious Q p x → p < y) ∧
     ∀ z : Fin Q.length, y < z → z < x → label Q z ≠ label Q y
 
-/-- At most one middle position with a fixed label can occur at an endpoint.-/
+/-- At most one middle position with a fixed label can occur at an endpoint.
+@isnad1 id=eq.3h6v.s5.acbc81d77d65 from=translated src=- shape=661509db vocab=9ba7d1aa
+-/
 theorem isMiddle_unique_of_label_eq
     {G : SimpleGraph L} {Q : List L} {x y z : Fin Q.length}
     (hy : IsMiddle G Q y x) (hz : IsMiddle G Q z x)
@@ -122,7 +128,9 @@ one.-/
 def HasOnlyBoundaryRepeatedRuns (G : SimpleGraph L) (Q : List L) : Prop :=
   ∀ ⦃a b : L⦄, G.Adj a b → ¬ IsInteriorRepeatedRun Q a b
 
-/-- Pointwise form of `HasOnlyBoundaryRepeatedRuns`.-/
+/-- Pointwise form of `HasOnlyBoundaryRepeatedRuns`.
+@isnad1 id=iff.0h3v.s7.629e96ec56fd from=translated src=- shape=5879835b vocab=49585caa
+-/
 theorem hasOnlyBoundaryRepeatedRuns_iff
     {G : SimpleGraph L} {Q : List L} :
     HasOnlyBoundaryRepeatedRuns G Q ↔
@@ -147,7 +155,9 @@ theorem hasOnlyBoundaryRepeatedRuns_iff
     · exact hafter w hyw hwb
 
 /-- The literal boundary-run property implies the local
-interior-alternation condition used by the word-rotation API.-/
+interior-alternation condition used by the word-rotation API.
+@isnad1 id=hasinter.1h3v.s4.4bb60ba8fac8 from=translated src=- shape=53a4e8fb vocab=7f8a4167
+-/
 theorem HasOnlyBoundaryRepeatedRuns.hasInteriorAlternation
     {G : SimpleGraph L} {Q : List L}
     (hRuns : HasOnlyBoundaryRepeatedRuns G Q) :
@@ -169,7 +179,9 @@ theorem HasOnlyBoundaryRepeatedRuns.hasInteriorAlternation
 /-- The abstract word-translation lemma.  If `p` is the previous occurrence
 of `x`, then `y -> x` is a middle arrow exactly when `p -> y` is a middle
 arrow.  In particular, the two families of mesh arrows are paired by the
-identity on their intermediate positions.-/
+identity on their intermediate positions.
+@isnad1 id=iff.2h6v.s5.de1b8feb810a from=translated src=- shape=17566c8d vocab=cb941f2d
+-/
 theorem isMiddle_iff_previous_isMiddle
     {G : SimpleGraph L} {Q : List L}
     (hAlt : HasInteriorAlternation G Q)
@@ -218,7 +230,9 @@ theorem isMiddle_iff_previous_isMiddle
       exact hyz.ne hEq.symm
 
 /-- Paper-facing one-way form: every middle arrow into a repeated position
-rotates across its predecessor.-/
+rotates across its predecessor.
+@isnad1 id=ismiddle.3h6v.s5.f5fd6fc58cf9 from=translated src=- shape=fcd5a70d vocab=cb941f2d
+-/
 theorem previous_isMiddle_of_isMiddle
     {G : SimpleGraph L} {Q : List L}
     (hAlt : HasInteriorAlternation G Q)

@@ -38,6 +38,9 @@ def transport (c : SetClosure E) (e : E ≃ F) : SetClosure F where
     rw [e.symm_image_image]
     exact congrArg (fun T : Set E ↦ e '' T) (c.idempotent _)
 
+/--
+@isnad1 id=eq.0h2v.s3.8d975d8d1185 from=translated src=- shape=b5abf1e8 vocab=ff920ab1
+-/
 @[simp]
 theorem transport_refl (c : SetClosure E) :
     transport c (Equiv.refl E) = c := by
@@ -100,20 +103,27 @@ def closedsOrderIso : c.Closeds ≃o d.Closeds where
     exact h.equiv.image_symm_image (D : Set F)
   map_rel_iff' := Set.image_subset_image_iff h.equiv.injective
 
+/--
+@isnad1 id=eq.0h6v.s8.7c7492a491b1 from=translated src=- shape=abdaf51d vocab=304b96ac
+-/
 @[simp]
 theorem coe_closedsOrderIso_apply (C : c.Closeds) :
     ((h.closedsOrderIso C : d.Closeds) : Set F) =
       h.equiv '' (C : Set E) :=
   rfl
 
-/-- Relabeling preserves the cardinality of every closed set.-/
+/-- Relabeling preserves the cardinality of every closed set.
+@isnad1 id=eq.0h6v.s8.1cd0bb2ba8a2 from=translated src=- shape=214e54ea vocab=6fb1a36a
+-/
 @[simp]
 theorem ncard_closedsOrderIso_apply (C : c.Closeds) :
     ((h.closedsOrderIso C : d.Closeds) : Set F).ncard =
       (C : Set E).ncard :=
   Set.ncard_image_of_injective _ h.equiv.injective
 
-/-- Relabeling preserves the level-generating polynomial.-/
+/-- Relabeling preserves the level-generating polynomial.
+@isnad1 id=eq.0h5v.s5.f3ca041ff21a from=translated src=- shape=4c35d041 vocab=21d69a68
+-/
 theorem levelPolynomial_eq (h : RelabelingEquiv c d)
     [Finite E] [Finite F] :
     c.levelPolynomial = d.levelPolynomial := by

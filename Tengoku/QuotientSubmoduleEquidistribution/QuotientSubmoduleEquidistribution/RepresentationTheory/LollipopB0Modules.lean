@@ -83,6 +83,9 @@ def radicalAction (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂) :
     intro v
     ext <;> simp [smul_smul]
 
+/--
+@isnad1 id=eq.2h7v.s11.c453fc2d7f47 from=translated src=- shape=0a420310 vocab=97f011c5
+-/
 theorem radicalAction_mul_eq_zero
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ v, loop (loop v) = 0) (hstem : ∀ v, stem (loop v) = 0)
@@ -94,6 +97,9 @@ theorem radicalAction_mul_eq_zero
   · simp [radicalAction, hloop, smul_smul]
   · simp [radicalAction, hstem, smul_smul]
 
+/--
+@isnad1 id=eq.0h7v.s11.15a5dc3cdba8 from=translated src=- shape=cb4c8f0a vocab=551bee13
+-/
 theorem radicalAction_left_compat
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (r : VertexAlgebra K) (m : B0Radical K) :
@@ -103,6 +109,9 @@ theorem radicalAction_left_compat
   intro v
   ext <;> simp [radicalAction, vertexAction, smul_smul]
 
+/--
+@isnad1 id=eq.0h7v.s11.34baab9f5c2f from=translated src=- shape=bf5b1d68 vocab=ce87f3e1
+-/
 theorem radicalAction_right_compat
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (r : VertexAlgebra K) (m : B0Radical K) :
@@ -124,6 +133,9 @@ def b0Action
     (radicalAction_left_compat K V₁ V₂ loop stem)
     (radicalAction_right_compat K V₁ V₂ loop stem)
 
+/--
+@isnad1 id=eq.2h6v.s10.a832372a5993 from=translated src=- shape=f76af618 vocab=2ee49321
+-/
 theorem b0Action_e1
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ v, loop (loop v) = 0) (hstem : ∀ v, stem (loop v) = 0)
@@ -133,6 +145,9 @@ theorem b0Action_e1
   rw [TrivSqZeroExt.lift_apply_inl]
   simp [vertexAction]
 
+/--
+@isnad1 id=eq.2h6v.s10.269db7b9cdf8 from=translated src=- shape=e7343217 vocab=89d8b94b
+-/
 theorem b0Action_e2
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ v, loop (loop v) = 0) (hstem : ∀ v, stem (loop v) = 0)
@@ -142,6 +157,9 @@ theorem b0Action_e2
   rw [TrivSqZeroExt.lift_apply_inl]
   simp [vertexAction]
 
+/--
+@isnad1 id=eq.2h6v.s10.5bb6fad343a2 from=translated src=- shape=4972397a vocab=891272a2
+-/
 theorem b0Action_a
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ v, loop (loop v) = 0) (hstem : ∀ v, stem (loop v) = 0)
@@ -151,6 +169,9 @@ theorem b0Action_a
   rw [TrivSqZeroExt.lift_apply_inr]
   simp [radicalAction]
 
+/--
+@isnad1 id=eq.2h6v.s10.0f3311002f12 from=translated src=- shape=67b11c9e vocab=652d58c2
+-/
 theorem b0Action_x
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ v, loop (loop v) = 0) (hstem : ∀ v, stem (loop v) = 0)
@@ -183,22 +204,40 @@ def ofV₁ (D : FiniteB0Rep K) (v : D.V₁) : D.Carrier := (v, 0)
 
 def ofV₂ (D : FiniteB0Rep K) (v : D.V₂) : D.Carrier := (0, v)
 
+/--
+@isnad1 id=eq.0h3v.s5.66f99eef7954 from=translated src=- shape=1b4a2e8c vocab=2868d0c5
+-/
 @[simp] theorem fst_ofV₁ (D : FiniteB0Rep K) (v : D.V₁) :
     fst K D (ofV₁ K D v) = v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.7156a5ae05fd from=translated src=- shape=63cca9f0 vocab=b5108257
+-/
 @[simp] theorem snd_ofV₁ (D : FiniteB0Rep K) (v : D.V₁) :
     snd K D (ofV₁ K D v) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.92a092ae732f from=translated src=- shape=63cca9f0 vocab=0234272d
+-/
 @[simp] theorem fst_ofV₂ (D : FiniteB0Rep K) (v : D.V₂) :
     fst K D (ofV₂ K D v) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.bb136bd865e6 from=translated src=- shape=1b4a2e8c vocab=aaac0361
+-/
 @[simp] theorem snd_ofV₂ (D : FiniteB0Rep K) (v : D.V₂) :
     snd K D (ofV₂ K D v) = v := rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.5457081e3bce from=translated src=- shape=7a64a134 vocab=39e74586
+-/
 @[ext] theorem carrier_ext (D : FiniteB0Rep K) {v w : D.Carrier}
     (h₁ : fst K D v = fst K D w) (h₂ : snd K D v = snd K D w) : v = w := by
   exact Prod.ext h₁ h₂
 
+/--
+@isnad1 id=eq.0h3v.s6.1d96f9d60583 from=translated src=- shape=368fda91 vocab=f297c58d
+-/
 theorem decompose (D : FiniteB0Rep K) (v : D.Carrier) :
     v = ofV₁ K D (fst K D v) + ofV₂ K D (snd K D v) := by
   apply carrier_ext K D
@@ -231,35 +270,53 @@ instance (D : FiniteB0Rep K) : Module.Finite (B0Model K) D.Carrier :=
 abbrev asFGModule (D : FiniteB0Rep K) : FGModuleCat (B0Model K) :=
   FGModuleCat.of (B0Model K) D.Carrier
 
+/--
+@isnad1 id=eq.0h3v.s8.958fbba04373 from=translated src=- shape=52e65dd4 vocab=f6ff888e
+-/
 @[simp] theorem e1_smul (D : FiniteB0Rep K) (v : D.Carrier) :
     e1 K • v = (v.1, 0) := by
   change actionHom K D (e1 K) v = (v.1, 0)
   exact b0Action_e1 K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom
     D.loop_sq D.stem_loop v
 
+/--
+@isnad1 id=eq.0h3v.s8.88d427293f3a from=translated src=- shape=52f6311a vocab=e6af220b
+-/
 @[simp] theorem e2_smul (D : FiniteB0Rep K) (v : D.Carrier) :
     e2 K • v = (0, v.2) := by
   change actionHom K D (e2 K) v = (0, v.2)
   exact b0Action_e2 K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom
     D.loop_sq D.stem_loop v
 
+/--
+@isnad1 id=eq.0h3v.s10.06c65261fcf6 from=translated src=- shape=3fe29ec3 vocab=c01a6ae1
+-/
 @[simp] theorem a_smul (D : FiniteB0Rep K) (v : D.Carrier) :
     a K • v = (0, D.stem.hom.hom v.1) := by
   change actionHom K D (a K) v = (0, D.stem.hom.hom v.1)
   exact b0Action_a K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom
     D.loop_sq D.stem_loop v
 
+/--
+@isnad1 id=eq.0h3v.s10.b256d779b0a3 from=translated src=- shape=c5255f7f vocab=29856698
+-/
 @[simp] theorem x_smul (D : FiniteB0Rep K) (v : D.Carrier) :
     x K • v = (D.loop.hom.hom v.1, 0) := by
   change actionHom K D (x K) v = (D.loop.hom.hom v.1, 0)
   exact b0Action_x K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom
     D.loop_sq D.stem_loop v
 
+/--
+@isnad1 id=eq.0h3v.s8.66b06a4df087 from=translated src=- shape=60a33b01 vocab=7b8c5ce7
+-/
 @[simp] theorem e1_smul_ofV₁ (D : FiniteB0Rep K) (v : D.V₁) :
     e1 K • ofV₁ K D v = ofV₁ K D v := by
   rw [e1_smul]
   apply carrier_ext K D <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.f3399e8e1a4c from=translated src=- shape=f6c91683 vocab=d704eb27
+-/
 @[simp] theorem a_smul_ofV₁ (D : FiniteB0Rep K) (v : D.V₁) :
     a K • ofV₁ K D v = ofV₂ K D (D.stem.hom.hom v) := by
   rw [a_smul]
@@ -335,6 +392,9 @@ abbrev XModule : FGModuleCat (B0Model K) := FiniteB0Rep.asFGModule K (XData K)
 abbrev AModule : FGModuleCat (B0Model K) := FiniteB0Rep.asFGModule K (AData K)
 abbrev PModule : FGModuleCat (B0Model K) := FiniteB0Rep.asFGModule K (PData K)
 
+/--
+@isnad1 id=eq.0h2v.s8.b08b8ab05412 from=translated src=- shape=1a6655cd vocab=2797f6df
+-/
 @[simp] theorem S2Data_e1_smul
     (w : FiniteB0Rep.Carrier K (S2Data K)) : e1 K • w = 0 := by
   rw [FiniteB0Rep.e1_smul]
@@ -342,12 +402,17 @@ abbrev PModule : FGModuleCat (B0Model K) := FiniteB0Rep.asFGModule K (PData K)
   · exact Subsingleton.elim _ _
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.6a7c6dcbe141 from=translated src=- shape=1a6655cd vocab=b6fc8a27
+-/
 @[simp] theorem S2Data_a_smul
     (w : FiniteB0Rep.Carrier K (S2Data K)) : a K • w = 0 := by
   rw [FiniteB0Rep.a_smul]
   rfl
 
-/-- If the stem map is surjective, every unbundled `B₀`-linear map to `S₂` vanishes.-/
+/-- If the stem map is surjective, every unbundled `B₀`-linear map to `S₂` vanishes.
+@isnad1 id=eq.1h3v.s10.960fefad13a2 from=translated src=- shape=bb79de97 vocab=a5a5f496
+-/
 theorem linearMap_S2_eq_zero_of_surjective_stem
     (D : FiniteB0Rep K)
     (hstem : Function.Surjective D.stem.hom.hom)
@@ -379,7 +444,9 @@ theorem linearMap_S2_eq_zero_of_surjective_stem
         f (FiniteB0Rep.ofV₂ K D (FiniteB0Rep.snd K D v)) := by rw [map_add]
     _ = 0 := by rw [hv₁, hv₂, add_zero]
 
-/-- The bundled `FGModuleCat` version of the same zero-Hom criterion.-/
+/-- The bundled `FGModuleCat` version of the same zero-Hom criterion.
+@isnad1 id=eq.1h3v.s10.406ba6b5aae8 from=translated src=- shape=1e099a88 vocab=05151f20
+-/
 theorem hom_S2_eq_zero_of_surjective_stem
     (D : FiniteB0Rep K)
     (hstem : Function.Surjective D.stem.hom.hom)
@@ -387,24 +454,39 @@ theorem hom_S2_eq_zero_of_surjective_stem
   apply FGModuleCat.hom_ext
   exact linearMap_S2_eq_zero_of_surjective_stem K D hstem f.hom.hom
 
+/--
+@isnad1 id=surjecti.0h1v.s9.dc78d13ca8d4 from=translated src=- shape=e0fad07d vocab=00c6cede
+-/
 theorem S1_stem_surjective : Function.Surjective (S1Data K).stem.hom.hom := by
   intro y
   refine ⟨0, ?_⟩
   exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=surjecti.0h1v.s9.7d889d09a88d from=translated src=- shape=e0fad07d vocab=ef1ef1d9
+-/
 theorem X_stem_surjective : Function.Surjective (XData K).stem.hom.hom := by
   intro y
   refine ⟨0, ?_⟩
   exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=surjecti.0h1v.s9.3915a56cba9f from=translated src=- shape=e0fad07d vocab=22e8b476
+-/
 theorem A_stem_surjective : Function.Surjective (AData K).stem.hom.hom := by
   intro y
   exact ⟨y, rfl⟩
 
+/--
+@isnad1 id=surjecti.0h1v.s9.d8c65aca947f from=translated src=- shape=e0fad07d vocab=c8e300be
+-/
 theorem P_stem_surjective : Function.Surjective (PData K).stem.hom.hom := by
   intro y
   exact ⟨(y, 0), rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.2e370052fbff from=translated src=- shape=8a6e859d vocab=d5ccf841
+-/
 theorem hom_A_S2_eq_zero (f : AModule K ⟶ S2Module K) : f = 0 :=
   hom_S2_eq_zero_of_surjective_stem K (AData K) (A_stem_surjective K) f
 

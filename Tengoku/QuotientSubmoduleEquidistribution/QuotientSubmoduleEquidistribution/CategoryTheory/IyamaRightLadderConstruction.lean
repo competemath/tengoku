@@ -63,7 +63,9 @@ relations in Iyama's displayed step are forced, and `S` is isomorphic to the
 resulting explicit step complex.
 
 The right endpoint is allowed to be merely isomorphic to `YPrev`, matching
-the chosen-mesh interface of `FiniteTauCategoryData`.-/
+the chosen-mesh interface of `FiniteTauCategoryData`.
+@isnad1 id=other.1h13v.s9.dc6c93e0345c from=translated src=- shape=ad6a5c71 vocab=7ada183b
+-/
 theorem exists_stepComplex_iso_of_split_factor_and_padded_next
     (S : ShortComplex C) {YPrev ZPrev ZNext YNext U : C}
     (ePrev : S.X₃ ≅ YPrev)
@@ -180,7 +182,9 @@ variable {Ind : Type w} [Fintype Ind]
 open CategoricalRadical
 
 /-- A split-monic factor of a chosen right mesh map is right minimal, also
-after the recorded endpoint isomorphism.-/
+after the recorded endpoint isomorphism.
+@isnad1 id=isrightm.0h6v.s7.50429dce9414 from=translated src=- shape=5b246cfa vocab=cd402d0b
+-/
 theorem isRightMinimal_splitFactor_chosen_rightMesh
     (T : FiniteRightTauCategoryData C Ind)
     {Z Y : C} (j : Z ⟶ (T.rightMesh Y).X₂) [IsSplitMono j] :
@@ -192,7 +196,9 @@ theorem isRightMinimal_splitFactor_chosen_rightMesh
         ((T.rightTau Y).isRightMinimal_g.precomp_splitMono j)
 
 /-- Every radical-square perturbation of a split-monic chosen-right-mesh
-factor is again right minimal.-/
+factor is again right minimal.
+@isnad1 id=isrightm.1h7v.s8.80ff6f75c4cf from=translated src=- shape=538ad85c vocab=c0abe558
+-/
 theorem isRightMinimal_add_mem_square_splitFactor_chosen_rightMesh
     (T : FiniteRightTauCategoryData C Ind)
     {Z Y : C} (j : Z ⟶ (T.rightMesh Y).X₂) [IsSplitMono j]
@@ -227,7 +233,9 @@ theorem isRightMinimal_add_mem_square_splitFactor_chosen_rightMesh
   exact isRightMinimal_splitFactor_chosen_rightMesh T (j + s)
 
 /-- The first map of every chosen left mesh is special.  This supplies the
-`μ⁻` seed in Iyama's right-ladder existence theorem.-/
+`μ⁻` seed in Iyama's right-ladder existence theorem.
+@isnad1 id=isspecia.0h4v.s6.12331fcfdc2d from=translated src=- shape=95e7d7ae vocab=34d2be3f
+-/
 theorem isSpecial_leftMesh_f
     (T : FiniteTauCategoryData C Ind) (A : C) :
     IsSpecial T.radical (T.leftMesh A).f :=
@@ -238,7 +246,9 @@ right mesh at `Y`, after applying the recorded right-endpoint isomorphism.
 
 This is the first operation in the special-arrow construction.  It follows
 directly from the radical approximation field of the chosen right
-tau-sequence; no Krull--Schmidt decomposition is involved yet.-/
+tau-sequence; no Krull--Schmidt decomposition is involved yet.
+@isnad1 id=ex.1h6v.s7.de403bdc94b6 from=translated src=- shape=469d44c4 vocab=12ecd969
+-/
 theorem exists_factor_through_chosen_rightMesh
     (T : FiniteRightTauCategoryData C Ind)
     {X Y : C} (a : X ⟶ Y) (ha : IsRadicalMorphism a) :
@@ -263,7 +273,9 @@ theorem exists_factor_through_chosen_rightMesh
 
 Once `j` is the split-monic essential factor of the current arrow and the
 raw successor is displayed as `(bNext, 0)`, idempotent completeness supplies
-the complement and hence the entire explicit right-ladder step.-/
+the complement and hence the entire explicit right-ladder step.
+@isnad1 id=other.1h12v.s10.802619272974 from=translated src=- shape=a018cf6b vocab=c31052c1
+-/
 theorem exists_chosen_rightMesh_step_of_split_factor_and_padded_next
     (T : FiniteRightTauCategoryData C Ind)
     {YPrev ZPrev ZNext YNext U : C}

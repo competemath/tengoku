@@ -34,37 +34,57 @@ def upper (a : X ⟶ X) (b : X ⟶ Y) (d : Y ⟶ Y) :
     (biprod.fst ≫ a)
     (biprod.fst ≫ b + biprod.snd ≫ d)
 
+/--
+@isnad1 id=eq.0h6v.s7.c49bbe20db68 from=translated src=- shape=7ce77d67 vocab=9b12a2d2
+-/
 @[reassoc (attr := simp)]
 lemma inl_upper (a : X ⟶ X) (b : X ⟶ Y) (d : Y ⟶ Y) :
     biprod.inl ≫ upper a b d = biprod.lift a b := by
   ext <;> simp [upper]
 
+/--
+@isnad1 id=eq.0h6v.s7.62036b628b0f from=translated src=- shape=61f1c255 vocab=66eadedf
+-/
 @[reassoc (attr := simp)]
 lemma inr_upper (a : X ⟶ X) (b : X ⟶ Y) (d : Y ⟶ Y) :
     biprod.inr ≫ upper a b d = d ≫ biprod.inr := by
   ext <;> simp [upper]
 
+/--
+@isnad1 id=eq.0h6v.s7.b333fa44f9b3 from=translated src=- shape=a11e93d8 vocab=af13acce
+-/
 @[reassoc (attr := simp)]
 lemma upper_fst (a : X ⟶ X) (b : X ⟶ Y) (d : Y ⟶ Y) :
     upper a b d ≫ biprod.fst = biprod.fst ≫ a := by
   simp [upper]
 
+/--
+@isnad1 id=eq.0h6v.s8.5ece44b7f137 from=translated src=- shape=c9806da8 vocab=80c08aac
+-/
 @[reassoc (attr := simp)]
 lemma upper_snd (a : X ⟶ X) (b : X ⟶ Y) (d : Y ⟶ Y) :
     upper a b d ≫ biprod.snd = biprod.fst ≫ b + biprod.snd ≫ d := by
   simp [upper]
 
+/--
+@isnad1 id=eq.0h9v.s8.f9f38c9c61db from=translated src=- shape=631c88e8 vocab=5b921fa9
+-/
 lemma upper_comp
     (a a' : X ⟶ X) (b b' : X ⟶ Y) (d d' : Y ⟶ Y) :
     upper a b d ≫ upper a' b' d' =
       upper (a ≫ a') (a ≫ b' + b ≫ d') (d ≫ d') := by
   ext <;> simp [upper, Category.assoc, Preadditive.comp_add, Preadditive.add_comp]
 
+/--
+@isnad1 id=eq.0h3v.s6.8571283af863 from=translated src=- shape=ccc78961 vocab=d1d35f6e
+-/
 lemma upper_id :
     upper (𝟙 X) 0 (𝟙 Y) = 𝟙 (X ⊞ Y) := by
   ext <;> simp [upper]
 
-/-- The diagonal sum of splittings splits the block-diagonal endomorphism.-/
+/-- The diagonal sum of splittings splits the block-diagonal endomorphism.
+@isnad1 id=ex.2h5v.s8.8b13c10e861c from=translated src=- shape=dd90e7b3 vocab=e345428f
+-/
 lemma split_upper_zero
     {a : X ⟶ X} {d : Y ⟶ Y}
     (ha : ∃ (A : C) (i : A ⟶ X) (e : X ⟶ A),
@@ -82,7 +102,9 @@ lemma split_upper_zero
 /-- An upper-triangular idempotent splits once its diagonal idempotents split.
 
 The proof is the unitriangular conjugation with off-diagonal parameter
-`t = b d - a b`.-/
+`t = b d - a b`.
+@isnad1 id=ex.5h6v.s9.ff2d56feb04a from=translated src=- shape=e10fc108 vocab=af544353
+-/
 theorem split_upper
     {a : X ⟶ X} {b : X ⟶ Y} {d : Y ⟶ Y}
     (ha : a ≫ a = a)
@@ -135,7 +157,9 @@ theorem split_upper
 
 /-- Induction step for directed additive categories: an idempotent on a
 biproduct splits if morphisms from the second block back to the first vanish
-and the two diagonal idempotents split.-/
+and the two diagonal idempotents split.
+@isnad1 id=ex.4h4v.s10.e008c61ebc64 from=translated src=- shape=b2d84b52 vocab=0dddbcb8
+-/
 theorem split_idempotent_biprod_of_hom_zero
     (p : (X ⊞ Y) ⟶ (X ⊞ Y))
     (hp : p ≫ p = p)
@@ -202,7 +226,9 @@ def NoBackward (X Y : C) : Prop :=
   ∀ f : Y ⟶ X, f = 0
 
 /-- If every summand in a list has zero Hom to `X`, then their iterated
-biproduct has zero Hom to `X`.-/
+biproduct has zero Hom to `X`.
+@isnad1 id=eq.1h4v.s6.f01cd2b9c1c6 from=translated src=- shape=0f9cbc13 vocab=84fda528
+-/
 lemma iteratedBiprod_hom_eq_zero {X : C} {xs : List C}
     (h : ∀ Y ∈ xs, NoBackward X Y)
     (f : iteratedBiprod xs ⟶ X) : f = 0 := by
@@ -222,7 +248,9 @@ lemma iteratedBiprod_hom_eq_zero {X : C} {xs : List C}
         exact ih hrest (biprod.inr ≫ f)
 
 /-- A finite directed list of idempotent-complete blocks has an
-idempotent-complete iterated biproduct.-/
+idempotent-complete iterated biproduct.
+@isnad1 id=idempote.2h2v.s5.81a7d04b2608 from=translated src=- shape=ff7e1914 vocab=f30de063
+-/
 theorem idempotentsSplitAt_iteratedBiprod (xs : List C)
     (hdir : xs.Pairwise NoBackward)
     (hsplit : ∀ X ∈ xs, IdempotentsSplitAt X) :
@@ -258,7 +286,9 @@ structure DirectedBlockDecomposition where
   blockSplit : ∀ (X : C) (B : C), B ∈ blocks X → IdempotentsSplitAt B
 
 /-- A finite directed decomposition into idempotent-complete blocks makes the
-ambient category idempotent complete.-/
+ambient category idempotent complete.
+@isnad1 id=isidempo.0h2v.s4.15dd89e890b2 from=translated src=- shape=fb04960b vocab=551174e3
+-/
 theorem isIdempotentComplete_of_directedBlockDecomposition
     (D : DirectedBlockDecomposition (C := C)) :
     IsIdempotentComplete C := by

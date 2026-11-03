@@ -63,7 +63,9 @@ variable {E : Type w₁} [Finite E]
   {cl : QuotientSubmoduleEquidistribution.SetClosure E}
 
 /-- A size-preserving decorated-core parametrization identifies the
-`A`-side level polynomial with the abstract `A` enumerator.-/
+`A`-side level polynomial with the abstract `A` enumerator.
+@isnad1 id=eq.0h6v.s5.9a5ea1c96c0a from=translated src=- shape=3a8dbdc8 vocab=814659f9
+-/
 theorem levelPolynomial_eq_aEnumerator
     (p : AClosedParametrization F cl) :
     cl.levelPolynomial = F.aEnumerator := by
@@ -101,7 +103,9 @@ variable {E : Type w₂} [Finite E]
   {cl : QuotientSubmoduleEquidistribution.SetClosure E}
 
 /-- A size-preserving decorated-core parametrization identifies the
-`B`-side level polynomial with the abstract `B` enumerator.-/
+`B`-side level polynomial with the abstract `B` enumerator.
+@isnad1 id=eq.0h6v.s5.ff9487072fb7 from=translated src=- shape=3a8dbdc8 vocab=25e79bc1
+-/
 theorem levelPolynomial_eq_bEnumerator
     (p : BClosedParametrization F cl) :
     cl.levelPolynomial = F.bEnumerator := by
@@ -134,7 +138,9 @@ end BClosedParametrization
 
 /-- Once both closure systems have the explicit fiber
 parametrizations, the separated-side level polynomial is the original
-one times the universal Boolean factor.-/
+one times the universal Boolean factor.
+@isnad1 id=eq.0h9v.s7.daa719886f1f from=translated src=- shape=dc91a76b vocab=a7acc48f
+-/
 theorem levelPolynomial_B_eq_levelPolynomial_A_mul
     {Eₐ : Type w₁} {Eᵦ : Type w₂}
     [Finite Eₐ] [Finite Eᵦ]

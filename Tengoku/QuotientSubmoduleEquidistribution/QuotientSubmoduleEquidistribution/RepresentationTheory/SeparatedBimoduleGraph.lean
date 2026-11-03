@@ -68,7 +68,9 @@ def graph
     cases a <;> exact id⟩
 
 /-- Reversing the bimodule actions reverses the source and target of every
-nonzero Peirce corner.-/
+nonzero Peirce corner.
+@isnad1 id=iff.0h5v.s8.a06c3bd4a83e from=translated src=- shape=cdcc5482 vocab=4271666a
+-/
 theorem reversed_hasArrow_iff (i j : V) :
     HasArrow K V (ReversedBimodule (V → K) J) i j ↔
       HasArrow K V J j i := by

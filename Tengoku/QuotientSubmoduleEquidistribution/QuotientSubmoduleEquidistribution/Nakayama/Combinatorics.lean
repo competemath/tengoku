@@ -47,12 +47,16 @@ noncomputable def chainPolynomial (n : ℕ) : ℕ[X] :=
     classical
     exact ∑ k ∈ Finset.range (n + 1), X ^ k
 
-/-- A one-chain factor is the usual finite geometric sum.-/
+/-- A one-chain factor is the usual finite geometric sum.
+@isnad1 id=eq.0h1v.s6.a0cb2fbb072b from=translated src=- shape=629df998 vocab=ced17990
+-/
 theorem chainPolynomial_eq_sum_range (n : ℕ) :
     chainPolynomial n = ∑ k ∈ Finset.range (n + 1), X ^ k :=
   rfl
 
-/-- Main product-of-chains generating-polynomial formula.-/
+/-- Main product-of-chains generating-polynomial formula.
+@isnad1 id=eq.0h2v.s5.2deef7b633f5 from=translated src=- shape=cb35b9f2 vocab=35952ef4
+-/
 theorem capacityPolynomial_eq_prod_chainPolynomial
     {ι : Type u} [Fintype ι] (c : ι → ℕ) :
     capacityPolynomial c = ∏ i, chainPolynomial (c i) := by
@@ -72,7 +76,9 @@ theorem capacityPolynomial_eq_prod_chainPolynomial
       rw [chainPolynomial, Fin.sum_univ_eq_sum_range]
 
 /-- The ungraded cardinality of the product is the product of the chain
-cardinalities.-/
+cardinalities.
+@isnad1 id=eq.0h2v.s5.3fcaee8cf4e3 from=translated src=- shape=36659eeb vocab=3210fd03
+-/
 theorem natCard_capacityVector
     {ι : Type u} [Fintype ι] (c : ι → ℕ) :
     Nat.card (CapacityVector c) = ∏ i, (c i + 1) := by
@@ -80,7 +86,9 @@ theorem natCard_capacityVector
   rw [Nat.card_eq_fintype_card, Fintype.card_pi]
   simp
 
-/-- Reindexing the capacities preserves the grading polynomial.-/
+/-- Reindexing the capacities preserves the grading polynomial.
+@isnad1 id=eq.1h5v.s5.d245b7f6caf6 from=translated src=- shape=f0fb611b vocab=0215a38b
+-/
 theorem capacityPolynomial_eq_of_equiv
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ) (e : ι ≃ κ)
@@ -108,6 +116,9 @@ noncomputable def capacityEquivOfMultisetEq
   simpa [capacityMultiset, Multiset.count_map, eq_comm,
     ← Finset.filter_val] using congrArg (Multiset.count n) h
 
+/--
+@isnad1 id=eq.1h5v.s6.ad564484a0f5 from=translated src=- shape=52f90cde vocab=6c4d2b1d
+-/
 theorem capacityEquivOfMultisetEq_capacity
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ)
@@ -118,7 +129,9 @@ theorem capacityEquivOfMultisetEq_capacity
   exact Equiv.ofFiberEquiv_map _ _
 
 /-- Existential form: equal capacity multisets admit a coordinate matching
-which preserves the chain lengths.-/
+which preserves the chain lengths.
+@isnad1 id=ex.1h4v.s6.480cc6e15311 from=translated src=- shape=e84248bc vocab=34338264
+-/
 theorem exists_capacityEquiv_of_capacityMultiset_eq
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ)
@@ -176,7 +189,9 @@ noncomputable def capacityVectorOrderIsoOfMultisetEq
     (capacityEquivOfMultisetEq c d h)
     (capacityEquivOfMultisetEq_capacity c d h)
 
-/-- Coordinate reindexing preserves the sum-of-coordinates grading.-/
+/-- Coordinate reindexing preserves the sum-of-coordinates grading.
+@isnad1 id=eq.1h6v.s7.113484a18367 from=translated src=- shape=94c0cd0f vocab=7faab2ae
+-/
 theorem capacityWeight_capacityVectorOrderIsoOfEquiv
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ) (e : ι ≃ κ)
@@ -190,7 +205,9 @@ theorem capacityWeight_capacityVectorOrderIsoOfEquiv
   rfl
 
 /-- The order isomorphism selected from equal capacity multisets preserves
-the sum-of-coordinates grading.-/
+the sum-of-coordinates grading.
+@isnad1 id=eq.1h5v.s7.dbc2fec7a903 from=translated src=- shape=80cb6f78 vocab=3c37cf2e
+-/
 theorem capacityWeight_capacityVectorOrderIsoOfMultisetEq
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ)
@@ -202,7 +219,9 @@ theorem capacityWeight_capacityVectorOrderIsoOfMultisetEq
     (capacityEquivOfMultisetEq c d h)
     (capacityEquivOfMultisetEq_capacity c d h) x
 
-/-- The product formula depends only on the multiset of capacities.-/
+/-- The product formula depends only on the multiset of capacities.
+@isnad1 id=eq.1h4v.s5.6f229357d576 from=translated src=- shape=501682d5 vocab=5f7378a5
+-/
 theorem capacityPolynomial_eq_of_capacityMultiset_eq
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ)
@@ -261,7 +280,9 @@ private theorem count_add_countP_succ_eq_countP
           exact ih
 
 /-- Equality of all composition-length counts determines the multiset of
-chain capacities, including multiplicities of zero capacities.-/
+chain capacities, including multiplicities of zero capacities.
+@isnad1 id=eq.1h4v.s5.67d38e1baa72 from=translated src=- shape=d2a020d7 vocab=690731a1
+-/
 theorem capacityMultiset_eq_of_atLeastCount_eq
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ)
@@ -289,7 +310,9 @@ theorem capacityMultiset_eq_of_atLeastCount_eq
   omega
 
 /-- The product-of-chains polynomials agree as soon as all
-composition-length counts agree.-/
+composition-length counts agree.
+@isnad1 id=eq.1h4v.s5.dfa22ab940f6 from=translated src=- shape=d2a020d7 vocab=dcb2fea0
+-/
 theorem capacityPolynomial_eq_of_atLeastCount_eq
     {ι : Type u} {κ : Type v} [Fintype ι] [Fintype κ]
     (c : ι → ℕ) (d : κ → ℕ)
@@ -327,7 +350,9 @@ def selectedPointEquiv {ι : Type u} {c : ι → ℕ}
   right_inv p := rfl
 
 /-- The selected support has cardinality equal to the sum of the chosen
-initial-segment lengths.-/
+initial-segment lengths.
+@isnad1 id=eq.0h3v.s4.d262b1df0584 from=translated src=- shape=7542d8b1 vocab=516730ab
+-/
 theorem ncard_initialSegment
     {ι : Type u} [Fintype ι] {c : ι → ℕ}
     (x : CapacityVector c) :
@@ -366,7 +391,9 @@ variable {ι : Type u} [Fintype ι] {E : Type v} [Finite E]
   (p : FixedTopChainParametrization cl c)
 
 /-- The closed set corresponding to `x` has size equal to the sum of its
-chain coordinates.-/
+chain coordinates.
+@isnad1 id=eq.0h6v.s8.0d15c9fabd8a from=translated src=- shape=51241716 vocab=9c6c4133
+-/
 theorem ncard_closedOrderIso (x : CapacityVector c) :
     (((p.closedOrderIso x : cl.Closeds) : Set E)).ncard =
       capacityWeight x := by
@@ -375,7 +402,9 @@ theorem ncard_closedOrderIso (x : CapacityVector c) :
     ncard_initialSegment]
 
 /-- Any closure system with an explicit fixed-top-chain parametrization has
-the product-of-geometric-sums level polynomial.-/
+the product-of-geometric-sums level polynomial.
+@isnad1 id=eq.0h5v.s5.f066df4ce92a from=translated src=- shape=16ae0aaa vocab=e3770fe0
+-/
 theorem levelPolynomial_eq_prod_chainPolynomial
     (p : FixedTopChainParametrization cl c) :
     cl.levelPolynomial = ∏ i, chainPolynomial (c i) := by

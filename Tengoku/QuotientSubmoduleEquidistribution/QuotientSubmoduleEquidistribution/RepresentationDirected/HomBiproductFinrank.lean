@@ -110,6 +110,9 @@ def biprodHomLinearEquiv (X Y Z : C) :
   map_add' f g := by simp
   map_smul' r f := by simp
 
+/--
+@isnad1 id=eq.0h5v.s8.7c42ee2f9a08 from=translated src=- shape=de9dbd01 vocab=bc0ca6f3
+-/
 theorem finrank_hom_biproduct
     {J : Type uJ} [Fintype J] (X : C) (Y : J → C)
     [Module.Finite K (X ⟶ ⨁ Y)]
@@ -119,6 +122,9 @@ theorem finrank_hom_biproduct
   rw [(homLinearEquivBiproduct X Y).finrank_eq,
     Module.finrank_pi_fintype K]
 
+/--
+@isnad1 id=eq.0h5v.s8.3ce8a7883f40 from=translated src=- shape=0f1655be vocab=bc0ca6f3
+-/
 theorem finrank_biproduct_hom
     {J : Type uJ} [Fintype J] (Y : J → C) (X : C)
     [Module.Finite K (⨁ Y ⟶ X)]
@@ -128,6 +134,9 @@ theorem finrank_biproduct_hom
   rw [(biproductHomLinearEquiv Y X).finrank_eq,
     Module.finrank_pi_fintype K]
 
+/--
+@isnad1 id=eq.0h5v.s8.58c62b36649f from=translated src=- shape=a3e065a6 vocab=e6d7ee90
+-/
 theorem finrank_hom_biprod (X Y Z : C)
     [Module.Finite K (X ⟶ Y ⊞ Z)]
     [Module.Finite K (X ⟶ Y)] [Module.Finite K (X ⟶ Z)] :
@@ -135,6 +144,9 @@ theorem finrank_hom_biprod (X Y Z : C)
       Module.finrank K (X ⟶ Y) + Module.finrank K (X ⟶ Z) := by
   rw [(homLinearEquivBiprod X Y Z).finrank_eq, Module.finrank_prod]
 
+/--
+@isnad1 id=eq.0h5v.s8.d65c7674fe1d from=translated src=- shape=d253c39d vocab=e6d7ee90
+-/
 theorem finrank_biprod_hom (X Y Z : C)
     [Module.Finite K (X ⊞ Y ⟶ Z)]
     [Module.Finite K (X ⟶ Z)] [Module.Finite K (Y ⟶ Z)] :

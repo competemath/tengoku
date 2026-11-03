@@ -49,7 +49,9 @@ is phrased in terms of `𝟙`: the two agree only by unfolding the semireducible
 `Quiver.Path.nil`, and `simp` cannot compute the action of the trivial path without this lemma.
 Mathlib states the same restatement for
 functors of the form `CategoryTheory.Paths.lift φ`, as `CategoryTheory.Paths.lift_nil`; that lemma
-does not apply to a general representation.-/
+does not apply to a general representation.
+@isnad1 id=eq.0h4v.s7.5f2b22fb061c from=translated src=- shape=da64e817 vocab=fa864506
+-/
 @[simp]
 theorem QuiverRep.map_nil {k : Type u} {Q : Type v} [Field k] [Quiver.{w} Q] (M : QuiverRep k Q)
     (a : Q) : M.map (Quiver.Path.nil : Quiver.Path a a) = 𝟙 (M.obj a) :=

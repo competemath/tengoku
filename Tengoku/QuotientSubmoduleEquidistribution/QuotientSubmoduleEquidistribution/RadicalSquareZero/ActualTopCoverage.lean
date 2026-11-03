@@ -96,7 +96,9 @@ def coreFamily :
 
 omit [DecidableEq Nonsimple] [DecidableEq Vertex] in
 /-- Exact original-side closedness follows from the pointwise membership
-laws.-/
+laws.
+@isnad1 id=iff.0h6v.s7.20563aeaecd7 from=translated src=- shape=498e69df vocab=75d3582a
+-/
 theorem a_isClosed_iff
     (S : Set (Nonsimple ⊕ Vertex)) :
     clA.IsClosed S ↔
@@ -138,7 +140,9 @@ theorem a_isClosed_iff
 
 omit [DecidableEq Nonsimple] [DecidableEq Vertex] in
 /-- Exact separated-side closedness follows from the same nonsimple cores and
-forced top support; the second simple copy contributes no condition.-/
+forced top support; the second simple copy contributes no condition.
+@isnad1 id=iff.0h6v.s7.2b09fac88446 from=translated src=- shape=66c4c5e6 vocab=63dedf55
+-/
 theorem b_isClosed_iff
     (S : Set (Nonsimple ⊕ (Vertex ⊕ Vertex))) :
     clB.IsClosed S ↔

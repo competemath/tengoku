@@ -47,6 +47,9 @@ def equiv : RadicalBimodule D ≃ Ring.jacobson B where
   right_inv _ := rfl
 
 omit [IsArtinianRing B] [Fintype I] [DecidableEq I] in
+/--
+@isnad1 id=eq.1h6v.s6.f5b6902a5d6e from=translated src=- shape=371fe54e vocab=65564f82
+-/
 theorem ext' {x y : RadicalBimodule D} (h : x.val = y.val) : x = y := by
   cases x
   cases y

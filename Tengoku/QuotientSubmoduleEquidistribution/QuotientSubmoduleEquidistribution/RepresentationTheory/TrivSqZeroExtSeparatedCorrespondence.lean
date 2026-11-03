@@ -86,6 +86,9 @@ def moduleAction
   (radicalActionFamily (S := S) (J := J) (X := X)).comp
     (idealInr (S := S) (J := J))
 
+/--
+@isnad1 id=eq.0h6v.s12.0b6c1f00a585 from=translated src=- shape=31fa8c45 vocab=18fc115f
+-/
 theorem moduleAction_left_smul
     (X : ModuleCat.{w} (TrivSqZeroExt S J)) :
     ∀ (s : S) (j : J)
@@ -101,6 +104,9 @@ theorem moduleAction_left_smul
       ((TrivSqZeroExt.inr j : TrivSqZeroExt S J) • x)
   rw [← mul_smul, TrivSqZeroExt.inl_mul_inr]
 
+/--
+@isnad1 id=eq.0h6v.s12.3d44976852ee from=translated src=- shape=f24e1775 vocab=a3e3e050
+-/
 theorem moduleAction_right_smul
     (X : ModuleCat.{w} (TrivSqZeroExt S J)) :
     ∀ (j : J) (s : S)
@@ -127,7 +133,9 @@ abbrev moduleSeparatedData
     action_right_smul := moduleAction_right_smul X }
 
 /-- The separated datum of every module is generated: its radical is spanned
-by the images of the square-zero action maps.-/
+by the images of the square-zero action maps.
+@isnad1 id=isgenera.0h3v.s7.c666e3dfdcb3 from=translated src=- shape=714e152a vocab=43751300
+-/
 theorem moduleSeparatedData_isGenerated
     (X : ModuleCat.{w} (TrivSqZeroExt S J)) :
     IsGenerated (moduleSeparatedData (S := S) (J := J) X) := by

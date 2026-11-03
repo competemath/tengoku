@@ -43,7 +43,9 @@ open _root_.Quiver
 
 universe u v w
 
-/-- The path algebra of a finite acyclic quiver is finite-dimensional.-/
+/-- The path algebra of a finite acyclic quiver is finite-dimensional.
+@isnad1 id=finitedi.1h2v.s5.caf9ce6cf7f0 from=translated src=- shape=7e2b92e9 vocab=05ce1c31
+-/
 theorem finiteDimensional_pathAlgebra_of_isAcyclic (k : Type w) (Q : Type u) [DivisionRing k]
     [Quiver.{v} Q] [Finite Q] [∀ a b : Q, Finite (a ⟶ b)] (h : Quiver.IsAcyclic Q) :
     FiniteDimensional k (pathAlgebra k Q) :=

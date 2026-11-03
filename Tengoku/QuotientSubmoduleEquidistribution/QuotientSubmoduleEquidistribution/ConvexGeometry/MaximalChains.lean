@@ -110,12 +110,18 @@ def ascending (d : LegalDeletionChain c) :
     Fin (Fintype.card E + 1) → c.Closeds :=
   fun i ↦ ⟨d.support i.rev, d.closed i.rev⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.fd182357eae3 from=translated src=- shape=1ef62765 vocab=1360a818
+-/
 @[simp]
 theorem coe_ascending (d : LegalDeletionChain c)
     (i : Fin (Fintype.card E + 1)) :
     (d.ascending i : Set E) = d.support i.rev :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.d1a86c9a5279 from=translated src=- shape=0dbf8d3e vocab=8e9e3626
+-/
 theorem ascending_zero
     (d : LegalDeletionChain c)
     (hempty : c.IsClosed ∅) :
@@ -124,6 +130,9 @@ theorem ascending_zero
   simp only [coe_ascending, Fin.rev_zero, d.bottom,
     coe_bot, hempty.closure_eq]
 
+/--
+@isnad1 id=eq.0h3v.s8.09e73b927521 from=translated src=- shape=695534f8 vocab=c8140f83
+-/
 theorem ascending_last
     (d : LegalDeletionChain c) :
     d.ascending (Fin.last (Fintype.card E)) = ⊤ := by
@@ -131,7 +140,9 @@ theorem ascending_last
   simp only [coe_ascending, Fin.rev_last, d.top, coe_top]
 
 /-- Every reversed deletion step is a cover in the actual closed-set
-poset.-/
+poset.
+@isnad1 id=covby.0h4v.s6.7208abd73b2c from=translated src=- shape=8d97d7be vocab=514d8bc4
+-/
 theorem ascending_covBy
     (d : LegalDeletionChain c)
     (i : Fin (Fintype.card E)) :
@@ -193,6 +204,9 @@ def toClosedFlag
     d.ascending_last
     (fun i ↦ (d.ascending_covBy i).wcovBy)
 
+/--
+@isnad1 id=iff.1h4v.s7.ee1efd61a25d from=translated src=- shape=95e637eb vocab=fc3fb5eb
+-/
 @[simp]
 theorem mem_toClosedFlag_iff
     (d : LegalDeletionChain c)
@@ -216,6 +230,9 @@ def ascending (d : SaturatedOrderDeletionChain e) :
     Fin (Fintype.card E + 1) → c.Closeds :=
   fun i ↦ e.symm (d.term i.rev)
 
+/--
+@isnad1 id=eq.0h5v.s8.6e2a345895a5 from=translated src=- shape=a0671230 vocab=5369d6ba
+-/
 theorem ascending_zero
     (d : SaturatedOrderDeletionChain e) :
     d.ascending 0 = ⊥ := by
@@ -223,6 +240,9 @@ theorem ascending_zero
   simp only [ascending, Fin.rev_zero,
     e.apply_symm_apply, d.bottom]
 
+/--
+@isnad1 id=eq.0h5v.s8.d6973d733275 from=translated src=- shape=7ac91e9a vocab=ea3d2014
+-/
 theorem ascending_last
     (d : SaturatedOrderDeletionChain e) :
     d.ascending (Fin.last (Fintype.card E)) = ⊤ := by
@@ -231,7 +251,9 @@ theorem ascending_last
     e.apply_symm_apply, d.top]
 
 /-- Reversed consecutive target terms are covers in the source closed-set
-poset.-/
+poset.
+@isnad1 id=covby.0h6v.s7.009cfc40b1ad from=translated src=- shape=00cc45d6 vocab=a72afb4d
+-/
 theorem ascending_covBy
     (d : SaturatedOrderDeletionChain e)
     (i : Fin (Fintype.card E)) :
@@ -250,6 +272,9 @@ def toClosedFlag
     d.ascending_last
     (fun i ↦ (d.ascending_covBy i).wcovBy)
 
+/--
+@isnad1 id=iff.0h6v.s8.bb4174ef7e3d from=translated src=- shape=6d1f290f vocab=fe0419fe
+-/
 theorem mem_toClosedFlag_iff
     (d : SaturatedOrderDeletionChain e)
     (C : c.Closeds) :
@@ -259,7 +284,9 @@ theorem mem_toClosedFlag_iff
   Iff.rfl
 
 /-- If a pulled-back saturated target chain has the same increasing
-enumeration as a legal deletion chain, their maximal flags agree.-/
+enumeration as a legal deletion chain, their maximal flags agree.
+@isnad1 id=eq.2h6v.s7.1184f8f4fb28 from=translated src=- shape=91b46be2 vocab=dec0e672
+-/
 theorem toClosedFlag_eq_legalToClosedFlag
     (d : SaturatedOrderDeletionChain e)
     (l : LegalDeletionChain c)
@@ -301,7 +328,9 @@ omit [BoundedOrder α] [Finite α] in
 /-- A cover between consecutive members of a maximal flag is already a
 cover in the ambient poset.  This is the key non-tautological maximality
 argument: an ambient point strictly between them would be comparable
-with every flag member and could be inserted into the flag.-/
+with every flag member and could be inserted into the flag.
+@isnad1 id=covby.1h4v.s7.7ad404dd262b from=translated src=- shape=a0b0625e vocab=b11910db
+-/
 theorem Flag.ambient_covBy_of_covBy
     (s : Flag α) {a b : s} (hab : a ⋖ b) :
     a.1 ⋖ b.1 := by
@@ -341,6 +370,9 @@ def Flag.enumeration
   apply Fintype.orderIsoFinOfCardEq s
   simpa only [Nat.card_eq_fintype_card] using hcard
 
+/--
+@isnad1 id=eq.1h3v.s9.7d343368162a from=translated src=- shape=faa11826 vocab=01266f23
+-/
 theorem Flag.enumeration_zero
     (s : Flag α) {n : ℕ}
     (hcard : Nat.card s = n + 1) :
@@ -353,6 +385,9 @@ theorem Flag.enumeration_zero
     simpa only [e.apply_symm_apply] using e.monotone h
   · exact bot_le
 
+/--
+@isnad1 id=eq.1h3v.s8.d8088252fa5d from=translated src=- shape=111f9d60 vocab=8d59c355
+-/
 theorem Flag.enumeration_last
     (s : Flag α) {n : ℕ}
     (hcard : Nat.card s = n + 1) :
@@ -366,6 +401,9 @@ theorem Flag.enumeration_last
     simpa only [e.apply_symm_apply] using e.monotone h
 
 omit [BoundedOrder α] in
+/--
+@isnad1 id=covby.1h4v.s9.5981d5d61314 from=translated src=- shape=56dcd91e vocab=960cb391
+-/
 theorem Flag.enumeration_ambient_covBy
     (s : Flag α) {n : ℕ}
     (hcard : Nat.card s = n + 1)
@@ -389,7 +427,9 @@ variable (hae : c.IsAntiExchange)
 include hae hempty
 
 /-- Along the increasing enumeration of a maximal closed-set flag,
-the ground-set cardinality is exactly the index.-/
+the ground-set cardinality is exactly the index.
+@isnad1 id=eq.3h5v.s11.acd0f1839e5c from=translated src=- shape=fc430e07 vocab=f0dc0099
+-/
 theorem ClosedFlag.enumeration_ncard
     (s : ClosedFlag c) {n : ℕ}
     (hcard : Nat.card s = n + 1) :
@@ -417,7 +457,9 @@ theorem ClosedFlag.enumeration_ncard
         _ = i.succ.1 := rfl
 
 /-- Every maximal flag of a finite convex geometry has exactly
-`|E| + 1` terms.-/
+`|E| + 1` terms.
+@isnad1 id=eq.2h3v.s7.a0fdbdc7eb4f from=translated src=- shape=e5fde261 vocab=c7d9bcdd
+-/
 theorem ClosedFlag.natCard_eq_groundCard_add_one
     (s : ClosedFlag c) :
     Nat.card s = Fintype.card E + 1 := by
@@ -446,11 +488,17 @@ def ClosedFlag.groundEnumeration
     (ClosedFlag.natCard_eq_groundCard_add_one
       hae hempty s)
 
+/--
+@isnad1 id=eq.2h3v.s10.485095edf66a from=translated src=- shape=6d8a92b4 vocab=c74bd136
+-/
 theorem ClosedFlag.groundEnumeration_zero
     (s : ClosedFlag c) :
     s.groundEnumeration hae hempty 0 = (⊥ : s) :=
   Flag.enumeration_zero s _
 
+/--
+@isnad1 id=eq.2h3v.s10.5ac1d5c5f93f from=translated src=- shape=eeb2b3db vocab=973c38d5
+-/
 theorem ClosedFlag.groundEnumeration_last
     (s : ClosedFlag c) :
     s.groundEnumeration hae hempty
@@ -458,6 +506,9 @@ theorem ClosedFlag.groundEnumeration_last
       (⊤ : s) :=
   Flag.enumeration_last s _
 
+/--
+@isnad1 id=covby.2h4v.s11.2bb925b7f489 from=translated src=- shape=e4807f73 vocab=b3684f2f
+-/
 theorem ClosedFlag.groundEnumeration_ambient_covBy
     (s : ClosedFlag c)
     (i : Fin (Fintype.card E)) :
@@ -475,6 +526,9 @@ def ClosedFlag.added
       (s.groundEnumeration_ambient_covBy
         hae hempty i))
 
+/--
+@isnad1 id=not.2h4v.s10.279acbe4c7c9 from=translated src=- shape=dcecbffa vocab=618fa6e2
+-/
 theorem ClosedFlag.added_not_mem
     (s : ClosedFlag c)
     (i : Fin (Fintype.card E)) :
@@ -486,6 +540,9 @@ theorem ClosedFlag.added_not_mem
       (s.groundEnumeration_ambient_covBy
         hae hempty i))).1
 
+/--
+@isnad1 id=eq.2h4v.s11.e3c6f5cbaaac from=translated src=- shape=8e0e7741 vocab=6ac56281
+-/
 theorem ClosedFlag.added_step
     (s : ClosedFlag c)
     (i : Fin (Fintype.card E)) :
@@ -541,6 +598,9 @@ def ClosedFlag.toLegalDeletionChain
       (Set.insert_sdiff_self_of_notMem
         (s.added_not_mem hae hempty i.rev)).symm
 
+/--
+@isnad1 id=eq.2h4v.s10.dac15f2851e8 from=translated src=- shape=c6ff4bec vocab=d7be33ee
+-/
 @[simp]
 theorem ClosedFlag.toLegalDeletionChain_ascending
     (s : ClosedFlag c)
@@ -552,7 +612,9 @@ theorem ClosedFlag.toLegalDeletionChain_ascending
     ClosedFlag.toLegalDeletionChain, Fin.rev_rev]
 
 /-- Reconstructing the maximal flag from its legal deletion
-presentation recovers the original flag.-/
+presentation recovers the original flag.
+@isnad1 id=eq.2h3v.s5.9e007abcd10a from=translated src=- shape=85699f0a vocab=04e7a383
+-/
 theorem ClosedFlag.toClosedFlag_toLegalDeletionChain
     (s : ClosedFlag c) :
     (s.toLegalDeletionChain hae hempty).toClosedFlag

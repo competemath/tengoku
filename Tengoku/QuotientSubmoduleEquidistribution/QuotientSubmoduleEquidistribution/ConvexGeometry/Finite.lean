@@ -23,7 +23,9 @@ def IsMinimalGenerator (c : SetClosure E) (B C : Set E) : Prop :=
   c B = C ∧ ∀ ⦃b : E⦄, b ∈ B → c (B \ {b}) ≠ C
 
 /-- One-point deletion minimality is equivalent to ordinary
-inclusion-minimality among generating sets.-/
+inclusion-minimality among generating sets.
+@isnad1 id=iff.0h4v.s6.403777862465 from=translated src=- shape=454f4418 vocab=5b19896a
+-/
 theorem isMinimalGenerator_iff_no_proper_subset
     {B C : Set E} :
     c.IsMinimalGenerator B C ↔
@@ -54,7 +56,9 @@ theorem isMinimalGenerator_iff_no_proper_subset
 
 /-- Anti-exchange can be iterated over a finite set: if all points of `Y`
 are available after adding `b` to a closed set `K`, then adjoining all of
-`Y` without `b` still cannot regenerate `b`.-/
+`Y` without `b` still cannot regenerate `b`.
+@isnad1 id=not.6h5v.s7.e34f89617724 from=translated src=- shape=90389b11 vocab=5b887b67
+-/
 theorem not_mem_closure_union_of_finite
     (hae : c.IsAntiExchange) {K Y : Set E} {b : E}
     (hK : c.IsClosed K) (hbK : b ∉ K) (hYfin : Y.Finite)
@@ -111,7 +115,9 @@ theorem not_mem_closure_union_of_finite
         exact heq.symm ▸ hb
 
 /-- Every closed set on a finite ground type has an inclusion-minimal
-generating set.-/
+generating set.
+@isnad1 id=ex.1h3v.s5.6d78763e3e22 from=translated src=- shape=d363e3d9 vocab=98cc35d1
+-/
 theorem exists_isMinimalGenerator [Finite E]
     {C : Set E} (hC : c.IsClosed C) :
     ∃ B : Set E, c.IsMinimalGenerator B C := by
@@ -130,7 +136,9 @@ theorem exists_isMinimalGenerator [Finite E]
   exact hBmin.not_prop_of_ssubset hproper hdel
 
 /-- A one-point-minimal generator is the set of extreme points.  This is
-the finite anti-exchange core of uniqueness of minimal generators.-/
+the finite anti-exchange core of uniqueness of minimal generators.
+@isnad1 id=eq.3h4v.s5.92486da59272 from=translated src=- shape=00723e79 vocab=45ccc3ff
+-/
 theorem minimalGenerator_eq_extremePoints [Finite E]
     (hae : c.IsAntiExchange) {B C : Set E}
     (hC : c.IsClosed C) (hB : c.IsMinimalGenerator B C) :
@@ -176,7 +184,9 @@ theorem minimalGenerator_eq_extremePoints [Finite E]
   · exact extremePoints_subset_of_closure_eq hB.1
 
 /-- The extreme points form the unique minimal generating set of a closed
-set in a finite anti-exchange closure system.-/
+set in a finite anti-exchange closure system.
+@isnad1 id=eq.2h3v.s6.53a9988af61d from=translated src=- shape=7223c589 vocab=fd6a5493
+-/
 theorem closure_extremePoints [Finite E]
     (hae : c.IsAntiExchange) {C : Set E} (hC : c.IsClosed C) :
     c (c.extremePoints C) = C := by
@@ -185,7 +195,9 @@ theorem closure_extremePoints [Finite E]
   exact hB.1
 
 /-- Every nonempty closed set in a finite convex geometry has an extreme
-point.-/
+point.
+@isnad1 id=nonempty.4h3v.s6.938dea61a768 from=translated src=- shape=227dda4e vocab=3dbba22c
+-/
 theorem extremePoints_nonempty [Finite E]
     (hae : c.IsAntiExchange) (hempty : c.IsClosed ∅)
     {C : Set E} (hC : c.IsClosed C) (hCne : C.Nonempty) :
@@ -197,7 +209,9 @@ theorem extremePoints_nonempty [Finite E]
   exact hCne.ne_empty this
 
 /-- A proper inclusion of finite closed sets admits a legal one-point
-deletion of the upper set which stays above the lower set.-/
+deletion of the upper set which stays above the lower set.
+@isnad1 id=ex.4h4v.s6.3f010391f00f from=translated src=- shape=1a14fa6b vocab=cd80fa0e
+-/
 theorem exists_extreme_not_mem_of_ssubset [Finite E]
     (hae : c.IsAntiExchange) {C D : Set E}
     (hC : c.IsClosed C) (hD : c.IsClosed D) (hCD : C ⊂ D) :
@@ -215,7 +229,9 @@ theorem exists_extreme_not_mem_of_ssubset [Finite E]
   exact hCD.not_subset hDC
 
 /-- Accessibility in interval form: a proper inclusion of finite closed
-sets can be shortened by deleting one extreme point from the upper set.-/
+sets can be shortened by deleting one extreme point from the upper set.
+@isnad1 id=ex.4h4v.s7.ea9820bc2c78 from=translated src=- shape=d6fe3d74 vocab=b5e5c79f
+-/
 theorem exists_closed_sdiff_singleton_between [Finite E]
     (hae : c.IsAntiExchange) {C D : Set E}
     (hC : c.IsClosed C) (hD : c.IsClosed D) (hCD : C ⊂ D) :

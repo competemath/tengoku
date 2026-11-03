@@ -26,7 +26,9 @@ variable {K R : Type u}
   [Field K] [Ring R] [Algebra K R] [Small.{u} R]
 
 /-- In a projective presentation `0 → W → P → S → 0`, the connecting
-map `Ext⁰(W,W) → Ext¹(S,W)` is bijective if `Hom(P,W)=0`.-/
+map `Ext⁰(W,W) → Ext¹(S,W)` is bijective if `Hom(P,W)=0`.
+@isnad1 id=bijectiv.2h3v.s11.382fe8576039 from=translated src=- shape=8d673b1b vocab=722b5299
+-/
 theorem extClass_precomp_bijective_of_projective_middle_of_hom_eq_zero
     {S : ShortComplex (ModuleCat.{u} R)}
     (hS : S.ShortExact) [Projective S.X₂]
@@ -69,7 +71,9 @@ def endLinearEquivExtOne_of_projective_middle_of_hom_eq_zero
         hS hHom))
 
 /-- Consequently, the upper `Ext¹` space and the endomorphism ring of the
-kernel have equal finite dimension.-/
+kernel have equal finite dimension.
+@isnad1 id=eq.2h3v.s10.134a25e3b4c1 from=translated src=- shape=d2147b8e vocab=937e95c7
+-/
 theorem finrank_extOne_eq_finrank_end_of_projective_middle_of_hom_eq_zero
     {S : ShortComplex (ModuleCat.{u} R)}
     (hS : S.ShortExact) [Projective S.X₂]
@@ -82,7 +86,9 @@ theorem finrank_extOne_eq_finrank_end_of_projective_middle_of_hom_eq_zero
     (endLinearEquivExtOne_of_projective_middle_of_hom_eq_zero hS hHom).symm
 
 /-- If the kernel endomorphism ring has dimension two, so does the upper
-`Ext¹` space.-/
+`Ext¹` space.
+@isnad1 id=eq.3h3v.s10.8709ec99094f from=translated src=- shape=4880226f vocab=937e95c7
+-/
 theorem finrank_extOne_eq_two_of_finrank_end_eq_two
     {S : ShortComplex (ModuleCat.{u} R)}
     (hS : S.ShortExact) [Projective S.X₂]
@@ -95,7 +101,9 @@ theorem finrank_extOne_eq_two_of_finrank_end_eq_two
     hS hHom).trans hEnd
 
 /-- A two-dimensional endomorphism ring therefore refutes the corresponding
-rank-one upper-radical bound.-/
+rank-one upper-radical bound.
+@isnad1 id=not.3h3v.s10.1859d4c3d000 from=translated src=- shape=dd31fc11 vocab=f771cf83
+-/
 theorem not_finrank_extOne_le_one_of_finrank_end_eq_two
     {S : ShortComplex (ModuleCat.{u} R)}
     (hS : S.ShortExact) [Projective S.X₂]

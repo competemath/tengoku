@@ -39,7 +39,9 @@ private def outgoingStays (e : ι ≃ ι) (f : ι → Bool) : Finset ι :=
   Finset.univ.filter fun i ↦ f i = true ∧ f (e i) = true
 
 /-- Along any finite permutation, the number of false-to-true transitions
-is the number of true-to-false transitions.-/
+is the number of true-to-false transitions.
+@isnad1 id=eq.0h3v.s5.f1e27fde1ba9 from=translated src=- shape=50ffc713 vocab=970f9531
+-/
 theorem rises_card_eq_falls_card (e : ι ≃ ι) (f : ι → Bool) :
     (rises e f).card = (falls e f).card := by
   classical

@@ -47,7 +47,9 @@ namespace NilpotentRadicalData
 variable (R : NilpotentRadicalData C)
 
 /-- Radical membership may be converted to membership in the chosen Hom
-ideal.-/
+ideal.
+@isnad1 id=iff.0h5v.s7.b451cfd126cf from=translated src=- shape=bfac8ae9 vocab=b1c183b7
+-/
 theorem mem_ideal_iff {X Y : C} (f : X ⟶ Y) :
     f ∈ R.ideal.hom X Y ↔ IsRadicalMorphism f :=
   R.mem_iff f
@@ -61,7 +63,9 @@ theorem eq_zero_of_mem_every_power
   HomIdeal.eq_zero_of_mem_every_power R.nilpotent hf
 
 /-- A radical endomorphism is nilpotent when the categorical radical Hom
-ideal is nilpotent.-/
+ideal is nilpotent.
+@isnad1 id=isnilpot.1h4v.s7.6d863db9e056 from=translated src=- shape=5abe7d76 vocab=8df3b1e0
+-/
 theorem isNilpotent_end_of_mem_ideal
     {X : C} {f : X ⟶ X}
     (hf : f ∈ R.ideal.hom X X) :

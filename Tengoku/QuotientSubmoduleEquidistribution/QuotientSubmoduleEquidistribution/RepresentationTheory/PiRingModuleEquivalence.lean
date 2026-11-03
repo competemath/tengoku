@@ -25,6 +25,9 @@ variable (K : Type uK) (V : Type uV)
 variable [Field K] [Fintype V] [DecidableEq V]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s6.c954a133e14b from=translated src=- shape=b5f8196c vocab=1c3519d5
+-/
 @[simp]
 theorem coordinateIdempotent_mul_self (i : V) :
     coordinateIdempotent K V i * coordinateIdempotent K V i =
@@ -36,6 +39,9 @@ theorem coordinateIdempotent_mul_self (i : V) :
   · simp [coordinateIdempotent, h]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s6.2ba1864a3cc4 from=translated src=- shape=ccad4622 vocab=1c3519d5
+-/
 theorem coordinateIdempotent_mul_eq_zero {i j : V} (h : i ≠ j) :
     coordinateIdempotent K V i * coordinateIdempotent K V j = 0 := by
   funext k
@@ -44,6 +50,9 @@ theorem coordinateIdempotent_mul_eq_zero {i j : V} (h : i ≠ j) :
     simp [coordinateIdempotent, h]
   · simp [coordinateIdempotent, hi]
 
+/--
+@isnad1 id=eq.0h2v.s6.9ead360d965d from=translated src=- shape=b3580044 vocab=e6a91541
+-/
 @[simp]
 theorem sum_coordinateIdempotent :
     ∑ i : V, coordinateIdempotent K V i = 1 := by
@@ -51,6 +60,9 @@ theorem sum_coordinateIdempotent :
   simp [coordinateIdempotent]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s7.f4efd1a903f1 from=translated src=- shape=bef98cdf vocab=75aeb7ad
+-/
 theorem mul_coordinateIdempotent (s : V → K) (i : V) :
     s * coordinateIdempotent K V i =
       algebraMap K (V → K) (s i) * coordinateIdempotent K V i := by
@@ -77,6 +89,9 @@ def equiv (X : ModuleCat.{max uV w} (V → K)) : ScalarCarrier K V X ≃ X where
   right_inv _ := rfl
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h5v.s6.6ba66c5ceac8 from=translated src=- shape=185005f7 vocab=570cc88b
+-/
 @[ext]
 theorem ext {X : ModuleCat.{max uV w} (V → K)}
     {x y : ScalarCarrier K V X} (h : x.val = y.val) : x = y := by
@@ -98,6 +113,9 @@ def coordinateProjection
   LinearMap.lsmul (V → K) X (coordinateIdempotent K V j)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h5v.s10.b31a9d1d701a from=translated src=- shape=ea0e4583 vocab=af80387c
+-/
 @[simp]
 theorem coordinateProjection_apply
     (X : ModuleCat.{max uV w} (V → K)) (j : V) (x : X) :

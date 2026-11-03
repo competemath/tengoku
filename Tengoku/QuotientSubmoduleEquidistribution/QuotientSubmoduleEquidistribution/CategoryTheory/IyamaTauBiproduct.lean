@@ -46,19 +46,27 @@ def shortComplexBiproduct {J : Type w} [Fintype J]
         simp
       · simp)
 
+/--
+@isnad1 id=eq.0h3v.s7.f6c8aaebce20 from=translated src=- shape=9f658f3b vocab=a390204c
+-/
 @[simp]
 theorem shortComplexBiproduct_f {J : Type w} [Fintype J]
     (S : J → ShortComplex C) :
     (shortComplexBiproduct S).f = biproduct.map fun j ↦ (S j).f :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.147d97e7e675 from=translated src=- shape=9f658f3b vocab=2472807a
+-/
 @[simp]
 theorem shortComplexBiproduct_g {J : Type w} [Fintype J]
     (S : J → ShortComplex C) :
     (shortComplexBiproduct S).g = biproduct.map fun j ↦ (S j).g :=
   rfl
 
-/-- Finite componentwise biproducts preserve weak kernels.-/
+/-- Finite componentwise biproducts preserve weak kernels.
+@isnad1 id=isweakke.1h3v.s5.e0bf10d779ac from=translated src=- shape=9b4740fc vocab=58da3d23
+-/
 theorem isWeakKernel_shortComplexBiproduct
     {J : Type w} [Fintype J]
     (S : J → ShortComplex C)
@@ -87,7 +95,9 @@ theorem isWeakKernel_shortComplexBiproduct
   rw [Category.assoc, biproduct.map_π,
     biproduct.lift_π_assoc, hl j]
 
-/-- Finite componentwise biproducts preserve weak cokernels.-/
+/-- Finite componentwise biproducts preserve weak cokernels.
+@isnad1 id=isweakco.1h3v.s5.0b618ce17f8b from=translated src=- shape=9b4740fc vocab=093bcf3e
+-/
 theorem isWeakCokernel_shortComplexBiproduct
     {J : Type w} [Fintype J]
     (S : J → ShortComplex C)
@@ -116,7 +126,9 @@ theorem isWeakCokernel_shortComplexBiproduct
     Category.assoc, biproduct.ι_desc, hl j]
 
 /-- A componentwise finite biproduct of radical morphisms is radical once
-the categorical radical is available as a two-sided additive Hom ideal.-/
+the categorical radical is available as a two-sided additive Hom ideal.
+@isnad1 id=isradica.1h6v.s6.40a62cc90735 from=translated src=- shape=4c9e9a0a vocab=b359d43e
+-/
 theorem isRadicalMorphism_biproduct_map
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]
@@ -156,7 +168,9 @@ theorem isRadicalMorphism_biproduct_map
         ((R.mem_ideal_iff (f j)).2 (hf j)))
 
 /-- Tau-approximation conditions are preserved by finite componentwise
-biproducts.  Minimality is deliberately not part of this statement.-/
+biproducts.  Minimality is deliberately not part of this statement.
+@isnad1 id=tauappro.1h4v.s5.a6005f19f348 from=translated src=- shape=2fa57707 vocab=b756716e
+-/
 theorem tauApproximation_shortComplexBiproduct
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]
@@ -212,7 +226,9 @@ theorem tauApproximation_shortComplexBiproduct
 
 omit [HasFiniteBiproducts C] in
 /-- Any morphism annihilated on the right by a right-minimal morphism is
-categorically radical.-/
+categorically radical.
+@isnad1 id=isradica.2h6v.s6.0e891135861b from=translated src=- shape=49e81371 vocab=25a59919
+-/
 theorem isRadicalMorphism_of_comp_eq_zero_of_isRightMinimal
     {W X Y : C} {a : W ⟶ X} {f : X ⟶ Y}
     (hf : IsRightMinimal f) (ha : a ≫ f = 0) :
@@ -226,7 +242,9 @@ theorem isRadicalMorphism_of_comp_eq_zero_of_isRightMinimal
 
 omit [HasFiniteBiproducts C] in
 /-- Any morphism annihilated on the left by a left-minimal morphism is
-categorically radical.-/
+categorically radical.
+@isnad1 id=isradica.2h6v.s6.a1ef624f45fb from=translated src=- shape=8c4ab696 vocab=68d4d1b9
+-/
 theorem isRadicalMorphism_of_comp_eq_zero_of_isLeftMinimal
     {X Y W : C} {f : X ⟶ Y} {a : Y ⟶ W}
     (hf : IsLeftMinimal f) (ha : f ≫ a = 0) :
@@ -237,7 +255,9 @@ theorem isRadicalMorphism_of_comp_eq_zero_of_isLeftMinimal
     ha, zero_comp, sub_zero]
 
 /-- A matrix whose every component belongs to the chosen radical Hom ideal
-belongs to that ideal.-/
+belongs to that ideal.
+@isnad1 id=mem.1h7v.s9.1e6c0b8760d2 from=translated src=- shape=080b2b41 vocab=7bd2cc2c
+-/
 theorem mem_radicalIdeal_of_biproduct_components
     (R : NilpotentRadicalData C)
     {J K : Type w} [Fintype J] [Fintype K]
@@ -285,7 +305,9 @@ theorem mem_radicalIdeal_of_biproduct_components
       (R.ideal.precomp (biproduct.π X i) (hq i j))
 
 /-- A morphism out of a finite biproduct belongs to the radical ideal when
-each restriction to a summand does.-/
+each restriction to a summand does.
+@isnad1 id=mem.1h6v.s8.8da7e16f2326 from=translated src=- shape=d18c2b9c vocab=5baf7b6e
+-/
 theorem mem_radicalIdeal_of_biproduct_source_components
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]
@@ -313,7 +335,9 @@ theorem mem_radicalIdeal_of_biproduct_source_components
   exact R.ideal.precomp (biproduct.π X i) (hq i)
 
 /-- Finite componentwise biproducts preserve right-minimal morphisms whenever
-the categorical radical is realized by a two-sided additive Hom ideal.-/
+the categorical radical is realized by a two-sided additive Hom ideal.
+@isnad1 id=isrightm.1h6v.s6.4fd72109e0db from=translated src=- shape=4c9e9a0a vocab=018343cc
+-/
 theorem isRightMinimal_biproduct_map
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]
@@ -369,7 +393,9 @@ theorem isRightMinimal_biproduct_map
   infer_instance
 
 /-- Finite componentwise biproducts preserve left-minimal morphisms whenever
-the categorical radical is realized by a two-sided additive Hom ideal.-/
+the categorical radical is realized by a two-sided additive Hom ideal.
+@isnad1 id=isleftmi.1h6v.s6.d4c20e0bc4a8 from=translated src=- shape=4c9e9a0a vocab=8769d512
+-/
 theorem isLeftMinimal_biproduct_map
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]
@@ -424,7 +450,9 @@ theorem isLeftMinimal_biproduct_map
   rw [← hfactor]
   infer_instance
 
-/-- Right tau-sequences are closed under finite componentwise biproducts.-/
+/-- Right tau-sequences are closed under finite componentwise biproducts.
+@isnad1 id=righttau.1h4v.s5.48cb5b3524e4 from=translated src=- shape=2fa57707 vocab=b4964a90
+-/
 theorem rightTauSequence_shortComplexBiproduct
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]
@@ -440,7 +468,9 @@ theorem rightTauSequence_shortComplexBiproduct
     isRightMinimal_biproduct_map R (fun j ↦ (S j).f)
       (fun j ↦ (hS j).minimalWeakKernel.2)⟩
 
-/-- Left tau-sequences are closed under finite componentwise biproducts.-/
+/-- Left tau-sequences are closed under finite componentwise biproducts.
+@isnad1 id=lefttaus.1h4v.s5.fe55594163aa from=translated src=- shape=2fa57707 vocab=e57a0d89
+-/
 theorem leftTauSequence_shortComplexBiproduct
     (R : NilpotentRadicalData C)
     {J : Type w} [Fintype J]

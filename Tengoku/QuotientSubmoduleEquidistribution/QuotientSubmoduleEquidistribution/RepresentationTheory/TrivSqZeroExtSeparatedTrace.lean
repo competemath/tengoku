@@ -39,6 +39,9 @@ def separatedDataTopTrace
     Submodule S E.top :=
   ⨆ p : D ⟶ E, LinearMap.range p.val.1
 
+/--
+@isnad1 id=eq.0h4v.s8.a38ea6b50bb1 from=translated src=- shape=ddcaa40c vocab=94c5659d
+-/
 theorem moduleTopTrace_eq_separatedDataTopTrace
     [IsSemisimpleRing S]
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
@@ -70,7 +73,9 @@ def moduleFamilyTopTrace
   ⨆ a, moduleTopTrace (X a) Y
 
 /-- Reindexing a source family by an equivalence does not change its top
-trace.-/
+trace.
+@isnad1 id=eq.0h7v.s8.86921b7471b0 from=translated src=- shape=8d734dc7 vocab=1c5ad3e9
+-/
 theorem moduleFamilyTopTrace_reindex
     {A : Type x} {B : Type*} (e : A ≃ B)
     (X : B → ModuleCat.{w} (TrivSqZeroExt S J))
@@ -88,7 +93,9 @@ theorem moduleFamilyTopTrace_reindex
       (fun a ↦ moduleTopTrace (X (e a)) Y) (e.symm b)
 
 /-- The top trace of a family indexed by a disjoint union is the join of the
-two family traces.-/
+two family traces.
+@isnad1 id=eq.0h7v.s9.4984e78eafaf from=translated src=- shape=f0bb371f vocab=8f0200a0
+-/
 theorem moduleFamilyTopTrace_sum
     {A : Type x} {B : Type*}
     (X : A → ModuleCat.{w} (TrivSqZeroExt S J))
@@ -122,6 +129,9 @@ def separatedDataFamilyTopTrace
     Submodule S E.top :=
   ⨆ a, separatedDataTopTrace (D a) E
 
+/--
+@isnad1 id=eq.0h5v.s8.d0c8d74de479 from=translated src=- shape=626c8c87 vocab=710fea26
+-/
 theorem moduleFamilyTopTrace_eq_separatedDataFamilyTopTrace
     [IsSemisimpleRing S]
     {A : Type x} (X : A → ModuleCat.{w} (TrivSqZeroExt S J))
@@ -148,7 +158,9 @@ def moduleTopTraceR
   ⨆ f : X ⟶ Y, LinearMap.range (topMap f.hom)
 
 /-- Passing a one-source trace to the quotient by the target radical gives
-exactly the trace of the induced maps on tops.-/
+exactly the trace of the induced maps on tops.
+@isnad1 id=eq.0h4v.s10.52047ba89f99 from=translated src=- shape=616eaf7d vocab=65b0196b
+-/
 theorem moduleTopTraceR_eq_map_moduleTrace
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
     moduleTopTraceR X Y =
@@ -163,7 +175,9 @@ theorem moduleTopTraceR_eq_map_moduleTrace
     (Module.le_comap_jacobson f.hom))
 
 /-- The `R`-linear trace on the top fills it exactly when its scalar
-restriction, expressed as the `S`-linear top trace, fills it.-/
+restriction, expressed as the `S`-linear top trace, fills it.
+@isnad1 id=iff.0h4v.s10.d02c9fa6f65c from=translated src=- shape=0d2d244f vocab=2efbd5f7
+-/
 theorem moduleTopTraceR_eq_top_iff_moduleTopTrace_eq_top
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
     moduleTopTraceR X Y = ⊤ ↔ moduleTopTrace X Y = ⊤ := by
@@ -194,7 +208,9 @@ theorem moduleTopTraceR_eq_top_iff_moduleTopTrace_eq_top
 
 /-- The manuscript's top-coverage criterion for all maps from one source:
 the trace plus the target radical fills the target exactly when the induced
-top trace fills the semisimple top.-/
+top trace fills the semisimple top.
+@isnad1 id=iff.0h4v.s11.dc4ca6cb164e from=translated src=- shape=8cf6426e vocab=41eb87da
+-/
 theorem moduleTrace_sup_jacobson_eq_top_iff
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
     moduleTrace X Y ⊔ Module.jacobson (TrivSqZeroExt S J) Y = ⊤ ↔
@@ -205,7 +221,9 @@ theorem moduleTrace_sup_jacobson_eq_top_iff
     (Module.jacobson (TrivSqZeroExt S J) Y) (moduleTrace X Y)).symm
 
 /-- One-source top coverage can be checked entirely in the corresponding
-separated data.-/
+separated data.
+@isnad1 id=iff.0h4v.s10.11de06af6f57 from=translated src=- shape=17e9b53b vocab=a5b72d2e
+-/
 theorem moduleTrace_sup_jacobson_eq_top_iff_separatedDataTopTrace_eq_top
     [IsSemisimpleRing S]
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
@@ -223,7 +241,9 @@ theorem moduleTrace_sup_jacobson_eq_top_iff_separatedDataTopTrace_eq_top
 
 /-- For a square-zero extension, ordinary quotient generation by one source
 can therefore be read directly on the top component of the associated
-separated data.-/
+separated data.
+@isnad1 id=iff.0h4v.s9.dd4f099c30b6 from=translated src=- shape=fa51a513 vocab=5415e0a7
+-/
 theorem moduleTrace_eq_top_iff_separatedDataTopTrace_eq_top
     [IsSemisimpleRing S]
     (X Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
@@ -243,7 +263,9 @@ def moduleFamilyTrace
   ⨆ a, moduleTrace (X a) Y
 
 /-- Reindexing a source family by an equivalence does not change its full
-module trace.-/
+module trace.
+@isnad1 id=eq.0h7v.s8.b8ea6d6464c6 from=translated src=- shape=b4e959e5 vocab=d130a107
+-/
 theorem moduleFamilyTrace_reindex
     {A : Type x} {B : Type*} (e : A ≃ B)
     (X : B → ModuleCat.{w} (TrivSqZeroExt S J))
@@ -260,7 +282,9 @@ theorem moduleFamilyTrace_reindex
       (fun a ↦ moduleTrace (X (e a)) Y) (e.symm b)
 
 /-- Full family generation is invariant under pointwise source isomorphisms
-and a target isomorphism.-/
+and a target isomorphism.
+@isnad1 id=iff.0h9v.s9.fd8203365b1f from=translated src=- shape=53b0dc8e vocab=8b1b067e
+-/
 theorem moduleFamilyTrace_eq_top_iff_of_iso
     {A : Type x}
     (X X' : A → ModuleCat.{w} (TrivSqZeroExt S J))
@@ -315,7 +339,9 @@ def moduleFamilyTopTraceR
   ⨆ a, moduleTopTraceR (X a) Y
 
 /-- Passing a family trace to the target top commutes with taking the sum of
-all sourcewise traces.-/
+all sourcewise traces.
+@isnad1 id=eq.0h5v.s10.a002fb099988 from=translated src=- shape=c25ed0d8 vocab=dba608ae
+-/
 theorem moduleFamilyTopTraceR_eq_map_moduleFamilyTrace
     {A : Type x} (X : A → ModuleCat.{w} (TrivSqZeroExt S J))
     (Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
@@ -328,7 +354,9 @@ theorem moduleFamilyTopTraceR_eq_map_moduleFamilyTrace
   exact moduleTopTraceR_eq_map_moduleTrace (X a) Y
 
 /-- Family top coverage is unchanged by restricting scalars from the trivial
-extension to its base ring.-/
+extension to its base ring.
+@isnad1 id=iff.0h5v.s10.375f80253b8c from=translated src=- shape=c226ce2f vocab=9c811823
+-/
 theorem moduleFamilyTopTraceR_eq_top_iff_moduleFamilyTopTrace_eq_top
     {A : Type x} (X : A → ModuleCat.{w} (TrivSqZeroExt S J))
     (Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
@@ -363,7 +391,9 @@ theorem moduleFamilyTopTraceR_eq_top_iff_moduleFamilyTopTrace_eq_top
     (M := Y ⧸ Module.jacobson (TrivSqZeroExt S J) Y)
     (p := moduleFamilyTopTraceR X Y)).symm
 
-/-- Family form of the top-coverage criterion used for quotient closure.-/
+/-- Family form of the top-coverage criterion used for quotient closure.
+@isnad1 id=iff.0h5v.s11.a3a4b32b9410 from=translated src=- shape=b939dcf8 vocab=996020a6
+-/
 theorem moduleFamilyTrace_sup_jacobson_eq_top_iff
     {A : Type x} (X : A → ModuleCat.{w} (TrivSqZeroExt S J))
     (Y : ModuleCat.{w} (TrivSqZeroExt S J)) :
@@ -377,7 +407,9 @@ theorem moduleFamilyTrace_sup_jacobson_eq_top_iff
 
 /-- Exact family form of the manuscript's top-coverage comparison: the
 ordinary module trace covers the target modulo its radical exactly when the
-top components of all compatible separated-data maps span the target top.-/
+top components of all compatible separated-data maps span the target top.
+@isnad1 id=iff.0h5v.s10.81d8668a67be from=translated src=- shape=bf28ab57 vocab=14aec5fe
+-/
 theorem
     moduleFamilyTrace_sup_jacobson_eq_top_iff_separatedDataFamilyTopTrace_eq_top
     [IsSemisimpleRing S]
@@ -398,7 +430,9 @@ theorem
 
 /-- Family form of square-zero Nakayama combined with separated-data
 fullness: quotient generation by a family is exactly top coverage in the
-separated data.-/
+separated data.
+@isnad1 id=iff.0h5v.s9.39c438066dd2 from=translated src=- shape=de846795 vocab=348ea1e0
+-/
 theorem
     moduleFamilyTrace_eq_top_iff_separatedDataFamilyTopTrace_eq_top
     [IsSemisimpleRing S]
@@ -414,7 +448,9 @@ theorem
       X Y
 
 /-- The same family criterion before passing to separated data: literal
-quotient generation is equivalent to filling the semisimple module top.-/
+quotient generation is equivalent to filling the semisimple module top.
+@isnad1 id=iff.0h5v.s9.f28c4df0d556 from=translated src=- shape=ace8b1bb vocab=756171b5
+-/
 theorem moduleFamilyTrace_eq_top_iff_moduleFamilyTopTrace_eq_top
     [IsSemisimpleRing S]
     {A : Type x} (X : A → ModuleCat.{w} (TrivSqZeroExt S J))

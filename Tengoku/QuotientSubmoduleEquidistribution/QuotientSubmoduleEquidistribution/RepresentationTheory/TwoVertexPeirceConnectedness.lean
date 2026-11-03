@@ -29,7 +29,9 @@ variable {R : Type u} [Ring R]
 
 /-- If a two-sided ideal `J` contains an off-diagonal Peirce corner and that
 corner vanishes modulo `J²`, multiplication by the corner idempotents raises
-the `J`-adic filtration by one.-/
+the `J`-adic filtration by one.
+@isnad1 id=mem.6h6v.s8.b323701febc4 from=translated src=- shape=7488dc23 vocab=5d8dcf31
+-/
 theorem peirce_corner_mem_pow_succ
     (J : Ideal R) [J.IsTwoSided]
     (e f : R)
@@ -102,7 +104,9 @@ theorem peirce_corner_mem_pow_succ
         exact Ideal.add_mem _ hx' hy'
 
 /-- Nilpotence kills an off-diagonal Peirce corner once the preceding
-filtration-raising hypotheses hold.-/
+filtration-raising hypotheses hold.
+@isnad1 id=eq.6h5v.s8.8dd1c28fa12b from=translated src=- shape=897dfcc9 vocab=b9f67552
+-/
 theorem peirce_corner_eq_zero_of_isNilpotent
     (J : Ideal R) [J.IsTwoSided]
     (e f : R)
@@ -138,7 +142,9 @@ theorem peirce_corner_eq_zero_of_isNilpotent
   exact hxbot
 
 /-- In a nilpotent extension, vanishing of both off-diagonal cotangent
-corners makes either vertex idempotent central.-/
+corners makes either vertex idempotent central.
+@isnad1 id=ismulcen.8h4v.s9.7a7cb0727664 from=translated src=- shape=dba654f4 vocab=42599894
+-/
 theorem isMulCentral_of_peirce_cotangent_vanishes
     (J : Ideal R) [J.IsTwoSided]
     (e f : R)
@@ -169,7 +175,9 @@ theorem isMulCentral_of_peirce_cotangent_vanishes
     _ = r * e := by rw [hsum, one_mul]
 
 /-- A nontrivial block-connected Peirce pair has a nonzero off-diagonal
-class in `J / J²` in at least one orientation.-/
+class in `J / J²` in at least one orientation.
+@isnad1 id=or.9h4v.s9.76903d969ba0 from=translated src=- shape=66eef155 vocab=42599894
+-/
 theorem exists_cross_cotangent_of_blockConnected
     (J : Ideal R) [J.IsTwoSided]
     (e f : R)
@@ -199,7 +207,9 @@ theorem exists_cross_cotangent_of_blockConnected
     exact add_left_cancel hcancel
 
 /-- Artinian specialization at the actual Jacobson radical, assuming both
-full off-diagonal corners lie in that radical.-/
+full off-diagonal corners lie in that radical.
+@isnad1 id=or.8h3v.s9.0a234020e7cd from=translated src=- shape=6bbcf354 vocab=6253f03a
+-/
 theorem exists_cross_jacobson_cotangent_of_blockConnected
     [IsArtinianRing R]
     (e f : R)

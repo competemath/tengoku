@@ -37,7 +37,9 @@ def ReachInside
   Relation.ReflTransGen (InsideEdge edge D) x y
 
 omit [DecidableEq Vertex] in
-/-- Reachability is monotone under enlarging the induced vertex set.-/
+/-- Reachability is monotone under enlarging the induced vertex set.
+@isnad1 id=reachins.2h6v.s5.3f023be12b65 from=translated src=- shape=95b276ca vocab=b18bc70b
+-/
 theorem reachInside_mono
     {edge : Vertex → Vertex → Prop}
     {S D : Finset Vertex}
@@ -79,6 +81,9 @@ def unreachableVertices
       ¬ ReachedFromBoundary edge P D x
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h5v.s5.036f48225480 from=translated src=- shape=a018ce03 vocab=f354feb8
+-/
 @[simp]
 theorem mem_unreachableVertices
     {edge : Vertex → Vertex → Prop}
@@ -108,7 +113,9 @@ def IsMinimalTopPart
 
 /-- Every top part contains an inclusion-minimal top part.  This is the
 finite-descent step which makes minimal top parts available without any
-ambient finiteness assumption on the vertex type.-/
+ambient finiteness assumption on the vertex type.
+@isnad1 id=ex.1h5v.s5.eb07b6b62b1b from=translated src=- shape=f362acce vocab=e0b35595
+-/
 theorem exists_isMinimalTopPart_subset
     {edge : Vertex → Vertex → Prop}
     {P D S : Finset Vertex}
@@ -129,7 +136,9 @@ def IsStronglyConnectedInside
     ReachInside edge S x y
 
 /-- The intersection of two intersecting top parts is again a top
-part.-/
+part.
+@isnad1 id=istoppar.3h6v.s6.c14869a56fee from=translated src=- shape=e3112cad vocab=0eb76929
+-/
 theorem isTopPart_inter
     {edge : Vertex → Vertex → Prop}
     {P D S T : Finset Vertex}
@@ -160,7 +169,9 @@ theorem isTopPart_inter
           v hvData.1 huv
 
 /-- The union of two top parts of the same selected set is again a top
-part.-/
+part.
+@isnad1 id=istoppar.2h6v.s5.d2fc656e12fa from=translated src=- shape=d64ef804 vocab=446f8489
+-/
 theorem isTopPart_union
     {edge : Vertex → Vertex → Prop}
     {P D S T : Finset Vertex}
@@ -239,6 +250,9 @@ def ancestorsInside
       S.filter fun x ↦ ReachInside edge S x y
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h5v.s5.13f91630a88b from=translated src=- shape=25c6e0e3 vocab=156f9b8f
+-/
 @[simp]
 theorem mem_ancestorsInside
     {edge : Vertex → Vertex → Prop}
@@ -249,7 +263,9 @@ theorem mem_ancestorsInside
   simp [ancestorsInside]
 
 /-- Every minimal top part is strongly connected in its induced
-subgraph.-/
+subgraph.
+@isnad1 id=isstrong.1h5v.s5.6caf4aa64676 from=translated src=- shape=4ac08b2e vocab=81b4d215
+-/
 theorem isStronglyConnectedInside_of_isMinimalTopPart
     {edge : Vertex → Vertex → Prop}
     {P D S : Finset Vertex}
@@ -313,7 +329,9 @@ def supportFamilyUnion
     (T : Finset (Finset Vertex)) : Finset Vertex :=
   T.biUnion id
 
-/-- The union of a nonempty finite family of top parts is a top part.-/
+/-- The union of a nonempty finite family of top parts is a top part.
+@isnad1 id=istoppar.2h5v.s6.c6d6183dcf19 from=translated src=- shape=3bee517f vocab=6f79578b
+-/
 theorem isTopPart_supportFamilyUnion
     {edge : Vertex → Vertex → Prop}
     {P D : Finset Vertex}
@@ -354,6 +372,9 @@ def minimalTopParts
       D.powerset.filter fun S ↦
         IsMinimalTopPart edge P D S
 
+/--
+@isnad1 id=iff.0h5v.s5.6242bcb941d8 from=translated src=- shape=1a4d092f vocab=be314536
+-/
 @[simp]
 theorem mem_minimalTopParts
     {edge : Vertex → Vertex → Prop}
@@ -378,7 +399,9 @@ def IsDisjointNonemptySupportFamily
       Disjoint S T
 
 /-- Any finite family of minimal top parts of a fixed selected set is a
-family of nonempty, pairwise-disjoint supports.-/
+family of nonempty, pairwise-disjoint supports.
+@isnad1 id=isdisjoi.1h5v.s5.4f7e227e73a1 from=translated src=- shape=7f0c89ca vocab=02f45661
+-/
 theorem isDisjointNonemptySupportFamily_of_minimalTopParts
     {edge : Vertex → Vertex → Prop}
     {P D : Finset Vertex}
@@ -399,7 +422,9 @@ theorem isDisjointNonemptySupportFamily_of_minimalTopParts
     · exact hdisjoint
 
 /-- The canonical family of all minimal top parts of `D` is nonempty
-supportwise and pairwise disjoint.-/
+supportwise and pairwise disjoint.
+@isnad1 id=isdisjoi.0h4v.s4.68292e0329cb from=translated src=- shape=84c6a780 vocab=96a307d4
+-/
 theorem isDisjointNonemptySupportFamily_minimalTopParts
     (edge : Vertex → Vertex → Prop)
     (P D : Finset Vertex) :
@@ -424,7 +449,9 @@ def IsSeparatedSupportFamily
       ∀ x ∈ S, ∀ y ∈ T, ¬ edge x y
 
 omit [DecidableEq Vertex] in
-/-- A subfamily of a separated support family is separated.-/
+/-- A subfamily of a separated support family is separated.
+@isnad1 id=issepara.2h4v.s5.6852ea690989 from=translated src=- shape=629de5b3 vocab=494798eb
+-/
 theorem IsSeparatedSupportFamily.mono
     {edge : Vertex → Vertex → Prop}
     {C T : Finset (Finset Vertex)}
@@ -443,7 +470,9 @@ theorem IsSeparatedSupportFamily.mono
       hC.2 S (hTC hST) U (hTC hUT) hSU
 
 /-- Any finite family of minimal top parts of one selected set is
-component-separated.-/
+component-separated.
+@isnad1 id=issepara.1h5v.s5.7215c16b54ee from=translated src=- shape=bed23c79 vocab=d49be68d
+-/
 theorem isSeparatedSupportFamily_of_minimalTopParts
     {edge : Vertex → Vertex → Prop}
     {P D : Finset Vertex}
@@ -473,7 +502,9 @@ theorem isSeparatedSupportFamily_of_minimalTopParts
       y hyT hxy
 
 /-- The canonical family of all minimal top parts is
-component-separated.-/
+component-separated.
+@isnad1 id=issepara.0h4v.s4.eb0f4517b4ab from=translated src=- shape=bcd9b5d5 vocab=505281aa
+-/
 theorem isSeparatedSupportFamily_minimalTopParts
     (edge : Vertex → Vertex → Prop)
     (P D : Finset Vertex) :
@@ -486,7 +517,9 @@ theorem isSeparatedSupportFamily_minimalTopParts
       (edge := edge) (P := P) (D := D)).1 hS
 
 /-- For a nonempty separated family, its union is a top part exactly
-when every component is a top part.-/
+when every component is a top part.
+@isnad1 id=iff.2h5v.s6.cadab891bea0 from=translated src=- shape=6570578f vocab=f61e91d0
+-/
 theorem isTopPart_supportFamilyUnion_iff
     {edge : Vertex → Vertex → Prop}
     {P D : Finset Vertex}
@@ -531,7 +564,9 @@ theorem isTopPart_supportFamilyUnion_iff
       isTopPart_supportFamilyUnion hC hComponents
 
 /-- A path in the union of a separated family which starts in one
-component cannot leave that component.-/
+component cannot leave that component.
+@isnad1 id=mem.4h6v.s6.6ec293571c97 from=translated src=- shape=3d8b0bf4 vocab=0603c8ae
+-/
 theorem mem_of_reachInside_supportFamilyUnion_of_mem
     {edge : Vertex → Vertex → Prop}
     {C : Finset (Finset Vertex)}
@@ -690,7 +725,9 @@ def nonemptySubfamilyUnion
   supportFamilyUnion T.1
 
 /-- For a pairwise-disjoint nonempty support family, a subfamily is
-determined by its union.-/
+determined by its union.
+@isnad1 id=injectiv.1h2v.s4.a719f411f6a1 from=translated src=- shape=e357fbf6 vocab=1b237161
+-/
 theorem nonemptySubfamilyUnion_injective
     {C : Finset (Finset Vertex)}
     (hC : IsDisjointNonemptySupportFamily C) :
@@ -781,7 +818,9 @@ noncomputable def supportUnionComponentCount
   ((nonemptySubfamilyUnionEquiv hC).symm W).1.card
 
 /-- Grouping an alternating component sum by the support union preserves
-the sign exponent: each union has one unique component subfamily.-/
+the sign exponent: each union has one unique component subfamily.
+@isnad1 id=eq.1h3v.s8.988ad058f99d from=translated src=- shape=499e6f81 vocab=ad410f40
+-/
 theorem alternating_component_sum_group_by_union
     {C : Finset (Finset Vertex)}
     (hC : IsDisjointNonemptySupportFamily C)
@@ -803,7 +842,9 @@ theorem alternating_component_sum_group_by_union
   rfl
 
 /-- The inclusion--exclusion signs of all nonempty subfamilies of a
-nonempty finite family sum to one.-/
+nonempty finite family sum to one.
+@isnad1 id=eq.1h2v.s6.5016264a97c7 from=translated src=- shape=02ad7778 vocab=cf9f3046
+-/
 theorem alternating_nonempty_subfamilies_sum
     {C : Finset (Finset Vertex)}
     (hCnonempty : C.Nonempty) :
@@ -851,7 +892,9 @@ theorem alternating_nonempty_subfamilies_sum
     _ = 1 := by rw [hbase]; norm_num
 
 /-- After grouping by union, the aggregate Möbius coefficient is still
-one.-/
+one.
+@isnad1 id=eq.2h2v.s7.b63c6c3d5886 from=translated src=- shape=c23d2877 vocab=e70faaac
+-/
 theorem alternating_support_unions_sum
     {C : Finset (Finset Vertex)}
     (hC : IsDisjointNonemptySupportFamily C)
@@ -888,7 +931,9 @@ theorem alternating_support_unions_sum
         (Vertex := Vertex) hCnonempty
 
 /-- A path cannot enter a vertex set across which there is no incoming
-edge.-/
+edge.
+@isnad1 id=not.3h6v.s6.9f6f06948e4d from=translated src=- shape=bbeef88c vocab=dfe36417
+-/
 theorem not_mem_of_reachInside_of_no_entry
     {edge : Vertex → Vertex → Prop}
     {D S : Finset Vertex}
@@ -907,7 +952,9 @@ theorem not_mem_of_reachInside_of_no_entry
           (Finset.mem_sdiff.mpr ⟨hyz.1, ih⟩)
           z hzS hyz.2.2
 
-/-- A strongly connected top part is inclusion-minimal.-/
+/-- A strongly connected top part is inclusion-minimal.
+@isnad1 id=isminima.2h5v.s5.f6eaab04db00 from=translated src=- shape=17459ccb vocab=5b8f4ec8
+-/
 theorem isMinimalTopPart_of_isTopPart_of_isStronglyConnectedInside
     {edge : Vertex → Vertex → Prop}
     {P D S : Finset Vertex}
@@ -939,7 +986,9 @@ theorem isMinimalTopPart_of_isTopPart_of_isStronglyConnectedInside
     (not_mem_of_reachInside_of_no_entry
       hT.2.2 hxT hxyD) hyT
 
-/-- Minimal top parts are exactly the strongly connected top parts.-/
+/-- Minimal top parts are exactly the strongly connected top parts.
+@isnad1 id=iff.0h5v.s5.25e84fd0457d from=translated src=- shape=197f50cf vocab=5b8f4ec8
+-/
 theorem isMinimalTopPart_iff_isTopPart_and_isStronglyConnectedInside
     {edge : Vertex → Vertex → Prop}
     {P D S : Finset Vertex} :
@@ -957,7 +1006,9 @@ theorem isMinimalTopPart_iff_isTopPart_and_isStronglyConnectedInside
         hTop hStrong
 
 /-- A selected vertex set is not projectively rooted exactly when it has
-a top part.-/
+a top part.
+@isnad1 id=iff.0h4v.s5.7e7e7c216858 from=translated src=- shape=22c6ca5c vocab=c9d71ab5
+-/
 theorem not_isProjectivelyRooted_iff_exists_isTopPart
     (edge : Vertex → Vertex → Prop)
     (P D : Finset Vertex) :
@@ -1019,7 +1070,9 @@ theorem not_isProjectivelyRooted_iff_exists_isTopPart
         hnoEntry hpS hpx) hxS
 
 /-- A selected set is nonrooted exactly when it has a minimal top
-part.-/
+part.
+@isnad1 id=iff.0h4v.s5.3e2c53c39ab1 from=translated src=- shape=22c6ca5c vocab=13a751bc
+-/
 theorem not_isProjectivelyRooted_iff_exists_isMinimalTopPart
     (edge : Vertex → Vertex → Prop)
     (P D : Finset Vertex) :
@@ -1040,7 +1093,9 @@ theorem not_isProjectivelyRooted_iff_exists_isMinimalTopPart
         edge P D).2 ⟨S, hS.1⟩
 
 /-- The canonical family is nonempty exactly for a nonrooted selected
-set.-/
+set.
+@isnad1 id=iff.0h4v.s5.ea69f5f02ecf from=translated src=- shape=c26cdbb0 vocab=6c6735b1
+-/
 theorem minimalTopParts_nonempty_iff_not_isProjectivelyRooted
     (edge : Vertex → Vertex → Prop)
     (P D : Finset Vertex) :
@@ -1064,7 +1119,9 @@ theorem minimalTopParts_nonempty_iff_not_isProjectivelyRooted
         (mem_minimalTopParts
           (edge := edge) (P := P) (D := D)).2 hS⟩
 
-/-- Every top part contains a member of the canonical minimal family.-/
+/-- Every top part contains a member of the canonical minimal family.
+@isnad1 id=ex.1h5v.s6.f0de2c22ae49 from=translated src=- shape=d466e237 vocab=9b52c809
+-/
 theorem exists_mem_minimalTopParts_subset
     {edge : Vertex → Vertex → Prop}
     {P D S : Finset Vertex}
@@ -1096,7 +1153,9 @@ def IsBottomPart
     ∀ u ∈ S, ∀ v ∈ D \ S, ¬ edge u v
 
 /-- A selected vertex set is not injectively corooted exactly when it has
-a bottom part.-/
+a bottom part.
+@isnad1 id=iff.0h4v.s5.0f7e10965bdf from=translated src=- shape=22c6ca5c vocab=c489c45c
+-/
 theorem not_isInjectivelyCorooted_iff_exists_isBottomPart
     (edge : Vertex → Vertex → Prop)
     (I D : Finset Vertex) :
@@ -1123,6 +1182,9 @@ def setsOfCard (j : ℕ) : Finset (Finset Vertex) :=
   Finset.univ.powersetCard j
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h3v.s5.6ec093b3c3db from=translated src=- shape=4a89cf16 vocab=663c0c8b
+-/
 @[simp]
 theorem mem_setsOfCard {j : ℕ} {D : Finset Vertex} :
     D ∈ setsOfCard (Vertex := Vertex) j ↔ D.card = j := by
@@ -1140,6 +1202,9 @@ def projectivelyRootedSets
         IsProjectivelyRooted edge P D
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h5v.s5.45484ab4d400 from=translated src=- shape=4b1b0dd6 vocab=3f1d55df
+-/
 @[simp]
 theorem mem_projectivelyRootedSets
     {edge : Vertex → Vertex → Prop}
@@ -1161,6 +1226,9 @@ def nonProjectivelyRootedSets
         ¬ IsProjectivelyRooted edge P D
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h5v.s5.1a95695a3e70 from=translated src=- shape=7e5bf386 vocab=1f9a6c07
+-/
 @[simp]
 theorem mem_nonProjectivelyRootedSets
     {edge : Vertex → Vertex → Prop}
@@ -1181,6 +1249,9 @@ def topPartCandidates (P : Finset Vertex) :
       (Finset.univ : Finset Vertex).powerset.filter fun S ↦
         S.Nonempty ∧ ∀ x ∈ S, x ∉ P
 
+/--
+@isnad1 id=iff.0h3v.s6.6c5f1e2aec14 from=translated src=- shape=63bbca03 vocab=154f29e9
+-/
 @[simp]
 theorem mem_topPartCandidates
     {P S : Finset Vertex} :
@@ -1202,6 +1273,9 @@ def minimalTopPartCandidates
       (topPartCandidates P).filter fun S ↦
         IsStronglyConnectedInside edge S
 
+/--
+@isnad1 id=iff.0h4v.s6.e23aa38d73d8 from=translated src=- shape=19b7f097 vocab=0b239333
+-/
 @[simp]
 theorem mem_minimalTopPartCandidates
     {edge : Vertex → Vertex → Prop}
@@ -1213,7 +1287,9 @@ theorem mem_minimalTopPartCandidates
   simp [minimalTopPartCandidates]
 
 /-- The union of a nonempty family of candidate supports is again a
-candidate support.-/
+candidate support.
+@isnad1 id=mem.2h3v.s6.6882ebd81327 from=translated src=- shape=a1f9d7e6 vocab=bfd6fd41
+-/
 theorem supportFamilyUnion_mem_topPartCandidates
     {P : Finset Vertex}
     {C : Finset (Finset Vertex)}
@@ -1239,7 +1315,9 @@ theorem supportFamilyUnion_mem_topPartCandidates
         (hCandidates T hTC)).2 y hyT
 
 /-- In particular, a nonempty union of strongly connected candidate
-supports remains an ordinary candidate support.-/
+supports remains an ordinary candidate support.
+@isnad1 id=mem.2h4v.s6.1786c5e3bd12 from=translated src=- shape=fb4263ed vocab=5fadd596
+-/
 theorem supportFamilyUnion_mem_topPartCandidates_of_minimalCandidates
     {edge : Vertex → Vertex → Prop}
     {P : Finset Vertex}
@@ -1270,6 +1348,9 @@ def separatedMinimalTopPartFamilies
           C.Nonempty ∧
             IsSeparatedSupportFamily edge C
 
+/--
+@isnad1 id=iff.0h4v.s6.2e15b6ac9052 from=translated src=- shape=e35a5ec8 vocab=f9d1f646
+-/
 @[simp]
 theorem mem_separatedMinimalTopPartFamilies
     {edge : Vertex → Vertex → Prop}
@@ -1299,7 +1380,9 @@ def separatedMinimalTopPartFamilyUnion
   supportFamilyUnion C.1
 
 /-- The union represented by a separated minimal-candidate family is
-an ordinary top-part candidate.-/
+an ordinary top-part candidate.
+@isnad1 id=mem.0h4v.s5.8a4e8f675c46 from=translated src=- shape=071151be vocab=ca06a5a6
+-/
 theorem separatedMinimalTopPartFamilyUnion_mem_topPartCandidates
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex)
@@ -1316,7 +1399,9 @@ theorem separatedMinimalTopPartFamilyUnion_mem_topPartCandidates
 
 /-- A separated family of strongly connected candidate supports is
 globally determined by its union, not merely among subfamilies of one
-fixed component family.-/
+fixed component family.
+@isnad1 id=injectiv.0h3v.s5.2146419ebd2b from=translated src=- shape=23a17390 vocab=a84d5bcb
+-/
 theorem separatedMinimalTopPartFamilyUnion_injective
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) :
@@ -1378,6 +1463,9 @@ def topPartEvent
       (setsOfCard (Vertex := Vertex) j).filter fun D ↦
         IsTopPart edge P D S
 
+/--
+@isnad1 id=iff.0h6v.s6.cc1e1c84b9b3 from=translated src=- shape=9ac0989f vocab=0141771e
+-/
 @[simp]
 theorem mem_topPartEvent
     {edge : Vertex → Vertex → Prop}
@@ -1388,7 +1476,9 @@ theorem mem_topPartEvent
   simp [topPartEvent]
 
 /-- On a strongly connected candidate support, event membership says
-precisely that the support is a minimal top part.-/
+precisely that the support is a minimal top part.
+@isnad1 id=iff.1h6v.s6.4c0febba5ac9 from=translated src=- shape=eaaa9f62 vocab=dcf5ca9a
+-/
 theorem mem_topPartEvent_iff_card_and_isMinimalTopPart
     {edge : Vertex → Vertex → Prop}
     {P S D : Finset Vertex} {j : ℕ}
@@ -1410,7 +1500,9 @@ theorem mem_topPartEvent_iff_card_and_isMinimalTopPart
     exact ⟨hDcard, hSminimal.1⟩
 
 /-- For a separated nonempty support family, the intersection of its
-top-part events is exactly the event indexed by the support union.-/
+top-part events is exactly the event indexed by the support union.
+@isnad1 id=eq.2h5v.s6.14655100e13e from=translated src=- shape=a6e52e46 vocab=017c21ef
+-/
 theorem inf'_topPartEvent_eq_topPartEvent_supportFamilyUnion
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1443,7 +1535,9 @@ theorem inf'_topPartEvent_eq_topPartEvent_supportFamilyUnion
 
 /-- If a selected set lies in all events of a family of strongly
 connected candidates, those candidates are its minimal top parts and
-therefore form a separated family.-/
+therefore form a separated family.
+@isnad1 id=issepara.3h6v.s7.1b85354a4689 from=translated src=- shape=4ab94a5d vocab=9a995bbf
+-/
 theorem isSeparatedSupportFamily_of_mem_inf'_minimalTopPartEvents
     {edge : Vertex → Vertex → Prop}
     {P : Finset Vertex} {j : ℕ}
@@ -1467,7 +1561,9 @@ theorem isSeparatedSupportFamily_of_mem_inf'_minimalTopPartEvents
       (hCandidates S hSC)).1 hSEvent |>.2
 
 /-- A nonseparated family of strongly connected candidates has empty
-event intersection.-/
+event intersection.
+@isnad1 id=eq.3h5v.s6.b882b1bb577a from=translated src=- shape=8dc2e5c8 vocab=3f95f168
+-/
 theorem inf'_minimalTopPartEvents_eq_empty_of_not_separated
     {edge : Vertex → Vertex → Prop}
     {P : Finset Vertex} {j : ℕ}
@@ -1497,6 +1593,9 @@ def immediatePredecessors
         ∃ y ∈ S, edge x y
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s5.4a20e8d9d107 from=translated src=- shape=f57cd9bc vocab=fb542000
+-/
 @[simp]
 theorem mem_immediatePredecessors
     {edge : Vertex → Vertex → Prop}
@@ -1526,12 +1625,18 @@ def topPartAllowedVertices
     (S : Finset Vertex) : Finset Vertex :=
   S ∪ topPartFreeVertices edge S
 
+/--
+@isnad1 id=le.0h3v.s5.91ac98ea2af1 from=translated src=- shape=003516a6 vocab=5ece803a
+-/
 theorem subset_topPartAllowedVertices
     (edge : Vertex → Vertex → Prop)
     (S : Finset Vertex) :
     S ⊆ topPartAllowedVertices edge S :=
   Finset.subset_union_left
 
+/--
+@isnad1 id=disjoint.0h3v.s4.ccac19d404d9 from=translated src=- shape=003516a6 vocab=2830fd26
+-/
 theorem disjoint_topPartFreeVertices
     (edge : Vertex → Vertex → Prop)
     (S : Finset Vertex) :
@@ -1546,7 +1651,9 @@ theorem disjoint_topPartFreeVertices
 
 /-- Having a fixed candidate `S` as a top part means choosing a
 cardinality-`j` superset of `S` from `S` together with the vertices
-outside `S ∪ N⁻(S)`.-/
+outside `S ∪ N⁻(S)`.
+@isnad1 id=eq.1h5v.s6.bc7a1873fc82 from=translated src=- shape=629cae23 vocab=39110ea5
+-/
 theorem topPartEvent_eq_filter_powersetCard_allowed
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1605,7 +1712,9 @@ theorem topPartEvent_eq_filter_powersetCard_allowed
                   ⟨y, hyS, hxy⟩))
 
 /-- Exact binomial count of a fixed top-part event, in terms of the
-vertices outside the forced region.-/
+vertices outside the forced region.
+@isnad1 id=eq.2h5v.s6.ca9e3f3c9618 from=translated src=- shape=2638bf8c vocab=64c19cc7
+-/
 theorem topPartEvent_card_eq_choose_freeVertices
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1627,7 +1736,9 @@ theorem topPartEvent_card_eq_choose_freeVertices
   rw [Nat.add_sub_cancel_left]
 
 /-- The number of free vertices is the total number of vertices minus
-the size of `S ∪ N⁻(S)`.-/
+the size of `S ∪ N⁻(S)`.
+@isnad1 id=eq.0h3v.s5.a31cbb857078 from=translated src=- shape=0b6eccad vocab=edeec6c1
+-/
 theorem topPartFreeVertices_card
     (edge : Vertex → Vertex → Prop)
     (S : Finset Vertex) :
@@ -1640,7 +1751,9 @@ theorem topPartFreeVertices_card
     Finset.card_univ]
 
 /-- Paper-form count of a fixed top-part event:
-`choose (N - |S ∪ N⁻(S)|) (j - |S|)`.-/
+`choose (N - |S ∪ N⁻(S)|) (j - |S|)`.
+@isnad1 id=eq.2h5v.s6.ab67d3e51ba5 from=translated src=- shape=f45a063a vocab=17f1432f
+-/
 theorem topPartEvent_card_eq_choose_forcedRegion
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1657,7 +1770,9 @@ theorem topPartEvent_card_eq_choose_forcedRegion
     topPartFreeVertices_card]
 
 /-- A support larger than the prescribed selected-set cardinality has
-an empty top-part event.-/
+an empty top-part event.
+@isnad1 id=eq.1h5v.s5.05b8a4a24e8b from=translated src=- shape=2ddddea0 vocab=c18cff68
+-/
 theorem topPartEvent_eq_empty_of_card_lt
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1679,7 +1794,9 @@ theorem topPartEvent_eq_empty_of_card_lt
   omega
 
 /-- Uniform fixed-support count, including the case in which the
-support is too large for a `j`-set.-/
+support is too large for a `j`-set.
+@isnad1 id=eq.1h5v.s6.0a46bf23ee61 from=translated src=- shape=a3988be1 vocab=47f1bd93
+-/
 theorem topPartEvent_card_eq_if_choose_forcedRegion
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1704,7 +1821,9 @@ theorem topPartEvent_card_eq_if_choose_forcedRegion
 
 /-- It is enough to cover nonrooted sets by the events of strongly
 connected candidate supports: in every event these are exactly the
-minimal top parts.-/
+minimal top parts.
+@isnad1 id=eq.0h4v.s5.aba926d75264 from=translated src=- shape=a1afe14f vocab=cc23bec9
+-/
 theorem biUnion_minimalTopPartEvents_eq_nonProjectivelyRootedSets
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -1764,7 +1883,9 @@ theorem biUnion_minimalTopPartEvents_eq_nonProjectivelyRootedSets
           ⟨hNonrooted.1, hSminimal⟩
 
 /-- The union of all top-part events is exactly the family of
-non-projectively-rooted `j`-sets.-/
+non-projectively-rooted `j`-sets.
+@isnad1 id=eq.0h4v.s5.5b348d8bddcb from=translated src=- shape=f54400e9 vocab=39a3f8a8
+-/
 theorem biUnion_topPartEvents_eq_nonProjectivelyRootedSets
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -1819,6 +1940,9 @@ def topPartEventIntersection
     C.inf' hC (topPartEvent edge P j)
   else ∅
 
+/--
+@isnad1 id=eq.1h5v.s6.179736f68a1d from=translated src=- shape=767bd69d vocab=5bb7246b
+-/
 theorem topPartEventIntersection_eq_inf'
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1829,7 +1953,9 @@ theorem topPartEventIntersection_eq_inf'
   simp [topPartEventIntersection, hC]
 
 /-- On a separated nonempty family, the total event intersection is the
-event of the support union.-/
+event of the support union.
+@isnad1 id=eq.2h5v.s5.a0b3a30e6647 from=translated src=- shape=d8e0131d vocab=7afca74f
+-/
 theorem topPartEventIntersection_eq_topPartEvent_supportFamilyUnion
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ)
@@ -1846,7 +1972,9 @@ theorem topPartEventIntersection_eq_topPartEvent_supportFamilyUnion
       edge P j hC hSeparated]
 
 /-- On a nonseparated family of minimal candidates, the total event
-intersection is empty.-/
+intersection is empty.
+@isnad1 id=eq.3h5v.s6.33d30c23c8dc from=translated src=- shape=1d7e6ce1 vocab=38b4cca8
+-/
 theorem topPartEventIntersection_eq_empty_of_not_separated
     {edge : Vertex → Vertex → Prop}
     {P : Finset Vertex} {j : ℕ}
@@ -1887,7 +2015,9 @@ def minimalTopPartInclusionExclusionSum
     minimalTopPartInclusionExclusionTerm edge P j T
 
 /-- Exact inclusion--exclusion formula using only strongly connected
-candidate supports.-/
+candidate supports.
+@isnad1 id=eq.0h4v.s5.c3fd74b6cf52 from=translated src=- shape=759fce3f vocab=dfa67cab
+-/
 theorem nonProjectivelyRootedSets_card_eq_minimalTopPartInclusionExclusionSum
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -1920,7 +2050,9 @@ def separatedMinimalTopPartInclusionExclusionSum
         (supportFamilyUnion C.1)).card
 
 /-- All nonseparated terms in the reduced cover vanish, while each
-separated intersection is the event of its union.-/
+separated intersection is the event of its union.
+@isnad1 id=eq.0h4v.s5.dff76dff011a from=translated src=- shape=ddc95a6c vocab=83540161
+-/
 theorem minimalTopPartInclusionExclusionSum_eq_separated
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -2022,7 +2154,9 @@ theorem minimalTopPartInclusionExclusionSum_eq_separated
 
 /-- Grouping the compressed reduced-cover sum by its globally unique
 support union records exactly the number of separated strongly
-connected components in the sign.-/
+connected components in the sign.
+@isnad1 id=eq.0h4v.s7.5526d531e407 from=translated src=- shape=788a624f vocab=18e944b8
+-/
 theorem separatedMinimalTopPartInclusionExclusionSum_group_by_union
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -2049,7 +2183,9 @@ theorem separatedMinimalTopPartInclusionExclusionSum_group_by_union
   rfl
 
 /-- Fully grouped inclusion--exclusion formula for nonrooted sets:
-the indices are the component-separated support unions.-/
+the indices are the component-separated support unions.
+@isnad1 id=eq.0h4v.s7.e785d7a7e5a2 from=translated src=- shape=4478d6ec vocab=4c2f865b
+-/
 theorem nonProjectivelyRootedSets_card_eq_grouped_separated_support_unions
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -2068,7 +2204,9 @@ theorem nonProjectivelyRootedSets_card_eq_grouped_separated_support_unions
 
 /-- Paper-form grouped formula.  Each component-separated union
 contributes its inclusion--exclusion sign times the forced-region
-binomial count; unions larger than `j` contribute zero.-/
+binomial count; unions larger than `j` contribute zero.
+@isnad1 id=eq.0h4v.s8.5870d715c70e from=translated src=- shape=a7b69f2f vocab=36fa2236
+-/
 theorem nonProjectivelyRootedSets_card_eq_grouped_forcedRegion_choose
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -2115,6 +2253,9 @@ def topPartIndexFamilies (P : Finset Vertex) :
       (topPartCandidates P).powerset.filter
         Finset.Nonempty
 
+/--
+@isnad1 id=iff.0h3v.s6.f714dc8dcbdb from=translated src=- shape=17969687 vocab=504672f4
+-/
 @[simp]
 theorem mem_topPartIndexFamilies
     {P : Finset Vertex}
@@ -2150,7 +2291,9 @@ def topPartInclusionExclusionSum
     topPartInclusionExclusionTerm edge P j T
 
 /-- Exact raw inclusion--exclusion formula for non-projectively-rooted
-sets.-/
+sets.
+@isnad1 id=eq.0h4v.s5.409e30f963ba from=translated src=- shape=759fce3f vocab=cdfc0c29
+-/
 theorem nonProjectivelyRootedSets_card_eq_inclusionExclusionSum
     (edge : Vertex → Vertex → Prop)
     (P : Finset Vertex) (j : ℕ) :
@@ -2188,7 +2331,9 @@ structure TopPartInclusionExclusionMatching
           sEdge I j (indexEquiv T)
 
 /-- Matching every raw inclusion--exclusion term gives equality of the
-two sums.-/
+two sums.
+@isnad1 id=eq.0h7v.s5.b671795c727d from=translated src=- shape=b47b3273 vocab=98c0b9b3
+-/
 theorem topPartInclusionExclusionSum_eq_of_matching
     {qEdge sEdge : Vertex → Vertex → Prop}
     {P I : Finset Vertex} {j : ℕ}
@@ -2205,7 +2350,9 @@ theorem topPartInclusionExclusionSum_eq_of_matching
 
 omit [DecidableEq Vertex] in
 /-- Equal nonrooted counts imply equal rooted counts because both
-families partition the same collection of `j`-subsets.-/
+families partition the same collection of `j`-subsets.
+@isnad1 id=eq.1h6v.s6.4bc3a146002f from=translated src=- shape=756a3c7d vocab=6725b74e
+-/
 theorem projectivelyRootedSets_card_eq_of_nonrooted_card_eq
     {qEdge sEdge : Vertex → Vertex → Prop}
     {P I : Finset Vertex} {j : ℕ}
@@ -2238,7 +2385,9 @@ theorem projectivelyRootedSets_card_eq_of_nonrooted_card_eq
   omega
 
 /-- A termwise matching of the finite inclusion--exclusion data implies
-equality of projectively rooted `j`-set counts.-/
+equality of projectively rooted `j`-set counts.
+@isnad1 id=eq.0h7v.s5.90bcf427ca07 from=translated src=- shape=e0d8ddf2 vocab=82d092b5
+-/
 theorem projectivelyRootedSets_card_eq_of_inclusionExclusionMatching
     {qEdge sEdge : Vertex → Vertex → Prop}
     {P I : Finset Vertex} {j : ℕ}
@@ -2267,6 +2416,9 @@ def injectivelyCorootedSets
   projectivelyRootedSets (fun x y ↦ edge y x) I j
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h5v.s5.23b80ce2c4bd from=translated src=- shape=4b1b0dd6 vocab=5c7cd729
+-/
 @[simp]
 theorem mem_injectivelyCorootedSets
     {edge : Vertex → Vertex → Prop}
@@ -2278,7 +2430,9 @@ theorem mem_injectivelyCorootedSets
 
 /-- Direct rooted-versus-corooted endpoint.  A matching compares the
 projective-side top-part inclusion--exclusion data with the
-injective-side data for the reversed relation.-/
+injective-side data for the reversed relation.
+@isnad1 id=eq.0h7v.s6.8d0c95fd2a6c from=translated src=- shape=33fbaef1 vocab=715ec479
+-/
 theorem projectivelyRootedSets_card_eq_injectivelyCorootedSets_card_of_matching
     {qEdge sEdge : Vertex → Vertex → Prop}
     {P I : Finset Vertex} {j : ℕ}
@@ -2318,7 +2472,9 @@ structure GroupedTopPartMatching
 
 /--
 A matching of the three grouped statistics identifies the two nonrooted
-counts in every cardinality.-/
+counts in every cardinality.
+@isnad1 id=eq.0h7v.s5.4cf4eeb18eb2 from=translated src=- shape=8d534eb4 vocab=0e79e142
+-/
 theorem nonProjectivelyRootedSets_card_eq_of_groupedMatching
     {qEdge sEdge : Vertex → Vertex → Prop}
     {P I : Finset Vertex}
@@ -2363,7 +2519,9 @@ theorem nonProjectivelyRootedSets_card_eq_of_groupedMatching
 
 /--
 After reversing the second edge relation, a grouped matching gives the
-rooted-versus-corooted equality needed in the manuscript.-/
+rooted-versus-corooted equality needed in the manuscript.
+@isnad1 id=eq.0h7v.s6.646cb23e1d5c from=translated src=- shape=a1889293 vocab=2e10c83b
+-/
 theorem projectivelyRootedSets_card_eq_injectivelyCorootedSets_card_of_groupedMatching
     {qEdge sEdge : Vertex → Vertex → Prop}
     {P I : Finset Vertex}

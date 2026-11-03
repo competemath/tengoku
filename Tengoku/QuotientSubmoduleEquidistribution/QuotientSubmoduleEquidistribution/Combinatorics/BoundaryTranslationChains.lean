@@ -43,23 +43,34 @@ def successor (x : Vertex) : Vertex := by
   · exact x
   · exact (T.tau.symm ⟨x, hx⟩).1
 
+/--
+@isnad1 id=eq.0h6v.s4.d8fa84ab7317 from=translated src=- shape=259358e6 vocab=57c51f59
+-/
 theorem successor_eq_self_of_mem_target {x : Vertex} (hx : I x) :
     T.successor x = x := by
   simp [successor, hx]
 
+/--
+@isnad1 id=not.1h5v.s4.b4f391303011 from=translated src=- shape=83fa3cee vocab=57c51f59
+-/
 theorem successor_not_mem_source_of_not_mem_target
     {x : Vertex} (hx : ¬ I x) :
     ¬ P (T.successor x) := by
   have h := (T.tau.symm ⟨x, hx⟩).2
   simpa [successor, hx] using h
 
+/--
+@isnad1 id=eq.1h5v.s7.cd7ac4cff5ab from=translated src=- shape=a94cce92 vocab=45812529
+-/
 theorem tau_successor_of_not_mem_target
     {x : Vertex} (hx : ¬ I x) :
     T.tau ⟨T.successor x,
       T.successor_not_mem_source_of_not_mem_target hx⟩ = ⟨x, hx⟩ := by
   simp [successor, hx]
 
-/-- Away from the target boundary, one successor step can be cancelled.-/
+/-- Away from the target boundary, one successor step can be cancelled.
+@isnad1 id=eq.3h6v.s5.f062db8e29a5 from=translated src=- shape=2e5073e8 vocab=57c51f59
+-/
 theorem successor_left_injective
     {x y : Vertex} (hx : ¬ I x) (hy : ¬ I y)
     (h : T.successor x = T.successor y) : x = y := by
@@ -71,7 +82,9 @@ theorem successor_left_injective
   exact congrArg Subtype.val hxy
 
 /-- Cancelling equal iterates before the target boundary produces a
-positive return time to the initial vertex.-/
+positive return time to the initial vertex.
+@isnad1 id=ex.3h7v.s6.858e8bbb8eca from=translated src=- shape=6ad6126f vocab=29fab3a6
+-/
 theorem exists_positive_return_of_iterate_eq
     (p : Vertex) {i j : ℕ} (hij : i < j)
     (heq : T.successor^[i] p = T.successor^[j] p)
@@ -93,7 +106,9 @@ theorem exists_positive_return_of_iterate_eq
 
 /-- Starting at the source boundary of a finite partial-translation
 component, one reaches the target boundary within at most `card Vertex`
-steps.  Boundary-free cycles may exist elsewhere.-/
+steps.  Boundary-free cycles may exist elsewhere.
+@isnad1 id=ex.0h6v.s5.572399536a09 from=translated src=- shape=5eaf73d6 vocab=cf1e5dc9
+-/
 theorem exists_iterate_mem_target [Fintype Vertex]
     (p : Vertex) (hp : P p) :
     ∃ n ≤ Fintype.card Vertex, I (T.successor^[n] p) := by
@@ -136,7 +151,9 @@ theorem exists_iterate_mem_target [Fintype Vertex]
   · exact impossible hij hijEq
   · exact impossible hji hijEq.symm
 
-/-- Unbounded form of target-boundary existence.-/
+/-- Unbounded form of target-boundary existence.
+@isnad1 id=ex.0h6v.s5.b1034e03b61c from=translated src=- shape=a2d9ebc5 vocab=9c26bbfa
+-/
 theorem exists_iterate_mem_target_unbounded [Fintype Vertex]
     (p : Vertex) (hp : P p) :
     ∃ n, I (T.successor^[n] p) := by
@@ -155,6 +172,9 @@ def targetEndpoint [Fintype Vertex]
     (p : Vertex) (hp : P p) : Vertex :=
   T.successor^[firstTargetIndex T p hp] p
 
+/--
+@isnad1 id=var.0h6v.s5.96685d46028d from=translated src=- shape=263e2814 vocab=eb881803
+-/
 theorem firstTargetIndex_spec [Fintype Vertex]
     (p : Vertex) (hp : P p) :
     I (T.successor^[firstTargetIndex T p hp] p) := by
@@ -162,7 +182,9 @@ theorem firstTargetIndex_spec [Fintype Vertex]
   exact Nat.find_spec (exists_iterate_mem_target_unbounded T p hp)
 
 /-- A source-boundary point already lying on the target boundary reaches
-that boundary at index zero.-/
+that boundary at index zero.
+@isnad1 id=eq.0h7v.s5.a0714ba795b1 from=translated src=- shape=e29a7f17 vocab=c2bdd004
+-/
 theorem firstTargetIndex_eq_zero_of_mem_target [Fintype Vertex]
     (p : Vertex) (hp : P p) (hi : I p) :
     firstTargetIndex T p hp = 0 := by
@@ -171,13 +193,18 @@ theorem firstTargetIndex_eq_zero_of_mem_target [Fintype Vertex]
   simpa using hi
 
 /-- The endpoint of a source-boundary point already on the target boundary
-is the point itself.-/
+is the point itself.
+@isnad1 id=eq.0h7v.s5.4844e5fddcce from=translated src=- shape=0838f092 vocab=7cc59d4f
+-/
 theorem targetEndpoint_eq_self_of_mem_target [Fintype Vertex]
     (p : Vertex) (hp : P p) (hi : I p) :
     targetEndpoint T p hp = p := by
   rw [targetEndpoint, T.firstTargetIndex_eq_zero_of_mem_target p hp hi]
   rfl
 
+/--
+@isnad1 id=le.0h6v.s5.0521e5988567 from=translated src=- shape=48cd768f vocab=ea8239ff
+-/
 theorem firstTargetIndex_le_card [Fintype Vertex]
     (p : Vertex) (hp : P p) :
     firstTargetIndex T p hp ≤ Fintype.card Vertex := by
@@ -187,6 +214,9 @@ theorem firstTargetIndex_le_card [Fintype Vertex]
     (Nat.find_min' (exists_iterate_mem_target_unbounded T p hp) hn)
     hncard
 
+/--
+@isnad1 id=not.1h7v.s5.7a38af190abe from=translated src=- shape=c654235b vocab=873bfe5b
+-/
 theorem not_mem_target_before_firstTargetIndex [Fintype Vertex]
     (p : Vertex) (hp : P p) {n : ℕ}
     (hn : n < firstTargetIndex T p hp) :
@@ -195,7 +225,9 @@ theorem not_mem_target_before_firstTargetIndex [Fintype Vertex]
   exact Nat.find_min (exists_iterate_mem_target_unbounded T p hp) hn
 
 /-- Positions in a boundary-to-boundary successor chain do not repeat before
-the first target endpoint.-/
+the first target endpoint.
+@isnad1 id=ne.2h8v.s6.1c2d7090084b from=translated src=- shape=0a072a77 vocab=f7bfae8d
+-/
 theorem iterate_ne_of_lt_le_firstTargetIndex [Fintype Vertex]
     (p : Vertex) (hp : P p) {i j : ℕ}
     (hij : i < j) (hj : j ≤ firstTargetIndex T p hp) :
@@ -220,13 +252,18 @@ theorem iterate_ne_of_lt_le_firstTargetIndex [Fintype Vertex]
   rw [show m + 1 = 1 + m by omega, ← hk]
   exact hp
 
+/--
+@isnad1 id=var.0h6v.s5.e1facb20b8f4 from=translated src=- shape=2684b54f vocab=7cc59d4f
+-/
 theorem targetEndpoint_mem_target [Fintype Vertex]
     (p : Vertex) (hp : P p) :
     I (targetEndpoint T p hp) :=
   firstTargetIndex_spec T p hp
 
 /-- One reversed successor cancels one forward successor before the target
-boundary.-/
+boundary.
+@isnad1 id=eq.1h5v.s5.184f04a640f0 from=translated src=- shape=faaf6b53 vocab=6f01a900
+-/
 theorem reverse_successor_successor_of_not_mem_target
     {x : Vertex} (hx : ¬ I x) :
     T.reverse.successor (T.successor x) = x := by
@@ -240,7 +277,9 @@ theorem reverse_successor_successor_of_not_mem_target
   exact congrArg Subtype.val htau
 
 /-- If the first `n` points of a successor trajectory avoid the target
-boundary, reversing its first `n` steps returns to the starting point.-/
+boundary, reversing its first `n` steps returns to the starting point.
+@isnad1 id=eq.1h6v.s6.f08cce5cac2f from=translated src=- shape=d845ae23 vocab=2a394491
+-/
 theorem reverse_iterate_iterate_eq_of_not_mem_target_before
     (p : Vertex) (n : ℕ)
     (havoid : ∀ i < n, ¬ I ((T.successor^[i]) p)) :
@@ -255,7 +294,9 @@ theorem reverse_iterate_iterate_eq_of_not_mem_target_before
       exact ih (fun i hi ↦ havoid i (by omega))
 
 /-- Every strictly positive position up to the first target endpoint lies
-outside the source boundary.-/
+outside the source boundary.
+@isnad1 id=not.2h7v.s5.c9a68c158b18 from=translated src=- shape=aad281ec vocab=f7bfae8d
+-/
 theorem iterate_not_mem_source_of_pos_le_firstTargetIndex [Fintype Vertex]
     (p : Vertex) (hp : P p) {n : ℕ}
     (hnpos : 0 < n) (hn : n ≤ firstTargetIndex T p hp) :
@@ -267,7 +308,9 @@ theorem iterate_not_mem_source_of_pos_le_firstTargetIndex [Fintype Vertex]
   omega
 
 /-- Reversing `n` steps from the `m`th forward position removes those
-steps, as long as the forward path has not passed its first target.-/
+steps, as long as the forward path has not passed its first target.
+@isnad1 id=eq.2h8v.s6.253d8eb95bcd from=translated src=- shape=3fe7141b vocab=92dfb772
+-/
 theorem reverse_iterate_iterate_eq [Fintype Vertex]
     (p : Vertex) (hp : P p) {n m : ℕ}
     (hnm : n ≤ m) (hm : m ≤ firstTargetIndex T p hp) :
@@ -287,7 +330,9 @@ theorem reverse_iterate_iterate_eq [Fintype Vertex]
       simpa only [Nat.succ_sub_succ_eq_sub] using hcancel
 
 /-- Reversing from the terminal endpoint retraces the original chain at
-complementary positions.-/
+complementary positions.
+@isnad1 id=eq.1h7v.s6.2a9e5d63d867 from=translated src=- shape=8c7b5187 vocab=2e349102
+-/
 theorem reverse_iterate_targetEndpoint_eq [Fintype Vertex]
     (p : Vertex) (hp : P p) {n : ℕ}
     (hn : n ≤ T.firstTargetIndex p hp) :
@@ -296,7 +341,9 @@ theorem reverse_iterate_targetEndpoint_eq [Fintype Vertex]
   exact T.reverse_iterate_iterate_eq p hp hn le_rfl
 
 /-- The reversed chain from a terminal endpoint has exactly the same
-length as the original boundary-to-boundary chain.-/
+length as the original boundary-to-boundary chain.
+@isnad1 id=eq.0h6v.s5.a07a53961f5a from=translated src=- shape=80b8f37b vocab=5769b266
+-/
 theorem reverse_firstTargetIndex_targetEndpoint [Fintype Vertex]
     (p : Vertex) (hp : P p) :
     T.reverse.firstTargetIndex (T.targetEndpoint p hp)
@@ -328,7 +375,9 @@ theorem reverse_firstTargetIndex_targetEndpoint [Fintype Vertex]
         hpositive (Nat.sub_le L _)
     exact hnotP (hback ▸ hspec)
 
-/-- Distinct source-boundary vertices have distinct first target endpoints.-/
+/-- Distinct source-boundary vertices have distinct first target endpoints.
+@isnad1 id=injectiv.0h4v.s6.62d2582f0e3f from=translated src=- shape=3c152177 vocab=1a7ac97a
+-/
 theorem targetEndpoint_injective [Fintype Vertex] :
     Function.Injective
       (fun p : {x // P x} ↦
@@ -392,6 +441,9 @@ def boundaryEndpointEquiv [Fintype Vertex] :
     ((Fintype.bijective_iff_injective_and_card f).2
       ⟨T.targetEndpoint_injective, hcard⟩)
 
+/--
+@isnad1 id=eq.0h5v.s7.1943b4aca4bc from=translated src=- shape=5152dee4 vocab=34881952
+-/
 @[simp]
 theorem boundaryEndpointEquiv_apply [Fintype Vertex]
     (p : {x // P x}) :
@@ -400,7 +452,9 @@ theorem boundaryEndpointEquiv_apply [Fintype Vertex]
   rfl
 
 /-- The boundary endpoint equivalence fixes every point in the intersection
-of the source and target boundaries.-/
+of the source and target boundaries.
+@isnad1 id=eq.0h6v.s7.ddc4eea91050 from=translated src=- shape=5e12c9de vocab=ab596ca8
+-/
 theorem boundaryEndpointEquiv_apply_of_mem_target [Fintype Vertex]
     (p : {x // P x}) (hi : I p.1) :
     T.boundaryEndpointEquiv p = ⟨p.1, hi⟩ := by
@@ -409,7 +463,9 @@ theorem boundaryEndpointEquiv_apply_of_mem_target [Fintype Vertex]
   exact T.targetEndpoint_eq_self_of_mem_target p.1 p.2 hi
 
 /-- A vertex remains fixed under every successor iterate after it reaches
-the target boundary.-/
+the target boundary.
+@isnad1 id=eq.0h7v.s5.c2ab0c70e413 from=translated src=- shape=00ee7294 vocab=c9eb709c
+-/
 theorem iterate_eq_self_of_mem_target
     (x : Vertex) (hx : I x) (n : ℕ) :
     T.successor^[n] x = x := by
@@ -469,6 +525,9 @@ def periodicInteriorSuccessorEquiv [Fintype Vertex] :
   exact Equiv.ofBijective f
     ((Fintype.bijective_iff_injective_and_card f).2 ⟨hinj, rfl⟩)
 
+/--
+@isnad1 id=eq.0h5v.s7.e65db5a6e42d from=translated src=- shape=941f5359 vocab=431bf450
+-/
 @[simp]
 theorem periodicInteriorSuccessorEquiv_apply [Fintype Vertex]
     (x : T.PeriodicInterior) :

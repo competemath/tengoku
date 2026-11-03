@@ -38,7 +38,9 @@ namespace FiniteRightTauCategoryData
 variable (T : FiniteRightTauCategoryData C Ind)
 
 /-- Isomorphic displayed decompositions have the same total under every
-commutative-monoid-valued label weight.-/
+commutative-monoid-valued label weight.
+@isnad1 id=eq.1h9v.s7.a8ffabb602da from=translated src=- shape=c37249ea vocab=3abd3f47
+-/
 theorem sum_weight_eq_of_nonempty_iso_finBiproduct_obj
     {M : Type z} [AddCommMonoid M] (weight : Ind → M) :
     ∀ (n m : ℕ) (source : Fin n → Ind) (target : Fin m → Ind),
@@ -203,7 +205,9 @@ theorem sum_weight_eq_of_nonempty_iso_finBiproduct_obj
               Equiv.sum_comp σ (fun k ↦ weight (target k))
 
 /-- In particular, every chosen indecomposable label occurs with the same
-multiplicity in two isomorphic displayed decompositions.-/
+multiplicity in two isomorphic displayed decompositions.
+@isnad1 id=eq.1h8v.s7.46c321a9125f from=translated src=- shape=480fcbb4 vocab=670914da
+-/
 theorem label_multiplicity_eq_of_nonempty_iso_finBiproduct_obj
     [DecidableEq Ind] (p : Ind) (n m : ℕ)
     (source : Fin n → Ind) (target : Fin m → Ind)
@@ -233,7 +237,9 @@ noncomputable def chosenDecompositionIso (X : C) :
 noncomputable def chosenLabelWeight (weight : Ind → ℤ) (X : C) : ℤ :=
   ∑ i, weight (T.chosenDecompositionLabel X i)
 
-/-- Chosen label weight is invariant under object isomorphism.-/
+/-- Chosen label weight is invariant under object isomorphism.
+@isnad1 id=eq.1h6v.s6.b8631df134fd from=translated src=- shape=974853f2 vocab=fb558036
+-/
 theorem chosenLabelWeight_iso_invariant (weight : Ind → ℤ)
     {X Y : C} (e : Nonempty (X ≅ Y)) :
     T.chosenLabelWeight weight X = T.chosenLabelWeight weight Y := by
@@ -242,7 +248,9 @@ theorem chosenLabelWeight_iso_invariant (weight : Ind → ℤ)
   exact ⟨(T.chosenDecompositionIso X).symm.trans
     (e.trans (T.chosenDecompositionIso Y))⟩
 
-/-- Chosen label weight is additive under binary biproducts.-/
+/-- Chosen label weight is additive under binary biproducts.
+@isnad1 id=eq.0h6v.s6.e46eb1edba29 from=translated src=- shape=eef6aaa0 vocab=a8eab1a7
+-/
 theorem chosenLabelWeight_biprod_additive (weight : Ind → ℤ)
     (X Y : C) :
     T.chosenLabelWeight weight (biprod X Y) =
@@ -290,6 +298,9 @@ noncomputable def additiveObjectWeightOfLabelWeight
   iso_invariant := T.chosenLabelWeight_iso_invariant weight
   biprod_additive := T.chosenLabelWeight_biprod_additive weight
 
+/--
+@isnad1 id=eq.0h5v.s6.631ebbdec9e1 from=translated src=- shape=0a501c51 vocab=cd4d4c7e
+-/
 @[simp]
 theorem additiveObjectWeightOfLabelWeight_obj
     (weight : Ind → ℤ) (A : Ind) :

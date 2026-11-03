@@ -81,7 +81,9 @@ def data (rows cols : ℕ) :
   tau := translationEquiv rows cols
 
 /-- Away from the outgoing boundary, successor is literal simultaneous
-addition by two.-/
+addition by two.
+@isnad1 id=eq.1h3v.s5.b5b904da68a8 from=translated src=- shape=f8fb8d86 vocab=c7942d97
+-/
 theorem successor_eq_addTwo
     {rows cols : ℕ} (p : Grid rows cols) (hp : ¬ Outgoing p) :
     (data rows cols).successor p = addTwo p hp := by
@@ -96,7 +98,9 @@ noncomputable instance outgoingFintype (rows cols : ℕ) :
     Fintype {p : Grid rows cols // Outgoing p} := Fintype.ofFinite _
 
 /-- Every weight invariant under the interior square shift has equal total
-weight on the incoming and outgoing grid boundaries.-/
+weight on the incoming and outgoing grid boundaries.
+@isnad1 id=eq.1h4v.s7.5cddeecf75b7 from=translated src=- shape=4253a384 vocab=e2948e8d
+-/
 theorem sum_incoming_eq_sum_outgoing
     {rows cols : ℕ} {A : Type*} [AddCommMonoid A]
     (weight : Grid rows cols → A)
@@ -112,7 +116,9 @@ theorem sum_incoming_eq_sum_outgoing
 
 /-- Indicator form of square-shift conservation.  If equality of two
 labelled sequences is unchanged by advancing both indices by two, then the
-number of equality positions on the two grid boundaries agrees.-/
+number of equality positions on the two grid boundaries agrees.
+@isnad1 id=eq.1h5v.s8.7995b4f43900 from=translated src=- shape=25017ea2 vocab=f2946164
+-/
 theorem sum_equalityIndicators_incoming_eq_outgoing
     {rows cols : ℕ} {Label : Type*} [DecidableEq Label]
     (x : Fin rows → Label) (y : Fin cols → Label)

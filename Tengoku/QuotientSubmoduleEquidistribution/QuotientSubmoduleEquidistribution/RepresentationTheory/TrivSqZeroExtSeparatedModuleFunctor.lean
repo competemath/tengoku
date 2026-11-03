@@ -92,6 +92,9 @@ def moduleSeparatedDataFunctor :
     · ext x
       exact LinearMap.congr_fun (radicalMap_comp g.hom f.hom) x
 
+/--
+@isnad1 id=additive.0h2v.s7.503ebc680432 from=translated src=- shape=aef28c6b vocab=6001f06e
+-/
 instance moduleSeparatedDataFunctor_additive :
     (moduleSeparatedDataFunctor (S := S) (J := J)).Additive where
   map_add := by
@@ -112,7 +115,9 @@ instance moduleSeparatedDataFunctor_additive :
       rfl
 
 /-- Every action-compatible pair of maps on the separated data lifts to a
-module homomorphism.-/
+module homomorphism.
+@isnad1 id=full.0h2v.s7.b8b6ad0994cf from=translated src=- shape=aef28c6b vocab=3237e20a
+-/
 instance moduleSeparatedDataFunctor_full :
     (moduleSeparatedDataFunctor (S := S) (J := J)).Full where
   map_surjective := by
@@ -243,7 +248,9 @@ instance moduleSeparatedDataFunctor_full :
       have h := congrArg (fun q ↦ q.val.1) hf
       exact LinearMap.congr_fun h x
 
-/-- The Hom-kernel of the module-to-separated-data functor is square-zero.-/
+/-- The Hom-kernel of the module-to-separated-data functor is square-zero.
+@isnad1 id=functork.0h2v.s7.72d8e4891389 from=translated src=- shape=aef28c6b vocab=ff8c1e8b
+-/
 theorem moduleSeparatedDataFunctor_kernelSquareZero :
     QuotientSubmoduleEquidistribution.CategoryTheory.IdempotentLifting.FunctorKernelSquareZero
       (moduleSeparatedDataFunctor (S := S) (J := J)) := by

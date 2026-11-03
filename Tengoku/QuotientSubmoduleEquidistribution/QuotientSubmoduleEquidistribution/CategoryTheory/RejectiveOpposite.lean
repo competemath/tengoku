@@ -96,7 +96,9 @@ def RightRejectiveData.ofLeftOpposite
     exact mono_comp' hi hadj
 
 /-- A left-rejective full subcategory becomes right rejective after passing to
-the opposite category.-/
+the opposite category.
+@isnad1 id=isrightr.1h2v.s4.7971e98077d1 from=translated src=- shape=0e55d25a vocab=37e62243
+-/
 theorem isRightRejective_op_of_isLeftRejective
     {P : ObjectProperty C}
     (h : IsLeftRejective P) :
@@ -167,7 +169,9 @@ def LeftRejectiveData.ofRightOpposite
     exact epi_comp' hadj hi
 
 /-- A right-rejective full subcategory becomes left rejective after passing to
-the opposite category.-/
+the opposite category.
+@isnad1 id=isleftre.1h2v.s4.c0d72b1e3f99 from=translated src=- shape=0e55d25a vocab=37e62243
+-/
 theorem isLeftRejective_op_of_isRightRejective
     {P : ObjectProperty C}
     (h : IsRightRejective P) :

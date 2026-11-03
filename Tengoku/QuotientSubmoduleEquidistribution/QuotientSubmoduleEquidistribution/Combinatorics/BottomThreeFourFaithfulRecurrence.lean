@@ -44,7 +44,9 @@ abbrev faithfulSCount (b : B) (n : ℕ) : ℕ :=
 /-- At a fixed level, equal minimal-core sizes reduce the connected faithful
 comparison exactly to the genuinely exceptional case in which the common
 core size is strictly smaller than the level.  The maintained annihilator
-induction theorem then proves both total and faithful equality.-/
+induction theorem then proves both total and faithful equality.
+@isnad1 id=and.6h14v.s9.0fd405fc0abe from=translated src=- shape=b644dfca vocab=e2ba7ac1
+-/
 theorem total_and_faithful_eq_at_level_of_core_control
     (n : ℕ)
     (hfactorSmaller :
@@ -148,7 +150,9 @@ structure ThreeFourCoreRecurrenceData where
 /-- Simultaneous repaired bottom-level endpoint.  Under precisely the
 minimal-core, exceptional faithful, annihilator recurrence, and block-product
 inputs above, both total and faithful counts agree at levels three and four.
-No shape classification occurs in the proof.-/
+No shape classification occurs in the proof.
+@isnad1 id=and.1h13v.s7.7a046b23e040 from=translated src=- shape=854de807 vocab=f76a648e
+-/
 theorem total_and_faithful_eq_three_and_four
     (D : ThreeFourCoreRecurrenceData Index cQ cS FaithfulQ FaithfulS
       QCore SCore measure ProperFactor factor Connected)
@@ -280,7 +284,9 @@ theorem total_and_faithful_eq_three_and_four
           ⟨⟨htotal.1, hfaithfulThree⟩,
             ⟨htotal.2, hfaithfulFour⟩⟩
 
-/-- Coefficient-only form of the repaired endpoint.-/
+/-- Coefficient-only form of the repaired endpoint.
+@isnad1 id=and.1h13v.s7.3a8d4b23c212 from=translated src=- shape=3f7b746d vocab=86c85737
+-/
 theorem levelCount_three_and_four_eq
     (D : ThreeFourCoreRecurrenceData Index cQ cS FaithfulQ FaithfulS
       QCore SCore measure ProperFactor factor Connected)

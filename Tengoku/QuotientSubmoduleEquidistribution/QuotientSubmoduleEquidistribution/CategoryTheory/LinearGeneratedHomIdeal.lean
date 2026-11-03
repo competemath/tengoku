@@ -71,6 +71,9 @@ def linearSpan
     | smul k f _ hf =>
         simpa using (generatedHomSubmodule 𝕜 R X Z).smul_mem k hf
 
+/--
+@isnad1 id=eq.0h5v.s6.da4d41980386 from=translated src=- shape=0eab0223 vocab=6e538b42
+-/
 @[simp]
 theorem linearSpan_hom
     (R : ∀ X Y : C, Set (X ⟶ Y)) (X Y : C) :
@@ -78,7 +81,9 @@ theorem linearSpan_hom
       (generatedHomSubmodule K R X Y).toAddSubgroup :=
   rfl
 
-/-- Every specified relation belongs to its generated Hom ideal.-/
+/-- Every specified relation belongs to its generated Hom ideal.
+@isnad1 id=mem.1h6v.s7.dd4afec9c355 from=translated src=- shape=89576457 vocab=0d00a7ed
+-/
 theorem relation_mem_linearSpan
     (R : ∀ X Y : C, Set (X ⟶ Y))
     {X Y : C} {r : X ⟶ Y} (hr : r ∈ R X Y) :
@@ -86,7 +91,9 @@ theorem relation_mem_linearSpan
   apply Submodule.subset_span
   exact ⟨X, Y, r, hr, 𝟙 X, 𝟙 Y, by simp⟩
 
-/-- Every two-sided composite through a relation belongs to the generated ideal.-/
+/-- Every two-sided composite through a relation belongs to the generated ideal.
+@isnad1 id=mem.1h10v.s7.6379ab54eceb from=translated src=- shape=3cc37263 vocab=5d45cbf4
+-/
 theorem composite_mem_linearSpan
     (R : ∀ X Y : C, Set (X ⟶ Y))
     {X Y A B : C} (a : X ⟶ A) {r : A ⟶ B} (hr : r ∈ R A B)
@@ -95,14 +102,18 @@ theorem composite_mem_linearSpan
   apply Submodule.subset_span
   exact ⟨A, B, r, hr, a, b, rfl⟩
 
-/-- A Hom ideal in a linear category is automatically closed under scalars.-/
+/-- A Hom ideal in a linear category is automatically closed under scalars.
+@isnad1 id=mem.1h7v.s9.8c6e8681c4e5 from=translated src=- shape=0d48efec vocab=3b0b2d17
+-/
 theorem smul_mem
     (I : HomIdeal C) {X Y : C} (k : K) {f : X ⟶ Y}
     (hf : f ∈ I.hom X Y) :
     k • f ∈ I.hom X Y := by
   simpa using I.precomp (k • 𝟙 X) hf
 
-/-- Minimality of the linearly generated Hom ideal.-/
+/-- Minimality of the linearly generated Hom ideal.
+@isnad1 id=mem.2h7v.s8.cd872e4708ce from=translated src=- shape=0cb4f25a vocab=04749d11
+-/
 theorem linearSpan_le
     (R : ∀ X Y : C, Set (X ⟶ Y)) (I : HomIdeal C)
     (hR : ∀ {X Y : C} {r : X ⟶ Y}, r ∈ R X Y → r ∈ I.hom X Y) :
@@ -118,7 +129,9 @@ theorem linearSpan_le
   | add f g _ _ hf hg => exact (I.hom X Y).add_mem hf hg
   | smul k f _ hf => exact I.smul_mem k hf
 
-/-- Universal property of the generated ideal.-/
+/-- Universal property of the generated ideal.
+@isnad1 id=iff.0h4v.s8.7d62853eab29 from=translated src=- shape=a667d377 vocab=04749d11
+-/
 theorem linearSpan_le_iff
     (R : ∀ X Y : C, Set (X ⟶ Y)) (I : HomIdeal C) :
     (∀ {X Y : C} {f : X ⟶ Y},
@@ -129,7 +142,9 @@ theorem linearSpan_le_iff
     exact h (relation_mem_linearSpan R hr)
   · exact linearSpan_le R I
 
-/-- Congruence modulo a Hom ideal is compatible with scalar multiplication.-/
+/-- Congruence modulo a Hom ideal is compatible with scalar multiplication.
+@isnad1 id=rel.0h9v.s9.70e2a9b00b56 from=translated src=- shape=7d1d3452 vocab=3c25a19d
+-/
 theorem rel_smul_compatible
     (I : HomIdeal C) (k : K) {X Y : C} (f g : X ⟶ Y)
     (hfg : I.rel f g) :

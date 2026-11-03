@@ -44,6 +44,9 @@ def normalCarrierLinearEquiv (D : FiniteB1Rep K)
   change (NormalV₁ D F × NormalV₂ D F) ≃ₗ[K] (D.V₁ × D.V₂)
   exact (normalV₁Equiv D F).prodCongr (normalV₂Equiv D F)
 
+/--
+@isnad1 id=eq.0h4v.s10.d999adc91217 from=translated src=- shape=023349dd vocab=8e57fc94
+-/
 theorem normalCarrierLinearEquiv_e1 (D : FiniteB1Rep K)
     (F : SplittingFlag K D)
     (v : FiniteB1Rep.Carrier K (normalRep D F)) :
@@ -55,6 +58,9 @@ theorem normalCarrierLinearEquiv_e1 (D : FiniteB1Rep K)
   · change normalV₂Equiv D F 0 = 0
     rw [map_zero]
 
+/--
+@isnad1 id=eq.0h4v.s10.16623f273d76 from=translated src=- shape=023349dd vocab=051c0e77
+-/
 theorem normalCarrierLinearEquiv_e2 (D : FiniteB1Rep K)
     (F : SplittingFlag K D)
     (v : FiniteB1Rep.Carrier K (normalRep D F)) :
@@ -66,6 +72,9 @@ theorem normalCarrierLinearEquiv_e2 (D : FiniteB1Rep K)
     rw [map_zero]
   · rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.c9525345a762 from=translated src=- shape=023349dd vocab=7f2acdf4
+-/
 theorem normalCarrierLinearEquiv_x (D : FiniteB1Rep K)
     (F : SplittingFlag K D)
     (v : FiniteB1Rep.Carrier K (normalRep D F)) :

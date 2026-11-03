@@ -83,7 +83,9 @@ def rootedBadCofiniteInput_of_groupedTopPartMatching
   bad_rooted_card_eq := bad_rooted_card_eq
 
 /-- Paper-facing colevel equality after the grouped rooted count has been
-eliminated.-/
+eliminated.
+@isnad1 id=eq.4h11v.s7.d3e67139fd86 from=translated src=- shape=c771616d vocab=e2f4a448
+-/
 theorem levelCount_card_sub_eq_of_groupedTopPartMatching
     (qClosure sClosure : SetClosure E)
     (qEdge sEdge : E → E → Prop)

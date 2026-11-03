@@ -40,7 +40,9 @@ def IsWeakKernel (S : ShortComplex D) : Prop :=
 def IsWeakCokernel (S : ShortComplex D) : Prop :=
   IsWeakKernel S.op
 
-/-- Factorization form of the weak-kernel condition.-/
+/-- Factorization form of the weak-kernel condition.
+@isnad1 id=iff.0h2v.s7.b87c72be2d34 from=translated src=- shape=67b1cd70 vocab=0a1c2734
+-/
 theorem isWeakKernel_iff (S : ShortComplex D) :
     IsWeakKernel S ↔
       ∀ {W : D} (k : W ⟶ S.X₂), k ≫ S.g = 0 →
@@ -60,6 +62,9 @@ def IsWeakKernel.lift {S : ShortComplex D} (hS : IsWeakKernel S)
     {W : D} (k : W ⟶ S.X₂) (hk : k ≫ S.g = 0) : W ⟶ S.X₁ :=
   Classical.choose ((isWeakKernel_iff S).mp hS k hk)
 
+/--
+@isnad1 id=eq.2h4v.s7.3d5a29eee699 from=translated src=- shape=d743c739 vocab=b704d62d
+-/
 @[reassoc]
 theorem IsWeakKernel.lift_f {S : ShortComplex D} (hS : IsWeakKernel S)
     {W : D} (k : W ⟶ S.X₂) (hk : k ≫ S.g = 0) :
@@ -67,7 +72,9 @@ theorem IsWeakKernel.lift_f {S : ShortComplex D} (hS : IsWeakKernel S)
   Classical.choose_spec ((isWeakKernel_iff S).mp hS k hk)
 
 /-- Evaluating a weak kernel against any source object gives an exact pair
-of postcomposition maps.-/
+of postcomposition maps.
+@isnad1 id=exact.1h3v.s7.1724c4bbee1c from=translated src=- shape=7b9e237d vocab=ded89162
+-/
 theorem IsWeakKernel.exact_postcomp {S : ShortComplex D}
     (hS : IsWeakKernel S) (W : D) :
     Function.Exact
@@ -83,7 +90,9 @@ theorem IsWeakKernel.exact_postcomp {S : ShortComplex D}
     rw [Category.assoc, S.zero, comp_zero]
 
 /-- Factorization form of the weak-cokernel condition, transported back from
-the opposite category.-/
+the opposite category.
+@isnad1 id=iff.0h2v.s7.bd2a8132255a from=translated src=- shape=10abdf2e vocab=5524e1a6
+-/
 theorem isWeakCokernel_iff (S : ShortComplex D) :
     IsWeakCokernel S ↔
       ∀ {W : D} (k : S.X₂ ⟶ W), S.f ≫ k = 0 →
@@ -109,7 +118,9 @@ theorem isWeakCokernel_iff (S : ShortComplex D) :
         congrArg Quiver.Hom.op hl⟩
 
 /-- The weak-kernel predicate is preserved by isomorphisms of short
-complexes.-/
+complexes.
+@isnad1 id=isweakke.1h4v.s5.84861f81afef from=translated src=- shape=f953a2de vocab=415f78ac
+-/
 theorem IsWeakKernel.of_iso {S T : ShortComplex D}
     (hS : IsWeakKernel S) (e : S ≅ T) : IsWeakKernel T := by
   rw [isWeakKernel_iff]
@@ -131,7 +142,9 @@ theorem IsWeakKernel.of_iso {S T : ShortComplex D}
       rw [he, Category.comp_id]
 
 /-- The weak-cokernel predicate is preserved by isomorphisms of short
-complexes.-/
+complexes.
+@isnad1 id=isweakco.1h4v.s5.80fd384524f1 from=translated src=- shape=f953a2de vocab=430cc2ad
+-/
 theorem IsWeakCokernel.of_iso {S T : ShortComplex D}
     (hS : IsWeakCokernel S) (e : S ≅ T) : IsWeakCokernel T := by
   rw [isWeakCokernel_iff]
@@ -154,7 +167,9 @@ theorem IsWeakCokernel.of_iso {S T : ShortComplex D}
       rw [he, Category.id_comp]
 
 /-- Evaluating a weak cokernel against any target object gives an exact pair
-of precomposition maps.-/
+of precomposition maps.
+@isnad1 id=exact.1h3v.s7.c2bdf57260a5 from=translated src=- shape=a399a10b vocab=dd23effc
+-/
 theorem IsWeakCokernel.exact_precomp {S : ShortComplex D}
     (hS : IsWeakCokernel S) (W : D) :
     Function.Exact
@@ -223,7 +238,9 @@ structure LeftTauSequence (S : ShortComplex C) : Prop
 namespace TauApproximation
 
 /-- The first map of a tau-approximation remains radical after transporting
-the short complex along an isomorphism.-/
+the short complex along an isomorphism.
+@isnad1 id=isradica.1h4v.s6.825ae138d5d0 from=translated src=- shape=66d4a5f2 vocab=ad27b94d
+-/
 theorem f_radical_of_iso {S T : ShortComplex C}
     (hS : TauApproximation S) (e : S ≅ T) :
     IsRadicalMorphism T.f := by
@@ -246,7 +263,9 @@ theorem f_radical_of_iso {S T : ShortComplex C}
       (isRadicalMorphism_precomp e.inv.τ₁ hS.f_radical)
 
 /-- The second map of a tau-approximation remains radical after transporting
-the short complex along an isomorphism.-/
+the short complex along an isomorphism.
+@isnad1 id=isradica.1h4v.s6.812eaf1615a0 from=translated src=- shape=66d4a5f2 vocab=46bb4d0d
+-/
 theorem g_radical_of_iso {S T : ShortComplex C}
     (hS : TauApproximation S) (e : S ≅ T) :
     IsRadicalMorphism T.g := by
@@ -273,7 +292,9 @@ end TauApproximation
 namespace RightTauSequence
 
 /-- If the left term of a right tau-sequence is nonzero, then its middle
-term is nonzero.  In fact, only right minimality of the first map is used.-/
+term is nonzero.  In fact, only right minimality of the first map is used.
+@isnad1 id=not.2h2v.s5.68a06fc1a508 from=translated src=- shape=0821a3ce vocab=6140b5a0
+-/
 theorem not_isZero_X₂_of_not_isZero_X₁
     {S : ShortComplex C} (hS : RightTauSequence S)
     (hleft : ¬ IsZero S.X₁) :
@@ -302,7 +323,9 @@ private theorem isIso_of_sub_id_radical
 
 /-- In a right tau-sequence, the second map is automatically right minimal.
 The weak-kernel and radical conditions rule out a redundant middle-term
-summand.-/
+summand.
+@isnad1 id=isrightm.1h2v.s5.5e3bd142705a from=translated src=- shape=58ea2427 vocab=2d087e4e
+-/
 theorem isRightMinimal_g {S : ShortComplex C}
     (hS : RightTauSequence S) :
     IsRightMinimal S.g := by
@@ -317,7 +340,9 @@ theorem isRightMinimal_g {S : ShortComplex C}
   exact isRadicalMorphism_precomp l hS.f_radical
 
 /-- Two right tau-sequences with isomorphic right endpoints are isomorphic
-as short complexes.-/
+as short complexes.
+@isnad1 id=nonempty.2h4v.s6.ee0122c18de0 from=translated src=- shape=e974d863 vocab=1084b852
+-/
 theorem nonempty_iso_of_iso_X₃
     {S T : ShortComplex C}
     (hS : RightTauSequence S) (hT : RightTauSequence T)
@@ -383,7 +408,9 @@ theorem nonempty_iso_of_iso_X₃
   exact ⟨ShortComplex.isoMk (asIso p) e₂ e₃ hp ha⟩
 
 /-- The contravariant representable complex of a right tau-sequence is exact
-at its middle term.-/
+at its middle term.
+@isnad1 id=exact.1h3v.s7.832a5139012d from=translated src=- shape=7b9e237d vocab=56aa1802
+-/
 theorem exact_postcomp {S : ShortComplex C} (hS : RightTauSequence S)
     (W : C) :
     Function.Exact
@@ -408,7 +435,9 @@ private theorem isIso_of_sub_id_radical
 
 /-- In a left tau-sequence, the first map is automatically left minimal.
 The weak-cokernel and radical conditions rule out a redundant middle-term
-summand.-/
+summand.
+@isnad1 id=isleftmi.1h2v.s5.f90aa838cd58 from=translated src=- shape=58ea2427 vocab=4c5fa4eb
+-/
 theorem isLeftMinimal_f {S : ShortComplex C}
     (hS : LeftTauSequence S) :
     IsLeftMinimal S.f := by
@@ -423,7 +452,9 @@ theorem isLeftMinimal_f {S : ShortComplex C}
   exact isRadicalMorphism_postcomp l hS.g_radical
 
 /-- Two left tau-sequences with isomorphic left endpoints are isomorphic
-as short complexes.-/
+as short complexes.
+@isnad1 id=nonempty.2h4v.s6.73f6ea35bae7 from=translated src=- shape=e974d863 vocab=91c6b094
+-/
 theorem nonempty_iso_of_iso_X₁
     {S T : ShortComplex C}
     (hS : LeftTauSequence S) (hT : LeftTauSequence T)
@@ -497,7 +528,9 @@ theorem nonempty_iso_of_iso_X₁
     (by rw [he₂]; exact hr.symm)⟩
 
 /-- The covariant representable complex of a left tau-sequence is exact at
-its middle term.-/
+its middle term.
+@isnad1 id=exact.1h3v.s7.516612dc0e6c from=translated src=- shape=a399a10b vocab=4015962b
+-/
 theorem exact_precomp {S : ShortComplex C} (hS : LeftTauSequence S)
     (W : C) :
     Function.Exact

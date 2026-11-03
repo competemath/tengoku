@@ -106,6 +106,9 @@ instance : SMulCommClass (V → K) (V → K)ᵐᵒᵖ
 
 omit [Fintype V] [DecidableEq V] [∀ i j : V, Fintype (i ⟶ j)]
     [∀ i j : V, DecidableEq (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h7v.s6.d64f344703e3 from=translated src=- shape=9b4cd79a vocab=03ee1e2b
+-/
 @[simp]
 theorem target_smul_apply (s : V → K) (a : ArrowBimodule K V)
     (i j : V) (e : i ⟶ j) :
@@ -113,6 +116,9 @@ theorem target_smul_apply (s : V → K) (a : ArrowBimodule K V)
 
 omit [Fintype V] [DecidableEq V] [∀ i j : V, Fintype (i ⟶ j)]
     [∀ i j : V, DecidableEq (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h7v.s6.d44078dc3c3c from=translated src=- shape=b2e8c152 vocab=aab3e03d
+-/
 @[simp]
 theorem source_smul_apply (a : ArrowBimodule K V) (s : V → K)
     (i j : V) (e : i ⟶ j) :
@@ -123,12 +129,18 @@ def singleArrow {i j : V} (e : i ⟶ j) : ArrowBimodule K V :=
   Pi.single i (Pi.single j (Pi.single e 1))
 
 omit [Fintype V] [∀ i j : V, Fintype (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h5v.s6.743a8d086787 from=translated src=- shape=11ecbd07 vocab=5a527313
+-/
 @[simp]
 theorem singleArrow_apply_self {i j : V} (e : i ⟶ j) :
     singleArrow K V e i j e = 1 := by
   simp [singleArrow]
 
 omit [Fintype V] [∀ i j : V, Fintype (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h5v.s6.1514c054b787 from=translated src=- shape=a7e4bb34 vocab=f6ec97f6
+-/
 @[simp]
 theorem coordinateIdempotent_target_smul_singleArrow
     {i j : V} (e : i ⟶ j) :
@@ -147,6 +159,9 @@ theorem coordinateIdempotent_target_smul_singleArrow
   · simp [singleArrow, hi]
 
 omit [Fintype V] [∀ i j : V, Fintype (i ⟶ j)] in
+/--
+@isnad1 id=eq.1h6v.s7.733eaad346e9 from=translated src=- shape=14b86504 vocab=f6ec97f6
+-/
 theorem coordinateIdempotent_target_smul_singleArrow_eq_zero
     {i j k : V} (e : i ⟶ j) (h : k ≠ j) :
     PiRingModule.coordinateIdempotent K V k • singleArrow K V e = 0 := by
@@ -160,6 +175,9 @@ theorem coordinateIdempotent_target_smul_singleArrow_eq_zero
   · simp [singleArrow, hi]
 
 omit [Fintype V] [∀ i j : V, Fintype (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h5v.s6.07ec9a0c3aed from=translated src=- shape=7266e1f3 vocab=9cc27c02
+-/
 @[simp]
 theorem singleArrow_source_smul_coordinateIdempotent
     {i j : V} (e : i ⟶ j) :
@@ -178,6 +196,9 @@ theorem singleArrow_source_smul_coordinateIdempotent
   · simp [PiRingModule.coordinateIdempotent, singleArrow, hi]
 
 omit [Fintype V] [∀ i j : V, Fintype (i ⟶ j)] in
+/--
+@isnad1 id=eq.1h6v.s7.2ce7f67bfee8 from=translated src=- shape=2621447c vocab=9cc27c02
+-/
 theorem singleArrow_source_smul_coordinateIdempotent_eq_zero
     {i j k : V} (e : i ⟶ j) (h : k ≠ i) :
     singleArrow K V e <• PiRingModule.coordinateIdempotent K V k = 0 := by
@@ -188,6 +209,9 @@ theorem singleArrow_source_smul_coordinateIdempotent_eq_zero
   · simp [PiRingModule.coordinateIdempotent, singleArrow, hi]
 
 omit [Fintype V] [∀ i j : V, Fintype (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h6v.s6.6a1a0de47884 from=translated src=- shape=98eff9a1 vocab=d43691fb
+-/
 theorem singleArrow_source_constant_eq_target_constant
     {i j : V} (e : i ⟶ j) (k : K) :
     singleArrow K V e <• (fun _ : V ↦ k) =
@@ -198,7 +222,9 @@ theorem singleArrow_source_constant_eq_target_constant
   exact mul_comm _ _
 
 /-- Restricting an arrow vector to one source coordinate is its finite
-expansion in the arrow basis with that source.-/
+expansion in the arrow basis with that source.
+@isnad1 id=eq.0h4v.s8.1aa3cf9ba2e8 from=translated src=- shape=0cb241ac vocab=f695ae5b
+-/
 theorem sourceSlice_eq_sum
     (a : ArrowBimodule K V) (i : V) :
     a <• PiRingModule.coordinateIdempotent K V i =
@@ -238,6 +264,9 @@ def aggregateAction
     PiRingModule.Total K V D.minus :=
   fun j ↦ ∑ i : V, ∑ e : i ⟶ j, a i j e • D.arrow e (t i)
 
+/--
+@isnad1 id=eq.0h7v.s9.92c1997904b5 from=translated src=- shape=e4edc73d vocab=f92ce673
+-/
 @[simp]
 theorem aggregateAction_singleArrow_singleTop
     (D : RepresentationData.{uK, uV, v, w} K V)
@@ -267,6 +296,9 @@ theorem aggregateAction_singleArrow_singleTop
     · simp [singleArrow, hi']
 
 omit [DecidableEq V] [∀ i j : V, DecidableEq (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h6v.s8.69365e8ed198 from=translated src=- shape=2c1ff385 vocab=6efc2484
+-/
 @[simp]
 theorem aggregateAction_add_arrow
     (D : RepresentationData.{uK, uV, v, w} K V)
@@ -281,6 +313,9 @@ theorem aggregateAction_add_arrow
   simp only [add_smul, Finset.sum_add_distrib]
 
 omit [DecidableEq V] [∀ i j : V, DecidableEq (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h6v.s8.6f3d90abcbbd from=translated src=- shape=c2a84043 vocab=6efc2484
+-/
 @[simp]
 theorem aggregateAction_add_top
     (D : RepresentationData.{uK, uV, v, w} K V)
@@ -316,6 +351,9 @@ def aggregateActionHom
     exact aggregateAction_add_arrow K V D a b t
 
 omit [DecidableEq V] [∀ i j : V, DecidableEq (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h6v.s13.b08257544c35 from=translated src=- shape=526bd6da vocab=6f76fb50
+-/
 theorem aggregateAction_left_smul
     (D : RepresentationData.{uK, uV, v, w} K V)
     (s : V → K) (a : ArrowBimodule K V)
@@ -330,6 +368,9 @@ theorem aggregateAction_left_smul
   simp only [mul_smul, Finset.smul_sum]
 
 omit [DecidableEq V] [∀ i j : V, DecidableEq (i ⟶ j)] in
+/--
+@isnad1 id=eq.0h6v.s13.b68d1893dbcb from=translated src=- shape=533897d4 vocab=6d8b3602
+-/
 theorem aggregateAction_right_smul
     (D : RepresentationData.{uK, uV, v, w} K V)
     (a : ArrowBimodule K V) (s : V → K)

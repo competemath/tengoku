@@ -57,6 +57,9 @@ noncomputable def simplePart
   (setPartsEquiv S).2
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s5.4edcdc11fd83 from=translated src=- shape=7fd65f99 vocab=a8976943
+-/
 @[simp]
 theorem mem_nonsimplePart_iff
     (S : Set (Nonsimple ⊕ Vertex)) (y : Nonsimple) :
@@ -66,6 +69,9 @@ theorem mem_nonsimplePart_iff
     (Fintype.finsetEquivSet.apply_symm_apply S) _
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s5.e104c4821ef5 from=translated src=- shape=de187216 vocab=db0b94fd
+-/
 @[simp]
 theorem mem_simplePart_iff
     (S : Set (Nonsimple ⊕ Vertex)) (v : Vertex) :
@@ -75,6 +81,9 @@ theorem mem_simplePart_iff
     (Fintype.finsetEquivSet.apply_symm_apply S) _
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=and.0h4v.s7.9a35fb3aa2ea from=translated src=- shape=38f517b4 vocab=47305f45
+-/
 @[simp]
 theorem setPartsEquiv_symm_parts
     (S₀ : Finset Nonsimple) (S₁ : Finset Vertex) :
@@ -83,7 +92,9 @@ theorem setPartsEquiv_symm_parts
   simp [nonsimplePart, simplePart]
 
 omit [DecidableEq Vertex] in
-/-- Cardinality is additive across the nonsimple/simple split.-/
+/-- Cardinality is additive across the nonsimple/simple split.
+@isnad1 id=eq.0h3v.s5.d833fc352949 from=translated src=- shape=245e0e64 vocab=0a297613
+-/
 theorem ncard_eq_card_parts
     (S : Set (Nonsimple ⊕ Vertex)) :
     S.ncard =
@@ -104,7 +115,9 @@ noncomputable def freeVertices
   ((Equiv.finsetSubtypeComm
     (fun v : Vertex ↦ v ∈ Tᶜ)) s).1
 
-/-- Every forgotten free vertex is outside the mandatory support.-/
+/-- Every forgotten free vertex is outside the mandatory support.
+@isnad1 id=not.1h4v.s6.a4d677795df6 from=translated src=- shape=df478dfd vocab=d2f513a7
+-/
 theorem not_mem_of_mem_freeVertices
     (T : Finset Vertex) (s : Finset ↥Tᶜ)
     {v : Vertex} (hv : v ∈ freeVertices T s) :
@@ -114,7 +127,9 @@ theorem not_mem_of_mem_freeVertices
       (fun v : Vertex ↦ v ∈ Tᶜ)) s).property v hv
   simpa using hvcompl
 
-/-- Forgetting subtype proofs is injective on finite choices.-/
+/-- Forgetting subtype proofs is injective on finite choices.
+@isnad1 id=injectiv.0h2v.s5.21279c05f775 from=translated src=- shape=462f63ee vocab=435c805c
+-/
 theorem freeVertices_injective
     (T : Finset Vertex) :
     Function.Injective (freeVertices T) := by
@@ -125,7 +140,9 @@ theorem freeVertices_injective
   exact Subtype.ext h
 
 /-- Forgetting subtype proofs preserves the number of chosen
-vertices.-/
+vertices.
+@isnad1 id=eq.0h3v.s6.a2be9e8d831d from=translated src=- shape=6b7a9050 vocab=881597b3
+-/
 theorem card_freeVertices
     (T : Finset Vertex) (s : Finset ↥Tᶜ) :
     (freeVertices T s).card = s.card := by
@@ -168,7 +185,9 @@ noncomputable def decoratedSet
 
 omit [Fintype Core] in
 /-- Every decorated set satisfies the top-coverage closedness
-criterion.-/
+criterion.
+@isnad1 id=isclosed.0h7v.s6.90cc62f7a3d3 from=translated src=- shape=d04c5a1c vocab=03f4681a
+-/
 theorem isClosed_decoratedSet
     (w : Σ x : Core, F.AChoice x) :
     cl.IsClosed (D.decoratedSet w) := by
@@ -186,7 +205,9 @@ omit [Fintype Core] in
 /-- Different decorations give different closed sets.  Uniqueness of
 the core comes from its nonsimple support; after the core is fixed,
 union with the mandatory support can be cancelled because every free
-vertex lies in its complement.-/
+vertex lies in its complement.
+@isnad1 id=injectiv.0h6v.s6.6c9c504a7c74 from=translated src=- shape=e9132f36 vocab=c18c3359
+-/
 theorem decoratedClosed_injective :
     Function.Injective D.decoratedClosed := by
   rintro ⟨x, s⟩ ⟨y, t⟩ h
@@ -239,7 +260,9 @@ theorem decoratedClosed_injective :
 
 omit [Fintype Core] in
 /-- Every closed set is represented by a decoration.  Its optional
-choice is its simple part with the mandatory top support removed.-/
+choice is its simple part with the mandatory top support removed.
+@isnad1 id=surjecti.0h6v.s6.7f92e0f228b8 from=translated src=- shape=e9132f36 vocab=eb976227
+-/
 theorem decoratedClosed_surjective :
     Function.Surjective D.decoratedClosed := by
   intro C
@@ -306,7 +329,9 @@ noncomputable def decoratedClosedEquiv :
 
 omit [Fintype Core] in
 /-- The represented closed set has precisely its combinatorial
-`aWeight`.-/
+`aWeight`.
+@isnad1 id=eq.0h7v.s7.13a8b85914d7 from=translated src=- shape=83acff18 vocab=fadeaba1
+-/
 theorem ncard_decoratedClosed
     (w : Σ x : Core, F.AChoice x) :
     (((D.decoratedClosed w : cl.Closeds) :
@@ -363,7 +388,9 @@ noncomputable def toAClosedParametrization :
 include D
 
 /-- Polynomial consequence of the generic top-coverage
-characterization.-/
+characterization.
+@isnad1 id=eq.0h6v.s5.29ffafe63a3a from=translated src=- shape=c7c944bb vocab=23a118f7
+-/
 theorem levelPolynomial_eq_aEnumerator :
     cl.levelPolynomial = F.aEnumerator :=
   AClosedParametrization.levelPolynomial_eq_aEnumerator
@@ -404,6 +431,9 @@ noncomputable def bFreeSimplePart
   (tripleSetPartsEquiv S).2.2
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s5.f18925fc74d3 from=translated src=- shape=8e22d9b2 vocab=94319ff2
+-/
 @[simp]
 theorem mem_bNonsimplePart_iff
     (S : Set (Nonsimple ⊕ (Vertex ⊕ Vertex)))
@@ -414,6 +444,9 @@ theorem mem_bNonsimplePart_iff
     (Fintype.finsetEquivSet.apply_symm_apply S) _
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s6.1fd9f79eb22c from=translated src=- shape=ab6c8686 vocab=d459e7ca
+-/
 @[simp]
 theorem mem_bCoveredSimplePart_iff
     (S : Set (Nonsimple ⊕ (Vertex ⊕ Vertex)))
@@ -425,6 +458,9 @@ theorem mem_bCoveredSimplePart_iff
     (Fintype.finsetEquivSet.apply_symm_apply S) _
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=iff.0h4v.s6.f8d378e0545c from=translated src=- shape=ab6c8686 vocab=a98d66c5
+-/
 @[simp]
 theorem mem_bFreeSimplePart_iff
     (S : Set (Nonsimple ⊕ (Vertex ⊕ Vertex)))
@@ -436,6 +472,9 @@ theorem mem_bFreeSimplePart_iff
     (Fintype.finsetEquivSet.apply_symm_apply S) _
 
 omit [DecidableEq Vertex] in
+/--
+@isnad1 id=and.0h5v.s8.e94972a5e0ea from=translated src=- shape=642f228f vocab=ccb92232
+-/
 @[simp]
 theorem tripleSetPartsEquiv_symm_parts
     (S₀ : Finset Nonsimple)
@@ -453,7 +492,9 @@ theorem tripleSetPartsEquiv_symm_parts
     bFreeSimplePart]
 
 omit [DecidableEq Vertex] in
-/-- Cardinality is additive across all three separated-side parts.-/
+/-- Cardinality is additive across all three separated-side parts.
+@isnad1 id=eq.0h3v.s6.50b1e3a0f715 from=translated src=- shape=077ccf5b vocab=446eb6b2
+-/
 theorem ncard_eq_card_tripleParts
     (S : Set (Nonsimple ⊕ (Vertex ⊕ Vertex))) :
     S.ncard =
@@ -518,7 +559,9 @@ noncomputable def decoratedSet
         w.2.2))
 
 omit [Fintype Core] in
-/-- Every separated-side decoration is closed by top coverage.-/
+/-- Every separated-side decoration is closed by top coverage.
+@isnad1 id=isclosed.0h7v.s6.2fca01d51abe from=translated src=- shape=79eb0c76 vocab=f78b850c
+-/
 theorem isClosed_decoratedSet
     (w : Σ x : Core, F.BChoice x) :
     cl.IsClosed (D.decoratedSet w) := by
@@ -533,7 +576,9 @@ noncomputable def decoratedClosed
   ⟨D.decoratedSet w, D.isClosed_decoratedSet w⟩
 
 omit [Fintype Core] in
-/-- Different separated-side decorations give different closed sets.-/
+/-- Different separated-side decorations give different closed sets.
+@isnad1 id=injectiv.0h6v.s6.585ca42c3ae2 from=translated src=- shape=03447ee8 vocab=b84ec9da
+-/
 theorem decoratedClosed_injective :
     Function.Injective D.decoratedClosed := by
   rintro ⟨x, ⟨s, u⟩⟩ ⟨y, ⟨t, v⟩⟩ h
@@ -598,7 +643,9 @@ theorem decoratedClosed_injective :
 
 omit [Fintype Core] in
 /-- Every separated-side closed set is represented by a unique core,
-the optional part of its covered copy, and its entire free copy.-/
+the optional part of its covered copy, and its entire free copy.
+@isnad1 id=surjecti.0h6v.s6.1a42d13e376c from=translated src=- shape=03447ee8 vocab=70e9c888
+-/
 theorem decoratedClosed_surjective :
     Function.Surjective D.decoratedClosed := by
   intro C
@@ -690,7 +737,9 @@ noncomputable def decoratedClosedEquiv :
 
 omit [Fintype Core] in
 /-- The represented separated-side closed set has precisely its
-combinatorial `bWeight`.-/
+combinatorial `bWeight`.
+@isnad1 id=eq.0h7v.s7.b8e32722ba1c from=translated src=- shape=067b6983 vocab=ee8dbf36
+-/
 theorem ncard_decoratedClosed
     (w : Σ x : Core, F.BChoice x) :
     (((D.decoratedClosed w : cl.Closeds) :
@@ -750,7 +799,9 @@ noncomputable def toBClosedParametrization :
 include D
 
 /-- Polynomial consequence of the generic two-copy top-coverage
-characterization.-/
+characterization.
+@isnad1 id=eq.0h6v.s5.2ea8086501a3 from=translated src=- shape=779c1ddc vocab=e6ba490c
+-/
 theorem levelPolynomial_eq_bEnumerator :
     cl.levelPolynomial = F.bEnumerator :=
   BClosedParametrization.levelPolynomial_eq_bEnumerator
@@ -759,7 +810,9 @@ theorem levelPolynomial_eq_bEnumerator :
 end BTopCoverageData
 
 /-- The full multiplication identity obtained from top-coverage
-characterizations on two possibly different nonsimple ground types.-/
+characterizations on two possibly different nonsimple ground types.
+@isnad1 id=eq.0h9v.s7.74050a6ae24c from=translated src=- shape=229d569e vocab=ed8522e1
+-/
 theorem levelPolynomial_B_eq_levelPolynomial_A_mul
     {NonsimpleA : Type w₁} {NonsimpleB : Type w₂}
     [Fintype NonsimpleA] [Fintype NonsimpleB]

@@ -28,6 +28,9 @@ def subwordAt
     List B :=
   (positions.sort (· ≤ ·)).map word.get
 
+/--
+@isnad1 id=eq.0h3v.s4.9fae89d62576 from=translated src=- shape=6c42b9b0 vocab=d9d084cb
+-/
 @[simp]
 theorem length_subwordAt
     {B : Type uB}

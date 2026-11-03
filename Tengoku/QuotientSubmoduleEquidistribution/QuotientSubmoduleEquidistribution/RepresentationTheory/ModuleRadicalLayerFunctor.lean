@@ -89,7 +89,9 @@ def radicalLayerFunctor :
     · exact topMap_comp g.hom f.hom
 
 /-- The kernel ideal of the categorical top-and-radical comparison is
-square-zero.-/
+square-zero.
+@isnad1 id=functork.0h1v.s4.161e130ae179 from=translated src=- shape=e716c754 vocab=a1b2d153
+-/
 theorem radicalLayerFunctor_kernelSquareZero :
     QuotientSubmoduleEquidistribution.CategoryTheory.IdempotentLifting.FunctorKernelSquareZero
       (radicalLayerFunctor R) := by

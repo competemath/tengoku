@@ -42,6 +42,9 @@ def dualActionHom :
     ext f x
     simp [Algebra.lsmul_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.d4314eef84ac from=translated src=- shape=b710af8f vocab=489bed2a
+-/
 @[simp]
 theorem dualActionHom_apply
     (r : Rᵐᵒᵖ) (f : Module.Dual K X) (x : X) :
@@ -56,7 +59,9 @@ def dualModule : Module Rᵐᵒᵖ (Module.Dual K X) :=
 attribute [local instance] dualModule
 
 /-- The contragredient action restricts to the original `K`-vector-space
-structure.-/
+structure.
+@isnad1 id=isscalar.0h3v.s9.3d83240739e1 from=translated src=- shape=8bafe6a0 vocab=9557f6c3
+-/
 theorem dualIsScalarTower :
     IsScalarTower K Rᵐᵒᵖ (Module.Dual K X) :=
   IsScalarTower.of_algebraMap_smul fun k f ↦ by
@@ -68,7 +73,9 @@ theorem dualIsScalarTower :
 attribute [local instance] dualIsScalarTower
 
 /-- A finite-dimensional vector-space dual is finitely generated over the
-opposite algebra.-/
+opposite algebra.
+@isnad1 id=finite.0h3v.s8.d315c472bc3e from=translated src=- shape=af74cda2 vocab=1e5bdd4c
+-/
 theorem dual_finite_of_finiteDimensional
     [FiniteDimensional K X] :
     Module.Finite Rᵐᵒᵖ (Module.Dual K X) :=
@@ -93,6 +100,9 @@ def dualMap (g : X →ₗ[R] Y) :
     change f (r.unop • g x) = f (g (r.unop • x))
     rw [g.map_smul]
 
+/--
+@isnad1 id=eq.0h7v.s9.38f5cc342e6f from=translated src=- shape=2bb18ef9 vocab=e4e495da
+-/
 @[simp]
 theorem dualMap_apply (g : X →ₗ[R] Y)
     (f : Module.Dual K Y) (x : X) :

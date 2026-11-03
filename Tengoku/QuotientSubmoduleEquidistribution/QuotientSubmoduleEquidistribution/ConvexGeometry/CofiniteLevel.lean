@@ -29,6 +29,9 @@ def deletionsOfCard (j : ℕ) : Finset (Finset E) :=
   Finset.univ.powersetCard j
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h3v.s5.247d45753b01 from=translated src=- shape=4a89cf16 vocab=5deb61f5
+-/
 @[simp]
 theorem mem_deletionsOfCard {j : ℕ} {D : Finset E} :
     D ∈ deletionsOfCard (E := E) j ↔ D.card = j := by
@@ -43,6 +46,9 @@ def cofiniteDeletions (j : ℕ) : Finset (Finset E) :=
         c.IsClosed ((D : Set E)ᶜ)
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h4v.s6.93d6a170cafe from=translated src=- shape=1a73c9e5 vocab=15937483
+-/
 @[simp]
 theorem mem_cofiniteDeletions
     {j : ℕ} {D : Finset E} :
@@ -102,7 +108,9 @@ def cofiniteDeletionLevelEquiv
     simp
 
 /-- The cardinality of legal size-`j` deletions is the colevel
-`|E| - j` count.-/
+`|E| - j` count.
+@isnad1 id=eq.1h3v.s5.2d3a10dacd7b from=translated src=- shape=c1910849 vocab=dbcf5427
+-/
 theorem cofiniteDeletions_card_eq_levelCount_card_sub
     (j : ℕ) (hj : j ≤ Nat.card E) :
     (c.cofiniteDeletions j).card =
@@ -130,7 +138,9 @@ noncomputable def cofiniteOneElement
 
 omit [DecidableEq E] in
 /-- A legal deletion of cardinality one is the singleton of its chosen
-element.-/
+element.
+@isnad1 id=eq.0h3v.s6.5b100e5a4c3d from=translated src=- shape=d7077b73 vocab=165ff3c8
+-/
 theorem cofiniteOne_eq_singleton_element
     (D : {D : Finset E // D ∈ c.cofiniteDeletions 1}) :
     D.1 = {c.cofiniteOneElement D} :=
@@ -170,7 +180,9 @@ noncomputable def topExtremeCofiniteOneEquiv :
 
 omit [DecidableEq E] in
 /-- The subtype of top extreme points has the cardinality recorded by the
-finite top-boundary set.-/
+finite top-boundary set.
+@isnad1 id=eq.0h2v.s4.927c9ce4fb4b from=translated src=- shape=a07e3c26 vocab=085317a5
+-/
 theorem natCard_topExtreme_eq_topExtremeFinset_card :
     Nat.card {x : E // c.IsTopExtreme x} =
       c.topExtremeFinset.card := by
@@ -184,7 +196,9 @@ theorem natCard_topExtreme_eq_topExtremeFinset_card :
       rw [Nat.card_eq_fintype_card, Fintype.card_coe]
 
 /-- Every closure operator on a finite ground type has one closed set at the
-top level: the whole ground set.-/
+top level: the whole ground set.
+@isnad1 id=eq.0h2v.s4.6cf54e183013 from=translated src=- shape=46c8c14f vocab=7ab7f593
+-/
 theorem levelCount_card_eq_one :
     c.levelCount (Nat.card E) = 1 := by
   have hzero : 0 ≤ Nat.card E := Nat.zero_le _
@@ -204,7 +218,9 @@ theorem levelCount_card_eq_one :
       (cofiniteDeletions_card_eq_levelCount_card_sub c 0 hzero).symm
     _ = 1 := by rw [hdeletions]; simp
 
-/-- The colevel-one count is the number of top extreme points.-/
+/-- The colevel-one count is the number of top extreme points.
+@isnad1 id=eq.1h2v.s5.c216ca5a05b4 from=translated src=- shape=831092bb vocab=28494b92
+-/
 theorem levelCount_card_sub_one_eq_natCard_topExtreme
     (hcard : 1 ≤ Nat.card E) :
     c.levelCount (Nat.card E - 1) =
@@ -219,7 +235,9 @@ theorem levelCount_card_sub_one_eq_natCard_topExtreme
 
 omit [DecidableEq E] in
 /-- The generic cofinite-deletion family specializes to the existing
-two-point deletion family.-/
+two-point deletion family.
+@isnad1 id=eq.0h2v.s4.0bddd10761bb from=translated src=- shape=6b074847 vocab=4028b7ba
+-/
 theorem cofiniteDeletions_two_eq :
     c.cofiniteDeletions 2 = c.cofiniteTwoDeletions := by
   ext D
@@ -277,7 +295,9 @@ def cofiniteTwoDeletionLevelEquiv
     simp
 
 /-- The finite complement-count bridge.  The explicit lower bound is
-essential because `Nat.card E - 2` uses truncated subtraction.-/
+essential because `Nat.card E - 2` uses truncated subtraction.
+@isnad1 id=eq.1h2v.s5.8ba8c8247531 from=translated src=- shape=d3c2d022 vocab=ef386e09
+-/
 theorem cofiniteTwoCount_eq_levelCount_card_sub_two
     (hcard : 2 ≤ Nat.card E) :
     c.cofiniteTwoCount =

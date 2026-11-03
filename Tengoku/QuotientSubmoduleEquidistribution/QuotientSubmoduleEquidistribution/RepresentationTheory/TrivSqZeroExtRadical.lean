@@ -48,11 +48,17 @@ def augmentation : TrivSqZeroExt S J →+* S where
 def augmentationIdeal : Ideal (TrivSqZeroExt S J) :=
   RingHom.ker augmentation
 
+/--
+@isnad1 id=iff.0h3v.s8.ed4ddf7b8131 from=translated src=- shape=9e3f18a4 vocab=bb688ee0
+-/
 @[simp]
 theorem mem_augmentationIdeal_iff (x : TrivSqZeroExt S J) :
     x ∈ augmentationIdeal ↔ x.fst = 0 := by
   rfl
 
+/--
+@isnad1 id=istwosid.0h2v.s7.f335b89280f8 from=translated src=- shape=a3d8d1ea vocab=0c4efc50
+-/
 instance augmentationIdeal_isTwoSided :
     (augmentationIdeal (S := S) (J := J)).IsTwoSided :=
   ⟨fun {x} y hx ↦ by
@@ -68,7 +74,9 @@ theorem eq_inr_snd_of_mem_augmentationIdeal
   · exact (mem_augmentationIdeal_iff x).mp hx
   · rfl
 
-/-- The augmentation ideal is square-zero.-/
+/-- The augmentation ideal is square-zero.
+@isnad1 id=eq.0h2v.s8.b9f5a74dfcc2 from=translated src=- shape=6847737b vocab=881b0e95
+-/
 theorem augmentationIdeal_sq_eq_bot :
     augmentationIdeal (S := S) (J := J) ^ 2 = ⊥ := by
   rw [show (2 : ℕ) = 1 + 1 by omega,
@@ -83,7 +91,9 @@ theorem augmentationIdeal_sq_eq_bot :
   · exact bot_le
 
 /-- If the base is semisimple, the augmentation ideal is exactly the ring
-Jacobson radical.-/
+Jacobson radical.
+@isnad1 id=eq.0h2v.s7.6d2d222437b3 from=translated src=- shape=ef324e31 vocab=1b4d1b6a
+-/
 theorem augmentationIdeal_eq_jacobson [IsSemisimpleRing S] :
     augmentationIdeal (S := S) (J := J) =
       Ring.jacobson (TrivSqZeroExt S J) := by
@@ -127,7 +137,9 @@ variable [Module (TrivSqZeroExt S J) X]
 def radicalPart : Submodule (TrivSqZeroExt S J) X :=
   augmentationIdeal (S := S) (J := J) • ⊤
 
-/-- The quotient by the augmentation-generated part is semisimple.-/
+/-- The quotient by the augmentation-generated part is semisimple.
+@isnad1 id=issemisi.0h3v.s8.0f1fd7eed74d from=translated src=- shape=0ac071d1 vocab=6298bcef
+-/
 theorem quotient_radicalPart_isSemisimple [IsSemisimpleRing S] :
     IsSemisimpleModule (TrivSqZeroExt S J)
       (X ⧸ radicalPart (S := S) (J := J) (X := X)) := by
@@ -155,7 +167,9 @@ theorem quotient_radicalPart_isSemisimple [IsSemisimpleRing S] :
     Function.bijective_id).mpr
   infer_instance
 
-/-- The module Jacobson radical is exactly the augmentation-generated part.-/
+/-- The module Jacobson radical is exactly the augmentation-generated part.
+@isnad1 id=eq.0h3v.s7.b438dd4f1014 from=translated src=- shape=abae4cc5 vocab=8a3c4b9e
+-/
 theorem module_jacobson_eq_radicalPart [IsSemisimpleRing S] :
     Module.jacobson (TrivSqZeroExt S J) X =
       radicalPart (S := S) (J := J) (X := X) := by
@@ -171,7 +185,9 @@ theorem module_jacobson_eq_radicalPart [IsSemisimpleRing S] :
     rw [augmentationIdeal_eq_jacobson (S := S) (J := J)]
     exact Ring.jacobson_smul_top_le _ _
 
-/-- The augmentation ideal annihilates the module Jacobson radical.-/
+/-- The augmentation ideal annihilates the module Jacobson radical.
+@isnad1 id=eq.2h5v.s9.ced06f8672ea from=translated src=- shape=470e7e75 vocab=8f3156fa
+-/
 theorem augmentation_smul_module_jacobson_eq_zero
     [IsSemisimpleRing S]
     (r : TrivSqZeroExt S J)
@@ -250,6 +266,9 @@ def radicalAction [IsSemisimpleRing S]
       exact augmentation_smul_module_jacobson_eq_zero
         (S := S) (J := J) r r.property x hx)
 
+/--
+@isnad1 id=eq.0h5v.s11.6a8917da08fe from=translated src=- shape=a1cd7cf4 vocab=afdae5cf
+-/
 @[simp]
 theorem radicalAction_mk [IsSemisimpleRing S]
     (r : augmentationIdeal (S := S) (J := J)) (x : X) :

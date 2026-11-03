@@ -60,7 +60,9 @@ variable (K B : Type u)
 
 omit [IsAlgClosed K] in
 /-- A commutative semisimple quotient is reduced, so it is basic.  This
-implication does not use algebraic closedness.-/
+implication does not use algebraic closedness.
+@isnad1 id=isbasica.1h2v.s8.fd164dc1e864 from=translated src=- shape=9a8468fe vocab=c8abde3f
+-/
 theorem isBasicAlgebra_of_quotient_mul_comm
     (hcomm : ∀ x y : B ⧸ Ring.jacobson B, x * y = y * x) :
     IsBasicAlgebra K B := by
@@ -73,7 +75,9 @@ theorem isBasicAlgebra_of_quotient_mul_comm
   exact (inferInstance : IsReduced Q)
 
 /-- Over an algebraically closed field, conventional basicness makes the
-semisimple quotient commutative.-/
+semisimple quotient commutative.
+@isnad1 id=eq.1h4v.s8.43fb2424ea93 from=translated src=- shape=a2017fab vocab=4ae85386
+-/
 theorem quotient_mul_comm_of_isBasicAlgebra
     (h : IsBasicAlgebra K B) :
     ∀ x y : B ⧸ Ring.jacobson B, x * y = y * x := by
@@ -101,7 +105,9 @@ theorem quotient_mul_comm_of_isBasicAlgebra
   rw [Subsingleton.elim a j, Subsingleton.elim b j, mul_comm]
 
 /-- Over an algebraically closed field, conventional basicness is exactly
-commutativity of the semisimple quotient.-/
+commutativity of the semisimple quotient.
+@isnad1 id=iff.0h2v.s8.d4889aff9083 from=translated src=- shape=098378b5 vocab=4ae85386
+-/
 theorem isBasicAlgebra_iff_quotient_mul_comm :
     IsBasicAlgebra K B ↔
       ∀ x y : B ⧸ Ring.jacobson B, x * y = y * x :=
@@ -109,7 +115,9 @@ theorem isBasicAlgebra_iff_quotient_mul_comm :
     isBasicAlgebra_of_quotient_mul_comm K B⟩
 
 /-- Conventional basicness over an algebraically closed field supplies the
-intrinsic split-basic condition already used downstream.-/
+intrinsic split-basic condition already used downstream.
+@isnad1 id=issplitb.1h2v.s5.88d7a55e2387 from=translated src=- shape=bc51ee13 vocab=7848d59b
+-/
 theorem isSplitBasicQuotient_of_isBasicAlgebra
     (h : IsBasicAlgebra K B) :
     QuotientSubmoduleEquidistribution.SplitBasicQuotient.IsSplitBasicQuotient K B :=
@@ -118,7 +126,9 @@ theorem isSplitBasicQuotient_of_isBasicAlgebra
 
 /-- In the finite-dimensional algebraically closed setting, conventional
 basicness and the downstream intrinsic split-basic quotient predicate are
-equivalent.-/
+equivalent.
+@isnad1 id=iff.0h2v.s5.1ce89fcdb4f2 from=translated src=- shape=1bb14ae2 vocab=7848d59b
+-/
 theorem isBasicAlgebra_iff_isSplitBasicQuotient :
     IsBasicAlgebra K B ↔
       QuotientSubmoduleEquidistribution.SplitBasicQuotient.IsSplitBasicQuotient K B := by
@@ -128,7 +138,9 @@ theorem isBasicAlgebra_iff_isSplitBasicQuotient :
     exact isBasicAlgebra_of_quotient_mul_comm K B hcomm
 
 /-- Conventional basicness over an algebraically closed field supplies an
-explicit finite coordinate presentation of the semisimple quotient.-/
+explicit finite coordinate presentation of the semisimple quotient.
+@isnad1 id=ex.1h2v.s6.6147e212439c from=translated src=- shape=b2641f3d vocab=b02a6a1c
+-/
 theorem exists_quotientCoordinateData_of_isBasicAlgebra
     (h : IsBasicAlgebra K B) :
     ∃ n : ℕ,

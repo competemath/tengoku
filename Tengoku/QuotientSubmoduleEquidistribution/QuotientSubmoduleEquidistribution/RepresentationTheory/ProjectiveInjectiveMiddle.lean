@@ -66,6 +66,9 @@ def targetPoint : A.PermutationSource → V
   | Sum.inl x => (A.tau x).1
   | Sum.inr c => c.1
 
+/--
+@isnad1 id=finite.0h2v.s3.17dc093f4e9b from=translated src=- shape=1fcfa16f vocab=f4644722
+-/
 noncomputable instance permutationSourceFinite :
     Finite A.PermutationSource := by
   classical
@@ -79,6 +82,9 @@ noncomputable instance permutationSourceFinite :
   exact Fintype.finite (inferInstance : Fintype A.PermutationSource)
 
 omit [Fintype V] in
+/--
+@isnad1 id=injectiv.0h2v.s3.901bd8f058ae from=translated src=- shape=16465cf6 vocab=fba36817
+-/
 theorem sourcePoint_injective : Function.Injective A.sourcePoint := by
   intro a b hab
   cases a with
@@ -108,6 +114,9 @@ theorem sourcePoint_injective : Function.Injective A.sourcePoint := by
           exact hab
 
 omit [Fintype V] in
+/--
+@isnad1 id=injectiv.0h2v.s3.406272ad7a85 from=translated src=- shape=16465cf6 vocab=ce2c1179
+-/
 theorem targetPoint_injective : Function.Injective A.targetPoint := by
   intro a b hab
   cases a with
@@ -144,24 +153,36 @@ def vertexPerm : Equiv.Perm V :=
     (Equiv.Perm.exists_extending_pair A.sourcePoint A.targetPoint
       A.sourcePoint_injective A.targetPoint_injective)
 
+/--
+@isnad1 id=eq.0h3v.s5.c0c5a607c89d from=translated src=- shape=ceab637f vocab=4deef757
+-/
 theorem vertexPerm_spec (a : A.PermutationSource) :
     A.vertexPerm (A.sourcePoint a) = A.targetPoint a :=
   Classical.choose_spec
     (Equiv.Perm.exists_extending_pair A.sourcePoint A.targetPoint
       A.sourcePoint_injective A.targetPoint_injective) a
 
+/--
+@isnad1 id=eq.0h3v.s7.d42f9796bf21 from=translated src=- shape=1b741672 vocab=d5d8bc26
+-/
 @[simp]
 theorem vertexPerm_nonprojective
     (x : {x : V // x ∉ A.projective}) :
     A.vertexPerm x.1 = (A.tau x).1 :=
   A.vertexPerm_spec (Sum.inl x)
 
+/--
+@isnad1 id=eq.0h3v.s6.deef077ec1e5 from=translated src=- shape=e0abdba4 vocab=84131dbc
+-/
 @[simp]
 theorem vertexPerm_projective_injective
     (c : {c : V // c ∈ A.projective ∩ A.injective}) :
     A.vertexPerm c.1 = c.1 :=
   A.vertexPerm_spec (Sum.inr c)
 
+/--
+@isnad1 id=iff.0h4v.s8.9ea8132de615 from=translated src=- shape=54d6acde vocab=1f88e5fd
+-/
 theorem tau_mem_vertexPerm_image_iff
     (D : Set V) (x : {x : V // x ∉ A.projective}) :
     (A.tau x).1 ∈ A.vertexPerm '' D ↔ x.1 ∈ D := by
@@ -173,6 +194,9 @@ theorem tau_mem_vertexPerm_image_iff
   · intro hx
     exact ⟨x.1, hx, A.vertexPerm_nonprojective x⟩
 
+/--
+@isnad1 id=iff.1h4v.s6.a5ec891eda77 from=translated src=- shape=786c1bbd vocab=633faff4
+-/
 theorem projectiveInjective_mem_vertexPerm_image_iff
     (D : Set V) (c : V) (hc : c ∈ A.projective ∩ A.injective) :
     c ∈ A.vertexPerm '' D ↔ c ∈ D := by
@@ -189,7 +213,9 @@ theorem projectiveInjective_mem_vertexPerm_image_iff
     exact ⟨c, hcD, A.vertexPerm_projective_injective c'⟩
 
 /-- The extended translation permutation carries the forward hitting
-clauses exactly to the reverse hitting clauses.-/
+clauses exactly to the reverse hitting clauses.
+@isnad1 id=iff.0h3v.s5.489a7886c6ab from=translated src=- shape=b03bad5f vocab=2435e991
+-/
 theorem qGood_iff_sGood_image (D : Set V) :
     A.QGood D ↔ A.SGood (A.vertexPerm '' D) := by
   constructor
@@ -227,7 +253,9 @@ def qGoodEquivSGood :
     apply Subtype.ext
     exact A.vertexPerm.image_symm_image E.1
 
-/-- The equivalence preserves the number of deleted vertices.-/
+/-- The equivalence preserves the number of deleted vertices.
+@isnad1 id=eq.0h3v.s7.1e793c6ade06 from=translated src=- shape=f51a18f0 vocab=7e855e1a
+-/
 theorem ncard_qGoodEquivSGood (D : {D : Set V // A.QGood D}) :
     ((A.qGoodEquivSGood D).1).ncard = D.1.ncard :=
   Set.ncard_image_of_injective D.1 A.vertexPerm.injective
@@ -238,7 +266,9 @@ def sizePolynomial (Good : Set V → Prop) : Polynomial ℤ := by
   exact ∑ D : {D : Set V // Good D}, X ^ D.1.ncard
 
 /-- Projective-injective mesh middles force equality of the forward and
-reverse deleted-set size polynomials.-/
+reverse deleted-set size polynomials.
+@isnad1 id=eq.0h2v.s4.d7151ec54d28 from=translated src=- shape=5229d4df vocab=bc6fe9ca
+-/
 theorem qGood_sizePolynomial_eq_sGood :
     sizePolynomial A.QGood = sizePolynomial A.SGood := by
   classical

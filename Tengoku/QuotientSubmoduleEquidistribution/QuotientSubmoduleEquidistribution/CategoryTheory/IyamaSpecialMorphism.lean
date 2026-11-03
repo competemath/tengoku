@@ -44,7 +44,9 @@ def IsSpecial (R : NilpotentRadicalData C)
       r ∈ (R.ideal.pow 2).hom X Y →
         Nonempty (Arrow.mk a ≅ Arrow.mk (a + r))
 
-/-- Specialness is invariant under isomorphism in the arrow category.-/
+/-- Specialness is invariant under isomorphism in the arrow category.
+@isnad1 id=isspecia.1h5v.s6.b29b2bc220a2 from=translated src=- shape=df7423ed vocab=f37c061d
+-/
 theorem IsSpecial.of_iso (R : NilpotentRadicalData C)
     {A B : Arrow C} (ha : IsSpecial R A.hom) (e : A ≅ B) :
     IsSpecial R B.hom := by
@@ -92,7 +94,9 @@ theorem IsSpecial.of_iso (R : NilpotentRadicalData C)
 
 /-- A special padded arrow absorbs a radical-square complementary
 component.  This is the perturbation step in Iyama's special-arrow normal
-form; cancellation of the zero source summand is a separate theorem.-/
+form; cancellation of the zero source summand is a separate theorem.
+@isnad1 id=nonempty.2h7v.s8.abbf7fa14c1c from=translated src=- shape=e7b441f4 vocab=4552c0c0
+-/
 theorem IsSpecial.nonempty_iso_biprod_desc_zero
     [HasBinaryBiproducts C]
     (R : NilpotentRadicalData C)
@@ -114,7 +118,9 @@ theorem IsSpecial.nonempty_iso_biprod_desc_zero
   dsimp only [t]
   ext <;> simp
 
-/-- Isomorphism-invariant form of complementary radical-square absorption.-/
+/-- Isomorphism-invariant form of complementary radical-square absorption.
+@isnad1 id=nonempty.2h10v.s8.a07c63cf5d00 from=translated src=- shape=819f0361 vocab=4552c0c0
+-/
 theorem IsSpecial.nonempty_iso_biprod_desc_zero_of_iso
     [HasBinaryBiproducts C]
     (R : NilpotentRadicalData C)
@@ -130,7 +136,9 @@ theorem IsSpecial.nonempty_iso_biprod_desc_zero_of_iso
 
 /-- Every radical-square perturbation of the first map of a
 tau-approximation factors through that first map with a radical endomorphism
-of the middle term.-/
+of the middle term.
+@isnad1 id=ex.2h4v.s9.ea30e6f9e245 from=translated src=- shape=ba016c37 vocab=c29d266d
+-/
 theorem TauApproximation.exists_radical_factor_of_mem_square
     (R : NilpotentRadicalData C)
     {S : ShortComplex C} (hS : TauApproximation S)
@@ -164,7 +172,9 @@ theorem TauApproximation.exists_radical_factor_of_mem_square
       rw [Preadditive.comp_neg, hbr]
 
 /-- Dually, every radical-square arrow into the right endpoint of a
-tau-approximation factors through its second map with a radical morphism.-/
+tau-approximation factors through its second map with a radical morphism.
+@isnad1 id=ex.2h5v.s9.c816899ca6a4 from=translated src=- shape=4ba7803f vocab=8f6bec58
+-/
 theorem TauApproximation.exists_radical_factor_into_of_mem_square
     (R : NilpotentRadicalData C)
     {S : ShortComplex C} (hS : TauApproximation S)
@@ -206,7 +216,9 @@ private theorem isIso_id_add_of_mem_radical
   have hi : IsIso (𝟙 X - b ≫ (-𝟙 X)) := hb' (-𝟙 X)
   simpa using hi
 
-/-- The first map of every tau-approximation is special.-/
+/-- The first map of every tau-approximation is special.
+@isnad1 id=isspecia.1h3v.s5.bca7eaa065b1 from=translated src=- shape=d563e88f vocab=82bf6c21
+-/
 theorem TauApproximation.isSpecial_f
     (R : NilpotentRadicalData C)
     {S : ShortComplex C} (hS : TauApproximation S) :
@@ -224,7 +236,9 @@ theorem TauApproximation.isSpecial_f
     Preadditive.comp_add, Category.comp_id, hfb]
 
 /-- The first map of every left tau-sequence is special.  This is the
-abstract seed `μ⁻` used in Iyama's right-ladder existence theorem.-/
+abstract seed `μ⁻` used in Iyama's right-ladder existence theorem.
+@isnad1 id=isspecia.1h3v.s5.704ee52e1f06 from=translated src=- shape=d563e88f vocab=cc12a7db
+-/
 theorem LeftTauSequence.isSpecial_f
     (R : NilpotentRadicalData C)
     {S : ShortComplex C} (hS : LeftTauSequence S) :

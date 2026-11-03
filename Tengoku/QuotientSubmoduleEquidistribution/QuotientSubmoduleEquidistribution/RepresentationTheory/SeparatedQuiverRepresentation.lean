@@ -37,6 +37,9 @@ structure Hom (D E : RepresentationData.{uK, uV, v, w} K V) where
   comm : ∀ {i j : V} (e : i ⟶ j),
     D.arrow e ≫ minus j = plus i ≫ E.arrow e
 
+/--
+@isnad1 id=eq.2h6v.s7.852b8feafe60 from=translated src=- shape=5c954622 vocab=a876cee4
+-/
 @[ext]
 theorem Hom.ext {D E : RepresentationData.{uK, uV, v, w} K V}
     {f g : Hom D E} (hplus : f.plus = g.plus)
@@ -87,16 +90,25 @@ def toQuiverRep
     QuotientSubmoduleEquidistribution.Foundation.QuiverRep K (Vertex V) :=
   CategoryTheory.Paths.lift D.toPrefunctor
 
+/--
+@isnad1 id=eq.0h4v.s6.dd294ffdc6a4 from=translated src=- shape=1dda83cc vocab=b0f31d1f
+-/
 @[simp]
 theorem toQuiverRep_obj_plus
     (D : RepresentationData.{uK, uV, v, w} K V) (i : V) :
     D.toQuiverRep.obj (Sum.inl i) = D.plus i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.052d55ee7ef2 from=translated src=- shape=1dda83cc vocab=59436736
+-/
 @[simp]
 theorem toQuiverRep_obj_minus
     (D : RepresentationData.{uK, uV, v, w} K V) (i : V) :
     D.toQuiverRep.obj (Sum.inr i) = D.minus i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.9d61ab7efa4f from=translated src=- shape=fbe4d3e0 vocab=b811d04c
+-/
 @[simp]
 theorem toQuiverRep_map_arrow
     (D : RepresentationData.{uK, uV, v, w} K V)
@@ -183,6 +195,9 @@ def ofQuiverRepFunctor :
   map_comp f g := by
     apply Hom.ext <;> funext i <;> rfl
 
+/--
+@isnad1 id=faithful.0h2v.s5.0ab186236337 from=translated src=- shape=6143a9dc vocab=6743cdf0
+-/
 instance toQuiverRepFunctor_faithful :
     (toQuiverRepFunctor (K := K) (V := V)).Faithful where
   map_injective := by
@@ -193,6 +208,9 @@ instance toQuiverRepFunctor_faithful :
     · funext i
       exact congrArg (fun q ↦ q.app (Sum.inr i)) h
 
+/--
+@isnad1 id=full.0h2v.s5.59a9d01ff853 from=translated src=- shape=6143a9dc vocab=bb66f6cf
+-/
 instance toQuiverRepFunctor_full :
     (toQuiverRepFunctor (K := K) (V := V)).Full where
   map_surjective := by
@@ -248,11 +266,17 @@ def toOfQuiverRepIso (M : QuotientSubmoduleEquidistribution.Foundation.QuiverRep
           | inl j => exact PEmpty.elim e
           | inr j => exact PEmpty.elim e)
 
+/--
+@isnad1 id=esssurj.0h2v.s5.6da58db87b54 from=translated src=- shape=6143a9dc vocab=760289d5
+-/
 instance toQuiverRepFunctor_essSurj :
     (toQuiverRepFunctor (K := K) (V := V)).EssSurj where
   mem_essImage M :=
     ⟨ofQuiverRep M, ⟨toOfQuiverRepIso M⟩⟩
 
+/--
+@isnad1 id=isequiva.0h2v.s5.369fedb20858 from=translated src=- shape=6143a9dc vocab=3f277d81
+-/
 instance toQuiverRepFunctor_isEquivalence :
     (toQuiverRepFunctor (K := K) (V := V)).IsEquivalence where
 

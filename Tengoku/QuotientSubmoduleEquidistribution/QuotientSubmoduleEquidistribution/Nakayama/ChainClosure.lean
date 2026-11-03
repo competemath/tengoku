@@ -36,6 +36,9 @@ def chainClosure {ι : Type u} (c : ι → ℕ) :
       refine ⟨p.2, ?_, le_rfl⟩
       simpa using hp
 
+/--
+@isnad1 id=iff.0h4v.s7.13f1b542700d from=translated src=- shape=9c980593 vocab=59ba1877
+-/
 @[simp]
 theorem mem_chainClosure {ι : Type u} {c : ι → ℕ}
     {S : Set (ChainPoint c)} {p : ChainPoint c} :
@@ -44,7 +47,9 @@ theorem mem_chainClosure {ι : Type u} {c : ι → ℕ}
         (⟨p.1, j⟩ : ChainPoint c) ∈ S ∧ p.2 ≤ j :=
   Iff.rfl
 
-/-- Initial segments are closed under the canonical chain closure.-/
+/-- Initial segments are closed under the canonical chain closure.
+@isnad1 id=isclosed.0h3v.s5.d44048ac38c2 from=translated src=- shape=ea35aa9c vocab=254e6b03
+-/
 theorem isClosed_initialSegment {ι : Type u} {c : ι → ℕ}
     (x : CapacityVector c) :
     (chainClosure c).IsClosed (initialSegment x) := by
@@ -60,7 +65,9 @@ theorem isClosed_initialSegment {ι : Type u} {c : ι → ℕ}
     exact ⟨p.2, hp, le_rfl⟩
 
 /-- Membership in a closed chain set is downward closed within each
-fiber.-/
+fiber.
+@isnad1 id=mem.3h6v.s7.018961952179 from=translated src=- shape=394128c1 vocab=e4d1634f
+-/
 theorem mem_of_le_of_mem_isClosed
     {ι : Type u} {c : ι → ℕ}
     {S : Set (ChainPoint c)}
@@ -80,6 +87,9 @@ noncomputable def fiberFinset
   exact Finset.univ.filter fun j ↦
     (⟨i, j⟩ : ChainPoint c) ∈ S
 
+/--
+@isnad1 id=iff.0h5v.s6.3c0aea3a26d0 from=translated src=- shape=2720f4c4 vocab=6ac8fc79
+-/
 @[simp]
 theorem mem_fiberFinset
     {ι : Type u} {c : ι → ℕ}
@@ -103,7 +113,9 @@ noncomputable def fiberLength
   simpa using Nat.lt_succ_of_le hle
 
 /-- A closed fiber contains exactly the points below its fiber
-cardinality.-/
+cardinality.
+@isnad1 id=iff.1h5v.s6.631ee554a66b from=translated src=- shape=90e70414 vocab=86d780dd
+-/
 theorem mem_isClosed_iff_lt_fiberLength
     {ι : Type u} {c : ι → ℕ}
     {S : Set (ChainPoint c)}
@@ -155,7 +167,9 @@ noncomputable def closedToCapacity
   fun i ↦ fiberLength S i
 
 /-- Different capacity vectors determine different unions of initial
-segments.-/
+segments.
+@isnad1 id=injectiv.0h2v.s5.25338c91ea17 from=translated src=- shape=884ebdb3 vocab=0e404e95
+-/
 theorem capacityToClosed_injective
     {ι : Type u} {c : ι → ℕ} :
     Function.Injective
@@ -189,7 +203,9 @@ theorem capacityToClosed_injective
         ((j : ℕ) < (y i : ℕ)) at hm
     exact (not_lt_of_ge le_rfl) (hm.mp hgt)
 
-/-- Recovering fibers from a closed set returns that closed set.-/
+/-- Recovering fibers from a closed set returns that closed set.
+@isnad1 id=eq.0h3v.s6.85f42c31447c from=translated src=- shape=a43c79d7 vocab=9a55a01c
+-/
 theorem capacityToClosed_closedToCapacity
     {ι : Type u} {c : ι → ℕ}
     (S : (chainClosure c).Closeds) :
@@ -205,7 +221,9 @@ theorem capacityToClosed_closedToCapacity
       S.property p.1 p.2).symm
 
 /-- Recovering coordinates from initial segments returns the original
-capacity vector.-/
+capacity vector.
+@isnad1 id=eq.0h3v.s4.e93c3205a536 from=translated src=- shape=c5d72623 vocab=3e1b98f1
+-/
 theorem closedToCapacity_capacityToClosed
     {ι : Type u} {c : ι → ℕ}
     (x : CapacityVector c) :
@@ -223,7 +241,9 @@ noncomputable def capacityClosedEquiv
   left_inv := closedToCapacity_capacityToClosed
   right_inv := capacityToClosed_closedToCapacity
 
-/-- Initial-segment inclusion reflects the coordinatewise order.-/
+/-- Initial-segment inclusion reflects the coordinatewise order.
+@isnad1 id=iff.0h4v.s7.23bed1ad74c4 from=translated src=- shape=f17fbbea vocab=0b45e062
+-/
 theorem capacityToClosed_le_iff
     {ι : Type u} {c : ι → ℕ}
     (x y : CapacityVector c) :
@@ -262,6 +282,9 @@ noncomputable def chainClosedOrderIso
   map_rel_iff' := fun {x y} ↦
     capacityToClosed_le_iff x y
 
+/--
+@isnad1 id=eq.0h3v.s8.bfcfbf206802 from=translated src=- shape=55a7595f vocab=cc95db86
+-/
 @[simp]
 theorem chainClosedOrderIso_apply
     {ι : Type u} {c : ι → ℕ}
@@ -284,7 +307,9 @@ noncomputable def chainFixedTopParametrization
     simp
 
 /-- The level polynomial of the canonical downward chain closure is the
-product of the finite geometric chain factors.-/
+product of the finite geometric chain factors.
+@isnad1 id=eq.0h2v.s5.2c4fd1777a69 from=translated src=- shape=b2c86788 vocab=22805704
+-/
 theorem chainClosure_levelPolynomial
     {ι : Type u} [Fintype ι] (c : ι → ℕ) :
     (chainClosure c).levelPolynomial =
@@ -312,7 +337,9 @@ noncomputable def fixedTopParametrizationOfRelabeling
     rfl
 
 /-- It is enough to identify the actual closure with the canonical
-downward chain closure; the product formula then follows automatically.-/
+downward chain closure; the product formula then follows automatically.
+@isnad1 id=eq.0h5v.s5.a3cd94763523 from=translated src=- shape=fb9051e5 vocab=2fe1799f
+-/
 theorem levelPolynomial_eq_prod_of_chainRelabeling
     {ι : Type u} [Fintype ι] {c : ι → ℕ}
     {E : Type*} [Finite E]

@@ -52,6 +52,9 @@ abbrev presentationRange (S : ShortComplex C) (Y : C) :
   (presentationPostcompLinear (k := k) S Y).range
 
 omit [HasExt C] in
+/--
+@isnad1 id=iff.0h5v.s8.9ad47bc332f4 from=translated src=- shape=d2430482 vocab=565e4b59
+-/
 @[simp]
 theorem mem_presentationRange_iff (S : ShortComplex C) (Y : C)
     (f : Y ⟶ S.X₃) :
@@ -60,7 +63,9 @@ theorem mem_presentationRange_iff (S : ShortComplex C) (Y : C)
   rfl
 
 /-- Exactness identifies presentation coboundaries with the kernel of the
-connecting map.-/
+connecting map.
+@isnad1 id=eq.1h4v.s8.826aaad9867e from=translated src=- shape=89715602 vocab=769b9832
+-/
 theorem presentationRange_eq_connectingLinear_ker
     {S : ShortComplex C} (hS : S.ShortExact) (Y : C) :
     presentationRange (k := k) S Y =
@@ -82,7 +87,9 @@ theorem presentationRange_eq_connectingLinear_ker
     rw [← Ext.mk₀_comp_mk₀]
     simpa using hx₂
 
-/-- Injectivity of the middle term makes the connecting map surjective.-/
+/-- Injectivity of the middle term makes the connecting map surjective.
+@isnad1 id=surjecti.1h4v.s9.fc320f0f35a5 from=translated src=- shape=acb60c29 vocab=9795efac
+-/
 theorem connectingLinear_surjective
     {S : ShortComplex C} (hS : S.ShortExact) [Injective S.X₂]
     (Y : C) : Function.Surjective (connectingLinear (k := k) hS Y) := by
@@ -110,6 +117,9 @@ def quotientLinearEquivExtOne
     ((connectingLinear (k := k) hS Y).quotKerEquivOfSurjective
       (connectingLinear_surjective (k := k) hS Y))
 
+/--
+@isnad1 id=eq.1h5v.s11.738db136280a from=translated src=- shape=e231c394 vocab=17acbc4c
+-/
 @[simp]
 theorem quotientLinearEquivExtOne_mk
     {S : ShortComplex C} (hS : S.ShortExact) [Injective S.X₂]
@@ -127,6 +137,9 @@ theorem quotientLinearEquivExtOne_mk
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.1h5v.s11.8c291eee9993 from=translated src=- shape=34ea9476 vocab=3d9be801
+-/
 @[simp]
 theorem quotientLinearEquivExtOne_symm_connectingLinear
     {S : ShortComplex C} (hS : S.ShortExact) [Injective S.X₂]
@@ -151,6 +164,9 @@ def precompQuotient (S : ShortComplex C)
       simp [presentationPostcompLinear, Category.assoc])
 
 omit [HasExt C] in
+/--
+@isnad1 id=eq.0h7v.s11.3138ee8122df from=translated src=- shape=2b2a20b1 vocab=a55ff323
+-/
 @[simp]
 theorem precompQuotient_mk
     (S : ShortComplex C) {Y' Y : C}
@@ -165,6 +181,9 @@ def pullbackLinear (S : ShortComplex C)
     Ext.{w} Y S.X₁ 1 →ₗ[k] Ext.{w} Y' S.X₁ 1 :=
   Ext.precompOfLinear (Ext.mk₀ a) k S.X₁ (zero_add 1)
 
+/--
+@isnad1 id=eq.1h7v.s10.46c5e1f902a7 from=translated src=- shape=14c9b25a vocab=1bc4cf25
+-/
 theorem connectingLinear_precomp
     {S : ShortComplex C} (hS : S.ShortExact)
     {Y' Y : C} (a : Y' ⟶ Y) (f : Y ⟶ S.X₃) :
@@ -178,7 +197,9 @@ theorem connectingLinear_precomp
   symm
   exact Ext.mk₀_comp_mk₀_assoc a f hS.extClass
 
-/-- The quotient description of `Ext¹` is natural under pullback.-/
+/-- The quotient description of `Ext¹` is natural under pullback.
+@isnad1 id=eq.1h7v.s12.a71f9565ae34 from=translated src=- shape=9c87ad4e vocab=96371aff
+-/
 theorem quotientLinearEquivExtOne_precompQuotient
     {S : ShortComplex C} (hS : S.ShortExact) [Injective S.X₂]
     {Y' Y : C} (a : Y' ⟶ Y)

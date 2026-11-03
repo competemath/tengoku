@@ -75,7 +75,9 @@ private theorem finite_boundedPaths [Finite V] [∀ a b : V, Finite (a ⟶ b)] (
 
 namespace Quiver.IsAcyclic
 
-/-- Every path in an acyclic finite quiver has length strictly below the number of vertices.-/
+/-- Every path in an acyclic finite quiver has length strictly below the number of vertices.
+@isnad1 id=lt.1h4v.s5.1ca58faf1650 from=translated src=- shape=7eb0b680 vocab=2a54f7b7
+-/
 theorem length_lt_card (h : Quiver.IsAcyclic V) [Fintype V] {a b : V}
     (p : _root_.Quiver.Path a b) :
     p.length < Fintype.card V := by
@@ -101,7 +103,9 @@ private theorem finite_paths [Finite V] [∀ a b : V, Finite (a ⟶ b)] (h : Qui
 
 end Quiver.IsAcyclic
 
-/-- A finite acyclic quiver with finite arrow types has finitely many paths.-/
+/-- A finite acyclic quiver with finite arrow types has finitely many paths.
+@isnad1 id=finite.1h1v.s5.4f8430c57f42 from=translated src=- shape=94a75710 vocab=029b90c4
+-/
 theorem finite_paths_of_isAcyclic [Finite V] [∀ a b : V, Finite (a ⟶ b)]
     (h : Quiver.IsAcyclic V) : Finite (Σ a b : V, _root_.Quiver.Path a b) :=
   h.finite_paths

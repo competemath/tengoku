@@ -37,6 +37,9 @@ def equiv : ReversedBimodule R M ≃ M where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.1h4v.s4.9360fe6bc329 from=translated src=- shape=4037c558 vocab=b4ea4f09
+-/
 theorem ext' {x y : ReversedBimodule R M} (h : x.val = y.val) : x = y := by
   cases x
   cases y
@@ -146,6 +149,9 @@ def moduleEquivalence :
     (oppositeRingEquiv (R := R) (M := M)).symm
 
 omit [SMulCommClass R Rᵐᵒᵖ M] in
+/--
+@isnad1 id=eq.0h3v.s9.33c190b63642 from=translated src=- shape=9883af1f vocab=7434fec0
+-/
 @[simp]
 theorem oppositeRingEquiv_apply (x : TrivSqZeroExt R M) :
     oppositeRingEquiv (R := R) (M := M) (MulOpposite.op x) =
@@ -153,6 +159,9 @@ theorem oppositeRingEquiv_apply (x : TrivSqZeroExt R M) :
   rfl
 
 omit [SMulCommClass R Rᵐᵒᵖ M] in
+/--
+@isnad1 id=eq.0h3v.s10.2dbd2e09b71f from=translated src=- shape=1c556c38 vocab=fd7133ed
+-/
 @[simp]
 theorem oppositeRingEquiv_symm_apply
     (x : TrivSqZeroExt R (ReversedBimodule R M)) :

@@ -33,7 +33,9 @@ variable {Ind : Type w} [Fintype Ind]
 
 omit [HasFiniteBiproducts C] in
 /-- A split subobject of an indecomposable object is the whole object as soon
-as its source is nonzero.-/
+as its source is nonzero.
+@isnad1 id=isiso.2h4v.s6.e2a2b3e0cddb from=translated src=- shape=aaa938df vocab=45960c0d
+-/
 theorem isIso_of_isSplitMono_to_indecomposable
     {X Y : C} (hY : Indecomposable Y)
     (j : X ⟶ Y) [IsSplitMono j] (hX : ¬ IsZero X) :
@@ -54,7 +56,9 @@ theorem isIso_of_isSplitMono_to_indecomposable
 omit [HasFiniteBiproducts C] [HasBinaryBiproducts C]
   [IsIdempotentComplete C] in
 /-- The middle component of the uniqueness isomorphism between two left
-tau-sequences can be chosen above any prescribed left-endpoint isomorphism.-/
+tau-sequences can be chosen above any prescribed left-endpoint isomorphism.
+@isnad1 id=ex.2h4v.s7.f49b6bb2bb8f from=translated src=- shape=a967c24a vocab=c8eaad7d
+-/
 theorem exists_middle_iso_lifting_left_endpoint_iso
     {S T : ShortComplex C}
     (hS : LeftTauSequence S) (hT : LeftTauSequence T)
@@ -106,7 +110,9 @@ private theorem isIso_sub_of_isIso_of_isRadicalMorphism
 omit [Preadditive C] [HasFiniteBiproducts C] [HasBinaryBiproducts C]
   [IsIdempotentComplete C] in
 /-- A split epimorphism whose composite with a second map is invertible is
-itself invertible.-/
+itself invertible.
+@isnad1 id=isiso.0h6v.s5.f57a2fe78585 from=translated src=- shape=d25ac34a vocab=264ca11e
+-/
 theorem isIso_of_isSplitEpi_of_isIso_comp
     {X Y Z : C} (p : X ⟶ Y) [IsSplitEpi p] (t : Y ⟶ Z)
     [IsIso (p ≫ t)] : IsIso p := by
@@ -129,7 +135,9 @@ If a split-epi essential factor of the left mesh at a nonzero object is
 left-dominated by `muMinus A`, then it is already arrow-isomorphic to
 `muMinus A`.  The proof avoids a functor-category detour: the split source
 map is invertible by indecomposability, and weak-cokernel exactness makes the
-target composite an isomorphism modulo the categorical radical.-/
+target composite an isomorphism modulo the categorical radical.
+@isnad1 id=nonempty.2h9v.s9.c4aa0f8ea582 from=translated src=- shape=5fb1b02f vocab=e18d8f49
+-/
 theorem nonempty_essentialArrow_iso_muMinus_of_leftDominance
     (T : FiniteTauCategoryData C Ind) (A : Ind)
     {Y Z : C}

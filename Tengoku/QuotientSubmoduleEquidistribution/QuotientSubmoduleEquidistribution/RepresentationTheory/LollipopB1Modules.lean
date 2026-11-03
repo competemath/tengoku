@@ -40,6 +40,9 @@ def loopLinear (loop : V₁ →ₗ[K] V₁) :
   map_add' c d := by ext z; simp [add_smul]
   map_smul' c d := by ext z; simp [smul_smul]
 
+/--
+@isnad1 id=eq.1h5v.s10.b3ff80ba9d46 from=translated src=- shape=ee078138 vocab=ec9e0fbd
+-/
 theorem loopLinear_mul_eq_zero
     (loop : V₁ →ₗ[K] V₁)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -49,6 +52,9 @@ theorem loopLinear_mul_eq_zero
   intro z
   simp [loopLinear, Module.End.mul_eq_comp, hloop, smul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s10.72b50e17effc from=translated src=- shape=fd8f79d2 vocab=debcd68b
+-/
 theorem loopLinear_left_compat
     (loop : V₁ →ₗ[K] V₁) (r m : K) :
     loopLinear K V₁ loop (r • m) =
@@ -57,6 +63,9 @@ theorem loopLinear_left_compat
   intro z
   simp [loopLinear, Module.End.mul_eq_comp, smul_smul, mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s10.3c317e46c6ff from=translated src=- shape=65a72922 vocab=2a8e9470
+-/
 theorem loopLinear_right_compat
     (loop : V₁ →ₗ[K] V₁) (r m : K) :
     loopLinear K V₁ loop (MulOpposite.op r • m) =
@@ -77,6 +86,9 @@ def loopCornerAction
     (loopLinear_left_compat K V₁ loop)
     (loopLinear_right_compat K V₁ loop)
 
+/--
+@isnad1 id=eq.1h5v.s9.2b7ffde1f78b from=translated src=- shape=48bb795b vocab=a4b39caf
+-/
 theorem loopCornerAction_apply
     (loop : V₁ →ₗ[K] V₁)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -150,6 +162,9 @@ def arrowAction
     intro z
     ext <;> simp [smul_add, smul_smul]
 
+/--
+@isnad1 id=eq.0h7v.s10.8de5c0a78ea8 from=translated src=- shape=08460602 vocab=42cf9e04
+-/
 theorem arrowAction_mul_eq_zero
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (m n : ArrowCorner K) :
@@ -159,6 +174,9 @@ theorem arrowAction_mul_eq_zero
   intro z
   ext <;> simp [arrowAction, Module.End.mul_eq_comp]
 
+/--
+@isnad1 id=eq.1h7v.s11.64e94c43ae2b from=translated src=- shape=3f327b66 vocab=d9f82c91
+-/
 theorem arrowAction_left_compat
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -170,6 +188,9 @@ theorem arrowAction_left_compat
   ext <;> simp [arrowAction, baseAction, Module.End.mul_eq_comp,
     smul_add, smul_smul]
 
+/--
+@isnad1 id=eq.1h7v.s11.4506ceb41af5 from=translated src=- shape=555cf3b9 vocab=4f6fcf91
+-/
 theorem arrowAction_right_compat
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -197,6 +218,9 @@ def b1Action
     (arrowAction_left_compat K V₁ V₂ loop stem hloop)
     (arrowAction_right_compat K V₁ V₂ loop stem hloop)
 
+/--
+@isnad1 id=eq.1h6v.s10.eb41b8bb19bb from=translated src=- shape=0da3df38 vocab=69b5ba46
+-/
 theorem b1Action_e1
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -206,6 +230,9 @@ theorem b1Action_e1
   rw [TrivSqZeroExt.lift_apply_inl]
   simp [baseAction]
 
+/--
+@isnad1 id=eq.1h6v.s10.64a6d027915e from=translated src=- shape=8605d260 vocab=7e09e6fa
+-/
 theorem b1Action_e2
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -215,6 +242,9 @@ theorem b1Action_e2
   rw [TrivSqZeroExt.lift_apply_inl]
   simp [baseAction]
 
+/--
+@isnad1 id=eq.1h6v.s10.54646b8f1214 from=translated src=- shape=cee66448 vocab=18df43ed
+-/
 theorem b1Action_x
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -224,6 +254,9 @@ theorem b1Action_x
   rw [TrivSqZeroExt.lift_apply_inl]
   simp [baseAction, loopCornerAction_apply]
 
+/--
+@isnad1 id=eq.1h6v.s10.e3da9d51a45e from=translated src=- shape=1efc32aa vocab=9e030fed
+-/
 theorem b1Action_a
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -233,6 +266,9 @@ theorem b1Action_a
   rw [TrivSqZeroExt.lift_apply_inr]
   simp [arrowAction]
 
+/--
+@isnad1 id=eq.1h6v.s10.0d88f8287d9f from=translated src=- shape=d0700fe0 vocab=28d86631
+-/
 theorem b1Action_u
     (loop : V₁ →ₗ[K] V₁) (stem : V₁ →ₗ[K] V₂)
     (hloop : ∀ z, loop (loop z) = 0)
@@ -266,6 +302,9 @@ def ofV₁ (D : FiniteB1Rep K) (z : D.V₁) : D.Carrier := (z, 0)
 
 def ofV₂ (D : FiniteB1Rep K) (z : D.V₂) : D.Carrier := (0, z)
 
+/--
+@isnad1 id=eq.2h4v.s6.13ea1fc0bd6c from=translated src=- shape=7a64a134 vocab=787a4195
+-/
 @[ext] theorem carrier_ext (D : FiniteB1Rep K) {z w : D.Carrier}
     (h₁ : fst K D z = fst K D w) (h₂ : snd K D z = snd K D w) : z = w :=
   Prod.ext h₁ h₂
@@ -294,26 +333,41 @@ instance (D : FiniteB1Rep K) : Module.Finite (B1Model K) D.Carrier :=
 abbrev asFGModule (D : FiniteB1Rep K) : FGModuleCat (B1Model K) :=
   FGModuleCat.of (B1Model K) D.Carrier
 
+/--
+@isnad1 id=eq.0h3v.s9.ec29d1691526 from=translated src=- shape=52e65dd4 vocab=44bc7c91
+-/
 @[simp] theorem e1_smul (D : FiniteB1Rep K) (z : D.Carrier) :
     e1 K • z = (z.1, 0) := by
   change actionHom K D (e1 K) z = (z.1, 0)
   exact b1Action_e1 K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom D.loop_sq z
 
+/--
+@isnad1 id=eq.0h3v.s9.867f93f734b0 from=translated src=- shape=52f6311a vocab=9443eb9c
+-/
 @[simp] theorem e2_smul (D : FiniteB1Rep K) (z : D.Carrier) :
     e2 K • z = (0, z.2) := by
   change actionHom K D (e2 K) z = (0, z.2)
   exact b1Action_e2 K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom D.loop_sq z
 
+/--
+@isnad1 id=eq.0h3v.s10.b832dc25cd2e from=translated src=- shape=c5255f7f vocab=29335d8c
+-/
 @[simp] theorem x_smul (D : FiniteB1Rep K) (z : D.Carrier) :
     x K • z = (D.loop.hom.hom z.1, 0) := by
   change actionHom K D (x K) z = (D.loop.hom.hom z.1, 0)
   exact b1Action_x K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom D.loop_sq z
 
+/--
+@isnad1 id=eq.0h3v.s10.cd22653d0280 from=translated src=- shape=3fe29ec3 vocab=e51a2024
+-/
 @[simp] theorem a_smul (D : FiniteB1Rep K) (z : D.Carrier) :
     a K • z = (0, D.stem.hom.hom z.1) := by
   change actionHom K D (a K) z = (0, D.stem.hom.hom z.1)
   exact b1Action_a K D.V₁ D.V₂ D.loop.hom.hom D.stem.hom.hom D.loop_sq z
 
+/--
+@isnad1 id=eq.0h3v.s11.98db8df36491 from=translated src=- shape=33457004 vocab=ae4c859e
+-/
 @[simp] theorem u_smul (D : FiniteB1Rep K) (z : D.Carrier) :
     u K • z = (0, D.stem.hom.hom (D.loop.hom.hom z.1)) := by
   change actionHom K D (u K) z =
@@ -422,13 +476,18 @@ def namedModule : NamedLabel → FGModuleCat (B1Model K)
   | .w => WModule K
   | .p => PModule K
 
-/-- The live path coordinate acts nontrivially on `U`.-/
+/-- The live path coordinate acts nontrivially on `U`.
+@isnad1 id=eq.0h1v.s9.eb549515c103 from=translated src=- shape=0a6d1a5a vocab=d8cc570c
+-/
 theorem U_u_smul_top :
     u K • FiniteB1Rep.ofV₁ K (UData K) (1, 0) =
       FiniteB1Rep.ofV₂ K (UData K) 1 := by
   rw [FiniteB1Rep.u_smul]
   rfl
 
+/--
+@isnad1 id=ne.0h1v.s9.cb3cc89cafa2 from=translated src=- shape=5413a100 vocab=a24d3700
+-/
 theorem U_u_smul_top_ne_zero :
     u K • FiniteB1Rep.ofV₁ K (UData K) (1, 0) ≠ 0 := by
   rw [U_u_smul_top]
@@ -437,7 +496,9 @@ theorem U_u_smul_top_ne_zero :
   change (1 : K) = 0 at hcoord
   exact one_ne_zero hcoord
 
-/-- The same coordinate vanishes on `W`, distinguishing the two strings.-/
+/-- The same coordinate vanishes on `W`, distinguishing the two strings.
+@isnad1 id=eq.0h2v.s11.74f97f079e83 from=translated src=- shape=89cd3760 vocab=f0bccce4
+-/
 theorem W_u_smul_eq_zero (z : WModule K) : u K • z = 0 := by
   rw [FiniteB1Rep.u_smul]
   rfl

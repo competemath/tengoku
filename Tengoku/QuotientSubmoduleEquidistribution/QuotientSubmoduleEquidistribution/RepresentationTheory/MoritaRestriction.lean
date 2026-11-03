@@ -29,7 +29,9 @@ section Order
 variable {α : Type*} {β : Type*} [PartialOrder α] [PartialOrder β]
 
 /-- Well-foundedness of strict descent is invariant under an order
-isomorphism.-/
+isomorphism.
+@isnad1 id=iff.0h3v.s5.0179c1955b4f from=translated src=- shape=b720df5a vocab=ec3b2cd5
+-/
 theorem wellFoundedGT_iff_of_orderIso (e : α ≃o β) :
     WellFoundedGT α ↔ WellFoundedGT β := by
   rw [wellFoundedGT_iff_monotone_chain_condition,

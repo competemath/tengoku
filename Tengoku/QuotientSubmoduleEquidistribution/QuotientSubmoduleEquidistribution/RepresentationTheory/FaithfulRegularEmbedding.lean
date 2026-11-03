@@ -35,7 +35,9 @@ def regularToBasisProduct :
     exact mul_smul r s (Module.finBasis K M i)
 
 /-- Evaluation on a finite basis embeds the regular module when the action
-is faithful.-/
+is faithful.
+@isnad1 id=injectiv.0h3v.s9.f76a449c7bc6 from=translated src=- shape=49a5d289 vocab=1873a7ce
+-/
 theorem regularToBasisProduct_injective
     [FaithfulSMul R M] :
     Function.Injective (regularToBasisProduct K R M) := by
@@ -51,7 +53,9 @@ theorem regularToBasisProduct_injective
   congr 1
   exact congr_fun hrs i
 
-/-- Annihilator-zero form of the faithful regular embedding.-/
+/-- Annihilator-zero form of the faithful regular embedding.
+@isnad1 id=injectiv.1h3v.s9.e92c0c76d9b1 from=translated src=- shape=77f175fe vocab=21da9a89
+-/
 theorem regularToBasisProduct_injective_of_annihilator_eq_bot
     (hM : Module.annihilator R M = ⊥) :
     Function.Injective (regularToBasisProduct K R M) := by

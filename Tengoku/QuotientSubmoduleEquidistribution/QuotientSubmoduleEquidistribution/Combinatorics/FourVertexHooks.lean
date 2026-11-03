@@ -55,15 +55,23 @@ namespace Hook
 
 variable {G} (H : G.Hook)
 
+/--
+@isnad1 id=ne.0h3v.s4.bdf55f23d38a from=translated src=- shape=904ef580 vocab=3868d504
+-/
 theorem a_ne_u : H.a ≠ H.u := by
   intro h
   exact G.edge_irrefl H.u (h ▸ H.edge_a_u)
 
+/--
+@isnad1 id=ne.0h3v.s4.37e4871ad4d0 from=translated src=- shape=904ef580 vocab=97c4e207
+-/
 theorem u_ne_b : H.u ≠ H.b := by
   intro h
   exact G.edge_irrefl H.b (h ▸ H.edge_u_b)
 
-/-- A hook is determined by its middle vertex.-/
+/-- A hook is determined by its middle vertex.
+@isnad1 id=eq.1h4v.s4.439b6ef7aa66 from=translated src=- shape=30dd4b4a vocab=a737ce68
+-/
 theorem ext_u {H₁ H₂ : G.Hook} (h : H₁.u = H₂.u) : H₁ = H₂ := by
   have ha : H₁.a = H₂.a := by
     have hedge : G.edge H₁.a H₂.u := h ▸ H₁.edge_a_u
@@ -72,7 +80,9 @@ theorem ext_u {H₁ H₂ : G.Hook} (h : H₁.u = H₂.u) : H₁ = H₂ := by
     G.tau_injective H₁.tau_b (ha ▸ H₂.tau_b)
   ext <;> assumption
 
-/-- A hook is also determined by its last vertex.-/
+/-- A hook is also determined by its last vertex.
+@isnad1 id=eq.1h4v.s4.1969ba12b028 from=translated src=- shape=30dd4b4a vocab=1175c908
+-/
 theorem ext_b {H₁ H₂ : G.Hook} (h : H₁.b = H₂.b) : H₁ = H₂ := by
   have hu : H₁.u = H₂.u := by
     have hedge : G.edge H₁.u H₂.b := h ▸ H₁.edge_u_b
@@ -82,7 +92,9 @@ theorem ext_b {H₁ H₂ : G.Hook} (h : H₁.b = H₂.b) : H₁ = H₂ := by
 end Hook
 
 /-- The backwards endpoint of a predecessor-closed set remains in the set
-along every directed path ending in the set.-/
+along every directed path ending in the set.
+@isnad1 id=mem.3h5v.s6.2e63727b4516 from=translated src=- shape=91a6950a vocab=bfcdec91
+-/
 theorem mem_of_reflTransGen_of_predecessorClosed
     {S : Set Vertex} {p x : Vertex}
     (hclosed : ∀ {y z}, G.edge y z → z ∈ S → y ∈ S)
@@ -92,7 +104,9 @@ theorem mem_of_reflTransGen_of_predecessorClosed
   | @head y z hyz _ ih => exact hclosed hyz ih
 
 /-- A rooted quiver has no nonempty predecessor-closed set disjoint from
-the boundary.-/
+the boundary.
+@isnad1 id=false.3h4v.s6.d75c8df4fe29 from=translated src=- shape=6509dbab vocab=74459c09
+-/
 theorem not_predecessorClosed_away_boundary
     {S : Set Vertex} {x : Vertex} (hx : x ∈ S)
     (hclosed : ∀ {y z}, G.edge y z → z ∈ S → y ∈ S)
@@ -104,7 +118,9 @@ theorem not_predecessorClosed_away_boundary
 
 /-- The source and last vertex of a hook are distinct.  If they agreed,
 the source and middle vertex would form a nonempty predecessor-closed set
-disjoint from the boundary, contradicting rootedness.-/
+disjoint from the boundary, contradicting rootedness.
+@isnad1 id=ne.0h3v.s4.d76b331018b5 from=translated src=- shape=904ef580 vocab=3277f73c
+-/
 theorem Hook.a_ne_b (H : G.Hook) : H.a ≠ H.b := by
   intro hab
   let S : Set Vertex := {H.a, H.u}
@@ -127,7 +143,9 @@ theorem Hook.a_ne_b (H : G.Hook) : H.a ≠ H.b := by
       · exact H.u_not_boundary)
 
 /-- On a support of cardinality at most four, two distinct hooks must share
-the last vertex of one with the middle vertex of the other.-/
+the last vertex of one with the middle vertex of the other.
+@isnad1 id=or.2h4v.s5.ea83070564bf from=translated src=- shape=1e01895b vocab=b42ac0ab
+-/
 theorem Hook.overlap_of_ne [Finite Vertex]
     (hcard : Nat.card Vertex ≤ 4)
     {H₁ H₂ : G.Hook} (hne : H₁ ≠ H₂) :
@@ -177,7 +195,9 @@ theorem Hook.overlap_of_ne [Finite Vertex]
   omega
 
 /-- Two overlapping hooks have the source required by the consecutive
-double-hook picture.-/
+double-hook picture.
+@isnad1 id=eq.1h4v.s5.0e43cbe998d1 from=translated src=- shape=faaa075f vocab=d0973617
+-/
 theorem Hook.source_eq_of_consecutive
     {H₁ H₂ : G.Hook} (h : H₁.b = H₂.u) :
     H₂.a = H₁.u := by
@@ -186,7 +206,9 @@ theorem Hook.source_eq_of_consecutive
 
 /-- In a consecutive pair of hooks on at most four rooted vertices, the
 first source is a boundary vertex.  Thus the abstract overlap is exactly
-the manuscript's `P → u₁ → u₂ → u₃` double hook.-/
+the manuscript's `P → u₁ → u₂ → u₃` double hook.
+@isnad1 id=mem.2h4v.s5.cc28ab6ffb42 from=translated src=- shape=7f829a19 vocab=c7711f8a
+-/
 theorem Hook.first_mem_boundary_of_consecutive [Finite Vertex]
     (hcard : Nat.card Vertex ≤ 4)
     {H₁ H₂ : G.Hook} (h₁₂ : H₁.b = H₂.u) :
@@ -287,7 +309,9 @@ theorem Hook.first_mem_boundary_of_consecutive [Finite Vertex]
   omega
 
 /-- A directed three-cycle of consecutive hooks is incompatible with
-rootedness: its middle vertices form a nonboundary predecessor-closed set.-/
+rootedness: its middle vertices form a nonboundary predecessor-closed set.
+@isnad1 id=false.3h5v.s5.7e95c972b3a6 from=translated src=- shape=634835f6 vocab=97c4e207
+-/
 theorem Hook.not_three_cycle
     {H₁ H₂ H₃ : G.Hook}
     (h₁₂ : H₁.b = H₂.u) (h₂₃ : H₂.b = H₃.u)
@@ -320,7 +344,9 @@ theorem Hook.not_three_cycle
   · exact H₃.u_not_boundary (hp₃ ▸ hpBoundary)
 
 /-- Three pairwise distinct hooks cannot occur on a rooted support of at
-most four vertices.-/
+most four vertices.
+@isnad1 id=false.4h5v.s5.ec0741b94896 from=translated src=- shape=db5d33a6 vocab=936d2694
+-/
 theorem Hook.not_three_pairwise_ne [Finite Vertex]
     (hcard : Nat.card Vertex ≤ 4)
     (H₁ H₂ H₃ : G.Hook)
@@ -342,13 +368,18 @@ theorem Hook.not_three_pairwise_ne [Finite Vertex]
     · apply h₂₃
       exact Hook.ext_b (h21.trans h31.symm)
 
+/--
+@isnad1 id=finite.0h2v.s3.020c7bb4aa8a from=translated src=- shape=d25ba72a vocab=b705d1b9
+-/
 instance Hook.instFinite [Finite Vertex] : Finite G.Hook :=
   Finite.of_injective
     (fun H : G.Hook ↦ (H.a, H.u, H.b)) (by
       intro H₁ H₂ h
       exact Hook.ext_u (congrArg (fun q ↦ q.2.1) h))
 
-/-- The manuscript bound `|H(D)| ≤ 2`.-/
+/-- The manuscript bound `|H(D)| ≤ 2`.
+@isnad1 id=le.1h2v.s4.b3df6ae1e163 from=translated src=- shape=f33abad4 vocab=936d2694
+-/
 theorem hook_card_le_two [Finite Vertex]
     (hcard : Nat.card Vertex ≤ 4) : Nat.card G.Hook ≤ 2 := by
   classical
@@ -370,7 +401,9 @@ structure DoubleHook where
   consecutive : first.b = second.u
 
 /-- Any two distinct hooks admit the unique possible consecutive
-orientation.-/
+orientation.
+@isnad1 id=ex.2h4v.s6.c2fb106a6b8e from=translated src=- shape=2e0ab1fd vocab=192c1304
+-/
 theorem exists_doubleHook_of_ne [Finite Vertex]
     (hcard : Nat.card Vertex ≤ 4)
     {H₁ H₂ : G.Hook} (hne : H₁ ≠ H₂) :

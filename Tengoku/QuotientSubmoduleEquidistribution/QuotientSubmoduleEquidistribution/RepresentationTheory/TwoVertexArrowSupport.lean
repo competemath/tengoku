@@ -53,7 +53,9 @@ def LoopsAtMostOneVertex : Prop :=
   ¬ (D.HasLoopAt 0 ∧ D.HasLoopAt 1)
 
 /-- The loop-free two-vertex support has at most one outgoing arrow from
-each vertex.-/
+each vertex.
+@isnad1 id=injectiv.1h2v.s4.071eb3ed176a from=translated src=- shape=37828ee8 vocab=b92af382
+-/
 theorem source_injective_of_noLoops (hNoLoops : D.NoLoops) :
     Function.Injective D.source := by
   intro a b hab
@@ -70,7 +72,9 @@ theorem source_injective_of_noLoops (hNoLoops : D.NoLoops) :
   exact finTwo_eq_of_ne_common ha hb
 
 /-- Dually, the loop-free two-vertex support has at most one incoming arrow
-at each vertex.-/
+at each vertex.
+@isnad1 id=injectiv.1h2v.s4.ce6b42277680 from=translated src=- shape=37828ee8 vocab=7f07f733
+-/
 theorem target_injective_of_noLoops (hNoLoops : D.NoLoops) :
     Function.Injective D.target := by
   intro a b hab
@@ -105,7 +109,9 @@ def IsLoopTwoCycleAt (loopVertex other : Fin 2) : Prop :=
       D.HasArrow loopVertex other ∧ D.HasArrow other loopVertex
 
 /-- Exhaustive two-vertex support classification after loop uniqueness:
-the support is loop-free, a one-way lollipop, or a loop plus two-cycle.-/
+the support is loop-free, a one-way lollipop, or a loop plus two-cycle.
+@isnad1 id=or.2h2v.s6.a5df016694a7 from=translated src=- shape=91e1a457 vocab=a6d4d027
+-/
 theorem noLoops_or_oneWayLollipop_or_loopTwoCycle
     (hConnected : D.UnderlyingConnected)
     (hLoopUnique : D.LoopsAtMostOneVertex) :

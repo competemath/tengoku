@@ -102,7 +102,9 @@ def interior :
           (T.tau.apply_symm_apply ⟨z.1.1, z.1.2.2⟩) }
 
 /-- Away from the new target boundary, interior successor has the same
-underlying vertex as the original successor.-/
+underlying vertex as the original successor.
+@isnad1 id=eq.1h5v.s6.d44951a36065 from=translated src=- shape=b14a17c6 vocab=674353a7
+-/
 theorem interior_successor_val
     (x : T.Interior) (hx : ¬ T.InteriorTarget x) :
     (T.interior.successor x).1 = T.successor x.1 := by
@@ -111,7 +113,9 @@ theorem interior_successor_val
     interior, hx, x.2.2]
 
 /-- The target boundary of the restricted interior translation is detected
-by whether the next original successor is on the old target boundary.-/
+by whether the next original successor is on the old target boundary.
+@isnad1 id=iff.0h5v.s5.039ee50d4d5f from=translated src=- shape=a520f244 vocab=3d25bb5f
+-/
 theorem interiorTarget_iff_target_successor (x : T.Interior) :
     T.InteriorTarget x ↔ I (T.successor x.1) := by
   classical
@@ -120,7 +124,9 @@ theorem interiorTarget_iff_target_successor (x : T.Interior) :
 
 /-- As long as the original successor trajectory has not reached the old
 target boundary, iteration in the restricted interior translation has the
-same underlying vertices as iteration in the original translation.-/
+same underlying vertices as iteration in the original translation.
+@isnad1 id=eq.1h6v.s7.2224393d286e from=translated src=- shape=cc253645 vocab=3dfaaadd
+-/
 theorem interior_iterate_successor_val
     (x : T.Interior) (n : ℕ)
     (h : ∀ i < n, ¬ I ((T.successor^[i + 1]) x.1)) :
@@ -149,7 +155,9 @@ theorem interior_iterate_successor_val
 
 /-- Equivalent trajectory form: if the restricted successor iterates have
 not yet reached their new target boundary, their values follow the original
-successor trajectory.-/
+successor trajectory.
+@isnad1 id=eq.1h6v.s7.784cd4449856 from=translated src=- shape=312939b1 vocab=aaca7dce
+-/
 theorem interior_iterate_successor_val_of_not_interiorTarget
     (x : T.Interior) (n : ℕ)
     (h : ∀ i < n,
@@ -172,7 +180,9 @@ theorem interior_iterate_successor_val_of_not_interiorTarget
           congrArg T.successor hval
 
 /-- Two interior vertices which meet under the restricted successor also
-belong to the same component of the original partial translation.-/
+belong to the same component of the original partial translation.
+@isnad1 id=samesucc.1h6v.s6.4eb31071cfe6 from=translated src=- shape=b70213a5 vocab=b33dc371
+-/
 theorem sameSuccessorOrbit_val_of_interior
     (x y : T.Interior)
     (hxy : T.interior.SameSuccessorOrbit x y) :
@@ -208,7 +218,9 @@ theorem sameSuccessorOrbit_val_of_interior
 
 /-- If an interior vertex is the first vertex after an original source,
 then restricting away the two old endpoints does not change its component
-relation with any other interior vertex.-/
+relation with any other interior vertex.
+@isnad1 id=iff.2h6v.s6.ca644a17175c from=translated src=- shape=cce67f0e vocab=06f848b4
+-/
 theorem interior_sameSuccessorOrbit_iff_of_mem_source
     [Fintype Vertex]
     (source_not_target : ∀ z, P z → ¬ I z)
@@ -276,11 +288,17 @@ theorem interior_sameSuccessorOrbit_iff_of_mem_source
     apply Subtype.ext
     simpa only [Function.iterate_zero, id_eq, hval] using hpath
 
+/--
+@isnad1 id=not.1h5v.s4.ecf143447b20 from=translated src=- shape=73426125 vocab=e77d99b8
+-/
 theorem not_twoSource_first {x : Vertex} (hx : ¬ T.TwoSource x) :
     ¬ P x := by
   intro hp
   exact hx (Or.inl hp)
 
+/--
+@isnad1 id=not.1h5v.s7.818b6cb2745d from=translated src=- shape=4e0a8f50 vocab=ee0448ea
+-/
 theorem not_twoSource_second {x : Vertex} (hx : ¬ T.TwoSource x) :
     ¬ P (T.tau ⟨x, T.not_twoSource_first hx⟩).1 := by
   intro hp
@@ -289,6 +307,9 @@ theorem not_twoSource_second {x : Vertex} (hx : ¬ T.TwoSource x) :
   intro hx'
   simpa only [Subsingleton.elim hx' (T.not_twoSource_first hx)] using hp
 
+/--
+@isnad1 id=not.2h5v.s7.25006806312c from=translated src=- shape=85f49d22 vocab=b17d0131
+-/
 theorem not_twoSource_of
     {x : Vertex} (hx : ¬ P x)
     (hnext : ¬ P (T.tau ⟨x, hx⟩).1) :
@@ -298,11 +319,17 @@ theorem not_twoSource_of
   · exact hx hp
   · exact hnext (hp hx)
 
+/--
+@isnad1 id=not.1h5v.s4.25744cacd2c5 from=translated src=- shape=e0a833ba vocab=16d90b23
+-/
 theorem not_twoTarget_first {x : Vertex} (hx : ¬ T.TwoTarget x) :
     ¬ I x := by
   intro hi
   exact hx (Or.inl hi)
 
+/--
+@isnad1 id=not.1h5v.s7.4023287c6ba4 from=translated src=- shape=8c53d48c vocab=c460a6f3
+-/
 theorem not_twoTarget_second {x : Vertex} (hx : ¬ T.TwoTarget x) :
     ¬ I (T.tau.symm ⟨x, T.not_twoTarget_first hx⟩).1 := by
   intro hi
@@ -311,6 +338,9 @@ theorem not_twoTarget_second {x : Vertex} (hx : ¬ T.TwoTarget x) :
   intro hx'
   simpa only [Subsingleton.elim hx' (T.not_twoTarget_first hx)] using hi
 
+/--
+@isnad1 id=not.2h5v.s7.27cbe2734de4 from=translated src=- shape=00db5be7 vocab=fd67fecb
+-/
 theorem not_twoTarget_of
     {x : Vertex} (hx : ¬ I x)
     (hprev : ¬ I (T.tau.symm ⟨x, hx⟩).1) :
@@ -321,7 +351,9 @@ theorem not_twoTarget_of
   · exact hprev (hi hx)
 
 /-- Away from the last two interior layers, two interior successor steps
-have the same underlying vertex as two original successor steps.-/
+have the same underlying vertex as two original successor steps.
+@isnad1 id=eq.1h5v.s6.5623e4ac1257 from=translated src=- shape=398637f6 vocab=fe83ea0b
+-/
 theorem interior_two_successor_val
     (x : T.Interior) (hx : ¬ T.interior.TwoTarget x) :
     (T.interior.successor (T.interior.successor x)).1 =
@@ -375,7 +407,9 @@ def twoStep :
         simp }
 
 /-- Away from the last two layers, the successor for `twoStep` is the
-square of the original successor.-/
+square of the original successor.
+@isnad1 id=eq.1h5v.s5.b47e119d7d59 from=translated src=- shape=d2d123bd vocab=cc6d0597
+-/
 theorem twoStep_successor_eq
     (x : Vertex) (hx : ¬ T.TwoTarget x) :
     T.twoStep.successor x = T.successor (T.successor x) := by
@@ -431,7 +465,9 @@ def prod :
             (U.tau.apply_symm_apply
               ⟨p.1.2, fun hi ↦ p.2 (Or.inr hi)⟩) }
 
-/-- Away from the product target boundary, successor acts coordinatewise.-/
+/-- Away from the product target boundary, successor acts coordinatewise.
+@isnad1 id=eq.1h9v.s6.a4f9fc16dd54 from=translated src=- shape=8d3153e5 vocab=66540932
+-/
 theorem prod_successor_eq
     (p : Vertex × Vertex₂) (hp : ¬ (I p.1 ∨ I₂ p.2)) :
     (T.prod U).successor p = (T.successor p.1, U.successor p.2) := by
@@ -446,7 +482,9 @@ translation components.-/
 def twoStepProd := prod T.twoStep U.twoStep
 
 /-- Away from the enlarged target boundary, the product successor is
-literal simultaneous advancement by two original successor steps.-/
+literal simultaneous advancement by two original successor steps.
+@isnad1 id=eq.1h9v.s7.fb665ca859ae from=translated src=- shape=d7b1a46e vocab=86929a0f
+-/
 theorem twoStepProd_successor_eq
     (p : Vertex × Vertex₂)
     (hp : ¬ (T.TwoTarget p.1 ∨ U.TwoTarget p.2)) :
@@ -460,7 +498,9 @@ theorem twoStepProd_successor_eq
   · exact U.twoStep_successor_eq p.2 (fun h ↦ hp (Or.inr h))
 
 /-- Before the first product target is reached, `n` product steps are
-exactly `2 * n` original successor steps in each coordinate.-/
+exactly `2 * n` original successor steps in each coordinate.
+@isnad1 id=eq.2h10v.s7.10b1e7c56403 from=translated src=- shape=41b9a33f vocab=5d01e6b0
+-/
 theorem twoStepProd_iterate_successor_eq
     [Fintype Vertex] [Fintype Vertex₂]
     (p : Vertex × Vertex₂)
@@ -493,7 +533,9 @@ theorem twoStepProd_iterate_successor_eq
         rfl
 
 /-- The endpoint of a simultaneous two-step product chain has the
-elementwise orbit-coordinate formula used by the signed strip.-/
+elementwise orbit-coordinate formula used by the signed strip.
+@isnad1 id=other.1h9v.s7.6b123b929d36 from=translated src=- shape=d314e7dd vocab=78273dd9
+-/
 theorem twoStepProd_targetEndpoint_eq
     [Fintype Vertex] [Fintype Vertex₂]
     (p : Vertex × Vertex₂)

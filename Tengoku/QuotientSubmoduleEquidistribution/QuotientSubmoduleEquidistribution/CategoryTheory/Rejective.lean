@@ -161,7 +161,9 @@ def transportedLeftAdjunction
 
 /-- The transported counit is monic.  The proof separates the two
 composed adjunctions and the final normalization isomorphism, so typeclass
-search only sees composites of mapped monomorphisms and isomorphisms.-/
+search only sees composites of mapped monomorphisms and isomorphisms.
+@isnad1 id=mono.0h6v.s7.042d61429eaf from=translated src=- shape=e6b47f14 vocab=41530ad0
+-/
 theorem transportedRightAdjunction_counit_mono
     (data : RightRejectiveData P) (X : D) :
     Mono ((transportedRightAdjunction E P data).counit.app X) := by
@@ -227,7 +229,9 @@ theorem transportedRightAdjunction_counit_mono
   · exact normalizationMono
   · exact h₂ X
 
-/-- The transported unit is epic, by the dual componentwise argument.-/
+/-- The transported unit is epic, by the dual componentwise argument.
+@isnad1 id=epi.0h6v.s7.703078d1766c from=translated src=- shape=7c95066d vocab=213f5b17
+-/
 theorem transportedLeftAdjunction_unit_epi
     (data : LeftRejectiveData P) (X : D) :
     Epi ((transportedLeftAdjunction E P data).unit.app X) := by
@@ -309,20 +313,26 @@ def transportLeftRejectiveData
   unit_epi :=
     transportedLeftAdjunction_unit_epi E P data
 
-/-- Right rejectivity transports in the forward direction.-/
+/-- Right rejectivity transports in the forward direction.
+@isnad1 id=isrightr.1h4v.s5.95f2092300c3 from=translated src=- shape=98591079 vocab=27d030aa
+-/
 theorem isRightRejective_image
     (h : IsRightRejective P) :
     IsRightRejective (imageProperty E P) :=
   h.map (transportRightRejectiveData E P)
 
-/-- Left rejectivity transports in the forward direction.-/
+/-- Left rejectivity transports in the forward direction.
+@isnad1 id=isleftre.1h4v.s5.80d0401ea3a1 from=translated src=- shape=98591079 vocab=324e7185
+-/
 theorem isLeftRejective_image
     (h : IsLeftRejective P) :
     IsLeftRejective (imageProperty E P) :=
   h.map (transportLeftRejectiveData E P)
 
 /-- Pulling the image predicate back through the inverse equivalence
-recovers the original predicate.  Repleteness is the only input.-/
+recovers the original predicate.  Repleteness is the only input.
+@isnad1 id=eq.0h4v.s5.496b70aa9ea4 from=translated src=- shape=420907f7 vocab=62d2cb12
+-/
 theorem imageProperty_symm_imageProperty_eq :
     imageProperty E.symm (imageProperty E P) = P := by
   funext X
@@ -335,7 +345,9 @@ theorem imageProperty_symm_imageProperty_eq :
   · intro h
     exact P.prop_of_iso (E.unitIso.app X) h
 
-/-- Right rejectivity is invariant under categorical equivalence.-/
+/-- Right rejectivity is invariant under categorical equivalence.
+@isnad1 id=iff.0h4v.s5.950008e6eb6f from=translated src=- shape=0fa3142f vocab=27d030aa
+-/
 theorem isRightRejective_iff_image :
     IsRightRejective P ↔
       IsRightRejective (imageProperty E P) := by
@@ -348,7 +360,9 @@ theorem isRightRejective_iff_image :
     simpa only [imageProperty_symm_imageProperty_eq E P]
       using h'
 
-/-- Left rejectivity is invariant under categorical equivalence.-/
+/-- Left rejectivity is invariant under categorical equivalence.
+@isnad1 id=iff.0h4v.s5.7dc2e9f3e5e8 from=translated src=- shape=0fa3142f vocab=324e7185
+-/
 theorem isLeftRejective_iff_image :
     IsLeftRejective P ↔
       IsLeftRejective (imageProperty E P) := by

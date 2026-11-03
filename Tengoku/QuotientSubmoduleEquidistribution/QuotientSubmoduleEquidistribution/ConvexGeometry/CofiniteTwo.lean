@@ -29,7 +29,9 @@ def IsTopExtreme (x : E) : Prop :=
   x ∈ c.extremePoints Set.univ
 
 /-- A point is top extreme exactly when deleting just that point leaves a
-closed set.-/
+closed set.
+@isnad1 id=iff.0h3v.s5.fd0dfc680eb9 from=translated src=- shape=4c127c1b vocab=d5703351
+-/
 theorem isTopExtreme_iff_isClosed_compl_singleton (x : E) :
     c.IsTopExtreme x ↔ c.IsClosed ({x} : Set E)ᶜ := by
   calc
@@ -44,7 +46,9 @@ theorem isTopExtreme_iff_isClosed_compl_singleton (x : E) :
         simp
       rw [hset]
 
-/-- Complements of arbitrary sets of top extreme points are closed.-/
+/-- Complements of arbitrary sets of top extreme points are closed.
+@isnad1 id=isclosed.1h3v.s5.9eb3fee1cacc from=translated src=- shape=d314ebf0 vocab=e3039b15
+-/
 theorem isClosed_compl_of_subset_topExtreme
     {D : Set E} (hD : ∀ x ∈ D, c.IsTopExtreme x) :
     c.IsClosed Dᶜ := by
@@ -69,7 +73,9 @@ theorem isClosed_compl_of_subset_topExtreme
   · exact c.le_closure Dᶜ
 
 /-- If deleting two distinct points leaves a closed set in an
-anti-exchange closure, at least one deleted point is top extreme.-/
+anti-exchange closure, at least one deleted point is top extreme.
+@isnad1 id=or.3h4v.s6.1a5f0c549871 from=translated src=- shape=058433f7 vocab=400ebe48
+-/
 theorem isTopExtreme_or_isTopExtreme_of_isClosed_compl_pair
     (hae : c.IsAntiExchange) {x y : E} (hxy : x ≠ y)
     (hclosed : c.IsClosed ({x, y} : Set E)ᶜ) :
@@ -121,6 +127,9 @@ def topExtremeFinset : Finset E :=
     exact Finset.univ.filter c.IsTopExtreme
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h3v.s4.ad1b81c32702 from=translated src=- shape=e09c8489 vocab=2060acb9
+-/
 @[simp]
 theorem mem_topExtremeFinset {x : E} :
     x ∈ c.topExtremeFinset ↔ c.IsTopExtreme x := by
@@ -134,6 +143,9 @@ def twoDeletions : Finset (Finset E) :=
     exact Finset.univ.powersetCard 2
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h2v.s5.7df11a815f2d from=translated src=- shape=a457bb04 vocab=642647d4
+-/
 @[simp]
 theorem mem_twoDeletions {D : Finset E} :
     D ∈ twoDeletions (E := E) ↔ D.card = 2 := by
@@ -148,6 +160,9 @@ def cofiniteTwoDeletions : Finset (Finset E) :=
       c.IsClosed ((D : Set E)ᶜ)
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h3v.s6.e800f53fbbb7 from=translated src=- shape=294214dc vocab=2f67c8d7
+-/
 @[simp]
 theorem mem_cofiniteTwoDeletions {D : Finset E} :
     D ∈ c.cofiniteTwoDeletions ↔
@@ -162,6 +177,9 @@ def topExtremePairs : Finset (Finset E) :=
     exact c.topExtremeFinset.powersetCard 2
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h3v.s5.615ad11913f1 from=translated src=- shape=7674b56f vocab=56e6f49b
+-/
 @[simp]
 theorem mem_topExtremePairs {D : Finset E} :
     D ∈ c.topExtremePairs ↔
@@ -186,6 +204,9 @@ def topExtremePart (D : Finset E) : Finset E :=
     exact D.filter c.IsTopExtreme
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=iff.0h4v.s5.3a60d068fe00 from=translated src=- shape=3e67085d vocab=1d920279
+-/
 @[simp]
 theorem mem_topExtremePart {D : Finset E} {x : E} :
     x ∈ c.topExtremePart D ↔ x ∈ D ∧ c.IsTopExtreme x := by
@@ -201,6 +222,9 @@ def mixedBoundaryDeletions : Finset (Finset E) :=
       (c.topExtremePart D).card = 1
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h3v.s6.05934292133d from=translated src=- shape=4a7a66a3 vocab=c0d2de42
+-/
 @[simp]
 theorem mem_mixedBoundaryDeletions {D : Finset E} :
     D ∈ c.mixedBoundaryDeletions ↔
@@ -227,7 +251,9 @@ def MixedBoundaryPair :=
 namespace MixedBoundaryPair
 
 omit [Fintype E] [DecidableEq E] in
-/-- The two entries of an oriented mixed boundary pair are distinct.-/
+/-- The two entries of an oriented mixed boundary pair are distinct.
+@isnad1 id=ne.0h3v.s7.0c3d8fc57f47 from=translated src=- shape=620b83e1 vocab=887a1e1a
+-/
 theorem ne (p : c.MixedBoundaryPair) : p.1.1 ≠ p.1.2 := by
   intro h
   exact p.2.2.1 (h ▸ p.2.1)
@@ -334,7 +360,9 @@ noncomputable def mixedBoundaryDeletionEquivMixedBoundaryPair :
         ⟨{p.1.1, p.1.2}, mixedBoundaryPair_mem c p⟩)).symm
 
 /-- The mixed-boundary count is the natural cardinality of the canonically
-oriented mixed pairs.-/
+oriented mixed pairs.
+@isnad1 id=eq.0h2v.s4.f25ed2ffad00 from=translated src=- shape=75507618 vocab=0529ab93
+-/
 theorem mixedBoundaryCount_eq_natCard_mixedBoundaryPair :
     c.mixedBoundaryCount = Nat.card c.MixedBoundaryPair := by
   unfold mixedBoundaryCount
@@ -343,7 +371,9 @@ theorem mixedBoundaryCount_eq_natCard_mixedBoundaryPair :
   exact Nat.card_congr (mixedBoundaryDeletionEquivMixedBoundaryPair c)
 
 omit [DecidableEq E] in
-/-- Every pair of top extreme points is an allowed deletion.-/
+/-- Every pair of top extreme points is an allowed deletion.
+@isnad1 id=le.0h2v.s4.68c123c769cb from=translated src=- shape=a586b347 vocab=e767a761
+-/
 theorem topExtremePairs_subset_cofiniteTwoDeletions :
     c.topExtremePairs ⊆ c.cofiniteTwoDeletions := by
   classical
@@ -356,7 +386,9 @@ theorem topExtremePairs_subset_cofiniteTwoDeletions :
       hpair.2 x hxD
 
 /-- The exact two-deletion partition: an allowed pair consists either of
-two top extreme points or of exactly one top extreme point.-/
+two top extreme points or of exactly one top extreme point.
+@isnad1 id=eq.1h2v.s5.69f9828e64a6 from=translated src=- shape=f49ace08 vocab=1e81d474
+-/
 theorem cofiniteTwoDeletions_eq_topExtremePairs_union_mixedBoundary
     (hae : c.IsAntiExchange) :
     c.cofiniteTwoDeletions =
@@ -427,7 +459,9 @@ theorem cofiniteTwoDeletions_eq_topExtremePairs_union_mixedBoundary
           ⟨hmixed'.1, hmixed'.2.1⟩
 
 omit [DecidableEq E] in
-/-- The two parts of the partition are disjoint.-/
+/-- The two parts of the partition are disjoint.
+@isnad1 id=disjoint.0h2v.s4.2abbe169a326 from=translated src=- shape=a586b347 vocab=528cda14
+-/
 theorem disjoint_topExtremePairs_mixedBoundary :
     Disjoint c.topExtremePairs c.mixedBoundaryDeletions := by
   classical
@@ -446,7 +480,9 @@ theorem disjoint_topExtremePairs_mixedBoundary :
 /-- Abstract cofinite-two formula.  In the module-theoretic application,
 top extreme points are indecomposable projectives; identifying the mixed
 term with irreducible projective-to-nonprojective arrows is a separate
-Auslander--Reiten theorem.-/
+Auslander--Reiten theorem.
+@isnad1 id=eq.1h2v.s5.939407b8b20a from=translated src=- shape=e8c556fc vocab=c6547dc8
+-/
 theorem cofiniteTwoCount_eq_choose_add_mixedBoundaryCount
     (hae : c.IsAntiExchange) :
     c.cofiniteTwoCount =

@@ -52,7 +52,9 @@ def additionalBoundaryOfEquiv {L : Type u} (e : L ≃ Vertex)
   BitVec.ofFnLE fun i ↦
     decide (B (e.symm ⟨i.val + 1, by omega⟩))
 
-/-- Reading the row-major relation bits recovers the original relation.-/
+/-- Reading the row-major relation bits recovers the original relation.
+@isnad1 id=eq.0h5v.s6.96da014b3a9f from=translated src=- shape=e9f0de96 vocab=aed34169
+-/
 theorem edgeBitsOfEquiv_apply {L : Type u} (e : L ≃ Vertex)
     (E : L → L → Prop) [DecidableRel E] (x y : L) :
     (edgeBitsOfEquiv e E).getLsbD
@@ -79,7 +81,9 @@ theorem edgeBitsOfEquiv_apply {L : Type u} (e : L ≃ Vertex)
   all_goals simp only [fin_two, fin_three]
 
 /-- The translation code at an arbitrary relabelled vertex is the encoding
-of its optional semantic target.-/
+of its optional semantic target.
+@isnad1 id=eq.1h5v.s6.5c4eeadf178f from=translated src=- shape=455c02b2 vocab=728cc6c7
+-/
 theorem tauCode_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
     (E : L → L → Prop) [DecidableRel E]
     (T : L → Option L) (x : L)
@@ -95,7 +99,9 @@ theorem tauCode_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
   fin_cases q <;>
     simp [codeOfEquiv, tauCode, hroot, encodedTargetOfEquiv]
 
-/-- Equality of a nonzero encoded target is exact.-/
+/-- Equality of a nonzero encoded target is exact.
+@isnad1 id=iff.0h4v.s6.d402935f7f75 from=translated src=- shape=2ce17a79 vocab=2a22484e
+-/
 theorem encodedTargetOfEquiv_eq_target {L : Type u} (e : L ≃ Vertex)
     (t : Option L) (y : L) :
     (encodedTargetOfEquiv e t ==
@@ -119,7 +125,9 @@ theorem encodedTargetOfEquiv_eq_target {L : Type u} (e : L ≃ Vertex)
       clear hz hy z y
       fin_cases i <;> fin_cases j <;> simp [encodedTargetOfEquiv]
 
-/-- Zero is exactly the missing-target code.-/
+/-- Zero is exactly the missing-target code.
+@isnad1 id=iff.0h3v.s5.59161b0afeb3 from=translated src=- shape=dd6aa081 vocab=7611eb46
+-/
 theorem encodedTargetOfEquiv_eq_zero {L : Type u} (e : L ≃ Vertex)
     (t : Option L) :
     (encodedTargetOfEquiv e t == 0) = true ↔ t = none := by
@@ -134,7 +142,9 @@ theorem encodedTargetOfEquiv_eq_zero {L : Type u} (e : L ≃ Vertex)
       fin_cases i <;> simp [encodedTargetOfEquiv]
 
 /-- The normalized target predicate decodes to the semantic partial
-translation.-/
+translation.
+@isnad1 id=iff.1h6v.s6.f8245c23ec41 from=translated src=- shape=fd1186aa vocab=3378eb82
+-/
 theorem tauEq_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
     (E : L → L → Prop) [DecidableRel E]
     (T : L → Option L) (x y : L)
@@ -144,7 +154,9 @@ theorem tauEq_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
   rw [tauEq, tauCode_codeOfEquiv e E T x hroot]
   exact encodedTargetOfEquiv_eq_target e (T x) y
 
-/-- The normalized missing-target predicate decodes to `none`.-/
+/-- The normalized missing-target predicate decodes to `none`.
+@isnad1 id=iff.1h5v.s6.4e091b2e51bf from=translated src=- shape=4adbff71 vocab=fddb69de
+-/
 theorem tauNone_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
     (E : L → L → Prop) [DecidableRel E]
     (T : L → Option L) (x : L)
@@ -154,7 +166,9 @@ theorem tauNone_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
   exact encodedTargetOfEquiv_eq_zero e (T x)
 
 /-- The boundary bit mask decodes to the original boundary predicate when
-the implicit root is a boundary label.-/
+the implicit root is a boundary label.
+@isnad1 id=iff.0h5v.s6.a6eae7c244d8 from=translated src=- shape=abf3467c vocab=5ffe5a64
+-/
 theorem boundaryAt_additionalBoundaryOfEquiv {L : Type u}
     (e : L ≃ Vertex) (B : L → Prop) [DecidablePred B]
     (hroot : B (e.symm 0)) (x : L) :
@@ -169,7 +183,9 @@ theorem boundaryAt_additionalBoundaryOfEquiv {L : Type u}
     simp [boundaryAt, additionalBoundaryOfEquiv, hroot]
 
 /-- For a loopless semantic relation, `edge` on the encoded code is exactly
-that relation.-/
+that relation.
+@isnad1 id=iff.1h6v.s6.c1b08ec41f7b from=translated src=- shape=51974ed1 vocab=79c9b34f
+-/
 theorem edge_codeOfEquiv {L : Type u} (e : L ≃ Vertex)
     (E : L → L → Prop) [DecidableRel E]
     (T : L → Option L) (hirr : ∀ x, ¬ E x x) (x y : L) :

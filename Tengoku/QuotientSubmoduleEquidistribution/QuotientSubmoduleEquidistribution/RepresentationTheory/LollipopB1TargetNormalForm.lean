@@ -24,7 +24,9 @@ def inactiveBottomCoords (D : FiniteB1Rep K) (F : SplittingFlag K D)
   (((z.2.1.1.1.1.1, 0), z.2.1.1.1.2), 0)
 
 /-- Subtracting the active section leaves exactly the `X/U` top,
-`X/W` bottom, and `S1` coordinates.-/
+`X/W` bottom, and `S1` coordinates.
+@isnad1 id=eq.0h4v.s20.e3ade7487d43 from=translated src=- shape=d24b18bd vocab=4a3dcd22
+-/
 theorem sub_activeEmbed_eq_inactive (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : NormalV₁ D F) :
     z - activeEmbed D F (activeProjection D F z) =
@@ -33,6 +35,9 @@ theorem sub_activeEmbed_eq_inactive (D : FiniteB1Rep K)
   ext <;> simp [activeEmbed, activeProjection, activeTopCoords,
     activeBottomCoords, inactiveTopCoords, inactiveBottomCoords]
 
+/--
+@isnad1 id=mem.0h4v.s18.a3f06b809551 from=translated src=- shape=60c08835 vocab=a151592d
+-/
 theorem inactiveTop_mem_mobile (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : NormalV₁ D F) :
     jordanEquivLoopRange D F (inactiveTopCoords D F z) ∈
@@ -45,6 +50,9 @@ theorem inactiveTop_mem_mobile (D : FiniteB1Rep K)
   rw [jordanEquivLoopRange_apply_coe]
   simp [inactiveTopCoords]
 
+/--
+@isnad1 id=mem.0h4v.s18.281479581152 from=translated src=- shape=60c08835 vocab=b01765dc
+-/
 theorem inactiveBottom_mem_killed (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : NormalV₁ D F) :
     jordanEquivLoopRange D F (inactiveBottomCoords D F z) ∈
@@ -59,7 +67,9 @@ theorem inactiveBottom_mem_killed (D : FiniteB1Rep K)
 
 /-- The inactive remainder is exactly a vector in the original stem
 kernel.  This is the load-bearing section identity needed to prove that the
-selected active coordinates hit the whole stem range.-/
+selected active coordinates hit the whole stem range.
+@isnad1 id=mem.0h4v.s21.133d6890f619 from=translated src=- shape=fb745f60 vocab=5b9a5b09
+-/
 theorem normalV₁Equiv_sub_active_mem_stemKernel
     (D : FiniteB1Rep K) (F : SplittingFlag K D)
     (z : NormalV₁ D F) :
@@ -87,7 +97,9 @@ theorem normalV₁Equiv_sub_active_mem_stemKernel
     Submodule.add_mem (stemKernel K D) htop
       (Submodule.add_mem (stemKernel K D) hbottom hs1)
 
-/-- The active stem map has exactly the same range as the original stem.-/
+/-- The active stem map has exactly the same range as the original stem.
+@isnad1 id=eq.0h3v.s17.4a40b444260b from=translated src=- shape=d0f9796b vocab=9039e37f
+-/
 theorem range_activeStem_eq_stemRange
     (D : FiniteB1Rep K) (F : SplittingFlag K D) :
     LinearMap.range ((stemMap K D).comp (activeSource D F)) =

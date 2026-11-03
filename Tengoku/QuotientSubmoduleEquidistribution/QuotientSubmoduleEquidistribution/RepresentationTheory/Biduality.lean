@@ -45,6 +45,9 @@ def bidualEval :
     ext f
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.dcd6db704c2b from=translated src=- shape=f0e0d4d7 vocab=fb488659
+-/
 @[simp]
 theorem bidualEval_apply (x : X) (f : Module.Dual K X) :
     bidualEval K R X x f = f x :=

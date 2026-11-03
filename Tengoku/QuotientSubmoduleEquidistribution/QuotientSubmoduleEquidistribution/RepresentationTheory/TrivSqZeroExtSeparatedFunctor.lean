@@ -46,7 +46,9 @@ variable [AddCommGroup X] [Module (TrivSqZeroExt S J) X]
 variable [AddCommGroup Y] [Module (TrivSqZeroExt S J) Y]
 
 /-- A module homomorphism intertwines the descended radical actions on its top
-and radical layers.-/
+and radical layers.
+@isnad1 id=eq.0h7v.s12.2e3bd785cd44 from=translated src=- shape=3f11a7b2 vocab=1eeb378a
+-/
 theorem radicalAction_natural
     (f : X →ₗ[TrivSqZeroExt S J] Y)
     (r : augmentationIdeal (S := S) (J := J))
@@ -156,6 +158,9 @@ def separatedLayerFunctor :
     · exact radicalMap_comp g.hom f.hom
     · exact topMap_comp g.hom f.hom
 
+/--
+@isnad1 id=additive.0h2v.s7.f59a10544d83 from=translated src=- shape=aef28c6b vocab=53955ddd
+-/
 instance separatedLayerFunctor_additive :
     (separatedLayerFunctor (S := S) (J := J)).Additive where
   map_add := by
@@ -184,7 +189,9 @@ instance separatedLayerFunctor_additive :
 /-- Every radical-action-compatible pair of maps on top and radical lifts to
 an actual module homomorphism.  The proof chooses `S`-linear splittings of the
 two tops, constructs the evident block lift, and uses action compatibility for
-the augmentation-ideal part of scalar linearity.-/
+the augmentation-ideal part of scalar linearity.
+@isnad1 id=ex.0h5v.s9.62450a29e63b from=translated src=- shape=893da09f vocab=75e9060b
+-/
 theorem separatedLayerFunctor_map_surjective
     {X Y : ModuleCat.{w} (TrivSqZeroExt S J)}
     (p : (separatedLayerFunctor (S := S) (J := J)).obj X ⟶
@@ -366,11 +373,16 @@ theorem separatedLayerFunctor_map_surjective
   apply Subtype.ext
   exact Prod.ext hrad htop
 
+/--
+@isnad1 id=full.0h2v.s7.93ca103f33f4 from=translated src=- shape=aef28c6b vocab=37f581fe
+-/
 instance separatedLayerFunctor_full :
     (separatedLayerFunctor (S := S) (J := J)).Full where
   map_surjective := separatedLayerFunctor_map_surjective
 
-/-- The concrete separated-layer functor has square-zero Hom-kernel.-/
+/-- The concrete separated-layer functor has square-zero Hom-kernel.
+@isnad1 id=functork.0h2v.s7.4c6e11fdc95f from=translated src=- shape=aef28c6b vocab=4ec0d844
+-/
 theorem separatedLayerFunctor_kernelSquareZero :
     QuotientSubmoduleEquidistribution.CategoryTheory.IdempotentLifting.FunctorKernelSquareZero
       (separatedLayerFunctor (S := S) (J := J)) := by

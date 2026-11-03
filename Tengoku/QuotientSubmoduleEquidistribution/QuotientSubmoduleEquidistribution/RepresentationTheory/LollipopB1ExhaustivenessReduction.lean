@@ -53,6 +53,9 @@ def stemKernel (D : FiniteB1Rep K) : Submodule K D.V₁ :=
 def deadKernel (D : FiniteB1Rep K) : Submodule K D.V₁ :=
   stemKernel K D ⊓ loopKernel K D
 
+/--
+@isnad1 id=le.0h2v.s8.e55401cbf28a from=translated src=- shape=e0c4654b vocab=d8071b56
+-/
 theorem loopRange_le_loopKernel (D : FiniteB1Rep K) :
     loopRange K D ≤ loopKernel K D := by
   rintro _ ⟨v, rfl⟩
@@ -84,6 +87,9 @@ def xBottom (D : FiniteB1Rep K) :
 def deadBottomAmbient (D : FiniteB1Rep K) : Submodule K D.V₁ :=
   loopRange K D ⊓ stemKernel K D
 
+/--
+@isnad1 id=le.0h2v.s8.de8710f14994 from=translated src=- shape=e0c4654b vocab=523dc8bf
+-/
 theorem deadBottomAmbient_le_deadKernel (D : FiniteB1Rep K) :
     deadBottomAmbient K D ≤ deadKernel K D := by
   intro v hv
@@ -125,7 +131,9 @@ structure SplittingFlag (D : FiniteB1Rep K) where
   stemRange_tail_compl :
     IsCompl (LinearMap.range (stemMap K D)) residualTail
 
-/-- Every finite live-path representation has a seven-space splitting flag.-/
+/-- Every finite live-path representation has a seven-space splitting flag.
+@isnad1 id=nonempty.0h2v.s3.78e58911d80c from=translated src=- shape=1fcfa16f vocab=f30368aa
+-/
 theorem exists_splittingFlag (D : FiniteB1Rep K) :
     Nonempty (SplittingFlag K D) := by
   have hxM : xBottom K D ≤ mobileBottom K D := inf_le_left
@@ -190,16 +198,25 @@ namespace SplittingFlag
 
 variable {K}
 
+/--
+@isnad1 id=le.0h3v.s11.7c6cb9833d30 from=translated src=- shape=a0713269 vocab=eec13006
+-/
 theorem uBottom_le_mobile (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.uBottom ≤ mobileBottom K D := by
   rw [← F.x_sup_u]
   exact le_sup_right
 
+/--
+@isnad1 id=le.0h3v.s11.2e6064ff4523 from=translated src=- shape=a0713269 vocab=48a4aa51
+-/
 theorem wBottom_le_killed (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.wBottom ≤ killedBottom K D := by
   rw [← F.x_sup_w]
   exact le_sup_right
 
+/--
+@isnad1 id=disjoint.0h3v.s10.030c83b40e91 from=translated src=- shape=d8a7fd1c vocab=9c5b7683
+-/
 theorem mobile_w_disjoint (D : FiniteB1Rep K)
     (F : SplittingFlag K D) :
     Disjoint (mobileBottom K D) F.wBottom := by
@@ -209,31 +226,48 @@ theorem mobile_w_disjoint (D : FiniteB1Rep K)
   have hzX : z ∈ xBottom K D := ⟨hzM, hzK⟩
   exact Submodule.disjoint_def.mp F.x_w_disjoint z hzX hzW
 
-/-- `M` is complementary to `W ⊕ P` inside the loop range.-/
+/-- `M` is complementary to `W ⊕ P` inside the loop range.
+@isnad1 id=iscompl.0h3v.s12.cd5eeaf15da0 from=translated src=- shape=abfd01aa vocab=09c267d1
+-/
 theorem mobile_rest_compl (D : FiniteB1Rep K)
     (F : SplittingFlag K D) :
     IsCompl (mobileBottom K D) (F.wBottom ⊔ F.pBottom) :=
   (mobile_w_disjoint D F).isCompl_sup_right_of_isCompl_sup_left
     F.mobile_w_p_compl
 
+/--
+@isnad1 id=le.0h3v.s8.7acf8ca41d90 from=translated src=- shape=4fc8dbe3 vocab=93986864
+-/
 theorem s1Space_le_deadKernel (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.s1Space ≤ deadKernel K D := by
   rw [← F.dead_sup_s1]
   exact le_sup_right
 
+/--
+@isnad1 id=le.0h3v.s8.593e72ea7bc4 from=translated src=- shape=4fc8dbe3 vocab=9b53d60e
+-/
 theorem s1Space_le_stemKernel (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.s1Space ≤ stemKernel K D :=
   (s1Space_le_deadKernel D F).trans inf_le_left
 
+/--
+@isnad1 id=le.0h3v.s8.8ae6b7cc7341 from=translated src=- shape=4fc8dbe3 vocab=0f1e1eaa
+-/
 theorem s1Space_le_loopKernel (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.s1Space ≤ loopKernel K D :=
   (s1Space_le_deadKernel D F).trans inf_le_right
 
+/--
+@isnad1 id=le.0h3v.s8.520ddb2eca38 from=translated src=- shape=4fc8dbe3 vocab=9b5fe9fd
+-/
 theorem aSpace_le_loopKernel (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.aSpace ≤ loopKernel K D := by
   rw [← F.es1_sup_a]
   exact le_sup_right
 
+/--
+@isnad1 id=le.0h3v.s8.edbe4995cfff from=translated src=- shape=4fc8dbe3 vocab=61c681ac
+-/
 theorem nTop_le_stemKernel (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : F.nTop ≤ stemKernel K D := by
   rw [← F.dead_sup_nTop]
@@ -252,6 +286,9 @@ def equivComapOfLe {V : Type*} [AddCommGroup V] [Module K V]
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=iscompl.4h5v.s9.fc63c6b77dad from=translated src=- shape=be664f41 vocab=35f85cc7
+-/
 theorem relative_isCompl {V : Type*} [AddCommGroup V] [Module K V]
     {P Q S : Submodule K V}
     (hPS : P ≤ S) (hQS : Q ≤ S)
@@ -286,6 +323,9 @@ def relativeProdEquiv {V : Type*} [AddCommGroup V] [Module K V]
       (Q.comap S.subtype)
       (relative_isCompl hPS hQS hPQ hsup))
 
+/--
+@isnad1 id=eq.4h6v.s11.6cf9a9439d18 from=translated src=- shape=a18e07b1 vocab=becf48a0
+-/
 @[simp] theorem relativeProdEquiv_apply
     {V : Type*} [AddCommGroup V] [Module K V]
     {P Q S : Submodule K V}
@@ -328,6 +368,9 @@ def jordanEquivLoopRange (D : FiniteB1Rep K) (F : SplittingFlag K D) :
           Submodule K (loopRange K D)).prodEquivOfIsCompl
           F.pBottom F.mobile_w_p_compl))
 
+/--
+@isnad1 id=eq.0h4v.s18.110f74da3720 from=translated src=- shape=88e7c9ba vocab=49fc0cbd
+-/
 @[simp] theorem jordanEquivLoopRange_apply_coe (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : JordanCoords D F) :
     (jordanEquivLoopRange D F z : D.V₁) =
@@ -340,13 +383,18 @@ def loopTopEquivRange (D : FiniteB1Rep K) (F : SplittingFlag K D) :
     F.loopTop ≃ₗ[K] loopRange K D :=
   LinearMap.kerComplementEquivRange (loopMap K D) F.loopTop_compl
 
+/--
+@isnad1 id=eq.0h4v.s12.8d32bfdc24d4 from=translated src=- shape=0f97eaf6 vocab=293b2e23
+-/
 @[simp] theorem loopTopEquivRange_apply_coe (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (b : F.loopTop) :
     ((loopTopEquivRange D F b : loopRange K D) : D.V₁) =
       loopMap K D b.1 := rfl
 
 /-- Since the global loop top extends the chosen complement inside `ker T`,
-the inverse section over `L(ker T)` is itself killed by `T`.-/
+the inverse section over `L(ker T)` is itself killed by `T`.
+@isnad1 id=mem.0h4v.s13.4193379e53be from=translated src=- shape=c6fb543c vocab=f53828e2
+-/
 theorem loopTopEquivRange_symm_mobile_mem_stemKernel
     (D : FiniteB1Rep K) (F : SplittingFlag K D)
     (m : mobileBottom K D) :
@@ -376,6 +424,9 @@ theorem loopTopEquivRange_symm_mobile_mem_stemKernel
     exact Submodule.mem_sup_right ht
   exact htN
 
+/--
+@isnad1 id=disjoint.0h3v.s8.f8fac8de4459 from=translated src=- shape=95faecb5 vocab=623e4990
+-/
 theorem loopRange_s1_disjoint (D : FiniteB1Rep K)
     (F : SplittingFlag K D) :
     Disjoint (loopRange K D) F.s1Space := by
@@ -412,6 +463,9 @@ def kernelEquivLoopKernel (D : FiniteB1Rep K)
           (aSpace_le_loopKernel D F)
           F.es1_a_disjoint F.es1_sup_a))
 
+/--
+@isnad1 id=eq.0h4v.s19.5f40c729f24a from=translated src=- shape=4fa47814 vocab=9e194117
+-/
 @[simp] theorem kernelEquivLoopKernel_apply_coe (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : KernelCoords D F) :
     (kernelEquivLoopKernel D F z : D.V₁) =
@@ -434,6 +488,9 @@ def normalV₁Equiv (D : FiniteB1Rep K) (F : SplittingFlag K D) :
     (kernelEquivLoopKernel D F)).trans
       (F.loopTop.prodEquivOfIsCompl (loopKernel K D) F.loopTop_compl)
 
+/--
+@isnad1 id=eq.0h4v.s20.2a5b5f1a718b from=translated src=- shape=632a3258 vocab=60ef2afb
+-/
 @[simp] theorem normalV₁Equiv_apply (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : NormalV₁ D F) :
     normalV₁Equiv D F z =
@@ -451,18 +508,26 @@ def normalLoop (D : FiniteB1Rep K) (F : SplittingFlag K D) :
   map_smul' c z := by
     ext <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s20.d5106e267612 from=translated src=- shape=a34b98d8 vocab=60defde7
+-/
 @[simp] theorem normalLoop_apply (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : NormalV₁ D F) :
     normalLoop D F z = (0, ((z.1, 0), 0)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s21.4be94045a495 from=translated src=- shape=8bf7f2e4 vocab=807d529a
+-/
 theorem normalLoop_sq (D : FiniteB1Rep K) (F : SplittingFlag K D)
     (z : NormalV₁ D F) :
     normalLoop D F (normalLoop D F z) = 0 := by
   ext <;> rfl
 
 /-- The vertex-one coordinate change intertwines the normal and original
-loop maps.-/
+loop maps.
+@isnad1 id=eq.0h4v.s21.e9cbf1ccfa6c from=translated src=- shape=aa60ae96 vocab=00f9828a
+-/
 theorem normalV₁Equiv_loop (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (z : NormalV₁ D F) :
     normalV₁Equiv D F (normalLoop D F z) =
@@ -512,6 +577,9 @@ def activeEmbed (D : FiniteB1Rep K) (F : SplittingFlag K D) :
   map_smul' c z := by
     ext <;> simp [activeTopCoords, activeBottomCoords]
 
+/--
+@isnad1 id=eq.0h4v.s19.31eb950eac97 from=translated src=- shape=3c27669c vocab=3e5b4143
+-/
 @[simp] theorem activeEmbed_apply (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (c : StemCoords D F) :
     activeEmbed D F c =
@@ -527,6 +595,9 @@ def activeProjection (D : FiniteB1Rep K) (F : SplittingFlag K D) :
   map_smul' c z := by
     ext <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s20.86633ec9a253 from=translated src=- shape=b8fad139 vocab=b28fc712
+-/
 @[simp] theorem activeProjection_activeEmbed (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (c : StemCoords D F) :
     activeProjection D F (activeEmbed D F c) = c := by
@@ -537,10 +608,16 @@ def activeSource (D : FiniteB1Rep K) (F : SplittingFlag K D) :
     StemCoords D F →ₗ[K] D.V₁ :=
   (normalV₁Equiv D F).toLinearMap.comp (activeEmbed D F)
 
+/--
+@isnad1 id=eq.0h4v.s20.4460c00c89d6 from=translated src=- shape=d0835d21 vocab=5ab47308
+-/
 @[simp] theorem activeSource_apply (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (c : StemCoords D F) :
     activeSource D F c = normalV₁Equiv D F (activeEmbed D F c) := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s17.09f1aa1b7484 from=translated src=- shape=7e887ab3 vocab=da425cfc
+-/
 theorem activeSource_injective (D : FiniteB1Rep K)
     (F : SplittingFlag K D) : Function.Injective (activeSource D F) := by
   intro c d hcd
@@ -550,7 +627,9 @@ theorem activeSource_injective (D : FiniteB1Rep K)
     congrArg (activeProjection D F) hembed
 
 /-- Applying the loop to an active source keeps precisely its `W`-top and
-`P`-top lower coordinates.-/
+`P`-top lower coordinates.
+@isnad1 id=eq.0h4v.s18.d22f0bca665a from=translated src=- shape=c335bedb vocab=25c90d51
+-/
 theorem loop_activeSource (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (c : StemCoords D F) :
     loopMap K D (activeSource D F c) =
@@ -562,7 +641,9 @@ theorem loop_activeSource (D : FiniteB1Rep K)
   simp [activeTopCoords]
 
 /-- The lower `U/P` directions are disjoint from the stem-dead lower
-directions `X/W`.-/
+directions `X/W`.
+@isnad1 id=disjoint.0h3v.s12.de6dfa9f4b8f from=translated src=- shape=abfd01aa vocab=49f3d220
+-/
 theorem killedBottom_disjoint_activeBottom (D : FiniteB1Rep K)
     (F : SplittingFlag K D) :
     Disjoint (killedBottom K D) (F.uBottom ⊔ F.pBottom) := by
@@ -594,6 +675,9 @@ theorem killedBottom_disjoint_activeBottom (D : FiniteB1Rep K)
   have hpVal : p = 0 := congrArg Subtype.val hpZero
   rw [← hup, huVal, hpVal, zero_add]
 
+/--
+@isnad1 id=mem.0h4v.s18.319dc3eb857b from=translated src=- shape=a7d5dcbd vocab=a754533c
+-/
 theorem activeTop_mem_rest (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (c : StemCoords D F) :
     jordanEquivLoopRange D F (activeTopCoords D F c) ∈
@@ -604,6 +688,9 @@ theorem activeTop_mem_rest (D : FiniteB1Rep K)
   rw [jordanEquivLoopRange_apply_coe]
   simp [activeTopCoords]
 
+/--
+@isnad1 id=mem.0h4v.s18.28fb4a2902ef from=translated src=- shape=a7d5dcbd vocab=8881c5ee
+-/
 theorem activeBottom_mem_active (D : FiniteB1Rep K)
     (F : SplittingFlag K D) (c : StemCoords D F) :
     jordanEquivLoopRange D F (activeBottomCoords D F c) ∈
@@ -614,6 +701,9 @@ theorem activeBottom_mem_active (D : FiniteB1Rep K)
   rw [jordanEquivLoopRange_apply_coe]
   simp [activeBottomCoords]
 
+/--
+@isnad1 id=le.0h3v.s9.e2a0a50f3a49 from=translated src=- shape=083df063 vocab=8ebf31b3
+-/
 theorem deadKernel_le_range_s1 (D : FiniteB1Rep K)
     (F : SplittingFlag K D) :
     deadKernel K D ≤ loopRange K D ⊔ F.s1Space := by
@@ -622,7 +712,9 @@ theorem deadKernel_le_range_s1 (D : FiniteB1Rep K)
   · exact inf_le_left.trans le_sup_left
   · exact le_sup_right
 
-/-- The stem is injective on the selected `U,W,P,P,A` source coordinates.-/
+/-- The stem is injective on the selected `U,W,P,P,A` source coordinates.
+@isnad1 id=injectiv.0h3v.s18.7a0b211b415a from=translated src=- shape=a35be813 vocab=b0c67773
+-/
 theorem activeStem_injective (D : FiniteB1Rep K)
     (F : SplittingFlag K D) :
     Function.Injective ((stemMap K D).comp (activeSource D F)) := by

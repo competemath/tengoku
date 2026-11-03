@@ -37,6 +37,9 @@ def IsIndecomposableSeparatedData
   Nontrivial (Reconstructed D) ∧
     ∀ p : D ⟶ D, p ≫ p = p → p = 0 ∨ p = 𝟙 D
 
+/--
+@isnad1 id=isindeco.1h3v.s8.40fbe42a0a37 from=translated src=- shape=68c9e8b5 vocab=f6dae4b7
+-/
 theorem isIndecomposableSeparatedData_of_reconstructed
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
     (hD : QuotientSubmoduleEquidistribution.Foundation.IsIndecomposableModule
@@ -60,6 +63,9 @@ theorem isIndecomposableSeparatedData_of_reconstructed
     ext x
     exact LinearMap.congr_fun hone x
 
+/--
+@isnad1 id=isindeco.2h3v.s8.d4e739254957 from=translated src=- shape=a1f8e7d7 vocab=cbac4ab7
+-/
 theorem reconstructed_isIndecomposable_of_separatedData
     [IsSemisimpleRing S]
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
@@ -138,6 +144,9 @@ theorem reconstructed_isIndecomposable_of_separatedData
       exact (sub_eq_zero.mp hgzero).symm
     exact congrArg ModuleCat.Hom.hom hfCatOne
 
+/--
+@isnad1 id=iff.1h3v.s8.6cccf6dc5f97 from=translated src=- shape=c4a7ed21 vocab=cbac4ab7
+-/
 theorem reconstructed_isIndecomposable_iff
     [IsSemisimpleRing S]
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
@@ -149,6 +158,9 @@ theorem reconstructed_isIndecomposable_iff
     reconstructed_isIndecomposable_of_separatedData D hgen⟩
 
 omit [SMulCommClass S Sᵐᵒᵖ J] in
+/--
+@isnad1 id=isgenera.1h3v.s6.3bdf958a8bce from=translated src=- shape=bf01545b vocab=1ceb170b
+-/
 theorem isGenerated_of_indecomposable_of_top_nontrivial
     [IsSemisimpleRing S]
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
@@ -210,6 +222,9 @@ def kernelComplementSummand
   add_mem' := fun hx hy ↦ Submodule.add_mem _ hx hy
   smul_mem' := fun r _ hx ↦ Submodule.smul_mem _ r.fst hx
 
+/--
+@isnad1 id=iscompl.1h4v.s9.319ebbc8fc84 from=translated src=- shape=4cfa613a vocab=8e226a0b
+-/
 theorem kernelSummand_isCompl
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
     (L : Submodule S D.top) (hKL : IsCompl (commonKernel D) L) :
@@ -238,6 +253,9 @@ theorem kernelSummand_isCompl
     · exact hkl
     · simp
 
+/--
+@isnad1 id=eq.1h3v.s8.e706f4f6dd9f from=translated src=- shape=be62f2e8 vocab=cab76816
+-/
 theorem commonKernel_eq_bot_of_reconstructed_indecomposable
     [IsSemisimpleRing S]
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
@@ -265,6 +283,9 @@ theorem commonKernel_eq_bot_of_reconstructed_indecomposable
     have hzero : (((0 : D.top), d) : Reconstructed D) = 0 := hmem
     exact hd (congrArg Prod.snd hzero)
 
+/--
+@isnad1 id=iskernel.1h3v.s7.d1ae86063aec from=translated src=- shape=d298f5bb vocab=560b1673
+-/
 theorem isKernelFree_of_indecomposable_of_radical_nontrivial
     [IsSemisimpleRing S]
     (D : SeparatedData.{u, v, w} (S := S) (J := J))
@@ -282,7 +303,9 @@ theorem isKernelFree_of_indecomposable_of_radical_nontrivial
     exact commonKernel_eq_bot_of_reconstructed_indecomposable D hrec
 
 /-- A separated indecomposable with nonzero top and radical reconstructs to
-an indecomposable module and is recovered from that module.-/
+an indecomposable module and is recovered from that module.
+@isnad1 id=and.1h3v.s8.130e68f7eaf4 from=translated src=- shape=973bf13a vocab=21b74f99
+-/
 theorem reconstructedModule_of_bisupported_indecomposable
     [IsSemisimpleRing S]
     (D : SeparatedData.{u, v, w} (S := S) (J := J))

@@ -31,7 +31,9 @@ def IsLeftMinimal {X Y : C} (f : X ⟶ Y) : Prop :=
   ∀ (e : Y ⟶ Y), f ≫ e = f → IsIso e
 
 /-- A morphism whose composites with one reverse morphism are invertible in
-both orders is itself invertible.-/
+both orders is itself invertible.
+@isnad1 id=isiso.0h5v.s6.09d521cce880 from=translated src=- shape=8e92b6a8 vocab=7247ba2a
+-/
 theorem isIso_of_isIso_comp_both
     {X Y : C} (a : X ⟶ Y) (b : Y ⟶ X)
     [IsIso (a ≫ b)] [IsIso (b ≫ a)] : IsIso a := by
@@ -55,7 +57,9 @@ theorem isIso_of_isIso_comp_both
 variable [Preadditive C]
 
 omit [Preadditive C] in
-/-- Postcomposing by an isomorphism preserves right minimality.-/
+/-- Postcomposing by an isomorphism preserves right minimality.
+@isnad1 id=isrightm.1h6v.s5.4177856c5599 from=translated src=- shape=7ac8efc6 vocab=dd211109
+-/
 theorem IsRightMinimal.postcomp_iso
     {X Y Z : C} {g : X ⟶ Y}
     (e : Y ≅ Z) (hg : IsRightMinimal g) :
@@ -66,7 +70,9 @@ theorem IsRightMinimal.postcomp_iso
   simpa only [Category.assoc] using ha
 
 /-- Precomposing a right-minimal morphism by a split monomorphism preserves
-right minimality.-/
+right minimality.
+@isnad1 id=isrightm.1h6v.s6.8ccb6bf372c7 from=translated src=- shape=d873076b vocab=a9171afc
+-/
 theorem IsRightMinimal.precomp_splitMono
     {Z X Y : C} {g : X ⟶ Y}
     (hg : IsRightMinimal g) (j : Z ⟶ X) [IsSplitMono j] :

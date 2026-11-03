@@ -25,7 +25,9 @@ def edgeCount (src dst : Arrow → Vertex)
   ((Finset.univ : Finset Arrow).filter fun a ↦
     src a ∈ U ∧ dst a ∈ W).card
 
-/-- Partition the source condition into a set and its complement.-/
+/-- Partition the source condition into a set and its complement.
+@isnad1 id=eq.0h6v.s6.fb847f360d3b from=translated src=- shape=7ead1ce3 vocab=1b046f94
+-/
 theorem edgeCount_add_compl_left
     (src dst : Arrow → Vertex)
     (U W : Finset Vertex) :
@@ -55,7 +57,9 @@ theorem edgeCount_add_compl_left
   unfold edgeCount
   rw [← Finset.card_union_of_disjoint hdisj, hunion]
 
-/-- Partition the target condition into a set and its complement.-/
+/-- Partition the target condition into a set and its complement.
+@isnad1 id=eq.0h6v.s6.a5aa1fb7295b from=translated src=- shape=a15445e8 vocab=1b046f94
+-/
 theorem edgeCount_add_compl_right
     (src dst : Arrow → Vertex)
     (U W : Finset Vertex) :
@@ -90,7 +94,9 @@ theorem edgeCount_add_compl_right
 `P` and `I` model the projective and injective vertices.  The hypothesis
 is the first mesh-rotation identity from the manuscript: arrows ending
 away from `P` are equinumerous with arrows starting away from `I`.
-The conclusion identifies the two mixed boundary counts.-/
+The conclusion identifies the two mixed boundary counts.
+@isnad1 id=eq.1h6v.s6.36246be9aca7 from=translated src=- shape=fc37c936 vocab=9f5e8ef3
+-/
 theorem mixedBoundary_eq_of_meshRotation
     (src dst : Arrow → Vertex)
     (P I : Finset Vertex)

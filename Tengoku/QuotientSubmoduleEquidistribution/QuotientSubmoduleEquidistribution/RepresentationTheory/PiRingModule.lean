@@ -51,6 +51,9 @@ def mapTotal {D E : Family.{uK, uV, w} K V} (f : D ⟶ E) :
     exact (f i).hom.map_smul (s i) (x i)
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h7v.s10.4f01058da236 from=translated src=- shape=a72a25e8 vocab=4069a4b1
+-/
 @[simp]
 theorem mapTotal_apply {D E : Family.{uK, uV, w} K V} (f : D ⟶ E)
     (x : Total K V D) (i : V) :
@@ -70,12 +73,18 @@ def coordinateIdempotent (i : V) : V → K :=
   Pi.single i 1
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s5.999a5dc5d58d from=translated src=- shape=261a62be vocab=ba99adf5
+-/
 @[simp]
 theorem coordinateIdempotent_apply_self (i : V) :
     coordinateIdempotent K V i i = 1 := by
   simp [coordinateIdempotent]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h5v.s8.2631252b02db from=translated src=- shape=ef5efa7b vocab=beb09b05
+-/
 theorem coordinateIdempotent_smul_total
     (D : Family.{uK, uV, w} K V) (i : V)
     (x : Total K V D) :

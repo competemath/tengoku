@@ -43,6 +43,9 @@ def biprodTargetShear {Z U : C} (c : Z ⟶ U) :
     · apply biprod.hom_ext <;> simp
 
 omit [HasFiniteBiproducts C] in
+/--
+@isnad1 id=eq.0h7v.s7.072b9654bac6 from=translated src=- shape=d9cfb0b4 vocab=862a9eb9
+-/
 @[reassoc]
 theorem lift_biprodTargetShear_hom {M Z U : C} (c : Z ⟶ U)
     (p : M ⟶ Z) (r : M ⟶ U) :
@@ -51,7 +54,9 @@ theorem lift_biprodTargetShear_hom {M Z U : C} (c : Z ⟶ U)
   apply biprod.hom_ext <;> simp [biprodTargetShear, Category.assoc]
 
 omit [HasFiniteBiproducts C] in
-/-- Target-side counterpart of `moveLeftPastFirstIso_inv_desc`.-/
+/-- Target-side counterpart of `moveLeftPastFirstIso_inv_desc`.
+@isnad1 id=eq.1h11v.s8.ddcfaade4503 from=translated src=- shape=54c26313 vocab=ae9c9da3
+-/
 theorem lift_moveLeftPastFirstIso_hom
     {M P Q Z U : C} (e : Q ≅ biprod Z U)
     (f : M ⟶ P) (q : M ⟶ Q) (p : M ⟶ Z) (r : M ⟶ U)
@@ -67,6 +72,9 @@ theorem lift_moveLeftPastFirstIso_hom
         congrArg (fun k ↦ k ≫ biprod.snd) hq
 
 omit [HasFiniteBiproducts C] in
+/--
+@isnad1 id=eq.0h8v.s7.5ad105f506e5 from=translated src=- shape=95adcc91 vocab=012b5326
+-/
 theorem lift_lift_associator_inv
     {M Z P U : C} (p : M ⟶ Z) (a : M ⟶ P) (r : M ⟶ U) :
     biprod.lift p (biprod.lift a r) ≫
@@ -119,7 +127,9 @@ variable [IsIdempotentComplete C]
 variable {Ind : Type w} [Fintype Ind]
 
 /-- A morphism into a chosen indecomposable is radical exactly when it is
-not a split epimorphism.-/
+not a split epimorphism.
+@isnad1 id=iff.0h6v.s7.4abda4a1dc76 from=translated src=- shape=f6568a0e vocab=d3332834
+-/
 theorem FiniteTauCategoryData.isRadicalMorphism_iff_not_isSplitEpi_to_obj
     (T : FiniteTauCategoryData C Ind)
     {x : Ind} {M : C} (f : M ⟶ T.obj x) :
@@ -346,7 +356,9 @@ noncomputable def FiniteTauCategoryData.cosplitRadicalForm
 
 /-- Existential target normal form: after an isomorphism `Y ≅ Z ⨞ U`,
 the map is the pair of a split epimorphism and a categorical-radical
-morphism.-/
+morphism.
+@isnad1 id=ex.0h6v.s7.b93c61bfcc43 from=translated src=- shape=0c405989 vocab=e5d7645c
+-/
 theorem FiniteTauCategoryData.exists_splitEpi_radical_normalForm
     (T : FiniteTauCategoryData C Ind) {M Y : C} (k : M ⟶ Y) :
     ∃ (Z U : C) (e : Y ≅ biprod Z U)

@@ -76,14 +76,18 @@ def exactlyTwoPredecessors (C : Code) (x a b : Vertex) : Bool :=
     edge C y x == decide (y = a ∨ y = b)
 
 /-- Semantic form of `uniquePredecessor`, used when decoding the finite
-certificate back into an AR packet.-/
+certificate back into an AR packet.
+@isnad1 id=iff.1h4v.s4.399fc1511b6b from=translated src=- shape=8e1686c3 vocab=c0ebf701
+-/
 theorem edge_eq_true_iff_of_uniquePredecessor
     {C : Code} {x a : Vertex} (h : uniquePredecessor C x a = true)
     (y : Vertex) : edge C y x = true ↔ y = a := by
   fin_cases y <;> fin_cases a <;>
     simp [uniquePredecessor, allVertices] at h ⊢ <;> aesop
 
-/-- Semantic form of `exactlyTwoPredecessors`.-/
+/-- Semantic form of `exactlyTwoPredecessors`.
+@isnad1 id=iff.1h5v.s5.50f702f060e3 from=translated src=- shape=5012e837 vocab=e411eb7f
+-/
 theorem edge_eq_true_iff_of_exactlyTwoPredecessors
     {C : Code} {x a b : Vertex}
     (h : exactlyTwoPredecessors C x a b = true) (y : Vertex) :
@@ -92,7 +96,9 @@ theorem edge_eq_true_iff_of_exactlyTwoPredecessors
     simp [exactlyTwoPredecessors, allVertices] at h ⊢ <;> aesop
 
 /-- The two named predecessors in an exact two-predecessor certificate are
-distinct.-/
+distinct.
+@isnad1 id=ne.1h4v.s4.06fabcf15a38 from=translated src=- shape=f2f6ba25 vocab=d1258dc3
+-/
 theorem ne_of_exactlyTwoPredecessors
     {C : Code} {x a b : Vertex}
     (h : exactlyTwoPredecessors C x a b = true) : a ≠ b := by
@@ -158,7 +164,9 @@ structure HookConditions (C : Code) (a u b : Vertex) : Prop where
   predecessor_b : uniquePredecessor C b u = true
   tau_b : tauEq C b a = true
 
-/-- Decode the conjunction in `HookAt`.-/
+/-- Decode the conjunction in `HookAt`.
+@isnad1 id=hookcond.1h4v.s4.2b359c3c080e from=translated src=- shape=93ca1395 vocab=f276d9b8
+-/
 theorem hookConditions_of_hookAt
     {C : Code} {a u b : Vertex} (h : HookAt C a u b = true) :
     HookConditions C a u b := by
@@ -193,7 +201,9 @@ structure FixedPacketConditions
   tau_a : tauEq C a z = true ∨ tauNone C a = true
   root_not_to_z : edge C 0 z = false
 
-/-- Decode the conjunction in `FixedPacketAt`.-/
+/-- Decode the conjunction in `FixedPacketAt`.
+@isnad1 id=fixedpac.1h4v.s4.ca6dc0ff2f00 from=translated src=- shape=93ca1395 vocab=5c8d141a
+-/
 theorem fixedPacketConditions_of_fixedPacketAt
     {C : Code} {a c z : Vertex}
     (h : FixedPacketAt C a c z = true) :
@@ -228,7 +238,9 @@ structure TrianglePacketConditions
   tau_A₂ : tauEq C A₂ A₁ = true
   tau_x : tauNone C x = true
 
-/-- Decode the conjunction in `TrianglePacketAt`.-/
+/-- Decode the conjunction in `TrianglePacketAt`.
+@isnad1 id=triangle.1h4v.s4.760a2052767d from=translated src=- shape=93ca1395 vocab=840c7e8d
+-/
 theorem trianglePacketConditions_of_trianglePacketAt
     {C : Code} {A₁ A₂ x : Vertex}
     (h : TrianglePacketAt C A₁ A₂ x = true) :
@@ -237,7 +249,9 @@ theorem trianglePacketConditions_of_trianglePacketAt
     simp [TrianglePacketAt] at h
   all_goals constructor <;> simp_all
 
-/-- Extract the labelled hook occurrence certified by `HasHook`.-/
+/-- Extract the labelled hook occurrence certified by `HasHook`.
+@isnad1 id=ex.1h1v.s4.66e641211a9d from=translated src=- shape=44a6ddfb vocab=ae03854e
+-/
 theorem exists_hookAt_of_hasHook (C : Code) (h : HasHook C = true) :
     ∃ a u b, HookAt C a u b = true := by
   by_contra hn
@@ -250,7 +264,9 @@ theorem exists_hookAt_of_hasHook (C : Code) (h : HasHook C = true) :
   simp [HasHook, anyVertex, hfalse] at h
 
 /-- Extract the labelled row-`F` occurrence certified by
-`HasFixedPacket`.-/
+`HasFixedPacket`.
+@isnad1 id=ex.1h1v.s4.46058e741688 from=translated src=- shape=44a6ddfb vocab=45f212df
+-/
 theorem exists_fixedPacketAt_of_hasFixedPacket
     (C : Code) (h : HasFixedPacket C = true) :
     ∃ a c z, FixedPacketAt C a c z = true := by
@@ -264,7 +280,9 @@ theorem exists_fixedPacketAt_of_hasFixedPacket
   simp [HasFixedPacket, anyVertex, hfalse] at h
 
 /-- Extract the labelled row-`T` occurrence certified by
-`HasTrianglePacket`.-/
+`HasTrianglePacket`.
+@isnad1 id=ex.1h1v.s4.0cc6c6ad449a from=translated src=- shape=44a6ddfb vocab=0b279027
+-/
 theorem exists_trianglePacketAt_of_hasTrianglePacket
     (C : Code) (h : HasTrianglePacket C = true) :
     ∃ A₁ A₂ x, TrianglePacketAt C A₁ A₂ x = true := by
@@ -597,34 +615,44 @@ private theorem ladderFour_encodesNatural (C : Code) (x : Vertex) :
       norm_num
 
 /-- The eight-bit implementation exactly represents the unbounded zeroth
-ladder term.-/
+ladder term.
+@isnad1 id=eq.0h2v.s3.4130c632d5f6 from=translated src=- shape=e4af5fdd vocab=70740192
+-/
 theorem ladderCoefficientZero_eq_natural (x y : Vertex) :
     ladderCoefficientZero x y = naturalLadderZero x y :=
   ladderZero_encodesNatural x y
 
 /-- The eight-bit implementation exactly represents the unbounded first
-ladder term.-/
+ladder term.
+@isnad1 id=eq.0h3v.s4.2b97d1efda95 from=translated src=- shape=734d91d4 vocab=174528e6
+-/
 theorem ladderCoefficientOne_eq_natural
     (C : Code) (x y : Vertex) :
     ladderCoefficientOne C x y = naturalLadderOne C x y :=
   ladderOne_encodesNatural C x y
 
 /-- The eight-bit implementation exactly represents the unbounded second
-ladder term.-/
+ladder term.
+@isnad1 id=eq.0h3v.s4.19d2cf6cd5e3 from=translated src=- shape=734d91d4 vocab=9b25a75e
+-/
 theorem ladderCoefficientTwo_eq_natural
     (C : Code) (x y : Vertex) :
     ladderCoefficientTwo C x y = naturalLadderTwo C x y :=
   ladderTwo_encodesNatural C x y
 
 /-- The eight-bit implementation exactly represents the unbounded third
-ladder term.-/
+ladder term.
+@isnad1 id=eq.0h3v.s4.0c364ca480f5 from=translated src=- shape=734d91d4 vocab=0f944aa7
+-/
 theorem ladderCoefficientThree_eq_natural
     (C : Code) (x y : Vertex) :
     ladderCoefficientThree C x y = naturalLadderThree C x y :=
   ladderThree_encodesNatural C x y
 
 /-- The eight-bit implementation exactly represents the unbounded fourth
-ladder term.-/
+ladder term.
+@isnad1 id=eq.0h3v.s4.bf2398ed9360 from=translated src=- shape=734d91d4 vocab=0fdfa6b7
+-/
 theorem ladderCoefficientFour_eq_natural
     (C : Code) (x y : Vertex) :
     ladderCoefficientFour C x y = naturalLadderFour C x y :=
@@ -737,7 +765,9 @@ structure BoundaryHookConditions
   predecessor_b : uniquePredecessor C b u = true
   tau_b : tauEq C b a = true
 
-/-- Decode the conjunction in `BoundaryHookAt`.-/
+/-- Decode the conjunction in `BoundaryHookAt`.
+@isnad1 id=boundary.1h5v.s4.ff5559420abb from=translated src=- shape=09c220a9 vocab=a1ce5cea
+-/
 theorem boundaryHookConditions_of_boundaryHookAt
     {C : Code} {B : AdditionalBoundary} {a u b : Vertex}
     (h : BoundaryHookAt C B a u b = true) :
@@ -756,7 +786,9 @@ def HasBoundaryHook (C : Code) (B : AdditionalBoundary) : Bool :=
     BoundaryHookAt C B a u b
 
 /-- Extract the labelled pre-normalization hook certified by
-`HasBoundaryHook`.-/
+`HasBoundaryHook`.
+@isnad1 id=ex.1h2v.s5.97868f1e7ec7 from=translated src=- shape=e4781af7 vocab=4e61a34d
+-/
 theorem exists_boundaryHookAt_of_hasBoundaryHook
     (C : Code) (B : AdditionalBoundary)
     (h : HasBoundaryHook C B = true) :
@@ -825,7 +857,9 @@ private theorem vectorsEqual_eq_false_of_coordinate_toNat_ne
     exact (h (congrArg BitVec.toNat hcoordinate)).elim
 
 /-- Assemble the Boolean bad-ladder witness from natural-number
-coefficients of the first five normalized terms.-/
+coefficients of the first five normalized terms.
+@isnad1 id=eq.1h3v.s4.c946b0a6ee82 from=translated src=- shape=f97ae139 vocab=e7120252
+-/
 theorem boundaryWitness_eq_true_of_conditions
     {C : Code} {B : AdditionalBoundary} {x : Vertex}
     (H : BoundaryWitnessConditions C B x) :
@@ -893,7 +927,9 @@ theorem boundaryWitness_eq_true_of_conditions
 def NoAdditionalBoundary (B : AdditionalBoundary) : Bool :=
   allVertices fun x ↦ boundaryAt B x == decide (x = 0)
 
-/-- Semantic form of a successful boundary-uniqueness check.-/
+/-- Semantic form of a successful boundary-uniqueness check.
+@isnad1 id=iff.1h2v.s4.779da615be11 from=translated src=- shape=67a672e2 vocab=1ce007a2
+-/
 theorem boundaryAt_eq_true_iff_of_noAdditionalBoundary
     {B : AdditionalBoundary} (h : NoAdditionalBoundary B = true)
     (x : Vertex) : boundaryAt B x = true ↔ x = 0 := by
@@ -913,7 +949,9 @@ private theorem uniqueRootWitnessClassifier : ∀ C : Code,
       requiredPairsDoNotRepeat, allVertices, Vector.coordinate] <;>
       simp <;> bv_decide
 
-/-- Semantic wrapper for the unique-root witness transfer.-/
+/-- Semantic wrapper for the unique-root witness transfer.
+@isnad1 id=eq.2h3v.s4.36285dcea165 from=translated src=- shape=2ebbc0c6 vocab=1a16c105
+-/
 theorem witness_of_boundaryWitness_of_noAdditionalBoundary
     (C : Code) (B : AdditionalBoundary) (x : Vertex)
     (hBoundaryWitness : BoundaryWitness C B x = true)

@@ -49,6 +49,9 @@ instance : Congruence I.rel where
     intro X Y Z f f' g h
     simpa [rel] using I.postcomp g h
 
+/--
+@isnad1 id=rel.0h10v.s8.ba2e08d6e73c from=translated src=- shape=ddd2f7e0 vocab=52035955
+-/
 theorem add_compatible
     {X Y : C} (f₁ f₂ g₁ g₂ : X ⟶ Y)
     (hf : I.rel f₁ f₂) (hg : I.rel g₁ g₂) :
@@ -65,7 +68,9 @@ abbrev quotientPreadditive :
     (fun {_ _} f₁ f₂ g₁ g₂ hf hg ↦
       I.add_compatible f₁ f₂ g₁ g₂ hf hg)
 
-/-- The quotient functor kills exactly the given Hom ideal.-/
+/-- The quotient functor kills exactly the given Hom ideal.
+@isnad1 id=iff.0h5v.s9.9f264c74131b from=translated src=- shape=8bf53a64 vocab=f366220d
+-/
 theorem map_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
     letI : Preadditive (CategoryTheory.Quotient I.rel) :=
       I.quotientPreadditive
@@ -86,7 +91,9 @@ theorem map_eq_zero_iff {X Y : C} (f : X ⟶ Y) :
   simp [rel]
 
 /-- The quotient functor sends categorical radical morphisms to
-categorical radical morphisms.-/
+categorical radical morphisms.
+@isnad1 id=isradica.1h5v.s7.ae3aac9a0b7f from=translated src=- shape=48c0dd78 vocab=09dc5678
+-/
 theorem map_isRadicalMorphism
     {X Y : C} (f : X ⟶ Y)
     (hf : CategoricalRadical.IsRadicalMorphism f) :
@@ -114,7 +121,9 @@ theorem map_isRadicalMorphism
   infer_instance
 
 /-- If the quotient has zero categorical radical, every radical morphism
-upstairs belongs to the defining Hom ideal.-/
+upstairs belongs to the defining Hom ideal.
+@isnad1 id=mem.2h5v.s7.b32965c8b09d from=translated src=- shape=c06fa178 vocab=74e47e6c
+-/
 theorem mem_of_isRadicalMorphism_of_quotient_hasZeroRadical
     {X Y : C} (f : X ⟶ Y)
     (hzero :

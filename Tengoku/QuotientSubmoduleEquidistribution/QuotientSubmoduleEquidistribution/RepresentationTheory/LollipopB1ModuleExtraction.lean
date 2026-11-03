@@ -51,6 +51,9 @@ def actionLinear (M : FGModuleCat.{u} (B1Model K)) (r : B1Model K) :
     RestrictedCarrier K M →ₗ[K] RestrictedCarrier K M :=
   (Algebra.lsmul K K (RestrictedCarrier K M)) r
 
+/--
+@isnad1 id=eq.0h4v.s11.9eef8809fd0b from=translated src=- shape=5fe658da vocab=e6b9c7a6
+-/
 @[simp] theorem actionLinear_apply
     (M : FGModuleCat.{u} (B1Model K)) (r : B1Model K)
     (m : RestrictedCarrier K M) :
@@ -66,6 +69,9 @@ def vertexTwo (M : FGModuleCat.{u} (B1Model K)) :
     Submodule K (RestrictedCarrier K M) :=
   LinearMap.range (actionLinear K M (e2 K))
 
+/--
+@isnad1 id=eq.0h3v.s12.edb58709ea7c from=translated src=- shape=23f97458 vocab=ed48cc85
+-/
 theorem e1_fixed
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexOne K M) :
     e1 K • (v.1 : RestrictedCarrier K M) = v.1 := by
@@ -74,6 +80,9 @@ theorem e1_fixed
   change e1 K • (e1 K • m) = e1 K • m
   rw [← mul_smul, e1_sq]
 
+/--
+@isnad1 id=eq.0h3v.s12.e60bce4132da from=translated src=- shape=83aa8d0f vocab=97bd7c73
+-/
 theorem e2_kills_vertexOne
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexOne K M) :
     e2 K • (v.1 : RestrictedCarrier K M) = 0 := by
@@ -82,6 +91,9 @@ theorem e2_kills_vertexOne
   change e2 K • (e1 K • m) = 0
   rw [← mul_smul, e2_mul_e1, zero_smul]
 
+/--
+@isnad1 id=eq.0h3v.s12.1f957e9b7d24 from=translated src=- shape=23f97458 vocab=15e484a3
+-/
 theorem e2_fixed
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexTwo K M) :
     e2 K • (v.1 : RestrictedCarrier K M) = v.1 := by
@@ -90,6 +102,9 @@ theorem e2_fixed
   change e2 K • (e2 K • m) = e2 K • m
   rw [← mul_smul, e2_sq]
 
+/--
+@isnad1 id=eq.0h3v.s12.695974fb4361 from=translated src=- shape=83aa8d0f vocab=a96500ac
+-/
 theorem e1_kills_vertexTwo
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexTwo K M) :
     e1 K • (v.1 : RestrictedCarrier K M) = 0 := by
@@ -98,6 +113,9 @@ theorem e1_kills_vertexTwo
   change e1 K • (e2 K • m) = 0
   rw [← mul_smul, e1_mul_e2, zero_smul]
 
+/--
+@isnad1 id=eq.0h3v.s12.39557cd695d4 from=translated src=- shape=83aa8d0f vocab=ee715458
+-/
 theorem x_kills_vertexTwo
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexTwo K M) :
     x K • (v.1 : RestrictedCarrier K M) = 0 := by
@@ -106,6 +124,9 @@ theorem x_kills_vertexTwo
   change x K • (e2 K • m) = 0
   rw [← mul_smul, x_mul_e2, zero_smul]
 
+/--
+@isnad1 id=eq.0h3v.s12.90999e1af086 from=translated src=- shape=83aa8d0f vocab=08793549
+-/
 theorem a_kills_vertexTwo
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexTwo K M) :
     a K • (v.1 : RestrictedCarrier K M) = 0 := by
@@ -144,6 +165,9 @@ def extractedStemLinear (M : FGModuleCat.{u} (B1Model K)) :
     apply Subtype.ext
     exact (smul_comm c (a K) v.1).symm
 
+/--
+@isnad1 id=eq.0h3v.s14.56b57c38fd01 from=translated src=- shape=dba07d49 vocab=89597dcd
+-/
 theorem extractedLoop_sq
     (M : FGModuleCat.{u} (B1Model K)) (v : vertexOne K M) :
     extractedLoopLinear K M (extractedLoopLinear K M v) = 0 := by
@@ -160,7 +184,9 @@ def extractedRep (M : FGModuleCat.{u} (B1Model K)) : FiniteB1Rep K where
   stem := FGModuleCat.ofHom (extractedStemLinear K M)
   loop_sq := extractedLoop_sq K M
 
-/-- Coordinate expansion in the five distinguished algebra generators.-/
+/-- Coordinate expansion in the five distinguished algebra generators.
+@isnad1 id=eq.0h2v.s9.0a10145bde6a from=translated src=- shape=5a71a4f0 vocab=5017c10a
+-/
 theorem algebra_coordinate_decomposition (r : B1Model K) :
     r = (TrivSqZeroExt.fst r).1.fst • e1 K +
       (TrivSqZeroExt.fst r).2 • e2 K +

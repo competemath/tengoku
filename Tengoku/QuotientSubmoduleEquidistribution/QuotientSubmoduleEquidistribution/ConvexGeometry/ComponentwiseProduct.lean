@@ -32,18 +32,27 @@ def rightPart (S : Set (E ⊕ F)) : Set F :=
 def assemble (A : Set E) (B : Set F) : Set (E ⊕ F) :=
   Sum.inl '' A ∪ Sum.inr '' B
 
+/--
+@isnad1 id=eq.0h4v.s4.dedb8fe435c8 from=translated src=- shape=1ed1d590 vocab=f510bd1c
+-/
 @[simp]
 theorem leftPart_assemble (A : Set E) (B : Set F) :
     leftPart (assemble A B) = A := by
   ext x
   simp [leftPart, assemble]
 
+/--
+@isnad1 id=eq.0h4v.s4.22bd423ba1b5 from=translated src=- shape=a4a3d45e vocab=80326016
+-/
 @[simp]
 theorem rightPart_assemble (A : Set E) (B : Set F) :
     rightPart (assemble A B) = B := by
   ext x
   simp [rightPart, assemble]
 
+/--
+@isnad1 id=eq.0h3v.s4.e07e1ba99519 from=translated src=- shape=6e604de8 vocab=208fd986
+-/
 @[simp]
 theorem assemble_parts (S : Set (E ⊕ F)) :
     assemble (leftPart S) (rightPart S) = S := by
@@ -82,6 +91,9 @@ def productClosure
       rw [leftPart_assemble, rightPart_assemble,
         c.idempotent, d.idempotent])
 
+/--
+@isnad1 id=eq.0h5v.s7.cde38fc0aeed from=translated src=- shape=b96932dd vocab=28adb13d
+-/
 @[simp]
 theorem productClosure_apply
     (c : SetClosure E) (d : SetClosure F) (S : Set (E ⊕ F)) :
@@ -90,7 +102,9 @@ theorem productClosure_apply
   rfl
 
 /-- A subset is closed for the componentwise product exactly when each
-component is closed.-/
+component is closed.
+@isnad1 id=iff.0h5v.s6.84c5f004dc7b from=translated src=- shape=f6240c3f vocab=7e405116
+-/
 theorem isClosed_productClosure_iff
     (c : SetClosure E) (d : SetClosure F) (S : Set (E ⊕ F)) :
     (productClosure c d).IsClosed S ↔
@@ -135,7 +149,9 @@ def closedEquiv (c : SetClosure E) (d : SetClosure F) :
     · apply Subtype.ext
       exact rightPart_assemble (pair.1 : Set E) (pair.2 : Set F)
 
-/-- Cardinalities add when two subsets are assembled in disjoint summands.-/
+/-- Cardinalities add when two subsets are assembled in disjoint summands.
+@isnad1 id=eq.0h4v.s5.b4bec2cd1928 from=translated src=- shape=f1c8f5ff vocab=d69b985f
+-/
 theorem ncard_assemble [Finite E] [Finite F]
     (A : Set E) (B : Set F) :
     (assemble A B).ncard = A.ncard + B.ncard := by
@@ -145,7 +161,9 @@ theorem ncard_assemble [Finite E] [Finite F]
     Set.ncard_image_of_injective _ Sum.inr_injective]
 
 /-- The closed-set equivalence preserves size as the sum of component
-sizes.-/
+sizes.
+@isnad1 id=eq.0h5v.s9.6888d8c39c4f from=translated src=- shape=c2ac958e vocab=f7b50f30
+-/
 @[simp]
 theorem closedEquiv_symm_ncard [Finite E] [Finite F]
     (c : SetClosure E) (d : SetClosure F)
@@ -156,7 +174,9 @@ theorem closedEquiv_symm_ncard [Finite E] [Finite F]
   exact ncard_assemble (pair.1 : Set E) (pair.2 : Set F)
 
 /-- The level polynomial of a componentwise product is the product of the
-two component level polynomials.-/
+two component level polynomials.
+@isnad1 id=eq.0h4v.s5.b160003c5580 from=translated src=- shape=558beb94 vocab=bc33ce53
+-/
 theorem productClosure_levelPolynomial [Finite E] [Finite F]
     (c : SetClosure E) (d : SetClosure F) :
     (productClosure c d).levelPolynomial =
@@ -178,7 +198,9 @@ theorem productClosure_levelPolynomial [Finite E] [Finite F]
   rw [← Finset.mul_sum]
 
 /-- Coefficients of the product closure are the explicit convolution of
-the component level counts.-/
+the component level counts.
+@isnad1 id=eq.0h5v.s6.e9a6aa0d01b2 from=translated src=- shape=8742be68 vocab=2f315d27
+-/
 theorem productClosure_levelCount [Finite E] [Finite F]
     (c : SetClosure E) (d : SetClosure F) (n : ℕ) :
     (productClosure c d).levelCount n =
@@ -190,7 +212,9 @@ theorem productClosure_levelCount [Finite E] [Finite F]
   simp only [levelPolynomial_coeff]
 
 /-- Componentwise agreement through level `n` implies agreement of the
-product closures at level `n`.-/
+product closures at level `n`.
+@isnad1 id=eq.2h7v.s6.6e722dd18b89 from=translated src=- shape=dee7994a vocab=53ee562a
+-/
 theorem productClosure_levelCount_eq_of_component_eq
     [Finite E] [Finite F]
     (cQ cS : SetClosure E) (dQ dS : SetClosure F) (n : ℕ)
@@ -206,7 +230,9 @@ theorem productClosure_levelCount_eq_of_component_eq
   rw [hleft pair.1 (by omega), hright pair.2 (by omega)]
 
 /-- The simultaneous level-three/level-four block-product hook used by
-`ThreeFourCoreRecurrenceData.disconnected`.-/
+`ThreeFourCoreRecurrenceData.disconnected`.
+@isnad1 id=and.2h6v.s7.a8973cb8a311 from=translated src=- shape=bdd738e5 vocab=53ee562a
+-/
 theorem productClosure_levelCount_three_and_four_eq
     [Finite E] [Finite F]
     (cQ cS : SetClosure E) (dQ dS : SetClosure F)
@@ -226,7 +252,9 @@ theorem productClosure_levelCount_three_and_four_eq
     · exact hleft
     · exact hright
 
-/-- A closure relabeling preserves every individual level count.-/
+/-- A closure relabeling preserves every individual level count.
+@isnad1 id=eq.0h6v.s5.45cd2ce73211 from=translated src=- shape=4d821b7f vocab=59e7e906
+-/
 theorem levelCount_eq_of_relabeling
     {G H : Type*} [Finite G] [Finite H]
     {c : SetClosure G} {d : SetClosure H}
@@ -239,7 +267,9 @@ theorem levelCount_eq_of_relabeling
 
 In a module-theoretic application, `hQ` and `hS` are precisely the two
 component-decomposition adapters still required: they identify the ambient
-quotient and submodule closures with the respective componentwise products.-/
+quotient and submodule closures with the respective componentwise products.
+@isnad1 id=and.2h11v.s7.163725192341 from=translated src=- shape=3d82df00 vocab=c661a191
+-/
 theorem relabeledProduct_levelCount_three_and_four_eq
     {G : Type*} [Finite E] [Finite F] [Finite G]
     (cQ cS : SetClosure E) (dQ dS : SetClosure F)

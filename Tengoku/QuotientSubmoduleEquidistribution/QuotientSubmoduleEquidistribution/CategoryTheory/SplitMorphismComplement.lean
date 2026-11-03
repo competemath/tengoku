@@ -63,6 +63,9 @@ namespace SplitMonoComplement
 
 variable {X Y : C} {f : X ⟶ Y} [hf : IsSplitMono f]
 
+/--
+@isnad1 id=eq.0h5v.s7.065da858dc93 from=translated src=- shape=33df3bd1 vocab=dc45b8ba
+-/
 @[reassoc (attr := simp)]
 lemma f_projection (d : SplitMonoComplement f) : f ≫ d.projection = 0 := by
   letI : IsSplitMono d.inclusion :=
@@ -71,6 +74,9 @@ lemma f_projection (d : SplitMonoComplement f) : f ≫ d.projection = 0 := by
   rw [← cancel_mono d.inclusion]
   simp [Category.assoc, d.projection_inclusion]
 
+/--
+@isnad1 id=eq.0h5v.s7.eeee1cbdc065 from=translated src=- shape=c509101e vocab=058380ba
+-/
 @[reassoc (attr := simp)]
 lemma inclusion_retraction (d : SplitMonoComplement f) :
     d.inclusion ≫ retraction f = 0 := by
@@ -82,6 +88,9 @@ lemma inclusion_retraction (d : SplitMonoComplement f) :
   rw [← Category.assoc, d.projection_inclusion]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s7.1ac3a883f194 from=translated src=- shape=6685b7d7 vocab=df5c9444
+-/
 lemma total (d : SplitMonoComplement f) :
     retraction f ≫ f + d.projection ≫ d.inclusion = 𝟙 Y := by
   rw [d.projection_inclusion]
@@ -164,6 +173,9 @@ namespace SplitEpiComplement
 
 variable {X Y : C} {g : X ⟶ Y} [hg : IsSplitEpi g]
 
+/--
+@isnad1 id=eq.0h5v.s7.b2d1c1ab43a7 from=translated src=- shape=f0ec3380 vocab=fb98d99a
+-/
 @[reassoc (attr := simp)]
 lemma section_projection (d : SplitEpiComplement g) :
     section_ g ≫ d.projection = 0 := by
@@ -173,6 +185,9 @@ lemma section_projection (d : SplitEpiComplement g) :
   rw [← cancel_mono d.inclusion]
   simp [Category.assoc, d.projection_inclusion]
 
+/--
+@isnad1 id=eq.0h5v.s7.000b08b1f989 from=translated src=- shape=e4c730e3 vocab=1beb0548
+-/
 @[reassoc (attr := simp)]
 lemma inclusion_g (d : SplitEpiComplement g) : d.inclusion ≫ g = 0 := by
   letI : IsSplitEpi d.projection :=
@@ -183,6 +198,9 @@ lemma inclusion_g (d : SplitEpiComplement g) : d.inclusion ≫ g = 0 := by
   rw [← Category.assoc, d.projection_inclusion]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s7.fc9e26600120 from=translated src=- shape=c7f15bcf vocab=a2cbe61d
+-/
 lemma total (d : SplitEpiComplement g) :
     d.projection ≫ d.inclusion + g ≫ section_ g = 𝟙 X := by
   rw [d.projection_inclusion]

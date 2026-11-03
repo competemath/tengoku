@@ -27,7 +27,9 @@ universe v u
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
 /-- A chain map between right tau-sequences which is split epic at the right
-endpoint is split epic in the other two degrees as well.-/
+endpoint is split epic in the other two degrees as well.
+@isnad1 id=and.2h4v.s7.7322a7e6d46e from=translated src=- shape=dd774d43 vocab=a433800b
+-/
 theorem RightTauSequence.splitEpi_components_of_splitEpi_τ₃
     {S T : ShortComplex C}
     (hS : RightTauSequence S) (hT : RightTauSequence T)
@@ -89,7 +91,9 @@ theorem RightTauSequence.splitEpi_components_of_splitEpi_τ₃
         id := hδ₂φ₂ }
 
 /-- A chain map between left tau-sequences which is split monic at the left
-endpoint is split monic in the other two degrees as well.-/
+endpoint is split monic in the other two degrees as well.
+@isnad1 id=and.2h4v.s7.c82fed3e7f75 from=translated src=- shape=dd774d43 vocab=000dd2de
+-/
 theorem LeftTauSequence.splitMono_components_of_splitMono_τ₁
     {S T : ShortComplex C}
     (hS : LeftTauSequence S) (hT : LeftTauSequence T)
