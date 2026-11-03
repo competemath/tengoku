@@ -7,7 +7,9 @@ import Tengoku.AlbertFrameTripleInvariants.AlbertLean.WitnessJoint02
 
 namespace AlbertLean
 
-/-- All 27 raw joint moments agree; diagonal slots are checked separately.-/
+/-- All 27 raw joint moments agree; diagonal slots are checked separately.
+@isnad1 id=eq.0h3v.s5.559eba0e8c3d from=translated src=- shape=80427cb0 vocab=eadaff7c
+-/
 theorem witnessSameJoint (i j l : Fin 3) :
     traceForm (projector theta1E i)
       (structuredProduct (projector theta1F j) (projector theta1K l)) =
@@ -18,7 +20,9 @@ theorem witnessSameJoint (i j l : Fin 3) :
   · exact witnessSameJoint01 j l
   · exact witnessSameJoint02 j l
 
-/-- The complete centered ledger follows from raw joint and pair moment equality.-/
+/-- The complete centered ledger follows from raw joint and pair moment equality.
+@isnad1 id=eq.0h0v.s2.f59f3ea8a105 from=translated src=- shape=7bded134 vocab=fd94c261
+-/
 theorem witnessSameLedger : ledger witnessTheta1 = ledger witnessThetaM := by
   simp only [ledger]
   rw [Ledger.mk.injEq]

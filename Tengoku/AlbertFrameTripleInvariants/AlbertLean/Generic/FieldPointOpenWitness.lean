@@ -15,6 +15,9 @@ universe u v
 variable {B C : Type u} [CommRing B] [CommRing C]
 variable {L : Type v} [Field L]
 
+/--
+@isnad1 id=not.2h6v.s7.bd544267c62c from=translated src=- shape=57b0addc vocab=79879f5b
+-/
 theorem not_isNilpotent_of_injective_witness
     (i : B →+* C) (hi : Function.Injective i)
     (w : B →+* L) (d : B) (hd : w d ≠ 0) :
@@ -25,6 +28,9 @@ theorem not_isNilpotent_of_injective_witness
     simpa only [map_pow, map_zero] using congrArg w hb
   exact hd (show IsNilpotent (w d) from ⟨n, hw⟩).eq_zero
 
+/--
+@isnad1 id=ex.2h6v.s8.a9de7d55f310 from=translated src=- shape=530c7f95 vocab=b1966349
+-/
 theorem exists_field_point_of_injective_witness
     (i : B →+* C) (hi : Function.Injective i)
     (w : B →+* L) (d : B) (hd : w d ≠ 0) :

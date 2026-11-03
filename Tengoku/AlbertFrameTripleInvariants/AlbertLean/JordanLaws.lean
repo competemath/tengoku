@@ -15,18 +15,27 @@ open Generated
 set_option maxHeartbeats 50000000
 set_option maxRecDepth 100000
 
+/--
+@isnad1 id=eq.0h2v.s3.65a3acc99d5b from=translated src=- shape=35a82e60 vocab=8b53c56b
+-/
 theorem traceN_structuredProduct_eq_traceForm (x y : Coord) :
     traceN (structuredProduct x y) = traceForm x y := by
   have h := traceFormAssociative one x y
   rw [(unitLaw x).1, traceForm_one_eq_traceN] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.0h1v.s3.e9f3b447b7de from=translated src=- shape=b70c6bb1 vocab=2248eaa9
+-/
 theorem productSpur_eq_spurN (x : Coord) : productSpur x = spurN x := by
   rw [productSpur, productTrace_eq_traceN, productTrace_eq_traceN,
     traceN_structuredProduct_eq_traceForm]
   simp [traceForm, spurN, spurBilinear]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.a05537856041 from=translated src=- shape=b70c6bb1 vocab=d875227e
+-/
 theorem productNorm_eq_cubicNorm (x : Coord) : productNorm x = cubicNorm x := by
   have hs := productSpur_eq_spurN x
   rw [productSpur, productTrace_eq_traceN, productTrace_eq_traceN] at hs
@@ -41,6 +50,9 @@ theorem productNorm_eq_cubicNorm (x : Coord) : productNorm x = cubicNorm x := by
   ring_nf at hs hc ⊢
   linear_combination (1 / 3 : ℚ) * hc + (traceN x / 3) * hs
 
+/--
+@isnad1 id=printedi.0h0v.s0.e6b949a2b7d1 from=translated src=- shape=45709ebd vocab=e6b949a2
+-/
 theorem printedInvariantsAgree : PrintedInvariantsAgree := by
   exact ⟨productTrace_eq_traceN, productSpur_eq_spurN,
     productNorm_eq_cubicNorm⟩
@@ -84,6 +96,9 @@ private theorem cubicTraceResidual (x : Coord) :
       module
     _ = 0 := by rw [hc]; simp
 
+/--
+@isnad1 id=eq.0h2v.s4.e3163811eced from=translated src=- shape=d0f15100 vocab=55ab3ef6
+-/
 theorem jordanIdentity (x y : Coord) :
     structuredProduct (structuredProduct x y) (structuredProduct x x) =
       structuredProduct x (structuredProduct y (structuredProduct x x)) := by

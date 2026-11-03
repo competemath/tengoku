@@ -10,6 +10,9 @@ open Generated
 set_option maxHeartbeats 50000000
 set_option maxRecDepth 100000
 
+/--
+@isnad1 id=eq.1h1v.s9.b5ec75cb433c from=translated src=- shape=0b725220 vocab=210a8e49
+-/
 theorem leftMulMatrixTrace_eq_linearMapTrace
     (h : IsQBilinear structuredProduct) (x : Coord) :
     leftMulMatrixTrace x =
@@ -23,6 +26,9 @@ theorem leftMulMatrixTrace_eq_linearMapTrace
   simp_rw [leftMulMatrixTrace, hb]
   simp [Matrix.trace, leftMulLinear]
 
+/--
+@isnad1 id=eq.0h1v.s9.97af9546c605 from=translated src=- shape=202cd466 vocab=e3a2c322
+-/
 theorem traceLeftMulEq (x : Coord) :
     LinearMap.trace ℚ Coord (leftMulLinear productQBilinear x) =
       9 * traceN x := by
@@ -38,6 +44,9 @@ private theorem leftMul_conj (g : JordanAut) (x : Coord) :
   intro y
   simp [leftMulLinear, LinearEquiv.conj_apply, g.map_circle]
 
+/--
+@isnad1 id=eq.0h2v.s7.7abe08f322a4 from=translated src=- shape=2c1368b9 vocab=093ef66e
+-/
 theorem traceN_invariant (g : JordanAut) (x : Coord) :
     traceN (g x) = traceN x := by
   have hc := LinearMap.trace_conj'
@@ -46,6 +55,9 @@ theorem traceN_invariant (g : JordanAut) (x : Coord) :
   rw [traceLeftMulEq, traceLeftMulEq] at hc
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s8.ca9585cf7dff from=translated src=- shape=e397a319 vocab=80bd9000
+-/
 theorem traceForm_invariant (g : JordanAut) (x y : Coord) :
     traceForm (g x) (g y) = traceForm x y := by
   rw [← traceN_structuredProduct_eq_traceForm,
@@ -60,6 +72,9 @@ private theorem W0_natural
   rw [← hE, ← hF, ← hK]
   simp only [map_sub, g.map_circle]
 
+/--
+@isnad1 id=eq.1h3v.s4.505a371d2e12 from=translated src=- shape=7dc06ae2 vocab=836b48f7
+-/
 theorem traceCubeDetector_invariant
     (g : JordanAut) (X Y : WitnessTriple) (h : Transports g X Y) :
     traceCubeDetector Y = traceCubeDetector X := by

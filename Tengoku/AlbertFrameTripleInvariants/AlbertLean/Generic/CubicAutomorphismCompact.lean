@@ -25,6 +25,9 @@ open AlbertLean.Generic.CubicAutomorphism
 set_option maxHeartbeats 20000000
 set_option maxRecDepth 100000
 
+/--
+@isnad1 id=eq.0h3v.s5.0c05d3152dfe from=translated src=- shape=50a03441 vocab=851bb7fb
+-/
 theorem pairing_add_right (x y z : Coord) :
     pairing x (y + z) = pairing x y + pairing x z := by
   rw [pairing_eq, pairing_eq, pairing_eq,
@@ -33,6 +36,9 @@ theorem pairing_add_right (x y z : Coord) :
   simp [AlbertLean.traceFormGram, AlbertLean.v]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.286208328ff4 from=translated src=- shape=bd37ea74 vocab=e26f030c
+-/
 theorem pairing_smul_right (a : ℚ) (x y : Coord) :
     pairing x (a • y) = a * pairing x y := by
   rw [pairing_eq, pairing_eq, AlbertLean.traceForm_eq_gram,
@@ -40,6 +46,9 @@ theorem pairing_smul_right (a : ℚ) (x y : Coord) :
   simp [AlbertLean.traceFormGram, AlbertLean.v]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.8615dd57d268 from=translated src=- shape=086cad00 vocab=851bb7fb
+-/
 theorem pairing_add_left (x y z : Coord) :
     pairing (x + y) z = pairing x z + pairing y z := by
   rw [pairing_eq, pairing_eq, pairing_eq,
@@ -48,6 +57,9 @@ theorem pairing_add_left (x y z : Coord) :
   simp [AlbertLean.traceFormGram, AlbertLean.v]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.42c3c3711c58 from=translated src=- shape=6b1f7a25 vocab=e26f030c
+-/
 theorem pairing_smul_left (a : ℚ) (x y : Coord) :
     pairing (a • x) y = a * pairing x y := by
   rw [pairing_eq, pairing_eq, AlbertLean.traceForm_eq_gram,
@@ -74,11 +86,16 @@ def pairingLinear : Coord →ₗ[ℚ] Coord →ₗ[ℚ] ℚ where
     intro y
     simpa [smul_eq_mul] using pairing_smul_left a x y
 
+/--
+@isnad1 id=eq.0h2v.s9.4dfffc6110b8 from=translated src=- shape=0f3d9715 vocab=874331af
+-/
 @[simp] theorem pairingLinear_apply (x y : Coord) :
     pairingLinear x y = pairing x y := rfl
 
 /-- The explicit signed dual permutation represents coordinate evaluation
-against the trace pairing.-/
+against the trace pairing.
+@isnad1 id=eq.0h2v.s5.fe9df2a13615 from=translated src=- shape=c2a94612 vocab=b7e4ee0f
+-/
 theorem pairing_dual (f y : Coord) :
     pairing (dual f) y = ∑ j : Fin 27, f j * y j := by
   rw [pairing_eq, AlbertLean.traceForm_eq_gram]
@@ -86,7 +103,9 @@ theorem pairing_dual (f y : Coord) :
     Fin.sum_univ_succ]
   ring
 
-/-- Expansion of the cubic differential in the literal ordered basis.-/
+/-- Expansion of the cubic differential in the literal ordered basis.
+@isnad1 id=eq.0h4v.s5.e26d78521e98 from=translated src=- shape=e372bb8f vocab=92b8f841
+-/
 theorem polar_add_right (x y z w : Coord) :
     polar x y (z + w) = polar x y z + polar x y w := by
   rw [polar_eq, polar_eq, polar_eq,
@@ -96,6 +115,9 @@ theorem polar_add_right (x y z w : Coord) :
   simp [AlbertLean.Generated.polarForm, AlbertLean.v, AlbertLean.q]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.9acff5e991af from=translated src=- shape=a97dc1ae vocab=c2abbf70
+-/
 theorem polar_smul_right (a : ℚ) (x y z : Coord) :
     polar x y (a • z) = a * polar x y z := by
   rw [polar_eq, polar_eq,
@@ -112,9 +134,15 @@ def polarRightLinear (x y : Coord) : Coord →ₗ[ℚ] ℚ where
     intro a z
     simpa [smul_eq_mul] using polar_smul_right a x y z
 
+/--
+@isnad1 id=eq.0h3v.s6.5995ffd5795a from=translated src=- shape=f8124a59 vocab=11b082e1
+-/
 @[simp] theorem polarRightLinear_apply (x y z : Coord) :
     polarRightLinear x y z = polar x y z := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.8dff2600b3d6 from=translated src=- shape=bea7699c vocab=981b9ee4
+-/
 theorem polar_basis_sum (x y : Coord) :
     (∑ j : Fin 27, (polar x x (Pi.single j 1) / 2) * y j) =
       polar x x y / 2 := by
@@ -137,7 +165,9 @@ theorem polar_basis_sum (x y : Coord) :
       rw [hy]
       rfl
 
-/-- The source adjoint is exactly the trace-dual cubic gradient.-/
+/-- The source adjoint is exactly the trace-dual cubic gradient.
+@isnad1 id=eq.0h2v.s4.a8b5d92ee967 from=translated src=- shape=b7692a42 vocab=3b70c9a1
+-/
 theorem adjoint_characterization (x y : Coord) :
     pairing (adjoint x) y = polar x x y / 2 := by
   rw [adjoint, pairing_dual]
@@ -162,38 +192,58 @@ def cubicData : AlbertLean.Generic.CubicAutomorphism.Data ℚ Coord where
     intro x y
     exact adjoint_characterization x y
 
+/--
+@isnad1 id=eq.0h1v.s5.89b63831219e from=translated src=- shape=341ba84c vocab=294472a2
+-/
 @[simp] theorem cubicData_trace (x : Coord) : cubicData.trace x = trace x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.218fc9ca918c from=translated src=- shape=1a10d844 vocab=c7c290e7
+-/
 @[simp] theorem cubicData_spurBilinear (x y : Coord) :
     cubicData.spurBilinear x y = polar unit x y := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.4549e54c1d09 from=translated src=- shape=adbd6b2c vocab=8f72f3c8
+-/
 @[simp] theorem cubicData_cross (x y : Coord) :
     cubicData.cross x y = adjoint (x + y) - adjoint x - adjoint y := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.aa91fe57fd36 from=translated src=- shape=cd858a50 vocab=de85f16d
+-/
 @[simp] theorem cubicData_product (x y : Coord) :
     cubicData.product x y = product x y := rfl
 
-/-- Cubic-and-unit preservation implies source-trace preservation.-/
+/-- Cubic-and-unit preservation implies source-trace preservation.
+@isnad1 id=eq.2h2v.s9.efd63201d3c0 from=translated src=- shape=94a5ba5c vocab=1ffca878
+-/
 theorem trace_invariant_of_cubic_unit (g : Coord ≃ₗ[ℚ] Coord)
     (hUnit : g unit = unit) (hCubic : ∀ x, cubic (g x) = cubic x)
     (x : Coord) : trace (g x) = trace x := by
   simpa only [cubicData_trace] using cubicData.map_trace g hUnit hCubic x
 
-/-- Cubic-and-unit preservation implies source-pairing preservation.-/
+/-- Cubic-and-unit preservation implies source-pairing preservation.
+@isnad1 id=eq.2h3v.s10.e797efdb667c from=translated src=- shape=26197809 vocab=ab1d9db2
+-/
 theorem pairing_invariant_of_cubic_unit (g : Coord ≃ₗ[ℚ] Coord)
     (hUnit : g unit = unit) (hCubic : ∀ x, cubic (g x) = cubic x)
     (x y : Coord) : pairing (g x) (g y) = pairing x y := by
   simpa only [cubicData, pairingLinear_apply] using
     cubicData.map_traceForm g hUnit hCubic x y
 
-/-- Cubic-and-unit preservation implies source-adjoint preservation.-/
+/-- Cubic-and-unit preservation implies source-adjoint preservation.
+@isnad1 id=eq.2h2v.s10.1f4b90996ab9 from=translated src=- shape=bd127938 vocab=0c651a1d
+-/
 theorem adjoint_invariant_of_cubic_unit (g : Coord ≃ₗ[ℚ] Coord)
     (hUnit : g unit = unit) (hCubic : ∀ x, cubic (g x) = cubic x)
     (x : Coord) : g (adjoint x) = adjoint (g x) := by
   exact cubicData.map_adjoint g hUnit hCubic x
 
 /-- Cubic-and-unit preservation implies preservation of the literal source
-Springer product.-/
+Springer product.
+@isnad1 id=eq.2h3v.s10.0e5746e9b9d1 from=translated src=- shape=07cd97bf vocab=7c878daf
+-/
 theorem product_invariant_of_cubic_unit (g : Coord ≃ₗ[ℚ] Coord)
     (hUnit : g unit = unit) (hCubic : ∀ x, cubic (g x) = cubic x)
     (x y : Coord) : g (product x y) = product (g x) (g y) := by
@@ -209,7 +259,9 @@ def autOfCubicUnit (g : Coord ≃ₗ[ℚ] Coord)
   product := product_invariant_of_cubic_unit g hUnit hCubic
 
 /-- Detector invariance is inherited from the existing product-automorphism
-theorem once the compressed hypotheses have produced an `Aut`.-/
+theorem once the compressed hypotheses have produced an `Aut`.
+@isnad1 id=eq.3h3v.s9.9ee33d6c2584 from=translated src=- shape=97d17bb4 vocab=1c2ed38d
+-/
 theorem detector_invariant_of_cubic_unit
     (g : Coord ≃ₗ[ℚ] Coord)
     (hUnit : g unit = unit) (hCubic : ∀ x, cubic (g x) = cubic x)

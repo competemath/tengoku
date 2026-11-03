@@ -114,17 +114,26 @@ def f0SpurK (x : F0Coord K) : K := f0SpurBilinearK x x / 2
 def f0TraceFormK (x y : F0Coord K) : K :=
   f0TraceK x * f0TraceK y - f0SpurBilinearK x y
 
+/--
+@isnad1 id=eq.0h4v.s7.d7ade4172a4a from=translated src=- shape=5b155e13 vocab=5991074a
+-/
 theorem f0ProductK_add_left (x₁ x₂ y : F0Coord K) :
     f0ProductK (x₁ + x₂) y = f0ProductK x₁ y + f0ProductK x₂ y := by
   funext k
   simp [f0ProductK, Finset.sum_add_distrib, add_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.c571547277b0 from=translated src=- shape=018d7bdd vocab=334e906d
+-/
 theorem f0ProductK_smul_left (a : K) (x y : F0Coord K) :
     f0ProductK (a • x) y = a • f0ProductK x y := by
   funext k
   simp [f0ProductK, Finset.mul_sum]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.b97c81383b02 from=translated src=- shape=b399cc4f vocab=5991074a
+-/
 theorem f0ProductK_add_right (x y₁ y₂ : F0Coord K) :
     f0ProductK x (y₁ + y₂) = f0ProductK x y₁ + f0ProductK x y₂ := by
   funext k
@@ -137,6 +146,9 @@ theorem f0ProductK_add_right (x y₁ y₂ : F0Coord K) :
   intro j hj
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.cc5fef3a5da7 from=translated src=- shape=3002dacc vocab=334e906d
+-/
 theorem f0ProductK_smul_right (a : K) (x y : F0Coord K) :
     f0ProductK x (a • y) = a • f0ProductK x y := by
   funext k
@@ -149,46 +161,68 @@ theorem f0ProductK_smul_right (a : K) (x y : F0Coord K) :
   intro j hj
   ring
 
-/-- At `K = ℚ`, the generic coefficient is definitionally the frozen one.-/
+/-- At `K = ℚ`, the generic coefficient is definitionally the frozen one.
+@isnad1 id=eq.0h3v.s5.2721f535e98e from=translated src=- shape=459e971f vocab=a3cf5477
+-/
 theorem tensorCoeffK_rat (i j k : Fin 27) :
     tensorCoeffK (K := ℚ) i j k = tensorCoeff i j k := by
   simp [tensorCoeffK]
 
-/-- At `K = ℚ`, the formulaic generic product is the generated tensor product.-/
+/-- At `K = ℚ`, the formulaic generic product is the generated tensor product.
+@isnad1 id=eq.0h2v.s4.53f5ced27842 from=translated src=- shape=6078d559 vocab=fbe63a70
+-/
 theorem f0ProductK_rat (x y : F0Coord ℚ) :
     f0ProductK x y = tensorProduct x y := by
   funext k
   simp [f0ProductK, tensorProduct, tensorCoeffK]
 
-/-- At `K = ℚ`, the generic product specializes to frozen `structuredProduct`.-/
+/-- At `K = ℚ`, the generic product specializes to frozen `structuredProduct`.
+@isnad1 id=eq.0h2v.s4.d828cb0c084c from=translated src=- shape=6078d559 vocab=abc940d4
+-/
 theorem f0ProductK_rat_eq_structuredProduct (x y : F0Coord ℚ) :
     f0ProductK x y = structuredProduct x y := by
   rw [f0ProductK_rat, ← structuredProduct_eq_tensor]
 
-/-- The generic flattening specializes exactly to the accepted rational one.-/
+/-- The generic flattening specializes exactly to the accepted rational one.
+@isnad1 id=eq.0h1v.s9.fecc8b3eb3de from=translated src=- shape=dc24d820 vocab=5a70b071
+-/
 theorem structuredEquivK_rat (x : JCoord ℚ) :
     structuredEquivK ℚ x = structuredEquiv x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.8b728c2dbce8 from=translated src=- shape=4497bbc1 vocab=e2fb1208
+-/
 @[simp] theorem structuredEquivK_sourceOne :
     structuredEquivK K (sourceOne : JCoord K) = f0OneK := by
   funext i
   fin_cases i <;> simp [structuredEquivK, structuredToF0K, sourceOne, f0OneK]
 
+/--
+@isnad1 id=eq.0h1v.s6.2a0735c75379 from=translated src=- shape=d4e3877e vocab=e695c663
+-/
 theorem f0NormK_zero : f0NormK (0 : F0Coord K) = 0 := by
   simp [f0NormK, vK]
 
 set_option maxHeartbeats 50000000 in
 set_option maxRecDepth 100000 in
-/-- Universal generic equality of the source cubic and independent coordinate polynomial.-/
+/-- Universal generic equality of the source cubic and independent coordinate polynomial.
+@isnad1 id=eq.0h2v.s8.e49610e1a177 from=translated src=- shape=a772d840 vocab=9fed7fa4
+-/
 theorem sourceNorm_agrees_with_f0K (x : JCoord K) :
     sourceNorm x = f0NormK (structuredEquivK K x) := by
   simp [sourceNorm, f0NormK, structuredEquivK, structuredToF0K, vK, qK, q,
     nV, nS, nC, triality, Pf, BW, evalU, pairW, wedge2, dualWedge2]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s8.c8b34f7fb617 from=translated src=- shape=a772d840 vocab=9eb11269
+-/
 theorem sourceTrace_agrees_with_f0K (x : JCoord K) :
     sourceTrace x = f0TraceK (structuredEquivK K x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.fe69d61a9cf9 from=translated src=- shape=61ce945a vocab=05faa903
+-/
 theorem sourcePolar_agrees_with_f0K (x y z : JCoord K) :
     sourcePolar x y z =
       f0PolarK (structuredEquivK K x) (structuredEquivK K y)
@@ -197,6 +231,9 @@ theorem sourcePolar_agrees_with_f0K (x y z : JCoord K) :
     f0NormK_zero]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s9.6861f71be970 from=translated src=- shape=c0775aec vocab=9d6ae42f
+-/
 theorem sourceSpurBilinear_agrees_with_f0K (x y : JCoord K) :
     sourceSpurPolar x y =
       f0SpurBilinearK (structuredEquivK K x) (structuredEquivK K y) := by
@@ -204,19 +241,27 @@ theorem sourceSpurBilinear_agrees_with_f0K (x y : JCoord K) :
     structuredEquivK_sourceOne]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.ab641589966f from=translated src=- shape=a772d840 vocab=205aaf57
+-/
 theorem sourceSpur_agrees_with_f0K (x : JCoord K) :
     sourceSpur x = f0SpurK (structuredEquivK K x) := by
   rw [f0SpurK, ← sourceSpurBilinear_agrees_with_f0K,
     sourceSpurPolar_diagonal]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s9.35065d79534a from=translated src=- shape=c0775aec vocab=321ed66b
+-/
 theorem sourceTraceForm_agrees_with_f0K (x y : JCoord K) :
     sourceTraceForm x y =
       f0TraceFormK (structuredEquivK K x) (structuredEquivK K y) := by
   rw [sourceTraceForm, f0TraceFormK, ← sourceTrace_agrees_with_f0K,
     ← sourceTrace_agrees_with_f0K, ← sourceSpurBilinear_agrees_with_f0K]
 
-/-- Literal base change plus generic `T/S/N/P/B` agreement.-/
+/-- Literal base change plus generic `T/S/N/P/B` agreement.
+@isnad1 id=and.0h1v.s12.dd9698115110 from=translated src=- shape=9955f292 vocab=824f14ef
+-/
 theorem GenericF0CubicComparison :
     (structuredEquivK K (sourceOne : JCoord K) = f0OneK) ∧
     (∀ x : JCoord K,

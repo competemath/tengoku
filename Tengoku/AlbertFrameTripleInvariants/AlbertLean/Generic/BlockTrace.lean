@@ -13,7 +13,9 @@ variable {K M N : Type*} [Field K]
   [AddCommGroup N] [Module K N] [FiniteDimensional K N]
 
 /-- The trace of an arbitrary endomorphism of a product is the sum of the
-traces of its two diagonal blocks.-/
+traces of its two diagonal blocks.
+@isnad1 id=eq.0h4v.s11.8b76b2fa3b1f from=translated src=- shape=f4675e7e vocab=e0d9745d
+-/
 theorem trace_prod_blocks (L : M × N →ₗ[K] M × N) :
     LinearMap.trace K (M × N) L =
       LinearMap.trace K M
@@ -47,7 +49,9 @@ theorem trace_prod_blocks (L : M × N →ₗ[K] M × N) :
             ((LinearMap.snd K M N).comp L) (LinearMap.inr K M N)]
       simp only [LinearMap.comp_assoc]
 
-/-- Three diagonal blocks for the right-associated carrier `M × (N × P)`.-/
+/-- Three diagonal blocks for the right-associated carrier `M × (N × P)`.
+@isnad1 id=eq.0h5v.s12.6b14c45f4a5f from=translated src=- shape=c278ac2f vocab=e0d9745d
+-/
 theorem trace_prod_three_blocks
     {P : Type*} [AddCommGroup P] [Module K P] [FiniteDimensional K P]
     (L : M × (N × P) →ₗ[K] M × (N × P)) :

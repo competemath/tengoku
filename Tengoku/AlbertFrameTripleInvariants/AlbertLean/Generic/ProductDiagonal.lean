@@ -21,6 +21,9 @@ open AlbertLean.Residual.TrialitySquares
 
 variable {K : Type*} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.0h3v.s8.6913b56e481a from=translated src=- shape=f6ad796b vocab=5bb9f7cb
+-/
 theorem sourceSquare_add (x y : JCoord K) :
     sourceSquare (x + y) =
       sourceSquare x + sourceSquare y + (2 : K) • sourceProduct x y := by
@@ -28,6 +31,9 @@ theorem sourceSquare_add (x y : JCoord K) :
     sourceProduct_comm y x, two_smul]
   abel
 
+/--
+@isnad1 id=eq.0h3v.s7.f4cb1f114913 from=translated src=- shape=8f2ca397 vocab=6a50d965
+-/
 theorem sourceProduct_d1 (x y : JCoord K) :
     (sourceProduct x y).d1 = x.d1 * y.d1 +
       (BS x.s y.s + BC x.c y.c) / 2 := by
@@ -36,6 +42,9 @@ theorem sourceProduct_d1 (x y : JCoord K) :
     add_s, add_c, nS_add, nC_add] at h
   linear_combination -(1 / 2 : K) * h
 
+/--
+@isnad1 id=eq.0h3v.s7.693140ec1ecb from=translated src=- shape=8f2ca397 vocab=856f986b
+-/
 theorem sourceProduct_d2 (x y : JCoord K) :
     (sourceProduct x y).d2 = x.d2 * y.d2 +
       (BC x.c y.c + BV x.v y.v) / 2 := by
@@ -44,6 +53,9 @@ theorem sourceProduct_d2 (x y : JCoord K) :
     add_c, add_v, nC_add, nV_add] at h
   linear_combination -(1 / 2 : K) * h
 
+/--
+@isnad1 id=eq.0h3v.s7.6da712772fc3 from=translated src=- shape=8f2ca397 vocab=2808b102
+-/
 theorem sourceProduct_d3 (x y : JCoord K) :
     (sourceProduct x y).d3 = x.d3 * y.d3 +
       (BV x.v y.v + BS x.s y.s) / 2 := by
@@ -52,6 +64,9 @@ theorem sourceProduct_d3 (x y : JCoord K) :
     add_v, add_s, nV_add, nS_add] at h
   linear_combination -(1 / 2 : K) * h
 
+/--
+@isnad1 id=eq.0h5v.s7.bf3ddc66a71d from=translated src=- shape=9e53c1e6 vocab=c716a1e7
+-/
 theorem sourceTraceForm_diagonal_left (a b c : K) (x : JCoord K) :
     sourceTraceForm (diagonal a b c) x =
       a * x.d1 + b * x.d2 + c * x.d3 := by

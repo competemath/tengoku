@@ -121,18 +121,30 @@ private theorem witnessChartM_encoderB :
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.5c638f27515e from=translated src=- shape=4b736592 vocab=4f2cc91b
+-/
 theorem witnessChart1_f0EncoderA : f0EncoderA witnessChart1 = theta1F := by
   change structuredToF0 (encoderA witnessChart1) = theta1F
   rw [witnessChart1_encoderA, structuredToF0_f0ToStructured]
 
+/--
+@isnad1 id=eq.0h0v.s2.057918af09ab from=translated src=- shape=4b736592 vocab=cd46845b
+-/
 theorem witnessChart1_f0EncoderB : f0EncoderB witnessChart1 = theta1K := by
   change structuredToF0 (encoderB witnessChart1) = theta1K
   rw [witnessChart1_encoderB, structuredToF0_f0ToStructured]
 
+/--
+@isnad1 id=eq.0h0v.s2.a59521b6e395 from=translated src=- shape=4b736592 vocab=38c10eef
+-/
 theorem witnessChartM_f0EncoderA : f0EncoderA witnessChartM = thetaMF := by
   change structuredToF0 (encoderA witnessChartM) = thetaMF
   rw [witnessChartM_encoderA, structuredToF0_f0ToStructured]
 
+/--
+@isnad1 id=eq.0h0v.s2.92f0ea163210 from=translated src=- shape=4b736592 vocab=cf5c7b96
+-/
 theorem witnessChartM_f0EncoderB : f0EncoderB witnessChartM = thetaMK := by
   change structuredToF0 (encoderB witnessChartM) = thetaMK
   rw [witnessChartM_encoderB, structuredToF0_f0ToStructured]

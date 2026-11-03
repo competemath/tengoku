@@ -23,10 +23,16 @@ def coeff15Nat : Nat → Nat → ℚ
   | 23, 4 => q (1) 2
   | _, _ => 0
 
+/--
+@isnad1 id=eq.0h2v.s5.46ad9f8dc5f9 from=translated src=- shape=f9c2948e vocab=58eeee94
+-/
 theorem tensorCoeff_slice_15 (i j : Fin 27) :
     tensorCoeff i j (15 : Fin 27) = coeff15Nat i.val j.val := by
   fin_cases i <;> fin_cases j <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.d285b3b78b0b from=translated src=- shape=fe54b80c vocab=ac69a6c3
+-/
 theorem tensorProduct_coord_15_slice (x y : Coord) :
     tensorProduct x y (15 : Fin 27) = productForm x y (15 : Fin 27) := by
   simp only [tensorProduct, tensorCoeff_slice_15]

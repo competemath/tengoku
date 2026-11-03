@@ -9,7 +9,9 @@ open Generated
 set_option maxHeartbeats 10000000
 set_option maxRecDepth 100000
 
-/-- Nine raw joint moments in standard diagonal slot 1.-/
+/-- Nine raw joint moments in standard diagonal slot 1.
+@isnad1 id=eq.0h2v.s6.1a46e019616c from=translated src=- shape=d153d208 vocab=eadaff7c
+-/
 theorem witnessSameJoint01 (j l : Fin 3) :
     traceForm (projector theta1E 1)
       (structuredProduct (projector theta1F j) (projector theta1K l)) =

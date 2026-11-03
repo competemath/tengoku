@@ -47,15 +47,26 @@ variable (D : Data (k := k) (Ω := Ω))
 
 def u : Ω := D.kappa * D.eta
 
+/--
+@isnad1 id=ne.0h3v.s6.cff18db1e71d from=translated src=- shape=6d2be79e vocab=16428dae
+-/
 theorem u_ne : D.u ≠ 0 := mul_ne_zero D.kappa_ne D.eta_ne
 
+/--
+@isnad1 id=eq.0h3v.s6.4cb63c35c0b2 from=translated src=- shape=75e0ecf1 vocab=7b9e73a2
+-/
 theorem tau_u : D.tau D.u = D.u := by
   simp [u, D.tau_kappa, D.tau_eta]
 
+/--
+@isnad1 id=eq.0h3v.s7.30c0f69302d0 from=translated src=- shape=f932d252 vocab=72ffed94
+-/
 theorem delta_u : D.delta D.u = -D.u := by
   simp [u, D.delta_kappa, D.delta_eta]
 
-/-- Direct two-coefficient descent on the tau-fixed field.-/
+/-- Direct two-coefficient descent on the tau-fixed field.
+@isnad1 id=iff.0h4v.s8.54c2e0e9c7a8 from=translated src=- shape=c6c28adc vocab=fe1df166
+-/
 theorem tau_fixed_iff (x : Ω) : D.tau x = x ↔
     ∃ a d : k, x = algebraMap k Ω a + algebraMap k Ω d * D.u := by
   constructor
@@ -85,7 +96,9 @@ theorem tau_fixed_iff (x : Ω) : D.tau x = x ↔
   · rintro ⟨a,d,rfl⟩
     simp [D.tau_u]
 
-/-- Uniqueness follows from applying delta to one two-term relation.-/
+/-- Uniqueness follows from applying delta to one two-term relation.
+@isnad1 id=existsun.1h4v.s8.fa246c8f36bc from=translated src=- shape=8bbe4605 vocab=aeb9de55
+-/
 theorem unique_tau_fixed (x : Ω) (hx : D.tau x = x) :
     ∃! v : k × k, algebraMap k Ω v.1 + algebraMap k Ω v.2 * D.u = x := by
   obtain ⟨a,d,h⟩ := (D.tau_fixed_iff x).mp hx
@@ -105,7 +118,9 @@ theorem unique_tau_fixed (x : Ω) (hx : D.tau x = x) :
     ((mul_eq_zero.mp ((mul_eq_zero.mp hd2).resolve_left h2)).resolve_right D.u_ne))
   exact Prod.ext ha hd
 
-/-- The product direction is non-base and is reversed by the deck map.-/
+/-- The product direction is non-base and is reversed by the deck map.
+@isnad1 id=not.0h3v.s6.5bbdaf8b4032 from=translated src=- shape=82a2b29f vocab=de6a64f5
+-/
 theorem u_not_base : ¬ ∃ a : k, algebraMap k Ω a = D.u := by
   rintro ⟨a,ha⟩
   have hδ : D.delta D.u = D.u := by rw [← ha]; exact D.delta.commutes a

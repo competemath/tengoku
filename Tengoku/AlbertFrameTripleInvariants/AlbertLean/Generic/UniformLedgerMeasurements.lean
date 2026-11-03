@@ -76,10 +76,16 @@ def uC (L : SourceLedger K) := gC L 2 2 - lCx L * gC L 1 2 - lCy L * gC L 2 1 + 
 section Field
 variable {K : Type*} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.0h3v.s5.399b2e26612e from=translated src=- shape=a8546a93 vocab=ba6e40f4
+-/
 @[simp] theorem ledgerWeight_eq_powerWeight (p j : Fin 3) :
     ledgerWeight (K := K) p j = powerWeight p j := by
   fin_cases p <;> fin_cases j <;> rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.07d0ae8ce947 from=translated src=- shape=ddf69da3 vocab=95a60d0f
+-/
 theorem rawJoint_sourceLedger (a b : JCoord K) (i j l : Fin 3) :
     rawJoint (sourceLedger a b) i j l =
       diagonalProduct i (spectralProjector a j) (spectralProjector b l) := by
@@ -87,6 +93,9 @@ theorem rawJoint_sourceLedger (a b : JCoord K) (i j l : Fin 3) :
   simp [rawJoint, sourceLedger]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s8.fbe272b1a929 from=translated src=- shape=5db15303 vocab=85a43023
+-/
 theorem H_sourceLedger (a b : JCoord K) (i p q : Fin 3) :
     H (sourceLedger a b) i p q =
       diagLinear i (sourceProduct (power a p) (power b q)) := by
@@ -107,6 +116,9 @@ theorem H_sourceLedger (a b : JCoord K) (i p q : Fin 3) :
   intro l hl
   ring
 
+/--
+@isnad1 id=and.2h3v.s9.103e65c9ac47 from=translated src=- shape=943ece30 vocab=6aee998b
+-/
 theorem recovered_measurements (a b : JCoord K)
     (hNa : sourceNorm a = 0) (hNb : sourceNorm b = 0) :
     nVx (sourceLedger a b) = nV a.v ∧ nSx (sourceLedger a b) = nS a.s ∧

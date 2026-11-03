@@ -45,7 +45,9 @@ variable {K : Type u} [Field K] [CharZero K]
 
 /-- Every residual source automorphism fixes every literal diagonal source
 coordinate.  In particular it fixes each diagonal base idempotent, without
-choosing an order or normalization for a third frame encoder.-/
+choosing an order or normalization for a third frame encoder.
+@isnad1 id=eq.0h5v.s8.df9d232b6531 from=translated src=- shape=a10658a0 vocab=d11d8b6f
+-/
 @[simp] theorem sourceAut_diagonal
     (G : DetOneMatrix K) (d1 d2 d3 : K) :
     (ResidualAction.sourceAut G).linear
@@ -98,7 +100,9 @@ def chartWithResidualPair (x : ExplicitFrameChart K) (P : ResidualPair K) :
   c2 := { q := fun i => P.X i 3, psi := fun j => P.A 3 j }
 
 /-- Reading the row/column fields just inserted into a chart recovers the
-given residual pair exactly.-/
+given residual pair exactly.
+@isnad1 id=eq.0h3v.s5.cad7cbe3660f from=translated src=- shape=71ffb63e vocab=ab38ab0f
+-/
 @[simp] theorem residualPairOfChart_chartWithResidualPair
     (x : ExplicitFrameChart K) (P : ResidualPair K) :
     residualPairOfChart (chartWithResidualPair x P) = P := by
@@ -109,7 +113,9 @@ given residual pair exactly.-/
     fin_cases j <;> rfl
 
 /-- The residual projection intertwines the chart action with the accepted
-explicit matrix-pair action.-/
+explicit matrix-pair action.
+@isnad1 id=eq.0h3v.s5.cf4499901f32 from=translated src=- shape=9837654e vocab=259b38e1
+-/
 theorem residualPairOfChart_actChart
     (G : DetOneMatrix K) (x : ExplicitFrameChart K) :
     residualPairOfChart (actChart G x) =
@@ -128,7 +134,9 @@ theorem residualPairOfChart_actChart
         AlbertLean.Residual.SL4PairAction.act,
         Matrix.mul_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
 
-/-- The first chart encoder is transported by the same source action.-/
+/-- The first chart encoder is transported by the same source action.
+@isnad1 id=eq.0h3v.s5.0630ac95d840 from=translated src=- shape=9837654e vocab=4cced8d7
+-/
 theorem encoderA_actChart (G : DetOneMatrix K) (x : ExplicitFrameChart K) :
     encoderA (actChart G x) = ResidualAction.act G (encoderA x) := by
   apply JCoord.ext <;>
@@ -136,7 +144,9 @@ theorem encoderA_actChart (G : DetOneMatrix K) (x : ExplicitFrameChart K) :
       ResidualAction.actV, ResidualAction.actS, ResidualAction.actC,
       ExteriorAction.wedgeAct_zero]
 
-/-- The second chart encoder is transported by the same source action.-/
+/-- The second chart encoder is transported by the same source action.
+@isnad1 id=eq.0h3v.s5.e64b53635c70 from=translated src=- shape=9837654e vocab=6b608f01
+-/
 theorem encoderB_actChart (G : DetOneMatrix K) (x : ExplicitFrameChart K) :
     encoderB (actChart G x) = ResidualAction.act G (encoderB x) := by
   apply JCoord.ext <;>
@@ -161,7 +171,9 @@ def SourceAutRelated (x : ExplicitFrameChart K) (Q : ResidualPair K) : Prop :=
 
 /-- Every chart-family witness supplies an actual unital source Albert
 automorphism transporting both source encoders and preserving the recovered
-Springer product by its bundled `map_product` field.-/
+Springer product by its bundled `map_product` field.
+@isnad1 id=ex.1h3v.s10.3d891657f6c9 from=translated src=- shape=47383939 vocab=7c83d4a1
+-/
 theorem sourceAutRelated_has_sourceAut
     {x : ExplicitFrameChart K} {Q : ResidualPair K}
     (h : SourceAutRelated x Q) :
@@ -177,7 +189,9 @@ theorem sourceAutRelated_has_sourceAut
   exact h
 
 /-- The chart source-automorphism relation is exactly the accepted residual
-`Related` relation after projection.-/
+`Related` relation after projection.
+@isnad1 id=iff.0h3v.s5.0b662297f1e4 from=translated src=- shape=399db823 vocab=126cf893
+-/
 theorem sourceAutRelated_iff_related
     (x : ExplicitFrameChart K) (Q : ResidualPair K) :
     SourceAutRelated x Q ↔ Related (residualPairOfChart x) Q := by
@@ -194,7 +208,9 @@ theorem sourceAutRelated_iff_related
 the entire residual base fibre is the disjoint union of two displayed
 families induced by actual unital automorphisms of the structured source
 Albert algebra.  The second representative is reinserted into the same
-explicit chart coordinates.-/
+explicit chart coordinates.
+@isnad1 id=other.2h2v.s7.76fd0deac48f from=translated src=- shape=9ec3ddf5 vocab=f00135fc
+-/
 theorem ChartResidualBaseSourceAutClassification
     (x : ExplicitFrameChart K)
     (hP : ResidualOpen (residualPairOfChart x))

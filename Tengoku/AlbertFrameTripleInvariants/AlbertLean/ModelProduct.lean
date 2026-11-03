@@ -17,6 +17,9 @@ namespace AlbertLean
 open Generated
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.0h1v.s3.80eec74a71eb from=translated src=- shape=17194ecc vocab=f5f06779
+-/
 theorem coordToHermitian_productForm_square (x : Coord) :
     coordToHermitian (productForm x x) =
       Hermitian3.square (coordToHermitian x) := by
@@ -40,7 +43,9 @@ private theorem productForm_polarization (x y : Coord) :
     simp [productForm, v, q] <;>
     ring
 
-/-- The frozen Springer product is the conventional symmetrized H3 product.-/
+/-- The frozen Springer product is the conventional symmetrized H3 product.
+@isnad1 id=eq.0h2v.s3.94f78c531517 from=translated src=- shape=4b8415a6 vocab=acdbe1fd
+-/
 theorem coordToHermitian_structuredProduct (x y : Coord) :
     coordToHermitian (structuredProduct x y) =
       Hermitian3.jordan (coordToHermitian x) (coordToHermitian y) := by
@@ -52,7 +57,9 @@ theorem coordToHermitian_structuredProduct (x y : Coord) :
     coordToHermitian_add]
   rfl
 
-/-- The frozen C0 product is explicitly the conventional split Albert algebra.-/
+/-- The frozen C0 product is explicitly the conventional split Albert algebra.
+@isnad1 id=conventi.0h0v.s0.15b7ec344530 from=translated src=- shape=45709ebd vocab=15b7ec34
+-/
 theorem conventionalSplitAlbertIdentification :
     ConventionalSplitAlbertIdentification := by
   exact ⟨hermitianToCoord_coordToHermitian,

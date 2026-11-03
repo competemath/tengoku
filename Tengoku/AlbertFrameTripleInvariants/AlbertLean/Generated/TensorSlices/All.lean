@@ -33,6 +33,9 @@ namespace AlbertLean.Generated
 set_option maxHeartbeats 30000000
 set_option maxRecDepth 100000
 
+/--
+@isnad1 id=eq.0h2v.s3.b61d71f140fe from=translated src=- shape=6c8684e5 vocab=e67a0bda
+-/
 theorem tensorProduct_eq_productForm (x y : Coord) :
     tensorProduct x y = productForm x y := by
   funext k

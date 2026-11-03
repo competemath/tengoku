@@ -98,14 +98,18 @@ def IsKappaLift (x : ExplicitFrameChart K) : Prop :=
   orientation x = x.kappa
 
 /-- The Gram discriminant identity is a formal consequence of the four
-gauge coordinates.-/
+gauge coordinates.
+@isnad1 id=eq.0h2v.s7.a74f1c798071 from=translated src=- shape=06a23341 vocab=5226ff1a
+-/
 theorem orientation_sq (x : ExplicitFrameChart K) :
     orientation x ^ 2 =
       gramV12 x ^ 2 - gramV11 x * gramV22 x := by
   simp [orientation, gramV11, gramV12, gramV22]
   ring
 
-/-- A selected `kappa` lift obeys the locked Gram square relation.-/
+/-- A selected `kappa` lift obeys the locked Gram square relation.
+@isnad1 id=eq.1h2v.s7.fd2b837b1816 from=translated src=- shape=d1545d8c vocab=4c9493e3
+-/
 theorem kappa_sq_of_isKappaLift (x : ExplicitFrameChart K)
     (h : IsKappaLift x) :
     x.kappa ^ 2 = gramV12 x ^ 2 - gramV11 x * gramV22 x := by
@@ -166,7 +170,9 @@ def sourceFrameEquationValues (x : ExplicitFrameChart K) :
   normB := sourceNorm (encoderB x)
 
 /-- Exact source expansion: the explicit six chart values are the accepted
-source fixed-spectrum equations.-/
+source fixed-spectrum equations.
+@isnad1 id=eq.0h2v.s5.2e282ea0f22a from=translated src=- shape=a8464171 vocab=a9952693
+-/
 theorem explicitFrameEquationValues_eq_source (x : ExplicitFrameChart K) :
     explicitFrameEquationValues x = sourceFrameEquationValues x := by
   apply FrameEquationValues.ext <;>
@@ -182,7 +188,9 @@ def EquationsVanish (v : FrameEquationValues K) : Prop :=
     v.traceB = 0 ∧ v.spurB = 0 ∧ v.normB = 0
 
 /-- The expanded equations vanish exactly when both source encoders have
-the fixed spectrum `(T,S,N) = (0,-1,0)`.-/
+the fixed spectrum `(T,S,N) = (0,-1,0)`.
+@isnad1 id=iff.0h2v.s7.a02ba652ab95 from=translated src=- shape=427dc1c7 vocab=777b97b1
+-/
 theorem equationsVanish_iff_source_fixedSpectrum
     (x : ExplicitFrameChart K) :
     EquationsVanish (explicitFrameEquationValues x) ↔
@@ -219,16 +227,27 @@ def rootSwap (x : RootedExplicitFrameChart K) :
   delta := x.deltaStar
   deltaStar := x.delta
 
+/--
+@isnad1 id=eq.0h2v.s5.ecc7ceaebe74 from=translated src=- shape=9aae1eb9 vocab=2eac3ba6
+-/
 @[simp] theorem rootSwap_base (x : RootedExplicitFrameChart K) :
     (rootSwap x).toExplicitFrameChart = x.toExplicitFrameChart := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.d779e081b3c7 from=translated src=- shape=5a39ce4c vocab=fb1b36bd
+-/
 @[simp] theorem rootSwap_delta (x : RootedExplicitFrameChart K) :
     (rootSwap x).delta = x.deltaStar := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.af30470741cb from=translated src=- shape=5a39ce4c vocab=fb1b36bd
+-/
 @[simp] theorem rootSwap_deltaStar (x : RootedExplicitFrameChart K) :
     (rootSwap x).deltaStar = x.delta := rfl
 
-/-- The chart-level root exchange is involutive.-/
+/-- The chart-level root exchange is involutive.
+@isnad1 id=eq.0h2v.s5.945adc1fc664 from=translated src=- shape=e17ccb0b vocab=ac3661c7
+-/
 @[simp] theorem rootSwap_involutive (x : RootedExplicitFrameChart K) :
     rootSwap (rootSwap x) = x := by
   cases x
@@ -240,20 +259,26 @@ def rootedFrameEquationValues (x : RootedExplicitFrameChart K) :
   explicitFrameEquationValues x.toExplicitFrameChart
 
 /-- Exchanging the two determinant-root labels fixes every explicit
-fixed-spectrum equation value.-/
+fixed-spectrum equation value.
+@isnad1 id=eq.0h2v.s5.f8ff1b03ce07 from=translated src=- shape=9aae1eb9 vocab=8c1f4550
+-/
 @[simp] theorem rootSwap_fixes_frameEquationValues
     (x : RootedExplicitFrameChart K) :
     rootedFrameEquationValues (rootSwap x) = rootedFrameEquationValues x := rfl
 
 /-- Consequently the simultaneous-vanishing predicate is root-swap stable
-at the explicit record level.-/
+at the explicit record level.
+@isnad1 id=iff.0h2v.s5.594eb40202e9 from=translated src=- shape=c9e914df vocab=8e56ce53
+-/
 theorem equationsVanish_rootSwap_iff (x : RootedExplicitFrameChart K) :
     EquationsVanish (rootedFrameEquationValues (rootSwap x)) ↔
       EquationsVanish (rootedFrameEquationValues x) := by
   rw [rootSwap_fixes_frameEquationValues]
 
 /-- Fixed-equation comparison.  This is deliberately named for fixed equation values,
-not for a polynomial ideal or a descended quotient.-/
+not for a polynomial ideal or a descended quotient.
+@isnad1 id=and.0h2v.s5.a61ca049eb6a from=translated src=- shape=1099e765 vocab=6087868c
+-/
 theorem RootSwapFixesExplicitFrameEquationValues
     (x : RootedExplicitFrameChart K) :
     rootedFrameEquationValues (rootSwap x) = rootedFrameEquationValues x ∧

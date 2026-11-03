@@ -39,6 +39,9 @@ private theorem thetaMK_lawfulEncoder : LawfulEncoder thetaMK := by
     spurPairForm, cubicNorm,
     thetaMK, one, v, q]
 
+/--
+@isnad1 id=lawfulfr.0h0v.s1.79d275e568f4 from=translated src=- shape=49959d42 vocab=37f03e3a
+-/
 theorem witnessTheta1Lawful : LawfulFrameTriple witnessTheta1 := by
   intro r
   fin_cases r
@@ -46,6 +49,9 @@ theorem witnessTheta1Lawful : LawfulFrameTriple witnessTheta1 := by
   · exact lawfulFrame_of_lawfulEncoder theta1F theta1F_lawfulEncoder
   · exact lawfulFrame_of_lawfulEncoder theta1K theta1K_lawfulEncoder
 
+/--
+@isnad1 id=lawfulfr.0h0v.s1.a0e2b8d43317 from=translated src=- shape=49959d42 vocab=ae351d25
+-/
 theorem witnessThetaMLawful : LawfulFrameTriple witnessThetaM := by
   intro r
   fin_cases r

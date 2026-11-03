@@ -86,6 +86,9 @@ def f0ToStructured (x : Coord) : JCoord ℚ :=
       { q := ![x 19, x 20, x 21, x 22]
         psi := ![x 23, x 24, x 25, x 26] } }
 
+/--
+@isnad1 id=eq.0h1v.s3.2d414f0f9878 from=translated src=- shape=e9e6e124 vocab=2fd66c95
+-/
 theorem f0ToStructured_structuredToF0 (x : JCoord ℚ) :
     f0ToStructured (structuredToF0 x) = x := by
   apply JCoord.ext
@@ -108,6 +111,9 @@ theorem f0ToStructured_structuredToF0 (x : JCoord ℚ) :
     · funext i
       fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.2dc1b6b1928a from=translated src=- shape=47dcad53 vocab=ea7323a4
+-/
 theorem structuredToF0_f0ToStructured (x : Coord) :
     structuredToF0 (f0ToStructured x) = x := by
   funext i
@@ -126,34 +132,50 @@ def structuredEquiv : JCoord ℚ ≃ₗ[ℚ] Coord where
     funext i
     fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.70025d88ce7d from=translated src=- shape=7e949d7e vocab=e16757ec
+-/
 @[simp] theorem structuredEquiv_apply (x : JCoord ℚ) :
     structuredEquiv x = structuredToF0 x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.9a6d61f8a50a from=translated src=- shape=e5284493 vocab=abeda57d
+-/
 @[simp] theorem structuredEquiv_symm_apply (x : Coord) :
     structuredEquiv.symm x = f0ToStructured x := rfl
 
-/-- The frozen structured unit maps to the accepted F0 unit.-/
+/-- The frozen structured unit maps to the accepted F0 unit.
+@isnad1 id=eq.0h0v.s7.55c90b94f26c from=translated src=- shape=e15e0bef vocab=5f5f138f
+-/
 theorem structuredEquiv_sourceOne :
     structuredEquiv (sourceOne : JCoord ℚ) = one := by
   funext i
   fin_cases i <;> norm_num [structuredEquiv, structuredToF0, sourceOne, one, q]
 
-/-- The source norm includes no hidden constant term.-/
+/-- The source norm includes no hidden constant term.
+@isnad1 id=eq.0h0v.s5.b3f1a7e974e1 from=translated src=- shape=2b17f29d vocab=b050f83c
+-/
 theorem sourceNorm_zero : sourceNorm (0 : JCoord ℚ) = 0 := by
   simp [sourceNorm]
 
-/-- The accepted F0 norm has the matching zero normalization.-/
+/-- The accepted F0 norm has the matching zero normalization.
+@isnad1 id=eq.0h0v.s4.11bcb0e04c35 from=translated src=- shape=1ac31801 vocab=cb97cfca
+-/
 theorem f0_cubicNorm_zero : cubicNorm (0 : Coord) = 0 := by
   norm_num [cubicNorm, v, q]
 
-/-- Universal equality of the independently frozen source cubic and F0 norm.-/
+/-- Universal equality of the independently frozen source cubic and F0 norm.
+@isnad1 id=eq.0h1v.s7.0b2f18497846 from=translated src=- shape=05c387b1 vocab=c3f35a9c
+-/
 theorem sourceNorm_agrees_with_f0 (x : JCoord ℚ) :
     sourceNorm x = cubicNorm (structuredEquiv x) := by
   simp [sourceNorm, cubicNorm, structuredEquiv, structuredToF0, v, q,
     nV, nS, nC, triality, Pf, BW, evalU, pairW, wedge2, dualWedge2]
   ring
 
-/-- Universal equality of the source trace and the accepted F0 trace.-/
+/-- Universal equality of the source trace and the accepted F0 trace.
+@isnad1 id=eq.0h1v.s7.4858a9ec0553 from=translated src=- shape=05c387b1 vocab=2b4b0feb
+-/
 theorem sourceTrace_agrees_with_f0 (x : JCoord ℚ) :
     sourceTrace x = traceN (structuredEquiv x) := by
   rw [traceN_eq_coords]
@@ -162,14 +184,18 @@ theorem sourceTrace_agrees_with_f0 (x : JCoord ℚ) :
 /--
 The source finite difference is exactly the canonical F0 polarization.  The
 proof uses both zero-normalization theorems explicitly; no constant term is
-silently discarded.-/
+silently discarded.
+@isnad1 id=eq.0h3v.s9.703e358a23ba from=translated src=- shape=2f269c14 vocab=da03b797
+-/
 theorem sourcePolar_agrees_with_f0 (x y z : JCoord ℚ) :
     sourcePolar x y z =
       cubicPolar (structuredEquiv x) (structuredEquiv y) (structuredEquiv z) := by
   simp only [sourcePolar, cubicPolar, sourceNorm_agrees_with_f0,
     map_add, f0_cubicNorm_zero, sub_zero]
 
-/-- The quadratic source spur agrees with the F0 spur derived from polarization.-/
+/-- The quadratic source spur agrees with the F0 spur derived from polarization.
+@isnad1 id=eq.0h1v.s7.ac7418be526f from=translated src=- shape=05c387b1 vocab=d2a3da68
+-/
 theorem sourceSpur_agrees_with_f0 (x : JCoord ℚ) :
     sourceSpur x = spurN (structuredEquiv x) := by
   calc
@@ -183,13 +209,17 @@ theorem sourceSpur_agrees_with_f0 (x : JCoord ℚ) :
       rw [structuredEquiv_sourceOne]
     _ = spurN (structuredEquiv x) := rfl
 
-/-- Bilinear spur polarization also agrees universally.-/
+/-- Bilinear spur polarization also agrees universally.
+@isnad1 id=eq.0h2v.s8.44f7e17991f0 from=translated src=- shape=173dff4a vocab=3ca1ee84
+-/
 theorem sourceSpurPolar_agrees_with_f0 (x y : JCoord ℚ) :
     sourceSpurPolar x y = spurBilinear (structuredEquiv x) (structuredEquiv y) := by
   rw [← sourcePolar_one, sourcePolar_agrees_with_f0, structuredEquiv_sourceOne]
   rfl
 
-/-- The nondegenerate source trace form agrees with the accepted F0 trace form.-/
+/-- The nondegenerate source trace form agrees with the accepted F0 trace form.
+@isnad1 id=eq.0h2v.s8.9dae33ee81ac from=translated src=- shape=173dff4a vocab=dd98dfc6
+-/
 theorem sourceTraceForm_agrees_with_f0 (x y : JCoord ℚ) :
     sourceTraceForm x y = traceForm (structuredEquiv x) (structuredEquiv y) := by
   rw [sourceTraceForm, traceForm, sourceTrace_agrees_with_f0,
@@ -209,7 +239,9 @@ def StructuredProductAgreesWithF0Statement
 
 /--
 Cubic comparison over `ℚ`: the exact adapted equivalence carries
-`T`, `S`, `N`, the complete cubic polarization, and the trace form to F0.-/
+`T`, `S`, `N`, the complete cubic polarization, and the trace form to F0.
+@isnad1 id=and.0h0v.s10.50f3f3b583ee from=translated src=- shape=a209751c vocab=7844e483
+-/
 theorem SourceCubicAgreesWithF0 :
     sourceNorm (0 : JCoord ℚ) = 0 ∧
     structuredEquiv (sourceOne : JCoord ℚ) = one ∧

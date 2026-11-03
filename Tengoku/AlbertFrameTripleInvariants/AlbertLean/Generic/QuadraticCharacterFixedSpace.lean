@@ -53,6 +53,9 @@ def fixedCoordinates : (k × k) →ₗ[k] D.fixedSpace where
     simp only [map_mul, Algebra.smul_def]
     ring
 
+/--
+@isnad1 id=bijectiv.0h3v.s9.8f942b1bf17d from=translated src=- shape=3c41ca64 vocab=cba663ef
+-/
 theorem fixedCoordinates_bijective : Function.Bijective D.fixedCoordinates := by
   constructor
   · intro v w h
@@ -68,13 +71,17 @@ theorem fixedCoordinates_bijective : Function.Bijective D.fixedCoordinates := by
 def fixedEquiv : (k × k) ≃ₗ[k] D.fixedSpace :=
   LinearEquiv.ofBijective D.fixedCoordinates D.fixedCoordinates_bijective
 
-/-- The fixed subspace has exactly two dimensions over the given base field.-/
+/-- The fixed subspace has exactly two dimensions over the given base field.
+@isnad1 id=eq.0h3v.s8.b66050b15cda from=translated src=- shape=8a557774 vocab=1831264e
+-/
 theorem fixedSpace_finrank : Module.finrank k D.fixedSpace = 2 := by
   rw [← D.fixedEquiv.finrank_eq]
   simp
 
 /-- Explicit finiteness rules out interpreting a zero `finrank` from an
-infinite-dimensional space as a degree bound.-/
+infinite-dimensional space as a degree bound.
+@isnad1 id=finitedi.0h3v.s7.864666ae8ecf from=translated src=- shape=4e57308c vocab=ff4105f0
+-/
 theorem fixedSpace_finiteDimensional : FiniteDimensional k D.fixedSpace := by
   exact Module.finite_of_finrank_pos (by rw [D.fixedSpace_finrank]; decide)
 

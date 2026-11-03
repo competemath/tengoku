@@ -16,7 +16,9 @@ variable {K V : Type*} [Field K] [CharZero K]
 variable [AddCommGroup V] [Module K V]
 
 /-- Three idempotents summing to the unit are pairwise orthogonal.  No trace,
-primitivity, Jordan identity, or associativity is used.-/
+primitivity, Jordan identity, or associativity is used.
+@isnad1 id=and.6h7v.s12.d0ccaf00d179 from=translated src=- shape=131f5ac4 vocab=acd1a2a2
+-/
 theorem triple_pairwise_orthogonal
     (μ : V →ₗ[K] V →ₗ[K] V) (one p q r : V)
     (hcomm : ∀ x y, μ x y = μ y x)
@@ -60,6 +62,9 @@ structure Laws (P : Fin 3 → JCoord F) : Prop where
   trace_one : ∀ i, sourceTrace (P i) = 1
   sum_one : P 0 + P 1 + P 2 = sourceOne
 
+/--
+@isnad1 id=and.1h2v.s8.1adb00731cef from=translated src=- shape=c396c2ec vocab=d489b924
+-/
 theorem Laws.orthogonal_triple {P : Fin 3 → JCoord F} (hP : Laws P) :
     sourceProduct (P 0) (P 1) = 0 ∧
       sourceProduct (P 0) (P 2) = 0 ∧
@@ -68,6 +73,9 @@ theorem Laws.orthogonal_triple {P : Fin 3 → JCoord F} (hP : Laws P) :
     (P 0) (P 1) (P 2) sourceProduct_comm sourceProduct_one_right
     (hP.idempotent 0) (hP.idempotent 1) (hP.idempotent 2) hP.sum_one
 
+/--
+@isnad1 id=eq.2h4v.s6.a7c307173e57 from=translated src=- shape=90f18566 vocab=d489b924
+-/
 theorem Laws.orthogonal {P : Fin 3 → JCoord F} (hP : Laws P)
     {i j : Fin 3} (hij : i ≠ j) : sourceProduct (P i) (P j) = 0 := by
   obtain ⟨h01, h02, h12⟩ := hP.orthogonal_triple

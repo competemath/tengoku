@@ -23,15 +23,24 @@ def extend (j : k →+* R) (A : (ι → k) →ₗ[k] (ι → k)) :
     (ι → R) →ₗ[R] (ι → R) :=
   Matrix.toLin' (j.mapMatrix (LinearMap.toMatrix' A))
 
+/--
+@isnad1 id=eq.0h4v.s7.a558e8962953 from=translated src=- shape=e85bc482 vocab=b3eae4fb
+-/
 theorem extend_id (j : k →+* R) :
     extend j (LinearMap.id : (ι → k) →ₗ[k] (ι → k)) = LinearMap.id := by
   simp [extend]
 
+/--
+@isnad1 id=eq.0h6v.s9.ca327dc3f308 from=translated src=- shape=ac5a42fc vocab=ea69139d
+-/
 theorem extend_comp (j : k →+* R)
     (A B : (ι → k) →ₗ[k] (ι → k)) :
     extend j (A.comp B) = (extend j A).comp (extend j B) := by
   simp only [extend, LinearMap.toMatrix'_comp, map_mul, Matrix.toLin'_mul]
 
+/--
+@isnad1 id=eq.0h6v.s9.19f0764097f3 from=translated src=- shape=d443e402 vocab=3aa768c7
+-/
 theorem extend_on_constants (j : k →+* R)
     (A : (ι → k) →ₗ[k] (ι → k)) (x : ι → k) :
     extend j A (j ∘ x) = j ∘ A x := by
@@ -40,6 +49,9 @@ theorem extend_on_constants (j : k →+* R)
   simpa only [LinearMap.toMatrix'_mulVec] using
     (RingHom.map_mulVec j (LinearMap.toMatrix' A) x p).symm
 
+/--
+@isnad1 id=eq.1h4v.s11.22aca6b33f94 from=translated src=- shape=fdf75ea3 vocab=72fc62a0
+-/
 theorem bilinear_eq_of_standard_basis
     (B C : (ι → R) →ₗ[R] (ι → R) →ₗ[R] (ι → R))
     (h : ∀ i j : ι,

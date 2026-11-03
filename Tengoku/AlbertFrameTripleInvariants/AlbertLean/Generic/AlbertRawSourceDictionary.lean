@@ -24,6 +24,9 @@ def toF0Family (E : Fin 3 → Fin 3 → JCoord K) :
     Fin 3 → Fin 3 → F0Coord K :=
   fun r i => structuredEquivK K (E r i)
 
+/--
+@isnad1 id=iff.0h2v.s5.f5e2645c9fa7 from=translated src=- shape=ba73af4b vocab=3d6ed040
+-/
 theorem sourceFrameFamily_iff_f0Raw
     (E : Fin 3 → Fin 3 → JCoord K) :
     (∀ r, Laws (E r)) ↔ IsRawFrameFamily (toF0Family E) := by

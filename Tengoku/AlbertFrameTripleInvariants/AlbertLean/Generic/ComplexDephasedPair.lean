@@ -30,10 +30,16 @@ def cofactorInverseNumerator (a b c d : K) : Mat3 K :=
      b-d, d-1, 1-b;
      c-a, 1-c, a-1]
 
+/--
+@isnad1 id=eq.0h5v.s5.7a4692db5482 from=translated src=- shape=5b285464 vocab=84b1c319
+-/
 theorem det_dephased (a b c d : K) :
     Matrix.det (dephased a b c d) = delta a b c d := by
   simp [dephased, delta, Matrix.det_fin_three]
 
+/--
+@isnad1 id=eq.0h5v.s7.d8702b7a996f from=translated src=- shape=a33159d8 vocab=69e46885
+-/
 theorem cofactor_mul (a b c d : K) :
     cofactorInverseNumerator a b c d * dephased a b c d =
       delta a b c d • (1 : Mat3 K) := by
@@ -42,6 +48,9 @@ theorem cofactor_mul (a b c d : K) :
     simp [cofactorInverseNumerator, dephased, delta, Matrix.mul_apply,
       Fin.sum_univ_succ] <;> ring
 
+/--
+@isnad1 id=eq.0h5v.s7.fea86a6d13f8 from=translated src=- shape=a33159d8 vocab=69e46885
+-/
 theorem dephased_mul_cofactor (a b c d : K) :
     dephased a b c d * cofactorInverseNumerator a b c d =
       delta a b c d • (1 : Mat3 K) := by
@@ -50,6 +59,9 @@ theorem dephased_mul_cofactor (a b c d : K) :
     simp [cofactorInverseNumerator, dephased, delta, Matrix.mul_apply,
       Fin.sum_univ_succ] <;> ring
 
+/--
+@isnad1 id=eq.1h5v.s7.e75d1e348cc4 from=translated src=- shape=517900e8 vocab=5fb04567
+-/
 theorem dephased_inv_eq (a b c d : K) (hΔ : delta a b c d ≠ 0) :
     (dephased a b c d)⁻¹ =
       (delta a b c d)⁻¹ • cofactorInverseNumerator a b c d := by
@@ -61,6 +73,9 @@ theorem dephased_inv_eq (a b c d : K) (hΔ : delta a b c d ≠ 0) :
 def overlap (a b c d : K) (i j : Fin 3) : K :=
   dephased a b c d i j * (dephased a b c d)⁻¹ j i
 
+/--
+@isnad1 id=eq.1h5v.s9.bb5967c916bc from=translated src=- shape=a6d8f538 vocab=d23959e1
+-/
 theorem overlap_table (a b c d : K) (hΔ : delta a b c d ≠ 0) :
     (fun i j => overlap a b c d i j) =
       !![(a*d-b*c)/delta a b c d,
@@ -75,6 +90,9 @@ theorem overlap_table (a b c d : K) (hΔ : delta a b c d ≠ 0) :
   fin_cases i <;> fin_cases j <;>
     simp [dephased, cofactorInverseNumerator, div_eq_mul_inv] <;> ring
 
+/--
+@isnad1 id=other.1h5v.s8.1aaaed926499 from=translated src=- shape=9b544c9d vocab=ac6d5acd
+-/
 theorem nu_mul_delta (a b c d : K) (hΔ : delta a b c d ≠ 0) :
     let p := overlap a b c d 0 0
     let q := overlap a b c d 0 1
@@ -94,6 +112,9 @@ theorem nu_mul_delta (a b c d : K) (hΔ : delta a b c d ≠ 0) :
   unfold delta
   ring
 
+/--
+@isnad1 id=eq.1h5v.s7.921bfc2698be from=translated src=- shape=d220c17e vocab=c0902bfa
+-/
 theorem pairQuadratic_root (a b c d : K) (hΔ : delta a b c d ≠ 0) :
     pairQuadratic (overlap a b c d 0 0) (overlap a b c d 0 1)
       (overlap a b c d 1 0) (overlap a b c d 1 1) d = 0 := by
@@ -111,7 +132,9 @@ theorem pairQuadratic_root (a b c d : K) (hΔ : delta a b c d ≠ 0) :
   ring
 
 /-- Reconstruction of the other dephased entries from the four northwest
-overlaps and a legal chosen root `d`.-/
+overlaps and a legal chosen root `d`.
+@isnad1 id=other.2h5v.s9.b6c0c5ea10f6 from=translated src=- shape=9d13987c vocab=b1316aed
+-/
 theorem reconstruct_entries (a b c d : K) (hΔ : delta a b c d ≠ 0)
     (hnu : nu (overlap a b c d 0 0) (overlap a b c d 0 1)
       (overlap a b c d 1 0) (overlap a b c d 1 1) d ≠ 0) :

@@ -7,6 +7,9 @@ namespace AlbertLean
 set_option maxHeartbeats 10000000
 set_option maxRecDepth 100000
 
+/--
+@isnad1 id=eq.0h0v.s4.b51645782e67 from=translated src=- shape=c6b96a7a vocab=73138a68
+-/
 theorem witnessSameP : (ledger witnessTheta1).P = (ledger witnessThetaM).P := by
   funext i j
   change traceForm (projector theta1E i) (projector theta1F j) =
@@ -18,6 +21,9 @@ theorem witnessSameP : (ledger witnessTheta1).P = (ledger witnessThetaM).P := by
   all_goals
     norm_num [Theta1FSquare, ThetaMFSquare, theta1F, thetaMF, one, v, q]
 
+/--
+@isnad1 id=eq.0h0v.s4.53c9f20af006 from=translated src=- shape=c6b96a7a vocab=1e9141d3
+-/
 theorem witnessSameQ : (ledger witnessTheta1).Q = (ledger witnessThetaM).Q := by
   funext j l
   change traceForm (projector theta1F j) (projector theta1K l) =
@@ -29,6 +35,9 @@ theorem witnessSameQ : (ledger witnessTheta1).Q = (ledger witnessThetaM).Q := by
       Theta1FSquare, ThetaMFSquare, Theta1KSquare, ThetaMKSquare,
       theta1F, thetaMF, theta1K, thetaMK, one, v, q]
 
+/--
+@isnad1 id=eq.0h0v.s4.38141c4bf330 from=translated src=- shape=c6b96a7a vocab=1bf7e1b1
+-/
 theorem witnessSameR : (ledger witnessTheta1).R = (ledger witnessThetaM).R := by
   funext l i
   change traceForm (projector theta1K l) (projector theta1E i) =

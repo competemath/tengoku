@@ -9,7 +9,9 @@ open Generated
 set_option maxHeartbeats 50000000
 set_option maxRecDepth 100000
 
-/-- Coordinate 8 of the original characteristic identity.-/
+/-- Coordinate 8 of the original characteristic identity.
+@isnad1 id=eq.0h1v.s6.72444f167f47 from=translated src=- shape=98e49c1d vocab=24140918
+-/
 theorem characteristicCoordinate08 (x : Coord) :
     (structuredProduct x (structuredProduct x x) -
       traceN x • structuredProduct x x + spurN x • x -

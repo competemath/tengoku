@@ -48,6 +48,9 @@ private theorem encoder_square_idempotent (c : Coord) (hc : LawfulEncoder c) :
   rw [encoder_cube c hc] at h
   exact h
 
+/--
+@isnad1 id=lawfulfr.1h1v.s2.8fcf1386a60b from=translated src=- shape=6321fd23 vocab=c7c138a2
+-/
 theorem lawfulFrame_of_lawfulEncoder (c : Coord) (hc : LawfulEncoder c) :
     LawfulFrame c := by
   let a := structuredProduct c c

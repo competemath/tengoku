@@ -107,6 +107,9 @@ end Zorn
 
 namespace Vec3
 
+/--
+@isnad1 id=eq.3h2v.s4.daef97e601b0 from=translated src=- shape=966c8f3f vocab=ed8a39ca
+-/
 theorem ext {u v : Vec3}
     (hx : u.x = v.x) (hy : u.y = v.y) (hz : u.z = v.z) : u = v := by
   cases u
@@ -117,6 +120,9 @@ end Vec3
 
 namespace Zorn
 
+/--
+@isnad1 id=eq.4h2v.s5.0058ee887228 from=translated src=- shape=4e05324f vocab=6e155567
+-/
 theorem ext {x y : Zorn}
     (hul : x.upperLeft = y.upperLeft)
     (hur : x.upperRight = y.upperRight)

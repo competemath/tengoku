@@ -35,7 +35,9 @@ def right (a : K) : TensorSquare H K :=
 def difference (a : K) : TensorSquare H K := left H K a - right H K a
 
 /-- Among the nonzero annihilators of `a`, one of minimal degree has
-nonvanishing derivative at `a` in characteristic zero.-/
+nonvanishing derivative at `a` in characteristic zero.
+@isnad1 id=ex.1h3v.s9.327b04f4a4fb from=translated src=- shape=c7d455b5 vocab=2c0ac46a
+-/
 theorem exists_annihilator_derivative_ne_zero (a : K)
     (h : ∃ p : Polynomial H, p ≠ 0 ∧ Polynomial.aeval a p = 0) :
     ∃ p : Polynomial H, p ≠ 0 ∧ Polynomial.aeval a p = 0 ∧
@@ -70,7 +72,9 @@ theorem exists_annihilator_derivative_ne_zero (a : K)
     ⟨p.derivative, hpder0, hpder, rfl⟩
 
 /-- A nonzero polynomial annihilator whose derivative remains nonzero at `a`
-kills a nilpotent difference between the two tensor-square embeddings.-/
+kills a nilpotent difference between the two tensor-square embeddings.
+@isnad1 id=eq.3h4v.s9.e72769b0aa26 from=translated src=- shape=a337b2b1 vocab=16c571c4
+-/
 theorem difference_eq_zero_of_annihilator_of_isNilpotent
     (a : K) (p : Polynomial H)
     (hpa : Polynomial.aeval a p = 0)
@@ -125,7 +129,9 @@ theorem difference_eq_zero_of_annihilator_of_isNilpotent
   exact hfactor.mul_right_injective (by simpa [mul_comm] using hprod)
 
 /-- Once a contraction has the expected values on the two tensor embeddings,
-tensor equality exhibits `a` in the base-field image.-/
+tensor equality exhibits `a` in the base-field image.
+@isnad1 id=ex.3h5v.s10.842b951e361a from=translated src=- shape=064c86e0 vocab=d4d94d30
+-/
 theorem exists_base_of_contraction
     (a : K) (ell : K →ₗ[H] H) (pi : TensorSquare H K →ₗ[H] K)
     (hleft : pi (left H K a) = a)
@@ -139,7 +145,9 @@ theorem exists_base_of_contraction
 
 /-- In characteristic zero, a nilpotent diagonal tensor difference forces the
 chosen element to belong to the base field, without assuming the extension is
-algebraic.-/
+algebraic.
+@isnad1 id=ex.1h3v.s7.d9f25efad65d from=translated src=- shape=75f4b76a vocab=77a08ab3
+-/
 theorem exists_base_of_difference_isNilpotent (a : K)
     (hz : IsNilpotent (difference H K a)) :
     ∃ h : H, algebraMap H K h = a := by

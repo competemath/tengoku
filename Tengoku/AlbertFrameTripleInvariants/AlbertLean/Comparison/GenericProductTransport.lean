@@ -35,28 +35,46 @@ variable {K : Type*} [Field K] [CharZero K]
 def mapCoordQK (K : Type*) [Field K] [CharZero K]
     (x : Coord) : F0Coord K := fun i => algebraMap ℚ K (x i)
 
+/--
+@isnad1 id=eq.0h3v.s6.376b1b39a1a9 from=translated src=- shape=0e40e54d vocab=3f0d2290
+-/
 @[simp] theorem mapCoordQK_apply (x : Coord) (i : Fin 27) :
     mapCoordQK K x i = algebraMap ℚ K (x i) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.450ad7668867 from=translated src=- shape=db9d6ea0 vocab=bc1ba1f4
+-/
 @[simp] theorem mapCoordQK_zero : mapCoordQK K (0 : Coord) = 0 := by
   funext i
   simp [mapCoordQK]
 
+/--
+@isnad1 id=eq.0h3v.s6.7dbab7115bda from=translated src=- shape=236106f5 vocab=a6d984e4
+-/
 @[simp] theorem mapCoordQK_add (x y : Coord) :
     mapCoordQK K (x + y) = mapCoordQK K x + mapCoordQK K y := by
   funext i
   simp [mapCoordQK]
 
+/--
+@isnad1 id=eq.0h3v.s6.b8153c1776ce from=translated src=- shape=236106f5 vocab=1d275788
+-/
 @[simp] theorem mapCoordQK_sub (x y : Coord) :
     mapCoordQK K (x - y) = mapCoordQK K x - mapCoordQK K y := by
   funext i
   simp [mapCoordQK]
 
+/--
+@isnad1 id=eq.0h3v.s7.0e75dd0cdeab from=translated src=- shape=6751280a vocab=ccd8366a
+-/
 @[simp] theorem mapCoordQK_smul (a : ℚ) (x : Coord) :
     mapCoordQK K (a • x) = algebraMap ℚ K a • mapCoordQK K x := by
   funext i
   simp [mapCoordQK]
 
+/--
+@isnad1 id=eq.0h2v.s8.4ad781ffdec2 from=translated src=- shape=894ab845 vocab=fe27bb37
+-/
 @[simp] theorem mapCoordQK_basis (i : Fin 27) :
     mapCoordQK K (Pi.basisFun ℚ (Fin 27) i) =
       Pi.basisFun K (Fin 27) i := by
@@ -64,6 +82,9 @@ def mapCoordQK (K : Type*) [Field K] [CharZero K]
   funext j
   simp [mapCoordQK, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h1v.s4.d884f1d22e39 from=translated src=- shape=444729a6 vocab=b6440423
+-/
 @[simp] theorem mapCoordQK_one :
     mapCoordQK K AlbertLean.one = f0OneK := by
   funext i
@@ -74,10 +95,16 @@ private theorem vK_mapCoordQK (x : Coord) (n : Nat) :
   unfold vK v
   split <;> simp_all [mapCoordQK]
 
+/--
+@isnad1 id=eq.0h2v.s6.4e5dcf14a270 from=translated src=- shape=969d1d5d vocab=bd6b0855
+-/
 theorem f0NormK_mapCoordQK (x : Coord) :
     f0NormK (mapCoordQK K x) = algebraMap ℚ K (cubicNorm x) := by
   simp only [f0NormK, cubicNorm, qK, vK_mapCoordQK, map_add, map_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.af9ea5b20b4e from=translated src=- shape=37904ea9 vocab=c4596c16
+-/
 theorem f0PolarK_mapCoordQK (x y z : Coord) :
     f0PolarK (mapCoordQK K x) (mapCoordQK K y) (mapCoordQK K z) =
       algebraMap ℚ K (cubicPolar x y z) := by
@@ -86,11 +113,17 @@ theorem f0PolarK_mapCoordQK (x y z : Coord) :
   rw [f0NormK_zero,
     AlbertLean.Comparison.StructuredF0.f0_cubicNorm_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.97b453b85a43 from=translated src=- shape=969d1d5d vocab=f37509c0
+-/
 theorem f0TraceK_mapCoordQK (x : Coord) :
     f0TraceK (mapCoordQK K x) = algebraMap ℚ K (traceN x) := by
   rw [traceN_eq_coords]
   simp [f0TraceK, mapCoordQK]
 
+/--
+@isnad1 id=eq.0h3v.s6.40da1f0b8844 from=translated src=- shape=e628c1e3 vocab=37632ded
+-/
 theorem f0TraceFormK_mapCoordQK (x y : Coord) :
     f0TraceFormK (mapCoordQK K x) (mapCoordQK K y) =
       algebraMap ℚ K (traceForm x y) := by
@@ -123,6 +156,9 @@ private theorem mappedAdjoint_characterization (x : Coord) (z : F0Coord K) :
   have hz := congrArg (fun f : F0Coord K →ₗ[K] K => f z) hmaps
   simpa [lhs, rhs, div_eq_mul_inv, mul_comm] using hz
 
+/--
+@isnad1 id=eq.0h2v.s7.c2ebbb9ad276 from=translated src=- shape=d2a34f24 vocab=a8c56a47
+-/
 theorem f0AdjointK_mapCoordQK (x : Coord) :
     (f0RecoveryDataK (K := K)).adjoint (mapCoordQK K x) =
       mapCoordQK K (f0RecoveryData.adjoint x) := by
@@ -144,6 +180,9 @@ theorem f0AdjointK_mapCoordQK (x : Coord) :
   rw [mappedAdjoint_characterization]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.036fc51d30a0 from=translated src=- shape=afe0ac95 vocab=1ad8939e
+-/
 theorem f0CrossK_mapCoordQK (x y : Coord) :
     (f0RecoveryDataK (K := K)).cross (mapCoordQK K x) (mapCoordQK K y) =
       mapCoordQK K (f0RecoveryData.cross x y) := by
@@ -152,6 +191,9 @@ theorem f0CrossK_mapCoordQK (x y : Coord) :
     f0AdjointK_mapCoordQK, f0AdjointK_mapCoordQK,
     mapCoordQK_sub, mapCoordQK_sub]
 
+/--
+@isnad1 id=eq.0h3v.s7.c2f051a25b13 from=translated src=- shape=7d74fdcb vocab=2f8e510e
+-/
 theorem f0SpurBilinearK_mapCoordQK (x y : Coord) :
     (f0RecoveryDataK (K := K)).spurBilinear
         (mapCoordQK K x) (mapCoordQK K y) =
@@ -159,6 +201,9 @@ theorem f0SpurBilinearK_mapCoordQK (x y : Coord) :
   simp [RecoveryData.spurBilinear, f0RecoveryDataK, f0RecoveryData,
     f0TraceK_mapCoordQK, f0TraceFormK_mapCoordQK]
 
+/--
+@isnad1 id=eq.0h3v.s7.b0ae419c1b3e from=translated src=- shape=afe0ac95 vocab=2c1c464f
+-/
 theorem f0RecoveredProductK_mapCoordQK (x y : Coord) :
     (f0RecoveryDataK (K := K)).product
         (mapCoordQK K x) (mapCoordQK K y) =
@@ -170,6 +215,9 @@ theorem f0RecoveredProductK_mapCoordQK (x y : Coord) :
     mapCoordQK_one, mapCoordQK_add,
     mapCoordQK_sub, mapCoordQK_smul]
 
+/--
+@isnad1 id=eq.0h3v.s5.d73c3aad705a from=translated src=- shape=a839dbd8 vocab=68f5ae31
+-/
 theorem f0ProductK_mapCoordQK (x y : Coord) :
     f0ProductK (mapCoordQK K x) (mapCoordQK K y) =
       mapCoordQK K (structuredProduct x y) := by
@@ -195,6 +243,9 @@ def f0ProductLinearK : F0Coord K →ₗ[K] F0Coord K →ₗ[K] F0Coord K where
     intro y
     exact f0ProductK_smul_left a x y
 
+/--
+@isnad1 id=eq.0h3v.s10.f828b4681e94 from=translated src=- shape=229a5892 vocab=a861fb3f
+-/
 @[simp] theorem f0ProductLinearK_apply (x y : F0Coord K) :
     f0ProductLinearK x y = f0ProductK x y := rfl
 
@@ -224,6 +275,9 @@ private theorem f0RecoveredProductK_basis (i j : Fin 27) :
           exact f0ProductK_mapCoordQK (K := K)
             (Pi.basisFun ℚ (Fin 27) i) (Pi.basisFun ℚ (Fin 27) j)
 
+/--
+@isnad1 id=eq.0h3v.s6.7896cdb4af86 from=translated src=- shape=62801b42 vocab=746851a5
+-/
 theorem f0RecoveredProductK_eq_f0ProductK (x y : F0Coord K) :
     (f0RecoveryDataK (K := K)).product x y = f0ProductK x y := by
   have hmaps : f0RecoveredProductLinearK (K := K) =
@@ -236,7 +290,9 @@ theorem f0RecoveredProductK_eq_f0ProductK (x y : F0Coord K) :
     congrArg
       (fun B : F0Coord K →ₗ[K] F0Coord K →ₗ[K] F0Coord K => B x y) hmaps
 
-/-- The generic source product agrees with the independently frozen F0 tensor.-/
+/-- The generic source product agrees with the independently frozen F0 tensor.
+@isnad1 id=eq.0h3v.s10.f56f9bf98718 from=translated src=- shape=1bc831e8 vocab=b8e8e851
+-/
 theorem GenericStructuredProductAgreesWithF0 {K : Type*}
     [Field K] [CharZero K] :
     ∀ x y : JCoord K,

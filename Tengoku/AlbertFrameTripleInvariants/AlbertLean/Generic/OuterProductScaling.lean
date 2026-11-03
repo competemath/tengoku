@@ -15,7 +15,9 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 
 /-- Equality of two nonzero outer products gives the unique reciprocal
-rescaling, using a displayed nonzero entry rather than any rank theorem.-/
+rescaling, using a displayed nonzero entry rather than any rank theorem.
+@isnad1 id=ex.2h7v.s7.106d4ca9db54 from=translated src=- shape=fb34f812 vocab=4c2489d2
+-/
 theorem outer_eq_scaling_at_pivot
     (u v u' v' : Vec3 K) (i j : Fin 3)
     (houter : outer v u = outer v' u')
@@ -62,7 +64,9 @@ theorem outer_eq_scaling_at_pivot
       v' k * u' j = v k * u j := hkj.symm
       _ = u j * v k := by ring
 
-/-- Matrix nonzeroness supplies the displayed pivot required above.-/
+/-- Matrix nonzeroness supplies the displayed pivot required above.
+@isnad1 id=ex.2h5v.s7.cdda4a815c83 from=translated src=- shape=fb34755c vocab=5ca19aeb
+-/
 theorem outer_eq_scaling
     (u v u' v' : Vec3 K)
     (houter : outer v u = outer v' u')
@@ -79,7 +83,9 @@ theorem outer_eq_scaling
   exact outer_eq_scaling_at_pivot u v u' v' i j houter hij
 
 /-- Same `a`, actual projector block equations, and nonzero adjugate force the
-entire skew-block fibre to be one reciprocal scalar orbit.-/
+entire skew-block fibre to be one reciprocal scalar orbit.
+@isnad1 id=ex.4h6v.s9.3e7b87da358b from=translated src=- shape=e24e97e7 vocab=dab22ca0
+-/
 theorem same_a_scalar_fibre
     (a : Mat3 K) (u v u' v' : Vec3 K)
     (hblock : a * a - a = -(hat u * hat v))

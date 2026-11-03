@@ -17,7 +17,9 @@ namespace AlbertLean.Generic.WitnessChart
 open AlbertLean
 open AlbertLean.Generic.ChartBridge
 
-/-- The first vector-column matrix is literally the identity.-/
+/-- The first vector-column matrix is literally the identity.
+@isnad1 id=eq.0h0v.s5.18f00e65a024 from=translated src=- shape=3a0b6f1e vocab=0c5a385f
+-/
 theorem witnessChart1_X : (residualPairOfChart witnessChart1).X = 1 := by
   change
     (fun i j : Fin 4 =>
@@ -30,7 +32,9 @@ theorem witnessChart1_X : (residualPairOfChart witnessChart1).X = 1 := by
   fin_cases i <;> fin_cases j <;>
     norm_num [q, Matrix.one_apply]
 
-/-- The second vector-column matrix is the displayed diagonal representative.-/
+/-- The second vector-column matrix is the displayed diagonal representative.
+@isnad1 id=eq.0h0v.s6.966e043a80de from=translated src=- shape=16687ae1 vocab=3d665e24
+-/
 theorem witnessChartM_X :
     (residualPairOfChart witnessChartM).X =
       Matrix.diagonal ![1, 1, 1, witnessScale] := by

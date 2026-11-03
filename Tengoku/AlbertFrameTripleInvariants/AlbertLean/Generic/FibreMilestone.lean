@@ -24,9 +24,15 @@ open AlbertLean.Generic.WitnessChart
 open AlbertLean.Residual.ResidualTwoOrbit
 open AlbertLean.Residual.SL4PairAction
 
+/--
+@isnad1 id=infibre.0h0v.s2.1df207b9eb0c from=translated src=- shape=deeaf44f vocab=6474662c
+-/
 theorem witnessM_inFibre : InFibre witnessChart1 (residualPairOfChart witnessChartM) :=
   ⟨witnessChartM_open, witnessCharts_sameResidualBase⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.ff4d6891e854 from=translated src=- shape=9813dc7c vocab=1ab4d000
+-/
 theorem fibreTriple_witnessM :
     fibreTriple witnessChart1 (residualPairOfChart witnessChartM) =
       chartWitnessTriple witnessChartM := by
@@ -34,7 +40,9 @@ theorem fibreTriple_witnessM :
   rw [← witnessChartM_eq_reinsert]
 
 /-- The canonical swapped representative is separated without evaluating
-its inverse matrix or recomputing either accepted detector value.-/
+its inverse matrix or recomputing either accepted detector value.
+@isnad1 id=ne.0h0v.s3.47dfb3773090 from=translated src=- shape=8bb8ffd8 vocab=d1fc43a7
+-/
 theorem witness_rootSwap_detector_ne :
     traceCubeDetector (chartWitnessTriple witnessChart1) ≠
       traceCubeDetector (chartWitnessTriple
@@ -45,7 +53,9 @@ theorem witness_rootSwap_detector_ne :
   exact witnessCharts_detector_ne
 
 /-- Every point of this exhibited open fibre is lawful. Its induced full
-automorphism equivalence is exactly equality of trace-cube detector values.-/
+automorphism equivalence is exactly equality of trace-cube detector values.
+@isnad1 id=and.2h2v.s5.06b755bef569 from=translated src=- shape=1b5e934e vocab=969b346c
+-/
 theorem witness_fibre_classification (Q R : ResidualPair ℚ)
     (hQ : InFibre witnessChart1 Q) (hR : InFibre witnessChart1 R) :
     LawfulFrameTriple (fibreTriple witnessChart1 Q) ∧
@@ -58,7 +68,9 @@ theorem witness_fibre_classification (Q R : ResidualPair ℚ)
     fullRelated_iff_detector _ witnessChart1_open witness_rootSwap_detector_ne Q R hQ hR⟩
 
 /-- Both detector values occur in this same lawful fibre and cannot be
-identified by any full Albert automorphism.-/
+identified by any full Albert automorphism.
+@isnad1 id=ex.0h0v.s5.3385c4e616fd from=translated src=- shape=c13f18e3 vocab=e681e422
+-/
 theorem witness_fibre_has_two_classes :
     ∃ Q R : ResidualPair ℚ,
       InFibre witnessChart1 Q ∧ InFibre witnessChart1 R ∧
@@ -74,7 +86,9 @@ theorem witness_fibre_has_two_classes :
     simpa [fibreTriple, ← witnessChartM_eq_reinsert] using witnessCharts_detector_ne
 
 /-- Every point of the exhibited fibre has a normalized detector equal to
-zero or one, and every rational-valued full invariant is affine in that bit.-/
+zero or one, and every rational-valued full invariant is affine in that bit.
+@isnad1 id=other.2h2v.s6.1ad0ac184b8f from=translated src=- shape=0aab8f26 vocab=40ff7cc3
+-/
 theorem witness_fibre_invariant_affine (Q : ResidualPair ℚ)
     (hQ : InFibre witnessChart1 Q) (f : WitnessTriple → ℚ)
     (hf : ∀ {U V}, FullRelated U V → f U = f V) :

@@ -79,6 +79,9 @@ end Hermitian3
 
 namespace Hermitian3
 
+/--
+@isnad1 id=eq.6h2v.s5.13c3590f2717 from=translated src=- shape=dca64a8b vocab=3dbc790f
+-/
 theorem ext {x y : Hermitian3}
     (hd1 : x.diag1 = y.diag1)
     (hd2 : x.diag2 = y.diag2)

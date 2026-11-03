@@ -24,11 +24,17 @@ variable {K : Type*} [Field K] [CharZero K]
 
 def planeVector (r z : K) : VCoord K := ⟨r, z, 0⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.7c50d9df17f4 from=translated src=- shape=d8c240fa vocab=58bf1380
+-/
 theorem plane_triality (r z : K) (s : SCoord K) (c : CCoord K) :
     triality (planeVector r z) s c =
       r * evalU s.phi c.q + z * evalU c.psi s.p := by
   simp [triality, planeVector, BW, pairW]
 
+/--
+@isnad1 id=eq.0h7v.s7.431f6e881064 from=translated src=- shape=6fdbcf2e vocab=552c71a4
+-/
 theorem plane_muC_pairing (r1 z1 r2 z2 : K) (s1 s2 : SCoord K) :
     BC (sourceMuC (planeVector r1 z1) s1)
       (sourceMuC (planeVector r2 z2) s2) =
@@ -37,6 +43,9 @@ theorem plane_muC_pairing (r1 z1 r2 z2 : K) (s1 s2 : SCoord K) :
   simp [BC, sourceMuC, planeVector, evalU]
   ring
 
+/--
+@isnad1 id=eq.0h7v.s7.fcf7934f93c0 from=translated src=- shape=998d116d vocab=847d0e60
+-/
 theorem plane_muS_pairing (r1 z1 r2 z2 : K) (c1 c2 : CCoord K) :
     BS (sourceMuS c1 (planeVector r1 z1))
       (sourceMuS c2 (planeVector r2 z2)) =
@@ -45,10 +54,16 @@ theorem plane_muS_pairing (r1 z1 r2 z2 : K) (c1 c2 : CCoord K) :
   simp [BS, sourceMuS, planeVector, evalU]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.9660c4830283 from=translated src=- shape=6928dce6 vocab=89b81ffc
+-/
 theorem within_gram_S (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     BS s1 s2 = momentMatrix s1 s2 c1 c2 0 1 +
       momentMatrix s1 s2 c1 c2 1 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.420105bebf7b from=translated src=- shape=3426f5e3 vocab=996eddcc
+-/
 theorem within_gram_C (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     BC c1 c2 = momentMatrix s1 s2 c1 c2 2 3 +
       momentMatrix s1 s2 c1 c2 3 2 := rfl

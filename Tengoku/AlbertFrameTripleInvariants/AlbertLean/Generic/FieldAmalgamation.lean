@@ -17,7 +17,9 @@ universe u
 
 /-- Two field extensions of a common field embed in another common field.
 No algebraicity, algebraic closure, or tensor-domain hypothesis is required.
-The tensor product need only be nontrivial; its maximal quotient is a field.-/
+The tensor product need only be nontrivial; its maximal quotient is a field.
+@isnad1 id=ex.0h5v.s8.defdf73fff53 from=translated src=- shape=b6b436cb vocab=cd79d1fa
+-/
 theorem exists_common_field
     {F L N : Type u} [Field F] [Field L] [Field N]
     (leftBase : F →+* L) (rightBase : F →+* N) :

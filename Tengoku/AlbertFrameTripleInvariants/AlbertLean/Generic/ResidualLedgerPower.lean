@@ -36,12 +36,17 @@ def power (a : JCoord K) : Fin 3 → JCoord K := ![sourceOne, a, sourceSquare a]
 
 def powerWeight : Fin 3 → Fin 3 → K := ![![1, 1, 1], ![-1, 0, 1], ![1, 0, 1]]
 
-/-- This inverse is a polynomial identity; lawful-frame premises are unnecessary.-/
+/-- This inverse is a polynomial identity; lawful-frame premises are unnecessary.
+@isnad1 id=eq.0h3v.s7.78c0b10ffee5 from=translated src=- shape=bf310a91 vocab=9bfab547
+-/
 theorem power_eq_weighted_projectors (a : JCoord K) (p : Fin 3) :
     power a p = ∑ j, powerWeight (K := K) p j • spectralProjector a j := by
   fin_cases p <;>
     simp [power, powerWeight, spectralProjector, Fin.sum_univ_succ] <;> module
 
+/--
+@isnad1 id=mem.0h4v.s5.313fcb0035fa from=translated src=- shape=af9af94b vocab=97c868b6
+-/
 theorem powerWeight_mem (F : Subfield K) (p j : Fin 3) :
     powerWeight p j ∈ F := by
   fin_cases p <;> fin_cases j <;> simp [powerWeight, F.zero_mem, F.one_mem, F.neg_mem]
@@ -55,6 +60,9 @@ def diagonalUnit (i : Fin 3) : JCoord K :=
   diagonal (if i = 0 then 1 else 0) (if i = 1 then 1 else 0)
     (if i = 2 then 1 else 0)
 
+/--
+@isnad1 id=eq.0h3v.s7.0d923aac3099 from=translated src=- shape=bb0a9f06 vocab=2ba0d523
+-/
 theorem diagonal_trace (i : Fin 3) (x : JCoord K) :
     sourceTraceForm (diagonalUnit i) x = diagLinear i x := by
   rw [diagonalUnit, sourceTraceForm_diagonal_left]
@@ -67,6 +75,9 @@ theorem diagonal_trace (i : Fin 3) (x : JCoord K) :
 @[simp] private theorem sub_s (x y : JCoord K) : (x - y).s = x.s - y.s := rfl
 @[simp] private theorem sub_c (x y : JCoord K) : (x - y).c = x.c - y.c := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.eeabd7fa3e1f from=translated src=- shape=56c340bf vocab=3af8afd3
+-/
 theorem diagonal_projectors (i : Fin 3) :
     spectralProjector (diagonal (-1 : K) 0 1) i = diagonalUnit i := by
   fin_cases i <;> apply JCoord.ext <;>
@@ -93,10 +104,15 @@ def diagonalProduct (i : Fin 3) : JCoord K →ₗ[K] JCoord K →ₗ[K] K where
     ext z
     simp [sourceProductLinear, sourceProduct_smul_left]
 
+/--
+@isnad1 id=eq.0h4v.s10.7288d431988f from=translated src=- shape=49673f2d vocab=ca9419af
+-/
 @[simp] theorem diagonalProduct_apply (i : Fin 3) (x y : JCoord K) :
     diagonalProduct i x y = diagLinear i (sourceProduct x y) := rfl
 
-/-- Reusable tensor change of basis for any bilinear scalar measurement.-/
+/-- Reusable tensor change of basis for any bilinear scalar measurement.
+@isnad1 id=mem.1h7v.s11.c138805fb01f from=translated src=- shape=07f7d8fb vocab=00547978
+-/
 theorem power_pair_mem (F : Subfield K)
     (B : JCoord K →ₗ[K] JCoord K →ₗ[K] K) (a b : JCoord K)
     (h : ∀ j l, B (spectralProjector a j) (spectralProjector b l) ∈ F)
@@ -132,7 +148,9 @@ def LedgerIn (F : Subfield K) (L : SourceLedger K) : Prop :=
   (∀ i j, L.P i j ∈ F) ∧ (∀ j l, L.Q j l ∈ F) ∧
   (∀ l i, L.R l i ∈ F) ∧ (∀ i j l, L.C0 i j l ∈ F)
 
-/-- Undo the public centering using the three retained pair tables.-/
+/-- Undo the public centering using the three retained pair tables.
+@isnad1 id=mem.1h7v.s10.adf00f52abf2 from=translated src=- shape=11bc097f vocab=856a70fb
+-/
 theorem rawJoint_mem (F : Subfield K) (a b : JCoord K)
     (h : LedgerIn F (sourceLedger a b)) (i j l : Fin 3) :
     diagonalProduct i (spectralProjector a j) (spectralProjector b l) ∈ F := by
@@ -159,7 +177,9 @@ theorem rawJoint_mem (F : Subfield K) (a b : JCoord K)
     ring
   rwa [heq] at hh
 
-/-- All 27 diagonal power-product values are in the literal ledger field.-/
+/-- All 27 diagonal power-product values are in the literal ledger field.
+@isnad1 id=mem.1h7v.s8.e324e93c9f61 from=translated src=- shape=b8fe01ca vocab=dbf56e71
+-/
 theorem power_diagonal_mem (F : Subfield K) (a b : JCoord K)
     (h : LedgerIn F (sourceLedger a b)) (i p q : Fin 3) :
     diagLinear i (sourceProduct (power a p) (power b q)) ∈ F :=

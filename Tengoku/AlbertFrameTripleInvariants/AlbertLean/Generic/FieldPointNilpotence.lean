@@ -22,7 +22,9 @@ namespace AlbertLean.Generic.FieldPointNilpotence
 universe u v
 
 /-- If every field-valued point kills an element, that element belongs to every
-prime ideal and is therefore nilpotent.-/
+prime ideal and is therefore nilpotent.
+@isnad1 id=isnilpot.1h2v.s6.4cc35bee83b5 from=translated src=- shape=c46eaa54 vocab=db32e066
+-/
 theorem isNilpotent_of_forall_field_maps_zero
     {R : Type u} [CommRing R] (r : R)
     (hfield : ∀ (L : Type u) (_ : Field L) (f : R →+* L), f r = 0) :
@@ -48,7 +50,9 @@ variable (H : Type u) (K : Type v) [Field H] [Field K] [Algebra H K]
 point of the tensor product, implies nilpotence of `a ⊗ 1 - 1 ⊗ a`.
 
 The hypothesis asks only that two ring maps agree on the displayed copy of
-`H`; it does not assume `K/H` algebraic.-/
+`H`; it does not assume `K/H` algebraic.
+@isnad1 id=isnilpot.1h3v.s10.41069143b431 from=translated src=- shape=c18ef8f5 vocab=6c505822
+-/
 theorem tensorDifference_isNilpotent_of_field_embedding_agreement
     (a : K)
     (hagree : ∀ (L : Type v) (_ : Field L)
@@ -73,7 +77,9 @@ theorem tensorDifference_isNilpotent_of_field_embedding_agreement
 end TensorAdapter
 
 /-- Field-valued comparisons detect precisely the base field in characteristic
-zero. The extension itself may have positive transcendence degree.-/
+zero. The extension itself may have positive transcendence degree.
+@isnad1 id=ex.1h3v.s8.a3e1991a3928 from=translated src=- shape=27d8e4e3 vocab=f5e020c8
+-/
 theorem exists_base_of_field_embedding_agreement
     (H : Type u) (K : Type v) [Field H] [CharZero H] [Field K] [Algebra H K]
     (a : K)

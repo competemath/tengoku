@@ -34,14 +34,18 @@ variable {K : Type u} [Field K]
 def sectionPolynomial (s : NormalizedResidualSection K) (z : K) : K :=
   z ^ 2 - Sb s * z + Matrix.det s.M
 
-/-- Exact factorization through the actual and derived determinant roots.-/
+/-- Exact factorization through the actual and derived determinant roots.
+@isnad1 id=eq.0h3v.s6.ddb7b1760924 from=translated src=- shape=3863980e vocab=54a45c4c
+-/
 theorem sectionPolynomial_factor (s : NormalizedResidualSection K) (z : K) :
     sectionPolynomial s z = (z - s.Delta) * (z - DeltaStar s) := by
   rw [sectionPolynomial, Sb, ← Delta_mul_DeltaStar s]
   ring
 
 /-- Every scalar root is one of the two displayed roots, with no distinctness
-claim at the repeated-root locus.-/
+claim at the repeated-root locus.
+@isnad1 id=iff.0h3v.s5.b323b75b3f7a from=translated src=- shape=d5036ee7 vocab=1b33bfa9
+-/
 theorem sectionPolynomial_eq_zero_iff
     (s : NormalizedResidualSection K) (z : K) :
     sectionPolynomial s z = 0 ↔ z = s.Delta ∨ z = DeltaStar s := by
@@ -59,7 +63,9 @@ def sectionFibre (s : NormalizedResidualSection K) :
   {t | SameBase s t}
 
 /-- A point in the same normalized base fibre is the original point or its
-section root swap.-/
+section root swap.
+@isnad1 id=iff.0h3v.s5.50c8da80d852 from=translated src=- shape=33629597 vocab=a62a0b44
+-/
 theorem sameBase_iff_eq_or_eq_rootSwap
     (s t : NormalizedResidualSection K) :
     SameBase s t ↔ t = s ∨ t = rootSwap s := by
@@ -84,7 +90,9 @@ theorem sameBase_iff_eq_or_eq_rootSwap
 
 /-- The complete normalized fibre is the unordered pair consisting of a
 point and its section root swap.  This set may be a singleton at a repeated
-root.-/
+root.
+@isnad1 id=eq.0h2v.s5.d33c5602f588 from=translated src=- shape=f66c60a1 vocab=3a1c4f0f
+-/
 theorem sectionFibre_eq_pair (s : NormalizedResidualSection K) :
     sectionFibre s = {s, rootSwap s} := by
   ext t
@@ -93,7 +101,9 @@ theorem sectionFibre_eq_pair (s : NormalizedResidualSection K) :
   exact sameBase_iff_eq_or_eq_rootSwap s t
 
 /-- The explicit branch hypothesis makes the two displayed section points
-distinct.-/
+distinct.
+@isnad1 id=ne.1h2v.s4.07f35e843f09 from=translated src=- shape=09206d4c vocab=3bed4afc
+-/
 theorem self_ne_rootSwap (s : NormalizedResidualSection K)
     (hbranch : s.Delta ≠ DeltaStar s) :
     s ≠ rootSwap s := by
@@ -103,7 +113,9 @@ theorem self_ne_rootSwap (s : NormalizedResidualSection K)
   simpa using hDelta
 
 /-- exact two-point classification of
-the normalized `(M,Sb)` fibre on the branch-free locus.-/
+the normalized `(M,Sb)` fibre on the branch-free locus.
+@isnad1 id=and.1h2v.s7.4c6e84a7c745 from=translated src=- shape=34497230 vocab=cece229c
+-/
 theorem ResidualSectionTwoPointFibreTheorem
     (s : NormalizedResidualSection K)
     (hbranch : s.Delta ≠ DeltaStar s) :

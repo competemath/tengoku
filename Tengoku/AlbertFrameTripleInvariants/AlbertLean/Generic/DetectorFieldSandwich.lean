@@ -17,7 +17,9 @@ open QuadraticCharacterDescent
 variable {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω] [CharZero Ω]
 
 /-- Any intermediate subfield containing a deck-separated detector is the
-whole tau-fixed field. No classification of all chart symmetries is needed.-/
+whole tau-fixed field. No classification of all chart symmetries is needed.
+@isnad1 id=eq.4h5v.s8.14335df32222 from=translated src=- shape=9f482220 vocab=5b9302a1
+-/
 theorem subfield_eq_of_deck_moved (D : Data (k := k) (Ω := Ω))
     (R : Subfield Ω) (hbase : ∀ a : k, algebraMap k Ω a ∈ R)
     (hfixed : R ≤ D.fixedField) (w : Ω) (hw : w ∈ R)
@@ -41,7 +43,9 @@ theorem subfield_eq_of_deck_moved (D : Data (k := k) (Ω := Ω))
   rw [hcd]
   exact R.add_mem (hbase c) (R.mul_mem (hbase d) huR)
 
-/-- The original scalar field and one separated detector generate the field.-/
+/-- The original scalar field and one separated detector generate the field.
+@isnad1 id=eq.2h4v.s8.f4cebdbb8c5f from=translated src=- shape=d3ab7217 vocab=623681e3
+-/
 theorem detector_generates (D : Data (k := k) (Ω := Ω))
     (w : Ω) (hw : D.tau w = w) (hsep : D.delta w ≠ w) :
     Subfield.closure (Set.range (algebraMap k Ω) ∪ {w}) = D.fixedField := by

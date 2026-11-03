@@ -14,7 +14,9 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 
 /-- A displayed nonzero two-column minor makes the two column coefficients
-unique.  This is the only rank-two input used below.-/
+unique.  This is the only rank-two input used below.
+@isnad1 id=and.3h7v.s8.75c1275de518 from=translated src=- shape=97ef822f vocab=b8e146e0
+-/
 theorem two_column_coefficients_zero
     (x y : Vec3 K) (p q : Fin 3) (α β : K)
     (hminor : x p * y q - x q * y p ≠ 0)
@@ -35,7 +37,9 @@ def ThreeScaledSumZero (t : Fin 3 → K) (u : Fin 3 → Vec3 K) : Prop :=
   ∀ j, t 0 * u 0 j + t 1 * u 1 j + t 2 * u 2 j = 0
 
 /-- If three columns sum to zero and have one displayed rank-two minor, a
-second relation with all three coefficients forces those coefficients equal.-/
+second relation with all three coefficients forces those coefficients equal.
+@isnad1 id=and.3h5v.s8.1eb4297219d5 from=translated src=- shape=5fb598f0 vocab=b8be4049
+-/
 theorem three_scalars_eq_of_minor
     (u : Fin 3 → Vec3 K) (t : Fin 3 → K) (p q : Fin 3)
     (hsum : ThreeSumZero u)
@@ -54,7 +58,9 @@ theorem three_scalars_eq_of_minor
   · exact sub_eq_zero.mp h1
 
 /-- Projector data for one labelled three-frame after its `a`-blocks have
-already been matched.-/
+already been matched.
+@isnad1 id=ex.9h6v.s10.bbfb4c251771 from=translated src=- shape=c4a1718c vocab=27ebdfee
+-/
 theorem common_frame_scalar_fibre
     (a : Fin 3 → Mat3 K)
     (u v u' v' : Fin 3 → Vec3 K)

@@ -35,6 +35,9 @@ open Generated
 set_option maxHeartbeats 50000000
 set_option maxRecDepth 100000
 
+/--
+@isnad1 id=characte.0h0v.s0.be7c7b236bb2 from=translated src=- shape=45709ebd vocab=be7c7b23
+-/
 theorem characteristicIdentity : CharacteristicIdentity := by
   intro x
   funext k

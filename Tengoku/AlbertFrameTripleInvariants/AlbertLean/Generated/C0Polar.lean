@@ -151,6 +151,9 @@ def productForm (x y : Coord) : Coord := fun k =>
 
 set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h3v.s4.0dbd3d1fbeb1 from=translated src=- shape=ea9ef4de vocab=5a2c6cec
+-/
 theorem cubicPolar_eq_polarForm (x y z : Coord) :
     cubicPolar x y z = polarForm x y z := by
   simp [cubicPolar, cubicNorm, polarForm, v, q]
@@ -158,168 +161,252 @@ theorem cubicPolar_eq_polarForm (x y z : Coord) :
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.2e3ac4fda591 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_0 (x : Coord) :
     sharp x (0 : Fin 27) = cubicPolar x x (basisVec (0 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.d851a3f84573 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_1 (x : Coord) :
     sharp x (1 : Fin 27) = cubicPolar x x (basisVec (1 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.e98ef359aed3 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_2 (x : Coord) :
     sharp x (2 : Fin 27) = cubicPolar x x (basisVec (2 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.4e279459df53 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_3 (x : Coord) :
     sharp x (3 : Fin 27) = cubicPolar x x (basisVec (4 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.33e7863a4178 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_4 (x : Coord) :
     sharp x (4 : Fin 27) = cubicPolar x x (basisVec (3 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.36f36634c5be from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_5 (x : Coord) :
     sharp x (5 : Fin 27) = cubicPolar x x (basisVec (10 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.b6626a00ec09 from=translated src=- shape=90045ff2 vocab=0ce8344b
+-/
 theorem sharp_coord_6 (x : Coord) :
     sharp x (6 : Fin 27) = -(cubicPolar x x (basisVec (9 : Fin 27)) / 2) := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.ab9e92225f17 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_7 (x : Coord) :
     sharp x (7 : Fin 27) = cubicPolar x x (basisVec (8 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.259a2ad0e52a from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_8 (x : Coord) :
     sharp x (8 : Fin 27) = cubicPolar x x (basisVec (7 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.412b80cc414c from=translated src=- shape=90045ff2 vocab=0ce8344b
+-/
 theorem sharp_coord_9 (x : Coord) :
     sharp x (9 : Fin 27) = -(cubicPolar x x (basisVec (6 : Fin 27)) / 2) := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.0905b0bea781 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_10 (x : Coord) :
     sharp x (10 : Fin 27) = cubicPolar x x (basisVec (5 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.ca4a3872e8ff from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_11 (x : Coord) :
     sharp x (11 : Fin 27) = cubicPolar x x (basisVec (15 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.b480358913b4 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_12 (x : Coord) :
     sharp x (12 : Fin 27) = cubicPolar x x (basisVec (16 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.9129af93ef13 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_13 (x : Coord) :
     sharp x (13 : Fin 27) = cubicPolar x x (basisVec (17 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.b53dac8bfe43 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_14 (x : Coord) :
     sharp x (14 : Fin 27) = cubicPolar x x (basisVec (18 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.cfd6824f4116 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_15 (x : Coord) :
     sharp x (15 : Fin 27) = cubicPolar x x (basisVec (11 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.26868eb165c0 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_16 (x : Coord) :
     sharp x (16 : Fin 27) = cubicPolar x x (basisVec (12 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.509f3003c10a from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_17 (x : Coord) :
     sharp x (17 : Fin 27) = cubicPolar x x (basisVec (13 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.7f7c9ef163fb from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_18 (x : Coord) :
     sharp x (18 : Fin 27) = cubicPolar x x (basisVec (14 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.6ea426640d78 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_19 (x : Coord) :
     sharp x (19 : Fin 27) = cubicPolar x x (basisVec (23 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.311808ab9c38 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_20 (x : Coord) :
     sharp x (20 : Fin 27) = cubicPolar x x (basisVec (24 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.b6d9feff619e from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_21 (x : Coord) :
     sharp x (21 : Fin 27) = cubicPolar x x (basisVec (25 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.0a9155b0f972 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_22 (x : Coord) :
     sharp x (22 : Fin 27) = cubicPolar x x (basisVec (26 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.e5a6a11e1c6e from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_23 (x : Coord) :
     sharp x (23 : Fin 27) = cubicPolar x x (basisVec (19 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.c75c7ffd6709 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_24 (x : Coord) :
     sharp x (24 : Fin 27) = cubicPolar x x (basisVec (20 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.57801a8ba3ed from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_25 (x : Coord) :
     sharp x (25 : Fin 27) = cubicPolar x x (basisVec (21 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s5.68f17fb5d988 from=translated src=- shape=70e2961f vocab=4645f71c
+-/
 theorem sharp_coord_26 (x : Coord) :
     sharp x (26 : Fin 27) = cubicPolar x x (basisVec (22 : Fin 27)) / 2 := by
   simp [sharp, traceDualCoeff, traceDualCoeffNat, Fin.sum_univ_succ, q] <;> ring
 
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h2v.s3.8deaffe2ba2c from=translated src=- shape=6c8684e5 vocab=f2dcc738
+-/
 theorem structuredProduct_eq_productForm (x y : Coord) :
     structuredProduct x y = productForm x y := by
   funext k

@@ -28,13 +28,18 @@ variable {K : Type*} [Field K]
 def diagonalUnit (i : Fin 3) : Mat3 K :=
   fun r c => if r = i ∧ c = i then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s6.1abf2dc619bd from=translated src=- shape=3ad5bdc6 vocab=b3535a81
+-/
 theorem trace_diagonalUnit (A : Mat3 K) (i : Fin 3) :
     Matrix.trace (diagonalUnit i * A) = A i i := by
   fin_cases i <;>
     simp [Matrix.trace_fin_three, Matrix.mul_apply, diagonalUnit, Fin.sum_univ_succ]
 
 /-- A symmetric-row measurement is exactly the trace of the division-free
-probe `(E_ii F + F E_ii) A`.-/
+probe `(E_ii F + F E_ii) A`.
+@isnad1 id=eq.0h4v.s7.2aec7090b4a6 from=translated src=- shape=fadadda8 vocab=6ae5e8e8
+-/
 theorem trace_symmetricProbe (F A : Mat3 K) (i : Fin 3) :
     Matrix.trace ((diagonalUnit i * F + F * diagonalUnit i) * A) =
       rowSymMeasurements F A i := by
@@ -46,7 +51,9 @@ theorem trace_symmetricProbe (F A : Mat3 K) (i : Fin 3) :
 def grading : Mat3 K := Matrix.diagonal ![-1, 0, 1]
 
 /-- The commutator determinant packages the same open condition as the three
-pairwise `2 x 2` systems.-/
+pairwise `2 x 2` systems.
+@isnad1 id=eq.0h2v.s7.f44e8fc2c17f from=translated src=- shape=3c52c675 vocab=5de97ca7
+-/
 theorem det_grading_commutator (F : Mat3 K) :
     Matrix.det (grading * F - F * grading) = 2 * cycleDifference F := by
   rw [Matrix.det_fin_three]

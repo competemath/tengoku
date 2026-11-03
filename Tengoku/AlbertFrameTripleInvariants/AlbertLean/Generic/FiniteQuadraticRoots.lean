@@ -25,6 +25,9 @@ structure OneRootField (K : Type u) [Field K] (c : K) where
 
 attribute [instance] OneRootField.instField
 
+/--
+@isnad1 id=nonempty.0h2v.s3.fccc1ccf8aba from=translated src=- shape=3883d05c vocab=eb04f339
+-/
 theorem oneRootField_nonempty (K : Type u) [Field K] (c : K) :
     Nonempty (OneRootField K c) := by
   classical
@@ -55,7 +58,9 @@ structure RootField (K : Type u) [Field K] {ι : Type v} (c : ι → K) where
 attribute [instance] RootField.instField
 
 /-- All requested roots lie in one common field, even when successive
-quadratics start splitting after earlier adjunctions.-/
+quadratics start splitting after earlier adjunctions.
+@isnad1 id=nonempty.0h3v.s4.826e9c13d308 from=translated src=- shape=85bb825c vocab=abdc7039
+-/
 theorem rootField_nonempty : ∀ n : ℕ, ∀ (K : Type u) [Field K]
     (c : Fin n → K), Nonempty (RootField K c) := by
   intro n
@@ -82,7 +87,9 @@ theorem rootField_nonempty : ∀ n : ℕ, ∀ (K : Type u) [Field K]
           congrArg F.embedding E.root_sq
       · simpa only [Fin.cases_succ, RingHom.comp_apply] using F.roots_sq j
 
-/-- The same common-extension result for any finite indexing type.-/
+/-- The same common-extension result for any finite indexing type.
+@isnad1 id=nonempty.0h3v.s4.0537bad6ee00 from=translated src=- shape=5ad5fac5 vocab=adfc2388
+-/
 theorem rootField_nonempty_of_fintype (K : Type u) [Field K]
     {ι : Type v} [Fintype ι] (c : ι → K) : Nonempty (RootField K c) := by
   classical
@@ -96,7 +103,9 @@ theorem rootField_nonempty_of_fintype (K : Type u) [Field K]
   intro i
   simpa only [Equiv.symm_apply_apply] using F.roots_sq (e i)
 
-/-- Characteristic zero survives the supplied field embedding.-/
+/-- Characteristic zero survives the supplied field embedding.
+@isnad1 id=charzero.0h3v.s5.7f1571d535de from=translated src=- shape=8157dbee vocab=2adec685
+-/
 theorem charZero_of_embedding {K L : Type u} [Field K] [Field L] [CharZero K]
     (f : K →+* L) : CharZero L where
   cast_injective m n h := Nat.cast_injective (R := K) (f.injective (by

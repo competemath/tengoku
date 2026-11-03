@@ -62,7 +62,9 @@ private theorem matrixM_eq_moment (x : ExplicitFrameChart K) :
     (momentMatrix_eq_AMatrix_mul_XMatrix x.s1 x.s2 x.c1 x.c2)
 
 /-- The existing rational proof is field-polymorphic: only the residual
-moment and the retained chart coefficients occur in the six equations.-/
+moment and the retained chart coefficients occur in the six equations.
+@isnad1 id=eq.1h3v.s5.5186a090d13e from=translated src=- shape=bd4c978b vocab=eddab8bb
+-/
 theorem equationValues_reinsert_of_moment_eq
     (x : ExplicitFrameChart K) (Q : ResidualPair K)
     (hQ : moment Q = moment (residualPairOfChart x)) :
@@ -88,7 +90,9 @@ theorem equationValues_reinsert_of_moment_eq
 
 /-- The fixed tensor change from projectors to powers is invertible.  Thus
 equality of the 27 diagonal power products gives literal equality of every
-one of the 54 labelled source-ledger cells.-/
+one of the 54 labelled source-ledger cells.
+@isnad1 id=eq.1h5v.s8.413e3f1a99b3 from=translated src=- shape=29cc20a5 vocab=4a7bd6ae
+-/
 theorem sourceLedger_eq_of_power_diagonal_eq (a b a' b' : JCoord K)
     (h : ∀ i p q, diagLinear i (sourceProduct (power a p) (power b q)) =
       diagLinear i (sourceProduct (power a' p) (power b' q))) :
@@ -458,7 +462,9 @@ private theorem power_diagonal_eq_of_chart_data
 /-- Finite chart identity: the 27 power-product diagonals depend only on the
 retained chart fields, the residual moment, and the symmetric determinant-root
 sum.  The proof deliberately splits the finite indices rather than inferring
-point equality from a generated-field equality.-/
+point equality from a generated-field equality.
+@isnad1 id=eq.1h6v.s8.fed28b7956f3 from=translated src=- shape=75877a05 vocab=5c30ed0b
+-/
 theorem power_diagonal_reinsert_of_sameResidualBase
     (x : ExplicitFrameChart K) (Q : ResidualPair K)
     (hQ : sameResidualBase (residualPairOfChart x) Q) (i p q : Fin 3) :
@@ -491,7 +497,9 @@ def companion (x : ExplicitFrameChart K)
     (rootSwappedRepresentative (residualPairOfChart x) hx)
 
 /-- The actual root-swapped chart preserves both the six raw frame equations
-and every literal cell of the source 54-ledger.-/
+and every literal cell of the source 54-ledger.
+@isnad1 id=and.1h2v.s6.21a832f45b48 from=translated src=- shape=582c4d21 vocab=18120e77
+-/
 theorem companion_equations_and_sourceLedger
     (x : ExplicitFrameChart K)
     (hx : ResidualOpen (residualPairOfChart x)) :

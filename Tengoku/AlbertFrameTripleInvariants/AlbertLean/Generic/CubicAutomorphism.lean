@@ -31,7 +31,9 @@ def polar (N : V → K) (x y z : V) : K :=
     N x + N y + N z - N 0
 
 /-- A linear equivalence preserving a literal cubic preserves its full
-finite-difference polarization.-/
+finite-difference polarization.
+@isnad1 id=eq.1h7v.s9.3f5f75553157 from=translated src=- shape=283fa356 vocab=72364d30
+-/
 theorem polar_map (N : V → K) (g : V ≃ₗ[K] V)
     (hCubic : ∀ x, N (g x) = N x) (x y z : V) :
     polar N (g x) (g y) (g z) = polar N x y z := by
@@ -84,13 +86,17 @@ def product (x y : V) : V :=
       D.spurBilinear x y • D.one)
 
 /-- A linear equivalence preserving a literal cubic preserves its full
-finite-difference polarization.-/
+finite-difference polarization.
+@isnad1 id=eq.1h7v.s9.8d784ab4c785 from=translated src=- shape=18e85a32 vocab=ea0982e5
+-/
 theorem map_polar (g : V ≃ₗ[K] V)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x y z : V) :
     polar D.cubic (g x) (g y) (g z) = polar D.cubic x y z := by
   exact polar_map D.cubic g hCubic x y z
 
-/-- Cubic and unit preservation imply trace preservation.-/
+/-- Cubic and unit preservation imply trace preservation.
+@isnad1 id=eq.2h5v.s9.b1e2bb6b61bc from=translated src=- shape=e603e460 vocab=ab5ce910
+-/
 theorem map_trace (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x : V) :
     D.trace (g x) = D.trace x := by
@@ -99,7 +105,9 @@ theorem map_trace (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
   exact congrArg (fun a => a / 2) hp
 
 /-- Cubic and unit preservation imply preservation of the spur
-polarization.-/
+polarization.
+@isnad1 id=eq.2h6v.s9.48df75c58b0b from=translated src=- shape=cbf05286 vocab=15b7c44c
+-/
 theorem map_spurBilinear (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x y : V) :
     D.spurBilinear (g x) (g y) = D.spurBilinear x y := by
@@ -107,7 +115,9 @@ theorem map_spurBilinear (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
   rw [hOne] at hp
   exact hp
 
-/-- Cubic and unit preservation imply trace-pairing preservation.-/
+/-- Cubic and unit preservation imply trace-pairing preservation.
+@isnad1 id=eq.2h6v.s10.1f007f0d6e62 from=translated src=- shape=20d1539b vocab=f846be0f
+-/
 theorem map_traceForm (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x y : V) :
     D.traceForm (g x) (g y) = D.traceForm x y := by
@@ -118,7 +128,9 @@ theorem map_traceForm (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     D.map_spurBilinear g hOne hCubic]
 
 /-- Adjoint recovery commutes with a cubic-and-unit preserving linear
-equivalence.  Nondegeneracy is used here, rather than product preservation.-/
+equivalence.  Nondegeneracy is used here, rather than product preservation.
+@isnad1 id=eq.2h5v.s9.c4c884cbc066 from=translated src=- shape=792269ca vocab=6766cfc2
+-/
 theorem map_adjoint (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x : V) :
     g (D.adjoint x) = D.adjoint (g x) := by
@@ -131,14 +143,18 @@ theorem map_adjoint (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     D.adjoint_characterization, D.map_polar g hCubic]
   ring
 
-/-- Cross-product preservation derived from adjoint recovery.-/
+/-- Cross-product preservation derived from adjoint recovery.
+@isnad1 id=eq.2h6v.s9.d2a757adc901 from=translated src=- shape=94495b1f vocab=8f10e2c1
+-/
 theorem map_cross (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x y : V) :
     g (D.cross x y) = D.cross (g x) (g y) := by
   simp [cross, D.map_adjoint g hOne hCubic]
 
 /-- The compression theorem: cubic and unit preservation force preservation
-of the Springer product.-/
+of the Springer product.
+@isnad1 id=eq.2h6v.s9.0eb155dbbd07 from=translated src=- shape=94495b1f vocab=53e28f69
+-/
 theorem map_product (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, D.cubic (g x) = D.cubic x) (x y : V) :
     g (D.product x y) = D.product (g x) (g y) := by
@@ -185,14 +201,18 @@ namespace RecoveryPresentation
 variable {D : RecoveryData K V} (P : RecoveryPresentation D)
 
 /-- Cubic preservation alone gives preservation of the recovery
-polarization.-/
+polarization.
+@isnad1 id=eq.1h8v.s12.9671c0795973 from=translated src=- shape=7ea01828 vocab=e28f6387
+-/
 theorem map_polar (g : V ≃ₗ[K] V)
     (hCubic : ∀ x, P.cubic (g x) = P.cubic x) (x y z : V) :
     D.polar (g x) (g y) (g z) = D.polar x y z := by
   rw [P.polar_formula, P.polar_formula]
   exact polar_map P.cubic g hCubic x y z
 
-/-- Cubic and unit preservation give preservation of the recovery trace.-/
+/-- Cubic and unit preservation give preservation of the recovery trace.
+@isnad1 id=eq.2h6v.s9.0bfaba23e793 from=translated src=- shape=8b73834c vocab=d82ee0f0
+-/
 theorem map_trace (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, P.cubic (g x) = P.cubic x) (x : V) :
     D.trace (g x) = D.trace x := by
@@ -202,7 +222,9 @@ theorem map_trace (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
   exact congrArg (fun a => a / 2) hp
 
 /-- Cubic and unit preservation give preservation of the recovery trace
-pairing.-/
+pairing.
+@isnad1 id=eq.2h7v.s10.b9f52545a89b from=translated src=- shape=e44fdd82 vocab=aba4dfcd
+-/
 theorem map_traceForm (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, P.cubic (g x) = P.cubic x) (x y : V) :
     D.traceForm (g x) (g y) = D.traceForm x y := by
@@ -213,7 +235,9 @@ theorem map_traceForm (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
   rw [hp]
 
 /-- Adjoint preservation derived through the established nondegenerate
-trace-dual recovery theorem.-/
+trace-dual recovery theorem.
+@isnad1 id=eq.2h6v.s9.00dbb0f3185d from=translated src=- shape=73fcbf68 vocab=7ac16f6c
+-/
 theorem map_adjoint [FiniteDimensional K V]
     (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, P.cubic (g x) = P.cubic x) (x : V) :
@@ -222,7 +246,9 @@ theorem map_adjoint [FiniteDimensional K V]
   · exact P.map_traceForm g hOne hCubic
   · exact P.map_polar g hCubic
 
-/-- Cross preservation derived from recovered-adjoint preservation.-/
+/-- Cross preservation derived from recovered-adjoint preservation.
+@isnad1 id=eq.2h7v.s9.348c55214ad5 from=translated src=- shape=3ec6bad7 vocab=1fbd568f
+-/
 theorem map_cross [FiniteDimensional K V]
     (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, P.cubic (g x) = P.cubic x) (x y : V) :
@@ -232,7 +258,9 @@ theorem map_cross [FiniteDimensional K V]
   · exact P.map_polar g hCubic
 
 /-- Compression over `RecoveryData`: preserving only the displayed cubic and
-unit forces preservation of its canonical Springer product.-/
+unit forces preservation of its canonical Springer product.
+@isnad1 id=eq.2h7v.s9.d62d22331f05 from=translated src=- shape=3ec6bad7 vocab=98f0380a
+-/
 theorem map_product [FiniteDimensional K V]
     (g : V ≃ₗ[K] V) (hOne : g D.one = D.one)
     (hCubic : ∀ x, P.cubic (g x) = P.cubic x) (x y : V) :

@@ -29,6 +29,9 @@ def traceToDual (B : V →ₗ[K] V →ₗ[K] K) : V →ₗ[K] Module.Dual K V :=
 def LeftNondegenerate (B : V →ₗ[K] V →ₗ[K] K) : Prop :=
   ∀ x : V, (∀ y : V, B x y = 0) → x = 0
 
+/--
+@isnad1 id=injectiv.1h3v.s9.f00dc3de2919 from=translated src=- shape=bd13e0cd vocab=b5c44453
+-/
 theorem traceToDual_injective {B : V →ₗ[K] V →ₗ[K] K}
     (hB : LeftNondegenerate B) : Function.Injective (traceToDual B) := by
   intro x y hxy
@@ -38,7 +41,9 @@ theorem traceToDual_injective {B : V →ₗ[K] V →ₗ[K] K}
   have hz := DFunLike.congr_fun hxy z
   simpa [traceToDual] using sub_eq_zero.mpr hz
 
-/-- In finite dimension a nondegenerate trace pairing identifies `V` with `V⁺`.-/
+/-- In finite dimension a nondegenerate trace pairing identifies `V` with `V⁺`.
+@isnad1 id=bijectiv.1h3v.s9.b6dfd4abfe11 from=translated src=- shape=4bb4e447 vocab=f6fd1c98
+-/
 theorem traceToDual_bijective_of_nondegenerate [FiniteDimensional K V]
     {B : V →ₗ[K] V →ₗ[K] K} (hB : LeftNondegenerate B) :
     Function.Bijective (traceToDual B) := by
@@ -54,10 +59,16 @@ noncomputable def traceDualEquiv [FiniteDimensional K V]
   LinearEquiv.ofBijective (traceToDual B)
     (traceToDual_bijective_of_nondegenerate hB)
 
+/--
+@isnad1 id=eq.1h5v.s10.8ebd796a2500 from=translated src=- shape=317130ca vocab=edf1698c
+-/
 @[simp] theorem traceDualEquiv_apply [FiniteDimensional K V]
     (B : V →ₗ[K] V →ₗ[K] K) (hB : LeftNondegenerate B) (x y : V) :
     traceDualEquiv B hB x y = B x y := rfl
 
+/--
+@isnad1 id=eq.1h5v.s10.cb05a7835301 from=translated src=- shape=e3aefedd vocab=ada40b8c
+-/
 @[simp] theorem traceDualEquiv_symm_apply_apply [FiniteDimensional K V]
     (B : V →ₗ[K] V →ₗ[K] K) (hB : LeftNondegenerate B)
     (f : Module.Dual K V) (y : V) :

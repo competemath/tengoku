@@ -14,7 +14,9 @@ open C1Coordinates ComplexMatrixDephasing
 universe u
 variable {K : Type u} [Field K]
 
-/-- Dephasing forgets arbitrary invertible diagonal row and column scalings.-/
+/-- Dephasing forgets arbitrary invertible diagonal row and column scalings.
+@isnad1 id=eq.2h4v.s8.c046f416434d from=translated src=- shape=b14ffd86 vocab=13c38129
+-/
 theorem dephase_diagonal_scale (X : Mat3 K) (l r : Fin 3 → K)
     (hl : ∀ i, l i ≠ 0) (hr : ∀ j, r j ≠ 0) :
     dephase (Matrix.diagonal l * X * Matrix.diagonal r) = dephase X := by
@@ -31,7 +33,9 @@ private theorem transpose_diagonal (d : Fin 3 → K) :
   · simp [Matrix.transpose_apply, Matrix.diagonal_apply, h, Ne.symm h]
 
 /-- The inverse transpose of the normalized matrix differs from the inverse
-transpose of the original matrix only by invertible diagonal factors.-/
+transpose of the original matrix only by invertible diagonal factors.
+@isnad1 id=eq.2h2v.s8.5a6274fdc635 from=translated src=- shape=d653da8d vocab=4ffc42b1
+-/
 theorem inverseTranspose_dephase_eq_diagonal_scale (X : Mat3 K)
     (hentries : ∀ i j, X i j ≠ 0) (hdet : Matrix.det X ≠ 0) :
     Matrix.transpose (dephase X)⁻¹ =
@@ -51,7 +55,9 @@ theorem inverseTranspose_dephase_eq_diagonal_scale (X : Mat3 K)
   simp only [Matrix.mul_assoc]
 
 /-- Dephasing is compatible with the inverse-transpose branch of the
-normalized-pair classification.-/
+normalized-pair classification.
+@isnad1 id=eq.2h2v.s7.11c882da7f07 from=translated src=- shape=253f8871 vocab=4d09dedd
+-/
 theorem dephase_inverseTranspose_dephase (X : Mat3 K)
     (hentries : ∀ i j, X i j ≠ 0) (hdet : Matrix.det X ≠ 0) :
     dephase (Matrix.transpose (dephase X)⁻¹) =

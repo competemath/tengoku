@@ -44,14 +44,18 @@ variable {K : Type*} [Field K] [CharZero K]
 noncomputable def sourceSquare (x : JCoord K) : JCoord K :=
   sourceProduct x x
 
-/-- Solving the accepted adjoint identity for the source-product square.-/
+/-- Solving the accepted adjoint identity for the source-product square.
+@isnad1 id=eq.0h2v.s8.9e1d24dd5c4d from=translated src=- shape=8c1b8332 vocab=e8d90650
+-/
 theorem sourceSquare_eq_adjoint_trace_spur (x : JCoord K) :
     sourceSquare x =
       sourceAdjoint x + sourceTrace x • x - sourceSpur x • sourceOne := by
   rw [sourceSquare, sourceAdjoint_eq_product_square]
   module
 
-/-- The complete explicit block formula for a square in source coordinates.-/
+/-- The complete explicit block formula for a square in source coordinates.
+@isnad1 id=eq.0h2v.s9.b735405bffac from=translated src=- shape=7cb7940d vocab=ffba2c13
+-/
 theorem sourceSquare_formula (x : JCoord K) :
     sourceSquare x =
       { d1 := x.d1 ^ 2 + nS x.s + nC x.c
@@ -96,28 +100,46 @@ theorem sourceSquare_formula (x : JCoord K) :
     simp [sourceTrace]
     module
 
+/--
+@isnad1 id=eq.0h2v.s6.5acef4559a80 from=translated src=- shape=64c0da9d vocab=8e330ef5
+-/
 @[simp] theorem sourceSquare_d1 (x : JCoord K) :
     (sourceSquare x).d1 = x.d1 ^ 2 + nS x.s + nC x.c := by
   rw [sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h2v.s6.52a41199ce7e from=translated src=- shape=64c0da9d vocab=6dfa3485
+-/
 @[simp] theorem sourceSquare_d2 (x : JCoord K) :
     (sourceSquare x).d2 = x.d2 ^ 2 + nC x.c + nV x.v := by
   rw [sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h2v.s6.db6b4552bb57 from=translated src=- shape=64c0da9d vocab=389bb72a
+-/
 @[simp] theorem sourceSquare_d3 (x : JCoord K) :
     (sourceSquare x).d3 = x.d3 ^ 2 + nV x.v + nS x.s := by
   rw [sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h2v.s7.a76eccc11096 from=translated src=- shape=d2cf6d14 vocab=01954e5a
+-/
 @[simp] theorem sourceSquare_v (x : JCoord K) :
     (sourceSquare x).v =
       (x.d2 + x.d3) • x.v + normalizedMuV x.s x.c := by
   rw [sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h2v.s7.1388aa5ee325 from=translated src=- shape=d2cf6d14 vocab=0ac210fb
+-/
 @[simp] theorem sourceSquare_s (x : JCoord K) :
     (sourceSquare x).s =
       (x.d1 + x.d3) • x.s + sourceMuS x.c x.v := by
   rw [sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h2v.s7.bf9c42ea6b56 from=translated src=- shape=d2cf6d14 vocab=b3664f2f
+-/
 @[simp] theorem sourceSquare_c (x : JCoord K) :
     (sourceSquare x).c =
       (x.d1 + x.d2) • x.c + sourceMuC x.v x.s := by
@@ -144,7 +166,9 @@ def exteriorQ (M : Matrix (Fin 4) (Fin 4) K) : K :=
     + M 1 0 * M 3 2 - M 1 2 * M 3 0
     + M 0 1 * M 2 3 - M 0 3 * M 2 1
 
-/-- Transposition permutes the six monomials of `Q` in pairs.-/
+/-- Transposition permutes the six monomials of `Q` in pairs.
+@isnad1 id=eq.0h2v.s5.560f38b36b4b from=translated src=- shape=54edfd4f vocab=b49b5c48
+-/
 theorem exteriorQ_transpose (M : Matrix (Fin 4) (Fin 4) K) :
     exteriorQ Mᵀ = exteriorQ M := by
   simp [exteriorQ, Matrix.transpose_apply]
@@ -165,7 +189,9 @@ def deltaStarA (s1 s2 : SCoord K) (c1 c2 : CCoord K) : K :=
 def uV (alpha beta : K) (s1 s2 : SCoord K) (c1 c2 : CCoord K) : K :=
   BV (muV alpha beta s1 c1) (muV alpha beta s2 c2)
 
-/-- Direct expansion with both exterior coefficients still visible.-/
+/-- Direct expansion with both exterior coefficients still visible.
+@isnad1 id=eq.0h7v.s9.3e166033b014 from=translated src=- shape=d6382112 vocab=9ce237bd
+-/
 theorem uV_parameterized_expansion (alpha beta : K)
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     uV alpha beta s1 s2 c1 c2 =
@@ -191,7 +217,9 @@ theorem uV_parameterized_expansion (alpha beta : K)
   ring
 
 /-- Under the composition condition `alpha * beta = 1`, only the two pure
-four-bracket coefficients retain the separate normalization parameters.-/
+four-bracket coefficients retain the separate normalization parameters.
+@isnad1 id=eq.1h7v.s7.9ac3ac881c98 from=translated src=- shape=3c5bf22d vocab=4514740f
+-/
 theorem uV_of_mul_eq_one {alpha beta : K} (h : alpha * beta = 1)
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     uV alpha beta s1 s2 c1 c2 =
@@ -207,7 +235,9 @@ def normalizedUV (s1 s2 : SCoord K) (c1 c2 : CCoord K) : K :=
   BV (normalizedMuV s1 c1) (normalizedMuV s2 c2)
 
 /-- The normalized six-term exterior identity
-`U_V = Q(M) - Delta - DeltaStar`.-/
+`U_V = Q(M) - Delta - DeltaStar`.
+@isnad1 id=eq.0h5v.s6.90e008033427 from=translated src=- shape=c724b6ae vocab=30503b10
+-/
 theorem normalizedUV_exterior_identity
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     normalizedUV s1 s2 c1 c2 =
@@ -218,7 +248,9 @@ theorem normalizedUV_exterior_identity
       s1 s2 c1 c2)
 
 /-- Chart-level comparison: the source-product square blocks, transpose
-symmetry of `Q`, the parameterized identity, and its declared normalized row.-/
+symmetry of `Q`, the parameterized identity, and its declared normalized row.
+@isnad1 id=and.0h1v.s10.e0db98022ac8 from=translated src=- shape=19142bd3 vocab=68ffd779
+-/
 theorem TrialitySquaresAndExteriorTheorem :
     (∀ x : JCoord K,
       sourceSquare x =

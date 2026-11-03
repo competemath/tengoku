@@ -21,7 +21,9 @@ def pairQuadratic (p q r s z : K) : K :=
 
 /-- If n=nu(d), A=s*d, B=d*n+q*d*(d-1), C=d*n+r*d*(d-1),
 then the left side is n² times det(X_reconstructed)-d*(d-1)/n
-whenever division by n is legal. This theorem itself uses no division.-/
+whenever division by n is legal. This theorem itself uses no division.
+@isnad1 id=eq.0h6v.s9.44d2c0c480ae from=translated src=- shape=deb8c4ec vocab=18a60626
+-/
 theorem reconstructed_determinant_numerator (p q r s d : K) :
     (s * d - nu p q r s d) * (d - 1) * nu p q r s d -
       (d * nu p q r s d + q * d * (d - 1) - nu p q r s d) *

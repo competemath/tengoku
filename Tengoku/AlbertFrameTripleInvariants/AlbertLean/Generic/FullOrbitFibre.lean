@@ -37,7 +37,9 @@ def fibreTriple (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ) : WitnessTri
 def InFibre (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ) : Prop :=
   ResidualOpen Q ∧ sameResidualBase (residualPairOfChart x) Q
 
-/-- Residual transport gives a full unital product automorphism of public triples.-/
+/-- Residual transport gives a full unital product automorphism of public triples.
+@isnad1 id=fullrela.1h2v.s4.94445fc63470 from=translated src=- shape=f7269989 vocab=37180288
+-/
 theorem fullRelated_of_related (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
     (h : Related (residualPairOfChart x) Q) :
     FullRelated (chartWitnessTriple x) (fibreTriple x Q) := by
@@ -52,7 +54,9 @@ theorem fullRelated_of_related (x : ExplicitFrameChart ℚ) (Q : ResidualPair �
   rw [heq]
   exact jordanAut_chartWitnessTriple_actChart G x
 
-/-- Every point of the fixed open fibre belongs to one of two full classes.-/
+/-- Every point of the fixed open fibre belongs to one of two full classes.
+@isnad1 id=or.2h2v.s5.9d5354ac63bc from=translated src=- shape=e8041bf6 vocab=6bcfbe80
+-/
 theorem fullRelated_cover (x : ExplicitFrameChart ℚ)
     (hx : ResidualOpen (residualPairOfChart x)) (Q : ResidualPair ℚ)
     (hQ : InFibre x Q) :
@@ -67,12 +71,16 @@ theorem fullRelated_cover (x : ExplicitFrameChart ℚ)
     simpa [fibreTriple, rootSwappedChart] using
       fullRelated_of_related (rootSwappedChart x hx) Q hs
 
-/-- The original residual point is in its own open fibre.-/
+/-- The original residual point is in its own open fibre.
+@isnad1 id=infibre.1h1v.s4.2fb5ac2e52e4 from=translated src=- shape=b0dd4521 vocab=94b09051
+-/
 theorem original_inFibre (x : ExplicitFrameChart ℚ)
     (hx : ResidualOpen (residualPairOfChart x)) :
     InFibre x (residualPairOfChart x) := ⟨hx, rfl, rfl⟩
 
-/-- The genuine root-swapped representative belongs to the same open fibre.-/
+/-- The genuine root-swapped representative belongs to the same open fibre.
+@isnad1 id=infibre.1h1v.s4.0d76a42e205c from=translated src=- shape=b5862bdb vocab=8afe42f0
+-/
 theorem swapped_inFibre (x : ExplicitFrameChart ℚ)
     (hx : ResidualOpen (residualPairOfChart x)) :
     InFibre x (rootSwappedRepresentative (residualPairOfChart x) hx) :=
@@ -80,13 +88,17 @@ theorem swapped_inFibre (x : ExplicitFrameChart ℚ)
     rootSwappedRepresentative_baseMoment _ hx,
     rootSwappedRepresentative_baseRootSum _ hx⟩
 
-/-- Frame lawfulness propagates across the entire fixed fibre.-/
+/-- Frame lawfulness propagates across the entire fixed fibre.
+@isnad1 id=lawfulfr.2h2v.s4.c41bcb95e27e from=translated src=- shape=0f339aef vocab=3a3005e2
+-/
 theorem lawful_of_inFibre (x : ExplicitFrameChart ℚ)
     (hx : LawfulFrameTriple (chartWitnessTriple x)) (Q : ResidualPair ℚ)
     (hQ : InFibre x Q) : LawfulFrameTriple (fibreTriple x Q) :=
   (lawfulFrameTriple_chartWithResidualPair_iff_of_sameResidualBase x Q hQ.2).mpr hx
 
-/-- A two-class cover separated by an invariant makes that invariant complete.-/
+/-- A two-class cover separated by an invariant makes that invariant complete.
+@isnad1 id=iff.3h4v.s5.209e78bd2d83 from=translated src=- shape=b51ce0dd vocab=504c94e9
+-/
 theorem fullRelated_iff_detector_of_cover {X₀ X₁ Y Z : WitnessTriple}
     (hsep : traceCubeDetector X₀ ≠ traceCubeDetector X₁)
     (hY : FullRelated X₀ Y ∨ FullRelated X₁ Y)
@@ -104,7 +116,9 @@ theorem fullRelated_iff_detector_of_cover {X₀ X₁ Y Z : WitnessTriple}
     · exact hY.symm.trans hZ
 
 /-- On a detector-separated fixed fibre, detector equality is equivalent to
-transport by a full Albert automorphism, even one outside the residual subgroup.-/
+transport by a full Albert automorphism, even one outside the residual subgroup.
+@isnad1 id=iff.4h3v.s5.386dfa38e983 from=translated src=- shape=8b4e0cf5 vocab=8479b542
+-/
 theorem fullRelated_iff_detector (x : ExplicitFrameChart ℚ)
     (hx : ResidualOpen (residualPairOfChart x))
     (hsep : traceCubeDetector (chartWitnessTriple x) ≠
@@ -116,7 +130,9 @@ theorem fullRelated_iff_detector (x : ExplicitFrameChart ℚ)
     (fullRelated_cover x hx Q hQ) (fullRelated_cover x hx R hR)
 
 /-- Separation anywhere in a fixed fibre proves separation of its canonical
-representatives. This permits reuse of an exact witness without computing an inverse.-/
+representatives. This permits reuse of an exact witness without computing an inverse.
+@isnad1 id=ne.3h2v.s5.a065d9cc26ab from=translated src=- shape=ad7b11b7 vocab=6e12f46a
+-/
 theorem representative_separation_of_witness (x : ExplicitFrameChart ℚ)
     (hx : ResidualOpen (residualPairOfChart x)) (Q : ResidualPair ℚ)
     (hQ : InFibre x Q)
@@ -134,6 +150,9 @@ def detectorBit (X₀ X₁ Y : WitnessTriple) : ℚ :=
   (traceCubeDetector Y - traceCubeDetector X₀) /
     (traceCubeDetector X₁ - traceCubeDetector X₀)
 
+/--
+@isnad1 id=or.2h3v.s5.0d6ccf653dd6 from=translated src=- shape=8b4c68c7 vocab=8177f56d
+-/
 theorem detectorBit_zero_or_one {X₀ X₁ Y : WitnessTriple}
     (hsep : traceCubeDetector X₀ ≠ traceCubeDetector X₁)
     (hY : FullRelated X₀ Y ∨ FullRelated X₁ Y) :
@@ -147,7 +166,9 @@ theorem detectorBit_zero_or_one {X₀ X₁ Y : WitnessTriple}
     simp [detectorBit, ← h.traceCubeDetector_eq, hd]
 
 /-- Any rational-valued function constant on full automorphism classes is
-two-point interpolation in the detector on the supplied two-class cover.-/
+two-point interpolation in the detector on the supplied two-class cover.
+@isnad1 id=eq.3h4v.s6.bff63d7f9f70 from=translated src=- shape=ef3d53ba vocab=21d81427
+-/
 theorem invariant_affine_in_detector {X₀ X₁ Y : WitnessTriple}
     (hsep : traceCubeDetector X₀ ≠ traceCubeDetector X₁)
     (hY : FullRelated X₀ Y ∨ FullRelated X₁ Y)
@@ -162,7 +183,9 @@ theorem invariant_affine_in_detector {X₀ X₁ Y : WitnessTriple}
 
 /-- Exactly two induced full-automorphism classes in this lawful fixed fibre:
 both representatives occur, every point is lawful and covered, the classes
-are disjoint, and detector equality decides equivalence of any two points.-/
+are disjoint, and detector equality decides equivalence of any two points.
+@isnad1 id=and.3h1v.s6.251a090a07db from=translated src=- shape=777088a4 vocab=4c64b1cd
+-/
 theorem lawfulFibre_two_full_classes (x : ExplicitFrameChart ℚ)
     (hx : ResidualOpen (residualPairOfChart x))
     (hlaw : LawfulFrameTriple (chartWitnessTriple x))

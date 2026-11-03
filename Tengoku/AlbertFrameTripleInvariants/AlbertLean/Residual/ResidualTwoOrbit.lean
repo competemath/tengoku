@@ -73,14 +73,23 @@ def rootSwappedRepresentative (P : ResidualPair K) (hP : ResidualOpen P) :
     (AlbertLean.Residual.NormalizedRootSwap.rootSwap
       (sectionOfResidualPair P hP))
 
+/--
+@isnad1 id=eq.1h2v.s5.f2c6a254e5fd from=translated src=- shape=8537ebe7 vocab=c3b9199f
+-/
 @[simp] theorem sectionOfResidualPair_M (P : ResidualPair K)
     (hP : ResidualOpen P) :
     (sectionOfResidualPair P hP).M = moment P := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.c4d058381c5c from=translated src=- shape=133ac158 vocab=8190c1f1
+-/
 @[simp] theorem sectionOfResidualPair_Delta (P : ResidualPair K)
     (hP : ResidualOpen P) :
     (sectionOfResidualPair P hP).Delta = delta P := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.ef30f9a1648c from=translated src=- shape=133ac158 vocab=bee9b567
+-/
 @[simp] theorem sectionOfResidualPair_DeltaStar (P : ResidualPair K)
     (hP : ResidualOpen P) :
     AlbertLean.Residual.NormalizedRootSwap.DeltaStar
@@ -88,28 +97,43 @@ def rootSwappedRepresentative (P : ResidualPair K) (hP : ResidualOpen P) :
   apply (div_eq_iff hP.1).2
   simp [sectionOfResidualPair, moment, delta, deltaStar, Matrix.det_mul]
 
+/--
+@isnad1 id=eq.1h2v.s4.a3bcc0e3d654 from=translated src=- shape=133ac158 vocab=4740271a
+-/
 @[simp] theorem sectionOfResidualPair_Sb (P : ResidualPair K)
     (hP : ResidualOpen P) :
     AlbertLean.Residual.NormalizedRootSwap.Sb
       (sectionOfResidualPair P hP) = baseRootSum P := by
   simp [AlbertLean.Residual.NormalizedRootSwap.Sb, baseRootSum]
 
+/--
+@isnad1 id=eq.0h2v.s4.7157d5b51a98 from=translated src=- shape=7c2a7128 vocab=0d9f89d3
+-/
 @[simp] theorem residualPairOfSection_moment
     (s : AlbertLean.Residual.NormalizedRootSwap.NormalizedResidualSection K) :
     moment (residualPairOfSection s) = s.M := by
   exact AlbertLean.Residual.NormalizedRootSwap.A0_mul_X0 s
 
+/--
+@isnad1 id=eq.0h2v.s4.d1cf29e5badf from=translated src=- shape=0800dc30 vocab=0b86f4a4
+-/
 @[simp] theorem residualPairOfSection_delta
     (s : AlbertLean.Residual.NormalizedRootSwap.NormalizedResidualSection K) :
     delta (residualPairOfSection s) = s.Delta := by
   exact AlbertLean.Residual.NormalizedRootSwap.det_X0 s
 
+/--
+@isnad1 id=eq.0h2v.s4.f036ef7cefdd from=translated src=- shape=0800dc30 vocab=1872c542
+-/
 @[simp] theorem residualPairOfSection_deltaStar
     (s : AlbertLean.Residual.NormalizedRootSwap.NormalizedResidualSection K) :
     deltaStar (residualPairOfSection s) =
       AlbertLean.Residual.NormalizedRootSwap.DeltaStar s := by
   exact AlbertLean.Residual.NormalizedRootSwap.det_A0 s
 
+/--
+@isnad1 id=residual.0h2v.s4.48bae958f441 from=translated src=- shape=ed10201d vocab=9ae82e14
+-/
 theorem residualPairOfSection_open
     (s : AlbertLean.Residual.NormalizedRootSwap.NormalizedResidualSection K) :
     ResidualOpen (residualPairOfSection s) := by
@@ -118,6 +142,9 @@ theorem residualPairOfSection_open
   · rw [residualPairOfSection_deltaStar]
     exact div_ne_zero s.detM_ne_zero s.Delta_ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s4.8408187be95f from=translated src=- shape=7f9e5def vocab=af87844f
+-/
 @[simp] theorem section_residual_roundtrip
     (s : AlbertLean.Residual.NormalizedRootSwap.NormalizedResidualSection K) :
     sectionOfResidualPair (residualPairOfSection s)
@@ -126,6 +153,9 @@ theorem residualPairOfSection_open
   · exact residualPairOfSection_moment s
   · exact residualPairOfSection_delta s
 
+/--
+@isnad1 id=samebase.3h3v.s5.130c9ec67915 from=translated src=- shape=5b66ad40 vocab=519a198b
+-/
 theorem sameResidualBase_to_sectionSameBase
     (P Q : ResidualPair K) (hP : ResidualOpen P) (hQ : ResidualOpen Q)
     (hbase : sameResidualBase P Q) :
@@ -133,31 +163,49 @@ theorem sameResidualBase_to_sectionSameBase
       (sectionOfResidualPair Q hQ) := by
   exact ⟨hbase.1, by simpa using hbase.2⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.1d5d727eb24e from=translated src=- shape=133ac158 vocab=aa970bf7
+-/
 @[simp] theorem rootSwappedRepresentative_delta
     (P : ResidualPair K) (hP : ResidualOpen P) :
     delta (rootSwappedRepresentative P hP) = deltaStar P := by
   simp [rootSwappedRepresentative]
 
+/--
+@isnad1 id=eq.1h2v.s4.206ce5fc2d2b from=translated src=- shape=133ac158 vocab=aa970bf7
+-/
 @[simp] theorem rootSwappedRepresentative_deltaStar
     (P : ResidualPair K) (hP : ResidualOpen P) :
     deltaStar (rootSwappedRepresentative P hP) = delta P := by
   simp [rootSwappedRepresentative]
 
+/--
+@isnad1 id=eq.1h2v.s4.eeadf30a7b5d from=translated src=- shape=50e28df3 vocab=e38d766a
+-/
 @[simp] theorem rootSwappedRepresentative_baseMoment
     (P : ResidualPair K) (hP : ResidualOpen P) :
     baseMoment (rootSwappedRepresentative P hP) = baseMoment P := by
   simp [rootSwappedRepresentative, baseMoment]
 
+/--
+@isnad1 id=eq.1h2v.s4.57adff3b7259 from=translated src=- shape=5055755c vocab=4bf49ff1
+-/
 @[simp] theorem rootSwappedRepresentative_baseRootSum
     (P : ResidualPair K) (hP : ResidualOpen P) :
     baseRootSum (rootSwappedRepresentative P hP) = baseRootSum P := by
   simp [baseRootSum, add_comm]
 
+/--
+@isnad1 id=residual.1h2v.s4.f211d5a5e06a from=translated src=- shape=30568c2f vocab=49b20f44
+-/
 theorem rootSwappedRepresentative_open
     (P : ResidualPair K) (hP : ResidualOpen P) :
     ResidualOpen (rootSwappedRepresentative P hP) := by
   constructor <;> simp [hP.1, hP.2]
 
+/--
+@isnad1 id=not.2h2v.s5.60c3fae02eb9 from=translated src=- shape=7bf722fa vocab=545b84ba
+-/
 theorem not_related_rootSwappedRepresentative
     (P : ResidualPair K) (hP : ResidualOpen P)
     (hbranch : delta P ≠ deltaStar P) :
@@ -166,6 +214,9 @@ theorem not_related_rootSwappedRepresentative
   apply hbranch
   simpa using (related_preserves_invariants h).2.1
 
+/--
+@isnad1 id=not.2h2v.s5.eed4b161fb32 from=translated src=- shape=5ae304a0 vocab=545b84ba
+-/
 theorem rootSwappedRepresentative_not_related
     (P : ResidualPair K) (hP : ResidualOpen P)
     (hbranch : delta P ≠ deltaStar P) :
@@ -174,6 +225,9 @@ theorem rootSwappedRepresentative_not_related
   apply hbranch
   simpa using (related_preserves_invariants h).2.1.symm
 
+/--
+@isnad1 id=not.2h3v.s5.0b4b20957e8b from=translated src=- shape=ae1c6c46 vocab=545b84ba
+-/
 theorem related_families_disjoint
     (P : ResidualPair K) (hP : ResidualOpen P)
     (hbranch : delta P ≠ deltaStar P) (Q : ResidualPair K) :
@@ -186,6 +240,9 @@ theorem related_families_disjoint
       (related_preserves_invariants hSQ).2.1.symm
     _ = deltaStar P := rootSwappedRepresentative_delta P hP
 
+/--
+@isnad1 id=iff.2h3v.s5.6072f7ee03cc from=translated src=- shape=9546757b vocab=ca589dd3
+-/
 theorem sameResidualBase_iff_related_or_swapped
     (P : ResidualPair K) (hP : ResidualOpen P)
     (Q : ResidualPair K) (hQ : ResidualOpen Q) :
@@ -237,7 +294,9 @@ theorem sameResidualBase_iff_related_or_swapped
 
 /-- on the explicit branch-free open,
 the residual base fibre is exhausted by two disjoint displayed action-related
-families represented by a pair and the normalized root-swapped pair.-/
+families represented by a pair and the normalized root-swapped pair.
+@isnad1 id=other.2h2v.s7.9f9763f3295b from=translated src=- shape=c3c8bb48 vocab=5200253f
+-/
 theorem ResidualSL4BaseFibreTwoOrbitTheorem
     (P : ResidualPair K) (hP : ResidualOpen P)
     (hbranch : delta P ≠ deltaStar P) :

@@ -30,6 +30,9 @@ def linearResidual (mul : V →ₗ[ℚ] V →ₗ[ℚ] V)
     (((T x) ^ 2 - T (mul x x)) * T y -
       2 * T x * T (mul x y) + 2 * T (mul (mul x x) y)) • e
 
+/--
+@isnad1 id=eq.3h6v.s10.e24d35c84279 from=translated src=- shape=0bd44469 vocab=a611a14c
+-/
 theorem linearResidual_eq_zero
     (mul : V →ₗ[ℚ] V →ₗ[ℚ] V) (T : V →ₗ[ℚ] ℚ) (e : V)
     (comm : ∀ x y, mul x y = mul y x)
@@ -48,7 +51,9 @@ theorem linearResidual_eq_zero
     _ = 0 := by rw [char, char, char]; simp
 
 /-- A commutative unital algebra with associative trace and the cubic Newton
-identity is Jordan. This avoids any quartic coordinate expansion.-/
+identity is Jordan. This avoids any quartic coordinate expansion.
+@isnad1 id=eq.4h6v.s11.9ec58c468c64 from=translated src=- shape=20220b1b vocab=0ceae408
+-/
 theorem jordan_of_cubic_trace_identity
     (mul : V →ₗ[ℚ] V →ₗ[ℚ] V) (T : V →ₗ[ℚ] ℚ) (e : V)
     (comm : ∀ x y, mul x y = mul y x)

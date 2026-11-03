@@ -37,14 +37,22 @@ def FixedMomentPair (Q : ResidualPair ℚ) : Prop :=
 def coordinateTriple (Q : ResidualPair ℚ) : WitnessTriple :=
   fibreTriple witnessChart1 Q
 
+/--
+@isnad1 id=fixedmom.1h1v.s3.5f4d599bde68 from=translated src=- shape=da80b8de vocab=3df4b53c
+-/
 theorem parameterResidualPair_fixedMoment (t : ℚ) (ht : t ≠ 0) :
     FixedMomentPair (parameterResidualPair t ht) :=
   ⟨parameterResidualPair_open t ht, parameterResidualPair_moment t ht⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.73a9503e03c1 from=translated src=- shape=7f4b6afe vocab=07c398c6
+-/
 @[simp] theorem coordinateTriple_parameter (t : ℚ) (ht : t ≠ 0) :
     coordinateTriple (parameterResidualPair t ht) = parameterTriple t ht := rfl
 
-/-- The fixed determinant of the moment is the product of the actual roots.-/
+/-- The fixed determinant of the moment is the product of the actual roots.
+@isnad1 id=eq.1h1v.s4.68ee9d818718 from=translated src=- shape=d5974ed6 vocab=ff28fa06
+-/
 theorem fixedMoment_deltaStar (Q : ResidualPair ℚ) (hQ : FixedMomentPair Q) :
     deltaStar Q = witnessScale / delta Q := by
   apply (eq_div_iff hQ.1.1).mpr
@@ -53,13 +61,18 @@ theorem fixedMoment_deltaStar (Q : ResidualPair ℚ) (hQ : FixedMomentPair Q) :
   change Matrix.det (moment Q) = witnessScale
   rw [hQ.2, parameterMoment_det]
 
+/--
+@isnad1 id=eq.1h1v.s5.335a721e5e5a from=translated src=- shape=a1242942 vocab=865c4d9a
+-/
 theorem fixedMoment_baseRootSum (Q : ResidualPair ℚ)
     (hQ : FixedMomentPair Q) :
     baseRootSum Q = delta Q + witnessScale / delta Q := by
   rw [baseRootSum, fixedMoment_deltaStar Q hQ]
 
 /-- The scalar parameter is the actual vector determinant, and the
-normalizing transporter is a proved unital product automorphism.-/
+normalizing transporter is a proved unital product automorphism.
+@isnad1 id=fullrela.1h1v.s4.fce0c0190d8f from=translated src=- shape=380dfb5f vocab=dc123457
+-/
 theorem coordinateTriple_normalForm (Q : ResidualPair ℚ)
     (hQ : FixedMomentPair Q) :
     FullRelated (parameterTriple (delta Q) hQ.1.1) (coordinateTriple Q) := by
@@ -74,18 +87,26 @@ theorem coordinateTriple_normalForm (Q : ResidualPair ℚ)
     parameterChart, chartWithResidualPair_reinsert] using
     fullRelated_of_related (parameterChart (delta Q) hQ.1.1) Q hrel
 
-/-- All points of the displayed coordinate domain are lawful ordered frames.-/
+/-- All points of the displayed coordinate domain are lawful ordered frames.
+@isnad1 id=lawfulfr.1h1v.s3.864aa2bc2d22 from=translated src=- shape=80a4b622 vocab=d533091c
+-/
 theorem coordinateTriple_lawful (Q : ResidualPair ℚ)
     (hQ : FixedMomentPair Q) : LawfulFrameTriple (coordinateTriple Q) := by
   rcases coordinateTriple_normalForm Q hQ with ⟨g, hg⟩
   exact (lawfulFrameTriple_iff_of_transports g _ _ hg).mpr
     (parameterTriple_lawful (delta Q) hQ.1.1)
 
+/--
+@isnad1 id=eq.1h1v.s4.2bcfe8b2bd22 from=translated src=- shape=76a0fb63 vocab=412942e1
+-/
 theorem coordinateTriple_ledger_normalForm (Q : ResidualPair ℚ)
     (hQ : FixedMomentPair Q) :
     ledger (coordinateTriple Q) = ledger (parameterTriple (delta Q) hQ.1.1) :=
   (coordinateTriple_normalForm Q hQ).ledger_eq.symm
 
+/--
+@isnad1 id=eq.1h1v.s4.ac605f221f9c from=translated src=- shape=0135e4ff vocab=acc7c743
+-/
 theorem coordinateTriple_detector_normalForm (Q : ResidualPair ℚ)
     (hQ : FixedMomentPair Q) :
     traceCubeDetector (coordinateTriple Q) =

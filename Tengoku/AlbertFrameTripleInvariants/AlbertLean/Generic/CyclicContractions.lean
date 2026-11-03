@@ -23,7 +23,9 @@ open AlbertLean.Triality.StructuredAdjoint
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- Contracting the `C` input against its normalized `V` composite returns
-the `S` input scaled by its `C` norm.-/
+the `S` input scaled by its `C` norm.
+@isnad1 id=eq.0h3v.s7.b3a7218264e0 from=translated src=- shape=46e08af1 vocab=c6a9d2a9
+-/
 theorem sourceMuS_normalizedMuV (u : SCoord K) (v : CCoord K) :
     sourceMuS v (normalizedMuV u v) = nC v • u := by
   apply SCoord.ext <;> funext i <;> fin_cases i <;>
@@ -31,7 +33,9 @@ theorem sourceMuS_normalizedMuV (u : SCoord K) (v : CCoord K) :
       hodgeStar, dualWedge2] <;> ring
 
 /-- Contracting the `S` input against its normalized `V` composite returns
-the `C` input scaled by its `S` norm.-/
+the `C` input scaled by its `S` norm.
+@isnad1 id=eq.0h3v.s7.8cc6e8a82ce7 from=translated src=- shape=4c5a6b66 vocab=c25a37aa
+-/
 theorem sourceMuC_normalizedMuV (u : SCoord K) (v : CCoord K) :
     sourceMuC (normalizedMuV u v) u = nS u • v := by
   apply CCoord.ext <;> funext i <;> fin_cases i <;>

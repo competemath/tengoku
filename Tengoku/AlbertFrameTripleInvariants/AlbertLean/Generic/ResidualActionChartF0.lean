@@ -37,7 +37,9 @@ def f0Diagonal (d1 d2 d3 : ℚ) : Coord :=
   structuredEquiv (diagonal d1 d2 d3)
 
 /-- The actual F0 Albert automorphism transports the first chart encoder
-exactly along the residual chart action.-/
+exactly along the residual chart action.
+@isnad1 id=eq.0h2v.s7.2eea150111dc from=translated src=- shape=42857b74 vocab=fdca1d3a
+-/
 theorem jordanAut_encoderA_actChart
     (G : DetOneMatrix ℚ) (x : ExplicitFrameChart ℚ) :
     jordanAut G (f0EncoderA x) = f0EncoderA (actChart G x) := by
@@ -47,7 +49,9 @@ theorem jordanAut_encoderA_actChart
     encoderA_actChart]
 
 /-- The actual F0 Albert automorphism transports the second chart encoder
-exactly along the residual chart action.-/
+exactly along the residual chart action.
+@isnad1 id=eq.0h2v.s7.e9aa6727daf6 from=translated src=- shape=42857b74 vocab=6d006de3
+-/
 theorem jordanAut_encoderB_actChart
     (G : DetOneMatrix ℚ) (x : ExplicitFrameChart ℚ) :
     jordanAut G (f0EncoderB x) = f0EncoderB (actChart G x) := by
@@ -57,7 +61,9 @@ theorem jordanAut_encoderB_actChart
     encoderB_actChart]
 
 /-- Every literal diagonal public value is fixed by the same actual F0
-Albert automorphism.-/
+Albert automorphism.
+@isnad1 id=eq.0h4v.s7.d8f127ee929a from=translated src=- shape=709d21ea vocab=5cd88eec
+-/
 theorem jordanAut_f0Diagonal
     (G : DetOneMatrix ℚ) (d1 d2 d3 : ℚ) :
     jordanAut G (f0Diagonal d1 d2 d3) = f0Diagonal d1 d2 d3 := by
@@ -70,7 +76,9 @@ theorem jordanAut_f0Diagonal
 
 /-- Load-bearing join: one actual rational unital Albert automorphism fixes
 all diagonal values and carries both public chart values to the values of the
-residually transformed chart.-/
+residually transformed chart.
+@isnad1 id=and.0h2v.s9.ee5a55e8eb0b from=translated src=- shape=cc2e0a6f vocab=d6f9e451
+-/
 theorem jordanAut_actChart
     (G : DetOneMatrix ℚ) (x : ExplicitFrameChart ℚ) :
     (∀ d1 d2 d3 : ℚ,

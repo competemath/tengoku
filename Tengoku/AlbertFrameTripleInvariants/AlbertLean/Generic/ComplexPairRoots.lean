@@ -18,6 +18,9 @@ def A0 (p q r s : K) : K := p*(p+q+r+s-1)
 def dualRoot (p q r s d : K) : K := A0 p q r s / (A2 p q r * d)
 def td (a b c d : K) : K := (a-1)*(a*d-b*c)/((b-a)*(c-a))
 
+/--
+@isnad1 id=or.4h7v.s7.ea2ec728048a from=translated src=- shape=718cfd30 vocab=57012f47
+-/
 theorem roots_eq_or_eq_dual (p q r s x y : K)
     (hA2 : A2 p q r ≠ 0) (hx : x ≠ 0)
     (hQx : pairQuadratic p q r s x = 0)
@@ -40,6 +43,9 @@ theorem roots_eq_or_eq_dual (p q r s x y : K)
     apply (eq_div_iff (mul_ne_zero hA2 hx)).2
     simpa only [mul_assoc, mul_comm, mul_left_comm] using hproduct
 
+/--
+@isnad1 id=eq.6h9v.s8.b355a4c0d8f4 from=translated src=- shape=af2304d8 vocab=d12411ed
+-/
 theorem dephased_eq_of_overlap_of_d_eq
     (a b c d a' b' c' d' : K)
     (hΔ : delta a b c d ≠ 0) (hΔ' : delta a' b' c' d' ≠ 0)

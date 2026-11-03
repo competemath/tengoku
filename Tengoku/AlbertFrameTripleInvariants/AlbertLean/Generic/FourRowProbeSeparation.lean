@@ -41,7 +41,9 @@ def rowSymMeasurements (F A : Mat3 K) (i : Fin 3) : K :=
 def offRowMeasurement (F A : Mat3 K) (i : Fin 3) : K :=
   rowSymMeasurements F A i - 2 * F i i * A i i
 
-/-- A nonsingular scalar `2 x 2` coefficient matrix separates both unknowns.-/
+/-- A nonsingular scalar `2 x 2` coefficient matrix separates both unknowns.
+@isnad1 id=and.3h9v.s8.a8b1ca23e1a4 from=translated src=- shape=f39693e5 vocab=5f818f28
+-/
 theorem twoByTwo_separates {a b c d x y x' y' : K}
     (hdet : a * d - b * c ≠ 0)
     (h₁ : a * x + b * y = a * x' + b * y')
@@ -54,39 +56,60 @@ theorem twoByTwo_separates {a b c d x y x' y' : K}
   exact ⟨sub_eq_zero.mp ((mul_eq_zero.mp hxprod).resolve_left hdet),
     sub_eq_zero.mp ((mul_eq_zero.mp hyprod).resolve_left hdet)⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.b3523620bc21 from=translated src=- shape=3f047e42 vocab=5cbd5e78
+-/
 theorem offRow_combo_zero_one (F A : Mat3 K) :
     offRowMeasurement F A 0 + offRowMeasurement F A 1 -
       offRowMeasurement F A 2 = 2 * pairProbe F A 0 1 := by
   simp [offRowMeasurement, rowSymMeasurements, pairProbe, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.a04541726426 from=translated src=- shape=3f047e42 vocab=5cbd5e78
+-/
 theorem offRow_combo_zero_two (F A : Mat3 K) :
     offRowMeasurement F A 0 + offRowMeasurement F A 2 -
       offRowMeasurement F A 1 = 2 * pairProbe F A 0 2 := by
   simp [offRowMeasurement, rowSymMeasurements, pairProbe, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.91adf7d214fe from=translated src=- shape=3f047e42 vocab=5cbd5e78
+-/
 theorem offRow_combo_one_two (F A : Mat3 K) :
     offRowMeasurement F A 1 + offRowMeasurement F A 2 -
       offRowMeasurement F A 0 = 2 * pairProbe F A 1 2 := by
   simp [offRowMeasurement, rowSymMeasurements, pairProbe, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s8.fd6b02e193a2 from=translated src=- shape=479e7898 vocab=52c1d5df
+-/
 theorem pairDet_zero_one (F : Mat3 K) :
     F 0 1 * (F * F) 1 0 - F 1 0 * (F * F) 0 1 = cycleDifference F := by
   simp [Matrix.mul_apply, Fin.sum_univ_succ, cycleDifference]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s8.83343ebb816f from=translated src=- shape=52872e37 vocab=8e18e8d2
+-/
 theorem pairDet_zero_two (F : Mat3 K) :
     F 0 2 * (F * F) 2 0 - F 2 0 * (F * F) 0 2 = -cycleDifference F := by
   simp [Matrix.mul_apply, Fin.sum_univ_succ, cycleDifference]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s8.fd114e2a5b2f from=translated src=- shape=479e7898 vocab=52c1d5df
+-/
 theorem pairDet_one_two (F : Mat3 K) :
     F 1 2 * (F * F) 2 1 - F 2 1 * (F * F) 1 2 = cycleDifference F := by
   simp [Matrix.mul_apply, Fin.sum_univ_succ, cycleDifference]
   ring
 
+/--
+@isnad1 id=and.3h6v.s8.f15989bc5d73 from=translated src=- shape=b91ddacf vocab=963ad876
+-/
 theorem pair_separates (F A B : Mat3 K) (i k : Fin 3)
     (hdet : F i k * (F * F) k i - F k i * (F * F) i k ≠ 0)
     (h₁ : pairProbe F A i k = pairProbe F B i k)
@@ -94,7 +117,9 @@ theorem pair_separates (F A B : Mat3 K) (i k : Fin 3)
     A k i = B k i ∧ A i k = B i k := by
   exact twoByTwo_separates hdet h₁ h₂
 
-/-- Equal diagonal and pair probes for `F` and `F^2` determine the matrix.-/
+/-- Equal diagonal and pair probes for `F` and `F^2` determine the matrix.
+@isnad1 id=eq.4h4v.s9.6894b8012a19 from=translated src=- shape=04d896b1 vocab=d70ab3e0
+-/
 theorem pairProbes_injective (F A B : Mat3 K)
     (hDelta : cycleDifference F ≠ 0)
     (hDiag : ∀ i, A i i = B i i)
@@ -128,7 +153,9 @@ private theorem cancel_two {x y : K} (hTwo : (2 : K) ≠ 0)
   exact mul_left_cancel₀ hTwo h
 
 /-- Three symmetric rows for `F` and `F^2`, together with the diagonal,
-determine every entry when the cycle difference is nonzero.-/
+determine every entry when the cycle difference is nonzero.
+@isnad1 id=eq.5h4v.s8.d4833ad9a622 from=translated src=- shape=08f1b1c3 vocab=2bc95356
+-/
 theorem rowSymMeasurements_injective (F A B : Mat3 K)
     (hTwo : (2 : K) ≠ 0)
     (hDelta : cycleDifference F ≠ 0)

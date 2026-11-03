@@ -34,11 +34,17 @@ variable (H : Type u) (K : Type v) [Field H] [Field K] [Algebra H K]
 def scalarRetraction : K →ₗ[H] H :=
   (Algebra.linearMap H K).leftInverse
 
+/--
+@isnad1 id=eq.0h3v.s7.b55229ceeca2 from=translated src=- shape=54c2e848 vocab=9b0a09ab
+-/
 theorem scalarRetraction_algebraMap (x : H) :
     scalarRetraction H K (algebraMap H K x) = x := by
   apply LinearMap.leftInverse_apply_of_inj
   exact LinearMap.ker_eq_bot.mpr (algebraMap H K).injective
 
+/--
+@isnad1 id=eq.0h2v.s7.1889bb44eeeb from=translated src=- shape=8901407d vocab=2d94878a
+-/
 @[simp] theorem scalarRetraction_one : scalarRetraction H K 1 = 1 := by
   simpa using scalarRetraction_algebraMap H K 1
 
@@ -47,6 +53,9 @@ def contractRight : K ⊗[H] K →ₗ[H] K :=
   (TensorProduct.rid H K).toLinearMap.comp
     (TensorProduct.map LinearMap.id (scalarRetraction H K))
 
+/--
+@isnad1 id=eq.0h4v.s9.66ecac8d5e1e from=translated src=- shape=b30bde78 vocab=3fe45b5c
+-/
 @[simp] theorem contractRight_tmul (x y : K) :
     contractRight H K (x ⊗ₜ[H] y) =
       (scalarRetraction H K y) • x := by
@@ -60,7 +69,9 @@ def descentPolynomial (a : K) (n : ℕ) : Polynomial H :=
       (n.choose m.1 • scalarRetraction H K ((-a) ^ m.2))
 
 /-- The coefficient at degree `n` is one and all other antidiagonal terms have
-smaller degree.-/
+smaller degree.
+@isnad1 id=monic.0h4v.s5.adea2daded5b from=translated src=- shape=d3a19170 vocab=4f8b1b65
+-/
 theorem descentPolynomial_monic (a : K) (n : ℕ) :
     (descentPolynomial H K a n).Monic := by
   apply Polynomial.monic_of_natDegree_le_of_coeff_eq_one n
@@ -86,7 +97,9 @@ theorem descentPolynomial_monic (a : K) (n : ℕ) :
       simp [Polynomial.coeff_monomial, hi]
     · simp [Finset.mem_antidiagonal]
 
-/-- Evaluation is the contraction of the corresponding tensor binomial sum.-/
+/-- Evaluation is the contraction of the corresponding tensor binomial sum.
+@isnad1 id=eq.0h4v.s10.0f04cf75a183 from=translated src=- shape=880092bc vocab=a8e12188
+-/
 theorem eval_descentPolynomial (a : K) (n : ℕ) :
     (descentPolynomial H K a n).eval₂ (algebraMap H K) a =
       contractRight H K
@@ -105,7 +118,9 @@ theorem eval_descentPolynomial (a : K) (n : ℕ) :
   simp [mul_comm, mul_left_comm, mul_assoc]
 
 /-- If `a ⊗ 1 - 1 ⊗ a` is nilpotent, then `a` is algebraic over the base
-field.  No algebraicity or characteristic hypothesis is assumed.-/
+field.  No algebraicity or characteristic hypothesis is assumed.
+@isnad1 id=ex.1h4v.s10.9b7975fb9284 from=translated src=- shape=9271ea5c vocab=7d070e2e
+-/
 theorem exists_monic_annihilator_of_tensorDifference_pow_eq_zero (a : K) (n : ℕ)
     (hpow : (a ⊗ₜ[H] (1 : K) - (1 : K) ⊗ₜ[H] a) ^ n = 0) :
     ∃ p : Polynomial H, p.Monic ∧ Polynomial.aeval a p = 0 := by

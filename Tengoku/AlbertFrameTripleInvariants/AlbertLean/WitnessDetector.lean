@@ -27,6 +27,9 @@ private theorem thetaM_detector :
     structuredProduct_eq_productForm]
   norm_num [cubicNorm, productForm, thetaME, thetaMF, thetaMK, v, q]
 
+/--
+@isnad1 id=and.0h0v.s5.8c19abc951d0 from=translated src=- shape=e597e8c3 vocab=9c21a7c3
+-/
 theorem witnessDetectorValues :
     traceCubeDetector witnessTheta1 = q (-2591357) 62208 ∧
     traceCubeDetector witnessThetaM = q (-1782559) 62208 ∧

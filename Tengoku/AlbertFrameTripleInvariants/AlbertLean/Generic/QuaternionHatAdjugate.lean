@@ -34,14 +34,18 @@ def dot (u v : Vec3 K) : K := u 0 * v 0 + u 1 * v 1 + u 2 * v 2
 /-- Column times row, with the first argument supplying the column.-/
 def outer (v u : Vec3 K) : Mat3 K := fun i j => v i * u j
 
-/-- The decisive sign-sensitive cross-product identity.-/
+/-- The decisive sign-sensitive cross-product identity.
+@isnad1 id=eq.0h3v.s7.8171cb50d13b from=translated src=- shape=1a12902e vocab=fc4d0594
+-/
 theorem hat_mul (u v : Vec3 K) :
     hat u * hat v = outer v u - dot u v • (1 : Mat3 K) := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [hat, outer, dot, Matrix.mul_apply, Fin.sum_univ_succ] <;> ring
 
-/-- The trace-polynomial form of the three-dimensional adjugate identity.-/
+/-- The trace-polynomial form of the three-dimensional adjugate identity.
+@isnad1 id=eq.0h2v.s9.72b51f8adea3 from=translated src=- shape=371ab27a vocab=756d9cd2
+-/
 theorem adjugate_fin_three_trace (a : Mat3 K) :
     Matrix.adjugate a =
       a * a - Matrix.trace a • a +
@@ -54,7 +58,9 @@ theorem adjugate_fin_three_trace (a : Mat3 K) :
 
 /-- For the top-left block of a trace-one grouped self-adjoint projector,
 the adjugate is the outer-product datum carried by the two skew blocks.
-The projector hypothesis needed here is exactly its top-left block equation.-/
+The projector hypothesis needed here is exactly its top-left block equation.
+@isnad1 id=eq.2h4v.s8.6c3bcca5a752 from=translated src=- shape=299ae469 vocab=1d124bfa
+-/
 theorem adjugate_of_projector_trace_one
     (a : Mat3 K) (u v : Vec3 K)
     (hblock : a * a - a = -(hat u * hat v))

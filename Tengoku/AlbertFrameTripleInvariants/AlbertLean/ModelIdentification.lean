@@ -92,12 +92,18 @@ structure ConventionalSplitAlbertIdentification : Prop where
 
 -- PALOMAR_MODEL_STATEMENT_END
 
+/--
+@isnad1 id=eq.0h1v.s3.e4aa86e1e99b from=translated src=- shape=47dcad53 vocab=8a12bff0
+-/
 theorem hermitianToCoord_coordToHermitian (x : Coord) :
     hermitianToCoord (coordToHermitian x) = x := by
   funext i
   fin_cases i <;>
     simp [hermitianToCoord, coordToHermitian, coordV, coordS, coordC, v]
 
+/--
+@isnad1 id=eq.0h1v.s3.d724b917da29 from=translated src=- shape=47dcad53 vocab=df6022d4
+-/
 theorem coordToHermitian_hermitianToCoord (x : Hermitian3) :
     coordToHermitian (hermitianToCoord x) = x := by
   rcases x with
@@ -107,6 +113,9 @@ theorem coordToHermitian_hermitianToCoord (x : Hermitian3) :
       ⟨ca, ⟨cu₁, cu₂, cu₃⟩, ⟨cv₁, cv₂, cv₃⟩, cb⟩⟩
   simp [coordToHermitian, hermitianToCoord, coordV, coordS, coordC, v]
 
+/--
+@isnad1 id=eq.0h2v.s4.331ceccbead8 from=translated src=- shape=3887891b vocab=2628bf77
+-/
 theorem coordToHermitian_add (x y : Coord) :
     coordToHermitian (x + y) =
       Hermitian3.add (coordToHermitian x) (coordToHermitian y) := by
@@ -118,6 +127,9 @@ theorem coordToHermitian_add (x y : Coord) :
       Zorn.add, Vec3.add, v] <;>
     ring
 
+/--
+@isnad1 id=eq.0h2v.s4.0a5f905ed77b from=translated src=- shape=51e3c4c8 vocab=d39210e0
+-/
 theorem coordToHermitian_smul (a : ℚ) (x : Coord) :
     coordToHermitian (a • x) = Hermitian3.smul a (coordToHermitian x) := by
   apply Hermitian3.ext
@@ -127,6 +139,9 @@ theorem coordToHermitian_smul (a : ℚ) (x : Coord) :
     simp [coordToHermitian, coordV, coordS, coordC, Hermitian3.smul,
       Zorn.smul, Vec3.smul, v, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h2v.s4.673a25568e5c from=translated src=- shape=3887891b vocab=a0dd3466
+-/
 theorem coordToHermitian_sub (x y : Coord) :
     coordToHermitian (x - y) =
       Hermitian3.sub (coordToHermitian x) (coordToHermitian y) := by
@@ -200,7 +215,9 @@ private theorem coord_triality (x : Coord) :
     Vec3.dot, Vec3.cross, trialityForm]
   ring
 
-/-- The C0 unit is the identity Hermitian matrix.-/
+/-- The C0 unit is the identity Hermitian matrix.
+@isnad1 id=eq.0h0v.s2.0d9a254e672f from=translated src=- shape=4b736592 vocab=226ebb83
+-/
 theorem coordToHermitian_one : coordToHermitian AlbertLean.one = Hermitian3.one := by
   apply Hermitian3.ext
   all_goals try apply Zorn.ext
@@ -209,7 +226,9 @@ theorem coordToHermitian_one : coordToHermitian AlbertLean.one = Hermitian3.one 
     simp [coordToHermitian, coordV, coordS, coordC,
       AlbertLean.one, Hermitian3.one, Zorn.zero, v, q]
 
-/-- The frozen 45-term cubic is the conventional Hermitian determinant.-/
+/-- The frozen 45-term cubic is the conventional Hermitian determinant.
+@isnad1 id=eq.0h1v.s3.7bd21d2ed46e from=translated src=- shape=7718e021 vocab=1a516d2a
+-/
 theorem coordToHermitian_cubicNorm (x : Coord) :
     Hermitian3.cubicNorm (coordToHermitian x) = AlbertLean.cubicNorm x := by
   simp only [Hermitian3.cubicNorm, Hermitian3.tripleCoupling,

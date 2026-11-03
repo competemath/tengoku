@@ -25,16 +25,25 @@ variable {K : Type*} [Field K]
 def labelledProbe (f A : Mat3 K) (i : Fin 3) : K :=
   Matrix.trace ((diagonalUnit i * f + f * diagonalUnit i) * A)
 
+/--
+@isnad1 id=eq.0h5v.s6.c0304f51bbc7 from=translated src=- shape=90921965 vocab=8ccbf44d
+-/
 @[simp] theorem labelledProbe_add (f g A : Mat3 K) (i : Fin 3) :
     labelledProbe (f + g) A i = labelledProbe f A i + labelledProbe g A i := by
   simp [labelledProbe, add_mul, mul_add]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.a6ff01fbb1ee from=translated src=- shape=90921965 vocab=f7ae93ed
+-/
 @[simp] theorem labelledProbe_sub (f g A : Mat3 K) (i : Fin 3) :
     labelledProbe (f - g) A i = labelledProbe f A i - labelledProbe g A i := by
   simp [labelledProbe, sub_mul, mul_sub, add_mul]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.f61dd0254c89 from=translated src=- shape=577c0e4a vocab=cc7bac45
+-/
 @[simp] theorem labelledProbe_one (A : Mat3 K) (i : Fin 3) :
     labelledProbe 1 A i = 2 * Matrix.trace (diagonalUnit i * A) := by
   simp [labelledProbe, add_mul]
@@ -85,7 +94,9 @@ theorem eq_of_labelled_probes
     rw [(hLabel i).1, (hLabel i).2.2]
 
 /-- For ordinary matrices, idempotence of the two nonzero-labelled pieces and
-their two directed orthogonality equations supply the encoder-square premise.-/
+their two directed orthogonality equations supply the encoder-square premise.
+@isnad1 id=eq.4h3v.s9.a2ba6076b93f from=translated src=- shape=04fbd88a vocab=8b7343e0
+-/
 theorem encoder_square_of_orthogonal
     (f0 f2 : Mat3 K)
     (h0 : f0 * f0 = f0) (h2 : f2 * f2 = f2)

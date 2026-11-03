@@ -29,6 +29,9 @@ variable (D : QuadraticCharacterDescent.Data (k := k) (Ω := Ω))
 def fixedField : Subfield Ω :=
   (D.tau : Ω →+* Ω).eqLocusField (RingHom.id Ω)
 
+/--
+@isnad1 id=iff.0h4v.s7.16dffe169774 from=translated src=- shape=e8349f2d vocab=cd1ed258
+-/
 @[simp] theorem mem_fixedField (x : Ω) : x ∈ D.fixedField ↔ D.tau x = x := Iff.rfl
 
 /-- The base field maps into the fixed field because tau is a k-algebra map.-/
@@ -54,14 +57,21 @@ def fixedFieldEquivSpace : D.fixedField ≃ₗ[k] D.fixedSpace where
     change algebraMap k Ω r * (x : Ω) = r • (x : Ω)
     exact (Algebra.smul_def r (x : Ω)).symm
 
-/-- The degree statement now concerns an actual field extension.-/
+/-- The degree statement now concerns an actual field extension.
+@isnad1 id=eq.0h3v.s8.5d9011e9a297 from=translated src=- shape=c85f2882 vocab=091fcfe1
+-/
 theorem fixedField_finrank : Module.finrank k D.fixedField = 2 := by
   rw [D.fixedFieldEquivSpace.finrank_eq, D.fixedSpace_finrank]
 
+/--
+@isnad1 id=finitedi.0h3v.s8.3ff16e9d5a73 from=translated src=- shape=902e7639 vocab=7b10d8aa
+-/
 theorem fixedField_finiteDimensional : FiniteDimensional k D.fixedField := by
   exact Module.finite_of_finrank_pos (by rw [D.fixedField_finrank]; decide)
 
-/-- Explicit field generation, expressed using cached Subfield.closure.-/
+/-- Explicit field generation, expressed using cached Subfield.closure.
+@isnad1 id=eq.0h3v.s7.0d245853d642 from=translated src=- shape=0840755a vocab=2cf4adc7
+-/
 theorem fixedField_generated_by_u :
     Subfield.closure (Set.range (algebraMap k Ω) ∪ {D.u}) = D.fixedField := by
   apply le_antisymm
@@ -88,11 +98,16 @@ private theorem u_sq_in_base : ∃ r : k, algebraMap k Ω r = D.u ^ 2 := by
 /-- The chosen sheet generator determines a base-field radicand.-/
 def radicand : k := Classical.choose D.u_sq_in_base
 
+/--
+@isnad1 id=eq.0h3v.s7.81c3a6d2cc5e from=translated src=- shape=f4bd8683 vocab=6c9327ec
+-/
 theorem radicand_spec : algebraMap k Ω D.radicand = D.u ^ 2 :=
   Classical.choose_spec D.u_sq_in_base
 
 /-- The product class is nontrivial because the actual deck map reverses a
-nonzero generator. Nontriviality is proved, not inferred from a class formula.-/
+nonzero generator. Nontriviality is proved, not inferred from a class formula.
+@isnad1 id=not.0h3v.s6.d60b075e2ce4 from=translated src=- shape=b8564c49 vocab=13370093
+-/
 theorem radicand_not_square : ¬ IsSquare D.radicand := by
   rintro ⟨a,ha⟩
   have hs : (algebraMap k Ω a) ^ 2 = D.u ^ 2 := by
@@ -106,6 +121,9 @@ theorem radicand_not_square : ¬ IsSquare D.radicand := by
 /-- The equation lives inside the actual fixed field.-/
 def generator : D.fixedField := ⟨D.u,D.tau_u⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.a9a213074fe1 from=translated src=- shape=a98c0f5f vocab=865ee81e
+-/
 theorem generator_square : D.generator ^ 2 = algebraMap k D.fixedField D.radicand := by
   apply Subtype.ext
   change D.u ^ 2 = algebraMap k Ω D.radicand
@@ -128,10 +146,15 @@ def deck : D.fixedField ≃ₐ[k] D.fixedField where
   map_mul' x y := Subtype.ext (map_mul D.delta x.val y.val)
   commutes' a := Subtype.ext (D.delta.commutes a)
 
+/--
+@isnad1 id=eq.0h3v.s9.f575467b5b0a from=translated src=- shape=84a952f1 vocab=9e830926
+-/
 theorem deck_generator : D.deck D.generator = -D.generator :=
   Subtype.ext D.delta_u
 
-/-- Exact base fixed-field equality for the restricted deck operation.-/
+/-- Exact base fixed-field equality for the restricted deck operation.
+@isnad1 id=iff.0h4v.s10.01c7cfa862ef from=translated src=- shape=99c8d04a vocab=4159bbc6
+-/
 theorem deck_fixed_iff (x : D.fixedField) : D.deck x = x ↔
     ∃ a : k, algebraMap k D.fixedField a = x := by
   constructor
@@ -144,7 +167,9 @@ theorem deck_fixed_iff (x : D.fixedField) : D.deck x = x ↔
 
 /-- At the generic point the two chosen quadratic directions multiply:
 kappa^2=a, eta^2=b, u^2=ab. The preceding theorem supplies nontriviality
-of this product; no freeness of an odd line on an entire base scheme follows.-/
+of this product; no freeness of an odd line on an entire base scheme follows.
+@isnad1 id=ex.0h3v.s8.a85958872dfc from=translated src=- shape=ac4ba2e0 vocab=cccb862d
+-/
 theorem radicand_factorization : ∃ a b : k,
     algebraMap k Ω a = D.kappa ^ 2 ∧
     algebraMap k Ω b = D.eta ^ 2 ∧ D.radicand = a * b := by

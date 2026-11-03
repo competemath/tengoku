@@ -27,8 +27,17 @@ open AlbertLean.Generic.ResidualMomentSubfield
 
 variable {K : Type*} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.0h2v.s7.7952fa2c6b39 from=translated src=- shape=a99a77e8 vocab=e5efd91f
+-/
 @[simp] theorem diagLinear_zero (x : JCoord K) : diagLinear 0 x = x.d1 := rfl
+/--
+@isnad1 id=eq.0h2v.s7.26d0a3313c87 from=translated src=- shape=a99a77e8 vocab=0b8b85c6
+-/
 @[simp] theorem diagLinear_one (x : JCoord K) : diagLinear 1 x = x.d2 := rfl
+/--
+@isnad1 id=eq.0h2v.s7.ee431c9a1c15 from=translated src=- shape=a99a77e8 vocab=db6841bc
+-/
 @[simp] theorem diagLinear_two (x : JCoord K) : diagLinear 2 x = x.d3 := rfl
 
 def DiagIn (F : Subfield K) (x : JCoord K) : Prop := ∀ i, diagLinear i x ∈ F
@@ -36,11 +45,17 @@ def DiagIn (F : Subfield K) (x : JCoord K) : Prop := ∀ i, diagLinear i x ∈ F
 def SectorIn (F : Subfield K) (x y : JCoord K) : Prop :=
   BV x.v y.v ∈ F ∧ BS x.s y.s ∈ F ∧ BC x.c y.c ∈ F
 
+/--
+@isnad1 id=sectorin.1h4v.s5.276f948806fb from=translated src=- shape=f55a0adf vocab=89edd46f
+-/
 theorem SectorIn.symm (F : Subfield K) (x y : JCoord K)
     (h : SectorIn F x y) : SectorIn F y x := by
   simpa only [SectorIn, BV_symmetric y.v x.v, BS_symmetric y.s x.s,
     BC_symmetric y.c x.c] using h
 
+/--
+@isnad1 id=sectorin.3h4v.s5.18f06db3085a from=translated src=- shape=353be7ff vocab=3f6bc405
+-/
 theorem sector_pairings_mem (F : Subfield K) (x y : JCoord K)
     (hx : DiagIn F x) (hy : DiagIn F y)
     (hxy : DiagIn F (sourceProduct x y)) : SectorIn F x y := by
@@ -64,6 +79,9 @@ theorem sector_pairings_mem (F : Subfield K) (x y : JCoord K)
     ring
   exact triple_mem_of_pair_sums F _ _ _ hVS hSC hCV
 
+/--
+@isnad1 id=and.2h3v.s6.afc8994eb083 from=translated src=- shape=46f9cba5 vocab=1556d036
+-/
 theorem norms_mem (F : Subfield K) (x : JCoord K)
     (hx : DiagIn F x) (hx2 : DiagIn F (sourceSquare x)) :
     nV x.v ∈ F ∧ nS x.s ∈ F ∧ nC x.c ∈ F := by
@@ -84,6 +102,9 @@ theorem norms_mem (F : Subfield K) (x : JCoord K)
     <;> ring
   exact triple_mem_of_pair_sums F _ _ _ hVS hSC hCV
 
+/--
+@isnad1 id=and.1h4v.s6.3d31b5473a4c from=translated src=- shape=4eae3a30 vocab=b4397e2f
+-/
 theorem powers_diag_mem (F : Subfield K) (a b : JCoord K)
     (h : LedgerIn F (sourceLedger a b)) :
     (∀ p, DiagIn F (power a p)) ∧ (∀ q, DiagIn F (power b q)) := by
@@ -95,7 +116,9 @@ theorem powers_diag_mem (F : Subfield K) (a b : JCoord K)
     simpa only [power, Matrix.cons_val_zero, sourceProduct_one_left] using
       power_diagonal_mem F a b h i 0 q
 
-/-- All V/S/C pairings between 1,a,a² and 1,b,b² are retained.-/
+/-- All V/S/C pairings between 1,a,a² and 1,b,b² are retained.
+@isnad1 id=sectorin.1h6v.s6.57a05b37eff2 from=translated src=- shape=4020efb8 vocab=863bbdb6
+-/
 theorem power_sectors_mem (F : Subfield K) (a b : JCoord K)
     (h : LedgerIn F (sourceLedger a b)) (p q : Fin 3) :
     SectorIn F (power a p) (power b q) :=
@@ -103,23 +126,34 @@ theorem power_sectors_mem (F : Subfield K) (a b : JCoord K)
     ((powers_diag_mem F a b h).2 q)
     (fun i => power_diagonal_mem F a b h i p q)
 
-/-- The three adjoint contractions are exactly the same accepted triality.-/
+/-- The three adjoint contractions are exactly the same accepted triality.
+@isnad1 id=eq.0h4v.s5.e9468e0b5535 from=translated src=- shape=bc94dd4f vocab=43d37d41
+-/
 theorem muV_triality (v : VCoord K) (s : SCoord K) (c : CCoord K) :
     BV (normalizedMuV s c) v = triality v s c := by
   simp [normalizedMuV, muV, BV, BW, pairW, triality,
     evalU, wedge2, dualWedge2, hodgeStar]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.344c01a4835f from=translated src=- shape=28d2e186 vocab=9ca16103
+-/
 theorem muS_triality (v : VCoord K) (s : SCoord K) (c : CCoord K) :
     BS (sourceMuS c v) s = triality v s c := by
   simp [sourceMuS, BS, triality, evalU, BW, pairW, wedge2, dualWedge2]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.4c889ec9a5d8 from=translated src=- shape=7a83b3b1 vocab=7b5805cc
+-/
 theorem muC_triality (v : VCoord K) (s : SCoord K) (c : CCoord K) :
     BC (sourceMuC v s) c = triality v s c := by
   simp [sourceMuC, BC, triality, evalU, BW, pairW, wedge2, dualWedge2]
   ring
 
+/--
+@isnad1 id=and.3h4v.s7.11fbec7cab81 from=translated src=- shape=8dafab29 vocab=ab67b01c
+-/
 theorem mixed_trialities_mem (F : Subfield K) (x y : JCoord K)
     (hx : DiagIn F x) (hxy : SectorIn F x y)
     (hx2y : SectorIn F (sourceSquare x) y) :
@@ -139,6 +173,9 @@ theorem mixed_trialities_mem (F : Subfield K) (x y : JCoord K)
   · simpa only [diagLinear_zero, diagLinear_one, diagLinear_two, add_sub_cancel_left] using
       F.sub_mem hc (F.mul_mem (F.add_mem (hx 0) (hx 1)) hxy.2.2)
 
+/--
+@isnad1 id=mem.3h3v.s7.040c634ca5ec from=translated src=- shape=b51bc5c2 vocab=0f3cec20
+-/
 theorem single_triality_mem (F : Subfield K) (x : JCoord K)
     (hx : DiagIn F x) (hn : nV x.v ∈ F ∧ nS x.s ∈ F ∧ nC x.c ∈ F)
     (hN : sourceNorm x = 0) : triality x.v x.s x.c ∈ F := by
@@ -154,7 +191,9 @@ theorem single_triality_mem (F : Subfield K) (x : JCoord K)
     (F.mul_mem (F.mul_mem (hx 0) (hx 1)) (hx 2))
 
 /-- The ledger and the two actual norm-zero frame equations recover every
-mixed triality. No generic-field-generation premise occurs.-/
+mixed triality. No generic-field-generation premise occurs.
+@isnad1 id=mem.3h7v.s7.527e0c358111 from=translated src=- shape=babdd29c vocab=8b97c4c0
+-/
 theorem all_trialities_mem (F : Subfield K) (a b : JCoord K)
     (h : LedgerIn F (sourceLedger a b))
     (hNa : sourceNorm a = 0) (hNb : sourceNorm b = 0) :
@@ -180,6 +219,9 @@ def lV (x : JCoord K) : K := x.d2 + x.d3
 def lS (x : JCoord K) : K := x.d1 + x.d3
 def lC (x : JCoord K) : K := x.d1 + x.d2
 
+/--
+@isnad1 id=eq.0h3v.s7.fb2aefb40f32 from=translated src=- shape=e9118383 vocab=e453c3bc
+-/
 theorem uV_centered (a b : JCoord K) :
     normalizedUV a.s b.s a.c b.c =
       BV (sourceSquare a).v (sourceSquare b).v -
@@ -189,6 +231,9 @@ theorem uV_centered (a b : JCoord K) :
     BV_smul_left, BV_smul_right, lV]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.f7e0381d1038 from=translated src=- shape=3ccc1e98 vocab=a87180a5
+-/
 theorem uS_centered (a b : JCoord K) :
     BS (sourceMuS a.c a.v) (sourceMuS b.c b.v) =
       BS (sourceSquare a).s (sourceSquare b).s -
@@ -198,6 +243,9 @@ theorem uS_centered (a b : JCoord K) :
     BS_smul_left, BS_smul_right, lS]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.20ff220e2f30 from=translated src=- shape=3ccc1e98 vocab=c62f3648
+-/
 theorem uC_centered (a b : JCoord K) :
     BC (sourceMuC a.v a.s) (sourceMuC b.v b.s) =
       BC (sourceSquare a).c (sourceSquare b).c -
@@ -207,7 +255,9 @@ theorem uC_centered (a b : JCoord K) :
     BC_smul_left, BC_smul_right, lC]
   ring
 
-/-- A single closure calculation handles all three centered U formulas.-/
+/-- A single closure calculation handles all three centered U formulas.
+@isnad1 id=mem.6h8v.s8.f9fe7afdb0f9 from=translated src=- shape=1bd68626 vocab=1569072e
+-/
 theorem centered_mem (F : Subfield K) (la lb g11 g12 g21 g22 : K)
     (hla : la ∈ F) (hlb : lb ∈ F) (h11 : g11 ∈ F)
     (h12 : g12 ∈ F) (h21 : g21 ∈ F) (h22 : g22 ∈ F) :
@@ -215,6 +265,9 @@ theorem centered_mem (F : Subfield K) (la lb g11 g12 g21 g22 : K)
   F.add_mem (F.sub_mem (F.sub_mem h22 (F.mul_mem hla h12)) (F.mul_mem hlb h21))
     (F.mul_mem (F.mul_mem hla hlb) h11)
 
+/--
+@isnad1 id=and.1h4v.s7.844fdc6174d3 from=translated src=- shape=0d8dbd30 vocab=3c5893b6
+-/
 theorem all_U_mem (F : Subfield K) (a b : JCoord K)
     (h : LedgerIn F (sourceLedger a b)) :
     normalizedUV a.s b.s a.c b.c ∈ F ∧

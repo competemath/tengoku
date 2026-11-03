@@ -22,7 +22,9 @@ section LinearAlgebra
 variable {R V : Type*} [CommRing R] [AddCommGroup V] [Module R V]
 
 /-- The commutator of operators self-adjoint for a bilinear pairing is
-skew-adjoint. No field, nondegeneracy, or Jordan identity is needed.-/
+skew-adjoint. No field, nondegeneracy, or Jordan identity is needed.
+@isnad1 id=eq.2h7v.s12.0ead7aa0ee2b from=translated src=- shape=96b500f6 vocab=aa40b88a
+-/
 theorem commutator_skewAdjoint
     (B : V →ₗ[R] V →ₗ[R] R) (A C : V →ₗ[R] V)
     (hA : ∀ u v, B (A u) v = B u (A v))
@@ -66,10 +68,15 @@ def tracePairing : Coord →ₗ[ℚ] Coord →ₗ[ℚ] ℚ where
     rw [traceForm_symmetric (a • x) z, traceForm_symmetric x z]
     exact (tracePairingRight z).map_smul a x
 
+/--
+@isnad1 id=eq.0h2v.s8.a4fd4822a2f1 from=translated src=- shape=0f3d9715 vocab=510ccfa3
+-/
 @[simp] theorem tracePairing_apply (x y : Coord) :
     tracePairing x y = traceForm x y := rfl
 
-/-- Associativity of the trace pairing makes left multiplication self-adjoint.-/
+/-- Associativity of the trace pairing makes left multiplication self-adjoint.
+@isnad1 id=eq.0h3v.s4.7a372d1f189c from=translated src=- shape=4012b05b vocab=7a3749d5
+-/
 theorem leftMultiplication_selfAdjoint (x z w : Coord) :
     traceForm (structuredProduct x z) w =
       traceForm z (structuredProduct x w) := by
@@ -80,12 +87,17 @@ def innerCommutator (x y : Coord) : Coord →ₗ[ℚ] Coord :=
   (leftMulLinear productQBilinear x).comp (leftMulLinear productQBilinear y) -
     (leftMulLinear productQBilinear y).comp (leftMulLinear productQBilinear x)
 
+/--
+@isnad1 id=eq.0h3v.s7.329840853d23 from=translated src=- shape=a8f8fd37 vocab=4829a2fe
+-/
 @[simp] theorem innerCommutator_apply (x y z : Coord) :
     innerCommutator x y z =
       structuredProduct x (structuredProduct y z) -
         structuredProduct y (structuredProduct x z) := rfl
 
-/-- Multiplication commutators are skew-adjoint for the accepted trace pairing.-/
+/-- Multiplication commutators are skew-adjoint for the accepted trace pairing.
+@isnad1 id=eq.0h4v.s7.d9e3938cbc18 from=translated src=- shape=20c92a9c vocab=e1f79a3d
+-/
 theorem innerCommutator_skewAdjoint (x y z w : Coord) :
     traceForm (innerCommutator x y z) w =
       -traceForm z (innerCommutator x y w) := by
@@ -93,12 +105,17 @@ theorem innerCommutator_skewAdjoint (x y z w : Coord) :
     (leftMulLinear productQBilinear x) (leftMulLinear productQBilinear y)
     (leftMultiplication_selfAdjoint x) (leftMultiplication_selfAdjoint y) z w
 
+/--
+@isnad1 id=eq.0h2v.s6.7b28f052f89e from=translated src=- shape=1b0400f5 vocab=d3f82df4
+-/
 @[simp] theorem innerCommutator_one (x y : Coord) :
     innerCommutator x y one = 0 := by
   rw [innerCommutator_apply, (unitLaw y).2, (unitLaw x).2,
     productCommutative x y, sub_self]
 
-/-- A skew-adjoint multiplication commutator annihilates the scalar trace.-/
+/-- A skew-adjoint multiplication commutator annihilates the scalar trace.
+@isnad1 id=eq.0h3v.s6.55903e65b8f0 from=translated src=- shape=cf36807b vocab=3a40c80d
+-/
 theorem traceN_innerCommutator (x y z : Coord) :
     traceN (innerCommutator x y z) = 0 := by
   have h := innerCommutator_skewAdjoint x y z one
@@ -108,19 +125,25 @@ theorem traceN_innerCommutator (x y z : Coord) :
   rw [hz, neg_zero] at h
   exact h
 
-/-- Every value is orthogonal to its multiplication-commutator image.-/
+/-- Every value is orthogonal to its multiplication-commutator image.
+@isnad1 id=eq.0h3v.s6.361d942ef504 from=translated src=- shape=a0f60dca vocab=5e79f599
+-/
 theorem traceForm_self_innerCommutator (x y z : Coord) :
     traceForm z (innerCommutator x y z) = 0 := by
   have h := innerCommutator_skewAdjoint x y z z
   rw [traceForm_symmetric (innerCommutator x y z) z] at h
   linarith
 
-/-- The framed word is an evaluation of the same linear commutator operator.-/
+/-- The framed word is an evaluation of the same linear commutator operator.
+@isnad1 id=eq.0h1v.s6.4b779d3fd429 from=translated src=- shape=9cb31d8a vocab=25446c15
+-/
 theorem W0_eq_innerCommutator (X : WitnessTriple) :
     W0 X = innerCommutator X.cE X.cF X.cK := rfl
 
 /-- Factor three holds for every public triple; no separate trace-zero or
-frame premise needs to be carried by downstream results.-/
+frame premise needs to be carried by downstream results.
+@isnad1 id=eq.0h1v.s4.c41a93e64f49 from=translated src=- shape=9fc36aa0 vocab=14316a5d
+-/
 theorem detectorFactorThree_unconditional (X : WitnessTriple) :
     traceCubeDetector X = 3 * cubicNormDetector X := by
   apply detectorFactorThree X

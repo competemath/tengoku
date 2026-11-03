@@ -119,6 +119,9 @@ def ThetaMKSquare : Coord := fun i =>
 
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s2.a7c96266bd05 from=translated src=- shape=1f28ec23 vocab=6604c2d3
+-/
 theorem theta1E_square : structuredProduct theta1E theta1E = Theta1ESquare := by
   rw [structuredProduct_eq_productForm]
   funext k
@@ -126,6 +129,9 @@ theorem theta1E_square : structuredProduct theta1E theta1E = Theta1ESquare := by
 
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s2.51b4226fc73b from=translated src=- shape=1f28ec23 vocab=f8e97d65
+-/
 theorem theta1F_square : structuredProduct theta1F theta1F = Theta1FSquare := by
   rw [structuredProduct_eq_productForm]
   funext k
@@ -133,6 +139,9 @@ theorem theta1F_square : structuredProduct theta1F theta1F = Theta1FSquare := by
 
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s2.8435f71e8f60 from=translated src=- shape=1f28ec23 vocab=efbd09c2
+-/
 theorem theta1K_square : structuredProduct theta1K theta1K = Theta1KSquare := by
   rw [structuredProduct_eq_productForm]
   funext k
@@ -140,6 +149,9 @@ theorem theta1K_square : structuredProduct theta1K theta1K = Theta1KSquare := by
 
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s2.d6ac3f779ae0 from=translated src=- shape=1f28ec23 vocab=7eb7b1d0
+-/
 theorem thetaMF_square : structuredProduct thetaMF thetaMF = ThetaMFSquare := by
   rw [structuredProduct_eq_productForm]
   funext k
@@ -147,6 +159,9 @@ theorem thetaMF_square : structuredProduct thetaMF thetaMF = ThetaMFSquare := by
 
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s2.481bd887fdc2 from=translated src=- shape=1f28ec23 vocab=ee1b4a0d
+-/
 theorem thetaMK_square : structuredProduct thetaMK thetaMK = ThetaMKSquare := by
   rw [structuredProduct_eq_productForm]
   funext k
@@ -173,6 +188,9 @@ def spurPairForm (x y : Coord) : ℚ :=
 
 set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h1v.s3.13f209f4a133 from=translated src=- shape=b70c6bb1 vocab=ee5fa869
+-/
 theorem traceN_eq_traceLinearForm (x : Coord) :
     traceN x = traceLinearForm x := by
   rw [traceN, cubicPolar_eq_polarForm]
@@ -181,22 +199,33 @@ theorem traceN_eq_traceLinearForm (x : Coord) :
 
 set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h2v.s3.357dad5a2beb from=translated src=- shape=e4af5fdd vocab=c43d23ca
+-/
 theorem spurBilinear_eq_spurPairForm (x y : Coord) :
     spurBilinear x y = spurPairForm x y := by
   rw [spurBilinear, cubicPolar_eq_polarForm]
   simp [polarForm, spurPairForm, one, v, q]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.35f0440635cf from=translated src=- shape=a760c453 vocab=10ffa1eb
+-/
 theorem traceForm_eq_fast (x y : Coord) :
     traceForm x y = traceLinearForm x * traceLinearForm y - spurPairForm x y := by
   rw [traceForm, traceN_eq_traceLinearForm, traceN_eq_traceLinearForm,
     spurBilinear_eq_spurPairForm]
 
+/--
+@isnad1 id=eq.0h0v.s2.f80660bed17f from=translated src=- shape=54c8eceb vocab=efe30fe6
+-/
 theorem thetaME_eq_theta1E_fast : thetaME = theta1E := by
   funext i
   fin_cases i <;> norm_num [thetaME, theta1E, q]
 
-/-- The standard frame projectors extract diagonal coordinates on the left.-/
+/-- The standard frame projectors extract diagonal coordinates on the left.
+@isnad1 id=eq.0h2v.s4.9281e5ef6fc0 from=translated src=- shape=a355b90d vocab=08647ad3
+-/
 theorem traceForm_projector_theta1E_left (i : Fin 3) (z : Coord) :
     traceForm (projector theta1E i) z = v z i.val := by
   fin_cases i <;>
@@ -205,7 +234,9 @@ theorem traceForm_projector_theta1E_left (i : Fin 3) (z : Coord) :
     norm_num [traceLinearForm, spurPairForm, Theta1ESquare, theta1E, one, v, q] <;>
       ring
 
-/-- The standard frame projectors extract diagonal coordinates on the right.-/
+/-- The standard frame projectors extract diagonal coordinates on the right.
+@isnad1 id=eq.0h2v.s4.5c5b166783a4 from=translated src=- shape=ff1a7807 vocab=08647ad3
+-/
 theorem traceForm_projector_theta1E_right (i : Fin 3) (z : Coord) :
     traceForm z (projector theta1E i) = v z i.val := by
   fin_cases i <;>

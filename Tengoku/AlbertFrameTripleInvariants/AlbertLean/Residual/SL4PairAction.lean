@@ -67,7 +67,9 @@ structure DetOneMatrix (K : Type u) [Field K] where
   det_g : Matrix.det g = 1
 
 /-- the specified inverse of a
-determinant-one matrix also has determinant one.-/
+determinant-one matrix also has determinant one.
+@isnad1 id=eq.0h2v.s5.583db924c9f1 from=translated src=- shape=46d9f30e vocab=df69f5e7
+-/
 theorem DetOneMatrix.det_gInv (G : DetOneMatrix K) :
     Matrix.det G.gInv = 1 := by
   calc
@@ -83,17 +85,23 @@ def act (G : DetOneMatrix K) (P : ResidualPair K) : ResidualPair K where
   X := G.g * P.X
 
 /-- the covector-row projection
-of the explicit action.-/
+of the explicit action.
+@isnad1 id=eq.0h3v.s6.d82417153657 from=translated src=- shape=db10997c vocab=58a085af
+-/
 @[simp] theorem act_A (G : DetOneMatrix K) (P : ResidualPair K) :
     (act G P).A = P.A * G.gInv := rfl
 
 /-- the vector-column
-projection of the explicit action.-/
+projection of the explicit action.
+@isnad1 id=eq.0h3v.s6.fd9b68010f3e from=translated src=- shape=e7f5674a vocab=ea72dd31
+-/
 @[simp] theorem act_X (G : DetOneMatrix K) (P : ResidualPair K) :
     (act G P).X = G.g * P.X := rfl
 
 /-- the pairing matrix is fixed by the
-explicit determinant-one action.-/
+explicit determinant-one action.
+@isnad1 id=eq.0h3v.s4.329b7182c5a2 from=translated src=- shape=12de1466 vocab=d61f1704
+-/
 @[simp] theorem moment_act (G : DetOneMatrix K) (P : ResidualPair K) :
     moment (act G P) = moment P := by
   calc
@@ -103,13 +111,17 @@ explicit determinant-one action.-/
     _ = P.A * P.X := by rw [G.gInv_mul_g, Matrix.mul_one]
 
 /-- `Delta = det X` is fixed by the
-explicit determinant-one action.-/
+explicit determinant-one action.
+@isnad1 id=eq.0h3v.s4.661456771b2c from=translated src=- shape=15709cb3 vocab=6c10f88c
+-/
 @[simp] theorem delta_act (G : DetOneMatrix K) (P : ResidualPair K) :
     delta (act G P) = delta P := by
   simp [delta, Matrix.det_mul, G.det_g]
 
 /-- `DeltaStar = det A` is fixed by the
-explicit determinant-one action.-/
+explicit determinant-one action.
+@isnad1 id=eq.0h3v.s4.47a4c099de7d from=translated src=- shape=15709cb3 vocab=f4720696
+-/
 @[simp] theorem deltaStar_act (G : DetOneMatrix K) (P : ResidualPair K) :
     deltaStar (act G P) = deltaStar P := by
   simp [deltaStar, Matrix.det_mul, G.det_gInv]
@@ -120,7 +132,9 @@ def Related (P Q : ResidualPair K) : Prop :=
   ∃ G : DetOneMatrix K, act G P = Q
 
 /-- explicit relatedness preserves the
-pairing matrix and both determinant coordinates.-/
+pairing matrix and both determinant coordinates.
+@isnad1 id=and.1h3v.s5.62578e6d1446 from=translated src=- shape=42fcfc6c vocab=034cec39
+-/
 theorem related_preserves_invariants {P Q : ResidualPair K}
     (h : Related P Q) :
     moment P = moment Q ∧ delta P = delta Q ∧ deltaStar P = deltaStar Q := by

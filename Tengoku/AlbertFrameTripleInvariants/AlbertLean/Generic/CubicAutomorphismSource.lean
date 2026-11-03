@@ -52,7 +52,9 @@ def sourceRecoveryPresentation :
     rfl
 
 /-- A source-linear bijection preserving the literal cubic and unit preserves
-the recovered adjoint.-/
+the recovered adjoint.
+@isnad1 id=eq.2h3v.s10.ab4edcd897ac from=translated src=- shape=320da759 vocab=9b8bb340
+-/
 theorem sourceAdjoint_invariant_of_cubic_unit
     (g : JCoord K ≃ₗ[K] JCoord K)
     (hOne : g sourceOne = sourceOne)
@@ -61,7 +63,9 @@ theorem sourceAdjoint_invariant_of_cubic_unit
   exact sourceRecoveryPresentation.map_adjoint g hOne hCubic x
 
 /-- A source-linear bijection preserving the literal cubic and unit preserves
-the source cross product.-/
+the source cross product.
+@isnad1 id=eq.2h4v.s11.4d5c3a16d2af from=translated src=- shape=fa52c800 vocab=a34fb495
+-/
 theorem sourceCross_invariant_of_cubic_unit
     (g : JCoord K ≃ₗ[K] JCoord K)
     (hOne : g sourceOne = sourceOne)
@@ -69,7 +73,9 @@ theorem sourceCross_invariant_of_cubic_unit
     g (sourceCross x y) = sourceCross (g x) (g y) := by
   exact sourceRecoveryPresentation.map_cross g hOne hCubic x y
 
-/-- Field-generic compression theorem for the source model.-/
+/-- Field-generic compression theorem for the source model.
+@isnad1 id=eq.2h4v.s11.490272bf8207 from=translated src=- shape=fa52c800 vocab=14376434
+-/
 theorem sourceProduct_invariant_of_cubic_unit
     (g : JCoord K ≃ₗ[K] JCoord K)
     (hOne : g sourceOne = sourceOne)

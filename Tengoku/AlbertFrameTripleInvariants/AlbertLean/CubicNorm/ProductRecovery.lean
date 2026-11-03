@@ -36,6 +36,9 @@ variable (D : RecoveryData K V)
 /-- The cubic gradient with the locked finite-difference normalization.-/
 def gradient (x : V) : Module.Dual K V := (2 : K)⁻¹ • D.polar x x
 
+/--
+@isnad1 id=eq.0h5v.s11.5f37ca44118f from=translated src=- shape=c179c65f vocab=223ef090
+-/
 @[simp] theorem gradient_apply (x y : V) : D.gradient x y = D.polar x x y / 2 := by
   simp [gradient, div_eq_mul_inv, mul_comm]
 
@@ -43,7 +46,9 @@ def gradient (x : V) : Module.Dual K V := (2 : K)⁻¹ • D.polar x x
 noncomputable def adjoint [FiniteDimensional K V] (x : V) : V :=
   (traceDualEquiv D.traceForm D.traceForm_nondegenerate).symm (D.gradient x)
 
-/-- The adjoint is characterized without reference to a basis.-/
+/-- The adjoint is characterized without reference to a basis.
+@isnad1 id=eq.0h5v.s11.8eee29fd224b from=translated src=- shape=2e82c4c0 vocab=3afc84c9
+-/
 theorem adjoint_characterization [FiniteDimensional K V] (x y : V) :
     D.traceForm (D.adjoint x) y = D.polar x x y / 2 := by
   rw [adjoint, traceDualEquiv_symm_apply_apply, gradient_apply]
@@ -60,6 +65,9 @@ noncomputable def product [FiniteDimensional K V] (x y : V) : V :=
   (2 : K)⁻¹ •
     (D.cross x y + D.trace x • y + D.trace y • x - D.spurBilinear x y • D.one)
 
+/--
+@isnad1 id=eq.0h6v.s12.ae335f55027c from=translated src=- shape=a31f0668 vocab=c940a294
+-/
 theorem cross_characterization [FiniteDimensional K V] (x y z : V) :
     D.traceForm (D.cross x y) z =
       (D.polar x y z + D.polar y x z) / 2 := by
@@ -69,10 +77,16 @@ theorem cross_characterization [FiniteDimensional K V] (x y z : V) :
   simp [div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.fb8c4e1b92e3 from=translated src=- shape=37b0ea09 vocab=8a78b09b
+-/
 theorem cross_comm [FiniteDimensional K V] (x y : V) : D.cross x y = D.cross y x := by
   simp only [cross, add_comm]
   abel
 
+/--
+@isnad1 id=eq.0h6v.s6.1500d7a846f1 from=translated src=- shape=5653eef5 vocab=dd7b6a96
+-/
 theorem cross_add_left [FiniteDimensional K V] (x₁ x₂ y : V) :
     D.cross (x₁ + x₂) y = D.cross x₁ y + D.cross x₂ y := by
   apply sub_eq_zero.mp
@@ -84,6 +98,9 @@ theorem cross_add_left [FiniteDimensional K V] (x₁ x₂ y : V) :
   simp
   ring
 
+/--
+@isnad1 id=eq.0h6v.s7.177946ab4b5f from=translated src=- shape=675e281d vocab=a173f969
+-/
 theorem cross_smul_left [FiniteDimensional K V] (a : K) (x y : V) :
     D.cross (a • x) y = a • D.cross x y := by
   apply sub_eq_zero.mp
@@ -95,30 +112,44 @@ theorem cross_smul_left [FiniteDimensional K V] (a : K) (x y : V) :
   simp
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.90ab01613d94 from=translated src=- shape=1d0eaeb3 vocab=65f4c8bd
+-/
 theorem spurBilinear_add_left (x₁ x₂ y : V) :
     D.spurBilinear (x₁ + x₂) y =
       D.spurBilinear x₁ y + D.spurBilinear x₂ y := by
   simp [spurBilinear]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s7.806f61e28caa from=translated src=- shape=8855fa33 vocab=309e8ce4
+-/
 theorem spurBilinear_smul_left (a : K) (x y : V) :
     D.spurBilinear (a • x) y = a * D.spurBilinear x y := by
   simp [spurBilinear]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.8692bfa3efc7 from=translated src=- shape=5653eef5 vocab=ce50f519
+-/
 theorem product_add_left [FiniteDimensional K V] (x₁ x₂ y : V) :
     D.product (x₁ + x₂) y = D.product x₁ y + D.product x₂ y := by
   simp only [product, cross_add_left, map_add, spurBilinear_add_left,
     add_smul]
   module
 
+/--
+@isnad1 id=eq.0h6v.s7.436c83fa16ee from=translated src=- shape=675e281d vocab=5226ddbb
+-/
 theorem product_smul_left [FiniteDimensional K V] (a : K) (x y : V) :
     D.product (a • x) y = a • D.product x y := by
   simp only [product, cross_smul_left, map_smul, spurBilinear_smul_left,
     smul_add, smul_sub, smul_smul]
   module
 
-/-- Commutativity requires only symmetry of the trace form.-/
+/-- Commutativity requires only symmetry of the trace form.
+@isnad1 id=eq.1h5v.s10.7e3539444cd3 from=translated src=- shape=b05dfc84 vocab=d0585f36
+-/
 theorem product_comm [FiniteDimensional K V]
     (hB : ∀ x y, D.traceForm x y = D.traceForm y x) (x y : V) :
     D.product x y = D.product y x := by
@@ -129,6 +160,9 @@ theorem product_comm [FiniteDimensional K V]
   rw [hS]
   module
 
+/--
+@isnad1 id=eq.1h6v.s10.8e934a41fe45 from=translated src=- shape=4ff1888a vocab=286b9a19
+-/
 theorem product_add_right [FiniteDimensional K V]
     (hB : ∀ x y, D.traceForm x y = D.traceForm y x) (x y₁ y₂ : V) :
     D.product x (y₁ + y₂) = D.product x y₁ + D.product x y₂ := by
@@ -138,6 +172,9 @@ theorem product_add_right [FiniteDimensional K V]
     _ = D.product x y₁ + D.product x y₂ := by
       rw [D.product_comm hB y₁ x, D.product_comm hB y₂ x]
 
+/--
+@isnad1 id=eq.1h6v.s10.8e77266c9bee from=translated src=- shape=44047f6d vocab=38fe5fa5
+-/
 theorem product_smul_right [FiniteDimensional K V]
     (hB : ∀ x y, D.traceForm x y = D.traceForm y x) (a : K) (x y : V) :
     D.product x (a • y) = a • D.product x y := by
@@ -146,7 +183,9 @@ theorem product_smul_right [FiniteDimensional K V]
     _ = a • D.product y x := D.product_smul_left _ _ _
     _ = a • D.product x y := by rw [D.product_comm hB y x]
 
-/-- Adjoint recovery commutes with any equivalence preserving both forms.-/
+/-- Adjoint recovery commutes with any equivalence preserving both forms.
+@isnad1 id=eq.2h7v.s12.10fe160809c7 from=translated src=- shape=02d89275 vocab=508355b7
+-/
 theorem map_adjoint
     {W : Type*} [AddCommGroup W] [Module K W]
     [FiniteDimensional K V] [FiniteDimensional K W]
@@ -162,6 +201,9 @@ theorem map_adjoint
   rw [hB, D.adjoint_characterization, E.adjoint_characterization, hP]
   ring
 
+/--
+@isnad1 id=eq.2h8v.s12.f2c197005085 from=translated src=- shape=7a8bb54a vocab=925a039b
+-/
 theorem map_cross
     {W : Type*} [AddCommGroup W] [Module K W]
     [FiniteDimensional K V] [FiniteDimensional K W]
@@ -171,7 +213,9 @@ theorem map_cross
     (x y : V) : e (D.cross x y) = E.cross (e x) (e y) := by
   simp [cross, D.map_adjoint E e hB hP]
 
-/-- Full product transport under unit, trace-form, trace, and polarization preservation.-/
+/-- Full product transport under unit, trace-form, trace, and polarization preservation.
+@isnad1 id=eq.4h8v.s12.3f40bcf52876 from=translated src=- shape=cd3620ae vocab=6a3efb69
+-/
 theorem map_product
     {W : Type*} [AddCommGroup W] [Module K W]
     [FiniteDimensional K V] [FiniteDimensional K W]

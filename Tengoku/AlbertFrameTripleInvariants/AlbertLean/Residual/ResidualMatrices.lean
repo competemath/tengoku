@@ -37,7 +37,9 @@ def AMatrix (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
   fun i j => ![s1.phi j, s2.phi j, c1.psi j, c2.psi j] i
 
 /-- entrywise evaluation is
-exactly matrix multiplication in the frozen row and column orders.-/
+exactly matrix multiplication in the frozen row and column orders.
+@isnad1 id=eq.0h5v.s7.53e22cb8951d from=translated src=- shape=43f432ad vocab=909ca077
+-/
 theorem momentMatrix_eq_AMatrix_mul_XMatrix
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     momentMatrix s1 s2 c1 c2 =
@@ -50,7 +52,9 @@ theorem momentMatrix_eq_AMatrix_mul_XMatrix
 
 /-- the minus sign in `deltaX`
 compensates for the interleaved exterior input order, so the result is the
-determinant with columns `p1, p2, q1, q2`.-/
+determinant with columns `p1, p2, q1, q2`.
+@isnad1 id=eq.0h5v.s6.a3ae80461c0e from=translated src=- shape=2554daeb vocab=5690f49a
+-/
 theorem deltaX_eq_det_XMatrix
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     deltaX s1 s2 c1 c2 = Matrix.det (XMatrix s1 s2 c1 c2) := by
@@ -61,7 +65,9 @@ theorem deltaX_eq_det_XMatrix
 
 /-- the minus sign in
 `deltaStarA` compensates for the interleaved dual exterior input order, so the
-result is the determinant with rows `phi1, phi2, psi1, psi2`.-/
+result is the determinant with rows `phi1, phi2, psi1, psi2`.
+@isnad1 id=eq.0h5v.s6.851a34b9147d from=translated src=- shape=2554daeb vocab=a3281a53
+-/
 theorem deltaStarA_eq_det_AMatrix
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     deltaStarA s1 s2 c1 c2 = Matrix.det (AMatrix s1 s2 c1 c2) := by
@@ -73,7 +79,9 @@ theorem deltaStarA_eq_det_AMatrix
 
 /-- determinant
 multiplicativity turns `M = A * X` into the product of the two frozen oriented
-four-brackets.-/
+four-brackets.
+@isnad1 id=eq.0h5v.s6.0bdb1693bf90 from=translated src=- shape=dae119e3 vocab=c6c1dde6
+-/
 theorem det_momentMatrix_eq_deltaX_mul_deltaStarA
     (s1 s2 : SCoord K) (c1 c2 : CCoord K) :
     Matrix.det (momentMatrix s1 s2 c1 c2) =

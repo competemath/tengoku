@@ -100,6 +100,9 @@ private theorem oldDual_coord_26 (f : Coord) : oldDual f 26 = f 22 := by
   simp [oldDual, AlbertLean.traceDualCoeff, AlbertLean.traceDualCoeffNat,
     Fin.sum_univ_succ, AlbertLean.q]
 
+/--
+@isnad1 id=eq.0h1v.s3.b1bc9092963a from=translated src=- shape=0fc427d2 vocab=72f5bf00
+-/
 theorem dual_eq_oldDual (f : Coord) : dual f = oldDual f := by
   funext k
   fin_cases k <;> simp [dual, oldDual_coord_0, oldDual_coord_1,

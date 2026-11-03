@@ -22,7 +22,9 @@ namespace AlbertLean.Generic.ResidualMomentSubfield
 variable {K : Type*} [Field K]
 
 /-- The determinant-two inverse used three times earlier in the paper's
-dictionary: Gram entries, mixed trialities, then mixed-adjoint pairings.-/
+dictionary: Gram entries, mixed trialities, then mixed-adjoint pairings.
+@isnad1 id=and.3h5v.s7.4c05b36e9c8b from=translated src=- shape=b4eac0d5 vocab=e1f2cf34
+-/
 theorem triple_mem_of_pair_sums [CharZero K] (F : Subfield K) (x y z : K)
     (hxy : x + y ∈ F) (hyz : y + z ∈ F) (hzx : z + x ∈ F) :
     x ∈ F ∧ y ∈ F ∧ z ∈ F := by
@@ -40,7 +42,9 @@ theorem triple_mem_of_pair_sums [CharZero K] (F : Subfield K) (x y z : K)
     exact F.div_mem (F.sub_mem (F.add_mem hyz hzx) hxy) h2
 
 /-- One Cramer inversion supplies every nontrivial step of the residual
-moment inverse. This is independent of algebraic geometry and degree APIs.-/
+moment inverse. This is independent of algebraic geometry and degree APIs.
+@isnad1 id=and.7h8v.s8.a95f58d78b2e from=translated src=- shape=4b203298 vocab=a5b5ef06
+-/
 theorem pair_mem_of_linear_mem (F : Subfield K)
     (a b c d x y : K)
     (ha : a ∈ F) (hb : b ∈ F) (hc : c ∈ F) (hd : d ∈ F)
@@ -66,7 +70,9 @@ theorem pair_mem_of_linear_mem (F : Subfield K)
 
 /-- Four diagonal norms, two Gram sums, eight mixed trialities and two
 mixed-adjoint pairings recover all sixteen entries over the gauge field.
-Only the orientation determinant must be nonzero.-/
+Only the orientation determinant must be nonzero.
+@isnad1 id=mem.11h9v.s10.fb7a8763cf33 from=translated src=- shape=b1ec5934 vocab=0b14c6e5
+-/
 theorem matrix_entries_mem (F : Subfield K)
     (M : Matrix (Fin 4) (Fin 4) K) (r1 z1 r2 z2 : K)
     (hr1 : r1 ∈ F) (hz1 : z1 ∈ F) (hr2 : r2 ∈ F) (hz2 : z2 ∈ F)
@@ -110,6 +116,9 @@ theorem matrix_entries_mem (F : Subfield K)
 
 open AlbertLean.Residual.TrialitySquares
 
+/--
+@isnad1 id=mem.1h3v.s6.cb79813d1485 from=translated src=- shape=eac3c535 vocab=6375176f
+-/
 theorem exteriorQ_mem (F : Subfield K)
     (M : Matrix (Fin 4) (Fin 4) K) (h : ∀ i j, M i j ∈ F) :
     exteriorQ M ∈ F := by
@@ -123,7 +132,9 @@ theorem exteriorQ_mem (F : Subfield K)
     (F.mul_mem (h 0 3) (h 2 1))
 
 /-- The already proved exterior identity supplies the final retained
-symmetric determinant coordinate. No determinant expansion is needed.-/
+symmetric determinant coordinate. No determinant expansion is needed.
+@isnad1 id=mem.2h6v.s7.eee2cb4f4340 from=translated src=- shape=0535ce20 vocab=628a5d1b
+-/
 theorem determinant_sum_mem [CharZero K] (F : Subfield K)
     (s1 s2 : AlbertLean.Triality.ExteriorSix.SCoord K)
     (c1 c2 : AlbertLean.Triality.ExteriorSix.CCoord K)

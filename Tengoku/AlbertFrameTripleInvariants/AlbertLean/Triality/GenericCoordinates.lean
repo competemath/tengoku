@@ -76,6 +76,9 @@ def f0ToStructuredK (x : F0Coord K) : JCoord K :=
       { q := ![x 19, x 20, x 21, x 22]
         psi := ![x 23, x 24, x 25, x 26] } }
 
+/--
+@isnad1 id=eq.0h2v.s4.31b41f1a0262 from=translated src=- shape=e17ccb0b vocab=b7354ab4
+-/
 theorem f0ToStructuredK_structuredToF0K (x : JCoord K) :
     f0ToStructuredK K (structuredToF0K K x) = x := by
   apply JCoord.ext
@@ -98,6 +101,9 @@ theorem f0ToStructuredK_structuredToF0K (x : JCoord K) :
     · funext i
       fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c546eded6aa8 from=translated src=- shape=e17ccb0b vocab=1a561aee
+-/
 theorem structuredToF0K_f0ToStructuredK (x : F0Coord K) :
     structuredToF0K K (f0ToStructuredK K x) = x := by
   funext i
@@ -116,9 +122,15 @@ def structuredEquivK : JCoord K ≃ₗ[K] F0Coord K where
     funext i
     fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.8d16e219c7a8 from=translated src=- shape=62f77d1b vocab=218ad7d1
+-/
 @[simp] theorem structuredEquivK_apply (x : JCoord K) :
     structuredEquivK K x = structuredToF0K K x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.04e935a78ed7 from=translated src=- shape=71f9b53b vocab=d7b26b7e
+-/
 @[simp] theorem structuredEquivK_symm_apply (x : F0Coord K) :
     (structuredEquivK K).symm x = f0ToStructuredK K x := rfl
 

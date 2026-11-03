@@ -68,12 +68,18 @@ def evaluationAlong (f : k →+* L) (P : Fin 3 → Fin 3 → F0Coord L) :
   MvPolynomial.eval₂Hom f (fun x => match x with
     | .entry r i c => P r i c)
 
+/--
+@isnad1 id=eq.0h7v.s7.bda9ba341792 from=translated src=- shape=6185ebb0 vocab=214fb76e
+-/
 @[simp] theorem evaluationAlong_universalVector
     (f : k →+* L) (P : Fin 3 → Fin 3 → F0Coord L)
     (r i : Fin 3) (c : Fin 27) :
     evaluationAlong f P (universalVector r i c) = P r i c := by
   simp [evaluationAlong, universalVector]
 
+/--
+@isnad1 id=eq.0h7v.s8.997f08aab97e from=translated src=- shape=7a22356b vocab=55ace303
+-/
 @[simp] theorem evaluationAlong_productCoordinate
     (f : k →+* L) (P : Fin 3 → Fin 3 → F0Coord L)
     (x y : F0Coord (CoordinateRing k)) (c : Fin 27) :
@@ -83,6 +89,9 @@ def evaluationAlong (f : k →+* L) (P : Fin 3 → Fin 3 → F0Coord L) :
           tensorCoeffK a b c := by
   simp [productCoordinate, tensorCoeffK, evaluationAlong]
 
+/--
+@isnad1 id=iff.0h4v.s7.be1f767769c9 from=translated src=- shape=31de057a vocab=df98203d
+-/
 theorem equations_vanishAlong_iff
     (f : k →+* L) (P : Fin 3 → Fin 3 → F0Coord L) :
     (∀ q, evaluationAlong f P (equation q) = 0) ↔ IsRawFrameFamily P := by
@@ -114,6 +123,9 @@ theorem equations_vanishAlong_iff
           simpa [equation, unitCoordinate, f0OneK, sub_eq_zero,
             Finset.sum_apply] using hc
 
+/--
+@isnad1 id=iff.0h4v.s8.b40cdeb6752a from=translated src=- shape=04ee3d4c vocab=7aad2b62
+-/
 theorem rawFrameIdeal_le_ker_iff
     (f : k →+* L) (P : Fin 3 → Fin 3 → F0Coord L) :
     rawFrameIdeal (k := k) ≤ RingHom.ker (evaluationAlong f P) ↔

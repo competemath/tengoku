@@ -41,6 +41,9 @@ def cubicSymPolar {V : Type*} [AddCommGroup V] [Module K V]
   cubicTrilinearTerm μ T one b a c + cubicTrilinearTerm μ T one b c a +
   cubicTrilinearTerm μ T one c a b + cubicTrilinearTerm μ T one c b a
 
+/--
+@isnad1 id=eq.0h8v.s8.07d357e8e317 from=translated src=- shape=16f8ba60 vocab=dfe70c93
+-/
 theorem cubicPolar_eq_cubicSymPolar {V : Type*} [AddCommGroup V] [Module K V]
     (μ : V →ₗ[K] V →ₗ[K] V) (T : V →ₗ[K] K) (one a b c : V) :
     cubicPolar μ T one a b c = cubicSymPolar μ T one a b c := by
@@ -64,12 +67,18 @@ def cubicPolarMap {V : Type*} [AddCommGroup V] [Module K V]
         simp [cubicSymPolar, cubicTrilinearTerm, Function.update_apply, map_smul,
           LinearMap.smul_apply, smul_eq_mul] <;> module)
 
+/--
+@isnad1 id=eq.0h6v.s8.7c553f40eac1 from=translated src=- shape=d1bbea8f vocab=5385e0ff
+-/
 @[simp] theorem cubicPolarMap_apply {V : Type*} [AddCommGroup V] [Module K V]
     (μ : V →ₗ[K] V →ₗ[K] V) (T : V →ₗ[K] K) (one : V)
     (v : Fin 3 → V) :
     cubicPolarMap μ T one v = cubicPolar μ T one (v 0) (v 1) (v 2) := by
   exact (cubicPolar_eq_cubicSymPolar μ T one (v 0) (v 1) (v 2)).symm
 
+/--
+@isnad1 id=eq.0h6v.s8.1a8dbcc494c7 from=translated src=- shape=8d1b9748 vocab=4e4a7dbf
+-/
 theorem cubicPolar_diagonal {V : Type*} [AddCommGroup V] [Module K V]
     (μ : V →ₗ[K] V →ₗ[K] V) (T : V →ₗ[K] K) (one x : V) :
     cubicPolar μ T one x x x = (6 : K) • cubicResidual μ T one x := by
