@@ -422,13 +422,52 @@ class Workflows(unittest.TestCase):
             step["run"].index('"$head" != "$RUN_HEAD"'), step["run"].index("autotag_push.py"), "checked before anything is pushed"
         )
 
-    def test_the_fetch_of_mains_scripts_tries_a_server_error_again_before_it_fails(self):
+    def run_the_fetch_of_mains_scripts(self, fails_first):
+        """The step's own script, in bash as the runner runs it (-e, pipefail), with a `gh` that fails `fails_first` times with a server error and then answers, and a `sleep` that does not wait: (exit code, files written, `gh` calls)."""
+        import os
+        import subprocess
+        import tempfile
+
         steps = self.load("autotag-push.yml")["jobs"]["push"]["steps"]
-        run = next(x for x in steps if x.get("name") == "Main's scripts")["run"]
-        self.assertIn("for try in 1 2 3 4", run)
-        self.assertIn("&& break", run)
-        self.assertIn('[ "$try" = 4 ] && exit 1', run, "the fourth failure fails the step")
-        self.assertIn("sleep", run)
+        script = next(x for x in steps if x.get("name") == "Main's scripts")["run"]
+        with tempfile.TemporaryDirectory() as d:
+            shim = Path(d) / "shim"
+            shim.mkdir()
+            (shim / "gh").write_text(
+                '#!/usr/bin/env bash\nn=$(cat "$COUNT" 2>/dev/null || echo 0); echo $((n+1)) > "$COUNT"\n'
+                'if [ "$n" -lt "$FAILS" ]; then echo "gh: Internal Server Error (HTTP 500)" >&2; exit 1; fi\necho "# a file"\n',
+                encoding="utf-8",
+            )
+            (shim / "sleep").write_text("#!/usr/bin/env bash\nexit 0\n", encoding="utf-8")
+            for f in shim.iterdir():
+                f.chmod(0o755)
+            work = Path(d) / "work"
+            work.mkdir()
+            env = {
+                **os.environ,
+                "PATH": f"{shim}{os.pathsep}{os.environ['PATH']}",
+                "COUNT": str(Path(d) / "count"),
+                "FAILS": str(fails_first),
+            }
+            env["GITHUB_REPOSITORY"] = "competemath/tengoku"
+            r = subprocess.run(
+                ["bash", "-e", "-o", "pipefail", "-c", script], cwd=work, env=env, capture_output=True, text=True, check=False
+            )
+            wrote = sorted(str(p.relative_to(work)) for p in work.rglob("*") if p.is_file() and p.stat().st_size)
+            calls = int((Path(d) / "count").read_text().strip())
+            return r.returncode, wrote, calls
+
+    def test_the_fetch_of_mains_scripts_goes_on_after_two_server_errors(self):
+        code, wrote, calls = self.run_the_fetch_of_mains_scripts(2)
+        self.assertEqual(code, 0)
+        self.assertIn("scripts/isnad.py", wrote)
+        self.assertIn("scripts/ci/tag_check.py", wrote)
+        self.assertEqual(calls, 2 + 11, "the first read took three tries, the other ten one each")
+
+    def test_the_fetch_of_mains_scripts_fails_after_four_server_errors_in_a_row(self):
+        code, _, calls = self.run_the_fetch_of_mains_scripts(100)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(calls, 4, "four tries at the first file, then the step stops")
 
     def test_a_run_that_uploaded_nothing_is_skipped_not_failed(self):
         steps = self.load("autotag-push.yml")["jobs"]["push"]["steps"]
