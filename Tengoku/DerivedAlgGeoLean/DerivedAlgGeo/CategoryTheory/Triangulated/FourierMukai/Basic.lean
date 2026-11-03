@@ -91,11 +91,17 @@ constituents.-/
 abbrev transform (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) : 𝒳 ⥤ 𝒴 :=
   C.pull ⋙ C.tensor.obj K ⋙ C.push
 
+/--
+@isnad1 id=eq.0h6v.s6.3edf2f4ff592 from=translated src=- shape=48072871 vocab=33c8a5a1
+-/
 @[simp]
 theorem transform_obj (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) (E : 𝒳) :
     (C.transform K).obj E = C.push.obj ((C.tensor.obj K).obj (C.pull.obj E)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.338c5da97aee from=translated src=- shape=54ab7c27 vocab=6f732a2a
+-/
 @[simp]
 theorem transform_map (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) {E F : 𝒳} (f : E ⟶ F) :
     (C.transform K).map f =
@@ -110,17 +116,26 @@ def transformMap (C : Correspondence 𝒳 𝒴 𝒵) {K L : 𝒵} (f : K ⟶ L) 
     C.transform K ⟶ C.transform L :=
   Functor.whiskerLeft C.pull (Functor.whiskerRight (C.tensor.map f) C.push)
 
+/--
+@isnad1 id=eq.0h8v.s8.359e775161a6 from=translated src=- shape=55545f5b vocab=19e1bdcf
+-/
 @[simp]
 theorem transformMap_app (C : Correspondence 𝒳 𝒴 𝒵) {K L : 𝒵} (f : K ⟶ L)
     (E : 𝒳) :
     (C.transformMap f).app E = C.push.map ((C.tensor.map f).app (C.pull.obj E)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.0f37baba52e7 from=translated src=- shape=ffd8d124 vocab=ec972571
+-/
 @[simp]
 theorem transformMap_id (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) :
     C.transformMap (𝟙 K) = 𝟙 (C.transform K) := by
   simp [transformMap]
 
+/--
+@isnad1 id=eq.0h9v.s7.ae859a657e10 from=translated src=- shape=7e9c2a2b vocab=a94b9e2f
+-/
 @[simp]
 theorem transformMap_comp (C : Correspondence 𝒳 𝒴 𝒵) {K L M : 𝒵}
     (f : K ⟶ L) (g : L ⟶ M) :
@@ -140,10 +155,16 @@ def kernelTransform (C : Correspondence 𝒳 𝒴 𝒵) :
   map_id K := C.transformMap_id K
   map_comp f g := C.transformMap_comp f g
 
+/--
+@isnad1 id=eq.0h5v.s5.6b4c8d8a98a2 from=translated src=- shape=b250ed1c vocab=1f9cde0e
+-/
 @[simp]
 theorem kernelTransform_obj (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) :
     C.kernelTransform.obj K = C.transform K := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.e9fb7c4563bd from=translated src=- shape=57d79856 vocab=997c7634
+-/
 @[simp]
 theorem kernelTransform_map (C : Correspondence 𝒳 𝒴 𝒵) {K L : 𝒵}
     (f : K ⟶ L) :
@@ -156,11 +177,17 @@ def kernelEvaluation (C : Correspondence 𝒳 𝒴 𝒵) (E : 𝒳) :
     𝒵 ⥤ 𝒴 :=
   C.kernelTransform ⋙ (evaluation 𝒳 𝒴).obj E
 
+/--
+@isnad1 id=eq.0h6v.s5.bfc20f19c9ed from=translated src=- shape=649817d5 vocab=14010193
+-/
 @[simp]
 theorem kernelEvaluation_obj (C : Correspondence 𝒳 𝒴 𝒵) (E : 𝒳)
     (K : 𝒵) :
     (C.kernelEvaluation E).obj K = (C.transform K).obj E := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.933c37c7170f from=translated src=- shape=c46dcfa6 vocab=aa0e7b80
+-/
 @[simp]
 theorem kernelEvaluation_map (C : Correspondence 𝒳 𝒴 𝒵) (E : 𝒳)
     {K L : 𝒵} (f : K ⟶ L) :
@@ -174,16 +201,25 @@ def transformMapIso (C : Correspondence 𝒳 𝒴 𝒵) {K L : 𝒵} (e : K ≅ 
   Functor.isoWhiskerLeft C.pull
     (Functor.isoWhiskerRight (C.tensor.mapIso e) C.push)
 
+/--
+@isnad1 id=eq.0h7v.s7.0d2d91924940 from=translated src=- shape=fd3af157 vocab=9bc65c3c
+-/
 @[simp]
 theorem transformMapIso_hom (C : Correspondence 𝒳 𝒴 𝒵) {K L : 𝒵} (e : K ≅ L) :
     (C.transformMapIso e).hom = C.transformMap e.hom := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.942aa2ffa575 from=translated src=- shape=1ce7dc0b vocab=198b1d86
+-/
 @[simp]
 theorem transformMapIso_inv (C : Correspondence 𝒳 𝒴 𝒵) {K L : 𝒵} (e : K ≅ L) :
     (C.transformMapIso e).inv = C.transformMap e.inv := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.727fe8f573f0 from=translated src=- shape=ffd8d124 vocab=c32d0038
+-/
 @[simp]
 theorem transformMapIso_refl (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) :
     C.transformMapIso (Iso.refl K) = Iso.refl (C.transform K) := by
@@ -199,12 +235,16 @@ Fourier--Mukai theory is aimed at.  It is stated nowhere in this file.-/
 def IsKernelFunctor (C : Correspondence 𝒳 𝒴 𝒵) (Φ : 𝒳 ⥤ 𝒴) : Prop :=
   ∃ K : 𝒵, Nonempty (Φ ≅ C.transform K)
 
-/-- A transform is a kernel functor, witnessed by its own kernel.-/
+/-- A transform is a kernel functor, witnessed by its own kernel.
+@isnad1 id=iskernel.0h5v.s5.e436b2e9d76d from=translated src=- shape=5fbcddbd vocab=8d7e0228
+-/
 theorem isKernelFunctor_transform (C : Correspondence 𝒳 𝒴 𝒵) (K : 𝒵) :
     C.IsKernelFunctor (C.transform K) :=
   ⟨K, ⟨Iso.refl _⟩⟩
 
-/-- Being a kernel functor is invariant under natural isomorphism.-/
+/-- Being a kernel functor is invariant under natural isomorphism.
+@isnad1 id=iskernel.1h7v.s6.06feac9c057c from=translated src=- shape=4355c2ad vocab=f07094d5
+-/
 theorem IsKernelFunctor.of_natIso {C : Correspondence 𝒳 𝒴 𝒵} {Φ Ψ : 𝒳 ⥤ 𝒴}
     (h : C.IsKernelFunctor Φ) (e : Φ ≅ Ψ) : C.IsKernelFunctor Ψ := by
   obtain ⟨K, ⟨f⟩⟩ := h
@@ -249,12 +289,16 @@ variable [C.pull.IsTriangulated] [(C.tensor.obj K).IsTriangulated]
 Exactness of the twist `tensor.obj K` is a hypothesis on the chosen kernel,
 not a property of `C`: the geometric statement it stands for is that `− ⊗^L P`
 is exact, which for a general kernel needs the derived tensor product rather
-than the underived one.-/
+than the underived one.
+@isnad1 id=istriang.0h5v.s8.f969b7c4252f from=translated src=- shape=81a221ed vocab=cbce0524
+-/
 theorem transform_isTriangulated : (C.transform K).IsTriangulated := inferInstance
 
 /-- A transform of triangulated constituents is additive.  Immediate from
 `transform_isTriangulated`, and stated separately because `Additive` is the
-hypothesis the Grothendieck-group API asks for.-/
+hypothesis the Grothendieck-group API asks for.
+@isnad1 id=additive.0h5v.s8.7d1ab6eda976 from=translated src=- shape=3b5bbdc7 vocab=156dbed5
+-/
 theorem transform_additive : (C.transform K).Additive := inferInstance
 
 end Exact

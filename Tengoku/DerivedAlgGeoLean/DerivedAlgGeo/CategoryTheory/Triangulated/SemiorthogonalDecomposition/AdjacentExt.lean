@@ -55,7 +55,9 @@ variable (A : AdjacentExtProfile (k := k) E F)
 include A B in
 /-- The arithmetic heart of adjacent-shift rigidity.  If the dimensions of
 the source shifted Homs agree with those of the target after translating by
-`t - s`, then the two shifts are equal.-/
+`t - s`, then the two shifts are equal.
+@isnad1 id=eq.3h9v.s8.9d9f1d0697b7 from=translated src=- shape=4fdad4f8 vocab=d1ebb361
+-/
 theorem shifts_eq_of_finrank_eq (s t : ℤ)
     (hfinrank : ∀ i : ℤ,
       Module.finrank k (E ⟶ F⟦i⟧) =
@@ -128,7 +130,9 @@ include A B in
 /-- **Adjacent objects have one common shift.**
 
 If a fully faithful linear shift-compatible functor maps an adjacent source
-pair to an adjacent target pair with shifts `s` and `t`, then `s = t`.-/
+pair to an adjacent target pair with shifts `s` and `t`, then `s = t`.
+@isnad1 id=eq.2h13v.s7.40b310012c36 from=translated src=- shape=066db3bf vocab=cce54abc
+-/
 theorem shifts_eq [∀ n : ℤ, (shiftFunctor D n).Additive]
     [∀ n : ℤ, (shiftFunctor D n).Linear k]
     (G : C ⥤ D) [G.Additive] [G.Linear k] [G.CommShift ℤ]
@@ -198,7 +202,9 @@ def embedding (i : I) : Fin (B_C.length i) ↪ Fin (B_D.length (e i)) where
 
 include A in
 /-- A one-sided prefix extension proves the corresponding block-length
-inequality.-/
+inequality.
+@isnad1 id=le.0h10v.s7.d71e3e718083 from=translated src=- shape=e9cb604d vocab=c6d67577
+-/
 theorem length_le (i : I) : B_C.length i ≤ B_D.length (e i) := by
   simpa using Fintype.card_le_of_injective (A.targetIndex i)
     (A.embedding i).injective
@@ -233,12 +239,16 @@ variable (A : BidirectionalPrefixBlockEmbeddingData B_C B_D e)
 
 include A in
 /-- Corresponding blocks have equal length.  This is a theorem from the two
-finite prefix extensions, rather than a field supplied by the caller.-/
+finite prefix extensions, rather than a field supplied by the caller.
+@isnad1 id=eq.0h10v.s7.0c84a74ba1e3 from=translated src=- shape=e9cb604d vocab=05d31b5c
+-/
 theorem length_eq (i : I) : B_C.length i = B_D.length (e i) := by
   apply Nat.le_antisymm (A.forward.length_le i)
   simpa using A.backward.length_le (e i)
 
-/-- The forward prefix position is the canonical cast along `length_eq`.-/
+/-- The forward prefix position is the canonical cast along `length_eq`.
+@isnad1 id=eq.0h11v.s8.473e839cd57c from=translated src=- shape=9b1736e9 vocab=41092f30
+-/
 theorem targetIndex_eq_cast (i : I) (j : Fin (B_C.length i)) :
     A.forward.targetIndex i j = Fin.cast
       (BidirectionalPrefixBlockEmbeddingData.length_eq A i) j := by
@@ -285,7 +295,9 @@ variable (M : MemberwiseBlockShiftData B_C B_D e length_eq G)
   (A_C : B_C.AdjacentExtData) (A_D : B_D.AdjacentExtData)
 
 include M A_C A_D in
-/-- **Every member of a matched block has the shift of its first member.**-/
+/-- **Every member of a matched block has the shift of its first member.**
+@isnad1 id=eq.3h13v.s8.fa244740b515 from=translated src=- shape=24cc8eec vocab=59341dd8
+-/
 theorem shift_eq_first (hG : G.FullyFaithful) (i : I) :
     ∀ j : Fin (B_C.length i), M.shift i j = M.shift i (B_C.firstIndex i)
   | ⟨0, _⟩ => rfl

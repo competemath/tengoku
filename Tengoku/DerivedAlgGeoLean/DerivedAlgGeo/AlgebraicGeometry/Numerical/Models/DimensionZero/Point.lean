@@ -31,11 +31,20 @@ open NumericalRingData
 /-- The graded pieces of `A^•(pt)_ℚ`: everything sits in codimension zero.-/
 def pointPiece : ℕ → Submodule ℚ ℚ := fun i => if i = 0 then ⊤ else ⊥
 
+/--
+@isnad1 id=eq.0h0v.s5.366850f58373 from=translated src=- shape=6ef34aee vocab=65bd648e
+-/
 theorem pointPiece_zero : pointPiece 0 = ⊤ := by simp [pointPiece]
 
+/--
+@isnad1 id=eq.1h1v.s5.f2f7c1383164 from=translated src=- shape=c7e25de0 vocab=7e6a8921
+-/
 theorem pointPiece_eq_bot {i : ℕ} (hi : i ≠ 0) : pointPiece i = ⊥ := by
   simp [pointPiece, hi]
 
+/--
+@isnad1 id=isintern.0h0v.s4.ee288b5c528f from=translated src=- shape=4079ef20 vocab=77376d66
+-/
 theorem pointPiece_isInternal : DirectSum.IsInternal pointPiece := by
   rw [DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top]
   refine ⟨fun i => ?_, ?_⟩
@@ -82,12 +91,18 @@ def pointCh (E : ℤ) : ℕ → ℚ := fun i => if i = 0 then (E : ℚ) else 0
 /-- The Todd class of a point: `td₀ = 1`, and nothing above.-/
 def pointTodd : ℕ → ℚ := fun i => if i = 0 then 1 else 0
 
+/--
+@isnad1 id=mem.0h2v.s5.953e6498b00f from=translated src=- shape=bca6378e vocab=3a4389ab
+-/
 theorem pointCh_mem (E : ℤ) (i : ℕ) : pointCh E i ∈ pointPiece i := by
   by_cases hi : i = 0
   · subst hi; rw [pointPiece_zero]; trivial
   · rw [pointPiece_eq_bot hi, Submodule.mem_bot]
     simp [pointCh, hi]
 
+/--
+@isnad1 id=mem.0h1v.s5.a682318b0f34 from=translated src=- shape=d652a4e3 vocab=389c9f0c
+-/
 theorem pointTodd_mem (i : ℕ) : pointTodd i ∈ pointPiece i := by
   by_cases hi : i = 0
   · subst hi; rw [pointPiece_zero]; trivial
@@ -107,7 +122,9 @@ noncomputable def pointNumericalVariety : NumericalVarietyData 0 ℚ ℤ where
   toddComp_zero := by simp [pointTodd]
   chi := AddMonoidHom.id ℤ
 
-/-- Riemann--Roch for the explicit point presentation.-/
+/-- Riemann--Roch for the explicit point presentation.
+@isnad1 id=satisfie.0h0v.s3.0bc60f72a7ff from=translated src=- shape=8c01f280 vocab=15a25543
+-/
 theorem pointNumericalVariety_satisfiesHRR : pointNumericalVariety.SatisfiesHRR where
   eq E := by
     simp [pointNumericalVariety, pointNumericalRing, pointCh, pointTodd]

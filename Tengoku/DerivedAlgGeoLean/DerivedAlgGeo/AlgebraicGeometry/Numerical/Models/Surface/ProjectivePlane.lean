@@ -48,6 +48,9 @@ noncomputable def p2ChCoeff (E : SurfaceNum) : ℕ → ℚ
   | 2 => (E 1 : ℚ) / 2 + (E 2 : ℚ)
   | _ + 3 => 0
 
+/--
+@isnad1 id=eq.0h3v.s5.42085cf3d7d9 from=translated src=- shape=897af36f vocab=ea93c107
+-/
 theorem p2ChCoeff_add (E F : SurfaceNum) (i : ℕ) :
     p2ChCoeff (E + F) i = p2ChCoeff E i + p2ChCoeff F i := by
   match i with
@@ -64,6 +67,9 @@ noncomputable def p2Todd : ℕ → SurfaceRing
   | 2 => H ^ 2
   | _ + 3 => 0
 
+/--
+@isnad1 id=mem.0h1v.s8.348ee9401238 from=translated src=- shape=47eb5a58 vocab=656667d5
+-/
 theorem p2Todd_mem (i : ℕ) : p2Todd i ∈ gradedPiece (⇑surfacePB.basis) surfaceW i := by
   match i with
   | 0 => exact surface_one_mem
@@ -71,6 +77,9 @@ theorem p2Todd_mem (i : ℕ) : p2Todd i ∈ gradedPiece (⇑surfacePB.basis) sur
   | 2 => exact Hsq_mem_piece_two
   | _ + 3 => exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.0h0v.s8.e6f6bcc516d2 from=translated src=- shape=531a71f7 vocab=13168603
+-/
 theorem p2Todd_sum :
     (∑ j ∈ Finset.range (2 + 1), p2Todd j)
       = 1 + algebraMap ℚ SurfaceRing (3 / 2) * H + algebraMap ℚ SurfaceRing 1 * H ^ 2 := by
@@ -78,7 +87,9 @@ theorem p2Todd_sum :
     Finset.sum_range_zero, zero_add]
   simp [p2Todd]
 
-/-- `∫_{ℙ²} td₂ = χ(O_{ℙ²}) = 1`.-/
+/-- `∫_{ℙ²} td₂ = χ(O_{ℙ²}) = 1`.
+@isnad1 id=eq.0h0v.s6.3eec52dc2e0c from=translated src=- shape=39832952 vocab=c7a15991
+-/
 theorem p2_chi_structureSheaf : surfaceDegree 1 (p2Todd 2) = 1 := by
   show surfaceDegree 1 (H ^ 2) = 1
   rw [surfaceDegree_Hsq]
@@ -92,14 +103,18 @@ def p2Chi (E : SurfaceNum) : ℤ := E 0 + 2 * E 1 + E 2
 `1 + nH + (n²/2)H²`, and this model records `ch₂ = c/2 + v`. Stated doubled to stay in `ℤ`.
 
 This is the check that `Surface.chi_eq`'s `c₁·td₁` term is right — the K3 model, where
-`td₁ = 0`, cannot see it.-/
+`td₁ = 0`, cannot see it.
+@isnad1 id=eq.1h2v.s6.ce9585c7bc87 from=translated src=- shape=48034f05 vocab=80cc8f95
+-/
 theorem p2Chi_lineBundle (n m : ℤ) (hm : 2 * m = n * (n - 1)) :
     2 * p2Chi ![1, n, m] = (n + 1) * (n + 2) := by
   show 2 * (1 + 2 * n + m) = (n + 1) * (n + 2)
   linear_combination hm
 
 /-- The class `(1, n, m)` with `2m = n(n−1)` really has `ch₂ = n²/2`, i.e. really is
-`O(nH)`. Without this, `p2Chi_lineBundle` would only be arithmetic about a triple.-/
+`O(nH)`. Without this, `p2Chi_lineBundle` would only be arithmetic about a triple.
+@isnad1 id=eq.1h2v.s6.2046f54e03ac from=translated src=- shape=422bd790 vocab=244485de
+-/
 theorem p2ChCoeff_lineBundle (n m : ℤ) (hm : 2 * m = n * (n - 1)) :
     p2ChCoeff ![1, n, m] 2 = (n : ℚ) ^ 2 / 2 := by
   show (n : ℚ) / 2 + (m : ℚ) = (n : ℚ) ^ 2 / 2

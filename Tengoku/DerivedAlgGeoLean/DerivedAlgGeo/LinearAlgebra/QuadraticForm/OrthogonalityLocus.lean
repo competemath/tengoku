@@ -48,13 +48,17 @@ end Defs
 variable {Q : QuadraticForm ℝ M}
 
 /-- A spherical class has quadratic value `-1`; the factor two comes from the
-polar form.-/
+polar form.
+@isnad1 id=iff.0h3v.s6.b4c9b662076c from=translated src=- shape=f56aa387 vocab=9f541c10
+-/
 theorem isSphericalClass_iff_apply {δ : M} : IsSphericalClass Q δ ↔ Q δ = -1 := by
   rw [IsSphericalClass, polar_self, two_nsmul]
   constructor <;> intro h <;> linarith
 
 /-- A positive plane is in the orthogonality locus of `δ` exactly when `δ`
-lies in its orthogonal complement.-/
+lies in its orthogonal complement.
+@isnad1 id=iff.1h4v.s6.faf82dcf936b from=translated src=- shape=9bb7f37f vocab=88212c0d
+-/
 theorem mem_orthogonalityLocus_iff_mem_orthogonal {W : Submodule ℝ M} {δ : M}
     (hW : IsPositivePlane Q W) : W ∈ orthogonalityLocus Q δ ↔ δ ∈ orthogonal Q W := by
   rw [orthogonalityLocus, Set.mem_ofPred_eq, mem_orthogonal_iff]
@@ -62,7 +66,9 @@ theorem mem_orthogonalityLocus_iff_mem_orthogonal {W : Submodule ℝ M} {δ : M}
   · exact (polar_comm (⇑Q) w δ).trans (h.2 w hw)
   · exact (polar_comm (⇑Q) δ w).trans (h w hw)
 
-/-- A spherical class lies in no positive plane.-/
+/-- A spherical class lies in no positive plane.
+@isnad1 id=not.2h4v.s6.21e977013ccd from=translated src=- shape=c61b972c vocab=c1740e32
+-/
 theorem notMem_of_isSphericalClass {W : Submodule ℝ M} {δ : M}
     (hW : IsPositivePlane Q W) (hδ : IsSphericalClass Q δ) : δ ∉ W := by
   intro hmem
@@ -80,7 +86,9 @@ variable [FiniteDimensional ℝ M]
 
 /-- Cutting by every real spherical class empties the positive-plane locus in
 dimension at least three. This is why a geometric application cuts by a
-discrete lattice of classes instead.-/
+discrete lattice of classes instead.
+@isnad1 id=eq.2h2v.s6.9c74412d0b98 from=translated src=- shape=bca7742e vocab=f02fc2e4
+-/
 theorem positivePlanesAway_sphericalClasses_univ_eq_empty (hsig : HasSignatureTwo Q)
     (hdim : 3 ≤ Module.finrank ℝ M) :
     positivePlanesAway Q (sphericalClasses Q Set.univ) = ∅ := by

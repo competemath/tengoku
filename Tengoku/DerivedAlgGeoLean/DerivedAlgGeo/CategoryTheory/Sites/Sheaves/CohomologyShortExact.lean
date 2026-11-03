@@ -50,7 +50,9 @@ The tail of the covariant `Ext` long exact sequence,
 
 read with the last term subsingleton. `Ext.covariant_sequence_exact₃` is the
 exactness; the connecting composite is forced to zero because there is nowhere
-for it to land.-/
+for it to land.
+@isnad1 id=surjecti.1h3v.s11.58b4c74e7cb6 from=translated src=- shape=1168ee5a vocab=5e178a47
+-/
 theorem H_map_surjective_of_subsingleton_H_one (hS : S.ShortExact)
     [Subsingleton (H S.X₁ 1)] :
     Function.Surjective (H.map S.g 0) := by
@@ -66,7 +68,9 @@ include hT in
 
 `H.equiv₀` identifies degree-zero cohomology with evaluation at a terminal
 object, and `H.equiv₀_naturality` says that identification is natural, so
-surjectivity transports across it.-/
+surjectivity transports across it.
+@isnad1 id=surjecti.1h5v.s10.b48e440fac6b from=translated src=- shape=66908170 vocab=2c4497ad
+-/
 theorem sections_surjective_of_subsingleton_H_one (hS : S.ShortExact)
     [Subsingleton (H S.X₁ 1)] :
     Function.Surjective (S.g.hom.app (op T)) := by

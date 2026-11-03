@@ -69,7 +69,9 @@ def representableMap {X Y : C} (f : X ⟶ Y) :
   discreteMap _ _ (yoneda.map f)
 
 /-- The component functors of `CategoryTheory.StackInGroupoids.representableMap` act by
-postcomposition, definitionally.-/
+postcomposition, definitionally.
+@isnad1 id=eq.0h7v.s10.e23844ec3806 from=translated src=- shape=a1fbd399 vocab=1c4a97cc
+-/
 @[simp]
 theorem representableMap_app_obj {X Y T : C} (f : X ⟶ Y) (g : T ⟶ X) :
     ((representableMap J f).app T).obj (Discrete.mk g) = Discrete.mk (g ≫ f) :=
@@ -77,7 +79,9 @@ theorem representableMap_app_obj {X Y T : C} (f : X ⟶ Y) (g : T ⟶ X) :
 
 /-- `CategoryTheory.StackInGroupoids.representable` is unchanged by restriction along an
 inequality between subcanonical topologies: `CategoryTheory.StackInGroupoids.ofLE` changes
-only its descent proof.-/
+only its descent proof.
+@isnad1 id=eq.1h4v.s5.9ccffc4b5ca5 from=translated src=- shape=a02b9e4b vocab=28144833
+-/
 theorem representable_ofLE {J₁ J₂ : GrothendieckTopology C}
     [J₁.Subcanonical] [J₂.Subcanonical] (h : J₁ ≤ J₂) (X : C) :
     (representable J₂ X).ofLE h = representable J₁ X :=

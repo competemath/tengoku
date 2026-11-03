@@ -77,12 +77,16 @@ so that both present the *same* underlying order to the category structure.-/
 @[reducible] private def semilatticeInf : SemilatticeInf (Opens X) :=
   (@CompleteLattice.toLattice _ (inferInstance : CompleteLattice (Opens X))).toSemilatticeInf
 
-/-- The opens of a topological space have binary products, given by intersection.-/
+/-- The opens of a topological space have binary products, given by intersection.
+@isnad1 id=hasbinar.0h1v.s4.431972f83977 from=translated src=- shape=1666ae32 vocab=97e6e955
+-/
 instance hasBinaryProducts : HasBinaryProducts (Opens X) :=
   @CategoryTheory.Limits.CompleteLattice.instHasBinaryProductsOfOrderTop _
     (semilatticeInf X) (orderTop X)
 
-/-- The opens of a topological space have all finite limits.-/
+/-- The opens of a topological space have all finite limits.
+@isnad1 id=hasfinit.0h1v.s4.5faddcfb8d72 from=translated src=- shape=1666ae32 vocab=023d7c9f
+-/
 instance hasFiniteLimits : HasFiniteLimits (Opens X) :=
   @CategoryTheory.Limits.CompleteLattice.hasFiniteLimits_of_semilatticeInf_orderTop _
     (semilatticeInf X) (orderTop X)

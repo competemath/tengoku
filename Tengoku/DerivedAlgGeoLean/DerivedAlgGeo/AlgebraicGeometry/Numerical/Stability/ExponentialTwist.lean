@@ -28,7 +28,9 @@ noncomputable section
 variable {A : Type*} [CommRing A] [Algebra ℚ A] {n : ℕ}
 
 /-- Weighted degrees intertwine the rational intersection-ring twist with the
-real exponential action, at every truncation degree at most the dimension.-/
+real exponential action, at every truncation degree at most the dimension.
+@isnad1 id=eq.1h7v.s8.eef0b1bd71a5 from=translated src=- shape=ff6b2372 vocab=58e6062f
+-/
 theorem twist_degree_eq_exp (R : NumericalRingData n A) (H : A) (β : ℚ)
     (c : ℕ → A) (m : ℕ) (hmn : m ≤ n) :
     (fun i : Fin (m + 1) => (R.degree (twist H β c i * H ^ (n - i.val)) : ℝ)) =

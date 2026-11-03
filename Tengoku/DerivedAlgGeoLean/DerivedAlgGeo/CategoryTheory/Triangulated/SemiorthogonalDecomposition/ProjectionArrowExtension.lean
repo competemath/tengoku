@@ -34,7 +34,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Ambient all-arrow extension into an included component target transfers
 to the restricted functor when the inclusion and projection comparisons are
 mate-compatible. The projector comparison and counit equation are independent
-premises; an inclusion comparison alone does not imply them.-/
+premises; an inclusion comparison alone does not imply them.
+@isnad1 id=fixedtar.2h11v.s9.90359f311087 from=translated src=- shape=e93d1733 vocab=ee0f2135
+-/
 theorem fixedTargetArrowExtension_of_ambient
     (inclusionIso : G ⋙ Q.ι ≅ P.ι ⋙ F)
     (projectionIso : F ⋙ q.projection ≅ p.projection ⋙ G)

@@ -63,6 +63,9 @@ structure Slicing where
 
 attribute [instance] Slicing.closedUnderIso
 
+/--
+@isnad1 id=eq.1h3v.s6.288e6a6cd91b from=translated src=- shape=83a8212d vocab=72aa3976
+-/
 @[ext]
 theorem Slicing.ext {s t : Slicing C} (hP : s.P = t.P) : s = t := by
   cases s
@@ -70,23 +73,31 @@ theorem Slicing.ext {s t : Slicing C} (hP : s.P = t.P) : s = t := by
   simp_all
 
 /-- A zero object belongs to every phase slice, not only the chosen zero
-object used by the structure field.-/
+object used by the structure field.
+@isnad1 id=p.1h4v.s6.1ee723690d30 from=translated src=- shape=cabb1349 vocab=3e251ce0
+-/
 theorem Slicing.zero_mem_of_isZero (s : Slicing C) (φ : ℝ) (X : C) (hX : IsZero X) :
     s.P φ X :=
   ObjectProperty.prop_of_iso _ ((isZero_zero C).iso hX) (s.zero_mem φ)
 
-/-- Forward form of the shift axiom.-/
+/-- Forward form of the shift axiom.
+@isnad1 id=p.0h5v.s6.af3d712da3a4 from=translated src=- shape=9f1bfee3 vocab=73cb95ca
+-/
 theorem Slicing.shift (s : Slicing C) (φ : ℝ) (X : C) (h : s.P φ X) :
     s.P (φ + 1) (X⟦(1 : ℤ)⟧) :=
   (s.shift_iff φ X).mp h
 
-/-- Backward form of the shift axiom.-/
+/-- Backward form of the shift axiom.
+@isnad1 id=p.0h5v.s6.219ce40faea7 from=translated src=- shape=9d8eb5f3 vocab=73cb95ca
+-/
 theorem Slicing.unshift (s : Slicing C) (φ : ℝ) (X : C)
     (h : s.P (φ + 1) (X⟦(1 : ℤ)⟧)) : s.P φ X :=
   (s.shift_iff φ X).mpr h
 
 /-- Iterating the slicing axiom shifts a semistable object by a natural
-number and adds that number to its phase.-/
+number and adds that number to its phase.
+@isnad1 id=p.0h6v.s6.c90f54048fd7 from=translated src=- shape=8ce784f2 vocab=a38205aa
+-/
 theorem Slicing.shift_nat (s : Slicing C) (φ : ℝ) (X : C) (n : ℕ) :
     s.P φ X → s.P (φ + (n : ℝ)) (X⟦(n : ℤ)⟧) := by
   induction n with
@@ -102,7 +113,9 @@ theorem Slicing.shift_nat (s : Slicing C) (φ : ℝ) (X : C) (n : ℕ) :
       exact (s.P _).prop_of_iso
         ((shiftFunctorAdd' C (↑n : ℤ) 1 ((↑n : ℤ) + 1) (by omega)).app X).symm h'
 
-/-- Inverse form of `Slicing.shift_nat`.-/
+/-- Inverse form of `Slicing.shift_nat`.
+@isnad1 id=p.0h6v.s6.1f0e6a78b6b0 from=translated src=- shape=a0a20747 vocab=a38205aa
+-/
 theorem Slicing.unshift_nat (s : Slicing C) (φ : ℝ) (X : C) (n : ℕ) :
     s.P (φ + (n : ℝ)) (X⟦(n : ℤ)⟧) → s.P φ X := by
   induction n with
@@ -120,7 +133,9 @@ theorem Slicing.unshift_nat (s : Slicing C) (φ : ℝ) (X : C) (n : ℕ) :
       rw [← add_assoc] at h'
       exact (s.shift_iff (φ + ↑n) ((shiftFunctor C (↑n : ℤ)).obj X)).mpr h'
 
-/-- Shifting by any integer adds that integer to the phase.-/
+/-- Shifting by any integer adds that integer to the phase.
+@isnad1 id=iff.0h5v.s6.da3e85147d15 from=translated src=- shape=2d0fc7fa vocab=8a8bd5e7
+-/
 theorem Slicing.shift_int (s : Slicing C) (φ : ℝ) (X : C) (n : ℤ) :
     s.P φ X ↔ s.P (φ + n) (X⟦n⟧) := by
   cases n with

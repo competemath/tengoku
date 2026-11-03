@@ -85,6 +85,9 @@ noncomputable def enriquesTodd (d : ℚ) : ℕ → SurfaceRing
   | 2 => algebraMap ℚ SurfaceRing (1 / (2 * d)) * H ^ 2
   | _ + 3 => 0
 
+/--
+@isnad1 id=mem.0h2v.s8.6d28f5c3bd2e from=translated src=- shape=6f2de221 vocab=0f9541d4
+-/
 theorem enriquesTodd_mem (d : ℚ) (i : ℕ) :
     enriquesTodd d i ∈ gradedPiece (⇑surfacePB.basis) surfaceW i := by
   match i with
@@ -93,6 +96,9 @@ theorem enriquesTodd_mem (d : ℚ) (i : ℕ) :
   | 2 => exact algebraMap_mul_mem _ Hsq_mem_piece_two
   | _ + 3 => exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.0h1v.s8.4a6f75e3c2c1 from=translated src=- shape=24cb77de vocab=2c1a9837
+-/
 theorem enriquesTodd_sum (d : ℚ) :
     (∑ j ∈ Finset.range (2 + 1), enriquesTodd d j)
       = 1 + algebraMap ℚ SurfaceRing 0 * H

@@ -58,7 +58,9 @@ variable {n : ℕ} {E : C} (h : SphericalExtProfile (k := k) n E)
 
 include h
 
-/-- Add the Serre-shift identification to an Ext computation.-/
+/-- Add the Serre-shift identification to an Ext computation.
+@isnad1 id=isspheri.2h5v.s6.91de48550ccd from=translated src=- shape=ad206789 vocab=ceaff4a3
+-/
 theorem toIsSphericalObject (D : SerreFunctorData k C)
     (serreShift : Nonempty (D.S.obj E ≅ E⟦(n : ℤ)⟧)) :
     IsSphericalObject D n E where
@@ -75,7 +77,9 @@ variable {n : ℕ} {E : C} (h : PseudoprojectiveExtProfile (k := k) n E)
 
 include h
 
-/-- Add the Serre-shift identification to an Ext computation.-/
+/-- Add the Serre-shift identification to an Ext computation.
+@isnad1 id=ispseudo.2h5v.s6.6a791e0d390d from=translated src=- shape=ad206789 vocab=3c2eb64a
+-/
 theorem toIsPseudoprojectiveObject (D : SerreFunctorData k C)
     (serreShift : Nonempty (D.S.obj E ≅ E⟦(n : ℤ)⟧)) :
     IsPseudoprojectiveObject D n E where
@@ -117,7 +121,9 @@ variable {n : ℕ} {E : C} (h : SphericalExtProfile (k := k) n E)
 include h
 
 /-- Spherical Ext computations transport through a fully faithful linear
-shift-compatible functor.-/
+shift-compatible functor.
+@isnad1 id=spherica.1h7v.s7.0ee565ffab69 from=translated src=- shape=5259c5e7 vocab=14dd68cd
+-/
 theorem map (F : Functor C D) [F.Additive] [F.Linear k]
     [F.CommShift ℤ] (hF : F.FullyFaithful) :
     SphericalExtProfile (k := k) n (F.obj E) where
@@ -139,7 +145,9 @@ variable {n : ℕ} {E : C} (h : PseudoprojectiveExtProfile (k := k) n E)
 include h
 
 /-- Pseudoprojective Ext computations transport through a fully faithful
-linear shift-compatible functor.-/
+linear shift-compatible functor.
+@isnad1 id=pseudopr.1h7v.s7.9110143999ac from=translated src=- shape=5259c5e7 vocab=eb512f56
+-/
 theorem map (F : Functor C D) [F.Additive] [F.Linear k]
     [F.CommShift ℤ] (hF : F.FullyFaithful) :
     PseudoprojectiveExtProfile (k := k) n (F.obj E) where
@@ -199,7 +207,9 @@ def symm : SerreCompatibleEquivalence S_D S_C where
   inverseSerreIso := F.serreIso
 
 /-- A spherical object remains spherical under a Serre-compatible
-equivalence.-/
+equivalence.
+@isnad1 id=isspheri.1h8v.s7.678f0066788c from=translated src=- shape=c975c74d vocab=97d64b9f
+-/
 theorem mapSpherical {n : ℕ} {E : C}
     (h : IsSphericalObject S_C n E) :
     IsSphericalObject S_D n (F.equiv.functor.obj E) := by
@@ -216,7 +226,9 @@ theorem mapSpherical {n : ℕ} {E : C}
     (F.equiv.functor.commShiftIso (n : ℤ)).app E⟩
 
 /-- A pseudoprojective object remains pseudoprojective under a
-Serre-compatible equivalence.-/
+Serre-compatible equivalence.
+@isnad1 id=ispseudo.1h8v.s7.f1be642bf073 from=translated src=- shape=c975c74d vocab=c3221aef
+-/
 theorem mapPseudoprojective {n : ℕ} {E : C}
     (h : IsPseudoprojectiveObject S_C n E) :
     IsPseudoprojectiveObject S_D n (F.equiv.functor.obj E) := by
@@ -232,7 +244,9 @@ theorem mapPseudoprojective {n : ℕ} {E : C}
     (F.equiv.functor.commShiftIso (n : ℤ)).app E⟩
 
 /-- A Serre-compatible equivalence preserves and reflects spherical
-objects.-/
+objects.
+@isnad1 id=iff.0h8v.s7.9955136cf8fc from=translated src=- shape=937cbbf7 vocab=97d64b9f
+-/
 theorem spherical_iff {n : ℕ} {E : C} :
     IsSphericalObject S_D n (F.equiv.functor.obj E) ↔
       IsSphericalObject S_C n E := by
@@ -242,7 +256,9 @@ theorem spherical_iff {n : ℕ} {E : C} :
   · exact F.mapSpherical
 
 /-- A Serre-compatible equivalence preserves and reflects pseudoprojective
-objects.-/
+objects.
+@isnad1 id=iff.0h8v.s7.8745dbacb9f2 from=translated src=- shape=937cbbf7 vocab=c3221aef
+-/
 theorem pseudoprojective_iff {n : ℕ} {E : C} :
     IsPseudoprojectiveObject S_D n (F.equiv.functor.obj E) ↔
       IsPseudoprojectiveObject S_C n E := by
@@ -253,7 +269,9 @@ theorem pseudoprojective_iff {n : ℕ} {E : C} :
   · exact F.mapPseudoprojective
 
 /-- Being a shift of an object is preserved by a shift-compatible
-equivalence.-/
+equivalence.
+@isnad1 id=isshifto.1h8v.s7.e01c8a1c535c from=translated src=- shape=b48ab4f3 vocab=fea4458d
+-/
 theorem mapIsShiftOf {E E' : C} (h : IsShiftOf E E') :
     IsShiftOf (F.equiv.functor.obj E) (F.equiv.functor.obj E') := by
   letI : F.equiv.functor.CommShift ℤ := F.functorCommShift
@@ -262,7 +280,9 @@ theorem mapIsShiftOf {E E' : C} (h : IsShiftOf E E') :
     (F.equiv.functor.commShiftIso p).app E'⟩⟩
 
 /-- A Serre-compatible equivalence preserves and reflects the relation of
-being an integral shift.-/
+being an integral shift.
+@isnad1 id=iff.0h8v.s7.f791a5926d57 from=translated src=- shape=f66b548d vocab=fea4458d
+-/
 theorem isShiftOf_iff {E E' : C} :
     IsShiftOf (F.equiv.functor.obj E) (F.equiv.functor.obj E') ↔
       IsShiftOf E E' := by
@@ -273,7 +293,9 @@ theorem isShiftOf_iff {E E' : C} :
       (shiftFunctor C p).mapIso (F.equiv.unitIso.app E').symm⟩⟩
   · exact F.mapIsShiftOf
 
-/-- Graded orthogonality is preserved by a shift-compatible equivalence.-/
+/-- Graded orthogonality is preserved by a shift-compatible equivalence.
+@isnad1 id=isgraded.1h8v.s7.2e4bb12893c0 from=translated src=- shape=b48ab4f3 vocab=2abab4f7
+-/
 theorem mapIsGradedOrthogonal {E E' : C} (h : IsGradedOrthogonal E E') :
     IsGradedOrthogonal (F.equiv.functor.obj E)
       (F.equiv.functor.obj E') := by
@@ -287,7 +309,9 @@ theorem mapIsGradedOrthogonal {E E' : C} (h : IsGradedOrthogonal E E') :
   simpa using h p (e.symm f)
 
 /-- A Serre-compatible equivalence preserves and reflects graded
-orthogonality.-/
+orthogonality.
+@isnad1 id=iff.0h8v.s7.c0adbf954fff from=translated src=- shape=f66b548d vocab=2abab4f7
+-/
 theorem isGradedOrthogonal_iff {E E' : C} :
     IsGradedOrthogonal (F.equiv.functor.obj E)
         (F.equiv.functor.obj E') ↔

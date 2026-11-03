@@ -130,7 +130,9 @@ abbrev component (i : ι) : ObjectProperty C :=
   (ObjectProperty.shiftClosure (fun X => X = E.obj i) ℤ).triangEnvelope
 
 /-- The generating member lies in its own component: it is in the shift
-closure at shift `0`, hence in the envelope.-/
+closure at shift `0`, hence in the envelope.
+@isnad1 id=componen.0h5v.s6.138be9d38462 from=translated src=- shape=d194a0cc vocab=b757bff3
+-/
 theorem obj_mem_component (i : ι) : E.component i (E.obj i) :=
   ObjectProperty.le_triangEnvelope _ _
     (ObjectProperty.le_shiftClosure _ _ rfl)
@@ -140,14 +142,18 @@ theorem obj_mem_component (i : ι) : E.component i (E.obj i) :=
 consumes nonemptiness of the *generator*, not of the envelope — which is why
 `hasTriangulatedComponents` supplies its own generator-level witness — so
 this is the exported form for downstream consumers, not that instance's
-input.-/
+input.
+@isnad1 id=nonempty.0h5v.s6.2296b2aa50d5 from=translated src=- shape=bb0887f6 vocab=b9a24b6e
+-/
 theorem component_nonempty (i : ι) : (E.component i).Nonempty :=
   ⟨E.obj i, E.obj_mem_component i⟩
 
 omit [Limits.HasZeroObject C] [Pretriangulated C] in
 /-- Cross-member vanishing between arbitrary shifts, transported from the
 collection's field by conjugating with the shift by `-b` — the two-object
-form of `IsExceptional.hom_shift_shift_eq_zero`'s argument.-/
+form of `IsExceptional.hom_shift_shift_eq_zero`'s argument.
+@isnad1 id=eq.1h9v.s8.85b596980be3 from=translated src=- shape=0bf9e4b9 vocab=142548e4
+-/
 theorem hom_shift_shift_eq_zero ⦃i j : ι⦄ (hij : i < j) (a b : ℤ)
     (f : (E.obj j)⟦a⟧ ⟶ (E.obj i)⟦b⟧) : f = 0 := by
   have h0 :
@@ -175,7 +181,9 @@ proof peels the two triangulated envelopes in turn with
 `triangEnvelope_le_iff` — first against `(component j).rightOrthogonal`,
 then against the left orthogonal of the earlier member's shift closure —
 using the orthogonals' triangulated instances and the retract-stability
-instances above; what remains is the transported cross-member vanishing.-/
+instances above; what remains is the transported cross-member vanishing.
+@isnad1 id=le.1h6v.s7.b31ffa307711 from=translated src=- shape=cfd74349 vocab=47a6af57
+-/
 theorem semiorthogonal_component ⦃i j : ι⦄ (hij : i < j) :
     E.component i ≤ (E.component j).rightOrthogonal := by
   have key : E.component j ≤
@@ -198,6 +206,9 @@ order-reversing adapter.-/
 def toSemiorthogonalSequence : SemiorthogonalSequence C ιᵒᵈ :=
   SemiorthogonalSequence.ofReverse E.component E.semiorthogonal_component
 
+/--
+@isnad1 id=eq.0h5v.s7.482a14804a61 from=translated src=- shape=79b6bbfd vocab=d45ca43b
+-/
 @[simp]
 theorem toSemiorthogonalSequence_component (i : ιᵒᵈ) :
     E.toSemiorthogonalSequence.component i = E.component (OrderDual.ofDual i) :=
@@ -210,13 +221,18 @@ def IsFull : Prop := E.toSemiorthogonalSequence.IsFull
 /-- The root's strong fullness, on the collection's image.-/
 def IsStronglyFull : Prop := E.toSemiorthogonalSequence.IsStronglyFull
 
+/--
+@isnad1 id=isfull.1h4v.s6.b16cd7292ee2 from=translated src=- shape=8d41e949 vocab=229272a9
+-/
 theorem IsStronglyFull.isFull {E : ExceptionalCollection k C ι}
     (h : E.IsStronglyFull) : E.IsFull :=
   SemiorthogonalSequence.IsStronglyFull.isFull _ h
 
 /-- Every component is triangulated, from Mathlib's envelope instance — which
 demands nonemptiness, supplied by `component_nonempty`, and
-`[IsTriangulated C]`.-/
+`[IsTriangulated C]`.
+@isnad1 id=hastrian.0h4v.s6.3204e812507b from=translated src=- shape=d14b0e17 vocab=bb332290
+-/
 theorem hasTriangulatedComponents [IsTriangulated C] :
     E.toSemiorthogonalSequence.HasTriangulatedComponents := by
   intro i
@@ -247,7 +263,9 @@ def reindex {κ : Type*} [Preorder κ] (f : κ → ι)
 
 /-- Reindexing commutes with passage to the root, as an equality of
 semiorthogonal sequences — through the root's own `reindex`, not a second
-one.-/
+one.
+@isnad1 id=eq.1h6v.s8.20caa47f31dd from=translated src=- shape=43e62b02 vocab=dec1158f
+-/
 theorem reindex_toSemiorthogonalSequence {κ : Type*} [Preorder κ] (f : κ → ι)
     (hf : ∀ ⦃a b : κ⦄, a < b → f a < f b) :
     (E.reindex f hf).toSemiorthogonalSequence
@@ -266,6 +284,9 @@ variable {n : ℕ} (F : ExceptionalCollection k C (Fin n))
 def toSemiorthogonalSequenceFin : SemiorthogonalSequence C (Fin n) :=
   SemiorthogonalSequence.ofReverseFin n F.component F.semiorthogonal_component
 
+/--
+@isnad1 id=eq.0h5v.s7.edb8dd508992 from=translated src=- shape=fa172fe6 vocab=9b3fb436
+-/
 @[simp]
 theorem toSemiorthogonalSequenceFin_component (i : Fin n) :
     F.toSemiorthogonalSequenceFin.component i = F.component i.rev :=
@@ -274,7 +295,9 @@ theorem toSemiorthogonalSequenceFin_component (i : Fin n) :
 /-- Every component of the finite sequence is triangulated. This is the
 `Fin n` counterpart of `hasTriangulatedComponents`; it is stated separately
 because `toSemiorthogonalSequenceFin` lands back in the original finite order
-rather than in `OrderDual (Fin n)`.-/
+rather than in `OrderDual (Fin n)`.
+@isnad1 id=hastrian.0h4v.s6.527150f1b9a4 from=translated src=- shape=0228675b vocab=811627dd
+-/
 theorem hasTriangulatedComponentsFin [IsTriangulated C] :
     F.toSemiorthogonalSequenceFin.HasTriangulatedComponents := by
   intro i

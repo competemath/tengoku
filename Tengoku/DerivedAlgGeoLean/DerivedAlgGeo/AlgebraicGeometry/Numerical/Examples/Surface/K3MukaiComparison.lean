@@ -70,11 +70,16 @@ def k3LatticeMap : ℤ →ₗ[ℤ] SurfaceDivisor where
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.6e401a5a98e8 from=translated src=- shape=0626111e vocab=c2859d64
+-/
 @[simp]
 theorem k3LatticeMap_apply (n : ℤ) : k3LatticeMap n = (n : ℝ) := rfl
 
 /-- **The two forms agree.**  This is the hypothesis every theorem of
-`Numerical/Mukai/Integral.lean` waits on, and on this model it is a cast.-/
+`Numerical/Mukai/Integral.lean` waits on, and on this model it is a cast.
+@isnad1 id=eq.0h3v.s9.d66b8f583bcf from=translated src=- shape=25e9bd68 vocab=49a2c7b1
+-/
 theorem k3LatticeMap_pairing (d : ℕ) (x y : ℤ) :
     (surfaceDivisorSpace (2 * (d : ℝ))).intersection (k3LatticeMap x) (k3LatticeMap y)
       = ((k3MukaiForm d x y : ℤ) : ℝ) := by
@@ -84,7 +89,9 @@ theorem k3LatticeMap_pairing (d : ℕ) (x y : ℤ) :
 
 /-! ### The two pairings, and the two Mukai vectors -/
 
-/-- **The integral Mukai pairing is the real one.**-/
+/-- **The integral Mukai pairing is the real one.**
+@isnad1 id=eq.0h3v.s6.588501c98bdc from=translated src=- shape=128f34bf vocab=25331009
+-/
 theorem k3_realPairing_extendMap (d : ℕ) (u w : Mukai.MukaiLattice ℤ) :
     Mukai.realPairing (surfaceDivisorSpace (2 * (d : ℝ))).intersection
         (Mukai.extendMap k3LatticeMap u) (Mukai.extendMap k3LatticeMap w)
@@ -98,7 +105,9 @@ the real form.**
 
 The `-2` reads the same on both sides, which is what the halving convention of
 `Mukai/RealForm.lean` exists for.  This is the link that makes the wall
-statements about integral classes.-/
+statements about integral classes.
+@isnad1 id=isspheri.1h2v.s6.fca441bb9749 from=translated src=- shape=60569dae vocab=16bb27e2
+-/
 theorem k3_isSphericalClass_of_isSpherical (d : ℕ) {δ : Mukai.MukaiLattice ℤ}
     (hδ : Mukai.IsSpherical (k3MukaiForm d) δ) :
     PeriodDomain.IsSphericalClass
@@ -111,7 +120,9 @@ theorem k3_isSphericalClass_of_isSpherical (d : ℕ) {δ : Mukai.MukaiLattice �
 
 /-- The extension of an integral class lands in the integral Mukai extension of
 `ℤ·H`, which is the lattice `k3_finite_walls_integral` and
-`k3_finite_walls_meeting_box` are stated against.-/
+`k3_finite_walls_meeting_box` are stated against.
+@isnad1 id=mem.0h1v.s7.cce127d3acd4 from=translated src=- shape=464ec9c5 vocab=3f370bb1
+-/
 theorem k3_extendMap_mem_integralExtension (δ : Mukai.MukaiLattice ℤ) :
     Mukai.extendMap k3LatticeMap δ ∈
       Mukai.integralExtension (Submodule.span ℤ (Set.range surfaceDivisorBasis)) := by
@@ -149,12 +160,17 @@ def k3IntegralComparison (d : ℕ) :
   toFun := (k3LatticeMap : ℤ →ₗ[ℤ] SurfaceDivisor).toAddMonoidHom
   compat := k3LatticeMap_pairing d
 
+/--
+@isnad1 id=eq.0h2v.s6.0cb4f35aafeb from=translated src=- shape=ed2b7387 vocab=2f0d5fbd
+-/
 @[simp]
 theorem k3IntegralComparison_toFun (d : ℕ) (n : ℤ) :
     (k3IntegralComparison d).toFun n = ((n : ℤ) : ℝ) := rfl
 
 /-- **Integral and real sphericality agree in the `(β, ω)` chart**, on the K3
-model.  This is `isSpherical_map_iff` with the witness supplied.-/
+model.  This is `isSpherical_map_iff` with the witness supplied.
+@isnad1 id=iff.0h2v.s6.dcd24cd66fc5 from=translated src=- shape=7cdfda6d vocab=7abb67c9
+-/
 theorem k3_isSpherical_map_iff (d : ℕ) (v : Mukai.MukaiLattice ℤ) :
     Wall.Spherical.IsSpherical (surfaceDivisorSpace (2 * (d : ℝ))).intersection
         ((k3IntegralComparison d).map v)
@@ -162,13 +178,17 @@ theorem k3_isSpherical_map_iff (d : ℕ) (v : Mukai.MukaiLattice ℤ) :
   Wall.Spherical.isSpherical_map_iff (k3IntegralComparison d) v
 
 /-- The spherical chart's comparison agrees with the period-domain one: both
-send an integral class to the same real triple.-/
+send an integral class to the same real triple.
+@isnad1 id=eq.0h2v.s5.0ce990433a91 from=translated src=- shape=0dd16e8b vocab=e3675a0e
+-/
 theorem k3IntegralComparison_map_eq_extendMap (d : ℕ) (v : Mukai.MukaiLattice ℤ) :
     (k3IntegralComparison d).map v = Mukai.extendMap k3LatticeMap v := rfl
 
 /-! ### Wall finiteness, over integral classes -/
 
-/-- The extension map is injective, because the integer cast is.-/
+/-- The extension map is injective, because the integer cast is.
+@isnad1 id=injectiv.0h0v.s3.98262f853c6a from=translated src=- shape=136fa0ff vocab=1f5dd4ca
+-/
 theorem extendMap_k3LatticeMap_injective :
     Function.Injective (Mukai.extendMap k3LatticeMap) := by
   intro u w h
@@ -186,7 +206,9 @@ over the real extension.  It is the statement the geometry wants: the classes
 counted are those with `⟪v, v⟫ = -2` in the integral lattice, which
 `isSpherical_mukaiVector_iff` reads off `χ₂`.
 
-Nothing new is assumed — only `d > 0` and `t₀ > 0`, as before.-/
+Nothing new is assumed — only `d > 0` and `t₀ > 0`, as before.
+@isnad1 id=finite.2h4v.s8.0a5a6e0dc12b from=translated src=- shape=c898947c vocab=3dc16505
+-/
 theorem k3_finite_integral_spherical_walls (d : ℕ) (hd : d ≠ 0)
     (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀) :
     {δ : Mukai.MukaiLattice ℤ |

@@ -64,7 +64,9 @@ namespace PeriodDomain
 variable {M : Type*} [AddCommGroup M] [Module ℝ M] {Q : QuadraticForm ℝ M}
 
 /-- The pairing determinant is symmetric in the two pairs: it is the same
-`2 × 2` determinant read along the other diagonal.-/
+`2 × 2` determinant read along the other diagonal.
+@isnad1 id=eq.0h6v.s5.a5b9bca9d6ba from=translated src=- shape=23851cc2 vocab=5470c9f3
+-/
 theorem pairingDet_comm (x₀ y₀ x y : M) :
     pairingDet Q x₀ y₀ x y = pairingDet Q x y x₀ y₀ := by
   rw [pairingDet, pairingDet, polar_comm (⇑Q) x x₀, polar_comm (⇑Q) y y₀,
@@ -72,20 +74,26 @@ theorem pairingDet_comm (x₀ y₀ x y : M) :
   ring
 
 /-- Replacing the reference pair by a combination scales the determinant by the
-determinant of the combination.-/
+determinant of the combination.
+@isnad1 id=eq.0h10v.s8.9cbf4449e56c from=translated src=- shape=4323ee62 vocab=f5c08410
+-/
 theorem pairingDet_ref_comb (x₀ y₀ x y : M) (a b c d : ℝ) :
     pairingDet Q (a • x₀ + b • y₀) (c • x₀ + d • y₀) x y =
       (a * d - b * c) * pairingDet Q x₀ y₀ x y := by
   simp only [pairingDet, polar_add_left, polar_smul_left, smul_eq_mul]
   ring
 
-/-- The determinant of a pair against itself is its Gram determinant.-/
+/-- The determinant of a pair against itself is its Gram determinant.
+@isnad1 id=eq.0h4v.s7.f0aa887675ca from=translated src=- shape=f607c5c4 vocab=c39f1ed8
+-/
 theorem pairingDet_self (x y : M) :
     pairingDet Q x y x y = 4 * Q x * Q y - polar (⇑Q) x y ^ 2 := by
   rw [pairingDet, polar_self, polar_self, polar_comm (⇑Q) y x]
   ring
 
-/-- A positive frame has positive Gram determinant.-/
+/-- A positive frame has positive Gram determinant.
+@isnad1 id=lt.1h4v.s5.75b871098802 from=translated src=- shape=fa2d5b2a vocab=43699110
+-/
 theorem pairingDet_self_pos {x y : M} (h : IsPositiveFrame Q x y) :
     0 < pairingDet Q x y x y := by
   rw [pairingDet_self]
@@ -93,7 +101,9 @@ theorem pairingDet_self_pos {x y : M} (h : IsPositiveFrame Q x y) :
 
 /-- **A pair is positive exactly when `Q` is positive on every nontrivial
 combination.** Sylvester's criterion in the form the interpolation argument
-wants.-/
+wants.
+@isnad1 id=iff.0h4v.s7.bc87b9061866 from=translated src=- shape=2b96efdc vocab=4cd63c0a
+-/
 theorem isPositiveFrame_iff_forall_combination (x y : M) :
     IsPositiveFrame Q x y ↔
       ∀ a b : ℝ, (a ≠ 0 ∨ b ≠ 0) → 0 < Q (a • x + b • y) := by
@@ -138,6 +148,9 @@ def proj (x₀ y₀ v : M) : M :=
 
 variable {Q}
 
+/--
+@isnad1 id=eq.1h5v.s6.2ca37691efe4 from=translated src=- shape=6215e87d vocab=8834f2bb
+-/
 theorem polar_proj_fst {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y₀) (v : M) :
     polar (⇑Q) x₀ (proj Q x₀ y₀ v) = polar (⇑Q) x₀ v := by
   have hg : pairingDet Q x₀ y₀ x₀ y₀ ≠ 0 := ne_of_gt (pairingDet_self_pos h₀)
@@ -147,6 +160,9 @@ theorem polar_proj_fst {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y₀) (v :
   simp only [pairingDet, polar_comm (⇑Q) y₀ x₀]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s6.ef6a84913ad7 from=translated src=- shape=f3b4b898 vocab=8834f2bb
+-/
 theorem polar_proj_snd {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y₀) (v : M) :
     polar (⇑Q) y₀ (proj Q x₀ y₀ v) = polar (⇑Q) y₀ v := by
   have hg : pairingDet Q x₀ y₀ x₀ y₀ ≠ 0 := ne_of_gt (pairingDet_self_pos h₀)
@@ -156,12 +172,17 @@ theorem polar_proj_snd {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y₀) (v :
   simp only [pairingDet, polar_comm (⇑Q) y₀ x₀]
   ring
 
+/--
+@isnad1 id=mem.0h5v.s6.22a0393580eb from=translated src=- shape=0864645c vocab=d2364ed7
+-/
 theorem proj_mem_pairSpan (Q) (x₀ y₀ v : M) : proj Q x₀ y₀ v ∈ pairSpan x₀ y₀ := by
   refine Submodule.add_mem _ (Submodule.smul_mem _ _ ?_) (Submodule.smul_mem _ _ ?_) <;>
     exact Submodule.subset_span (by simp)
 
 /-- What the projection is for: the residual is orthogonal to the reference
-plane, so `Q` is nonpositive on it.-/
+plane, so `Q` is nonpositive on it.
+@isnad1 id=mem.1h5v.s6.509d88cb413e from=translated src=- shape=c34041b7 vocab=31424f3b
+-/
 theorem sub_proj_mem_orthogonal {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y₀) (v : M) :
     v - proj Q x₀ y₀ v ∈ orthogonal Q (pairSpan x₀ y₀) := by
   rw [pairSpan, mem_orthogonal_span_pair_iff]
@@ -170,7 +191,9 @@ theorem sub_proj_mem_orthogonal {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y
   · rw [polar_sub_right, polar_proj_snd h₀, sub_self]
 
 /-- **The determinant only sees the projection.**  Both entries of each column
-are pairings against the reference, and those are unchanged by projecting.-/
+are pairings against the reference, and those are unchanged by projecting.
+@isnad1 id=eq.1h6v.s6.df3037857cee from=translated src=- shape=6a91b2a7 vocab=2cb5dfbb
+-/
 theorem pairingDet_proj {x₀ y₀ : M} (h₀ : IsPositiveFrame Q x₀ y₀) (x y : M) :
     pairingDet Q x₀ y₀ (proj Q x₀ y₀ x) (proj Q x₀ y₀ y) = pairingDet Q x₀ y₀ x y := by
   rw [pairingDet, pairingDet, polar_proj_fst h₀, polar_proj_fst h₀,
@@ -181,7 +204,9 @@ end Projection
 section Interpolation
 
 /-- A continuous nonvanishing function on `[0, 1]` takes the same sign at both
-ends.  This is the only analytic input the cocycle needs.-/
+ends.  This is the only analytic input the cocycle needs.
+@isnad1 id=lt.2h1v.s6.6b960fdc729e from=translated src=- shape=d1daa11d vocab=766eefb4
+-/
 theorem pos_mul_endpoints_of_ne_zero {f : ℝ → ℝ}
     (hf : ContinuousOn f (Set.Icc 0 1))
     (hne : ∀ t ∈ Set.Icc (0 : ℝ) 1, f t ≠ 0) : 0 < f 0 * f 1 := by
@@ -207,7 +232,9 @@ variable [FiniteDimensional ℝ M]
 
 /-- **Shrinking the orthogonal component keeps a pair positive.**  The residual
 lies where `Q` is nonpositive, so scaling it down by `t ≤ 1` only increases
-`Q` on every combination.-/
+`Q` on every combination.
+@isnad1 id=ispositi.5h7v.s8.50c58f163b4f from=translated src=- shape=a247891d vocab=15e2df7a
+-/
 theorem isPositiveFrame_interp (hsig : HasSignatureTwo Q) {x₀ y₀ x y : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) (h : IsPositiveFrame Q x y) {t : ℝ}
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
@@ -259,7 +286,9 @@ theorem isPositiveFrame_interp (hsig : HasSignatureTwo Q) {x₀ y₀ x y : M}
 /-- **The sign against a second reference survives the projection.**  The two
 frames are the ends of an interpolation through positive frames, and the
 determinant against `(u, v)` is a quadratic polynomial along it that never
-vanishes.-/
+vanishes.
+@isnad1 id=lt.4h8v.s6.a17d57416e68 from=translated src=- shape=677bc7ad vocab=72fbfa0e
+-/
 theorem pairingDet_proj_mul_pos (hsig : HasSignatureTwo Q) {x₀ y₀ u v x y : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) (huv : IsPositiveFrame Q u v)
     (h : IsPositiveFrame Q x y) :
@@ -295,7 +324,9 @@ theorem pairingDet_proj_mul_pos (hsig : HasSignatureTwo Q) {x₀ y₀ u v x y : 
 
 /-- **The projection-sign cocycle.**  For any three positive frames the three
 pairing determinants taken cyclically have positive product, so the sign
-against one reference is the product of the signs through any other.-/
+against one reference is the product of the signs through any other.
+@isnad1 id=lt.4h8v.s6.ad9f36b3c219 from=translated src=- shape=8b034cbf vocab=662f53b2
+-/
 theorem pairingDet_cocycle (hsig : HasSignatureTwo Q) {x₀ y₀ u v x y : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) (huv : IsPositiveFrame Q u v)
     (h : IsPositiveFrame Q x y) :
@@ -332,7 +363,9 @@ theorem pairingDet_cocycle (hsig : HasSignatureTwo Q) {x₀ y₀ u v x y : M}
 /-- **The orientation partition does not depend on the reference.**  Changing
 the reference pair either preserves every sign or flips every sign, so
 `SameOrientation` against one positive frame is `SameOrientation` against any
-other.-/
+other.
+@isnad1 id=iff.5h8v.s6.b326faff7583 from=translated src=- shape=71e9f2f2 vocab=13a3f170
+-/
 theorem sameOrientation_iff_of_reference (hsig : HasSignatureTwo Q)
     {x₀ y₀ u v : M} (h₀ : IsPositiveFrame Q x₀ y₀) (huv : IsPositiveFrame Q u v)
     {p q : M × M} (hp : IsPositiveFrame Q p.1 p.2)

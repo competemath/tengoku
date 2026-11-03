@@ -81,6 +81,9 @@ def ofDivisorSpace (h : S.HodgeDefinite H) {K : Set (D × D)} (hK : IsCompact K)
     (Divisorial.DivisorSpace.exists_uniform_negDefinite h hK hpos).choose_spec.1
   neg_definite := (Divisorial.DivisorSpace.exists_uniform_negDefinite h hK hpos).choose_spec.2
 
+/--
+@isnad1 id=eq.3h4v.s7.2e00d2ae5b8e from=translated src=- shape=62893b3f vocab=b5247357
+-/
 @[simp]
 theorem ofDivisorSpace_carrier (h : S.HodgeDefinite H) {K : Set (D × D)} (hK : IsCompact K)
     (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2) :
@@ -100,7 +103,9 @@ and `Spherical/WallComparison.lean` builds it in the `(β, ω)` chart.  Since
 
 With it, `mem_periodDomainWall_iff_mem_wall` reads as a statement about a
 divisor space: the walls counted by `Divisorial/Region.lean` are the vanishing
-locus inside the half-walls counted here.-/
+locus inside the half-walls counted here.
+@isnad1 id=eq.0h4v.s7.ac2c02406be0 from=translated src=- shape=470f851d vocab=b4e03aee
+-/
 theorem expPlane_eq_chartPlane (S : Divisorial.DivisorSpace D) (B omega : D) :
     S.expPlane B omega = chartPlane S.intersection B omega := rfl
 
@@ -110,7 +115,9 @@ theorem expPlane_eq_chartPlane (S : Divisorial.DivisorSpace D) (B omega : D) :
 family of parameters on a Hodge divisor space.**
 
 This is `BoundedRegion.finite_rayCandidates` with the region supplied.  Every
-hypothesis is discharged except the Hodge certificate itself.-/
+hypothesis is discharged except the Hodge certificate itself.
+@isnad1 id=finite.3h6v.s8.9e4af984d89c from=translated src=- shape=74d44f2d vocab=8c4a5215
+-/
 theorem finite_rayCandidates_ofDivisorSpace (h : S.HodgeDefinite H) {K : Set (D × D)}
     (hK : IsCompact K) (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2)
     {ι : Type*} [Finite ι] (basis : Module.Basis ι ℝ D) :
@@ -124,7 +131,9 @@ finitely many walls.**
 `signedRayRegularLocus_inter_carrier` says the signedRayRegularLocus of the whole lattice agrees, on the
 region, with the signedRayRegularLocus of the nonpositiveRayLocus candidates, and
 `finite_rayCandidates_ofDivisorSpace` says those are finite.  Together they are
-the signedRayRegularLocus decomposition the missing witness has been blocking.-/
+the signedRayRegularLocus decomposition the missing witness has been blocking.
+@isnad1 id=eq.3h6v.s8.5f719b45365b from=translated src=- shape=a6533f2a vocab=10815956
+-/
 theorem signedRayRegularLocus_inter_ofDivisorSpace (h : S.HodgeDefinite H) {K : Set (D × D)}
     (hK : IsCompact K) (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2)
     {ι : Type*} (basis : Module.Basis ι ℝ D) :

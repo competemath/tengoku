@@ -65,11 +65,16 @@ noncomputable def numericalCharge (E : N) : ℂ :=
 
 variable {D bR f β ω}
 
+/--
+@isnad1 id=eq.0h11v.s8.b5408e8b8513 from=translated src=- shape=3bcea455 vocab=33f307e5
+-/
 theorem numericalCharge_apply (E : N) :
     D.numericalCharge bR f β ω E
       = Mukai.expCharge bR β ω (Mukai.extendMap f (D.mukaiVectorHom E)) := rfl
 
-/-- The charge is **additive in the class** — every link of the composition is.-/
+/-- The charge is **additive in the class** — every link of the composition is.
+@isnad1 id=eq.0h12v.s8.3bab7e616ab7 from=translated src=- shape=d20c9bb5 vocab=0130d61a
+-/
 theorem numericalCharge_add (E F : N) :
     D.numericalCharge bR f β ω (E + F)
       = D.numericalCharge bR f β ω E + D.numericalCharge bR f β ω F := by
@@ -88,19 +93,26 @@ additivity.-/
 noncomputable def numericalChargeHom : N →+ ℂ :=
   AddMonoidHom.mk' (D.numericalCharge bR f β ω) (fun E F ↦ numericalCharge_add E F)
 
+/--
+@isnad1 id=eq.0h11v.s8.23fe2ebfbcf4 from=translated src=- shape=cea7226e vocab=5ceba5a5
+-/
 @[simp]
 theorem numericalChargeHom_apply (E : N) :
     D.numericalChargeHom bR f β ω E = D.numericalCharge bR f β ω E := rfl
 
 /-- The charge **kills the zero class** — free once it is a hom, and absent
-before.-/
+before.
+@isnad1 id=eq.0h10v.s7.6138c2abfab2 from=translated src=- shape=80290066 vocab=25d2a25e
+-/
 @[simp]
 theorem numericalCharge_zero : D.numericalCharge bR f β ω 0 = 0 :=
   (D.numericalChargeHom bR f β ω).map_zero
 
 variable {D bR f β ω}
 
-/-- The real square of a class is half its Mukai square.-/
+/-- The real square of a class is half its Mukai square.
+@isnad1 id=eq.1h9v.s10.f7908699e11d from=translated src=- shape=26863646 vocab=528bab1a
+-/
 theorem realForm_extendMap_mukaiVector
     (hf : ∀ x y : Λ, bR (f x) (f y) = ((D.b x) y : ℝ)) (E : N) :
     Mukai.realForm bR (Mukai.extendMap f (D.mukaiVectorHom E)) = (D.mukaiForm E E : ℝ) / 2 := by
@@ -109,7 +121,9 @@ theorem realForm_extendMap_mukaiVector
 
 /-- **The support property, in numerical terms.** A class killed by the charge
 has negative Mukai square — the statement `neg_of_mem_orthogonal` becomes once it
-is read through the Mukai vector.-/
+is read through the Mukai vector.
+@isnad1 id=lt.6h11v.s11.00f69cdad2b5 from=translated src=- shape=c7297abd vocab=45d23202
+-/
 theorem mukaiForm_neg_of_numericalCharge_eq_zero [FiniteDimensional ℝ W]
     (hsig : PeriodDomain.HasSignatureTwo (Mukai.realForm bR))
     (hb : ∀ x y : W, bR x y = bR y x) (hω : 0 < bR ω ω)
@@ -123,7 +137,9 @@ theorem mukaiForm_neg_of_numericalCharge_eq_zero [FiniteDimensional ℝ W]
   exact_mod_cast this
 
 /-- **A class of nonnegative Mukai square is never killed** — there are no walls
-in the positive cone, said of classes.-/
+in the positive cone, said of classes.
+@isnad1 id=ne.6h11v.s11.c8f3baceef64 from=translated src=- shape=23d7467c vocab=132756f7
+-/
 theorem numericalCharge_ne_zero_of_nonneg [FiniteDimensional ℝ W]
     (hsig : PeriodDomain.HasSignatureTwo (Mukai.realForm bR))
     (hb : ∀ x y : W, bR x y = bR y x) (hω : 0 < bR ω ω)

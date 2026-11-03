@@ -143,7 +143,9 @@ def adj : C.transform K ⊣ A.rightAdjoint :=
   A.pullAdj.comp (A.twistAdj.comp A.pushAdj)
 
 include A in
-/-- The transform is a left adjoint.-/
+/-- The transform is a left adjoint.
+@isnad1 id=isleftad.0h6v.s5.087d85980711 from=translated src=- shape=56c63e62 vocab=6215110a
+-/
 theorem isLeftAdjoint : (C.transform K).IsLeftAdjoint := A.adj.isLeftAdjoint
 
 /-- **The assembly.**
@@ -160,6 +162,9 @@ pullback, which is what puts `ω[dim]` into the kernel `Q`.-/
   adjKernel := Q
   adj := A.adj.ofNatIsoRight e
 
+/--
+@isnad1 id=eq.0h10v.s6.ffd42a0a979f from=translated src=- shape=85cc7ded vocab=fff95644
+-/
 @[simp]
 theorem toRightAdjointKernelData_adjKernel {C' : Correspondence 𝒴 𝒳 𝒵'} {Q : 𝒵'}
     (e : A.rightAdjoint ≅ C'.transform Q) :
@@ -170,7 +175,9 @@ include A in
 adjoint is a transform, has a kernel-presented right adjoint.**
 
 The statement `toRightAdjointKernelData` proves, phrased against the existing
-`Correspondence.IsKernelFunctor`.  Note again which correspondence: `C'`.-/
+`Correspondence.IsKernelFunctor`.  Note again which correspondence: `C'`.
+@isnad1 id=iskernel.0h10v.s6.a3f8ca05f17c from=translated src=- shape=6f90add5 vocab=fcd13fca
+-/
 theorem isKernelFunctor_rightAdjoint {C' : Correspondence 𝒴 𝒳 𝒵'} {Q : 𝒵'}
     (e : A.rightAdjoint ≅ C'.transform Q) :
     C'.IsKernelFunctor A.rightAdjoint :=
@@ -192,7 +199,9 @@ def adj : A.leftAdjoint ⊣ C.transform K :=
   A.pushAdj.comp (A.twistAdj.comp A.pullAdj)
 
 include A in
-/-- The transform is a right adjoint.-/
+/-- The transform is a right adjoint.
+@isnad1 id=isrighta.0h6v.s5.17bbfe4b2c8c from=translated src=- shape=edaa342b vocab=c2a813cc
+-/
 theorem isRightAdjoint : (C.transform K).IsRightAdjoint := A.adj.isRightAdjoint
 
 /-- **The assembly**, mirroring `ConstituentRightAdjoints.toRightAdjointKernelData`.
@@ -202,6 +211,9 @@ def toLeftAdjointKernelData {C' : Correspondence 𝒴 𝒳 𝒵'} {Q : 𝒵'}
   adjKernel := Q
   adj := A.adj.ofNatIsoLeft e
 
+/--
+@isnad1 id=eq.0h10v.s6.02995d23fbfc from=translated src=- shape=85cc7ded vocab=a398d32c
+-/
 @[simp]
 theorem toLeftAdjointKernelData_adjKernel {C' : Correspondence 𝒴 𝒳 𝒵'} {Q : 𝒵'}
     (e : A.leftAdjoint ≅ C'.transform Q) :
@@ -209,7 +221,9 @@ theorem toLeftAdjointKernelData_adjKernel {C' : Correspondence 𝒴 𝒳 𝒵'} 
 
 include A in
 /-- **A transform whose constituents have left adjoints, and whose composite
-adjoint is a transform, has a kernel-presented left adjoint.**-/
+adjoint is a transform, has a kernel-presented left adjoint.**
+@isnad1 id=iskernel.0h10v.s6.126dc5e56225 from=translated src=- shape=6f90add5 vocab=729cc1a6
+-/
 theorem isKernelFunctor_leftAdjoint {C' : Correspondence 𝒴 𝒳 𝒵'} {Q : 𝒵'}
     (e : A.leftAdjoint ≅ C'.transform Q) :
     C'.IsKernelFunctor A.leftAdjoint :=

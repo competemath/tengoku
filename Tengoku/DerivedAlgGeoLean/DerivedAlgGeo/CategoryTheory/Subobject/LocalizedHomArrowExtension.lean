@@ -31,7 +31,9 @@ variable (R : Type w) [CommRing R] (S : Submonoid R)
 
 /-- Clear a denominator in a morphism into `F.obj X` by absorbing its action into
 the isomorphism from a target source object to the image of a source object.
-Only the Hom-localization maps with fixed codomain `X` are needed.-/
+Only the Hom-localization maps with fixed codomain `X` are needed.
+@isnad1 id=fixedtar.3h6v.s9.985ef730221a from=translated src=- shape=b9547a35 vocab=f365206f
+-/
 theorem fixedTargetArrowExtension_of_localizedHom
     (hObj : ∀ Z : D, ∃ Y : C, Nonempty (Z ≅ F.obj Y))
     (hHom : ∀ Y : C, IsLocalizedModule S (F.mapLinearMap R (X := Y) (Y := X)))

@@ -37,7 +37,9 @@ noncomputable def maxDestabilizingSubobject (Z : StabilityFunction A)
   F.chain ⟨1, by have := F.nonempty; lia⟩
 
 /-- The canonical maximally destabilizing subobject agrees with the first
-nonzero term of every owner HN filtration.-/
+nonzero term of every owner HN filtration.
+@isnad1 id=eq.2h4v.s6.45523818d705 from=translated src=- shape=c36f4d0c vocab=3c367bf0
+-/
 theorem maxDestabilizingSubobject_eq_filtration (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (F : AbelianHNFiltration Z E) :
@@ -45,20 +47,26 @@ theorem maxDestabilizingSubobject_eq_filtration (Z : StabilityFunction A)
       F.chain ⟨1, by have := F.nonempty; lia⟩ :=
   (Classical.choice (hHN E hE)).chain_one_eq F
 
-/-- The canonical maximally destabilizing subobject is nonzero.-/
+/-- The canonical maximally destabilizing subobject is nonzero.
+@isnad1 id=ne.2h3v.s6.2cc7b64123d4 from=translated src=- shape=dbf55054 vocab=72eb0025
+-/
 theorem maxDestabilizingSubobject_ne_bot (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) (E : A) (hE : ¬IsZero E) :
     Z.maxDestabilizingSubobject hHN E hE ≠ ⊥ :=
   (Classical.choice (hHN E hE)).chain_one_ne_bot
 
-/-- The canonical maximally destabilizing subobject is semistable.-/
+/-- The canonical maximally destabilizing subobject is semistable.
+@isnad1 id=issemist.2h3v.s6.14bb71a75014 from=translated src=- shape=6a9cbf8a vocab=390cd059
+-/
 theorem maxDestabilizingSubobject_isSemistable (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) (E : A) (hE : ¬IsZero E) :
     Z.IsSemistable (Z.maxDestabilizingSubobject hHN E hE : A) :=
   (Classical.choice (hHN E hE)).chain_one_isSemistable
 
 /-- A nonzero object is semistable exactly when its canonical maximally
-destabilizing subobject is the whole object.-/
+destabilizing subobject is the whole object.
+@isnad1 id=iff.2h3v.s6.23bcbeadd18f from=translated src=- shape=0ea0afee vocab=0e5dbb57
+-/
 theorem maxDestabilizingSubobject_eq_top_iff_isSemistable
     (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     (E : A) (hE : ¬IsZero E) :
@@ -83,7 +91,9 @@ noncomputable def destabilizingQuotient (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) (E : A) (hE : ¬IsZero E) : A :=
   cokernel (Z.maxDestabilizingSubobject hHN E hE).arrow
 
-/-- The destabilizing quotient is zero exactly for semistable objects.-/
+/-- The destabilizing quotient is zero exactly for semistable objects.
+@isnad1 id=iff.2h3v.s5.6b9a2708b62d from=translated src=- shape=b5abb6e7 vocab=b2b60750
+-/
 theorem isZero_destabilizingQuotient_iff_isSemistable
     (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     (E : A) (hE : ¬IsZero E) :
@@ -101,7 +111,9 @@ theorem isZero_destabilizingQuotient_iff_isSemistable
     rw [htop]
     exact isZero_cokernel_of_epi (⊤ : Subobject E).arrow
 
-/-- A non-semistable object has a nonzero destabilizing quotient.-/
+/-- A non-semistable object has a nonzero destabilizing quotient.
+@isnad1 id=not.3h3v.s5.4ac5cd771870 from=translated src=- shape=3f9bc974 vocab=b2b60750
+-/
 theorem destabilizingQuotient_not_isZero_of_not_isSemistable
     (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     (E : A) (hE : ¬IsZero E) (hnot : ¬Z.IsSemistable E) :
@@ -117,7 +129,9 @@ noncomputable def destabilizingShortComplex (Z : StabilityFunction A)
     (cokernel.π (Z.maxDestabilizingSubobject hHN E hE).arrow)
     (cokernel.condition (Z.maxDestabilizingSubobject hHN E hE).arrow)
 
-/-- The canonical destabilizing short complex is short exact.-/
+/-- The canonical destabilizing short complex is short exact.
+@isnad1 id=shortexa.2h3v.s5.f203f3cde47d from=translated src=- shape=6fcf6ecb vocab=25a7dbeb
+-/
 theorem destabilizingShortComplex_shortExact (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) (E : A) (hE : ¬IsZero E) :
     (Z.destabilizingShortComplex hHN E hE).ShortExact := by
@@ -128,7 +142,9 @@ theorem destabilizingShortComplex_shortExact (Z : StabilityFunction A)
     inferInstance inferInstance
 
 /-- The central charge splits across the canonical destabilizing short exact
-sequence.-/
+sequence.
+@isnad1 id=eq.2h3v.s6.5ad92845e109 from=translated src=- shape=1f5c7253 vocab=5512a1e1
+-/
 theorem charge_eq_maxDestabilizingSubobject_add_destabilizingQuotient
     (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     (E : A) (hE : ¬IsZero E) :
@@ -147,14 +163,18 @@ noncomputable def phiMinus (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     (E : A) (hE : ¬IsZero E) : ℝ :=
   (Classical.choice (hHN E hE)).phiMinus
 
-/-- The intrinsic highest phase agrees with every owner HN filtration.-/
+/-- The intrinsic highest phase agrees with every owner HN filtration.
+@isnad1 id=eq.2h4v.s5.5eb9f0bc4771 from=translated src=- shape=a6db3ef0 vocab=734221c8
+-/
 theorem phiPlus_eq_filtration (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     {E : A} (hE : ¬IsZero E) (F : AbelianHNFiltration Z E) :
     Z.phiPlus hHN E hE = F.phiPlus :=
   (Classical.choice (hHN E hE)).phiPlus_eq F
 
 /-- The canonical maximally destabilizing subobject has the intrinsic highest
-HN phase.-/
+HN phase.
+@isnad1 id=eq.2h3v.s6.9f0b259fde23 from=translated src=- shape=ad27578a vocab=82c9392e
+-/
 theorem phase_maxDestabilizingSubobject (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) (E : A) (hE : ¬IsZero E) :
     Z.phase (Z.maxDestabilizingSubobject hHN E hE : A) =
@@ -162,7 +182,9 @@ theorem phase_maxDestabilizingSubobject (Z : StabilityFunction A)
   (Classical.choice (hHN E hE)).phase_chain_one
 
 /-- Every semistable subobject at the intrinsic highest HN phase lies in the
-canonical maximally destabilizing subobject.-/
+canonical maximally destabilizing subobject.
+@isnad1 id=le.4h4v.s7.e00a041a9594 from=translated src=- shape=b1aa80ad vocab=f46ae648
+-/
 theorem le_maxDestabilizingSubobject_of_semistable_phase_eq_phiPlus
     (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     {E : A} (hE : ¬IsZero E) {B : Subobject E}
@@ -174,13 +196,17 @@ theorem le_maxDestabilizingSubobject_of_semistable_phase_eq_phiPlus
   rw [Z.maxDestabilizingSubobject_eq_filtration hHN hE F]
   exact F.le_chain_one_of_semistable_phase_eq_phiPlus hB hphase
 
-/-- The intrinsic lowest phase agrees with every owner HN filtration.-/
+/-- The intrinsic lowest phase agrees with every owner HN filtration.
+@isnad1 id=eq.2h4v.s5.3c9f7a6d1e9a from=translated src=- shape=a6db3ef0 vocab=d0e48ecd
+-/
 theorem phiMinus_eq_filtration (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     {E : A} (hE : ¬IsZero E) (F : AbelianHNFiltration Z E) :
     Z.phiMinus hHN E hE = F.phiMinus :=
   (Classical.choice (hHN E hE)).phiMinus_eq F
 
-/-- The intrinsic lowest HN phase is at most the intrinsic highest phase.-/
+/-- The intrinsic lowest HN phase is at most the intrinsic highest phase.
+@isnad1 id=le.2h3v.s5.27ece66b062d from=translated src=- shape=4e0eee53 vocab=1fd35263
+-/
 theorem phiMinus_le_phiPlus (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
     (E : A) (hE : ¬IsZero E) :
     Z.phiMinus hHN E hE ≤ Z.phiPlus hHN E hE := by
@@ -190,7 +216,9 @@ theorem phiMinus_le_phiPlus (Z : StabilityFunction A) (hHN : Z.HasHNProperty)
   exact F.phiMinus_le_phiPlus
 
 /-- A nonzero object is semistable exactly when its intrinsic HN phase
-interval degenerates to a point.-/
+interval degenerates to a point.
+@isnad1 id=iff.2h3v.s5.91f010c232c6 from=translated src=- shape=9825df83 vocab=b268c8f4
+-/
 theorem isSemistable_iff_phiPlus_eq_phiMinus (Z : StabilityFunction A)
     (hHN : Z.HasHNProperty) (E : A) (hE : ¬IsZero E) :
     Z.IsSemistable E ↔ Z.phiPlus hHN E hE = Z.phiMinus hHN E hE := by

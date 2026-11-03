@@ -59,6 +59,9 @@ noncomputable def isoOfLinearYonedaIso {X Y : C}
     (e : (linearYoneda k C).obj X ≅ (linearYoneda k C).obj Y) : X ≅ Y :=
   (linearYoneda k C).preimageIso e
 
+/--
+@isnad1 id=eq.0h5v.s8.498b2ccf13d1 from=translated src=- shape=7efc02a5 vocab=124cde4c
+-/
 @[simp]
 theorem map_isoOfLinearYonedaIso {X Y : C}
     (e : (linearYoneda k C).obj X ≅ (linearYoneda k C).obj Y) :
@@ -66,7 +69,9 @@ theorem map_isoOfLinearYonedaIso {X Y : C}
   ext : 1
   exact (linearYoneda k C).map_preimage e.hom
 
-/-- Two morphisms agreeing after the linear Yoneda embedding are equal.-/
+/-- Two morphisms agreeing after the linear Yoneda embedding are equal.
+@isnad1 id=eq.1h6v.s8.f54f50cadb94 from=translated src=- shape=9e196c94 vocab=baa0b68b
+-/
 theorem hom_ext_of_linearYoneda {X Y : C} {f g : X ⟶ Y}
     (h : (linearYoneda k C).map f = (linearYoneda k C).map g) : f = g :=
   (linearYoneda k C).map_injective h

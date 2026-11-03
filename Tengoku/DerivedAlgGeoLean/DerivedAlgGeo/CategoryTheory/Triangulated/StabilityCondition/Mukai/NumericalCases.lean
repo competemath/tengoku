@@ -98,11 +98,15 @@ variable (b : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (β ω : V)
 
 /-! ### Membership, from the two analytic shapes -/
 
-/-- A charge with positive imaginary part is in the half plane.-/
+/-- A charge with positive imaginary part is in the half plane.
+@isnad1 id=mem.1h1v.s4.dd97f24b9c04 from=translated src=- shape=0d6e989f vocab=60c16b30
+-/
 theorem mem_semiClosedUpperHalfPlane_of_im_pos {z : ℂ} (h : 0 < z.im) :
     z ∈ semiClosedUpperHalfPlane := Or.inl h
 
-/-- A charge on the negative real axis is in the half plane.-/
+/-- A charge on the negative real axis is in the half plane.
+@isnad1 id=mem.2h1v.s5.b3ff30b59c43 from=translated src=- shape=b3d1478f vocab=7d3177d1
+-/
 theorem mem_semiClosedUpperHalfPlane_of_im_zero_of_re_neg {z : ℂ}
     (him : z.im = 0) (hre : z.re < 0) : z ∈ semiClosedUpperHalfPlane :=
   Or.inr ⟨him, hre⟩
@@ -114,7 +118,9 @@ after the cutoff shift has its charge in the open upper half plane.
 
 Torsion supported on a curve and a torsion-free sheaf of slope strictly above
 `β·ω` reach this from different geometry, but the arithmetic is the same one
-line, which is why they share a statement.-/
+line, which is why they share a statement.
+@isnad1 id=mem.2h7v.s9.ebdf3e94b641 from=translated src=- shape=85ee42bb vocab=0229719c
+-/
 theorem mem_semiClosedUpperHalfPlane_of_apply_sub_smul_pos
     (hb : ∀ x y : V, b x y = b y x) {r : ℝ} {c : V} {s : ℝ}
     (h : 0 < b ω (c - r • β)) :
@@ -129,7 +135,9 @@ has charge `-s`, on the negative real axis.
 
 Note this case does **not** go through `ω` at all: both coordinates that could
 see the polarisation vanish, and the conclusion is an evaluation rather than an
-inequality about the form.-/
+inequality about the form.
+@isnad1 id=mem.2h5v.s9.bdc780b1c764 from=translated src=- shape=dd92acbb vocab=d522fdff
+-/
 theorem mem_semiClosedUpperHalfPlane_of_dimension_zero
     (hb : ∀ x y : V, b x y = b y x) {s : ℝ} (hs : 0 < s) :
     Mukai.expCharge b β ω ((0 : ℝ), (0 : V), s) ∈ semiClosedUpperHalfPlane := by
@@ -144,7 +152,9 @@ its shift, so every conclusion is about `-v`. -/
 
 /-- **Strictly below the cutoff.** A torsion-free sheaf with `μ_ω(E) < β·ω` lies
 in `F(β)`, so `E⟦1⟧` is the heart object; its charge has positive imaginary
-part.-/
+part.
+@isnad1 id=mem.2h7v.s9.b956bb90562d from=translated src=- shape=6e043491 vocab=577b9787
+-/
 theorem neg_mem_semiClosedUpperHalfPlane_of_apply_sub_smul_neg
     (hb : ∀ x y : V, b x y = b y x) {r : ℝ} {c : V} {s : ℝ}
     (h : b ω (c - r • β) < 0) :
@@ -164,7 +174,9 @@ For a positive-rank class on `Im Z = 0`, a bound
 `realForm b v ≥ -δ` puts the shifted charge on the allowed negative real ray
 whenever the rank-sensitive threshold `2δ < r² * ω²` holds. This is the
 half-plane form of `Mukai.re_expCharge_pos_of_lower_bound`; neither `δ = 1`
-nor integrality of the rank is built into it.-/
+nor integrality of the rank is built into it.
+@isnad1 id=mem.7h8v.s10.aa88a05f7b94 from=translated src=- shape=4fd52090 vocab=48c04d6c
+-/
 theorem neg_mem_semiClosedUpperHalfPlane_of_boundary_of_lower_bound (δ : ℝ)
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
@@ -183,7 +195,9 @@ theorem neg_mem_semiClosedUpperHalfPlane_of_boundary_of_lower_bound (δ : ℝ)
 `Re Z(E) > 0` and the heart object `E⟦1⟧` sits on the negative real axis.
 
 `hv` is the Mukai-square input. In this repository's halved convention
-`realForm b v ≥ 0` is the paper's `v(E)² ≥ 0`.-/
+`realForm b v ≥ 0` is the paper's `v(E)² ≥ 0`.
+@isnad1 id=mem.6h7v.s10.8595227d6e9d from=translated src=- shape=d14d3c0d vocab=39b8f4e6
+-/
 theorem neg_mem_semiClosedUpperHalfPlane_of_boundary_of_nonneg
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
@@ -202,7 +216,9 @@ because `r` is an integer rank, so `1 ≤ r`.
 
 This is the case Bridgeland's hypothesis "for all spherical sheaves `E` one has
 `Z(E) ∉ ℝ_{⩽0}`" exists to rule out, and `ω² > 2` is his sufficient condition
-for it.-/
+for it.
+@isnad1 id=mem.6h7v.s10.6f382b2b0b35 from=translated src=- shape=23f3886e vocab=39b8f4e6
+-/
 theorem neg_mem_semiClosedUpperHalfPlane_of_boundary_of_neg_one
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 2 < b ω ω)
@@ -228,7 +244,9 @@ below `2 * r * Re Z`:
 
 No uniform lower-bound constant and no integral-rank estimate is used here.
 The parameterized `δ` theorem below is a convenient sufficient criterion for
-geometric settings with a uniform stable-factor bound.-/
+geometric settings with a uniform stable-factor bound.
+@isnad1 id=mem.7h6v.s10.c1d2a502ce3d from=translated src=- shape=5223b002 vocab=a498e9eb
+-/
 theorem neg_sum_mem_semiClosedUpperHalfPlane_of_boundary_margin
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
@@ -256,7 +274,9 @@ negative of their sum on the permitted negative real ray.
 
 The lower bound remains factorwise because quadratic bounds are not additive.
 The parameter is uniform only so geometric children can expose one bound for
-their stable factors; the underlying one-class theorem remains rank-sensitive.-/
+their stable factors; the underlying one-class theorem remains rank-sensitive.
+@isnad1 id=mem.8h7v.s10.5f5102cecec4 from=translated src=- shape=b92c8b3e vocab=c273739f
+-/
 theorem neg_sum_mem_semiClosedUpperHalfPlane_of_boundary_of_lower_bound (δ : ℝ)
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
@@ -284,7 +304,9 @@ of the negative of their sum lies on the allowed negative real ray.
 
 This is the assembly-safe form of the boundary argument: the bound
 `-1 ≤ realForm b (v i)` is required for each factor, never for their sum.  The
-latter condition is not additive.-/
+latter condition is not additive.
+@isnad1 id=mem.7h6v.s10.40dd904fef36 from=translated src=- shape=4862a17f vocab=dd62f61a
+-/
 theorem neg_sum_mem_semiClosedUpperHalfPlane_of_boundary_of_neg_one
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 2 < b ω ω)

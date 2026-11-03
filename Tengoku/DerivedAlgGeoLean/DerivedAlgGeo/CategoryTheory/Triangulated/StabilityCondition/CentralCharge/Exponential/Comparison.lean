@@ -61,7 +61,9 @@ def surfaceVec : NumClass ≃+ Exp.HDeg 2 where
   right_inv := by intro d; funext k; fin_cases k <;> simp
   map_add' := by intro v w; funext k; fin_cases k <;> simp [Prod.fst_add, Prod.snd_add]
 
-/-- The surface charge is the kernel at `m = 2`, `w = s + tI`.-/
+/-- The surface charge is the kernel at `m = 2`, `w = s + tI`.
+@isnad1 id=eq.0h3v.s8.991209d5cab2 from=translated src=- shape=4f93494a vocab=dd4e5cf3
+-/
 theorem stCharge_eq_exp (s t : ℝ) (v : NumClass) :
     stCharge s t v = Exp.charge 2 (Exp.stChart (s, t)) ![v.rk, v.deg, v.ch2] := by
   simp only [Exp.charge, AddMonoidHom.mk'_apply, Exp.ofMoments, Exp.moments, Exp.coeff,
@@ -72,7 +74,9 @@ theorem stCharge_eq_exp (s t : ℝ) (v : NumClass) :
       Complex.mul_re, Complex.mul_im] <;> ring
 
 /-- The Bayer--Macrì--Toda threefold charge is the same kernel at `m = 3`,
-`w = β + αI`. Note the chart transposition against the surface case.-/
+`w = β + αI`. Note the chart transposition against the surface case.
+@isnad1 id=eq.0h3v.s8.a302b0024e6a from=translated src=- shape=76d6c9fb vocab=a49803ee
+-/
 theorem threefold_charge_eq_exp (a b : ℝ) (v : Threefold.NumClass) :
     Threefold.charge a b v
       = Exp.charge 3 (Exp.alphaBetaChart (a, b)) ![v.deg0, v.deg1, v.deg2, v.deg3] := by
@@ -84,7 +88,9 @@ theorem threefold_charge_eq_exp (a b : ℝ) (v : Threefold.NumClass) :
       Complex.add_re, Complex.add_im, Complex.mul_re, Complex.mul_im] <;> ring
 
 /-- The surface charge family is the kernel's family, reindexed by its chart and
-pulled back along the coordinate identification.-/
+pulled back along the coordinate identification.
+@isnad1 id=eq.0h0v.s8.abfd836abde2 from=translated src=- shape=60b98fc4 vocab=c38f698d
+-/
 theorem stChargeFamily_eq :
     stChargeFamily
       = ((Exp.chargeFamily 2).reindex Exp.stChart).pullback surfaceVec.toAddMonoidHom := by
@@ -93,7 +99,9 @@ theorem stChargeFamily_eq :
   ext v
   exact stCharge_eq_exp p.1 p.2 v
 
-/-- The threefold charge family, likewise.-/
+/-- The threefold charge family, likewise.
+@isnad1 id=eq.0h0v.s8.e9854ce9eb03 from=translated src=- shape=60b98fc4 vocab=758deed1
+-/
 theorem threefold_chargeFamily_eq :
     Threefold.chargeFamily
       = ((Exp.chargeFamily 3).reindex Exp.alphaBetaChart).pullback

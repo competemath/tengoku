@@ -37,7 +37,9 @@ def universallyStable : F.ObjectProperty where
     P.prop Y ((F.map f).toFunctor.obj M)
 
 /-- A universally stable object satisfies the original property before base
-change. The comparison is the unit isomorphism of the pseudofunctor.-/
+change. The comparison is the unit isomorphism of the pseudofunctor.
+@isnad1 id=le.0h4v.s9.0deeb7faab55 from=translated src=- shape=269de970 vocab=4254cd7c
+-/
 theorem universallyStable_le_self [P.IsClosedUnderIsomorphisms]
     (X : B) : (universallyStable P).prop X ≤ P.prop X := by
   intro M hM
@@ -45,14 +47,18 @@ theorem universallyStable_le_self [P.IsClosedUnderIsomorphisms]
     ((Cat.Hom.toNatIso (F.mapId X)).app M) (hM X (𝟙 X))
 
 /-- If `P` is already preserved by every transition, every `P`-object is
-universally stable.-/
+universally stable.
+@isnad1 id=le.0h4v.s9.cfe3cc1a11df from=translated src=- shape=b82ee928 vocab=d8aa24d9
+-/
 theorem le_universallyStable [P.IsClosedUnderMapObj]
     (X : B) : P.prop X ≤ (universallyStable P).prop X := by
   intro M hM Y f
   exact P.map_obj hM f
 
 /-- A transition-stable property agrees fiberwise with its universally stable
-closure.-/
+closure.
+@isnad1 id=eq.0h4v.s8.edac97d55fde from=translated src=- shape=414a8463 vocab=b5cdaba3
+-/
 theorem universallyStable_eq_self [P.IsClosedUnderIsomorphisms]
     [P.IsClosedUnderMapObj] (X : B) :
     (universallyStable P).prop X = P.prop X :=

@@ -72,11 +72,17 @@ def sqrtTodd : SqrtTodd D where
   divisor := R.divisorClass ⟨V.sqrtToddComp 1, V.sqrtToddComp_mem 1⟩
   number := ((V.ring.degree (V.sqrtToddComp 2) : ℚ) : ℝ)
 
+/--
+@isnad1 id=eq.0h5v.s10.766bf9ea8a82 from=translated src=- shape=e151a9aa vocab=70fe3469
+-/
 @[simp]
 theorem sqrtTodd_divisor :
     (R.sqrtTodd (V := V)).divisor =
       R.divisorClass ⟨V.sqrtToddComp 1, V.sqrtToddComp_mem 1⟩ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.2468d7d3b547 from=translated src=- shape=498fb121 vocab=35e3a159
+-/
 @[simp]
 theorem sqrtTodd_number :
     (R.sqrtTodd (V := V)).number =
@@ -84,7 +90,9 @@ theorem sqrtTodd_number :
 
 /-- **On a K3 the realized square root is `1 + [pt]`.**  This is
 `K3.sqrtToddComp_one` and `K3.degree_sqrtToddComp_two` in the shape the Mukai
-vector consumes.-/
+vector consumes.
+@isnad1 id=eq.1h5v.s6.7d38ad35485c from=translated src=- shape=2d8c1ec7 vocab=3da60681
+-/
 theorem sqrtTodd_eq_k3 (hK3 : K3.IsK3 V) : R.sqrtTodd (V := V) = SqrtTodd.k3 := by
   have hone : (⟨V.sqrtToddComp 1, V.sqrtToddComp_mem 1⟩ : V.ring.piece 1) = 0 := by
     apply Subtype.ext
@@ -94,7 +102,9 @@ theorem sqrtTodd_eq_k3 (hK3 : K3.IsK3 V) : R.sqrtTodd (V := V) = SqrtTodd.k3 := 
   · rw [K3.degree_sqrtToddComp_two hK3]
     norm_num
 
-/-- On a K3 the Mukai vector is `(rank, c₁, ∫ch₂ + rank)`.-/
+/-- On a K3 the Mukai vector is `(rank, c₁, ∫ch₂ + rank)`.
+@isnad1 id=eq.1h6v.s9.60831d026555 from=translated src=- shape=2bf247a9 vocab=8bc701f5
+-/
 theorem mukaiVector_of_isK3 (hK3 : K3.IsK3 V) (E : N) :
     R.chernCharacter.mukaiVector R.divisorSpace (R.sqrtTodd (V := V)) E =
       (((V.rank E : ℤ) : ℝ), R.chernCharacter.chOne E,
@@ -104,7 +114,9 @@ theorem mukaiVector_of_isK3 (hK3 : K3.IsK3 V) (E : N) :
 
 /-- **The third Mukai coordinate is the repository's `K3.mukaiS`**, namely
 `s = rank + ∫ch₂`.  This is what identifies the vector built here with the one
-`GrothendieckGroup/MukaiVector.lean` already uses.-/
+`GrothendieckGroup/MukaiVector.lean` already uses.
+@isnad1 id=eq.1h6v.s7.64be364c4669 from=translated src=- shape=00f87277 vocab=3f1d4e4f
+-/
 theorem mukaiVector_snd_snd_of_isK3 (hK3 : K3.IsK3 V) (E : N) :
     (R.chernCharacter.mukaiVector R.divisorSpace (R.sqrtTodd (V := V)) E).2.2 =
       ((K3.mukaiS V E : ℚ) : ℝ) := by
@@ -113,7 +125,9 @@ theorem mukaiVector_snd_snd_of_isK3 (hK3 : K3.IsK3 V) (E : N) :
   ring
 
 /-- The same coordinate, as the integer `s = χ − rank` of
-`K3.mukaiSInt`, once Hirzebruch--Riemann--Roch is supplied.-/
+`K3.mukaiSInt`, once Hirzebruch--Riemann--Roch is supplied.
+@isnad1 id=eq.2h6v.s7.7da3e39a02c8 from=translated src=- shape=6552c129 vocab=17eff7f6
+-/
 theorem mukaiVector_snd_snd_eq_mukaiSInt (hHRR : V.SatisfiesHRR) (hK3 : K3.IsK3 V) (E : N) :
     (R.chernCharacter.mukaiVector R.divisorSpace (R.sqrtTodd (V := V)) E).2.2 =
       ((K3.mukaiSInt V E : ℤ) : ℝ) := by
@@ -122,7 +136,9 @@ theorem mukaiVector_snd_snd_eq_mukaiSInt (hHRR : V.SatisfiesHRR) (hK3 : K3.IsK3 
 
 /-- **Bridgeland's K3 charge is the ordinary divisorial charge minus the
 rank.**  The two presentations differ by an additive term linear in the class,
-not by a scalar, so their walls differ.-/
+not by a scalar, so their walls differ.
+@isnad1 id=eq.1h7v.s8.86479fd8ba61 from=translated src=- shape=d0513627 vocab=1a903087
+-/
 theorem mukaiCharge_of_isK3 (hK3 : K3.IsK3 V) (P : StabilityParameters D) (E : N) :
     R.chernCharacter.mukaiCharge R.divisorSpace (R.sqrtTodd (V := V)) P E =
       R.chernCharacter.centralCharge R.divisorSpace P E

@@ -63,7 +63,9 @@ def restrictChain (F : AbelianWeakHNFiltration W E) (k : ℕ) (hkn : k ≤ F.n)
     (F.chain_strictMono.monotone (Fin.mk_le_mk.mpr hjk)))
 
 /-- Mapping a restricted term back along the arrow of the `k`-th term recovers
-the original term.-/
+the original term.
+@isnad1 id=eq.2h6v.s8.d9fa0d35d672 from=translated src=- shape=29800b38 vocab=7b53f596
+-/
 theorem map_restrictChain (F : AbelianWeakHNFiltration W E) (k : ℕ)
     (hkn : k ≤ F.n) (j : ℕ) (hjk : j ≤ k) :
     (Subobject.map (F.chain ⟨k, by lia⟩).arrow).obj
@@ -71,7 +73,9 @@ theorem map_restrictChain (F : AbelianWeakHNFiltration W E) (k : ℕ)
   rw [restrictChain, Subobject.map_mk]
   simp only [Subobject.ofLE_arrow, Subobject.mk_arrow]
 
-/-- The restricted chain is monotone, by composing the inclusions.-/
+/-- The restricted chain is monotone, by composing the inclusions.
+@isnad1 id=le.3h7v.s8.80f18cc06d4d from=translated src=- shape=50f4cfb9 vocab=b9abc28c
+-/
 theorem restrictChain_le (F : AbelianWeakHNFiltration W E) (k : ℕ)
     (hkn : k ≤ F.n) {j₁ j₂ : ℕ} (hj : j₁ ≤ j₂) (hjk : j₂ ≤ k) :
     F.restrictChain k hkn j₁ (hj.trans hjk) ≤ F.restrictChain k hkn j₂ hjk :=
@@ -127,17 +131,24 @@ def restrict (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : 0 < k)
         (F.map_restrictChain k hkn (j + 1) (by lia))
         (F.factor_semistable ⟨j, by lia⟩))
 
+/--
+@isnad1 id=eq.2h5v.s7.4c7035e9d190 from=translated src=- shape=5805258e vocab=9fb0269f
+-/
 @[simp]
 theorem restrict_n (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : 0 < k)
     (hkn : k ≤ F.n) : (F.restrict k hk hkn).n = k :=
   rfl
 
-/-- A restriction starts where the filtration it was cut from starts.-/
+/-- A restriction starts where the filtration it was cut from starts.
+@isnad1 id=eq.2h5v.s7.102bb512416c from=translated src=- shape=2bbf1040 vocab=600963c5
+-/
 theorem restrict_μPlus (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : 0 < k)
     (hkn : k ≤ F.n) : (F.restrict k hk hkn).μPlus = F.μPlus :=
   rfl
 
-/-- The lowest slope of a restriction is the last slope below the cut.-/
+/-- The lowest slope of a restriction is the last slope below the cut.
+@isnad1 id=eq.2h5v.s7.49378e6fd710 from=translated src=- shape=866fa3b7 vocab=cef2c27b
+-/
 theorem restrict_μMinus (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : 0 < k)
     (hkn : k ≤ F.n) :
     (F.restrict k hk hkn).μMinus = F.μ ⟨k - 1, by lia⟩ :=
@@ -167,11 +178,17 @@ def ofIso (F : AbelianWeakHNFiltration W E) {E' : A} (e : E ≅ E') :
   factor_semistable := fun j =>
     (W.isSemistable_cokernel_mapMono_iff e.hom _).2 (F.factor_semistable j)
 
+/--
+@isnad1 id=eq.0h6v.s6.f8714295c176 from=translated src=- shape=b070b772 vocab=9ac60265
+-/
 @[simp]
 theorem ofIso_μPlus (F : AbelianWeakHNFiltration W E) {E' : A} (e : E ≅ E') :
     (F.ofIso e).μPlus = F.μPlus :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.f04a37ba8733 from=translated src=- shape=b070b772 vocab=4a98bcd1
+-/
 @[simp]
 theorem ofIso_μMinus (F : AbelianWeakHNFiltration W E) {E' : A} (e : E ≅ E') :
     (F.ofIso e).μMinus = F.μMinus :=
@@ -180,7 +197,9 @@ theorem ofIso_μMinus (F : AbelianWeakHNFiltration W E) {E' : A} (e : E ≅ E') 
 /-- **The crossing index.**  The HN slopes strictly decrease, so the indices
 whose slope exceeds `μ₀` are an initial segment; this names its length.  The
 argument is `Nat.find` on the order alone, so `WithTop ℝ` serves as well as
-`ℝ`.-/
+`ℝ`.
+@isnad1 id=ex.0h5v.s7.ef9e6dbda0f8 from=translated src=- shape=eeb7020c vocab=94d45572
+-/
 theorem exists_crossIndex (F : AbelianWeakHNFiltration W E) (μ₀ : WithTop ℝ) :
     ∃ k ≤ F.n, (∀ j : Fin F.n, j.val < k → μ₀ < F.μ j) ∧
       (∀ j : Fin F.n, k ≤ j.val → F.μ j ≤ μ₀) := by
@@ -206,14 +225,18 @@ namespace WeakStabilityFunctionOn
 
 variable {W : WeakStabilityFunctionOn (abelianDatum A)} {μ₀ : WithTop ℝ}
 
-/-- The torsion class is closed under isomorphism.-/
+/-- The torsion class is closed under isomorphism.
+@isnad1 id=mem.1h6v.s6.3930f0e023ac from=translated src=- shape=8bdd46ad vocab=2dffd26d
+-/
 theorem hnTors_of_iso {E E' : A} (e : E ≅ E') (h : E ∈ hnTors W μ₀) :
     E' ∈ hnTors W μ₀ := by
   rcases h with h0 | ⟨F, hF⟩
   · exact Or.inl (h0.of_iso e.symm)
   · exact Or.inr ⟨F.ofIso e, by simpa using hF⟩
 
-/-- The torsion-free class is closed under isomorphism.-/
+/-- The torsion-free class is closed under isomorphism.
+@isnad1 id=mem.1h6v.s6.0bbd212991e9 from=translated src=- shape=8bdd46ad vocab=3a14584b
+-/
 theorem hnFree_of_iso {E E' : A} (e : E ≅ E') (h : E ∈ hnFree W μ₀) :
     E' ∈ hnFree W μ₀ := by
   rcases h with h0 | ⟨F, hF⟩
@@ -225,7 +248,9 @@ crossing index gives a subobject in `T μ₀`.
 
 This is one half of `exists_subobject_hnTors_cokernel_hnFree`, and is superseded
 by it: `WeakSplitting.lean` now supplies the torsion-free quotient too.  Kept
-because it is the weaker statement and does not truncate the quotient.-/
+because it is the weaker statement and does not truncate the quotient.
+@isnad1 id=ex.1h4v.s6.b6c078844d22 from=translated src=- shape=cd983374 vocab=73e2768c
+-/
 theorem exists_subobject_hnTors (hHN : W.HasHNProperty) (E : A) :
     ∃ T : Subobject E, ((T : A) ∈ hnTors W μ₀) := by
   by_cases hE : IsZero E

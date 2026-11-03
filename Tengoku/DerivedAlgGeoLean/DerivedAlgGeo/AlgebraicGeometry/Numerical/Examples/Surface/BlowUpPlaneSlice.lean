@@ -80,13 +80,18 @@ coefficient exceeding their sum in absolute value.-/
 def ampleCone : Set Divisor :=
   {x | x.2.1 < 0 ∧ x.2.2 < 0 ∧ -x.2.1 - x.2.2 < x.1}
 
+/--
+@isnad1 id=iff.0h1v.s6.4c781aecec3b from=translated src=- shape=3da33c3c vocab=adf18518
+-/
 theorem mem_ampleCone_iff (x : Divisor) :
     x ∈ ampleCone ↔ x.2.1 < 0 ∧ x.2.2 < 0 ∧ -x.2.1 - x.2.2 < x.1 := Iff.rfl
 
 /-- **The rational ample condition lands in the real cone.**  This is what keeps
 `ampleCone` from being a second, unrelated notion of ampleness: it is
 `IsAmpleCoefficients` read in the realized coordinates, where `aH - bE₁ - cE₂`
-becomes `(a, -b, -c)`.-/
+becomes `(a, -b, -c)`.
+@isnad1 id=mem.1h3v.s5.8acdfa22fd10 from=translated src=- shape=198c79a8 vocab=e4e0db71
+-/
 theorem mem_ampleCone_of_isAmpleCoefficients {a b c : ℚ}
     (h : IsAmpleCoefficients a b c) :
     (((a : ℚ) : ℝ), ((-b : ℚ) : ℝ), ((-c : ℚ) : ℝ)) ∈ ampleCone := by
@@ -105,7 +110,9 @@ theorem mem_ampleCone_of_isAmpleCoefficients {a b c : ℚ}
     push_cast
     linarith
 
-/-- The realized anticanonical class is ample.-/
+/-- The realized anticanonical class is ample.
+@isnad1 id=mem.0h0v.s6.4350d9e09925 from=translated src=- shape=af898b91 vocab=46cd773a
+-/
 theorem antiCanonical_mem_ampleCone :
     numericalRealization.realizePolarization antiCanonicalPolarization ∈ ampleCone := by
   rw [antiCanonicalPolarization, numericalRealization_polarization]
@@ -122,12 +129,17 @@ def transverseMap : (ℝ × ℝ) →ₗ[ℝ] Divisor where
   map_smul' a u := by
     ext <;> simp <;> ring
 
+/--
+@isnad1 id=eq.0h1v.s7.9dff10ef553e from=translated src=- shape=0ee760db vocab=f539fd7f
+-/
 @[simp]
 theorem transverseMap_apply (u : ℝ × ℝ) :
     transverseMap u = (u.2, u.1 - u.2, -u.1 - 2 * u.2) := rfl
 
 /-- **Every transverse direction is orthogonal to `-K`.**  The defining equation
-of the complement is `3x₀ + x₁ + x₂ = 0`.-/
+of the complement is `3x₀ + x₁ + x₂ = 0`.
+@isnad1 id=eq.0h1v.s8.131cb23d63b0 from=translated src=- shape=6dba5ee7 vocab=235d0174
+-/
 theorem pair_antiCanonical_transverse (u : ℝ × ℝ) :
     divisorSpace.pair
       (numericalRealization.realizePolarization antiCanonicalPolarization)
@@ -138,7 +150,9 @@ theorem pair_antiCanonical_transverse (u : ℝ × ℝ) :
   ring
 
 /-- The parameterization is injective, which is what turns `u ≠ 0` into
-`transverse u ≠ 0`.-/
+`transverse u ≠ 0`.
+@isnad1 id=injectiv.0h0v.s7.6795b7c4eb4f from=translated src=- shape=9f2d5f89 vocab=fc0811d5
+-/
 theorem transverseMap_injective : Function.Injective transverseMap := by
   intro u v h
   have h2 : u.2 = v.2 := congrArg Prod.fst h
@@ -159,6 +173,9 @@ def antiCanonicalSlice : OrthogonalSlice divisorSpace (ℝ × ℝ) where
   transverse := transverseMap
   orthogonal := pair_antiCanonical_transverse
 
+/--
+@isnad1 id=eq.0h0v.s7.b8b19ce19ed2 from=translated src=- shape=fd32478b vocab=b9cff081
+-/
 @[simp]
 theorem antiCanonicalSlice_H :
     antiCanonicalSlice.H
@@ -166,7 +183,9 @@ theorem antiCanonicalSlice_H :
 
 /-- **The slice is Hodge**, and not vacuously: the second clause quantifies over
 a plane of transverse directions, and is discharged by `hodgeDefinite`, which
-this model proves.-/
+this model proves.
+@isnad1 id=ishodge.0h0v.s6.ace72dece860 from=translated src=- shape=5f6000f3 vocab=393c2a2d
+-/
 theorem antiCanonicalSlice_isHodge : antiCanonicalSlice.IsHodge where
   H_square_pos := antiCanonical_sq_pos
   transverse_square_neg u hu := by
@@ -179,7 +198,9 @@ theorem antiCanonicalSlice_isHodge : antiCanonicalSlice.IsHodge where
 
 `IsGeometric` adds ampleness of the distinguished direction to the Hodge data.
 Nothing inhabited it before.  `SmoothQuadricCharge.ampleCone` shows the missing
-piece was not a cone but the certificate itself: no slice in the tree had one.-/
+piece was not a cone but the certificate itself: no slice in the tree had one.
+@isnad1 id=isgeomet.0h0v.s6.bc57f1c58b44 from=translated src=- shape=e9a0ad02 vocab=294daa00
+-/
 theorem antiCanonicalSlice_isGeometric : antiCanonicalSlice.IsGeometric ampleCone where
   __ := antiCanonicalSlice_isHodge
   H_ample := antiCanonical_mem_ampleCone
@@ -210,6 +231,9 @@ def sliceChargeFamily :
     Wall.ChargeFamily (OrthogonalSlice.Point (ℝ × ℝ)) NumericalClass :=
   antiCanonicalSlice.chargeFamily numericalRealization.chernCharacter
 
+/--
+@isnad1 id=eq.0h2v.s8.ea37f6a087fe from=translated src=- shape=afa2dea5 vocab=37fcc438
+-/
 @[simp]
 theorem sliceChargeFamily_charge (p : OrthogonalSlice.Point (ℝ × ℝ))
     (E : NumericalClass) :
@@ -221,7 +245,9 @@ theorem sliceChargeFamily_charge (p : OrthogonalSlice.Point (ℝ × ℝ))
 
 For each fixed transverse parameter the wall of two classes in the `(s, t)`
 half-plane is a circle or a line, by `alignmentLocus_ofST_iff_circle`.  On the rank-one
-slice that statement has one such half-plane; here it has a plane's worth.-/
+slice that statement has one such half-plane; here it has a plane's worth.
+@isnad1 id=iff.1h4v.s10.a5e958af6e6d from=translated src=- shape=948875dc vocab=5a6fceed
+-/
 theorem alignmentLocus_ofST_iff_circle (uu : ℝ × ℝ) {p : ℝ × ℝ} (ht : p.2 ≠ 0)
     (v w : NumericalClass) :
     OrthogonalSlice.Point.ofST uu p ∈

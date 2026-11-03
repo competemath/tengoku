@@ -84,20 +84,38 @@ variable {C : Type u} [Category.{w} C] [HasZeroObject C] [HasShift C ℤ]
   [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
 variable {G : Type*} [Group G] (ρ : StrictAut G C)
 
+/--
+@isnad1 id=eq.0h4v.s6.8021f6d5eacd from=translated src=- shape=fa064fad vocab=2056fb77
+-/
 theorem comp_inv (g : G) : ρ.F g ⋙ ρ.F g⁻¹ = 𝟭 C := by
   rw [← ρ.map_mul, inv_mul_cancel, ρ.map_one]
 
+/--
+@isnad1 id=eq.0h4v.s6.03b4d6804cec from=translated src=- shape=cbb44e1d vocab=2056fb77
+-/
 theorem inv_comp (g : G) : ρ.F g⁻¹ ⋙ ρ.F g = 𝟭 C := by
   rw [← ρ.map_mul, mul_inv_cancel, ρ.map_one]
 
+/--
+@isnad1 id=eq.0h5v.s6.e2ea328d7445 from=translated src=- shape=31b3ff8d vocab=ac4e1e8d
+-/
 theorem obj_inv (g : G) (X : C) : (ρ.F g⁻¹).obj ((ρ.F g).obj X) = X :=
   congrArg (fun H => H.obj X) (ρ.comp_inv g)
 
+/--
+@isnad1 id=eq.0h5v.s6.4009243cbba1 from=translated src=- shape=df1c2d83 vocab=ac4e1e8d
+-/
 theorem obj_self (g : G) (X : C) : (ρ.F g).obj ((ρ.F g⁻¹).obj X) = X :=
   congrArg (fun H => H.obj X) (ρ.inv_comp g)
 
+/--
+@isnad1 id=eq.0h3v.s6.5a5fd7f239a7 from=translated src=- shape=89444ff7 vocab=edc08b92
+-/
 theorem F_inv_one : ρ.F (1 : G)⁻¹ = 𝟭 C := by rw [inv_one, ρ.map_one]
 
+/--
+@isnad1 id=eq.0h5v.s7.e7eadb04ad4e from=translated src=- shape=20804fba vocab=6cce8c5c
+-/
 theorem F_inv_mul (g h : G) : ρ.F (g * h)⁻¹ = ρ.F g⁻¹ ⋙ ρ.F h⁻¹ := by
   rw [mul_inv_rev, ρ.map_mul]
 
@@ -109,7 +127,13 @@ noncomputable def equiv (g : G) : C ≌ C :=
   CategoryTheory.Equivalence.mk (ρ.F g) (ρ.F g⁻¹)
     (eqToIso (ρ.comp_inv g).symm) (eqToIso (ρ.inv_comp g))
 
+/--
+@isnad1 id=eq.0h4v.s6.10bffb1e3758 from=translated src=- shape=08f5f8ef vocab=6637505b
+-/
 @[simp] theorem equiv_functor (g : G) : (ρ.equiv g).functor = ρ.F g := rfl
+/--
+@isnad1 id=eq.0h4v.s6.bafd67023115 from=translated src=- shape=4a5d17e4 vocab=283f7cf3
+-/
 @[simp] theorem equiv_inverse (g : G) : (ρ.equiv g).inverse = ρ.F g⁻¹ := rfl
 
 /-- `g` acts on a slicing by moving objects: `(g • s).P φ X = s.P φ (g⁻¹ X)`.
@@ -128,6 +152,9 @@ noncomputable def actSlicing (g : G) (s : Slicing C) : Slicing C :=
   letI : (ρ.equiv g).inverse.IsTriangulated := ρ.triangulated g⁻¹
   s.mapEquiv (ρ.equiv g)
 
+/--
+@isnad1 id=eq.0h7v.s7.8e34764e9159 from=translated src=- shape=8f0bae2a vocab=a993f7d4
+-/
 @[simp] theorem actSlicing_P (g : G) (s : Slicing C) (φ : ℝ) (X : C) :
     (ρ.actSlicing g s).P φ X = s.P φ ((ρ.F g⁻¹).obj X) := rfl
 

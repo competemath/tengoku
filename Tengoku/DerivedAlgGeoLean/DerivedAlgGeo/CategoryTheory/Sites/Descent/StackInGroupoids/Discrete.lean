@@ -43,6 +43,9 @@ def discretePseudofunctorMap {C : Type u} [Category.{v} C]
     Pseudofunctor.StrongTrans (discretePseudofunctor P) (discretePseudofunctor Q) :=
   (Functor.whiskerRight φ typeToCat).toStrongTrans
 
+/--
+@isnad1 id=isdiscre.0h3v.s8.b69bc04fa5dd from=translated src=- shape=9712eec9 vocab=96bf3bca
+-/
 instance discretePseudofunctor_obj_isDiscrete
     {C : Type u} [Category.{v} C] (P : Functor Cᵒᵖ (Type w))
     (X : LocallyDiscrete Cᵒᵖ) :
@@ -50,6 +53,9 @@ instance discretePseudofunctor_obj_isDiscrete
   change IsDiscrete (Discrete _)
   infer_instance
 
+/--
+@isnad1 id=isgroupo.0h3v.s8.ec9e53ae11be from=translated src=- shape=9712eec9 vocab=ac051895
+-/
 instance discretePseudofunctor_obj_isGroupoid
     {C : Type u} [Category.{v} C] (P : Functor Cᵒᵖ (Type w))
     (X : LocallyDiscrete Cᵒᵖ) :
@@ -126,7 +132,9 @@ private theorem toDescentData_isEquivalence
 
 end DiscretePseudofunctor
 
-/-- A sheaf of types is a stack in discrete groupoids.-/
+/-- A sheaf of types is a stack in discrete groupoids.
+@isnad1 id=isstack.1h3v.s5.da293122132e from=translated src=- shape=88b644f8 vocab=884bd8c0
+-/
 theorem discretePseudofunctor_isStack
     {C : Type u} [Category.{v} C] {P : Functor Cᵒᵖ (Type w)}
     {J : GrothendieckTopology C} (hP : Presieve.IsSheaf J P) :
@@ -152,7 +160,9 @@ def stackInGroupoidsOfSheaf
 /-- Restricting `CategoryTheory.stackInGroupoidsOfSheaf` to a coarser topology agrees with
 constructing its discrete stack from the restricted sheaf condition. This
 requires only a sheaf proof for the finer topology, with no representability
-or subcanonicity assumption.-/
+or subcanonicity assumption.
+@isnad1 id=eq.2h4v.s5.3695ed1de958 from=translated src=- shape=5906f7c3 vocab=192b138e
+-/
 theorem stackInGroupoidsOfSheaf_ofLE
     {C : Type u} [Category.{v} C] {J₁ J₂ : GrothendieckTopology C}
     (h : J₁ ≤ J₂) (P : Cᵒᵖ ⥤ Type w) (hP : Presieve.IsSheaf J₂ P) :
@@ -171,7 +181,9 @@ def StackInGroupoids.discreteMap
   discretePseudofunctorMap φ
 
 /-- The component functor of `CategoryTheory.StackInGroupoids.discreteMap` applies the
-underlying natural transformation to each object, definitionally.-/
+underlying natural transformation to each object, definitionally.
+@isnad1 id=eq.2h7v.s10.79710e129a42 from=translated src=- shape=fc757361 vocab=0e861422
+-/
 @[simp]
 theorem StackInGroupoids.discreteMap_app_obj
     {C : Type u} [Category.{v} C] {J : GrothendieckTopology C}

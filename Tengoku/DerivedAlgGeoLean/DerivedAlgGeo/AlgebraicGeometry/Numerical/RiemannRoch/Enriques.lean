@@ -48,7 +48,9 @@ structure IsEnriques : Prop where
 `χ(E) = rank(E) + ∫_Y ch₂(E)`.
 
 The `c₁` term vanishes numerically, while the rank term has coefficient one,
-in contrast with the K3 coefficient two.-/
+in contrast with the K3 coefficient two.
+@isnad1 id=eq.2h4v.s8.a4bb13297349 from=translated src=- shape=25d00ef1 vocab=02c205eb
+-/
 theorem chi_eq (hHRR : V.SatisfiesHRR) (hEnriques : IsEnriques V) (E : N) :
     (V.chi E : ℚ) = (V.rank E : ℚ) + V.ring.degree (V.chComp E 2) := by
   have h := V.chi_eq_sum hHRR E

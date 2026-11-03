@@ -35,7 +35,9 @@ def HasUniformQuadraticSupportProperty
     (∀ i x, x ∈ S i → 0 ≤ Q x) ∧
     ∀ x : V, Z x = 0 → x ≠ 0 → Q x < 0
 
-/-- Uniform support specializes to support on each index.-/
+/-- Uniform support specializes to support on each index.
+@isnad1 id=hasquadr.1h6v.s6.9a0b72e0277d from=translated src=- shape=b4b0cfaa vocab=9e2b66a3
+-/
 theorem HasUniformQuadraticSupportProperty.fiber
     {Z : V →ₗ[ℝ] W} {S : I → Set V}
     (h : HasUniformQuadraticSupportProperty Z S) (i : I) :
@@ -44,7 +46,9 @@ theorem HasUniformQuadraticSupportProperty.fiber
   exact ⟨Q, ⟨hnonneg i, hneg⟩⟩
 
 /-- A quadratic form compatible with the union is uniformly compatible with
-the indexed family.-/
+the indexed family.
+@isnad1 id=hasunifo.1h5v.s6.454a888ed6e3 from=translated src=- shape=d8fc97d5 vocab=f9eb563d
+-/
 theorem hasUniformQuadraticSupportProperty_of_union
     {Z : V →ₗ[ℝ] W} {S : I → Set V}
     (h : HasQuadraticSupportProperty Z (familyLocus S)) :
@@ -55,7 +59,9 @@ theorem hasUniformQuadraticSupportProperty_of_union
   exact hQ.nonneg_of_mem x (Set.mem_iUnion.mpr ⟨i, hx⟩)
 
 /-- Uniform compatibility is exactly compatibility on the union of all
-selected classes.-/
+selected classes.
+@isnad1 id=iff.0h5v.s6.eaf210c3828c from=translated src=- shape=2bd8d997 vocab=f9eb563d
+-/
 theorem hasUniformQuadraticSupportProperty_iff_union
     {Z : V →ₗ[ℝ] W} {S : I → Set V} :
     HasUniformQuadraticSupportProperty Z S ↔
@@ -68,7 +74,9 @@ theorem hasUniformQuadraticSupportProperty_iff_union
     exact hnonneg i x hxi
   · exact hasUniformQuadraticSupportProperty_of_union
 
-/-- Reindexing a uniformly controlled family preserves the same witness.-/
+/-- Reindexing a uniformly controlled family preserves the same witness.
+@isnad1 id=hasunifo.1h7v.s6.652e8c393d6b from=translated src=- shape=a2f06e63 vocab=00d5750d
+-/
 theorem HasUniformQuadraticSupportProperty.reindex
     {Z : V →ₗ[ℝ] W} {S : I → Set V}
     (h : HasUniformQuadraticSupportProperty Z S) (f : J → I) :
@@ -76,7 +84,9 @@ theorem HasUniformQuadraticSupportProperty.reindex
   obtain ⟨Q, hnonneg, hneg⟩ := h
   exact ⟨Q, fun j => hnonneg (f j), hneg⟩
 
-/-- One quadratic support form gives a uniform constant family.-/
+/-- One quadratic support form gives a uniform constant family.
+@isnad1 id=hasunifo.1h5v.s6.030a96bb3c43 from=translated src=- shape=abeada4d vocab=9e2b66a3
+-/
 theorem HasQuadraticSupportProperty.constant
     {Z : V →ₗ[ℝ] W} {S : Set V}
     (h : HasQuadraticSupportProperty Z S) (I : Type*) :
@@ -85,7 +95,9 @@ theorem HasQuadraticSupportProperty.constant
   exact ⟨Q, fun _ => hQ.nonneg_of_mem, hQ.neg_of_ker⟩
 
 /-- For a nonempty index type, a constant family is uniformly supported if
-and only if its unique locus is quadratically supported.-/
+and only if its unique locus is quadratically supported.
+@isnad1 id=iff.0h5v.s6.6b280be947ea from=translated src=- shape=a3821920 vocab=90d7ac50
+-/
 theorem hasUniformQuadraticSupportProperty_constant_iff
     [Nonempty I] {Z : V →ₗ[ℝ] W} {S : Set V} :
     HasUniformQuadraticSupportProperty Z (fun _ : I => S) ↔
@@ -101,13 +113,18 @@ def transportQuadraticForm (e : V ≃ₗ[ℝ] V') (Q : QuadraticForm ℝ V) :
     QuadraticForm ℝ V' :=
   Q.comp e.symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s8.c3d651e76ee2 from=translated src=- shape=26e4acd7 vocab=27ff902a
+-/
 @[simp]
 theorem transportQuadraticForm_apply
     (e : V ≃ₗ[ℝ] V') (Q : QuadraticForm ℝ V) (x : V') :
     transportQuadraticForm e Q x = Q (e.symm x) := rfl
 
 /-- Compatibility with a genuine quadratic form is invariant under a linear
-equivalence, with both the charge and selected classes transported.-/
+equivalence, with both the charge and selected classes transported.
+@isnad1 id=iscompat.1h7v.s9.a1058c62c19e from=translated src=- shape=5ff7f57c vocab=142e0263
+-/
 theorem isCompatible_transport
     (e : V ≃ₗ[ℝ] V') {Z : V →ₗ[ℝ] W} {S : Set V}
     {Q : QuadraticForm ℝ V} (hQ : IsCompatible Z S Q) :
@@ -123,7 +140,9 @@ theorem isCompatible_transport
     · exact fun hzero => hy0 (by simpa using congrArg e hzero)
 
 /-- Uniform quadratic support is invariant under a linear equivalence of the
-class space.-/
+class space.
+@isnad1 id=hasunifo.1h7v.s8.372669504d95 from=translated src=- shape=03074460 vocab=d1cc1a76
+-/
 theorem HasUniformQuadraticSupportProperty.transport
     (e : V ≃ₗ[ℝ] V') {Z : V →ₗ[ℝ] W} {S : I → Set V}
     (h : HasUniformQuadraticSupportProperty Z S) :
@@ -139,7 +158,9 @@ theorem HasUniformQuadraticSupportProperty.transport
     · exact fun hzero => hy0 (by simpa using congrArg e hzero)
 
 /-- The transport construction is an equivalence, not merely a one-way
-preservation theorem.-/
+preservation theorem.
+@isnad1 id=iff.0h7v.s8.cea2538e51b3 from=translated src=- shape=53bc813f vocab=d1cc1a76
+-/
 theorem hasUniformQuadraticSupportProperty_transport_iff
     (e : V ≃ₗ[ℝ] V') {Z : V →ₗ[ℝ] W} {S : I → Set V} :
     HasUniformQuadraticSupportProperty

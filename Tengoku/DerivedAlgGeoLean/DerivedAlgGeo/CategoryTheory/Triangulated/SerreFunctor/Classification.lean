@@ -38,19 +38,25 @@ def IsShiftOf (E F : C) : Prop :=
 namespace IsShiftOf
 
 omit [Preadditive C] in
-/-- Every object is a shift of itself, with shift zero.-/
+/-- Every object is a shift of itself, with shift zero.
+@isnad1 id=isshifto.0h2v.s4.450ded2aea72 from=translated src=- shape=c0a48736 vocab=402e5c1d
+-/
 theorem refl (E : C) : IsShiftOf E E :=
   ⟨0, ⟨((shiftFunctorZero C ℤ).app E).symm⟩⟩
 
 omit [Preadditive C] in
-/-- Being isomorphic up to an integral shift is symmetric.-/
+/-- Being isomorphic up to an integral shift is symmetric.
+@isnad1 id=isshifto.1h3v.s4.62a21f77f1eb from=translated src=- shape=4ecd1915 vocab=402e5c1d
+-/
 theorem symm {E F : C} (h : IsShiftOf E F) : IsShiftOf F E := by
   obtain ⟨p, ⟨e⟩⟩ := h
   refine ⟨-p, ⟨((shiftFunctorCompIsoId C p (-p) (by omega)).app F).symm ≪≫ ?_⟩⟩
   exact (shiftFunctor C (-p)).mapIso e.symm
 
 omit [Preadditive C] in
-/-- Integral shifts compose, so `IsShiftOf` is transitive.-/
+/-- Integral shifts compose, so `IsShiftOf` is transitive.
+@isnad1 id=isshifto.2h4v.s5.b61ffd2ae3d1 from=translated src=- shape=96b24d1f vocab=402e5c1d
+-/
 theorem trans {E F G : C} (hEF : IsShiftOf E F) (hFG : IsShiftOf F G) :
     IsShiftOf E G := by
   obtain ⟨p, ⟨eEF⟩⟩ := hEF
@@ -60,7 +66,9 @@ theorem trans {E F G : C} (hEF : IsShiftOf E F) (hFG : IsShiftOf F G) :
 
 omit [Preadditive C] in
 /-- Replacing the left object by an isomorphic object preserves
-`IsShiftOf`.-/
+`IsShiftOf`.
+@isnad1 id=isshifto.1h5v.s5.cb9a4c8d50b8 from=translated src=- shape=dc50b52e vocab=f6d8c7d0
+-/
 theorem of_iso_left {E E' F : C} (e : E ≅ E') (h : IsShiftOf E' F) :
     IsShiftOf E F := by
   obtain ⟨p, ⟨e'⟩⟩ := h
@@ -68,7 +76,9 @@ theorem of_iso_left {E E' F : C} (e : E ≅ E') (h : IsShiftOf E' F) :
 
 omit [Preadditive C] in
 /-- Replacing the right object by an isomorphic object preserves
-`IsShiftOf`.-/
+`IsShiftOf`.
+@isnad1 id=isshifto.1h5v.s5.fc42fef1d522 from=translated src=- shape=96b24d1f vocab=f6d8c7d0
+-/
 theorem of_iso_right {E F F' : C} (h : IsShiftOf E F) (e : F ≅ F') :
     IsShiftOf E F' := by
   obtain ⟨p, ⟨e'⟩⟩ := h
@@ -81,7 +91,9 @@ def IsGradedOrthogonal (E F : C) : Prop :=
   ∀ p : ℤ, ∀ f : E ⟶ F⟦p⟧, f = 0
 
 /-- A nonzero object cannot be a shift of an object to which it is graded
-orthogonal.-/
+orthogonal.
+@isnad1 id=not.2h3v.s5.218cead9a135 from=translated src=- shape=0dbb7ce7 vocab=38069205
+-/
 theorem not_isShiftOf_of_isGradedOrthogonal {E F : C}
     (hE : ¬ IsZero E) (horth : IsGradedOrthogonal E F) :
     ¬ IsShiftOf E F := by
@@ -109,13 +121,17 @@ namespace SphericalClassificationData
 variable {D : SerreFunctorData k C} {n : ℕ} {ι : Type t}
   (A : SphericalClassificationData D n ι)
 
-/-- Distinct candidates are not isomorphic up to any shift.-/
+/-- Distinct candidates are not isomorphic up to any shift.
+@isnad1 id=not.1h8v.s6.f7854b3ba614 from=translated src=- shape=7da670ba vocab=d0cd260f
+-/
 theorem candidate_not_isShiftOf {i j : ι} (hij : i ≠ j) :
     ¬ IsShiftOf (A.candidate i) (A.candidate j) :=
   not_isShiftOf_of_isGradedOrthogonal
     (A.candidate_spherical i).not_isZero (A.pairwise_orthogonal hij)
 
-/-- Find a candidate and shift representing a spherical object.-/
+/-- Find a candidate and shift representing a spherical object.
+@isnad1 id=ex.1h7v.s6.39ccf38e9300 from=translated src=- shape=665c2d86 vocab=6369827f
+-/
 theorem exists_candidate_shift {E : C} (hE : IsSphericalObject D n E) :
     ∃ (i : ι) (p : ℤ), Nonempty (E ≅ (A.candidate i)⟦p⟧) := by
   obtain ⟨i, p, e⟩ := (A.complete E).mp hE
@@ -154,36 +170,48 @@ namespace MixedClassificationData
 variable {D : SerreFunctorData k C} {n : ℕ} {ι : Type t}
   (A : MixedClassificationData D n ι)
 
-/-- A length-one candidate is spherical.-/
+/-- A length-one candidate is spherical.
+@isnad1 id=isspheri.1h7v.s6.34fc9ee3c80c from=translated src=- shape=ad25d2f4 vocab=7ca32768
+-/
 theorem candidate_spherical {i : ι} (hi : A.blockLength i = 1) :
     IsSphericalObject D n (A.candidate i) :=
   A.spherical_of_length_one i hi
 
-/-- A longer-block candidate is pseudoprojective.-/
+/-- A longer-block candidate is pseudoprojective.
+@isnad1 id=ispseudo.1h7v.s6.756c89074213 from=translated src=- shape=b92094b0 vocab=ba5063bb
+-/
 theorem candidate_pseudoprojective {i : ι} (hi : 2 ≤ A.blockLength i) :
     IsPseudoprojectiveObject D n (A.candidate i) :=
   A.pseudoprojective_of_two_le i hi
 
-/-- Distinct spherical candidates are not isomorphic up to shift.-/
+/-- Distinct spherical candidates are not isomorphic up to shift.
+@isnad1 id=not.2h8v.s6.44fa398af901 from=translated src=- shape=a9cc9822 vocab=56e3cf5e
+-/
 theorem spherical_candidate_not_isShiftOf {i j : ι}
     (hi : A.blockLength i = 1) (hij : i ≠ j) :
     ¬ IsShiftOf (A.candidate i) (A.candidate j) :=
   not_isShiftOf_of_isGradedOrthogonal
     (A.candidate_spherical hi).not_isZero (A.pairwise_orthogonal hij)
 
-/-- Distinct pseudoprojective candidates are not isomorphic up to shift.-/
+/-- Distinct pseudoprojective candidates are not isomorphic up to shift.
+@isnad1 id=not.2h8v.s6.42952f768db5 from=translated src=- shape=5ac8917b vocab=e406d832
+-/
 theorem pseudoprojective_candidate_not_isShiftOf {i j : ι}
     (hi : 2 ≤ A.blockLength i) (hij : i ≠ j) :
     ¬ IsShiftOf (A.candidate i) (A.candidate j) :=
   not_isShiftOf_of_isGradedOrthogonal
     (A.candidate_pseudoprojective hi).not_isZero (A.pairwise_orthogonal hij)
 
-/-- Exact spherical half of the Paper II classification.-/
+/-- Exact spherical half of the Paper II classification.
+@isnad1 id=iff.0h7v.s6.17e2c3926f0b from=translated src=- shape=46a1f568 vocab=5f006a4b
+-/
 theorem spherical_iff (E : C) : IsSphericalObject D n E ↔
     ∃ i, A.blockLength i = 1 ∧ IsShiftOf E (A.candidate i) :=
   A.spherical_complete E
 
-/-- Exact pseudoprojective half of the Paper II classification.-/
+/-- Exact pseudoprojective half of the Paper II classification.
+@isnad1 id=iff.0h7v.s6.4b672762fc5b from=translated src=- shape=12e62a97 vocab=93f8db25
+-/
 theorem pseudoprojective_iff (E : C) : IsPseudoprojectiveObject D n E ↔
     ∃ i, 2 ≤ A.blockLength i ∧ IsShiftOf E (A.candidate i) :=
   A.pseudoprojective_complete E

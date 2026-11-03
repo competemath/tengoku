@@ -79,12 +79,21 @@ noncomputable def sqrtComp (f : ℕ → A) : ℕ → A
       - algebraMap ℚ A (5 / 128) * (f 1 * f 1 * f 1 * f 1)
   | _ + 5 => 0
 
+/--
+@isnad1 id=eq.0h2v.s5.89e2330a4414 from=translated src=- shape=e720dab6 vocab=4505c5d9
+-/
 @[simp]
 theorem sqrtComp_zero (f : ℕ → A) : sqrtComp f 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.701763498309 from=translated src=- shape=e525bd73 vocab=2d6f55c1
+-/
 theorem sqrtComp_one (f : ℕ → A) :
     sqrtComp f 1 = algebraMap ℚ A (1 / 2) * f 1 := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.ce511bac52b7 from=translated src=- shape=787182b0 vocab=abf71474
+-/
 @[simp]
 theorem sqrtComp_eq_zero_of_four_lt (f : ℕ → A) {i : ℕ} (hi : 4 < i) :
     sqrtComp f i = 0 := by
@@ -122,7 +131,9 @@ private theorem am_half_add : algebraMap ℚ A (1 / 2) + algebraMap ℚ A (1 / 2
 
 /-- **The identity that makes the name honest**: `∑_{j ≤ i} g_j·g_{i−j} = f_i`.
 
-Carries `i ≤ 4` explicitly, because the coefficients stop there.-/
+Carries `i ≤ 4` explicitly, because the coefficients stop there.
+@isnad1 id=eq.2h3v.s6.7bf6f7a0d7d5 from=translated src=- shape=e1cf7da7 vocab=63622d3e
+-/
 theorem sqrtComp_convolution (f : ℕ → A) (hf : f 0 = 1) {i : ℕ} (hi : i ≤ 4) :
     ∑ j ∈ range (i + 1), sqrtComp f j * sqrtComp f (i - j) = f i := by
   have hh := am_half_add (A := A)
@@ -145,7 +156,9 @@ theorem sqrtComp_convolution (f : ℕ → A) (hf : f 0 = 1) {i : ℕ} (hi : i �
 
 /-! ### The square root respects the grading -/
 
-/-- If every `f j` sits in codimension `j`, so does every `sqrtComp f i`.-/
+/-- If every `f j` sits in codimension `j`, so does every `sqrtComp f i`.
+@isnad1 id=mem.1h5v.s7.e8b5959f07cc from=translated src=- shape=7283b96c vocab=142ac8e9
+-/
 theorem sqrtComp_mem {n : ℕ} (R : NumericalRingData n A) (f : ℕ → A)
     (hf : ∀ j, f j ∈ R.piece j) (i : ℕ) : sqrtComp f i ∈ R.piece i := by
   have hc : ∀ (q : ℚ) {j : ℕ} {x : A}, x ∈ R.piece j →
@@ -181,15 +194,22 @@ namespace NumericalVarietyData
 noncomputable def sqrtToddComp (V : NumericalVarietyData n A N) : ℕ → A :=
   sqrtComp V.toddComp
 
+/--
+@isnad1 id=eq.0h4v.s5.88fdac6163b4 from=translated src=- shape=3e867a94 vocab=e4f694f6
+-/
 @[simp]
 theorem sqrtToddComp_zero (V : NumericalVarietyData n A N) : V.sqrtToddComp 0 = 1 := rfl
 
-/-- `√td(X)` respects the grading, from `toddComp_mem`.-/
+/-- `√td(X)` respects the grading, from `toddComp_mem`.
+@isnad1 id=mem.0h5v.s6.57dc33e22d05 from=translated src=- shape=f5d11199 vocab=264d4a6c
+-/
 theorem sqrtToddComp_mem (V : NumericalVarietyData n A N) (i : ℕ) :
     V.sqrtToddComp i ∈ V.ring.piece i :=
   sqrtComp_mem V.ring V.toddComp V.toddComp_mem i
 
-/-- `√td(X)` squares to `td(X)`, in every codimension up to four.-/
+/-- `√td(X)` squares to `td(X)`, in every codimension up to four.
+@isnad1 id=eq.1h5v.s6.e3472800002a from=translated src=- shape=bc7844e9 vocab=f12036f8
+-/
 theorem sqrtToddComp_convolution (V : NumericalVarietyData n A N) {i : ℕ} (hi : i ≤ 4) :
     ∑ j ∈ range (i + 1), V.sqrtToddComp j * V.sqrtToddComp (i - j) = V.toddComp i :=
   sqrtComp_convolution V.toddComp V.toddComp_zero hi

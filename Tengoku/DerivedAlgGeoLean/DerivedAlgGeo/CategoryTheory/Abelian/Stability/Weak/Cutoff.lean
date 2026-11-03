@@ -73,15 +73,23 @@ def hnFree : Set A :=
 
 variable {W μ₀}
 
+/--
+@isnad1 id=mem.1h4v.s6.d8d6b518a7ae from=translated src=- shape=7a0796b2 vocab=c2e2906a
+-/
 theorem isZero_mem_hnTors {E : A} (hE : IsZero E) : E ∈ hnTors W μ₀ := Or.inl hE
 
+/--
+@isnad1 id=mem.1h4v.s6.8034182b84f8 from=translated src=- shape=7a0796b2 vocab=ef35bc44
+-/
 theorem isZero_mem_hnFree {E : A} (hE : IsZero E) : E ∈ hnFree W μ₀ := Or.inl hE
 
 /-- Membership is independent of the filtration chosen, because `μ⁻` is.
 
 The HN property is needed for the reverse direction only: without a filtration
 to exhibit, the universally quantified condition is vacuous while membership
-asks for a witness.-/
+asks for a witness.
+@isnad1 id=iff.2h4v.s6.1b899156ff84 from=translated src=- shape=f5f8c9bb vocab=926ae0a2
+-/
 theorem mem_hnTors_iff_forall (hHN : W.HasHNProperty) {E : A} (hE : ¬IsZero E) :
     E ∈ hnTors W μ₀ ↔ ∀ F : AbelianWeakHNFiltration W E, μ₀ < F.μMinus := by
   obtain ⟨G⟩ := hHN E hE
@@ -91,7 +99,9 @@ theorem mem_hnTors_iff_forall (hHN : W.HasHNProperty) {E : A} (hE : ¬IsZero E) 
     · rwa [AbelianWeakHNFiltration.μMinus_eq K F]
   · exact fun h => Or.inr ⟨G, h G⟩
 
-/-- Membership is independent of the filtration chosen, because `μ⁺` is.-/
+/-- Membership is independent of the filtration chosen, because `μ⁺` is.
+@isnad1 id=iff.2h4v.s6.9ea5f02e3026 from=translated src=- shape=b784750a vocab=e7d231d5
+-/
 theorem mem_hnFree_iff_forall (hHN : W.HasHNProperty) {E : A} (hE : ¬IsZero E) :
     E ∈ hnFree W μ₀ ↔ ∀ F : AbelianWeakHNFiltration W E, F.μPlus ≤ μ₀ := by
   obtain ⟨G⟩ := hHN E hE
@@ -103,7 +113,9 @@ theorem mem_hnFree_iff_forall (hHN : W.HasHNProperty) {E : A} (hE : ¬IsZero E) 
 
 /-- **A weak-semistable object of slope `⊤` lies in the torsion class at every
 finite cutoff.**  This is the skyscraper, and it is the whole reason the cutoff
-is valued in `WithTop ℝ` rather than in `ℝ`.-/
+is valued in `WithTop ℝ` rather than in `ℝ`.
+@isnad1 id=mem.3h4v.s6.4cc2fc6693b7 from=translated src=- shape=4cf06248 vocab=481ae312
+-/
 theorem mem_hnTors_of_slope_eq_top {E : A} (hE : W.IsSemistable E)
     (hslope : W.slope E = ⊤) (hμ : μ₀ ≠ ⊤) : E ∈ hnTors W μ₀ :=
   Or.inr ⟨AbelianWeakHNFiltration.ofSemistable hE, by
@@ -111,13 +123,17 @@ theorem mem_hnTors_of_slope_eq_top {E : A} (hE : W.IsSemistable E)
     exact Ne.lt_top hμ⟩
 
 /-- A weak-semistable object of charge `0` lies in the torsion class at every
-finite cutoff.  The rank-zero, degree-zero case in charge terms.-/
+finite cutoff.  The rank-zero, degree-zero case in charge terms.
+@isnad1 id=mem.3h4v.s6.35aa6dda5fd1 from=translated src=- shape=dddb2baf vocab=6fe98810
+-/
 theorem mem_hnTors_of_charge_eq_zero {E : A} (hE : W.IsSemistable E)
     (hcharge : W.charge E = 0) (hμ : μ₀ ≠ ⊤) : E ∈ hnTors W μ₀ :=
   mem_hnTors_of_slope_eq_top hE (W.slope_eq_top_of_charge_eq_zero hcharge) hμ
 
 /-- **The two classes meet only in zero.**  An object in both would have
-`μ₀ < μ⁻ ≤ μ⁺ ≤ μ₀`.-/
+`μ₀ < μ⁻ ≤ μ⁺ ≤ μ₀`.
+@isnad1 id=iszero.2h4v.s6.5b86d5b648b7 from=translated src=- shape=06dda1cd vocab=6939ee8c
+-/
 theorem isZero_of_mem_hnTors_of_mem_hnFree {E : A} (hT : E ∈ hnTors W μ₀)
     (hF : E ∈ hnFree W μ₀) : IsZero E := by
   by_contra hE
@@ -133,7 +149,9 @@ theorem isZero_of_mem_hnTors_of_mem_hnFree {E : A} (hT : E ∈ hnTors W μ₀)
 
 /-- **Hom-vanishing, for a weak-semistable target.**  A map from an object whose
 weak HN slopes all exceed `μ₀` to a weak-semistable object of slope at most
-`μ₀` is zero.-/
+`μ₀` is zero.
+@isnad1 id=eq.4h6v.s7.3dee8586005c from=translated src=- shape=0dc469b6 vocab=abca5785
+-/
 theorem hom_eq_zero_of_mem_hnTors_of_semistable {E B : A} (hE : ¬IsZero E)
     (hT : E ∈ hnTors W μ₀) (hB : W.IsSemistable B) (hslope : W.slope B ≤ μ₀)
     (f : E ⟶ B) : f = 0 := by
@@ -150,7 +168,9 @@ is a quotient of the source and a subobject of the target, so
 unless the image is zero.
 
 The HN property is needed for the image, which is neither of the two given
-objects.-/
+objects.
+@isnad1 id=eq.3h6v.s7.e9f2051b6498 from=translated src=- shape=1267dfdb vocab=6a0031d6
+-/
 theorem hom_eq_zero_of_mem_hnTors_of_mem_hnFree (hHN : W.HasHNProperty)
     {E B : A} (hT : E ∈ hnTors W μ₀) (hFr : B ∈ hnFree W μ₀) (f : E ⟶ B) :
     f = 0 := by

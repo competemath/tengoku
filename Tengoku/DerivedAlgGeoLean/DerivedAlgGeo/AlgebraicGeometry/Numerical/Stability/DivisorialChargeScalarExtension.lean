@@ -76,7 +76,9 @@ def intersection : LinearMap.BilinForm ℚ (RationalDivisorClass S) :=
           algebraMap ℚ A q * (x.1 * y.1) by ring]
       rw [S.degree_algebraMap_mul, smul_eq_mul])
 
-/-- The rational divisor intersection pairing is symmetric.-/
+/-- The rational divisor intersection pairing is symmetric.
+@isnad1 id=issymm.0h2v.s7.c22bf0eabaac from=translated src=- shape=563df288 vocab=ec6856a3
+-/
 theorem intersection_symm : (intersection S).IsSymm := by
   constructor
   intro x y
@@ -112,6 +114,9 @@ def divisorSpace : DivisorSpace (RealDivisorClass S) where
     rw [← LinearMap.BilinForm.isSymm_iff]
     exact RationalDivisorClass.intersection_symm S
 
+/--
+@isnad1 id=eq.0h6v.s10.e542d57f102b from=translated src=- shape=64425fe1 vocab=5bf6e6d1
+-/
 @[simp]
 theorem pair_tmul (a b : ℝ) (x y : S.piece 1) :
     (divisorSpace S).pair (a ⊗ₜ[ℚ] x) (b ⊗ₜ[ℚ] y) =
@@ -122,6 +127,9 @@ theorem pair_tmul (a b : ℝ) (x y : S.piece 1) :
   rw [← Rat.cast_smul_eq_qsmul ℝ]
   simp only [smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h4v.s9.c6e05ac8cffa from=translated src=- shape=93c81928 vocab=30a1b944
+-/
 @[simp]
 theorem pair_ofRational (x y : S.piece 1) :
     (divisorSpace S).pair (ofRational S x) (ofRational S y) =
@@ -159,11 +167,17 @@ def extendDivisorClass : RealDivisorClass S →ₗ[ℝ] D := by
         exact mul_smul a b (rationalMap x) }
   exact TensorProduct.AlgebraTensorModule.lift scalarMap
 
+/--
+@isnad1 id=eq.0h6v.s11.2a061ddd7596 from=translated src=- shape=981eec51 vocab=d8acc9da
+-/
 @[simp]
 theorem extendDivisorClass_tmul (a : ℝ) (x : S.piece 1) :
     R.extendDivisorClass (a ⊗ₜ[ℚ] x) = a • R.divisorClass x := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.19502ff24b11 from=translated src=- shape=56933d67 vocab=f63ba68a
+-/
 @[simp]
 theorem extendDivisorClass_ofRational (x : S.piece 1) :
     R.extendDivisorClass (RealDivisorClass.ofRational S x) =
@@ -171,7 +185,9 @@ theorem extendDivisorClass_ofRational (x : S.piece 1) :
   simp [RealDivisorClass.ofRational]
 
 /-- `extendDivisorClass` is the unique real-linear extension of the rational
-divisor realization.-/
+divisor realization.
+@isnad1 id=eq.1h5v.s11.b2b8db65f052 from=translated src=- shape=8d49c262 vocab=f63ba68a
+-/
 theorem extendDivisorClass_unique
     (f : RealDivisorClass S →ₗ[ℝ] D)
     (hf : ∀ x : S.piece 1,
@@ -191,7 +207,9 @@ theorem extendDivisorClass_unique
       (R.extendDivisorClass_tmul a x).symm
 
 /-- Scalar extension of a numerical realization preserves the complete real
-intersection form, not only its values on rational classes.-/
+intersection form, not only its values on rational classes.
+@isnad1 id=eq.0h6v.s10.e664e6becded from=translated src=- shape=1ec8f63d vocab=c1813bf4
+-/
 theorem pair_extendDivisorClass (x y : RealDivisorClass S) :
     R.divisorSpace.pair (R.extendDivisorClass x) (R.extendDivisorClass y) =
       (RealDivisorClass.divisorSpace S).pair x y := by
@@ -255,16 +273,25 @@ the rational codimension-one piece.-/
 def chernCharacter : ChernCharacter N (RealDivisorClass V.ring) :=
   (scalarExtensionRealization V.ring).chernCharacter
 
+/--
+@isnad1 id=eq.0h4v.s9.ed33f5ecf245 from=translated src=- shape=4f61ea5f vocab=7fa5c990
+-/
 @[simp]
 theorem chernCharacter_rank (E : N) :
     (chernCharacter (V := V)).rank E = (V.rank E : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.f78fa5a4938d from=translated src=- shape=0fee64ee vocab=be615305
+-/
 @[simp]
 theorem chernCharacter_chOne (E : N) :
     (chernCharacter (V := V)).chOne E =
       RealDivisorClass.ofRational V.ring
         ⟨V.chComp E 1, V.chComp_mem E 1⟩ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.9ed6f1d13999 from=translated src=- shape=7f43dc82 vocab=9901c9d4
+-/
 @[simp]
 theorem chernCharacter_chTwo (E : N) :
     (chernCharacter (V := V)).chTwo E =
@@ -273,7 +300,9 @@ theorem chernCharacter_chTwo (E : N) :
 variable (R : NumericalRealization V.ring (D := D))
 
 /-- The concrete first Chern class is the image of the canonical
-scalar-extended first Chern class.-/
+scalar-extended first Chern class.
+@isnad1 id=eq.0h6v.s11.66a7fbe4c110 from=translated src=- shape=3fe4c24a vocab=30743cd3
+-/
 theorem map_chernCharacter_chOne (E : N) :
     R.extendDivisorClass ((chernCharacter (V := V)).chOne E) =
       R.chernCharacter.chOne E := by
@@ -282,7 +311,9 @@ theorem map_chernCharacter_chOne (E : N) :
 
 /-- Arbitrary real scalar-extended `B`-fields and polarizations give the same
 central charge after transport to any concrete numerical divisor
-realization.-/
+realization.
+@isnad1 id=eq.0h7v.s9.8241db08c286 from=translated src=- shape=54ed840a vocab=73545406
+-/
 theorem centralCharge_eq_realization
     (P : StabilityParameters (RealDivisorClass V.ring)) (E : N) :
     (chernCharacter (V := V)).centralCharge

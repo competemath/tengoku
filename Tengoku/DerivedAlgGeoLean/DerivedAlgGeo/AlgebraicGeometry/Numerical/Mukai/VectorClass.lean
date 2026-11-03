@@ -58,7 +58,9 @@ noncomputable def mukaiComp (E : N) (i : ℕ) : A :=
 noncomputable def mukaiClass (E : N) : A :=
   ∑ i ∈ range (n + 1), V.mukaiComp E i
 
-/-- The `i`-th component lives in codimension `i`.-/
+/-- The `i`-th component lives in codimension `i`.
+@isnad1 id=mem.0h6v.s6.ffc3ca0dc247 from=translated src=- shape=20a23c67 vocab=8e326eec
+-/
 theorem mukaiComp_mem (E : N) (i : ℕ) : V.mukaiComp E i ∈ V.ring.piece i := by
   refine Submodule.sum_mem _ fun j hj ↦ ?_
   have hji : j ≤ i := by
@@ -66,18 +68,25 @@ theorem mukaiComp_mem (E : N) (i : ℕ) : V.mukaiComp E i ∈ V.ring.piece i := 
   have h := V.ring.mul_mem_piece (V.chComp_mem E j) (V.sqrtToddComp_mem (i - j))
   rwa [Nat.add_sub_cancel' hji] at h
 
-/-- The Mukai vector is additive, because the Chern character is and `√td(X)` is a constant.-/
+/-- The Mukai vector is additive, because the Chern character is and `√td(X)` is a constant.
+@isnad1 id=eq.0h7v.s6.ab65859590b9 from=translated src=- shape=d256bf34 vocab=bd20e85c
+-/
 theorem mukaiComp_add (E F : N) (i : ℕ) :
     V.mukaiComp (E + F) i = V.mukaiComp E i + V.mukaiComp F i := by
   simp only [mukaiComp, V.chComp_add, add_mul]
   exact Finset.sum_add_distrib
 
+/--
+@isnad1 id=eq.0h6v.s6.ab7d2da446bf from=translated src=- shape=cd26adeb vocab=1f2935fa
+-/
 theorem mukaiClass_add (E F : N) :
     V.mukaiClass (E + F) = V.mukaiClass E + V.mukaiClass F := by
   simp only [mukaiClass, V.mukaiComp_add]
   exact Finset.sum_add_distrib
 
-/-- `v₀(E) = rank E`, because `√td₀ = 1` and `ch₀ = rank`.-/
+/-- `v₀(E) = rank E`, because `√td₀ = 1` and `ch₀ = rank`.
+@isnad1 id=eq.0h5v.s7.19fccdc7e8c9 from=translated src=- shape=e25c54e1 vocab=532c0f82
+-/
 @[simp]
 theorem mukaiComp_zero (E : N) :
     V.mukaiComp E 0 = algebraMap ℚ A (V.rank E : ℚ) := by
@@ -85,7 +94,9 @@ theorem mukaiComp_zero (E : N) :
 
 /-- A product of Mukai components integrates to zero unless the codimensions add to the
 dimension. This is the shape `degree_chComp_mul_chComp_mul_toddComp_eq_zero` already has for the
-Chern character, and it is what makes the Euler pairing collapse to a single term.-/
+Chern character, and it is what makes the Euler pairing collapse to a single term.
+@isnad1 id=eq.1h8v.s7.6b33fafcc604 from=translated src=- shape=d6aac822 vocab=4f28519f
+-/
 theorem degree_mukaiComp_mul_mukaiComp_eq_zero (E F : N) {i j : ℕ} (hij : i + j ≠ n) :
     V.ring.degree (V.mukaiComp E i * V.mukaiComp F j) = 0 :=
   V.ring.degree_eq_zero_of_mem hij

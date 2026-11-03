@@ -28,11 +28,16 @@ namespace IntegralLattice
 /-- The rank-2 numerical lattice model.-/
 abbrev NumLattice : Type := Fin 2 → ℤ
 
+/--
+@isnad1 id=eq.0h0v.s5.92096b431a81 from=translated src=- shape=b3c4969c vocab=a162b252
+-/
 theorem finrank_numLattice : Module.finrank ℤ NumLattice = 2 := by
   simp
 
 /-- Rank-component non-vanishing: a lattice vector with any nonzero component
-is nonzero. The §8 "rank component does not vanish" step.-/
+is nonzero. The §8 "rank component does not vanish" step.
+@isnad1 id=ne.1h2v.s5.13c7b8903a9c from=translated src=- shape=ebec3981 vocab=a3f78a99
+-/
 theorem ne_zero_of_apply_ne_zero {v : NumLattice} {i : Fin 2} (h : v i ≠ 0) :
     v ≠ 0 := by
   intro hv

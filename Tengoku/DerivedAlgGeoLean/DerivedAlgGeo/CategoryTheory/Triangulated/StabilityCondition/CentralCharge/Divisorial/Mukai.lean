@@ -93,6 +93,9 @@ def mukaiVector (t : SqrtTodd D) : N →+ Mukai.RealExtension D where
     simp only [map_add, DivisorSpace.pair, Prod.mk_add_mk, add_smul, Prod.mk.injEq]
     exact ⟨trivial, by abel, by ring⟩
 
+/--
+@isnad1 id=eq.0h6v.s9.ac66f28da175 from=translated src=- shape=02644e47 vocab=3feadd4f
+-/
 @[simp]
 theorem mukaiVector_apply (t : SqrtTodd D) (E : N) :
     ch.mukaiVector S t E =
@@ -105,7 +108,9 @@ Chern-character triple.
 Not a `simp` lemma: with `pair_zero_left` the left-hand side already reduces to
 the right-hand side, so `simp` proves it and the normal-form linter rejects the
 attribute.  It is stated because it is the identification that makes the
-ordinary charge a value of the Mukai parameter.-/
+ordinary charge a value of the Mukai parameter.
+@isnad1 id=eq.0h5v.s7.0a7c9f345db1 from=translated src=- shape=e102693e vocab=502712a1
+-/
 theorem mukaiVector_trivial (E : N) :
     ch.mukaiVector S SqrtTodd.trivial E = ch.toRealExtension E := by
   simp [SqrtTodd.trivial, DivisorSpace.pair]
@@ -113,7 +118,9 @@ theorem mukaiVector_trivial (E : N) :
 /-- On a K3 square root the Mukai vector is `(r, c₁, ch₂ + r)`, which is
 Bridgeland's `v(E) = (r, c₁, s)` with `s = ch₂ + rank`.
 
-Not a `simp` lemma, for the reason given at `mukaiVector_trivial`.-/
+Not a `simp` lemma, for the reason given at `mukaiVector_trivial`.
+@isnad1 id=eq.0h5v.s8.a3901b38a372 from=translated src=- shape=461fc3d2 vocab=d3f0da7b
+-/
 theorem mukaiVector_k3 (E : N) :
     ch.mukaiVector S SqrtTodd.k3 E =
       (ch.rank E, ch.chOne E, ch.chTwo E + ch.rank E) := by
@@ -124,7 +131,9 @@ lattice layer**, composed with the ordinary triple.
 
 This is `centralCharge_eq_realPairing` restated against the additive
 homomorphism `Mukai.expChargeHom`, and it is what lets the two layers share one
-charge formula.-/
+charge formula.
+@isnad1 id=eq.0h6v.s8.4493ff675333 from=translated src=- shape=2a1fdb5d vocab=661ba67f
+-/
 theorem centralCharge_eq_expChargeHom (P : StabilityParameters D) (E : N) :
     ch.centralCharge S P E =
       Mukai.expChargeHom S.intersection P.B P.omega (ch.toRealExtension E) := by
@@ -146,20 +155,27 @@ Mukai class map instead of the ordinary triple.-/
 def mukaiCharge (t : SqrtTodd D) (P : StabilityParameters D) : N →+ ℂ :=
   (Mukai.expChargeHom S.intersection P.B P.omega).comp (ch.mukaiVector S t)
 
+/--
+@isnad1 id=eq.0h7v.s7.6e39a58f7bfa from=translated src=- shape=7e7d9a86 vocab=05d4f643
+-/
 @[simp]
 theorem mukaiCharge_apply (t : SqrtTodd D) (P : StabilityParameters D) (E : N) :
     ch.mukaiCharge S t P E =
       Mukai.expCharge S.intersection P.B P.omega (ch.mukaiVector S t E) := rfl
 
 /-- At the trivial square root the Mukai charge **is** the ordinary divisorial
-charge.  The two presentations are two values of one parameter.-/
+charge.  The two presentations are two values of one parameter.
+@isnad1 id=eq.0h6v.s7.96591c71f52e from=translated src=- shape=79448104 vocab=cc558dd2
+-/
 theorem mukaiCharge_trivial (P : StabilityParameters D) (E : N) :
     ch.mukaiCharge S SqrtTodd.trivial P E = ch.centralCharge S P E := by
   rw [mukaiCharge_apply, mukaiVector_trivial, ch.centralCharge_eq_expChargeHom S P E,
     Mukai.expChargeHom_apply]
 
 /-- **The exact comparison.**  The Mukai charge exceeds the ordinary divisorial
-charge by a term linear in the class and determined by `√td_X`.-/
+charge by a term linear in the class and determined by `√td_X`.
+@isnad1 id=eq.0h7v.s8.3f725a3b5d38 from=translated src=- shape=83cbe77b vocab=da660195
+-/
 theorem mukaiCharge_eq_centralCharge_add (t : SqrtTodd D) (P : StabilityParameters D)
     (E : N) :
     ch.mukaiCharge S t P E =
@@ -182,7 +198,9 @@ theorem mukaiCharge_eq_centralCharge_add (t : SqrtTodd D) (P : StabilityParamete
 
 This is the whole numerical difference between Bridgeland's presentation and
 the Arcara--Bertram / Macrì--Schmidt one on a K3, and it is why the two have
-different walls: the shift is not a scalar multiple of the charge.-/
+different walls: the shift is not a scalar multiple of the charge.
+@isnad1 id=eq.0h6v.s7.e98fb2b82fe4 from=translated src=- shape=f1fcc256 vocab=eeec802e
+-/
 theorem mukaiCharge_k3 (P : StabilityParameters D) (E : N) :
     ch.mukaiCharge S SqrtTodd.k3 P E =
       ch.centralCharge S P E - Complex.ofReal (ch.rank E) := by
@@ -198,11 +216,16 @@ def mukaiChargeFamily (t : SqrtTodd D) :
     Wall.ChargeFamily (StabilityParameters D) N where
   charge P := ch.mukaiCharge S t P
 
+/--
+@isnad1 id=eq.0h7v.s7.1e65fac76dc0 from=translated src=- shape=dd991b94 vocab=f594ea76
+-/
 @[simp]
 theorem mukaiChargeFamily_charge (t : SqrtTodd D) (P : StabilityParameters D) (E : N) :
     (ch.mukaiChargeFamily S t).charge P E = ch.mukaiCharge S t P E := rfl
 
-/-- At the trivial square root the Mukai wall family is the divisorial one.-/
+/-- At the trivial square root the Mukai wall family is the divisorial one.
+@isnad1 id=eq.0h4v.s5.5ba50e1352aa from=translated src=- shape=38f8af4b vocab=6ad308ca
+-/
 theorem mukaiChargeFamily_trivial :
     ch.mukaiChargeFamily S SqrtTodd.trivial = ch.fullChargeFamily S := by
   ext P E

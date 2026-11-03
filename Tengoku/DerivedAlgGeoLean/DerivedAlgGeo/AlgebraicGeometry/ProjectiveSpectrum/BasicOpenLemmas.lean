@@ -37,14 +37,18 @@ variable (𝒜 : ℕ → σA) [GradedRing 𝒜]
 /-- **A basic open is inside every basic open of a power of its element.**
 
 An equality when the exponent is positive (`ProjectiveSpectrum.basicOpen_pow`), but the inclusion
-is what the fraction API needs and it holds for `n = 0` too.-/
+is what the fraction API needs and it holds for `n = 0` too.
+@isnad1 id=le.0h5v.s7.9ab8a4beea49 from=translated src=- shape=9764f8cd vocab=00a757eb
+-/
 theorem basicOpen_le_basicOpen_pow (b : A) (n : ℕ) :
     ProjectiveSpectrum.basicOpen 𝒜 b ≤ ProjectiveSpectrum.basicOpen 𝒜 (b ^ n) := by
   intro x hx
   have hx' : b ∈ x.asHomogeneousIdeal.toIdeal.primeCompl := hx
   exact Submonoid.pow_mem _ hx' n
 
-/-- **An open inside two basic opens is inside the basic open of the product.**-/
+/-- **An open inside two basic opens is inside the basic open of the product.**
+@isnad1 id=le.2h6v.s8.80c4f8374e9d from=translated src=- shape=2e3148b7 vocab=3aefcd9f
+-/
 theorem le_basicOpen_mul {U : Opens (ProjectiveSpectrum.top 𝒜)} {a b : A}
     (ha : U ≤ ProjectiveSpectrum.basicOpen 𝒜 a) (hb : U ≤ ProjectiveSpectrum.basicOpen 𝒜 b) :
     U ≤ ProjectiveSpectrum.basicOpen 𝒜 (a * b) := by

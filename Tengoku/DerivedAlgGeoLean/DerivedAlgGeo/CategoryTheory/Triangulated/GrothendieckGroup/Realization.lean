@@ -47,7 +47,9 @@ def Descends (R : K₀.Realization C A) (R' : K₀.Realization D B)
     (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated] (f : A →+ B) : Prop :=
   ∀ x : K₀ C, R' (K₀.map F x) = f (R x)
 
-/-- A descent is determined on classes of objects.-/
+/-- A descent is determined on classes of objects.
+@isnad1 id=eq.1h9v.s9.d843c58b12fe from=translated src=- shape=395bd4ae vocab=f8abb6e0
+-/
 theorem Descends.apply_of {R : K₀.Realization C A} {R' : K₀.Realization D B}
     {F : C ⥤ D} [F.CommShift ℤ] [F.IsTriangulated] {f : A →+ B}
     (h : R.Descends R' F f) (X : C) :
@@ -55,7 +57,9 @@ theorem Descends.apply_of {R : K₀.Realization C A} {R' : K₀.Realization D B}
   have := h (K₀.of C X)
   rwa [K₀.map_of] at this
 
-/-- Naturally isomorphic triangulated functors have the same descents.-/
+/-- Naturally isomorphic triangulated functors have the same descents.
+@isnad1 id=descends.1h10v.s8.51500b5ab9ec from=translated src=- shape=e703347f vocab=11f0600a
+-/
 theorem Descends.of_natIso {R : K₀.Realization C A} {R' : K₀.Realization D B}
     {F G : C ⥤ D} [F.CommShift ℤ] [F.IsTriangulated]
     [G.CommShift ℤ] [G.IsTriangulated] {f : A →+ B}

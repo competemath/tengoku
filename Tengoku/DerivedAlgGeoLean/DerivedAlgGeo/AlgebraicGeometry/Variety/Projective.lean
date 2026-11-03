@@ -82,7 +82,9 @@ noncomputable def homogeneousZeroRingEquiv :
   map_add' _ _ := by ext; simp
 
 /-- The identification is `MvPolynomial.C` underneath, which is what makes it usable as a rewrite
-in statements phrased on the polynomial ring rather than on the degree-zero submodule.-/
+in statements phrased on the polynomial ring rather than on the degree-zero submodule.
+@isnad1 id=eq.0h3v.s11.c3c4eee7e006 from=translated src=- shape=25b9aa32 vocab=e257b24c
+-/
 @[simp]
 lemma homogeneousZeroRingEquiv_apply_coe (r : R) :
     ((homogeneousZeroRingEquiv ι R r : ↥(MvPolynomial.homogeneousSubmodule ι R 0)) :
@@ -92,7 +94,9 @@ lemma homogeneousZeroRingEquiv_apply_coe (r : R) :
 /-- The tower `R → 𝒜₀ → R[ι]`. Both algebra structures are Mathlib's —
 `SetLike.GradeZero.instAlgebra` on the way in, the subobject coercion on the way out — so the
 tower is `rfl`; it is only missing because Mathlib does not register it for grade-zero parts in
-general. Local: the finite-type transfer below is its only consumer.-/
+general. Local: the finite-type transfer below is its only consumer.
+@isnad1 id=isscalar.0h2v.s9.b5f84cc80b78 from=translated src=- shape=2f61dbcd vocab=cc34f9ef
+-/
 local instance isScalarTower_homogeneousZero :
     IsScalarTower R ↥(MvPolynomial.homogeneousSubmodule ι R 0) (MvPolynomial ι R) :=
   IsScalarTower.of_algebraMap_eq' (R := R) (S := ↥(MvPolynomial.homogeneousSubmodule ι R 0))
@@ -100,7 +104,9 @@ local instance isScalarTower_homogeneousZero :
 
 /-- The polynomial ring is of finite type over its degree-zero part when the variable set is
 finite. This is what `Proj.toSpecZero`'s properness instance asks for, and it is the only place
-the finiteness of the variable set is used.-/
+the finiteness of the variable set is used.
+@isnad1 id=finitety.0h2v.s8.98f71ba6065c from=translated src=- shape=f543ce52 vocab=71131705
+-/
 instance finiteType_homogeneousZero [Finite ι] :
     Algebra.FiniteType ↥(MvPolynomial.homogeneousSubmodule ι R 0) (MvPolynomial ι R) :=
   Algebra.FiniteType.of_restrictScalars_finiteType R _ _
@@ -123,6 +129,9 @@ noncomputable def projectiveSpaceToSpec :
   Proj.toSpecZero _ ≫
     Spec.map (CommRingCat.ofHom (homogeneousZeroRingEquiv ι k).toRingHom)
 
+/--
+@isnad1 id=isproper.0h2v.s4.c0b916e2e0f2 from=translated src=- shape=412fa2ae vocab=4e27beda
+-/
 instance isProper_projectiveSpaceToSpec [Finite ι] : IsProper (projectiveSpaceToSpec ι k) := by
   have : IsIso (CommRingCat.ofHom (homogeneousZeroRingEquiv ι k).toRingHom) :=
     (ConcreteCategory.isIso_iff_bijective _).2 (homogeneousZeroRingEquiv ι k).bijective
@@ -158,8 +167,14 @@ variable {k : Type u} [Field k] {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of k
 
 attribute [instance] finiteIndex isClosedImmersion
 
+/--
+@isnad1 id=finite.0h3v.s4.ae8698a23a81 from=translated src=- shape=b59e79c6 vocab=709766f5
+-/
 instance instFiniteIndex (P : ProjectivePresentation k X) : Finite P.index := P.finiteIndex
 
+/--
+@isnad1 id=isclosed.0h3v.s5.603486127a06 from=translated src=- shape=95692d2e vocab=a9e50add
+-/
 instance instIsClosedImmersionEmbedding (P : ProjectivePresentation k X) :
     IsClosedImmersion P.embedding := P.isClosedImmersion
 
@@ -168,7 +183,9 @@ instance instIsClosedImmersionEmbedding (P : ProjectivePresentation k X) :
 Not a field of the variety, and not an appeal to a projective-morphism API that does not exist:
 the closed immersion is finite hence proper, the ambient projective space is proper over `Spec k`
 because the polynomial ring is of finite type over its degree-zero part, and `overBase` says the
-structure morphism *is* their composite.-/
+structure morphism *is* their composite.
+@isnad1 id=isproper.0h3v.s5.19e0bde50750 from=translated src=- shape=3d817709 vocab=369658bf
+-/
 theorem isProper_structureMorphism (P : ProjectivePresentation k X) :
     IsProper (X ↘ Spec (CommRingCat.of k)) := by
   rw [← P.overBase]
@@ -188,7 +205,9 @@ variable {k : Type u} [Field k] {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of k
 
 namespace IsProjective
 
-/-- A chosen presentation proves the proposition that the variety is projective.-/
+/-- A chosen presentation proves the proposition that the variety is projective.
+@isnad1 id=isprojec.0h3v.s4.ea13f319f23f from=translated src=- shape=62a62d58 vocab=cbd0bfad
+-/
 theorem ofPresentation (P : ProjectivePresentation k X) : IsProjective k X :=
   ⟨⟨P⟩⟩
 

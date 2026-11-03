@@ -178,6 +178,9 @@ noncomputable def Slicing.mapEquiv (s : Slicing C) (Φ : C ≌ C)
         (fun φ X h => ObjectProperty.prop_of_iso _ (Φ.unitIso.app X) h))
       (Φ.counitIso.app E)⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.4af0aa29eca3 from=translated src=- shape=27f93ada vocab=88f510bc
+-/
 @[simp]
 theorem Slicing.mapEquiv_P (s : Slicing C) (Φ : C ≌ C)
     [Φ.functor.Additive] [Φ.inverse.Additive]

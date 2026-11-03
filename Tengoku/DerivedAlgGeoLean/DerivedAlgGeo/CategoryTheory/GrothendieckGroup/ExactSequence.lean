@@ -45,7 +45,9 @@ def HasFiniteNonzeroSupport {ι : Type*} (X : ι → A) : Prop :=
   {i | ¬ IsZero (X i)}.Finite
 
 /-- An exact pair decomposes the class of its middle object into the classes
-of the two images.-/
+of the two images.
+@isnad1 id=eq.1h2v.s7.3e39ccc86114 from=translated src=- shape=06cc722f vocab=bf56eb34
+-/
 theorem of_exact {S : ShortComplex A} (hS : S.Exact) :
     of S.X₂ = of (Abelian.image S.f) + of (Abelian.image S.g) := by
   let S' : ShortComplex A :=
@@ -91,7 +93,9 @@ private theorem hasFiniteSupport_altImage {X Y : ℤ → A}
 `… ⟶ A i ⟶ B i ⟶ C i ⟶ A (i+1) ⟶ …`.
 
 There are no endpoint mono/epi hypotheses: the proof telescopes after shifting
-the integer index.-/
+the integer index.
+@isnad1 id=eq.9h7v.s9.4e84468cbede from=translated src=- shape=023bf64d vocab=05a11663
+-/
 theorem eulerClass_add_of_exact
     {A₀ B C : ℤ → A}
     (f : ∀ i, A₀ i ⟶ B i) (g : ∀ i, B i ⟶ C i)

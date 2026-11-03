@@ -42,6 +42,9 @@ imaginary part together with the negative real axis.-/
 def semiClosedUpperHalfPlane : Set ℂ :=
   {z : ℂ | 0 < z.im} ∪ {z : ℂ | z.im = 0 ∧ z.re < 0}
 
+/--
+@isnad1 id=ne.1h1v.s4.e4bd9aa92c21 from=translated src=- shape=39b6adc1 vocab=bd9bc91f
+-/
 theorem semiClosedUpperHalfPlane_ne_zero {z : ℂ}
     (hz : z ∈ semiClosedUpperHalfPlane) : z ≠ 0 := by
   rcases hz with him | ⟨him, hre⟩
@@ -55,10 +58,16 @@ the weak/strict distinction, and it is why μ-slope stability on a surface is we
 def closedUpperHalfPlane : Set ℂ :=
   {z : ℂ | 0 < z.im} ∪ {z : ℂ | z.im = 0 ∧ z.re ≤ 0}
 
+/--
+@isnad1 id=le.0h0v.s2.1b40a56b2339 from=translated src=- shape=836e6cbb vocab=4ee41138
+-/
 theorem semiClosedUpperHalfPlane_subset_closed :
     semiClosedUpperHalfPlane ⊆ closedUpperHalfPlane :=
   fun _ hz ↦ hz.imp id (fun h ↦ ⟨h.1, h.2.le⟩)
 
+/--
+@isnad1 id=lt.1h1v.s4.65e974ec90a9 from=translated src=- shape=00219549 vocab=b10b1e9b
+-/
 theorem arg_pos_of_mem_semiClosedUpperHalfPlane {z : ℂ}
     (hz : z ∈ semiClosedUpperHalfPlane) : 0 < arg z := by
   rcases hz with him | ⟨him, hre⟩

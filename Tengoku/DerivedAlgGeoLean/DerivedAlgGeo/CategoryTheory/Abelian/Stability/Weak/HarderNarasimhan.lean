@@ -90,20 +90,26 @@ def μMinus (F : AbelianWeakHNFiltration W E) : WithTop ℝ :=
 
 /-- Every factor slope lies between the HN extrema.  The proof is the order
 argument of `AbelianHNFiltration.phase_mem_range`, unchanged: `StrictAnti`
-supplies `antitone` over any preorder, so nothing here is specific to `ℝ`.-/
+supplies `antitone` over any preorder, so nothing here is specific to `ℝ`.
+@isnad1 id=and.0h5v.s6.001227f5c9ba from=translated src=- shape=d4d4c195 vocab=e815c986
+-/
 theorem μ_mem_range (F : AbelianWeakHNFiltration W E) (i : Fin F.n) :
     F.μMinus ≤ F.μ i ∧ F.μ i ≤ F.μPlus := by
   constructor
   · exact F.μ_anti.antitone (Fin.mk_le_mk.mpr (by lia))
   · exact F.μ_anti.antitone (Fin.mk_le_mk.mpr (by lia))
 
-/-- The lowest HN slope does not exceed the highest.-/
+/-- The lowest HN slope does not exceed the highest.
+@isnad1 id=le.0h4v.s6.8bea7fe58919 from=translated src=- shape=c2db2fe7 vocab=8f60a8a1
+-/
 theorem μMinus_le_μPlus (F : AbelianWeakHNFiltration W E) :
     F.μMinus ≤ F.μPlus :=
   (F.μ_mem_range ⟨0, F.nonempty⟩).1
 
 /-- Every factor of an HN filtration is nonzero: a zero cokernel would make the
-chain step an isomorphism, contradicting strictness.-/
+chain step an isomorphism, contradicting strictness.
+@isnad1 id=not.0h5v.s6.9f411e790251 from=translated src=- shape=a5d4a7a1 vocab=ecda0e73
+-/
 theorem factor_not_isZero (F : AbelianWeakHNFiltration W E) (j : Fin F.n) :
     ¬IsZero (F.factor j) := fun hzero => by
   let f := Subobject.ofLE (F.chain j.castSucc) (F.chain j.succ)
@@ -152,10 +158,16 @@ def ofSemistable {E : A} (hE : W.IsSemistable E) : AbelianWeakHNFiltration W E w
     exact W.isSemistable_of_iso (StabilityFunction.subobjectCokernelBotIso
       (⊤ : Subobject E) bot_le ≪≫ asIso (⊤ : Subobject E).arrow).symm hE
 
+/--
+@isnad1 id=eq.1h3v.s6.5e544aa20a00 from=translated src=- shape=fcd2218a vocab=d3ea0c8b
+-/
 @[simp]
 theorem ofSemistable_μPlus {E : A} (hE : W.IsSemistable E) :
     (ofSemistable hE).μPlus = W.slope E := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.62f57451a8a9 from=translated src=- shape=fcd2218a vocab=5f12a259
+-/
 @[simp]
 theorem ofSemistable_μMinus {E : A} (hE : W.IsSemistable E) :
     (ofSemistable hE).μMinus = W.slope E := rfl
@@ -172,7 +184,9 @@ def HasHNProperty (W : WeakStabilityFunctionOn (abelianDatum A)) : Prop :=
 variable (W : WeakStabilityFunctionOn (abelianDatum A))
 
 /-- Slope equality after propositionally rewriting both subobjects in a
-successive quotient.-/
+successive quotient.
+@isnad1 id=eq.4h7v.s8.39a76a42ba19 from=translated src=- shape=6b0f5b5c vocab=13ea12e9
+-/
 theorem slope_cokernel_ofLE_congr {E : A} {A₁ A₂ B₁ B₂ : Subobject E}
     (hA : A₁ = A₂) (hB : B₁ = B₂) {h₁ : A₁ ≤ B₁} {h₂ : A₂ ≤ B₂} :
     W.slope (cokernel (Subobject.ofLE A₁ B₁ h₁)) =
@@ -182,7 +196,9 @@ theorem slope_cokernel_ofLE_congr {E : A} {A₁ A₂ B₁ B₂ : Subobject E}
   rfl
 
 /-- Weak semistability is preserved after propositionally rewriting both
-subobjects in a successive quotient.-/
+subobjects in a successive quotient.
+@isnad1 id=issemist.5h7v.s8.6ab2b9c800b3 from=translated src=- shape=f027925b vocab=18ccb3c3
+-/
 theorem isSemistable_cokernel_ofLE_congr {E : A} {A₁ A₂ B₁ B₂ : Subobject E}
     (hA : A₁ = A₂) (hB : B₁ = B₂) {h₁ : A₁ ≤ B₁} {h₂ : A₂ ≤ B₂}
     (hs : W.IsSemistable (cokernel (Subobject.ofLE A₂ B₂ h₂))) :
@@ -192,7 +208,9 @@ theorem isSemistable_cokernel_ofLE_congr {E : A} {A₁ A₂ B₁ B₂ : Subobjec
   exact hs
 
 /-- Successive quotients keep their slope when a subobject chain is mapped
-along a monomorphism.-/
+along a monomorphism.
+@isnad1 id=eq.1h7v.s8.4862e4d6a7c3 from=translated src=- shape=5f661b30 vocab=1d0306aa
+-/
 theorem slope_cokernel_mapMono_eq {X Y : A} (f : X ⟶ Y) [Mono f]
     {S T : Subobject X} (h : S ≤ T) :
     W.slope (cokernel (Subobject.ofLE ((Subobject.map f).obj S)
@@ -201,7 +219,9 @@ theorem slope_cokernel_mapMono_eq {X Y : A} (f : X ⟶ Y) [Mono f]
   W.slope_eq_of_iso (StabilityFunction.Subobject.cokernelMapMonoIso f h)
 
 /-- Successive quotients keep their weak semistability when a subobject chain
-is mapped along a monomorphism.-/
+is mapped along a monomorphism.
+@isnad1 id=iff.1h7v.s8.093fbbe7203c from=translated src=- shape=fff1b4c6 vocab=f2299f8e
+-/
 theorem isSemistable_cokernel_mapMono_iff {X Y : A} (f : X ⟶ Y) [Mono f]
     {S T : Subobject X} (h : S ≤ T) :
     W.IsSemistable (cokernel (Subobject.ofLE ((Subobject.map f).obj S)

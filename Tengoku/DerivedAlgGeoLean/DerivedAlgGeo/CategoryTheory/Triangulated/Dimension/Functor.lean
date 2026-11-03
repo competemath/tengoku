@@ -59,7 +59,9 @@ variable {C : Type u} {D : Type u'} [Category.{v} C] [Category.{v'} D]
 
 /-- Generation time does not increase after applying a triangulated functor to both properties.
 No essential-surjectivity hypothesis is needed because the target property is the essential image
-of the source property.-/
+of the source property.
+@isnad1 id=le.0h5v.s7.61f54f5304ff from=translated src=- shape=7ba8c9fd vocab=b86a7cc5
+-/
 theorem generationTime_map_le (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated]
     (P Q : ObjectProperty C) :
     (P.map F).generationTime (Q.map F) ≤ P.generationTime Q := by
@@ -78,7 +80,9 @@ private lemma triangEnvelopeIter_isoClosure (P : ObjectProperty C) (n : ℕ) :
 /-- Generation time is invariant under a triangulated equivalence. The image properties are
 essential images under `E.functor`; because envelope stages are invariant under isomorphism, they
 have the same generation time as their source properties. The triangulated structure on the
-quasi-inverse is supplied by Mathlib's equivalence adjunction.-/
+quasi-inverse is supplied by Mathlib's equivalence adjunction.
+@isnad1 id=eq.0h5v.s7.a92f11e9ed02 from=translated src=- shape=2961ad33 vocab=b26db530
+-/
 theorem generationTime_map_eq_of_equiv (E : C ≌ D) [E.functor.CommShift ℤ]
     [E.functor.IsTriangulated] (P Q : ObjectProperty C) :
     (P.map E.functor).generationTime (Q.map E.functor) = P.generationTime Q := by
@@ -112,7 +116,9 @@ variable {C : Type u} {D : Type u'} [Category.{v} C] [Category.{v'} D]
   [Pretriangulated C] [Pretriangulated D]
 
 /-- Rouquier dimension is monotone under a triangulated functor whose image is retract-dense:
-every target object is a retract of some image.-/
+every target object is a retract of some image.
+@isnad1 id=le.1h3v.s7.cb9d1ccc217a from=translated src=- shape=10dae46a vocab=40e8193d
+-/
 theorem rouquierDim_le_of_retract_coverage (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated]
     (hCover : ∀ Y : D, ∃ X : C, Nonempty (Retract Y (F.obj X))) :
     rouquierDim D ≤ rouquierDim C := by
@@ -125,7 +131,9 @@ theorem rouquierDim_le_of_retract_coverage (F : C ⥤ D) [F.CommShift ℤ] [F.Is
 
 /-- Rouquier dimension cannot increase under an essentially-surjective triangulated functor.
 Essential surjectivity supplies the retract-coverage premise of
-`CategoryTheory.Triangulated.rouquierDim_le_of_retract_coverage`.-/
+`CategoryTheory.Triangulated.rouquierDim_le_of_retract_coverage`.
+@isnad1 id=le.0h3v.s7.c04042a6ab78 from=translated src=- shape=bd850565 vocab=33b25599
+-/
 theorem rouquierDim_le_of_essSurj (F : C ⥤ D)
     [F.CommShift ℤ] [F.IsTriangulated] [F.EssSurj] :
     rouquierDim D ≤ rouquierDim C := by
@@ -135,7 +143,9 @@ theorem rouquierDim_le_of_essSurj (F : C ⥤ D)
   exact ⟨X, ⟨(F.objObjPreimageIso Y).symm.retract⟩⟩
 
 /-- A triangulated equivalence preserves Rouquier dimension. Mathlib supplies the compatible
-shift structure and triangulated structure on the quasi-inverse from the equivalence adjunction.-/
+shift structure and triangulated structure on the quasi-inverse from the equivalence adjunction.
+@isnad1 id=eq.0h3v.s7.f0f2f5d6bf8d from=translated src=- shape=183380f4 vocab=19a7cec5
+-/
 theorem rouquierDim_eq_of_equiv (E : C ≌ D) [E.functor.CommShift ℤ]
     [E.functor.IsTriangulated] : rouquierDim C = rouquierDim D := by
   letI := E.commShiftInverse ℤ

@@ -78,7 +78,9 @@ namespace WeakSlopeData
 The dual of `mem_hnTors_of_rank_zero`, and forced by the same fact: a rank-zero
 object has slope `⊤`, which is not below any finite cutoff.  So membership in
 `hnFree` at a finite cutoff already implies positive rank, and no separate rank
-hypothesis is needed downstream.-/
+hypothesis is needed downstream.
+@isnad1 id=lt.3h4v.s6.104b6f3e9427 from=translated src=- shape=2ab43df6 vocab=042feb93
+-/
 theorem rank_pos_of_mem_hnFree (S : WeakSlopeData A)
     (hHN : S.toWeakStabilityFunction.HasHNProperty) {μ₀ : ℝ} {E : A}
     (hE : ¬IsZero E)
@@ -124,7 +126,9 @@ include C hb
 
 /-- **The identity.** `Mukai.im_expCharge` under the identification: the
 imaginary part of `Z(β,ω)` is the degree, shifted by the rank times the
-cutoff.-/
+cutoff.
+@isnad1 id=eq.2h8v.s9.ec37538bc9f5 from=translated src=- shape=d99a37c8 vocab=28ce2f74
+-/
 theorem im_charge (E : A) :
     (D.charge b β ω E).im = (S.degree E : ℝ) - (S.rank E : ℝ) * b β ω := by
   rw [MukaiChargeData.charge_apply,
@@ -132,7 +136,9 @@ theorem im_charge (E : A) :
       (D.mukai (K₀Ab.of E)).2.1 (D.mukai (K₀Ab.of E)).2.2,
     C.degree_eq E, C.rank_eq E]
 
-/-- At positive rank the sign of `Im Z(β,ω)` is the slope comparison, exactly.-/
+/-- At positive rank the sign of `Im Z(β,ω)` is the slope comparison, exactly.
+@isnad1 id=iff.3h8v.s9.8a9ffa3dd02c from=translated src=- shape=14c99d6e vocab=3c2aa511
+-/
 theorem im_charge_pos_iff_of_rank_pos {E : A} (hE : 0 < S.rank E) :
     0 < (D.charge b β ω E).im ↔ ((b β ω : ℝ) : WithTop ℝ) < S.topSlope E := by
   have hr : (0 : ℝ) < (S.rank E : ℝ) := by exact_mod_cast hE
@@ -141,7 +147,9 @@ theorem im_charge_pos_iff_of_rank_pos {E : A} (hE : 0 < S.rank E) :
   constructor <;> intro h <;> nlinarith
 
 /-- At rank zero the identity reads `Im Z = degree`, which is nonnegative for a
-nonzero object — and zero exactly for the skyscraper.-/
+nonzero object — and zero exactly for the skyscraper.
+@isnad1 id=eq.3h8v.s9.3d024a11f9ac from=translated src=- shape=c5552966 vocab=8f256df3
+-/
 theorem im_charge_eq_degree_of_rank_zero {E : A} (h : S.rank E = 0) :
     (D.charge b β ω E).im = (S.degree E : ℝ) := by
   rw [C.im_charge hb β E, h]
@@ -149,7 +157,9 @@ theorem im_charge_eq_degree_of_rank_zero {E : A} (h : S.rank E = 0) :
   ring
 
 /-- A positive-rank object exactly at the slope cutoff has zero imaginary
-Mukai charge.-/
+Mukai charge.
+@isnad1 id=eq.4h8v.s9.59f1b8287ca8 from=translated src=- shape=f147208b vocab=a69ab684
+-/
 theorem im_charge_eq_zero_of_rank_pos_of_slope_eq {E : A}
     (hrank : 0 < S.rank E) (heq : S.slope E = b β ω) :
     (D.charge b β ω E).im = 0 := by
@@ -164,7 +174,9 @@ theorem im_charge_eq_zero_of_rank_pos_of_slope_eq {E : A}
 /-- **The torsion class has nonnegative `Im Z(β,ω)`.**
 
 Cases 1--3 of Lemma 6.2 conclude this, and the bound is sharp rather than strict:
-at rank zero `Im Z` is the degree, which vanishes on the skyscraper.-/
+at rank zero `Im Z` is the degree, which vanishes on the skyscraper.
+@isnad1 id=le.5h8v.s9.a46d0c65316d from=translated src=- shape=54ecad4a vocab=8455de6e
+-/
 theorem im_charge_nonneg_of_mem_hnTors
     (hHN : S.toWeakStabilityFunction.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (h : E ∈ WeakStabilityFunctionOn.hnTors S.toWeakStabilityFunction
@@ -177,7 +189,9 @@ theorem im_charge_nonneg_of_mem_hnTors
     exact_mod_cast S.degree_nonneg_of_rank_zero E hE hzero.symm
 
 /-- **At positive rank the bound is strict**, which is what cases 1--3 of
-Lemma 6.2 need: the charge lands in the *open* upper half plane.-/
+Lemma 6.2 need: the charge lands in the *open* upper half plane.
+@isnad1 id=lt.6h8v.s9.368a69a55b9a from=translated src=- shape=73bbe276 vocab=ce2901a3
+-/
 theorem im_charge_pos_of_mem_hnTors_of_rank_pos
     (hHN : S.toWeakStabilityFunction.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (hrank : 0 < S.rank E)
@@ -192,7 +206,9 @@ theorem im_charge_pos_of_mem_hnTors_of_rank_pos
 An object of the torsion class with `Im Z(β,ω) = 0` has rank zero and degree
 zero, so its μ-slope charge is `0`. This is the case that has no phase, the case
 `SlopeData` cannot express, and the reason `Z(β,ω)` is only a weak stability
-function here.-/
+function here.
+@isnad1 id=and.6h8v.s9.3057c02cbaf8 from=translated src=- shape=af430951 vocab=aa9275e7
+-/
 theorem rank_eq_zero_of_im_eq_zero_of_mem_hnTors
     (hHN : S.toWeakStabilityFunction.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (h : E ∈ WeakStabilityFunctionOn.hnTors S.toWeakStabilityFunction
@@ -205,7 +221,9 @@ theorem rank_eq_zero_of_im_eq_zero_of_mem_hnTors
     rw [C.im_charge_eq_degree_of_rank_zero hb β hzero.symm] at him
     exact_mod_cast him
 
-/-- The sign statement for the torsion-free class.-/
+/-- The sign statement for the torsion-free class.
+@isnad1 id=le.5h8v.s9.9f629a1c322b from=translated src=- shape=372af576 vocab=94a662ff
+-/
 theorem im_charge_nonpos_of_mem_hnFree
     (hHN : S.toWeakStabilityFunction.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (h : E ∈ WeakStabilityFunctionOn.hnFree S.toWeakStabilityFunction
@@ -245,6 +263,9 @@ def c₁Hom (v : V) : K₀Ab A →+ V :=
     intro a b
     simp only [map_add, add_smul])
 
+/--
+@isnad1 id=eq.0h5v.s8.79618fa784e8 from=translated src=- shape=00f6412e vocab=5e37378b
+-/
 @[simp]
 theorem c₁Hom_apply (v : V) (x : K₀Ab A) :
     S.c₁Hom v x = ((S.degreeHom x : ℝ)) • v := rfl
@@ -254,6 +275,9 @@ scaled into `v` in the second, and an arbitrary additive `s` in the third.-/
 def toMukaiChargeData (v : V) (s : K₀Ab A →+ ℝ) : MukaiChargeData A V where
   mukai := ((Int.castAddHom ℝ).comp S.rankHom).prod ((S.c₁Hom v).prod s)
 
+/--
+@isnad1 id=eq.0h6v.s9.0f0620917ab8 from=translated src=- shape=dcf37a88 vocab=febb989f
+-/
 @[simp]
 theorem toMukaiChargeData_mukai (v : V) (s : K₀Ab A →+ ℝ) (x : K₀Ab A) :
     (S.toMukaiChargeData v s).mukai x =
@@ -267,7 +291,9 @@ namespace MukaiWeakSlopeCompat
 
 Given a weak slope datum and a direction `v` normalised against the polarisation by
 `b ω v = 1`, the Mukai class map of `WeakSlopeData.toMukaiChargeData` is compatible with it.
-The third component is arbitrary, which is the point: the two fields say nothing about it.-/
+The third component is arbitrary, which is the point: the two fields say nothing about it.
+@isnad1 id=mukaiwea.1h7v.s8.d1b4d5ca9c18 from=translated src=- shape=bccfb837 vocab=ce813bb2
+-/
 theorem ofWeakSlopeData (S : WeakSlopeData A) (b : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (ω v : V)
     (hv : b ω v = 1) (s : K₀Ab A →+ ℝ) :
     MukaiWeakSlopeCompat (S.toMukaiChargeData v s) S b ω where
@@ -280,7 +306,9 @@ theorem ofWeakSlopeData (S : WeakSlopeData A) (b : V →ₗ[ℝ] V →ₗ[ℝ] �
 A second instantiation, at a different hypothesis class: `SlopeData` carries
 `degree_pos_of_rank_zero`, the curve condition, and forgets to a `WeakSlopeData` by weakening it
 to `0 ≤`.  So everything proved from `MukaiWeakSlopeCompat` applies on a curve as well as on a
-surface, and neither case is the only one.-/
+surface, and neither case is the only one.
+@isnad1 id=mukaiwea.1h7v.s8.494b2534a434 from=translated src=- shape=cdafe63e vocab=54de23fc
+-/
 theorem ofSlopeData (D : SlopeData A) (b : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (ω v : V)
     (hv : b ω v = 1) (s : K₀Ab A →+ ℝ) :
     MukaiWeakSlopeCompat (D.toWeakSlopeData.toMukaiChargeData v s) D.toWeakSlopeData b ω :=

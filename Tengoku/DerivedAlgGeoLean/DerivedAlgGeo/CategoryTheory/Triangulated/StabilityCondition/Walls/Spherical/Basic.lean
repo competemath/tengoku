@@ -119,6 +119,9 @@ Note `Mukai.realForm` is *half* the self-pairing, so sphericality below reads
 `selfPairing q δ = -2` rather than `realForm q δ = -2`.-/
 abbrev pairing (v w : Mukai.RealExtension V) : ℝ := Mukai.realPairing q v w
 
+/--
+@isnad1 id=eq.0h8v.s8.304f7e64f0e6 from=translated src=- shape=0b0f55c0 vocab=521e176b
+-/
 @[simp]
 theorem pairing_mk (r : ℝ) (c : V) (s : ℝ) (r' : ℝ) (c' : V) (s' : ℝ) :
     pairing q (r, c, s) (r', c', s') = q c c' - r * s' - r' * s :=
@@ -127,10 +130,16 @@ theorem pairing_mk (r : ℝ) (c : V) (s : ℝ) (r' : ℝ) (c' : V) (s' : ℝ) :
 /-- `⟪v, v⟫`.-/
 def selfPairing (v : Mukai.RealExtension V) : ℝ := pairing q v v
 
+/--
+@isnad1 id=eq.0h3v.s6.0deb5be7f45c from=translated src=- shape=b0b1f9a6 vocab=f759f844
+-/
 theorem selfPairing_eq_pairing (v : Mukai.RealExtension V) :
     selfPairing q v = pairing q v v :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.db3699c57e65 from=translated src=- shape=be5486e5 vocab=ea5ca45f
+-/
 @[simp]
 theorem selfPairing_mk (r : ℝ) (c : V) (s : ℝ) :
     selfPairing q (r, c, s) = q c c - 2 * (r * s) := by
@@ -165,11 +174,15 @@ noncomputable abbrev chartIm (β ω : V) : Mukai.RealExtension V :=
 abbreviation for `Mukai.expRe`, so tagging this would unfold the exponential
 chart globally and displace the normal form the period-domain layer already
 uses — `Mukai.realPairing_expRe_expRe` and its siblings would become redundant.
-The two proofs below name it explicitly instead.-/
+The two proofs below name it explicitly instead.
+@isnad1 id=eq.0h4v.s9.254c56d5982d from=translated src=- shape=05cbe854 vocab=885a0a1e
+-/
 theorem chartRe_eq (β ω : V) : chartRe q β ω = (1, β, (q β β - q ω ω) / 2) := rfl
 
 /-- The imaginary part in coordinates.  Not a `simp` lemma, for the reason given
-at `chartRe_eq`.-/
+at `chartRe_eq`.
+@isnad1 id=eq.0h4v.s8.eb755469fec0 from=translated src=- shape=46f4ffdf vocab=dbbe1f9d
+-/
 theorem chartIm_eq (β ω : V) : chartIm q β ω = (0, ω, q β ω) := rfl
 
 /-- `Re (℧, δ)` for `℧ = exp(β + iω)`. Inherits `noncomputable` from
@@ -184,10 +197,16 @@ mathematics, and it is the price of the two charts being one object.-/
 noncomputable def pairingIm (β ω : V) (δ : Mukai.RealExtension V) : ℝ :=
   pairing q (chartIm q β ω) δ
 
+/--
+@isnad1 id=eq.0h5v.s9.6bad6d8abfac from=translated src=- shape=bb93bc25 vocab=902a048d
+-/
 theorem pairingRe_eq (β ω : V) (δ : Mukai.RealExtension V) :
     pairingRe q β ω δ = q β δ.2.1 - δ.2.2 - δ.1 * ((q β β - q ω ω) / 2) := by
   simp only [pairingRe, pairing, Mukai.realPairing, Mukai.pairing, chartRe_eq, one_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.b0617790d147 from=translated src=- shape=e28ce0a3 vocab=8ed9b883
+-/
 theorem pairingIm_eq (β ω : V) (δ : Mukai.RealExtension V) :
     pairingIm q β ω δ = q ω δ.2.1 - δ.1 * q β ω := by
   simp only [pairingIm, pairing, Mukai.realPairing, Mukai.pairing, chartIm_eq, zero_mul, sub_zero]
@@ -198,7 +217,9 @@ theorem pairingIm_eq (β ω : V) (δ : Mukai.RealExtension V) :
 of the file. Both need symmetry of `q`; nothing above this point does. -/
 
 /-- **The imaginary part is `q(Δ − rβ, ω)`.** So `(℧, δ)` is real exactly when
-`Δ − rβ` is `q`-orthogonal to `ω`.-/
+`Δ − rβ` is `q`-orthogonal to `ω`.
+@isnad1 id=eq.1h5v.s9.06025a602207 from=translated src=- shape=746e47ca vocab=f90ab95f
+-/
 theorem pairingIm_eq_of_symm (hq : ∀ x y : V, q x y = q y x) (β ω : V)
     (δ : Mukai.RealExtension V) :
     pairingIm q β ω δ = q (δ.2.1 - δ.1 • β) ω := by
@@ -213,7 +234,9 @@ theorem pairingIm_eq_of_symm (hq : ∀ x y : V, q x y = q y x) (β ω : V)
 Stated multiplied through by `2r`, so it holds for **every** `r`, including
 `r = 0`, with no side condition. Bridgeland's `(⋆)` is this divided by `2r`;
 see `pairingRe_eq_of_rk_ne_zero` for that form and `pairingRe_of_rk_eq_zero` for
-what the identity does — and does not — say at rank zero.-/
+what the identity does — and does not — say at rank zero.
+@isnad1 id=eq.1h5v.s10.58edc43ee84e from=translated src=- shape=72f9ca40 vocab=3d59b099
+-/
 theorem two_mul_rk_mul_pairingRe (hq : ∀ x y : V, q x y = q y x) (β ω : V)
     (δ : Mukai.RealExtension V) :
     2 * δ.1 * pairingRe q β ω δ
@@ -225,7 +248,9 @@ theorem two_mul_rk_mul_pairingRe (hq : ∀ x y : V, q x y = q y x) (β ω : V)
   rw [hq δ.2.1 β]
   ring
 
-/-- Bridgeland's `(⋆)`: the divided form, valid only for `r ≠ 0`.-/
+/-- Bridgeland's `(⋆)`: the divided form, valid only for `r ≠ 0`.
+@isnad1 id=eq.2h5v.s10.48b1fe895bab from=translated src=- shape=4abc588a vocab=a1d2f9b1
+-/
 theorem pairingRe_eq_of_rk_ne_zero (hq : ∀ x y : V, q x y = q y x) (β ω : V)
     {δ : Mukai.RealExtension V} (hr : δ.1 ≠ 0) :
     pairingRe q β ω δ
@@ -235,7 +260,9 @@ theorem pairingRe_eq_of_rk_ne_zero (hq : ∀ x y : V, q x y = q y x) (β ω : V)
   field_simp
 
 /-- At rank zero the identity carries no information: both sides vanish
-identically.-/
+identically.
+@isnad1 id=and.2h5v.s10.d7eecd3683af from=translated src=- shape=125f590b vocab=3d59b099
+-/
 theorem two_mul_rk_mul_pairingRe_of_rk_eq_zero (hq : ∀ x y : V, q x y = q y x)
     (β ω : V) {δ : Mukai.RealExtension V} (hr : δ.1 = 0) :
     2 * δ.1 * pairingRe q β ω δ = 0 ∧
@@ -250,7 +277,9 @@ theorem two_mul_rk_mul_pairingRe_of_rk_eq_zero (hq : ∀ x y : V, q x y = q y x)
 This is why the index set of walls is `Δ⁺` — spherical classes of positive rank
 — rather than all of `Δ`. A rank-zero class still cuts out a locus, but the
 quadric picture that `two_mul_rk_mul_pairingRe` describes degenerates, and the
-sphericity hypothesis `⟪δ,δ⟫ = -2` reads `q Δ Δ = -2` with `s` unconstrained.-/
+sphericity hypothesis `⟪δ,δ⟫ = -2` reads `q Δ Δ = -2` with `s` unconstrained.
+@isnad1 id=eq.1h5v.s8.263eb41b4408 from=translated src=- shape=52a3fd5f vocab=895c770e
+-/
 theorem pairingRe_of_rk_eq_zero (β ω : V) {δ : Mukai.RealExtension V} (hr : δ.1 = 0) :
     pairingRe q β ω δ = q β δ.2.1 - δ.2.2 := by
   rw [pairingRe_eq, hr]; ring
@@ -261,6 +290,9 @@ theorem pairingRe_of_rk_eq_zero (β ω : V) {δ : Mukai.RealExtension V} (hr : �
 `isSpherical_map_iff` below identifies the two.-/
 def IsSpherical (δ : Mukai.RealExtension V) : Prop := selfPairing q δ = -2
 
+/--
+@isnad1 id=iff.0h3v.s6.fa889360510e from=translated src=- shape=c3845580 vocab=1035a891
+-/
 theorem isSpherical_iff (δ : Mukai.RealExtension V) :
     IsSpherical q δ ↔ selfPairing q δ = -2 :=
   Iff.rfl
@@ -269,14 +301,23 @@ theorem isSpherical_iff (δ : Mukai.RealExtension V) :
 def sphericalPlus : Set (Mukai.RealExtension V) :=
   {δ | IsSpherical q δ ∧ 0 < δ.1}
 
+/--
+@isnad1 id=iff.0h3v.s7.8d6d502d3197 from=translated src=- shape=d31c282a vocab=5276b390
+-/
 theorem mem_sphericalPlus_iff (δ : Mukai.RealExtension V) :
     δ ∈ sphericalPlus q ↔ IsSpherical q δ ∧ 0 < δ.1 :=
   Iff.rfl
 
+/--
+@isnad1 id=isspheri.1h3v.s6.16ac03b7b5a0 from=translated src=- shape=bcba6d63 vocab=c2412bc5
+-/
 theorem isSpherical_of_mem_sphericalPlus {δ : Mukai.RealExtension V}
     (h : δ ∈ sphericalPlus q) : IsSpherical q δ :=
   h.1
 
+/--
+@isnad1 id=lt.1h3v.s7.94315a93adb0 from=translated src=- shape=6eb7ca8d vocab=757bb082
+-/
 theorem rk_pos_of_mem_sphericalPlus {δ : Mukai.RealExtension V}
     (h : δ ∈ sphericalPlus q) : 0 < δ.1 :=
   h.2
@@ -285,7 +326,9 @@ theorem rk_pos_of_mem_sphericalPlus {δ : Mukai.RealExtension V}
 two**, once the rank is nonzero.
 
 So a finiteness statement about spherical classes needs no separate control on
-`s`: bounding `(r, Δ)` bounds `δ`.-/
+`s`: bounding `(r, Δ)` bounds `δ`.
+@isnad1 id=eq.2h3v.s8.106520e08030 from=translated src=- shape=1f67a11c vocab=61014941
+-/
 theorem corank_eq_of_isSpherical {δ : Mukai.RealExtension V} (hs : IsSpherical q δ)
     (hr : δ.1 ≠ 0) :
     δ.2.2 = (q δ.2.1 δ.2.1 + 2) / (2 * δ.1) := by
@@ -304,6 +347,9 @@ sphericity and rank hypotheses belong to the theorems, not to the definition.-/
 def nonpositiveRayLocus (δ : Mukai.RealExtension V) : Set (V × V) :=
   {p | pairingIm q p.1 p.2 δ = 0 ∧ pairingRe q p.1 p.2 δ ≤ 0}
 
+/--
+@isnad1 id=iff.0h4v.s7.3c2ff6ce781a from=translated src=- shape=69668824 vocab=5fe1c209
+-/
 theorem mem_nonpositiveRayLocus_iff (δ : Mukai.RealExtension V) (p : V × V) :
     p ∈ nonpositiveRayLocus q δ ↔ pairingIm q p.1 p.2 δ = 0 ∧ pairingRe q p.1 p.2 δ ≤ 0 :=
   Iff.rfl
@@ -313,14 +359,23 @@ nonpositiveRayLocus of `S`. Bridgeland's `L(X)` is `signedRayRegularLocus q (sph
 def signedRayRegularLocus (S : Set (Mukai.RealExtension V)) : Set (V × V) :=
   {p | ∀ δ ∈ S, p ∉ nonpositiveRayLocus q δ}
 
+/--
+@isnad1 id=iff.0h4v.s7.173fd9c6ac59 from=translated src=- shape=d0011f2c vocab=aa0c0892
+-/
 theorem mem_signedRayRegularLocus_iff (S : Set (Mukai.RealExtension V)) (p : V × V) :
     p ∈ signedRayRegularLocus q S ↔ ∀ δ ∈ S, p ∉ nonpositiveRayLocus q δ :=
   Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s7.ce08178800bc from=translated src=- shape=6d3c20d6 vocab=496face2
+-/
 theorem signedRayRegularLocus_antitone {S T : Set (Mukai.RealExtension V)} (h : S ⊆ T) :
     signedRayRegularLocus q T ⊆ signedRayRegularLocus q S :=
   fun _ hp δ hδ => hp δ (h hδ)
 
+/--
+@isnad1 id=eq.0h3v.s7.ec01fabf8789 from=translated src=- shape=cf2e2c99 vocab=dc5f4c4a
+-/
 theorem signedRayRegularLocus_eq_compl_iUnion (S : Set (Mukai.RealExtension V)) :
     signedRayRegularLocus q S = (⋃ δ ∈ S, nonpositiveRayLocus q δ)ᶜ := by
   ext p
@@ -332,7 +387,9 @@ consumes.**
 The first conjunct puts `Δ − rβ` in `ω^⊥`; the second is the inequality that,
 together with negative-definiteness of `q` on `ω^⊥` and a positive lower bound
 on `q(ω,ω)`, bounds `r` and then `Δ`. Neither of those two extra hypotheses
-appears here, because neither is needed for the equivalence itself.-/
+appears here, because neither is needed for the equivalence itself.
+@isnad1 id=iff.3h4v.s10.4b83528fbb87 from=translated src=- shape=eb6f9bf0 vocab=7b9b5191
+-/
 theorem mem_nonpositiveRayLocus_iff_of_isSpherical (hq : ∀ x y : V, q x y = q y x)
     {δ : Mukai.RealExtension V} (hs : IsSpherical q δ) (hr : 0 < δ.1) (p : V × V) :
     p ∈ nonpositiveRayLocus q δ ↔
@@ -380,24 +437,34 @@ def IntegralComparison.map (c : IntegralComparison q b)
     (v : Mukai.MukaiLattice N) : Mukai.RealExtension V :=
   ((v.1 : ℝ), c.toFun v.2.1, (v.2.2 : ℝ))
 
+/--
+@isnad1 id=eq.0h6v.s7.18bab923bb6b from=translated src=- shape=2e6e54df vocab=2f14a4a1
+-/
 @[simp]
 theorem IntegralComparison.map_fst (c : IntegralComparison q b)
     (v : Mukai.MukaiLattice N) : (c.map v).1 = (v.1 : ℝ) :=
   rfl
 
 /-- The comparison is an isometry onto its image: the real pairing of two
-mapped classes is the integral pairing, cast.-/
+mapped classes is the integral pairing, cast.
+@isnad1 id=eq.0h7v.s8.abe7461814e4 from=translated src=- shape=3634b277 vocab=f583a102
+-/
 theorem pairing_map (c : IntegralComparison q b) (v w : Mukai.MukaiLattice N) :
     pairing q (c.map v) (c.map w) = ((Mukai.pairing b v w : ℤ) : ℝ) := by
   simp only [pairing, Mukai.realPairing, IntegralComparison.map, Mukai.pairing, c.compat]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h6v.s7.1ed22aa3ef0d from=translated src=- shape=2eb32f9e vocab=65432a15
+-/
 theorem selfPairing_map (c : IntegralComparison q b) (v : Mukai.MukaiLattice N) :
     selfPairing q (c.map v) = ((Mukai.selfPairing b v : ℤ) : ℝ) := by
   rw [selfPairing_eq_pairing, pairing_map, Mukai.selfPairing_eq_pairing]
 
-/-- **The two sphericity conditions agree.**-/
+/-- **The two sphericity conditions agree.**
+@isnad1 id=iff.0h6v.s7.65ae1ed393da from=translated src=- shape=0276c6bf vocab=18a13426
+-/
 theorem isSpherical_map_iff (c : IntegralComparison q b)
     (v : Mukai.MukaiLattice N) :
     IsSpherical q (c.map v) ↔ Mukai.IsSpherical b v := by

@@ -45,7 +45,9 @@ abbrev Slicing.IntervalCat (s : Slicing C) (a b : ℝ) :=
 abbrev Slicing.IntervalCat.ι (s : Slicing C) (a b : ℝ) : s.IntervalCat C a b ⥤ C :=
   (s.intervalProp C a b).ι
 
-/-- A zero object belongs to every thin interval.-/
+/-- A zero object belongs to every thin interval.
+@isnad1 id=interval.1h5v.s6.f782343165de from=translated src=- shape=7b70fda7 vocab=cf198fa1
+-/
 theorem Slicing.intervalProp_of_isZero (s : Slicing C) {E : C} (hE : IsZero E)
     (a b : ℝ) : s.intervalProp C a b E :=
   Or.inl hE
@@ -92,6 +94,9 @@ def admissibleSubobjectOrderIso {α β : Type*} [PartialOrder α] [PartialOrder 
   right_inv y := by ext; simp
   map_rel_iff' := e.le_iff_le
 
+/--
+@isnad1 id=iff.1h5v.s6.e69b57ae595f from=translated src=- shape=cd66bc3c vocab=86d1222d
+-/
 theorem admissibleSubobjectOrderIso_wellFoundedLT_iff
     {α β : Type*} [PartialOrder α] [PartialOrder β]
     (e : α ≃o β) {p : α → Prop} {q : β → Prop}
@@ -105,6 +110,9 @@ theorem admissibleSubobjectOrderIso_wellFoundedLT_iff
     letI : WellFoundedLT {y // q y} := hwf
     exact (admissibleSubobjectOrderIso e h).toOrderEmbedding.wellFoundedLT
 
+/--
+@isnad1 id=iff.1h5v.s6.54f534522b0b from=translated src=- shape=cd66bc3c vocab=608111b1
+-/
 theorem admissibleSubobjectOrderIso_wellFoundedGT_iff
     {α β : Type*} [PartialOrder α] [PartialOrder β]
     (e : α ≃o β) {p : α → Prop} {q : β → Prop}

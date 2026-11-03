@@ -63,6 +63,9 @@ noncomputable def exteriorPower (n : ℕ) (σ : R →+* S) (f : M →ₛₗ[σ] 
       map_add' := g.map_add
       map_smul' := fun r x => g.map_smul r x }
 
+/--
+@isnad1 id=eq.0h8v.s13.509fe23621ba from=translated src=- shape=af7af664 vocab=9725d586
+-/
 @[simp]
 theorem exteriorPower_ιMulti (n : ℕ) (σ : R →+* S) (f : M →ₛₗ[σ] N)
     (x : Fin n → M) :

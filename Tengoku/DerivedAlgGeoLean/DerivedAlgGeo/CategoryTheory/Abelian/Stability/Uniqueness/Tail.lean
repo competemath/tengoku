@@ -130,12 +130,18 @@ noncomputable def tailAt {Z : StabilityFunction A} {E : A}
         (pullback_imageSubobject_eq Z hM₂)
         (F.factor_semistable ⟨k + j, by lia⟩))
 
+/--
+@isnad1 id=eq.1h5v.s7.61ab0e1f68ea from=translated src=- shape=5e9ac4c9 vocab=15fa7174
+-/
 @[simp]
 theorem tailAt_n {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (k : ℕ) (hk : k < F.n) :
     (F.tailAt k hk).n = F.n - k :=
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.8bfe753db637 from=translated src=- shape=7d1b4690 vocab=b622ef5b
+-/
 @[simp]
 theorem tailAt_phase {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (k : ℕ) (hk : k < F.n) (j : ℕ)
@@ -143,13 +149,17 @@ theorem tailAt_phase {Z : StabilityFunction A} {E : A}
     (F.tailAt k hk).phase ⟨j, hj⟩ = F.phase ⟨k + j, by lia⟩ :=
   rfl
 
-/-- The highest phase of a tail is the phase at the index it was cut at.-/
+/-- The highest phase of a tail is the phase at the index it was cut at.
+@isnad1 id=eq.1h5v.s7.d970523c1af5 from=translated src=- shape=7b912f40 vocab=90b47468
+-/
 theorem tailAt_phiPlus {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (k : ℕ) (hk : k < F.n) :
     (F.tailAt k hk).phiPlus = F.phase ⟨k, hk⟩ :=
   rfl
 
-/-- A tail ends where the filtration it was cut from ends.-/
+/-- A tail ends where the filtration it was cut from ends.
+@isnad1 id=eq.1h5v.s7.7bc901c612da from=translated src=- shape=32a6d020 vocab=42b85061
+-/
 theorem tailAt_phiMinus {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (k : ℕ) (hk : k < F.n) :
     (F.tailAt k hk).phiMinus = F.phiMinus :=
@@ -164,6 +174,9 @@ noncomputable def tail {Z : StabilityFunction A} {E : A}
     AbelianHNFiltration Z (cokernel (F.chain ⟨1, by lia⟩).arrow) :=
   F.tailAt 1 (by lia)
 
+/--
+@isnad1 id=eq.1h4v.s7.a6ee12938079 from=translated src=- shape=ea2479ca vocab=18cc732b
+-/
 @[simp]
 theorem tail_n {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (hn : 2 ≤ F.n) :
@@ -171,7 +184,9 @@ theorem tail_n {Z : StabilityFunction A} {E : A}
   rfl
 
 /-- Transporting an owner HN filtration along equality of its ambient objects
-preserves the number of factors.-/
+preserves the number of factors.
+@isnad1 id=eq.1h5v.s6.78b2b73f0358 from=translated src=- shape=127a40b7 vocab=14eed85d
+-/
 theorem transport_n {Z : StabilityFunction A} {E₁ E₂ : A}
     (h : E₁ = E₂) (F : AbelianHNFiltration Z E₁) :
     (h ▸ F).n = F.n := by
@@ -180,7 +195,9 @@ theorem transport_n {Z : StabilityFunction A} {E₁ E₂ : A}
 
 /-- Owner HN filtrations have a unique length when every object has a finite
 subobject lattice.  The proof recursively removes the intrinsic first HN term
-and descends to its strictly smaller quotient subobject lattice.-/
+and descends to its strictly smaller quotient subobject lattice.
+@isnad1 id=eq.2h5v.s5.1ccce322eabe from=translated src=- shape=92352342 vocab=756d71d7
+-/
 theorem n_eq {Z : StabilityFunction A} {E : A} (hE : ¬IsZero E)
     (hFinite : ∀ X : A, Finite (Subobject X))
     (F G : AbelianHNFiltration Z E) : F.n = G.n := by

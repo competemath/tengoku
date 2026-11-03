@@ -55,7 +55,9 @@ variable (W : WeakStabilityFunctionOn (abelianDatum A))
 
 /-- **Consecutive pulled-back quotient subobjects have the slope of the corresponding quotient
 factor.**  The correspondence gives an isomorphism of the two quotients outright, so this is
-`slope_eq_of_iso` and nothing else.-/
+`slope_eq_of_iso` and nothing else.
+@isnad1 id=eq.1h6v.s11.3ada3988e992 from=translated src=- shape=65c48852 vocab=a8d40947
+-/
 theorem slope_cokernel_pullback_eq {E : A} (M : Subobject E)
     {B₁ B₂ : Subobject (cokernel M.arrow)} (h : B₁ ≤ B₂) :
     W.slope (cokernel (Subobject.ofLE
@@ -65,7 +67,9 @@ theorem slope_cokernel_pullback_eq {E : A} (M : Subobject E)
       W.slope (cokernel (Subobject.ofLE B₁ B₂ h)) :=
   W.slope_eq_of_iso (Abelian.cokernelPullbackIso M h)
 
-/-- Weak semistability likewise transfers across the correspondence.-/
+/-- Weak semistability likewise transfers across the correspondence.
+@isnad1 id=iff.1h6v.s11.0a1d672aa719 from=translated src=- shape=55e8f3d0 vocab=51c1938a
+-/
 theorem isSemistable_cokernel_pullback_iff {E : A} (M : Subobject E)
     {B₁ B₂ : Subobject (cokernel M.arrow)} (h : B₁ ≤ B₂) :
     W.IsSemistable (cokernel (Subobject.ofLE
@@ -177,20 +181,30 @@ def tailAt (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : k < F.n) :
         (Abelian.pullback_imageSubobject_eq hM₂)
         (F.factor_semistable ⟨k + j, by lia⟩))
 
+/--
+@isnad1 id=eq.1h5v.s7.6b842e0f267b from=translated src=- shape=a10fa1c1 vocab=03bdc436
+-/
 @[simp]
 theorem tailAt_n (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : k < F.n) :
     (F.tailAt k hk).n = F.n - k := rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.d66993f5e362 from=translated src=- shape=9b326fd0 vocab=3ec18d9f
+-/
 @[simp]
 theorem tailAt_μ (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : k < F.n) (j : ℕ)
     (hj : j < F.n - k) :
     (F.tailAt k hk).μ ⟨j, hj⟩ = F.μ ⟨k + j, by lia⟩ := rfl
 
-/-- The highest slope of a tail is the slope at the index it was cut at.-/
+/-- The highest slope of a tail is the slope at the index it was cut at.
+@isnad1 id=eq.1h5v.s7.206682712b05 from=translated src=- shape=1839e6fd vocab=0541698b
+-/
 theorem tailAt_μPlus (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : k < F.n) :
     (F.tailAt k hk).μPlus = F.μ ⟨k, hk⟩ := rfl
 
-/-- A tail ends where the filtration it was cut from ends.-/
+/-- A tail ends where the filtration it was cut from ends.
+@isnad1 id=eq.1h5v.s7.0f04daf825c8 from=translated src=- shape=71249d88 vocab=9ed75fc1
+-/
 theorem tailAt_μMinus (F : AbelianWeakHNFiltration W E) (k : ℕ) (hk : k < F.n) :
     (F.tailAt k hk).μMinus = F.μMinus :=
   congrArg F.μ (Fin.ext (by

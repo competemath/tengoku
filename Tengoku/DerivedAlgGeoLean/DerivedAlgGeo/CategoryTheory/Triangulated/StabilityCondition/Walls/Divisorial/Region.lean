@@ -78,15 +78,23 @@ parameters.-/
 def expPairMap (p : D × D) : Mukai.RealExtension D × Mukai.RealExtension D :=
   (Mukai.expRe S.intersection p.1 p.2, Mukai.expIm S.intersection p.1 p.2)
 
+/--
+@isnad1 id=eq.0h3v.s6.7bd7e9277936 from=translated src=- shape=16dd69fe vocab=ba7ef355
+-/
 @[simp]
 theorem expPairMap_fst (p : D × D) :
     (S.expPairMap p).1 = Mukai.expRe S.intersection p.1 p.2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.31462ab90279 from=translated src=- shape=28631afa vocab=2aa5f01b
+-/
 @[simp]
 theorem expPairMap_snd (p : D × D) :
     (S.expPairMap p).2 = Mukai.expIm S.intersection p.1 p.2 := rfl
 
-/-- The plane of a parameter pair is the span of its exponential pair.-/
+/-- The plane of a parameter pair is the span of its exponential pair.
+@isnad1 id=eq.0h4v.s7.88dd6ed7732b from=translated src=- shape=221e5a04 vocab=b2846f48
+-/
 theorem expPlane_eq_span (B omega : D) :
     S.expPlane B omega
       = Submodule.span ℝ ({(S.expPairMap (B, omega)).1, (S.expPairMap (B, omega)).2} : Set _) :=
@@ -95,12 +103,16 @@ theorem expPlane_eq_span (B omega : D) :
 variable [FiniteDimensional ℝ D]
 
 /-- The intersection form is jointly continuous.  Finite dimensionality is what
-turns the bilinear map into a continuous one.-/
+turns the bilinear map into a continuous one.
+@isnad1 id=continuo.0h2v.s6.3962782aaac5 from=translated src=- shape=1734ae7e vocab=3f577649
+-/
 theorem continuous_pair : Continuous fun p : D × D => S.pair p.1 p.2 :=
   (LinearMap.toContinuousBilinearMap S.intersection).continuous₂
 
 /-- **The exponential parameter map is continuous**, so a compact set of
-parameters gives a compact family of spanning pairs.-/
+parameters gives a compact family of spanning pairs.
+@isnad1 id=continuo.0h2v.s7.14f7f05b895e from=translated src=- shape=bd30f11b vocab=f6de54c3
+-/
 theorem continuous_expPairMap : Continuous S.expPairMap := by
   have hb := S.continuous_pair
   have hbb : Continuous fun p : D × D => S.pair p.1 p.1 :=
@@ -137,7 +149,9 @@ private theorem scale_bound {c : ℝ} {u : D} (hu : u ≠ 0)
 
 The second constant `Spherical.BoundedRegion` asks for.  A continuous positive
 function on a compact set attains a positive minimum; the empty family takes
-any positive number.-/
+any positive number.
+@isnad1 id=ex.2h3v.s7.94ad887331c5 from=translated src=- shape=ff605a2a vocab=9d63ff27
+-/
 theorem exists_ampleLower {K : Set (D × D)} (hK : IsCompact K)
     (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2) :
     ∃ a : ℝ, 0 < a ∧ ∀ p ∈ K, a ≤ S.pair p.2 p.2 := by
@@ -157,7 +171,9 @@ orthogonal to their `ω` form a compact set, on which `-q` is continuous and
 positive, so it attains a positive minimum.  Homogeneity extends the bound off
 the sphere.
 
-This is the input `Spherical.BoundedRegion` asks for and has never had.-/
+This is the input `Spherical.BoundedRegion` asks for and has never had.
+@isnad1 id=ex.3h4v.s8.cb1da7fa6249 from=translated src=- shape=3ea5fa82 vocab=6407f22e
+-/
 theorem exists_uniform_negDefinite (h : S.HodgeDefinite H) {K : Set (D × D)}
     (hK : IsCompact K) (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2) :
     ∃ c : ℝ, 0 < c ∧ ∀ p ∈ K, ∀ x : D, S.pair x p.2 = 0 → S.pair x x ≤ -c * ‖x‖ ^ 2 := by
@@ -230,6 +246,9 @@ def expPlaneRegion (h : S.HodgeDefinite H) {K : Set (D × D)} (hK : IsCompact K)
       exact Mukai.isPositiveFrame_exp S.intersection p.1 p.2
         (fun x y => S.pair_comm x y) (hpos p hp))
 
+/--
+@isnad1 id=eq.3h4v.s9.3dfbe5eb066f from=translated src=- shape=91dd58a5 vocab=09da4578
+-/
 @[simp]
 theorem expPlaneRegion_carrier (h : S.HodgeDefinite H) {K : Set (D × D)} (hK : IsCompact K)
     (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2) :
@@ -242,7 +261,9 @@ theorem expPlaneRegion_carrier (h : S.HodgeDefinite H) {K : Set (D × D)} (hK : 
 
 /-- **Finitely many spherical classes of a lattice have a wall meeting the
 region.**  This is `PlaneRegion.finite_orthogonalClasses_inter` with the region
-supplied.-/
+supplied.
+@isnad1 id=finite.3h6v.s9.86da2cc868f2 from=translated src=- shape=611ba510 vocab=9e53483d
+-/
 theorem finite_orthogonalClasses_expPlaneRegion (h : S.HodgeDefinite H) {K : Set (D × D)}
     (hK : IsCompact K) (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2)
     {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ (Mukai.RealExtension D)) :
@@ -258,7 +279,9 @@ many spherical classes of the lattice have a wall through the plane of
 
 This is the form a chamber argument consumes: the parameters appear, not the
 region.  The hypotheses are the Hodge certificate, compactness, and positivity
-of `ω²` on the family.-/
+of `ω²` on the family.
+@isnad1 id=finite.3h6v.s9.3b11c7e30e6f from=translated src=- shape=7f5a8c9c vocab=abf0de04
+-/
 theorem finite_walls_meeting_expFamily (h : S.HodgeDefinite H) {K : Set (D × D)}
     (hK : IsCompact K) (hpos : ∀ p ∈ K, 0 < S.pair p.2 p.2)
     {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ (Mukai.RealExtension D)) :

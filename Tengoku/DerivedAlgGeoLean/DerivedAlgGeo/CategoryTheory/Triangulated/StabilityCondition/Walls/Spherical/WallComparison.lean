@@ -69,14 +69,22 @@ def chartFrame (β ω : V) : Mukai.RealExtension V × Mukai.RealExtension V :=
 def chartPlane (β ω : V) : Submodule ℝ (Mukai.RealExtension V) :=
   PeriodDomain.framePlane (chartFrame q β ω)
 
+/--
+@isnad1 id=eq.0h4v.s7.a7abb177e8bc from=translated src=- shape=eaa1c7b3 vocab=b8bea9c8
+-/
 theorem chartPlane_eq_framePlane (β ω : V) :
     chartPlane q β ω = PeriodDomain.framePlane (chartFrame q β ω) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.6ab74d751d6e from=translated src=- shape=88133b44 vocab=343d5e9c
+-/
 theorem chartPlane_eq_span (β ω : V) :
     chartPlane q β ω =
       Submodule.span ℝ ({chartRe q β ω, chartIm q β ω} : Set (Mukai.RealExtension V)) := rfl
 
-/-- The chart retains a positive ordered frame before its basis is forgotten.-/
+/-- The chart retains a positive ordered frame before its basis is forgotten.
+@isnad1 id=ispositi.2h4v.s9.ebcbc503ef19 from=translated src=- shape=26a7aace vocab=7dcdccb8
+-/
 theorem isPositiveFrame_chartFrame (hq : ∀ x y : V, q x y = q y x) {omega : V}
     (homega : 0 < q omega omega) (beta : V) :
     PeriodDomain.IsPositiveFrame (Mukai.realForm q)
@@ -84,14 +92,18 @@ theorem isPositiveFrame_chartFrame (hq : ∀ x y : V, q x y = q y x) {omega : V}
   Mukai.isPositiveFrame_exp q beta omega hq homega
 
 /-- The chart plane is positive as soon as `ω² > 0`; the `β`-field is
-unconstrained.  This is `Mukai.isPositiveFrame_exp` said in the chart.-/
+unconstrained.  This is `Mukai.isPositiveFrame_exp` said in the chart.
+@isnad1 id=ispositi.2h4v.s9.eb6467b69a14 from=translated src=- shape=cbd25489 vocab=bf293466
+-/
 theorem isPositivePlane_chartPlane (hq : ∀ x y : V, q x y = q y x) {omega : V}
     (homega : 0 < q omega omega) (beta : V) :
     PeriodDomain.IsPositivePlane (Mukai.realForm q) (chartPlane q beta omega) := by
   exact PeriodDomain.isPositivePlane_framePlane
     (isPositiveFrame_chartFrame q hq homega beta)
 
-/-- **Orthogonality to the chart plane is the vanishing of both pairings.**-/
+/-- **Orthogonality to the chart plane is the vanishing of both pairings.**
+@isnad1 id=iff.2h5v.s10.fa5ebfa12985 from=translated src=- shape=e48200c6 vocab=4bdae1e1
+-/
 theorem mem_chartPlane_orthogonalityLocus_iff (hq : ∀ x y : V, q x y = q y x) {beta omega : V}
     (homega : 0 < q omega omega) (δ : Mukai.RealExtension V) :
     chartPlane q beta omega ∈ PeriodDomain.orthogonalityLocus (Mukai.realForm q) δ ↔
@@ -107,7 +119,9 @@ real pairing also vanishes.**
 
 `nonpositiveRayLocus q δ` asks `Im(℧, δ) = 0` and `Re(℧, δ) ≤ 0`; the orthogonality locus asks
 both to vanish.  So one is contained in the other, and the containment is
-strict wherever the real pairing is negative.-/
+strict wherever the real pairing is negative.
+@isnad1 id=iff.2h5v.s10.39262c36c35a from=translated src=- shape=255d2f9a vocab=a6507119
+-/
 theorem mem_orthogonalityLocus_iff_mem_nonpositiveRayLocus (hq : ∀ x y : V, q x y = q y x)
     {beta omega : V} (homega : 0 < q omega omega) (δ : Mukai.RealExtension V) :
     chartPlane q beta omega ∈ PeriodDomain.orthogonalityLocus (Mukai.realForm q) δ ↔
@@ -122,7 +136,9 @@ theorem mem_orthogonalityLocus_iff_mem_nonpositiveRayLocus (hq : ∀ x y : V, q 
 
 /-- **A point of the orthogonality locus is a point of the spherical nonpositiveRayLocus.**  The
 converse fails: a class can be real and strictly negative against `℧` without
-having vanishing charge.-/
+having vanishing charge.
+@isnad1 id=mem.3h5v.s10.e4e7e5cb8e7f from=translated src=- shape=59b768d4 vocab=7b53be65
+-/
 theorem mem_nonpositiveRayLocus_of_mem_orthogonalityLocus (hq : ∀ x y : V, q x y = q y x)
     {beta omega : V} (homega : 0 < q omega omega) {δ : Mukai.RealExtension V}
     (h : chartPlane q beta omega ∈ PeriodDomain.orthogonalityLocus (Mukai.realForm q) δ) :
@@ -130,7 +146,9 @@ theorem mem_nonpositiveRayLocus_of_mem_orthogonalityLocus (hq : ∀ x y : V, q x
   ((mem_orthogonalityLocus_iff_mem_nonpositiveRayLocus q hq homega δ).mp h).1
 
 /-- A point avoiding every signed-ray locus also avoids every orthogonality
-locus indexed by the same classes.-/
+locus indexed by the same classes.
+@isnad1 id=not.4h6v.s10.1a695c76e013 from=translated src=- shape=60117e25 vocab=12148b05
+-/
 theorem not_mem_orthogonalityLocus_of_mem_signedRayRegularLocus (hq : ∀ x y : V, q x y = q y x)
     {beta omega : V} (homega : 0 < q omega omega) {T : Set (Mukai.RealExtension V)}
     (h : (beta, omega) ∈ signedRayRegularLocus q T) {δ : Mukai.RealExtension V} (hδ : δ ∈ T) :

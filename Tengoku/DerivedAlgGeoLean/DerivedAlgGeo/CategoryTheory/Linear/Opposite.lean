@@ -72,10 +72,16 @@ instance linearOpposite : Linear R Cᵒᵖ where
 
 variable {R C}
 
+/--
+@isnad1 id=eq.0h6v.s9.67ee59e1cfbe from=translated src=- shape=874d115e vocab=cdaa7f38
+-/
 @[simp]
 theorem unop_smul {X Y : Cᵒᵖ} (r : R) (f : X ⟶ Y) : (r • f).unop = r • f.unop :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.0e87dea4989e from=translated src=- shape=e5502b9c vocab=7da2ffd3
+-/
 @[simp]
 theorem op_smul {X Y : C} (r : R) (f : X ⟶ Y) : (r • f).op = r • f.op :=
   rfl

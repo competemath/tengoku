@@ -61,6 +61,9 @@ def SphericalClassificationData.ofResidualProjections
   pairwise_orthogonal := pairwise_orthogonal
   complete := complete
 
+/--
+@isnad1 id=eq.3h8v.s9.35dcaf490c72 from=translated src=- shape=b1300756 vocab=0b0bff99
+-/
 @[simp]
 theorem SphericalClassificationData.ofResidualProjections_candidate
     (B : OrthogonalExceptionalBlocks k C ι)
@@ -99,6 +102,9 @@ def MixedClassificationData.ofResidualProjections
   spherical_complete := spherical_complete
   pseudoprojective_complete := pseudoprojective_complete
 
+/--
+@isnad1 id=eq.5h8v.s10.9bd149e3e2f9 from=translated src=- shape=05c6d47d vocab=db7080c3
+-/
 @[simp]
 theorem MixedClassificationData.ofResidualProjections_blockLength
     (B : OrthogonalExceptionalBlocks k C ι)
@@ -113,6 +119,9 @@ theorem MixedClassificationData.ofResidualProjections_blockLength
       pseudoprojective_complete).blockLength i = B.length i :=
   rfl
 
+/--
+@isnad1 id=eq.5h8v.s10.1e5e8269be87 from=translated src=- shape=c764b464 vocab=3f84a79f
+-/
 @[simp]
 theorem MixedClassificationData.ofResidualProjections_candidate
     (B : OrthogonalExceptionalBlocks k C ι)
@@ -128,7 +137,9 @@ theorem MixedClassificationData.ofResidualProjections_candidate
   rfl
 
 /-- Every residual projection candidate is spherical or pseudoprojective,
-according to the positive block-length dichotomy.-/
+according to the positive block-length dichotomy.
+@isnad1 id=or.2h9v.s9.9491cb56f0e9 from=translated src=- shape=53116d76 vocab=140191b9
+-/
 theorem MixedClassificationData.residualProjection_candidate_dichotomy
     {B : OrthogonalExceptionalBlocks k C ι}
     {Q : B.ResidualProjectionData}

@@ -28,7 +28,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 namespace AbelianHNFiltration
 
 /-- A semistable object of phase above an HN factor has no morphisms to that
-factor.-/
+factor.
+@isnad1 id=eq.2h7v.s9.8cf12534715c from=translated src=- shape=8df50fd2 vocab=7829cf4c
+-/
 theorem hom_eq_zero_to_factor {Z : StabilityFunction A} {E B : A}
     (F : AbelianHNFiltration Z E) (hB : Z.IsSemistable B)
     (j : Fin F.n) (hphase : F.phase j < Z.phase B)
@@ -38,7 +40,9 @@ theorem hom_eq_zero_to_factor {Z : StabilityFunction A} {E B : A}
     (F.factor_phase j ▸ hphase) f
 
 /-- A semistable subobject whose phase is above every factor from index `k`
-onward lies in the `k`-th term of an HN filtration.-/
+onward lies in the `k`-th term of an HN filtration.
+@isnad1 id=le.3h6v.s7.e1931d3d129a from=translated src=- shape=069c82f7 vocab=73c218f6
+-/
 theorem le_chain_of_semistable_phase_gt {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) {B : Subobject E}
     (hB : Z.IsSemistable (B : A)) {k : ℕ} (hk : k ≤ F.n)
@@ -83,7 +87,9 @@ theorem eq_bot_of_semistable_phase_gt_phiPlus {Z : StabilityFunction A} {E : A}
   exact lt_of_le_of_lt
     (F.phase_strictAnti.antitone (Fin.mk_le_mk.mpr (Nat.zero_le _))) hphase
 
-/-- The first nonzero term in an HN filtration is not bottom.-/
+/-- The first nonzero term in an HN filtration is not bottom.
+@isnad1 id=ne.0h4v.s6.9460701f512e from=translated src=- shape=0e3e7d23 vocab=3d9f1b00
+-/
 theorem chain_one_ne_bot {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) :
     F.chain ⟨1, by have := F.nonempty; lia⟩ ≠ ⊥ := by
@@ -94,7 +100,9 @@ theorem chain_one_ne_bot {Z : StabilityFunction A} {E : A}
   rw [F.chain_bot, heq] at hlt
   exact lt_irrefl _ hlt
 
-/-- The phase of the first nonzero term is the highest HN phase.-/
+/-- The phase of the first nonzero term is the highest HN phase.
+@isnad1 id=eq.0h4v.s6.2cfddae7314e from=translated src=- shape=8058b33d vocab=7d0a042f
+-/
 theorem phase_chain_one {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) :
     Z.phase (F.chain ⟨1, by have := F.nonempty; lia⟩ : A) = F.phiPlus := by
@@ -109,7 +117,9 @@ theorem phase_chain_one {Z : StabilityFunction A} {E : A}
       (StabilityFunction.subobjectCokernelBotIso
         (F.chain ⟨1, by lia⟩) bot_le))).symm
 
-/-- The first nonzero term in an HN filtration is semistable.-/
+/-- The first nonzero term in an HN filtration is semistable.
+@isnad1 id=issemist.0h4v.s6.a0afaa23fcdd from=translated src=- shape=56ba2aa1 vocab=4441bb43
+-/
 theorem chain_one_isSemistable {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) :
     Z.IsSemistable (F.chain ⟨1, by have := F.nonempty; lia⟩ : A) := by
@@ -133,7 +143,9 @@ theorem chain_one_isSemistable {Z : StabilityFunction A} {E : A}
       (F.chain ⟨1, by lia⟩) bot_le) hnormalized
 
 /-- The highest phase is intrinsic: any two owner HN filtrations of the same
-object have the same first phase.-/
+object have the same first phase.
+@isnad1 id=eq.0h5v.s5.9beff781ff11 from=translated src=- shape=59cf6363 vocab=0f3e3d53
+-/
 theorem phiPlus_eq {Z : StabilityFunction A} {E : A}
     (F G : AbelianHNFiltration Z E) : F.phiPlus = G.phiPlus := by
   apply le_antisymm
@@ -149,7 +161,9 @@ theorem phiPlus_eq {Z : StabilityFunction A} {E : A}
     exact G.chain_one_ne_bot hbot
 
 /-- The first nonzero term is intrinsic: any two owner HN filtrations of the
-same object have the same maximally destabilizing subobject.-/
+same object have the same maximally destabilizing subobject.
+@isnad1 id=eq.0h5v.s7.d8a6e61fb75f from=translated src=- shape=7240975f vocab=b3bfdedd
+-/
 theorem chain_one_eq {Z : StabilityFunction A} {E : A}
     (F G : AbelianHNFiltration Z E) :
     F.chain ⟨1, by have := F.nonempty; lia⟩ =
@@ -172,7 +186,9 @@ theorem chain_one_eq {Z : StabilityFunction A} {E : A}
       _ = Z.phase (G.chain ⟨1, by have := G.nonempty; lia⟩ : A) :=
         G.phase_chain_one.symm
 
-/-- No nonzero semistable subobject has phase above the first HN phase.-/
+/-- No nonzero semistable subobject has phase above the first HN phase.
+@isnad1 id=le.1h5v.s6.532e4c7d5c9a from=translated src=- shape=febc26a4 vocab=9d504994
+-/
 theorem semistable_phase_le_phiPlus {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) {B : Subobject E}
     (hB : Z.IsSemistable (B : A)) : Z.phase (B : A) ≤ F.phiPlus := by
@@ -182,7 +198,9 @@ theorem semistable_phase_le_phiPlus {Z : StabilityFunction A} {E : A}
   exact hB.1 ((StabilityFunction.subobject_isZero_iff_eq_bot B).2 hbot)
 
 /-- A semistable subobject at the highest HN phase is contained in the
-intrinsic first HN term.-/
+intrinsic first HN term.
+@isnad1 id=le.2h5v.s7.100b7025d42c from=translated src=- shape=e0df2e97 vocab=6e920fac
+-/
 theorem le_chain_one_of_semistable_phase_eq_phiPlus
     {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) {B : Subobject E}
@@ -197,7 +215,9 @@ theorem le_chain_one_of_semistable_phase_eq_phiPlus
     _ = Z.phase (B : A) := hphase.symm
 
 /-- The first HN term contains every semistable subobject having the highest
-HN phase.-/
+HN phase.
+@isnad1 id=le.2h5v.s7.100b7025d42c from=translated src=- shape=e0df2e97 vocab=6e920fac
+-/
 theorem chain_one_maximal_semistable_phase {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) {B : Subobject E}
     (hB : Z.IsSemistable (B : A))
@@ -206,7 +226,9 @@ theorem chain_one_maximal_semistable_phase {Z : StabilityFunction A} {E : A}
   F.le_chain_one_of_semistable_phase_eq_phiPlus hB hphase
 
 /-- Every morphism from an HN-filtered object to a semistable object whose
-phase is below the lowest HN phase is zero.-/
+phase is below the lowest HN phase is zero.
+@isnad1 id=eq.2h6v.s6.8c57a59133d6 from=translated src=- shape=c11d6be8 vocab=af26ba76
+-/
 theorem hom_eq_zero_to_semistable_of_phase_lt_phiMinus
     {Z : StabilityFunction A} {E B : A} (F : AbelianHNFiltration Z E)
     (hB : Z.IsSemistable B) (hphase : Z.phase B < F.phiMinus)
@@ -263,7 +285,9 @@ theorem hom_eq_zero_to_semistable_of_phase_lt_phiMinus
   simpa using htop
 
 /-- The lowest phase is intrinsic: any two owner HN filtrations of the same
-object have the same last phase.-/
+object have the same last phase.
+@isnad1 id=eq.0h5v.s5.86100f15cb71 from=translated src=- shape=59cf6363 vocab=a5ab0e06
+-/
 theorem phiMinus_eq {Z : StabilityFunction A} {E : A}
     (F G : AbelianHNFiltration Z E) : F.phiMinus = G.phiMinus := by
   have no_strict_order : ∀ (H K : AbelianHNFiltration Z E),

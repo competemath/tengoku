@@ -71,6 +71,9 @@ def representableZariskiStackMap {X Y : Scheme.{u}} (f : X ⟶ Y) :
       (representableZariskiStack Y) :=
   StackInGroupoids.representableMap Scheme.zariskiTopology f
 
+/--
+@isnad1 id=eq.0h5v.s9.f017ebfda601 from=translated src=- shape=5192433c vocab=9231495c
+-/
 @[simp]
 theorem representableZariskiStackMap_obj {X Y T : Scheme.{u}}
     (f : X ⟶ Y) (g : T ⟶ X) :
@@ -82,7 +85,9 @@ theorem representableZariskiStackMap_obj {X Y T : Scheme.{u}}
 /-- Three scheme-induced stack morphisms compose through Mathlib's strong
 transformation composition, with the expected pointwise action.  The
 associator and unitors for this composition are the ones supplied by the
-pseudofunctor bicategory.-/
+pseudofunctor bicategory.
+@isnad1 id=eq.0h9v.s9.ae092c7c94fe from=translated src=- shape=b27f8104 vocab=fee72f67
+-/
 @[simp]
 theorem representableZariskiStackMap_tripleComp_obj
     {W X Y Z T : Scheme.{u}} (f : W ⟶ X) (g : X ⟶ Y) (h : Y ⟶ Z)
@@ -128,10 +133,16 @@ def fiberFunctor (T : Over S) :
       (representableZariskiStackMap f).FiberCategory y T :=
   Core.functorToCore (Discrete.functor (fiberObject f y T))
 
+/--
+@isnad1 id=faithful.0h6v.s12.70d88100c905 from=translated src=- shape=32b07dfd vocab=5b59ccfc
+-/
 instance fiberFunctor_faithful (T : Over S) :
     (fiberFunctor f y T).Faithful where
   map_injective _ := Subsingleton.elim _ _
 
+/--
+@isnad1 id=full.0h6v.s12.c150e20eb41d from=translated src=- shape=32b07dfd vocab=ed74cf2e
+-/
 instance fiberFunctor_full (T : Over S) :
     (fiberFunctor f y T).Full where
   map_surjective {a b} h := by
@@ -154,6 +165,9 @@ instance fiberFunctor_full (T : Over S) :
     apply StructuredArrow.hom_ext
     apply Subsingleton.elim
 
+/--
+@isnad1 id=esssurj.0h6v.s12.d3ebff4ac0e6 from=translated src=- shape=32b07dfd vocab=2cae9e58
+-/
 instance fiberFunctor_essSurj (T : Over S) :
     (fiberFunctor f y T).EssSurj := by
   constructor
@@ -218,7 +232,9 @@ variable {J : GrothendieckTopology Scheme.{u}}
   {F G : StackInGroupoids Scheme.{u} J}
   {P Q : MorphismProperty Scheme.{u}} {f : StackMorphism F G}
 
-/-- Forgetting the geometric property recovers ordinary representability.-/
+/-- Forgetting the geometric property recovers ordinary representability.
+@isnad1 id=isrepres.0h5v.s5.101e677f3ab5 from=translated src=- shape=eda911aa vocab=9edd81df
+-/
 theorem isRepresentable_of_hasRepresentableProperty
     [HasRepresentableProperty P f] : f.IsRepresentable := by
   constructor
@@ -227,7 +243,9 @@ theorem isRepresentable_of_hasRepresentableProperty
   exact ⟨R.toFiberRepresentation⟩
 
 /-- Representable properties are monotone under implication of the underlying
-scheme-morphism properties.-/
+scheme-morphism properties.
+@isnad1 id=hasrepre.1h6v.s6.34e0407dc89b from=translated src=- shape=57e52586 vocab=1546201b
+-/
 theorem hasRepresentableProperty_mono (hPQ : P ≤ Q)
     [HasRepresentableProperty P f] : HasRepresentableProperty Q f := by
   constructor
@@ -239,7 +257,9 @@ end StackMorphism
 
 /-- A base-change-stable scheme-morphism property passes to the induced
 morphism of representable stacks because each representing morphism is the
-corresponding scheme-theoretic pullback.-/
+corresponding scheme-theoretic pullback.
+@isnad1 id=hasrepre.0h5v.s5.d4b4a5080bfb from=translated src=- shape=a0314333 vocab=16f4c0b6
+-/
 theorem representableZariskiStackMap_hasRepresentableProperty
     (P : MorphismProperty Scheme.{u}) [P.IsStableUnderBaseChange]
     {X Y : Scheme.{u}} (f : X ⟶ Y) (hf : P f) :
@@ -275,7 +295,9 @@ abbrev StackMorphism.IsOpenImmersion
   StackMorphism.HasRepresentableProperty @AlgebraicGeometry.IsOpenImmersion f
 
 /-- The identity structural morphism of every representable stack is locally
-of finite presentation on all actual fiber schemes.-/
+of finite presentation on all actual fiber schemes.
+@isnad1 id=islocall.0h1v.s4.0f36e57685fe from=translated src=- shape=8fb6d0a2 vocab=258147d8
+-/
 theorem representableZariskiStackMap_id_isLocallyOfFinitePresentation
     (X : Scheme.{u}) :
     StackMorphism.IsLocallyOfFinitePresentation
@@ -284,7 +306,9 @@ theorem representableZariskiStackMap_id_isLocallyOfFinitePresentation
     @LocallyOfFinitePresentation (𝟙 X) inferInstance
 
 /-- A scheme-theoretic open immersion induces an open immersion of its
-representable big-Zariski stacks, checked on the actual pullback schemes.-/
+representable big-Zariski stacks, checked on the actual pullback schemes.
+@isnad1 id=isopenim.0h3v.s4.5f97d0055d10 from=translated src=- shape=8026b8c4 vocab=28e31b3d
+-/
 theorem representableZariskiStackMap_isOpenImmersion
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] :
     StackMorphism.IsOpenImmersion (representableZariskiStackMap f) :=

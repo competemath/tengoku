@@ -100,7 +100,9 @@ variable {q} (R : BoundedRegion q)
 
 /-- The two facts a nonpositiveRayLocus through the region gives about the class, before any
 finiteness reasoning: the offset `Δ − rβ` is `q`-negative, and the nonpositiveRayLocus
-inequality holds.-/
+inequality holds.
+@isnad1 id=and.5h5v.s11.d97083c64c96 from=translated src=- shape=5d6a6b9c vocab=8d7850c3
+-/
 theorem key (hq : ∀ x y : V, q x y = q y x) {δ : Mukai.RealExtension V}
     (hs : IsSpherical q δ) (hr : 0 < δ.1) {p : V × V} (hp : p ∈ R.carrier)
     (hw : p ∈ nonpositiveRayLocus q δ) :
@@ -113,7 +115,9 @@ theorem key (hq : ∀ x y : V, q x y = q y x) {δ : Mukai.RealExtension V}
 /-- **The rank is bounded.** `r² ≤ 2 / ampleLower`.
 
 This is the step that needs `ampleLower > 0`, and the step the printed argument
-performs by saying "`ω` is constrained to lie in a bounded region".-/
+performs by saying "`ω` is constrained to lie in a bounded region".
+@isnad1 id=le.5h5v.s9.6003a98711eb from=translated src=- shape=2f71cb22 vocab=69ba7859
+-/
 theorem rk_sq_le (hq : ∀ x y : V, q x y = q y x) {δ : Mukai.RealExtension V}
     (hs : IsSpherical q δ) (hr : 0 < δ.1) {p : V × V} (hp : p ∈ R.carrier)
     (hw : p ∈ nonpositiveRayLocus q δ) :
@@ -130,7 +134,9 @@ theorem rk_sq_le (hq : ∀ x y : V, q x y = q y x) {δ : Mukai.RealExtension V}
 /-- **The offset is bounded.** `‖Δ − rβ‖² ≤ 2 / coercivity`.
 
 The same inequality as `rk_sq_le`, read for the other term: `r²·q(ω,ω) ≥ 0`
-absorbs the rank contribution and what is left bounds the offset.-/
+absorbs the rank contribution and what is left bounds the offset.
+@isnad1 id=le.5h5v.s10.a3148a95369c from=translated src=- shape=165c4ca4 vocab=b947e198
+-/
 theorem normSq_sub_smul_le (hq : ∀ x y : V, q x y = q y x) {δ : Mukai.RealExtension V}
     (hs : IsSpherical q δ) (hr : 0 < δ.1) {p : V × V} (hp : p ∈ R.carrier)
     (hw : p ∈ nonpositiveRayLocus q δ) :
@@ -174,7 +180,9 @@ namespace BoundedRegion
 
 variable {q} (R : BoundedRegion q)
 
-/-- A bound on `‖β‖` over the region, extracted from boundedness.-/
+/-- A bound on `‖β‖` over the region, extracted from boundedness.
+@isnad1 id=ex.0h3v.s7.f3f0344817af from=translated src=- shape=45412c23 vocab=6855eca4
+-/
 theorem exists_norm_fst_le : ∃ M : ℝ, 0 ≤ M ∧ ∀ p ∈ R.carrier, ‖p.1‖ ≤ M := by
   obtain ⟨C, hC⟩ := isBounded_iff_forall_norm_le.1 R.bounded
   refine ⟨max C 0, le_max_right _ _, fun p hp => ?_⟩
@@ -182,7 +190,9 @@ theorem exists_norm_fst_le : ∃ M : ℝ, 0 ≤ M ∧ ∀ p ∈ R.carrier, ‖p.
 
 /-- **Every candidate is reconstructed from a bounded integer and a bounded
 lattice point.** This is the whole content of the finiteness argument; the
-finiteness itself is then two standard facts.-/
+finiteness itself is then two standard facts.
+@isnad1 id=le.2h5v.s10.c64145ca6d32 from=translated src=- shape=1e842c12 vocab=3195adad
+-/
 theorem rayCandidates_subset (hq : ∀ x y : V, q x y = q y x) (Λ : Set V)
     {M : ℝ} (hM : ∀ p ∈ R.carrier, ‖p.1‖ ≤ M) :
     rayCandidates q R Λ ⊆
@@ -231,7 +241,9 @@ theorem rayCandidates_subset (hq : ∀ x y : V, q x y = q y x) (Λ : Set V)
 
 Bridgeland's Proposition 11.2, with the two uniform constants of
 `BoundedRegion` made explicit and the rank required to be an integer. `Λ` is the
-`ℤ`-span of an `ℝ`-basis; it is not asserted to be `NS(X)`.-/
+`ℤ`-span of an `ℝ`-basis; it is not asserted to be `NS(X)`.
+@isnad1 id=finite.1h5v.s9.ee17917c9a04 from=translated src=- shape=ac02a77c vocab=d126aebf
+-/
 theorem finite_rayCandidates (hq : ∀ x y : V, q x y = q y x)
     [FiniteDimensional ℝ V] {ι : Type*} [Finite ι] (basis : Module.Basis ι ℝ V) :
     (rayCandidates q R ↑(Submodule.span ℤ (Set.range basis))).Finite := by
@@ -253,6 +265,9 @@ so the two differ only by a condition that is vacuous off the region.-/
 def latticeSpherical (Λ : Set V) : Set (Mukai.RealExtension V) :=
   {δ | IsSpherical q δ ∧ 0 < δ.1 ∧ (∃ n : ℤ, (n : ℝ) = δ.1) ∧ δ.2.1 ∈ Λ}
 
+/--
+@isnad1 id=le.0h4v.s7.17f8d9db3846 from=translated src=- shape=e07a41d6 vocab=f0163696
+-/
 theorem rayCandidates_subset_latticeSpherical (R : BoundedRegion q) (Λ : Set V) :
     rayCandidates q R Λ ⊆ latticeSpherical q Λ := by
   rintro δ ⟨hs, hr, hn, hΛ, -⟩
@@ -264,7 +279,9 @@ finitely many candidates.**
 A class whose nonpositiveRayLocus misses the region cannot separate two of its points, so the
 signedRayRegularLocus restricted to the region only sees `rayCandidates` — which
 `finite_rayCandidates` shows is finite.  This is what turns local finiteness
-into a signedRayRegularLocus decomposition.-/
+into a signedRayRegularLocus decomposition.
+@isnad1 id=eq.0h4v.s7.9dffb90e6822 from=translated src=- shape=8087449e vocab=c277030e
+-/
 theorem signedRayRegularLocus_inter_carrier (R : BoundedRegion q) (Λ : Set V) :
     signedRayRegularLocus q (latticeSpherical q Λ) ∩ R.carrier
       = signedRayRegularLocus q (rayCandidates q R Λ) ∩ R.carrier := by

@@ -150,7 +150,9 @@ lattices. It is the arithmetic heart of the bridge, and where the sign
 convention pays off: both sides equal `−χ` of their arguments by
 `IntegralMukaiData.chi₂_eq_neg_pairing`, so preserving `χ` is exactly
 preserving the Mukai pairing.  The `ℤ`-valued conclusion comes from the
-`ℚ`-valued one by injectivity of the cast.-/
+`ℚ`-valued one by injectivity of the cast.
+@isnad1 id=eq.5h13v.s8.d4b014bffad6 from=translated src=- shape=ef50f133 vocab=6c82754f
+-/
 theorem pairing_mukaiVector_eq_of_preservesEuler (D : IntegralMukaiData V Λ)
     (D' : IntegralMukaiData V' Λ')
     (hHRR : V.SatisfiesHRR) (hHRR' : V'.SatisfiesHRR)
@@ -166,7 +168,9 @@ theorem pairing_mukaiVector_eq_of_preservesEuler (D : IntegralMukaiData V Λ)
     linarith
   exact_mod_cast hq
 
-/-- Self-pairings are preserved, hence so is sphericity of a Mukai vector.-/
+/-- Self-pairings are preserved, hence so is sphericity of a Mukai vector.
+@isnad1 id=eq.5h12v.s8.411bdc83ff84 from=translated src=- shape=768b2cc8 vocab=39939067
+-/
 theorem selfPairing_mukaiVector_eq_of_preservesEuler (D : IntegralMukaiData V Λ)
     (D' : IntegralMukaiData V' Λ')
     (hHRR : V.SatisfiesHRR) (hHRR' : V'.SatisfiesHRR)
@@ -178,7 +182,9 @@ theorem selfPairing_mukaiVector_eq_of_preservesEuler (D : IntegralMukaiData V Λ
   exact pairing_mukaiVector_eq_of_preservesEuler D D' hHRR hHRR' hK3 hK3' φ hφ E E
 
 /-- An Euler-preserving map carries spherical Mukai vectors to spherical ones,
-in both directions.-/
+in both directions.
+@isnad1 id=iff.5h12v.s8.ac583d6cefae from=translated src=- shape=92b351e3 vocab=285fe2dc
+-/
 theorem isSpherical_mukaiVector_iff_of_preservesEuler (D : IntegralMukaiData V Λ)
     (D' : IntegralMukaiData V' Λ')
     (hHRR : V.SatisfiesHRR) (hHRR' : V'.SatisfiesHRR)
@@ -228,7 +234,9 @@ noncomputable def isometryOfPreservesEuler (D : AdditiveMukaiData V Λ)
     pairing_mukaiVector_eq_of_preservesEuler D.toIntegralMukaiData
       D'.toIntegralMukaiData hHRR hHRR' hK3 hK3' φ hφ E F
 
-/-- The isometry changes the bilinear form but retains the supplied additive map on vectors.-/
+/-- The isometry changes the bilinear form but retains the supplied additive map on vectors.
+@isnad1 id=eq.5h12v.s8.41b48c706b3a from=translated src=- shape=d6f244ec vocab=33560aec
+-/
 @[simp]
 theorem isometryOfPreservesEuler_apply (D : AdditiveMukaiData V Λ)
     (D' : AdditiveMukaiData V' Λ')
@@ -294,7 +302,9 @@ isometry property it is, is `φ`, not a map of extensions.
 Every geometric input is named: the two realizations, the descent, and
 Euler-preservation. None is constructed anywhere, and the classical theorem --
 that a Fourier--Mukai *equivalence* supplies all of them and a Hodge isometry
-besides -- is not proved here.-/
+besides -- is not proved here.
+@isnad1 id=eq.6h20v.s11.0b28113b6eaf from=translated src=- shape=95e97bf9 vocab=18a418ad
+-/
 theorem pairing_mukaiVector_eq_on_realized (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
     [C.pull.CommShift ℤ] [(C.tensor.obj K).CommShift ℤ] [C.push.CommShift ℤ]
     [C.pull.IsTriangulated] [(C.tensor.obj K).IsTriangulated]
@@ -324,7 +334,9 @@ same ones, with no addition beyond the additivity `AdditiveMukaiData` carries.
 Still not an isometry of the two Mukai *extensions*: the map whose isometry
 property this is, is `φ` on numerical Grothendieck groups
 (`isometryOfPreservesEuler`), and this theorem is that isometry evaluated at
-realized classes.-/
+realized classes.
+@isnad1 id=eq.6h20v.s11.f9a10bd8bc90 from=translated src=- shape=27f07284 vocab=9677193e
+-/
 theorem mukaiForm_eq_on_realized (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
     [C.pull.CommShift ℤ] [(C.tensor.obj K).CommShift ℤ] [C.push.CommShift ℤ]
     [C.pull.IsTriangulated] [(C.tensor.obj K).IsTriangulated]

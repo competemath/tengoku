@@ -47,6 +47,9 @@ namespace StackInGroupoids
 
 variable {C : Type u} [Category.{v} C] {J : GrothendieckTopology C}
 
+/--
+@isnad1 id=isstack.0h3v.s4.dd0d3cce221b from=translated src=- shape=4ffa4e5a vocab=dd676822
+-/
 instance presheaf_isStack (F : StackInGroupoids C J) :
     F.presheaf.IsStack J :=
   F.isStack
@@ -87,7 +90,9 @@ def fullyFaithfulToCechDescent (F : StackInGroupoids C J) {S : C}
   F.presheaf.fullyFaithfulToDescentData U.hom U.mem
 
 /-- Objects satisfy effective descent: every Čech descent object comes from an
-object over the base, up to isomorphism.-/
+object over the base, up to isomorphism.
+@isnad1 id=esssurj.0h5v.s8.8473159201a7 from=translated src=- shape=afd8427b vocab=d9a872b6
+-/
 theorem essSurjToCechDescent (F : StackInGroupoids C J) {S : C}
     (U : Cover (J := J) S) :
     (F.toCechDescent U).EssSurj := by
@@ -107,7 +112,9 @@ to prove it there. -/
 
 /-- Effective descent for a finer topology gives effective descent for every
 coarser topology.  This is the only implication between the two conditions;
-there is no reverse transport.-/
+there is no reverse transport.
+@isnad1 id=isstack.1h4v.s5.2fa35682ab26 from=translated src=- shape=a16119f6 vocab=128bc3b8
+-/
 theorem Pseudofunctor.IsStack.of_le {C : Type u} [Category.{v} C]
     {F : Pseudofunctor (LocallyDiscrete Cᵒᵖ) Cat.{w, w}}
     {J₁ J₂ : GrothendieckTopology C} (h : J₁ ≤ J₂) [F.IsStack J₂] :
@@ -128,6 +135,9 @@ def ofLE (h : J₁ ≤ J₂) (F : StackInGroupoids C J₂) : StackInGroupoids C 
     letI := F.isStack
     Pseudofunctor.IsStack.of_le h
 
+/--
+@isnad1 id=eq.1h4v.s5.d226b80010e3 from=translated src=- shape=36d09aa3 vocab=fff6d801
+-/
 @[simp]
 theorem ofLE_presheaf (h : J₁ ≤ J₂) (F : StackInGroupoids C J₂) :
     (F.ofLE h).presheaf = F.presheaf :=
@@ -207,7 +217,9 @@ private theorem isStackFor_backward (e : StackEquivalence F G)
   exact ⟨Functor.isEquivalence_of_comp_right
     (F.toDescentData f) (e.descent R).functor⟩
 
-/-- The stack condition is invariant under descent-compatible equivalence.-/
+/-- The stack condition is invariant under descent-compatible equivalence.
+@isnad1 id=iff.0h5v.s5.45690d6efd6e from=translated src=- shape=034de828 vocab=e9b3b129
+-/
 theorem isStack_iff (e : StackEquivalence F G)
     (J : GrothendieckTopology C) :
     F.IsStack J ↔ G.IsStack J := by

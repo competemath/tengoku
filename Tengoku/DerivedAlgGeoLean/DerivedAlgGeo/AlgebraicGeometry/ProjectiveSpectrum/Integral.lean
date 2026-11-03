@@ -33,27 +33,35 @@ namespace AlgebraicGeometry.Proj
 variable {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
   (𝒜 : ℕ → Submodule R A) [GradedAlgebra 𝒜] [IsDomain A]
 
-/-- Every standard affine chart of `Proj` of a graded domain is reduced.-/
+/-- Every standard affine chart of `Proj` of a graded domain is reduced.
+@isnad1 id=isreduce.0h4v.s7.f3829c58dad3 from=translated src=- shape=70ccea33 vocab=e9ac0a36
+-/
 instance isReduced_spec_away (f : A) :
     IsReduced (Spec (CommRingCat.of (HomogeneousLocalization.Away 𝒜 f))) := by
   haveI : _root_.IsReduced (HomogeneousLocalization.Away 𝒜 f) :=
     HomogeneousLocalization.Away.isReduced 𝒜 f
   infer_instance
 
-/-- `Proj` of a graded domain is reduced.-/
+/-- `Proj` of a graded domain is reduced.
+@isnad1 id=isreduce.0h3v.s7.b88a33591a61 from=translated src=- shape=60858861 vocab=15a0e735
+-/
 instance isReduced : IsReduced (Proj 𝒜) := by
   haveI : ∀ i, IsReduced ((Proj.affineOpenCover 𝒜).openCover.X i) := fun i ↦
     isReduced_spec_away 𝒜 _
   exact IsReduced.of_openCover (X := Proj 𝒜) (Proj.affineOpenCover 𝒜).openCover
 
-/-- The chart at a nonzero homogeneous element of positive degree is the spectrum of a domain.-/
+/-- The chart at a nonzero homogeneous element of positive degree is the spectrum of a domain.
+@isnad1 id=isdomain.1h4v.s9.af97d88c5ec6 from=translated src=- shape=77c05014 vocab=c84e9546
+-/
 lemma isDomain_away {f : A} (hf : f ≠ 0) :
     IsDomain (CommRingCat.of (HomogeneousLocalization.Away 𝒜 f)) := by
   haveI := HomogeneousLocalization.Away.nontrivial 𝒜 hf
   exact HomogeneousLocalization.Away.isDomain 𝒜 hf
 
 /-- A basic open of `Proj` at a nonzero homogeneous element of positive degree is the range of
-the corresponding chart, hence preirreducible.-/
+the corresponding chart, hence preirreducible.
+@isnad1 id=ispreirr.3h5v.s9.0500a46c22d4 from=translated src=- shape=d0cfa150 vocab=4168e138
+-/
 lemma isPreirreducible_basicOpen {m : ℕ} {f : A} (f_deg : f ∈ 𝒜 m) (hm : 0 < m) (hf : f ≠ 0) :
     IsPreirreducible (Proj.basicOpen 𝒜 f : Set (Proj 𝒜)) := by
   haveI := isDomain_away 𝒜 hf
@@ -73,7 +81,9 @@ lemma isPreirreducible_basicOpen {m : ℕ} {f : A} (f_deg : f ∈ 𝒜 m) (hm : 
 /-- A basic open of `Proj` at a nonzero homogeneous element of positive degree is nonempty.
 
 This is what makes two charts meet, and it is where the domain hypothesis is used a second time:
-the chart ring is nontrivial exactly because the element is not nilpotent.-/
+the chart ring is nontrivial exactly because the element is not nilpotent.
+@isnad1 id=nonempty.3h5v.s9.c8263276e24a from=translated src=- shape=d0cfa150 vocab=f8618e02
+-/
 lemma basicOpen_nonempty {m : ℕ} {f : A} (f_deg : f ∈ 𝒜 m) (hm : 0 < m) (hf : f ≠ 0) :
     (Proj.basicOpen 𝒜 f : Set (Proj 𝒜)).Nonempty := by
   haveI := HomogeneousLocalization.Away.nontrivial 𝒜 hf
@@ -91,7 +101,9 @@ lemma basicOpen_nonempty {m : ℕ} {f : A} (f_deg : f ∈ 𝒜 m) (hm : 0 < m) (
 
 The charts at nonzero homogeneous elements of positive degree are irreducible, they still cover
 -- a chart at zero is empty, so it can be discarded -- and any two of them meet, because
-`D₊(f) ⊓ D₊(g) = D₊(fg)` and a product of nonzero elements of a domain is nonzero.-/
+`D₊(f) ⊓ D₊(g) = D₊(fg)` and a product of nonzero elements of a domain is nonzero.
+@isnad1 id=irreduci.0h3v.s8.6263d7e46c88 from=translated src=- shape=1d89a051 vocab=e048e2e9
+-/
 theorem irreducibleSpace [Nonempty (Proj 𝒜)] : IrreducibleSpace (Proj 𝒜) := by
   refine TopologicalSpace.irreducibleSpace_of_cover
     (ind := { fm : Σ m : ℕ+, 𝒜 (m : ℕ) // ((fm.2 : A) ≠ 0) })
@@ -121,7 +133,9 @@ theorem irreducibleSpace [Nonempty (Proj 𝒜)] : IrreducibleSpace (Proj 𝒜) :
     have h := basicOpen_nonempty 𝒜 hdeg hpos hne
     rwa [Proj.basicOpen_mul] at h
 
-/-- **`Proj` of a graded domain is an integral scheme**, as soon as it is nonempty.-/
+/-- **`Proj` of a graded domain is an integral scheme**, as soon as it is nonempty.
+@isnad1 id=isintegr.0h3v.s7.4aee6877259e from=translated src=- shape=0ebdd25c vocab=12d71a6d
+-/
 theorem isIntegral [Nonempty (Proj 𝒜)] : IsIntegral (Proj 𝒜) := by
   haveI := irreducibleSpace 𝒜
   exact isIntegral_of_irreducibleSpace_of_isReduced _

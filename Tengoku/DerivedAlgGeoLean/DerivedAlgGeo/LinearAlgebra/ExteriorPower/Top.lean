@@ -41,6 +41,9 @@ noncomputable def topExteriorFreeEquiv (n : ℕ) :
   exact ((Finsupp.basisSingleOne (R := R)).exteriorPower n).repr |>.trans
     (Finsupp.uniqueLinearEquiv R R default)
 
+/--
+@isnad1 id=eq.0h3v.s15.9157b94394d1 from=translated src=- shape=38583ebd vocab=2dbce4a3
+-/
 lemma topExteriorFreeEquiv_ιMulti (n : ℕ)
     (x : Fin n → (ULift.{u} (Fin n) →₀ R)) :
     topExteriorFreeEquiv R n (_root_.exteriorPower.ιMulti R n x) =

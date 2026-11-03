@@ -61,11 +61,16 @@ variable (D D' : SerreFunctorData k C)
 noncomputable def compareEquiv (A B : C) : (B ⟶ D.S.obj A) ≃ₗ[k] (B ⟶ D'.S.obj A) :=
   (D.eta A B).symm.trans (D'.eta A B)
 
+/--
+@isnad1 id=eq.0h7v.s11.7758b6781404 from=translated src=- shape=c4b02c23 vocab=dc553b1a
+-/
 theorem compareEquiv_apply (A B : C) (psi : B ⟶ D.S.obj A) :
     D.compareEquiv D' A B psi = D'.eta A B ((D.eta A B).symm psi) := rfl
 
 /-- **Naturality in `B`**, from `naturality_right`. This is the step the Yoneda argument runs
-on.-/
+on.
+@isnad1 id=eq.0h9v.s10.cee26a6829d0 from=translated src=- shape=ec7bdc8e vocab=78e1452d
+-/
 theorem compareEquiv_naturality_right {A B B' : C} (g : B' ⟶ B) (psi : B ⟶ D.S.obj A) :
     D.compareEquiv D' A B' (g ≫ psi) = g ≫ D.compareEquiv D' A B psi := by
   have hphi : (D.eta A B').symm (g ≫ psi) =
@@ -90,14 +95,18 @@ noncomputable def yonedaIso (A : C) :
 noncomputable def uniqueIsoApp (A : C) : D.S.obj A ≅ D'.S.obj A :=
   isoOfLinearYonedaIso k C (D.yonedaIso D' A)
 
-/-- The defining property of `uniqueIsoApp`: it is what the duality isomorphisms say it is.-/
+/-- The defining property of `uniqueIsoApp`: it is what the duality isomorphisms say it is.
+@isnad1 id=eq.0h7v.s9.3ccd3856fb5a from=translated src=- shape=66ee7e86 vocab=ab364664
+-/
 theorem comp_uniqueIsoApp_hom {A B : C} (psi : B ⟶ D.S.obj A) :
     psi ≫ (D.uniqueIsoApp D' A).hom = D.compareEquiv D' A B psi := by
   have h := congrArg (fun e ↦ (e.hom.app (Opposite.op B)) psi)
     (map_isoOfLinearYonedaIso k C (D.yonedaIso D' A))
   exact h
 
-/-- Evaluating the defining property at the identity.-/
+/-- Evaluating the defining property at the identity.
+@isnad1 id=eq.0h5v.s10.e1ee81dece3e from=translated src=- shape=e4553ee2 vocab=cbbd3ee5
+-/
 theorem uniqueIsoApp_hom_eq (A : C) :
     (D.uniqueIsoApp D' A).hom = D.compareEquiv D' A (D.S.obj A) (𝟙 _) := by
   have h := D.comp_uniqueIsoApp_hom D' (𝟙 (D.S.obj A))
@@ -105,7 +114,9 @@ theorem uniqueIsoApp_hom_eq (A : C) :
 
 /-- **Naturality in `A`**, from `naturality_left`. This is the step that promotes the pointwise
 isomorphisms to a natural isomorphism of functors; see the module docstring on why it is a
-different field from the one `yonedaIso` uses.-/
+different field from the one `yonedaIso` uses.
+@isnad1 id=eq.0h7v.s8.ca521c84f549 from=translated src=- shape=b046cff1 vocab=188f7ef1
+-/
 theorem uniqueIsoApp_naturality {A A' : C} (f : A ⟶ A') :
     D.S.map f ≫ (D.uniqueIsoApp D' A').hom = (D.uniqueIsoApp D' A).hom ≫ D'.S.map f := by
   set phi := (D.eta A (D.S.obj A)).symm (𝟙 (D.S.obj A)) with hphi
@@ -121,12 +132,17 @@ theorem uniqueIsoApp_naturality {A A' : C} (f : A ⟶ A') :
 noncomputable def uniqueIso : D.S ≅ D'.S :=
   NatIso.ofComponents (fun A ↦ D.uniqueIsoApp D' A) (fun f ↦ D.uniqueIsoApp_naturality D' f)
 
+/--
+@isnad1 id=eq.0h5v.s7.3bc065bb7e28 from=translated src=- shape=fa8f2f02 vocab=1c91238a
+-/
 @[simp]
 theorem uniqueIso_hom_app (A : C) :
     (D.uniqueIso D').hom.app A = (D.uniqueIsoApp D' A).hom := rfl
 
 /-- **The compatibility with the two duality isomorphisms**, which is what characterises the
-comparison.-/
+comparison.
+@isnad1 id=eq.0h7v.s11.12e9fd84348d from=translated src=- shape=4bf440e1 vocab=cd1952c3
+-/
 theorem uniqueIso_compat {A B : C} (phi : Module.Dual k (A ⟶ B)) :
     D.eta A B phi ≫ (D.uniqueIso D').hom.app A = D'.eta A B phi := by
   rw [uniqueIso_hom_app, D.comp_uniqueIsoApp_hom D', compareEquiv_apply,
@@ -134,7 +150,9 @@ theorem uniqueIso_compat {A B : C} (phi : Module.Dual k (A ⟶ B)) :
 
 /-- **Uniqueness of the comparison.** Any natural transformation compatible with both duality
 isomorphisms is `uniqueIso`. This is the form a downstream coherence argument consumes, so it is
-not optional polish.-/
+not optional polish.
+@isnad1 id=eq.1h5v.s11.dfe380d4c83d from=translated src=- shape=97fbbf63 vocab=cd1952c3
+-/
 theorem uniqueIso_unique (alpha : D.S ⟶ D'.S)
     (h : ∀ (A B : C) (phi : Module.Dual k (A ⟶ B)),
       D.eta A B phi ≫ alpha.app A = D'.eta A B phi) :
@@ -153,16 +171,25 @@ theorem uniqueIso_unique (alpha : D.S ⟶ D'.S)
 So a downstream user can move a statement between two chosen Serre functors without re-deriving
 the comparison. Each is `uniqueIso_unique` applied to the obvious candidate. -/
 
+/--
+@isnad1 id=eq.0h3v.s6.938b4587f229 from=translated src=- shape=63ec1699 vocab=42f8bc2d
+-/
 theorem uniqueIso_refl : D.uniqueIso D = Iso.refl D.S := by
   refine Iso.ext ?_
   exact (D.uniqueIso_unique D (𝟙 D.S) (fun A B phi ↦ by rw [NatTrans.id_app, Category.comp_id])).symm
 
+/--
+@isnad1 id=eq.0h5v.s7.de07a49d3ae1 from=translated src=- shape=8159ea19 vocab=f2240078
+-/
 theorem uniqueIso_trans (D'' : SerreFunctorData k C) :
     (D.uniqueIso D').hom ≫ (D'.uniqueIso D'').hom = (D.uniqueIso D'').hom := by
   refine D.uniqueIso_unique D'' _ fun A B phi ↦ ?_
   rw [NatTrans.comp_app, ← Category.assoc, D.uniqueIso_compat D' phi,
     D'.uniqueIso_compat D'' phi]
 
+/--
+@isnad1 id=eq.0h4v.s6.cdc4de295362 from=translated src=- shape=917c57aa vocab=e41c4784
+-/
 theorem uniqueIso_symm : (D.uniqueIso D').symm = D'.uniqueIso D := by
   refine Iso.ext ?_
   refine D'.uniqueIso_unique D _ fun A B phi ↦ ?_
@@ -173,7 +200,9 @@ theorem uniqueIso_symm : (D.uniqueIso D').symm = D'.uniqueIso D := by
   rwa [D.uniqueIso_compat D' phi] at h
 
 /-- **`HasSerreFunctor` determines `S` up to natural isomorphism**, so "the" Serre functor is a
-well-defined statement about `C`.-/
+well-defined statement about `C`.
+@isnad1 id=nonempty.0h4v.s6.3a1dd0a96b98 from=translated src=- shape=8d66429d vocab=46d7ede6
+-/
 theorem exists_uniqueIso (D D' : SerreFunctorData k C) : Nonempty (D.S ≅ D'.S) :=
   ⟨D.uniqueIso D'⟩
 

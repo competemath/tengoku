@@ -60,10 +60,16 @@ def heartDatum (t : TStructure C) : ClassDatum C (K₀ C) where
   Relevant E := t.heart E ∧ ¬IsZero E
   cl := K₀.of C
 
+/--
+@isnad1 id=eq.0h3v.s7.4ea1e05f19e0 from=translated src=- shape=61400776 vocab=b0721768
+-/
 @[simp]
 theorem heartDatum_cl (t : TStructure C) (E : C) :
     (heartDatum t).cl E = K₀.of C E := rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.817bf86993fd from=translated src=- shape=6fa3d73e vocab=de88f90c
+-/
 @[simp]
 theorem heartDatum_relevant (t : TStructure C) (E : C) :
     (heartDatum t).Relevant E ↔ (t.heart E ∧ ¬IsZero E) := Iff.rfl

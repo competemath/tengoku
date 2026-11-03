@@ -74,7 +74,9 @@ The pairs of the family and the unit vectors orthogonal to the plane they span
 form a compact set — orthogonality is closed by `continuous_polar`, and the
 sphere is compact. `-Q` is continuous and, by `neg_of_mem_orthogonal`, positive
 there, so it attains a positive minimum. Homogeneity extends the bound off the
-sphere.-/
+sphere.
+@isnad1 id=ex.3h3v.s8.2a2f543d774d from=translated src=- shape=cebc5466 vocab=ec5175a0
+-/
 theorem exists_uniform_coercivity (hsig : HasSignatureTwo Q) {S : Set (M × M)}
     (hS : IsCompact S)
     (hpos : ∀ p ∈ S, IsPositivePlane Q (Submodule.span ℝ ({p.1, p.2} : Set M))) :
@@ -160,7 +162,9 @@ def orthogonalClasses : Set M :=
 
 omit [FiniteDimensional ℝ M] in
 /-- **The orthogonalityLocus classes of a region are bounded**, by the one constant the region
-carries.-/
+carries.
+@isnad1 id=isbounde.0h3v.s5.4251e1180e16 from=translated src=- shape=e0e2b4a0 vocab=c6664a98
+-/
 theorem isBounded_orthogonalClasses : IsBounded R.orthogonalClasses := by
   rw [isBounded_iff_forall_norm_le]
   refine ⟨Real.sqrt (1 / R.coercivity), ?_⟩
@@ -176,7 +180,9 @@ theorem isBounded_orthogonalClasses : IsBounded R.orthogonalClasses := by
 
 /-- **Only finitely many spherical classes of a lattice have a orthogonalityLocus meeting the
 region.** Bridgeland's local finiteness in the period-domain chart, with the
-uniform constant explicit.-/
+uniform constant explicit.
+@isnad1 id=finite.0h5v.s7.d4ecd347317f from=translated src=- shape=3b6fc9de vocab=3751d97d
+-/
 theorem finite_orthogonalClasses_inter {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ M) :
     (R.orthogonalClasses ∩ (Submodule.span ℤ (Set.range b) : Set M)).Finite :=
   ZSpan.setFinite_inter b R.isBounded_orthogonalClasses

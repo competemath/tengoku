@@ -70,7 +70,9 @@ variable (P : Polarization V.ring)
 /-- Negative definiteness on `ω^⊥` yields the numerical `HodgeIndexStatement`,
 through the weaker inequality certificate.  This is what places
 `HodgeDefinite` above `HodgeIndex` in the same one-directional ladder
-`DivisorialDiscriminant.lean` describes.-/
+`DivisorialDiscriminant.lean` describes.
+@isnad1 id=hodgeind.1h6v.s7.f5a443a89c1f from=translated src=- shape=15a63f03 vocab=01011b19
+-/
 theorem hodgeIndexStatement_of_hodgeDefinite
     (h : R.divisorSpace.HodgeDefinite (R.realizePolarization P)) :
     HodgeIndexStatement V P :=
@@ -79,7 +81,9 @@ theorem hodgeIndexStatement_of_hodgeDefinite
 /-- **`Δ^C` is nonnegative on the slope-semistable locus** for every `C ≥ 0`.
 
 This is Bogomolov--Gieseker plus `discriminant_le_discriminantC`; the first is
-supplied and the second is proved.-/
+supplied and the second is proved.
+@isnad1 id=le.2h10v.s7.5f6b2f2e9edb from=translated src=- shape=48ba5df3 vocab=438bfee3
+-/
 theorem discriminantC_nonneg_of_semistable {E : N} (B : BogomolovGiesekerData V P)
     (hE : B.Semistable E) (Q : StabilityParameters D) {C : ℝ} (hC : 0 ≤ C) :
     0 ≤ R.chernCharacter.discriminantC R.divisorSpace Q C E :=
@@ -108,7 +112,9 @@ kernel of the charge is proved from `HodgeDefinite` in
 
 This is the Kontsevich--Soibelman support property in the form
 `Weak/Support/Predicate/Quadratic.lean` states it, for the charge of an
-arbitrary `(B, ω)` with `ω` in the positive cone.-/
+arbitrary `(B, ω)` with `ω` in the positive cone.
+@isnad1 id=hasquadr.2h9v.s8.24d29d211381 from=translated src=- shape=c7c4bb56 vocab=3c111a59
+-/
 theorem hasQuadraticSupportProperty_semistable (B : BogomolovGiesekerData V P)
     (Q : StabilityParameters D) (hω : R.divisorSpace.HodgeDefinite Q.omega)
     {C : ℝ} (hC : 0 ≤ C) :
@@ -123,7 +129,9 @@ variable [FiniteDimensional ℝ D]
 
 /-- The same conclusion in the norm-bound formulation of
 `Support.HasSupportProperty`, which is the shape the stability-condition
-interfaces consume.-/
+interfaces consume.
+@isnad1 id=hassuppo.2h9v.s8.c0e31be0c79b from=translated src=- shape=e7598e93 vocab=2174415d
+-/
 theorem hasSupportProperty_semistable (B : BogomolovGiesekerData V P)
     (Q : StabilityParameters D) (hω : R.divisorSpace.HodgeDefinite Q.omega)
     {C : ℝ} (hC : 0 ≤ C) :

@@ -115,7 +115,9 @@ private theorem span_int_range_prod {M M' : Type*} [AddCommGroup M] [Module ℝ 
         simp
       exact hmap ⟨y, hy, rfl⟩
 
-/-- **The `ℤ`-span of the extended basis is the integral Mukai extension.**-/
+/-- **The `ℤ`-span of the extended basis is the integral Mukai extension.**
+@isnad1 id=eq.0h3v.s8.64e0e92384f0 from=translated src=- shape=9d78cf47 vocab=c9b3b90a
+-/
 theorem span_range_extendBasis (v : Module.Basis ι ℝ V) :
     Submodule.span ℤ (Set.range (extendBasis v))
       = integralExtension (Submodule.span ℤ (Set.range v)) := by
@@ -135,7 +137,9 @@ def extendMap (f : N →ₗ[ℤ] V) (u : MukaiLattice N) : RealExtension V :=
 
 omit [Module ℝ V] in
 /-- The induced map is additive: `MukaiLattice` addition is componentwise and
-each coordinate map is.-/
+each coordinate map is.
+@isnad1 id=eq.0h5v.s6.bd0aee0ebfd3 from=translated src=- shape=319ae594 vocab=bb087455
+-/
 theorem extendMap_add (f : N →ₗ[ℤ] V) (u w : MukaiLattice N) :
     extendMap f (u + w) = extendMap f u + extendMap f w := by
   simp only [extendMap, Prod.fst_add, Prod.snd_add, map_add, Prod.mk_add_mk]
@@ -149,7 +153,9 @@ noncomputable def extendMapHom (f : N →ₗ[ℤ] V) : MukaiLattice N →+ RealE
   AddMonoidHom.mk' (extendMap f) (extendMap_add f)
 
 /-- **The two pairings agree.** For a map of middles that respects the forms, the
-integral Mukai pairing is the real one, cast.-/
+integral Mukai pairing is the real one, cast.
+@isnad1 id=eq.1h7v.s9.befa24ba6f46 from=translated src=- shape=3430fd38 vocab=bcaf0f3b
+-/
 theorem realPairing_extendMap (bZ : N →ₗ[ℤ] N →ₗ[ℤ] ℤ) (bR : V →ₗ[ℝ] V →ₗ[ℝ] ℝ)
     (f : N →ₗ[ℤ] V) (hf : ∀ x y : N, bR (f x) (f y) = (bZ x y : ℝ))
     (u w : MukaiLattice N) :
@@ -160,7 +166,9 @@ theorem realPairing_extendMap (bZ : N →ₗ[ℤ] N →ₗ[ℤ] ℤ) (bR : V →
 
 /-- A class of self-pairing `-2` in the integral lattice is a spherical class of
 the real form. The `-2` reads the same on both sides, which is the point of the
-halving convention in `Mukai/RealForm.lean`.-/
+halving convention in `Mukai/RealForm.lean`.
+@isnad1 id=isspheri.3h6v.s10.7afed2372716 from=translated src=- shape=cc85c607 vocab=b4eafcae
+-/
 theorem isSphericalClass_extendMap (bZ : N →ₗ[ℤ] N →ₗ[ℤ] ℤ) (bR : V →ₗ[ℝ] V →ₗ[ℝ] ℝ)
     (f : N →ₗ[ℤ] V) (hf : ∀ x y : N, bR (f x) (f y) = (bZ x y : ℝ))
     (hb : ∀ x y : V, bR x y = bR y x) {δ : MukaiLattice N} (hδ : IsSpherical bZ δ) :
@@ -180,7 +188,9 @@ variable {ι : Type*} [Finite ι] {V : Type*} [NormedAddCommGroup V] [NormedSpac
 
 /-- **Finitely many integral spherical classes are orthogonal to a positive
 plane**, stated over the integral Mukai extension of the lattice rather than over
-an abstract `ZSpan`.-/
+an abstract `ZSpan`.
+@isnad1 id=finite.2h5v.s9.239ae752776c from=translated src=- shape=fb0730d2 vocab=bc3dd4b5
+-/
 theorem finite_sphericalOrthogonal_integralExtension
     (hsig : PeriodDomain.HasSignatureTwo (realForm b)) {W : Submodule ℝ (RealExtension V)}
     (hW : PeriodDomain.IsPositivePlane (realForm b) W) (v : Module.Basis ι ℝ V) :
@@ -189,7 +199,9 @@ theorem finite_sphericalOrthogonal_integralExtension
   rw [← span_range_extendBasis v]
   exact PeriodDomain.finite_sphericalOrthogonal_inter hsig hW (extendBasis v)
 
-/-- The region-wise form of the same statement.-/
+/-- The region-wise form of the same statement.
+@isnad1 id=finite.0h5v.s8.e2121df09106 from=translated src=- shape=b0e9f730 vocab=15368921
+-/
 theorem finite_orthogonalClasses_integralExtension (R : PeriodDomain.PlaneRegion (realForm b))
     (v : Module.Basis ι ℝ V) :
     (R.orthogonalClasses ∩

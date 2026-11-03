@@ -89,7 +89,9 @@ include h
 
 /-- The two clauses in `if` normal form, for summing over an index. No
 symmetry is needed to state either orientation: the `if` is on the index
-pair, and `pairwise_one` covers both orders by hypothesis.-/
+pair, and `pairwise_one` covers both orders by hypothesis.
+@isnad1 id=eq.1h6v.s8.b5da6a2b2e52 from=translated src=- shape=ded558f8 vocab=91585917
+-/
 theorem pairing_ite (i j : Fin n) :
     b (v i) (v j) = if i = j then 0 else 1 := by
   by_cases hij : i = j
@@ -99,7 +101,9 @@ theorem pairing_ite (i j : Fin n) :
 /-- **The weighted sum identity**: pairing `∑ gᵢ vᵢ` against `v j` reads off
 the coefficient sum minus the `j`-th coefficient. This is the single
 computation behind every result below — the unweighted identity is `g = 1`
-and linear independence is the statement that it separates coefficients.-/
+and linear independence is the statement that it separates coefficients.
+@isnad1 id=eq.1h6v.s8.94680cac292a from=translated src=- shape=3ccc9956 vocab=bfaf6e47
+-/
 theorem pairing_smul_sum_left (g : Fin n → ℤ) (j : Fin n) :
     b (∑ i, g i • v i) (v j) = (∑ i, g i) - g j := by
   rw [map_sum, LinearMap.sum_apply]
@@ -121,14 +125,18 @@ theorem pairing_smul_sum_left (g : Fin n → ℤ) (j : Fin n) :
 /-- **The sum vector pairs to `n - 1` against every member.** For the
 Enriques configuration `n = 10` this is the `⟨s, F_j⟩ = 9` identity behind
 `Δ·F_j = 3`; see the module docstring for why the division by `3` is not
-taken here.-/
+taken here.
+@isnad1 id=eq.1h5v.s8.918757cac6c5 from=translated src=- shape=04f4c081 vocab=b02eb3d0
+-/
 theorem pairing_sum_left (j : Fin n) :
     b (∑ i, v i) (v j) = (n : ℤ) - 1 := by
   have := h.pairing_smul_sum_left (fun _ => 1) j
   simpa [Finset.sum_const, Finset.card_univ] using this
 
 /-- The right-slot companion of `pairing_sum_left`, provided because no
-symmetry of `b` is assumed anywhere in this file.-/
+symmetry of `b` is assumed anywhere in this file.
+@isnad1 id=eq.1h5v.s8.01fd67625b0a from=translated src=- shape=501ba288 vocab=b02eb3d0
+-/
 theorem pairing_sum_right (j : Fin n) :
     b (v j) (∑ i, v i) = (n : ℤ) - 1 := by
   rw [map_sum (b (v j))]
@@ -150,7 +158,9 @@ theorem pairing_sum_right (j : Fin n) :
           Nat.cast_sub j.pos, Nat.cast_one]
 
 /-- **The self-pairing of the sum vector is `n(n - 1)`.** For `n = 10` this
-is the `⟨s, s⟩ = 90` identity behind `Δ² = 10`.-/
+is the `⟨s, s⟩ = 90` identity behind `Δ² = 10`.
+@isnad1 id=eq.1h4v.s8.576ec0923d55 from=translated src=- shape=261201ba vocab=92ef9319
+-/
 theorem pairing_sum_sum :
     b (∑ i, v i) (∑ i, v i) = (n : ℤ) * ((n : ℤ) - 1) := by
   rw [map_sum (b (∑ i, v i))]
@@ -193,7 +203,9 @@ theorem eq_zero_of_pairing_smul_sum_eq_zero (hn : 2 ≤ n) (g : Fin n → ℤ)
 /-- **An isotropic sequence of length at least two is linearly independent
 over `ℤ`.** The hypothesis `2 ≤ n` is necessary at `n = 1`: the single vector
 may be `0`, as the degenerate inhabitant below shows (at `n = 0` the
-statement is vacuous).-/
+statement is vacuous).
+@isnad1 id=linearin.2h4v.s7.3feeb177578f from=translated src=- shape=4affc5f0 vocab=c4277e2a
+-/
 theorem linearIndependent (hn : 2 ≤ n) : LinearIndependent ℤ v := by
   rw [Fintype.linearIndependent_iff]
   intro g hg
@@ -217,13 +229,18 @@ def hyperbolicPairing : (Fin 2 → ℤ) →ₗ[ℤ] (Fin 2 → ℤ) →ₗ[ℤ] 
     (fun x y y' => by simp only [Pi.add_apply]; ring)
     (fun c x y => by simp only [Pi.smul_apply, smul_eq_mul]; ring)
 
+/--
+@isnad1 id=eq.0h2v.s10.4d0f2e664672 from=translated src=- shape=41566090 vocab=bae98385
+-/
 @[simp]
 theorem hyperbolicPairing_apply (x y : Fin 2 → ℤ) :
     hyperbolicPairing x y = x 0 * y 1 + x 1 * y 0 :=
   rfl
 
 /-- The standard basis of the hyperbolic plane is an isotropic 2-sequence:
-`⟨e, e⟩ = ⟨f, f⟩ = 0` and `⟨e, f⟩ = ⟨f, e⟩ = 1`.-/
+`⟨e, e⟩ = ⟨f, f⟩ = 0` and `⟨e, f⟩ = ⟨f, e⟩ = 1`.
+@isnad1 id=isisotro.0h0v.s7.f8fa3b66a45c from=translated src=- shape=587c8ab7 vocab=a446d59a
+-/
 theorem isIsotropicSequence_hyperbolic :
     IsIsotropicSequence hyperbolicPairing ![![1, 0], ![0, 1]] := by
   constructor
@@ -234,7 +251,9 @@ theorem isIsotropicSequence_hyperbolic :
 
 /-- Any lattice carries the degenerate singleton sequence `![0]`: the
 self-pairing clause is `b 0 0 = 0` and the pairwise clause is vacuous. This
-is the boundary case excluded by `linearIndependent`'s `2 ≤ n`.-/
+is the boundary case excluded by `linearIndependent`'s `2 ≤ n`.
+@isnad1 id=isisotro.0h2v.s7.290d8092233c from=translated src=- shape=48feabac vocab=41489291
+-/
 theorem isIsotropicSequence_zero_singleton :
     IsIsotropicSequence b ![(0 : Λ)] := by
   constructor

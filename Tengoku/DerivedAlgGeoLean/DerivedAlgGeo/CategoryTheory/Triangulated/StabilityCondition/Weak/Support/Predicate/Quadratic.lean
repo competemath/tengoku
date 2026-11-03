@@ -33,7 +33,9 @@ variable {V W : Type*}
 continuous degree-two homogeneous function.
 
 Continuity is obtained from the polar bilinear form.  Finite dimensionality is
-used precisely to turn that algebraic bilinear map into a continuous one.-/
+used precisely to turn that algebraic bilinear map into a continuous one.
+@isnad1 id=ishomogt.0h2v.s6.ff236fe6b8eb from=translated src=- shape=cd7ce850 vocab=fa86803e
+-/
 theorem quadraticForm_isHomogTwo (Q : QuadraticForm ℝ V) :
     IsHomogTwo (Q : V → ℝ) := by
   let B : V →L[ℝ] V →L[ℝ] ℝ := Q.polarBilin.toContinuousBilinearMap
@@ -62,7 +64,9 @@ def HasQuadraticSupportProperty (Z : V →ₗ[ℝ] W) (S : Set V) : Prop :=
   ∃ Q : QuadraticForm ℝ V, IsCompatible Z S Q
 
 /-- A genuine quadratic support form yields the norm-bound formulation of the
-support property.-/
+support property.
+@isnad1 id=hassuppo.1h4v.s6.14e16efb86c5 from=translated src=- shape=04bfd7c8 vocab=e1c4f88e
+-/
 theorem HasQuadraticSupportProperty.hasSupportProperty
     {Z : V →ₗ[ℝ] W} {S : Set V}
     (h : HasQuadraticSupportProperty Z S) : HasSupportProperty Z S := by
@@ -70,7 +74,9 @@ theorem HasQuadraticSupportProperty.hasSupportProperty
   exact hasSupportProperty_of_isCompatible (quadraticForm_isHomogTwo Q) hQ
 
 omit [FiniteDimensional ℝ V] in
-/-- The genuine quadratic predicate is monotone in the selected locus.-/
+/-- The genuine quadratic predicate is monotone in the selected locus.
+@isnad1 id=hasquadr.2h5v.s6.9e8eea637a56 from=translated src=- shape=01f74ea1 vocab=97780b08
+-/
 theorem HasQuadraticSupportProperty.mono
     {Z : V →ₗ[ℝ] W} {S S' : Set V}
     (h : HasQuadraticSupportProperty Z S) (hS : S' ⊆ S) :

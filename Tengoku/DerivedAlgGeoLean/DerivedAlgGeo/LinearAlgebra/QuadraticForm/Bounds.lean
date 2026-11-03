@@ -22,7 +22,9 @@ namespace QuadraticMap
 
 variable {M : Type*} [NormedAddCommGroup M] [NormedSpace ℝ M] [FiniteDimensional ℝ M]
 
-/-- A positive definite form on a finite-dimensional real space is coercive.-/
+/-- A positive definite form on a finite-dimensional real space is coercive.
+@isnad1 id=ex.1h2v.s7.850652d71a0f from=translated src=- shape=db22c19d vocab=9ba2851c
+-/
 theorem PosDef.exists_pos_mul_norm_sq_le {Q : QuadraticForm ℝ M} (hQ : Q.PosDef) :
     ∃ c : ℝ, 0 < c ∧ ∀ x : M, c * ‖x‖ ^ 2 ≤ Q x := by
   rcases subsingleton_or_nontrivial M with _ | _
@@ -49,7 +51,9 @@ theorem PosDef.exists_pos_mul_norm_sq_le {Q : QuadraticForm ℝ M} (hQ : Q.PosDe
       have h2 := mul_le_mul_of_nonneg_right hkey (sq_nonneg ‖x‖)
       rwa [show (‖x‖⁻¹ * ‖x‖⁻¹) * Q x * ‖x‖ ^ 2 = Q x by field_simp] at h2
 
-/-- A positive definite form has bounded level sets.-/
+/-- A positive definite form has bounded level sets.
+@isnad1 id=isbounde.1h3v.s7.c7265273f199 from=translated src=- shape=49aa1cb3 vocab=474afc67
+-/
 theorem PosDef.isBounded_setOf_eq {Q : QuadraticForm ℝ M} (hQ : Q.PosDef) (r : ℝ) :
     IsBounded {x : M | Q x = r} := by
   obtain ⟨c, hc, hle⟩ := hQ.exists_pos_mul_norm_sq_le

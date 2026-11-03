@@ -87,12 +87,17 @@ variable {Z S}
 /-- The compact slice the argument runs on: the unit sphere cut by `Q ≥ 0`.-/
 def slice (Q : V → ℝ) : Set V := Metric.sphere (0 : V) 1 ∩ {v | 0 ≤ Q v}
 
+/--
+@isnad1 id=iscompac.1h2v.s5.7fb82dc3b846 from=translated src=- shape=215bfe40 vocab=cd36c33d
+-/
 theorem isCompact_slice {Q : V → ℝ} (hQ : IsHomogTwo Q) : IsCompact (slice Q) :=
   (isCompact_sphere (0 : V) 1).inter_right (isClosed_le continuous_const hQ.continuous)
 
 omit [FiniteDimensional ℝ V] in
 /-- Normalising a nonzero vector on which `Q` is nonnegative lands in the
-slice. This is the only place degree-two homogeneity is used.-/
+slice. This is the only place degree-two homogeneity is used.
+@isnad1 id=mem.3h3v.s7.7a5ddfcc506f from=translated src=- shape=93ffc0d5 vocab=9391eb68
+-/
 theorem norm_inv_smul_mem_slice {Q : V → ℝ} (hQ : IsHomogTwo Q) {v : V} (hv : v ≠ 0)
     (hQv : 0 ≤ Q v) : ‖v‖⁻¹ • v ∈ slice Q := by
   have hn : (0 : ℝ) < ‖v‖ := norm_pos_iff.mpr hv
@@ -106,7 +111,9 @@ theorem norm_inv_smul_mem_slice {Q : V → ℝ} (hQ : IsHomogTwo Q) {v : V} (hv 
 /-- **The support property follows from a compatible form.**
 
 The slice is compact and `Z` does not vanish on it, so `‖Z ·‖` attains a
-positive minimum there; the comparison constant is its reciprocal.-/
+positive minimum there; the comparison constant is its reciprocal.
+@isnad1 id=hassuppo.2h5v.s6.40a8688b9a5c from=translated src=- shape=2078be45 vocab=159afeb5
+-/
 theorem hasSupportProperty_of_isCompatible {Q : V → ℝ}
     (hQ : IsHomogTwo Q) (hc : IsCompatible Z S Q) :
     HasSupportProperty Z S := by
@@ -143,7 +150,9 @@ theorem hasSupportProperty_of_isCompatible {Q : V → ℝ}
 /-- **A compatible form follows from the support property.**
 
 The witness is explicit: `Q v = C² ‖Z v‖² - ‖v‖²`. On `S` it is nonnegative by
-squaring the support estimate, and on `ker Z` it is `-‖v‖²`.-/
+squaring the support estimate, and on `ker Z` it is `-‖v‖²`.
+@isnad1 id=ex.1h4v.s6.8cdd27f45f54 from=translated src=- shape=0b1df279 vocab=159afeb5
+-/
 theorem exists_isCompatible_of_hasSupportProperty (h : HasSupportProperty Z S) :
     ∃ Q : V → ℝ, IsHomogTwo Q ∧ IsCompatible Z S Q := by
   obtain ⟨C, hC, hbound⟩ := h
@@ -170,7 +179,9 @@ theorem exists_isCompatible_of_hasSupportProperty (h : HasSupportProperty Z S) :
 /-- **The support property is exactly the existence of a compatible form.**
 
 This is the Kontsevich–Soibelman reformulation, at the level of the numerical
-data it is a statement about.-/
+data it is a statement about.
+@isnad1 id=iff.0h4v.s6.c259e43bcc0c from=translated src=- shape=affff087 vocab=159afeb5
+-/
 theorem hasSupportProperty_iff :
     HasSupportProperty Z S ↔ ∃ Q : V → ℝ, IsHomogTwo Q ∧ IsCompatible Z S Q :=
   ⟨exists_isCompatible_of_hasSupportProperty,
@@ -184,6 +195,9 @@ forces the charge to be injective on the span of `S` in the strong pointwise
 sense. -/
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=hassuppo.2h5v.s6.5b83b6fab672 from=translated src=- shape=01f74ea1 vocab=f27bf3a7
+-/
 theorem HasSupportProperty.mono {S' : Set V} (h : HasSupportProperty Z S)
     (hS : S' ⊆ S) : HasSupportProperty Z S' := by
   obtain ⟨C, hC, hb⟩ := h
@@ -217,7 +231,9 @@ omit [FiniteDimensional ℝ V] in
 Both the constant and the closeness bound are explicit, because the admissible
 size of the perturbation depends on `C`: an estimate that is only barely true
 tolerates only a barely nonzero change. The perturbed constant is
-`C / (1 - Cε)`, which degrades to `+∞` exactly as `Cε → 1`.-/
+`C / (1 - Cε)`, which degrades to `+∞` exactly as `Cε → 1`.
+@isnad1 id=hassuppo.4h7v.s8.b73656432b37 from=translated src=- shape=9c1676d9 vocab=58b8df62
+-/
 theorem hasSupportProperty_of_norm_sub_le {Z' : V →ₗ[ℝ] W} {C ε : ℝ}
     (hC : 0 < C) (hb : ∀ v ∈ S, ‖v‖ ≤ C * ‖Z v‖)
     (hε : ∀ v : V, ‖Z' v - Z v‖ ≤ ε * ‖v‖) (hCε : C * ε < 1) :
@@ -241,7 +257,9 @@ omit [FiniteDimensional ℝ V] in
 Every charge with the support property admits a positive tolerance inside which
 every other charge still has it. `isOpen_hasSupportProperty` is this made
 topological; this form is separated out because it needs no norm on the space of
-maps and so applies to plain linear maps.-/
+maps and so applies to plain linear maps.
+@isnad1 id=ex.1h4v.s8.c20c98c7bf25 from=translated src=- shape=a61c71ed vocab=48885852
+-/
 theorem HasSupportProperty.exists_tolerance (h : HasSupportProperty Z S) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ Z' : V →ₗ[ℝ] W,
       (∀ v : V, ‖Z' v - Z v‖ ≤ ε * ‖v‖) → HasSupportProperty Z' S := by
@@ -257,7 +275,9 @@ variable (S) in
 
 `S` is fixed and the charges are topologized by the operator norm. This is the
 `IsOpen` form of `HasSupportProperty.exists_tolerance`; the mathematical content
-is entirely in that lemma, and the only step here is `le_opNorm`.-/
+is entirely in that lemma, and the only step here is `le_opNorm`.
+@isnad1 id=isopen.0h3v.s8.da89093810df from=translated src=- shape=ef067501 vocab=afe13c35
+-/
 theorem isOpen_hasSupportProperty :
     IsOpen {Z : V →L[ℝ] W | HasSupportProperty (Z : V →ₗ[ℝ] W) S} := by
   rw [Metric.isOpen_iff]

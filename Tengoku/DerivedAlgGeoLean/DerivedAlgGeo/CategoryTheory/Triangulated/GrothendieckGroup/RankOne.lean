@@ -39,6 +39,9 @@ variable {C : Type u} {D : Type u'} [Category.{v} C] [Category.{v'} D]
 def K₀.rankOne (χ : K₀ C →+ ℤ) (e : K₀ D) : K₀ C →+ K₀ D :=
   ((smulAddHom ℤ (K₀ D)).flip e).comp χ
 
+/--
+@isnad1 id=eq.0h5v.s9.45b3a21bbe10 from=translated src=- shape=8eb8354b vocab=3014196a
+-/
 @[simp]
 theorem K₀.rankOne_apply (χ : K₀ C →+ ℤ) (e : K₀ D) (x : K₀ C) :
     K₀.rankOne χ e x = χ x • e :=
@@ -51,7 +54,9 @@ def K₀.IsRankOne (F : C ⥤ D) (χ : K₀ C →+ ℤ) (e : K₀ D) : Prop :=
 
 namespace K₀.IsRankOne
 
-/-- The rank-one object formula is invariant under natural isomorphism.-/
+/-- The rank-one object formula is invariant under natural isomorphism.
+@isnad1 id=isrankon.1h7v.s8.703cff41024d from=translated src=- shape=dffb7d48 vocab=d74184aa
+-/
 theorem ofIso {F G : C ⥤ D} {χ : K₀ C →+ ℤ} {e : K₀ D}
     (hF : K₀.IsRankOne F χ e) (i : F ≅ G) : K₀.IsRankOne G χ e := by
   intro X
@@ -59,7 +64,9 @@ theorem ofIso {F G : C ⥤ D} {χ : K₀ C →+ ℤ} {e : K₀ D}
   exact hF X
 
 /-- Under the hypotheses that make `K₀.map F` available, the objectwise
-rank-one formula determines that homomorphism.-/
+rank-one formula determines that homomorphism.
+@isnad1 id=eq.1h5v.s8.ffa8c75a4f7d from=translated src=- shape=a253cf9d vocab=b4d6e674
+-/
 theorem map_eq_rankOne {F : C ⥤ D} {χ : K₀ C →+ ℤ} {e : K₀ D}
     (hF : K₀.IsRankOne F χ e) [F.Additive] [F.CommShift ℤ]
     [F.IsTriangulated] : K₀.map F = K₀.rankOne χ e := by

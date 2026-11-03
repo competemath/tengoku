@@ -109,25 +109,37 @@ def timeCoord (e x : D) : ℝ := S.pair e x
 /-- The part of `x` orthogonal to a unit reference vector `e`.-/
 def spacePart (e x : D) : D := x - S.timeCoord e x • e
 
+/--
+@isnad1 id=eq.0h4v.s5.81d7fe7c97da from=translated src=- shape=47166e7f vocab=8672746d
+-/
 theorem timeCoord_apply (e x : D) : S.timeCoord e x = S.pair e x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.8261c07599e3 from=translated src=- shape=7de066fc vocab=49768101
+-/
 theorem spacePart_apply (e x : D) :
     S.spacePart e x = x - S.timeCoord e x • e := rfl
 
-/-- The splitting recovers the vector it split.-/
+/-- The splitting recovers the vector it split.
+@isnad1 id=eq.0h4v.s6.91c12a373460 from=translated src=- shape=7d254e05 vocab=404ffcf2
+-/
 theorem timeCoord_smul_add_spacePart (e x : D) :
     S.timeCoord e x • e + S.spacePart e x = x := by
   simp only [spacePart]
   abel
 
-/-- The space part is orthogonal to a unit reference vector.-/
+/-- The space part is orthogonal to a unit reference vector.
+@isnad1 id=eq.1h4v.s5.bc368599e7f9 from=translated src=- shape=d2e27f70 vocab=5df3f64d
+-/
 theorem pair_spacePart_eq_zero {e : D} (he : S.pair e e = 1) (x : D) :
     S.pair e (S.spacePart e x) = 0 := by
   simp only [spacePart, timeCoord, S.pair_sub_right, S.pair_smul_right, he, mul_one,
     sub_self]
 
 /-- The splitting identity: the square of a vector is the square of its
-coordinate along a unit `e` plus the square of its space part.-/
+coordinate along a unit `e` plus the square of its space part.
+@isnad1 id=eq.1h4v.s6.df107ea93cbc from=translated src=- shape=be66a841 vocab=dabac6db
+-/
 theorem pair_self_eq_timeCoord_sq_add {e : D} (he : S.pair e e = 1) (x : D) :
     S.pair x x
       = S.timeCoord e x ^ 2 + S.pair (S.spacePart e x) (S.spacePart e x) := by
@@ -140,13 +152,17 @@ theorem pair_self_eq_timeCoord_sq_add {e : D} (he : S.pair e e = 1) (x : D) :
   rw [hs]
   ring
 
-/-- The space part of any vector has nonpositive square.-/
+/-- The space part of any vector has nonpositive square.
+@isnad1 id=le.2h4v.s6.640a6abc3447 from=translated src=- shape=a4e0b817 vocab=dc6ce083
+-/
 theorem spacePart_self_nonpos {e : D} (h : S.HodgeDefinite e)
     (he : S.pair e e = 1) (x : D) :
     S.pair (S.spacePart e x) (S.spacePart e x) ≤ 0 :=
   h.toHodgeIndex.pair_self_nonpos_of_orthogonal (S.pair_spacePart_eq_zero he x)
 
-/-- The coordinate along `e` dominates the square.-/
+/-- The coordinate along `e` dominates the square.
+@isnad1 id=le.2h4v.s6.12143f118333 from=translated src=- shape=c30d7b79 vocab=370e596d
+-/
 theorem pair_self_le_timeCoord_sq {e : D} (h : S.HodgeDefinite e)
     (he : S.pair e e = 1) (x : D) :
     S.pair x x ≤ S.timeCoord e x ^ 2 := by
@@ -167,7 +183,9 @@ certificate from `e` to `x`, and `HodgeIndex.index_le` at `x` is the statement.
 routes through the signature theory of the associated quadratic form.  It is
 the only finite-dimensionality hypothesis in this file, and the future-cone
 results below deliberately do not depend on it: `sqrt_mul_sqrt_le_pair` proves
-the special case they need by an elementary argument instead.-/
+the special case they need by an elementary argument instead.
+@isnad1 id=le.2h5v.s6.13c2f2689bb0 from=translated src=- shape=7f8fc96b vocab=a8e7f838
+-/
 theorem pair_mul_pair_le_sq [FiniteDimensional ℝ D] {e : D}
     (h : S.HodgeDefinite e) {x : D} (hx : 0 < S.pair x x) (y : D) :
     S.pair x x * S.pair y y ≤ S.pair x y ^ 2 :=
@@ -182,10 +200,15 @@ This is a predicate on two vectors of a real quadratic space.  It is not
 claimed to describe an ample cone, a positive cone, or any geometric locus.-/
 def IsFuture (e x : D) : Prop := 0 < S.pair x x ∧ 0 < S.timeCoord e x
 
+/--
+@isnad1 id=iff.0h4v.s5.f6258ebc62b7 from=translated src=- shape=6dd5555f vocab=0d775506
+-/
 theorem isFuture_iff (e x : D) :
     S.IsFuture e x ↔ 0 < S.pair x x ∧ 0 < S.pair e x := Iff.rfl
 
-/-- A positive multiple of a future vector is a future vector.-/
+/-- A positive multiple of a future vector is a future vector.
+@isnad1 id=isfuture.2h5v.s6.fe5e43fbed09 from=translated src=- shape=eec3add4 vocab=4981160e
+-/
 theorem isFuture_smul {e x : D} (hx : S.IsFuture e x) {a : ℝ} (ha : 0 < a) :
     S.IsFuture e (a • x) := by
   obtain ⟨hxx, hax⟩ := hx
@@ -230,7 +253,9 @@ private theorem futureCombination_le {e : D} (h : S.HodgeDefinite e)
 The witness is explicit: with `a` and `b` the coordinates of `x` and `y` along
 `e`, the combination `b • x - a • y` is orthogonal to `e`, so Hodge definiteness
 makes its square nonpositive.  Expanding that square gives
-`b² x² + a² y² ≤ 2ab ⟨x, y⟩`, and the left side is positive.-/
+`b² x² + a² y² ≤ 2ab ⟨x, y⟩`, and the left side is positive.
+@isnad1 id=lt.3h5v.s5.227d52808572 from=translated src=- shape=66a5ba11 vocab=eb0bc222
+-/
 theorem pair_pos_of_isFuture {e : D} (h : S.HodgeDefinite e)
     {x y : D} (hx : S.IsFuture e x) (hy : S.IsFuture e y) :
     0 < S.pair x y := by
@@ -241,7 +266,9 @@ theorem pair_pos_of_isFuture {e : D} (h : S.HodgeDefinite e)
   rw [not_lt] at hcon
   nlinarith [hab, hcon, h1, h2]
 
-/-- The future cone is closed under addition.-/
+/-- The future cone is closed under addition.
+@isnad1 id=isfuture.3h5v.s6.22fd5d4fd2b4 from=translated src=- shape=9f181bde vocab=75b822e2
+-/
 theorem isFuture_add {e : D} (h : S.HodgeDefinite e)
     {x y : D} (hx : S.IsFuture e x) (hy : S.IsFuture e y) :
     S.IsFuture e (x + y) := by
@@ -261,7 +288,9 @@ theorem isFuture_add {e : D} (h : S.HodgeDefinite e)
 Proved from `futureCombination_le` and the arithmetic-geometric mean
 inequality — in the form `(b·A - a·B)² ≥ 0` for `A`, `B` the two lengths —
 rather than from `pair_mul_pair_le_sq`, so that no finite-dimensionality
-hypothesis reaches the reverse triangle inequality below.-/
+hypothesis reaches the reverse triangle inequality below.
+@isnad1 id=le.3h5v.s6.3d92498ac487 from=translated src=- shape=6ba63b22 vocab=54f91f2d
+-/
 theorem sqrt_mul_sqrt_le_pair {e : D} (h : S.HodgeDefinite e)
     {x y : D} (hx : S.IsFuture e x) (hy : S.IsFuture e y) :
     Real.sqrt (S.pair x x) * Real.sqrt (S.pair y y) ≤ S.pair x y := by
@@ -274,7 +303,9 @@ theorem sqrt_mul_sqrt_le_pair {e : D} (h : S.HodgeDefinite e)
 
 /-- **The reverse triangle inequality.**  On a Hodge-definite pairing the
 length of a sum of future vectors is at least the sum of their lengths — the
-opposite of the Euclidean inequality.-/
+opposite of the Euclidean inequality.
+@isnad1 id=le.3h5v.s6.91a6cb4ad433 from=translated src=- shape=0009be5f vocab=58bf8207
+-/
 theorem sqrt_add_sqrt_le_sqrt_pair_add {e : D} (h : S.HodgeDefinite e)
     {x y : D} (hx : S.IsFuture e x) (hy : S.IsFuture e y) :
     Real.sqrt (S.pair x x) + Real.sqrt (S.pair y y)

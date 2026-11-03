@@ -77,7 +77,9 @@ def representableFppfStackMap {X Y : Scheme.{u}} (f : X ⟶ Y) :
 
 /-- The fppf and Zariski representable stack maps of a scheme morphism are the
 same data. Stated, rather than left implicit, because every transport below
-relies on it.-/
+relies on it.
+@isnad1 id=eq.0h3v.s4.cca97ae34b97 from=translated src=- shape=840734e3 vocab=643777c8
+-/
 theorem representableFppfStackMap_eq_zariski {X Y : Scheme.{u}} (f : X ⟶ Y) :
     (representableFppfStackMap f : StackMorphism _ _) =
       representableZariskiStackMap f :=
@@ -85,7 +87,9 @@ theorem representableFppfStackMap_eq_zariski {X Y : Scheme.{u}} (f : X ⟶ Y) :
 
 /-- A base-change-stable scheme-morphism property passes to the induced
 morphism of representable fppf stacks, checked on the actual representing
-scheme morphisms.-/
+scheme morphisms.
+@isnad1 id=hasrepre.0h5v.s5.1d4b40fc336e from=translated src=- shape=a0314333 vocab=7f5173cf
+-/
 theorem representableFppfStackMap_hasRepresentableProperty
     (P : MorphismProperty Scheme.{u}) [P.IsStableUnderBaseChange]
     {X Y : Scheme.{u}} (f : X ⟶ Y) (hf : P f) :
@@ -99,7 +103,9 @@ theorem representableFppfStackMap_hasRepresentableProperty
            property := P.pullback_snd f y.as hf }⟩
 
 /-- A locally finitely presented scheme morphism induces a locally finitely
-presented morphism of representable fppf stacks.-/
+presented morphism of representable fppf stacks.
+@isnad1 id=islocall.0h3v.s4.b0e470c91061 from=translated src=- shape=8026b8c4 vocab=8d39e0f6
+-/
 theorem representableFppfStackMap_isLocallyOfFinitePresentation
     {X Y : Scheme.{u}} (f : X ⟶ Y) [LocallyOfFinitePresentation f] :
     StackMorphism.IsLocallyOfFinitePresentation (representableFppfStackMap f) :=
@@ -107,7 +113,9 @@ theorem representableFppfStackMap_isLocallyOfFinitePresentation
     @LocallyOfFinitePresentation f inferInstance
 
 /-- A scheme-theoretic open immersion induces an open immersion of
-representable fppf stacks.-/
+representable fppf stacks.
+@isnad1 id=isopenim.0h3v.s4.5f60b169fb68 from=translated src=- shape=8026b8c4 vocab=6886e7e1
+-/
 theorem representableFppfStackMap_isOpenImmersion
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] :
     StackMorphism.IsOpenImmersion (representableFppfStackMap f) :=

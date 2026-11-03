@@ -50,7 +50,9 @@ noncomputable def matchIndex (i : I) : J :=
   Classical.choose ((B.complete _).mp (F.mapSpherical (A.candidate_spherical i)))
 
 /-- The image of a source candidate is a shift of its matched target
-candidate.-/
+candidate.
+@isnad1 id=isshifto.0h12v.s7.233fe354e35f from=translated src=- shape=2c7e9e47 vocab=eba90474
+-/
 theorem matchIndex_spec (i : I) :
     IsShiftOf (F.equiv.functor.obj (A.candidate i))
       (B.candidate (A.matchIndex B F i)) :=
@@ -58,7 +60,9 @@ theorem matchIndex_spec (i : I) :
     ((B.complete _).mp (F.mapSpherical (A.candidate_spherical i)))
 
 /-- Separation of the classified candidates makes the matching map
-injective.-/
+injective.
+@isnad1 id=injectiv.0h11v.s7.f61ece9d5b33 from=translated src=- shape=8f3f2c7a vocab=18d9e07a
+-/
 theorem matchIndex_injective : Function.Injective (A.matchIndex B F) := by
   intro i i' hii'
   by_contra hne
@@ -68,7 +72,9 @@ theorem matchIndex_injective : Function.Injective (A.matchIndex B F) := by
     ((A.matchIndex_spec B F i').of_iso_right (by rw [hii'])).symm
 
 /-- The inverse classification gives an injection in the opposite
-direction.-/
+direction.
+@isnad1 id=injectiv.0h11v.s7.68189f398a40 from=translated src=- shape=2a1ef4aa vocab=dfb78643
+-/
 theorem reverse_matchIndex_injective :
     Function.Injective (B.matchIndex A F.symm) :=
   B.matchIndex_injective A F.symm
@@ -89,13 +95,18 @@ noncomputable def matchingEquiv : I ≃ J :=
       (A.matchIndex B F)).2 ⟨A.matchIndex_injective B F,
         Nat.le_antisymm hIJ hJI⟩).2⟩
 
+/--
+@isnad1 id=eq.0h12v.s7.f6f40875917a from=translated src=- shape=5d3b4b0a vocab=b2914db3
+-/
 @[simp]
 theorem matchingEquiv_apply (i : I) :
     A.matchingEquiv B F i = A.matchIndex B F i :=
   rfl
 
 /-- The matching equivalence carries the candidate-shift comparison proved
-by completeness.-/
+by completeness.
+@isnad1 id=isshifto.0h12v.s7.c26ba63f9367 from=translated src=- shape=b74fc654 vocab=42058fab
+-/
 theorem matchingEquiv_spec (i : I) :
     IsShiftOf (F.equiv.functor.obj (A.candidate i))
       (B.candidate (A.matchingEquiv B F i)) :=
@@ -128,14 +139,18 @@ noncomputable def matchIndex (i : I) : J :=
           have := hA i
           omega))))
 
-/-- Singleton source blocks match singleton target blocks.-/
+/-- Singleton source blocks match singleton target blocks.
+@isnad1 id=eq.2h12v.s7.6a67d5fdb634 from=translated src=- shape=db55021c vocab=2df88e0c
+-/
 theorem matchIndex_length_eq_one {i : I} (hi : A.blockLength i = 1) :
     B.blockLength (A.matchIndex B F hA i) = 1 := by
   rw [matchIndex, dite_eq_left hi]
   exact (Classical.choose_spec ((B.spherical_complete _).mp
       (F.mapSpherical (A.candidate_spherical (i := i) hi)))).1
 
-/-- Longer source blocks match longer target blocks.-/
+/-- Longer source blocks match longer target blocks.
+@isnad1 id=le.2h12v.s7.b4c12e9f3133 from=translated src=- shape=08e1978f vocab=e979f821
+-/
 theorem matchIndex_length_two_le {i : I} (hi : 2 ≤ A.blockLength i) :
     2 ≤ B.blockLength (A.matchIndex B F hA i) := by
   rw [matchIndex, dite_eq_right (by omega)]
@@ -144,7 +159,9 @@ theorem matchIndex_length_two_le {i : I} (hi : 2 ≤ A.blockLength i) :
       (A.candidate_pseudoprojective (i := i) hi)))).1
 
 /-- The image of every source candidate is a shift of its matched target
-candidate.-/
+candidate.
+@isnad1 id=isshifto.1h12v.s7.9806272c3d54 from=translated src=- shape=7d9a20e9 vocab=f6c90fdd
+-/
 theorem matchIndex_spec (i : I) :
     IsShiftOf (F.equiv.functor.obj (A.candidate i))
       (B.candidate (A.matchIndex B F hA i)) := by
@@ -160,7 +177,9 @@ theorem matchIndex_spec (i : I) :
           omega))))).2
 
 /-- Separation of spherical and pseudoprojective candidates makes the mixed
-matching injective.-/
+matching injective.
+@isnad1 id=injectiv.1h11v.s7.db75dd35a701 from=translated src=- shape=aaf42d7a vocab=0f759ff4
+-/
 theorem matchIndex_injective : Function.Injective (A.matchIndex B F hA) := by
   intro i i' hii'
   have hshift : IsShiftOf (A.candidate i) (A.candidate i') := by
@@ -215,12 +234,17 @@ noncomputable def matchingEquiv : I ≃ J :=
       (A.matchIndex B F hA)).2 ⟨A.matchIndex_injective B F hA,
         Nat.le_antisymm hIJ hJI⟩).2⟩
 
+/--
+@isnad1 id=eq.2h12v.s7.794f4553f2ad from=translated src=- shape=022b079d vocab=c06735b0
+-/
 @[simp]
 theorem matchingEquiv_apply (i : I) :
     A.matchingEquiv B F hA hB i = A.matchIndex B F hA i :=
   rfl
 
-/-- The matching equivalence preserves singleton blocks.-/
+/-- The matching equivalence preserves singleton blocks.
+@isnad1 id=iff.2h12v.s8.81a2e32da38f from=translated src=- shape=c2580667 vocab=f2c57831
+-/
 theorem matchingEquiv_length_eq_one_iff (i : I) :
     B.blockLength (A.matchingEquiv B F hA hB i) = 1 ↔
       A.blockLength i = 1 := by
@@ -234,7 +258,9 @@ theorem matchingEquiv_length_eq_one_iff (i : I) :
       omega
   · exact A.matchIndex_length_eq_one B F hA
 
-/-- The matching equivalence preserves longer blocks.-/
+/-- The matching equivalence preserves longer blocks.
+@isnad1 id=iff.2h12v.s8.235515a4631f from=translated src=- shape=52a005ad vocab=330358ba
+-/
 theorem matchingEquiv_length_two_le_iff (i : I) :
     2 ≤ B.blockLength (A.matchingEquiv B F hA hB i) ↔
       2 ≤ A.blockLength i := by
@@ -251,7 +277,9 @@ theorem matchingEquiv_length_two_le_iff (i : I) :
   · exact A.matchIndex_length_two_le B F hA
 
 /-- The image of every mixed candidate is a shift of the target candidate
-selected by the matching equivalence.-/
+selected by the matching equivalence.
+@isnad1 id=isshifto.2h12v.s8.8904fd31326e from=translated src=- shape=d56466c8 vocab=e629d288
+-/
 theorem matchingEquiv_spec (i : I) :
     IsShiftOf (F.equiv.functor.obj (A.candidate i))
       (B.candidate (A.matchingEquiv B F hA hB i)) :=

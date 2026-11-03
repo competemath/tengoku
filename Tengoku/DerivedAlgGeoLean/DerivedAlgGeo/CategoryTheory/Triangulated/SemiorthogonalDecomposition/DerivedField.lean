@@ -79,7 +79,9 @@ namespace CategoryTheory.ModuleCat
 
 /-- `algebraMap` into the linear endomorphisms of the ring itself is
 bijective: evaluation at `1` inverts it. The base case the derived-category
-transport stands on; only commutativity enters, so a `CommRing` suffices.-/
+transport stands on; only commutativity enters, so a `CommRing` suffices.
+@isnad1 id=bijectiv.0h1v.s8.02141c51a482 from=translated src=- shape=c80c7616 vocab=96245ef2
+-/
 theorem algebraMap_end_self_bijective (R : Type u) [CommRing R] :
     Function.Bijective (algebraMap R (End (ModuleCat.of R R))) := by
   constructor
@@ -111,7 +113,9 @@ noncomputable abbrev residueObject : DerivedCategory (ModuleCat.{u} k) :=
 bijectivity transports from `End(k) = k`. Positive shifts: `k` is projective,
 so higher `Ext` vanishes, read through `Ext.homEquiv`. Negative shifts: the
 source is `IsLE 0` and the shifted target `IsGE (-n)` for the canonical
-t-structure, so the map vanishes by `TStructure.zero`.-/
+t-structure, so the map vanishes by `TStructure.zero`.
+@isnad1 id=isexcept.0h1v.s7.d82162112449 from=translated src=- shape=5122af93 vocab=b35bdc29
+-/
 theorem isExceptional_residueObject : IsExceptional k (residueObject k) := by
   constructor
   · intro n hn f
@@ -159,7 +163,9 @@ noncomputable def residueObjectExceptionalCollection :
   ExceptionalCollection.ofExceptional (isExceptional_residueObject k)
 
 /-- The single component of the length-one collection is the triangulated
-envelope of the shift closure of the residue object.-/
+envelope of the shift closure of the residue object.
+@isnad1 id=eq.0h1v.s9.db543b8007c2 from=translated src=- shape=9c24f42c vocab=bdf866b4
+-/
 @[simp]
 theorem residueObjectExceptionalCollection_component :
     (residueObjectExceptionalCollection k).component PUnit.unit

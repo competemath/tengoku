@@ -75,6 +75,9 @@ def k3MukaiForm (d : ℕ) : ℤ →ₗ[ℤ] ℤ →ₗ[ℤ] ℤ :=
     (fun _ _ _ => by ring) (fun _ _ _ => by ring)
     (fun _ _ _ => by ring) (fun _ _ _ => by ring)
 
+/--
+@isnad1 id=eq.0h3v.s8.5bbd070096e3 from=translated src=- shape=f2ae786d vocab=9a464acc
+-/
 @[simp]
 theorem k3MukaiForm_apply (d : ℕ) (x y : ℤ) :
     k3MukaiForm d x y = 2 * (d : ℤ) * x * y := rfl

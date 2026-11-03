@@ -28,7 +28,9 @@ namespace therefore reads oddly here, and that is recorded rather than repaired.
 namespace CategoryTheory.Triangulated.WeakStabilityCondition.StabilityCondition.GroupAction
 
 /-- A covering map remains a covering map after taking its product with an
-identity map.-/
+identity map.
+@isnad1 id=iscoveri.1h4v.s5.5fff13808fa0 from=translated src=- shape=2ab42fb8 vocab=fd3eafc6
+-/
 theorem isCoveringMap_prodMap_id {E X Y : Type*} [TopologicalSpace E]
     [TopologicalSpace X] [TopologicalSpace Y] {f : E → X} (hf : IsCoveringMap f) :
     IsCoveringMap (Prod.map f (id : Y → Y)) := by

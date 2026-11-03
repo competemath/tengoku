@@ -72,7 +72,9 @@ namespace Divisorial
 variable {D : Type*} [AddCommGroup D] [Module ℝ D]
 variable {N : Type*} [AddCommGroup N]
 
-/-- Scalar twisting commutes with the weighted surface degree presentation.-/
+/-- Scalar twisting commutes with the weighted surface degree presentation.
+@isnad1 id=eq.0h4v.s8.64b343817041 from=translated src=- shape=0d645094 vocab=ccd6a999
+-/
 theorem ChargeCoordinates.twistByScalar_eq_exp (D : ChargeCoordinates N) (β : ℝ) (E : N) :
     ![(D.twistByScalar β).hyperplaneSquare * (D.twistByScalar β).rank E,
       (D.twistByScalar β).degree E, (D.twistByScalar β).chTwo E] =
@@ -83,7 +85,9 @@ theorem ChargeCoordinates.twistByScalar_eq_exp (D : ChargeCoordinates N) (β : �
       ChargeCoordinates.twistByScalar] <;> ring
 
 /-- Along `B = βH`, twisting in the full divisor space commutes with compression.
-For an arbitrary `B`, the compressed degrees do not determine the twist.-/
+For an arbitrary `B`, the compressed degrees do not determine the twist.
+@isnad1 id=eq.0h7v.s9.54e4feef2109 from=translated src=- shape=25b89921 vocab=6aa6b057
+-/
 theorem ChernCharacter.twist_rankOne_eq_exp (ch : ChernCharacter N D)
     (S : DivisorSpace D) (H : D) (β : ℝ) (E : N) :
     ![S.pair H H * (ch.twist S (β • H)).rank E,
@@ -122,7 +126,9 @@ def tripleMoments (S : DivisorSpace D) (P : StabilityParameters D)
   | _ + 3 => 0
 
 /-- **The keystone.** Bridgeland's `Z(beta, omega)` on a Mukai triple is the
-exponential kernel at truncation degree two.-/
+exponential kernel at truncation degree two.
+@isnad1 id=eq.0h4v.s5.538d730dfcd8 from=translated src=- shape=fdb28458 vocab=7d98ff1e
+-/
 theorem expCharge_eq_ofMoments (S : DivisorSpace D) (P : StabilityParameters D)
     (v : Mukai.RealExtension D) :
     Mukai.expCharge S.intersection P.B P.omega v
@@ -140,7 +146,9 @@ theorem expCharge_eq_ofMoments (S : DivisorSpace D) (P : StabilityParameters D)
 /-- The rank-one collapse. On `B = b*H`, `omega = a*H` the intersection-form
 charge of any triple is the scalar kernel on the compressed degrees
 `(H^2 * r, H * c, s)`, which is how the divisorial branch and the compressed
-branch meet.-/
+branch meet.
+@isnad1 id=eq.0h6v.s8.ee496443cfa8 from=translated src=- shape=e79735e1 vocab=9d6d008d
+-/
 theorem expCharge_rankOne_eq_charge (S : DivisorSpace D) (H : D) (a b : ℝ)
     (v : Mukai.RealExtension D) :
     Mukai.expCharge S.intersection (StabilityParameters.rankOne H a b).B
@@ -160,7 +168,9 @@ theorem expCharge_rankOne_eq_charge (S : DivisorSpace D) (H : D) (a b : ℝ)
 
 /-- The divisorial charge **is** `Z(beta, omega)` on the Mukai triple of the
 Chern character. Both sides were already in the tree; that they are one
-function was not recorded.-/
+function was not recorded.
+@isnad1 id=eq.0h6v.s7.74a75dff173b from=translated src=- shape=27b621ab vocab=0b59fcbe
+-/
 theorem centralCharge_eq_expCharge (ch : ChernCharacter N D) (S : DivisorSpace D)
     (P : StabilityParameters D) (E : N) :
     ch.centralCharge S P E
@@ -172,7 +182,9 @@ theorem centralCharge_eq_expCharge (ch : ChernCharacter N D) (S : DivisorSpace D
     simp [Complex.add_re, Complex.add_im, Complex.mul_re, Complex.mul_im,
       hb P.omega P.B] <;> ring
 
-/-- The keystone in `ChernCharacter` form, by `toRealExtension`.-/
+/-- The keystone in `ChernCharacter` form, by `toRealExtension`.
+@isnad1 id=eq.0h6v.s7.a77ad3e40218 from=translated src=- shape=fa875f9f vocab=d304080e
+-/
 theorem centralCharge_eq_ofMoments (ch : ChernCharacter N D) (S : DivisorSpace D)
     (P : StabilityParameters D) (E : N) :
     ch.centralCharge S P E = Exp.ofMoments 2 (tripleMoments S P (ch.toRealExtension E)) := by
@@ -184,10 +196,16 @@ def moments (ch : ChernCharacter N D) (S : DivisorSpace D)
     (P : StabilityParameters D) (E : N) : ℕ → ℂ :=
   tripleMoments S P (ch.toRealExtension E)
 
+/--
+@isnad1 id=eq.0h6v.s7.a0f82a59452d from=translated src=- shape=3ba15e85 vocab=0283c78d
+-/
 theorem moments_apply (ch : ChernCharacter N D) (S : DivisorSpace D)
     (P : StabilityParameters D) (E : N) :
     moments ch S P E = tripleMoments S P (ch.toRealExtension E) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.7d064743c3ec from=translated src=- shape=e7605211 vocab=6919fc63
+-/
 theorem moments_rankOne (ch : ChernCharacter N D) (S : DivisorSpace D) (H : D)
     (a b : ℝ) (E : N) :
     moments ch S (StabilityParameters.rankOne H a b) E
@@ -213,7 +231,9 @@ theorem moments_rankOne (ch : ChernCharacter N D) (S : DivisorSpace D) (H : D)
         pow_two] <;> ring
   | (k+3) => simp [moments, tripleMoments, Exp.moments]
 
-/-- The rank-one collapse in `ChernCharacter` form.-/
+/-- The rank-one collapse in `ChernCharacter` form.
+@isnad1 id=eq.0h8v.s9.1fcc36418dd8 from=translated src=- shape=9f3c1100 vocab=3cd481ee
+-/
 theorem centralCharge_rankOne_eq_charge (ch : ChernCharacter N D) (S : DivisorSpace D)
     (H : D) (a b : ℝ) (E : N) :
     ch.centralCharge S (StabilityParameters.rankOne H a b) E

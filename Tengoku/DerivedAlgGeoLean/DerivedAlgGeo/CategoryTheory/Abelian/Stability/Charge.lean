@@ -89,7 +89,9 @@ abbrev IsStabilityCharge (D : ClassDatum O G) (Z : G →+ ℂ) : Prop :=
 abbrev IsWeakStabilityCharge (D : ClassDatum O G) (Z : G →+ ℂ) : Prop :=
   IsPositive D closedUpperHalfPlane Z
 
-/-- **Strict implies weak**, once and for every class datum.-/
+/-- **Strict implies weak**, once and for every class datum.
+@isnad1 id=isweakst.1h4v.s5.34d4913e0da8 from=translated src=- shape=be49467e vocab=c720b654
+-/
 theorem IsStabilityCharge.weak {D : ClassDatum O G} {Z : G →+ ℂ}
     (h : IsStabilityCharge D Z) : IsWeakStabilityCharge D Z :=
   fun E hE ↦ semiClosedUpperHalfPlane_subset_closed (h E hE)

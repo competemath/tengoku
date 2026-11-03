@@ -19,7 +19,9 @@ noncomputable section
 namespace CategoryTheory.Triangulated.WeakStabilityCondition.StabilityCondition.Deformation
 
 /-- The imaginary coordinate is bounded by the product of the distance from
-one and the norm.-/
+one and the norm.
+@isnad1 id=le.0h1v.s6.55847d86e129 from=translated src=- shape=a037df8c vocab=f8875bd3
+-/
 theorem im_sq_le_norm_sub_one_sq_mul (z : ℂ) :
     z.im ^ 2 ≤ ‖z - 1‖ ^ 2 * ‖z‖ ^ 2 := by
   rw [Complex.sq_norm (z - 1), Complex.sq_norm z]
@@ -28,7 +30,9 @@ theorem im_sq_le_norm_sub_one_sq_mul (z : ℂ) :
   nlinarith [sq_nonneg (z.re * z.re + z.im * z.im - z.re)]
 
 /-- The sine of the argument of a nonzero complex number is controlled by
-its distance from one.-/
+its distance from one.
+@isnad1 id=le.1h1v.s5.f4a8a17a09bb from=translated src=- shape=446743b9 vocab=64b383dc
+-/
 theorem abs_sin_arg_le_norm_sub_one {z : ℂ} (hz : z ≠ 0) :
     |Real.sin (Complex.arg z)| ≤ ‖z - 1‖ := by
   rw [Complex.sin_arg, abs_div, abs_of_pos (norm_pos_iff.mpr hz),
@@ -37,7 +41,9 @@ theorem abs_sin_arg_le_norm_sub_one {z : ℂ} (hz : z ≠ 0) :
     (by rw [sq_abs, mul_pow]; exact im_sq_le_norm_sub_one_sq_mul z)
     (by positivity)
 
-/-- On the central half-period, taking sine commutes with absolute value.-/
+/-- On the central half-period, taking sine commutes with absolute value.
+@isnad1 id=eq.1h1v.s5.d85eef393aac from=translated src=- shape=4b0f7303 vocab=9b973169
+-/
 theorem sin_abs_eq_abs_sin {x : ℝ} (hx : |x| < Real.pi / 2) :
     Real.sin |x| = |Real.sin x| := by
   rcases le_or_gt 0 x with h | h
@@ -54,7 +60,9 @@ theorem sin_abs_eq_abs_sin {x : ℝ} (hx : |x| < Real.pi / 2) :
     rw [abs_of_neg h, Real.sin_neg, abs_of_neg hsin]
 
 /-- A perturbation smaller than `sin (π ε)` changes the argument of one by
-less than `π ε`.-/
+less than `π ε`.
+@isnad1 id=lt.3h2v.s6.54e23dfd9957 from=translated src=- shape=b84cf6b0 vocab=ecb8143f
+-/
 theorem abs_arg_one_add_lt {u : ℂ} {ε : ℝ}
     (hε : 0 < ε) (hε2 : ε ≤ 1 / 2)
     (hu : ‖u‖ < Real.sin (Real.pi * ε)) :
@@ -91,7 +99,9 @@ theorem abs_arg_one_add_lt {u : ℂ} {ε : ℝ}
   linarith
 
 /-- A norm-small multiplicative perturbation changes the selected relative
-phase by less than `ε`.-/
+phase by less than `ε`.
+@isnad1 id=lt.5h5v.s7.d3eff1d7d05e from=translated src=- shape=407cb765 vocab=e4cfcce7
+-/
 theorem relativePhase_perturbation {m φ α ε : ℝ} {u : ℂ}
     (hm : 0 < m) (hφ : φ ∈ Set.Ioo (α - 1 / 2) (α + 1 / 2))
     (hε : 0 < ε) (hε2 : ε ≤ 1 / 2)

@@ -25,7 +25,9 @@ def relativePhase (w : ℂ) (α : ℝ) : ℝ :=
   α + Complex.arg (w * Complex.exp (-(↑(Real.pi * α) * Complex.I))) /
     Real.pi
 
-/-- The relative phase lies on its selected branch.-/
+/-- The relative phase lies on its selected branch.
+@isnad1 id=mem.0h2v.s5.dc27b0c5d0d6 from=translated src=- shape=5bf84662 vocab=2bde6df2
+-/
 theorem relativePhase_mem_Ioc (w : ℂ) (α : ℝ) :
     relativePhase w α ∈ Set.Ioc (α - 1) (α + 1) := by
   have hπ : 0 < Real.pi := Real.pi_pos
@@ -42,7 +44,9 @@ theorem relativePhase_mem_Ioc (w : ℂ) (α : ℝ) :
     rw [div_le_iff₀ hπ, one_mul]
     exact Complex.arg_le_pi z
 
-/-- Polar reconstruction using the selected relative phase.-/
+/-- Polar reconstruction using the selected relative phase.
+@isnad1 id=eq.0h2v.s5.c747b8cbb8ce from=translated src=- shape=381f3780 vocab=3f5357cb
+-/
 theorem relativePhase_polar (w : ℂ) (α : ℝ) :
     w = (‖w‖ : ℂ) *
       Complex.exp (↑(Real.pi * relativePhase w α) * Complex.I) := by
@@ -89,7 +93,9 @@ theorem relativePhase_polar (w : ℂ) (α : ℝ) :
         Complex.exp (↑(Real.pi * relativePhase w α) * Complex.I) := by
           rw [hnorm, hangle]
 
-/-- A positive point on a ray is recognized on every compatible branch.-/
+/-- A positive point on a ray is recognized on every compatible branch.
+@isnad1 id=eq.2h3v.s6.38cda7e6d5f1 from=translated src=- shape=28861bd8 vocab=5335f274
+-/
 theorem relativePhase_of_ray {m φ α : ℝ} (hm : 0 < m)
     (hφ : φ ∈ Set.Ioc (α - 1) (α + 1)) :
     relativePhase ((m : ℂ) *
@@ -113,12 +119,17 @@ theorem relativePhase_of_ray {m φ α : ℝ} (hm : 0 < m)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.184e8235bb0c from=translated src=- shape=5b483ac0 vocab=cc73070e
+-/
 @[simp]
 theorem relativePhase_zero (α : ℝ) : relativePhase 0 α = α := by
   simp [relativePhase, Complex.arg_zero]
 
 /-- Negating a nonzero charge and moving the branch centre by one shifts its
-relative phase by one.-/
+relative phase by one.
+@isnad1 id=eq.1h2v.s5.76ea42df3e02 from=translated src=- shape=0fb92bcb vocab=352aacef
+-/
 theorem relativePhase_neg {w : ℂ} (hw : w ≠ 0) (α : ℝ) :
     relativePhase (-w) (α + 1) = relativePhase w α + 1 := by
   let φ := relativePhase w α
@@ -149,7 +160,9 @@ theorem relativePhase_neg {w : ℂ} (hw : w ≠ 0) (α : ℝ) :
   rw [hneg]
   exact relativePhase_of_ray (norm_pos_iff.mpr hw) hbranch
 
-/-- Moving the branch centre by a full period moves the phase by that period.-/
+/-- Moving the branch centre by a full period moves the phase by that period.
+@isnad1 id=eq.1h2v.s5.0077f9c5d91c from=translated src=- shape=3081392f vocab=dc12d57b
+-/
 theorem relativePhase_add_two {w : ℂ} (hw : w ≠ 0) (α : ℝ) :
     relativePhase w (α + 2) = relativePhase w α + 2 := by
   have h₁ := relativePhase_neg hw α
@@ -158,7 +171,9 @@ theorem relativePhase_add_two {w : ℂ} (hw : w ≠ 0) (α : ℝ) :
   exact h₂.trans (by rw [h₁]; ring)
 
 /-- Relative phase is independent of the branch centre once one chosen lift
-also lies on the other branch.-/
+also lies on the other branch.
+@isnad1 id=eq.2h3v.s6.276285932aa4 from=translated src=- shape=a0db69b3 vocab=2bde6df2
+-/
 theorem relativePhase_eq_of_mem {w : ℂ} (hw : w ≠ 0) (α β : ℝ)
     (h : relativePhase w α ∈ Set.Ioc (β - 1) (β + 1)) :
     relativePhase w α = relativePhase w β := by

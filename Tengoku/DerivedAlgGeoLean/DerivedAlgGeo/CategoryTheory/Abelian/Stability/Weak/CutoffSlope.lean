@@ -56,7 +56,9 @@ namespace CategoryTheory.Triangulated
 
 /-- **The slope of a sum lies between the slopes of its summands.**  The two
 see-saws combined by `le_total`, in the form an induction over a filtration
-consumes.-/
+consumes.
+@isnad1 id=and.2h2v.s6.20434e87deb2 from=translated src=- shape=d62872fe vocab=4ee5d321
+-/
 theorem chargeSlope_add_mem_uIcc {z w : ℂ} (hz : z ∈ closedUpperHalfPlane)
     (hw : w ∈ closedUpperHalfPlane) :
     min (chargeSlope z) (chargeSlope w) ≤ chargeSlope (z + w) ∧
@@ -77,7 +79,9 @@ variable (W : WeakStabilityFunctionOn (abelianDatum A))
 /-- **Every object's charge lies in the closed upper half-plane**, the zero
 object included: its charge is `0`, which the closed half-plane contains and the
 semi-closed one does not.  This is the hypothesis-free membership the strict
-theory cannot have.-/
+theory cannot have.
+@isnad1 id=mem.0h3v.s6.38e8442cba29 from=translated src=- shape=7afcd9f3 vocab=36898455
+-/
 theorem charge_mem_closedUpperHalfPlane (E : A) :
     W.charge E ∈ closedUpperHalfPlane := by
   by_cases h : IsZero E
@@ -93,7 +97,9 @@ variable {W : WeakStabilityFunctionOn (abelianDatum A)} {E : A}
 variable (F : AbelianWeakHNFiltration W E)
 
 /-- Each chain step is a short exact sequence with the corresponding factor as
-its cokernel, so the charges add.-/
+its cokernel, so the charges add.
+@isnad1 id=eq.0h5v.s7.217393c60f54 from=translated src=- shape=2551d0fb vocab=f6ae573f
+-/
 theorem charge_chain_succ (j : Fin F.n) :
     W.charge (F.chain j.succ : A) =
       W.charge (F.chain j.castSucc : A) + W.charge (F.factor j) :=
@@ -106,7 +112,9 @@ theorem charge_chain_succ (j : Fin F.n) :
 Induction along the chain.  At `k = 1` the term is the maximal destabilizing
 subobject, whose slope is `μ⁺` exactly.  Each further step adds the next factor,
 whose slope is below everything already accumulated, so the see-saw puts the new
-total between that factor's slope and the old total's.-/
+total between that factor's slope and the old total's.
+@isnad1 id=and.2h5v.s8.70785bd0fa0a from=translated src=- shape=608d1a25 vocab=59bcaf10
+-/
 theorem μ_le_slope_chain_and_le_μPlus :
     ∀ k : ℕ, (hk : 0 < k) → (hkn : k ≤ F.n) →
       F.μ ⟨k - 1, by lia⟩ ≤ W.slope (F.chain ⟨k, by lia⟩ : A) ∧
@@ -147,13 +155,17 @@ theorem μ_le_slope_chain_and_le_μPlus :
           ← hfactor]
         exact h₁
 
-/-- **The object's own slope does not exceed the highest HN slope.**-/
+/-- **The object's own slope does not exceed the highest HN slope.**
+@isnad1 id=le.0h4v.s6.a01fa46112a1 from=translated src=- shape=26d7055f vocab=f2a1243f
+-/
 theorem slope_le_μPlus : W.slope E ≤ F.μPlus := by
   have hn := F.nonempty
   have h := (F.μ_le_slope_chain_and_le_μPlus F.n hn le_rfl).2
   rwa [F.chain_top, W.slope_eq_of_iso (asIso (⊤ : Subobject E).arrow)] at h
 
-/-- **The lowest HN slope does not exceed the object's own slope.**-/
+/-- **The lowest HN slope does not exceed the object's own slope.**
+@isnad1 id=le.0h4v.s6.b71226d47bff from=translated src=- shape=34fb5953 vocab=6a94996d
+-/
 theorem μMinus_le_slope : F.μMinus ≤ W.slope E := by
   have hn := F.nonempty
   have h := (F.μ_le_slope_chain_and_le_μPlus F.n hn le_rfl).1
@@ -173,13 +185,17 @@ separately.
 
 Unlike `SlopeData.slopeOfPhase_lt_of_mem_hnTors`, there is no positive-rank
 hypothesis: a rank-zero object has slope `⊤`, above every finite cutoff, and is
-covered by the same statement.-/
+covered by the same statement.
+@isnad1 id=lt.3h4v.s6.9e36811b62ab from=translated src=- shape=9ccf6adf vocab=db5c8e8d
+-/
 theorem lt_slope_of_mem_hnTors (hHN : W.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (h : E ∈ hnTors W μ₀) : μ₀ < W.slope E := by
   obtain ⟨F⟩ := hHN E hE
   exact lt_of_lt_of_le ((mem_hnTors_iff_forall hHN hE).mp h F) F.μMinus_le_slope
 
-/-- **An object of the torsion-free class has slope at most the cutoff.**-/
+/-- **An object of the torsion-free class has slope at most the cutoff.**
+@isnad1 id=le.3h4v.s6.4ca541374f08 from=translated src=- shape=b5ab8b7a vocab=1346207a
+-/
 theorem slope_le_of_mem_hnFree (hHN : W.HasHNProperty) {E : A} (hE : ¬IsZero E)
     (h : E ∈ hnFree W μ₀) : W.slope E ≤ μ₀ :=
   le_trans (Classical.choice (hHN E hE)).slope_le_μPlus

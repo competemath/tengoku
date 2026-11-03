@@ -53,7 +53,9 @@ inductive ExtensionClosure {C : Type u} [Category.{v} C]
 
 namespace ExtensionClosure
 
-/-- Owner extension closure is monotone in its generators.-/
+/-- Owner extension closure is monotone in its generators.
+@isnad1 id=le.1h3v.s6.58c829097419 from=translated src=- shape=c7b14835 vocab=2ecb59de
+-/
 theorem mono {C : Type u} [Category.{v} C] [HasZeroObject C]
     [HasShift C ℤ] [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive]
     [Pretriangulated C] {P Q : CategoryTheory.ObjectProperty C} (h : P ≤ Q) :
@@ -64,7 +66,9 @@ theorem mono {C : Type u} [Category.{v} C] [HasZeroObject C]
   | mem hP => exact .mem (h _ hP)
   | ext hT _ _ ihX ihY => exact .ext hT ihX ihY
 
-/-- Orthogonal generators have orthogonal owner extension closures.-/
+/-- Orthogonal generators have orthogonal owner extension closures.
+@isnad1 id=eq.1h8v.s7.c004f4797d2c from=translated src=- shape=758c61a8 vocab=1ecf17e7
+-/
 theorem hom_eq_zero {C : Type u} [Category.{v} C] [HasZeroObject C]
     [HasShift C ℤ] [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive]
     [Pretriangulated C] {P Q : CategoryTheory.ObjectProperty C}
@@ -86,7 +90,9 @@ theorem hom_eq_zero {C : Type u} [Category.{v} C] [HasZeroObject C]
       rw [ihY hF g]
       exact comp_zero
 
-/-- Owner extension closure is invariant under isomorphism.-/
+/-- Owner extension closure is invariant under isomorphism.
+@isnad1 id=extensio.0h6v.s6.9a70e5785d62 from=translated src=- shape=088cae6f vocab=a172b7d2
+-/
 theorem ofIso {C : Type u} [Category.{v} C] [HasZeroObject C]
     [HasShift C ℤ] [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive]
     [Pretriangulated C] {P : CategoryTheory.ObjectProperty C} {X Y : C}
@@ -97,7 +103,9 @@ theorem ofIso {C : Type u} [Category.{v} C] [HasZeroObject C]
   exact .ext hT h (.zero hZ)
 
 /-- Walking an owner Postnikov tower assembles extension-closure membership
-from membership of all factors.-/
+from membership of all factors.
+@isnad1 id=extensio.0h5v.s6.3c5df0e08aa0 from=translated src=- shape=5e8f0c41 vocab=9e9bacdd
+-/
 theorem ofPostnikovTower {C : Type u} [Category.{v} C] [HasZeroObject C]
     [HasShift C ℤ] [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive]
     [Pretriangulated C] {Q : CategoryTheory.ObjectProperty C} {E : C}
@@ -122,7 +130,9 @@ theorem ofPostnikovTower {C : Type u} [Category.{v} C] [HasZeroObject C]
         (ofIso e₁.symm hchain) (.mem (hfactors ⟨k, by omega⟩)))
 
 /-- Induction principle into any object property containing zero and the
-generators and closed under distinguished extensions.-/
+generators and closed under distinguished extensions.
+@isnad1 id=le.1h5v.s7.8d02ff00fbbc from=translated src=- shape=89118ed2 vocab=d80f839e
+-/
 theorem le_of_closed {C : Type u} [Category.{v} C] [HasZeroObject C]
     [HasShift C ℤ] [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive]
     [Pretriangulated C] {P Q : CategoryTheory.ObjectProperty C}

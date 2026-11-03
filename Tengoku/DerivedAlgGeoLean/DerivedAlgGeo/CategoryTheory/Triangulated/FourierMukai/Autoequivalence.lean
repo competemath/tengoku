@@ -105,7 +105,9 @@ omit [IsTriangulated C] in
 
 Stated this way round rather than as a `simp` lemma about `K₀.map`: the
 existing `K₀.map_of` already rewrites that left-hand side, so a lemma phrased
-against it would not be in simp-normal form.-/
+against it would not be in simp-normal form.
+@isnad1 id=eq.0h4v.s7.ad66463aac11 from=translated src=- shape=1792c394 vocab=0bf0595f
+-/
 theorem of_obj_eq (E : C) :
     K₀.of C (A.equiv.functor.obj E) =
       K₀.of C ((A.corr.transform A.kernel).obj E) :=
@@ -128,7 +130,9 @@ that determines the transported charge.
 Until #487 this proof had a step in it: the stability track carried its own
 endofunctor-only `K₀.mapF`, definitionally equal to `K₀.map` but a different
 constant, and the theorem had to cross that identification. `mapF` is retired
-and the crossing is gone.-/
+and the crossing is gone.
+@isnad1 id=eq.0h3v.s9.de2ef7e92312 from=translated src=- shape=7da0b216 vocab=2c68942a
+-/
 theorem map_eq_transformK₀ :
     K₀.map A.equiv.functor = A.corr.transformK₀ A.kernel :=
   A.corr.K₀_map_eq_transformK₀ A.kernel A.equiv.functor A.iso
@@ -163,7 +167,9 @@ variable [A.corr.pull.CommShift ℤ] [A.corr.push.CommShift ℤ]
 omit [IsTriangulated C] in
 /-- **The quasi-inverse's action on classes is computed by the dual kernel.**
 The mirror of `map_eq_transformK₀`, and the reason `actStabOfDual` can state
-its hypothesis in kernel terms.-/
+its hypothesis in kernel terms.
+@isnad1 id=eq.0h4v.s9.ab0ca97a5875 from=translated src=- shape=896414d7 vocab=e1e3836c
+-/
 theorem map_inverse_eq_transformK₀ :
     K₀.map A.equiv.inverse = A.corr.transformK₀ D.dual :=
   A.corr.K₀_map_eq_transformK₀ D.dual A.equiv.inverse D.invIso
@@ -178,7 +184,9 @@ omit [IsTriangulated C] in
 Proved from `K₀.map_comp_map_eq_id` on the equivalence's unit, then transported
 across both kernel identifications. Neither convolution nor an identity kernel
 is involved: the inverse relation comes from the supplied equivalence, not from
-`conv P P^∨ ≅ 𝒪_Δ`.-/
+`conv P P^∨ ≅ 𝒪_Δ`.
+@isnad1 id=eq.0h4v.s10.20cd900bace2 from=translated src=- shape=404ebb7f vocab=dec70ec2
+-/
 theorem transformK₀_dual_comp :
     (A.corr.transformK₀ D.dual).comp (A.corr.transformK₀ A.kernel) =
       AddMonoidHom.id (K₀ C) := by
@@ -187,7 +195,9 @@ theorem transformK₀_dual_comp :
     A.equiv.unitIso.symm
 
 omit [IsTriangulated C] in
-/-- The composite in the other order is also the identity.-/
+/-- The composite in the other order is also the identity.
+@isnad1 id=eq.0h4v.s10.b85fa32838b9 from=translated src=- shape=59e6751a vocab=dec70ec2
+-/
 theorem transformK₀_comp_dual :
     (A.corr.transformK₀ A.kernel).comp (A.corr.transformK₀ D.dual) =
       AddMonoidHom.id (K₀ C) := by
@@ -212,11 +222,17 @@ def transformK₀AddEquiv : K₀ C ≃+ K₀ C :=
     (A.corr.transformK₀ D.dual) D.transformK₀_dual_comp D.transformK₀_comp_dual
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s10.ea4c798262d8 from=translated src=- shape=eead18d5 vocab=71783eb0
+-/
 @[simp]
 theorem transformK₀AddEquiv_apply (x : K₀ C) :
     D.transformK₀AddEquiv x = A.corr.transformK₀ A.kernel x := rfl
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s10.91f801676f1b from=translated src=- shape=d2352c28 vocab=0765277f
+-/
 @[simp]
 theorem transformK₀AddEquiv_symm_apply (x : K₀ C) :
     D.transformK₀AddEquiv.symm x = A.corr.transformK₀ D.dual x := rfl
@@ -259,6 +275,9 @@ def DualKernel.ofLeftAdjointKernel
   invIso := L.isoOfAdj (A.equiv.symm.toAdjunction.ofNatIsoRight A.iso)
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.513c6232a2c2 from=translated src=- shape=c877dc74 vocab=d63ca82c
+-/
 @[simp]
 theorem DualKernel.ofLeftAdjointKernel_dual
     (L : LeftAdjointKernelData A.corr A.corr A.kernel) :
@@ -284,6 +303,9 @@ def DualKernel.ofRightAdjointKernel
   invIso := R.isoOfAdj (A.equiv.toAdjunction.ofNatIsoLeft A.iso)
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.95792b19ee8d from=translated src=- shape=c877dc74 vocab=b77f8ff9
+-/
 @[simp]
 theorem DualKernel.ofRightAdjointKernel_dual
     (R : RightAdjointKernelData A.corr A.corr A.kernel) :
@@ -301,6 +323,9 @@ def DualKernel.toLeftAdjointKernelData (D : DualKernel A) :
   adj := (A.equiv.symm.toAdjunction.ofNatIsoRight A.iso).ofNatIsoLeft D.invIso
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.04481d9e3fad from=translated src=- shape=2f21baae vocab=caa37448
+-/
 @[simp]
 theorem DualKernel.toLeftAdjointKernelData_adjKernel (D : DualKernel A) :
     (D.toLeftAdjointKernelData).adjKernel = D.dual := rfl
@@ -313,6 +338,9 @@ def DualKernel.toRightAdjointKernelData (D : DualKernel A) :
   adj := (A.equiv.toAdjunction.ofNatIsoLeft A.iso).ofNatIsoRight D.invIso
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.f512b4fa9738 from=translated src=- shape=2f21baae vocab=baa3b713
+-/
 @[simp]
 theorem DualKernel.toRightAdjointKernelData_adjKernel (D : DualKernel A) :
     (D.toRightAdjointKernelData).adjKernel = D.dual := rfl
@@ -362,6 +390,9 @@ def KernelAutoequivalence.trans (A₁ : KernelAutoequivalence C 𝒲₁)
       D.compIso A₁.kernel A₂.kernel
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h8v.s8.8330803daa5d from=translated src=- shape=216ea9d3 vocab=a775e5da
+-/
 @[simp]
 theorem KernelAutoequivalence.trans_kernel (A₁ : KernelAutoequivalence C 𝒲₁)
     (A₂ : KernelAutoequivalence C 𝒲₂) (corr₃ : Correspondence C C 𝒲₃)
@@ -369,6 +400,9 @@ theorem KernelAutoequivalence.trans_kernel (A₁ : KernelAutoequivalence C 𝒲�
     (A₁.trans A₂ corr₃ D).kernel = D.conv A₁.kernel A₂.kernel := rfl
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h8v.s8.d5e138f667b5 from=translated src=- shape=5e83c9f8 vocab=4f909ccc
+-/
 @[simp]
 theorem KernelAutoequivalence.trans_equiv (A₁ : KernelAutoequivalence C 𝒲₁)
     (A₂ : KernelAutoequivalence C 𝒲₂) (corr₃ : Correspondence C C 𝒲₃)
@@ -411,18 +445,27 @@ def KernelAutoequivalence.id (corr : Correspondence C C 𝒲)
   iso := U.unitIso
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.fc2fbe05a88d from=translated src=- shape=7d1337a7 vocab=357c50a9
+-/
 @[simp]
 theorem KernelAutoequivalence.id_kernel (corr : Correspondence C C 𝒲)
     (U : UnitKernelData corr) :
     (KernelAutoequivalence.id corr U).kernel = U.unitKernel := rfl
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.d5b98e9a9f22 from=translated src=- shape=73d1944c vocab=715b7aa3
+-/
 @[simp]
 theorem KernelAutoequivalence.id_equiv (corr : Correspondence C C 𝒲)
     (U : UnitKernelData corr) :
     (KernelAutoequivalence.id corr U).equiv = CategoryTheory.Equivalence.refl := rfl
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.9f4ca3c5c5ad from=translated src=- shape=ddae065b vocab=56df9dce
+-/
 @[simp]
 theorem KernelAutoequivalence.id_corr (corr : Correspondence C C 𝒲)
     (U : UnitKernelData corr) :
@@ -442,6 +485,9 @@ def UnitKernelData.toDualKernel {corr : Correspondence C C 𝒲}
   invIso := U.unitIso
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h4v.s7.557aac4e7068 from=translated src=- shape=c5ecdc98 vocab=087d4f46
+-/
 @[simp]
 theorem UnitKernelData.toDualKernel_dual {corr : Correspondence C C 𝒲}
     (U : UnitKernelData corr) :
@@ -469,6 +515,9 @@ omit [HasZeroObject C] [HasShift C ℤ] [Preadditive C]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] [IsTriangulated C]
   [HasZeroObject 𝒲] [HasShift 𝒲 ℤ] [Preadditive 𝒲]
   [∀ n : ℤ, (shiftFunctor 𝒲 n).Additive] [Pretriangulated 𝒲] in
+/--
+@isnad1 id=eq.0h4v.s5.8bcc2c7cba68 from=translated src=- shape=f177c130 vocab=4f9fbaf8
+-/
 @[simp]
 theorem UnitKernelData.toLeftAdjointKernelData_adjKernel
     {corr : Correspondence C C 𝒲} (U : UnitKernelData corr) :
@@ -492,6 +541,9 @@ omit [HasZeroObject C] [HasShift C ℤ] [Preadditive C]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] [IsTriangulated C]
   [HasZeroObject 𝒲] [HasShift 𝒲 ℤ] [Preadditive 𝒲]
   [∀ n : ℤ, (shiftFunctor 𝒲 n).Additive] [Pretriangulated 𝒲] in
+/--
+@isnad1 id=eq.0h2v.s4.18a48cc76edf from=translated src=- shape=fead7278 vocab=ca8e3417
+-/
 @[simp]
 theorem trivialUnitKernelData_unitKernel (K : C) :
     (trivialUnitKernelData K).unitKernel = K := rfl
@@ -560,6 +612,9 @@ directly supplied equivalence.-/
   iso := Iso.refl _
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s8.e951a9498c4b from=translated src=- shape=176cb056 vocab=d4b4b9b9
+-/
 @[simp]
 theorem KernelAutoequivalence.ofRightAdjointKernel_corr
     (R : RightAdjointKernelData corr corr K)
@@ -567,6 +622,9 @@ theorem KernelAutoequivalence.ofRightAdjointKernel_corr
     (KernelAutoequivalence.ofRightAdjointKernel corr K R).corr = corr := rfl
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s8.446f5ce21a71 from=translated src=- shape=35184985 vocab=cfa9f097
+-/
 @[simp]
 theorem KernelAutoequivalence.ofRightAdjointKernel_kernel
     (R : RightAdjointKernelData corr corr K)
@@ -589,6 +647,9 @@ yields the equivalence *and* its dual kernel.-/
   invIso := Iso.refl _
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s8.67747f2be8c2 from=translated src=- shape=4159936c vocab=39d68394
+-/
 @[simp]
 theorem KernelAutoequivalence.dualKernelOfRightAdjointKernel_dual
     (R : RightAdjointKernelData corr corr K)
@@ -613,6 +674,9 @@ noncomputable def KernelAutoequivalence.ofFullyFaithful
   KernelAutoequivalence.ofRightAdjointKernel corr K R
 
 omit [IsTriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s8.063f25eeba8c from=translated src=- shape=ec60a110 vocab=7de4d517
+-/
 @[simp]
 theorem KernelAutoequivalence.ofFullyFaithful_kernel
     (R : RightAdjointKernelData corr corr K)
@@ -630,7 +694,9 @@ geometric criterion can attack. This is the same honesty check
 
 omit [IsTriangulated C] in
 /-- The transform of a kernel autoequivalence is an equivalence.  Transport of
-`A.equiv` along the supplied `A.iso`, and the hinge of both lemmas below.-/
+`A.equiv` along the supplied `A.iso`, and the hinge of both lemmas below.
+@isnad1 id=isequiva.0h3v.s7.0ed3a17b25a2 from=translated src=- shape=70238934 vocab=da47502d
+-/
 theorem KernelAutoequivalence.transform_isEquivalence
     (A : KernelAutoequivalence C 𝒲) :
     (A.corr.transform A.kernel).IsEquivalence :=
@@ -639,7 +705,9 @@ theorem KernelAutoequivalence.transform_isEquivalence
 
 omit [IsTriangulated C] in
 /-- **The counit of any right adjoint kernel is invertible**, given the
-equivalence.-/
+equivalence.
+@isnad1 id=isiso.0h4v.s8.1e4764534224 from=translated src=- shape=2a1f2ce6 vocab=e70b7864
+-/
 theorem KernelAutoequivalence.isIso_counit (A : KernelAutoequivalence C 𝒲)
     (R : RightAdjointKernelData A.corr A.corr A.kernel) : IsIso R.adj.counit :=
   have := A.transform_isEquivalence
@@ -650,7 +718,9 @@ omit [IsTriangulated C] in
 equivalence.
 
 Through `isEquivalence_right_of_isEquivalence_left`: the right adjoint of an
-equivalence is an equivalence, and Mathlib's instance then gives the unit.-/
+equivalence is an equivalence, and Mathlib's instance then gives the unit.
+@isnad1 id=isiso.0h4v.s8.fab5941e529b from=translated src=- shape=3842a612 vocab=350b8672
+-/
 theorem KernelAutoequivalence.isIso_unit (A : KernelAutoequivalence C 𝒲)
     (R : RightAdjointKernelData A.corr A.corr A.kernel) : IsIso R.adj.unit :=
   have := A.transform_isEquivalence

@@ -23,12 +23,16 @@ variable {A : Type u} [CommRing A] [Algebra ℚ A]
 variable {N : Type v} [AddCommGroup N]
 variable {V : NumericalVarietyData 2 A N}
 
-/-- On a K3 the linear term of `√td` vanishes, because `td₁ = 0`.-/
+/-- On a K3 the linear term of `√td` vanishes, because `td₁ = 0`.
+@isnad1 id=eq.1h3v.s6.fec5a178401a from=translated src=- shape=7694023c vocab=5f35f4b0
+-/
 theorem sqrtToddComp_one (hK3 : IsK3 V) : V.sqrtToddComp 1 = 0 := by
   rw [NumericalVarietyData.sqrtToddComp, sqrtComp_one, hK3.toddComp_one, mul_zero]
 
 /-- `∫_X √td₂ = 1`: with `td₁ = 0` the quadratic term is `td₂/2`, and
-`∫td₂ = χ(O_X) = 2`.-/
+`∫td₂ = χ(O_X) = 2`.
+@isnad1 id=eq.1h3v.s7.948b613b9119 from=translated src=- shape=132284da vocab=f8a5c985
+-/
 theorem degree_sqrtToddComp_two (hK3 : IsK3 V) :
     V.ring.degree (V.sqrtToddComp 2) = 1 := by
   show V.ring.degree (algebraMap ℚ A (1 / 2) * V.toddComp 2

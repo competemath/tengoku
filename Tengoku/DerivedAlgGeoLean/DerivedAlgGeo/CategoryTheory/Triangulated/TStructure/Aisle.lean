@@ -80,7 +80,9 @@ cones lie in the right orthogonal.
 
 This is the exactness step between Brown representability's map-level output
 and the aisle constructor.  In particular, callers no longer have to supply a
-chosen cone or assert its orthogonality.-/
+chosen cone or assert its orthogonality.
+@isnad1 id=aisledat.2h2v.s6.f1487ddf70e4 from=translated src=- shape=31df312e vocab=ca70acd2
+-/
 theorem ofApproximationMaps
     (hshift : U ≤ U.shift (1 : ℤ))
     (happrox : ∀ A : C, Nonempty (ApproximationMap U A)) :
@@ -112,7 +114,9 @@ theorem ofApproximationMaps
       rw [Category.assoc, hfg, comp_zero]
     exact ⟨a.left, Y, a.left_mem, hY, a.hom, g, h, hT⟩
 
-/-- The right orthogonal of an aisle is closed under the opposite shift.-/
+/-- The right orthogonal of an aisle is closed under the opposite shift.
+@isnad1 id=le.1h2v.s6.e136e1ac3e8f from=translated src=- shape=e251af90 vocab=51fcedf6
+-/
 lemma rightOrthogonal_le_shift (h : AisleData U) :
     U.rightOrthogonal ≤ U.rightOrthogonal.shift (-1 : ℤ) := by
   intro Y hY X f hX
@@ -152,10 +156,16 @@ noncomputable def tStructure (h : AisleData U) : TStructure C where
     obtain ⟨X, Y, hX, hY, f, g, k, hk⟩ := h.exists_triangle A
     exact ⟨X, Y, by simpa using hX, by simpa using hY, f, g, k, hk⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.154704319200 from=translated src=- shape=d4e6679a vocab=8b57318c
+-/
 @[simp]
 lemma tStructure_le_zero (h : AisleData U) : h.tStructure.le 0 = U := by
   simp [tStructure]
 
+/--
+@isnad1 id=eq.1h2v.s6.787a50f1b016 from=translated src=- shape=95d10821 vocab=4bda3de5
+-/
 @[simp]
 lemma tStructure_ge_one (h : AisleData U) :
     h.tStructure.ge 1 = U.rightOrthogonal := by

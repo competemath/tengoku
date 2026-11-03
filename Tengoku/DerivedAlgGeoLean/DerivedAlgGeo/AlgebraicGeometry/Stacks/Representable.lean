@@ -57,7 +57,9 @@ def representableZariskiObject {X T : Scheme.{u}} (f : T ⟶ X) :
     (representableZariskiStack X).presheaf.obj (.mk (op T)) :=
   Discrete.mk f
 
-/-- The representable stack remembers its scheme morphisms faithfully.-/
+/-- The representable stack remembers its scheme morphisms faithfully.
+@isnad1 id=injectiv.0h2v.s7.965b53134029 from=translated src=- shape=0e384b4a vocab=3c4891d0
+-/
 theorem representableZariskiObject_injective {X T : Scheme.{u}} :
     Function.Injective (representableZariskiObject (X := X) (T := T)) := by
   intro f g h

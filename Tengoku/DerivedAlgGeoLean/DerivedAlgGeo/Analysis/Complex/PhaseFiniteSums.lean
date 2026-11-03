@@ -30,7 +30,9 @@ open scoped BigOperators
 
 namespace CategoryTheory.Triangulated
 
-/-- Positive argument places a complex number in the semi-closed upper half-plane.-/
+/-- Positive argument places a complex number in the semi-closed upper half-plane.
+@isnad1 id=mem.1h1v.s4.352ba202f515 from=translated src=- shape=0d6e989f vocab=b10b1e9b
+-/
 theorem mem_semiClosedUpperHalfPlane_of_arg_pos {z : ℂ}
     (hz : 0 < Complex.arg z) : z ∈ semiClosedUpperHalfPlane := by
   by_cases him : 0 < z.im
@@ -49,7 +51,9 @@ theorem mem_semiClosedUpperHalfPlane_of_arg_pos {z : ℂ}
       rw [hz_real, Complex.arg_ofReal_of_nonneg hre_nonneg]
     linarith
 
-/-- A nonempty finite sum of upper-half-plane vectors stays in that half-plane.-/
+/-- A nonempty finite sum of upper-half-plane vectors stays in that half-plane.
+@isnad1 id=mem.2h3v.s5.803bcdcf7d94 from=translated src=- shape=2326b9b7 vocab=0429544d
+-/
 theorem sum_mem_semiClosedUpperHalfPlane {ι : Type*} {s : Finset ι}
     (hs : s.Nonempty) {f : ι → ℂ}
     (hf : ∀ i ∈ s, f i ∈ semiClosedUpperHalfPlane) :
@@ -62,7 +66,9 @@ theorem sum_mem_semiClosedUpperHalfPlane {ι : Type*} {s : Finset ι}
         (hf j (Finset.mem_cons_self j s))
         (ih (fun i hi => hf i (Finset.mem_cons.mpr (Or.inr hi))))
 
-/-- The argument of a nonempty upper-half-plane sum is at most the largest summand argument.-/
+/-- The argument of a nonempty upper-half-plane sum is at most the largest summand argument.
+@isnad1 id=le.2h3v.s6.434564e6cf4d from=translated src=- shape=cb1a3a53 vocab=5e109c45
+-/
 theorem arg_sum_le_sup_of_semiClosedUpperHalfPlane {ι : Type*}
     {s : Finset ι} (hs : s.Nonempty) {f : ι → ℂ}
     (hf : ∀ i ∈ s, f i ∈ semiClosedUpperHalfPlane) :
@@ -85,7 +91,9 @@ theorem arg_sum_le_sup_of_semiClosedUpperHalfPlane {ι : Type*}
               ⟨j, Finset.mem_cons_self j s⟩ (Complex.arg ∘ f) := by
           rw [Finset.sup'_cons hs]
 
-/-- The argument of a nonempty upper-half-plane sum is at least the smallest summand argument.-/
+/-- The argument of a nonempty upper-half-plane sum is at least the smallest summand argument.
+@isnad1 id=le.2h3v.s6.437ff3d02f21 from=translated src=- shape=ecc806b5 vocab=94978ec7
+-/
 theorem inf_le_arg_sum_of_semiClosedUpperHalfPlane {ι : Type*}
     {s : Finset ι} (hs : s.Nonempty) {f : ι → ℂ}
     (hf : ∀ i ∈ s, f i ∈ semiClosedUpperHalfPlane) :
@@ -107,14 +115,18 @@ theorem inf_le_arg_sum_of_semiClosedUpperHalfPlane {ι : Type*}
         _ ≤ Complex.arg (f j + ∑ i ∈ s, f i) :=
           min_arg_le_arg_add hfj (sum_mem_semiClosedUpperHalfPlane hs hfs)
 
-/-- Nondecreasing arguments give a nonnegative planar cross product.-/
+/-- Nondecreasing arguments give a nonnegative planar cross product.
+@isnad1 id=le.4h2v.s6.5d1106f5c524 from=translated src=- shape=45d3147a vocab=2b9c73d5
+-/
 theorem cross_nonneg_of_arg_le {z w : ℂ}
     (hzIm : 0 ≤ z.im) (hz : z ≠ 0) (hw : w ≠ 0)
     (harg : Complex.arg z ≤ Complex.arg w) :
     0 ≤ z.re * w.im - z.im * w.re := by
   simpa [phaseCross] using phaseCross_nonneg_of_arg_le hzIm hz hw harg
 
-/-- A nonnegative cross product recovers the argument order in the upper half-plane.-/
+/-- A nonnegative cross product recovers the argument order in the upper half-plane.
+@isnad1 id=le.4h2v.s6.a6103fc21348 from=translated src=- shape=73ab8a9e vocab=b11dae6b
+-/
 theorem arg_le_of_cross_nonneg {z w : ℂ}
     (hz : z ≠ 0) (hw : w ≠ 0) (hwArg : 0 < Complex.arg w)
     (hcross : 0 ≤ z.re * w.im - z.im * w.re) :
@@ -122,7 +134,9 @@ theorem arg_le_of_cross_nonneg {z w : ℂ}
   apply arg_le_of_phaseCross_nonneg hz hw hwArg
   simpa [phaseCross] using hcross
 
-/-- Strictly increasing positive arguments give a positive planar cross product.-/
+/-- Strictly increasing positive arguments give a positive planar cross product.
+@isnad1 id=lt.4h2v.s6.832a5025e34d from=translated src=- shape=9055d7c2 vocab=ad5f24d9
+-/
 theorem cross_pos_of_arg_lt {z w : ℂ}
     (hzArg : 0 < Complex.arg z) (hz : z ≠ 0) (hw : w ≠ 0)
     (harg : Complex.arg z < Complex.arg w) :

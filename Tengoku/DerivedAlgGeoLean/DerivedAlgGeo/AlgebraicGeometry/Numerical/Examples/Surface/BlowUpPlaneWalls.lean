@@ -94,7 +94,9 @@ def mukaiBasis :
 
 /-- **The `ℤ`-span of that basis is the integral Mukai extension** of the
 Néron--Severi lattice `ℤH ⊕ ℤE₁ ⊕ ℤE₂`.  This is what makes the counts below
-statements about integral classes.-/
+statements about integral classes.
+@isnad1 id=eq.0h0v.s9.c71592f46fe6 from=translated src=- shape=b6536f06 vocab=22f7d496
+-/
 theorem span_mukaiBasis :
     Submodule.span ℤ (Set.range mukaiBasis)
       = Mukai.integralExtension (Submodule.span ℤ (Set.range divisorBasis)) :=
@@ -106,7 +108,9 @@ theorem span_mukaiBasis :
 the plane of `exp(B + iω)`**, on the two-point blow-up.
 
 The only hypothesis is `ω² > 0`.  On this surface `hodgeDefinite` needs nothing
-more, so neither does the finiteness.-/
+more, so neither does the finiteness.
+@isnad1 id=finite.1h2v.s10.13055633fd13 from=translated src=- shape=44795270 vocab=69ae7583
+-/
 theorem finite_walls_through_expPlane (B omega : Divisor)
     (homega : 0 < divisorSpace.pair omega omega) :
     {δ : Mukai.RealExtension Divisor |
@@ -123,13 +127,18 @@ theorem finite_walls_through_expPlane (B omega : Divisor)
 def ampleBox (omega₀ : Divisor) (b₀ t₀ t₁ : ℝ) : Set (Divisor × Divisor) :=
   Metric.closedBall (0 : Divisor) b₀ ×ˢ ((fun t : ℝ => t • omega₀) '' Set.Icc t₀ t₁)
 
+/--
+@isnad1 id=iscompac.0h4v.s6.ac7b05b8468c from=translated src=- shape=08f88f54 vocab=55505240
+-/
 theorem isCompact_ampleBox (omega₀ : Divisor) (b₀ t₀ t₁ : ℝ) :
     IsCompact (ampleBox omega₀ b₀ t₀ t₁) :=
   (isCompact_closedBall _ _).prod
     (isCompact_Icc.image (by continuity))
 
 /-- On the family `ω²` stays positive, because scaling a class of positive
-square by `t ≥ t₀ > 0` scales the square by `t²`.-/
+square by `t ≥ t₀ > 0` scales the square by `t²`.
+@isnad1 id=lt.3h5v.s7.5618f9ab214d from=translated src=- shape=73ad2a6d vocab=09aa2d96
+-/
 theorem omega_sq_pos_on_ampleBox {omega₀ : Divisor}
     (h₀ : 0 < divisorSpace.pair omega₀ omega₀) {b₀ t₀ t₁ : ℝ} (ht₀ : 0 < t₀) :
     ∀ p ∈ ampleBox omega₀ b₀ t₀ t₁, 0 < divisorSpace.pair p.2 p.2 := by
@@ -146,7 +155,9 @@ theorem omega_sq_pos_on_ampleBox {omega₀ : Divisor}
 /-! ### The region-wise count, and the chamber -/
 
 /-- **The region-wise count.**  Only finitely many spherical classes of the
-lattice have a wall meeting the family.-/
+lattice have a wall meeting the family.
+@isnad1 id=finite.2h4v.s10.84791c4c91c1 from=translated src=- shape=095ca4cc vocab=85ec9d15
+-/
 theorem finite_walls_meeting_ampleBox {omega₀ : Divisor}
     (h₀ : 0 < divisorSpace.pair omega₀ omega₀) (b₀ : ℝ) {t₀ : ℝ} (t₁ : ℝ) (ht₀ : 0 < t₀) :
     {δ : Mukai.RealExtension Divisor |
@@ -168,7 +179,9 @@ def boxRegion {omega₀ : Divisor} (h₀ : 0 < divisorSpace.pair omega₀ omega�
     (isCompact_ampleBox omega₀ b₀ t₀ t₁) (omega_sq_pos_on_ampleBox h₀ ht₀)
 
 /-- **Finitely many spherical classes have a wall meeting the family**, in the
-`(β, ω)` chart.-/
+`(β, ω)` chart.
+@isnad1 id=finite.2h4v.s8.01fd5f30372e from=translated src=- shape=0a7b32dd vocab=6f01bfaa
+-/
 theorem finite_rayCandidates_ampleBox {omega₀ : Divisor}
     (h₀ : 0 < divisorSpace.pair omega₀ omega₀) (b₀ : ℝ) {t₀ : ℝ} (t₁ : ℝ) (ht₀ : 0 < t₀) :
     (Wall.Spherical.rayCandidates divisorSpace.intersection
@@ -180,7 +193,9 @@ theorem finite_rayCandidates_ampleBox {omega₀ : Divisor}
 finitely many classes.**
 
 This is the chamber decomposition on the model where the Hodge input is not
-vacuous.  It says nothing about semistable objects.-/
+vacuous.  It says nothing about semistable objects.
+@isnad1 id=eq.2h4v.s9.de459765bcd9 from=translated src=- shape=efb888d5 vocab=e51ba790
+-/
 theorem signedRayRegularLocus_inter_ampleBox {omega₀ : Divisor}
     (h₀ : 0 < divisorSpace.pair omega₀ omega₀) (b₀ : ℝ) {t₀ : ℝ} (t₁ : ℝ) (ht₀ : 0 < t₀) :
     Wall.Spherical.signedRayRegularLocus divisorSpace.intersection
@@ -210,6 +225,9 @@ def intForm : IntLattice →ₗ[ℤ] IntLattice →ₗ[ℤ] ℤ :=
     (fun _ _ _ => by simp [Pi.add_apply]; ring)
     (fun _ _ _ => by simp [Pi.smul_apply]; ring)
 
+/--
+@isnad1 id=eq.0h2v.s9.85a375faa565 from=translated src=- shape=b96fbcb1 vocab=8d1e62ac
+-/
 @[simp]
 theorem intForm_apply (x y : IntLattice) :
     intForm x y = x 0 * y 0 - x 1 * y 1 - x 2 * y 2 := rfl
@@ -222,6 +240,9 @@ def intLatticeMap : IntLattice →+ Divisor :=
       intro x y
       ext <;> simp <;> push_cast <;> ring)
 
+/--
+@isnad1 id=eq.0h1v.s7.d924676628e8 from=translated src=- shape=19b396cb vocab=4ca5f81b
+-/
 @[simp]
 theorem intLatticeMap_apply (x : IntLattice) :
     intLatticeMap x = (((x 0 : ℤ) : ℝ), ((x 1 : ℤ) : ℝ), ((x 2 : ℤ) : ℝ)) := rfl
@@ -244,14 +265,18 @@ def integralComparison :
     ring
 
 /-- **Integral and real sphericality agree in the `(β, ω)` chart**, on the
-two-point blow-up.-/
+two-point blow-up.
+@isnad1 id=iff.0h1v.s7.62a83683a76d from=translated src=- shape=f60f3c27 vocab=0243478b
+-/
 theorem isSpherical_map_iff (v : Mukai.MukaiLattice IntLattice) :
     Wall.Spherical.IsSpherical divisorSpace.intersection (integralComparison.map v)
       ↔ Mukai.IsSpherical intForm v :=
   Wall.Spherical.isSpherical_map_iff integralComparison v
 
 /-- The realized anticanonical class is the image of the integral class
-`3H - E₁ - E₂`, so the ray the chamber statements use is an integral one.-/
+`3H - E₁ - E₂`, so the ray the chamber statements use is an integral one.
+@isnad1 id=eq.0h0v.s7.66f84c5f82aa from=translated src=- shape=bf1e5a32 vocab=63f0cb66
+-/
 theorem intLatticeMap_antiCanonical :
     intLatticeMap ![3, -1, -1]
       = numericalRealization.realizePolarization antiCanonicalPolarization := by
@@ -261,7 +286,9 @@ theorem intLatticeMap_antiCanonical :
 /-! ### The anticanonical ray -/
 
 /-- The realized anticanonical class `-K = 3H - E₁ - E₂` has square `7`, so it
-is an admissible `ω₀`.-/
+is an admissible `ω₀`.
+@isnad1 id=lt.0h0v.s7.e013ed2329dc from=translated src=- shape=76022db3 vocab=a6fd07cc
+-/
 theorem antiCanonical_sq_pos :
     0 < divisorSpace.pair
       (numericalRealization.realizePolarization antiCanonicalPolarization)
@@ -269,7 +296,9 @@ theorem antiCanonical_sq_pos :
   hodgeDefinite_antiCanonical.H_square_pos
 
 /-- The chamber decomposition along the anticanonical ray, with every hypothesis
-discharged and nothing supplied.-/
+discharged and nothing supplied.
+@isnad1 id=finite.1h3v.s10.874b393ab9eb from=translated src=- shape=2dc3048a vocab=510fcfd3
+-/
 theorem finite_walls_meeting_antiCanonicalBox (b₀ : ℝ) {t₀ : ℝ} (t₁ : ℝ) (ht₀ : 0 < t₀) :
     {δ : Mukai.RealExtension Divisor |
         PeriodDomain.IsSphericalClass (Mukai.realForm divisorSpace.intersection) δ ∧

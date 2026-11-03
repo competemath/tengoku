@@ -53,7 +53,9 @@ noncomputable abbrev chiStructureSheaf : ℚ := V.structureSheafEulerCharacteris
 
 /-- **Riemann–Roch for threefolds.**
 
-`χ(E) = rank(E) · ∫_X td₃(X) + ∫_X c₁(E)·td₂(X) + ∫_X ch₂(E)·td₁(X) + ∫_X ch₃(E)`.-/
+`χ(E) = rank(E) · ∫_X td₃(X) + ∫_X c₁(E)·td₂(X) + ∫_X ch₂(E)·td₁(X) + ∫_X ch₃(E)`.
+@isnad1 id=eq.1h4v.s9.72cb008a75aa from=translated src=- shape=ab62c2ad vocab=2e73763c
+-/
 theorem chi_eq (hV : V.SatisfiesHRR) (E : N) :
     (V.chi E : ℚ)
       = (V.rank E : ℚ) * V.ring.degree (V.toddComp 3)
@@ -95,7 +97,9 @@ structure IsCalabiYau : Prop where
 Two of the four terms of `Threefold.chi_eq` vanish, and they vanish for different reasons:
 the rank term because `∫td₃ = 0`, the `ch₂` term because `td₁ = 0`. Note that the `ch₂`
 term goes as well as the rank term — `td₁ = 0` kills it, so the collapsed formula has two
-terms, not three.-/
+terms, not three.
+@isnad1 id=eq.2h4v.s8.66bdfb73f1ad from=translated src=- shape=885856bf vocab=01e8933a
+-/
 theorem chi_eq (hHRR : V.SatisfiesHRR) (hCY : IsCalabiYau V) (E : N) :
     (V.chi E : ℚ)
       = V.ring.degree (V.chComp E 1 * V.toddComp 2)
@@ -108,7 +112,9 @@ theorem chi_eq (hHRR : V.SatisfiesHRR) (hCY : IsCalabiYau V) (E : N) :
 the same `ch₃` have the same Euler characteristic however their ranks differ.
 
 This is the concrete reason the Bridgeland-stability side wants the Calabi–Yau case
-separately — the central charge cannot be normalised against `χ` alone.-/
+separately — the central charge cannot be normalised against `χ` alone.
+@isnad1 id=eq.4h5v.s7.952a51ad836b from=translated src=- shape=4351b743 vocab=19969971
+-/
 theorem chi_eq_of_chComp_eq (E F : N)
     (hHRR : V.SatisfiesHRR) (hCY : IsCalabiYau V)
     (h₁ : V.chComp E 1 = V.chComp F 1)

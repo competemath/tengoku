@@ -25,7 +25,9 @@ variable {C D : Type u} [Category.{u} C] [Category.{u} D]
   {I : Type*} {U : I → C}
 
 /-- An equivalence whose forward functor preserves covers sends a family covering the terminal
-object to a family covering the terminal object.-/
+object to a family covering the terminal object.
+@isnad1 id=coversto.2h7v.s6.f219039108c2 from=translated src=- shape=1f4fb189 vocab=91f5a271
+-/
 lemma CoversTop.map_equivalence :
     (hU : J.CoversTop U) → (e : _root_.CategoryTheory.Equivalence C D) →
       CoverPreserving J K e.functor →

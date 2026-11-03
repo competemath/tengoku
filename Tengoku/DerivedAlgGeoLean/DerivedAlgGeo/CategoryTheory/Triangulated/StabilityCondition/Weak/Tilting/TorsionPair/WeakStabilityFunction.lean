@@ -65,11 +65,17 @@ def hnTorsProperty (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithT
 def hnFreeProperty (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithTop ℝ) :
     ObjectProperty A := fun E => E ∈ hnFree W μ₀
 
+/--
+@isnad1 id=isclosed.0h3v.s6.20de3affe470 from=translated src=- shape=af5ee4b9 vocab=c697a199
+-/
 instance hnTorsProperty_isClosedUnderIsomorphisms
     (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithTop ℝ) :
     (hnTorsProperty W μ₀).IsClosedUnderIsomorphisms :=
   ⟨fun e h => hnTors_of_iso e h⟩
 
+/--
+@isnad1 id=isclosed.0h3v.s6.f6e6d304da31 from=translated src=- shape=af5ee4b9 vocab=85b9bc13
+-/
 instance hnFreeProperty_isClosedUnderIsomorphisms
     (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithTop ℝ) :
     (hnFreeProperty W μ₀).IsClosedUnderIsomorphisms :=
@@ -83,11 +89,17 @@ def hnTorsionPair (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithTo
   hom_eq_zero _ _ hX hY f := hom_eq_zero_of_mem_hnTors_of_mem_hnFree hHN hX hY f
   exists_shortExact E := exists_shortExact_hnTors_hnFree hHN (μ₀ := μ₀) E
 
+/--
+@isnad1 id=eq.1h3v.s6.b139e44d730c from=translated src=- shape=f38afcc1 vocab=a14e25d5
+-/
 @[simp]
 theorem hnTorsionPair_tors (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithTop ℝ)
     (hHN : W.HasHNProperty) :
     (hnTorsionPair W μ₀ hHN).tors = hnTorsProperty W μ₀ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.6b852900fca5 from=translated src=- shape=f38afcc1 vocab=c09b99e7
+-/
 @[simp]
 theorem hnTorsionPair_free (W : WeakStabilityFunctionOn (abelianDatum A)) (μ₀ : WithTop ℝ)
     (hHN : W.HasHNProperty) :

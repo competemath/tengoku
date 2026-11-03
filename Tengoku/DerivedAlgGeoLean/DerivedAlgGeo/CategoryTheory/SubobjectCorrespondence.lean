@@ -76,7 +76,9 @@ subobject.
 
 Stated here so this file depends on Mathlib alone; the identical statement in
 `Uniqueness/SubobjectLattice.lean` is charge-free too, but lives under `StabilityCondition`,
-which a `CategoryTheory` leaf must not import.-/
+which a `CategoryTheory` leaf must not import.
+@isnad1 id=le.1h4v.s8.a6e00c92bc3c from=translated src=- shape=908beb0a vocab=f467a5f6
+-/
 theorem le_of_arrow_comp_cokernel_zero {E : A} {B M : Subobject E}
     (h : B.arrow ≫ cokernel.π M.arrow = 0) : B ≤ M := by
   have hkernel : kernelSubobject (cokernel.π M.arrow) = M := by
@@ -92,7 +94,9 @@ theorem le_of_arrow_comp_cokernel_zero {E : A} {B M : Subobject E}
 /-- The image of `S` in `E/M` pulls back to something containing `S`.
 
 This half is formal — it is the unit of the `exists ⊣ pullback` adjunction, here written out
-through the pullback square — and the existing charge-based proof already had it charge-free.-/
+through the pullback square — and the existing charge-based proof already had it charge-free.
+@isnad1 id=le.0h4v.s9.f0858992904f from=translated src=- shape=10d63751 vocab=5aae8518
+-/
 theorem le_pullback_imageSubobject {E : A} (M S : Subobject E) :
     S ≤ (Subobject.pullback (cokernel.π M.arrow)).obj
       (imageSubobject (S.arrow ≫ cokernel.π M.arrow)) :=
@@ -113,7 +117,9 @@ For `M ≤ S`, pulling the image of `S` in `E/M` back along the quotient map rec
 The containment `S ≤ pullback (image …)` is formal.  The reverse is the chase: a pseudoelement
 of the pullback agrees with one of `S` after applying the quotient map, so their `sub_of_eq_image`
 difference dies in `E/M`, hence comes from `M`, hence from `S` — and `S`'s own cokernel kills
-it.  `M ≤ S` is used exactly once, at that last step, and it is the only place it is needed.-/
+it.  `M ≤ S` is used exactly once, at that last step, and it is the only place it is needed.
+@isnad1 id=eq.1h4v.s9.b9110c80b33c from=translated src=- shape=a8b017c9 vocab=5aae8518
+-/
 theorem pullback_imageSubobject_eq {E : A} {M S : Subobject E} (hMS : M ≤ S) :
     (Subobject.pullback (cokernel.π M.arrow)).obj
       (imageSubobject (S.arrow ≫ cokernel.π M.arrow)) = S := by
@@ -161,7 +167,9 @@ Harder--Narasimhan truncation needs. -/
 variable {E : A}
 
 /-- Every pullback of a subobject of `E/M` contains `M`: the composite `M → E → E/M` is zero,
-so it lifts through the pullback.-/
+so it lifts through the pullback.
+@isnad1 id=le.0h4v.s8.ee34edf82022 from=translated src=- shape=20184253 vocab=00e5d79c
+-/
 theorem le_pullback_cokernel (M : Subobject E) (B : Subobject (cokernel M.arrow)) :
     M ≤ (Subobject.pullback (cokernel.π M.arrow)).obj B :=
   Subobject.le_of_comm
@@ -170,13 +178,17 @@ theorem le_pullback_cokernel (M : Subobject E) (B : Subobject (cokernel M.arrow)
         (by rw [zero_comp, cokernel.condition])))
     ((Subobject.isPullback (cokernel.π M.arrow) B).isLimit.fac _ WalkingCospan.right)
 
-/-- The restricted quotient map out of a pullback is epi.-/
+/-- The restricted quotient map out of a pullback is epi.
+@isnad1 id=epi.0h4v.s9.85474b600bf7 from=translated src=- shape=7addfe4e vocab=9abf8934
+-/
 instance epi_pullbackπ (M : Subobject E) (B : Subobject (cokernel M.arrow)) :
     Epi (Subobject.pullbackπ (cokernel.π M.arrow) B) := by
   rw [← (Subobject.isPullback (cokernel.π M.arrow) B).isoPullback_hom_fst]
   infer_instance
 
-/-- The kernel inclusion followed by the restricted quotient map is zero.-/
+/-- The kernel inclusion followed by the restricted quotient map is zero.
+@isnad1 id=eq.0h4v.s11.f4a7c77564e4 from=translated src=- shape=af8e2f46 vocab=bd7feea9
+-/
 theorem ofLE_pullbackπ_cokernel_eq_zero (M : Subobject E)
     (B : Subobject (cokernel M.arrow)) :
     Subobject.ofLE M _ (le_pullback_cokernel M B) ≫
@@ -186,7 +198,9 @@ theorem ofLE_pullbackπ_cokernel_eq_zero (M : Subobject E)
   rw [(Subobject.isPullback (cokernel.π M.arrow) B).w, ← Category.assoc,
     Subobject.ofLE_arrow, cokernel.condition]
 
-/-- **`0 → M → (pullback p).obj B → B → 0` is exact.**-/
+/-- **`0 → M → (pullback p).obj B → B → 0` is exact.**
+@isnad1 id=shortexa.0h4v.s10.f671ccc6a489 from=translated src=- shape=27d529f7 vocab=29130c91
+-/
 theorem shortExact_ofLE_pullbackπ (M : Subobject E)
     (B : Subobject (cokernel M.arrow)) :
     (ShortComplex.mk (Subobject.ofLE M _ (le_pullback_cokernel M B))
@@ -215,7 +229,9 @@ theorem shortExact_ofLE_pullbackπ (M : Subobject E)
         WalkingParallelPair.zero⟩)
 
 /-- Pulling back is natural in the subobject: the inclusion of pullbacks commutes with the
-restricted quotient maps.-/
+restricted quotient maps.
+@isnad1 id=eq.1h5v.s11.4cae7a71a6e3 from=translated src=- shape=defc5afd vocab=c4d47ffb
+-/
 theorem ofLE_pullback_comp_pullbackπ (M : Subobject E)
     {B₁ B₂ : Subobject (cokernel M.arrow)} (h : B₁ ≤ B₂) :
     Subobject.ofLE _ _ (Functor.monotone (Subobject.pullback (cokernel.π M.arrow)) h) ≫

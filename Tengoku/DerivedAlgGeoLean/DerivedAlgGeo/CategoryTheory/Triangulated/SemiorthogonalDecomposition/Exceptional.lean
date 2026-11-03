@@ -85,7 +85,9 @@ namespace CategoryTheory
 /-- The `algebraMap` into an endomorphism ring, unfolded to the `smul` form
 every later proof works with. A pure linear-category fact — no shift or
 triangulation enters — discharged from `Algebra.algebraMap_eq_smul_one` and
-`End.one_def`.-/
+`End.one_def`.
+@isnad1 id=eq.0h4v.s8.0d96b70b953b from=translated src=- shape=913a01b4 vocab=ed42ec0a
+-/
 theorem algebraMap_end_apply {C : Type u} [Category.{v} C] [Preadditive C]
     {R : Type*} [CommSemiring R] [Linear R C] (c : R) (E : C) :
     algebraMap R (End E) c = c • 𝟙 E := by
@@ -118,13 +120,17 @@ include h
 
 /-- Every endomorphism of an exceptional object is a scalar multiple of the
 identity — surjectivity of `algebraMap`, read through
-`algebraMap_end_apply`.-/
+`algebraMap_end_apply`.
+@isnad1 id=ex.1h4v.s8.dc88a3c374b7 from=translated src=- shape=8087d2cd vocab=76158b0d
+-/
 theorem end_eq_smul_id (f : End E) : ∃ c : k, f = c • 𝟙 E := by
   obtain ⟨c, hc⟩ := h.algebraMap_bijective.2 f
   exact ⟨c, by rw [← hc, algebraMap_end_apply]⟩
 
 /-- An exceptional object is nonzero: a zero object has `End = 0`, so
-`algebraMap` would identify `1` and `0` in `k`, against injectivity.-/
+`algebraMap` would identify `1` and `0` in `k`, against injectivity.
+@isnad1 id=not.1h3v.s5.8ec8878b2dcb from=translated src=- shape=0b945fa9 vocab=1a0f9f6a
+-/
 theorem not_isZero : ¬ IsZero E := by
   intro hE
   have h10 : algebraMap k (End E) 1 = algebraMap k (End E) 0 := by
@@ -141,7 +147,9 @@ theorem not_isZero : ¬ IsZero E := by
 that a field has only trivial idempotents. This is indecomposability in the
 element form a mutation or decomposition argument consumes; no abstract
 `Indecomposable` class is introduced, because nothing here would inhabit
-it.-/
+it.
+@isnad1 id=or.2h4v.s7.e4f2075b12e7 from=translated src=- shape=44a2d2b6 vocab=142f85e3
+-/
 theorem end_eq_zero_or_eq_one_of_mul_self (e : End E) (he : e * e = e) :
     e = 0 ∨ e = 1 := by
   obtain ⟨c, hc⟩ := h.algebraMap_bijective.2 e
@@ -153,7 +161,9 @@ theorem end_eq_zero_or_eq_one_of_mul_self (e : End E) (he : e * e = e) :
 
 /-- An exceptional object is not isomorphic to any nonzero shift of itself:
 the forward half of such an isomorphism vanishes by the shift clause, so
-`𝟙 E = e.hom ≫ e.inv = 0` and `E` is zero, against `not_isZero`.-/
+`𝟙 E = e.hom ≫ e.inv = 0` and `E` is zero, against `not_isZero`.
+@isnad1 id=not.2h4v.s6.7258615eb0df from=translated src=- shape=cd732dd6 vocab=59b2a5a0
+-/
 theorem not_nonempty_iso_shift (n : ℤ) (hn : n ≠ 0) : ¬ Nonempty (E ≅ E⟦n⟧) := by
   rintro ⟨e⟩
   refine h.not_isZero ((IsZero.iff_id_eq_zero E).mpr ?_)
@@ -162,7 +172,9 @@ theorem not_nonempty_iso_shift (n : ℤ) (hn : n ≠ 0) : ¬ Nonempty (E ≅ E�
 /-- Every map between two distinct shifts of an exceptional object vanishes.
 Obtained by transporting to `E ⟶ E⟦b - a⟧` along the shift by `-a`; this
 needs only that `shiftFunctor C (-a)` is an equivalence, not linearity or
-additivity, and it is the exact form the collection layer consumes.-/
+additivity, and it is the exact form the collection layer consumes.
+@isnad1 id=eq.2h6v.s7.1ecba8ad5264 from=translated src=- shape=b67a4a8c vocab=35db9171
+-/
 theorem hom_shift_shift_eq_zero (a b : ℤ) (hab : a ≠ b) (f : E⟦a⟧ ⟶ E⟦b⟧) :
     f = 0 := by
   have hne : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm hab)
@@ -188,7 +200,9 @@ theorem hom_shift_shift_eq_zero (a b : ℤ) (hab : a ≠ b) (f : E⟦a⟧ ⟶ E�
 explicit hypothesis at this pin — see the module docstring — because without
 it `algebraMap` bijectivity does not move: the transport identifies
 `algebraMap` into `End (E⟦m⟧)` with the shift functor's action on `End E`,
-which is a `k`-algebra map only when the functor is `k`-linear.-/
+which is a `k`-algebra map only when the functor is `k`-linear.
+@isnad1 id=isexcept.1h4v.s6.1eb8f3018479 from=translated src=- shape=9fc903a1 vocab=980b9110
+-/
 theorem shift [∀ n : ℤ, (shiftFunctor C n).Linear k] (m : ℤ) :
     IsExceptional k (E⟦m⟧) := by
   have hcomp : ∀ c : k,
@@ -212,7 +226,9 @@ The functor's linearity is an assumption for the same reason as in `shift`.
 Nothing else is assumed of the target: neither clause consumes a
 triangulation, additivity of the target's shifts, or a zero object, so the
 adapter is usable before any of those are assembled — which is also why the
-issue's `[e.functor.IsTriangulated]` hypothesis is deliberately absent.-/
+issue's `[e.functor.IsTriangulated]` hypothesis is deliberately absent.
+@isnad1 id=isexcept.1h5v.s7.57c55cee10ec from=translated src=- shape=eede9594 vocab=22da2d61
+-/
 theorem of_equivalence {D : Type*} [Category.{v} D] [Preadditive D]
     [Linear k D] [HasShift D ℤ] (e : C ≌ D)
     [e.functor.CommShift ℤ] [e.functor.Additive] [e.functor.Linear k] :

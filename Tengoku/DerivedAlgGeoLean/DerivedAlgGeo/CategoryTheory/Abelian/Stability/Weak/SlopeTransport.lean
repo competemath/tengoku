@@ -57,7 +57,9 @@ namespace CategoryTheory.Triangulated
 variable {A : Type u₁} [Category.{v₁} A] [Abelian A]
 variable {B : Type u₂} [Category.{v₂} B] [Abelian B]
 
-/-- An equivalence reflects nonzero objects: the inverse of a nonzero object is nonzero.-/
+/-- An equivalence reflects nonzero objects: the inverse of a nonzero object is nonzero.
+@isnad1 id=not.1h4v.s5.e5f592165f84 from=translated src=- shape=5ab37df2 vocab=9f3f4edf
+-/
 theorem not_isZero_inverse_obj (e : A ≌ B) {E : B} (hE : ¬IsZero E) :
     ¬IsZero (e.inverse.obj E) := by
   intro hz
@@ -82,43 +84,68 @@ def congr : WeakSlopeData B where
       AddMonoidHom.coe_coe, K₀Ab.congr_symm_of] at hrank ⊢
     exact D.degree_nonneg_of_rank_zero _ (not_isZero_inverse_obj e hE) hrank
 
+/--
+@isnad1 id=eq.0h5v.s6.0fc62eb5a3fd from=translated src=- shape=774fce14 vocab=0419dd76
+-/
 @[simp]
 theorem congr_rank (E : B) : (D.congr e).rank E = D.rank (e.inverse.obj E) := by
   simp [congr, rank]
 
+/--
+@isnad1 id=eq.0h5v.s6.7243ec244cb8 from=translated src=- shape=774fce14 vocab=e1a7217e
+-/
 @[simp]
 theorem congr_degree (E : B) : (D.congr e).degree E = D.degree (e.inverse.obj E) := by
   simp [congr, degree]
 
 /-- The reading a consumer starting from an object of `A` wants. It is the unit isomorphism, not
 `rfl`. It is deliberately not a `simp` lemma: `congr_rank` already rewrites the left-hand side to
-the `e.inverse` form, so both cannot fire.-/
+the `e.inverse` form, so both cannot fire.
+@isnad1 id=eq.0h5v.s6.31e15f9f5c5f from=translated src=- shape=fd3f22b9 vocab=69772fe9
+-/
 theorem congr_rank_functor (X : A) : (D.congr e).rank (e.functor.obj X) = D.rank X := by
   rw [congr_rank]
   exact D.rank_iso (e.unitIso.app X).symm
 
+/--
+@isnad1 id=eq.0h5v.s6.fad94176cc97 from=translated src=- shape=fd3f22b9 vocab=39ae4c9e
+-/
 theorem congr_degree_functor (X : A) : (D.congr e).degree (e.functor.obj X) = D.degree X := by
   rw [congr_degree]
   exact D.degree_iso (e.unitIso.app X).symm
 
+/--
+@isnad1 id=eq.0h5v.s6.18a46906684b from=translated src=- shape=774fce14 vocab=8334ba22
+-/
 @[simp]
 theorem congr_charge (E : B) : (D.congr e).charge E = D.charge (e.inverse.obj E) := by
   apply Complex.ext <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s6.501cc54e9720 from=translated src=- shape=fd3f22b9 vocab=279e359b
+-/
 theorem congr_charge_functor (X : A) : (D.congr e).charge (e.functor.obj X) = D.charge X := by
   apply Complex.ext
   · simp only [charge_re, congr_degree_functor]
   · simp only [charge_im, congr_rank_functor]
 
+/--
+@isnad1 id=eq.0h5v.s6.58d5826df315 from=translated src=- shape=774fce14 vocab=4157b000
+-/
 @[simp]
 theorem congr_slope (E : B) : (D.congr e).slope E = D.slope (e.inverse.obj E) := by
   simp only [slope, congr_rank, congr_degree]
 
+/--
+@isnad1 id=eq.0h5v.s6.4fa2c213dcbd from=translated src=- shape=fd3f22b9 vocab=a0df1004
+-/
 theorem congr_slope_functor (X : A) : (D.congr e).slope (e.functor.obj X) = D.slope X := by
   simp only [slope, congr_rank_functor, congr_degree_functor]
 
 /-- The honest slope transports too. The two cases are rank zero, where both sides are `⊤`, and
-positive rank, where both sides are the coerced ratio.-/
+positive rank, where both sides are the coerced ratio.
+@isnad1 id=eq.0h5v.s6.2f090cd422bf from=translated src=- shape=79e8a32f vocab=b121fc35
+-/
 @[simp]
 theorem congr_topSlope (E : B) : (D.congr e).topSlope E = D.topSlope (e.inverse.obj E) := by
   have hrank : (D.congr e).rank E = D.rank (e.inverse.obj E) := congr_rank D e E
@@ -128,6 +155,9 @@ theorem congr_topSlope (E : B) : (D.congr e).topSlope E = D.topSlope (e.inverse.
   · rw [(D.congr e).topSlope_of_rank_pos h,
       D.topSlope_of_rank_pos (by rw [← hrank]; exact h), congr_slope]
 
+/--
+@isnad1 id=eq.0h5v.s6.d0fccbcbd0f4 from=translated src=- shape=1bdc0ac7 vocab=ca81a3f3
+-/
 theorem congr_topSlope_functor (X : A) :
     (D.congr e).topSlope (e.functor.obj X) = D.topSlope X := by
   have hrank : (D.congr e).rank (e.functor.obj X) = D.rank X := congr_rank_functor D e X
@@ -137,12 +167,16 @@ theorem congr_topSlope_functor (X : A) :
   · rw [(D.congr e).topSlope_of_rank_pos h,
       D.topSlope_of_rank_pos (by rw [← hrank]; exact h), congr_slope_functor]
 
-/-- An equivalence carries nonzero objects to nonzero objects.-/
+/-- An equivalence carries nonzero objects to nonzero objects.
+@isnad1 id=not.1h4v.s5.ff39208c69b3 from=translated src=- shape=80dfe002 vocab=ba567088
+-/
 theorem not_isZero_functor_obj {Z : A} (hZ : ¬IsZero Z) : ¬IsZero (e.functor.obj Z) := by
   intro hz
   exact hZ ((e.inverse.map_isZero hz).of_iso (e.unitIso.app Z))
 
-/-- **The slope of a transported subobject is the original slope.**-/
+/-- **The slope of a transported subobject is the original slope.**
+@isnad1 id=eq.0h6v.s7.9cbfad98d879 from=translated src=- shape=5bfa48b0 vocab=be004a7b
+-/
 theorem congr_topSlope_mapFunctor {Z : A} (P : Subobject Z)
     [e.functor.PreservesMonomorphisms] :
     (D.congr e).topSlope
@@ -158,7 +192,9 @@ theorem congr_topSlope_mapFunctor {Z : A} (P : Subobject Z)
 /-- **Semistability transports along an equivalence.**
 
 Every subobject of the image is the image of a subobject, because `Subobject.mapEquivalence` is an
-order isomorphism and so surjective; its slope is the original slope.-/
+order isomorphism and so surjective; its slope is the original slope.
+@isnad1 id=issemist.1h5v.s6.5a1909e86586 from=translated src=- shape=3157ab85 vocab=94400f90
+-/
 theorem congr_isSemistable [e.functor.PreservesMonomorphisms]
     [e.inverse.PreservesMonomorphisms] {Z : A}
     (h : D.toWeakStabilityFunction.IsSemistable Z) :

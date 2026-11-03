@@ -57,7 +57,9 @@ noncomputable abbrev chiStructureSheaf : ℚ := V.structureSheafEulerCharacteris
 /-- **Riemann–Roch for fourfolds.**
 
 `χ(E) = rank(E) · ∫_X td₄(X) + ∫_X c₁(E)·td₃(X) + ∫_X ch₂(E)·td₂(X) + ∫_X ch₃(E)·td₁(X)
-+ ∫_X ch₄(E)`.-/
++ ∫_X ch₄(E)`.
+@isnad1 id=eq.1h4v.s9.e8584964b3be from=translated src=- shape=00d55e0e vocab=2e73763c
+-/
 theorem chi_eq (hV : V.SatisfiesHRR) (E : N) :
     (V.chi E : ℚ)
       = (V.rank E : ℚ) * V.ring.degree (V.toddComp 4)
@@ -105,7 +107,9 @@ structure IsCalabiYau : Prop where
 `χ(E) = 2·rank(E) + ∫_X ch₂(E)·td₂(X) + ∫_X ch₄(E)`.
 
 Two of the five terms of `Fourfold.chi_eq` vanish, both because an odd Todd component does;
-the rank term survives with the coefficient `∫td₄ = 2`.-/
+the rank term survives with the coefficient `∫td₄ = 2`.
+@isnad1 id=eq.2h4v.s8.00320cbdba95 from=translated src=- shape=3ea79eee vocab=c25d9586
+-/
 theorem chi_eq (hHRR : V.SatisfiesHRR) (hCY : IsCalabiYau V) (E : N) :
     (V.chi E : ℚ)
       = 2 * (V.rank E : ℚ)

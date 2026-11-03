@@ -112,10 +112,14 @@ variable {C : Correspondence 𝒳 𝒴 𝒵} {C' : Correspondence 𝒴 𝒳 𝒵
   (L : LeftAdjointKernelData C C' K)
 
 include L in
-/-- The transform with kernel `K` is a right adjoint.-/
+/-- The transform with kernel `K` is a right adjoint.
+@isnad1 id=isrighta.0h8v.s6.71ff42a1a032 from=translated src=- shape=018a08a5 vocab=06812238
+-/
 theorem isRightAdjoint : (C.transform K).IsRightAdjoint := L.adj.isRightAdjoint
 
-/-- The adjoint kernel's transform is a left adjoint.-/
+/-- The adjoint kernel's transform is a left adjoint.
+@isnad1 id=isleftad.0h8v.s6.bce2b2dcde0d from=translated src=- shape=bcce31b8 vocab=feb79b6e
+-/
 theorem isLeftAdjoint : (C'.transform L.adjKernel).IsLeftAdjoint := L.adj.isLeftAdjoint
 
 /-- **Uniqueness of left adjoints, in kernel form.**
@@ -131,7 +135,9 @@ include L in
 /-- **A left adjoint of a kernel functor is a kernel functor.**
 
 The consequence of `isoOfAdj` phrased against `Correspondence.IsKernelFunctor`.
-Note which correspondence it is a kernel functor *for*: `C'`, not `C`.-/
+Note which correspondence it is a kernel functor *for*: `C'`, not `C`.
+@isnad1 id=iskernel.0h10v.s6.379d37db80e1 from=translated src=- shape=830c111a vocab=be9f00a6
+-/
 theorem isKernelFunctor_of_adj {F : 𝒴 ⥤ 𝒳} (h : F ⊣ C.transform K) :
     C'.IsKernelFunctor F :=
   ⟨L.adjKernel, ⟨L.isoOfAdj h⟩⟩
@@ -152,6 +158,9 @@ def ofKernelIso {K' : 𝒵} (e : K ≅ K') : LeftAdjointKernelData C C' K' where
   adjKernel := L.adjKernel
   adj := L.adj.ofNatIsoRight (C.transformMapIso e)
 
+/--
+@isnad1 id=eq.0h10v.s6.d9b53486dbd0 from=translated src=- shape=bac0efc4 vocab=0072d47f
+-/
 @[simp]
 theorem ofKernelIso_adjKernel {K' : 𝒵} (e : K ≅ K') :
     (L.ofKernelIso e).adjKernel = L.adjKernel := rfl
@@ -161,6 +170,9 @@ def mapAdjKernelIso {Q : 𝒵'} (e : L.adjKernel ≅ Q) : LeftAdjointKernelData 
   adjKernel := Q
   adj := L.adj.ofNatIsoLeft (C'.transformMapIso e)
 
+/--
+@isnad1 id=eq.0h10v.s6.087a6c252782 from=translated src=- shape=708a7971 vocab=34cf7579
+-/
 @[simp]
 theorem mapAdjKernelIso_adjKernel {Q : 𝒵'} (e : L.adjKernel ≅ Q) :
     (L.mapAdjKernelIso e).adjKernel = Q := rfl
@@ -175,6 +187,9 @@ def toRightAdjointKernelData : RightAdjointKernelData C' C L.adjKernel where
   adjKernel := K
   adj := L.adj
 
+/--
+@isnad1 id=eq.0h8v.s6.67e49548928f from=translated src=- shape=802c3093 vocab=3229b668
+-/
 @[simp]
 theorem toRightAdjointKernelData_adjKernel : L.toRightAdjointKernelData.adjKernel = K := rfl
 
@@ -186,10 +201,14 @@ variable {C : Correspondence 𝒳 𝒴 𝒵} {C' : Correspondence 𝒴 𝒳 𝒵
   (R : RightAdjointKernelData C C' K)
 
 include R in
-/-- The transform with kernel `K` is a left adjoint.-/
+/-- The transform with kernel `K` is a left adjoint.
+@isnad1 id=isleftad.0h8v.s6.a93ff5faf6be from=translated src=- shape=69c9cd81 vocab=0cc51495
+-/
 theorem isLeftAdjoint : (C.transform K).IsLeftAdjoint := R.adj.isLeftAdjoint
 
-/-- The adjoint kernel's transform is a right adjoint.-/
+/-- The adjoint kernel's transform is a right adjoint.
+@isnad1 id=isrighta.0h8v.s6.40a5e43d223e from=translated src=- shape=12a2cb25 vocab=b0bd0d74
+-/
 theorem isRightAdjoint : (C'.transform R.adjKernel).IsRightAdjoint := R.adj.isRightAdjoint
 
 /-- **Uniqueness of right adjoints, in kernel form.**  The mirror of
@@ -199,7 +218,9 @@ def isoOfAdj {G : 𝒴 ⥤ 𝒳} (h : C.transform K ⊣ G) : G ≅ C'.transform 
 
 include R in
 /-- **A right adjoint of a kernel functor is a kernel functor**, for the
-opposite correspondence.-/
+opposite correspondence.
+@isnad1 id=iskernel.0h10v.s6.1216d65525d5 from=translated src=- shape=81b86e15 vocab=547a28ca
+-/
 theorem isKernelFunctor_of_adj {G : 𝒴 ⥤ 𝒳} (h : C.transform K ⊣ G) :
     C'.IsKernelFunctor G :=
   ⟨R.adjKernel, ⟨R.isoOfAdj h⟩⟩
@@ -217,6 +238,9 @@ def ofKernelIso {K' : 𝒵} (e : K ≅ K') : RightAdjointKernelData C C' K' wher
   adjKernel := R.adjKernel
   adj := R.adj.ofNatIsoLeft (C.transformMapIso e)
 
+/--
+@isnad1 id=eq.0h10v.s6.f6ae03189c97 from=translated src=- shape=bac0efc4 vocab=d0815074
+-/
 @[simp]
 theorem ofKernelIso_adjKernel {K' : 𝒵} (e : K ≅ K') :
     (R.ofKernelIso e).adjKernel = R.adjKernel := rfl
@@ -226,6 +250,9 @@ def mapAdjKernelIso {Q : 𝒵'} (e : R.adjKernel ≅ Q) : RightAdjointKernelData
   adjKernel := Q
   adj := R.adj.ofNatIsoRight (C'.transformMapIso e)
 
+/--
+@isnad1 id=eq.0h10v.s6.e618fe660751 from=translated src=- shape=708a7971 vocab=e325c9e8
+-/
 @[simp]
 theorem mapAdjKernelIso_adjKernel {Q : 𝒵'} (e : R.adjKernel ≅ Q) :
     (R.mapAdjKernelIso e).adjKernel = Q := rfl
@@ -236,6 +263,9 @@ def toLeftAdjointKernelData : LeftAdjointKernelData C' C R.adjKernel where
   adjKernel := K
   adj := R.adj
 
+/--
+@isnad1 id=eq.0h8v.s6.bc38adb8687f from=translated src=- shape=802c3093 vocab=b3fb4bee
+-/
 @[simp]
 theorem toLeftAdjointKernelData_adjKernel : R.toLeftAdjointKernelData.adjKernel = K := rfl
 

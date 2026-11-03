@@ -81,13 +81,22 @@ requires; `stCharge_toNumClass` below is the identity that forces it.-/
 def toNumClass (E : N) : Wall.NumClass :=
   (Dc.hyperplaneSquare * Dc.rank E, Dc.degree E, Dc.chTwo E)
 
+/--
+@isnad1 id=eq.0h3v.s6.5cff0125ae1a from=translated src=- shape=999a5ba6 vocab=090a836a
+-/
 @[simp]
 theorem toNumClass_rk (E : N) :
     (Dc.toNumClass E).rk = Dc.hyperplaneSquare * Dc.rank E := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.571f786d221b from=translated src=- shape=117a5808 vocab=9d880312
+-/
 @[simp]
 theorem toNumClass_deg (E : N) : (Dc.toNumClass E).deg = Dc.degree E := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.4c8a6447b96f from=translated src=- shape=117a5808 vocab=44a94ee0
+-/
 @[simp]
 theorem toNumClass_ch2 (E : N) : (Dc.toNumClass E).ch2 = Dc.chTwo E := rfl
 
@@ -97,11 +106,16 @@ def toNumClassHom : N →+ Wall.NumClass :=
     intro E F
     simp only [toNumClass, map_add, Prod.mk_add_mk, mul_add])
 
+/--
+@isnad1 id=eq.0h3v.s6.def5c535f4da from=translated src=- shape=9f296ce8 vocab=d1c74cff
+-/
 @[simp]
 theorem toNumClassHom_apply (E : N) : Dc.toNumClassHom E = Dc.toNumClass E := rfl
 
 /-- The alignmentLocus-plane discriminant of the transported triple is the compressed
-discriminant.-/
+discriminant.
+@isnad1 id=eq.0h3v.s4.8ec2c326be90 from=translated src=- shape=74388937 vocab=d0e2a084
+-/
 @[simp]
 theorem discr_toNumClass (E : N) :
     Wall.NumClass.discr (Dc.toNumClass E) = Dc.discr E := by
@@ -111,7 +125,9 @@ theorem discr_toNumClass (E : N) :
 
 /-- **The `(s,t)` charge of the transported triple is the scalar-twisted
 charge.**  This is the identity that makes the whole `(s,t)` development
-available to any compressed coordinates.-/
+available to any compressed coordinates.
+@isnad1 id=eq.0h5v.s7.6ed11ecb13ef from=translated src=- shape=8558e3f5 vocab=53054c70
+-/
 theorem stCharge_toNumClass (b a : ℝ) (E : N) :
     Wall.stCharge b a (Dc.toNumClass E) = (Dc.twistByScalar b).centralCharge a E := by
   apply Complex.ext
@@ -128,10 +144,16 @@ pulled back along the degree-weighted triple.-/
 def stWallFamily : Wall.ChargeFamily (ℝ × ℝ) N :=
   Wall.stChargeFamily.pullback Dc.toNumClassHom
 
+/--
+@isnad1 id=eq.0h4v.s7.4b0df345bc48 from=translated src=- shape=68b347c7 vocab=52212b76
+-/
 @[simp]
 theorem stWallFamily_charge (p : ℝ × ℝ) (E : N) :
     Dc.stWallFamily.charge p E = Wall.stCharge p.1 p.2 (Dc.toNumClass E) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0fe04e3fdb93 from=translated src=- shape=2a7ff4bc vocab=4cb7d30a
+-/
 @[simp]
 theorem stWallFamily_alignmentValue (p : ℝ × ℝ) (E F : N) :
     Dc.stWallFamily.alignmentValue p E F =
@@ -148,7 +170,9 @@ variable (ch : ChernCharacter N D) (S : DivisorSpace D)
 
 /-- **Twisting the character adds to the `B`-field.**  This is
 `exp(-B₀) exp(-B) = exp(-(B₀+B))` read on the central charge, and it is what
-lets a slice absorb its transverse direction into the character.-/
+lets a slice absorb its transverse direction into the character.
+@isnad1 id=eq.0h7v.s7.d4145dafa828 from=translated src=- shape=e294364b vocab=a32fcb43
+-/
 theorem centralCharge_twist (B : D) (P : StabilityParameters D) (E : N) :
     (ch.twist S B).centralCharge S P E =
       ch.centralCharge S ⟨P.B + B, P.omega⟩ E := by
@@ -185,12 +209,17 @@ character, read at `H`.-/
 def sliceCoordinates (ch : ChernCharacter N D) (uu : U) : ChargeCoordinates N :=
   (ch.twist S (T.transverse uu)).coordinatesAt S T.H
 
+/--
+@isnad1 id=eq.0h8v.s7.fbb2928b4502 from=translated src=- shape=98cdeeca vocab=b2ab0566
+-/
 @[simp]
 theorem sliceCoordinates_rank (ch : ChernCharacter N D) (uu : U) (E : N) :
     (T.sliceCoordinates ch uu).rank E = ch.rank E := rfl
 
 /-- The compressed degree does not see the transverse direction, because
-`G(u)` is orthogonal to `H`.-/
+`G(u)` is orthogonal to `H`.
+@isnad1 id=eq.0h8v.s7.50e822e2d696 from=translated src=- shape=8b645f1e vocab=05ce151b
+-/
 @[simp]
 theorem sliceCoordinates_degree (ch : ChernCharacter N D) (uu : U) (E : N) :
     (T.sliceCoordinates ch uu).degree E = S.pair T.H (ch.chOne E) := by
@@ -199,16 +228,25 @@ theorem sliceCoordinates_degree (ch : ChernCharacter N D) (uu : U) (E : N) :
   rw [show S.intersection T.H (T.transverse uu) = 0 from T.orthogonal uu]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s8.807fe40822ea from=translated src=- shape=50a301f2 vocab=7ae929f7
+-/
 @[simp]
 theorem sliceCoordinates_chTwo (ch : ChernCharacter N D) (uu : U) (E : N) :
     (T.sliceCoordinates ch uu).chTwo E =
       ch.chTwo E - S.pair (T.transverse uu) (ch.chOne E)
         + S.pair (T.transverse uu) (T.transverse uu) * ch.rank E / 2 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.e2d0a3ac6f76 from=translated src=- shape=f2f6afbd vocab=e4bd7cb4
+-/
 @[simp]
 theorem sliceCoordinates_hyperplaneSquare (ch : ChernCharacter N D) (uu : U) :
     (T.sliceCoordinates ch uu).hyperplaneSquare = S.pair T.H T.H := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.949b46e47f31 from=translated src=- shape=9aa9f51f vocab=0aad23f0
+-/
 @[simp]
 theorem parameters_ofST (uu : U) (p : ℝ × ℝ) :
     T.parameters (Point.ofST uu p) =
@@ -219,7 +257,9 @@ theorem parameters_ofST (uu : U) (p : ℝ × ℝ) :
 Reindexing the divisorial family to a fixed transverse parameter gives exactly
 the generic `(s,t)` charge family, pulled back along the degree-weighted triple
 of the `G(u)`-twisted character.  Every circle, line, disjointness and nesting
-theorem of `Walls/Numerical/` therefore applies on that half plane.-/
+theorem of `Walls/Numerical/` therefore applies on that half plane.
+@isnad1 id=eq.0h7v.s6.8ee10e165e69 from=translated src=- shape=396e8852 vocab=5655dea6
+-/
 theorem chargeFamily_reindex_ofST (ch : ChernCharacter N D) (uu : U) :
     (T.chargeFamily ch).reindex (Point.ofST uu) =
       (T.sliceCoordinates ch uu).stWallFamily := by
@@ -234,7 +274,9 @@ theorem chargeFamily_reindex_ofST (ch : ChernCharacter N D) (uu : U) :
   rfl
 
 /-- The alignmentLocus of two classes on a fixed `u`-slice is the `(s,t)` alignmentLocus of their
-transported triples.-/
+transported triples.
+@isnad1 id=eq.0h10v.s7.29f54381d477 from=translated src=- shape=6f4f9329 vocab=44f15264
+-/
 theorem alignmentValue_ofST (ch : ChernCharacter N D) (uu : U) (p : ℝ × ℝ) (v w : N) :
     (T.chargeFamily ch).alignmentValue (Point.ofST uu p) v w =
       Wall.wallExpr p.1 p.2 ((T.sliceCoordinates ch uu).toNumClass v)
@@ -246,7 +288,9 @@ theorem alignmentValue_ofST (ch : ChernCharacter N D) (uu : U) (p : ℝ × ℝ) 
 /-! ### The circle, on every slice -/
 
 /-- **A numerical alignmentLocus on a fixed `u`-slice is cut out by a circle equation.**
-Maciocia Prop. 2.6; Mizuno--Yoshida Thm 2.1(1).-/
+Maciocia Prop. 2.6; Mizuno--Yoshida Thm 2.1(1).
+@isnad1 id=iff.1h10v.s8.5a5e7ce7d8e6 from=translated src=- shape=058338cb vocab=e166864a
+-/
 theorem alignmentLocus_ofST_iff_circle (ch : ChernCharacter N D) (uu : U) {p : ℝ × ℝ}
     (ht : p.2 ≠ 0) (v w : N) :
     Point.ofST uu p ∈ T.alignmentLocus ch v w ↔
@@ -260,7 +304,9 @@ theorem alignmentLocus_ofST_iff_circle (ch : ChernCharacter N D) (uu : U) {p : �
   exact Wall.wall_iff_circle ht _ _
 
 /-- Centre `(-minB/minA, 0)` and radius squared `(minB² - 2 minA minC)/minA²`,
-on a fixed `u`-slice, in cleared form.-/
+on a fixed `u`-slice, in cleared form.
+@isnad1 id=iff.2h10v.s8.5c2885f33160 from=translated src=- shape=0564760a vocab=4f13ace9
+-/
 theorem alignmentLocus_ofST_circle_eq (ch : ChernCharacter N D) (uu : U) {p : ℝ × ℝ}
     (ht : p.2 ≠ 0) {v w : N}
     (hA : Wall.minA ((T.sliceCoordinates ch uu).toNumClass v)
@@ -281,7 +327,9 @@ theorem alignmentLocus_ofST_circle_eq (ch : ChernCharacter N D) (uu : U) {p : �
   rw [OrthogonalSlice.alignmentLocus, Wall.ChargeFamily.mem_alignmentLocus, T.alignmentValue_ofST]
   exact Wall.wall_circle_eq ht hA
 
-/-- The vertical-line case, on a fixed `u`-slice.-/
+/-- The vertical-line case, on a fixed `u`-slice.
+@isnad1 id=iff.3h10v.s8.0a79eb6eb2d4 from=translated src=- shape=c4a401ea vocab=5d4258e9
+-/
 theorem alignmentLocus_ofST_line_eq (ch : ChernCharacter N D) (uu : U) {p : ℝ × ℝ}
     (ht : p.2 ≠ 0) {v w : N}
     (hA : Wall.minA ((T.sliceCoordinates ch uu).toNumClass v)
@@ -300,7 +348,9 @@ theorem alignmentLocus_ofST_line_eq (ch : ChernCharacter N D) (uu : U) {p : ℝ 
 
 /-- The slice discriminant, expanded.  The transverse direction contributes
 `2 H² r (G(u) · ch₁) - H² r² G(u)²`, so the walls of one class genuinely move
-with `u`.-/
+with `u`.
+@isnad1 id=eq.0h8v.s9.dadd305cb471 from=translated src=- shape=e03b868c vocab=d92bc72d
+-/
 theorem discr_sliceCoordinates (ch : ChernCharacter N D) (uu : U) (E : N) :
     (T.sliceCoordinates ch uu).discr E =
       S.pair T.H (ch.chOne E) ^ 2
@@ -315,7 +365,9 @@ theorem discr_sliceCoordinates (ch : ChernCharacter N D) (uu : U) (E : N) :
 
 /-- **The bar discriminant at a slice point is `t²` times the slice
 discriminant.**  The `s`-dependence cancels exactly, which is why
-`\bar Δ^B_ω` is constant along each vertical line of the half plane.-/
+`\bar Δ^B_ω` is constant along each vertical line of the half plane.
+@isnad1 id=eq.0h8v.s6.f0d7dbd583a9 from=translated src=- shape=1bfcd6c2 vocab=e3ffcae0
+-/
 theorem barDiscriminant_parameters (ch : ChernCharacter N D) (p : Point U) (E : N) :
     ch.barDiscriminant S (T.parameters p) E =
       p.t ^ 2 * (T.sliceCoordinates ch p.u).discr E := by
@@ -332,7 +384,9 @@ theorem barDiscriminant_parameters (ch : ChernCharacter N D) (p : Point U) (E : 
 /-- **Bogomolov--Gieseker and a Hodge index discharge the discriminant
 hypothesis on every `u`-slice.**  This is what the disjointness and nesting
 theorems of `Walls/Numerical/` need, and until now it was available only on the
-rank-one transport.-/
+rank-one transport.
+@isnad1 id=le.3h8v.s7.12fb09a0fc10 from=translated src=- shape=8f7e1732 vocab=3b956946
+-/
 theorem discr_sliceCoordinates_nonneg (ch : ChernCharacter N D) (p : Point U)
     (ht : p.t ≠ 0) (h : S.HodgeIndex (T.parameters p).omega) {E : N}
     (hΔ : 0 ≤ ch.discriminant S E) :
@@ -345,7 +399,9 @@ theorem discr_sliceCoordinates_nonneg (ch : ChernCharacter N D) (p : Point U)
   rw [mul_zero]
   exact hbar
 
-/-- The same, against the alignmentLocus-plane discriminant the `(s,t)` theorems consume.-/
+/-- The same, against the alignmentLocus-plane discriminant the `(s,t)` theorems consume.
+@isnad1 id=le.3h8v.s7.0a924665280d from=translated src=- shape=c3043272 vocab=44a92920
+-/
 theorem discr_toNumClass_sliceCoordinates_nonneg (ch : ChernCharacter N D)
     (p : Point U) (ht : p.t ≠ 0) (h : S.HodgeIndex (T.parameters p).omega) {E : N}
     (hΔ : 0 ≤ ch.discriminant S E) :

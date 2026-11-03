@@ -33,7 +33,9 @@ variable {C : Type u} [Category.{v} C] [HasZeroMorphisms C]
 
 /-- The right orthogonal of any property is stable under retracts: a map from
 a `P`-object into a retract extends to the ambient object, where it
-vanishes.-/
+vanishes.
+@isnad1 id=isstable.0h2v.s4.d55303494037 from=translated src=- shape=10965991 vocab=a10521f3
+-/
 instance rightOrthogonal_isStableUnderRetracts (P : ObjectProperty C) :
     P.rightOrthogonal.IsStableUnderRetracts where
   of_retract {X Y} h hY := by
@@ -41,7 +43,9 @@ instance rightOrthogonal_isStableUnderRetracts (P : ObjectProperty C) :
     rw [← Category.comp_id f, ← h.retract, ← Category.assoc,
       hY (f ≫ h.i) hA, zero_comp]
 
-/-- The left orthogonal of any property is stable under retracts.-/
+/-- The left orthogonal of any property is stable under retracts.
+@isnad1 id=isstable.0h2v.s4.728c169b0a34 from=translated src=- shape=10965991 vocab=84b554c6
+-/
 instance leftOrthogonal_isStableUnderRetracts (P : ObjectProperty C) :
     P.leftOrthogonal.IsStableUnderRetracts where
   of_retract {X Y} h hY := by
@@ -78,14 +82,22 @@ orthogonal to the union of its components. This definition does not assert
 that the sequence is full or that its components are admissible.-/
 def residual : ObjectProperty C := S.total.rightOrthogonal
 
+/--
+@isnad1 id=le.0h4v.s5.2f691b6a481f from=translated src=- shape=8918032c vocab=cca3c72f
+-/
 lemma component_le_total (i : ι) : S.component i ≤ S.total :=
   le_iSup S.component i
 
+/--
+@isnad1 id=eq.1h10v.s6.03a1ebfcf27c from=translated src=- shape=2b2a0234 vocab=31088e7e
+-/
 lemma hom_eq_zero ⦃i j : ι⦄ (hij : i < j) ⦃X Y : C⦄
     (hX : S.component i X) (hY : S.component j Y) (f : X ⟶ Y) : f = 0 :=
   S.semiorthogonal hij Y hY f hX
 
-/-- Maps from any component of the sequence to a residual object vanish.-/
+/-- Maps from any component of the sequence to a residual object vanish.
+@isnad1 id=eq.0h9v.s6.9efadf278315 from=translated src=- shape=69f6a7ff vocab=f3acebef
+-/
 lemma component_hom_residual_eq_zero (i : ι) ⦃X Y : C⦄
     (hX : S.component i X) (hY : S.residual Y) (f : X ⟶ Y) : f = 0 :=
   hY f (S.component_le_total i X hX)
@@ -98,7 +110,9 @@ def HasTriangulatedComponents
 
 /-- The union of triangulated components is stable under shifts. The union
 need not itself be extension-closed, which is why this conclusion is stated
-only at the strength needed by orthogonal closure.-/
+only at the strength needed by orthogonal closure.
+@isnad1 id=isstable.1h3v.s6.04915149269b from=translated src=- shape=e01dacb2 vocab=3fa6aae0
+-/
 theorem HasTriangulatedComponents.totalIsStableUnderShift
     [Limits.HasZeroObject C] [HasShift C ℤ] [Preadditive C]
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
@@ -114,7 +128,9 @@ theorem HasTriangulatedComponents.totalIsStableUnderShift
     exact ⟨i, (S.component i).le_shift n _ hi⟩
 
 /-- The residual of a sequence with triangulated components is triangulated.
-No fullness or admissibility hypothesis is required for this closure fact.-/
+No fullness or admissibility hypothesis is required for this closure fact.
+@isnad1 id=istriang.1h3v.s6.6d3e5c5dcfcb from=translated src=- shape=98b7818d vocab=997b0553
+-/
 theorem HasTriangulatedComponents.residual_isTriangulated
     {D : Type*} [Category D] [Preadditive D] [Limits.HasZeroObject D]
     [HasShift D ℤ] [∀ n : ℤ, (shiftFunctor D n).Additive]
@@ -139,6 +155,9 @@ def IsStronglyFull
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] : Prop :=
   S.total.IsStrongTriangulatedGenerator
 
+/--
+@isnad1 id=isfull.1h3v.s6.0383a8886a7b from=translated src=- shape=bf28eca7 vocab=9424b9bc
+-/
 lemma IsStronglyFull.isFull
     [Limits.HasZeroObject C] [HasShift C ℤ] [Preadditive C]
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
@@ -155,6 +174,9 @@ def map {D : Type*} [Category* D] [Limits.HasZeroMorphisms D] (F : C ⥤ D)
   component i := (S.component i).map F
   semiorthogonal := h
 
+/--
+@isnad1 id=eq.1h6v.s7.457455c5d8b1 from=translated src=- shape=1e1a7343 vocab=1edc94ad
+-/
 @[simp]
 lemma map_component {D : Type*} [Category* D] [Limits.HasZeroMorphisms D] (F : C ⥤ D)
     (h : ∀ ⦃i j : ι⦄, i < j →
@@ -169,6 +191,9 @@ def reindex {κ : Type*} [Preorder κ] (f : κ → ι)
     intro i j hij
     exact S.semiorthogonal (hf hij)
 
+/--
+@isnad1 id=eq.1h6v.s6.0744327aed2c from=translated src=- shape=89c0907c vocab=3ecc59f1
+-/
 @[simp]
 lemma reindex_component {κ : Type*} [Preorder κ] (f : κ → ι)
     (hf : ∀ ⦃i j : κ⦄, i < j → f i < f j) (i : κ) :

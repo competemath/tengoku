@@ -66,12 +66,16 @@ namespace Variety
 variable {k : Type u} [Field k] {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of k))]
 
 /-- A variety over a field is locally noetherian: the base field is noetherian and the
-structure morphism is locally of finite type.-/
+structure morphism is locally of finite type.
+@isnad1 id=islocall.0h2v.s4.5441a415b018 from=translated src=- shape=de5ce130 vocab=3c8bc52c
+-/
 noncomputable instance isLocallyNoetherian [IsVariety k X] : IsLocallyNoetherian X :=
   LocallyOfFiniteType.isLocallyNoetherian (X ↘ Spec (CommRingCat.of k))
 
 /-- A proper variety over a field is Noetherian: finite type gives local Noetherianity and
-properness gives quasi-compactness over the compact point `Spec k`.-/
+properness gives quasi-compactness over the compact point `Spec k`.
+@isnad1 id=isnoethe.0h2v.s5.6f7e453fca74 from=translated src=- shape=f8801385 vocab=87e9ea18
+-/
 noncomputable instance isNoetherian_of_isProper [IsVariety k X]
     [IsProper (X ↘ Spec (CommRingCat.of k))] : IsNoetherian X where
   toIsLocallyNoetherian := inferInstance
@@ -83,7 +87,9 @@ noncomputable instance isNoetherian_of_isProper [IsVariety k X]
 The variety hypothesis contributes nothing to the proof, which uses only properness of the
 structure morphism. It is kept because its `outParam` base field is the only way instance
 search can recover `k` from the goal `X.IsSeparated`, which mentions no `k`; without it Lean
-reports no synthesization order for the instance.-/
+reports no synthesization order for the instance.
+@isnad1 id=issepara.0h2v.s5.c34222e90f2f from=translated src=- shape=f8801385 vocab=c4c06fcf
+-/
 @[nolint unusedArguments]
 instance isSeparated_of_isProper [IsVariety k X]
     [IsProper (X ↘ Spec (CommRingCat.of k))] : X.IsSeparated where

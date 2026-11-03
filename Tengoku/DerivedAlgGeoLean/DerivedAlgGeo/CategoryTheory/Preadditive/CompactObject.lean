@@ -80,7 +80,9 @@ noncomputable def coproductComparisonIso {ι : Type w} (X : ι → C)
     (Discrete.functor X)
 
 /-- Under the compactness comparison, postcomposition with a coproduct
-injection is the corresponding direct-sum injection.-/
+injection is the corresponding direct-sum injection.
+@isnad1 id=eq.1h5v.s8.1503944a891e from=translated src=- shape=e56ee644 vocab=6f3ab199
+-/
 @[reassoc (attr := simp)]
 theorem map_ι_coproductComparisonIso_hom {ι : Type w} (X : ι → C)
     [HasCoproduct X]
@@ -102,7 +104,9 @@ namespace ObjectProperty
 /-- The object property of compact objects.-/
 def compactObjects : ObjectProperty C := fun K ↦ IsCompactObject.{w} K
 
-/-- Compactness is invariant under isomorphism.-/
+/-- Compactness is invariant under isomorphism.
+@isnad1 id=iscompac.1h4v.s4.0a91b08399d6 from=translated src=- shape=848c34ab vocab=7c139977
+-/
 theorem isCompactObject_of_iso {K K' : C} (e : K ≅ K')
     (hK : IsCompactObject.{w} K) : IsCompactObject.{w} K' := by
   intro ι
@@ -120,7 +124,9 @@ variable {C : Type u₁} [Category.{v} C] [Preadditive C]
   {L : Functor D C} {F : Functor C D} [L.Additive]
 
 /-- A left adjoint to a small-coproduct-preserving functor carries compact
-objects to compact objects. This is the compactness step in A.16 and A.17.-/
+objects to compact objects. This is the compactness step in A.16 and A.17.
+@isnad1 id=iscompac.2h6v.s6.86e579bf1d3f from=translated src=- shape=3ab9252a vocab=cdab792e
+-/
 theorem isCompactObject_leftAdjoint_obj (adj : L ⊣ F)
     (hF : F.PreservesSmallCoproducts.{w}) {K : D}
     (hK : IsCompactObject.{w} K) : IsCompactObject.{w} (L.obj K) := by
@@ -140,7 +146,9 @@ theorem isCompactObject_leftAdjoint_obj (adj : L ⊣ F)
   exact preservesColimitsOfShape_of_natIso e.symm
 
 /-- The essential image under a left adjoint of compact objects is compact
-when the right adjoint preserves small coproducts.-/
+when the right adjoint preserves small coproducts.
+@isnad1 id=le.2h6v.s6.5377508b54a7 from=translated src=- shape=dded5fb4 vocab=4bbf7b03
+-/
 theorem compactObjects_map_leftAdjoint (adj : L ⊣ F)
     (hF : F.PreservesSmallCoproducts.{w}) {G : ObjectProperty D}
     (hG : G ≤ ObjectProperty.compactObjects.{w} (C := D)) :

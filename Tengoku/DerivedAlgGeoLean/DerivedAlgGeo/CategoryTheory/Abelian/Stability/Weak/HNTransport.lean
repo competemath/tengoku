@@ -85,11 +85,17 @@ def congrFiltration {Z : A}
         (le_of_lt (G.chain_strictMono (Fin.castSucc_lt_succ (i := j))))).symm
       (congr_isSemistable D e (G.factor_semistable j))
 
+/--
+@isnad1 id=eq.0h6v.s6.b718e1278f78 from=translated src=- shape=5e8dd8a1 vocab=6adbe332
+-/
 @[simp]
 theorem congrFiltration_n {Z : A}
     (G : AbelianWeakHNFiltration D.toWeakStabilityFunction Z) :
     (D.congrFiltration e G).n = G.n := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.a25585977e47 from=translated src=- shape=893c3c16 vocab=fec688dc
+-/
 @[simp]
 theorem congrFiltration_μ {Z : A}
     (G : AbelianWeakHNFiltration D.toWeakStabilityFunction Z) :
@@ -98,7 +104,9 @@ theorem congrFiltration_μ {Z : A}
 /-- **The Harder–Narasimhan property transports along an equivalence.**
 
 This is the payoff. Filter the pullback of the object, transport the filtration, and cross the
-counit isomorphism with `ofIso`.-/
+counit isomorphism with `ofIso`.
+@isnad1 id=hashnpro.1h4v.s6.cf697c64f510 from=translated src=- shape=0c2fc5f9 vocab=a5291f4f
+-/
 theorem congr_hasHNProperty (h : D.toWeakStabilityFunction.HasHNProperty) :
     (D.congr e).toWeakStabilityFunction.HasHNProperty := by
   intro E hE

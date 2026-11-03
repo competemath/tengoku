@@ -64,7 +64,9 @@ variable (D : WeakSlopeData A)
 
 /-- Rank zero passes to both ends of a short exact sequence, because rank is
 additive and never negative.  The `SlopeData` proof, which never reads the degree
-field and so did not need the curve hypothesis.-/
+field and so did not need the curve hypothesis.
+@isnad1 id=and.2h3v.s6.d8402fad1d2d from=translated src=- shape=0d13f3aa vocab=70c2261c
+-/
 theorem rank_eq_zero_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
     (h : D.rank S.X₂ = 0) : D.rank S.X₁ = 0 ∧ D.rank S.X₃ = 0 := by
   have hadd := D.rank_additive S hS
@@ -78,7 +80,9 @@ theorem rank_eq_zero_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
 `iff` is where `rank_nonneg` enters: without it a negative rank would be a third
 case, and the charge would leave the closed upper half-plane. -/
 
-/-- The honest slope is `⊤` on exactly the rank-zero objects.-/
+/-- The honest slope is `⊤` on exactly the rank-zero objects.
+@isnad1 id=iff.0h3v.s5.f9dbaa12bb4d from=translated src=- shape=2eff3dd3 vocab=f80e4717
+-/
 theorem topSlope_eq_top_iff_rank_eq_zero {E : A} :
     D.topSlope E = ⊤ ↔ D.rank E = 0 := by
   refine ⟨fun h => ?_, D.topSlope_of_rank_zero⟩
@@ -87,6 +91,9 @@ theorem topSlope_eq_top_iff_rank_eq_zero {E : A} :
     exact absurd h WithTop.coe_ne_top
   · exact hzero.symm
 
+/--
+@isnad1 id=iff.0h3v.s5.0d1e876ec466 from=translated src=- shape=55b4682b vocab=f1cd3355
+-/
 theorem topSlope_ne_top_iff_rank_pos {E : A} :
     D.topSlope E ≠ ⊤ ↔ 0 < D.rank E := by
   rw [Ne, topSlope_eq_top_iff_rank_eq_zero]
@@ -95,14 +102,18 @@ theorem topSlope_ne_top_iff_rank_pos {E : A} :
 /-! ### The order, restated in `WithTop ℝ` -/
 
 /-- The honest slope order and the `ℝ`-valued slope order agree on objects of
-positive rank, where both are defined.-/
+positive rank, where both are defined.
+@isnad1 id=iff.2h4v.s6.838b919400c6 from=translated src=- shape=f6e32205 vocab=914c6d00
+-/
 theorem topSlope_le_topSlope_iff_slope_le {E F : A} (hE : 0 < D.rank E)
     (hF : 0 < D.rank F) : D.topSlope E ≤ D.topSlope F ↔ D.slope E ≤ D.slope F := by
   rw [D.topSlope_of_rank_pos hE, D.topSlope_of_rank_pos hF]
   exact WithTop.coe_le_coe
 
 /-- **The phase order is the honest slope order** on objects of positive rank.
-`WeakSlope.lean`'s `phase_le_iff_slope_le`, carried into `WithTop ℝ`.-/
+`WeakSlope.lean`'s `phase_le_iff_slope_le`, carried into `WithTop ℝ`.
+@isnad1 id=iff.2h4v.s6.7a8abc541299 from=translated src=- shape=ee52cea6 vocab=cbb9d6af
+-/
 theorem phase_le_iff_topSlope_le {E F : A} (hE : 0 < D.rank E) (hF : 0 < D.rank F) :
     D.phase E ≤ D.phase F ↔ D.topSlope E ≤ D.topSlope F := by
   rw [D.topSlope_le_topSlope_iff_slope_le hE hF]
@@ -110,7 +121,9 @@ theorem phase_le_iff_topSlope_le {E F : A} (hE : 0 < D.rank E) (hF : 0 < D.rank 
 
 /-- A rank-zero object has honest slope above every positive-rank object's.  On a
 surface this is the whole ordering statement available about a skyscraper, and no
-phase comparison can reproduce it.-/
+phase comparison can reproduce it.
+@isnad1 id=lt.2h4v.s6.f50a63931d2a from=translated src=- shape=95cda9fc vocab=6c040c35
+-/
 theorem topSlope_lt_topSlope_of_rank_pos_of_rank_zero {E F : A}
     (hE : 0 < D.rank E) (hF : D.rank F = 0) : D.topSlope E < D.topSlope F := by
   rw [D.topSlope_of_rank_pos hE, D.topSlope_of_rank_zero hF]
@@ -120,7 +133,9 @@ theorem topSlope_lt_topSlope_of_rank_pos_of_rank_zero {E F : A}
 
 /-- **Every Harder--Narasimhan factor of a rank-zero object has rank zero**, so
 the lowest HN slope is `⊤`.  Rank is additive and nonnegative, so rank zero passes
-to each chain step and to its cokernel.-/
+to each chain step and to its cokernel.
+@isnad1 id=eq.1h4v.s5.b556502558ae from=translated src=- shape=7b8763b0 vocab=31283992
+-/
 theorem μMinus_eq_top_of_rank_zero {E : A}
     (F : AbelianWeakHNFiltration D.toWeakStabilityFunction E) (h : D.rank E = 0) :
     F.μMinus = ⊤ := by
@@ -145,7 +160,9 @@ theorem μMinus_eq_top_of_rank_zero {E : A}
 The surface counterpart of `SlopeData.mem_hnTors_of_rank_zero`, and strictly
 stronger where the two overlap: that one needs `degree_pos_of_rank_zero` to reach
 phase one and so restricts to `β < 1`, while this one reads `μ⁻ = ⊤` off
-`rank_nonneg` alone and so covers every cutoff short of `⊤` itself.-/
+`rank_nonneg` alone and so covers every cutoff short of `⊤` itself.
+@isnad1 id=mem.4h4v.s6.a5858162eb82 from=translated src=- shape=56c03d39 vocab=7fca5621
+-/
 theorem mem_hnTors_of_rank_zero
     (hHN : D.toWeakStabilityFunction.HasHNProperty) {μ₀ : WithTop ℝ} (hμ : μ₀ ≠ ⊤)
     {E : A} (hE : ¬IsZero E) (h : D.rank E = 0) :
@@ -166,7 +183,9 @@ namespace SlopeData
 
 variable (D : SlopeData A)
 
-/-- On a curve too, the honest slope is `⊤` exactly at rank zero.-/
+/-- On a curve too, the honest slope is `⊤` exactly at rank zero.
+@isnad1 id=iff.0h3v.s5.b3df1b13e91d from=translated src=- shape=79fd439d vocab=52284023
+-/
 theorem toWeakSlopeData_topSlope_eq_top_iff {E : A} :
     D.toWeakSlopeData.topSlope E = ⊤ ↔ D.rank E = 0 :=
   D.toWeakSlopeData.topSlope_eq_top_iff_rank_eq_zero

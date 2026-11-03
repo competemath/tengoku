@@ -69,7 +69,9 @@ noncomputable def generationTime (P Q : ObjectProperty C) : ℕ∞ :=
   sInf ((fun m : ℕ ↦ (m : ℕ∞)) '' {m | Q ≤ P.triangEnvelopeIter m})
 
 /-- **The characterisation of generation time.** `P.generationTime Q ≤ n` exactly when `Q` is
-reachable from `P` with at most `n` extensions.-/
+reachable from `P` with at most `n` extensions.
+@isnad1 id=iff.0h4v.s6.e324900e04c4 from=translated src=- shape=332b9b66 vocab=0ce1d097
+-/
 theorem generationTime_le_coe_iff (P Q : ObjectProperty C) (n : ℕ) :
     P.generationTime Q ≤ n ↔ Q ≤ P.triangEnvelopeIter n := by
   constructor
@@ -85,33 +87,45 @@ theorem generationTime_le_coe_iff (P Q : ObjectProperty C) (n : ℕ) :
   · intro h
     exact sInf_le ⟨n, h, rfl⟩
 
-/-- Generation time is antitone in the generating property: more generators, fewer steps.-/
+/-- Generation time is antitone in the generating property: more generators, fewer steps.
+@isnad1 id=le.1h4v.s6.da5599c3026c from=translated src=- shape=1bc10560 vocab=2cb41fab
+-/
 theorem generationTime_antitone_left {P P' : ObjectProperty C} (h : P ≤ P')
     (Q : ObjectProperty C) : P'.generationTime Q ≤ P.generationTime Q :=
   sInf_le_sInf (Set.image_mono fun m hm ↦ hm.trans (monotone_triangEnvelopeIter h m))
 
-/-- Generation time is monotone in the generated property: more to reach, more steps.-/
+/-- Generation time is monotone in the generated property: more to reach, more steps.
+@isnad1 id=le.1h4v.s6.94cce17eb8f8 from=translated src=- shape=869ab596 vocab=2cb41fab
+-/
 theorem generationTime_mono_right (P : ObjectProperty C) {Q Q' : ObjectProperty C}
     (h : Q ≤ Q') : P.generationTime Q ≤ P.generationTime Q' :=
   sInf_le_sInf (Set.image_mono fun _ hm ↦ h.trans hm)
 
-/-- Generation time is zero exactly when no extension is needed.-/
+/-- Generation time is zero exactly when no extension is needed.
+@isnad1 id=iff.0h3v.s6.d1424a568b23 from=translated src=- shape=440919eb vocab=a3d727d4
+-/
 theorem generationTime_eq_zero_iff (P Q : ObjectProperty C) :
     P.generationTime Q = 0 ↔ Q ≤ P.triangEnvelopeIter 0 := by
   have := generationTime_le_coe_iff P Q 0
   rwa [Nat.cast_zero, nonpos_iff_eq_zero] at this
 
 /-- Generation time is zero exactly when `Q` lies in the retract closure of binary products of
-shifts of `P`: `generationTime_eq_zero_iff` with the zeroth envelope unfolded.-/
+shifts of `P`: `generationTime_eq_zero_iff` with the zeroth envelope unfolded.
+@isnad1 id=iff.0h3v.s6.515a019cc97f from=translated src=- shape=ed0d5e1f vocab=b6557516
+-/
 theorem generationTime_eq_zero_iff' (P Q : ObjectProperty C) :
     P.generationTime Q = 0 ↔ Q ≤ (P.shiftClosure ℤ).binaryProductsClosure.retractClosure := by
   rw [generationTime_eq_zero_iff, triangEnvelopeIter_zero]
 
-/-- A property generates itself in no steps, unconditionally.-/
+/-- A property generates itself in no steps, unconditionally.
+@isnad1 id=eq.0h2v.s6.1ba2e12d155d from=translated src=- shape=19a4dc4e vocab=eef766ee
+-/
 theorem generationTime_self (P : ObjectProperty C) : P.generationTime P = 0 :=
   (generationTime_eq_zero_iff P P).2 (P.le_triangEnvelopeIter 0)
 
-/-- Generation time is infinite exactly when no finite number of extensions suffices.-/
+/-- Generation time is infinite exactly when no finite number of extensions suffices.
+@isnad1 id=iff.0h3v.s6.208769393d63 from=translated src=- shape=19bcd6a2 vocab=21b6a47c
+-/
 theorem generationTime_eq_top_iff (P Q : ObjectProperty C) :
     P.generationTime Q = ⊤ ↔ ∀ n : ℕ, ¬ Q ≤ P.triangEnvelopeIter n := by
   constructor
@@ -125,7 +139,9 @@ theorem generationTime_eq_top_iff (P Q : ObjectProperty C) :
     rw [generationTime, hempty, Set.image_empty, sInf_empty]
 
 /-- **Strong generation is finite generation time.** `P` is a strong triangulated generator
-exactly when `P.generationTime ⊤ ≠ ⊤`.-/
+exactly when `P.generationTime ⊤ ≠ ⊤`.
+@isnad1 id=iff.0h2v.s6.3c9f64b7f613 from=translated src=- shape=63a9d674 vocab=80ff651f
+-/
 theorem isStrongTriangulatedGenerator_iff_generationTime_ne_top (P : ObjectProperty C) :
     P.IsStrongTriangulatedGenerator ↔ P.generationTime ⊤ ≠ ⊤ := by
   refine ⟨fun hs h ↦ ?_, fun h ↦ ?_⟩
@@ -136,7 +152,9 @@ theorem isStrongTriangulatedGenerator_iff_generationTime_ne_top (P : ObjectPrope
       hcon ((isStrongTriangulatedGenerator_iff P).2 ⟨n, top_le_iff.1 hn⟩))
 
 /-- Finite generation time makes `P` a classical triangulated generator, through strong
-generation.-/
+generation.
+@isnad1 id=isclassi.1h2v.s6.d8384e6186af from=translated src=- shape=72fcf859 vocab=4f06b5f7
+-/
 theorem isClassicalTriangulatedGenerator_of_generationTime_ne_top (P : ObjectProperty C)
     (h : P.generationTime ⊤ ≠ ⊤) : P.IsClassicalTriangulatedGenerator :=
   ((isStrongTriangulatedGenerator_iff_generationTime_ne_top P).2 h).isClassicalTriangulatedGenerator

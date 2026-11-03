@@ -42,13 +42,17 @@ namespace SameSlopeOrder
 
 variable {D E : WeakSlopeData A}
 
-/-- Strict slope comparisons agree as well.-/
+/-- Strict slope comparisons agree as well.
+@isnad1 id=iff.1h5v.s6.c39b11778455 from=translated src=- shape=0969d417 vocab=d7dce140
+-/
 theorem lt_iff (h : SameSlopeOrder D E) (X Y : A) :
     D.topSlope X < D.topSlope Y ↔ E.topSlope X < E.topSlope Y := by
   simpa only [lt_iff_not_ge] using
     not_congr (WeakSlopeData.SameSlopeOrder.le_iff h Y X)
 
-/-- The two weak slope data have exactly the same semistable objects.-/
+/-- The two weak slope data have exactly the same semistable objects.
+@isnad1 id=iff.1h4v.s5.b492b21cc72b from=translated src=- shape=18115e31 vocab=8d41b1c3
+-/
 theorem isSemistable_iff (h : SameSlopeOrder D E) (X : A) :
     D.toWeakStabilityFunction.IsSemistable X ↔
       E.toWeakStabilityFunction.IsSemistable X := by
@@ -100,7 +104,9 @@ namespace WeakSlopeData.SameSlopeOrder
 
 variable {D E : WeakSlopeData A}
 
-/-- The HN property depends only on the order induced by the honest slope.-/
+/-- The HN property depends only on the order induced by the honest slope.
+@isnad1 id=hashnpro.2h3v.s5.139d1467aa82 from=translated src=- shape=7b49384a vocab=564262ea
+-/
 theorem hasHNProperty (h : WeakSlopeData.SameSlopeOrder D E)
     (hD : D.toWeakStabilityFunction.HasHNProperty) :
     E.toWeakStabilityFunction.HasHNProperty := by

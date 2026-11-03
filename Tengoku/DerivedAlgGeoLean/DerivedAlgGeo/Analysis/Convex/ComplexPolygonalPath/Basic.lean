@@ -67,6 +67,9 @@ real-linear functional on the complex plane.-/
 def crossFunctional (r : ℂ) : ℂ →L[ℝ] ℝ :=
   r.re • Complex.imCLM - r.im • Complex.reCLM
 
+/--
+@isnad1 id=eq.0h2v.s7.534a4fb82573 from=translated src=- shape=07255009 vocab=ac5c9a87
+-/
 @[simp]
 theorem crossFunctional_apply (r z : ℂ) :
     crossFunctional r z = r.re * z.im - r.im * z.re := by
@@ -76,18 +79,26 @@ theorem crossFunctional_apply (r z : ℂ) :
 def unitRay (θ : ℝ) : ℂ :=
   (Real.cos θ : ℂ) + (Real.sin θ : ℂ) * I
 
+/--
+@isnad1 id=eq.0h1v.s3.9876c23f94d8 from=translated src=- shape=c52356c6 vocab=61bf2157
+-/
 @[simp]
 theorem unitRay_re (θ : ℝ) : (unitRay θ).re = Real.cos θ := by
   simp only [unitRay, add_re, mul_re, ofReal_re, ofReal_im, I_re, I_im,
     mul_zero, mul_one, sub_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s3.f7ae7ea8becb from=translated src=- shape=c52356c6 vocab=2a74c2e6
+-/
 @[simp]
 theorem unitRay_im (θ : ℝ) : (unitRay θ).im = Real.sin θ := by
   simp only [unitRay, add_im, mul_im, ofReal_re, ofReal_im, I_re, I_im,
     mul_zero, mul_one, zero_add, add_zero]
 
 /-- A unit ray at an angle strictly between `0` and `π` lies in the open
-upper half-plane.-/
+upper half-plane.
+@isnad1 id=mem.2h1v.s4.b466bc2ac693 from=translated src=- shape=5a4360c0 vocab=585251a0
+-/
 theorem unitRay_mem_semiClosedUpperHalfPlane {θ : ℝ} (hθ₀ : 0 < θ)
     (hθπ : θ < Real.pi) : unitRay θ ∈ semiClosedUpperHalfPlane := by
   rw [semiClosedUpperHalfPlane]
@@ -97,7 +108,9 @@ theorem unitRay_mem_semiClosedUpperHalfPlane {θ : ℝ} (hθ₀ : 0 < θ)
     exact Real.sin_pos_of_pos_of_lt_pi hθ₀ hθπ)
 
 /-- On the principal upper-half-plane branch, the argument of `unitRay θ` is
-literally `θ`.-/
+literally `θ`.
+@isnad1 id=eq.2h1v.s4.91993a22a1c6 from=translated src=- shape=3fddeb88 vocab=19086b1f
+-/
 theorem arg_unitRay {θ : ℝ} (hθ₀ : 0 < θ) (hθπ : θ < Real.pi) :
     Complex.arg (unitRay θ) = θ := by
   unfold unitRay
@@ -105,7 +118,9 @@ theorem arg_unitRay {θ : ℝ} (hθ₀ : 0 < θ) (hθπ : θ < Real.pi) :
   exact Complex.arg_cos_add_sin_mul_I ⟨by linarith [Real.pi_pos], hθπ.le⟩
 
 /-- The cross functional is positive on a vector of strictly larger
-upper-half-plane argument.-/
+upper-half-plane argument.
+@isnad1 id=lt.3h2v.s7.9232304fde9e from=translated src=- shape=860cb9d9 vocab=461118e3
+-/
 theorem crossFunctional_pos_of_arg_lt {r z : ℂ}
     (hr : r ∈ semiClosedUpperHalfPlane) (hz : z ∈ semiClosedUpperHalfPlane)
     (harg : Complex.arg r < Complex.arg z) :
@@ -115,7 +130,9 @@ theorem crossFunctional_pos_of_arg_lt {r z : ℂ}
     (semiClosedUpperHalfPlane_ne_zero hr) (semiClosedUpperHalfPlane_ne_zero hz) harg
 
 /-- The cross functional is negative on a vector of strictly smaller
-upper-half-plane argument.-/
+upper-half-plane argument.
+@isnad1 id=lt.3h2v.s7.dbde6b73e1f2 from=translated src=- shape=0552f26d vocab=461118e3
+-/
 theorem crossFunctional_neg_of_arg_lt {r z : ℂ}
     (hr : r ∈ semiClosedUpperHalfPlane) (hz : z ∈ semiClosedUpperHalfPlane)
     (harg : Complex.arg z < Complex.arg r) :
@@ -128,7 +145,9 @@ theorem crossFunctional_neg_of_arg_lt {r z : ℂ}
 /-- At every interior vertex of a finite path whose upper-half-plane edge
 arguments strictly decrease, some real-linear functional has a strict unique
 maximum among the path vertices.  This is the supporting-hyperplane form of
-strict clockwise convexity.-/
+strict clockwise convexity.
+@isnad1 id=ex.4h3v.s9.71849b72b039 from=translated src=- shape=b2cb3ce2 vocab=037d523f
+-/
 theorem exists_strict_support_at_interior {n : ℕ} (z : Fin (n + 1) → ℂ)
     (hedge : ∀ i : Fin n, z i.succ - z i.castSucc ∈ semiClosedUpperHalfPlane)
     (harg : StrictAnti (fun i : Fin n ↦
@@ -212,7 +231,9 @@ theorem exists_strict_support_at_interior {n : ℕ} (z : Fin (n + 1) → ℂ)
   · exact hanti (Set.mem_Ici.mpr le_rfl) (Set.mem_Ici.mpr hkj.le) hkj
 
 /-- The sum of the directed edges of a finite path is its endpoint
-displacement.-/
+displacement.
+@isnad1 id=eq.0h2v.s6.d3830dd5f209 from=translated src=- shape=38740675 vocab=835fce0e
+-/
 theorem sum_edges_eq_last_sub_zero {n : ℕ} (z : Fin (n + 1) → ℂ) :
     ∑ i : Fin n, (z i.succ - z i.castSucc) = z (Fin.last n) - z 0 := by
   induction n with
@@ -233,7 +254,9 @@ theorem sum_edges_eq_last_sub_zero {n : ℕ} (z : Fin (n + 1) → ℂ) :
 
 /-- For an upper-half-plane path with decreasing edge arguments, the
 argument of its total displacement is bounded above by the argument of its
-first edge.-/
+first edge.
+@isnad1 id=le.3h2v.s7.138e23e43f21 from=translated src=- shape=c4a242ff vocab=03e69ce1
+-/
 theorem arg_last_sub_zero_le_arg_first {n : ℕ} (z : Fin (n + 1) → ℂ)
     (hn : 0 < n)
     (hedge : ∀ i : Fin n, z i.succ - z i.castSucc ∈ semiClosedUpperHalfPlane)
@@ -252,7 +275,9 @@ theorem arg_last_sub_zero_le_arg_first {n : ℕ} (z : Fin (n + 1) → ℂ)
 
 /-- For an upper-half-plane path with decreasing edge arguments, the
 argument of its last edge is bounded above by the argument of its total
-displacement.-/
+displacement.
+@isnad1 id=le.3h2v.s7.883904aae350 from=translated src=- shape=8b7040d4 vocab=2dcc29e6
+-/
 theorem arg_last_edge_le_arg_last_sub_zero {n : ℕ} (z : Fin (n + 1) → ℂ)
     (hn : 0 < n)
     (hedge : ∀ i : Fin n, z i.succ - z i.castSucc ∈ semiClosedUpperHalfPlane)
@@ -283,7 +308,9 @@ def length {n : ℕ} (z : Fin (n + 1) → ℂ) : ℝ :=
 
 /-- The straight chord between the endpoints of a finite complex path is no
 longer than the path.  This is the metric primitive used when an HN polygonal
-boundary is refined by inserting further vertices.-/
+boundary is refined by inserting further vertices.
+@isnad1 id=le.0h2v.s6.0e34ddd06bbf from=translated src=- shape=5a89d6e6 vocab=73ecfcfa
+-/
 theorem norm_last_sub_zero_le_length {n : ℕ} (z : Fin (n + 1) → ℂ) :
     ‖z (Fin.last n) - z 0‖ ≤ length z := by
   induction n with

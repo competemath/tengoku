@@ -71,17 +71,23 @@ stability.  Their canonical numerical owners are now `Mukai.expCharge_zero`,
 `Mukai.expCharge_add`, and `Mukai.expCharge_neg`.
 -/
 
-/-- The exponential charge kills the zero class.-/
+/-- The exponential charge kills the zero class.
+@isnad1 id=eq.0h4v.s7.cc4a1370552d from=translated src=- shape=2b4f49d1 vocab=4df2f539
+-/
 theorem expCharge_zero : Mukai.expCharge b β ω 0 = 0 :=
   Mukai.expCharge_zero b β ω
 
-/-- The exponential charge is additive in the Mukai class.-/
+/-- The exponential charge is additive in the Mukai class.
+@isnad1 id=eq.0h6v.s7.e0efa1c421a3 from=translated src=- shape=f8ae9242 vocab=f695b7af
+-/
 theorem expCharge_add (v w : Mukai.RealExtension V) :
     Mukai.expCharge b β ω (v + w) =
       Mukai.expCharge b β ω v + Mukai.expCharge b β ω w :=
   Mukai.expCharge_add b β ω v w
 
-/-- The exponential charge negates on negated classes.-/
+/-- The exponential charge negates on negated classes.
+@isnad1 id=eq.0h5v.s7.2da50f10a130 from=translated src=- shape=1d4b4505 vocab=737c1761
+-/
 theorem expCharge_neg (v : Mukai.RealExtension V) :
     Mukai.expCharge b β ω (-v) = -Mukai.expCharge b β ω v :=
   Mukai.expCharge_neg b β ω v
@@ -113,6 +119,9 @@ variable (D : MukaiChargeData A V)
 noncomputable def chargeHom : K₀Ab A →+ ℂ :=
   (Mukai.expChargeHom b β ω).comp D.mukai
 
+/--
+@isnad1 id=eq.0h7v.s9.48c469396a6e from=translated src=- shape=467bb3d5 vocab=80e380a5
+-/
 @[simp]
 theorem chargeHom_apply (x : K₀Ab A) :
     D.chargeHom b β ω x = Mukai.expCharge b β ω (D.mukai x) := rfl
@@ -120,16 +129,28 @@ theorem chargeHom_apply (x : K₀Ab A) :
 /-- `Z(β,ω)` as a charge on objects.-/
 def charge (E : A) : ℂ := D.chargeHom b β ω (K₀Ab.of E)
 
+/--
+@isnad1 id=eq.0h7v.s8.b6e2fef62079 from=translated src=- shape=5a5142cc vocab=1ec3a885
+-/
 @[simp]
 theorem charge_apply (E : A) :
     D.charge b β ω E = Mukai.expCharge b β ω (D.mukai (K₀Ab.of E)) := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.6cd5a0fe35c0 from=translated src=- shape=b0a3326e vocab=688e666c
+-/
 theorem charge_zero {E : A} (hE : IsZero E) : D.charge b β ω E = 0 := by
   rw [charge_apply, K₀Ab.of_isZero hE, map_zero, expCharge_zero]
 
+/--
+@isnad1 id=eq.0h9v.s7.b13799ad97d6 from=translated src=- shape=e3dff5ae vocab=092b8b11
+-/
 theorem charge_iso {E F : A} (e : E ≅ F) : D.charge b β ω E = D.charge b β ω F := by
   rw [charge_apply, charge_apply, K₀Ab.of_iso e]
 
+/--
+@isnad1 id=eq.1h7v.s7.88dedd6b8612 from=translated src=- shape=783a56d2 vocab=6d3d4f21
+-/
 theorem charge_additive (S : ShortComplex A) (hS : S.ShortExact) :
     D.charge b β ω S.X₂ = D.charge b β ω S.X₁ + D.charge b β ω S.X₃ := by
   rw [charge_apply, charge_apply, charge_apply, K₀Ab.of_shortExact S hS, map_add,

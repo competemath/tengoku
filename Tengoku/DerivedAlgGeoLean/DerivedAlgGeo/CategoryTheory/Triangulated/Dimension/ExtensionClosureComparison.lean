@@ -78,7 +78,9 @@ namespace ExtensionClosure
 /-- Every finite iterate of Mathlib's extension product is contained in the
 repository's owner extension closure. The triangle in
 `CategoryTheory.ObjectProperty.extensionProduct` has the orientation used by
-`CategoryTheory.Triangulated.ExtensionClosure.ext`, so no rotation is needed.-/
+`CategoryTheory.Triangulated.ExtensionClosure.ext`, so no rotation is needed.
+@isnad1 id=le.0h3v.s6.ae6685014ffc from=translated src=- shape=58e9d5fd vocab=b986b512
+-/
 theorem extensionProductIter_le (P : ObjectProperty C) (n : ℕ) :
     P.extensionProductIter n ≤ ExtensionClosure P := by
   induction n with
@@ -96,7 +98,9 @@ theorem extensionProductIter_le (P : ObjectProperty C) (n : ℕ) :
 closed under distinguished extensions. The
 `CategoryTheory.ObjectProperty.ContainsZero` witness is enough because
 `CategoryTheory.ObjectProperty.IsClosedUnderIsomorphisms` transfers it to every
-zero object.-/
+zero object.
+@isnad1 id=le.1h3v.s6.474e295aa27c from=translated src=- shape=1e38a773 vocab=7f7803ef
+-/
 theorem le_of_closed_under_isomorphisms {P Q : ObjectProperty C}
     [Q.ContainsZero] [Q.IsClosedUnderIsomorphisms] [Q.IsTriangulatedClosed₂]
     (hPQ : P ≤ Q) : ExtensionClosure P ≤ Q := by
@@ -111,7 +115,9 @@ extension closure is contained in Mathlib's triangulated envelope. The
 `CategoryTheory.IsTriangulated` hypothesis supplies closure under distinguished
 extensions, and nonemptiness supplies zero objects to that envelope.
 Nonemptiness is essential: for `P = ⊥`, the owner closure contains zero
-objects, but `CategoryTheory.ObjectProperty.triangEnvelope` sends `⊥` to `⊥`.-/
+objects, but `CategoryTheory.ObjectProperty.triangEnvelope` sends `⊥` to `⊥`.
+@isnad1 id=le.0h2v.s6.44c0577b1f69 from=translated src=- shape=879548f3 vocab=fc6907cc
+-/
 theorem le_triangEnvelope (P : ObjectProperty C) [P.Nonempty] [IsTriangulated C] :
     ExtensionClosure P ≤ P.triangEnvelope := by
   exact le_of_closed_under_isomorphisms (P := P) (Q := P.triangEnvelope)
@@ -172,7 +178,9 @@ theorem eq_iSup_extensionProductIter (P : ObjectProperty C) [IsTriangulated C] :
 
 /-- Mathlib's extension iterate at stage `n` lies in the corresponding
 triangulated-envelope stage. This direct comparison preserves the finite step
-bound used by `CategoryTheory.ObjectProperty.generationTime`.-/
+bound used by `CategoryTheory.ObjectProperty.generationTime`.
+@isnad1 id=le.0h3v.s6.1f30e6155ac8 from=translated src=- shape=5d4e1f88 vocab=559fa975
+-/
 theorem extensionProductIter_le_triangEnvelopeIter (P : ObjectProperty C) (n : ℕ) :
     P.extensionProductIter n ≤ P.triangEnvelopeIter n := by
   rw [ObjectProperty.triangEnvelopeIter]
@@ -185,7 +193,9 @@ theorem extensionProductIter_le_triangEnvelopeIter (P : ObjectProperty C) (n : �
       ObjectProperty.le_retractClosure _
 
 /-- An object in the `n`th extension-product iterate has generation time at
-most `n`, by its direct inclusion into the `n`th triangulated-envelope stage.-/
+most `n`, by its direct inclusion into the `n`th triangulated-envelope stage.
+@isnad1 id=le.0h5v.s6.4a4ddf182101 from=translated src=- shape=ce88959a vocab=e2f03f64
+-/
 theorem generationTime_singleton_le_of_mem_extensionProductIter
     (P : ObjectProperty C) {X : C} (n : ℕ)
     (hX : P.extensionProductIter n X) :

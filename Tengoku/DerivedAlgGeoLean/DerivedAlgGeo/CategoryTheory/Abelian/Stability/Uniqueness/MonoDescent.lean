@@ -30,7 +30,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 namespace StabilityFunction
 
 /-- Phase equality after propositionally rewriting both subobjects in a
-successive quotient.-/
+successive quotient.
+@isnad1 id=eq.4h7v.s7.92046d874b81 from=translated src=- shape=8ce102dc vocab=97e27f71
+-/
 theorem phase_cokernel_ofLE_congr (Z : StabilityFunction A) {E : A}
     {A₁ A₂ B₁ B₂ : Subobject E} (hA : A₁ = A₂) (hB : B₁ = B₂)
     {h₁ : A₁ ≤ B₁} {h₂ : A₂ ≤ B₂} :
@@ -41,7 +43,9 @@ theorem phase_cokernel_ofLE_congr (Z : StabilityFunction A) {E : A}
   rfl
 
 /-- Semistability is preserved after propositionally rewriting both
-subobjects in a successive quotient.-/
+subobjects in a successive quotient.
+@isnad1 id=issemist.5h7v.s7.083d436402f2 from=translated src=- shape=5d79e938 vocab=e0305895
+-/
 theorem isSemistable_cokernel_ofLE_congr (Z : StabilityFunction A) {E : A}
     {A₁ A₂ B₁ B₂ : Subobject E} (hA : A₁ = A₂) (hB : B₁ = B₂)
     {h₁ : A₁ ≤ B₁} {h₂ : A₂ ≤ B₂}
@@ -55,7 +59,9 @@ namespace Subobject
 
 omit [Abelian A] in
 /-- Mapping a subobject along a monomorphism agrees with the subobject
-represented by the composite arrow.-/
+represented by the composite arrow.
+@isnad1 id=eq.0h5v.s7.a9a8a4a84f16 from=translated src=- shape=35f235a1 vocab=8f9f5b54
+-/
 theorem map_eq_mk_mono {X Y : A} (f : X ⟶ Y) [Mono f] (S : Subobject X) :
     (Subobject.map f).obj S = Subobject.mk (S.arrow ≫ f) := by
   calc
@@ -71,6 +77,9 @@ noncomputable def mapMonoIso {X Y : A} (f : X ⟶ Y) [Mono f]
   Subobject.isoOfEqMk _ (S.arrow ≫ f) (map_eq_mk_mono f S)
 
 omit [Abelian A] in
+/--
+@isnad1 id=eq.1h6v.s9.9d0ff77aa0f8 from=translated src=- shape=0b1b5673 vocab=493e8b86
+-/
 theorem ofLE_map_comp_mapMonoIso_hom {X Y : A} (f : X ⟶ Y) [Mono f]
     {S T : Subobject X} (h : S ≤ T) :
     Subobject.ofLE ((Subobject.map f).obj S) ((Subobject.map f).obj T)
@@ -92,6 +101,9 @@ noncomputable def cokernelMapMonoIso {X Y : A} (f : X ⟶ Y) [Mono f]
 
 end Subobject
 
+/--
+@isnad1 id=eq.1h7v.s8.cbf1b17d83ee from=translated src=- shape=3f67988e vocab=146d66df
+-/
 theorem phase_cokernel_mapMono_eq (Z : StabilityFunction A) {X Y : A}
     (f : X ⟶ Y) [Mono f] {S T : Subobject X} (h : S ≤ T) :
     Z.phase (cokernel (Subobject.ofLE ((Subobject.map f).obj S)
@@ -99,6 +111,9 @@ theorem phase_cokernel_mapMono_eq (Z : StabilityFunction A) {X Y : A}
       Z.phase (cokernel (Subobject.ofLE S T h)) :=
   Z.phase_eq_of_iso (Subobject.cokernelMapMonoIso f h)
 
+/--
+@isnad1 id=iff.1h7v.s8.ada61ef838a8 from=translated src=- shape=0d0096b6 vocab=c3344a19
+-/
 theorem isSemistable_cokernel_mapMono_iff (Z : StabilityFunction A)
     {X Y : A} (f : X ⟶ Y) [Mono f] {S T : Subobject X} (h : S ≤ T) :
     Z.IsSemistable (cokernel (Subobject.ofLE ((Subobject.map f).obj S)
@@ -109,7 +124,9 @@ theorem isSemistable_cokernel_mapMono_iff (Z : StabilityFunction A)
   · exact Z.isSemistable_of_iso (Subobject.cokernelMapMonoIso f h).symm
 
 /-- Append a lower-phase semistable quotient to an owner abelian HN
-filtration along a monomorphism.-/
+filtration along a monomorphism.
+@isnad1 id=ex.2h8v.s7.b2f1fc73c4db from=translated src=- shape=9905a821 vocab=44876731
+-/
 theorem append_hn_filtration_of_mono (Z : StabilityFunction A) {X Y B : A}
     (i : X ⟶ Y) [Mono i] (F : AbelianHNFiltration Z X)
     (eB : cokernel i ≅ B) (hB : Z.IsSemistable B)
@@ -237,7 +254,9 @@ theorem append_hn_filtration_of_mono (Z : StabilityFunction A) {X Y B : A}
         (Z.isSemistable_of_iso eTop hB)
   · simp [phase]
 
-/-- The one-factor owner HN filtration of a semistable abelian object.-/
+/-- The one-factor owner HN filtration of a semistable abelian object.
+@isnad1 id=ex.1h3v.s6.0885782e9952 from=translated src=- shape=f7787859 vocab=585c3144
+-/
 theorem exists_hn_with_last_phase_of_semistable (Z : StabilityFunction A)
     {E : A} (hE : Z.IsSemistable E) :
     ∃ F : AbelianHNFiltration Z E,

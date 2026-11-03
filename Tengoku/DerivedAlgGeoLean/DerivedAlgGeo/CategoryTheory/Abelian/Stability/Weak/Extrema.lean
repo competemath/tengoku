@@ -59,7 +59,9 @@ namespace AbelianWeakHNFiltration
 variable {W : WeakStabilityFunctionOn (abelianDatum A)}
 
 /-- A weak-semistable object of slope above an HN factor has no morphisms to
-that factor.-/
+that factor.
+@isnad1 id=eq.2h7v.s7.31e33587ab8b from=translated src=- shape=b3ff8ec9 vocab=185fc5f3
+-/
 theorem hom_eq_zero_to_factor {E B : A} (F : AbelianWeakHNFiltration W E)
     (hB : W.IsSemistable B) (j : Fin F.n) (hslope : F.μ j < W.slope B)
     (f : B ⟶ F.factor j) : f = 0 :=
@@ -67,7 +69,9 @@ theorem hom_eq_zero_to_factor {E B : A} (F : AbelianWeakHNFiltration W E)
     (F.factor_slope j ▸ hslope) f
 
 /-- A weak-semistable subobject whose slope is above every factor from index
-`k` onward lies in the `k`-th term of an HN filtration.-/
+`k` onward lies in the `k`-th term of an HN filtration.
+@isnad1 id=le.3h6v.s7.8dc9fef04810 from=translated src=- shape=c4c36711 vocab=99315223
+-/
 theorem le_chain_of_semistable_μ_gt {E : A} (F : AbelianWeakHNFiltration W E)
     {B : Subobject E} (hB : W.IsSemistable (B : A)) {k : ℕ} (hk : k ≤ F.n)
     (hslope : ∀ j : Fin F.n, k ≤ j.val → F.μ j < W.slope (B : A)) :
@@ -111,7 +115,9 @@ theorem eq_bot_of_semistable_μ_gt_μPlus {E : A}
   exact lt_of_le_of_lt
     (F.μ_anti.antitone (Fin.mk_le_mk.mpr (Nat.zero_le _))) hslope
 
-/-- The first nonzero term in an HN filtration is not bottom.-/
+/-- The first nonzero term in an HN filtration is not bottom.
+@isnad1 id=ne.0h4v.s7.e76b32eacdc1 from=translated src=- shape=abe6746f vocab=75c86773
+-/
 theorem chain_one_ne_bot {E : A} (F : AbelianWeakHNFiltration W E) :
     F.chain ⟨1, by have := F.nonempty; lia⟩ ≠ ⊥ := by
   have hn := F.nonempty
@@ -121,7 +127,9 @@ theorem chain_one_ne_bot {E : A} (F : AbelianWeakHNFiltration W E) :
   rw [F.chain_bot, heq] at hlt
   exact lt_irrefl _ hlt
 
-/-- The slope of the first nonzero term is the highest HN slope.-/
+/-- The slope of the first nonzero term is the highest HN slope.
+@isnad1 id=eq.0h4v.s7.6c0be86c8aba from=translated src=- shape=f61cbc83 vocab=abf71da0
+-/
 theorem μ_chain_one {E : A} (F : AbelianWeakHNFiltration W E) :
     W.slope (F.chain ⟨1, by have := F.nonempty; lia⟩ : A) = F.μPlus := by
   have hn := F.nonempty
@@ -135,7 +143,9 @@ theorem μ_chain_one {E : A} (F : AbelianWeakHNFiltration W E) :
       (StabilityFunction.subobjectCokernelBotIso
         (F.chain ⟨1, by lia⟩) bot_le))).symm
 
-/-- The first nonzero term in an HN filtration is weak-semistable.-/
+/-- The first nonzero term in an HN filtration is weak-semistable.
+@isnad1 id=issemist.0h4v.s7.5b3b6e44526a from=translated src=- shape=16548f76 vocab=72e10718
+-/
 theorem chain_one_isSemistable {E : A} (F : AbelianWeakHNFiltration W E) :
     W.IsSemistable (F.chain ⟨1, by have := F.nonempty; lia⟩ : A) := by
   have hn := F.nonempty
@@ -152,7 +162,9 @@ theorem chain_one_isSemistable {E : A} (F : AbelianWeakHNFiltration W E) :
       (F.chain ⟨1, by lia⟩) bot_le) hnormalized
 
 /-- **The highest slope is intrinsic**: any two weak HN filtrations of the same
-object have the same first slope.-/
+object have the same first slope.
+@isnad1 id=eq.0h5v.s6.28d2a564a8ef from=translated src=- shape=2f7bd0f0 vocab=655a138f
+-/
 theorem μPlus_eq {E : A} (F G : AbelianWeakHNFiltration W E) :
     F.μPlus = G.μPlus := by
   apply le_antisymm
@@ -166,7 +178,9 @@ theorem μPlus_eq {E : A} (F G : AbelianWeakHNFiltration W E) :
       G.chain_one_isSemistable (G.μ_chain_one ▸ hFG))
 
 /-- The first nonzero term is intrinsic: any two weak HN filtrations of the
-same object have the same maximally destabilizing subobject.-/
+same object have the same maximally destabilizing subobject.
+@isnad1 id=eq.0h5v.s7.48194d5c4ff9 from=translated src=- shape=8c4ad208 vocab=53eef727
+-/
 theorem chain_one_eq {E : A} (F G : AbelianWeakHNFiltration W E) :
     F.chain ⟨1, by have := F.nonempty; lia⟩ =
       G.chain ⟨1, by have := G.nonempty; lia⟩ := by
@@ -186,7 +200,9 @@ theorem chain_one_eq {E : A} (F G : AbelianWeakHNFiltration W E) :
       _ = W.slope (G.chain ⟨1, by have := G.nonempty; lia⟩ : A) :=
         G.μ_chain_one.symm
 
-/-- No nonzero weak-semistable subobject has slope above the first HN slope.-/
+/-- No nonzero weak-semistable subobject has slope above the first HN slope.
+@isnad1 id=le.1h5v.s7.5d98302fe60b from=translated src=- shape=627f6a4c vocab=620b83de
+-/
 theorem semistable_μ_le_μPlus {E : A} (F : AbelianWeakHNFiltration W E)
     {B : Subobject E} (hB : W.IsSemistable (B : A)) :
     W.slope (B : A) ≤ F.μPlus := by
@@ -197,7 +213,9 @@ theorem semistable_μ_le_μPlus {E : A} (F : AbelianWeakHNFiltration W E)
 
 /-- **Every morphism to a weak-semistable object of slope below the lowest HN
 slope is zero.**  Induction along the chain: each step factors through a
-successive quotient, which is semistable of slope above the target.-/
+successive quotient, which is semistable of slope above the target.
+@isnad1 id=eq.2h6v.s7.7cf071ff504e from=translated src=- shape=fcf5ab94 vocab=b543bf93
+-/
 theorem hom_eq_zero_to_semistable_of_μ_lt_μMinus {E B : A}
     (F : AbelianWeakHNFiltration W E) (hB : W.IsSemistable B)
     (hslope : W.slope B < F.μMinus) (f : E ⟶ B) : f = 0 := by
@@ -250,7 +268,9 @@ theorem hom_eq_zero_to_semistable_of_μ_lt_μMinus {E B : A}
   simpa using htop
 
 /-- The last HN factor, presented as a weak-semistable quotient of the filtered
-object at the lowest HN slope.-/
+object at the lowest HN slope.
+@isnad1 id=ex.0h4v.s6.c788a59941c2 from=translated src=- shape=9c22c5f1 vocab=df441163
+-/
 theorem exists_epi_to_semistable_μ_μMinus {E : A}
     (F : AbelianWeakHNFiltration W E) :
     ∃ (Q : A) (q : E ⟶ Q), Epi q ∧ W.IsSemistable Q ∧ W.slope Q = F.μMinus := by
@@ -269,7 +289,9 @@ theorem exists_epi_to_semistable_μ_μMinus {E : A}
     inferInstance, F.factor_semistable last, F.factor_slope last⟩
 
 /-- **The lowest slope is intrinsic**: any two weak HN filtrations of the same
-object have the same last slope.-/
+object have the same last slope.
+@isnad1 id=eq.0h5v.s6.dfff39e40ba8 from=translated src=- shape=2f7bd0f0 vocab=ff81902d
+-/
 theorem μMinus_eq {E : A} (F G : AbelianWeakHNFiltration W E) :
     F.μMinus = G.μMinus := by
   have no_strict_order : ∀ (H K : AbelianWeakHNFiltration W E),
@@ -285,7 +307,9 @@ theorem μMinus_eq {E : A} (F G : AbelianWeakHNFiltration W E) :
 
 /-- **`μPlus` is monotone along monomorphisms.**  The maximal destabilizing
 subobject of the source maps to a weak-semistable subobject of the target of the
-same slope, and no weak-semistable subobject exceeds `μPlus`.-/
+same slope, and no weak-semistable subobject exceeds `μPlus`.
+@isnad1 id=le.0h7v.s6.e6af2541686b from=translated src=- shape=a1785738 vocab=5472b8dc
+-/
 theorem μPlus_le_of_mono {X Y : A} (F : AbelianWeakHNFiltration W X)
     (G : AbelianWeakHNFiltration W Y) (i : X ⟶ Y) [Mono i] :
     F.μPlus ≤ G.μPlus := by
@@ -300,7 +324,9 @@ theorem μPlus_le_of_mono {X Y : A} (F : AbelianWeakHNFiltration W X)
 
 /-- **`μMinus` is monotone along epimorphisms.**  A strict drop would make the
 composite onto the last HN factor of the target a nonzero epimorphism that
-`hom_eq_zero_to_semistable_of_μ_lt_μMinus` forces to vanish.-/
+`hom_eq_zero_to_semistable_of_μ_lt_μMinus` forces to vanish.
+@isnad1 id=le.0h7v.s6.45ff171c49f4 from=translated src=- shape=a1785738 vocab=dfdcab87
+-/
 theorem μMinus_le_of_epi {X Y : A} (F : AbelianWeakHNFiltration W X)
     (G : AbelianWeakHNFiltration W Y) (p : X ⟶ Y) [Epi p] :
     F.μMinus ≤ G.μMinus := by

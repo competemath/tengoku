@@ -45,7 +45,9 @@ open Matrix
 noncomputable def cplxCoord : ℂ ≃ₗ[ℝ] (Fin 2 → ℝ) :=
   Complex.basisOneI.equivFun
 
-/-- Coordinates of a complex number in the `1, I` basis.-/
+/-- Coordinates of a complex number in the `1, I` basis.
+@isnad1 id=eq.0h1v.s8.e4d350d5cf44 from=translated src=- shape=5094e34a vocab=a28ec6c6
+-/
 theorem cplxCoord_apply (z : ℂ) : cplxCoord z = ![z.re, z.im] := by
   show ⇑(Complex.basisOneI.repr z) = _
   rw [Complex.coe_basisOneI_repr]
@@ -65,6 +67,9 @@ noncomputable def actC (T : Matrix.GLPos (Fin 2) ℝ) : ℂ →ₗ[ℝ] ℂ wher
       c • cplxCoord.symm (toMat T *ᵥ cplxCoord z)
     simp only [map_smul, Matrix.mulVec_smul]
 
+/--
+@isnad1 id=eq.0h2v.s9.3d9dd1a82f7e from=translated src=- shape=756d790e vocab=ba6f2b89
+-/
 @[simp]
 theorem actC_apply (T : Matrix.GLPos (Fin 2) ℝ) (z : ℂ) :
     actC T z = cplxCoord.symm (toMat T *ᵥ cplxCoord z) := rfl
@@ -75,10 +80,15 @@ Deliberately **not** `@[simp]`. `actC_apply` is the simp lemma that unfolds
 `actC`, and once it fires `toMat_one`, `Matrix.one_mulVec` and
 `LinearEquiv.symm_apply_apply` finish the job -- so a `@[simp]` here is
 redundant and `simpNF` rejects it. Stated in applied form to match `actC_mul`,
-which is not `@[simp]` either.-/
+which is not `@[simp]` either.
+@isnad1 id=eq.0h1v.s9.a1ccd1d29968 from=translated src=- shape=7dc68438 vocab=ec0e6d36
+-/
 theorem actC_one (z : ℂ) : actC 1 z = z := by
   simp [toMat_one, Matrix.one_mulVec]
 
+/--
+@isnad1 id=eq.0h3v.s11.6fbf596bfeca from=translated src=- shape=fd405e3c vocab=ed6d3da9
+-/
 theorem actC_mul (T U : Matrix.GLPos (Fin 2) ℝ) (z : ℂ) :
     actC (T * U) z = actC T (actC U z) := by
   simp [toMat_mul, ← Matrix.mulVec_mulVec]

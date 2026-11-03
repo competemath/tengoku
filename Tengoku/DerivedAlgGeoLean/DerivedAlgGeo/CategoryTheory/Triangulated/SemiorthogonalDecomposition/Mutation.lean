@@ -109,7 +109,9 @@ noncomputable def counitTriangle (hP : P.IsTriangulated) (X : C) :
   exact hQZ.eq_of_tgt _ _
 
 /-- A morphism whose cone is right orthogonal to `P` becomes an isomorphism
-after applying the right projection onto `P`.-/
+after applying the right projection onto `P`.
+@isnad1 id=isiso.2h10v.s7.46979bf03d87 from=translated src=- shape=92a705bf vocab=e264e810
+-/
 theorem projectMap_isIso_of_distinguished (hP : P.IsTriangulated)
     {X Y Z : C} (f : X ⟶ Y) (g : Y ⟶ Z) (h : Z ⟶ X⟦(1 : ℤ)⟧)
     (hT : Pretriangulated.Triangle.mk f g h ∈ distTriang C)

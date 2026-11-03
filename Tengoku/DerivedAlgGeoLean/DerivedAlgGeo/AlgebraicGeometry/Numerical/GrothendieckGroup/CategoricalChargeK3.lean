@@ -74,6 +74,9 @@ charge needs are inherited rather than restated.-/
 def toMukaiChargeData : MukaiChargeData C W where
   mukai := (Mukai.extendMapHom f).comp (D.mukaiVectorHom.comp cl)
 
+/--
+@isnad1 id=eq.0h10v.s9.70f928f3ee7d from=translated src=- shape=cf041d8e vocab=afa4aa25
+-/
 @[simp]
 theorem toMukaiChargeData_mukai (x : K₀Ab C) :
     (D.toMukaiChargeData f cl).mukai x
@@ -87,7 +90,9 @@ numerical charge of its class.
 Definitional, because the class map is a composition of homs rather than a
 separately-postulated function. Its use is that every support-property theorem
 stated about `numericalCharge` now applies to an object of an abelian category
-through its class.-/
+through its class.
+@isnad1 id=eq.0h13v.s9.82aee88d8d1f from=translated src=- shape=f9dd2889 vocab=694cddc4
+-/
 theorem charge_toMukaiChargeData (E : C) :
     (D.toMukaiChargeData f cl).charge bR β ω E
       = D.numericalCharge bR f β ω (cl (K₀Ab.of E)) :=
@@ -97,7 +102,9 @@ variable {D bR f β ω}
 
 /-- **A wall is a vanishing charge**, for the class of an object.  This
 interpretation lives in the categorical stability adapter so the underlying
-numerical charge remains independent of wall loci.-/
+numerical charge remains independent of wall loci.
+@isnad1 id=iff.2h11v.s10.f6d348ae7d31 from=translated src=- shape=b35584c9 vocab=a52597ad
+-/
 theorem mem_wall_iff_numericalCharge_eq_zero (hb : ∀ x y : W, bR x y = bR y x)
     (hω : 0 < bR ω ω) (E : N) :
     PeriodDomain.pairSpan (Mukai.expRe bR β ω) (Mukai.expIm bR β ω) ∈

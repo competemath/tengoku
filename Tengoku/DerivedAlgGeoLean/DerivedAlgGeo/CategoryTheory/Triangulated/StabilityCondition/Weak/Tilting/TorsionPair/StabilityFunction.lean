@@ -58,10 +58,16 @@ def hnTorsProperty (Z : StabilityFunction A) (β : ℝ) : ObjectProperty A :=
 def hnFreeProperty (Z : StabilityFunction A) (β : ℝ) : ObjectProperty A :=
   fun E => E ∈ hnFree Z β
 
+/--
+@isnad1 id=isclosed.0h3v.s4.5a222b9ea9af from=translated src=- shape=4739d891 vocab=caedfd1e
+-/
 instance hnTorsProperty_isClosedUnderIsomorphisms (Z : StabilityFunction A)
     (β : ℝ) : (hnTorsProperty Z β).IsClosedUnderIsomorphisms :=
   ⟨fun e h => hnTors_of_iso e h⟩
 
+/--
+@isnad1 id=isclosed.0h3v.s4.a5166201dada from=translated src=- shape=4739d891 vocab=b06a827d
+-/
 instance hnFreeProperty_isClosedUnderIsomorphisms (Z : StabilityFunction A)
     (β : ℝ) : (hnFreeProperty Z β).IsClosedUnderIsomorphisms :=
   ⟨fun e h => hnFree_of_iso e h⟩
@@ -74,12 +80,18 @@ def hnTorsionPair (Z : StabilityFunction A) (β : ℝ) (hHN : Z.HasHNProperty) :
   hom_eq_zero _ _ hX hY f := hom_eq_zero_of_mem_hnTors_of_mem_hnFree hHN hX hY f
   exists_shortExact E := exists_shortExact_hnTors_hnFree hHN (β := β) E
 
+/--
+@isnad1 id=eq.1h3v.s5.000f24ad3d8c from=translated src=- shape=c2c22f2d vocab=10b94d5b
+-/
 @[simp]
 theorem hnTorsionPair_tors (Z : StabilityFunction A) (β : ℝ)
     (hHN : Z.HasHNProperty) :
     (hnTorsionPair Z β hHN).tors = hnTorsProperty Z β :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.2635a095574c from=translated src=- shape=c2c22f2d vocab=95ec2dec
+-/
 @[simp]
 theorem hnTorsionPair_free (Z : StabilityFunction A) (β : ℝ)
     (hHN : Z.HasHNProperty) :

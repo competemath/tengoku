@@ -47,7 +47,9 @@ namespace WeakStabilityFunctionOn
 variable {W : WeakStabilityFunctionOn (abelianDatum A)} {μ₀ : WithTop ℝ}
 
 /-- **The splitting.**  Every object has a subobject in `T μ₀` whose cokernel is in `F μ₀`,
-obtained by cutting a weak HN filtration at its crossing index.-/
+obtained by cutting a weak HN filtration at its crossing index.
+@isnad1 id=ex.1h4v.s7.47bfce264bef from=translated src=- shape=4efb5de7 vocab=17179158
+-/
 theorem exists_subobject_hnTors_cokernel_hnFree (hHN : W.HasHNProperty) (E : A) :
     ∃ T : Subobject E,
       ((T : A) ∈ hnTors W μ₀) ∧ (cokernel T.arrow ∈ hnFree W μ₀) := by
@@ -74,7 +76,9 @@ theorem exists_subobject_hnTors_cokernel_hnFree (hHN : W.HasHNProperty) (E : A) 
       rw [F.tailAt_μPlus k hklt]
       exact hhigh ⟨k, hklt⟩ le_rfl
 
-/-- The splitting as a short exact sequence with the given object in the middle.-/
+/-- The splitting as a short exact sequence with the given object in the middle.
+@isnad1 id=ex.1h4v.s8.9e238fa25852 from=translated src=- shape=9d6a0d0d vocab=c366c597
+-/
 theorem exists_shortExact_hnTors_hnFree (hHN : W.HasHNProperty) (E : A) :
     ∃ (T Q : A) (i : T ⟶ E) (p : E ⟶ Q) (w : i ≫ p = 0),
       T ∈ hnTors W μ₀ ∧ Q ∈ hnFree W μ₀ ∧ (ShortComplex.mk i p w).ShortExact := by

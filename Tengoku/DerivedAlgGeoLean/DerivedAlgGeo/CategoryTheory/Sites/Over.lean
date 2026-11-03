@@ -23,7 +23,9 @@ variable {C D : Type u} [Category.{u} C] [Category.{u} D]
   {J : GrothendieckTopology C} {K : GrothendieckTopology D}
   (F : C ⥤ D) [F.IsCocontinuous J K] (X : C)
 
-/-- Cocontinuity passes to the induced functor on over categories.-/
+/-- Cocontinuity passes to the induced functor on over categories.
+@isnad1 id=iscocont.0h6v.s6.8a553af113e5 from=translated src=- shape=24e87445 vocab=f1cec152
+-/
 instance post_isCocontinuous :
     (Over.post (X := X) F).IsCocontinuous (J.over X) (K.over (F.obj X)) where
   cover_lift {U} S hS := by

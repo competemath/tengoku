@@ -28,7 +28,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 
 namespace AbelianHNFiltration
 
-/-- A semistable object can only have a one-factor HN filtration.-/
+/-- A semistable object can only have a one-factor HN filtration.
+@isnad1 id=eq.1h4v.s5.344336355733 from=translated src=- shape=8f8e32c5 vocab=8021338f
+-/
 theorem n_eq_one_of_semistable {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (hE : Z.IsSemistable E) : F.n = 1 := by
   by_contra hn
@@ -88,7 +90,9 @@ theorem n_eq_one_of_semistable {Z : StabilityFunction A} {E : A}
     F.phase_strictAnti (Fin.mk_lt_mk.mpr (by lia))
   linarith
 
-/-- A one-factor HN filtration identifies its ambient object as semistable.-/
+/-- A one-factor HN filtration identifies its ambient object as semistable.
+@isnad1 id=issemist.1h4v.s5.7ce53874eee4 from=translated src=- shape=b718112a vocab=8021338f
+-/
 theorem isSemistable_of_n_eq_one {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (hn : F.n = 1) : Z.IsSemistable E := by
   have hfactor := F.factor_semistable ⟨0, F.nonempty⟩
@@ -108,12 +112,16 @@ theorem isSemistable_of_n_eq_one {Z : StabilityFunction A} {E : A}
     hnormalized
 
 /-- A one-factor HN filtration is equivalent to semistability of its ambient
-object.-/
+object.
+@isnad1 id=iff.0h4v.s5.15b05c0714f5 from=translated src=- shape=89b84b59 vocab=8021338f
+-/
 theorem n_eq_one_iff_isSemistable {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) : F.n = 1 ↔ Z.IsSemistable E :=
   ⟨F.isSemistable_of_n_eq_one, F.n_eq_one_of_semistable⟩
 
-/-- A non-semistable object has at least two HN factors.-/
+/-- A non-semistable object has at least two HN factors.
+@isnad1 id=le.1h4v.s5.435a8e4a1323 from=translated src=- shape=81c2e2aa vocab=a6143c48
+-/
 theorem two_le_n_of_not_isSemistable {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (hE : ¬Z.IsSemistable E) : 2 ≤ F.n := by
   by_contra hlt
@@ -123,7 +131,9 @@ theorem two_le_n_of_not_isSemistable {Z : StabilityFunction A} {E : A}
   lia
 
 /-- If a subobject maps trivially to the quotient by another subobject, it is
-contained in that subobject.-/
+contained in that subobject.
+@isnad1 id=le.1h4v.s8.a6e00c92bc3c from=translated src=- shape=908beb0a vocab=f467a5f6
+-/
 theorem le_of_arrow_comp_cokernel_zero {E : A} {B M : Subobject E}
     (h : B.arrow ≫ cokernel.π M.arrow = 0) : B ≤ M := by
   have hkernel : kernelSubobject (cokernel.π M.arrow) = M := by
@@ -137,7 +147,9 @@ theorem le_of_arrow_comp_cokernel_zero {E : A} {B M : Subobject E}
     (factorThruKernelSubobject_comp_arrow _ _ _)
 
 /-- The relative form of `le_of_arrow_comp_cokernel_zero`: a subobject of `S`
-that maps trivially to the quotient `S / M` is contained in `M`.-/
+that maps trivially to the quotient `S / M` is contained in `M`.
+@isnad1 id=le.3h5v.s9.6243777dbf54 from=translated src=- shape=0a0cfb37 vocab=8a8032ce
+-/
 theorem le_of_ofLE_comp_cokernel_zero {E : A} {B M S : Subobject E}
     (hBS : B ≤ S) (hMS : M ≤ S)
     (h : Subobject.ofLE B S hBS ≫
@@ -162,7 +174,9 @@ theorem le_of_ofLE_comp_cokernel_zero {E : A} {B M S : Subobject E}
     _ = B.arrow := Subobject.ofLE_arrow hBS
 
 /-- Pulling bottom back along the quotient by a subobject recovers the
-subobject.-/
+subobject.
+@isnad1 id=eq.0h3v.s9.bacd3a124879 from=translated src=- shape=bece097f vocab=27222369
+-/
 theorem pullback_cokernel_bot_eq {E : A} (M : Subobject E) :
     (Subobject.pullback (cokernel.π M.arrow)).obj ⊥ = M := by
   apply le_antisymm
@@ -180,7 +194,9 @@ theorem pullback_cokernel_bot_eq {E : A} (M : Subobject E) :
         WalkingCospan.right)
 
 /-- Quotienting by a nonzero subobject strictly decreases a finite subobject
-lattice.-/
+lattice.
+@isnad1 id=lt.1h3v.s6.0a18670d2250 from=translated src=- shape=db550137 vocab=53569875
+-/
 theorem card_subobject_cokernel_lt {E : A} {M : Subobject E}
     (hM : M ≠ ⊥) [Finite (Subobject E)] :
     Nat.card (Subobject (cokernel M.arrow)) < Nat.card (Subobject E) := by
@@ -206,14 +222,18 @@ theorem card_subobject_cokernel_lt {E : A} {M : Subobject E}
         _ = ⊥ := hB)
 
 /-- Every subobject of a quotient pulls back to a subobject containing the
-kernel of the quotient map.-/
+kernel of the quotient map.
+@isnad1 id=le.0h4v.s8.ee34edf82022 from=translated src=- shape=20184253 vocab=00e5d79c
+-/
 theorem le_pullback_cokernel {E : A} (M : Subobject E)
     (B : Subobject (cokernel M.arrow)) :
     M ≤ (Subobject.pullback (cokernel.π M.arrow)).obj B :=
   (pullback_cokernel_bot_eq M).symm.le.trans
     (Functor.monotone _ bot_le)
 
-/-- The kernel inclusion followed by the restricted quotient map is zero.-/
+/-- The kernel inclusion followed by the restricted quotient map is zero.
+@isnad1 id=eq.0h4v.s11.f4a7c77564e4 from=translated src=- shape=af8e2f46 vocab=3611169b
+-/
 theorem ofLE_pullbackπ_cokernel_eq_zero {E : A} (M : Subobject E)
     (B : Subobject (cokernel M.arrow)) :
     Subobject.ofLE M _ (le_pullback_cokernel M B) ≫
@@ -234,7 +254,9 @@ theorem ofLE_pullbackπ_cokernel_eq_zero {E : A} (M : Subobject E)
     _ = 0 := cokernel.condition M.arrow
 
 /-- Pulling a subobject of a quotient back gives a canonical short exact
-sequence with the quotient kernel.-/
+sequence with the quotient kernel.
+@isnad1 id=shortexa.0h4v.s10.f671ccc6a489 from=translated src=- shape=27d529f7 vocab=ee347ad3
+-/
 theorem shortExact_ofLE_pullbackπ_cokernel {E : A} (M : Subobject E)
     (B : Subobject (cokernel M.arrow)) :
     (ShortComplex.mk
@@ -272,7 +294,9 @@ theorem shortExact_ofLE_pullbackπ_cokernel {E : A} (M : Subobject E)
         WalkingParallelPair.zero⟩)
 
 /-- The charge of a pulled-back quotient subobject is the sum of the kernel
-charge and the subobject charge.-/
+charge and the subobject charge.
+@isnad1 id=eq.0h5v.s9.a5ec9635e35c from=translated src=- shape=4ec22f45 vocab=e3652b76
+-/
 theorem charge_pullback_eq_add (Z : StabilityFunction A) {E : A}
     (M : Subobject E) (B : Subobject (cokernel M.arrow)) :
     Z.charge (((Subobject.pullback (cokernel.π M.arrow)).obj B) : A) =
@@ -280,7 +304,9 @@ theorem charge_pullback_eq_add (Z : StabilityFunction A) {E : A}
   Z.additive _ (shortExact_ofLE_pullbackπ_cokernel M B)
 
 /-- Pulling the image of a subobject containing the quotient kernel back along
-the quotient projection recovers the original subobject.-/
+the quotient projection recovers the original subobject.
+@isnad1 id=eq.1h5v.s9.59039dfdec49 from=translated src=- shape=8948ffb5 vocab=839b92b4
+-/
 theorem pullback_imageSubobject_eq (Z : StabilityFunction A) {E : A}
     {M S : Subobject E} (hMS : M ≤ S) :
     (Subobject.pullback (cokernel.π M.arrow)).obj
@@ -363,7 +389,9 @@ theorem pullback_imageSubobject_eq (Z : StabilityFunction A) {E : A}
       (Z.nonzero_mem _ hnonzero) hcokernel
 
 /-- Consecutive pulled-back quotient subobjects have the same charge as the
-corresponding quotient factor.-/
+corresponding quotient factor.
+@isnad1 id=eq.1h6v.s11.ef98b888dd9f from=translated src=- shape=a65c0994 vocab=2506668f
+-/
 theorem charge_cokernel_pullback_eq (Z : StabilityFunction A) {E : A}
     (M : Subobject E) {B₁ B₂ : Subobject (cokernel M.arrow)} (h : B₁ ≤ B₂) :
     Z.charge (cokernel (Subobject.ofLE
@@ -387,7 +415,9 @@ theorem charge_cokernel_pullback_eq (Z : StabilityFunction A) {E : A}
   linear_combination -h₁ + h₂ - hB₁ + hB₂
 
 /-- Consecutive pulled-back quotient subobjects have the same phase as the
-corresponding quotient factor.-/
+corresponding quotient factor.
+@isnad1 id=eq.1h6v.s11.4b393e6bc1da from=translated src=- shape=a65c0994 vocab=c6f255e7
+-/
 theorem phase_cokernel_pullback_eq (Z : StabilityFunction A) {E : A}
     (M : Subobject E) {B₁ B₂ : Subobject (cokernel M.arrow)} (h : B₁ ≤ B₂) :
     Z.phase (cokernel (Subobject.ofLE

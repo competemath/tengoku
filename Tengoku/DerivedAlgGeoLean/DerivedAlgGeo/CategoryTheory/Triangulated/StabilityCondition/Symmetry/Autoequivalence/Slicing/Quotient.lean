@@ -109,12 +109,21 @@ def symm (Φ : TriEquiv C) : TriEquiv C where
 /-- The induced map on slicings, `(Φ • s).P φ X = s.P φ (Φ⁻¹ X)`.-/
 noncomputable def act (Φ : TriEquiv C) (s : Slicing C) : Slicing C := s.mapEquiv Φ.e
 
+/--
+@isnad1 id=eq.0h5v.s6.a0bb1adef51c from=translated src=- shape=e807d724 vocab=2b1f768e
+-/
 @[simp] theorem act_P (Φ : TriEquiv C) (s : Slicing C) (φ : ℝ) (X : C) :
     (Φ.act s).P φ X = s.P φ (Φ.e.inverse.obj X) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.db80136acab4 from=translated src=- shape=9bd04fa6 vocab=91eaadad
+-/
 theorem act_id (s : Slicing C) : (TriEquiv.id (C := C)).act s = s := by
   refine Slicing.ext C ?_; funext φ; funext X; rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.858828d9a2f8 from=translated src=- shape=84aa03e6 vocab=e3c310e0
+-/
 theorem act_comp (Φ Ψ : TriEquiv C) (s : Slicing C) :
     (Φ.comp Ψ).act s = Ψ.act (Φ.act s) := by
   refine Slicing.ext C ?_; funext φ; funext X; rfl
@@ -128,7 +137,9 @@ def inverseIsoOfFunctorIso {Φ Ψ : TriEquiv C} (h : Φ.e.functor ≅ Ψ.e.funct
 
 /-- **Descent.** Naturally isomorphic auto-equivalences act identically — not
 merely up to isomorphism of slicings, but equally, because `Slicing.P` is
-closed under isomorphism and `propext` upgrades the resulting `Iff` to `Eq`.-/
+closed under isomorphism and `propext` upgrades the resulting `Iff` to `Eq`.
+@isnad1 id=eq.0h5v.s7.8a5a9aab221a from=translated src=- shape=38ab5d8f vocab=5da52e5c
+-/
 theorem act_congr {Φ Ψ : TriEquiv C} (h : Φ.e.functor ≅ Ψ.e.functor) (s : Slicing C) :
     Φ.act s = Ψ.act s := by
   let hInv := inverseIsoOfFunctorIso h
@@ -196,6 +207,9 @@ return type: `AutQuot` is a plain `def`, so a bare `_root_.Quotient.mk` does not
 enough type information for `•` to find its instance.-/
 def mk (Φ : TriEquiv C) : AutQuot C := _root_.Quotient.mk _ Φ
 
+/--
+@isnad1 id=eq.0h5v.s8.0b42fe69e4a6 from=translated src=- shape=f746ea02 vocab=3db86964
+-/
 @[simp] theorem mk_smul_P (Φ : TriEquiv C) (s : Slicing C) (φ : ℝ) (X : C) :
     (mk Φ • s).P φ X = s.P φ (Φ.e.inverse.obj X) := rfl
 

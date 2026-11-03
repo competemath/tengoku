@@ -62,11 +62,16 @@ noncomputable def eulerPairingFlip : N →+ (N →+ ℚ) :=
       ext G
       exact V.chi₂_add_right G E F
 
-/-- Unbundling `eulerPairing` recovers the original numerical Euler form `chi₂`.-/
+/-- Unbundling `eulerPairing` recovers the original numerical Euler form `chi₂`.
+@isnad1 id=eq.0h6v.s8.9b62497c061d from=translated src=- shape=cef30d50 vocab=1838ccef
+-/
 @[simp]
 theorem eulerPairing_apply (E F : N) : V.eulerPairing E F = V.chi₂ E F :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.3661c0678568 from=translated src=- shape=f84781da vocab=1ebf8e99
+-/
 @[simp]
 theorem eulerPairingFlip_apply (E F : N) :
     V.eulerPairingFlip E F = V.chi₂ F E :=
@@ -81,7 +86,9 @@ noncomputable def rightRadical : Submodule ℤ N :=
   AddSubgroup.toIntSubmodule (V.eulerPairingFlip).ker
 
 /-- Membership in the left radical is pointwise vanishing of the Euler pairing in the
-second argument.-/
+second argument.
+@isnad1 id=iff.0h5v.s6.d11c40f82d1c from=translated src=- shape=b6ea5be5 vocab=29b16738
+-/
 theorem mem_leftRadical_iff (E : N) :
     E ∈ V.leftRadical ↔ ∀ F : N, V.chi₂ E F = 0 := by
   rw [leftRadical]
@@ -95,7 +102,9 @@ theorem mem_leftRadical_iff (E : N) :
     simpa using h F
 
 /-- Membership in the right radical is pointwise vanishing of the Euler pairing in the
-first argument.-/
+first argument.
+@isnad1 id=iff.0h5v.s6.40fc2dc392ed from=translated src=- shape=f7fd5613 vocab=5852bf93
+-/
 theorem mem_rightRadical_iff (F : N) :
     F ∈ V.rightRadical ↔ ∀ E : N, V.chi₂ E F = 0 := by
   rw [rightRadical]
@@ -113,7 +122,9 @@ def IsEulerPairingSymmetric : Prop :=
   ∀ E F : N, V.chi₂ E F = V.chi₂ F E
 
 /-- Symmetry turns vanishing against every right argument into vanishing against every left
-argument, so the two kernels used to define the numerical quotient coincide.-/
+argument, so the two kernels used to define the numerical quotient coincide.
+@isnad1 id=eq.1h4v.s6.66c4468f7af8 from=translated src=- shape=a3bc7d77 vocab=2a051021
+-/
 theorem leftRadical_eq_rightRadical (hSymm : IsEulerPairingSymmetric V) :
     V.leftRadical (N := N) = V.rightRadical (N := N) := by
   ext E
@@ -144,7 +155,9 @@ noncomputable def eulerPairingDescendRight
     rw [hSymm E F]
     exact (V.mem_leftRadical_iff F).mp hF E
 
-/-- Evaluating the one-sided descent on a quotient representative recovers `chi₂`.-/
+/-- Evaluating the one-sided descent on a quotient representative recovers `chi₂`.
+@isnad1 id=eq.1h6v.s7.527bccfa0c95 from=translated src=- shape=9b0a0208 vocab=9d95744f
+-/
 @[simp]
 theorem eulerPairingDescendRight_mk
     (hSymm : IsEulerPairingSymmetric V) (E F : N) :
@@ -162,7 +175,9 @@ noncomputable def eulerPairingToQuotient
     intro G
     exact V.chi₂_add_left E F G
 
-/-- The left-additive one-sided descent still evaluates to `chi₂` on representatives.-/
+/-- The left-additive one-sided descent still evaluates to `chi₂` on representatives.
+@isnad1 id=eq.1h6v.s9.61eb6ab4cd93 from=translated src=- shape=928dfde8 vocab=1baf7853
+-/
 @[simp]
 theorem eulerPairingToQuotient_mk
     (hSymm : IsEulerPairingSymmetric V) (E F : N) :
@@ -183,7 +198,9 @@ noncomputable def numericalPairing
       intro F
       exact (V.mem_leftRadical_iff E).mp hE F
 
-/-- The fully descended numerical pairing is computed by `chi₂` on representatives.-/
+/-- The fully descended numerical pairing is computed by `chi₂` on representatives.
+@isnad1 id=eq.1h6v.s10.8b115be6c07a from=translated src=- shape=d8d36b84 vocab=f7b16cd8
+-/
 @[simp]
 theorem numericalPairing_mk
     (hSymm : IsEulerPairingSymmetric V) (E F : N) :
@@ -191,7 +208,9 @@ theorem numericalPairing_mk
       V.chi₂ E F :=
   rfl
 
-/-- The descended pairing remains symmetric.-/
+/-- The descended pairing remains symmetric.
+@isnad1 id=eq.1h6v.s10.079d34cf0ed1 from=translated src=- shape=687e920e vocab=9a0a8c31
+-/
 theorem numericalPairing_symm
     (hSymm : IsEulerPairingSymmetric V)
     (x y : NumericalQuotient V) :
@@ -200,7 +219,9 @@ theorem numericalPairing_symm
   refine Submodule.Quotient.induction_on _ y fun F => ?_
   exact hSymm E F
 
-/-- The descended pairing has zero left radical, by construction.-/
+/-- The descended pairing has zero left radical, by construction.
+@isnad1 id=eq.2h5v.s10.37fc868eb591 from=translated src=- shape=eb7f99ce vocab=9a0a8c31
+-/
 theorem numericalPairing_left_nondegenerate
     (hSymm : IsEulerPairingSymmetric V)
     (x : NumericalQuotient V)
@@ -212,7 +233,9 @@ theorem numericalPairing_left_nondegenerate
   intro F
   simpa using hx (Submodule.Quotient.mk F)
 
-/-- The descended pairing has zero right radical as well.-/
+/-- The descended pairing has zero right radical as well.
+@isnad1 id=eq.2h5v.s10.fccbba015977 from=translated src=- shape=e69fd603 vocab=9a0a8c31
+-/
 theorem numericalPairing_right_nondegenerate
     (hSymm : IsEulerPairingSymmetric V)
     (y : NumericalQuotient V)
@@ -223,7 +246,9 @@ theorem numericalPairing_right_nondegenerate
   rw [V.numericalPairing_symm hSymm]
   exact hy x
 
-/-- The kernel of the descended pairing is zero.-/
+/-- The kernel of the descended pairing is zero.
+@isnad1 id=eq.1h4v.s8.27a8862b89a6 from=translated src=- shape=926418b9 vocab=f625ce79
+-/
 theorem numericalPairing_ker_eq_bot
     (hSymm : IsEulerPairingSymmetric V) :
     (V.numericalPairing hSymm).ker = ⊥ := by
@@ -246,11 +271,15 @@ variable {A : Type u} {N : Type v}
 variable [CommRing A] [Algebra ℚ A] [AddCommGroup N]
 variable (V : NumericalVarietyData 2 A N)
 
-/-- A K3 Euler pairing satisfies the symmetry hypothesis used by the numerical quotient.-/
+/-- A K3 Euler pairing satisfies the symmetry hypothesis used by the numerical quotient.
+@isnad1 id=iseulerp.1h3v.s5.ddd798c0e4ad from=translated src=- shape=e41900a1 vocab=bc421d2d
+-/
 theorem isEulerPairingSymmetric (hK3 : IsK3 V) : IsEulerPairingSymmetric V :=
   fun E F => chi₂_comm V hK3 E F
 
-/-- On a K3, the two Euler radicals agree.-/
+/-- On a K3, the two Euler radicals agree.
+@isnad1 id=eq.1h3v.s6.2a2d99f8fc2d from=translated src=- shape=07749ccf vocab=35a9f450
+-/
 theorem leftRadical_eq_rightRadical (hK3 : IsK3 V) :
     V.leftRadical = V.rightRadical :=
   NumericalVarietyData.leftRadical_eq_rightRadical V (isEulerPairingSymmetric V hK3)
@@ -258,7 +287,9 @@ theorem leftRadical_eq_rightRadical (hK3 : IsK3 V) :
 /-- On representatives, the numerical quotient pairing is minus the Mukai pairing.
 
 Thus quotienting and descending preserve exactly the sign convention fixed by
-`chi₂_eq_neg_mukaiPairing`.-/
+`chi₂_eq_neg_mukaiPairing`.
+@isnad1 id=eq.1h5v.s10.cd6d8ec41b27 from=translated src=- shape=6c286fe9 vocab=5a3ee259
+-/
 theorem numericalPairing_mk_eq_neg_mukaiPairing (hK3 : IsK3 V) (E F : N) :
     V.numericalPairing (isEulerPairingSymmetric V hK3)
         (Submodule.Quotient.mk E) (Submodule.Quotient.mk F) =

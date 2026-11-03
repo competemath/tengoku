@@ -30,7 +30,9 @@ variable {ι σ A : Type*} [AddCommMonoid ι] [DecidableEq ι] [CommRing A]
   [SetLike σ A] [AddSubgroupClass σ A] (𝒜 : ι → σ) [GradedRing 𝒜]
 
 /-- A homogeneous localization at a multiplicative set of nonzerodivisors is a domain, provided
-it is nontrivial.-/
+it is nontrivial.
+@isnad1 id=isdomain.1h5v.s7.a7440e5eef6f from=translated src=- shape=959191f6 vocab=6b9ef292
+-/
 theorem isDomain_of_le_nonZeroDivisors [IsDomain A] (S : Submonoid A)
     (hS : S ≤ A⁰) :
     IsDomain (HomogeneousLocalization 𝒜 S) := by
@@ -39,7 +41,9 @@ theorem isDomain_of_le_nonZeroDivisors [IsDomain A] (S : Submonoid A)
     (algebraMap (HomogeneousLocalization 𝒜 S) (Localization S)) (val_injective S)
 
 /-- A homogeneous localization at a multiplicative set of nonzerodivisors of a nontrivial ring
-is nontrivial: `val` is injective, so a trivial source would force `0 = 1` in the target.-/
+is nontrivial: `val` is injective, so a trivial source would force `0 = 1` in the target.
+@isnad1 id=nontrivi.1h5v.s7.62d5f94aebd9 from=translated src=- shape=e7873b41 vocab=3d0f4213
+-/
 theorem nontrivial_of_le_nonZeroDivisors [IsDomain A] (S : Submonoid A) (hS : S ≤ A⁰) :
     Nontrivial (HomogeneousLocalization 𝒜 S) := by
   haveI : IsDomain (Localization S) := IsLocalization.isDomain_localization hS
@@ -52,7 +56,9 @@ theorem nontrivial_of_le_nonZeroDivisors [IsDomain A] (S : Submonoid A) (hS : S 
 /-- Away from a nonzero element of a graded domain the homogeneous localization is nontrivial.
 
 Nonzero is needed and not cosmetic: away from `0` the localization is the zero ring, since
-`0 = 0 ^ 1` lies in the powers of `0`.-/
+`0 = 0 ^ 1` lies in the powers of `0`.
+@isnad1 id=nontrivi.1h5v.s6.fe5395101803 from=translated src=- shape=7f2ac85e vocab=1ceace1f
+-/
 theorem Away.nontrivial [IsDomain A] {f : A} (hf : f ≠ 0) :
     Nontrivial (HomogeneousLocalization.Away 𝒜 f) := by
   refine nontrivial_of_le_nonZeroDivisors 𝒜 (Submonoid.powers f) ?_
@@ -63,7 +69,9 @@ theorem Away.nontrivial [IsDomain A] {f : A} (hf : f ≠ 0) :
 a domain.
 
 Nonzero is what puts the powers of `f` among the nonzerodivisors; away from `0` the ring is
-trivial instead.-/
+trivial instead.
+@isnad1 id=isdomain.1h5v.s7.197bcc1b416b from=translated src=- shape=e2ab6e79 vocab=fe149663
+-/
 theorem Away.isDomain [IsDomain A] {f : A} (hf : f ≠ 0) :
     IsDomain (HomogeneousLocalization.Away 𝒜 f) := by
   refine isDomain_of_le_nonZeroDivisors 𝒜 (Submonoid.powers f) ?_
@@ -71,7 +79,9 @@ theorem Away.isDomain [IsDomain A] {f : A} (hf : f ≠ 0) :
   exact pow_mem (mem_nonZeroDivisors_of_ne_zero hf) n
 
 /-- Every degree-zero homogeneous localization of a graded domain is reduced: away from a
-nonzero element it is a domain, and away from zero it is the zero ring.-/
+nonzero element it is a domain, and away from zero it is the zero ring.
+@isnad1 id=isreduce.0h5v.s6.5ae557fbc9ba from=translated src=- shape=3eff3f61 vocab=1f380c35
+-/
 theorem Away.isReduced [IsDomain A] (f : A) :
     IsReduced (HomogeneousLocalization.Away 𝒜 f) := by
   by_cases hf : f = 0

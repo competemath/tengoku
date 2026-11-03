@@ -66,12 +66,18 @@ noncomputable def abelianTodd : ℕ → SurfaceRing
   | 0 => 1
   | _ + 1 => 0
 
+/--
+@isnad1 id=mem.0h1v.s8.80c732951c47 from=translated src=- shape=47eb5a58 vocab=9533a54e
+-/
 theorem abelianTodd_mem (i : ℕ) :
     abelianTodd i ∈ gradedPiece (⇑surfacePB.basis) surfaceW i := by
   match i with
   | 0 => exact surface_one_mem
   | _ + 1 => exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.0h0v.s8.2a66974cb394 from=translated src=- shape=24ddbddc vocab=da386e7d
+-/
 theorem abelianTodd_sum :
     (∑ j ∈ Finset.range (2 + 1), abelianTodd j)
       = 1 + algebraMap ℚ SurfaceRing 0 * H + algebraMap ℚ SurfaceRing 0 * H ^ 2 := by

@@ -47,7 +47,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 namespace AbelianHNFiltration
 
 /-- **The crossing index.**  The HN phases strictly decrease, so the indices
-whose phase exceeds `β` are an initial segment; this names its length.-/
+whose phase exceeds `β` are an initial segment; this names its length.
+@isnad1 id=ex.0h5v.s6.fed9846ed1a1 from=translated src=- shape=add558c1 vocab=5b70eb52
+-/
 theorem exists_crossIndex {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (β : ℝ) :
     ∃ k ≤ F.n, (∀ j : Fin F.n, j.val < k → β < F.phase j) ∧
@@ -74,14 +76,18 @@ namespace StabilityFunction
 
 variable {Z : StabilityFunction A} {β : ℝ}
 
-/-- The torsion class is closed under isomorphism.-/
+/-- The torsion class is closed under isomorphism.
+@isnad1 id=mem.1h6v.s5.207506530c9e from=translated src=- shape=8ba44e0b vocab=27775cf4
+-/
 theorem hnTors_of_iso {E E' : A} (e : E ≅ E') (h : E ∈ hnTors Z β) :
     E' ∈ hnTors Z β := by
   rcases h with h0 | ⟨F, hF⟩
   · exact Or.inl (h0.of_iso e.symm)
   · exact Or.inr ⟨F.ofIso e, by simpa using hF⟩
 
-/-- The torsion-free class is closed under isomorphism.-/
+/-- The torsion-free class is closed under isomorphism.
+@isnad1 id=mem.1h6v.s5.e6e99da6f801 from=translated src=- shape=8ba44e0b vocab=37ab6fc1
+-/
 theorem hnFree_of_iso {E E' : A} (e : E ≅ E') (h : E ∈ hnFree Z β) :
     E' ∈ hnFree Z β := by
   rcases h with h0 | ⟨F, hF⟩
@@ -89,7 +95,9 @@ theorem hnFree_of_iso {E E' : A} (e : E ≅ E') (h : E ∈ hnFree Z β) :
   · exact Or.inr ⟨F.ofIso e, by simpa using hF⟩
 
 /-- **The splitting.**  Every object has a subobject in `T β` whose cokernel is
-in `F β`, obtained by cutting an HN filtration at its crossing index.-/
+in `F β`, obtained by cutting an HN filtration at its crossing index.
+@isnad1 id=ex.1h4v.s7.9a2ab948e469 from=translated src=- shape=61aff490 vocab=54f55af8
+-/
 theorem exists_subobject_hnTors_cokernel_hnFree (hHN : Z.HasHNProperty)
     (E : A) :
     ∃ T : Subobject E,
@@ -117,7 +125,9 @@ theorem exists_subobject_hnTors_cokernel_hnFree (hHN : Z.HasHNProperty)
       exact hhigh ⟨k, hklt⟩ le_rfl
 
 /-- The splitting as a short exact sequence with the given object in the
-middle.-/
+middle.
+@isnad1 id=ex.1h4v.s7.4f294db4a3b5 from=translated src=- shape=a686b4dc vocab=99b9a95e
+-/
 theorem exists_shortExact_hnTors_hnFree (hHN : Z.HasHNProperty) (E : A) :
     ∃ (T Q : A) (i : T ⟶ E) (p : E ⟶ Q) (w : i ≫ p = 0),
       T ∈ hnTors Z β ∧ Q ∈ hnFree Z β ∧ (ShortComplex.mk i p w).ShortExact := by

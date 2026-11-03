@@ -34,7 +34,9 @@ variable [AddCommGroup D] [Module ℝ D]
 
 /-- The polarised-surface transport of `WallTransport.lean` is the compressed
 transport of the coordinates it reads off.  The two differ only by where the
-rational-to-real cast of the product `∫H² · rank` is taken.-/
+rational-to-real cast of the product `∫H² · rank` is taken.
+@isnad1 id=eq.0h5v.s6.82e5e2c2bdae from=translated src=- shape=dcae1569 vocab=39b93cc6
+-/
 theorem toNumClass_eq_ofNumericalData (V : NumericalVarietyData 2 A N)
     (P : Polarization V.ring) (E : N) :
     Surface.toNumClass V P E =

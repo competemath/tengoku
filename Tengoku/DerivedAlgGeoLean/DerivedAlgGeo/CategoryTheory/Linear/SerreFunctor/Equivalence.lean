@@ -157,7 +157,9 @@ def eta (D : CoSerreFunctorData (k := k) (C := C)) (A B : C) :
     ((SerreFunctorData.eta D (Opposite.op B) (Opposite.op A)).trans eTarget)
 
 /-- Naturality in the first variable, transported from opposite-category
-Serre naturality.-/
+Serre naturality.
+@isnad1 id=eq.0h8v.s11.4c9325e95b78 from=translated src=- shape=f49d39e5 vocab=dcb484ec
+-/
 theorem naturality_left (D : CoSerreFunctorData (k := k) (C := C))
     {A A' B : C} (f : A ⟶ A') (phi : Module.Dual k (A ⟶ B)) :
     D.eta A' B (phi.comp (Linear.leftComp k B f)) = D.eta A B phi ≫ f := by
@@ -176,7 +178,9 @@ theorem naturality_left (D : CoSerreFunctorData (k := k) (C := C))
       ((homOpLinearEquiv (k := k) A B).dualMap.symm phi))
 
 /-- Naturality in the second variable, transported from opposite-category
-Serre naturality.-/
+Serre naturality.
+@isnad1 id=eq.0h8v.s11.0355e3b554c0 from=translated src=- shape=9755312d vocab=b81031bd
+-/
 theorem naturality_right (D : CoSerreFunctorData (k := k) (C := C))
     {A B B' : C} (g : B' ⟶ B) (phi : Module.Dual k (A ⟶ B)) :
     D.eta A B' (phi.comp (Linear.rightComp k A g)) = D.S.map g ≫ D.eta A B phi := by
@@ -236,7 +240,9 @@ noncomputable def CoSerreFunctorData.adjunction
 
 /-- Right Serre data is an equivalence when a co-Serre witness is also
 supplied. The proof uses the adjunction from `CoSerreFunctorData.adjunction`;
-full faithfulness of both adjoints makes its unit and counit isomorphisms.-/
+full faithfulness of both adjoints makes its unit and counit isomorphisms.
+@isnad1 id=isequiva.0h4v.s6.5133a6470abb from=translated src=- shape=d22177f3 vocab=f1a4ab65
+-/
 theorem SerreFunctorData.isEquivalence [HomFinite k C]
     (D : SerreFunctorData k C) (E : CoSerreFunctorData (k := k) (C := C)) :
     D.S.IsEquivalence := by

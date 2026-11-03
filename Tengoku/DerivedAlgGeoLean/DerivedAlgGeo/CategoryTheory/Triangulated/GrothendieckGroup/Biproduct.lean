@@ -27,7 +27,9 @@ namespace CategoryTheory.Triangulated
 variable (C : Type u) [Category.{v} C] [HasZeroObject C] [HasShift C ℤ]
   [Preadditive C] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
 
-/-- The Grothendieck class of a binary biproduct is the sum of the two classes.-/
+/-- The Grothendieck class of a binary biproduct is the sum of the two classes.
+@isnad1 id=eq.0h3v.s7.a871ac922173 from=translated src=- shape=505a1a7f vocab=c20489e1
+-/
 @[simp]
 theorem K₀.of_biprod (X Y : C) :
     K₀.of C (X ⊞ Y) = K₀.of C X + K₀.of C Y := by
@@ -107,7 +109,9 @@ private theorem K₀.of_biproduct_induction :
       Fintype.sum_option]
 
 /-- The Grothendieck class of a finite biproduct is the sum of the classes of
-its summands.-/
+its summands.
+@isnad1 id=eq.0h3v.s7.8b707b33dff5 from=translated src=- shape=189666f4 vocab=322c68a4
+-/
 theorem K₀.of_biproduct {ι : Type w} [Fintype ι] (X : ι → C) :
     K₀.of C (⨁ X) = ∑ i, K₀.of C (X i) := by
   let e := Fintype.equivFin ι
@@ -118,7 +122,9 @@ theorem K₀.of_biproduct {ι : Type w} [Fintype ι] (X : ι → C) :
   simpa [Y] using e.symm.sum_comp (fun i => K₀.of C (X i))
 
 /-- A finite biproduct of copies of one object represents the corresponding
-natural multiple of its Grothendieck class.-/
+natural multiple of its Grothendieck class.
+@isnad1 id=eq.0h3v.s7.0c9792747bdf from=translated src=- shape=55691960 vocab=3f2fd8c2
+-/
 theorem K₀.of_biproduct_const {ι : Type w} [Fintype ι] (X : C) :
     K₀.of C (⨁ fun _ : ι => X) = Fintype.card ι • K₀.of C X := by
   rw [K₀.of_biproduct]

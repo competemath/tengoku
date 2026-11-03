@@ -55,15 +55,24 @@ def single : SemiorthogonalSequence C (Fin 1) where
     intro i j hij
     omega
 
+/--
+@isnad1 id=eq.0h2v.s6.8c46a204b9fe from=translated src=- shape=1cb69f81 vocab=90ac4a16
+-/
 @[simp]
 lemma single_component (i : Fin 1) : (single (C := C)).component i = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.33037bd0a7b4 from=translated src=- shape=7c942948 vocab=5bba5199
+-/
 @[simp]
 lemma single_total : (single (C := C)).total = ⊤ := by
   apply top_unique
   intro X _
   exact (single (C := C)).component_le_total 0 X trivial
 
+/--
+@isnad1 id=isstrong.0h1v.s6.8ab1e8b9c2ba from=translated src=- shape=62744c11 vocab=089ca601
+-/
 lemma single_isStronglyFull
     [Limits.HasZeroObject C] [HasShift C ℤ] [Preadditive C]
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] :
@@ -73,6 +82,9 @@ lemma single_isStronglyFull
   apply top_unique
   exact (⊤ : ObjectProperty C).le_triangEnvelopeIter 0
 
+/--
+@isnad1 id=isfull.0h1v.s6.f13f89210d12 from=translated src=- shape=62744c11 vocab=55d9cafe
+-/
 lemma single_isFull
     [Limits.HasZeroObject C] [HasShift C ℤ] [Preadditive C]
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] :
@@ -92,12 +104,18 @@ def productComponent (i : Fin 2) : ObjectProperty (C × D) :=
   if i = 0 then fun X ↦ Limits.IsZero X.2 else fun X ↦ Limits.IsZero X.1
 
 omit [Limits.HasZeroMorphisms C] [Limits.HasZeroMorphisms D] in
+/--
+@isnad1 id=eq.0h2v.s5.48455e76ce91 from=translated src=- shape=32932b5a vocab=4de33f64
+-/
 @[simp]
 lemma productComponent_zero : productComponent (C := C) (D := D) 0 =
     (fun X ↦ Limits.IsZero X.2) := by
   simp [productComponent]
 
 omit [Limits.HasZeroMorphisms C] [Limits.HasZeroMorphisms D] in
+/--
+@isnad1 id=eq.0h2v.s5.d1ca8415bf94 from=translated src=- shape=7e14296a vocab=dbc5a240
+-/
 @[simp]
 lemma productComponent_one : productComponent (C := C) (D := D) 1 =
     (fun X ↦ Limits.IsZero X.1) := by
@@ -118,6 +136,9 @@ def product : SemiorthogonalSequence (C × D) (Fin 2) where
     · exact hX.eq_of_tgt f.1 0
     · exact hY.eq_of_src f.2 0
 
+/--
+@isnad1 id=eq.0h3v.s6.980ac06fafe5 from=translated src=- shape=4cc1755e vocab=96b77c27
+-/
 @[simp]
 lemma product_component (i : Fin 2) :
     (product (C := C) (D := D)).component i = productComponent i := rfl

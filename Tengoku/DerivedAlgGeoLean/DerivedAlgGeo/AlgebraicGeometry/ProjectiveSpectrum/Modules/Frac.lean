@@ -43,7 +43,9 @@ variable (𝒜 : ℕ → σA) [GradedRing 𝒜]
 
 local notation3 "X" => ProjectiveSpectrum.top 𝒜
 
-/-- A degree-one element raised to `n` has degree `n`.-/
+/-- A degree-one element raised to `n` has degree `n`.
+@isnad1 id=mem.1h5v.s6.fd58490b2086 from=translated src=- shape=a9587d44 vocab=4d217050
+-/
 theorem pow_mem_deg {a : A} (ha : a ∈ 𝒜 1) (m : ℕ) : a ^ m ∈ 𝒜 m := by
   simpa using SetLike.pow_mem_graded m ha
 

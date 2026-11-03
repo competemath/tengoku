@@ -100,7 +100,9 @@ whose cohomology modules have Loewy length at most three, so
 `5 ≤ 2 + 1`, which is false. In tower indices,
 the `iter 2` then `iter 1` composition lands in `iter 5`; additivity predicts `iter 3`,
 which is Rouquier's `⟨P⟩₄`. The composition law gives the upper bound
-`⟨P⟩₃ ⋆ ⟨P⟩₃ ⊆ ⟨P⟩₆`.-/
+`⟨P⟩₃ ⋆ ⟨P⟩₃ ⊆ ⟨P⟩₆`.
+@isnad1 id=le.0h4v.s7.5d51670416b9 from=translated src=- shape=272e7092 vocab=d25f0ef4
+-/
 theorem generationTime_add_one_submultiplicative (P Q R : ObjectProperty C) :
     P.generationTime R + 1 ≤ (P.generationTime Q + 1) * (Q.generationTime R + 1) := by
   by_cases hP : P.Nonempty
@@ -160,7 +162,9 @@ variable {C : Type u} [Category.{v} C] [HasZeroObject C] [HasShift C ℤ] [Pread
   [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C] [IsTriangulated C]
 
 /-- Finite Rouquier dimension supplies a strongly generating singleton; the bounded Stacks
-comparison transfers its finite stage to `P`.-/
+comparison transfers its finite stage to `P`.
+@isnad1 id=isstrong.2h2v.s6.a90298c4a067 from=translated src=- shape=2a22aa5e vocab=fee5c912
+-/
 theorem isStrongTriangulatedGenerator_of_classical_of_rouquierDim_ne_top
     (P : ObjectProperty C) (hP : P.IsClassicalTriangulatedGenerator)
     (hD : rouquierDim C ≠ ⊤) : P.IsStrongTriangulatedGenerator := by
@@ -169,7 +173,9 @@ theorem isStrongTriangulatedGenerator_of_classical_of_rouquierDim_ne_top
     P G hP hG
 
 /-- The strong-generation result and the generation-time characterization of strong generators
-give the finite generation-time bound.-/
+give the finite generation-time bound.
+@isnad1 id=ne.2h2v.s6.e0bd04b041d0 from=translated src=- shape=493c7a30 vocab=4786364c
+-/
 theorem generationTime_ne_top_of_classical_of_rouquierDim_ne_top
     (P : ObjectProperty C) (hP : P.IsClassicalTriangulatedGenerator)
     (hD : rouquierDim C ≠ ⊤) : P.generationTime ⊤ ≠ ⊤ :=

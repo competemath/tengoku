@@ -43,7 +43,9 @@ open CategoryTheory
 universe u
 
 /-- Openness supplies the finite local refinements required by the quasi-compact covering
-condition; the individual morphisms need not be quasi-compact.-/
+condition; the individual morphisms need not be quasi-compact.
+@isnad1 id=eq.1h1v.s8.3fc1f55d5a1d from=translated src=- shape=b58162d0 vocab=113afe7b
+-/
 lemma precoverage_eq_propQCPrecoverage_of_isOpenMap {P : MorphismProperty Scheme.{u}}
     (hP : P ≤ fun _ _ f ↦ IsOpenMap f.base) :
     precoverage P = propQCPrecoverage P :=
@@ -51,7 +53,9 @@ lemma precoverage_eq_propQCPrecoverage_of_isOpenMap {P : MorphismProperty Scheme
 
 /-- Transport the equality of covering precoverages through
 `CategoryTheory.Precoverage.toGrothendieck`; no additional stability or multiplicativity
-assumption on the morphism property is required.-/
+assumption on the morphism property is required.
+@isnad1 id=eq.1h1v.s8.928427fafcbf from=translated src=- shape=b58162d0 vocab=d2eaa5c3
+-/
 lemma grothendieckTopology_eq_propQCTopology_of_isOpenMap
     {P : MorphismProperty Scheme.{u}} (hP : P ≤ fun _ _ f ↦ IsOpenMap f.base) :
     grothendieckTopology P = propQCTopology P :=

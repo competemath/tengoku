@@ -27,13 +27,17 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 
 namespace StabilityFunction
 
-/-- The canonical cokernel sequence of a monomorphism is short exact.-/
+/-- The canonical cokernel sequence of a monomorphism is short exact.
+@isnad1 id=shortexa.0h4v.s6.91821a2e8497 from=translated src=- shape=cd1e9eb2 vocab=592627a8
+-/
 theorem shortExact_of_mono {X Y : A} (f : X ⟶ Y) [Mono f] :
     (ShortComplex.mk f (cokernel.π f) (by simp)).ShortExact :=
   ShortComplex.ShortExact.mk' (ShortComplex.exact_cokernel f)
     inferInstance inferInstance
 
-/-- A subobject has zero underlying object exactly when it is bottom.-/
+/-- A subobject has zero underlying object exactly when it is bottom.
+@isnad1 id=iff.0h3v.s6.a3ed5d616c7e from=translated src=- shape=332dbbc7 vocab=f65fec68
+-/
 @[simp]
 theorem subobject_isZero_iff_eq_bot {E : A} (B : Subobject E) :
     IsZero (B : A) ↔ B = ⊥ := by
@@ -44,17 +48,23 @@ theorem subobject_isZero_iff_eq_bot {E : A} (B : Subobject E) :
   · rintro rfl
     exact (isZero_zero A).of_iso Subobject.botCoeIsoZero
 
-/-- A nonzero subobject is not bottom.-/
+/-- A nonzero subobject is not bottom.
+@isnad1 id=ne.1h3v.s6.16b615f564ed from=translated src=- shape=295a9c2b vocab=f65fec68
+-/
 theorem subobject_ne_bot_of_not_isZero {E : A} {B : Subobject E}
     (hB : ¬IsZero (B : A)) : B ≠ ⊥ :=
   fun h => hB ((subobject_isZero_iff_eq_bot B).2 h)
 
-/-- A subobject distinct from bottom has nonzero underlying object.-/
+/-- A subobject distinct from bottom has nonzero underlying object.
+@isnad1 id=not.1h3v.s6.580f06eec3f1 from=translated src=- shape=28e7f8dd vocab=f65fec68
+-/
 theorem subobject_not_isZero_of_ne_bot {E : A} {B : Subobject E}
     (hB : B ≠ ⊥) : ¬IsZero (B : A) :=
   fun h => hB ((subobject_isZero_iff_eq_bot B).1 h)
 
-/-- The top and bottom subobjects of a nonzero object differ.-/
+/-- The top and bottom subobjects of a nonzero object differ.
+@isnad1 id=ne.1h2v.s6.44c49015cebe from=translated src=- shape=561d2927 vocab=8147235c
+-/
 theorem subobject_top_ne_bot_of_not_isZero {E : A} (hE : ¬IsZero E) :
     (⊤ : Subobject E) ≠ ⊥ := by
   intro h
@@ -63,7 +73,9 @@ theorem subobject_top_ne_bot_of_not_isZero {E : A} (hE : ¬IsZero E) :
     (subobject_isZero_iff_eq_bot _).2 h
   exact htop.of_iso (asIso (⊤ : Subobject E).arrow).symm
 
-/-- The inclusion from the bottom subobject is the zero morphism.-/
+/-- The inclusion from the bottom subobject is the zero morphism.
+@isnad1 id=eq.1h3v.s8.21cb520468c0 from=translated src=- shape=4892795e vocab=eb337498
+-/
 @[simp]
 theorem subobject_ofLE_bot {E : A} (S : Subobject E) (h : ⊥ ≤ S) :
     Subobject.ofLE ⊥ S h = 0 :=
@@ -75,7 +87,9 @@ def subobjectCokernelBotIso {E : A} (S : Subobject E) (h : ⊥ ≤ S) :
   rw [subobject_ofLE_bot S h]
   exact cokernelZeroIsoTarget
 
-/-- A proper subobject of an abelian object has nonzero cokernel.-/
+/-- A proper subobject of an abelian object has nonzero cokernel.
+@isnad1 id=not.1h3v.s6.5c9ccecac12a from=translated src=- shape=6b0534e2 vocab=edc977ca
+-/
 theorem cokernel_not_isZero_of_ne_top {E : A} {B : Subobject E}
     (hB : B ≠ ⊤) : ¬IsZero (cokernel B.arrow) := by
   intro hcoker
@@ -84,7 +98,9 @@ theorem cokernel_not_isZero_of_ne_top {E : A} {B : Subobject E}
   exact hB (Subobject.eq_top_of_isIso_arrow B)
 
 /-- Precomposing a morphism by an epimorphism does not change its image
-subobject in an abelian category.-/
+subobject in an abelian category.
+@isnad1 id=eq.0h6v.s6.7f7c84c21560 from=translated src=- shape=3f019ac1 vocab=b2385595
+-/
 theorem imageSubobject_epi_comp {X Y Z : A} (e : X ⟶ Y) [Epi e]
     (f : Y ⟶ Z) : imageSubobject (e ≫ f) = imageSubobject f := by
   apply le_antisymm (imageSubobject_comp_le e f)
@@ -100,7 +116,9 @@ theorem imageSubobject_epi_comp {X Y Z : A} (e : X ⟶ Y) [Epi e]
   exact Subobject.le_of_comm (inv (Subobject.ofLE _ _ hle)) (by
     rw [IsIso.inv_comp_eq, Subobject.ofLE_arrow])
 
-/-- The image subobject of an epimorphism is top.-/
+/-- The image subobject of an epimorphism is top.
+@isnad1 id=eq.0h4v.s6.5badb1ff3e7a from=translated src=- shape=2ed3cb96 vocab=686b7102
+-/
 theorem imageSubobject_eq_top_of_epi {X Y : A} (f : X ⟶ Y) [Epi f] :
     imageSubobject f = ⊤ := by
   haveI : Epi (imageSubobject f).arrow :=
@@ -109,7 +127,9 @@ theorem imageSubobject_eq_top_of_epi {X Y : A} (f : X ⟶ Y) [Epi f] :
     isIso_of_mono_of_epi _
   exact Subobject.eq_top_of_isIso_arrow _
 
-/-- Pullback along an epimorphism is injective on subobjects.-/
+/-- Pullback along an epimorphism is injective on subobjects.
+@isnad1 id=injectiv.0h4v.s6.31feb8b83fb1 from=translated src=- shape=013f2440 vocab=d8496b5a
+-/
 theorem pullback_obj_injective_of_epi {X Y : A} (p : X ⟶ Y) [Epi p] :
     Function.Injective (Subobject.pullback p).obj := by
   intro B₁ B₂ h

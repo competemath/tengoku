@@ -28,7 +28,9 @@ variable {C : Type u} {D : Type u'} [Category.{v} C] [Category.{v'} D]
   {F : C ⥤ D}
 
 /-- Two `CommShift` structures on one functor agree when all their
-commutation isomorphisms agree.-/
+commutation isomorphisms agree.
+@isnad1 id=eq.1h6v.s7.e2443c5047fb from=translated src=- shape=6c61bac5 vocab=096835d4
+-/
 @[ext]
 theorem ext (h h' : F.CommShift A)
     (w : ∀ n : A, h.commShiftIso n = h'.commShiftIso n) : h = h' := by

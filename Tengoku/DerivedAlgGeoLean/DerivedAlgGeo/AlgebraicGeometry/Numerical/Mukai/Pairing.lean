@@ -67,6 +67,9 @@ variable (V : NumericalVarietyData n A N)
 noncomputable def mukaiDual (E : N) : A :=
   ∑ i ∈ range (n + 1), (-1 : ℚ) ^ i • V.mukaiComp E i
 
+/--
+@isnad1 id=eq.0h6v.s6.59516897e726 from=translated src=- shape=cd26adeb vocab=06431b82
+-/
 theorem mukaiDual_add (E F : N) :
     V.mukaiDual (E + F) = V.mukaiDual E + V.mukaiDual F := by
   simp only [mukaiDual, V.mukaiComp_add, smul_add]
@@ -89,19 +92,25 @@ noncomputable def mukaiIntegral (E F : N) : ℚ :=
 
 variable {V}
 
-/-- The dual class on a surface, written out.-/
+/-- The dual class on a surface, written out.
+@isnad1 id=eq.0h4v.s7.32cb7fd02329 from=translated src=- shape=ef9ba9f8 vocab=fdcd0a16
+-/
 theorem mukaiDual_eq (E : N) :
     V.mukaiDual E = V.mukaiComp E 0 - V.mukaiComp E 1 + V.mukaiComp E 2 := by
   simp [NumericalVarietyData.mukaiDual, Finset.sum_range_succ]
   ring
 
-/-- The Mukai class on a surface, written out.-/
+/-- The Mukai class on a surface, written out.
+@isnad1 id=eq.0h4v.s7.e374cd3c11ee from=translated src=- shape=15f13288 vocab=d710734b
+-/
 theorem mukaiClass_eq (E : N) :
     V.mukaiClass E = V.mukaiComp E 0 + V.mukaiComp E 1 + V.mukaiComp E 2 := by
   simp [NumericalVarietyData.mukaiClass, Finset.sum_range_succ]
 
 /-- **The expansion.** Only the three pairs with `i + j = 2` survive the integral, and the middle
-one carries the sign of the dual.-/
+one carries the sign of the dual.
+@isnad1 id=eq.1h5v.s8.28c489a10246 from=translated src=- shape=177b5969 vocab=d9b06d28
+-/
 theorem mukaiIntegral_eq (hK3 : IsK3 V) (E F : N) :
     mukaiIntegral V E F =
       (V.rank E : ℚ) * mukaiS V F - V.ring.degree (V.chComp E 1 * V.chComp F 1)
@@ -122,32 +131,42 @@ theorem mukaiIntegral_eq (hK3 : IsK3 V) (E F : N) :
   ring
 
 /-- **The headline.** `χ(E,F) = ∫_X v(E)^∨·v(F)`, with **no** minus sign; see the module
-docstring on why, and on why `chi₂_eq_neg_mukaiPairing` carries one.-/
+docstring on why, and on why `chi₂_eq_neg_mukaiPairing` carries one.
+@isnad1 id=eq.1h5v.s6.1db70f58cb4c from=translated src=- shape=718f5d37 vocab=42315ae6
+-/
 theorem chi₂_eq_mukaiIntegral (hK3 : IsK3 V) (E F : N) :
     V.chi₂ E F = mukaiIntegral V E F := by
   rw [chi₂_eq_neg_mukaiPairing V hK3, mukaiIntegral_eq hK3, mukaiPairing]
   ring
 
-/-- The integral is symmetric, because `√td(X)` is its own dual on a K3.-/
+/-- The integral is symmetric, because `√td(X)` is its own dual on a K3.
+@isnad1 id=eq.1h5v.s6.93f197af0945 from=translated src=- shape=e1c9b3a9 vocab=3f7095b7
+-/
 theorem mukaiIntegral_comm (hK3 : IsK3 V) (E F : N) :
     mukaiIntegral V E F = mukaiIntegral V F E := by
   rw [mukaiIntegral_eq hK3, mukaiIntegral_eq hK3, mul_comm (V.chComp E 1)]
   ring
 
 /-- On the diagonal the integral is **minus** the Mukai self-pairing. This is the cross-check the
-module docstring names.-/
+module docstring names.
+@isnad1 id=eq.1h4v.s6.248028118820 from=translated src=- shape=a93e8d3a vocab=b4907124
+-/
 theorem mukaiIntegral_self (hK3 : IsK3 V) (E : N) :
     mukaiIntegral V E E = -mukaiSelfPairing V E := by
   rw [mukaiIntegral_eq hK3, mukaiSelfPairing]
   ring
 
-/-- Consequently the integral is `2·rank² − ∫Δ`, through the existing discriminant comparison.-/
+/-- Consequently the integral is `2·rank² − ∫Δ`, through the existing discriminant comparison.
+@isnad1 id=eq.1h4v.s7.063c8ec05511 from=translated src=- shape=cd77a312 vocab=be907b7c
+-/
 theorem mukaiIntegral_self_eq (hK3 : IsK3 V) (E : N) :
     mukaiIntegral V E E = 2 * (V.rank E : ℚ) ^ 2 - V.ring.degree (V.discriminant E) := by
   rw [mukaiIntegral_self hK3, mukaiSelfPairing_eq V]
   ring
 
-/-- **The sign, as a theorem.** The integral of the dual product is minus the Mukai pairing.-/
+/-- **The sign, as a theorem.** The integral of the dual product is minus the Mukai pairing.
+@isnad1 id=eq.1h5v.s6.140e06de78c3 from=translated src=- shape=e98f0848 vocab=ed7ac4ea
+-/
 theorem mukaiIntegral_eq_neg_mukaiPairing (hK3 : IsK3 V) (E F : N) :
     mukaiIntegral V E F = -mukaiPairing V E F := by
   rw [mukaiIntegral_eq hK3, mukaiPairing]
@@ -165,7 +184,9 @@ variable {Λ : Type*} [AddCommGroup Λ] (D : IntegralMukaiData V Λ)
 
 Composing `pairing_mukaiVector`, which lands on the explicit formula, with
 `mukaiIntegral_eq_neg_mukaiPairing`. This is the one place the sign is visible from both sides at
-once.-/
+once.
+@isnad1 id=eq.2h7v.s7.0fb34453a21c from=translated src=- shape=37518d9c vocab=f80535d6
+-/
 theorem pairing_eq_neg_mukaiIntegral (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E F : N) :
     ((Mukai.pairing D.b (D.mukaiVector E) (D.mukaiVector F) : ℤ) : ℚ) = -mukaiIntegral V E F := by
   rw [D.pairing_mukaiVector hHRR hK3, mukaiIntegral_eq_neg_mukaiPairing hK3, neg_neg]

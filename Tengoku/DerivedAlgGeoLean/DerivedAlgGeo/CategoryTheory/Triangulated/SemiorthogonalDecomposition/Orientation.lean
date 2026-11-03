@@ -80,6 +80,9 @@ def ofReverse (component : ι → ObjectProperty C)
   component i := component (OrderDual.ofDual i)
   semiorthogonal := fun _ _ hij => h hij
 
+/--
+@isnad1 id=eq.1h4v.s6.ca3289cfeba3 from=translated src=- shape=d6c2856f vocab=f972a9f3
+-/
 @[simp]
 lemma ofReverse_component (component : ι → ObjectProperty C)
     (h : ∀ ⦃i j : ι⦄, i < j → component i ≤ (component j).rightOrthogonal)
@@ -90,7 +93,9 @@ lemma ofReverse_component (component : ι → ObjectProperty C)
 /-- The vanishing of `ofReverse`, read in the classical direction: for
 `i < j`, maps from the *later* component into the *earlier* one vanish. This
 is the form consumers cite, so the classical index order appears here and the
-`OrderDual` bookkeeping does not.-/
+`OrderDual` bookkeeping does not.
+@isnad1 id=eq.2h10v.s7.5097806fdf0f from=translated src=- shape=2e1372b6 vocab=043589ec
+-/
 lemma ofReverse_hom_eq_zero (component : ι → ObjectProperty C)
     (h : ∀ ⦃i j : ι⦄, i < j → component i ≤ (component j).rightOrthogonal)
     ⦃i j : ι⦄ (hij : i < j) ⦃X Y : C⦄
@@ -110,6 +115,9 @@ def ofReverseFin (n : ℕ) (component : Fin n → ObjectProperty C)
   (ofReverse component h).reindex (fun i => OrderDual.toDual i.rev)
     (fun _ _ hij => Fin.rev_lt_rev.mpr hij)
 
+/--
+@isnad1 id=eq.1h4v.s6.c149154b3d3a from=translated src=- shape=6e8a4f17 vocab=555cdee2
+-/
 @[simp]
 lemma ofReverseFin_component (n : ℕ) (component : Fin n → ObjectProperty C)
     (h : ∀ ⦃i j : Fin n⦄, i < j → component i ≤ (component j).rightOrthogonal)

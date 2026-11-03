@@ -55,7 +55,9 @@ def sphericalOrthogonal (Q : QuadraticForm ℝ M) (W : Submodule ℝ M) : Set M 
 /-- **The spherical classes orthogonal to a positive plane form a bounded set.**
 
 `Q` is negative definite on `Wᗮ`, so `-Q` is a positive definite form there and
-`-Q δ = 1` confines `δ` to a level set, which is bounded.-/
+`-Q δ = 1` confines `δ` to a level set, which is bounded.
+@isnad1 id=isbounde.2h3v.s6.ff343c1001f8 from=translated src=- shape=13dfd323 vocab=e2b6a64b
+-/
 theorem isBounded_sphericalOrthogonal (hsig : HasSignatureTwo Q)
     (hW : IsPositivePlane Q W) : IsBounded (sphericalOrthogonal Q W) := by
   obtain ⟨c, hc, hle⟩ := (negDef_orthogonal hsig hW).exists_pos_mul_norm_sq_le
@@ -79,7 +81,9 @@ given positive plane.**
 
 Bounded by `isBounded_sphericalOrthogonal`, and a lattice meets a bounded set
 finitely. `Λ` is the `ℤ`-span of an `ℝ`-basis; nothing identifies it with a
-geometric lattice.-/
+geometric lattice.
+@isnad1 id=finite.2h5v.s7.363a6c14d51d from=translated src=- shape=9f838682 vocab=526e0834
+-/
 theorem finite_sphericalOrthogonal_inter (hsig : HasSignatureTwo Q)
     (hW : IsPositivePlane Q W) {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ M) :
     (sphericalOrthogonal Q W ∩ (Submodule.span ℤ (Set.range b) : Set M)).Finite :=
@@ -89,7 +93,9 @@ theorem finite_sphericalOrthogonal_inter (hsig : HasSignatureTwo Q)
 
 The same statement as `finite_sphericalOrthogonal_inter`, said in walls: this is
 what a local-finiteness argument for route (A) starts from, and the pointwise
-case is unconditional where the region-wise case is not.-/
+case is unconditional where the region-wise case is not.
+@isnad1 id=finite.2h5v.s8.ae566dbc9d9b from=translated src=- shape=b34c5f70 vocab=8f3081b7
+-/
 theorem finite_orthogonalityLoci_through (hsig : HasSignatureTwo Q) (hW : IsPositivePlane Q W)
     {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ M) :
     {δ : M | IsSphericalClass Q δ ∧ W ∈ orthogonalityLocus Q δ ∧

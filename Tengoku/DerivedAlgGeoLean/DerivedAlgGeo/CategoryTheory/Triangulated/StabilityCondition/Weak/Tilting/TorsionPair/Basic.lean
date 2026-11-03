@@ -74,13 +74,17 @@ attribute [instance] tors_isClosedUnderIsomorphisms free_isClosedUnderIsomorphis
 variable {A}
 variable (P : TorsionPair A)
 
-/-- An object that is both torsion and torsion-free is zero.-/
+/-- An object that is both torsion and torsion-free is zero.
+@isnad1 id=iszero.0h5v.s5.4ae0c942c63a from=translated src=- shape=73ef7197 vocab=e64d161f
+-/
 theorem isZero_of_tors_of_free {X : A} (hT : P.tors X) (hF : P.free X) : IsZero X :=
   (IsZero.iff_id_eq_zero X).mpr (P.hom_eq_zero hT hF (𝟙 X))
 
 /-- **The torsion class is exactly the left orthogonal of the torsion-free
 class.** The decomposition axiom is what makes this an `iff` rather than the
-one implication `hom_eq_zero` states.-/
+one implication `hom_eq_zero` states.
+@isnad1 id=iff.0h3v.s6.084d047ba889 from=translated src=- shape=792a1dd0 vocab=0679aebf
+-/
 theorem tors_iff (X : A) :
     P.tors X ↔ ∀ ⦃Y : A⦄, P.free Y → ∀ f : X ⟶ Y, f = 0 := by
   refine ⟨fun hX _ hY f => P.hom_eq_zero hX hY f, fun h => ?_⟩
@@ -92,7 +96,9 @@ theorem tors_iff (X : A) :
   exact prop_of_iso P.tors (asIso i) hT
 
 /-- **The torsion-free class is exactly the right orthogonal of the torsion
-class.**-/
+class.**
+@isnad1 id=iff.0h3v.s6.aa1c0b75d12e from=translated src=- shape=44334a2f vocab=0679aebf
+-/
 theorem free_iff (Y : A) :
     P.free Y ↔ ∀ ⦃X : A⦄, P.tors X → ∀ f : X ⟶ Y, f = 0 := by
   refine ⟨fun hY _ hX f => P.hom_eq_zero hX hY f, fun h => ?_⟩
@@ -103,21 +109,27 @@ theorem free_iff (Y : A) :
   have : IsIso p := isIso_of_mono_of_epi p
   exact prop_of_iso P.free (asIso p).symm hF
 
-/-- The torsion-free class is closed under subobjects.-/
+/-- The torsion-free class is closed under subobjects.
+@isnad1 id=free.0h6v.s5.7bdccee6559c from=translated src=- shape=e7c15da2 vocab=7045a29d
+-/
 theorem free_of_mono {X Y : A} (i : X ⟶ Y) [Mono i] (hY : P.free Y) : P.free X := by
   rw [P.free_iff]
   intro T hT f
   have h : f ≫ i = 0 ≫ i := by rw [zero_comp]; exact P.hom_eq_zero hT hY _
   exact (cancel_mono i).mp h
 
-/-- The torsion class is closed under quotients.-/
+/-- The torsion class is closed under quotients.
+@isnad1 id=tors.0h6v.s5.76f731b7fb0d from=translated src=- shape=2f440de9 vocab=d8f7bf19
+-/
 theorem tors_of_epi {X Y : A} (p : X ⟶ Y) [Epi p] (hX : P.tors X) : P.tors Y := by
   rw [P.tors_iff]
   intro F hF f
   have h : p ≫ f = p ≫ 0 := by rw [comp_zero]; exact P.hom_eq_zero hX hF _
   exact (cancel_epi p).mp h
 
-/-- The torsion class is closed under extensions.-/
+/-- The torsion class is closed under extensions.
+@isnad1 id=tors.1h5v.s6.b7cace719819 from=translated src=- shape=c8088141 vocab=20910354
+-/
 theorem tors_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
     (h₁ : P.tors S.X₁) (h₃ : P.tors S.X₃) : P.tors S.X₂ := by
   rw [P.tors_iff]
@@ -128,7 +140,9 @@ theorem tors_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
   simp only [CokernelCofork.π_ofπ] at hg
   rw [← hg, hg0, comp_zero]
 
-/-- The torsion-free class is closed under extensions.-/
+/-- The torsion-free class is closed under extensions.
+@isnad1 id=free.1h5v.s6.d911bb5c410d from=translated src=- shape=c8088141 vocab=ed6239b1
+-/
 theorem free_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
     (h₁ : P.free S.X₁) (h₃ : P.free S.X₃) : P.free S.X₂ := by
   rw [P.free_iff]
@@ -147,7 +161,9 @@ orthogonality condition the other class cannot satisfy. The statement below is
 the piece that gets used — the torsion end is the largest torsion subobject. -/
 
 /-- A torsion subobject of `X` factors through any torsion/torsion-free
-decomposition of `X`: the torsion end is *maximal* among torsion subobjects.-/
+decomposition of `X`: the torsion end is *maximal* among torsion subobjects.
+@isnad1 id=ex.1h7v.s7.76dbf96a85e1 from=translated src=- shape=d67f96b2 vocab=05cf35f9
+-/
 theorem exists_factor_of_tors {S : ShortComplex A} (hS : S.ShortExact)
     (h₃ : P.free S.X₃) {T : A} (hT : P.tors T) (f : T ⟶ S.X₂) :
     ∃ g : T ⟶ S.X₁, g ≫ S.f = f := by

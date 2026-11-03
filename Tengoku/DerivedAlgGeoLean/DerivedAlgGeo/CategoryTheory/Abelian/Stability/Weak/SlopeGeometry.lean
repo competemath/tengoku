@@ -65,13 +65,22 @@ undefined argument.-/
 def chargeSlope (z : ℂ) : WithTop ℝ :=
   if 0 < z.im then ((-z.re / z.im : ℝ) : WithTop ℝ) else ⊤
 
+/--
+@isnad1 id=eq.1h1v.s5.7e3f7d116457 from=translated src=- shape=29c25ed8 vocab=b5169d7e
+-/
 theorem chargeSlope_of_im_pos {z : ℂ} (h : 0 < z.im) :
     chargeSlope z = ((-z.re / z.im : ℝ) : WithTop ℝ) :=
   ite_eq_left h
 
+/--
+@isnad1 id=eq.1h1v.s4.2c212b949982 from=translated src=- shape=28c5d139 vocab=8b1f1177
+-/
 theorem chargeSlope_of_im_nonpos {z : ℂ} (h : ¬0 < z.im) : chargeSlope z = ⊤ :=
   ite_eq_right h
 
+/--
+@isnad1 id=iff.0h1v.s4.8e0c5fdc0066 from=translated src=- shape=e099a91e vocab=8b1f1177
+-/
 theorem chargeSlope_ne_top_iff {z : ℂ} : chargeSlope z ≠ ⊤ ↔ 0 < z.im := by
   constructor
   · intro h
@@ -81,16 +90,23 @@ theorem chargeSlope_ne_top_iff {z : ℂ} : chargeSlope z ≠ ⊤ ↔ 0 < z.im :=
     rw [chargeSlope_of_im_pos him]
     exact WithTop.coe_ne_top
 
+/--
+@isnad1 id=iff.0h1v.s4.46432b237b6f from=translated src=- shape=709de484 vocab=8b1f1177
+-/
 theorem chargeSlope_lt_top_iff {z : ℂ} : chargeSlope z < ⊤ ↔ 0 < z.im := by
   rw [lt_top_iff_ne_top]
   exact chargeSlope_ne_top_iff
 
-/-- Positive imaginary part on the left of a strict slope comparison.-/
+/-- Positive imaginary part on the left of a strict slope comparison.
+@isnad1 id=lt.1h2v.s4.843f7fc36659 from=translated src=- shape=4d26be17 vocab=c0d104e9
+-/
 theorem im_pos_of_chargeSlope_lt {z w : ℂ} (h : chargeSlope z < chargeSlope w) :
     0 < z.im :=
   chargeSlope_lt_top_iff.mp (lt_of_lt_of_le h le_top)
 
-/-- Membership in the closed upper half-plane bounds the imaginary part.-/
+/-- Membership in the closed upper half-plane bounds the imaginary part.
+@isnad1 id=le.1h1v.s4.3142cfec5a2f from=translated src=- shape=00219549 vocab=5662fd9c
+-/
 theorem im_nonneg_of_mem_closedUpperHalfPlane {z : ℂ}
     (hz : z ∈ closedUpperHalfPlane) : 0 ≤ z.im := by
   rcases hz with h | ⟨h, _⟩
@@ -98,7 +114,9 @@ theorem im_nonneg_of_mem_closedUpperHalfPlane {z : ℂ}
   · exact h.ge
 
 /-- The real part is nonpositive on the boundary of the closed upper
-half-plane.-/
+half-plane.
+@isnad1 id=le.2h1v.s5.aac3010bf316 from=translated src=- shape=c54db380 vocab=e1dbcacc
+-/
 theorem re_nonpos_of_mem_closedUpperHalfPlane_of_im_eq_zero {z : ℂ}
     (hz : z ∈ closedUpperHalfPlane) (him : z.im = 0) : z.re ≤ 0 := by
   rcases hz with h | ⟨_, h⟩
@@ -108,7 +126,9 @@ theorem re_nonpos_of_mem_closedUpperHalfPlane_of_im_eq_zero {z : ℂ}
 /-- **The non-strict see-saw.**  If the two ends of a short exact sequence have
 ordered slopes, the middle slope lies between them.  Three cases: both interior,
 one on the boundary, both on the boundary.  The `⊤` branch is where the weak
-theory differs from the strict one, and it is handled rather than excluded.-/
+theory differs from the strict one, and it is handled rather than excluded.
+@isnad1 id=and.3h2v.s6.f80bb3f686cd from=translated src=- shape=8519c392 vocab=ce5eee26
+-/
 theorem chargeSlope_le_add_le_of_le {z w : ℂ} (hz : z ∈ closedUpperHalfPlane)
     (hw : w ∈ closedUpperHalfPlane) (h : chargeSlope z ≤ chargeSlope w) :
     chargeSlope z ≤ chargeSlope (z + w) ∧ chargeSlope (z + w) ≤ chargeSlope w := by
@@ -156,7 +176,9 @@ theorem chargeSlope_le_add_le_of_le {z w : ℂ} (hz : z ∈ closedUpperHalfPlane
 
 /-- **The strict see-saw.**  If the quotient end is strictly below the sub end,
 the middle is strictly below the sub end too.  Both `⊤` cases are decided by
-`im_pos_of_chargeSlope_lt`.-/
+`im_pos_of_chargeSlope_lt`.
+@isnad1 id=lt.2h2v.s5.94ce43242102 from=translated src=- shape=22fc8ab6 vocab=b4f3861f
+-/
 theorem chargeSlope_add_lt_of_lt {z w : ℂ} (hz : z ∈ closedUpperHalfPlane)
     (h : chargeSlope w < chargeSlope z) : chargeSlope (z + w) < chargeSlope z := by
   have him : (z + w).im = z.im + w.im := by simp
@@ -185,24 +207,35 @@ variable (W : WeakStabilityFunctionOn (abelianDatum A))
 /-- The central charge on objects.-/
 abbrev charge (E : A) : ℂ := W.Z (K₀Ab.of E)
 
+/--
+@isnad1 id=eq.0h3v.s8.fe42568e42a4 from=translated src=- shape=0f087388 vocab=844d3e97
+-/
 @[simp]
 theorem charge_apply (E : A) : W.charge E = W.Z (K₀Ab.of E) := rfl
 
-/-- Nonzero objects have charge in the closed upper half-plane.-/
+/-- Nonzero objects have charge in the closed upper half-plane.
+@isnad1 id=mem.1h3v.s6.a4bfade956f3 from=translated src=- shape=9407953f vocab=988d8095
+-/
 theorem charge_mem (E : A) (hE : ¬IsZero E) :
     W.charge E ∈ closedUpperHalfPlane :=
   W.nonzero_mem E hE
 
-/-- **Zero objects have zero charge.**-/
+/-- **Zero objects have zero charge.**
+@isnad1 id=eq.1h3v.s6.8b34e8ba5676 from=translated src=- shape=088c2a6d vocab=415d605c
+-/
 theorem map_zero (E : A) (hE : IsZero E) : W.charge E = 0 := by
   rw [charge_apply, K₀Ab.of_isZero hE]
   exact W.Z.map_zero
 
-/-- **Isomorphic objects have the same charge.**-/
+/-- **Isomorphic objects have the same charge.**
+@isnad1 id=eq.0h5v.s6.b2412812ea0d from=translated src=- shape=09c8142c vocab=e6ca5907
+-/
 theorem map_iso {E F : A} (e : E ≅ F) : W.charge E = W.charge F := by
   rw [charge_apply, charge_apply, K₀Ab.of_iso e]
 
-/-- **The charge is additive on short exact sequences.**-/
+/-- **The charge is additive on short exact sequences.**
+@isnad1 id=eq.1h3v.s7.9c45c4713be7 from=translated src=- shape=41ee8a44 vocab=76efcbc1
+-/
 theorem additive (S : ShortComplex A) (hS : S.ShortExact) :
     W.charge S.X₂ = W.charge S.X₁ + W.charge S.X₃ := by
   rw [charge_apply, charge_apply, charge_apply, K₀Ab.of_shortExact S hS, map_add]
@@ -211,21 +244,35 @@ theorem additive (S : ShortComplex A) (hS : S.ShortExact) :
 real boundary of the closed upper half-plane — in particular at charge `0`.-/
 def slope (E : A) : WithTop ℝ := chargeSlope (W.charge E)
 
+/--
+@isnad1 id=eq.0h3v.s6.0c979a94e62c from=translated src=- shape=8597a3ad vocab=273eaccc
+-/
 theorem slope_eq_chargeSlope (E : A) : W.slope E = chargeSlope (W.charge E) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.233e402cc454 from=translated src=- shape=8a7e6fa6 vocab=336e5cd2
+-/
 theorem slope_of_im_pos {E : A} (h : 0 < (W.charge E).im) :
     W.slope E = ((-(W.charge E).re / (W.charge E).im : ℝ) : WithTop ℝ) :=
   chargeSlope_of_im_pos h
 
+/--
+@isnad1 id=eq.1h3v.s6.2d55b62c3258 from=translated src=- shape=d1fd816b vocab=ab60d337
+-/
 theorem slope_of_im_nonpos {E : A} (h : ¬0 < (W.charge E).im) : W.slope E = ⊤ :=
   chargeSlope_of_im_nonpos h
 
 /-- **A zero-charge object has slope `⊤`.**  This is the skyscraper, and it is
-the case a phase-indexed weak cutoff cannot express.-/
+the case a phase-indexed weak cutoff cannot express.
+@isnad1 id=eq.1h3v.s6.4d3fc1315c78 from=translated src=- shape=0facb876 vocab=7051271c
+-/
 theorem slope_eq_top_of_charge_eq_zero {E : A} (h : W.charge E = 0) :
     W.slope E = ⊤ :=
   chargeSlope_of_im_nonpos (by rw [h]; simp)
 
+/--
+@isnad1 id=eq.0h5v.s6.3ec13d05cd36 from=translated src=- shape=5195ca27 vocab=c170910c
+-/
 theorem slope_eq_of_iso {E F : A} (e : E ≅ F) : W.slope E = W.slope F := by
   rw [slope_eq_chargeSlope, slope_eq_chargeSlope, W.map_iso e]
 
@@ -241,6 +288,9 @@ def IsStable (E : A) : Prop :=
   ¬IsZero E ∧ ∀ B : Subobject E, ¬IsZero (B : A) → B ≠ ⊤ →
     W.slope (B : A) < W.slope E
 
+/--
+@isnad1 id=issemist.1h3v.s6.fc3312173d43 from=translated src=- shape=882b3c7f vocab=bf6ecb62
+-/
 theorem IsStable.isSemistable {E : A} (h : W.IsStable E) : W.IsSemistable E := by
   refine ⟨h.1, fun B hB => ?_⟩
   by_cases htop : B = ⊤
@@ -248,6 +298,9 @@ theorem IsStable.isSemistable {E : A} (h : W.IsStable E) : W.IsSemistable E := b
     exact le_of_eq (W.slope_eq_of_iso (asIso (⊤ : Subobject E).arrow))
   · exact (h.2 B hB htop).le
 
+/--
+@isnad1 id=issemist.1h5v.s6.b35d49ef7987 from=translated src=- shape=41df94f4 vocab=0aa12c8a
+-/
 theorem isSemistable_of_iso {E F : A} (e : E ≅ F) (h : W.IsSemistable E) :
     W.IsSemistable F := by
   refine ⟨fun hF => h.1 (hF.of_iso e), fun B hB => ?_⟩
@@ -258,6 +311,9 @@ theorem isSemistable_of_iso {E F : A} (e : E ≅ F) (h : W.IsSemistable E) :
   rw [W.slope_eq_of_iso (Subobject.underlyingIso (B.arrow ≫ e.inv))] at hle
   rwa [W.slope_eq_of_iso e] at hle
 
+/--
+@isnad1 id=iff.0h5v.s6.678357e1977d from=translated src=- shape=eacef365 vocab=0aa12c8a
+-/
 theorem isSemistable_iff_of_iso {E F : A} (e : E ≅ F) :
     W.IsSemistable E ↔ W.IsSemistable F :=
   ⟨W.isSemistable_of_iso e, W.isSemistable_of_iso e.symm⟩
@@ -267,7 +323,9 @@ source's.**
 
 The weak counterpart of `StabilityFunction.phase_le_of_epi`, and shorter: the
 kernel's slope is bounded by semistability, and the two see-saws decide the
-remaining comparison by `le_total` without any `arg` estimate.-/
+remaining comparison by `le_total` without any `arg` estimate.
+@isnad1 id=le.2h5v.s6.ed222d754e6f from=translated src=- shape=84bc15f8 vocab=8d003a53
+-/
 theorem slope_le_of_epi {E Q : A} (p : E ⟶ Q) [Epi p] (hE : W.IsSemistable E)
     (hQ : ¬IsZero Q) : W.slope E ≤ W.slope Q := by
   by_cases hker : IsZero (kernel p)
@@ -302,7 +360,9 @@ theorem slope_le_of_epi {E Q : A} (p : E ⟶ Q) [Epi p] (hE : W.IsSemistable E)
 
 /-- **Hom-vanishing between weak-semistable objects of decreasing slope.**  The
 image is a quotient of the source and a subobject of the target, so its slope is
-trapped; a strict slope drop leaves no room for it.-/
+trapped; a strict slope drop leaves no room for it.
+@isnad1 id=eq.3h5v.s7.4e87c1862ac8 from=translated src=- shape=df5e6c38 vocab=4d46e868
+-/
 theorem hom_eq_zero_of_semistable_slope_gt {E F : A} (hE : W.IsSemistable E)
     (hF : W.IsSemistable F) (hslope : W.slope F < W.slope E) (f : E ⟶ F) :
     f = 0 := by

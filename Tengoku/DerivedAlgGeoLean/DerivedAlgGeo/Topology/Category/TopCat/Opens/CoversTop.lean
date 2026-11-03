@@ -47,7 +47,9 @@ namespace TopCat.Opens
 variable {X : TopCat.{u}} {I : Type v}
 
 /-- A family of open sets whose supremum is `⊤` covers the terminal object of the open-set
-site.-/
+site.
+@isnad1 id=coversto.1h3v.s7.6f407ef1adba from=translated src=- shape=ebd3d206 vocab=c3af5fe0
+-/
 lemma grothendieckTopology_coversTop
     (U : I → TopologicalSpace.Opens X) (hU : ⨆ i, U i = ⊤) :
     (_root_.Opens.grothendieckTopology X).CoversTop U := by

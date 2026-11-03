@@ -65,7 +65,9 @@ variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimension
 variable (b : V →ₗ[ℝ] V →ₗ[ℝ] ℝ)
 
 /-- A bilinear form on a finite-dimensional real normed space is jointly
-continuous. It is half the polar form of its own quadratic map.-/
+continuous. It is half the polar form of its own quadratic map.
+@isnad1 id=continuo.1h2v.s10.b84dfc746ef2 from=translated src=- shape=bc9bee63 vocab=096d5120
+-/
 theorem continuous_bilin (hb : ∀ x y : V, b x y = b y x) :
     Continuous fun p : V × V => b p.1 p.2 := by
   have h := QuadraticMap.continuous_polar (LinearMap.BilinMap.toQuadraticMap b)
@@ -78,7 +80,9 @@ theorem continuous_bilin (hb : ∀ x y : V, b x y = b y x) :
   exact h.div_const 2
 
 omit [FiniteDimensional ℝ V] in
-/-- The pairing determinant of two exponential pairs, in terms of `b` alone.-/
+/-- The pairing determinant of two exponential pairs, in terms of `b` alone.
+@isnad1 id=eq.1h6v.s12.905774a38e63 from=translated src=- shape=e6489444 vocab=0235ccb2
+-/
 theorem pairingDet_exp (hb : ∀ x y : V, b x y = b y x) (β ω β' ω' : V) :
     PeriodDomain.pairingDet (realForm b) (expRe b β ω) (expIm b β ω)
         (expRe b β' ω') (expIm b β' ω')
@@ -97,17 +101,25 @@ variable (β ω β' ω' : V)
 noncomputable def segment (t : ℝ) : V × V := ((1 - t) • β + t • β', (1 - t) • ω + t • ω')
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.0h5v.s5.7822361ecb7a from=translated src=- shape=d3d4e987 vocab=be60d02b
+-/
 @[simp]
 theorem segment_zero : segment β ω β' ω' 0 = (β, ω) := by simp [segment]
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.0h5v.s5.8f245605f619 from=translated src=- shape=83709b83 vocab=be60d02b
+-/
 @[simp]
 theorem segment_one : segment β ω β' ω' 1 = (β', ω') := by simp [segment]
 
 omit [FiniteDimensional ℝ V] in
 /-- **The positive cone is convex along the segment.** Positivity of `b ω ω'` is
 what says the two classes are in the *same* component of the cone; without it the
-segment can pass through zero.-/
+segment can pass through zero.
+@isnad1 id=lt.5h7v.s11.1175ed7b2358 from=translated src=- shape=69e5244c vocab=a6d9db61
+-/
 theorem pos_segment (hb : ∀ x y : V, b x y = b y x) (hω : 0 < b ω ω) (hω' : 0 < b ω' ω')
     (hcone : 0 < b ω ω') {t : ℝ} (ht : t ∈ Icc (0 : ℝ) 1) :
     0 < b (segment β ω β' ω' t).2 (segment β ω β' ω' t).2 := by
@@ -138,6 +150,9 @@ noncomputable def pathDet (t : ℝ) : ℝ :=
     (expRe b (segment β ω β' ω' t).1 (segment β ω β' ω' t).2)
     (expIm b (segment β ω β' ω' t).1 (segment β ω β' ω' t).2)
 
+/--
+@isnad1 id=continuo.1h6v.s9.bdf267053197 from=translated src=- shape=ef7657bb vocab=fdc3b0ae
+-/
 theorem continuous_pathDet (hb : ∀ x y : V, b x y = b y x) :
     Continuous (pathDet b β ω β' ω') := by
   have hbc := continuous_bilin b hb
@@ -161,12 +176,18 @@ theorem continuous_pathDet (hb : ∀ x y : V, b x y = b y x) :
     ((h4.sub h5).mul (h7.sub continuous_const))
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.1h6v.s10.7315764cfed9 from=translated src=- shape=c9f2da29 vocab=93f17836
+-/
 theorem pathDet_zero (hb : ∀ x y : V, b x y = b y x) :
     pathDet b β ω β' ω' 0 = (b ω ω) ^ 2 := by
   simp only [pathDet, segment_zero]
   exact pairingDet_exp_self b β ω hb
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.0h6v.s8.7580c31521d9 from=translated src=- shape=59d38bab vocab=c7b49d4f
+-/
 theorem pathDet_one : pathDet b β ω β' ω' 1 =
     PeriodDomain.pairingDet (realForm b) (expRe b β ω) (expIm b β ω)
       (expRe b β' ω') (expIm b β' ω') := by
@@ -178,7 +199,9 @@ The determinant along the segment is continuous and never zero, and it starts
 positive, so the intermediate value theorem keeps it positive at the far end.
 
 `hsig` is not a new assumption: route (A) supplies it from the Hodge index
-signature of `V` (`hasSignatureTwo_realForm`).-/
+signature of `V` (`hasSignatureTwo_realForm`).
+@isnad1 id=mem.5h6v.s11.d0dce7b94dd5 from=translated src=- shape=595afe5c vocab=09912b84
+-/
 theorem mem_positiveFramesPlus_exp_of_sameCone
     (hsig : PeriodDomain.HasSignatureTwo (realForm b)) (hb : ∀ x y : V, b x y = b y x)
     (hω : 0 < b ω ω) (hω' : 0 < b ω' ω') (hcone : 0 < b ω ω') :
@@ -209,7 +232,9 @@ theorem mem_positiveFramesPlus_exp_of_sameCone
 
 `hasSignatureTwo_realForm` discharges the signature hypothesis, so with
 `V = NS(X) ⊗ ℝ` the inputs are: the Hodge index signature of `V`, and two classes
-in the same component of its positive cone.-/
+in the same component of its positive cone.
+@isnad1 id=mem.6h6v.s11.c33d10a0a12f from=translated src=- shape=93cadc4c vocab=a9c34909
+-/
 theorem mem_positiveFramesPlus_exp_of_sameCone_of_sigPos (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1)
     (hsigNeg : sigNeg (LinearMap.BilinMap.toQuadraticMap b) + 1 = Module.finrank ℝ V)

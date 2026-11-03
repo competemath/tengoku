@@ -116,22 +116,40 @@ These are `K₀Ab.of_isZero`, `of_iso` and `of_shortExact` composed with a hom, 
 they are free of both geometric fields. The names and argument shapes match
 `SlopeData`'s. -/
 
+/--
+@isnad1 id=eq.1h3v.s5.20e393d47170 from=translated src=- shape=164fc834 vocab=81bc511f
+-/
 theorem rank_zero (E : A) (hE : IsZero E) : D.rank E = 0 := by
   rw [rank, K₀Ab.of_isZero hE, map_zero]
 
+/--
+@isnad1 id=eq.1h3v.s5.9170e1ff0e58 from=translated src=- shape=164fc834 vocab=f40be7be
+-/
 theorem degree_zero (E : A) (hE : IsZero E) : D.degree E = 0 := by
   rw [degree, K₀Ab.of_isZero hE, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s5.317054247f9f from=translated src=- shape=cc9e6acb vocab=f7ee05e1
+-/
 theorem rank_iso {E F : A} (e : E ≅ F) : D.rank E = D.rank F := by
   rw [rank, rank, K₀Ab.of_iso e]
 
+/--
+@isnad1 id=eq.0h5v.s5.b133f102de34 from=translated src=- shape=cc9e6acb vocab=b1c794d4
+-/
 theorem degree_iso {E F : A} (e : E ≅ F) : D.degree E = D.degree F := by
   rw [degree, degree, K₀Ab.of_iso e]
 
+/--
+@isnad1 id=eq.1h3v.s6.a3314d064fdc from=translated src=- shape=4b040dc4 vocab=3375239e
+-/
 theorem rank_additive (S : ShortComplex A) (hS : S.ShortExact) :
     D.rank S.X₂ = D.rank S.X₁ + D.rank S.X₃ := by
   rw [rank, rank, rank, K₀Ab.of_shortExact S hS, map_add]
 
+/--
+@isnad1 id=eq.1h3v.s6.f9601af8fefc from=translated src=- shape=4b040dc4 vocab=91f5639e
+-/
 theorem degree_additive (S : ShortComplex A) (hS : S.ShortExact) :
     D.degree S.X₂ = D.degree S.X₁ + D.degree S.X₃ := by
   rw [degree, degree, degree, K₀Ab.of_shortExact S hS, map_add]
@@ -139,15 +157,23 @@ theorem degree_additive (S : ShortComplex A) (hS : S.ShortExact) :
 /-- The charge `-degree + i * rank`.-/
 def charge (E : A) : ℂ := ⟨-(D.degree E : ℝ), (D.rank E : ℝ)⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.fec6f84be122 from=translated src=- shape=ecb4440d vocab=3a51b4f6
+-/
 @[simp] theorem charge_re (E : A) : (D.charge E).re = -(D.degree E : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a5deae7eac0a from=translated src=- shape=ecb4440d vocab=abb42032
+-/
 @[simp] theorem charge_im (E : A) : (D.charge E).im = (D.rank E : ℝ) := rfl
 
 /-- A nonzero object has charge in the **closed** upper half-plane. Two cases,
 both immediate: positive rank gives `0 < im`, the first disjunct; rank zero gives
 `im = 0` together with `re = -degree ≤ 0`, the second. A skyscraper realises the
 boundary case `charge = 0`, which is why the half-plane here must be the closed
-one.-/
+one.
+@isnad1 id=mem.1h3v.s5.89093379ec0a from=translated src=- shape=f0999199 vocab=0439739d
+-/
 theorem charge_mem_closedUpperHalfPlane {E : A} (hE : ¬IsZero E) :
     D.charge E ∈ closedUpperHalfPlane := by
   rcases lt_or_eq_of_le (D.rank_nonneg E) with hpos | hzero
@@ -174,6 +200,9 @@ noncomputable def toWeakStabilityFunction : WeakStabilityFunctionOn (abelianDatu
     rw [abelianDatum_cl, K₀Ab.liftOf_of]
     exact D.charge_mem_closedUpperHalfPlane hE
 
+/--
+@isnad1 id=eq.0h3v.s7.87082a25dc10 from=translated src=- shape=bfbefdd1 vocab=caa84a09
+-/
 @[simp]
 theorem toWeakStabilityFunction_Z (E : A) :
     D.toWeakStabilityFunction.Z (K₀Ab.of E) = D.charge E := by
@@ -188,16 +217,25 @@ the strict theory's `StabilityFunction.phase`, this is *not* positive on every
 nonzero object: a skyscraper has charge `0` and so phase `0`.-/
 def phase (E : A) : ℝ := arg (D.charge E) / Real.pi
 
+/--
+@isnad1 id=eq.0h3v.s8.e2ccd817c1ea from=translated src=- shape=aef89cb4 vocab=b2220737
+-/
 theorem phase_eq_arg_div_pi (E : A) :
     D.phase E = arg (D.toWeakStabilityFunction.Z (K₀Ab.of E)) / Real.pi := by
   rw [phase, toWeakStabilityFunction_Z]
 
+/--
+@isnad1 id=eq.0h4v.s6.21a3acaf520b from=translated src=- shape=bee43e51 vocab=3f9d9bc7
+-/
 theorem phaseCross_charge (E F : A) :
     phaseCross (D.charge E) (D.charge F)
       = (D.rank E : ℝ) * (D.degree F : ℝ) - (D.degree E : ℝ) * (D.rank F : ℝ) := by
   simp only [phaseCross, charge_re, charge_im]
   ring
 
+/--
+@isnad1 id=ne.1h3v.s5.d52f422883f4 from=translated src=- shape=7a517e70 vocab=c332e301
+-/
 theorem charge_ne_zero_of_rank_pos {E : A} (hE : 0 < D.rank E) : D.charge E ≠ 0 := by
   intro h
   have him : (D.charge E).im = 0 := by rw [h]; rfl
@@ -205,6 +243,9 @@ theorem charge_ne_zero_of_rank_pos {E : A} (hE : 0 < D.rank E) : D.charge E ≠ 
   have : (0 : ℝ) < (D.rank E : ℝ) := by exact_mod_cast hE
   linarith
 
+/--
+@isnad1 id=lt.1h3v.s5.f643e1b275c9 from=translated src=- shape=7bf0bc54 vocab=6dfea9f7
+-/
 theorem arg_pos_of_rank_pos {E : A} (hE : 0 < D.rank E) : 0 < arg (D.charge E) := by
   refine arg_pos_of_mem_semiClosedUpperHalfPlane ?_
   left
@@ -218,7 +259,9 @@ At positive rank the charge lies in the *open* upper half-plane, so the degree
 field plays no part: the proof runs through `phaseCross`, whose value
 `rank E * degree F - degree E * rank F` is nonnegative exactly when
 `degree E / rank E ≤ degree F / rank F`. This is the statement `SlopeData`
-inherits through `SlopeData.toWeakSlopeData`.-/
+inherits through `SlopeData.toWeakSlopeData`.
+@isnad1 id=iff.2h4v.s6.e25e2543d5ef from=translated src=- shape=4fa8de18 vocab=f9777a84
+-/
 theorem phase_le_iff_slope_le {E F : A} (hE : 0 < D.rank E) (hF : 0 < D.rank F) :
     D.phase E ≤ D.phase F ↔ D.slope E ≤ D.slope F := by
   have hEr : (0 : ℝ) < (D.rank E : ℝ) := by exact_mod_cast hE

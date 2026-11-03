@@ -30,10 +30,16 @@ namespace CategoryTheory.Triangulated.WeakStabilityCondition.StabilityCondition.
 def toMat (T : Matrix.GLPos (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   ((T : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s11.274a186e420b from=translated src=- shape=0d0a69b1 vocab=88257bf9
+-/
 @[simp]
 theorem toMat_mul (T U : Matrix.GLPos (Fin 2) ℝ) :
     toMat (T * U) = toMat T * toMat U := rfl
 
+/--
+@isnad1 id=eq.0h0v.s9.25d76e3ec6d8 from=translated src=- shape=b2e0f11e vocab=c4d5d2e2
+-/
 @[simp]
 theorem toMat_one : toMat 1 = 1 := rfl
 

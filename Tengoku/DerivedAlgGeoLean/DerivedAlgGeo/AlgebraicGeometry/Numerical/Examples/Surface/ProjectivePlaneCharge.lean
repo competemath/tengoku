@@ -82,6 +82,9 @@ def p2DivisorSpace : DivisorSpace P2Divisor where
 /-- The hyperplane generator in the one-dimensional divisor space.-/
 def p2Hyperplane : P2Divisor := 1
 
+/--
+@isnad1 id=eq.0h0v.s4.48d0020bfabe from=translated src=- shape=5114bbf8 vocab=ad43b4df
+-/
 @[simp]
 theorem p2Hyperplane_square :
     p2DivisorSpace.pair p2Hyperplane p2Hyperplane = 1 := by
@@ -125,26 +128,34 @@ noncomputable def p2ProjectiveChargeCoordinates :
     ChargeCoordinates P2ProjectiveCoordinates :=
   p2ProjectiveChernCharacter.coordinatesAt p2DivisorSpace p2Hyperplane
 
-/-- The source rank coordinate is the first projective triple entry.-/
+/-- The source rank coordinate is the first projective triple entry.
+@isnad1 id=eq.0h1v.s6.5380f2c86835 from=translated src=- shape=fb3efedd vocab=f56b03fb
+-/
 @[simp]
 theorem p2ProjectiveChargeCoordinates_rank (E : P2ProjectiveCoordinates) :
     p2ProjectiveChargeCoordinates.rank E = (E.1 : ℝ) := by
   rfl
 
-/-- The source degree coordinate is the second projective triple entry.-/
+/-- The source degree coordinate is the second projective triple entry.
+@isnad1 id=eq.0h1v.s6.fdf2b595599f from=translated src=- shape=05fc77f1 vocab=5ed4f583
+-/
 @[simp]
 theorem p2ProjectiveChargeCoordinates_degree (E : P2ProjectiveCoordinates) :
     p2ProjectiveChargeCoordinates.degree E = (E.2.1 : ℝ) := by
   simp [p2ProjectiveChargeCoordinates, p2ProjectiveChernCharacter,
     p2DivisorSpace, p2IntersectionForm, p2Hyperplane, DivisorSpace.pair]
 
-/-- The source `ch₂` coordinate is `c/2 + v`.-/
+/-- The source `ch₂` coordinate is `c/2 + v`.
+@isnad1 id=eq.0h1v.s7.fce078ded8dd from=translated src=- shape=50089030 vocab=bd241a0c
+-/
 @[simp]
 theorem p2ProjectiveChargeCoordinates_chTwo (E : P2ProjectiveCoordinates) :
     p2ProjectiveChargeCoordinates.chTwo E = (E.2.1 : ℝ) / 2 + (E.2.2 : ℝ) := by
   rfl
 
-/-- The projective-plane source uses the normalization `H² = 1`.-/
+/-- The projective-plane source uses the normalization `H² = 1`.
+@isnad1 id=eq.0h0v.s4.5a3db338c501 from=translated src=- shape=b3c4969c vocab=984a1945
+-/
 @[simp]
 theorem p2ProjectiveChargeCoordinates_hyperplaneSquare :
     p2ProjectiveChargeCoordinates.hyperplaneSquare = 1 := by
@@ -156,7 +167,9 @@ theorem p2ProjectiveChargeCoordinates_hyperplaneSquare :
 def p2DivisorIndex : Fin surfacePB.dim :=
   ⟨1, by rw [surfacePB_dim]; norm_num⟩
 
-/-- The weight-one basis vectors are exactly the singleton `H`.-/
+/-- The weight-one basis vectors are exactly the singleton `H`.
+@isnad1 id=eq.0h0v.s8.0c3c5ebdb30c from=translated src=- shape=16ad7de9 vocab=1236c7ad
+-/
 theorem surfaceWeightOneBasis :
     surfacePB.basis '' (surfaceW ⁻¹' ({1} : Set ℕ)) = ({H} : Set SurfaceRing) := by
   ext x
@@ -215,7 +228,9 @@ def p2ProjectiveWallFamily :
   p2WallSlice.chargeFamily p2ProjectiveChernCharacter
 
 /-- Evaluating the inherited rank-one family recovers the existing
-projective-plane charge.-/
+projective-plane charge.
+@isnad1 id=eq.0h3v.s7.216c0bc59a85 from=translated src=- shape=4ccaf5e6 vocab=6748090e
+-/
 @[simp]
 theorem p2ProjectiveWallFamily_charge (a b : ℝ)
     (E : P2ProjectiveCoordinates) :
@@ -234,14 +249,18 @@ theorem p2ProjectiveWallFamily_charge (a b : ℝ)
       (p2WallSlice.parameters (OrthogonalSlice.Point.rankOne b a)) E = _
   rw [hparameters]
 
-/-- The projective charge respects the additive zero class.-/
+/-- The projective charge respects the additive zero class.
+@isnad1 id=eq.0h2v.s6.9fca053be4d1 from=translated src=- shape=93543ccd vocab=c736927d
+-/
 theorem p2ProjectiveCharge_zero (a b : ℝ) :
     p2ProjectiveCharge a b 0 = 0 :=
   (p2ProjectiveCharge a b).map_zero
 
 /-- The projective-space exponential `-∫ exp(-(b + i a) H) ch` in the
 `(r, c, v)` coordinates: the surface charge at `B = bH`, `omega = aH` equals the
-exponential presentation with `H² = 1`.-/
+exponential presentation with `H² = 1`.
+@isnad1 id=eq.0h3v.s8.092216abe431 from=translated src=- shape=3d656c31 vocab=5810e654
+-/
 @[simp]
 theorem p2ProjectiveCharge_apply (a b : ℝ) (E : P2ProjectiveCoordinates) :
     p2ProjectiveCharge a b E =
@@ -260,7 +279,9 @@ theorem p2ProjectiveCharge_apply (a b : ℝ) (E : P2ProjectiveCoordinates) :
 
 /-! ### Coordinate formulas -/
 
-/-- The real part of the projective-plane charge in `(r, c, v)` coordinates.-/
+/-- The real part of the projective-plane charge in `(r, c, v)` coordinates.
+@isnad1 id=eq.0h3v.s7.6039580ec072 from=translated src=- shape=f7d64b6d vocab=ed9d608f
+-/
 theorem p2ProjectiveCharge_re (a b : ℝ) (E : P2ProjectiveCoordinates) :
     (p2ProjectiveCharge a b E).re =
       -((E.2.1 : ℝ) / 2 + (E.2.2 : ℝ))
@@ -272,7 +293,9 @@ theorem p2ProjectiveCharge_re (a b : ℝ) (E : P2ProjectiveCoordinates) :
     Complex.I_re, Complex.I_im, pow_two]
   ring
 
-/-- The imaginary part of the projective-plane charge in `(r, c, v)` coordinates.-/
+/-- The imaginary part of the projective-plane charge in `(r, c, v)` coordinates.
+@isnad1 id=eq.0h3v.s7.9c3804c2baaa from=translated src=- shape=ac863e39 vocab=a9d9de61
+-/
 theorem p2ProjectiveCharge_im (a b : ℝ) (E : P2ProjectiveCoordinates) :
     (p2ProjectiveCharge a b E).im =
       a * (E.2.1 : ℝ) - (2 * a * b) * ((E.1 : ℝ) / 2) := by

@@ -113,7 +113,9 @@ coefficient ring `ℚ` with the multiplication of `ℚ` as the bilinear form.
 The rank slot carries `∫H³`, the codimension-three analogue of the `∫H²` in
 `Surface.discrH_eq_selfPairing`.  The triple is the three twisted degrees at
 `β`, and `discrHBeta_beta_inert` below says the value does not depend on which
-`β` that is.-/
+`β` that is.
+@isnad1 id=eq.0h5v.s8.b24b0fa40294 from=translated src=- shape=c45b9922 vocab=4ccbf1f4
+-/
 theorem discrHBeta_eq_selfPairing (E : N) :
     discrHBeta V P E
       = Mukai.selfPairing (LinearMap.mul ℚ ℚ)
@@ -143,16 +145,25 @@ noncomputable def Q (α β : ℚ) (E : N) : ℚ :=
 
 /-! ### The `β = 0` and `α = 0` specialisations -/
 
+/--
+@isnad1 id=eq.0h5v.s7.3608ea6632e3 from=translated src=- shape=e87a0c64 vocab=38407304
+-/
 @[simp]
 theorem degH1Beta_zero_beta (E : N) :
     degH1Beta V P 0 E = V.ring.degree (V.chComp E 1 * P.cls ^ 2) := by
   rw [degH1Beta, chBetaComp_zero_beta]
 
+/--
+@isnad1 id=eq.0h5v.s7.d177642d61b9 from=translated src=- shape=33ee2bfe vocab=6af8119a
+-/
 @[simp]
 theorem degH2Beta_zero_beta (E : N) :
     degH2Beta V P 0 E = V.ring.degree (V.chComp E 2 * P.cls) := by
   rw [degH2Beta, chBetaComp_zero_beta]
 
+/--
+@isnad1 id=eq.0h5v.s7.beb8d981a782 from=translated src=- shape=a10a1d2f vocab=169cf906
+-/
 @[simp]
 theorem deg3Beta_zero_beta (E : N) :
     deg3Beta V P 0 E = V.ring.degree (V.chComp E 3) := by
@@ -164,7 +175,9 @@ The two twisted degrees each move with `β`, and the discriminant is the one
 combination of them that does not. `degH1Beta_eq_sub` and `degH2Beta_eq_sub`
 are the two expansions; `discrHBeta_beta_inert` is the cancellation. -/
 
-/-- `∫H²·ch₁^β = ∫H²·ch₁ − β·∫H³·ch₀`.-/
+/-- `∫H²·ch₁^β = ∫H²·ch₁ − β·∫H³·ch₀`.
+@isnad1 id=eq.0h6v.s8.b00f08c98bd2 from=translated src=- shape=7809e302 vocab=fb155e31
+-/
 theorem degH1Beta_eq_sub (β : ℚ) (E : N) :
     degH1Beta V P β E
       = degH1Beta V P 0 E - β * (V.ring.degree (P.cls ^ 3) * (V.rank E : ℚ)) := by
@@ -178,7 +191,9 @@ theorem degH1Beta_eq_sub (β : ℚ) (E : N) :
     degH1Beta_zero_beta]
   ring
 
-/-- `∫H·ch₂^β = ∫H·ch₂ − β·∫H²·ch₁ + (β²/2)·∫H³·ch₀`.-/
+/-- `∫H·ch₂^β = ∫H·ch₂ − β·∫H²·ch₁ + (β²/2)·∫H³·ch₀`.
+@isnad1 id=eq.0h6v.s8.ef111a9d17f6 from=translated src=- shape=9a66bbd5 vocab=53e8871c
+-/
 theorem degH2Beta_eq_sub (β : ℚ) (E : N) :
     degH2Beta V P β E
       = degH2Beta V P 0 E - β * degH1Beta V P 0 E
@@ -203,7 +218,9 @@ term cancels: the linear terms cancel against each other and the quadratic ones
 against the `β²/2` in `ch₂^β`.
 
 This is the threefold instance of the `B`-twist invariance
-`ChernCharacter.discriminant_twist` already records on the divisorial side.-/
+`ChernCharacter.discriminant_twist` already records on the divisorial side.
+@isnad1 id=eq.0h6v.s8.3a6ce5e46652 from=translated src=- shape=8bbb5875 vocab=687ab87d
+-/
 theorem discrHBeta_beta_inert (β : ℚ) (E : N) :
     (degH1Beta V P β E) ^ 2
         - 2 * (V.ring.degree (P.cls ^ 3) * (V.rank E : ℚ)) * (degH2Beta V P β E)
@@ -211,6 +228,9 @@ theorem discrHBeta_beta_inert (β : ℚ) (E : N) :
   rw [discrHBeta, degH1Beta_eq_sub V P β E, degH2Beta_eq_sub V P β E]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s9.b03132e35644 from=translated src=- shape=eae24292 vocab=913cad53
+-/
 theorem discrHBeta_zero_beta (E : N) :
     discrHBeta V P E
       = (V.ring.degree (V.chComp E 1 * P.cls ^ 2)) ^ 2
@@ -218,7 +238,9 @@ theorem discrHBeta_zero_beta (E : N) :
           * V.ring.degree (V.chComp E 2 * P.cls) := by
   rw [discrHBeta, degH1Beta_zero_beta, degH2Beta_zero_beta]
 
-/-- `Q` written out in untwisted components.-/
+/-- `Q` written out in untwisted components.
+@isnad1 id=eq.0h6v.s10.5bf07e83da95 from=translated src=- shape=76a1151c vocab=924a221f
+-/
 theorem Q_zero_beta (α : ℚ) (E : N) :
     Q V P α 0 E
       = α ^ 2 * ((V.ring.degree (V.chComp E 1 * P.cls ^ 2)) ^ 2
@@ -229,13 +251,17 @@ theorem Q_zero_beta (α : ℚ) (E : N) :
           * V.ring.degree (V.chComp E 3) := by
   rw [Q, discrHBeta_zero_beta, degH1Beta_zero_beta, degH2Beta_zero_beta, deg3Beta_zero_beta]
 
-/-- At `α = 0` the tilt slope is the plain ratio of the two twisted degrees.-/
+/-- At `α = 0` the tilt slope is the plain ratio of the two twisted degrees.
+@isnad1 id=eq.0h6v.s6.e371bd85ec52 from=translated src=- shape=30131267 vocab=f0681ea5
+-/
 theorem nu_zero_alpha (β : ℚ) (E : N) :
     nu V P 0 β E = degH2Beta V P β E / degH1Beta V P β E := by
   rw [nu]
   norm_num
 
-/-- At `α = 0`, `Q` loses its discriminant term.-/
+/-- At `α = 0`, `Q` loses its discriminant term.
+@isnad1 id=eq.0h6v.s7.20800a10bffa from=translated src=- shape=cc8416bb vocab=411ec681
+-/
 theorem Q_zero_alpha (β : ℚ) (E : N) :
     Q V P 0 β E
       = 4 * (degH2Beta V P β E) ^ 2 - 6 * (degH1Beta V P β E) * (deg3Beta V P β E) := by

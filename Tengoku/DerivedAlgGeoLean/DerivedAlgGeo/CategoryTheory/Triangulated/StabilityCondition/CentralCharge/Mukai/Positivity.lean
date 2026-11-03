@@ -108,7 +108,9 @@ variable {V : Type*} [AddCommGroup V] [Module ℝ V] (b : V →ₗ[ℝ] V →ₗ
 /-- **The imaginary part of `Z(β,ω)`, expanded.**  The closed form claimed by
 Lemma 6.2 is `im_expCharge_eq_apply_sub_smul`, immediately below; this is the
 same quantity with `b ω (c - r•β)` multiplied out, which is the shape
-`expCharge_apply` hands over.-/
+`expCharge_apply` hands over.
+@isnad1 id=eq.1h7v.s10.a1047aa160cc from=translated src=- shape=8a75e6b1 vocab=c94d5632
+-/
 theorem im_expCharge (hb : ∀ x y : V, b x y = b y x) (r : ℝ) (c : V) (s : ℝ) :
     (expCharge b β ω (r, c, s)).im = b ω c - r * b β ω := by
   rw [expCharge_apply b β ω hb]
@@ -123,7 +125,9 @@ rearrangement.
 
 `im_expCharge` proves the same equation with the right-hand side multiplied
 out.  Both are wanted: that one matches what `expCharge_apply` produces, this
-one matches what the Hodge index theorem consumes.-/
+one matches what the Hodge index theorem consumes.
+@isnad1 id=eq.1h7v.s9.ab1469af8010 from=translated src=- shape=558829e2 vocab=469facdd
+-/
 theorem im_expCharge_eq_apply_sub_smul (hb : ∀ x y : V, b x y = b y x)
     (r : ℝ) (c : V) (s : ℝ) :
     (expCharge b β ω (r, c, s)).im = b ω (c - r • β) := by
@@ -132,7 +136,9 @@ theorem im_expCharge_eq_apply_sub_smul (hb : ∀ x y : V, b x y = b y x)
   rw [hb ω β]
 
 /-- The orthogonality that `Im Z = 0` encodes, in the form the Hodge index
-theorem consumes.-/
+theorem consumes.
+@isnad1 id=eq.2h7v.s9.2b2e1e0692dc from=translated src=- shape=1cafa9a6 vocab=469facdd
+-/
 theorem apply_sub_smul_eq_zero_of_im_eq_zero (hb : ∀ x y : V, b x y = b y x)
     {r : ℝ} {c : V} {s : ℝ} (him : (expCharge b β ω (r, c, s)).im = 0) :
     b ω (c - r • β) = 0 := by
@@ -144,7 +150,9 @@ theorem apply_sub_smul_eq_zero_of_im_eq_zero (hb : ∀ x y : V, b x y = b y x)
 Those three cases differ only in why `c - r•β` meets `ω` positively — torsion
 on a curve, torsion in dimension zero, or a torsion-free sheaf strictly above
 the cutoff.  Once that is known, the charge lands in the open upper half plane
-for the same one-line reason, which is this.-/
+for the same one-line reason, which is this.
+@isnad1 id=lt.2h7v.s9.644113f6d086 from=translated src=- shape=3cb6575b vocab=c4ba8d65
+-/
 theorem im_expCharge_pos (hb : ∀ x y : V, b x y = b y x)
     {r : ℝ} {c : V} {s : ℝ} (h : 0 < b ω (c - r • β)) :
     0 < (expCharge b β ω (r, c, s)).im := by
@@ -152,7 +160,9 @@ theorem im_expCharge_pos (hb : ∀ x y : V, b x y = b y x)
   exact h
 
 /-- The same statement without strictness, for a case that only knows the
-cutoff is not crossed downward.-/
+cutoff is not crossed downward.
+@isnad1 id=le.2h7v.s9.a6932e31a2eb from=translated src=- shape=3cb6575b vocab=314e144b
+-/
 theorem im_expCharge_nonneg (hb : ∀ x y : V, b x y = b y x)
     {r : ℝ} {c : V} {s : ℝ} (h : 0 ≤ b ω (c - r • β)) :
     0 ≤ (expCharge b β ω (r, c, s)).im := by
@@ -163,7 +173,9 @@ theorem im_expCharge_nonneg (hb : ∀ x y : V, b x y = b y x)
 
 Purely algebraic: `expCharge_apply` and `realForm_apply` unfolded, then `ring`.
 The point is that it exhibits `2 * r * Re Z` as a Hodge-index term plus the
-Mukai square plus `r^2 * ω^2`.-/
+Mukai square plus `r^2 * ω^2`.
+@isnad1 id=eq.1h7v.s10.e1734114c632 from=translated src=- shape=c0f34f5a vocab=5ca34768
+-/
 theorem two_mul_re_expCharge (hb : ∀ x y : V, b x y = b y x) (r : ℝ) (c : V) (s : ℝ) :
     2 * r * (expCharge b β ω (r, c, s)).re
       = -b (c - r • β) (c - r • β) + 2 * realForm b (r, c, s) + r ^ 2 * b ω ω := by
@@ -178,7 +190,9 @@ section HodgeIndex
 
 variable [FiniteDimensional ℝ V]
 
-/-- The Hodge-index bound, specialised to the boundary.-/
+/-- The Hodge-index bound, specialised to the boundary.
+@isnad1 id=le.4h7v.s10.420fb9cfdb70 from=translated src=- shape=712ed2db vocab=fd73f58b
+-/
 theorem two_mul_re_expCharge_ge (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
     {r : ℝ} {c : V} {s : ℝ} (him : (expCharge b β ω (r, c, s)).im = 0) :
@@ -202,7 +216,9 @@ On the boundary `Im Z = 0`, Hodge index gives
 
 Thus positive rank and positivity of the left-hand side are the exact inputs
 used by this argument. No lower-bound constant, integrality of the rank, or
-K3 normalization appears here.-/
+K3 normalization appears here.
+@isnad1 id=lt.6h7v.s10.af5986adc5ba from=translated src=- shape=249fc542 vocab=379447f5
+-/
 theorem re_expCharge_pos_of_boundary_margin (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
     {r : ℝ} (hr : 0 < r) {c : V} {s : ℝ}
@@ -221,7 +237,9 @@ the actual positive rank of the class.
 
 The parameter `δ` is not required to be nonnegative. A negative value simply
 records a positive lower bound for `realForm`; the two displayed hypotheses
-already say exactly what the proof needs.-/
+already say exactly what the proof needs.
+@isnad1 id=lt.7h8v.s10.499668d8b928 from=translated src=- shape=b8cf88b7 vocab=64dfd8a4
+-/
 theorem re_expCharge_pos_of_lower_bound (δ : ℝ)
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
@@ -238,7 +256,9 @@ theorem re_expCharge_pos_of_lower_bound (δ : ℝ)
 When `1 ≤ r`, the uniform inequality `2δ < ω²` implies the rank-sensitive
 condition `2δ < r² * ω²`. Geometric children whose factors have integral
 positive rank can use this form; children with better rank information should
-prefer `re_expCharge_pos_of_lower_bound`.-/
+prefer `re_expCharge_pos_of_lower_bound`.
+@isnad1 id=lt.7h8v.s10.4a0070b7cc54 from=translated src=- shape=b760e734 vocab=a8bda0ac
+-/
 theorem re_expCharge_pos_of_lower_bound_of_one_le_rank (δ : ℝ)
     (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
@@ -252,7 +272,9 @@ theorem re_expCharge_pos_of_lower_bound_of_one_le_rank (δ : ℝ)
     (lt_of_lt_of_le hωδ hsq)
 
 /-- **Lemma 6.2, non-spherical case.** A class of nonnegative Mukai square on
-the boundary has `Re Z > 0`, on the strength of `ω² > 0` alone.-/
+the boundary has `Re Z > 0`, on the strength of `ω² > 0` alone.
+@isnad1 id=lt.6h7v.s10.4f1e3a44d401 from=translated src=- shape=f9930313 vocab=943187eb
+-/
 theorem re_expCharge_pos_of_nonneg (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 0 < b ω ω)
     {r : ℝ} (hr : 0 < r) {c : V} {s : ℝ}
@@ -265,7 +287,9 @@ theorem re_expCharge_pos_of_nonneg (hb : ∀ x y : V, b x y = b y x)
 /-- **Lemma 6.2, spherical case.** For a class of Mukai square `-1` — the
 paper's `v(E)² = -2` in this repository's halved convention — the boundary
 still has `Re Z > 0`, but now `ω² > 2` is needed, and it is enough only because
-`1 ≤ r`.-/
+`1 ≤ r`.
+@isnad1 id=lt.6h7v.s10.b5ef7197d588 from=translated src=- shape=8cd72298 vocab=88850133
+-/
 theorem re_expCharge_pos_of_neg_one (hb : ∀ x y : V, b x y = b y x)
     (hsigPos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1) (hω : 2 < b ω ω)
     {r : ℝ} (hr : 1 ≤ r) {c : V} {s : ℝ}

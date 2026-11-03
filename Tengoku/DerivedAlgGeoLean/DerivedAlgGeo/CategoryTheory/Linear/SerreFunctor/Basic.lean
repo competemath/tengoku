@@ -115,7 +115,9 @@ namespace SerreCategoryData
 variable {k C} (A : SerreCategoryData k C)
 
 /-- The chosen Serre functor can be used as an equivalence by a consumer
-without installing a global instance.-/
+without installing a global instance.
+@isnad1 id=isequiva.0h3v.s5.1aa4924095fa from=translated src=- shape=b8172e02 vocab=eee87327
+-/
 theorem hasSerreEquivalence : A.serre.S.IsEquivalence :=
   A.serreIsEquivalence
 
@@ -126,7 +128,9 @@ namespace SerreFunctorData
 variable {k C} (D : SerreFunctorData k C)
 
 /-- Naturality of Serre duality makes its endofunctor additive, without a
-Hom-finiteness or equivalence assumption.-/
+Hom-finiteness or equivalence assumption.
+@isnad1 id=additive.0h3v.s5.fdd5b93f978e from=translated src=- shape=755cbc34 vocab=c998e5b9
+-/
 theorem additive : D.S.Additive where
   map_add := by
     intro A B f g
@@ -160,19 +164,26 @@ noncomputable def pairing (A B : C) :
     ext g
     simp
 
+/--
+@isnad1 id=eq.0h7v.s11.af337d24cec6 from=translated src=- shape=055b6ca9 vocab=0bf02cfe
+-/
 @[simp]
 theorem pairing_apply (A B : C) (f : A ⟶ B) (g : B ⟶ D.S.obj A) :
     D.pairing A B f g = (D.eta A B).symm g f :=
   rfl
 
-/-- The Serre pairing separates its first argument.-/
+/-- The Serre pairing separates its first argument.
+@isnad1 id=eq.1h6v.s10.b33ad4e5f5a6 from=translated src=- shape=d633bfcb vocab=54b740f9
+-/
 theorem pairing_separating_left (A B : C) (f : A ⟶ B)
     (hf : ∀ g : B ⟶ D.S.obj A, D.pairing A B f g = 0) : f = 0 := by
   apply Module.eval_apply_injective k
   ext phi
   simpa using hf (D.eta A B phi)
 
-/-- The Serre pairing separates its second argument.-/
+/-- The Serre pairing separates its second argument.
+@isnad1 id=eq.1h6v.s10.49d8f03feceb from=translated src=- shape=f8ddcdd5 vocab=54b740f9
+-/
 theorem pairing_separating_right (A B : C) (g : B ⟶ D.S.obj A)
     (hg : ∀ f : A ⟶ B, D.pairing A B f g = 0) : g = 0 := by
   apply (D.eta A B).symm.injective
@@ -180,7 +191,9 @@ theorem pairing_separating_right (A B : C) (g : B ⟶ D.S.obj A)
   intro f
   simpa using hg f
 
-/-- Serre duality identifies the dimensions of the two Hom-spaces.-/
+/-- Serre duality identifies the dimensions of the two Hom-spaces.
+@isnad1 id=eq.0h5v.s7.ba78ff65fcfa from=translated src=- shape=c45e88fb vocab=84d52281
+-/
 theorem finrank_hom_eq [HomFinite k C] (A B : C) :
     Module.finrank k (A ⟶ B) = Module.finrank k (B ⟶ D.S.obj A) := by
   calc
@@ -200,12 +213,17 @@ noncomputable def trace (A : C) : (A ⟶ D.S.obj A) →ₗ[k] k where
     intro c f
     simp
 
+/--
+@isnad1 id=eq.0h5v.s11.5d18377e5b7b from=translated src=- shape=0a8f35d7 vocab=cf78bb9b
+-/
 @[simp]
 theorem trace_apply (A : C) (f : A ⟶ D.S.obj A) :
     D.trace A f = (D.eta A A).symm f (𝟙 A) :=
   rfl
 
-/-- Cyclicity of the Serre trace, obtained from both naturality fields.-/
+/-- Cyclicity of the Serre trace, obtained from both naturality fields.
+@isnad1 id=eq.0h7v.s9.9d99c8fb979f from=translated src=- shape=6a68ad56 vocab=7bc6e8c1
+-/
 theorem trace_comp {A B : C} (f : A ⟶ B) (g : B ⟶ D.S.obj A) :
     D.trace B (g ≫ D.S.map f) = D.trace A (f ≫ g) := by
   let phi : Module.Dual k (A ⟶ B) := (D.eta A B).symm g

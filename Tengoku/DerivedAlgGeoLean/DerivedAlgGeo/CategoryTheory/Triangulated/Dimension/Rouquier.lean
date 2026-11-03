@@ -77,7 +77,9 @@ noncomputable def rouquierDim : ℕ∞ :=
   ⨅ G : C, (ObjectProperty.singleton G).generationTime ⊤
 
 /-- The zero object makes the indexing type nonempty, so the `ℕ∞` infimum attains its value;
-this equivalence extracts a witness at the requested finite stage.-/
+this equivalence extracts a witness at the requested finite stage.
+@isnad1 id=iff.0h2v.s6.d1a770118143 from=translated src=- shape=3d4f1a5d vocab=abc97ef4
+-/
 theorem rouquierDim_le_coe_iff (n : ℕ) :
     rouquierDim C ≤ (n : ℕ∞) ↔
       ∃ G : C, (ObjectProperty.singleton G).triangEnvelopeIter n = ⊤ := by
@@ -102,7 +104,9 @@ theorem rouquierDim_le_coe_iff (n : ℕ) :
           (top_le_iff.mpr hG)
 
 /-- Well-ordering of `ℕ∞` makes the infimum attainable; the generation-time bridge identifies
-a finite value with strong generation.-/
+a finite value with strong generation.
+@isnad1 id=iff.0h1v.s6.7f70e2b2f5f2 from=translated src=- shape=1910a5e1 vocab=9e703178
+-/
 theorem rouquierDim_ne_top_iff_exists_strong :
     rouquierDim C ≠ ⊤ ↔
       ∃ G : C, (ObjectProperty.singleton G).IsStrongTriangulatedGenerator := by
@@ -131,7 +135,9 @@ theorem rouquierDim_ne_top_iff_exists_strong :
     exact top_le_iff.mp hle
 
 /-- Mathlib's strong-to-classical implication turns the strong generator from the finite-dimension
-characterization into a classical generator.-/
+characterization into a classical generator.
+@isnad1 id=ex.1h1v.s6.393bc93b72eb from=translated src=- shape=68777362 vocab=dcf2e3db
+-/
 theorem exists_isClassicalTriangulatedGenerator_of_rouquierDim_ne_top
     (h : rouquierDim C ≠ ⊤) :
     ∃ G : C, (ObjectProperty.singleton G).IsClassicalTriangulatedGenerator := by
@@ -141,7 +147,9 @@ theorem exists_isClassicalTriangulatedGenerator_of_rouquierDim_ne_top
 /-- Rouquier dimension is zero exactly when one object's zeroth envelope is the whole category.
 By `CategoryTheory.ObjectProperty.triangEnvelopeIter_zero`, this is generation using only shifts,
 finite binary products, and
-retracts, without extension steps.-/
+retracts, without extension steps.
+@isnad1 id=iff.0h1v.s6.def58e5e7532 from=translated src=- shape=30beb1c8 vocab=fc1b83e4
+-/
 theorem rouquierDim_eq_zero_iff :
     rouquierDim C = 0 ↔
       ∃ G : C, (ObjectProperty.singleton G).triangEnvelopeIter 0 = ⊤ := by

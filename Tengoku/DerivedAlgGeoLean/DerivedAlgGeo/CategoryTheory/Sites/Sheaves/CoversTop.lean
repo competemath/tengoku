@@ -28,7 +28,9 @@ namespace CategoryTheory.Presheaf
 
 variable {C : Type u₁} [Category.{v₁} C] {J : GrothendieckTopology C}
 
-/-- Local injectivity is detected on a family covering the terminal object.-/
+/-- Local injectivity is detected on a family covering the terminal object.
+@isnad1 id=islocall.2h7v.s8.c8a8877855b2 from=translated src=- shape=a33b0d01 vocab=a5e2a779
+-/
 lemma isLocallyInjective_of_coversTop {P Q : Cᵒᵖ ⥤ AddCommGrpCat.{u}} (f : P ⟶ Q)
     {ι : Type*} (X : ι → C) (hX : J.CoversTop X)
     (h : ∀ i, IsLocallyInjective (J.over (X i))
@@ -65,7 +67,9 @@ lemma isLocallyInjective_of_coversTop {P Q : Cᵒᵖ ⥤ AddCommGrpCat.{u}} (f :
   rw [hpull]
   exact hcover
 
-/-- Local surjectivity is detected on a family covering the terminal object.-/
+/-- Local surjectivity is detected on a family covering the terminal object.
+@isnad1 id=islocall.2h7v.s8.7fb1dd1b5cf2 from=translated src=- shape=1122f256 vocab=6e443d1c
+-/
 lemma isLocallySurjective_of_coversTop {P Q : Cᵒᵖ ⥤ AddCommGrpCat.{u}} (f : P ⟶ Q)
     {ι : Type*} (X : ι → C) (hX : J.CoversTop X)
     (h : ∀ i, IsLocallySurjective (J.over (X i))
@@ -103,7 +107,9 @@ lemma isLocallySurjective_of_coversTop {P Q : Cᵒᵖ ⥤ AddCommGrpCat.{u}} (f 
   rw [heq] at hcover
   exact hcover
 
-/-- A morphism that is a local weak equivalence on a covering family is one globally.-/
+/-- A morphism that is a local weak equivalence on a covering family is one globally.
+@isnad1 id=w.1h8v.s8.828cfefdec17 from=translated src=- shape=23501b12 vocab=9ec942cb
+-/
 lemma W_of_coversTop [J.WEqualsLocallyBijective AddCommGrpCat.{u}]
     {P Q : Cᵒᵖ ⥤ AddCommGrpCat.{u}} (f : P ⟶ Q)
     {ι : Type*} (X : ι → C) (hX : J.CoversTop X)

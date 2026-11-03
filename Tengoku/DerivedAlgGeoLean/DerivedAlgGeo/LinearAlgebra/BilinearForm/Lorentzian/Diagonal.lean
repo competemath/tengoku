@@ -82,6 +82,9 @@ def diagonalForm (k : ℕ) : LinearMap.BilinForm ℝ (DiagonalDivisor k) :=
       · ring
       · exact Finset.sum_congr rfl fun i _ => by ring)
 
+/--
+@isnad1 id=eq.0h3v.s9.1add4da4081f from=translated src=- shape=387e3981 vocab=c06ee74d
+-/
 @[simp]
 theorem diagonalForm_apply (k : ℕ) (x y : DiagonalDivisor k) :
     diagonalForm k x y = x.1 * y.1 - ∑ i, x.2 i * y.2 i := rfl
@@ -96,6 +99,9 @@ def diagonalSpace (k : ℕ) : DivisorSpace (DiagonalDivisor k) where
     congr 1
     exact Finset.sum_congr rfl fun i _ => mul_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.52ed2ee3e24e from=translated src=- shape=09dab414 vocab=159a8d80
+-/
 @[simp]
 theorem diagonalSpace_pair (k : ℕ) (x y : DiagonalDivisor k) :
     (diagonalSpace k).pair x y = x.1 * y.1 - ∑ i, x.2 i * y.2 i := rfl
@@ -108,7 +114,9 @@ definite on its orthogonal complement.
 
 Proved for all `k` at once.  The one inequality doing the work is
 `Finset.sum_mul_sq_le_sq_mul_sq`, Cauchy–Schwarz on the negative-definite
-coordinates; no coordinate is named and there is no case split on `k`.-/
+coordinates; no coordinate is named and there is no case split on `k`.
+@isnad1 id=hodgedef.1h2v.s7.f9bf375a2250 from=translated src=- shape=6932b892 vocab=652943c4
+-/
 theorem hodgeDefinite_diagonal {k : ℕ} {w : DiagonalDivisor k}
     (hw : 0 < (diagonalSpace k).pair w w) :
     (diagonalSpace k).HodgeDefinite w where
@@ -159,7 +167,9 @@ variable {D : Type w} [AddCommGroup D] [Module ℝ D]
 
 /-- A `DivisorSpace` that admits a form-preserving linear equivalence onto the
 diagonal model inherits its Hodge certificates, so a concrete model need not
-prove its own Hodge index inequality.-/
+prove its own Hodge index inequality.
+@isnad1 id=hodgedef.2h5v.s9.e56220625923 from=translated src=- shape=817ecd12 vocab=68c0b0d3
+-/
 theorem hodgeDefinite_of_equiv_diagonal {S : DivisorSpace D} {k : ℕ}
     (f : D ≃ₗ[ℝ] DiagonalDivisor k)
     (hf : ∀ x y, (diagonalSpace k).pair (f x) (f y) = S.pair x y)

@@ -23,7 +23,9 @@ real axis.-/
 def rotatedIm (w : ℂ) (ψ : ℝ) : ℝ :=
   (w * Complex.exp (-(↑(Real.pi * ψ) * Complex.I))).im
 
-/-- Rotating a polar vector subtracts its phases inside the sine.-/
+/-- Rotating a polar vector subtracts its phases inside the sine.
+@isnad1 id=eq.0h3v.s6.d132c9c7fbaa from=translated src=- shape=5787a46c vocab=e321c57e
+-/
 theorem rotatedIm_polar (m φ ψ : ℝ) :
     rotatedIm ((m : ℂ) *
       Complex.exp (↑(Real.pi * φ) * Complex.I)) ψ =
@@ -37,21 +39,27 @@ theorem rotatedIm_polar (m φ ψ : ℝ) :
     Complex.exp_ofReal_mul_I_re, Complex.exp_ofReal_mul_I_im,
     zero_mul, add_zero]
 
-/-- Rotated imaginary part expressed through the selected relative phase.-/
+/-- Rotated imaginary part expressed through the selected relative phase.
+@isnad1 id=eq.0h3v.s5.f19cc0c0ebb6 from=translated src=- shape=5d83fc7f vocab=1ead3d7e
+-/
 theorem rotatedIm_eq_norm_mul_sin (w : ℂ) (α ψ : ℝ) :
     rotatedIm w ψ =
       ‖w‖ * Real.sin (Real.pi * (relativePhase w α - ψ)) := by
   conv_lhs => rw [relativePhase_polar w α]
   exact rotatedIm_polar ‖w‖ (relativePhase w α) ψ
 
-/-- A vector has zero rotated imaginary part at its selected phase.-/
+/-- A vector has zero rotated imaginary part at its selected phase.
+@isnad1 id=eq.1h3v.s4.a52257f600a5 from=translated src=- shape=414a8bb2 vocab=e1a06f65
+-/
 theorem rotatedIm_eq_zero_of_relativePhase_eq {w : ℂ} {α ψ : ℝ}
     (h : relativePhase w α = ψ) : rotatedIm w ψ = 0 := by
   rw [rotatedIm_eq_norm_mul_sin w α ψ, h, sub_self, mul_zero,
     Real.sin_zero, mul_zero]
 
 /-- A nonzero vector whose selected phase lies strictly below the rotation
-phase by less than one has negative rotated imaginary part.-/
+phase by less than one has negative rotated imaginary part.
+@isnad1 id=lt.3h3v.s5.7e04aa5116e9 from=translated src=- shape=32821fa2 vocab=966180ff
+-/
 theorem rotatedIm_neg_of_relativePhase_lt {w : ℂ} {α ψ : ℝ}
     (hw : w ≠ 0) (hlo : ψ - 1 < relativePhase w α)
     (hlt : relativePhase w α < ψ) : rotatedIm w ψ < 0 := by
@@ -62,7 +70,9 @@ theorem rotatedIm_neg_of_relativePhase_lt {w : ℂ} {α ψ : ℝ}
   · nlinarith [Real.pi_pos, hlo]
 
 /-- A nonzero vector whose selected phase lies strictly above the rotation
-phase by less than one has positive rotated imaginary part.-/
+phase by less than one has positive rotated imaginary part.
+@isnad1 id=lt.3h3v.s5.3baeac63e95d from=translated src=- shape=03ace270 vocab=382decfc
+-/
 theorem rotatedIm_pos_of_relativePhase_gt {w : ℂ} {α ψ : ℝ}
     (hw : w ≠ 0) (hgt : ψ < relativePhase w α)
     (hhi : relativePhase w α < ψ + 1) : 0 < rotatedIm w ψ := by
@@ -73,7 +83,9 @@ theorem rotatedIm_pos_of_relativePhase_gt {w : ℂ} {α ψ : ℝ}
   · nlinarith [Real.pi_pos, hhi]
 
 /-- Positive rotated imaginary part forces a relative phase above the rotation
-phase, provided the selected branch does not wrap around it.-/
+phase, provided the selected branch does not wrap around it.
+@isnad1 id=lt.2h3v.s6.32c77cf3760f from=translated src=- shape=18c3fadd vocab=1af3f352
+-/
 theorem relativePhase_gt_of_rotatedIm_pos {w : ℂ} {α ψ : ℝ}
     (him : 0 < rotatedIm w ψ)
     (hrange : relativePhase w α ∈ Set.Ioo (ψ - 1) (ψ + 1)) :
@@ -90,7 +102,9 @@ theorem relativePhase_gt_of_rotatedIm_pos {w : ℂ} {α ψ : ℝ}
   linarith [mul_nonpos_of_nonneg_of_nonpos (norm_nonneg w) hsin]
 
 /-- Negative rotated imaginary part forces a relative phase below the rotation
-phase on the same branch window.-/
+phase on the same branch window.
+@isnad1 id=lt.2h3v.s6.a16e429baf2d from=translated src=- shape=0df6b761 vocab=1af3f352
+-/
 theorem relativePhase_lt_of_rotatedIm_neg {w : ℂ} {α ψ : ℝ}
     (him : rotatedIm w ψ < 0)
     (hrange : relativePhase w α ∈ Set.Ioo (ψ - 1) (ψ + 1)) :
@@ -107,7 +121,9 @@ theorem relativePhase_lt_of_rotatedIm_neg {w : ℂ} {α ψ : ℝ}
   linarith [mul_nonneg (norm_nonneg w) hsin]
 
 /-- Phase see-saw: if a total vector has phase `ψ` and the first summand is at
-most `ψ`, then a nonzero second summand on the same branch is at least `ψ`.-/
+most `ψ`, then a nonzero second summand on the same branch is at least `ψ`.
+@isnad1 id=le.5h5v.s6.93f6f39252d2 from=translated src=- shape=80b0d26d vocab=a23dd61b
+-/
 theorem relativePhase_seesaw {w w₁ w₂ : ℂ} {α ψ : ℝ}
     (hsum : w₁ + w₂ = w)
     (hψ : relativePhase w α = ψ)
@@ -137,7 +153,9 @@ theorem relativePhase_seesaw {w w₁ w₂ : ℂ} {α ψ : ℝ}
   linarith
 
 /-- Strict phase see-saw: a below-phase nonzero second summand forces the first
-summand strictly above the phase of the total.-/
+summand strictly above the phase of the total.
+@isnad1 id=lt.6h5v.s7.9462c9956e47 from=translated src=- shape=93637d59 vocab=19008ed5
+-/
 theorem relativePhase_seesaw_strict {w w₁ w₂ : ℂ} {α ψ : ℝ}
     (hsum : w₁ + w₂ = w)
     (hψ : relativePhase w α = ψ)
@@ -162,7 +180,9 @@ theorem relativePhase_seesaw_strict {w w₁ w₂ : ℂ} {α ψ : ℝ}
   exact relativePhase_gt_of_rotatedIm_pos him_w₁ hw₁_range
 
 /-- Dual strict phase see-saw: an above-phase nonzero first summand forces the
-second summand strictly below the phase of the total.-/
+second summand strictly below the phase of the total.
+@isnad1 id=lt.6h5v.s7.14b9a5db71f7 from=translated src=- shape=1738fb24 vocab=19008ed5
+-/
 theorem relativePhase_seesaw_dual {w w₁ w₂ : ℂ} {α ψ : ℝ}
     (hsum : w₁ + w₂ = w)
     (hψ : relativePhase w α = ψ)

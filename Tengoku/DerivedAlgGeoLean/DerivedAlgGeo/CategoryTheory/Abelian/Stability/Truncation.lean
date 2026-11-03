@@ -50,7 +50,9 @@ def restrictChain (F : AbelianHNFiltration Z E) (k : ℕ) (hkn : k ≤ F.n)
     (F.chain_strictMono.monotone (Fin.mk_le_mk.mpr hjk)))
 
 /-- Mapping a restricted term back along the arrow of the `k`-th term recovers
-the original term.-/
+the original term.
+@isnad1 id=eq.2h6v.s8.5b0e6d09c03c from=translated src=- shape=6d684c9a vocab=41cc1bfc
+-/
 theorem map_restrictChain (F : AbelianHNFiltration Z E) (k : ℕ) (hkn : k ≤ F.n)
     (j : ℕ) (hjk : j ≤ k) :
     (Subobject.map (F.chain ⟨k, by lia⟩).arrow).obj (F.restrictChain k hkn j hjk) =
@@ -58,7 +60,9 @@ theorem map_restrictChain (F : AbelianHNFiltration Z E) (k : ℕ) (hkn : k ≤ F
   rw [restrictChain, Subobject.map_mk]
   simp only [Subobject.ofLE_arrow, Subobject.mk_arrow]
 
-/-- The restricted chain is monotone, by composing the inclusions.-/
+/-- The restricted chain is monotone, by composing the inclusions.
+@isnad1 id=le.3h7v.s8.a9a5339d526f from=translated src=- shape=ee5dabbf vocab=40e88031
+-/
 theorem restrictChain_le (F : AbelianHNFiltration Z E) (k : ℕ) (hkn : k ≤ F.n)
     {j₁ j₂ : ℕ} (hj : j₁ ≤ j₂) (hjk : j₂ ≤ k) :
     F.restrictChain k hkn j₁ (hj.trans hjk) ≤ F.restrictChain k hkn j₂ hjk :=
@@ -113,17 +117,24 @@ def restrict (F : AbelianHNFiltration Z E) (k : ℕ) (hk : 0 < k)
         (F.map_restrictChain k hkn (j + 1) (by lia))
         (F.factor_semistable ⟨j, by lia⟩))
 
+/--
+@isnad1 id=eq.2h5v.s6.25a69c09eb96 from=translated src=- shape=28855fc7 vocab=73dbbc2c
+-/
 @[simp]
 theorem restrict_n (F : AbelianHNFiltration Z E) (k : ℕ) (hk : 0 < k)
     (hkn : k ≤ F.n) : (F.restrict k hk hkn).n = k :=
   rfl
 
-/-- A restriction starts where the filtration it was cut from starts.-/
+/-- A restriction starts where the filtration it was cut from starts.
+@isnad1 id=eq.2h5v.s6.7a11f8fa98d1 from=translated src=- shape=18ec0431 vocab=3600bc0d
+-/
 theorem restrict_phiPlus (F : AbelianHNFiltration Z E) (k : ℕ) (hk : 0 < k)
     (hkn : k ≤ F.n) : (F.restrict k hk hkn).phiPlus = F.phiPlus :=
   rfl
 
-/-- The lowest phase of a restriction is the last phase below the cut.-/
+/-- The lowest phase of a restriction is the last phase below the cut.
+@isnad1 id=eq.2h5v.s7.f03bbcdbbcbb from=translated src=- shape=12bbf874 vocab=c0569ea8
+-/
 theorem restrict_phiMinus (F : AbelianHNFiltration Z E) (k : ℕ) (hk : 0 < k)
     (hkn : k ≤ F.n) :
     (F.restrict k hk hkn).phiMinus = F.phase ⟨k - 1, by lia⟩ :=
@@ -153,11 +164,17 @@ def ofIso (F : AbelianHNFiltration Z E) {E' : A} (e : E ≅ E') :
   factor_semistable := fun j =>
     (Z.isSemistable_cokernel_mapMono_iff e.hom _).2 (F.factor_semistable j)
 
+/--
+@isnad1 id=eq.0h6v.s5.a6d53e61151a from=translated src=- shape=b9c0fddb vocab=d76423c6
+-/
 @[simp]
 theorem ofIso_phiPlus (F : AbelianHNFiltration Z E) {E' : A} (e : E ≅ E') :
     (F.ofIso e).phiPlus = F.phiPlus :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.52238643a065 from=translated src=- shape=b9c0fddb vocab=1b82f998
+-/
 @[simp]
 theorem ofIso_phiMinus (F : AbelianHNFiltration Z E) {E' : A} (e : E ≅ E') :
     (F.ofIso e).phiMinus = F.phiMinus :=

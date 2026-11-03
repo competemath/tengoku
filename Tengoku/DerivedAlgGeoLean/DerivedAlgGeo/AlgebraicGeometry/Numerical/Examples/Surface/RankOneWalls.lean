@@ -76,7 +76,9 @@ noncomputable section
 `(2, 1)`.**
 
 This is `hasSignatureTwo_of_hodgeDefinite` fed with `surfaceHodgeDefinite`, and
-it is what every period-domain theorem has been waiting for.-/
+it is what every period-domain theorem has been waiting for.
+@isnad1 id=hassigna.1h1v.s6.1f470523467f from=translated src=- shape=0e102952 vocab=1b7c83f4
+-/
 theorem surfaceHasSignatureTwo {h2 : ℝ} (hh2 : 0 < h2) :
     PeriodDomain.HasSignatureTwo (Mukai.realForm (surfaceDivisorSpace h2).intersection) :=
   DivisorSpace.hasSignatureTwo_of_hodgeDefinite (surfaceHodgeDefinite hh2 one_ne_zero)
@@ -94,7 +96,9 @@ def surfaceMukaiBasis :
 
 /-- **The `ℤ`-span of that basis is the integral Mukai extension `ℤ ⊕ ℤH ⊕ ℤ`.**
 
-This is what makes the finiteness statement below one about integral classes.-/
+This is what makes the finiteness statement below one about integral classes.
+@isnad1 id=eq.0h0v.s7.3c86d3760a99 from=translated src=- shape=b2290706 vocab=2a94603a
+-/
 theorem span_surfaceMukaiBasis :
     Submodule.span ℤ (Set.range surfaceMukaiBasis)
       = Mukai.integralExtension (Submodule.span ℤ (Set.range surfaceDivisorBasis)) :=
@@ -107,7 +111,9 @@ wall through the plane of `exp(B + iω)`**, on a Picard-rank-one surface with
 `∫H² > 0`.
 
 Both hypotheses of the generic theorem are discharged here: `ω² = h2 · ω² > 0`
-because `ω ≠ 0`, and the signature by `surfaceHasSignatureTwo`.-/
+because `ω ≠ 0`, and the signature by `surfaceHasSignatureTwo`.
+@isnad1 id=finite.2h3v.s9.9c8139f0ad72 from=translated src=- shape=3bb982b6 vocab=a7305ec4
+-/
 theorem surface_finite_walls_through_expPlane {h2 : ℝ} (hh2 : 0 < h2)
     (B omega : SurfaceDivisor) (homega : omega ≠ 0) :
     {δ : Mukai.RealExtension SurfaceDivisor |
@@ -123,7 +129,9 @@ theorem surface_finite_walls_through_expPlane {h2 : ℝ} (hh2 : 0 < h2)
   rw [mul_assoc]
   exact mul_pos hh2 (mul_self_pos.mpr homega)
 
-/-- The same, on the degree-`2d` K3 model.-/
+/-- The same, on the degree-`2d` K3 model.
+@isnad1 id=finite.2h3v.s9.bf258b3738f4 from=translated src=- shape=15ef6c2d vocab=351ac37c
+-/
 theorem k3_finite_walls_through_expPlane {d : ℕ} (hd : d ≠ 0)
     (B omega : SurfaceDivisor) (homega : omega ≠ 0) :
     {δ : Mukai.RealExtension SurfaceDivisor |
@@ -139,7 +147,9 @@ theorem k3_finite_walls_through_expPlane {d : ℕ} (hd : d ≠ 0)
   linarith
 
 /-- The K3 statement with the lattice named as the integral Mukai extension
-`ℤ ⊕ ℤH ⊕ ℤ` rather than as a span of basis vectors.-/
+`ℤ ⊕ ℤH ⊕ ℤ` rather than as a span of basis vectors.
+@isnad1 id=finite.2h3v.s9.c51dfddcaf39 from=translated src=- shape=339f10f0 vocab=240a5022
+-/
 theorem k3_finite_walls_integral {d : ℕ} (hd : d ≠ 0)
     (B omega : SurfaceDivisor) (homega : omega ≠ 0) :
     {δ : Mukai.RealExtension SurfaceDivisor |
@@ -160,9 +170,15 @@ on which `ω` stays away from zero would do; a box is the readable choice.-/
 def parameterBox (b₀ t₀ t₁ : ℝ) : Set (SurfaceDivisor × SurfaceDivisor) :=
   Set.Icc (-b₀) b₀ ×ˢ Set.Icc t₀ t₁
 
+/--
+@isnad1 id=iscompac.0h3v.s4.90dee925212d from=translated src=- shape=85591c72 vocab=4e94acaf
+-/
 theorem isCompact_parameterBox (b₀ t₀ t₁ : ℝ) : IsCompact (parameterBox b₀ t₀ t₁) :=
   isCompact_Icc.prod isCompact_Icc
 
+/--
+@isnad1 id=lt.3h5v.s6.bfee0dbe01e7 from=translated src=- shape=ccb6dd76 vocab=33bcfb9c
+-/
 theorem omega_sq_pos_on_parameterBox {h2 : ℝ} (hh2 : 0 < h2) {b₀ t₀ t₁ : ℝ} (ht₀ : 0 < t₀) :
     ∀ p ∈ parameterBox b₀ t₀ t₁, 0 < (surfaceDivisorSpace h2).pair p.2 p.2 := by
   rintro ⟨B, t⟩ hp
@@ -177,7 +193,9 @@ wall meeting the parameter box**, on a Picard-rank-one surface with `∫H² > 0`
 
 This is the region-wise statement, the one a wall-and-chamber argument consumes.
 Both hypotheses of the generic theorem are discharged: the box is compact, and
-`ω² = h2 · ω² > 0` because `ω ≥ t₀ > 0`.-/
+`ω² = h2 · ω² > 0` because `ω ≥ t₀ > 0`.
+@isnad1 id=finite.2h4v.s9.d9931a4e7c8d from=translated src=- shape=94de023b vocab=614136a9
+-/
 theorem surface_finite_walls_meeting_box {h2 : ℝ} (hh2 : 0 < h2)
     (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀) :
     {δ : Mukai.RealExtension SurfaceDivisor |
@@ -194,7 +212,9 @@ theorem surface_finite_walls_meeting_box {h2 : ℝ} (hh2 : 0 < h2)
 /-- **The region-wise count on the degree-`2d` K3 model**, with the lattice named
 as the integral Mukai extension `ℤ ⊕ ℤH ⊕ ℤ`.
 
-Nothing is assumed beyond `d > 0` and `t₀ > 0`.-/
+Nothing is assumed beyond `d > 0` and `t₀ > 0`.
+@isnad1 id=finite.2h4v.s9.fa3f06b97a7c from=translated src=- shape=1d698ccf vocab=56a623d3
+-/
 theorem k3_finite_walls_meeting_box {d : ℕ} (hd : d ≠ 0)
     (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀) :
     {δ : Mukai.RealExtension SurfaceDivisor |
@@ -212,7 +232,9 @@ theorem k3_finite_walls_meeting_box {d : ℕ} (hd : d ≠ 0)
   have hfin := surface_finite_walls_meeting_box hh2 b₀ t₀ t₁ ht₀
   rwa [span_surfaceMukaiBasis] at hfin
 
-/-- `∫H² = 2d > 0` on the K3 model.-/
+/-- `∫H² = 2d > 0` on the K3 model.
+@isnad1 id=lt.1h1v.s5.8b0cfd86cb87 from=translated src=- shape=796ee9ce vocab=632e02f8
+-/
 theorem k3_h2_pos {d : ℕ} (hd : d ≠ 0) : (0 : ℝ) < 2 * (d : ℝ) := by
   have hdpos : (0 : ℝ) < (d : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero hd
   linarith
@@ -227,7 +249,9 @@ def boxRegion {h2 : ℝ} (hh2 : 0 < h2) (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀
     (isCompact_parameterBox b₀ t₀ t₁) (omega_sq_pos_on_parameterBox hh2 ht₀)
 
 /-- **Finitely many spherical classes of the lattice have a wall meeting the
-box**, in the `(β, ω)` chart of a Picard-rank-one surface.-/
+box**, in the `(β, ω)` chart of a Picard-rank-one surface.
+@isnad1 id=finite.2h4v.s6.a6c526dd2e8e from=translated src=- shape=e413cd44 vocab=e4549c20
+-/
 theorem surface_finite_rayCandidates_box {h2 : ℝ} (hh2 : 0 < h2)
     (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀) :
     (Wall.Spherical.rayCandidates (surfaceDivisorSpace h2).intersection
@@ -240,7 +264,9 @@ finitely many classes.**
 
 This is the chamber decomposition, on a surface, with every hypothesis
 discharged.  It says nothing about semistable objects: `chamber` is a subset of
-the parameter chart.-/
+the parameter chart.
+@isnad1 id=eq.2h4v.s7.1b4dcb984e16 from=translated src=- shape=f9ef8fcd vocab=a7cdd71f
+-/
 theorem surface_signedRayRegularLocus_inter_box {h2 : ℝ} (hh2 : 0 < h2)
     (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀) :
     Wall.Spherical.signedRayRegularLocus (surfaceDivisorSpace h2).intersection
@@ -254,7 +280,9 @@ theorem surface_signedRayRegularLocus_inter_box {h2 : ℝ} (hh2 : 0 < h2)
         ∩ parameterBox b₀ t₀ t₁ :=
   Wall.Spherical.signedRayRegularLocus_inter_ofDivisorSpace _ _ _ surfaceDivisorBasis
 
-/-- The same on the degree-`2d` K3 model, assuming only `d > 0` and `t₀ > 0`.-/
+/-- The same on the degree-`2d` K3 model, assuming only `d > 0` and `t₀ > 0`.
+@isnad1 id=finite.2h4v.s7.f6c627457708 from=translated src=- shape=9e255fd4 vocab=fc746781
+-/
 theorem k3_finite_rayCandidates_box {d : ℕ} (hd : d ≠ 0) (b₀ t₀ t₁ : ℝ) (ht₀ : 0 < t₀) :
     (Wall.Spherical.rayCandidates (surfaceDivisorSpace (2 * (d : ℝ))).intersection
       (boxRegion (k3_h2_pos hd) b₀ t₀ t₁ ht₀)

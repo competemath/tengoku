@@ -84,6 +84,9 @@ forward functor is the original transform definitionally.-/
       functor_unitIso_comp := R.adj.toEquivalence.functor_unitIso_comp }
   iso := Iso.refl _
 
+/--
+@isnad1 id=eq.0h8v.s8.a17ff9dc011e from=translated src=- shape=2025c367 vocab=a8d1ee0f
+-/
 @[simp]
 theorem ofRightAdjointKernel_kernel
     (corr : Correspondence X Y W) (corr' : Correspondence Y X W') (K : W)
@@ -91,7 +94,9 @@ theorem ofRightAdjointKernel_kernel
     [∀ A, IsIso (R.adj.unit.app A)] [∀ B, IsIso (R.adj.counit.app B)] :
     (ofRightAdjointKernel corr corr' K R).kernel = K := rfl
 
-/-- The transform presented by a kernel equivalence is an equivalence.-/
+/-- The transform presented by a kernel equivalence is an equivalence.
+@isnad1 id=isequiva.0h5v.s5.0e2dec143267 from=translated src=- shape=438fcdbb vocab=9871558c
+-/
 theorem transform_isEquivalence (corr : Correspondence X Y W)
     (A : KernelEquivalence corr) :
     (corr.transform A.kernel).IsEquivalence := by
@@ -318,6 +323,9 @@ def transformKernelMap :
     corr.transform A.newKernel ⟶ corr.transform oldKernel :=
   corr.kernelTransform.map A.kernelMap
 
+/--
+@isnad1 id=eq.0h12v.s9.c3ae864c6c0f from=translated src=- shape=825af2ad vocab=f0dd3550
+-/
 @[simp]
 theorem transformKernelMap_app (E : X) :
     (A.transformKernelMap).app E =
@@ -354,6 +362,9 @@ noncomputable def restrictedEquivalence :
       (adjoinObject Q F).FullSubcategory :=
   A.enlargedEquiv.changeFunctor A.restrictedFunctorIso.symm
 
+/--
+@isnad1 id=eq.0h11v.s8.3a92937c4a03 from=translated src=- shape=a0b4fcb2 vocab=2a450ff6
+-/
 @[simp]
 theorem restrictedEquivalence_functor :
     A.restrictedEquivalence.functor = A.restrictedFunctor :=
@@ -366,6 +377,9 @@ noncomputable def restrictedAdjunction :
     A.restrictedFunctor ⊣ A.enlargedEquiv.inverse :=
   A.enlargedEquiv.toAdjunction.ofNatIsoLeft A.restrictedFunctorIso.symm
 
+/--
+@isnad1 id=isequiva.0h11v.s7.5043c86cc50b from=translated src=- shape=c931ed60 vocab=023e2113
+-/
 theorem restrictedFunctor_isEquivalence :
     A.restrictedFunctor.IsEquivalence :=
   A.restrictedEquivalence.isEquivalence_functor
@@ -431,7 +445,9 @@ noncomputable def restrictedInverseIso :
   Adjunction.rightAdjointUniq R.kernelRestrictedAdjunction A.restrictedAdjunction
 
 /-- The restricted kernel-presented right adjoint is an equivalence because it
-is canonically isomorphic to the inverse of the enlarged equivalence.-/
+is canonically isomorphic to the inverse of the enlarged equivalence.
+@isnad1 id=isequiva.0h14v.s8.d23b855d5149 from=translated src=- shape=78cadad8 vocab=58aa90c2
+-/
 theorem restrictedRightAdjoint_isEquivalence :
     R.restrictedRightAdjoint.IsEquivalence := by
   exact Functor.isEquivalence_of_iso R.restrictedInverseIso.symm
@@ -506,10 +522,15 @@ noncomputable def toKernelEquivalence : KernelEquivalence corr := by
   letI (Y : Y) : IsIso (A.rightAdjoint.adj.counit.app Y) := A.counitIsIso Y
   exact KernelEquivalence.ofRightAdjointKernel corr corr' A.kernel A.rightAdjoint
 
+/--
+@isnad1 id=eq.0h13v.s8.231710156495 from=translated src=- shape=9a5832cb vocab=fe394641
+-/
 @[simp]
 theorem toKernelEquivalence_kernel : A.toKernelEquivalence.kernel = A.kernel := rfl
 
-/-- The final kernel transform is an equivalence of the ambient categories.-/
+/-- The final kernel transform is an equivalence of the ambient categories.
+@isnad1 id=isequiva.0h13v.s8.c271c500e124 from=translated src=- shape=3166692c vocab=e15ddf3e
+-/
 theorem transform_isEquivalence : (corr.transform A.kernel).IsEquivalence := by
   letI (X : X) : IsIso (A.rightAdjoint.adj.unit.app X) := A.unitIsIso X
   letI (Y : Y) : IsIso (A.rightAdjoint.adj.counit.app Y) := A.counitIsIso Y
@@ -520,6 +541,9 @@ consumers.-/
 noncomputable def ambientEquivalence : X ≌ Y :=
   A.toKernelEquivalence.equiv
 
+/--
+@isnad1 id=eq.0h13v.s8.804e046d74c5 from=translated src=- shape=be971809 vocab=97f54a29
+-/
 @[simp]
 theorem ambientEquivalence_functor :
     A.ambientEquivalence.functor = corr.transform A.kernel := rfl

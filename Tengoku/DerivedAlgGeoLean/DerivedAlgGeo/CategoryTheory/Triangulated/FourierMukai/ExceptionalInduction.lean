@@ -47,17 +47,25 @@ def adjoinList (P : ObjectProperty X) : List X → ObjectProperty X
   | [] => P
   | E :: objects => adjoinList (adjoinObject P E) objects
 
+/--
+@isnad1 id=eq.0h2v.s6.6329bc6d871f from=translated src=- shape=8447d380 vocab=f9a3fdc7
+-/
 @[simp]
 theorem adjoinList_nil (P : ObjectProperty X) : adjoinList P [] = P :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.439d0dcf7245 from=translated src=- shape=38b7c79d vocab=1e9ea8c9
+-/
 @[simp]
 theorem adjoinList_cons (P : ObjectProperty X) (E : X) (objects : List X) :
     adjoinList P (E :: objects) =
       adjoinList (adjoinObject P E) objects :=
   rfl
 
-/-- The initial component remains inside every finite iterated span.-/
+/-- The initial component remains inside every finite iterated span.
+@isnad1 id=le.0h3v.s6.e1c4df2295da from=translated src=- shape=5973aa36 vocab=674b1305
+-/
 theorem le_adjoinList (P : ObjectProperty X) (objects : List X) :
     P ≤ adjoinList P objects := by
   induction objects generalizing P with
@@ -68,7 +76,9 @@ theorem le_adjoinList (P : ObjectProperty X) (objects : List X) :
         (ih (adjoinObject P E)))
 
 /-- Every object in the adjoining list belongs to the resulting iterated
-span.-/
+span.
+@isnad1 id=le.1h4v.s6.237460de4c3d from=translated src=- shape=a8bcfc9a vocab=51a82df1
+-/
 theorem singleton_le_adjoinList_of_mem (P : ObjectProperty X)
     {E : X} {objects : List X} (hE : E ∈ objects) :
     ObjectProperty.singleton E ≤ adjoinList P objects := by
@@ -82,7 +92,9 @@ theorem singleton_le_adjoinList_of_mem (P : ObjectProperty X)
           (le_adjoinList (adjoinObject P E) objects))
       · exact ih (adjoinObject P F) hE
 
-/-- Adjoining at least one object produces a triangulated iterated span.-/
+/-- Adjoining at least one object produces a triangulated iterated span.
+@isnad1 id=istriang.0h4v.s6.942ba060a3f2 from=translated src=- shape=0febf810 vocab=86b50775
+-/
 theorem adjoinList_isTriangulated [IsTriangulated X]
     (P : ObjectProperty X) (E : X) (objects : List X) :
     (adjoinList P (E :: objects)).IsTriangulated := by
@@ -95,7 +107,9 @@ theorem adjoinList_isTriangulated [IsTriangulated X]
       exact ih (adjoinObject P E) F
 
 /-- Adjoining at least one object produces an iterated span closed under
-retracts.-/
+retracts.
+@isnad1 id=isstable.0h4v.s6.e8ec4c7bb037 from=translated src=- shape=403bb7e2 vocab=c9384247
+-/
 theorem adjoinList_isStableUnderRetracts
     (P : ObjectProperty X) (E : X) (objects : List X) :
     (adjoinList P (E :: objects)).IsStableUnderRetracts := by
@@ -113,7 +127,9 @@ the whole category.
 
 This is the generation step used after the finite kernel induction: the SOD
 triangle writes every object as an extension of an exceptional object by a
-residual object, and the final span is closed under those extensions.-/
+residual object, and the final span is closed under those extensions.
+@isnad1 id=eq.3h5v.s7.99f14f43461e from=translated src=- shape=e26ea523 vocab=7e37f91a
+-/
 theorem adjoinList_eq_top_of_rightAdmissible [IsTriangulated X]
     (T P : ObjectProperty X) (E : X) (objects : List X)
     (hT : T.IsRightAdmissible) (hP : P = T.rightOrthogonal)
@@ -279,6 +295,9 @@ noncomputable def toKernelEquivalence
   exact ((ObjectProperty.topEquivalence X).inverse.isoWhiskerLeft
     final.restrictionIso).symm
 
+/--
+@isnad1 id=eq.2h10v.s8.a4f112d738c5 from=translated src=- shape=a302e6b6 vocab=19410c70
+-/
 @[simp]
 theorem toKernelEquivalence_kernel
     (hX : adjoinList P source = (⊤ : ObjectProperty X))
@@ -288,7 +307,9 @@ theorem toKernelEquivalence_kernel
   exact kernel_transport hX hY A.finalStage
 
 /-- The final kernel transform is an equivalence once the iterated spans
-exhaust both ambient categories.-/
+exhaust both ambient categories.
+@isnad1 id=isequiva.2h10v.s8.f636d44c7ac4 from=translated src=- shape=f2227394 vocab=18c92079
+-/
 theorem finalTransform_isEquivalence
     (hX : adjoinList P source = (⊤ : ObjectProperty X))
     (hY : adjoinList Q target = (⊤ : ObjectProperty Y)) :
@@ -344,7 +365,9 @@ variable {T_X : ObjectProperty X} {T_Y : ObjectProperty Y}
 variable (A : GeneratedExtensionSequenceData corr T_X T_Y stage)
 
 /-- The source residual category and adjoined exceptional objects generate
-the ambient source category.-/
+the ambient source category.
+@isnad1 id=eq.0h8v.s7.4b7176c28284 from=translated src=- shape=880eb681 vocab=26e35ffd
+-/
 theorem sourceGenerates [IsTriangulated X] :
     adjoinList T_X.rightOrthogonal (A.sourceHead :: A.sourceTail) =
       (⊤ : ObjectProperty X) :=
@@ -352,7 +375,9 @@ theorem sourceGenerates [IsTriangulated X] :
     A.sourceHead A.sourceTail A.sourceRightAdmissible rfl A.sourceCover
 
 /-- The target residual category and adjoined exceptional objects generate
-the ambient target category.-/
+the ambient target category.
+@isnad1 id=eq.0h8v.s7.35776284251b from=translated src=- shape=b92e7a62 vocab=53e2fd7a
+-/
 theorem targetGenerates [IsTriangulated Y] :
     adjoinList T_Y.rightOrthogonal (A.targetHead :: A.targetTail) =
       (⊤ : ObjectProperty Y) :=
@@ -417,7 +442,9 @@ variable {I : Type t} {J : Type t'}
   {R : ResidualKernelEquivalence B_X B_Y corr}
 variable (A : GeneratedBlockExtensionSequenceData B_X B_Y corr R)
 
-/-- The source extension list contains the total source exceptional part.-/
+/-- The source extension list contains the total source exceptional part.
+@isnad1 id=le.0h11v.s8.1a4c276c5f08 from=translated src=- shape=b6902a6e vocab=a8cc8d63
+-/
 theorem sourceCover [IsTriangulated X] :
     B_X.total ≤ adjoinList B_X.residual (A.sourceHead :: A.sourceTail) := by
   letI : (adjoinList B_X.residual
@@ -432,7 +459,9 @@ theorem sourceCover [IsTriangulated X] :
   exact (singleton_le_adjoinList_of_mem B_X.residual (A.sourceMember i j))
     _ (by simp)
 
-/-- The target extension list contains the total target exceptional part.-/
+/-- The target extension list contains the total target exceptional part.
+@isnad1 id=le.0h11v.s8.280ed4b03343 from=translated src=- shape=2a20264c vocab=cc89eb2c
+-/
 theorem targetCover [IsTriangulated Y] :
     B_Y.total ≤ adjoinList B_Y.residual (A.targetHead :: A.targetTail) := by
   letI : (adjoinList B_Y.residual

@@ -39,7 +39,9 @@ namespace AbelianHNFiltration
 
 /-- The last HN factor, presented as a semistable quotient of the filtered
 object at the lowest HN phase.  The quotient map is the last chain step read
-through the isomorphism `chain n ≅ E`.-/
+through the isomorphism `chain n ≅ E`.
+@isnad1 id=ex.0h4v.s6.7a9db45064ac from=translated src=- shape=9562aae6 vocab=017b31e1
+-/
 theorem exists_epi_to_semistable_phase_phiMinus {Z : StabilityFunction A}
     {E : A} (F : AbelianHNFiltration Z E) :
     ∃ (Q : A) (q : E ⟶ Q), Epi q ∧ Z.IsSemistable Q ∧ Z.phase Q = F.phiMinus := by
@@ -61,7 +63,9 @@ theorem exists_epi_to_semistable_phase_phiMinus {Z : StabilityFunction A}
 
 /-- **`φ⁺` is monotone along monomorphisms.**  The maximal destabilizing
 subobject of the source maps to a semistable subobject of the target of the
-same phase, and no semistable subobject exceeds `φ⁺`.-/
+same phase, and no semistable subobject exceeds `φ⁺`.
+@isnad1 id=le.0h7v.s6.8e84feabea49 from=translated src=- shape=3f3db5d8 vocab=a8936ae2
+-/
 theorem phiPlus_le_of_mono {Z : StabilityFunction A} {X Y : A}
     (F : AbelianHNFiltration Z X) (G : AbelianHNFiltration Z Y)
     (i : X ⟶ Y) [Mono i] : F.phiPlus ≤ G.phiPlus := by
@@ -77,7 +81,9 @@ theorem phiPlus_le_of_mono {Z : StabilityFunction A} {X Y : A}
 
 /-- **`φ⁻` is monotone along epimorphisms.**  A strict drop would make the
 composite onto the last HN factor of the target a nonzero epimorphism that
-`hom_eq_zero_to_semistable_of_phase_lt_phiMinus` forces to vanish.-/
+`hom_eq_zero_to_semistable_of_phase_lt_phiMinus` forces to vanish.
+@isnad1 id=le.0h7v.s6.f9d49480263f from=translated src=- shape=3f3db5d8 vocab=16b15271
+-/
 theorem phiMinus_le_of_epi {Z : StabilityFunction A} {X Y : A}
     (F : AbelianHNFiltration Z X) (G : AbelianHNFiltration Z Y)
     (p : X ⟶ Y) [Epi p] : F.phiMinus ≤ G.phiMinus := by

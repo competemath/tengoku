@@ -81,7 +81,9 @@ def corrComp (V : NumericalVarietyData n A N) (κ : ℕ → A) (E : N) (k : ℕ)
   ∑ j ∈ Finset.range (k + 1), V.chComp E j * κ (k - j)
 
 /-- With `κ = 1` the convolution is the identity. This is the one fact both
-dimension comparisons need, proved once instead of per dimension.-/
+dimension comparisons need, proved once instead of per dimension.
+@isnad1 id=eq.0h6v.s5.11e029403636 from=translated src=- shape=8ea2595f vocab=aff6fc4f
+-/
 theorem corrComp_unitCorr (V : NumericalVarietyData n A N) (E : N) (k : ℕ) :
     corrComp V (unitCorr A) E k = V.chComp E k := by
   classical
@@ -94,11 +96,15 @@ theorem corrComp_unitCorr (V : NumericalVarietyData n A N) (E : N) (k : ℕ) :
   · intro h
     exact absurd (Finset.self_mem_range_succ k) h
 
-/-- At `κ = √td` the convolution IS the Mukai component, by `rfl`.-/
+/-- At `κ = √td` the convolution IS the Mukai component, by `rfl`.
+@isnad1 id=eq.0h6v.s6.97e6d60502ee from=translated src=- shape=13957c9c vocab=28275324
+-/
 theorem corrComp_sqrtToddComp (V : NumericalVarietyData n A N) (E : N) (k : ℕ) :
     corrComp V V.sqrtToddComp E k = V.mukaiComp E k := rfl
 
-/-- The corrected character is additive, because the Chern character is.-/
+/-- The corrected character is additive, because the Chern character is.
+@isnad1 id=eq.0h8v.s6.55adb44aa8d8 from=translated src=- shape=2f7df0ff vocab=c1cc964d
+-/
 theorem corrComp_add (V : NumericalVarietyData n A N) (κ : ℕ → A) (E F : N) (k : ℕ) :
     corrComp V κ (E + F) k = corrComp V κ E k + corrComp V κ F k := by
   simp only [corrComp, V.chComp_add, add_mul, Finset.sum_add_distrib]
@@ -109,7 +115,9 @@ def hDegrees (V : NumericalVarietyData n A N) (P : Polarization V.ring)
     (κ : ℕ → A) (m : ℕ) (E : N) : Exp.HDeg m :=
   fun k => ((V.ring.degree (corrComp V κ E (k : ℕ) * P.cls ^ (n - (k : ℕ))) : ℚ) : ℝ)
 
-/-- The transport is additive.-/
+/-- The transport is additive.
+@isnad1 id=eq.0h9v.s7.9905e4fd0677 from=translated src=- shape=9d1178ad vocab=de72f574
+-/
 theorem hDegrees_add (V : NumericalVarietyData n A N) (P : Polarization V.ring)
     (κ : ℕ → A) (m : ℕ) (E F : N) :
     hDegrees V P κ m (E + F) = hDegrees V P κ m E + hDegrees V P κ m F := by
@@ -132,13 +140,17 @@ def wallChargeFamily (V : NumericalVarietyData n A N) (P : Polarization V.ring)
 
 /-- The root family evaluates as the kernel on the transported degrees. The
 accessor the surface leaf has had since `WallTransport.lean:161`; a consumer
-that unfolds `pullback` by hand is reaching past this definition.-/
+that unfolds `pullback` by hand is reaching past this definition.
+@isnad1 id=eq.0h9v.s8.a799af60dbd7 from=translated src=- shape=2b7dd665 vocab=5ad78e9b
+-/
 @[simp]
 theorem wallChargeFamily_charge (V : NumericalVarietyData n A N)
     (P : Polarization V.ring) (κ : ℕ → A) (m : ℕ) (w : ℂ) (E : N) :
     (wallChargeFamily V P κ m).charge w E = Exp.charge m w (hDegrees V P κ m E) := rfl
 
-/-- **PROVED.**  Slot 0 is `∫Hⁿ · rank E`.-/
+/-- **PROVED.**  Slot 0 is `∫Hⁿ · rank E`.
+@isnad1 id=eq.0h6v.s8.65a966a63cbd from=translated src=- shape=c6a855f9 vocab=7b9212b7
+-/
 theorem hDegrees_zero (V : NumericalVarietyData n A N) (P : Polarization V.ring)
     (E : N) :
     V.ring.degree (corrComp V (unitCorr A) E 0 * P.cls ^ (n - 0))
@@ -153,7 +165,9 @@ theorem hDegrees_zero (V : NumericalVarietyData n A N) (P : Polarization V.ring)
     So the ratio `d₁ / d₀` is NOT the slope: it is the slope divided by `∫Hⁿ`.
     ########################################################################### -/
 
-/-- Slot 1 of the root is `degH`, in every dimension `n ≥ 1`.-/
+/-- Slot 1 of the root is `degH`, in every dimension `n ≥ 1`.
+@isnad1 id=eq.1h6v.s6.6c4c56bb1dc3 from=translated src=- shape=68e52639 vocab=a02d1a0c
+-/
 theorem hDegrees_one (V : NumericalVarietyData n A N) (P : Polarization V.ring)
     (hn : 1 ≤ n) (E : N) :
     hDegrees V P (unitCorr A) n E ⟨1, by omega⟩ = ((degH V P E : ℚ) : ℝ) := by
@@ -174,7 +188,9 @@ private theorem ratio_aux (d D r : ℝ) (hD : D ≠ 0) : d / r = D * (d / (r * D
 The report's §2.6 reading `slopeH = d₁ / d₀` is FALSE whenever `∫Hⁿ ≠ 1`: the
 rank slot carries the `∫Hⁿ` weight, so the ratio of the root's slots is the
 slope *scaled down* by `∫Hⁿ`.  Note there is no rank hypothesis — at `rank E = 0`
-both sides are Lean's junk `0`, which is the same junk `slopeH` already has.-/
+both sides are Lean's junk `0`, which is the same junk `slopeH` already has.
+@isnad1 id=eq.1h6v.s8.d20474a78d73 from=translated src=- shape=c8a6e198 vocab=c007e835
+-/
 theorem slopeH_eq_degree_mul_ratio (V : NumericalVarietyData n A N)
     (P : Polarization V.ring) (hn : 1 ≤ n) (E : N) :
     ((slopeH V P E : ℚ) : ℝ)
@@ -194,7 +210,9 @@ theorem slopeH_eq_degree_mul_ratio (V : NumericalVarietyData n A N)
   exact ratio_aux _ _ _ (ne_of_gt hD)
 
 /-- **The falsified reading, recorded as a negative result.**  `slopeH = d₁/d₀`
-holds exactly when `∫Hⁿ = 1` (or the slope is zero); it is not an identity.-/
+holds exactly when `∫Hⁿ = 1` (or the slope is zero); it is not an identity.
+@isnad1 id=ne.3h6v.s8.4f03bc7ce48a from=translated src=- shape=a6cae71d vocab=031a64ca
+-/
 theorem slopeH_ne_ratio_of_degree_ne_one (V : NumericalVarietyData n A N)
     (P : Polarization V.ring) (hn : 1 ≤ n) (E : N)
     (hdeg : V.ring.degree (P.cls ^ n) ≠ 1) (hne : slopeH V P E ≠ 0) :

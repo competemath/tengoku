@@ -107,18 +107,26 @@ abbrev zariskiCoverToEtale {S : Scheme.{u}}
 
 /-! ## Representable stacks at the fppf and étale levels -/
 
+/--
+@isnad1 id=eq.0h1v.s4.ef2ed6ba975a from=translated src=- shape=6b4cfb92 vocab=9a680c28
+-/
 @[simp]
 theorem representableFppfStack_presheaf (X : Scheme.{u}) :
     (representableFppfStack X).presheaf = (representableZariskiStack X).presheaf :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.f0d0f1716d15 from=translated src=- shape=6b4cfb92 vocab=2bc4896d
+-/
 @[simp]
 theorem representableEtaleStack_presheaf (X : Scheme.{u}) :
     (representableEtaleStack X).presheaf = (representableZariskiStack X).presheaf :=
   rfl
 
 /-- The étale level is the restriction of the fppf level along
-`Scheme.etaleTopology ≤ Scheme.fppfTopology`.-/
+`Scheme.etaleTopology ≤ Scheme.fppfTopology`.
+@isnad1 id=eq.0h1v.s4.0910d0b611e3 from=translated src=- shape=67ea7927 vocab=9a7ff8cc
+-/
 theorem representableEtaleStack_eq_ofLE (X : Scheme.{u}) :
     representableEtaleStack X =
       (representableFppfStack X).ofLE Scheme.etaleTopology_le_fppfTopology :=
@@ -128,7 +136,9 @@ theorem representableEtaleStack_eq_ofLE (X : Scheme.{u}) :
 
 The implication runs one way only.  This recovers the Zariski statement from
 the fppf one and gives no transport in the other direction, which is why the
-fppf level had to be proved rather than derived from the Zariski layer.-/
+fppf level had to be proved rather than derived from the Zariski layer.
+@isnad1 id=eq.0h1v.s4.a40455e4fd18 from=translated src=- shape=67ea7927 vocab=85be5536
+-/
 theorem representableZariskiStack_eq_ofLE (X : Scheme.{u}) :
     representableZariskiStack X =
       (representableFppfStack X).ofLE Scheme.zariskiTopology_le_fppfTopology :=
@@ -140,6 +150,9 @@ def representableFppfObject {X T : Scheme.{u}} (f : T ⟶ X) :
     (representableFppfStack X).presheaf.obj (.mk (op T)) :=
   Discrete.mk f
 
+/--
+@isnad1 id=eq.0h3v.s7.93d1a9e20d54 from=translated src=- shape=e8058eb0 vocab=a1c6e1d1
+-/
 @[simp]
 theorem representableFppfObject_eq {X T : Scheme.{u}} (f : T ⟶ X) :
     representableFppfObject f = representableZariskiObject f :=
@@ -197,7 +210,9 @@ def representableFppfFullyFaithfulToCechDescent (X : Scheme.{u}) {S : Scheme.{u}
   (representableFppfStack X).fullyFaithfulToCechDescent U
 
 /-- Objects of a representable fppf stack satisfy effective descent: every
-fppf Čech descent datum comes from an object over the base.-/
+fppf Čech descent datum comes from an object over the base.
+@isnad1 id=esssurj.0h3v.s8.264d69606bdb from=translated src=- shape=a70fb3a8 vocab=5dca7188
+-/
 theorem representableFppfEssSurjToCechDescent (X : Scheme.{u}) {S : Scheme.{u}}
     (U : StackInGroupoids.Cover (J := Scheme.fppfTopology.{u}) S) :
     ((representableFppfStack X).toCechDescent U).EssSurj :=

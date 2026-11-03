@@ -42,7 +42,9 @@ def expPlane (S : DivisorSpace D) (B omega : D) : Submodule ℝ (Mukai.RealExten
     (Mukai.expIm S.intersection B omega)
 
 /-- The exponential plane is positive as soon as `ω² > 0`; the `B`-field is
-unconstrained.-/
+unconstrained.
+@isnad1 id=ispositi.1h4v.s7.402ba96506c6 from=translated src=- shape=2a4dac0b vocab=439c526b
+-/
 theorem isPositivePlane_expPlane (S : DivisorSpace D) (B omega : D)
     (homega : 0 < S.pair omega omega) :
     PeriodDomain.IsPositivePlane (Mukai.realForm S.intersection) (expPlane S B omega) :=
@@ -51,7 +53,9 @@ theorem isPositivePlane_expPlane (S : DivisorSpace D) (B omega : D)
 variable [FiniteDimensional ℝ D]
 
 /-- For a lattice in the real Mukai extension, only finitely many spherical
-classes have a wall through the exponential plane.-/
+classes have a wall through the exponential plane.
+@isnad1 id=finite.2h7v.s9.47c604eb1bd5 from=translated src=- shape=7c124eba vocab=5e3c7d2b
+-/
 theorem finite_walls_through_expPlane (h : S.HodgeDefinite H) (B omega : D)
     (homega : 0 < S.pair omega omega)
     {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ (Mukai.RealExtension D)) :
@@ -63,7 +67,9 @@ theorem finite_walls_through_expPlane (h : S.HodgeDefinite H) (B omega : D)
     (isPositivePlane_expPlane S B omega homega) b
 
 /-- The same finiteness, stated as a bounded set of spherical classes
-orthogonal to the plane.-/
+orthogonal to the plane.
+@isnad1 id=finite.2h7v.s9.cb2f66b8bf05 from=translated src=- shape=9befa86a vocab=82d028ee
+-/
 theorem finite_sphericalOrthogonal_expPlane (h : S.HodgeDefinite H) (B omega : D)
     (homega : 0 < S.pair omega omega)
     {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ (Mukai.RealExtension D)) :

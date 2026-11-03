@@ -97,7 +97,9 @@ variable {C : Type u} [Category.{v} C] {D : Type u} [Category.{v} D]
 
 omit [HasGlobalSectionsFunctor K AddCommGrpCat.{w}] [HasTerminal D] hInj in
 /-- Sheaf cohomology **is** that `Ext`, by definition of `Sheaf.H`. Recorded so a reader can see
-that the two statements below are the same one, not a transport between them.-/
+that the two statements below are the same one, not a transport between them.
+@isnad1 id=eq.0h4v.s7.5b42cae44066 from=translated src=- shape=57e8e85c vocab=fdba1147
+-/
 theorem sheafH_eq_ext (F : Sheaf K AddCommGrpCat.{w}) (n : ℕ) :
     Sheaf.H F n
       = Ext.{w'} ((constantSheaf K AddCommGrpCat.{w}).obj (AddCommGrpCat.of (ULift.{w} ℤ))) F n :=

@@ -67,24 +67,41 @@ def betaTwist (β : ℝ) (v : NumClass) : NumClass :=
   (v.deg0, v.deg1 - β * v.deg0, v.deg2 - β * v.deg1 + β ^ 2 / 2 * v.deg0,
     v.deg3 - β * v.deg2 + β ^ 2 / 2 * v.deg1 - β ^ 3 / 6 * v.deg0)
 
+/--
+@isnad1 id=eq.0h2v.s3.df3d9f5eca07 from=translated src=- shape=e589fcfe vocab=95610028
+-/
 @[simp] theorem betaTwist_deg0 (β : ℝ) (v : NumClass) :
     (betaTwist β v).deg0 = v.deg0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c8d6364e3d78 from=translated src=- shape=82598739 vocab=46ea3b9c
+-/
 @[simp] theorem betaTwist_deg1 (β : ℝ) (v : NumClass) :
     (betaTwist β v).deg1 = v.deg1 - β * v.deg0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.2a45e82d9c0f from=translated src=- shape=3e78d4a7 vocab=938e698b
+-/
 @[simp] theorem betaTwist_deg2 (β : ℝ) (v : NumClass) :
     (betaTwist β v).deg2 = v.deg2 - β * v.deg1 + β ^ 2 / 2 * v.deg0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.829f179b42b9 from=translated src=- shape=6826f5c2 vocab=d262ccd6
+-/
 @[simp] theorem betaTwist_deg3 (β : ℝ) (v : NumClass) :
     (betaTwist β v).deg3 =
       v.deg3 - β * v.deg2 + β ^ 2 / 2 * v.deg1 - β ^ 3 / 6 * v.deg0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.c36b4117581e from=translated src=- shape=5b483ac0 vocab=32e9c854
+-/
 @[simp] theorem betaTwist_zero (v : NumClass) : betaTwist 0 v = v := by
   simp only [betaTwist, deg0, deg1, deg2, deg3]
   norm_num
 
-/-- The four-coordinate twist is the exponential kernel's action at degree three.-/
+/-- The four-coordinate twist is the exponential kernel's action at degree three.
+@isnad1 id=eq.0h2v.s9.7764a94f6a6a from=translated src=- shape=ff1a4a0a vocab=2df95197
+-/
 theorem betaTwist_eq_exp (β : ℝ) (v : NumClass) :
     threefoldVec (betaTwist β v) = Exp.twist 3 β (threefoldVec v) := by
   funext i
@@ -94,7 +111,9 @@ theorem betaTwist_eq_exp (β : ℝ) (v : NumClass) :
 
 /-- **The group law**: twisting by `β₁ + β₂` is twisting by `β₂` and then by
 `β₁`.  This is `e^{-(β₁+β₂)H} = e^{-β₁H}e^{-β₂H}` on the four degrees, and it is
-what makes the name `betaTwist` honest.-/
+what makes the name `betaTwist` honest.
+@isnad1 id=eq.0h3v.s4.f100f5864cff from=translated src=- shape=24555d7c vocab=6bd2ca42
+-/
 theorem betaTwist_betaTwist (β₁ β₂ : ℝ) (v : NumClass) :
     betaTwist β₁ (betaTwist β₂ v) = betaTwist (β₁ + β₂) v := by
   apply threefoldVec.injective
@@ -118,12 +137,17 @@ def imZ (α β : ℝ) (v : NumClass) : ℝ :=
 
 /-- **`β` is a twist, not a coordinate**: the charge at `(α, β)` is the charge
 at `(α, 0)` of the `β`-twisted class.  This is the consistency check that ties
-the two polynomials to the exponential they came from.-/
+the two polynomials to the exponential they came from.
+@isnad1 id=eq.0h3v.s4.a62ea761b4a5 from=translated src=- shape=7c4661da vocab=e5f32bb3
+-/
 theorem reZ_eq_betaTwist (α β : ℝ) (v : NumClass) :
     reZ α β v = reZ α 0 (betaTwist β v) := by
   simp only [reZ, betaTwist, deg0, deg1, deg2, deg3]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.c3fee2fd9078 from=translated src=- shape=7c4661da vocab=680d8680
+-/
 theorem imZ_eq_betaTwist (α β : ℝ) (v : NumClass) :
     imZ α β v = imZ α 0 (betaTwist β v) := by
   simp only [imZ, betaTwist, deg0, deg1, deg2, deg3]
@@ -145,10 +169,16 @@ def charge (α β : ℝ) : NumClass →+ ℂ :=
         simp only [imZ, deg0, deg1, deg2, Prod.fst_add, Prod.snd_add]
         ring)
 
+/--
+@isnad1 id=eq.0h3v.s6.15c84a7c6fc0 from=translated src=- shape=847abdc9 vocab=153e6b42
+-/
 @[simp]
 theorem charge_re (α β : ℝ) (v : NumClass) : (charge α β v).re = reZ α β v := by
   simp [charge]
 
+/--
+@isnad1 id=eq.0h3v.s6.e1d7f1946fac from=translated src=- shape=847abdc9 vocab=26fae436
+-/
 @[simp]
 theorem charge_im (α β : ℝ) (v : NumClass) : (charge α β v).im = imZ α β v := by
   simp [charge]
@@ -159,6 +189,9 @@ attached to the statements that need it, exactly as in the surface child.-/
 def chargeFamily : ChargeFamily (ℝ × ℝ) NumClass where
   charge p := charge p.1 p.2
 
+/--
+@isnad1 id=eq.0h2v.s7.1ec756f37cb5 from=translated src=- shape=da3f208c vocab=1348c75f
+-/
 @[simp]
 theorem chargeFamily_charge (p : ℝ × ℝ) (v : NumClass) :
     chargeFamily.charge p v = charge p.1 p.2 v := rfl

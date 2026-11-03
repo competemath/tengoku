@@ -36,7 +36,9 @@ def HNFiltration.phiMinus {P : ℝ → ObjectProperty C} {E : C}
     (F : HNFiltration C P E) (h : 0 < F.n) : ℝ :=
   F.φ ⟨F.n - 1, by lia⟩
 
-/-- Every phase lies between the extremal phases.-/
+/-- Every phase lies between the extremal phases.
+@isnad1 id=and.1h5v.s7.9434df6a9534 from=translated src=- shape=b02309ee vocab=18874987
+-/
 theorem HNFiltration.phase_mem_range {P : ℝ → ObjectProperty C} {E : C}
     (F : HNFiltration C P E) (h : 0 < F.n) (i : Fin F.n) :
     F.phiMinus C h ≤ F.φ i ∧ F.φ i ≤ F.phiPlus C h := by
@@ -44,7 +46,9 @@ theorem HNFiltration.phase_mem_range {P : ℝ → ObjectProperty C} {E : C}
   · exact F.hφ.antitone (Fin.mk_le_mk.mpr (by lia))
   · exact F.hφ.antitone (Fin.mk_le_mk.mpr (by lia))
 
-/-- The lowest phase is no greater than the highest phase.-/
+/-- The lowest phase is no greater than the highest phase.
+@isnad1 id=le.1h4v.s6.7dbf62a30758 from=translated src=- shape=b606d8c6 vocab=f41770fe
+-/
 theorem HNFiltration.phiMinus_le_phiPlus {P : ℝ → ObjectProperty C} {E : C}
     (F : HNFiltration C P E) (h : 0 < F.n) :
     F.phiMinus C h ≤ F.phiPlus C h :=
@@ -86,72 +90,110 @@ def Slicing.geProp (s : Slicing C) (t : ℝ) : ObjectProperty C :=
   fun E => IsZero E ∨ ∃ (F : HNFiltration C s.P E) (h : 0 < F.n),
     t ≤ F.phiMinus C h
 
+/--
+@isnad1 id=isclosed.0h3v.s6.dbf4465618f5 from=translated src=- shape=a1800068 vocab=f194bd63
+-/
 instance Slicing.leProp_isClosedUnderIsomorphisms (s : Slicing C) (t : ℝ) :
     (s.leProp C t).IsClosedUnderIsomorphisms where
   of_iso e h := h.elim (fun hE => Or.inl (IsZero.of_iso hE e.symm))
     (fun ⟨F, hF, hle⟩ => Or.inr ⟨F.ofIso C e, hF, hle⟩)
 
+/--
+@isnad1 id=isclosed.0h3v.s6.dd4adcb774a3 from=translated src=- shape=a1800068 vocab=d7446013
+-/
 instance Slicing.gtProp_isClosedUnderIsomorphisms (s : Slicing C) (t : ℝ) :
     (s.gtProp C t).IsClosedUnderIsomorphisms where
   of_iso e h := h.elim (fun hE => Or.inl (IsZero.of_iso hE e.symm))
     (fun ⟨F, hF, hgt⟩ => Or.inr ⟨F.ofIso C e, hF, hgt⟩)
 
+/--
+@isnad1 id=isclosed.0h3v.s6.c4cdf603b8b5 from=translated src=- shape=a1800068 vocab=1284c95c
+-/
 instance Slicing.ltProp_isClosedUnderIsomorphisms (s : Slicing C) (t : ℝ) :
     (s.ltProp C t).IsClosedUnderIsomorphisms where
   of_iso e h := h.elim (fun hE => Or.inl (IsZero.of_iso hE e.symm))
     (fun ⟨F, hF, hlt⟩ => Or.inr ⟨F.ofIso C e, hF, hlt⟩)
 
+/--
+@isnad1 id=isclosed.0h3v.s6.fffae9ea8b75 from=translated src=- shape=a1800068 vocab=a8607533
+-/
 instance Slicing.geProp_isClosedUnderIsomorphisms (s : Slicing C) (t : ℝ) :
     (s.geProp C t).IsClosedUnderIsomorphisms where
   of_iso e h := h.elim (fun hE => Or.inl (IsZero.of_iso hE e.symm))
     (fun ⟨F, hF, hge⟩ => Or.inr ⟨F.ofIso C e, hF, hge⟩)
 
+/--
+@isnad1 id=leprop.1h4v.s6.c9f8109d0965 from=translated src=- shape=8dc55f55 vocab=ae36bffe
+-/
 theorem Slicing.leProp_of_isZero (s : Slicing C) {E : C} (hE : IsZero E) (t : ℝ) :
     s.leProp C t E := Or.inl hE
 
+/--
+@isnad1 id=gtprop.1h4v.s6.08ccaa21f096 from=translated src=- shape=8dc55f55 vocab=f365d513
+-/
 theorem Slicing.gtProp_of_isZero (s : Slicing C) {E : C} (hE : IsZero E) (t : ℝ) :
     s.gtProp C t E := Or.inl hE
 
+/--
+@isnad1 id=ltprop.1h4v.s6.6436aa21f3dd from=translated src=- shape=8dc55f55 vocab=859cc60c
+-/
 theorem Slicing.ltProp_of_isZero (s : Slicing C) {E : C} (hE : IsZero E) (t : ℝ) :
     s.ltProp C t E := Or.inl hE
 
+/--
+@isnad1 id=geprop.1h4v.s6.34d55b3277f2 from=translated src=- shape=8dc55f55 vocab=318d7a9a
+-/
 theorem Slicing.geProp_of_isZero (s : Slicing C) {E : C} (hE : IsZero E) (t : ℝ) :
     s.geProp C t E := Or.inl hE
 
-/-- Upper phase cuts are monotone in their endpoint.-/
+/-- Upper phase cuts are monotone in their endpoint.
+@isnad1 id=le.1h4v.s6.5680277a7e7e from=translated src=- shape=ba779186 vocab=91fa0093
+-/
 theorem Slicing.leProp_mono (s : Slicing C) {t₁ t₂ : ℝ} (h : t₁ ≤ t₂) :
     s.leProp C t₁ ≤ s.leProp C t₂ := by
   rintro E (hE | ⟨F, hF, hle⟩)
   · exact Or.inl hE
   · exact Or.inr ⟨F, hF, hle.trans h⟩
 
-/-- Strict lower phase cuts are antitone in their endpoint.-/
+/-- Strict lower phase cuts are antitone in their endpoint.
+@isnad1 id=le.1h4v.s6.3e4d1ac175ad from=translated src=- shape=915b488c vocab=5d948377
+-/
 theorem Slicing.gtProp_anti (s : Slicing C) {t₁ t₂ : ℝ} (h : t₁ ≤ t₂) :
     s.gtProp C t₂ ≤ s.gtProp C t₁ := by
   rintro E (hE | ⟨F, hF, hgt⟩)
   · exact Or.inl hE
   · exact Or.inr ⟨F, hF, h.trans_lt hgt⟩
 
-/-- Strict upper phase cuts are monotone in their endpoint.-/
+/-- Strict upper phase cuts are monotone in their endpoint.
+@isnad1 id=le.1h4v.s6.9c8a6dc6f22b from=translated src=- shape=ba779186 vocab=493c5500
+-/
 theorem Slicing.ltProp_mono (s : Slicing C) {t₁ t₂ : ℝ} (h : t₁ ≤ t₂) :
     s.ltProp C t₁ ≤ s.ltProp C t₂ := by
   rintro E (hE | ⟨F, hF, hlt⟩)
   · exact Or.inl hE
   · exact Or.inr ⟨F, hF, hlt.trans_le h⟩
 
-/-- Lower phase cuts are antitone in their endpoint.-/
+/-- Lower phase cuts are antitone in their endpoint.
+@isnad1 id=le.1h4v.s6.028e58dec6a5 from=translated src=- shape=915b488c vocab=f2725da9
+-/
 theorem Slicing.geProp_anti (s : Slicing C) {t₁ t₂ : ℝ} (h : t₁ ≤ t₂) :
     s.geProp C t₂ ≤ s.geProp C t₁ := by
   rintro E (hE | ⟨F, hF, hge⟩)
   · exact Or.inl hE
   · exact Or.inr ⟨F, hF, h.trans hge⟩
 
+/--
+@isnad1 id=le.0h3v.s6.81ff465ae9af from=translated src=- shape=6b36a611 vocab=d62d59ef
+-/
 theorem Slicing.leProp_of_ltProp (s : Slicing C) {t : ℝ} :
     s.ltProp C t ≤ s.leProp C t := by
   rintro E (hE | ⟨F, hF, hlt⟩)
   · exact Or.inl hE
   · exact Or.inr ⟨F, hF, hlt.le⟩
 
+/--
+@isnad1 id=le.0h3v.s6.e688f55ad1aa from=translated src=- shape=6b36a611 vocab=337d40ec
+-/
 theorem Slicing.geProp_of_gtProp (s : Slicing C) {t : ℝ} :
     s.gtProp C t ≤ s.geProp C t := by
   rintro E (hE | ⟨F, hF, hgt⟩)
@@ -159,7 +201,9 @@ theorem Slicing.geProp_of_gtProp (s : Slicing C) {t : ℝ} :
   · exact Or.inr ⟨F, hF, hgt.le⟩
 
 /-- Membership in an open phase interval implies the corresponding strict
-upper bound.-/
+upper bound.
+@isnad1 id=ltprop.0h6v.s6.c61f44f4a352 from=translated src=- shape=ee54bb4c vocab=3f5e8156
+-/
 theorem Slicing.ltProp_of_intervalProp (s : Slicing C) {a b : ℝ} {E : C}
     (hE : s.intervalProp C a b E) : s.ltProp C b E := by
   rcases hE with hE | ⟨F, hF⟩
@@ -169,7 +213,9 @@ theorem Slicing.ltProp_of_intervalProp (s : Slicing C) {a b : ℝ} {E : C}
     · exact Or.inl (F.isZero_of_length_zero (by lia))
 
 /-- Membership in an open phase interval implies the corresponding strict
-lower bound.-/
+lower bound.
+@isnad1 id=gtprop.0h6v.s6.dab94c761208 from=translated src=- shape=06c562b3 vocab=6314f881
+-/
 theorem Slicing.gtProp_of_intervalProp (s : Slicing C) {a b : ℝ} {E : C}
     (hE : s.intervalProp C a b E) : s.gtProp C a E := by
   rcases hE with hE | ⟨F, hF⟩
@@ -247,7 +293,9 @@ private theorem chain_hom_eq_zero_gap (s : Slicing C) {X Y : C}
       simpa using hef
 
 /-- Morphisms between HN-filtered objects separated by a strict phase gap
-vanish.-/
+vanish.
+@isnad1 id=eq.1h7v.s7.6ca916c67657 from=translated src=- shape=d54036dc vocab=7df21991
+-/
 theorem Slicing.hom_eq_zero_of_phase_gap (s : Slicing C) {X Y : C}
     (FX : HNFiltration C s.P X) (FY : HNFiltration C s.P Y)
     (hgap : ∀ i j, FY.φ j < FX.φ i) (f : X ⟶ Y) : f = 0 := by
@@ -258,7 +306,9 @@ theorem Slicing.hom_eq_zero_of_phase_gap (s : Slicing C) {X Y : C}
   simpa using h
 
 /-- Morphisms from an open interval strictly above another open interval
-vanish.-/
+vanish.
+@isnad1 id=eq.1h11v.s7.d6d1bbc2fd63 from=translated src=- shape=2e43ac25 vocab=706dc2d8
+-/
 theorem Slicing.intervalHom_eq_zero (s : Slicing C) {A B : C}
     {a₁ b₁ a₂ b₂ : ℝ} (hA : s.intervalProp C a₁ b₁ A)
     (hB : s.intervalProp C a₂ b₂ B) (hgap : b₂ ≤ a₁)
@@ -270,7 +320,9 @@ theorem Slicing.intervalHom_eq_zero (s : Slicing C) {A B : C}
   exact s.hom_eq_zero_of_phase_gap C FA FB
     (fun i j => ((hFB j).2.trans_le hgap).trans (hFA i).1) f
 
-/-- The hom-vanishing statement for the `(> 0, ≤ 0)` phase cut.-/
+/-- The hom-vanishing statement for the `(> 0, ≤ 0)` phase cut.
+@isnad1 id=eq.0h7v.s7.8b0c350beef0 from=translated src=- shape=129710e3 vocab=7515b1bc
+-/
 theorem Slicing.zero_of_gtProp_leProp (s : Slicing C) {X Y : C}
     (hX : s.gtProp C 0 X) (hY : s.leProp C 0 Y) (f : X ⟶ Y) : f = 0 := by
   rcases hX with hX | ⟨FX, hFX, hFXgt⟩
@@ -282,7 +334,9 @@ theorem Slicing.zero_of_gtProp_leProp (s : Slicing C) {X Y : C}
       ((FY.phase_mem_range C hFY j).2.trans hFYle)
       (hFXgt.trans_le (FX.phase_mem_range C hFX i).1)) f
 
-/-- The hom-vanishing statement for the `(≥ 0, < 0)` phase cut.-/
+/-- The hom-vanishing statement for the `(≥ 0, < 0)` phase cut.
+@isnad1 id=eq.0h7v.s7.3baa03e2821d from=translated src=- shape=129710e3 vocab=1a3639ae
+-/
 theorem Slicing.zero_of_geProp_ltProp (s : Slicing C) {X Y : C}
     (hX : s.geProp C 0 X) (hY : s.ltProp C 0 Y) (f : X ⟶ Y) : f = 0 := by
   rcases hX with hX | ⟨FX, hFX, hFXge⟩
@@ -294,7 +348,9 @@ theorem Slicing.zero_of_geProp_ltProp (s : Slicing C) {X Y : C}
       (FY.phase_mem_range C hFY j).2
       (hFYlt.trans_le (hFXge.trans (FX.phase_mem_range C hFX i).1))) f
 
-/-- The hom-vanishing statement for an arbitrary `(≥ t, < t)` phase cut.-/
+/-- The hom-vanishing statement for an arbitrary `(≥ t, < t)` phase cut.
+@isnad1 id=eq.0h8v.s7.6b7b12f3a7dc from=translated src=- shape=65b1ef8e vocab=1a3639ae
+-/
 theorem Slicing.zero_of_geProp_ltProp_at (s : Slicing C) (t : ℝ) {X Y : C}
     (hX : s.geProp C t X) (hY : s.ltProp C t Y) (f : X ⟶ Y) : f = 0 := by
   rcases hX with hX | ⟨FX, hFX, hFXge⟩

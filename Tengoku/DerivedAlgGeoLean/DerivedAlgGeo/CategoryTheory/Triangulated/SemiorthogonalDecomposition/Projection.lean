@@ -95,7 +95,9 @@ def homEquivFromProject (R : P.FullSubcategory) (X : C) :
   (Q.adjunction.homEquiv R X).symm
 
 /-- Under the universal Hom equivalence, the identity of a projected object
-corresponds to the counit map.-/
+corresponds to the counit map.
+@isnad1 id=eq.0h4v.s8.6e7c0dcccdb9 from=translated src=- shape=4d52ed68 vocab=0e2ef638
+-/
 theorem homEquivFromProject_id (X : C) :
     Q.homEquivFromProject (Q.project X) X (𝟙 (Q.project X)) =
       Q.counitApp X :=
@@ -103,7 +105,9 @@ theorem homEquivFromProject_id (X : C) :
 
 include Q in
 /-- Chosen projection data witnesses proposition-valued right
-admissibility once triangulated closure of the component is known.-/
+admissibility once triangulated closure of the component is known.
+@isnad1 id=isrighta.1h3v.s6.cc77304b1630 from=translated src=- shape=ef829ec9 vocab=24b971dc
+-/
 theorem isRightAdmissible
     [Limits.HasZeroObject C] [HasShift C ℤ] [Preadditive C]
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
@@ -115,7 +119,9 @@ section Zero
 variable [Preadditive C]
 
 /-- The projection of `X` is zero exactly when every ambient map from a
-`P`-object to `X` vanishes.-/
+`P`-object to `X` vanishes.
+@isnad1 id=iff.0h4v.s7.1d0964a6efe2 from=translated src=- shape=cb326d04 vocab=b9397006
+-/
 theorem project_isZero_iff (X : C) :
     Limits.IsZero (Q.project X) ↔
       ∀ (R : P.FullSubcategory) (f : P.ι.obj R ⟶ X), f = 0 := by
@@ -168,7 +174,9 @@ def projectedObjectHomEquiv (B : OrthogonalExceptionalBlocks k C ι)
   Q.homEquivFromProject R (B.firstObject i)
 
 /-- The identity of a residual projection object corresponds to its counit
-map into the first exceptional object of the block.-/
+map into the first exceptional object of the block.
+@isnad1 id=eq.0h6v.s10.af8259a13c82 from=translated src=- shape=51912b28 vocab=0d967ecb
+-/
 theorem projectedObjectHomEquiv_id
     (B : OrthogonalExceptionalBlocks k C ι)
     (Q : B.ResidualProjectionData) (i : ι) :

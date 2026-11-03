@@ -55,7 +55,9 @@ variable [FiniteDimensional ℝ M]
 /-- **A positive plane is spanned by a positive frame.** Taking any nonzero `x` of
 the plane and any `y` outside its line, the discriminant is positive because
 `Q ((-⟪x,y⟫) • x + (2 * Q x) • y) = Q x * (4 * Q x * Q y - ⟪x,y⟫ ^ 2)` and the
-left side is positive.-/
+left side is positive.
+@isnad1 id=ex.1h2v.s5.f3db4e71a435 from=translated src=- shape=d9535c0a vocab=16b7af39
+-/
 theorem exists_isPositiveFrame (hsig : HasSignatureTwo Q) : ∃ x y : M, IsPositiveFrame Q x y := by
   obtain ⟨W, hW⟩ := exists_isPositivePlane hsig
   have hrank : Module.finrank ℝ W = 2 := hW.finrank_eq
@@ -124,7 +126,9 @@ variable {Q}
 omit [FiniteDimensional ℝ N] in
 /-- Membership unfolded: a pair is on the orthogonalityLocus of `δ` when `δ` is orthogonal to
 both entries, which is the form the Baire argument and `mem_orthogonalityLocus_iff_mem_orthogonal`
-both consume.-/
+both consume.
+@isnad1 id=iff.0h4v.s8.385bc77b9d63 from=translated src=- shape=e8855f6d vocab=8d04018f
+-/
 @[simp]
 theorem mem_orthogonalityPairs_iff {δ : N} {p : N × N} :
     p ∈ orthogonalityPairs Q δ ↔ polar (⇑Q) δ p.1 = 0 ∧ polar (⇑Q) δ p.2 = 0 := by
@@ -136,7 +140,9 @@ omit [FiniteDimensional ℝ N] in
 Nondegeneracy is what supplies a vector the class does not annihilate, and
 properness is the whole content: it is what gives the orthogonalityLocus empty interior, and
 hence a dense complement for Baire to intersect. Without nondegeneracy a class
-could pair to zero with everything and its orthogonalityLocus would be all of `M × M`.-/
+could pair to zero with everything and its orthogonalityLocus would be all of `M × M`.
+@isnad1 id=ne.2h3v.s7.634784a66b45 from=translated src=- shape=5b162774 vocab=b84be072
+-/
 theorem orthogonalityPairs_ne_top (hnd : Q.Nondegenerate) {δ : N} (hδ : δ ≠ 0) :
     orthogonalityPairs Q δ ≠ ⊤ := by
   intro htop
@@ -159,7 +165,9 @@ omit [FiniteDimensional ℝ N] in
 
 A proper subspace of a normed space has empty interior — otherwise a ball inside
 it would generate the whole space — and a set with empty interior has dense
-complement. This is the input Baire consumes, one class at a time.-/
+complement. This is the input Baire consumes, one class at a time.
+@isnad1 id=dense.2h3v.s7.f83ca301350b from=translated src=- shape=4b1a5570 vocab=c536adf2
+-/
 theorem dense_compl_orthogonalityPairs (hnd : Q.Nondegenerate) {δ : N} (hδ : δ ≠ 0) :
     Dense ((orthogonalityPairs Q δ : Set (N × N))ᶜ) := by
   rw [← interior_eq_empty_iff_dense_compl]
@@ -172,7 +180,9 @@ theorem dense_compl_orthogonalityPairs (hnd : Q.Nondegenerate) {δ : N} (hδ : �
 
 The positive frames are open and nonempty, each orthogonality locus of a nonzero class is closed
 with dense complement, and Baire lets a countable family of them be avoided all
-at once.-/
+at once.
+@isnad1 id=nonempty.3h3v.s7.21b4fb5cf647 from=translated src=- shape=fdbad66e vocab=a2535f86
+-/
 theorem nonempty_positivePlanesAway (hsig : HasSignatureTwo Q) {Δ : Set N}
     (hcount : Δ.Countable) (hzero : ∀ δ ∈ Δ, δ ≠ 0) :
     (positivePlanesAway Q Δ).Nonempty := by

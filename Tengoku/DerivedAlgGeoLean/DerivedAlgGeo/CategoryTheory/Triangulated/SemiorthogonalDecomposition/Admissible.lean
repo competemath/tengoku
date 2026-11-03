@@ -51,18 +51,24 @@ variable [Limits.HasZeroObject C] [HasShift C ℤ] [Preadditive C]
 /-- The object property of being a zero object.-/
 abbrev zeroObjects : ObjectProperty C := fun X ↦ Limits.IsZero X
 
-/-- The top object property is triangulated.-/
+/-- The top object property is triangulated.
+@isnad1 id=istriang.0h1v.s6.d36812783f65 from=translated src=- shape=629a9bf1 vocab=da78cb48
+-/
 instance topIsTriangulated : (⊤ : ObjectProperty C).IsTriangulated where
   toContainsZero := inferInstance
   toIsStableUnderShift := inferInstance
   toIsTriangulatedClosed₂ := .mk' (by simp)
 
-/-- Being a zero object is invariant under isomorphism.-/
+/-- Being a zero object is invariant under isomorphism.
+@isnad1 id=isclosed.0h1v.s3.4a4df7f2bfce from=translated src=- shape=84bfdc15 vocab=bac2f6df
+-/
 instance zeroObjectsIsClosedUnderIsomorphisms :
     (zeroObjects (C := C)).IsClosedUnderIsomorphisms where
   of_iso e hX := hX.of_iso e.symm
 
-/-- Zero objects form a triangulated object property.-/
+/-- Zero objects form a triangulated object property.
+@isnad1 id=istriang.0h1v.s5.ca9b8bb3c878 from=translated src=- shape=33a11fa6 vocab=526fb216
+-/
 instance zeroObjectsIsTriangulated :
     (zeroObjects (C := C)).IsTriangulated where
   toContainsZero := inferInstance
@@ -85,13 +91,17 @@ def IsLeftAdmissible (P : ObjectProperty C) : Prop :=
 def IsAdmissible (P : ObjectProperty C) : Prop :=
   P.IsLeftAdmissible ∧ P.IsRightAdmissible
 
-/-- The top object property is right admissible, through its canonical equivalence with `C`.-/
+/-- The top object property is right admissible, through its canonical equivalence with `C`.
+@isnad1 id=isrighta.0h1v.s6.510523b3eadb from=translated src=- shape=629a9bf1 vocab=3f682aa6
+-/
 theorem top_isRightAdmissible :
     IsRightAdmissible (⊤ : ObjectProperty C) :=
   ⟨inferInstance, (ObjectProperty.topEquivalence C).inverse,
     ⟨(ObjectProperty.topEquivalence C).toAdjunction⟩⟩
 
-/-- The top object property is left admissible, through its canonical equivalence with `C`.-/
+/-- The top object property is left admissible, through its canonical equivalence with `C`.
+@isnad1 id=isleftad.0h1v.s6.d817e819e361 from=translated src=- shape=629a9bf1 vocab=ff8b5efb
+-/
 theorem top_isLeftAdmissible :
     IsLeftAdmissible (⊤ : ObjectProperty C) :=
   ⟨inferInstance, (ObjectProperty.topEquivalence C).symm.functor,
@@ -149,12 +159,16 @@ private noncomputable def zeroLeftAdjunction :
         intro X Y Y' f g
         exact Y'.property.eq_of_tgt _ _ }
 
-/-- Zero objects are right admissible: the right adjoint is the constant zero functor.-/
+/-- Zero objects are right admissible: the right adjoint is the constant zero functor.
+@isnad1 id=isrighta.0h1v.s5.f16a54ca02a5 from=translated src=- shape=33a11fa6 vocab=6f4d04dd
+-/
 theorem zeroObjects_isRightAdmissible :
     IsRightAdmissible (zeroObjects (C := C)) :=
   ⟨inferInstance, zeroProjection, ⟨zeroRightAdjunction⟩⟩
 
-/-- Zero objects are left admissible: the left adjoint is the constant zero functor.-/
+/-- Zero objects are left admissible: the left adjoint is the constant zero functor.
+@isnad1 id=isleftad.0h1v.s5.54af1dcb6565 from=translated src=- shape=33a11fa6 vocab=c4f15ec4
+-/
 theorem zeroObjects_isLeftAdmissible :
     IsLeftAdmissible (zeroObjects (C := C)) :=
   ⟨inferInstance, zeroProjection, ⟨zeroLeftAdjunction⟩⟩
@@ -162,7 +176,9 @@ theorem zeroObjects_isLeftAdmissible :
 /-- The counit triangle of a right-admissible property has its third vertex in the right
 orthogonal.  The right adjoint is triangulated because it is adjoint to the triangulated
 inclusion; after applying it, full faithfulness makes the mapped counit an isomorphism, hence its
-cone a zero object.-/
+cone a zero object.
+@isnad1 id=extensio.1h3v.s6.1b86976f1552 from=translated src=- shape=f7e734e2 vocab=b163455a
+-/
 theorem IsRightAdmissible.exists_distTriang_mem_rightOrthogonal
     {P : ObjectProperty C} (hP : P.IsRightAdmissible) (X : C) :
     P.extensionProduct P.rightOrthogonal X := by
@@ -191,7 +207,9 @@ theorem IsRightAdmissible.exists_distTriang_mem_rightOrthogonal
   apply (adj.homEquiv Y' Z).injective
   exact hGZ.eq_of_tgt _ _
 
-/-- The unit triangle of a left-admissible property has its first vertex in the left orthogonal.-/
+/-- The unit triangle of a left-admissible property has its first vertex in the left orthogonal.
+@isnad1 id=extensio.1h3v.s6.8953e9a8167f from=translated src=- shape=c84ac505 vocab=30893b14
+-/
 theorem IsLeftAdmissible.exists_distTriang_mem_leftOrthogonal
     {P : ObjectProperty C} (hP : P.IsLeftAdmissible) (X : C) :
     P.leftOrthogonal.extensionProduct P X := by
@@ -220,14 +238,18 @@ theorem IsLeftAdmissible.exists_distTriang_mem_leftOrthogonal
   exact hLW.eq_of_src _ _
 
 /-- Right admissibility is equivalently consumed as the equality saying that every object is an
-extension of an object of `P` by an object of `P.rightOrthogonal`.-/
+extension of an object of `P` by an object of `P.rightOrthogonal`.
+@isnad1 id=eq.1h2v.s6.97c92c6cf3f9 from=translated src=- shape=733faeda vocab=a4732577
+-/
 theorem IsRightAdmissible.extensionProduct_rightOrthogonal_eq_top
     {P : ObjectProperty C} (hP : P.IsRightAdmissible) :
     P.extensionProduct P.rightOrthogonal = ⊤ := by
   rw [eq_top_iff]
   exact fun X _ ↦ hP.exists_distTriang_mem_rightOrthogonal X
 
-/-- The dual extension-product form of left admissibility.-/
+/-- The dual extension-product form of left admissibility.
+@isnad1 id=eq.1h2v.s6.98100b25722d from=translated src=- shape=4cc851ef vocab=293118bc
+-/
 theorem IsLeftAdmissible.leftOrthogonal_extensionProduct_eq_top
     {P : ObjectProperty C} (hP : P.IsLeftAdmissible) :
     P.leftOrthogonal.extensionProduct P = ⊤ := by
@@ -236,7 +258,9 @@ theorem IsLeftAdmissible.leftOrthogonal_extensionProduct_eq_top
 
 omit [Limits.HasZeroObject C] [HasShift C ℤ]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
-/-- The right orthogonal of all objects is precisely the zero-object property.-/
+/-- The right orthogonal of all objects is precisely the zero-object property.
+@isnad1 id=eq.0h1v.s5.471bf79bdbb7 from=translated src=- shape=f06ef914 vocab=a597179a
+-/
 @[simp]
 theorem top_rightOrthogonal :
     (⊤ : ObjectProperty C).rightOrthogonal = zeroObjects := by
@@ -251,7 +275,9 @@ theorem top_rightOrthogonal :
 
 omit [Limits.HasZeroObject C] [HasShift C ℤ]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
-/-- Every object is right orthogonal to the zero objects.-/
+/-- Every object is right orthogonal to the zero objects.
+@isnad1 id=eq.0h1v.s5.4716e919384a from=translated src=- shape=32249d2b vocab=a597179a
+-/
 @[simp]
 theorem zeroObjects_rightOrthogonal :
     (zeroObjects (C := C)).rightOrthogonal = ⊤ := by
@@ -289,6 +315,9 @@ def twoBlock (P : ObjectProperty C) :
 
 omit [Limits.HasZeroObject C] [HasShift C ℤ]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
+/--
+@isnad1 id=eq.0h2v.s6.01655e6dbb11 from=translated src=- shape=26065bee vocab=c65c02c0
+-/
 @[simp]
 theorem twoBlock_component_zero (P : ObjectProperty C) :
     (twoBlock P).component 0 = P := by
@@ -296,12 +325,17 @@ theorem twoBlock_component_zero (P : ObjectProperty C) :
 
 omit [Limits.HasZeroObject C] [HasShift C ℤ]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
+/--
+@isnad1 id=eq.0h2v.s6.62ffdf13deea from=translated src=- shape=7e945bc3 vocab=88d94c7d
+-/
 @[simp]
 theorem twoBlock_component_one (P : ObjectProperty C) :
     (twoBlock P).component 1 = P.rightOrthogonal := by
   simp [twoBlock]
 
-/-- The two blocks are triangulated object properties.-/
+/-- The two blocks are triangulated object properties.
+@isnad1 id=hastrian.1h2v.s6.85a7af4170b6 from=translated src=- shape=09bc6799 vocab=15cfa67e
+-/
 theorem twoBlock_hasTriangulatedComponents (P : ObjectProperty C)
     (hP : P.IsRightAdmissible) :
     (twoBlock P).HasTriangulatedComponents := by
@@ -318,7 +352,9 @@ theorem twoBlock_hasTriangulatedComponents (P : ObjectProperty C)
 
 /-- A right-admissible two-block sequence is strongly full with the explicit bound `1`.
 `triangEnvelopeIter 0` already closes under shifts, binary products and retracts; the counit
-triangle contributes the single extension counted by `triangEnvelopeIter_succ`.-/
+triangle contributes the single extension counted by `triangEnvelopeIter_succ`.
+@isnad1 id=isstrong.1h2v.s6.05a666739d38 from=translated src=- shape=09bc6799 vocab=7341ad82
+-/
 theorem twoBlock_isStronglyFull (P : ObjectProperty C)
     (hP : P.IsRightAdmissible) :
     (twoBlock P).IsStronglyFull := by
@@ -341,7 +377,9 @@ theorem twoBlock_isStronglyFull (P : ObjectProperty C)
 
 omit [Limits.HasZeroObject C] [HasShift C ℤ]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
-/-- For `P = ⊤`, the two blocks are all objects followed by the zero objects.-/
+/-- For `P = ⊤`, the two blocks are all objects followed by the zero objects.
+@isnad1 id=eq.0h2v.s7.a594b1b65028 from=translated src=- shape=e8f18e28 vocab=70a57db1
+-/
 @[simp]
 theorem twoBlock_top_component (i : Fin 2) :
     (twoBlock (⊤ : ObjectProperty C)).component i =
@@ -350,7 +388,9 @@ theorem twoBlock_top_component (i : Fin 2) :
 
 omit [Limits.HasZeroObject C] [HasShift C ℤ]
   [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
-/-- For the zero-object property, the two blocks are zero objects followed by all objects.-/
+/-- For the zero-object property, the two blocks are zero objects followed by all objects.
+@isnad1 id=eq.0h2v.s7.df06945760bb from=translated src=- shape=04fdc66f vocab=70a57db1
+-/
 @[simp]
 theorem twoBlock_zeroObjects_component (i : Fin 2) :
     (twoBlock (ObjectProperty.zeroObjects (C := C))).component i =

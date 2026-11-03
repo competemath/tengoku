@@ -177,7 +177,9 @@ private lemma triangEnvelopeIter_bot_of_not_nonempty (P : ObjectProperty C) (n :
   simp [triangEnvelopeIter]
 
 /-- The zeroth envelope of an iterated envelope is contained in that stage. For a
-nonempty generator property its iterates contain zero; an empty property has empty iterates.-/
+nonempty generator property its iterates contain zero; an empty property has empty iterates.
+@isnad1 id=le.0h3v.s6.4158730fd678 from=translated src=- shape=6ae0df07 vocab=35b4fb40
+-/
 theorem triangEnvelopeIter_zero_le (P : ObjectProperty C) (n : ℕ) :
     (P.triangEnvelopeIter n).triangEnvelopeIter 0 ≤ P.triangEnvelopeIter n := by
   by_cases hP : P.Nonempty
@@ -196,7 +198,9 @@ variable [IsTriangulated C]
 
 /-- Composition of two finite generation stages has the multiplicative bound
 m * n + m + n. In Rouquier's indexing, where stage n is ⟨P⟩_(n+1), this is the
-composition law ⟨⟨P⟩_a⟩_b ⊆ ⟨P⟩_(a*b).-/
+composition law ⟨⟨P⟩_a⟩_b ⊆ ⟨P⟩_(a*b).
+@isnad1 id=le.0h4v.s7.f151ebf68141 from=translated src=- shape=2e1cf832 vocab=195e0934
+-/
 theorem triangEnvelopeIter_compose (P : ObjectProperty C) (m n : ℕ) :
     (P.triangEnvelopeIter m).triangEnvelopeIter n ≤
       P.triangEnvelopeIter (m * n + m + n) := by
@@ -232,7 +236,9 @@ theorem triangEnvelopeIter_compose (P : ObjectProperty C) (m n : ℕ) :
         rw [hk, P.triangEnvelopeIter_add' (n := k) (m := m + 1) (m' := m) rfl]
 
 /-- Monotonicity replaces the intermediate property by the `P`-stage at `m`; the composition
-lemma then gives the stated bound.-/
+lemma then gives the stated bound.
+@isnad1 id=le.2h6v.s7.bb7fb7f10919 from=translated src=- shape=1798ed42 vocab=195e0934
+-/
 theorem le_triangEnvelopeIter_of_le_triangEnvelopeIter
     {P Q R : ObjectProperty C} {m n : ℕ}
     (hQP : Q ≤ P.triangEnvelopeIter m) (hRQ : R ≤ Q.triangEnvelopeIter n) :
@@ -264,7 +270,9 @@ private lemma nonempty_of_isStrongTriangulatedGenerator (Q : ObjectProperty C)
 /-- A uniformly bounded stage reduces strong generation to the composition lemma. The pointwise
 condition `Q ≤ CategoryTheory.ObjectProperty.triangEnvelope P` does not provide such a `k`: the
 stage may vary with the object of `Q`, so this argument does not establish the unrestricted
-object-property analogue.-/
+object-property analogue.
+@isnad1 id=isstrong.2h4v.s6.73656acbe640 from=translated src=- shape=15e535e4 vocab=3ad441e6
+-/
 theorem isStrongTriangulatedGenerator_of_strong_le_iter
     (P Q : ObjectProperty C) (k : ℕ)
     (hQ : Q.IsStrongTriangulatedGenerator) (hQP : Q ≤ P.triangEnvelopeIter k) :
@@ -280,7 +288,9 @@ theorem isStrongTriangulatedGenerator_of_strong_le_iter
     _ ≤ P.triangEnvelopeIter (k * n + k + n) := triangEnvelopeIter_compose P k n
 
 /-- The classical property places the singleton in one finite stage, so the bounded
-strong-generation theorem applies.-/
+strong-generation theorem applies.
+@isnad1 id=isstrong.2h3v.s6.91f361126b25 from=translated src=- shape=eca2b623 vocab=1beebfe6
+-/
 theorem isStrongTriangulatedGenerator_of_isClassical_of_singleton_strong
     (P : ObjectProperty C) (G : C)
     (hP : P.IsClassicalTriangulatedGenerator)

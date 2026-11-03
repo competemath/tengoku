@@ -35,7 +35,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 
 namespace StabilityFunction
 
-/-- Upper phase see-saw for a short exact sequence.-/
+/-- Upper phase see-saw for a short exact sequence.
+@isnad1 id=le.3h3v.s6.82c00ae424a4 from=translated src=- shape=14efc4a8 vocab=c1c14d41
+-/
 theorem phase_le_max_of_shortExact (Z : StabilityFunction A)
     (S : ShortComplex A) (hS : S.ShortExact)
     (h₁ : ¬IsZero S.X₁) (h₃ : ¬IsZero S.X₃) :
@@ -45,7 +47,9 @@ theorem phase_le_max_of_shortExact (Z : StabilityFunction A)
   rw [max_div_div_right Real.pi_pos.le]
   exact (div_le_div_iff_of_pos_right Real.pi_pos).2 h
 
-/-- Lower phase see-saw for a short exact sequence.-/
+/-- Lower phase see-saw for a short exact sequence.
+@isnad1 id=le.3h3v.s6.354f0bdc847a from=translated src=- shape=b44d9983 vocab=023f271d
+-/
 theorem min_phase_le_of_shortExact (Z : StabilityFunction A)
     (S : ShortComplex A) (hS : S.ShortExact)
     (h₁ : ¬IsZero S.X₁) (h₃ : ¬IsZero S.X₃) :
@@ -56,7 +60,9 @@ theorem min_phase_le_of_shortExact (Z : StabilityFunction A)
     (min_arg_le_arg_add (Z.nonzero_mem S.X₁ h₁) (Z.nonzero_mem S.X₃ h₃))
 
 /-- A nonzero quotient of a semistable object has phase at least the source
-phase.-/
+phase.
+@isnad1 id=le.2h5v.s5.51a545b251e8 from=translated src=- shape=2919b4e3 vocab=db81ca2b
+-/
 theorem phase_le_of_epi (Z : StabilityFunction A) {E Q : A}
     (p : E ⟶ Q) [Epi p] (hE : Z.IsSemistable E) (hQ : ¬IsZero Q) :
     Z.phase E ≤ Z.phase Q := by
@@ -92,7 +98,9 @@ theorem phase_le_of_epi (Z : StabilityFunction A) {E Q : A}
     rw [max_eq_left hker_gt_Q.le] at hstrict
     exact (not_lt_of_ge harg_ker) hstrict
 
-/-- Hom-vanishing between semistable objects of decreasing phase.-/
+/-- Hom-vanishing between semistable objects of decreasing phase.
+@isnad1 id=eq.3h5v.s6.f998443e7262 from=translated src=- shape=d1fd0d59 vocab=f1a29f62
+-/
 theorem hom_eq_zero_of_semistable_phase_gt (Z : StabilityFunction A)
     {E F : A} (hE : Z.IsSemistable E) (hF : Z.IsSemistable F)
     (hphase : Z.phase F < Z.phase E) (f : E ⟶ F) : f = 0 := by

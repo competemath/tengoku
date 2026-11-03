@@ -53,13 +53,18 @@ result about `WeakStabilityFunctionOn.slope` — the see-saws, `slope_le_of_epi`
 cutoff classes — applies to it without transport.-/
 def topSlope (E : A) : WithTop ℝ := D.toWeakStabilityFunction.slope E
 
+/--
+@isnad1 id=eq.0h3v.s5.d997b399b516 from=translated src=- shape=a9eb3847 vocab=c776469d
+-/
 theorem topSlope_eq_chargeSlope (E : A) :
     D.topSlope E = chargeSlope (D.toWeakStabilityFunction.charge E) := rfl
 
 /-- **At positive rank the two slopes agree**, under the coercion `ℝ → WithTop ℝ`.
 
 This is the whole of the compatibility: `WeakSlope.lean`'s `slope` is correct exactly where
-its positive-rank hypotheses say it is.-/
+its positive-rank hypotheses say it is.
+@isnad1 id=eq.1h3v.s5.daeb659943f7 from=translated src=- shape=d53829b6 vocab=5f466c93
+-/
 theorem topSlope_of_rank_pos {E : A} (h : 0 < D.rank E) :
     D.topSlope E = ((D.slope E : ℝ) : WithTop ℝ) := by
   have hZ : D.toWeakStabilityFunction.charge E = D.charge E := D.toWeakStabilityFunction_Z E
@@ -73,14 +78,18 @@ theorem topSlope_of_rank_pos {E : A} (h : 0 < D.rank E) :
 
 This is the skyscraper. `WeakSlope.lean`'s `slope` returns `0` here, which is the junk value
 its docstring warns about; `topSlope` returns the classical `+∞` instead, and that is what
-`WeakCutoff.lean`'s `mem_hnTors_of_slope_eq_top` reads.-/
+`WeakCutoff.lean`'s `mem_hnTors_of_slope_eq_top` reads.
+@isnad1 id=eq.1h3v.s5.648c9738fdd0 from=translated src=- shape=f03c8e6f vocab=f80e4717
+-/
 theorem topSlope_of_rank_zero {E : A} (h : D.rank E = 0) : D.topSlope E = ⊤ := by
   refine D.toWeakStabilityFunction.slope_of_im_nonpos ?_
   have hZ : D.toWeakStabilityFunction.charge E = D.charge E := D.toWeakStabilityFunction_Z E
   rw [hZ, charge_im, h]
   simp
 
-/-- The honest slope is an isomorphism invariant.-/
+/-- The honest slope is an isomorphism invariant.
+@isnad1 id=eq.0h5v.s5.77d3b6a82909 from=translated src=- shape=b4f859cf vocab=aff9e2ea
+-/
 theorem topSlope_eq_of_iso {E F : A} (e : E ≅ F) : D.topSlope E = D.topSlope F :=
   D.toWeakStabilityFunction.slope_eq_of_iso e
 

@@ -73,15 +73,23 @@ def hnFree : Set A :=
 
 variable {Z β}
 
+/--
+@isnad1 id=mem.1h4v.s5.fdb09d072ecc from=translated src=- shape=d69638af vocab=60beeff3
+-/
 theorem isZero_mem_hnTors {E : A} (hE : IsZero E) : E ∈ hnTors Z β := Or.inl hE
 
+/--
+@isnad1 id=mem.1h4v.s5.6d7a3feaa95d from=translated src=- shape=d69638af vocab=3c1d982b
+-/
 theorem isZero_mem_hnFree {E : A} (hE : IsZero E) : E ∈ hnFree Z β := Or.inl hE
 
 /-- Membership is independent of the filtration chosen, because `φ⁻` is.
 
 The HN property is needed for the reverse direction only: without a filtration
 to exhibit, the universally quantified condition is vacuous while membership
-asks for a witness.-/
+asks for a witness.
+@isnad1 id=iff.2h4v.s5.6d7b2074cf5f from=translated src=- shape=f727337a vocab=e577ac26
+-/
 theorem mem_hnTors_iff_forall (hHN : Z.HasHNProperty) {E : A} (hE : ¬IsZero E) :
     E ∈ hnTors Z β ↔ ∀ F : AbelianHNFiltration Z E, β < F.phiMinus := by
   obtain ⟨G⟩ := hHN E hE
@@ -91,7 +99,9 @@ theorem mem_hnTors_iff_forall (hHN : Z.HasHNProperty) {E : A} (hE : ¬IsZero E) 
     · rwa [AbelianHNFiltration.phiMinus_eq K F]
   · exact fun h => Or.inr ⟨G, h G⟩
 
-/-- Membership is independent of the filtration chosen, because `φ⁺` is.-/
+/-- Membership is independent of the filtration chosen, because `φ⁺` is.
+@isnad1 id=iff.2h4v.s5.3d37154211b9 from=translated src=- shape=36f20dd6 vocab=252f358f
+-/
 theorem mem_hnFree_iff_forall (hHN : Z.HasHNProperty) {E : A} (hE : ¬IsZero E) :
     E ∈ hnFree Z β ↔ ∀ F : AbelianHNFiltration Z E, F.phiPlus ≤ β := by
   obtain ⟨G⟩ := hHN E hE
@@ -102,7 +112,9 @@ theorem mem_hnFree_iff_forall (hHN : Z.HasHNProperty) {E : A} (hE : ¬IsZero E) 
   · exact fun h => Or.inr ⟨G, h G⟩
 
 /-- **The two classes meet only in zero.** An object in both would have
-`β < φ⁻ ≤ φ⁺ ≤ β`.-/
+`β < φ⁻ ≤ φ⁺ ≤ β`.
+@isnad1 id=iszero.2h4v.s5.e4d85b82d67b from=translated src=- shape=aca16fc6 vocab=99cffbeb
+-/
 theorem isZero_of_mem_hnTors_of_mem_hnFree {E : A}
     (hT : E ∈ hnTors Z β) (hF : E ∈ hnFree Z β) : IsZero E := by
   by_contra hE
@@ -118,7 +130,9 @@ theorem isZero_of_mem_hnTors_of_mem_hnFree {E : A}
   linarith
 
 /-- **Hom-vanishing, for a semistable target.** A map from an object whose HN
-phases all exceed `β` to a semistable object of phase at most `β` is zero.-/
+phases all exceed `β` to a semistable object of phase at most `β` is zero.
+@isnad1 id=eq.4h6v.s6.0beba4449920 from=translated src=- shape=ed2c322c vocab=a4fdccfe
+-/
 theorem hom_eq_zero_of_mem_hnTors_of_semistable {E B : A}
     (hE : ¬IsZero E) (hT : E ∈ hnTors Z β) (hB : Z.IsSemistable B)
     (hphase : Z.phase B ≤ β) (f : E ⟶ B) : f = 0 := by
@@ -135,7 +149,9 @@ of the source and a subobject of the target, so `β < φ⁻(image)` and
 zero.
 
 The HN property is needed for the image, which is neither of the two given
-objects.-/
+objects.
+@isnad1 id=eq.3h6v.s6.3e9a4e2f262e from=translated src=- shape=95fb3db6 vocab=5ef44f0c
+-/
 theorem hom_eq_zero_of_mem_hnTors_of_mem_hnFree (hHN : Z.HasHNProperty)
     {E B : A} (hT : E ∈ hnTors Z β) (hFr : B ∈ hnFree Z β) (f : E ⟶ B) :
     f = 0 := by

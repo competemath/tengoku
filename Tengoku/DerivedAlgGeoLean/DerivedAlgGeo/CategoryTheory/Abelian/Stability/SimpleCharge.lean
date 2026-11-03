@@ -67,14 +67,18 @@ open CategoryTheory Complex
 
 /-! ### Two closure properties the stability-function foundation does not carry -/
 
-/-- The cone is closed under multiplication by a positive real.-/
+/-- The cone is closed under multiplication by a positive real.
+@isnad1 id=mem.2h2v.s5.ec66021e1214 from=translated src=- shape=f3f47f2a vocab=d60ab1b7
+-/
 theorem mem_cone_smul {r : ℝ} (hr : 0 < r) {z : ℂ}
     (hz : z ∈ semiClosedUpperHalfPlane) : (r : ℂ) * z ∈ semiClosedUpperHalfPlane := by
   rcases hz with him | ⟨him, hre⟩
   · exact Or.inl (by simpa using mul_pos hr him)
   · exact Or.inr ⟨by simp [him], by simpa using mul_neg_of_pos_of_neg hr hre⟩
 
-/-- The cone is closed under nonempty finite sums.-/
+/-- The cone is closed under nonempty finite sums.
+@isnad1 id=mem.2h3v.s5.803bcdcf7d94 from=translated src=- shape=2326b9b7 vocab=0429544d
+-/
 theorem mem_cone_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) {f : ι → ℂ}
     (hf : ∀ i ∈ s, f i ∈ semiClosedUpperHalfPlane) :
     (∑ i ∈ s, f i) ∈ semiClosedUpperHalfPlane := by
@@ -106,12 +110,16 @@ noncomputable def chargeOf (w : Fin n → ℂ) : (Fin n → ℤ) →+ ℂ where
 
 /-- Not `@[simp]`: it would rewrite the left-hand side of `chargeOf_single`
 into a sum before that lemma could fire, and `simpNF` rejects the pair. It is
-the unfolding lemma, used by explicit `rw`.-/
+the unfolding lemma, used by explicit `rw`.
+@isnad1 id=eq.0h3v.s6.eaf9cc38397b from=translated src=- shape=50395628 vocab=cd5d43c2
+-/
 theorem chargeOf_apply (w : Fin n → ℂ) (m : Fin n → ℤ) :
     chargeOf w m = ∑ i, (m i : ℂ) * w i := rfl
 
 /-- The charge of the `i`-th basis vector is the `i`-th chosen value: the
-lattice-model form of "`Z` restricted to the simples is the chosen data".-/
+lattice-model form of "`Z` restricted to the simples is the chosen data".
+@isnad1 id=eq.0h3v.s6.50fe4bb86fcf from=translated src=- shape=54554fa3 vocab=50b12dfa
+-/
 @[simp]
 theorem chargeOf_single (w : Fin n → ℂ) (i : Fin n) :
     chargeOf w (Pi.single i 1) = w i := by
@@ -142,7 +150,9 @@ theorem eq_chargeOf (Z : (Fin n → ℤ) →+ ℂ) :
 /-- **The parametrization.** A choice of charge for each simple determines a
 unique additive charge on the lattice, and every additive charge arises this
 way. This is the lattice-model form of Bridgeland's `ℍ̄ⁿ` count; the
-half-plane constraint is imposed separately by `mem_cone_natCombination`.-/
+half-plane constraint is imposed separately by `mem_cone_natCombination`.
+@isnad1 id=existsun.0h2v.s7.5f8f6111ff4a from=translated src=- shape=85f657aa vocab=067a2c18
+-/
 theorem existsUnique_charge (w : Fin n → ℂ) :
     ∃! Z : (Fin n → ℤ) →+ ℂ, ∀ i, Z (Pi.single i 1) = w i := by
   refine ⟨chargeOf w, fun i => chargeOf_single w i, fun Z hZ => ?_⟩
@@ -160,7 +170,9 @@ is the following statement, and it is the whole of it. -/
 
 In the intended reading `m i` is the multiplicity of the `i`-th simple in a
 Jordan–Hölder filtration, so this says a nonzero object has charge in the
-half plane. That reading is *not* formalized — see the module docstring.-/
+half plane. That reading is *not* formalized — see the module docstring.
+@isnad1 id=mem.2h3v.s6.f54eff0d8b99 from=translated src=- shape=488f0045 vocab=59527fc3
+-/
 theorem mem_cone_natCombination {w : Fin n → ℂ}
     (hw : ∀ i, w i ∈ semiClosedUpperHalfPlane) {m : Fin n → ℕ} (hm : m ≠ 0) :
     (∑ i, (m i : ℂ) * w i) ∈ semiClosedUpperHalfPlane := by
@@ -182,7 +194,9 @@ theorem mem_cone_natCombination {w : Fin n → ℂ}
   have hpos : (0 : ℝ) < (m i : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero hi
   simpa using mem_cone_smul hpos (hw i)
 
-/-- The `ℕ`-combination statement in the form the parametrization produces.-/
+/-- The `ℕ`-combination statement in the form the parametrization produces.
+@isnad1 id=mem.2h3v.s7.84cb0d45dcdd from=translated src=- shape=f219d97a vocab=8258c8b3
+-/
 theorem chargeOf_mem_cone {w : Fin n → ℂ} (hw : ∀ i, w i ∈ semiClosedUpperHalfPlane)
     {m : Fin n → ℕ} (hm : m ≠ 0) :
     chargeOf w (fun i => (m i : ℤ)) ∈ semiClosedUpperHalfPlane := by
@@ -191,7 +205,9 @@ theorem chargeOf_mem_cone {w : Fin n → ℂ} (hw : ∀ i, w i ∈ semiClosedUpp
 
 /-- A nonzero `ℕ`-combination of cone elements is nonzero. The lattice-model
 form of "a nonzero object has nonzero charge", which is what makes the phase
-well defined.-/
+well defined.
+@isnad1 id=ne.2h3v.s7.100e09f2a766 from=translated src=- shape=a14c7b3c vocab=8258c8b3
+-/
 theorem chargeOf_ne_zero {w : Fin n → ℂ} (hw : ∀ i, w i ∈ semiClosedUpperHalfPlane)
     {m : Fin n → ℕ} (hm : m ≠ 0) :
     chargeOf w (fun i => (m i : ℤ)) ≠ 0 :=

@@ -76,7 +76,9 @@ private def degrees (m : ℕ) (d : HDeg m) (j : ℕ) : ℝ :=
 def twist (m : ℕ) (β : ℝ) (d : HDeg m) : HDeg m :=
   fun i => convolution β (degrees m d) i
 
-/-- The component formula, with the bound carried by the summation index.-/
+/-- The component formula, with the bound carried by the summation index.
+@isnad1 id=eq.0h4v.s8.25301520856c from=translated src=- shape=28f0b06f vocab=47151bc5
+-/
 theorem twist_apply (m : ℕ) (β : ℝ) (d : HDeg m) (i : Fin (m + 1)) :
     twist m β d i = ∑ j : Fin (i.val + 1),
       (-β) ^ (i.val - j.val) / ((i.val - j.val).factorial : ℝ) *
@@ -89,7 +91,9 @@ theorem twist_apply (m : ℕ) (β : ℝ) (d : HDeg m) (i : Fin (m + 1)) :
 
 /-- The coefficientwise identity `e^{-βH} e^{-γH} = e^{-(β+γ)H}`.
 The finite Vandermonde convolution involves only lower degrees, so truncation
-does not discard any term needed by the group law.-/
+does not discard any term needed by the group law.
+@isnad1 id=eq.0h4v.s4.9dfebef147b6 from=translated src=- shape=7881b489 vocab=494d1e59
+-/
 theorem twist_twist (m : ℕ) (β γ : ℝ) (d : HDeg m) :
     twist m β (twist m γ d) = twist m (β + γ) d := by
   funext i
@@ -102,7 +106,9 @@ theorem twist_twist (m : ℕ) (β γ : ℝ) (d : HDeg m) :
   simp only [degrees, dite_eq_left h, twist]
   rfl
 
-/-- The zero parameter acts as the identity.-/
+/-- The zero parameter acts as the identity.
+@isnad1 id=eq.0h2v.s4.7bc21ebfa9bd from=translated src=- shape=403a53c5 vocab=15093987
+-/
 @[simp] theorem twist_zero (m : ℕ) (d : HDeg m) : twist m 0 d = d := by
   funext i
   simp only [twist, convolution]
@@ -130,7 +136,9 @@ private theorem charge_convolution (m : ℕ) (w : ℂ) (d : HDeg m) :
 
 /-- The Cauchy product of the charge exponential and the real twist exponential.
 The parameter shifts by `+β`: both exponentials carry the same negative sign.
-This identity holds on the entire complex parameter plane.-/
+This identity holds on the entire complex parameter plane.
+@isnad1 id=eq.0h4v.s8.6b476d163f46 from=translated src=- shape=6f189a7a vocab=d0612d1b
+-/
 theorem charge_twist (m : ℕ) (w : ℂ) (β : ℝ) (d : HDeg m) :
     charge m w (twist m β d) = charge m (w + β) d := by
   rw [charge_convolution, charge_convolution,

@@ -44,7 +44,9 @@ namespace SlopeData
 variable (D : SlopeData A)
 
 /-- Rank zero passes to both ends of a short exact sequence, because rank is
-additive and never negative.-/
+additive and never negative.
+@isnad1 id=and.2h3v.s6.b75741c18061 from=translated src=- shape=0d13f3aa vocab=68351b5e
+-/
 theorem rank_eq_zero_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
     (h : D.rank S.X₂ = 0) : D.rank S.X₁ = 0 ∧ D.rank S.X₃ = 0 := by
   have hadd := D.rank_additive S hS
@@ -53,7 +55,9 @@ theorem rank_eq_zero_of_shortExact {S : ShortComplex A} (hS : S.ShortExact)
   omega
 
 /-- **A nonzero object of rank zero has phase one.**  Its charge is
-`-degree`, a negative real, and `arg` of a negative real is `π`.-/
+`-degree`, a negative real, and `arg` of a negative real is `π`.
+@isnad1 id=eq.2h3v.s5.0fd1087e8f67 from=translated src=- shape=a07f4add vocab=3be29ef1
+-/
 theorem phase_eq_one_of_rank_zero {E : A} (hE : ¬IsZero E) (h : D.rank E = 0) :
     D.toStabilityFunction.phase E = 1 := by
   have hdeg : 0 < D.degree E := D.degree_pos_of_rank_zero E hE h
@@ -66,7 +70,9 @@ theorem phase_eq_one_of_rank_zero {E : A} (hE : ¬IsZero E) (h : D.rank E = 0) :
 
 /-- **Rank-zero objects are torsion at every cutoff below one.**  The last
 Harder–Narasimhan factor of a rank-zero object again has rank zero, so `φ⁻` is
-one.-/
+one.
+@isnad1 id=mem.4h4v.s6.31d06ea901ba from=translated src=- shape=e836b026 vocab=b76f41fd
+-/
 theorem mem_hnTors_of_rank_zero (hHN : D.toStabilityFunction.HasHNProperty)
     {β : ℝ} (hβ : β < 1) {E : A} (hE : ¬IsZero E) (h : D.rank E = 0) :
     E ∈ StabilityFunction.hnTors D.toStabilityFunction β := by

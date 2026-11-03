@@ -51,20 +51,27 @@ noncomputable def map (F : A ⥤ B) [F.PreservesZeroMorphisms]
     K₀Ab A →+ K₀Ab B :=
   liftOf (fun X ↦ of (F.obj X)) (fun S hS ↦ of_shortExact (S.map F) (hF S hS))
 
+/--
+@isnad1 id=eq.1h4v.s8.5a57c474c586 from=translated src=- shape=8b5640b1 vocab=516d671d
+-/
 @[simp]
 theorem map_of (F : A ⥤ B) [F.PreservesZeroMorphisms]
     (hF : ∀ S : ShortComplex A, S.ShortExact → (S.map F).ShortExact) (X : A) :
     map F hF (of X) = of (F.obj X) :=
   liftOf_of _ _ X
 
-/-- The identity functor induces the identity.-/
+/-- The identity functor induces the identity.
+@isnad1 id=eq.1h1v.s8.10fbbb1efd7d from=translated src=- shape=5b83f041 vocab=f714acd6
+-/
 @[simp]
 theorem map_id (hF : ∀ S : ShortComplex A, S.ShortExact → (S.map (𝟭 A)).ShortExact) :
     map (𝟭 A) hF = AddMonoidHom.id (K₀Ab A) := by
   ext X
   simp
 
-/-- Induced maps compose.-/
+/-- Induced maps compose.
+@isnad1 id=eq.3h5v.s9.e3bf582d00b5 from=translated src=- shape=3ff1e037 vocab=37232689
+-/
 theorem map_comp (F : A ⥤ B) [F.PreservesZeroMorphisms]
     (hF : ∀ S : ShortComplex A, S.ShortExact → (S.map F).ShortExact)
     (G : B ⥤ D) [G.PreservesZeroMorphisms]
@@ -74,7 +81,9 @@ theorem map_comp (F : A ⥤ B) [F.PreservesZeroMorphisms]
   ext X
   simp
 
-/-- Naturally isomorphic functors induce the same map.-/
+/-- Naturally isomorphic functors induce the same map.
+@isnad1 id=eq.2h5v.s8.608ef32afc1b from=translated src=- shape=b35586af vocab=4ec30308
+-/
 theorem map_congr {F G : A ⥤ B} [F.PreservesZeroMorphisms] [G.PreservesZeroMorphisms]
     (hF : ∀ S : ShortComplex A, S.ShortExact → (S.map F).ShortExact)
     (hG : ∀ S : ShortComplex A, S.ShortExact → (S.map G).ShortExact)
@@ -89,6 +98,9 @@ noncomputable def mapOfExact (F : A ⥤ B) [F.PreservesZeroMorphisms]
     K₀Ab A →+ K₀Ab B :=
   map F (fun _ hS ↦ hS.map_of_exact F)
 
+/--
+@isnad1 id=eq.0h4v.s8.f45178f9e98c from=translated src=- shape=c4c2f1ec vocab=5a675438
+-/
 @[simp]
 theorem mapOfExact_of (F : A ⥤ B) [F.PreservesZeroMorphisms]
     [PreservesFiniteLimits F] [PreservesFiniteColimits F] (X : A) :
@@ -121,10 +133,16 @@ noncomputable def congr : K₀Ab A ≃+ K₀Ab B where
     exact congrArg (fun (f : K₀Ab B →+ K₀Ab B) ↦ f y) h
   map_add' := map_add _
 
+/--
+@isnad1 id=eq.0h4v.s9.a851c5bccff2 from=translated src=- shape=96b15ab9 vocab=f3eae20b
+-/
 @[simp]
 theorem congr_of (X : A) : congr e (of X) = of (e.functor.obj X) :=
   mapOfExact_of _ X
 
+/--
+@isnad1 id=eq.0h4v.s9.19d2762a3f4b from=translated src=- shape=d2cf8e2d vocab=a75e612b
+-/
 @[simp]
 theorem congr_symm_of (Y : B) : (congr e).symm (of Y) = of (e.inverse.obj Y) :=
   mapOfExact_of _ Y
@@ -132,6 +150,9 @@ theorem congr_symm_of (Y : B) : (congr e).symm (of Y) = of (e.inverse.obj Y) :=
 /-- The isomorphism as an additive hom, for precomposition.-/
 noncomputable abbrev congrHom : K₀Ab A →+ K₀Ab B := (congr e).toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h4v.s8.9163c234735a from=translated src=- shape=96b15ab9 vocab=0329073d
+-/
 theorem congrHom_of (X : A) : congrHom e (of X) = of (e.functor.obj X) :=
   congr_of e X
 

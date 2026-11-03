@@ -67,7 +67,9 @@ def transformK₀ (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
   K₀.map (C.transform K)
 
 /-- `transformK₀` is `K₀.map` of the transform, by definition.  Stated so that
-later rewrites do not have to unfold a `def`.-/
+later rewrites do not have to unfold a `def`.
+@isnad1 id=eq.0h5v.s9.82ef13f6b7e2 from=translated src=- shape=fe5e37c5 vocab=8585de09
+-/
 theorem transformK₀_eq (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
     [C.pull.CommShift ℤ] [(C.tensor.obj K).CommShift ℤ] [C.push.CommShift ℤ]
     [C.pull.IsTriangulated] [(C.tensor.obj K).IsTriangulated]
@@ -75,6 +77,9 @@ theorem transformK₀_eq (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
     C.transformK₀ K = K₀.map (C.transform K) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.321af0c049ec from=translated src=- shape=eba6302c vocab=97f810ad
+-/
 @[simp]
 theorem transformK₀_of (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
     [C.pull.CommShift ℤ] [(C.tensor.obj K).CommShift ℤ] [C.push.CommShift ℤ]
@@ -85,7 +90,9 @@ theorem transformK₀_of (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
 
 /-- A functor naturally isomorphic to a transform induces the same map on
 `K₀`.  This is what makes the class map an invariant of the kernel functor
-rather than of a presentation of it.-/
+rather than of a presentation of it.
+@isnad1 id=eq.0h7v.s9.2c3ecd5d0d2a from=translated src=- shape=d4a095ea vocab=155f0268
+-/
 theorem K₀_map_eq_transformK₀ (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
     [C.pull.CommShift ℤ] [(C.tensor.obj K).CommShift ℤ] [C.push.CommShift ℤ]
     [C.pull.IsTriangulated] [(C.tensor.obj K).IsTriangulated]
@@ -95,7 +102,9 @@ theorem K₀_map_eq_transformK₀ (C : Correspondence 𝒳 𝒴 𝒲) (K : 𝒲)
   K₀.map_congr e
 
 /-- The class map of a kernel functor is computed by the kernel chosen from
-its `IsKernelFunctor` witness.-/
+its `IsKernelFunctor` witness.
+@isnad1 id=eq.1h5v.s9.31d730097096 from=translated src=- shape=1564164f vocab=2754b00b
+-/
 theorem K₀_map_eq_transformK₀_kernel {C : Correspondence 𝒳 𝒴 𝒲} {Φ : 𝒳 ⥤ 𝒴}
     [Φ.CommShift ℤ] [Φ.IsTriangulated] (h : C.IsKernelFunctor Φ)
     [C.pull.CommShift ℤ] [(C.tensor.obj h.kernel).CommShift ℤ]
@@ -130,7 +139,9 @@ kernels composes their class maps.
 
 The supplied datum is an isomorphism of functors; what comes out is an
 equality of homomorphisms, because `K₀.map_congr` collapses the isomorphism.
-Nothing here needs to know how `conv` is defined.-/
+Nothing here needs to know how `conv` is defined.
+@isnad1 id=eq.0h12v.s10.3949aa53ddb5 from=translated src=- shape=9f9b398a vocab=e3a5388b
+-/
 theorem transformK₀_conv {C₁ : Correspondence 𝒳 𝒴 𝒲₁}
     {C₂ : Correspondence 𝒴 𝒵 𝒲₂} {C₃ : Correspondence 𝒳 𝒵 𝒲₃}
     (D : ConvolutionData C₁ C₂ C₃) (P : 𝒲₁) (Q : 𝒲₂)

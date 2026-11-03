@@ -65,7 +65,9 @@ variable {k : Type*} [Ring k] {C : Type*} [Category C] [Preadditive C]
 
 The `ModuleCat k` counterpart of Mathlib's instance for `preadditiveCoyoneda`.
 As on the Yoneda side the `k`-action plays no part in the proof, because
-`Triangle.coyoneda_exact₂` is a statement about morphisms in `C`.-/
+`Triangle.coyoneda_exact₂` is a statement about morphisms in `C`.
+@isnad1 id=ishomolo.0h3v.s6.1bca15128560 from=translated src=- shape=8e9f751d vocab=24da504b
+-/
 instance linearCoyoneda_isHomological (A : Cᵒᵖ) :
     ((linearCoyoneda k C).obj A).IsHomological where
   exact T hT := by
@@ -91,21 +93,27 @@ Named specializations of Mathlib's homology-sequence API, matching
 directly — the coyoneda functor's source is `C`, so no op-triangle is
 involved. -/
 
-/-- Exactness in the middle.-/
+/-- Exactness in the middle.
+@isnad1 id=exact.1h5v.s8.ff5c62ceec93 from=translated src=- shape=16ad0b2d vocab=7a400cd3
+-/
 lemma linearCoyoneda_homologySequence_exact₂ (A : Cᵒᵖ) (T : Triangle C)
     (hT : T ∈ distTriang C) (n₀ : ℤ) :
     (ShortComplex.mk _ _
       (((linearCoyoneda k C).obj A).homologySequence_comp T hT n₀)).Exact :=
   ((linearCoyoneda k C).obj A).homologySequence_exact₂ T hT n₀
 
-/-- Exactness at the connecting map's source.-/
+/-- Exactness at the connecting map's source.
+@isnad1 id=exact.2h6v.s8.d8ab61610c2e from=translated src=- shape=15b90f39 vocab=6bfbee84
+-/
 lemma linearCoyoneda_homologySequence_exact₃ (A : Cᵒᵖ) (T : Triangle C)
     (hT : T ∈ distTriang C) (n₀ n₁ : ℤ) (h : n₀ + 1 = n₁) :
     (ShortComplex.mk _ _
       (((linearCoyoneda k C).obj A).comp_homologySequenceδ T hT n₀ n₁ h)).Exact :=
   ((linearCoyoneda k C).obj A).homologySequence_exact₃ T hT n₀ n₁ h
 
-/-- Exactness at the connecting map's target.-/
+/-- Exactness at the connecting map's target.
+@isnad1 id=exact.2h6v.s8.da523af7ba00 from=translated src=- shape=f4880324 vocab=784c84f6
+-/
 lemma linearCoyoneda_homologySequence_exact₁ (A : Cᵒᵖ) (T : Triangle C)
     (hT : T ∈ distTriang C) (n₀ n₁ : ℤ) (h : n₀ + 1 = n₁) :
     (ShortComplex.mk _ _

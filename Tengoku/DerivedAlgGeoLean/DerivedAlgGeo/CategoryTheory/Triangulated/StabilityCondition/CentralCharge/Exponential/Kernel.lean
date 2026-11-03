@@ -77,12 +77,24 @@ Every charge in the tree spells these out per dimension: `1`, `-1`, `1/2` for
 the surface and additionally `-(1/6)` for the threefold.-/
 def coeff (j : ℕ) : ℂ := (-1) ^ j / (j.factorial : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s3.96fab4d2f950 from=translated src=- shape=1ac31801 vocab=4b1cb8b2
+-/
 @[simp] theorem coeff_zero : coeff 0 = 1 := by simp [coeff]
 
+/--
+@isnad1 id=eq.0h0v.s4.1007a5c804d7 from=translated src=- shape=b5968027 vocab=ec7d19e9
+-/
 @[simp] theorem coeff_one : coeff 1 = -1 := by simp [coeff]
 
+/--
+@isnad1 id=eq.0h0v.s4.6bf01a5a45b8 from=translated src=- shape=4683683d vocab=0a5e930e
+-/
 theorem coeff_two : coeff 2 = 1 / 2 := by norm_num [coeff, Nat.factorial]
 
+/--
+@isnad1 id=eq.0h0v.s5.20b2907e3cb0 from=translated src=- shape=38de1a77 vocab=224961f4
+-/
 theorem coeff_three : coeff 3 = -(1 / 6) := by norm_num [coeff, Nat.factorial]
 
 /-- **The charge.** `Z = -∑_{j ≤ m} (-1)^j/j! · μ j`.
@@ -92,6 +104,9 @@ the divisorial lane supplies the intersection-form one. The leading sign is the
 convention of `-∫exp(-(B + iω))ch`, which is what both existing families use.-/
 def ofMoments (m : ℕ) (mu : ℕ → ℂ) : ℂ := -∑ j ∈ range (m + 1), coeff j * mu j
 
+/--
+@isnad1 id=eq.0h3v.s5.4589db16f396 from=translated src=- shape=59f4e080 vocab=57d85987
+-/
 theorem ofMoments_add (m : ℕ) (mu nu : ℕ → ℂ) :
     ofMoments m (mu + nu) = ofMoments m mu + ofMoments m nu := by
   simp only [ofMoments, Pi.add_apply, mul_add, Finset.sum_add_distrib, neg_add]
@@ -115,6 +130,9 @@ lanes disagree about which of its parts comes first, and `stChart` and
 def moments (m : ℕ) (w : ℂ) (d : HDeg m) (j : ℕ) : ℂ :=
   if h : j ≤ m then w ^ j * ((d ⟨m - j, by omega⟩ : ℝ) : ℂ) else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.51f6df80000b from=translated src=- shape=152c7819 vocab=b3bb4dde
+-/
 theorem moments_add (m : ℕ) (w : ℂ) (d e : HDeg m) :
     moments m w (d + e) = moments m w d + moments m w e := by
   funext j
@@ -127,6 +145,9 @@ def charge (m : ℕ) (w : ℂ) : HDeg m →+ ℂ :=
     rw [moments_add]
     exact ofMoments_add m _ _)
 
+/--
+@isnad1 id=eq.0h3v.s7.496a270632f5 from=translated src=- shape=6ba0d996 vocab=c5cc6673
+-/
 @[simp] theorem charge_apply (m : ℕ) (w : ℂ) (d : HDeg m) :
     charge m w d = ofMoments m (moments m w d) := rfl
 
@@ -138,6 +159,9 @@ number, and the real charts that present it as a pair are `reindex`es of this
 family rather than its definition.-/
 def chargeFamily (m : ℕ) : ChargeFamily ℂ (HDeg m) := ⟨charge m⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.d047759abacd from=translated src=- shape=dfc45287 vocab=2b2bca64
+-/
 @[simp] theorem chargeFamily_charge (m : ℕ) (w : ℂ) (d : HDeg m) :
     (chargeFamily m).charge w d = charge m w d := rfl
 

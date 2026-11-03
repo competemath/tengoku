@@ -31,7 +31,9 @@ namespace PeriodDomain
 
 variable {M : Type*} [AddCommGroup M] [Module ℝ M] {Q : QuadraticForm ℝ M}
 
-/-- The value of `Q` on a combination, in terms of the pair's Gram data.-/
+/-- The value of `Q` on a combination, in terms of the pair's Gram data.
+@isnad1 id=eq.0h6v.s8.7ccf081b7f19 from=translated src=- shape=a211b7ab vocab=b359cad2
+-/
 theorem apply_smul_add_smul (x y : M) (a b : ℝ) :
     Q (a • x + b • y) = a * a * Q x + a * b * polar (⇑Q) x y + b * b * Q y := by
   have h₁ : polar (⇑Q) (a • x) (b • y) = a * b * polar (⇑Q) x y := by
@@ -44,7 +46,9 @@ theorem apply_smul_add_smul (x y : M) (a b : ℝ) :
 
 /-- **Sylvester's criterion for a pair.** The `2 × 2` Gram matrix of `(x, y)` is
 positive definite exactly when `Q x` and the discriminant are positive, and that
-is exactly the condition that the pair spans a positive plane.-/
+is exactly the condition that the pair spans a positive plane.
+@isnad1 id=iff.0h4v.s7.71458ca4e87c from=translated src=- shape=4f182540 vocab=3c121321
+-/
 theorem isPositiveFrame_iff (x y : M) :
     IsPositiveFrame Q x y ↔
       0 < Q x ∧ 0 < 4 * Q x * Q y - (polar (⇑Q) x y) ^ 2 := by
@@ -123,7 +127,9 @@ variable {N : Type*} [NormedAddCommGroup N] [NormedSpace ℝ N] [FiniteDimension
 variable (Q : QuadraticForm ℝ N)
 
 /-- **The positive frames form an open set.** Both halves of the Sylvester
-criterion are continuous.-/
+criterion are continuous.
+@isnad1 id=isopen.0h2v.s6.3a90c2704d6d from=translated src=- shape=8563856f vocab=3916563a
+-/
 theorem isOpen_setOf_isPositiveFrame :
     IsOpen {p : N × N | IsPositiveFrame Q p.1 p.2} := by
   have hQ := continuous_of_finiteDimensional Q

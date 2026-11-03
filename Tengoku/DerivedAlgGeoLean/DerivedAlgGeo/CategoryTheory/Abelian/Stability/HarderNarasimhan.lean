@@ -65,7 +65,9 @@ def phiMinus {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) : ℝ :=
   F.phase ⟨F.n - 1, Nat.sub_lt F.nonempty (by decide)⟩
 
-/-- Every factor phase lies between the HN extrema.-/
+/-- Every factor phase lies between the HN extrema.
+@isnad1 id=and.0h5v.s6.b8d01cd380a0 from=translated src=- shape=e172e3c4 vocab=d81cfb8c
+-/
 theorem phase_mem_range {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) (i : Fin F.n) :
     F.phiMinus ≤ F.phase i ∧ F.phase i ≤ F.phiPlus := by
@@ -73,7 +75,9 @@ theorem phase_mem_range {Z : StabilityFunction A} {E : A}
   · exact F.phase_strictAnti.antitone (Fin.mk_le_mk.mpr (by lia))
   · exact F.phase_strictAnti.antitone (Fin.mk_le_mk.mpr (by lia))
 
-/-- The lowest HN phase does not exceed the highest.-/
+/-- The lowest HN phase does not exceed the highest.
+@isnad1 id=le.0h4v.s5.1c665dd3465d from=translated src=- shape=ac22612e vocab=4be97a1b
+-/
 theorem phiMinus_le_phiPlus {Z : StabilityFunction A} {E : A}
     (F : AbelianHNFiltration Z E) : F.phiMinus ≤ F.phiPlus :=
   (F.phase_mem_range ⟨0, F.nonempty⟩).1

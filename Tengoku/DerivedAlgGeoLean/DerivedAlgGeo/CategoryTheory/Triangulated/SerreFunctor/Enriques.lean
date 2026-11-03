@@ -64,7 +64,9 @@ noncomputable def serreSquareObjIso (E : C) :
   (A.serreSquareIso).app E
 
 /-- The chosen Serre functor can be used as an equivalence by instance search
-inside a consumer without making equivalence a global instance.-/
+inside a consumer without making equivalence a global instance.
+@isnad1 id=isequiva.0h4v.s6.8603cfc3c744 from=translated src=- shape=eb878dec vocab=607cde7a
+-/
 theorem hasSerreEquivalence : A.serre.S.IsEquivalence :=
   A.serreIsEquivalence
 
@@ -77,7 +79,9 @@ variable {k C}
 This is Remark 4.3(iii) of arXiv:1912.04332v2.  The proof compares dimensions:
 Serre duality identifies `End(E)` with the dual of `Hom(E,S E)`, the displayed
 Serre/shift isomorphism identifies the latter with `Hom(E,E[n])`, and
-exceptionality makes the first one-dimensional and the last zero.-/
+exceptionality makes the first one-dimensional and the last zero.
+@isnad1 id=not.2h5v.s6.731459b5bf15 from=translated src=- shape=7b26baf1 vocab=cf675f5b
+-/
 theorem no_exceptional_of_serre_iso_shift [HomFinite k C]
     (D : SerreFunctorData k C) (n : ℤ) (hn : n ≠ 0)
     (hS : Nonempty (D.S ≅ shiftFunctor C n)) (E : C) :

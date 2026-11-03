@@ -72,13 +72,17 @@ variable {A}
 /-- The class of an object.-/
 def of (X : A) : K₀Ab A := (abelianPresentation A).of X
 
-/-- **The defining relation**: a short exact sequence splits the middle class.-/
+/-- **The defining relation**: a short exact sequence splits the middle class.
+@isnad1 id=eq.1h2v.s7.b67ffe0be5d1 from=translated src=- shape=41cabd4a vocab=03e70a95
+-/
 theorem of_shortExact (S : ShortComplex A) (hS : S.ShortExact) :
     of S.X₂ = of S.X₁ + of S.X₃ :=
   (abelianPresentation A).of_relation ⟨S, hS⟩
 
 /-- **A zero object has zero class.**  Proved from the short exact sequence
-`X ⟶ X ⟶ X` on a zero object, which forces `[X] = [X] + [X]`.-/
+`X ⟶ X ⟶ X` on a zero object, which forces `[X] = [X] + [X]`.
+@isnad1 id=eq.1h2v.s6.62024ac9d5fe from=translated src=- shape=f348da3b vocab=dd01f70a
+-/
 theorem of_isZero {X : A} (hX : IsZero X) : of X = 0 := by
   have hzero : (𝟙 X) ≫ (𝟙 X) = 0 := by
     rw [Category.comp_id]; exact hX.eq_of_src _ _
@@ -89,11 +93,16 @@ theorem of_isZero {X : A} (hX : IsZero X) : of X = 0 := by
   have h := of_shortExact _ hS
   simpa using h
 
+/--
+@isnad1 id=eq.0h1v.s6.abc23052fcb7 from=translated src=- shape=0dd0c4c7 vocab=058b65c4
+-/
 @[simp]
 theorem of_zero : of (0 : A) = 0 := of_isZero (isZero_zero A)
 
 /-- **Isomorphic objects have the same class.**  Proved from the short exact
-sequence `X ≅ Y ⟶ 0`, not assumed as a field.-/
+sequence `X ≅ Y ⟶ 0`, not assumed as a field.
+@isnad1 id=eq.0h4v.s5.0bfd48f9695b from=translated src=- shape=e0c253cd vocab=70939225
+-/
 theorem of_iso {X Y : A} (e : X ≅ Y) : of X = of Y := by
   have hzero : e.hom ≫ (0 : Y ⟶ 0) = 0 := by simp
   have hS : (ShortComplex.mk e.hom (0 : Y ⟶ (0 : A)) hzero).ShortExact :=
@@ -109,6 +118,9 @@ def lift {G : Type*} [AddCommGroup G] (f : A → G)
     [(abelianPresentation A).IsAdditive f] : K₀Ab A →+ G :=
   (abelianPresentation A).lift f
 
+/--
+@isnad1 id=eq.0h4v.s8.8472eb129189 from=translated src=- shape=67ef2739 vocab=735b724c
+-/
 @[simp]
 theorem lift_of {G : Type*} [AddCommGroup G] (f : A → G)
     [(abelianPresentation A).IsAdditive f] (X : A) : lift f (of X) = f X :=
@@ -128,6 +140,9 @@ noncomputable def liftOf {G : Type*} [AddCommGroup G] (f : A → G)
   letI : (abelianPresentation A).IsAdditive f := ⟨fun r ↦ h r.1 r.2⟩
   lift f
 
+/--
+@isnad1 id=eq.1h4v.s8.924df6110cc7 from=translated src=- shape=c0bd3634 vocab=cea64d74
+-/
 @[simp]
 theorem liftOf_of {G : Type*} [AddCommGroup G] (f : A → G)
     (h : ∀ S : ShortComplex A, S.ShortExact → f S.X₂ = f S.X₁ + f S.X₃) (X : A) :
@@ -135,7 +150,9 @@ theorem liftOf_of {G : Type*} [AddCommGroup G] (f : A → G)
   letI : (abelianPresentation A).IsAdditive f := ⟨fun r ↦ h r.1 r.2⟩
   exact lift_of f X
 
-/-- Additive maps out of `K₀Ab` are determined by object classes.-/
+/-- Additive maps out of `K₀Ab` are determined by object classes.
+@isnad1 id=eq.1h4v.s9.88e8d2ff11c9 from=translated src=- shape=46bdf645 vocab=460827f9
+-/
 @[ext 1100]
 theorem hom_ext {G : Type*} [AddCommGroup G] {f g : K₀Ab A →+ G}
     (h : ∀ X : A, f (of X) = g (of X)) : f = g :=

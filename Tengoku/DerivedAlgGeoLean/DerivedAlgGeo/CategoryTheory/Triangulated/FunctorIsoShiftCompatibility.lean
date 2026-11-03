@@ -84,7 +84,9 @@ variable {C D : Type*} [Category* C] [Category* D]
 /-- Install the selected target shift and supplied compatibility so that
 `CategoryTheory.Functor.isTriangulated_of_iso` can transport distinguished
 triangles from the source functor. The source shift remains caller-selected,
-which preserves presentation-specific conventions such as the cotwist sign.-/
+which preserves presentation-specific conventions such as the cotwist sign.
+@isnad1 id=istriang.0h6v.s7.4452547d331a from=translated src=- shape=628c1b96 vocab=85a3d006
+-/
 theorem is_triangulated_of_iso [G.IsTriangulated] :
     letI : F.CommShift ℤ := h.targetCommShift
     F.IsTriangulated := by
@@ -95,7 +97,9 @@ theorem is_triangulated_of_iso [G.IsTriangulated] :
 /-- Transfer triangulatedness to an equivalence whose forward functor is the
 comparison target. Mathlib derives the inverse and equivalence shift structures
 from the selected forward structure before constructing the triangulated
-equivalence.-/
+equivalence.
+@isnad1 id=istriang.1h7v.s8.0ac80d17ea7c from=translated src=- shape=43601285 vocab=aa7d42b9
+-/
 theorem is_triangulated_of_equivalence_functor_eq {E : C ≌ D}
     (hEF : E.functor = F) [G.IsTriangulated] :
     letI : E.functor.CommShift ℤ := hEF ▸ h.targetCommShift

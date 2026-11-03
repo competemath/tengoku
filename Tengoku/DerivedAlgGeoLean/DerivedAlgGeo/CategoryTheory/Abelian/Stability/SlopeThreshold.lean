@@ -76,7 +76,9 @@ exceeding `slopeOfPhase β` in slope.  This is the object-versus-threshold compa
 `phase_le_iff_slope_le`, which compares two objects.
 
 `0 < rank` puts the charge in the *open* upper half plane, so the degree hypothesis plays no
-part and this holds for the weak structure.  `SlopeData` inherits it below.-/
+part and this holds for the weak structure.  `SlopeData` inherits it below.
+@isnad1 id=iff.3h4v.s6.adaaa8b4ec8b from=translated src=- shape=4cf773cb vocab=e75cccf5
+-/
 theorem lt_phase_iff_slopeOfPhase_lt {E : A} (hE : 0 < D.rank E) {β : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1) :
     β < D.phase E ↔ slopeOfPhase β < D.slope E := by
@@ -119,7 +121,9 @@ theorem lt_phase_iff_slopeOfPhase_lt {E : A} (hE : 0 < D.rank E) {β : ℝ}
 /-- **The torsion-free side**, by negation.
 
 `Cutoff.lean`'s two classes are complementary at each phase, and so are the two slope
-conditions; no second argument is needed.-/
+conditions; no second argument is needed.
+@isnad1 id=iff.3h4v.s6.df7045b20cbe from=translated src=- shape=1094ba92 vocab=196185ea
+-/
 theorem phase_le_iff_le_slopeOfPhase {E : A} (hE : 0 < D.rank E) {β : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1) :
     D.phase E ≤ β ↔ D.slope E ≤ slopeOfPhase β := by
@@ -138,7 +142,9 @@ For an object of positive rank and an interior cutoff, exceeding the cutoff in p
 exceeding `slopeOfPhase β` in slope.  This is the object-versus-threshold companion of
 `phase_le_iff_slope_le`, which compares two objects.
 
-Inherited from `WeakSlopeData.lt_phase_iff_slopeOfPhase_lt` along `toWeakSlopeData`.-/
+Inherited from `WeakSlopeData.lt_phase_iff_slopeOfPhase_lt` along `toWeakSlopeData`.
+@isnad1 id=iff.3h4v.s6.b83a31927b10 from=translated src=- shape=25591df7 vocab=0afc9351
+-/
 theorem lt_phase_iff_slopeOfPhase_lt {E : A} (hE : 0 < D.rank E) {β : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1) :
     β < D.toStabilityFunction.phase E ↔ slopeOfPhase β < D.slope E := by
@@ -148,7 +154,9 @@ theorem lt_phase_iff_slopeOfPhase_lt {E : A} (hE : 0 < D.rank E) {β : ℝ}
 /-- **The torsion-free side**, by negation.
 
 `Cutoff.lean`'s two classes are complementary at each phase, and so are the two slope
-conditions; no second argument is needed.-/
+conditions; no second argument is needed.
+@isnad1 id=iff.3h4v.s6.26404f480025 from=translated src=- shape=e1f655d5 vocab=d8a75b37
+-/
 theorem phase_le_iff_le_slopeOfPhase {E : A} (hE : 0 < D.rank E) {β : ℝ}
     (hβ0 : 0 < β) (hβ1 : β < 1) :
     D.toStabilityFunction.phase E ≤ β ↔ D.slope E ≤ slopeOfPhase β := by

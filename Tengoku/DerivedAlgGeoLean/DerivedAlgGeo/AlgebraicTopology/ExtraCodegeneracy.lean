@@ -107,11 +107,17 @@ noncomputable def opIso (Y : CosimplicialObject A) :
       CochainComplex.of_d, op_sum, op_zsmul]
     exact (Category.id_comp _).trans (Category.comp_id _).symm)
 
+/--
+@isnad1 id=eq.0h3v.s9.6e3830a8fe6b from=translated src=- shape=89818d17 vocab=efcb7819
+-/
 @[simp]
 lemma opIso_hom_f (Y : CosimplicialObject A) (n : ℕ) :
     (opIso Y).hom.f n = 𝟙 _ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.560b4596c69b from=translated src=- shape=441ae80b vocab=f150cb12
+-/
 @[simp]
 lemma opIso_inv_f (Y : CosimplicialObject A) (n : ℕ) :
     (opIso Y).inv.f n = 𝟙 _ :=

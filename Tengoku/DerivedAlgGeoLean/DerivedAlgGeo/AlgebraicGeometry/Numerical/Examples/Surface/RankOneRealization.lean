@@ -84,6 +84,9 @@ def surfaceIntersectionForm (h2 : ℝ) : LinearMap.BilinForm ℝ SurfaceDivisor 
     (fun _ _ _ => by ring) (fun _ _ _ => by simp; ring)
     (fun _ _ _ => by ring) (fun _ _ _ => by simp; ring)
 
+/--
+@isnad1 id=eq.0h3v.s8.f6a86ed8c3bd from=translated src=- shape=62f94fef vocab=a4ef5755
+-/
 @[simp]
 theorem surfaceIntersectionForm_apply (h2 x y : ℝ) :
     surfaceIntersectionForm h2 x y = h2 * x * y := rfl
@@ -93,22 +96,34 @@ def surfaceDivisorSpace (h2 : ℝ) : DivisorSpace SurfaceDivisor where
   intersection := surfaceIntersectionForm h2
   intersection_symm := ⟨by intro x y; simp; ring⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.0d6b2ce1f266 from=translated src=- shape=05335494 vocab=e1dfdb1b
+-/
 @[simp]
 theorem surfaceDivisorSpace_pair (h2 x y : ℝ) :
     (surfaceDivisorSpace h2).pair x y = h2 * x * y := rfl
 
 /-! ### The rational divisor piece is the line `ℚ·H` -/
 
+/--
+@isnad1 id=lt.0h0v.s5.497c17f34f44 from=translated src=- shape=1a49f3df vocab=18c50880
+-/
 theorem one_lt_dim : (1 : ℕ) < surfacePB.dim := by rw [surfacePB_dim]; norm_num
 
 /-- The index of `H` in the power basis.-/
 def idx1 : Fin surfacePB.dim := ⟨1, one_lt_dim⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.b78818196a7f from=translated src=- shape=2829c1f3 vocab=a94c0fe0
+-/
 @[simp]
 theorem surfacePB_basis_idx1 : surfacePB.basis idx1 = H := by
   rw [surfacePB_basis_apply]
   simp [idx1]
 
+/--
+@isnad1 id=eq.0h0v.s7.c57dba7eae45 from=translated src=- shape=5820f2b4 vocab=26adc48c
+-/
 theorem surfaceW_preimage_one : surfaceW ⁻¹' ({1} : Set ℕ) = ({idx1} : Set (Fin surfacePB.dim)) := by
   ext i
   constructor
@@ -121,14 +136,18 @@ theorem surfaceW_preimage_one : surfaceW ⁻¹' ({1} : Set ℕ) = ({idx1} : Set 
     rw [this]
     rfl
 
-/-- The codimension-one piece is the rational line spanned by `H`.-/
+/-- The codimension-one piece is the rational line spanned by `H`.
+@isnad1 id=eq.0h0v.s8.0c0c6c5bd2a3 from=translated src=- shape=e829b5e3 vocab=f84721a9
+-/
 theorem surfacePieceOne_eq_span :
     gradedPiece (⇑surfacePB.basis) surfaceW 1 = Submodule.span ℚ ({H} : Set SurfaceRing) := by
   rw [gradedPiece, surfaceW_preimage_one, Set.image_singleton, surfacePB_basis_idx1]
 
 /-! ### The realization -/
 
-/-- The `H`-coordinate of `a • H` is `a`.-/
+/-- The `H`-coordinate of `a • H` is `a`.
+@isnad1 id=eq.0h1v.s8.f36815fe2714 from=translated src=- shape=71ec3903 vocab=d9b69b40
+-/
 theorem coord_idx1_smul_H (a : ℚ) : surfacePB.basis.coord idx1 (a • H) = a := by
   rw [← surfacePB_basis_idx1, Module.Basis.coord_apply, map_smul,
     Module.Basis.repr_self]
@@ -140,7 +159,9 @@ theorem coord_idx1_smul_H (a : ℚ) : surfacePB.basis.coord idx1 (a • H) = a :
 
 The orthogonal complement of a nonzero vector for a nondegenerate form on `ℝ`
 is `0`, so the definiteness clause is vacuous and only positivity of `ω²`
-carries content.-/
+carries content.
+@isnad1 id=hodgedef.2h2v.s5.e8ef13242af8 from=translated src=- shape=42abdbdf vocab=9ea9976d
+-/
 theorem surfaceHodgeDefinite {h2 t : ℝ} (hh2 : 0 < h2) (ht : t ≠ 0) :
     (surfaceDivisorSpace h2).HodgeDefinite t where
   H_square_pos := by

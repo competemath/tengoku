@@ -154,7 +154,9 @@ def Pentagon (D : CoherentConvolutionData C) (P Q R T : 𝒲₁) : Prop :=
   letI := D.monoidal
   MonoidalCategory.Pentagon P Q R T
 
-/-- Every coherent convolution presentation satisfies the pentagon.-/
+/-- Every coherent convolution presentation satisfies the pentagon.
+@isnad1 id=pentagon.0h8v.s5.cfdd82343705 from=translated src=- shape=4bdcd075 vocab=f12ac0be
+-/
 theorem pentagon (D : CoherentConvolutionData C) (P Q R T : 𝒲₁) :
     D.Pentagon P Q R T := by
   letI := D.monoidal
@@ -165,7 +167,9 @@ def Triangle (D : CoherentConvolutionData C) (P Q : 𝒲₁) : Prop :=
   letI := D.monoidal
   (α_ P (𝟙_ 𝒲₁) Q).hom ≫ P ◁ (λ_ Q).hom = (ρ_ P).hom ▷ Q
 
-/-- Every coherent convolution presentation satisfies the triangle.-/
+/-- Every coherent convolution presentation satisfies the triangle.
+@isnad1 id=triangle.0h6v.s5.5b9804d9ff24 from=translated src=- shape=b0d5cd3d vocab=4e4fa13e
+-/
 theorem triangle (D : CoherentConvolutionData C) (P Q : 𝒲₁) :
     D.Triangle P Q := by
   letI := D.monoidal
@@ -188,7 +192,9 @@ variable {C₁ : Correspondence 𝒳 𝒴 𝒲₁} {C₂ : Correspondence 𝒴 �
   {C₃ : Correspondence 𝒳 𝒵 𝒲₃}
 
 /-- The composite of two transforms is a kernel functor for the third
-correspondence, witnessed by the convolved kernel.-/
+correspondence, witnessed by the convolved kernel.
+@isnad1 id=iskernel.0h12v.s6.09fe0c7ae202 from=translated src=- shape=6203827a vocab=68570a65
+-/
 theorem isKernelFunctor_transform_comp (D : ConvolutionData C₁ C₂ C₃)
     (P : 𝒲₁) (Q : 𝒲₂) :
     C₃.IsKernelFunctor (C₁.transform P ⋙ C₂.transform Q) :=
@@ -196,7 +202,9 @@ theorem isKernelFunctor_transform_comp (D : ConvolutionData C₁ C₂ C₃)
 
 /-- Kernel functors are closed under composition.  This is the reason to name
 `ConvolutionData` at all: the property of *being* of Fourier--Mukai type,
-rather than any particular transform, is what composes.-/
+rather than any particular transform, is what composes.
+@isnad1 id=iskernel.2h12v.s6.9c8cef30699f from=translated src=- shape=09c4586c vocab=a8211d59
+-/
 theorem isKernelFunctor_comp (D : ConvolutionData C₁ C₂ C₃)
     {Φ : 𝒳 ⥤ 𝒴} {Ψ : 𝒴 ⥤ 𝒵}
     (hΦ : C₁.IsKernelFunctor Φ) (hΨ : C₂.IsKernelFunctor Ψ) :
@@ -221,7 +229,9 @@ def transformMapConvIso (D : ConvolutionData C₁ C₂ C₃) {P P' : 𝒲₁} (e
         D.compIso P' Q'
 
 /-- Convolving with isomorphisms that are both the identity leaves the
-transform alone.-/
+transform alone.
+@isnad1 id=eq.0h12v.s7.d1e6f30fd9c1 from=translated src=- shape=5bf2331d vocab=de124622
+-/
 @[simp]
 theorem transformMapConvIso_refl (D : ConvolutionData C₁ C₂ C₃) (P : 𝒲₁)
     (Q : 𝒲₂) :

@@ -63,7 +63,9 @@ variable (D : AdditiveMukaiData V Λ)
 does.
 
 This is `mukaiForm_eq_neg_chi₂` with the sign and the `ℚ`-cast discharged, and
-it is the only bridge either inclusion below uses.-/
+it is the only bridge either inclusion below uses.
+@isnad1 id=iff.2h7v.s8.67061873c38e from=translated src=- shape=e42aaa5e vocab=c0bcb3a0
+-/
 theorem mukaiForm_eq_zero_iff_chi₂_eq_zero
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E F : N) :
     D.mukaiForm E F = 0 ↔ V.chi₂ E F = 0 := by
@@ -82,7 +84,9 @@ Euler radical.
 
 No nondegeneracy is involved: the Mukai form is the pairing pulled back along
 the Mukai vector, so a vanishing vector makes it vanish in the first argument
-outright.-/
+outright.
+@isnad1 id=le.2h5v.s8.59271fd598fb from=translated src=- shape=33c17a1d vocab=764ba470
+-/
 theorem ker_le_leftRadical (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) :
     AddSubgroup.toIntSubmodule D.mukaiVectorHom.ker ≤ V.leftRadical := by
   intro E hE
@@ -118,7 +122,9 @@ Read off the pairing formula
 The first two are witnessed by actual sheaves and the third is a statement about
 `b` alone. Note the second is stated for an arbitrary third coordinate: `O_X` has
 Mukai vector `(1, 0, 1)`, not `(1, 0, 0)`, and demanding the latter would be a
-condition no sheaf satisfies.-/
+condition no sheaf satisfies.
+@isnad1 id=detectsr.3h5v.s9.c26511ba8121 from=translated src=- shape=06f83897 vocab=118a2452
+-/
 theorem detectsRadical_of
     (hpoint : ∃ E : N, D.mukaiVectorHom E = (0, 0, 1))
     (hline : ∃ (E : N) (s : ℤ), D.mukaiVectorHom E = (1, 0, s))
@@ -148,7 +154,9 @@ theorem detectsRadical_of
     simpa using this
   refine Prod.ext hr (Prod.ext hc hs)
 
-/-- **The inclusion that closes the gap**, given `DetectsRadical`.-/
+/-- **The inclusion that closes the gap**, given `DetectsRadical`.
+@isnad1 id=le.3h5v.s8.cf685ff68159 from=translated src=- shape=6cbb7c29 vocab=e8bf555c
+-/
 theorem leftRadical_le_ker (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V)
     (hdet : D.DetectsRadical) :
     V.leftRadical ≤ AddSubgroup.toIntSubmodule D.mukaiVectorHom.ker := by
@@ -158,7 +166,9 @@ theorem leftRadical_le_ker (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V)
   exact (V.mem_leftRadical_iff E).mp hE F
 
 /-- Under `DetectsRadical` the two submodules agree, so the Euler radical *is*
-the kernel of the Mukai vector.-/
+the kernel of the Mukai vector.
+@isnad1 id=eq.3h5v.s8.4652a7b44d48 from=translated src=- shape=6cbb7c29 vocab=10f45175
+-/
 theorem leftRadical_eq_ker (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V)
     (hdet : D.DetectsRadical) :
     V.leftRadical = AddSubgroup.toIntSubmodule D.mukaiVectorHom.ker :=
@@ -176,7 +186,9 @@ noncomputable def mukaiVectorQuotient (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V)
     intro E hE
     exact AddMonoidHom.mem_ker.mp (D.leftRadical_le_ker hHRR hK3 hdet hE)
 
-/-- The descent computes the Mukai vector on a representative.-/
+/-- The descent computes the Mukai vector on a representative.
+@isnad1 id=eq.3h6v.s8.b6bc04c3877f from=translated src=- shape=21700885 vocab=53d114f7
+-/
 @[simp]
 theorem mukaiVectorQuotient_mk (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V)
     (hdet : D.DetectsRadical) (E : N) :

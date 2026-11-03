@@ -26,7 +26,9 @@ namespace TopologicalSpace
 variable {X : Type*} [TopologicalSpace X]
 
 /-- A cover by preirreducible open sets that pairwise intersect makes the whole space
-preirreducible.-/
+preirreducible.
+@isnad1 id=ispreirr.4h3v.s6.76fe30d0c2e3 from=translated src=- shape=29ec1234 vocab=f6a2f0bb
+-/
 theorem isPreirreducible_univ_of_cover {ind : Type*} (U : ind → Set X)
     (hopen : ∀ i, IsOpen (U i)) (hcover : ∀ x : X, ∃ i, x ∈ U i)
     (hirred : ∀ i, IsPreirreducible (U i))
@@ -48,7 +50,9 @@ theorem isPreirreducible_univ_of_cover {ind : Type*} (U : ind → Set X)
 /-- The bundled form, adding the nonemptiness `IrreducibleSpace` demands.
 
 Nonemptiness does not follow from the hypotheses: an empty cover over an empty index type
-satisfies all of them vacuously.-/
+satisfies all of them vacuously.
+@isnad1 id=irreduci.4h3v.s6.924e2b052302 from=translated src=- shape=b17c93e9 vocab=3583c26b
+-/
 theorem irreducibleSpace_of_cover {ind : Type*} [Nonempty X] (U : ind → Set X)
     (hopen : ∀ i, IsOpen (U i)) (hcover : ∀ x : X, ∃ i, x ∈ U i)
     (hirred : ∀ i, IsPreirreducible (U i))

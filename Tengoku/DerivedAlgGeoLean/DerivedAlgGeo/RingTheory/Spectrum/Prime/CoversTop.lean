@@ -44,7 +44,9 @@ namespace PrimeSpectrum
 /-- Basic opens defined by a family generating the unit ideal cover the prime spectrum.
 
 The algebraic criterion `Ideal.span (Set.range g) = ⊤` is equivalent to the opens having supremum
-`⊤`; a topological open cover then gives a covering family on the open-set site.-/
+`⊤`; a topological open cover then gives a covering family on the open-set site.
+@isnad1 id=coversto.1h3v.s6.66b45545247e from=translated src=- shape=a4e88f91 vocab=940f5bd6
+-/
 lemma coversTop_basicOpen_of_span_eq_top {R : Type u} [CommSemiring R] {I : Type v}
     (g : I → R) (hg : Ideal.span (Set.range g) = ⊤) :
     (_root_.Opens.grothendieckTopology (TopCat.of (PrimeSpectrum R))).CoversTop

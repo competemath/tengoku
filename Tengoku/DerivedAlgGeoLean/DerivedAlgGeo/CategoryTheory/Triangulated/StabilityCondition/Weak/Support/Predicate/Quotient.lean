@@ -40,6 +40,9 @@ def quotientCharge (V₀ : Submodule ℝ V) (Z : V →ₗ[ℝ] W)
   V₀.liftQ Z hV₀
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.1h5v.s9.a50d9159bef3 from=translated src=- shape=ce2c44c0 vocab=10f963e8
+-/
 theorem quotientCharge_mkQ
     (V₀ : Submodule ℝ V) (Z : V →ₗ[ℝ] W)
     (hV₀ : V₀ ≤ LinearMap.ker Z) (x : V) :
@@ -63,7 +66,9 @@ def HasUniformQuadraticSupportPropertyModulo
 
 /-- Unfolded source-facing form of quotient support: one quadratic form on
 the quotient, nonnegative on every mapped selected class, and negative
-definite on the kernel of the descended charge.-/
+definite on the kernel of the descended charge.
+@isnad1 id=iff.1h6v.s10.429bdf04af34 from=translated src=- shape=f82eb3ca vocab=33dfaf09
+-/
 theorem hasUniformQuadraticSupportPropertyModulo_iff
     (V₀ : Submodule ℝ V) (Z : V →ₗ[ℝ] W)
     (hV₀ : V₀ ≤ LinearMap.ker Z) (S : I → Set V) :
@@ -84,7 +89,9 @@ theorem hasUniformQuadraticSupportPropertyModulo_iff
     exact hnonneg i x hx
 
 /-- Quotient support supplies genuine quadratic support on each individual
-fiber locus.-/
+fiber locus.
+@isnad1 id=hasquadr.2h7v.s9.f4ea2f1c18b5 from=translated src=- shape=5fe75ca4 vocab=0e44b430
+-/
 theorem HasUniformQuadraticSupportPropertyModulo.fiber
     {V₀ : Submodule ℝ V} {Z : V →ₗ[ℝ] W}
     {hV₀ : V₀ ≤ LinearMap.ker Z} {S : I → Set V}
@@ -94,7 +101,9 @@ theorem HasUniformQuadraticSupportPropertyModulo.fiber
   HasUniformQuadraticSupportProperty.fiber h i
 
 /-- Hence every quotient fiber locus satisfies the norm formulation of the
-support property as well.-/
+support property as well.
+@isnad1 id=hassuppo.2h7v.s9.547667bbfddd from=translated src=- shape=5fe75ca4 vocab=06cb7f24
+-/
 theorem HasUniformQuadraticSupportPropertyModulo.hasSupportProperty
     {V₀ : Submodule ℝ V} {Z : V →ₗ[ℝ] W}
     {hV₀ : V₀ ≤ LinearMap.ker Z} {S : I → Set V}
@@ -103,14 +112,18 @@ theorem HasUniformQuadraticSupportPropertyModulo.hasSupportProperty
   (HasUniformQuadraticSupportProperty.fiber h i).hasSupportProperty
 
 omit [FiniteDimensional ℝ V] in
-/-- Every class in the killed subspace maps to zero in the quotient.-/
+/-- Every class in the killed subspace maps to zero in the quotient.
+@isnad1 id=eq.1h3v.s8.274789f4fbc9 from=translated src=- shape=755c439f vocab=4f0bda17
+-/
 theorem mkQ_eq_zero_of_mem
     (V₀ : Submodule ℝ V) {x : V} (hx : x ∈ V₀) : V₀.mkQ x = 0 := by
   apply LinearMap.mem_ker.mp
   rw [Submodule.ker_mkQ]
   exact hx
 
-/-- A constant selected locus gives a constant quotient-supported family.-/
+/-- A constant selected locus gives a constant quotient-supported family.
+@isnad1 id=hasunifo.2h6v.s9.e9f0440db5a3 from=translated src=- shape=1cdd1652 vocab=0e44b430
+-/
 theorem HasQuadraticSupportProperty.constant_modulo
     (V₀ : Submodule ℝ V) (Z : V →ₗ[ℝ] W)
     (hV₀ : V₀ ≤ LinearMap.ker Z) {S : Set V}

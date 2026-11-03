@@ -40,7 +40,9 @@ conclude local bijectivity from a stalk computation, without ever mentioning
 `IsLocallyInjective` — for which no stalkwise criterion exists in `Mathlib`.
 
 The proof is the naturality square of `toSheafify` read on stalks: three of its four edges are
-isomorphisms, so the fourth is one too.-/
+isomorphisms, so the fourth is one too.
+@isnad1 id=w.0h4v.s7.b06e11e2acb0 from=translated src=- shape=79a01d8e vocab=3b276a69
+-/
 lemma W_of_isIso_stalkFunctor_map {X : TopCat.{u}} {F G : X.Presheaf AddCommGrpCat.{u}}
     (f : F ⟶ G) [∀ x : X, IsIso ((stalkFunctor AddCommGrpCat.{u} x).map f)] :
     (Opens.grothendieckTopology X).W f := by

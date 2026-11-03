@@ -67,6 +67,9 @@ def trivialCorrespondence : Correspondence C C C where
 
 variable {C}
 
+/--
+@isnad1 id=eq.0h2v.s4.92a1bc6b36f3 from=translated src=- shape=654d67af vocab=9ac862b3
+-/
 @[simp]
 theorem trivialCorrespondence_transform (K : C) :
     (trivialCorrespondence C).transform K = 𝟭 C := rfl
@@ -79,6 +82,9 @@ def trivialRightAdjointKernelData (K : C) :
   adjKernel := K
   adj := Adjunction.id
 
+/--
+@isnad1 id=eq.0h2v.s4.09a390f68a04 from=translated src=- shape=0a14ffbd vocab=d014eecb
+-/
 @[simp]
 theorem trivialRightAdjointKernelData_adjKernel (K : C) :
     (trivialRightAdjointKernelData K).adjKernel = K := rfl
@@ -89,6 +95,9 @@ def trivialLeftAdjointKernelData (K : C) :
   adjKernel := K
   adj := Adjunction.id
 
+/--
+@isnad1 id=eq.0h2v.s4.dabb94c3c1b1 from=translated src=- shape=0a14ffbd vocab=f4a1fbf9
+-/
 @[simp]
 theorem trivialLeftAdjointKernelData_adjKernel (K : C) :
     (trivialLeftAdjointKernelData K).adjKernel = K := rfl

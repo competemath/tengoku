@@ -26,7 +26,9 @@ noncomputable section
 namespace Threefold
 
 /-- The universal determinant of the threefold family, written out in the two
-polynomials.-/
+polynomials.
+@isnad1 id=eq.0h3v.s6.a835dce5ab4a from=translated src=- shape=3a8b912c vocab=53334e1e
+-/
 theorem chargeFamily_alignmentValue (p : ℝ × ℝ) (v w : NumClass) :
     chargeFamily.alignmentValue p v w =
       reZ p.1 p.2 v * imZ p.1 p.2 w - imZ p.1 p.2 v * reZ p.1 p.2 w := by
@@ -35,7 +37,9 @@ theorem chargeFamily_alignmentValue (p : ℝ × ℝ) (v w : NumClass) :
 /-- Dropping the outer `α` from the imaginary part rescales every wall
 expression by `α`, so it moves no wall off `α = 0`.  This is why the two
 normalisations of the threefold charge found in the literature agree about
-walls.-/
+walls.
+@isnad1 id=or.0h4v.s6.eb929a47a40e from=translated src=- shape=482e0d19 vocab=905d3f76
+-/
 theorem alignmentValue_div_alpha (α β : ℝ) (v w : NumClass) :
     reZ α β v * imZ α β w - imZ α β v * reZ α β w =
       α * (reZ α β v * (imZ α β w / α) - (imZ α β v / α) * reZ α β w) ∨ α = 0 := by
@@ -57,7 +61,9 @@ The fourth slot `∫ch₃` is not in the triple and is not meant to be: the arit
 the root is fixed at three. Generalising the root over the DIMENSION instead
 would make this leaf unreachable — a dimension-indexed self-pairing vanishes
 identically in odd degree — which is recorded as a negative result in
-`docs/architecture/abstraction-tree.md`.-/
+`docs/architecture/abstraction-tree.md`.
+@isnad1 id=eq.0h1v.s5.dbca68f0447f from=translated src=- shape=396a2faa vocab=362a723f
+-/
 theorem discr_eq_selfPairing (v : NumClass) :
     discr v = Mukai.selfPairing (LinearMap.mul ℝ ℝ) (v.deg0, v.deg1, v.deg2) := by
   rw [Mukai.selfPairing_mk]
@@ -79,20 +85,26 @@ def Q (α β : ℝ) (v : NumClass) : ℝ :=
   α ^ 2 * discr (betaTwist β v) + 4 * (betaTwist β v).deg2 ^ 2
     - 6 * (betaTwist β v).deg1 * (betaTwist β v).deg3
 
-/-- At `α = 0` the quantity loses its discriminant term.-/
+/-- At `α = 0` the quantity loses its discriminant term.
+@isnad1 id=eq.0h2v.s6.06dafc774365 from=translated src=- shape=705d8549 vocab=ea341ace
+-/
 theorem Q_zero_alpha (β : ℝ) (v : NumClass) :
     Q 0 β v = 4 * (betaTwist β v).deg2 ^ 2
       - 6 * (betaTwist β v).deg1 * (betaTwist β v).deg3 := by
   rw [Q]
   ring
 
-/-- At `β = 0` the twist disappears.-/
+/-- At `β = 0` the twist disappears.
+@isnad1 id=eq.0h2v.s6.56b647596eb7 from=translated src=- shape=d54e6713 vocab=8c9e2dc9
+-/
 @[simp]
 theorem Q_zero_beta (α : ℝ) (v : NumClass) :
     Q α 0 v = α ^ 2 * discr v + 4 * v.deg2 ^ 2 - 6 * v.deg1 * v.deg3 := by
   rw [Q, betaTwist_zero]
 
-/-- At `α = 0` the tilt slope is the plain ratio of the two twisted degrees.-/
+/-- At `α = 0` the tilt slope is the plain ratio of the two twisted degrees.
+@isnad1 id=eq.0h2v.s5.cd3923df76d1 from=translated src=- shape=accb4378 vocab=1d91129c
+-/
 theorem nu_zero_alpha (β : ℝ) (v : NumClass) :
     nu 0 β v = (betaTwist β v).deg2 / (betaTwist β v).deg1 := by
   rw [nu]

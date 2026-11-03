@@ -24,7 +24,9 @@ namespace QuadraticMap
 variable {M : Type*} [NormedAddCommGroup M] [NormedSpace ℝ M] [FiniteDimensional ℝ M]
 
 /-- The polar form is jointly continuous on a finite-dimensional real normed
-space.-/
+space.
+@isnad1 id=continuo.0h2v.s7.45760c3a63df from=translated src=- shape=174bb6fa vocab=d3b9cc75
+-/
 theorem continuous_polar (Q : QuadraticForm ℝ M) :
     Continuous fun p : M × M => polar (⇑Q) p.1 p.2 := by
   set f : M →ₗ[ℝ] (M →L[ℝ] ℝ) :=
@@ -34,7 +36,9 @@ theorem continuous_polar (Q : QuadraticForm ℝ M) :
     (((LinearMap.continuous_of_finiteDimensional f).comp continuous_fst).prodMk continuous_snd)
 
 /-- A quadratic form on a finite-dimensional real normed space is continuous:
-it is half the diagonal of its polar form.-/
+it is half the diagonal of its polar form.
+@isnad1 id=continuo.0h2v.s6.34fc38789b52 from=translated src=- shape=fa1cdac7 vocab=58b5d851
+-/
 theorem continuous_of_finiteDimensional (Q : QuadraticForm ℝ M) : Continuous ⇑Q := by
   have hdiag : Continuous fun x : M => polar (⇑Q) x x :=
     (Q.continuous_polar).comp (continuous_id.prodMk continuous_id)

@@ -33,6 +33,9 @@ open Limits
 
 variable {C : Type u} [Category.{v} C] [HasZeroMorphisms C] (P : ObjectProperty C)
 
+/--
+@isnad1 id=isclosed.0h3v.s4.0cbf51b396aa from=translated src=- shape=f932bd16 vocab=a596e098
+-/
 instance instIsClosedUnderColimitsOfShapeLeftOrthogonal
     (J : Type u') [Category.{v'} J] :
     P.leftOrthogonal.IsClosedUnderColimitsOfShape J where

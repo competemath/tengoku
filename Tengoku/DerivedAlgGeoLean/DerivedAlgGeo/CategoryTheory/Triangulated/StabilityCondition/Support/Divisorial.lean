@@ -101,6 +101,9 @@ what pins the unhalved convention against `ChernCharacter.discriminant`.-/
 def realDiscriminant : QuadraticForm ℝ (Mukai.RealExtension D) :=
   Mukai.realDiscriminant S.intersection
 
+/--
+@isnad1 id=eq.0h5v.s7.1928a4acb038 from=translated src=- shape=32199be6 vocab=4027ef35
+-/
 @[simp]
 theorem realDiscriminant_apply (r : ℝ) (c : D) (s : ℝ) :
     S.realDiscriminant (r, c, s) = S.pair c c - 2 * r * s := by
@@ -123,6 +126,9 @@ def omegaTwistedDegree (P : StabilityParameters D) :
     rw [h, map_smul]
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.6af97f55f565 from=translated src=- shape=2e79023f vocab=709726b1
+-/
 @[simp]
 theorem omegaTwistedDegree_apply (P : StabilityParameters D) (v : Mukai.RealExtension D) :
     S.omegaTwistedDegree P v = S.pair P.omega (v.2.1 - v.1 • P.B) := rfl
@@ -133,6 +139,9 @@ def realDiscriminantC (P : StabilityParameters D) (C : ℝ) :
     QuadraticForm ℝ (Mukai.RealExtension D) :=
   S.realDiscriminant + C • (QuadraticMap.sq.comp (S.omegaTwistedDegree P))
 
+/--
+@isnad1 id=eq.0h5v.s8.0c71e0342b2f from=translated src=- shape=53926c03 vocab=8dcc2e03
+-/
 theorem realDiscriminantC_apply (P : StabilityParameters D) (C : ℝ)
     (v : Mukai.RealExtension D) :
     S.realDiscriminantC P C v =
@@ -148,6 +157,9 @@ def realCentralCharge (P : StabilityParameters D) :
     Mukai.RealExtension D →ₗ[ℝ] ℂ :=
   Mukai.expChargeLinearMap S.intersection P.B P.omega
 
+/--
+@isnad1 id=eq.0h6v.s8.ccdc787ea238 from=translated src=- shape=c6291f8e vocab=cdbf82e9
+-/
 theorem realCentralCharge_apply (P : StabilityParameters D) (r : ℝ) (c : D) (s : ℝ) :
     S.realCentralCharge P (r, c, s) =
       Complex.ofReal (S.pair P.B c - s - r * (S.pair P.B P.B - S.pair P.omega P.omega) / 2)
@@ -167,11 +179,16 @@ variable (ch : ChernCharacter N D) (S : DivisorSpace D)
 /-- Not a `simp` lemma: `toRealExtension_apply` is already `simp`, so it rewrites
 the left-hand side first and the normal-form linter rejects the attribute.  The
 statement is the identification that keeps the bundled and unbundled forms from
-being two definitions of one quantity.-/
+being two definitions of one quantity.
+@isnad1 id=eq.0h5v.s8.67c4e7f6c7cd from=translated src=- shape=f75fc15d vocab=c14e01a9
+-/
 theorem realDiscriminant_toRealExtension (E : N) :
     S.realDiscriminant (ch.toRealExtension E) = ch.discriminant S E := by
   rw [toRealExtension_apply, DivisorSpace.realDiscriminant_apply, discriminant]
 
+/--
+@isnad1 id=eq.0h6v.s8.c4eb04b268cb from=translated src=- shape=b64de0db vocab=35dc222f
+-/
 @[simp]
 theorem omegaTwistedDegree_toRealExtension (P : StabilityParameters D) (E : N) :
     S.omegaTwistedDegree P (ch.toRealExtension E)
@@ -181,7 +198,9 @@ theorem omegaTwistedDegree_toRealExtension (P : StabilityParameters D) (E : N) :
 /-- Not a `simp` lemma: `toRealExtension_apply` is already `simp`, so it rewrites
 the left-hand side first and the normal-form linter rejects the attribute.  The
 statement is the identification that keeps the bundled and unbundled forms from
-being two definitions of one quantity.-/
+being two definitions of one quantity.
+@isnad1 id=eq.0h7v.s8.df56954775fe from=translated src=- shape=53bc4d92 vocab=b4260729
+-/
 theorem realDiscriminantC_toRealExtension (P : StabilityParameters D) (C : ℝ) (E : N) :
     S.realDiscriminantC P C (ch.toRealExtension E) = ch.discriminantC S P C E := by
   rw [DivisorSpace.realDiscriminantC_apply, ch.realDiscriminant_toRealExtension S E,
@@ -190,7 +209,9 @@ theorem realDiscriminantC_toRealExtension (P : StabilityParameters D) (C : ℝ) 
 /-- Not a `simp` lemma: `toRealExtension_apply` is already `simp`, so it rewrites
 the left-hand side first and the normal-form linter rejects the attribute.  The
 statement is the identification that keeps the bundled and unbundled forms from
-being two definitions of one quantity.-/
+being two definitions of one quantity.
+@isnad1 id=eq.0h6v.s8.c558c1e87580 from=translated src=- shape=ca4e780d vocab=aae2b9a7
+-/
 theorem realCentralCharge_toRealExtension (P : StabilityParameters D) (E : N) :
     S.realCentralCharge P (ch.toRealExtension E) = ch.centralCharge S P E := by
   rw [DivisorSpace.realCentralCharge, Mukai.expChargeLinearMap_apply,
@@ -205,7 +226,9 @@ namespace DivisorSpace
 variable (S : DivisorSpace D)
 
 /-- The imaginary part of a vanishing charge says the twisted `ω`-degree
-vanishes.-/
+vanishes.
+@isnad1 id=eq.1h4v.s8.747ca23a568a from=translated src=- shape=10afa727 vocab=e5a045be
+-/
 theorem omegaTwistedDegree_eq_zero_of_charge_eq_zero (P : StabilityParameters D)
     {v : Mukai.RealExtension D} (hZ : S.realCentralCharge P v = 0) :
     S.omegaTwistedDegree P v = 0 := by
@@ -222,7 +245,9 @@ theorem omegaTwistedDegree_eq_zero_of_charge_eq_zero (P : StabilityParameters D)
 `C`-discriminant is `(c^B)² - r² ω²`, independently of `C`.
 
 Both halves of `Z v = 0` are used: the imaginary part kills the `C` term and the
-real part eliminates `s`.-/
+real part eliminates `s`.
+@isnad1 id=eq.1h5v.s9.7e1cd580f078 from=translated src=- shape=2d071a35 vocab=e8ae30e0
+-/
 theorem realDiscriminantC_of_charge_eq_zero (P : StabilityParameters D) (C : ℝ)
     {v : Mukai.RealExtension D} (hZ : S.realCentralCharge P v = 0) :
     S.realDiscriminantC P C v =
@@ -243,7 +268,9 @@ theorem realDiscriminantC_of_charge_eq_zero (P : StabilityParameters D) (C : ℝ
 /-- **`Δ^C` is negative on every nonzero class of vanishing charge**, given the
 Hodge index theorem in its definite form at `ω`.
 
-No sign condition is imposed on `C`; the `C` term vanishes on the kernel.-/
+No sign condition is imposed on `C`; the `C` term vanishes on the kernel.
+@isnad1 id=lt.3h5v.s8.00e99db4a889 from=translated src=- shape=4a0c6429 vocab=3294db9d
+-/
 theorem realDiscriminantC_neg_of_charge_eq_zero (P : StabilityParameters D)
     (hω : S.HodgeDefinite P.omega) (C : ℝ) {v : Mukai.RealExtension D}
     (hZ : S.realCentralCharge P v = 0) (hv : v ≠ 0) :
@@ -300,7 +327,9 @@ where the `C`-discriminant is nonnegative, given the Hodge index theorem in its
 definite form at `ω`.
 
 Nonnegativity on the locus is the supplied Bogomolov--Gieseker input; negative
-definiteness on the kernel is proved.-/
+definiteness on the kernel is proved.
+@isnad1 id=hasquadr.2h5v.s8.a336bee3801b from=translated src=- shape=003327af vocab=1740f341
+-/
 theorem hasQuadraticSupportProperty (P : StabilityParameters D)
     (hω : S.HodgeDefinite P.omega) (C : ℝ) (locus : Set (Mukai.RealExtension D))
     (hloc : ∀ v ∈ locus, 0 ≤ S.realDiscriminantC P C v) :
@@ -313,7 +342,9 @@ section FiniteDimensional
 variable [FiniteDimensional ℝ D]
 
 /-- The norm-bound formulation, for consumers stated against
-`Support.HasSupportProperty`.-/
+`Support.HasSupportProperty`.
+@isnad1 id=hassuppo.2h5v.s8.e9069a932152 from=translated src=- shape=d7545f5e vocab=2ad445de
+-/
 theorem hasSupportProperty (P : StabilityParameters D)
     (hω : S.HodgeDefinite P.omega) (C : ℝ) (locus : Set (Mukai.RealExtension D))
     (hloc : ∀ v ∈ locus, 0 ≤ S.realDiscriminantC P C v) :
@@ -333,7 +364,9 @@ variable (ch : ChernCharacter N D) (S : DivisorSpace D)
 
 This is the shape a numerical consumer wants: the hypothesis is
 `0 ≤ Δ^C_{ω,B}(E)` for classes `E` in the locus, which
-`discriminant_le_discriminantC` supplies from `Δ(E) ≥ 0` once `C ≥ 0`.-/
+`discriminant_le_discriminantC` supplies from `Δ(E) ≥ 0` once `C ≥ 0`.
+@isnad1 id=hasquadr.2h7v.s8.7259f3c1aec2 from=translated src=- shape=255203a7 vocab=19dd609b
+-/
 theorem hasQuadraticSupportProperty_image (P : StabilityParameters D)
     (hω : S.HodgeDefinite P.omega) (C : ℝ) (locus : Set N)
     (hloc : ∀ E ∈ locus, 0 ≤ ch.discriminantC S P C E) :
