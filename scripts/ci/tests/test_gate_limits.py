@@ -29,8 +29,10 @@ class GateLimits(unittest.TestCase):
 
     @staticmethod
     def blobless(job):
+        """The job reads main blobless: through actions/checkout (`with: filter: blob:none`) or a plain `git fetch --filter=blob:none` in a run step."""
         return any(
-            'filter: "blob:none"' in str(step.get("with", {})) or "blob:none" in str(step.get("with", {})) for step in job.get("steps", [])
+            (step.get("with") or {}).get("filter") == "blob:none" or "--filter=blob:none" in (step.get("run") or "")
+            for step in job.get("steps", [])
         )
 
     def test_every_job_that_checks_out_blobless_has_at_least_fifteen_minutes(self):
@@ -49,7 +51,7 @@ class GateLimits(unittest.TestCase):
 
     def test_the_jobs_that_check_out_blobless_are_found(self):
         # the test above must not pass by finding nothing
-        self.assertGreaterEqual(sum(1 for job in self.jobs().values() if self.blobless(job)), 8)
+        self.assertGreaterEqual(sum(1 for job in self.jobs().values() if self.blobless(job)), 14)
 
 
 if __name__ == "__main__":
