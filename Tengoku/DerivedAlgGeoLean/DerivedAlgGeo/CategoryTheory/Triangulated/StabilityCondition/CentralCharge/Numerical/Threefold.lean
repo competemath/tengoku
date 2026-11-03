@@ -1,0 +1,203 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.CategoryTheory.Triangulated.StabilityCondition.CentralCharge.Exponential.Twist
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# The threefold central charge in the `(α, β)` half plane
+
+This file owns the four-coordinate numerical class, its `β`-twist, and the
+Bayer--Macrì--Toda central charge. It deliberately stops before wall equations
+and wall-specific numerical quantities.
+-/
+
+namespace CategoryTheory.Triangulated.WeakStabilityCondition.StabilityCondition.Wall
+
+noncomputable section
+
+namespace Threefold
+
+/-- A numerical class of a polarised threefold, compressed to its four
+`H`-degrees `(∫H³ch₀, ∫H²ch₁, ∫H·ch₂, ∫ch₃)`.
+
+A quadruple of reals.  It is **not** `ch(E)` for a sheaf `E`, and the first slot
+is weighted by `∫H³`; see the module docstring.-/
+abbrev NumClass : Type := ℝ × ℝ × ℝ × ℝ
+
+namespace NumClass
+
+/-- The weighted rank coordinate, standing for `∫H³·ch₀`.-/
+def deg0 (v : NumClass) : ℝ := v.1
+
+/-- The coordinate standing for `∫H²·ch₁`.-/
+def deg1 (v : NumClass) : ℝ := v.2.1
+
+/-- The coordinate standing for `∫H·ch₂`.-/
+def deg2 (v : NumClass) : ℝ := v.2.2.1
+
+/-- The coordinate standing for `∫ch₃`.-/
+def deg3 (v : NumClass) : ℝ := v.2.2.2
+
+end NumClass
+
+end Threefold
+
+/-- The threefold tuple and the kernel's compressed degrees hold the same four
+reals. Slot `0` is the weighted rank `∫H³·ch₀` on both sides.-/
+def threefoldVec : Threefold.NumClass ≃+ Exp.HDeg 3 where
+  toFun v := ![v.1, v.2.1, v.2.2.1, v.2.2.2]
+  invFun d := (d 0, d 1, d 2, d 3)
+  left_inv := by intro v; simp
+  right_inv := by intro d; funext k; fin_cases k <;> simp
+  map_add' := by intro v w; funext k; fin_cases k <;> simp [Prod.fst_add, Prod.snd_add]
+
+namespace Threefold
+
+open NumClass
+
+/-! ### The `β`-twist on compressed coordinates -/
+
+/-- The compressed `β`-twist: the four `H`-degrees of `ch^{βH} = e^{-βH}ch`.
+
+`deg0` is fixed, because the twist sums over `j ≤ 0` in codimension zero.-/
+def betaTwist (β : ℝ) (v : NumClass) : NumClass :=
+  (v.deg0, v.deg1 - β * v.deg0, v.deg2 - β * v.deg1 + β ^ 2 / 2 * v.deg0,
+    v.deg3 - β * v.deg2 + β ^ 2 / 2 * v.deg1 - β ^ 3 / 6 * v.deg0)
+
+/--
+@isnad1 id=eq.0h2v.s3.df3d9f5eca07 from=translated src=- shape=e589fcfe vocab=95610028
+-/
+@[simp] theorem betaTwist_deg0 (β : ℝ) (v : NumClass) :
+    (betaTwist β v).deg0 = v.deg0 := rfl
+
+/--
+@isnad1 id=eq.0h2v.s4.c8d6364e3d78 from=translated src=- shape=82598739 vocab=46ea3b9c
+-/
+@[simp] theorem betaTwist_deg1 (β : ℝ) (v : NumClass) :
+    (betaTwist β v).deg1 = v.deg1 - β * v.deg0 := rfl
+
+/--
+@isnad1 id=eq.0h2v.s6.2a45e82d9c0f from=translated src=- shape=3e78d4a7 vocab=938e698b
+-/
+@[simp] theorem betaTwist_deg2 (β : ℝ) (v : NumClass) :
+    (betaTwist β v).deg2 = v.deg2 - β * v.deg1 + β ^ 2 / 2 * v.deg0 := rfl
+
+/--
+@isnad1 id=eq.0h2v.s7.829f179b42b9 from=translated src=- shape=6826f5c2 vocab=d262ccd6
+-/
+@[simp] theorem betaTwist_deg3 (β : ℝ) (v : NumClass) :
+    (betaTwist β v).deg3 =
+      v.deg3 - β * v.deg2 + β ^ 2 / 2 * v.deg1 - β ^ 3 / 6 * v.deg0 := rfl
+
+/--
+@isnad1 id=eq.0h1v.s3.c36b4117581e from=translated src=- shape=5b483ac0 vocab=32e9c854
+-/
+@[simp] theorem betaTwist_zero (v : NumClass) : betaTwist 0 v = v := by
+  simp only [betaTwist, deg0, deg1, deg2, deg3]
+  norm_num
+
+/-- The four-coordinate twist is the exponential kernel's action at degree three.
+@isnad1 id=eq.0h2v.s9.7764a94f6a6a from=translated src=- shape=ff1a4a0a vocab=2df95197
+-/
+theorem betaTwist_eq_exp (β : ℝ) (v : NumClass) :
+    threefoldVec (betaTwist β v) = Exp.twist 3 β (threefoldVec v) := by
+  funext i
+  fin_cases i <;>
+    norm_num [Exp.twist_apply, Fin.sum_univ_succ, Nat.factorial,
+      threefoldVec, betaTwist, deg0, deg1, deg2, deg3] <;> ring
+
+/-- **The group law**: twisting by `β₁ + β₂` is twisting by `β₂` and then by
+`β₁`.  This is `e^{-(β₁+β₂)H} = e^{-β₁H}e^{-β₂H}` on the four degrees, and it is
+what makes the name `betaTwist` honest.
+@isnad1 id=eq.0h3v.s4.f100f5864cff from=translated src=- shape=24555d7c vocab=6bd2ca42
+-/
+theorem betaTwist_betaTwist (β₁ β₂ : ℝ) (v : NumClass) :
+    betaTwist β₁ (betaTwist β₂ v) = betaTwist (β₁ + β₂) v := by
+  apply threefoldVec.injective
+  rw [betaTwist_eq_exp, betaTwist_eq_exp, Exp.twist_twist, betaTwist_eq_exp]
+
+/-! ### The charge -/
+
+/-- The real part of the threefold charge at `(α, β)`.-/
+def reZ (α β : ℝ) (v : NumClass) : ℝ :=
+  -v.deg3 + β * v.deg2 - (β ^ 2 - α ^ 2) / 2 * v.deg1
+    + (β ^ 3 - 3 * β * α ^ 2) / 6 * v.deg0
+
+/-- The imaginary part of the threefold charge at `(α, β)`.
+
+The outer factor of `α` is the one the expansion of `-∫exp(-(β+iα)H)ch`
+produces.  Some presentations divide it out; `alignmentValue` is unchanged by that,
+because dropping it rescales the imaginary part by `α > 0` and
+`alignmentValue_div_alpha` records the resulting proportionality.-/
+def imZ (α β : ℝ) (v : NumClass) : ℝ :=
+  α * (v.deg2 - β * v.deg1 + (3 * β ^ 2 - α ^ 2) / 6 * v.deg0)
+
+/-- **`β` is a twist, not a coordinate**: the charge at `(α, β)` is the charge
+at `(α, 0)` of the `β`-twisted class.  This is the consistency check that ties
+the two polynomials to the exponential they came from.
+@isnad1 id=eq.0h3v.s4.a62ea761b4a5 from=translated src=- shape=7c4661da vocab=e5f32bb3
+-/
+theorem reZ_eq_betaTwist (α β : ℝ) (v : NumClass) :
+    reZ α β v = reZ α 0 (betaTwist β v) := by
+  simp only [reZ, betaTwist, deg0, deg1, deg2, deg3]
+  ring
+
+/--
+@isnad1 id=eq.0h3v.s4.c3fee2fd9078 from=translated src=- shape=7c4661da vocab=680d8680
+-/
+theorem imZ_eq_betaTwist (α β : ℝ) (v : NumClass) :
+    imZ α β v = imZ α 0 (betaTwist β v) := by
+  simp only [imZ, betaTwist, deg0, deg1, deg2, deg3]
+  ring
+
+/-- The complex charge whose real and imaginary parts are `reZ` and `imZ`.-/
+def charge (α β : ℝ) : NumClass →+ ℂ :=
+  AddMonoidHom.mk'
+    (fun v => Complex.ofReal (reZ α β v) + Complex.I * Complex.ofReal (imZ α β v))
+    (by
+      intro v w
+      apply Complex.ext
+      · simp only [Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im,
+          Complex.ofReal_re, Complex.ofReal_im, zero_mul, one_mul, sub_zero]
+        simp only [reZ, deg0, deg1, deg2, deg3, Prod.fst_add, Prod.snd_add]
+        ring
+      · simp only [Complex.add_im, Complex.mul_im, Complex.I_re, Complex.I_im,
+          Complex.ofReal_re, Complex.ofReal_im, zero_mul, one_mul, zero_add]
+        simp only [imZ, deg0, deg1, deg2, Prod.fst_add, Prod.snd_add]
+        ring)
+
+/--
+@isnad1 id=eq.0h3v.s6.15c84a7c6fc0 from=translated src=- shape=847abdc9 vocab=153e6b42
+-/
+@[simp]
+theorem charge_re (α β : ℝ) (v : NumClass) : (charge α β v).re = reZ α β v := by
+  simp [charge]
+
+/--
+@isnad1 id=eq.0h3v.s6.e1d7f1946fac from=translated src=- shape=847abdc9 vocab=26fae436
+-/
+@[simp]
+theorem charge_im (α β : ℝ) (v : NumClass) : (charge α β v).im = imZ α β v := by
+  simp [charge]
+
+/-- **The threefold charge family**, a child of the dimension-independent charge
+root.  Its parameter space is the whole `(α, β)` plane: positivity `α > 0` stays
+attached to the statements that need it, exactly as in the surface child.-/
+def chargeFamily : ChargeFamily (ℝ × ℝ) NumClass where
+  charge p := charge p.1 p.2
+
+/--
+@isnad1 id=eq.0h2v.s7.1ec756f37cb5 from=translated src=- shape=da3f208c vocab=1348c75f
+-/
+@[simp]
+theorem chargeFamily_charge (p : ℝ × ℝ) (v : NumClass) :
+    chargeFamily.charge p v = charge p.1 p.2 v := rfl
+
+end Threefold
+
+end
+
+end CategoryTheory.Triangulated.WeakStabilityCondition.StabilityCondition.Wall

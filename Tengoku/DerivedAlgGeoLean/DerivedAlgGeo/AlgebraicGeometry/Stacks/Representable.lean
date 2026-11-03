@@ -1,0 +1,70 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.Seed.CategoryTheory.Sites.SubcanonicalOver
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.AlgebraicGeometry.Sites.Comparison
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.CategoryTheory.Sites.Descent.StackInGroupoids.Representable
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Representable stacks on the big scheme sites
+
+The generic construction of a discrete stack from a sheaf and the generic
+notion of a representable stack morphism are owned by
+`CategoryTheory/Sites/Descent/StackInGroupoids`.  This geometric consumer applies
+that API to the subcanonical big-Zariski, fppf and étale sites of schemes.
+The slice-site example below uses Mathlib’s subcanonical-over instance.
+-/
+
+namespace AlgebraicGeometry
+
+open CategoryTheory Opposite
+
+noncomputable section
+
+universe u
+
+/-- The big-Zariski stack represented by a scheme `X`.-/
+abbrev representableZariskiStack (X : Scheme.{u}) :
+    StackInGroupoids Scheme.{u} Scheme.zariskiTopology :=
+  StackInGroupoids.representable Scheme.zariskiTopology X
+
+/-- The big-fppf stack represented by a scheme `X`. Its subcanonicity follows
+from fpqc descent for representable presheaves.-/
+abbrev representableFppfStack (X : Scheme.{u}) :
+    StackInGroupoids Scheme.{u} Scheme.fppfTopology :=
+  StackInGroupoids.representable Scheme.fppfTopology X
+
+/-- The big-étale stack represented by a scheme `X`.-/
+abbrev representableEtaleStack (X : Scheme.{u}) :
+    StackInGroupoids Scheme.{u} Scheme.etaleTopology :=
+  StackInGroupoids.representable Scheme.etaleTopology X
+
+-- Representability on a slice site needs no scheme-specific stack constructor.
+
+/-- The stack represented by `X` has effective Čech descent for every big
+Zariski covering family.-/
+def representableZariskiCechDescentEquivalence
+    (X S : Scheme.{u})
+    (U : StackInGroupoids.Cover (J := Scheme.zariskiTopology) S) :=
+  (representableZariskiStack X).cechDescentEquivalence U
+
+/-- A morphism `T ⟶ X`, regarded as an object of the stack represented by
+`X` over `T`.-/
+def representableZariskiObject {X T : Scheme.{u}} (f : T ⟶ X) :
+    (representableZariskiStack X).presheaf.obj (.mk (op T)) :=
+  Discrete.mk f
+
+/-- The representable stack remembers its scheme morphisms faithfully.
+@isnad1 id=injectiv.0h2v.s7.965b53134029 from=translated src=- shape=0e384b4a vocab=3c4891d0
+-/
+theorem representableZariskiObject_injective {X T : Scheme.{u}} :
+    Function.Injective (representableZariskiObject (X := X) (T := T)) := by
+  intro f g h
+  exact congrArg Discrete.as h
+
+end
+
+end AlgebraicGeometry
