@@ -105,13 +105,22 @@ noncomputable def wallRadiusSq (v w : NumClass) : ℝ :=
 the only coordinate the nesting argument uses.-/
 noncomputable def wallOffset (v w : NumClass) : ℝ := minB v w / minA v w + v.deg / v.rk
 
+/--
+@isnad1 id=eq.0h2v.s4.3df3626ba9c6 from=translated src=- shape=1d3cd79f vocab=fbbe7dd4
+-/
 @[simp]
 theorem wallCentre_eq (v w : NumClass) : wallCentre v w = -(minB v w) / minA v w := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.ac739ae5e70f from=translated src=- shape=ecd4b867 vocab=8f9815da
+-/
 @[simp]
 theorem wallRadiusSq_eq (v w : NumClass) :
     wallRadiusSq v w = (minB v w ^ 2 - 2 * minA v w * minC v w) / minA v w ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.869ff52a556e from=translated src=- shape=0793a4f2 vocab=47113515
+-/
 @[simp]
 theorem wallOffset_eq (v w : NumClass) :
     wallOffset v w = minB v w / minA v w + v.deg / v.rk := rfl
@@ -119,7 +128,9 @@ theorem wallOffset_eq (v w : NumClass) :
 /-! ### The normal form -/
 
 /-- **The centre in terms of the offset.** Immediate from the definitions; it is
-what makes two centres differ by `a₂ - a₁`.-/
+what makes two centres differ by `a₂ - a₁`.
+@isnad1 id=eq.0h2v.s5.e32353f31ef3 from=translated src=- shape=89ae2ceb vocab=950b2cfd
+-/
 theorem wallCentre_eq_sub_offset (v w : NumClass) :
     wallCentre v w = v.deg / v.rk - wallOffset v w := by
   simp only [wallCentre_eq, wallOffset_eq, neg_div]
@@ -130,7 +141,9 @@ theorem wallCentre_eq_sub_offset (v w : NumClass) :
 
 This is the only place `minor_orth` is used, and it is where it is spent:
 `ch₂·minA + deg·minB + rk·minC = 0` solves for `minC`, and substituting that
-into `wallRadiusSq` collapses it to the displayed form.-/
+into `wallRadiusSq` collapses it to the displayed form.
+@isnad1 id=eq.2h2v.s6.44a107385e6a from=translated src=- shape=46aba12b vocab=ee09563b
+-/
 theorem wallRadiusSq_eq_offset {v w : NumClass} (hrk : v.rk ≠ 0) (hA : minA v w ≠ 0) :
     wallRadiusSq v w = wallOffset v w ^ 2 - v.discr / v.rk ^ 2 := by
   have h := minor_orth v w
@@ -144,7 +157,9 @@ theorem wallRadiusSq_eq_offset {v w : NumClass} (hrk : v.rk ≠ 0) (hA : minA v 
 /-! ### The arithmetic core -/
 
 /-- **The identity the ordering rests on.** One `ring` call, and everything else
-in this file is bookkeeping around it.-/
+in this file is bookkeeping around it.
+@isnad1 id=eq.0h3v.s7.ca2f108bddf5 from=translated src=- shape=84385ed4 vocab=e8d9ab0e
+-/
 theorem nesting_identity (a₁ a₂ k : ℝ) :
     (a₁ * a₂ - k) ^ 2 - (a₁ ^ 2 - k) * (a₂ ^ 2 - k) = k * (a₁ - a₂) ^ 2 := by ring
 
@@ -153,7 +168,9 @@ with constant `k ≥ 0`, both with nonnegative squared radius and offsets of the
 same sign, satisfy the two square-root-free nesting inequalities.
 
 The hypothesis `0 < a₁ * a₂` is the same-family condition; without it the
-conclusion is false, as `walls_not_nested_of_opposite_offset` shows.-/
+conclusion is false, as `walls_not_nested_of_opposite_offset` shows.
+@isnad1 id=and.4h3v.s8.93903b7f6d6c from=translated src=- shape=a2cc2338 vocab=d8e6b3e9
+-/
 theorem nested_of_offsets {a₁ a₂ k : ℝ} (hk0 : 0 ≤ k)
     (h₁ : k ≤ a₁ ^ 2) (h₂ : k ≤ a₂ ^ 2) (hfam : 0 < a₁ * a₂) :
     (a₂ - a₁) ^ 2 ≤ (a₁ ^ 2 - k) + (a₂ ^ 2 - k) ∧
@@ -177,7 +194,9 @@ rather than the two crossing.
 
 `Basic.lean`'s `wall_eq_of_meet` supplies disjointness and explicitly declines
 this claim for want of the discriminant input. `Discriminant.lean` supplies the
-input; this is what it buys.-/
+input; this is what it buys.
+@isnad1 id=and.7h3v.s7.a20998f43f17 from=translated src=- shape=246ff32f vocab=7969233e
+-/
 theorem walls_nested_of_discr_nonneg {v w₁ w₂ : NumClass}
     (hrk : v.rk ≠ 0) (hdisc : 0 ≤ v.discr)
     (hA₁ : minA v w₁ ≠ 0) (hA₂ : minA v w₂ ≠ 0)
@@ -207,7 +226,9 @@ across the vertical wall. -/
 /-- **Dropping the same-family hypothesis makes `walls_nested_of_discr_nonneg`
 false.** `v = (1, 0, -1)` has `Δ = 2`; the two walls `(0, 1, -2)` and
 `(0, 1, 2)` have radii squared `2` and centres `∓2`, so the squared distance
-between the centres is `16` while the radii sum to `4`.-/
+between the centres is `16` while the radii sum to `4`.
+@isnad1 id=ex.0h0v.s7.697e3d1746d0 from=translated src=- shape=1b0e8b03 vocab=7969233e
+-/
 theorem walls_not_nested_of_opposite_offset :
     ∃ v w₁ w₂ : NumClass,
       v.rk ≠ 0 ∧ 0 ≤ v.discr ∧ minA v w₁ ≠ 0 ∧ minA v w₂ ≠ 0 ∧

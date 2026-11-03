@@ -72,7 +72,9 @@ namespace NumClass
 /-- **The Bogomolov discriminant** `Δ(v) = c² - 2·r·d` of a numerical class.-/
 def discr (v : NumClass) : ℝ := v.deg ^ 2 - 2 * v.rk * v.ch2
 
-/-- `discr` unfolded, for rewriting.-/
+/-- `discr` unfolded, for rewriting.
+@isnad1 id=eq.0h1v.s5.7bfde0dbf549 from=translated src=- shape=60b6e7ef vocab=7209a0b8
+-/
 theorem discr_eq (v : NumClass) : v.discr = v.deg ^ 2 - 2 * v.rk * v.ch2 := rfl
 
 /-- **This discriminant is the Mukai self-pairing**, at coefficient ring `ℝ`
@@ -85,14 +87,18 @@ which is why the degree lands in the middle slot and the rank pairs with `ch₂`
 
 `Mukai.pairing` is generalised over its coefficient ring precisely so that this
 projection and the six others can all name it; see
-`LinearAlgebra/Lattice/Mukai/Basic.lean`.-/
+`LinearAlgebra/Lattice/Mukai/Basic.lean`.
+@isnad1 id=eq.0h1v.s5.6b1b8dc05bd1 from=translated src=- shape=e4f8f7b3 vocab=9e9d45b1
+-/
 theorem discr_eq_selfPairing (v : NumClass) :
     v.discr = Mukai.selfPairing (LinearMap.mul ℝ ℝ) v := by
   rw [discr_eq, Mukai.selfPairing_mk]
   show _ = v.deg * v.deg - 2 * (v.rk * v.ch2)
   ring
 
-/-- At rank zero the discriminant is the square of the degree.-/
+/-- At rank zero the discriminant is the square of the degree.
+@isnad1 id=eq.1h1v.s5.04bb001906e4 from=translated src=- shape=ea507e9c vocab=06e15d39
+-/
 theorem discr_of_rk_eq_zero {v : NumClass} (h : v.rk = 0) : v.discr = v.deg ^ 2 := by
   rw [discr_eq, h]; ring
 
@@ -100,16 +106,27 @@ theorem discr_of_rk_eq_zero {v : NumClass} (h : v.rk = 0) : v.discr = v.deg ^ 2 
 `Basic.lean` because the discriminant is its only consumer.-/
 def scale (c : ℝ) (v : NumClass) : NumClass := (c * v.rk, c * v.deg, c * v.ch2)
 
+/--
+@isnad1 id=eq.0h2v.s4.1c45e87d4e4d from=translated src=- shape=e2f86da2 vocab=eb922825
+-/
 @[simp]
 theorem scale_rk (c : ℝ) (v : NumClass) : (scale c v).rk = c * v.rk := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.bb01108ba84f from=translated src=- shape=e2f86da2 vocab=acc2f104
+-/
 @[simp]
 theorem scale_deg (c : ℝ) (v : NumClass) : (scale c v).deg = c * v.deg := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.ecf0dc82a4f4 from=translated src=- shape=e2f86da2 vocab=322cbb8c
+-/
 @[simp]
 theorem scale_ch2 (c : ℝ) (v : NumClass) : (scale c v).ch2 = c * v.ch2 := rfl
 
-/-- **The discriminant is a quadratic form**: it scales by `c²`.-/
+/-- **The discriminant is a quadratic form**: it scales by `c²`.
+@isnad1 id=eq.0h2v.s5.9db1906cc46e from=translated src=- shape=047e6df2 vocab=5a3952f6
+-/
 theorem discr_scale (c : ℝ) (v : NumClass) : (scale c v).discr = c ^ 2 * v.discr := by
   simp only [discr_eq, scale_rk, scale_deg, scale_ch2]; ring
 
@@ -122,7 +139,9 @@ end NumClass
 
 The proof goes through `charge_eq_zero_iff`, which solves the vanishing for the
 two coordinates `deg` and `ch₂` in terms of `rk`; substituting both into the
-discriminant leaves `-(r²t²)` after `ring`.-/
+discriminant leaves `-(r²t²)` after `ring`.
+@isnad1 id=eq.2h3v.s6.254213c699cd from=translated src=- shape=7fbc4db0 vocab=e93bc181
+-/
 theorem discr_eq_neg_of_charge_eq_zero {s t : ℝ} (ht : t ≠ 0) {v : NumClass}
     (h : reZ s t v = 0 ∧ imZ s t v = 0) :
     v.discr = -(v.rk ^ 2 * t ^ 2) := by
@@ -134,7 +153,9 @@ has nowhere-vanishing charge on the whole half plane.
 
 `discr_eq_neg_of_charge_eq_zero` turns the assumed vanishing into
 `0 ≤ -(r²t²)`, which with `t ≠ 0` forces `r = 0`; `charge_eq_zero_iff` then
-collapses the other two coordinates as well, contradicting `v ≠ 0`.-/
+collapses the other two coordinates as well, contradicting `v ≠ 0`.
+@isnad1 id=not.3h3v.s6.6ec1bdd80e54 from=translated src=- shape=ab59cd8a vocab=75ae457c
+-/
 theorem charge_ne_zero_of_discr_nonneg {s t : ℝ} (ht : t ≠ 0) {v : NumClass}
     (hv : v ≠ (0, 0, 0)) (hd : 0 ≤ v.discr) :
     ¬(reZ s t v = 0 ∧ imZ s t v = 0) := by
@@ -156,7 +177,9 @@ Bogomolov discriminant is nonnegative.
 
 Downstream lanes should cite this rather than `wall_eq_of_meet`: it is the same
 conclusion with a hypothesis a semistable class satisfies, instead of one about
-a point of the half plane.-/
+a point of the half plane.
+@isnad1 id=iff.8h7v.s7.b47c2638a841 from=translated src=- shape=ff558caa vocab=634b2410
+-/
 theorem wall_eq_of_meet_of_discr_nonneg {s t : ℝ} (ht : t ≠ 0) {v w₁ w₂ : NumClass}
     (hv : v ≠ (0, 0, 0)) (hdisc : 0 ≤ v.discr)
     (h₁ : wallExpr s t v w₁ = 0) (h₂ : wallExpr s t v w₂ = 0)
@@ -174,7 +197,9 @@ meeting at `(0, 1)`, which is what makes the charge hypothesis of
 `wall_eq_of_meet_of_discr_nonneg` — the two statements are compatible, and this
 is the check. -/
 
-/-- The counterexample class of `Basic.lean` has discriminant `-4`.-/
+/-- The counterexample class of `Basic.lean` has discriminant `-4`.
+@isnad1 id=eq.0h0v.s3.5fadf5c9f0e0 from=translated src=- shape=f7285ee8 vocab=66945f44
+-/
 theorem discr_degV : degV.discr = -4 := by
   norm_num [NumClass.discr_eq, degV, rk, deg, ch2]
 

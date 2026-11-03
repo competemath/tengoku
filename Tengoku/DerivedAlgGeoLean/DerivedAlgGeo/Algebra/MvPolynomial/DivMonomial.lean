@@ -22,7 +22,9 @@ universe u
 
 namespace Finsupp
 
-/-- `Finsupp.degree` is `Finsupp.weight 1`, pointwise.-/
+/-- `Finsupp.degree` is `Finsupp.weight 1`, pointwise.
+@isnad1 id=eq.0h2v.s7.6c3249de5928 from=translated src=- shape=12f16c93 vocab=cb830fed
+-/
 theorem degree_eq_weight_one_apply {ι : Type u} (e : ι →₀ ℕ) :
     degree e = weight 1 e := by
   rw [degree_eq_weight_one]
@@ -35,7 +37,9 @@ namespace MvPolynomial
 variable {ι R : Type u} [CommRing R]
 
 /-- Dividing by a monomial drops homogeneous degree by the degree of that
-monomial.-/
+monomial.
+@isnad1 id=ishomoge.1h5v.s7.48ee80d213d5 from=translated src=- shape=1e13a904 vocab=8b9b8530
+-/
 theorem isHomogeneous_divMonomial {p : MvPolynomial ι R} {s : ι →₀ ℕ}
     {k : ℕ} (hp : p.IsHomogeneous (s.degree + k)) :
     (divMonomial p s).IsHomogeneous k := by
@@ -48,14 +52,18 @@ theorem isHomogeneous_divMonomial {p : MvPolynomial ι R} {s : ι →₀ ℕ}
   exact Nat.add_left_cancel h
 
 /-- Dividing off a factor already present leaves the rest of the division to
-do.-/
+do.
+@isnad1 id=eq.0h5v.s8.3f4d3594e9a6 from=translated src=- shape=33d91e7e vocab=1d5235ea
+-/
 theorem divMonomial_monomial_mul_add (a b : ι →₀ ℕ)
     (x : MvPolynomial ι R) :
     divMonomial (monomial a 1 * x) (a + b) = divMonomial x b := by
   rw [divMonomial_add, divMonomial_monomial_mul]
 
 /-- A monomial factor passes through a division when the factor and divisor
-have disjoint support.-/
+have disjoint support.
+@isnad1 id=eq.1h5v.s9.dbc3ddcc220d from=translated src=- shape=8fcb259c vocab=0623b83f
+-/
 theorem divMonomial_monomial_mul_comm {a s : ι →₀ ℕ}
     (hd : ∀ j, a j = 0 ∨ s j = 0) (p : MvPolynomial ι R) :
     divMonomial (monomial a 1 * p) s =
@@ -84,7 +92,9 @@ theorem divMonomial_monomial_mul_comm {a s : ι →₀ ℕ}
 set_option maxHeartbeats 800000 in
 /-- Raising a numerator by a power of one monomial and then dividing off one
 of its factors agrees with first dividing and then multiplying by the
-disjoint remaining factor.-/
+disjoint remaining factor.
+@isnad1 id=eq.2h9v.s9.40fe08fae17b from=translated src=- shape=864c2746 vocab=7d49ec45
+-/
 theorem divMonomial_pow_mul {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0)
     (m t : ℕ) (p : MvPolynomial ι R) :
@@ -114,7 +124,9 @@ theorem divMonomial_pow_mul {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
 /-! ## Exact division by a power of one variable -/
 
 /-- Dividing a homogeneous polynomial of degree `n + d` by `Xᵢⁿ`, when the division is exact,
-produces a homogeneous polynomial of degree `d`.-/
+produces a homogeneous polynomial of degree `d`.
+@isnad1 id=mem.1h6v.s8.6dc901b734ca from=translated src=- shape=83edc854 vocab=c78ed319
+-/
 theorem divMonomial_single_mem_homogeneousSubmodule
     (ι k : Type u) [Field k] (i : ι) (n d : ℕ) (p : MvPolynomial ι k)
     (hp : p ∈ homogeneousSubmodule ι k (n + d)) :
@@ -126,7 +138,9 @@ theorem divMonomial_single_mem_homogeneousSubmodule
   simp only [map_add, Finsupp.weight_single, Pi.one_apply, nsmul_eq_mul, mul_one] at hdeg
   exact Nat.add_left_cancel hdeg
 
-/-- Exact division by `Xᵢⁿ` reconstructs the original polynomial.-/
+/-- Exact division by `Xᵢⁿ` reconstructs the original polynomial.
+@isnad1 id=eq.1h5v.s8.992add39e1cc from=translated src=- shape=61ecb6f7 vocab=4f157f14
+-/
 theorem X_pow_mul_divMonomial_single
     (ι k : Type u) [Field k] (i : ι) (n : ℕ) (p : MvPolynomial ι k)
     (hdiv : (X i : MvPolynomial ι k) ^ n ∣ p) :
@@ -139,7 +153,9 @@ theorem X_pow_mul_divMonomial_single
     divMonomial_add_modMonomial p (Finsupp.single i n)
 
 /-- If a fraction with denominator a power of `Xᵢ` also admits a denominator involving only a
-different variable, then its numerator is divisible by the entire power of `Xᵢ`.-/
+different variable, then its numerator is divisible by the entire power of `Xᵢ`.
+@isnad1 id=dvd.2h8v.s8.fb7226c9d46d from=translated src=- shape=b823b9ca vocab=9d5d4a9a
+-/
 theorem X_pow_dvd_of_cross_mul
     (ι k : Type u) [Field k] {i j : ι} (hij : i ≠ j) (n m : ℕ)
     (p q : MvPolynomial ι k) (hcross : X j ^ m * p = X i ^ n * q) :
@@ -190,7 +206,9 @@ theorem eq_zero_of_X_pow_dvd_of_isHomogeneous_of_lt
 cross-variable equation forces divisibility by its own denominator power.
 
 The cross equation makes `X i ^ a` divide `p`, while `m = a + d` and `d < 0`
-put the homogeneous degree of `p` strictly below `a`.-/
+put the homogeneous degree of `p` strictly below `a`.
+@isnad1 id=eq.5h10v.s9.0fb5239c203a from=translated src=- shape=9c202cd4 vocab=45790474
+-/
 theorem num_eq_zero_of_cross_of_neg
     (ι k : Type u) [Field k] {i j : ι} (hij : i ≠ j) (d : ℤ) (hd : d < 0)
     (a b m : ℕ) (p q : MvPolynomial ι k) (hm : (m : ℤ) = (a : ℤ) + d)

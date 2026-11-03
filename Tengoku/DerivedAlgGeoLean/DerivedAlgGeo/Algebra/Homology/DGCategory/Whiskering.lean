@@ -72,17 +72,26 @@ def whiskerLeft (η : HomogeneousNatTrans G H n) :
     intro X Y p r hpn hnp f
     exact naturality η p r hpn hnp (F.map p f)⟩
 
+/--
+@isnad1 id=eq.0h9v.s9.b26c604c792d from=translated src=- shape=030143cc vocab=9576d382
+-/
 @[simp]
 theorem whiskerLeft_app (η : HomogeneousNatTrans G H n) (X : C) :
     app (whiskerLeft F η) X = app η (F.obj X) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.2b3b094c71f0 from=translated src=- shape=1f0552b5 vocab=f9058fbb
+-/
 @[simp]
 theorem whiskerLeft_zero :
     whiskerLeft F (0 : HomogeneousNatTrans G H n) = 0 := by
   ext X
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s12.34d2e7d57988 from=translated src=- shape=312a3817 vocab=f5c673a6
+-/
 theorem whiskerLeft_add (η θ : HomogeneousNatTrans G H n) :
     whiskerLeft F (η + θ) = whiskerLeft F η + whiskerLeft F θ := by
   ext X
@@ -93,19 +102,26 @@ def whiskerLeftHom (G H : DGFunctor D E) (n : ℤ) :
     HomogeneousNatTrans G H n →+ HomogeneousNatTrans (F.comp G) (F.comp H) n :=
   AddMonoidHom.mk' (whiskerLeft F) (whiskerLeft_add F)
 
+/--
+@isnad1 id=eq.0h8v.s14.f41db9692d3b from=translated src=- shape=50733e03 vocab=e47ea05b
+-/
 @[simp]
 theorem whiskerLeftHom_apply (η : HomogeneousNatTrans G H n) :
     whiskerLeftHom F G H n η = whiskerLeft F η :=
   rfl
 
-/-- Left whiskering takes the identity transformation to the identity.-/
+/-- Left whiskering takes the identity transformation to the identity.
+@isnad1 id=eq.0h5v.s9.fc320077396b from=translated src=- shape=1e6abef7 vocab=ae8da6ac
+-/
 @[simp]
 theorem whiskerLeft_id (G : DGFunctor D E) :
     whiskerLeft F (id G) = id (F.comp G) :=
   rfl
 
 /-- Left whiskering is a homomorphism for vertical composition, in every
-result degree.-/
+result degree.
+@isnad1 id=eq.1h12v.s17.c4c83c0433c7 from=translated src=- shape=c2f30f2c vocab=aaa25281
+-/
 theorem whiskerLeft_composition (η : HomogeneousNatTrans G H n)
     (θ : HomogeneousNatTrans H I m) (r : ℤ) (h : n + m = r) :
     whiskerLeft F (composition G H I n m r h η θ) =
@@ -116,13 +132,17 @@ theorem whiskerLeft_composition (η : HomogeneousNatTrans G H n)
     whiskerLeft_app, whiskerLeft_app]
   rfl
 
-/-- Left whiskering commutes with the pointwise differential.-/
+/-- Left whiskering commutes with the pointwise differential.
+@isnad1 id=eq.0h8v.s10.acf78f96a7e9 from=translated src=- shape=b805a407 vocab=3a8f00ab
+-/
 @[simp]
 theorem whiskerLeft_differential (η : HomogeneousNatTrans G H n) :
     differential (whiskerLeft F η) = whiskerLeft F (differential η) :=
   rfl
 
-/-- A whiskered closed transformation is closed.-/
+/-- A whiskered closed transformation is closed.
+@isnad1 id=isclosed.1h8v.s9.834d309237bc from=translated src=- shape=44402518 vocab=262e9c43
+-/
 theorem IsClosed.whiskerLeft {η : HomogeneousNatTrans G H n} (hη : IsClosed η) :
     IsClosed (HomogeneousNatTrans.whiskerLeft F η) := by
   ext X
@@ -153,18 +173,27 @@ def whiskerRight (η : HomogeneousNatTrans F G n) (K : DGFunctor D E) :
       naturality η p r hpn hnp f]
     simp [Units.smul_def, map_zsmul]⟩
 
+/--
+@isnad1 id=eq.0h9v.s11.2dd92f5707ab from=translated src=- shape=6ea13654 vocab=c66aa5af
+-/
 @[simp]
 theorem whiskerRight_app (η : HomogeneousNatTrans F G n) (K : DGFunctor D E)
     (X : C) :
     app (whiskerRight η K) X = K.map n (app η X) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.898f197be442 from=translated src=- shape=00141c64 vocab=9f6b9d87
+-/
 @[simp]
 theorem whiskerRight_zero (K : DGFunctor D E) :
     whiskerRight (0 : HomogeneousNatTrans F G n) K = 0 := by
   ext X
   exact map_zero (K.map n)
 
+/--
+@isnad1 id=eq.0h9v.s12.17af7f82f4f8 from=translated src=- shape=4fd1e311 vocab=7251b14a
+-/
 theorem whiskerRight_add (η θ : HomogeneousNatTrans F G n)
     (K : DGFunctor D E) :
     whiskerRight (η + θ) K = whiskerRight η K + whiskerRight θ K := by
@@ -177,6 +206,9 @@ def whiskerRightHom (F G : DGFunctor C D) (n : ℤ) (K : DGFunctor D E) :
   AddMonoidHom.mk' (fun η => whiskerRight η K)
     (fun η θ => whiskerRight_add η θ K)
 
+/--
+@isnad1 id=eq.0h8v.s14.aac34f3d1c66 from=translated src=- shape=0f8dc5d6 vocab=1841f7e8
+-/
 @[simp]
 theorem whiskerRightHom_apply (η : HomogeneousNatTrans F G n)
     (K : DGFunctor D E) :
@@ -185,7 +217,9 @@ theorem whiskerRightHom_apply (η : HomogeneousNatTrans F G n)
 
 /-- Right whiskering takes the identity transformation to the identity.  This
 is `DGFunctor.map_id`, and it is the one place where right whiskering needs
-more than additivity of `K.map`.-/
+more than additivity of `K.map`.
+@isnad1 id=eq.0h5v.s9.d275f08de717 from=translated src=- shape=21708dc7 vocab=218de98f
+-/
 @[simp]
 theorem whiskerRight_id (F : DGFunctor C D) (K : DGFunctor D E) :
     whiskerRight (id F) K = id (F.comp K) := by
@@ -193,7 +227,9 @@ theorem whiskerRight_id (F : DGFunctor C D) (K : DGFunctor D E) :
   exact K.map_id (F.obj X)
 
 /-- Right whiskering is a homomorphism for vertical composition, in every
-result degree.  This is `DGFunctor.map_comp`.-/
+result degree.  This is `DGFunctor.map_comp`.
+@isnad1 id=eq.1h12v.s17.0900af0db3c6 from=translated src=- shape=8e6558c1 vocab=73a7b2f9
+-/
 theorem whiskerRight_composition (η : HomogeneousNatTrans F G n)
     (θ : HomogeneousNatTrans G H m) (r : ℤ) (h : n + m = r)
     (K : DGFunctor D E) :
@@ -206,7 +242,9 @@ theorem whiskerRight_composition (η : HomogeneousNatTrans F G n)
   rfl
 
 /-- Right whiskering commutes with the pointwise differential.  This is
-`DGFunctor.map_d`.-/
+`DGFunctor.map_d`.
+@isnad1 id=eq.0h8v.s10.8a0da697aa73 from=translated src=- shape=acecd792 vocab=d222dbea
+-/
 @[simp]
 theorem whiskerRight_differential (η : HomogeneousNatTrans F G n)
     (K : DGFunctor D E) :
@@ -216,7 +254,9 @@ theorem whiskerRight_differential (η : HomogeneousNatTrans F G n)
     K.map_d n (n + 1)]
   rfl
 
-/-- A whiskered closed transformation is closed.-/
+/-- A whiskered closed transformation is closed.
+@isnad1 id=isclosed.1h8v.s9.93aa9517d132 from=translated src=- shape=26bac6fa vocab=11cf8662
+-/
 theorem IsClosed.whiskerRight {η : HomogeneousNatTrans F G n} (hη : IsClosed η)
     (K : DGFunctor D E) :
     IsClosed (HomogeneousNatTrans.whiskerRight η K) := by
@@ -239,19 +279,25 @@ section Compat
 
 variable {F F' : DGFunctor C D} {G G' : DGFunctor D E} {n m : ℤ}
 
-/-- Whiskering twice on the right is whiskering by the composite.-/
+/-- Whiskering twice on the right is whiskering by the composite.
+@isnad1 id=eq.0h10v.s10.a44a511c3715 from=translated src=- shape=a7beb49c vocab=9f6b9d87
+-/
 theorem whiskerRight_whiskerRight (α : HomogeneousNatTrans F F' n)
     (G : DGFunctor D E) (K : DGFunctor E B) :
     whiskerRight (whiskerRight α G) K = whiskerRight α (G.comp K) :=
   rfl
 
-/-- Whiskering twice on the left is whiskering by the composite.-/
+/-- Whiskering twice on the left is whiskering by the composite.
+@isnad1 id=eq.0h10v.s10.4e92f277a139 from=translated src=- shape=f4ec669f vocab=f9058fbb
+-/
 theorem whiskerLeft_whiskerLeft (F : DGFunctor C D) (G : DGFunctor D E)
     {K K' : DGFunctor E B} (β : HomogeneousNatTrans K K' n) :
     whiskerLeft F (whiskerLeft G β) = whiskerLeft (F.comp G) β :=
   rfl
 
-/-- Whiskering on the two sides commutes.-/
+/-- Whiskering on the two sides commutes.
+@isnad1 id=eq.0h10v.s10.b9d11320e91c from=translated src=- shape=0a4fede9 vocab=e5bcb6a3
+-/
 theorem whiskerRight_whiskerLeft (F : DGFunctor C D)
     (β : HomogeneousNatTrans G G' m) (K : DGFunctor E B) :
     whiskerRight (whiskerLeft F β) K = whiskerLeft F (whiskerRight β K) :=
@@ -270,7 +316,9 @@ variable {F F' : DGFunctor C D} {G G' : DGFunctor D E} {n m : ℤ}
 Reading the horizontal composite of `α` and `β` in the two possible orders
 differs by `(-1)^(m * n)`.  The identity is nothing but graded naturality of
 `β` evaluated at the degree-`n` morphism `α X`, which is why the sign is
-`β`'s degree times `α`'s and not something new.-/
+`β`'s degree times `α`'s and not something new.
+@isnad1 id=eq.2h13v.s15.aa6c46573848 from=translated src=- shape=d4d29873 vocab=b8e0afd2
+-/
 theorem interchange_app (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (hnm : n + m = r)
     (hmn : m + n = r) (X : C) :
@@ -284,7 +332,9 @@ theorem interchange_app (α : HomogeneousNatTrans F F' n)
 `(α ◁ G) ≫ (F' ▷ β) = (-1)^(m n) • ((F ▷ β) ≫ (α ◁ G'))`, with `n` the degree
 of `α` and `m` the degree of `β`.  Both sides are transformations
 `F ⋙ G ⟶ F' ⋙ G'` of degree `r`; the two vertical composites are taken in the
-two orders, which is why `r` comes with both `n + m = r` and `m + n = r`.-/
+two orders, which is why `r` comes with both `n + m = r` and `m + n = r`.
+@isnad1 id=eq.2h12v.s18.5381ae7c12ab from=translated src=- shape=14e0e64b vocab=e83c1bac
+-/
 theorem interchange (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (hnm : n + m = r)
     (hmn : m + n = r) :

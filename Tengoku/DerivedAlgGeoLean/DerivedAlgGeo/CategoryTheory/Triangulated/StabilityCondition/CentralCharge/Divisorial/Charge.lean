@@ -80,6 +80,9 @@ def toRealExtension : N →+ Mukai.RealExtension D where
   map_zero' := by simp
   map_add' E F := by simp
 
+/--
+@isnad1 id=eq.0h4v.s8.22db8cf47c4e from=translated src=- shape=8a2f8bb5 vocab=290d3bfe
+-/
 @[simp]
 theorem toRealExtension_apply (E : N) :
     ch.toRealExtension E = (ch.rank E, ch.chOne E, ch.chTwo E) := rfl
@@ -104,14 +107,23 @@ def twist (S : DivisorSpace D) (B : D) : ChernCharacter N D where
       simp only [map_add, DivisorSpace.pair]
       ring)
 
+/--
+@isnad1 id=eq.0h6v.s7.fae984ec4ade from=translated src=- shape=0737c652 vocab=53d42f24
+-/
 @[simp]
 theorem twist_rank (S : DivisorSpace D) (B : D) (E : N) :
     (ch.twist S B).rank E = ch.rank E := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.e8709298355b from=translated src=- shape=d18629eb vocab=0c9528e1
+-/
 @[simp]
 theorem twist_chOne (S : DivisorSpace D) (B : D) (E : N) :
     (ch.twist S B).chOne E = ch.chOne E - ch.rank E • B := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.73404c1a6e00 from=translated src=- shape=d794b022 vocab=496315bc
+-/
 @[simp]
 theorem twist_chTwo (S : DivisorSpace D) (B : D) (E : N) :
     (ch.twist S B).chTwo E =
@@ -212,18 +224,30 @@ def coordinatesAt (S : DivisorSpace D) (H : D) : ChargeCoordinates N where
   chTwo := ch.chTwo
   hyperplaneSquare := S.pair H H
 
+/--
+@isnad1 id=eq.0h6v.s7.489d386e6636 from=translated src=- shape=84dd4633 vocab=04687471
+-/
 @[simp]
 theorem coordinatesAt_rank (S : DivisorSpace D) (H : D) (E : N) :
     (ch.coordinatesAt S H).rank E = ch.rank E := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.6483ce1fc6f0 from=translated src=- shape=0dc25dd9 vocab=1e0ff72c
+-/
 @[simp]
 theorem coordinatesAt_degree (S : DivisorSpace D) (H : D) (E : N) :
     (ch.coordinatesAt S H).degree E = S.pair H (ch.chOne E) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.3210df4cc8bd from=translated src=- shape=84dd4633 vocab=143d0e85
+-/
 @[simp]
 theorem coordinatesAt_chTwo (S : DivisorSpace D) (H : D) (E : N) :
     (ch.coordinatesAt S H).chTwo E = ch.chTwo E := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.a8642872ca2d from=translated src=- shape=4d095f1a vocab=60c4e605
+-/
 @[simp]
 theorem coordinatesAt_hyperplaneSquare (S : DivisorSpace D) (H : D) :
     (ch.coordinatesAt S H).hyperplaneSquare = S.pair H H := rfl
@@ -239,21 +263,33 @@ def chargeCoordinates (S : DivisorSpace D) (P : StabilityParameters D) :
     chTwo := chB.chTwo
     hyperplaneSquare := S.pair P.omega P.omega }
 
+/--
+@isnad1 id=eq.0h6v.s7.b874ae8da249 from=translated src=- shape=d30d530e vocab=575c8863
+-/
 @[simp]
 theorem chargeCoordinates_rank (S : DivisorSpace D) (P : StabilityParameters D) (E : N) :
     (ch.chargeCoordinates S P).rank E = ch.rank E := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.de3525d3a0c7 from=translated src=- shape=353b3b24 vocab=13dc3ef7
+-/
 @[simp]
 theorem chargeCoordinates_degree (S : DivisorSpace D) (P : StabilityParameters D) (E : N) :
     (ch.chargeCoordinates S P).degree E =
       S.pair P.omega (ch.chOne E - ch.rank E • P.B) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.3ec315f3e6e6 from=translated src=- shape=d7104c31 vocab=66f45c38
+-/
 @[simp]
 theorem chargeCoordinates_chTwo (S : DivisorSpace D) (P : StabilityParameters D) (E : N) :
     (ch.chargeCoordinates S P).chTwo E =
       ch.chTwo E - S.pair P.B (ch.chOne E)
         + S.pair P.B P.B * ch.rank E / 2 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.a98a30c6c762 from=translated src=- shape=6a53ff7e vocab=a1fe5e6f
+-/
 @[simp]
 theorem chargeCoordinates_hyperplaneSquare
     (S : DivisorSpace D) (P : StabilityParameters D) :
@@ -309,7 +345,9 @@ variable {L M : Type*} [AddCommGroup L] [AddCommGroup M]
 variable {source : ChernCharacter L D} {target : ChernCharacter M D}
 
 /-- A full-character comparison intertwines the intrinsic central charge for
-every choice of `B` and `omega`.-/
+every choice of `B` and `omega`.
+@isnad1 id=eq.0h9v.s7.052bd9d67ef6 from=translated src=- shape=8066be42 vocab=3df1857f
+-/
 theorem centralCharge_eq (h : Pullback source target)
     (S : DivisorSpace D) (P : StabilityParameters D) (E : L) :
     source.centralCharge S P E = target.centralCharge S P (h.map E) :=
@@ -317,7 +355,9 @@ theorem centralCharge_eq (h : Pullback source target)
 
 end Pullback
 
-/-- Expansion in twisted Chern-character notation.-/
+/-- Expansion in twisted Chern-character notation.
+@isnad1 id=eq.0h6v.s8.aa4b24e7a4ba from=translated src=- shape=4688a4dc vocab=7bee2762
+-/
 theorem centralCharge_apply_twisted
     (S : DivisorSpace D) (P : StabilityParameters D) (E : N) :
     ch.centralCharge S P E =
@@ -331,7 +371,9 @@ theorem centralCharge_apply_twisted
 /-- Expansion in untwisted Chern-character coordinates.
 
 This is the formula used for divisorial stability conditions in arbitrary
-Picard rank.-/
+Picard rank.
+@isnad1 id=eq.0h6v.s8.56217ee8b737 from=translated src=- shape=c67e33c2 vocab=6b766af0
+-/
 theorem centralCharge_apply
     (S : DivisorSpace D) (P : StabilityParameters D) (E : N) :
     ch.centralCharge S P E =
@@ -349,7 +391,9 @@ theorem centralCharge_apply
 the rank-one slice `B = beta H`, `omega = alpha H`.
 
 Thus the old compressed coordinates remain a valid downstream interface; they
-are no longer asked to represent an arbitrary `B`-field.-/
+are no longer asked to represent an arbitrary `B`-field.
+@isnad1 id=eq.0h8v.s7.32daf47d8e71 from=translated src=- shape=a689b539 vocab=d170f295
+-/
 theorem centralCharge_rankOne_eq
     (S : DivisorSpace D) (H : D) (alpha beta : ℝ) (E : N) :
     ch.centralCharge S (StabilityParameters.rankOne H alpha beta) E =
@@ -367,7 +411,9 @@ theorem centralCharge_rankOne_eq
 
 /-- The same charge written as the Mukai pairing with
 `exp(B + i omega)`.  This makes the relation with the period-domain layer
-explicit without baking Mukai-specific geometry into `ChernCharacter`.-/
+explicit without baking Mukai-specific geometry into `ChernCharacter`.
+@isnad1 id=eq.0h6v.s8.516b8b5988f3 from=translated src=- shape=89852728 vocab=15baab20
+-/
 theorem centralCharge_eq_realPairing
     (S : DivisorSpace D) (P : StabilityParameters D) (E : N) :
     ch.centralCharge S P E =

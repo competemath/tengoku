@@ -29,7 +29,9 @@ namespace ModuleCat
 variable (k : Type u) [Field k]
 
 /-- Linear duality reverses a short exact sequence of vector spaces to a short
-exact sequence.-/
+exact sequence.
+@isnad1 id=shortexa.1h2v.s8.cb26680c9575 from=translated src=- shape=5b5c51f4 vocab=5e12d431
+-/
 theorem linearDualFunctor_map_shortExact
     (S : ShortComplex ((ModuleCat.{u + 1} k)ᵒᵖ)) (hS : S.ShortExact) :
     (S.map (linearDualFunctor.{u, u + 1} k)).ShortExact := by

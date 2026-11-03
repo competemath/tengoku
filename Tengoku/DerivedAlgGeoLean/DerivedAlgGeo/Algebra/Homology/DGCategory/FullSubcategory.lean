@@ -82,19 +82,25 @@ automatically included instance a declaration does not use. -/
 /-- The underlying ambient object.-/
 def obj (X : DGFullSubcategory P) : C := X.1
 
-/-- The underlying object satisfies the defining predicate.-/
+/-- The underlying object satisfies the defining predicate.
+@isnad1 id=var.0h3v.s4.c3291734b081 from=translated src=- shape=f1f70d92 vocab=31bb4c68
+-/
 lemma prop (X : DGFullSubcategory P) : P X.obj := X.2
 
 /-- An ambient object satisfying `P`, as an object of the full dg
 subcategory.-/
 def mk (X : C) (hX : P X) : DGFullSubcategory P := ⟨X, hX⟩
 
-/-- `mk` and `obj` are inverse on objects.-/
+/-- `mk` and `obj` are inverse on objects.
+@isnad1 id=eq.0h4v.s4.e44574548edc from=translated src=- shape=f17ad7cc vocab=48bee170
+-/
 @[simp]
 lemma obj_mk (X : C) (hX : P X) : (mk X hX).obj = X := rfl
 
 /-- Two objects of the full dg subcategory agree as soon as their ambient
-objects do; `P` is a `Prop`, so there is nothing else to check.-/
+objects do; `P` is a `Prop`, so there is nothing else to check.
+@isnad1 id=eq.1h4v.s4.85b10ddc16fd from=translated src=- shape=38b3fc23 vocab=31bb4c68
+-/
 @[ext]
 lemma ext {X Y : DGFullSubcategory P} (h : X.obj = Y.obj) : X = Y := Subtype.ext h
 
@@ -110,15 +116,21 @@ instance struct : DGCategoryStruct.{v} (DGFullSubcategory P) where
 
 All three are `rfl`. See the module docstring on why none is `@[simp]`. -/
 
-/-- The Hom-complex is the ambient one.-/
+/-- The Hom-complex is the ambient one.
+@isnad1 id=eq.0h4v.s5.be64a597f170 from=translated src=- shape=58114b8a vocab=04a00f3b
+-/
 lemma dgHom_eq (X Y : DGFullSubcategory P) :
     dgHom X Y = dgHom X.obj Y.obj := rfl
 
-/-- The identity is the ambient one.-/
+/-- The identity is the ambient one.
+@isnad1 id=eq.0h3v.s6.7cf89ab7c35b from=translated src=- shape=146ac4d8 vocab=f93f43ee
+-/
 lemma dgId_eq (X : DGFullSubcategory P) :
     dgId X = dgId X.obj := rfl
 
-/-- Graded composition is the ambient one.-/
+/-- Graded composition is the ambient one.
+@isnad1 id=eq.1h10v.s14.8eb45e3eedd8 from=translated src=- shape=e16ed5ff vocab=eb16dc64
+-/
 lemma dgComp_eq {X Y Z : DGFullSubcategory P} (p q r : ℤ) (h : p + q = r)
     (f : (dgHom X Y).X p) (g : (dgHom Y Z).X q) :
     dgComp p q r h f g =
@@ -141,12 +153,16 @@ anything rather than reusing it. Both are `rfl`, and that they are `rfl` is the
 claim. -/
 
 /-- **The identity test.** `dgId` is a left unit for `dgComp`, by the ambient
-unit law rather than a transported one.-/
+unit law rather than a transported one.
+@isnad1 id=eq.0h6v.s13.219de38f456b from=translated src=- shape=b8f920dc vocab=8d4e488d
+-/
 lemma dgId_comp_eq {X Y : DGFullSubcategory P} (p : ℤ) (f : (dgHom X Y).X p) :
     dgComp 0 p p (zero_add p) (dgId X) f = f :=
   DGCategory.dgId_comp p f
 
-/-- **The composition test.** `dgId` is a right unit for `dgComp`, likewise.-/
+/-- **The composition test.** `dgId` is a right unit for `dgComp`, likewise.
+@isnad1 id=eq.0h6v.s13.ff1dc94b0a5f from=translated src=- shape=a20c462c vocab=56ef6925
+-/
 lemma dgComp_id_eq {X Y : DGFullSubcategory P} (p : ℤ) (f : (dgHom X Y).X p) :
     dgComp p 0 p (add_zero p) f (dgId Y) = f :=
   DGCategory.dgComp_id p f
@@ -162,7 +178,9 @@ def iota (P : C → Prop) : DGFunctor (DGFullSubcategory P) C where
   map_id _ := rfl
   map_comp _ _ _ _ _ _ := rfl
 
-/-- The inclusion sends an object to its ambient object.-/
+/-- The inclusion sends an object to its ambient object.
+@isnad1 id=eq.0h3v.s5.b5470f345477 from=translated src=- shape=01fdcc52 vocab=7c7f1444
+-/
 @[simp]
 lemma iota_obj (X : DGFullSubcategory P) : (iota P).obj X = X.obj := rfl
 
@@ -176,7 +194,9 @@ Not `@[simp]`, and the reason is `iota_obj` above. That lemma rewrites
 left-hand side, which mentions `dgHom ((iota P).obj X) ((iota P).obj Y)`. The
 left-hand side is therefore never in simp-normal form and `simpNF` rejects the
 attribute. Keep the attribute on the `obj` lemma, drop it on the `map` one,
-and name this lemma explicitly in the `simp only` sets that need it.-/
+and name this lemma explicitly in the `simp only` sets that need it.
+@isnad1 id=eq.0h6v.s10.316ea5374c8a from=translated src=- shape=6724d280 vocab=e39a33f0
+-/
 lemma iota_map_apply {X Y : DGFullSubcategory P} (p : ℤ) (f : (dgHom X Y).X p) :
     (iota P).map p f = f := rfl
 
@@ -215,7 +235,9 @@ variable [DGLinear k C]
 
 Each field names the ambient dg category explicitly with `(C := C)`. Without
 it, Lean reads the dg category off the type of `f`, which is the subcategory,
-and then tries to synthesize the very instance being defined.-/
+and then tries to synthesize the very instance being defined.
+@isnad1 id=dglinear.0h3v.s7.e7a1558d3ea6 from=translated src=- shape=28bee8d5 vocab=c7eef061
+-/
 instance linear : DGLinear k (DGFullSubcategory P) where
   d_smul p q c f := DGLinear.d_smul (C := C) (k := k) p q c f
   comp_smul_left p q r h c f g :=
@@ -223,14 +245,18 @@ instance linear : DGLinear k (DGFullSubcategory P) where
   comp_smul_right p q r h c f g :=
     DGLinear.comp_smul_right (C := C) (k := k) p q r h c f g
 
-/-- The inclusion is `k`-linear.-/
+/-- The inclusion is `k`-linear.
+@isnad1 id=linear.0h3v.s7.3dd8f160e4d7 from=translated src=- shape=7df0d5bd vocab=d5cf8ac2
+-/
 instance iota_linear : (iota P).Linear k where
   map_smul _ _ _ := rfl
 
 /-- **The scalar-compatibility test.** The inclusion preserves scalar
 multiplication in every degree. Unlike the identity that the section comment
 above declines to state, this one is not `rfl` on the nose: the two sides
-differ by where the identity `AddMonoidHom` sits.-/
+differ by where the identity `AddMonoidHom` sits.
+@isnad1 id=eq.0h8v.s12.22930ed947a2 from=translated src=- shape=ea212b4e vocab=f8e97d09
+-/
 lemma iota_map_smul {X Y : DGFullSubcategory P} (p : ℤ) (c : k)
     (f : (dgHom X Y).X p) :
     (iota P).map p (c • f) = c • (iota P).map p f :=

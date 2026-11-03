@@ -47,7 +47,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A] [HasDerivedCategory.{w} A]
   (P : ObjectProperty A) [P.IsClosedUnderIsomorphisms] [P.ContainsZero]
 
 /-- The cohomology of `τ_{< n} E` in degree `i` is that of `E` for `i < n` and zero
-otherwise, so it lies in `P` whenever the cohomology of `E` does.-/
+otherwise, so it lies in `P` whenever the cohomology of `E` does.
+@isnad1 id=cohomolo.0h5v.s6.ccc3d1bcc180 from=translated src=- shape=a3c25c0e vocab=e42c707d
+-/
 lemma cohomologyIn_truncLT {E : DerivedCategory A} (hE : cohomologyIn P E) (n : ℤ) :
     cohomologyIn P ((TStructure.t.truncLT n).obj E) := by
   intro i
@@ -68,7 +70,9 @@ lemma cohomologyIn_truncLT {E : DerivedCategory A} (hE : cohomologyIn P E) (n : 
   · exact P.prop_of_isZero (isZero_of_isLE T.obj₁ (n - 1) i (by omega))
 
 /-- The cohomology of `τ_{≥ n} E` in degree `i` is that of `E` for `n ≤ i` and zero
-otherwise, so it lies in `P` whenever the cohomology of `E` does.-/
+otherwise, so it lies in `P` whenever the cohomology of `E` does.
+@isnad1 id=cohomolo.0h5v.s6.df6c8203ee5e from=translated src=- shape=a3c25c0e vocab=1836f133
+-/
 lemma cohomologyIn_truncGE {E : DerivedCategory A} (hE : cohomologyIn P E) (n : ℤ) :
     cohomologyIn P ((TStructure.t.truncGE n).obj E) := by
   intro i
@@ -90,7 +94,9 @@ lemma cohomologyIn_truncGE {E : DerivedCategory A} (hE : cohomologyIn P E) (n : 
 
 omit [P.ContainsZero] in
 /-- The single object `(singleFunctor A n).obj Y` has cohomology in `P` exactly
-when `Y` does; only the forward direction is needed downstream.-/
+when `Y` does; only the forward direction is needed downstream.
+@isnad1 id=var.0h5v.s5.d71d632ba474 from=translated src=- shape=2ef72646 vocab=0d2d7bcc
+-/
 lemma prop_of_cohomologyIn_singleFunctor_obj {n : ℤ} {Y : A}
     (h : cohomologyIn P ((singleFunctor A n).obj Y)) : P Y :=
   P.prop_of_iso ((singleFunctorCompHomologyFunctorIso A n).app Y) (h n)
@@ -103,7 +109,9 @@ every bounded object whose cohomology lies in `P`.
 
 The induction is on the amplitude `N` with `E` concentrated in `[a, a + N]`;
 the step splits `E` by the truncation triangle at `a + 1`, whose first term is
-concentrated in degree `a` and whose third term has amplitude `N - 1`.-/
+concentrated in degree `a` and whose third term has amplitude `N - 1`.
+@isnad1 id=var.0h9v.s8.3354c84b5be9 from=translated src=- shape=abc2da8a vocab=c36c3747
+-/
 theorem bounded_induction (Q : ObjectProperty (DerivedCategory A))
     (hiso : ∀ {E E' : DerivedCategory A}, (E ≅ E') → Q E → Q E')
     (hsingle : ∀ (n : ℤ) (Y : A), P Y → Q ((singleFunctor A n).obj Y))

@@ -116,18 +116,29 @@ noncomputable def toNumClass (E : N) : Wall.NumClass :=
     ((degH V P E : ℚ) : ℝ),
     ((V.ring.degree (V.chComp E 2) : ℚ) : ℝ))
 
+/--
+@isnad1 id=eq.0h5v.s8.e20820541b12 from=translated src=- shape=f582bd80 vocab=18635e77
+-/
 @[simp]
 theorem toNumClass_rk (E : N) :
     (toNumClass V P E).rk = ((V.ring.degree (P.cls ^ 2) * (V.rank E : ℚ) : ℚ) : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.12bc513b33ae from=translated src=- shape=01be5be8 vocab=116b5592
+-/
 @[simp]
 theorem toNumClass_deg (E : N) : (toNumClass V P E).deg = ((degH V P E : ℚ) : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.29f8c9098f34 from=translated src=- shape=01be230c vocab=0f46ecd8
+-/
 @[simp]
 theorem toNumClass_ch2 (E : N) :
     (toNumClass V P E).ch2 = ((V.ring.degree (V.chComp E 2) : ℚ) : ℝ) := rfl
 
-/-- The transport is additive, because rank, `degH` and `ch₂` all are.-/
+/-- The transport is additive, because rank, `degH` and `ch₂` all are.
+@isnad1 id=eq.0h6v.s7.15e82cfd3115 from=translated src=- shape=34a3bf40 vocab=c1a83a76
+-/
 theorem toNumClass_add (E F : N) :
     toNumClass V P (E + F)
       = ((toNumClass V P E).rk + (toNumClass V P F).rk,
@@ -149,6 +160,9 @@ noncomputable def toNumClassHom : N →+ Wall.NumClass :=
     intro E F
     exact toNumClass_add V P E F)
 
+/--
+@isnad1 id=eq.0h5v.s7.1d82e43a7fd8 from=translated src=- shape=7290b3bc vocab=7c180863
+-/
 @[simp]
 theorem toNumClassHom_apply (E : N) :
     toNumClassHom V P E = toNumClass V P E := rfl
@@ -158,13 +172,18 @@ presentation.-/
 noncomputable def wallChargeFamily : Wall.ChargeFamily (ℝ × ℝ) N :=
   Wall.stChargeFamily.pullback (toNumClassHom V P)
 
+/--
+@isnad1 id=eq.0h6v.s7.154dc4e2be63 from=translated src=- shape=e067823c vocab=ee0d1988
+-/
 @[simp]
 theorem wallChargeFamily_charge (p : ℝ × ℝ) (E : N) :
     (wallChargeFamily V P).charge p E =
       Wall.stCharge p.1 p.2 (toNumClass V P E) := rfl
 
 /-- Surface walls are inherited pullbacks of the generic determinant, whose
-specialized value is the established `(s,t)` polynomial.-/
+specialized value is the established `(s,t)` polynomial.
+@isnad1 id=eq.0h7v.s6.50f0a8ef4ae2 from=translated src=- shape=560d42fc vocab=09f1fda4
+-/
 @[simp]
 theorem wallChargeFamily_alignmentValue (p : ℝ × ℝ) (E F : N) :
     (wallChargeFamily V P).alignmentValue p E F =
@@ -178,7 +197,9 @@ Both sides are `deg² − 2·rk·ch₂` once the transport is unfolded, so this 
 match of conventions rather than a computation — but it is a match that only
 holds with the `∫H²` weight in the rank slot.
 
-**Not** `∫Δ(E)`: see the module docstring.-/
+**Not** `∫Δ(E)`: see the module docstring.
+@isnad1 id=eq.0h5v.s6.505202194e14 from=translated src=- shape=61e6dc5c vocab=35f252a3
+-/
 theorem discr_toNumClass (E : N) :
     Wall.NumClass.discr (toNumClass V P E) = ((discrH V P E : ℚ) : ℝ) := by
   simp only [Wall.NumClass.discr_eq, toNumClass_rk, toNumClass_deg, toNumClass_ch2,
@@ -187,7 +208,9 @@ theorem discr_toNumClass (E : N) :
   ring
 
 /-- A class of nonzero rank transports to a nonzero triple: the rank slot is
-`∫H² · rank E`, and `∫H² > 0` is the `Polarization`'s own field.-/
+`∫H² · rank E`, and `∫H² > 0` is the `Polarization`'s own field.
+@isnad1 id=ne.1h5v.s7.fa933e478a27 from=translated src=- shape=51ea5e10 vocab=e9aca868
+-/
 theorem toNumClass_ne_zero_of_rank_ne_zero {E : N} (hr : V.rank E ≠ 0) :
     toNumClass V P E ≠ (0, 0, 0) := by
   intro h
@@ -204,7 +227,9 @@ theorem toNumClass_ne_zero_of_rank_ne_zero {E : N} (hr : V.rank E ≠ 0) :
 variable {V P}
 
 /-- The transported discriminant of a semistable class is nonnegative — the
-composite of `discr_toNumClass` with `Surface.discrH_nonneg`.-/
+composite of `discr_toNumClass` with `Surface.discrH_nonneg`.
+@isnad1 id=le.2h6v.s6.835f37ce7969 from=translated src=- shape=387d2133 vocab=4f87834f
+-/
 theorem discr_toNumClass_nonneg {E : N} (B : BogomolovGiesekerData V P)
     (hI : HodgeIndexStatement V P) (hE : B.Semistable E) :
     0 ≤ Wall.NumClass.discr (toNumClass V P E) := by
@@ -217,7 +242,9 @@ theorem discr_toNumClass_nonneg {E : N} (B : BogomolovGiesekerData V P)
 theorem about sheaves and `NumClass` is a triple". Here the class comes from a
 sheaf-level datum, so the theorem is available and the hypothesis is not needed.
 
-The only `t`-dependence left is `t ≠ 0`, which is the half-plane condition.-/
+The only `t`-dependence left is `t ≠ 0`, which is the half-plane condition.
+@isnad1 id=not.4h8v.s7.2e614dafec00 from=translated src=- shape=c22d9b75 vocab=0edf4edb
+-/
 theorem charge_ne_zero_of_semistable {E : N} (B : BogomolovGiesekerData V P)
     (hI : HodgeIndexStatement V P) (hE : B.Semistable E)
     (hne : toNumClass V P E ≠ (0, 0, 0)) {s t : ℝ} (ht : t ≠ 0) :
@@ -228,7 +255,9 @@ theorem charge_ne_zero_of_semistable {E : N} (B : BogomolovGiesekerData V P)
 disjoint, with no excluded point.**
 
 This is `wall_eq_of_meet` with its charge hypothesis supplied rather than
-assumed. Nonzero rank is what makes the class a nonzero triple.-/
+assumed. Nonzero rank is what makes the class a nonzero triple.
+@isnad1 id=iff.9h12v.s8.e5b3f26c2255 from=translated src=- shape=1e84611d vocab=52695f25
+-/
 theorem wall_eq_of_meet_of_semistable {E : N} (B : BogomolovGiesekerData V P)
     (hI : HodgeIndexStatement V P) (hE : B.Semistable E) (hr : V.rank E ≠ 0)
     {s t : ℝ} (ht : t ≠ 0) {w₁ w₂ : Wall.NumClass}
@@ -249,7 +278,9 @@ theorem wall_eq_of_meet_of_semistable {E : N} (B : BogomolovGiesekerData V P)
 `walls_nested_of_discr_nonneg` with `0 ≤ discr` supplied by Bogomolov–Gieseker
 instead of hypothesised. The same-family hypothesis is kept: it is load-bearing,
 and the wall lane carries the counterexample that shows so. The `minA ≠ 0` and
-`0 ≤ wallRadiusSq` hypotheses are kept too — nothing here discharges them.-/
+`0 ≤ wallRadiusSq` hypotheses are kept too — nothing here discharges them.
+@isnad1 id=and.8h8v.s8.08623b725dfc from=translated src=- shape=7d09cf97 vocab=2cc02848
+-/
 theorem walls_nested_of_semistable {E : N} (B : BogomolovGiesekerData V P)
     (hI : HodgeIndexStatement V P) (hE : B.Semistable E)
     (hrk : (toNumClass V P E).rk ≠ 0) {w₁ w₂ : Wall.NumClass}

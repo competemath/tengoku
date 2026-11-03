@@ -36,6 +36,9 @@ namespace SchemeBaseChange
 variable {S : Scheme.{u}}
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s14.08124709e676 from=translated src=- shape=93fd4c33 vocab=4953abfe
+-/
 @[reassoc]
 theorem complexPullback_associativity
     {T U V W : SchemeBaseChange S}
@@ -55,6 +58,9 @@ theorem complexPullback_associativity
     (K.X n)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s13.0ee443e34494 from=translated src=- shape=6f9aeaf9 vocab=fde450ce
+-/
 @[reassoc]
 theorem complexPullback_left_unitality
     {T U : SchemeBaseChange S} (f : T ⟶ U) :
@@ -71,6 +77,9 @@ theorem complexPullback_left_unitality
     (K.X n)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s13.022d82938b21 from=translated src=- shape=5d261f1a vocab=14ab3b16
+-/
 @[reassoc]
 theorem complexPullback_right_unitality
     {T U : SchemeBaseChange S} (f : T ⟶ U) :

@@ -86,15 +86,24 @@ def chernCharacter : ChernCharacter N D where
   chOne := R.divisorClass.comp (chOneClassHom V)
   chTwo := ChargeCoordinates.chTwoHom V
 
+/--
+@isnad1 id=eq.0h6v.s7.883cb0337d53 from=translated src=- shape=9003d4ef vocab=862c7ec9
+-/
 @[simp]
 theorem chernCharacter_rank (E : N) :
     R.chernCharacter.rank E = (V.rank E : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.ecf8ce285202 from=translated src=- shape=df574dbd vocab=f7f7722d
+-/
 @[simp]
 theorem chernCharacter_chOne (E : N) :
     R.chernCharacter.chOne E =
       R.divisorClass ⟨V.chComp E 1, V.chComp_mem E 1⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.f2d5e88e67d4 from=translated src=- shape=4db2c74c vocab=db4a15ac
+-/
 @[simp]
 theorem chernCharacter_chTwo (E : N) :
     R.chernCharacter.chTwo E =
@@ -116,7 +125,9 @@ def parameters (P : Polarization V.ring) (B : BField V.ring) (a : ℝ) :
   omega := a • R.realizePolarization P
 
 /-- Realization commutes with the degree-one part of the `B`-twisted Chern
-character.-/
+character.
+@isnad1 id=eq.0h7v.s10.76be10c0cd2c from=translated src=- shape=2e0782d4 vocab=158d561d
+-/
 theorem twist_chOne_eq (B : BField V.ring) (E : N) :
     (R.chernCharacter.twist R.divisorSpace (R.realizeBField B)).chOne E =
       R.divisorClass ⟨chBComp V B E 1, chBComp_mem V B E 1⟩ := by
@@ -139,7 +150,9 @@ theorem twist_chOne_eq (B : BField V.ring) (E : N) :
   rw [R.map_rat_smul, hcast]
 
 /-- Realization commutes with the integrated degree-two part of the
-`B`-twisted Chern character.-/
+`B`-twisted Chern character.
+@isnad1 id=eq.0h7v.s8.4895e7518810 from=translated src=- shape=f9c0fb7f vocab=9bca0ed4
+-/
 theorem twist_chTwo_eq (B : BField V.ring) (E : N) :
     (R.chernCharacter.twist R.divisorSpace (R.realizeBField B)).chTwo E =
       ((V.ring.degree (chBComp V B E 2) : ℚ) : ℝ) := by
@@ -159,7 +172,9 @@ theorem twist_chTwo_eq (B : BField V.ring) (E : N) :
   ring
 
 /-- The square of a realized, real-scaled polarization is the scalar extension
-of its rational self-intersection.-/
+of its rational self-intersection.
+@isnad1 id=eq.0h8v.s8.9c8da714e1da from=translated src=- shape=ae5f42f1 vocab=504aa563
+-/
 theorem parameters_omega_square (P : Polarization V.ring)
     (B : BField V.ring) (a : ℝ) :
     R.divisorSpace.pair (R.parameters P B a).omega (R.parameters P B a).omega =
@@ -178,7 +193,9 @@ theorem parameters_omega_square (P : Polarization V.ring)
   ring
 
 /-- Pairing the realized polarization with the realized twisted first Chern
-class recovers the rational twisted degree.-/
+class recovers the rational twisted degree.
+@isnad1 id=eq.0h9v.s8.b987797b41b9 from=translated src=- shape=2ae39914 vocab=45b80289
+-/
 theorem parameters_pair_twist_chOne (P : Polarization V.ring)
     (B : BField V.ring) (a : ℝ) (E : N) :
     R.divisorSpace.pair (R.parameters P B a).omega
@@ -200,7 +217,9 @@ theorem parameters_pair_twist_chOne (P : Polarization V.ring)
 
 /-- The intrinsic real divisorial charge agrees with the existing numerical
 ring charge whenever `B` and the polarization come from the rational
-presentation.-/
+presentation.
+@isnad1 id=eq.0h9v.s8.edcd98a091dc from=translated src=- shape=65ffa33b vocab=a9399fad
+-/
 theorem centralCharge_eq_ofNumericalDataB
     (P : Polarization V.ring) (B : BField V.ring) (a : ℝ) (E : N) :
     R.chernCharacter.centralCharge R.divisorSpace (R.parameters P B a) E =

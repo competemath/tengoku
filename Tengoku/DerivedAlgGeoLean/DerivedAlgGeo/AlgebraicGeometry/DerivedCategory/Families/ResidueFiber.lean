@@ -41,11 +41,17 @@ variable {S : Scheme.{u}}
 def residue (T : SchemeBaseChange S) (x : T.left) : SchemeBaseChange S :=
   Over.mk (T.left.fromSpecResidueField x ≫ T.hom)
 
+/--
+@isnad1 id=eq.0h3v.s5.8adfc8d2a7c1 from=translated src=- shape=b213dbaf vocab=3777862e
+-/
 @[simp]
 theorem residue_left (T : SchemeBaseChange S) (x : T.left) :
     (T.residue x).left = Spec (T.left.residueField x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.31162a8b0301 from=translated src=- shape=24c376d4 vocab=1ded6979
+-/
 @[simp]
 theorem residue_hom (T : SchemeBaseChange S) (x : T.left) :
     (T.residue x).hom = T.left.fromSpecResidueField x ≫ T.hom :=
@@ -56,6 +62,9 @@ scheme over `S`.-/
 def residueTo (T : SchemeBaseChange S) (x : T.left) : T.residue x ⟶ T :=
   Over.homMk (T.left.fromSpecResidueField x) (by rfl)
 
+/--
+@isnad1 id=eq.0h3v.s5.388405e0c475 from=translated src=- shape=d40de3dd vocab=e3498b61
+-/
 @[simp]
 theorem residueTo_left (T : SchemeBaseChange S) (x : T.left) :
     (T.residueTo x).left = T.left.fromSpecResidueField x :=
@@ -81,6 +90,9 @@ abbrev pullK₀ToResidue (T : SchemeBaseChange S) (x : T.left) :
     K₀ (F.Fiber T) →+ K₀ (F.ResidueFiber T x) :=
   F.pullK₀ (T.residueTo x)
 
+/--
+@isnad1 id=eq.0h5v.s13.7039eee53a31 from=translated src=- shape=0b118bf9 vocab=32bc2554
+-/
 theorem pullK₀ToResidue_of (T : SchemeBaseChange S) (x : T.left)
     (E : F.Fiber T) :
     F.pullK₀ToResidue T x (K₀.of _ E) =

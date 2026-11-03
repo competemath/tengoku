@@ -37,7 +37,9 @@ abbrev KProjectiveHomotopyCategory (C : Type u)
   (kProjectiveHomotopy C).FullSubcategory
 
 /-- The underlying complex of an object of the K-projective homotopy
-category is K-projective.-/
+category is K-projective.
+@isnad1 id=iskproje.0h2v.s6.5c3658b2cf6b from=translated src=- shape=9ddddb26 vocab=9345fdd7
+-/
 instance kProjectiveHomotopyCategory_isKProjective
     (C : Type u) [Category.{v} C] [Abelian C]
     (K : KProjectiveHomotopyCategory C) :
@@ -50,7 +52,9 @@ def kProjectiveQh (C : Type u) [Category.{v} C] [Abelian C] :
     KProjectiveHomotopyCategory C ⥤ DerivedCategory C :=
   ObjectProperty.ι (kProjectiveHomotopy C) ⋙ DerivedCategory.Qh
 
-/-- Localization is full on morphisms whose source is K-projective.-/
+/-- Localization is full on morphisms whose source is K-projective.
+@isnad1 id=full.0h1v.s6.63ea458ea3ea from=translated src=- shape=cbac796f vocab=d2affe28
+-/
 instance kProjectiveQh_full
     (C : Type u) [Category.{v} C] [Abelian C] :
     (kProjectiveQh C).Full where
@@ -59,7 +63,9 @@ instance kProjectiveQh_full
       (CochainComplex.IsKProjective.Qh_map_bijective K.obj.as L.obj).2 f
     exact ⟨ObjectProperty.homMk g, hg⟩
 
-/-- Localization is faithful on morphisms whose source is K-projective.-/
+/-- Localization is faithful on morphisms whose source is K-projective.
+@isnad1 id=faithful.0h1v.s6.8dec0f3e3b1e from=translated src=- shape=cbac796f vocab=069a2440
+-/
 instance kProjectiveQh_faithful
     (C : Type u) [Category.{v} C] [Abelian C] :
     (kProjectiveQh C).Faithful where
@@ -161,7 +167,9 @@ This is the mechanism behind every unconditional preservation statement for
 K-projective representatives: a quasi-isomorphism between K-projective
 complexes is already an isomorphism in the homotopy category, and every
 additive functor preserves homotopies.  No exactness, flatness or
-limit-preservation hypothesis on `F` is used, and none is available.-/
+limit-preservation hypothesis on `F` is used, and none is available.
+@isnad1 id=homotopy.0h7v.s9.a3c4b68afa70 from=translated src=- shape=622d200e vocab=422bb494
+-/
 lemma homotopyEquivalences_map (F : C ⥤ D) [F.Additive]
     {K L : CochainComplex C ℤ} [K.IsKProjective] [L.IsKProjective]
     {g : K ⟶ L} (hg : quasiIso C (ComplexShape.up ℤ) g) :
@@ -172,7 +180,9 @@ lemma homotopyEquivalences_map (F : C ⥤ D) [F.Additive]
   exact ⟨F.mapHomotopyEquiv e, rfl⟩
 
 /-- An additive functor carries a quasi-isomorphism between K-projective
-cochain complexes to a quasi-isomorphism.-/
+cochain complexes to a quasi-isomorphism.
+@isnad1 id=quasiiso.0h7v.s9.5939eb433980 from=translated src=- shape=0fd6308d vocab=10996b81
+-/
 lemma quasiIso_map (F : C ⥤ D) [F.Additive]
     {K L : CochainComplex C ℤ} [K.IsKProjective] [L.IsKProjective]
     {g : K ⟶ L} (hg : quasiIso C (ComplexShape.up ℤ) g) :
@@ -186,7 +196,9 @@ lemma quasiIso_map (F : C ⥤ D) [F.Additive]
 This is the form in which the hypothesis is actually inhabited: every
 bounded-above complex of projective objects is K-projective, and in a module
 category such complexes are abundant.  It records that an additive functor
-needs no exactness to be correct on bounded-above projective representatives.-/
+needs no exactness to be correct on bounded-above projective representatives.
+@isnad1 id=quasiiso.0h9v.s9.642ee37c7ea9 from=translated src=- shape=aa61b2d9 vocab=0b479b07
+-/
 lemma quasiIso_map_of_projective (F : C ⥤ D) [F.Additive]
     {K L : CochainComplex C ℤ} (dK dL : ℤ)
     [K.IsStrictlyLE dK] [L.IsStrictlyLE dL]

@@ -43,6 +43,9 @@ noncomputable def k3Todd (d : ℚ) : ℕ → SurfaceRing
   | 2 => algebraMap ℚ SurfaceRing (1 / d) * H ^ 2
   | _ + 3 => 0
 
+/--
+@isnad1 id=mem.0h2v.s8.7ae25c32a044 from=translated src=- shape=6f2de221 vocab=6919613c
+-/
 theorem k3Todd_mem (d : ℚ) (i : ℕ) :
     k3Todd d i ∈ gradedPiece (⇑surfacePB.basis) surfaceW i := by
   match i with
@@ -51,6 +54,9 @@ theorem k3Todd_mem (d : ℚ) (i : ℕ) :
   | 2 => exact algebraMap_mul_mem _ Hsq_mem_piece_two
   | _ + 3 => exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.0h1v.s8.adb1b6cd49db from=translated src=- shape=8cbdbea0 vocab=67103093
+-/
 theorem k3Todd_sum (d : ℚ) :
     (∑ j ∈ Finset.range (2 + 1), k3Todd d j)
       = 1 + algebraMap ℚ SurfaceRing 0 * H + algebraMap ℚ SurfaceRing (1 / d) * H ^ 2 := by

@@ -35,6 +35,9 @@ namespace NormalizedShift
 
 /-! ## Integer translation -/
 
+/--
+@isnad1 id=eq.0h3v.s6.c8c342d28b86 from=translated src=- shape=065e7ab5 vocab=49e01e4d
+-/
 theorem map_add_nat (f : NormalizedShift) : ∀ (n : ℕ) (x : ℝ),
     f.toOrderIso (x + n) = f.toOrderIso x + n := by
   intro n
@@ -47,13 +50,18 @@ theorem map_add_nat (f : NormalizedShift) : ∀ (n : ℕ) (x : ℝ),
     rw [hx, f.map_add_one, ih x]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s6.e0069f2a7583 from=translated src=- shape=065e7ab5 vocab=352c833e
+-/
 theorem map_sub_nat (f : NormalizedShift) (m : ℕ) (x : ℝ) :
     f.toOrderIso (x - m) = f.toOrderIso x - m := by
   have h := map_add_nat f m (x - m)
   simp only [sub_add_cancel] at h
   linarith
 
-/-- `f` commutes with translation by any integer, not just by `1`.-/
+/-- `f` commutes with translation by any integer, not just by `1`.
+@isnad1 id=eq.0h3v.s6.04354f51dd1b from=translated src=- shape=065e7ab5 vocab=64b62479
+-/
 theorem map_add_int (f : NormalizedShift) (n : ℤ) (x : ℝ) :
     f.toOrderIso (x + n) = f.toOrderIso x + n := by
   obtain ⟨m, hm | hm⟩ := n.eq_nat_or_neg <;> subst hm
@@ -71,7 +79,9 @@ Continuity alone is free (`OrderIso.continuous`); uniformity is not, and a
 general continuous bijection of `ℝ` does not have it. The `+1`-equivariance is
 what buys it: fix a modulus on the compact window `[-1, 2]`, then move any
 pair of nearby points into that window by an integer translation, which
-`map_add_int` says `f` respects exactly.-/
+`map_add_int` says `f` respects exactly.
+@isnad1 id=uniformc.0h1v.s4.2b53a72b6608 from=translated src=- shape=0657c12c vocab=0f247f4e
+-/
 theorem uniformContinuous (f : NormalizedShift) :
     UniformContinuous f.toOrderIso := by
   rw [Metric.uniformContinuous_iff]
@@ -114,7 +124,9 @@ theorem uniformContinuous (f : NormalizedShift) :
 carries *every* window `(t - η, t + η)` into an interval of width `< w`.
 
 The quantifier order is the whole point — one `η` for all centres `t`. That is
-what `IsLocallyFinite` demands and what pointwise continuity would not give.-/
+what `IsLocallyFinite` demands and what pointwise continuity would not give.
+@isnad1 id=ex.2h3v.s6.711ea3400975 from=translated src=- shape=cc3d9151 vocab=a78cfa77
+-/
 theorem exists_radius (f : NormalizedShift) {w M : ℝ} (hw : 0 < w) (hM : 0 < M) :
     ∃ η : ℝ, 0 < η ∧ η < M ∧ ∀ t : ℝ,
       f.toOrderIso (t + η) - f.toOrderIso (t - η) < w := by

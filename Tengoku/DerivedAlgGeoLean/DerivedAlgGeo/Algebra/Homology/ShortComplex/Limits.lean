@@ -88,7 +88,9 @@ noncomputable def isColimitMapCoconeColimCocone :
 
 /-- Homology preserves the colimit of the diagram of short complexes underlying `S`: the
 colimit cocone `colimCocone S` is sent to a colimit cocone.  Only the `OfShape` instance below
-is meant to be found by instance search.-/
+is meant to be found by instance search.
+@isnad1 id=preserve.0h3v.s7.448d158e7065 from=translated src=- shape=45eaf356 vocab=aeb5c302
+-/
 lemma preservesColimit_homologyFunctor :
     PreservesColimit ((FunctorEquivalence.functor J C).obj S) (homologyFunctor C) :=
   preservesColimit_of_preserves_colimit_cocone (isColimitColimCocone S)
@@ -97,7 +99,9 @@ lemma preservesColimit_homologyFunctor :
 /-- When colimits of shape `J` are exact, `colim : (J ⥤ C) ⥤ C` preserves homology
 (`Functor.preservesHomologyOfExact`), so `mapHomologyIso` identifies the homology of
 `S.map colim` with `colim` of the homology of `S`; every diagram of short complexes is such an
-`S` by `functorEquivalence`.  Mathlib has the exactness of `colim` but not this consequence.-/
+`S` by `functorEquivalence`.  Mathlib has the exactness of `colim` but not this consequence.
+@isnad1 id=preserve.0h2v.s5.9b3224424531 from=translated src=- shape=35b823e5 vocab=8171e50e
+-/
 instance homologyFunctor_preservesColimitsOfShape :
     PreservesColimitsOfShape J (homologyFunctor C) :=
   ⟨fun {F} => by

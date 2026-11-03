@@ -47,7 +47,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C] [HasDerivedCategory.{w} C]
   {κ : Type w'} [HasCoproductsOfShape κ C] [HasExactColimitsOfShape (Discrete κ) C]
 
 /-- The class of morphisms with acyclic cone is stable under coproducts: it is the class of
-quasi-isomorphisms.-/
+quasi-isomorphisms.
+@isnad1 id=isstable.0h2v.s7.a40f8170cf8a from=translated src=- shape=255a16bf vocab=48170a59
+-/
 instance trW_subcategoryAcyclic_isStableUnderCoproductsOfShape :
     (HomotopyCategory.subcategoryAcyclic C).trW.IsStableUnderCoproductsOfShape κ := by
   rw [← HomotopyCategory.quasiIso_eq_trW_subcategoryAcyclic]
@@ -59,12 +61,16 @@ at the localization `Qh : K(C) ⥤ D(C)`: the homotopy category has them
 because homology commutes with exact coproducts
 (`HomotopyCategory.quasiIso_isStableUnderCoproductsOfShape`), and a localization at a class
 with a right calculus of fractions that is stable under coproducts inherits them
-(`Localization.hasCoproductsOfShape`).-/
+(`Localization.hasCoproductsOfShape`).
+@isnad1 id=hascopro.0h2v.s5.d487472ae6ca from=translated src=- shape=3301ad5d vocab=65bb0813
+-/
 instance hasCoproductsOfShape : HasCoproductsOfShape κ (DerivedCategory C) :=
   Localization.hasCoproductsOfShape Qh (HomotopyCategory.subcategoryAcyclic C).trW κ
 
 /-- `Qh` preserves coproducts of shape `κ`: the coproduct in `D(C)` of a family is the image of
-its coproduct in the homotopy category.-/
+its coproduct in the homotopy category.
+@isnad1 id=preserve.0h2v.s6.457d1cfd60fe from=translated src=- shape=85406a2e vocab=5538348c
+-/
 instance Qh_preservesCoproductsOfShape :
     PreservesColimitsOfShape (Discrete κ)
       (Qh : HomotopyCategory C (ComplexShape.up ℤ) ⥤ DerivedCategory C) :=
@@ -72,13 +78,17 @@ instance Qh_preservesCoproductsOfShape :
 
 /-- `Q` preserves coproducts of shape `κ`, so the coproduct in `D(C)` of a family of complexes
 is their termwise coproduct (Stacks 0A5L in the countable case): `Q` is the quotient followed
-by `Qh`, and both preserve them.-/
+by `Qh`, and both preserve them.
+@isnad1 id=preserve.0h2v.s6.082950ccf6c3 from=translated src=- shape=50d76c97 vocab=3ef72f4e
+-/
 instance Q_preservesCoproductsOfShape :
     PreservesColimitsOfShape (Discrete κ) (Q : CochainComplex C ℤ ⥤ DerivedCategory C) :=
   preservesColimitsOfShape_of_natIso (quotientCompQhIso C)
 
 /-- The single-object functor into the derived category preserves coproducts of shape `κ`:
-the complex single-object functor preserves them termwise and `Q` preserves them.-/
+the complex single-object functor preserves them termwise and `Q` preserves them.
+@isnad1 id=preserve.0h3v.s5.3d6f86b99da2 from=translated src=- shape=94d7c34c vocab=a31d212d
+-/
 instance singleFunctor_preservesCoproductsOfShape (n : ℤ) :
     PreservesColimitsOfShape (Discrete κ) (singleFunctor C n) := by
   letI : PreservesColimitsOfShape (Discrete κ)
@@ -92,7 +102,9 @@ instance singleFunctor_preservesCoproductsOfShape (n : ℤ) :
 
 /-- Homology on the derived category preserves coproducts of shape `κ`: it factors through the
 essentially surjective `Q`, which preserves them, as homology of complexes, which commutes
-with exact coproducts.-/
+with exact coproducts.
+@isnad1 id=preserve.0h3v.s5.454f3f08e600 from=translated src=- shape=fa077f47 vocab=3c1b4aeb
+-/
 instance homologyFunctor_preservesCoproductsOfShape (n : ℤ) :
     PreservesColimitsOfShape (Discrete κ) (homologyFunctor C n) := by
   haveI : PreservesColimitsOfShape (Discrete κ) (Q ⋙ homologyFunctor C n) :=

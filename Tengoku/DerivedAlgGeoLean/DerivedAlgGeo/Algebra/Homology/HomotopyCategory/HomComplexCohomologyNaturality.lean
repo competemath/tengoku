@@ -96,7 +96,9 @@ def cohomologyClassMapLinear :
       (cocycleMapLinear P Q n P' Q' fcur fnext hcur z)]
     rw [map_smul]
 
-/-- On a cocycle class, the induced map applies `fcur` to its representative.-/
+/-- On a cocycle class, the induced map applies `fcur` to its representative.
+@isnad1 id=eq.2h12v.s12.3aa7140e7d4d from=translated src=- shape=24836b4d vocab=5b5059dc
+-/
 @[simp] theorem cohomologyClassMapLinear_mk (z : Cocycle P Q n) :
     cohomologyClassMapLinear P Q n P' Q' fprev fcur fnext hprev hcur
       (CohomologyClass.mk z) =
@@ -143,7 +145,9 @@ def concreteCohomologyMap :
       exact cyclesMapLinear_mem_boundary P Q n P' Q'
         fprev fcur fnext hprev hcur ⟨z, hz⟩)
 
-/-- On a concrete quotient class, the induced map applies `fcur` to its cycle.-/
+/-- On a concrete quotient class, the induced map applies `fcur` to its cycle.
+@isnad1 id=eq.2h12v.s15.c6a160c03ce8 from=translated src=- shape=c6bfa4b5 vocab=6068a678
+-/
 @[simp] theorem concreteCohomologyMap_mk (z : (δ_hom R P Q n (n + 1)).ker) :
     concreteCohomologyMap (R := R) P Q n P' Q' fprev fcur fnext hprev hcur
       (Submodule.Quotient.mk z) =
@@ -172,7 +176,9 @@ private theorem cohomologyClassIntLinearEquiv_apply
     rfl
 
 /-- The canonical integer equivalence sends a cycle class to its Mathlib
-cohomology class.-/
+cohomology class.
+@isnad1 id=eq.0h4v.s15.296124f72290 from=translated src=- shape=c51c4b44 vocab=cc1b341b
+-/
 @[simp] theorem cohomologyClassIntLinearEquiv_mk
     (U V : CochainComplex (ModuleCat ℤ) ℤ) (m : ℤ)
     (z : (δ_hom ℤ U V m (m + 1)).ker) :

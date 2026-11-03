@@ -83,7 +83,9 @@ def stalkRingComparisonIso :
     forget₂ CommRingCat RingCat)).coconePointUniqueUpToIso (stalkRingIsColimit X R x)
 
 /-- The scalar-ring comparison sends a general-ring germ to the same germ in the
-commutative-ring stalk.-/
+commutative-ring stalk.
+@isnad1 id=eq.1h5v.s12.179af3b32c24 from=translated src=- shape=ff23d3a8 vocab=f3f2bfd0
+-/
 theorem stalkRingComparisonIso_hom_germ (U : Opens X) (hx : x ∈ U)
     (r : R.obj (op U)) :
     (stalkRingComparisonIso X R x).hom

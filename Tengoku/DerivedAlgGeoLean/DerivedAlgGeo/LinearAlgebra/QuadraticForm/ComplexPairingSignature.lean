@@ -25,13 +25,17 @@ variable [FiniteDimensional ℝ M]
 
 /-- On the kernel of the paired complex functional the form is negative
 definite. A full support claim additionally requires nonnegativity on the
-relevant semistable classes.-/
+relevant semistable classes.
+@isnad1 id=lt.4h5v.s7.a6c9e52f0d4b from=translated src=- shape=a4be77e9 vocab=5ff58570
+-/
 theorem neg_of_centralCharge_eq_zero (hsig : HasSignatureTwo Q) {x y : M}
     (hxy : IsPositiveFrame Q x y) {v : M} (hv : centralCharge Q x y v = 0) (hv0 : v ≠ 0) :
     Q v < 0 :=
   neg_of_mem_orthogonal hsig hxy (centralCharge_eq_zero_iff.mp hv) hv0
 
-/-- No nonzero class of nonnegative square lies in the kernel.-/
+/-- No nonzero class of nonnegative square lies in the kernel.
+@isnad1 id=ne.4h5v.s7.5664c10c171e from=translated src=- shape=0b008251 vocab=8d900a8a
+-/
 theorem centralCharge_ne_zero_of_nonneg (hsig : HasSignatureTwo Q) {x y : M}
     (hxy : IsPositiveFrame Q x y) {v : M} (hv : 0 ≤ Q v) (hv0 : v ≠ 0) :
     centralCharge Q x y v ≠ 0 := by
@@ -39,7 +43,9 @@ theorem centralCharge_ne_zero_of_nonneg (hsig : HasSignatureTwo Q) {x y : M}
   have := neg_of_centralCharge_eq_zero hsig hxy hzero hv0
   linarith
 
-/-- The positive-frame span and the functional kernel split the space.-/
+/-- The positive-frame span and the functional kernel split the space.
+@isnad1 id=iscompl.1h4v.s6.0f931a04690b from=translated src=- shape=89b88b74 vocab=bf94af84
+-/
 theorem isCompl_ker_centralCharge {x y : M} (hxy : IsPositiveFrame Q x y) :
     IsCompl (pairSpan x y) (orthogonal Q (pairSpan x y)) :=
   isCompl_orthogonal hxy

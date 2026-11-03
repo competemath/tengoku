@@ -57,12 +57,18 @@ noncomputable def extComparisonMap {B : D} {n : ℕ} (e : Ext.{w} P B n) :
     Ext.{w} A (R.obj B) n :=
   (Ext.mk₀ u).comp (e.mapExactFunctor R) (zero_add n)
 
+/--
+@isnad1 id=eq.0h8v.s8.8c5c195c39ac from=translated src=- shape=6e8590c8 vocab=21986b73
+-/
 @[simp]
 lemma extComparisonMap_zero {B : D} {n : ℕ} :
     extComparisonMap u (0 : Ext.{w} P B n) = 0 := by
   simp only [extComparisonMap, Ext.mapExactFunctor_zero]
   exact Ext.comp_zero _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h10v.s8.27131154cac1 from=translated src=- shape=9db96b15 vocab=5d189813
+-/
 lemma extComparisonMap_add {B : D} {n : ℕ} (e f : Ext.{w} P B n) :
     extComparisonMap u (e + f) = extComparisonMap u e + extComparisonMap u f := by
   simp only [extComparisonMap, Ext.mapExactFunctor_add]
@@ -76,7 +82,9 @@ noncomputable def extComparisonAddHom (B : D) (n : ℕ) :
   map_zero' := extComparisonMap_zero u
   map_add' := extComparisonMap_add u
 
-/-- The comparison is natural in the second variable.-/
+/-- The comparison is natural in the second variable.
+@isnad1 id=eq.1h13v.s7.83271d722db8 from=translated src=- shape=8a5aae2a vocab=af6ee966
+-/
 lemma extComparisonMap_comp {Y Z : D} {a b c : ℕ} (x : Ext.{w} P Y a)
     (e : Ext.{w} Y Z b) (h : a + b = c) :
     extComparisonMap u (x.comp e h) = (extComparisonMap u x).comp (e.mapExactFunctor R) h := by
@@ -84,7 +92,9 @@ lemma extComparisonMap_comp {Y Z : D} {a b c : ℕ} (x : Ext.{w} P Y a)
   exact (Ext.comp_assoc _ _ _ (zero_add a) h (by lia)).symm
 
 /-- Naturality against a morphism: the square for the maps of the long exact sequences
-induced by `S.f` and `S.g`.-/
+induced by `S.f` and `S.g`.
+@isnad1 id=eq.0h11v.s7.28796092b7e2 from=translated src=- shape=1e33c217 vocab=d77860cf
+-/
 lemma extComparisonMap_comp_mk₀ {Y Z : D} {a : ℕ} (x : Ext.{w} P Y a) (f : Y ⟶ Z) :
     extComparisonMap u (x.comp (Ext.mk₀ f) (add_zero a))
       = (extComparisonMap u x).comp (Ext.mk₀ (R.map f)) (add_zero a) := by
@@ -93,7 +103,9 @@ lemma extComparisonMap_comp_mk₀ {Y Z : D} {a : ℕ} (x : Ext.{w} P Y a) (f : Y
 
 /-- The connecting square: the comparison commutes with the connecting class of a short exact
 sequence, because `R` carries the sequence to a short exact sequence and
-`Ext.mapExactFunctor_extClass` carries the class along.-/
+`Ext.mapExactFunctor_extClass` carries the class along.
+@isnad1 id=eq.2h10v.s8.b30c97c6294f from=translated src=- shape=a9f08139 vocab=da093077
+-/
 lemma extComparisonMap_comp_extClass {S : ShortComplex D} (hS : S.ShortExact)
     {n₀ n₁ : ℕ} (hn₁ : n₀ + 1 = n₁) (x₃ : Ext.{w} P S.X₃ n₀) :
     extComparisonMap u (x₃.comp hS.extClass hn₁)
@@ -101,14 +113,18 @@ lemma extComparisonMap_comp_extClass {S : ShortComplex D} (hS : S.ShortExact)
   simp only [extComparisonMap, Ext.mapExactFunctor_comp, Ext.mapExactFunctor_extClass]
   exact (Ext.comp_assoc _ _ _ (zero_add n₀) hn₁ (by lia)).symm
 
-/-- In degree zero the comparison sends `mk₀ f` to `mk₀ (u ≫ R.map f)`.-/
+/-- In degree zero the comparison sends `mk₀ f` to `mk₀ (u ≫ R.map f)`.
+@isnad1 id=eq.0h8v.s7.9bad66246306 from=translated src=- shape=6360974a vocab=c0398fb9
+-/
 lemma extComparisonMap_mk₀ {B : D} (f : P ⟶ B) :
     extComparisonMap u (Ext.mk₀ f) = Ext.mk₀ (u ≫ R.map f) := by
   simp only [extComparisonMap, Ext.mapExactFunctor_mk₀, Ext.mk₀_comp_mk₀]
 
 /-- The degree-zero comparison is bijective iff `f ↦ u ≫ R.map f` is, under the
 identifications `Ext⁰ = Hom`. This is how the degree-zero hypothesis of
-`extComparisonAddEquiv` is checked in practice.-/
+`extComparisonAddEquiv` is checked in practice.
+@isnad1 id=iff.0h7v.s7.00197e810d03 from=translated src=- shape=df3bf992 vocab=23e131d2
+-/
 lemma bijective_extComparisonMap_zero_iff (B : D) :
     Function.Bijective (extComparisonMap u (B := B) (n := 0)) ↔
       Function.Bijective (fun f : P ⟶ B ↦ u ≫ R.map f) := by
@@ -132,7 +148,9 @@ include h₀ hacyclic
 /-- **The comparison is surjective in every degree.** Embed `B` in an injective `I` with
 quotient `Q`; both connecting maps `Ext^n(-, Q) → Ext^(n+1)(-, B)` are surjective, upstairs
 because `Ext^(n+1) P I` vanishes and downstairs by acyclicity of `R I`, so a class pulls back,
-lifts by induction, and pushes forward.-/
+lifts by induction, and pushes forward.
+@isnad1 id=surjecti.2h8v.s7.5b9ae3ea466f from=translated src=- shape=d58e992c vocab=12535e53
+-/
 theorem surjective_extComparisonMap (n : ℕ) (B : D) :
     Function.Surjective (extComparisonMap u (B := B) (n := n)) := by
   induction n generalizing B with
@@ -153,7 +171,9 @@ theorem surjective_extComparisonMap (n : ℕ) (B : D) :
 
 /-- **The comparison is injective in every degree.** The successor case uses surjectivity in
 degree `n` to lift the class that exactness produces, so the two theorems are not
-independent.-/
+independent.
+@isnad1 id=injectiv.2h8v.s7.b4a08284fc8e from=translated src=- shape=d58e992c vocab=24892ea9
+-/
 theorem injective_extComparisonMap (n : ℕ) (B : D) :
     Function.Injective (extComparisonMap u (B := B) (n := n)) := by
   induction n generalizing B with
@@ -190,6 +210,9 @@ noncomputable def extComparisonAddEquiv (B : D) (n : ℕ) :
     ⟨injective_extComparisonMap u h₀ hacyclic n B,
       surjective_extComparisonMap u h₀ hacyclic n B⟩
 
+/--
+@isnad1 id=eq.2h9v.s9.babe3abfdec0 from=translated src=- shape=22e8b5eb vocab=e31fcf74
+-/
 @[simp]
 lemma extComparisonAddEquiv_apply (B : D) (n : ℕ) (e : Ext.{w} P B n) :
     extComparisonAddEquiv u h₀ hacyclic B n e = extComparisonMap u e :=

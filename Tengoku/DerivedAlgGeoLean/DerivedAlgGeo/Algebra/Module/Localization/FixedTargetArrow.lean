@@ -58,7 +58,9 @@ private theorem Module.exists_finitely_presented_fixedTargetArrow_denominator
 
 /-- Over a localization of a Noetherian ring, every arrow from a finite
 localized module into the base change of a fixed `R`-module descends after
-changing its domain by an isomorphism. The target `T` need not be finite.-/
+changing its domain by an isomorphism. The target `T` need not be finite.
+@isnad1 id=ex.0h6v.s13.2c24631e9c9f from=translated src=- shape=6a6b01d8 vocab=ee7ddc5f
+-/
 theorem Module.exists_finitely_presented_fixedTargetArrow_of_isLocalization
     {R A N T : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A] [IsNoetherianRing R]

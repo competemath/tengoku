@@ -35,7 +35,9 @@ omit [e.IsRelIff] in
 /-- The cycles isomorphism for an extended complex commutes with induced maps.
 
 The cycles of an extension are the cycles of the original in the corresponding degree, and both
-sides agree after cancelling the mono `iCycles`.-/
+sides agree after cancelling the mono `iCycles`.
+@isnad1 id=eq.1h11v.s9.277ce462ffd5 from=translated src=- shape=447b9bca vocab=bac657d2
+-/
 @[reassoc]
 lemma extendCyclesIso_naturality :
     cyclesMap (extendMap φ e) j' ≫ (L.extendCyclesIso e hj').hom =
@@ -50,7 +52,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- The homology isomorphism for an extended complex commutes with induced maps.
 
 This is the statement the Čech comparison needs, since the Čech complex is `ℕ`-indexed and the
-comparison chain is `ℤ`-indexed. It follows from the cycles version by cancelling `homologyπ`.-/
+comparison chain is `ℤ`-indexed. It follows from the cycles version by cancelling `homologyπ`.
+@isnad1 id=eq.1h11v.s9.268f19fa9e5c from=translated src=- shape=447b9bca vocab=0fd9e968
+-/
 @[reassoc]
 lemma extendHomologyIso_naturality :
     homologyMap (extendMap φ e) j' ≫ (L.extendHomologyIso e hj').hom =

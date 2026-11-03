@@ -90,6 +90,9 @@ def embedding (c : NumDenSameDeg 𝒜 𝓜 S) : LocalizedModule S M :=
 
 omit [AddCommMonoid ι] [DecidableEq ι] [AddSubgroupClass σA A]
     [AddSubgroupClass σM M] [GradedRing 𝒜] [SetLike.GradedSMul 𝒜 𝓜] in
+/--
+@isnad1 id=eq.0h9v.s7.4f25def97021 from=translated src=- shape=1bcbb555 vocab=1f6907e7
+-/
 @[simp]
 theorem embedding_eq (c : NumDenSameDeg 𝒜 𝓜 S) :
     c.embedding = LocalizedModule.mk (S := S) (c.num : M)
@@ -112,10 +115,16 @@ def IsDegreeZero (z : LocalizedModule S M) : Prop :=
   ∃ c : NumDenSameDeg 𝒜 𝓜 S, c.embedding = z
 
 omit [SetLike.GradedSMul 𝒜 𝓜] in
+/--
+@isnad1 id=isdegree.0h8v.s7.5377805d0aa8 from=translated src=- shape=340a398b vocab=637209c5
+-/
 theorem isDegreeZero_zero : IsDegreeZero 𝒜 𝓜 S (0 : LocalizedModule S M) := by
   refine ⟨⟨0, ⟨0, zero_mem _⟩, ⟨1, one_mem_graded _⟩, one_mem S⟩, ?_⟩
   simp [NumDenSameDeg.embedding]
 
+/--
+@isnad1 id=isdegree.2h10v.s8.92cd76a51c47 from=translated src=- shape=ded11618 vocab=9b36a3f7
+-/
 theorem IsDegreeZero.add {x y : LocalizedModule S M}
     (hx : IsDegreeZero 𝒜 𝓜 S x) (hy : IsDegreeZero 𝒜 𝓜 S y) :
     IsDegreeZero 𝒜 𝓜 S (x + y) := by
@@ -136,6 +145,9 @@ theorem IsDegreeZero.add {x y : LocalizedModule S M}
 
 omit [AddCommMonoid ι] [DecidableEq ι] [AddSubgroupClass σA A]
     [GradedRing 𝒜] [SetLike.GradedSMul 𝒜 𝓜] in
+/--
+@isnad1 id=isdegree.1h9v.s7.085e8c013b6c from=translated src=- shape=6a319bd8 vocab=29b6ac71
+-/
 theorem IsDegreeZero.neg {x : LocalizedModule S M} (hx : IsDegreeZero 𝒜 𝓜 S x) :
     IsDegreeZero 𝒜 𝓜 S (-x) := by
   obtain ⟨p, rfl⟩ := hx
@@ -150,6 +162,9 @@ theorem IsDegreeZero.neg {x : LocalizedModule S M} (hx : IsDegreeZero 𝒜 𝓜 
       (s := (⟨(p.den : A), p.den_mem⟩ : S)))
 
 omit [AddSubgroupClass σM M] in
+/--
+@isnad1 id=isdegree.1h10v.s9.435b2d80883b from=translated src=- shape=acbf5631 vocab=a9b6b55b
+-/
 theorem IsDegreeZero.smul (a : HomogeneousLocalization 𝒜 S) {x : LocalizedModule S M}
     (hx : IsDegreeZero 𝒜 𝓜 S x) : IsDegreeZero 𝒜 𝓜 S (a • x) := by
   obtain ⟨p, rfl⟩ := hx
@@ -189,23 +204,33 @@ variable {𝒜 𝓜 S}
 def mk (c : NumDenSameDeg 𝒜 𝓜 S) : DegreeZeroLocalization 𝒜 𝓜 S :=
   ⟨c.embedding, ⟨c, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h9v.s9.a456e743123b from=translated src=- shape=887f3281 vocab=0d605549
+-/
 @[simp]
 theorem coe_mk (c : NumDenSameDeg 𝒜 𝓜 S) :
     ((mk c : DegreeZeroLocalization 𝒜 𝓜 S) : LocalizedModule S M) = c.embedding :=
   rfl
 
-/-- Every degree-zero localized element has a homogeneous numerator and denominator.-/
+/-- Every degree-zero localized element has a homogeneous numerator and denominator.
+@isnad1 id=surjecti.0h8v.s9.66726ae731c5 from=translated src=- shape=a4c6df92 vocab=87600b3c
+-/
 theorem mk_surjective :
     Function.Surjective (mk : NumDenSameDeg 𝒜 𝓜 S → DegreeZeroLocalization 𝒜 𝓜 S) := by
   rintro ⟨z, ⟨c, hc⟩⟩
   exact ⟨c, Subtype.ext hc⟩
 
+/--
+@isnad1 id=eq.1h10v.s10.e10beef35c91 from=translated src=- shape=8b6f51a2 vocab=c050c9f8
+-/
 @[ext]
 theorem ext {x y : DegreeZeroLocalization 𝒜 𝓜 S}
     (h : (x : LocalizedModule S M) = y) : x = y :=
   Subtype.ext h
 
-/-- Equality of homogeneous fractions is the ordinary localized-module equality criterion.-/
+/-- Equality of homogeneous fractions is the ordinary localized-module equality criterion.
+@isnad1 id=iff.0h10v.s10.b97fb7871c44 from=translated src=- shape=6be283d9 vocab=7cc9e1f4
+-/
 theorem mk_eq_mk_iff (p q : NumDenSameDeg 𝒜 𝓜 S) :
     mk p = mk q ↔
       ∃ u : S,
@@ -223,21 +248,33 @@ theorem mk_eq_mk_iff (p q : NumDenSameDeg 𝒜 𝓜 S) :
     rw [LocalizedModule.mk_eq]
     simpa only [Submonoid.smul_def, Submonoid.coe_mul] using h
 
+/--
+@isnad1 id=eq.0h8v.s10.7961a8e673e6 from=translated src=- shape=b3ae1941 vocab=c050c9f8
+-/
 @[simp]
 theorem coe_zero :
     ((0 : DegreeZeroLocalization 𝒜 𝓜 S) : LocalizedModule S M) = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.c1632b3da01e from=translated src=- shape=b84580de vocab=fc55f8f9
+-/
 @[simp]
 theorem coe_add (x y : DegreeZeroLocalization 𝒜 𝓜 S) :
     ((x + y : DegreeZeroLocalization 𝒜 𝓜 S) : LocalizedModule S M) = x + y :=
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.017733f2fb47 from=translated src=- shape=79055fac vocab=360f9d2d
+-/
 @[simp]
 theorem coe_neg (x : DegreeZeroLocalization 𝒜 𝓜 S) :
     ((-x : DegreeZeroLocalization 𝒜 𝓜 S) : LocalizedModule S M) = -x :=
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.3c5381e314d4 from=translated src=- shape=25513c87 vocab=4ee032ad
+-/
 @[simp]
 theorem coe_smul (a : HomogeneousLocalization 𝒜 S)
     (x : DegreeZeroLocalization 𝒜 𝓜 S) :
@@ -258,7 +295,9 @@ computation separately means a caller no longer has to re-derive it.
 **Not `@[simp]`.** Its right-hand side is stated with `a.num` and `a.den`, the
 representative `HomogeneousLocalization` chooses, which is the *less* usable
 form — see `mk_smul_mk` below. Marking both would also be a `simpNF` conflict,
-since this one rewrites that one's left-hand side.-/
+since this one rewrites that one's left-hand side.
+@isnad1 id=eq.0h10v.s11.1a847f9dc03b from=translated src=- shape=5e1fcd6a vocab=a365e4c7
+-/
 theorem smul_mk (a : HomogeneousLocalization 𝒜 S) (c : NumDenSameDeg 𝒜 𝓜 S) :
     a • (mk c : DegreeZeroLocalization 𝒜 𝓜 S) =
       mk { deg := a.deg + c.deg
@@ -281,7 +320,9 @@ theorem smul_mk (a : HomogeneousLocalization 𝒜 S) (c : NumDenSameDeg 𝒜 �
 `HomogeneousLocalization` chooses — *not* the fields of whatever
 `NumDenSameDeg` the caller built `a` from. When the scalar is itself written as
 `HomogeneousLocalization.mk c'`, that gap has to be closed again at every use
-site. This states the rule with both sides explicit, so it does not.-/
+site. This states the rule with both sides explicit, so it does not.
+@isnad1 id=eq.0h10v.s11.4d6ed12fb90a from=translated src=- shape=10d76228 vocab=fc50a23f
+-/
 @[simp]
 theorem mk_smul_mk (c' : HomogeneousLocalization.NumDenSameDeg 𝒜 S)
     (c : NumDenSameDeg 𝒜 𝓜 S) :
@@ -331,6 +372,9 @@ noncomputable def mapOfLE {T : Submonoid A} (h : S ≤ T) :
     exact (LocalizedModule.liftOfLE S T h).map_add
       (x : LocalizedModule S M) (y : LocalizedModule S M)
 
+/--
+@isnad1 id=eq.1h10v.s13.73f949002420 from=translated src=- shape=1c1545b1 vocab=f3ac3510
+-/
 @[simp]
 theorem mapOfLE_mk {T : Submonoid A} (h : S ≤ T) (c : NumDenSameDeg 𝒜 𝓜 S) :
     mapOfLE (𝒜 := 𝒜) (𝓜 := 𝓜) h (mk c) = mk
@@ -360,7 +404,9 @@ from. They are stated for a bare module because nothing about them is graded. -/
 
 /-- If `g₁ * h` is a power of `g₂`, then `g₁` is already invertible after inverting `g₂`.
 
-`g₁ * h` is invertible there, and in a commutative ring a factor of a unit is a unit.-/
+`g₁ * h` is invertible there, and in a commutative ring a factor of a unit is a unit.
+@isnad1 id=isunit.1h4v.s8.db216b611eff from=translated src=- shape=bbc0eb6f vocab=109db375
+-/
 theorem isUnit_algebraMap_localization_of_mul_mem {g₁ g₂ h : A}
     (hgh : g₁ * h ∈ Submonoid.powers g₂) :
     IsUnit (algebraMap A (Localization (Submonoid.powers g₂)) g₁) := by
@@ -373,7 +419,9 @@ theorem isUnit_algebraMap_localization_of_mul_mem {g₁ g₂ h : A}
 
 This is the hypothesis of `LocalizedModule.lift`, so it is what turns the previous lemma into an
 actual map out of the localization at `g₁`. The scalar action factors through
-`Localization (Submonoid.powers g₂)`, where the inverse is available.-/
+`Localization (Submonoid.powers g₂)`, where the inverse is available.
+@isnad1 id=isunit.1h6v.s10.1dc25e205531 from=translated src=- shape=c9d5f32f vocab=578046b6
+-/
 theorem isUnit_algebraMap_end_of_mul_mem {g₁ g₂ h : A}
     (hgh : g₁ * h ∈ Submonoid.powers g₂) (s : Submonoid.powers g₁) :
     IsUnit (algebraMap A
@@ -412,7 +460,9 @@ This is the formula the graded face map is defined by: the abstract `LocalizedMo
 inverted here into an explicit fraction, which is what the degree-zero certificate needs.
 
 Both sides are pinned by multiplying through by `g₁ ⁿ`, which acts invertibly on the target --
-that is the whole content of `isUnit_algebraMap_end_of_mul_mem`.-/
+that is the whole content of `isUnit_algebraMap_end_of_mul_mem`.
+@isnad1 id=eq.2h7v.s10.441cc7b88f6b from=translated src=- shape=26d166b5 vocab=e48ff93c
+-/
 theorem faceLift_mk {g₁ g₂ h : A} (hgh : g₁ * h ∈ Submonoid.powers g₂)
     (hg : g₁ * h = g₂) (m : M) (n : ℕ) :
     faceLift (M := M) hgh
@@ -444,7 +494,9 @@ omit [AddSubgroupClass σM M] in
 /-- A face map preserves the degree-zero condition.
 
 Clearing `g₁ⁿ` costs `hⁿ` in both numerator and denominator, so the matching-degree certificate
-survives with its degree raised by `n • e`.-/
+survives with its degree raised by `n • e`.
+@isnad1 id=isdegree.4h12v.s9.9998190d2f7d from=translated src=- shape=6d8f5794 vocab=663bc660
+-/
 theorem isDegreeZero_faceLift {g₁ g₂ h : A} {e : ι} (hh : h ∈ 𝒜 e)
     (hgh : g₁ * h ∈ Submonoid.powers g₂) (hg : g₁ * h = g₂)
     {z : LocalizedModule (Submonoid.powers g₁) M}
@@ -487,6 +539,9 @@ noncomputable def faceMap {g₁ g₂ h : A} {e : ι} (hh : h ∈ 𝒜 e)
       (x : LocalizedModule (Submonoid.powers g₁) M)
       (y : LocalizedModule (Submonoid.powers g₁) M)
 
+/--
+@isnad1 id=eq.3h12v.s14.e8d97e4790fa from=translated src=- shape=c140ba5c vocab=ce6f52cf
+-/
 @[simp]
 theorem coe_faceMap {g₁ g₂ h : A} {e : ι} (hh : h ∈ 𝒜 e)
     (hgh : g₁ * h ∈ Submonoid.powers g₂) (hg : g₁ * h = g₂)
@@ -496,7 +551,9 @@ theorem coe_faceMap {g₁ g₂ h : A} {e : ι} (hh : h ∈ 𝒜 e)
       faceLift (M := M) hgh (z : LocalizedModule (Submonoid.powers g₁) M) :=
   rfl
 
-/-- The face map in explicit fractions: `m / g₁ⁿ ↦ hⁿ m / g₂ⁿ`.-/
+/-- The face map in explicit fractions: `m / g₁ⁿ ↦ hⁿ m / g₂ⁿ`.
+@isnad1 id=eq.4h13v.s14.383c63580248 from=translated src=- shape=409cbb68 vocab=4715f799
+-/
 theorem faceMap_mk {g₁ g₂ h : A} {e : ι} (hh : h ∈ 𝒜 e)
     (hgh : g₁ * h ∈ Submonoid.powers g₂) (hg : g₁ * h = g₂)
     (c : NumDenSameDeg 𝒜 𝓜 (.powers g₁)) (n : ℕ) (hn : g₁ ^ n = (c.den : A)) :
@@ -546,6 +603,9 @@ noncomputable def linearEquivOfMemIff {σN : Type*} [SetLike σN M] [AddSubgroup
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.1h11v.s12.1b24b2f6ed48 from=translated src=- shape=14a909ac vocab=d60b164d
+-/
 @[simp]
 theorem coe_linearEquivOfMemIff {σN : Type*} [SetLike σN M] [AddSubgroupClass σN M]
     (𝓝 : ι → σN) [SetLike.GradedSMul 𝒜 𝓝]
@@ -555,6 +615,9 @@ theorem coe_linearEquivOfMemIff {σN : Type*} [SetLike σN M] [AddSubgroupClass 
       (z : LocalizedModule S M) :=
   rfl
 
+/--
+@isnad1 id=eq.1h11v.s12.3e0c6c0b608e from=translated src=- shape=447e993f vocab=a02d0cc2
+-/
 @[simp]
 theorem linearEquivOfMemIff_mk {σN : Type*} [SetLike σN M] [AddSubgroupClass σN M]
     (𝓝 : ι → σN) [SetLike.GradedSMul 𝒜 𝓝]
@@ -577,6 +640,9 @@ def awayMk {f : A} {d : ι} (hf : f ∈ 𝒜 d) (n : ℕ) (m : M)
       den := ⟨f ^ n, SetLike.pow_mem_graded n hf⟩
       den_mem := ⟨n, rfl⟩ }
 
+/--
+@isnad1 id=eq.2h11v.s10.ae5fbd15e769 from=translated src=- shape=b876f1f8 vocab=d7bad4d6
+-/
 @[simp]
 theorem coe_awayMk {f : A} {d : ι} (hf : f ∈ 𝒜 d) (n : ℕ) (m : M)
     (hm : m ∈ 𝓜 (n • d)) :
@@ -595,7 +661,9 @@ in `n • deg f`, and a nonzero homogeneous element lies in exactly one piece.
 
 The hypothesis is `∀ n, fⁿ ≠ 0` rather than `f ≠ 0` so that no domain assumption is needed here;
 in a domain `pow_ne_zero` supplies it. It cannot be dropped: over a ring where `f` is nilpotent
-the localization is trivial and the degree is genuinely unconstrained.-/
+the localization is trivial and the degree is genuinely unconstrained.
+@isnad1 id=ex.2h10v.s10.3e57ed1aa8e4 from=translated src=- shape=2824d700 vocab=9cd980fd
+-/
 theorem exists_awayMk {f : A} {e : ι} (hf : f ∈ 𝒜 e) (hf0 : ∀ n : ℕ, f ^ n ≠ 0)
     (z : DegreeZeroLocalization 𝒜 𝓜 (.powers f)) :
     ∃ (n : ℕ) (m : M) (hm : m ∈ 𝓜 (n • e)), z = awayMk hf n m hm := by
@@ -620,7 +688,9 @@ turns a regular ring element into an injective scalar action on `M`. For `M = A`
 an instance, so the polynomial case needs neither supplied by hand.
 
 Without torsion-freeness the statement is false, not merely unproved: an `f`-torsion element of
-`M` is a nonzero numerator whose fraction is zero.-/
+`M` is a nonzero numerator whose fraction is zero.
+@isnad1 id=iff.4h13v.s10.66ed9c36b463 from=translated src=- shape=bc388a48 vocab=38e18190
+-/
 theorem awayMk_eq_awayMk_iff [IsDomain A] [Module.IsTorsionFree A M] {f : A} {e : ι}
     (hf : f ∈ 𝒜 e) (hf0 : f ≠ 0) {n m : ℕ} {p q : M} (hp : p ∈ 𝓜 (n • e))
     (hq : q ∈ 𝓜 (m • e)) :
@@ -633,14 +703,18 @@ theorem awayMk_eq_awayMk_iff [IsDomain A] [Module.IsTorsionFree A M] {f : A} {e 
   · intro h
     exact ⟨1, by simpa using h⟩
 
-/-- The zero numerator gives the zero fraction.-/
+/-- The zero numerator gives the zero fraction.
+@isnad1 id=eq.1h10v.s11.119b2ff0d144 from=translated src=- shape=a3392e63 vocab=7415a52e
+-/
 theorem awayMk_zero {f : A} {e : ι} (hf : f ∈ 𝒜 e) (n : ℕ) :
     awayMk (𝓜 := 𝓜) hf n (0 : M) (zero_mem (𝓜 (n • e))) = 0 := by
   apply ext
   rw [coe_awayMk, coe_zero]
   simp
 
-/-- `awayMk` is additive in the numerator at a fixed denominator.-/
+/-- `awayMk` is additive in the numerator at a fixed denominator.
+@isnad1 id=eq.3h12v.s11.61d85fbd2b40 from=translated src=- shape=e0a387cf vocab=7079a890
+-/
 theorem awayMk_add {f : A} {e : ι} (hf : f ∈ 𝒜 e) (n : ℕ) (p q : M)
     (hp : p ∈ 𝓜 (n • e)) (hq : q ∈ 𝓜 (n • e)) :
     awayMk hf n (p + q) (add_mem hp hq) = awayMk hf n p hp + awayMk hf n q hq := by
@@ -659,7 +733,9 @@ the right have to carry their own certificates and a `∀ b ∈ s` hypothesis is
 The proof descends into `LocalizedModule` before inducting. That is not incidental: the numerator
 appears in the type of `awayMk`'s membership argument, so rewriting `Finset.sum_insert` in the
 goal directly fails on a non-type-correct motive. `coe_awayMk` discharges the certificate first,
-and the induction then runs over an ordinary equation.-/
+and the induction then runs over an ordinary equation.
+@isnad1 id=eq.2h13v.s10.f448eef4bde6 from=translated src=- shape=1704b281 vocab=420b49d9
+-/
 theorem awayMk_sum {f : A} {e : ι} (hf : f ∈ 𝒜 e) (n : ℕ) {β : Type*} (s : Finset β)
     (p : β → M) (hp : ∀ b, p b ∈ 𝓜 (n • e)) :
     awayMk hf n (∑ b ∈ s, p b) (sum_mem fun b _ => hp b) =
@@ -679,7 +755,9 @@ theorem awayMk_sum {f : A} {e : ι} (hf : f ∈ 𝒜 e) (n : ℕ) {β : Type*} (
 
 This is what puts two `awayMk`s over a common denominator, which every argument about sums of
 fractions with different denominators needs. It holds over any ring: no cancellation is
-performed, so neither `IsDomain` nor torsion-freeness appears.-/
+performed, so neither `IsDomain` nor torsion-freeness appears.
+@isnad1 id=eq.3h12v.s10.e2b55a0346e9 from=translated src=- shape=c0ab0fbb vocab=123b7cb4
+-/
 theorem awayMk_shift {f : A} {e : ι} (hf : f ∈ 𝒜 e) (n t : ℕ) (p : M)
     (hp : p ∈ 𝓜 (n • e)) (hfp : f ^ t • p ∈ 𝓜 ((n + t) • e)) :
     awayMk hf (n + t) (f ^ t • p) hfp = awayMk hf n p hp := by
@@ -693,7 +771,9 @@ This is `exists_awayMk` on each fraction followed by `awayMk_shift` to align the
 at their sum. It is the move every statement about a *sum* of fractions opens with — additivity
 of `awayMk` exists only at a fixed denominator — and it is what the additivity of the sign
 projection (#340's contracting homotopy) reduces to. Like `exists_awayMk`, it costs no domain
-or torsion-freeness hypothesis: no cancellation is performed.-/
+or torsion-freeness hypothesis: no cancellation is performed.
+@isnad1 id=ex.2h11v.s11.eb514fa08b82 from=translated src=- shape=df0cbf90 vocab=9cd980fd
+-/
 theorem exists_awayMk_pair {f : A} {e : ι} (hf : f ∈ 𝒜 e) (hf0 : ∀ n : ℕ, f ^ n ≠ 0)
     (z₁ z₂ : DegreeZeroLocalization 𝒜 𝓜 (.powers f)) :
     ∃ (n : ℕ) (p₁ p₂ : M) (hp₁ : p₁ ∈ 𝓜 (n • e)) (hp₂ : p₂ ∈ 𝓜 (n • e)),
@@ -723,7 +803,9 @@ theorem exists_awayMk_pair {f : A} {e : ι} (hf : f ∈ 𝒜 e) (hf0 : ∀ n : �
 This is `awayMk_eq_awayMk_iff` against the zero fraction, and it is what makes the numerator a
 faithful record of the element: any independence statement about fractions reduces to one about
 numerators. The hypotheses are inherited from that lemma and are needed for the same reason —
-without torsion-freeness an `f`-torsion numerator is a nonzero numerator with a zero fraction.-/
+without torsion-freeness an `f`-torsion numerator is a nonzero numerator with a zero fraction.
+@isnad1 id=iff.3h11v.s11.467bcbf1c582 from=translated src=- shape=bc4fdbd6 vocab=e86906a1
+-/
 theorem awayMk_eq_zero_iff [IsDomain A] [Module.IsTorsionFree A M] {f : A} {e : ι}
     (hf : f ∈ 𝒜 e) (hf0 : f ≠ 0) {n : ℕ} {p : M} (hp : p ∈ 𝓜 (n • e)) :
     awayMk hf n p hp = 0 ↔ p = 0 := by
@@ -734,7 +816,9 @@ theorem awayMk_eq_zero_iff [IsDomain A] [Module.IsTorsionFree A M] {f : A} {e : 
 `awayMk` records the degree of its denominator in the `NumDenSameDeg` certificate, so two
 certificates that are propositionally equal still need transporting. Every caller that meets this
 has the same shape: one side names the degree as `(γ' + single i₀ c).degree` and the other as
-`c + γ'.degree`.-/
+`c + γ'.degree`.
+@isnad1 id=eq.5h12v.s9.02160a6b5fe6 from=translated src=- shape=40a668ab vocab=879e746b
+-/
 theorem awayMk_deg_congr {f : A} {e₁ e₂ : ι} (h : e₁ = e₂) (hf₁ : f ∈ 𝒜 e₁) (hf₂ : f ∈ 𝒜 e₂)
     (n : ℕ) (p : M) (hp₁ : p ∈ 𝓜 (n • e₁)) (hp₂ : p ∈ 𝓜 (n • e₂)) :
     awayMk hf₁ n p hp₁ = awayMk hf₂ n p hp₂ := by
@@ -747,7 +831,9 @@ the numerator by `hⁿ` and leaves the exponent alone.
 This is `faceMap_mk` with the denominator already known to be a power, which is the shape every
 caller has: the face of a Čech intersection is a restriction between two `awayMk`s, not between
 two arbitrary `NumDenSameDeg`s. The target degree is written `e + e₁` rather than `e₁ + e` so that
-`n • (e + e₁)` matches the `n • e + n • e₁` that `faceMap_mk` produces.-/
+`n • (e + e₁)` matches the `n • e + n • e₁` that `faceMap_mk` produces.
+@isnad1 id=eq.7h14v.s14.dd2afdae7b3e from=translated src=- shape=7277eab4 vocab=17fb5db9
+-/
 theorem faceMap_awayMk {g₁ g₂ h : A} {e e₁ : ι} (hh : h ∈ 𝒜 e) (hg₁ : g₁ ∈ 𝒜 e₁)
     (hgh : g₁ * h ∈ Submonoid.powers g₂) (hg : g₁ * h = g₂)
     (hg₂ : g₂ ∈ 𝒜 (e + e₁)) (n : ℕ) (p : M) (hp : p ∈ 𝓜 (n • e₁))
@@ -783,6 +869,9 @@ noncomputable def localized (f : GradedLinearMap (A := A) 𝓜 𝓝) :
   LocalizedModule.map S f.toLinearMap
 
 omit [AddCommMonoid ι] [DecidableEq ι] [AddSubgroupClass σM M] in
+/--
+@isnad1 id=eq.0h12v.s9.7d26b6cab2b6 from=translated src=- shape=285f6ef9 vocab=16455d20
+-/
 @[simp]
 theorem localized_mk (f : GradedLinearMap (A := A) 𝓜 𝓝) (m : M) (s : S) :
     localized (𝓜 := 𝓜) (𝓝 := 𝓝) (S := S) f (LocalizedModule.mk m s) =
@@ -812,6 +901,9 @@ noncomputable def map (f : GradedLinearMap (A := A) 𝓜 𝓝) :
     apply DegreeZeroLocalization.ext
     exact (localized (𝓜 := 𝓜) (𝓝 := 𝓝) (S := S) f).map_smul (algebraMap _ _ a) x
 
+/--
+@isnad1 id=eq.0h13v.s12.868059207124 from=translated src=- shape=ebeca8b1 vocab=5bdbf74a
+-/
 @[simp]
 theorem map_mk (f : GradedLinearMap (A := A) 𝓜 𝓝) (c : NumDenSameDeg 𝒜 𝓜 S) :
     map (𝒜 := 𝒜) (𝓜 := 𝓜) (𝓝 := 𝓝) (S := S) f (DegreeZeroLocalization.mk c) =
@@ -857,18 +949,27 @@ noncomputable def homogeneousLocalizationLinearMap :
     simp only [coe_smul]
     exact HomogeneousLocalization.val_mul x y
 
+/--
+@isnad1 id=eq.0h6v.s11.6a35d7a5557a from=translated src=- shape=ee76f1a0 vocab=24a920b2
+-/
 @[simp]
 theorem coe_homogeneousLocalizationLinearMap (z : HomogeneousLocalization 𝒜 S) :
     ((homogeneousLocalizationLinearMap 𝒜 S z : DegreeZeroLocalization 𝒜 𝒜 S) :
       LocalizedModule S A) = z.val :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s11.b6e2876a3be8 from=translated src=- shape=5d000cec vocab=06418fee
+-/
 theorem homogeneousLocalizationLinearMap_injective :
     Function.Injective (homogeneousLocalizationLinearMap 𝒜 S) := by
   intro x y h
   apply HomogeneousLocalization.val_injective S
   exact congrArg Subtype.val h
 
+/--
+@isnad1 id=surjecti.0h5v.s11.f8755d055e49 from=translated src=- shape=5d000cec vocab=17d8469a
+-/
 theorem homogeneousLocalizationLinearMap_surjective :
     Function.Surjective (homogeneousLocalizationLinearMap 𝒜 S) := by
   rintro ⟨z, hz⟩
@@ -891,12 +992,18 @@ noncomputable def selfLinearEquiv :
     ⟨homogeneousLocalizationLinearMap_injective 𝒜 S,
       homogeneousLocalizationLinearMap_surjective 𝒜 S⟩
 
+/--
+@isnad1 id=eq.0h6v.s12.c18f0e95e3f0 from=translated src=- shape=72e1058d vocab=710e5108
+-/
 @[simp]
 theorem coe_selfLinearEquiv (z : HomogeneousLocalization 𝒜 S) :
     ((selfLinearEquiv 𝒜 S z : DegreeZeroLocalization 𝒜 𝒜 S) :
       LocalizedModule S A) = z.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.5f623bc26db6 from=translated src=- shape=bca1994e vocab=49e1b777
+-/
 @[simp]
 theorem selfLinearEquiv_apply_mk
     (c : HomogeneousLocalization.NumDenSameDeg 𝒜 S) :
@@ -909,6 +1016,9 @@ theorem selfLinearEquiv_apply_mk
   apply ext
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.002f16e328f7 from=translated src=- shape=0e0683c3 vocab=5521ee0a
+-/
 @[simp]
 theorem selfLinearEquiv_symm_apply_mk (c : NumDenSameDeg 𝒜 𝒜 S) :
     (selfLinearEquiv 𝒜 S).symm (DegreeZeroLocalization.mk c) =

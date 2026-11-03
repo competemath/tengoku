@@ -25,11 +25,17 @@ variable {C : Type u} [Category.{v} C] [Abelian C]
 
 attribute [local instance] HasDerivedCategory.standard
 
+/--
+@isnad1 id=eq.1h2v.s8.f83f8fd2c8f3 from=translated src=- shape=04ef97a2 vocab=4110b629
+-/
 @[simp]
 theorem singleTriangle.map_id {S : ShortComplex C} (hS : S.ShortExact) :
     singleTriangle.map hS hS (𝟙 S) = 𝟙 hS.singleTriangle := by
   ext <;> simp [singleTriangle.map] <;> rfl
 
+/--
+@isnad1 id=eq.3h6v.s8.1390c784e578 from=translated src=- shape=46ed2551 vocab=a935b4b0
+-/
 @[simp, reassoc]
 theorem singleTriangle.map_comp {S₁ S₂ S₃ : ShortComplex C}
     (h₁ : S₁.ShortExact) (h₂ : S₂.ShortExact) (h₃ : S₃.ShortExact)

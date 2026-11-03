@@ -42,6 +42,9 @@ def fiberwiseHom {B : Type*} [AddCommGroup B] (f : ∀ i, K i →+ B) :
   classical
   exact DirectSum.toAddMonoid f
 
+/--
+@isnad1 id=eq.0h6v.s8.c1a65d1662f6 from=translated src=- shape=76f11b1b vocab=1da3274b
+-/
 @[simp]
 theorem fiberwiseHom_fiberInclusion {B : Type*} [AddCommGroup B]
     (f : ∀ i, K i →+ B) (i : I) (x : K i) :
@@ -62,12 +65,17 @@ abbrev Group (relations : Set (FiberSum K)) :=
 def of (relations : Set (FiberSum K)) (i : I) : K i →+ Group K relations :=
   (relationSubgroup K relations).saturatedQuotientMk.comp (fiberInclusion K i)
 
+/--
+@isnad1 id=eq.0h5v.s9.901702bb31ab from=translated src=- shape=1c9d5470 vocab=2cdbdb57
+-/
 theorem of_apply (relations : Set (FiberSum K)) (i : I) (x : K i) :
     of K relations i x =
       (relationSubgroup K relations).saturatedQuotientMk (fiberInclusion K i x) :=
   rfl
 
-/-- Every specified family relation vanishes in the quotient.-/
+/-- Every specified family relation vanishes in the quotient.
+@isnad1 id=eq.1h4v.s9.23ff773d04c8 from=translated src=- shape=03a6cae8 vocab=a0265dc7
+-/
 @[simp]
 theorem relation_eq_zero (relations : Set (FiberSum K))
     {r : FiberSum K} (hr : r ∈ relations) :
@@ -77,7 +85,9 @@ theorem relation_eq_zero (relations : Set (FiberSum K))
     (AddSubgroup.subset_closure hr)
 
 /-- Two indexed classes agree when their difference is one of the specified
-family relations.-/
+family relations.
+@isnad1 id=eq.1h7v.s9.a41654596ede from=translated src=- shape=7fb1a782 vocab=a04f3900
+-/
 theorem of_eq_of (relations : Set (FiberSum K)) {i j : I} {x : K i} {y : K j}
     (h : fiberInclusion K i x - fiberInclusion K j y ∈ relations) :
     of K relations i x = of K relations j y := by
@@ -96,6 +106,9 @@ def lift {B : Type*} [AddCommGroup B] [IsAddTorsionFree B]
       intro r hr
       exact hrelations r hr
 
+/--
+@isnad1 id=eq.1h7v.s9.2124ff9ad5d8 from=translated src=- shape=dafeb7b3 vocab=7d862cea
+-/
 @[simp]
 theorem lift_of {B : Type*} [AddCommGroup B] [IsAddTorsionFree B]
     (relations : Set (FiberSum K)) (f : ∀ i, K i →+ B)
@@ -115,6 +128,9 @@ def map {J : Type*} (L : J → Type*) [∀ j, AddCommGroup (L j)]
   (relationSubgroup K sourceRelations).saturatedQuotientMap
     (relationSubgroup L targetRelations) f hf
 
+/--
+@isnad1 id=eq.1h8v.s10.cee4dfd484ac from=translated src=- shape=670953e2 vocab=6baff27e
+-/
 @[simp]
 theorem map_mk {J : Type*} (L : J → Type*) [∀ j, AddCommGroup (L j)]
     (sourceRelations : Set (FiberSum K))
@@ -137,6 +153,9 @@ def mapOfRelations {J : Type*} (L : J → Type*) [∀ j, AddCommGroup (L j)]
     rw [relationSubgroup, AddSubgroup.closure_le]
     exact hf
 
+/--
+@isnad1 id=eq.0h3v.s8.74bd27446e19 from=translated src=- shape=a58ff51e vocab=286ca970
+-/
 @[simp]
 theorem map_id (relations : Set (FiberSum K)) :
     map K K relations relations (AddMonoidHom.id _) (by simp) =
@@ -144,7 +163,9 @@ theorem map_id (relations : Set (FiberSum K)) :
   AddSubgroup.saturatedQuotientMap_id _
 
 /-- Maps out of the relative quotient are determined by their values on every
-fibre group.-/
+fibre group.
+@isnad1 id=eq.1h6v.s9.b3479290d314 from=translated src=- shape=9bbecd02 vocab=e9cb1508
+-/
 @[ext]
 theorem hom_ext {B : Type*} [AddCommGroup B]
     (relations : Set (FiberSum K)) {f g : Group K relations →+ B}
@@ -193,6 +214,9 @@ def relations : Set (FiberSum K) :=
   {r | ∃ (F : D.Family) (t₁ t₂ : D.Point F),
     r = relation K D F t₁ t₂}
 
+/--
+@isnad1 id=mem.0h6v.s5.ded033c9fc85 from=translated src=- shape=779e8c47 vocab=8ad2f6a6
+-/
 @[simp]
 theorem relation_mem (F : D.Family) (t₁ t₂ : D.Point F) :
     relation K D F t₁ t₂ ∈ relations K D :=
@@ -205,7 +229,9 @@ abbrev RelativeGroup := Group K (relations K D)
 def pointClass (F : D.Family) (t : D.Point F) : RelativeGroup K D :=
   of K (relations K D) (D.index F t) (D.classValue F t)
 
-/-- The class of an admissible family is independent of the chosen point.-/
+/-- The class of an admissible family is independent of the chosen point.
+@isnad1 id=eq.0h6v.s5.753eeab819a8 from=translated src=- shape=a84bd48d vocab=5e9a018f
+-/
 theorem pointClass_eq (F : D.Family) (t₁ t₂ : D.Point F) :
     pointClass K D F t₁ = pointClass K D F t₂ :=
   of_eq_of K (relations K D) (relation_mem K D F t₁ t₂)
@@ -222,6 +248,9 @@ def lift {B : Type*} [AddCommGroup B] [IsAddTorsionFree B]
     rintro r ⟨F, t₁, t₂, rfl⟩
     simpa [relation, sub_eq_zero] using hfamily F t₁ t₂
 
+/--
+@isnad1 id=eq.1h7v.s9.c61eaeceff24 from=translated src=- shape=979f8ce3 vocab=0146aa4d
+-/
 @[simp]
 theorem lift_pointClass {B : Type*} [AddCommGroup B] [IsAddTorsionFree B]
     (f : ∀ i, K i →+ B)
@@ -243,6 +272,9 @@ def singletonFold (A : Type*) [AddCommGroup A] [IsAddTorsionFree A] :
     intro r hr
     simp at hr
 
+/--
+@isnad1 id=eq.0h2v.s10.8bd286ebc764 from=translated src=- shape=88abf34d vocab=e3bd996e
+-/
 @[simp]
 theorem singletonFold_of (A : Type*) [AddCommGroup A] [IsAddTorsionFree A]
     (x : A) :
@@ -272,6 +304,9 @@ def singletonEquiv (A : Type*) [AddCommGroup A] [IsAddTorsionFree A] :
     exact singletonFold_of A x
   map_add' := map_add (singletonFold A)
 
+/--
+@isnad1 id=eq.0h2v.s10.ccce9e2df455 from=translated src=- shape=4f08e615 vocab=b42e21cf
+-/
 @[simp]
 theorem singletonEquiv_of (A : Type*) [AddCommGroup A] [IsAddTorsionFree A]
     (x : A) :

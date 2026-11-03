@@ -78,12 +78,16 @@ variable {tensor : CochainComplex C ℤ ⥤ CochainComplex C ℤ ⥤ CochainComp
 
 include hK
 
-/-- Left tensoring with a K-flat complex inverts quasi-isomorphisms.-/
+/-- Left tensoring with a K-flat complex inverts quasi-isomorphisms.
+@isnad1 id=isinvert.1h3v.s9.430b4773052b from=translated src=- shape=e82a4707 vocab=8cbbf1b1
+-/
 lemma tensorLeft_inverts :
     W.IsInvertedBy (tensor.obj K ⋙ DerivedCategory.Q) :=
   hK.1
 
-/-- Right tensoring with a K-flat complex inverts quasi-isomorphisms.-/
+/-- Right tensoring with a K-flat complex inverts quasi-isomorphisms.
+@isnad1 id=isinvert.1h3v.s9.7bf70094d542 from=translated src=- shape=23409be3 vocab=e2d4f6ff
+-/
 lemma tensorRight_inverts :
     W.IsInvertedBy (tensor.flip.obj K ⋙ DerivedCategory.Q) :=
   hK.2
@@ -127,7 +131,9 @@ end IsKFlat
 
 /-- A pointwise replacement `q : P ⟶ M` transports right-slot tensor inversion from
 `P` to `M` when tensoring by either endpoint inverts `q`. No functorial
-resolution of arbitrary complexes is needed for this square.-/
+resolution of arbitrary complexes is needed for this square.
+@isnad1 id=isiso.3h10v.s12.9a461966a3c8 from=translated src=- shape=c9b9c473 vocab=4b9934e8
+-/
 theorem isIso_Q_map_tensorRight_of_pointwiseReplacement
     {tensor : CochainComplex C ℤ ⥤ CochainComplex C ℤ ⥤ CochainComplex C ℤ}
     {K L : CochainComplex C ℤ}
@@ -157,7 +163,9 @@ quasi-isomorphisms.
 
 Only the comparison is used.  No K-flatness, K-projectivity, or exactness
 hypothesis enters, so every functorial resolution interface in this library
-can reuse the statement rather than reproving it.-/
+can reuse the statement rather than reproving it.
+@isnad1 id=quasiiso.0h8v.s10.00978e1cb4ba from=translated src=- shape=3d619994 vocab=c63adf6e
+-/
 lemma quasiIso_map_of_comparison
     {Res : CochainComplex C ℤ ⥤ CochainComplex C ℤ}
     (comparison : Res ⟶ 𝟭 (CochainComplex C ℤ))
@@ -204,20 +212,27 @@ def comparisonApp (R : KFlatResolution C tensor) (K : CochainComplex C ℤ) :
     R.resolution.obj K ⟶ K :=
   R.comparison.app K
 
+/--
+@isnad1 id=eq.0h6v.s10.ed5885180eba from=translated src=- shape=60c82cf2 vocab=64525741
+-/
 @[reassoc]
 lemma comparisonApp_naturality (R : KFlatResolution C tensor)
     {K L : CochainComplex C ℤ} (f : K ⟶ L) :
     R.resolution.map f ≫ R.comparisonApp L = R.comparisonApp K ≫ f := by
   simpa only [comparisonApp, Functor.id_obj, Functor.id_map] using R.comparison.naturality f
 
-/-- A K-flat replacement functor preserves quasi-isomorphisms.-/
+/-- A K-flat replacement functor preserves quasi-isomorphisms.
+@isnad1 id=w.0h7v.s9.cb652f9382e4 from=translated src=- shape=5db0067b vocab=90b5337c
+-/
 lemma map_quasiIso (R : KFlatResolution C tensor) {K L : CochainComplex C ℤ}
     (f : K ⟶ L) (hf : W f) : W (R.resolution.map f) :=
   CochainComplex.quasiIso_map_of_comparison R.comparison R.comparison_quasiIso f hf
 
 /-- The K-flat resolution supplies a pointwise replacement for right-slot
 tensor transport; only the left-inversion clauses at the two endpoints are
-needed.-/
+needed.
+@isnad1 id=isiso.2h8v.s12.d8240c5bac22 from=translated src=- shape=fdbebd68 vocab=e8db252f
+-/
 theorem isIso_Q_map_tensorRight_of_inverts (R : KFlatResolution C tensor)
     {K L : CochainComplex C ℤ}
     (hK : W.IsInvertedBy (tensor.obj K ⋙ DerivedCategory.Q))
@@ -228,7 +243,9 @@ theorem isIso_Q_map_tensorRight_of_inverts (R : KFlatResolution C tensor)
     M (R.resolution.obj M) (R.comparison.app M) (R.comparison_quasiIso M) (R.isKFlat M).2
 
 /-- The flipped pointwise transport gives left-slot tensor inversion; only
-the right-inversion clauses at the two endpoints are needed.-/
+the right-inversion clauses at the two endpoints are needed.
+@isnad1 id=isiso.2h8v.s12.e520d23f53bf from=translated src=- shape=1fd460cb vocab=523baf76
+-/
 theorem isIso_Q_map_tensorLeft_of_inverts (R : KFlatResolution C tensor)
     {K L : CochainComplex C ℤ}
     (hK : W.IsInvertedBy (tensor.flip.obj K ⋙ DerivedCategory.Q))
@@ -246,6 +263,9 @@ def resolvedTensor (R : KFlatResolution C tensor) :
     (Functor.whiskeringLeft _ _ _).obj R.resolution ⋙
     (Functor.whiskeringRight _ _ _).obj DerivedCategory.Q
 
+/--
+@isnad1 id=eq.0h5v.s10.b8b85bacaab6 from=translated src=- shape=99ba1b35 vocab=ce60ffc2
+-/
 @[simp]
 lemma resolvedTensor_obj_obj (R : KFlatResolution C tensor)
     (K L : CochainComplex C ℤ) :
@@ -254,7 +274,9 @@ lemma resolvedTensor_obj_obj (R : KFlatResolution C tensor)
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Resolving both variables makes `tensor` invert quasi-isomorphisms in both variables.-/
+/-- Resolving both variables makes `tensor` invert quasi-isomorphisms in both variables.
+@isnad1 id=isinvert.0h3v.s8.b96e8697e3ad from=translated src=- shape=c769b56e vocab=d25d0eea
+-/
 lemma resolvedTensor_inverts (R : KFlatResolution C tensor) :
     MorphismProperty.IsInvertedBy₂ W W R.resolvedTensor := by
   rintro ⟨K₁, L₁⟩ ⟨K₂, L₂⟩ ⟨f, g⟩ ⟨hf, hg⟩

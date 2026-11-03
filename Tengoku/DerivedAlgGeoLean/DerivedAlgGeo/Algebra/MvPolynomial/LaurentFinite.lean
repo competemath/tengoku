@@ -71,7 +71,9 @@ noncomputable instance degreeZeroLocalizationModule (S : Submonoid (MvPolynomial
 
 /-- **The base field acts on the numerator.** Scalar multiplication on a fraction `p / fⁿ` is
 scalar multiplication on `p`, because a constant is a degree-zero homogeneous element with
-denominator `1`. This is what lets a spanning argument strip coefficients off monomials.-/
+denominator `1`. This is what lets a spanning argument strip coefficients off monomials.
+@isnad1 id=eq.3h10v.s16.0c6a27c944a3 from=translated src=- shape=2f727eff vocab=856d4a86
+-/
 theorem awayMk_smul {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) {f : MvPolynomial ι k} {e : ℕ}
     (hf : f ∈ polynomialGrading ι k e) (n : ℕ) (c : k) (p : MvPolynomial ι k)
     (hp : p ∈ 𝓜 (n • e)) :
@@ -98,7 +100,9 @@ theorem awayMk_smul {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) {f : MvPolynomi
 /-! ## The full block is finitely spanned -/
 
 /-- Numerator congruence for `awayMk`, so a rewrite under the membership certificate does not
-have to fight a non-type-correct motive.-/
+have to fight a non-type-correct motive.
+@isnad1 id=eq.4h9v.s12.72eb6f002658 from=translated src=- shape=672449ac vocab=48e8cfc4
+-/
 theorem awayMk_congr {f : MvPolynomial ι k} {e : ℕ} (hf : f ∈ polynomialGrading ι k e) (n : ℕ)
     {p q : MvPolynomial ι k} (hp : p ∈ 𝓜 (n • e)) (hq : q ∈ 𝓜 (n • e)) (h : p = q) :
     DegreeZeroLocalization.awayMk (𝓜 := 𝓜) hf n p hp =
@@ -108,14 +112,18 @@ theorem awayMk_congr {f : MvPolynomial ι k} {e : ℕ} (hf : f ∈ polynomialGra
 omit [AddSubgroupClass σM (MvPolynomial ι k)]
   [SetLike.GradedSMul (polynomialGrading ι k) 𝓜] in
 /-- Every monomial of a numerator is itself a numerator with coefficient one: the coefficient
-plays no part in the degree bookkeeping.-/
+plays no part in the degree bookkeeping.
+@isnad1 id=mem.3h8v.s8.23df87a18bf0 from=translated src=- shape=2b7a0559 vocab=9931a2f6
+-/
 theorem monomial_one_mem_of_mem_support {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     {q : MvPolynomial ι k} (hq : q ∈ 𝓜 n) {β : ι →₀ ℕ} (hβ : β ∈ q.support) :
     MvPolynomial.monomial β (1 : k) ∈ 𝓜 n :=
   (h𝓜 n _).mpr (Or.inr ⟨β.degree, h𝓜.degree_eq_of_mem_support hq hβ,
     MvPolynomial.isHomogeneous_monomial 1 rfl⟩)
 
-/-- A monomial surviving the filter has the filtered block as its negative support.-/
+/-- A monomial surviving the filter has the filtered block as its negative support.
+@isnad1 id=eq.1h7v.s6.80dcf5621937 from=translated src=- shape=03d27bab vocab=e21e41cc
+-/
 theorem intNegSupport_of_mem_support_laurentFilter (γ : ι →₀ ℕ) (m : ℕ) (F : Finset ι)
     (p : MvPolynomial ι k) {β : ι →₀ ℕ} (hβ : β ∈ (laurentFilter γ m F p).support) :
     intNegSupport (laurentExponent γ m β) = F := by
@@ -139,7 +147,9 @@ noncomputable def blockRep (γ : ι →₀ ℕ) (α : ι →₀ ℤ) :
 
 /-- **The Laurent exponent selects the representative.** A monomial fraction is the chosen
 representative of its own exponent — `awayMk_monomial_eq_iff_laurentExponent` is what makes the
-choice harmless.-/
+choice harmless.
+@isnad1 id=eq.1h7v.s13.d5a242cc8972 from=translated src=- shape=ab9536e0 vocab=8771a722
+-/
 theorem awayMk_eq_blockRep (γ : ι →₀ ℕ) {m : ℕ} {β : ι →₀ ℕ}
     (h : MvPolynomial.monomial β (1 : k) ∈ 𝓜 (m • γ.degree)) :
     DegreeZeroLocalization.awayMk (𝓜 := 𝓜) (monomial_one_mem_polynomialGrading (R := k) γ) m
@@ -158,7 +168,9 @@ theorem awayMk_eq_blockRep (γ : ι →₀ ℕ) {m : ℕ} {β : ι →₀ ℕ}
 Decompose into monomial fractions, filter to the full block, strip each coefficient with
 `awayMk_smul`, and replace each monomial fraction by the representative of its exponent. What
 survives is indexed by exponents that are negative in every variable and of total degree `d` —
-the set `finite_setOf_degree_eq_of_neg` shows is finite.-/
+the set `finite_setOf_degree_eq_of_neg` shows is finite.
+@isnad1 id=mem.1h7v.s16.f5a0d3bad258 from=translated src=- shape=44c89df6 vocab=e413fd03
+-/
 theorem blockProj_univ_mem_span [Fintype ι] {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (z : DegreeZeroLocalization (polynomialGrading ι k) 𝓜
       (.powers (MvPolynomial.monomial γ (1 : k)))) :
@@ -193,7 +205,9 @@ theorem blockProj_univ_mem_span [Fintype ι] {d : ℤ} (h𝓜 : IsPolynomialTwis
 /-- **The full block of one localization is a finite-dimensional `k`-space.**
 
 `finite_setOf_degree_eq_of_neg` bounds the exponents that can appear — every coordinate negative
-with a fixed total — and `blockProj_univ_mem_span` says nothing outside that family is needed.-/
+with a fixed total — and `blockProj_univ_mem_span` says nothing outside that family is needed.
+@isnad1 id=fg.0h6v.s15.ab9341e9b28b from=translated src=- shape=bc72a7c5 vocab=6e3ddb86
+-/
 theorem fg_blockSpan [Fintype ι] {d : ℤ} (γ : ι →₀ ℕ) :
     (Submodule.span k (blockRep ι k 𝓜 γ ''
       {α : ι →₀ ℤ | α.degree = d ∧ ∀ j : ι, α j < 0})).FG :=
@@ -201,7 +215,9 @@ theorem fg_blockSpan [Fintype ι] {d : ℤ} (γ : ι →₀ ℕ) :
 
 /-- **Scaling a fraction scales its numerator**, at a general homogeneous denominator. The
 `awayMk` form is the special case the spanning argument uses; this is the one the section
-comparison needs, where the denominator is not a power.-/
+comparison needs, where the denominator is not a power.
+@isnad1 id=eq.1h8v.s16.12d29cacb44f from=translated src=- shape=93c8193f vocab=99b43981
+-/
 theorem smul_mk {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) (S : Submonoid (MvPolynomial ι k))
     (c : NumDenSameDeg (polynomialGrading ι k) 𝓜 S) (r : k) :
     r • DegreeZeroLocalization.mk c =
@@ -223,7 +239,9 @@ theorem smul_mk {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) (S : Submonoid (MvP
   exact (MvPolynomial.smul_eq_C_mul _ r).symm
 
 /-- **Enlarging the denominator submonoid is `k`-linear.** Both sides are the same fraction with
-the same numerator scaled; `mapOfLE_mk` makes that visible.-/
+the same numerator scaled; `mapOfLE_mk` makes that visible.
+@isnad1 id=eq.2h9v.s18.cfda01228862 from=translated src=- shape=0b037dd8 vocab=22abd8ad
+-/
 theorem mapOfLE_smul {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d)
     {S T : Submonoid (MvPolynomial ι k)} (h : S ≤ T) (r : k)
     (z : DegreeZeroLocalization (polynomialGrading ι k) 𝓜 S) :

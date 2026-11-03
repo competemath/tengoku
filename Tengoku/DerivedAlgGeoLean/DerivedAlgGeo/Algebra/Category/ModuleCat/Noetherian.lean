@@ -23,7 +23,9 @@ namespace ModuleCat
 
 variable {R : Type u} [Ring R]
 
-/-- An algebraically Noetherian module is a Noetherian object of `ModuleCat R`.-/
+/-- An algebraically Noetherian module is a Noetherian object of `ModuleCat R`.
+@isnad1 id=isnoethe.0h2v.s5.5acf2fe0785c from=translated src=- shape=0a193e13 vocab=8987bf84
+-/
 instance isNoetherianObject_of_isNoetherian (M : ModuleCat.{v} R) [IsNoetherian R M] :
     IsNoetherianObject M := by
   apply ObjectProperty.is_of_prop isNoetherianObject

@@ -93,7 +93,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A] {B : Type u'} [Category.{v'} 
 section Transport
 
 /-- Bijectivity of `F.mapDerivedCategory` on a hom-set is invariant under isomorphism of
-the source object.-/
+the source object.
+@isnad1 id=iff.0h7v.s8.68ca4b4d8582 from=translated src=- shape=ed51094d vocab=91a706d0
+-/
 lemma mapDerivedCategory_map_bijective_iff_of_iso_left {E₁ E₂ : DerivedCategory A}
     (e : E₁ ≅ E₂) (W : DerivedCategory A) :
     Function.Bijective (F.mapDerivedCategory.map : (E₁ ⟶ W) → _) ↔
@@ -106,7 +108,9 @@ lemma mapDerivedCategory_map_bijective_iff_of_iso_left {E₁ E₂ : DerivedCateg
   rw [h, Equiv.comp_bijective, Equiv.bijective_comp]
 
 /-- Bijectivity of `F.mapDerivedCategory` on a hom-set is invariant under isomorphism of
-the target object.-/
+the target object.
+@isnad1 id=iff.0h7v.s8.34abe3403ecf from=translated src=- shape=075edf28 vocab=91a706d0
+-/
 lemma mapDerivedCategory_map_bijective_iff_of_iso_right (E : DerivedCategory A)
     {W₁ W₂ : DerivedCategory A} (e : W₁ ≅ W₂) :
     Function.Bijective (F.mapDerivedCategory.map : (E ⟶ W₁) → _) ↔
@@ -119,7 +123,9 @@ lemma mapDerivedCategory_map_bijective_iff_of_iso_right (E : DerivedCategory A)
   rw [h, Equiv.comp_bijective, Equiv.bijective_comp]
 
 /-- Bijectivity of `F.mapDerivedCategory` on a hom-set is invariant under shifting both
-objects by the same integer, because the derived functor commutes with shifts.-/
+objects by the same integer, because the derived functor commutes with shifts.
+@isnad1 id=iff.0h6v.s9.e265579a7590 from=translated src=- shape=60bf9a98 vocab=6b9b278e
+-/
 lemma mapDerivedCategory_map_bijective_shift_iff (E W : DerivedCategory A) (a : ℤ) :
     Function.Bijective (F.mapDerivedCategory.map : (E⟦a⟧ ⟶ W⟦a⟧) → _) ↔
       Function.Bijective (F.mapDerivedCategory.map : (E ⟶ W) → _) := by
@@ -138,7 +144,9 @@ lemma mapDerivedCategory_map_bijective_shift_iff (E W : DerivedCategory A) (a : 
   exact map_bijective_iff_of_natIso (F.mapDerivedCategory.commShiftIso a) E W
 
 /-- Shifting the source: bijectivity for all shifts of the target gives bijectivity for all
-shifts of the source as well.-/
+shifts of the source as well.
+@isnad1 id=bijectiv.1h7v.s9.98d1e4893691 from=translated src=- shape=f8d2a1da vocab=6b9b278e
+-/
 lemma mapDerivedCategory_map_bijective_shift_left {E W : DerivedCategory A}
     (h : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (E ⟶ W⟦k⟧) → _))
     (m k : ℤ) :
@@ -151,7 +159,9 @@ lemma mapDerivedCategory_map_bijective_shift_left {E W : DerivedCategory A}
     ((mapDerivedCategory_map_bijective_iff_of_iso_left F e₁ _).mpr
       ((mapDerivedCategory_map_bijective_iff_of_iso_right F _ e₂).mpr (h (k - m))))
 
-/-- Bijectivity for all shifts of the target gives bijectivity for the target itself.-/
+/-- Bijectivity for all shifts of the target gives bijectivity for the target itself.
+@isnad1 id=bijectiv.1h5v.s8.97fab6bf931c from=translated src=- shape=87e87d56 vocab=6b9b278e
+-/
 lemma mapDerivedCategory_map_bijective_of_forall_shift {E W : DerivedCategory A}
     (h : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (E ⟶ W⟦k⟧) → _)) :
     Function.Bijective (F.mapDerivedCategory.map : (E ⟶ W) → _) :=
@@ -173,7 +183,9 @@ morphisms from the third object to all shifts of `W`.
 
 The five lemma is applied to the rows
 `Hom(T₂⟦1⟧, W') → Hom(T₁⟦1⟧, W') → Hom(T₃, W') → Hom(T₂, W') → Hom(T₁, W')`
-and their images, with `W' := W⟦k⟧`.-/
+and their images, with `W' := W⟦k⟧`.
+@isnad1 id=bijectiv.3h6v.s10.e7228e3e996f from=translated src=- shape=8113a302 vocab=d05c71d1
+-/
 lemma mapDerivedCategory_map_bijective_obj₃_left (W : DerivedCategory A)
     (h₁ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (T.obj₁ ⟶ W⟦k⟧) → _))
     (h₂ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (T.obj₂ ⟶ W⟦k⟧) → _))
@@ -298,7 +310,9 @@ to all shifts of the first two objects of a distinguished triangle, it is biject
 morphisms from `V` to all shifts of the third object.
 
 The five lemma is applied, for the `k`-shifted triangle `S`, to the rows
-`Hom(V, S₁) → Hom(V, S₂) → Hom(V, S₃) → Hom(V, S₁⟦1⟧) → Hom(V, S₂⟦1⟧)` and their images.-/
+`Hom(V, S₁) → Hom(V, S₂) → Hom(V, S₃) → Hom(V, S₁⟦1⟧) → Hom(V, S₂⟦1⟧)` and their images.
+@isnad1 id=bijectiv.3h6v.s10.864890894005 from=translated src=- shape=58f773ee vocab=d05c71d1
+-/
 lemma mapDerivedCategory_map_bijective_obj₃_right (V : DerivedCategory A)
     (h₁ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (V ⟶ T.obj₁⟦k⟧) → _))
     (h₂ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (V ⟶ T.obj₂⟦k⟧) → _))
@@ -425,7 +439,9 @@ lemma mapDerivedCategory_map_bijective_obj₃_right (V : DerivedCategory A)
       simp [g₃, g₄, Preadditive.rightComp, z₃₁]
 
 /-- Cone closure in the first variable for the middle object of a distinguished triangle,
-by inverse rotation.-/
+by inverse rotation.
+@isnad1 id=bijectiv.3h6v.s10.e287430a5a80 from=translated src=- shape=8113a302 vocab=d05c71d1
+-/
 lemma mapDerivedCategory_map_bijective_obj₂_left (W : DerivedCategory A)
     (h₁ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (T.obj₁ ⟶ W⟦k⟧) → _))
     (h₃ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (T.obj₃ ⟶ W⟦k⟧) → _))
@@ -435,7 +451,9 @@ lemma mapDerivedCategory_map_bijective_obj₂_left (W : DerivedCategory A)
     (fun j ↦ mapDerivedCategory_map_bijective_shift_left F h₃ (-1) j) h₁ k
 
 /-- Cone closure in the second variable for the middle object of a distinguished triangle,
-by inverse rotation.-/
+by inverse rotation.
+@isnad1 id=bijectiv.3h6v.s10.9d874342852e from=translated src=- shape=58f773ee vocab=d05c71d1
+-/
 lemma mapDerivedCategory_map_bijective_obj₂_right (V : DerivedCategory A)
     (h₁ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (V ⟶ T.obj₁⟦k⟧) → _))
     (h₃ : ∀ k : ℤ, Function.Bijective (F.mapDerivedCategory.map : (V ⟶ T.obj₃⟦k⟧) → _))
@@ -457,7 +475,9 @@ section Single
 
 /-- Negative `Ext` vanishes in both categories, so `F.mapDerivedCategory` is trivially
 bijective on morphisms `(singleFunctor A 0).obj X ⟶ ((singleFunctor A 0).obj Y)⟦k⟧`
-for `k < 0`.-/
+for `k < 0`.
+@isnad1 id=bijectiv.1h6v.s8.1ff80a935c8a from=translated src=- shape=b6e5b9ad vocab=3440b89b
+-/
 lemma mapDerivedCategory_map_bijective_single_of_neg (X Y : A) (k : ℤ) (hk : k < 0) :
     Function.Bijective (F.mapDerivedCategory.map :
       ((DerivedCategory.singleFunctor A 0).obj X ⟶
@@ -483,7 +503,9 @@ variable [HasExt.{w} A] [HasExt.{w'} B]
 
 /-- Unwinding `Ext.mapExactFunctor_hom`: bijectivity of `F.mapExtAddHom X Y n` is
 bijectivity of `F.mapDerivedCategory` on morphisms
-`(singleFunctor A 0).obj X ⟶ ((singleFunctor A 0).obj Y)⟦n⟧`.-/
+`(singleFunctor A 0).obj X ⟶ ((singleFunctor A 0).obj Y)⟦n⟧`.
+@isnad1 id=iff.0h6v.s9.713868eded21 from=translated src=- shape=96cdc3a2 vocab=25734ab5
+-/
 lemma mapDerivedCategory_map_bijective_single_iff_mapExt_bijective (X Y : A) (n : ℕ) :
     Function.Bijective (F.mapDerivedCategory.map :
       ((DerivedCategory.singleFunctor A 0).obj X ⟶
@@ -514,7 +536,9 @@ variable (hF : ∀ (X Y : A) (n : ℕ), Function.Bijective (F.mapExtAddHom X Y n
 include hF
 
 /-- Under the `Ext` hypothesis, `F.mapDerivedCategory` is bijective on all morphisms between
-degree-zero single objects and their shifts.-/
+degree-zero single objects and their shifts.
+@isnad1 id=bijectiv.1h6v.s9.3ebafacdfe21 from=translated src=- shape=b0c8df5b vocab=4deeb93b
+-/
 lemma mapDerivedCategory_map_bijective_single (X Y : A) (k : ℤ) :
     Function.Bijective (F.mapDerivedCategory.map :
       ((DerivedCategory.singleFunctor A 0).obj X ⟶
@@ -526,7 +550,9 @@ lemma mapDerivedCategory_map_bijective_single (X Y : A) (k : ℤ) :
 
 /-- Under the `Ext` hypothesis, `F.mapDerivedCategory` is bijective on morphisms from any
 bounded object to any shift of a degree-zero single object: the first-variable
-dévissage.-/
+dévissage.
+@isnad1 id=bijectiv.1h7v.s9.148cd98e2a4d from=translated src=- shape=8de84f8e vocab=3baae09d
+-/
 lemma mapDerivedCategory_map_bijective_bounded_single {E : DerivedCategory A}
     (hE : DerivedCategory.TStructure.t.bounded E) (Y : A) (k : ℤ) :
     Function.Bijective (F.mapDerivedCategory.map :
@@ -547,7 +573,9 @@ lemma mapDerivedCategory_map_bijective_bounded_single {E : DerivedCategory A}
 
 /-- **Full faithfulness on bounded objects.** If `F` induces bijections on all `Ext`
 groups, then `F.mapDerivedCategory` is bijective on morphisms between bounded objects:
-the second-variable dévissage, on top of the first.-/
+the second-variable dévissage, on top of the first.
+@isnad1 id=bijectiv.1h7v.s9.53d6ac1f0374 from=translated src=- shape=405a2fde vocab=c5985438
+-/
 theorem mapDerivedCategory_map_bijective_of_bounded {E E' : DerivedCategory A}
     (hE : DerivedCategory.TStructure.t.bounded E)
     (hE' : DerivedCategory.TStructure.t.bounded E') :
@@ -579,7 +607,9 @@ The cone step: for a distinguished triangle `E₁ ⟶ E ⟶ E₃ ⟶ E₁⟦1⟧
 `E₃ ≅ F Z` for bounded `X`, `Z`, the connecting morphism lifts to `g : Z ⟶ X⟦1⟧` by full
 faithfulness; a distinguished triangle `X ⟶ Y ⟶ Z ⟶ X⟦1⟧` with third morphism `g` has
 bounded `Y`, and its image is isomorphic to the given triangle by
-`isIso₂_of_isIso₁₃`.-/
+`isIso₂_of_isIso₁₃`.
+@isnad1 id=ex.1h6v.s9.7dd1369aaba1 from=translated src=- shape=770d4b71 vocab=be319a9f
+-/
 theorem exists_bounded_iso_mapDerivedCategory_obj {E' : DerivedCategory B}
     (hE' : DerivedCategory.TStructure.t.bounded E')
     (hP : DerivedCategory.cohomologyIn F.essImage E') :

@@ -36,7 +36,9 @@ variable {C : Type u} [Category.{v} C] [Preadditive C] [CategoryWithHomology C] 
 
 /-- Quasi-isomorphisms in the homotopy category are stable under coproducts of shape `κ` when
 homology of complexes preserves them: `Sigma.map` of a family of quasi-isomorphisms is
-inverted by homology in every degree.-/
+inverted by homology in every degree.
+@isnad1 id=isstable.0h4v.s6.717c1c78032c from=translated src=- shape=018d1d55 vocab=a5142be7
+-/
 instance quasiIso_isStableUnderCoproductsOfShape :
     (quasiIso C c).IsStableUnderCoproductsOfShape κ := by
   apply MorphismProperty.IsStableUnderCoproductsOfShape.mk

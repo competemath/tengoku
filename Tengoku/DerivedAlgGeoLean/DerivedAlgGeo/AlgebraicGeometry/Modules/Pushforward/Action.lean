@@ -23,14 +23,18 @@ namespace AlgebraicGeometry.Scheme.Modules
 
 /-- Top sections of a pushforward are top sections of the original sheaf, as
 abelian groups. This records the preimage-of-top transport; the two module
-actions are compared separately in `pushforward_smul_appTop`.-/
+actions are compared separately in `pushforward_smul_appTop`.
+@isnad1 id=eq.0h4v.s8.e3967be92125 from=translated src=- shape=fa446278 vocab=2d99079a
+-/
 theorem pushforward_obj_obj_top {Z Y : Scheme.{u}} (f : Z ⟶ Y) (M : Z.Modules) :
     Γ((pushforward f).obj M, (⊤ : Y.Opens)) = Γ(M, (⊤ : Z.Opens)) := by
   rw [pushforward_obj_obj, TopologicalSpace.Opens.map_top]
 
 /-- The `Γ(Y, ⊤)`-action on `Γ(f_* M, ⊤)` is the native action on
 `Γ(M, ⊤)` after applying `f.appTop`. The `show` identifies the underlying
-section carriers; `pushforward_obj_obj_top` records the top-open equality.-/
+section carriers; `pushforward_obj_obj_top` records the top-open equality.
+@isnad1 id=eq.0h6v.s15.038027665151 from=translated src=- shape=120c9e43 vocab=800f6c23
+-/
 theorem pushforward_smul_appTop {Z Y : Scheme.{u}} (f : Z ⟶ Y)
     (M : Z.Modules) (a : Γ(Y, ⊤))
     (m : Γ((pushforward f).obj M, ⊤)) :

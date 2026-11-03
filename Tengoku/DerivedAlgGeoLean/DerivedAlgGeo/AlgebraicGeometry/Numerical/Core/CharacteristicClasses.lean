@@ -71,18 +71,33 @@ noncomputable def chernCharacterComponent (C : ChernClassData A) : ℕ → A
   | 4 => chernCharacterFour C
   | _ => 0
 
+/--
+@isnad1 id=eq.0h2v.s6.8618d3086a4f from=translated src=- shape=683a412c vocab=7ca20eca
+-/
 @[simp] theorem chernCharacterComponent_zero (C : ChernClassData A) :
     chernCharacterComponent C 0 = algebraMap ℚ A (C.rank : ℚ) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.8bd221435cb0 from=translated src=- shape=ce7c6994 vocab=c59ed7d5
+-/
 @[simp] theorem chernCharacterComponent_one (C : ChernClassData A) :
     chernCharacterComponent C 1 = C.c 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.40524ff7abaf from=translated src=- shape=7edeba47 vocab=0d9207fb
+-/
 @[simp] theorem chernCharacterComponent_two (C : ChernClassData A) :
     chernCharacterComponent C 2 = chernCharacterTwo C := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.393dd5984e15 from=translated src=- shape=7edeba47 vocab=8a8729f0
+-/
 @[simp] theorem chernCharacterComponent_three (C : ChernClassData A) :
     chernCharacterComponent C 3 = chernCharacterThree C := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.864a846168b4 from=translated src=- shape=7edeba47 vocab=c335190f
+-/
 @[simp] theorem chernCharacterComponent_four (C : ChernClassData A) :
     chernCharacterComponent C 4 = chernCharacterFour C := rfl
 
@@ -116,15 +131,30 @@ noncomputable def toddComponent (T : ChernClassData A) : ℕ → A
   | 4 => toddFour T
   | _ => 0
 
+/--
+@isnad1 id=eq.0h2v.s5.3668b3dcf169 from=translated src=- shape=51489917 vocab=de311894
+-/
 @[simp] theorem toddComponent_zero (T : ChernClassData A) : toddComponent T 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.d7f399a70f3a from=translated src=- shape=7edeba47 vocab=b97d8fc8
+-/
 @[simp] theorem toddComponent_one (T : ChernClassData A) : toddComponent T 1 = toddOne T := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f7f3384a3bf7 from=translated src=- shape=7edeba47 vocab=80a62def
+-/
 @[simp] theorem toddComponent_two (T : ChernClassData A) : toddComponent T 2 = toddTwo T := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.0f20d312062f from=translated src=- shape=7edeba47 vocab=2a823836
+-/
 @[simp] theorem toddComponent_three (T : ChernClassData A) :
     toddComponent T 3 = toddThree T := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.2876f9d4ad83 from=translated src=- shape=7edeba47 vocab=f8427518
+-/
 @[simp] theorem toddComponent_four (T : ChernClassData A) : toddComponent T 4 = toddFour T := rfl
 
 end ChernClassData

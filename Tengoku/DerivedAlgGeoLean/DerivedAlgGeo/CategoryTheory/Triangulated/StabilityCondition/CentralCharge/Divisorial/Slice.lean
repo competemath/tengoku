@@ -59,12 +59,18 @@ def fullChargeFamily (S : DivisorSpace D) :
     Wall.ChargeFamily (StabilityParameters D) N :=
   ch.chargeFamily S id
 
+/--
+@isnad1 id=eq.0h8v.s7.3bbbbc002ae4 from=translated src=- shape=c9309ede vocab=a288be2e
+-/
 @[simp]
 theorem chargeFamily_charge (S : DivisorSpace D)
     (parameters : P → StabilityParameters D) (p : P) (E : N) :
     (ch.chargeFamily S parameters).charge p E =
       ch.centralCharge S (parameters p) E := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.fcab0b03b2a4 from=translated src=- shape=d1afb9d8 vocab=6aca9183
+-/
 @[simp]
 theorem fullChargeFamily_charge (S : DivisorSpace D)
     (p : StabilityParameters D) (E : N) :
@@ -124,7 +130,9 @@ def fullOrthogonal (S : DivisorSpace D) (H : D) :
 /-- Every real divisor class decomposes into its `H` component and an
 orthogonal component when `H²` is nonzero.  Thus the intrinsic
 `fullOrthogonal` slice loses no `B`-field directions; only `omega` is
-restricted to the ray through `H`.-/
+restricted to the ray through `H`.
+@isnad1 id=ex.1h4v.s7.73870435beed from=translated src=- shape=378cad2a vocab=c15221b0
+-/
 theorem exists_fullOrthogonal_coordinates (S : DivisorSpace D) (H B : D)
     (hH : S.pair H H ≠ 0) :
     ∃ s : ℝ, ∃ G : orthogonalSubspace S H, B = s • H + G.1 := by
@@ -171,15 +179,23 @@ structure IsGeometric (ample : Set D) : Prop extends IsHodge T where
   /-- The distinguished direction lies in the supplied ample cone.-/
   H_ample : T.H ∈ ample
 
+/--
+@isnad1 id=eq.0h5v.s7.d930684ba974 from=translated src=- shape=9821f12d vocab=657067e6
+-/
 @[simp]
 theorem parameters_B (p : Point U) :
     (T.parameters p).B = p.s • T.H + T.transverse p.u := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.d4d6516e9d2b from=translated src=- shape=2cd9b49a vocab=7631ca71
+-/
 @[simp]
 theorem parameters_omega (p : Point U) :
     (T.parameters p).omega = p.t • T.H := rfl
 
-/-- The `B`-field square splits into its longitudinal and transverse parts.-/
+/-- The `B`-field square splits into its longitudinal and transverse parts.
+@isnad1 id=eq.0h5v.s7.02f192b325f4 from=translated src=- shape=8a12b98b vocab=c91063dc
+-/
 theorem B_square (p : Point U) :
     S.pair (T.parameters p).B (T.parameters p).B =
       p.s ^ 2 * S.pair T.H T.H +
@@ -196,7 +212,9 @@ theorem B_square (p : Point U) :
   simp only [DivisorSpace.pair]
   ring
 
-/-- The polarization square on the slice.-/
+/-- The polarization square on the slice.
+@isnad1 id=eq.0h5v.s6.9aa107b51bac from=translated src=- shape=0eb8d2d3 vocab=460773b2
+-/
 theorem omega_square (p : Point U) :
     S.pair (T.parameters p).omega (T.parameters p).omega =
       p.t ^ 2 * S.pair T.H T.H := by
@@ -204,7 +222,9 @@ theorem omega_square (p : Point U) :
     LinearMap.smul_apply, smul_eq_mul]
   ring
 
-/-- The mixed product `omega.B` has no transverse contribution.-/
+/-- The mixed product `omega.B` has no transverse contribution.
+@isnad1 id=eq.0h5v.s6.899f1dd0e0f8 from=translated src=- shape=9b7f9dd8 vocab=9a785071
+-/
 theorem omega_B (p : Point U) :
     S.pair (T.parameters p).omega (T.parameters p).B =
       p.t * p.s * S.pair T.H T.H := by
@@ -217,7 +237,9 @@ theorem omega_B (p : Point U) :
   simp only [DivisorSpace.pair]
   ring
 
-/-- Pairing the `B`-field with an arbitrary divisor class.-/
+/-- Pairing the `B`-field with an arbitrary divisor class.
+@isnad1 id=eq.0h6v.s7.6565b007f650 from=translated src=- shape=6e96d595 vocab=30a6b2ba
+-/
 theorem B_pair (p : Point U) (x : D) :
     S.pair (T.parameters p).B x =
       p.s * S.pair T.H x + S.pair (T.transverse p.u) x := by
@@ -225,7 +247,9 @@ theorem B_pair (p : Point U) (x : D) :
   simp only [DivisorSpace.pair, map_add, map_smul,
     LinearMap.add_apply, LinearMap.smul_apply, smul_eq_mul]
 
-/-- Pairing `omega` with an arbitrary divisor class.-/
+/-- Pairing `omega` with an arbitrary divisor class.
+@isnad1 id=eq.0h6v.s6.4637585e15d8 from=translated src=- shape=49ba02db vocab=ab9e6bee
+-/
 theorem omega_pair (p : Point U) (x : D) :
     S.pair (T.parameters p).omega x = p.t * S.pair T.H x := by
   rw [parameters_omega]
@@ -244,7 +268,9 @@ def imFormula (ch : ChernCharacter N D) (p : Point U) (E : N) : ℝ :=
     p.s * S.pair T.H T.H * ch.rank E)
 
 /-- The intrinsic divisorial central charge restricted to an arbitrary
-orthogonal slice.-/
+orthogonal slice.
+@isnad1 id=eq.0h8v.s7.564700a04e23 from=translated src=- shape=7a13f67c vocab=f5dc8e29
+-/
 theorem centralCharge_eq_formula
     (ch : ChernCharacter N D) (p : Point U) (E : N) :
     ch.centralCharge S (T.parameters p) E =
@@ -256,6 +282,9 @@ theorem centralCharge_eq_formula
   simp only [reFormula, imFormula]
   congr 1 <;> ring_nf
 
+/--
+@isnad1 id=eq.0h8v.s7.ef0ce01e3abc from=translated src=- shape=038374a5 vocab=fba82817
+-/
 @[simp]
 theorem charge_re (ch : ChernCharacter N D) (p : Point U) (E : N) :
     ((T.chargeFamily ch).charge p E).re = T.reFormula ch p E := by
@@ -263,6 +292,9 @@ theorem charge_re (ch : ChernCharacter N D) (p : Point U) (E : N) :
   rw [T.centralCharge_eq_formula]
   simp
 
+/--
+@isnad1 id=eq.0h8v.s7.8facf2fd9470 from=translated src=- shape=038374a5 vocab=4f62f3fc
+-/
 @[simp]
 theorem charge_im (ch : ChernCharacter N D) (p : Point U) (E : N) :
     ((T.chargeFamily ch).charge p E).im = T.imFormula ch p E := by

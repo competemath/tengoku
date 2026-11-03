@@ -80,25 +80,33 @@ noncomputable def twistByScalar (b : ℝ) : ChargeCoordinates N where
       ring)
   hyperplaneSquare := D.hyperplaneSquare
 
-/-- A scalar `B`-twist does not alter rank.-/
+/-- A scalar `B`-twist does not alter rank.
+@isnad1 id=eq.0h4v.s6.65d94d8993ea from=translated src=- shape=ee417093 vocab=8c6299f5
+-/
 @[simp]
 theorem twistByScalar_rank (b : ℝ) (E : N) :
     (D.twistByScalar b).rank E = D.rank E := rfl
 
-/-- Evaluation of `∫H ch₁^(bH)`.-/
+/-- Evaluation of `∫H ch₁^(bH)`.
+@isnad1 id=eq.0h4v.s7.36e197798838 from=translated src=- shape=1f9df75f vocab=2298c743
+-/
 @[simp]
 theorem twistByScalar_degree (b : ℝ) (E : N) :
     (D.twistByScalar b).degree E =
       D.degree E - b * D.hyperplaneSquare * D.rank E := rfl
 
-/-- Evaluation of `∫ch₂^(bH)`.-/
+/-- Evaluation of `∫ch₂^(bH)`.
+@isnad1 id=eq.0h4v.s8.aa20f8dbc343 from=translated src=- shape=7b79f31f vocab=b1ca9624
+-/
 @[simp]
 theorem twistByScalar_chTwo (b : ℝ) (E : N) :
     (D.twistByScalar b).chTwo E =
       D.chTwo E - b * D.degree E
         + b ^ 2 * D.hyperplaneSquare * D.rank E / 2 := rfl
 
-/-- Twisting does not alter the chosen polarisation.-/
+/-- Twisting does not alter the chosen polarisation.
+@isnad1 id=eq.0h3v.s4.26ad86fa4206 from=translated src=- shape=b5399597 vocab=0c6eb2d9
+-/
 @[simp]
 theorem twistByScalar_hyperplaneSquare (b : ℝ) :
     (D.twistByScalar b).hyperplaneSquare = D.hyperplaneSquare := rfl
@@ -120,7 +128,9 @@ noncomputable def centralCharge (a : ℝ) : N →+ ℂ :=
       push_cast
       ring)
 
-/-- Pointwise expansion of the additive central charge.-/
+/-- Pointwise expansion of the additive central charge.
+@isnad1 id=eq.0h4v.s8.d13fa0776bd3 from=translated src=- shape=e4ab1d56 vocab=e1413c52
+-/
 @[simp]
 theorem centralCharge_apply (a : ℝ) (E : N) :
     D.centralCharge a E =
@@ -128,12 +138,16 @@ theorem centralCharge_apply (a : ℝ) (E : N) :
         + Complex.ofReal (a ^ 2 * D.hyperplaneSquare * D.rank E / 2)
         + (a * Complex.I) * Complex.ofReal (D.degree E) := rfl
 
-/-- Additivity gives the neutral-element law needed by charge consumers.-/
+/-- Additivity gives the neutral-element law needed by charge consumers.
+@isnad1 id=eq.0h3v.s6.e747aac9c75c from=translated src=- shape=2555b784 vocab=a54d14e6
+-/
 theorem centralCharge_zero (a : ℝ) : D.centralCharge a 0 = 0 :=
   (D.centralCharge a).map_zero
 
 /-- The real part isolates the twisted `ch₂` term and the positive quadratic
-polarisation term used in the surface stability function.-/
+polarisation term used in the surface stability function.
+@isnad1 id=eq.0h4v.s7.398a7ad53083 from=translated src=- shape=77a8160c vocab=26c95108
+-/
 theorem centralCharge_re (a : ℝ) (E : N) :
     (D.centralCharge a E).re =
       -D.chTwo E + a ^ 2 * D.hyperplaneSquare * D.rank E / 2 := by
@@ -142,14 +156,18 @@ theorem centralCharge_re (a : ℝ) (E : N) :
   ring
 
 /-- The imaginary part is the positive multiple of the twisted `H`-degree
-that determines the tilted-heart slope cutoff.-/
+that determines the tilted-heart slope cutoff.
+@isnad1 id=eq.0h4v.s7.bbdd5fa8a667 from=translated src=- shape=267ee883 vocab=e1fef8ee
+-/
 theorem centralCharge_im (a : ℝ) (E : N) :
     (D.centralCharge a E).im = a * D.degree E := by
   simp only [centralCharge, AddMonoidHom.mk'_apply, Complex.add_im, Complex.neg_im,
     Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, Complex.I_re, Complex.I_im]
   ring
 
-/-- Expanding `ch^(bH)` recovers Li's projective-space notation exactly.-/
+/-- Expanding `ch^(bH)` recovers Li's projective-space notation exactly.
+@isnad1 id=eq.0h5v.s8.d847afdb0df1 from=translated src=- shape=f61bec49 vocab=f6f2aa9d
+-/
 theorem centralCharge_twistByScalar_apply (a b : ℝ) (E : N) :
     (D.twistByScalar b).centralCharge a E =
       -Complex.ofReal (D.chTwo E)
@@ -187,7 +205,9 @@ namespace Pullback
 variable {L M : Type*} [AddCommGroup L] [AddCommGroup M]
 variable {source : ChargeCoordinates L} {target : ChargeCoordinates M}
 
-/-- A coordinate-preserving map intertwines the canonical central charges.-/
+/-- A coordinate-preserving map intertwines the canonical central charges.
+@isnad1 id=eq.0h7v.s7.0b7f167baac8 from=translated src=- shape=f7e3d065 vocab=a486ccdd
+-/
 theorem centralCharge_eq
     (h : Pullback source target) (a : ℝ) (E : L) :
     source.centralCharge a E = target.centralCharge a (h.map E) := by
@@ -213,7 +233,9 @@ noncomputable def twistByScalar (h : Pullback source target) (b : ℝ) :
     exact h.hyperplaneSquare_eq
 
 /-- This is the reusable comparison theorem for rank-one examples: coordinate
-preservation before twisting suffices to identify the two resulting charges.-/
+preservation before twisting suffices to identify the two resulting charges.
+@isnad1 id=eq.0h8v.s7.b45027a20aea from=translated src=- shape=2a52c2d6 vocab=0c35197b
+-/
 theorem centralCharge_twistByScalar_eq
     (h : Pullback source target) (a b : ℝ) (E : L) :
     (source.twistByScalar b).centralCharge a E =

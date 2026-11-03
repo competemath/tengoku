@@ -78,7 +78,9 @@ noncomputable def chi₂ (E F : N) : ℚ :=
 
 /-- A mixed term `q·chᵢ(E)·chⱼ(F)·td_k(X)` integrates to zero unless `i + j + k = n`. This is
 the only computational input to the expansion, exactly as
-`degree_chComp_mul_toddComp_eq_zero` is for the one-variable case.-/
+`degree_chComp_mul_toddComp_eq_zero` is for the one-variable case.
+@isnad1 id=eq.1h10v.s7.a4ab048c18c3 from=translated src=- shape=ba92e36f vocab=488eb4d5
+-/
 theorem degree_smul_chComp_mul_chComp_mul_toddComp_eq_zero (q : ℚ) (E F : N) {i j k : ℕ}
     (h : i + j + k ≠ n) :
     V.ring.degree (q • V.chComp E i * V.chComp F j * V.toddComp k) = 0 :=
@@ -87,7 +89,9 @@ theorem degree_smul_chComp_mul_chComp_mul_toddComp_eq_zero (q : ℚ) (E F : N) {
       (V.ring.mul_mem_piece (Submodule.smul_mem _ q (V.chComp_mem E i)) (V.chComp_mem F j))
       (V.toddComp_mem k))
 
-/-- A mixed term `chᵢ(E)·chⱼ(F)·td_k(X)` integrates to zero unless `i + j + k = n`.-/
+/-- A mixed term `chᵢ(E)·chⱼ(F)·td_k(X)` integrates to zero unless `i + j + k = n`.
+@isnad1 id=eq.1h9v.s7.7e287fefccc6 from=translated src=- shape=f0e72eee vocab=b5591695
+-/
 theorem degree_chComp_mul_chComp_mul_toddComp_eq_zero (E F : N) {i j k : ℕ}
     (h : i + j + k ≠ n) :
     V.ring.degree (V.chComp E i * V.chComp F j * V.toddComp k) = 0 :=
@@ -102,7 +106,9 @@ term per pair `(i, j)` with `i + j ≤ n`, the Todd index being forced to `n - i
 
 The inner range is `n + 1 - i` rather than `n + 1` with a side condition. Both say the same
 thing, but the truncated range leaves no `if` in the term, and every dimension-specific
-specialisation below is then a matter of `Finset.sum_range_succ` and nothing else.-/
+specialisation below is then a matter of `Finset.sum_range_succ` and nothing else.
+@isnad1 id=eq.0h6v.s8.e47ef764cf30 from=translated src=- shape=5237a809 vocab=d98945cc
+-/
 theorem chi₂_eq_sum (E F : N) :
     V.chi₂ E F
       = ∑ i ∈ range (n + 1), ∑ j ∈ range (n + 1 - i),
@@ -135,34 +141,46 @@ theorem chi₂_eq_sum (E F : N) :
   · intro hmem
     exact absurd (Finset.mem_range.mpr (by omega)) hmem
 
-/-- Pulling a scalar out of the left of a triple product.-/
+/-- Pulling a scalar out of the left of a triple product.
+@isnad1 id=eq.0h7v.s8.eee6fbf38396 from=translated src=- shape=9de28f25 vocab=11efa6f4
+-/
 theorem degree_algebraMap_mul_mul (q : ℚ) (x y : A) :
     V.ring.degree (algebraMap ℚ A q * x * y) = q * V.ring.degree (x * y) := by
   rw [mul_assoc, V.ring.degree_algebraMap_mul]
 
-/-- Pulling a scalar out of the middle of a triple product.-/
+/-- Pulling a scalar out of the middle of a triple product.
+@isnad1 id=eq.0h7v.s8.f641644bae5e from=translated src=- shape=17baaa47 vocab=11efa6f4
+-/
 theorem degree_mul_algebraMap_mul (q : ℚ) (x y : A) :
     V.ring.degree (x * algebraMap ℚ A q * y) = q * V.ring.degree (x * y) := by
   rw [mul_comm x (algebraMap ℚ A q), mul_assoc, V.ring.degree_algebraMap_mul]
 
-/-- Pulling a scalar out of the right of a product.-/
+/-- Pulling a scalar out of the right of a product.
+@isnad1 id=eq.0h6v.s8.4336247e8a09 from=translated src=- shape=35ce82b1 vocab=11efa6f4
+-/
 theorem degree_mul_algebraMap (q : ℚ) (x : A) :
     V.ring.degree (x * algebraMap ℚ A q) = q * V.ring.degree x := by
   rw [mul_comm x (algebraMap ℚ A q), V.ring.degree_algebraMap_mul]
 
-/-- `chi₂` is additive in its second argument.-/
+/-- `chi₂` is additive in its second argument.
+@isnad1 id=eq.0h7v.s6.4009f3a3e0c7 from=translated src=- shape=d8d5089a vocab=00a38dbd
+-/
 theorem chi₂_add_right (E F G : N) :
     V.chi₂ E (F + G) = V.chi₂ E F + V.chi₂ E G := by
   simp only [chi₂, ch_add, mul_add, add_mul, map_add]
 
-/-- `chi₂` is additive in its first argument.-/
+/-- `chi₂` is additive in its first argument.
+@isnad1 id=eq.0h7v.s6.19087297e8b1 from=translated src=- shape=551fa623 vocab=00a38dbd
+-/
 theorem chi₂_add_left (E F G : N) :
     V.chi₂ (E + F) G = V.chi₂ E G + V.chi₂ F G := by
   simp only [chi₂, chDual_add, add_mul, map_add]
 
 /-- `chi₂` written with the involution rather than with `chDual`, which is how
 Hirzebruch–Riemann–Roch states it. This is the only place the involution is needed, and it
-is what earns `chDual` its name.-/
+is what earns `chDual` its name.
+@isnad1 id=eq.0h7v.s7.04ba22d8a755 from=translated src=- shape=869ccab5 vocab=9b981788
+-/
 theorem chi₂_eq_degree_dual_ch (D : NumericalRingDualData V.ring) (E F : N) :
     V.chi₂ E F = V.ring.degree (D.dual (V.ch E) * V.ch F * V.todd) := by
   rw [chi₂, V.dual_ch D]
@@ -183,7 +201,9 @@ variable (V : NumericalVarietyData 2 A N)
 − ∫c₁(E)·c₁(F)`.
 
 The two `td₁` terms carry opposite signs; that asymmetry is the whole content of the dual
-involution, and it is what `chi₂_sub_chi₂_swap` measures.-/
+involution, and it is what `chi₂_sub_chi₂_swap` measures.
+@isnad1 id=eq.0h5v.s10.6c094d965f0c from=translated src=- shape=0161abe7 vocab=95ae8a98
+-/
 theorem chi₂_eq (E F : N) :
     V.chi₂ E F
       = (V.rank E : ℚ) * (V.rank F : ℚ) * V.ring.degree (V.toddComp 2)
@@ -206,7 +226,9 @@ theorem chi₂_eq (E F : N) :
 /-- Pairing against a rank-one class with vanishing higher Chern components returns the
 one-variable `chi`. This is the consistency check between `chi₂` and the `chi` that
 `NumericalVarietyData` already carries: `chi₂` is a new definition, and this is the statement
-that it is the *right* one.-/
+that it is the *right* one.
+@isnad1 id=eq.4h5v.s8.2176f9215a58 from=translated src=- shape=de72e78c vocab=bc48f6c6
+-/
 theorem chi₂_eq_chi_of_isStructureSheafLike (hV : V.SatisfiesHRR) (E F : N)
     (hr : V.rank E = 1) (h₁ : V.chComp E 1 = 0) (h₂ : V.chComp E 2 = 0) :
     V.chi₂ E F = (V.chi F : ℚ) := by
@@ -225,7 +247,9 @@ theorem chi₂_eq_chi_of_isStructureSheafLike (hV : V.SatisfiesHRR) (E F : N)
 `χ(E,F) − χ(F,E) = 2·(r_E·∫c₁(F)·td₁ − r_F·∫c₁(E)·td₁)`.
 
 Issue #6 asked for symmetry in even dimension. It is false: on `ℙ²`, `td₁ = (3/2)H ≠ 0`, so
-the right-hand side is nonzero for suitable `E`, `F`. Symmetry needs `td₁ = 0`.-/
+the right-hand side is nonzero for suitable `E`, `F`. Symmetry needs `td₁ = 0`.
+@isnad1 id=eq.0h5v.s8.f96fb3455a31 from=translated src=- shape=10e889d0 vocab=088f8e47
+-/
 theorem chi₂_sub_chi₂_swap (E F : N) :
     V.chi₂ E F - V.chi₂ F E
       = 2 * ((V.rank E : ℚ) * V.ring.degree (V.chComp F 1 * V.toddComp 1)
@@ -235,7 +259,9 @@ theorem chi₂_sub_chi₂_swap (E F : N) :
 
 /-- The Euler pairing is symmetric once `td₁(X) = 0` — in particular on every K3 and every
 Calabi–Yau surface. This is the correct form of the claim issue #6 made for all even
-dimensions.-/
+dimensions.
+@isnad1 id=eq.1h5v.s6.37f5d255db45 from=translated src=- shape=c77c00cd vocab=94c9b17d
+-/
 theorem chi₂_symm_of_toddComp_one_eq_zero (htd : V.toddComp 1 = 0) (E F : N) :
     V.chi₂ E F = V.chi₂ F E := by
   rw [chi₂_eq V, chi₂_eq V, htd, mul_comm (V.chComp F 1) (V.chComp E 1)]
@@ -259,13 +285,17 @@ noncomputable def mukaiPairing (E F : N) : ℚ :=
     - (V.rank E : ℚ) * mukaiS V F - (V.rank F : ℚ) * mukaiS V E
 
 /-- The Mukai pairing restricts to `mukaiSelfPairing` on the diagonal, so nothing in
-`Numerical/RiemannRoch/K3.lean` is being redefined.-/
+`Numerical/RiemannRoch/K3.lean` is being redefined.
+@isnad1 id=eq.0h4v.s5.94c50151ca45 from=translated src=- shape=ad3357c2 vocab=e04a1a09
+-/
 theorem mukaiPairing_self (E : N) :
     mukaiPairing V E E = mukaiSelfPairing V E := by
   rw [mukaiPairing, mukaiSelfPairing]
   ring
 
-/-- The Mukai pairing is symmetric.-/
+/-- The Mukai pairing is symmetric.
+@isnad1 id=eq.0h5v.s5.0ec1e15b7684 from=translated src=- shape=aea8760a vocab=45e9bd90
+-/
 theorem mukaiPairing_comm (E F : N) :
     mukaiPairing V E F = mukaiPairing V F E := by
   rw [mukaiPairing, mukaiPairing, mul_comm (V.chComp E 1) (V.chComp F 1)]
@@ -276,7 +306,9 @@ theorem mukaiPairing_comm (E F : N) :
 This is the identity issue #6 named as the check that matters, and it is what fixes the sign
 convention of the dual involution: with `chᵢ(E^∨) = (-1)ⁱchᵢ(E)` the sign comes out, and with
 the opposite convention it does not. The self-pairing case recovers
-`K3.mukaiSelfPairing_eq`.-/
+`K3.mukaiSelfPairing_eq`.
+@isnad1 id=eq.1h5v.s6.aacf3733b705 from=translated src=- shape=589320f2 vocab=d553915d
+-/
 theorem chi₂_eq_neg_mukaiPairing (hK3 : IsK3 V) (E F : N) :
     V.chi₂ E F = -mukaiPairing V E F := by
   rw [Surface.chi₂_eq V, mukaiPairing, mukaiS, mukaiS, hK3.toddComp_one,
@@ -284,13 +316,17 @@ theorem chi₂_eq_neg_mukaiPairing (hK3 : IsK3 V) (E F : N) :
   simp only [mul_zero, map_zero, mul_zero]
   ring
 
-/-- Consequently the Euler pairing is symmetric on a K3.-/
+/-- Consequently the Euler pairing is symmetric on a K3.
+@isnad1 id=eq.1h5v.s6.0cf16fcfe6ab from=translated src=- shape=52b6588d vocab=8bd70cdc
+-/
 theorem chi₂_comm (hK3 : IsK3 V) (E F : N) : V.chi₂ E F = V.chi₂ F E := by
   rw [chi₂_eq_neg_mukaiPairing V hK3, chi₂_eq_neg_mukaiPairing V hK3,
     mukaiPairing_comm V]
 
 /-- `χ(E,E) = −⟨v(E), v(E)⟩ = 2r² − ∫Δ(E)`, tying the Euler pairing to the
-Bogomolov–Gieseker discriminant through `K3.mukaiSelfPairing_eq`.-/
+Bogomolov–Gieseker discriminant through `K3.mukaiSelfPairing_eq`.
+@isnad1 id=eq.1h4v.s8.15c54d08d68c from=translated src=- shape=f490dd8d vocab=41067cf6
+-/
 theorem chi₂_self (hK3 : IsK3 V) (E : N) :
     V.chi₂ E E = 2 * (V.rank E : ℚ) ^ 2 - V.ring.degree (V.discriminant E) := by
   rw [chi₂_eq_neg_mukaiPairing V hK3, mukaiPairing_self V, mukaiSelfPairing_eq V]

@@ -113,7 +113,9 @@ namespace Surface
 variable {V : NumericalVarietyData 2 A N} {P : Polarization V.ring} {E : N}
 
 /-- At `n = 2` the twist is trivial, so Bogomolov–Gieseker reads
-`0 ≤ ∫_X Δ(E)` with no polarisation in the conclusion.-/
+`0 ≤ ∫_X Δ(E)` with no polarisation in the conclusion.
+@isnad1 id=le.1h6v.s7.40bc737d1376 from=translated src=- shape=827b0f83 vocab=bf0863c3
+-/
 theorem nonneg_degree_discriminant (B : BogomolovGiesekerData V P)
     (hE : B.Semistable E) : 0 ≤ V.ring.degree (V.discriminant E) := by
   have h := B.nonneg E hE
@@ -133,7 +135,9 @@ discrH = (∫c₁·H)² − 2(∫H²)·r·∫ch₂
 
 `0 < ∫H²` comes from the `Polarization`'s own `degree_pow_pos` field at
 `n = 2`; it is not a separate hypothesis. This is the declaration the `(s,t)`
-transport consumes.-/
+transport consumes.
+@isnad1 id=le.2h6v.s6.1f29d1714fb2 from=translated src=- shape=2d2449ea vocab=5dee36fb
+-/
 theorem discrH_nonneg (B : BogomolovGiesekerData V P) (hI : HodgeIndexStatement V P)
     (hE : B.Semistable E) : 0 ≤ discrH V P E := by
   have hH : 0 < V.ring.degree (P.cls ^ 2) := P.degree_pow_pos
@@ -154,7 +158,9 @@ variable {V : NumericalVarietyData 2 A N} {P : Polarization V.ring} {E : N}
 /-- `χ(E,E) ≤ 2·rank(E)²` for a semistable class on a K3.
 
 `chi₂_self` writes `χ(E,E) = 2r² − ∫Δ(E)`; Bogomolov–Gieseker removes the
-second term.-/
+second term.
+@isnad1 id=le.2h6v.s7.e93a5dd59a08 from=translated src=- shape=f8273556 vocab=d98a1385
+-/
 theorem chi₂_self_le (B : BogomolovGiesekerData V P) (hK3 : IsK3 V)
     (hE : B.Semistable E) : V.chi₂ E E ≤ 2 * (V.rank E : ℚ) ^ 2 := by
   rw [chi₂_self V hK3]
@@ -164,7 +170,9 @@ theorem chi₂_self_le (B : BogomolovGiesekerData V P) (hK3 : IsK3 V)
 
 `IsK3`-free, exactly as `mukaiSelfPairing_eq` is: the identity relating the
 Mukai self-pairing to the discriminant is arithmetic and holds on any surface.
-Only the *reading* of `(r, c₁, s)` as a Mukai vector is K3-specific.-/
+Only the *reading* of `(r, c₁, s)` as a Mukai vector is K3-specific.
+@isnad1 id=le.1h6v.s7.8a09f3ae590a from=translated src=- shape=b9d31b18 vocab=543b24ca
+-/
 theorem mukaiSelfPairing_ge (B : BogomolovGiesekerData V P) (hE : B.Semistable E) :
     -2 * (V.rank E : ℚ) ^ 2 ≤ mukaiSelfPairing V E := by
   rw [mukaiSelfPairing_eq]
@@ -185,7 +193,9 @@ Three things this is not, stated plainly because each is easy to over-read:
   named hypothesis, not closed.
 * **It is not cohomological.** No `Ext`, no `Hom`, no Serre duality appears in
   the derivation — `mukaiSelfPairing_eq` plus `rank² ≤ 1` is the whole proof.
-  That is what is genuinely new here.-/
+  That is what is genuinely new here.
+@isnad1 id=le.2h6v.s7.cfdf3a70e7e9 from=translated src=- shape=27bafdde vocab=2d1a1829
+-/
 theorem neg_two_le_mukaiSelfPairing_of_rank_le_one (B : BogomolovGiesekerData V P)
     (hE : B.Semistable E) (hr : V.rank E ^ 2 ≤ 1) : -2 ≤ mukaiSelfPairing V E := by
   have h := mukaiSelfPairing_ge B hE
@@ -194,7 +204,9 @@ theorem neg_two_le_mukaiSelfPairing_of_rank_le_one (B : BogomolovGiesekerData V 
 
 /-- The same statement read through `χ`: `χ(E,E) ≤ 2` for a semistable class of
 rank at most one in absolute value. Same three caveats as
-`neg_two_le_mukaiSelfPairing_of_rank_le_one`.-/
+`neg_two_le_mukaiSelfPairing_of_rank_le_one`.
+@isnad1 id=le.3h6v.s7.61ec2cef0d2e from=translated src=- shape=b41dc7d2 vocab=3cb82303
+-/
 theorem chi₂_self_le_two_of_rank_le_one (B : BogomolovGiesekerData V P) (hK3 : IsK3 V)
     (hE : B.Semistable E) (hr : V.rank E ^ 2 ≤ 1) : V.chi₂ E E ≤ 2 := by
   have h := chi₂_self_le B hK3 hE
@@ -205,7 +217,9 @@ variable {Λ : Type w} [AddCommGroup Λ]
 
 /-- The lattice-side reading, recorded so the two forms are known to agree:
 through `neg_two_le_selfPairing_mukaiVector_iff` the `χ` bound above *is* the
-Mukai-lattice bound `⟨v(E),v(E)⟩ ≥ −2` on the supplied integral lattice.-/
+Mukai-lattice bound `⟨v(E),v(E)⟩ ≥ −2` on the supplied integral lattice.
+@isnad1 id=le.4h8v.s7.de6b0d71532a from=translated src=- shape=103b997f vocab=428831b7
+-/
 theorem neg_two_le_selfPairing_mukaiVector_of_rank_le_one (D : IntegralMukaiData V Λ)
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (B : BogomolovGiesekerData V P)
     (hE : B.Semistable E) (hr : V.rank E ^ 2 ≤ 1) :

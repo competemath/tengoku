@@ -77,21 +77,29 @@ def shiftComp (m n : ℤ) {X Y Z : C} (a b c : ℤ) (h : a + b = c) :
     (dgHom X Y).X a →+ (dgHom Y Z).X b →+ (dgHom X Z).X c :=
   ((b - n) * m).negOnePow • dgComp a b c h
 
-/-- `shiftD` applied to an element, unfolded.-/
+/-- `shiftD` applied to an element, unfolded.
+@isnad1 id=eq.0h7v.s11.b919c501c3f0 from=translated src=- shape=b4035709 vocab=6f1158be
+-/
 lemma shiftD_apply (m : ℤ) {X Y : C} (a b : ℤ) (f : (dgHom X Y).X a) :
     shiftD m a b f = m.negOnePow • ((dgHom X Y).d a b).hom f := rfl
 
-/-- `shiftComp` applied to a pair of elements, unfolded.-/
+/-- `shiftComp` applied to a pair of elements, unfolded.
+@isnad1 id=eq.1h11v.s14.c0c5359e47ea from=translated src=- shape=6e4dcbb5 vocab=14c1c6da
+-/
 lemma shiftComp_apply (m n : ℤ) {X Y Z : C} (a b c : ℤ) (h : a + b = c)
     (f : (dgHom X Y).X a) (g : (dgHom Y Z).X b) :
     shiftComp m n a b c h f g = ((b - n) * m).negOnePow • dgComp a b c h f g := rfl
 
-/-- The unshifted case is the original composition, on the nose.-/
+/-- The unshifted case is the original composition, on the nose.
+@isnad1 id=eq.1h7v.s11.74f04b85013d from=translated src=- shape=21a08468 vocab=fde70ec5
+-/
 lemma shiftComp_zero_zero {X Y Z : C} (a b c : ℤ) (h : a + b = c) :
     shiftComp (X := X) (Y := Y) (Z := Z) 0 0 a b c h = dgComp a b c h := by
   simp [shiftComp]
 
-/-- The unshifted differential is the original differential.-/
+/-- The unshifted differential is the original differential.
+@isnad1 id=eq.0h5v.s9.b532fb95214e from=translated src=- shape=7a5dc7be vocab=7d4ca12c
+-/
 lemma shiftD_zero {X Y : C} (a b : ℤ) :
     shiftD (C := C) (X := X) (Y := Y) 0 a b = ((dgHom X Y).d a b).hom := by
   simp [shiftD]
@@ -102,13 +110,17 @@ lemma shiftD_zero {X Y : C} (a b : ℤ) :
 `CochainComplex.shiftFunctor` already does, and both lemmas below are `rfl`. -/
 
 /-- Degree `p` of the `m`-shifted hom-complex is degree `p + m` of the original.
-This is `CochainComplex.shiftFunctor`'s own indexing, so the lemma is `rfl`.-/
+This is `CochainComplex.shiftFunctor`'s own indexing, so the lemma is `rfl`.
+@isnad1 id=eq.0h5v.s8.9755f6ff4ba2 from=translated src=- shape=b626253a vocab=131c7fd4
+-/
 lemma shiftFunctor_dgHom_X (m : ℤ) {X Y : C} (p : ℤ) :
     (((dgHom X Y))⟦m⟧).X p = (dgHom X Y).X (p + m) := rfl
 
 /-- `shiftD` *is* the differential of the shifted hom-complex, not a lookalike:
 the lemma is `rfl`, so the `(-1) ^ m` in `shiftD` is Mathlib's sign rather than a
-convention this file introduces.-/
+convention this file introduces.
+@isnad1 id=eq.0h6v.s11.b686f723a804 from=translated src=- shape=090bb3bc vocab=281c687d
+-/
 lemma shiftFunctor_dgHom_d (m : ℤ) {X Y : C} (p p' : ℤ) :
     ((((dgHom X Y))⟦m⟧).d p p').hom = shiftD m (p + m) (p' + m) := rfl
 
@@ -132,7 +144,9 @@ private lemma dgComp_units_smul_right' {X Y Z : C} (a b c : ℤ) (h : a + b = c)
 
 /-- **The Leibniz rule survives the shift**, in the same shape as the axiom: the
 sign on the second term is the degree of the first argument's partner in the
-*shifted* complex, `b - n`. This is the lemma the sign was solved for.-/
+*shifted* complex, `b - n`. This is the lemma the sign was solved for.
+@isnad1 id=eq.2h12v.s15.6893f4820670 from=translated src=- shape=58990bef vocab=c23c59db
+-/
 lemma shiftComp_leibniz (m n : ℤ) {X Y Z : C} (a b c c' : ℤ) (h : a + b = c) (hc : c + 1 = c')
     (f : (dgHom X Y).X a) (g : (dgHom Y Z).X b) :
     shiftD (m + n) c c' (shiftComp m n a b c h f g) =
@@ -148,7 +162,9 @@ lemma shiftComp_leibniz (m n : ℤ) {X Y Z : C} (a b c c' : ℤ) (h : a + b = c)
 
 /-- Associativity survives the shift with no further sign condition: the two
 sides carry `(b - n) * m + (d - l) * (m + n)` and
-`(d - l) * n + (b + d - (n + l)) * m`, which are equal as integers.-/
+`(d - l) * n + (b + d - (n + l)) * m`, which are equal as integers.
+@isnad1 id=eq.3h17v.s15.b571b0be6e67 from=translated src=- shape=d205ba57 vocab=a7d75c77
+-/
 lemma shiftComp_assoc (m n l : ℤ) {W X Y Z : C} (a b d ab bd abd : ℤ)
     (hab : a + b = ab) (hbd : b + d = bd) (habd : ab + d = abd)
     (f : (dgHom W X).X a) (g : (dgHom X Y).X b) (k : (dgHom Y Z).X d) :
@@ -161,20 +177,26 @@ lemma shiftComp_assoc (m n l : ℤ) {W X Y Z : C} (a b d ab bd abd : ℤ)
       subst hbd; ring]
 
 /-- The identity is a left unit for the shifted composition. Its hom-complex is
-unshifted, so the sign is `((b - n) * 0)` and vanishes.-/
+unshifted, so the sign is `((b - n) * 0)` and vanishes.
+@isnad1 id=eq.0h6v.s13.4b8c8719c7c8 from=translated src=- shape=6b2cf43a vocab=5950b0d0
+-/
 lemma shiftComp_dgId_left (n : ℤ) {X Y : C} (b : ℤ) (g : (dgHom X Y).X b) :
     shiftComp 0 n 0 b b (zero_add b) (dgId X) g = g := by
   simp [shiftComp_apply, dgId_comp]
 
 /-- The identity is a right unit for the shifted composition. It sits in degree
-`0` of an unshifted complex, so the sign is `((0 - 0) * m)` and vanishes.-/
+`0` of an unshifted complex, so the sign is `((0 - 0) * m)` and vanishes.
+@isnad1 id=eq.0h6v.s13.0043820253a8 from=translated src=- shape=b89add88 vocab=47469558
+-/
 lemma shiftComp_dgId_right (m : ℤ) {X Y : C} (a : ℤ) (f : (dgHom X Y).X a) :
     shiftComp m 0 a 0 a (add_zero a) f (dgId Y) = f := by
   simp [shiftComp_apply, dgComp_id]
 
 /-- The shifted differential still squares to zero: the two signs cancel. No
 hypothesis relates `a`, `b`, `c` — off the diagonal `d` is zero by `shape`, so
-the statement holds for every triple.-/
+the statement holds for every triple.
+@isnad1 id=eq.0h8v.s11.8577efaf7c0b from=translated src=- shape=772ca8a4 vocab=81726264
+-/
 lemma shiftD_shiftD (m : ℤ) {X Y : C} (a b c : ℤ) (f : (dgHom X Y).X a) :
     shiftD m b c (shiftD m a b f) = 0 := by
   have hd : ((dgHom X Y).d a b) ≫ ((dgHom X Y).d b c) = 0 :=

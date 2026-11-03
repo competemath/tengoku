@@ -57,7 +57,9 @@ local instance (X : C) : HasBinaryProducts (Over X) :=
 end Restrict
 
 omit hasSheafComposeOver hasSheafComposeOverOver in
-/-- Finite presentation descends along a family of objects covering the terminal object.-/
+/-- Finite presentation descends along a family of objects covering the terminal object.
+@isnad1 id=isfinite.2h6v.s8.d5e1eca5fe1b from=translated src=- shape=035b9b5e vocab=edd8fd8f
+-/
 theorem IsFinitePresentation.of_coversTop (M : SheafOfModules.{u} R) {I : Type v}
     (X : I → C) (hX : J.CoversTop X)
     (h : ∀ i, IsFinitePresentation (M.over (X i))) : IsFinitePresentation M := by

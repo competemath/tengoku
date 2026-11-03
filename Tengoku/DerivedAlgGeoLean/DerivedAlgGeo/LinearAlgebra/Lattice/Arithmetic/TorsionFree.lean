@@ -34,12 +34,16 @@ This is the article's §8 step "`2[E] = 0` in a torsion-free lattice, hence
 theorem eq_zero_of_two_zsmul_eq_zero {x : Λ} (h : (2 : ℤ) • x = 0) : x = 0 :=
   eq_zero_of_zsmul_eq_zero (by norm_num) h
 
-/-- Scaling by a nonzero integer is injective on a torsion-free group.-/
+/-- Scaling by a nonzero integer is injective on a torsion-free group.
+@isnad1 id=injectiv.1h2v.s6.a22629b4919c from=translated src=- shape=5926b0a0 vocab=03dea03e
+-/
 theorem zsmul_injective {n : ℤ} (hn : n ≠ 0) :
     Function.Injective fun x : Λ => n • x :=
   smul_right_injective Λ hn
 
-/-- Cancellation: `n • x = n • y → x = y` for `n ≠ 0`.-/
+/-- Cancellation: `n • x = n • y → x = y` for `n ≠ 0`.
+@isnad1 id=eq.2h4v.s6.120fe72aac59 from=translated src=- shape=5b16fb6b vocab=825857b1
+-/
 theorem zsmul_left_cancel {n : ℤ} (hn : n ≠ 0) {x y : Λ} (h : n • x = n • y) :
     x = y :=
   zsmul_injective hn h

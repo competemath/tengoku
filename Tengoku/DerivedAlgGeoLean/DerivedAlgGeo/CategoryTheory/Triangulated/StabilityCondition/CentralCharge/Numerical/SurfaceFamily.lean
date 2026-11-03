@@ -41,11 +41,17 @@ def stCharge (s t : ℝ) : NumClass →+ ℂ :=
         simp [imZ, NumClass.rk, NumClass.deg]
         ring)
 
+/--
+@isnad1 id=eq.0h3v.s6.b86d29d23605 from=translated src=- shape=847abdc9 vocab=dc9ce2e9
+-/
 @[simp]
 theorem stCharge_re (s t : ℝ) (v : NumClass) :
     (stCharge s t v).re = reZ s t v := by
   simp [stCharge]
 
+/--
+@isnad1 id=eq.0h3v.s6.8e3066d78708 from=translated src=- shape=847abdc9 vocab=2feb3962
+-/
 @[simp]
 theorem stCharge_im (s t : ℝ) (v : NumClass) :
     (stCharge s t v).im = imZ s t v := by
@@ -59,6 +65,9 @@ that need them.-/
 def stChargeFamily : ChargeFamily (ℝ × ℝ) NumClass where
   charge p := stCharge p.1 p.2
 
+/--
+@isnad1 id=eq.0h2v.s7.60de38d5e1d8 from=translated src=- shape=2a690109 vocab=ad0df7fa
+-/
 @[simp]
 theorem stChargeFamily_charge (p : ℝ × ℝ) (v : NumClass) :
     stChargeFamily.charge p v =

@@ -35,7 +35,9 @@ namespace SchemeBaseChange
 variable {S : Scheme.{u}}
 
 /-- At every point of a flat scheme morphism, extension of scalars along the
-induced local-ring map preserves finite limits.-/
+induced local-ring map preserves finite limits.
+@isnad1 id=preserve.0h5v.s11.421916f9be70 from=translated src=- shape=fb296508 vocab=6aa135ff
+-/
 theorem flatStalkMap_preservesFiniteLimits
     {T U : SchemeBaseChange S} (f : T ⟶ U) [Flat f.left] (x : T.left) :
     PreservesFiniteLimits
@@ -44,7 +46,9 @@ theorem flatStalkMap_preservesFiniteLimits
     (Flat.stalkMap f.left x)
 
 /-- The stalkwise model for pullback along a flat scheme morphism preserves
-finite limits.-/
+finite limits.
+@isnad1 id=preserve.0h5v.s11.1d1c5d0117b8 from=translated src=- shape=6430d243 vocab=c3b3ac59
+-/
 theorem flatPullbackStalkModel_preservesFiniteLimits
     {T U : SchemeBaseChange S} (f : T ⟶ U) [Flat f.left] (x : T.left) :
     PreservesFiniteLimits

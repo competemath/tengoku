@@ -75,7 +75,9 @@ namespace GradedObject
 
 variable {R : Type*} [Ring R] {ι : Type*}
 
-/-- `finrankSupport` is also the support of the integer-valued rank function.-/
+/-- `finrankSupport` is also the support of the integer-valued rank function.
+@isnad1 id=eq.0h3v.s6.0f76691f0fd0 from=translated src=- shape=41c2fb2d vocab=4b22b0ef
+-/
 theorem finrankSupport_eq_support_intCast (X : GradedObject ι (ModuleCat R)) :
     finrankSupport X = Function.support fun i => (finrank R (X i) : ℤ) := by
   ext i
@@ -89,7 +91,9 @@ variable {k : Type u} [DivisionRing k]
 
 /-- A range's dimension is bounded by the source's, so its support sits inside the source's.
 This is where `StrongRankCondition`, hence `DivisionRing`, is used, and it is the only place
-the support side conditions come from.-/
+the support side conditions come from.
+@isnad1 id=le.0h5v.s8.7bc9a262939a from=translated src=- shape=f9df3f96 vocab=5af87f5a
+-/
 theorem support_finrank_range_subset {ι : Type*} {V W : ι → Type v} [∀ i, AddCommGroup (V i)]
     [∀ i, AddCommGroup (W i)] [∀ i, Module k (V i)] [∀ i, Module k (W i)]
     [∀ i, Module.Finite k (V i)] (f : ∀ i, V i →ₗ[k] W i) :
@@ -131,7 +135,9 @@ no vanishing at either end: over `ℤ` the telescoping is a translation of the s
 rather than an induction, so there are no boundary cases to state. Finiteness enters as
 finiteness of the support of the integer-valued rank function, the form a homology sequence
 of a linear functor supplies; `finrankSupport_eq_support_intCast` relates it to
-`finrankSupport`.-/
+`finrankSupport`.
+@isnad1 id=eq.6h7v.s10.d7669c771cdc from=translated src=- shape=769652d3 vocab=b749396d
+-/
 theorem eulerChar_eq_add_of_exact
     (f : ∀ i, A i →ₗ[k] B i) (g : ∀ i, B i →ₗ[k] C i)
     (δ : ∀ i, C i →ₗ[k] A (i + 1))

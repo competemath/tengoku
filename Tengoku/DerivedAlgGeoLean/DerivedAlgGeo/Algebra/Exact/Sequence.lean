@@ -39,7 +39,9 @@ variable (A : ℕ → Type*) (B : ℕ → Type*) (C : ℕ → Type*)
 /-- **Alternating dimensions cancel along a bounded long exact sequence** of the zig-zag shape
 `A i → B i → C i → A (i + 1)`: the form of `Module.sum_neg_one_pow_finrank_eq_zero_of_exact`
 attached to a short exact sequence of complexes. The endpoint hypothesis is stated as vanishing
-of the next `A` term, which makes the final connecting map surjective onto zero.-/
+of the next `A` term, which makes the final connecting map surjective onto zero.
+@isnad1 id=eq.4h8v.s11.9352804b80fc from=translated src=- shape=63eeefb9 vocab=53f905c3
+-/
 theorem sum_neg_one_pow_finrank_eq_zero_of_longExact
     (hinj : Function.Injective (f 0))
     (hexact₂ : ∀ i, Function.Exact (f i) (g i))

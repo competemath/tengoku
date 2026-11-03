@@ -62,7 +62,9 @@ This is not automatic from triangulatedness of `F.mapDerivedCategory`: a
 triangulated functor preserves finite direct sums, and an arbitrary coproduct is
 not one.  The content is that the coproduct in `D(C)` is represented by the
 degreewise coproduct of complexes, which is the AB4 half of
-`DerivedCategory.Q_preservesCoproductsOfShape`, applied on both sides.-/
+`DerivedCategory.Q_preservesCoproductsOfShape`, applied on both sides.
+@isnad1 id=preserve.0h4v.s7.acea6b667dcb from=translated src=- shape=58cb76eb vocab=f99f70d2
+-/
 theorem mapDerivedCategory_preservesCoproductsOfShape :
     PreservesColimitsOfShape (Discrete κ) F.mapDerivedCategory := by
   haveI : PreservesColimitsOfShape (Discrete κ)

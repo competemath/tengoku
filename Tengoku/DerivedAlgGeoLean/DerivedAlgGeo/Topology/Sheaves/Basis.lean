@@ -39,7 +39,9 @@ variable {C : Type u} [Category.{v} C] [Limits.HasColimits C] {X : TopCat.{v}}
 
 The mirror image of Mathlib's `stalkFunctor_map_injective_of_isBasis`: every germ is
 represented by a section over a basic open (`germ_exist_of_isBasis`), and a surjection there
-lifts it.-/
+lifts it.
+@isnad1 id=surjecti.2h9v.s9.0a8f7ffdf0f2 from=translated src=- shape=f042508e vocab=5271ea53
+-/
 lemma stalkFunctor_map_surjective_of_isBasis (hB : Opens.IsBasis B)
     {F G : Presheaf C X} {α : F ⟶ G}
     (hα : ∀ U ∈ B, Function.Surjective (ConcreteCategory.hom (α.app (op U)))) (x : X) :
@@ -60,7 +62,9 @@ surjectivity is `stalkFunctor_map_surjective_of_isBasis` above.
 
 The hypotheses are written out rather than taken from a `variable` block: `FC` and `CC` do
 not appear in the statement, so `variable` auto-inclusion drops the `ConcreteCategory` and
-`forget`-preservation binders along with them.-/
+`forget`-preservation binders along with them.
+@isnad1 id=isiso.2h8v.s9.2c34b22ec641 from=translated src=- shape=916572bc vocab=fe15494c
+-/
 theorem isIso_of_isIso_app_of_isBasis
     {C : Type u} [Category.{v} C] [Limits.HasColimits C] {X : TopCat.{v}}
     {FC : C → C → Type*} {CC : C → Type v} [∀ (X Y : C), FunLike (FC X Y) (CC X) (CC Y)]

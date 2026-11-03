@@ -43,7 +43,9 @@ def polynomialVariableCechDenominator
     MvPolynomial ι k :=
   ∏ a, MvPolynomial.X (x a)
 
-/-- The Čech denominator for an `(n + 1)`-fold intersection is homogeneous of degree `n + 1`.-/
+/-- The Čech denominator for an `(n + 1)`-fold intersection is homogeneous of degree `n + 1`.
+@isnad1 id=mem.0h4v.s8.15c80fffc9dd from=translated src=- shape=60cf4cf9 vocab=0f1ae833
+-/
 theorem polynomialVariableCechDenominator_mem
     (ι k : Type u) [Field k] {n : ℕ} (x : Fin (n + 1) → ι) :
     polynomialVariableCechDenominator ι k x ∈ polynomialGrading ι k (n + 1) := by
@@ -82,7 +84,9 @@ def polynomialVariableFraction
       den := ⟨1, SetLike.one_mem_graded (polynomialGrading ι k)⟩
       den_mem := Submonoid.one_mem _ }
 
-/-- Dropping the `j`-th index multiplies the Čech denominator back up by that variable.-/
+/-- Dropping the `j`-th index multiplies the Čech denominator back up by that variable.
+@isnad1 id=eq.0h5v.s7.0fe6a8d4b40e from=translated src=- shape=e1845d9f vocab=1e56ab39
+-/
 theorem polynomialVariableCechDenominator_succAbove
     (ι k : Type u) [Field k] {n : ℕ} (x : Fin (n + 2) → ι) (j : Fin (n + 2)) :
     polynomialVariableCechDenominator ι k (x ∘ j.succAbove) * MvPolynomial.X (x j) =
@@ -94,7 +98,9 @@ theorem polynomialVariableCechDenominator_succAbove
   rfl
 
 /-- The `j`-th Čech denominator divides the full one, in the `Submonoid.powers` form
-`faceMap` asks for.-/
+`faceMap` asks for.
+@isnad1 id=mem.0h5v.s8.a6c6cd2b6862 from=translated src=- shape=684702b2 vocab=60bdc5ea
+-/
 theorem polynomialVariableCechDenominator_succAbove_mem
     (ι k : Type u) [Field k] {n : ℕ} (x : Fin (n + 2) → ι) (j : Fin (n + 2)) :
     polynomialVariableCechDenominator ι k (x ∘ j.succAbove) * MvPolynomial.X (x j) ∈
@@ -166,14 +172,18 @@ noncomputable def cechFace (ι k : Type u) [Field k] {σM : Type u}
     (polynomialVariableCechDenominator_succAbove_mem ι k x j)
     (polynomialVariableCechDenominator_succAbove ι k x j)
 
-/-- The natural-shift face is the arbitrary-family face at `natShift`.-/
+/-- The natural-shift face is the arbitrary-family face at `natShift`.
+@isnad1 id=eq.0h6v.s16.2148eb5e2f55 from=translated src=- shape=ff787d8f vocab=a2d7831d
+-/
 theorem cechFace_natShift (ι k : Type u) [Field k] (d : ℕ) {n : ℕ} (x : Fin (n + 2) → ι)
     (j : Fin (n + 2)) :
     cechFace ι k (natShift (polynomialGrading ι k) d) x j =
       polynomialVariableCechFace ι k d x j :=
   rfl
 
-/-- The integer-shift face is the arbitrary-family face at `intShift`.-/
+/-- The integer-shift face is the arbitrary-family face at `intShift`.
+@isnad1 id=eq.0h6v.s16.675f911beabe from=translated src=- shape=c0a72905 vocab=bcc09a7e
+-/
 theorem cechFace_intShift (ι k : Type u) [Field k] (d : ℤ) {n : ℕ} (x : Fin (n + 2) → ι)
     (j : Fin (n + 2)) :
     cechFace ι k (intShift (polynomialGrading ι k) d) x j =
@@ -187,13 +197,17 @@ noncomputable def cechCofactor (ι k : Type u) [Field k] {n : ℕ} (x : Fin (n +
     MvPolynomial ι k :=
   ∏ a : Fin n, MvPolynomial.X (x a.succ)
 
-/-- Splitting the Čech denominator off its first variable.-/
+/-- Splitting the Čech denominator off its first variable.
+@isnad1 id=eq.0h4v.s7.43093b183cec from=translated src=- shape=73ed9051 vocab=4271c836
+-/
 theorem X_mul_cechCofactor (ι k : Type u) [Field k] {n : ℕ} (x : Fin (n + 1) → ι) :
     (MvPolynomial.X (x 0) : MvPolynomial ι k) * cechCofactor ι k x =
       polynomialVariableCechDenominator ι k x :=
   (Fin.prod_univ_succ (fun a => MvPolynomial.X (x a))).symm
 
-/-- The cofactor is homogeneous of degree `n`.-/
+/-- The cofactor is homogeneous of degree `n`.
+@isnad1 id=mem.0h4v.s7.483852c2b6db from=translated src=- shape=59971d1e vocab=db1e57d4
+-/
 theorem cechCofactor_mem (ι k : Type u) [Field k] {n : ℕ} (x : Fin (n + 1) → ι) :
     cechCofactor ι k x ∈ polynomialGrading ι k n := by
   unfold cechCofactor

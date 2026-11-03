@@ -59,7 +59,9 @@ def derivedInclusion : DerivedCategory (FGModuleCat.{u} R) ⥤
   exact F.mapDerivedCategory
 
 /-- On bounded derived objects of finitely generated modules, the inclusion
-into the derived category of all modules is bijective on each morphism set.-/
+into the derived category of all modules is bijective on each morphism set.
+@isnad1 id=bijectiv.0h3v.s12.5d55d88c9ef4 from=translated src=- shape=0fd9b75f vocab=defe59ec
+-/
 theorem boundedDerivedInclusion_map_bijective
     (E E' : DerivedCategory.Bounded (FGModuleCat.{u} R)) :
     Function.Bijective

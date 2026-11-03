@@ -48,7 +48,9 @@ namespace FGModuleCat
 
 /-- A strictly bounded-above complex of finite modules over a noetherian
 commutative ring has a strictly bounded-above quasi-isomorphic complex of
-projective finite modules. Its negative-degree tail may be infinite.-/
+projective finite modules. Its negative-degree tail may be infinite.
+@isnad1 id=ex.0h3v.s10.8070c24efc9d from=translated src=- shape=313af1a7 vocab=e52c553e
+-/
 theorem exists_boundedAbove_projective_replacement {R : Type u} [CommRing R]
     [IsNoetherianRing R] (K : CochainComplex (FGModuleCat.{u} R) ℤ)
     (b : ℤ) [K.IsStrictlyLE b] :
@@ -109,7 +111,9 @@ namespace ModuleCat
 /-- A strictly bounded-above complex of finite modules over a noetherian
 commutative ring has a strictly bounded-above, termwise finite-projective
 replacement in `ModuleCat`. The quasi-isomorphism is an actual complex map to
-the supplied complex. No strict lower bound is claimed for the replacement.-/
+the supplied complex. No strict lower bound is claimed for the replacement.
+@isnad1 id=ex.1h3v.s10.bf19baab9fd0 from=translated src=- shape=a44c7673 vocab=243dc655
+-/
 theorem exists_finite_projective_replacement {R : Type u} [CommRing R]
     [IsNoetherianRing R] (K : CochainComplex (ModuleCat.{u} R) ℤ)
     (b : ℤ) [K.IsStrictlyLE b]

@@ -71,7 +71,9 @@ variable [P.IsClosedUnderCokernels]
 
 This is the step that a weak Serre subcategory can take and
 `IsClosedUnderQuotients` would take for free: the hypothesis `P A` is what
-replaces knowing that `P` sees the kernel of `B ⟶ K`.-/
+replaces knowing that `P` sees the kernel of `B ⟶ K`.
+@isnad1 id=var.1h5v.s7.a72219bf6141 from=translated src=- shape=46fafff0 vocab=dd0a1882
+-/
 lemma prop_of_exact_of_epi {S : ShortComplex C} (hS : S.Exact) [Epi S.g]
     (h₁ : P S.X₁) (h₂ : P S.X₂) : P S.X₃ :=
   P.prop_of_isColimit_cokernelCofork hS.gIsCokernel h₁ h₂
@@ -87,7 +89,9 @@ variable [P.IsClosedUnderKernels]
 `D ⟶ E`, so kernel closure puts it in `P`.
 
 Dual to `prop_of_exact_of_epi`; the hypothesis `P E` replaces knowing that `P`
-sees the cokernel of `Q ⟶ D`.-/
+sees the cokernel of `Q ⟶ D`.
+@isnad1 id=var.1h5v.s7.e62de24b0e29 from=translated src=- shape=bf7ef220 vocab=1803def1
+-/
 lemma prop_of_exact_of_mono {S : ShortComplex C} (hS : S.Exact) [Mono S.f]
     (h₂ : P S.X₂) (h₃ : P S.X₃) : P S.X₁ :=
   P.prop_of_isLimit_kernelFork hS.fIsKernel h₂ h₃
@@ -112,7 +116,9 @@ kernel of `i`. Extension closure finishes.
 
 No hypothesis is placed on the composites beyond the three `ShortComplex`
 zero-conditions, and in particular `P` is *not* assumed closed under subobjects
-or quotients — that is the whole point.-/
+or quotients — that is the whole point.
+@isnad1 id=var.6h15v.s8.22ce1a78794f from=translated src=- shape=0d289a0b vocab=23553d62
+-/
 theorem prop_X₃_of_exact₅ {A B D E : C} {X : C} {f : A ⟶ B} {g : B ⟶ X}
     {h : X ⟶ D} {i : D ⟶ E} {w₁ : f ≫ g = 0} {w₂ : g ≫ h = 0} {w₃ : h ≫ i = 0}
     (h₁ : (ShortComplex.mk f g w₁).Exact)

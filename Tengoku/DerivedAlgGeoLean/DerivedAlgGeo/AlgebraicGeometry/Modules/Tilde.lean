@@ -30,7 +30,9 @@ variable (R : CommRingCat.{u}) (K M : ModuleCat.{u} R) (g : K ⟶ M) (r : R)
 /-- The range of `tilde.map g` on `D(r)` is the localization away from `r` of
 `g`'s range. The result applies to an inclusion `N.subtype` as well as an
 arbitrary module map. Both localized-module structures and scalar towers are
-proof-local; no global instance for the section modules is introduced.-/
+proof-local; no global instance for the section modules is introduced.
+@isnad1 id=other.0h5v.s14.3626ba73298b from=translated src=- shape=f45a5f27 vocab=713c0367
+-/
 theorem localized'_range_eq_range_map_basicOpen :
     let S := Submonoid.powers r
     let U := basicOpen r

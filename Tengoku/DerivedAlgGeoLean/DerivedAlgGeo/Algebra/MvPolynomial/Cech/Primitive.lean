@@ -52,7 +52,9 @@ variable {ι R : Type u} [CommRing R]
 its Laurent exponents would be everywhere negative while their total is the twist `d ≥ 0`.
 The witness `j₀` rules out the empty variable set, where the empty block carries the
 constants. This is the only place the nonnegativity of the twist enters the vanishing
-argument.-/
+argument.
+@isnad1 id=eq.2h8v.s8.befcd2a13799 from=translated src=- shape=8c626c93 vocab=5e720ce4
+-/
 theorem laurentFilter_eq_zero_of_forall_mem (j₀ : ι) {F : Finset ι} (hF : ∀ j : ι, j ∈ F)
     {γ : ι →₀ ℕ} {d m : ℕ} {p : MvPolynomial ι R}
     (hp : p ∈ natShift (polynomialGrading ι R) d (m • γ.degree)) :
@@ -79,7 +81,9 @@ theorem laurentFilter_eq_zero_of_forall_mem (j₀ : ι) {F : Finset ι} (hF : �
   · rw [coeff_laurentFilter_of_ne hN]
 
 /-- The block of everything, over a nonempty variable set, projects everything to zero when
-the twist is nonnegative.-/
+the twist is nonnegative.
+@isnad1 id=eq.1h7v.s15.0070c0f57e99 from=translated src=- shape=5911466d vocab=ad2d45bf
+-/
 theorem blockProj_eq_zero_of_forall_mem [IsDomain R] (j₀ : ι) {F : Finset ι}
     (hF : ∀ j : ι, j ∈ F) (γ : ι →₀ ℕ) (d : ℕ)
     (z : DegreeZeroLocalization (polynomialGrading ι R)
@@ -98,7 +102,9 @@ theorem blockProj_eq_zero_of_forall_mem [IsDomain R] (j₀ : ι) {F : Finset ι}
 
 variable (ι k : Type u) [Field k]
 
-/-- The Čech form: any tuple supplies the witness.-/
+/-- The Čech form: any tuple supplies the witness.
+@isnad1 id=eq.1h7v.s17.8a33b7ea6478 from=translated src=- shape=3ec9d5a9 vocab=dba394f2
+-/
 theorem cechBlockProj_eq_zero_of_forall_mem (d : ℕ) {n : ℕ} (x : Fin (n + 1) → ι)
     {F : Finset ι} (hF : ∀ j : ι, j ∈ F) (z : polynomialVariableCechTerm ι k d n x) :
     cechBlockProj ι k (isPolynomialTwist_natShift (R := k) d) x F z = 0 := by
@@ -110,7 +116,9 @@ variable {σM : Type u} [SetLike σM (MvPolynomial ι k)]
   [AddSubgroupClass σM (MvPolynomial ι k)] {𝓜 : ℕ → σM}
   [SetLike.GradedSMul (polynomialGrading ι k) 𝓜] {d : ℤ}
 
-/-- Dropping an index shrinks the support of the tuple exponent.-/
+/-- Dropping an index shrinks the support of the tuple exponent.
+@isnad1 id=le.0h4v.s7.8a9256ec6ca5 from=translated src=- shape=61fb0df6 vocab=758a46d2
+-/
 theorem tupleExponent_support_succAbove {n : ℕ} (x : Fin (n + 2) → ι) (j : Fin (n + 2)) :
     (tupleExponent ι (x ∘ j.succAbove)).support ⊆ (tupleExponent ι x).support := by
   intro a ha
@@ -120,7 +128,9 @@ theorem tupleExponent_support_succAbove {n : ℕ} (x : Fin (n + 2) → ι) (j : 
   omega
 
 /-- A tuple's exponent is supported on at most its own length: each index contributes one
-variable, and repetitions only shrink the support.-/
+variable, and repetitions only shrink the support.
+@isnad1 id=le.0h3v.s4.8d7791319e32 from=translated src=- shape=b4017978 vocab=f662e5b2
+-/
 theorem tupleExponent_support_card_le {n : ℕ} (x : Fin n → ι) :
     (tupleExponent ι x).support.card ≤ n := by
   classical
@@ -147,7 +157,9 @@ behind `cechBlockProj_eq_zero_of_forall_mem` is unavailable: a block containing 
 larger variable set the block cannot sit inside the tuple's support and
 `cechBlockProj_eq_zero_of_not_subset` applies. The twist plays no part.
 
-This is the first statement in the lane that needs the variable set finite.-/
+This is the first statement in the lane that needs the variable set finite.
+@isnad1 id=eq.3h9v.s17.854cc510967d from=translated src=- shape=766deeda vocab=48831f1e
+-/
 theorem cechBlockProj_eq_zero_of_card_lt [Fintype ι] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {n : ℕ} (hcard : n + 2 < Fintype.card ι) (y : Fin (n + 2) → ι)
     {G : Finset ι} (hG : ∀ j : ι, j ∈ G) (z : cechTerm ι k 𝓜 y) :
@@ -161,7 +173,9 @@ theorem cechBlockProj_eq_zero_of_card_lt [Fintype ι] (h𝓜 : IsPolynomialTwist
   have := Finset.card_le_card hsub
   omega
 
-/-- A block of the cone tuple avoiding the cone point is a block of the base tuple.-/
+/-- A block of the cone tuple avoiding the cone point is a block of the base tuple.
+@isnad1 id=le.2h5v.s7.d704e61905ec from=translated src=- shape=eff4d658 vocab=fe1654cf
+-/
 theorem subset_of_subset_cons {n : ℕ} {F : Finset ι} {i₀ : ι} (hi₀ : i₀ ∉ F)
     (y : Fin (n + 1) → ι)
     (h : F ⊆ (tupleExponent ι (Fin.cons i₀ y)).support) :
@@ -176,7 +190,9 @@ theorem subset_of_subset_cons {n : ℕ} {F : Finset ι} {i₀ : ι} (hi₀ : i�
   · rw [Finsupp.single_eq_of_ne hne] at happ
     omega
 
-/-- The block projections commute with the inverse tuple transport.-/
+/-- The block projections commute with the inverse tuple transport.
+@isnad1 id=eq.2h10v.s18.85d3976dacc3 from=translated src=- shape=9d62d697 vocab=596d6c7b
+-/
 theorem cechTermCongr_symm_cechBlockProj (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     {x₁ x₂ : Fin (n + 1) → ι}
     (h : x₁ = x₂) (F : Finset ι) (z : cechTerm ι k 𝓜 x₂) :
@@ -198,6 +214,9 @@ noncomputable def cechBlockPrimitive (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ
       (cechBlockProj ι k h𝓜 (Fin.cons h.choose y) F (s (Fin.cons h.choose y)))
   else 0
 
+/--
+@isnad1 id=eq.2h9v.s18.4702560f6843 from=translated src=- shape=7d20d248 vocab=66ad67ea
+-/
 theorem cechBlockPrimitive_of_exists (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ} {F : Finset ι}
     (h : ∃ i₀, i₀ ∉ F)
     (s : ∀ x : Fin (n + 2) → ι, cechTerm ι k 𝓜 x)
@@ -207,6 +226,9 @@ theorem cechBlockPrimitive_of_exists (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ
         (cechBlockProj ι k h𝓜 (Fin.cons h.choose y) F (s (Fin.cons h.choose y))) := by
   rw [cechBlockPrimitive, dite_eq_left h]
 
+/--
+@isnad1 id=eq.2h9v.s14.7571ceeb69d2 from=translated src=- shape=c0e28db9 vocab=b4cf6a1b
+-/
 theorem cechBlockPrimitive_of_forall (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ} {F : Finset ι}
     (h : ¬ ∃ i₀, i₀ ∉ F)
     (s : ∀ x : Fin (n + 2) → ι, cechTerm ι k 𝓜 x)
@@ -215,7 +237,9 @@ theorem cechBlockPrimitive_of_forall (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ
   rw [cechBlockPrimitive, dite_eq_right h]
 
 /-- The per-block primitive of a block off the tuple's support vanishes: the cone point is
-outside the block, so the cone tuple's support helps only through the base tuple's.-/
+outside the block, so the cone tuple's support helps only through the base tuple's.
+@isnad1 id=eq.2h9v.s14.8c632d14a394 from=translated src=- shape=88dbc4d0 vocab=04cea3b0
+-/
 theorem cechBlockPrimitive_eq_zero_of_not_subset (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     {F : Finset ι}
     (s : ∀ x : Fin (n + 2) → ι, cechTerm ι k 𝓜 x)
@@ -246,7 +270,9 @@ per-block primitive, with one sign lost, through the square.
 **No hypothesis on the twist appears here, and none is needed.** Every block except the one
 containing every variable has a cone point, so this alone says the cohomology of the Čech complex
 is carried entirely by the full block — which is what makes both the vanishing below the top
-degree and the finiteness of the top group statements about a single block.-/
+degree and the finiteness of the top group statements about a single block.
+@isnad1 id=eq.3h9v.s19.7d8d78777bf1 from=translated src=- shape=e694017b vocab=efe0d43a
+-/
 theorem cechBlockPrimitive_faces_of_exists (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (s : ∀ x : Fin (n + 2) → ι, cechTerm ι k 𝓜 x)
     (hs : ∀ x : Fin (n + 3) → ι,
@@ -321,7 +347,9 @@ different reasons:
   is the top-degree use, where neither of the first two is available.
 
 The second is what carries the negative case below the top, and it is why finiteness of the
-variable set enters the lane here and nowhere earlier.-/
+variable set enters the lane here and nowhere earlier.
+@isnad1 id=eq.3h9v.s19.379073a3c2a0 from=translated src=- shape=385314ea vocab=efe0d43a
+-/
 theorem cechBlockPrimitive_faces (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (s : ∀ x : Fin (n + 2) → ι, cechTerm ι k 𝓜 x)
     (hs : ∀ x : Fin (n + 3) → ι,
@@ -350,7 +378,9 @@ set_option maxHeartbeats 1600000 in
 /-- **The vanishing computation.** The alternating face sum of `cechPrimitive s` is `s`: per
 block the previous identity applies — after extending each tuple's block sum to the blocks of
 `x`, which costs nothing since a block off a tuple's support contributes zero — and the block
-components of `s x` reassemble by `sum_cechBlockProj`.-/
+components of `s x` reassemble by `sum_cechBlockProj`.
+@isnad1 id=eq.3h8v.s19.667c029529e1 from=translated src=- shape=3af27308 vocab=f370c553
+-/
 theorem cechPrimitive_isPrimitive (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (s : ∀ x : Fin (n + 2) → ι, cechTerm ι k 𝓜 x)
     (hs : ∀ x : Fin (n + 3) → ι,

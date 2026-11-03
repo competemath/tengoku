@@ -98,6 +98,9 @@ def derivedPullbackComp {T U V : SchemeBaseChange S}
     (derivedPullback g ⋙ derivedPullback f) (derivedPullback (f ≫ g))
     (complexPullbackCompLocalized f g)
 
+/--
+@isnad1 id=eq.0h2v.s12.43f628b6d556 from=translated src=- shape=7c55797a vocab=62d8ef76
+-/
 @[simp]
 theorem derivedPullK₀_id (T : SchemeBaseChange S) :
     derivedPullK₀ (𝟙 T) = AddMonoidHom.id (K₀ T.DerivedFiber) := by
@@ -105,6 +108,9 @@ theorem derivedPullK₀_id (T : SchemeBaseChange S) :
     AddMonoidHom.id (K₀ T.DerivedFiber)
   rw [K₀.map_congr (derivedPullbackId T), K₀.map_id]
 
+/--
+@isnad1 id=eq.0h6v.s12.34ca17c21dd3 from=translated src=- shape=658099bc vocab=a42d8cec
+-/
 @[simp]
 theorem derivedPullK₀_comp {T U V : SchemeBaseChange S}
     (f : T ⟶ U) (g : U ⟶ V) [IsExactPullback f] [IsExactPullback g] :

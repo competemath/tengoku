@@ -43,12 +43,16 @@ abbrev K₀ : Type _ := (triangulatedPresentation C).Group
 def K₀.of (X : C) : K₀ C :=
   (triangulatedPresentation C).of X
 
-/-- A distinguished triangle gives the relation `[B] = [A] + [D]`.-/
+/-- A distinguished triangle gives the relation `[B] = [A] + [D]`.
+@isnad1 id=eq.1h2v.s7.3659c322e1ea from=translated src=- shape=b6c6c772 vocab=2c767f38
+-/
 theorem K₀.of_triangle (T : Pretriangulated.Triangle C) (hT : T ∈ distTriang C) :
     K₀.of C T.obj₂ = K₀.of C T.obj₁ + K₀.of C T.obj₃ :=
   (triangulatedPresentation C).of_relation ⟨T, hT⟩
 
-/-- The class of the chosen zero object vanishes.-/
+/-- The class of the chosen zero object vanishes.
+@isnad1 id=eq.0h1v.s7.feae799af6b9 from=translated src=- shape=18fdd8ab vocab=c43df7f4
+-/
 @[simp]
 theorem K₀.of_zero : K₀.of C (0 : C) = 0 := by
   have h := K₀.of_triangle C (Pretriangulated.contractibleTriangle (0 : C))
@@ -57,7 +61,9 @@ theorem K₀.of_zero : K₀.of C (0 : C) = 0 := by
     (show K₀.of C (0 : C) + 0 = K₀.of C (0 : C) + K₀.of C (0 : C) by
       simpa [Pretriangulated.contractibleTriangle] using h)).symm
 
-/-- Isomorphic objects have equal Grothendieck classes.-/
+/-- Isomorphic objects have equal Grothendieck classes.
+@isnad1 id=eq.0h4v.s6.ced672e8de43 from=translated src=- shape=903313e3 vocab=e64b919e
+-/
 theorem K₀.of_iso {X Y : C} (e : X ≅ Y) : K₀.of C X = K₀.of C Y := by
   have hdist := Pretriangulated.isomorphic_distinguished _
     (Pretriangulated.contractible_distinguished X)
@@ -77,12 +83,16 @@ theorem K₀.of_iso {X Y : C} (e : X ≅ Y) : K₀.of C X = K₀.of C Y := by
   rw [K₀.of_zero, add_zero] at h
   exact h.symm
 
-/-- Every zero object has zero Grothendieck class.-/
+/-- Every zero object has zero Grothendieck class.
+@isnad1 id=eq.1h2v.s7.8023257f8d00 from=translated src=- shape=3e13a36b vocab=378d12e5
+-/
 @[simp]
 theorem K₀.of_isZero {X : C} (hX : IsZero X) : K₀.of C X = 0 := by
   rw [K₀.of_iso C (hX.iso (isZero_zero C)), K₀.of_zero]
 
-/-- Shifting by one negates the Grothendieck class.-/
+/-- Shifting by one negates the Grothendieck class.
+@isnad1 id=eq.0h2v.s7.cdebc13f017c from=translated src=- shape=230bd3e1 vocab=a0654a2b
+-/
 @[simp]
 theorem K₀.of_shift_one (X : C) : K₀.of C (X⟦(1 : ℤ)⟧) = -K₀.of C X := by
   have h := K₀.of_triangle C (Pretriangulated.contractibleTriangle X).rotate
@@ -93,7 +103,9 @@ theorem K₀.of_shift_one (X : C) : K₀.of C (X⟦(1 : ℤ)⟧) = -K₀.of C X 
   change 0 = K₀.of C X + K₀.of C (X⟦(1 : ℤ)⟧) at h
   exact eq_neg_of_add_eq_zero_left (by simpa [add_comm] using h.symm)
 
-/-- Shifting by minus one negates the Grothendieck class.-/
+/-- Shifting by minus one negates the Grothendieck class.
+@isnad1 id=eq.0h2v.s7.7e07c1d4d074 from=translated src=- shape=2dbc2e9d vocab=a0654a2b
+-/
 @[simp]
 theorem K₀.of_shift_neg_one (X : C) : K₀.of C (X⟦(-1 : ℤ)⟧) = -K₀.of C X := by
   have hshift := K₀.of_shift_one C (X⟦(-1 : ℤ)⟧)
@@ -133,7 +145,9 @@ private theorem K₀.of_shift_negative (X : C) (n : ℕ) :
         _ = -(((-1 : ℤ) ^ (n + 1)) • K₀.of C X) := by rw [ih]
         _ = ((-1 : ℤ) ^ (n + 2)) • K₀.of C X := by simp [pow_succ']
 
-/-- An integral shift changes a Grothendieck class only by its parity sign.-/
+/-- An integral shift changes a Grothendieck class only by its parity sign.
+@isnad1 id=eq.0h3v.s7.a0528e6fae7d from=translated src=- shape=d34a5d12 vocab=563fe3b8
+-/
 theorem K₀.of_shift_int (X : C) (n : ℤ) :
     K₀.of C (X⟦n⟧) = ((-1 : ℤ) ^ Int.natAbs n) • K₀.of C X := by
   cases n with
@@ -156,12 +170,17 @@ instance {A : Type*} [AddCommGroup A] (f : C → A) [IsTriangleAdditive f] :
 def K₀.lift {A : Type*} [AddCommGroup A] (f : C → A) [IsTriangleAdditive f] : K₀ C →+ A :=
   (triangulatedPresentation C).lift f
 
+/--
+@isnad1 id=eq.0h4v.s8.cc5283ac1891 from=translated src=- shape=fc9a4601 vocab=c896ed71
+-/
 @[simp]
 theorem K₀.lift_of {A : Type*} [AddCommGroup A] (f : C → A) [IsTriangleAdditive f]
     (X : C) : K₀.lift C f (K₀.of C X) = f X :=
   (triangulatedPresentation C).lift_of f X
 
-/-- Additive maps from `K₀ C` are determined by object classes.-/
+/-- Additive maps from `K₀ C` are determined by object classes.
+@isnad1 id=eq.1h4v.s9.02282e03972d from=translated src=- shape=8ab6bf8c vocab=9c56b455
+-/
 @[ext 1100]
 theorem K₀.hom_ext {A : Type*} [AddCommGroup A] {f g : K₀ C →+ A}
     (h : ∀ X : C, f (K₀.of C X) = g (K₀.of C X)) : f = g :=
@@ -190,7 +209,9 @@ private theorem K₀.of_chain_eq_partial_sum {E : C} (P : PostnikovTower C E)
     congr 1
 
 /-- The class of the filtered object is the sum of the classes of the
-Postnikov factors.-/
+Postnikov factors.
+@isnad1 id=eq.0h3v.s7.e2344002e33a from=translated src=- shape=73a9cb60 vocab=206b907d
+-/
 theorem K₀.of_postnikovTower_eq_sum {E : C} (P : PostnikovTower C E) :
     K₀.of C E = ∑ i : Fin P.n, K₀.of C (P.factor i) := by
   rw [show K₀.of C E = K₀.of C (P.chain.obj' P.n (by lia)) from by
@@ -205,28 +226,49 @@ variable {Λ : Type u'} [AddCommGroup Λ] (v : K₀ C →+ Λ)
 /-- The class of an object in a target lattice.-/
 abbrev classOf (E : C) : Λ := v (K₀.of C E)
 
+/--
+@isnad1 id=eq.0h2v.s7.f3c695e89e95 from=translated src=- shape=a14bebd1 vocab=13375796
+-/
 @[simp]
 theorem classOf_id (E : C) : classOf C (AddMonoidHom.id (K₀ C)) E = K₀.of C E := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.f72de5093f78 from=translated src=- shape=088d2a81 vocab=2cb14b2e
+-/
 @[simp]
 theorem classOf_isZero {E : C} (hE : IsZero E) : classOf C v E = 0 := by
   simp [classOf, K₀.of_isZero C hE]
 
+/--
+@isnad1 id=eq.1h4v.s7.9eed33921efd from=translated src=- shape=d93a97f7 vocab=ad77ebb3
+-/
 theorem classOf_triangle (T : Pretriangulated.Triangle C) (hT : T ∈ distTriang C) :
     classOf C v T.obj₂ = classOf C v T.obj₁ + classOf C v T.obj₃ := by
   simp [classOf, K₀.of_triangle C T hT]
 
+/--
+@isnad1 id=eq.0h6v.s7.366de78df75c from=translated src=- shape=d80bf9e2 vocab=21caad76
+-/
 theorem classOf_iso {X Y : C} (e : X ≅ Y) : classOf C v X = classOf C v Y := by
   simp [classOf, K₀.of_iso C e]
 
+/--
+@isnad1 id=eq.0h4v.s7.c916ba186152 from=translated src=- shape=0242d8b0 vocab=f4148b21
+-/
 @[simp]
 theorem classOf_shift_one (E : C) : classOf C v (E⟦(1 : ℤ)⟧) = -classOf C v E := by
   simp [classOf]
 
+/--
+@isnad1 id=eq.0h4v.s7.059e8e2b9f26 from=translated src=- shape=03f80132 vocab=f4148b21
+-/
 @[simp]
 theorem classOf_shift_neg_one (E : C) : classOf C v (E⟦(-1 : ℤ)⟧) = -classOf C v E := by
   simp [classOf]
 
+/--
+@isnad1 id=eq.0h5v.s8.56e98931d1e8 from=translated src=- shape=f7be2ecd vocab=fabfc462
+-/
 theorem classOf_postnikovTower_eq_sum {E : C} (P : PostnikovTower C E) :
     classOf C v E = ∑ i : Fin P.n, classOf C v (P.factor i) := by
   simp [classOf, K₀.of_postnikovTower_eq_sum C P]

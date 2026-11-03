@@ -38,7 +38,9 @@ noncomputable def structureSheafEulerCharacteristic : ℚ :=
 /-- **The Riemann–Roch expansion.** Integrating `ch(E) · td(X)` leaves exactly the
 `n + 1` terms of total codimension `n`:
 
-`∫_X ch(E) · td(X) = Σ_{i=0}^{n} ∫_X chᵢ(E) · td_{n-i}(X)`.-/
+`∫_X ch(E) · td(X) = Σ_{i=0}^{n} ∫_X chᵢ(E) · td_{n-i}(X)`.
+@isnad1 id=eq.0h5v.s8.ee19abf8ce17 from=translated src=- shape=fba8df04 vocab=02c4811e
+-/
 theorem degree_ch_mul_todd (E : N) :
     V.ring.degree (V.ch E * V.todd)
       = ∑ i ∈ range (n + 1),
@@ -54,7 +56,9 @@ theorem degree_ch_mul_todd (E : N) :
   · exact absurd (Finset.mem_range.mpr (by omega)) hmem
 
 /-- Riemann–Roch with the product already expanded:
-`χ(E) = Σ_{i=0}^{n} ∫_X chᵢ(E) · td_{n-i}(X)`.-/
+`χ(E) = Σ_{i=0}^{n} ∫_X chᵢ(E) · td_{n-i}(X)`.
+@isnad1 id=eq.1h5v.s7.f45dad6078c8 from=translated src=- shape=a440dea1 vocab=75caf237
+-/
 theorem chi_eq_sum (hV : V.SatisfiesHRR) (E : N) :
     (V.chi E : ℚ)
       = ∑ i ∈ range (n + 1),

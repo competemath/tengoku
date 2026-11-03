@@ -29,7 +29,9 @@ variable {C : Type u} {D : Type u'} [Category.{v} C] [Category.{v'} D]
   [∀ n : ℤ, (shiftFunctor D n).Additive] [Pretriangulated D]
 
 /-- Object classes transported by a triangulated functor are
-triangle-additive.-/
+triangle-additive.
+@isnad1 id=istriang.0h3v.s7.d67d1b8f9c53 from=translated src=- shape=8f99861f vocab=28bea131
+-/
 @[nolint unusedArguments]
 instance K₀.isTriangleAdditive_map (F : C ⥤ D) [F.Additive] [F.CommShift ℤ]
     [F.IsTriangulated] : IsTriangleAdditive (fun X => K₀.of D (F.obj X)) where
@@ -40,16 +42,25 @@ functor.-/
 def K₀.map (F : C ⥤ D) [F.Additive] [F.CommShift ℤ] [F.IsTriangulated] : K₀ C →+ K₀ D :=
   K₀.lift C (fun X => K₀.of D (F.obj X))
 
+/--
+@isnad1 id=eq.0h4v.s9.4bacc54faa00 from=translated src=- shape=365aff31 vocab=149b6cd9
+-/
 @[simp]
 theorem K₀.map_of (F : C ⥤ D) [F.Additive] [F.CommShift ℤ] [F.IsTriangulated]
     (X : C) : K₀.map F (K₀.of C X) = K₀.of D (F.obj X) :=
   K₀.lift_of C _ X
 
+/--
+@isnad1 id=eq.0h1v.s8.8ec6569b4992 from=translated src=- shape=704322d0 vocab=fbb8dec7
+-/
 @[simp]
 theorem K₀.map_id : K₀.map (𝟭 C) = AddMonoidHom.id (K₀ C) := by
   ext X
   simp
 
+/--
+@isnad1 id=eq.0h5v.s9.fea04ae5c0fd from=translated src=- shape=ee2260d4 vocab=a8a28600
+-/
 @[simp]
 theorem K₀.map_comp (F : C ⥤ D) {E : Type*} [Category E]
     [HasZeroObject E] [HasShift E ℤ] [Preadditive E]
@@ -61,7 +72,9 @@ theorem K₀.map_comp (F : C ⥤ D) {E : Type*} [Category E]
   simp
 
 /-- Naturally isomorphic triangulated functors induce the same map on
-Grothendieck groups.-/
+Grothendieck groups.
+@isnad1 id=eq.0h5v.s8.fe28c8158c2a from=translated src=- shape=1d7abdd4 vocab=8d2c5c12
+-/
 theorem K₀.map_congr {F G : C ⥤ D} [F.Additive] [G.Additive]
     [F.CommShift ℤ] [G.CommShift ℤ] [F.IsTriangulated] [G.IsTriangulated]
     (e : F ≅ G) : K₀.map F = K₀.map G := by
@@ -69,7 +82,9 @@ theorem K₀.map_congr {F G : C ⥤ D} [F.Additive] [G.Additive]
   exact K₀.of_iso D (e.app X)
 
 /-- A one-sided inverse of triangulated functors gives a one-sided inverse on
-Grothendieck groups.-/
+Grothendieck groups.
+@isnad1 id=eq.0h5v.s9.6d9426bcf28d from=translated src=- shape=2ffd5e01 vocab=0c1936ee
+-/
 theorem K₀.map_comp_map_eq_id (F : C ⥤ D) (G : D ⥤ C) [F.CommShift ℤ]
     [G.CommShift ℤ] [F.IsTriangulated] [G.IsTriangulated] (e : F ⋙ G ≅ 𝟭 C) :
     (K₀.map G).comp (K₀.map F) = AddMonoidHom.id (K₀ C) := by
@@ -93,6 +108,9 @@ def K₀.mapAddEquiv (F : C ⥤ D) (G : D ⥤ C) [F.CommShift ℤ] [G.CommShift 
     have := K₀.map_comp_map_eq_id G F e'
     exact congrArg (fun f : K₀ D →+ K₀ D => f y) this
 
+/--
+@isnad1 id=eq.0h7v.s10.cb33680d4644 from=translated src=- shape=4f4e2b6c vocab=d772231f
+-/
 @[simp]
 theorem K₀.mapAddEquiv_apply (F : C ⥤ D) (G : D ⥤ C) [F.CommShift ℤ]
     [G.CommShift ℤ] [F.IsTriangulated] [G.IsTriangulated] (e : F ⋙ G ≅ 𝟭 C)

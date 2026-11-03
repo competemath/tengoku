@@ -44,11 +44,17 @@ ranges over the quasi-compact ones among these.-/
 abbrev opensBaseChange (U : S.Opens) : SchemeBaseChange S :=
   Over.mk U.ι
 
+/--
+@isnad1 id=eq.0h2v.s4.71dbc156c034 from=translated src=- shape=e3bd9bb4 vocab=18c5d180
+-/
 @[simp]
 theorem opensBaseChange_left (U : S.Opens) :
     (opensBaseChange U).left = U.toScheme :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.e7f3df6c4885 from=translated src=- shape=d73f516f vocab=aa2dbef5
+-/
 @[simp]
 theorem opensBaseChange_hom (U : S.Opens) :
     (opensBaseChange U).hom = U.ι :=

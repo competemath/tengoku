@@ -63,7 +63,9 @@ def Cocycle.postcompAddMonoidHom (A : CochainComplex C ℤ) {L L' : CochainCompl
     simp [Cochain.add_comp]
 
 /-- Post-composition acts on a cochain by composing with the morphism, which is what makes the
-differential square commute.-/
+differential square commute.
+@isnad1 id=eq.0h7v.s10.95a66d970472 from=translated src=- shape=30ab7200 vocab=3e7e7f0c
+-/
 @[simp]
 lemma postcompMap_f_apply (A : CochainComplex C ℤ) {L L' : CochainComplex C ℤ}
     (g : L ⟶ L') (n : ℤ) (z : Cochain A L n) :
@@ -103,7 +105,9 @@ def postcomp (g : L ⟶ L') : CohomologyClass K L n →+ CohomologyClass K L' n 
     exact congrArg (fun w : Cochain K L n => w.comp (Cochain.ofHom g) (add_zero n)) hβ)
 
 /-- Post-composition is computed on a representing cocycle, which is how every statement about
-it is proved: `mk` is surjective.-/
+it is proved: `mk` is surjective.
+@isnad1 id=eq.0h7v.s9.ea931408c544 from=translated src=- shape=872ad7f1 vocab=e753e067
+-/
 @[simp]
 lemma postcomp_mk (g : L ⟶ L') (z : Cocycle K L n) :
     postcomp (n := n) g (mk z) = mk (z.postcomp g) :=
@@ -117,7 +121,9 @@ variable
   [HasSmallLocalizedShiftedHom.{w} (HomologicalComplex.quasiIso C (.up ℤ)) ℤ L L']
   [HasSmallLocalizedShiftedHom.{w} (HomologicalComplex.quasiIso C (.up ℤ)) ℤ L' L']
 
-/-- Post-composition of cohomology classes matches composition of shifted morphisms.-/
+/-- Post-composition of cohomology classes matches composition of shifted morphisms.
+@isnad1 id=eq.0h7v.s10.166beafd0bf2 from=translated src=- shape=09c55663 vocab=d4f0b1c5
+-/
 lemma toSmallShiftedHom_postcomp (x : CohomologyClass K L n) (g : L ⟶ L') :
     (postcomp (n := n) g x).toSmallShiftedHom =
       x.toSmallShiftedHom.comp
@@ -151,14 +157,18 @@ noncomputable def classPostcomp (A : CochainComplex C ℤ) (g : L ⟶ L') (n : �
 /-- The cocycle and cochain forms of post-composition agree under the inclusion of cycles.
 
 This is the whole content of the cycles-level naturality: both sides become the same cochain
-composition once the mono `i` is cancelled.-/
+composition once the mono `i` is cancelled.
+@isnad1 id=eq.0h6v.s9.7c62e003cf04 from=translated src=- shape=1b05f22e vocab=8aa46e62
+-/
 lemma postcompAddMonoidHom_comp_i (A : CochainComplex C ℤ) (g : L ⟶ L') (n : ℤ) :
     cocyclePostcomp A g n ≫ (leftHomologyData A L' n).i =
       (leftHomologyData A L n).i ≫ (postcompSc A g n).τ₂ :=
   rfl
 
 /-- Post-composition descends to classes, which is what lets the epi `homologyπ` be cancelled in
-the homology-level statement.-/
+the homology-level statement.
+@isnad1 id=eq.0h6v.s9.5b8c6c821ed3 from=translated src=- shape=96a24790 vocab=23c843fc
+-/
 lemma cocyclePostcomp_comp_π (A : CochainComplex C ℤ) (g : L ⟶ L') (n : ℤ) :
     cocyclePostcomp A g n ≫ (leftHomologyData A L' n).π =
       (leftHomologyData A L n).π ≫ classPostcomp A g n :=
@@ -166,7 +176,9 @@ lemma cocyclePostcomp_comp_π (A : CochainComplex C ℤ) (g : L ⟶ L') (n : ℤ
 
 /-- The cycles of the Hom complex are the cocycles, compatibly with post-composition.
 
-Proved by cancelling the mono `i` and reducing to the cochain level.-/
+Proved by cancelling the mono `i` and reducing to the cochain level.
+@isnad1 id=eq.0h6v.s10.495687493416 from=translated src=- shape=54352486 vocab=9d1a6ee4
+-/
 lemma cyclesIso_hom_naturality (A : CochainComplex C ℤ) (g : L ⟶ L') (n : ℤ) :
     cyclesMap (postcompSc A g n) ≫ (leftHomologyData A L' n).cyclesIso.hom =
       (leftHomologyData A L n).cyclesIso.hom ≫ cocyclePostcomp A g n := by
@@ -179,7 +191,9 @@ lemma cyclesIso_hom_naturality (A : CochainComplex C ℤ) (g : L ⟶ L') (n : �
 post-composition.
 
 Both sides are determined by their restriction along the epi `homologyπ`, on which the statement
-becomes the cycles-level one.-/
+becomes the cycles-level one.
+@isnad1 id=eq.0h6v.s10.70c63d6a65f8 from=translated src=- shape=54352486 vocab=4498eedd
+-/
 lemma homologyIso_hom_naturality (A : CochainComplex C ℤ) (g : L ⟶ L') (n : ℤ) :
     homologyMap (postcompSc A g n) ≫ (leftHomologyData A L' n).homologyIso.hom =
       (leftHomologyData A L n).homologyIso.hom ≫ classPostcomp A g n := by

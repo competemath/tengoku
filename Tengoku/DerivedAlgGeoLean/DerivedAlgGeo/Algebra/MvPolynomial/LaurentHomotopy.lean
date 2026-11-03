@@ -69,7 +69,9 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 back. The support hypothesis cannot be dropped: on a term not divisible by `Xˢ` the division
 truncates and the multiplication cannot restore it. In the retraction below the hypothesis is
 supplied by the block structure — on block `F` with `i₀ ∉ F` every term carries at least
-`X_{i₀}^{m·t}`.-/
+`X_{i₀}^{m·t}`.
+@isnad1 id=eq.1h4v.s8.69070e7b6ddd from=translated src=- shape=84bdc52f vocab=167686ff
+-/
 theorem monomial_mul_divMonomial_cancel {s : ι →₀ ℕ} {q : MvPolynomial ι R}
     (h : ∀ β ∈ q.support, s ≤ β) :
     MvPolynomial.monomial s 1 * MvPolynomial.divMonomial q s = q := by
@@ -87,7 +89,9 @@ theorem monomial_mul_divMonomial_cancel {s : ι →₀ ℕ} {q : MvPolynomial ι
 
 /-- On block `F` with `i₀ ∉ F`, every numerator term carries at least the denominator's power
 of `X_{i₀}`: the Laurent exponent at `i₀` is nonnegative, so `β i₀ ≥ m · γ i₀`. This is the
-support bound that feeds `monomial_mul_divMonomial_cancel` in the retraction.-/
+support bound that feeds `monomial_mul_divMonomial_cancel` in the retraction.
+@isnad1 id=le.2h8v.s7.660f5cd366e3 from=translated src=- shape=6d7f4878 vocab=a0a6d32e
+-/
 theorem laurentFilter_apply_ge {γ : ι →₀ ℕ} {F : Finset ι} {i₀ : ι} (hi₀ : i₀ ∉ F)
     (m : ℕ) (p : MvPolynomial ι R) {β : ι →₀ ℕ}
     (hβ : β ∈ (laurentFilter γ m F p).support) : m * γ i₀ ≤ β i₀ := by
@@ -110,14 +114,18 @@ variable {σM : Type u} [SetLike σM (MvPolynomial ι R)]
 /-- The full splitting of the cone denominator: `X_{i₀} · Xᵞ = X_{i₀}^{1+γ(i₀)} · Xᵞ''` with
 `γ'' = γ.erase i₀`. This is the splitting the projection half of the homotopy uses; unlike the
 naive `c = 1` splitting it leaves a target free of `i₀`, so the projection's equations apply
-whatever the tuple `y` contains.-/
+whatever the tuple `y` contains.
+@isnad1 id=eq.0h3v.s7.dbe35c629bc8 from=translated src=- shape=08d261ae vocab=def96c1e
+-/
 theorem laurentHomotopy_split (i₀ : ι) (γ : ι →₀ ℕ) :
     Finsupp.single i₀ 1 + γ = Finsupp.single i₀ (1 + γ i₀) + γ.erase i₀ := by
   conv_lhs => rw [← Finsupp.single_add_erase i₀ γ]
   rw [← add_assoc, ← Finsupp.single_add]
 
 /-- The reinsertion splitting: `Xᵞ = X_{i₀}^{γ(i₀)} · Xᵞ''`. The face at this splitting puts
-back the surplus power of `X_{i₀}` that the full projection removed beyond the cone factor.-/
+back the surplus power of `X_{i₀}` that the full projection removed beyond the cone factor.
+@isnad1 id=eq.0h3v.s6.838e0f106b9f from=translated src=- shape=03bafd07 vocab=def96c1e
+-/
 theorem laurentHomotopy_back (i₀ : ι) (γ : ι →₀ ℕ) :
     γ = Finsupp.single i₀ (γ i₀) + γ.erase i₀ :=
   (Finsupp.single_add_erase i₀ γ).symm
@@ -139,7 +147,9 @@ noncomputable def laurentHomotopy [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d
 
 omit [AddSubgroupClass σM (MvPolynomial ι R)]
   [SetLike.GradedSMul (polynomialGrading ι R) 𝓜] in
-/-- The numerator produced by the homotopy map is a legitimate numerator for `Xᵞ`.-/
+/-- The numerator produced by the homotopy map is a legitimate numerator for `Xᵞ`.
+@isnad1 id=mem.2h9v.s9.71a7f7267cc3 from=translated src=- shape=2248f6f4 vocab=58f9bff3
+-/
 theorem laurentHomotopy_numerator_mem (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ : ι) (γ : ι →₀ ℕ)
     {m : ℕ}
     {q : MvPolynomial ι R}
@@ -157,7 +167,9 @@ theorem laurentHomotopy_numerator_mem (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ :
 
 set_option maxHeartbeats 1200000 in
 /-- **The defining equation of the homotopy map**: on `q / (X_{i₀}·Xᵞ)ᵐ` it divides the
-numerator by `X_{i₀}^{m(1+γ(i₀))}` and multiplies `X_{i₀}^{m·γ(i₀)}` back in.-/
+numerator by `X_{i₀}^{m(1+γ(i₀))}` and multiplies `X_{i₀}^{m·γ(i₀)}` back in.
+@isnad1 id=eq.2h9v.s18.7786dd1370a9 from=translated src=- shape=1b709445 vocab=562656c1
+-/
 theorem laurentHomotopy_awayMk [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ : ι)
     (γ : ι →₀ ℕ) {m : ℕ}
     {q : MvPolynomial ι R}
@@ -194,7 +206,9 @@ The front face multiplies the numerator by `X_{i₀}^m`; the projection half of 
 `X_{i₀}^{m(1+t)}`, which eats the face's factor and `X_{i₀}^{m·t}` more; the reinsertion
 restores that surplus — and restoring is exact precisely because on block `F` with `i₀ ∉ F`
 every term had `β i₀ ≥ m·t` to give (`laurentFilter_apply_ge`). This is the only identity in
-the homotopy that sees the block.-/
+the homotopy that sees the block.
+@isnad1 id=eq.2h9v.s19.0624b1d9543e from=translated src=- shape=7c3f908a vocab=0afb71e2
+-/
 theorem laurentHomotopy_laurentFace_blockProj [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {i₀ : ι} {F : Finset ι} (hi₀ : i₀ ∉ F) (γ : ι →₀ ℕ)
     (z : DegreeZeroLocalization (polynomialGrading ι R)
@@ -257,7 +271,9 @@ the two sides agree exactly. The composite definition of `Π` is what makes the 
 true — the bare sign projection satisfies no unrestricted square.
 
 The two splittings are hypotheses in the lane's usual style; both are associativity-and-
-commutativity rearrangements the Čech caller has in hand.-/
+commutativity rearrangements the Čech caller has in hand.
+@isnad1 id=eq.3h9v.s20.83161c314561 from=translated src=- shape=b24e3e33 vocab=7a64a392
+-/
 theorem laurentHomotopy_laurentFace_comm [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     (i₀ e : ι) (γ₀ : ι →₀ ℕ)
     (htop : Finsupp.single i₀ 1 + (γ₀ + Finsupp.single e 1) =

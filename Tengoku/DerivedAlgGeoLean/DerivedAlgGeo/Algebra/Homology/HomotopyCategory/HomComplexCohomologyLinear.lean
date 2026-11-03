@@ -121,11 +121,17 @@ def cohomologyClassLinearEquiv :
       CohomologyClass P Q n :=
   ((quotientAddEquiv (R := R) P Q n).symm.linearEquiv R).symm
 
+/--
+@isnad1 id=eq.0h6v.s14.d1aed87f550d from=translated src=- shape=3b105398 vocab=bf430c7d
+-/
 @[simp] theorem cohomologyClassLinearEquiv_mk
     (z : (δ_hom R P Q n (n + 1)).ker) :
     cohomologyClassLinearEquiv (R := R) P Q n (Submodule.Quotient.mk z) =
       CohomologyClass.mk ((cyclesLinearEquiv (R := R) P Q n) z) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.b21dcb092704 from=translated src=- shape=426f39c8 vocab=b451f528
+-/
 @[simp] theorem cohomologyClass_mk_smul (r : R) (z : Cocycle P Q n) :
     CohomologyClass.mk (r • z) = r • CohomologyClass.mk z := by
   apply (quotientAddEquiv (R := R) P Q n).symm.injective
@@ -135,7 +141,9 @@ def cohomologyClassLinearEquiv :
   rfl
 
 /-- Integer scaling of cohomology classes agrees with scaling cocycle
-representatives, including when Lean uses the canonical integer action.-/
+representatives, including when Lean uses the canonical integer action.
+@isnad1 id=eq.0h6v.s7.8dd85692e291 from=translated src=- shape=9124dfd5 vocab=132093a0
+-/
 @[simp] theorem cohomologyClass_mk_zsmul (r : ℤ) (z : Cocycle P Q n) :
     CohomologyClass.mk (r • z) = r • CohomologyClass.mk z := by
   change (CohomologyClass.mkAddMonoidHom P Q n) (r • z) =

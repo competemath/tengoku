@@ -54,11 +54,17 @@ abbrev ResidueDerivedFiber (T : SchemeBaseChange S) (x : T.left) :=
 abbrev ResidueBoundedDerivedFiber (T : SchemeBaseChange S) (x : T.left) :=
   (T.residue x).BoundedDerivedFiber
 
+/--
+@isnad1 id=eq.0h3v.s5.7fcd8a83bdc3 from=translated src=- shape=3abf4eeb vocab=882b97e4
+-/
 theorem residueDerivedFiber_eq (T : SchemeBaseChange S) (x : T.left) :
     T.ResidueDerivedFiber x =
       SchemeDerivedCategory (Spec (T.left.residueField x)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.bde5bbe2cac8 from=translated src=- shape=3abf4eeb vocab=0a0c0901
+-/
 theorem residueBoundedDerivedFiber_eq (T : SchemeBaseChange S) (x : T.left) :
     T.ResidueBoundedDerivedFiber x =
       SchemeBoundedDerivedCategory (Spec (T.left.residueField x)) :=

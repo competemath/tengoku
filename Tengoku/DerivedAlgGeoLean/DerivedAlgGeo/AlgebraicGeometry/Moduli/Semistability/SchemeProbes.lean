@@ -38,6 +38,9 @@ def ChargeProbe.ofScheme (X : Scheme.{u}) {A : Type v} (value : X → A) :
   topology := inferInstance
   value := value
 
+/--
+@isnad1 id=iff.0h3v.s5.521829dd7418 from=translated src=- shape=fbdcd0c8 vocab=d7db008d
+-/
 @[simp]
 theorem ChargeProbe.ofScheme_isLocallyConstant_iff
     (X : Scheme.{u}) {A : Type v} (value : X → A) :
@@ -52,6 +55,9 @@ def OpenLocusProbe.ofScheme (X : Scheme.{u}) (locus : Set X) :
   topology := inferInstance
   locus := locus
 
+/--
+@isnad1 id=iff.0h2v.s5.eb2d739e7939 from=translated src=- shape=5c367e32 vocab=95d8f061
+-/
 @[simp]
 theorem OpenLocusProbe.ofScheme_isOpen_iff
     (X : Scheme.{u}) (locus : Set X) :
@@ -68,6 +74,9 @@ def GenericSemistabilityProbe.ofScheme
   genericPoint := genericPoint
   semistableLocus := semistableLocus
 
+/--
+@isnad1 id=iff.0h3v.s7.72461fb0a66b from=translated src=- shape=ad290dec vocab=24b82552
+-/
 @[simp]
 theorem GenericSemistabilityProbe.ofScheme_isGenericallyOpen_iff
     (X : Scheme.{u}) (genericPoint : X) (semistableLocus : Set X) :

@@ -52,11 +52,17 @@ noncomputable def powersCongrLinear {f g : MvPolynomial ι k} (h : f = g) :
   subst h
   exact LinearEquiv.refl _ _
 
+/--
+@isnad1 id=eq.1h7v.s17.6bf8b3550c5f from=translated src=- shape=4e9d9d9c vocab=f05f77a5
+-/
 theorem powersCongrLinear_apply {f g : MvPolynomial ι k} (h : f = g)
     (z : DegreeZeroLocalization (polynomialGrading ι k) 𝓜 (.powers f)) :
     powersCongrLinear ι k 𝓜 h z = DegreeZeroLocalization.powersCongr h z := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.1h7v.s17.74051c8a1618 from=translated src=- shape=99510279 vocab=9f1aa172
+-/
 theorem powersCongrLinear_symm_apply {f g : MvPolynomial ι k} (h : f = g)
     (z : DegreeZeroLocalization (polynomialGrading ι k) 𝓜 (.powers g)) :
     (powersCongrLinear ι k 𝓜 h).symm z =
@@ -74,7 +80,9 @@ noncomputable def cechBlockSpan (d : ℤ) {n : ℕ} (x : Fin (n + 1) → ι) :
     (Submodule.span k (blockRep ι k 𝓜 (tupleExponent ι x) ''
       {α : ι →₀ ℤ | α.degree = d ∧ ∀ j : ι, α j < 0}))
 
-/-- The full-block projection of any term lands in that subspace.-/
+/-- The full-block projection of any term lands in that subspace.
+@isnad1 id=mem.1h8v.s17.3b24832de1f4 from=translated src=- shape=ab83f0df vocab=efcc4c18
+-/
 theorem cechBlockProj_mem_cechBlockSpan [Fintype ι] {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d)
     {n : ℕ} (x : Fin (n + 1) → ι) (z : cechTerm ι k 𝓜 x) :
     cechBlockProj ι k h𝓜 x Finset.univ z ∈ cechBlockSpan ι k 𝓜 d x := by
@@ -83,7 +91,9 @@ theorem cechBlockProj_mem_cechBlockSpan [Fintype ι] {d : ℤ} (h𝓜 : IsPolyno
     blockProj_univ_mem_span ι k 𝓜 h𝓜 (tupleExponent ι x) _, ?_⟩
   exact powersCongrLinear_symm_apply ι k 𝓜 _ _
 
-/-- The full block of a Čech term is finitely generated.-/
+/-- The full block of a Čech term is finitely generated.
+@isnad1 id=fg.0h7v.s13.361d4048d4b2 from=translated src=- shape=9003d49b vocab=a7aeb1eb
+-/
 theorem fg_cechBlockSpan [Fintype ι] (d : ℤ) {n : ℕ} (x : Fin (n + 1) → ι) :
     (cechBlockSpan ι k 𝓜 d x).FG := by
   rw [cechBlockSpan]

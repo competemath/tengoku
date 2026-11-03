@@ -55,7 +55,9 @@ Noetherian objects.**
 
 The family may have dependent target categories. The reflection hypothesis is stated pointwise
 in the form consumed by the proof; Mathlib's `JointlyReflectIsomorphisms` also supports
-dependent targets.-/
+dependent targets.
+@isnad1 id=isnoethe.2h5v.s7.fff17405a3ae from=translated src=- shape=630190df vocab=0e4c75ee
+-/
 theorem isNoetherianObject_of_finite_jointlyReflectsIsomorphisms
     (hX : ∀ i, IsNoetherianObject ((F i).obj X))
     (hreflect : ∀ {Y Z : A} (f : Y ⟶ Z),
@@ -96,7 +98,9 @@ theorem isNoetherianObject_of_finite_jointlyReflectsIsomorphisms
       Subobject.mk_eq_mk_of_comm _ _ (asIso step) (Subobject.ofLE_arrow _)
     _ = c m := Subobject.mk_arrow _
 
-/-- A mono-preserving, isomorphism-reflecting functor detects Noetherian objects.-/
+/-- A mono-preserving, isomorphism-reflecting functor detects Noetherian objects.
+@isnad1 id=isnoethe.0h4v.s5.5da615130e81 from=translated src=- shape=2ab2cb53 vocab=2f810748
+-/
 theorem isNoetherianObject_of_reflectsIsomorphisms
     {A : Type u₁} [Category.{v₁} A]
     {B : Type u₂} [Category.{v₂} B] (F : A ⥤ B)

@@ -40,7 +40,9 @@ attribute [local instance] sourceDerivedCategory targetDerivedCategory
 
 /-- Degreewise localization of derived-category Hom-sets commutes with
 precomposition by a cochain map. The source change on the localized side is
-the image of that map under degreewise localization.-/
+the image of that map under degreewise localization.
+@isnad1 id=eq.0h7v.s16.023ea88f171b from=translated src=- shape=79ed152e vocab=13392262
+-/
 theorem derivedHomLocalizedMap_precomp
     (X Y Q : CochainComplex (ModuleCat.{u} R) ℤ) (f : X ⟶ Y)
     (g : DerivedCategory.Qh.obj ((HomotopyCategory.quotient _ (.up ℤ)).obj Y) ⟶

@@ -38,7 +38,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- The total-complex symmetry isomorphism commutes with morphisms of bicomplexes.
 
 Both sides are determined by their restrictions along the canonical inclusions `ιTotal`, where
-the flip is a signed inclusion and the induced total map is componentwise.-/
+the flip is a signed inclusion and the induced total map is componentwise.
+@isnad1 id=eq.0h10v.s9.d82a504ea927 from=translated src=- shape=eefeb2bf vocab=aad5dff0
+-/
 @[reassoc]
 lemma totalFlipIso_naturality :
     total.map (flipMap φ) c ≫ (L.totalFlipIso c).hom =
@@ -55,7 +57,9 @@ lemma totalFlipIso_naturality :
   simp only [Linear.comp_units_smul, Linear.units_smul_comp, ιTotal_map]
   rfl
 
-/-- Inverse form of `totalFlipIso_naturality`.-/
+/-- Inverse form of `totalFlipIso_naturality`.
+@isnad1 id=eq.0h10v.s9.02f5de073fea from=translated src=- shape=57318e13 vocab=6685a9cc
+-/
 @[reassoc]
 lemma totalFlipIso_inv_naturality :
     total.map φ c ≫ (L.totalFlipIso c).inv =

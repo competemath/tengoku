@@ -50,7 +50,9 @@ noncomputable def descHom {Y Y' : C} (φ : Y ⟶ Y')
 
 omit [HasExt.{w} C] in
 /-- The underlying map of resolutions is Mathlib's `desc`; this is stated so that later rewrites
-never need to unfold `descHom`.-/
+never need to unfold `descHom`.
+@isnad1 id=eq.0h6v.s7.f7ba9a4c545f from=translated src=- shape=8e1dd981 vocab=dffac214
+-/
 @[simp]
 lemma descHom_hom {Y Y' : C} (φ : Y ⟶ Y')
     (R : InjectiveResolution Y) (R' : InjectiveResolution Y') :
@@ -63,7 +65,9 @@ variable, once that morphism is lifted to the resolutions.
 The lift is an explicit hypothesis rather than a chosen descent: the Proj lane passes its
 comparison data positionally, and a chosen lift would reintroduce exactly the ambiguity that
 convention exists to remove. `InjectiveResolution.Hom.hom'` supplies `hΦ` for the canonical
-lift of `φ`.-/
+lift of `φ`.
+@isnad1 id=eq.1h10v.s12.e5c08fbdb663 from=translated src=- shape=8a0c2bd4 vocab=bca74562
+-/
 lemma extEquivCohomologyClass_naturality
     (R : InjectiveResolution Y) (R' : InjectiveResolution Y') (φ : Y ⟶ Y')
     (Φ : R.cochainComplex ⟶ R'.cochainComplex)

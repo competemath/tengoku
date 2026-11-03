@@ -24,7 +24,9 @@ namespace AlgebraicGeometry.Scheme
 
 variable (X : Scheme.{u})
 
-/-- Coherent sheaves on `X` are closed under isomorphisms in `X.Modules`.-/
+/-- Coherent sheaves on `X` are closed under isomorphisms in `X.Modules`.
+@isnad1 id=isclosed.0h1v.s3.33c33e0007ea from=translated src=- shape=fc2c1e2b vocab=23799ec7
+-/
 instance coherent_isClosedUnderIsomorphisms :
     (coherent X).IsClosedUnderIsomorphisms where
   of_iso {M N} e hM := by

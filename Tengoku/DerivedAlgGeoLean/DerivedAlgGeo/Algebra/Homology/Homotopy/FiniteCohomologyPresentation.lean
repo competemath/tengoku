@@ -74,7 +74,9 @@ noncomputable def finiteCohomologyModelHomologyIso
   exact F.mapBiproduct _
 
 /-- Away from the selected finite set, every degree of the finite cohomology
-model is a biproduct of zero objects.-/
+model is a biproduct of zero objects.
+@isnad1 id=iszero.1h4v.s6.964ca777419b from=translated src=- shape=1834499d vocab=fea4d7b0
+-/
 lemma isZero_finiteCohomologyModel_X_of_not_mem
     (K : CochainComplex A ℤ) (degrees : Finset ℤ) (i : ℤ)
     (hi : i ∉ degrees) :
@@ -92,7 +94,9 @@ lemma isZero_finiteCohomologyModel_X_of_not_mem
         exact j.as.2)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The finite cohomology model has zero differential.-/
+/-- The finite cohomology model has zero differential.
+@isnad1 id=eq.0h5v.s8.187237e8f9a8 from=translated src=- shape=6768ba6e vocab=642173a9
+-/
 @[simp]
 lemma finiteCohomologyModel_d
     (K : CochainComplex A ℤ) (degrees : Finset ℤ) (i j : ℤ) :
@@ -207,6 +211,9 @@ noncomputable def pullback
       biproduct.mapIso fun i =>
         (singleFunctor A i.1).mapIso (e.toHomologyIso i.1).symm
 
+/--
+@isnad1 id=eq.0h5v.s6.c131bc1584cd from=translated src=- shape=cf148e45 vocab=fb59a16d
+-/
 @[simp]
 lemma pullback_degrees
     (P : FiniteCohomologyPresentation L) (e : HomotopyEquiv K L) :
@@ -220,7 +227,9 @@ noncomputable def homologyIso (P : FiniteCohomologyPresentation K) (i : ℤ) :
   P.homotopyEquiv.toHomologyIso i
 
 /-- A finite cohomology presentation forces homology to vanish outside its
-recorded finite set of degrees.-/
+recorded finite set of degrees.
+@isnad1 id=iszero.1h4v.s6.688081e0eeee from=translated src=- shape=e6f99eea vocab=e219ddc8
+-/
 lemma isZero_homology_of_not_mem
     (P : FiniteCohomologyPresentation K) (i : ℤ) (hi : i ∉ P.degrees) :
     IsZero (K.homology i) := by

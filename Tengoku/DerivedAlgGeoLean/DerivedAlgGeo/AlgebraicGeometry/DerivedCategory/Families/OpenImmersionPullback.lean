@@ -63,7 +63,9 @@ def openImmersionPullbackStalkForgetIso
     Scheme.Modules.restrictStalkNatIso f x
 
 /-- Pullback along an open immersion, followed by any module-stalk functor,
-preserves finite limits.-/
+preserves finite limits.
+@isnad1 id=preserve.0h4v.s8.3067a7f289d7 from=translated src=- shape=065313da vocab=f5eb5449
+-/
 theorem openImmersionPullbackStalk_preservesFiniteLimits
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (x : X) :
     PreservesFiniteLimits
@@ -97,14 +99,18 @@ theorem openImmersionPullbackStalk_preservesFiniteLimits
   exact preservesFiniteLimits_of_reflects_of_preserves
     (Scheme.Modules.pullback f ⋙ moduleStalkFunctor X x) forgetX
 
-/-- Module-sheaf pullback along an open immersion preserves finite limits.-/
+/-- Module-sheaf pullback along an open immersion preserves finite limits.
+@isnad1 id=preserve.0h4v.s6.19086dcc8264 from=translated src=- shape=90c772b7 vocab=147684e8
+-/
 theorem openImmersionModulePullback_preservesFiniteLimits
     {S : Scheme.{u}} {T U : SchemeBaseChange S} (f : T ⟶ U)
     [IsOpenImmersion f.left] : PreservesFiniteLimits (modulePullback f) :=
   preservesFiniteLimits_of_stalkwise (modulePullback f)
     (openImmersionPullbackStalk_preservesFiniteLimits f.left)
 
-/-- Pullback along an open immersion of scheme base changes is exact.-/
+/-- Pullback along an open immersion of scheme base changes is exact.
+@isnad1 id=isexactp.0h4v.s5.bf959b3a6e5b from=translated src=- shape=1f9e9c89 vocab=6460ec53
+-/
 theorem isExactPullback_of_isOpenImmersion
     {S : Scheme.{u}} {T U : SchemeBaseChange S} (f : T ⟶ U)
     [IsOpenImmersion f.left] : IsExactPullback f := by
@@ -113,7 +119,9 @@ theorem isExactPullback_of_isOpenImmersion
   exact IsExactPullback.of_preservesFiniteLimits f
 
 /-- Exact pullback along open immersions is available to the derived
-pullback API without a caller-supplied exactness instance.-/
+pullback API without a caller-supplied exactness instance.
+@isnad1 id=isexactp.0h4v.s5.bf959b3a6e5b from=translated src=- shape=1f9e9c89 vocab=6460ec53
+-/
 instance (priority := 900) isExactPullbackOfIsOpenImmersion
     {S : Scheme.{u}} {T U : SchemeBaseChange S} (f : T ⟶ U)
     [IsOpenImmersion f.left] : IsExactPullback f :=

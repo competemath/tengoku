@@ -68,6 +68,9 @@ variable {C}
 -- left-hand side, so it can never be in simp-normal form while that lemma fires.
 -- Keeping the type-level rewrite as the simp lemma and this computation rule as a
 -- plain `rfl` is what makes `DGCategory` lint clean; see the `simpNF` linter.
+/--
+@isnad1 id=eq.1h9v.s14.d6b210b03584 from=translated src=- shape=7f36028c vocab=4399d3eb
+-/
 lemma op_dgComp_apply {X Y Z : Cᵒᵖ} (p q r : ℤ) (h : p + q = r)
     (f : (dgHom Y.unop X.unop).X p)
     (g : (dgHom Z.unop Y.unop).X q) :
@@ -75,21 +78,31 @@ lemma op_dgComp_apply {X Y Z : Cᵒᵖ} (p q r : ℤ) (h : p + q = r)
       (p * q).negOnePow • dgComp q p r (by omega) g f :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.731cc3864eb1 from=translated src=- shape=bf632437 vocab=0e51472e
+-/
 @[simp]
 lemma op_dgHom (X Y : Cᵒᵖ) :
     dgHom X Y = dgHom Y.unop X.unop := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.9c11aeca0b04 from=translated src=- shape=e680313c vocab=197217b8
+-/
 @[simp]
 lemma op_dgId (X : Cᵒᵖ) : dgId X = dgId X.unop := rfl
 
 /-- `dgComp` is `ℤˣ`-equivariant in its first argument, because it is
-additive and the `ℤˣ` action factors through `ℤ`.-/
+additive and the `ℤˣ` action factors through `ℤ`.
+@isnad1 id=eq.1h10v.s14.ddaf24f11331 from=translated src=- shape=4a44f457 vocab=94ccaea9
+-/
 lemma dgComp_units_smul_left {X Y Z : C} (p q r : ℤ) (h : p + q = r) (c : ℤˣ)
     (f : (dgHom X Y).X p) (g : (dgHom Y Z).X q) :
     dgComp p q r h (c • f) g = c • dgComp p q r h f g := by
   simp [Units.smul_def, map_zsmul]
 
-/-- `dgComp` is `ℤˣ`-equivariant in its second argument.-/
+/-- `dgComp` is `ℤˣ`-equivariant in its second argument.
+@isnad1 id=eq.1h10v.s14.96f7b8a35944 from=translated src=- shape=63cdf6b0 vocab=94ccaea9
+-/
 lemma dgComp_units_smul_right {X Y Z : C} (p q r : ℤ) (h : p + q = r) (c : ℤˣ)
     (f : (dgHom X Y).X p) (g : (dgHom Y Z).X q) :
     dgComp p q r h f (c • g) = c • dgComp p q r h f g := by
@@ -97,7 +110,9 @@ lemma dgComp_units_smul_right {X Y Z : C} (p q r : ℤ) (h : p + q = r) (c : ℤ
 
 /-- A morphism of `AddCommGrpCat` commutes with the `ℤˣ` action, which factors
 through `ℤ`. Stated so the sign bookkeeping below can stay in `ℤˣ` instead of
-dropping to `ℤ` and back.-/
+dropping to `ℤ` and back.
+@isnad1 id=eq.0h5v.s8.847077a4398d from=translated src=- shape=01254a3e vocab=9cf35530
+-/
 lemma hom_units_smul {M N : AddCommGrpCat.{v}} (φ : M ⟶ N) (c : ℤˣ) (x : M) :
     φ.hom (c • x) = c • φ.hom x := by
   simp [Units.smul_def, map_zsmul]

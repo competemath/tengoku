@@ -90,14 +90,18 @@ noncomputable def piIsoPi : ∏ᶜ Z ≅ AddCommGrpCat.of (∀ i : ι, Z i) :=
   limit.isoLimitCone ⟨_, productConeIsLimit Z⟩
 
 /-- The isomorphism is compatible with the projections, in the direction callers need: reading a
-component off the Pi type agrees with the categorical projection.-/
+component off the Pi type agrees with the categorical projection.
+@isnad1 id=eq.0h3v.s7.466c9e817599 from=translated src=- shape=1b7d3a32 vocab=4385e940
+-/
 @[simp, elementwise]
 theorem piIsoPi_inv_π (i : ι) :
     (piIsoPi Z).inv ≫ Pi.π Z i = ofHom (Pi.evalAddMonoidHom (fun i : ι => Z i) i) :=
   limit.isoLimitCone_inv_π _ _
 
 /-- Evaluating at an index after transporting the categorical product into the dependent function
-type is the categorical projection.-/
+type is the categorical projection.
+@isnad1 id=eq.0h3v.s7.284d734ff5a4 from=translated src=- shape=eed2d4c3 vocab=667cf356
+-/
 @[simp, elementwise]
 theorem piIsoPi_hom_eval (i : ι) :
     (piIsoPi Z).hom ≫ ofHom (Pi.evalAddMonoidHom (fun i : ι => Z i) i) = Pi.π Z i :=

@@ -126,7 +126,9 @@ private theorem posDef_sup (horth : ∀ w ∈ W, ∀ w' ∈ W', polar (⇑Q) w w
 
 end Sup
 
-/-- **The easy half of additivity for `sigPos`.**-/
+/-- **The easy half of additivity for `sigPos`.**
+@isnad1 id=le.2h4v.s8.c53cdb356485 from=translated src=- shape=fdd33c5c vocab=38408ee7
+-/
 theorem sigPos_add_le (hcompl : IsCompl W W')
     (horth : ∀ w ∈ W, ∀ w' ∈ W', polar (⇑Q) w w' = 0) :
     sigPos (Q.restrict W) + sigPos (Q.restrict W') ≤ sigPos Q := by
@@ -135,7 +137,9 @@ theorem sigPos_add_le (hcompl : IsCompl W W')
   have hle := le_sigPos_of_posDef Q (posDef_sup horth hp₁ hp₂)
   rwa [finrank_sup_map hcompl V₁ V₂, hr₁, hr₂] at hle
 
-/-- **The easy half of additivity for `sigNeg`**, which is `sigPos` of `-Q`.-/
+/-- **The easy half of additivity for `sigNeg`**, which is `sigPos` of `-Q`.
+@isnad1 id=le.2h4v.s8.268e32b40398 from=translated src=- shape=fdd33c5c vocab=25905cae
+-/
 theorem sigNeg_add_le (hcompl : IsCompl W W')
     (horth : ∀ w ∈ W, ∀ w' ∈ W', polar (⇑Q) w w' = 0) :
     sigNeg (Q.restrict W) + sigNeg (Q.restrict W') ≤ sigNeg Q := by
@@ -148,7 +152,9 @@ theorem sigNeg_add_le (hcompl : IsCompl W W')
   exact sigPos_add_le (Q := -Q) hcompl horth'
 
 omit [FiniteDimensional ℝ M] in
-/-- An orthogonal decomposition into nondegenerate pieces is nondegenerate.-/
+/-- An orthogonal decomposition into nondegenerate pieces is nondegenerate.
+@isnad1 id=nondegen.4h4v.s8.3796ef24969f from=translated src=- shape=590116fc vocab=9bea709f
+-/
 theorem nondegenerate_of_isCompl (hcompl : IsCompl W W')
     (horth : ∀ w ∈ W, ∀ w' ∈ W', polar (⇑Q) w w' = 0)
     (h₁ : (Q.restrict W).Nondegenerate) (h₂ : (Q.restrict W').Nondegenerate) :
@@ -200,7 +206,9 @@ theorem nondegenerate_of_isCompl (hcompl : IsCompl W W')
     simpa using congr_arg Subtype.val hrad
   rw [hazero, hbzero, add_zero]
 
-/-- **The signature is additive over a nondegenerate orthogonal decomposition.**-/
+/-- **The signature is additive over a nondegenerate orthogonal decomposition.**
+@isnad1 id=and.4h4v.s9.4d7c3e78ae26 from=translated src=- shape=c3047b23 vocab=510caf7b
+-/
 theorem sigPos_eq_add (hcompl : IsCompl W W')
     (horth : ∀ w ∈ W, ∀ w' ∈ W', polar (⇑Q) w w' = 0)
     (h₁ : (Q.restrict W).Nondegenerate) (h₂ : (Q.restrict W').Nondegenerate) :
@@ -236,7 +244,9 @@ section Definite
 variable {N : Type*} [AddCommGroup N] [Module ℝ N]
 
 /-- An anisotropic form is nondegenerate: the radical sits inside the zero
-locus.-/
+locus.
+@isnad1 id=nondegen.1h2v.s5.712903c5450c from=translated src=- shape=d37f8b0c vocab=ddad4113
+-/
 theorem nondegenerate_of_anisotropic {Q : QuadraticForm ℝ N} (h : Q.Anisotropic) :
     Q.Nondegenerate := by
   rw [QuadraticMap.nondegenerate_iff_radical_eq_bot, Submodule.eq_bot_iff]
@@ -245,7 +255,9 @@ theorem nondegenerate_of_anisotropic {Q : QuadraticForm ℝ N} (h : Q.Anisotropi
 
 variable [FiniteDimensional ℝ N]
 
-/-- **A positive definite form has `sigPos = dim` and `sigNeg = 0`.**-/
+/-- **A positive definite form has `sigPos = dim` and `sigNeg = 0`.**
+@isnad1 id=and.1h2v.s6.b48cd596f761 from=translated src=- shape=31ece778 vocab=881bd223
+-/
 theorem sigPos_eq_finrank_of_posDef {Q : QuadraticForm ℝ N} (h : Q.PosDef) :
     sigPos Q = Module.finrank ℝ N ∧ sigNeg Q = 0 ∧ Q.Nondegenerate := by
   have hnd : Q.Nondegenerate := nondegenerate_of_anisotropic h.anisotropic
@@ -266,7 +278,9 @@ theorem sigPos_eq_finrank_of_posDef {Q : QuadraticForm ℝ N} (h : Q.PosDef) :
 /-- **A negative definite form has `sigNeg = dim` and `sigPos = 0`.**
 
 "Negative definite" is spelled the way `sigNeg` is defined, as positive
-definiteness of `-Q`.-/
+definiteness of `-Q`.
+@isnad1 id=and.1h2v.s6.63aa0724dbc1 from=translated src=- shape=05a6fe76 vocab=b3ebbfe4
+-/
 theorem sigNeg_eq_finrank_of_negDef {Q : QuadraticForm ℝ N} (h : (-Q).PosDef) :
     sigNeg Q = Module.finrank ℝ N ∧ sigPos Q = 0 ∧ Q.Nondegenerate := by
   obtain ⟨hpos, hneg, hnd⟩ := sigPos_eq_finrank_of_posDef h
@@ -280,7 +294,9 @@ theorem sigNeg_eq_finrank_of_negDef {Q : QuadraticForm ℝ N} (h : (-Q).PosDef) 
 
 /-- **A form of full negative index is negative definite.**  The converse of
 `sigNeg_eq_finrank_of_negDef`: a negative definite subspace of full dimension is
-the whole space.-/
+the whole space.
+@isnad1 id=posdef.1h2v.s6.0b3eb9d14bc4 from=translated src=- shape=7d2812b5 vocab=e2305a0e
+-/
 theorem negDef_of_sigNeg_eq_finrank {Q : QuadraticForm ℝ N}
     (h : sigNeg Q = Module.finrank ℝ N) : (-Q).PosDef := by
   obtain ⟨W, hW, hpd⟩ := exists_finrank_eq_sigNeg_and_negDef Q
@@ -303,7 +319,9 @@ variable {Q : QuadraticForm ℝ M} {W W' : Submodule ℝ M}
 
 This is the converse direction of `nondegenerate_of_isCompl`: a class of the
 radical of one summand is orthogonal to that summand by definition and to the
-other by hypothesis, hence to everything.-/
+other by hypothesis, hence to everything.
+@isnad1 id=nondegen.3h4v.s8.27ab0562144f from=translated src=- shape=7b4f5927 vocab=9bea709f
+-/
 theorem nondegenerate_restrict_of_isCompl (hcompl : IsCompl W W')
     (horth : ∀ w ∈ W, ∀ w' ∈ W', polar (⇑Q) w w' = 0) (hnd : Q.Nondegenerate) :
     (Q.restrict W').Nondegenerate := by

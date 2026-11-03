@@ -78,7 +78,9 @@ def stalkSheafificationApp
       (R := stalkRingSheaf X R hR) (𝟙 R)).unit.app M)
 
 /-- The sheafification unit is an isomorphism on every module stalk because
-its underlying additive stalk map is an isomorphism.-/
+its underlying additive stalk map is an isomorphism.
+@isnad1 id=isiso.1h6v.s10.813453b1937f from=translated src=- shape=609c429a vocab=f68ef34d
+-/
 theorem stalkSheafificationApp_isIso
     (M : PresheafOfModules.{u} R) :
     IsIso (stalkSheafificationApp X R x hc hR M) := by

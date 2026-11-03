@@ -60,7 +60,9 @@ structure IsK3 : Prop where
 /-- **Riemann–Roch on a K3 surface**: `χ(E) = 2·rank(E) + ∫_X ch₂(E)`.
 
 The `c₁`-term of the surface formula drops out because `td₁ = 0`; this is the whole of what
-triviality of the canonical class buys.-/
+triviality of the canonical class buys.
+@isnad1 id=eq.2h4v.s8.f62b6ece3aa1 from=translated src=- shape=84e05394 vocab=ae9ff692
+-/
 theorem chi_eq (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     (V.chi E : ℚ) = 2 * (V.rank E : ℚ) + V.ring.degree (V.chComp E 2) := by
   have h := V.chi_eq_sum hHRR E
@@ -80,7 +82,9 @@ For a K3, `v(E) = ch(E)·√td(X)` with `√td(X) = 1 + [pt]`, so the top compon
 noncomputable def mukaiS (E : N) : ℚ :=
   (V.rank E : ℚ) + V.ring.degree (V.chComp E 2)
 
-/-- Riemann–Roch in Mukai coordinates: `χ(E) = r + s`.-/
+/-- Riemann–Roch in Mukai coordinates: `χ(E) = r + s`.
+@isnad1 id=eq.2h4v.s7.efcdd7d45b56 from=translated src=- shape=f5b1f175 vocab=4aa4b2a0
+-/
 theorem chi_eq_rank_add_mukaiS (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     (V.chi E : ℚ) = (V.rank E : ℚ) + mukaiS V E := by
   rw [chi_eq V hHRR hK3 E, mukaiS]
@@ -98,14 +102,18 @@ noncomputable def mukaiSelfPairing (E : N) : ℚ :=
 So `v² ≥ −2` and `∫Δ ≥ 0` are statements about the same quantity, shifted.
 
 `IsK3` is `omit`ted deliberately: this identity is arithmetic relating two definitions and
-holds on *any* surface. Only the reading of `(r, c₁, s)` as a Mukai vector is K3-specific.-/
+holds on *any* surface. Only the reading of `(r, c₁, s)` as a Mukai vector is K3-specific.
+@isnad1 id=eq.0h4v.s7.06d655f585ae from=translated src=- shape=3683500f vocab=5e30e99c
+-/
 theorem mukaiSelfPairing_eq (E : N) :
     mukaiSelfPairing V E
       = V.ring.degree (V.discriminant E) - 2 * (V.rank E : ℚ) ^ 2 := by
   rw [mukaiSelfPairing, mukaiS, V.degree_discriminant]
   ring
 
-/-- A rank-zero object has `⟨v, v⟩ = ∫_X c₁²`. Also independent of `IsK3`.-/
+/-- A rank-zero object has `⟨v, v⟩ = ∫_X c₁²`. Also independent of `IsK3`.
+@isnad1 id=eq.1h4v.s7.73d85bb2432f from=translated src=- shape=a9be1ada vocab=97deb420
+-/
 theorem mukaiSelfPairing_of_rank_eq_zero (E : N) (hE : V.rank E = 0) :
     mukaiSelfPairing V E = V.ring.degree (V.chComp E 1 * V.chComp E 1) := by
   rw [mukaiSelfPairing, hE]

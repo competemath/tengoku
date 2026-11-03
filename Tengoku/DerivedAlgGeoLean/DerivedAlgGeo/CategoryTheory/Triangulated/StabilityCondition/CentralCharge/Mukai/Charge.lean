@@ -66,6 +66,9 @@ noncomputable def expChargeHom : RealExtension V →+ ℂ where
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h5v.s7.6be0cf18f8e2 from=translated src=- shape=853344b2 vocab=6517dcb5
+-/
 @[simp]
 theorem expChargeHom_apply (v : RealExtension V) :
     expChargeHom b β ω v = expCharge b β ω v := rfl
@@ -84,11 +87,16 @@ noncomputable def expChargeLinearMap : RealExtension V →ₗ[ℝ] ℂ where
     show expCharge b β ω (a • v) = (a : ℝ) • expCharge b β ω v
     rw [expCharge, expCharge, PeriodDomain.centralCharge_smul, Complex.real_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.e8aa39017b04 from=translated src=- shape=5752a110 vocab=d1110c44
+-/
 @[simp]
 theorem expChargeLinearMap_apply (v : RealExtension V) :
     expChargeLinearMap b β ω v = expCharge b β ω v := rfl
 
-/-- The charge written out on a triple. This is Bridgeland's formula.-/
+/-- The charge written out on a triple. This is Bridgeland's formula.
+@isnad1 id=eq.1h7v.s10.f0fcd5dfb894 from=translated src=- shape=f27a104c vocab=3767ce15
+-/
 theorem expCharge_apply (hb : ∀ x y : V, b x y = b y x) (r : ℝ) (c : V) (s : ℝ) :
     expCharge b β ω (r, c, s)
       = Complex.ofReal (b β c - s - r * (b β β - b ω ω) / 2)
@@ -103,14 +111,18 @@ section FiniteDimensional
 variable [FiniteDimensional ℝ V]
 
 /-- A nonzero class of vanishing charge has negative square. This is the kernel
-half of a quadratic support criterion, not the full support property.-/
+half of a quadratic support criterion, not the full support property.
+@isnad1 id=lt.5h5v.s10.9cf4256c0000 from=translated src=- shape=6c74b7a2 vocab=d289f37a
+-/
 theorem neg_of_expCharge_eq_zero
     (hsig : PeriodDomain.HasSignatureTwo (realForm b)) (hb : ∀ x y : V, b x y = b y x)
     (hω : 0 < b ω ω) {v : RealExtension V} (hv : expCharge b β ω v = 0) (hv0 : v ≠ 0) :
     realForm b v < 0 :=
   PeriodDomain.neg_of_centralCharge_eq_zero hsig (isPositiveFrame_exp b β ω hb hω) hv hv0
 
-/-- No nonzero class of nonnegative square is killed by `Z(β,ω)`.-/
+/-- No nonzero class of nonnegative square is killed by `Z(β,ω)`.
+@isnad1 id=ne.5h5v.s10.e93e6d7024f8 from=translated src=- shape=049ecd26 vocab=32191eef
+-/
 theorem expCharge_ne_zero_of_nonneg
     (hsig : PeriodDomain.HasSignatureTwo (realForm b)) (hb : ∀ x y : V, b x y = b y x)
     (hω : 0 < b ω ω) {v : RealExtension V} (hv : 0 ≤ realForm b v) (hv0 : v ≠ 0) :
@@ -128,18 +140,24 @@ variable (b : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (β ω : V)
 
 /-! The elementary charge identities are projections of `expChargeHom`. -/
 
-/-- The exponential charge kills the zero class.-/
+/-- The exponential charge kills the zero class.
+@isnad1 id=eq.0h4v.s7.cc4a1370552d from=translated src=- shape=2b4f49d1 vocab=4df2f539
+-/
 @[simp]
 theorem expCharge_zero : Mukai.expCharge b β ω 0 = 0 :=
   (expChargeHom b β ω).map_zero
 
-/-- The exponential charge is additive in the Mukai class.-/
+/-- The exponential charge is additive in the Mukai class.
+@isnad1 id=eq.0h6v.s7.e0efa1c421a3 from=translated src=- shape=f8ae9242 vocab=f695b7af
+-/
 theorem expCharge_add (v w : Mukai.RealExtension V) :
     Mukai.expCharge b β ω (v + w) =
       Mukai.expCharge b β ω v + Mukai.expCharge b β ω w :=
   (expChargeHom b β ω).map_add v w
 
-/-- The exponential charge negates on negated classes.-/
+/-- The exponential charge negates on negated classes.
+@isnad1 id=eq.0h5v.s7.2da50f10a130 from=translated src=- shape=1d4b4505 vocab=737c1761
+-/
 theorem expCharge_neg (v : Mukai.RealExtension V) :
     Mukai.expCharge b β ω (-v) = -Mukai.expCharge b β ω v :=
   (expChargeHom b β ω).map_neg v

@@ -60,16 +60,25 @@ def mapFunctor {X : A} : Subobject X → Subobject (F.obj X) :=
       exact Subobject.mk_eq_mk_of_comm _ _ (F.mapIso i)
         (by rw [Functor.mapIso_hom, ← F.map_comp, hi]))
 
+/--
+@isnad1 id=eq.0h6v.s6.1e61ef5267a3 from=translated src=- shape=7c577365 vocab=e87c9a34
+-/
 @[simp]
 theorem mapFunctor_mk {X A₁ : A} (f : A₁ ⟶ X) [Mono f] :
     mapFunctor F (Subobject.mk f) = Subobject.mk (F.map f) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.92a12c9eda80 from=translated src=- shape=d58d7d67 vocab=24be4114
+-/
 theorem mapFunctor_eq_mk_arrow {X : A} (P : Subobject X) :
     mapFunctor F P = Subobject.mk (F.map P.arrow) := by
   conv_lhs => rw [← Subobject.mk_arrow P]
   rfl
 
+/--
+@isnad1 id=monotone.0h4v.s6.ab7122bb0f2b from=translated src=- shape=2b35fb1e vocab=fcf8b570
+-/
 theorem mapFunctor_monotone {X : A} : Monotone (mapFunctor F (X := X)) := by
   intro P Q h
   rw [mapFunctor_eq_mk_arrow, mapFunctor_eq_mk_arrow]
@@ -78,7 +87,9 @@ theorem mapFunctor_monotone {X : A} : Monotone (mapFunctor F (X := X)) := by
 
 /-- Mapping along an isomorphism and back is the identity. Stated as a lemma rather than reached
 by `rw [← map_comp]`, whose motive is not type correct here: `Subobject.map` carries a `Mono`
-instance argument that changes under the rewrite.-/
+instance argument that changes under the rewrite.
+@isnad1 id=eq.0h5v.s6.082aa842c57d from=translated src=- shape=0b6b0859 vocab=40dfac7f
+-/
 theorem map_inv_map_hom {X Y : A} (i : X ≅ Y) (P : Subobject X) :
     (Subobject.map i.inv).obj ((Subobject.map i.hom).obj P) = P := by
   induction P using Subobject.ind with
@@ -86,6 +97,9 @@ theorem map_inv_map_hom {X Y : A} (i : X ≅ Y) (P : Subobject X) :
       haveI : Mono (f ≫ i.hom) := mono_comp _ _
       simp only [Subobject.map_mk, Category.assoc, Iso.hom_inv_id, Category.comp_id]
 
+/--
+@isnad1 id=eq.0h5v.s6.f4e70f9fcc34 from=translated src=- shape=e8544ffc vocab=40dfac7f
+-/
 theorem map_hom_map_inv {X Y : A} (i : X ≅ Y) (Q : Subobject Y) :
     (Subobject.map i.hom).obj ((Subobject.map i.inv).obj Q) = Q := by
   induction Q using Subobject.ind with
@@ -130,6 +144,9 @@ out is what makes the rewrites below go through.-/
 def unitAt (X : A) : X ≅ e.inverse.obj (e.functor.obj X) := e.unitIso.app X
 
 omit [e.functor.PreservesMonomorphisms] [e.inverse.PreservesMonomorphisms] in
+/--
+@isnad1 id=eq.0h6v.s8.16e79723826d from=translated src=- shape=c32802a1 vocab=edea21ed
+-/
 theorem unitAt_naturality {X Y : A} (f : X ⟶ Y) :
     f ≫ (unitAt e Y).hom = (unitAt e X).hom ≫ e.inverse.map (e.functor.map f) :=
   e.unitIso.hom.naturality f
@@ -137,7 +154,9 @@ theorem unitAt_naturality {X Y : A} (f : X ⟶ Y) :
 /-- **The round trip through an equivalence is the unit isomorphism.**
 
 This is the one step with content: naturality of the unit rewrites the round trip as composition
-with a unit component, and that component is invertible, so the two subobjects agree.-/
+with a unit component, and that component is invertible, so the two subobjects agree.
+@isnad1 id=eq.0h5v.s8.b5a2fd5a6529 from=translated src=- shape=fbc97b6a vocab=40f8d96f
+-/
 theorem mapFunctor_inverse_functor {X : A} (P : Subobject X) :
     mapFunctor e.inverse (mapFunctor e.functor P) =
       (Subobject.map (unitAt e X).hom).obj P := by
@@ -184,6 +203,9 @@ def mapEquivalence (X : A) : Subobject X ≃o Subobject (e.functor.obj X) where
     have h2 := (Subobject.map (unitAt e X).inv).monotone hle
     simpa only [map_inv_map_hom] using h2
 
+/--
+@isnad1 id=eq.0h5v.s8.eaeea9d90f5e from=translated src=- shape=c51ef0c5 vocab=ab35465b
+-/
 @[simp]
 theorem mapEquivalence_apply (X : A) (P : Subobject X) :
     mapEquivalence e X P = mapFunctor e.functor P := rfl
@@ -204,6 +226,9 @@ noncomputable def mapFunctorIso {X : A} (P : Subobject X) :
   Subobject.isoOfEqMk _ (F.map P.arrow) (mapFunctor_eq_mk_arrow F P)
 
 omit [Abelian A] [Abelian B] [F.PreservesZeroMorphisms] [PreservesFiniteColimits F] in
+/--
+@isnad1 id=eq.0h5v.s8.2433d8ef86df from=translated src=- shape=2d7f527d vocab=ad64a0ed
+-/
 @[reassoc (attr := simp)]
 theorem mapFunctorIso_hom_arrow {X : A} (P : Subobject X) :
     (mapFunctorIso F P).hom ≫ F.map P.arrow = (mapFunctor F P).arrow := by
@@ -211,7 +236,9 @@ theorem mapFunctorIso_hom_arrow {X : A} (P : Subobject X) :
 
 omit [Abelian A] [Abelian B] [F.PreservesZeroMorphisms] [PreservesFiniteColimits F] in
 /-- **The chain step transports.** Both sides are maps into a subobject, so it is enough to compose
-with its arrow, which is a mono.-/
+with its arrow, which is a mono.
+@isnad1 id=eq.1h6v.s9.37042fdca31b from=translated src=- shape=506a8087 vocab=774a889d
+-/
 theorem ofLE_mapFunctor {X : A} {P Q : Subobject X} (h : P ≤ Q) :
     Subobject.ofLE (mapFunctor F P) (mapFunctor F Q) (mapFunctor_monotone F h) ≫
         (mapFunctorIso F Q).hom =

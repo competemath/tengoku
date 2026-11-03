@@ -75,7 +75,9 @@ noncomputable def mapCochainComplexHomologyZeroIso
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The degree-zero homology comparison respects cochain maps through
-naturality of the cycles-to-homology and preserved-cycles isomorphisms.-/
+naturality of the cycles-to-homology and preserved-cycles isomorphisms.
+@isnad1 id=eq.0h6v.s10.fb9e2525ecad from=translated src=- shape=ce381d7d vocab=509b9726
+-/
 @[reassoc]
 theorem mapCochainComplexHomologyZeroIso_naturality
     {C : Type u} {D : Type v} [Category C] [Category D]

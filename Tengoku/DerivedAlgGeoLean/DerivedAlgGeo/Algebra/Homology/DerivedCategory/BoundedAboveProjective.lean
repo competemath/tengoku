@@ -40,7 +40,9 @@ abbrev BoundedAboveProjectiveHomotopyCategory
     (C : Type u) [Category.{v} C] [Abelian C] :=
   (boundedAboveProjectiveHomotopy C).FullSubcategory
 
-/-- A bounded-above degreewise-projective complex is K-projective.-/
+/-- A bounded-above degreewise-projective complex is K-projective.
+@isnad1 id=le.0h1v.s7.fbbbd5fbfd07 from=translated src=- shape=8c4e0e65 vocab=ecc0fca6
+-/
 theorem boundedAboveProjectiveHomotopy_le_kProjective
     (C : Type u) [Category.{v} C] [Abelian C] :
     boundedAboveProjectiveHomotopy C ≤ kProjectiveHomotopy C := by
@@ -65,12 +67,18 @@ def boundedAboveProjectiveQh
   ObjectProperty.ι (boundedAboveProjectiveHomotopy C) ⋙
     DerivedCategory.Qh
 
+/--
+@isnad1 id=iskproje.0h2v.s6.342e98840eec from=translated src=- shape=9ddddb26 vocab=9cb934a4
+-/
 instance boundedAboveProjectiveHomotopyCategory_isKProjective
     (C : Type u) [Category.{v} C] [Abelian C]
     (K : BoundedAboveProjectiveHomotopyCategory C) :
     CochainComplex.IsKProjective K.obj.as :=
   boundedAboveProjectiveHomotopy_le_kProjective C K.obj K.property
 
+/--
+@isnad1 id=full.0h1v.s6.db57cd9b6459 from=translated src=- shape=cbac796f vocab=977348df
+-/
 instance boundedAboveProjectiveQh_full
     (C : Type u) [Category.{v} C] [Abelian C] :
     (boundedAboveProjectiveQh C).Full := by
@@ -80,6 +88,9 @@ instance boundedAboveProjectiveQh_full
     (CochainComplex.IsKProjective.Qh_map_bijective K.obj.as L.obj).2 f
   exact ⟨ObjectProperty.homMk g, hg⟩
 
+/--
+@isnad1 id=faithful.0h1v.s6.53037a3baa0c from=translated src=- shape=cbac796f vocab=0b5bb227
+-/
 instance boundedAboveProjectiveQh_faithful
     (C : Type u) [Category.{v} C] [Abelian C] :
     (boundedAboveProjectiveQh C).Faithful := by

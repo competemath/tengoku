@@ -41,7 +41,9 @@ ring `A` with the multiplication of `A` as the bilinear form.
 This is one of the three leaves that forced the root to move: it is `A`-valued,
 not `ℝ`-valued, and a `ℤ`-only or `ℝ`-only pairing could not parent it. Nothing
 else about the root changes — the arity is still three and the triple is
-`(rank, ch₁, ch₂)` with the rank pushed into `A` along `ℚ → A`.-/
+`(rank, ch₁, ch₂)` with the rank pushed into `A` along `ℚ → A`.
+@isnad1 id=eq.0h5v.s7.fb5fbddedb66 from=translated src=- shape=6314207a vocab=5e77723b
+-/
 theorem discriminant_eq_selfPairing (E : N) :
     V.discriminant E
       = Mukai.selfPairing (LinearMap.mul A A)
@@ -53,14 +55,18 @@ theorem discriminant_eq_selfPairing (E : N) :
   rw [map_mul, map_ofNat]
   ring
 
-/-- The discriminant lives in codimension two, independently of the ambient dimension.-/
+/-- The discriminant lives in codimension two, independently of the ambient dimension.
+@isnad1 id=mem.0h5v.s6.044414a3dd7b from=translated src=- shape=6185469b vocab=958c3cb5
+-/
 theorem discriminant_mem_piece_two (E : N) :
     V.discriminant E ∈ V.ring.piece 2 := by
   refine Submodule.sub_mem _ ?_ ?_
   · exact V.ring.mul_mem_piece (V.chComp_mem E 1) (V.chComp_mem E 1)
   · exact V.ring.mul_mem_piece (V.ring.algebraMap_mem_piece_zero _) (V.chComp_mem E 2)
 
-/-- Integrating the discriminant pulls its scalar coefficient outside the degree map.-/
+/-- Integrating the discriminant pulls its scalar coefficient outside the degree map.
+@isnad1 id=eq.0h5v.s8.0b70d1f17bb4 from=translated src=- shape=d25c26e3 vocab=c5a6f3c5
+-/
 theorem degree_discriminant (E : N) :
     V.ring.degree (V.discriminant E)
       = V.ring.degree (V.chComp E 1 * V.chComp E 1)

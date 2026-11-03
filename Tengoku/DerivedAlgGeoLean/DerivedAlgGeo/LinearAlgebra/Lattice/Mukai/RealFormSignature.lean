@@ -56,7 +56,9 @@ noncomputable def rangeIsometry {N : Type*} [AddCommGroup N] [Module ℝ N]
 
 variable [FiniteDimensional ℝ M]
 
-/-- A positive scalar does not move the positive definite subspaces.-/
+/-- A positive scalar does not move the positive definite subspaces.
+@isnad1 id=eq.1h3v.s6.44e3df7c88b4 from=translated src=- shape=3f556eb9 vocab=31f24492
+-/
 theorem sigPos_smul_of_pos {c : ℝ} (hc : 0 < c) (Q : QuadraticForm ℝ M) :
     sigPos (c • Q) = sigPos Q := by
   have key : ∀ (d : ℝ), 0 < d → ∀ Q' : QuadraticForm ℝ M, sigPos Q' ≤ sigPos (d • Q') := by
@@ -71,7 +73,9 @@ theorem sigPos_smul_of_pos {c : ℝ} (hc : 0 < c) (Q : QuadraticForm ℝ M) :
   have h := key c⁻¹ (inv_pos.mpr hc) (c • Q)
   rwa [smul_smul, inv_mul_cancel₀ (ne_of_gt hc), one_smul] at h
 
-/-- The same for `sigNeg`, which is `sigPos` of the negative.-/
+/-- The same for `sigNeg`, which is `sigPos` of the negative.
+@isnad1 id=eq.1h3v.s6.71adf7d239db from=translated src=- shape=3f556eb9 vocab=678a0ffd
+-/
 theorem sigNeg_smul_of_pos {c : ℝ} (hc : 0 < c) (Q : QuadraticForm ℝ M) :
     sigNeg (c • Q) = sigNeg Q := by
   rw [sigNeg, sigNeg, ← sigPos_smul_of_pos hc (-Q)]
@@ -97,12 +101,18 @@ def middleIncl : V →ₗ[ℝ] RealExtension V where
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
 
+/--
+@isnad1 id=injectiv.0h1v.s7.09df242bc5c7 from=translated src=- shape=b7ae39dd vocab=f3ffe3d5
+-/
 theorem hyperbolicIncl_injective : Function.Injective (hyperbolicIncl V) := by
   intro p q h
   have h1 : p.1 = q.1 := congrArg (fun v : RealExtension V => v.1) h
   have h2 : p.2 = q.2 := congrArg (fun v : RealExtension V => v.2.2) h
   exact Prod.ext h1 h2
 
+/--
+@isnad1 id=injectiv.0h1v.s7.ea5dffd886dc from=translated src=- shape=69436737 vocab=983b4304
+-/
 theorem middleIncl_injective : Function.Injective (middleIncl V) := by
   intro c d h
   exact congrArg (fun v : RealExtension V => v.2.1) h
@@ -115,18 +125,27 @@ def middle : Submodule ℝ (RealExtension V) := LinearMap.range (middleIncl V)
 
 variable {V}
 
+/--
+@isnad1 id=iff.0h2v.s7.99cb092a6591 from=translated src=- shape=e48870c5 vocab=639410fa
+-/
 theorem mem_hyperbolic_iff {v : RealExtension V} : v ∈ hyperbolic V ↔ v.2.1 = 0 := by
   constructor
   · rintro ⟨p, rfl⟩; rfl
   · intro h
     exact ⟨(v.1, v.2.2), Prod.ext rfl (Prod.ext h.symm rfl)⟩
 
+/--
+@isnad1 id=iff.0h2v.s7.cda476140ea8 from=translated src=- shape=3d0f0185 vocab=8691f82d
+-/
 theorem mem_middle_iff {v : RealExtension V} : v ∈ middle V ↔ v.1 = 0 ∧ v.2.2 = 0 := by
   constructor
   · rintro ⟨c, rfl⟩; exact ⟨rfl, rfl⟩
   · rintro ⟨h1, h2⟩
     exact ⟨v.2.1, Prod.ext h1.symm (Prod.ext rfl h2.symm)⟩
 
+/--
+@isnad1 id=iscompl.0h1v.s7.15ba094566cf from=translated src=- shape=b4a229b5 vocab=bb7a3c18
+-/
 theorem isCompl_hyperbolic_middle : IsCompl (hyperbolic V) (middle V) := by
   constructor
   · rw [Submodule.disjoint_def]
@@ -142,6 +161,9 @@ theorem isCompl_hyperbolic_middle : IsCompl (hyperbolic V) (middle V) := by
 
 variable (b : V →ₗ[ℝ] V →ₗ[ℝ] ℝ)
 
+/--
+@isnad1 id=eq.3h4v.s10.e55c008d3178 from=translated src=- shape=4a9f86dd vocab=c4a0f043
+-/
 theorem orthogonal_hyperbolic_middle (hb : ∀ x y : V, b x y = b y x) :
     ∀ w ∈ hyperbolic V, ∀ w' ∈ middle V, polar (⇑(realForm b)) w w' = 0 := by
   intro w hw w' hw'
@@ -150,7 +172,9 @@ theorem orthogonal_hyperbolic_middle (hb : ∀ x y : V, b x y = b y x) :
   rw [polar_realForm b hb, realPairing, pairing, hw, hw'.1, hw'.2]
   simp
 
-/-- The form the plane carries: `(r, s) ↦ -r * s`.-/
+/-- The form the plane carries: `(r, s) ↦ -r * s`.
+@isnad1 id=eq.0h3v.s8.1106c33f2dc5 from=translated src=- shape=2e608670 vocab=83f11d96
+-/
 theorem comp_hyperbolicIncl_apply (p : ℝ × ℝ) :
     ((realForm b).comp (hyperbolicIncl V)) p = -(p.1 * p.2) := by
   show realForm b (p.1, 0, p.2) = -(p.1 * p.2)
@@ -158,7 +182,9 @@ theorem comp_hyperbolicIncl_apply (p : ℝ × ℝ) :
   simp
   ring
 
-/-- The form the middle summand carries: `c ↦ b c c / 2`.-/
+/-- The form the middle summand carries: `c ↦ b c c / 2`.
+@isnad1 id=eq.0h3v.s8.3c64f30d0f88 from=translated src=- shape=7f860273 vocab=262183d4
+-/
 theorem comp_middleIncl_apply (c : V) :
     ((realForm b).comp (middleIncl V)) c = b c c / 2 := by
   show realForm b (0, c, 0) = b c c / 2
@@ -237,7 +263,9 @@ private theorem finrank_middle : Module.finrank ℝ (middle V) = Module.finrank 
 
 With `V = NS(X) ⊗ ℝ` the hypotheses are the Hodge index theorem, so the
 signature condition every period-domain result carries stops being an assumption
-about the Mukai lattice.-/
+about the Mukai lattice.
+@isnad1 id=hassigna.3h2v.s9.0f3c1cb42c89 from=translated src=- shape=56ae50df vocab=1ae6b69a
+-/
 theorem hasSignatureTwo_realForm [FiniteDimensional ℝ V] (hb : ∀ x y : V, b x y = b y x)
     (hpos : sigPos (LinearMap.BilinMap.toQuadraticMap b) = 1)
     (hneg : sigNeg (LinearMap.BilinMap.toQuadraticMap b) + 1 = Module.finrank ℝ V) :

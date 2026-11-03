@@ -56,7 +56,9 @@ def Modules.IsFlatOver {X S : Scheme.{u}} (p : X ⟶ S)
       ((Scheme.Modules.moduleStalkFunctor X x).obj M))
 
 /-- The identity morphism induces identity maps on stalk rings, and
-`ModuleCat.restrictScalarsId'App` removes the scalar-restriction bookkeeping.-/
+`ModuleCat.restrictScalarsId'App` removes the scalar-restriction bookkeeping.
+@isnad1 id=iff.0h2v.s10.aa9f4b12bfae from=translated src=- shape=2b28bae4 vocab=6865f3c4
+-/
 theorem Modules.isFlatOverId_iff_stalkwiseFlat
     (X : Scheme.{u}) (M : X.Modules) :
     Modules.IsFlatOver (𝟙 X) M ↔

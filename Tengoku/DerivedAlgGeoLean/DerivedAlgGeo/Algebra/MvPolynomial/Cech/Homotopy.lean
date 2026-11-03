@@ -66,7 +66,9 @@ noncomputable def tupleExponent {n : ℕ} (x : Fin n → ι) : ι →₀ ℕ :=
   ∑ a, Finsupp.single (x a) 1
 
 /-- The Čech denominator is the monomial with exponent `tupleExponent`. This is the equality
-everything in this file transports along.-/
+everything in this file transports along.
+@isnad1 id=eq.0h4v.s8.4961535e1d1b from=translated src=- shape=1f07b109 vocab=cd75c91a
+-/
 theorem tupleDenominator_eq {n : ℕ} (x : Fin (n + 1) → ι) :
     polynomialVariableCechDenominator ι k x =
       MvPolynomial.monomial (tupleExponent ι x) (1 : k) := by
@@ -82,21 +84,27 @@ theorem tupleDenominator_eq {n : ℕ} (x : Fin (n + 1) → ι) :
 
 variable {ι}
 
-/-- Prepending a cone point adds one power of its variable.-/
+/-- Prepending a cone point adds one power of its variable.
+@isnad1 id=eq.0h4v.s6.f56f80a96985 from=translated src=- shape=9166fdfe vocab=1d3fe830
+-/
 theorem tupleExponent_cons {n : ℕ} (i₀ : ι) (y : Fin n → ι) :
     tupleExponent ι (Fin.cons i₀ y) = Finsupp.single i₀ 1 + tupleExponent ι y := by
   rw [tupleExponent, tupleExponent, Fin.sum_univ_succ]
   simp
 
 /-- Dropping the `j`-th index removes one power of its variable. Oriented with the dropped
-variable on the left, which is the shape the face splittings consume.-/
+variable on the left, which is the shape the face splittings consume.
+@isnad1 id=eq.0h4v.s7.70da49e2d0a0 from=translated src=- shape=6e41dfbb vocab=76f96b88
+-/
 theorem tupleExponent_succAbove {n : ℕ} (x : Fin (n + 2) → ι) (j : Fin (n + 2)) :
     tupleExponent ι x = Finsupp.single (x j) 1 + tupleExponent ι (x ∘ j.succAbove) := by
   rw [tupleExponent, tupleExponent,
     Fin.sum_univ_succAbove (fun a => Finsupp.single (x a) 1) j]
   rfl
 
-/-- The cone denominator in monomial form, split at the cone variable.-/
+/-- The cone denominator in monomial form, split at the cone variable.
+@isnad1 id=eq.0h5v.s8.0e86ca2ea9f9 from=translated src=- shape=2cd7d5c9 vocab=31c396ee
+-/
 theorem tupleDenominator_cons_eq {n : ℕ} (i₀ : ι) (y : Fin (n + 1) → ι) :
     polynomialVariableCechDenominator ι k (Fin.cons i₀ y) =
       MvPolynomial.monomial (Finsupp.single i₀ 1 + tupleExponent ι y) (1 : k) := by
@@ -104,13 +112,17 @@ theorem tupleDenominator_cons_eq {n : ℕ} (i₀ : ι) (y : Fin (n + 1) → ι) 
 
 /-! ## The `Fin.cons` combinatorics of the cone -/
 
-/-- The `0`-face of a cone tuple is the base tuple.-/
+/-- The `0`-face of a cone tuple is the base tuple.
+@isnad1 id=eq.0h4v.s7.f75574738210 from=translated src=- shape=5fbea55b vocab=4cb395a5
+-/
 theorem cons_comp_succAbove_zero {n : ℕ} (i₀ : ι) (x : Fin (n + 1) → ι) :
     (Fin.cons i₀ x : Fin (n + 2) → ι) ∘ (0 : Fin (n + 2)).succAbove = x := by
   funext i
   simp [Fin.succAbove_zero]
 
-/-- The `j.succ`-face of a cone tuple is the cone over the `j`-face.-/
+/-- The `j.succ`-face of a cone tuple is the cone over the `j`-face.
+@isnad1 id=eq.0h5v.s7.f812ed4d32a4 from=translated src=- shape=b80da319 vocab=22ba4832
+-/
 theorem cons_comp_succAbove_succ {n : ℕ} (i₀ : ι) (x : Fin (n + 2) → ι) (j : Fin (n + 2)) :
     (Fin.cons i₀ x : Fin (n + 3) → ι) ∘ (j.succ).succAbove =
       Fin.cons i₀ (x ∘ j.succAbove) := by
@@ -136,7 +148,9 @@ noncomputable def cechTermEquiv (𝓜 : ℕ → σM)
         (.powers (MvPolynomial.monomial (tupleExponent ι x) (1 : k))) :=
   DegreeZeroLocalization.powersCongr (tupleDenominator_eq ι k x)
 
-/-- The comparison carries a Čech face to the monomial-level face at the same variable.-/
+/-- The comparison carries a Čech face to the monomial-level face at the same variable.
+@isnad1 id=eq.0h8v.s19.9ec04ed7d87d from=translated src=- shape=bdce1add vocab=c25ca6e0
+-/
 theorem cechTermEquiv_cechFace (𝓜 : ℕ → σM)
     [SetLike.GradedSMul (polynomialGrading ι k) 𝓜] {n : ℕ} (x : Fin (n + 2) → ι) (j : Fin (n + 2))
     (z : cechTerm ι k 𝓜 (x ∘ j.succAbove)) :
@@ -160,6 +174,9 @@ noncomputable def cechBlockProj (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (blockProjHom h𝓜 (tupleExponent ι x) F)).comp
     (cechTermEquiv ι k 𝓜 x).toAddMonoidHom
 
+/--
+@isnad1 id=eq.1h9v.s18.cbae54407ee5 from=translated src=- shape=d68688cf vocab=3d918e19
+-/
 theorem cechBlockProj_apply (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (x : Fin (n + 1) → ι) (F : Finset ι)
     (z : cechTerm ι k 𝓜 x) :
@@ -168,7 +185,9 @@ theorem cechBlockProj_apply (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
         (blockProj h𝓜 (tupleExponent ι x) F (cechTermEquiv ι k 𝓜 x z)) :=
   rfl
 
-/-- The finitely many blocks of a tuple exhaust its term.-/
+/-- The finitely many blocks of a tuple exhaust its term.
+@isnad1 id=eq.1h8v.s17.fe1d5a9bc3f5 from=translated src=- shape=82c62122 vocab=e546f897
+-/
 theorem sum_cechBlockProj (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ} (x : Fin (n + 1) → ι)
     (z : cechTerm ι k 𝓜 x) :
     ∑ F ∈ (tupleExponent ι x).support.powerset, cechBlockProj ι k h𝓜 x F z = z := by
@@ -181,7 +200,9 @@ theorem sum_cechBlockProj (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ} (x : Fin 
         rfl
     _ = z := by rw [h, AddEquiv.symm_apply_apply]
 
-/-- The block projections are idempotent, transported from `blockProj_blockProj_self`.-/
+/-- The block projections are idempotent, transported from `blockProj_blockProj_self`.
+@isnad1 id=eq.1h9v.s18.24e45e5e020d from=translated src=- shape=78264b92 vocab=9c68383b
+-/
 theorem cechBlockProj_cechBlockProj_self (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (x : Fin (n + 1) → ι) (F : Finset ι) (z : cechTerm ι k 𝓜 x) :
     cechBlockProj ι k h𝓜 x F (cechBlockProj ι k h𝓜 x F z) =
@@ -189,7 +210,9 @@ theorem cechBlockProj_cechBlockProj_self (h𝓜 : IsPolynomialTwist 𝓜 d) {n :
   rw [cechBlockProj_apply, cechBlockProj_apply, AddEquiv.apply_symm_apply,
     blockProj_blockProj_self]
 
-/-- A block off the tuple's support is zero.-/
+/-- A block off the tuple's support is zero.
+@isnad1 id=eq.2h9v.s17.77256c934f7d from=translated src=- shape=e140b9cd vocab=5e4dde1b
+-/
 theorem cechBlockProj_eq_zero_of_not_subset (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (x : Fin (n + 1) → ι)
     {F : Finset ι} (h : ¬ F ⊆ (tupleExponent ι x).support)
@@ -198,7 +221,9 @@ theorem cechBlockProj_eq_zero_of_not_subset (h𝓜 : IsPolynomialTwist 𝓜 d) {
   rw [cechBlockProj_apply, blockProj_eq_zero_of_not_subset h𝓜 h, map_zero]
 
 /-- **The Čech faces commute with the block projections.** The transported form of
-`laurentFace_blockProj`: the differential preserves every block.-/
+`laurentFace_blockProj`: the differential preserves every block.
+@isnad1 id=eq.1h10v.s19.e9193cbd26be from=translated src=- shape=51aca209 vocab=68383e45
+-/
 theorem cechFace_cechBlockProj (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     (x : Fin (n + 2) → ι) (j : Fin (n + 2))
     (F : Finset ι) (z : cechTerm ι k 𝓜 (x ∘ j.succAbove)) :
@@ -221,6 +246,9 @@ noncomputable def cechHomotopy (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ : ι) {n
     (laurentHomotopy h𝓜 i₀ (tupleExponent ι y))).comp
     (DegreeZeroLocalization.powersCongr (tupleDenominator_cons_eq k i₀ y)).toAddMonoidHom
 
+/--
+@isnad1 id=eq.1h9v.s19.0436c481d498 from=translated src=- shape=49a0b266 vocab=b1a09eac
+-/
 theorem cechHomotopy_apply (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ : ι) {n : ℕ} (y : Fin (n + 1) → ι)
     (z : cechTerm ι k 𝓜 (Fin.cons i₀ y)) :
     cechHomotopy ι k h𝓜 i₀ y z =
@@ -243,7 +271,9 @@ noncomputable def cechTermCongr (𝓜 : ℕ → σM)
     (congrArg (polynomialVariableCechDenominator ι k) h)
 
 /-- **A cochain takes transported values at equal tuples.** This is the whole of the dependent
-rewriting the vanishing computation needs.-/
+rewriting the vanishing computation needs.
+@isnad1 id=eq.1h8v.s16.a069c0c69c90 from=translated src=- shape=70f8bb66 vocab=7d33e874
+-/
 theorem cechTermCongr_apply_section (𝓜 : ℕ → σM)
     [SetLike.GradedSMul (polynomialGrading ι k) 𝓜] {n : ℕ}
     (s : ∀ x : Fin (n + 1) → ι, cechTerm ι k 𝓜 x)
@@ -251,6 +281,9 @@ theorem cechTermCongr_apply_section (𝓜 : ℕ → σM)
     cechTermCongr ι k 𝓜 h (s x₁) = s x₂ := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.1h8v.s16.791924ac1855 from=translated src=- shape=1c8252f8 vocab=f092d2f5
+-/
 theorem cechTermCongr_symm_apply_section (𝓜 : ℕ → σM)
     [SetLike.GradedSMul (polynomialGrading ι k) 𝓜] {n : ℕ}
     (s : ∀ x : Fin (n + 1) → ι, cechTerm ι k 𝓜 x)
@@ -258,7 +291,9 @@ theorem cechTermCongr_symm_apply_section (𝓜 : ℕ → σM)
     (cechTermCongr ι k 𝓜 h).symm (s x₂) = s x₁ := by
   subst h; rfl
 
-/-- The block projections commute with tuple transport.-/
+/-- The block projections commute with tuple transport.
+@isnad1 id=eq.2h10v.s18.516c678a7338 from=translated src=- shape=dc9e0b8b vocab=527f3b21
+-/
 theorem cechTermCongr_cechBlockProj (h𝓜 : IsPolynomialTwist 𝓜 d) {n : ℕ}
     {x₁ x₂ : Fin (n + 1) → ι} (h : x₁ = x₂)
     (F : Finset ι) (z : cechTerm ι k 𝓜 x₁) :
@@ -272,7 +307,9 @@ variable {ι k}
 
 /-- `laurentHomotopy_laurentFace_comm` with the enlarged denominator's exponent named by a
 hypothesis rather than fixed as `γ₀ + single e 1`. The Čech caller's exponent is
-`tupleExponent x`, which equals that sum only propositionally.-/
+`tupleExponent x`, which equals that sum only propositionally.
+@isnad1 id=eq.4h10v.s20.67244676d249 from=translated src=- shape=d3060e1a vocab=be73ff75
+-/
 theorem laurentHomotopy_laurentFace_comm' (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ e : ι)
     {γ₀ γx : ι →₀ ℕ}
     (hγx : γx = γ₀ + Finsupp.single e 1)
@@ -292,7 +329,9 @@ set_option maxHeartbeats 800000 in
 /-- **The homotopy retracts the cone face on a block.** The Čech form of
 `laurentHomotopy_laurentFace_blockProj`: for `i₀ ∉ F`, restricting a block-`F` element of the
 base tuple along the `0`-face of the cone tuple and applying the homotopy gives it back. The
-transport on the face's input names the tuple identity `(i₀ :: y) ∘ δ₀ = y`.-/
+transport on the face's input names the tuple identity `(i₀ :: y) ∘ δ₀ = y`.
+@isnad1 id=eq.2h10v.s19.93df71a2839f from=translated src=- shape=a7bcf3d5 vocab=86bb7a1d
+-/
 theorem cechHomotopy_cechFace_zero (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ : ι)
     {F : Finset ι} (hi₀ : i₀ ∉ F)
     {n : ℕ} (y : Fin (n + 1) → ι) (z : cechTerm ι k 𝓜 y) :
@@ -335,7 +374,9 @@ set_option maxHeartbeats 800000 in
 /-- **The homotopy commutes with every other face.** The Čech form of
 `laurentHomotopy_laurentFace_comm`, with no restriction on the block or the face's variable.
 The transport on the face's input names the tuple identity
-`(i₀ :: x) ∘ δ_{j.succ} = i₀ :: (x ∘ δⱼ)`.-/
+`(i₀ :: x) ∘ δ_{j.succ} = i₀ :: (x ∘ δⱼ)`.
+@isnad1 id=eq.1h10v.s19.e3cb43b367d2 from=translated src=- shape=163bc32a vocab=e350fd69
+-/
 theorem cechHomotopy_cechFace_succ (h𝓜 : IsPolynomialTwist 𝓜 d) (i₀ : ι) {n : ℕ}
     (x : Fin (n + 2) → ι)
     (j : Fin (n + 2))

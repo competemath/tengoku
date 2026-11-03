@@ -67,7 +67,9 @@ private lemma homology_property_of_terms {C : Type u} [Category.{v} C]
 
 /-- Kernel closure gives the cycles property and cokernel closure gives the
 homology property. The derived homology factorization transports this to
-`cohomologyIn P` after localization; extension closure is unnecessary.-/
+`cohomologyIn P` after localization; extension closure is unnecessary.
+@isnad1 id=cohomolo.0h4v.s7.60b749aee3cb from=translated src=- shape=eae578ac vocab=8a9e0887
+-/
 theorem cohomologyIn_Q_obj_of_termwise {A : Type u} [Category.{v} A]
     [Abelian A] [HasDerivedCategory.{w} A] (P : ObjectProperty A)
     [P.IsClosedUnderKernels] [P.IsClosedUnderCokernels]

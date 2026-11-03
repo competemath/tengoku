@@ -63,7 +63,9 @@ noncomputable def cofanDesc (t : Cofan fun k => (quotient C c).obj (X k)) :
     (quotient C c).preimage (t.inj k ≫ ((quotient C c).objObjPreimageIso t.pt).inv)) ≫
     ((quotient C c).objObjPreimageIso t.pt).hom
 
-/-- The `fac` field of `Cofan.IsColimit.mk` for `isColimitCofan`.-/
+/-- The `fac` field of `Cofan.IsColimit.mk` for `isColimitCofan`.
+@isnad1 id=eq.0h7v.s9.51975c2fb138 from=translated src=- shape=9b25d32c vocab=9b75f3ab
+-/
 lemma cofanDesc_fac (t : Cofan fun k => (quotient C c).obj (X k)) (k : κ) :
     (quotient C c).map (Sigma.ι X k) ≫ cofanDesc X t = t.inj k := by
   unfold cofanDesc
@@ -72,7 +74,9 @@ lemma cofanDesc_fac (t : Cofan fun k => (quotient C c).obj (X k)) (k : κ) :
 
 /-- A morphism out of the quotient of `∐ X` is determined by its restrictions to the summands:
 it lifts to a chain map, the two lifts are homotopic on each summand, and `Homotopy.sigma`
-assembles those homotopies.-/
+assembles those homotopies.
+@isnad1 id=eq.1h7v.s9.4ceeae8274a9 from=translated src=- shape=75a5fbfc vocab=9b75f3ab
+-/
 lemma cofanDesc_uniq (t : Cofan fun k => (quotient C c).obj (X k))
     (m : (quotient C c).obj (∐ X) ⟶ t.pt)
     (hm : ∀ k, (quotient C c).map (Sigma.ι X k) ≫ m = t.inj k) : m = cofanDesc X t := by
@@ -94,20 +98,26 @@ noncomputable def isColimitCofan :
     IsColimit (Cofan.mk ((quotient C c).obj (∐ X)) fun k => (quotient C c).map (Sigma.ι X k)) :=
   Cofan.IsColimit.mk _ (cofanDesc X) (cofanDesc_fac X) (fun t m hm => cofanDesc_uniq X t m hm)
 
-/-- The quotient functor preserves the coproduct of a family of complexes.-/
+/-- The quotient functor preserves the coproduct of a family of complexes.
+@isnad1 id=preserve.0h5v.s6.c4bdbd5181f3 from=translated src=- shape=6818f023 vocab=af6a2fc1
+-/
 instance preservesColimit_discrete_functor :
     PreservesColimit (Discrete.functor X) (quotient C c) :=
   preservesColimit_of_preserves_colimit_cocone (coproductIsCoproduct X)
     ((Cofan.isColimitMapCoconeEquiv _ _ _).symm (isColimitCofan X))
 
-/-- The quotient functor preserves coproducts of shape `κ`.-/
+/-- The quotient functor preserves coproducts of shape `κ`.
+@isnad1 id=preserve.0h4v.s6.6300d56b9504 from=translated src=- shape=8189d2dd vocab=77e4063e
+-/
 instance quotient_preservesColimitsOfShape_discrete :
     PreservesColimitsOfShape (Discrete κ) (quotient C c) :=
   preservesColimitsOfShape_of_discrete _
 
 /-- The homotopy category has coproducts of shape `κ` when the underlying category does:
 every family is isomorphic to the image of a family of complexes, whose coproduct
-`isColimitCofan` exhibits.-/
+`isColimitCofan` exhibits.
+@isnad1 id=hascolim.0h4v.s5.009cc45521ce from=translated src=- shape=ef17aedd vocab=0033db06
+-/
 instance hasColimitsOfShape_discrete : HasColimitsOfShape (Discrete κ) (HomotopyCategory C c) := by
   constructor
   intro F
@@ -120,7 +130,9 @@ instance hasColimitsOfShape_discrete : HasColimitsOfShape (Discrete κ) (Homotop
 
 /-- Homology on the homotopy category preserves coproducts of shape `κ` when homology of
 complexes does: it factors through the essentially surjective quotient functor, which preserves
-them.-/
+them.
+@isnad1 id=preserve.0h5v.s6.392ec73ad448 from=translated src=- shape=42cc3910 vocab=768aca0d
+-/
 instance homologyFunctor_preservesCoproductsOfShape [CategoryWithHomology C] (n : ι)
     [PreservesColimitsOfShape (Discrete κ) (HomologicalComplex.homologyFunctor C c n)] :
     PreservesColimitsOfShape (Discrete κ) (homologyFunctor C c n) := by

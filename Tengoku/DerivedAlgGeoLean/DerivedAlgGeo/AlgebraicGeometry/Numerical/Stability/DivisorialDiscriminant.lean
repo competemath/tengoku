@@ -50,7 +50,9 @@ variable {V : NumericalVarietyData 2 A N}
 variable (R : NumericalRealization V.ring (D := D))
 variable (P : Polarization V.ring)
 
-/-- The realized first Chern class has the rational self-intersection.-/
+/-- The realized first Chern class has the rational self-intersection.
+@isnad1 id=eq.0h6v.s8.1c3caa0a71c3 from=translated src=- shape=92ac0d24 vocab=ce38cbcd
+-/
 theorem pair_chOne_self (E : N) :
     R.divisorSpace.pair (R.chernCharacter.chOne E) (R.chernCharacter.chOne E) =
       ((V.ring.degree (V.chComp E 1 * V.chComp E 1) : ℚ) : ℝ) := by
@@ -60,7 +62,9 @@ theorem pair_chOne_self (E : N) :
   rw [R.intersection_eq]
 
 /-- The intrinsic discriminant of the realized character is the integrated
-numerical discriminant `∫Δ(E)`.-/
+numerical discriminant `∫Δ(E)`.
+@isnad1 id=eq.0h6v.s7.7562b0583a66 from=translated src=- shape=d81cd3cf vocab=8e8d9eae
+-/
 theorem discriminant_chernCharacter (E : N) :
     R.chernCharacter.discriminant R.divisorSpace E =
       ((V.ring.degree (V.discriminant E) : ℚ) : ℝ) := by
@@ -71,7 +75,9 @@ theorem discriminant_chernCharacter (E : N) :
 
 /-- **A Hodge index inequality on the realized divisor space yields the
 numerical `HodgeIndexStatement`**: the latter is the former restricted to first
-Chern classes of numerical classes.-/
+Chern classes of numerical classes.
+@isnad1 id=hodgeind.1h6v.s7.a8530e50aee0 from=translated src=- shape=15a63f03 vocab=b94be1fd
+-/
 theorem hodgeIndexStatement_of_hodgeIndex
     (h : R.divisorSpace.HodgeIndex (R.realizePolarization P)) :
     HodgeIndexStatement V P where
@@ -83,7 +89,9 @@ theorem hodgeIndexStatement_of_hodgeIndex
 
 /-- The numerical `HodgeIndexStatement` yields the index inequality on realized
 first Chern classes.  It does not yield `DivisorSpace.HodgeIndex`, which
-quantifies over every real class.-/
+quantifies over every real class.
+@isnad1 id=le.1h7v.s8.cb3849a2ad17 from=translated src=- shape=5bc4cbb4 vocab=820fbf71
+-/
 theorem index_le_chOne_of_hodgeIndexStatement (hI : HodgeIndexStatement V P) (E : N) :
     R.divisorSpace.pair (R.realizePolarization P) (R.realizePolarization P) *
         R.divisorSpace.pair (R.chernCharacter.chOne E) (R.chernCharacter.chOne E) ≤
@@ -94,7 +102,9 @@ theorem index_le_chOne_of_hodgeIndexStatement (hI : HodgeIndexStatement V P) (E 
 
 /-- Bogomolov--Gieseker, transported: the intrinsic discriminant of a
 semistable class is nonnegative.  `BogomolovGiesekerData` is the supplied
-datum; nothing is proved about sheaves.-/
+datum; nothing is proved about sheaves.
+@isnad1 id=le.1h8v.s7.a8fb4071c0c4 from=translated src=- shape=4f59baf4 vocab=39a2c609
+-/
 theorem discriminant_nonneg_of_semistable {E : N} (B : BogomolovGiesekerData V P)
     (hE : B.Semistable E) :
     0 ≤ R.chernCharacter.discriminant R.divisorSpace E := by
@@ -104,7 +114,9 @@ theorem discriminant_nonneg_of_semistable {E : N} (B : BogomolovGiesekerData V P
 /-- **The bar discriminant of a semistable class is nonnegative at every
 `(B, ω)` with a Hodge index at `ω`.**  This is the Bogomolov half of
 Macrì--Schmidt Theorem 6.13 for slope-semistable classes; the Bridgeland
-semistable half is not stated here.-/
+semistable half is not stated here.
+@isnad1 id=le.2h9v.s7.1b5210e1ac9a from=translated src=- shape=d949074c vocab=35463ee3
+-/
 theorem barDiscriminant_nonneg_of_semistable {E : N} (B : BogomolovGiesekerData V P)
     (hE : B.Semistable E) (Q : StabilityParameters D)
     (h : R.divisorSpace.HodgeIndex Q.omega) :
@@ -113,7 +125,9 @@ theorem barDiscriminant_nonneg_of_semistable {E : N} (B : BogomolovGiesekerData 
     (R.discriminant_nonneg_of_semistable P B hE)
 
 /-- On the rank-one slice `B = sH`, `ω = tH` of a realized polarisation the bar
-discriminant is `t² · discrH`.-/
+discriminant is `t² · discrH`.
+@isnad1 id=eq.0h8v.s7.2ecd1a3b7552 from=translated src=- shape=a3f824bd vocab=743049be
+-/
 theorem barDiscriminant_rankOneParameters (p : ℝ × ℝ) (E : N) :
     R.chernCharacter.barDiscriminant R.divisorSpace (R.rankOneParameters P p) E =
       p.2 ^ 2 * ((discrH V P E : ℚ) : ℝ) := by
@@ -127,7 +141,9 @@ theorem barDiscriminant_rankOneParameters (p : ℝ × ℝ) (E : N) :
 
 /-- The same, against the wall-plane discriminant of the transported class:
 the bar discriminant on the `(s,t)` slice is `t²` times
-`Wall.NumClass.discr (toNumClass V P E)`.-/
+`Wall.NumClass.discr (toNumClass V P E)`.
+@isnad1 id=eq.0h8v.s7.a751e2dfa487 from=translated src=- shape=7924fe19 vocab=b782381c
+-/
 theorem barDiscriminant_rankOneParameters_eq_discr_toNumClass (p : ℝ × ℝ) (E : N) :
     R.chernCharacter.barDiscriminant R.divisorSpace (R.rankOneParameters P p) E =
       p.2 ^ 2 * Wall.NumClass.discr (toNumClass V P E) := by
@@ -135,7 +151,9 @@ theorem barDiscriminant_rankOneParameters_eq_discr_toNumClass (p : ℝ × ℝ) (
 
 /-- On the rank-one slice the bar discriminant of a semistable class is
 nonnegative from the numerical data alone: `BogomolovGiesekerData` and the
-numerical `HodgeIndexStatement`, with no real Hodge index at `ω` required.-/
+numerical `HodgeIndexStatement`, with no real Hodge index at `ω` required.
+@isnad1 id=le.2h9v.s7.25e01e322220 from=translated src=- shape=83022107 vocab=f8325458
+-/
 theorem barDiscriminant_rankOneParameters_nonneg {E : N} (B : BogomolovGiesekerData V P)
     (hI : HodgeIndexStatement V P) (hE : B.Semistable E) (p : ℝ × ℝ) :
     0 ≤ R.chernCharacter.barDiscriminant R.divisorSpace (R.rankOneParameters P p) E := by

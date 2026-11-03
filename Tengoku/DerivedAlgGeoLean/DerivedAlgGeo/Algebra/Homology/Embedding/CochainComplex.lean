@@ -62,7 +62,9 @@ noncomputable def truncLEToTruncLE (K : CochainComplex C ℤ) [∀ i, K.HasHomol
     CochainComplex.truncLEMap (K.ιTruncLE n) m
 
 /-- Monicity of the later inclusion makes this equation the uniqueness principle used to
-prove the tower's functor laws.-/
+prove the tower's functor laws.
+@isnad1 id=eq.1h4v.s8.36142fd39fb2 from=translated src=- shape=6cc1cc12 vocab=eb531211
+-/
 @[reassoc]
 lemma truncLEToTruncLE_comp_ιTruncLE (K : CochainComplex C ℤ) [∀ i, K.HasHomology i]
     {n m : ℤ} (h : n ≤ m) :
@@ -200,7 +202,9 @@ noncomputable def isColimitMapTruncLETowerCocone {D : Type*}
   exact hT.isColimitOfIsIso c
 
 /-- Composing both sides with the monic later inclusion reduces this compatibility to
-naturality of Mathlib's truncation inclusions.-/
+naturality of Mathlib's truncation inclusions.
+@isnad1 id=eq.1h6v.s9.2b1fce2474fc from=translated src=- shape=8b7938e4 vocab=ded3af5e
+-/
 lemma truncLEToTruncLE_naturality {K L : CochainComplex C ℤ}
     [∀ i, K.HasHomology i] [∀ i, L.HasHomology i]
     (f : K ⟶ L) {n m : ℤ} (h : n ≤ m) :
@@ -221,7 +225,9 @@ noncomputable def truncLETowerMap {K L : CochainComplex C ℤ}
     (truncLEToTruncLE_naturality f (by exact_mod_cast leOfHom g)).symm
 
 /-- Together with the colimit theorem, this identifies the map induced on colimit
-points by `CochainComplex.truncLETowerMap` with the original morphism `f`.-/
+points by `CochainComplex.truncLETowerMap` with the original morphism `f`.
+@isnad1 id=eq.0h5v.s11.b2b35d0a23ab from=translated src=- shape=e67da0e2 vocab=01db7875
+-/
 lemma truncLETowerMap_ι {K L : CochainComplex C ℤ}
     [∀ i, K.HasHomology i] [∀ i, L.HasHomology i]
     (f : K ⟶ L) (n : ℕ) :
@@ -229,14 +235,18 @@ lemma truncLETowerMap_ι {K L : CochainComplex C ℤ}
       (truncLETowerCocone K).ι.app n ≫ f :=
   CochainComplex.ιTruncLE_naturality f (n : ℤ)
 
-/-- The identity law follows stagewise from Mathlib's fixed-cutoff truncation map law.-/
+/-- The identity law follows stagewise from Mathlib's fixed-cutoff truncation map law.
+@isnad1 id=eq.0h2v.s9.b2db3552f949 from=translated src=- shape=2eb4205c vocab=58d1d6d6
+-/
 lemma truncLETowerMap_id (K : CochainComplex C ℤ) [∀ i, K.HasHomology i] :
     truncLETowerMap (𝟙 K) = 𝟙 (truncLETower K) := by
   apply NatTrans.ext
   funext n
   exact HomologicalComplex.truncLEMap_id K (ComplexShape.embeddingUpIntLE (n : ℤ))
 
-/-- The composition law follows stagewise from Mathlib's fixed-cutoff truncation map law.-/
+/-- The composition law follows stagewise from Mathlib's fixed-cutoff truncation map law.
+@isnad1 id=eq.0h6v.s9.1dbadf83659d from=translated src=- shape=b8e8cbff vocab=74286094
+-/
 lemma truncLETowerMap_comp {K L M : CochainComplex C ℤ}
     [∀ i, K.HasHomology i] [∀ i, L.HasHomology i] [∀ i, M.HasHomology i]
     (f : K ⟶ L) (g : L ⟶ M) :

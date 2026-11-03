@@ -74,6 +74,9 @@ negative support, and the Čech differential preserves it.-/
 noncomputable def intNegSupport (α : ι →₀ ℤ) : Finset ι :=
   α.support.filter fun j => α j < 0
 
+/--
+@isnad1 id=iff.0h3v.s5.5d352dea5947 from=translated src=- shape=d7200f9f vocab=65e26cf8
+-/
 theorem mem_intNegSupport {α : ι →₀ ℤ} {j : ι} : j ∈ intNegSupport α ↔ α j < 0 := by
   constructor
   · intro h
@@ -84,7 +87,9 @@ theorem mem_intNegSupport {α : ι →₀ ℤ} {j : ι} : j ∈ intNegSupport α
 /-- The negative support of a Laurent exponent lies inside the support of the denominator: a
 variable the localization does not invert cannot go negative. This is
 `laurentExponent_nonneg_of_apply_eq_zero` read as a `Finset` inclusion, and it is what makes
-`γ.support.powerset` a complete block index for `(A(d)_{Xᵞ})₀`.-/
+`γ.support.powerset` a complete block index for `(A(d)_{Xᵞ})₀`.
+@isnad1 id=le.0h4v.s5.5341920690b5 from=translated src=- shape=50593461 vocab=cdc4f1e3
+-/
 theorem intNegSupport_laurentExponent_subset (γ : ι →₀ ℕ) (m : ℕ) (β : ι →₀ ℕ) :
     intNegSupport (laurentExponent γ m β) ⊆ γ.support := by
   intro j hj
@@ -104,7 +109,9 @@ This is the finiteness the top cohomology of `Pⁿ` rests on. Below the top degr
 empty for a counting reason (`cechBlockProj_eq_zero_of_card_lt`); in the top degree it is not, and
 this says it is at least small. Note the set is empty unless `d ≤ -(card ι)`, which is Serre's
 `Hⁿ(Pⁿ, O(d)) = 0` for `d > -(n+1)` in exponent form — but that is a consequence, not what is
-proved here.-/
+proved here.
+@isnad1 id=finite.0h2v.s7.ff7178f17dca from=translated src=- shape=16067195 vocab=83fabdb8
+-/
 theorem finite_setOf_degree_eq_of_neg [Fintype ι] (d : ℤ) :
     {α : ι →₀ ℤ | α.degree = d ∧ ∀ j : ι, α j < 0}.Finite := by
   classical
@@ -140,7 +147,9 @@ theorem finite_setOf_degree_eq_of_neg [Fintype ι] (d : ℤ) :
 
 /-- **The shift identity for Laurent exponents.** Multiplying a numerator exponent by `Xᵟ` while
 the denominator data moves from `(γ, m)` to `(γ', m')` fixes the Laurent exponent as soon as
-`σ + m • γ = m' • γ'`. Raising a representative and applying a Čech face are both instances.-/
+`σ + m • γ = m' • γ'`. Raising a representative and applying a Čech face are both instances.
+@isnad1 id=eq.2h7v.s7.e5f01480b278 from=translated src=- shape=4082fc32 vocab=dff46fde
+-/
 theorem laurentExponent_sub_of_add_eq {γ γ' σ β : ι →₀ ℕ} {m m' : ℕ}
     (hσ : σ + m • γ = m' • γ') (hle : σ ≤ β) :
     laurentExponent γ m (β - σ) = laurentExponent γ' m' β := by
@@ -167,6 +176,9 @@ noncomputable def laurentFilter (γ : ι →₀ ℕ) (m : ℕ) (F : Finset ι) (
   ∑ β ∈ p.support.filter fun β => intNegSupport (laurentExponent γ m β) = F,
     MvPolynomial.monomial β (p.coeff β)
 
+/--
+@isnad1 id=eq.1h7v.s6.1486ff52fecd from=translated src=- shape=823b536e vocab=150efe3d
+-/
 theorem coeff_laurentFilter_of_eq {γ : ι →₀ ℕ} {m : ℕ} {F : Finset ι} {β : ι →₀ ℕ}
     (h : intNegSupport (laurentExponent γ m β) = F) (p : MvPolynomial ι R) :
     (laurentFilter γ m F p).coeff β = p.coeff β := by
@@ -178,6 +190,9 @@ theorem coeff_laurentFilter_of_eq {γ : ι →₀ ℕ} {m : ℕ} {F : Finset ι}
   · rw [ite_eq_left (Finset.mem_filter.mpr ⟨hs, h⟩)]
   · rw [MvPolynomial.notMem_support_iff.mp hs, ite_self]
 
+/--
+@isnad1 id=eq.1h7v.s6.5383e20b36c6 from=translated src=- shape=e66fa8af vocab=150efe3d
+-/
 theorem coeff_laurentFilter_of_ne {γ : ι →₀ ℕ} {m : ℕ} {F : Finset ι} {β : ι →₀ ℕ}
     (h : intNegSupport (laurentExponent γ m β) ≠ F) (p : MvPolynomial ι R) :
     (laurentFilter γ m F p).coeff β = 0 := by
@@ -190,7 +205,9 @@ theorem coeff_laurentFilter_of_ne {γ : ι →₀ ℕ} {m : ℕ} {F : Finset ι}
   · rfl
 
 /-- Filtering is additive in the numerator, which is what the block projection's additivity
-descends from.-/
+descends from.
+@isnad1 id=eq.0h7v.s7.28bab20394b8 from=translated src=- shape=0f597d0c vocab=5297d1cd
+-/
 theorem laurentFilter_add (γ : ι →₀ ℕ) (m : ℕ) (F : Finset ι) (p q : MvPolynomial ι R) :
     laurentFilter γ m F (p + q) = laurentFilter γ m F p + laurentFilter γ m F q := by
   ext β
@@ -201,7 +218,9 @@ theorem laurentFilter_add (γ : ι →₀ ℕ) (m : ℕ) (F : Finset ι) (p q : 
   · rw [coeff_laurentFilter_of_ne h, coeff_laurentFilter_of_ne h, coeff_laurentFilter_of_ne h,
       add_zero]
 
-/-- Filtering preserves the graded piece: it only discards monomials.-/
+/-- Filtering preserves the graded piece: it only discards monomials.
+@isnad1 id=mem.2h9v.s8.65c58e9bb36a from=translated src=- shape=cc5d610a vocab=ca1ddaf8
+-/
 theorem IsPolynomialTwist.laurentFilter_mem {σM : Type u} [SetLike σM (MvPolynomial ι R)]
     {𝓜 : ℕ → σM} {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) {γ : ι →₀ ℕ} {F : Finset ι} {m : ℕ}
     {p : MvPolynomial ι R} (hp : p ∈ 𝓜 (m • γ.degree)) :
@@ -220,6 +239,9 @@ theorem IsPolynomialTwist.laurentFilter_mem {σM : Type u} [SetLike σM (MvPolyn
   · rw [coeff_laurentFilter_of_ne h] at hβ
     exact absurd rfl hβ
 
+/--
+@isnad1 id=mem.1h7v.s9.02a6f3e5fba3 from=translated src=- shape=502795c5 vocab=5e720ce4
+-/
 theorem laurentFilter_mem_natShift {γ : ι →₀ ℕ} {F : Finset ι} {d m : ℕ}
     {p : MvPolynomial ι R}
     (hp : p ∈ natShift (polynomialGrading ι R) d (m • γ.degree)) :
@@ -234,7 +256,9 @@ theorem laurentFilter_mem_natShift {γ : ι →₀ ℕ} {F : Finset ι} {d m : �
 /-- **The blocks exhaust the numerator.** Summing the filters over all subsets of the
 denominator's support recovers the numerator: every monomial lands in the single block named by
 its negative support, and that block is admissible by `intNegSupport_laurentExponent_subset`.
-The index `γ.support.powerset` is finite for every `γ`, whatever the variable set.-/
+The index `γ.support.powerset` is finite for every `γ`, whatever the variable set.
+@isnad1 id=eq.0h5v.s6.ae51cc2b88f9 from=translated src=- shape=97e66d85 vocab=ffec97c9
+-/
 theorem sum_laurentFilter_powerset (γ : ι →₀ ℕ) (m : ℕ) (p : MvPolynomial ι R) :
     ∑ F ∈ γ.support.powerset, laurentFilter γ m F p = p := by
   classical
@@ -245,7 +269,9 @@ theorem sum_laurentFilter_powerset (γ : ι →₀ ℕ) (m : ℕ) (p : MvPolynom
     fun F _ hF => coeff_laurentFilter_of_ne (fun h => hF h.symm) p]
   rw [coeff_laurentFilter_of_eq rfl]
 
-/-- Filtering twice by the same block changes nothing.-/
+/-- Filtering twice by the same block changes nothing.
+@isnad1 id=eq.0h6v.s5.5ebd16ca0a9e from=translated src=- shape=f8cc6cee vocab=121ae1d9
+-/
 theorem laurentFilter_laurentFilter_self (γ : ι →₀ ℕ) (m : ℕ) (F : Finset ι)
     (p : MvPolynomial ι R) :
     laurentFilter γ m F (laurentFilter γ m F p) = laurentFilter γ m F p := by
@@ -254,7 +280,9 @@ theorem laurentFilter_laurentFilter_self (γ : ι →₀ ℕ) (m : ℕ) (F : Fin
   · rw [coeff_laurentFilter_of_eq h, coeff_laurentFilter_of_eq h]
   · rw [coeff_laurentFilter_of_ne h, coeff_laurentFilter_of_ne h]
 
-/-- Distinct blocks are disjoint: filtering by one then the other kills everything.-/
+/-- Distinct blocks are disjoint: filtering by one then the other kills everything.
+@isnad1 id=eq.1h7v.s6.1f9594be719b from=translated src=- shape=d51afc8a vocab=121ae1d9
+-/
 theorem laurentFilter_laurentFilter_of_ne {F F' : Finset ι} (h : F ≠ F') (γ : ι →₀ ℕ) (m : ℕ)
     (p : MvPolynomial ι R) :
     laurentFilter γ m F (laurentFilter γ m F' p) = 0 := by
@@ -264,7 +292,9 @@ theorem laurentFilter_laurentFilter_of_ne {F F' : Finset ι} (h : F ≠ F') (γ 
   · rw [coeff_laurentFilter_of_eq hN, coeff_laurentFilter_of_ne fun h' => h (hN ▸ h')]
   · rw [coeff_laurentFilter_of_ne hN]
 
-/-- A block outside the denominator's support is empty.-/
+/-- A block outside the denominator's support is empty.
+@isnad1 id=eq.1h6v.s6.3507f7bd1aee from=translated src=- shape=2b4c5b73 vocab=cfcf4fc4
+-/
 theorem laurentFilter_eq_zero_of_not_subset {γ : ι →₀ ℕ} {F : Finset ι}
     (h : ¬ F ⊆ γ.support) (m : ℕ) (p : MvPolynomial ι R) :
     laurentFilter γ m F p = 0 := by
@@ -278,7 +308,9 @@ data moves from `(γ, m)` to `(γ', m')` commutes with filtering, as soon as
 `σ + m • γ = m' • γ'` — the hypothesis under which `laurentExponent_sub_of_add_eq` says no
 Laurent exponent moves. Raising a representative (`σ = t • γ`) and applying a Čech face
 (`σ = m • single e c`) are the two instances; this one identity is the whole content of both
-the well-definedness of `blockProj` and its commutation with the faces.-/
+the well-definedness of `blockProj` and its commutation with the faces.
+@isnad1 id=eq.1h9v.s9.de31cd23c020 from=translated src=- shape=deae13a4 vocab=63602990
+-/
 theorem laurentFilter_monomial_mul {γ γ' σ : ι →₀ ℕ} {m m' : ℕ}
     (hσ : σ + m • γ = m' • γ') (F : Finset ι) (p : MvPolynomial ι R) :
     laurentFilter γ' m' F (MvPolynomial.monomial σ 1 * p) =
@@ -321,7 +353,9 @@ noncomputable def AwayRep.blockFilter (h𝓜 : IsPolynomialTwist 𝓜 d) {γ : �
 set_option maxHeartbeats 800000 in
 /-- Filtering a representative is the same as raising it first and then filtering. This is
 `laurentFilter_monomial_mul` at `σ = t • γ` on the numerator and `awayMk_shift` on the
-fraction; well-definedness follows exactly as it did for the sign projection.-/
+fraction; well-definedness follows exactly as it did for the sign projection.
+@isnad1 id=eq.1h9v.s13.d44dc1d8ca44 from=translated src=- shape=96bcd3b7 vocab=492e804f
+-/
 theorem AwayRep.frac_blockFilter_raise (h𝓜 : IsPolynomialTwist 𝓜 d) {γ : ι →₀ ℕ}
     (F : Finset ι)
     (r : AwayRep ι R 𝓜 γ) (t : ℕ) :
@@ -354,7 +388,9 @@ theorem AwayRep.frac_blockFilter_raise (h𝓜 : IsPolynomialTwist 𝓜 d) {γ : 
     (laurentFilter γ r.pow F r.num) (IsPolynomialTwist.laurentFilter_mem h𝓜 r.num_mem) hmem2
 
 set_option maxHeartbeats 800000 in
-/-- **Well-definedness.** Two representatives of one fraction filter to the same fraction.-/
+/-- **Well-definedness.** Two representatives of one fraction filter to the same fraction.
+@isnad1 id=eq.2h9v.s14.5393f4fd6a8d from=translated src=- shape=55f36480 vocab=45d55dc5
+-/
 theorem AwayRep.frac_blockFilter_congr [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ : ι →₀ ℕ} (F : Finset ι)
     {r₁ r₂ : AwayRep ι R 𝓜 γ} (h : r₁.frac = r₂.frac) :
@@ -390,13 +426,18 @@ noncomputable def blockProj [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ 
       (𝓜) (.powers (MvPolynomial.monomial γ (1 : R))) :=
   ((AwayRep.frac_surjective 𝓜 γ z).choose.blockFilter h𝓜 F).frac
 
+/--
+@isnad1 id=eq.1h8v.s13.0fac98518c07 from=translated src=- shape=c00bfaeb vocab=fe88ed41
+-/
 theorem blockProj_frac [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (F : Finset ι) (r : AwayRep ι R 𝓜 γ) :
     blockProj h𝓜 γ F r.frac = (r.blockFilter h𝓜 F).frac :=
   AwayRep.frac_blockFilter_congr h𝓜 F (AwayRep.frac_surjective 𝓜 γ r.frac).choose_spec
 
 /-- **The defining equation of the block projection**: on a representative it filters the
-numerator and keeps the exponent.-/
+numerator and keeps the exponent.
+@isnad1 id=eq.2h9v.s13.981c82214767 from=translated src=- shape=cd6498b3 vocab=2e4f8c2a
+-/
 theorem blockProj_awayMk [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (F : Finset ι) {m : ℕ}
     {p : MvPolynomial ι R}
@@ -411,7 +452,9 @@ theorem blockProj_awayMk [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : �
 
 set_option maxHeartbeats 800000 in
 /-- The block projection is additive: align the fractions at a common denominator, where it is
-`laurentFilter_add`.-/
+`laurentFilter_add`.
+@isnad1 id=eq.1h9v.s16.86b44f52c2fe from=translated src=- shape=3793e894 vocab=a62cf502
+-/
 theorem blockProj_add [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (F : Finset ι)
     (z₁ z₂ : DegreeZeroLocalization (polynomialGrading ι R)
@@ -446,6 +489,9 @@ noncomputable def blockProjHom [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (
         (.powers (MvPolynomial.monomial γ (1 : R))) :=
   AddMonoidHom.mk' (blockProj h𝓜 γ F) (blockProj_add h𝓜 γ F)
 
+/--
+@isnad1 id=eq.1h8v.s18.95b1e5bb3075 from=translated src=- shape=c2714485 vocab=6b240fc6
+-/
 @[simp]
 theorem blockProjHom_apply [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (F : Finset ι)
@@ -458,7 +504,9 @@ set_option maxHeartbeats 800000 in
 /-- **The blocks exhaust the localization.** The projections over the finite index
 `γ.support.powerset` sum to the identity. This is the whole decomposition step in the form the
 vanishing argument consumes: no direct sum, no reindexed complex — each element *is* the finite
-sum of its blocks, one localization at a time.-/
+sum of its blocks, one localization at a time.
+@isnad1 id=eq.1h7v.s15.39355b66c24f from=translated src=- shape=af583e3d vocab=bb7613e4
+-/
 theorem sum_blockProj [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (z : DegreeZeroLocalization (polynomialGrading ι R)
       (𝓜) (.powers (MvPolynomial.monomial γ (1 : R)))) :
@@ -492,7 +540,9 @@ theorem sum_blockProj [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι �
           (monomial_one_mem_polynomialGrading (R := R) γ) m p hp :=
         hcongr _ _ _ _ (sum_laurentFilter_powerset γ m p)
 
-/-- The block projections are idempotent.-/
+/-- The block projections are idempotent.
+@isnad1 id=eq.1h8v.s14.0ae16ab5c0cf from=translated src=- shape=6bf76432 vocab=d6320924
+-/
 theorem blockProj_blockProj_self [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d) (γ : ι →₀ ℕ)
     (F : Finset ι)
     (z : DegreeZeroLocalization (polynomialGrading ι R)
@@ -511,7 +561,9 @@ theorem blockProj_blockProj_self [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     rintro a b ha hb rfl; rfl
   exact hcongr _ _ _ _ (laurentFilter_laurentFilter_self γ m F p)
 
-/-- Distinct block projections are orthogonal.-/
+/-- Distinct block projections are orthogonal.
+@isnad1 id=eq.2h9v.s15.486294fece32 from=translated src=- shape=95e05fb4 vocab=d6320924
+-/
 theorem blockProj_blockProj_of_ne [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {F F' : Finset ι} (h : F ≠ F') (γ : ι →₀ ℕ)
     (z : DegreeZeroLocalization (polynomialGrading ι R)
@@ -528,7 +580,9 @@ theorem blockProj_blockProj_of_ne [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d
     exact DegreeZeroLocalization.awayMk_zero (monomial_one_mem_polynomialGrading (R := R) γ) m
   exact hcongr _ _ (laurentFilter_laurentFilter_of_ne h γ m p)
 
-/-- A block outside the denominator's support projects to zero.-/
+/-- A block outside the denominator's support projects to zero.
+@isnad1 id=eq.2h8v.s15.276afc8b1862 from=translated src=- shape=9ae3b447 vocab=731214c5
+-/
 theorem blockProj_eq_zero_of_not_subset [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ : ι →₀ ℕ} {F : Finset ι} (h : ¬ F ⊆ γ.support)
     (z : DegreeZeroLocalization (polynomialGrading ι R)
@@ -555,7 +609,9 @@ set_option maxHeartbeats 1200000 in
 /-- **The faces commute with the block projections.** Restricting along `X_e` and then taking
 the block-`F` component is taking the block-`F` component and restricting after. This is
 `laurentFilter_monomial_mul` at `σ = m • single e c`; no restriction on `F` is needed, in
-contrast to the sign projection's square.-/
+contrast to the sign projection's square.
+@isnad1 id=eq.2h11v.s19.1aeeaf97f175 from=translated src=- shape=9b2a1e56 vocab=39263526
+-/
 theorem laurentFace_blockProj [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {e : ι} {c : ℕ}
     (hγ : γ = Finsupp.single e c + γ') (F : Finset ι)

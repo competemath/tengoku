@@ -21,7 +21,9 @@ open Limits Pretriangulated Triangulated
 variable {C : Type*} [Category C] [Preadditive C] [HasZeroObject C] [HasShift C ℤ]
   [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
 
-/-- The `≤ n` part of a t-structure is stable under retracts.-/
+/-- The `≤ n` part of a t-structure is stable under retracts.
+@isnad1 id=isle.1h6v.s6.805e5129eee3 from=translated src=- shape=74624c54 vocab=8f5d966a
+-/
 lemma tStructureIsLE_of_retract (t : TStructure C) {X Y : C} (r : Retract X Y) (n : ℤ)
     (hY : t.IsLE Y n) : t.IsLE X n := by
   rw [t.isLE_iff_orthogonal n (n + 1) rfl]
@@ -30,7 +32,9 @@ lemma tStructureIsLE_of_retract (t : TStructure C) {X Y : C} (r : Retract X Y) (
     (by omega) hY hZ
   rw [← Category.id_comp f, ← r.retract, Category.assoc, hzero, comp_zero]
 
-/-- The `≥ n` part of a t-structure is stable under retracts.-/
+/-- The `≥ n` part of a t-structure is stable under retracts.
+@isnad1 id=isge.1h6v.s6.a8fa19f4d037 from=translated src=- shape=74624c54 vocab=225454e0
+-/
 lemma tStructureIsGE_of_retract (t : TStructure C) {X Y : C} (r : Retract X Y) (n : ℤ)
     (hY : t.IsGE Y n) : t.IsGE X n := by
   rw [t.isGE_iff_orthogonal (n - 1) n (by omega)]

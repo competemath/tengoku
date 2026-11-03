@@ -142,7 +142,9 @@ private theorem Module.fixedTerminal_rescaleMap
 /-- Descend a zero-composite three-term module diagram with fixed terminal
 `R`-module `T`. Only `M₀` and `M₁` must be finite over the localization; `T`
 may be arbitrary. The equivalences need not be induced by the submodule
-inclusions, since clearing the composite rescales the first equivalence.-/
+inclusions, since clearing the composite rescales the first equivalence.
+@isnad1 id=ex.1h8v.s14.0fb8b932d28b from=translated src=- shape=b0f6178b vocab=ee7ddc5f
+-/
 theorem Module.exists_finitely_presented_fixedTerminalThreeTerm_of_isLocalization
     {R A M₀ M₁ T : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A] [IsNoetherianRing R]

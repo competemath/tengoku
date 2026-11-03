@@ -46,6 +46,9 @@ noncomputable def QuasicoherentData.ofIso {M N : SheafOfModules.{u} R}
     (q : M.QuasicoherentData) (e : M ≅ N) : N.QuasicoherentData :=
   q.ofIsIso e.hom
 
+/--
+@isnad1 id=isfinite.0h7v.s7.7cd7c3ca785b from=translated src=- shape=cc979417 vocab=dc5e5065
+-/
 instance QuasicoherentData.isFinitePresentation_ofIso
     {M N : SheafOfModules.{u} R} (q : M.QuasicoherentData) (e : M ≅ N)
     [q.IsFinitePresentation] : (q.ofIso e).IsFinitePresentation := by
@@ -53,7 +56,9 @@ instance QuasicoherentData.isFinitePresentation_ofIso
   infer_instance
 
 omit hasSheafCompose [Limits.HasBinaryProducts C] in
-/-- Finite presentation is preserved by an isomorphism of sheaves of modules.-/
+/-- Finite presentation is preserved by an isomorphism of sheaves of modules.
+@isnad1 id=isfinite.1h6v.s7.5407703117c0 from=translated src=- shape=2a21bb01 vocab=5065ac46
+-/
 theorem IsFinitePresentation.of_iso {M N : SheafOfModules.{u} R} (e : M ≅ N)
     (hM : M.IsFinitePresentation) : N.IsFinitePresentation := by
   obtain ⟨q, hq⟩ := hM.exists_quasicoherentData

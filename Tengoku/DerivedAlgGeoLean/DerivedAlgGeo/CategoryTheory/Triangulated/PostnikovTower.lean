@@ -57,7 +57,9 @@ variable {C} in
 
 Formerly a structure field (`zero_isZero`), which overstated what a
 constructor must supply: a length-zero chain starts and ends at the same
-object, so `base_isZero` transported across `top_iso` already proves this.-/
+object, so `base_isZero` transported across `top_iso` already proves this.
+@isnad1 id=iszero.1h3v.s6.fedf3893bc30 from=translated src=- shape=d8570f15 vocab=6f503c90
+-/
 theorem PostnikovTower.isZero_of_length_zero {E : C} (P : PostnikovTower C E)
     (h : P.n = 0) : IsZero E := by
   have h0 : P.chain.right = P.chain.left :=

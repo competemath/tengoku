@@ -76,7 +76,9 @@ noncomputable def Adjunction.mapHomologicalComplex {F : A ⥤ B} {G : B ⥤ A}
     exact adj.right_triangle_components (K.X i)
 
 /-- An additive functor sends a strictly bounded-above cochain complex to a
-strictly bounded-above cochain complex with the same bound.-/
+strictly bounded-above cochain complex with the same bound.
+@isnad1 id=isstrict.1h5v.s7.f2f57502a24b from=translated src=- shape=0ce09b50 vocab=95a98009
+-/
 lemma mapHomologicalComplex_isStrictlyLE (F : A ⥤ B) [F.Additive]
     (K : CochainComplex A ℤ) (n : ℤ) (hK : K.IsStrictlyLE n) :
     CochainComplex.IsStrictlyLE
@@ -86,7 +88,9 @@ lemma mapHomologicalComplex_isStrictlyLE (F : A ⥤ B) [F.Additive]
   exact F.map_isZero (hK i hi)
 
 /-- An additive functor sends a strictly bounded-below cochain complex to a
-strictly bounded-below cochain complex with the same bound.-/
+strictly bounded-below cochain complex with the same bound.
+@isnad1 id=isstrict.1h5v.s7.5db3276b902e from=translated src=- shape=0ce09b50 vocab=1331448e
+-/
 lemma mapHomologicalComplex_isStrictlyGE (F : A ⥤ B) [F.Additive]
     (K : CochainComplex A ℤ) (n : ℤ) (hK : K.IsStrictlyGE n) :
     CochainComplex.IsStrictlyGE
@@ -121,7 +125,9 @@ noncomputable def Adjunction.mapDerivedCategory {F : A ⥤ B} {G : B ⥤ A}
     F.mapDerivedCategory G.mapDerivedCategory
 
 /-- The functor on derived categories induced by an exact functor preserves
-the canonical `≤ n` truncation bound.-/
+the canonical `≤ n` truncation bound.
+@isnad1 id=isle.1h5v.s7.4946662efe4f from=translated src=- shape=3d998511 vocab=7d308370
+-/
 lemma mapDerivedCategory_isLE (F : A ⥤ B) [F.Additive]
     [PreservesFiniteLimits F] [PreservesFiniteColimits F]
     (E : DerivedCategory A) (n : ℤ)
@@ -134,7 +140,9 @@ lemma mapDerivedCategory_isLE (F : A ⥤ B) [F.Additive]
     mapHomologicalComplex_isStrictlyLE F K n hK⟩
 
 /-- The functor on derived categories induced by an exact functor preserves
-the canonical `≥ n` truncation bound.-/
+the canonical `≥ n` truncation bound.
+@isnad1 id=isge.1h5v.s7.bf496f93388c from=translated src=- shape=3d998511 vocab=5e710a02
+-/
 lemma mapDerivedCategory_isGE (F : A ⥤ B) [F.Additive]
     [PreservesFiniteLimits F] [PreservesFiniteColimits F]
     (E : DerivedCategory A) (n : ℤ)
@@ -147,7 +155,9 @@ lemma mapDerivedCategory_isGE (F : A ⥤ B) [F.Additive]
     mapHomologicalComplex_isStrictlyGE F K n hK⟩
 
 /-- Exact functors preserve bounded objects in the canonical derived
-t-structures.-/
+t-structures.
+@isnad1 id=bounded.0h5v.s7.d697d4f4ff37 from=translated src=- shape=5b8af349 vocab=bc9cda33
+-/
 lemma mapDerivedCategory_bounded (F : A ⥤ B) [F.Additive]
     [PreservesFiniteLimits F] [PreservesFiniteColimits F]
     (E : DerivedCategory A)

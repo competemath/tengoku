@@ -53,7 +53,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 universe u v
 
 /-- Additivity follows from finite-product preservation, without computing
-with stalk representatives.-/
+with stalk representatives.
+@isnad1 id=additive.0h2v.s7.78a2328a2a80 from=translated src=- shape=47332455 vocab=6c03cc16
+-/
 theorem moduleStalkFunctor_additive (X : Scheme.{u}) (x : X) :
     (moduleStalkFunctor X x).Additive := by
   letI := moduleStalkFunctor_preservesFiniteLimits X x
@@ -62,7 +64,9 @@ theorem moduleStalkFunctor_additive (X : Scheme.{u}) (x : X) :
 attribute [local instance] moduleStalkFunctor_additive
 
 /-- Coequalizer preservation is a specialization of the small-colimit theorem
-for the existing module-stalk functor.-/
+for the existing module-stalk functor.
+@isnad1 id=preserve.0h2v.s7.d82e7071ac6b from=translated src=- shape=aebf213b vocab=3712b609
+-/
 theorem moduleStalkFunctor_preservesParallelPairColimits
     (X : Scheme.{u}) (x : X) :
     PreservesColimitsOfShape WalkingParallelPair (moduleStalkFunctor X x) := by
@@ -70,7 +74,9 @@ theorem moduleStalkFunctor_preservesParallelPairColimits
   infer_instance
 
 /-- Finite limits supply kernels and coequalizers supply cokernels, giving
-preservation of homology by module stalks.-/
+preservation of homology by module stalks.
+@isnad1 id=preserve.0h2v.s8.2621a741a566 from=translated src=- shape=47332455 vocab=d6487450
+-/
 theorem moduleStalkFunctor_preservesHomology (X : Scheme.{u}) (x : X) :
     (moduleStalkFunctor X x).PreservesHomology := by
   letI := moduleStalkFunctor_additive X x
@@ -83,7 +89,9 @@ attribute [local instance] moduleStalkFunctor_preservesHomology
   HasDerivedCategory.standard
 
 /-- Apply the pinned jointly-reflecting exact-functor criterion to all module
-stalks. This detects quasi-isomorphisms for every complex shape.-/
+stalks. This detects quasi-isomorphisms for every complex shape.
+@isnad1 id=iff.0h6v.s12.69fccf7f7360 from=translated src=- shape=0236a720 vocab=edc470fa
+-/
 theorem quasiIso_iff_stalkwise (X : Scheme.{u})
     {ι : Type v} {c : ComplexShape ι} {K L : HomologicalComplex X.Modules c}
     (g : K ⟶ L) :

@@ -78,6 +78,9 @@ def hcomp (α : HomogeneousNatTrans F F' n) (β : HomogeneousNatTrans G G' m)
   composition (F.comp G) (F'.comp G) (F'.comp G') n m r h
     (whiskerRight α G) (whiskerLeft F' β)
 
+/--
+@isnad1 id=eq.1h13v.s14.77a23e27f8d8 from=translated src=- shape=b332199a vocab=2e0ff54b
+-/
 @[simp]
 theorem hcomp_app (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) (X : C) :
@@ -91,7 +94,9 @@ theorem hcomp_app (α : HomogeneousNatTrans F F' n)
 This is `interchange`, read as a statement about `hcomp`.  The sign is graded
 naturality of `β` evaluated at the degree-`n` component of `α`, so it is not a
 convention: whichever reading is taken as the definition, the other one
-carries that factor.-/
+carries that factor.
+@isnad1 id=eq.2h12v.s17.6e18dd755bfb from=translated src=- shape=ddab60b2 vocab=424a677e
+-/
 theorem hcomp_eq_smul_swap (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) (h' : m + n = r) :
     hcomp α β r h =
@@ -100,7 +105,9 @@ theorem hcomp_eq_smul_swap (α : HomogeneousNatTrans F F' n)
           (whiskerLeft F β) (whiskerRight α G') :=
   interchange α β r h h'
 
-/-- The componentwise form of `hcomp_eq_smul_swap`.-/
+/-- The componentwise form of `hcomp_eq_smul_swap`.
+@isnad1 id=eq.2h13v.s14.cb7d2e7e9914 from=translated src=- shape=6a7da321 vocab=263f3ab2
+-/
 theorem hcomp_app_swap (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) (h' : m + n = r)
     (X : C) :
@@ -111,23 +118,35 @@ theorem hcomp_app_swap (α : HomogeneousNatTrans F F' n)
 
 /-! ### Additivity in each argument -/
 
+/--
+@isnad1 id=eq.1h11v.s12.33c68049c9c0 from=translated src=- shape=7d36d3dc vocab=bae385af
+-/
 @[simp]
 theorem hcomp_zero_left (β : HomogeneousNatTrans G G' m) (r : ℤ)
     (h : n + m = r) :
     hcomp (0 : HomogeneousNatTrans F F' n) β r h = 0 := by
   rw [hcomp, whiskerRight_zero, map_zero, AddMonoidHom.zero_apply]
 
+/--
+@isnad1 id=eq.1h11v.s12.4a49f586fdab from=translated src=- shape=2884dba5 vocab=bae385af
+-/
 @[simp]
 theorem hcomp_zero_right (α : HomogeneousNatTrans F F' n) (r : ℤ)
     (h : n + m = r) :
     hcomp α (0 : HomogeneousNatTrans G G' m) r h = 0 := by
   rw [hcomp, whiskerLeft_zero, map_zero]
 
+/--
+@isnad1 id=eq.1h13v.s13.345ced17fcb4 from=translated src=- shape=fdfe5b34 vocab=bae385af
+-/
 theorem hcomp_add_left (α α' : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) :
     hcomp (α + α') β r h = hcomp α β r h + hcomp α' β r h := by
   rw [hcomp, hcomp, hcomp, whiskerRight_add, map_add, AddMonoidHom.add_apply]
 
+/--
+@isnad1 id=eq.1h13v.s13.1368b6665063 from=translated src=- shape=1bb8475d vocab=bae385af
+-/
 theorem hcomp_add_right (α : HomogeneousNatTrans F F' n)
     (β β' : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) :
     hcomp α (β + β') r h = hcomp α β r h + hcomp α β' r h := by
@@ -146,6 +165,9 @@ def horizontalComposition (F F' : DGFunctor C D) (G G' : DGFunctor D E)
       intro β
       exact hcomp_add_left α α' β r h)
 
+/--
+@isnad1 id=eq.1h12v.s16.2b33b576d4e2 from=translated src=- shape=44dca729 vocab=c7f82bc3
+-/
 @[simp]
 theorem horizontalComposition_apply (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) :
@@ -155,7 +177,9 @@ theorem horizontalComposition_apply (α : HomogeneousNatTrans F F' n)
 /-! ### Units -/
 
 /-- Horizontally composing with an identity on the left is left whiskering.
-No sign appears, which is one reason to take this order as the definition.-/
+No sign appears, which is one reason to take this order as the definition.
+@isnad1 id=eq.0h8v.s10.55f9d885846f from=translated src=- shape=0b9c301b vocab=9aa36534
+-/
 @[simp]
 theorem id_hcomp (F : DGFunctor C D) (β : HomogeneousNatTrans G G' m) :
     hcomp (id F) β m (zero_add m) = whiskerLeft F β := by
@@ -167,13 +191,18 @@ theorem id_hcomp (F : DGFunctor C D) (β : HomogeneousNatTrans G G' m) :
   exact dgId_comp (C := DGFunctor C E) m (whiskerLeft F β)
 
 /-- Horizontally composing with an identity on the right is right
-whiskering.-/
+whiskering.
+@isnad1 id=eq.0h8v.s10.8286b2dfab29 from=translated src=- shape=cc464b85 vocab=d20f299c
+-/
 @[simp]
 theorem hcomp_id (α : HomogeneousNatTrans F F' n) (G : DGFunctor D E) :
     hcomp α (id G) n (add_zero n) = whiskerRight α G := by
   rw [hcomp, whiskerLeft_id]
   exact dgComp_id (C := DGFunctor C E) n (whiskerRight α G)
 
+/--
+@isnad1 id=eq.0h5v.s9.1d49ec7ff552 from=translated src=- shape=d5040e76 vocab=0b2e0a23
+-/
 theorem id_hcomp_id (F : DGFunctor C D) (G : DGFunctor D E) :
     hcomp (id F) (id G) 0 (add_zero 0) = id (F.comp G) := by
   rw [hcomp_id, whiskerRight_id]
@@ -185,7 +214,9 @@ theorem id_hcomp_id (F : DGFunctor C D) (G : DGFunctor D E) :
 `δ (α ⋆ β) = α ⋆ δβ + (-1)^m • (δα ⋆ β)`, with `m` the degree of `β`.  Both
 whiskerings commute with the differential, so this is the Leibniz rule of the
 dg category of dg functors applied to the vertical composite that defines
-`hcomp`; the sign is the repository's `dgComp` convention and nothing more.-/
+`hcomp`; the sign is the repository's `dgComp` convention and nothing more.
+@isnad1 id=eq.1h12v.s13.b0ec0bb733e5 from=translated src=- shape=32b91c46 vocab=bd3dc9b8
+-/
 theorem differential_hcomp (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (r : ℤ) (h : n + m = r) :
     differential (hcomp α β r h) =
@@ -200,7 +231,9 @@ theorem differential_hcomp (α : HomogeneousNatTrans F F' n)
   exact dgComp_leibniz n m r (r + 1) h rfl (G.map n (app α X))
     (app β (F'.obj X))
 
-/-- The Godement product of two closed transformations is closed.-/
+/-- The Godement product of two closed transformations is closed.
+@isnad1 id=isclosed.3h12v.s10.ae1a922a7a21 from=translated src=- shape=e0af04b3 vocab=ec0b72ed
+-/
 theorem IsClosed.hcomp {α : HomogeneousNatTrans F F' n}
     {β : HomogeneousNatTrans G G' m} (hα : IsClosed α) (hβ : IsClosed β)
     (r : ℤ) (h : n + m = r) :
@@ -223,7 +256,9 @@ variable {F F' : DGFunctor C D} {G G' : DGFunctor D E} {H H' : DGFunctor E B}
 Dg functors compose strictly, so both sides are transformations
 `F ⋙ G ⋙ H ⟶ F' ⋙ G' ⋙ H'` of the same degree and the statement needs no
 comparison isomorphism.  The proof is `DGFunctor.map_comp` for `H`, then
-associativity of the graded composition.-/
+associativity of the graded composition.
+@isnad1 id=eq.4h19v.s11.2695a023bc87 from=translated src=- shape=0afa59c5 vocab=bae385af
+-/
 theorem hcomp_assoc (α : HomogeneousNatTrans F F' n)
     (β : HomogeneousNatTrans G G' m) (γ : HomogeneousNatTrans H H' k)
     (nm mk s : ℤ) (hnm : n + m = nm) (hmk : m + k = mk) (hs : nm + k = s)

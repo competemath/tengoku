@@ -35,7 +35,9 @@ namespace FGModuleCat
 
 variable {R : Type u} [CommRing R]
 
-/-- Every finitely generated module is a quotient of a free module of finite rank.-/
+/-- Every finitely generated module is a quotient of a free module of finite rank.
+@isnad1 id=ex.0h2v.s8.431df2395750 from=translated src=- shape=97a86042 vocab=46362474
+-/
 theorem exists_finFree_epi (M : FGModuleCat.{u} R) :
     ∃ (k : ℕ) (q : FGModuleCat.of R (Fin k → R) ⟶ M), Epi q := by
   haveI : Module.Finite R M.obj := M.property
@@ -49,7 +51,9 @@ forgetful functor to all modules preserves epimorphisms, so a lift in all module
 
 No noetherian hypothesis. The epimorphism preservation comes from Mathlib's
 `PreservesFiniteColimits` instance for `forget₂ (FGModuleCat R) (ModuleCat R)`, which is
-stated over any ring.-/
+stated over any ring.
+@isnad1 id=projecti.0h2v.s6.5b90b6e7177a from=translated src=- shape=0d128ff7 vocab=d61ab555
+-/
 theorem projective_of_finFree (k : ℕ) :
     Projective (FGModuleCat.of R (Fin k → R)) where
   factors {Y Z} g e he := by

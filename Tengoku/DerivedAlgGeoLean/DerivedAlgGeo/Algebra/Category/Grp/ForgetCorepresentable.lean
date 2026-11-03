@@ -20,7 +20,9 @@ open CategoryTheory
 
 namespace AddCommGrpCat
 
-/-- `uliftZMultiplesAddEquiv` is evaluation at `1`, so it is natural in the target.-/
+/-- `uliftZMultiplesAddEquiv` is evaluation at `1`, so it is natural in the target.
+@isnad1 id=eq.0h4v.s9.92970a97c7f3 from=translated src=- shape=8573368e vocab=191af326
+-/
 lemma uliftZMultiplesAddEquiv_comp {G H : AddCommGrpCat.{u}} (φ : of (ULift.{u} ℤ) ⟶ G)
     (g : G ⟶ H) :
     uliftZMultiplesAddEquiv H (φ ≫ g) = g (uliftZMultiplesAddEquiv G φ) := rfl

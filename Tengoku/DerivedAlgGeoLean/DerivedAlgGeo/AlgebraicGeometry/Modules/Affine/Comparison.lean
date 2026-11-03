@@ -121,7 +121,9 @@ noncomputable def basicOpenRestriction (M : (Spec R).Modules) (f : R) :
   (modulesSpecToSheaf.obj M).presheaf.map (homOfLE (fun _ _ => trivial)).op
 
 /-- The counit composed with `tilde.toOpen` is restriction — Mathlib's
-`toOpen_fromTildeΓ_app`, phrased through `basicOpenRestriction`.-/
+`toOpen_fromTildeΓ_app`, phrased through `basicOpenRestriction`.
+@isnad1 id=eq.0h3v.s13.ef8bccd22bfa from=translated src=- shape=f0073c9d vocab=f19b0599
+-/
 lemma toOpen_comp_fromTildeΓ_app (M : (Spec R).Modules) (f : R) :
     tilde.toOpen ((modulesSpecToSheaf.obj M).presheaf.obj (op ⊤)) (PrimeSpectrum.basicOpen f) ≫
         (modulesSpecToSheaf.map M.fromTildeΓ).hom.app (op (PrimeSpectrum.basicOpen f)) =
@@ -134,7 +136,9 @@ end Scheme.Modules
 localisation at the powers of `f`.**
 
 Both `tilde.toOpen` and the restriction are then localisations of `Γ(M, ⊤)` at the same
-submonoid, and the component is the comparison map between them.-/
+submonoid, and the component is the comparison map between them.
+@isnad1 id=isiso.0h3v.s13.7d39deb4bbc1 from=translated src=- shape=b1f320f3 vocab=f9d20bca
+-/
 theorem isIso_fromTildeΓ_app_basicOpen (M : (Spec R).Modules) (f : R)
     [IsLocalizedModule (Submonoid.powers f) (M.basicOpenRestriction f).hom] :
     IsIso ((modulesSpecToSheaf.map M.fromTildeΓ).hom.app (op (basicOpen f))) := by
@@ -164,7 +168,9 @@ localisation.**
 This is a basiswise reduction of the affine comparison. Mathlib's pinned quasi-coherent instance
 proves the comparison for quasi-coherent modules by a finite basic-open-cover argument; this
 criterion also applies to an arbitrary module sheaf when its localization hypotheses are supplied
-directly.-/
+directly.
+@isnad1 id=isiso.1h2v.s12.b5817af408a4 from=translated src=- shape=e3e733b0 vocab=c0ef693f
+-/
 theorem isIso_fromTildeΓ_of_isLocalizedModule (M : (Spec R).Modules)
     (h : ∀ f : R, IsLocalizedModule (Submonoid.powers f) (M.basicOpenRestriction f).hom) :
     IsIso M.fromTildeΓ := by
@@ -177,7 +183,9 @@ theorem isIso_fromTildeΓ_of_isLocalizedModule (M : (Spec R).Modules)
   haveI := h f
   exact isIso_fromTildeΓ_app_basicOpen M f
 
-/-- `basicOpenRestriction` is a presheaf restriction map, so it is natural in `M`.-/
+/-- `basicOpenRestriction` is a presheaf restriction map, so it is natural in `M`.
+@isnad1 id=eq.0h5v.s13.6ffbce48f317 from=translated src=- shape=6c2c0550 vocab=3ebc426e
+-/
 lemma Scheme.Modules.basicOpenRestriction_naturality {M N : (Spec R).Modules} (φ : M ⟶ N)
     (f : R) :
     M.basicOpenRestriction f ≫

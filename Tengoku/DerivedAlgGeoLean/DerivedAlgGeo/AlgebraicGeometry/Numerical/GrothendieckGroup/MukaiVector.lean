@@ -100,7 +100,9 @@ noncomputable def mukaiSInt (V : NumericalVarietyData 2 A N) (E : N) : ℤ :=
   V.chi E - V.rank E
 
 /-- `mukaiSInt` computes `mukaiS`, so the third Mukai coordinate really is an
-integer. Proved from `chi_eq_rank_add_mukaiS`; nothing is assumed.-/
+integer. Proved from `chi_eq_rank_add_mukaiS`; nothing is assumed.
+@isnad1 id=eq.2h4v.s6.dce2b55d6246 from=translated src=- shape=25cb4603 vocab=30824973
+-/
 theorem mukaiSInt_spec (V : NumericalVarietyData 2 A N)
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     (mukaiSInt V E : ℚ) = mukaiS V E := by
@@ -149,7 +151,9 @@ variable (D : IntegralMukaiData V Λ)
 `b_spec` computes both sides as the same intersection number, `A` is
 commutative, and the integer cast is injective. This is all the symmetry the
 structure can see; symmetry off the image of `c₁` is neither demanded nor
-available.-/
+available.
+@isnad1 id=eq.0h7v.s9.eef5703e8905 from=translated src=- shape=7c8ff422 vocab=34b65fa3
+-/
 theorem b_comm_on_realized (E F : N) :
     D.b (D.c₁ E) (D.c₁ F) = D.b (D.c₁ F) (D.c₁ E) := by
   have h : (D.b (D.c₁ E) (D.c₁ F) : ℚ) = (D.b (D.c₁ F) (D.c₁ E) : ℚ) := by
@@ -168,7 +172,9 @@ and it cannot: `b` is not assumed nondegenerate anywhere, so a `c₁` that is
 additive only up to a radical vector satisfies every field of this structure.
 
 Making the difference actually zero is `AdditiveMukaiData.c₁_add`, and this
-lemma is the reason that has to be supplied rather than derived.-/
+lemma is the reason that has to be supplied rather than derived.
+@isnad1 id=eq.0h8v.s10.6516c407a261 from=translated src=- shape=5333ad31 vocab=5164931f
+-/
 theorem b_c₁_add (E F G : N) :
     D.b (D.c₁ (E + F)) (D.c₁ G)
       = D.b (D.c₁ E) (D.c₁ G) + D.b (D.c₁ F) (D.c₁ G) := by
@@ -186,20 +192,30 @@ noncomputable def mukaiVector (E : N) : Mukai.MukaiLattice Λ :=
   (V.rank E, D.c₁ E, mukaiSInt V E)
 
 /-- The integral Mukai construction retains numerical rank as its first coordinate
-definitionally.-/
+definitionally.
+@isnad1 id=eq.0h6v.s6.22bd449195df from=translated src=- shape=2fba83b2 vocab=2e278095
+-/
 @[simp]
 theorem mukaiVector_fst (E : N) : (D.mukaiVector E).1 = V.rank E := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.7c2471e7eee5 from=translated src=- shape=61a1e249 vocab=5b01e46e
+-/
 @[simp]
 theorem mukaiVector_snd_fst (E : N) : (D.mukaiVector E).2.1 = D.c₁ E := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.5376b6bf227a from=translated src=- shape=a69858ae vocab=3b7972a5
+-/
 @[simp]
 theorem mukaiVector_snd_snd (E : N) :
     (D.mukaiVector E).2.2 = mukaiSInt V E := rfl
 
 /-- **The abstract Mukai pairing computes the numerical one.**  This is the
 identification the abstract lattice file declined to make, discharged from the
-supplied integral data.-/
+supplied integral data.
+@isnad1 id=eq.2h7v.s6.32a3278b9b32 from=translated src=- shape=7b22428b vocab=34382357
+-/
 theorem pairing_mukaiVector (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E F : N) :
     ((Mukai.pairing D.b (D.mukaiVector E) (D.mukaiVector F) : ℤ) : ℚ)
       = mukaiPairing V E F := by
@@ -208,7 +224,9 @@ theorem pairing_mukaiVector (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E F : N) :
   rw [D.b_spec, mukaiSInt_spec V hHRR hK3, mukaiSInt_spec V hHRR hK3]
 
 /-- Specializing `pairing_mukaiVector` to the diagonal identifies the lattice norm used by
-sphericity and expected-dimension results with the numerical self-pairing.-/
+sphericity and expected-dimension results with the numerical self-pairing.
+@isnad1 id=eq.2h6v.s6.afe62d6ef4e6 from=translated src=- shape=9c41bf1c vocab=7d56436f
+-/
 theorem selfPairing_mukaiVector (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     ((Mukai.selfPairing D.b (D.mukaiVector E) : ℤ) : ℚ)
       = mukaiSelfPairing V E := by
@@ -220,13 +238,17 @@ theorem selfPairing_mukaiVector (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
 `K3.chi₂_eq_neg_mukaiPairing` states this against the explicit formula; this
 version states it against the lattice, which is what makes the sphericity and
 expected-dimension vocabulary of `LinearAlgebra/Lattice/Mukai` applicable to
-the Euler form.-/
+the Euler form.
+@isnad1 id=eq.2h7v.s7.832b26e5c14b from=translated src=- shape=0ddf44fe vocab=0e5e7256
+-/
 theorem chi₂_eq_neg_pairing (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E F : N) :
     V.chi₂ E F
       = -((Mukai.pairing D.b (D.mukaiVector E) (D.mukaiVector F) : ℤ) : ℚ) := by
   rw [D.pairing_mukaiVector hHRR hK3, chi₂_eq_neg_mukaiPairing V hK3]
 
-/-- The self-pairing of `v(E)`, cast to `ℚ`, is `−χ(E,E)`.-/
+/-- The self-pairing of `v(E)`, cast to `ℚ`, is `−χ(E,E)`.
+@isnad1 id=eq.2h6v.s6.affe3227269f from=translated src=- shape=4c383b2d vocab=25e3b1e1
+-/
 theorem selfPairing_mukaiVector_eq_neg_chi₂
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     ((Mukai.selfPairing D.b (D.mukaiVector E) : ℤ) : ℚ) = -V.chi₂ E E := by
@@ -255,7 +277,9 @@ Why the inequality is not available here, recorded so the next reader does not r
   `SerreDuality` and no "stable implies simple", and the stability here is numerical and is not
   tied to `Hom` at all.
 
-See #332.-/
+See #332.
+@isnad1 id=iff.2h6v.s7.058ed930f73c from=translated src=- shape=fde10240 vocab=655548a4
+-/
 theorem neg_two_le_selfPairing_mukaiVector_iff
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     -2 ≤ Mukai.selfPairing D.b (D.mukaiVector E) ↔ V.chi₂ E E ≤ 2 := by
@@ -268,7 +292,9 @@ theorem neg_two_le_selfPairing_mukaiVector_iff
 This is `Mukai.IsSpherical` — a property of the *lattice vector*, meaning
 `⟪v,v⟫ = -2`.  It is not sphericity of the object, which on a K3 asks that the
 graded self-Ext algebra be `k ⊕ k[-2]` (so also `Ext¹(E,E) = 0`) and which
-would need simplicity and Serre duality to recover from `χ(E,E) = 2`.-/
+would need simplicity and Serre duality to recover from `χ(E,E) = 2`.
+@isnad1 id=iff.2h6v.s6.f46d5747cbbd from=translated src=- shape=8048a355 vocab=e886cae1
+-/
 theorem isSpherical_mukaiVector_iff
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     Mukai.IsSpherical D.b (D.mukaiVector E) ↔ V.chi₂ E E = 2 := by
@@ -277,7 +303,9 @@ theorem isSpherical_mukaiVector_iff
   push_cast
   constructor <;> intro h <;> linarith
 
-/-- A Mukai vector is isotropic exactly when `χ(E,E) = 0`.-/
+/-- A Mukai vector is isotropic exactly when `χ(E,E) = 0`.
+@isnad1 id=iff.2h6v.s6.c9a7bde99cc8 from=translated src=- shape=8048a355 vocab=279e3ec9
+-/
 theorem isIsotropic_mukaiVector_iff
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     Mukai.IsIsotropic D.b (D.mukaiVector E) ↔ V.chi₂ E E = 0 := by
@@ -289,7 +317,9 @@ theorem isIsotropic_mukaiVector_iff
 /-- The expected dimension attached to `v(E)` is `2 − χ(E,E)`.
 
 `Mukai.expectedDim` is a definition, not the moduli-dimension theorem; this
-identity relocates it onto the Euler form and asserts nothing geometric.-/
+identity relocates it onto the Euler form and asserts nothing geometric.
+@isnad1 id=eq.2h6v.s6.47078b591ec7 from=translated src=- shape=2b8ca63a vocab=c8160de4
+-/
 theorem expectedDim_mukaiVector
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E : N) :
     (Mukai.expectedDim D.b (D.mukaiVector E) : ℚ) = 2 - V.chi₂ E E := by
@@ -345,6 +375,9 @@ No `toIntegralMukaiData_c₁` accompanies this: `D.c₁` and
 tautology and the linter rejects it. Parent-field access needs no rewriting.-/
 def c₁Hom : N →+ Λ := AddMonoidHom.mk' D.c₁ D.c₁_add
 
+/--
+@isnad1 id=eq.0h6v.s7.43de9bbdb49c from=translated src=- shape=fe90c3fb vocab=0a75c614
+-/
 @[simp]
 theorem c₁Hom_apply (E : N) : D.c₁Hom E = D.c₁ E := rfl
 
@@ -355,6 +388,9 @@ Built from the three coordinates separately: `rank` and `chi − rank` are
 noncomputable def mukaiVectorHom : N →+ Mukai.MukaiLattice Λ :=
   V.rank.prod (D.c₁Hom.prod (V.chi - V.rank))
 
+/--
+@isnad1 id=eq.0h6v.s7.ddd586d4d377 from=translated src=- shape=8f4283d9 vocab=e202eb8c
+-/
 @[simp]
 theorem mukaiVectorHom_apply (E : N) :
     D.mukaiVectorHom E = D.toIntegralMukaiData.mukaiVector E := rfl
@@ -371,6 +407,9 @@ noncomputable def mukaiForm : LinearMap.BilinForm ℤ N :=
   (Mukai.pairingBilin D.b).compl₁₂ D.mukaiVectorHom.toIntLinearMap
     D.mukaiVectorHom.toIntLinearMap
 
+/--
+@isnad1 id=eq.0h7v.s8.e7247e065cee from=translated src=- shape=15444090 vocab=7e1ee86c
+-/
 @[simp]
 theorem mukaiForm_apply (E F : N) :
     D.mukaiForm E F = Mukai.pairing D.b (D.toIntegralMukaiData.mukaiVector E)
@@ -381,14 +420,18 @@ theorem mukaiForm_apply (E F : N) :
 From `b_comm_on_realized`, so no global symmetry of `b` is demanded — the form
 only ever sees `b` on the image of `c₁`, which is where symmetry is already a
 theorem. A bilinear form being symmetric is what makes "isometry" the right
-word downstream rather than a one-sided condition.-/
+word downstream rather than a one-sided condition.
+@isnad1 id=eq.0h7v.s9.4972b819e9e3 from=translated src=- shape=9f4ee8e3 vocab=ddae2a8b
+-/
 theorem mukaiForm_comm (E F : N) : D.mukaiForm E F = D.mukaiForm F E := by
   simp only [mukaiForm_apply, Mukai.pairing, IntegralMukaiData.mukaiVector]
   rw [D.toIntegralMukaiData.b_comm_on_realized E F]
   ring
 
 /-- The Mukai form computes `−χ`, the `AdditiveMukaiData` restatement of
-`IntegralMukaiData.chi₂_eq_neg_pairing`.-/
+`IntegralMukaiData.chi₂_eq_neg_pairing`.
+@isnad1 id=eq.2h7v.s8.fba1f3a34e85 from=translated src=- shape=9aebbd6f vocab=4fe0e6a3
+-/
 theorem mukaiForm_eq_neg_chi₂
     (hHRR : V.SatisfiesHRR) (hK3 : IsK3 V) (E F : N) :
     (D.mukaiForm E F : ℚ) = -V.chi₂ E F := by
@@ -410,6 +453,9 @@ noncomputable def mukaiVectorIsometry : D.mukaiForm →bᵢ Mukai.pairingBilin D
   toLinearMap := D.mukaiVectorHom.toIntLinearMap
   map_app' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.a434c067fd7a from=translated src=- shape=5a7f3257 vocab=9873dfd9
+-/
 @[simp]
 theorem mukaiVectorIsometry_apply (E : N) :
     D.mukaiVectorIsometry E = D.toIntegralMukaiData.mukaiVector E := rfl

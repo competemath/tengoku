@@ -58,6 +58,9 @@ namespace Hom
 
 variable {q r s : ModuleQuotient F}
 
+/--
+@isnad1 id=eq.1h6v.s6.083f09bac1a5 from=translated src=- shape=b50546f7 vocab=841212cc
+-/
 @[ext]
 theorem ext (f g : Hom q r) (h : f.right = g.right) : f = g := by
   cases f with
@@ -78,11 +81,17 @@ instance category : Category (ModuleQuotient F) where
   comp_id f := Hom.ext _ _ (by simp)
   assoc f g h := Hom.ext _ _ (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s5.fdc87d55ab51 from=translated src=- shape=a68938b8 vocab=d34ff079
+-/
 @[simp]
 theorem id_right (q : ModuleQuotient F) :
     (𝟙 q : q ⟶ q).right = 𝟙 q.target :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.b86f2d43188a from=translated src=- shape=8cdf3786 vocab=06f35033
+-/
 @[simp]
 theorem comp_right {q r s : ModuleQuotient F}
     (f : q ⟶ r) (g : r ⟶ s) :

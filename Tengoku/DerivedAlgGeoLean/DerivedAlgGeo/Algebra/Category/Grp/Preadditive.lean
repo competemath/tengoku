@@ -41,7 +41,9 @@ open CategoryTheory
 
 namespace AddCommGrpCat
 
-/-- A finite sum of morphisms of abelian groups is applied summand by summand.-/
+/-- A finite sum of morphisms of abelian groups is applied summand by summand.
+@isnad1 id=eq.0h6v.s8.916e3f940f9a from=translated src=- shape=d52cd945 vocab=671c8b75
+-/
 theorem hom_sum_apply {A B : AddCommGrpCat.{u}} {J : Type*} (s : Finset J)
     (f : J → (A ⟶ B)) (a : A) :
     ConcreteCategory.hom (∑ i ∈ s, f i) a = ∑ i ∈ s, ConcreteCategory.hom (f i) a := by
@@ -52,7 +54,9 @@ theorem hom_sum_apply {A B : AddCommGrpCat.{u}} {J : Type*} (s : Finset J)
       rw [Finset.sum_insert hi, Finset.sum_insert hi, AddCommGrpCat.hom_add_apply, ih]
 
 /-- An integer-weighted finite sum of morphisms, applied. This is the shape an alternating sum
-of face maps takes when evaluated at a cochain.-/
+of face maps takes when evaluated at a cochain.
+@isnad1 id=eq.0h7v.s8.ddbca1cefb56 from=translated src=- shape=2ec1321f vocab=d81a1b09
+-/
 theorem hom_sum_zsmul_apply {A B : AddCommGrpCat.{u}} {J : Type*} (s : Finset J)
     (c : J → ℤ) (f : J → (A ⟶ B)) (a : A) :
     ConcreteCategory.hom (∑ i ∈ s, c i • f i) a =

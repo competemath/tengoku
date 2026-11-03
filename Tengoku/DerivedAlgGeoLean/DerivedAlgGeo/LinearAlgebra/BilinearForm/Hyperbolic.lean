@@ -59,12 +59,17 @@ variable (b : M →ₗ[R] M →ₗ[R] R)
 def pairing (v w : R × M × R) : R :=
   b v.2.1 w.2.1 - v.1 * w.2.2 - w.1 * v.2.2
 
+/--
+@isnad1 id=eq.0h9v.s9.0fa238efef97 from=translated src=- shape=50fd9aa5 vocab=32dd859e
+-/
 @[simp]
 theorem pairing_mk (r : R) (c : M) (s : R) (r' : R) (c' : M) (s' : R) :
     pairing b (r, c, s) (r', c', s') = b c c' - r * s' - r' * s :=
   rfl
 
-/-- Symmetry of the extension, from symmetry of `b`.-/
+/-- Symmetry of the extension, from symmetry of `b`.
+@isnad1 id=eq.1h5v.s10.d26a1a6d5976 from=translated src=- shape=810baadb vocab=22962561
+-/
 theorem pairing_comm (hb : ∀ x y : M, b x y = b y x) (v w : R × M × R) :
     pairing b v w = pairing b w v := by
   simp only [pairing]
@@ -76,13 +81,18 @@ theorem pairing_comm (hb : ∀ x y : M, b x y = b y x) (v w : R × M × R) :
 /-- `⟪v, v⟫`.-/
 def selfPairing (v : R × M × R) : R := pairing b v v
 
+/--
+@isnad1 id=eq.0h4v.s7.42b0840c4111 from=translated src=- shape=a28cea3a vocab=368bbbc1
+-/
 theorem selfPairing_eq_pairing (v : R × M × R) :
     selfPairing b v = pairing b v v :=
   rfl
 
 /-- **The discriminant, once.**  `Δ(r, c, s) = b c c - 2 r s` is what every
 discriminant in the repository projects to; the leaves differ only in which
-ring `R` is, which bilinear form `b` is, and which three quantities are fed in.-/
+ring `R` is, which bilinear form `b` is, and which three quantities are fed in.
+@isnad1 id=eq.0h6v.s9.876d4f9ce420 from=translated src=- shape=20eca7c5 vocab=22a793af
+-/
 @[simp]
 theorem selfPairing_mk (r : R) (c : M) (s : R) :
     selfPairing b (r, c, s) = b c c - 2 * (r * s) := by

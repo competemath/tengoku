@@ -37,7 +37,9 @@ variable {R : Type u} [CommRing R]
   (K L : CochainComplex C ℤ) [K.IsKProjective]
 
 /-- The existing derived comparison is the canonical class-to-homotopy
-equivalence followed by `Qh` on morphisms.-/
+equivalence followed by `Qh` on morphisms.
+@isnad1 id=eq.0h4v.s13.90abf903c5d9 from=translated src=- shape=1f8b9dc3 vocab=74dbc1d3
+-/
 theorem derivedCategoryHomAddEquiv_apply_eq (x : CohomologyClass K L 0) :
     derivedCategoryHomAddEquiv K L x =
       DerivedCategory.Qh.map (cohomologyClassHomotopyAddEquiv K L x) := by

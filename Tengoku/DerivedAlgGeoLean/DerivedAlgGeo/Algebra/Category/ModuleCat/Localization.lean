@@ -68,7 +68,9 @@ def extendScalarsLocalizationIso (M : ModuleCat.{u} R) :
         apply ModuleCat.hom_ext
         exact LinearMap.ext e.right_inv }
 
-/-- The component comparison agrees with the two localization generators.-/
+/-- The component comparison agrees with the two localization generators.
+@isnad1 id=eq.0h4v.s11.f49578fa0cdf from=translated src=- shape=23b8ef82 vocab=2a59105a
+-/
 theorem extendScalarsLocalizationIso_hom_tmul (M : ModuleCat.{u} R) (m : M) :
     (extendScalarsLocalizationIso S M).hom
         ((1 : Localization S) ⊗ₜ[R] m) =

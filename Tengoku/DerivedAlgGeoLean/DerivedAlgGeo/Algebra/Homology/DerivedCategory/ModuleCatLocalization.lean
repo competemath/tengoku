@@ -67,7 +67,9 @@ def extendScalarsLocalizationDerivedNatIso :
     (ModuleCat.localizedModuleFunctor.{u} S).mapDerivedCategory
   exact NatIso.mapDerivedCategory (extendScalarsLocalizationNatIso S)
 
-/-- The comparison commutes with every arrow of the source derived category.-/
+/-- The comparison commutes with every arrow of the source derived category.
+@isnad1 id=eq.0h5v.s12.d2d72c4bde21 from=translated src=- shape=058875cb vocab=adb7dbe6
+-/
 theorem extendScalarsLocalizationDerivedNatIso_naturality
     {X Y : DerivedCategory (ModuleCat.{u} R)} (f : X ⟶ Y) :
     (extendScalarsLocalizationDerived S).map f ≫

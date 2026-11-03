@@ -30,7 +30,9 @@ variable [HasColimit F] [PreservesColimit F H] [PreservesColimit F H']
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Naturality in the preserving functor complements Mathlib's diagram naturality
-for `preservesColimitIso`. Compare both sides on each colimit injection.-/
+for `preservesColimitIso`. Compare both sides on each colimit injection.
+@isnad1 id=eq.0h7v.s8.c370e080d246 from=translated src=- shape=54f7b971 vocab=0add8a2a
+-/
 @[reassoc]
 lemma preservesColimitIso_naturality :
     α.app (colimit F) ≫ (preservesColimitIso H' F).hom =

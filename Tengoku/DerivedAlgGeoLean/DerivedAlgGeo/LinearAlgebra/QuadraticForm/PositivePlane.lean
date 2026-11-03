@@ -97,14 +97,18 @@ end Defs
 
 variable {Q : QuadraticForm ℝ M}
 
-/-- The pairing is symmetric, hence reflexive.-/
+/-- The pairing is symmetric, hence reflexive.
+@isnad1 id=isrefl.0h2v.s6.106066cc4da7 from=translated src=- shape=b18b6507 vocab=96c87b66
+-/
 theorem polarBilin_isRefl : Q.polarBilin.IsRefl := fun x y h => by
   rw [polarBilin_apply_apply] at h ⊢
   exact (polar_comm (⇑Q) y x).trans h
 
 /-- The pairing is nondegenerate on a positive plane: a vector of the plane
 orthogonal to the whole plane is orthogonal to itself, so its square vanishes
-and positive definiteness kills it.-/
+and positive definiteness kills it.
+@isnad1 id=nondegen.1h3v.s7.6ac5678be5b9 from=translated src=- shape=2fcf95a9 vocab=72cab095
+-/
 theorem restrict_nondegenerate_of_isPositivePlane {W : Submodule ℝ M}
     (hW : IsPositivePlane Q W) :
     (LinearMap.BilinForm.restrict Q.polarBilin W).Nondegenerate := by
@@ -185,14 +189,18 @@ section FiniteDimensional
 
 variable [FiniteDimensional ℝ M]
 
-/-- The signature hypothesis leaves no radical.-/
+/-- The signature hypothesis leaves no radical.
+@isnad1 id=nondegen.1h2v.s5.1e6e893df5ce from=translated src=- shape=2673660d vocab=3e3df836
+-/
 theorem nondegenerate (hsig : HasSignatureTwo Q) : Q.Nondegenerate := by
   rw [nondegenerate_iff_radical_eq_bot, ← Submodule.finrank_eq_zero]
   have h := QuadraticForm.sigPos_add_sigNeg_add_radical (Q := Q)
   rw [hsig.sigPos_eq, ← hsig.sigNeg_add_two] at h
   omega
 
-/-- `M = W ⊕ Wᗮ` for a positive plane `W`.-/
+/-- `M = W ⊕ Wᗮ` for a positive plane `W`.
+@isnad1 id=iscompl.1h3v.s6.823f8ffdea32 from=translated src=- shape=eef5787a vocab=8bd6b3b2
+-/
 theorem isCompl_orthogonal {W : Submodule ℝ M} (hW : IsPositivePlane Q W) :
     IsCompl W (orthogonal Q W) :=
   LinearMap.BilinForm.isCompl_orthogonal_of_restrict_nondegenerate polarBilin_isRefl
@@ -200,7 +208,9 @@ theorem isCompl_orthogonal {W : Submodule ℝ M} (hW : IsPositivePlane Q W) :
 
 /-- **`Q` is nonpositive on the orthogonal complement of a positive plane.**
 A vector of positive square there would produce a three-dimensional positive
-definite subspace, and `sigPos Q = 2`.-/
+definite subspace, and `sigPos Q = 2`.
+@isnad1 id=le.3h4v.s7.74719429cba4 from=translated src=- shape=8479a287 vocab=f4cc4137
+-/
 theorem nonpos_of_mem_orthogonal (hsig : HasSignatureTwo Q) {W : Submodule ℝ M}
     (hW : IsPositivePlane Q W) {u : M} (hu : u ∈ orthogonal Q W) : Q u ≤ 0 := by
   by_contra hQu
@@ -226,7 +236,9 @@ negative definite.
 `nonpos_of_mem_orthogonal` gives nonpositivity; an isotropic vector there would
 be orthogonal to `Wᗮ` by `polar_eq_zero_of_nonpos` and to `W` by construction,
 hence to `M = W ⊕ Wᗮ`, hence in the radical, which the signature hypothesis
-makes trivial.-/
+makes trivial.
+@isnad1 id=lt.4h4v.s7.7c27136c35e4 from=translated src=- shape=02e9f315 vocab=dff46acd
+-/
 theorem neg_of_mem_orthogonal (hsig : HasSignatureTwo Q) {W : Submodule ℝ M}
     (hW : IsPositivePlane Q W) {u : M} (hu : u ∈ orthogonal Q W) (hu0 : u ≠ 0) :
     Q u < 0 := by
@@ -254,7 +266,9 @@ theorem neg_of_mem_orthogonal (hsig : HasSignatureTwo Q) {W : Submodule ℝ M}
     exact hu0 hrad
 
 /-- `negDef_orthogonal` in the shape `sigNeg` consumes: `-Q` is positive
-definite on `Wᗮ`.-/
+definite on `Wᗮ`.
+@isnad1 id=posdef.2h3v.s7.5e098b248db8 from=translated src=- shape=46cceda5 vocab=6a360a45
+-/
 theorem negDef_orthogonal (hsig : HasSignatureTwo Q) {W : Submodule ℝ M}
     (hW : IsPositivePlane Q W) : ((-Q).restrict (orthogonal Q W)).PosDef := by
   rintro ⟨u, hu⟩ hu0
@@ -262,7 +276,9 @@ theorem negDef_orthogonal (hsig : HasSignatureTwo Q) {W : Submodule ℝ M}
   simpa [restrict_apply] using neg_of_mem_orthogonal hsig hW hu this
 
 /-- The complement of a positive plane is a hyperplane pair short of `M`. Only
-the splitting is used, so the signature hypothesis is not needed.-/
+the splitting is used, so the signature hypothesis is not needed.
+@isnad1 id=eq.1h3v.s7.a90f1f85b78b from=translated src=- shape=22ca8c53 vocab=ac5abe54
+-/
 theorem finrank_orthogonal {W : Submodule ℝ M} (hW : IsPositivePlane Q W) :
     Module.finrank ℝ (orthogonal Q W) + 2 = Module.finrank ℝ M := by
   have h := Submodule.finrank_add_eq_of_isCompl (isCompl_orthogonal hW)
@@ -273,12 +289,17 @@ theorem finrank_orthogonal {W : Submodule ℝ M} (hW : IsPositivePlane Q W) :
 
 `sigPos Q = 2` is exactly the assertion that a two-dimensional positive definite
 subspace is available, so the hypothesis carries its own witness and nothing
-below is vacuous.-/
+below is vacuous.
+@isnad1 id=ex.1h2v.s5.dd40b16f873e from=translated src=- shape=a206d659 vocab=17d682a7
+-/
 theorem exists_isPositivePlane (hsig : HasSignatureTwo Q) :
     ∃ W : Submodule ℝ M, IsPositivePlane Q W := by
   obtain ⟨W, hrank, hposDef⟩ := exists_finrank_eq_sigPos_and_posDef Q
   exact ⟨W, ⟨hrank.trans hsig.sigPos_eq, hposDef⟩⟩
 
+/--
+@isnad1 id=nonempty.1h2v.s5.9e90dd081bc1 from=translated src=- shape=aa288571 vocab=a29d0bb1
+-/
 theorem positivePlanes_nonempty (hsig : HasSignatureTwo Q) : (positivePlanes Q).Nonempty :=
   exists_isPositivePlane hsig
 
@@ -292,6 +313,9 @@ known to be inhabited rather than merely stated.-/
 noncomputable def stdForm : QuadraticForm ℝ (Fin 3 → ℝ) :=
   weightedSumSquares ℝ ![(1 : ℝ), 1, -1]
 
+/--
+@isnad1 id=hassigna.0h0v.s5.867c69797138 from=translated src=- shape=d8e483ff vocab=852c0670
+-/
 theorem stdForm_hasSignatureTwo : HasSignatureTwo stdForm := by
   have hpos : {i : Fin 3 | 0 < ![(1 : ℝ), 1, -1] i} = ({0, 1} : Set (Fin 3)) := by
     ext i
@@ -334,7 +358,9 @@ space and mentions no geometry.
 Note the orthogonality hypothesis is on `polar`, which for a form built by
 `toQuadraticMap` is **twice** the underlying pairing; over `ℝ` that is
 immaterial for vanishing, but see `Mukai/RealForm.lean` on why the factor is
-not immaterial elsewhere.-/
+not immaterial elsewhere.
+@isnad1 id=le.3h4v.s7.34d6e25b5019 from=translated src=- shape=08500c74 vocab=63058353
+-/
 theorem nonpos_of_sigPos_eq_one (Q : QuadraticForm ℝ M) (hsig : sigPos Q = 1)
     {u v : M} (hu : 0 < Q u) (horth : polar (⇑Q) u v = 0) : Q v ≤ 0 := by
   by_contra hcon

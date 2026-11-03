@@ -22,6 +22,9 @@ namespace SheafOfModules
 variable {C : Type u} [Category.{u} C] {J : GrothendieckTopology C}
   (R : Sheaf J RingCat.{u}) (U : C)
 
+/--
+@isnad1 id=eq.0h5v.s6.65d11031abd4 from=translated src=- shape=0ec2f791 vocab=0e7b4804
+-/
 @[simp]
 lemma overFunctor_obj (M : SheafOfModules.{u} R) :
     (overFunctor R U).obj M = M.over U := rfl

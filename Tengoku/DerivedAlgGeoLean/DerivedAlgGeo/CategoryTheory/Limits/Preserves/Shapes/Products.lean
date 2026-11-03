@@ -35,7 +35,9 @@ variable {C : Type u₁} [Category.{v₁} C] {D : Type u₂} [Category.{v₂} D]
   {E : Type u₃} [Category.{v₃} E] {ι : Type w}
 
 /-- A functor preserves coproducts of shape `ι` as soon as it does so after precomposition with
-an essentially surjective functor preserving them.-/
+an essentially surjective functor preserving them.
+@isnad1 id=preserve.0h6v.s6.f9733e2137af from=translated src=- shape=fb98b0de vocab=61e4154b
+-/
 theorem preservesCoproductsOfShape_of_essSurj (L : C ⥤ D) (G : D ⥤ E) [L.EssSurj]
     [HasCoproductsOfShape ι C] [PreservesColimitsOfShape (Discrete ι) L]
     [PreservesColimitsOfShape (Discrete ι) (L ⋙ G)] :
@@ -53,7 +55,9 @@ theorem preservesCoproductsOfShape_of_essSurj (L : C ⥤ D) (G : D ⥤ E) [L.Ess
 
 /-- A functor preserving coproducts of shape `ι` sends `Sigma.map` of a family of morphisms it
 inverts to an isomorphism: the coproduct comparison squares identify its image with `Sigma.map`
-of the images.-/
+of the images.
+@isnad1 id=isiso.0h7v.s7.0051160654d6 from=translated src=- shape=ef989468 vocab=6dee8125
+-/
 theorem isIso_map_sigma_map (G : D ⥤ E) [HasCoproductsOfShape ι D] [HasCoproductsOfShape ι E]
     [PreservesColimitsOfShape (Discrete ι) G]
     {X₁ X₂ : ι → D} (f : ∀ j, X₁ j ⟶ X₂ j) [∀ j, IsIso (G.map (f j))] :

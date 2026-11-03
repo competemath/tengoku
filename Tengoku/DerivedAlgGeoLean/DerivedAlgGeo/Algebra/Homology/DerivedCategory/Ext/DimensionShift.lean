@@ -45,7 +45,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C] [HasExt.{w} C]
 
 /-- **Surjectivity half of dimension shifting**, which needs no lower bound on
 the degree: everything in `Ext^{n+1}(X, B)` is a composite with `extClass`,
-because its image in `Ext^{n+1}(X, I)` has nowhere to go.-/
+because its image in `Ext^{n+1}(X, I)` has nowhere to go.
+@isnad1 id=surjecti.2h5v.s9.346ea5c8b30a from=translated src=- shape=beee1471 vocab=27312a44
+-/
 theorem postcomp_extClass_surjective (X : C) {S : ShortComplex C}
     (hS : S.ShortExact) [Injective S.X₂] {n₀ n₁ : ℕ} (hn : n₀ + 1 = n₁) :
     Function.Surjective (hS.extClass.postcomp X hn) := by
@@ -56,7 +58,9 @@ theorem postcomp_extClass_surjective (X : C) {S : ShortComplex C}
   exact ⟨x₃, hx₃⟩
 
 /-- **Dimension shifting.**  Composition with `extClass` is bijective in every
-degree above zero.-/
+degree above zero.
+@isnad1 id=bijectiv.3h5v.s9.bc5f74201cb5 from=translated src=- shape=80bd4368 vocab=7100124b
+-/
 theorem postcomp_extClass_bijective (X : C) {S : ShortComplex C}
     (hS : S.ShortExact) [Injective S.X₂] {n₀ n₁ : ℕ} (hn : n₀ + 1 = n₁)
     (hn₀ : 0 < n₀) :
@@ -77,6 +81,9 @@ noncomputable def extClassAddEquiv (X : C) {S : ShortComplex C}
     Ext X S.X₃ n₀ ≃+ Ext X S.X₁ n₁ :=
   AddEquiv.ofBijective _ (postcomp_extClass_bijective X hS hn hn₀)
 
+/--
+@isnad1 id=eq.3h6v.s9.7526853c0a3b from=translated src=- shape=05f2f2bd vocab=9c5e1072
+-/
 @[simp]
 theorem extClassAddEquiv_apply (X : C) {S : ShortComplex C} (hS : S.ShortExact)
     [Injective S.X₂] {n₀ n₁ : ℕ} (hn : n₀ + 1 = n₁) (hn₀ : 0 < n₀)

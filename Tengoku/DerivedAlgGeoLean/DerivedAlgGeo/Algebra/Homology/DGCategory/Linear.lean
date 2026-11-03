@@ -81,11 +81,17 @@ abbrev homComplex (X Y : C) : CochainComplex (ModuleCat.{v} k) ℤ where
     change ((dgHom X Y).d q r).hom (((dgHom X Y).d p q).hom f) = 0
     exact ConcreteCategory.congr_hom ((dgHom X Y).d_comp_d p q r) f
 
+/--
+@isnad1 id=eq.0h5v.s8.37179d824416 from=translated src=- shape=a372ea3d vocab=d137e3dc
+-/
 @[simp]
 lemma homComplex_X (X Y : C) (p : ℤ) :
     (homComplex k X Y).X p = ModuleCat.of k ((dgHom X Y).X p) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.ad3675cb3fa2 from=translated src=- shape=fbbb9e45 vocab=e3a777b4
+-/
 @[simp]
 lemma homComplex_d_apply (X Y : C) (p q : ℤ) (f : (dgHom X Y).X p) :
     ((homComplex k X Y).d p q).hom f = ((dgHom X Y).d p q).hom f :=
@@ -121,6 +127,9 @@ def postcompCochain (X : C) {Y Z : C} (p : ℤ) :
     change dgComp i p j hij g (c • f) = c • dgComp i p j hij g f
     rw [DGLinear.comp_smul_right]
 
+/--
+@isnad1 id=eq.1h10v.s13.97332aa8aa66 from=translated src=- shape=fcbaf260 vocab=9d0f8f7a
+-/
 @[simp]
 lemma postcompCochain_apply (X : C) {Y Z : C} (p : ℤ)
     (f : (dgHom Y Z).X p) (i j : ℤ) (h : i + p = j)
@@ -130,7 +139,9 @@ lemma postcompCochain_apply (X : C) {Y Z : C} (p : ℤ)
 
 /-- Right composition intertwines the Hom-complex differential with the dg
 differential.  The two Koszul terms cancel because Mathlib's Hom differential
-uses the successor sign.-/
+uses the successor sign.
+@isnad1 id=eq.0h8v.s11.485050b6ba5c from=translated src=- shape=10697c27 vocab=9521c1ec
+-/
 lemma postcompCochain_d (X : C) {Y Z : C} (p q : ℤ)
     (f : (dgHom Y Z).X p) :
     CochainComplex.HomComplex.δ p q (postcompCochain k X p f) =
@@ -185,7 +196,9 @@ variable {k : Type w} [CommRing k]
 
 variable {F : DGFunctor C D} {G : DGFunctor D E}
 
-/-- A linear dg functor preserves scalar multiplication in every degree.-/
+/-- A linear dg functor preserves scalar multiplication in every degree.
+@isnad1 id=eq.0h9v.s12.2ee752ec926f from=translated src=- shape=386dc18c vocab=4ff6d161
+-/
 @[simp]
 lemma map_smul [F.Linear k] {X Y : C} (p : ℤ) (c : k) (f : (dgHom X Y).X p) :
     F.map p (c • f) = c • F.map p f :=

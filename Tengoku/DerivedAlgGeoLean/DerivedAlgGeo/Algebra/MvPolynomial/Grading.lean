@@ -25,7 +25,9 @@ abbrev polynomialGrading (ι R : Type u) [CommRing R] :
     ℕ → Submodule R (MvPolynomial ι R) :=
   MvPolynomial.homogeneousSubmodule ι R
 
-/-- The variables generate a polynomial ring over its degree-zero homogeneous submodule.-/
+/-- The variables generate a polynomial ring over its degree-zero homogeneous submodule.
+@isnad1 id=eq.0h2v.s13.42e41d9722b5 from=translated src=- shape=65f36e61 vocab=f35430c4
+-/
 theorem polynomialVariable_adjoin_eq_top (ι k : Type u) [Field k] :
     Algebra.adjoin (polynomialGrading ι k 0)
       (Set.range fun i => ((X i : MvPolynomial ι k))) = ⊤ := by

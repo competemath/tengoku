@@ -162,7 +162,9 @@ private def homLocalizedMap (M N : ModuleCat.{u} R) :
       (M.localizedModuleMkLinearMap S) (N.localizedModuleMkLinearMap S)
       (Localization S)) ∘ₗ eR.toLinearMap
 
-/-- Degreewise localization respects the Hom-complex differential.-/
+/-- Degreewise localization respects the Hom-complex differential.
+@isnad1 id=eq.0h7v.s14.acf3da525aa4 from=translated src=- shape=7ccabb0d vocab=494fe972
+-/
 theorem cochainLocalizedMap_delta (m : ℤ) (γ : Cochain P Q n) :
     cochainLocalizedMap P Q m S (δ n m γ) =
       δ n m (cochainLocalizedMap P Q n S γ) := by

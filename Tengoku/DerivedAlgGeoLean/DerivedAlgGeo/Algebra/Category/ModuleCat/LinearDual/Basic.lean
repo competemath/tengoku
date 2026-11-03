@@ -44,11 +44,17 @@ noncomputable def linearDualFunctor :
     apply ModuleCat.hom_ext
     exact LinearMap.dualMap_comp_dualMap g.unop.hom f.unop.hom
 
+/--
+@isnad1 id=eq.0h2v.s8.14de312a8753 from=translated src=- shape=6d543ccd vocab=cd830af0
+-/
 @[simp]
 theorem linearDualFunctor_obj (V : (ModuleCat.{max u w} k)ᵒᵖ) :
     (linearDualFunctor k).obj V = ModuleCat.of k (Module.Dual k V.unop) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.686663aa1332 from=translated src=- shape=33aef56e vocab=45c67cb5
+-/
 @[simp]
 theorem linearDualFunctor_map {V W : (ModuleCat.{max u w} k)ᵒᵖ} (f : V ⟶ W) :
     (linearDualFunctor k).map f = ModuleCat.ofHom f.unop.hom.dualMap :=

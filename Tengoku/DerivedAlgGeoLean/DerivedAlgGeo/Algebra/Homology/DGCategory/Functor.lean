@@ -77,12 +77,21 @@ what lets a law about horizontally composed dg natural transformations be
 written down at all, since the two sides then have definitionally equal
 types. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.d35abfae28ce from=translated src=- shape=c30e6a43 vocab=b0bb5714
+-/
 @[simp]
 theorem id_comp (F : DGFunctor C D) : (DGFunctor.id C).comp F = F := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9494c8af01fa from=translated src=- shape=554c037f vocab=b0bb5714
+-/
 @[simp]
 theorem comp_id (F : DGFunctor C D) : F.comp (DGFunctor.id D) = F := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.3918609d3520 from=translated src=- shape=8a8bee51 vocab=41d13c44
+-/
 theorem comp_assoc {B : Type u'''} [DGCategory.{v} B] (F : DGFunctor C D)
     (G : DGFunctor D E) (H : DGFunctor E B) :
     (F.comp G).comp H = F.comp (G.comp H) := rfl

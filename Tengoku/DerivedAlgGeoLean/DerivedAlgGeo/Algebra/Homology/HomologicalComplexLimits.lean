@@ -67,11 +67,17 @@ spelling.-/
 noncomputable def sigmaXIso (i : ι) : (∐ X).X i ≅ ∐ fun k => (X k).X i :=
   PreservesCoproduct.iso (eval C c i) X
 
+/--
+@isnad1 id=eq.0h7v.s7.298b0a1ec746 from=translated src=- shape=eca85bc2 vocab=30c1506a
+-/
 @[reassoc (attr := simp)]
 lemma ι_sigmaXIso_inv (k : κ) (i : ι) :
     Sigma.ι (fun k => (X k).X i) k ≫ (sigmaXIso X i).inv = (Sigma.ι X k).f i :=
   ι_comp_sigmaComparison (eval C c i) X k
 
+/--
+@isnad1 id=eq.0h7v.s7.662305d91201 from=translated src=- shape=04518ab0 vocab=03be2371
+-/
 @[reassoc (attr := simp)]
 lemma ι_f_sigmaXIso_hom (k : κ) (i : ι) :
     (Sigma.ι X k).f i ≫ (sigmaXIso X i).hom = Sigma.ι (fun k => (X k).X i) k := by
@@ -80,7 +86,9 @@ lemma ι_f_sigmaXIso_hom (k : κ) (i : ι) :
 variable {X}
 
 /-- Maps out of `(∐ X).X i` are determined by their restrictions to the summands, since
-evaluation preserves the coproduct.-/
+evaluation preserves the coproduct.
+@isnad1 id=eq.1h9v.s8.6f3f1dab0f76 from=translated src=- shape=c52760aa vocab=30cc1777
+-/
 lemma sigmaX_ext_from {i : ι} {A : C} {f g : (∐ X).X i ⟶ A}
     (h : ∀ k, (Sigma.ι X k).f i ≫ f = (Sigma.ι X k).f i ≫ g) : f = g := by
   rw [← cancel_epi (sigmaXIso X i).inv]
@@ -95,6 +103,9 @@ noncomputable def sigmaXDesc (φ : ∀ k, ∀ i j, (X k).X i ⟶ Y.X j) (i j : �
     (∐ X).X i ⟶ Y.X j :=
   (sigmaXIso X i).hom ≫ Sigma.desc fun k => φ k i j
 
+/--
+@isnad1 id=eq.0h10v.s7.9ce9db9d9ad7 from=translated src=- shape=92a14440 vocab=3dfb330f
+-/
 @[reassoc (attr := simp)]
 lemma ι_f_sigmaXDesc (φ : ∀ k, ∀ i j, (X k).X i ⟶ Y.X j) (k : κ) (i j : ι) :
     (Sigma.ι X k).f i ≫ sigmaXDesc φ i j = φ k i j := by
@@ -105,7 +116,9 @@ section Colimits
 variable (C c) {J : Type w'} [Category.{w''} J] [HasColimitsOfShape J C]
 
 /-- `shortComplexFunctor C c i` preserves colimits of every shape `C` has: its three components
-are evaluations.-/
+are evaluations.
+@isnad1 id=preserve.0h5v.s5.f77d5d5e0392 from=translated src=- shape=28f8ac92 vocab=c3637624
+-/
 instance shortComplexFunctor_preservesColimitsOfShape (i : ι) :
     PreservesColimitsOfShape J (shortComplexFunctor C c i) := by
   constructor
@@ -117,7 +130,9 @@ instance shortComplexFunctor_preservesColimitsOfShape (i : ι) :
   · exact isColimitOfPreserves (eval C c (c.next i)) (colimit.isColimit F)
 
 /-- Homology in degree `i` commutes with colimits of shape `J` when homology of short complexes
-does, through the factorization `homologyFunctorIso` of homology of complexes.-/
+does, through the factorization `homologyFunctorIso` of homology of complexes.
+@isnad1 id=preserve.0h5v.s6.75da509a689d from=translated src=- shape=b27cfe2a vocab=b1c19fe5
+-/
 instance homologyFunctor_preservesColimitsOfShape [CategoryWithHomology C] (i : ι)
     [PreservesColimitsOfShape J (ShortComplex.homologyFunctor C)] :
     PreservesColimitsOfShape J (homologyFunctor C c i) :=
@@ -138,7 +153,9 @@ variable {C : Type u} [Category.{v} C] [HasZeroMorphisms C] [CategoryWithHomolog
 
 /-- Commuting degreewise homology with this colimit identifies the homology map
 of `colim.map α` with the colimit of the pointwise homology maps, which are
-isomorphisms.-/
+isomorphisms.
+@isnad1 id=quasiiso.1h7v.s8.e76090a889c9 from=translated src=- shape=8f415d5f vocab=a97b1aa0
+-/
 theorem quasiIso_colimMap_of_preservesHomology
     [∀ i, PreservesColimitsOfShape J (homologyFunctor C c i)]
     {F G : J ⥤ HomologicalComplex C c} (α : F ⟶ G)
@@ -181,7 +198,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- Exact colimits commute with homology through the short-complex comparison, so the
 homology-preserving criterion above applies. This includes filtered colimits in an
-AB5 category.-/
+AB5 category.
+@isnad1 id=quasiiso.1h7v.s9.74162f8dbcd7 from=translated src=- shape=484865ea vocab=4c69e8e1
+-/
 theorem quasiIso_colimMap {F G : J ⥤ HomologicalComplex C c} (α : F ⟶ G)
     (hα : ∀ j, QuasiIso (α.app j)) : QuasiIso (colim.map α) := by
   letI : ∀ i, PreservesColimitsOfShape J (homologyFunctor C c i) :=
@@ -210,7 +229,9 @@ set_option backward.isDefEq.respectTransparency false in
 quasi-isomorphism at a colimit when it is one on every object of the diagram.
 Preservation of the colimit by degreewise homology transfers the pointwise
 quasi-isomorphisms through `colim.map`; naturality of the preserved-colimit
-comparisons transfers the result back to the original transformation.-/
+comparisons transfers the result back to the original transformation.
+@isnad1 id=quasiiso.1h9v.s8.a6319c14ab4a from=translated src=- shape=af8ea594 vocab=c39fe0ca
+-/
 theorem quasiIso_app_colimit_of_preserves
     (hα : ∀ j, QuasiIso ((F.whiskerLeft α).app j)) :
     QuasiIso (α.app (colimit F)) := by

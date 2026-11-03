@@ -65,6 +65,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A] [HasDerivedCategory.{w} A] {n
 def cohomologyIn (P : ObjectProperty A) : ObjectProperty (DerivedCategory A) :=
   fun E ↦ ∀ n : ℤ, P ((homologyFunctor A n).obj E)
 
+/--
+@isnad1 id=iff.0h3v.s5.12e195eb4584 from=translated src=- shape=f2ae98fc vocab=5dcb39ca
+-/
 lemma mem_cohomologyIn_iff (P : ObjectProperty A) (E : DerivedCategory A) :
     cohomologyIn P E ↔ ∀ n : ℤ, P ((homologyFunctor A n).obj E) :=
   Iff.rfl
@@ -98,7 +101,9 @@ variable [P.IsClosedUnderKernels] [P.IsClosedUnderCokernels]
 
 The long exact homology sequence of the distinguished triangle supplies the
 three exactness hypotheses of `ObjectProperty.prop_X₃_of_exact₅`, and the four
-outer terms come from `X₁` and `X₃` in adjacent degrees.-/
+outer terms come from `X₁` and `X₃` in adjacent degrees.
+@isnad1 id=istriang.0h2v.s6.21c7f9db886d from=translated src=- shape=9295130f vocab=141ff5f9
+-/
 instance cohomologyIn_isTriangulatedClosed₂ :
     (cohomologyIn P).IsTriangulatedClosed₂ :=
   .mk' (by
@@ -114,7 +119,9 @@ subcategory containing zero.
 
 Two consequences come for free from Mathlib: `(cohomologyIn P).FullSubcategory`
 is `Pretriangulated` (and `IsTriangulated` when `DerivedCategory A` is), and
-`(cohomologyIn P).ι` is a triangulated functor.-/
+`(cohomologyIn P).ι` is a triangulated functor.
+@isnad1 id=istriang.0h2v.s6.ede32a400f1d from=translated src=- shape=8a455c20 vocab=1ebe3ac3
+-/
 instance cohomologyIn_isTriangulated [P.ContainsZero] :
     (cohomologyIn P).IsTriangulated where
 
@@ -132,7 +139,9 @@ that shape (`DerivedCategory.hasCoproductsOfShape` and
 them passes it here.
 
 Given them, the argument is one step: `Hⁿ(∐ Eᵢ)` *is* a colimit of the `Hⁿ(Eᵢ)`,
-each of which is in `P`, so `P`'s own closure under `ι`-indexed colimits applies.-/
+each of which is in `P`, so `P`'s own closure under `ι`-indexed colimits applies.
+@isnad1 id=var.1h6v.s6.0a7c147e0573 from=translated src=- shape=23586bbb vocab=2489111c
+-/
 lemma cohomologyIn_coproduct {ι : Type t} [P.IsClosedUnderColimitsOfShape (Discrete ι)]
     (E : ι → DerivedCategory A) [HasCoproduct E]
     (hpres : PreservesColimitsOfShape (Discrete ι) (homologyFunctor A n))
@@ -145,7 +154,9 @@ lemma cohomologyIn_coproduct {ι : Type t} [P.IsClosedUnderColimitsOfShape (Disc
       isColimit := isColimitOfPreserves _ (colimit.isColimit (Discrete.functor E))
       prop_diag_obj := fun j ↦ hE j.as n }
 
-/-- **`cohomologyIn P` is closed under a coproduct preserved by every `Hⁿ`.**-/
+/-- **`cohomologyIn P` is closed under a coproduct preserved by every `Hⁿ`.**
+@isnad1 id=cohomolo.1h5v.s6.0e82a9a49daf from=translated src=- shape=c32b44e8 vocab=a0e32414
+-/
 lemma cohomologyIn_prop_coproduct {ι : Type t}
     [P.IsClosedUnderColimitsOfShape (Discrete ι)]
     (E : ι → DerivedCategory A) [HasCoproduct E]
@@ -162,7 +173,9 @@ of shape `ι` and `(cohomologyIn P).ι` creates and preserves them
 The hypothesis `hpres` is stated rather than assumed as an instance for the same reason as in
 `cohomologyIn_prop_coproduct`.  A colimit of shape `Discrete ι` of a diagram `p.diag` is a
 coproduct of the family `i ↦ p.diag.obj ⟨i⟩` up to the isomorphism `Discrete.natIsoFunctor`, and
-`cohomologyIn_prop_coproduct` applies degreewise.-/
+`cohomologyIn_prop_coproduct` applies degreewise.
+@isnad1 id=isclosed.1h3v.s6.744f14bf8ec6 from=translated src=- shape=4ccd3e67 vocab=c21f47a5
+-/
 lemma cohomologyIn_isClosedUnderColimitsOfShape_discrete {ι : Type t}
     [P.IsClosedUnderColimitsOfShape (Discrete ι)] [P.IsClosedUnderIsomorphisms]
     [HasCoproductsOfShape ι (DerivedCategory A)]

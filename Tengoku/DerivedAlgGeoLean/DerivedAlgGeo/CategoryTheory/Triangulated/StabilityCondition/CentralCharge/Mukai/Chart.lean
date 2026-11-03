@@ -64,19 +64,31 @@ noncomputable def expRe : RealExtension V := (1, β, (b β β - b ω ω) / 2)
 /-- The imaginary part of `exp(β + iω)`.-/
 noncomputable def expIm : RealExtension V := (0, ω, b β ω)
 
+/--
+@isnad1 id=eq.0h4v.s8.6da46dda650a from=translated src=- shape=b3ecd505 vocab=ee3dc257
+-/
 @[simp]
 theorem realPairing_expRe_expRe : realPairing b (expRe b β ω) (expRe b β ω) = b ω ω := by
   simp [expRe, realPairing]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.179e56f6957c from=translated src=- shape=b3ecd505 vocab=8500c626
+-/
 @[simp]
 theorem realPairing_expIm_expIm : realPairing b (expIm b β ω) (expIm b β ω) = b ω ω := by
   simp [expIm, realPairing]
 
+/--
+@isnad1 id=eq.0h4v.s6.2d036fe8112e from=translated src=- shape=e4bddc24 vocab=8d285e58
+-/
 @[simp]
 theorem realPairing_expRe_expIm : realPairing b (expRe b β ω) (expIm b β ω) = 0 := by
   simp [expRe, expIm, realPairing]
 
+/--
+@isnad1 id=eq.1h4v.s9.f1236245066c from=translated src=- shape=a541fc92 vocab=e84d922b
+-/
 @[simp]
 theorem realPairing_expIm_expRe (hb : ∀ x y : V, b x y = b y x) :
     realPairing b (expIm b β ω) (expRe b β ω) = 0 := by
@@ -84,7 +96,9 @@ theorem realPairing_expIm_expRe (hb : ∀ x y : V, b x y = b y x) :
 
 /-- The value of `realForm` on a combination of the two exponential vectors: the
 pair is orthogonal with equal square, so the form is a positive multiple of
-`s ^ 2 + t ^ 2`.-/
+`s ^ 2 + t ^ 2`.
+@isnad1 id=eq.1h6v.s10.acfaf38db4bf from=translated src=- shape=bbe935d8 vocab=c45382a9
+-/
 theorem realForm_smul_add_smul (hb : ∀ x y : V, b x y = b y x) (s t : ℝ) :
     realForm b (s • expRe b β ω + t • expIm b β ω) = (s ^ 2 + t ^ 2) * b ω ω / 2 := by
   have hexp : realForm b (s • expRe b β ω + t • expIm b β ω)
@@ -104,6 +118,9 @@ theorem realForm_smul_add_smul (hb : ∀ x y : V, b x y = b y x) (s t : ℝ) :
     realPairing_expIm_expRe b β ω hb]
   ring
 
+/--
+@isnad1 id=ne.0h4v.s7.58f03df6098d from=translated src=- shape=9f35bcdd vocab=d8864267
+-/
 theorem expRe_ne_zero : expRe b β ω ≠ 0 := by
   intro h
   have : (expRe b β ω).1 = 0 := by rw [h]; rfl
@@ -114,7 +131,9 @@ theorem expRe_ne_zero : expRe b β ω ≠ 0 := by
 Only `0 < b ω ω` is needed; `β` is unconstrained, and no signature hypothesis is
 used. The two vectors are orthogonal with equal positive square, so every
 nonzero combination has positive square, and they are independent because their
-rank coordinates are `1` and `0`.-/
+rank coordinates are `1` and `0`.
+@isnad1 id=ispositi.2h4v.s9.d1c5f4fc1848 from=translated src=- shape=b2aadc68 vocab=eb269ce4
+-/
 theorem isPositiveFrame_exp (hb : ∀ x y : V, b x y = b y x) (hω : 0 < b ω ω) :
     PeriodDomain.IsPositiveFrame (realForm b) (expRe b β ω) (expIm b β ω) := by
   have hindep : LinearIndependent ℝ ![expRe b β ω, expIm b β ω] := by
@@ -156,7 +175,9 @@ theorem isPositiveFrame_exp (hb : ∀ x y : V, b x y = b y x) (hω : 0 < b ω ω
 
 /-- The pairing determinant of the exponential pair against itself is
 `(b ω ω) ^ 2`: the pair is orthogonal with equal square, so the off-diagonal
-term drops.-/
+term drops.
+@isnad1 id=eq.1h4v.s9.1bfeffa4823d from=translated src=- shape=8b58b1ec vocab=debed575
+-/
 theorem pairingDet_exp_self (hb : ∀ x y : V, b x y = b y x) :
     PeriodDomain.pairingDet (realForm b) (expRe b β ω) (expIm b β ω)
       (expRe b β ω) (expIm b β ω) = (b ω ω) ^ 2 := by
@@ -170,7 +191,9 @@ theorem pairingDet_exp_self (hb : ∀ x y : V, b x y = b y x) :
 Taking `(expRe, expIm)` as the reference is therefore not an arbitrary choice
 dressed up: the half it names is the one containing `exp(β + iω)`, which is how
 Bridgeland specifies `P⁺`. Whether that half is independent of `ω` is the
-cocycle question, and is not settled here.-/
+cocycle question, and is not settled here.
+@isnad1 id=mem.2h4v.s9.d0348638e687 from=translated src=- shape=08836f0d vocab=8ce5a727
+-/
 theorem mem_positiveFramesPlus_exp (hb : ∀ x y : V, b x y = b y x) (hω : 0 < b ω ω) :
     (expRe b β ω, expIm b β ω) ∈
       PeriodDomain.positiveFramesPlus (realForm b) (expRe b β ω) (expIm b β ω) := by

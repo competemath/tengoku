@@ -36,6 +36,9 @@ abbrev EtaImage (eta : A →+ V) := eta.range
 def etaClass (eta : A →+ V) : A →+ EtaImage eta :=
   eta.rangeRestrict
 
+/--
+@isnad1 id=eq.0h4v.s9.240e9c56188c from=translated src=- shape=53698507 vocab=7ee1e1c9
+-/
 @[simp]
 theorem etaClass_coe (eta : A →+ V) (x : A) :
     (etaClass eta x : V) = eta x :=
@@ -53,12 +56,18 @@ def specializationMap (eta : A →+ V) (geometricEta : B →+ V)
     (h : eta.range ≤ geometricEta.range) : A →+ EtaImage geometricEta :=
   eta.codRestrict geometricEta.range fun x ↦ h ⟨x, rfl⟩
 
+/--
+@isnad1 id=eq.1h6v.s9.a8518c53e91b from=translated src=- shape=e15ba393 vocab=ebcc9b99
+-/
 @[simp]
 theorem specializationMap_coe (eta : A →+ V) (geometricEta : B →+ V)
     (h : eta.range ≤ geometricEta.range) (x : A) :
     (specializationMap eta geometricEta h x : V) = eta x :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.3063790373c4 from=translated src=- shape=1d2b755d vocab=130b07cc
+-/
 theorem specializationMap_self (eta : A →+ V) :
     specializationMap eta eta le_rfl = etaClass eta := by
   ext x
@@ -96,6 +105,9 @@ def ofEta
     specializationMap (eta F t) (geometricEta (index F t)) (hEta F t)
       (classValue F t)
 
+/--
+@isnad1 id=eq.1h12v.s11.7196a4ab081d from=translated src=- shape=27f91c9e vocab=8552156d
+-/
 @[simp]
 theorem ofEta_classValue_coe
     (geometricEta : ∀ i, K i →+ V₀ i)
@@ -126,6 +138,9 @@ def etaImageIdEquiv (A : Type*) [AddCommGroup A] :
   right_inv _ := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.559e954017cd from=translated src=- shape=b988c9e5 vocab=86d1c866
+-/
 @[simp]
 theorem etaImageIdEquiv_etaClass (A : Type*) [AddCommGroup A] (x : A) :
     etaImageIdEquiv A (etaClass (AddMonoidHom.id A) x) = x :=

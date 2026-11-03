@@ -43,6 +43,9 @@ noncomputable def awayToAwayLeftLinearMap
       simpa only [← (Algebra.lsmul R (A := Localization.Away (r * s))
         R (LocalizedModule.Away (r * s) M)).commutes] using hEnd)
 
+/--
+@isnad1 id=eq.0h5v.s10.2dc1b9011e6a from=translated src=- shape=3e0d2c11 vocab=75d5b7db
+-/
 @[simp]
 theorem awayToAwayLeftLinearMap_mk
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
@@ -63,7 +66,9 @@ universe u v
 
 /-- If `P` is a submodule of `M[1/s]`, localization of its inverse image in
 `M` away from `r*s` is the `R[1/(r*s)]`-span of its canonical image. This also
-holds when either factor is a zero divisor or `r*s = 0`.-/
+holds when either factor is a zero divisor or `r*s = 0`.
+@isnad1 id=other.0h5v.s11.d4ad2134be72 from=translated src=- shape=72712679 vocab=c96e4c57
+-/
 theorem localized'_comap_awayToAwayLeft_eq_span
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
     (r s : R) (P : Submodule (Localization.Away s) (LocalizedModule.Away s M)) :
@@ -106,7 +111,9 @@ theorem localized'_comap_awayToAwayLeft_eq_span
 
 /-- Localizing a chosen submodule `N ≤ M` away from `r*s` is the span of the
 canonical image of its localization away from `s`. No finiteness or regularity
-hypothesis is needed.-/
+hypothesis is needed.
+@isnad1 id=other.0h5v.s11.2ee0080758c4 from=translated src=- shape=b1e1316c vocab=07102e7a
+-/
 theorem localized'_away_mul_eq_span_awayToAwayLeft
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
     (r s : R) (N : Submodule R M) :

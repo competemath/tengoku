@@ -32,11 +32,17 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 noncomputable def homologyModel (K : CochainComplex A ℤ) : CochainComplex A ℤ :=
   CochainComplex.of (fun i => K.homology i) (fun _ => 0) (fun _ => by simp)
 
+/--
+@isnad1 id=eq.0h3v.s6.70d65ee8563f from=translated src=- shape=3d42a96b vocab=d292fbd2
+-/
 @[simp]
 lemma homologyModel_X (K : CochainComplex A ℤ) (i : ℤ) :
     (homologyModel K).X i = K.homology i :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.07b46767c42a from=translated src=- shape=010a3204 vocab=cb19f732
+-/
 @[simp]
 lemma homologyModel_d (K : CochainComplex A ℤ) (i j : ℤ) :
     (homologyModel K).d i j = 0 := by

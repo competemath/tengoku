@@ -116,6 +116,9 @@ noncomputable def extAdjunctionMap {A : C} {B : D} {n : ℕ} (e : Ext.{w} (L.obj
   (Ext.mk₀ (adj.unit.app A)).comp (e.mapExactFunctor R) (zero_add n)
 
 omit [L.Additive] [PreservesFiniteLimits L] [PreservesFiniteColimits L] in
+/--
+@isnad1 id=eq.0h8v.s8.4a05c995ddc3 from=translated src=- shape=d6148cc0 vocab=d36cb6f8
+-/
 @[simp]
 lemma extAdjunctionMap_zero {A : C} {B : D} {n : ℕ} :
     extAdjunctionMap adj (0 : Ext.{w} (L.obj A) B n) = 0 := by
@@ -123,6 +126,9 @@ lemma extAdjunctionMap_zero {A : C} {B : D} {n : ℕ} :
   exact Ext.comp_zero _ _ _ _ _
 
 omit [L.Additive] [PreservesFiniteLimits L] [PreservesFiniteColimits L] in
+/--
+@isnad1 id=eq.0h10v.s8.1e54142c9b2c from=translated src=- shape=5c558bd2 vocab=c4d167fd
+-/
 lemma extAdjunctionMap_add {A : C} {B : D} {n : ℕ} (e f : Ext.{w} (L.obj A) B n) :
     extAdjunctionMap adj (e + f) = extAdjunctionMap adj e + extAdjunctionMap adj f := by
   simp only [extAdjunctionMap, Ext.mapExactFunctor_add]
@@ -145,7 +151,9 @@ induction step runs on: it is what makes the comparison a *morphism* of the two 
 sequences rather than a family of unrelated maps.
 
 The proof is `Ext.mapExactFunctor_comp` followed by associativity — no exactness of the sequences
-and no injectivity is used, so it holds for arbitrary classes in arbitrary degrees.-/
+and no injectivity is used, so it holds for arbitrary classes in arbitrary degrees.
+@isnad1 id=eq.1h13v.s7.71ea9d723896 from=translated src=- shape=a8f4afbf vocab=f9a8da34
+-/
 lemma extAdjunctionMap_comp {A : C} {Y Z : D} {a b c : ℕ} (x : Ext.{w} (L.obj A) Y a)
     (e : Ext.{w} Y Z b) (h : a + b = c) :
     extAdjunctionMap adj (x.comp e h)
@@ -157,7 +165,9 @@ omit [L.Additive] [PreservesFiniteLimits L] [PreservesFiniteColimits L] in
 /-- Naturality against a morphism, the `Ext.mk₀` case of `extAdjunctionMap_comp`.
 
 This is the square for the two "easy" maps of the long exact sequences — the ones induced by
-`S.f` and `S.g`.-/
+`S.f` and `S.g`.
+@isnad1 id=eq.0h11v.s7.5f6b26a7af3a from=translated src=- shape=257b5c37 vocab=5b958295
+-/
 lemma extAdjunctionMap_comp_mk₀ {A : C} {Y Z : D} {a : ℕ} (x : Ext.{w} (L.obj A) Y a)
     (f : Y ⟶ Z) :
     extAdjunctionMap adj (x.comp (Ext.mk₀ f) (add_zero a))
@@ -173,7 +183,9 @@ carries `S` to a short exact sequence in `C`, and `Ext.mapExactFunctor_extClass`
 connecting class goes along with it.
 
 Together with `extAdjunctionMap_comp_mk₀` this makes the comparison a morphism of the two long
-exact sequences, which is the entire structural input to the dimension-shifting induction.-/
+exact sequences, which is the entire structural input to the dimension-shifting induction.
+@isnad1 id=eq.2h10v.s8.ec9c71553b54 from=translated src=- shape=bf8b35b4 vocab=5e9df384
+-/
 lemma extAdjunctionMap_comp_extClass {A : C} {S : ShortComplex D} (hS : S.ShortExact)
     {n₀ n₁ : ℕ} (hn₁ : n₀ + 1 = n₁) (x₃ : Ext.{w} (L.obj A) S.X₃ n₀) :
     extAdjunctionMap adj (x₃.comp hS.extClass hn₁)
@@ -188,7 +200,9 @@ Stated in `Ext.mk₀` form rather than through `Ext.homEquiv₀`, because that i
 induction's base case needs and it avoids a round trip through the equivalence.
 
 The proof is three rewrites and then `exact`, not `simp` — see the module docstring on
-`Ext.mk₀_comp_mk₀`.-/
+`Ext.mk₀_comp_mk₀`.
+@isnad1 id=eq.0h8v.s8.1e7ddbeec135 from=translated src=- shape=075d913a vocab=62531137
+-/
 lemma extAdjunctionMap_mk₀ {A : C} {B : D} (f : L.obj A ⟶ B) :
     extAdjunctionMap adj (Ext.mk₀ f) = Ext.mk₀ (adj.homEquiv A B f) := by
   rw [extAdjunctionMap, Ext.mapExactFunctor_mk₀, Adjunction.homEquiv_unit]
@@ -200,7 +214,9 @@ include adj in
 /-- A right adjoint whose left adjoint preserves monomorphisms preserves injectives.
 
 Not an instance: `adj` is not inferrable from `R` alone, so instance search cannot find it. Every
-use is an explicit `haveI`.-/
+use is an explicit `haveI`.
+@isnad1 id=preserve.0h5v.s6.13cf13e3a1ae from=translated src=- shape=62676708 vocab=87a8d91a
+-/
 theorem preservesInjectiveObjects_of_adj : R.PreservesInjectiveObjects :=
   Functor.preservesInjectiveObjects_of_adjunction_of_preservesMonomorphisms adj
 
@@ -210,7 +226,9 @@ variable {A : C} {B : D} [Injective B] {n : ℕ}
 
 omit [R.Additive] [PreservesFiniteLimits R] [PreservesFiniteColimits R] [HasExt.{w} D] in
 include adj in
-/-- The target vanishes in positive degree, because `R B` is injective.-/
+/-- The target vanishes in positive degree, because `R B` is injective.
+@isnad1 id=subsingl.0h8v.s6.c8178ed6bd36 from=translated src=- shape=94bb549c vocab=1c1b2677
+-/
 theorem subsingleton_ext_right_of_injective :
     Subsingleton (Ext.{w} A (R.obj B) (n + 1)) := by
   haveI := preservesInjectiveObjects_of_adj adj
@@ -220,7 +238,9 @@ theorem subsingleton_ext_right_of_injective :
 
 Both sides are subsingletons — the source by `Ext.subsingleton_of_injective` directly, the target
 by `subsingleton_ext_right_of_injective` — so there is nothing to check. This is the base case the
-dimension shift descends to, and it is the only reason the induction terminates.-/
+dimension shift descends to, and it is the only reason the induction terminates.
+@isnad1 id=bijectiv.0h8v.s7.7b9b16ccd39c from=translated src=- shape=549ab00d vocab=2316795f
+-/
 theorem bijective_extAdjunctionMap_of_injective :
     Function.Bijective (extAdjunctionMap adj (A := A) (B := B) (n := n + 1)) := by
   haveI : Subsingleton (Ext.{w} (L.obj A) B (n + 1)) := Ext.subsingleton_of_injective _ _ _
@@ -235,7 +255,9 @@ variable [EnoughInjectives D]
 
 omit [L.Additive] [PreservesFiniteLimits L] [PreservesFiniteColimits L] [EnoughInjectives D] in
 /-- **In degree zero the comparison is bijective**: it is the adjunction hom-equivalence
-transported through `Ext.mk₀`.-/
+transported through `Ext.mk₀`.
+@isnad1 id=bijectiv.0h7v.s7.dee86c50cb31 from=translated src=- shape=27a9214d vocab=ddf92867
+-/
 theorem bijective_extAdjunctionMap_zero (A : C) (B : D) :
     Function.Bijective (extAdjunctionMap adj (A := A) (B := B) (n := 0)) := by
   constructor
@@ -254,7 +276,9 @@ theorem bijective_extAdjunctionMap_zero (A : C) (B : D) :
 
 This is `surjective_extComparisonMap` for `u := adj.unit.app A`: degree zero is the
 adjunction, and `R I` is injective for injective `I` (`preservesInjectiveObjects_of_adj`),
-hence acyclic.-/
+hence acyclic.
+@isnad1 id=surjecti.0h8v.s7.1850653a2c85 from=translated src=- shape=5c86e26e vocab=74e11956
+-/
 theorem surjective_extAdjunctionMap (n : ℕ) (A : C) (B : D) :
     Function.Surjective (extAdjunctionMap adj (A := A) (B := B) (n := n)) :=
   surjective_extComparisonMap (R := R) (P := L.obj A) (adj.unit.app A)
@@ -262,7 +286,9 @@ theorem surjective_extAdjunctionMap (n : ℕ) (A : C) (B : D) :
     (fun _ _ _ ↦ subsingleton_ext_right_of_injective adj) n B
 
 /-- **The comparison is injective in every degree.** Likewise a special case of
-`injective_extComparisonMap`.-/
+`injective_extComparisonMap`.
+@isnad1 id=injectiv.0h8v.s7.6a4e54b6078b from=translated src=- shape=5c86e26e vocab=15292c14
+-/
 theorem injective_extAdjunctionMap (n : ℕ) (A : C) (B : D) :
     Function.Injective (extAdjunctionMap adj (A := A) (B := B) (n := n)) :=
   injective_extComparisonMap (R := R) (P := L.obj A) (adj.unit.app A)
@@ -278,6 +304,9 @@ noncomputable def extAdjunctionAddEquiv (A : C) (B : D) (n : ℕ) :
   AddEquiv.ofBijective (extAdjunctionAddHom adj A B n)
     ⟨injective_extAdjunctionMap adj n A B, surjective_extAdjunctionMap adj n A B⟩
 
+/--
+@isnad1 id=eq.0h9v.s9.5bc5b28e917c from=translated src=- shape=ceb27373 vocab=7558c866
+-/
 @[simp]
 lemma extAdjunctionAddEquiv_apply (A : C) (B : D) (n : ℕ) (e : Ext.{w} (L.obj A) B n) :
     extAdjunctionAddEquiv adj A B n e = extAdjunctionMap adj e :=
@@ -315,6 +344,9 @@ noncomputable def extAdjunctionLinearEquiv (A : C) (B : D) (n : ℕ) :
     ⟨injective_extAdjunctionMap adj n A B,
       surjective_extAdjunctionMap adj n A B⟩
 
+/--
+@isnad1 id=eq.0h10v.s9.4aa65994b60c from=translated src=- shape=6eeb80b6 vocab=ecc87e6b
+-/
 @[simp]
 lemma extAdjunctionLinearEquiv_apply (A : C) (B : D) (n : ℕ)
     (e : Ext.{w} (L.obj A) B n) :

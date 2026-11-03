@@ -39,7 +39,9 @@ universe u
 /-- A finite strict window of finite modules over a localization has a
 termwise finite model over the base ring, isomorphic after ordinary scalar
 extension. This is complex-object descent, not descent of a map or a derived
-or component-level statement.-/
+or component-level statement.
+@isnad1 id=ex.1h6v.s10.7e0f1b9ba636 from=translated src=- shape=df0f9bce vocab=92407b2c
+-/
 theorem exists_finite_model_of_isLocalization
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A]

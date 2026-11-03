@@ -82,7 +82,9 @@ namespace NumericalRingData
 
 variable {n : ℕ} {A : Type u} [CommRing A] [Algebra ℚ A]
 
-/-- Scalars sit in codimension zero.-/
+/-- Scalars sit in codimension zero.
+@isnad1 id=mem.0h4v.s7.5e9b6aec6994 from=translated src=- shape=60f4581c vocab=c44c4275
+-/
 theorem algebraMap_mem_piece_zero (R : NumericalRingData n A) (q : ℚ) :
     algebraMap ℚ A q ∈ R.piece 0 := by
   have h : algebraMap ℚ A q = q • (1 : A) := by
@@ -91,7 +93,9 @@ theorem algebraMap_mem_piece_zero (R : NumericalRingData n A) (q : ℚ) :
   exact Submodule.smul_mem _ _ R.one_mem_piece_zero
 
 /-- `∫_X` is `ℚ`-homogeneous in the sense we actually use it: pulling a scalar out of a
-product with `algebraMap`.-/
+product with `algebraMap`.
+@isnad1 id=eq.0h5v.s7.7c303cf862ff from=translated src=- shape=6cd68871 vocab=e44dcaa8
+-/
 theorem degree_algebraMap_mul (R : NumericalRingData n A) (q : ℚ) (x : A) :
     R.degree (algebraMap ℚ A q * x) = q * R.degree x := by
   rw [← Algebra.smul_def, map_smul, smul_eq_mul]
@@ -157,17 +161,23 @@ def ch (V : NumericalVarietyData n A N) (E : N) : A :=
 def todd (V : NumericalVarietyData n A N) : A :=
   ∑ j ∈ Finset.range (n + 1), V.toddComp j
 
-/-- Hirzebruch–Riemann–Roch, restated in terms of `ch` and `todd`.-/
+/-- Hirzebruch–Riemann–Roch, restated in terms of `ch` and `todd`.
+@isnad1 id=eq.1h5v.s7.f0f52a245b51 from=translated src=- shape=aa0ca60e vocab=74374d76
+-/
 theorem hrr (V : NumericalVarietyData n A N) (hV : V.SatisfiesHRR) (E : N) :
     (V.chi E : ℚ) = V.ring.degree (V.ch E * V.todd) :=
   hV.eq E
 
-/-- Components of the Chern character above the dimension vanish.-/
+/-- Components of the Chern character above the dimension vanish.
+@isnad1 id=eq.1h6v.s6.db390703e8aa from=translated src=- shape=d649eb79 vocab=0c8e6d5c
+-/
 theorem chComp_eq_zero_of_lt (V : NumericalVarietyData n A N)
     (E : N) {i : ℕ} (hi : n < i) : V.chComp E i = 0 :=
   V.ring.eq_zero_of_mem_piece_of_lt hi (V.chComp_mem E i)
 
-/-- Components of the Todd class above the dimension vanish.-/
+/-- Components of the Todd class above the dimension vanish.
+@isnad1 id=eq.1h5v.s5.d56770e382f9 from=translated src=- shape=87e47be5 vocab=96bd7f4a
+-/
 theorem toddComp_eq_zero_of_lt (V : NumericalVarietyData n A N)
     {i : ℕ} (hi : n < i) : V.toddComp i = 0 :=
   V.ring.eq_zero_of_mem_piece_of_lt hi (V.toddComp_mem i)
@@ -175,7 +185,9 @@ theorem toddComp_eq_zero_of_lt (V : NumericalVarietyData n A N)
 /-- The degree of a mixed term `chᵢ(E) · tdⱼ(X)` vanishes unless `i + j = n`.
 
 This is the single computational fact behind every dimension-specific Riemann–Roch
-formula: expanding `ch(E) · td(X)` leaves only the terms of total codimension `n`.-/
+formula: expanding `ch(E) · td(X)` leaves only the terms of total codimension `n`.
+@isnad1 id=eq.1h7v.s7.e84b77b6874a from=translated src=- shape=7ccd675f vocab=b5591695
+-/
 theorem degree_chComp_mul_toddComp_eq_zero (V : NumericalVarietyData n A N)
     (E : N) {i j : ℕ} (hij : i + j ≠ n) :
     V.ring.degree (V.chComp E i * V.toddComp j) = 0 :=

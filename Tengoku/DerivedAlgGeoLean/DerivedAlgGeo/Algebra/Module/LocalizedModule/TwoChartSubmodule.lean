@@ -113,7 +113,9 @@ private theorem exists_fg_two_away_localized_submodule_of_cross_denominators
 /-- Two compatible submodules on the principal localizations of a finite module have a single
 finitely generated lift. Compatibility is equality in the canonical common localization away
 from `r * s`, after pulling both submodules back to `M`. The witness is the intersection of
-these two inverse images. No geometric sheaf-gluing statement is asserted.-/
+these two inverse images. No geometric sheaf-gluing statement is asserted.
+@isnad1 id=ex.0h7v.s11.e4606018f885 from=translated src=- shape=05a3c6f7 vocab=d60d8de8
+-/
 theorem exists_fg_two_away_localized_submodule_of_overlap
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     {M : Type w} [AddCommGroup M] [Module R M] [Module.Finite R M]

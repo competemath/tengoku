@@ -26,7 +26,9 @@ open scoped TensorProduct
 noncomputable section
 
 /-- A finite module over a localization has a finite base-ring submodule
-whose scalar extension is the original module.-/
+whose scalar extension is the original module.
+@isnad1 id=ex.0h4v.s9.8d8577f0758e from=translated src=- shape=075c31e9 vocab=709b3940
+-/
 theorem Module.exists_finite_submodule_of_isLocalization
     {R A N : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A]
@@ -69,7 +71,9 @@ theorem Module.exists_finite_submodule_of_isLocalization
       simp [this]
   exact ⟨L, hfinite, hf, ⟨(IsLocalizedModule.isBaseChange S A f).equiv⟩⟩
 
-/-- Over a Noetherian base ring the descended finite submodule is finitely presented.-/
+/-- Over a Noetherian base ring the descended finite submodule is finitely presented.
+@isnad1 id=ex.0h4v.s9.8abe1e00d26f from=translated src=- shape=f2d5c0d2 vocab=be63748e
+-/
 theorem Module.exists_finitely_presented_submodule_of_isLocalization
     {R A N : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A] [IsNoetherianRing R]
@@ -85,7 +89,9 @@ theorem Module.exists_finitely_presented_submodule_of_isLocalization
 
 /-- The finite descent witness can be chosen to contain any prescribed finite
 base-ring submodule. This permits adjoining images of a differential before
-descending the next term of a bounded complex.-/
+descending the next term of a bounded complex.
+@isnad1 id=ex.0h5v.s9.e81ea3671e20 from=translated src=- shape=f5bb100a vocab=c6918e0c
+-/
 theorem Module.exists_finite_submodule_of_isLocalization_containing
     {R A N : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A]
@@ -111,7 +117,9 @@ theorem Module.exists_finite_submodule_of_isLocalization_containing
   exact ⟨L, le_sup_left, hfinite, hloc⟩
 
 /-- Over a Noetherian base, the prescribed-set descent witness is finitely
-presented as well as finite.-/
+presented as well as finite.
+@isnad1 id=ex.0h5v.s9.c3814fba5ad3 from=translated src=- shape=fbb5b61f vocab=b60db6dd
+-/
 theorem Module.exists_finitely_presented_submodule_of_isLocalization_containing
     {R A N : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A] [IsNoetherianRing R]
@@ -128,7 +136,9 @@ theorem Module.exists_finitely_presented_submodule_of_isLocalization_containing
 /-- A map between finite modules over a localization has finite base-ring
 submodules on both sides that localize back to the given modules and are
 closed under that map. This is the one-arrow step toward descending a
-bounded complex; no complex or component descent is asserted here.-/
+bounded complex; no complex or component descent is asserted here.
+@isnad1 id=ex.0h6v.s9.1146aa81242b from=translated src=- shape=16cbc117 vocab=f9547396
+-/
 theorem Module.exists_finite_submodules_of_isLocalization_map
     {R A M N : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A]
@@ -153,7 +163,9 @@ theorem Module.exists_finite_submodules_of_isLocalization_map
 that localize back to them and are simultaneously closed under two consecutive
 arrows. The theorem supplies submodules and closure only. A zero-composite
 hypothesis on the original arrows must be supplied and checked on the restricted
-arrows before these data form a complex.-/
+arrows before these data form a complex.
+@isnad1 id=ex.0h8v.s10.771f1e1c380a from=translated src=- shape=93453644 vocab=f9547396
+-/
 theorem Module.exists_finite_submodules_of_isLocalization_two_maps
     {R A M₀ M₁ M₂ : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (S : Submonoid R) [IsLocalization S A]

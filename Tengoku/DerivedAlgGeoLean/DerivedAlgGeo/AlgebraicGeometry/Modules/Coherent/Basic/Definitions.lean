@@ -75,6 +75,9 @@ def Modules.IsCoherent (M : X.Modules) : Prop :=
 subcategory of `X.Modules`.-/
 def coherent : ObjectProperty X.Modules := fun M => Modules.IsCoherent X M
 
+/--
+@isnad1 id=iff.0h2v.s3.eecc8fe014e7 from=translated src=- shape=e74561de vocab=ec104d99
+-/
 theorem coherent_iff (M : X.Modules) :
     coherent X M ↔ Modules.IsCoherent X M := Iff.rfl
 
@@ -101,12 +104,16 @@ def ι : Coh X ⥤ X.Modules := (Scheme.coherent X).ι
 a `def`, so instance search does not unfold it to reach `ObjectProperty.full_ι`.  Together with
 `Coh.faithful_ι` this makes `Coh.ι` reflect finite limits and colimits
 (`fullyFaithful_reflectsLimits`), which is what `preservesFiniteLimits_of_reflects_of_preserves`
-needs to transfer exactness along the inclusion, as `Coh.pushforward` does.-/
+needs to transfer exactness along the inclusion, as `Coh.pushforward` does.
+@isnad1 id=full.0h1v.s3.11f541701302 from=translated src=- shape=ca92e646 vocab=80f25ac3
+-/
 instance full_ι : (ι X).Full :=
   inferInstanceAs (Scheme.coherent X).ι.Full
 
 /-- The inclusion of coherent sheaves is faithful; see `Coh.full_ι` for why this is stated on
-`Coh.ι` rather than inherited.-/
+`Coh.ι` rather than inherited.
+@isnad1 id=faithful.0h1v.s3.8fd192a64c1b from=translated src=- shape=ca92e646 vocab=194d1872
+-/
 instance faithful_ι : (ι X).Faithful :=
   inferInstanceAs (Scheme.coherent X).ι.Faithful
 

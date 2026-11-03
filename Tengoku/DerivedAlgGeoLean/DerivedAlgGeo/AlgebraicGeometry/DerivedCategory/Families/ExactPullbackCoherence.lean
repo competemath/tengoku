@@ -36,7 +36,9 @@ namespace SchemeBaseChange
 
 variable {S : Scheme.{u}}
 
-/-- Pullback along an identity morphism is exact.-/
+/-- Pullback along an identity morphism is exact.
+@isnad1 id=isexactp.0h2v.s4.c9303ff7fe7d from=translated src=- shape=38a15565 vocab=14129186
+-/
 instance isExactPullbackId (T : SchemeBaseChange S) :
     IsExactPullback (𝟙 T) where
   preservesFiniteLimits :=
@@ -44,7 +46,9 @@ instance isExactPullbackId (T : SchemeBaseChange S) :
   preservesFiniteColimits :=
     preservesFiniteColimits_of_natIso (modulePullbackId T).symm
 
-/-- A composite of exact pullbacks is exact.-/
+/-- A composite of exact pullbacks is exact.
+@isnad1 id=isexactp.0h6v.s6.9b80f28f6c0b from=translated src=- shape=ea908f6d vocab=30e3d7a8
+-/
 instance isExactPullbackComp {T U V : SchemeBaseChange S}
     (f : T ⟶ U) (g : U ⟶ V) [IsExactPullback f] [IsExactPullback g] :
     IsExactPullback (f ≫ g) where

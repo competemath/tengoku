@@ -46,7 +46,9 @@ variable {R M : Type*} [CommSemiring R] [AddCommMonoid M] [Module R M]
 of every element of `(span s).radical` carries it into the submodule.
 
 The family `s` is the one a basic-open cover produces, and `d` is the element whose basic open is
-being covered; radical membership is what "the cover is a cover" supplies.-/
+being covered; radical membership is what "the cover is a cover" supplies.
+@isnad1 id=ex.2h8v.s8.8d67924e8bed from=translated src=- shape=34fb6a88 vocab=340658e0
+-/
 theorem exists_pow_smul_mem_of_isLocalized_radical
     (s : Set R) {d : R} (hd : d ∈ (Ideal.span s).radical)
     (Mₚ : ∀ _ : s, Type*) [∀ r : s, AddCommMonoid (Mₚ r)]

@@ -30,7 +30,9 @@ reflective target of `L` — then a functor `F` out of `D` preserves colimits of
 soon as `L` and `L ⋙ F` do.
 
 Every `d : K ⥤ D` is isomorphic to `(d ⋙ G) ⋙ L`, and
-`Limits.preservesColimit_comp_left` applies to `d ⋙ G`.-/
+`Limits.preservesColimit_comp_left` applies to `d ⋙ G`.
+@isnad1 id=preserve.0h8v.s6.8e2769b526ba from=translated src=- shape=d306d16d vocab=7c722052
+-/
 lemma preservesColimitsOfShape_of_comp_left [HasColimitsOfShape K C]
     [PreservesColimitsOfShape K L] [PreservesColimitsOfShape K (L ⋙ F)] :
     PreservesColimitsOfShape K F where

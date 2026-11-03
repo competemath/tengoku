@@ -123,7 +123,9 @@ abbrev presheafModuleStalkToSheafificationApp
   _root_.PresheafOfModules.stalkSheafificationApp X X.ringCatSheaf.obj x
     (moduleStalkRingIsColimit X x) X.ringCatSheaf.property M
 
-/-- Module sheafification induces an isomorphism on every module stalk.-/
+/-- Module sheafification induces an isomorphism on every module stalk.
+@isnad1 id=isiso.0h3v.s11.0a8f578fb67c from=translated src=- shape=c78ce7e6 vocab=8bc2088f
+-/
 theorem presheafModuleStalkToSheafificationApp_isIso
     (X : Scheme.{u}) (x : X)
     (M : _root_.PresheafOfModules.{u} X.ringCatSheaf.obj) :
@@ -154,7 +156,9 @@ def moduleStalkForgetIso (X : Scheme.{u}) (x : X) :
 
 /-- Arbitrary small colimits of module sheaves are preserved by the underlying
 additive sheaf stalk. The forgetful module functor reflects and preserves the
-corresponding module colimits.-/
+corresponding module colimits.
+@isnad1 id=preserve.0h3v.s7.926866f1d954 from=translated src=- shape=51863bcb vocab=def90632
+-/
 theorem moduleStalkFunctor_preservesSmallColimits
     (X : Scheme.{u}) (x : X) (J : Type u) [Category.{u} J] :
     PreservesColimitsOfShape J (moduleStalkFunctor X x) := by
@@ -183,14 +187,18 @@ theorem moduleStalkFunctor_preservesSmallColimits
     (moduleStalkFunctor X x) forgetModule
 
 /-- The established indexed-coproduct API is the discrete-diagram case of
-general small-colimit preservation.-/
+general small-colimit preservation.
+@isnad1 id=preserve.0h3v.s7.e635f762f838 from=translated src=- shape=d21739e2 vocab=b9066970
+-/
 theorem moduleStalkFunctor_preservesColimitsOfShape
     (X : Scheme.{u}) (x : X) (I : Type u) :
     PreservesColimitsOfShape (Discrete I) (moduleStalkFunctor X x) :=
   moduleStalkFunctor_preservesSmallColimits X x (Discrete I)
 
 /-- Finite colimits follow from the general small-colimit theorem after
-transporting a finite indexing category to the scheme's universe.-/
+transporting a finite indexing category to the scheme's universe.
+@isnad1 id=preserve.0h2v.s7.88acaf5aad68 from=translated src=- shape=47332455 vocab=89235ff1
+-/
 theorem moduleStalkFunctor_preservesFiniteColimits
     (X : Scheme.{u}) (x : X) :
     PreservesFiniteColimits (moduleStalkFunctor X x) := by
@@ -198,7 +206,9 @@ theorem moduleStalkFunctor_preservesFiniteColimits
   intro J _ _
   exact moduleStalkFunctor_preservesSmallColimits X x J
 
-/-- Taking the stalk of a sheaf of modules preserves finite limits.-/
+/-- Taking the stalk of a sheaf of modules preserves finite limits.
+@isnad1 id=preserve.0h2v.s7.e1b8382770af from=translated src=- shape=47332455 vocab=8bd6aa7e
+-/
 theorem moduleStalkFunctor_preservesFiniteLimits
     (X : Scheme.{u}) (x : X) :
     PreservesFiniteLimits (moduleStalkFunctor X x) := by
@@ -220,7 +230,9 @@ theorem moduleStalkFunctor_preservesFiniteLimits
     (moduleStalkFunctor X x) forgetModule
 
 /-- The family of module-stalk functors over all points detects
-isomorphisms of sheaves of modules.-/
+isomorphisms of sheaves of modules.
+@isnad1 id=jointlyr.0h1v.s7.dc93b4edba95 from=translated src=- shape=b5184758 vocab=c0aab846
+-/
 theorem moduleStalkFunctors_jointlyReflectIsomorphisms (X : Scheme.{u}) :
     JointlyReflectIsomorphisms (moduleStalkFunctor X) where
   isIso {M N} f := by
@@ -245,7 +257,9 @@ theorem moduleStalkFunctors_jointlyReflectIsomorphisms (X : Scheme.{u}) :
     infer_instance
 
 /-- A functor between categories of module sheaves preserves finite limits
-as soon as all of its composites with module-stalk functors do.-/
+as soon as all of its composites with module-stalk functors do.
+@isnad1 id=preserve.1h3v.s8.50baf977f222 from=translated src=- shape=b3faedf7 vocab=9f0f041a
+-/
 theorem preservesFiniteLimits_of_stalkwise
     {X Y : Scheme.{u}} (F : Y.Modules ⥤ X.Modules)
     (hF : ∀ x : X,
@@ -283,7 +297,9 @@ abbrev neighborhoodModulePullback {X Y : Scheme.{u}}
   _root_.PresheafOfModules.pullback (neighborhoodRingHom f x)
 
 /-- The neighborhood ring map commutes with the two stalk cocones through the
-scheme morphism's map on local rings.-/
+scheme morphism's map on local rings.
+@isnad1 id=eq.0h5v.s15.8b4a4dc8e210 from=translated src=- shape=b32a4a49 vocab=f7e3be31
+-/
 lemma neighborhoodRingHom_comp_stalkCocone {X Y : Scheme.{u}}
     (f : X ⟶ Y) (x : X) (V : (OpenNhds (f x))ᵒᵖ) :
     (moduleStalkRingCocone Y (f x)).ι.app V ≫

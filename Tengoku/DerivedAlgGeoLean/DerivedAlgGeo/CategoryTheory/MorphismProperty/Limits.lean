@@ -30,7 +30,9 @@ namespace CategoryTheory.MorphismProperty
 variable {C : Type u} [Category.{v} C]
 
 /-- `Sigma.map` of a family of morphisms in `W` is in `W` when `W` is stable under
-coproducts of that shape.-/
+coproducts of that shape.
+@isnad1 id=var.0h7v.s6.9870a7dde7e0 from=translated src=- shape=88b8a397 vocab=25aa2c55
+-/
 theorem sigma_map (W : MorphismProperty C) {ι : Type w} [HasCoproductsOfShape ι C]
     [W.IsStableUnderCoproductsOfShape ι] {X Y : ι → C} (s : ∀ i, X i ⟶ Y i)
     (hs : ∀ i, W (s i)) : W (Limits.Sigma.map s) :=

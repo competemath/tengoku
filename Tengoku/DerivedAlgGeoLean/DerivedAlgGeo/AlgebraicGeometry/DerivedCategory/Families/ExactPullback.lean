@@ -81,14 +81,18 @@ attribute [instance] IsExactPullback.preservesFiniteLimits
   IsExactPullback.preservesFiniteColimits
 
 /-- Module-sheaf pullback preserves finite colimits for every scheme
-morphism, because it is left adjoint to module-sheaf pushforward.-/
+morphism, because it is left adjoint to module-sheaf pushforward.
+@isnad1 id=preserve.0h4v.s5.dbb6e4ce38fc from=translated src=- shape=2a9d4031 vocab=0965e206
+-/
 theorem modulePullback_preservesFiniteColimits
     {T U : SchemeBaseChange S} (f : T ⟶ U) :
     PreservesFiniteColimits (modulePullback f) :=
   inferInstance
 
 /-- Construct exact module-sheaf pullback from the only nonautomatic
-obligation: preservation of finite limits.-/
+obligation: preservation of finite limits.
+@isnad1 id=isexactp.0h4v.s5.261172e85215 from=translated src=- shape=dab5e5d7 vocab=80b60bb3
+-/
 theorem IsExactPullback.of_preservesFiniteLimits
     {T U : SchemeBaseChange S} (f : T ⟶ U)
     [PreservesFiniteLimits (modulePullback f)] : IsExactPullback f where
@@ -96,7 +100,9 @@ theorem IsExactPullback.of_preservesFiniteLimits
   preservesFiniteColimits := modulePullback_preservesFiniteColimits f
 
 /-- Exactness of module-sheaf pullback is equivalent to preservation of
-finite limits; finite-colimit preservation is automatic.-/
+finite limits; finite-colimit preservation is automatic.
+@isnad1 id=iff.0h4v.s5.97fa2c625f87 from=translated src=- shape=7bb26b6a vocab=80b60bb3
+-/
 theorem isExactPullback_iff_preservesFiniteLimits
     {T U : SchemeBaseChange S} (f : T ⟶ U) :
     IsExactPullback f ↔ PreservesFiniteLimits (modulePullback f) := by
@@ -136,6 +142,9 @@ def derivedPullK₀ {T U : SchemeBaseChange S} (f : T ⟶ U)
     [IsExactPullback f] : K₀ U.DerivedFiber →+ K₀ T.DerivedFiber :=
   K₀.map (derivedPullback f)
 
+/--
+@isnad1 id=eq.0h5v.s12.1e62abe41736 from=translated src=- shape=c09b3d92 vocab=40d96cdf
+-/
 theorem derivedPullK₀_of {T U : SchemeBaseChange S} (f : T ⟶ U)
     [IsExactPullback f] (E : U.DerivedFiber) :
     derivedPullK₀ f (K₀.of _ E) = K₀.of _ ((derivedPullback f).obj E) := by
@@ -155,6 +164,9 @@ abbrev derivedPullK₀ToResidue (T : SchemeBaseChange S) (x : T.left)
     K₀ T.DerivedFiber →+ K₀ (T.ResidueDerivedFiber x) :=
   derivedPullK₀ (T.residueTo x)
 
+/--
+@isnad1 id=eq.0h4v.s13.5153f76423fa from=translated src=- shape=fd35bc17 vocab=455dffd7
+-/
 theorem derivedPullK₀ToResidue_of (T : SchemeBaseChange S) (x : T.left)
     [IsExactPullback (T.residueTo x)] (E : T.DerivedFiber) :
     T.derivedPullK₀ToResidue x (K₀.of _ E) =

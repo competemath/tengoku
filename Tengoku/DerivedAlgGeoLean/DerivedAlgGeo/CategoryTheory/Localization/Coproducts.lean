@@ -79,7 +79,9 @@ include W in
 fractions with a common denominator `t`, the Ore condition against each `Sigma.ι X i` and
 `map_eq_iff_precomp` give, summand by summand, morphisms in `W` equalizing the two
 numerators, and `Sigma.map` of those is a morphism in `W` through which both fractions
-factor.-/
+factor.
+@isnad1 id=eq.1h9v.s8.54cd5855927e from=translated src=- shape=f28e7012 vocab=90e72e82
+-/
 theorem sigma_hom_ext {X : ι → C} {Y : C} {ψ ψ' : L.obj (∐ X) ⟶ L.obj Y}
     (h : ∀ i, L.map (Sigma.ι X i) ≫ ψ = L.map (Sigma.ι X i) ≫ ψ') : ψ = ψ' := by
   obtain ⟨φ, rfl⟩ := Localization.exists_rightFraction L W ψ
@@ -152,12 +154,16 @@ noncomputable def cofanFraction (i : ι) : W.RightFraction (X i) Y :=
 
 omit [HasCoproductsOfShape ι C] [W.IsStableUnderCoproductsOfShape ι] in
 /-- The defining equation of `cofanFraction`, the `choose_spec` of
-`Localization.exists_rightFraction`.-/
+`Localization.exists_rightFraction`.
+@isnad1 id=eq.0h10v.s7.a17f8d64954b from=translated src=- shape=a7edade0 vocab=39a3715d
+-/
 theorem cofanFraction_map (i : ι) :
     (cofanFraction L W X t Y e i).map L (Localization.inverts L W) = t.inj i ≫ e.inv :=
   (Localization.exists_rightFraction L W (t.inj i ≫ e.inv)).choose_spec.symm
 
-/-- The common denominator of the legs' fractions is inverted by `L`.-/
+/-- The common denominator of the legs' fractions is inverted by `L`.
+@isnad1 id=isiso.0h9v.s7.afee10d30380 from=translated src=- shape=5b481d66 vocab=52d3f6a6
+-/
 instance isIso_map_sigma_map_cofanFraction_s :
     IsIso (L.map (Limits.Sigma.map fun i => (cofanFraction L W X t Y e i).s)) :=
   Localization.inverts L W _ (W.sigma_map _ fun i => (cofanFraction L W X t Y e i).hs)
@@ -169,7 +175,9 @@ noncomputable def cofanDesc : L.obj (∐ X) ⟶ t.pt :=
   inv (L.map (Limits.Sigma.map fun i => (cofanFraction L W X t Y e i).s)) ≫
     L.map (Sigma.desc fun i => (cofanFraction L W X t Y e i).f) ≫ e.hom
 
-/-- `cofanDesc` restricts on each summand to the given leg.-/
+/-- `cofanDesc` restricts on each summand to the given leg.
+@isnad1 id=eq.0h10v.s7.633908cabd6e from=translated src=- shape=03daa6c2 vocab=20c6e351
+-/
 theorem cofanDesc_fac (i : ι) : L.map (Sigma.ι X i) ≫ cofanDesc L W X t Y e = t.inj i := by
   haveI := Localization.inverts L W _ (cofanFraction L W X t Y e i).hs
   have h1 : L.map (Sigma.ι X i) ≫
@@ -212,7 +220,9 @@ include W in
 /-- `L` preserves coproducts of shape `ι`: `isColimitCofan` transported along
 `Discrete.natIsoFunctor`.  Unlike Mathlib's `Localization.preservesProductsOfShape`, which
 needs `Finite J` and no calculus of fractions, this holds for every `ι` given a right
-calculus.-/
+calculus.
+@isnad1 id=preserve.0h5v.s5.2e77109ddf09 from=translated src=- shape=3a22aefa vocab=40a20621
+-/
 theorem preservesCoproductsOfShape : PreservesColimitsOfShape (Discrete ι) L := by
   haveI : ∀ X : ι → C, PreservesColimit (Discrete.functor X) L := fun X => by
     refine preservesColimit_of_preserves_colimit_cocone (coproductIsCoproduct _) ?_
@@ -225,7 +235,9 @@ theorem preservesCoproductsOfShape : PreservesColimitsOfShape (Discrete ι) L :=
 
 include L W in
 /-- `D` has coproducts of shape `ι`: every family is isomorphic to the image of a family in
-`C`, whose coproduct `L` preserves.-/
+`C`, whose coproduct `L` preserves.
+@isnad1 id=hascopro.0h5v.s5.87dc694e02a7 from=translated src=- shape=5e4a9558 vocab=05acbdef
+-/
 theorem hasCoproductsOfShape : HasCoproductsOfShape ι D := by
   haveI := Localization.essSurj L W
   constructor

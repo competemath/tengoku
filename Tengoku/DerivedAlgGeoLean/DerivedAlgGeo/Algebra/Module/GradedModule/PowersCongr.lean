@@ -33,12 +33,18 @@ noncomputable def powersCongr {f g : A} (h : f = g) :
   subst h
   exact AddEquiv.refl _
 
+/--
+@isnad1 id=eq.4h12v.s13.235af7802d2f from=translated src=- shape=a16942f8 vocab=92c5e832
+-/
 theorem powersCongr_awayMk {f g : A} (h : f = g) {e : ι} (hf : f ∈ 𝒜 e) (hg : g ∈ 𝒜 e)
     (n : ℕ) (m : M) (hm : m ∈ 𝓜 (n • e)) :
     powersCongr (𝒜 := 𝒜) (𝓜 := 𝓜) h (awayMk hf n m hm) = awayMk hg n m hm := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.2h11v.s14.09d5fe2c9735 from=translated src=- shape=f9feb03e vocab=25d72c33
+-/
 theorem powersCongr_trans {f g l : A} (h₁ : f = g) (h₂ : g = l)
     (z : DegreeZeroLocalization 𝒜 𝓜 (.powers f)) :
     powersCongr h₂ (powersCongr h₁ z) = powersCongr (h₁.trans h₂) z := by
@@ -46,13 +52,18 @@ theorem powersCongr_trans {f g l : A} (h₁ : f = g) (h₂ : g = l)
   subst h₂
   rfl
 
+/--
+@isnad1 id=eq.1h10v.s14.3d14a5fc41ec from=translated src=- shape=9fbb4809 vocab=ac0933ab
+-/
 theorem powersCongr_symm_apply_apply {f g : A} (h : f = g)
     (z : DegreeZeroLocalization 𝒜 𝓜 (.powers f)) :
     (powersCongr (𝒜 := 𝒜) (𝓜 := 𝓜) h).symm (powersCongr h z) = z := by
   subst h
   rfl
 
-/-- Absorb an inverse transport into a forward one.-/
+/-- Absorb an inverse transport into a forward one.
+@isnad1 id=eq.3h11v.s14.609f2baab667 from=translated src=- shape=68393427 vocab=ac0933ab
+-/
 theorem powersCongr_symm_trans {f g l : A} (h₀ : f = g) (e₁ : f = l) (h₁ : g = l)
     (u : DegreeZeroLocalization 𝒜 𝓜 (.powers g)) :
     powersCongr (𝒜 := 𝒜) (𝓜 := 𝓜) e₁ ((powersCongr h₀).symm u) = powersCongr h₁ u := by
@@ -61,7 +72,9 @@ theorem powersCongr_symm_trans {f g l : A} (h₀ : f = g) (e₁ : f = l) (h₁ :
   rfl
 
 /-- Transport a face map along equalities of both denominators and of the
-multiplier.-/
+multiplier.
+@isnad1 id=eq.9h15v.s15.b08f35d9fade from=translated src=- shape=cfc99c1c vocab=e002505e
+-/
 theorem powersCongr_faceMap {g₁ g₁' g₂ g₂' w w' : A} {e : ι}
     (e₁ : g₁ = g₁') (e₂ : g₂ = g₂') (e₃ : w = w')
     (hw : w ∈ 𝒜 e) (hw' : w' ∈ 𝒜 e)

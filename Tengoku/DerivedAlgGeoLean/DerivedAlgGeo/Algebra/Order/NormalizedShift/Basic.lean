@@ -47,13 +47,18 @@ variable {f g : NormalizedShift}
 
 /-- A normalized shift is determined by its underlying order-isomorphism.
 
-`map_add_one` is a `Prop`, so it carries no data to disagree about.-/
+`map_add_one` is a `Prop`, so it carries no data to disagree about.
+@isnad1 id=injectiv.0h0v.s3.90b0c5891ec5 from=translated src=- shape=1f28ec23 vocab=b0405c6e
+-/
 theorem toOrderIso_injective :
     Function.Injective NormalizedShift.toOrderIso := by
   rintro ⟨f, hf⟩ ⟨g, hg⟩ h
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.dd775beb610a from=translated src=- shape=a33e34c0 vocab=cca23e2e
+-/
 @[ext]
 theorem ext' (h : ∀ φ, f.toOrderIso φ = g.toOrderIso φ) : f = g := by
   apply toOrderIso_injective
@@ -62,7 +67,9 @@ theorem ext' (h : ∀ φ, f.toOrderIso φ = g.toOrderIso φ) : f = g := by
 /-- The inverse of a normalized shift is again `+1`-equivariant.
 
 Apply `f` to both sides and use injectivity: this is the only step of the
-group structure that is not immediate from composition.-/
+group structure that is not immediate from composition.
+@isnad1 id=eq.0h2v.s6.f7107b8c7ef6 from=translated src=- shape=40daf7a6 vocab=d7ea24c1
+-/
 theorem symm_map_add_one (f : NormalizedShift) (ψ : ℝ) :
     f.toOrderIso.symm (ψ + 1) = f.toOrderIso.symm ψ + 1 := by
   apply f.toOrderIso.injective
@@ -90,13 +97,22 @@ instance group : Group NormalizedShift where
     ext φ
     exact f.toOrderIso.symm_apply_apply φ
 
+/--
+@isnad1 id=eq.0h3v.s6.f695d411e601 from=translated src=- shape=d1619787 vocab=975d12fa
+-/
 @[simp]
 theorem mul_apply (f g : NormalizedShift) (φ : ℝ) :
     (f * g).toOrderIso φ = f.toOrderIso (g.toOrderIso φ) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.50768bb3ecee from=translated src=- shape=2cf3cb28 vocab=cca23e2e
+-/
 @[simp]
 theorem one_apply (φ : ℝ) : (1 : NormalizedShift).toOrderIso φ = φ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.890c48f4a8f3 from=translated src=- shape=abc17af7 vocab=1bdb8684
+-/
 @[simp]
 theorem inv_apply (f : NormalizedShift) (φ : ℝ) :
     f⁻¹.toOrderIso φ = f.toOrderIso.symm φ := rfl

@@ -24,7 +24,9 @@ namespace FGModuleCat
 
 variable {R : Type u} [CommRing R] [IsNoetherianRing R]
 
-/-- Every finitely generated module over a Noetherian ring is a Noetherian object.-/
+/-- Every finitely generated module over a Noetherian ring is a Noetherian object.
+@isnad1 id=isnoethe.0h2v.s5.e5478234af02 from=translated src=- shape=88a545a0 vocab=5997bf9d
+-/
 instance isNoetherianObject (M : FGModuleCat.{u} R) : IsNoetherianObject M := by
   letI : Module.Finite R M := M.property
   have hM : IsNoetherianObject (ModuleCat.of R M) := inferInstance

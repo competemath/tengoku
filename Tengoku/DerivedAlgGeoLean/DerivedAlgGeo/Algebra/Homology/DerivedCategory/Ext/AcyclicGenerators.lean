@@ -53,7 +53,9 @@ section Vanishing
 
 variable {C : Type u} [Category.{v} C] [Abelian C] [HasExt.{w} C]
 
-/-- Vanishing of `Ext` transports along an isomorphism in the first variable.-/
+/-- Vanishing of `Ext` transports along an isomorphism in the first variable.
+@isnad1 id=subsingl.1h6v.s5.a166d05aaa3a from=translated src=- shape=b25f7b6b vocab=707695e7
+-/
 lemma Ext.subsingleton_of_iso_left {X X' Y : C} (e : X ≅ X') (n : ℕ)
     (h : Subsingleton (Ext.{w} X' Y n)) : Subsingleton (Ext.{w} X Y n) :=
   subsingleton_of_forall_eq 0 fun x ↦ by
@@ -62,7 +64,9 @@ lemma Ext.subsingleton_of_iso_left {X X' Y : C} (e : X ≅ X') (n : ℕ)
     rw [h, ← Ext.mk₀_comp_mk₀_assoc,
       Subsingleton.elim ((Ext.mk₀ e.inv).comp x (zero_add n)) 0, Ext.comp_zero]
 
-/-- `Ext` out of a finite biproduct vanishes when `Ext` out of each summand does.-/
+/-- `Ext` out of a finite biproduct vanishes when `Ext` out of each summand does.
+@isnad1 id=subsingl.1h5v.s6.a5d7780d9e8e from=translated src=- shape=f0cf10ff vocab=2b5e22a4
+-/
 lemma Ext.subsingleton_biproduct_left {J : Type} [Fintype J] (f : J → C) [HasBiproduct f]
     (Y : C) (n : ℕ) (h : ∀ j, Subsingleton (Ext.{w} (f j) Y n)) :
     Subsingleton (Ext.{w} (⨁ f) Y n) :=
@@ -89,7 +93,9 @@ The preservation hypothesis is deliberately stated on `singleFunctor`
 rather than derived here from AB4.  This keeps the lemma applicable to any
 abelian category whose relevant coproduct survives into the derived
 category, while `DerivedCategory.Coproducts` supplies the instance for the
-scheme-module application.-/
+scheme-module application.
+@isnad1 id=subsingl.1h5v.s6.469ab0dcf16a from=translated src=- shape=d0b20fe7 vocab=e8f0421d
+-/
 lemma Ext.subsingleton_coproduct_left {J : Type w'} (f : J → C)
     [HasCoproduct f]
     [HasDerivedCategory.{w''} C]
@@ -120,7 +126,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C] {D : Type u'} [Category.{v'} 
   (F : D ⥤ C) [F.Additive] [PreservesFiniteLimits F] [PreservesFiniteColimits F]
   [HasExt.{w} C] [HasExt.{w'} D]
 
-/-- In degree zero, `F.mapExtAddHom` is `F.map` up to the identifications `Ext⁰ = Hom`.-/
+/-- In degree zero, `F.mapExtAddHom` is `F.map` up to the identifications `Ext⁰ = Hom`.
+@isnad1 id=iff.0h5v.s9.6686ff41bee3 from=translated src=- shape=15a5074a vocab=f6554237
+-/
 lemma Functor.bijective_mapExtAddHom_zero_iff (X Y : D) :
     Function.Bijective (F.mapExtAddHom X Y 0) ↔ Function.Bijective (F.map : (X ⟶ Y) → _) := by
   have : (F.mapExtAddHom X Y 0 : Ext X Y 0 → _) = Ext.mk₀ ∘ F.map ∘ Ext.homEquiv₀ := by
@@ -132,7 +140,9 @@ lemma Functor.bijective_mapExtAddHom_zero_iff (X Y : D) :
   rw [this, (Ext.mk₀_bijective _ _).of_comp_iff',
     Function.Bijective.of_comp_iff _ Ext.homEquiv₀.bijective]
 
-/-- A fully faithful exact functor is bijective on `Ext⁰`.-/
+/-- A fully faithful exact functor is bijective on `Ext⁰`.
+@isnad1 id=bijectiv.0h5v.s9.61fbe683788a from=translated src=- shape=51d962ec vocab=c2fae631
+-/
 lemma Functor.bijective_mapExtAddHom_zero [F.Full] [F.Faithful] (X Y : D) :
     Function.Bijective (F.mapExtAddHom X Y 0) :=
   (F.bijective_mapExtAddHom_zero_iff X Y).2 ⟨F.map_injective, F.map_surjective⟩
@@ -149,7 +159,9 @@ include hpres hD hC h₀
 omit hD in
 /-- **Surjectivity in every degree.** Present `X` by `K ↪ P ↠ X` with `P ∈ Q`; downstairs
 `Ext^n (F K) (F Y) → Ext^(n+1) (F X) (F Y)` is surjective because `Ext^(n+1) (F P) (F Y)`
-vanishes, so a class lifts by induction and pushes forward.-/
+vanishes, so a class lifts by induction and pushes forward.
+@isnad1 id=surjecti.3h7v.s10.1b985494468a from=translated src=- shape=0b2aed0e vocab=d4eeee40
+-/
 theorem Functor.surjective_mapExtAddHom_of_generators (n : ℕ) (X Y : D) :
     Function.Surjective (F.mapExtAddHom X Y n) := by
   induction n generalizing X with
@@ -171,7 +183,9 @@ theorem Functor.surjective_mapExtAddHom_of_generators (n : ℕ) (X Y : D) :
     exact hz
 
 /-- **Injectivity in every degree.** The successor case uses surjectivity in degree `n`, so
-the two theorems are not independent.-/
+the two theorems are not independent.
+@isnad1 id=injectiv.4h7v.s10.ea4ba7636c8d from=translated src=- shape=6d2a4437 vocab=ae448528
+-/
 theorem Functor.injective_mapExtAddHom_of_generators (n : ℕ) (X Y : D) :
     Function.Injective (F.mapExtAddHom X Y n) := by
   induction n generalizing X with
@@ -198,7 +212,9 @@ theorem Functor.injective_mapExtAddHom_of_generators (n : ℕ) (X Y : D) :
     exact hS.extClass_comp_assoc v
 
 /-- **Ext comparison from acyclic generators.** An exact functor bijective on `Ext⁰` is
-bijective on every `Ext` as soon as a generating class of objects is acyclic on both sides.-/
+bijective on every `Ext` as soon as a generating class of objects is acyclic on both sides.
+@isnad1 id=bijectiv.4h7v.s10.a353203436f2 from=translated src=- shape=e31d456b vocab=d158719e
+-/
 theorem Functor.bijective_mapExtAddHom_of_generators (n : ℕ) (X Y : D) :
     Function.Bijective (F.mapExtAddHom X Y n) :=
   ⟨F.injective_mapExtAddHom_of_generators Q hpres hD hC h₀ n X Y,

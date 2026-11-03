@@ -61,7 +61,9 @@ variable [AddCommMonoid M] [Module A M] [AddCommMonoid M'] [Module A M']
 variable [AddCommMonoid N] [Module A N] [AddCommMonoid N'] [Module A N']
 variable (S : Submonoid A)
 
-/-- Localization commutes with kernels, for arbitrary choices of localized targets.-/
+/-- Localization commutes with kernels, for arbitrary choices of localized targets.
+@isnad1 id=islocali.1h10v.s9.8dd9b41c0d4a from=translated src=- shape=ec1f8c43 vocab=6c420b62
+-/
 theorem kerMap (a : M →ₗ[A] M') [ha : IsLocalizedModule S a]
     (b : N →ₗ[A] N') [hb : IsLocalizedModule S b]
     (g : M →ₗ[A] N) (g' : M' →ₗ[A] N') (h : g'.comp a = b.comp g) :
@@ -107,7 +109,9 @@ theorem kerMap (a : M →ₗ[A] M') [ha : IsLocalizedModule S a]
 
 variable {A : Type w} [CommRing A] (S : Submonoid A)
 
-/-- Localization commutes with the map on categorical kernels in `ModuleCat`.-/
+/-- Localization commutes with the map on categorical kernels in `ModuleCat`.
+@isnad1 id=islocali.1h10v.s9.490bbbb0b438 from=translated src=- shape=558bc96b vocab=4765a3f1
+-/
 theorem kernelMap {M M' N N' : ModuleCat.{w} A}
     (a : M ⟶ M') [IsLocalizedModule S a.hom]
     (b : N ⟶ N') [IsLocalizedModule S b.hom]
@@ -143,7 +147,9 @@ theorem kernelMap {M M' N N' : ModuleCat.{w} A}
 variable {C : Type (w + 1)} [Category.{w} C] [HasZeroMorphisms C]
 
 /-- A natural transformation whose endpoint components are localization maps remains a
-localization map on kernels, provided both functors preserve finite limits.-/
+localization map on kernels, provided both functors preserve finite limits.
+@isnad1 id=islocali.0h9v.s9.96d0293870be from=translated src=- shape=7904cb57 vocab=6a0e8f28
+-/
 theorem kernelNatTrans (F G : C ⥤ ModuleCat.{w} A)
     [F.PreservesZeroMorphisms] [G.PreservesZeroMorphisms]
     [PreservesFiniteLimits F] [PreservesFiniteLimits G] (α : F ⟶ G)

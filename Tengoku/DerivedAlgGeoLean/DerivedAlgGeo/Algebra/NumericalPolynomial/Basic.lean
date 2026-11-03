@@ -57,31 +57,45 @@ def difference {ι : Type*} (v : Lattice ι) (f : NumericalFunction ι) :
     NumericalFunction ι :=
   fwdDiff v f
 
+/--
+@isnad1 id=eq.0h4v.s5.40592d591bad from=translated src=- shape=90d37c62 vocab=34cd9e95
+-/
 @[simp]
 theorem difference_apply {ι : Type*} (v : Lattice ι) (f : NumericalFunction ι)
     (x : Lattice ι) :
     difference v f x = f (x + v) - f x :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.b8cffeafd7e3 from=translated src=- shape=1e24464e vocab=0cef0605
+-/
 @[simp]
 theorem difference_zero_direction {ι : Type*} (f : NumericalFunction ι) :
     difference 0 f = 0 := by
   ext x
   simp [difference, fwdDiff]
 
+/--
+@isnad1 id=eq.0h2v.s5.4fc5829cdcc3 from=translated src=- shape=7a3e4b55 vocab=0cef0605
+-/
 @[simp]
 theorem difference_zero_function {ι : Type*} (v : Lattice ι) :
     difference v (0 : NumericalFunction ι) = 0 := by
   ext x
   simp [difference, fwdDiff]
 
+/--
+@isnad1 id=eq.0h4v.s6.3b0298c5e765 from=translated src=- shape=32ce5554 vocab=3514e614
+-/
 @[simp]
 theorem difference_add_function {ι : Type*} (v : Lattice ι)
     (f g : NumericalFunction ι) :
     difference v (f + g) = difference v f + difference v g :=
   fwdDiff_add v f g
 
-/-- Forward differences in two lattice directions commute.-/
+/-- Forward differences in two lattice directions commute.
+@isnad1 id=eq.0h4v.s4.cfbc869daecb from=translated src=- shape=335f8850 vocab=52cd215a
+-/
 theorem difference_comm {ι : Type*} (v w : Lattice ι) (f : NumericalFunction ι) :
     difference v (difference w f) = difference w (difference v f) := by
   funext x
@@ -90,7 +104,9 @@ theorem difference_comm {ι : Type*} (v w : Lattice ι) (f : NumericalFunction �
   rw [harg]
   abel
 
-/-- Splitting a direction introduces one second-order correction term.-/
+/-- Splitting a direction introduces one second-order correction term.
+@isnad1 id=eq.0h4v.s6.7bc1d47f6a8d from=translated src=- shape=bd0a89eb vocab=3514e614
+-/
 theorem difference_add_direction {ι : Type*} (v w : Lattice ι)
     (f : NumericalFunction ι) :
     difference (v + w) f =
@@ -110,6 +126,9 @@ def coordinateDifference {ι : Type*} [DecidableEq ι] (i : ι)
     (f : NumericalFunction ι) : NumericalFunction ι :=
   difference (coordinateDirection i) f
 
+/--
+@isnad1 id=eq.0h4v.s5.2783292b016d from=translated src=- shape=d165b929 vocab=6e0f7913
+-/
 @[simp]
 theorem coordinateDifference_apply {ι : Type*} [DecidableEq ι] (i : ι)
     (f : NumericalFunction ι) (x : Lattice ι) :
@@ -122,17 +141,26 @@ def mixedDifference {ι : Type*} :
   | [], f => f
   | v :: directions, f => difference v (mixedDifference directions f)
 
+/--
+@isnad1 id=eq.0h2v.s3.628e5705e608 from=translated src=- shape=e0ee075e vocab=7543478a
+-/
 @[simp]
 theorem mixedDifference_nil {ι : Type*} (f : NumericalFunction ι) :
     mixedDifference [] f = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.86ce482514cd from=translated src=- shape=65ad605d vocab=910dcd43
+-/
 @[simp]
 theorem mixedDifference_cons {ι : Type*} (v : Lattice ι)
     (directions : List (Lattice ι)) (f : NumericalFunction ι) :
     mixedDifference (v :: directions) f = difference v (mixedDifference directions f) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.83594111c234 from=translated src=- shape=00911129 vocab=f05127f2
+-/
 @[simp]
 theorem mixedDifference_zero {ι : Type*} (directions : List (Lattice ι)) :
     mixedDifference directions (0 : NumericalFunction ι) = 0 := by
@@ -140,6 +168,9 @@ theorem mixedDifference_zero {ι : Type*} (directions : List (Lattice ι)) :
   | nil => rfl
   | cons v directions ih => simp [ih]
 
+/--
+@isnad1 id=eq.0h4v.s6.33147d09b721 from=translated src=- shape=e3446531 vocab=398d8379
+-/
 @[simp]
 theorem mixedDifference_add {ι : Type*} (directions : List (Lattice ι))
     (f g : NumericalFunction ι) :
@@ -149,7 +180,9 @@ theorem mixedDifference_add {ι : Type*} (directions : List (Lattice ι))
   | nil => rfl
   | cons v directions ih => simp [ih]
 
-/-- Applying one more difference can be moved past any list of mixed differences.-/
+/-- Applying one more difference can be moved past any list of mixed differences.
+@isnad1 id=eq.0h4v.s4.10bcb645d8e8 from=translated src=- shape=f072ee66 vocab=9dcc4d48
+-/
 theorem mixedDifference_difference {ι : Type*} (directions : List (Lattice ι))
     (v : Lattice ι) (f : NumericalFunction ι) :
     mixedDifference directions (difference v f) =
@@ -160,7 +193,9 @@ theorem mixedDifference_difference {ι : Type*} (directions : List (Lattice ι))
       simp only [mixedDifference_cons, ih]
       exact difference_comm w v (mixedDifference directions f)
 
-/-- A mixed difference depends only on the multiset of its directions.-/
+/-- A mixed difference depends only on the multiset of its directions.
+@isnad1 id=eq.1h4v.s4.ec1c3f67cbbc from=translated src=- shape=6cf329ed vocab=e36f890c
+-/
 theorem mixedDifference_eq_of_perm {ι : Type*} {directions directions' : List (Lattice ι)}
     (h : directions.Perm directions') (f : NumericalFunction ι) :
     mixedDifference directions f = mixedDifference directions' f := by
@@ -180,6 +215,9 @@ def DegreeLE {ι : Type*} (n : ℕ) (f : NumericalFunction ι) : Prop :=
   ∀ directions : List (Lattice ι), directions.length = n + 1 →
     mixedDifference directions f = 0
 
+/--
+@isnad1 id=iff.0h3v.s6.21a24dd7b7f4 from=translated src=- shape=cfd95d53 vocab=29c002f3
+-/
 theorem degreeLE_iff_vanishing {ι : Type*} (n : ℕ) (f : NumericalFunction ι) :
     DegreeLE n f ↔
       ∀ directions : List (Lattice ι), directions.length = n + 1 →
@@ -187,7 +225,9 @@ theorem degreeLE_iff_vanishing {ι : Type*} (n : ℕ) (f : NumericalFunction ι)
   Iff.rfl
 
 /-- Equivalent fixed-arity form of the degree criterion.  This is convenient when a later
-construction already presents its directions as an `(n + 1)`-tuple.-/
+construction already presents its directions as an `(n + 1)`-tuple.
+@isnad1 id=iff.0h3v.s6.71a257d09080 from=translated src=- shape=f057a4a5 vocab=f6c80f2e
+-/
 theorem degreeLE_iff_fin {ι : Type*} (n : ℕ) (f : NumericalFunction ι) :
     DegreeLE n f ↔
       ∀ directions : Fin (n + 1) → Lattice ι,
@@ -201,19 +241,27 @@ theorem degreeLE_iff_fin {ι : Type*} (n : ℕ) (f : NumericalFunction ι) :
     rw [List.ofFn_congr hlength]
     exact hzero
 
+/--
+@isnad1 id=degreele.0h2v.s4.833c13ccc699 from=translated src=- shape=25ebdfb5 vocab=2185ed68
+-/
 @[simp]
 theorem degreeLE_zero {ι : Type*} (n : ℕ) :
     DegreeLE n (0 : NumericalFunction ι) := by
   intro directions _
   exact mixedDifference_zero directions
 
+/--
+@isnad1 id=degreele.2h4v.s5.45900aea1c4b from=translated src=- shape=c5e161ee vocab=2e2200a1
+-/
 theorem DegreeLE.add {ι : Type*} {n : ℕ} {f g : NumericalFunction ι}
     (hf : DegreeLE n f) (hg : DegreeLE n g) :
     DegreeLE n (f + g) := by
   intro directions hlength
   rw [mixedDifference_add, hf directions hlength, hg directions hlength, add_zero]
 
-/-- A function of degree at most `n` also has degree at most `n + 1`.-/
+/-- A function of degree at most `n` also has degree at most `n + 1`.
+@isnad1 id=degreele.1h3v.s4.0bdd5d2385d3 from=translated src=- shape=461c10bb vocab=5dcebf47
+-/
 theorem DegreeLE.succ {ι : Type*} {n : ℕ} {f : NumericalFunction ι}
     (hf : DegreeLE n f) :
     DegreeLE (n + 1) f := by
@@ -224,7 +272,9 @@ theorem DegreeLE.succ {ι : Type*} {n : ℕ} {f : NumericalFunction ι}
       rw [mixedDifference_cons, hf directions (by simpa using hlength)]
       exact difference_zero_function v
 
-/-- Monotonicity of the degree bound.-/
+/-- Monotonicity of the degree bound.
+@isnad1 id=degreele.2h4v.s4.76139a554268 from=translated src=- shape=181f94a2 vocab=1d3d21f1
+-/
 theorem DegreeLE.mono {ι : Type*} {n m : ℕ} {f : NumericalFunction ι}
     (hf : DegreeLE n f) (hnm : n ≤ m) :
     DegreeLE m f := by
@@ -232,7 +282,9 @@ theorem DegreeLE.mono {ι : Type*} {n m : ℕ} {f : NumericalFunction ι}
   | base => exact hf
   | succ m _ ih => simpa [Nat.add_comm] using ih.succ
 
-/-- Taking a finite difference lowers a positive degree bound by one.-/
+/-- Taking a finite difference lowers a positive degree bound by one.
+@isnad1 id=degreele.1h4v.s5.d2b16b7b17c1 from=translated src=- shape=9c76892a vocab=b00cb8f8
+-/
 theorem DegreeLE.difference {ι : Type*} {n : ℕ} {f : NumericalFunction ι}
     (hf : DegreeLE (n + 1) f) (v : Lattice ι) :
     DegreeLE n (difference v f) := by
@@ -245,22 +297,33 @@ def coefficient {ι : Type*} (directions : List (Lattice ι))
     (f : NumericalFunction ι) : ℤ :=
   mixedDifference directions f 0
 
+/--
+@isnad1 id=eq.0h2v.s5.158d147114e2 from=translated src=- shape=97cf12c4 vocab=7b6e3e44
+-/
 @[simp]
 theorem coefficient_nil {ι : Type*} (f : NumericalFunction ι) :
     coefficient [] f = f 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f57ead8bb7f9 from=translated src=- shape=8c93c6ca vocab=7c232200
+-/
 @[simp]
 theorem coefficient_zero {ι : Type*} (directions : List (Lattice ι)) :
     coefficient directions (0 : NumericalFunction ι) = 0 := by
   simp [coefficient]
 
+/--
+@isnad1 id=eq.0h4v.s5.4c2519e6905e from=translated src=- shape=df21adf6 vocab=5def12f3
+-/
 theorem coefficient_add {ι : Type*} (directions : List (Lattice ι))
     (f g : NumericalFunction ι) :
     coefficient directions (f + g) = coefficient directions f + coefficient directions g := by
   simp [coefficient]
 
-/-- Coefficient extraction is symmetric in the chosen directions.-/
+/-- Coefficient extraction is symmetric in the chosen directions.
+@isnad1 id=eq.1h4v.s4.548e3bf8b16d from=translated src=- shape=d6b55a9d vocab=11f6efb1
+-/
 theorem coefficient_eq_of_perm {ι : Type*} {directions directions' : List (Lattice ι)}
     (h : directions.Perm directions') (f : NumericalFunction ι) :
     coefficient directions f = coefficient directions' f := by
@@ -271,7 +334,9 @@ def topCoefficient {ι : Type*} {n : ℕ} (directions : Fin n → Lattice ι)
     (f : NumericalFunction ι) : ℤ :=
   coefficient (List.ofFn directions) f
 
-/-- `topCoefficient` is invariant under every permutation of its `n` inputs.-/
+/-- `topCoefficient` is invariant under every permutation of its `n` inputs.
+@isnad1 id=eq.0h5v.s5.f61f6bc6cfa5 from=translated src=- shape=88df0004 vocab=b65fe068
+-/
 theorem topCoefficient_comp_perm {ι : Type*} {n : ℕ}
     (directions : Fin n → Lattice ι) (σ : Equiv.Perm (Fin n))
     (f : NumericalFunction ι) :
@@ -284,6 +349,9 @@ noncomputable def coordinateDirections {ι : Type*} [Fintype ι] [DecidableEq ι
     (powers : ι → ℕ) : List (Lattice ι) :=
   Finset.univ.toList.flatMap fun i => List.replicate (powers i) (coordinateDirection i)
 
+/--
+@isnad1 id=eq.0h2v.s5.771f98e23ae1 from=translated src=- shape=3de9cd48 vocab=0beb121a
+-/
 @[simp]
 theorem coordinateDirections_length {ι : Type*} [Fintype ι] [DecidableEq ι]
     (powers : ι → ℕ) :
@@ -295,6 +363,9 @@ noncomputable def newtonCoefficient {ι : Type*} [Fintype ι] [DecidableEq ι]
     (powers : ι → ℕ) (f : NumericalFunction ι) : ℤ :=
   coefficient (coordinateDirections powers) f
 
+/--
+@isnad1 id=eq.0h2v.s5.5a33d6d7098b from=translated src=- shape=28f40517 vocab=ccab3de5
+-/
 @[simp]
 theorem newtonCoefficient_zero_index {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : NumericalFunction ι) :
@@ -311,7 +382,9 @@ theorem newtonCoefficient_zero_index {ι : Type*} [Fintype ι] [DecidableEq ι]
   rfl
 
 /-- An `n`-fold mixed difference of a degree-`≤ n` function is constant, so evaluating it at the
-origin loses no information.-/
+origin loses no information.
+@isnad1 id=eq.2h5v.s5.18e957ced6c2 from=translated src=- shape=04ebf9d9 vocab=3a7b6ae2
+-/
 theorem mixedDifference_eq_coefficient_of_degreeLE {ι : Type*} {n : ℕ}
     {f : NumericalFunction ι} (hf : DegreeLE n f) (directions : List (Lattice ι))
     (hlength : directions.length = n) (x : Lattice ι) :
@@ -323,7 +396,9 @@ theorem mixedDifference_eq_coefficient_of_degreeLE {ι : Type*} {n : ℕ}
   exact heq
 
 /-- Additivity of a top mixed coefficient in its first direction.  The correction term in
-`difference_add_direction` vanishes because it has one direction too many.-/
+`difference_add_direction` vanishes because it has one direction too many.
+@isnad1 id=eq.1h5v.s6.9592ed91bd43 from=translated src=- shape=97fe99cc vocab=bc32f3e4
+-/
 theorem coefficient_cons_add {ι : Type*} {f : NumericalFunction ι}
     (directions : List (Lattice ι)) (v w : Lattice ι)
     (hf : DegreeLE (directions.length + 1) f) :
@@ -335,7 +410,9 @@ theorem coefficient_cons_add {ι : Type*} {f : NumericalFunction ι}
   simp only [coefficient, mixedDifference_cons, difference_add_direction, hcorrection,
     Pi.add_apply, Pi.zero_apply, add_zero]
 
-/-- Additivity of a top mixed coefficient in an arbitrary direction slot.-/
+/-- Additivity of a top mixed coefficient in an arbitrary direction slot.
+@isnad1 id=eq.1h6v.s7.2019300f4459 from=translated src=- shape=22b1247a vocab=18167d50
+-/
 theorem coefficient_middle_add {ι : Type*} {f : NumericalFunction ι}
     (before after : List (Lattice ι)) (v w : Lattice ι)
     (hf : DegreeLE (before.length + after.length + 1) f) :
@@ -364,6 +441,9 @@ def coefficientAddHom {ι : Type*} {f : NumericalFunction ι}
     simp [coefficient]
   map_add' v w := coefficient_middle_add before after v w hf
 
+/--
+@isnad1 id=eq.1h5v.s7.990856026a36 from=translated src=- shape=0b3a2f55 vocab=5ed7c607
+-/
 @[simp]
 theorem coefficientAddHom_apply {ι : Type*} {f : NumericalFunction ι}
     (before after : List (Lattice ι))
@@ -372,7 +452,9 @@ theorem coefficientAddHom_apply {ι : Type*} {f : NumericalFunction ι}
   rfl
 
 /-- Integer homogeneity in every slot; together with `coefficient_middle_add`, this is
-multilinearity of the top mixed difference.-/
+multilinearity of the top mixed difference.
+@isnad1 id=eq.1h6v.s7.c616fda08989 from=translated src=- shape=6907831c vocab=23a200cd
+-/
 theorem coefficient_middle_zsmul {ι : Type*} {f : NumericalFunction ι}
     (before after : List (Lattice ι)) (c : ℤ) (v : Lattice ι)
     (hf : DegreeLE (before.length + after.length + 1) f) :
@@ -394,7 +476,9 @@ def oneVariable (f : ℤ → ℤ) : NumericalFunction (Fin 1) :=
 def oneVariableDirection : Lattice (Fin 1) :=
   oneVariablePoint 1
 
-/-- Repeated mixed differences in the unit direction agree with Mathlib's iterated `fwdDiff`.-/
+/-- Repeated mixed differences in the unit direction agree with Mathlib's iterated `fwdDiff`.
+@isnad1 id=eq.0h3v.s5.ffa6cf47a8a2 from=translated src=- shape=4b10f5f0 vocab=ae7c0213
+-/
 theorem mixedDifference_oneVariable (f : ℤ → ℤ) (n : ℕ) (x : ℤ) :
     mixedDifference (List.replicate n oneVariableDirection) (oneVariable f)
         (oneVariablePoint x) =
@@ -411,7 +495,9 @@ theorem mixedDifference_oneVariable (f : ℤ → ℤ) (n : ℕ) (x : ℤ) :
       rfl
 
 /-- The general degree predicate implies the familiar one-variable `(n + 1)`-st difference
-criterion.-/
+criterion.
+@isnad1 id=eq.1h2v.s6.13435dc8b362 from=translated src=- shape=c9b10df3 vocab=41696f34
+-/
 theorem oneVariable_fwdDiff_vanishes {f : ℤ → ℤ} {n : ℕ}
     (hf : DegreeLE n (oneVariable f)) :
     (fwdDiff (1 : ℤ))^[n + 1] f = 0 := by
@@ -420,7 +506,9 @@ theorem oneVariable_fwdDiff_vanishes {f : ℤ → ℤ} {n : ℕ}
   have hzero := hf (List.replicate (n + 1) oneVariableDirection) (by simp)
   exact congrFun hzero (oneVariablePoint x)
 
-/-- In one variable, generic coefficient extraction is the usual Newton coefficient.-/
+/-- In one variable, generic coefficient extraction is the usual Newton coefficient.
+@isnad1 id=eq.0h2v.s5.da81b1fc9c65 from=translated src=- shape=4bd3472a vocab=1b18963d
+-/
 theorem coefficient_oneVariable (f : ℤ → ℤ) (n : ℕ) :
     coefficient (List.replicate n oneVariableDirection) (oneVariable f) =
       (fwdDiff (1 : ℤ))^[n] f 0 := by
@@ -440,13 +528,18 @@ noncomputable def surfacePairing {ι : Type*} (f : NumericalFunction ι)
     ext u
     exact coefficient_middle_zsmul [] [u] c v (by simpa using hf)
 
+/--
+@isnad1 id=eq.1h4v.s9.e487ad448250 from=translated src=- shape=f38a2267 vocab=b36a8e67
+-/
 @[simp]
 theorem surfacePairing_apply {ι : Type*} (f : NumericalFunction ι)
     (hf : DegreeLE 2 f) (v w : Lattice ι) :
     surfacePairing f hf v w = coefficient [v, w] f :=
   rfl
 
-/-- The surface pairing is symmetric.-/
+/-- The surface pairing is symmetric.
+@isnad1 id=eq.1h4v.s9.7316ca78040f from=translated src=- shape=b3de951d vocab=8d8d56f5
+-/
 theorem surfacePairing_symm {ι : Type*} (f : NumericalFunction ι)
     (hf : DegreeLE 2 f) (v w : Lattice ι) :
     surfacePairing f hf v w = surfacePairing f hf w v := by

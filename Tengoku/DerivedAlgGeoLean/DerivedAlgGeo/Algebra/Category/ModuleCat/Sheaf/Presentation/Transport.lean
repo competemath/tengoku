@@ -43,7 +43,9 @@ variable {C : Type u₁} [Category.{v₁} C] {J : GrothendieckTopology C} {R : S
 
 omit [J.HasSheafCompose (forget₂ RingCat AddCommGrpCat)] in
 /-- Transporting a presentation along an isomorphism keeps it finite: `of_isIso` composes the
-generating and relating maps with an iso and leaves both index types alone.-/
+generating and relating maps with an iso and leaves both index types alone.
+@isnad1 id=isfinite.0h7v.s7.c7da5cd97e72 from=translated src=- shape=63e22751 vocab=041cd4a4
+-/
 theorem Presentation.isFinite_of_isIso {M N : SheafOfModules.{u} R} (f : M ⟶ N) [IsIso f]
     (P : M.Presentation) [P.IsFinite] : (P.ofIsIso f).IsFinite := by
   infer_instance
@@ -57,7 +59,9 @@ omit [J.HasSheafCompose (forget₂ RingCat AddCommGrpCat)]
   [J'.HasSheafCompose (forget₂ RingCat AddCommGrpCat)] in
 /-- Transporting a presentation along a colimit-preserving functor keeps it finite:
 `Presentation.map` builds the new generators and relations out of the *same* index types
-(`map_generators_I`, `map_relations_I`).-/
+(`map_generators_I`, `map_relations_I`).
+@isnad1 id=isfinite.0h10v.s8.31318711c028 from=translated src=- shape=33660155 vocab=c9bb2bb7
+-/
 theorem Presentation.isFinite_map {M : SheafOfModules.{u} R} (P : M.Presentation) [P.IsFinite]
     (F : SheafOfModules.{u} R ⥤ SheafOfModules.{u} S) [PreservesColimitsOfSize.{u, u} F]
     (η : unit S ≅ F.obj (unit R)) : (P.map F η).IsFinite where

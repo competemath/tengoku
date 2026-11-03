@@ -34,7 +34,9 @@ def alignmentLocus (ch : ChernCharacter N D) (v w : N) : Set (Point U) :=
   (T.chargeFamily ch).alignmentLocus v w
 
 /-- The universal determinant equation evaluated using the two divisorial
-slice formulas.-/
+slice formulas.
+@isnad1 id=eq.0h9v.s7.34dcbf385308 from=translated src=- shape=0e94bedb vocab=cb9bc3ed
+-/
 theorem alignmentValue_eq (ch : ChernCharacter N D) (p : Point U) (v w : N) :
     (T.chargeFamily ch).alignmentValue p v w =
       T.reFormula ch p v * T.imFormula ch p w -

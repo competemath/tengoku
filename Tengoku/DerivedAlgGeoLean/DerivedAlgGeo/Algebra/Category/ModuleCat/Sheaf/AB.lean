@@ -39,7 +39,9 @@ variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C} (R : Sheaf
 through the sheafification adjunction: its right adjoint is fully faithful and its left adjoint
 preserves finite limits, which is what `Adjunction.hasExactColimitsOfShape` needs.
 `HasSheafify` (not merely `HasWeakSheafify`) is required because Mathlib proves
-`PreservesFiniteLimits (sheafification α)` and `Abelian (SheafOfModules R)` only under it.-/
+`PreservesFiniteLimits (sheafification α)` and `Abelian (SheafOfModules R)` only under it.
+@isnad1 id=hasexact.0h4v.s7.8ab08185429e from=translated src=- shape=51261696 vocab=27ae5656
+-/
 instance hasExactColimitsOfShape (K : Type w) [Category.{w'} K]
     [HasColimitsOfShape K AddCommGrpCat.{v}] [HasExactColimitsOfShape K AddCommGrpCat.{v}] :
     HasExactColimitsOfShape K (SheafOfModules.{v} R) :=

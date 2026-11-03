@@ -57,16 +57,24 @@ polarisation, indexed by the `(s,t)` plane of `WallTransport.lean`.-/
 def rankOneParameters (p : ℝ × ℝ) : StabilityParameters D :=
   StabilityParameters.rankOne (R.realizePolarization P) p.2 p.1
 
+/--
+@isnad1 id=eq.0h7v.s7.89d2781a9601 from=translated src=- shape=8d736cfd vocab=38b4e8f4
+-/
 @[simp]
 theorem rankOneParameters_B (p : ℝ × ℝ) :
     (R.rankOneParameters P p).B = p.1 • R.realizePolarization P := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.b9bef215e787 from=translated src=- shape=8d736cfd vocab=db8b7b7f
+-/
 @[simp]
 theorem rankOneParameters_omega (p : ℝ × ℝ) :
     (R.rankOneParameters P p).omega = p.2 • R.realizePolarization P := rfl
 
 /-- The realized polarisation pairs with the realized first Chern class to the
-rational `H`-degree.-/
+rational `H`-degree.
+@isnad1 id=eq.0h7v.s7.7bc2046262c7 from=translated src=- shape=9533c553 vocab=88b47911
+-/
 theorem pair_realizePolarization_chOne (E : N) :
     R.divisorSpace.pair (R.realizePolarization P) (R.chernCharacter.chOne E) =
       ((degH V P E : ℚ) : ℝ) := by
@@ -77,7 +85,9 @@ theorem pair_realizePolarization_chOne (E : N) :
   unfold degH
   rw [show (2 : ℕ) - 1 = 1 from rfl, pow_one, mul_comm]
 
-/-- The realized polarisation has the rational polarisation square.-/
+/-- The realized polarisation has the rational polarisation square.
+@isnad1 id=eq.0h6v.s8.ee4956382868 from=translated src=- shape=93c61218 vocab=5b9be2af
+-/
 theorem pair_realizePolarization_self :
     R.divisorSpace.pair (R.realizePolarization P) (R.realizePolarization P) =
       ((V.ring.degree (P.cls ^ 2) : ℚ) : ℝ) := by
@@ -88,7 +98,9 @@ theorem pair_realizePolarization_self :
 
 /-- **The two branches of the wall hierarchy agree.**  The degree-weighted
 `(s,t)` charge of `WallTransport.lean` is the intrinsic divisorial charge at
-`B = sH`, `ω = tH`.-/
+`B = sH`, `ω = tH`.
+@isnad1 id=eq.0h8v.s8.57a8ad5af726 from=translated src=- shape=0329f3e8 vocab=a7e1fab6
+-/
 theorem wallChargeFamily_charge_eq_centralCharge (p : ℝ × ℝ) (E : N) :
     (wallChargeFamily V P).charge p E =
       R.chernCharacter.centralCharge R.divisorSpace (R.rankOneParameters P p) E := by
@@ -116,7 +128,9 @@ theorem wallChargeFamily_charge_eq_centralCharge (p : ℝ × ℝ) (E : N) :
     ring
 
 /-- The compressed `(s,t)` family is literally the reindexing of the intrinsic
-divisorial family along the rank-one slice.-/
+divisorial family along the rank-one slice.
+@isnad1 id=eq.0h6v.s7.f1412ccb7fd4 from=translated src=- shape=90b83c51 vocab=f3494d8b
+-/
 theorem wallChargeFamily_eq_rankOne_reindex :
     wallChargeFamily V P =
       (R.chernCharacter.fullChargeFamily R.divisorSpace).reindex
@@ -126,7 +140,9 @@ theorem wallChargeFamily_eq_rankOne_reindex :
   exact R.wallChargeFamily_charge_eq_centralCharge P p E
 
 /-- The `(s,t)` wall of two classes is the rank-one slice of their divisorial
-wall.-/
+wall.
+@isnad1 id=eq.0h8v.s7.98cb62e6e9ed from=translated src=- shape=1a371ed1 vocab=85fe9355
+-/
 theorem wallChargeFamily_alignmentLocus_eq (v w : N) :
     (wallChargeFamily V P).alignmentLocus v w =
       R.rankOneParameters P ⁻¹'

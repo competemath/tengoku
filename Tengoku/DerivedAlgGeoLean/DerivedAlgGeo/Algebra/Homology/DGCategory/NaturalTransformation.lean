@@ -121,32 +121,49 @@ def app (η : HomogeneousNatTrans F G n) (X : C) :
     (dgHom (F.obj X) (G.obj X)).X n :=
   η.1 X
 
+/--
+@isnad1 id=eq.0h6v.s10.1a926a30899e from=translated src=- shape=0755adb6 vocab=9f9f539c
+-/
 @[simp]
 theorem zero_app (X : C) : app (0 : HomogeneousNatTrans F G n) X = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.efed73c03d5e from=translated src=- shape=90080185 vocab=77406f7d
+-/
 @[simp]
 theorem add_app (η θ : HomogeneousNatTrans F G n) (X : C) :
     app (η + θ) X = app η X + app θ X :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.2fb41ae9695f from=translated src=- shape=411deb9c vocab=04472c1c
+-/
 @[simp]
 theorem neg_app (η : HomogeneousNatTrans F G n) (X : C) :
     app (-η) X = -app η X :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.09229463cb4b from=translated src=- shape=0b8c64c8 vocab=5be9fbda
+-/
 @[simp]
 theorem zsmul_app (a : ℤ) (η : HomogeneousNatTrans F G n) (X : C) :
     app (a • η) X = a • app η X :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.e8fdd880a0f9 from=translated src=- shape=2f7a9e77 vocab=3056933f
+-/
 @[simp]
 theorem units_smul_app (a : ℤˣ) (η : HomogeneousNatTrans F G n) (X : C) :
     app (a • η) X = a • app η X := by
   rw [Units.smul_def, Units.smul_def]
   rfl
 
-/-- Graded naturality, exposed from subgroup membership.-/
+/-- Graded naturality, exposed from subgroup membership.
+@isnad1 id=eq.2h11v.s14.151131bd88cd from=translated src=- shape=76095a9c vocab=b8e0afd2
+-/
 theorem naturality (η : HomogeneousNatTrans F G n)
     {X Y : C} (p r : ℤ) (hpn : p + n = r) (hnp : n + p = r)
     (f : (dgHom X Y).X p) :
@@ -155,7 +172,9 @@ theorem naturality (η : HomogeneousNatTrans F G n)
         dgComp n p r hnp (app η X) (G.map p f) :=
   η.2 p r hpn hnp f
 
-/-- Homogeneous transformations are equal when all components are equal.-/
+/-- Homogeneous transformations are equal when all components are equal.
+@isnad1 id=eq.1h7v.s10.134d75b0e2f1 from=translated src=- shape=2dce68f2 vocab=9f9f539c
+-/
 @[ext]
 theorem ext {η θ : HomogeneousNatTrans F G n}
     (h : ∀ X, app η X = app θ X) : η = θ := by
@@ -170,6 +189,9 @@ def id (F : DGFunctor C D) : HomogeneousNatTrans F F 0 :=
     simpa only [zero_mul, Int.negOnePow_zero, one_smul] using
       dgComp_id_naturality p r hp h0p (F.map p f)⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.817b203a5363 from=translated src=- shape=9d2e5259 vocab=0bda045f
+-/
 @[simp]
 theorem id_app (F : DGFunctor C D) (X : C) :
     app (id F) X = dgId (F.obj X) :=
@@ -192,6 +214,9 @@ def comp (η : HomogeneousNatTrans F G n) (θ : HomogeneousNatTrans G H m) :
         (by omega) (by omega) (by omega),
       smul_smul, ← Int.negOnePow_add, add_mul]⟩
 
+/--
+@isnad1 id=eq.0h10v.s13.a0476c6d6ec9 from=translated src=- shape=42ce9d6e vocab=e1af1ecf
+-/
 @[simp]
 theorem comp_app (η : HomogeneousNatTrans F G n)
     (θ : HomogeneousNatTrans G H m) (X : C) :
@@ -240,6 +265,9 @@ def differential (η : HomogeneousNatTrans F G n) :
           (G.map (p + 1) (((dgHom X Y).d p (p + 1)).hom f)))
     simpa only [add_comm] using hδ⟩
 
+/--
+@isnad1 id=eq.0h7v.s11.1e56f9bf3974 from=translated src=- shape=65567c56 vocab=f2e2471c
+-/
 @[simp]
 theorem differential_app (η : HomogeneousNatTrans F G n) (X : C) :
     app (differential η) X =
@@ -253,7 +281,9 @@ def IsClosed (η : HomogeneousNatTrans F G n) : Prop :=
   differential η = 0
 
 /-- Every component of a closed homogeneous dg natural transformation is
-closed in the corresponding Hom-complex.-/
+closed in the corresponding Hom-complex.
+@isnad1 id=eq.1h7v.s11.f0c8f75ec55a from=translated src=- shape=d9282ebe vocab=020987b7
+-/
 lemma IsClosed.app_d {η : HomogeneousNatTrans F G n} (hη : IsClosed η) (X : C) :
     ((dgHom (F.obj X) (G.obj X)).d n (n + 1)).hom (app η X) = 0 := by
   have h := congrArg (fun θ => HomogeneousNatTrans.app θ X) hη
@@ -270,12 +300,17 @@ def differentialHom (F G : DGFunctor C D) (n : ℤ) :
     ext X
     simp [differential_app]
 
+/--
+@isnad1 id=eq.0h6v.s14.c764c9694e63 from=translated src=- shape=05a93328 vocab=926c7e39
+-/
 @[simp]
 theorem differentialHom_apply (η : HomogeneousNatTrans F G n) :
     differentialHom F G n η = differential η :=
   rfl
 
-/-- The pointwise differential squares to zero.-/
+/-- The pointwise differential squares to zero.
+@isnad1 id=eq.0h6v.s11.30104566e7ed from=translated src=- shape=7a3eae95 vocab=8289da7a
+-/
 theorem differential_differential (η : HomogeneousNatTrans F G n) :
     differential (differential η) = 0 := by
   ext X
@@ -297,11 +332,17 @@ theorem differential_differential (η : HomogeneousNatTrans F G n) :
       intro η
       exact differential_differential η)
 
+/--
+@isnad1 id=eq.0h5v.s9.99f9a63ff59c from=translated src=- shape=8d18807a vocab=5380a29a
+-/
 @[simp]
 theorem complex_X (F G : DGFunctor C D) (n : ℤ) :
     (complex F G).X n = AddCommGrpCat.of (HomogeneousNatTrans F G n) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.7eea451b1366 from=translated src=- shape=3c2e7710 vocab=ed152310
+-/
 theorem complex_d_apply (η : HomogeneousNatTrans F G n) :
     ((complex F G).d n (n + 1)).hom η = differential η := by
   simp [complex, CochainComplex.of.d]
@@ -324,6 +365,9 @@ theorem complex_d_apply (η : HomogeneousNatTrans F G n) :
     ext X
     simp [comp_app]
 
+/--
+@isnad1 id=eq.1h11v.s16.a7ff17a7b996 from=translated src=- shape=0b851324 vocab=eec2cb33
+-/
 @[simp]
 theorem composition_apply_app (η : HomogeneousNatTrans F G n)
     (θ : HomogeneousNatTrans G H m) (r : ℤ) (h : n + m = r) (X : C) :

@@ -46,7 +46,9 @@ noncomputable abbrev chiStructureSheaf : ℚ :=
 
 /-- **Riemann–Roch for surfaces.**
 
-`χ(E) = rank(E) · ∫_X td₂(X) + ∫_X c₁(E)·td₁(X) + ∫_X ch₂(E)`.-/
+`χ(E) = rank(E) · ∫_X td₂(X) + ∫_X c₁(E)·td₁(X) + ∫_X ch₂(E)`.
+@isnad1 id=eq.1h4v.s9.cd823512d9dc from=translated src=- shape=4f62578a vocab=2e73763c
+-/
 theorem chi_eq (hV : V.SatisfiesHRR) (E : N) :
     (V.chi E : ℚ)
       = (V.rank E : ℚ) * V.ring.degree (V.toddComp 2)
@@ -69,13 +71,17 @@ is no stability notion in `NumericalVarietyData`, and asserting it here would hi
 theorem behind a class field.-/
 noncomputable abbrev discriminant (E : N) : A := V.discriminant E
 
-/-- The discriminant lives in codimension two.-/
+/-- The discriminant lives in codimension two.
+@isnad1 id=mem.0h4v.s7.1c6db833f9e3 from=translated src=- shape=61b24e13 vocab=958c3cb5
+-/
 theorem discriminant_mem_piece_two (E : N) :
     V.discriminant E ∈ V.ring.piece 2 := by
   exact V.discriminant_mem_piece_two E
 
 /-- `∫_X Δ(E) = ∫_X c₁(E)² − 2·rank(E)·∫_X ch₂(E)`: the scalar the
-Bogomolov–Gieseker inequality is about.-/
+Bogomolov–Gieseker inequality is about.
+@isnad1 id=eq.0h4v.s8.865972290fbc from=translated src=- shape=9316e54b vocab=c5a6f3c5
+-/
 theorem degree_discriminant (E : N) :
     V.ring.degree (V.discriminant E)
       = V.ring.degree (V.chComp E 1 * V.chComp E 1)

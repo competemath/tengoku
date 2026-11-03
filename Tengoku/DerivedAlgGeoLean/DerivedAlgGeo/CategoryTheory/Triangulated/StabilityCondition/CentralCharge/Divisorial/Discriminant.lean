@@ -83,14 +83,18 @@ variable {U : Type x} [AddCommGroup U] [Module ℝ U]
 variable {S : DivisorSpace D} (T : OrthogonalSlice S U)
 
 /-- The Hodge index inequality gives nonpositive square on every transverse
-direction.-/
+direction.
+@isnad1 id=le.1h5v.s7.c410a2abcb9c from=translated src=- shape=c5b74702 vocab=5b29137d
+-/
 theorem transverse_square_nonpos_of_hodgeIndex (h : S.HodgeIndex T.H) (u : U) :
     S.pair (T.transverse u) (T.transverse u) ≤ 0 :=
   h.pair_self_nonpos_of_orthogonal (T.orthogonal u)
 
 /-- **Hodge index plus nondegeneracy of the transverse pairing gives the
 `IsHodge` certificate.**  Nondegeneracy is stated as: a nonzero transverse
-parameter has nonzero square; it implies injectivity of `transverse`.-/
+parameter has nonzero square; it implies injectivity of `transverse`.
+@isnad1 id=ishodge.2h4v.s7.ff9bc70de4c6 from=translated src=- shape=9341f501 vocab=43ef1dfa
+-/
 theorem isHodge_of_hodgeIndex (h : S.HodgeIndex T.H)
     (hnd : ∀ u : U, u ≠ 0 → S.pair (T.transverse u) (T.transverse u) ≠ 0) :
     T.IsHodge where
@@ -99,7 +103,9 @@ theorem isHodge_of_hodgeIndex (h : S.HodgeIndex T.H)
     h.pair_self_neg_of_orthogonal (T.orthogonal u) (hnd u hu)
 
 /-- The pairing of `H` with the `B`-field of a slice point sees only the
-longitudinal coefficient.-/
+longitudinal coefficient.
+@isnad1 id=eq.0h5v.s6.d73e916de3e3 from=translated src=- shape=97f04f74 vocab=d7bd3161
+-/
 theorem H_pair_B (p : Point U) :
     S.pair T.H (T.parameters p).B = p.s * S.pair T.H T.H := by
   rw [parameters_B]
@@ -109,7 +115,9 @@ theorem H_pair_B (p : Point U) :
 
 /-- On the `B`-fields of a Hodge slice the index inequality holds outright:
 this is the direction from `IsHodge` back to the inequality, on the classes the
-slice can reach.-/
+slice can reach.
+@isnad1 id=le.1h5v.s7.ff4452b63ca0 from=translated src=- shape=bc2400f3 vocab=3217e7f8
+-/
 theorem IsHodge.index_le_B (hT : T.IsHodge) (p : Point U) :
     S.pair T.H T.H * S.pair (T.parameters p).B (T.parameters p).B ≤
       S.pair T.H (T.parameters p).B ^ 2 := by
@@ -122,7 +130,9 @@ theorem IsHodge.index_le_B (hT : T.IsHodge) (p : Point U) :
   nlinarith [hT.H_square_pos, hG]
 
 /-- The rank-one slice is Hodge as soon as `H² > 0`: there are no transverse
-directions.-/
+directions.
+@isnad1 id=ishodge.1h3v.s6.ed84b126ac05 from=translated src=- shape=775dcc54 vocab=9c58ced2
+-/
 theorem rankOne_isHodge (S : DivisorSpace D) (H : D) (hH : 0 < S.pair H H) :
     (rankOne S H).IsHodge where
   H_square_pos := hH
@@ -148,7 +158,9 @@ intersection form.
 This is the leaf that fixes the arity: the middle summand here is `D`, an
 arbitrary real divisor space, not a copy of `ℝ`. The root generalises over the
 coefficient ring for the sake of the `ℚ`- and `A`-valued leaves, never over the
-number of slots.-/
+number of slots.
+@isnad1 id=eq.0h5v.s7.d30d733e85e3 from=translated src=- shape=a5380daf vocab=ab2febaa
+-/
 theorem discriminant_eq_selfPairing (E : N) :
     ch.discriminant S E
       = Mukai.selfPairing S.intersection (ch.rank E, ch.chOne E, ch.chTwo E) := by
@@ -157,7 +169,9 @@ theorem discriminant_eq_selfPairing (E : N) :
   rw [DivisorSpace.pair]
   ring
 
-/-- The discriminant is invariant under every `B`-twist: `Δ(ch^B) = Δ(ch)`.-/
+/-- The discriminant is invariant under every `B`-twist: `Δ(ch^B) = Δ(ch)`.
+@isnad1 id=eq.0h6v.s5.79958fca0b09 from=translated src=- shape=4f766c86 vocab=455b1ccf
+-/
 theorem discriminant_twist (B : D) (E : N) :
     (ch.twist S B).discriminant S E = ch.discriminant S E := by
   have hs : S.pair B (ch.chOne E) = S.pair (ch.chOne E) B := S.pair_comm B (ch.chOne E)
@@ -177,7 +191,9 @@ Exercise 6.11 and is supplied by the caller.-/
 def discriminantC (P : StabilityParameters D) (C : ℝ) (E : N) : ℝ :=
   ch.discriminant S E + C * S.pair P.omega ((ch.twist S P.B).chOne E) ^ 2
 
-/-- For `C ≥ 0` the `C`-discriminant dominates the discriminant.-/
+/-- For `C ≥ 0` the `C`-discriminant dominates the discriminant.
+@isnad1 id=le.1h7v.s6.214d2a920cc2 from=translated src=- shape=261288c4 vocab=2f029a94
+-/
 theorem discriminant_le_discriminantC (P : StabilityParameters D) {C : ℝ}
     (hC : 0 ≤ C) (E : N) :
     ch.discriminant S E ≤ ch.discriminantC S P C E := by
@@ -186,7 +202,9 @@ theorem discriminant_le_discriminantC (P : StabilityParameters D) {C : ℝ}
 
 /-- **`ω² Δ ≤ \bar Δ^B_ω` under the Hodge index inequality at `ω`.**  This is
 the step by which Macrì--Schmidt pass from Bogomolov's `Δ ≥ 0` to the support
-form on the `(α,β)`-plane.-/
+form on the `(α,β)`-plane.
+@isnad1 id=le.1h6v.s6.06bfb65f5f21 from=translated src=- shape=01a75adb vocab=06fdf270
+-/
 theorem omega_square_mul_discriminant_le_barDiscriminant (P : StabilityParameters D)
     (h : S.HodgeIndex P.omega) (E : N) :
     S.pair P.omega P.omega * ch.discriminant S E ≤ ch.barDiscriminant S P E := by
@@ -197,7 +215,9 @@ theorem omega_square_mul_discriminant_le_barDiscriminant (P : StabilityParameter
   nlinarith [hidx]
 
 /-- A nonnegative discriminant gives a nonnegative bar discriminant at every
-`(B, ω)` with the Hodge index inequality at `ω`.-/
+`(B, ω)` with the Hodge index inequality at `ω`.
+@isnad1 id=le.2h6v.s6.f8dbc459ef91 from=translated src=- shape=52de4cf3 vocab=2ca11c30
+-/
 theorem barDiscriminant_nonneg_of_discriminant_nonneg (P : StabilityParameters D)
     (h : S.HodgeIndex P.omega) (E : N) (hΔ : 0 ≤ ch.discriminant S E) :
     0 ≤ ch.barDiscriminant S P E :=
@@ -224,7 +244,9 @@ carrying the polarisation square.
 The triple is `(∫H²·rk, ∫H·ch₁, ∫ch₂)`, **not** `(rk, ∫H·ch₁, ∫ch₂)`. The `∫H²`
 weight is what makes this the same quantity as the uncompressed
 `ChernCharacter.discriminant` on the rank-one slice, and dropping it is the
-error the surface transport's docstring already warns about.-/
+error the surface transport's docstring already warns about.
+@isnad1 id=eq.0h3v.s7.968fcf495492 from=translated src=- shape=6a31350f vocab=fda8ef17
+-/
 theorem discr_eq_selfPairing (E : N) :
     Dc.discr E
       = Mukai.selfPairing (LinearMap.mul ℝ ℝ)
@@ -257,7 +279,9 @@ relates the two.
 
 The companion statement on the pairings rather than the discriminants belongs
 to the bridge epic beside `Mukai.realPairing`; this is the discriminant-level
-form, and that one should be stated against it rather than re-derived.-/
+form, and that one should be stated against it rather than re-derived.
+@isnad1 id=eq.1h7v.s7.3e227957b1fd from=translated src=- shape=461e6c9e vocab=f376ad07
+-/
 theorem coordinatesAt_discr_eq (H : D) {x : ℝ} (E : N) (hc : ch.chOne E = x • H) :
     (ch.coordinatesAt S H).discr E = S.pair H H * ch.discriminant S E := by
   rw [ChargeCoordinates.discr, discriminant, coordinatesAt_degree,
@@ -278,7 +302,9 @@ namespace ChernCharacter
 variable (ch : ChernCharacter N D) (S : DivisorSpace D)
 
 /-- On the rank-one slice `B = βH`, `ω = αH` the bar discriminant is `α²`
-times the compressed discriminant at `H`, and does not depend on `β`.-/
+times the compressed discriminant at `H`, and does not depend on `β`.
+@isnad1 id=eq.0h8v.s6.5da7089a6a53 from=translated src=- shape=e74d6e2a vocab=8d5aa477
+-/
 theorem barDiscriminant_rankOne (H : D) (alpha beta : ℝ) (E : N) :
     ch.barDiscriminant S (StabilityParameters.rankOne H alpha beta) E =
       alpha ^ 2 * (ch.coordinatesAt S H).discr E := by

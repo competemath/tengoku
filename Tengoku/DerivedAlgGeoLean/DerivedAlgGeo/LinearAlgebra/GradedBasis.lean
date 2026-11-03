@@ -37,11 +37,15 @@ def gradedPiece (b : ι → A) (w : ι → ℕ) (k : ℕ) : Submodule ℚ A :=
 
 variable {b : ι → A} {w : ι → ℕ} {n : ℕ}
 
-/-- Every vector of the indexed family lies in its own graded piece.-/
+/-- Every vector of the indexed family lies in its own graded piece.
+@isnad1 id=mem.0h5v.s6.0b82b13acb0d from=translated src=- shape=c5e52a27 vocab=0392ea46
+-/
 theorem mem_gradedPiece (i : ι) : b i ∈ gradedPiece b w (w i) :=
   subset_span ⟨i, rfl, rfl⟩
 
-/-- If all weights are at most `n`, every graded piece above `n` vanishes.-/
+/-- If all weights are at most `n`, every graded piece above `n` vanishes.
+@isnad1 id=eq.2h6v.s6.36a5b056c77a from=translated src=- shape=08b33ccd vocab=cad331e9
+-/
 theorem gradedPiece_eq_bot (hw : ∀ i, w i ≤ n) {k : ℕ} (hk : n < k) :
     gradedPiece b w k = ⊥ := by
   have hempty : w ⁻¹' {k} = (∅ : Set ι) := by
@@ -52,7 +56,9 @@ theorem gradedPiece_eq_bot (hw : ∀ i, w i ≤ n) {k : ℕ} (hk : n < k) :
     omega
   rw [gradedPiece, hempty, image_empty, span_empty]
 
-/-- Graded pieces cut out by distinct weights are independent.-/
+/-- Graded pieces cut out by distinct weights are independent.
+@isnad1 id=isupinde.1h4v.s6.3cada1cac68a from=translated src=- shape=120ea992 vocab=f41f64d3
+-/
 theorem gradedPiece_iSupIndep (hb : LinearIndependent ℚ b) :
     iSupIndep (gradedPiece b w) := by
   intro k
@@ -66,7 +72,9 @@ theorem gradedPiece_iSupIndep (hb : LinearIndependent ℚ b) :
   rw [hi]
   exact hj
 
-/-- The graded pieces span whenever the indexed family spans.-/
+/-- The graded pieces span whenever the indexed family spans.
+@isnad1 id=eq.1h4v.s8.ebcc4db3af71 from=translated src=- shape=dd4d75f2 vocab=f907c662
+-/
 theorem gradedPiece_iSup_eq_top (hsp : span ℚ (range b) = ⊤) :
     ⨆ k, gradedPiece b w k = ⊤ := by
   refine le_antisymm le_top ?_
@@ -75,7 +83,9 @@ theorem gradedPiece_iSup_eq_top (hsp : span ℚ (range b) = ⊤) :
   exact Submodule.mem_iSup_of_mem (w i) (mem_gradedPiece i)
 
 /-- A linearly independent spanning family decomposes the module as the
-direct sum of its weight pieces.-/
+direct sum of its weight pieces.
+@isnad1 id=isintern.2h4v.s7.51f6439b7c34 from=translated src=- shape=88c043b4 vocab=685d4757
+-/
 theorem gradedPiece_isInternal (hb : LinearIndependent ℚ b)
     (hsp : span ℚ (range b) = ⊤) :
     DirectSum.IsInternal (gradedPiece b w) :=
@@ -83,7 +93,9 @@ theorem gradedPiece_isInternal (hb : LinearIndependent ℚ b)
     (gradedPiece_iSupIndep hb) (gradedPiece_iSup_eq_top hsp)
 
 /-- Multiplicativity of the grading, promoted from indexed vectors to all
-elements of their weight pieces.-/
+elements of their weight pieces.
+@isnad1 id=mem.3h8v.s8.249d7a33fa58 from=translated src=- shape=89ab71d2 vocab=f1439cd9
+-/
 theorem gradedPiece_mul_mem
     (hmul : ∀ p q : ι, b p * b q ∈ gradedPiece b w (w p + w q))
     {i j : ℕ} {x y : A} (hx : x ∈ gradedPiece b w i)

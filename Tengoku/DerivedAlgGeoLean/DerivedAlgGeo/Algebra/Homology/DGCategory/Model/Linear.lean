@@ -40,7 +40,9 @@ instance homModule (K L : Cdg (ModuleCat.{v} k)) (p : ℤ) :
   infer_instance
 
 /-- The standard dg category of cochain complexes of `k`-modules is
-`k`-linear.-/
+`k`-linear.
+@isnad1 id=dglinear.0h1v.s5.e971be227609 from=translated src=- shape=b8471119 vocab=1d8e6667
+-/
 instance linear : DGLinear k (Cdg (ModuleCat.{v} k)) where
   d_smul p q c f := by
     change CochainComplex.HomComplex.δ p q (c • f) =

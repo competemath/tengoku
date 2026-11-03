@@ -44,6 +44,9 @@ noncomputable def awayToAwayRightLinearMap
       simpa only [← (Algebra.lsmul R (A := Localization.Away (r * s))
         R (LocalizedModule.Away (r * s) M)).commutes] using hEnd)
 
+/--
+@isnad1 id=eq.0h5v.s10.f4eb292347cd from=translated src=- shape=46fd83bd vocab=7265726c
+-/
 @[simp]
 theorem awayToAwayRightLinearMap_mk
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
@@ -64,7 +67,9 @@ universe u v
 
 /-- Let `P` be a submodule of `M[1/r]`, and pull it back to `M`. Its localization
 away from `r * s` is the `R[1/(r*s)]`-span of the image of `P` under the canonical
-map `M[1/r] → M[1/(r*s)]`. This works even when `r` or `s` is a zero divisor.-/
+map `M[1/r] → M[1/(r*s)]`. This works even when `r` or `s` is a zero divisor.
+@isnad1 id=other.0h5v.s11.94dbfd189c6d from=translated src=- shape=c4343a49 vocab=f55ade75
+-/
 theorem localized'_comap_awayToAwayRight_eq_span
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
     (r s : R) (P : Submodule (Localization.Away r) (LocalizedModule.Away r M)) :
@@ -108,7 +113,9 @@ theorem localized'_comap_awayToAwayRight_eq_span
 /-- Localizing a chosen submodule first away from `r` and then mapping to the
 common localization gives the same `R[1/(r*s)]`-submodule as localizing it
 directly away from `r * s`. The image is spanned in the target ring, not used
-as a raw set.-/
+as a raw set.
+@isnad1 id=eq.0h5v.s11.5733d6ab1405 from=translated src=- shape=a45743ff vocab=df550a32
+-/
 theorem localized'_awayToAwayRight_eq_span
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
     (r s : R) (N : Submodule R M) :

@@ -79,7 +79,9 @@ set_option maxHeartbeats 800000 in
 
 Only the denominator's contribution `m • γ.degree` moves; the twist is untouched. That is what
 makes the projection a map of `O(d)`-sections rather than a comparison between different
-twists.-/
+twists.
+@isnad1 id=mem.2h9v.s9.897fe528b8d4 from=translated src=- shape=841082b4 vocab=09d4917f
+-/
 theorem divMonomial_mem_natShift {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') {d m : ℕ} {p : MvPolynomial ι R}
     (hp : p ∈ natShift (polynomialGrading ι R) d (m • γ.degree)) :
@@ -105,7 +107,9 @@ directly. That cancellation is not available here, because a negative twist can 
 degree below `m * c` — and then there is nothing to divide, so the quotient is zero and the `p = 0`
 disjunct of `IsPolynomialTwist` carries it. The `by_cases` on the quotient is therefore not
 defensive bookkeeping; it is the only place the two signs behave differently in this whole
-argument.-/
+argument.
+@isnad1 id=mem.3h11v.s8.a357d9312ff6 from=translated src=- shape=39986aa2 vocab=003320fc
+-/
 theorem IsPolynomialTwist.divMonomial_mem {σM : Type u} [SetLike σM (MvPolynomial ι R)]
     {𝓜 : ℕ → σM} {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ} (hγ : γ = Finsupp.single i₀ c + γ') {m : ℕ}
@@ -153,7 +157,9 @@ degree and leaves the twist alone.
 Three places need this — raising a representative to a higher power of the denominator, and the
 two columns of the projection square — and each of them read `natShift`'s membership as
 homogeneity directly. Through `IsPolynomialTwist` the reading is a case split, because the
-numerator may be zero in a degree the twist names no graded piece for.-/
+numerator may be zero in a degree the twist names no graded piece for.
+@isnad1 id=mem.4h10v.s7.33de7f680106 from=translated src=- shape=779708b8 vocab=1f967e9a
+-/
 theorem IsPolynomialTwist.mul_mem_of_isHomogeneous {σM : Type u} [SetLike σM (MvPolynomial ι R)]
     {𝓜 : ℕ → σM} {d : ℤ} (h𝓜 : IsPolynomialTwist 𝓜 d) {a : MvPolynomial ι R} {k n n' : ℕ}
     (ha : a.IsHomogeneous k) (hn : n' = k + n) {p : MvPolynomial ι R} (hp : p ∈ 𝓜 n) :
@@ -198,7 +204,9 @@ noncomputable def AwayRep.frac {γ : ι →₀ ℕ} (r : AwayRep ι R 𝓜 γ) :
   DegreeZeroLocalization.awayMk (𝓜 := 𝓜)
     (monomial_one_mem_polynomialGrading (R := R) γ) r.pow r.num r.num_mem
 
-/-- Every fraction has a representative — this is `exists_awayMk`, repackaged.-/
+/-- Every fraction has a representative — this is `exists_awayMk`, repackaged.
+@isnad1 id=ex.0h6v.s14.6ea6ad799e3e from=translated src=- shape=f88706b8 vocab=7646e77c
+-/
 theorem AwayRep.frac_surjective [Nontrivial R] (𝓜 : ℕ → σM)
     [SetLike.GradedSMul (polynomialGrading ι R) 𝓜] (γ : ι →₀ ℕ)
     (z : DegreeZeroLocalization (polynomialGrading ι R) 𝓜
@@ -222,7 +230,9 @@ omit [AddSubgroupClass σM (MvPolynomial ι R)]
 
 The nonnegative proof read `num_mem` as homogeneity directly. Here the reading goes through
 `IsPolynomialTwist`, which also supplies the zero case — a numerator may be zero in a degree
-where the twist names no graded piece at all.-/
+where the twist names no graded piece at all.
+@isnad1 id=mem.1h8v.s9.3ca10c762e17 from=translated src=- shape=da825077 vocab=79e39194
+-/
 theorem AwayRep.pow_mul_num_mem (h𝓜 : IsPolynomialTwist 𝓜 d) {γ : ι →₀ ℕ}
     (r : AwayRep ι R 𝓜 γ) (t : ℕ) :
     ((MvPolynomial.monomial γ (1 : R)) ^ t * r.num) ∈ 𝓜 ((r.pow + t) • γ.degree) := by
@@ -236,7 +246,9 @@ set_option maxHeartbeats 1200000 in
 
 This is `divMonomial_pow_mul` on the numerator and `awayMk_shift` on the fraction, and it is the
 only place either is used. Well-definedness follows immediately: it lets both representatives of
-one element be moved to the *same* exponent before they are compared.-/
+one element be moved to the *same* exponent before they are compared.
+@isnad1 id=eq.3h11v.s13.fc09f0875a7e from=translated src=- shape=c7a53021 vocab=56749419
+-/
 theorem AwayRep.frac_project_raise (h𝓜 : IsPolynomialTwist 𝓜 d) {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0)
     (r : AwayRep ι R 𝓜 γ) (t : ℕ) :
@@ -270,7 +282,9 @@ set_option maxHeartbeats 1200000 in
 
 `awayMk_eq_awayMk_iff` turns the hypothesis into a cross-multiplication of numerators, and
 `frac_project_raise` moves both projections to the common exponent `r₁.pow + r₂.pow` where that
-cross-multiplication is literally the equality of numerators.-/
+cross-multiplication is literally the equality of numerators.
+@isnad1 id=eq.4h11v.s14.e0bd301f5d69 from=translated src=- shape=4bfe7f5e vocab=37dbb873
+-/
 theorem AwayRep.frac_project_congr [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0)
@@ -309,6 +323,9 @@ noncomputable def signProjection [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
       (.powers (MvPolynomial.monomial γ' (1 : R))) :=
   ((AwayRep.frac_surjective 𝓜 γ z).choose.project h𝓜 hγ).frac
 
+/--
+@isnad1 id=eq.3h10v.s13.e80fe30b11b3 from=translated src=- shape=e6c2a7ba vocab=246bda10
+-/
 theorem signProjection_frac [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0) (r : AwayRep ι R 𝓜 γ) :
@@ -316,7 +333,9 @@ theorem signProjection_frac [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
   AwayRep.frac_project_congr h𝓜 hγ hγ' (AwayRep.frac_surjective 𝓜 γ r.frac).choose_spec
 
 /-- **The defining equation of the sign projection**: on a representative it divides the numerator
-by `X_{i₀}^{m·c}` and keeps the exponent.-/
+by `X_{i₀}^{m·c}` and keeps the exponent.
+@isnad1 id=eq.4h11v.s13.eaf0252c80b5 from=translated src=- shape=21be60f2 vocab=cc4b9fe6
+-/
 theorem signProjection_awayMk [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0) {m : ℕ} {p : MvPolynomial ι R}
@@ -332,17 +351,26 @@ theorem signProjection_awayMk [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
 
 /-! ## The projection retracts the face inclusion -/
 
+/--
+@isnad1 id=mem.0h4v.s8.2da54d5a8505 from=translated src=- shape=a58e76fb vocab=17ca3fb8
+-/
 theorem monomial_single_mem (i₀ : ι) (c : ℕ) :
     (MvPolynomial.monomial (Finsupp.single i₀ c) (1 : R)) ∈ polynomialGrading ι R c := by
   have h := monomial_one_mem_polynomialGrading (R := R) (Finsupp.single i₀ c)
   rwa [Finsupp.degree_single] at h
 
+/--
+@isnad1 id=eq.1h6v.s9.509c90588355 from=translated src=- shape=9739f24f vocab=eb49122c
+-/
 theorem laurentFace_mul {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') :
     (MvPolynomial.monomial γ' (1 : R)) * MvPolynomial.monomial (Finsupp.single i₀ c) 1 =
       MvPolynomial.monomial γ 1 := by
   rw [MvPolynomial.monomial_mul_monomial, one_mul, hγ, add_comm]
 
+/--
+@isnad1 id=mem.1h6v.s9.124ad2d5701a from=translated src=- shape=78a24254 vocab=4e1b6a7c
+-/
 theorem monomial_mem_add_degree {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') :
     (MvPolynomial.monomial γ (1 : R)) ∈ polynomialGrading ι R (c + γ'.degree) := by
@@ -366,7 +394,9 @@ noncomputable def laurentFace (𝓜 : ℕ → σM) [SetLike.GradedSMul (polynomi
 
 set_option maxHeartbeats 1200000 in
 /-- The face inclusion in `awayMk` normal form: it multiplies the numerator by
-`X_{i₀}^{m·c}`.-/
+`X_{i₀}^{m·c}`.
+@isnad1 id=eq.3h10v.s18.c3388f1d122c from=translated src=- shape=917888e0 vocab=938cbb64
+-/
 theorem laurentFace_awayMk {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') {m : ℕ} {q : MvPolynomial ι R}
     (hq : q ∈ 𝓜 (m • γ'.degree))
@@ -388,7 +418,9 @@ This is the first of the two properties #340's homotopy consumes. On a represent
 multiplies the numerator by `X_{i₀}^{m·c}` and the projection divides it straight back out
 (`divMonomial_monomial_mul`), so nothing survives to check — the content is all in the degree
 bookkeeping, and in `awayMk_deg_congr` reconciling the two names `γ.degree` and `c + γ'.degree`
-for the same natural number.-/
+for the same natural number.
+@isnad1 id=eq.3h10v.s18.b21cb7b1da98 from=translated src=- shape=df632131 vocab=6a10c961
+-/
 theorem signProjection_laurentFace [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0)
@@ -440,7 +472,9 @@ This is the first use of that lemma outside `frac_project_raise`'s single-elemen
 set_option maxHeartbeats 800000 in
 /-- **The sign projection is additive.** Align the two fractions at a common denominator
 (`exists_awayMk_pair`), where the projection is division of the numerator by a fixed monomial
-(`signProjection_awayMk`), and division by a monomial is additive (`add_divMonomial`).-/
+(`signProjection_awayMk`), and division by a monomial is additive (`add_divMonomial`).
+@isnad1 id=eq.3h11v.s16.70c3d691f8ae from=translated src=- shape=5ae9611c vocab=c19d764a
+-/
 theorem signProjection_add [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
     (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0)
@@ -481,6 +515,9 @@ noncomputable def signProjectionHom [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜
         (.powers (MvPolynomial.monomial γ' (1 : R))) :=
   AddMonoidHom.mk' (signProjection h𝓜 hγ) (signProjection_add h𝓜 hγ hγ')
 
+/--
+@isnad1 id=eq.3h10v.s18.84c9687ab83a from=translated src=- shape=7200e211 vocab=cab31951
+-/
 @[simp]
 theorem signProjectionHom_apply [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' : ι →₀ ℕ} {i₀ : ι} {c : ℕ}
@@ -508,7 +545,9 @@ omit [AddSubgroupClass σM (MvPolynomial ι R)]
   [SetLike.GradedSMul (polynomialGrading ι R) 𝓜] in
 /-- Multiplying a numerator by `(X_e^{c'})ᵐ` raises its graded piece by `m·c'` and keeps the
 twist. This is the membership fact the face side of the projection square feeds
-`laurentFace_awayMk`, stated once because both columns of the square need it.-/
+`laurentFace_awayMk`, stated once because both columns of the square need it.
+@isnad1 id=mem.2h10v.s9.0d3b78775dd7 from=translated src=- shape=bd7bcb1a vocab=162d3951
+-/
 theorem monomial_single_pow_smul_mem (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ : ι →₀ ℕ} {e : ι} {c' : ℕ} {m : ℕ} {p : MvPolynomial ι R}
     (hp : p ∈ 𝓜 (m • γ.degree)) :
@@ -532,7 +571,9 @@ differential — produces each of them separately and never has to take one apar
 forces `X_e ≠ X_{i₀}` unless `c' = 0`, which is exactly the disjointness
 `divMonomial_monomial_mul_comm` needs to pull the face's monomial through the projection's
 division. The unrestricted square at `e = i₀` is false — that face is the retraction
-`signProjection_laurentFace`, not this square.-/
+`signProjection_laurentFace`, not this square.
+@isnad1 id=eq.7h14v.s19.ebedaa696100 from=translated src=- shape=daf2f4ee vocab=6a10c961
+-/
 theorem signProjection_laurentFace_comm [IsDomain R] (h𝓜 : IsPolynomialTwist 𝓜 d)
     {γ γ' δ δ' : ι →₀ ℕ} {i₀ e : ι}
     {c c' : ℕ} (hγ : γ = Finsupp.single i₀ c + γ') (hγ' : γ' i₀ = 0)

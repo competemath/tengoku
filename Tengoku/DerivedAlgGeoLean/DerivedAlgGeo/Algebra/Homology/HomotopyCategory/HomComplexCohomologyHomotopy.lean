@@ -91,7 +91,9 @@ private theorem cocycle_equivHomShift_symm_comp_shiftZero (z : Cocycle K L 0) :
   erw [Category.assoc, Iso.inv_hom_id, Category.comp_id]
 
 /-- The class of a degree-zero cocycle corresponds to the homotopy class of its
-associated chain map.-/
+associated chain map.
+@isnad1 id=eq.0h4v.s12.a53c74fd700f from=translated src=- shape=3bf35acf vocab=688f0445
+-/
 @[simp] theorem cohomologyClassHomotopyAddEquiv_mk (z : Cocycle K L 0) :
     cohomologyClassHomotopyAddEquiv K L (CohomologyClass.mk z) =
       (HomotopyCategory.quotient C (.up ℤ)).map z.homOf := by

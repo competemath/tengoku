@@ -45,16 +45,27 @@ variable (S : DivisorSpace D)
 /-- Dot notation for the symmetric pairing.-/
 def pair (x y : D) : ℝ := S.intersection x y
 
+/--
+@isnad1 id=eq.0h4v.s8.889774c3b387 from=translated src=- shape=5665b3fc vocab=9a08f512
+-/
 theorem pair_apply (x y : D) : S.pair x y = S.intersection x y := rfl
 
-/-- Symmetry of the pairing.-/
+/-- Symmetry of the pairing.
+@isnad1 id=eq.0h4v.s5.02740d9dd420 from=translated src=- shape=596b39dd vocab=60df8560
+-/
 theorem pair_comm (x y : D) : S.pair x y = S.pair y x :=
   S.intersection_symm.eq x y
 
+/--
+@isnad1 id=eq.0h3v.s5.05198dcea6eb from=translated src=- shape=12e7e6ee vocab=60df8560
+-/
 @[simp]
 theorem pair_zero_left (x : D) : S.pair 0 x = 0 := by
   simp [pair]
 
+/--
+@isnad1 id=eq.0h3v.s5.7bae4c0d8a8e from=translated src=- shape=4d197822 vocab=60df8560
+-/
 @[simp]
 theorem pair_zero_right (x : D) : S.pair x 0 = 0 := by
   simp [pair]
@@ -70,14 +81,18 @@ namespace HodgeIndex
 
 variable {S} {H : D}
 
-/-- A vector orthogonal to `H` has nonpositive square.-/
+/-- A vector orthogonal to `H` has nonpositive square.
+@isnad1 id=le.2h4v.s5.ab7424bb0bb0 from=translated src=- shape=e1b43a6d vocab=f276121b
+-/
 theorem pair_self_nonpos_of_orthogonal (h : S.HodgeIndex H) {x : D}
     (hx : S.pair H x = 0) : S.pair x x ≤ 0 := by
   have hidx := h.index_le x
   rw [hx] at hidx
   nlinarith [h.H_square_pos, hidx]
 
-/-- An orthogonal vector with nonzero square has negative square.-/
+/-- An orthogonal vector with nonzero square has negative square.
+@isnad1 id=lt.3h4v.s6.f88413c587ff from=translated src=- shape=165cd2f5 vocab=6e74d95c
+-/
 theorem pair_self_neg_of_orthogonal (h : S.HodgeIndex H) {x : D}
     (hx : S.pair H x = 0) (hne : S.pair x x ≠ 0) : S.pair x x < 0 :=
   lt_of_le_of_ne (h.pair_self_nonpos_of_orthogonal hx) hne
@@ -95,7 +110,9 @@ namespace HodgeDefinite
 
 variable {S} {H : D}
 
-/-- Definiteness on `H^⊥` implies the Hodge index inequality.-/
+/-- Definiteness on `H^⊥` implies the Hodge index inequality.
+@isnad1 id=hodgeind.1h3v.s5.6d5ed1aefd77 from=translated src=- shape=c03352df vocab=b0abf017
+-/
 theorem toHodgeIndex (h : S.HodgeDefinite H) : S.HodgeIndex H where
   H_square_pos := h.H_square_pos
   index_le x := by
@@ -131,8 +148,14 @@ end HodgeDefinite
 abbrev intersectionQuadratic : QuadraticForm ℝ D :=
   LinearMap.BilinMap.toQuadraticMap S.intersection
 
+/--
+@isnad1 id=eq.0h3v.s6.c4ad20d15ffa from=translated src=- shape=c923a67a vocab=c09516fe
+-/
 theorem intersectionQuadratic_apply (x : D) : S.intersectionQuadratic x = S.pair x x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.1942bb0f08ef from=translated src=- shape=eb9dc70a vocab=101e2bb3
+-/
 theorem polar_intersectionQuadratic (x y : D) :
     polar (⇑S.intersectionQuadratic) x y = 2 * S.pair x y := by
   rw [intersectionQuadratic, LinearMap.BilinMap.polar_toQuadraticMap]
@@ -221,7 +244,9 @@ private theorem finrank_hLine (hpos : 0 < S.pair H H) :
 
 variable [FiniteDimensional ℝ D]
 
-/-- The indices of inertia of a Hodge-definite pairing.-/
+/-- The indices of inertia of a Hodge-definite pairing.
+@isnad1 id=and.1h3v.s6.8754964606b6 from=translated src=- shape=e99a6866 vocab=299efab1
+-/
 theorem sigPos_sigNeg_of_hodgeDefinite (h : S.HodgeDefinite H) :
     sigPos S.intersectionQuadratic = 1 ∧
       sigNeg S.intersectionQuadratic + 1 = Module.finrank ℝ D := by
@@ -236,7 +261,9 @@ theorem sigPos_sigNeg_of_hodgeDefinite (h : S.HodgeDefinite H) :
   rw [hsplitN, hN₁, hN₂]
   omega
 
-/-- A Hodge-definite pairing is nondegenerate.-/
+/-- A Hodge-definite pairing is nondegenerate.
+@isnad1 id=nondegen.1h3v.s5.07c249841956 from=translated src=- shape=ff6e4ba2 vocab=dd4b2ea9
+-/
 theorem nondegenerate_of_hodgeDefinite (h : S.HodgeDefinite H) :
     S.intersectionQuadratic.Nondegenerate := by
   obtain ⟨hP, hN⟩ := sigPos_sigNeg_of_hodgeDefinite h
@@ -245,7 +272,9 @@ theorem nondegenerate_of_hodgeDefinite (h : S.HodgeDefinite H) :
   rw [QuadraticMap.nondegenerate_iff_radical_eq_bot]
   exact Submodule.finrank_eq_zero.mp hrad
 
-/-- A Hodge-definite certificate can be transported to any positive vector.-/
+/-- A Hodge-definite certificate can be transported to any positive vector.
+@isnad1 id=hodgedef.2h4v.s5.aa40811da15f from=translated src=- shape=106700bb vocab=b25828ff
+-/
 theorem HodgeDefinite.of_pair_pos (h : S.HodgeDefinite H) {omega : D}
     (homega : 0 < S.pair omega omega) : S.HodgeDefinite omega := by
   obtain ⟨hP, hN⟩ := sigPos_sigNeg_of_hodgeDefinite h
@@ -277,7 +306,9 @@ theorem HodgeDefinite.of_pair_pos (h : S.HodgeDefinite H) {omega : D}
   rw [hval] at hpos
   linarith
 
-/-- The real Mukai extension of a Hodge-definite pairing has signature two.-/
+/-- The real Mukai extension of a Hodge-definite pairing has signature two.
+@isnad1 id=hassigna.1h3v.s6.e22045d91947 from=translated src=- shape=baab6052 vocab=68fdfe87
+-/
 theorem hasSignatureTwo_of_hodgeDefinite (h : S.HodgeDefinite H) :
     PeriodDomain.HasSignatureTwo (Mukai.realForm S.intersection) := by
   obtain ⟨hP, hN⟩ := sigPos_sigNeg_of_hodgeDefinite h

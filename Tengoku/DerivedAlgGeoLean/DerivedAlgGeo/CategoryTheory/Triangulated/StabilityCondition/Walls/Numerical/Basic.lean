@@ -128,14 +128,18 @@ The whole geometry of numerical walls follows from this one identity. -/
 /-- **The wall expression collapses to a circle equation.**
 
 An identity: no hypothesis on `s`, `t`, `v` or `w`. Everything quadratic in
-`s` and `t` beyond `s² + t²` cancels.-/
+`s` and `t` beyond `s² + t²` cancels.
+@isnad1 id=eq.0h4v.s6.208e711c1cfb from=translated src=- shape=671e4ba1 vocab=566acf5e
+-/
 theorem wallExpr_eq (s t : ℝ) (v w : NumClass) :
     wallExpr s t v w
       = t * (minC v w + s * minB v w + ((s ^ 2 + t ^ 2) / 2) * minA v w) := by
   simp only [wallExpr, reZ, imZ, minA, minB, minC, rk, deg, ch2]
   ring
 
-/-- For `t ≠ 0` the wall is cut out by a circle equation in `(s, t)`.-/
+/-- For `t ≠ 0` the wall is cut out by a circle equation in `(s, t)`.
+@isnad1 id=iff.1h4v.s7.d1cf2c59de6b from=translated src=- shape=281328b3 vocab=6a773bf0
+-/
 theorem wall_iff_circle {s t : ℝ} (ht : t ≠ 0) (v w : NumClass) :
     wallExpr s t v w = 0 ↔
       minA v w * (s ^ 2 + t ^ 2) + 2 * minB v w * s + 2 * minC v w = 0 := by
@@ -153,7 +157,9 @@ the circle centred at `(-minB/minA, 0)` with radius squared
 
 Stated in cleared form — both sides multiplied through by `minA²` — so that no
 division appears and the equivalence is an honest polynomial identity plus one
-use of `minA ≠ 0`.-/
+use of `minA ≠ 0`.
+@isnad1 id=iff.2h4v.s7.3b8483847415 from=translated src=- shape=37c29b92 vocab=f5afb785
+-/
 theorem wall_circle_eq {s t : ℝ} (ht : t ≠ 0) {v w : NumClass}
     (hA : minA v w ≠ 0) :
     wallExpr s t v w = 0 ↔
@@ -170,7 +176,9 @@ theorem wall_circle_eq {s t : ℝ} (ht : t ≠ 0) {v w : NumClass}
     exact (mul_eq_zero.mp key).resolve_left hA
 
 /-- A vertical wall: when the rank–degree minor vanishes but the `ch₂`–rank one
-does not, the wall is the line `s = -minC/minB`.-/
+does not, the wall is the line `s = -minC/minB`.
+@isnad1 id=iff.3h4v.s6.28e9063ff4fa from=translated src=- shape=5135bd26 vocab=c244acfa
+-/
 theorem wall_line_eq {s t : ℝ} (ht : t ≠ 0) {v w : NumClass}
     (hA : minA v w = 0) (hB : minB v w ≠ 0) :
     wallExpr s t v w = 0 ↔ s = -(minC v w) / minB v w := by
@@ -187,19 +195,30 @@ This is why walls are indexed by classes modulo `v` rather than by classes. -/
 def shift (k : ℝ) (v w : NumClass) : NumClass :=
   (w.rk + k * v.rk, w.deg + k * v.deg, w.ch2 + k * v.ch2)
 
+/--
+@isnad1 id=eq.0h3v.s4.f005c0e5cd77 from=translated src=- shape=3ac7491b vocab=286fe8eb
+-/
 @[simp]
 theorem minA_shift (k : ℝ) (v w : NumClass) : minA v (shift k v w) = minA v w := by
   simp only [minA, shift, rk, deg]; ring
 
+/--
+@isnad1 id=eq.0h3v.s4.a042ee705ff4 from=translated src=- shape=3ac7491b vocab=e7175f0d
+-/
 @[simp]
 theorem minB_shift (k : ℝ) (v w : NumClass) : minB v (shift k v w) = minB v w := by
   simp only [minB, shift, rk, ch2]; ring
 
+/--
+@isnad1 id=eq.0h3v.s4.2f0bdaf0ab5f from=translated src=- shape=3ac7491b vocab=6728da5a
+-/
 @[simp]
 theorem minC_shift (k : ℝ) (v w : NumClass) : minC v (shift k v w) = minC v w := by
   simp only [minC, shift, deg, ch2]; ring
 
-/-- The wall for `w` and for `w + k·v` is the same wall.-/
+/-- The wall for `w` and for `w + k·v` is the same wall.
+@isnad1 id=eq.0h5v.s4.4cecdcd28475 from=translated src=- shape=887640cd vocab=29ea399a
+-/
 theorem wallExpr_shift (s t k : ℝ) (v w : NumClass) :
     wallExpr s t v (shift k v w) = wallExpr s t v w := by
   rw [wallExpr_eq, wallExpr_eq, minA_shift, minB_shift, minC_shift]
@@ -220,7 +239,9 @@ the whole content of `minorCross_eq_zero_of_two_walls`. -/
 
 Stated with the coordinates paired as they actually appear — `ch₂` against
 `minA`, `deg` against `minB`, `rk` against `minC` — because
-`(minA, minB, minC)` is the cross product with coordinates *reversed*.-/
+`(minA, minB, minC)` is the cross product with coordinates *reversed*.
+@isnad1 id=eq.0h2v.s5.f380ae6e44d9 from=translated src=- shape=7736a84a vocab=56f9f7f9
+-/
 theorem minor_orth (v w : NumClass) :
     v.ch2 * minA v w + v.deg * minB v w + v.rk * minC v w = 0 := by
   simp only [minA, minB, minC, rk, deg, ch2]; ring
@@ -235,7 +256,9 @@ the minors, and the module docstring lists the four cases. It is where *every*
 wall of `v` passes through at once: at such a point `minor_orth` turns the
 wall equation into an identity, so no `w` is excluded and the walls of `v`
 concur. `wall_eq_of_meet_needs_charge` exhibits that failure explicitly, and it
-is the locus the geometric theory excludes.-/
+is the locus the geometric theory excludes.
+@isnad1 id=iff.1h3v.s7.9b7851599584 from=translated src=- shape=08252781 vocab=d844d2b5
+-/
 theorem charge_eq_zero_iff {s t : ℝ} (ht : t ≠ 0) (v : NumClass) :
     (reZ s t v = 0 ∧ imZ s t v = 0) ↔
       (v.deg = s * v.rk ∧ v.ch2 = ((s ^ 2 + t ^ 2) / 2) * v.rk) := by
@@ -323,12 +346,21 @@ these `@[simp]` was the first version here, and `lake exe runLinter` rejected
 all three with `maximum recursion depth has been reached` -- a loop `lake build`
 does not see, because nothing in this file happened to call `simp` on one. -/
 
+/--
+@isnad1 id=eq.0h3v.s4.338abd7effd3 from=translated src=- shape=04d76633 vocab=4065ee24
+-/
 theorem crossAB_swap (v w₁ w₂ : NumClass) :
     crossAB v w₂ w₁ = -crossAB v w₁ w₂ := by simp only [crossAB]; ring
 
+/--
+@isnad1 id=eq.0h3v.s4.0877bf61d017 from=translated src=- shape=04d76633 vocab=3931a938
+-/
 theorem crossAC_swap (v w₁ w₂ : NumClass) :
     crossAC v w₂ w₁ = -crossAC v w₁ w₂ := by simp only [crossAC]; ring
 
+/--
+@isnad1 id=eq.0h3v.s4.c9eb15bbc66f from=translated src=- shape=04d76633 vocab=b35fb6ae
+-/
 theorem crossBC_swap (v w₁ w₂ : NumClass) :
     crossBC v w₂ w₁ = -crossBC v w₁ w₂ := by simp only [crossBC]; ring
 
@@ -347,7 +379,9 @@ Bogomolov–Gieseker discriminant `deg² - 2·rk·ch₂` the excluded locus is
 Bogomolov–Gieseker puts the geometric classes in the second case, where the
 hypothesis holds automatically. It is stated as a hypothesis rather than
 derived because `Δ ≥ 0` is a theorem about sheaves and `NumClass` is a triple;
-see the module docstring.-/
+see the module docstring.
+@isnad1 id=and.4h5v.s6.b55a1678d586 from=translated src=- shape=e9bba10f vocab=8c3788e3
+-/
 theorem minorCross_eq_zero_of_two_walls {s t : ℝ} (ht : t ≠ 0) {v w₁ w₂ : NumClass}
     (hv : ¬(reZ s t v = 0 ∧ imZ s t v = 0))
     (h₁ : wallExpr s t v w₁ = 0) (h₂ : wallExpr s t v w₂ = 0) :
@@ -395,7 +429,9 @@ inclusion is the same lemma with the arguments swapped — the cross terms are
 antisymmetric, so they stay zero. -/
 
 /-- One inclusion. If the cross terms vanish and `w₁`'s minor vector is not the
-zero vector, every point of `w₁`'s wall is a point of `w₂`'s.-/
+zero vector, every point of `w₁`'s wall is a point of `w₂`'s.
+@isnad1 id=eq.6h5v.s6.44d2b434b6a9 from=translated src=- shape=8abacf06 vocab=bdb89b11
+-/
 theorem wall_subset_of_crossZero {v w₁ w₂ : NumClass}
     (hAB : crossAB v w₁ w₂ = 0) (hAC : crossAC v w₁ w₂ = 0) (hBC : crossBC v w₁ w₂ = 0)
     (hn : ¬(minA v w₁ = 0 ∧ minB v w₁ = 0 ∧ minC v w₁ = 0))
@@ -443,7 +479,9 @@ disjointness clause is proved here.
 
 Both minor vectors are required to be nonzero. A zero minor vector is not a
 wall — `wallExpr` vanishes identically — so excluding it excludes nothing the
-statement is about.-/
+statement is about.
+@isnad1 id=iff.7h7v.s7.e190628d009a from=translated src=- shape=c14c6eec vocab=159c0f8e
+-/
 theorem wall_eq_of_meet {s t : ℝ} (ht : t ≠ 0) {v w₁ w₂ : NumClass}
     (hv : ¬(reZ s t v = 0 ∧ imZ s t v = 0))
     (h₁ : wallExpr s t v w₁ = 0) (h₂ : wallExpr s t v w₂ = 0)
@@ -482,12 +520,16 @@ walls — `(0, 2)` is on the second and not the first. Every hypothesis of
 /-- The degenerate class of the worked counterexample: `v = (2, 0, 1)`.-/
 def degV : NumClass := (2, 0, 1)
 
-/-- `v`'s charge really does vanish at `(0, 1)`.-/
+/-- `v`'s charge really does vanish at `(0, 1)`.
+@isnad1 id=and.0h0v.s5.dd44d156c266 from=translated src=- shape=0f143bc5 vocab=a8b16f64
+-/
 theorem degV_charge_eq_zero : reZ 0 1 degV = 0 ∧ imZ 0 1 degV = 0 := by
   constructor <;> norm_num [reZ, imZ, degV, rk, deg, ch2]
 
 /-- **Dropping the charge hypothesis makes `wall_eq_of_meet` false.** Two walls
-of `degV` with nonzero minor vectors meet at `(0, 1)` and disagree at `(0, 2)`.-/
+of `degV` with nonzero minor vectors meet at `(0, 1)` and disagree at `(0, 2)`.
+@isnad1 id=ex.0h0v.s7.0783442ad066 from=translated src=- shape=ddcea478 vocab=b96a91a5
+-/
 theorem wall_eq_of_meet_needs_charge :
     ∃ w₁ w₂ : NumClass,
       wallExpr 0 1 degV w₁ = 0 ∧ wallExpr 0 1 degV w₂ = 0 ∧

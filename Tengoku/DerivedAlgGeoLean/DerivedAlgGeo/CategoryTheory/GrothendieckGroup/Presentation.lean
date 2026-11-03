@@ -55,7 +55,9 @@ instance : AddCommGroup P.Group :=
 def of (X : Generator) : P.Group :=
   QuotientAddGroup.mk (FreeAbelianGroup.of X)
 
-/-- The defining three-term relation in the presented group.-/
+/-- The defining three-term relation in the presented group.
+@isnad1 id=eq.0h4v.s6.14becdb6a403 from=translated src=- shape=d3a54906 vocab=8ca42a6b
+-/
 theorem of_relation (r : Relation) :
     P.of (P.middle r) = P.of (P.left r) + P.of (P.right r) := by
   simp only [of, Group]
@@ -82,13 +84,18 @@ def lift {A : Type*} [AddCommGroup A] (f : Generator → A) [P.IsAdditive f] : P
       rw [IsAdditive.additive (P := P) (f := f) r]
       abel)
 
+/--
+@isnad1 id=eq.0h6v.s7.0fc69ec6c36b from=translated src=- shape=c2b2f63e vocab=f409a27f
+-/
 @[simp]
 theorem lift_of {A : Type*} [AddCommGroup A] (f : Generator → A) [P.IsAdditive f]
     (X : Generator) : P.lift f (P.of X) = f X :=
   FreeAbelianGroup.lift_apply_of f X
 
 /-- Additive maps out of the presented group are determined by generator
-classes.-/
+classes.
+@isnad1 id=eq.1h6v.s8.b7599935d408 from=translated src=- shape=6eeb25f7 vocab=183a1a22
+-/
 @[ext 1100]
 theorem hom_ext {A : Type*} [AddCommGroup A] {f g : P.Group →+ A}
     (h : ∀ X : Generator, f (P.of X) = g (P.of X)) : f = g :=
@@ -102,7 +109,9 @@ theorem hom_ext {A : Type*} [AddCommGroup A] {f g : P.Group →+ A}
       | add x y ihx ihy => simp [ihx, ihy]
 
 /-- Induction on a presented Grothendieck group through generators and the
-abelian-group operations.-/
+abelian-group operations.
+@isnad1 id=var.0h9v.s7.ac63b7349245 from=translated src=- shape=5220e71d vocab=acd834fe
+-/
 @[elab_as_elim]
 theorem induction_on {motive : P.Group → Prop} (x : P.Group)
     (of : ∀ X : Generator, motive (P.of X))
@@ -124,6 +133,9 @@ def map {Generator' : Type u'} {Relation' : Type v'}
     (hf : P.IsAdditive (Q.of ∘ f)) : P.Group →+ Q.Group :=
   P.lift (Q.of ∘ f)
 
+/--
+@isnad1 id=eq.1h8v.s7.195589c52444 from=translated src=- shape=1fb4f96a vocab=a7b1c6a3
+-/
 @[simp]
 theorem map_of {Generator' : Type u'} {Relation' : Type v'}
     {Q : GrothendieckPresentation Generator' Relation'} (f : Generator → Generator')
@@ -131,7 +143,9 @@ theorem map_of {Generator' : Type u'} {Relation' : Type v'}
     P.map f hf (P.of X) = Q.of (f X) :=
   P.lift_of (Q.of ∘ f) X
 
-/-- A compatible relation map proves that the generator map is additive.-/
+/-- A compatible relation map proves that the generator map is additive.
+@isnad1 id=isadditi.3h8v.s6.c67559a73ac3 from=translated src=- shape=1e3b1917 vocab=621529e3
+-/
 theorem IsAdditive.of_relationMap {Generator' : Type u'} {Relation' : Type v'}
     {Q : GrothendieckPresentation Generator' Relation'}
     (fGenerator : Generator → Generator') (fRelation : Relation → Relation')
@@ -144,6 +158,9 @@ theorem IsAdditive.of_relationMap {Generator' : Type u'} {Relation' : Type v'}
     rw [hmiddle, hleft, hright]
     exact Q.of_relation (fRelation r)
 
+/--
+@isnad1 id=eq.0h3v.s7.6b7cd5bc059b from=translated src=- shape=11518c41 vocab=9edf44f0
+-/
 theorem map_id : P.map id ⟨P.of_relation⟩ = AddMonoidHom.id P.Group := by
   apply P.hom_ext
   intro X
@@ -151,7 +168,9 @@ theorem map_id : P.map id ⟨P.of_relation⟩ = AddMonoidHom.id P.Group := by
 
 variable {Generator : Type u} {Relation : Type v}
   {P : GrothendieckPresentation Generator Relation} in
-/-- Composition law for maps of Grothendieck presentations.-/
+/-- Composition law for maps of Grothendieck presentations.
+@isnad1 id=eq.3h11v.s8.1dee295c44c9 from=translated src=- shape=a3778581 vocab=027e9e3d
+-/
 theorem map_comp {Generator' : Type u'} {Relation' : Type v'}
     {Q : GrothendieckPresentation Generator' Relation'}
     {Generator'' : Type u''} {Relation'' : Type v''}

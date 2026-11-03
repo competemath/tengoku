@@ -129,10 +129,15 @@ abbrev realPairing (v w : RealExtension V) : ℝ := pairing b v w
 /-- Not a `simp` lemma: `pairing_mk` is already `simp` and `realPairing` is
 reducible, so the two would be the same rewrite registered twice and the
 normal-form linter rejects the duplicate. Kept as a named statement because the
-real lane rewrites by it.-/
+real lane rewrites by it.
+@isnad1 id=eq.0h8v.s8.f2db35d1dd8f from=translated src=- shape=0b0f55c0 vocab=077d11f2
+-/
 theorem realPairing_apply (r : ℝ) (c : V) (s : ℝ) (r' : ℝ) (c' : V) (s' : ℝ) :
     realPairing b (r, c, s) (r', c', s') = b c c' - r * s' - r' * s := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.9395b01670da from=translated src=- shape=ab8ed14f vocab=80b6b50a
+-/
 theorem realPairing_comm (hb : ∀ x y : V, b x y = b y x) (v w : RealExtension V) :
     realPairing b v w = realPairing b w v :=
   pairing_comm b hb v w
@@ -145,6 +150,9 @@ def realBilin : LinearMap.BilinForm ℝ (RealExtension V) :=
     (fun v w₁ w₂ => by simp [realPairing, pairing]; ring)
     (fun a v w => by simp [realPairing, pairing]; ring)
 
+/--
+@isnad1 id=eq.0h4v.s9.563c56925197 from=translated src=- shape=a2fa513f vocab=960a1a33
+-/
 @[simp]
 theorem realBilin_apply (v w : RealExtension V) : realBilin b v w = realPairing b v w := rfl
 
@@ -162,12 +170,17 @@ def realDiscriminant : QuadraticForm ℝ (RealExtension V) :=
   (realBilin b).toQuadraticMap
 
 /-- **The bundled discriminant is the Mukai self-pairing.** The unhalved
-convention is exactly what makes this an equality rather than a factor of two.-/
+convention is exactly what makes this an equality rather than a factor of two.
+@isnad1 id=eq.0h3v.s7.35d1a3fa50db from=translated src=- shape=61946b98 vocab=b829e7a6
+-/
 theorem realDiscriminant_eq_selfPairing (v : RealExtension V) :
     realDiscriminant b v = selfPairing b v := by
   rw [realDiscriminant, LinearMap.BilinMap.toQuadraticMap_apply, realBilin_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.7606cb7ea0bc from=translated src=- shape=93e9bb39 vocab=31f3111b
+-/
 @[simp]
 theorem realDiscriminant_mk (r : ℝ) (c : V) (s : ℝ) :
     realDiscriminant b (r, c, s) = b c c - 2 * r * s := by
@@ -180,17 +193,25 @@ docstring for why the other choice is a factor-of-two trap.-/
 noncomputable def realForm : QuadraticForm ℝ (RealExtension V) :=
   ((1 / 2 : ℝ) • realBilin b).toQuadraticMap
 
+/--
+@isnad1 id=eq.0h3v.s8.f4e88f45bd61 from=translated src=- shape=e5d16e45 vocab=8712ee57
+-/
 theorem realForm_apply (v : RealExtension V) : realForm b v = realPairing b v v / 2 := by
   simp [realForm, LinearMap.BilinMap.toQuadraticMap_apply]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s9.fbdeeb22a53e from=translated src=- shape=8a607c8f vocab=6f27d956
+-/
 theorem realForm_mk (r : ℝ) (c : V) (s : ℝ) :
     realForm b (r, c, s) = (b c c - 2 * r * s) / 2 := by
   rw [realForm_apply, realPairing_apply]
   ring
 
 /-- **The polar form of `realForm` is the Mukai pairing itself.** This is the
-statement the normalisation exists for.-/
+statement the normalisation exists for.
+@isnad1 id=eq.1h4v.s9.8b832bcfd2c1 from=translated src=- shape=da7dee42 vocab=9026acbb
+-/
 theorem polar_realForm (hb : ∀ x y : V, b x y = b y x) (v w : RealExtension V) :
     polar (⇑(realForm b)) v w = realPairing b v w := by
   rw [realForm, LinearMap.BilinMap.polar_toQuadraticMap]
@@ -208,7 +229,9 @@ where it is used, so that it never becomes a second name for `realPairing`. -/
 The right-hand side is the audit's graded form `-∑_k (-1)^k d_k e_{2-k}` written
 out. There is no weight, no hypothesis and no transport: at `n = 2` the two are
 one equation, so the graded form must not be declared a second owner of the even
-case. Odd degree is a different matter; see the module docstring.-/
+case. Odd degree is a different matter; see the module docstring.
+@isnad1 id=eq.0h2v.s8.bd1e86038028 from=translated src=- shape=e3a1960c vocab=0ce607dd
+-/
 theorem realPairing_mul_eq_alternatingSum (d e : Fin 3 → ℝ) :
     realPairing (LinearMap.mul ℝ ℝ) (d 0, d 1, d 2) (e 0, e 1, e 2)
       = -∑ k : Fin 3, (-1 : ℝ) ^ (k : ℕ) * d k * e k.rev := by
@@ -226,7 +249,9 @@ this pairing.
 The left-hand side is that graded pairing written out. The weight `b H H` is
 first power and is not removable: it is `1` exactly when `∫H² = 1`. The
 rank-one hypothesis is not decoration either, since the compression stops being
-injective as soon as the Picard rank exceeds one.-/
+injective as soon as the Picard rank exceeds one.
+@isnad1 id=eq.0h9v.s10.f8878edf6868 from=translated src=- shape=ef32ac3e vocab=9d4759e9
+-/
 theorem realPairing_compression_rankOne (H : V) (r x s r' x' s' : ℝ) :
     b H (x • H) * b H (x' • H) - b H H * r * s' - s * (b H H * r')
       = b H H * realPairing b (r, x • H, s) (r', x' • H, s') := by
@@ -241,7 +266,9 @@ theorem realPairing_compression_rankOne (H : V) (r x s r' x' s' : ℝ) :
 
 Specialising the bridge to `v = w` puts a `2` in front, and it is exactly the
 `realForm = realPairing / 2` convention this file's module docstring calls a
-factor-of-two trap — not a second discrepancy stacked on the `∫H²` weight.-/
+factor-of-two trap — not a second discrepancy stacked on the `∫H²` weight.
+@isnad1 id=eq.0h6v.s10.2b4dd25e17f3 from=translated src=- shape=f970a107 vocab=648e7544
+-/
 theorem realForm_compression_rankOne (H : V) (r x s : ℝ) :
     b H (x • H) * b H (x • H) - b H H * r * s - s * (b H H * r)
       = 2 * b H H * realForm b (r, x • H, s) := by

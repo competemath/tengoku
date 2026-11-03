@@ -36,7 +36,9 @@ noncomputable section
 
 /-- A finite module over a noetherian commutative ring has a projective resolution
 with finite terms in both the natural-number chain indexing and its integer cochain
-extension. The latter is strictly supported in degrees at most zero.-/
+extension. The latter is strictly supported in degrees at most zero.
+@isnad1 id=ex.0h2v.s9.0c2b92b6851b from=translated src=- shape=b11ca953 vocab=ad8424ea
+-/
 theorem exists_finite_projectiveResolution {R : Type u} [CommRing R]
     [IsNoetherianRing R] (M : ModuleCat.{u} R) [Module.Finite R M] :
     ∃ P : ProjectiveResolution M,

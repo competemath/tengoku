@@ -94,17 +94,26 @@ def pullCompIso {r s t : B} (f : r ⟶ s) (g : s ⟶ t) :
 def pullK₀ {s t : B} (f : s ⟶ t) : K₀ (F.Fiber t) →+ K₀ (F.Fiber s) :=
   K₀.map (F.pull f)
 
+/--
+@isnad1 id=eq.0h6v.s13.5bfc08d820e6 from=translated src=- shape=9f997066 vocab=75ad5fcb
+-/
 @[simp]
 theorem pullK₀_of {s t : B} (f : s ⟶ t) (E : F.Fiber t) :
     F.pullK₀ f (K₀.of _ E) = K₀.of _ ((F.pull f).obj E) := by
   simp [pullK₀]
 
+/--
+@isnad1 id=eq.0h3v.s12.3833cae25ef9 from=translated src=- shape=a7ce94eb vocab=914a9e85
+-/
 @[simp]
 theorem pullK₀_id (b : B) :
     F.pullK₀ (𝟙 b) = AddMonoidHom.id (K₀ (F.Fiber b)) := by
   change K₀.map (F.pull (𝟙 b)) = AddMonoidHom.id (K₀ (F.Fiber b))
   rw [K₀.map_congr (F.pullIdIso b), K₀.map_id]
 
+/--
+@isnad1 id=eq.0h7v.s13.7091c9bc4ac9 from=translated src=- shape=82a075d2 vocab=c51e4ce9
+-/
 @[simp]
 theorem pullK₀_comp {r s t : B} (f : r ⟶ s) (g : s ⟶ t) :
     F.pullK₀ (f ≫ g) = (F.pullK₀ f).comp (F.pullK₀ g) := by
@@ -173,14 +182,18 @@ variable {F} {V : Type*} [AddCommGroup V]
   {classMap : ∀ b, K₀ (F.Fiber b) →+ V}
 
 /-- Compatibility on Grothendieck groups specializes to the class of an
-actual pulled-back object.-/
+actual pulled-back object.
+@isnad1 id=eq.1h8v.s13.332f9e924371 from=translated src=- shape=599a40c7 vocab=2b2bbcbf
+-/
 theorem class_pull (h : F.CompatibleClassMaps V classMap)
     {s t : B} (f : s ⟶ t) (E : F.Fiber t) :
     classMap s (K₀.of _ ((F.pull f).obj E)) = classMap t (K₀.of _ E) := by
   rw [← F.pullK₀_of f E]
   exact h.pull_compatible f _
 
-/-- A single class map gives compatible maps on the constant family.-/
+/-- A single class map gives compatible maps on the constant family.
+@isnad1 id=compatib.0h4v.s7.ea7a55228d16 from=translated src=- shape=1ff63f8e vocab=c1bbc57a
+-/
 theorem constant (C : Type w) [Category.{w} C] [Preadditive C]
     [HasZeroObject C] [HasShift C ℤ]
     [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]

@@ -169,7 +169,9 @@ private lemma isIso_homologyZero_plusQ_map_of_homologyMap
 /-- Resolve the input by a strictly nonnegative complex of injectives.
 Preservation of the input's outgoing kernel and the kernels in its chosen
 resolution makes the mapped resolution an H⁰ isomorphism; unit naturality
-then transfers invertibility to the input.-/
+then transfers invertibility to the input.
+@isnad1 id=isiso.2h4v.s12.0363f463a57e from=translated src=- shape=baa02e31 vocab=4433403a
+-/
 theorem isIso_homologyZero_map_rightDerivedFunctorPlusUnit_of_isStrictlyGE_zero
     (K : CochainComplex.Plus C) [K.obj.IsStrictlyGE 0]
     (hK : PreservesLimit (parallelPair (K.obj.sc 0).g 0) F)
@@ -227,7 +229,9 @@ theorem isIso_homologyZero_map_rightDerivedFunctorPlusUnit_of_isStrictlyGE_zero
 
 /-- For a degree-zero single, the source outgoing differential is zero and
 its kernel is automatically preserved. Only kernels in resolutions receiving
-a quasi-isomorphism from this single remain as premises.-/
+a quasi-isomorphism from this single remain as premises.
+@isnad1 id=isiso.1h4v.s12.76b7ce5fe9e2 from=translated src=- shape=1e540fd0 vocab=c3e51929
+-/
 theorem isIso_homologyZero_map_rightDerivedFunctorPlusUnit_single (X : C)
     (hResKernel : ∀ (L : CochainComplex.Plus (InjectiveObject C)) [L.obj.IsStrictlyGE 0],
       (i : (⟨(CochainComplex.singleFunctor C 0).obj X, ⟨0, inferInstance⟩⟩ :
@@ -360,7 +364,9 @@ noncomputable def rightDerivedFunctorPlusHomologyZeroSingleNatIsoOfPreservesFini
 /-- The bounded-below right-derived functor of an additive functor is additive.
 The bounded injective homotopy model is full and essentially surjective in
 the derived category, and the right-derived unit is invertible on that model.
-No finite-limit preservation or nonnegative bound is required.-/
+No finite-limit preservation or nonnegative bound is required.
+@isnad1 id=additive.0h3v.s8.1cfbf8b5d995 from=translated src=- shape=75f71d3d vocab=f9e87511
+-/
 theorem rightDerivedFunctorPlus_additive : F.rightDerivedFunctorPlus.Additive := by
   let J := (InjectiveObject.ι C).mapHomotopyCategoryPlus
   let L := J ⋙ DerivedCategory.Plus.Qh

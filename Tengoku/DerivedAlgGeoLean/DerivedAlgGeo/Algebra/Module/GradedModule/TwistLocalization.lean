@@ -140,6 +140,9 @@ noncomputable def natShiftSelfLinearEquiv :
       (z : LocalizedModule (.powers f) A)) = z
     rw [← mul_smul, twistInverse_mul_forward (f := f) d, one_smul]
 
+/--
+@isnad1 id=eq.1h6v.s13.18982ca261c4 from=translated src=- shape=2bc268c8 vocab=37d96111
+-/
 @[simp]
 theorem natShiftSelfLinearEquiv_apply_mk
     (c : NumDenSameDeg 𝒜 (natShift 𝒜 d) (.powers f)) :
@@ -161,6 +164,9 @@ theorem natShiftSelfLinearEquiv_apply_mk
   ext
   exact mul_comm _ _
 
+/--
+@isnad1 id=eq.1h6v.s14.15e686d5d359 from=translated src=- shape=5dd9548c vocab=d78e2613
+-/
 @[simp]
 theorem natShiftSelfLinearEquiv_symm_apply_mk
     (c : NumDenSameDeg 𝒜 𝒜 (.powers f)) :
@@ -212,7 +218,9 @@ identity says that carrying the second across by the transition lands on the
 first, with no correction factor.
 
 Cancellation of `g'ⁿ`, and nothing else — note `f` never has to be a unit, it
-appears only in numerators.-/
+appears only in numerators.
+@isnad1 id=eq.2h6v.s7.623bdc1c4a02 from=translated src=- shape=9502b3ea vocab=21d82464
+-/
 theorem transitionScalar_mul (n : ℕ) {g g' : A} (hgS : g ∈ S) (hg'S : g' ∈ S) :
     Localization.mk (g' ^ n) (twistPowerOfMem (f := g) n hgS) *
         Localization.mk (f ^ n) (twistPowerOfMem (f := g') n hg'S) =
@@ -407,6 +415,9 @@ noncomputable def natShiftLinearEquivOfMem (hfS : f ∈ S) :
       (twistForwardOfMem (S := S) (f := f) d • (z : LocalizedModule S A)) = z
     rw [← mul_smul, twistInverseOfMem_mul_forward (f := f) d hfS, one_smul]
 
+/--
+@isnad1 id=eq.2h7v.s13.ecdd8ca201ba from=translated src=- shape=fb97f6a3 vocab=b69ea6fa
+-/
 @[simp]
 theorem natShiftLinearEquivOfMem_apply_mk (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 (natShift 𝒜 d) S) :
@@ -428,6 +439,9 @@ theorem natShiftLinearEquivOfMem_apply_mk (hfS : f ∈ S)
   ext
   exact mul_comm _ _
 
+/--
+@isnad1 id=eq.2h7v.s13.f03fc97988eb from=translated src=- shape=a4c65027 vocab=42beb050
+-/
 @[simp]
 theorem natShiftLinearEquivOfMem_symm_apply_mk (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 𝒜 S) :
@@ -452,7 +466,9 @@ theorem natShiftLinearEquivOfMem_symm_apply_mk (hfS : f ∈ S)
 The `OfMem` sibling above divides by `f ^ d`; here `f` need only be invertible, so the fraction
 is multiplied by the cofactor power `h ^ d` and the denominator picks up `(f * h) ^ d` instead.
 This is the computation rule the Čech comparison needs, where `f` is one variable and `h` is the
-product of the others.-/
+product of the others.
+@isnad1 id=eq.3h9v.s13.a033da536c46 from=translated src=- shape=ceb7df90 vocab=da0b1ff1
+-/
 @[simp]
 theorem natShiftLinearEquivOfMulMem_apply_mk {h : A} {e : ℕ} (h_deg : h ∈ 𝒜 e)
     (hfh : f * h ∈ S) (c : NumDenSameDeg 𝒜 (natShift 𝒜 d) S) :
@@ -497,7 +513,9 @@ variable {f : A} {S : Submonoid A}
 
 omit [GradedRing 𝒜] in
 /-- The integer-shift membership condition depends only on the integer `n + d`, so raising the
-degree by `e` and lowering the twist by `e` is the same condition.-/
+degree by `e` and lowering the twist by `e` is the same condition.
+@isnad1 id=iff.0h7v.s7.152cab6ba99c from=translated src=- shape=67a1d9c8 vocab=a29d5a50
+-/
 theorem mem_intShift_sub_natCast_add (d : ℤ) (e n : ℕ) (a : A) :
     a ∈ intShift 𝒜 (d - e) (n + e) ↔ a ∈ intShift 𝒜 d n := by
   simp only [intShift_apply, mem_intShiftPiece]
@@ -547,7 +565,9 @@ noncomputable def intShiftLowerLinearMap (hf : f ∈ 𝒜 1) (d : ℤ) (e : ℕ)
     exact smul_comm (twistInverseOfMem (f := f) e hfS) a
       (z : LocalizedModule S A)
 
-/-- Multiplying the numerator by `f ^ e` raises an integer twist back by `e`.-/
+/-- Multiplying the numerator by `f ^ e` raises an integer twist back by `e`.
+@isnad1 id=mem.2h8v.s7.ecdfe0780e94 from=translated src=- shape=c38a4e4f vocab=5dc49334
+-/
 theorem mul_pow_mem_intShift (hf : f ∈ 𝒜 1) (d : ℤ) (e n : ℕ) (a : A)
     (ha : a ∈ intShift 𝒜 (d - e) n) : a * f ^ e ∈ intShift 𝒜 d n := by
   simp only [intShift_apply, mem_intShiftPiece] at ha ⊢
@@ -610,6 +630,9 @@ noncomputable def intShiftLowerLinearEquiv (hf : f ∈ 𝒜 1) (d : ℤ) (e : �
       (twistForwardOfMem (S := S) (f := f) e • (z : LocalizedModule S A)) = z
     rw [← mul_smul, twistInverseOfMem_mul_forward (f := f) e hfS, one_smul]
 
+/--
+@isnad1 id=eq.2h8v.s13.173e9b6b89b9 from=translated src=- shape=86245679 vocab=5c6a0237
+-/
 @[simp]
 theorem intShiftLowerLinearEquiv_apply_mk (hf : f ∈ 𝒜 1) (d : ℤ) (e : ℕ) (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 (intShift 𝒜 d) S) :
@@ -667,7 +690,9 @@ truncated at zero so that exactly one of them is active.-/
 private def intTwistScalar (d : ℤ) (hfS : f ∈ S) : Localization S :=
   Localization.mk (f ^ (-d).toNat) (twistPowerOfMem (f := f) d.toNat hfS)
 
-/-- The numerator of the trivialized fraction lies in the degree the denominator does.-/
+/-- The numerator of the trivialized fraction lies in the degree the denominator does.
+@isnad1 id=mem.2h7v.s7.269a73de2311 from=translated src=- shape=5941074a vocab=6c086ad1
+-/
 theorem mul_pow_toNat_mem_intShift_zero (hf : f ∈ 𝒜 1) (d : ℤ) (n : ℕ) (a : A)
     (ha : a ∈ intShift 𝒜 d n) :
     a * f ^ (-d).toNat ∈ intShift 𝒜 0 (n + d.toNat) := by
@@ -768,7 +793,9 @@ noncomputable def intShiftZeroLinearEquiv (hf : f ∈ 𝒜 1) (d : ℤ) (hfS : f
 
 This is what makes the uniform definition worth having: a locally fractional section carries a
 degree/numerator/denominator certificate, and rebuilding it downstream needs exactly this
-rule — once, not once per sign.-/
+rule — once, not once per sign.
+@isnad1 id=eq.2h7v.s13.99b4cda11a9c from=translated src=- shape=ed95f08a vocab=2fd7fce3
+-/
 @[simp]
 theorem intShiftZeroLinearEquiv_apply_mk (hf : f ∈ 𝒜 1) (d : ℤ) (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 (intShift 𝒜 d) S) :
@@ -805,7 +832,9 @@ one way is `gⁿ/fⁿ` times the same section trivialized the other way.
 
 Stated on the underlying `LocalizedModule`, which drops the degree bookkeeping
 entirely — both sides are scalar multiples of the same `z`, so no `NumDenSameDeg`
-appears and no degree has to be matched.-/
+appears and no degree has to be matched.
+@isnad1 id=eq.4h8v.s14.eb1efc0da127 from=translated src=- shape=ea3824c7 vocab=ae94e4e4
+-/
 theorem intShiftZeroLinearEquiv_transition (hf : f ∈ 𝒜 1) {g : A} (hg : g ∈ 𝒜 1)
     (hfS : f ∈ S) (hgS : g ∈ S) (n : ℕ)
     (z : DegreeZeroLocalization 𝒜 (intShift 𝒜 (n : ℤ)) S) :
@@ -822,7 +851,9 @@ theorem intShiftZeroLinearEquiv_transition (hf : f ∈ 𝒜 1) {g : A} (hg : g �
   rw [Localization.mk_eq_mk_iff, Localization.r_iff_exists]
   exact ⟨1, by simp⟩
 
-/-- The numerator of the inverse trivialization lies in the twist it should.-/
+/-- The numerator of the inverse trivialization lies in the twist it should.
+@isnad1 id=mem.2h7v.s7.7fe025877add from=translated src=- shape=8661a1ab vocab=6c086ad1
+-/
 theorem mul_pow_toNat_mem_intShift (hf : f ∈ 𝒜 1) (d : ℤ) (n : ℕ) (a : A)
     (ha : a ∈ intShift 𝒜 0 n) : a * f ^ d.toNat ∈ intShift 𝒜 d (n + (-d).toNat) := by
   simp only [intShift_apply, mem_intShiftPiece] at ha ⊢
@@ -831,7 +862,9 @@ theorem mul_pow_toNat_mem_intShift (hf : f ∈ 𝒜 1) (d : ℤ) (n : ℕ) (a : 
   · refine Or.inr ⟨k + d.toNat, by push_cast at hk ⊢; omega, ?_⟩
     simpa using SetLike.mul_mem_graded ha (SetLike.pow_mem_graded d.toNat hf)
 
-/-- The inverse trivialization in explicit fractions, again in one formula for both signs.-/
+/-- The inverse trivialization in explicit fractions, again in one formula for both signs.
+@isnad1 id=eq.2h7v.s13.95c1808cab4a from=translated src=- shape=65f278ab vocab=1cc7cccd
+-/
 @[simp]
 theorem intShiftZeroLinearEquiv_symm_apply_mk (hf : f ∈ 𝒜 1) (d : ℤ) (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 (intShift 𝒜 0) S) :
@@ -891,7 +924,9 @@ private theorem cofactorScalar_mul {h : A} (a b : ℕ) (hfh : f * h ∈ S) :
   exact Localization.mk_self (⟨(f * h) ^ (a + b), S.pow_mem hfh (a + b)⟩ : S)
 
 /-- Degrees for the cofactor trivialization: multiplying by `h ^ a * f ^ b` carries the twist
-`(a : ℤ) - b` to the twist zero.-/
+`(a : ℤ) - b` to the twist zero.
+@isnad1 id=mem.4h11v.s8.9958183cfa63 from=translated src=- shape=5b830239 vocab=0bb10b67
+-/
 theorem mul_pow_mul_pow_mem_intShift_zero {h : A} {e : ℕ} (hf : f ∈ 𝒜 1) (h_deg : h ∈ 𝒜 e)
     (a b : ℕ) (d : ℤ) (hd : d = (a : ℤ) - b) (n : ℕ) (x : A)
     (hx : x ∈ intShift 𝒜 d n) :
@@ -909,7 +944,9 @@ theorem mul_pow_mul_pow_mem_intShift_zero {h : A} {e : ℕ} (hf : f ∈ 𝒜 1) 
       (SetLike.pow_mem_graded b hf)
     simpa [hidx] using hmul
 
-/-- The same, in the direction that produces the twist rather than removing it.-/
+/-- The same, in the direction that produces the twist rather than removing it.
+@isnad1 id=mem.4h11v.s8.b9ea5c157826 from=translated src=- shape=a5c64061 vocab=0bb10b67
+-/
 theorem mul_pow_mul_pow_mem_intShift {h : A} {e : ℕ} (hf : f ∈ 𝒜 1) (h_deg : h ∈ 𝒜 e)
     (a b : ℕ) (d : ℤ) (hd : d = (a : ℤ) - b) (n : ℕ) (x : A)
     (hx : x ∈ intShift 𝒜 0 n) :
@@ -1002,7 +1039,9 @@ noncomputable def intShiftZeroLinearEquivOfMulMem {h : A} {e : ℕ} (hf : f ∈ 
       (cofactorScalar (f := f) (h := h) b a hfh • (z : LocalizedModule S A)) = z
     rw [← mul_smul, cofactorScalar_mul (f := f) (h := h) a b hfh, one_smul]
 
-/-- The cofactor trivialization in explicit fractions.-/
+/-- The cofactor trivialization in explicit fractions.
+@isnad1 id=eq.4h11v.s13.9ee13048c09d from=translated src=- shape=8f4e473a vocab=31d6b630
+-/
 @[simp]
 theorem intShiftZeroLinearEquivOfMulMem_apply_mk {h : A} {e : ℕ} (hf : f ∈ 𝒜 1)
     (h_deg : h ∈ 𝒜 e) (a b : ℕ) (d : ℤ) (hd : d = (a : ℤ) - b) (hfh : f * h ∈ S)
@@ -1051,7 +1090,9 @@ section GradedModule
 variable {M σM : Type u} [AddCommGroup M] [Module A M] [SetLike σM M] [AddSubgroupClass σM M]
 variable (𝓜 : ℕ → σM) [SetLike.GradedSMul 𝒜 𝓜]
 
-/-- The numerator of the trivialized fraction lies in the degree the denominator does.-/
+/-- The numerator of the trivialized fraction lies in the degree the denominator does.
+@isnad1 id=mem.2h10v.s8.e1473f16a412 from=translated src=- shape=6b522e16 vocab=96f8f171
+-/
 theorem pow_smul_mem_intShift_zero (hf : f ∈ 𝒜 1) (d : ℤ) (n : ℕ) (m : M)
     (hm : m ∈ intShift 𝓜 d n) :
     f ^ (-d).toNat • m ∈ intShift 𝓜 0 (n + d.toNat) := by
@@ -1063,7 +1104,9 @@ theorem pow_smul_mem_intShift_zero (hf : f ∈ 𝒜 1) (d : ℤ) (n : ℕ) (m : 
     have := SetLike.GradedSMul.smul_mem (SetLike.pow_mem_graded (-d).toNat hf) hm
     simpa [hidx] using this
 
-/-- The numerator of the inverse trivialization lies in the twist it should.-/
+/-- The numerator of the inverse trivialization lies in the twist it should.
+@isnad1 id=mem.2h10v.s8.0a6377518514 from=translated src=- shape=57b8c307 vocab=96f8f171
+-/
 theorem pow_smul_mem_intShift (hf : f ∈ 𝒜 1) (d : ℤ) (n : ℕ) (m : M)
     (hm : m ∈ intShift 𝓜 0 n) : f ^ d.toNat • m ∈ intShift 𝓜 d (n + (-d).toNat) := by
   simp only [intShift_apply, mem_intShiftPiece] at hm ⊢
@@ -1156,7 +1199,9 @@ noncomputable def intShiftZeroModuleLinearEquiv (hf : f ∈ 𝒜 1) (d : ℤ) (h
 
 The module analogue of `intShiftZeroLinearEquiv_apply_mk`, and needed for the same reason: a
 locally fractional section carries a degree/numerator/denominator certificate, and rebuilding it
-downstream needs exactly this rule.-/
+downstream needs exactly this rule.
+@isnad1 id=eq.2h10v.s12.95cc5108754a from=translated src=- shape=be01759c vocab=e61c90cb
+-/
 @[simp]
 theorem intShiftZeroModuleLinearEquiv_apply_mk (hf : f ∈ 𝒜 1) (d : ℤ) (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 (intShift 𝓜 d) S) :
@@ -1179,7 +1224,9 @@ theorem intShiftZeroModuleLinearEquiv_apply_mk (hf : f ∈ 𝒜 1) (d : ℤ) (hf
   ext
   exact mul_comm _ _
 
-/-- The inverse trivialization in explicit fractions, again in one formula for both signs.-/
+/-- The inverse trivialization in explicit fractions, again in one formula for both signs.
+@isnad1 id=eq.2h10v.s13.fc734523cc78 from=translated src=- shape=20bbccf6 vocab=f12c01d0
+-/
 @[simp]
 theorem intShiftZeroModuleLinearEquiv_symm_apply_mk (hf : f ∈ 𝒜 1) (d : ℤ) (hfS : f ∈ S)
     (c : NumDenSameDeg 𝒜 (intShift 𝓜 0) S) :

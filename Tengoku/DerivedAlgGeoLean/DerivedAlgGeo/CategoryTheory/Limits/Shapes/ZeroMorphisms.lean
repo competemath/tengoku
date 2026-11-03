@@ -66,7 +66,9 @@ variable {I : Type w} (f : I → C) [HasCoproduct f]
 instantiate them with precisely the projections appearing in their statement. -/
 
 /-- The identity holds for every equality decision procedure defining the
-literal `CategoryTheory.Limits.Sigma.π`; finite support is the only restriction on summands.-/
+literal `CategoryTheory.Limits.Sigma.π`; finite support is the only restriction on summands.
+@isnad1 id=eq.1h4v.s7.9e76e34e06c1 from=translated src=- shape=8202ff88 vocab=0e09e8a3
+-/
 lemma sum_π_ι_eq_id_of_isZero_all [DecidableEq I] (s : Finset I)
     (hz : ∀ i, i ∉ s → IsZero (f i)) :
     ∑ i ∈ s, Sigma.π f i ≫ Sigma.ι f i = 𝟙 (∐ f) := by
@@ -84,7 +86,9 @@ lemma sum_π_ι_eq_id_of_isZero_all [DecidableEq I] (s : Finset I)
 
 /-- Compose the claimed identity with the inclusion of an omitted summand.
 Every cross term vanishes by orthogonality, forcing that summand's identity
-morphism to vanish.-/
+morphism to vanish.
+@isnad1 id=iszero.2h5v.s7.e500779225d7 from=translated src=- shape=19214018 vocab=0e09e8a3
+-/
 lemma isZero_of_sum_π_ι_eq_id_of_not_mem_all [DecidableEq I] (s : Finset I)
     (hid : ∑ i ∈ s, Sigma.π f i ≫ Sigma.ι f i = 𝟙 (∐ f))
     (j : I) (hj : j ∉ s) : IsZero (f j) := by
@@ -101,7 +105,9 @@ lemma isZero_of_sum_π_ι_eq_id_of_not_mem_all [DecidableEq I] (s : Finset I)
 
 /-- Combine the inclusion test for the forward identity with the omitted
 summand obstruction for the converse, retaining the caller's projection
-convention in both directions.-/
+convention in both directions.
+@isnad1 id=iff.0h4v.s7.628e028991d8 from=translated src=- shape=d5e37aa1 vocab=0e09e8a3
+-/
 lemma sum_π_ι_eq_id_iff_isZero_all [DecidableEq I] (s : Finset I) :
     (∑ i ∈ s, Sigma.π f i ≫ Sigma.ι f i = 𝟙 (∐ f)) ↔
       ∀ i, i ∉ s → IsZero (f i) := by
@@ -112,7 +118,9 @@ section ChosenDecidableEq
 variable [DecidableEq I]
 
 /-- Compose with the finite projection-inclusion identity for the given
-projection convention to compare incoming maps on their nonzero support.-/
+projection convention to compare incoming maps on their nonzero support.
+@isnad1 id=eq.2h7v.s7.f189adf8262d from=translated src=- shape=e82cedb3 vocab=524f24df
+-/
 lemma hom_ext_of_finite_support (s : Finset I)
     (hz : ∀ i, i ∉ s → IsZero (f i)) {A : C} {x y : A ⟶ ∐ f}
     (h : ∀ i ∈ s, x ≫ Sigma.π f i = y ≫ Sigma.π f i) : x = y := by
@@ -128,7 +136,9 @@ lemma hom_ext_of_finite_support (s : Finset I)
 
 /-- Specialize `CategoryTheory.Limits.Sigma.hom_ext_of_finite_support` to
 comparison with the zero map.
-The projection convention remains the caller's.-/
+The projection convention remains the caller's.
+@isnad1 id=eq.2h6v.s7.329d74b1e5bf from=translated src=- shape=493a7b1a vocab=524f24df
+-/
 lemma hom_eq_zero_of_finite_support (s : Finset I)
     (hz : ∀ i, i ∉ s → IsZero (f i)) {A : C} (x : A ⟶ ∐ f)
     (h : ∀ i ∈ s, x ≫ Sigma.π f i = 0) : x = 0 := by
@@ -143,7 +153,9 @@ open scoped Classical
 
 /-- Specialize `CategoryTheory.Limits.Sigma.sum_π_ι_eq_id_of_isZero_all` using
 classical equality so callers need not supply a decidability instance; the
-universal theorem supplies the coproduct-inclusion argument.-/
+universal theorem supplies the coproduct-inclusion argument.
+@isnad1 id=eq.1h4v.s7.e76ab855b18f from=translated src=- shape=0d967747 vocab=b2d7c552
+-/
 lemma sum_π_ι_eq_id_of_isZero (s : Finset I)
     (hz : ∀ i, i ∉ s → IsZero (f i)) :
     ∑ i ∈ s, Sigma.π f i ≫ Sigma.ι f i = 𝟙 (∐ f) :=
@@ -152,7 +164,9 @@ lemma sum_π_ι_eq_id_of_isZero (s : Finset I)
 /-- Specialize
 `CategoryTheory.Limits.Sigma.isZero_of_sum_π_ι_eq_id_of_not_mem_all` using
 classical equality. The universal converse supplies the omitted-summand
-argument.-/
+argument.
+@isnad1 id=iszero.2h5v.s7.7d4a523790f3 from=translated src=- shape=9b410349 vocab=b2d7c552
+-/
 lemma isZero_of_sum_π_ι_eq_id_of_not_mem (s : Finset I)
     (hid : ∑ i ∈ s, Sigma.π f i ≫ Sigma.ι f i = 𝟙 (∐ f))
     (j : I) (hj : j ∉ s) : IsZero (f j) :=
@@ -160,7 +174,9 @@ lemma isZero_of_sum_π_ι_eq_id_of_not_mem (s : Finset I)
 
 /-- Specialize `CategoryTheory.Limits.Sigma.sum_π_ι_eq_id_iff_isZero_all` using
 classical equality; the universal characterization contains the
-omitted-summand obstruction.-/
+omitted-summand obstruction.
+@isnad1 id=iff.0h4v.s7.4806f87321b9 from=translated src=- shape=a7079b89 vocab=b2d7c552
+-/
 lemma sum_π_ι_eq_id_iff_isZero (s : Finset I) :
     (∑ i ∈ s, Sigma.π f i ≫ Sigma.ι f i = 𝟙 (∐ f)) ↔
       ∀ i, i ∉ s → IsZero (f i) :=

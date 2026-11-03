@@ -37,7 +37,9 @@ namespace PresheafOfModules
 variable {C : Type u'} [Category.{v'} C] (R : Cᵒᵖ ⥤ RingCat.{u})
 
 /-- Colimits of shape `K` of presheaves of modules are exact when they are in abelian groups,
-pulled back along the forgetful functor to presheaves of abelian groups.-/
+pulled back along the forgetful functor to presheaves of abelian groups.
+@isnad1 id=hasexact.0h3v.s5.46c85e948b6f from=translated src=- shape=b41db7fc vocab=516aadc7
+-/
 instance hasExactColimitsOfShape (K : Type w) [Category.{w'} K]
     [HasColimitsOfShape K AddCommGrpCat.{v}] [HasExactColimitsOfShape K AddCommGrpCat.{v}] :
     HasExactColimitsOfShape K (PresheafOfModules.{v} R) :=

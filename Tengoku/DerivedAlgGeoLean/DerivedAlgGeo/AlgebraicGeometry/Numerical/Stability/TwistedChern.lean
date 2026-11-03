@@ -71,6 +71,9 @@ namespace AlgebraicGeometry.Numerical
 /-- The coefficient of `H^m` in `e^{−βH}`.-/
 noncomputable def twistCoeff (β : ℚ) (m : ℕ) : ℚ := (-β) ^ m / m.factorial
 
+/--
+@isnad1 id=eq.0h1v.s5.f92cb70d4ab1 from=translated src=- shape=73f1f31b vocab=735ac624
+-/
 @[simp]
 theorem twistCoeff_zero_beta (m : ℕ) : twistCoeff 0 m = if m = 0 then 1 else 0 := by
   by_cases hm : m = 0
@@ -78,7 +81,9 @@ theorem twistCoeff_zero_beta (m : ℕ) : twistCoeff 0 m = if m = 0 then 1 else 0
   · simp [twistCoeff, hm, zero_pow hm]
 
 /-- **The exponential functional equation, at the level of coefficients.** The
-binomial theorem divided through by `m!`.-/
+binomial theorem divided through by `m!`.
+@isnad1 id=eq.0h3v.s5.365c14c46121 from=translated src=- shape=9c851489 vocab=24834971
+-/
 theorem twistCoeff_add (β₁ β₂ : ℚ) (m : ℕ) :
     twistCoeff (β₁ + β₂) m
       = ∑ a ∈ range (m + 1), twistCoeff β₁ a * twistCoeff β₂ (m - a) := by
@@ -108,7 +113,9 @@ noncomputable def twist (H : A) (β : ℚ) (c : ℕ → A) (i : ℕ) : A :=
 
 /-- **The group law**: `e^{−(β₁+β₂)H} = e^{−β₁H}·e^{−β₂H}`, read on components.
 
-This is what makes the exponential notation honest rather than decorative.-/
+This is what makes the exponential notation honest rather than decorative.
+@isnad1 id=eq.0h6v.s5.df029b881000 from=translated src=- shape=9b9e96b5 vocab=4790ba03
+-/
 theorem twist_add_beta (H : A) (β₁ β₂ : ℚ) (c : ℕ → A) (i : ℕ) :
     twist H (β₁ + β₂) c i = twist H β₁ (twist H β₂ c) i := by
   simp only [twist]
@@ -163,7 +170,9 @@ theorem twist_add_beta (H : A) (β₁ β₂ : ℚ) (c : ℕ → A) (i : ℕ) :
   rw [← Finset.sum_mul, ← Finset.sum_mul, ← map_sum, hscalar]
 
 /-- Absorbing a scalar into the twisting class does not change the twist:
-`e^{-(βH)} = e^{-βH}`.-/
+`e^{-(βH)} = e^{-βH}`.
+@isnad1 id=eq.0h5v.s6.e60648344c90 from=translated src=- shape=d9c82360 vocab=3716a48a
+-/
 theorem twist_algebraMap_mul (H : A) (β : ℚ) (c : ℕ → A) (i : ℕ) :
     twist (algebraMap ℚ A β * H) 1 c i = twist H β c i := by
   simp only [twist]
@@ -203,7 +212,9 @@ namespace BField
 
 variable {R : NumericalRingData n A}
 
-/-- Powers of a `B`-field have their expected codimension.-/
+/-- Powers of a `B`-field have their expected codimension.
+@isnad1 id=mem.0h5v.s7.966f2e480db5 from=translated src=- shape=9f9b4d7a vocab=93ed5e59
+-/
 theorem pow_mem (B : BField R) (i : ℕ) : B.cls ^ i ∈ R.piece i := by
   induction i with
   | zero => simpa using R.one_mem_piece_zero
@@ -215,7 +226,9 @@ noncomputable def along (P : Polarization R) (β : ℚ) : BField R where
   cls_mem := by
     simpa using R.mul_mem_piece (R.algebraMap_mem_piece_zero β) P.cls_mem
 
-/-- The class underlying the scalar `B`-field is literally `βH`.-/
+/-- The class underlying the scalar `B`-field is literally `βH`.
+@isnad1 id=eq.0h5v.s6.09dcc2654579 from=translated src=- shape=2aed821d vocab=e22be429
+-/
 @[simp]
 theorem along_cls (P : Polarization R) (β : ℚ) :
     (along P β).cls = algebraMap ℚ A β * P.cls := rfl
@@ -226,13 +239,17 @@ end BField
 noncomputable def chBComp (B : BField V.ring) (E : N) (i : ℕ) : A :=
   twist B.cls 1 (V.chComp E) i
 
-/-- The component formula obtained by expanding the truncated exponential `e^{-B}`.-/
+/-- The component formula obtained by expanding the truncated exponential `e^{-B}`.
+@isnad1 id=eq.0h7v.s7.245476b53800 from=translated src=- shape=c410e702 vocab=26e99ddb
+-/
 theorem chBComp_eq (B : BField V.ring) (E : N) (i : ℕ) :
     chBComp V B E i =
       ∑ j ∈ range (i + 1),
         algebraMap ℚ A (twistCoeff 1 (i - j)) * V.chComp E j * B.cls ^ (i - j) := rfl
 
-/-- `ch^B_i(E)` remains in codimension `i`.-/
+/-- `ch^B_i(E)` remains in codimension `i`.
+@isnad1 id=mem.0h7v.s7.a6b0b778054e from=translated src=- shape=94f36fa4 vocab=2b799155
+-/
 theorem chBComp_mem (B : BField V.ring) (E : N) (i : ℕ) :
     chBComp V B E i ∈ V.ring.piece i := by
   rw [chBComp_eq]
@@ -245,26 +262,34 @@ theorem chBComp_mem (B : BField V.ring) (E : N) (i : ℕ) :
   have := V.ring.mul_mem_piece h0 (B.pow_mem (i - j))
   rwa [Nat.add_sub_cancel' hji] at this
 
-/-- The `B`-twisted Chern character is additive in the numerical class.-/
+/-- The `B`-twisted Chern character is additive in the numerical class.
+@isnad1 id=eq.0h8v.s6.37dee591e01b from=translated src=- shape=bfa19ab3 vocab=f6619926
+-/
 theorem chBComp_add (B : BField V.ring) (E F : N) (i : ℕ) :
     chBComp V B (E + F) i = chBComp V B E i + chBComp V B F i := by
   simp only [chBComp_eq, V.chComp_add, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
 
-/-- The codimension-zero component is unchanged by a `B`-field twist.-/
+/-- The codimension-zero component is unchanged by a `B`-field twist.
+@isnad1 id=eq.0h6v.s6.cc4eaba75296 from=translated src=- shape=49048116 vocab=70a81e68
+-/
 theorem chBComp_zero (B : BField V.ring) (E : N) :
     chBComp V B E 0 = V.chComp E 0 := by
   simp [chBComp, twist, twistCoeff]
 
-/-- The first twisted component is `ch₁^B = ch₁ - B ch₀`.-/
+/-- The first twisted component is `ch₁^B = ch₁ - B ch₀`.
+@isnad1 id=eq.0h6v.s7.3db405343562 from=translated src=- shape=0c31adb7 vocab=c26d441a
+-/
 theorem chBComp_one (B : BField V.ring) (E : N) :
     chBComp V B E 1 = V.chComp E 1 - V.chComp E 0 * B.cls := by
   norm_num [chBComp, twist, twistCoeff, Finset.sum_range_succ]
   ring
 
 /-- The second twisted component is
-`ch₂^B = ch₂ - B ch₁ + (B²/2) ch₀`.-/
+`ch₂^B = ch₂ - B ch₁ + (B²/2) ch₀`.
+@isnad1 id=eq.0h6v.s8.70f92a507fdd from=translated src=- shape=90c2c470 vocab=4cc5cd85
+-/
 theorem chBComp_two (B : BField V.ring) (E : N) :
     chBComp V B E 2 =
       V.chComp E 2 - V.chComp E 1 * B.cls
@@ -278,13 +303,18 @@ variable (P : Polarization V.ring)
 noncomputable def chBetaComp (β : ℚ) (E : N) (i : ℕ) : A :=
   twist P.cls β (V.chComp E) i
 
+/--
+@isnad1 id=eq.0h8v.s7.c6a0bc342256 from=translated src=- shape=78dda2c5 vocab=d5333c1e
+-/
 theorem chBetaComp_eq (β : ℚ) (E : N) (i : ℕ) :
     chBetaComp V P β E i
       = ∑ j ∈ range (i + 1),
         algebraMap ℚ A (twistCoeff β (i - j)) * V.chComp E j * P.cls ^ (i - j) := rfl
 
 /-- `ch^β_i(E)` lives in codimension `i`, like `ch_i(E)`: each summand is
-`piece 0 · piece j · piece (i−j)`, and `j + (i−j) = i` inside the sum's range.-/
+`piece 0 · piece j · piece (i−j)`, and `j + (i−j) = i` inside the sum's range.
+@isnad1 id=mem.0h8v.s7.a74dc161dabd from=translated src=- shape=a38a064b vocab=92df142c
+-/
 theorem chBetaComp_mem (β : ℚ) (E : N) (i : ℕ) :
     chBetaComp V P β E i ∈ V.ring.piece i := by
   rw [chBetaComp_eq]
@@ -297,14 +327,18 @@ theorem chBetaComp_mem (β : ℚ) (E : N) (i : ℕ) :
   have := V.ring.mul_mem_piece h0 (P.pow_mem (i - j))
   rwa [Nat.add_sub_cancel' hji] at this
 
-/-- The twisted Chern character is additive in the class, because `ch` is.-/
+/-- The twisted Chern character is additive in the class, because `ch` is.
+@isnad1 id=eq.0h9v.s6.95307f85e0f3 from=translated src=- shape=90faca75 vocab=24576603
+-/
 theorem chBetaComp_add (β : ℚ) (E F : N) (i : ℕ) :
     chBetaComp V P β (E + F) i = chBetaComp V P β E i + chBetaComp V P β F i := by
   simp only [chBetaComp_eq, V.chComp_add, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
 
-/-- At `β = 0` the twist is the identity: `ch^0 = ch`.-/
+/-- At `β = 0` the twist is the identity: `ch^0 = ch`.
+@isnad1 id=eq.0h7v.s6.9270947db605 from=translated src=- shape=eee4835b vocab=d72d8d16
+-/
 theorem chBetaComp_zero_beta (E : N) (i : ℕ) :
     chBetaComp V P 0 E i = V.chComp E i := by
   rw [chBetaComp_eq, Finset.sum_eq_single i]
@@ -316,12 +350,16 @@ theorem chBetaComp_zero_beta (E : N) (i : ℕ) :
   · intro h
     exact absurd (Finset.self_mem_range_succ i) h
 
-/-- **The group law on the twisted Chern character**, inherited from `twist`.-/
+/-- **The group law on the twisted Chern character**, inherited from `twist`.
+@isnad1 id=eq.0h9v.s6.ccdb7f46bd6d from=translated src=- shape=8f1b3186 vocab=a25fe15a
+-/
 theorem chBetaComp_add_beta (β₁ β₂ : ℚ) (E : N) (i : ℕ) :
     chBetaComp V P (β₁ + β₂) E i = twist P.cls β₁ (chBetaComp V P β₂ E) i :=
   twist_add_beta P.cls β₁ β₂ (V.chComp E) i
 
-/-- The arbitrary-class notation and the scalar notation agree at `B = βH`.-/
+/-- The arbitrary-class notation and the scalar notation agree at `B = βH`.
+@isnad1 id=eq.0h8v.s6.a0e93897e3fb from=translated src=- shape=3deb8c86 vocab=3e8c7317
+-/
 theorem chBComp_along_eq_chBetaComp (β : ℚ) (E : N) (i : ℕ) :
     chBComp V (BField.along P β) E i = chBetaComp V P β E i := by
   exact twist_algebraMap_mul P.cls β (V.chComp E) i

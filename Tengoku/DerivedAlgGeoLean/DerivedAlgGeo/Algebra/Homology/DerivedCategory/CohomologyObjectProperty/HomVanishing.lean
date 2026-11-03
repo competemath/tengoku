@@ -44,7 +44,9 @@ include hE
 
 omit [P.ContainsZero] [P.IsClosedUnderIsomorphisms] in
 /-- No maps from `single 0 E` into `single a Y` for `a < 0` and `Y` in `P`: such a map is a
-class in `Ext^{-a}(E, Y)`.-/
+class in `Ext^{-a}(E, Y)`.
+@isnad1 id=eq.2h7v.s8.cfc41e9fd842 from=translated src=- shape=e0909c27 vocab=c9056607
+-/
 lemma hom_singleFunctor_eq_zero_of_ext_subsingleton {Y : A} (hY : P Y) {a : ℤ} (ha : a < 0)
     (f : (singleFunctor A 0).obj E ⟶ (singleFunctor A a).obj Y) : f = 0 := by
   obtain ⟨k, rfl⟩ : ∃ k : ℕ, a = -((k : ℤ) + 1) := ⟨(-a - 1).toNat, by omega⟩

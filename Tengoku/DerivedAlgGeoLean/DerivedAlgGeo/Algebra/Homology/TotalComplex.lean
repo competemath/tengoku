@@ -174,7 +174,9 @@ section Support
 open ComplexShape
 
 /-- A term of a literal total is zero when every bidegree summand on its
-diagonal is zero. No exactness or boundedness is required.-/
+diagonal is zero. No exactness or boundedness is required.
+@isnad1 id=iszero.1h9v.s7.5ab1953aaf2d from=translated src=- shape=b7317aa4 vocab=539d5505
+-/
 theorem isZero_total_X_of_diagonal [Preadditive C]
     {I₁ I₂ I₁₂ : Type*} {c₁ : ComplexShape I₁} {c₂ : ComplexShape I₂}
     (K : HomologicalComplex₂ C c₁ c₂) (c₁₂ : ComplexShape I₁₂)
@@ -188,7 +190,9 @@ theorem isZero_total_X_of_diagonal [Preadditive C]
   exact (h p q hpq).eq_of_src _ _
 
 /-- This diagonal criterion permits support regions without separate bounds on
-the two coordinates: only their sum controls the total.-/
+the two coordinates: only their sum controls the total.
+@isnad1 id=isstrict.1h3v.s8.943426fba73f from=translated src=- shape=d763220d vocab=0d51babd
+-/
 theorem isStrictlyLE_total_of_diagonal [Preadditive C]
     (K : HomologicalComplex₂ C (up ℤ) (up ℤ)) [K.HasTotal (up ℤ)]
     (c : ℤ) (h : ∀ p q, c < p + q → IsZero ((K.X p).X q)) :
@@ -201,7 +205,9 @@ theorem isStrictlyLE_total_of_diagonal [Preadditive C]
   exact h p q (by omega)
 
 /-- Above the sum of the coordinate bounds, every summand lies beyond at least
-one bound, so the diagonal vanishing criterion applies.-/
+one bound, so the diagonal vanishing criterion applies.
+@isnad1 id=isstrict.2h4v.s8.db3678f1e4cd from=translated src=- shape=a80a41eb vocab=0d51babd
+-/
 theorem isStrictlyLE_total_of_upper_bounds [Preadditive C]
     (K : HomologicalComplex₂ C (up ℤ) (up ℤ)) [K.HasTotal (up ℤ)]
     (a b : ℤ)
@@ -216,7 +222,9 @@ theorem isStrictlyLE_total_of_upper_bounds [Preadditive C]
 
 /-- This form accepts zero outer rows directly: evaluation converts row
 vanishing to term vanishing, so nonpositive resolution rows retain the input's
-upper bound.-/
+upper bound.
+@isnad1 id=isstrict.2h3v.s8.f80758253ac6 from=translated src=- shape=262b8e9a vocab=0d51babd
+-/
 theorem isStrictlyLE_total_of_nonpositive_rows [Preadditive C]
     (K : HomologicalComplex₂ C (up ℤ) (up ℤ)) [K.HasTotal (up ℤ)]
     (c : ℤ)
@@ -353,7 +361,9 @@ variable (K : HomologicalComplex₂ C (ComplexShape.up ℤ) (ComplexShape.up ℤ
 set_option backward.isDefEq.respectTransparency false in
 /-- Compute an incoming coordinate by checking each coproduct inclusion against
 Mathlib's outgoing differential formulas. This uses the coproduct universal
-property and requires no finite diagonal support.-/
+property and requires no finite diagonal support.
+@isnad1 id=eq.1h5v.s12.6fe53039ccc7 from=translated src=- shape=1b39ac41 vocab=13246c7f
+-/
 lemma total_d_comp_totalProjection (p q n : ℤ) (h : p + q = n) :
     (K.total (ComplexShape.up ℤ)).d n (n+1) ≫
       totalProjection K p (q+1) (n+1) (by omega) =
@@ -419,7 +429,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- The incoming-coordinate formula isolates the vertical differential after
 the horizontal contribution vanishes; applying its sign again removes the
 sign. Only the selected total-differential coordinate must vanish, so callers
-need not supply a full total cycle.-/
+need not supply a full total cycle.
+@isnad1 id=eq.3h7v.s11.087fb3759f1f from=translated src=- shape=5ea7d9b2 vocab=ad0c74e1
+-/
 lemma comp_totalProjection_comp_d_eq_zero_of_total_component_eq_zero_of_horizontal_eq_zero
     (p q n : ℤ) (h : p+q=n)
     {A : C} (x : A ⟶ (K.total (ComplexShape.up ℤ)).X n)
@@ -455,7 +467,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Apply exactness up to epi refinement to the selected vertical cycle, then
 subtract the boundary of its signed preimage. That boundary reaches only
 columns `p` and `p + 1`, preserving the cleared lower coordinates. Refinement
-avoids assuming that the generalized cycle lifts on its original source.-/
+avoids assuming that the generalized cycle lifts on its original source.
+@isnad1 id=ex.4h7v.s12.157e4a34e0b1 from=translated src=- shape=b62bb656 vocab=9c093208
+-/
 theorem exists_totalCycleRefinement_zero_le
     (p q n : ℤ) (h : p + q = n)
     (hE : (ShortComplex.mk ((K.X p).d (q-1) q) ((K.X p).d q (q+1))
@@ -601,7 +615,9 @@ private theorem diagonal_exactAt_to_short (n p : ℤ)
 set_option backward.isDefEq.respectTransparency false in
 /-- Refine a total cycle through the finitely supported diagonal, then use
 the finite projection identity to make its residual zero. The abelian
-exactness criterion then makes the literal total exact at `n`.-/
+exactness criterion then makes the literal total exact at `n`.
+@isnad1 id=exactat.3h5v.s9.486ee4544fec from=translated src=- shape=f452d611 vocab=cee6b4f2
+-/
 theorem exactAt_total_of_diagonal_bounds_of_column_exactAt (n a b : ℤ)
     (hLower : ∀ p q : ℤ, p + q = n → p < a → IsZero ((K.X p).X q))
     (hUpper : ∀ p q : ℤ, p + q = n → b < p → IsZero ((K.X p).X q))
@@ -640,7 +656,9 @@ theorem exactAt_total_of_diagonal_bounds_of_column_exactAt (n a b : ℤ)
     · simp
 
 /-- Apply degree-local exactness to each diagonal, allowing the support
-interval and required column exactness to vary with total degree.-/
+interval and required column exactness to vary with total degree.
+@isnad1 id=acyclic.1h2v.s9.ad883b8aab18 from=translated src=- shape=d787c55d vocab=08863bcd
+-/
 theorem acyclic_total_of_diagonal_bounds_of_column_exactAt
     (hData : ∀ n : ℤ, ∃ a b : ℤ,
       (∀ p q : ℤ, p + q = n → p < a → IsZero ((K.X p).X q)) ∧
@@ -652,7 +670,9 @@ theorem acyclic_total_of_diagonal_bounds_of_column_exactAt
   exact exactAt_total_of_diagonal_bounds_of_column_exactAt K n a b hLower hUpper hExact
 
 /-- A uniform upper rectangle gives finite support on every diagonal. Only
-columns and degrees inside that rectangle need the exactness premise.-/
+columns and degrees inside that rectangle need the exactness premise.
+@isnad1 id=acyclic.3h4v.s9.d5c3bd0af93b from=translated src=- shape=2e5450ae vocab=3cbe9fde
+-/
 theorem acyclic_total_of_upper_bounds_of_column_exactAt (b c : ℤ)
     (hp : ∀ p q : ℤ, b < p → IsZero ((K.X p).X q))
     (hq : ∀ p q : ℤ, c < q → IsZero ((K.X p).X q))
@@ -771,7 +791,9 @@ variable [K.HasTotal (up ℤ)] [L.HasTotal (up ℤ)]
   [∀ n : ℤ, HasBinaryBiproduct ((K.total (up ℤ)).X (n+1)) ((L.total (up ℤ)).X n)]
 
 /-- Construct a literal total of the vertical column cone from the two given
-totals. Only the pointwise and total-degree biproducts are needed.-/
+totals. Only the pointwise and total-degree biproducts are needed.
+@isnad1 id=hastotal.0h4v.s9.e77ef2ee8a71 from=translated src=- shape=d64ef51a vocab=f68dc27b
+-/
 theorem hasTotal_columnCone : (columnCone f).HasTotal (up ℤ) := by
   intro n
   let A : ℤ → C := fun p => (K.X p).X (n + 1 - p)
@@ -1447,7 +1469,9 @@ variable {C : Type*} [Category* C] [Preadditive C]
   [∀ n : ℤ, HasBinaryBiproduct ((K.total (up ℤ)).X (n+1)) ((L.total (up ℤ)).X n)]
 
 /-- This source-branch rewrite rule exposes the sign needed to reconcile
-totalization with the negated differential on the shifted cone source.-/
+totalization with the negated differential on the shifted cone source.
+@isnad1 id=eq.1h7v.s13.cec9ea6fcaec from=translated src=- shape=28a8954d vocab=71f92cde
+-/
 theorem ι_totalColumnConeIso_hom_source (p q n : ℤ) (h : p+q=n) :
     ((CochainComplex.mappingCone.inl
       ((HomologicalComplex₂.flipFunctor C (up ℤ) (up ℤ)).map f)).v
@@ -1468,7 +1492,9 @@ theorem ι_totalColumnConeIso_hom_source (p q n : ℤ) (h : p+q=n) :
   exact colInl_componentMap f p q n h
 
 /-- Use this rule to transport the target-cone inclusion through the
-comparison without unfolding the coproduct descent maps.-/
+comparison without unfolding the coproduct descent maps.
+@isnad1 id=eq.1h7v.s13.d5ab564202cc from=translated src=- shape=e0cddc84 vocab=998852da
+-/
 theorem ι_totalColumnConeIso_hom_target (p q n : ℤ) (h : p+q=n) :
     ((CochainComplex.mappingCone.inr
       ((HomologicalComplex₂.flipFunctor C (up ℤ) (up ℤ)).map f)).f q).f p ≫
@@ -1575,7 +1601,9 @@ variable [K.HasTotal (up ℤ)] [L.HasTotal (up ℤ)]
 under finite diagonal support. The proof applies total acyclicity to the column
 cone: its degree `n` support combines source bounds at `n + 1` with target bounds
 at `n`, then uses `HomologicalComplex₂.totalColumnConeIso`. These are bounds on
-the terms themselves; bounds on cohomology alone do not provide this support.-/
+the terms themselves; bounds on cohomology alone do not provide this support.
+@isnad1 id=quasiiso.5h8v.s10.dfbc817d00c9 from=translated src=- shape=89a21f9e vocab=34645ccd
+-/
 theorem quasiIso_totalMap_of_four_diagonal_bounds_of_column_quasiIso
     (aK bK aL bL : ℤ → ℤ)
     (hKLower : ∀ n p q : ℤ, p + q = n → p < aK n → IsZero ((K.X p).X q))

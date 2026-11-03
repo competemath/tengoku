@@ -23,7 +23,9 @@ namespace Submodule
 universe u v w x
 
 /-- A finitely generated submodule of a localized module has a finitely
-generated submodule upstairs whose localization is exactly the given one.-/
+generated submodule upstairs whose localization is exactly the given one.
+@isnad1 id=ex.1h7v.s8.be0499be4f04 from=translated src=- shape=8cedf137 vocab=f25df337
+-/
 theorem exists_fg_localized_submodule
     {R : Type u} [CommSemiring R] {R' : Type v} [CommSemiring R']
     [Algebra R R'] {M : Type w} [AddCommMonoid M] [Module R M]

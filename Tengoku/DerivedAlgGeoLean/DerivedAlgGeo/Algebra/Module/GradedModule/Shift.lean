@@ -41,6 +41,9 @@ variable [GradedRing 𝒜] [SetLike.GradedSMul 𝒜 𝓜]
 /-- The natural shift with convention `M(d)ₙ = Mₙ₊d`.-/
 def natShift (d : ℕ) : ℕ → σM := fun n => 𝓜 (n + d)
 
+/--
+@isnad1 id=gradedsm.0h7v.s7.b17c4ae81f8b from=translated src=- shape=c62a9222 vocab=4a7d26d3
+-/
 instance natShiftGradedSMul (d : ℕ) : SetLike.GradedSMul 𝒜 (natShift 𝓜 d) where
   smul_mem {i j} {a m} ha hm := by
     change m ∈ 𝓜 (j + d) at hm
@@ -49,14 +52,23 @@ instance natShiftGradedSMul (d : ℕ) : SetLike.GradedSMul 𝒜 (natShift 𝓜 d
     change a • m ∈ 𝓜 ((i + j) + d)
     simpa only [Nat.add_assoc] using h
 
+/--
+@isnad1 id=eq.0h4v.s4.030c06344217 from=translated src=- shape=ea5804f8 vocab=9f5c2b40
+-/
 @[simp]
 theorem natShift_apply (d n : ℕ) : natShift 𝓜 d n = 𝓜 (n + d) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d62dbccbb4c6 from=translated src=- shape=ce7cafd9 vocab=12dcde90
+-/
 @[simp]
 theorem natShift_zero : natShift 𝓜 0 = 𝓜 := by
   funext n
   simp [natShift]
 
+/--
+@isnad1 id=eq.0h4v.s5.28864609f6f7 from=translated src=- shape=83cc31d4 vocab=9f5c2b40
+-/
 @[simp]
 theorem natShift_add (d e : ℕ) :
     natShift (natShift 𝓜 d) e = natShift 𝓜 (d + e) := by
@@ -87,6 +99,9 @@ def intShiftPiece (d : ℤ) (n : ℕ) : AddSubgroup M where
 /-- The integer shift of a naturally graded module, using zero in negative degrees.-/
 def intShift (d : ℤ) : ℕ → AddSubgroup M := fun n => intShiftPiece 𝓜 d n
 
+/--
+@isnad1 id=iff.0h6v.s6.a3fc314d47f1 from=translated src=- shape=f985c7ac vocab=b30f211d
+-/
 @[simp]
 theorem mem_intShiftPiece {d : ℤ} {n : ℕ} {m : M} :
     m ∈ intShiftPiece 𝓜 d n ↔
@@ -97,7 +112,9 @@ theorem mem_intShiftPiece {d : ℤ} {n : ℕ} {m : M} :
 
 `intShift` is `ℕ`-indexed and `intShiftPiece 𝓜 d n` asks for an element of
 degree `n + d`. When that integer is negative, no natural degree witnesses
-membership, so only zero remains.-/
+membership, so only zero remains.
+@isnad1 id=eq.1h5v.s6.19587fd8bdc4 from=translated src=- shape=22678ba8 vocab=915560ab
+-/
 theorem intShiftPiece_eq_bot_of_neg {M σM : Type u} [AddCommGroup M]
     [SetLike σM M] [AddSubgroupClass σM M] (𝓜 : ℕ → σM) (d : ℤ) (n : ℕ)
     (hn : (n : ℤ) + d < 0) :
@@ -111,6 +128,9 @@ theorem intShiftPiece_eq_bot_of_neg {M σM : Type u} [AddCommGroup M]
   · rintro rfl
     exact Or.inl rfl
 
+/--
+@isnad1 id=gradedsm.0h7v.s7.06deca4f31e9 from=translated src=- shape=f77cb3a7 vocab=59765f5c
+-/
 instance intShiftGradedSMul (d : ℤ) : SetLike.GradedSMul 𝒜 (intShift 𝓜 d) where
   smul_mem {i j} {a m} ha hm := by
     rcases hm with rfl | ⟨k, hk, hm⟩
@@ -121,11 +141,16 @@ instance intShiftGradedSMul (d : ℤ) : SetLike.GradedSMul 𝒜 (intShift 𝓜 d
       push_cast
       omega
 
+/--
+@isnad1 id=eq.0h5v.s5.72666a6e647e from=translated src=- shape=ab6fa4e3 vocab=5c760f28
+-/
 @[simp]
 theorem intShift_apply (d : ℤ) (n : ℕ) : intShift 𝓜 d n = intShiftPiece 𝓜 d n := rfl
 
 /-- At shift zero the integer-shifted pieces are the original pieces, expressed as an equality
-of their carriers.-/
+of their carriers.
+@isnad1 id=iff.0h5v.s6.a794b1d0813b from=translated src=- shape=37d714b7 vocab=fdfafce9
+-/
 theorem mem_intShift_zero_iff (n : ℕ) (m : M) :
     m ∈ intShift 𝓜 0 n ↔ m ∈ 𝓜 n := by
   constructor
@@ -137,7 +162,9 @@ theorem mem_intShift_zero_iff (n : ℕ) (m : M) :
     exact Or.inr ⟨n, by simp, hm⟩
 
 /-- A nonnegative integer shift agrees with the corresponding natural shift, at the level of
-membership in each graded piece.-/
+membership in each graded piece.
+@isnad1 id=iff.0h6v.s6.7a683c76ba99 from=translated src=- shape=ab5c0118 vocab=d23128ac
+-/
 theorem mem_intShift_ofNat_iff (d n : ℕ) (m : M) :
     m ∈ intShift 𝓜 (d : ℤ) n ↔ m ∈ natShift 𝓜 d n := by
   constructor
@@ -150,7 +177,9 @@ theorem mem_intShift_ofNat_iff (d n : ℕ) (m : M) :
 
 omit [AddCommGroup M] [AddSubgroupClass σM M] in
 /-- Strict composition for nonnegative shifts, phrased as membership so it applies uniformly
-even when the subobject types differ.-/
+even when the subobject types differ.
+@isnad1 id=iff.0h7v.s5.cc3af7117c1b from=translated src=- shape=716f2caa vocab=a0ad3db6
+-/
 theorem mem_natShift_add_iff (d e n : ℕ) (m : M) :
     m ∈ natShift (natShift 𝓜 d) e n ↔ m ∈ natShift 𝓜 (d + e) n := by
   simp only [natShift_apply]
@@ -170,7 +199,9 @@ This is a fact about the *algebraic* model, not about the sheaf. `associatedShea
 these pieces through homogeneous localizations, where the missing degrees are inverted back in, so
 the sheaf-level composition `O(d)(e) ≅ O(d + e)` is not obstructed by this — but it cannot be
 obtained by transporting an algebraic identity, and has to be proved on the sheaf side. Recorded
-here because that is the trap this lemma exists to mark.-/
+here because that is the trap this lemma exists to mark.
+@isnad1 id=iff.1h7v.s7.7cc225c22bc0 from=translated src=- shape=2f1803f1 vocab=6eae335c
+-/
 theorem mem_intShift_add_iff_of_nonneg (d e : ℤ) (n : ℕ) (hne : 0 ≤ (n : ℤ) + e) (m : M) :
     m ∈ intShift (intShift 𝓜 d) e n ↔ m ∈ intShift 𝓜 (d + e) n := by
   constructor
@@ -204,7 +235,9 @@ omit [GradedRing 𝒜] in
 
 A ring element of the degree-`d` shift scales a module element of degree `j` into the degree-`d`
 shift of the module. This is what makes `A(d) ⊗ M → M(d)` land where it should, and it is the
-`SetLike.GradedSMul` analogue of the fact that `𝒜 i · 𝓜 j ⊆ 𝓜 (i + j)`.-/
+`SetLike.GradedSMul` analogue of the fact that `𝒜 i · 𝓜 j ⊆ 𝓜 (i + j)`.
+@isnad1 id=mem.2h11v.s8.5bba2421e4dd from=translated src=- shape=5987b8e5 vocab=7c97a24d
+-/
 theorem smul_mem_intShift (d : ℤ) (i j : ℕ) {a : A} {m : M}
     (ha : a ∈ intShift 𝒜 d i) (hm : m ∈ 𝓜 j) :
     a • m ∈ intShift 𝓜 d (i + j) := by
@@ -229,7 +262,9 @@ to carry this from one localization to the sections of the associated sheaf, and
 /-- The double shift always lands in the single shift.
 
 Only the converse needs the degree bound of `mem_intShift_add_iff_of_nonneg`; this direction is
-unconditional, so it is the one that gives a graded map without hypotheses.-/
+unconditional, so it is the one that gives a graded map without hypotheses.
+@isnad1 id=mem.1h7v.s6.84af036262ec from=translated src=- shape=5d29ad9b vocab=0b56afb6
+-/
 theorem mem_intShift_add_of_mem_intShift_intShift (d e : ℤ) (n : ℕ) {m : M}
     (hm : m ∈ intShift (intShift 𝓜 d) e n) : m ∈ intShift 𝓜 (d + e) n := by
   rcases hm with rfl | ⟨k, hk, hm⟩
@@ -246,7 +281,9 @@ where the content is. A fraction certified only for `intShift 𝓜 (d + e)` is r
 multiplying numerator and denominator by a power of `t`, which raises its degree without changing
 the element, until the degree clears the bound `mem_intShift_add_iff_of_nonneg` asks for. This is
 the precise sense in which the truncated degrees are "inverted back in": they are never needed at
-a degree the localization cannot reach.-/
+a degree the localization cannot reach.
+@isnad1 id=iff.3h12v.s8.1b53ced434dc from=translated src=- shape=77bd063e vocab=8e5605ee
+-/
 theorem isDegreeZero_intShift_intShift_iff (S : Submonoid A)
     {m : ℕ} (hm : 0 < m) {t : A} (ht : t ∈ 𝒜 m) (htS : t ∈ S) (d e : ℤ)
     (z : LocalizedModule S M) :

@@ -21,7 +21,9 @@ variable {C : Type*} [Category C] {D : Type*} [Category D] {E : Type*} [Category
   {L : C ⥤ D} (F : D ⥤ E) {K : Type*} [Category K]
 
 /-- If `L` and `L ⋙ F` both preserve the colimit of `d`, then `F` preserves the colimit of
-`d ⋙ L`.-/
+`d ⋙ L`.
+@isnad1 id=preserve.0h7v.s6.f143af63b428 from=translated src=- shape=aeb5ee1e vocab=61dc3c2d
+-/
 lemma preservesColimit_comp_left (d : K ⥤ C) [HasColimit d] [PreservesColimit d L]
     [PreservesColimit d (L ⋙ F)] : PreservesColimit (d ⋙ L) F := by
   refine preservesColimit_of_preserves_colimit_cocone

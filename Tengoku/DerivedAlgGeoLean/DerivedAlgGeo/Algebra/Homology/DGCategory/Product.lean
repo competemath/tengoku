@@ -90,6 +90,9 @@ def prodComp (c₁ : A₁ →+ B₁ →+ M₁) (c₂ : A₂ →+ B₂ →+ M₂)
         ((c₂ a.2).comp (AddMonoidHom.snd B₁ B₂)))
     (fun a a' => by ext b <;> simp)
 
+/--
+@isnad1 id=eq.0h10v.s11.95c98d39ee8e from=translated src=- shape=4e8c75df vocab=5b38d3e4
+-/
 @[simp]
 lemma prodComp_apply (c₁ : A₁ →+ B₁ →+ M₁) (c₂ : A₂ →+ B₂ →+ M₂)
     (a : A₁ × A₂) (b : B₁ × B₂) :
@@ -109,6 +112,9 @@ instance prodStruct : DGCategoryStruct.{v} (C × D) where
 
 variable {C D}
 
+/--
+@isnad1 id=eq.0h7v.s12.55c3cf9d25c8 from=translated src=- shape=44132957 vocab=67f875e9
+-/
 @[simp]
 lemma prod_d_apply {X Y : C × D} (p q : ℤ)
     (f : ((dgHom X.1 Y.1).X p) × ((dgHom X.2 Y.2).X p)) :
@@ -125,26 +131,44 @@ enough — the goals are about `(dgHom X Y).X p` for the product instance, which
 is `prodComplex …` definitionally and not syntactically, so those versions miss
 as well. They have to be stated exactly here. -/
 
+/--
+@isnad1 id=eq.0h7v.s10.68191545e146 from=translated src=- shape=2e158354 vocab=04c5b79c
+-/
 @[simp]
 lemma dgProd_fst_add {X Y : C × D} {p : ℤ} (a b : (dgHom (C := C × D) X Y).X p) :
     (a + b).1 = a.1 + b.1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.30be6c407d24 from=translated src=- shape=0456a123 vocab=04c5b79c
+-/
 @[simp]
 lemma dgProd_snd_add {X Y : C × D} {p : ℤ} (a b : (dgHom (C := C × D) X Y).X p) :
     (a + b).2 = a.2 + b.2 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.5e1fc100bf77 from=translated src=- shape=becf16b2 vocab=4c6ba301
+-/
 @[simp]
 lemma dgProd_fst_units_smul {X Y : C × D} {p : ℤ} (c : ℤˣ)
     (a : (dgHom (C := C × D) X Y).X p) : (c • a).1 = c • a.1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.acd7f3429df6 from=translated src=- shape=ce6f82d9 vocab=4c6ba301
+-/
 @[simp]
 lemma dgProd_snd_units_smul {X Y : C × D} {p : ℤ} (c : ℤˣ)
     (a : (dgHom (C := C × D) X Y).X p) : (c • a).2 = c • a.2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.087e5fe48615 from=translated src=- shape=7a61ffc6 vocab=2c27f65b
+-/
 @[simp]
 lemma prod_dgId (X : C × D) :
     dgId (C := C × D) X = (dgId X.1, dgId X.2) := rfl
 
+/--
+@isnad1 id=eq.1h10v.s15.604ed2ddb973 from=translated src=- shape=aee5ea2f vocab=4926e160
+-/
 @[simp]
 lemma prod_dgComp_apply {X Y Z : C × D} (p q r : ℤ) (h : p + q = r)
     (f : ((dgHom X.1 Y.1).X p) × ((dgHom X.2 Y.2).X p))

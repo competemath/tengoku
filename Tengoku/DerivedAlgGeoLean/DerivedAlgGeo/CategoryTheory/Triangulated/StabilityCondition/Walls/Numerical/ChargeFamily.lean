@@ -21,7 +21,9 @@ namespace CategoryTheory.Triangulated.WeakStabilityCondition.StabilityCondition.
 noncomputable section
 
 /-- The generic determinant specializes exactly to the surface wall
-expression.-/
+expression.
+@isnad1 id=eq.0h3v.s5.22c97ace21df from=translated src=- shape=377f7e99 vocab=e3230385
+-/
 @[simp]
 theorem stChargeFamily_alignmentValue (p : ℝ × ℝ) (v w : NumClass) :
     stChargeFamily.alignmentValue p v w = wallExpr p.1 p.2 v w := by
@@ -29,7 +31,9 @@ theorem stChargeFamily_alignmentValue (p : ℝ × ℝ) (v w : NumClass) :
     ChargeFamily.im, wallExpr]
 
 /-- The generic alignment wall is the zero locus of the surface wall
-expression.-/
+expression.
+@isnad1 id=iff.0h3v.s5.28e46ba7a2a2 from=translated src=- shape=7e41e637 vocab=54649414
+-/
 theorem mem_stChargeFamily_alignmentLocus (p : ℝ × ℝ) (v w : NumClass) :
     p ∈ stChargeFamily.alignmentLocus v w ↔ wallExpr p.1 p.2 v w = 0 := by
   simp

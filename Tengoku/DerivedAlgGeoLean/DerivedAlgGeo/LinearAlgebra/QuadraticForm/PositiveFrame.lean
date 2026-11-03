@@ -68,7 +68,9 @@ def framePlane (p : M × M) : Submodule ℝ M := pairSpan p.1 p.2
 frame-to-plane map is a genuine definition, so consumers that reason about the
 spanning set need this to reach `pairSpan`. It is deliberately not `@[simp]`:
 rewriting the carrier of a frame's subtype blocks `Submodule.mk_eq_zero` on
-elements of that subtype.-/
+elements of that subtype.
+@isnad1 id=eq.0h3v.s5.4fbc7855a4bb from=translated src=- shape=03e82690 vocab=2723ba1e
+-/
 theorem framePlane_mk (x y : M) : framePlane (x, y) = pairSpan x y := rfl
 
 /-- An **ordered positive frame**: an ordered pair spanning a positive plane.-/
@@ -87,7 +89,9 @@ def pairingDet (x₀ y₀ x y : M) : ℝ :=
 
 end Defs
 
-/-- A positive frame forgets to a positive plane.-/
+/-- A positive frame forgets to a positive plane.
+@isnad1 id=mem.1h3v.s6.87178994caf9 from=translated src=- shape=e24333c9 vocab=6cb8e180
+-/
 theorem isPositivePlane_framePlane {p : M × M} (h : p ∈ positiveFrames Q) :
     framePlane p ∈ positivePlanes Q := h
 
@@ -96,12 +100,17 @@ positive planes. No inverse is chosen: a plane has many ordered bases.-/
 def forgetPositiveFrame (p : positiveFrames Q) : positivePlanes Q :=
   ⟨framePlane p, isPositivePlane_framePlane p.property⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.210d4772e1fa from=translated src=- shape=837bd935 vocab=9523ee90
+-/
 @[simp]
 theorem forgetPositiveFrame_coe (p : positiveFrames Q) :
     ((forgetPositiveFrame p : positivePlanes Q) : Submodule ℝ M) = framePlane p := rfl
 
 /-- A nontrivial combination of a positive frame is nonzero: the frame spans a
-plane, so it is independent.-/
+plane, so it is independent.
+@isnad1 id=ne.2h6v.s7.688059a91ee9 from=translated src=- shape=acdda5c4 vocab=02d9624f
+-/
 theorem combination_ne_zero {x y : M} (h : IsPositiveFrame Q x y) {a b : ℝ}
     (hab : a ≠ 0 ∨ b ≠ 0) : a • x + b • y ≠ 0 := by
   intro hzero
@@ -156,7 +165,9 @@ variable [FiniteDimensional ℝ M]
 A vanishing determinant produces a nonzero vector of the plane orthogonal to both
 reference vectors, hence in the reference plane's orthogonal complement, where
 `Q` is negative definite — while it lies in a plane where `Q` is positive
-definite. This is `neg_of_mem_orthogonal` in coordinates.-/
+definite. This is `neg_of_mem_orthogonal` in coordinates.
+@isnad1 id=ne.3h6v.s6.9e389decd32e from=translated src=- shape=6083022a vocab=f428f656
+-/
 theorem pairingDet_ne_zero (hsig : HasSignatureTwo Q) {x₀ y₀ x y : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) (h : IsPositiveFrame Q x y) :
     pairingDet Q x₀ y₀ x y ≠ 0 := by
@@ -213,17 +224,26 @@ connectedness of the Grassmannian.-/
 def SameOrientation (Q : QuadraticForm ℝ M) (x₀ y₀ : M) (p q : M × M) : Prop :=
   0 < pairingDet Q x₀ y₀ p.1 p.2 * pairingDet Q x₀ y₀ q.1 q.2
 
+/--
+@isnad1 id=sameorie.3h5v.s6.c8e6f135d10a from=translated src=- shape=b73b83c6 vocab=13a3f170
+-/
 theorem sameOrientation_refl (hsig : HasSignatureTwo Q) {x₀ y₀ : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) {p : M × M} (hp : IsPositiveFrame Q p.1 p.2) :
     SameOrientation Q x₀ y₀ p p :=
   mul_self_pos.mpr (pairingDet_ne_zero hsig h₀ hp)
 
 omit [FiniteDimensional ℝ M] in
+/--
+@isnad1 id=sameorie.1h6v.s5.e6d7b959d076 from=translated src=- shape=36d5f0ec vocab=7da4751d
+-/
 theorem sameOrientation_symm {x₀ y₀ : M} {p q : M × M}
     (h : SameOrientation Q x₀ y₀ p q) : SameOrientation Q x₀ y₀ q p := by
   rw [SameOrientation, mul_comm]
   exact h
 
+/--
+@isnad1 id=sameorie.5h7v.s6.909d35d798b5 from=translated src=- shape=9844ebc3 vocab=13a3f170
+-/
 theorem sameOrientation_trans (hsig : HasSignatureTwo Q) {x₀ y₀ : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) {p q r : M × M} (hq : IsPositiveFrame Q q.1 q.2)
     (hpq : SameOrientation Q x₀ y₀ p q) (hqr : SameOrientation Q x₀ y₀ q r) :
@@ -237,13 +257,17 @@ theorem sameOrientation_trans (hsig : HasSignatureTwo Q) {x₀ y₀ : M}
 end FiniteDimensional
 
 /-- Swapping the pair flips the sign: this is what makes the invariant an
-orientation rather than an arbitrary label.-/
+orientation rather than an arbitrary label.
+@isnad1 id=eq.0h6v.s5.a7e8d063f635 from=translated src=- shape=9566c2d8 vocab=2e503a00
+-/
 theorem pairingDet_swap (x₀ y₀ x y : M) :
     pairingDet Q x₀ y₀ y x = -pairingDet Q x₀ y₀ x y := by
   rw [pairingDet, pairingDet]
   ring
 
-/-- Swapping the reference pair flips the sign too.-/
+/-- Swapping the reference pair flips the sign too.
+@isnad1 id=eq.0h6v.s5.162ba6e92a24 from=translated src=- shape=db52fa20 vocab=2e503a00
+-/
 theorem pairingDet_swap_ref (x₀ y₀ x y : M) :
     pairingDet Q y₀ x₀ x y = -pairingDet Q x₀ y₀ x y := by
   rw [pairingDet, pairingDet]
@@ -265,6 +289,9 @@ def positiveFramesMinus (x₀ y₀ : M) : Set (M × M) :=
 variable {Q}
 
 omit [FiniteDimensional ℝ M] in
+/--
+@isnad1 id=disjoint.0h4v.s6.b3dd13c96c82 from=translated src=- shape=c8760166 vocab=986b7668
+-/
 theorem disjoint_positiveFramesPlus_minus (x₀ y₀ : M) :
     Disjoint (positiveFramesPlus Q x₀ y₀) (positiveFramesMinus Q x₀ y₀) := by
   rw [Set.disjoint_left]
@@ -272,7 +299,9 @@ theorem disjoint_positiveFramesPlus_minus (x₀ y₀ : M) :
   linarith
 
 /-- **The two halves exhaust the positive frames.** Nonvanishing of the
-determinant is what leaves no third case.-/
+determinant is what leaves no third case.
+@isnad1 id=eq.2h4v.s6.c5c74e58f2d6 from=translated src=- shape=97dd0df0 vocab=5348e071
+-/
 theorem union_positiveFramesPlus_minus (hsig : HasSignatureTwo Q) {x₀ y₀ : M}
     (h₀ : IsPositiveFrame Q x₀ y₀) :
     positiveFrames Q =
@@ -287,7 +316,9 @@ theorem union_positiveFramesPlus_minus (hsig : HasSignatureTwo Q) {x₀ y₀ : M
 
 omit [FiniteDimensional ℝ M] in
 /-- **Swapping a pair moves it to the other half.** So neither half is vacuous
-once one positive frame exists, and the split is a genuine two-way split.-/
+once one positive frame exists, and the split is a genuine two-way split.
+@isnad1 id=mem.1h5v.s6.27bffda72af8 from=translated src=- shape=3080a4bb vocab=93ec64cb
+-/
 theorem swap_mem_of_mem_positiveFramesPlus {x₀ y₀ : M} {p : M × M}
     (hp : p ∈ positiveFramesPlus Q x₀ y₀) :
     (p.2, p.1) ∈ positiveFramesMinus Q x₀ y₀ := by

@@ -66,16 +66,25 @@ instance struct : DGCategoryStruct.{v} (Cdg A) where
 exist so `simp` can get from a `DGCategoryStruct` goal to a `Cochain` one, which
 is where every Mathlib lemma is stated. -/
 
+/--
+@isnad1 id=eq.0h3v.s6.f69c1c1a2bb2 from=translated src=- shape=08a8c924 vocab=4e1caad2
+-/
 @[simp]
 lemma dgHom_eq (K L : Cdg A) :
     DGCategoryStruct.dgHom K L = CochainComplex.HomComplex (of A K) (of A L) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.0f39a6a630ef from=translated src=- shape=95f8aaac vocab=4b75077b
+-/
 @[simp]
 lemma dgId_eq (K : Cdg A) :
     DGCategoryStruct.dgId K = Cochain.ofHom (𝟙 (of A K)) := rfl
 
 -- Not `@[simp]`: the left-hand side simplifies further, so it can never be in
 -- simp-normal form and the `simpNF` linter rejects it. It is used by name.
+/--
+@isnad1 id=eq.1h9v.s13.a8cf200da0eb from=translated src=- shape=6800190c vocab=a5e9d204
+-/
 lemma dgComp_eq {K L M : Cdg A} (p q r : ℤ) (h : p + q = r)
     (f : (DGCategoryStruct.dgHom K L).X p) (g : (DGCategoryStruct.dgHom L M).X q) :
     DGCategoryStruct.dgComp p q r h f g = Cochain.comp f g h := rfl

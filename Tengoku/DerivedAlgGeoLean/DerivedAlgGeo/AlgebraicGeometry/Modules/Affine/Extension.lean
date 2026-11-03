@@ -85,7 +85,9 @@ namespace AlgebraicGeometry.tilde
 variable {R : CommRingCat.{u}} (M : ModuleCat.{u} R)
 
 /-- **A section of `M~` over a basic open extends after clearing one power of the defining
-element.**-/
+element.**
+@isnad1 id=ex.0h4v.s13.a6efb76e9c4c from=translated src=- shape=7d6ca923 vocab=d2b9e234
+-/
 theorem exists_pow_smul_eq_toOpen (r : R)
     (s : (modulesSpecToSheaf.obj (tilde M)).presheaf.obj (op (basicOpen r))) :
     ∃ (n : ℕ) (m : M), r ^ n • s = toOpen M (basicOpen r) m := by
@@ -95,7 +97,9 @@ theorem exists_pow_smul_eq_toOpen (r : R)
   exact ⟨n, m, by rw [show r ^ n = (t : R) from hn]; exact ht⟩
 
 /-- **The same, as an extension statement**: a power of `r` times a section over `D(r)` is the
-restriction of a *global* section.-/
+restriction of a *global* section.
+@isnad1 id=ex.0h4v.s13.55e7b74e948e from=translated src=- shape=f4fe3977 vocab=1fcb5daf
+-/
 theorem exists_pow_smul_eq_res_of_top (r : R)
     (s : (modulesSpecToSheaf.obj (tilde M)).presheaf.obj (op (basicOpen r))) :
     ∃ (n : ℕ) (t : (modulesSpecToSheaf.obj (tilde M)).presheaf.obj (op ⊤)),
@@ -108,7 +112,9 @@ theorem exists_pow_smul_eq_res_of_top (r : R)
 /-- **A global section vanishing on `D(r)` is killed by a power of `r`.**
 
 The injectivity companion of `exists_pow_smul_eq_toOpen`, and the other half of what a gluing
-argument needs: extension makes local sections global, this makes two of them agree.-/
+argument needs: extension makes local sections global, this makes two of them agree.
+@isnad1 id=ex.1h4v.s12.61f3b45ed17f from=translated src=- shape=2232c210 vocab=d2b9e234
+-/
 theorem exists_pow_smul_eq_zero (r : R) (m : M)
     (h : toOpen M (basicOpen r) m = 0) :
     ∃ n : ℕ, r ^ n • m = 0 := by
@@ -119,7 +125,9 @@ theorem exists_pow_smul_eq_zero (r : R) (m : M)
   exact ⟨n, by rw [show r ^ n = (t : R) from hn]; exact ht⟩
 
 /-- **The same on sections**: a global section restricting to `0` on `D(r)` is killed by a power
-of `r`.-/
+of `r`.
+@isnad1 id=ex.1h4v.s14.25b2b54d48f1 from=translated src=- shape=8991f924 vocab=3f37d1e7
+-/
 theorem exists_pow_smul_res_eq_zero (r : R)
     (t : (modulesSpecToSheaf.obj (tilde M)).presheaf.obj (op ⊤))
     (h : (modulesSpecToSheaf.obj (tilde M)).presheaf.map
@@ -158,7 +166,9 @@ noncomputable def tildeΓSectionEquiv (N : (Spec R).Modules) [IsIso (fromTildeΓ
     (asIso (fromTildeΓ N))).app (op U)).toLinearEquiv
 
 /-- **The equivalence commutes with restriction.** The one fact the transports need, proved once
-where the spelling is under this file's control.-/
+where the spelling is under this file's control.
+@isnad1 id=eq.0h6v.s15.2efe2dd02b30 from=translated src=- shape=86947332 vocab=fba45dc2
+-/
 @[simp]
 theorem tildeΓSectionEquiv_res (N : (Spec R).Modules) [IsIso (fromTildeΓ N)]
     {U V : (Spec R).Opens} (i : V ⟶ U)
@@ -173,7 +183,9 @@ theorem tildeΓSectionEquiv_res (N : (Spec R).Modules) [IsIso (fromTildeΓ N)]
       (asIso (fromTildeΓ N))).hom i.op x
 
 /-- **The inverse equivalence commutes with restriction**, which is the direction the injectivity
-transport needs.-/
+transport needs.
+@isnad1 id=eq.0h6v.s15.495e85628c32 from=translated src=- shape=f1d480e3 vocab=7ed4758a
+-/
 theorem tildeΓSectionEquiv_symm_res (N : (Spec R).Modules) [IsIso (fromTildeΓ N)]
     {U V : (Spec R).Opens} (i : V ⟶ U)
     (x : (modulesSpecToSheaf.obj N).presheaf.obj (op U)) :
@@ -184,7 +196,9 @@ theorem tildeΓSectionEquiv_symm_res (N : (Spec R).Modules) [IsIso (fromTildeΓ 
   apply (tildeΓSectionEquiv N V).injective
   rw [LinearEquiv.apply_symm_apply, tildeΓSectionEquiv_res, LinearEquiv.apply_symm_apply]
 
-/-- **The injectivity companion for any quasi-coherent module sheaf.**-/
+/-- **The injectivity companion for any quasi-coherent module sheaf.**
+@isnad1 id=ex.1h4v.s14.9d015ea8526c from=translated src=- shape=5367b411 vocab=b1436336
+-/
 theorem exists_pow_smul_res_eq_zero_of_isQuasicoherent (N : (Spec R).Modules)
     [IsIso (fromTildeΓ N)] (r : R)
     (t : (modulesSpecToSheaf.obj N).presheaf.obj (op ⊤))
@@ -214,7 +228,9 @@ the exponent — a raise the uniform-exponent step then absorbs.
 
 Note the conclusion is agreement of `r ^ n • t` with `r ^ n • t'`, not of `t`
 with `t'`: nothing here says the restriction is injective, and for a sheaf with
-`r`-torsion sections it is not.-/
+`r`-torsion sections it is not.
+@isnad1 id=ex.1h5v.s15.7710dc1eaf09 from=translated src=- shape=85385dc9 vocab=b1436336
+-/
 theorem exists_pow_smul_eq_of_res_eq_of_isQuasicoherent (N : (Spec R).Modules)
     [IsIso (fromTildeΓ N)] (r : R)
     (t t' : (modulesSpecToSheaf.obj N).presheaf.obj (op ⊤))
