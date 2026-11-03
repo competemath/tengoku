@@ -1,0 +1,407 @@
+import Tengoku.DgLean.DG.Graded.RegradingModuleCat
+import Tengoku.DgLean.DG.Module.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Regrading dg objects
+
+The regrading constructions of `DG.Graded.Regrading`, with differentials.
+
+## `ℤ/2`-graded dg rings and modules
+
+* `DG.IsOddDifferential ℳ d`, `DG.IsZMod2DGRing 𝒜 d`, `DG.IsZMod2DGModule 𝒜 dA ℳ dM`: a
+  `ℤ/2`-graded dg ring is a `ℤ/2`-graded ring with an odd differential `d`, `d ∘ d = 0`,
+  satisfying `d (a * b) = d a * b + (-1)^{|a|} • (a * d b)` with `|a| ∈ ℤ/2`; similarly for
+  modules. The sign is written `koszulSign n` for an integer `n` of parity `|a|`
+  (`DG.koszulSign_congr`). These are hypotheses on data used as input of the constructions, not a
+  second core: the dg objects of the library are the `ℤ`-graded ones.
+* `DG.Periodize.dgAddCommGroup`, `DG.Periodize.dgRing`, `DG.Periodize.dgModule`: the
+  periodization of a `ℤ/2`-graded dg ring (module), with the differential acting componentwise
+  (`m` in degree `n` goes to `d m` in degree `n + 1`), is a dg ring (dg module) in the sense of
+  `DG.DGRing` (`DG.DGModule`).
+* `DG.IsPeriodicDGModule hA 𝒩 dN`: a dg module over the periodization of a `ℤ/2`-graded dg ring,
+  stated on data; it is equivalent to `DG.DGModule` for the dg ring `DG.Periodize.dgRing`
+  (`DG.IsPeriodicDGModule.dgModule`, `DG.IsPeriodicDGModule.of_dgModule`).
+
+The equivalence of the categories of dg modules is `DG.GradedModuleCat.periodizeDGEquivalence`
+(`DG.Algebra.RegradingModuleCat`).
+
+## Differentials of degree `k`
+
+* `DG.IsDifferentialOfDegree ℳ k d`: `d (Mⁿ) ⊆ Mⁿ⁺ᵏ`, `d ∘ d = 0`. It induces a differential of
+  degree `1` on each regrading `RegradeByDivision ℳ k r = ⨁ q, ℳ (q * k + r)`
+  (`DG.RegradeByDivision.dgAddCommGroup`), and the residue decomposition
+  `M ≃+ ⨁ r : ZMod k, RegradeByDivision ℳ k r` intertwines `d` with the direct sum of the induced
+  differentials (`DG.residueEquiv_d`).
+* `DG.IsDivDGRing 𝒜 k d`, `DG.IsDivDGModule 𝒜 k dA ℳ dM`: the Leibniz rule with the sign
+  `(-1)^{|a| / k}` of the regraded degree, for `a` of degree divisible by `k` (no condition on the
+  other elements). Then `⨁ q, A^{q k}` is a dg ring (`DG.RegradeByDivision.dgRing`) and each
+  residue class `⨁ q, ℳ (q * k + r)` is a dg module over it (`DG.RegradeByDivision.dgModule`).
+  The sign `(-1)^{|a|}` of the original degree would not do for even `k`: it is `1` on `A^{q k}`,
+  whereas the Leibniz rule of `DG.DGRing` in degree `q` has the sign `(-1)^q`.
+-/
+
+noncomputable section
+open scoped DG
+
+
+namespace DG
+
+open DirectSum
+
+/-- The Koszul sign only depends on the parity.
+@isnad1 id=eq.1h2v.s6.ae579ecd9a04 from=translated src=- shape=7753e56d vocab=0c1c5f5f
+-/
+theorem koszulSign_congr {m n : ℤ} (h : (m : ZMod 2) = n) : koszulSign m = koszulSign n := by
+  obtain ⟨c, hc⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub m n 2).mp h
+  have hn : n = m + 2 * c := by push_cast at hc; omega
+  rw [hn, koszulSign_add, koszulSign_even (n := 2 * c) ⟨c, by ring⟩, mul_one]
+
+section ZMod2
+
+variable {M σ : Type*} [AddCommGroup M] [SetLike σ M] [AddSubgroupClass σ M]
+
+/-- An odd differential on a `ℤ/2`-graded abelian group `M = M^{0̄} ⊕ M^{1̄}`: an additive map
+`d` with `d (M^{i}) ⊆ M^{i + 1}` and `d ∘ d = 0`.-/
+structure IsOddDifferential (ℳ : ZMod 2 → σ) (d : M →+ M) : Prop where
+  map_mem : ∀ {i : ZMod 2} {m : M}, m ∈ ℳ i → d m ∈ ℳ (i + 1)
+  d_d : ∀ m, d (d m) = 0
+
+variable {A τ : Type*} [Ring A] [SetLike τ A] [AddSubgroupClass τ A]
+
+/-- A `ℤ/2`-graded dg ring structure: an odd differential `d` on a `ℤ/2`-graded ring `A`
+satisfying the graded Leibniz rule `d (a * b) = d a * b + (-1)^{|a|} • (a * d b)` for `a`
+homogeneous of parity `|a|`. The sign is written `koszulSign n` for any integer `n` of parity
+`|a|` (it only depends on `n mod 2`, `DG.koszulSign_congr`).-/
+structure IsZMod2DGRing (𝒜 : ZMod 2 → τ) (d : A →+ A) : Prop extends IsOddDifferential 𝒜 d where
+  d_mul : ∀ {n : ℤ} {a : A}, a ∈ 𝒜 n → ∀ b : A, d (a * b) = d a * b + koszulSign n • (a * d b)
+
+/-- A `ℤ/2`-graded dg module structure over a `ℤ/2`-graded dg ring `(A, 𝒜, dA)`: an odd
+differential `dM` on a `ℤ/2`-graded `A`-module `M` with the signed Leibniz rule
+`dM (a • m) = dA a • m + (-1)^{|a|} • (a • dM m)`.-/
+structure IsZMod2DGModule [Module A M] (𝒜 : ZMod 2 → τ) (dA : A →+ A) (ℳ : ZMod 2 → σ)
+    (dM : M →+ M) : Prop extends IsOddDifferential ℳ dM where
+  d_smul : ∀ {n : ℤ} {a : A}, a ∈ 𝒜 n → ∀ m : M,
+    dM (a • m) = dA a • m + koszulSign n • (a • dM m)
+
+end ZMod2
+
+namespace Periodize
+
+section Differential
+
+variable {M σ : Type*} [AddCommGroup M] [SetLike σ M] [AddSubgroupClass σ M] {ℳ : ZMod 2 → σ}
+
+variable (ℳ) {d : M →+ M}
+
+/-- The differential of `Periodize ℳ` induced by an odd differential `d` on `ℳ`: it sends `m`
+placed in degree `n` to `d m` placed in degree `n + 1`.-/
+def dHom (hd : IsOddDifferential ℳ d) : Periodize ℳ →+ Periodize ℳ :=
+  DirectSum.toAddMonoid fun n =>
+    (ofHom ℳ (n + 1)).comp
+      ((d.comp (AddSubmonoidClass.subtype (periodicGrading ℳ n))).codRestrict _ fun m => by
+        rw [mem_periodicGrading, Int.cast_add, Int.cast_one]; exact hd.map_mem m.2)
+
+variable {ℳ}
+
+/--
+@isnad1 id=eq.2h6v.s8.c02f3ccd7c7a from=translated src=- shape=02c5d167 vocab=8e83c010
+-/
+theorem dHom_mk (hd : IsOddDifferential ℳ d) (n : ℤ) (m : M) (hm : m ∈ ℳ n) :
+    dHom ℳ hd (mk ℳ n m hm) =
+      mk ℳ (n + 1) (d m) (by rw [Int.cast_add, Int.cast_one]; exact hd.map_mem hm) :=
+  DirectSum.toAddMonoid_of (β := fun n => ↥(periodicGrading ℳ n)) _ n ⟨m, hm⟩
+
+/--
+@isnad1 id=eq.1h5v.s9.01a4bc17ef18 from=translated src=- shape=9400ba13 vocab=78716c28
+-/
+theorem dHom_dHom (hd : IsOddDifferential ℳ d) (x : Periodize ℳ) :
+    dHom ℳ hd (dHom ℳ hd x) = 0 := by
+  induction x using induction_on with
+  | zero => simp
+  | mk n m hm =>
+    rw [dHom_mk, dHom_mk]
+    exact (mk_congr rfl (hd.d_d m) _ (zero_mem _)).trans (mk_zero _)
+  | add x y hx hy => rw [map_add, map_add, hx, hy, add_zero]
+
+variable (ℳ)
+
+/-- The periodization of a `ℤ/2`-graded abelian group with an odd differential, as a dg abelian
+group: `Periodize ℳ` with its `ℤ`-grading and the differential `DG.Periodize.dHom`. Not an
+instance, since it depends on the choice of `d`.-/
+@[instance_reducible]
+def dgAddCommGroup (hd : IsOddDifferential ℳ d) : DGAddCommGroup (Periodize ℳ) where
+  grading := periodizeGrading ℳ
+  d := dHom ℳ hd
+  d_mem' := by
+    intro n x hx
+    obtain ⟨m, hm, rfl⟩ := mem_periodizeGrading_iff.mp hx
+    rw [dHom_mk]; exact mk_mem _ _
+  d_d' := dHom_dHom hd
+
+end Differential
+
+section Ring
+
+variable {A τ : Type*} [Ring A] [SetLike τ A] [AddSubgroupClass τ A] {𝒜 : ZMod 2 → τ}
+  [SetLike.GradedMonoid 𝒜] {d : A →+ A}
+
+end Ring
+
+end Periodize
+
+/-! ### Dg modules over the periodization -/
+
+section PeriodicDGModule
+
+variable {B τ : Type*} [Ring B] [SetLike τ B] [AddSubgroupClass τ B] {ℬ : ZMod 2 → τ}
+  [SetLike.GradedMonoid ℬ] {dA : B →+ B}
+
+namespace Periodize
+
+end Periodize
+
+variable {N : Type*} [AddCommGroup N] [Module (Periodize ℬ) N]
+
+/-- A dg module structure on a `ℤ`-graded module `N` over the periodization of a `ℤ/2`-graded dg
+ring `(B, ℬ, dA)`: a differential `dN` of degree `1` with the signed Leibniz rule for the
+differential `DG.Periodize.dHom` of `Periodize ℬ`. This is `DG.DGModule` for the dg ring
+structure `DG.Periodize.dgAddCommGroup` (`DG.IsPeriodicDGModule.dgModule`,
+`DG.IsPeriodicDGModule.of_dgModule`).-/
+structure IsPeriodicDGModule (hA : IsZMod2DGRing ℬ dA) (𝒩 : ℤ → AddSubgroup N) (dN : N →+ N) :
+    Prop where
+  map_mem : ∀ {n : ℤ} {x : N}, x ∈ 𝒩 n → dN x ∈ 𝒩 (n + 1)
+  d_d : ∀ x, dN (dN x) = 0
+  d_smul : ∀ {n : ℤ} {p : Periodize ℬ}, p ∈ periodizeGrading ℬ n → ∀ x : N,
+    dN (p • x) = Periodize.dHom ℬ hA.toIsOddDifferential p • x + koszulSign n • (p • dN x)
+
+namespace IsPeriodicDGModule
+
+variable {hA : IsZMod2DGRing ℬ dA} {𝒩 : ℤ → AddSubgroup N} {dN : N →+ N}
+
+/-- The dg abelian group structure on `N` given by its grading and `dN`.-/
+@[instance_reducible]
+def dgAddCommGroup (hN : IsPeriodicDGModule hA 𝒩 dN) [Decomposition 𝒩] : DGAddCommGroup N where
+  grading := 𝒩
+  d := dN
+  d_mem' := hN.map_mem
+  d_d' := hN.d_d
+
+/--
+@isnad1 id=dgmodule.2h7v.s8.0f8651c64ab1 from=translated src=- shape=1d2ff17a vocab=ba1ef7b8
+-/
+theorem dgModule (hN : IsPeriodicDGModule hA 𝒩 dN) [Decomposition 𝒩]
+    [SetLike.GradedSMul (periodizeGrading ℬ) 𝒩] :
+    letI := Periodize.dgAddCommGroup ℬ hA.toIsOddDifferential
+    letI := hN.dgAddCommGroup
+    DGModule (Periodize ℬ) N :=
+  letI := Periodize.dgAddCommGroup ℬ hA.toIsOddDifferential
+  letI := hN.dgAddCommGroup
+  { toGradedSMul := inferInstanceAs (SetLike.GradedSMul (periodizeGrading ℬ) 𝒩)
+    d_smul' := fun hp x => hN.d_smul hp x }
+
+/--
+@isnad1 id=isperiod.4h7v.s9.c56841e32a04 from=translated src=- shape=1e453271 vocab=25601225
+-/
+theorem of_dgModule [Decomposition 𝒩] (hd : ∀ {n : ℤ} {x : N}, x ∈ 𝒩 n → dN x ∈ 𝒩 (n + 1))
+    (hdd : ∀ x, dN (dN x) = 0)
+    (h : letI := Periodize.dgAddCommGroup ℬ hA.toIsOddDifferential
+      letI : DGAddCommGroup N := ⟨𝒩, dN, hd, hdd⟩
+      DGModule (Periodize ℬ) N) : IsPeriodicDGModule hA 𝒩 dN where
+  map_mem := hd
+  d_d := hdd
+  d_smul := fun hp x => @DGModule.d_smul' _ _ _ _ _ _ _ h _ _ hp x
+
+end IsPeriodicDGModule
+
+namespace Periodize
+
+variable {M σ : Type*} [AddCommGroup M] [Module B M] [SetLike σ M] [AddSubgroupClass σ M]
+  {ℳ : ZMod 2 → σ} [SetLike.GradedSMul ℬ ℳ] {dM : M →+ M}
+
+end Periodize
+
+namespace Periodize
+
+variable {M σ : Type*} [AddCommGroup M] [Module B M] [SetLike σ M] [AddSubgroupClass σ M]
+  {ℳ : ZMod 2 → σ} [SetLike.GradedSMul ℬ ℳ] {dM : M →+ M}
+
+end Periodize
+
+end PeriodicDGModule
+
+/-! ### Differentials of degree `k` -/
+
+section Division
+
+variable {M σ : Type*} [AddCommGroup M] [SetLike σ M] [AddSubgroupClass σ M]
+
+/-- A differential of degree `k` on a `ℤ`-graded abelian group: an additive map `d` with
+`d (Mⁿ) ⊆ Mⁿ⁺ᵏ` and `d ∘ d = 0`.-/
+structure IsDifferentialOfDegree (ℳ : ℤ → σ) (k : ℤ) (d : M →+ M) : Prop where
+  map_mem : ∀ {n : ℤ} {m : M}, m ∈ ℳ n → d m ∈ ℳ (n + k)
+  d_d : ∀ m, d (d m) = 0
+
+variable {A τ : Type*} [Ring A] [SetLike τ A] [AddSubgroupClass τ A]
+
+/-- A differential `d` of degree `k` on a `ℤ`-graded ring `A` satisfying the Leibniz rule
+`d (a * b) = d a * b + (-1)^q • (a * d b)` for `a` homogeneous of degree `q * k`, i.e. with the
+sign `(-1)^{|a| / k}` of the *regraded* degree. No condition is imposed on elements of degree
+not divisible by `k`. This is exactly what makes the residue-`0` part `⨁ q, A^{q k}` a dg ring
+(`DG.RegradeByDivision.dgRing`).-/
+structure IsDivDGRing (𝒜 : ℤ → τ) (k : ℤ) (d : A →+ A) : Prop
+    extends IsDifferentialOfDegree 𝒜 k d where
+  d_mul : ∀ {q : ℤ} {a : A}, a ∈ 𝒜 (q * k) → ∀ b : A,
+    d (a * b) = d a * b + koszulSign q • (a * d b)
+
+/-- A differential `dM` of degree `k` on a `ℤ`-graded module `M` over a `ℤ`-graded ring
+`(A, 𝒜, dA)`, satisfying `dM (a • m) = dA a • m + (-1)^q • (a • dM m)` for `a` homogeneous of
+degree `q * k`.-/
+structure IsDivDGModule [Module A M] (𝒜 : ℤ → τ) (k : ℤ) (dA : A →+ A) (ℳ : ℤ → σ)
+    (dM : M →+ M) : Prop extends IsDifferentialOfDegree ℳ k dM where
+  d_smul : ∀ {q : ℤ} {a : A}, a ∈ 𝒜 (q * k) → ∀ m : M,
+    dM (a • m) = dA a • m + koszulSign q • (a • dM m)
+
+namespace RegradeByDivision
+
+variable {ℳ : ℤ → σ} {k r : ℤ} {d : M →+ M}
+
+/--
+@isnad1 id=eq.1h8v.s7.f74349a75214 from=translated src=- shape=c2561fdc vocab=1412a55f
+-/
+theorem mk_zsmul (q : ℤ) (z : ℤ) {m : M} (hm : m ∈ ℳ (q * k + r)) :
+    mk ℳ k r q (z • m) (zsmul_mem hm z) = z • mk ℳ k r q m hm :=
+  map_zsmul (DirectSum.of (fun q => ↥(divGrading ℳ k r q)) q) z ⟨m, hm⟩
+
+/--
+@isnad1 id=eq.1h8v.s7.be98474e77f6 from=translated src=- shape=b2f4dc09 vocab=a5009889
+-/
+theorem mk_units_smul (q : ℤ) (z : ℤˣ) {m : M} (hm : m ∈ ℳ (q * k + r)) :
+    mk ℳ k r q (z • m) (by rw [Units.smul_def]; exact zsmul_mem hm _) = z • mk ℳ k r q m hm :=
+  (mk_congr rfl (Units.smul_def z m) _ (zsmul_mem hm _)).trans
+    ((mk_zsmul q (z : ℤ) hm).trans (Units.smul_def z _).symm)
+
+/--
+@isnad1 id=eq.6h11v.s8.56a63ee28a47 from=translated src=- shape=62f74581 vocab=f19775e3
+-/
+theorem mk_eq_add {q q₁ q₂ : ℤ} (h₁ : q₁ = q) (h₂ : q₂ = q) {m m₁ m₂ : M} (h : m = m₁ + m₂)
+    (hm : m ∈ ℳ (q * k + r)) (hm₁ : m₁ ∈ ℳ (q₁ * k + r)) (hm₂ : m₂ ∈ ℳ (q₂ * k + r)) :
+    mk ℳ k r q m hm = mk ℳ k r q₁ m₁ hm₁ + mk ℳ k r q₂ m₂ hm₂ := by
+  subst h₁ h₂ h; exact mk_add _ _ _
+
+omit [AddSubgroupClass σ M] in
+/--
+@isnad1 id=mem.2h8v.s7.f0d94dbbdd69 from=translated src=- shape=54593799 vocab=d6e4f9cf
+-/
+theorem map_mem_succ (hd : IsDifferentialOfDegree ℳ k d) {q : ℤ} {m : M} (hm : m ∈ ℳ (q * k + r)) :
+    d m ∈ ℳ ((q + 1) * k + r) := by
+  have := hd.map_mem hm
+  rwa [show q * k + r + k = (q + 1) * k + r by ring] at this
+
+variable (ℳ k r)
+
+/-- The differential of degree `1` on `RegradeByDivision ℳ k r` induced by a differential of
+degree `k` on `ℳ`: it sends `m ∈ ℳ (q * k + r)`, placed in degree `q`, to
+`d m ∈ ℳ ((q + 1) * k + r)`, placed in degree `q + 1`.-/
+def dHom (hd : IsDifferentialOfDegree ℳ k d) : RegradeByDivision ℳ k r →+ RegradeByDivision ℳ k r :=
+  DirectSum.toAddMonoid fun q =>
+    (DirectSum.of (fun q => ↥(divGrading ℳ k r q)) (q + 1)).comp
+      ((d.comp (AddSubmonoidClass.subtype (divGrading ℳ k r q))).codRestrict _ fun m =>
+        map_mem_succ hd m.2)
+
+variable {ℳ k r}
+
+/--
+@isnad1 id=eq.2h8v.s9.b63065597baf from=translated src=- shape=6a6d7c5f vocab=3601932e
+-/
+theorem dHom_mk (hd : IsDifferentialOfDegree ℳ k d) (q : ℤ) (m : M) (hm : m ∈ ℳ (q * k + r)) :
+    dHom ℳ k r hd (mk ℳ k r q m hm) = mk ℳ k r (q + 1) (d m) (map_mem_succ hd hm) :=
+  DirectSum.toAddMonoid_of (β := fun q => ↥(divGrading ℳ k r q)) _ q ⟨m, hm⟩
+
+/--
+@isnad1 id=eq.1h7v.s10.fb899717ce17 from=translated src=- shape=199e8cb1 vocab=a20a5d80
+-/
+theorem dHom_dHom (hd : IsDifferentialOfDegree ℳ k d) (x : RegradeByDivision ℳ k r) :
+    dHom ℳ k r hd (dHom ℳ k r hd x) = 0 := by
+  induction x using induction_on with
+  | zero => simp
+  | mk q m hm =>
+    rw [dHom_mk, dHom_mk]
+    exact (mk_congr rfl (hd.d_d m) _ (zero_mem _)).trans (mk_zero _)
+  | add x y hx hy => rw [map_add, map_add, hx, hy, add_zero]
+
+variable (ℳ k r)
+
+/-- `RegradeByDivision ℳ k r` as a dg abelian group, for a differential of degree `k` on `ℳ`.
+Not an instance, since it depends on the choice of `d`.-/
+@[instance_reducible]
+def dgAddCommGroup (hd : IsDifferentialOfDegree ℳ k d) :
+    DGAddCommGroup (RegradeByDivision ℳ k r) where
+  grading := regradeGrading ℳ k r
+  d := dHom ℳ k r hd
+  d_mem' := by
+    intro q x hx
+    obtain ⟨m, hm, rfl⟩ := mem_regradeGrading_iff.mp hx
+    rw [dHom_mk]; exact mk_mem _ _
+  d_d' := dHom_dHom hd
+
+end RegradeByDivision
+
+section Residue
+
+variable (ℳ : ℤ → σ) [Decomposition ℳ] (k : ℕ) [NeZero k] {d : M →+ M}
+
+end Residue
+
+namespace RegradeByDivision
+
+section Ring
+
+variable {𝒜 : ℤ → τ} [SetLike.GradedMonoid 𝒜] {k : ℤ} {d : A →+ A}
+
+omit [Ring A] [AddSubgroupClass τ A] [SetLike.GradedMonoid 𝒜] in
+/--
+@isnad1 id=mem.1h6v.s6.6c4d17a27e1f from=translated src=- shape=94ba8fa9 vocab=205d7159
+-/
+theorem mem_of_mem_mul_add_zero {q : ℤ} {a : A} (ha : a ∈ 𝒜 (q * k + 0)) : a ∈ 𝒜 (q * k) := by
+  rwa [add_zero] at ha
+
+set_option backward.isDefEq.respectTransparency false in
+/-- **The residue-`0` part is a dg ring.** For a differential `d` of degree `k` on a `ℤ`-graded
+ring `A` satisfying the Leibniz rule with the sign `(-1)^{|a| / k}` on elements of degree
+divisible by `k`, `⨁ q, A^{q k}` is a dg ring for the induced differential of degree `1`.
+@isnad1 id=dgring.1h5v.s7.e1f578e1eafb from=translated src=- shape=104f4c27 vocab=33b95ea8
+-/
+theorem dgRing (hd : IsDivDGRing 𝒜 k d) :
+    letI := dgAddCommGroup 𝒜 k 0 hd.toIsDifferentialOfDegree
+    DGRing (RegradeByDivision 𝒜 k 0) :=
+  letI := dgAddCommGroup 𝒜 k 0 hd.toIsDifferentialOfDegree
+  { toGradedMonoid := inferInstanceAs (SetLike.GradedMonoid (regradeGrading 𝒜 k 0))
+    d_mul' := by
+      intro q x hx y
+      change dHom 𝒜 k 0 _ (x * y) = dHom 𝒜 k 0 _ x * y + koszulSign q • (x * dHom 𝒜 k 0 _ y)
+      obtain ⟨a, ha, rfl⟩ := mem_regradeGrading_iff.mp hx
+      induction y using induction_on with
+      | zero => simp
+      | mk p b hb =>
+        rw [mk_mul_mk, dHom_mk, dHom_mk, dHom_mk, mk_mul_mk, mk_mul_mk, ← mk_units_smul]
+        exact mk_eq_add (by ring) (by ring) (hd.d_mul (mem_of_mem_mul_add_zero ha) b) _ _ _
+      | add y y' hy hy' =>
+        rw [mul_add, map_add, hy, hy', map_add, mul_add, mul_add, smul_add]
+        abel }
+
+end Ring
+
+section Module
+
+variable {𝒜 : ℤ → τ} [SetLike.GradedMonoid 𝒜] {k : ℤ} {dA : A →+ A}
+variable [Module A M] {ℳ : ℤ → σ} [SetLike.GradedSMul 𝒜 ℳ] {dM : M →+ M}
+
+end Module
+
+end RegradeByDivision
+
+end Division
+
+end DG
