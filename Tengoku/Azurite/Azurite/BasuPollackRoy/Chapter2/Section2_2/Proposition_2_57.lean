@@ -286,7 +286,9 @@ private lemma jumpsFromPosInfToNegInf_derivative_iff_neg
     intermediate value property, the Tarski-query of `Q` for `P` on the
     open interval `(a, b)` equals the Cauchy index of `P' · Q / P` on
     the same interval:
-    `TaQ(Q, P; a, b) = Ind(P' · Q / P; a, b)`.-/
+    `TaQ(Q, P; a, b) = Ind(P' · Q / P; a, b)`.
+@isnad1 id=eq.2h5v.s8.2a335e5c08b5 from=translated src=- shape=9ba49daf vocab=54effa20
+-/
 theorem proposition_2_57
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (Q P : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R) :
@@ -319,7 +321,9 @@ open Classical in
 /-- **Corollary of Proposition 2.57.** Specialising `Q = 1`, the Tarski-query
     `TaQ(1, P; a, b)` is just the number of distinct roots of `P` in
     `(a, b)`, so the number of distinct roots of `P` in `(a, b)` equals
-    `Ind(P'/P; a, b)`.-/
+    `Ind(P'/P; a, b)`.
+@isnad1 id=eq.2h4v.s8.dcb638c9e5c4 from=translated src=- shape=3d09b13a vocab=71bef578
+-/
 theorem cauchyIndexOn_derivative_self_eq_card_roots_in_openInterval
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R) :

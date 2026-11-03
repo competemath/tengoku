@@ -46,6 +46,9 @@ theorem puiseuxOrder_neg (a : PuiseuxSeries K) : puiseuxOrder K (-a) = puiseuxOr
   show HahnSeries.orderTop ((-a : PuiseuxSeries K) : HahnSeries ℚ K) = HahnSeries.orderTop _
   rw [NegMemClass.coe_neg, HahnSeries.orderTop_neg]
 
+/--
+@isnad1 id=ne.1h2v.s9.e9575b086598 from=translated src=- shape=a82b6e4b vocab=a0e89762
+-/
 theorem puiseuxOrder_ne_top {x : PuiseuxSeries K} (hx : x ≠ 0) : puiseuxOrder K x ≠ ⊤ := by
   rw [puiseuxOrder, Ne, HahnSeries.orderTop_eq_top]; simpa using hx
 
@@ -95,7 +98,9 @@ noncomputable def puiseuxBounded (K : Type*) [Field K] : ValuationSubring (algeb
       · exact Or.inl hp
       · right; linarith
 
-/-- Membership in `K⟨ε⟩_b` is exactly non-negative order.-/
+/-- Membership in `K⟨ε⟩_b` is exactly non-negative order.
+@isnad1 id=iff.0h2v.s13.f25abb60784a from=translated src=- shape=c9715376 vocab=98024594
+-/
 @[simp] theorem mem_puiseuxBounded {y : algebraicPuiseux K} :
     y ∈ puiseuxBounded K ↔ 0 ≤ puiseuxOrder K (y : PuiseuxSeries K) := Iff.rfl
 

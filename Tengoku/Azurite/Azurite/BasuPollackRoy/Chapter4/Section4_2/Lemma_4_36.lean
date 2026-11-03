@@ -53,7 +53,9 @@ private theorem dropWhile_map {α β : Type*} (f : α → β) (p : β → Bool) 
 
 /-- **`PmV` is invariant under scaling by a nonzero constant.** Multiplying every
 entry of `s` by `c ≠ 0` preserves the zero pattern and all sign products
-`sign(s_i s_j)`, so `PmV` is unchanged.-/
+`sign(s_i s_j)`, so `PmV` is unchanged.
+@isnad1 id=eq.1h3v.s6.70228e51df4e from=translated src=- shape=0d36c82a vocab=26a04a58
+-/
 theorem PmV_smul {c : K} (hc : c ≠ 0) :
     ∀ l : List K, PmV (l.map (fun x => c * x)) = PmV l
   | [] => by simp
@@ -85,7 +87,9 @@ theorem PmV_smul {c : K} (hc : c ≠ 0) :
 omit [IsStrictOrderedRing K] in
 /-- **`PmV` gap-cons.** For `a` followed by a run of zeros and then a nonzero `b`:
 the recursion skips the zeros, so `PmV(a :: 0…0 :: b :: rest) = PmV(b :: rest) +
-[gap odd] ε_gap · sign(a·b)`, where `gap = #zeros + 1`.-/
+[gap odd] ε_gap · sign(a·b)`, where `gap = #zeros + 1`.
+@isnad1 id=eq.2h5v.s8.040dee05927a from=translated src=- shape=a621c1e9 vocab=ca16b0af
+-/
 theorem PmV_cons_zeros (a : K) (zeros : List K) (hz : ∀ x ∈ zeros, x = 0)
     (b : K) (hb : b ≠ 0) (rest : List K) :
     PmV (a :: (zeros ++ b :: rest)) = PmV (b :: rest) +
@@ -110,7 +114,9 @@ theorem PmV_cons_zeros (a : K) (zeros : List K) (hz : ∀ x ∈ zeros, x = 0)
 
 /-- **`sRes_q(P, Q) = ε_{p-q}·b_q^{p-q}`.** For `q < p`, the `j = q` Sylvester-Habicht
 square consists only of `Q`-shift rows `X^0 Q, …, X^{p-q-1} Q`, a `b_q`-anti-triangular
-matrix; reversing columns makes it lower-triangular with diagonal `b_q`.-/
+matrix; reversing columns makes it lower-triangular with diagonal `b_q`.
+@isnad1 id=eq.2h3v.s7.291f34455967 from=translated src=- shape=9ea85086 vocab=fb6ec992
+-/
 theorem sRes_q_eq (P Q : K[X]) (hQ : Q ≠ 0) (hqp : Q.natDegree < P.natDegree) :
     sRes P Q Q.natDegree = ((ε (P.natDegree - Q.natDegree) : ℤ) : K) *
       Q.leadingCoeff ^ (P.natDegree - Q.natDegree) := by
@@ -175,6 +181,9 @@ noncomputable def partialSeq (P Q : K[X]) (a : ℕ) : List K :=
   (List.range (a + 1)).map (fun j => sRes P Q (a - j))
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
+/--
+@isnad1 id=eq.0h4v.s6.41c1a5346b7c from=translated src=- shape=fd20b313 vocab=14c3c525
+-/
 theorem partialSeq_succ (P Q : K[X]) (a : ℕ) :
     partialSeq P Q (a + 1) = sRes P Q (a + 1) :: partialSeq P Q a := by
   unfold partialSeq
@@ -188,6 +197,9 @@ theorem partialSeq_succ (P Q : K[X]) (a : ℕ) :
   omega
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
+/--
+@isnad1 id=eq.0h5v.s6.e487af65eab8 from=translated src=- shape=2b5c5b89 vocab=393b7873
+-/
 theorem partialSeq_split (P Q : K[X]) (b d : ℕ) :
     partialSeq P Q (b + d) =
       ((List.range d).map (fun i => sRes P Q (b + d - i))) ++ partialSeq P Q b := by
@@ -205,13 +217,17 @@ theorem partialSeq_split (P Q : K[X]) (b d : ℕ) :
     omega
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
-/-- `sRes_j(P, Q) = 0` for `q < j < p` (the defective subresultants in the gap).-/
+/-- `sRes_j(P, Q) = 0` for `q < j < p` (the defective subresultants in the gap).
+@isnad1 id=eq.2h4v.s6.930fdcfc98e3 from=translated src=- shape=22f80c0d vocab=49bf1c3f
+-/
 theorem sRes_eq_zero_of_gap (P Q : K[X]) {j : ℕ} (hqj : Q.natDegree < j)
     (hjp : j < P.natDegree) : sRes P Q j = 0 := by
   rw [sRes, ite_eq_right (by omega), ite_eq_left (lt_trans hqj hjp), ite_eq_right (by omega)]
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
-/-- `partialSeq P Q b` has head `sRes_b`.-/
+/-- `partialSeq P Q b` has head `sRes_b`.
+@isnad1 id=eq.0h4v.s6.b1408fb9d14b from=translated src=- shape=26edb6ef vocab=5372cae9
+-/
 theorem partialSeq_eq_cons (P Q : K[X]) (b : ℕ) :
     partialSeq P Q b = sRes P Q b :: (List.range b).map (fun j => sRes P Q (b - 1 - j)) := by
   unfold partialSeq
@@ -226,7 +242,9 @@ theorem partialSeq_eq_cons (P Q : K[X]) (b : ℕ) :
 
 omit [IsStrictOrderedRing K] in
 /-- **`PmV` bridge across a gap of zeros.** If `sRes_b ≠ 0` and `sRes_j = 0` for
-`b < j < a`, then `PmV(partialSeq a) = PmV(partialSeq b) + [a−b odd] ε_{a-b}·sign(sRes_a·sRes_b)`.-/
+`b < j < a`, then `PmV(partialSeq a) = PmV(partialSeq b) + [a−b odd] ε_{a-b}·sign(sRes_a·sRes_b)`.
+@isnad1 id=eq.3h5v.s8.5de37f64c499 from=translated src=- shape=d7924ecb vocab=b06d206c
+-/
 theorem PmV_partialSeq_bridge (P Q : K[X]) {a b : ℕ} (hba : b < a)
     (hsb : sRes P Q b ≠ 0)
     (hzero : ∀ j, b < j → j < a → sRes P Q j = 0) :
@@ -247,29 +265,42 @@ theorem PmV_partialSeq_bridge (P Q : K[X]) {a b : ℕ} (hba : b < a)
 
 /-! ### Sign helpers and the main lemma -/
 
+/--
+@isnad1 id=or.0h1v.s4.2b3825c80640 from=translated src=- shape=af53c325 vocab=41253def
+-/
 theorem ε_eq_one_or_neg_one (n : ℕ) : ε n = 1 ∨ ε n = -1 := by
   unfold ε
   rcases Nat.even_or_odd (n * (n - 1) / 2) with he | ho
   · exact Or.inl he.neg_one_pow
   · exact Or.inr ho.neg_one_pow
 
+/--
+@isnad1 id=eq.0h2v.s7.f14e94beacd2 from=translated src=- shape=11c52157 vocab=f0d195ee
+-/
 theorem sign_eps (n : ℕ) : (SignType.sign ((ε n : ℤ) : K) : ℤ) = ε n := by
   rcases ε_eq_one_or_neg_one n with h | h
   · rw [h, Int.cast_one, sign_one]; decide
   · rw [h, show ((-1 : ℤ) : K) = -1 by norm_num, sign_neg (by norm_num)]; decide
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
-/-- `(ε_n : K) ≠ 0`.-/
+/-- `(ε_n : K) ≠ 0`.
+@isnad1 id=ne.0h2v.s5.b4d9558f56a8 from=translated src=- shape=c4db7b3d vocab=19325439
+-/
 theorem eps_cast_ne (n : ℕ) : ((ε n : ℤ) : K) ≠ 0 := by
   rcases ε_eq_one_or_neg_one n with h | h <;> rw [h] <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s8.3bc25c60dd5f from=translated src=- shape=1b17858c vocab=e0891c8a
+-/
 theorem sign_pow_cast (x : K) (m : ℕ) :
     (SignType.sign (x ^ m) : ℤ) = (SignType.sign x : ℤ) ^ m := by
   induction m with
   | zero => simp
   | succ n ih => rw [pow_succ, sign_mul, SignType.coe_mul, ih, ← pow_succ]
 
-/-- For `x ≠ 0` and `m` odd, `sign(x^m) = sign x` (in `ℤ`).-/
+/-- For `x ≠ 0` and `m` odd, `sign(x^m) = sign x` (in `ℤ`).
+@isnad1 id=eq.2h3v.s8.4df93ea03d6b from=translated src=- shape=5d2e7bd5 vocab=7e547894
+-/
 theorem sign_pow_odd (x : K) (hx : x ≠ 0) {m : ℕ} (hm : Odd m) :
     (SignType.sign (x ^ m) : ℤ) = (SignType.sign x : ℤ) := by
   rw [sign_pow_cast]
@@ -284,7 +315,9 @@ theorem sign_pow_odd (x : K) (hx : x ≠ 0) {m : ℕ} (hm : Odd m) :
 /-- **BPR Lemma 4.36.** `PmV(sRes(P, Q)) = PmV(sRes(Q, −R)) + [p−q odd]·sign(a_p b_q)`,
 with `R = P % Q`. The PmV-version of the Euclidean-step recursion (Lemma 4.35),
 proved by bridging the subresultant sequences across their degree gaps
-(Proposition 4.37) and the determinant value `sRes_q = ε_{p-q}b_q^{p-q}`.-/
+(Proposition 4.37) and the determinant value `sRes_q = ε_{p-q}b_q^{p-q}`.
+@isnad1 id=eq.4h3v.s9.bba2eff782ba from=translated src=- shape=e16a1026 vocab=81d69b59
+-/
 theorem lemma_4_36 (P Q : K[X]) (hQ : Q ≠ 0) (hR : P % Q ≠ 0)
     (hrq : (P % Q).natDegree < Q.natDegree) (hqp : Q.natDegree < P.natDegree) :
     PmV (sResSeq P Q) = PmV (sResSeq Q (-(P % Q)))

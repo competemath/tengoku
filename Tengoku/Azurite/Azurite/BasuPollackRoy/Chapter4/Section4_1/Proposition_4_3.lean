@@ -46,7 +46,9 @@ open scoped Classical
 variable {K : Type*} [Field K] {C : Type*} [Field C] [Algebra K C] [IsAlgClosed C]
 
 /-- Count of `(a, b)` in the Cartesian product of multisets equals
-    the product of individual counts.-/
+    the product of individual counts.
+@isnad1 id=eq.0h6v.s6.1edf1c68d495 from=translated src=- shape=0f387ec8 vocab=780832e1
+-/
 lemma count_product_eq {α β : Type*} [DecidableEq α] [DecidableEq β]
     (s : Multiset α) (t : Multiset β) (a : α) (b : β) :
     (s ×ˢ t).count (a, b) = s.count a * t.count b := by
@@ -75,7 +77,9 @@ lemma count_product_eq {α β : Type*} [DecidableEq α] [DecidableEq β]
       ring
 
 /-- The diagonal map `y ↦ (y, y)` is injective, so the count of `(a, a)`
-    in `s.map (·, ·)` equals `s.count a`.-/
+    in `s.map (·, ·)` equals `s.count a`.
+@isnad1 id=eq.0h3v.s5.769669945644 from=translated src=- shape=169f59d0 vocab=d6e9be8c
+-/
 lemma count_diag_map {α : Type*} [DecidableEq α] (s : Multiset α) (a : α) :
     (s.map (fun y => ((y, y) : α × α))).count (a, a) = s.count a := by
   apply Multiset.count_map_eq_count' _ _ ?_ a
@@ -85,7 +89,9 @@ lemma count_diag_map {α : Type*} [DecidableEq α] (s : Multiset α) (a : α) :
 omit [IsAlgClosed C] in
 /-- The off-diagonal product over `s ×ˢ s` vanishes iff `s` has a duplicate.
     This is the "clear from the definition" step in BPR's proof of
-    Proposition 4.3: `Disc(P) = 0` iff `P` has a multiple root in `C`.-/
+    Proposition 4.3: `Disc(P) = 0` iff `P` has a multiple root in `C`.
+@isnad1 id=iff.0h3v.s7.5029c3748abe from=translated src=- shape=6ddff5b4 vocab=33417bc6
+-/
 theorem offdiag_prod_eq_zero_iff (P : K[X]) :
     (((P.aroots C ×ˢ P.aroots C - (P.aroots C).map (fun a => (a, a))).map
         (fun ab : C × C => ab.1 - ab.2)).prod = 0)
@@ -122,7 +128,9 @@ theorem offdiag_prod_eq_zero_iff (P : K[X]) :
 
     Per BPR: "It is clear from the definition that `Disc(P) = 0` iff `P` has a
     multiple root in `C`." The "multiple root iff `gcd(P, P')` is non-constant"
-    half is the standard separability/coprimality bridge.-/
+    half is the standard separability/coprimality bridge.
+@isnad1 id=iff.1h3v.s8.8e98db521669 from=translated src=- shape=0888aa35 vocab=7f15e776
+-/
 theorem disc_eq_zero_iff (P : K[X]) (hP : P.Monic) :
     (disc P : C) = 0 ↔ 0 < (EuclideanDomain.gcd P P.derivative).natDegree := by
   have hP_ne : P ≠ 0 := hP.ne_zero

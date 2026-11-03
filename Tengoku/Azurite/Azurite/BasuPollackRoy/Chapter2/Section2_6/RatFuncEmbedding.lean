@@ -39,7 +39,9 @@ inclusion `puiseuxEmb F 1 : K((ε)) → K⟨⟨ε⟩⟩` (`ε^{1/1} = ε`), real
 -/
 
 /-- The Laurent expansion of a rational function, viewed in `K⟨⟨ε⟩⟩` (it is a Laurent series in
-`ε^{1/1} = ε`).-/
+`ε^{1/1} = ε`).
+@isnad1 id=mem.0h2v.s9.a1d7e506187b from=translated src=- shape=01513a71 vocab=135dd5c8
+-/
 theorem coe_mem_puiseuxSeries (r : RatFunc F) :
     puiseuxEmb F 1 (r : LaurentSeries F) ∈ PuiseuxSeries F := by
   rw [mem_puiseuxSeries_iff]
@@ -49,19 +51,34 @@ theorem coe_mem_puiseuxSeries (r : RatFunc F) :
 noncomputable def ratFuncToPuiseux (r : RatFunc F) : PuiseuxSeries F :=
   ⟨puiseuxEmb F 1 (r : LaurentSeries F), coe_mem_puiseuxSeries r⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.d08af9f5f151 from=translated src=- shape=3ec2720d vocab=0bbf9a0d
+-/
 @[simp] theorem ratFuncToPuiseux_coe (r : RatFunc F) :
     (ratFuncToPuiseux r : HahnSeries ℚ F) = puiseuxEmb F 1 (r : LaurentSeries F) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.f2aa3165d033 from=translated src=- shape=3d032390 vocab=13f52b52
+-/
 theorem ratFuncToPuiseux_zero : ratFuncToPuiseux (0 : RatFunc F) = 0 := by
   apply Subtype.ext; simp
 
+/--
+@isnad1 id=eq.0h1v.s9.3f1a01689670 from=translated src=- shape=3d032390 vocab=13f52b52
+-/
 theorem ratFuncToPuiseux_one : ratFuncToPuiseux (1 : RatFunc F) = 1 := by
   apply Subtype.ext; simp [map_one]
 
+/--
+@isnad1 id=eq.0h3v.s10.640c8de5ca44 from=translated src=- shape=8e06c5c3 vocab=77728d30
+-/
 theorem ratFuncToPuiseux_add (r s : RatFunc F) :
     ratFuncToPuiseux (r + s) = ratFuncToPuiseux r + ratFuncToPuiseux s := by
   apply Subtype.ext; simp [Subfield.coe_add, map_add]
 
+/--
+@isnad1 id=eq.0h3v.s10.0e1463ec6fda from=translated src=- shape=8e06c5c3 vocab=295f0478
+-/
 theorem ratFuncToPuiseux_mul (r s : RatFunc F) :
     ratFuncToPuiseux (r * s) = ratFuncToPuiseux r * ratFuncToPuiseux s := by
   apply Subtype.ext; simp [Subfield.coe_mul, map_mul]
@@ -74,6 +91,9 @@ noncomputable def ratFuncToPuiseuxHom (F : Type*) [Field F] : RatFunc F →+* Pu
   map_zero' := ratFuncToPuiseux_zero
   map_add' := ratFuncToPuiseux_add
 
+/--
+@isnad1 id=eq.0h2v.s11.914cf99b52c9 from=translated src=- shape=ec7c6f22 vocab=1ee36672
+-/
 @[simp] theorem ratFuncToPuiseuxHom_apply (r : RatFunc F) :
     ratFuncToPuiseuxHom F r = ratFuncToPuiseux r := rfl
 

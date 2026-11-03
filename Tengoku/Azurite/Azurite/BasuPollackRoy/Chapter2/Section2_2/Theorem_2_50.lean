@@ -34,7 +34,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 open Classical in
 /-- **Tarski query with `Q = 1` counts `P`-roots in the interval.**
     Since `sign(1) = +1` everywhere, `TaQ(1, P; a, b)` collapses to
-    `#{x ∈ (a, b) | P(x) = 0}`.-/
+    `#{x ∈ (a, b) | P(x) = 0}`.
+@isnad1 id=eq.0h4v.s7.cabe9e3c7b14 from=translated src=- shape=63ddf9e1 vocab=74766df2
+-/
 theorem tarskiQueryOn_one_eq_card_roots (P : R[X]) (a b : ExtendedPoint R) :
     tarskiQueryOn 1 P a b =
       ((P.roots.toFinset.filter
@@ -66,7 +68,9 @@ open Classical in
 
     `Var(SRemS(P, P'); a, b) = #{distinct roots of P in (a, b)}`.
 
-    Immediate from BPR Theorem 2.61 with `Q = 1`.-/
+    Immediate from BPR Theorem 2.61 with `Q = 1`.
+@isnad1 id=eq.5h4v.s10.4e7657b1307e from=translated src=- shape=13100333 vocab=b63bf671
+-/
 theorem theorem_2_50
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R)

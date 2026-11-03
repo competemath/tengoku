@@ -83,7 +83,9 @@ noncomputable def discReal (P : R[X]) : R := by
     Reason: conjugation is an `R`-algebra automorphism of `Ri R`, so it
     fixes the coefficients of `P.map (algebraMap R (Ri R))`; combined
     with `Splits.roots_map_of_injective` (`P` splits in `Ri R` since it
-    is algebraically closed) the result follows.-/
+    is algebraically closed) the result follows.
+@isnad1 id=eq.0h2v.s11.1bdfed6b1852 from=translated src=- shape=69abef3b vocab=0f8c585b
+-/
 lemma aroots_map_conj (P : R[X]) :
     (P.aroots (Ri R)).map (Ri.conj R) = P.aroots (Ri R) := by
   classical
@@ -145,7 +147,9 @@ private lemma offdiag_pairs_map_conj (s : Multiset (Ri R))
 
 /-- **Conjugation invariance of `disc`.** For `P : R[X]` and `R` real
     closed, the C-side discriminant `disc P : Ri R` is fixed by
-    conjugation.-/
+    conjugation.
+@isnad1 id=eq.0h2v.s11.c80daac7c507 from=translated src=- shape=477dfc60 vocab=754f138e
+-/
 theorem disc_conj_invariant (P : R[X]) :
     (Ri.conj R) (disc P : Ri R) = (disc P : Ri R) := by
   classical
@@ -163,7 +167,9 @@ theorem disc_conj_invariant (P : R[X]) :
 
 /-- **`disc P : Ri R` is in the image of `algebraMap R (Ri R)`.** For
     `P : R[X]`, conjugation fixes `disc P`, hence by
-    `Ri.conj_fixed_mem_range_ordered` the value is real.-/
+    `Ri.conj_fixed_mem_range_ordered` the value is real.
+@isnad1 id=ex.0h2v.s11.1551490f407c from=translated src=- shape=5974f727 vocab=cd37c6a2
+-/
 theorem disc_mem_range_algebraMap (P : R[X]) :
     ∃ d : R, algebraMap R (Ri R) d = (disc P : Ri R) := by
   obtain ⟨d, hd⟩ := Ri.conj_fixed_mem_range_ordered (disc P : Ri R)
@@ -171,7 +177,9 @@ theorem disc_mem_range_algebraMap (P : R[X]) :
   exact ⟨d, hd⟩
 
 /-- **Bridge.** `algebraMap R (Ri R) (discReal P) = disc P` for any
-    `P : R[X]` over a real closed field `R`.-/
+    `P : R[X]` over a real closed field `R`.
+@isnad1 id=eq.0h2v.s11.df74d24cca9d from=translated src=- shape=1f4c4d16 vocab=cc11c8c2
+-/
 theorem algebraMap_discReal_eq_disc (P : R[X]) :
     algebraMap R (Ri R) (discReal P) = (disc P : Ri R) := by
   classical
@@ -1133,7 +1141,9 @@ omit [IsRealClosed R] in
     equals `(algebraMap R (Ri R)) ((-1)^{t(t-1)/2} · ω²)` where
     `t = linears.card`. The proof multiplies the four piece evaluations
     (`offdiag_LL_eq`, `offdiag_LQ_eq`, `offdiag_QL_eq_LQ`, `offdiag_QQ_eq`)
-    after applying the multiset partition `offdiag_multiset_partition`.-/
+    after applying the multiset partition `offdiag_multiset_partition`.
+@isnad1 id=eq.3h4v.s12.b13faa908814 from=translated src=- shape=0cda2b1c vocab=742e4624
+-/
 theorem offdiag_prod_eq_omega_sq (P : R[X])
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (hq_ne : ∀ pq ∈ quadratics, pq.2 ≠ 0)
@@ -1184,7 +1194,9 @@ omit [IsRealClosed R] in
     off-diagonal product) plus the arithmetic identity `N + N_t + s` even,
     where `N = p(p-1)/2`, `N_t = t(t-1)/2`, and `p = t + 2s` (so
     `N - N_t = s(2t + 2s - 1)` and the odd factor `2t + 2s - 1` reduces
-    parity to `s` modulo 2).-/
+    parity to `s` modulo 2).
+@isnad1 id=eq.4h4v.s11.6accda97aa82 from=translated src=- shape=64fcd9da vocab=0237fee3
+-/
 theorem vandermondeOmega_sq_eq (P : R[X]) (_hP : P.Monic)
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (hq_ne : ∀ pq ∈ quadratics, pq.2 ≠ 0)
@@ -1239,7 +1251,9 @@ omit [IsRealClosed R] in
     Each factor of `ω` is non-zero because the roots in `Ri R` are
     distinct: this forces all `y_i` distinct, each `d_j ≠ 0` (already
     from `hq_ne`), and each cross-difference `(c_α - c_β)² + (d_α ± d_β)²`
-    strictly positive in the real-closed `R`.-/
+    strictly positive in the real-closed `R`.
+@isnad1 id=ne.4h4v.s9.2088360f60dc from=translated src=- shape=f3bacff3 vocab=202d64d4
+-/
 theorem vandermondeOmega_ne_zero (P : R[X]) (_hP : P.Monic)
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (hq_ne : ∀ pq ∈ quadratics, pq.2 ≠ 0)
@@ -1376,7 +1390,9 @@ theorem vandermondeOmega_ne_zero (P : R[X]) (_hP : P.Monic)
 
 omit [IsRealClosed R] in
 /-- The Vandermonde "difference" `V` with the conjugation behaviour
-    needed for Proposition 4.5. Constructed as `V = i ^ s · ι(ω)`.-/
+    needed for Proposition 4.5. Constructed as `V = i ^ s · ι(ω)`.
+@isnad1 id=ex.4h4v.s11.4c0843346860 from=translated src=- shape=336b4d97 vocab=40064e69
+-/
 theorem exists_vandermonde_of_factorization (P : R[X]) (hP : P.Monic)
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (hq_ne : ∀ pq ∈ quadratics, pq.2 ≠ 0)
@@ -1427,7 +1443,9 @@ theorem exists_vandermonde_of_factorization (P : R[X]) (hP : P.Monic)
     with `p = deg P` distinct roots in `Ri R`, the sign of `discReal P`
     matches the parity of the number of irreducible quadratic factors
     `s` in BPR's real-closed factorisation of `P`:
-    `discReal P > 0 ↔ Even s` and `discReal P < 0 ↔ Odd s`.-/
+    `discReal P > 0 ↔ Even s` and `discReal P < 0 ↔ Odd s`.
+@isnad1 id=and.4h4v.s9.19476909cffb from=translated src=- shape=c18b31e0 vocab=b44e6c81
+-/
 theorem sign_discReal_of_factorization (P : R[X]) (hP : P.Monic)
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (hq_ne : ∀ pq ∈ quadratics, pq.2 ≠ 0)
@@ -1585,7 +1603,9 @@ private lemma natDegree_multiset_prod_of_monic
 
 omit [IsRealClosed R] in
 /-- Degree formula: for the BPR real-closed factorisation, `natDegree P
-    equals `linears.card + 2 · quadratics.card`.-/
+    equals `linears.card + 2 · quadratics.card`.
+@isnad1 id=eq.1h4v.s7.be9cac964e8a from=translated src=- shape=9c16386f vocab=9d005f77
+-/
 lemma natDegree_eq_of_factorization
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (P : R[X])
@@ -1732,7 +1752,9 @@ private lemma roots_eq_linears_of_factorization
     * `0 < discReal P ↔ t ≡ p (mod 4)`,
     * `discReal P < 0 ↔ t + 2 ≡ p (mod 4)`.
 
-    Reformulated: the sign of `discReal P` is `(-1)^s`, where `p - t = 2s`.-/
+    Reformulated: the sign of `discReal P` is `(-1)^s`, where `p - t = 2s`.
+@isnad1 id=and.4h4v.s9.9ff30a9129e8 from=translated src=- shape=b4309100 vocab=00b8902b
+-/
 theorem proposition_4_5_of_factorization (P : R[X]) (hP : P.Monic)
     (linears : Multiset R) (quadratics : Multiset (R × R))
     (hq_ne : ∀ pq ∈ quadratics, pq.2 ≠ 0)
@@ -1780,7 +1802,9 @@ theorem proposition_4_5_of_factorization (P : R[X]) (hP : P.Monic)
     This is the BPR-faithful form: only the monic + nodup-in-`Ri R`
     hypotheses are needed; the BPR real-closed factorisation is obtained
     internally via `Factorization.exists_factorization`, and the number
-    of `R`-roots `t` matches the count of linear factors.-/
+    of `R`-roots `t` matches the count of linear factors.
+@isnad1 id=and.2h2v.s9.fac35360bf64 from=translated src=- shape=d9cf9b2d vocab=0dac2908
+-/
 theorem proposition_4_5 (P : R[X]) (hP : P.Monic)
     (hnodup : (P.aroots (Ri R)).Nodup) :
     (0 < discReal P ↔ P.roots.card ≡ P.natDegree [MOD 4]) ∧

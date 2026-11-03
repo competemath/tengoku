@@ -101,7 +101,9 @@ private theorem Syl_eq_sylvester_T_submatrix_rev (P Q : D[X]) :
     · rfl
 
 /-- **Bridge.** Our `Res` agrees with Mathlib's `Polynomial.resultant`
-    evaluated at the polynomials' natural degrees.-/
+    evaluated at the polynomials' natural degrees.
+@isnad1 id=eq.0h3v.s5.2c59193ccf96 from=translated src=- shape=fc6ff32c vocab=d845d4bc
+-/
 theorem Res_eq_resultant (P Q : D[X]) :
     Res P Q = Polynomial.resultant P Q P.natDegree Q.natDegree := by
   unfold Res Polynomial.resultant

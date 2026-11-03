@@ -41,13 +41,17 @@ open scoped Classical TensorProduct
 variable {k : ℕ} {K : Type*} [Field K] (C : Type*) [Field C] [Algebra K C]
 
 /-- **`Ā ≅ C ⊗_K A` as `C`-algebras.** Tensoring `A = K[X]/Ideal(𝒫,K)` up to `C` and identifying
-`C ⊗_K K[X]` with `C[X]` (under which the extended ideal becomes `Ideal(𝒫,C)`) yields `Ā`.-/
+`C ⊗_K K[X]` with `C[X]` (under which the extended ideal becomes `Ideal(𝒫,C)`) yields `Ā`.
+@isnad1 id=eq.0h4v.s11.520f9a2ce099 from=translated src=- shape=bd139883 vocab=dac04f11
+-/
 theorem algebraTensorAlgEquiv_includeRight (P : MvPolynomial (Fin k) K) :
     (algebraTensorAlgEquiv K C) (Algebra.TensorProduct.includeRight P)
       = MvPolynomial.map (algebraMap K C) P := by
   rw [Algebra.TensorProduct.includeRight_apply, MvPolynomial.algebraTensorAlgEquiv_tmul, one_smul]
 
-/-- The extended ideal is the image of the base-changed ideal under `C ⊗_K K[X] ≅ C[X]`.-/
+/-- The extended ideal is the image of the base-changed ideal under `C ⊗_K K[X] ≅ C[X]`.
+@isnad1 id=eq.0h4v.s11.d78af66f60f7 from=translated src=- shape=8fae2f3d vocab=2ebbadd0
+-/
 theorem idealOfPolysExt_eq_map_tensor (Ps : Finset (MvPolynomial (Fin k) K)) :
     idealOfPolysExt C Ps
       = Ideal.map (algebraTensorAlgEquiv K C)
@@ -66,7 +70,9 @@ noncomputable def algEquivExt (Ps : Finset (MvPolynomial (Fin k) K)) :
 
 /-- **BPR Lemma 4.88.** `A = K[X]/Ideal(𝒫,K)` is finite-dimensional of dimension `m` over `K` if
 and only if `Ā = C[X]/Ideal(𝒫,C)` is finite-dimensional of dimension `m` over `C`: the dimensions
-agree, and one is finite-dimensional exactly when the other is.-/
+agree, and one is finite-dimensional exactly when the other is.
+@isnad1 id=and.0h4v.s10.88b0ed147ae1 from=translated src=- shape=d62258c7 vocab=f14a9e85
+-/
 theorem lemma_4_88 (Ps : Finset (MvPolynomial (Fin k) K)) :
     Module.finrank K (quotPolys Ps) = Module.finrank C (quotPolysExt C Ps) ∧
       (FiniteDimensional K (quotPolys Ps) ↔ FiniteDimensional C (quotPolysExt C Ps)) := by

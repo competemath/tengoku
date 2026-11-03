@@ -37,7 +37,9 @@ namespace Azurite.BPR
 open HahnSeries
 
 /-- **Functoriality of `embDomain`**: embedding along `e₁` then `e₂` is embedding along
-`e₁.trans e₂`. (Not in Mathlib.)-/
+`e₁.trans e₂`. (Not in Mathlib.)
+@isnad1 id=eq.0h7v.s7.a6ea89186723 from=translated src=- shape=dbd2112f vocab=53cf2043
+-/
 theorem embDomain_trans {Γ Γ' Γ'' R : Type*} [PartialOrder Γ] [PartialOrder Γ'] [PartialOrder Γ'']
     [Zero R] (e₁ : Γ ↪o Γ') (e₂ : Γ' ↪o Γ'') (x : HahnSeries Γ R) :
     embDomain (e₁.trans e₂) x = embDomain e₂ (embDomain e₁ x) := by
@@ -68,9 +70,15 @@ def puiseuxExpHom (q : ℕ+) : ℤ →+ ℚ where
   map_zero' := by simp
   map_add' a b := by push_cast; ring
 
+/--
+@isnad1 id=eq.0h2v.s5.0ce68c995676 from=translated src=- shape=a0b0a206 vocab=a04a60e3
+-/
 @[simp] theorem puiseuxExpHom_apply (q : ℕ+) (n : ℤ) :
     puiseuxExpHom q n = (n : ℚ) / (q : ℚ) := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s5.b108b7da606e from=translated src=- shape=a86d2ef9 vocab=095bed8e
+-/
 theorem puiseuxExpHom_injective (q : ℕ+) : Function.Injective (puiseuxExpHom q) := by
   intro a b hab
   simp only [puiseuxExpHom_apply] at hab
@@ -78,6 +86,9 @@ theorem puiseuxExpHom_injective (q : ℕ+) : Function.Injective (puiseuxExpHom q
   field_simp at hab
   exact_mod_cast hab
 
+/--
+@isnad1 id=iff.0h3v.s6.5acf1a9af2d1 from=translated src=- shape=8ec9ce0a vocab=c478fe05
+-/
 theorem puiseuxExpHom_le (q : ℕ+) (a b : ℤ) :
     puiseuxExpHom q a ≤ puiseuxExpHom q b ↔ a ≤ b := by
   simp only [puiseuxExpHom_apply]
@@ -105,7 +116,9 @@ noncomputable def PuiseuxSeries : Subfield (HahnSeries ℚ K) :=
 scoped notation:9000 K "⟨⟨X⟩⟩" => (PuiseuxSeries K : Type _)
 
 /-- The subfields `puiseuxSubfield K q` are monotone in `q` under divisibility: a Laurent
-series in `ε^{1/q₁}` is a Laurent series in `ε^{1/q}` whenever `q₁ ∣ q`.-/
+series in `ε^{1/q₁}` is a Laurent series in `ε^{1/q}` whenever `q₁ ∣ q`.
+@isnad1 id=le.1h3v.s7.d7ca5c9ca994 from=translated src=- shape=5f7695cc vocab=d58d831b
+-/
 theorem puiseuxSubfield_mono {q₁ q : ℕ+} (h : q₁ ∣ q) :
     puiseuxSubfield K q₁ ≤ puiseuxSubfield K q := by
   obtain ⟨m₀, hm₀⟩ := h
@@ -138,13 +151,17 @@ theorem puiseuxSubfield_mono {q₁ q : ℕ+} (h : q₁ ∣ q) :
   exact ⟨embDomainRingHom rfn rfn_inj rfn_le a, hfact a⟩
 
 /-- The family of subfields is directed (their lcm dominates any two), so the supremum
-defining `K⟨⟨ε⟩⟩` is a genuine union.-/
+defining `K⟨⟨ε⟩⟩` is a genuine union.
+@isnad1 id=directed.0h1v.s8.f2d6cdca53e5 from=translated src=- shape=577f1064 vocab=df223974
+-/
 theorem directed_puiseuxSubfield : Directed (· ≤ ·) (puiseuxSubfield K) := fun q₁ q₂ =>
   ⟨q₁ * q₂, puiseuxSubfield_mono K (dvd_mul_right q₁ q₂),
     puiseuxSubfield_mono K (dvd_mul_left q₂ q₁)⟩
 
 /-- **Membership in `K⟨⟨ε⟩⟩`**: a Hahn series is a Puiseux series iff it is a Laurent series in
-`ε^{1/q}` for *some* positive integer `q`.-/
+`ε^{1/q}` for *some* positive integer `q`.
+@isnad1 id=iff.0h2v.s8.e03fe6854ed8 from=translated src=- shape=a1de39b8 vocab=780c5b81
+-/
 theorem mem_puiseuxSeries_iff {x : HahnSeries ℚ K} :
     x ∈ PuiseuxSeries K ↔ ∃ q : ℕ+, x ∈ puiseuxSubfield K q := by
   rw [PuiseuxSeries, Subfield.mem_iSup_of_directed (directed_puiseuxSubfield K)]
@@ -163,10 +180,15 @@ noncomputable def puiseuxInitCoeff (a : PuiseuxSeries K) : K :=
 
 variable {K}
 
+/--
+@isnad1 id=eq.0h1v.s8.c1245249fe7c from=translated src=- shape=2627f63c vocab=a0e89762
+-/
 @[simp] theorem puiseuxOrder_zero : puiseuxOrder K (0 : PuiseuxSeries K) = ⊤ := by
   simp [puiseuxOrder]
 
-/-- The order is additive on products: `o(ā b̄) = o(ā) + o(b̄)`.-/
+/-- The order is additive on products: `o(ā b̄) = o(ā) + o(b̄)`.
+@isnad1 id=eq.0h3v.s11.5f8e6100584b from=translated src=- shape=ca8328d2 vocab=8771afde
+-/
 theorem puiseuxOrder_mul (a b : PuiseuxSeries K) :
     puiseuxOrder K (a * b) = puiseuxOrder K a + puiseuxOrder K b := by
   show HahnSeries.orderTop ((a * b : PuiseuxSeries K) : HahnSeries ℚ K) = _
@@ -174,7 +196,9 @@ theorem puiseuxOrder_mul (a b : PuiseuxSeries K) :
   rfl
 
 /-- The order of a sum is at least the minimum of the orders:
-`o(ā + b̄) ≥ min(o(ā), o(b̄))`.-/
+`o(ā + b̄) ≥ min(o(ā), o(b̄))`.
+@isnad1 id=le.0h3v.s11.3ce0e906094f from=translated src=- shape=3beb2b13 vocab=dc847d4b
+-/
 theorem min_le_puiseuxOrder_add (a b : PuiseuxSeries K) :
     min (puiseuxOrder K a) (puiseuxOrder K b) ≤ puiseuxOrder K (a + b) := by
   show min _ _ ≤ HahnSeries.orderTop ((a + b : PuiseuxSeries K) : HahnSeries ℚ K)
@@ -182,7 +206,9 @@ theorem min_le_puiseuxOrder_add (a b : PuiseuxSeries K) :
   exact HahnSeries.min_orderTop_le_orderTop_add
 
 /-- When the orders differ, the order of a sum equals the minimum:
-`o(ā + b̄) = min(o(ā), o(b̄))` if `o(ā) ≠ o(b̄)`.-/
+`o(ā + b̄) = min(o(ā), o(b̄))` if `o(ā) ≠ o(b̄)`.
+@isnad1 id=eq.1h3v.s11.ecc40dd670e6 from=translated src=- shape=a9348766 vocab=8721e522
+-/
 theorem puiseuxOrder_add_of_ne (a b : PuiseuxSeries K)
     (h : puiseuxOrder K a ≠ puiseuxOrder K b) :
     puiseuxOrder K (a + b) = min (puiseuxOrder K a) (puiseuxOrder K b) := by

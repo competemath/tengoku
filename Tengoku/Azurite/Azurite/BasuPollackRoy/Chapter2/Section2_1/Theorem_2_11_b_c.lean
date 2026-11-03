@@ -39,7 +39,9 @@ private theorem not_isSquare_neg_one_ordered : ¬ IsSquare (-1 : R) := by
   rintro ⟨x, hx⟩
   linarith [mul_self_nonneg x]
 
-/-- X² + 1 is irreducible over any ordered field R.-/
+/-- X² + 1 is irreducible over any ordered field R.
+@isnad1 id=irreduci.0h1v.s7.7617ddbf76d7 from=translated src=- shape=e87ccd89 vocab=4fb43a74
+-/
 theorem irred_X_sq_add_one_ordered :
     Irreducible (X ^ 2 + 1 : R[X]) := by
   apply Polynomial.irreducible_of_degree_le_three_of_not_isRoot
@@ -50,7 +52,9 @@ theorem irred_X_sq_add_one_ordered :
     simp only [Polynomial.IsRoot, eval_add, eval_pow, eval_X, eval_one]
     intro h; exact not_isSquare_neg_one_ordered ⟨x, by linarith⟩
 
-/-- Fact instance for AdjoinRoot.instField.-/
+/-- Fact instance for AdjoinRoot.instField.
+@isnad1 id=fact.0h1v.s7.975dfd4af559 from=translated src=- shape=15dba589 vocab=8b87d914
+-/
 instance instFactIrredOrdered :
     Fact (Irreducible (X ^ 2 + 1 : R[X])) :=
   ⟨irred_X_sq_add_one_ordered⟩
@@ -64,23 +68,31 @@ We re-derive `conj_fixed_mem_range` (originally under `[IsRealClosed R]`)
 since the proof only needs `Irreducible (X² + 1)`. -/
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
-/-- Conjugation fixes elements of R.-/
+/-- Conjugation fixes elements of R.
+@isnad1 id=eq.0h2v.s12.1a548e75ea0e from=translated src=- shape=51979d5e vocab=81fb773b
+-/
 theorem Ri.conj_algebraMap_ordered (r : R) :
     (Ri.conj R) (algebraMap R (Ri R) r) = algebraMap R (Ri R) r :=
   (Ri.conj R).commutes r
 
-/-- The imaginary unit is nonzero.-/
+/-- The imaginary unit is nonzero.
+@isnad1 id=ne.0h1v.s7.57ca57414010 from=translated src=- shape=9996818e vocab=675834bf
+-/
 theorem Ri.i_ne_zero_ordered : Ri.i R ≠ 0 := by
   intro h; have := Ri.i_sq R
   rw [h, zero_pow (by norm_num : 2 ≠ 0)] at this
   exact one_ne_zero (neg_eq_zero.mp this.symm)
 
-/-- `algebraMap R (Ri R)` is injective.-/
+/-- `algebraMap R (Ri R)` is injective.
+@isnad1 id=injectiv.0h1v.s10.fc3e178b5280 from=translated src=- shape=283d5d11 vocab=d6320e34
+-/
 theorem algebraMap_Ri_injective :
     Function.Injective (algebraMap R (Ri R)) :=
   (algebraMap R (Ri R)).injective
 
-/-- If conj(c) = c, then c ∈ range(algebraMap R (Ri R)).-/
+/-- If conj(c) = c, then c ∈ range(algebraMap R (Ri R)).
+@isnad1 id=mem.1h2v.s11.10f8cb774df6 from=translated src=- shape=3be4be27 vocab=e3dd8269
+-/
 theorem Ri.conj_fixed_mem_range_ordered (c : Ri R) (hc : (Ri.conj R) c = c) :
     c ∈ Set.range (algebraMap R (Ri R)) := by
   induction c using AdjoinRoot.induction_on with
@@ -156,7 +168,9 @@ theorem Ri.conj_fixed_mem_range_ordered (c : Ri R) (hc : (Ri.conj R) c = c) :
 /-! ## Section 3: Conjugation root lemma -/
 
 /-- If α is a root of (P.map ι) for P ∈ R[X], then conj(α) is also a root.
-    Uses `aeval_algHom_apply`: conj(aeval α P) = aeval (conj α) P.-/
+    Uses `aeval_algHom_apply`: conj(aeval α P) = aeval (conj α) P.
+@isnad1 id=eq.1h3v.s12.dad5e118a755 from=translated src=- shape=c5a1f64a vocab=4826ad62
+-/
 theorem conj_isRoot_of_map (P : R[X]) (α : Ri R)
     (hα : Polynomial.aeval α P = 0) :
     Polynomial.aeval ((Ri.conj R) α) P = 0 := by
@@ -164,7 +178,9 @@ theorem conj_isRoot_of_map (P : R[X]) (α : Ri R)
     rw [Polynomial.aeval_algHom_apply]
   rw [hα, map_zero] at this; exact this.symm
 
-/-- Version using IsRoot and eval on mapped polynomial.-/
+/-- Version using IsRoot and eval on mapped polynomial.
+@isnad1 id=isroot.1h3v.s11.e11614ddd543 from=translated src=- shape=13b4bd6a vocab=bc5fe2da
+-/
 theorem conj_isRoot_of_map' (P : R[X]) (α : Ri R)
     (hα : (P.map (algebraMap R (Ri R))).IsRoot α) :
     (P.map (algebraMap R (Ri R))).IsRoot ((Ri.conj R) α) := by
@@ -173,7 +189,9 @@ theorem conj_isRoot_of_map' (P : R[X]) (α : Ri R)
 
 /-! ## Section 4: Element representation -/
 
-/-- Every element of Ri R can be decomposed as ι(a) + ι(b) * i.-/
+/-- Every element of Ri R can be decomposed as ι(a) + ι(b) * i.
+@isnad1 id=ex.0h2v.s11.f88957643662 from=translated src=- shape=847755fd vocab=c9f823f5
+-/
 theorem Ri.repr_exists (z : Ri R) :
     ∃ a b : R, z = algebraMap R (Ri R) a + algebraMap R (Ri R) b * Ri.i R := by
   induction z using AdjoinRoot.induction_on with
@@ -202,20 +220,26 @@ theorem Ri.repr_exists (z : Ri R) :
     simp [Polynomial.aeval_def, eval₂_add, eval₂_mul, eval₂_C, eval₂_X]
     exact ⟨r.coeff 0, r.coeff 1, by ring⟩
 
-/-- Conjugation acts as expected on the representation.-/
+/-- Conjugation acts as expected on the representation.
+@isnad1 id=eq.0h3v.s13.72a818c96866 from=translated src=- shape=dd418073 vocab=ac666174
+-/
 theorem Ri.conj_repr (a b : R) :
     (Ri.conj R) (algebraMap R (Ri R) a + algebraMap R (Ri R) b * Ri.i R) =
     algebraMap R (Ri R) a - algebraMap R (Ri R) b * Ri.i R := by
   simp only [map_add, map_mul, Ri.conj_algebraMap_ordered, Ri.conj_i, mul_neg]
   ring
 
-/-- α + conj(α) is in R (conj-fixed).-/
+/-- α + conj(α) is in R (conj-fixed).
+@isnad1 id=mem.0h2v.s11.94ef9eb2795f from=translated src=- shape=aad8ee41 vocab=e3dd8269
+-/
 theorem Ri.add_conj_in_range (α : Ri R) :
     α + (Ri.conj R) α ∈ Set.range (algebraMap R (Ri R)) :=
   Ri.conj_fixed_mem_range_ordered _ (by
     simp only [map_add, Ri.conj_conj]; ring)
 
-/-- α * conj(α) is in R (conj-fixed).-/
+/-- α * conj(α) is in R (conj-fixed).
+@isnad1 id=mem.0h2v.s11.4b91776b7a62 from=translated src=- shape=fd4e8db4 vocab=a9f56819
+-/
 theorem Ri.mul_conj_in_range (α : Ri R) :
     α * (Ri.conj R) α ∈ Set.range (algebraMap R (Ri R)) :=
   Ri.conj_fixed_mem_range_ordered _ (by
@@ -223,7 +247,9 @@ theorem Ri.mul_conj_in_range (α : Ri R) :
 
 /-! ## Section 5: Quadratic factor and positivity -/
 
-/-- For α ∈ Ri R not in R, α · conj(α) = ι(a² + b²) with a² + b² > 0.-/
+/-- For α ∈ Ri R not in R, α · conj(α) = ι(a² + b²) with a² + b² > 0.
+@isnad1 id=ex.1h2v.s12.0e2a2b1ce0ec from=translated src=- shape=49e02275 vocab=d77186b4
+-/
 theorem Ri.norm_pos_of_not_real (α : Ri R)
     (hα : (Ri.conj R) α ≠ α) :
     ∃ n : R, algebraMap R (Ri R) n = α * (Ri.conj R) α ∧ 0 < n := by
@@ -240,12 +266,16 @@ theorem Ri.norm_pos_of_not_real (α : Ri R)
   rw [show Ri.i R ^ 2 = -(1 : Ri R) from hi_sq]
   ring
 
-/-- The trace α + conj(α) = 2a for α = ι(a) + ι(b) * i.-/
+/-- The trace α + conj(α) = 2a for α = ι(a) + ι(b) * i.
+@isnad1 id=ex.0h2v.s11.d69f24d03412 from=translated src=- shape=f092d8c2 vocab=ca637a63
+-/
 theorem Ri.trace_repr (α : Ri R) :
     ∃ s : R, algebraMap R (Ri R) s = α + (Ri.conj R) α := by
   obtain ⟨r, hr⟩ := Ri.add_conj_in_range α; exact ⟨r, hr⟩
 
-/-- The norm α * conj(α) ∈ R.-/
+/-- The norm α * conj(α) ∈ R.
+@isnad1 id=ex.0h2v.s11.ba96afe9af0b from=translated src=- shape=21f0207c vocab=2f7f65b3
+-/
 theorem Ri.norm_repr (α : Ri R) :
     ∃ n : R, algebraMap R (Ri R) n = α * (Ri.conj R) α := by
   obtain ⟨r, hr⟩ := Ri.mul_conj_in_range α; exact ⟨r, hr⟩
@@ -259,7 +289,9 @@ private theorem quad_eval_pos (a b x : R) (hb : b ≠ 0) :
 
 /-! ## Section 6: Divisibility lifting -/
 
-/-- If M is monic and M.map ι ∣ P.map ι, then M ∣ P (over R[X]).-/
+/-- If M is monic and M.map ι ∣ P.map ι, then M ∣ P (over R[X]).
+@isnad1 id=dvd.2h3v.s11.c4f8119b7219 from=translated src=- shape=06d39a88 vocab=c0d30cce
+-/
 theorem dvd_of_map_dvd_monic (M P : R[X]) (hM : M.Monic)
     (hdvd : M.map (algebraMap R (Ri R)) ∣ P.map (algebraMap R (Ri R))) :
     M ∣ P := by
@@ -294,7 +326,9 @@ theorem dvd_of_map_dvd_monic (M P : R[X]) (hM : M.Monic)
 
 /-! ## Section 7: Sign analysis helpers -/
 
-/-- If r < a < b or a < b < r, then (a - r)(b - r) > 0.-/
+/-- If r < a < b or a < b < r, then (a - r)(b - r) > 0.
+@isnad1 id=lt.2h4v.s7.1bf4675e4687 from=translated src=- shape=2b07f0c7 vocab=33b26920
+-/
 theorem pos_of_same_side {a b r : R} (hab : a < b)
     (hr : r < a ∨ b < r) :
     0 < (a - r) * (b - r) := by
@@ -303,7 +337,9 @@ theorem pos_of_same_side {a b r : R} (hab : a < b)
   · exact mul_pos_of_neg_of_neg (by linarith) (by linarith)
 
 /-- Key sign lemma: if P = (X - C r) * Q with r ∉ (a,b) and P(a)*P(b) < 0,
-    then Q(a)*Q(b) < 0.-/
+    then Q(a)*Q(b) < 0.
+@isnad1 id=lt.3h5v.s9.0282c4a6eb01 from=translated src=- shape=55cf8539 vocab=0d8ade9b
+-/
 theorem sign_transfer {a b r : R} (hab : a < b)
     (hr : r < a ∨ b < r)
     {Q : R[X]} (hsign : eval a ((X - C r) * Q) * eval b ((X - C r) * Q) < 0) :
@@ -318,7 +354,9 @@ theorem sign_transfer {a b r : R} (hab : a < b)
 /-! ## Section 8: The quadratic factor divides P -/
 
 /-- Given α ∈ Ri R a root of P.map ι with conj(α) ≠ α, the quadratic
-    (X - α)(X - conj α) divides P.map ι.-/
+    (X - α)(X - conj α) divides P.map ι.
+@isnad1 id=dvd.2h3v.s13.cca46ee658a0 from=translated src=- shape=94ee2495 vocab=d7aab6b6
+-/
 theorem conj_pair_dvd_map (P : R[X]) (α : Ri R)
     (hα : Polynomial.aeval α P = 0)
     (hα_ne : (Ri.conj R) α ≠ α) :
@@ -344,7 +382,9 @@ theorem conj_pair_dvd_map (P : R[X]) (α : Ri R)
   exact ⟨S, by rw [hQ, hS, mul_assoc]⟩
 
 /-- The monic quadratic for a conjugate pair: X² - (α + conj α)X + α * conj α.
-    Its image under map ι equals (X - α)(X - conj α).-/
+    Its image under map ι equals (X - α)(X - conj α).
+@isnad1 id=ex.1h2v.s13.9484b8156d90 from=translated src=- shape=d26bea1c vocab=35c8c093
+-/
 theorem quad_of_conj_pair (α : Ri R) (hα_ne : (Ri.conj R) α ≠ α) :
     ∃ M : R[X],
       M.Monic ∧ M.natDegree = 2 ∧
@@ -417,7 +457,9 @@ theorem quad_of_conj_pair (α : Ri R) (hα_ne : (Ri.conj R) α ≠ α) :
 
 /-! ## Section 9: Main induction -/
 
-/-- **Core IVP lemma by strong induction on degree.**-/
+/-- **Core IVP lemma by strong induction on degree.**
+@isnad1 id=ex.2h4v.s8.e848851aee6e from=translated src=- shape=364a59bb vocab=bde1aae0
+-/
 theorem ivp_of_algClosed [IsAlgClosed (Ri R)]
     (P : R[X]) (a b : R) (hab : a < b)
     (hsign : P.eval a * P.eval b < 0) :
@@ -518,7 +560,9 @@ theorem ivp_of_algClosed [IsAlgClosed (Ri R)]
 /-! ## Section 10: Final theorem -/
 
 /-- **BPR Theorem 2.11 (b ⇒ c).** If R[i] is algebraically closed,
-    then R has the intermediate value property.-/
+    then R has the intermediate value property.
+@isnad1 id=hasinter.0h1v.s7.d3aee0f1a8de from=translated src=- shape=08e3c0bd vocab=ce1ba7e3
+-/
 theorem theorem_2_11_b_c [IsAlgClosed (Ri R)] :
     Azurite.BPR.HasIntermediateValueProperty R :=
   fun P a b hab hsign => ivp_of_algClosed P a b hab hsign

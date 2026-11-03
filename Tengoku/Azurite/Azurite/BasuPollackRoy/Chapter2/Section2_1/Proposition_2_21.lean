@@ -40,7 +40,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 /-! ## Nonzero polynomials have non-vanishing intervals -/
 
 /-- A nonzero polynomial has no root in some open interval `(r, b)` to the
-    right of any `r`.-/
+    right of any `r`.
+@isnad1 id=ex.1h3v.s7.c290a56fda83 from=translated src=- shape=11249b5b vocab=defa9375
+-/
 lemma exists_no_root_Ioo_right {Q : R[X]} (hQ : Q ≠ 0) (r : R) :
     ∃ b, r < b ∧ ∀ x ∈ Set.Ioo r b, Q.eval x ≠ 0 := by
   classical
@@ -61,7 +63,9 @@ lemma exists_no_root_Ioo_right {Q : R[X]} (hQ : Q ≠ 0) (r : R) :
     exact hQx
 
 /-- A nonzero polynomial has no root in some open interval `(a, r)` to the
-    left of any `r`.-/
+    left of any `r`.
+@isnad1 id=ex.1h3v.s7.588678d4b492 from=translated src=- shape=c4d0334a vocab=defa9375
+-/
 lemma exists_no_root_Ioo_left {Q : R[X]} (hQ : Q ≠ 0) (r : R) :
     ∃ a, a < r ∧ ∀ x ∈ Set.Ioo a r, Q.eval x ≠ 0 := by
   classical
@@ -85,7 +89,9 @@ lemma exists_no_root_Ioo_left {Q : R[X]} (hQ : Q ≠ 0) (r : R) :
 
 /-- If `Q.eval r ≠ 0` and `R` has the intermediate value property, then
     `HasSignRight Q r (sign Q.eval r)`: `Q` takes the sign of `Q(r)` on some
-    interval `(r, b)`.-/
+    interval `(r, b)`.
+@isnad1 id=hassignr.2h3v.s7.a033ad7b1f6e from=translated src=- shape=85c361a4 vocab=402dcc3c
+-/
 theorem hasSignRight_of_eval_ne_zero (hIVP : HasIntermediateValueProperty R)
     {Q : R[X]} {r : R} (hQr : Q.eval r ≠ 0) :
     HasSignRight Q r (SignType.sign (Q.eval r)) := by
@@ -105,7 +111,9 @@ theorem hasSignRight_of_eval_ne_zero (hIVP : HasIntermediateValueProperty R)
   · rw [sign_neg (hneg r hrin)]
     exact ⟨b, hrb, fun x hx => sign_neg (hneg x ⟨lt_trans har hx.1, hx.2⟩)⟩
 
-/-- Left analogue.-/
+/-- Left analogue.
+@isnad1 id=hassignl.2h3v.s7.c5ad150387a4 from=translated src=- shape=85c361a4 vocab=45b85f18
+-/
 theorem hasSignLeft_of_eval_ne_zero (hIVP : HasIntermediateValueProperty R)
     {Q : R[X]} {r : R} (hQr : Q.eval r ≠ 0) :
     HasSignLeft Q r (SignType.sign (Q.eval r)) := by
@@ -128,7 +136,9 @@ theorem hasSignLeft_of_eval_ne_zero (hIVP : HasIntermediateValueProperty R)
 /-! ## Proposition 2.21 -/
 
 /-- Sign of the `µ`-th derivative equals the sign of `Q(r)` in the factorization
-    `P = (X − C r)^µ · Q`. Intermediate fact used in Proposition 2.21.-/
+    `P = (X − C r)^µ · Q`. Intermediate fact used in Proposition 2.21.
+@isnad1 id=eq.1h3v.s9.67544997dc20 from=translated src=- shape=574d60d3 vocab=10ca223d
+-/
 lemma sign_iterate_derivative_eq_sign_Q {P : R[X]} {r : R} (_hP : P ≠ 0) :
     SignType.sign (((⇑derivative)^[P.rootMultiplicity r] P).eval r) =
     SignType.sign ((P /ₘ (X - C r) ^ P.rootMultiplicity r).eval r) := by
@@ -139,7 +149,9 @@ lemma sign_iterate_derivative_eq_sign_Q {P : R[X]} {r : R} (_hP : P ≠ 0) :
 
 /-- **BPR Proposition 2.21 (right side).** If `P ≠ 0` and `R` has the
     intermediate value property, then the sign of `P` to the right of `r`
-    equals the sign of `P^{(µ)}(r)` where `µ = P.rootMultiplicity r`.-/
+    equals the sign of `P^{(µ)}(r)` where `µ = P.rootMultiplicity r`.
+@isnad1 id=hassignr.2h3v.s9.a659cb99d9ba from=translated src=- shape=6df8f9d4 vocab=4f446efb
+-/
 theorem proposition_2_21_right (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (r : R) :
     HasSignRight P r
@@ -161,7 +173,9 @@ theorem proposition_2_21_right (hIVP : HasIntermediateValueProperty R)
   exact hQ_sign x hx
 
 /-- **BPR Proposition 2.21 (left side).** The sign of `P` to the left of `r`
-    equals `(−1)^µ · sign(P^{(µ)}(r))` where `µ = P.rootMultiplicity r`.-/
+    equals `(−1)^µ · sign(P^{(µ)}(r))` where `µ = P.rootMultiplicity r`.
+@isnad1 id=hassignl.2h3v.s9.7bdbba40c5eb from=translated src=- shape=c0e49440 vocab=ed9d535d
+-/
 theorem proposition_2_21_left (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (r : R) :
     HasSignLeft P r
@@ -184,7 +198,9 @@ theorem proposition_2_21_left (hIVP : HasIntermediateValueProperty R)
 
 /-! ## Real-closed corollaries -/
 
-/-- **Proposition 2.21 (right side), real closed form.**-/
+/-- **Proposition 2.21 (right side), real closed form.**
+@isnad1 id=hassignr.1h3v.s8.cc22f35cc6a1 from=translated src=- shape=1c653122 vocab=88643060
+-/
 theorem proposition_2_21_right_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (hP : P ≠ 0) (r : R) :
@@ -197,7 +213,9 @@ theorem proposition_2_21_right_of_isRealClosed
   have : IsAlgClosed (Ri R) := isAlgClosed_Ri
   exact proposition_2_21_right theorem_2_11_b_c hP r
 
-/-- **Proposition 2.21 (left side), real closed form.**-/
+/-- **Proposition 2.21 (left side), real closed form.**
+@isnad1 id=hassignl.1h3v.s9.82de7498a1e7 from=translated src=- shape=2e6bec7c vocab=19c9cc0e
+-/
 theorem proposition_2_21_left_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (hP : P ≠ 0) (r : R) :

@@ -27,7 +27,9 @@ open MvPolynomial
 variable {k : ℕ} {K : Type*} [Field K]
 
 /-- A single reduction step changes `P` by an element of `Ideal(𝒢, K)`: if `Q` is a reduction
-of `P` modulo `𝒢`, then `P − Q ∈ Ideal.span 𝒢`.-/
+of `P` modulo `𝒢`, then `P − Q ∈ Ideal.span 𝒢`.
+@isnad1 id=mem.1h6v.s8.a8d78da7dd47 from=translated src=- shape=cfc0fea3 vocab=309eb28e
+-/
 theorem sub_mem_span_of_isReduction (m : MonomialOrder (Fin k))
     (𝒢 : Finset (MvPolynomial (Fin k) K)) {P Q : MvPolynomial (Fin k) K}
     (h : IsReduction m 𝒢 P Q) : P - Q ∈ Ideal.span (↑𝒢 : Set _) := by
@@ -39,7 +41,9 @@ theorem sub_mem_span_of_isReduction (m : MonomialOrder (Fin k))
     exact Submodule.zero_mem _
 
 /-- **BPR Remark 4.66.** If `P` is reducible to `Q` modulo `𝒢`, then
-`P − Q ∈ Ideal(𝒢, K)`.-/
+`P − Q ∈ Ideal(𝒢, K)`.
+@isnad1 id=mem.1h6v.s8.f175428be717 from=translated src=- shape=cfc0fea3 vocab=ed88703f
+-/
 theorem remark_4_66 (m : MonomialOrder (Fin k)) (𝒢 : Finset (MvPolynomial (Fin k) K))
     {P Q : MvPolynomial (Fin k) K} (h : ReducibleTo m 𝒢 P Q) :
     P - Q ∈ Ideal.span (↑𝒢 : Set _) := by
@@ -50,7 +54,9 @@ theorem remark_4_66 (m : MonomialOrder (Fin k)) (𝒢 : Finset (MvPolynomial (Fi
     rwa [sub_add_sub_cancel] at this
 
 /-- **BPR Remark 4.66 (reduction to zero).** If `P` is reducible to `0` modulo `𝒢`, then
-`P ∈ Ideal(𝒢, K)`, hence `P = ∑_{G ∈ 𝒢} A_G G` for some coefficients `A_G ∈ K[X₁, …, X_k]`.-/
+`P ∈ Ideal(𝒢, K)`, hence `P = ∑_{G ∈ 𝒢} A_G G` for some coefficients `A_G ∈ K[X₁, …, X_k]`.
+@isnad1 id=ex.1h5v.s8.5e04837d5e89 from=translated src=- shape=9f7cd2b6 vocab=78e7a445
+-/
 theorem remark_4_66_repr (m : MonomialOrder (Fin k)) (𝒢 : Finset (MvPolynomial (Fin k) K))
     {P : MvPolynomial (Fin k) K} (h : ReducibleTo m 𝒢 P 0) :
     ∃ A : MvPolynomial (Fin k) K → MvPolynomial (Fin k) K, ∑ G ∈ 𝒢, A G * G = P := by
@@ -61,7 +67,9 @@ theorem remark_4_66_repr (m : MonomialOrder (Fin k)) (𝒢 : Finset (MvPolynomia
 
 /-- Strengthened reduction-to-standard-representation helper carrying the degree-non-increasing
 invariant. If `P` is reducible to `Q` modulo `𝒢`, then `lmon(Q) ≼ lmon(P)` and `P − Q` has a
-representation `∑ A_G G` in which every term `A_G G` has leading monomial `≼ lmon(P)`.-/
+representation `∑ A_G G` in which every term `A_G G` has leading monomial `≼ lmon(P)`.
+@isnad1 id=and.1h6v.s10.b5d23d7bebd6 from=translated src=- shape=7bd19a75 vocab=9a787caa
+-/
 theorem reduction_standard_repr (m : MonomialOrder (Fin k))
     (𝒢 : Finset (MvPolynomial (Fin k) K)) {P Q : MvPolynomial (Fin k) K}
     (h : ReducibleTo m 𝒢 P Q) :
@@ -140,7 +148,9 @@ theorem reduction_standard_repr (m : MonomialOrder (Fin k))
 
 /-- **BPR Remark 4.66 (degree-bounded standard representation).** If `P` is reducible to `0`
 modulo `𝒢`, then `P = ∑_{G ∈ 𝒢} A_G G` with every term `A_G G` satisfying
-`lmon(A_G G) ≼ lmon(P)` (in the monomial-order sense).-/
+`lmon(A_G G) ≼ lmon(P)` (in the monomial-order sense).
+@isnad1 id=ex.1h5v.s9.472d71a4c1f5 from=translated src=- shape=3f8e9485 vocab=554b04eb
+-/
 theorem remark_4_66_repr_degree (m : MonomialOrder (Fin k))
     (𝒢 : Finset (MvPolynomial (Fin k) K)) {P : MvPolynomial (Fin k) K}
     (h : ReducibleTo m 𝒢 P 0) :

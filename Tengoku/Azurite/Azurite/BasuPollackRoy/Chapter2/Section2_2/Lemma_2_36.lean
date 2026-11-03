@@ -50,7 +50,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 /-! ### Auxiliary: natDegree of derivative in char 0 -/
 
 /-- In a characteristic-zero ring, `natDegree (derivative P) = natDegree P - 1`
-    when `natDegree P ≥ 1`. Used to show `der P = P :: der (derivative P)`.-/
+    when `natDegree P ≥ 1`. Used to show `der P = P :: der (derivative P)`.
+@isnad1 id=eq.1h2v.s8.48ab598378a6 from=translated src=- shape=e3924570 vocab=36c5d194
+-/
 lemma natDegree_derivative_of_pos {P : R[X]} (hP : 1 ≤ P.natDegree) :
     (derivative P).natDegree = P.natDegree - 1 :=
   Polynomial.natDegree_eq_of_degree_eq_some
@@ -60,7 +62,9 @@ lemma natDegree_derivative_of_pos {P : R[X]} (hP : 1 ≤ P.natDegree) :
 
 /-- When `P.natDegree ≥ 1`, the derivative list unfolds as a cons:
     `der P = P :: der (derivative P)`. Immediate from the range definition
-    and `natDegree_derivative_of_pos`.-/
+    and `natDegree_derivative_of_pos`.
+@isnad1 id=eq.1h2v.s8.22c7f8dd4ed9 from=translated src=- shape=8125e9df vocab=80de727e
+-/
 lemma der_eq_cons {P : R[X]} (hP : 1 ≤ P.natDegree) :
     der P = P :: der (derivative P) := by
   unfold der
@@ -111,7 +115,9 @@ private lemma Var_cons_zero_cons (a : R) (l : List R) :
     `ν = Q.rootMultiplicity c`, so `Var` sees the pair `(P(c), (d^ν Q)(c))`
     across the intervening zeros. Proved by strong induction on `Q.natDegree`:
     when `Q(c) ≠ 0` the cons-cons unfolding applies directly; when `Q(c) = 0`
-    we strip the leading zero and recurse on `derivative Q`.-/
+    we strip the leading zero and recurse on `derivative Q`.
+@isnad1 id=eq.2h4v.s9.83b10e17ceca from=translated src=- shape=88e7a05f vocab=bbbd8a4b
+-/
 lemma varAt_cons_der_eq (P Q : R[X]) {c : R}
     (hPc : P.eval c ≠ 0) (hQ_ne : Q ≠ 0) :
     varAt (P :: der Q) (.finite c) =
@@ -183,7 +189,9 @@ lemma varAt_cons_der_eq (P Q : R[X]) {c : R}
 /-- If `Q` does not vanish anywhere in the closed interval `[x, y]` and `x ≤ y`,
     then `Q` has the same sign at `x` and `y`. This is the key input that lets
     us compare `varAt (der P)` at different evaluation points inside a
-    root-free interval.-/
+    root-free interval.
+@isnad1 id=eq.3h4v.s8.e6da19cac415 from=translated src=- shape=d1fa49b8 vocab=dc00511a
+-/
 lemma sign_eq_of_no_root_Icc (hIVP : HasIntermediateValueProperty R)
     (Q : R[X]) {x y : R} (hxy : x ≤ y)
     (hne : ∀ z ∈ Set.Icc x y, Q.eval z ≠ 0) :
@@ -227,7 +235,9 @@ lemma sign_eq_of_no_root_Icc (hIVP : HasIntermediateValueProperty R)
     in `[d, c) ∪ (c, d']`. Then
       (a) `Var(Der(P); d, c) − mu` is non-negative and even,
       (b) `Var(Der(P); c, d') = 0`.
-    Proved by induction on `P.natDegree`, applying the IH to `derivative P`.-/
+    Proved by induction on `P.natDegree`, applying the IH to `derivative P`.
+@isnad1 id=and.4h5v.s9.2c52aaaf24a2 from=translated src=- shape=69973de8 vocab=c68acdca
+-/
 theorem lemma_2_36 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) {c d d' : R} (hdc : d < c) (hcd' : c < d')
     (hno_root : ∀ k ≤ P.natDegree, ∀ x,
@@ -687,7 +697,9 @@ theorem lemma_2_36 (hIVP : HasIntermediateValueProperty R)
     with `IsStrictOrderedRing R`), for `P ≠ 0` and `k ≤ P.natDegree`, the
     `k`-th iterated derivative is nonzero: its leading-position coefficient
     `P.natDegree.descFactorial k · P.leadingCoeff` is a product of a positive
-    natural cast and a nonzero leading coefficient.-/
+    natural cast and a nonzero leading coefficient.
+@isnad1 id=ne.2h3v.s8.32fde7101eb0 from=translated src=- shape=b997fe92 vocab=9ac8183c
+-/
 lemma iterate_derivative_ne_zero_of_le_natDegree
     {P : R[X]} (hP : P ≠ 0) {k : ℕ} (hk : k ≤ P.natDegree) :
     (⇑derivative)^[k] P ≠ 0 := by
@@ -740,7 +752,9 @@ private lemma exists_no_root_Ioo_right_forall_der
       exact hb₂ x ⟨hx.1, lt_of_lt_of_le hx.2 (min_le_right _ _)⟩
 
 /-- There is an interval `(a, r)` to the left of `r` avoiding all roots of
-    every iterated derivative `P^{(k)}` for `k ≤ P.natDegree`.-/
+    every iterated derivative `P^{(k)}` for `k ≤ P.natDegree`.
+@isnad1 id=ex.1h3v.s8.dad270b30640 from=translated src=- shape=f861ca0e vocab=0130be37
+-/
 lemma exists_no_root_Ioo_left_forall_der
     {P : R[X]} (hP : P ≠ 0) (r : R) :
     ∃ a, a < r ∧ ∀ x ∈ Set.Ioo a r, ∀ k ≤ P.natDegree,
@@ -777,7 +791,9 @@ we apply it to the endpoints `a` and `b` of the overall interval, where the
 /-- Left-sided Lemma 2.36: if no `P^{(k)}` has a root in `[d, c)`, then
     `Var(Der P; d, c) ≥ rootMult_c(P)` and has matching parity. Proven by
     adjoining a right buffer from `exists_no_root_Ioo_right_forall_der` to
-    satisfy Lemma 2.36's combined hypothesis.-/
+    satisfy Lemma 2.36's combined hypothesis.
+@isnad1 id=and.4h4v.s9.4465836120c0 from=translated src=- shape=68cf0f80 vocab=34b21890
+-/
 theorem lemma_2_36_left (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) {c d : R} (hdc : d < c)
     (hno_root : ∀ k ≤ P.natDegree, ∀ x ∈ Set.Ico d c,
@@ -798,7 +814,9 @@ theorem lemma_2_36_left (hIVP : HasIntermediateValueProperty R)
 
 /-- Right-sided Lemma 2.36: if no `P^{(k)}` has a root in `(c, d']`, then
     `Var(Der P; c, d') = 0`. Proven by adjoining a left buffer from
-    `exists_no_root_Ioo_left_forall_der`.-/
+    `exists_no_root_Ioo_left_forall_der`.
+@isnad1 id=eq.4h4v.s9.9565cbf545b8 from=translated src=- shape=1709b078 vocab=22a09c5b
+-/
 theorem lemma_2_36_right (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) {c d' : R} (hcd' : c < d')
     (hno_root : ∀ k ≤ P.natDegree, ∀ x ∈ Set.Ioc c d',

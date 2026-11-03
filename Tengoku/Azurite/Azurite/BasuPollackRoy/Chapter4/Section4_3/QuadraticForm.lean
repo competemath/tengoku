@@ -118,6 +118,9 @@ def DiagonalExpression.neg (de : DiagonalExpression Φ) : DiagonalExpression (-�
   apply_eq f := by
     simp only [neg_apply, de.apply_eq, neg_mul, Finset.sum_neg_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s7.e55d4f31f9fc from=translated src=- shape=d2fe8e96 vocab=a64bc9d4
+-/
 @[simp] theorem DiagonalExpression.neg_posCount (de : DiagonalExpression Φ) :
     de.neg.posCount = de.negCount := by
   unfold DiagonalExpression.posCount DiagonalExpression.negCount
@@ -130,7 +133,9 @@ def DiagonalExpression.neg (de : DiagonalExpression Φ) : DiagonalExpression (-�
 /-- **Sylvester, uniqueness part (positive).** The number of positive coefficients
 of any diagonal expression of `Φ` equals the positive inertia index `sigPos Φ`.
 Proved by realizing the diagonal expression as a weighted sum of squares (extending
-the linear forms to a basis) and invoking `sigPos_of_equiv_weightedSumSquares`.-/
+the linear forms to a basis) and invoking `sigPos_of_equiv_weightedSumSquares`.
+@isnad1 id=eq.0h4v.s7.5d8e4c7861a4 from=translated src=- shape=f4865ed9 vocab=3f4d3a5f
+-/
 theorem DiagonalExpression.posCount_eq_sigPos (de : DiagonalExpression Φ) :
     de.posCount = sigPos Φ := by
   classical
@@ -177,6 +182,9 @@ theorem DiagonalExpression.posCount_eq_sigPos (de : DiagonalExpression Φ) :
   rw [hset, Set.ncard_image_of_injective _ Sum.inl_injective,
     Set.ncard_eq_toFinset_card', Set.toFinset_ofPred, DiagonalExpression.posCount]
 
+/--
+@isnad1 id=eq.0h4v.s7.386b1d5c689f from=translated src=- shape=f4865ed9 vocab=4458676d
+-/
 theorem DiagonalExpression.negCount_eq_sigNeg (de : DiagonalExpression Φ) :
     de.negCount = sigNeg Φ := by
   rw [← de.neg_posCount, de.neg.posCount_eq_sigPos, sigPos_neg]
@@ -190,14 +198,18 @@ noncomputable def Sign (Φ : QuadraticForm K (Fin n → K)) : ℤ :=
   (sigPos Φ : ℤ) - sigNeg Φ
 
 /-- The signature of any diagonal expression of `Φ` is `Sign(Φ)`: this is the
-well-definedness of the signature (Theorem 4.39) made explicit.-/
+well-definedness of the signature (Theorem 4.39) made explicit.
+@isnad1 id=eq.0h4v.s6.d826edbbbba1 from=translated src=- shape=c14eb09d vocab=f539b75d
+-/
 theorem DiagonalExpression.signature_eq (de : DiagonalExpression Φ) :
     de.signature = Sign Φ := by
   rw [DiagonalExpression.signature, de.posCount_eq_sigPos, de.negCount_eq_sigNeg, Sign]
 
 omit [IsStrictOrderedRing K] in
 /-- Over an ordered field every coefficient is positive or negative, so the number
-of terms splits as `r = (#positive) + (#negative)`.-/
+of terms splits as `r = (#positive) + (#negative)`.
+@isnad1 id=eq.0h4v.s6.1446fdd6309b from=translated src=- shape=bd771cbb vocab=1c129dbe
+-/
 theorem DiagonalExpression.r_eq_posCount_add_negCount (de : DiagonalExpression Φ) :
     de.r = de.posCount + de.negCount := by
   have key := Finset.card_filter_add_card_filter_not
@@ -213,7 +225,9 @@ theorem DiagonalExpression.r_eq_posCount_add_negCount (de : DiagonalExpression �
 
 /-- **The number of terms of a diagonal expression equals the rank of the form**
 (the intrinsic rank `sigPos Φ + sigNeg Φ = n − dim(radical)`). This is the
-intrinsic form of BPR's note "`r = Rank(Φ)`".-/
+intrinsic form of BPR's note "`r = Rank(Φ)`".
+@isnad1 id=eq.0h4v.s7.4cfb99c7ff85 from=translated src=- shape=87302b8e vocab=abb11b1a
+-/
 theorem DiagonalExpression.r_eq_sigPos_add_sigNeg (de : DiagonalExpression Φ) :
     de.r = sigPos Φ + sigNeg Φ := by
   rw [de.r_eq_posCount_add_negCount, de.posCount_eq_sigPos, de.negCount_eq_sigNeg]
@@ -269,7 +283,9 @@ private noncomputable def weightedSumSquaresReindex {K : Type*} [Field K] [Inver
 is congruent to a diagonal one — there exist an invertible `B` and `D` with
 `M = B · diagonal D · Bᵀ`, where `D` has `sigPos (quadraticForm M)` positive and
 `sigNeg (quadraticForm M)` negative entries. Built from Mathlib's
-`equivalent_weightedSumSquares` isometry via the congruence law `toMatrix'_comp`.-/
+`equivalent_weightedSumSquares` isometry via the congruence law `toMatrix'_comp`.
+@isnad1 id=ex.1h3v.s8.c82a9963898e from=translated src=- shape=f22c3b97 vocab=7ae6a08d
+-/
 theorem corollary_4_40 (M : Matrix (Fin n) (Fin n) K) (hM : M.IsSymm) :
     ∃ (B : Matrix (Fin n) (Fin n) K) (D : Fin n → K),
       IsUnit B.det ∧ M = B * Matrix.diagonal D * B.transpose ∧
@@ -316,7 +332,9 @@ theorem corollary_4_40 (M : Matrix (Fin n) (Fin n) K) (hM : M.IsSymm) :
 
 /-- **The matrix rank equals `r₊ + r₋`** (matrix form of `r = Rank(Φ)`): the rank of
 a symmetric matrix is the sum of the positive and negative inertia indices of its
-quadratic form. Follows from Corollary 4.40 (rank is congruence-invariant).-/
+quadratic form. Follows from Corollary 4.40 (rank is congruence-invariant).
+@isnad1 id=eq.1h3v.s7.a24aae3d3165 from=translated src=- shape=4d8a804b vocab=b8cd42d0
+-/
 theorem quadraticFormRank_eq_sigPos_add_sigNeg
     (M : Matrix (Fin n) (Fin n) K) (hM : M.IsSymm) :
     quadraticFormRank M = sigPos (quadraticForm M) + sigNeg (quadraticForm M) := by
@@ -350,7 +368,9 @@ theorem quadraticFormRank_eq_sigPos_add_sigNeg
   rw [hne, Finset.card_union_of_disjoint hdisj]
 
 /-- **BPR's note `r = Rank(Φ)`, now proved.** The number of terms of any diagonal
-expression of `quadraticForm M` equals the matrix rank `Rank(Φ) = M.rank`.-/
+expression of `quadraticForm M` equals the matrix rank `Rank(Φ) = M.rank`.
+@isnad1 id=eq.1h4v.s6.d6d4023eea99 from=translated src=- shape=56729db7 vocab=64a362a0
+-/
 theorem DiagonalExpression.r_eq_quadraticFormRank {M : Matrix (Fin n) (Fin n) K}
     (hM : M.IsSymm) (de : DiagonalExpression (quadraticForm M)) :
     de.r = quadraticFormRank M := by

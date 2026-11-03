@@ -31,7 +31,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Corollary 2.23 (Mean Value Theorem).** Let `R` be an ordered field with
     the intermediate value property, `P ∈ R[X]`, `a < b`. Then there exists
-    `c ∈ (a, b)` such that `P(b) - P(a) = (b - a) * P'(c)`.-/
+    `c ∈ (a, b)` such that `P(b) - P(a) = (b - a) * P'(c)`.
+@isnad1 id=ex.2h4v.s8.59e3387bb597 from=translated src=- shape=ac77feea vocab=537c961c
+-/
 theorem corollary_2_23 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) {a b : R} (hab : a < b) :
     ∃ c ∈ Set.Ioo a b, P.eval b - P.eval a = (b - a) * (derivative P).eval c := by
@@ -49,7 +51,9 @@ theorem corollary_2_23 (hIVP : HasIntermediateValueProperty R)
     simp [hQ']
   linarith
 
-/-- **Corollary 2.23 (Mean Value Theorem), real closed form.**-/
+/-- **Corollary 2.23 (Mean Value Theorem), real closed form.**
+@isnad1 id=ex.1h4v.s8.ee9a84bc8683 from=translated src=- shape=08f6797c vocab=53d777b2
+-/
 theorem corollary_2_23_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) {a b : R} :

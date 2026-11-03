@@ -58,7 +58,9 @@ noncomputable def Syl.mulMap (P Q : D[X])
 
 /-- **BPR Remark 4.14.** Applying the transpose of the Sylvester matrix
     to a coordinate vector `uv` produces the coefficient vector (in the
-    descending power basis) of the polynomial `μ(uv) = U·P + V·Q`.-/
+    descending power basis) of the polynomial `μ(uv) = U·P + V·Q`.
+@isnad1 id=eq.0h5v.s8.11906923a731 from=translated src=- shape=dcaa66c2 vocab=6223262e
+-/
 theorem Syl.transpose_mulVec_apply (P Q : D[X])
     (uv : Fin (P.natDegree + Q.natDegree) → D)
     (i : Fin (P.natDegree + Q.natDegree)) :

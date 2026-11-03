@@ -32,7 +32,9 @@ open HahnSeries
 
 variable {K : Type*} [Field K]
 
-/-- The constant `HahnSeries.C k` is a Puiseux series (a Laurent series in `ε^{1/1} = ε`).-/
+/-- The constant `HahnSeries.C k` is a Puiseux series (a Laurent series in `ε^{1/1} = ε`).
+@isnad1 id=mem.0h2v.s8.f420a9096e01 from=translated src=- shape=b46aaef6 vocab=37d12ddc
+-/
 theorem C_mem_puiseuxSeries (k : K) : (HahnSeries.C k : HahnSeries ℚ K) ∈ PuiseuxSeries K := by
   rw [mem_puiseuxSeries_iff]
   exact ⟨1, RingHom.mem_fieldRange.mpr ⟨HahnSeries.C k, by
@@ -46,6 +48,9 @@ noncomputable def puiseuxC : K →+* PuiseuxSeries K where
   map_zero' := by apply Subtype.ext; simp
   map_add' a b := by apply Subtype.ext; simp [map_add]
 
+/--
+@isnad1 id=eq.0h2v.s11.52dfa91efa0c from=translated src=- shape=4e2b9957 vocab=716a9879
+-/
 @[simp] theorem puiseuxC_coe (k : K) : (puiseuxC k : HahnSeries ℚ K) = HahnSeries.C k := rfl
 
 /-- `K⟨⟨ε⟩⟩` is a `K`-algebra via the constant embedding.-/
@@ -59,6 +64,9 @@ noncomputable def puiseuxEps : PuiseuxSeries K :=
       rw [puiseuxEmb, HahnSeries.embDomainRingHom_apply, HahnSeries.embDomain_single]
       norm_num⟩⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.487731a645be from=translated src=- shape=e75f8057 vocab=43295364
+-/
 @[simp] theorem puiseuxEps_coe :
     ((puiseuxEps : PuiseuxSeries K) : HahnSeries ℚ K) = HahnSeries.single 1 1 := rfl
 

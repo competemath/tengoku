@@ -45,9 +45,18 @@ def map (σ : K →+* K') : ExtendedPoint K → ExtendedPoint K'
   | .posInf => .posInf
   | .negInf => .negInf
 
+/--
+@isnad1 id=eq.0h4v.s6.38418fa5740f from=translated src=- shape=73295bc4 vocab=8bb6d972
+-/
 @[simp] lemma map_finite (σ : K →+* K') (a : K) :
     (ExtendedPoint.finite a).map σ = .finite (σ a) := rfl
+/--
+@isnad1 id=eq.0h3v.s5.f8bb64a32c5a from=translated src=- shape=2edcb310 vocab=f8029d67
+-/
 @[simp] lemma map_posInf (σ : K →+* K') : (ExtendedPoint.posInf).map σ = .posInf := rfl
+/--
+@isnad1 id=eq.0h3v.s5.96a121c2aac2 from=translated src=- shape=2edcb310 vocab=8541b172
+-/
 @[simp] lemma map_negInf (σ : K →+* K') : (ExtendedPoint.negInf).map σ = .negInf := rfl
 
 end ExtendedPoint
@@ -55,7 +64,9 @@ end ExtendedPoint
 /-! ## Signed remainder sequences transfer along field embeddings -/
 
 /-- The signed remainder sequence commutes with `map σ`: since Euclidean
-division does (`Polynomial.map_mod`), each step of the recursion is preserved.-/
+division does (`Polynomial.map_mod`), each step of the recursion is preserved.
+@isnad1 id=eq.0h6v.s7.1d7864fde02a from=translated src=- shape=3f78c844 vocab=6b6aab6e
+-/
 theorem SRemS_map (σ : K →+* K') (P Q : K[X]) (n : ℕ) :
     SRemS (P.map σ) (Q.map σ) n = (SRemS P Q n).map σ := by
   induction n using Nat.strong_induction_on with
@@ -74,7 +85,9 @@ theorem SRemS_map (σ : K →+* K') (P Q : K[X]) (n : ℕ) :
         simp only [this, hz, ite_false]
         rw [h0, h1, ← map_mod, Polynomial.map_neg]
 
-/-- The list form of `SRemS_map`.-/
+/-- The list form of `SRemS_map`.
+@isnad1 id=eq.0h6v.s7.be4c4e03f329 from=translated src=- shape=f1009ebf vocab=41681ddf
+-/
 theorem SRemSList_map (σ : K →+* K') (P Q : K[X]) (n : ℕ) :
     SRemSList (P.map σ) (Q.map σ) n = (SRemSList P Q n).map (Polynomial.map σ) := by
   unfold SRemSList
@@ -89,7 +102,9 @@ private lemma leadingCoeff_map_inj (σ : K →+* K') (P : K[X]) :
 
 /-- Evaluation at an extended point commutes with `map σ` (for `σ` a field
 embedding; injectivity is needed at `±∞` to preserve the leading coefficient
-and degree).-/
+and degree).
+@isnad1 id=eq.0h5v.s7.e8f3fe611eb5 from=translated src=- shape=2d4459f2 vocab=38c19e6a
+-/
 lemma evalPoly_map (σ : K →+* K') (P : K[X]) (ep : ExtendedPoint K) :
     ExtendedPoint.evalPoly (P.map σ) (ep.map σ) = σ (ExtendedPoint.evalPoly P ep) := by
   cases ep with
@@ -103,7 +118,9 @@ lemma evalPoly_map (σ : K →+* K') (P : K[X]) (ep : ExtendedPoint K) :
 variable [LinearOrder K] [LinearOrder K']
 
 /-- `varNonzero` is unchanged by a strictly monotone embedding: the only test
-performed is the sign of adjacent products, which `σ` preserves.-/
+performed is the sign of adjacent products, which `σ` preserves.
+@isnad1 id=eq.1h4v.s7.286d1cc62edd from=translated src=- shape=b8a6b44c vocab=7efa15e7
+-/
 lemma varNonzero_map (σ : K →+* K') (hσ : StrictMono σ) :
     ∀ l : List K, varNonzero (l.map σ) = varNonzero l
   | [] => rfl
@@ -115,7 +132,9 @@ lemma varNonzero_map (σ : K →+* K') (hσ : StrictMono σ) :
         rw [← map_mul, ← map_zero σ, hσ.lt_iff_lt]
       rw [ih, if_congr hif rfl rfl]
 
-/-- `Var` is unchanged by a strictly monotone embedding.-/
+/-- `Var` is unchanged by a strictly monotone embedding.
+@isnad1 id=eq.1h4v.s8.5e8471e6d8f5 from=translated src=- shape=b8a6b44c vocab=032a9fa4
+-/
 lemma Var_map (σ : K →+* K') (hσ : StrictMono σ) (l : List K) :
     Var (l.map σ) = Var l := by
   unfold Var
@@ -127,7 +146,9 @@ lemma Var_map (σ : K →+* K') (hσ : StrictMono σ) (l : List K) :
 
 /-- The sign-variation count of a polynomial sequence at an extended point is
 unchanged when the sequence and the point are pushed forward along an
-order-preserving embedding.-/
+order-preserving embedding.
+@isnad1 id=eq.1h5v.s7.4f8010b85880 from=translated src=- shape=674aa29a vocab=3ef4df53
+-/
 lemma varAt_map (σ : K →+* K') (hσ : StrictMono σ) (L : List K[X]) (ep : ExtendedPoint K) :
     varAt (L.map (Polynomial.map σ)) (ep.map σ) = varAt L ep := by
   have key : (L.map (Polynomial.map σ)).map (ExtendedPoint.evalPoly · (ep.map σ))
@@ -139,17 +160,23 @@ lemma varAt_map (σ : K →+* K') (hσ : StrictMono σ) (L : List K[X]) (ep : Ex
 
 /-- `varAt` at `−∞` is unchanged by an order-preserving embedding (specialized
 form whose statement keeps the point as the bare constructor, so it rewrites
-cleanly).-/
+cleanly).
+@isnad1 id=eq.1h4v.s7.9d0ebd70b8aa from=translated src=- shape=33a4cbbd vocab=53b1765b
+-/
 lemma varAt_map_negInf (σ : K →+* K') (hσ : StrictMono σ) (L : List K[X]) :
     varAt (L.map (Polynomial.map σ)) ExtendedPoint.negInf = varAt L ExtendedPoint.negInf :=
   varAt_map σ hσ L ExtendedPoint.negInf
 
-/-- `varAt` at `+∞` is unchanged by an order-preserving embedding.-/
+/-- `varAt` at `+∞` is unchanged by an order-preserving embedding.
+@isnad1 id=eq.1h4v.s7.cb7b2257be8f from=translated src=- shape=33a4cbbd vocab=7a69b5f8
+-/
 lemma varAt_map_posInf (σ : K →+* K') (hσ : StrictMono σ) (L : List K[X]) :
     varAt (L.map (Polynomial.map σ)) ExtendedPoint.posInf = varAt L ExtendedPoint.posInf :=
   varAt_map σ hσ L ExtendedPoint.posInf
 
-/-- `varBetween` is unchanged by an order-preserving embedding.-/
+/-- `varBetween` is unchanged by an order-preserving embedding.
+@isnad1 id=eq.1h6v.s7.9b0c77e2e1a2 from=translated src=- shape=3804de83 vocab=3194c6f6
+-/
 lemma varBetween_map (σ : K →+* K') (hσ : StrictMono σ) (L : List K[X])
     (a b : ExtendedPoint K) :
     varBetween (L.map (Polynomial.map σ)) (a.map σ) (b.map σ) = varBetween L a b := by
@@ -168,7 +195,9 @@ private lemma evalPoly_posInf_ne_zero {R : Type*} [Field R] (P : R[X]) (hP : P �
 /-- Over a field with the intermediate value property, the full-line Tarski
 query of pushed-forward `F`-polynomials equals the purely `F`-side `varBetween`
 of the signed remainder sequence — a quantity that depends only on the
-coefficients of `P` and `Q`.-/
+coefficients of `P` and `Q`.
+@isnad1 id=eq.3h5v.s9.467a1cbeb225 from=translated src=- shape=a3d7e145 vocab=dbb6dab5
+-/
 lemma tarskiQuery_map_eq_varBetween
     {F R : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
@@ -193,7 +222,9 @@ order-preserving embeddings of the ordered field `F` into fields `R, R'` with
 the intermediate value property, the full-line Tarski queries agree: both sides
 reduce to the same `F`-side signed-remainder-sequence sign count, computed from
 the coefficients of `P` and `Q`. This is the engine behind the uniqueness of
-the real closure.-/
+the real closure.
+@isnad1 id=eq.5h7v.s8.657db4659ae1 from=translated src=- shape=97288ce9 vocab=215478f8
+-/
 theorem tarskiQuery_transfer
     {F R R' : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
@@ -206,7 +237,9 @@ theorem tarskiQuery_transfer
       tarskiQuery_map_eq_varBetween hR' τ hτ P Q hP]
 
 /-- The full-line Tarski query of the constant `1` counts the distinct roots:
-every root contributes `sign(1) = +1`.-/
+every root contributes `sign(1) = +1`.
+@isnad1 id=eq.0h2v.s6.380c88bbd74d from=translated src=- shape=51dcea14 vocab=92d67ae9
+-/
 lemma tarskiQuery_one {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     (P : R[X]) : tarskiQuery (1 : R[X]) P = (P.roots.toFinset.card : ℤ) := by
   classical
@@ -219,7 +252,9 @@ lemma tarskiQuery_one {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing
 /-- **Distinct root counts transfer.** A polynomial over the ordered field `F`
 has the same number of distinct roots in any two order-preserving extensions
 with the intermediate value property. (Instance of `tarskiQuery_transfer` with
-`Q = 1`.)-/
+`Q = 1`.)
+@isnad1 id=eq.5h6v.s8.d0d4e274a068 from=translated src=- shape=842c061b vocab=5b91b6b9
+-/
 lemma card_roots_transfer
     {F R R' : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]

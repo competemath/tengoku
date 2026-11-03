@@ -36,7 +36,9 @@ variable {F R : Type*} [Field F] [Field R] [Algebra F R] [IsRealClosed R]
 
 omit [IsRealClosed R] in
 /-- An element of `R` that is a root of a nonzero polynomial over `algebraicClosure F R` lies in
-`algebraicClosure F R` (it is algebraic over `F` by transitivity).-/
+`algebraicClosure F R` (it is algebraic over `F` by transitivity).
+@isnad1 id=mem.2h4v.s10.777409365317 from=translated src=- shape=8c3735aa vocab=11507401
+-/
 theorem mem_algebraicClosure_of_root {f : (algebraicClosure F R)[X]} (hf : f ≠ 0) {r : R}
     (hr : (f.map (algebraMap (algebraicClosure F R) R)).IsRoot r) :
     r ∈ algebraicClosure F R := by
@@ -44,7 +46,9 @@ theorem mem_algebraicClosure_of_root {f : (algebraicClosure F R)[X]} (hf : f ≠
   have halg : IsAlgebraic (algebraicClosure F R) r := ⟨f, hf, by rwa [aeval_def, ← eval_map]⟩
   exact (isAlgebraic_iff_isIntegral.mp halg).trans_isAlgebraic F
 
-/-- Every element of `algebraicClosure F R`, or its negation, is a square.-/
+/-- Every element of `algebraicClosure F R`, or its negation, is a square.
+@isnad1 id=or.0h3v.s9.123ea41898d7 from=translated src=- shape=11653c00 vocab=02c8f9ef
+-/
 theorem isSquare_or_isSquare_neg_algClosure (x : algebraicClosure F R) :
     IsSquare x ∨ IsSquare (-x) := by
   have key : ∀ z : algebraicClosure F R, IsSquare (algebraMap _ R z) → IsSquare z := by
@@ -59,7 +63,9 @@ theorem isSquare_or_isSquare_neg_algClosure (x : algebraicClosure F R) :
   · exact Or.inl (key x h)
   · exact Or.inr (key (-x) (by rw [map_neg]; exact h))
 
-/-- Every odd-degree polynomial over `algebraicClosure F R` has a root in `algebraicClosure F R`.-/
+/-- Every odd-degree polynomial over `algebraicClosure F R` has a root in `algebraicClosure F R`.
+@isnad1 id=ex.1h3v.s9.a371ff148be1 from=translated src=- shape=0c97351d vocab=191e133d
+-/
 theorem exists_isRoot_of_odd_algClosure {f : (algebraicClosure F R)[X]} (hf : Odd f.natDegree) :
     ∃ r : algebraicClosure F R, f.IsRoot r := by
   have hf0 : f ≠ 0 := by rintro rfl; simp at hf
@@ -80,7 +86,9 @@ theorem exists_isRoot_of_odd_algClosure {f : (algebraicClosure F R)[X]} (hf : Od
   exact hr
 
 /-- **Exercise 2.10.** If `F` is contained in a real closed field `R`, the elements of `R` algebraic
-over `F` form a real closed field (the real closure of `F` inside `R`).-/
+over `F` form a real closed field (the real closure of `F` inside `R`).
+@isnad1 id=isrealcl.0h2v.s6.4860a956def0 from=translated src=- shape=274a1553 vocab=38b4aa00
+-/
 theorem isRealClosed_algebraicClosure (F R : Type*) [Field F] [Field R] [Algebra F R]
     [IsRealClosed R] : IsRealClosed (algebraicClosure F R) := by
   have : IsSemireal (algebraicClosure F R) := by

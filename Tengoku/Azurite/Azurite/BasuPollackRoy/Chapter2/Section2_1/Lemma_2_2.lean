@@ -49,7 +49,9 @@ def IsRootMultiplicity (x : K) (P : K[X]) (μ : ℕ) : Prop :=
   ∃ Q : K[X], P = (X - C x) ^ μ * Q ∧ Q.eval x ≠ 0
 
 /-- **BPR Lemma 2.2.** x is a root of P of multiplicity μ iff
-    P(x) = P'(x) = ⋯ = P^{(μ−1)}(x) = 0 and P^{(μ)}(x) ≠ 0.-/
+    P(x) = P'(x) = ⋯ = P^{(μ−1)}(x) = 0 and P^{(μ)}(x) ≠ 0.
+@isnad1 id=iff.1h4v.s9.a8c880e7def0 from=translated src=- shape=26591052 vocab=b2ce37de
+-/
 theorem lemma_2_2 (P : K[X]) (t : K) (hP : P ≠ 0) (μ : ℕ) :
     μ = rootMultiplicity t P ↔
       (∀ i < μ, (derivative^[i] P).IsRoot t) ∧

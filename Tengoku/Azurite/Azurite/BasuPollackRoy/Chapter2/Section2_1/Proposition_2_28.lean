@@ -46,7 +46,9 @@ private lemma isOpenInterval_infinite (S : Set R) (hS : IsOpenInterval S) :
 
 /-- **BPR Proposition 2.28, Part 1 (Root injectivity).** If `x` and `x'` both
     realize the same sign condition `σ` on `Der(P)` and `σ(P) = 0`,
-    then `x = x'`.-/
+    then `x = x'`.
+@isnad1 id=eq.6h6v.s7.0a3ba6ed2faa from=translated src=- shape=beefbe09 vocab=ae862faa
+-/
 theorem proposition_2_28_part1 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) (n : ℕ) (σ : ℕ → SignType) (hn : P.natDegree ≤ n)
     (hσ0 : σ 0 = 0) (x x' : R)
@@ -93,7 +95,9 @@ private lemma derivative_iterate_eq (P : R[X]) (j : ℕ) :
 /-- **BPR Proposition 2.28, Part 2 (Thom encoding comparison).** Let `j` be the
     largest index where the sign conditions `σ` and `σ'` differ. Then
     `σ(j+1) = σ'(j+1) ≠ 0`, and the comparison of `x` vs `x'` is determined
-    by `σ(j+1)` and the ordering of `σ(j)` vs `σ'(j)`.-/
+    by `σ(j+1)` and the ordering of `σ(j)` vs `σ'(j)`.
+@isnad1 id=and.8h8v.s8.83bafbcb3119 from=translated src=- shape=294a523c vocab=22442761
+-/
 theorem proposition_2_28_part2 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (_hP : P ≠ 0) (n : ℕ) (σ σ' : ℕ → SignType) (hn : P.natDegree ≤ n)
     (x x' : R)
@@ -224,6 +228,9 @@ defined in `Azurite.BasuPollackRoy.Chapter2.Section2_1.Definition_2_29`. -/
 
 /-! ### Real closed corollaries -/
 
+/--
+@isnad1 id=eq.5h6v.s7.f8b191f55aad from=translated src=- shape=dd0afc31 vocab=3b804330
+-/
 theorem proposition_2_28_part1_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (hP : P ≠ 0) (n : ℕ) (σ : ℕ → SignType) (hn : P.natDegree ≤ n)
@@ -237,6 +244,9 @@ theorem proposition_2_28_part1_of_isRealClosed
   have : IsAlgClosed (Ri R) := Theorem2_11.isAlgClosed_Ri
   exact proposition_2_28_part1 Theorem2_11.theorem_2_11_b_c P hP n σ hn hσ0 x x' hx hx'
 
+/--
+@isnad1 id=and.7h8v.s8.a653b136e3af from=translated src=- shape=031bc02f vocab=f01c8b54
+-/
 theorem proposition_2_28_part2_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (hP : P ≠ 0) (n : ℕ) (σ σ' : ℕ → SignType) (hn : P.natDegree ≤ n)

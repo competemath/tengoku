@@ -40,15 +40,27 @@ variable {R : Type*} [Field R]
 def BoundedBy (M : ℕ+) (a : PuiseuxSeries R) : Prop :=
   (a : HahnSeries ℚ R) ∈ puiseuxSubfield R M
 
+/--
+@isnad1 id=boundedb.0h2v.s8.04e5c64a7759 from=translated src=- shape=8fed2758 vocab=00336ddd
+-/
 theorem boundedBy_zero (M : ℕ+) : BoundedBy M (0 : PuiseuxSeries R) := by
   rw [BoundedBy, ZeroMemClass.coe_zero]; exact zero_mem _
 
+/--
+@isnad1 id=boundedb.2h4v.s11.1ae416db6b56 from=translated src=- shape=2be9f9d9 vocab=cb293842
+-/
 theorem BoundedBy.mul {M : ℕ+} {a b : PuiseuxSeries R} (ha : BoundedBy M a) (hb : BoundedBy M b) :
     BoundedBy M (a * b) := by rw [BoundedBy, Subfield.coe_mul]; exact mul_mem ha hb
 
+/--
+@isnad1 id=boundedb.2h4v.s11.539aa1d98e85 from=translated src=- shape=2be9f9d9 vocab=7f2fe81e
+-/
 theorem BoundedBy.add {M : ℕ+} {a b : PuiseuxSeries R} (ha : BoundedBy M a) (hb : BoundedBy M b) :
     BoundedBy M (a + b) := by rw [BoundedBy, Subfield.coe_add]; exact add_mem ha hb
 
+/--
+@isnad1 id=boundedb.1h5v.s10.3fd83cc3650d from=translated src=- shape=a5fdec25 vocab=8c1afd57
+-/
 theorem BoundedBy.sum {M : ℕ+} {ι : Type*} (s : Finset ι) {f : ι → PuiseuxSeries R}
     (hf : ∀ i ∈ s, BoundedBy M (f i)) : BoundedBy M (∑ i ∈ s, f i) := by
   classical
@@ -59,13 +71,17 @@ theorem BoundedBy.sum {M : ℕ+} {ι : Type*} (s : Finset ι) {f : ι → Puiseu
     exact (hf a (Finset.mem_insert_self a t)).add
       (ih (fun i hi => hf i (Finset.mem_insert_of_mem hi)))
 
-/-- A constant Puiseux series has exponent `0 ∈ (1/M)ℤ`, so it is bounded by any `M`.-/
+/-- A constant Puiseux series has exponent `0 ∈ (1/M)ℤ`, so it is bounded by any `M`.
+@isnad1 id=boundedb.0h3v.s11.cc31cdc21439 from=translated src=- shape=73dcec67 vocab=aabed8fb
+-/
 theorem boundedBy_constPuiseux (M : ℕ+) (c : R) : BoundedBy M (constPuiseux c) := by
   rw [BoundedBy, coe_constPuiseux, puiseuxSubfield, RingHom.mem_fieldRange]
   refine ⟨HahnSeries.single 0 c, ?_⟩
   simp [puiseuxEmb_single, puiseuxExpHom_apply]
 
-/-- `embDomain` along an order embedding `ℤ ↪o ℚ` maps the order to the order.-/
+/-- `embDomain` along an order embedding `ℤ ↪o ℚ` maps the order to the order.
+@isnad1 id=eq.1h3v.s7.8ed3afe47aa3 from=translated src=- shape=886e0790 vocab=1f65e3f3
+-/
 theorem order_embDomain {f : ℤ ↪o ℚ} {x : HahnSeries ℤ R} (hx : x ≠ 0) :
     (HahnSeries.embDomain f x).order = f x.order := by
   have hne : HahnSeries.embDomain f x ≠ 0 := by
@@ -75,7 +91,9 @@ theorem order_embDomain {f : ℤ ↪o ℚ} {x : HahnSeries ℤ R} (hx : x ≠ 0)
     ← HahnSeries.order_eq_orderTop_of_ne_zero hx, WithTop.map_coe] at h
   exact_mod_cast h
 
-/-- The monomial `ε^γ` is bounded by `M` whenever `γ ∈ (1/M)ℤ`.-/
+/-- The monomial `ε^γ` is bounded by `M` whenever `γ ∈ (1/M)ℤ`.
+@isnad1 id=boundedb.1h4v.s5.4e4a81ee4810 from=translated src=- shape=cfb27a5e vocab=f8aba012
+-/
 theorem boundedBy_puiseuxMonomial {M : ℕ+} {γ : ℚ} (n : ℤ) (hγ : γ = (n : ℚ) / (M : ℚ)) :
     BoundedBy M (puiseuxMonomial γ : PuiseuxSeries R) := by
   rw [BoundedBy, coe_puiseuxMonomial, puiseuxSubfield, RingHom.mem_fieldRange]
@@ -83,7 +101,9 @@ theorem boundedBy_puiseuxMonomial {M : ℕ+} {γ : ℚ} (n : ℤ) (hγ : γ = (n
   rw [puiseuxEmb_single, hγ, puiseuxExpHom_apply]
 
 /-- **Order extraction.** If `a ≠ 0` is bounded by `M`, then `M · o(a)` is an integer:
-`o(a) ∈ (1/M)ℤ`.-/
+`o(a) ∈ (1/M)ℤ`.
+@isnad1 id=ex.2h3v.s10.e23b6c419894 from=translated src=- shape=f326d2b8 vocab=82e339f0
+-/
 theorem BoundedBy.order_mul_mem_int {M : ℕ+} {a : PuiseuxSeries R} (ha : BoundedBy M a)
     (h0 : a ≠ 0) : ∃ k : ℤ, HahnSeries.order (a : HahnSeries ℚ R) = (k : ℚ) / (M : ℚ) := by
   rw [BoundedBy, puiseuxSubfield, RingHom.mem_fieldRange] at ha
@@ -94,7 +114,9 @@ theorem BoundedBy.order_mul_mem_int {M : ℕ+} {a : PuiseuxSeries R} (ha : Bound
   rw [← ha', puiseuxEmb, HahnSeries.embDomainRingHom_apply, order_embDomain ha'0]
   exact puiseuxExpHom_apply M a'.order
 
-/-- If `a` is bounded by `M` and its order is the finite value `c`, then `c ∈ (1/M)ℤ`.-/
+/-- If `a` is bounded by `M` and its order is the finite value `c`, then `c ∈ (1/M)ℤ`.
+@isnad1 id=ex.2h4v.s7.ff70935672c9 from=translated src=- shape=2b8d2f6f vocab=073de2b9
+-/
 theorem boundedBy_puiseuxOrder_mem {M : ℕ+} {a : PuiseuxSeries R} (ha : BoundedBy M a) {c : ℚ}
     (hc : puiseuxOrder R a = (c : WithTop ℚ)) : ∃ k : ℤ, c = (k : ℚ) / (M : ℚ) := by
   have ha0 : a ≠ 0 := by
@@ -107,12 +129,16 @@ theorem boundedBy_puiseuxOrder_mem {M : ℕ+} {a : PuiseuxSeries R} (ha : Bounde
   rw [hpo] at hc
   rw [← hk]; exact_mod_cast hc.symm
 
-/-- `BoundedBy` is monotone in the denominator: `q ∣ M` enlarges the lattice.-/
+/-- `BoundedBy` is monotone in the denominator: `q ∣ M` enlarges the lattice.
+@isnad1 id=boundedb.2h4v.s7.abb02898088d from=translated src=- shape=85a764b0 vocab=b1101854
+-/
 theorem BoundedBy.mono {q M : ℕ+} (h : q ∣ M) {a : PuiseuxSeries R} (ha : BoundedBy q a) :
     BoundedBy M a := puiseuxSubfield_mono R h ha
 
 /-- **Every polynomial has a common denominator bound.** Its finitely many coefficients are Puiseux
-series, each with some denominator; their product bounds them all.-/
+series, each with some denominator; their product bounds them all.
+@isnad1 id=ex.0h2v.s10.22b8f704a8e3 from=translated src=- shape=456dac79 vocab=42bd18d0
+-/
 theorem exists_boundedBy (P : Polynomial (PuiseuxSeries R)) :
     ∃ M : ℕ+, ∀ i, BoundedBy M (P.coeff i) := by
   classical
@@ -129,7 +155,9 @@ theorem exists_boundedBy (P : Polynomial (PuiseuxSeries R)) :
   · rw [Polynomial.mem_support_iff, not_not] at hi; rw [hi]; exact boundedBy_zero _
 
 /-- **`substPoly` preserves `BoundedBy M`** when `ξ = a/M`, `β = b/M`. Each coefficient is a finite
-sum of products `(P.coeff h) · ε^{hξ−β} · (constant)`, all bounded by `M`.-/
+sum of products `(P.coeff h) · ε^{hξ−β} · (constant)`, all bounded by `M`.
+@isnad1 id=boundedb.3h9v.s11.adae6990eb0e from=translated src=- shape=98068804 vocab=bbaaa2cb
+-/
 theorem boundedBy_substPoly {M : ℕ+} {P : Polynomial (PuiseuxSeries R)} {x : R} {ξ β : ℚ}
     {a b : ℤ} (hξ : ξ = (a : ℚ) / (M : ℚ)) (hβ : β = (b : ℚ) / (M : ℚ))
     (hP : ∀ i, BoundedBy M (P.coeff i)) (i : ℕ) :
@@ -143,7 +171,9 @@ theorem boundedBy_substPoly {M : ℕ+} {P : Polynomial (PuiseuxSeries R)} {x : R
 
 /-- **The stabilized-step order identity.** If the edge `[A, B]` over `[0, r]` has
 `rootMultiplicity x (charPoly P A B) = r` (multiplicity did not drop) with `x ≠ 0` and `r ≠ 0` in
-`R`, then `o(P.coeff (r − 1)) = −newtonSlope A B` (`= ξ`).-/
+`R`, then `o(P.coeff (r − 1)) = −newtonSlope A B` (`= ξ`).
+@isnad1 id=eq.8h6v.s11.31b639eebd92 from=translated src=- shape=b849960f vocab=2d24690b
+-/
 theorem stabilized_coeff_order {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {x : R} {r : ℕ}
     (hABlt : A.1 < B.1) (hBr : B.1 ≤ r) (hx0 : x ≠ 0) (hrR : (r : R) ≠ 0)
     (hcolA : puiseuxOrder R (P.coeff A.1) = (A.2 : WithTop ℚ))
@@ -195,7 +225,9 @@ variable [IsRealClosed R]
 
 /-- **Bounded denominators along the tail of the recursion.** There is a stage `N` (past which the
 multiplicity is constant) and a single denominator `M` such that for all `n ≥ N`, every coefficient
-of `Pₙ = (stateSeq s0 n).poly` is a Laurent series in `ε^{1/M}` (`BoundedBy M`).-/
+of `Pₙ = (stateSeq s0 n).poly` is a Laurent series in `ε^{1/M}` (`BoundedBy M`).
+@isnad1 id=ex.0h2v.s9.49124309592d from=translated src=- shape=f4ca9451 vocab=b2c101ed
+-/
 theorem stateSeq_boundedBy (s0 : RecState R) :
     ∃ (N : ℕ) (M : ℕ+),
       (∀ n, N ≤ n → (stateSeq s0 n).mult = (stateSeq s0 N).mult) ∧
@@ -242,7 +274,9 @@ theorem stateSeq_boundedBy (s0 : RecState R) :
 
 /-- **The exponent and order increments share a fixed denominator past `N`.** For `n ≥ N`, both
 `ξₙ = xiSeq s0 n` and `βₙ = betaSeq s0 n` lie in `(1/M)ℤ`. At a barrier step both are `0`; at a
-genuine step `ξₙ = o(coeff (r−1)) ∈ (1/M)ℤ` (stabilized step) and `βₙ = edgeA.2 + edgeA.1·ξₙ`.-/
+genuine step `ξₙ = o(coeff (r−1)) ∈ (1/M)ℤ` (stabilized step) and `βₙ = edgeA.2 + edgeA.1·ξₙ`.
+@isnad1 id=ex.0h2v.s6.bf072952968e from=translated src=- shape=7c4009cd vocab=8118ed5f
+-/
 theorem stateSeq_xibeta_mem (s0 : RecState R) :
     ∃ (N : ℕ) (M : ℕ+), ∀ n, N ≤ n →
       (∃ k : ℤ, xiSeq s0 n = (k : ℚ) / (M : ℚ)) ∧

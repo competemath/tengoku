@@ -36,7 +36,9 @@ noncomputable def idealOfPolys (P : Finset (MvPolynomial (Fin k) K)) :
     Ideal (MvPolynomial (Fin k) K) :=
   Ideal.span (↑P : Set (MvPolynomial (Fin k) K))
 
-/-- `Ideal(𝒫, K) = {∑_{P ∈ 𝒫} A_P · P | A_P ∈ K[X₁, …, X_k]}`.-/
+/-- `Ideal(𝒫, K) = {∑_{P ∈ 𝒫} A_P · P | A_P ∈ K[X₁, …, X_k]}`.
+@isnad1 id=iff.0h4v.s8.159aad11ab73 from=translated src=- shape=7e261d06 vocab=25de8d93
+-/
 theorem mem_idealOfPolys_iff (P : Finset (MvPolynomial (Fin k) K))
     (f : MvPolynomial (Fin k) K) :
     f ∈ idealOfPolys P
@@ -54,7 +56,9 @@ variable {C : Type*} [CommRing C] [Algebra K C]
 
 /-- **A polynomial in `Ideal(𝒫, K)` vanishes at every common zero of `𝒫` in `Cᵏ`.** If
 `f ∈ Ideal(𝒫, K)` and `x ∈ Cᵏ` is a common zero of `𝒫` (i.e. `x ∈ Zer(𝒫, Cᵏ)`), then
-`f(x) = 0`.-/
+`f(x) = 0`.
+@isnad1 id=eq.2h6v.s9.f2af12b12c5c from=translated src=- shape=e9ec34e7 vocab=0f5fe32d
+-/
 theorem aeval_eq_zero_of_mem_idealOfPolys {P : Finset (MvPolynomial (Fin k) K)}
     {f : MvPolynomial (Fin k) K} (hf : f ∈ idealOfPolys P) (x : Fin k → C)
     (hx : ∀ p ∈ P, MvPolynomial.aeval x p = 0) :

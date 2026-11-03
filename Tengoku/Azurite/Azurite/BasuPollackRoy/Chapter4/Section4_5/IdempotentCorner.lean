@@ -27,13 +27,17 @@ namespace Azurite.BPR.Chapter4
 
 variable {R : Type*} [CommRing R] {e : R}
 
-/-- For a commutative ring, the corner `e R` consists of the elements `r` with `e * r = r`.-/
+/-- For a commutative ring, the corner `e R` consists of the elements `r` with `e * r = r`.
+@isnad1 id=iff.1h3v.s6.00891152b2ba from=translated src=- shape=852a983b vocab=b8915c2b
+-/
 theorem mem_corner_iff_mul_eq (he : IsIdempotentElem e) {r : R} :
     r ∈ Subsemigroup.corner e ↔ e * r = r := by
   rw [Subsemigroup.mem_corner_iff he]
   exact ⟨And.left, fun h => ⟨h, by rw [mul_comm]; exact h⟩⟩
 
-/-- **The identity of the corner ring `e R` is `e`.**-/
+/-- **The identity of the corner ring `e R` is `e`.**
+@isnad1 id=eq.1h2v.s7.7ecef41b58f0 from=translated src=- shape=25906be4 vocab=ecef91e6
+-/
 theorem corner_one_val (he : IsIdempotentElem e) : (1 : he.Corner).1 = e := rfl
 
 end Azurite.BPR.Chapter4

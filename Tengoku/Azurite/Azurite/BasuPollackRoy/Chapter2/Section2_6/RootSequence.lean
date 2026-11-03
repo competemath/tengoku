@@ -47,7 +47,9 @@ variable [IsRealClosed R]
 
 /-- **One continuation step.** From a valid state with nonzero constant term, the negative-slope
 step produces the next valid state, with non-increasing multiplicity, `β > 0`, and the order jump
-`o(Pᵢ(ε^ξ(x + y))) > β`.-/
+`o(Pᵢ(ε^ξ(x + y))) > β`.
+@isnad1 id=ex.1h2v.s13.d78c78f80bf5 from=translated src=- shape=9ea390d3 vocab=dce9834d
+-/
 theorem RecState.exists_next (s : RecState R) (h0 : s.poly.coeff 0 ≠ 0) :
     ∃ (x : R) (ξ β : ℚ) (A B : ℕ × ℚ) (s' : RecState R),
       x ≠ 0 ∧ s'.mult ≤ s.mult ∧ 0 < β ∧ 0 < ξ ∧ s'.poly = substPoly s.poly x ξ β ∧
@@ -92,6 +94,9 @@ structure StepResult (s : RecState R) where
     (beta : WithTop ℚ) <
       puiseuxOrder R (s.poly.eval (puiseuxMonomial xi * (constPuiseux x + y)))
 
+/--
+@isnad1 id=nonempty.1h2v.s10.bb8de172054d from=translated src=- shape=3952698b vocab=42cd5c16
+-/
 theorem RecState.nonempty_stepResult (s : RecState R) (h0 : s.poly.coeff 0 ≠ 0) :
     Nonempty (StepResult s) := by
   obtain ⟨x, ξ, β, A, B, s', hx0, hrle, hβpos, hξpos, hpoly, hABlt, hBr, hcolA, hcolB, hξeq, hβeq,
@@ -108,15 +113,22 @@ noncomputable def RecState.step (s : RecState R) : R × ℚ × ℚ × RecState R
     let sr := Classical.choice (s.nonempty_stepResult h)
     (sr.x, sr.xi, sr.beta, sr.next)
 
-/-- Away from the barrier, `step` returns the data of a genuine `StepResult`.-/
+/-- Away from the barrier, `step` returns the data of a genuine `StepResult`.
+@isnad1 id=ex.1h2v.s10.39c5eaa6e960 from=translated src=- shape=8498af45 vocab=2137c824
+-/
 theorem RecState.step_spec (s : RecState R) (h : s.poly.coeff 0 ≠ 0) :
     ∃ sr : StepResult s, s.step = (sr.x, sr.xi, sr.beta, sr.next) :=
   ⟨Classical.choice (s.nonempty_stepResult h), by rw [RecState.step, dite_eq_right h]⟩
 
+/--
+@isnad1 id=eq.1h2v.s10.5f2caab6922e from=translated src=- shape=dec8ab1c vocab=dd178d59
+-/
 @[simp] theorem RecState.step_barrier (s : RecState R) (h : s.poly.coeff 0 = 0) :
     s.step = (0, 0, 0, s) := by rw [RecState.step, dite_eq_left h]
 
-/-- The multiplicity is non-increasing under `step` (it freezes at the barrier).-/
+/-- The multiplicity is non-increasing under `step` (it freezes at the barrier).
+@isnad1 id=le.0h2v.s5.5b7dffe49a12 from=translated src=- shape=cebe2a32 vocab=036a9c97
+-/
 theorem RecState.step_mult_le (s : RecState R) : (s.step).2.2.2.mult ≤ s.mult := by
   by_cases h : s.poly.coeff 0 = 0
   · rw [RecState.step_barrier s h]
@@ -137,29 +149,39 @@ noncomputable def xiSeq (s0 : RecState R) (n : ℕ) : ℚ := ((stateSeq s0 n).st
 /-- The `n`-th order increment `β_{n+1}`.-/
 noncomputable def betaSeq (s0 : RecState R) (n : ℕ) : ℚ := ((stateSeq s0 n).step).2.2.1
 
-/-- The multiplicity is non-increasing along the state sequence.-/
+/-- The multiplicity is non-increasing along the state sequence.
+@isnad1 id=antitone.0h2v.s4.f89db3db4b84 from=translated src=- shape=f62ce331 vocab=915fc8fd
+-/
 theorem stateSeq_mult_antitone (s0 : RecState R) : Antitone (fun n => (stateSeq s0 n).mult) := by
   apply antitone_nat_of_succ_le
   intro n
   show (stateSeq s0 (n + 1)).mult ≤ (stateSeq s0 n).mult
   exact RecState.step_mult_le _
 
-/-- Away from the barrier, the step's exponent increment `ξ` is positive.-/
+/-- Away from the barrier, the step's exponent increment `ξ` is positive.
+@isnad1 id=lt.1h2v.s10.8f5b0d0adaea from=translated src=- shape=55d7f72c vocab=e9aa882f
+-/
 theorem RecState.step_xi_pos (s : RecState R) (h : s.poly.coeff 0 ≠ 0) : 0 < (s.step).2.1 := by
   obtain ⟨sr, hsr⟩ := s.step_spec h
   rw [hsr]; exact sr.xi_pos
 
-/-- Under the never-barrier hypothesis, every exponent increment `ξₙ` is positive.-/
+/-- Under the never-barrier hypothesis, every exponent increment `ξₙ` is positive.
+@isnad1 id=lt.1h3v.s10.e4069b010a2f from=translated src=- shape=566222bd vocab=5dedd637
+-/
 theorem xiSeq_pos (s0 : RecState R) (hnb : ∀ n, (stateSeq s0 n).poly.coeff 0 ≠ 0) (n : ℕ) :
     0 < xiSeq s0 n := (stateSeq s0 n).step_xi_pos (hnb n)
 
-/-- An antitone `ℕ → ℕ` sequence is eventually constant.-/
+/-- An antitone `ℕ → ℕ` sequence is eventually constant.
+@isnad1 id=ex.1h1v.s4.60112060844f from=translated src=- shape=911d4a9c vocab=a4758b81
+-/
 theorem antitone_nat_eventually_const {f : ℕ → ℕ} (hf : Antitone f) :
     ∃ N, ∀ n, N ≤ n → f n = f N := by
   obtain ⟨N, hN⟩ := Nat.sInf_mem (Set.range_nonempty f)
   exact ⟨N, fun n hn => le_antisymm (hf hn) (by rw [hN]; exact Nat.sInf_le ⟨n, rfl⟩)⟩
 
-/-- **The multiplicity stabilizes.** Eventually `(stateSeq s0 n).mult` is a constant value `r`.-/
+/-- **The multiplicity stabilizes.** Eventually `(stateSeq s0 n).mult` is a constant value `r`.
+@isnad1 id=ex.0h2v.s5.2690234fe421 from=translated src=- shape=ae6b14df vocab=9e38b0eb
+-/
 theorem stateSeq_mult_eventually_const (s0 : RecState R) :
     ∃ N, ∀ n, N ≤ n → (stateSeq s0 n).mult = (stateSeq s0 N).mult :=
   antitone_nat_eventually_const (stateSeq_mult_antitone s0)

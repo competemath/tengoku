@@ -50,7 +50,9 @@ namespace Azurite.BPR
     may write `b² − 4ac = s²` for some `s ∈ R` (by `IsRealClosed.exists_eq_pow_of_nonneg`),
     and `x₀ = (−b + s) / (2a)` is a root of `P` (a direct calculation using the
     completing-the-square identity). A root witnesses that `P` does not have
-    constant non-zero sign.-/
+    constant non-zero sign.
+@isnad1 id=iff.1h4v.s8.5a3d18969410 from=translated src=- shape=3a511830 vocab=300cc78f
+-/
 theorem exercise_2_9 {R : Type*} [Field R] [IsRealClosed R]
     {a b c : R} (ha : a ≠ 0) :
     letI : LinearOrder R := IsRealClosed.toLinearOrder

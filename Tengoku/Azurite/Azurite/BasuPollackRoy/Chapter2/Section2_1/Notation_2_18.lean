@@ -49,11 +49,15 @@ noncomputable def Ri.conj (R : Type*) [CommRing R] : Ri R →ₐ[R] Ri R :=
         simpa [eval₂_add, eval₂_pow, eval₂_one, eval₂_X] using h) with
     commutes' := fun r => by simp [AdjoinRoot.lift_of] }
 
-/-- Conjugation sends i to −i.-/
+/-- Conjugation sends i to −i.
+@isnad1 id=eq.0h1v.s10.e2e50b732e91 from=translated src=- shape=c8f93dc7 vocab=7b462b3d
+-/
 theorem Ri.conj_i (R : Type*) [CommRing R] : (Ri.conj R) (Ri.i R) = -Ri.i R := by
   simp [Ri.conj, Ri.i, AdjoinRoot.lift_root]
 
-/-- Conjugation is an involution: conj(conj(z)) = z.-/
+/-- Conjugation is an involution: conj(conj(z)) = z.
+@isnad1 id=eq.0h2v.s11.f6d4e49e5886 from=translated src=- shape=eb6b3228 vocab=bb5b09a7
+-/
 theorem Ri.conj_conj (R : Type*) [CommRing R] (z : Ri R) :
     (Ri.conj R) ((Ri.conj R) z) = z := by
   have : (Ri.conj R).comp (Ri.conj R) = AlgHom.id R (Ri R) := by
@@ -62,12 +66,16 @@ theorem Ri.conj_conj (R : Type*) [CommRing R] (z : Ri R) :
       AdjoinRoot.lift_root, map_neg, neg_neg, AlgHom.id_apply]
   exact AlgHom.congr_fun this z
 
-/-- Conjugation is injective.-/
+/-- Conjugation is injective.
+@isnad1 id=injectiv.0h1v.s11.18f9507bcd2c from=translated src=- shape=88863dee vocab=0ca8b9a2
+-/
 theorem Ri.conj_injective (R : Type*) [CommRing R] :
     Function.Injective (Ri.conj R : Ri R →+* Ri R) :=
   Function.HasLeftInverse.injective ⟨Ri.conj R, Ri.conj_conj R⟩
 
-/-- The defining relation: i² = −1 in R[i].-/
+/-- The defining relation: i² = −1 in R[i].
+@isnad1 id=eq.0h1v.s8.88ef1b614091 from=translated src=- shape=c3b6b3c7 vocab=a5d8f634
+-/
 theorem Ri.i_sq (R : Type*) [CommRing R] :
     (Ri.i R) ^ 2 = -(1 : Ri R) := by
   have h : AdjoinRoot.mk (X ^ 2 + 1 : R[X]) (X ^ 2 + 1 : R[X]) = 0 := AdjoinRoot.mk_self
@@ -75,12 +83,16 @@ theorem Ri.i_sq (R : Type*) [CommRing R] :
   unfold Ri.i
   linear_combination h
 
-/-- In a real closed field, −1 is not a square.-/
+/-- In a real closed field, −1 is not a square.
+@isnad1 id=not.0h1v.s5.f84137d02e21 from=translated src=- shape=20fbac9e vocab=8f24b7eb
+-/
 theorem not_isSquare_neg_one {R : Type*} [Field R] [IsRealClosed R] :
     ¬ IsSquare (-1 : R) := by
   intro h; exact IsSemireal.not_isSumSq_neg_one R h.isSumSq
 
-/-- X² + 1 is irreducible over a real closed field R.-/
+/-- X² + 1 is irreducible over a real closed field R.
+@isnad1 id=irreduci.0h1v.s7.aa5cf26ddb47 from=translated src=- shape=c371f3f4 vocab=176ada6c
+-/
 theorem irred_X_sq_add_one {R : Type*} [Field R] [IsRealClosed R] :
     Irreducible (X ^ 2 + 1 : R[X]) := by
   apply Polynomial.irreducible_of_degree_le_three_of_not_isRoot
@@ -93,12 +105,16 @@ theorem irred_X_sq_add_one {R : Type*} [Field R] [IsRealClosed R] :
     have : (-1 : R) = x * x := by linear_combination -h
     exact not_isSquare_neg_one ⟨x, this⟩
 
-/-- X² + 1 is irreducible (as a Fact, for `AdjoinRoot.instField`).-/
+/-- X² + 1 is irreducible (as a Fact, for `AdjoinRoot.instField`).
+@isnad1 id=fact.0h1v.s7.6ba6abe6c819 from=translated src=- shape=be1b27f9 vocab=91bb4a36
+-/
 instance instFactIrred_X_sq_add_one (R : Type*) [Field R] [IsRealClosed R] :
     Fact (Irreducible (X ^ 2 + 1 : R[X])) :=
   ⟨irred_X_sq_add_one⟩
 
-/-- Every element of R[i] decomposes as ι(a) + ι(b) · i with a, b ∈ R.-/
+/-- Every element of R[i] decomposes as ι(a) + ι(b) · i with a, b ∈ R.
+@isnad1 id=ex.0h2v.s11.edef2ffa26fa from=translated src=- shape=76aa1735 vocab=739e5cf3
+-/
 theorem Ri.repr_exists {R : Type*} [CommRing R] [Nontrivial R] (z : Ri R) :
     ∃ a b : R, z = algebraMap R (Ri R) a + algebraMap R (Ri R) b * Ri.i R := by
   induction z using AdjoinRoot.induction_on with
@@ -130,7 +146,9 @@ theorem Ri.repr_exists {R : Type*} [CommRing R] [Nontrivial R] (z : Ri R) :
 noncomputable def Ri.normSq {R : Type*} [CommRing R] (z : Ri R) : Ri R :=
   z * Ri.conj R z
 
-/-- normSq(a + bi) = ι(a² + b²).-/
+/-- normSq(a + bi) = ι(a² + b²).
+@isnad1 id=eq.0h3v.s12.ef41dab64efe from=translated src=- shape=bc170d85 vocab=2382131c
+-/
 theorem Ri.normSq_repr {R : Type*} [CommRing R] (a b : R) :
     Ri.normSq (algebraMap R (Ri R) a + algebraMap R (Ri R) b * Ri.i R) =
     algebraMap R (Ri R) (a ^ 2 + b ^ 2) := by
@@ -145,7 +163,9 @@ theorem Ri.normSq_repr {R : Type*} [CommRing R] (a b : R) :
   rw [hi_sq]
   ring
 
-/-- normSq z lies in the image of R.-/
+/-- normSq z lies in the image of R.
+@isnad1 id=mem.0h2v.s10.22adccbd1018 from=translated src=- shape=9d158822 vocab=271b555b
+-/
 theorem Ri.normSq_mem_range {R : Type*} [CommRing R] [Nontrivial R] (z : Ri R) :
     Ri.normSq z ∈ Set.range (algebraMap R (Ri R)) := by
   obtain ⟨a, b, hab⟩ := Ri.repr_exists z
@@ -156,12 +176,16 @@ theorem Ri.normSq_mem_range {R : Type*} [CommRing R] [Nontrivial R] (z : Ri R) :
 noncomputable def Ri.normSqR {R : Type*} [Field R] [IsRealClosed R] (z : Ri R) : R :=
   Classical.choose (Ri.normSq_mem_range z)
 
-/-- algebraMap (normSqR z) = normSq z.-/
+/-- algebraMap (normSqR z) = normSq z.
+@isnad1 id=eq.0h2v.s10.5c5da964f046 from=translated src=- shape=f46302a9 vocab=a64a216a
+-/
 theorem Ri.normSqR_spec {R : Type*} [Field R] [IsRealClosed R] (z : Ri R) :
     algebraMap R (Ri R) (Ri.normSqR z) = Ri.normSq z :=
   Classical.choose_spec (Ri.normSq_mem_range z)
 
-/-- normSqR z ≥ 0.-/
+/-- normSqR z ≥ 0.
+@isnad1 id=le.0h2v.s5.57c4108967b4 from=translated src=- shape=7eb03384 vocab=9508fb1e
+-/
 theorem Ri.normSqR_nonneg {R : Type*} [Field R] [IsRealClosed R] (z : Ri R) :
     @LE.le R IsRealClosed.toLinearOrder.toLE 0 (Ri.normSqR z) := by
   obtain ⟨a, b, hab⟩ := Ri.repr_exists z
@@ -180,7 +204,9 @@ noncomputable def Ri.modulus {R : Type*} [Field R] [IsRealClosed R]
   letI : IsOrderedRing R := IsRealClosed.toIsOrderedRing
   |(IsRealClosed.exists_eq_pow_of_nonneg (Ri.normSqR_nonneg z) two_ne_zero).choose|
 
-/-- The modulus is nonneg.-/
+/-- The modulus is nonneg.
+@isnad1 id=le.0h2v.s5.fffad0b94218 from=translated src=- shape=7eb03384 vocab=bcdacada
+-/
 theorem Ri.modulus_nonneg {R : Type*} [Field R] [IsRealClosed R]
     (z : Ri R) : @LE.le R IsRealClosed.toLinearOrder.toLE 0 (Ri.modulus z) := by
   unfold Ri.modulus
@@ -188,7 +214,9 @@ theorem Ri.modulus_nonneg {R : Type*} [Field R] [IsRealClosed R]
   let : IsOrderedRing R := IsRealClosed.toIsOrderedRing
   exact abs_nonneg _
 
-/-- The modulus squared equals the norm squared.-/
+/-- The modulus squared equals the norm squared.
+@isnad1 id=eq.0h2v.s5.a19d6d7139c6 from=translated src=- shape=8bbcc1d7 vocab=76589aba
+-/
 theorem Ri.modulus_sq {R : Type*} [Field R] [IsRealClosed R]
     (z : Ri R) : Ri.modulus z ^ 2 = Ri.normSqR z := by
   unfold Ri.modulus

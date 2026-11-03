@@ -34,14 +34,18 @@ open HahnSeries PowerSeries
 
 variable {R : Type*} [Field R]
 
-/-- `puiseuxEmb` of a single term scales the exponent by `1/q`.-/
+/-- `puiseuxEmb` of a single term scales the exponent by `1/q`.
+@isnad1 id=eq.0h4v.s9.9412bd50e7d3 from=translated src=- shape=f1d95dbf vocab=115da156
+-/
 theorem puiseuxEmb_single (q : ℕ+) (g : ℤ) (r : R) :
     puiseuxEmb R q (HahnSeries.single g r) = HahnSeries.single (puiseuxExpHom q g) r := by
   rw [puiseuxEmb, HahnSeries.embDomainRingHom_apply, HahnSeries.embDomain_single]; rfl
 
 variable [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
 
-/-- A positive element of a real closed field is a square.-/
+/-- A positive element of a real closed field is a square.
+@isnad1 id=issquare.1h2v.s6.3181697f8b4a from=translated src=- shape=5f5bb6a6 vocab=cbbcf694
+-/
 theorem isSquare_of_pos {x : R} (hx : 0 < x) : IsSquare x := by
   rcases IsRealClosed.isSquare_or_isSquare_neg x with h | h
   · exact h

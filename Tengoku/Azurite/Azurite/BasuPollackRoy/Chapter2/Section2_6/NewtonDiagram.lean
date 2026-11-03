@@ -39,15 +39,23 @@ monomial `X^i ε^r` occurs in `P` with nonzero coefficient.-/
 def newtonDiagram (P : Polynomial (PuiseuxSeries R)) : Set (ℕ × ℚ) :=
   { p | newtonCoeff P p.1 p.2 ≠ 0 }
 
+/--
+@isnad1 id=iff.0h4v.s9.a051e1497385 from=translated src=- shape=e4d5bfef vocab=30fabf75
+-/
 @[simp] theorem mem_newtonDiagram {P : Polynomial (PuiseuxSeries R)} {i : ℕ} {r : ℚ} :
     (i, r) ∈ newtonDiagram P ↔ newtonCoeff P i r ≠ 0 := Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s11.9dbf20ace4d5 from=translated src=- shape=c08b4f21 vocab=12cf1afa
+-/
 @[simp] theorem newtonDiagram_zero :
     newtonDiagram (0 : Polynomial (PuiseuxSeries R)) = ∅ := by
   ext ⟨i, r⟩
   simp [newtonDiagram, newtonCoeff]
 
-/-- The `X`-degree coordinate of any Newton-diagram point is at most `deg P`.-/
+/-- The `X`-degree coordinate of any Newton-diagram point is at most `deg P`.
+@isnad1 id=le.1h4v.s10.fa1811aba7c0 from=translated src=- shape=14baae7b vocab=995d0b74
+-/
 theorem fst_le_natDegree {P : Polynomial (PuiseuxSeries R)} {i : ℕ} {r : ℚ}
     (h : (i, r) ∈ newtonDiagram P) : i ≤ P.natDegree :=
   Polynomial.le_natDegree_of_ne_zero fun hc => h (by rw [newtonCoeff, hc]; simp)
@@ -61,14 +69,21 @@ value is the junk `0`; the lemma `newtonSlope_mul_sub` captures the intended ris
 meaning exactly when the `x`-coordinates are distinct.-/
 def newtonSlope (p q : ℕ × ℚ) : ℚ := (q.2 - p.2) / ((q.1 : ℚ) - p.1)
 
+/--
+@isnad1 id=eq.0h2v.s5.30c2734ebf9a from=translated src=- shape=329aecbb vocab=c98da57f
+-/
 theorem newtonSlope_def (p q : ℕ × ℚ) :
     newtonSlope p q = (q.2 - p.2) / ((q.1 : ℚ) - p.1) := rfl
 
-/-- The slope does not depend on the order of the two points.-/
+/-- The slope does not depend on the order of the two points.
+@isnad1 id=eq.0h2v.s4.05ae8880ace9 from=translated src=- shape=82b213f9 vocab=bb18980a
+-/
 theorem newtonSlope_symm (p q : ℕ × ℚ) : newtonSlope p q = newtonSlope q p := by
   rw [newtonSlope, newtonSlope, ← neg_div_neg_eq, neg_sub, neg_sub]
 
-/-- For points with distinct `x`-coordinates, the slope satisfies `rise = slope · run`.-/
+/-- For points with distinct `x`-coordinates, the slope satisfies `rise = slope · run`.
+@isnad1 id=eq.1h2v.s6.6ede5609b1db from=translated src=- shape=59713cee vocab=7a601fdf
+-/
 theorem newtonSlope_mul_sub {p q : ℕ × ℚ} (h : p.1 ≠ q.1) :
     newtonSlope p q * ((q.1 : ℚ) - p.1) = q.2 - p.2 := by
   have hrun : ((q.1 : ℚ) - p.1) ≠ 0 := sub_ne_zero.mpr (by exact_mod_cast h.symm)
@@ -97,7 +112,9 @@ instance (A B C : ℕ × ℚ) : Decidable (OnOrAbove A B C) := by unfold OnOrAbo
 
 /-- **Orientation-independent characterization.** `C` lies on or above the line through `A` and
 `B` exactly when `C` is at or above that line evaluated at `x = C.1`, i.e.
-`slope(A,B)·(C.x − A.x) ≤ C.y − A.y`.-/
+`slope(A,B)·(C.x − A.x) ≤ C.y − A.y`.
+@isnad1 id=iff.0h3v.s6.58d6f6e7cac2 from=translated src=- shape=942cc9ba vocab=dec6262a
+-/
 theorem onOrAbove_iff (A B C : ℕ × ℚ) :
     OnOrAbove A B C ↔ newtonSlope A B * ((C.1 : ℚ) - A.1) ≤ C.2 - A.2 := by
   rcases lt_trichotomy A.1 C.1 with h | h | h
@@ -129,18 +146,24 @@ theorem onOrAbove_iff (A B C : ℕ × ℚ) :
       · exact hle
     rw [hred, newtonSlope_def A C, div_le_iff_of_neg hrun]
 
-/-- `A` itself lies on (hence on or above) the line through `A` and `B`.-/
+/-- `A` itself lies on (hence on or above) the line through `A` and `B`.
+@isnad1 id=onorabov.0h2v.s3.2cbc89a156cf from=translated src=- shape=d6496dfd vocab=ba9d8f00
+-/
 theorem onOrAbove_left (A B : ℕ × ℚ) : OnOrAbove A B A := Or.inl ⟨rfl, le_refl _⟩
 
 /-- `B` itself lies on (hence on or above) the line through `A` and `B`, when `A` and `B` have
-distinct `x`-coordinates.-/
+distinct `x`-coordinates.
+@isnad1 id=onorabov.1h2v.s4.402c554b9a2a from=translated src=- shape=0bf81eed vocab=5945224d
+-/
 theorem onOrAbove_right {A B : ℕ × ℚ} (h : A.1 ≠ B.1) : OnOrAbove A B B := by
   rcases lt_or_gt_of_ne h with hlt | hgt
   · exact Or.inr (Or.inl ⟨hlt, le_refl _⟩)
   · exact Or.inr (Or.inr ⟨hgt, le_refl _⟩)
 
 /-- **`OnOrAbove` depends only on the line, not on the order of its two defining points.** In
-particular it does not matter whether `A` is to the left or to the right of `B`.-/
+particular it does not matter whether `A` is to the left or to the right of `B`.
+@isnad1 id=iff.1h3v.s5.d79fc04ed5bd from=translated src=- shape=84077c66 vocab=5945224d
+-/
 theorem onOrAbove_swap {A B C : ℕ × ℚ} (h : A.1 ≠ B.1) :
     OnOrAbove A B C ↔ OnOrAbove B A C := by
   rw [onOrAbove_iff, onOrAbove_iff, newtonSlope_symm B A]
@@ -150,7 +173,9 @@ theorem onOrAbove_swap {A B C : ℕ × ℚ} (h : A.1 ≠ B.1) :
   constructor <;> intro hh <;> linarith [heq]
 
 /-- **For a horizontal line** (when `A` and `B` share a `y`-coordinate), `C` lies on or above the
-line through `A` and `B` exactly when `C` is at least as high as `A`, i.e. `C.2 ≥ A.2`.-/
+line through `A` and `B` exactly when `C` is at least as high as `A`, i.e. `C.2 ≥ A.2`.
+@isnad1 id=iff.1h3v.s5.7baa71e777ef from=translated src=- shape=6b503dac vocab=96b6cfb3
+-/
 theorem onOrAbove_horizontal {A B C : ℕ × ℚ} (h : A.2 = B.2) :
     OnOrAbove A B C ↔ A.2 ≤ C.2 := by
   rw [onOrAbove_iff]

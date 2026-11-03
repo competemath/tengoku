@@ -28,7 +28,9 @@ open Polynomial
 
 variable {R : Type*} [Field R]
 
-/-- The right endpoint contributes a nonzero top coefficient, so `Q ≠ 0`.-/
+/-- The right endpoint contributes a nonzero top coefficient, so `Q ≠ 0`.
+@isnad1 id=ne.2h4v.s10.db6ea876ee1a from=translated src=- shape=928781b3 vocab=008af361
+-/
 theorem charPoly_ne_zero {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} (hABlt : A.1 < B.1)
     (hcolB : puiseuxOrder R (P.coeff B.1) = (B.2 : WithTop ℚ)) : charPoly P A B ≠ 0 := by
   classical
@@ -40,7 +42,9 @@ theorem charPoly_ne_zero {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} (
     exact initCoeff_ne_zero_of_colOnLine (colOnLine_right hABlt.ne hcolB)
   exact fun h => hBne (by rw [h, coeff_zero])
 
-/-- **`Q` has degree `B.1`.**-/
+/-- **`Q` has degree `B.1`.**
+@isnad1 id=eq.2h4v.s10.90002d3e5527 from=translated src=- shape=c0e57bec vocab=f0175976
+-/
 theorem charPoly_natDegree_eq {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} (hABlt : A.1 < B.1)
     (hcolB : puiseuxOrder R (P.coeff B.1) = (B.2 : WithTop ℚ)) :
     (charPoly P A B).natDegree = B.1 := by
@@ -53,7 +57,9 @@ theorem charPoly_natDegree_eq {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × �
     exact initCoeff_ne_zero_of_colOnLine (colOnLine_right hABlt.ne hcolB)
   exact le_antisymm (charPoly_natDegree_le P A B) (le_natDegree_of_ne_zero hBne)
 
-/-- **`Q` has trailing degree `A.1`.**-/
+/-- **`Q` has trailing degree `A.1`.**
+@isnad1 id=eq.3h4v.s11.68df1da6085d from=translated src=- shape=09415caf vocab=da1d0a67
+-/
 theorem charPoly_natTrailingDegree_eq {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ}
     (hABlt : A.1 < B.1) (hcolA : puiseuxOrder R (P.coeff A.1) = (A.2 : WithTop ℚ))
     (hcolB : puiseuxOrder R (P.coeff B.1) = (B.2 : WithTop ℚ)) :
@@ -72,7 +78,9 @@ theorem charPoly_natTrailingDegree_eq {P : Polynomial (PuiseuxSeries R)} {A B : 
   exact absurd (Finset.mem_Icc.mp (Finset.mem_filter.mp hmem).1).1 (by omega)
 
 /-- **The multiplicity of a root of `Q` is at most `B.1`.** When the edge lies over `[0, rᵢ]`
-(so `B.1 ≤ rᵢ`), this gives `r_{i+1} ≤ rᵢ`: multiplicities are non-increasing.-/
+(so `B.1 ≤ rᵢ`), this gives `r_{i+1} ≤ rᵢ`: multiplicities are non-increasing.
+@isnad1 id=le.2h5v.s10.670eea4f6772 from=translated src=- shape=3661ca9c vocab=133b3739
+-/
 theorem charPoly_rootMultiplicity_le {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ}
     (hABlt : A.1 < B.1) (hcolB : puiseuxOrder R (P.coeff B.1) = (B.2 : WithTop ℚ)) (x : R) :
     (charPoly P A B).rootMultiplicity x ≤ B.1 := by

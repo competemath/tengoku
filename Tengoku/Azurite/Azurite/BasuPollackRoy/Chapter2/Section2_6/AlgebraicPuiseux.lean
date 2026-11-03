@@ -36,7 +36,9 @@ noncomputable instance ratFuncPuiseuxAlgebra : Algebra (RatFunc K) (PuiseuxSerie
 noncomputable def algebraicPuiseux (K : Type*) [Field K] : Subfield (PuiseuxSeries K) :=
   (algebraicClosure (RatFunc K) (PuiseuxSeries K)).toSubfield
 
-/-- An element is an algebraic Puiseux series exactly when it is algebraic over `K(ε)`.-/
+/-- An element is an algebraic Puiseux series exactly when it is algebraic over `K(ε)`.
+@isnad1 id=iff.0h2v.s10.196e24834354 from=translated src=- shape=26e1514a vocab=fb4079df
+-/
 @[simp] theorem mem_algebraicPuiseux {x : PuiseuxSeries K} :
     x ∈ algebraicPuiseux K ↔ IsAlgebraic (RatFunc K) x := by
   rw [algebraicPuiseux, IntermediateField.mem_toSubfield, mem_algebraicClosure_iff]

@@ -45,10 +45,16 @@ def IsFiniteMappingChain (C : Type*) [Field C] [Algebra K C] (k' : ℕ) :
       ∃ Q : Finset (MvPolynomial (Fin (k' + d)) K),
         IsFiniteMapping C P Q ∧ IsFiniteMappingChain C k' d Q T
 
+/--
+@isnad1 id=iff.0h5v.s6.fedf64e375b0 from=translated src=- shape=7e66f861 vocab=b0409fe2
+-/
 @[simp] theorem isFiniteMappingChain_zero (C : Type*) [Field C] [Algebra K C] {k' : ℕ}
     (P : Finset (MvPolynomial (Fin (k' + 0)) K)) (T : Finset (MvPolynomial (Fin k') K)) :
     IsFiniteMappingChain C k' 0 P T ↔ P = T := Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s7.49d7392b25c5 from=translated src=- shape=45e280cc vocab=619353c2
+-/
 theorem isFiniteMappingChain_succ (C : Type*) [Field C] [Algebra K C] {k' d : ℕ}
     (P : Finset (MvPolynomial (Fin (k' + (d + 1))) K))
     (T : Finset (MvPolynomial (Fin k') K)) :
@@ -56,7 +62,9 @@ theorem isFiniteMappingChain_succ (C : Type*) [Field C] [Algebra K C] {k' d : �
       ∃ Q : Finset (MvPolynomial (Fin (k' + d)) K),
         IsFiniteMapping C P Q ∧ IsFiniteMappingChain C k' d Q T := Iff.rfl
 
-/-- A single-step finite mapping is a one-link composite finite mapping.-/
+/-- A single-step finite mapping is a one-link composite finite mapping.
+@isnad1 id=isfinite.1h5v.s6.0b64d331034e from=translated src=- shape=da003631 vocab=6877bb91
+-/
 theorem IsFiniteMapping.isFiniteMappingChain {C : Type*} [Field C] [Algebra K C] {k' : ℕ}
     {P : Finset (MvPolynomial (Fin (k' + 1)) K)} {T : Finset (MvPolynomial (Fin k') K)}
     (h : IsFiniteMapping C P T) : IsFiniteMappingChain C k' 1 P T :=

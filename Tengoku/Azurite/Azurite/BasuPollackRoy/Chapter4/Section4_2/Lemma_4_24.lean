@@ -62,6 +62,9 @@ noncomputable def SyHa.encodeV (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
 
 /-! ### Coefficient extraction -/
 
+/--
+@isnad1 id=eq.3h6v.s7.e1218383c839 from=translated src=- shape=965bd11c vocab=01843289
+-/
 theorem SyHa.encodeU_coeff (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) (m : ℕ) (hm : m < q - j) :
     (SyHa.encodeU p q j hj_q hj_p uv).coeff m =
@@ -87,6 +90,9 @@ theorem SyHa.encodeU_coeff (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
   · intro h_not_mem
     exact absurd (Finset.mem_univ _) h_not_mem
 
+/--
+@isnad1 id=eq.3h6v.s7.e0e72044df57 from=translated src=- shape=5dc08c39 vocab=1da8817f
+-/
 theorem SyHa.encodeV_coeff (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) (m : ℕ) (hm : m < p - j) :
     (SyHa.encodeV p q j hj_q hj_p uv).coeff m =
@@ -106,6 +112,9 @@ theorem SyHa.encodeV_coeff (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
   · intro h_not_mem
     exact absurd (Finset.mem_univ _) h_not_mem
 
+/--
+@isnad1 id=eq.3h6v.s6.e55284d1bbfc from=translated src=- shape=534142d2 vocab=b4768e63
+-/
 theorem SyHa.encodeU_coeff_of_ge (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) (m : ℕ) (hm : q - j ≤ m) :
     (SyHa.encodeU p q j hj_q hj_p uv).coeff m = 0 := by
@@ -119,6 +128,9 @@ theorem SyHa.encodeU_coeff_of_ge (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     omega
   rw [ite_eq_right (Ne.symm h_neq), mul_zero]
 
+/--
+@isnad1 id=eq.3h6v.s6.6c0d58d5c13f from=translated src=- shape=7b7e8e2e vocab=2baa60ac
+-/
 theorem SyHa.encodeV_coeff_of_ge (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) (m : ℕ) (hm : p - j ≤ m) :
     (SyHa.encodeV p q j hj_q hj_p uv).coeff m = 0 := by
@@ -196,6 +208,9 @@ private lemma Fin_sum_split_at_SyHa {M : Type*} [AddCommMonoid M] (p q j : ℕ)
 
 /-! ### `mulMap` decomposes as `encodeU * P + encodeV * Q` -/
 
+/--
+@isnad1 id=eq.2h5v.s8.35dd9afb0eca from=translated src=- shape=e6e11a90 vocab=1dde3a66
+-/
 theorem SyHa.mulMap_eq_pair (P Q : D[X]) (j : ℕ)
     (hj_q : j ≤ Q.natDegree) (hj_p : j ≤ P.natDegree)
     (uv : Fin (P.natDegree + Q.natDegree - 2 * j) → D) :
@@ -280,6 +295,9 @@ theorem SyHa.mulMap_eq_pair (P Q : D[X]) (j : ℕ)
 variable [Nontrivial D]
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=lt.3h5v.s6.5eb5fc01b9de from=translated src=- shape=748a5b30 vocab=cbfd7eed
+-/
 theorem SyHa.encodeU_natDegree_lt (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) (hqj : 0 < q - j) :
     (SyHa.encodeU p q j hj_q hj_p uv).natDegree < q - j := by
@@ -295,6 +313,9 @@ theorem SyHa.encodeU_natDegree_lt (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p
   · exact Polynomial.leadingCoeff_ne_zero.mpr h_zero h_coeff
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=lt.3h5v.s6.0c581ab40cdc from=translated src=- shape=a5606c5e vocab=4cc84e7d
+-/
 theorem SyHa.encodeV_natDegree_lt (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) (hpj : 0 < p - j) :
     (SyHa.encodeV p q j hj_q hj_p uv).natDegree < p - j := by
@@ -310,6 +331,9 @@ theorem SyHa.encodeV_natDegree_lt (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p
   · exact Polynomial.leadingCoeff_ne_zero.mpr h_zero h_coeff
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=lt.3h5v.s7.28c600f577ed from=translated src=- shape=3b3bddde vocab=af76328f
+-/
 theorem SyHa.mulMap_natDegree_lt (P Q : D[X]) (j : ℕ)
     (hj_q : j ≤ Q.natDegree) (hj_p : j ≤ P.natDegree)
     (uv : Fin (P.natDegree + Q.natDegree - 2 * j) → D)
@@ -351,6 +375,9 @@ theorem SyHa.mulMap_natDegree_lt (P Q : D[X]) (j : ℕ)
 /-! ### `uv = 0` iff both encodings vanish -/
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=iff.2h5v.s8.36ce99b7d1be from=translated src=- shape=5b2f67fa vocab=54806e8e
+-/
 theorem SyHa.encode_eq_zero_iff (p q j : ℕ) (hj_q : j ≤ q) (hj_p : j ≤ p)
     (uv : Fin (p + q - 2 * j) → D) :
     (SyHa.encodeU p q j hj_q hj_p uv = 0 ∧
@@ -403,7 +430,9 @@ omit [Nontrivial D] in
 
     BPR's range is `0 ≤ j ≤ Q.natDegree` if `P.natDegree > Q.natDegree`,
     or `0 ≤ j ≤ P.natDegree - 1` if `P.natDegree = Q.natDegree`. The
-    hypotheses `j ≤ Q.natDegree` and `j < P.natDegree` cover both.-/
+    hypotheses `j ≤ Q.natDegree` and `j < P.natDegree` cover both.
+@isnad1 id=iff.4h4v.s8.3d09eb3021a4 from=translated src=- shape=bb0b8559 vocab=4d68f71b
+-/
 theorem Lemma_4_24 (P Q : D[X]) (j : ℕ)
     (hj_q : j ≤ Q.natDegree) (hj_p : j < P.natDegree)
     (hP : P ≠ 0) (hQ : Q ≠ 0) :

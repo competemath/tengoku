@@ -367,7 +367,9 @@ noncomputable def gHom :
       Polynomial (MvPolynomial (Fin (n + 1)) K) :=
   Polynomial.eval₂RingHom (betaHom) (Polynomial.C (MvPolynomial.X 0))
 
-/-- `gHom` sends the `X₀`-constant `embedX0 P` to the genuine `U`-constant `C P`.-/
+/-- `gHom` sends the `X₀`-constant `embedX0 P` to the genuine `U`-constant `C P`.
+@isnad1 id=eq.0h3v.s10.e03f7c1ad0b8 from=translated src=- shape=eae23652 vocab=bfdac57c
+-/
 theorem gHom_embedX0 (P : MvPolynomial (Fin (n + 1)) K) :
     gHom (embedX0 P) = Polynomial.C P := by
   have key : (gHom.comp ((Polynomial.mapRingHom
@@ -384,13 +386,17 @@ theorem gHom_embedX0 (P : MvPolynomial (Fin (n + 1)) K) :
   have := DFunLike.congr_fun key P
   simpa [embedX0, Polynomial.coe_mapRingHom] using this
 
-/-- `gHom` sends `uVar` to the `U` indeterminate.-/
+/-- `gHom` sends `uVar` to the `U` indeterminate.
+@isnad1 id=eq.0h2v.s10.4c22a0bebf4e from=translated src=- shape=0d907899 vocab=bfd0fe03
+-/
 theorem gHom_uVar :
     gHom (uVar : Polynomial (Polynomial (MvPolynomial (Fin n) K))) = Polynomial.X := by
   simp [gHom, uVar, betaHom]
 
 /-- `gHom` sends `Rbar` to the genuine generic combination `∑ rest_i · U^i` in
-`K[X₀,…,X_n][U]`.-/
+`K[X₀,…,X_n][U]`.
+@isnad1 id=eq.0h3v.s11.d8831a78d0de from=translated src=- shape=932292c0 vocab=9d8c5f2d
+-/
 theorem gHom_Rbar (rest : List (MvPolynomial (Fin (n + 1)) K)) :
     gHom (Rbar rest) =
       ∑ i ∈ Finset.range rest.length, Polynomial.C (rest.getD i 0) * Polynomial.X ^ i := by
@@ -400,7 +406,9 @@ theorem gHom_Rbar (rest : List (MvPolynomial (Fin (n + 1)) K)) :
   intro i _
   rw [map_mul, map_pow, gHom_embedX0, gHom_uVar]
 
-/-- The `U`-coefficient of `gHom (C resXk)` is `rename Fin.succ (resXk.coeff i)`.-/
+/-- The `U`-coefficient of `gHom (C resXk)` is `rename Fin.succ (resXk.coeff i)`.
+@isnad1 id=eq.0h5v.s11.354d460bc1b8 from=translated src=- shape=4f14f284 vocab=7f7b354b
+-/
 theorem gHom_C_resXk_coeff (P₁ : MvPolynomial (Fin (n + 1)) K)
     (rest : List (MvPolynomial (Fin (n + 1)) K)) (i : ℕ) :
     (gHom (Polynomial.C (resXk P₁ rest))).coeff i =
@@ -424,7 +432,9 @@ private theorem rest_mem_ideal (P₁ : MvPolynomial (Fin (n + 1)) K)
     (List.mem_toFinset.mpr (List.getElem_mem hj))))
 
 /-- **Clause (1).** Each coefficient of `resXk`, embedded by `rename Fin.succ`, lies in
-`Ideal({P₁} ∪ rest)`.-/
+`Ideal({P₁} ∪ rest)`.
+@isnad1 id=mem.1h5v.s10.3c753e0e09fb from=translated src=- shape=0ea099e4 vocab=bd9ea863
+-/
 theorem clause_one (P₁ : MvPolynomial (Fin (n + 1)) K)
     (rest : List (MvPolynomial (Fin (n + 1)) K))
     (hpos : 0 < (finSuccEquiv K n P₁).natDegree) (i : ℕ) :
@@ -478,7 +488,9 @@ private theorem mem_zerOfFinset_projPolys {P₁ : MvPolynomial (Fin (n + 1)) K}
     · obtain ⟨i, _, rfl⟩ := Finset.mem_image.mp hQ
       exact h i
 
-/-- **Clause (2).** The `Fin.tail`-image of `Zer({P₁} ∪ rest)` equals `Zer(projPolys)`.-/
+/-- **Clause (2).** The `Fin.tail`-image of `Zer({P₁} ∪ rest)` equals `Zer(projPolys)`.
+@isnad1 id=eq.2h5v.s10.f9e032ab6ae6 from=translated src=- shape=6d8f106b vocab=f24983f8
+-/
 theorem clause_two {P₁ : MvPolynomial (Fin (n + 1)) K}
     {rest : List (MvPolynomial (Fin (n + 1)) K)} (hqm : IsQuasiMonic (finSuccEquiv K n P₁))
     (hpos : 0 < (finSuccEquiv K n P₁).natDegree) :
@@ -527,7 +539,9 @@ private theorem aeval_eq_of_natDegree_zero {P₁ : MvPolynomial (Fin (n + 1)) K}
 
 /-- **BPR Proposition 4.76.** For `𝒫 = {P₁} ∪ rest` with `P₁` quasi-monic in `X₀` and `C`
 algebraically closed, `projPolys` lies in `Ideal(𝒫, K) ∩ K[X₁, …, X_{k-1}]`, the projection
-`π = Fin.tail` maps `Zer(𝒫, C^k)` onto `Zer(projPolys, C^{k-1})`, and `π` is a finite mapping.-/
+`π = Fin.tail` maps `Zer(𝒫, C^k)` onto `Zer(projPolys, C^{k-1})`, and `π` is a finite mapping.
+@isnad1 id=ex.1h5v.s11.391b50e99327 from=translated src=- shape=f8a476a2 vocab=14bd7392
+-/
 theorem proposition_4_76 {C : Type*} [Field C] [IsAlgClosed C] [Algebra K C]
     (P₁ : MvPolynomial (Fin (n + 1)) K) (rest : List (MvPolynomial (Fin (n + 1)) K))
     (hqm : IsQuasiMonic (finSuccEquiv K n P₁)) :

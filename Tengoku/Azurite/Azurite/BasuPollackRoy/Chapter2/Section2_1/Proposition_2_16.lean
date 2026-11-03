@@ -36,7 +36,9 @@ open MvPolynomial Polynomial in
     **Proof (BPR):** Let `eᵢ = Eᵢ(x₁,…,xₖ)`. Since the `eᵢ` are (up to sign)
     coefficients of `P` by Lemma 2.12, we have `eᵢ ∈ K`. By Proposition 2.13,
     `Q = R(E₁,…,Eₖ)` for some `R ∈ K[T₁,…,Tₖ]`. Thus
-    `Q(x₁,…,xₖ) = R(e₁,…,eₖ) ∈ K`.-/
+    `Q(x₁,…,xₖ) = R(e₁,…,eₖ) ∈ K`.
+@isnad1 id=mem.2h6v.s9.538890b3ddfa from=translated src=- shape=8ba3a072 vocab=6f4eece6
+-/
 theorem proposition_2_16 {K C : Type*} [Field K] [Field C] [Algebra K C]
     {k : ℕ} (P : Polynomial K)
     (x : Fin k → C)

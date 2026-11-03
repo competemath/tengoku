@@ -70,6 +70,9 @@ noncomputable def cauchyIndex (Q P : R[X]) : ℤ :=
   cauchyIndexOn Q P .negInf .posInf
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h3v.s5.682bd10117d8 from=translated src=- shape=70bd63f5 vocab=3a79bf45
+-/
 @[simp] theorem cauchyIndex_eq_cauchyIndexOn_negInf_posInf (Q P : R[X]) :
     cauchyIndex Q P = cauchyIndexOn Q P .negInf .posInf := rfl
 

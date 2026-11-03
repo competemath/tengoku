@@ -36,7 +36,9 @@ open Polynomial
 
 variable {R : Type*} [Field R]
 
-/-- `(ε^ξ)^n = ε^{n ξ}`.-/
+/-- `(ε^ξ)^n = ε^{n ξ}`.
+@isnad1 id=eq.0h3v.s9.20631c277d40 from=translated src=- shape=da4d8dc4 vocab=b2c13418
+-/
 theorem puiseuxMonomial_pow (ξ : ℚ) (n : ℕ) :
     (puiseuxMonomial ξ : PuiseuxSeries R) ^ n = puiseuxMonomial ((n : ℚ) * ξ) := by
   induction n with
@@ -48,7 +50,9 @@ noncomputable def substPoly (P : Polynomial (PuiseuxSeries R)) (x : R) (ξ β : 
     Polynomial (PuiseuxSeries R) :=
   C (puiseuxMonomial (-β)) * P.comp (C (puiseuxMonomial ξ) * (X + C (constPuiseux x)))
 
-/-- `R(P, E, x, Y) = ∑_h ā_h ε^{h ξ − β} (Y + x)^h` as a sum over `h ≤ deg P`.-/
+/-- `R(P, E, x, Y) = ∑_h ā_h ε^{h ξ − β} (Y + x)^h` as a sum over `h ≤ deg P`.
+@isnad1 id=eq.0h5v.s15.eeec78e4d5a3 from=translated src=- shape=008c0679 vocab=00a93479
+-/
 theorem substPoly_eq_sum (P : Polynomial (PuiseuxSeries R)) (x : R) (ξ β : ℚ) :
     substPoly P x ξ β = ∑ h ∈ Finset.range (P.natDegree + 1),
       C (P.coeff h * puiseuxMonomial ((h : ℚ) * ξ - β)) * (X + C (constPuiseux x)) ^ h := by
@@ -63,7 +67,9 @@ theorem substPoly_eq_sum (P : Polynomial (PuiseuxSeries R)) (x : R) (ξ β : ℚ
   rw [mul_pow, ← C_pow, puiseuxMonomial_pow, ← mul_assoc, ← map_mul, ← mul_assoc, ← map_mul, hs]
 
 /-- The `i`-th coefficient of `R(P, E, x, Y)`, expanded over columns `h`:
-`b̄_i = ∑_h (ā_h ε^{h ξ − β}) · [(Y + x)^h]_i`, the inner constant `[(Y + x)^h]_i ∈ R`.-/
+`b̄_i = ∑_h (ā_h ε^{h ξ − β}) · [(Y + x)^h]_i`, the inner constant `[(Y + x)^h]_i ∈ R`.
+@isnad1 id=eq.0h6v.s13.b611e91a4aed from=translated src=- shape=dd934918 vocab=00a93479
+-/
 theorem substPoly_coeff (P : Polynomial (PuiseuxSeries R)) (x : R) (ξ β : ℚ) (i : ℕ) :
     (substPoly P x ξ β).coeff i
       = ∑ h ∈ Finset.range (P.natDegree + 1),
@@ -77,12 +83,17 @@ theorem substPoly_coeff (P : Polynomial (PuiseuxSeries R)) (x : R) (ξ β : ℚ)
       = (X + C x).map constPuiseux from by rw [Polynomial.map_add, map_X, map_C],
     ← Polynomial.map_pow, coeff_map]
 
+/--
+@isnad1 id=eq.0h1v.s9.1fa9cb3660ee from=translated src=- shape=1ae22aa9 vocab=0dc6bc54
+-/
 @[simp] theorem puiseuxOrder_one : puiseuxOrder R (1 : PuiseuxSeries R) = 0 := by
   rw [show (1 : PuiseuxSeries R) = constPuiseux 1 from (map_one _).symm,
     puiseuxOrder_constPuiseux_of_ne one_ne_zero]
 
 /-- The characteristic polynomial of any edge of `P` has degree at most `deg P`: an on-edge column
-`h` has finite order `o(ā_h)`, so `ā_h ≠ 0` and `h ≤ deg P`.-/
+`h` has finite order `o(ā_h)`, so `ā_h ≠ 0` and `h ≤ deg P`.
+@isnad1 id=le.0h4v.s10.5c2ecee79e07 from=translated src=- shape=c0770f1b vocab=b675e71e
+-/
 theorem charPoly_natDegree_le_natDegree (P : Polynomial (PuiseuxSeries R)) (A B : ℕ × ℚ) :
     (charPoly P A B).natDegree ≤ P.natDegree := by
   classical
@@ -100,7 +111,9 @@ theorem charPoly_natDegree_le_natDegree (P : Polynomial (PuiseuxSeries R)) (A B 
 between the rescaled coefficient `ā_h ε^{h ξ − β}` and the constant `In(a_h)` of the
 characteristic polynomial has strictly positive order: for on-edge `h` the leading terms cancel
 (both have order `0`, initial coefficient `In(ā_h)`), and for off-edge `h` the rescaled
-coefficient already has strictly positive order.-/
+coefficient already has strictly positive order.
+@isnad1 id=lt.4h7v.s12.2697a3698b01 from=translated src=- shape=1c5d203b vocab=992dbc03
+-/
 theorem key_term_pos {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {ξ β : ℚ}
     (hξ : newtonSlope A B = -ξ) (hβ : β = A.2 + (A.1 : ℚ) * ξ)
     (hsupport : ∀ h, (lineValue A B h : WithTop ℚ) ≤ puiseuxOrder R (P.coeff h))
@@ -135,7 +148,9 @@ theorem key_term_pos {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {ξ �
 
 /-- **The decomposition `b̄_i = In(a_i) + (positive order)` (the structural core of part a).**
 The `i`-th coefficient of `R(P, E, x, Y)` differs from the `i`-th coefficient of the shifted
-characteristic polynomial `Q(x + Y)` (a constant in `R`) by a series of strictly positive order.-/
+characteristic polynomial `Q(x + Y)` (a constant in `R`) by a series of strictly positive order.
+@isnad1 id=lt.4h8v.s12.c862d9518d04 from=translated src=- shape=72e74850 vocab=ee514680
+-/
 theorem key_decomp {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {ξ β : ℚ}
     (hξ : newtonSlope A B = -ξ) (hβ : β = A.2 + (A.1 : ℚ) * ξ)
     (hsupport : ∀ h, (lineValue A B h : WithTop ℚ) ≤ puiseuxOrder R (P.coeff h))
@@ -161,7 +176,9 @@ theorem key_decomp {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {ξ β 
 
 /-- **BPR Lemma 2.95(a).** With `R(P, E, x, Y) = b̄₀ + b̄₁ Y + ⋯`, the coefficients satisfy
 `o(b̄_i) ≥ 0` for all `i`, `o(b̄_i) > 0` for `i < r`, and `o(b̄_r) = 0`, where `r` is the
-multiplicity of `x` as a root of the characteristic polynomial.-/
+multiplicity of `x` as a root of the characteristic polynomial.
+@isnad1 id=and.5h7v.s12.a9b4d47c6336 from=translated src=- shape=26d12a07 vocab=138cabbd
+-/
 theorem lemma_2_95a {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {x : R} {ξ β : ℚ}
     (hξ : newtonSlope A B = -ξ) (hβ : β = A.2 + (A.1 : ℚ) * ξ)
     (hsupport : ∀ h, (lineValue A B h : WithTop ℚ) ≤ puiseuxOrder R (P.coeff h))
@@ -215,7 +232,9 @@ theorem lemma_2_95a {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {x : R
     rw [hb, puiseuxOrder_add_of_ne _ _ hne, puiseuxOrder_constPuiseux_of_ne hM2,
       min_eq_left (le_of_lt (hkey r))]
 
-/-- **BPR Lemma 2.95(b).** For any `x̄ = ε^ξ(x + y)` with `o(y) > 0`, one has `o(P(x̄)) > β`.-/
+/-- **BPR Lemma 2.95(b).** For any `x̄ = ε^ξ(x + y)` with `o(y) > 0`, one has `o(P(x̄)) > β`.
+@isnad1 id=lt.7h8v.s13.41e530466f11 from=translated src=- shape=aacad30f vocab=98dd3ddb
+-/
 theorem lemma_2_95b {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {x : R} {ξ β : ℚ}
     (hξ : newtonSlope A B = -ξ) (hβ : β = A.2 + (A.1 : ℚ) * ξ)
     (hsupport : ∀ h, (lineValue A B h : WithTop ℚ) ≤ puiseuxOrder R (P.coeff h))

@@ -129,7 +129,9 @@ variable {Q P : R[X]} {x : R}
 
 include hIVP in
 /-- **Implied one-sided fact.** If `Q/P` jumps from `−∞` to `+∞` at `x`, then
-    the sign of `Q · P` immediately to the **left** of `x` is `-1`.-/
+    the sign of `Q · P` immediately to the **left** of `x` is `-1`.
+@isnad1 id=hassignl.2h4v.s6.8ec40f223b8d from=translated src=- shape=059ee2a0 vocab=c2222f99
+-/
 theorem JumpsFromNegInfToPosInf.hasSignLeft
     (h : JumpsFromNegInfToPosInf Q P x) : HasSignLeft (Q * P) x (-1) := by
   obtain ⟨hgt, hodd, hsign⟩ := h
@@ -148,7 +150,9 @@ theorem JumpsFromNegInfToPosInf.hasSignLeft
 
 include hIVP in
 /-- **Implied one-sided fact.** If `Q/P` jumps from `+∞` to `−∞` at `x`, then
-    the sign of `Q · P` immediately to the **left** of `x` is `1`.-/
+    the sign of `Q · P` immediately to the **left** of `x` is `1`.
+@isnad1 id=hassignl.2h4v.s6.a9af8085be90 from=translated src=- shape=8409c436 vocab=7ac21630
+-/
 theorem JumpsFromPosInfToNegInf.hasSignLeft
     (h : JumpsFromPosInfToNegInf Q P x) : HasSignLeft (Q * P) x 1 := by
   obtain ⟨hgt, hodd, hsign⟩ := h
@@ -401,7 +405,9 @@ private lemma denom_tendsto_nhdsLT_zero_left
 
 /-! #### The four limit theorems -/
 
-/-- `Q/P → +∞` as `t → x⁺` when `Q/P` jumps from `−∞` to `+∞` at `x`.-/
+/-- `Q/P → +∞` as `t → x⁺` when `Q/P` jumps from `−∞` to `+∞` at `x`.
+@isnad1 id=tendsto.1h3v.s5.0a7c1d935d4e from=translated src=- shape=fac7a641 vocab=eda73b22
+-/
 theorem JumpsFromNegInfToPosInf.tendsto_atTop_nhdsGT
     (h : JumpsFromNegInfToPosInf Q P x) :
     Tendsto (fun t => Q.eval t / P.eval t) (𝓝[>] x) atTop := by
@@ -446,7 +452,9 @@ theorem JumpsFromNegInfToPosInf.tendsto_atTop_nhdsGT
     exact h_inv.atTop_mul_pos hR_pos h_num
   exact h_main.congr' (Filter.EventuallyEq.symm h_eq)
 
-/-- `Q/P → −∞` as `t → x⁻` when `Q/P` jumps from `−∞` to `+∞` at `x`.-/
+/-- `Q/P → −∞` as `t → x⁻` when `Q/P` jumps from `−∞` to `+∞` at `x`.
+@isnad1 id=tendsto.1h3v.s5.f29af4df2d03 from=translated src=- shape=fac7a641 vocab=300af862
+-/
 theorem JumpsFromNegInfToPosInf.tendsto_atBot_nhdsLT
     (h : JumpsFromNegInfToPosInf Q P x) :
     Tendsto (fun t => Q.eval t / P.eval t) (𝓝[<] x) atBot := by
@@ -491,7 +499,9 @@ theorem JumpsFromNegInfToPosInf.tendsto_atBot_nhdsLT
     exact h_inv.atBot_mul_pos hR_pos h_num
   exact h_main.congr' (Filter.EventuallyEq.symm h_eq)
 
-/-- `Q/P → −∞` as `t → x⁺` when `Q/P` jumps from `+∞` to `−∞` at `x`.-/
+/-- `Q/P → −∞` as `t → x⁺` when `Q/P` jumps from `+∞` to `−∞` at `x`.
+@isnad1 id=tendsto.1h3v.s5.703b36d76fa8 from=translated src=- shape=fac7a641 vocab=6afb0f0b
+-/
 theorem JumpsFromPosInfToNegInf.tendsto_atBot_nhdsGT
     (h : JumpsFromPosInfToNegInf Q P x) :
     Tendsto (fun t => Q.eval t / P.eval t) (𝓝[>] x) atBot := by
@@ -536,7 +546,9 @@ theorem JumpsFromPosInfToNegInf.tendsto_atBot_nhdsGT
     exact h_inv.atTop_mul_neg hR_neg h_num
   exact h_main.congr' (Filter.EventuallyEq.symm h_eq)
 
-/-- `Q/P → +∞` as `t → x⁻` when `Q/P` jumps from `+∞` to `−∞` at `x`.-/
+/-- `Q/P → +∞` as `t → x⁻` when `Q/P` jumps from `+∞` to `−∞` at `x`.
+@isnad1 id=tendsto.1h3v.s5.20e4249e846a from=translated src=- shape=fac7a641 vocab=d8411551
+-/
 theorem JumpsFromPosInfToNegInf.tendsto_atTop_nhdsLT
     (h : JumpsFromPosInfToNegInf Q P x) :
     Tendsto (fun t => Q.eval t / P.eval t) (𝓝[<] x) atTop := by

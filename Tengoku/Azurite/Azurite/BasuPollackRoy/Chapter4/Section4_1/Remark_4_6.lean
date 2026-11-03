@@ -51,7 +51,9 @@ noncomputable def sDiscR (P : R[X]) (j : ℕ) : R :=
 
 omit [IsStrictOrderedRing R] in
 /-- For any multiset `t` over a field, the off-diagonal product
-    `∏_{(a, b) ∈ (t ×ˢ t) \ Δ}(a − b)` vanishes iff `t` has a duplicate.-/
+    `∏_{(a, b) ∈ (t ×ˢ t) \ Δ}(a − b)` vanishes iff `t` has a duplicate.
+@isnad1 id=iff.0h2v.s7.c3659b45dfd5 from=translated src=- shape=dafdf208 vocab=9ffec301
+-/
 lemma offdiag_prod_eq_zero_iff_not_nodup (t : Multiset R) :
     ((t ×ˢ t - t.map (fun a => (a, a))).map (fun ab => ab.1 - ab.2)).prod = 0
       ↔ ¬ t.Nodup := by
@@ -81,7 +83,9 @@ lemma offdiag_prod_eq_zero_iff_not_nodup (t : Multiset R) :
     have : 2 * t.count a ≤ t.count a * t.count a := Nat.mul_le_mul_right _ hge
     omega
 
-/-- The signed off-diagonal product is non-negative.-/
+/-- The signed off-diagonal product is non-negative.
+@isnad1 id=le.0h2v.s8.e0cb15bbb263 from=translated src=- shape=2819ac21 vocab=a9053c7f
+-/
 lemma sign_smul_offdiag_prod_nonneg (t : Multiset R) :
     0 ≤ (-1 : R) ^ (t.card * (t.card - 1) / 2) *
       ((t ×ˢ t - t.map (fun a => (a, a))).map (fun ab => ab.1 - ab.2)).prod := by
@@ -91,7 +95,9 @@ lemma sign_smul_offdiag_prod_nonneg (t : Multiset R) :
     exact sq_nonneg _
   · rw [(offdiag_prod_eq_zero_iff_not_nodup t).mpr ht, mul_zero]
 
-/-- The signed off-diagonal product is positive when `t` is `Nodup`.-/
+/-- The signed off-diagonal product is positive when `t` is `Nodup`.
+@isnad1 id=lt.1h2v.s8.5b0c4ce2fe36 from=translated src=- shape=1a48da51 vocab=045bc80a
+-/
 lemma sign_smul_offdiag_prod_pos_of_nodup (t : Multiset R) (ht : t.Nodup) :
     0 < (-1 : R) ^ (t.card * (t.card - 1) / 2) *
       ((t ×ˢ t - t.map (fun a => (a, a))).map (fun ab => ab.1 - ab.2)).prod := by
@@ -100,7 +106,9 @@ lemma sign_smul_offdiag_prod_pos_of_nodup (t : Multiset R) (ht : t.Nodup) :
   exact sq_pos_of_ne_zero (filter_gt_prod_ne_zero t ht)
 
 omit [IsStrictOrderedRing R] in
-/-- The signed off-diagonal product is zero when `t` is not `Nodup`.-/
+/-- The signed off-diagonal product is zero when `t` is not `Nodup`.
+@isnad1 id=eq.1h2v.s8.164998b02952 from=translated src=- shape=084d4c5b vocab=061db78d
+-/
 lemma sign_smul_offdiag_prod_eq_zero_of_not_nodup (t : Multiset R) (ht : ¬ t.Nodup) :
     (-1 : R) ^ (t.card * (t.card - 1) / 2) *
       ((t ×ˢ t - t.map (fun a => (a, a))).map (fun ab => ab.1 - ab.2)).prod = 0 := by
@@ -108,7 +116,9 @@ lemma sign_smul_offdiag_prod_eq_zero_of_not_nodup (t : Multiset R) (ht : ¬ t.No
   rw [(offdiag_prod_eq_zero_iff_not_nodup t).mpr ht, mul_zero]
 
 omit [Field R] [IsStrictOrderedRing R] in
-/-- A `Nodup` `k`-sub-multiset of `s` exists iff `k ≤ s.toFinset.card`.-/
+/-- A `Nodup` `k`-sub-multiset of `s` exists iff `k ≤ s.toFinset.card`.
+@isnad1 id=iff.0h3v.s5.4a76faa28e93 from=translated src=- shape=35a5d709 vocab=1e630897
+-/
 lemma exists_nodup_mem_powersetCard_iff (s : Multiset R) (k : ℕ) :
     (∃ t ∈ s.powersetCard k, t.Nodup) ↔ k ≤ s.toFinset.card := by
   classical
@@ -134,7 +144,9 @@ lemma exists_nodup_mem_powersetCard_iff (s : Multiset R) (k : ℕ) :
 
 omit [IsStrictOrderedRing R] in
 /-- The off-diagonal sum, with the sign factor pulled in, expresses
-    `sDiscR P j` as a sum of non-negative terms (one per `k`-sub-multiset).-/
+    `sDiscR P j` as a sum of non-negative terms (one per `k`-sub-multiset).
+@isnad1 id=eq.0h3v.s8.1cc7759221b1 from=translated src=- shape=0cb1c96d vocab=f2762963
+-/
 lemma sDiscR_eq_sum_signed (P : R[X]) (j : ℕ) :
     sDiscR P j =
       ((P.roots.powersetCard (P.roots.card - j)).map (fun t : Multiset R =>
@@ -151,7 +163,9 @@ lemma sDiscR_eq_sum_signed (P : R[X]) (j : ℕ) :
   rw [ht.2]
 
 /-- **Main R-side characterisation**: `sDiscR P j ≠ 0` iff `P` has at least
-    `P.roots.card − j` distinct roots in `R`.-/
+    `P.roots.card − j` distinct roots in `R`.
+@isnad1 id=iff.0h3v.s6.d39a09bd9b47 from=translated src=- shape=e6078bd9 vocab=60069b46
+-/
 theorem sDiscR_ne_zero_iff (P : R[X]) (j : ℕ) :
     sDiscR P j ≠ 0 ↔ P.roots.card - j ≤ P.roots.toFinset.card := by
   classical
@@ -190,7 +204,9 @@ theorem sDiscR_ne_zero_iff (P : R[X]) (j : ℕ) :
 
 /-- **BPR Remark 4.6** (R-side form): `sDiscR_0(P) = ... = sDiscR_{j-1}(P) =
     0` and `sDiscR_j(P) ≠ 0` iff `P` has exactly `P.roots.card − j` distinct
-    roots in `R`.-/
+    roots in `R`.
+@isnad1 id=iff.1h3v.s7.61a3b7b34608 from=translated src=- shape=2eb3922e vocab=773f3f3a
+-/
 theorem sDiscR_first_nonzero_iff (P : R[X]) (j : ℕ) (hj : j ≤ P.roots.card) :
     ((∀ i < j, sDiscR P i = 0) ∧ sDiscR P j ≠ 0)
       ↔ P.roots.toFinset.card = P.roots.card - j := by

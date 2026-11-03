@@ -37,7 +37,9 @@ open Polynomial
 
 /-- **BPR Exercise 8.2 (key identity).**  For `P ≠ 0` with `deg P = deg Q`, writing
     `Q₁ = a_p·Q − b_p·P` (`a_p = lcof P`, `b_p = lcof Q`, whose leading terms cancel so
-    `deg Q₁ < deg P`), one has `a_p^{deg Q₁} · Res(P,Q) = Res(P, Q₁)`.-/
+    `deg Q₁ < deg P`), one has `a_p^{deg Q₁} · Res(P,Q) = Res(P, Q₁)`.
+@isnad1 id=eq.2h3v.s9.aaf9fe42ae14 from=translated src=- shape=8554131c vocab=0c077a19
+-/
 theorem leadingCoeff_pow_mul_Res_eq {D : Type*} [CommRing D] [IsDomain D] (P Q : D[X])
     (hP : P ≠ 0) (hpq : P.natDegree = Q.natDegree) :
     P.leadingCoeff ^ (C P.leadingCoeff * Q - C Q.leadingCoeff * P).natDegree * Res P Q

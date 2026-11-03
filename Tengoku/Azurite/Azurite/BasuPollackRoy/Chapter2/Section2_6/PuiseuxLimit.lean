@@ -33,7 +33,9 @@ noncomputable instance ratFuncAlgebraicPuiseuxAlgebra :
 noncomputable instance algebraRAlgebraicPuiseux : Algebra R (algebraicPuiseux R) :=
   ((algebraMap (RatFunc R) (algebraicPuiseux R)).comp (algebraMap R (RatFunc R))).toAlgebra
 
-/-- `ε = single 1 1` is algebraic over `R(ε)` (it is `R(ε)`'s indeterminate `X`), hence in `R⟨ε⟩`.-/
+/-- `ε = single 1 1` is algebraic over `R(ε)` (it is `R(ε)`'s indeterminate `X`), hence in `R⟨ε⟩`.
+@isnad1 id=mem.0h1v.s10.673b7634a8a8 from=translated src=- shape=e0f03090 vocab=82c90ae3
+-/
 theorem puiseuxEps_mem_algebraicPuiseux :
     (puiseuxEps : PuiseuxSeries R) ∈ algebraicPuiseux R := by
   rw [mem_algebraicPuiseux]
@@ -49,6 +51,9 @@ theorem puiseuxEps_mem_algebraicPuiseux :
 noncomputable def epsAP (R : Type*) [Field R] : algebraicPuiseux R :=
   ⟨puiseuxEps, puiseuxEps_mem_algebraicPuiseux⟩
 
+/--
+@isnad1 id=eq.0h1v.s10.c22aef936179 from=translated src=- shape=7e15e105 vocab=7b664ae9
+-/
 @[simp] theorem coe_epsAP : ((epsAP R : algebraicPuiseux R) : PuiseuxSeries R) = puiseuxEps := rfl
 
 section Ordered

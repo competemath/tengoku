@@ -34,7 +34,9 @@ open Polynomial
 
 /-- **The number-theoretic core of Lemma 2.97.** If the integer points `(j, a_j)`, `(h, a_h)`,
 `(k, a_k)` are collinear, i.e. `(a_h − a_j)(k − j) = (a_k − a_j)(h − j)`, then the reduced
-denominator `q = (k − j)/gcd(a_k − a_j, k − j)` of the slope divides `h − j`.-/
+denominator `q = (k − j)/gcd(a_k − a_j, k − j)` of the slope divides `h − j`.
+@isnad1 id=dvd.2h6v.s6.b946c1b6f9f7 from=translated src=- shape=b0f31f68 vocab=edb1d455
+-/
 theorem dvd_sub_of_collinear {j k h aj ak ah : ℤ} (hjk : j < k)
     (hcol : (ah - aj) * (k - j) = (ak - aj) * (h - j)) :
     (k - j) / (Int.gcd (ak - aj) (k - j) : ℤ) ∣ (h - j) := by
@@ -60,7 +62,9 @@ theorem dvd_sub_of_collinear {j k h aj ak ah : ℤ} (hjk : j < k)
 
 /-- **The structural form of `Q`.** A sum of monomials `∑ c_h X^h` whose exponents are all `≥ j`
 and `≡ j (mod q)` factors as `X^j` times a polynomial in `X^q`:
-`∑_h c_h X^h = X^j · φ(X^q)` with `φ = ∑_h c_h Y^{(h−j)/q}`.-/
+`∑_h c_h X^h = X^j · φ(X^q)` with `φ = ∑_h c_h Y^{(h−j)/q}`.
+@isnad1 id=eq.2h5v.s9.2b1b27144d26 from=translated src=- shape=69a43aef vocab=d18ca95b
+-/
 theorem sum_monomial_factor {R : Type*} [CommRing R] {S : Finset ℕ} {j q : ℕ}
     (hj : ∀ h ∈ S, j ≤ h) (hd : ∀ h ∈ S, q ∣ (h - j)) (c : ℕ → R) :
     ∑ h ∈ S, monomial h (c h)
@@ -79,7 +83,9 @@ theorem sum_monomial_factor {R : Type*} [CommRing R] {S : Finset ℕ} {j q : ℕ
     Nat.add_sub_cancel' (hj h hh)]
 
 /-- **The degree of `φ`.** With `φ = ∑_{h ∈ S} c_h Y^{(h−j)/q}` (exponents `≥ j` and `≡ j
-(mod q)`, top column `k ∈ S` with `c_k ≠ 0`), the degree is `deg φ = (k − j)/q`.-/
+(mod q)`, top column `k ∈ S` with `c_k ≠ 0`), the degree is `deg φ = (k − j)/q`.
+@isnad1 id=eq.5h6v.s8.ffdedd28a7f4 from=translated src=- shape=e7e1473e vocab=1e057344
+-/
 theorem natDegree_sum_monomial {R : Type*} [CommRing R] {S : Finset ℕ} {j k q : ℕ}
     (hj : ∀ h ∈ S, j ≤ h) (hk : ∀ h ∈ S, h ≤ k) (hd : ∀ h ∈ S, q ∣ (h - j)) (c : ℕ → R)
     (hkS : k ∈ S) (hck : c k ≠ 0) :
@@ -108,7 +114,9 @@ variable {R : Type*} [Field R]
 `ah = m·o(a_h)` are integers), a column `h` on the edge `E = [A, B]` satisfies `q ∣ (h − A.1)`
 where `q = (B.1 − A.1)/gcd(ak − aj, B.1 − A.1)` is the reduced slope denominator. The
 collinearity `o(a_h) = lineValue A B h` (i.e. `h` on `E`) clears to the integer hypothesis of
-`dvd_sub_of_collinear`.-/
+`dvd_sub_of_collinear`.
+@isnad1 id=dvd.5h7v.s7.998dce007d40 from=translated src=- shape=fe5161f3 vocab=bfff178c
+-/
 theorem colOnLine_dvd {A B : ℕ × ℚ} (hAB : A.1 < B.1) {m : ℚ} {aj ak ah : ℤ}
     (hmA : (aj : ℚ) = m * A.2) (hmB : (ak : ℚ) = m * B.2)
     {h : ℕ} (hjh : A.1 ≤ h) (hmh : (ah : ℚ) = m * lineValue A B h) :
@@ -139,7 +147,9 @@ theorem colOnLine_dvd {A B : ℕ × ℚ} (hAB : A.1 < B.1) {m : ℚ} {aj ak ah :
   rw [← hqz]; exact hdvdZ
 
 /-- **A column on the edge has nonzero initial coefficient.** If `h` lies on `E`, then
-`o(a_h) = lineValue A B h` is finite, so `a_h ≠ 0` and `In(a_h) ≠ 0`.-/
+`o(a_h) = lineValue A B h` is finite, so `a_h ≠ 0` and `In(a_h) ≠ 0`.
+@isnad1 id=ne.1h5v.s10.14d1407c23d1 from=translated src=- shape=af6586bf vocab=a9d21edb
+-/
 theorem initCoeff_ne_zero_of_colOnLine {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} {h : ℕ}
     (hh : colOnLine P A B h) : puiseuxInitCoeff R (P.coeff h) ≠ 0 := by
   rw [puiseuxInitCoeff]

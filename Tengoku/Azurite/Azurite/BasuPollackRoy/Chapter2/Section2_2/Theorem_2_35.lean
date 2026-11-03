@@ -45,7 +45,9 @@ noncomputable def critPointsIoc (P : R[X]) (a b : R) : Finset R :=
     (((⇑derivative)^[k] P).roots.toFinset).filter (fun r => a < r ∧ r ≤ b)
 
 /-- Membership characterization: `r ∈ critPointsIoc P a b` iff `r ∈ (a, b]`
-    and some `P^{(k)}` vanishes at `r`.-/
+    and some `P^{(k)}` vanishes at `r`.
+@isnad1 id=iff.1h5v.s8.727282637fea from=translated src=- shape=9a6bb358 vocab=1e17831c
+-/
 lemma mem_critPointsIoc_iff {P : R[X]} (hP : P ≠ 0) {r a b : R} :
     r ∈ critPointsIoc P a b ↔
     (a < r ∧ r ≤ b) ∧
@@ -68,21 +70,27 @@ lemma mem_critPointsIoc_iff {P : R[X]} (hP : P ≠ 0) {r a b : R} :
 /-! ### Splitting `numRoots` and `varBetween` at an intermediate point -/
 
 omit [IsStrictOrderedRing R] in
-/-- Reduced form of `numRoots` at two finite endpoints: direct filter card.-/
+/-- Reduced form of `numRoots` at two finite endpoints: direct filter card.
+@isnad1 id=eq.0h4v.s7.756cb454dcb2 from=translated src=- shape=f07d7c81 vocab=e857335b
+-/
 lemma numRoots_finite_finite (P : R[X]) (a b : R) :
     numRoots P (.finite a) (.finite b) =
       (P.roots.filter (fun r => a < r ∧ r ≤ b)).card := rfl
 
 omit [IsStrictOrderedRing R] in
 /-- Additivity of `varBetween` over a middle point: the trivial consequence of
-    `varBetween = varAt a - varAt b`.-/
+    `varBetween = varAt a - varAt b`.
+@isnad1 id=eq.0h5v.s6.1c60db37b429 from=translated src=- shape=809b6f0e vocab=f4409d96
+-/
 lemma varBetween_split (P : List R[X]) (a c b : ExtendedPoint R) :
     varBetween P a c + varBetween P c b = varBetween P a b := by
   unfold varBetween; ring
 
 omit [IsStrictOrderedRing R] in
 /-- Additivity of `numRoots` over a middle point `c ∈ [a, b]`. Uses the
-    partition of the half-open interval `(a, b]` into `(a, c] ⊔ (c, b]`.-/
+    partition of the half-open interval `(a, b]` into `(a, c] ⊔ (c, b]`.
+@isnad1 id=eq.2h5v.s6.82165333930d from=translated src=- shape=64208cf5 vocab=fb64abfe
+-/
 lemma numRoots_split (P : R[X]) {a c b : R} (hac : a ≤ c) (hcb : c ≤ b) :
     numRoots P (.finite a) (.finite b) =
       numRoots P (.finite a) (.finite c) +
@@ -110,7 +118,9 @@ lemma numRoots_split (P : R[X]) {a c b : R} (hac : a ≤ c) (hcb : c ≤ b) :
 
 omit [IsStrictOrderedRing R] in
 /-- When `(d, c)` has no root of `P` and `d < c`, `numRoots P (d, c]` is just
-    the multiplicity of `c` as a root (0 if `c` is not a root).-/
+    the multiplicity of `c` as a root (0 if `c` is not a root).
+@isnad1 id=eq.3h4v.s7.a46f5e82b40e from=translated src=- shape=206be192 vocab=b762fe3d
+-/
 lemma numRoots_Ioc_of_no_root {P : R[X]} (hP : P ≠ 0) {d c : R} (hdc : d < c)
     (hno : ∀ x ∈ Set.Ioo d c, P.eval x ≠ 0) :
     numRoots P (.finite d) (.finite c) = P.rootMultiplicity c := by
@@ -136,7 +146,9 @@ lemma numRoots_Ioc_of_no_root {P : R[X]} (hP : P ≠ 0) {d c : R} (hdc : d < c)
 
 /-- Absent all `P^{(k)}` roots in `(c, b]`, the right-side half `varBetween
     (der P); c, b` vanishes and `numRoots P (c, b] = 0`. Used for the
-    rightmost piece in Budan-Fourier.-/
+    rightmost piece in Budan-Fourier.
+@isnad1 id=and.4h4v.s9.92fb6c715c92 from=translated src=- shape=7017f614 vocab=c39c675a
+-/
 lemma varBetween_and_numRoots_eq_zero_of_no_root_Ioc
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0)
     {c b : R} (hcb : c < b)
@@ -157,7 +169,9 @@ lemma varBetween_and_numRoots_eq_zero_of_no_root_Ioc
 /-! ### Membership structure: `critPointsIoc` restricted to sub-intervals -/
 
 omit [IsStrictOrderedRing R] in
-/-- If the larger interval has empty `critPointsIoc`, so does the smaller.-/
+/-- If the larger interval has empty `critPointsIoc`, so does the smaller.
+@isnad1 id=le.2h6v.s6.fc645d2ca168 from=translated src=- shape=09e52bd1 vocab=612910f4
+-/
 lemma critPointsIoc_subset_of_Ioc_subset
     {P : R[X]} {a b a' b' : R} (ha : a ≤ a') (hb : b' ≤ b) :
     critPointsIoc P a' b' ⊆ critPointsIoc P a b := by
@@ -169,7 +183,9 @@ lemma critPointsIoc_subset_of_Ioc_subset
   exact ⟨k, hk, hrk, ⟨lt_of_le_of_lt ha hab'.1, le_trans hab'.2 hb⟩⟩
 
 /-- If `critPointsIoc P a b = ∅` then no iterated derivative has a root in
-    `(a, b]`. Used for the base case of Budan-Fourier.-/
+    `(a, b]`. Used for the base case of Budan-Fourier.
+@isnad1 id=ne.4h6v.s8.d1e96ea3fbf2 from=translated src=- shape=3182c298 vocab=28850bb9
+-/
 lemma no_iter_deriv_root_of_critPointsIoc_empty
     {P : R[X]} (hP : P ≠ 0) {a b : R}
     (h : critPointsIoc P a b = ∅) :
@@ -181,7 +197,9 @@ lemma no_iter_deriv_root_of_critPointsIoc_empty
   exact Finset.notMem_empty _ hmem
 
 /-- If `c = max (critPointsIoc P a b)`, then `(c, b]` contains no iterated
-    derivative root.-/
+    derivative root.
+@isnad1 id=ne.5h7v.s9.321d59868e72 from=translated src=- shape=00e56ac9 vocab=2d17aad7
+-/
 lemma no_iter_deriv_root_Ioc_of_max_critPointsIoc
     {P : R[X]} (hP : P ≠ 0) {a b c : R}
     (hc : c ∈ critPointsIoc P a b)
@@ -194,7 +212,9 @@ lemma no_iter_deriv_root_Ioc_of_max_critPointsIoc
   exact absurd hx.1 (not_lt.mpr (hmax x hmem))
 
 /-- Strict card decrease: if `c ∈ critPointsIoc P a b` and `d < c`, then
-    `critPointsIoc P a d` has strictly fewer elements.-/
+    `critPointsIoc P a d` has strictly fewer elements.
+@isnad1 id=lt.4h6v.s7.6888eb946e74 from=translated src=- shape=85a3fdb8 vocab=b5fd46e0
+-/
 lemma critPointsIoc_card_lt_of_lt_max
     {P : R[X]} (hP : P ≠ 0) {a b d c : R} (hcb : c ≤ b) (hdc : d < c)
     (hc : c ∈ critPointsIoc P a b) :
@@ -350,7 +370,9 @@ private theorem budan_fourier_finite_aux
 /-- **BPR Theorem 2.35 (Budan-Fourier, finite-endpoint case).** For any nonzero
     `P ∈ R[X]` and `a < b`, the number of sign variations of `Der(P)` on `(a, b]`
     bounds the number of roots of `P` on `(a, b]` (counted with multiplicity),
-    and the difference `Var(Der(P); a, b) − num(P; (a, b])` is even.-/
+    and the difference `Var(Der(P); a, b) − num(P; (a, b])` is even.
+@isnad1 id=and.3h4v.s7.27119923ee0c from=translated src=- shape=2f549170 vocab=72695ac3
+-/
 theorem budan_fourier_finite (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {a b : R} (hab : a < b) :
     ((numRoots P (.finite a) (.finite b) : ℤ) ≤
@@ -567,7 +589,9 @@ private lemma exists_finite_eq_negInf
     varAt_finite_eq_negInf_of_signs_stable hsign_at_B,
     numRoots_finite_eq_negInf_of_roots_bdd hroots_bd⟩
 
-/-- **BPR Theorem 2.35 (Budan-Fourier), `(a, +∞)` case.**-/
+/-- **BPR Theorem 2.35 (Budan-Fourier), `(a, +∞)` case.**
+@isnad1 id=and.2h3v.s7.3c82ceeabbfb from=translated src=- shape=ad7552fc vocab=e1a5f433
+-/
 theorem budan_fourier_posInf (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (a : R) :
     ((numRoots P (.finite a) .posInf : ℤ) ≤
@@ -582,7 +606,9 @@ theorem budan_fourier_posInf (hIVP : HasIntermediateValueProperty R)
   rw [hvar_eq, ← hnum]
   exact hfin
 
-/-- **BPR Theorem 2.35 (Budan-Fourier), `(−∞, b]` case.**-/
+/-- **BPR Theorem 2.35 (Budan-Fourier), `(−∞, b]` case.**
+@isnad1 id=and.2h3v.s7.24af37365c56 from=translated src=- shape=f1f52ff2 vocab=865d3293
+-/
 theorem budan_fourier_negInf (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (b : R) :
     ((numRoots P .negInf (.finite b) : ℤ) ≤
@@ -597,7 +623,9 @@ theorem budan_fourier_negInf (hIVP : HasIntermediateValueProperty R)
   rw [hvar_eq, ← hnum]
   exact hfin
 
-/-- **BPR Theorem 2.35 (Budan-Fourier), `(−∞, +∞)` case.**-/
+/-- **BPR Theorem 2.35 (Budan-Fourier), `(−∞, +∞)` case.**
+@isnad1 id=and.2h2v.s7.24c0478d1b88 from=translated src=- shape=5f3d9e02 vocab=9f0359e7
+-/
 theorem budan_fourier_negInf_posInf (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) :
     ((numRoots P .negInf .posInf : ℤ) ≤ varBetween (der P) .negInf .posInf) ∧

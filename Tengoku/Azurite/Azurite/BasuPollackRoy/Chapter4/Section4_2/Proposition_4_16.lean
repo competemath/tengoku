@@ -55,7 +55,9 @@ variable {D : Type*} [CommRing D]
 
 /-- The resultant commutes with a ring homomorphism, provided the
     homomorphism preserves the relevant natDegrees (so the formal
-    Sylvester sizes on the two sides agree).-/
+    Sylvester sizes on the two sides agree).
+@isnad1 id=eq.2h5v.s7.ac2390f172c4 from=translated src=- shape=da4a5531 vocab=dea1a3a1
+-/
 theorem Res_map {E : Type*} [CommRing E] (f : D →+* E)
     (P Q : D[X])
     (hPdeg : (P.map f).natDegree = P.natDegree)
@@ -114,7 +116,9 @@ private theorem exists_UV_iff_lcm_natDegree_lt
 
 omit [DecidableEq K] in
 /-- The LCM/GCD degree identity in `K[X]`, established via BPR
-    Proposition 1.5: `lcm P Q` and `P * Q / gcd P Q` are associated.-/
+    Proposition 1.5: `lcm P Q` and `P * Q / gcd P Q` are associated.
+@isnad1 id=eq.2h3v.s7.430888c893cb from=translated src=- shape=65ebe497 vocab=afc8e9f1
+-/
 theorem lcm_natDegree_eq (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0) :
     (lcm P Q).natDegree + (gcd P Q).natDegree =
       P.natDegree + Q.natDegree := by
@@ -176,7 +180,9 @@ variable [Algebra D K] [IsFractionRing D K]
 omit [IsDomain D] [DecidableEq D] in
 /-- **BPR Proposition 4.16.** Over a domain `D` with fraction field `K`,
     the resultant of non-zero `P, Q ∈ D[X]` vanishes if and only if `P`
-    and `Q` are not coprime in `K[X]`.-/
+    and `Q` are not coprime in `K[X]`.
+@isnad1 id=iff.2h4v.s7.63b8731d4d5a from=translated src=- shape=8033cdd7 vocab=dcb546ec
+-/
 theorem Res_eq_zero_iff_not_isCoprime (P Q : D[X]) (hP : P ≠ 0) (hQ : Q ≠ 0) :
     Res P Q = 0 ↔
       ¬ IsCoprime (P.map (algebraMap D K)) (Q.map (algebraMap D K)) := by

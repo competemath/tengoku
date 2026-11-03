@@ -186,7 +186,9 @@ private lemma maximal_hasNoNontrivialRealAlgebraicExtension
 /-! ### Conclusion -/
 
 /-- **Theorem 2.31 (BPR).** Every algebraically closed field of characteristic zero
-    contains a real closed subfield (as an intermediate field over `ℚ`).-/
+    contains a real closed subfield (as an intermediate field over `ℚ`).
+@isnad1 id=ex.0h1v.s6.ba750a30755c from=translated src=- shape=cbb85c02 vocab=e10737eb
+-/
 theorem theorem_2_31 (C : Type*) [Field C] [IsAlgClosed C] [CharZero C] :
     ∃ R : IntermediateField ℚ C, IsRealClosed ↥R := by
   obtain ⟨R, hR, hmax⟩ := exists_maximal_semireal C
@@ -194,7 +196,9 @@ theorem theorem_2_31 (C : Type*) [Field C] [IsAlgClosed C] [CharZero C] :
     (maximal_hasNoNontrivialRealAlgebraicExtension C R hR hmax)⟩
 
 /-- **Theorem 2.31, with maximality retained.** The real closed subfield can be taken to be a
-*maximal* semireal intermediate field. (Used to show `C` is algebraic over it, hence `C = R[i]`.)-/
+*maximal* semireal intermediate field. (Used to show `C` is algebraic over it, hence `C = R[i]`.)
+@isnad1 id=ex.0h1v.s9.e90b31d6938e from=translated src=- shape=506d9cf4 vocab=145c08ea
+-/
 theorem theorem_2_31_maximal (C : Type*) [Field C] [IsAlgClosed C] [CharZero C] :
     ∃ R : IntermediateField ℚ C, IsRealClosed ↥R ∧
       ∀ S : IntermediateField ℚ C, IsSemireal ↥S → R ≤ S → S = R := by

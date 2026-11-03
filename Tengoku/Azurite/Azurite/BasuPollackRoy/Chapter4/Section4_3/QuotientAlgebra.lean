@@ -35,20 +35,26 @@ section QuotientAlgebra
 variable {K : Type*} [Field K]
 
 /-- **`A = K[X]/(P)` is a `K`-vector space of dimension `p = deg P`** (for `P ≠ 0`), with the
-power basis `1, X, …, X^{p-1}` (`AdjoinRoot.powerBasis`).-/
+power basis `1, X, …, X^{p-1}` (`AdjoinRoot.powerBasis`).
+@isnad1 id=eq.1h2v.s7.ce25391308b6 from=translated src=- shape=c4806079 vocab=62a5f4c6
+-/
 theorem finrank_adjoinRoot (P : K[X]) (hP : P ≠ 0) :
     Module.finrank K (AdjoinRoot P) = P.natDegree :=
   (AdjoinRoot.powerBasis hP).finrank.trans (AdjoinRoot.powerBasis_dim hP)
 
 /-- The `i`-th element of the power basis of `A = K[X]/(P)` is `X^i` (the class of `Xⁱ`),
-`0 ≤ i < p`: the basis is `1, X, …, X^{p-1}`.-/
+`0 ≤ i < p`: the basis is `1, X, …, X^{p-1}`.
+@isnad1 id=eq.1h3v.s9.7f24c85f09f7 from=translated src=- shape=a88d0370 vocab=f41ffaed
+-/
 theorem adjoinRoot_powerBasis_apply (P : K[X]) (hP : P ≠ 0)
     (i : Fin (AdjoinRoot.powerBasis hP).dim) :
     (AdjoinRoot.powerBasis hP).basis i = AdjoinRoot.root P ^ (i : ℕ) := by
   rw [(AdjoinRoot.powerBasis hP).basis_eq_pow, AdjoinRoot.powerBasis_gen]
 
 /-- **The remainder is a representative.** The class of `f` in `A = K[X]/(P)` equals the class
-of its remainder `f %ₘ P` in euclidean division by `P` (a representative of degree `< p`).-/
+of its remainder `f %ₘ P` in euclidean division by `P` (a representative of degree `< p`).
+@isnad1 id=eq.0h3v.s8.ab2b9b37f993 from=translated src=- shape=874805bf vocab=45d018fb
+-/
 theorem mk_modByMonic (P f : K[X]) :
     AdjoinRoot.mk P (f %ₘ P) = AdjoinRoot.mk P f := by
   rw [AdjoinRoot.mk_eq_mk]
@@ -56,7 +62,9 @@ theorem mk_modByMonic (P f : K[X]) :
 
 /-- **Two polynomials are equal modulo `P` exactly when `P` divides their difference**; hence
 if `f` and `g` are equal modulo `P` their remainders in euclidean division by `P` coincide,
-so the representative above is well defined.-/
+so the representative above is well defined.
+@isnad1 id=iff.0h4v.s8.29064ca5b2b4 from=translated src=- shape=88f38a8d vocab=3b05cb0b
+-/
 theorem mk_eq_mk_iff (P f g : K[X]) :
     AdjoinRoot.mk P f = AdjoinRoot.mk P g ↔ P ∣ f - g :=
   AdjoinRoot.mk_eq_mk
@@ -69,7 +77,9 @@ noncomputable abbrev Tr (P : K[X]) :
   LinearMap.trace K (AdjoinRoot P)
 
 /-- `Tr f` is the sum of the diagonal entries of the matrix of `f` in **any** basis of `A`
-(basis-independence of the trace).-/
+(basis-independence of the trace).
+@isnad1 id=eq.0h5v.s12.55da87647635 from=translated src=- shape=3355594c vocab=dc0113f5
+-/
 theorem Tr_eq_matrix_trace {ι : Type*} [DecidableEq ι] [Fintype ι] (P : K[X])
     (b : Module.Basis ι K (AdjoinRoot P)) (f : AdjoinRoot P →ₗ[K] AdjoinRoot P) :
     Tr P f = ((LinearMap.toMatrix b b) f).trace :=
@@ -81,11 +91,16 @@ the euclidean division by `P` (Mathlib's `LinearMap.mulLeft`).-/
 noncomputable def Lmul (P : K[X]) (f : AdjoinRoot P) : AdjoinRoot P →ₗ[K] AdjoinRoot P :=
   LinearMap.mulLeft K f
 
+/--
+@isnad1 id=eq.0h4v.s9.6a8fe2541787 from=translated src=- shape=1e8f385f vocab=45ef1908
+-/
 @[simp] theorem Lmul_apply (P : K[X]) (f g : AdjoinRoot P) : Lmul P f g = f * g :=
   LinearMap.mulLeft_apply K f g
 
 /-- `L_f` sends the class of `b` to the class of the remainder of `a · b` in the euclidean
-division by `P`, where `a` represents `f`.-/
+division by `P`, where `a` represents `f`.
+@isnad1 id=eq.0h4v.s9.98eaef71450e from=translated src=- shape=44e9961e vocab=0eb77162
+-/
 theorem Lmul_mk (P a b : K[X]) :
     Lmul P (AdjoinRoot.mk P a) (AdjoinRoot.mk P b) = AdjoinRoot.mk P ((a * b) %ₘ P) := by
   rw [Lmul_apply, ← map_mul]

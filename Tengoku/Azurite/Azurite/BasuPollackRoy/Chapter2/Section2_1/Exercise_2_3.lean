@@ -24,7 +24,9 @@ would need `0 ≤ −1`, contradicting `−1 < 0`.
 namespace Azurite.BPR
 
 open Complex in
-/-- **BPR Exercise 2.3.** ℂ cannot be made into an ordered field.-/
+/-- **BPR Exercise 2.3.** ℂ cannot be made into an ordered field.
+@isnad1 id=not.0h0v.s4.4c690613d272 from=translated src=- shape=27991d54 vocab=623ef398
+-/
 theorem exercise_2_3 :
     ¬ ∃ (_ : LinearOrder ℂ), IsStrictOrderedRing ℂ := by
   rintro ⟨ord, hord⟩

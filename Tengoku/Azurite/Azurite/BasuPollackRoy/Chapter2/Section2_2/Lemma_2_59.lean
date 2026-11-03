@@ -71,9 +71,15 @@ noncomputable def SRemSList (P Q : K[X]) (n : ℕ) : List K[X] :=
   (List.range n).map (SRemS P Q)
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
+/--
+@isnad1 id=eq.0h3v.s5.11f2195e8886 from=translated src=- shape=43e082cc vocab=2c34ce0e
+-/
 @[simp] lemma SRemSList_zero (P Q : K[X]) : SRemSList P Q 0 = [] := rfl
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
+/--
+@isnad1 id=eq.0h3v.s6.5392ca081c7c from=translated src=- shape=0b3d3702 vocab=ceb2b130
+-/
 @[simp] lemma SRemSList_one (P Q : K[X]) : SRemSList P Q 1 = [P] := rfl
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
@@ -99,7 +105,9 @@ omit [IsStrictOrderedRing K] in
     `SRemS(Q, -R') i = SRemS(P, Q) (i+1)` for all `i ≥ 0`, assuming `Q ≠ 0`.
 
     The hypothesis `Q ≠ 0` is needed: when `Q = 0`, `SRemS(P, Q) 2 = 0`
-    while `SRemS(Q, -P) 1 = -P` may be nonzero, so the identity fails.-/
+    while `SRemS(Q, -P) 1 = -P` may be nonzero, so the identity fails.
+@isnad1 id=eq.1h4v.s7.dd6a2e052f37 from=translated src=- shape=ac96813e vocab=5be4e63e
+-/
 lemma SRemS_succ (P Q : K[X]) (hQ : Q ≠ 0) (i : ℕ) :
     SRemS P Q (i + 1) = SRemS Q (-(P % Q)) i := by
   induction i using Nat.strong_induction_on with
@@ -124,7 +132,9 @@ lemma SRemS_succ (P Q : K[X]) (hQ : Q ≠ 0) (i : ℕ) :
 
 omit [IsStrictOrderedRing K] in
 /-- **Head decomposition for `SRemSList`.** With `R' = P % Q` and `Q ≠ 0`,
-    `SRemSList P Q (n+1) = P :: SRemSList Q (-R') n`.-/
+    `SRemSList P Q (n+1) = P :: SRemSList Q (-R') n`.
+@isnad1 id=eq.1h4v.s7.edbe2248a6cd from=translated src=- shape=01ea3982 vocab=16222dad
+-/
 lemma SRemSList_succ (P Q : K[X]) (hQ : Q ≠ 0) (n : ℕ) :
     SRemSList P Q (n + 1) = P :: SRemSList Q (-(P % Q)) n := by
   unfold SRemSList
@@ -139,7 +149,9 @@ lemma SRemSList_succ (P Q : K[X]) (hQ : Q ≠ 0) (n : ℕ) :
 omit [IsStrictOrderedRing K] in
 /-- **Var step under `cons`.** For values `a, b : K` with `a ≠ 0` and
     `b ≠ 0`, prepending `a` to `b :: L` adds `1` to `Var` exactly when
-    `a · b < 0`.-/
+    `a · b < 0`.
+@isnad1 id=eq.2h4v.s8.d0f1c363e19d from=translated src=- shape=c936f887 vocab=07c7fb82
+-/
 lemma Var_cons_cons_of_ne_zero (a b : K) (L : List K)
     (ha : a ≠ 0) (hb : b ≠ 0) :
     Var (a :: b :: L) = Var (b :: L) + (if a * b < 0 then 1 else 0) := by
@@ -157,7 +169,9 @@ lemma Var_cons_cons_of_ne_zero (a b : K) (L : List K)
 omit [IsStrictOrderedRing K] in
 /-- **`varAt` step under `cons`.** For polynomials `P, Q : K[X]` and
     `a : ExtendedPoint K` with `evalPoly P a ≠ 0` and `evalPoly Q a ≠ 0`:
-    `varAt (P :: Q :: L) a = varAt (Q :: L) a + [evalPoly P a · evalPoly Q a < 0]`.-/
+    `varAt (P :: Q :: L) a = varAt (Q :: L) a + [evalPoly P a · evalPoly Q a < 0]`.
+@isnad1 id=eq.2h5v.s8.1acf1fa2ff7f from=translated src=- shape=e909ee9e vocab=8edff5e3
+-/
 lemma varAt_cons_cons_of_ne_zero
     (P Q : K[X]) (L : List K[X]) (a : ExtendedPoint K)
     (hP : ExtendedPoint.evalPoly P a ≠ 0) (hQ : ExtendedPoint.evalPoly Q a ≠ 0) :
@@ -170,7 +184,9 @@ lemma varAt_cons_cons_of_ne_zero
 
 omit [LinearOrder K] [IsStrictOrderedRing K] in
 /-- Helper: peel the head off `SRemSList`. This holds regardless of whether
-    `Q = 0`, in contrast to `SRemSList_succ` (which uses the SRemS recursion).-/
+    `Q = 0`, in contrast to `SRemSList_succ` (which uses the SRemS recursion).
+@isnad1 id=eq.0h4v.s6.3537838cebb2 from=translated src=- shape=7299ab62 vocab=df60fa42
+-/
 lemma SRemSList_head_decomp (P Q : K[X]) (n : ℕ) :
     SRemSList P Q (n + 1) =
       P :: ((List.range n).map (fun i => SRemS P Q (i + 1))) := by
@@ -186,7 +202,9 @@ omit [IsStrictOrderedRing K] in
     by `evalPoly Q x ≠ 0`), the sign-variation count of the signed remainder
     sequence of `P, Q` exceeds that of the signed remainder sequence of
     `Q, −Rem(P, Q)` by `1` if `evalPoly P x · evalPoly Q x < 0`, and by `0`
-    otherwise.-/
+    otherwise.
+@isnad1 id=eq.3h5v.s8.1fba0666a56b from=translated src=- shape=e5776272 vocab=aeab2b20
+-/
 theorem lemma_2_59_pointwise
     (P Q : K[X]) (hQ_ne : Q ≠ 0) (n : ℕ) (x : ExtendedPoint K)
     (hP : ExtendedPoint.evalPoly P x ≠ 0)
@@ -213,7 +231,9 @@ omit [IsStrictOrderedRing K] in
     correction `(σ(b) - σ(a))/2` ∈ `{−1, 0, 1}`:
 
     * if `σ(a) = σ(b)` (i.e. `σ(a) · σ(b) = 1`): no correction;
-    * if `σ(a) ≠ σ(b)` (i.e. `σ(a) · σ(b) = -1`): correction is `σ(b)`.-/
+    * if `σ(a) ≠ σ(b)` (i.e. `σ(a) · σ(b) = -1`): correction is `σ(b)`.
+@isnad1 id=eq.5h6v.s9.a2a48f7e7643 from=translated src=- shape=3ff887c5 vocab=cb256242
+-/
 theorem lemma_2_59
     (P Q : K[X]) (hQ_ne : Q ≠ 0) (n : ℕ) (a b : ExtendedPoint K)
     (haP : ExtendedPoint.evalPoly P a ≠ 0)

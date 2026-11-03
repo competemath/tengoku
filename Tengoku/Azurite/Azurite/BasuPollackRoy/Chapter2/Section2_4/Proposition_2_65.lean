@@ -49,7 +49,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Proposition 2.65.** The three counts of `P`-roots by the sign
 of `Q` are recovered from the Tarski-queries `TaQ(1, P)`, `TaQ(Q, P)`,
-and `TaQ(Q², P)` — no coprimality assumption is needed.-/
+and `TaQ(Q², P)` — no coprimality assumption is needed.
+@isnad1 id=and.0h3v.s9.16452b4d9f85 from=translated src=- shape=67bccccd vocab=a8db0c3c
+-/
 theorem proposition_2_65 (P Q : R[X]) :
     ((P.roots.toFinset.filter (fun x => Q.eval x = 0)).card : ℤ)
         = tarskiQuery 1 P - tarskiQuery (Q ^ 2) P ∧

@@ -243,7 +243,9 @@ omit [IsAlgClosed C] in
 /-- **BPR Proposition 4.9**. For `P : K[X]` and `k ≤ (P.aroots C).card`,
     the `(p - k)`-subdiscriminant of `P` is `a_p^{2k-2}` times the
     determinant of the `k × k` Newton matrix `Newt_{p-k}(P)`. (For monic
-    `P`, the leading factor is `1`.)-/
+    `P`, the leading factor is `1`.)
+@isnad1 id=eq.1h4v.s7.5bda41feffe9 from=translated src=- shape=099df6b3 vocab=4f6aa3fe
+-/
 theorem proposition_4_9 (P : K[X]) (k : ℕ)
     (hk : k ≤ (P.aroots C).card) :
     (sDisc P ((P.aroots C).card - k) : C) =

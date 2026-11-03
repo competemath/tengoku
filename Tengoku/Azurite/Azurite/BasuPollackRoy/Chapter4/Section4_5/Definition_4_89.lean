@@ -35,7 +35,9 @@ noncomputable def valueAt (Ps : Finset (MvPolynomial (Fin k) K)) (a : quotPolys 
     (x : Fin k → C) (hx : x ∈ zerOfFinset C Ps) : C :=
   evalBar C Ps x hx (inclExt C Ps a)
 
-/-- The value of `a ∈ A` at `x` is the value at `x` of any polynomial representative of `a`.-/
+/-- The value of `a ∈ A` at `x` is the value at `x` of any polynomial representative of `a`.
+@isnad1 id=eq.1h6v.s10.e874a3ef85d5 from=translated src=- shape=9e78c181 vocab=e6299b81
+-/
 theorem valueAt_mk (Ps : Finset (MvPolynomial (Fin k) K)) (p : MvPolynomial (Fin k) K)
     (x : Fin k → C) (hx : x ∈ zerOfFinset C Ps) :
     valueAt C Ps (Ideal.Quotient.mk _ p) x hx = MvPolynomial.aeval x p := by

@@ -35,7 +35,9 @@ def IsThomEncoding (P : R[X]) (n : ℕ) (σ : ℕ → SignType) (x : R) : Prop :
   σ 0 = 0 ∧ derReali P n σ = {x}
 
 /-- A root realization gives a Thom encoding: if `P ≠ 0`, `σ(P) = 0`, and
-    `x ∈ derReali P n σ`, then `σ` is a Thom encoding of `x`.-/
+    `x ∈ derReali P n σ`, then `σ` is a Thom encoding of `x`.
+@isnad1 id=isthomen.5h5v.s7.9e678e6c6383 from=translated src=- shape=1872f7f5 vocab=8e076653
+-/
 theorem isThomEncoding_of_mem (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) (n : ℕ) (σ : ℕ → SignType) (hn : P.natDegree ≤ n)
     (hσ0 : σ 0 = 0) (x : R) (hx : x ∈ derReali P n σ) :
@@ -43,6 +45,9 @@ theorem isThomEncoding_of_mem (hIVP : HasIntermediateValueProperty R)
   ⟨hσ0, Set.eq_singleton_iff_unique_mem.mpr
     ⟨hx, fun _ hy => proposition_2_28_part1 hIVP P hP n σ hn hσ0 _ x hy hx⟩⟩
 
+/--
+@isnad1 id=isthomen.4h5v.s7.dbe54388836b from=translated src=- shape=2614ee4c vocab=b0c9f5a2
+-/
 theorem isThomEncoding_of_mem_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (hP : P ≠ 0) (n : ℕ) (σ : ℕ → SignType) (hn : P.natDegree ≤ n)

@@ -42,7 +42,9 @@ omit [LinearOrder R] [IsStrictOrderedRing R] in
     inequality `(SRemS P Q (k+1)).natDegree + k ≤ Q.natDegree` (induction
     on `k`). Applied at `k = Q.natDegree + 1` this would give
     `(SRemS P Q (Q.natDegree + 2)).natDegree ≤ -1`, contradicting
-    `natDegree ≥ 0`.-/
+    `natDegree ≥ 0`.
+@isnad1 id=eq.0h3v.s6.ec883125cd36 from=translated src=- shape=3ee02046 vocab=c48a3011
+-/
 theorem SRemS_eq_zero_natDegree_succ_succ (P Q : R[X]) :
     SRemS P Q (Q.natDegree + 2) = 0 := by
   classical
@@ -85,7 +87,9 @@ theorem SRemS_eq_zero_natDegree_succ_succ (P Q : R[X]) :
 
     Immediate from BPR Theorem 2.58 + Proposition 2.57. The truncation
     index is `(P' · Q).natDegree + 2`, automatically past the end of
-    the SRemS sequence by `SRemS_eq_zero_natDegree_succ_succ`.-/
+    the SRemS sequence by `SRemS_eq_zero_natDegree_succ_succ`.
+@isnad1 id=eq.5h5v.s10.bdb8abda82f9 from=translated src=- shape=7536a997 vocab=91dc0ff3
+-/
 theorem theorem_2_61
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R)

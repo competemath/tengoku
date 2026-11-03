@@ -36,12 +36,16 @@ Three claims:
 namespace Azurite.BPR
 
 /-- **BPR Exercise 2.6(1).** A real field has characteristic 0.
-    (This is a restatement of `isRealField_charZero`.)-/
+    (This is a restatement of `isRealField_charZero`.)
+@isnad1 id=charzero.1h1v.s4.aa7f460d78a9 from=translated src=- shape=c612a321 vocab=5a151123
+-/
 theorem exercise_2_6_charZero {F : Type*} [Field F] (h : IsRealField F) : CharZero F :=
   haveI : IsSemireal F := h; inferInstance
 
 /-- **BPR Exercise 2.6(2).** The field ℂ of complex numbers is not a real field.
-    *Proof.* `i² = −1` in ℂ, so `−1 = i·i ∈ Σℂ^{(2)}`.-/
+    *Proof.* `i² = −1` in ℂ, so `−1 = i·i ∈ Σℂ^{(2)}`.
+@isnad1 id=not.0h0v.s2.7b840e75d5a0 from=translated src=- shape=87ceb31f vocab=3ed28a1d
+-/
 theorem exercise_2_6_complex_not_real : ¬ IsRealField ℂ := by
   rw [IsRealField, isSemireal_iff_not_isSumSq_neg_one]
   push Not
@@ -52,7 +56,9 @@ theorem exercise_2_6_complex_not_real : ¬ IsRealField ℂ := by
 /-- **BPR Exercise 2.6(3).** Every ordered field is a real field.
     *Proof.* Sums of squares are non-negative in an ordered ring, so `−1 < 0`
     cannot be a sum of squares. Mathlib provides the `IsSemireal` instance
-    for `[IsStrictOrderedRing]`.-/
+    for `[IsStrictOrderedRing]`.
+@isnad1 id=isrealfi.0h1v.s4.296c28003703 from=translated src=- shape=affebb5f vocab=83b46b90
+-/
 theorem exercise_2_6_ordered_is_real
     {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F] :
     IsRealField F :=

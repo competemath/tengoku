@@ -555,7 +555,9 @@ private lemma algebraMap_sRes_eq_det_map (P : K[X])
 /-- **BPR Proposition 4.28.** For `P : K[X]` with positive `natDegree`
     and `0 < k ≤ P.natDegree`,
 
-      `a_p · sDisc_{p-k}(P) = sRes_{p-k}(P, P')`.-/
+      `a_p · sDisc_{p-k}(P) = sRes_{p-k}(P, P')`.
+@isnad1 id=eq.3h4v.s9.8daca13ed790 from=translated src=- shape=ffa09e70 vocab=be213a9c
+-/
 theorem proposition_4_28 (P : K[X]) (hP : 0 < P.natDegree) (k : ℕ)
     (hk_pos : 0 < k) (hk_le : k ≤ P.natDegree) :
     (algebraMap K C) P.leadingCoeff *

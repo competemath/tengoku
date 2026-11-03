@@ -131,7 +131,9 @@ variable {C : Type*} [CommRing C] [Algebra K C]
 noncomputable def ptMap {N : ℕ} (τ : MvPolynomial (Fin N) K →ₐ[K] MvPolynomial (Fin N) K)
     (x : Fin N → C) : Fin N → C := fun i => aeval x (τ (X i))
 
-/-- `aeval x (τ P) = aeval (ptMap τ x) P`.-/
+/-- `aeval x (τ P) = aeval (ptMap τ x) P`.
+@isnad1 id=eq.0h6v.s9.6d1d50d3ddc1 from=translated src=- shape=95e42425 vocab=7143b7f9
+-/
 theorem aeval_comp_algHom {N : ℕ}
     (τ : MvPolynomial (Fin N) K →ₐ[K] MvPolynomial (Fin N) K) (x : Fin N → C)
     (P : MvPolynomial (Fin N) K) :
@@ -143,7 +145,9 @@ theorem aeval_comp_algHom {N : ℕ}
     simp [ptMap]
   exact DFunLike.congr_fun key P
 
-/-- Membership in the zero set of an image: `x ∈ Zer(Ps.image τ) ↔ ptMap τ x ∈ Zer(Ps)`.-/
+/-- Membership in the zero set of an image: `x ∈ Zer(Ps.image τ) ↔ ptMap τ x ∈ Zer(Ps)`.
+@isnad1 id=iff.0h6v.s9.837897374f41 from=translated src=- shape=82f88b09 vocab=4987da9a
+-/
 theorem mem_zerOfFinset_image {N : ℕ} [DecidableEq (MvPolynomial (Fin N) K)]
     (τ : MvPolynomial (Fin N) K →ₐ[K] MvPolynomial (Fin N) K)
     (Ps : Finset (MvPolynomial (Fin N) K)) (x : Fin N → C) :
@@ -158,7 +162,9 @@ theorem mem_zerOfFinset_image {N : ℕ} [DecidableEq (MvPolynomial (Fin N) K)]
     rw [← hpq, aeval_comp_algHom]
     exact h p hp
 
-/-- Membership in the zero set of an image by an algebra *equiv*.-/
+/-- Membership in the zero set of an image by an algebra *equiv*.
+@isnad1 id=iff.0h6v.s9.a0f50adf086b from=translated src=- shape=403c2cbe vocab=e9a02427
+-/
 theorem mem_zerOfFinset_image_equiv {N : ℕ} [DecidableEq (MvPolynomial (Fin N) K)]
     (σ : MvPolynomial (Fin N) K ≃ₐ[K] MvPolynomial (Fin N) K)
     (Ps : Finset (MvPolynomial (Fin N) K)) (x : Fin N → C) :

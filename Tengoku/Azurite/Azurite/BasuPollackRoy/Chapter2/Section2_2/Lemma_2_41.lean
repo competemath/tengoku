@@ -31,7 +31,9 @@ private lemma coeff_X_sub_C_eq (x : R) (i : ℕ) :
   rw [coeff_sub, coeff_X, coeff_C]
   split_ifs with h0 h1 <;> simp_all
 
-/-- **BPR Lemma 2.41.** The linear polynomial `X - x` is normal iff `x ≤ 0`.-/
+/-- **BPR Lemma 2.41.** The linear polynomial `X - x` is normal iff `x ≤ 0`.
+@isnad1 id=iff.0h2v.s7.ca4a1452bf86 from=translated src=- shape=bc99bcfb vocab=2d72f015
+-/
 lemma isNormal_X_sub_C_iff {x : R} : IsNormal ((X : R[X]) - C x) ↔ x ≤ 0 := by
   constructor
   · intro h

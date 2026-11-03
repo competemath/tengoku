@@ -43,13 +43,17 @@ def matrixTensor (M : Matrix l m α) (M' : Matrix n p α) : Matrix (l × n) (m �
 @[inherit_doc] scoped infixl:100 " ⊗ₘ " => Azurite.BPR.matrixTensor
 
 /-- The `((i, i'), (j, j'))`-entry of `M ⊗ M'` is `m_{ij} · m'_{i'j'}`,
-the `(i', j')`-entry of the block `m_{ij} M'`.-/
+the `(i', j')`-entry of the block `m_{ij} M'`.
+@isnad1 id=eq.0h9v.s6.a743c4a81749 from=translated src=- shape=67f3b840 vocab=e532d466
+-/
 @[simp] theorem matrixTensor_apply (M : Matrix l m α) (M' : Matrix n p α)
     (i : l × n) (j : m × p) :
     (M ⊗ₘ M') i j = M i.1 j.1 * M' i.2 j.2 :=
   rfl
 
-/-- The BPR tensor product is the Mathlib Kronecker product.-/
+/-- The BPR tensor product is the Mathlib Kronecker product.
+@isnad1 id=eq.0h7v.s6.eb8406d55799 from=translated src=- shape=f0ff3e56 vocab=d3135e69
+-/
 theorem matrixTensor_eq_kronecker (M : Matrix l m α) (M' : Matrix n p α) :
     M ⊗ₘ M' = M ⊗ₖ M' :=
   rfl

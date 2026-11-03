@@ -27,14 +27,18 @@ namespace Azurite.BPR
 
 open Finsupp.DegLex in
 /-- The zero multi-index (monomial `1`) is the grlex-smallest: for any nonzero `α`,
-    `0 <_grlex α`.-/
+    `0 <_grlex α`.
+@isnad1 id=grlexord.1h2v.s6.62ae4c6fcdf2 from=translated src=- shape=249a0145 vocab=8beb6341
+-/
 theorem grlex_bot {k : ℕ} {α : Fin k →₀ ℕ} (hα : α ≠ 0) :
     GrlexOrder k 0 α := by
   exact bot_lt_iff_ne_bot.mpr (show toDegLex α ≠ ⊥ from fun h => hα (toDegLex_inj.mp h))
 
 open Finsupp.DegLex in
 /-- The grlex ordering on monomials is compatible with multiplication:
-    if `α <_grlex β` then `α + γ <_grlex β + γ`.-/
+    if `α <_grlex β` then `α + γ <_grlex β + γ`.
+@isnad1 id=grlexord.1h4v.s6.6c93134ae032 from=translated src=- shape=e0a0289b vocab=34380436
+-/
 theorem grlex_add_right {k : ℕ} {α β γ : Fin k →₀ ℕ}
     (h : GrlexOrder k α β) :
     GrlexOrder k (α + γ) (β + γ) := by
@@ -47,7 +51,9 @@ theorem grlex_add_right {k : ℕ} {α β γ : Fin k →₀ ℕ}
 open Finsupp.DegLex in
 /-- The set of monomials grlex-≤ a given monomial is always finite.
     This is because grlex-≤ implies bounded total degree, and there
-    are finitely many monomials of bounded total degree in `k` variables.-/
+    are finitely many monomials of bounded total degree in `k` variables.
+@isnad1 id=finite.0h2v.s5.d5b59cf123bc from=translated src=- shape=a876b1ac vocab=552d0209
+-/
 theorem grlex_le_set_finite {k : ℕ} (α : Fin k →₀ ℕ) :
     Set.Finite {β : Fin k →₀ ℕ | GrlexOrder k β α ∨ β = α} := by
   apply Set.Finite.subset (Finsupp.finite_of_degree_le α.degree)

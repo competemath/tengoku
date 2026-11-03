@@ -32,7 +32,9 @@ namespace Azurite.BPR
 
 variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
-/-- **Prop 2.6 (Forward, part 1).** The positive cone satisfies `C ∪ (−C) = F`.-/
+/-- **Prop 2.6 (Forward, part 1).** The positive cone satisfies `C ∪ (−C) = F`.
+@isnad1 id=hasmemor.0h1v.s6.66cf09714b2d from=translated src=- shape=7cdc28cf vocab=5739a431
+-/
 lemma nonneg_hasMemOrNegMem : HasMemOrNegMem (Subsemiring.nonneg F) :=
   ⟨fun a => by
     simp only [Subsemiring.mem_nonneg]
@@ -41,7 +43,9 @@ lemma nonneg_hasMemOrNegMem : HasMemOrNegMem (Subsemiring.nonneg F) :=
     · right; linarith⟩
 
 /-- **Prop 2.6 (Forward, full).** The positive cone of an ordered field is
-    a proper cone with `C ∪ (−C) = F`.-/
+    a proper cone with `C ∪ (−C) = F`.
+@isnad1 id=and.0h1v.s6.c6c4a4473ceb from=translated src=- shape=a46544f1 vocab=5b141658
+-/
 theorem prop_2_6_forward :
     IsProperCone (Subsemiring.nonneg F) ∧ HasMemOrNegMem (Subsemiring.nonneg F) :=
   ⟨isProperCone_nonneg, nonneg_hasMemOrNegMem⟩
@@ -81,7 +85,9 @@ def IsProperCone.le {C : Subsemiring F} (_ : IsProperCone C) (x y : F) : Prop :=
 
     We have already shown that such `C` produces a `RingCone`
     (via `IsProperCone.toRingCone`), and the totality condition
-    `HasMemOrNegMem` ensures the order is linear.-/
+    `HasMemOrNegMem` ensures the order is linear.
+@isnad1 id=or.2h4v.s7.0b725cd76d39 from=translated src=- shape=624f888a vocab=0ff01149
+-/
 theorem IsProperCone.totalOrder {C : Subsemiring F}
     (hC : IsProperCone C) (hT : ∀ a : F, a ∈ C ∨ -a ∈ C) :
     ∀ x y : F, hC.le x y ∨ hC.le y x := by

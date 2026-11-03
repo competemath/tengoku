@@ -30,7 +30,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Proposition 2.19.** Over an ordered field R with R[i] algebraically
     closed, every monic irreducible polynomial is either linear (degree 1) or
-    has the form (X − c)² + d² with d ≠ 0.-/
+    has the form (X − c)² + d² with d ≠ 0.
+@isnad1 id=or.2h2v.s9.3ece83ed9029 from=translated src=- shape=b9e93feb vocab=29f3b45d
+-/
 theorem proposition_2_19 [IsAlgClosed (Ri R)]
     {q : R[X]} (hq : Irreducible q) (hm : q.Monic) :
     q.natDegree = 1 ∨ ∃ c d : R, d ≠ 0 ∧ q = (X - C c) ^ 2 + C (d ^ 2) := by
@@ -130,7 +132,9 @@ theorem proposition_2_19 [IsAlgClosed (Ri R)]
 
 /-- **BPR Proposition 2.19** (real closed form). Over a real closed field R,
     every monic irreducible polynomial is either linear or has the form
-    (X − c)² + d² with d ≠ 0.-/
+    (X − c)² + d² with d ≠ 0.
+@isnad1 id=or.2h2v.s9.bb3c2bb3812e from=translated src=- shape=41748dde vocab=ee125128
+-/
 theorem proposition_2_19_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     {q : R[X]} (hq : Irreducible q) (hm : q.Monic) :

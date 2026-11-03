@@ -51,10 +51,15 @@ noncomputable def baseChange (R : Type*) [Field R] [IsRealClosed R] :
 noncomputable instance instAlgRatFuncRi : Algebra (RatFunc R) (RatFunc (Ri R)) :=
   (baseChange R).toAlgebra
 
+/--
+@isnad1 id=eq.0h1v.s10.3cdb726b37b1 from=translated src=- shape=5038e551 vocab=c85da02b
+-/
 theorem algebraMap_eq_baseChange :
     (algebraMap (RatFunc R) (RatFunc (Ri R))) = baseChange R := rfl
 
-/-- `baseChange` on the inclusion of a polynomial is the inclusion of its coefficient-mapped image.-/
+/-- `baseChange` on the inclusion of a polynomial is the inclusion of its coefficient-mapped image.
+@isnad1 id=eq.0h2v.s13.d01d41701a73 from=translated src=- shape=fe55bef8 vocab=68b21a83
+-/
 theorem baseChange_algebraMap (p : R[X]) :
     baseChange R (algebraMap R[X] (RatFunc R) p)
       = algebraMap (Ri R)[X] (RatFunc (Ri R)) (p.map (algebraMap R (Ri R))) := by
@@ -67,12 +72,17 @@ theorem baseChange_algebraMap (p : R[X]) :
 noncomputable def riConst (R : Type*) [Field R] [IsRealClosed R] : RatFunc (Ri R) :=
   algebraMap (Ri R) (RatFunc (Ri R)) (Ri.i R)
 
+/--
+@isnad1 id=eq.0h1v.s11.5fb5b8a5ae35 from=translated src=- shape=56df2f6e vocab=6e2dc6ac
+-/
 theorem riConst_sq : (riConst R) ^ 2 = -1 := by
   rw [riConst, ← map_pow, Ri.i_sq, map_neg, map_one]
 
 /-- **The crux: `(R[i])(ε)` is algebraic over `R(ε)`** (a degree-two base change). Every element is a
 ratio of polynomials in `R[i]`, whose coefficients decompose as `a + b·i` with `a, b ∈ R`; the
-constant `i` is algebraic (a root of `x² + 1`) and the rest lie in the image of `R(ε)`.-/
+constant `i` is algebraic (a root of `x² + 1`) and the rest lie in the image of `R(ε)`.
+@isnad1 id=isalgebr.0h1v.s9.d326c2df48df from=translated src=- shape=e8f95c8a vocab=0a67aa6f
+-/
 theorem isAlgebraic_baseChange : Algebra.IsAlgebraic (RatFunc R) (RatFunc (Ri R)) := by
   rw [← algebraicClosure.eq_top_iff, eq_top_iff]
   intro z _

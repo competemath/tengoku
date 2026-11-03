@@ -82,15 +82,23 @@ def PmV : List K → ℤ
     omega
 
 omit [IsStrictOrderedRing K] in
+/--
+@isnad1 id=eq.0h1v.s4.27db1ac4df6d from=translated src=- shape=1e8b59d0 vocab=4dfc13e7
+-/
 @[simp] theorem PmV_nil : PmV ([] : List K) = 0 := by simp only [PmV]
 
 omit [IsStrictOrderedRing K] in
+/--
+@isnad1 id=eq.0h2v.s4.c55cd13cdb20 from=translated src=- shape=a7fa8111 vocab=2d889271
+-/
 @[simp] theorem PmV_singleton (a : K) : PmV [a] = 0 := by
   rw [PmV]; simp
 
 omit [IsStrictOrderedRing K] in
 /-- When the entry immediately after the head is already nonzero (gap `= 1`),
-the recursion adds `sign(sp · sq)` (since `ε₁ = 1`).-/
+the recursion adds `sign(sp · sq)` (since `ε₁ = 1`).
+@isnad1 id=eq.1h4v.s7.af012f7f1d0b from=translated src=- shape=76c2e409 vocab=43e0028a
+-/
 theorem PmV_cons_cons_ne (sp sq : K) (tl : List K) (hsq : sq ≠ 0) :
     PmV (sp :: sq :: tl) = PmV (sq :: tl) + (SignType.sign (sp * sq) : ℤ) := by
   have hdrop : (sq :: tl).dropWhile (fun x => decide (x = 0)) = sq :: tl :=
@@ -110,7 +118,9 @@ theorem PmV_cons_cons_ne (sp sq : K) (tl : List K) (hsq : sq ≠ 0) :
 is the difference between the number of sign permanences and the number of sign
 variations of `s = s_p, …, s_0`. Equivalently, since permanences and variations
 together exhaust the `length − 1` adjacent pairs (`Var s` counting the
-variations), `PmV s + 2·Var s = length s − 1`.-/
+variations), `PmV s + 2·Var s = length s − 1`.
+@isnad1 id=eq.2h2v.s7.a7d307230367 from=translated src=- shape=964f0dbe vocab=1dee209c
+-/
 theorem PmV_eq_of_forall_ne_zero :
     ∀ (s : List K), s ≠ [] → (∀ x ∈ s, x ≠ 0) →
       PmV s + 2 * (Var s : ℤ) = (s.length : ℤ) - 1
@@ -201,7 +211,9 @@ private theorem Var_negInf_add_Var_posInf :
 a list of polynomials `𝒫 = P_p, …, P_0` whose degrees descend by one
 (`deg P_i = i`, encoded as nonzeroness together with the chain condition that each
 degree is one more than the next), then `PmV(s)` equals the change in sign
-variations of `𝒫` from `−∞` to `+∞`, `Var(𝒫; −∞, +∞)` (Notation 2.34).-/
+variations of `𝒫` from `−∞` to `+∞`, `Var(𝒫; −∞, +∞)` (Notation 2.34).
+@isnad1 id=eq.2h2v.s7.bc13e1aa2591 from=translated src=- shape=5d5dce0d vocab=60834cb3
+-/
 theorem PmV_eq_varBetween (P : List K[X]) (hne : ∀ Q ∈ P, Q ≠ 0)
     (hdeg : P.IsChain (fun Q Q' => Q.natDegree = Q'.natDegree + 1)) :
     (PmV (P.map Polynomial.leadingCoeff) : ℤ)

@@ -35,7 +35,9 @@ open Classical in
     field `R` has a real root iff `Var(SRemS(P, P'); −∞, +∞) > 0`.
 
     Immediate from BPR Theorem 2.50: the right side counts the distinct
-    real roots of `P`, so positivity is equivalent to existence.-/
+    real roots of `P`, so positivity is equivalent to existence.
+@isnad1 id=iff.2h2v.s10.f68bdc254fda from=translated src=- shape=10ab0c01 vocab=939d094c
+-/
 theorem remark_2_51
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P : R[X]) (hP : P ≠ 0) :

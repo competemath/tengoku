@@ -61,7 +61,9 @@ private lemma natDegree_quadFromRoots (a b : R) :
   compute_degree!
 
 /-- **BPR Lemma 2.42.** The monic quadratic `X² − 2aX + (a² + b²)` with complex
-    conjugate roots `a ± ib` is normal iff `(a, b) ∈ 𝓑`.-/
+    conjugate roots `a ± ib` is normal iff `(a, b) ∈ 𝓑`.
+@isnad1 id=iff.0h3v.s6.10adbcc8146f from=translated src=- shape=dcd53aa5 vocab=4720fde1
+-/
 lemma isNormal_quadFromRoots_iff (a b : R) :
     IsNormal (quadFromRoots a b) ↔ (a, b) ∈ ConeB := by
   unfold ConeB

@@ -48,7 +48,9 @@ variable {D' : Type*} [CommRing D']
 
 /-- **BPR Proposition 4.21.** The resultant commutes with a ring
     homomorphism, provided the homomorphism preserves the natural
-    degrees of both arguments.-/
+    degrees of both arguments.
+@isnad1 id=eq.2h5v.s7.5b32cc00c5b9 from=translated src=- shape=ec6eb235 vocab=dea1a3a1
+-/
 theorem Proposition_4_21 (P Q : D[X]) (f : D →+* D')
     (hPdeg : (P.map f).natDegree = P.natDegree)
     (hQdeg : (Q.map f).natDegree = Q.natDegree) :

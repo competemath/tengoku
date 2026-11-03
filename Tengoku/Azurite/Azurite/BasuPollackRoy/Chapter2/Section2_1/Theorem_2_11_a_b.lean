@@ -143,7 +143,9 @@ noncomputable def HPoly (x : Fin p → L) : (L[X])[X] :=
 
 variable {R : Type*} [Field R]
 
-/-- For any a ∈ R, there exists v ∈ R[i] with v² = a.-/
+/-- For any a ∈ R, there exists v ∈ R[i] with v² = a.
+@isnad1 id=ex.0h2v.s10.402cf4479125 from=translated src=- shape=e15298c0 vocab=c8c77634
+-/
 theorem sqrt_of_R_in_Ri [IsRealClosed R] (a : R) :
     ∃ v : Ri R, v ^ 2 = algebraMap R (Ri R) a := by
   rcases IsRealClosed.isSquare_or_isSquare_neg a with ⟨c, hc⟩ | ⟨c, hc⟩
@@ -157,7 +159,9 @@ theorem sqrt_of_R_in_Ri [IsRealClosed R] (a : R) :
 
 /-! ### Degree arithmetic -/
 
-/-- If p = 2^m · n with m ≥ 1 and n odd, then p(p−1)/2 = 2^{m−1} · n' with n' odd.-/
+/-- If p = 2^m · n with m ≥ 1 and n odd, then p(p−1)/2 = 2^{m−1} · n' with n' odd.
+@isnad1 id=ex.3h2v.s7.d91948412b2e from=translated src=- shape=96462a65 vocab=541cfd63
+-/
 theorem half_degree_odd_factor {m n : ℕ} (hm : 1 ≤ m) (hn : Odd n) (hp : 0 < n) :
     ∃ n' : ℕ, Odd n' ∧ 2 ^ m * n * (2 ^ m * n - 1) / 2 = 2 ^ (m - 1) * n' := by
   obtain ⟨k, hk⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : m ≠ 0)
@@ -180,7 +184,9 @@ variable {R : Type*} [Field R]
 /-- If conj(c) = c in R[i], then c ∈ range(algebraMap R (Ri R)).
     Proof: every c = mk(C a + C b * X). conj(c) = mk(C a - C b * X).
     conj(c) = c ⟹ mk(2 * C b * X) = 0, so (X²+1) ∣ 2bX.
-    Since deg(X²+1) > deg(2bX), we get b = 0, i.e. c = algebraMap a.-/
+    Since deg(X²+1) > deg(2bX), we get b = 0, i.e. c = algebraMap a.
+@isnad1 id=mem.1h2v.s11.ae763e083062 from=translated src=- shape=1241d8ce vocab=7c55035f
+-/
 theorem Ri.conj_fixed_mem_range [IsRealClosed R] (c : Ri R) (hc : (Ri.conj R) c = c) :
     c ∈ Set.range (algebraMap R (Ri R)) := by
   induction c using AdjoinRoot.induction_on with
@@ -300,13 +306,17 @@ theorem Ri.conj_fixed_mem_range [IsRealClosed R] (c : Ri R) (hc : (Ri.conj R) c 
     rw [haeval_r (Ri.i R), hb_zero, zero_mul, zero_add]
     exact ⟨a, rfl⟩
 
-/-- Conjugation fixes elements of R: conj (algebraMap R (Ri R) r) = algebraMap R (Ri R) r.-/
+/-- Conjugation fixes elements of R: conj (algebraMap R (Ri R) r) = algebraMap R (Ri R) r.
+@isnad1 id=eq.0h2v.s12.c778978eba46 from=translated src=- shape=847dfe62 vocab=048f15ba
+-/
 theorem Ri.conj_algebraMap [IsRealClosed R] (r : R) :
     (Ri.conj R) (algebraMap R (Ri R) r) = algebraMap R (Ri R) r :=
   (Ri.conj R).commutes r
 
 /-- Polynomial evaluation commutes with conjugation:
-    If P ∈ Ri[X] and z ∈ Ri, then conj(P(z)) = P̄(conj(z)).-/
+    If P ∈ Ri[X] and z ∈ Ri, then conj(P(z)) = P̄(conj(z)).
+@isnad1 id=eq.0h3v.s11.fc0147aa3ac1 from=translated src=- shape=9c38c4dc vocab=4d3c5a34
+-/
 theorem conj_eval_eq_eval_conj_map [IsRealClosed R]
     (P : (Ri R)[X]) (z : Ri R) :
     (Ri.conj R) (P.eval z) = (conjPoly R P).eval ((Ri.conj R) z) := by
@@ -319,7 +329,9 @@ theorem conj_eval_eq_eval_conj_map [IsRealClosed R]
     simp only [eval_monomial, map_mul, map_pow, eval₂_monomial, RingHom.coe_coe]
 
 /-- If P ∈ R[i][X] has coefficients in R, then conjPoly(P) = P.
-    (Since conj fixes R.)-/
+    (Since conj fixes R.)
+@isnad1 id=eq.0h2v.s10.4a66a21b23e2 from=translated src=- shape=2c1bee9b vocab=6d93a4ab
+-/
 theorem conjPoly_eq_self_of_mem_R [IsRealClosed R] (P : R[X]) :
     conjPoly R (P.map (algebraMap R (Ri R))) = P.map (algebraMap R (Ri R)) := by
   simp only [conjPoly, Polynomial.map_map]
@@ -327,7 +339,9 @@ theorem conjPoly_eq_self_of_mem_R [IsRealClosed R] (P : R[X]) :
   ext r
   exact Ri.conj_algebraMap r
 
-/-- conjPoly is an involution: applying conjugation to coefficients twice gives back the original.-/
+/-- conjPoly is an involution: applying conjugation to coefficients twice gives back the original.
+@isnad1 id=eq.0h2v.s8.647970f2f731 from=translated src=- shape=6442e89f vocab=45070d5f
+-/
 theorem conjPoly_conjPoly [IsRealClosed R] (P : (Ri R)[X]) :
     conjPoly R (conjPoly R P) = P := by
   simp only [conjPoly, Polynomial.map_map]
@@ -335,7 +349,9 @@ theorem conjPoly_conjPoly [IsRealClosed R] (P : (Ri R)[X]) :
     RingHom.ext (fun z => Ri.conj_conj R z)
   rw [h, Polynomial.map_id]
 
-/-- P · conjPoly(P) is fixed by conjPoly.-/
+/-- P · conjPoly(P) is fixed by conjPoly.
+@isnad1 id=eq.0h2v.s11.6ea955269d14 from=translated src=- shape=4e5264a3 vocab=65541ca9
+-/
 theorem conjPoly_mul_conjPoly_eq [IsRealClosed R] (P : (Ri R)[X]) :
     conjPoly R (P * conjPoly R P) = conjPoly R P * P := by
   simp only [conjPoly, Polynomial.map_mul, Polynomial.map_map]
@@ -344,7 +360,9 @@ theorem conjPoly_mul_conjPoly_eq [IsRealClosed R] (P : (Ri R)[X]) :
     RingHom.ext (fun z => Ri.conj_conj R z)
   rw [h, Polynomial.map_id]
 
-/-- Each coefficient of P · conjPoly(P) is fixed by conj.-/
+/-- Each coefficient of P · conjPoly(P) is fixed by conj.
+@isnad1 id=eq.0h3v.s11.9de93daee115 from=translated src=- shape=3926d34b vocab=8148f45b
+-/
 theorem conj_coeff_mul_conjPoly [IsRealClosed R] (P : (Ri R)[X]) (n : ℕ) :
     (Ri.conj R) ((P * conjPoly R P).coeff n) = (P * conjPoly R P).coeff n := by
   have key : conjPoly R (P * conjPoly R P) = P * conjPoly R P := by
@@ -356,7 +374,9 @@ theorem conj_coeff_mul_conjPoly [IsRealClosed R] (P : (Ri R)[X]) (n : ℕ) :
 /-! ### Nonzero polynomial evaluation -/
 
 /-- A nonzero polynomial over an infinite integral domain has a non-root.
-    This is used to find z with D(z) ≠ 0.-/
+    This is used to find z with D(z) ≠ 0.
+@isnad1 id=ex.1h2v.s6.4ed0c8472e8c from=translated src=- shape=5dac85ee vocab=e9582d04
+-/
 theorem exists_eval_ne_zero {K : Type*} [CommRing K] [IsDomain K] [Infinite K]
     (P : K[X]) (hP : P ≠ 0) : ∃ x : K, P.eval x ≠ 0 := by
   by_contra h
@@ -376,7 +396,9 @@ Q, G, H (as polynomials in Y) lie in R[Z]. -/
 variable {R : Type*} [Field R] {L : Type*} [Field L] [Algebra R L]
 
 /-- A polynomial f ∈ L[X] lies in the image of R[X] → L[X] if and only if
-    all its coefficients are in the image of algebraMap R L.-/
+    all its coefficients are in the image of algebraMap R L.
+@isnad1 id=iff.0h3v.s7.732e59033bb5 from=translated src=- shape=1487272d vocab=0df66e7b
+-/
 theorem poly_in_image_iff_coeffs_in_range
     (f : L[X]) :
     (∃ g : R[X], g.map (algebraMap R L) = f) ↔
@@ -398,7 +420,9 @@ theorem poly_in_image_iff_coeffs_in_range
 
 /-- If a polynomial f ∈ L[X] evaluates into the range of `algebraMap R L` at every
     R-point, then each coefficient of f lies in the range.
-    Requires R to be an infinite integral domain.-/
+    Requires R to be an infinite integral domain.
+@isnad1 id=mem.1h4v.s8.3ea6c31408b8 from=translated src=- shape=3b29607c vocab=1365af1e
+-/
 theorem eval_range_implies_coeff_range [Infinite R]
     (f : L[X])
     (hf : ∀ r : R, f.eval (algebraMap R L r) ∈ Set.range (algebraMap R L))
@@ -458,7 +482,9 @@ theorem eval_range_implies_coeff_range [Infinite R]
     they lie in R by Prop 2.16.
 
     This is the core evaluation lemma: for fixed z ∈ R, the n-th Y-coefficient
-    of ∏(Y − γ_{ij}(z)) is a symmetric function of x₁,…,xₚ.-/
+    of ∏(Y − γ_{ij}(z)) is a symmetric function of x₁,…,xₚ.
+@isnad1 id=mem.1h7v.s8.ad7188b4323a from=translated src=- shape=e92ffab9 vocab=bf8a75ac
+-/
 theorem Q_eval_coeff_in_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -559,7 +585,9 @@ theorem Q_eval_coeff_in_R [IsRealClosed R]
 
 /-- Each coefficient of Q(Z,Y) (viewed as a polynomial in Y whose coefficients
     are in L[Z]) actually belongs to R[Z], provided the xᵢ are roots of a
-    polynomial P ∈ R[X].-/
+    polynomial P ∈ R[X].
+@isnad1 id=ex.1h6v.s8.94034c25f220 from=translated src=- shape=b848fc57 vocab=3e2f5581
+-/
 theorem Q_coeff_mem_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -574,7 +602,9 @@ theorem Q_coeff_mem_R [IsRealClosed R]
   exact eval_range_implies_coeff_range _ (Q_eval_coeff_in_R P x hx n) m
 
 /-- The n-th Y-coefficient of G(Z,Y), evaluated at z = algebraMap r, lies in R.
-    Proof mirrors Q_eval_coeff_in_R: MvPolynomial lifting + symmetry + proposition_2_16.-/
+    Proof mirrors Q_eval_coeff_in_R: MvPolynomial lifting + symmetry + proposition_2_16.
+@isnad1 id=mem.1h7v.s8.9da74665337c from=translated src=- shape=e92ffab9 vocab=014273af
+-/
 theorem G_eval_coeff_in_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -724,7 +754,9 @@ theorem G_eval_coeff_in_R [IsRealClosed R]
   rw [hcoeff]
   exact Azurite.BPR.proposition_2_16 P x hx _ hsymm
 
-/-- Each coefficient of G(Z,Y) belongs to R[Z].-/
+/-- Each coefficient of G(Z,Y) belongs to R[Z].
+@isnad1 id=ex.1h6v.s8.1f61f3d27d31 from=translated src=- shape=b848fc57 vocab=673b45e8
+-/
 theorem G_coeff_mem_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -735,7 +767,9 @@ theorem G_coeff_mem_R [IsRealClosed R]
   exact eval_range_implies_coeff_range _ (G_eval_coeff_in_R P x hx n) m
 
 /-- The n-th Y-coefficient of H(Z,Y), evaluated at z = algebraMap r, lies in R.
-    Same structure as G: MvPolynomial lifting + symmetry + proposition_2_16.-/
+    Same structure as G: MvPolynomial lifting + symmetry + proposition_2_16.
+@isnad1 id=mem.1h7v.s8.f648150d10d1 from=translated src=- shape=e92ffab9 vocab=0d2aad76
+-/
 theorem H_eval_coeff_in_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -869,7 +903,9 @@ theorem H_eval_coeff_in_R [IsRealClosed R]
   rw [hcoeff]
   exact Azurite.BPR.proposition_2_16 P x hx _ hsymm
 
-/-- Each coefficient of H(Z,Y) belongs to R[Z].-/
+/-- Each coefficient of H(Z,Y) belongs to R[Z].
+@isnad1 id=ex.1h6v.s8.85acaca8d347 from=translated src=- shape=b848fc57 vocab=b2a4e2dd
+-/
 theorem H_coeff_mem_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -881,7 +917,9 @@ theorem H_coeff_mem_R [IsRealClosed R]
 
 /-! ### Evaluation at roots of Q -/
 
-/-- Q vanishes at γ_{ij}: Q(Z, γ_{ij}(Z)) = 0, since γ_{ij} is a factor of Q.-/
+/-- Q vanishes at γ_{ij}: Q(Z, γ_{ij}(Z)) = 0, since γ_{ij} is a factor of Q.
+@isnad1 id=eq.1h4v.s7.933947e8a0aa from=translated src=- shape=95d4e9be vocab=986a2b06
+-/
 theorem Q_eval_gamma (x : Fin p → L) (ij : Fin p × Fin p) (hij : ij ∈ strictPairs p) :
     Polynomial.eval (gammaPoly x ij.1 ij.2) (QPolynomial x) = 0 := by
   simp only [QPolynomial, Polynomial.eval_prod, Finset.prod_eq_zero_iff]
@@ -889,7 +927,9 @@ theorem Q_eval_gamma (x : Fin p → L) (ij : Fin p × Fin p) (hij : ij ∈ stric
 
 /-- General Lagrange evaluation: evaluating ∑_{i ∈ s} C(c_i) · ∏_{j ∈ s.erase i} (X - C(γ_j))
     at γ_m (where m ∈ s) gives c_m · ∏_{j ∈ s.erase m} (γ_m - γ_j).
-    This works because for i ≠ m, the product includes j = m, giving factor (γ_m - γ_m) = 0.-/
+    This works because for i ≠ m, the product includes j = m, giving factor (γ_m - γ_m) = 0.
+@isnad1 id=eq.1h6v.s8.851d278555a5 from=translated src=- shape=d1963520 vocab=d3ed3038
+-/
 theorem eval_lagrange_sum {A : Type*} [CommRing A] [DecidableEq ι]
     (s : Finset ι) (c : ι → A) (γ : ι → A)
     (m : ι) (hm : m ∈ s) :
@@ -909,7 +949,9 @@ theorem eval_lagrange_sum {A : Type*} [CommRing A] [DecidableEq ι]
     simp
   · intro hm'; exact absurd hm hm'
 
-/-- G(Z, γ_{ij}(Z)) = (x_i + x_j) · ∏_{(k,l)≠(i,j)} (γ_{ij} - γ_{kl}) in L[Z].-/
+/-- G(Z, γ_{ij}(Z)) = (x_i + x_j) · ∏_{(k,l)≠(i,j)} (γ_{ij} - γ_{kl}) in L[Z].
+@isnad1 id=eq.1h4v.s8.72b5441042e0 from=translated src=- shape=cb368039 vocab=549dbea4
+-/
 theorem G_eval_gamma (x : Fin p → L) (ij : Fin p × Fin p) (hij : ij ∈ strictPairs p) :
     Polynomial.eval (gammaPoly x ij.1 ij.2) (GPoly x) =
     Polynomial.C (x ij.1 + x ij.2) *
@@ -920,7 +962,9 @@ theorem G_eval_gamma (x : Fin p → L) (ij : Fin p × Fin p) (hij : ij ∈ stric
     (fun kl => Polynomial.C (x kl.1 + x kl.2))
     (fun kl => gammaPoly x kl.1 kl.2) ij hij
 
-/-- H(Z, γ_{ij}(Z)) = (x_i · x_j) · ∏_{(k,l)≠(i,j)} (γ_{ij} - γ_{kl}) in L[Z].-/
+/-- H(Z, γ_{ij}(Z)) = (x_i · x_j) · ∏_{(k,l)≠(i,j)} (γ_{ij} - γ_{kl}) in L[Z].
+@isnad1 id=eq.1h4v.s8.6f5236433238 from=translated src=- shape=adfafa3b vocab=05df2c7d
+-/
 theorem H_eval_gamma (x : Fin p → L) (ij : Fin p × Fin p) (hij : ij ∈ strictPairs p) :
     Polynomial.eval (gammaPoly x ij.1 ij.2) (HPoly x) =
     Polynomial.C (x ij.1 * x ij.2) *
@@ -934,7 +978,9 @@ theorem H_eval_gamma (x : Fin p → L) (ij : Fin p × Fin p) (hij : ij ∈ stric
 /-- At the root γ_{ij} of Q, x_i is a root of the quadratic P·T²−G·T+H over L[Z],
     where P = ∏_{(k,l)≠(i,j)} (γ_{ij} − γ_{kl}).
     Proof: after substituting the Lagrange evaluations G_ij = C(s)·P, H_ij = C(p)·P,
-    we get P·(x_i² − s·x_i + p) = 0, which vanishes because s = x_i+x_j, p = x_i·x_j.-/
+    we get P·(x_i² − s·x_i + p) = 0, which vanishes because s = x_i+x_j, p = x_i·x_j.
+@isnad1 id=other.0h4v.s10.b16c434860b2 from=translated src=- shape=5bd0f5c3 vocab=736b2c3e
+-/
 theorem quadratic_root_xi (x : Fin p → L)
     (ij : Fin p × Fin p) :
     let P := ∏ kl ∈ (strictPairs p).erase ij,
@@ -953,7 +999,9 @@ theorem quadratic_root_xi (x : Fin p → L)
        _ = _ * 0 := by rw [this]
        _ = 0 := by ring
 
-/-- Similarly, x_j is a root of the same quadratic.-/
+/-- Similarly, x_j is a root of the same quadratic.
+@isnad1 id=other.0h4v.s10.06ae1f3ede90 from=translated src=- shape=4b1732b1 vocab=736b2c3e
+-/
 theorem quadratic_root_xj (x : Fin p → L)
     (ij : Fin p × Fin p) :
     let P := ∏ kl ∈ (strictPairs p).erase ij,
@@ -975,7 +1023,9 @@ theorem quadratic_root_xj (x : Fin p → L)
 /-! ### F ∈ R[Z][Y] — follows from Q ∈ R[Z][Y] since F = ∂Q/∂Y -/
 
 /-- Each coefficient of F(Z,Y) belongs to R[Z].
-    Since F = derivative Q and Q ∈ R[Z][Y], this is immediate.-/
+    Since F = derivative Q and Q ∈ R[Z][Y], this is immediate.
+@isnad1 id=ex.1h6v.s8.890010c6bbb4 from=translated src=- shape=b848fc57 vocab=474c1fdd
+-/
 theorem F_coeff_mem_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -990,12 +1040,16 @@ theorem F_coeff_mem_R [IsRealClosed R]
 
 /-! ### Degree and structure of Q -/
 
-/-- Q(Z,Y) is monic as a polynomial in Y — it is a product of monic linear factors.-/
+/-- Q(Z,Y) is monic as a polynomial in Y — it is a product of monic linear factors.
+@isnad1 id=monic.0h3v.s5.dd2ad9e69a51 from=translated src=- shape=1608cad8 vocab=68b525f2
+-/
 theorem monic_QPolynomial (x : Fin p → L) :
     (QPolynomial x).Monic := by
   exact Polynomial.monic_prod_of_monic _ _ (fun ij _ => Polynomial.monic_X_sub_C _)
 
-/-- The Y-degree of Q equals the number of strict pairs = p(p-1)/2.-/
+/-- The Y-degree of Q equals the number of strict pairs = p(p-1)/2.
+@isnad1 id=eq.0h3v.s5.d01feed39836 from=translated src=- shape=f94694a1 vocab=7f0961d6
+-/
 theorem natDegree_QPolynomial (x : Fin p → L) :
     (QPolynomial x).natDegree = (strictPairs p).card := by
   rw [QPolynomial, Polynomial.natDegree_prod]
@@ -1004,7 +1058,9 @@ theorem natDegree_QPolynomial (x : Fin p → L) :
 
 /-! ### Discriminant: D ≠ 0 -/
 
-/-- If x : Fin p → L is injective (all roots distinct), then discPoly x ≠ 0.-/
+/-- If x : Fin p → L is injective (all roots distinct), then discPoly x ≠ 0.
+@isnad1 id=ne.1h3v.s5.0212009f4ab0 from=translated src=- shape=bf1788b3 vocab=422e67c2
+-/
 theorem discPoly_ne_zero (x : Fin p → L)
     (hx_inj : Function.Injective x) :
     discPoly x ≠ 0 := by
@@ -1043,7 +1099,9 @@ theorem discPoly_ne_zero (x : Fin p → L)
     -- But a.1 < a.2 = b.1 < b.2 = a.1, contradiction
     omega
 
-/-- Since R is infinite and discPoly ≠ 0, there exists z with D(z) ≠ 0.-/
+/-- Since R is infinite and discPoly ≠ 0, there exists z with D(z) ≠ 0.
+@isnad1 id=ex.1h4v.s7.2021bab2c968 from=translated src=- shape=f6b1ca96 vocab=4836c38a
+-/
 theorem exists_discPoly_eval_ne_zero [IsRealClosed R]
     {p : ℕ} (x : Fin p → L)
     (hx_inj : Function.Injective x) :
@@ -1076,7 +1134,9 @@ theorem exists_discPoly_eval_ne_zero [IsRealClosed R]
 /-! ### Separability of Q at a point -/
 
 /-- Q(z, ·) = ∏ (X - C(γ_{ij}(z))) is separable iff all γ_{ij}(z) are distinct,
-    i.e., when D(z) ≠ 0. For a Finset product.-/
+    i.e., when D(z) ≠ 0. For a Finset product.
+@isnad1 id=separabl.1h4v.s7.3ee5012faaaa from=translated src=- shape=8ce1f8a5 vocab=1e3079cd
+-/
 theorem separable_Q_eval (x : Fin p → L) (z : L)
     (hdist : ∀ a ∈ strictPairs p, ∀ b ∈ strictPairs p,
       Polynomial.eval z (gammaPoly x a.1 a.2) = Polynomial.eval z (gammaPoly x b.1 b.2) → a = b) :
@@ -1089,7 +1149,9 @@ theorem separable_Q_eval (x : Fin p → L) (z : L)
 
 /-- Evaluating D(Z) at z = algebraMap r gives an R-value.
     This follows from the MvPolynomial lifting: D is the product of differences γ_a − γ_b
-    over the off-diagonal of strictPairs, which forms a symmetric polynomial in the roots.-/
+    over the off-diagonal of strictPairs, which forms a symmetric polynomial in the roots.
+@isnad1 id=mem.1h6v.s8.1edb6ffd5b1a from=translated src=- shape=445af5ea vocab=4401df4a
+-/
 theorem D_eval_in_R [IsRealClosed R]
     {p : ℕ} (P : R[X]) (x : Fin p → L)
     (hx : P.map (algebraMap R L) = ∏ j : Fin p, (X - Polynomial.C (x j)))
@@ -1201,7 +1263,9 @@ theorem D_eval_in_R [IsRealClosed R]
     Proof: by isSquare_or_isSquare_neg, either a²+b² is a square (done) or
     -(a²+b²) is a square, say -(a²+b²) = c². Then a²+b²+c² = 0, but this
     is a sum of squares in a semireal ring (where -1 is not a sum of squares),
-    so a = b = c = 0.-/
+    so a = b = c = 0.
+@isnad1 id=issquare.0h3v.s6.a8cbca1244b5 from=translated src=- shape=ef66d10b vocab=9c3968f7
+-/
 theorem isSquare_sum_sq [IsRealClosed R] (a b : R) : IsSquare (a ^ 2 + b ^ 2) := by
   rcases IsRealClosed.isSquare_or_isSquare_neg (a ^ 2 + b ^ 2) with h | h
   · exact h
@@ -1237,7 +1301,9 @@ theorem isSquare_sum_sq [IsRealClosed R] (a b : R) : IsSquare (a ^ 2 + b ^ 2) :=
 /-- Every element of R[i] has a square root when R is real closed.
     For w = a + bi:
     - If b = 0: use isSquare_or_isSquare_neg on a
-    - If b ≠ 0: use the formula with √(a²+b²)-/
+    - If b ≠ 0: use the formula with √(a²+b²)
+@isnad1 id=ex.0h2v.s7.5169cde1a986 from=translated src=- shape=553b721d vocab=337a0852
+-/
 theorem sqrt_exists_Ri [IsRealClosed R] (w : Ri R) : ∃ v : Ri R, v * v = w := by
   -- Decompose w = algebraMap a + algebraMap b * i (using modByMonic)
   induction w using AdjoinRoot.induction_on with
@@ -1426,7 +1492,9 @@ private lemma F_eval_gamma {L : Type*} [Field L] {p : ℕ} (x : Fin p → L)
 Every monic separable P ∈ R[X] of degree 2^m · n (n odd) has a root in R[i],
 proven by strong induction on m. -/
 
-/-- Base case: odd-degree polynomial over R has a root in R (hence in R[i]).-/
+/-- Base case: odd-degree polynomial over R has a root in R (hence in R[i]).
+@isnad1 id=ex.1h2v.s10.6e53090430c3 from=translated src=- shape=1fa4d068 vocab=6ee879c3
+-/
 theorem odd_degree_has_root_Ri [IsRealClosed R]
     (P : R[X]) (hodd : Odd P.natDegree) :
     ∃ x : Ri R, Polynomial.eval₂ (algebraMap R (Ri R)) x P = 0 := by
@@ -1475,7 +1543,9 @@ private theorem exists_roots_fin {L : Type*} [Field L] (f : L[X]) (d : ℕ)
     When m ≥ 1: construct Q(z,·) of degree p(p-1)/2 where p = deg P.
     Since p = 2^m · n, we have p(p-1)/2 = 2^{m-1} · n' (n' odd).
     By IH, Q(z,·) has a root γ ∈ R[i]. Then recover roots of P from γ
-    via a quadratic over R[i] using the square root from sqrt_exists_Ri.-/
+    via a quadratic over R[i] using the square root from sqrt_exists_Ri.
+@isnad1 id=ex.4h4v.s10.34738b553594 from=translated src=- shape=a60603a7 vocab=7d6bbe64
+-/
 theorem core_induction [IsRealClosed R]
     (m : ℕ) (n : ℕ) (hn : Odd n) (P : R[X])
     (hmonic : P.Monic) (hdeg : P.natDegree = 2 ^ m * n)
@@ -1690,7 +1760,9 @@ theorem core_induction [IsRealClosed R]
 /-- Every monic polynomial over R has a root in R[i].
     If P is separable, decompose degree and apply core_induction.
     If not, extract a monic irreducible factor (which is separable in char 0)
-    and apply core_induction to it; any root of the factor is a root of P.-/
+    and apply core_induction to it; any root of the factor is a root of P.
+@isnad1 id=ex.1h2v.s10.90f41bfc4c2e from=translated src=- shape=8b25f6f6 vocab=e3c3d8e3
+-/
 theorem monic_has_root_Ri [IsRealClosed R]
     (P : R[X]) (hdeg : P.natDegree ≠ 0) :
     ∃ x : Ri R, Polynomial.aeval x P = 0 := by
@@ -1712,7 +1784,9 @@ theorem monic_has_root_Ri [IsRealClosed R]
 /-- Every monic irreducible polynomial over R[i] has a root in R[i].
     Key idea: P · P̄ ∈ R[X] (product with conjugate has real coefficients).
     A root of P·P̄ in R[i] is a root of either P or P̄, and roots of P̄
-    are conjugates of roots of P.-/
+    are conjugates of roots of P.
+@isnad1 id=ex.2h2v.s10.f2bb85f93b0e from=translated src=- shape=9f039657 vocab=078e16d5
+-/
 theorem Ri_poly_has_root [IsRealClosed R]
     (P : (Ri R)[X]) (hmonic : P.Monic) (hirr : Irreducible P) :
     ∃ x : Ri R, Polynomial.eval x P = 0 := by
@@ -1763,12 +1837,16 @@ theorem Ri_poly_has_root [IsRealClosed R]
     have hinj : Function.Injective (Ri.conj R : Ri R →+* Ri R) := Ri.conj_injective R
     exact ⟨(Ri.conj R) x, hinj (by rw [h_eval, map_zero])⟩
 
-/-- Theorem 2.11 (a) ⇒ (b): If R is real closed, then R[i] is algebraically closed.-/
+/-- Theorem 2.11 (a) ⇒ (b): If R is real closed, then R[i] is algebraically closed.
+@isnad1 id=isalgclo.0h1v.s7.a59a16df3e0b from=translated src=- shape=9499e9bc vocab=32cb5851
+-/
 theorem isAlgClosed_Ri [IsRealClosed R] : IsAlgClosed (Ri R) :=
   IsAlgClosed.of_exists_root _ Ri_poly_has_root
 
 /-- **BPR Theorem 2.11 (a) ⇒ (b).** Alias for `isAlgClosed_Ri`, matching the
-    naming convention of the other four implication files.-/
+    naming convention of the other four implication files.
+@isnad1 id=isalgclo.0h1v.s7.a59a16df3e0b from=translated src=- shape=9499e9bc vocab=32cb5851
+-/
 theorem theorem_2_11_a_b [IsRealClosed R] : IsAlgClosed (Ri R) := isAlgClosed_Ri
 
 end Azurite.BPR.Theorem2_11

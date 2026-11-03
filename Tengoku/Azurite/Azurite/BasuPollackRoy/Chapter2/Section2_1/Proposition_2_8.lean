@@ -29,7 +29,9 @@ namespace Azurite.BPR
 
 variable {F : Type*} [Field F]
 
-/-- The sSup of a chain of proper cones is a proper cone (when the chain is nonempty).-/
+/-- The sSup of a chain of proper cones is a proper cone (when the chain is nonempty).
+@isnad1 id=isproper.3h3v.s8.c773fdfe9211 from=translated src=- shape=f07bc6e3 vocab=2460f31c
+-/
 lemma chain_ub_isProperCone {c : Set (Subsemiring F)}
     (hc : IsChain (· ≤ ·) c) (hpc : ∀ T ∈ c, IsProperCone T)
     {T₀ : Subsemiring F} (hT₀ : T₀ ∈ c) :
@@ -44,13 +46,17 @@ lemma chain_ub_isProperCone {c : Set (Subsemiring F)}
     obtain ⟨T, hT, hmT⟩ := hmem
     exact (hpc T hT).2 hmT
 
-/-- `C[a]` contains `C`.-/
+/-- `C[a]` contains `C`.
+@isnad1 id=le.1h3v.s6.7738005a87da from=translated src=- shape=b8735d7f vocab=d253f21a
+-/
 lemma le_coneExt (C : Subsemiring F) (hCone : IsCone C) (a : F) :
     C ≤ coneExt C hCone a :=
   fun x hx => ⟨x, hx, 0, C.zero_mem, by ring⟩
 
 /-- **BPR Proposition 2.8.** Every proper cone is contained in a `RingCone`
-    with totality (i.e., the positive cone of some order).-/
+    with totality (i.e., the positive cone of some order).
+@isnad1 id=ex.1h2v.s6.d22e2e99c3ca from=translated src=- shape=1ee22fec vocab=ec7cd725
+-/
 theorem prop_2_8 {C : Subsemiring F} (hC : IsProperCone C) :
     ∃ T : RingCone F, (C : Set F) ⊆ T ∧ HasMemOrNegMem T := by
   -- Apply Zorn's lemma to the set of proper cones containing C, ordered by ≤

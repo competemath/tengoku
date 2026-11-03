@@ -34,7 +34,9 @@ open MvPolynomial
 variable {k : ℕ} {K : Type*} [Field K] [CharZero K]
 
 /-- **BPR Lemma 4.75.** A nonzero polynomial `B ∈ K[Z₁, …, Z_k]` of total degree `d` takes a
-nonzero value at some point `(z₁, …, z_k) ∈ {0, …, d}^k` (with `K` of characteristic zero).-/
+nonzero value at some point `(z₁, …, z_k) ∈ {0, …, d}^k` (with `K` of characteristic zero).
+@isnad1 id=ex.1h3v.s8.50e9bb961318 from=translated src=- shape=70067da7 vocab=ecc43098
+-/
 theorem lemma_4_75 (B : MvPolynomial (Fin k) K) (hB : B ≠ 0) :
     ∃ z : Fin k → K, (∀ i, ∃ m : ℕ, m ≤ B.totalDegree ∧ z i = (m : K)) ∧
       MvPolynomial.eval z B ≠ 0 := by

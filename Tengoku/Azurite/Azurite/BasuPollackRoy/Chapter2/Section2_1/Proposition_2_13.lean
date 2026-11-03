@@ -47,7 +47,9 @@ open MvPolynomial in
 
     In Mathlib this is `MvPolynomial.esymmAlgHom_surjective`, which states that the
     `R`-algebra homomorphism sending `Tᵢ ↦ Eᵢ` is surjective onto the symmetric
-    subalgebra.-/
+    subalgebra.
+@isnad1 id=ex.1h3v.s8.b2592b8df67a from=translated src=- shape=c933b2fc vocab=50eaf78a
+-/
 theorem proposition_2_13 {k : ℕ} (Q : MvPolynomial (Fin k) K)
     (hQ : Q.IsSymmetric) :
     ∃ R : MvPolynomial (Fin k) K,

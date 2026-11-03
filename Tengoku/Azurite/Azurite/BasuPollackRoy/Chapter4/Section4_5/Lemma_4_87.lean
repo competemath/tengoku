@@ -62,7 +62,9 @@ noncomputable def idealOfPolysExt (Ps : Finset (MvPolynomial (Fin k) K)) :
 abbrev quotPolysExt (Ps : Finset (MvPolynomial (Fin k) K)) : Type _ :=
   MvPolynomial (Fin k) C ⧸ idealOfPolysExt C Ps
 
-/-- `Ideal(𝒫, C)` is the extension `Ideal.map` of `Ideal(𝒫, K)` along `K[X] → C[X]`.-/
+/-- `Ideal(𝒫, C)` is the extension `Ideal.map` of `Ideal(𝒫, K)` along `K[X] → C[X]`.
+@isnad1 id=eq.0h4v.s8.b1a9bab5970c from=translated src=- shape=bf98c38a vocab=79c3ab19
+-/
 theorem idealOfPolysExt_eq_map (Ps : Finset (MvPolynomial (Fin k) K)) :
     idealOfPolysExt C Ps
       = Ideal.map (MvPolynomial.map (algebraMap K C)) (idealOfPolys Ps) := by
@@ -74,6 +76,9 @@ noncomputable def inclExt (Ps : Finset (MvPolynomial (Fin k) K)) :
   Ideal.quotientMap (idealOfPolysExt C Ps) (MvPolynomial.map (algebraMap K C))
     (by rw [idealOfPolysExt_eq_map]; exact Ideal.le_comap_map)
 
+/--
+@isnad1 id=eq.0h5v.s11.8e81c53bdc43 from=translated src=- shape=6c1b3076 vocab=a2083382
+-/
 @[simp]
 theorem inclExt_mk (Ps : Finset (MvPolynomial (Fin k) K)) (p : MvPolynomial (Fin k) K) :
     inclExt C Ps (Ideal.Quotient.mk _ p)
@@ -93,6 +98,9 @@ noncomputable def evalBar (Ps : Finset (MvPolynomial (Fin k) K)) (x : Fin k → 
     rw [MvPolynomial.aeval_map_algebraMap]
     exact hx P hP)
 
+/--
+@isnad1 id=eq.1h6v.s10.4ac5f94992c8 from=translated src=- shape=c027fbdf vocab=071fe498
+-/
 @[simp]
 theorem evalBar_mk (Ps : Finset (MvPolynomial (Fin k) K)) (x : Fin k → C)
     (hx : x ∈ zerOfFinset C Ps) (p : MvPolynomial (Fin k) C) :

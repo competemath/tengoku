@@ -35,12 +35,16 @@ i.e. a constant `MvPolynomial.C c`.-/
 def IsQuasiMonic (P : Polynomial (MvPolynomial (Fin n) K)) : Prop :=
   P ≠ 0 ∧ ∃ c : K, P.leadingCoeff = MvPolynomial.C c
 
-/-- A quasi-monic polynomial is nonzero.-/
+/-- A quasi-monic polynomial is nonzero.
+@isnad1 id=ne.1h3v.s7.054ddf095a18 from=translated src=- shape=9029bca4 vocab=6f938ad3
+-/
 theorem IsQuasiMonic.ne_zero {P : Polynomial (MvPolynomial (Fin n) K)} (hP : IsQuasiMonic P) :
     P ≠ 0 :=
   hP.1
 
-/-- The constant value of the leading coefficient of a quasi-monic polynomial is nonzero.-/
+/-- The constant value of the leading coefficient of a quasi-monic polynomial is nonzero.
+@isnad1 id=ne.2h4v.s7.aa667db88e3d from=translated src=- shape=25291b46 vocab=92083aa8
+-/
 theorem IsQuasiMonic.leadingCoeff_const_ne_zero {P : Polynomial (MvPolynomial (Fin n) K)}
     (hP : IsQuasiMonic P) : ∀ c : K, P.leadingCoeff = MvPolynomial.C c → c ≠ 0 := by
   rintro c hc rfl

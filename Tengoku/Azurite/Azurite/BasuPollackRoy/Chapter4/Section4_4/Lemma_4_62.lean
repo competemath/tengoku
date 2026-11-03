@@ -34,7 +34,9 @@ variable {k : ℕ}
 
 /-- **BPR Lemma 4.62 (Dickson's lemma).** Every subset `B ⊆ M_k ≅ ℕ^k` closed under
 multiplication (upward closed under divisibility) has a finite set of minimal elements with
-respect to the divisibility (componentwise) order.-/
+respect to the divisibility (componentwise) order.
+@isnad1 id=finite.1h2v.s7.d64de6c11ace from=translated src=- shape=3fb0b172 vocab=e76d513d
+-/
 theorem lemma_4_62 (B : Set (Fin k →₀ ℕ)) (_hB : ∀ a ∈ B, ∀ b, a ≤ b → b ∈ B) :
     {a | Minimal (· ∈ B) a}.Finite := by
   -- The minimal elements form an antichain: two distinct minimal elements are incomparable.

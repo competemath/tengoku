@@ -32,10 +32,15 @@ variable {R : Type*} [Field R] [IsRealClosed R]
 /-- `η_{j-1} = ξ₀ + ⋯ + ξ_{j-1}` (the exponent shift at level `j`; `prevEta 0 = 0`).-/
 noncomputable def prevEta (s0 : RecState R) (j : ℕ) : ℚ := ∑ k ∈ Finset.range j, xiSeq s0 k
 
+/--
+@isnad1 id=eq.0h3v.s5.622a3bb8772c from=translated src=- shape=9eb9e132 vocab=caf2b75f
+-/
 theorem prevEta_succ (s0 : RecState R) (j : ℕ) :
     prevEta s0 (j + 1) = prevEta s0 j + xiSeq s0 j := Finset.sum_range_succ _ _
 
-/-- `ηₙ = η_{(n+1)-1}`: the cumulative exponent is the next shift.-/
+/-- `ηₙ = η_{(n+1)-1}`: the cumulative exponent is the next shift.
+@isnad1 id=eq.0h3v.s5.d718ea151a56 from=translated src=- shape=cd4cbf58 vocab=edc12ceb
+-/
 theorem etaSeq_eq_prevEta_succ (s0 : RecState R) (n : ℕ) : etaSeq s0 n = prevEta s0 (n + 1) := rfl
 
 /-- The partial sum `Sⱼ = Σ_{n<j} xₙ ε^{ηₙ}`.-/

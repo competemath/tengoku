@@ -43,14 +43,22 @@ noncomputable def shearHom (a : Fin n → K) :
     MvPolynomial (Fin (n + 1)) K →ₐ[K] MvPolynomial (Fin (n + 1)) K :=
   aeval (shearMap a)
 
+/--
+@isnad1 id=eq.0h3v.s6.a4ef16bc3413 from=translated src=- shape=3b0d95fe vocab=3d576211
+-/
 @[simp] theorem shearMap_zero (a : Fin n → K) : shearMap a 0 = X 0 := by
   simp [shearMap]
 
+/--
+@isnad1 id=eq.0h4v.s9.5ee001d8a641 from=translated src=- shape=93ddd345 vocab=db222215
+-/
 @[simp] theorem shearMap_succ (a : Fin n → K) (i : Fin n) :
     shearMap a i.succ = X i.succ + C (a i) * X 0 := by
   simp [shearMap]
 
-/-- The two shears `a` and `-a` are mutually inverse.-/
+/-- The two shears `a` and `-a` are mutually inverse.
+@isnad1 id=eq.0h3v.s9.10b53d96d0cf from=translated src=- shape=1a8d779c vocab=28346e1f
+-/
 theorem shearHom_comp_neg (a : Fin n → K) :
     (shearHom a).comp (shearHom (fun i => -a i)) = AlgHom.id K _ := by
   rw [shearHom, shearHom, comp_aeval, ← MvPolynomial.aeval_X_left]
@@ -66,6 +74,9 @@ noncomputable def shearEquiv (a : Fin n → K) :
   AlgEquiv.ofAlgHom (shearHom a) (shearHom (fun i => -a i)) (shearHom_comp_neg a)
     (by simpa using shearHom_comp_neg (fun i => -a i))
 
+/--
+@isnad1 id=eq.0h4v.s10.794aa2c3df0e from=translated src=- shape=28055a01 vocab=2c5591c4
+-/
 @[simp] theorem shearEquiv_apply (a : Fin n → K) (P : MvPolynomial (Fin (n + 1)) K) :
     shearEquiv a P = shearHom a P := rfl
 
@@ -92,7 +103,9 @@ private theorem aeval_totalDegree_le {m : ℕ} (g : Fin m → MvPolynomial (Fin 
       _ = α i := by rw [mul_one]
   · exact MvPolynomial.le_totalDegree hα
 
-/-- Lemma A: the shear does not increase total degree.-/
+/-- Lemma A: the shear does not increase total degree.
+@isnad1 id=le.0h4v.s9.91d88305c706 from=translated src=- shape=0dde4068 vocab=f7092880
+-/
 theorem totalDegree_shearHom_le (a : Fin n → K) (P : MvPolynomial (Fin (n + 1)) K) :
     (shearHom a P).totalDegree ≤ P.totalDegree := by
   rw [shearHom]
@@ -107,7 +120,9 @@ theorem totalDegree_shearHom_le (a : Fin n → K) (P : MvPolynomial (Fin (n + 1)
     refine le_trans (MvPolynomial.totalDegree_mul _ _) ?_
     rw [MvPolynomial.totalDegree_C, MvPolynomial.totalDegree_X, zero_add]
 
-/-- Evaluating the dehomogenized top part at `a` gives `Π(1, a)`.-/
+/-- Evaluating the dehomogenized top part at `a` gives `Π(1, a)`.
+@isnad1 id=eq.0h4v.s9.378b9022b4b0 from=translated src=- shape=44cb1617 vocab=18f664d9
+-/
 theorem eval_topForm (a : Fin n → K) (P : MvPolynomial (Fin (n + 1)) K) :
     eval a (topForm P) = eval (Fin.cons 1 a) (homogeneousComponent P.totalDegree P) := by
   rw [topForm, ← MvPolynomial.aeval_eq_eval, ← MvPolynomial.aeval_eq_eval, ← AlgHom.comp_apply,
@@ -153,7 +168,9 @@ private theorem ev0_homogeneous (a : Fin n → K) {H : MvPolynomial (Fin (n + 1)
   exact (mem_support_iff.mp hα) (hH.coeff_eq_zero (by rwa [Finsupp.degree_apply]))
 
 /-- Lemma C (core): if `Π(1, a) ≠ 0`, then after the shear `P(v(X))` is quasi-monic in `X₀`,
-its leading coefficient being the constant `Π(1, a)`.-/
+its leading coefficient being the constant `Π(1, a)`.
+@isnad1 id=isquasim.1h4v.s10.6aa7e044e2c6 from=translated src=- shape=a37a49fc vocab=930d4cde
+-/
 theorem isQuasiMonic_finSuccEquiv_shearHom (a : Fin n → K)
     {P : MvPolynomial (Fin (n + 1)) K} (hev : eval a (topForm P) ≠ 0) :
     IsQuasiMonic (finSuccEquiv K n (shearHom a P)) := by

@@ -31,7 +31,9 @@ def IsValuationRing (S : Subring F) : Prop := ∀ x : F, x ≠ 0 → x ∈ S ∨
 
 /-- The "nonzero `x`" hypothesis is harmless: a subring is a valuation ring exactly when
 `x ∈ S ∨ x⁻¹ ∈ S` holds for *all* `x` (the `x = 0` case is automatic, since `0 ∈ S`). This is exactly
-Mathlib's `mem_or_inv_mem'`.-/
+Mathlib's `mem_or_inv_mem'`.
+@isnad1 id=iff.0h2v.s6.b8b5c6eef283 from=translated src=- shape=6f63e7b3 vocab=3ddff566
+-/
 theorem isValuationRing_iff (S : Subring F) :
     IsValuationRing S ↔ ∀ x : F, x ∈ S ∨ x⁻¹ ∈ S := by
   refine ⟨fun h x => ?_, fun h x _ => h x⟩
@@ -45,10 +47,15 @@ def IsValuationRing.toValuationSubring {S : Subring F} (h : IsValuationRing S) :
     ValuationSubring F :=
   ValuationSubring.ofSubring S ((isValuationRing_iff S).mp h)
 
+/--
+@isnad1 id=iff.1h3v.s6.283bc7b2a898 from=translated src=- shape=0ec5a722 vocab=07e8050c
+-/
 @[simp] theorem IsValuationRing.mem_toValuationSubring {S : Subring F} (h : IsValuationRing S)
     (x : F) : x ∈ h.toValuationSubring ↔ x ∈ S := Iff.rfl
 
-/-- Conversely, every `ValuationSubring F` is a BPR valuation ring of `F`.-/
+/-- Conversely, every `ValuationSubring F` is a BPR valuation ring of `F`.
+@isnad1 id=isvaluat.0h2v.s4.aa4954ba1504 from=translated src=- shape=ed10201d vocab=cadb6f0c
+-/
 theorem isValuationRing_valuationSubring (V : ValuationSubring F) :
     IsValuationRing V.toSubring :=
   fun x _ => V.mem_or_inv_mem x

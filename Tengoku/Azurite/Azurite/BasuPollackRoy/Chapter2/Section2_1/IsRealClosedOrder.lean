@@ -67,7 +67,9 @@ noncomputable instance IsRealClosed.toLinearOrder : LinearOrder R :=
     ⟨fun a => (isRealClosed_totalCone_total (R := R)).mem_or_neg_mem a⟩
   LinearOrder.mkOfAddGroupCone (isRealClosed_totalCone (R := R)).toAddGroupCone
 
-/-- The linear order on a real closed field is compatible with the ring structure.-/
+/-- The linear order on a real closed field is compatible with the ring structure.
+@isnad1 id=isordere.0h1v.s4.b55c63fa5d20 from=translated src=- shape=c612a321 vocab=64855159
+-/
 noncomputable instance IsRealClosed.toIsOrderedRing :
     @IsOrderedRing R _ IsRealClosed.toLinearOrder.toPartialOrder :=
   IsOrderedRing.mkOfCone (isRealClosed_totalCone (R := R))
@@ -99,7 +101,9 @@ both orderings satisfy `a ≤ b ↔ IsSquare (b - a)` and must agree.
 
 Equivalently: the positive cone of any compatible ordering necessarily contains `R^{(2)}`
 (squares are always nonneg in an ordered ring); the real closed condition forces the positive
-cone to be *exactly* `R^{(2)}`, leaving no room for a second ordering.-/
+cone to be *exactly* `R^{(2)}`, leaving no room for a second ordering.
+@isnad1 id=iff.2h5v.s6.988a26a62207 from=translated src=- shape=d449852e vocab=c0e2b0e0
+-/
 theorem isRealClosed_le_unique
     {R : Type*} [Field R] [IsRealClosed R]
     (lo₁ lo₂ : LinearOrder R)

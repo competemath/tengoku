@@ -43,7 +43,9 @@ private lemma quadraticFactor_eq_quadFromRoots (c d : R) :
   simp only [map_mul, map_add, map_pow, C_ofNat]
   ring
 
-/-- The polynomial `1 : R[X]` is normal (base case for empty products).-/
+/-- The polynomial `1 : R[X]` is normal (base case for empty products).
+@isnad1 id=isnormal.0h1v.s6.4c539c4f1404 from=translated src=- shape=db136945 vocab=8e2184d1
+-/
 lemma isNormal_one : IsNormal (1 : R[X]) := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro i
@@ -64,7 +66,9 @@ lemma isNormal_one : IsNormal (1 : R[X]) := by
       · exact absurd hh (lt_irrefl 0)
     · exact absurd hj (lt_irrefl 0)
 
-/-- Product of linear factors `X − a` with all `a ≤ 0` is normal.-/
+/-- Product of linear factors `X − a` with all `a ≤ 0` is normal.
+@isnad1 id=isnormal.1h2v.s7.644200ff7d9b from=translated src=- shape=fc7314d5 vocab=a236ee95
+-/
 theorem isNormal_prod_linearFactor {linears : Multiset R}
     (h : ∀ a ∈ linears, a ≤ 0) :
     IsNormal (linears.map linearFactor).prod := by
@@ -78,7 +82,9 @@ theorem isNormal_prod_linearFactor {linears : Multiset R}
     unfold linearFactor
     exact isNormal_X_sub_C_iff.mpr (h a (Multiset.mem_cons_self _ _))
 
-/-- Product of quadratic factors `(X − c)² + d²` with all pairs in `𝓑` is normal.-/
+/-- Product of quadratic factors `(X − c)² + d²` with all pairs in `𝓑` is normal.
+@isnad1 id=isnormal.1h2v.s7.f207b880806d from=translated src=- shape=24c0e533 vocab=92c7b7ce
+-/
 theorem isNormal_prod_quadraticFactor {quadratics : Multiset (R × R)}
     (h : ∀ pq ∈ quadratics, pq ∈ ConeB) :
     IsNormal (quadratics.map quadraticFactor).prod := by
@@ -95,7 +101,9 @@ theorem isNormal_prod_quadraticFactor {quadratics : Multiset (R × R)}
 
 /-- **BPR Proposition 2.40** (factorization form). If `P` factors as a product
     of linear factors `X − a` with `a ≤ 0` and quadratic factors
-    `quadraticFactor (c, d)` with `(c, d) ∈ 𝓑`, then `P` is normal.-/
+    `quadraticFactor (c, d)` with `(c, d) ∈ 𝓑`, then `P` is normal.
+@isnad1 id=isnormal.3h4v.s8.9c312d8c2be2 from=translated src=- shape=6eef25ff vocab=fb570a2b
+-/
 theorem proposition_2_40_of_factorization
     {P : R[X]}
     {linears : Multiset R} {quadratics : Multiset (R × R)}
@@ -113,7 +121,9 @@ theorem proposition_2_40_of_factorization
     root of `P` (in `Ri R`), the pair `(a, b)` lies in `𝓑`, then `P` is normal.
 
     Since every element of `Ri R` is of the form `ι a + ι b · i` by
-    `Ri.repr_exists`, the predicate form covers all roots.-/
+    `Ri.repr_exists`, the predicate form covers all roots.
+@isnad1 id=isnormal.2h2v.s12.3239928ab6ab from=translated src=- shape=199caf81 vocab=8a3c31d7
+-/
 theorem proposition_2_40
     {R : Type*} [Field R] [IsRealClosed R] [DecidableEq R] {P : R[X]}
     (hP : P.Monic)

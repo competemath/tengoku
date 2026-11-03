@@ -48,7 +48,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Proposition 2.64.** When `P` and `Q` have no common root, the
 counts of `P`-roots with `Q > 0` (resp. `Q < 0`) are recovered from the
-Tarski-queries `TaQ(1, P)` and `TaQ(Q, P)`.-/
+Tarski-queries `TaQ(1, P)` and `TaQ(Q, P)`.
+@isnad1 id=and.2h3v.s8.b29e40fa7a59 from=translated src=- shape=9a226ecf vocab=3b5ac164
+-/
 theorem proposition_2_64 (P Q : R[X]) (hP : P ≠ 0)
     (hndisjoint : ∀ x : R, P.IsRoot x → Q.eval x ≠ 0) :
     ((P.roots.toFinset.filter (fun x => 0 < Q.eval x)).card : ℤ)

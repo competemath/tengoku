@@ -35,7 +35,9 @@ open scoped Classical
 variable {k : ℕ} {K : Type*} [Field K] (C : Type*) [Field C] [Algebra K C]
 
 /-- **BPR Lemma 4.91.** If `a ∈ A` is separating for `𝒫` and `Zer(𝒫, Cᵏ)` has `n` elements, then
-`1, a, …, a^{n-1}` are linearly independent over `K` in `A`.-/
+`1, a, …, a^{n-1}` are linearly independent over `K` in `A`.
+@isnad1 id=linearin.2h5v.s9.01004cedb4ae from=translated src=- shape=7ac02b3c vocab=b761f212
+-/
 theorem lemma_4_91 (Ps : Finset (MvPolynomial (Fin k) K)) (a : quotPolys Ps)
     (hsep : IsSeparating C Ps a) (hfin : (zerOfFinset C Ps).Finite) :
     LinearIndependent K (fun i : Fin hfin.toFinset.card => a ^ (i : ℕ)) := by

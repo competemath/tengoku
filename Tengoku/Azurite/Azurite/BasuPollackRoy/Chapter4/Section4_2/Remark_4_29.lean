@@ -54,7 +54,9 @@ noncomputable def sDiscK (P : K[X]) (i : ℕ) : K :=
 
 /-- **BPR Remark 4.29.** For `P : K[X]` of positive degree and
     `i ≤ P.natDegree`, the subdiscriminant `sDisc P i` lies in the
-    image of `algebraMap K C`. Explicit witness via `sDiscK`.-/
+    image of `algebraMap K C`. Explicit witness via `sDiscK`.
+@isnad1 id=eq.2h4v.s7.a9ed670b5bd4 from=translated src=- shape=00baf700 vocab=8d640d2e
+-/
 theorem Remark_4_29 (P : K[X]) (hP : 0 < P.natDegree) (i : ℕ)
     (hi : i ≤ P.natDegree) :
     (algebraMap K C) (sDiscK P i) = sDisc P i := by

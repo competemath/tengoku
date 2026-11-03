@@ -28,7 +28,9 @@ variable {k : ℕ} {K : Type*} [Field K]
 
 /-- **BPR Corollary 4.71 (ascending chain condition).** Every ascending chain of ideals
 `I₁ ⊆ I₂ ⊆ ⋯` of `K[X₁, …, X_k]` stabilizes: there is an `n` with `I_m = I_n` for all
-`m > n`.-/
+`m > n`.
+@isnad1 id=ex.1h3v.s8.1492693578b5 from=translated src=- shape=b43249d4 vocab=454948f9
+-/
 theorem corollary_4_71 (I : ℕ → Ideal (MvPolynomial (Fin k) K)) (hI : Monotone I) :
     ∃ n : ℕ, ∀ m : ℕ, m > n → I m = I n := by
   classical

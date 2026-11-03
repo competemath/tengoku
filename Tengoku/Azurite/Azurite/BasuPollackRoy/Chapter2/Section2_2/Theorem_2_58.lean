@@ -94,7 +94,9 @@ private lemma not_jumpsFromPosInfToNegInf_zero (P : R[X]) (x : R) :
     h_sign t ⟨hxt, htb⟩
   simp at h_eval
 
-/-- `cauchyIndexOn 0 P a b = 0`: a zero numerator produces no jumps.-/
+/-- `cauchyIndexOn 0 P a b = 0`: a zero numerator produces no jumps.
+@isnad1 id=eq.0h4v.s6.b2c96413cf76 from=translated src=- shape=78d003f2 vocab=b50e0718
+-/
 theorem cauchyIndexOn_zero_left (P : R[X]) (a b : ExtendedPoint R) :
     cauchyIndexOn 0 P a b = 0 := by
   classical
@@ -143,7 +145,9 @@ private lemma two_mul_indicator_eq
     This is the version directly proved by induction on `n` using
     Lemmas 2.59 and 2.60. The BPR-faithful `theorem_2_58` (only
     `evalPoly P a, b ≠ 0`) below reduces to this via a perturbation
-    argument.-/
+    argument.
+@isnad1 id=eq.6h6v.s8.3019cc269afe from=translated src=- shape=5f31fec8 vocab=7dc9e3be
+-/
 theorem theorem_2_58_no_SRemS_root_at_endpoints
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R)
@@ -246,7 +250,9 @@ omit [LinearOrder R] [IsStrictOrderedRing R] in
     that vanishes at `a`, and `SRemS_j` also vanishes at `a`, then
     `P` vanishes at `a`. (Cascade backwards via the Euclidean
     recurrence `SRemS_{j+2} = -(SRemS_j % SRemS_{j+1})` and
-    `eval_mod_at_root`.)-/
+    `eval_mod_at_root`.)
+@isnad1 id=eq.3h5v.s7.786f92c89ee0 from=translated src=- shape=bfba15f2 vocab=7342c74d
+-/
 lemma SRemS_eval_cascade (P Q : R[X]) (a : R) (j : ℕ)
     (h_succ_ne : SRemS P Q (j + 1) ≠ 0)
     (h_succ_zero : (SRemS P Q (j + 1)).eval a = 0)
@@ -283,7 +289,9 @@ omit [LinearOrder R] [IsStrictOrderedRing R] in
     Proof: `SRemS_{j+1} = 0` polynomial means `SRemS_j` divides
     `SRemS_{j-1}` (via the Euclidean recurrence). So `SRemS_{j-1}(a)`
     is a multiple of `SRemS_j(a) = 0`, hence vanishes too. Apply
-    cascade 1.-/
+    cascade 1.
+@isnad1 id=eq.3h5v.s7.bba76b66197c from=translated src=- shape=f0527d45 vocab=7342c74d
+-/
 lemma SRemS_eval_cascade_terminal (P Q : R[X]) (a : R) (j : ℕ)
     (h_curr_ne : SRemS P Q j ≠ 0)
     (h_succ_zero_poly : SRemS P Q (j + 1) = 0)
@@ -322,7 +330,9 @@ omit [LinearOrder R] [IsStrictOrderedRing R] in
 
     * `SRemS_{j-1}` is a nonzero polynomial with `SRemS_{j-1}.eval a ≠ 0`;
     * `SRemS_{j+1}` is a nonzero polynomial with `SRemS_{j+1}.eval a ≠ 0`;
-    * `SRemS_{j+1}.eval a = -(SRemS_{j-1}.eval a)`.-/
+    * `SRemS_{j+1}.eval a = -(SRemS_{j-1}.eval a)`.
+@isnad1 id=and.3h5v.s8.7a6abfeb0805 from=translated src=- shape=c50c0460 vocab=11c66f9f
+-/
 lemma SRemS_eval_opposite_sign_at_zero (P Q : R[X]) (a : R) (j : ℕ)
     (hP_eval : P.eval a ≠ 0)
     (h_curr_ne : SRemS P Q (j + 1) ≠ 0)
@@ -373,7 +383,9 @@ open Classical in
     `(a', b') ⊆ (a, b)` and the open intervals contain the same
     `P`-roots, `cauchyIndexOn Q P a b = cauchyIndexOn Q P a' b'`. The
     `same-roots` property holds whenever `(a, a'] ∪ [b', b)` is free
-    of `P`-roots.-/
+    of `P`-roots.
+@isnad1 id=eq.1h7v.s6.3cead5e1022b from=translated src=- shape=fdd1163b vocab=b34cd64f
+-/
 lemma cauchyIndexOn_eq_of_same_P_roots
     (Q P : R[X]) (a b a' b' : ExtendedPoint R)
     (h_same : ∀ x ∈ P.roots,
@@ -421,7 +433,9 @@ open Classical in
     exists `a' ∈ (a, α)` with no root of any polynomial in the set
     lying in the half-open interval `(a, a']`.
 
-    Used for the WLOG perturbation step in `theorem_2_58`.-/
+    Used for the WLOG perturbation step in `theorem_2_58`.
+@isnad1 id=ex.2h4v.s8.9217a9eb4d67 from=translated src=- shape=d3b3af90 vocab=d5155339
+-/
 lemma exists_lt_not_root_in_Ioo
     (a α : R) (hαlt : a < α) (S : Finset R[X])
     (hS : ∀ p ∈ S, p ≠ 0) :
@@ -470,7 +484,9 @@ lemma exists_lt_not_root_in_Ioo
 open Classical in
 /-- **Existence of root-free perturbation on the left.** Symmetric
     counterpart of `exists_lt_not_root_in_Ioo`, used for the right
-    endpoint `b`.-/
+    endpoint `b`.
+@isnad1 id=ex.2h4v.s8.a38620bf1fb8 from=translated src=- shape=2a333ea8 vocab=d5155339
+-/
 lemma exists_gt_not_root_in_Ioo
     (β b : R) (hβlt : β < b) (S : Finset R[X])
     (hS : ∀ p ∈ S, p ≠ 0) :
@@ -520,7 +536,9 @@ lemma exists_gt_not_root_in_Ioo
     `F.eval a` and `F.eval b` have the same sign.
 
     Direct from the intermediate value property: opposite signs would
-    yield a root by `hIVP`.-/
+    yield a root by `hIVP`.
+@isnad1 id=eq.5h4v.s8.bff3dcc9587e from=translated src=- shape=60ab36a3 vocab=b0abaaf2
+-/
 lemma sign_eval_eq_of_no_root_Ioo
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (F : R[X]) {a b : R} (hab : a < b)
@@ -551,7 +569,9 @@ lemma sign_eval_eq_of_no_root_Ioo
     count: `varNonzero (a :: c :: b :: rest) = varNonzero (a :: b :: rest)`.
 
     This is the key local-cascade invariance that makes
-    `varAt(SRemS) a = varAt(SRemS) a'` under the perturbation.-/
+    `varAt(SRemS) a = varAt(SRemS) a'` under the perturbation.
+@isnad1 id=eq.2h5v.s7.7f34520f89aa from=translated src=- shape=15e1ed41 vocab=8db6e664
+-/
 lemma varNonzero_insert_between_opposite
     (a c b : R) (rest : List R) (hc : c ≠ 0) (h_opp : a * b < 0) :
     varNonzero (a :: c :: b :: rest) = varNonzero (a :: b :: rest) := by
@@ -618,7 +638,9 @@ lemma varNonzero_insert_between_opposite
 
 omit [IsStrictOrderedRing R] in
 /-- **VarNonzero is preserved by appending a nonzero head when the
-    next element has the same sign.**-/
+    next element has the same sign.**
+@isnad1 id=eq.1h4v.s7.785508b35c77 from=translated src=- shape=2621a5f2 vocab=aad537a1
+-/
 lemma varNonzero_cons_same_sign
     (a b : R) (rest : List R) (h_same : 0 < a * b) :
     varNonzero (a :: b :: rest) = varNonzero (b :: rest) := by
@@ -630,7 +652,9 @@ lemma varNonzero_cons_same_sign
 /-- **VarNonzero insertion at any position.** Inserting a nonzero
     value between two adjacent opposite-signed values, anywhere in a
     list, preserves `varNonzero`. Proof by induction on the prefix
-    before the insertion point.-/
+    before the insertion point.
+@isnad1 id=eq.2h6v.s7.8f4f19dee4d9 from=translated src=- shape=ce47948d vocab=ab2e122c
+-/
 lemma varNonzero_eq_after_insertion
     (pre : List R) (a c b : R) (rest : List R)
     (hc : c ≠ 0) (h_opp : a * b < 0) :
@@ -676,7 +700,9 @@ lemma varNonzero_eq_after_insertion
     opposite signs and `c` is nonzero, then `Var` (which filters zeros)
     is the same whether we have a `0` or `c` between them.
 
-    `Var (pre ++ a :: 0 :: b :: rest) = Var (pre ++ a :: c :: b :: rest)`.-/
+    `Var (pre ++ a :: 0 :: b :: rest) = Var (pre ++ a :: c :: b :: rest)`.
+@isnad1 id=eq.4h6v.s8.18ea7c69a721 from=translated src=- shape=d2b446ed vocab=27273a6f
+-/
 lemma Var_eq_replace_zero_with_nonzero
     (pre : List R) (a b : R) (rest : List R)
     (ha : a ≠ 0) (hb : b ≠ 0) (c : R) (hc : c ≠ 0) (h_opp : a * b < 0) :
@@ -1306,7 +1332,9 @@ private lemma strong_hyp_at_infinity
     hypotheses (`P ≠ 0`, `a < b`, `P` not vanishing at `a, b`), there
     exist perturbed endpoints `a', b'` with the strong "no SRemS root
     at endpoints" property AND with `varAt`/`cauchyIndexOn` matching
-    those at the original `(a, b)`.-/
+    those at the original `(a, b)`.
+@isnad1 id=ex.6h6v.s8.36c455514754 from=translated src=- shape=e39f5f90 vocab=20666786
+-/
 lemma theorem_2_58_perturbation_exists
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R)
@@ -1564,7 +1592,9 @@ lemma theorem_2_58_perturbation_exists
     The existence + invariance portion of the WLOG argument is in
     `theorem_2_58_perturbation_exists`, which itself relies on the
     cascade and Var-invariance lemmas plus density and finiteness of
-    root sets.-/
+    root sets.
+@isnad1 id=eq.6h6v.s8.22510c14645d from=translated src=- shape=bc050ada vocab=7dc9e3be
+-/
 theorem theorem_2_58
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hP : P ≠ 0) (a b : ExtendedPoint R)

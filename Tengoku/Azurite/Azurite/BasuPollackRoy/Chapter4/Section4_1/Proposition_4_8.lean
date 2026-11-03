@@ -40,7 +40,9 @@ open Polynomial
 variable {K : Type*} [Field K] {C : Type*} [Field C] [Algebra K C] [IsAlgClosed C]
 
 omit [IsAlgClosed C] in
-/-- `N_0(P)` equals the cardinality of `P.aroots C`.-/
+/-- `N_0(P)` equals the cardinality of `P.aroots C`.
+@isnad1 id=eq.0h3v.s6.8009f338afef from=translated src=- shape=7654a892 vocab=2c322242
+-/
 lemma newtonSum_zero (P : K[X]) :
     (newtonSum P 0 : C) = ((P.aroots C).card : C) := by
   unfold newtonSum
@@ -85,7 +87,9 @@ end Aux
 omit [IsAlgClosed C] in
 /-- **Orthogonality identity**: `∑_{m=0}^{p} a_m · N_{m+q} = 0` for any `q`.
     Follows from `x^q · Q.eval x = 0` for each root `x` of `Q`, summed.
-    Specialises at `q = 0` to the trace identity `∑ a_m · N_m = 0`.-/
+    Specialises at `q = 0` to the trace identity `∑ a_m · N_m = 0`.
+@isnad1 id=eq.0h4v.s7.dd7897aa951b from=translated src=- shape=17e10a3e vocab=1501ecdf
+-/
 lemma newtonSum_orthogonality (P : K[X]) (q : ℕ) :
     (Finset.range (P.natDegree + 1)).sum (fun m =>
         (algebraMap K C) (P.coeff m) * newtonSum P (m + q)) = 0 := by
@@ -383,7 +387,9 @@ private lemma proposition_4_8_aux (s : Multiset C) (a_p : C) (j : ℕ)
 
 /-- **BPR Proposition 4.8** (Newton's coefficient recurrence, j-form).
     For `P : K[X]` and `j ≤ p = P.natDegree`,
-    `j · a_j = ∑_{m=j}^{p} a_m · N_{m-j}`.-/
+    `j · a_j = ∑_{m=j}^{p} a_m · N_{m-j}`.
+@isnad1 id=eq.1h4v.s8.9a1897164b3c from=translated src=- shape=00149b3a vocab=d517b6d7
+-/
 theorem proposition_4_8 (P : K[X]) (j : ℕ) (hj : j ≤ P.natDegree) :
     (j : C) * (algebraMap K C) (P.coeff j) =
       (Finset.Ico j (P.natDegree + 1)).sum (fun m =>
@@ -430,7 +436,9 @@ theorem proposition_4_8 (P : K[X]) (j : ℕ) (hj : j ≤ P.natDegree) :
     order `X^{-(N+1)}` and higher (after clearing the `P · X^N` factor).
 
     Equivalent to `proposition_4_8`: matching the coefficient of `X^k`
-    for each `k ≥ P.natDegree` gives Newton's recurrence at `j = k − N + 1`.-/
+    for each `k ≥ P.natDegree` gives Newton's recurrence at `j = k − N + 1`.
+@isnad1 id=lt.1h4v.s9.f42f17fab7d9 from=translated src=- shape=3519cdc3 vocab=46768473
+-/
 theorem proposition_4_8_series (P : K[X]) (hP : 0 < P.natDegree) (N : ℕ) :
     ((Polynomial.X : C[X])^N * (P.map (algebraMap K C)).derivative -
      (P.map (algebraMap K C)) *

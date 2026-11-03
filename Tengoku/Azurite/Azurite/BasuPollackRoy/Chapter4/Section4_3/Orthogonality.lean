@@ -187,7 +187,9 @@ triangular property); we additionally record that `wᵢ − vᵢ` lies in the sp
 the original `v₁, …, v_{i-1}` (equivalent, useful as a change-of-basis fact). The
 construction is the Gram–Schmidt recursion `w₁ = v₁`, `wᵢ = vᵢ − ∑_{j<i} μ_{i,j} wⱼ`
 with `μ_{i,j} = (vᵢ · wⱼ)/‖wⱼ‖²` (well-defined since `‖wⱼ‖² = wⱼ · wⱼ > 0` for
-`wⱼ ≠ 0` over an ordered field).-/
+`wⱼ ≠ 0` over an ordered field).
+@isnad1 id=ex.1h3v.s9.216d00e5c6ba from=translated src=- shape=644bb83b vocab=f1928160
+-/
 theorem proposition_4_41 (v : Fin n → (Fin n → R)) (hv : LinearIndependent R v) :
     ∃ w : Fin n → (Fin n → R),
       LinearIndependent R w ∧

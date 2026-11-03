@@ -34,17 +34,23 @@ variable (F : Type*) [Field F]
     Every ordered field is semireal.-/
 abbrev IsRealField : Prop := IsSemireal F
 
-/-- A field is real iff `−1 ∉ ΣF^{(2)}`.-/
+/-- A field is real iff `−1 ∉ ΣF^{(2)}`.
+@isnad1 id=iff.0h1v.s6.6af874d8c3a6 from=translated src=- shape=c9658582 vocab=bc017749
+-/
 lemma isRealField_iff : IsRealField F ↔ ¬ IsSumSq (-1 : F) :=
   isSemireal_iff_not_isSumSq_neg_one
 
-/-- A field is real iff `−1 ∉ ΣF^{(2)}` (stated using `sumOfSquares`).-/
+/-- A field is real iff `−1 ∉ ΣF^{(2)}` (stated using `sumOfSquares`).
+@isnad1 id=iff.0h1v.s6.fa4aeb01b3c2 from=translated src=- shape=12fa63ed vocab=f66c68a3
+-/
 lemma isRealField_iff_neg_one_notMem :
     IsRealField F ↔ (-1 : F) ∉ sumOfSquares F := by
   rw [isRealField_iff, Subsemiring.mem_sumSq]
 
 /-- A real field has characteristic zero
-    (Mathlib synthesizes `CharZero F` from `IsSemireal F`).-/
+    (Mathlib synthesizes `CharZero F` from `IsSemireal F`).
+@isnad1 id=charzero.1h1v.s4.aa7f460d78a9 from=translated src=- shape=c612a321 vocab=5a151123
+-/
 theorem isRealField_charZero (h : IsRealField F) : CharZero F :=
   haveI : IsSemireal F := h; inferInstance
 

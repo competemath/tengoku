@@ -39,12 +39,17 @@ noncomputable def exP1 : Polynomial (PuiseuxSeries R) :=
 
 /-! ### The coefficients `bᵢ` and Lemma 2.95(a) -/
 
-/-- The order of a Puiseux series is unchanged by negation.-/
+/-- The order of a Puiseux series is unchanged by negation.
+@isnad1 id=eq.0h2v.s8.bc548bcfe018 from=translated src=- shape=0f9764c5 vocab=f043046d
+-/
 theorem puiseuxOrder_neg (a : PuiseuxSeries R) : puiseuxOrder R (-a) = puiseuxOrder R a := by
   rw [puiseuxOrder, puiseuxOrder, Subfield.coe_neg, HahnSeries.orderTop_neg]
 
 /-! ### The Newton diagram of `P₁` -/
 
+/--
+@isnad1 id=eq.0h1v.s10.c79abb6f0318 from=translated src=- shape=26ca283b vocab=7c47eb7f
+-/
 theorem coe_neg_one : ((-1 : PuiseuxSeries R) : HahnSeries ℚ R) = HahnSeries.single 0 (-1) := by
   rw [show ((-1 : PuiseuxSeries R) : HahnSeries ℚ R) = (-1 : HahnSeries ℚ R) from by norm_cast,
     ← HahnSeries.C_apply]; norm_num

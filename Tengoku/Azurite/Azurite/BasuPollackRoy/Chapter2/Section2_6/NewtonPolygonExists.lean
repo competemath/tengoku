@@ -42,7 +42,9 @@ column `i` (junk value `0` when `ā_i = 0`, which does not occur on the support)
 noncomputable def colOrd (P : Polynomial (PuiseuxSeries R)) (i : ℕ) : ℚ :=
   HahnSeries.order ((P.coeff i : PuiseuxSeries R) : HahnSeries ℚ R)
 
-/-- On the support, `puiseuxOrder` of the coefficient is the finite value `colOrd`.-/
+/-- On the support, `puiseuxOrder` of the coefficient is the finite value `colOrd`.
+@isnad1 id=eq.1h3v.s11.cef7faefab63 from=translated src=- shape=4b13db69 vocab=5ebfada2
+-/
 theorem puiseuxOrder_eq_colOrd {P : Polynomial (PuiseuxSeries R)} {i : ℕ} (hi : P.coeff i ≠ 0) :
     puiseuxOrder R (P.coeff i) = (colOrd P i : WithTop ℚ) := by
   have hcoe : ((P.coeff i : PuiseuxSeries R) : HahnSeries ℚ R) ≠ 0 := by
@@ -52,7 +54,9 @@ theorem puiseuxOrder_eq_colOrd {P : Polynomial (PuiseuxSeries R)} {i : ℕ} (hi 
 
 /-- **Convexity from edge-support.** If each vertex of `M` is a column point `(i, f i)` with
 `i ∈ S`, and every edge of `M` lies on or above every column point, then the vertex chain turns
-the right way: each vertex lies on or above the previous edge.-/
+the right way: each vertex lies on or above the previous edge.
+@isnad1 id=ischain.2h3v.s7.843a32a2e273 from=translated src=- shape=22592db5 vocab=402ac90b
+-/
 theorem isChain_zip_tail_of_colChain {S : Finset ℕ} {f : ℕ → ℚ} :
     ∀ M : List (ℕ × ℚ), (∀ V ∈ M, V.2 = f V.1 ∧ V.1 ∈ S) →
       M.IsChain (fun A B => ∀ i ∈ S, OnOrAbove A B (i, f i)) →
@@ -84,7 +88,9 @@ theorem isChain_zip_tail_of_colChain {S : Finset ℕ} {f : ℕ → ℚ} :
 /-- **The lower-hull construction (Jarvis march).** From a vertex `a ∈ S` whose supporting line of
 slope `s` lies below every column point of `S`, there is a vertex chain from `a` to `N`
 satisfying the Newton-polygon conditions (over column bottom points). Proven by strong induction
-on the remaining span `N − a`.-/
+on the remaining span `N − a`.
+@isnad1 id=ex.5h6v.s8.d913884c28fa from=translated src=- shape=44cd1cca vocab=dbcdeb5a
+-/
 theorem lower_hull_exists (S : Finset ℕ) (f : ℕ → ℚ) (N : ℕ)
     (hSN : ∀ i ∈ S, i ≤ N) (hNS : N ∈ S) :
     ∀ d : ℕ, ∀ a : ℕ, a ∈ S → N - a ≤ d → ∀ s : ℚ,

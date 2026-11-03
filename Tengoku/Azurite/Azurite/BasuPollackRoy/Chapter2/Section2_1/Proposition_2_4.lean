@@ -60,7 +60,9 @@ private lemma eval_sub_lead (P : F[X]) (x : F) :
   linarith
 
 /-- **BPR Proposition 2.4.** If |x| > 2 ∑ᵢ≤ₚ |aᵢ/aₚ|, then P(x) and
-    aₚ·x^p have the same sign.-/
+    aₚ·x^p have the same sign.
+@isnad1 id=eq.2h3v.s8.c4f2625898ab from=translated src=- shape=d246d282 vocab=2c33207d
+-/
 theorem prop_2_4 (P : F[X]) (hP : P ≠ 0) (x : F)
     (hx : 2 * ∑ i ∈ Finset.range (P.natDegree + 1),
       |P.coeff i / P.leadingCoeff| < |x|) :

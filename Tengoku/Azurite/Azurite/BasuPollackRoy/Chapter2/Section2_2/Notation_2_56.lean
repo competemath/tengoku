@@ -56,6 +56,9 @@ noncomputable def tarskiQuery (Q P : R[X]) : ℤ :=
   tarskiQueryOn Q P .negInf .posInf
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h3v.s5.c9e85268bd35 from=translated src=- shape=70bd63f5 vocab=0364aa40
+-/
 @[simp] theorem tarskiQuery_eq_tarskiQueryOn_negInf_posInf (Q P : R[X]) :
     tarskiQuery Q P = tarskiQueryOn Q P .negInf .posInf := rfl
 
@@ -66,7 +69,9 @@ open Classical in
                      − #{x ∈ (a, b) | P(x) = 0 ∧ Q(x) < 0}`.
 
     Each `P`-root in `(a, b)` contributes `+1`, `0`, or `−1` to the sum
-    according to whether `Q(x) > 0`, `Q(x) = 0`, or `Q(x) < 0`.-/
+    according to whether `Q(x) > 0`, `Q(x) = 0`, or `Q(x) < 0`.
+@isnad1 id=eq.0h5v.s8.1c6bd04a65dd from=translated src=- shape=063ee274 vocab=f8d9447e
+-/
 theorem tarskiQueryOn_eq_card_pos_sub_card_neg (Q P : R[X]) (a b : ExtendedPoint R) :
     tarskiQueryOn Q P a b =
     ((P.roots.toFinset.filter

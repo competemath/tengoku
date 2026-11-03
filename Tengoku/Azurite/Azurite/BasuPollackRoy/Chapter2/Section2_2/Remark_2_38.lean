@@ -112,7 +112,9 @@ private lemma numRoots_triple_split (P : R[X]) {a b : R} (hab : a ≤ b) :
     Budan-Fourier provides only the inequality `num ≤ Var` with even
     difference, but under the hypothesis the three-way sum telescopes:
     the total `Var(Der(P); −∞, +∞)` equals `natDegree P = num(P; R)`,
-    forcing equality in each sub-interval.-/
+    forcing equality in each sub-interval.
+@isnad1 id=eq.4h4v.s7.e1410c8ce5f9 from=translated src=- shape=a4e10fc2 vocab=491de9a3
+-/
 theorem var_eq_numRoots_of_all_roots_real
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0)
     (hroots_card : P.roots.card = P.natDegree) {a b : R} (hab : a < b) :
@@ -166,7 +168,9 @@ theorem var_eq_numRoots_of_all_roots_real
     case of Remark 2.38 that powers the signature formula (BPR Proposition 8.24):
     splitting `(−∞, +∞)` at `0`, Budan-Fourier gives `num ≤ Var` on each of
     `(−∞, 0]` and `(0, +∞)`, but the two `num` sum to `natDegree P = ` the total
-    `Var`, forcing equality on `(0, +∞)`.-/
+    `Var`, forcing equality on `(0, +∞)`.
+@isnad1 id=eq.3h2v.s7.f99a6c8d58b5 from=translated src=- shape=4bc5ee66 vocab=8810921d
+-/
 theorem varPoly_eq_posRoots_of_all_roots_real
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0)
     (hroots_card : P.roots.card = P.natDegree) :

@@ -42,6 +42,9 @@ def HahnSeries.mapRingHom (f : R →+* S) : HahnSeries Γ R →+* HahnSeries Γ 
   map_add' x y := by ext g; exact map_add f (x.coeff g) (y.coeff g)
   map_mul' x y := HahnSeries.map_mul f.toNonUnitalRingHom
 
+/--
+@isnad1 id=eq.0h6v.s8.8c4a38a64091 from=translated src=- shape=3dfd914c vocab=e002af9f
+-/
 @[simp] theorem HahnSeries.mapRingHom_coeff (f : R →+* S) (x : HahnSeries Γ R) (g : Γ) :
     (HahnSeries.mapRingHom f x).coeff g = f (x.coeff g) := rfl
 
@@ -54,15 +57,23 @@ def HahnSeries.mapRingEquiv (e : R ≃+* S) : HahnSeries Γ R ≃+* HahnSeries �
     right_inv := fun x => by
       ext g; show (e : R →+* S) ((e.symm : S →+* R) (x.coeff g)) = x.coeff g; simp }
 
+/--
+@isnad1 id=eq.0h6v.s9.1f376c49f4b5 from=translated src=- shape=3dfd914c vocab=d9a46fa7
+-/
 @[simp] theorem HahnSeries.mapRingEquiv_coeff (e : R ≃+* S) (x : HahnSeries Γ R) (g : Γ) :
     (HahnSeries.mapRingEquiv e x).coeff g = e (x.coeff g) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.e69fb8b453e1 from=translated src=- shape=26b0f728 vocab=04020a52
+-/
 @[simp] theorem HahnSeries.mapRingEquiv_symm (e : R ≃+* S) :
     (HahnSeries.mapRingEquiv e (Γ := Γ)).symm = HahnSeries.mapRingEquiv e.symm := rfl
 
 end Map
 
-/-- Coefficientwise mapping commutes with exponent-embedding `embDomain`.-/
+/-- Coefficientwise mapping commutes with exponent-embedding `embDomain`.
+@isnad1 id=eq.0h8v.s6.8d44c139137e from=translated src=- shape=4c5d56c7 vocab=c48680b2
+-/
 theorem HahnSeries.map_embDomain {Γ₁ Γ₂ : Type*} [PartialOrder Γ₁] [PartialOrder Γ₂]
     {A B : Type*} [Zero A] [Zero B] {F : Type*} [FunLike F A B] [ZeroHomClass F A B]
     (g : F) (f : Γ₁ ↪o Γ₂) (x : HahnSeries Γ₁ A) :
@@ -79,7 +90,9 @@ section Puiseux
 
 variable {R S : Type*} [Field R] [Field S]
 
-/-- The coefficient map commutes with the exponent-rescaling embedding `puiseuxEmb`.-/
+/-- The coefficient map commutes with the exponent-rescaling embedding `puiseuxEmb`.
+@isnad1 id=eq.0h5v.s9.b624bea41d51 from=translated src=- shape=c91376ee vocab=0bbc8b1a
+-/
 theorem mapRingHom_puiseuxEmb (e : R →+* S) (q : ℕ+) (z : HahnSeries ℤ R) :
     HahnSeries.mapRingHom e (puiseuxEmb R q z)
       = puiseuxEmb S q (HahnSeries.mapRingHom e z) := by
@@ -87,7 +100,9 @@ theorem mapRingHom_puiseuxEmb (e : R →+* S) (q : ℕ+) (z : HahnSeries ℤ R) 
   rw [puiseuxEmb, HahnSeries.embDomainRingHom_apply, HahnSeries.map_embDomain, puiseuxEmb,
     HahnSeries.embDomainRingHom_apply]
 
-/-- The coefficient iso carries `PuiseuxSeries R` into `PuiseuxSeries S`.-/
+/-- The coefficient iso carries `PuiseuxSeries R` into `PuiseuxSeries S`.
+@isnad1 id=mem.1h4v.s9.e5546b7bbfed from=translated src=- shape=4628109c vocab=a53b38af
+-/
 theorem mapRingEquiv_mem_puiseux (e : R ≃+* S) {x : HahnSeries ℚ R}
     (hx : x ∈ PuiseuxSeries R) : HahnSeries.mapRingEquiv e x ∈ PuiseuxSeries S := by
   rw [mem_puiseuxSeries_iff] at hx ⊢
@@ -109,10 +124,15 @@ noncomputable def puiseuxCongr (e : R ≃+* S) : PuiseuxSeries R ≃+* PuiseuxSe
   map_mul' x y := Subtype.ext (map_mul (HahnSeries.mapRingEquiv e) x.1 y.1)
   map_add' x y := Subtype.ext (map_add (HahnSeries.mapRingEquiv e) x.1 y.1)
 
+/--
+@isnad1 id=eq.0h4v.s13.180bdaae5054 from=translated src=- shape=a620740b vocab=09643054
+-/
 @[simp] theorem puiseuxCongr_coe (e : R ≃+* S) (x : PuiseuxSeries R) :
     ((puiseuxCongr e x : PuiseuxSeries S) : HahnSeries ℚ S) = HahnSeries.mapRingEquiv e x.1 := rfl
 
-/-- The coefficient ring hom carries `PuiseuxSeries R` into `PuiseuxSeries S`.-/
+/-- The coefficient ring hom carries `PuiseuxSeries R` into `PuiseuxSeries S`.
+@isnad1 id=mem.1h4v.s9.cd2905197ca8 from=translated src=- shape=4628109c vocab=1081d382
+-/
 theorem mapRingHom_mem_puiseux (f : R →+* S) {x : HahnSeries ℚ R} (hx : x ∈ PuiseuxSeries R) :
     HahnSeries.mapRingHom f x ∈ PuiseuxSeries S := by
   rw [mem_puiseuxSeries_iff] at hx ⊢
@@ -132,10 +152,15 @@ noncomputable def puiseuxMapRingHom (f : R →+* S) : PuiseuxSeries R →+* Puis
   map_zero' := Subtype.ext (map_zero (HahnSeries.mapRingHom f))
   map_add' x y := Subtype.ext (map_add (HahnSeries.mapRingHom f) x.1 y.1)
 
+/--
+@isnad1 id=eq.0h4v.s12.46309b6b7323 from=translated src=- shape=a620740b vocab=279ec1d8
+-/
 @[simp] theorem puiseuxMapRingHom_coe (f : R →+* S) (x : PuiseuxSeries R) :
     ((puiseuxMapRingHom f x : PuiseuxSeries S) : HahnSeries ℚ S) = HahnSeries.mapRingHom f x.1 := rfl
 
-/-- A `ZeroHom`/additive coefficient map carries `PuiseuxSeries R` into `PuiseuxSeries S`.-/
+/-- A `ZeroHom`/additive coefficient map carries `PuiseuxSeries R` into `PuiseuxSeries S`.
+@isnad1 id=mem.1h5v.s8.b16eb23751d4 from=translated src=- shape=ff639ffc vocab=2f0c33a6
+-/
 theorem map_zeroHom_mem_puiseux {F : Type*} [FunLike F R S] [ZeroHomClass F R S] (g : F)
     {x : HahnSeries ℚ R} (hx : x ∈ PuiseuxSeries R) : x.map g ∈ PuiseuxSeries S := by
   rw [mem_puiseuxSeries_iff] at hx ⊢

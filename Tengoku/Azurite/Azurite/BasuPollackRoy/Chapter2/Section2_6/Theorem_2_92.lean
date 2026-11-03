@@ -28,7 +28,9 @@ namespace Azurite.BPR
 open Polynomial
 
 /-- **Semireal pulls back along any ring hom.** A ring hom into a semireal ring has semireal
-domain (a sum of squares equal to `−1` would map to one).-/
+domain (a sum of squares equal to `−1` would map to one).
+@isnad1 id=issemire.0h3v.s6.3b7ebd2bfb18 from=translated src=- shape=a724b963 vocab=aae0e8d1
+-/
 theorem isSemireal_of_ringHom {A B : Type*} [CommRing A] [CommRing B] [IsSemireal B]
     (f : A →+* B) : IsSemireal A := by
   apply IsSemireal.of_not_isSumSq_neg_one
@@ -43,7 +45,9 @@ theorem isSemireal_of_ringHom {A B : Type*} [CommRing A] [CommRing B] [IsSemirea
 
 /-- **`C` is algebraic over a maximal semireal real closed subfield.** If `t ∈ C` were
 transcendental over `R`, then `R(t) ≅ RatFunc R` embeds into the ordered (hence semireal) field
-`PuiseuxSeries R`, so `R(t)` is a semireal proper extension of `R`, contradicting maximality.-/
+`PuiseuxSeries R`, so `R(t)` is a semireal proper extension of `R`, contradicting maximality.
+@isnad1 id=isalgebr.1h2v.s9.f002f1355190 from=translated src=- shape=28505b7f vocab=69ed33b6
+-/
 theorem algebraicOfMaximal {C : Type*} [Field C] [CharZero C] (R : IntermediateField ℚ C) [IsRealClosed ↥R]
     (hmax : ∀ S : IntermediateField ℚ C, IsSemireal ↥S → R ≤ S → S = R) :
     Algebra.IsAlgebraic ↥R C := by

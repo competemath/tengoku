@@ -73,7 +73,9 @@ private lemma prod_eval_eq_leadingCoeff_pow_mul_prod_root_diffs
 
       `Res(P, Q) = a_p^q · b_q^p · ∏_{i, j} (x_i - y_j)`,
 
-    where the products run over `P.roots × Q.roots`.-/
+    where the products run over `P.roots × Q.roots`.
+@isnad1 id=eq.2h3v.s7.a7fd31594e1f from=translated src=- shape=2f1eb5dc vocab=1d29c02e
+-/
 theorem Theorem_4_17 (P Q : K[X]) (hP : P.Splits) (hQ : Q.Splits) :
     Res P Q =
       P.leadingCoeff ^ Q.natDegree * Q.leadingCoeff ^ P.natDegree *
@@ -88,7 +90,9 @@ theorem Theorem_4_17 (P Q : K[X]) (hP : P.Splits) (hQ : Q.Splits) :
     With `Θ(P, Q) = a_p^q · ∏_{x ∈ P.roots} Q.eval(x)` (Lemma 4.18's
     asymmetric definition), the BPR-promised identification `Res = Θ`
     holds as soon as `P` splits over `K` — `Q` need not split, because
-    the asymmetric form only references roots of the first argument.-/
+    the asymmetric form only references roots of the first argument.
+@isnad1 id=eq.1h3v.s5.99c9ff38fe2f from=translated src=- shape=2b1bf10b vocab=6df60483
+-/
 theorem Res_eq_Θ_of_splits (P Q : K[X]) (hP : P.Splits) :
     Res P Q = Θ P Q Q.natDegree := by
   rw [Res_eq_resultant P Q, ← Θ_eq_resultant P Q Q.natDegree hP le_rfl]

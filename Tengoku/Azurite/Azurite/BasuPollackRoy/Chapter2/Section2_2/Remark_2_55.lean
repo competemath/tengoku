@@ -115,7 +115,9 @@ def Interlacing (P Q : R[X]) : Prop :=
     ∃! s : R, Q.IsRoot s ∧ r₁ < s ∧ s < r₂
 
 omit [IsStrictOrderedRing R] in
-/-- The Cauchy index is bounded above by the number of distinct roots of `P`.-/
+/-- The Cauchy index is bounded above by the number of distinct roots of `P`.
+@isnad1 id=le.0h5v.s6.7c6554b8437d from=translated src=- shape=e3896f12 vocab=4ebd44fd
+-/
 theorem cauchyIndexOn_le_card_roots_toFinset
     (Q P : R[X]) (a b : ExtendedPoint R) :
     cauchyIndexOn Q P a b ≤ (P.roots.toFinset.card : ℤ) := by
@@ -137,7 +139,9 @@ theorem cauchyIndexOn_le_card_roots_toFinset
   omega
 
 omit [IsStrictOrderedRing R] in
-/-- The Cauchy index is bounded above by `P.natDegree`.-/
+/-- The Cauchy index is bounded above by `P.natDegree`.
+@isnad1 id=le.0h5v.s5.3840d6f54796 from=translated src=- shape=d32ebb98 vocab=18191d0d
+-/
 theorem cauchyIndexOn_le_natDegree (Q P : R[X]) (a b : ExtendedPoint R) :
     cauchyIndexOn Q P a b ≤ (P.natDegree : ℤ) := by
   classical
@@ -152,7 +156,9 @@ omit [IsStrictOrderedRing R] in
 /-- When the Cauchy index equals `P.natDegree`, every distinct root of `P`
     must be in `(a, b)` and produce a `−∞ → +∞` jump (and none produce a
     `+∞ → −∞` jump). Furthermore `P.roots.toFinset.card = P.natDegree` and
-    `P.roots.Nodup`, i.e. `P` has `natDegree`-many distinct simple real roots.-/
+    `P.roots.Nodup`, i.e. `P` has `natDegree`-many distinct simple real roots.
+@isnad1 id=and.1h5v.s7.677a34c81f81 from=translated src=- shape=b1ba1dae vocab=af239d31
+-/
 theorem cauchyIndexOn_eq_natDegree_extract
     (Q P : R[X]) (a b : ExtendedPoint R)
     (h : cauchyIndexOn Q P a b = (P.natDegree : ℤ)) :
@@ -1099,7 +1105,9 @@ private lemma exists_Q_root_in_gap
 
     The maximum possible value of the Cauchy index on any interval is
     `P.natDegree` (`cauchyIndexOn_le_natDegree`); attaining this maximum
-    forces the structural conditions above.-/
+    forces the structural conditions above.
+@isnad1 id=iff.3h5v.s8.a40ea423251a from=translated src=- shape=2dfe5838 vocab=8dba4792
+-/
 theorem remark_2_55_a
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (Q P : R[X]) (a b : ExtendedPoint R)
@@ -1980,7 +1988,9 @@ private lemma jumpsFromPosInfToNegInf_mod_iff
     Intuition: writing `Q = K · P + R` with `K = Q / P` and `R = Q % P`,
     we have `Q/P = K + R/P` where `K` is a polynomial (everywhere finite),
     so `Q/P` and `R/P` differ only by a continuous polynomial term, and
-    therefore have the same `±∞`-jumps at any `P`-root.-/
+    therefore have the same `±∞`-jumps at any `P`-root.
+@isnad1 id=eq.2h5v.s7.b66bd4aea3f2 from=translated src=- shape=e7fa1fb2 vocab=61043760
+-/
 theorem remark_2_55_b
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (Q P : R[X]) (a b : ExtendedPoint R) (hP_ne : P ≠ 0) :

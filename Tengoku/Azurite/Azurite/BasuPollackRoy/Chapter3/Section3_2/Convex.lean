@@ -28,7 +28,9 @@ variable {k : ℕ} {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 def IsConvex (C : Set (Fin k → R)) : Prop :=
   ∀ ⦃x⦄, x ∈ C → ∀ ⦃y⦄, y ∈ C → ∀ l : R, l ∈ Set.Icc (0 : R) 1 → (1 - l) • x + l • y ∈ C
 
-/-- `IsConvex` agrees with Mathlib's `Convex R`, giving access to the convexity API.-/
+/-- `IsConvex` agrees with Mathlib's `Convex R`, giving access to the convexity API.
+@isnad1 id=iff.0h3v.s6.4e53cce20b13 from=translated src=- shape=c2258632 vocab=a4e06db5
+-/
 theorem isConvex_iff_convex {C : Set (Fin k → R)} : IsConvex C ↔ Convex R C := by
   rw [convex_iff_segment_subset]
   refine ⟨fun h x hx y hy z hz => ?_, fun h x hx y hy l hl => ?_⟩

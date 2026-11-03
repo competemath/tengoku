@@ -39,22 +39,34 @@ variable {R : Type*} [Field R]
 
 noncomputable def sqSubC (a : R) : R[X] := (X : R[X]) ^ 2 - C a
 
+/--
+@isnad1 id=irreduci.1h2v.s5.f8f2cc3b13fa from=translated src=- shape=38915f70 vocab=c3d386cf
+-/
 theorem irred_X_sq_sub_C {a : R} (ha : ¬ IsSquare a) :
     Irreducible (sqSubC a) := by
   apply X_pow_sub_C_irreducible_of_prime Nat.prime_two
   intro b; rw [sq]; exact fun h => ha ⟨b, h.symm⟩
 
+/--
+@isnad1 id=monic.0h2v.s4.9f52ae87fadc from=translated src=- shape=101348a6 vocab=6dea9206
+-/
 theorem monic_sq_sub_C (a : R) : (sqSubC a).Monic :=
   monic_X_pow_sub_C a (by norm_num : (2 : ℕ) ≠ 0)
 
 private theorem natDegree_sq_sub_C (a : R) : (sqSubC a).natDegree = 2 :=
   natDegree_X_pow_sub_C (R := R)
 
+/--
+@isnad1 id=isalgebr.1h2v.s6.766549da6df8 from=translated src=- shape=b161458b vocab=983d0358
+-/
 theorem adjoinRoot_isAlgebraic {p : R[X]} (hp : p.Monic) :
     Algebra.IsAlgebraic R (AdjoinRoot p) :=
   haveI : Module.Finite R (AdjoinRoot p) := hp.finite_adjoinRoot
   Algebra.IsAlgebraic.of_finite R _
 
+/--
+@isnad1 id=not.2h2v.s7.e7e909053986 from=translated src=- shape=7a9105b9 vocab=8fc414b6
+-/
 theorem adjoinRoot_algebraMap_not_surjective {p : R[X]} (hp : Irreducible p)
     (hdeg : 1 < p.natDegree) :
     ¬ Function.Surjective (algebraMap R (AdjoinRoot p)) := by
@@ -75,12 +87,18 @@ theorem adjoinRoot_algebraMap_not_surjective {p : R[X]} (hp : Irreducible p)
 
 /-! ## IsSumSq tools -/
 
+/--
+@isnad1 id=issumsq.1h4v.s6.8b2649cc69df from=translated src=- shape=169c6db5 vocab=11f7db0e
+-/
 theorem isSumSq_map_ringHom {S : Type*} [Semiring S] (f : R →+* S)
     {s : R} (hs : IsSumSq s) : IsSumSq (f s) := by
   induction hs with
   | zero => simp [IsSumSq.zero]
   | sq_add a _ ih => simp [map_add, map_mul]; exact IsSumSq.sq_add (f a) ih
 
+/--
+@isnad1 id=issumsq.2h2v.s7.75a5281e2839 from=translated src=- shape=7acfb716 vocab=da0c5813
+-/
 theorem isSumSq_inv_of_isSumSq [IsSemireal R]
     {c : R} (hc : IsSumSq c) (_ : c ≠ 0) : IsSumSq (c⁻¹) := by
   have : c⁻¹ = c * (c⁻¹ * c⁻¹) := by field_simp
@@ -88,7 +106,9 @@ theorem isSumSq_inv_of_isSumSq [IsSemireal R]
 
 /-! ## Core decomposition lemma -/
 
-/-- `(root (X²−a))² = algebraMap a`-/
+/-- `(root (X²−a))² = algebraMap a`
+@isnad1 id=eq.0h2v.s8.5747ec292d9e from=translated src=- shape=a3217d9b vocab=c9683345
+-/
 theorem root_sq_sub_C (a : R) [Fact (Irreducible (sqSubC a))] :
     (AdjoinRoot.root (sqSubC a)) ^ 2 = algebraMap R _ a := by
   have h : Polynomial.aeval (AdjoinRoot.root (sqSubC a)) (sqSubC a) = 0 := by
@@ -97,7 +117,9 @@ theorem root_sq_sub_C (a : R) [Fact (Irreducible (sqSubC a))] :
   simp only [map_sub, map_pow, Polynomial.aeval_X, Polynomial.aeval_C] at h
   exact sub_eq_zero.mp h
 
-/-- Every element of AdjoinRoot(X²−a) decomposes as x + y * root.-/
+/-- Every element of AdjoinRoot(X²−a) decomposes as x + y * root.
+@isnad1 id=ex.0h3v.s9.0c2d539b07a2 from=translated src=- shape=a7c46a52 vocab=5f1607a1
+-/
 theorem repr_exists_sq_sub (a : R) [Fact (Irreducible (sqSubC a))]
     (z : AdjoinRoot (sqSubC a)) :
     ∃ x y : R, z = algebraMap R _ x + algebraMap R _ y * AdjoinRoot.root (sqSubC a) := by
@@ -125,7 +147,9 @@ theorem repr_exists_sq_sub (a : R) [Fact (Irreducible (sqSubC a))]
     simp [Polynomial.aeval_def, eval₂_add, eval₂_mul, eval₂_C, eval₂_X]
     exact ⟨r.coeff 0, r.coeff 1, by ring⟩
 
-/-- The decomposition x + y * root is unique (injectivity of algebraMap + linear independence).-/
+/-- The decomposition x + y * root is unique (injectivity of algebraMap + linear independence).
+@isnad1 id=and.1h4v.s9.75a7ccda44e8 from=translated src=- shape=0ae83c5d vocab=5f1607a1
+-/
 theorem repr_unique_sq_sub (a : R) [Fact (Irreducible (sqSubC a))]
     {x y : R} (h : algebraMap R _ x + algebraMap R _ y * AdjoinRoot.root (sqSubC a) = 0) :
     x = 0 ∧ y = 0 := by
@@ -153,7 +177,9 @@ theorem repr_unique_sq_sub (a : R) [Fact (Irreducible (sqSubC a))]
   · have := congr_arg (Polynomial.coeff · 1) hg_eq_zero
     simp at this; exact this
 
-/-- If −1 is a SoS in AdjoinRoot(X²−a), then −1 = Σ aᵢ² + a * Σ bᵢ² in R.-/
+/-- If −1 is a SoS in AdjoinRoot(X²−a), then −1 = Σ aᵢ² + a * Σ bᵢ² in R.
+@isnad1 id=ex.2h2v.s8.3571a5ce9024 from=translated src=- shape=13cec603 vocab=ef3e7da6
+-/
 theorem decompose_neg_one_in_adjoinRoot {a : R} (ha : ¬ IsSquare a)
     (hns : ¬ IsSemireal (AdjoinRoot (sqSubC a))) :
     ∃ (n : ℕ) (xs ys : Fin n → R),
@@ -204,7 +230,9 @@ theorem decompose_neg_one_in_adjoinRoot {a : R} (ha : ¬ IsSquare a)
 
 /-! ## Part 1: isSquare_or_isSquare_neg -/
 
-/-- If c is a nonzero SoS, then AdjoinRoot(X²−c) is semireal.-/
+/-- If c is a nonzero SoS, then AdjoinRoot(X²−c) is semireal.
+@isnad1 id=issemire.3h2v.s8.4ccb7d658aa0 from=translated src=- shape=70f3c5db vocab=f0e04fd8
+-/
 theorem adjoinRoot_sq_sub_isSemireal_of_isSumSq
     {c : R} (hc : IsSumSq c) (hc_sq : ¬ IsSquare c) (hR_real : Azurite.BPR.IsRealField R) :
     IsSemireal (AdjoinRoot (sqSubC c)) := by
@@ -219,7 +247,9 @@ theorem adjoinRoot_sq_sub_isSemireal_of_isSumSq
   have : IsSumSq (-1 : R) := hdecomp ▸ IsSumSq.add h1 h2
   exact (Azurite.BPR.isRealField_iff R).mp hR_real this
 
-/-- Every nonzero SoS is a square.-/
+/-- Every nonzero SoS is a square.
+@isnad1 id=issquare.3h2v.s6.39f1f87e91bb from=translated src=- shape=a7e9fe3f vocab=52fdf88f
+-/
 theorem sum_sq_isSquare (hR : Azurite.BPR.HasNoNontrivialRealAlgebraicExtension R)
     {c : R} (hc : IsSumSq c) (_hc_ne : c ≠ 0) : IsSquare c := by
   obtain ⟨hR1, hR2⟩ := hR
@@ -233,7 +263,9 @@ theorem sum_sq_isSquare (hR : Azurite.BPR.HasNoNontrivialRealAlgebraicExtension 
     adjoinRoot_sq_sub_isSemireal_of_isSumSq hc hns hR1
   exact hnsurj (hR2 (AdjoinRoot (sqSubC c)) halg hreal)
 
-/-- Every element or its negation is a square.-/
+/-- Every element or its negation is a square.
+@isnad1 id=or.1h2v.s5.b89641796dbc from=translated src=- shape=dbbdd5c9 vocab=2d4034aa
+-/
 theorem isSquare_or_isSquare_neg_of_noext
     (hR : Azurite.BPR.HasNoNontrivialRealAlgebraicExtension R)
     (x : R) : IsSquare x ∨ IsSquare (-x) := by
@@ -268,7 +300,9 @@ theorem isSquare_or_isSquare_neg_of_noext
 
 /-! ## Part 2: Every odd-degree polynomial has a root -/
 
-/-- In a semireal field, a² + (sum of squares) ≠ 0 when a ≠ 0.-/
+/-- In a semireal field, a² + (sum of squares) ≠ 0 when a ≠ 0.
+@isnad1 id=ne.2h3v.s7.7539fba10ef8 from=translated src=- shape=abf0f1fc vocab=3f368aa2
+-/
 theorem sq_add_isSumSq_ne_zero [IsSemireal R] {a : R} (ha : a ≠ 0)
     {s : R} (hs : IsSumSq s) : a * a + s ≠ 0 := by
   intro h
@@ -281,7 +315,9 @@ theorem sq_add_isSumSq_ne_zero [IsSemireal R] {a : R} (ha : a ≠ 0)
     rw [show (-1 : R) = -(a * a) * (a * a)⁻¹ from by field_simp]
     exact IsSumSq.mul hs_neg hinv)
 
-/-- A nonzero sum of squares in R[X] has even degree (when R is semireal).-/
+/-- A nonzero sum of squares in R[X] has even degree (when R is semireal).
+@isnad1 id=and.2h2v.s7.e8ed464f9b39 from=translated src=- shape=8c9de6ae vocab=bffa8515
+-/
 theorem even_natDegree_isSumSq [IsSemireal R]
     {S : R[X]} (hS : IsSumSq S) (hne : S ≠ 0) :
     Even S.natDegree ∧ IsSumSq S.leadingCoeff := by
@@ -323,7 +359,9 @@ theorem even_natDegree_isSumSq [IsSemireal R]
             ← Polynomial.leadingCoeff, leadingCoeff_mul]
         exact IsSumSq.mul_self _
 
-/-- R[X] is semireal when R is semireal.-/
+/-- R[X] is semireal when R is semireal.
+@isnad1 id=issemire.0h1v.s6.965b02776271 from=translated src=- shape=d96e9922 vocab=cf7f6016
+-/
 theorem polynomial_isSemireal [IsSemireal R] : IsSemireal R[X] := by
   rw [isSemireal_iff_not_isSumSq_neg_one]
   intro hss
@@ -335,13 +373,17 @@ theorem polynomial_isSemireal [IsSemireal R] : IsSemireal R[X] := by
   simp at heval
   exact (isSemireal_iff_not_isSumSq_neg_one.mp ‹IsSemireal R›) heval
 
-/-- AdjoinRoot of a nonzero polynomial is algebraic.-/
+/-- AdjoinRoot of a nonzero polynomial is algebraic.
+@isnad1 id=isalgebr.1h2v.s6.e6fb37983a31 from=translated src=- shape=a146d9ff vocab=78adaccd
+-/
 theorem adjoinRoot_isAlgebraic' {p : R[X]} (hp : p ≠ 0) :
     Algebra.IsAlgebraic R (AdjoinRoot p) := by
   have : Module.Finite R (AdjoinRoot p) := (AdjoinRoot.powerBasis hp).finite
   exact Algebra.IsAlgebraic.of_finite R _
 
-/-- Every polynomial of odd degree has a root.-/
+/-- Every polynomial of odd degree has a root.
+@isnad1 id=ex.2h2v.s5.ee22cb620710 from=translated src=- shape=539ccc0d vocab=6e974c21
+-/
 theorem exists_isRoot_of_odd_natDegree_of_noext
     (hR : Azurite.BPR.HasNoNontrivialRealAlgebraicExtension R)
     {P : R[X]} (hodd : Odd P.natDegree) : ∃ x, P.IsRoot x := by
@@ -509,7 +551,9 @@ theorem exists_isRoot_of_odd_natDegree_of_noext
 /-! ## Main theorem -/
 
 /-- **BPR Theorem 2.11 (d => a).** If R has no non-trivial real algebraic extension,
-    then R is real closed.-/
+    then R is real closed.
+@isnad1 id=isrealcl.1h1v.s3.085feed8cf93 from=translated src=- shape=c612a321 vocab=a775e645
+-/
 theorem theorem_2_11_d_a (hR : Azurite.BPR.HasNoNontrivialRealAlgebraicExtension R) :
     IsRealClosed R where
   toIsSemireal := hR.1

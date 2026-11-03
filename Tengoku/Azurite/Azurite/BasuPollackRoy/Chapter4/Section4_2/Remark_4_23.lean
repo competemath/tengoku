@@ -70,7 +70,9 @@ noncomputable def SyHa.mulMap (P Q : D[X]) (j : ℕ)
     (rectangular) Sylvester-Habicht matrix `SyHa P Q j` by a coordinate
     vector `uv` produces the coefficient vector (in the descending
     power basis `X^{p + q - j - 1}, …, X, 1`) of the polynomial
-    `μ_j(uv) =` `SyHa.mulMap P Q j uv`.-/
+    `μ_j(uv) =` `SyHa.mulMap P Q j uv`.
+@isnad1 id=eq.0h6v.s8.f33ad1c48411 from=translated src=- shape=ca7fb36c vocab=59f574e4
+-/
 theorem SyHa.transpose_mulVec_apply (P Q : D[X]) (j : ℕ)
     (uv : Fin (P.natDegree + Q.natDegree - 2 * j) → D)
     (i : Fin (P.natDegree + Q.natDegree - j)) :

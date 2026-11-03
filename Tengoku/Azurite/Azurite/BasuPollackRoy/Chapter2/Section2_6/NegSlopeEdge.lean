@@ -32,7 +32,9 @@ open Polynomial
 
 variable {R : Type*} [Field R]
 
-/-- **A negative-slope odd edge over `[0, r]`** for a recentered polynomial.-/
+/-- **A negative-slope odd edge over `[0, r]`** for a recentered polynomial.
+@isnad1 id=ex.5h3v.s12.f32bd92b4eb8 from=translated src=- shape=563d5c07 vocab=9e527f7f
+-/
 theorem exists_neg_slope_odd_edge {P₁ : Polynomial (PuiseuxSeries R)} {r : ℕ}
     (hr_odd : Odd r) (h0 : P₁.coeff 0 ≠ 0)
     (hbr : puiseuxOrder R (P₁.coeff r) = (0 : WithTop ℚ))

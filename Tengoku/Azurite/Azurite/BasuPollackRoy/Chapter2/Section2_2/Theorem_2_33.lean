@@ -163,7 +163,9 @@ private lemma Var_map_range_scale_eq (n : ℕ) (f g : ℕ → R)
 /-! ### The two main helpers -/
 
 /-- At `+∞`, the signs of the successive derivatives `P, P', …, P^{(p)}`
-    all agree with `sign(leadingCoeff P)`, so `Var(Der(P); +∞) = 0`.-/
+    all agree with `sign(leadingCoeff P)`, so `Var(Der(P); +∞) = 0`.
+@isnad1 id=eq.0h2v.s5.7265812941ce from=translated src=- shape=612030d1 vocab=5134a56f
+-/
 lemma varAt_der_posInf (P : R[X]) : varAt (der P) .posInf = 0 := by
   rw [varAt_posInf, der, List.map_map]
   -- Goal: Var ((range (P.natDegree + 1)).map (leadingCoeff ∘ (derivative^[·] P))) = 0
@@ -188,7 +190,9 @@ lemma varAt_der_posInf (P : R[X]) : varAt (der P) .posInf = 0 := by
     exact leadingCoeff_iterate_derivative_nonpos hP (Nat.lt_succ_iff.mp hk) hlc.le
 
 /-- At `0`, each value `P^{(i)}(0) = i! · a_i` has the same sign as the
-    coefficient `a_i` (since `i!` is positive), so `Var(Der(P); 0) = Var(P)`.-/
+    coefficient `a_i` (since `i!` is positive), so `Var(Der(P); 0) = Var(P)`.
+@isnad1 id=eq.0h2v.s6.b51d94b6b99c from=translated src=- shape=f0228724 vocab=43c361b1
+-/
 lemma varAt_der_finite_zero (P : R[X]) :
     varAt (der P) (.finite 0) = varPoly P := by
   rw [varAt_finite, der, varPoly, List.map_map]
@@ -208,7 +212,9 @@ lemma varAt_der_finite_zero (P : R[X]) :
 /-- The stepping-stone identity from the BPR proof sketch:
     `Var(P) = Var(Der(P); 0, +∞)`. Follows immediately from
     `varAt_der_finite_zero` (so `Var(Der(P); 0) = Var(P)`) and
-    `varAt_der_posInf` (so `Var(Der(P); +∞) = 0`).-/
+    `varAt_der_posInf` (so `Var(Der(P); +∞) = 0`).
+@isnad1 id=eq.0h2v.s6.aa2975d2fafa from=translated src=- shape=f66cd289 vocab=56e66c93
+-/
 theorem varPoly_eq_varBetween_der (P : R[X]) :
     (varPoly P : ℤ) = varBetween (der P) (.finite 0) .posInf := by
   simp [varBetween, varAt_der_finite_zero, varAt_der_posInf]

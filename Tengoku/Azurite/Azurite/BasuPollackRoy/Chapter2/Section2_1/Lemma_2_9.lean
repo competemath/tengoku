@@ -37,12 +37,16 @@ def coneExt (C : Subsemiring F) (hCone : IsCone C) (a : F) : Subsemiring F where
            C.add_mem (C.mul_mem hx₁ hx₂) (C.mul_mem (hCone a) (C.mul_mem hy₁ hy₂)),
            x₁ * y₂ + x₂ * y₁, C.add_mem (C.mul_mem hx₁ hy₂) (C.mul_mem hx₂ hy₁), by ring⟩
 
-/-- `C[a]` is a cone (contains all squares).-/
+/-- `C[a]` is a cone (contains all squares).
+@isnad1 id=iscone.1h3v.s5.aeb1686a4793 from=translated src=- shape=dacb98ec vocab=d5527395
+-/
 lemma coneExt_isCone {C : Subsemiring F} (hCone : IsCone C) (a : F) :
     IsCone (coneExt C hCone a) :=
   fun x => ⟨x ^ 2, hCone x, 0, C.zero_mem, by ring⟩
 
-/-- **BPR Lemma 2.9.** If `C` is a proper cone and `−a ∉ C`, then `C[a]` is proper.-/
+/-- **BPR Lemma 2.9.** If `C` is a proper cone and `−a ∉ C`, then `C[a]` is proper.
+@isnad1 id=isproper.2h3v.s6.0c5ac4bd20f5 from=translated src=- shape=bb59a5e9 vocab=b8e9ca50
+-/
 theorem lemma_2_9 {C : Subsemiring F} (hC : IsProperCone C) (hna : -a ∉ C) :
     IsProperCone (coneExt C hC.1 a) := by
   refine ⟨coneExt_isCone hC.1 a, ?_⟩

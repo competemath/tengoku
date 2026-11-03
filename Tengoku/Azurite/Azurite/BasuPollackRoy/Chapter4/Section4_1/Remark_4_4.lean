@@ -145,7 +145,9 @@ private lemma card_filter_gt_eq (s : Multiset R) (hs : s.Nodup) :
 
 /-- The squaring identity: when `s.Nodup`, `discR`'s pre-image in `R`
     is a perfect square. With `Q := ∏_{(a, b) ∈ filter(>)}(a − b)`,
-    we have `(-1)^N · off-diag-prod = Q^2`.-/
+    we have `(-1)^N · off-diag-prod = Q^2`.
+@isnad1 id=eq.1h2v.s8.deede83ebd7d from=translated src=- shape=e5e27f7b vocab=3d0d9245
+-/
 lemma discR_aux_eq_sq (s : Multiset R) (hs : s.Nodup) :
     (-1 : R) ^ (s.card * (s.card - 1) / 2) *
       ((s ×ˢ s - s.map (fun a => (a, a))).map (fun ab => ab.1 - ab.2)).prod =
@@ -166,7 +168,9 @@ lemma discR_aux_eq_sq (s : Multiset R) (hs : s.Nodup) :
         one_pow]
   linear_combination (Q ^ 2) * hsq
 
-/-- Distinct roots in `R` make the strict-greater product nonzero.-/
+/-- Distinct roots in `R` make the strict-greater product nonzero.
+@isnad1 id=ne.1h2v.s7.256f62bbe5b1 from=translated src=- shape=b357f910 vocab=d3f5a48b
+-/
 lemma filter_gt_prod_ne_zero (s : Multiset R) (_hs : s.Nodup) :
     (((s ×ˢ s).filter (fun ab : R × R => ab.1 > ab.2)).map
       (fun ab => ab.1 - ab.2)).prod ≠ 0 := by
@@ -180,7 +184,9 @@ lemma filter_gt_prod_ne_zero (s : Multiset R) (_hs : s.Nodup) :
 
 /-- **BPR Remark 4.4 (R-valued form).** When `P : R[X]` is monic with all
     roots in the linearly ordered field `R` and distinct, the R-side
-    discriminant is positive.-/
+    discriminant is positive.
+@isnad1 id=lt.2h2v.s6.acfc1e016a3a from=translated src=- shape=ebf7743b vocab=eeacdc56
+-/
 theorem discR_pos_of_distinct_roots (P : R[X]) (_hP : P.Monic)
     (hnodup : P.roots.Nodup) :
     0 < discR P := by
@@ -193,7 +199,9 @@ end RealSide
 section Bridge
 
 /-- Multiset Cartesian product commutes with mapping a function on each
-    component: `(s.map f) ×ˢ (t.map g) = (s ×ˢ t).map (Prod.map f g)`.-/
+    component: `(s.map f) ×ˢ (t.map g) = (s ×ˢ t).map (Prod.map f g)`.
+@isnad1 id=eq.0h8v.s6.da28db739f56 from=translated src=- shape=56df47d5 vocab=6fe2e758
+-/
 lemma multiset_product_map {α α' β β' : Type*}
     (s : Multiset α) (t : Multiset β) (f : α → α') (g : β → β') :
     (s.map f) ×ˢ (t.map g) = (s ×ˢ t).map (Prod.map f g) := by
@@ -206,7 +214,9 @@ lemma multiset_product_map {α α' β β' : Type*}
   rfl
 
 /-- Multiset subtraction commutes with mapping by an injective function:
-    `(m - n).map f = m.map f - n.map f` when `f` is injective.-/
+    `(m - n).map f = m.map f - n.map f` when `f` is injective.
+@isnad1 id=eq.1h5v.s6.d4c94bcbeaa5 from=translated src=- shape=4ad3bed9 vocab=de401a5b
+-/
 lemma multiset_map_sub_of_injective {α β : Type*}
     [DecidableEq α] [DecidableEq β] {f : α → β} (hf : Function.Injective f)
     (m n : Multiset α) :
@@ -233,7 +243,9 @@ variable {C : Type*} [Field C] [Algebra R C] [IsAlgClosed C]
 omit [IsStrictOrderedRing R] [IsAlgClosed C] in
 /-- **Bridge.** When `P : R[X]` splits in `R`, the C-valued discriminant
     `disc P` is the image of the R-valued discriminant `discR P` under
-    the embedding `R ↪ C`.-/
+    the embedding `R ↪ C`.
+@isnad1 id=eq.1h3v.s6.a79183eff06c from=translated src=- shape=5eea38ed vocab=d2c312a5
+-/
 theorem disc_eq_algebraMap_discR (P : R[X]) (hsplits : P.Splits) :
     (disc P : C) = (algebraMap R C) (discR P) := by
   classical
@@ -277,7 +289,9 @@ omit [IsAlgClosed C] in
 /-- **BPR Remark 4.4.** When `P : R[X]` is monic with all roots in the
     linearly ordered field `R` and distinct, `Disc(P) > 0` --- precisely:
     `disc P` (in any algebraic closure `C`) equals `(algebraMap R C) d`
-    for some positive `d : R`.-/
+    for some positive `d : R`.
+@isnad1 id=ex.3h3v.s7.9f7fc867d555 from=translated src=- shape=2844800a vocab=254d37c5
+-/
 theorem disc_pos_of_real_distinct_roots (P : R[X]) (hP : P.Monic)
     (hsplits : P.Splits) (hnodup : P.roots.Nodup) :
     ∃ d : R, 0 < d ∧ (algebraMap R C) d = (disc P : C) :=

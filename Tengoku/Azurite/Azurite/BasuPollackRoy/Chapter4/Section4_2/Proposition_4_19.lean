@@ -47,7 +47,9 @@ variable {D : Type*} [CommRing D]
       `C (Res(P, Q)) = U · P + V · Q`
 
     in `D[X]` (where `C` embeds the scalar `Res(P, Q) ∈ D` as a constant
-    polynomial).-/
+    polynomial).
+@isnad1 id=ex.1h3v.s8.9850f751c6c4 from=translated src=- shape=0b48ebf7 vocab=ff86e66c
+-/
 theorem Proposition_4_19 (P Q : D[X])
     (H : P.natDegree ≠ 0 ∨ Q.natDegree ≠ 0) :
     ∃ U V : D[X], U.degree < Q.natDegree ∧ V.degree < P.natDegree ∧

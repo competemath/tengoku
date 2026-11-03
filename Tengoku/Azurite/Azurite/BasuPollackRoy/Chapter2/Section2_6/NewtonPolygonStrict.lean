@@ -31,7 +31,9 @@ variable {R : Type*} [Field R]
 
 /-- **The strict lower-hull construction.** Carries both a (non-strict) supporting line `hs` and a
 strict lower bound `hstr` on the right-slopes; the next vertex is the *largest* column achieving
-the minimal slope. Outputs the usual polygon data plus the per-edge `honseg` property.-/
+the minimal slope. Outputs the usual polygon data plus the per-edge `honseg` property.
+@isnad1 id=ex.6h6v.s8.cda596ae153f from=translated src=- shape=fee3aae9 vocab=0c5a79bc
+-/
 theorem lower_hull_exists_strict (S : Finset ℕ) (f : ℕ → ℚ) (N : ℕ)
     (hSN : ∀ i ∈ S, i ≤ N) (hNS : N ∈ S) :
     ∀ d : ℕ, ∀ a : ℕ, a ∈ S → N - a ≤ d → ∀ s : ℚ,
@@ -165,7 +167,9 @@ theorem lower_hull_exists_strict (S : Finset ℕ) (f : ℕ → ℚ) (N : ℕ)
 open Classical in
 /-- **Existence of a strict Newton polygon.** Every polynomial with nonzero constant term has a
 Newton polygon all of whose edges satisfy `honseg`: a column on an edge line lies within the
-edge's horizontal projection.-/
+edge's horizontal projection.
+@isnad1 id=ex.1h2v.s11.28fb572b9220 from=translated src=- shape=e3011825 vocab=115bd7fa
+-/
 theorem exists_isNewtonPolygon_honseg (P : Polynomial (PuiseuxSeries R)) (h0 : P.coeff 0 ≠ 0) :
     ∃ M, IsNewtonPolygon P M ∧
       ∀ A B : ℕ × ℚ, (A, B) ∈ M.zip M.tail → ∀ h, colOnLine P A B h → A.1 ≤ h ∧ h ≤ B.1 := by

@@ -37,7 +37,9 @@ def HasSeparableIntermediateValueProperty (R : Type*) [Field R] [LinearOrder R]
     ∃ x : R, a < x ∧ x < b ∧ Polynomial.eval x P = 0
 
 /-- **BPR Lemma 3.12.** The intermediate value property holds for every polynomial in `R[X]` if and
-only if it holds for every separable polynomial in `R[X]`.-/
+only if it holds for every separable polynomial in `R[X]`.
+@isnad1 id=iff.0h1v.s5.470ecf71515d from=translated src=- shape=426cc398 vocab=53918461
+-/
 theorem lemma_3_12 :
     HasIntermediateValueProperty R ↔ HasSeparableIntermediateValueProperty R := by
   constructor

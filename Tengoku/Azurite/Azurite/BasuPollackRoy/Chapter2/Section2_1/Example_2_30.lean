@@ -38,7 +38,9 @@ private lemma root_X_sq_sub_two_ne_zero {r : R} (hr : r ^ 2 = 2) : r ≠ 0 := by
 /-- **BPR Example 2.30.** In any ordered field, the roots of `X² − 2` are
     distinguished by the sign of the derivative `2X`. Since `sign(2r) = sign(r)`
     (as `2 > 0`), two roots `r, s` with `sign(r) = sign(s)` must be equal.
-    Each root has a unique Thom encoding `(σ(P) = 0, σ(P') = ±1)`.-/
+    Each root has a unique Thom encoding `(σ(P) = 0, σ(P') = ±1)`.
+@isnad1 id=eq.3h3v.s8.1a576793ee9e from=translated src=- shape=a8816034 vocab=8307a085
+-/
 theorem example_2_30 {r s : R} (hr : r ^ 2 = 2) (hs : s ^ 2 = 2)
     (hsign : SignType.sign r = SignType.sign s) : r = s := by
   have h : (r - s) * (r + s) = 0 := by nlinarith

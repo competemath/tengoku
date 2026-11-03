@@ -81,7 +81,9 @@ private lemma example_2_37_roots_empty :
     If both `Var(Der(P); 0, a] = 1` and `Var(Der(P); a, 1] = 1`, then by
     Budan-Fourier each sub-interval would contain at least one real root of
     `P`, giving at least two roots in `(0, 1]`.  But `X² − X + 1` has no
-    real root, since `4 (X² − X + 1) = (2X − 1)² + 3 ≥ 3 > 0`.-/
+    real root, since `4 (X² − X + 1) = (2X − 1)² + 3 ≥ 3 > 0`.
+@isnad1 id=not.3h2v.s9.3507224d39cc from=translated src=- shape=736ba0b6 vocab=ba499705
+-/
 theorem example_2_37_no_refinement
     (hIVP : HasIntermediateValueProperty R) {a : R} (ha0 : 0 < a) (ha1 : a ≤ 1) :
     ¬ (varBetween (der ((X : R[X]) ^ 2 - X + 1)) (.finite 0) (.finite a) = 1 ∧

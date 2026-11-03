@@ -66,10 +66,19 @@ section
 
 variable [Mul R] [Zero R] [LT R] [DecidableLT R]
 
+/--
+@isnad1 id=eq.0h1v.s4.3a7017149108 from=translated src=- shape=aa1e963b vocab=1c76a021
+-/
 @[simp] lemma varNonzero_nil : varNonzero ([] : List R) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.8c0260e9aedb from=translated src=- shape=2c671ba1 vocab=97f55238
+-/
 @[simp] lemma varNonzero_singleton (a : R) : varNonzero [a] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.08c8aa367f6c from=translated src=- shape=c7dbcb57 vocab=f41467f9
+-/
 lemma varNonzero_cons_cons (a b : R) (rest : List R) :
     varNonzero (a :: b :: rest) =
       (if a * b < 0 then 1 else 0) + varNonzero (b :: rest) := rfl
@@ -100,7 +109,9 @@ variable [CommMagma R] [Zero R] [LT R] [DecidableLT R]
 /-- `varNonzero` is invariant under reversal: the number of adjacent sign
     variations does not depend on the orientation of the list. Needs
     commutativity of multiplication, since the adjacent-pair test `a * b < 0`
-    must be symmetric.-/
+    must be symmetric.
+@isnad1 id=eq.0h2v.s5.5eb77f38b9e2 from=translated src=- shape=9330952e vocab=7a00f734
+-/
 lemma varNonzero_reverse (l : List R) : varNonzero l.reverse = varNonzero l := by
   induction l with
   | nil => rfl
@@ -119,13 +130,21 @@ section
 
 variable [Mul R] [Zero R] [DecidableEq R] [LT R] [DecidableLT R]
 
+/--
+@isnad1 id=eq.0h1v.s5.d081c301ab46 from=translated src=- shape=97fd0055 vocab=82795b28
+-/
 @[simp] lemma Var_nil : Var ([] : List R) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.4713be49c78c from=translated src=- shape=00f1efc2 vocab=d1e42f59
+-/
 lemma Var_eq_varNonzero_filter (a : List R) :
     Var a = varNonzero (a.filter (· ≠ 0)) := rfl
 
 /-- If every element of `a` is nonzero, then filtering zeros is a no-op and
-    `Var a` agrees with the pairwise count `varNonzero a`.-/
+    `Var a` agrees with the pairwise count `varNonzero a`.
+@isnad1 id=eq.1h2v.s5.4621877e6794 from=translated src=- shape=1927c252 vocab=28afef37
+-/
 lemma Var_of_forall_ne_zero {a : List R} (h : ∀ x ∈ a, x ≠ 0) :
     Var a = varNonzero a := by
   unfold Var
@@ -141,7 +160,9 @@ variable [CommMagma R] [Zero R] [DecidableEq R] [LT R] [DecidableLT R]
 /-- **`Var` is invariant under reversal.** A coefficient sequence and its
     reverse have the same number of sign variations, so `Var(a₀, …, aₙ)` (the
     ascending form used by `varPoly`) equals `Var(aₙ, …, a₀)` (BPR's descending
-    display).-/
+    display).
+@isnad1 id=eq.0h2v.s5.5bbde657dc88 from=translated src=- shape=fa85b1b2 vocab=8788aa7f
+-/
 lemma Var_reverse (a : List R) : Var a.reverse = Var a := by
   rw [Var, Var, List.filter_reverse, varNonzero_reverse]
 
@@ -152,7 +173,9 @@ section
 variable [Ring R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- `varNonzero` vanishes on a list whose entries are all nonneg: every
-    adjacent product is nonneg, so no sign variation ever triggers.-/
+    adjacent product is nonneg, so no sign variation ever triggers.
+@isnad1 id=eq.1h2v.s6.b748c4cdfb9a from=translated src=- shape=314a9fb3 vocab=7da38642
+-/
 lemma varNonzero_eq_zero_of_forall_nonneg :
     ∀ {l : List R}, (∀ x ∈ l, 0 ≤ x) → varNonzero l = 0
   | [], _ => rfl
@@ -166,7 +189,9 @@ lemma varNonzero_eq_zero_of_forall_nonneg :
       exact varNonzero_eq_zero_of_forall_nonneg
         (fun x hx => h x (List.mem_cons_of_mem _ hx))
 
-/-- `varNonzero` vanishes on a list whose entries are all nonpos.-/
+/-- `varNonzero` vanishes on a list whose entries are all nonpos.
+@isnad1 id=eq.1h2v.s6.ae206fb33cd8 from=translated src=- shape=f01dad15 vocab=7da38642
+-/
 lemma varNonzero_eq_zero_of_forall_nonpos :
     ∀ {l : List R}, (∀ x ∈ l, x ≤ 0) → varNonzero l = 0
   | [], _ => rfl
@@ -180,14 +205,18 @@ lemma varNonzero_eq_zero_of_forall_nonpos :
       exact varNonzero_eq_zero_of_forall_nonpos
         (fun x hx => h x (List.mem_cons_of_mem _ hx))
 
-/-- `Var` vanishes on a list whose entries are all nonneg.-/
+/-- `Var` vanishes on a list whose entries are all nonneg.
+@isnad1 id=eq.1h2v.s6.dc8973a2c004 from=translated src=- shape=314a9fb3 vocab=b80bdbbd
+-/
 lemma Var_eq_zero_of_forall_nonneg {l : List R} (h : ∀ x ∈ l, 0 ≤ x) :
     Var l = 0 := by
   unfold Var
   exact varNonzero_eq_zero_of_forall_nonneg
     (fun x hx => h x (List.mem_of_mem_filter hx))
 
-/-- `Var` vanishes on a list whose entries are all nonpos.-/
+/-- `Var` vanishes on a list whose entries are all nonpos.
+@isnad1 id=eq.1h2v.s6.05c3b350687c from=translated src=- shape=f01dad15 vocab=b80bdbbd
+-/
 lemma Var_eq_zero_of_forall_nonpos {l : List R} (h : ∀ x ∈ l, x ≤ 0) :
     Var l = 0 := by
   unfold Var
@@ -195,7 +224,9 @@ lemma Var_eq_zero_of_forall_nonpos {l : List R} (h : ∀ x ∈ l, x ≤ 0) :
     (fun x hx => h x (List.mem_of_mem_filter hx))
 
 omit [IsStrictOrderedRing R] in
-/-- Prepending a zero to a list does not change its variation count.-/
+/-- Prepending a zero to a list does not change its variation count.
+@isnad1 id=eq.0h2v.s6.fc4fce43fd31 from=translated src=- shape=4520ac84 vocab=0367c80d
+-/
 @[simp] lemma Var_zero_cons (l : List R) : Var ((0 : R) :: l) = Var l := by
   unfold Var
   rw [List.filter_cons]
@@ -209,7 +240,9 @@ variable [Ring R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- If two lists of nonzero elements have pointwise matching signs, their
     `varNonzero` counts agree. The `a * b < 0` comparison depends only on
-    `sign a * sign b` (via `sign_mul`), so sign-map equality is enough.-/
+    `sign a * sign b` (via `sign_mul`), so sign-map equality is enough.
+@isnad1 id=eq.1h3v.s8.c218dc4b9149 from=translated src=- shape=c32c185e vocab=8d020807
+-/
 lemma varNonzero_congr_sign : ∀ {l₁ l₂ : List R},
     l₁.map SignType.sign = l₂.map SignType.sign →
     varNonzero l₁ = varNonzero l₂ := by
@@ -259,7 +292,9 @@ lemma varNonzero_congr_sign : ∀ {l₁ l₂ : List R},
           exact ⟨hb, hrest'⟩
 
 /-- `Var` is invariant under operations that preserve the sign pattern of
-    the list.-/
+    the list.
+@isnad1 id=eq.1h3v.s8.378c4ccea3da from=translated src=- shape=c32c185e vocab=970f5fe5
+-/
 lemma Var_congr_sign {l₁ l₂ : List R}
     (h : l₁.map SignType.sign = l₂.map SignType.sign) :
     Var l₁ = Var l₂ := by

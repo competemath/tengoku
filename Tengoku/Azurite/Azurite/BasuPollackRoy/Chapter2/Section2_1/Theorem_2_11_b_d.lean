@@ -37,13 +37,18 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-! ## Part 1: R is real (automatic from ordered field) -/
 
+/--
+@isnad1 id=isrealfi.0h1v.s4.296c28003703 from=translated src=- shape=affebb5f vocab=83b46b90
+-/
 theorem ordered_field_isRealField : Azurite.BPR.IsRealField R :=
   show IsSemireal R from inferInstance
 
 /-! ## Part 2: Irreducible polynomials of degree > 1 have degree 2 -/
 
 /-- A root of p in the range of algebraMap would give a linear factor,
-    contradicting irreducibility when deg > 1.-/
+    contradicting irreducibility when deg > 1.
+@isnad1 id=ne.3h3v.s11.90ff8923c036 from=translated src=- shape=5d0b77ce vocab=78fd4642
+-/
 theorem root_not_real [IsAlgClosed (Ri R)]
     {p : R[X]} (hp : Irreducible p) (hdeg : 1 < p.natDegree)
     {α : Ri R} (hα : Polynomial.aeval α p = 0)  :
@@ -62,7 +67,9 @@ theorem root_not_real [IsAlgClosed (Ri R)]
       rw [hq]; exact Polynomial.natDegree_mul (monic_X_sub_C r).ne_zero (IsUnit.ne_zero h)
     rw [natDegree_X_sub_C, Polynomial.natDegree_eq_zero_of_isUnit h] at this; omega
 
-/-- If p is irreducible over R with deg(p) > 1 and R[i] is alg closed, then deg(p) = 2.-/
+/-- If p is irreducible over R with deg(p) > 1 and R[i] is alg closed, then deg(p) = 2.
+@isnad1 id=eq.2h2v.s8.9ed4a1fe242c from=translated src=- shape=1eeb0170 vocab=27cc4ee3
+-/
 theorem irred_degree_eq_two [IsAlgClosed (Ri R)]
     {p : R[X]} (hp : Irreducible p) (hdeg : 1 < p.natDegree) :
     p.natDegree = 2 := by
@@ -88,7 +95,9 @@ theorem irred_degree_eq_two [IsAlgClosed (Ri R)]
 /-! ## Part 3: AdjoinRoot of irreducible degree-2 polynomial is not semireal -/
 
 /-- If p is irreducible of degree 2 over R (with R[i] alg closed),
-    then AdjoinRoot p contains a square root of −1.-/
+    then AdjoinRoot p contains a square root of −1.
+@isnad1 id=ex.2h2v.s8.5a24e2e7a333 from=translated src=- shape=a1ce088b vocab=69e7076b
+-/
 theorem adjoinRoot_irred_sq_neg_one [IsAlgClosed (Ri R)]
     {p : R[X]} (hp : Irreducible p) (hdeg : p.natDegree = 2) :
     ∃ j : AdjoinRoot p, j ^ 2 = -1 := by
@@ -128,7 +137,9 @@ theorem adjoinRoot_irred_sq_neg_one [IsAlgClosed (Ri R)]
 
 /-! ## Part 4: No non-trivial real algebraic extension -/
 
-/-- If R₁ is algebraic over R and real, then algebraMap R R₁ is surjective.-/
+/-- If R₁ is algebraic over R and real, then algebraMap R R₁ is surjective.
+@isnad1 id=surjecti.2h2v.s8.4851cbd38c0f from=translated src=- shape=477c29f7 vocab=c33fb6a5
+-/
 theorem algebraMap_surjective_of_real_algebraic [IsAlgClosed (Ri R)]
     {R₁ : Type*} [Field R₁] [Algebra R R₁]
     (hAlg : Algebra.IsAlgebraic R R₁) (hReal : Azurite.BPR.IsRealField R₁) :
@@ -175,7 +186,9 @@ theorem algebraMap_surjective_of_real_algebraic [IsAlgClosed (Ri R)]
 /-! ## Part 5: Main theorem -/
 
 /-- **BPR Theorem 2.11 (b => d).** If R[i] is algebraically closed,
-    then R is a real field with no non-trivial real algebraic extension.-/
+    then R is a real field with no non-trivial real algebraic extension.
+@isnad1 id=hasnonon.0h1v.s7.5bf14813c71c from=translated src=- shape=08e3c0bd vocab=9757ea1f
+-/
 theorem theorem_2_11_b_d [IsAlgClosed (Ri R)] :
     Azurite.BPR.HasNoNontrivialRealAlgebraicExtension R :=
   ⟨ordered_field_isRealField, fun _ _ _ hAlg hReal =>

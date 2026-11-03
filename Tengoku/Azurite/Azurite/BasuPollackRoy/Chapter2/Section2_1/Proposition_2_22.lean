@@ -151,7 +151,9 @@ private lemma rolle_base (hIVP : HasIntermediateValueProperty R)
 
 /-- **BPR Proposition 2.22 (Rolle's theorem).** Let `R` be an ordered field with
     the intermediate value property, `P ∈ R[X]`, `a < b`, `P(a) = P(b) = 0`.
-    Then `P'` has a root in `(a, b)`.-/
+    Then `P'` has a root in `(a, b)`.
+@isnad1 id=ex.4h4v.s8.74fd2c985e73 from=translated src=- shape=446b2d8b vocab=e9b4393b
+-/
 theorem proposition_2_22 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) {a b : R} (hab : a < b)
     (hPa : P.eval a = 0) (hPb : P.eval b = 0) :
@@ -179,7 +181,9 @@ theorem proposition_2_22 (hIVP : HasIntermediateValueProperty R)
   obtain ⟨d, hd, hPd⟩ := rolle_base hIVP hP hac hPa hPc hno_root
   exact ⟨d, ⟨hd.1, lt_of_lt_of_le hd.2 hcb⟩, hPd⟩
 
-/-- **Proposition 2.22 (Rolle's theorem), real closed form.**-/
+/-- **Proposition 2.22 (Rolle's theorem), real closed form.**
+@isnad1 id=ex.3h4v.s8.dc2afdb94c73 from=translated src=- shape=93417101 vocab=59eb16f1
+-/
 theorem proposition_2_22_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) {a b : R} :

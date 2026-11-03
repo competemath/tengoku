@@ -62,7 +62,9 @@ def polyPos (P : F[X]) : Prop := P ≠ 0 ∧ 0 < P.trailingCoeff
 
 omit [LinearOrder F] [IsStrictOrderedRing F] in
 /-- If `P.coeff m ≠ 0` and all coefficients below `m` vanish, then
-    `P.natTrailingDegree = m`.-/
+    `P.natTrailingDegree = m`.
+@isnad1 id=eq.2h3v.s6.9abde5c2a6b4 from=translated src=- shape=b9541c1d vocab=68cf4c4d
+-/
 lemma natTrailingDegree_eq_of {P : F[X]} {m : ℕ}
     (hcoeff : P.coeff m ≠ 0)
     (hbelow : ∀ i, i < m → P.coeff i = 0) :
@@ -74,13 +76,17 @@ lemma natTrailingDegree_eq_of {P : F[X]} {m : ℕ}
       (fun hP => hcoeff (by simp [hP]))) (hbelow _ h)
 
 omit [LinearOrder F] [IsStrictOrderedRing F] in
-/-- The trailing coefficient of `-P` is `-P.trailingCoeff`.-/
+/-- The trailing coefficient of `-P` is `-P.trailingCoeff`.
+@isnad1 id=eq.0h2v.s6.4d92eb0377c8 from=translated src=- shape=58efbbcf vocab=77f6b00e
+-/
 lemma neg_trailingCoeff (P : F[X]) : (-P).trailingCoeff = -P.trailingCoeff := by
   simp [Polynomial.trailingCoeff, natTrailingDegree_neg, coeff_neg]
 
 /-! #### Positive cone properties -/
 
-/-- **Trichotomy**: Every polynomial is positive, zero, or negative.-/
+/-- **Trichotomy**: Every polynomial is positive, zero, or negative.
+@isnad1 id=or.0h2v.s6.7a435eaa8779 from=translated src=- shape=92ef2a6e vocab=e0015555
+-/
 lemma polyPos_trichotomy (P : F[X]) : polyPos P ∨ P = 0 ∨ polyPos (-P) := by
   by_cases hP : P = 0
   · exact Or.inr (Or.inl hP)
@@ -90,7 +96,9 @@ lemma polyPos_trichotomy (P : F[X]) : polyPos P ∨ P = 0 ∨ polyPos (-P) := by
     · exact absurd (trailingCoeff_eq_zero.mp h) hP
     · exact Or.inl ⟨hP, h⟩
 
-/-- If P and Q are positive in 0₊, then P + Q is positive in 0₊.-/
+/-- If P and Q are positive in 0₊, then P + Q is positive in 0₊.
+@isnad1 id=polypos.2h3v.s6.78350d3ec4d6 from=translated src=- shape=a44d2b2c vocab=effbee4f
+-/
 lemma polyPos_add {P Q : F[X]} (hP : polyPos P) (hQ : polyPos Q) :
     polyPos (P + Q) := by
   obtain ⟨hP_ne, hP_pos⟩ := hP
@@ -125,7 +133,9 @@ lemma polyPos_add {P Q : F[X]} (hP : polyPos P) (hQ : polyPos Q) :
            by rw [Polynomial.trailingCoeff,
                   natTrailingDegree_eq_of (ne_of_gt hcoeff_n) hbelow]; exact hcoeff_n⟩
 
-/-- If P and Q are positive in 0₊, then P * Q is positive in 0₊.-/
+/-- If P and Q are positive in 0₊, then P * Q is positive in 0₊.
+@isnad1 id=polypos.2h3v.s6.b125e673762f from=translated src=- shape=a44d2b2c vocab=6993fcb9
+-/
 lemma polyPos_mul {P Q : F[X]} (hP : polyPos P) (hQ : polyPos Q) :
     polyPos (P * Q) := by
   obtain ⟨hP_ne, hP_pos⟩ := hP
@@ -135,7 +145,9 @@ lemma polyPos_mul {P Q : F[X]} (hP : polyPos P) (hQ : polyPos Q) :
       coeff_mul_natTrailingDegree_add_natTrailingDegree]
   exact mul_pos hP_pos hQ_pos
 
-/-- Negation flips positivity.-/
+/-- Negation flips positivity.
+@isnad1 id=iff.0h2v.s7.3984b1e5d565 from=translated src=- shape=aed72760 vocab=9a9afbd9
+-/
 lemma polyPos_neg_iff {P : F[X]} : polyPos (-P) ↔ P ≠ 0 ∧ P.trailingCoeff < 0 := by
   constructor
   · intro ⟨hne, hpos⟩
@@ -144,7 +156,9 @@ lemma polyPos_neg_iff {P : F[X]} : polyPos (-P) ↔ P ≠ 0 ∧ P.trailingCoeff 
   · intro ⟨hne, hneg⟩
     exact ⟨neg_ne_zero.mpr hne, by rw [neg_trailingCoeff]; linarith⟩
 
-/-- P and -P cannot both be positive.-/
+/-- P and -P cannot both be positive.
+@isnad1 id=not.1h2v.s6.72930b02863f from=translated src=- shape=d39d1e1a vocab=e0015555
+-/
 lemma not_polyPos_of_polyPos_neg {P : F[X]} (hP : polyPos P) : ¬ polyPos (-P) := by
   rw [polyPos_neg_iff]; push Not; intro _; linarith [hP.2]
 
@@ -159,8 +173,14 @@ instance instLTPoly : LT F[X] where
   lt P Q := polyPos (Q - P)
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=iff.0h3v.s6.ab00bcac2d2a from=translated src=- shape=438c1b34 vocab=856aba12
+-/
 lemma le_def' {P Q : F[X]} : P ≤ Q ↔ Q = P ∨ polyPos (Q - P) := Iff.rfl
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=iff.0h3v.s6.da9162ca689a from=translated src=- shape=9f356c90 vocab=4a80a4c3
+-/
 lemma lt_def' {P Q : F[X]} : P < Q ↔ polyPos (Q - P) := Iff.rfl
 
 /-- `polyPos` is decidable (since equality and `<` on `F` are decidable).-/
@@ -233,14 +253,18 @@ noncomputable instance : MulPosStrictMono F[X] where
 /-- The indeterminate ε in `F[X]`, with the 0₊ order making it infinitesimal.-/
 noncomputable abbrev ε : F[X] := X
 
-/-- ε is positive in the 0₊ order.-/
+/-- ε is positive in the 0₊ order.
+@isnad1 id=lt.0h1v.s6.33c28e3b777d from=translated src=- shape=1846d3ac vocab=17ed3b3f
+-/
 lemma ε_pos : (0 : F[X]) < ε := by
   rw [lt_def']
   constructor
   · simp
   · simp [Polynomial.trailingCoeff, natTrailingDegree_X, sub_zero]
 
-/-- ε is infinitesimal over F: 0 < ε and ε < C a for every positive a ∈ F.-/
+/-- ε is infinitesimal over F: 0 < ε and ε < C a for every positive a ∈ F.
+@isnad1 id=lt.1h2v.s7.2a2e78676ff6 from=translated src=- shape=972aec06 vocab=26e56651
+-/
 lemma ε_lt_C {a : F} (ha : 0 < a) : ε < (C a : F[X]) := by
   rw [lt_def']
   constructor
@@ -252,7 +276,9 @@ lemma ε_lt_C {a : F} (ha : 0 < a) : ε < (C a : F[X]) := by
     rw [natTrailingDegree_eq_of hne (fun i hi => by omega)]
     simp; exact ha
 
-/-- The embedding `C : F →+* F[X]` is strictly monotone in the 0₊ order.-/
+/-- The embedding `C : F →+* F[X]` is strictly monotone in the 0₊ order.
+@isnad1 id=strictmo.0h1v.s7.a7b3adf7c9e0 from=translated src=- shape=6be4b685 vocab=36533daf
+-/
 lemma C_strictMono : StrictMono (C : F → F[X]) := by
   intro a b hab
   show polyPos (C b - C a)
@@ -276,7 +302,9 @@ positivity, then construct a `LinearOrder`.
 def rfPos (r : RatFunc F) : Prop := polyPos (r.num * r.denom)
 
 /-- `rfPos` characterization: r is positive iff r ≠ 0 and
-    `(r.num * r.denom).trailingCoeff > 0`.-/
+    `(r.num * r.denom).trailingCoeff > 0`.
+@isnad1 id=iff.0h2v.s7.cb9d5a1401f9 from=translated src=- shape=46c204c8 vocab=ec595733
+-/
 lemma rfPos_def {r : RatFunc F} :
     rfPos r ↔ r ≠ 0 ∧ 0 < (r.num * r.denom).trailingCoeff := by
   simp only [rfPos, polyPos]
@@ -286,7 +314,9 @@ lemma rfPos_def {r : RatFunc F} :
   · intro ⟨hne, hpos⟩
     exact ⟨mul_ne_zero (RatFunc.num_ne_zero hne) (RatFunc.denom_ne_zero r), hpos⟩
 
-/-- A nonzero square is positive in the 0₊ order.-/
+/-- A nonzero square is positive in the 0₊ order.
+@isnad1 id=polypos.1h2v.s7.91c598672cc4 from=translated src=- shape=6f46efe7 vocab=d76b0f42
+-/
 lemma polyPos_sq {b : F[X]} (hb : b ≠ 0) : polyPos (b ^ 2) :=
   ⟨pow_ne_zero 2 hb, by
     rw [sq, Polynomial.trailingCoeff]
@@ -295,13 +325,17 @@ lemma polyPos_sq {b : F[X]} (hb : b ≠ 0) : polyPos (b ^ 2) :=
     exact mul_self_pos.mpr (Polynomial.trailingCoeff_nonzero_iff_nonzero.mpr hb)⟩
 
 omit [IsStrictOrderedRing F] in
-/-- `polyPos a` is equivalent to `0 < a` in the custom F[X] order.-/
+/-- `polyPos a` is equivalent to `0 < a` in the custom F[X] order.
+@isnad1 id=iff.0h2v.s6.8fafe9119734 from=translated src=- shape=558ca7c0 vocab=7c4a3f4c
+-/
 lemma polyPos_iff_lt {a : F[X]} : polyPos a ↔ (0 : F[X]) < a :=
   ⟨fun h => lt_def'.mpr (by rwa [sub_zero]),
    fun h => by have := lt_def'.mp h; rwa [sub_zero] at this⟩
 
 /-- `polyPos` is invariant under multiplication by a nonzero square.
-    Morally: `a * b² > 0 ↔ a > 0` since `b² > 0`.-/
+    Morally: `a * b² > 0 ↔ a > 0` since `b² > 0`.
+@isnad1 id=iff.1h3v.s7.df8153ebd87f from=translated src=- shape=3589f7ba vocab=aadd2e66
+-/
 lemma polyPos_mul_sq_iff {a b : F[X]} (hb : b ≠ 0) :
     polyPos (a * b ^ 2) ↔ polyPos a := by
   rw [polyPos_iff_lt, polyPos_iff_lt]
@@ -312,7 +346,9 @@ lemma polyPos_mul_sq_iff {a b : F[X]} (hb : b ≠ 0) :
   · intro h
     exact mul_pos h (polyPos_iff_lt.mp (polyPos_sq hb))
 
-/-- Negation flips `rfPos`. Uses `num_denom_neg` and the square trick.-/
+/-- Negation flips `rfPos`. Uses `num_denom_neg` and the square trick.
+@isnad1 id=iff.1h2v.s6.ddf29899b8ad from=translated src=- shape=412cff99 vocab=edf4b0b1
+-/
 lemma rfPos_neg_iff (r : RatFunc F) (hr : r ≠ 0) :
     rfPos (-r) ↔ ¬ rfPos r := by
   have hndm := RatFunc.num_denom_neg r
@@ -341,7 +377,9 @@ lemma rfPos_neg_iff (r : RatFunc F) (hr : r ≠ 0) :
     · exact h
 
 /-- Key: a nonzero rational function has `num * denom` nonzero,
-    so exactly one of `rfPos r` or `rfPos (-r)` holds.-/
+    so exactly one of `rfPos r` or `rfPos (-r)` holds.
+@isnad1 id=or.0h2v.s6.b4cb6a2be93f from=translated src=- shape=92ef2a6e vocab=edf4b0b1
+-/
 lemma rfPos_trichotomy (r : RatFunc F) : rfPos r ∨ r = 0 ∨ rfPos (-r) := by
   by_cases hr : r = 0
   · exact Or.inr (Or.inl hr)
@@ -351,7 +389,9 @@ lemma rfPos_trichotomy (r : RatFunc F) : rfPos r ∨ r = 0 ∨ rfPos (-r) := by
     · right; right
       exact (rfPos_neg_iff r hr).mpr (fun hpos => not_polyPos_of_polyPos_neg hpos h)
 
-/-- If r and -r are both positive, contradiction.-/
+/-- If r and -r are both positive, contradiction.
+@isnad1 id=not.1h2v.s5.c059690d9d4a from=translated src=- shape=d39d1e1a vocab=edf4b0b1
+-/
 lemma not_rfPos_neg {r : RatFunc F} (hr : rfPos r) : ¬ rfPos (-r) := by
   by_cases hrz : r = 0
   · simp [hrz, rfPos, polyPos] at hr
@@ -359,7 +399,9 @@ lemma not_rfPos_neg {r : RatFunc F} (hr : rfPos r) : ¬ rfPos (-r) := by
 
 /-- Bridge lemma: `rfPos` of a quotient `algebraMap p / algebraMap q` is equivalent to
     `polyPos (p * q)`. This allows working with arbitrary representatives via `induction_on`.
-    Proof: cross-multiply `r.num * q = p * r.denom`, then use the square trick.-/
+    Proof: cross-multiply `r.num * q = p * r.denom`, then use the square trick.
+@isnad1 id=iff.1h3v.s9.569817c27fd3 from=translated src=- shape=8e972fbb vocab=62641e8e
+-/
 lemma rfPos_div {p q : F[X]} (hq : q ≠ 0) :
     rfPos (algebraMap F[X] (RatFunc F) p / algebraMap F[X] (RatFunc F) q) ↔ polyPos (p * q) := by
   set r := algebraMap F[X] (RatFunc F) p / algebraMap F[X] (RatFunc F) q with hr_def
@@ -381,7 +423,9 @@ lemma rfPos_div {p q : F[X]} (hq : q ≠ 0) :
 
 /-- rfPos is preserved by addition. Uses `induction_on` to write rational functions as
     `algebraMap p / algebraMap q`, then reduces to the F[X] ordered ring via `rfPos_div`:
-    `a*b > 0` and `c*d > 0` imply `(a*d + b*c)*(b*d) = a*b*d² + c*d*b² > 0`.-/
+    `a*b > 0` and `c*d > 0` imply `(a*d + b*c)*(b*d) = a*b*d² + c*d*b² > 0`.
+@isnad1 id=rfpos.2h3v.s6.7cac8d63382b from=translated src=- shape=a44d2b2c vocab=3206e18e
+-/
 lemma rfPos_add {r s : RatFunc F} (hr : rfPos r) (hs : rfPos s) :
     rfPos (r + s) := by
   induction r using RatFunc.induction_on with
@@ -407,8 +451,14 @@ instance instLTRatFunc : LT (RatFunc F) where
   lt r s := rfPos (s - r)
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=iff.0h3v.s6.8862c754c355 from=translated src=- shape=438c1b34 vocab=de1d42c3
+-/
 lemma rf_le_def {r s : RatFunc F} : r ≤ s ↔ s = r ∨ rfPos (s - r) := Iff.rfl
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=iff.0h3v.s6.1ecc19d75458 from=translated src=- shape=9f356c90 vocab=579dfd2f
+-/
 lemma rf_lt_def {r s : RatFunc F} : r < s ↔ rfPos (s - r) := Iff.rfl
 
 noncomputable instance instLinearOrderRatFunc : LinearOrder (RatFunc F) where
@@ -453,7 +503,9 @@ noncomputable instance instLinearOrderRatFunc : LinearOrder (RatFunc F) where
 /-! ### `RatFunc F` is an ordered field in the 0₊ order -/
 
 /-- `rfPos` is preserved by multiplication. As for addition, reduce to the `F[X]` ordered ring via
-`rfPos_div`: `(a / b)·(c / d) = (a·c) / (b·d)` with `a·c·(b·d) = (a·b)·(c·d) > 0`.-/
+`rfPos_div`: `(a / b)·(c / d) = (a·c) / (b·d)` with `a·c·(b·d) = (a·b)·(c·d) > 0`.
+@isnad1 id=rfpos.2h3v.s6.5ef946116cd7 from=translated src=- shape=a44d2b2c vocab=ab8cb51f
+-/
 lemma rfPos_mul {r s : RatFunc F} (hr : rfPos r) (hs : rfPos s) : rfPos (r * s) := by
   induction r using RatFunc.induction_on with
   | f a b hb =>
@@ -478,7 +530,9 @@ noncomputable def ιR (a : F) : RatFunc F := algebraMap F[X] (RatFunc F) (C a)
 
 /-- 1/ε is greater than every element of F in the 0₊ order.
     Proof: `1/X - C(a) = (1 - C(a)·X)/X`, so by `rfPos_div` we need
-    `polyPos ((1 - C a * X) * X)`, which holds since `trailingCoeff = 1 > 0`.-/
+    `polyPos ((1 - C a * X) * X)`, which holds since `trailingCoeff = 1 > 0`.
+@isnad1 id=lt.0h2v.s5.776cd81f02c5 from=translated src=- shape=56e6f513 vocab=4b208b4a
+-/
 lemma εR_inv_gt_ιR (a : F) : ιR a < εR_inv := by
   rw [rf_lt_def]
   show rfPos (εR_inv - ιR a)
@@ -503,7 +557,9 @@ lemma εR_inv_gt_ιR (a : F) : ιR a < εR_inv := by
         natTrailingDegree_eq_zero_of_constantCoeff_ne_zero (by simp [constantCoeff_apply])]
     simp [natTrailingDegree_X, coeff_sub, coeff_one, coeff_X]⟩
 
-/-- 1/ε is unbounded over F: for every positive a ∈ F, ι(a) < 1/ε in the 0₊ order.-/
+/-- 1/ε is unbounded over F: for every positive a ∈ F, ι(a) < 1/ε in the 0₊ order.
+@isnad1 id=lt.1h2v.s6.8a558d97f06f from=translated src=- shape=dae7c632 vocab=4b208b4a
+-/
 lemma εR_inv_unbounded {a : F} (_ha : 0 < a) : ιR a < εR_inv :=
   εR_inv_gt_ιR a
 

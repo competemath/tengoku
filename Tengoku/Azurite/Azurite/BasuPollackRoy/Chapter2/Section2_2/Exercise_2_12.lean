@@ -31,7 +31,9 @@ open Polynomial Azurite.BPR
 variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Exercise 2.12 (first part, root-count form).** If
-    `Var(Der(P); a, b] = 0`, then `num(P; (a, b]) = 0`.-/
+    `Var(Der(P); a, b] = 0`, then `num(P; (a, b]) = 0`.
+@isnad1 id=eq.4h4v.s7.76b807c89c0f from=translated src=- shape=00e52c74 vocab=f949f3fb
+-/
 theorem numRoots_eq_zero_of_var_eq_zero
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0) {a b : R}
     (hab : a < b) (hV : varBetween (der P) (.finite a) (.finite b) = 0) :
@@ -42,7 +44,9 @@ theorem numRoots_eq_zero_of_var_eq_zero
   exact_mod_cast le_antisymm hle (Int.natCast_nonneg _)
 
 /-- **BPR Exercise 2.12 (second part, root-count form).** If
-    `Var(Der(P); a, b] = 1`, then `num(P; (a, b]) = 1`.-/
+    `Var(Der(P); a, b] = 1`, then `num(P; (a, b]) = 1`.
+@isnad1 id=eq.4h4v.s7.db01b8af977b from=translated src=- shape=00e52c74 vocab=f949f3fb
+-/
 theorem numRoots_eq_one_of_var_eq_one
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0) {a b : R}
     (hab : a < b) (hV : varBetween (der P) (.finite a) (.finite b) = 1) :
@@ -57,7 +61,9 @@ theorem numRoots_eq_one_of_var_eq_one
   · rfl
 
 /-- **BPR Exercise 2.12 (first part).** If `Var(Der(P); a, b] = 0`, then
-    `P` has no root in `(a, b]`.-/
+    `P` has no root in `(a, b]`.
+@isnad1 id=not.5h5v.s7.69d78e481bbd from=translated src=- shape=ce1f2a10 vocab=4883ea2b
+-/
 theorem no_root_of_var_eq_zero
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0) {a b : R}
     (hab : a < b) (hV : varBetween (der P) (.finite a) (.finite b) = 0) :
@@ -75,7 +81,9 @@ theorem no_root_of_var_eq_zero
 
 /-- **BPR Exercise 2.12 (second part).** If `Var(Der(P); a, b] = 1`, then
     `P` has exactly one root in `(a, b]`, and that root is simple
-    (i.e. has multiplicity `1`).-/
+    (i.e. has multiplicity `1`).
+@isnad1 id=ex.4h4v.s7.4240f93cd989 from=translated src=- shape=f570e44a vocab=90a650c9
+-/
 theorem unique_simple_root_of_var_eq_one
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0) {a b : R}
     (hab : a < b) (hV : varBetween (der P) (.finite a) (.finite b) = 1) :

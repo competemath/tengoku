@@ -46,7 +46,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 omit [IsStrictOrderedRing R] in
 /-- For a single polynomial the three sign conditions `0, 1, -1` cover the
-zero set: every root realizes one of them.-/
+zero set: every root realizes one of them.
+@isnad1 id=mem.1h4v.s7.f4069a12d2e8 from=translated src=- shape=7f94d0ed vocab=cde228be
+-/
 theorem singleSignConditions_cover (P Q : R[X]) :
     ∀ x, P.IsRoot x →
       (fun _ : Fin 1 => SignType.sign (Q.eval x)) ∈ singleSignConditions := by
@@ -61,7 +63,9 @@ the `3 × 3` system
 `!![1,1,1; 0,1,-1; 0,1,1] · (c(Q=0,Z), c(Q>0,Z), c(Q<0,Z)) = (TaQ(1,P), TaQ(Q,P), TaQ(Q²,P))`,
 
 holding unconditionally (the covering hypothesis is automatic). Reading it
-row by row recovers Proposition 2.65.-/
+row by row recovers Proposition 2.65.
+@isnad1 id=eq.0h3v.s9.4afd428a61a6 from=translated src=- shape=e2737273 vocab=7de8ee3c
+-/
 theorem proposition_2_68_single (P Q : R[X]) :
     (!![(1 : ℤ), 1, 1; 0, 1, -1; 0, 1, 1]) *ᵥ
         ![ ((SignCondition.realizationOverFinset ![0] P (fun _ => Q)).card : ℤ),

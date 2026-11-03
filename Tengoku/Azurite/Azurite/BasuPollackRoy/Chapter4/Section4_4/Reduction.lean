@@ -42,11 +42,17 @@ noncomputable def Red (m : MonomialOrder (Fin k)) (P : MvPolynomial (Fin k) K)
     P - monomial (α - m.degree G) (P.coeff α / m.leadingCoeff G) * G
   else P
 
+/--
+@isnad1 id=eq.1h6v.s9.9a021e88b11d from=translated src=- shape=7b2143aa vocab=a62e7523
+-/
 theorem Red_of_le (m : MonomialOrder (Fin k)) (P : MvPolynomial (Fin k) K)
     {α : Fin k →₀ ℕ} (G : MvPolynomial (Fin k) K) (h : m.degree G ≤ α) :
     Red m P α G = P - monomial (α - m.degree G) (P.coeff α / m.leadingCoeff G) * G := by
   rw [Red, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h6v.s6.eae11efa8a55 from=translated src=- shape=c2e1b1da vocab=253fa150
+-/
 theorem Red_of_not_le (m : MonomialOrder (Fin k)) (P : MvPolynomial (Fin k) K)
     {α : Fin k →₀ ℕ} (G : MvPolynomial (Fin k) K) (h : ¬ m.degree G ≤ α) :
     Red m P α G = P := by

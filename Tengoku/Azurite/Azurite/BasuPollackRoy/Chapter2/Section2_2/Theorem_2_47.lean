@@ -61,7 +61,9 @@ noncomputable def numVirtualRoots (hIVP : HasIntermediateValueProperty R)
 
 /-! ### Splitting -/
 
-/-- Additivity over a middle point.-/
+/-- Additivity over a middle point.
+@isnad1 id=eq.4h5v.s7.6af20f191697 from=translated src=- shape=e5240f73 vocab=df8983e5
+-/
 lemma numVirtualRoots_split (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {a c b : R} (hac : a ≤ c) (hcb : c ≤ b) :
     numVirtualRoots hIVP hP a b =
@@ -146,7 +148,9 @@ private lemma not_mem_virtualRoots_of_iter_deriv_root_free_Ioo
 
 /-! ### Evaluation on root-free blocks -/
 
-/-- If `(a, b]` has no iterated derivative root, `numVirtualRoots` vanishes.-/
+/-- If `(a, b]` has no iterated derivative root, `numVirtualRoots` vanishes.
+@isnad1 id=eq.3h4v.s8.751ca1b36738 from=translated src=- shape=7006b59e vocab=e8505a63
+-/
 lemma numVirtualRoots_eq_zero_of_no_iter_deriv_root_Ioc
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0)
     {a b : R}
@@ -161,7 +165,9 @@ lemma numVirtualRoots_eq_zero_of_no_iter_deriv_root_Ioc
     hIVP hP har hrb hno (Multiset.mem_coe.mp hr)
 
 /-- If `(d, c)` is iterated-derivative-root-free, then
-    `numVirtualRoots (d, c] = virtualMultiplicity c`.-/
+    `numVirtualRoots (d, c] = virtualMultiplicity c`.
+@isnad1 id=eq.4h4v.s9.cfc96ad41ae9 from=translated src=- shape=e255863c vocab=af1beeb0
+-/
 lemma numVirtualRoots_eq_virtualMultiplicity_of_no_iter_deriv_root_Ioo
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hP : P ≠ 0)
     {d c : R} (hdc : d < c)
@@ -305,7 +311,9 @@ private theorem theorem_2_47_aux
 
 /-- **BPR Theorem 2.47 (finite-endpoint case).** For any nonzero `P ∈ R[X]`
     and `a < b`, the number of virtual roots of `P` in `(a, b]` (with
-    multiplicity) equals the sign variation of `Der(P)` between `a` and `b`.-/
+    multiplicity) equals the sign variation of `Der(P)` between `a` and `b`.
+@isnad1 id=eq.3h4v.s7.8b89afcd66f2 from=translated src=- shape=94e0a742 vocab=4fe84552
+-/
 theorem theorem_2_47_finite (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {a b : R} (hab : a < b) :
     (numVirtualRoots hIVP hP a b : ℤ) =
@@ -324,7 +332,9 @@ By Corollary 2.49, each summand is a non-negative even integer. -/
     `Var(Der P; a, b) − num(P; (a, b])` (cf.\ Budan-Fourier, Theorem 2.35)
     equals the sum, over the distinct virtual roots `r` of `P` in `(a, b]`,
     of the multiplicity gaps `ν(P, r) − μ(P, r)`. Each summand is a
-    non-negative even integer by Corollary 2.49.-/
+    non-negative even integer by Corollary 2.49.
+@isnad1 id=eq.3h4v.s8.d4425db895fb from=translated src=- shape=d8d0e8e1 vocab=79da4a92
+-/
 theorem varBetween_sub_numRoots_eq_sum_multiplicity_gap
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {a b : R} (hab : a < b) :

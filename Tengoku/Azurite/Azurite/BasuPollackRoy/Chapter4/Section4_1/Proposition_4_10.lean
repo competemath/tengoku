@@ -76,7 +76,9 @@ private lemma det_submatrix_id_eq_zero_of_not_injective {n m : ℕ}
     indexed by `I`) and the `I`-minor of `B` (rows indexed by `I`).
 
     The `Finset` sum uses a dependent `if` so the `orderEmbOfFin`
-    proof obligation `|I| = n` is discharged from `I ∈ powersetCard n`.-/
+    proof obligation `|I| = n` is discharged from `I ∈ powersetCard n`.
+@isnad1 id=eq.0h5v.s8.11a2d95f0ae0 from=translated src=- shape=d00abc52 vocab=0cdf74c9
+-/
 theorem proposition_4_10 {n m : ℕ} (A : Matrix (Fin n) (Fin m) R)
     (B : Matrix (Fin m) (Fin n) R) :
     (A * B).det =

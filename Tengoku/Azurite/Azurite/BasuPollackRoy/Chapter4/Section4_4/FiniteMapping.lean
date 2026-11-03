@@ -72,7 +72,9 @@ private theorem aeval_cons_eq (y : Fin n → C) (t : C) (P : MvPolynomial (Fin (
 
 /-- **The fibers of a finite mapping are finite.** For every `y`, the fiber `π⁻¹(y) ∩ Zer(𝒫)` is
 contained in the (finite) zero set of the nonzero univariate polynomial `P(X₀, y)`, hence is
-finite.-/
+finite.
+@isnad1 id=finite.1h6v.s7.0fcf2955842a from=translated src=- shape=260871af vocab=f43c235c
+-/
 theorem isFiniteMapping_fiber_finite {Ps : Finset (MvPolynomial (Fin (n + 1)) K)}
     {Qs : Finset (MvPolynomial (Fin n) K)} (h : IsFiniteMapping C Ps Qs) (y : Fin n → C) :
     ((Fin.tail : (Fin (n + 1) → C) → (Fin n → C)) ⁻¹' {y} ∩ zerOfFinset C Ps).Finite := by

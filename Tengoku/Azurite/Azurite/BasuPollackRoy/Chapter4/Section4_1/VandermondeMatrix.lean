@@ -41,7 +41,9 @@ def vandermondeMat {r : ℕ} (x : Fin r → R) : Matrix (Fin r) (Fin r) R :=
   Matrix.of fun i j => x j ^ i.val
 
 /-- The Vandermonde matrix in BPR's convention equals the transpose of
-    Mathlib's `Matrix.vandermonde`.-/
+    Mathlib's `Matrix.vandermonde`.
+@isnad1 id=eq.0h3v.s5.27987d2c948f from=translated src=- shape=7f03adac vocab=96bb427f
+-/
 lemma vandermondeMat_eq_transpose {r : ℕ} (x : Fin r → R) :
     vandermondeMat x = (Matrix.vandermonde x).transpose := by
   ext i j
@@ -52,7 +54,9 @@ lemma vandermondeMat_eq_transpose {r : ℕ} (x : Fin r → R) :
 def vandermondeDet {r : ℕ} (x : Fin r → R) : R :=
   (vandermondeMat x).det
 
-/-- The Vandermonde determinant in BPR's convention equals Mathlib's.-/
+/-- The Vandermonde determinant in BPR's convention equals Mathlib's.
+@isnad1 id=eq.0h3v.s5.63bce72ec9c2 from=translated src=- shape=7f771a29 vocab=ae244f5f
+-/
 lemma vandermondeDet_eq_mathlib {r : ℕ} (x : Fin r → R) :
     vandermondeDet x = (Matrix.vandermonde x).det := by
   rw [vandermondeDet, vandermondeMat_eq_transpose, Matrix.det_transpose]

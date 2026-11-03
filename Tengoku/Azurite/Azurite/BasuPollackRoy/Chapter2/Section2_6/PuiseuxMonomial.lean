@@ -27,7 +27,9 @@ open Polynomial
 variable {R : Type*} [Field R]
 
 /-- The single term `single ξ 1` is a Puiseux series: its exponent `ξ` has bounded denominator
-`ξ.den`, so it is a Laurent series in `ε^{1/ξ.den}`.-/
+`ξ.den`, so it is a Laurent series in `ε^{1/ξ.den}`.
+@isnad1 id=mem.0h2v.s8.2c06dcc03dcb from=translated src=- shape=ac52cbee vocab=4f35aa97
+-/
 theorem single_mem_puiseux (ξ : ℚ) : (HahnSeries.single ξ (1 : R)) ∈ PuiseuxSeries R := by
   rw [mem_puiseuxSeries_iff]
   refine ⟨ξ.den.toPNat ξ.den_pos, ?_⟩
@@ -45,27 +47,38 @@ theorem single_mem_puiseux (ξ : ℚ) : (HahnSeries.single ξ (1 : R)) ∈ Puise
 noncomputable def puiseuxMonomial (ξ : ℚ) : PuiseuxSeries R :=
   ⟨HahnSeries.single ξ 1, single_mem_puiseux ξ⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.e5d4347e9283 from=translated src=- shape=38f7f879 vocab=5f725ec9
+-/
 @[simp] theorem coe_puiseuxMonomial (ξ : ℚ) :
     ((puiseuxMonomial ξ : PuiseuxSeries R) : HahnSeries ℚ R) = HahnSeries.single ξ 1 := rfl
 
-/-- `ε^ξ · ε^{ξ'} = ε^{ξ + ξ'}`.-/
+/-- `ε^ξ · ε^{ξ'} = ε^{ξ + ξ'}`.
+@isnad1 id=eq.0h3v.s10.29e2907b5c80 from=translated src=- shape=a0cf5a91 vocab=347b20b1
+-/
 theorem puiseuxMonomial_mul (ξ ξ' : ℚ) :
     (puiseuxMonomial ξ : PuiseuxSeries R) * puiseuxMonomial ξ' = puiseuxMonomial (ξ + ξ') := by
   apply Subtype.ext
   rw [Subfield.coe_mul, coe_puiseuxMonomial, coe_puiseuxMonomial, coe_puiseuxMonomial,
     HahnSeries.single_mul_single, mul_one]
 
-/-- `ε^0 = 1`.-/
+/-- `ε^0 = 1`.
+@isnad1 id=eq.0h1v.s9.00104d4dd204 from=translated src=- shape=549876df vocab=4a4f0077
+-/
 @[simp] theorem puiseuxMonomial_zero : (puiseuxMonomial 0 : PuiseuxSeries R) = 1 := by
   apply Subtype.ext
   rw [coe_puiseuxMonomial, OneMemClass.coe_one, HahnSeries.single_zero_one]
 
-/-- The order of `ε^ξ` is `ξ`.-/
+/-- The order of `ε^ξ` is `ξ`.
+@isnad1 id=eq.0h2v.s4.6c3b7f7e8747 from=translated src=- shape=af81d199 vocab=35aa38c1
+-/
 @[simp] theorem puiseuxOrder_puiseuxMonomial (ξ : ℚ) :
     puiseuxOrder R (puiseuxMonomial ξ) = (ξ : WithTop ℚ) := by
   rw [puiseuxOrder, coe_puiseuxMonomial, HahnSeries.orderTop_single one_ne_zero]
 
-/-- The initial coefficient of `ε^ξ` is `1`.-/
+/-- The initial coefficient of `ε^ξ` is `1`.
+@isnad1 id=eq.0h2v.s5.9a83259d0ae2 from=translated src=- shape=3e5d2666 vocab=84975b11
+-/
 @[simp] theorem puiseuxInitCoeff_puiseuxMonomial (ξ : ℚ) :
     puiseuxInitCoeff R (puiseuxMonomial ξ) = 1 := by
   rw [puiseuxInitCoeff, coe_puiseuxMonomial, HahnSeries.leadingCoeff_of_single]

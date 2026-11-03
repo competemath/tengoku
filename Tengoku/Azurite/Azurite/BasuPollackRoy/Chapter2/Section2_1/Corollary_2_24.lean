@@ -30,7 +30,9 @@ open Polynomial Azurite.BPR Azurite.BPR.Theorem2_11 Azurite.BPR.Corollary2_23
 variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Corollary 2.24 (increasing case).** If `P' > 0` on `(a, b)`, then
-    `P` is strictly increasing on `[a, b]`.-/
+    `P` is strictly increasing on `[a, b]`.
+@isnad1 id=strictmo.3h4v.s8.1216aa155679 from=translated src=- shape=5d5c3252 vocab=58ac2976
+-/
 theorem corollary_2_24_increasing (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) {a b : R} (_hab : a < b)
     (hP' : ∀ x ∈ Set.Ioo a b, 0 < (derivative P).eval x) :
@@ -42,7 +44,9 @@ theorem corollary_2_24_increasing (hIVP : HasIntermediateValueProperty R)
   linarith [mul_pos (sub_pos.mpr hxy) (hP' c hc_ab)]
 
 /-- **BPR Corollary 2.24 (decreasing case).** If `P' < 0` on `(a, b)`, then
-    `P` is strictly decreasing on `[a, b]`.-/
+    `P` is strictly decreasing on `[a, b]`.
+@isnad1 id=strictan.3h4v.s8.64dfaea76222 from=translated src=- shape=aa8ebac5 vocab=f367a8e4
+-/
 theorem corollary_2_24_decreasing (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) {a b : R} (_hab : a < b)
     (hP' : ∀ x ∈ Set.Ioo a b, (derivative P).eval x < 0) :
@@ -53,7 +57,9 @@ theorem corollary_2_24_decreasing (hIVP : HasIntermediateValueProperty R)
     ⟨lt_of_le_of_lt hx.1 hc.1, lt_of_lt_of_le hc.2 hy.2⟩
   linarith [mul_neg_of_pos_of_neg (sub_pos.mpr hxy) (hP' c hc_ab)]
 
-/-- **Corollary 2.24 (increasing), real closed form.**-/
+/-- **Corollary 2.24 (increasing), real closed form.**
+@isnad1 id=strictmo.2h4v.s8.6c89b3538bad from=translated src=- shape=f78dbd3a vocab=78fcb358
+-/
 theorem corollary_2_24_increasing_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) {a b : R} :
@@ -67,7 +73,9 @@ theorem corollary_2_24_increasing_of_isRealClosed
   have : IsAlgClosed (Ri R) := isAlgClosed_Ri
   exact corollary_2_24_increasing theorem_2_11_b_c P
 
-/-- **Corollary 2.24 (decreasing), real closed form.**-/
+/-- **Corollary 2.24 (decreasing), real closed form.**
+@isnad1 id=strictan.2h4v.s8.76a10df108ae from=translated src=- shape=ecf26069 vocab=76b98e65
+-/
 theorem corollary_2_24_decreasing_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) {a b : R} :

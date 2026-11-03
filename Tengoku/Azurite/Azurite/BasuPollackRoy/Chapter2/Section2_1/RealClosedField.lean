@@ -49,7 +49,9 @@ variable (R : Type*) [Field R]
     algebraically intrinsic formulation not requiring a linear order as data.-/
 def IsRealClosedField : Prop := IsRealClosed R
 
-/-- A real closed field is a real field.-/
+/-- A real closed field is a real field.
+@isnad1 id=isrealfi.0h1v.s3.bdd654b45372 from=translated src=- shape=c612a321 vocab=1e136399
+-/
 theorem IsRealClosedField.isRealField [IsRealClosed R] : IsRealField R :=
   (isRealField_iff R).mpr (IsSemireal.not_isSumSq_neg_one R)
 
@@ -57,7 +59,9 @@ variable [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR (ordered form).** Given an ordered field, `R` is real closed iff
     (1) the positive cone equals the squares, and (2) odd-degree polynomials
-    have roots.-/
+    have roots.
+@isnad1 id=iff.0h1v.s6.5b1b1d8fd054 from=translated src=- shape=32d9dfd3 vocab=8d6b1559
+-/
 theorem isRealClosedField_iff :
     IsRealClosedField R ↔
     (∀ x : R, 0 ≤ x ↔ IsSquare x) ∧
@@ -71,7 +75,9 @@ theorem isRealClosedField_iff :
     exact IsRealClosed.of_linearOrderedField
       (fun hx => (hcone _).mp hx) (fun {f} hf => hroots f hf)
 
-/-- In a real closed ordered field, `x ≥ 0 ↔ x` is a square.-/
+/-- In a real closed ordered field, `x ≥ 0 ↔ x` is a square.
+@isnad1 id=iff.0h2v.s6.f1d1e271bedd from=translated src=- shape=1846f569 vocab=fae6a2b8
+-/
 theorem IsRealClosedField.nonneg_iff_isSquare [IsRealClosed R] {x : R} :
     0 ≤ x ↔ IsSquare x :=
   IsRealClosed.nonneg_iff_isSquare

@@ -27,7 +27,9 @@ open HahnSeries
 variable {K : Type*} [Field K]
 
 /-- **The constant coefficient is multiplicative on non-negative-order series.** When both factors
-have support in `[0, ∞)`, the only antidiagonal pair summing to `0` is `(0, 0)`.-/
+have support in `[0, ∞)`, the only antidiagonal pair summing to `0` is `(0, 0)`.
+@isnad1 id=eq.2h3v.s8.d1cfdce8cac2 from=translated src=- shape=1feb5c26 vocab=01032ad6
+-/
 theorem coeff_mul_zero_of_nonneg {x y : HahnSeries ℚ K}
     (hx : 0 ≤ x.orderTop) (hy : 0 ≤ y.orderTop) :
     (x * y).coeff 0 = x.coeff 0 * y.coeff 0 := by

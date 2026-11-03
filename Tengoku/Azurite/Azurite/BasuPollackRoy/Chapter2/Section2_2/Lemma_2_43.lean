@@ -59,7 +59,9 @@ private lemma padCoeff_nonneg {P : R[X]} (hP : IsNormal P) (i : ℤ) :
 
 omit [IsStrictOrderedRing R] in
 /-- Positivity propagation from `no_gap`: if `P.coeff k > 0` and `P.coeff l > 0` with
-    `k ≤ l`, then every coefficient on `[k, l]` is positive.-/
+    `k ≤ l`, then every coefficient on `[k, l]` is positive.
+@isnad1 id=lt.5h5v.s7.2a9ebb91ac53 from=translated src=- shape=83711dc9 vocab=314b0fca
+-/
 lemma isNormal_pos_between {P : R[X]} (hP : IsNormal P)
     {k l i : ℕ} (hki : k ≤ i) (hil : i ≤ l)
     (hk : 0 < P.coeff k) (hl : 0 < P.coeff l) : 0 < P.coeff i := by
@@ -645,7 +647,9 @@ private lemma coeff_mul_log_concave {A B : R[X]} (hA : IsNormal A) (hB : IsNorma
 
 /-! ### Conclusion: BPR Lemma 2.43 -/
 
-/-- **BPR Lemma 2.43.** The product of normal polynomials is normal.-/
+/-- **BPR Lemma 2.43.** The product of normal polynomials is normal.
+@isnad1 id=isnormal.2h3v.s6.3d497a3161be from=translated src=- shape=a44d2b2c vocab=7d644ec9
+-/
 theorem isNormal_mul {A B : R[X]} (hA : IsNormal A) (hB : IsNormal B) :
     IsNormal (A * B) := by
   refine ⟨?_, ?_, ?_, ?_⟩

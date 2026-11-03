@@ -33,7 +33,9 @@ variable {R : Type*} [Field R]
 
 /-- **The column point `M_i = (i, o(a_i))` is a genuine Newton-diagram point.** When the order
 of `a_i = P.coeff i` is the finite value `y`, the point `(i, y)` lies in the diagram: the
-coefficient of `ε^y` in `a_i` is its (nonzero) leading coefficient.-/
+coefficient of `ε^y` in `a_i` is its (nonzero) leading coefficient.
+@isnad1 id=mem.1h4v.s10.477961d151eb from=translated src=- shape=858485e5 vocab=43f6328a
+-/
 theorem mem_newtonDiagram_of_puiseuxOrder_eq {P : Polynomial (PuiseuxSeries R)} {i : ℕ} {y : ℚ}
     (h : puiseuxOrder R (P.coeff i) = (y : WithTop ℚ)) : (i, y) ∈ newtonDiagram P := by
   rw [mem_newtonDiagram, newtonCoeff]
@@ -65,7 +67,9 @@ structure IsNewtonPolygon (P : Polynomial (PuiseuxSeries R)) (M : List (ℕ × �
   edge `M_{i_{j-1}} M_{i_j}` through the two preceding vertices.-/
   convex : (M.zip M.tail).IsChain fun e₁ e₂ => OnOrAbove e₁.1 e₁.2 e₂.2
 
-/-- **Every vertex of a Newton polygon is a point of the Newton diagram.**-/
+/-- **Every vertex of a Newton polygon is a point of the Newton diagram.**
+@isnad1 id=mem.2h4v.s9.42af59a93c09 from=translated src=- shape=4b76a0d6 vocab=5fe8cb60
+-/
 theorem IsNewtonPolygon.vertex_mem_newtonDiagram {P : Polynomial (PuiseuxSeries R)}
     {M : List (ℕ × ℚ)} (hM : IsNewtonPolygon P M) {V : ℕ × ℚ} (hV : V ∈ M) :
     V ∈ newtonDiagram P := by

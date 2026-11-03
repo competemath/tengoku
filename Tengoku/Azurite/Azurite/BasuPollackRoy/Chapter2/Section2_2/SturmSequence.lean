@@ -58,9 +58,15 @@ noncomputable def sturmSequence {K : Type*} [Field K] (P : Polynomial K) :
     ℕ → Polynomial K :=
   SRemS P P.derivative
 
+/--
+@isnad1 id=eq.0h2v.s5.0434bb55a767 from=translated src=- shape=f07f38fe vocab=b48bf387
+-/
 @[simp] theorem sturmSequence_zero {K : Type*} [Field K] (P : Polynomial K) :
     sturmSequence P 0 = P := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.a51e6e33dff4 from=translated src=- shape=a205d929 vocab=aa9d9e1f
+-/
 @[simp] theorem sturmSequence_one {K : Type*} [Field K] (P : Polynomial K) :
     sturmSequence P 1 = P.derivative := rfl
 

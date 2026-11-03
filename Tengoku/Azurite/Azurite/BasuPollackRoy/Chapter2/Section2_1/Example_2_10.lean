@@ -47,7 +47,9 @@ private lemma natDegree_pos_of_not_isUnit {f : ℝ[X]} (hf : f ≠ 0) (hu : ¬Is
 
 /-- **Over `ℝ`, every odd-degree polynomial has a root.** Standard proof: a real
 irreducible has degree `≤ 2` (fundamental theorem of algebra), so by strong induction on
-the degree an odd-degree polynomial factors off a degree-one piece, which has a root.-/
+the degree an odd-degree polynomial factors off a degree-one piece, which has a root.
+@isnad1 id=ex.1h1v.s4.d176153cc226 from=translated src=- shape=730f6e0a vocab=9fd453d0
+-/
 theorem exists_isRoot_real_of_odd_natDegree {f : ℝ[X]} (hodd : Odd f.natDegree) :
     ∃ r : ℝ, f.IsRoot r := by
   have hf : f ≠ 0 := by rintro rfl; simp at hodd
@@ -98,15 +100,21 @@ def realAlgebraicNumbers : Set ℝ :=
 
 scoped notation "ℝ_alg" => realAlgebraicNumbers
 
-/-- The zero element 0 is real algebraic, witnessed by the polynomial `X`.-/
+/-- The zero element 0 is real algebraic, witnessed by the polynomial `X`.
+@isnad1 id=mem.0h0v.s3.56ce35423cd4 from=translated src=- shape=d52416c9 vocab=5e86c5b4
+-/
 theorem zero_mem_realAlgebraicNumbers : (0 : ℝ) ∈ realAlgebraicNumbers :=
   isAlgebraic_zero
 
-/-- The element 1 is real algebraic, witnessed by the polynomial `X - 1`.-/
+/-- The element 1 is real algebraic, witnessed by the polynomial `X - 1`.
+@isnad1 id=mem.0h0v.s3.71568ccbadcf from=translated src=- shape=d52416c9 vocab=5e86c5b4
+-/
 theorem one_mem_realAlgebraicNumbers : (1 : ℝ) ∈ realAlgebraicNumbers :=
   isAlgebraic_one
 
-/-- Every integer is a real algebraic number.-/
+/-- Every integer is a real algebraic number.
+@isnad1 id=mem.0h1v.s3.3d9adb1b9237 from=translated src=- shape=2622c728 vocab=d7c926de
+-/
 theorem intCast_mem_realAlgebraicNumbers (n : ℤ) : (n : ℝ) ∈ realAlgebraicNumbers :=
   isAlgebraic_algebraMap n
 

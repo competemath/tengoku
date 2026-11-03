@@ -32,7 +32,9 @@ open scoped Matrix
 variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] {n : ℕ}
 
 /-- **Proposition 4.42 (Cauchy–Schwarz inequality).** If the quadratic form of a
-symmetric matrix `M` is non-negative, then `B_M(f, g)² ≤ Φ_M(f) · Φ_M(g)`.-/
+symmetric matrix `M` is non-negative, then `B_M(f, g)² ≤ Φ_M(f) · Φ_M(g)`.
+@isnad1 id=le.2h5v.s8.873e51e580f5 from=translated src=- shape=ec200d34 vocab=3018687c
+-/
 theorem proposition_4_42 (M : Matrix (Fin n) (Fin n) R) (hM : M.IsSymm)
     (hpos : IsNonNeg M) (f g : Fin n → R) :
     bilinFormM M f g ^ 2 ≤ quadraticForm M f * quadraticForm M g := by

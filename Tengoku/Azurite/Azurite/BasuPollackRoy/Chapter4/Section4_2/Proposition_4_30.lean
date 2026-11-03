@@ -64,7 +64,9 @@ private lemma sDisc_eq_zero_iff_sRes_eq_zero (P : K[X]) (hP : 0 < P.natDegree)
     `0 ≤ j < P.natDegree`,
 
       `deg(gcd(P, P')) = j ↔ sDisc_0(P) = ⋯ = sDisc_{j-1}(P) = 0 ∧
-                              sDisc_j(P) ≠ 0`.-/
+                              sDisc_j(P) ≠ 0`.
+@isnad1 id=iff.2h4v.s8.1768d82d0296 from=translated src=- shape=7e264c01 vocab=89db9582
+-/
 theorem Proposition_4_30 (P : K[X]) (hP : 0 < P.natDegree)
     (j : ℕ) (hj : j < P.natDegree) :
     (gcd P P.derivative).natDegree = j ↔

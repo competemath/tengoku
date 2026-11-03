@@ -34,7 +34,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- **BPR Corollary 2.49.** Every root of `P` is a virtual root of `P`, the
     virtual multiplicity is at least the root multiplicity, and their difference
-    is even.-/
+    is even.
+@isnad1 id=and.2h3v.s7.c590fb6ca518 from=translated src=- shape=20447092 vocab=4866b10e
+-/
 theorem corollary_2_49
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (c : R) :

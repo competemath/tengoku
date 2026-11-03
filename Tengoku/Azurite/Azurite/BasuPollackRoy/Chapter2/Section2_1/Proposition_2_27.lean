@@ -80,6 +80,9 @@ noncomputable def derReali (P : R[X]) (n : ℕ) (σ : ℕ → SignType) : Set R 
 
 /-! ### Monotonicity from derivative sign on open intervals -/
 
+/--
+@isnad1 id=strictmo.3h3v.s8.7d7e2c65fa0c from=translated src=- shape=e3b764ef vocab=90d41edb
+-/
 lemma strictMonoOn_of_deriv_pos (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {S : Set R} (hS : IsOpenInterval S)
     (hP' : ∀ x ∈ S, 0 < (derivative P).eval x) :
@@ -90,6 +93,9 @@ lemma strictMonoOn_of_deriv_pos (hIVP : HasIntermediateValueProperty R)
   exact corollary_2_24_increasing hIVP P hab hder
     (Set.left_mem_Icc.mpr hab.le) (Set.right_mem_Icc.mpr hab.le) hab
 
+/--
+@isnad1 id=strictan.3h3v.s8.9fb2b7cb5d01 from=translated src=- shape=35402d15 vocab=5305600d
+-/
 lemma strictAntiOn_of_deriv_neg (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {S : Set R} (hS : IsOpenInterval S)
     (hP' : ∀ x ∈ S, (derivative P).eval x < 0) :
@@ -214,7 +220,9 @@ private lemma sign_filter_anti (hIVP : HasIntermediateValueProperty R)
 /-- **BPR Proposition 2.27 (Basic Thom's Lemma).** Let `P ∈ R[X]` with
     `natDegree P ≤ n` and `σ` a sign condition on the first `n + 1`
     derivatives. Then `Reali(σ)` is either empty, a point, or an open
-    interval.-/
+    interval.
+@isnad1 id=other.2h4v.s6.815d3f284068 from=translated src=- shape=1a70e3cc vocab=4bf7633c
+-/
 theorem proposition_2_27 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (n : ℕ) (σ : ℕ → SignType) (hn : P.natDegree ≤ n) :
     let S := derReali P n σ
@@ -345,7 +353,9 @@ theorem proposition_2_27 (hIVP : HasIntermediateValueProperty R)
         rw [hTeq]
         exact sign_filter_anti hIVP hS'_open' hanti (σ 0)
 
-/-- **Proposition 2.27, real closed form.**-/
+/-- **Proposition 2.27, real closed form.**
+@isnad1 id=other.1h4v.s6.47abb7faf064 from=translated src=- shape=9bfdabb8 vocab=a6ad08f2
+-/
 theorem proposition_2_27_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (n : ℕ) (σ : ℕ → SignType) (hn : P.natDegree ≤ n) :

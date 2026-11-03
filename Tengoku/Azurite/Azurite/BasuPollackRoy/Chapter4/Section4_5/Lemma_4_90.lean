@@ -38,7 +38,9 @@ variable {k : ℕ} {K : Type*} [Field K] (C : Type*) [Field C] [Algebra K C]
 noncomputable def linearForm (i : ℕ) : MvPolynomial (Fin k) K :=
   ∑ j : Fin k, MvPolynomial.C ((i : K) ^ (j : ℕ)) * X j
 
-/-- The value `aᵢ(x) = ∑_j i^{j} x_{j+1}` of the linear form `aᵢ` at a point `x ∈ Cᵏ`.-/
+/-- The value `aᵢ(x) = ∑_j i^{j} x_{j+1}` of the linear form `aᵢ` at a point `x ∈ Cᵏ`.
+@isnad1 id=eq.0h5v.s8.8797a6387c7d from=translated src=- shape=1ef9fce2 vocab=154fc73c
+-/
 theorem aeval_linearForm (i : ℕ) (x : Fin k → C) :
     MvPolynomial.aeval x (linearForm (K := K) i) = ∑ j : Fin k, (i : C) ^ (j : ℕ) * x j := by
   rw [linearForm, map_sum]
@@ -83,7 +85,9 @@ private theorem natDegree_pairPoly_le (x y : Fin k → C) : (pairPoly C x y).nat
   exact Nat.le_sub_one_of_lt j.isLt
 
 /-- **BPR Lemma 4.90.** If `Zer(𝒫, Cᵏ)` is finite with `n` elements, then some
-`aᵢ = X₁ + i·X₂ + ⋯ + i^{k−1}·X_k` with `0 ≤ i ≤ (k−1)·C(n,2)` is separating for `𝒫`.-/
+`aᵢ = X₁ + i·X₂ + ⋯ + i^{k−1}·X_k` with `0 ≤ i ≤ (k−1)·C(n,2)` is separating for `𝒫`.
+@isnad1 id=ex.1h4v.s9.fd0fcd7d5c36 from=translated src=- shape=17a1395e vocab=3312be21
+-/
 theorem lemma_4_90 [CharZero K] (Ps : Finset (MvPolynomial (Fin k) K))
     (hfin : (zerOfFinset C Ps).Finite) :
     ∃ i : ℕ, i ≤ (k - 1) * (hfin.toFinset.card).choose 2 ∧

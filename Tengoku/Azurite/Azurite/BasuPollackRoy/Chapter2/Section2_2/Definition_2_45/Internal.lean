@@ -116,46 +116,60 @@ def IsVirtualRootsList (P : R[X]) (xs : List R) : Prop :=
   IsVirtualRootsListAux P.natDegree P xs
 
 omit [IsStrictOrderedRing R] in
-/-- `IsVirtualRootsListAux` always implies `xs.length = P.natDegree`.-/
+/-- `IsVirtualRootsListAux` always implies `xs.length = P.natDegree`.
+@isnad1 id=eq.1h4v.s5.86ed268e14fb from=translated src=- shape=ea53ba23 vocab=ad9b460f
+-/
 lemma IsVirtualRootsListAux.length_eq : ∀ {n : ℕ} {P : R[X]} {xs : List R},
     IsVirtualRootsListAux n P xs → xs.length = P.natDegree
   | 0, _, _, h => h.1
   | _ + 1, _, _, h => h.1
 
 omit [IsStrictOrderedRing R] in
-/-- `IsVirtualRootsListAux` always implies `xs` is sorted.-/
+/-- `IsVirtualRootsListAux` always implies `xs` is sorted.
+@isnad1 id=pairwise.1h4v.s5.ba14f386ae13 from=translated src=- shape=9634da52 vocab=7cbcb1d4
+-/
 lemma IsVirtualRootsListAux.sorted : ∀ {n : ℕ} {P : R[X]} {xs : List R},
     IsVirtualRootsListAux n P xs → xs.Pairwise (· ≤ ·)
   | 0, _, _, h => h.2.1
   | _ + 1, _, _, h => h.2.1
 
 omit [IsStrictOrderedRing R] in
-/-- `IsVirtualRootsListAux` always implies `P` has constant sign on gaps.-/
+/-- `IsVirtualRootsListAux` always implies `P` has constant sign on gaps.
+@isnad1 id=signcons.1h4v.s5.2d1891bc3673 from=translated src=- shape=f8d2354a vocab=865dba8e
+-/
 lemma IsVirtualRootsListAux.sign_const : ∀ {n : ℕ} {P : R[X]} {xs : List R},
     IsVirtualRootsListAux n P xs → SignConstantOnGaps P xs
   | 0, _, _, h => h.2.2
   | _ + 1, _, _, h => h.2.2.1
 
 omit [IsStrictOrderedRing R] in
-/-- Length of a virtual roots list equals `natDegree P`.-/
+/-- Length of a virtual roots list equals `natDegree P`.
+@isnad1 id=eq.1h3v.s5.0debe7435ff5 from=translated src=- shape=e577f3d8 vocab=32a9f3d3
+-/
 lemma IsVirtualRootsList.length_eq {P : R[X]} {xs : List R}
     (h : IsVirtualRootsList P xs) : xs.length = P.natDegree :=
   IsVirtualRootsListAux.length_eq h
 
 omit [IsStrictOrderedRing R] in
-/-- A virtual roots list is sorted.-/
+/-- A virtual roots list is sorted.
+@isnad1 id=pairwise.1h3v.s5.b237e786b28c from=translated src=- shape=a7276e2b vocab=f3d14d47
+-/
 lemma IsVirtualRootsList.sorted {P : R[X]} {xs : List R}
     (h : IsVirtualRootsList P xs) : xs.Pairwise (· ≤ ·) :=
   IsVirtualRootsListAux.sorted h
 
 omit [IsStrictOrderedRing R] in
-/-- `P` has constant sign on each gap between consecutive virtual roots.-/
+/-- `P` has constant sign on each gap between consecutive virtual roots.
+@isnad1 id=signcons.1h3v.s5.33150bce713d from=translated src=- shape=ddee191a vocab=6c583ae2
+-/
 lemma IsVirtualRootsList.sign_const {P : R[X]} {xs : List R}
     (h : IsVirtualRootsList P xs) : SignConstantOnGaps P xs :=
   IsVirtualRootsListAux.sign_const h
 
 omit [IsStrictOrderedRing R] in
-/-- Argmin witness clause extracted from `IsVirtualRootsListAux (n + 1)`.-/
+/-- Argmin witness clause extracted from `IsVirtualRootsListAux (n + 1)`.
+@isnad1 id=or.1h4v.s8.1917037219e3 from=translated src=- shape=cceb8373 vocab=2ceab7f2
+-/
 lemma IsVirtualRootsListAux.argmin_wit_succ {n : ℕ} {P : R[X]} {xs : List R}
     (h : IsVirtualRootsListAux (n + 1) P xs) :
     xs = [] ∨
@@ -168,6 +182,9 @@ lemma IsVirtualRootsListAux.argmin_wit_succ {n : ℕ} {P : R[X]} {xs : List R}
 /-! ### Elementary properties of `Interlaced` -/
 
 omit [Field R] [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.1h3v.s5.5f5de194332e from=translated src=- shape=64f076ca vocab=cdfec7f9
+-/
 lemma Interlaced.length_succ : ∀ {xs ys : List R}, Interlaced xs ys →
     xs.length = ys.length + 1
   | [_], [], _ => rfl
@@ -181,7 +198,9 @@ lemma Interlaced.length_succ : ∀ {xs ys : List R}, Interlaced xs ys →
 
 omit [Field R] [IsStrictOrderedRing R] in
 /-- If `xs` and `ys` are interlaced and `ys` is nondecreasing, then `xs` is
-    nondecreasing. The interleaving inequalities `x_i ≤ y_i ≤ x_{i+1}` chain.-/
+    nondecreasing. The interleaving inequalities `x_i ≤ y_i ≤ x_{i+1}` chain.
+@isnad1 id=pairwise.2h3v.s6.c873f99a6edf from=translated src=- shape=2e67e516 vocab=38fd819d
+-/
 lemma Interlaced.pairwise_of_ys :
     ∀ {xs ys : List R}, Interlaced xs ys → ys.Pairwise (· ≤ ·) →
       xs.Pairwise (· ≤ ·)
@@ -211,7 +230,9 @@ lemma Interlaced.pairwise_of_ys :
 omit [IsStrictOrderedRing R] in
 /-- For a nonzero constant polynomial (`natDegree = 0`), the empty list is a
     valid virtual roots list: there are no roots, so the only "gap" is the full
-    line, and a nonzero constant has constant sign everywhere.-/
+    line, and a nonzero constant has constant sign everywhere.
+@isnad1 id=isvirtua.2h2v.s6.a5b3048880fc from=translated src=- shape=6823b1fc vocab=a5a199ad
+-/
 lemma isVirtualRootsList_nil_of_natDegree_zero {P : R[X]} (hP : P.natDegree = 0)
     (hP0 : P ≠ 0) : IsVirtualRootsList P [] := by
   unfold IsVirtualRootsList
@@ -231,6 +252,9 @@ lemma isVirtualRootsList_nil_of_natDegree_zero {P : R[X]} (hP : P.natDegree = 0)
     · rw [hPC]; simp
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=ex.2h2v.s6.5a7ff22b02d8 from=translated src=- shape=76b106aa vocab=b81b7cd7
+-/
 lemma exists_virtualRootsList_of_natDegree_zero {P : R[X]} (hP : P.natDegree = 0)
     (hP0 : P ≠ 0) : ∃ roots : List R, IsVirtualRootsList P roots :=
   ⟨[], isVirtualRootsList_nil_of_natDegree_zero hP hP0⟩
@@ -242,7 +266,9 @@ BPR Corollary 2.24 gives strict monotonicity on `Icc a b` from `P' > 0` on
 the analogues on `Iic b` and `Ici a`, since `I_1` and `I_p` are half-infinite.
 -/
 
-/-- If `P' > 0` on `(-∞, b)`, then `P` is strictly increasing on `(-∞, b]`.-/
+/-- If `P' > 0` on `(-∞, b)`, then `P` is strictly increasing on `(-∞, b]`.
+@isnad1 id=strictmo.2h3v.s8.e2a213631be7 from=translated src=- shape=1d6652a9 vocab=73653bff
+-/
 lemma strictMonoOn_of_deriv_pos_Iic (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {b : R} (hP' : ∀ x ∈ Set.Iio b, 0 < (derivative P).eval x) :
     StrictMonoOn (fun x => P.eval x) (Set.Iic b) := by
@@ -257,7 +283,9 @@ lemma strictMonoOn_of_deriv_pos_Iic (hIVP : HasIntermediateValueProperty R)
   have hmono := corollary_2_24_increasing hIVP P hx1y hder
   exact hmono ⟨by linarith, hxy.le⟩ ⟨hx1y.le, le_refl y⟩ hxy
 
-/-- If `P' < 0` on `(-∞, b)`, then `P` is strictly decreasing on `(-∞, b]`.-/
+/-- If `P' < 0` on `(-∞, b)`, then `P` is strictly decreasing on `(-∞, b]`.
+@isnad1 id=strictan.2h3v.s8.483d3dc721a8 from=translated src=- shape=301a2ecf vocab=725931ee
+-/
 lemma strictAntiOn_of_deriv_neg_Iic (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {b : R} (hP' : ∀ x ∈ Set.Iio b, (derivative P).eval x < 0) :
     StrictAntiOn (fun x => P.eval x) (Set.Iic b) := by
@@ -272,7 +300,9 @@ lemma strictAntiOn_of_deriv_neg_Iic (hIVP : HasIntermediateValueProperty R)
   have hanti := corollary_2_24_decreasing hIVP P hx1y hder
   exact hanti ⟨by linarith, hxy.le⟩ ⟨hx1y.le, le_refl y⟩ hxy
 
-/-- If `P' > 0` on `(a, +∞)`, then `P` is strictly increasing on `[a, +∞)`.-/
+/-- If `P' > 0` on `(a, +∞)`, then `P` is strictly increasing on `[a, +∞)`.
+@isnad1 id=strictmo.2h3v.s8.353b67550649 from=translated src=- shape=1d6652a9 vocab=09f5cfe1
+-/
 lemma strictMonoOn_of_deriv_pos_Ici (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a : R} (hP' : ∀ x ∈ Set.Ioi a, 0 < (derivative P).eval x) :
     StrictMonoOn (fun x => P.eval x) (Set.Ici a) := by
@@ -287,7 +317,9 @@ lemma strictMonoOn_of_deriv_pos_Ici (hIVP : HasIntermediateValueProperty R)
   have hmono := corollary_2_24_increasing hIVP P hxy1 hder
   exact hmono ⟨le_refl x, by linarith⟩ ⟨hxy.le, by linarith⟩ hxy
 
-/-- If `P' < 0` on `(a, +∞)`, then `P` is strictly decreasing on `[a, +∞)`.-/
+/-- If `P' < 0` on `(a, +∞)`, then `P` is strictly decreasing on `[a, +∞)`.
+@isnad1 id=strictan.2h3v.s8.3bd7d46d9302 from=translated src=- shape=301a2ecf vocab=70a2295d
+-/
 lemma strictAntiOn_of_deriv_neg_Ici (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a : R} (hP' : ∀ x ∈ Set.Ioi a, (derivative P).eval x < 0) :
     StrictAntiOn (fun x => P.eval x) (Set.Ici a) := by
@@ -302,7 +334,9 @@ lemma strictAntiOn_of_deriv_neg_Ici (hIVP : HasIntermediateValueProperty R)
   have hanti := corollary_2_24_decreasing hIVP P hxy1 hder
   exact hanti ⟨le_refl x, by linarith⟩ ⟨hxy.le, by linarith⟩ hxy
 
-/-- If `P' > 0` everywhere, then `P` is strictly increasing.-/
+/-- If `P' > 0` everywhere, then `P` is strictly increasing.
+@isnad1 id=strictmo.2h2v.s8.d3b3ae8129c9 from=translated src=- shape=fd9a1c69 vocab=2509b962
+-/
 lemma strictMono_of_deriv_pos (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP' : ∀ x : R, 0 < (derivative P).eval x) :
     StrictMono (fun x => P.eval x) := by
@@ -311,7 +345,9 @@ lemma strictMono_of_deriv_pos (hIVP : HasIntermediateValueProperty R)
     strictMonoOn_of_deriv_pos_Ici hIVP (fun z _ => hP' z)
   exact hmono (show x - 1 ≤ x by linarith) (show x - 1 ≤ y by linarith) hxy
 
-/-- If `P' < 0` everywhere, then `P` is strictly decreasing.-/
+/-- If `P' < 0` everywhere, then `P` is strictly decreasing.
+@isnad1 id=strictan.2h2v.s8.1bb8ea5747de from=translated src=- shape=18bc47ff vocab=f3363f34
+-/
 lemma strictAnti_of_deriv_neg (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP' : ∀ x : R, (derivative P).eval x < 0) :
     StrictAnti (fun x => P.eval x) := by
@@ -329,7 +365,9 @@ one root. This is the key tool for locating `x_i` as a root in `I_i`.
 
 omit [IsStrictOrderedRing R] in
 /-- A strictly monotonic function has at most one root: any two points where
-    `P.eval` vanishes must be equal.-/
+    `P.eval` vanishes must be equal.
+@isnad1 id=eq.5h5v.s7.4c6207ed6b8f from=translated src=- shape=455038c6 vocab=915b598d
+-/
 lemma uniqueRoot_of_strictMonoOn {P : R[X]} {S : Set R}
     (hmono : StrictMonoOn (fun x => P.eval x) S)
     {x y : R} (hxS : x ∈ S) (hyS : y ∈ S)
@@ -340,7 +378,9 @@ lemma uniqueRoot_of_strictMonoOn {P : R[X]} {S : Set R}
   · have := hmono hyS hxS h; simp [hx, hy] at this
 
 omit [IsStrictOrderedRing R] in
-/-- Strictly antitonic version of `uniqueRoot_of_strictMonoOn`.-/
+/-- Strictly antitonic version of `uniqueRoot_of_strictMonoOn`.
+@isnad1 id=eq.5h5v.s7.6993f3f37bae from=translated src=- shape=455038c6 vocab=ff79cc82
+-/
 lemma uniqueRoot_of_strictAntiOn {P : R[X]} {S : Set R}
     (hanti : StrictAntiOn (fun x => P.eval x) S)
     {x y : R} (hxS : x ∈ S) (hyS : y ∈ S)
@@ -351,7 +391,9 @@ lemma uniqueRoot_of_strictAntiOn {P : R[X]} {S : Set R}
   · have := hanti hyS hxS h; simp [hx, hy] at this
 
 /-- If `P` is strictly monotonic on `[a, b]` and `P.eval a * P.eval b < 0`,
-    then there is a unique `c ∈ (a, b)` with `P.eval c = 0`.-/
+    then there is a unique `c ∈ (a, b)` with `P.eval c = 0`.
+@isnad1 id=existsun.4h4v.s7.f2d407d2c656 from=translated src=- shape=f25a7fa5 vocab=3a62dbba
+-/
 lemma exists_unique_root_of_strictMonoOn_Icc (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
     (hmono : StrictMonoOn (fun x => P.eval x) (Set.Icc a b))
@@ -365,7 +407,9 @@ lemma exists_unique_root_of_strictMonoOn_Icc (hIVP : HasIntermediateValuePropert
   exact uniqueRoot_of_strictMonoOn hmono hc'S hcS hPc' hPc
 
 /-- Strictly antitonic version: on `[a, b]` with `P(a) * P(b) < 0` there is a
-    unique root in `(a, b)`.-/
+    unique root in `(a, b)`.
+@isnad1 id=existsun.4h4v.s7.85906b67940c from=translated src=- shape=f25a7fa5 vocab=d434b2ff
+-/
 lemma exists_unique_root_of_strictAntiOn_Icc (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
     (hanti : StrictAntiOn (fun x => P.eval x) (Set.Icc a b))
@@ -387,7 +431,9 @@ sign of `P` on the open intervals between consecutive virtual roots.
 
 omit [IsStrictOrderedRing R] in
 /-- If `P` is strictly increasing on `S` and `P(x) > 0` at some `x ∈ S`, then
-    `P > 0` on every `z ∈ S` with `x ≤ z`.-/
+    `P > 0` on every `z ∈ S` with `x ≤ z`.
+@isnad1 id=lt.5h5v.s7.2a426eb90028 from=translated src=- shape=4a1c0a57 vocab=a2f04da4
+-/
 lemma pos_of_strictMonoOn_of_pos_left {P : R[X]} {S : Set R}
     (hmono : StrictMonoOn (fun x => P.eval x) S) {x : R}
     (hxS : x ∈ S) (hx : 0 < P.eval x) :
@@ -399,7 +445,9 @@ lemma pos_of_strictMonoOn_of_pos_left {P : R[X]} {S : Set R}
 
 omit [IsStrictOrderedRing R] in
 /-- Dual: if `P` strict-mono on `S` and `P(x) < 0` at `x ∈ S`, then `P < 0` on
-    all `z ∈ S` with `z ≤ x`.-/
+    all `z ∈ S` with `z ≤ x`.
+@isnad1 id=lt.5h5v.s7.a95e5c9e413a from=translated src=- shape=63db3999 vocab=a2f04da4
+-/
 lemma neg_of_strictMonoOn_of_neg_right {P : R[X]} {S : Set R}
     (hmono : StrictMonoOn (fun x => P.eval x) S) {x : R}
     (hxS : x ∈ S) (hx : P.eval x < 0) :
@@ -411,7 +459,9 @@ lemma neg_of_strictMonoOn_of_neg_right {P : R[X]} {S : Set R}
 
 omit [IsStrictOrderedRing R] in
 /-- Strict-anti version: if `P` strict-anti on `S` and `P(x) > 0`, then `P > 0`
-    on `z ∈ S` with `z ≤ x`.-/
+    on `z ∈ S` with `z ≤ x`.
+@isnad1 id=lt.5h5v.s7.30b4aa2019bb from=translated src=- shape=dfde1b3a vocab=ba7cf82a
+-/
 lemma pos_of_strictAntiOn_of_pos_right {P : R[X]} {S : Set R}
     (hanti : StrictAntiOn (fun x => P.eval x) S) {x : R}
     (hxS : x ∈ S) (hx : 0 < P.eval x) :
@@ -423,7 +473,9 @@ lemma pos_of_strictAntiOn_of_pos_right {P : R[X]} {S : Set R}
 
 omit [IsStrictOrderedRing R] in
 /-- Strict-anti version: if `P` strict-anti on `S` and `P(x) < 0`, then `P < 0`
-    on `z ∈ S` with `x ≤ z`.-/
+    on `z ∈ S` with `x ≤ z`.
+@isnad1 id=lt.5h5v.s7.a890325a953e from=translated src=- shape=0e0351cf vocab=ba7cf82a
+-/
 lemma neg_of_strictAntiOn_of_neg_left {P : R[X]} {S : Set R}
     (hanti : StrictAntiOn (fun x => P.eval x) S) {x : R}
     (hxS : x ∈ S) (hx : P.eval x < 0) :
@@ -440,7 +492,9 @@ strict-anti) — in which case there is a unique root — or `P` has constant
 strict sign on the interval. -/
 
 /-- Strict-monotonic trichotomy: on `[a, b]` (`a ≤ b`) either `P` has a root or
-    a fixed strict sign on the interval.-/
+    a fixed strict sign on the interval.
+@isnad1 id=or.3h4v.s8.e943029bd539 from=translated src=- shape=5f3ab606 vocab=d17153ed
+-/
 lemma strictMonoOn_Icc_sign_trichotomy (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a ≤ b)
     (hmono : StrictMonoOn (fun x => P.eval x) (Set.Icc a b)) :
@@ -480,7 +534,9 @@ lemma strictMonoOn_Icc_sign_trichotomy (hIVP : HasIntermediateValueProperty R)
       exact pos_of_strictMonoOn_of_pos_left hmono (Set.left_mem_Icc.mpr hab) hPa x hx hx.1
 
 /-- Strict-antitonic trichotomy: on `[a, b]` either `P` has a root or a fixed
-    strict sign on the interval.-/
+    strict sign on the interval.
+@isnad1 id=or.3h4v.s8.c8b5141c78fb from=translated src=- shape=5f3ab606 vocab=c1823bb3
+-/
 lemma strictAntiOn_Icc_sign_trichotomy (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a ≤ b)
     (hanti : StrictAntiOn (fun x => P.eval x) (Set.Icc a b)) :
@@ -518,7 +574,9 @@ lemma strictAntiOn_Icc_sign_trichotomy (hIVP : HasIntermediateValueProperty R)
 
 /-- If `P` is strictly monotonic on `[a, b]`, then `|P|` attains a minimum on
     `[a, b]`. The witness is either a root of `P` (from IVP), the left
-    endpoint (if `P > 0` throughout), or the right endpoint (if `P < 0`).-/
+    endpoint (if `P > 0` throughout), or the right endpoint (if `P < 0`).
+@isnad1 id=ex.3h4v.s8.531a763be530 from=translated src=- shape=11ae2ba3 vocab=8e99e401
+-/
 lemma exists_argmin_abs_strictMonoOn_Icc (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a ≤ b)
     (hmono : StrictMonoOn (fun x => P.eval x) (Set.Icc a b)) :
@@ -547,7 +605,9 @@ lemma exists_argmin_abs_strictMonoOn_Icc (hIVP : HasIntermediateValueProperty R)
     exact hmono.monotoneOn hy (Set.right_mem_Icc.mpr hab) hy.2
 
 /-- If `P` is strictly antitonic on `[a, b]`, then `|P|` attains a minimum on
-    `[a, b]`.-/
+    `[a, b]`.
+@isnad1 id=ex.3h4v.s8.944d7108aecb from=translated src=- shape=11ae2ba3 vocab=960b1254
+-/
 lemma exists_argmin_abs_strictAntiOn_Icc (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a ≤ b)
     (hanti : StrictAntiOn (fun x => P.eval x) (Set.Icc a b)) :
@@ -585,7 +645,9 @@ separately. Decoupling it keeps the argmin search combinatorial. -/
 /-- If `P` is strictly monotonic on `(−∞, c]` and eventually dominates
     `|P.eval c|` on the far left, then `|P|` attains a minimum on `Iic c`.
     The witness comes from the Icc argmin applied to `[N, c]` where `N` is
-    the far-left threshold.-/
+    the far-left threshold.
+@isnad1 id=ex.3h3v.s8.27522e31edf1 from=translated src=- shape=59306993 vocab=8abac9d2
+-/
 lemma exists_argmin_abs_strictMonoOn_Iic_of_bound
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
@@ -605,7 +667,9 @@ lemma exists_argmin_abs_strictMonoOn_Iic_of_bound
         ≤ |P.eval c| := hx_min c (Set.right_mem_Icc.mpr hNc)
       _ ≤ |P.eval y| := hN y hyN'
 
-/-- Strict-antitonic dual of `exists_argmin_abs_strictMonoOn_Iic_of_bound`.-/
+/-- Strict-antitonic dual of `exists_argmin_abs_strictMonoOn_Iic_of_bound`.
+@isnad1 id=ex.3h3v.s8.6e0e6469a325 from=translated src=- shape=59306993 vocab=d5b7ef3d
+-/
 lemma exists_argmin_abs_strictAntiOn_Iic_of_bound
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
@@ -626,7 +690,9 @@ lemma exists_argmin_abs_strictAntiOn_Iic_of_bound
       _ ≤ |P.eval y| := hN y hyN'
 
 /-- If `P` is strictly monotonic on `[c, +∞)` and eventually dominates
-    `|P.eval c|` on the far right, then `|P|` attains a minimum on `Ici c`.-/
+    `|P.eval c|` on the far right, then `|P|` attains a minimum on `Ici c`.
+@isnad1 id=ex.3h3v.s8.8f07c7ae380e from=translated src=- shape=0988f0f9 vocab=bc42082b
+-/
 lemma exists_argmin_abs_strictMonoOn_Ici_of_bound
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
@@ -646,7 +712,9 @@ lemma exists_argmin_abs_strictMonoOn_Ici_of_bound
         ≤ |P.eval c| := hx_min c (Set.left_mem_Icc.mpr hcN)
       _ ≤ |P.eval y| := hN y hyN'
 
-/-- Strict-antitonic dual of `exists_argmin_abs_strictMonoOn_Ici_of_bound`.-/
+/-- Strict-antitonic dual of `exists_argmin_abs_strictMonoOn_Ici_of_bound`.
+@isnad1 id=ex.3h3v.s8.df09bd91bed4 from=translated src=- shape=0988f0f9 vocab=a8c2570d
+-/
 lemma exists_argmin_abs_strictAntiOn_Ici_of_bound
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
@@ -702,7 +770,9 @@ private lemma abs_tail_le_of_abs_ge_one (P : R[X])
 
 /-- For polynomials of positive degree, `|P(y)|` grows without bound as `|y|`
     does. Quantitatively, given any target `B`, we produce a threshold `K > 0`
-    such that `|y| > K` implies `|P(y)| ≥ B`.-/
+    such that `|y| > K` implies `|P(y)| ≥ B`.
+@isnad1 id=ex.1h3v.s7.b7364a4d9561 from=translated src=- shape=9dcc64d1 vocab=f6896c37
+-/
 lemma exists_abs_eval_ge_of_natDegree_pos (P : R[X]) (hdeg : 0 < P.natDegree)
     (B : R) : ∃ K : R, 0 < K ∧ ∀ y : R, K < |y| → B ≤ |P.eval y| := by
   have hP : P ≠ 0 := fun h => by simp [h] at hdeg
@@ -792,7 +862,9 @@ lemma exists_abs_eval_ge_of_natDegree_pos (P : R[X]) (hdeg : 0 < P.natDegree)
 
 /-- For polynomials of positive degree, given any `c`, there is a threshold
     `N ≤ c` such that `|P(c)| ≤ |P(y)|` for every `y < N`. This is the
-    asymptotic hypothesis consumed by the Iic argmin lemma.-/
+    asymptotic hypothesis consumed by the Iic argmin lemma.
+@isnad1 id=ex.1h3v.s7.805f56460445 from=translated src=- shape=5621f697 vocab=f6896c37
+-/
 lemma exists_bound_far_left (P : R[X]) (hdeg : 0 < P.natDegree) (c : R) :
     ∃ N ≤ c, ∀ y < N, |P.eval c| ≤ |P.eval y| := by
   obtain ⟨K, hK_pos, hK⟩ := exists_abs_eval_ge_of_natDegree_pos P hdeg |P.eval c|
@@ -803,7 +875,9 @@ lemma exists_bound_far_left (P : R[X]) (hdeg : 0 < P.natDegree) (c : R) :
   have hy_abs : K < |y| := by rw [abs_of_neg hy_neg]; linarith
   exact hK y hy_abs
 
-/-- Dual of `exists_bound_far_left`: `|P(c)| ≤ |P(y)|` for `y` far to the right.-/
+/-- Dual of `exists_bound_far_left`: `|P(c)| ≤ |P(y)|` for `y` far to the right.
+@isnad1 id=ex.1h3v.s7.b980b076564f from=translated src=- shape=309d19d1 vocab=5b65eca6
+-/
 lemma exists_bound_far_right (P : R[X]) (hdeg : 0 < P.natDegree) (c : R) :
     ∃ N ≥ c, ∀ y > N, |P.eval c| ≤ |P.eval y| := by
   obtain ⟨K, hK_pos, hK⟩ := exists_abs_eval_ge_of_natDegree_pos P hdeg |P.eval c|
@@ -822,7 +896,9 @@ witness. Available for polynomials of positive degree (needed for growth). -/
 
 /-- Argmin of `|P|` exists on `Iic c` for `P` strict-mono there (positive degree).
     The witness is either a root of `P` (from a far-left sign change detected via
-    pos-degree asymptotics) or the right endpoint `c` (when `P(c) ≤ 0`).-/
+    pos-degree asymptotics) or the right endpoint `c` (when `P(c) ≤ 0`).
+@isnad1 id=ex.3h3v.s8.d6ed605c0785 from=translated src=- shape=9a39db18 vocab=3ce598d5
+-/
 lemma exists_argmin_abs_strictMonoOn_Iic
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : 0 < P.natDegree) {c : R}
@@ -864,7 +940,9 @@ lemma exists_argmin_abs_strictMonoOn_Iic
     refine ⟨r, hrc.le, ?_, Or.inl hPr⟩
     intro y _; rw [hPr, abs_zero]; exact abs_nonneg _
 
-/-- Argmin of `|P|` exists on `Iic c` for `P` strict-anti there (positive degree).-/
+/-- Argmin of `|P|` exists on `Iic c` for `P` strict-anti there (positive degree).
+@isnad1 id=ex.3h3v.s8.e4dff4fe9b07 from=translated src=- shape=9a39db18 vocab=80945c5b
+-/
 lemma exists_argmin_abs_strictAntiOn_Iic
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : 0 < P.natDegree) {c : R}
@@ -902,7 +980,9 @@ lemma exists_argmin_abs_strictAntiOn_Iic
     refine ⟨r, hrc.le, ?_, Or.inl hPr⟩
     intro y _; rw [hPr, abs_zero]; exact abs_nonneg _
 
-/-- Argmin of `|P|` exists on `Ici c` for `P` strict-mono there (positive degree).-/
+/-- Argmin of `|P|` exists on `Ici c` for `P` strict-mono there (positive degree).
+@isnad1 id=ex.3h3v.s8.c27d042265ec from=translated src=- shape=9a39db18 vocab=9026e0e3
+-/
 lemma exists_argmin_abs_strictMonoOn_Ici
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : 0 < P.natDegree) {c : R}
@@ -940,7 +1020,9 @@ lemma exists_argmin_abs_strictMonoOn_Ici
     refine ⟨r, hcr.le, ?_, Or.inl hPr⟩
     intro y _; rw [hPr, abs_zero]; exact abs_nonneg _
 
-/-- Argmin of `|P|` exists on `Ici c` for `P` strict-anti there (positive degree).-/
+/-- Argmin of `|P|` exists on `Ici c` for `P` strict-anti there (positive degree).
+@isnad1 id=ex.3h3v.s8.3e33fd32afca from=translated src=- shape=9a39db18 vocab=213014e6
+-/
 lemma exists_argmin_abs_strictAntiOn_Ici
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : 0 < P.natDegree) {c : R}
@@ -985,7 +1067,9 @@ packages the sign-at-infty predicates together with IVP into a reusable lemma;
 the linear case below invokes it via the leading-coefficient identities. -/
 
 /-- If `P` is eventually negative at `−∞` and eventually positive at `+∞`, then
-    `P` has a root.-/
+    `P` has a root.
+@isnad1 id=ex.3h2v.s6.18bb3aa1d40c from=translated src=- shape=6692b025 vocab=f290f53b
+-/
 lemma exists_root_of_sign_neg_pos_at_infty (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (hneg : HasSignAtNegInfty P SignType.neg)
     (hpos : HasSignAtPosInfty P SignType.pos) :
@@ -1012,7 +1096,9 @@ lemma exists_root_of_sign_neg_pos_at_infty (hIVP : HasIntermediateValueProperty 
   exact ⟨r, hPr⟩
 
 /-- If `P` is eventually positive at `−∞` and eventually negative at `+∞`, then
-    `P` has a root.-/
+    `P` has a root.
+@isnad1 id=ex.3h2v.s6.6ef7ad7d0291 from=translated src=- shape=6692b025 vocab=f290f53b
+-/
 lemma exists_root_of_sign_pos_neg_at_infty (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (hneg : HasSignAtNegInfty P SignType.pos)
     (hpos : HasSignAtPosInfty P SignType.neg) :
@@ -1044,7 +1130,9 @@ For `natDegree P = 1`, the derivative is the constant polynomial `C P.leadingCoe
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
 /-- If `natDegree P = 1`, then `P.derivative` evaluates to `P.leadingCoeff`
-    at every point.-/
+    at every point.
+@isnad1 id=eq.1h3v.s8.29fbe274a342 from=translated src=- shape=0c30c601 vocab=7a2fe420
+-/
 lemma eval_derivative_of_natDegree_one {P : R[X]} (hdeg : P.natDegree = 1) (x : R) :
     (derivative P).eval x = P.leadingCoeff := by
   have hlt : (derivative P).natDegree < P.natDegree :=
@@ -1064,7 +1152,9 @@ lemma eval_derivative_of_natDegree_one {P : R[X]} (hdeg : P.natDegree = 1) (x : 
 When `natDegree P = 1`, the derivative is a nonzero constant, so `P` is strictly
 monotonic on all of `ℝ`. Its sign at `±∞` changes (odd degree), giving a root. -/
 
-/-- A polynomial of degree 1 has a root.-/
+/-- A polynomial of degree 1 has a root.
+@isnad1 id=ex.2h2v.s6.169666eded35 from=translated src=- shape=e0f71e3c vocab=ba528092
+-/
 lemma exists_root_of_natDegree_one (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : P.natDegree = 1) : ∃ r, P.eval r = 0 := by
   have hP : P ≠ 0 := by
@@ -1094,7 +1184,9 @@ on the three gap shapes: left tail `Iio c`, interior `Ioo a b`, and right tail
 `strictMonoOn_of_deriv_pos_*` / `strictAntiOn_of_deriv_neg_*`. -/
 
 /-- Sign dichotomy on a left-tail gap: if every entry of `ys` is `≥ c`, then
-    `Q` has a single strict sign throughout `Iio c`.-/
+    `Q` has a single strict sign throughout `Iio c`.
+@isnad1 id=or.2h4v.s7.86878a389caa from=translated src=- shape=d77ed9df vocab=072f6d60
+-/
 lemma sign_dichotomy_Iio {Q : R[X]} {ys : List R}
     (h : SignConstantOnGaps Q ys) {c : R} (hle : ∀ r ∈ ys, c ≤ r) :
     (∀ x ∈ Set.Iio c, 0 < Q.eval x) ∨ (∀ x ∈ Set.Iio c, Q.eval x < 0) := by
@@ -1126,7 +1218,9 @@ lemma sign_dichotomy_Iio {Q : R[X]} {ys : List R}
     exact sign_eq_one_iff.mp (hs.trans (sign_eq_one_iff.mpr hx₀_pos))
 
 /-- Sign dichotomy on a right-tail gap: if every entry of `ys` is `≤ c`, then
-    `Q` has a single strict sign throughout `Ioi c`.-/
+    `Q` has a single strict sign throughout `Ioi c`.
+@isnad1 id=or.2h4v.s7.ec2fb47a82ee from=translated src=- shape=64682151 vocab=184b64dd
+-/
 lemma sign_dichotomy_Ioi {Q : R[X]} {ys : List R}
     (h : SignConstantOnGaps Q ys) {c : R} (hle : ∀ r ∈ ys, r ≤ c) :
     (∀ x ∈ Set.Ioi c, 0 < Q.eval x) ∨ (∀ x ∈ Set.Ioi c, Q.eval x < 0) := by
@@ -1159,7 +1253,9 @@ lemma sign_dichotomy_Ioi {Q : R[X]} {ys : List R}
     exact sign_eq_one_iff.mp (hs.trans (sign_eq_one_iff.mpr hx₀_pos))
 
 /-- Sign dichotomy on an interior gap: if every entry of `ys` is outside
-    `(a, b)`, then `Q` has a single strict sign throughout `Ioo a b`.-/
+    `(a, b)`, then `Q` has a single strict sign throughout `Ioo a b`.
+@isnad1 id=or.3h5v.s7.076ecf8cf3f9 from=translated src=- shape=9722f3ee vocab=ee7a0412
+-/
 lemma sign_dichotomy_Ioo {Q : R[X]} {ys : List R}
     (h : SignConstantOnGaps Q ys) {a b : R} (hab : a < b)
     (hgap_out : ∀ r ∈ ys, r ≤ a ∨ b ≤ r) :
@@ -1205,7 +1301,9 @@ nonzero constant). Its unique root `r` forms a singleton virtual roots list. -/
 omit [IsStrictOrderedRing R] in
 /-- If `P` is strictly monotonic with root `r`, the singleton `[r]` satisfies
     `SignConstantOnGaps P [r]`: outside `{r}`, `P` has constant nonzero sign
-    (negative below `r`, positive above).-/
+    (negative below `r`, positive above).
+@isnad1 id=signcons.2h3v.s6.65b3e561cdf4 from=translated src=- shape=b5fdb11c vocab=d4d52d63
+-/
 lemma signConstantOnGaps_singleton_of_strictMono {P : R[X]} {r : R}
     (hr : P.eval r = 0) (hmono : StrictMono (fun x => P.eval x)) :
     SignConstantOnGaps P [r] := by
@@ -1231,7 +1329,9 @@ lemma signConstantOnGaps_singleton_of_strictMono {P : R[X]} {r : R}
     rw [sign_eq_neg_one_iff.mpr hPx_neg, sign_eq_neg_one_iff.mpr hPy_neg]
 
 omit [IsStrictOrderedRing R] in
-/-- Strictly antitonic version of `signConstantOnGaps_singleton_of_strictMono`.-/
+/-- Strictly antitonic version of `signConstantOnGaps_singleton_of_strictMono`.
+@isnad1 id=signcons.2h3v.s6.c2d1415c0873 from=translated src=- shape=b5fdb11c vocab=13957c6c
+-/
 lemma signConstantOnGaps_singleton_of_strictAnti {P : R[X]} {r : R}
     (hr : P.eval r = 0) (hanti : StrictAnti (fun x => P.eval x)) :
     SignConstantOnGaps P [r] := by
@@ -1258,7 +1358,9 @@ lemma signConstantOnGaps_singleton_of_strictAnti {P : R[X]} {r : R}
 
 /-- A linear polynomial has a virtual roots list consisting of its unique root.
     The argmin witness uses `ys = []` and `IsArgminAbsOn P Set.univ r` (since
-    `P.eval r = 0`).-/
+    `P.eval r = 0`).
+@isnad1 id=ex.2h2v.s6.066fdc5af363 from=translated src=- shape=462d2223 vocab=60b4e4ce
+-/
 lemma exists_virtualRootsList_of_natDegree_one (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : P.natDegree = 1) :
     ∃ roots : List R, IsVirtualRootsList P roots := by
@@ -1314,7 +1416,9 @@ closed interval. These are the exact hypotheses produced by the
 
 /-- If `P'` has a dichotomous strict sign on `Iio c`, then `|P|` attains a
     minimum on `Iic c`. Requires `0 < natDegree P` for the asymptotic bound.
-    The witness is either a root of `P` or `x = c`.-/
+    The witness is either a root of `P` or `x = c`.
+@isnad1 id=ex.3h3v.s9.e0a67b9522bd from=translated src=- shape=91ac8e5f vocab=3186007a
+-/
 lemma exists_argmin_abs_on_Iic_of_deriv_dichotomy
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : 0 < P.natDegree) {c : R}
@@ -1329,7 +1433,9 @@ lemma exists_argmin_abs_on_Iic_of_deriv_dichotomy
       (strictAntiOn_of_deriv_neg_Iic hIVP hneg)
 
 /-- If `P'` has a dichotomous strict sign on `Ioi c`, then `|P|` attains a
-    minimum on `Ici c`. The witness is either a root of `P` or `x = c`.-/
+    minimum on `Ici c`. The witness is either a root of `P` or `x = c`.
+@isnad1 id=ex.3h3v.s9.ae6da4cd5c50 from=translated src=- shape=91ac8e5f vocab=1398de02
+-/
 lemma exists_argmin_abs_on_Ici_of_deriv_dichotomy
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : 0 < P.natDegree) {c : R}
@@ -1345,7 +1451,9 @@ lemma exists_argmin_abs_on_Ici_of_deriv_dichotomy
 
 /-- If `P'` has a dichotomous strict sign on `Ioo a b` (with `a < b`), then
     `|P|` attains a minimum on `Icc a b`. The witness is a root of `P` or an
-    endpoint.-/
+    endpoint.
+@isnad1 id=ex.3h4v.s9.a6124a30e900 from=translated src=- shape=9dad0f2b vocab=fdd30285
+-/
 lemma exists_argmin_abs_on_Icc_of_deriv_dichotomy
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
@@ -1369,7 +1477,9 @@ nonzero sign. Two sources: either `P(x₀) = 0` (so `x₀` is the unique root an
 fixed strict sign). -/
 
 /-- On `Icc a b`, argmin of `|P|` at `x₀` + strict-mono implies constant nonzero
-    sign on any `x ≤ y` in `Icc a b` avoiding `x₀`.-/
+    sign on any `x ≤ y` in `Icc a b` avoiding `x₀`.
+@isnad1 id=and.9h7v.s9.121c3503d14b from=translated src=- shape=b972b3b9 vocab=731b5c8c
+-/
 lemma sign_const_of_argmin_strictMonoOn_Icc (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a ≤ b)
     (hmono : StrictMonoOn (fun x => P.eval x) (Set.Icc a b))
@@ -1409,7 +1519,9 @@ lemma sign_const_of_argmin_strictMonoOn_Icc (hIVP : HasIntermediateValueProperty
       exact ⟨ne_of_lt hPx,
         by rw [sign_eq_neg_one_iff.mpr hPx, sign_eq_neg_one_iff.mpr hPy]⟩
 
-/-- Strict-antitonic version of `sign_const_of_argmin_strictMonoOn_Icc`.-/
+/-- Strict-antitonic version of `sign_const_of_argmin_strictMonoOn_Icc`.
+@isnad1 id=and.9h7v.s9.d166328fbc8b from=translated src=- shape=b972b3b9 vocab=023985ec
+-/
 lemma sign_const_of_argmin_strictAntiOn_Icc (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a ≤ b)
     (hanti : StrictAntiOn (fun x => P.eval x) (Set.Icc a b))
@@ -1451,7 +1563,9 @@ lemma sign_const_of_argmin_strictAntiOn_Icc (hIVP : HasIntermediateValueProperty
 
 /-- Iic reduction of `sign_const_of_argmin_strictMonoOn_Icc`: restrict to
     `[min x x₀, c]`, an Icc subinterval of `Iic c` containing both `x`, `y`,
-    and `x₀`.-/
+    and `x₀`.
+@isnad1 id=and.8h6v.s9.e6743be5e859 from=translated src=- shape=253a6e03 vocab=43cbea29
+-/
 lemma sign_const_of_argmin_strictMonoOn_Iic (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
     (hmono : StrictMonoOn (fun x => P.eval x) (Set.Iic c))
@@ -1477,7 +1591,9 @@ lemma sign_const_of_argmin_strictMonoOn_Iic (hIVP : HasIntermediateValueProperty
   exact sign_const_of_argmin_strictMonoOn_Icc hIVP hNc hmono'
     hx₀_Icc hx₀_min' hxy hx_Icc hy_Icc hgap
 
-/-- Strict-anti Iic version of `sign_const_of_argmin_strictMonoOn_Iic`.-/
+/-- Strict-anti Iic version of `sign_const_of_argmin_strictMonoOn_Iic`.
+@isnad1 id=and.8h6v.s9.d2a76fd8ec8d from=translated src=- shape=253a6e03 vocab=72eb7c4a
+-/
 lemma sign_const_of_argmin_strictAntiOn_Iic (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
     (hanti : StrictAntiOn (fun x => P.eval x) (Set.Iic c))
@@ -1503,7 +1619,9 @@ lemma sign_const_of_argmin_strictAntiOn_Iic (hIVP : HasIntermediateValueProperty
   exact sign_const_of_argmin_strictAntiOn_Icc hIVP hNc hanti'
     hx₀_Icc hx₀_min' hxy hx_Icc hy_Icc hgap
 
-/-- Ici reduction of `sign_const_of_argmin_strictMonoOn_Icc`.-/
+/-- Ici reduction of `sign_const_of_argmin_strictMonoOn_Icc`.
+@isnad1 id=and.8h6v.s9.da2c4cbbd707 from=translated src=- shape=253a6e03 vocab=a8b5bd7c
+-/
 lemma sign_const_of_argmin_strictMonoOn_Ici (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
     (hmono : StrictMonoOn (fun x => P.eval x) (Set.Ici c))
@@ -1529,7 +1647,9 @@ lemma sign_const_of_argmin_strictMonoOn_Ici (hIVP : HasIntermediateValueProperty
   exact sign_const_of_argmin_strictMonoOn_Icc hIVP hcM hmono'
     hx₀_Icc hx₀_min' hxy hx_Icc hy_Icc hgap
 
-/-- Strict-anti Ici version of `sign_const_of_argmin_strictMonoOn_Ici`.-/
+/-- Strict-anti Ici version of `sign_const_of_argmin_strictMonoOn_Ici`.
+@isnad1 id=and.8h6v.s9.ed8389b885ee from=translated src=- shape=253a6e03 vocab=cf1de3a1
+-/
 lemma sign_const_of_argmin_strictAntiOn_Ici (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {c : R}
     (hanti : StrictAntiOn (fun x => P.eval x) (Set.Ici c))
@@ -1567,7 +1687,9 @@ produces a nearby point `x ∈ [v, y]` with `|P(x)| < |P(c)|`, contradicting the
 argmin property. -/
 
 /-- **Interior argmin ⇒ critical point of `P`.** If `v < c < y`, `c` is an
-    argmin of `|P|` on `[v, y]`, and `P.eval c ≠ 0`, then `(derivative P).eval c = 0`.-/
+    argmin of `|P|` on `[v, y]`, and `P.eval c ≠ 0`, then `(derivative P).eval c = 0`.
+@isnad1 id=eq.5h5v.s8.fb549edf837e from=translated src=- shape=01003890 vocab=554864ae
+-/
 lemma deriv_eq_zero_of_isArgminAbsOn_interior
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {v y c : R}
@@ -1712,7 +1834,9 @@ gives `sign P = σ` on both sides of `c`, `sign P' = τ` to the right, and
 
 /-- **Argmin direction.** If `c` is an interior argmin of `|P|` on `[v, y]`
     with `P(c) ≠ 0` and `P' ≠ 0`, then `(derivative P).rootMultiplicity c` is
-    **odd** and `0 < P(c) · P^(ν+1)(c)`.-/
+    **odd** and `0 < P(c) · P^(ν+1)(c)`.
+@isnad1 id=and.6h5v.s10.1a28ee38a7d7 from=translated src=- shape=5dee57f2 vocab=3b3c3aa7
+-/
 lemma rootMult_odd_and_sign_pos_of_isArgminAbsOn_interior
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdP : derivative P ≠ 0) {v y c : R}
@@ -1893,7 +2017,9 @@ sign of `P(c) · P^(ν+1)(c)` to be negative. -/
 /-- **Right-boundary argmin.** If `c` is argmin of `|P|` on `[v, c]` with
     `v < c` and `P(c) ≠ 0`, then `0 < (-1)^(ν+1) · P(c) · P^(ν+1)(c)` where
     `ν := (derivative P).rootMultiplicity c`. (Here `(-1 : R)^k` is the power
-    in the coefficient ring.)-/
+    in the coefficient ring.)
+@isnad1 id=lt.5h4v.s10.4877b00ded0f from=translated src=- shape=e1857faa vocab=25d1d00b
+-/
 lemma sign_of_isArgminAbsOn_right_boundary
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdP : derivative P ≠ 0) {v c : R}
@@ -2063,7 +2189,9 @@ lemma sign_of_isArgminAbsOn_right_boundary
 /-- **Left-boundary argmin.** If `c` is argmin of `|P|` on `[c, y]` with
     `c < y` and `P(c) ≠ 0`, then `0 < P(c) · P^(ν+1)(c)` where
     `ν := (derivative P).rootMultiplicity c`. (Note: no parity constraint on
-    `ν`, unlike the interior case.)-/
+    `ν`, unlike the interior case.)
+@isnad1 id=lt.5h4v.s10.1d7e73431542 from=translated src=- shape=d3dc88f3 vocab=58316e0f
+-/
 lemma sign_of_isArgminAbsOn_left_boundary
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdP : derivative P ≠ 0) {c y : R}
@@ -2159,7 +2287,9 @@ monotonic in the matching direction, hence the argmin sits at a specific
 endpoint. These are the converse-direction variants of the boundary Helper 2
 lemmas and feed the c-block analysis. -/
 
-/-- Strict-mono + `P(a) > 0` ⟹ argmin of `|P|` on `[a, b]` is `a`.-/
+/-- Strict-mono + `P(a) > 0` ⟹ argmin of `|P|` on `[a, b]` is `a`.
+@isnad1 id=eq.5h5v.s9.2af477a76114 from=translated src=- shape=1bc63ed3 vocab=70bc1bd2
+-/
 lemma argmin_eq_left_of_strictMono_pos
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
@@ -2185,7 +2315,9 @@ lemma argmin_eq_left_of_strictMono_pos
     linarith
   exact (hmono.injOn ha_mem hz.1 hPeq).symm
 
-/-- Strict-anti + `P(a) < 0` ⟹ argmin of `|P|` on `[a, b]` is `a`.-/
+/-- Strict-anti + `P(a) < 0` ⟹ argmin of `|P|` on `[a, b]` is `a`.
+@isnad1 id=eq.5h5v.s9.3e1730299036 from=translated src=- shape=2e4bc8e7 vocab=70bc1bd2
+-/
 lemma argmin_eq_left_of_strictAnti_neg
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
@@ -2211,7 +2343,9 @@ lemma argmin_eq_left_of_strictAnti_neg
     linarith
   exact (hanti.injOn ha_mem hz.1 hPeq).symm
 
-/-- Strict-mono + `P(b) < 0` ⟹ argmin of `|P|` on `[a, b]` is `b`.-/
+/-- Strict-mono + `P(b) < 0` ⟹ argmin of `|P|` on `[a, b]` is `b`.
+@isnad1 id=eq.5h5v.s9.09e1a8b637d6 from=translated src=- shape=0b777a66 vocab=70bc1bd2
+-/
 lemma argmin_eq_right_of_strictMono_neg
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
@@ -2237,7 +2371,9 @@ lemma argmin_eq_right_of_strictMono_neg
     linarith
   exact (hmono.injOn hb_mem hz.1 hPeq).symm
 
-/-- Strict-anti + `P(b) > 0` ⟹ argmin of `|P|` on `[a, b]` is `b`.-/
+/-- Strict-anti + `P(b) > 0` ⟹ argmin of `|P|` on `[a, b]` is `b`.
+@isnad1 id=eq.5h5v.s9.6373a8d33358 from=translated src=- shape=5e795b3d vocab=70bc1bd2
+-/
 lemma argmin_eq_right_of_strictAnti_pos
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {a b : R} (hab : a < b)
@@ -2493,7 +2629,9 @@ intervals yields a length-2 virtual roots list `[x₁, x₂]` for `P`. -/
 
 /-- When `natDegree P = 2` and `[v]` is a virtual roots list of `P'`, the pair
     `[x₁, x₂]` with `x₁ = argmin_{Iic v} |P|` and `x₂ = argmin_{Ici v} |P|`
-    is a virtual roots list of `P`, interlaced with `[v]`.-/
+    is a virtual roots list of `P`, interlaced with `[v]`.
+@isnad1 id=ex.3h3v.s8.8c8fce42d39c from=translated src=- shape=f6cafda7 vocab=aed62e49
+-/
 theorem exists_virtualRootsList_of_natDegree_two
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg : P.natDegree = 2) {v : R}
@@ -2609,7 +2747,9 @@ the split `ys_full = past ++ v_prev :: ys_rest` so the IH can advance with
 
 omit [Field R] [IsStrictOrderedRing R] in
 /-- Consequences of a sorted split: all past elements are `≤ v_prev`, `v_prev`
-    is `≤` all rest elements, and the rest is itself sorted.-/
+    is `≤` all rest elements, and the rest is itself sorted.
+@isnad1 id=and.1h4v.s7.b13717972094 from=translated src=- shape=60e130bb vocab=e5e4d25d
+-/
 lemma sorted_split_le
     {past : List R} {v_prev : R} {rest : List R}
     (h : (past ++ v_prev :: rest).Pairwise (· ≤ ·)) :
@@ -2623,7 +2763,9 @@ lemma sorted_split_le
 
 omit [Field R] [IsStrictOrderedRing R] in
 /-- Gap closure across a `v_prev :: v' :: _` split: every element of `ys_full`
-    is either `≤ v_prev` or `≥ v'`.-/
+    is either `≤ v_prev` or `≥ v'`.
+@isnad1 id=or.3h7v.s6.b47f05686811 from=translated src=- shape=2ce070e7 vocab=e5e4d25d
+-/
 lemma gap_closure_adjacent
     {past : List R} {v_prev v' : R} {ys_rest : List R} {ys_full : List R}
     (hsplit : ys_full = past ++ v_prev :: v' :: ys_rest)
@@ -2647,7 +2789,9 @@ lemma gap_closure_adjacent
 
 omit [Field R] [IsStrictOrderedRing R] in
 /-- Right-tail gap closure: when `v_prev` is the *last* element of `ys_full`
-    (i.e., `ys_rest = []`), every element of `ys_full` is `≤ v_prev`.-/
+    (i.e., `ys_rest = []`), every element of `ys_full` is `≤ v_prev`.
+@isnad1 id=le.3h5v.s6.bc08ac0b6291 from=translated src=- shape=4d9e068e vocab=c25344ef
+-/
 lemma gap_closure_last
     {past : List R} {v_prev : R} {ys_full : List R}
     (hsplit : ys_full = past ++ v_prev :: [])
@@ -2663,7 +2807,9 @@ lemma gap_closure_last
     gaps for `P'`, and a split `ys_full = past ++ v_prev :: ys_rest`, build an
     xs_tail of length `ys_rest.length + 1` that captures the argmins on the
     closed intervals starting at `v_prev`, packaged as an `ArgminPartitionFrom`
-    witness.-/
+    witness.
+@isnad1 id=ex.5h6v.s9.6129ec244f74 from=translated src=- shape=4d3200f3 vocab=7e112f44
+-/
 lemma exists_buildTail (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hdeg_pos : 0 < P.natDegree)
     (ys_full : List R)
@@ -2818,7 +2964,9 @@ lemma exists_buildTail (hIVP : HasIntermediateValueProperty R)
 
 /-- General existence of a virtual roots list for `P`, given one for `P'`.
     Uses `exists_buildTail` to construct the tail after the first argmin on
-    `Iic (head ys)`.-/
+    `Iic (head ys)`.
+@isnad1 id=ex.4h3v.s8.853b80ce70d6 from=translated src=- shape=f2c119b4 vocab=8f2c6cb6
+-/
 theorem exists_virtualRootsList_of_ys_general
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hdeg_pos : 0 < P.natDegree)
     {ys : List R} (hys : IsVirtualRootsList P.derivative ys)
@@ -2921,7 +3069,9 @@ theorem exists_virtualRootsList_of_ys_general
 
 /-- Existence of a virtual roots list for any nonzero polynomial, bundled
     with an interlaced virtual roots list for the derivative when nonzero.
-    Proved by induction on `natDegree`.-/
+    Proved by induction on `natDegree`.
+@isnad1 id=ex.3h3v.s9.9c6c86b56aff from=translated src=- shape=1715565c vocab=e6c2e295
+-/
 theorem exists_virtualRootsList_aux (hIVP : HasIntermediateValueProperty R) :
     ∀ (n : ℕ) (P : R[X]), P.natDegree = n → P ≠ 0 →
     ∃ xs, IsVirtualRootsList P xs ∧
@@ -2952,7 +3102,9 @@ theorem exists_virtualRootsList_aux (hIVP : HasIntermediateValueProperty R) :
       exists_virtualRootsList_of_ys_general hIVP hdeg_pos hys hlen
     exact ⟨xs, hxs, Or.inr ⟨ys, hys, hinter⟩⟩
 
-/-- Existence of a virtual roots list for any nonzero polynomial.-/
+/-- Existence of a virtual roots list for any nonzero polynomial.
+@isnad1 id=ex.2h2v.s6.927a9cdf3279 from=translated src=- shape=57ff256d vocab=eca6931f
+-/
 theorem exists_virtualRootsList (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) : ∃ xs, IsVirtualRootsList P xs :=
   let ⟨xs, hxs, _⟩ := exists_virtualRootsList_aux hIVP P.natDegree P rfl hP
@@ -3019,7 +3171,9 @@ private lemma Interlaced.count_head_le {x : R} :
 omit [Field R] [IsStrictOrderedRing R] in
 /-- **Count bound for interlaced sorted lists.** If `xs` and `ys` are interlaced
     with `ys` sorted, then for any `t : R`, the counts of `t` in `xs` and `ys`
-    differ by at most `1`.-/
+    differ by at most `1`.
+@isnad1 id=and.2h4v.s7.a0cdce5e3fad from=translated src=- shape=eeabc7be vocab=66fa4274
+-/
 lemma Interlaced.count_diff_le_one :
     ∀ {xs ys : List R}, Interlaced xs ys →
       ys.Pairwise (· ≤ ·) → ∀ (t : R),
@@ -3094,7 +3248,9 @@ lemma Interlaced.count_diff_le_one :
 
 omit [IsStrictOrderedRing R] in
 /-- If `P` has constant sign on each gap determined by `xs` and `P.eval x = 0`,
-    then `x ∈ xs`: roots of `P` must be accounted for in the virtual roots.-/
+    then `x ∈ xs`: roots of `P` must be accounted for in the virtual roots.
+@isnad1 id=mem.2h4v.s6.ed4fbb77ac55 from=translated src=- shape=17d5e87d vocab=430b6f19
+-/
 lemma mem_of_eval_eq_zero_of_signConstantOnGaps {P : R[X]} {xs : List R}
     (h : SignConstantOnGaps P xs) {x : R} (hx : P.eval x = 0) : x ∈ xs := by
   by_contra hne
@@ -3107,7 +3263,9 @@ lemma mem_of_eval_eq_zero_of_signConstantOnGaps {P : R[X]} {xs : List R}
   exact (h x x (le_refl x) hgap).1 hx
 
 omit [IsStrictOrderedRing R] in
-/-- `P.eval x = 0` forces `x` to appear in any virtual roots list of `P`.-/
+/-- `P.eval x = 0` forces `x` to appear in any virtual roots list of `P`.
+@isnad1 id=lt.2h4v.s6.f3c61fd59be3 from=translated src=- shape=5e1fd214 vocab=1f77a6f0
+-/
 lemma count_pos_of_eval_eq_zero {P : R[X]} {xs : List R}
     (hxs : IsVirtualRootsList P xs) {x : R} (hx : P.eval x = 0) :
     0 < xs.count x :=
@@ -3115,7 +3273,9 @@ lemma count_pos_of_eval_eq_zero {P : R[X]} {xs : List R}
     (mem_of_eval_eq_zero_of_signConstantOnGaps hxs.sign_const hx)
 
 omit [IsStrictOrderedRing R] in
-/-- If `z ∉ ys` and `SignConstantOnGaps Q ys`, then `Q.eval z ≠ 0`.-/
+/-- If `z ∉ ys` and `SignConstantOnGaps Q ys`, then `Q.eval z ≠ 0`.
+@isnad1 id=ne.2h4v.s6.e4b4cf2e70b8 from=translated src=- shape=f4afae4c vocab=430b6f19
+-/
 lemma eval_ne_zero_of_not_mem_of_signConstantOnGaps {Q : R[X]} {ys : List R}
     (hys : SignConstantOnGaps Q ys) {z : R} (hz : z ∉ ys) : Q.eval z ≠ 0 := by
   refine (hys z z (le_refl z) ?_).1
@@ -3129,7 +3289,9 @@ lemma eval_ne_zero_of_not_mem_of_signConstantOnGaps {Q : R[X]} {ys : List R}
     actual roots of `P`, `ys` is sorted with `SignConstantOnGaps P' ys`, and
     no entry of `ys` lies in the closed interval `[a, b]`, then a contradiction
     ensues (via Rolle's theorem giving a root of `P'` in `(a, b)` that is
-    missed by `ys`'s sign-constant cover).-/
+    missed by `ys`'s sign-constant cover).
+@isnad1 id=false.6h5v.s8.a36311e418fe from=translated src=- shape=d7a04512 vocab=9be858fa
+-/
 lemma false_of_rolle_gap
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {ys : List R}
     (hys : SignConstantOnGaps (derivative P) ys)
@@ -3144,7 +3306,9 @@ lemma false_of_rolle_gap
 
 /-- Non-strict variant of `false_of_rolle_gap`: if each `y ∈ ys` satisfies
     `y ≤ a` or `b ≤ y`, the Rolle witness in the open interval `(a, b)`
-    strictly avoids all of `ys`, giving the same contradiction.-/
+    strictly avoids all of `ys`, giving the same contradiction.
+@isnad1 id=false.6h5v.s8.29df3218450f from=translated src=- shape=3f4c4b80 vocab=d281ca88
+-/
 lemma false_of_rolle_gap_closed
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {ys : List R}
     (hys : SignConstantOnGaps (derivative P) ys)
@@ -3356,7 +3520,9 @@ private lemma count_eq_of_root_from_aux
     `x₀ ≠ x` case): any witness `c` strictly between lies in a region disjoint
     from `ys`, so `P'(c) ≠ 0` contradicts the Rolle-produced root.
     `count_eq_of_root_from_aux` packages this as a recursion along the
-    argmin chain.-/
+    argmin chain.
+@isnad1 id=eq.7h5v.s8.b5acf0466eeb from=translated src=- shape=f83ac2a1 vocab=cbdaea57
+-/
 lemma count_eq_of_root
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {xs ys : List R}
     (hi : Interlaced xs ys)
@@ -4044,7 +4210,9 @@ private lemma count_diff_of_not_root_from_aux
 
     The proof dispatches on the shape of the chain and on the trichotomy of
     `c` vs. the first entry of `ys`, delegating the main induction to
-    `count_diff_of_not_root_from_aux`.-/
+    `count_diff_of_not_root_from_aux`.
+@isnad1 id=eq.7h5v.s9.9c0be47b0052 from=translated src=- shape=e6007862 vocab=d7291944
+-/
 lemma count_diff_of_not_root
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} (hdP : derivative P ≠ 0)
     {xs ys : List R}
@@ -4297,7 +4465,9 @@ in `ArgminPartition`, and finally induct on `P.natDegree`. -/
     is injective, the argmin of `|P|` is unique. The only non-trivial case is
     `P z₁ = -P z₂` with both nonzero (opposite signs): `OrdConnected` gives
     `Icc z₁ z₂ ⊆ S` and IVP produces a root between them — a strictly smaller
-    `|P|`, contradicting the argmin claim.-/
+    `|P|`, contradicting the argmin claim.
+@isnad1 id=eq.5h5v.s6.58d3409c4159 from=translated src=- shape=98b37419 vocab=749cc5dc
+-/
 lemma IsArgminAbsOn.unique_of_injOn
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {S : Set R}
     (hord : S.OrdConnected)
@@ -4341,7 +4511,9 @@ lemma IsArgminAbsOn.unique_of_injOn
         exact absurd (abs_eq_zero.mp (le_antisymm hle (abs_nonneg _))) hP₁
 
 /-- Argmin uniqueness from strict monotonicity: every strict-mono function is
-    injective, so `unique_of_injOn` applies.-/
+    injective, so `unique_of_injOn` applies.
+@isnad1 id=eq.5h5v.s6.44a82634b25e from=translated src=- shape=98b37419 vocab=a3fad096
+-/
 lemma IsArgminAbsOn.unique_of_strictMonoOn
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {S : Set R}
     (hord : S.OrdConnected)
@@ -4351,7 +4523,9 @@ lemma IsArgminAbsOn.unique_of_strictMonoOn
     z₁ = z₂ :=
   IsArgminAbsOn.unique_of_injOn hIVP hord hmono.injOn h₁ h₂
 
-/-- Argmin uniqueness from strict antitonicity.-/
+/-- Argmin uniqueness from strict antitonicity.
+@isnad1 id=eq.5h5v.s6.c5d802c89e1e from=translated src=- shape=98b37419 vocab=f3b48bc8
+-/
 lemma IsArgminAbsOn.unique_of_strictAntiOn
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {S : Set R}
     (hord : S.OrdConnected)
@@ -4363,7 +4537,9 @@ lemma IsArgminAbsOn.unique_of_strictAntiOn
 
 /-- Argmin uniqueness on `Iic c` from a derivative sign dichotomy on `Iio c`.
     The dichotomy produces strict mono (if `P' > 0` on `Iio c`) or strict anti
-    (if `P' < 0` on `Iio c`) on `Iic c`.-/
+    (if `P' < 0` on `Iio c`) on `Iic c`.
+@isnad1 id=eq.4h5v.s9.d9efdcd3884b from=translated src=- shape=4a487b0d vocab=44843179
+-/
 lemma IsArgminAbsOn.unique_on_Iic_of_deriv_dichotomy
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {c : R}
     (hdich : (∀ x ∈ Set.Iio c, 0 < (derivative P).eval x) ∨
@@ -4378,7 +4554,9 @@ lemma IsArgminAbsOn.unique_on_Iic_of_deriv_dichotomy
   · exact IsArgminAbsOn.unique_of_strictAntiOn hIVP Set.ordConnected_Iic
       (strictAntiOn_of_deriv_neg_Iic hIVP hneg) h₁ h₂
 
-/-- Argmin uniqueness on `Ici c` from a derivative sign dichotomy on `Ioi c`.-/
+/-- Argmin uniqueness on `Ici c` from a derivative sign dichotomy on `Ioi c`.
+@isnad1 id=eq.4h5v.s9.a59df2e9eb9f from=translated src=- shape=4a487b0d vocab=953b3e7a
+-/
 lemma IsArgminAbsOn.unique_on_Ici_of_deriv_dichotomy
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {c : R}
     (hdich : (∀ x ∈ Set.Ioi c, 0 < (derivative P).eval x) ∨
@@ -4393,7 +4571,9 @@ lemma IsArgminAbsOn.unique_on_Ici_of_deriv_dichotomy
   · exact IsArgminAbsOn.unique_of_strictAntiOn hIVP Set.ordConnected_Ici
       (strictAntiOn_of_deriv_neg_Ici hIVP hneg) h₁ h₂
 
-/-- Argmin uniqueness on `Icc a b` from a derivative sign dichotomy on `Ioo a b`.-/
+/-- Argmin uniqueness on `Icc a b` from a derivative sign dichotomy on `Ioo a b`.
+@isnad1 id=eq.5h6v.s9.8d3eec0a3fe5 from=translated src=- shape=43e8e6fb vocab=70bc1bd2
+-/
 lemma IsArgminAbsOn.unique_on_Icc_of_deriv_dichotomy
     (hIVP : HasIntermediateValueProperty R) {P : R[X]} {a b : R} (hab : a < b)
     (hdich : (∀ x ∈ Set.Ioo a b, 0 < (derivative P).eval x) ∨
@@ -4409,7 +4589,9 @@ lemma IsArgminAbsOn.unique_on_Icc_of_deriv_dichotomy
       (corollary_2_24_decreasing hIVP P hab hneg) h₁ h₂
 
 omit [IsStrictOrderedRing R] in
-/-- `SignConstantOnGaps Q []` means `Q` has a single strict sign everywhere.-/
+/-- `SignConstantOnGaps Q []` means `Q` has a single strict sign everywhere.
+@isnad1 id=or.1h2v.s6.35857b5d661c from=translated src=- shape=6ea00ba3 vocab=1db63446
+-/
 lemma sign_dichotomy_univ_of_nil {Q : R[X]} (h : SignConstantOnGaps Q []) :
     (∀ x : R, 0 < Q.eval x) ∨ (∀ x : R, Q.eval x < 0) := by
   have h0 : Q.eval 0 ≠ 0 := (h 0 0 (le_refl 0) (fun r hr => absurd hr List.not_mem_nil)).1
@@ -4429,7 +4611,9 @@ lemma sign_dichotomy_univ_of_nil {Q : R[X]} (h : SignConstantOnGaps Q []) :
     exact sign_eq_one_iff.mp this
 
 /-- Argmin uniqueness on `Set.univ` when `P'` has constant strict sign on all
-    of `R` (captured by `SignConstantOnGaps (derivative P) []`).-/
+    of `R` (captured by `SignConstantOnGaps (derivative P) []`).
+@isnad1 id=eq.4h4v.s8.f0d522de638f from=translated src=- shape=1b7623f9 vocab=24d8cb13
+-/
 lemma IsArgminAbsOn.unique_on_univ_of_signConstantOnGaps_nil
     (hIVP : HasIntermediateValueProperty R) {P : R[X]}
     (hsg : SignConstantOnGaps (derivative P) [])
@@ -4528,7 +4712,9 @@ private theorem ArgminPartitionFrom.unique_aux
 
 /-- **Uniqueness of the outer partition witness.** Given a sorted `ys` with
     `SignConstantOnGaps (derivative P) ys`, any two `ArgminPartition P _ ys`
-    witnesses agree.-/
+    witnesses agree.
+@isnad1 id=eq.5h5v.s8.b6451d66e343 from=translated src=- shape=4ea9283d vocab=166d3375
+-/
 theorem ArgminPartition.unique
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]}
@@ -4623,7 +4809,9 @@ private theorem IsVirtualRootsListAux.unique
 /-- **Uniqueness of virtual roots lists.** Any two virtual roots lists of `P`
     agree. The argmin entries are pinned down by the derivative witness (by
     induction on `natDegree`), and the derivative witness itself is unique by
-    the inductive hypothesis.-/
+    the inductive hypothesis.
+@isnad1 id=eq.3h4v.s6.aa078bafcf81 from=translated src=- shape=a54a45eb vocab=eca6931f
+-/
 theorem IsVirtualRootsList.unique
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} {xs ys : List R}

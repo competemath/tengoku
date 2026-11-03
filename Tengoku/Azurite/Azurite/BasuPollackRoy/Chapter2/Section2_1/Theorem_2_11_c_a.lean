@@ -37,12 +37,17 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
 noncomputable def prop24Bound (P : R[X]) : R :=
   2 * ∑ i ∈ Finset.range (P.natDegree + 1), |P.coeff i / P.leadingCoeff|
 
+/--
+@isnad1 id=le.0h2v.s6.7db98ec5c2e6 from=translated src=- shape=14c0ec02 vocab=a6352734
+-/
 theorem prop24Bound_nonneg (P : R[X]) : 0 ≤ prop24Bound P := by
   unfold prop24Bound
   apply mul_nonneg (by norm_num : (0:R) ≤ 2)
   exact Finset.sum_nonneg fun i _ => abs_nonneg _
 
-/-- For x > prop24Bound P, sign(P(x)) = sign(leadingCoeff * x^deg).-/
+/-- For x > prop24Bound P, sign(P(x)) = sign(leadingCoeff * x^deg).
+@isnad1 id=eq.2h3v.s8.02fb53ef36f6 from=translated src=- shape=cf043fb0 vocab=5a6c6e7d
+-/
 theorem sign_eval_of_large_pos (P : R[X]) (hP : P ≠ 0) (x : R)
     (hx : prop24Bound P < x) :
     SignType.sign (P.eval x) = SignType.sign (P.leadingCoeff * x ^ P.natDegree) := by
@@ -50,7 +55,9 @@ theorem sign_eval_of_large_pos (P : R[X]) (hP : P ≠ 0) (x : R)
   rw [abs_of_pos (lt_of_le_of_lt (prop24Bound_nonneg P) hx)]
   exact hx
 
-/-- For x < -(prop24Bound P), sign(P(x)) = sign(leadingCoeff * x^deg).-/
+/-- For x < -(prop24Bound P), sign(P(x)) = sign(leadingCoeff * x^deg).
+@isnad1 id=eq.2h3v.s8.9a8670348bdf from=translated src=- shape=bc84b69a vocab=6117ad5a
+-/
 theorem sign_eval_of_large_neg (P : R[X]) (hP : P ≠ 0) (x : R)
     (hx : x < -prop24Bound P) :
     SignType.sign (P.eval x) = SignType.sign (P.leadingCoeff * x ^ P.natDegree) := by
@@ -78,6 +85,9 @@ private theorem sqMinusConst_eval_pos_of_large (y : R) (x : R) (hx1 : 1 ≤ x) (
   rw [sqMinusConst_eval]
   nlinarith [sq_nonneg (x - 1)]
 
+/--
+@isnad1 id=issquare.2h2v.s6.87e2c6224838 from=translated src=- shape=5f5bb6a6 vocab=e96a7d63
+-/
 theorem isSquare_of_nonneg (hIVP : Azurite.BPR.HasIntermediateValueProperty R) {y : R} (hy : 0 ≤ y) :
     IsSquare y := by
   rcases eq_or_lt_of_le hy with rfl | hy_pos
@@ -102,7 +112,9 @@ theorem isSquare_of_nonneg (hIVP : Azurite.BPR.HasIntermediateValueProperty R) {
 
 /-- A nonzero polynomial of odd degree takes a positive value for some large x
     and a negative value for some small (large negative) x, or vice versa.
-    Combined with IVP, this gives a root.-/
+    Combined with IVP, this gives a root.
+@isnad1 id=ex.2h2v.s6.95c8788d26f5 from=translated src=- shape=8bb79a20 vocab=31e27dd8
+-/
 theorem exists_isRoot_of_odd_natDegree (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     {P : R[X]} (hodd : Odd P.natDegree) : ∃ x, P.IsRoot x := by
   by_cases hP : P = 0
@@ -171,7 +183,9 @@ theorem exists_isRoot_of_odd_natDegree (hIVP : Azurite.BPR.HasIntermediateValueP
 /-! ## Main theorem -/
 
 /-- **BPR Theorem 2.11 (c => a).** If R has the intermediate value property,
-    then R is real closed.-/
+    then R is real closed.
+@isnad1 id=isrealcl.1h1v.s5.6c0eca55b01e from=translated src=- shape=7ddc04c7 vocab=feb4fd0e
+-/
 theorem theorem_2_11_c_a (hIVP : Azurite.BPR.HasIntermediateValueProperty R) :
     IsRealClosed R :=
   IsRealClosed.of_linearOrderedField

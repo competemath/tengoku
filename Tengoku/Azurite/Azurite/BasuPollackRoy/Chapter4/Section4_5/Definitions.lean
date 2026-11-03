@@ -41,6 +41,9 @@ def IsZeroDimensional (C : Type*) [Field C] [Algebra K C]
     (Ps : Finset (MvPolynomial (Fin k) K)) : Prop :=
   (zerOfFinset C Ps).Nonempty ∧ (zerOfFinset C Ps).Finite
 
+/--
+@isnad1 id=iff.0h4v.s6.2340d8dd3dff from=translated src=- shape=4e3780ad vocab=ee0e3d58
+-/
 theorem isZeroDimensional_iff {C : Type*} [Field C] [Algebra K C]
     {Ps : Finset (MvPolynomial (Fin k) K)} :
     IsZeroDimensional C Ps ↔ (zerOfFinset C Ps).Nonempty ∧ (zerOfFinset C Ps).Finite :=

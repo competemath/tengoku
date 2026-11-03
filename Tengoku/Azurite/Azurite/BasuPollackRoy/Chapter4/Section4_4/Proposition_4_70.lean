@@ -35,7 +35,9 @@ open MvPolynomial
 variable {k : ℕ} {K : Type*} [Field K]
 
 /-- **BPR Proposition 4.70 (Hilbert Basis Theorem).** Every ideal of `K[X₁, …, X_k]` has a
-Gröbner basis for the monomial ordering `m`.-/
+Gröbner basis for the monomial ordering `m`.
+@isnad1 id=ex.0h4v.s6.f282d145523b from=translated src=- shape=09f18574 vocab=a2600dbd
+-/
 theorem proposition_4_70 (m : MonomialOrder (Fin k)) (I : Ideal (MvPolynomial (Fin k) K)) :
     ∃ 𝒢 : Finset (MvPolynomial (Fin k) K), IsGrobnerBasisOf m I 𝒢 := by
   classical

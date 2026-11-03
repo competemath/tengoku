@@ -50,6 +50,9 @@ def realizationOver (σ : SignCondition ι) (P : R[X]) (Q : ι → R[X]) : Set R
   {x | P.IsRoot x ∧ σ.IsRealizedBy (fun i => (Q i).eval x)}
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=iff.0h6v.s7.eba14995ed98 from=translated src=- shape=30a7c9c8 vocab=02d8a1a6
+-/
 theorem mem_realizationOver {σ : SignCondition ι} {P : R[X]} {Q : ι → R[X]} {x : R} :
     x ∈ σ.realizationOver P Q ↔
       P.eval x = 0 ∧ ∀ i, SignType.sign ((Q i).eval x) = σ i :=
@@ -57,7 +60,9 @@ theorem mem_realizationOver {σ : SignCondition ι} {P : R[X]} {Q : ι → R[X]}
 
 omit [IsStrictOrderedRing R] in
 /-- `Reali(σ, Z)` is `Zer(P)` intersected with the sign-condition
-realization `σ.realization`.-/
+realization `σ.realization`.
+@isnad1 id=eq.0h5v.s6.b3902e35453f from=translated src=- shape=7aedafd9 vocab=7bc7861e
+-/
 theorem realizationOver_eq_inter (σ : SignCondition ι) (P : R[X]) (Q : ι → R[X]) :
     σ.realizationOver P Q
       = {x | P.IsRoot x} ∩ σ.realization (fun i x => (Q i).eval x) :=
@@ -72,7 +77,9 @@ noncomputable def realizationOverFinset [Fintype ι] (σ : SignCondition ι)
 
 omit [IsStrictOrderedRing R] in
 /-- For `P ≠ 0`, the `Finset` form picks out exactly the points of the
-set realization `Reali(σ, Z)`.-/
+set realization `Reali(σ, Z)`.
+@isnad1 id=iff.1h6v.s6.bcb7aedad1b2 from=translated src=- shape=715e0bef vocab=7e21d298
+-/
 theorem mem_realizationOverFinset [Fintype ι] {σ : SignCondition ι} {P : R[X]}
     {Q : ι → R[X]} (hP : P ≠ 0) {x : R} :
     x ∈ σ.realizationOverFinset P Q ↔ x ∈ σ.realizationOver P Q := by
@@ -107,6 +114,9 @@ noncomputable def familyPow (Q : ι → R[X]) (α : ι → ℕ) : R[X] :=
   ∏ i, Q i ^ α i
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h5v.s6.c3a41f7f70e9 from=translated src=- shape=7b2d3097 vocab=3b38b9a7
+-/
 @[simp] theorem familyPow_eval (Q : ι → R[X]) (α : ι → ℕ) (x : R) :
     (familyPow Q α).eval x = ∏ i, (Q i).eval x ^ α i := by
   simp [familyPow, Polynomial.eval_prod]
@@ -114,7 +124,9 @@ omit [LinearOrder R] [IsStrictOrderedRing R] in
 /-- **Sign determination.** On the realization `Reali(σ, Z)`, the sign of
 `𝒬^α` equals `σ^α`. (In particular it is constant on `Reali(σ, Z)`.)
 The proof uses that `sign` is multiplicative (`sign_mul`, `sign_pow`):
-`sign((𝒬^α)(x)) = ∏ᵢ sign(Q_i(x))^{α(i)} = ∏ᵢ σ(i)^{α(i)} = σ^α`.-/
+`sign((𝒬^α)(x)) = ∏ᵢ sign(Q_i(x))^{α(i)} = ∏ᵢ σ(i)^{α(i)} = σ^α`.
+@isnad1 id=eq.1h7v.s7.f0d111bbe42c from=translated src=- shape=70940d5c vocab=efb6c6f2
+-/
 theorem sign_familyPow_eval_eq_signPow (σ : SignCondition ι) (P : R[X])
     (Q : ι → R[X]) (α : ι → ℕ) {x : R} (hx : x ∈ σ.realizationOver P Q) :
     SignType.sign ((familyPow Q α).eval x) = σ.pow α := by
@@ -125,7 +137,9 @@ theorem sign_familyPow_eval_eq_signPow (σ : SignCondition ι) (P : R[X])
   rw [familyPow_eval, hsign_prod, SignCondition.pow]
   exact Finset.prod_congr rfl (fun i _ => by rw [sign_pow, hreal i])
 
-/-- The sign of `𝒬^α` is fixed across the realization `Reali(σ, Z)`.-/
+/-- The sign of `𝒬^α` is fixed across the realization `Reali(σ, Z)`.
+@isnad1 id=eq.2h8v.s8.72eededd0493 from=translated src=- shape=b624a6ac vocab=f470b53d
+-/
 theorem sign_familyPow_eval_eq_of_mem (σ : SignCondition ι) (P : R[X])
     (Q : ι → R[X]) (α : ι → ℕ) {x y : R}
     (hx : x ∈ σ.realizationOver P Q) (hy : y ∈ σ.realizationOver P Q) :
@@ -155,17 +169,25 @@ noncomputable def tarskiQueryList (P : R[X]) (Q : ι → R[X]) (A : List (ι →
   A.map (fun α => tarskiQuery (familyPow Q α) P)
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h4v.s5.da673aa165b9 from=translated src=- shape=5e75d3d4 vocab=ef09ecd5
+-/
 @[simp] theorem familyPowList_length (Q : ι → R[X]) (A : List (ι → ℕ)) :
     (familyPowList Q A).length = A.length := by
   simp [familyPowList]
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h5v.s5.1173748a1e1a from=translated src=- shape=87669a41 vocab=886b1d7b
+-/
 @[simp] theorem tarskiQueryList_length (P : R[X]) (Q : ι → R[X]) (A : List (ι → ℕ)) :
     (tarskiQueryList P Q A).length = A.length := by
   simp [tarskiQueryList]
 
 omit [IsStrictOrderedRing R] in
-/-- `TaQ(𝒬^A, P)` is the entrywise Tarski-query of `P` against `𝒬^A`.-/
+/-- `TaQ(𝒬^A, P)` is the entrywise Tarski-query of `P` against `𝒬^A`.
+@isnad1 id=eq.0h5v.s6.0afe2a811d0c from=translated src=- shape=5c9a6402 vocab=51a0f018
+-/
 theorem tarskiQueryList_eq_map (P : R[X]) (Q : ι → R[X]) (A : List (ι → ℕ)) :
     tarskiQueryList P Q A = (familyPowList Q A).map (fun p => tarskiQuery p P) := by
   simp [tarskiQueryList, familyPowList, List.map_map, Function.comp_def]
@@ -191,6 +213,9 @@ def realizationOverList (S : List (SignCondition ι)) (P : R[X]) (Q : ι → R[X
   S.map (fun σ => σ.realizationOver P Q)
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h5v.s5.7a6f925e9d1c from=translated src=- shape=4214fcf0 vocab=2d2e0374
+-/
 @[simp] theorem realizationOverList_length (S : List (SignCondition ι)) (P : R[X])
     (Q : ι → R[X]) : (realizationOverList S P Q).length = S.length := by
   simp [realizationOverList]
@@ -202,6 +227,9 @@ noncomputable def realizationOverCardList [Fintype ι] (S : List (SignCondition 
   S.map (fun σ => (σ.realizationOverFinset P Q).card)
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h5v.s5.dedba863823a from=translated src=- shape=d85ec54a vocab=d8b7c8fd
+-/
 @[simp] theorem realizationOverCardList_length [Fintype ι]
     (S : List (SignCondition ι)) (P : R[X]) (Q : ι → R[X]) :
     (realizationOverCardList S P Q).length = S.length := by

@@ -32,7 +32,9 @@ open MvPolynomial
 variable {K : Type*} [Field K]
 
 /-- Homogeneous component of a product with a homogeneous factor: if `Q` is homogeneous of degree
-`e` and `e ≤ m`, then the degree-`m` component of `B * Q` is `(degree-(m-e) component of B) * Q`.-/
+`e` and `e ≤ m`, then the degree-`m` component of `B * Q` is `(degree-(m-e) component of B) * Q`.
+@isnad1 id=eq.2h6v.s9.938af7f730e7 from=translated src=- shape=ae987094 vocab=52170399
+-/
 theorem homogeneousComponent_mul_homogeneous {k : ℕ} {R : Type*} [CommRing R]
     {Q : MvPolynomial (Fin k) R} {e : ℕ} (hQ : Q.IsHomogeneous e) (m : ℕ) (hm : e ≤ m)
     (B : MvPolynomial (Fin k) R) :

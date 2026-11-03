@@ -42,6 +42,9 @@ noncomputable def Syl.encodeV (p q : ℕ) (uv : Fin (p + q) → D) : D[X] :=
 
 /-! ### Coefficient extraction -/
 
+/--
+@isnad1 id=eq.1h5v.s6.546f1f3876fd from=translated src=- shape=3c3abec6 vocab=8ce5a6d7
+-/
 theorem Syl.encodeU_coeff (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ) (hm : m < q) :
     (Syl.encodeU p q uv).coeff m = uv ⟨q - 1 - m, by omega⟩ := by
   unfold Syl.encodeU
@@ -65,6 +68,9 @@ theorem Syl.encodeU_coeff (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ) (hm : m
   · intro h_not_mem
     exact absurd (Finset.mem_univ _) h_not_mem
 
+/--
+@isnad1 id=eq.1h5v.s6.6bb109fc902e from=translated src=- shape=2a2e5893 vocab=f8888bd9
+-/
 theorem Syl.encodeV_coeff (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ) (hm : m < p) :
     (Syl.encodeV p q uv).coeff m = uv ⟨q + (p - 1 - m), by omega⟩ := by
   unfold Syl.encodeV
@@ -88,6 +94,9 @@ theorem Syl.encodeV_coeff (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ) (hm : m
   · intro h_not_mem
     exact absurd (Finset.mem_univ _) h_not_mem
 
+/--
+@isnad1 id=eq.1h5v.s5.0514ec69a855 from=translated src=- shape=4a028ec8 vocab=07f4ae68
+-/
 theorem Syl.encodeU_coeff_of_ge (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ)
     (hm : q ≤ m) : (Syl.encodeU p q uv).coeff m = 0 := by
   unfold Syl.encodeU
@@ -100,6 +109,9 @@ theorem Syl.encodeU_coeff_of_ge (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ)
     omega
   rw [ite_eq_right (Ne.symm h_neq), mul_zero]
 
+/--
+@isnad1 id=eq.1h5v.s5.ca75c742ae9f from=translated src=- shape=1333dc34 vocab=ba835de2
+-/
 theorem Syl.encodeV_coeff_of_ge (p q : ℕ) (uv : Fin (p + q) → D) (m : ℕ)
     (hm : p ≤ m) : (Syl.encodeV p q uv).coeff m = 0 := by
   unfold Syl.encodeV
@@ -175,6 +187,9 @@ private lemma Fin_sum_split_at {M : Type*} [AddCommMonoid M] (p q : ℕ)
 
 /-! ### `mulMap` decomposes as `encodeU * P + encodeV * Q` -/
 
+/--
+@isnad1 id=eq.0h4v.s7.abfad13b6567 from=translated src=- shape=a5bc5c5d vocab=18bb996e
+-/
 theorem Syl.mulMap_eq_pair (P Q : D[X])
     (uv : Fin (P.natDegree + Q.natDegree) → D) :
     Syl.mulMap P Q uv =
@@ -257,6 +272,9 @@ theorem Syl.mulMap_eq_pair (P Q : D[X])
 variable [Nontrivial D]
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=lt.1h4v.s5.a1c90095fa17 from=translated src=- shape=1a6aa61e vocab=bb7b20c8
+-/
 theorem Syl.encodeU_natDegree_lt (p q : ℕ) (uv : Fin (p + q) → D) (hq : 0 < q) :
     (Syl.encodeU p q uv).natDegree < q := by
   apply Nat.lt_of_lt_of_le _ (le_refl q)
@@ -271,6 +289,9 @@ theorem Syl.encodeU_natDegree_lt (p q : ℕ) (uv : Fin (p + q) → D) (hq : 0 < 
   · exact Polynomial.leadingCoeff_ne_zero.mpr h_zero h_coeff
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=lt.1h4v.s5.91486e2fe361 from=translated src=- shape=b128909e vocab=56d40347
+-/
 theorem Syl.encodeV_natDegree_lt (p q : ℕ) (uv : Fin (p + q) → D) (hp : 0 < p) :
     (Syl.encodeV p q uv).natDegree < p := by
   apply Nat.lt_of_lt_of_le _ (le_refl p)
@@ -285,6 +306,9 @@ theorem Syl.encodeV_natDegree_lt (p q : ℕ) (uv : Fin (p + q) → D) (hp : 0 < 
   · exact Polynomial.leadingCoeff_ne_zero.mpr h_zero h_coeff
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=lt.1h4v.s6.dc53324dd98d from=translated src=- shape=86785f5e vocab=3c3a36e5
+-/
 theorem Syl.mulMap_natDegree_lt (P Q : D[X])
     (uv : Fin (P.natDegree + Q.natDegree) → D)
     (hpq : 0 < P.natDegree + Q.natDegree) :
@@ -322,6 +346,9 @@ theorem Syl.mulMap_natDegree_lt (P Q : D[X])
 /-! ### `uv = 0` iff both encodings vanish -/
 
 omit [Nontrivial D] in
+/--
+@isnad1 id=iff.0h4v.s7.dca29e221273 from=translated src=- shape=88042828 vocab=772287d4
+-/
 theorem Syl.encode_eq_zero_iff (p q : ℕ) (uv : Fin (p + q) → D) :
     (Syl.encodeU p q uv = 0 ∧ Syl.encodeV p q uv = 0) ↔ uv = 0 := by
   constructor
@@ -370,7 +397,9 @@ omit [Nontrivial D] in
     identifying matrix-vector multiplication with coefficient
     extraction from `Syl.mulMap`) + the structural decomposition
     `Syl.mulMap_eq_pair` (`mulMap = encodeU·P + encodeV·Q`) + domain
-    cancellation.-/
+    cancellation.
+@isnad1 id=iff.2h3v.s8.872c24206655 from=translated src=- shape=27acf735 vocab=d794659b
+-/
 theorem Res_eq_zero_iff (P Q : D[X]) (hP : P ≠ 0) (hQ : Q ≠ 0) :
     Res P Q = 0 ↔
       ∃ U V : D[X], U ≠ 0 ∧ V ≠ 0 ∧

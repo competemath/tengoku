@@ -32,7 +32,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     constant sign on `(a, b)`: it is either everywhere positive or everywhere
     negative on the open interval.
 
-    If `(a, b) = ∅` (i.e. `a ≥ b`) both disjuncts hold vacuously.-/
+    If `(a, b) = ∅` (i.e. `a ≥ b`) both disjuncts hold vacuously.
+@isnad1 id=or.2h4v.s7.cc67f550549e from=translated src=- shape=bf96554e vocab=948f4ef5
+-/
 theorem proposition_2_20 (hIVP : HasIntermediateValueProperty R)
     (P : R[X]) (a b : R)
     (hP : ∀ x ∈ Set.Ioo a b, P.eval x ≠ 0) :
@@ -65,7 +67,9 @@ theorem proposition_2_20 (hIVP : HasIntermediateValueProperty R)
 
 /-- **BPR Proposition 2.20** (real closed form). Over a real closed field `R`,
     if `P ∈ R[X]` does not vanish on `(a, b)`, then `P` has constant sign on
-    `(a, b)`.-/
+    `(a, b)`.
+@isnad1 id=or.1h4v.s7.cfea823efc1a from=translated src=- shape=638b86f7 vocab=392fda07
+-/
 theorem proposition_2_20_of_isRealClosed
     {R : Type*} [Field R] [IsRealClosed R]
     (P : R[X]) (a b : R) :

@@ -106,16 +106,28 @@ section
 
 variable [Ring R] [LinearOrder R]
 
+/--
+@isnad1 id=eq.0h3v.s6.ae5bdaf81109 from=translated src=- shape=2294181f vocab=b5afaaad
+-/
 lemma varAt_finite (P : List R[X]) (a : R) :
     varAt P (ExtendedPoint.finite a) = Var (P.map (fun Q => Q.eval a)) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.c94a77d3442f from=translated src=- shape=1a00b83a vocab=9058a8fd
+-/
 lemma varAt_posInf (P : List R[X]) :
     varAt P ExtendedPoint.posInf = Var (P.map Polynomial.leadingCoeff) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.b042370bb973 from=translated src=- shape=d9bcc407 vocab=43b7eb95
+-/
 lemma varAt_negInf (P : List R[X]) :
     varAt P ExtendedPoint.negInf =
       Var (P.map (fun Q => (-1) ^ Q.natDegree * Q.leadingCoeff)) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.14305a83b153 from=translated src=- shape=e46cd0af vocab=4da170de
+-/
 @[simp] lemma varAt_nil (a : ExtendedPoint R) : varAt ([] : List R[X]) a = 0 := rfl
 
 end

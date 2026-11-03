@@ -40,12 +40,16 @@ variable {C : Type*} [Field C] [IsAlgClosed C] [Algebra K C]
 
 omit [CharZero K] in
 /-- **BPR Exercise 2.1(a).** P is separable iff P has no multiple root
-    in an algebraically closed field C containing K.-/
+    in an algebraically closed field C containing K.
+@isnad1 id=iff.1h3v.s6.c7c63617ee86 from=translated src=- shape=99051315 vocab=cd698e6a
+-/
 theorem exercise_2_1a (P : K[X]) (hP : P ≠ 0) :
     P.Separable ↔ (P.aroots C).Nodup :=
   (nodup_aroots_iff_of_splits hP (IsAlgClosed.splits (P.map (algebraMap K C)))).symm
 
-/-- **BPR Exercise 2.1(b).** In characteristic 0, P is separable iff P is square-free.-/
+/-- **BPR Exercise 2.1(b).** In characteristic 0, P is separable iff P is square-free.
+@isnad1 id=iff.0h2v.s6.b90b8587b053 from=translated src=- shape=55afdffd vocab=35c9baf7
+-/
 theorem exercise_2_1b (P : K[X]) :
     P.Separable ↔ Squarefree P :=
   PerfectField.separable_iff_squarefree

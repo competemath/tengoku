@@ -36,7 +36,9 @@ variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
 /-- **Exercise 2.4.** The 0₊ order is the unique order on F[X] making ε
     positive infinitesimal: any positivity predicate satisfying the
-    ordered-ring axioms with X infinitesimal agrees with `polyPos`.-/
+    ordered-ring axioms with X infinitesimal agrees with `polyPos`.
+@isnad1 id=iff.3h8v.s9.e21242267c6b from=translated src=- shape=55d70b32 vocab=5ac83944
+-/
 theorem exercise_2_4
     (pos : F[X] → Prop)
     (pos_add : ∀ {a b}, pos a → pos b → pos (a + b))

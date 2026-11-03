@@ -49,7 +49,9 @@ variable {K : Type*} [Field K] [DecidableEq K]
     range,
 
       `(gcd P Q).natDegree = j` ↔
-        `(∀ i < j, sRes P Q i = 0) ∧ sRes P Q j ≠ 0`.-/
+        `(∀ i < j, sRes P Q i = 0) ∧ sRes P Q j ≠ 0`.
+@isnad1 id=iff.4h4v.s7.1feaf49700b3 from=translated src=- shape=98a3c0b9 vocab=c3c734c7
+-/
 theorem Proposition_4_26 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (j : ℕ) (hj_q : j ≤ Q.natDegree) (hj_p : j < P.natDegree) :
     (gcd P Q).natDegree = j ↔

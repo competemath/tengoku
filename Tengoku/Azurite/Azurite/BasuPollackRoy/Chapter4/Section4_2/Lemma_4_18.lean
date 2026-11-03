@@ -54,7 +54,9 @@ variable {D : Type*} [CommRing D]
     BPR's ``$C$ is the quotient of $P/Q$'' (when `deg R < deg Q ≤ deg P`,
     we have `deg(C·Q) = deg P` and so `deg C + deg Q = deg P`).
     The hypothesis `R.natDegree ≤ P.natDegree` is implied by
-    `R.natDegree < Q.natDegree ≤ P.natDegree` in BPR's setting.-/
+    `R.natDegree < Q.natDegree ≤ P.natDegree` in BPR's setting.
+@isnad1 id=eq.3h5v.s8.acb2c2849633 from=translated src=- shape=12a0b2f3 vocab=b6ec4ede
+-/
 theorem Lemma_4_18_Res (P Q C R : D[X])
     (h_C : C.natDegree + Q.natDegree ≤ P.natDegree)
     (h_R : R.natDegree ≤ P.natDegree)
@@ -98,7 +100,9 @@ noncomputable def Θ (P Q : K[X]) (q : ℕ) : K :=
   P.leadingCoeff ^ q * (P.roots.map Q.eval).prod
 
 /-- When `P` splits and `Q.natDegree ≤ q`, the BPR symbol `Θ(P, Q)`
-    coincides with Mathlib's resultant `resultant P Q P.natDegree q`.-/
+    coincides with Mathlib's resultant `resultant P Q P.natDegree q`.
+@isnad1 id=eq.2h4v.s6.9be3fd30967c from=translated src=- shape=3c22c456 vocab=2a4a7c5e
+-/
 theorem Θ_eq_resultant (P Q : K[X]) (q : ℕ) (hP : P.Splits)
     (hQ : Q.natDegree ≤ q) :
     Θ P Q q = Polynomial.resultant P Q P.natDegree q := by
@@ -108,7 +112,9 @@ theorem Θ_eq_resultant (P Q : K[X]) (q : ℕ) (hP : P.Splits)
 /-- **BPR Lemma 4.18 (Θ part).** Under the same algebraic hypotheses as
     the Res part plus the splitting hypotheses on `P` and `Q`,
 
-      `Θ(P, Q) = (-1)^{p·q} · b_q^{p-r} · Θ(Q, R)`.-/
+      `Θ(P, Q) = (-1)^{p·q} · b_q^{p-r} · Θ(Q, R)`.
+@isnad1 id=eq.5h5v.s8.7aca4b72abe1 from=translated src=- shape=619d0d56 vocab=e487cf5f
+-/
 theorem Lemma_4_18_Theta (P Q C R : K[X])
     (h_C : C.natDegree + Q.natDegree ≤ P.natDegree)
     (h_R : R.natDegree ≤ P.natDegree)

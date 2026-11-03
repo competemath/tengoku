@@ -29,7 +29,9 @@ open MvPolynomial
 variable {k : ℕ} {K : Type*} [Field K]
 
 /-- **BPR Theorem 4.61 (Hilbert's basis theorem).** Any ideal `I ⊆ K[X₁, …, X_k]` is finitely
-generated: there exists a finite set `𝒫` such that `I = Ideal(𝒫, K)`.-/
+generated: there exists a finite set `𝒫` such that `I = Ideal(𝒫, K)`.
+@isnad1 id=ex.0h3v.s6.b88c5e62fe4a from=translated src=- shape=ba250021 vocab=8dab3b5d
+-/
 theorem theorem_4_61 (I : Ideal (MvPolynomial (Fin k) K)) :
     ∃ P : Finset (MvPolynomial (Fin k) K), I = idealOfPolys P := by
   obtain ⟨𝒢, hG⟩ := proposition_4_70 (MonomialOrder.degLex) I

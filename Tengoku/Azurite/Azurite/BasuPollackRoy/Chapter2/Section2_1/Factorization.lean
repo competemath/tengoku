@@ -36,7 +36,9 @@ noncomputable def linearFactor (a : R) : R[X] := X - C a
 noncomputable def quadraticFactor (cd : R × R) : R[X] := (X - C cd.1) ^ 2 + C (cd.2 ^ 2)
 
 /-- Split a multiset of "linear-or-irreducible-quadratic" monic polynomials
-    into two multisets: real roots (linears) and `(c, d)` pairs (quadratics).-/
+    into two multisets: real roots (linears) and `(c, d)` pairs (quadratics).
+@isnad1 id=ex.1h2v.s8.2492416623ce from=translated src=- shape=282f2f5f vocab=4e77c090
+-/
 lemma exists_split_multiset (m : Multiset R[X])
     (h : ∀ q ∈ m, (∃ a : R, q = linearFactor a) ∨
         (∃ c d : R, d ≠ 0 ∧ q = quadraticFactor (c, d))) :
@@ -66,7 +68,9 @@ lemma exists_split_multiset (m : Multiset R[X])
 /-- **Factorization over a real closed field.** Every polynomial `P` over a
     real closed field factors as `C P.leadingCoeff` times a product of real
     linear factors `X − aᵢ` and irreducible quadratic factors `(X − cⱼ)² + dⱼ²`
-    with `dⱼ ≠ 0`.-/
+    with `dⱼ ≠ 0`.
+@isnad1 id=ex.0h2v.s8.d080ce3391b9 from=translated src=- shape=a5327bc3 vocab=58ad4029
+-/
 theorem exists_factorization [IsRealClosed R] [DecidableEq R] (P : R[X]) :
     ∃ (linears : Multiset R) (quadratics : Multiset (R × R)),
       (∀ pq ∈ quadratics, pq.2 ≠ 0) ∧
@@ -107,7 +111,9 @@ of factors via `Multiset.dvd_prod`. Downstream propositions (2.39, 2.40)
 use these to translate a root-based hypothesis on `P` into a factor-based
 hypothesis on the decomposition. -/
 
-/-- The real root `a` is a root of `linearFactor a = X − C a` in `Ri R`.-/
+/-- The real root `a` is a root of `linearFactor a = X − C a` in `Ri R`.
+@isnad1 id=eq.0h2v.s11.cbc1b6c4d9e0 from=translated src=- shape=b08f2a78 vocab=fce3b03e
+-/
 theorem aeval_linearFactor_self (a : R) :
     aeval (algebraMap R (Ri R) a) (linearFactor a) = 0 := by
   unfold linearFactor
@@ -115,7 +121,9 @@ theorem aeval_linearFactor_self (a : R) :
   exact sub_self _
 
 /-- The complex root `c + di` is a root of `quadraticFactor (c, d) = (X − C c)² + C d²`
-    in `Ri R`.-/
+    in `Ri R`.
+@isnad1 id=eq.0h3v.s12.21d517f093d3 from=translated src=- shape=9d57e230 vocab=6ea4def4
+-/
 theorem aeval_quadraticFactor_root (c d : R) :
     aeval (algebraMap R (Ri R) c + algebraMap R (Ri R) d * Ri.i R)
       (quadraticFactor (c, d)) = 0 := by
@@ -128,7 +136,9 @@ theorem aeval_quadraticFactor_root (c d : R) :
     rw [map_pow]]
   ring
 
-/-- If `a ∈ linears`, then `ι a` is a root of the product of linear factors.-/
+/-- If `a ∈ linears`, then `ι a` is a root of the product of linear factors.
+@isnad1 id=eq.1h3v.s11.eff198ec9da0 from=translated src=- shape=f19a2e21 vocab=aec7061e
+-/
 theorem aeval_linearFactor_prod_of_mem {linears : Multiset R} {a : R}
     (ha : a ∈ linears) :
     aeval (algebraMap R (Ri R) a) ((linears.map linearFactor).prod) = 0 := by
@@ -138,7 +148,9 @@ theorem aeval_linearFactor_prod_of_mem {linears : Multiset R} {a : R}
   rw [hQ, map_mul, aeval_linearFactor_self, zero_mul]
 
 /-- If `(c, d) ∈ quadratics`, then `ι c + ι d · i` is a root of the product of
-    quadratic factors.-/
+    quadratic factors.
+@isnad1 id=eq.1h4v.s12.808a1777876d from=translated src=- shape=c1e6a651 vocab=9f6ba803
+-/
 theorem aeval_quadraticFactor_prod_of_mem {quadratics : Multiset (R × R)}
     {c d : R} (hcd : (c, d) ∈ quadratics) :
     aeval (algebraMap R (Ri R) c + algebraMap R (Ri R) d * Ri.i R)

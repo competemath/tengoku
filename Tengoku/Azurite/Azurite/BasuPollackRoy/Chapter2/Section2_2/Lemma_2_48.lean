@@ -74,7 +74,9 @@ No polynomial content — pure algebra on `SignType` and `if` expressions. -/
 omit [IsStrictOrderedRing R] in
 /-- **Sign-variation jump formula.** If `sign a = (-1)^ν · sign b` and
     `b ≠ 0`, then the difference of the negativity indicators of `a`
-    and `b` equals the `Even ν` / sign-of-`b` branching formula.-/
+    and `b` equals the `Even ν` / sign-of-`b` branching formula.
+@isnad1 id=eq.2h4v.s8.ecf9debbabcb from=translated src=- shape=0a4dabf0 vocab=48a229ad
+-/
 lemma jump_diff_formula {ν : ℕ} {a b : R} (hb : b ≠ 0)
     (hsign : SignType.sign a = (-1)^ν * SignType.sign b) :
     ((if a < 0 then (1 : ℤ) else 0) - (if b < 0 then 1 else 0)) =
@@ -125,7 +127,9 @@ nothing. -/
       so prepending `P(d)` adds exactly one to `varAt (der P') d`.
     * At `x = c`: `P(c) = 0`, so the leading zero drops and
       `varAt (der P) c = varAt (der P') c`.
-    Subtracting gives `varBetween (der P) d c = varBetween (der P') d c + 1`.-/
+    Subtracting gives `varBetween (der P) d c = varBetween (der P') d c + 1`.
+@isnad1 id=eq.5h4v.s9.c09f9e82ae79 from=translated src=- shape=18118a99 vocab=f1ee166a
+-/
 lemma varBetween_der_succ_of_root_at_c_add_one
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hpos : 1 ≤ P.natDegree)
@@ -229,7 +233,9 @@ multiplicity of `c` as a root of `P'`. -/
     `if Even ν then 0 else sign(P(c) · P^(ν+1)(c))`, where
     `ν = (derivative P).rootMultiplicity c`. The LHS is computed externally
     using `varAt_cons_der_eq` and Proposition 2.21 sign analysis; the RHS
-    is given by `virtualMultiplicity_diff_of_not_root`.-/
+    is given by `virtualMultiplicity_diff_of_not_root`.
+@isnad1 id=eq.7h4v.s10.0e1e4503e6d3 from=translated src=- shape=e8bfc726 vocab=0ec72649
+-/
 lemma varBetween_der_succ_of_not_root_at_c
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0) (hpos : 1 ≤ P.natDegree)
@@ -357,7 +363,9 @@ lemma varBetween_der_succ_of_not_root_at_c
 
 /-- **BPR Lemma 2.48.** Let `P ≠ 0` and `d < c`. If no `P^{(k)}`
     (`k < P.natDegree`) has a root in `[d, c)`, then the virtual multiplicity
-    of `c` with respect to `P` equals `Var(Der P; d, c)`.-/
+    of `c` with respect to `P` equals `Var(Der P; d, c)`.
+@isnad1 id=eq.4h4v.s9.869e0a874b29 from=translated src=- shape=160107f1 vocab=160487d9
+-/
 theorem lemma_2_48 (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {d c : R} (hdc : d < c)
     (hno_root : ∀ k, k < P.natDegree → ∀ x ∈ Set.Ico d c,

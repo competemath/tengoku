@@ -55,7 +55,9 @@ variable {R : Type*} [Field R]
 The "ordered" content of (2) and (3) is an existential over the order; by
 uniqueness of the compatible order on a real closed field
 (`isRealClosed_le_unique`), the witness order is the canonical one supplied
-by `IsRealClosed.toLinearOrder`.-/
+by `IsRealClosed.toLinearOrder`.
+@isnad1 id=tfae.0h1v.s8.ac7f1594890a from=translated src=- shape=11fabf66 vocab=b2e57f0a
+-/
 theorem theorem_2_11_tfae :
     [IsRealClosed R,
      ∃ (lo : LinearOrder R) (h : @IsStrictOrderedRing R _ lo.toPartialOrder),

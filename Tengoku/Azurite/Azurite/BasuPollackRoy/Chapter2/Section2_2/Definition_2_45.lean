@@ -135,24 +135,32 @@ private theorem virtualRoots_property (hIVP : HasIntermediateValueProperty R)
 
 /-! ### The five defining properties -/
 
-/-- **Property 1.** The number of virtual roots equals `natDegree P`.-/
+/-- **Property 1.** The number of virtual roots equals `natDegree P`.
+@isnad1 id=eq.2h2v.s6.a9e55a7c8cb2 from=translated src=- shape=b1b332c8 vocab=bcfc48db
+-/
 theorem length_virtualRoots (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) : (virtualRoots hIVP hP).length = P.natDegree :=
   (virtualRoots_property hIVP hP).1.length_eq
 
-/-- **Property 2.** The virtual roots are sorted.-/
+/-- **Property 2.** The virtual roots are sorted.
+@isnad1 id=pairwise.2h2v.s6.e0d0dec57243 from=translated src=- shape=2f30a306 vocab=5264f0e5
+-/
 theorem sorted_virtualRoots (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) : (virtualRoots hIVP hP).Pairwise (· ≤ ·) :=
   (virtualRoots_property hIVP hP).1.sorted
 
 /-- **Property 3.** `P` has constant sign on each gap between consecutive
-    virtual roots.-/
+    virtual roots.
+@isnad1 id=signcons.2h2v.s6.211e286ddeee from=translated src=- shape=7e81ff5a vocab=f5237e00
+-/
 theorem signConstantOnGaps_virtualRoots (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) : SignConstantOnGaps P (virtualRoots hIVP hP) :=
   (virtualRoots_property hIVP hP).1.sign_const
 
 /-- **Property 4 (interlacing).** When `derivative P ≠ 0`, the virtual roots
-    of `P` and of `derivative P` interlace.-/
+    of `P` and of `derivative P` interlace.
+@isnad1 id=interlac.3h2v.s9.6470553003df from=translated src=- shape=36a0beb7 vocab=4c4ebe75
+-/
 theorem interlaced_virtualRoots (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0) :
     Interlaced (virtualRoots hIVP hP) (virtualRoots hIVP hdP) := by
@@ -164,7 +172,9 @@ theorem interlaced_virtualRoots (hIVP : HasIntermediateValueProperty R)
     rw [← hys_eq]; exact hinter
 
 /-- **Property 5 (argmin partition).** When `derivative P ≠ 0`, each virtual
-    root of `P` minimises `|P|` on its designated interval.-/
+    root of `P` minimises `|P|` on its designated interval.
+@isnad1 id=argminpa.3h2v.s9.fdcf6e451b03 from=translated src=- shape=c8f79f45 vocab=7ea13451
+-/
 theorem argminPartition_virtualRoots (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0) :
     ArgminPartition P (virtualRoots hIVP hP) (virtualRoots hIVP hdP) := by
@@ -179,7 +189,9 @@ theorem argminPartition_virtualRoots (hIVP : HasIntermediateValueProperty R)
 
 /-- **Uniqueness from properties (derivative nonzero case).** Any list `xs`
     satisfying the five defining properties of virtual roots equals
-    `virtualRoots hIVP hP`.-/
+    `virtualRoots hIVP hP`.
+@isnad1 id=eq.8h3v.s10.22547c62b9b7 from=translated src=- shape=8776142a vocab=3c186ae5
+-/
 theorem virtualRoots_eq_of_properties_of_derivative_ne_zero
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0) {xs : List R}
@@ -217,7 +229,9 @@ theorem virtualRoots_eq_of_properties_of_derivative_ne_zero
   exact Internal.IsVirtualRootsList.unique hIVP hxs_spec hnew_spec
 
 /-- **Uniqueness from properties (zero-degree case).** When `P.natDegree = 0`,
-    `virtualRoots hIVP hP = []`.-/
+    `virtualRoots hIVP hP = []`.
+@isnad1 id=eq.3h2v.s6.7d63f22023ca from=translated src=- shape=ff3750d7 vocab=ba350da3
+-/
 theorem virtualRoots_eq_nil_of_natDegree_zero
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hn : P.natDegree = 0) :
@@ -228,7 +242,9 @@ theorem virtualRoots_eq_nil_of_natDegree_zero
 
 /-- **Uniqueness from properties (derivative zero case).** When
     `derivative P = 0`, any list of the correct length is forced to be `[]`
-    by the degree constraint.-/
+    by the degree constraint.
+@isnad1 id=eq.4h3v.s8.0bd169716d6a from=translated src=- shape=3289d8de vocab=db84846d
+-/
 theorem virtualRoots_eq_of_properties_of_derivative_zero
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P = 0) {xs : List R}
@@ -247,7 +263,9 @@ theorem virtualRoots_eq_of_properties_of_derivative_zero
 /-! ### Iterated derivative -/
 
 /-- **BPR unnumbered corollary.** Every virtual root of `P` is a root of some
-    iterated derivative of `P`.-/
+    iterated derivative of `P`.
+@isnad1 id=ex.3h3v.s8.74380042ac0a from=translated src=- shape=5b2c197d vocab=440f1e38
+-/
 theorem virtualRoots_root_of_derivative (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) :
     ∀ x ∈ virtualRoots hIVP hP, ∃ k : ℕ, ((derivative)^[k] P).eval x = 0 := by
@@ -264,7 +282,9 @@ noncomputable def virtualMultiplicity (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (x : R) : ℕ :=
   (virtualRoots hIVP hP).count x
 
-/-- If `x` is not a virtual root of `P`, its virtual multiplicity is zero.-/
+/-- If `x` is not a virtual root of `P`, its virtual multiplicity is zero.
+@isnad1 id=eq.3h3v.s6.274146127692 from=translated src=- shape=98015eff vocab=a4a4e896
+-/
 theorem virtualMultiplicity_eq_zero_of_not_mem
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {x : R} (hx : x ∉ virtualRoots hIVP hP) :
@@ -314,7 +334,9 @@ on the correct three-way bound (`virtualMultiplicity_derivative_cases`). -/
 
 /-- **Trichotomy bound.** The virtual multiplicities of `x` with respect
     to `P` and `P'` differ by at most `1`: `ν(P', x) ∈ {ν(P, x) − 1, ν(P, x),
-    ν(P, x) + 1}`.-/
+    ν(P, x) + 1}`.
+@isnad1 id=or.3h3v.s10.54705dd0dba7 from=translated src=- shape=6d24c819 vocab=5cb6fa93
+-/
 theorem virtualMultiplicity_derivative_cases
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0) (x : R) :
@@ -329,7 +351,9 @@ theorem virtualMultiplicity_derivative_cases
 
 /-- **Root case.** If `x` is a root of `P`, then the virtual multiplicity of
     `x` with respect to `P` exceeds the virtual multiplicity of `x` with
-    respect to `P'` by exactly `1`.-/
+    respect to `P'` by exactly `1`.
+@isnad1 id=eq.4h3v.s9.aacfe784d3cf from=translated src=- shape=6ae48891 vocab=bbbeae89
+-/
 theorem virtualMultiplicity_derivative_of_root
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0) {x : R} (hx : P.eval x = 0) :
@@ -345,7 +369,9 @@ theorem virtualMultiplicity_derivative_of_root
 /-- **No-derivative-root case.** If `x` is not a root of any iterated
     derivative `P^{(k)}` (`k ∈ ℕ`), then its virtual multiplicity with respect
     to `P` is zero. Contrapositively, every virtual root of `P` is a root of
-    some iterated derivative — this is `virtualRoots_root_of_derivative`.-/
+    some iterated derivative — this is `virtualRoots_root_of_derivative`.
+@isnad1 id=eq.3h3v.s8.1c761f084ac6 from=translated src=- shape=786ad1cf vocab=af1745d2
+-/
 theorem virtualMultiplicity_eq_zero_of_no_derivative_root
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) {x : R}
@@ -367,7 +393,9 @@ theorem virtualMultiplicity_eq_zero_of_no_derivative_root
 
     Combined with `virtualMultiplicity_derivative_of_root` (case `P(c) = 0`),
     this gives a complete characterisation of how `v(·, c)` changes upon
-    differentiation.-/
+    differentiation.
+@isnad1 id=eq.4h3v.s11.0ebc493f7c0d from=translated src=- shape=b9bc1fab vocab=48ac2207
+-/
 theorem virtualMultiplicity_diff_of_not_root
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hdP : derivative P ≠ 0)

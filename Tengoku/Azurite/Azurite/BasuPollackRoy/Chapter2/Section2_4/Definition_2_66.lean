@@ -49,6 +49,9 @@ def matrixOfSigns (A : List (ι → ℕ)) (S : List (SignCondition ι)) :
     Matrix (Fin A.length) (Fin S.length) SignType :=
   fun i j => (S.get j).pow (A.get i)
 
+/--
+@isnad1 id=eq.0h5v.s5.9c23d7ae13f1 from=translated src=- shape=afb40532 vocab=07d6355d
+-/
 @[simp] theorem matrixOfSigns_apply (A : List (ι → ℕ)) (S : List (SignCondition ι))
     (i : Fin A.length) (j : Fin S.length) :
     matrixOfSigns A S i j = (S.get j).pow (A.get i) :=

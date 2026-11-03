@@ -40,16 +40,23 @@ highest index `p = P.natDegree` first.-/
 noncomputable def sResSeq (P Q : D[X]) : List D :=
   (List.range (P.natDegree + 1)).map (fun j => sRes P Q (P.natDegree - j))
 
+/--
+@isnad1 id=eq.0h3v.s5.5633a612ac54 from=translated src=- shape=cad69e20 vocab=cb1279e7
+-/
 @[simp] theorem sResSeq_length (P Q : D[X]) :
     (sResSeq P Q).length = P.natDegree + 1 := by
   simp [sResSeq]
 
-/-- The `k`-th entry of `sRes(P, Q)` (from the head) is `sRes_{p-k}(P, Q)`.-/
+/-- The `k`-th entry of `sRes(P, Q)` (from the head) is `sRes_{p-k}(P, Q)`.
+@isnad1 id=eq.1h4v.s6.389e6c083695 from=translated src=- shape=3e79fcb9 vocab=91a15e3f
+-/
 theorem sResSeq_getElem (P Q : D[X]) (k : ℕ) (hk : k < P.natDegree + 1) :
     (sResSeq P Q)[k]'(by simpa using hk) = sRes P Q (P.natDegree - k) := by
   simp only [sResSeq, List.getElem_map, List.getElem_range]
 
-/-- The head of `sRes(P, Q)` is `sRes_p(P, Q)`.-/
+/-- The head of `sRes(P, Q)` is `sRes_p(P, Q)`.
+@isnad1 id=eq.0h3v.s5.09e0fa85b2ec from=translated src=- shape=1cf07f1c vocab=c8e0701a
+-/
 theorem sResSeq_head? (P Q : D[X]) :
     (sResSeq P Q).head? = some (sRes P Q P.natDegree) := by
   simp [sResSeq, List.range_succ_eq_map, List.head?_cons]

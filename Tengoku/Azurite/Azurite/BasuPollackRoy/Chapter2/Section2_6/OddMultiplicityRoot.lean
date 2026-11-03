@@ -32,7 +32,9 @@ open Polynomial
 
 variable {R : Type*} [Field R] [IsRealClosed R]
 
-/-- **An odd-degree polynomial over a real closed field has a root of odd multiplicity.**-/
+/-- **An odd-degree polynomial over a real closed field has a root of odd multiplicity.**
+@isnad1 id=ex.2h3v.s5.7279a31679ea from=translated src=- shape=15b423dd vocab=654395e5
+-/
 theorem exists_odd_rootMultiplicity : ∀ (n : ℕ) (g : R[X]), g.natDegree = n → Odd n →
     ∃ x, Odd (g.rootMultiplicity x) := by
   intro n
@@ -76,7 +78,9 @@ theorem exists_odd_rootMultiplicity : ∀ (n : ℕ) (g : R[X]), g.natDegree = n 
       exact hs
 
 /-- **An odd-degree polynomial with nonzero constant term has a *nonzero* root of odd
-multiplicity.**-/
+multiplicity.**
+@isnad1 id=ex.2h2v.s6.3689090434cc from=translated src=- shape=56349421 vocab=a79421d5
+-/
 theorem exists_ne_zero_odd_rootMultiplicity {g : R[X]} (hodd : Odd g.natDegree)
     (h0 : g.coeff 0 ≠ 0) : ∃ x, x ≠ 0 ∧ Odd (g.rootMultiplicity x) := by
   obtain ⟨x, hx⟩ := exists_odd_rootMultiplicity g.natDegree g rfl hodd
@@ -91,7 +95,9 @@ theorem exists_ne_zero_odd_rootMultiplicity {g : R[X]} (hodd : Odd g.natDegree)
 /-- **A nonzero root of odd multiplicity from an odd-length span.** If `g ≠ 0` and the span
 `deg g − natTrailingDegree g` (the degree after stripping the `X^t` factor) is odd, then `g` has a
 nonzero root of odd multiplicity. Applied to a characteristic polynomial `Q = X^{A.1}·φ(X^q)`,
-whose span is the edge length `B.1 − A.1`.-/
+whose span is the edge length `B.1 − A.1`.
+@isnad1 id=ex.2h2v.s7.a74645807305 from=translated src=- shape=8b203b82 vocab=8ad0dfc9
+-/
 theorem exists_ne_zero_odd_rootMultiplicity_of_span {g : R[X]} (hg : g ≠ 0)
     (hodd : Odd (g.natDegree - g.natTrailingDegree)) :
     ∃ x, x ≠ 0 ∧ Odd (g.rootMultiplicity x) := by
@@ -117,7 +123,9 @@ theorem exists_ne_zero_odd_rootMultiplicity_of_span {g : R[X]} (hg : g ≠ 0)
 
 omit [IsRealClosed R] in
 /-- **The multiplicity of a nonzero root is at most the span** `deg g − natTrailingDegree g` (the
-`X^t`-stripped degree).-/
+`X^t`-stripped degree).
+@isnad1 id=le.2h3v.s6.96fe0a312c7b from=translated src=- shape=1265d8ae vocab=6a944333
+-/
 theorem rootMultiplicity_ne_zero_le_span {g : R[X]} (hg : g ≠ 0) {x : R} (hx : x ≠ 0) :
     g.rootMultiplicity x ≤ g.natDegree - g.natTrailingDegree := by
   set t := g.natTrailingDegree with ht

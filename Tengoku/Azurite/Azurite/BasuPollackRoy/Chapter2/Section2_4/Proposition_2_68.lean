@@ -37,7 +37,9 @@ variable {ι : Type*} {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing
 
 omit [IsStrictOrderedRing R] in
 /-- `TaQ(Q', P)` is the sum of `sign(Q'(x))` over the roots of `P`
-(the open interval `(−∞, +∞)` is all of `R`).-/
+(the open interval `(−∞, +∞)` is all of `R`).
+@isnad1 id=eq.0h3v.s7.e1ea18c54635 from=translated src=- shape=3e5db643 vocab=e853a318
+-/
 theorem tarskiQuery_eq_sum_roots (Q' P : R[X]) :
     tarskiQuery Q' P = ∑ x ∈ P.roots.toFinset, (SignType.sign (Q'.eval x) : ℤ) := by
   classical
@@ -48,7 +50,9 @@ variable [Fintype ι]
 
 /-- **Per-row form of BPR Proposition 2.68.** If `T` covers the sign
 conditions of all roots of `P`, then
-`TaQ(𝒬^{α}, P) = ∑_{σ ∈ T} σ^{α} · c(σ, Z)`.-/
+`TaQ(𝒬^{α}, P) = ∑_{σ ∈ T} σ^{α} · c(σ, Z)`.
+@isnad1 id=eq.1h6v.s7.5843da85bd93 from=translated src=- shape=bce56ae6 vocab=66dbe1e7
+-/
 theorem tarskiQuery_familyPow_eq_sum (P : R[X]) (Q : ι → R[X]) (α : ι → ℕ)
     (T : Finset (SignCondition ι))
     (hcover : ∀ x, P.IsRoot x → (fun i => SignType.sign ((Q i).eval x)) ∈ T) :
@@ -84,7 +88,9 @@ of `P` realizes some `σ ∈ Σ` — then the matrix-of-signs relation holds:
 (over `ℤ`, casting the `SignType` entries of `Mat(A, Σ)` and the counts
 `c(Σ, Z)` to `ℤ`). It is immediate from the per-row identity
 `tarskiQuery_familyPow_eq_sum`, since the `(i, j)`-entry of `Mat(A, Σ)` is
-`σ_j^{α_i}`.-/
+`σ_j^{α_i}`.
+@isnad1 id=eq.2h6v.s8.5a5f1698fa34 from=translated src=- shape=aa56fb13 vocab=a3af2eb5
+-/
 theorem proposition_2_68 (P : R[X]) (Q : ι → R[X]) (A : List (ι → ℕ))
     (S : List (SignCondition ι)) (hS : S.Nodup)
     (hcover : ∀ x, P.IsRoot x → (fun i => SignType.sign ((Q i).eval x)) ∈ S) :

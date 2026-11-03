@@ -45,7 +45,9 @@ open Polynomial
 /-- **The sign-normalization identity** behind Proposition 4.37: reversing the
 `p + q - 2j` rows (signature `ε_{p+q-2j}`) and negating the `q - j` `R`-rows
 (factor `(-1)^{q-j}`) combine to `ε_{p-q}`. This is `ε_sub_two_mul`
-(Notation 4.27) with `i = p + q - 2j`, since `(p+q-2j) - 2(q-j) = p - q`.-/
+(Notation 4.27) with `i = p + q - 2j`, since `(p+q-2j) - 2(q-j) = p - q`.
+@isnad1 id=eq.2h3v.s6.9629111b1548 from=translated src=- shape=5bb2c190 vocab=08c6a870
+-/
 theorem eps_qj (p q j : ℕ) (hqp : q ≤ p) (hjq : j ≤ q) :
     (-1 : ℤ) ^ (q - j) * ε (p + q - 2 * j) = ε (p - q) := by
   have h := ε_sub_two_mul (p + q - 2 * j) (q - j) (by omega)
@@ -77,7 +79,9 @@ noncomputable def DjMatrix (P Q : K[X]) (j : ℕ) :
 /-- **Null-row vanishing (the mechanism behind Part 2).** When `r < j < q`, the
 first `−R` row of `D_j` (row index `p - j`, which carries `−X^0 R = −R` of degree
 `r`) is identically zero: every column exponent is `≥ j > r`. Hence
-`det(D_j) = 0`.-/
+`det(D_j) = 0`.
+@isnad1 id=eq.3h4v.s8.faef30ad8993 from=translated src=- shape=fb27dd67 vocab=2dee1a0f
+-/
 theorem DjMatrix_det_eq_zero (P Q : K[X]) (j : ℕ)
     (hqp : Q.natDegree < P.natDegree) (hjq : j < Q.natDegree)
     (hr : (P % Q).natDegree < j) :
@@ -100,7 +104,9 @@ private theorem natDegree_X_pow_mul' (n : ℕ) {S : K[X]} (hS : S ≠ 0) :
 /-- **BPR Proposition 4.37, the determinant `D_j`.** For `j ≤ r` (with
 `r = (P % Q).natDegree`, `q < p`, `Q ≠ 0`), the determinant of `D_j` factors as a
 block-triangular product: a `b_q`-upper-triangular `(p-r)` corner times the
-Sylvester-Habicht determinant of `(Q, −R)`.-/
+Sylvester-Habicht determinant of `(Q, −R)`.
+@isnad1 id=eq.4h4v.s9.0f53bb499b13 from=translated src=- shape=358bcb2c vocab=d1ce4f85
+-/
 theorem DjMatrix_det_eq (P Q : K[X]) (j : ℕ)
     (hQ : Q ≠ 0) (hjr : j ≤ (P % Q).natDegree)
     (hrq : (P % Q).natDegree < Q.natDegree) (hqp : Q.natDegree < P.natDegree) :
@@ -231,7 +237,9 @@ private theorem prod_ite_one_neg_one (m N : ℕ) :
 
 /-- **BPR Proposition 4.37, the reversal–negation step.** `det(D_j) = ε_{p-q} · det(M')`:
 reversing the `p+q-2j` rows (signature `ε_{p+q-2j}`) and negating the `q-j` `R`-rows
-(factor `(-1)^{q-j}`) combine to `ε_{p-q}` (`eps_qj`).-/
+(factor `(-1)^{q-j}`) combine to `ε_{p-q}` (`eps_qj`).
+@isnad1 id=eq.2h4v.s8.e185de9c3bcd from=translated src=- shape=250c6e21 vocab=b4402120
+-/
 theorem DjMatrix_det_eq_eps_mul (P Q : K[X]) (j : ℕ)
     (hjq : j ≤ Q.natDegree) (hqp : Q.natDegree < P.natDegree) :
     (DjMatrix P Q j).det =
@@ -296,7 +304,9 @@ private theorem sum_fin_ite_shift {N a b : ℕ} (hab : a + b = N) (g : ℕ → K
 /-- **BPR Proposition 4.37, the row operation.** `det(M') = sRes_j(P, Q)`: replacing
 the `P`-rows of the Sylvester-Habicht matrix by `R = P % Q`-rows (`M' = E · SyHaSquare`
 with `E` unitriangular, `det E = 1`) preserves the determinant, since
-`R = P − (P / Q)·Q`.-/
+`R = P − (P / Q)·Q`.
+@isnad1 id=eq.3h4v.s8.20c76cddde93 from=translated src=- shape=53aba27b vocab=3cc8e8c6
+-/
 theorem MpMatrix_det_eq_sRes (P Q : K[X]) (j : ℕ)
     (hQ : Q ≠ 0) (hjq : j ≤ Q.natDegree) (hqp : Q.natDegree < P.natDegree) :
     (MpMatrix P Q j).det = sRes P Q j := by
@@ -410,14 +420,18 @@ theorem MpMatrix_det_eq_sRes (P Q : K[X]) (j : ℕ)
 
 /-! ### Assembly: BPR Proposition 4.37 -/
 
-/-- `ε_n · ε_n = 1` (it is `±1`).-/
+/-- `ε_n · ε_n = 1` (it is `±1`).
+@isnad1 id=eq.0h1v.s4.58fc363aec47 from=translated src=- shape=7bab346c vocab=f968c393
+-/
 theorem ε_mul_self (n : ℕ) : ε n * ε n = 1 := by
   unfold ε; rw [← pow_add, ← two_mul]; exact Even.neg_one_pow (even_two_mul _)
 
 /-- **BPR Proposition 4.37 (main relation).** For `j ≤ r = deg(P % Q)`,
 `sRes_j(P, Q) = ε_{p-q} · b_q^{p-r} · sRes_j(Q, −R)`. Combines the determinant
 chain `L1a` (`det M' = sRes`), `L1b` (`det D_j = ε_{p-q}·det M'`), and `L2`
-(`det D_j = b_q^{p-r}·sRes_j(Q,−R)`), using `ε_{p-q}² = 1`.-/
+(`det D_j = b_q^{p-r}·sRes_j(Q,−R)`), using `ε_{p-q}² = 1`.
+@isnad1 id=eq.4h4v.s8.408d6480e371 from=translated src=- shape=4de34b30 vocab=ad32cce9
+-/
 theorem proposition_4_37_part1 (P Q : K[X]) (j : ℕ) (hQ : Q ≠ 0)
     (hjr : j ≤ (P % Q).natDegree) (hrq : (P % Q).natDegree < Q.natDegree)
     (hqp : Q.natDegree < P.natDegree) :
@@ -435,7 +449,9 @@ theorem proposition_4_37_part1 (P Q : K[X]) (j : ℕ) (hQ : Q ≠ 0)
 
 /-- **BPR Proposition 4.37 (vanishing).** On `r < j < q`, both `sRes_j(P, Q)` and
 `sRes_j(Q, −R)` vanish (with the corrected `sRes` convention of Notation 4.22, in
-which the defective subresultants in a degree gap are `0`).-/
+which the defective subresultants in a degree gap are `0`).
+@isnad1 id=and.4h4v.s8.49f6c67e02e8 from=translated src=- shape=c072969b vocab=47c483f1
+-/
 theorem proposition_4_37_part2 (P Q : K[X]) (j : ℕ) (hQ : Q ≠ 0)
     (hr : (P % Q).natDegree < j) (hjq : j < Q.natDegree)
     (hqp : Q.natDegree < P.natDegree) :

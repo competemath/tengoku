@@ -26,11 +26,15 @@ open Polynomial
 
 variable {R : Type*} [Field R] [CharZero R]
 
-/-- The slope of the edge `E' = [(0,4/3), (1,0)]` is `−4/3` (so `ξ = 4/3`).-/
+/-- The slope of the edge `E' = [(0,4/3), (1,0)]` is `−4/3` (so `ξ = 4/3`).
+@isnad1 id=eq.0h0v.s5.63f3fb456dfa from=translated src=- shape=fa5d10af vocab=8e45f7f7
+-/
 theorem slope_E1 : newtonSlope ((0 : ℕ), (4 / 3 : ℚ)) ((1 : ℕ), (0 : ℚ)) = -4 / 3 := by
   rw [newtonSlope]; norm_num
 
-/-- The root of `Q(P₁, E', X) = 1 − 3X` is `x' = 1/3`.-/
+/-- The root of `Q(P₁, E', X) = 1 − 3X` is `x' = 1/3`.
+@isnad1 id=isroot.0h1v.s7.b879f86b4b8d from=translated src=- shape=12040e6b vocab=d333c4cd
+-/
 theorem charPoly_E1_root : (1 - 3 * X : Polynomial R).IsRoot (1 / 3) := by
   simp [Polynomial.IsRoot, Polynomial.eval_sub]
 

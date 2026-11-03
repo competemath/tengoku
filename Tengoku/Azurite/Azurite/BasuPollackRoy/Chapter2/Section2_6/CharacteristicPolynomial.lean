@@ -32,9 +32,15 @@ variable {R : Type*} [Field R]
 /-- The `y`-value at `x = h` of the line through `A` and `B`.-/
 def lineValue (A B : ℕ × ℚ) (h : ℕ) : ℚ := A.2 + newtonSlope A B * ((h : ℚ) - A.1)
 
+/--
+@isnad1 id=eq.0h2v.s4.7aea5dd7ba55 from=translated src=- shape=fda1b4f2 vocab=e22abd23
+-/
 theorem lineValue_left (A B : ℕ × ℚ) : lineValue A B A.1 = A.2 := by
   rw [lineValue, sub_self, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h2v.s5.20c5d4f65021 from=translated src=- shape=560c7ade vocab=e22abd23
+-/
 theorem lineValue_right {A B : ℕ × ℚ} (hAB : A.1 ≠ B.1) : lineValue A B B.1 = B.2 := by
   rw [lineValue, newtonSlope_mul_sub hAB]; ring
 
@@ -55,7 +61,9 @@ noncomputable def charPoly (P : Polynomial (PuiseuxSeries R)) (A B : ℕ × ℚ)
 open Classical in
 /-- **The coefficients of the characteristic polynomial.** The coefficient of `X^k` is the
 initial coefficient `In(a_k)` when the column point `M_k` lies on the edge `[A, B]`, and `0`
-otherwise.-/
+otherwise.
+@isnad1 id=eq.0h5v.s10.44a68c061464 from=translated src=- shape=e37096dd vocab=f2379456
+-/
 theorem charPoly_coeff (P : Polynomial (PuiseuxSeries R)) (A B : ℕ × ℚ) (k : ℕ) :
     (charPoly P A B).coeff k =
       if k ∈ (Finset.Icc A.1 B.1).filter (colOnLine P A B) then puiseuxInitCoeff R (P.coeff k)
@@ -64,7 +72,9 @@ theorem charPoly_coeff (P : Polynomial (PuiseuxSeries R)) (A B : ℕ × ℚ) (k 
   simp only [Polynomial.coeff_monomial]
   rw [Finset.sum_ite_eq']
 
-/-- The characteristic polynomial has degree at most `i_j = B.1`.-/
+/-- The characteristic polynomial has degree at most `i_j = B.1`.
+@isnad1 id=le.0h4v.s9.d144cead68df from=translated src=- shape=20fc446d vocab=12cad8bc
+-/
 theorem charPoly_natDegree_le (P : Polynomial (PuiseuxSeries R)) (A B : ℕ × ℚ) :
     (charPoly P A B).natDegree ≤ B.1 := by
   classical
@@ -75,20 +85,26 @@ theorem charPoly_natDegree_le (P : Polynomial (PuiseuxSeries R)) (A B : ℕ × �
   exact absurd (Finset.mem_Icc.mp (Finset.mem_filter.mp hmem).1).2 (by omega)
 
 /-- The **left endpoint** `M_{i_{j-1}} = A` lies on its own edge: if `A` is the column point of
-column `A.1`, then `colOnLine P A B A.1` holds.-/
+column `A.1`, then `colOnLine P A B A.1` holds.
+@isnad1 id=colonlin.1h4v.s10.5875b7a419ad from=translated src=- shape=96c04f30 vocab=53e14867
+-/
 theorem colOnLine_left {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ}
     (hA : puiseuxOrder R (P.coeff A.1) = (A.2 : WithTop ℚ)) : colOnLine P A B A.1 := by
   rw [colOnLine, lineValue_left, hA]
 
 /-- The **right endpoint** `M_{i_j} = B` lies on its own edge: if `B` is the column point of
-column `B.1` and `A.1 ≠ B.1`, then `colOnLine P A B B.1` holds.-/
+column `B.1` and `A.1 ≠ B.1`, then `colOnLine P A B B.1` holds.
+@isnad1 id=colonlin.2h4v.s10.9c714174d200 from=translated src=- shape=5ea82d20 vocab=53e14867
+-/
 theorem colOnLine_right {P : Polynomial (PuiseuxSeries R)} {A B : ℕ × ℚ} (hAB : A.1 ≠ B.1)
     (hB : puiseuxOrder R (P.coeff B.1) = (B.2 : WithTop ℚ)) : colOnLine P A B B.1 := by
   rw [colOnLine, lineValue_right hAB, hB]
 
 /-- **The defining property of the edge slope.** If `−ξ` is the slope of `E = [A, B]` (i.e.
 `slope(A, B) = −ξ`), then the line height `lineValue A B h` plus `h ξ` is the constant
-`β = A.2 + A.1 ξ`, independent of `h`.-/
+`β = A.2 + A.1 ξ`, independent of `h`.
+@isnad1 id=eq.1h4v.s6.9595f90bfb81 from=translated src=- shape=2bc64d6c vocab=31e36fba
+-/
 theorem lineValue_add_mul (A B : ℕ × ℚ) (h : ℕ) {ξ : ℚ} (hξ : newtonSlope A B = -ξ) :
     lineValue A B h + (h : ℚ) * ξ = A.2 + (A.1 : ℚ) * ξ := by
   rw [lineValue, hξ]; ring

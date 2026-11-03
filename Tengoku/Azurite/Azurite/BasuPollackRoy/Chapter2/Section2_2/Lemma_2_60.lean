@@ -113,7 +113,9 @@ private lemma jumpsFromPosInfToNegInf_neg_iff (Q P : R[X]) (x : R) :
   rw [rootMultiplicity_neg', hasSignRight_neg_left_iff]
   simp
 
-/-- **Negation flips the Cauchy index.** `Ind(−Q/P; a, b) = −Ind(Q/P; a, b)`.-/
+/-- **Negation flips the Cauchy index.** `Ind(−Q/P; a, b) = −Ind(Q/P; a, b)`.
+@isnad1 id=eq.0h5v.s6.c3a21e965da1 from=translated src=- shape=98bba08d vocab=8116fa69
+-/
 theorem cauchyIndexOn_neg_left (Q P : R[X]) (a b : ExtendedPoint R) :
     cauchyIndexOn (-Q) P a b = -cauchyIndexOn Q P a b := by
   classical
@@ -147,7 +149,9 @@ theorem cauchyIndexOn_neg_left (Q P : R[X]) (a b : ExtendedPoint R) :
   ring
 
 /-- **Negation of the modular numerator.** `Ind(−(P % Q)/Q; a, b) =
-    −Ind(P/Q; a, b)` (using Remark 2.55(b) and `cauchyIndexOn_neg_left`).-/
+    −Ind(P/Q; a, b)` (using Remark 2.55(b) and `cauchyIndexOn_neg_left`).
+@isnad1 id=eq.2h5v.s7.6c74301f9563 from=translated src=- shape=919f1c1c vocab=cab3e076
+-/
 theorem cauchyIndexOn_neg_mod
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hQ_ne : Q ≠ 0)
@@ -1089,7 +1093,9 @@ private lemma cauchyIndexOn_eq_sum_jumpContrib
     each `(P·Q)`-root contributes `signFlipAt (P·Q) x = jumpContrib Q P x +
     jumpContrib P Q x`; summing over `(a, b)` gives `(σ(b) − σ(a))/2` by the
     running count, and equals `Ind(Q/P; a,b) + Ind(P/Q; a,b)` by
-    `cauchyIndexOn_eq_sum_jumpContrib` and zero-extension of `jumpContrib`.-/
+    `cauchyIndexOn_eq_sum_jumpContrib` and zero-extension of `jumpContrib`.
+@isnad1 id=eq.6h5v.s8.90b6a1c59544 from=translated src=- shape=d8f90c67 vocab=b47dde04
+-/
 theorem cauchyIndexOn_swap_sum
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
@@ -1195,7 +1201,9 @@ theorem cauchyIndexOn_swap_sum
     In particular:
     * if `σ(a) = σ(b)`: `Ind(Q/P; a, b) = Ind(−R'/Q; a, b)`;
     * if `σ(a) ≠ σ(b)` (so `σ(a) · σ(b) = −1`):
-      `Ind(Q/P; a, b) = Ind(−R'/Q; a, b) + σ(b)`.-/
+      `Ind(Q/P; a, b) = Ind(−R'/Q; a, b) + σ(b)`.
+@isnad1 id=eq.6h5v.s8.c985dd49f180 from=translated src=- shape=9931215b vocab=3d948a2d
+-/
 theorem lemma_2_60
     (hIVP : Azurite.BPR.HasIntermediateValueProperty R)
     (P Q : R[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)

@@ -50,7 +50,9 @@ private theorem Red_eq_reduce (m : MonomialOrder (Fin k)) (P G : MvPolynomial (F
 
 /-- **BPR Proposition 4.68.** Let `𝒢` be a Gröbner basis of the ideal `I` for the monomial
 ordering `m`. Then a polynomial `P` belongs to `I` if and only if `P` is reducible to `0`
-modulo `𝒢`.-/
+modulo `𝒢`.
+@isnad1 id=iff.1h6v.s8.8ab89094cb66 from=translated src=- shape=b03d0bb5 vocab=068a75f7
+-/
 theorem proposition_4_68 (m : MonomialOrder (Fin k)) {I : Ideal (MvPolynomial (Fin k) K)}
     {𝒢 : Finset (MvPolynomial (Fin k) K)} (hG : IsGrobnerBasisOf m I 𝒢)
     (P : MvPolynomial (Fin k) K) :

@@ -26,7 +26,9 @@ open MvPolynomial
 variable {k : ℕ} {K : Type*} [Field K]
 
 /-- **BPR Proposition 4.69.** A Gröbner basis `𝒢` of `I` for the monomial ordering `m`
-generates `I`: `Ideal(𝒢, K) = I`.-/
+generates `I`: `Ideal(𝒢, K) = I`.
+@isnad1 id=eq.1h5v.s6.79f409b1b802 from=translated src=- shape=8097d6dd vocab=796ecc08
+-/
 theorem proposition_4_69 (m : MonomialOrder (Fin k)) {I : Ideal (MvPolynomial (Fin k) K)}
     {𝒢 : Finset (MvPolynomial (Fin k) K)} (hG : IsGrobnerBasisOf m I 𝒢) :
     idealOfPolys 𝒢 = I := by

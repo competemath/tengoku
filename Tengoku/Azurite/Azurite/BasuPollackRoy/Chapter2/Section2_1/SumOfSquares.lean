@@ -37,12 +37,16 @@ variable (F : Type*) [CommRing F]
     i.e., `s` can be written as a finite sum `a₁·a₁ + a₂·a₂ + ⋯ + aₙ·aₙ`.-/
 abbrev sumOfSquares : Subsemiring F := Subsemiring.sumSq F
 
-/-- `ΣF^{(2)}` is a cone: every square `x²` is a sum of squares.-/
+/-- `ΣF^{(2)}` is a cone: every square `x²` is a sum of squares.
+@isnad1 id=iscone.0h1v.s3.8f5c6b5e8e32 from=translated src=- shape=84bfdc15 vocab=5a784d09
+-/
 lemma isCone_sumOfSquares : IsCone (sumOfSquares F) :=
   fun x => Subsemiring.mem_sumSq.mpr (by rw [sq]; exact IsSumSq.mul_self x)
 
 /-- `ΣF^{(2)}` is contained in every cone of `F` —
-    it is the smallest cone.-/
+    it is the smallest cone.
+@isnad1 id=le.1h2v.s5.1d532f8a2473 from=translated src=- shape=260e0495 vocab=f9271ba5
+-/
 lemma sumOfSquares_le_cone (C : Subsemiring F) (hC : IsCone C) :
     sumOfSquares F ≤ C := by
   intro x hx

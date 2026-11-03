@@ -74,7 +74,9 @@ omit [IsAlgClosed C] in
     `P` is monic. At `j = 0` the only sub-multiset of size `k = p` is `s`
     itself, so the sub-multiset sum collapses to the off-diagonal product
     defining `disc P`; the leading coefficient factor
-    `a_p^{2p-2} = 1^{2p-2} = 1` for monic `P`.-/
+    `a_p^{2p-2} = 1^{2p-2} = 1` for monic `P`.
+@isnad1 id=eq.1h3v.s6.2815ee1e4074 from=translated src=- shape=8c406ca4 vocab=930cbf29
+-/
 lemma sDisc_zero_eq_disc (P : K[X]) (hMonic : P.Monic) :
     (sDisc P 0 : C) = disc P := by
   classical
@@ -85,7 +87,9 @@ omit [IsAlgClosed C] in
 /-- **BPR unnumbered corollary**: `sDisc_{p-1}(P) = p` for a polynomial of
     degree `p ≥ 1`. The leading coefficient factor `a_p^{2·1-2} = a_p^0 = 1`,
     each `k = 1` sub-multiset contributes the empty off-diagonal product
-    `1`, and there are `p` such sub-multisets.-/
+    `1`, and there are `p` such sub-multisets.
+@isnad1 id=eq.1h3v.s6.ec63fbcc8046 from=translated src=- shape=4ac2b99b vocab=d0981906
+-/
 lemma sDisc_card_pred_eq (P : K[X]) (h : 0 < (P.aroots C).card) :
     (sDisc P ((P.aroots C).card - 1) : C) = ((P.aroots C).card : C) := by
   classical

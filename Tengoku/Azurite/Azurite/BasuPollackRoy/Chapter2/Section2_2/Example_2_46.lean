@@ -53,7 +53,9 @@ private lemma count_add_count_le_length {α : Type*} [DecidableEq α] {l : List 
         simp [h1, h2]; omega
 
 /-- **BPR Example 2.46 (distinct roots case).** If `P` has degree 2 and two
-    distinct real roots `r₁ ≠ r₂`, both have virtual multiplicity 1.-/
+    distinct real roots `r₁ ≠ r₂`, both have virtual multiplicity 1.
+@isnad1 id=and.6h4v.s7.1743acb1930f from=translated src=- shape=93065afd vocab=b4064e29
+-/
 theorem example_2_46_distinct_roots
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hn : P.natDegree = 2)
@@ -76,7 +78,9 @@ theorem example_2_46_distinct_roots
 
 /-- **BPR Example 2.46 (no distinct roots case).** If `P` has degree 2 and no
     two distinct real roots, then there exists a root `r` of `P'` with virtual
-    multiplicity 2.-/
+    multiplicity 2.
+@isnad1 id=ex.4h2v.s9.07bdef79fb56 from=translated src=- shape=47eb4773 vocab=52141b80
+-/
 theorem example_2_46_no_distinct_roots
     (hIVP : HasIntermediateValueProperty R)
     {P : R[X]} (hP : P ≠ 0) (hn : P.natDegree = 2)

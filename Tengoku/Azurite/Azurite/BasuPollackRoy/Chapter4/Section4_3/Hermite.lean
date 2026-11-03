@@ -60,7 +60,9 @@ noncomputable def Her (P Q : D[X]) (f : Fin P.natDegree → C) : C :=
     (fun x => aeval x Q * (∑ k : Fin P.natDegree, f k * x ^ (k : ℕ)) ^ 2)).sum
 
 /-- **`Her(P, Q)` is the quadratic form of the Hankel matrix `HerMatrix P Q`**: expanding
-the square `(∑_k f_k x^{k-1})²` shows `Her(P,Q)(f) = f · HerMatrix(P,Q) · fᵗ`.-/
+the square `(∑_k f_k x^{k-1})²` shows `Her(P,Q)(f) = f · HerMatrix(P,Q) · fᵗ`.
+@isnad1 id=eq.0h5v.s7.0249edfa89d4 from=translated src=- shape=6a467391 vocab=957780fe
+-/
 theorem Her_eq_matrix (P Q : D[X]) (f : Fin P.natDegree → C) :
     Her P Q f = f ⬝ᵥ HerMatrix P Q *ᵥ f := by
   set g : C → C := fun x => aeval x Q with hg
@@ -114,7 +116,9 @@ theorem Her_eq_matrix (P Q : D[X]) (f : Fin P.natDegree → C) :
 
 /-- **Bilinear expansion of `Her(P, Q)`** (BPR's first display):
 `Her(P,Q)(f) = ∑_{k,j} (∑_{x} μ(x) Q(x) x^{k+j-2}) f_k f_j`, the double sum of the Hankel
-entries against `f_k f_j`.-/
+entries against `f_k f_j`.
+@isnad1 id=eq.0h5v.s7.b5efeed00e93 from=translated src=- shape=5dd050e1 vocab=4baab784
+-/
 theorem Her_apply (P Q : D[X]) (f : Fin P.natDegree → C) :
     Her P Q f = ∑ i : Fin P.natDegree, ∑ j : Fin P.natDegree, HerMatrix P Q i j * f i * f j := by
   rw [Her_eq_matrix, dotProduct]
@@ -129,14 +133,18 @@ section Newton
 variable {K : Type*} [Field K] {C : Type*} [Field C] [Algebra K C]
 
 /-- **When `Q = 1`, the Hermite matrix is the Newton matrix `Newt₀(P)`.** Its `(i,j)`-entry
-is the Newton sum `N_{i+j}(P)` (Definition 4.7).-/
+is the Newton sum `N_{i+j}(P)` (Definition 4.7).
+@isnad1 id=eq.0h3v.s6.b5a1ccb4baed from=translated src=- shape=c7e0fbf5 vocab=bc4eb47d
+-/
 theorem HerMatrix_one_eq_newtMat (P : K[X]) :
     (HerMatrix P 1 : Matrix (Fin P.natDegree) (Fin P.natDegree) C) = newtMat P P.natDegree := by
   ext i j
   simp only [HerMatrix, Matrix.of_apply, newtMat, newtonSum, map_one, one_mul]
 
 /-- **`Her(P, 1)` is the quadratic form of `Newt₀(P)`** (BPR's second display):
-`Her(P,1)(f) = ∑_{k,j} N_{k+j-2}(P) f_k f_j`.-/
+`Her(P,1)(f) = ∑_{k,j} N_{k+j-2}(P) f_k f_j`.
+@isnad1 id=eq.0h4v.s8.e345c3241708 from=translated src=- shape=805fd528 vocab=38c12872
+-/
 theorem Her_one_apply (P : K[X]) (f : Fin P.natDegree → C) :
     Her P 1 f = ∑ i : Fin P.natDegree, ∑ j : Fin P.natDegree,
       newtonSum P ((i : ℕ) + (j : ℕ)) * f i * f j := by
@@ -214,7 +222,9 @@ the Hankel matrix `HerMatrix P Q` — the weighted Newton sum `∑_{x} μ(x) Q(x
 which is symmetric in the roots of the monic `P` — is a polynomial (with coefficients from
 `P` and `Q`) in the elementary symmetric functions of the roots, i.e. in the coefficients
 of `P`, by Proposition 2.13 (the fundamental theorem of symmetric polynomials). Hence it
-lies in the image of `D`.-/
+lies in the image of `D`.
+@isnad1 id=mem.1h6v.s7.42585fbc6f91 from=translated src=- shape=fd8d2bb0 vocab=0dc07e3e
+-/
 theorem HerMatrix_mem_range (P Q : D[X]) (hP : P.Monic) (i j : Fin P.natDegree) :
     HerMatrix P Q i j ∈ (algebraMap D C).range := by
   classical

@@ -96,7 +96,9 @@ private theorem exists_UV_zero_iff_lcm_natDegree_le
 
 omit [DecidableEq K] in
 /-- Bridge in gcd form: existence of non-zero `(U, V)` with bounded
-    degrees and `U·P + V·Q = 0` is equivalent to `deg(gcd) ≥ j`.-/
+    degrees and `U·P + V·Q = 0` is equivalent to `deg(gcd) ≥ j`.
+@isnad1 id=iff.4h4v.s9.b8647412ae0d from=translated src=- shape=0fc75e0b vocab=27c7ce62
+-/
 theorem exists_UV_zero_iff_gcd_natDegree_ge
     (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (j : ℕ) (hj_q : j ≤ Q.natDegree) (hj_p : j ≤ P.natDegree) :
@@ -113,7 +115,9 @@ theorem exists_UV_zero_iff_gcd_natDegree_ge
 
 /-- **BPR Proposition 4.25.** Over a field `K`, for `j` in the BPR
     range, `deg(gcd(P, Q)) ≥ j` is equivalent to the vanishing of the
-    first `j` signed subresultant coefficients.-/
+    first `j` signed subresultant coefficients.
+@isnad1 id=iff.4h4v.s7.937ce94e8b6b from=translated src=- shape=534b3830 vocab=f634feec
+-/
 theorem Proposition_4_25 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (j : ℕ) (hj_q : j ≤ Q.natDegree) (hj_p : j < P.natDegree) :
     (∀ i, i < j → sRes P Q i = 0) ↔ (gcd P Q).natDegree ≥ j := by

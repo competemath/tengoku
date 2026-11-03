@@ -29,7 +29,9 @@ always finite (`grlex_le_set_finite` in
 namespace Azurite.BPR
 
 /-- The zero multi-index (monomial `1`) is the lex-smallest: for any nonzero `α`,
-    `0 <ₗₑₓ α`.-/
+    `0 <ₗₑₓ α`.
+@isnad1 id=lexorder.1h2v.s6.863b66dd9cd0 from=translated src=- shape=96a53f82 vocab=b30b66cc
+-/
 theorem lex_bot {k : ℕ} {α : Fin k →₀ ℕ} (hα : α ≠ 0) :
     LexOrder k ℕ 0 α := by
   simp only [LexOrder, Pi.Lex, Pi.zero_apply]
@@ -47,7 +49,9 @@ theorem lex_bot {k : ℕ} {α : Fin k →₀ ℕ} (hα : α ≠ 0) :
   · exact (Finset.mem_filter.mp (Finset.min'_mem S hS)).2
 
 /-- The lex ordering on monomials is compatible with multiplication:
-    if `α <ₗₑₓ β` then `α + γ <ₗₑₓ β + γ`.-/
+    if `α <ₗₑₓ β` then `α + γ <ₗₑₓ β + γ`.
+@isnad1 id=lexorder.1h4v.s7.b13a0ca86dec from=translated src=- shape=73b96914 vocab=22eee7f7
+-/
 theorem lex_add_right {k : ℕ} {α β γ : Fin k →₀ ℕ}
     (h : LexOrder k ℕ α β) :
     LexOrder k ℕ (α + γ) (β + γ) := by
@@ -59,7 +63,9 @@ theorem lex_add_right {k : ℕ} {α β γ : Fin k →₀ ℕ}
 
 /-- The set of monomials lex-≤ a given monomial can be infinite.
     Concretely, for `k ≥ 2` and `α = X₁`, the set
-    `{β | LexOrder k ℕ β α ∨ β = α}` is infinite.-/
+    `{β | LexOrder k ℕ β α ∨ β = α}` is infinite.
+@isnad1 id=infinite.1h1v.s7.e2d457b2844d from=translated src=- shape=d88f1dcd vocab=4cbb9b07
+-/
 theorem lex_le_set_infinite {k : ℕ} (hk : 2 ≤ k) :
     Set.Infinite {β : Fin k →₀ ℕ | LexOrder k ℕ β (Finsupp.single ⟨0, by omega⟩ 1) ∨
       β = Finsupp.single ⟨0, by omega⟩ 1} := by

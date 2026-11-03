@@ -29,7 +29,9 @@ variable {R : Type*} [Field R] [IsRealClosed R]
 
 /-- **The negative-slope recursion step.** From `Pᵢ` (continue case, with the order structure of a
 recentered polynomial) we obtain `x ≠ 0`, `ξ`, `β`, and odd `r' ≤ r` with `β > 0`, so that
-`P_{i+1} = substPoly Pᵢ x ξ β` satisfies Lemma 2.95.-/
+`P_{i+1} = substPoly Pᵢ x ξ β` satisfies Lemma 2.95.
+@isnad1 id=ex.5h3v.s13.b223e032a8b1 from=translated src=- shape=b5b5b224 vocab=03136f62
+-/
 theorem recursion_step_neg {P : Polynomial (PuiseuxSeries R)} {r : ℕ}
     (hr_odd : Odd r) (h0 : P.coeff 0 ≠ 0)
     (hbr : puiseuxOrder R (P.coeff r) = (0 : WithTop ℚ))

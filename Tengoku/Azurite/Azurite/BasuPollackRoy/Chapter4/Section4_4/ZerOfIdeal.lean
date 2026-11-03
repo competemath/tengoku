@@ -37,13 +37,18 @@ where `L` is a field extension of `K`. This is Mathlib's `MvPolynomial.zeroLocus
 def zerOfIdeal (I : Ideal (MvPolynomial (Fin k) K)) : Set (Fin k → L) :=
   MvPolynomial.zeroLocus L I
 
+/--
+@isnad1 id=iff.0h5v.s8.811e50de10d6 from=translated src=- shape=e31b96c7 vocab=8990ccbe
+-/
 @[simp]
 theorem mem_zerOfIdeal {I : Ideal (MvPolynomial (Fin k) K)} {x : Fin k → L} :
     x ∈ zerOfIdeal I ↔ ∀ P ∈ I, MvPolynomial.aeval x P = 0 :=
   Iff.rfl
 
 /-- The zero set of `Ideal(𝒫, K)` is the common zero set of the finite generating family `𝒫`:
-`Zer(Ideal(𝒫, K), Lᵏ) = {x ∈ Lᵏ | ⋀_{P ∈ 𝒫} P(x) = 0}`.-/
+`Zer(Ideal(𝒫, K), Lᵏ) = {x ∈ Lᵏ | ⋀_{P ∈ 𝒫} P(x) = 0}`.
+@isnad1 id=eq.0h4v.s8.153372880285 from=translated src=- shape=1fe150a0 vocab=99c0f905
+-/
 theorem zerOfIdeal_idealOfPolys (P : Finset (MvPolynomial (Fin k) K)) :
     zerOfIdeal (L := L) (idealOfPolys P) = {x : Fin k → L | ∀ p ∈ P, MvPolynomial.aeval x p = 0} := by
   ext x
@@ -57,7 +62,9 @@ theorem zerOfIdeal_idealOfPolys (P : Finset (MvPolynomial (Fin k) K)) :
 /-- **Note (Theorem 4.61).** Every set of the form `Zer(I, Lᵏ)` is the common zero set of a
 *finite* set of polynomials: there is a finite `𝒫` with
 `Zer(I, Lᵏ) = {x ∈ Lᵏ | ⋀_{P ∈ 𝒫} P(x) = 0}`. Hence every algebraic set in `Kᵏ` (the case
-`L = K`) is of the form `Zer(𝒫, Kᵏ)` for a finite `𝒫`.-/
+`L = K`) is of the form `Zer(𝒫, Kᵏ)` for a finite `𝒫`.
+@isnad1 id=ex.0h4v.s8.f6c61e316527 from=translated src=- shape=b7774779 vocab=52e70a70
+-/
 theorem exists_finset_zerOfIdeal (I : Ideal (MvPolynomial (Fin k) K)) :
     ∃ P : Finset (MvPolynomial (Fin k) K),
       zerOfIdeal (L := L) I = {x : Fin k → L | ∀ p ∈ P, MvPolynomial.aeval x p = 0} := by

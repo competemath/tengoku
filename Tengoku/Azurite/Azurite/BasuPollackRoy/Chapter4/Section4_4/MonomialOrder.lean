@@ -32,7 +32,9 @@ open MvPolynomial
 variable {k : ℕ} {K : Type*} [Field K]
 
 /-- **The divisibility order on monomials is the componentwise order.** The monomial `Xᵅ`
-(`monomial α 1`) divides `Xᵝ` if and only if `α ≤ β` componentwise (`Finsupp.le_def`).-/
+(`monomial α 1`) divides `Xᵝ` if and only if `α ≤ β` componentwise (`Finsupp.le_def`).
+@isnad1 id=iff.0h4v.s9.fb4148bfd3bb from=translated src=- shape=9e3adab1 vocab=3840615b
+-/
 theorem monomial_one_dvd_one_iff (i j : Fin k →₀ ℕ) :
     ((monomial i 1 : MvPolynomial (Fin k) K) ∣ monomial j 1) ↔ i ≤ j := by
   rw [monomial_dvd_monomial]
@@ -43,10 +45,16 @@ theorem monomial_one_dvd_one_iff (i j : Fin k →₀ ℕ) :
 noncomputable def monSnoc (α : Fin k →₀ ℕ) (n : ℕ) : Fin (k + 1) →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm (Fin.snoc (α : Fin k → ℕ) n)
 
+/--
+@isnad1 id=eq.0h4v.s6.3ac2c0a6d9c3 from=translated src=- shape=a60d10e8 vocab=dd38c7fb
+-/
 @[simp] theorem monSnoc_castSucc (α : Fin k →₀ ℕ) (n : ℕ) (i : Fin k) :
     monSnoc α n i.castSucc = α i := by
   simp [monSnoc, Fin.snoc_castSucc]
 
+/--
+@isnad1 id=eq.0h3v.s6.bc0ee28a9d1c from=translated src=- shape=7dfe76b0 vocab=39b6dcf6
+-/
 @[simp] theorem monSnoc_last (α : Fin k →₀ ℕ) (n : ℕ) :
     monSnoc α n (Fin.last k) = n := by
   simp [monSnoc, Fin.snoc_last]

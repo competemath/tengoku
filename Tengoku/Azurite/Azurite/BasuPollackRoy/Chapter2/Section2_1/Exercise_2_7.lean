@@ -53,7 +53,9 @@ noncomputable def monomialOrbitSum (k : ℕ) (α : Fin k →₀ ℕ) : MvPolynom
   ∑ σ : Perm (Fin k), rename (σ : Fin k → Fin k) (monomial α 1)
 
 /-- **BPR Exercise 2.7.** Every symmetric polynomial can be written as a finite
-    sum `∑ cα • M_α`.-/
+    sum `∑ cα • M_α`.
+@isnad1 id=ex.1h3v.s7.3fc916a00684 from=translated src=- shape=098ce251 vocab=655a8379
+-/
 theorem exercise_2_7 [CharZero K] {k : ℕ} {Q : MvPolynomial (Fin k) K}
     (hQ : Q.IsSymmetric) :
     ∃ (S : Finset (Fin k →₀ ℕ)) (c : (Fin k →₀ ℕ) → K),

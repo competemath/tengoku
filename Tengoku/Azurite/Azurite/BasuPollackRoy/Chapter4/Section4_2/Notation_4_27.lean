@@ -40,11 +40,20 @@ variable {D : Type*} [CommRing D]
 /-- `ε_i = (-1)^{i(i-1)/2}`, the signature of reversing `i` rows.-/
 def ε (i : ℕ) : ℤ := (-1) ^ (i * (i - 1) / 2)
 
+/--
+@isnad1 id=eq.0h0v.s3.477e77789842 from=translated src=- shape=1ac31801 vocab=7cceae4c
+-/
 @[simp] theorem ε_zero : ε 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.6a4c22ec5172 from=translated src=- shape=1ac31801 vocab=7cceae4c
+-/
 @[simp] theorem ε_one : ε 1 = 1 := rfl
 
 /-! ### The mod-4 pattern (BPR equation 4.2) -/
 
+/--
+@isnad1 id=eq.0h1v.s4.2ff3c2692952 from=translated src=- shape=57080218 vocab=f968c393
+-/
 theorem ε_four_mul (i : ℕ) : ε (4 * i) = 1 := by
   unfold ε
   have h : 4 * i * (4 * i - 1) / 2 = 2 * (i * (4 * i - 1)) := by
@@ -53,6 +62,9 @@ theorem ε_four_mul (i : ℕ) : ε (4 * i) = 1 := by
   rw [h, pow_mul]
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s5.f6278f45be99 from=translated src=- shape=40a1ea05 vocab=31002936
+-/
 theorem ε_four_mul_sub_one (i : ℕ) (hi : 1 ≤ i) : ε (4 * i - 1) = -1 := by
   unfold ε
   have h_n : 4 * i - 1 - 1 = 4 * i - 2 := by omega
@@ -65,6 +77,9 @@ theorem ε_four_mul_sub_one (i : ℕ) (hi : 1 ≤ i) : ε (4 * i - 1) = -1 := by
   rw [h]
   exact Odd.neg_one_pow (Odd.mul ⟨2 * i - 1, by omega⟩ ⟨i - 1, by omega⟩)
 
+/--
+@isnad1 id=eq.1h1v.s5.09ce08c6964c from=translated src=- shape=40a1ea05 vocab=31002936
+-/
 theorem ε_four_mul_sub_two (i : ℕ) (hi : 1 ≤ i) : ε (4 * i - 2) = -1 := by
   unfold ε
   have h_n : 4 * i - 2 - 1 = 4 * i - 3 := by omega
@@ -77,6 +92,9 @@ theorem ε_four_mul_sub_two (i : ℕ) (hi : 1 ≤ i) : ε (4 * i - 2) = -1 := by
   rw [h]
   exact Odd.neg_one_pow (Odd.mul ⟨i - 1, by omega⟩ ⟨2 * i - 2, by omega⟩)
 
+/--
+@isnad1 id=eq.1h1v.s5.19553d5946f4 from=translated src=- shape=b5614e8b vocab=f6d9b276
+-/
 theorem ε_four_mul_sub_three (i : ℕ) (hi : 1 ≤ i) : ε (4 * i - 3) = 1 := by
   unfold ε
   have h_n : 4 * i - 3 - 1 = 4 * i - 4 := by omega
@@ -91,7 +109,9 @@ theorem ε_four_mul_sub_three (i : ℕ) (hi : 1 ≤ i) : ε (4 * i - 3) = 1 := b
 
 /-! ### Two-step recurrence and the `ε_{i - 2 j}` identity -/
 
-/-- Reversing two more rows multiplies the signature by `-1`.-/
+/-- Reversing two more rows multiplies the signature by `-1`.
+@isnad1 id=eq.0h1v.s4.5bd9dbe35a1c from=translated src=- shape=3cd7ff56 vocab=b19e6794
+-/
 theorem ε_add_two (n : ℕ) : ε (n + 2) = -ε n := by
   unfold ε
   have h_step : (n + 2) * (n + 2 - 1) = n * (n - 1) + 2 * (2 * n + 1) := by
@@ -109,7 +129,9 @@ theorem ε_add_two (n : ℕ) : ε (n + 2) = -ε n := by
     rw [pow_succ, pow_mul]; norm_num
   rw [h_pow]; ring
 
-/-- **BPR's `ε_{i - 2 j} = (-1)^j ε_i` identity.**-/
+/-- **BPR's `ε_{i - 2 j} = (-1)^j ε_i` identity.**
+@isnad1 id=eq.1h2v.s6.8e44fff0b2ce from=translated src=- shape=721c1e9d vocab=bf912d2d
+-/
 theorem ε_sub_two_mul (i j : ℕ) (h : 2 * j ≤ i) :
     ε (i - 2 * j) = (-1) ^ j * ε i := by
   induction j with
@@ -139,7 +161,9 @@ private lemma revPerm_term_eq_neg_one (n : ℕ) (i j : Fin n)
     exact hi_lt_j
   rw [ite_eq_right (not_lt_of_gt h_rev_gt)]
 
-/-- The signature of `Fin.revPerm` on `Fin n` is `ε_n = (-1)^{n(n-1)/2}`.-/
+/-- The signature of `Fin.revPerm` on `Fin n` is `ε_n = (-1)^{n(n-1)/2}`.
+@isnad1 id=eq.0h1v.s6.71293a47c46e from=translated src=- shape=ec42251a vocab=7323a737
+-/
 theorem sign_revPerm (n : ℕ) :
     ((Equiv.Perm.sign (Fin.revPerm : Equiv.Perm (Fin n))) : ℤ) = ε n := by
   unfold ε
@@ -176,7 +200,9 @@ noncomputable def blockReversePerm (p q : ℕ) : Equiv.Perm (Fin (p + q)) :=
   e.symm.permCongr (Equiv.sumCongr (Equiv.refl (Fin q)) Fin.revPerm)
 
 /-- Action of `blockReversePerm` on indices: identity on `[0, q)`,
-    `i ↦ p + 2q - 1 - i` on `[q, p+q)`.-/
+    `i ↦ p + 2q - 1 - i` on `[q, p+q)`.
+@isnad1 id=eq.0h3v.s7.0a1f5a7c2f20 from=translated src=- shape=bea47d5f vocab=aefa656d
+-/
 theorem blockReversePerm_apply_val (p q : ℕ) (i : Fin (p + q)) :
     (blockReversePerm p q i).val =
       if i.val < q then i.val else p + 2 * q - 1 - i.val := by
@@ -202,7 +228,9 @@ theorem blockReversePerm_apply_val (p q : ℕ) (i : Fin (p + q)) :
       finSumFinEquiv_apply_right, Fin.natAdd, Fin.revPerm_apply, Fin.rev]
     omega
 
-/-- The signature of `blockReversePerm` is `ε_p`.-/
+/-- The signature of `blockReversePerm` is `ε_p`.
+@isnad1 id=eq.0h2v.s7.5b7ea4de8dd2 from=translated src=- shape=9ce8f23c vocab=d86f75e1
+-/
 theorem sign_blockReversePerm (p q : ℕ) :
     ((Equiv.Perm.sign (blockReversePerm p q)) : ℤ) = ε p := by
   unfold blockReversePerm
@@ -215,7 +243,9 @@ theorem sign_blockReversePerm (p q : ℕ) :
 
 /-- The `j = 0` Sylvester-Habicht matrix `SyHa(P, Q, 0)` is the
     Sylvester matrix `Syl(P, Q)` with its Q-block (last `p` rows)
-    reversed.-/
+    reversed.
+@isnad1 id=eq.0h3v.s8.675b2074d71e from=translated src=- shape=028167dc vocab=a3904d13
+-/
 theorem SyHa_zero_eq_Syl_submatrix (P Q : D[X]) :
     SyHa P Q 0 = (Syl P Q).submatrix
       (blockReversePerm P.natDegree Q.natDegree) id := by
@@ -258,7 +288,9 @@ theorem SyHa_zero_eq_Syl_submatrix (P Q : D[X]) :
 /-- **Notation 4.27 (consequence).** `sRes_0(P, Q) = ε_{deg P} · Res(P, Q)`,
     because `SyHa(P, Q, 0)` is `Syl(P, Q)` with the Q-block of `p` rows
     reversed, and reversing `p` rows multiplies the determinant by
-    `ε_p`.-/
+    `ε_p`.
+@isnad1 id=eq.0h3v.s6.591459d19033 from=translated src=- shape=98c173af vocab=2dee386a
+-/
 theorem sRes_zero_eq_eps_mul_Res (P Q : D[X]) :
     sRes P Q 0 = ε P.natDegree * Res P Q := by
   -- For `j = 0`, `sRes_0 = det(SyHaSquare P Q 0)` and the `castLE` is

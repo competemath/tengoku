@@ -35,7 +35,9 @@ open Matrix
 variable {R : Type*} [CommRing R]
 
 /-- **BPR Lemma 4.11**. The Vandermonde determinant factors as
-    `∏ over (i, j) with i < j of (x_j - x_i)`.-/
+    `∏ over (i, j) with i < j of (x_j - x_i)`.
+@isnad1 id=eq.0h3v.s6.e20d383d4ab2 from=translated src=- shape=14490717 vocab=1e266f2d
+-/
 theorem lemma_4_11 {r : ℕ} (x : Fin r → R) :
     vandermondeDet x = ∏ i : Fin r, ∏ j ∈ Finset.Ioi i, (x j - x i) := by
   rw [vandermondeDet_eq_mathlib]

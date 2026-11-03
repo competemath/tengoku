@@ -46,7 +46,9 @@ open Polynomial
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- In a field of characteristic zero, the k-th Hasse derivative evaluated at x
-    equals the k-th iterated derivative evaluated at x, divided by k!.-/
+    equals the k-th iterated derivative evaluated at x, divided by k!.
+@isnad1 id=eq.0h4v.s9.952539b07701 from=translated src=- shape=3c258258 vocab=55bd1f19
+-/
 theorem hasseDeriv_eval_eq (P : K[X]) (x : K) (k : ℕ) :
     (hasseDeriv k P).eval x = (derivative^[k] P).eval x / (↑(Nat.factorial k) : K) := by
   have hk : (↑(Nat.factorial k) : K) ≠ 0 := Nat.cast_ne_zero.mpr k.factorial_ne_zero
@@ -58,7 +60,9 @@ theorem hasseDeriv_eval_eq (P : K[X]) (x : K) (k : ℕ) :
 
 /-- **BPR Proposition 2.1 (Taylor's Formula).**
     Let K be a field of characteristic 0, P ∈ K[X], and x ∈ K. Then
-    P = ∑_{i=0}^{deg P} (P⁽ⁱ⁾(x) / i!) · (X − x)ⁱ.-/
+    P = ∑_{i=0}^{deg P} (P⁽ⁱ⁾(x) / i!) · (X − x)ⁱ.
+@isnad1 id=eq.0h3v.s9.cd5436bbdebe from=translated src=- shape=8983cf85 vocab=198c0f9a
+-/
 theorem prop_2_1 (P : K[X]) (x : K) :
     P = ∑ i ∈ Finset.range (P.natDegree + 1),
       C ((derivative^[i] P).eval x / (↑(Nat.factorial i) : K)) * (X - C x) ^ i := by

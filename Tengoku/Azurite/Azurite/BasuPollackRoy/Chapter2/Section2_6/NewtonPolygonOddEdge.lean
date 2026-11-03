@@ -30,7 +30,9 @@ open Polynomial
 variable {R : Type*} [Field R]
 
 /-- In a chain with strictly increasing first coordinates, the first column does not exceed the
-last.-/
+last.
+@isnad1 id=le.3h3v.s6.60dd8b89d25a from=translated src=- shape=f2e488f0 vocab=24a550e3
+-/
 theorem chain_head_fst_le_getLast_fst : ∀ M : List (ℕ × ℚ),
     M.IsChain (fun A B => A.1 < B.1) → ∀ A B : ℕ × ℚ,
     M.head? = some A → M.getLast? = some B → A.1 ≤ B.1 := by
@@ -53,7 +55,9 @@ theorem chain_head_fst_le_getLast_fst : ∀ M : List (ℕ × ℚ),
         omega
 
 /-- **An odd horizontal span forces an odd edge.** If the columns of a strictly increasing vertex
-chain run from `A` to `B` with `B.1 − A.1` odd, then some edge `[U, V]` has `V.1 − U.1` odd.-/
+chain run from `A` to `B` with `B.1 − A.1` odd, then some edge `[U, V]` has `V.1 − U.1` odd.
+@isnad1 id=ex.4h3v.s7.56d8b8025dcc from=translated src=- shape=86269133 vocab=5dec2b15
+-/
 theorem exists_odd_length_edge_aux : ∀ M : List (ℕ × ℚ),
     M.IsChain (fun A B => A.1 < B.1) → ∀ A B : ℕ × ℚ,
     M.head? = some A → M.getLast? = some B → Odd (B.1 - A.1) →
@@ -84,7 +88,9 @@ theorem exists_odd_length_edge_aux : ∀ M : List (ℕ × ℚ),
           obtain ⟨U, V, hUV, hUVodd⟩ := ih hchbl b B (by rw [List.head?_cons]) hB hodd'
           exact ⟨U, V, by rw [List.tail_cons, List.zip_cons_cons]; exact List.mem_cons_of_mem _ hUV, hUVodd⟩
 
-/-- **An odd-degree polynomial has a Newton-polygon edge of odd horizontal length.**-/
+/-- **An odd-degree polynomial has a Newton-polygon edge of odd horizontal length.**
+@isnad1 id=ex.2h3v.s10.043177c94552 from=translated src=- shape=c0f9b326 vocab=166f3540
+-/
 theorem exists_odd_length_edge {P : Polynomial (PuiseuxSeries R)} {M : List (ℕ × ℚ)}
     (hM : IsNewtonPolygon P M) (hodd : Odd P.natDegree) :
     ∃ U V : ℕ × ℚ, (U, V) ∈ M.zip M.tail ∧ Odd (V.1 - U.1) := by
