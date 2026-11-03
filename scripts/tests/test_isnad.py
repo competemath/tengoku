@@ -462,6 +462,79 @@ class Batches(unittest.TestCase):
         recs, _ = self.facts_of([self.PARENT], 100, exact=True)
         self.assertEqual([(r.module, r.name) for r in recs], [(self.PARENT, "p1")])
 
+    # a theorem that two modules of one environment declare (same name and type, which Lean accepts) belongs to only one of them in that environment: grothendieck-riemann-roch
+    # part 1, 3 Nov 2026, `Chow/ReesDepth.lean` has three theorems the tree's Seed has too, and in a batch it came out with no record
+    SHADOWED, PLAIN, EMPTY = "Tengoku.Lib.Dup", "Tengoku.Lib.Plain", "Tengoku.Lib.Defs"
+
+    def shadowing_exe(self):
+        calls = []
+
+        def listed(args):
+            return [a for i, a in enumerate(args) if i and args[i - 1] == "--module"]
+
+        def rows(args):
+            mods = listed(args)
+            out = [(self.PLAIN, "p1")] if self.PLAIN in mods else []
+            if self.SHADOWED in mods and len(mods) == 1:  # in a batch the other module of the environment holds the theorem
+                out += [(self.SHADOWED, "s1"), (self.SHADOWED, "s2")]
+            return out
+
+        def fake_exe(args, exe=None, **_):
+            calls.append(("recs", listed(args)))
+            return [isnad.Record("\t".join(["isnad1", n, m, "thm", "0", "0", "1", "c", "s", "v"])) for m, n in rows(args)]
+
+        def fake_lines(args, exe=None, **_):
+            calls.append(("ranges", listed(args)))
+            return ["\t".join(["isnad1-range", n, m, "1:0", "2:0", "1:8", "1:10"]) for m, n in rows(args)]
+
+        return fake_exe, fake_lines, calls
+
+    def shadowed_facts(self, exact):
+        fake_exe, fake_lines, calls = self.shadowing_exe()
+        mods = [self.SHADOWED, self.PLAIN, self.EMPTY]
+        with (
+            mock.patch.object(isnad, "run_exe", fake_exe),
+            mock.patch.object(isnad, "run_exe_lines", fake_lines),
+            mock.patch.object(isnad, "declares_theorem", lambda m, root=None: m != self.EMPTY),
+        ):
+            recs, ranges = isnad.facts(mods, [], None, 100, exact)
+        return recs, ranges, calls
+
+    def test_a_module_with_theorems_and_no_record_in_the_batch_is_asked_again_alone(self):
+        recs, ranges, calls = self.shadowed_facts(exact=True)
+        self.assertEqual(
+            sorted((r.module, r.name) for r in recs), sorted([(self.PLAIN, "p1"), (self.SHADOWED, "s1"), (self.SHADOWED, "s2")])
+        )
+        self.assertEqual(len(ranges), 3)
+        alone = [(k, m) for k, m in calls if len(m) == 1]
+        self.assertEqual(alone, [("recs", [self.SHADOWED]), ("ranges", [self.SHADOWED])], "one more process, for that module only")
+
+    def test_a_module_that_declares_no_theorem_is_not_asked_again(self):
+        _, _, calls = self.shadowed_facts(exact=True)
+        self.assertFalse(any(self.EMPTY in m and len(m) == 1 for _, m in calls))
+        self.assertFalse(any(self.PLAIN in m and len(m) == 1 for _, m in calls), "a module with records is not asked again")
+
+    def test_without_exact_the_batch_is_all_there_is(self):
+        recs, _, calls = self.shadowed_facts(exact=False)
+        self.assertEqual([(r.module, r.name) for r in recs], [(self.PLAIN, "p1")])
+        self.assertEqual(len(calls), 2)
+
+    def test_declares_theorem_reads_the_source_for_a_theorem_or_lemma_command(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "Tengoku" / "Lib").mkdir(parents=True)
+            cases = {
+                "A": "import X\n/-- doc -/\ntheorem foo : True := trivial\n",
+                "B": "@[simp] private lemma bar : True := trivial\n",
+                "C": "def f := 1\n-- a theorem in a comment\n/- theorem baz -/\n",
+            }
+            for name, text in cases.items():
+                (root / "Tengoku" / "Lib" / f"{name}.lean").write_text(text, encoding="utf-8")
+            got = {n: isnad.declares_theorem(f"Tengoku.Lib.{n}", root) for n in (*cases, "Missing")}
+        self.assertEqual(got, {"A": True, "B": True, "C": False, "Missing": False})
+
     def test_both_commands_take_a_batch_option_with_the_default(self):
         ap = isnad.build_parser()
         for cmd in ("tag", "check-tags"):

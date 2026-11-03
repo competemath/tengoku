@@ -240,7 +240,28 @@ def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BA
             lines = [ln for ln in lines if parse_range_line(ln)[1] in listed]
         recs += got
         ranges += lines
+    if exact:
+        # a theorem that another module of the batch's environment declares too (the same name and type, which Lean accepts for two theorems) belongs there in that
+        # environment: the module that holds the copy comes out with no record (grothendieck-riemann-roch part 1, 3 Nov 2026: `Chow/ReesDepth.lean` carries three theorems
+        # the tree's Seed has too, and the lane refused the PR). A record is the theorem as its module's own imports see it, so a module that declares theorems and got none
+        # in the batch is asked again alone.
+        have = {r.module for r in recs}
+        for m in modules:
+            if m in have or not declares_theorem(m):
+                continue
+            args = ["--module", m] + [x for n in names for x in ("--name", n)]
+            recs += [r for r in run_exe(args, exe) if r.module == m]
+            ranges += [ln for ln in run_exe_lines(["--ranges", *args], exe) if parse_range_line(ln)[1] == m]
     return recs, ranges
+
+
+THEOREM_WORD = re.compile(r"^[ \t]*(?:@\[[^\]\n]*\][ \t]*)*(?:(?:private|protected|nonrec)[ \t]+)*(?:theorem|lemma)[ \t]", re.M)
+
+
+def declares_theorem(module: str, root: Path = ROOT) -> bool:
+    """Whether the module's source has a theorem or lemma command (a text check: it only decides whether to ask the tagger's Lean side about the module again)."""
+    path = module_file(module, root)
+    return path.is_file() and THEOREM_WORD.search(read_source(path)) is not None
 
 
 def golden() -> list[tuple[str, str, str, str]]:
