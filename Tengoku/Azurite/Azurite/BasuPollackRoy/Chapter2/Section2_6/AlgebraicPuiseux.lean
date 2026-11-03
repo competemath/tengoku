@@ -1,0 +1,46 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_6.RatFuncEmbedding
+import Tengoku.Seed.FieldTheory.AlgebraicClosure
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! # BPR §2.6 — algebraic Puiseux series `K⟨ε⟩`
+
+For a field `K`, the rational function field `K(ε) = RatFunc K` embeds into the Puiseux series
+`K⟨⟨ε⟩⟩ = PuiseuxSeries K` (`ratFuncToPuiseuxHom`). The *algebraic Puiseux series* `K⟨ε⟩` is the
+subfield of `K⟨⟨ε⟩⟩` of those elements that are algebraic over `K(ε)` — i.e. that satisfy a
+polynomial equation with coefficients in `K(ε)`. It is the relative algebraic closure of `K(ε)`
+inside `K⟨⟨ε⟩⟩`. -/
+
+namespace Azurite.BPR
+
+open Polynomial
+
+variable {K : Type*} [Field K]
+
+/-- `K(ε) = RatFunc K` acts on `K⟨⟨ε⟩⟩ = PuiseuxSeries K` via the Laurent-expansion embedding
+`ratFuncToPuiseuxHom`.-/
+noncomputable instance ratFuncPuiseuxAlgebra : Algebra (RatFunc K) (PuiseuxSeries K) :=
+  (ratFuncToPuiseuxHom K).toAlgebra
+
+/-- **The algebraic Puiseux series `K⟨ε⟩`.** The subfield of `K⟨⟨ε⟩⟩` of elements algebraic over
+`K(ε)`: the relative algebraic closure of `K(ε) = RatFunc K` inside `K⟨⟨ε⟩⟩ = PuiseuxSeries K`.-/
+noncomputable def algebraicPuiseux (K : Type*) [Field K] : Subfield (PuiseuxSeries K) :=
+  (algebraicClosure (RatFunc K) (PuiseuxSeries K)).toSubfield
+
+/-- An element is an algebraic Puiseux series exactly when it is algebraic over `K(ε)`.
+@isnad1 id=iff.0h2v.s10.196e24834354 from=translated src=- shape=26e1514a vocab=fb4079df
+-/
+@[simp] theorem mem_algebraicPuiseux {x : PuiseuxSeries K} :
+    x ∈ algebraicPuiseux K ↔ IsAlgebraic (RatFunc K) x := by
+  rw [algebraicPuiseux, IntermediateField.mem_toSubfield, mem_algebraicClosure_iff]
+
+end Azurite.BPR

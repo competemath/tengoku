@@ -1,0 +1,177 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_6.NewtonPolygon
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! # BPR §2.6 — existence of the Newton polygon
+
+Every polynomial `P ∈ R⟨⟨ε⟩⟩[X]` with nonzero constant term `P.coeff 0 ≠ 0` has a Newton polygon
+(`exists_isNewtonPolygon`). This is the lower convex hull of the column points `M_i = (i, o(ā_i))`
+(`i ∈ support`), and is built by a Jarvis march (gift-wrapping): starting at column `0`, the next
+vertex is the column minimizing the slope from the current vertex.
+
+The construction carries a **supporting-line invariant** that turns the otherwise global
+"every diagram point lies on or above every edge" property into a self-propagating local one: if
+the line of slope `s` through the current vertex `a` lies below every column point, then the
+minimal-slope next vertex `b` has outgoing slope `s' ≥ s`, the edge `[a, b]` lies below every
+column point (right points by minimality, left points because `s' ≥ s` and the lines agree at
+`a`), and this *is* the invariant at `b`. Lifting from column bottom points to all diagram points
+is immediate (`r ≥ o(ā_i)`), and convexity of the vertex chain follows since each vertex is a
+diagram point above the previous edge.
+
+The hypothesis `P.coeff 0 ≠ 0` is necessary: `IsNewtonPolygon` forces a vertex at column `0`
+(`head_eq`), which requires `o(ā₀)` finite; when `X ∣ P` one peels off `0` as a root first.
+-/
+
+namespace Azurite.BPR
+
+open Polynomial
+
+variable {R : Type*} [Field R]
+
+/-- The order of the `i`-th coefficient as a rational — the `y`-coordinate of the bottom point of
+column `i` (junk value `0` when `ā_i = 0`, which does not occur on the support).-/
+noncomputable def colOrd (P : Polynomial (PuiseuxSeries R)) (i : ℕ) : ℚ :=
+  HahnSeries.order ((P.coeff i : PuiseuxSeries R) : HahnSeries ℚ R)
+
+/-- On the support, `puiseuxOrder` of the coefficient is the finite value `colOrd`.
+@isnad1 id=eq.1h3v.s11.cef7faefab63 from=translated src=- shape=4b13db69 vocab=5ebfada2
+-/
+theorem puiseuxOrder_eq_colOrd {P : Polynomial (PuiseuxSeries R)} {i : ℕ} (hi : P.coeff i ≠ 0) :
+    puiseuxOrder R (P.coeff i) = (colOrd P i : WithTop ℚ) := by
+  have hcoe : ((P.coeff i : PuiseuxSeries R) : HahnSeries ℚ R) ≠ 0 := by
+    rw [Ne, ZeroMemClass.coe_eq_zero]; exact hi
+  rw [puiseuxOrder, colOrd]
+  exact (HahnSeries.order_eq_orderTop_of_ne_zero hcoe).symm
+
+/-- **Convexity from edge-support.** If each vertex of `M` is a column point `(i, f i)` with
+`i ∈ S`, and every edge of `M` lies on or above every column point, then the vertex chain turns
+the right way: each vertex lies on or above the previous edge.
+@isnad1 id=ischain.2h3v.s7.843a32a2e273 from=translated src=- shape=22592db5 vocab=402ac90b
+-/
+theorem isChain_zip_tail_of_colChain {S : Finset ℕ} {f : ℕ → ℚ} :
+    ∀ M : List (ℕ × ℚ), (∀ V ∈ M, V.2 = f V.1 ∧ V.1 ∈ S) →
+      M.IsChain (fun A B => ∀ i ∈ S, OnOrAbove A B (i, f i)) →
+      (M.zip M.tail).IsChain (fun e₁ e₂ : (ℕ × ℚ) × (ℕ × ℚ) => OnOrAbove e₁.1 e₁.2 e₂.2)
+  | [], _, _ => List.isChain_nil
+  | [_], _, _ => List.isChain_nil
+  | a :: b :: l, hcol, hch => by
+      have hchbl : (b :: l).IsChain (fun A B => ∀ i ∈ S, OnOrAbove A B (i, f i)) :=
+        (List.isChain_cons.mp hch).2
+      have hcolbl : ∀ V ∈ (b :: l), V.2 = f V.1 ∧ V.1 ∈ S :=
+        fun V hV => hcol V (List.mem_cons_of_mem _ hV)
+      have ih := isChain_zip_tail_of_colChain (b :: l) hcolbl hchbl
+      have habrel : ∀ i ∈ S, OnOrAbove a b (i, f i) := by
+        have h := (List.isChain_cons.mp hch).1
+        rw [List.head?_cons] at h
+        exact h b rfl
+      rw [show (a :: b :: l).zip (a :: b :: l).tail = (a, b) :: (b :: l).zip (b :: l).tail from by
+        rw [List.tail_cons, List.zip_cons_cons, List.tail_cons], List.isChain_cons]
+      refine ⟨fun e he => ?_, ih⟩
+      cases l with
+      | nil => simp at he
+      | cons c l' =>
+          rw [List.tail_cons, List.zip_cons_cons, List.head?_cons, Option.mem_some_iff] at he
+          subst he
+          obtain ⟨hc2, hc1⟩ := hcol c (by simp)
+          have := habrel c.1 hc1
+          rwa [show (c.1, f c.1) = c from Prod.ext rfl hc2.symm] at this
+
+/-- **The lower-hull construction (Jarvis march).** From a vertex `a ∈ S` whose supporting line of
+slope `s` lies below every column point of `S`, there is a vertex chain from `a` to `N`
+satisfying the Newton-polygon conditions (over column bottom points). Proven by strong induction
+on the remaining span `N − a`.
+@isnad1 id=ex.5h6v.s8.d913884c28fa from=translated src=- shape=44cd1cca vocab=dbcdeb5a
+-/
+theorem lower_hull_exists (S : Finset ℕ) (f : ℕ → ℚ) (N : ℕ)
+    (hSN : ∀ i ∈ S, i ≤ N) (hNS : N ∈ S) :
+    ∀ d : ℕ, ∀ a : ℕ, a ∈ S → N - a ≤ d → ∀ s : ℚ,
+      (∀ i ∈ S, f a + s * ((i : ℚ) - a) ≤ f i) →
+      ∃ M : List (ℕ × ℚ), M.head? = some (a, f a) ∧ M.getLast? = some (N, f N)
+        ∧ (∀ V ∈ M, V.2 = f V.1 ∧ V.1 ∈ S)
+        ∧ M.IsChain (fun A B => A.1 < B.1)
+        ∧ M.IsChain (fun A B : ℕ × ℚ => ∀ i ∈ S, OnOrAbove A B (i, f i)) := by
+  intro d
+  induction d using Nat.strongRecOn with
+  | ind d IH =>
+    intro a haS hda s hs
+    rcases eq_or_lt_of_le (hSN a haS) with haN | haN
+    · subst haN
+      exact ⟨[(a, f a)], rfl, rfl, by
+        intro V hV; rw [List.mem_singleton] at hV; subst hV; exact ⟨rfl, haS⟩,
+        List.isChain_singleton _, List.isChain_singleton _⟩
+    · -- pick the minimal-slope next vertex `b`
+      have hTne : (S.filter (a < ·)).Nonempty := ⟨N, Finset.mem_filter.mpr ⟨hNS, haN⟩⟩
+      obtain ⟨b, hbT, hbmin⟩ :=
+        (S.filter (a < ·)).exists_min_image (fun j => newtonSlope (a, f a) (j, f j)) hTne
+      have hbS : b ∈ S := (Finset.mem_filter.mp hbT).1
+      have hab : a < b := (Finset.mem_filter.mp hbT).2
+      have hbN : b ≤ N := hSN b hbS
+      set sout := newtonSlope (a, f a) (b, f b) with hsout
+      have hrunb : (0 : ℚ) < (b : ℚ) - a := by
+        have : (a : ℚ) < b := by exact_mod_cast hab
+        linarith
+      -- `sout * (b - a) = f b - f a`
+      have hfb : f a + sout * ((b : ℚ) - a) = f b := by
+        have := newtonSlope_mul_sub (p := (a, f a)) (q := (b, f b)) (ne_of_lt hab)
+        rw [hsout]; simp only at this; linarith [this]
+      -- the edge `[a, b]` lies below every column point
+      have hedge : ∀ i ∈ S, f a + sout * ((i : ℚ) - a) ≤ f i := by
+        intro i hiS
+        rcases lt_trichotomy i a with hia | hia | hia
+        · have hsle : s ≤ sout := by
+            rw [hsout, newtonSlope_def, le_div_iff₀ hrunb]
+            simp only
+            linarith [hs b hbS]
+          have hia' : (i : ℚ) - a < 0 := by
+            have : (i : ℚ) < a := by exact_mod_cast hia
+            linarith
+          have hmul : sout * ((i : ℚ) - a) ≤ s * ((i : ℚ) - a) :=
+            mul_le_mul_of_nonpos_right hsle (le_of_lt hia')
+          linarith [hs i hiS, hmul]
+        · subst hia; simp
+        · have hiT : i ∈ S.filter (a < ·) := Finset.mem_filter.mpr ⟨hiS, hia⟩
+          have hmin := hbmin i hiT
+          have hrun : (0 : ℚ) < (i : ℚ) - a := by
+            have : (a : ℚ) < i := by exact_mod_cast hia
+            linarith
+          have hsi := newtonSlope_mul_sub (p := (a, f a)) (q := (i, f i)) (ne_of_lt hia)
+          have hmul : sout * ((i : ℚ) - a) ≤ newtonSlope (a, f a) (i, f i) * ((i : ℚ) - a) :=
+            mul_le_mul_of_nonneg_right hmin (le_of_lt hrun)
+          simp only at hsi
+          linarith [hmul, hsi]
+      -- the new supporting-line invariant at `b`
+      have hinv : ∀ i ∈ S, f b + sout * ((i : ℚ) - b) ≤ f i := by
+        intro i hiS
+        have hdist : sout * ((i : ℚ) - b) + sout * ((b : ℚ) - a) = sout * ((i : ℚ) - a) := by ring
+        linarith [hedge i hiS, hfb, hdist]
+      -- recurse from `b`
+      obtain ⟨Mb, hMb_head, hMb_last, hMb_col, hMb_mono, hMb_diag⟩ :=
+        IH (N - b) (by omega) b hbS (le_refl _) sout hinv
+      have hMb_ne : Mb ≠ [] := by intro h; rw [h] at hMb_head; simp at hMb_head
+      refine ⟨(a, f a) :: Mb, rfl, ?_, ?_, ?_, ?_⟩
+      · rw [List.getLast?_cons_of_ne_nil hMb_ne]; exact hMb_last
+      · intro V hV
+        rcases List.mem_cons.mp hV with rfl | hV
+        · exact ⟨rfl, haS⟩
+        · exact hMb_col V hV
+      · rw [List.isChain_cons]
+        refine ⟨?_, hMb_mono⟩
+        rw [hMb_head]; intro y hy; rw [Option.mem_some_iff] at hy; subst hy; exact hab
+      · rw [List.isChain_cons]
+        refine ⟨?_, hMb_diag⟩
+        rw [hMb_head]; intro y hy; rw [Option.mem_some_iff] at hy; subst hy
+        intro i hiS
+        rw [onOrAbove_iff, ← hsout]
+        simp only
+        linarith [hedge i hiS]
+
+end Azurite.BPR
