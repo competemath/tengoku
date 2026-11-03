@@ -9,7 +9,9 @@ namespace MagnitudeConjecture.GradedInterval
 universe u v
 
 /-- The exact interior contribution and a bounded exceptional contribution
-control the error from the full interval-length multiple.-/
+control the error from the full interval-length multiple.
+@isnad1 id=le.3h8v.s8.9b8df47d19a3 from=translated src=- shape=4b22585a vocab=c22b6975
+-/
 theorem arrow_error_bound_from_partition {α : Type u} {β : Type v}
     [Fintype α] [Fintype β] (f : α → α → ℕ) (g : β → β → ℕ)
     (P : α → Prop) [DecidablePred P] (m h B : ℕ) (hm : 2 * h ≤ m)

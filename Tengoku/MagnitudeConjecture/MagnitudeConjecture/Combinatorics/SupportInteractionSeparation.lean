@@ -22,7 +22,9 @@ variable {O : Type v} [MulAction G O] [IsCancelSMul G O]
 variable {X : Type w} [MulAction G X]
 
 /-- Under a free action, the set of group elements carrying one specified
-base object to another is finite (indeed, subsingleton).-/
+base object to another is finite (indeed, subsingleton).
+@isnad1 id=finite.0h4v.s6.fc34db22f84b from=translated src=- shape=165998bb vocab=350ac9c7
+-/
 theorem smulTransporter_finite (source target : O) :
     {g : G | g • source = target}.Finite := by
   apply Set.Subsingleton.finite
@@ -30,7 +32,9 @@ theorem smulTransporter_finite (source target : O) :
   exact IsCancelSMul.right_cancel g h source (hg.trans hh.symm)
 
 /-- Finite equivariant supports turn support-detectable interactions into
-pointwise finite sets of translations.-/
+pointwise finite sets of translations.
+@isnad1 id=finite.3h7v.s7.805627ca53fb from=translated src=- shape=5056d823 vocab=409eeada
+-/
 theorem interactionTranslations_finite_of_finite_support
     (support : X → Set O)
     (support_finite : ∀ x, (support x).Finite)
@@ -66,7 +70,9 @@ theorem interactionTranslations_finite_of_finite_support
     htranslate
 
 /-- Residual finiteness separates a finite window whenever interaction is
-detected by meeting finite equivariant supports over a freely acted-on base.-/
+detected by meeting finite equivariant supports over a freely acted-on base.
+@isnad1 id=ex.5h6v.s8.67f23f38ca2d from=translated src=- shape=cee19b91 vocab=4b576520
+-/
 theorem exists_finiteIndexNormalSubgroup_pairwise_windowSeparated_of_finite_support
     [Group.ResiduallyFinite G]
     (support : X → Set O)

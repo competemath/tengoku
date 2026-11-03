@@ -10,7 +10,9 @@ universe u
 variable {ι : Type u} [Fintype ι]
 
 /-- The surplus is twice the vertex count, less arrows and twice the
-projective count.-/
+projective count.
+@isnad1 id=eq.0h3v.s6.87a8a498452b from=translated src=- shape=b276f70b vocab=f475e4d0
+-/
 theorem surplus_eq_counts (a : ι → ι → ℕ) (P : ι → Prop) [DecidablePred P] :
     surplus a P = 2 * vertexCount (ι := ι) - arrowCount a - 2 * projectiveCount P := by
   rw [surplus_eq_two_mul_meshCount_sub_arrowCount,
@@ -22,7 +24,9 @@ end MagnitudeConjecture.ARCount
 namespace MagnitudeConjecture.GradedInterval
 
 /-- Exact object and simple counts together with the arrow error give the
-surplus error, with a fixed support-width correction.-/
+surplus error, with a fixed support-width correction.
+@isnad1 id=le.3h9v.s8.eafcb950d520 from=translated src=- shape=f11ac108 vocab=94c1d9df
+-/
 theorem surplus_error_of_exact_counts
     (N Nm p pm m : ℕ) (a am W C : ℤ)
     (hN : (Nm : ℤ) = (N : ℤ) * ((m : ℤ) + 1) - W)

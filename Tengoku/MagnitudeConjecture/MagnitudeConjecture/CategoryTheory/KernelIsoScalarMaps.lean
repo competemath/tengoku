@@ -13,7 +13,9 @@ universe u v w
 variable {k : Type u} [Field k] {C : Type v} [Category.{w} C] [Abelian C] [Linear k C]
 
 /-- A map annihilating the kernel of f factors through f when its target is
-injective. The coimage realizes the required intermediate quotient.-/
+injective. The coimage realizes the required intermediate quotient.
+@isnad1 id=ex.1h5v.s7.5fb13c3ace2e from=translated src=- shape=ba8a2395 vocab=9d89ce0c
+-/
 theorem exists_end_factor_of_kernel_comp_zero {Z I : C} [Injective I]
     (f g : Z ⟶ I) (hg : kernel.ι f ≫ g = 0) :
     ∃ a : I ⟶ I, f ≫ a = g := by
@@ -24,7 +26,9 @@ theorem exists_end_factor_of_kernel_comp_zero {Z I : C} [Injective I]
   exact cokernel.π_desc _ _ _
 
 /-- Scalar endomorphisms of an injective target turn kernel containment into
-proportionality of the maps.-/
+proportionality of the maps.
+@isnad1 id=ex.2h6v.s9.3fc44f774549 from=translated src=- shape=b5dc61ca vocab=77291077
+-/
 theorem exists_scalar_of_kernel_comp_zero {Z I : C} [Injective I]
     (hI : ∀ a : I ⟶ I, ∃ c : k, a = c • 𝟙 I)
     (f g : Z ⟶ I) (hg : kernel.ι f ≫ g = 0) :
@@ -34,7 +38,9 @@ theorem exists_scalar_of_kernel_comp_zero {Z I : C} [Injective I]
   exact ⟨c, by simpa using ha⟩
 
 /-- If maps from ker f to Z extend over Z, scalar endomorphisms of Z and of
-an injective target imply that isomorphic kernels give proportional maps.-/
+an injective target imply that isomorphic kernels give proportional maps.
+@isnad1 id=ex.3h7v.s10.aa34eddba994 from=translated src=- shape=c63b59d6 vocab=d330604d
+-/
 theorem exists_scalar_of_kernel_iso {Z I : C} [Injective I]
     (hZ : ∀ a : Z ⟶ Z, ∃ c : k, a = c • 𝟙 Z)
     (hI : ∀ a : I ⟶ I, ∃ c : k, a = c • 𝟙 I)

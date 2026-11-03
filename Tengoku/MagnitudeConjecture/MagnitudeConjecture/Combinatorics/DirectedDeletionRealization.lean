@@ -25,7 +25,9 @@ variable {H : Type v} [Fintype H]
 
 /-- The directed-deletion inequality after supplying the literal direct
 counts and replacing abstract factor-excess nonnegativity by the graded
-translation recurrence and realization bound.-/
+translation recurrence and realization bound.
+@isnad1 id=le.14h20v.s9.8ee06816505b from=translated src=- shape=31703a71 vocab=056955aa
+-/
 theorem translationQuiverSurplus_difference_nonnegative_of_translationRecurrence
     (Phi : Matrix H H ℤ)
     (vA nA aA vB nB aB q a0 aH z newArrows newMeshes : ℤ)
@@ -68,7 +70,9 @@ theorem translationQuiverSurplus_difference_nonnegative_of_translationRecurrence
 
 /-- The sharp directed-deletion equality criterion under the same direct
 count and graded translation hypotheses.  Equality separates into sharp
-realization length and bijectivity of the new-mesh/new-arrow injection.-/
+realization length and bijectivity of the new-mesh/new-arrow injection.
+@isnad1 id=iff.14h20v.s9.733a59531120 from=translated src=- shape=43c3d03a vocab=056955aa
+-/
 theorem translationQuiverSurplus_difference_eq_zero_iff_of_translationRecurrence
     (Phi : Matrix H H ℤ)
     (vA nA aA vB nB aB q a0 aH z newArrows newMeshes : ℤ)
@@ -116,7 +120,9 @@ theorem translationQuiverSurplus_difference_eq_zero_iff_of_translationRecurrence
       source_singleton sink_singleton firstSlice arrowStep vertexStep meshEulerTotal]
 
 /-- Equality in the complete direct deletion count makes the poset-space
-realization sharp, so every Schur realization object is one-dimensional.-/
+realization sharp, so every Schur realization object is one-dimensional.
+@isnad1 id=eq.17h24v.s9.24762e68e2bc from=translated src=- shape=884a5815 vocab=cf85b433
+-/
 theorem finrank_eq_one_of_translationQuiverSurplus_difference_eq_zero_of_translationRecurrence_and_posetSpace
     (Phi : Matrix H H ℤ)
     (vA nA aA vB nB aB q a0 aH z newArrows newMeshes : ℤ)

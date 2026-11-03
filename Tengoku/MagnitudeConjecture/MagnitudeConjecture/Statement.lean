@@ -76,7 +76,9 @@ def representable (i : Q) : Paths Q ⥤ ModuleCat k :=
       map := fun {a _} e ↦
         ModuleCat.ofHom (Finsupp.lmapDomain k k fun p : Quiver.Path i a ↦ p.cons e) }
 
-/-- Paths act by concatenation on the free representation.-/
+/-- Paths act by concatenation on the free representation.
+@isnad1 id=eq.0h8v.s9.d2b44650b53f from=translated src=- shape=2efcbc37 vocab=c0281749
+-/
 theorem representable_map_single (i : Q) {a b : Q}
     (p : Quiver.Path a b) (q : Quiver.Path i a) (c : k) :
     (representable k Q i).map p (Finsupp.single q c) =
@@ -130,7 +132,9 @@ def ideal (X Y : FreeCategory k Q) : Submodule k (X ⟶ Y) :=
   Submodule.span k {f | ∃ (A B : FreeCategory k Q) (r : A ⟶ B), r ∈ R A B ∧
     ∃ (a : X ⟶ A) (b : B ⟶ Y), f = a ≫ r ≫ b}
 
-/-- The generated ideal is closed under precomposition.-/
+/-- The generated ideal is closed under precomposition.
+@isnad1 id=mem.1h8v.s11.22592c2173f1 from=translated src=- shape=d13bd04a vocab=4abb015c
+-/
 theorem precomp {X Y Z : FreeCategory k Q} (f : X ⟶ Y)
     {g : Y ⟶ Z} (hg : g ∈ ideal R Y Z) : f ≫ g ∈ ideal R X Z := by
   induction hg using Submodule.span_induction with
@@ -141,7 +145,9 @@ theorem precomp {X Y Z : FreeCategory k Q} (f : X ⟶ Y)
   | add g h _ _ hg hh => simpa using (ideal R X Z).add_mem hg hh
   | smul c g _ hg => simpa using (ideal R X Z).smul_mem c hg
 
-/-- The generated ideal is closed under postcomposition.-/
+/-- The generated ideal is closed under postcomposition.
+@isnad1 id=mem.1h8v.s11.a6d9be64c973 from=translated src=- shape=251d4c73 vocab=4abb015c
+-/
 theorem postcomp {X Y Z : FreeCategory k Q} {f : X ⟶ Y}
     (g : Y ⟶ Z) (hf : f ∈ ideal R X Y) : f ≫ g ∈ ideal R X Z := by
   induction hf using Submodule.span_induction with
@@ -167,7 +173,9 @@ instance : Congruence (rel R) where
     intro X Y Z f f' g h
     simpa [rel] using postcomp R g h
 
-/-- Addition respects equality modulo the generated ideal.-/
+/-- Addition respects equality modulo the generated ideal.
+@isnad1 id=rel.0h11v.s10.0866e6e59a66 from=translated src=- shape=b764ec2a vocab=2e6d7906
+-/
 theorem add_compatible {X Y : FreeCategory k Q} (f₁ f₂ g₁ g₂ : X ⟶ Y)
     (hf : rel R f₁ f₂) (hg : rel R g₁ g₂) : rel R (f₁ + g₁) (f₂ + g₂) := by
   have h := (ideal R X Y).add_mem hf hg

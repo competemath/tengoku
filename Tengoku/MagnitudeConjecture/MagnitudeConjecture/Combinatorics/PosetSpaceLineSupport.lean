@@ -10,7 +10,9 @@ namespace MagnitudeConjecture.PosetSpace
 universe u
 variable {k T : Type u} [Field k] [PartialOrder T]
 
-/-- A nonzero map between upper-set lines forces inclusion of their supports.-/
+/-- A nonzero map between upper-set lines forces inclusion of their supports.
+@isnad1 id=le.3h5v.s7.ce07b19a7239 from=translated src=- shape=fa427979 vocab=cb6a283d
+-/
 theorem line_support_subset_of_nonzero
     {U V : Set T} {hU : IsUpperSet U} {hV : IsUpperSet V}
     (f : line k T U hU ⟶ line k T V hV) (hf : f ≠ 0) : U ⊆ V := by
@@ -32,7 +34,9 @@ theorem line_support_subset_of_nonzero
   rw [line_subspace_of_not_mem k T V hV t hn] at hm
   exact h₁ (by simpa using hm)
 
-/-- The hom of an isomorphism between upper-set lines is nonzero.-/
+/-- The hom of an isomorphism between upper-set lines is nonzero.
+@isnad1 id=ne.2h5v.s7.cbca87a6542c from=translated src=- shape=8c060eaf vocab=bb79de41
+-/
 theorem lineIso_hom_ne_zero
     {U V : Set T} {hU : IsUpperSet U} {hV : IsUpperSet V}
     (e : line k T U hU ≅ line k T V hV) : e.hom ≠ 0 := by
@@ -42,7 +46,9 @@ theorem lineIso_hom_ne_zero
   have h₁ := congrArg (fun f : line k T U hU ⟶ line k T U hU ↦ f.linear (1 : k)) h
   exact (zero_ne_one : (0 : k) ≠ 1) (by simpa using h₁)
 
-/-- Isomorphic upper-set lines have equal supports.-/
+/-- Isomorphic upper-set lines have equal supports.
+@isnad1 id=eq.2h5v.s6.939c81afe677 from=translated src=- shape=4b365702 vocab=4d216385
+-/
 theorem line_support_eq_of_iso
     {U V : Set T} {hU : IsUpperSet U} {hV : IsUpperSet V}
     (e : line k T U hU ≅ line k T V hV) : U = V :=

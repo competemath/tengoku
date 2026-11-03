@@ -45,18 +45,26 @@ def coordinateProjection {ι : Type v} (b : Basis ι k V) (i : ι) :
     intro c x
     simp [mul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s7.edaa531c1896 from=translated src=- shape=b28e2657 vocab=01b9abab
+-/
 @[simp]
 theorem coordinateProjection_self {ι : Type v} (b : Basis ι k V) (i : ι) :
     coordinateProjection b i (b i) = b i := by
   simp [coordinateProjection, Basis.coord_apply]
 
+/--
+@isnad1 id=eq.1h6v.s7.1be7248919a5 from=translated src=- shape=34c58fa6 vocab=01b9abab
+-/
 @[simp]
 theorem coordinateProjection_of_ne {ι : Type v} (b : Basis ι k V)
     {i j : ι} (hji : j ≠ i) :
     coordinateProjection b i (b j) = 0 := by
   simp [coordinateProjection, Basis.coord_apply, hji]
 
-/-- A coordinate projection preserves every subspace adapted to the basis.-/
+/-- A coordinate projection preserves every subspace adapted to the basis.
+@isnad1 id=mem.2h7v.s8.72d1020ce604 from=translated src=- shape=0e85a647 vocab=bae7793d
+-/
 theorem coordinateProjection_mem_of_mem {ι : Type v} (b : Basis ι k V)
     {U : Submodule k V} (hU : AdaptsSubmodule b U) (i : ι)
     {x : V} (hx : x ∈ U) :
@@ -98,7 +106,9 @@ def coordinateProjectionHom (X : Obj k T)
     exact AdaptedBasis.coordinateProjection_mem_of_mem b (hb t) i hx
 
 /-- A Schur poset space admitting a common adapted basis has total dimension
-at most one.-/
+at most one.
+@isnad1 id=le.2h3v.s6.4594c7807851 from=translated src=- shape=54b76be1 vocab=49530c8b
+-/
 theorem finrank_le_one_of_isSchur_of_hasCommonAdaptedBasis
     (X : Obj k T) (hschur : IsSchur k T X)
     (hadapted : HasCommonAdaptedBasis X) :
@@ -124,7 +134,9 @@ theorem finrank_le_one_of_isSchur_of_hasCommonAdaptedBasis
   exact (b.ne_zero j) hzero
 
 /-- In particular, a nonzero Schur poset space with a common adapted basis is
-one-dimensional.-/
+one-dimensional.
+@isnad1 id=eq.2h3v.s6.502bbb72b314 from=translated src=- shape=54b76be1 vocab=ad21f0ff
+-/
 theorem finrank_eq_one_of_isSchur_of_hasCommonAdaptedBasis
     (X : Obj k T) (hschur : IsSchur k T X)
     (hadapted : HasCommonAdaptedBasis X) :

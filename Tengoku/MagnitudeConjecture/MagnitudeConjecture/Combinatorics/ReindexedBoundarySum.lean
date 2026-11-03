@@ -12,7 +12,9 @@ namespace MagnitudeConjecture
 universe u v
 
 /-- Relabelling a bounded exceptional set preserves a uniform bound on its
-total weight.-/
+total weight.
+@isnad1 id=le.2h7v.s7.9d8df8ca5639 from=translated src=- shape=61b7d33f vocab=d860827e
+-/
 theorem reindexed_subtype_sum_le {α : Type u} {β : Type v} [Fintype α] [Fintype β]
     (e : α ≃ β) (P : β → Prop) [DecidablePred P]
     (w : α → ℕ) (B C : ℕ) (hcard : Nat.card {b : β // P b} ≤ C)

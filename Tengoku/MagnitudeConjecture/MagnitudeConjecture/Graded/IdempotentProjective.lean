@@ -15,6 +15,9 @@ abbrev principalProjective (e : A) : Submodule A A :=
 /-- The canonical generator of Ae.-/
 def principalGenerator (e : A) : principalProjective e := ⟨e, ⟨1, one_mul e⟩⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.7b2b72764717 from=translated src=- shape=2cdeebf2 vocab=eb7adb7f
+-/
 theorem principal_fixed {e : A} (he : e * e = e) (x : principalProjective e) : x.val * e = x.val := by
   obtain ⟨a, ha⟩ := x.property
   change a * e = x.val at ha
@@ -25,7 +28,9 @@ variable (hmul : ∀ {i j : ℤ} {a b : A}, a ∈ R.component i → b ∈ R.comp
   a * b ∈ R.component (i + j))
 variable [FiniteDimensional k A]
 
-/-- Right multiplication by a degree-zero element is homogeneous of degree zero.-/
+/-- Right multiplication by a degree-zero element is homogeneous of degree zero.
+@isnad1 id=homogene.2h4v.s9.13f09443b197 from=translated src=- shape=8bf8a61c vocab=808af051
+-/
 theorem principalMap_homogeneous (e : A) (he : e ∈ R.component 0) :
     (R.regularModuleGrading hmul).Homogeneous (R.regularModuleGrading hmul) 0
       (LinearMap.toSpanSingleton A A e) := by

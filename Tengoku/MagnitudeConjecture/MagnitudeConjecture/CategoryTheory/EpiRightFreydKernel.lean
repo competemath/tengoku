@@ -40,17 +40,26 @@ def kernelMap {a b : Arrow C} (s : b ⟶ a) :
   kernel.lift a.hom (kernel.ι b.hom ≫ s.left) (by
     rw [Category.assoc, s.w, ← Category.assoc, kernel.condition, zero_comp])
 
+/--
+@isnad1 id=eq.0h4v.s7.4afa7085d4e6 from=translated src=- shape=b8862e3f vocab=bc9a52b3
+-/
 @[reassoc (attr := simp)]
 theorem kernelMap_comp_ι {a b : Arrow C} (s : b ⟶ a) :
     kernelMap s ≫ kernel.ι a.hom = kernel.ι b.hom ≫ s.left :=
   kernel.lift_ι _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.81eb754c0d2c from=translated src=- shape=4aea6052 vocab=38e71c6e
+-/
 @[simp]
 theorem kernelMap_id (a : Arrow C) :
     kernelMap (𝟙 a) = 𝟙 (kernel a.hom) := by
   apply (cancel_mono (kernel.ι a.hom)).1
   simp
 
+/--
+@isnad1 id=eq.0h6v.s7.ebba1185364a from=translated src=- shape=1af0eae3 vocab=409f71ee
+-/
 @[simp]
 theorem kernelMap_comp {a b c : Arrow C} (s : c ⟶ b) (t : b ⟶ a) :
     kernelMap (s ≫ t) = kernelMap s ≫ kernelMap t := by
@@ -66,12 +75,18 @@ def kernelOpMapRepresentative {a b : Arrow C} (s : b ⟶ a) :
     change kernel.ι b.hom ≫ s.left = kernelMap s ≫ kernel.ι a.hom
     exact (kernelMap_comp_ι s).symm)
 
+/--
+@isnad1 id=eq.0h2v.s8.0494901b59dd from=translated src=- shape=b235c0e5 vocab=86c5876f
+-/
 @[simp]
 theorem kernelOpMapRepresentative_id (a : Arrow C) :
     kernelOpMapRepresentative (𝟙 a) =
       𝟙 (Arrow.mk (kernel.ι a.hom).op) := by
   ext <;> simp [kernelOpMapRepresentative]
 
+/--
+@isnad1 id=eq.0h6v.s9.4379c3955556 from=translated src=- shape=74242f7f vocab=6862c050
+-/
 @[simp]
 theorem kernelOpMapRepresentative_comp
     {a b c : Arrow C} (s : c ⟶ b) (t : b ⟶ a) :
@@ -200,7 +215,9 @@ def rightHomotopyOfKernelOpRightHomotopy
   rw [Preadditive.sub_comp, Preadditive.sub_comp, Category.assoc,
     kernel.condition, comp_zero, sub_zero]
 
-/-- Kernel reversal is faithful on epimorphic right-Freyd presentations.-/
+/-- Kernel reversal is faithful on epimorphic right-Freyd presentations.
+@isnad1 id=faithful.0h1v.s6.e91ff96ac0bf from=translated src=- shape=0bfaef8a vocab=99f151d6
+-/
 noncomputable instance kernelOp_faithful : (kernelOp (C := C)).Faithful where
   map_injective {X Y} f g hfg := by
     let q := Preadditive.RightFreyd.quotient C
@@ -230,7 +247,9 @@ noncomputable instance kernelOp_faithful : (kernelOp (C := C)).Faithful where
     apply ObjectProperty.hom_ext
     exact hsf.symm.trans (hs.trans hsg)
 
-/-- Kernel reversal is full on epimorphic right-Freyd presentations.-/
+/-- Kernel reversal is full on epimorphic right-Freyd presentations.
+@isnad1 id=full.0h1v.s6.edffde50605d from=translated src=- shape=0bfaef8a vocab=843a0d97
+-/
 noncomputable instance kernelOp_full : (kernelOp (C := C)).Full where
   map_surjective {X Y} m := by
     let q := Preadditive.RightFreyd.quotient C
@@ -284,7 +303,9 @@ noncomputable instance kernelOp_full : (kernelOp (C := C)).Full where
     rw [hfirst, hrepresentative, hr]
 
 /-- Every epimorphic presentation in the opposite category is, up to
-isomorphism, the opposite kernel presentation of an epimorphism.-/
+isomorphism, the opposite kernel presentation of an epimorphism.
+@isnad1 id=esssurj.0h1v.s6.62a1a876fd03 from=translated src=- shape=0bfaef8a vocab=8b3d90d1
+-/
 noncomputable instance kernelOp_essSurj : (kernelOp (C := C)).EssSurj where
   mem_essImage X := by
     let q := Preadditive.RightFreyd.quotient C
@@ -330,6 +351,9 @@ noncomputable instance kernelOp_essSurj : (kernelOp (C := C)).EssSurj where
     refine ⟨Opposite.op B, ⟨?_⟩⟩
     exact ObjectProperty.isoMk _ (qop.mapIso eArrow)
 
+/--
+@isnad1 id=isequiva.0h1v.s6.3f6308357060 from=translated src=- shape=0bfaef8a vocab=0ab43cea
+-/
 noncomputable instance kernelOp_isEquivalence :
     (kernelOp (C := C)).IsEquivalence := {}
 

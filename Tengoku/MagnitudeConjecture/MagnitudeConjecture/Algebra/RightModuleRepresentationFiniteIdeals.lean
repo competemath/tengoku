@@ -37,7 +37,9 @@ variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 /-- A finite-dimensional representation-finite algebra has only finitely
 many two-sided ideals.  The decomposition argument is first run on the
 literal left-module model over `Aᵐᵒᵖ`; the final statement is transported
-back along the order isomorphism between ideals of a ring and its opposite.-/
+back along the order isomorphism between ideals of a ring and its opposite.
+@isnad1 id=finite.1h2v.s5.0c1837854291 from=translated src=- shape=a8f2bb1d vocab=2dd67252
+-/
 theorem IsRepresentationFinite.finite_twoSidedIdeal
     [FiniteDimensional k A]
     (hA : IsRepresentationFinite k A) :

@@ -24,7 +24,9 @@ def codeObject (F : ι → C) {D : ℕ} (c : DecompositionCode ι D) : C :=
   ⨁ fun j ↦ F (c.2 j)
 
 /-- If G sees every family member, its Hom dimension bounds the number of
-summands and hence gives a finite code for every bounded object.-/
+summands and hence gives a finite code for every bounded object.
+@isnad1 id=ex.3h7v.s8.db9d70caeb25 from=translated src=- shape=72154027 vocab=e0ef0173
+-/
 theorem exists_bounded_decomposition (F : ι → C) (G : C)
     [∀ X : C, FiniteDimensional k (G ⟶ X)]
     (hG : ∀ i, 1 ≤ Module.finrank k (G ⟶ F i))
@@ -44,7 +46,9 @@ theorem exists_bounded_decomposition (F : ι → C) (G : C)
           k G X (fun j ↦ F (label j)) e).symm
   exact ⟨⟨⟨n, Nat.lt_succ_of_le (hn.trans hX)⟩, label⟩, ⟨e⟩⟩
 
-/-- A monomorphism bounds the Hom dimension of its source by that of its target.-/
+/-- A monomorphism bounds the Hom dimension of its source by that of its target.
+@isnad1 id=le.0h6v.s7.2aa76ace9663 from=translated src=- shape=dbab84c3 vocab=9d9ae13b
+-/
 theorem finrank_hom_le_of_mono (G : C) {X Z : C} (f : X ⟶ Z) [Mono f]
     [FiniteDimensional k (G ⟶ Z)] :
     Module.finrank k (G ⟶ X) ≤ Module.finrank k (G ⟶ Z) :=

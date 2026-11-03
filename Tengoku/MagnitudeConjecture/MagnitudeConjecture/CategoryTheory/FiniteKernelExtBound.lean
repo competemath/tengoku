@@ -15,7 +15,9 @@ variable [HasFiniteBiproducts C] [∀ X Y : C, FiniteDimensional k (X ⟶ Y)]
 variable {ι : Type} [Fintype ι]
 
 /-- In a Hom-finite category with a finite additive classification, the frozen
-finite-kernel hypotheses imply that Hom(Z,I) has dimension at most one.-/
+finite-kernel hypotheses imply that Hom(Z,I) has dimension at most one.
+@isnad1 id=le.5h6v.s9.8d49e816d440 from=translated src=- shape=aa7197c3 vocab=6d90deb5
+-/
 theorem finrank_hom_le_one_of_ext_vanishing
     (F : ι → C) (hF : ∀ i, ¬ IsZero (F i))
     (hdec : ∀ X : C, ∃ n : ℕ, ∃ label : Fin n → ι,

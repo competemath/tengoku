@@ -51,7 +51,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
-/-- The push-down summand inclusion is the standard direct-sum generator.-/
+/-- The push-down summand inclusion is the standard direct-sum generator.
+@isnad1 id=eq.0h7v.s11.f1e779779b96 from=translated src=- shape=47416591 vocab=e050d8b4
+-/
 theorem orbitPushdownLof_eq_directSumOf [DecidableEq A]
     (X : C) (b : A) (x : M.obj ((shiftFunctor C b).obj X)) :
     orbitPushdownLof M X b x =
@@ -91,7 +93,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
 /-- The canonical component map agrees heterogeneously with the component
-map at any propositionally equal output degree.-/
+map at any propositionally equal output degree.
+@isnad1 id=heq.1h11v.s10.fc634b9abaa6 from=translated src=- shape=36221a7e vocab=cc6bbc4b
+-/
 theorem orbitPushdownComponent_apply_heq_component'_apply
     {X Y : C} {a b c : A} (h : a + b = c)
     (f : ShiftHom X Y a)
@@ -106,6 +110,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
+/--
+@isnad1 id=eq.0h6v.s9.f156afb96c4a from=translated src=- shape=2b86736b vocab=533eb3c5
+-/
 @[simp]
 theorem orbitPushdownComponent'_id
     (X : C) (b : A) :
@@ -122,7 +129,9 @@ set_option backward.isDefEq.respectTransparency false in
 omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Additive] in
 /-- Component arrows respect homogeneous composition, including all degree
-reassociations.-/
+reassociations.
+@isnad1 id=eq.4h13v.s8.fa9b3351ec77 from=translated src=- shape=3a0a11f7 vocab=b56c4ab0
+-/
 theorem orbitPushdownArrow'_comp
     {X Y Z : C} {a c b ab ca d : A}
     (hab : a + b = ab) (hca : c + a = ca)
@@ -144,7 +153,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
 /-- Applying the module turns composition of component arrows into
-composition of component linear maps.-/
+composition of component linear maps.
+@isnad1 id=eq.4h15v.s10.ae01bc0d53f0 from=translated src=- shape=99f3b0b6 vocab=0f3d1d01
+-/
 theorem orbitPushdownComponent'_comp
     {X Y Z : C} {a c b ab ca d : A}
     (hab : a + b = ab) (hca : c + a = ca)
@@ -174,6 +185,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
+/--
+@isnad1 id=eq.0h10v.s12.51c30814e191 from=translated src=- shape=25a76f75 vocab=2e5b3f20
+-/
 @[simp]
 theorem orbitPushdownHomogeneousMap_lof
     {X Y : C} (a b : A) (f : ShiftHom X Y a)
@@ -189,7 +203,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
-/-- Homogeneous push-down maps respect homogeneous composition.-/
+/-- Homogeneous push-down maps respect homogeneous composition.
+@isnad1 id=eq.0h11v.s10.0bcd615b45d5 from=translated src=- shape=0d051639 vocab=a855ee6b
+-/
 theorem orbitPushdownHomogeneousMap_comp
     {X Y Z : C} {a c : A}
     (f : ShiftHom X Y a) (g : ShiftHom Y Z c) :
@@ -263,6 +279,9 @@ def orbitPushdownMapLinear
   exact DirectSum.toModule k A _ fun a ↦
     orbitPushdownHomogeneousLinearMap M a
 
+/--
+@isnad1 id=eq.0h8v.s12.80510b401a6e from=translated src=- shape=0fe1a1ba vocab=3a61f59d
+-/
 @[simp]
 theorem orbitPushdownMapLinear_of
     {X Y : C} (a : A) (f : ShiftHom X Y a) :
@@ -278,6 +297,9 @@ omit [Preadditive C] [CategoryTheory.Linear k C]
   [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k]
   [M.Additive] [M.Linear k] in
+/--
+@isnad1 id=eq.0h5v.s9.4d05b13e20dd from=translated src=- shape=b85a97c3 vocab=8f75ed98
+-/
 @[simp]
 theorem orbitPushdownHomogeneousMap_id (X : C) :
     orbitPushdownHomogeneousMap M (0 : A) (shiftHomId (A := A) X) =

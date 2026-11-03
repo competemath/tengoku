@@ -38,6 +38,9 @@ abbrev Interval (m : ℕ) :=
 instance (m : ℕ) [Fintype C] : Fintype (G.Interval m) :=
   inferInstanceAs (Fintype (C × Fin (m + 1)))
 
+/--
+@isnad1 id=eq.0h4v.s6.d807001ede04 from=translated src=- shape=1f8394a2 vocab=13f5edfe
+-/
 theorem card_interval (m : ℕ) [Fintype C] :
     Fintype.card (G.Interval m) = (m + 1) * Fintype.card C := by
   change Fintype.card (C × Fin (m + 1)) = _
@@ -52,18 +55,24 @@ def intervalHomEquiv (m : ℕ) (X Y : G.Interval m) :
     (X ⟶ Y) ≃ₗ[k] G.component X.1 Y.1 ((X.2.val : ℤ) - Y.2.val) :=
   InducedCategory.homLinearEquiv
 
-/-- The Hom coordinate of an interval identity is the original identity.-/
+/-- The Hom coordinate of an interval identity is the original identity.
+@isnad1 id=eq.0h5v.s13.17ecea89c293 from=translated src=- shape=1ef86e88 vocab=dc997446
+-/
 theorem intervalHomEquiv_id (m : ℕ) (X : G.Interval m) :
     (G.intervalHomEquiv m X X (𝟙 X)).val = 𝟙 X.1 := rfl
 
-/-- Composition in the interval is the original homogeneous composition.-/
+/-- Composition in the interval is the original homogeneous composition.
+@isnad1 id=eq.0h9v.s14.cb0c85fc3d24 from=translated src=- shape=6230e0a3 vocab=c75b2146
+-/
 theorem intervalHomEquiv_comp (m : ℕ) {X Y Z : G.Interval m}
     (f : X ⟶ Y) (g : Y ⟶ Z) :
     (G.intervalHomEquiv m X Z (f ≫ g)).val =
       (G.intervalHomEquiv m X Y f).val ≫ (G.intervalHomEquiv m Y Z g).val := rfl
 
 /-- A nonzero interval morphism decreases degree by at most the common
-Hom-degree bound. This also controls every factor in a nonzero composite.-/
+Hom-degree bound. This also controls every factor in a nonzero composite.
+@isnad1 id=and.2h8v.s9.5f4af60423ca from=translated src=- shape=f83db182 vocab=ea02481a
+-/
 theorem interval_degree_bounds_of_ne_zero (h : ℕ)
     (hbound : ∀ X Y d, d < 0 ∨ (h : ℤ) < d → G.component X Y d = ⊥)
     (m : ℕ) {X Y : G.Interval m} (f : X ⟶ Y) (hf : f ≠ 0) :

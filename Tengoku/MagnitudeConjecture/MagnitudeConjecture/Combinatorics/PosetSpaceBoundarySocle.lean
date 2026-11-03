@@ -44,6 +44,9 @@ namespace BoundarySubdiagram
 variable {k T}
 variable {F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k}
 
+/--
+@isnad1 id=eq.1h5v.s7.ef56dcf82da4 from=translated src=- shape=135fac54 vocab=37e9318c
+-/
 @[ext]
 theorem ext {N L : BoundarySubdiagram k T F}
     (h : ∀ q, N.obj q = L.obj q) : N = L := by
@@ -80,15 +83,24 @@ nonzero.-/
 def MeetsRoot (N : BoundarySubdiagram k T F) : Prop :=
   N.obj (op (.root : BoundaryIndex T)) ≠ ⊥
 
+/--
+@isnad1 id=issubdia.0h4v.s5.b7918b056fa3 from=translated src=- shape=7b356024 vocab=a38e5bf1
+-/
 theorem isSubdiagramOf_refl (N : BoundarySubdiagram k T F) :
     N.IsSubdiagramOf N :=
   fun _ ↦ le_rfl
 
+/--
+@isnad1 id=issubdia.2h6v.s6.688e0d23b311 from=translated src=- shape=64f5f571 vocab=a38e5bf1
+-/
 theorem IsSubdiagramOf.trans {N L M : BoundarySubdiagram k T F}
     (hNL : N.IsSubdiagramOf L) (hLM : L.IsSubdiagramOf M) :
     N.IsSubdiagramOf M :=
   fun q ↦ (hNL q).trans (hLM q)
 
+/--
+@isnad1 id=supporte.2h5v.s6.b6508f745e9a from=translated src=- shape=624c5f14 vocab=6d52ccfd
+-/
 theorem IsSubdiagramOf.supportedAwayFromRoot
     {N L : BoundarySubdiagram k T F}
     (hNL : N.IsSubdiagramOf L) (hL : L.SupportedAwayFromRoot) :
@@ -102,6 +114,9 @@ boundary subdiagram.-/
 def totalFinrank [Fintype T] (N : BoundarySubdiagram k T F) : ℕ :=
   ∑ q : BoundaryIndex T, Module.finrank k (N.obj (op q))
 
+/--
+@isnad1 id=le.2h5v.s8.bcac64b0704f from=translated src=- shape=8e2c1067 vocab=3bdae08d
+-/
 theorem totalFinrank_mono [Fintype T]
     (hfinite : ∀ q : BoundaryIndex T, Module.Finite k (F.obj (op q)))
     {N L : BoundarySubdiagram k T F} (hNL : N.IsSubdiagramOf L) :
@@ -123,7 +138,9 @@ theorem eq_of_isSubdiagramOf_of_totalFinrank_eq [Fintype T]
         Submodule.finrank_mono (hNL (op r))).mp hrank q (Finset.mem_univ q)
 
 /-- Every nonzero subdiagram of a finite-dimensional finite boundary
-diagram contains a simple subdiagram.-/
+diagram contains a simple subdiagram.
+@isnad1 id=ex.2h4v.s8.87c6c3ff7b4c from=translated src=- shape=15724cf2 vocab=3d896e30
+-/
 theorem exists_simple_subdiagram [Fintype T]
     (hfinite : ∀ q : BoundaryIndex T, Module.Finite k (F.obj (op q)))
     (N : BoundarySubdiagram k T F) (hN : ¬ N.IsZero) :
@@ -186,6 +203,9 @@ def rootKernel (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :
                       Subsingleton.elim _ _]
                     exact (boundaryDiagramRootMap_map_nonroot k T F hst x).trans hx
 
+/--
+@isnad1 id=eq.0h3v.s9.d3ecd03e61d8 from=translated src=- shape=1cbb2d5d vocab=9b64a1a3
+-/
 @[simp]
 theorem rootKernel_obj_root
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :
@@ -193,6 +213,9 @@ theorem rootKernel_obj_root
       (op (.root : BoundaryIndex T)) = ⊥ :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.857e3b310986 from=translated src=- shape=3ddff7cc vocab=9d5584dc
+-/
 @[simp]
 theorem rootKernel_obj_nonroot
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) (t : T) :
@@ -201,13 +224,18 @@ theorem rootKernel_obj_nonroot
       LinearMap.ker (boundaryDiagramRootMap k T F t) :=
   rfl
 
+/--
+@isnad1 id=supporte.0h3v.s5.ea1b3be49dab from=translated src=- shape=22a09ef3 vocab=cf4f38f6
+-/
 theorem rootKernel_supportedAwayFromRoot
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :
     (rootKernel (k := k) (T := T) F).SupportedAwayFromRoot :=
   rfl
 
 /-- The root-kernel subdiagram is zero exactly when all maps into the root
-are injective.-/
+are injective.
+@isnad1 id=iff.0h3v.s10.037cefccbde1 from=translated src=- shape=dbc97e54 vocab=c72fbaab
+-/
 theorem rootKernel_isZero_iff
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :
     (rootKernel (k := k) (T := T) F).IsZero ↔
@@ -225,7 +253,9 @@ theorem rootKernel_isZero_iff
             exact LinearMap.ker_eq_bot.mpr (h t)
 
 /-- Injectivity of all maps into the root is equivalent to the absence of a
-nonzero subdiagram supported away from the root.-/
+nonzero subdiagram supported away from the root.
+@isnad1 id=iff.0h3v.s10.de6d88af64dc from=translated src=- shape=e87fdb67 vocab=07496c7a
+-/
 theorem injective_rootMaps_iff_no_supportedAwaySubdiagram
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :
     (∀ t : T, Function.Injective (boundaryDiagramRootMap k T F t)) ↔
@@ -253,7 +283,9 @@ theorem injective_rootMaps_iff_no_supportedAwaySubdiagram
 /-- On a finite-dimensional finite boundary diagram, having no nonzero
 subdiagram supported away from the root is equivalent to every simple
 subdiagram meeting the root.  This is the intrinsic socle formulation of
-the root-injectivity criterion.-/
+the root-injectivity criterion.
+@isnad1 id=iff.1h3v.s8.3e803c7113f7 from=translated src=- shape=7c9f3028 vocab=01e07a7b
+-/
 theorem no_supportedAwaySubdiagram_iff_every_simple_meetsRoot [Fintype T]
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k)
     (hfinite : ∀ q : BoundaryIndex T, Module.Finite k (F.obj (op q))) :
@@ -272,7 +304,9 @@ end BoundarySubdiagram
 
 /-- Finite injective boundary diagrams can equivalently be characterized by
 finite-dimensional values and the absence of nonzero subdiagrams supported
-away from the root.-/
+away from the root.
+@isnad1 id=iff.0h3v.s7.1016127d6fba from=translated src=- shape=4319e05e vocab=6e0db775
+-/
 theorem isFiniteInjectiveBoundaryDiagram_iff_no_supportedAwaySubdiagram
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :
     IsFiniteInjectiveBoundaryDiagram k T F ↔
@@ -288,7 +322,9 @@ theorem isFiniteInjectiveBoundaryDiagram_iff_no_supportedAwaySubdiagram
 /-- Finite injective boundary diagrams are equivalently the finite diagrams
 whose every simple subdiagram meets the root.  Under the incidence-module
 interpretation, the root simple is the projective boundary simple, so this
-is the manuscript's projective-socle criterion.-/
+is the manuscript's projective-socle criterion.
+@isnad1 id=iff.0h3v.s7.e2e5eaabed45 from=translated src=- shape=0c413b94 vocab=74227ecf
+-/
 theorem isFiniteInjectiveBoundaryDiagram_iff_every_simple_meetsRoot
     [Fintype T]
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k) :

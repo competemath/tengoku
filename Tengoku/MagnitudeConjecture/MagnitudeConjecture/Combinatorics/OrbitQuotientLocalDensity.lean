@@ -35,6 +35,9 @@ def groupOrbitQuotientMap (f : X → Y)
     obtain ⟨g, hn⟩ := hab
     exact ⟨g, (equivariant g b).symm.trans (congrArg f hn)⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.7e40c0c49152 from=translated src=- shape=93b0902b vocab=f83b5450
+-/
 @[simp]
 theorem groupOrbitQuotientMap_mk (f : X → Y)
     (equivariant : ∀ (g : G) (x : X), f (g • x) = g • f x)
@@ -59,6 +62,9 @@ def orbitQuotientMap (N : Subgroup G) (f : X → Y)
           (equivariant (n : G) b).symm
       _ = f a := congrArg f hn
 
+/--
+@isnad1 id=eq.1h6v.s7.791c18692976 from=translated src=- shape=fefd8693 vocab=fc628527
+-/
 @[simp]
 theorem orbitQuotientMap_mk (N : Subgroup G) (f : X → Y)
     (equivariant : ∀ (g : G) (x : X), f (g • x) = g • f x)
@@ -196,7 +202,9 @@ noncomputable def orbitQuotientMapFiberEquiv
         apply Quotient.sound
         exact MulAction.mem_orbit x (n⁻¹ : N)
 
-/-- Cardinal form of the whole-group fibre equivalence.-/
+/-- Cardinal form of the whole-group fibre equivalence.
+@isnad1 id=eq.1h5v.s7.d0db78545072 from=translated src=- shape=b75fcb10 vocab=36924dd4
+-/
 theorem card_groupOrbitQuotientMap_fiber_eq
     [IsCancelSMul G Y] [Finite X]
     (f : X → Y)
@@ -247,7 +255,9 @@ noncomputable def targetFiberEquivSigmaSourceFibers
     rfl
 
 /-- Summing the occurrence multiplicities over all sources gives the literal
-cardinality of the incoming-arrow fibre.-/
+cardinality of the incoming-arrow fibre.
+@isnad1 id=eq.0h5v.s5.94a3a93435ae from=translated src=- shape=3e69a9e1 vocab=db94f615
+-/
 theorem indegree_arrowMultiplicityOfOccurrences_eq
     {Arrow Vertex : Type*} [Finite Arrow] [Fintype Vertex]
     (source target : Arrow → Vertex) (y : Vertex) :
@@ -264,7 +274,9 @@ theorem indegree_arrowMultiplicityOfOccurrences_eq
     (targetFiberEquivSigmaSourceFibers source target y).symm
 
 /-- The occurrence form of local density is exactly the manuscript's
-arrow-multiplicity-matrix form.-/
+arrow-multiplicity-matrix form.
+@isnad1 id=eq.0h6v.s5.c5e6d4327deb from=translated src=- shape=bb503cb0 vocab=38b1e82a
+-/
 theorem localDensity_arrowMultiplicityOfOccurrences_eq
     {Arrow Vertex : Type*} [Finite Arrow] [Fintype Vertex]
     (source target : Arrow → Vertex)
@@ -291,7 +303,9 @@ def GroupOrbitQuotientProperty
   ∃ y ∈ q.orbit, P y
 
 /-- An invariant property holds on the whole-group orbit of a point exactly
-when it holds at that point.-/
+when it holds at that point.
+@isnad1 id=iff.1h4v.s6.d2048ff766a0 from=translated src=- shape=379cf1ab vocab=889e54f6
+-/
 theorem groupOrbitQuotientProperty_mk_iff
     (P : Y → Prop)
     (invariant : ∀ (g : G) (y : Y), P (g • y) ↔ P y)
@@ -310,7 +324,9 @@ theorem groupOrbitQuotientProperty_mk_iff
     exact ⟨y, MulAction.mem_orbit_self y, hPy⟩
 
 /-- Incoming occurrence multiplicity is unchanged at a chosen lift after
-passing to the whole-group orbit quotient.-/
+passing to the whole-group orbit quotient.
+@isnad1 id=eq.1h5v.s7.691423c47c84 from=translated src=- shape=6dddf23a vocab=1d97376e
+-/
 theorem occurrenceIndegree_groupOrbitQuotientMap_mk
     [IsCancelSMul G Y] [Finite X]
     (target : X → Y)
@@ -325,7 +341,9 @@ theorem occurrenceIndegree_groupOrbitQuotientMap_mk
     (card_groupOrbitQuotientMap_fiber_eq target target_equivariant y)
 
 /-- If projectivity is invariant on vertex orbits, then the full local
-density is unchanged at a chosen lift after the whole-group quotient.-/
+density is unchanged at a chosen lift after the whole-group quotient.
+@isnad1 id=eq.2h6v.s7.596711d2045e from=translated src=- shape=0fb3608a vocab=0fb58c66
+-/
 theorem occurrenceLocalDensity_groupOrbitQuotientMap_mk
     [IsCancelSMul G Y] [Finite X]
     (target : X → Y)
@@ -346,7 +364,9 @@ theorem occurrenceLocalDensity_groupOrbitQuotientMap_mk
     occurrenceIndegree_groupOrbitQuotientMap_mk]
 
 /-- Occurrence local density is invariant under the group action whenever
-the target action is free and projectivity is invariant.-/
+the target action is free and projectivity is invariant.
+@isnad1 id=eq.2h7v.s7.c57c3542c7e4 from=translated src=- shape=6ecf935b vocab=87e24b8e
+-/
 theorem occurrenceLocalDensity_invariant
     [IsCancelSMul G Y] [Finite X]
     (target : X → Y)
@@ -378,7 +398,9 @@ theorem occurrenceLocalDensity_invariant
         target_equivariant IsProjective projective_invariant y
 
 /-- Descending the invariant upstairs local density gives exactly the local
-density formed from the quotient occurrence and projectivity data.-/
+density formed from the quotient occurrence and projectivity data.
+@isnad1 id=eq.2h6v.s7.5a3086d7f0ea from=translated src=- shape=92979aad vocab=bfe91f61
+-/
 theorem orbitInvariantDescend_occurrenceLocalDensity
     [IsCancelSMul G Y] [Finite X]
     (target : X → Y)
@@ -403,7 +425,9 @@ theorem orbitInvariantDescend_occurrenceLocalDensity
 
 /-- Endpoint scaling in local-density form: the total upstairs occurrence
 local density is the covering degree times the total quotient density.  No
-separate free action on a chosen set of arrow bases is required.-/
+separate free action on a chosen set of arrow bases is required.
+@isnad1 id=eq.2h5v.s8.c132c7e0a3e2 from=translated src=- shape=14e65358 vocab=1293a879
+-/
 theorem sum_occurrenceLocalDensity_eq_group_card_mul_quotient
     [Fintype G] [Fintype X] [Fintype Y]
     [Fintype (MulAction.orbitRel.Quotient G Y)]

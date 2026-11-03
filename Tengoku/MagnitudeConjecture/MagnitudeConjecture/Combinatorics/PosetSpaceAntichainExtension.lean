@@ -31,16 +31,25 @@ namespace IsThreeAntichain
 
 variable {T : Type u} [PartialOrder T] {a b c : T}
 
+/--
+@isnad1 id=ne.1h4v.s4.ef62d032b570 from=translated src=- shape=0ebb643f vocab=acc91f13
+-/
 theorem ne_ab (H : IsThreeAntichain a b c) : a ≠ b := by
   intro h
   subst b
   exact H.not_ab le_rfl
 
+/--
+@isnad1 id=ne.1h4v.s4.7e9e8a2cefe0 from=translated src=- shape=10433387 vocab=acc91f13
+-/
 theorem ne_ac (H : IsThreeAntichain a b c) : a ≠ c := by
   intro h
   subst c
   exact H.not_ac le_rfl
 
+/--
+@isnad1 id=ne.1h4v.s4.efecb2d314e4 from=translated src=- shape=f5cb9c4e vocab=acc91f13
+-/
 theorem ne_bc (H : IsThreeAntichain a b c) : b ≠ c := by
   intro h
   subst c
@@ -69,6 +78,9 @@ def antichainBlockRank (a b c x : T) : ℕ :=
   else if x = c then 3
   else 4
 
+/--
+@isnad1 id=not.1h4v.s4.a2da2d23180f from=translated src=- shape=f670856b vocab=91281d94
+-/
 theorem not_aboveThree_a {a b c : T} (H : IsThreeAntichain a b c) :
     ¬aboveThree a b c a := by
   rintro (haa | hba | hca)
@@ -76,6 +88,9 @@ theorem not_aboveThree_a {a b c : T} (H : IsThreeAntichain a b c) :
   · exact H.not_ba hba.le
   · exact H.not_ca hca.le
 
+/--
+@isnad1 id=not.1h4v.s4.61893c02a0e5 from=translated src=- shape=b53ea27a vocab=91281d94
+-/
 theorem not_aboveThree_b {a b c : T} (H : IsThreeAntichain a b c) :
     ¬aboveThree a b c b := by
   rintro (hab | hbb | hcb)
@@ -83,6 +98,9 @@ theorem not_aboveThree_b {a b c : T} (H : IsThreeAntichain a b c) :
   · exact (lt_irrefl b) hbb
   · exact H.not_cb hcb.le
 
+/--
+@isnad1 id=not.1h4v.s4.00c0cdd8147b from=translated src=- shape=8856df32 vocab=91281d94
+-/
 theorem not_aboveThree_c {a b c : T} (H : IsThreeAntichain a b c) :
     ¬aboveThree a b c c := by
   rintro (hac | hbc | hcc)
@@ -90,23 +108,34 @@ theorem not_aboveThree_c {a b c : T} (H : IsThreeAntichain a b c) :
   · exact H.not_bc hbc.le
   · exact (lt_irrefl c) hcc
 
+/--
+@isnad1 id=eq.1h4v.s5.42b0c4b0c104 from=translated src=- shape=e1e4d99f vocab=1e78f8d2
+-/
 @[simp]
 theorem antichainBlockRank_a {a b c : T} (H : IsThreeAntichain a b c) :
     antichainBlockRank a b c a = 1 := by
   simp [antichainBlockRank, not_aboveThree_a H]
 
+/--
+@isnad1 id=eq.1h4v.s5.6d974eecf460 from=translated src=- shape=bfce0520 vocab=1e78f8d2
+-/
 @[simp]
 theorem antichainBlockRank_b {a b c : T} (H : IsThreeAntichain a b c) :
     antichainBlockRank a b c b = 2 := by
   simp [antichainBlockRank, not_aboveThree_b H, H.ne_ab.symm]
 
+/--
+@isnad1 id=eq.1h4v.s5.bbf91d47c320 from=translated src=- shape=d5b7a8de vocab=1e78f8d2
+-/
 @[simp]
 theorem antichainBlockRank_c {a b c : T} (H : IsThreeAntichain a b c) :
     antichainBlockRank a b c c = 3 := by
   simp [antichainBlockRank, not_aboveThree_c H, H.ne_ac.symm,
     H.ne_bc.symm]
 
-/-- The block rank reverses the original partial order.-/
+/-- The block rank reverses the original partial order.
+@isnad1 id=le.2h6v.s5.d7bba001999f from=translated src=- shape=9e75def0 vocab=9fab1a04
+-/
 theorem antichainBlockRank_anti {a b c x y : T}
     (H : IsThreeAntichain a b c) (hxy : y ≤ x) :
     antichainBlockRank a b c x ≤ antichainBlockRank a b c y := by
@@ -178,6 +207,9 @@ def antichainBlockRel (a b c x y : T) : Prop :=
   antichainBlockRank a b c x < antichainBlockRank a b c y ∨
     (antichainBlockRank a b c x = antichainBlockRank a b c y ∧ y ≤ x)
 
+/--
+@isnad1 id=ispartia.0h4v.s4.14462bfa5876 from=translated src=- shape=c50995b3 vocab=b2a06896
+-/
 instance antichainBlockRel_isPartialOrder (a b c : T) :
     IsPartialOrder T (antichainBlockRel a b c) where
   refl x := Or.inr ⟨rfl, le_rfl⟩
@@ -196,6 +228,9 @@ instance antichainBlockRel_isPartialOrder (a b c : T) :
       · omega
       · exact le_antisymm hxy' hyx'
 
+/--
+@isnad1 id=antichai.2h6v.s5.4d3d9f82b1d9 from=translated src=- shape=1b020079 vocab=d8c293e5
+-/
 theorem antichainBlockRel_of_ge {a b c x y : T}
     (H : IsThreeAntichain a b c) (hxy : y ≤ x) :
     antichainBlockRel a b c x y := by
@@ -274,6 +309,9 @@ def antichainBlockIndex (a b c x : T) : Fin (Fintype.card T) :=
   (antichainBlockOrderIso a b c).symm
     ((antichainBlockLinearExtensionEquiv a b c).symm x)
 
+/--
+@isnad1 id=le.1h6v.s5.c44950dccb1f from=translated src=- shape=6a1a3b36 vocab=5a4dd121
+-/
 theorem antichainBlockIndex_le_of_rel {a b c x y : T}
     (hxy : antichainBlockRel a b c x y) :
     antichainBlockIndex a b c x ≤ antichainBlockIndex a b c y := by
@@ -286,6 +324,9 @@ theorem antichainBlockIndex_le_of_rel {a b c x y : T}
   exact (@toLinearExtension (AntichainBlockCarrier a b c)
     (AntichainBlockCarrier.instPartialOrder a b c)).monotone hxy
 
+/--
+@isnad1 id=lt.2h6v.s5.acd89b8dc5f5 from=translated src=- shape=eba35d11 vocab=ed282244
+-/
 theorem antichainBlockIndex_lt_of_rel {a b c x y : T}
     (hxy : antichainBlockRel a b c x y) (hne : x ≠ y) :
     antichainBlockIndex a b c x < antichainBlockIndex a b c y := by
@@ -304,7 +345,9 @@ theorem antichainBlockIndex_lt_of_rel {a b c x y : T}
 
 omit [Fintype T] in
 /-- Every element outside the chosen triple lies wholly before or wholly
-after the block in the refined partial order.-/
+after the block in the refined partial order.
+@isnad1 id=or.4h5v.s5.eff4b0efad08 from=translated src=- shape=f95c2a0a vocab=a52bd45a
+-/
 theorem antichainBlockRel_other {a b c x : T}
     (H : IsThreeAntichain a b c) (hxa : x ≠ a) (hxb : x ≠ b)
     (hxc : x ≠ c) :
@@ -333,6 +376,9 @@ def antichainBlockReverseEnumeration {a b c : T}
       (AntichainBlockCarrier.instPartialOrder a b c)).monotone
         (antichainBlockRel_of_ge H hst)
 
+/--
+@isnad1 id=eq.1h5v.s5.f3f64c71a340 from=translated src=- shape=cd401a73 vocab=2d4719b1
+-/
 @[simp]
 theorem antichainBlockReverseEnumeration_index {a b c : T}
     (H : IsThreeAntichain a b c) (x : T) :
@@ -340,7 +386,9 @@ theorem antichainBlockReverseEnumeration_index {a b c : T}
       antichainBlockIndex a b c x :=
   rfl
 
-/-- In the selected reverse enumeration, `b` immediately follows `a`.-/
+/-- In the selected reverse enumeration, `b` immediately follows `a`.
+@isnad1 id=eq.1h4v.s5.4156bec5715a from=translated src=- shape=47663fa3 vocab=772acace
+-/
 theorem antichainBlockIndex_b_eq_add_one {a b c : T}
     (H : IsThreeAntichain a b c) :
     (antichainBlockIndex a b c b).val =
@@ -399,7 +447,9 @@ theorem antichainBlockIndex_b_eq_add_one {a b c : T}
       (antichainBlockIndex a b c a).val + 1 at hle
     omega
 
-/-- In the selected reverse enumeration, `c` immediately follows `b`.-/
+/-- In the selected reverse enumeration, `c` immediately follows `b`.
+@isnad1 id=eq.1h4v.s5.a2ded7458612 from=translated src=- shape=ef638b1b vocab=772acace
+-/
 theorem antichainBlockIndex_c_eq_add_one {a b c : T}
     (H : IsThreeAntichain a b c) :
     (antichainBlockIndex a b c c).val =
@@ -459,7 +509,9 @@ theorem antichainBlockIndex_c_eq_add_one {a b c : T}
     omega
 
 /-- Any chosen three-element antichain occurs as a consecutive block in a
-selectable reverse linear enumeration.-/
+selectable reverse linear enumeration.
+@isnad1 id=ex.1h4v.s6.34d9f1e8c38a from=translated src=- shape=5ff8cc3f vocab=033cc647
+-/
 theorem exists_reverseEnumeration_three_consecutive {a b c : T}
     (H : IsThreeAntichain a b c) :
     ∃ (R : ReverseEnumeration T) (q : ℕ),

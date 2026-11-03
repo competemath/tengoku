@@ -13,7 +13,9 @@ variable {D : Type u'} [Category.{v'} D] [Preadditive D] [HasBinaryBiproducts D]
 variable (E : C ≌ D) [E.functor.Additive]
 variable {ι : Type w} (F : ι → D)
 
-/-- Completeness transfers without unfolding the construction of the equivalence.-/
+/-- Completeness transfers without unfolding the construction of the equivalence.
+@isnad1 id=ex.2h6v.s6.3b2c2b438e4b from=translated src=- shape=f656c7ff vocab=8fce41e5
+-/
 theorem complete_indecomposable_family_of_equivalence
     (hF : ∀ Y : D, Indecomposable Y → ∃ i, Nonempty (Y ≅ F i))
     (X : C) (hX : Indecomposable X) :

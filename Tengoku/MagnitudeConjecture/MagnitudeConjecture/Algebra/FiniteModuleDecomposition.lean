@@ -34,7 +34,9 @@ variable {k : Type u} [Field k]
 variable {A : Type v} [Ring A] [Algebra k A]
 
 /-- Every displayed indecomposable summand of a finite-dimensional module is
-again finite-dimensional.-/
+again finite-dimensional.
+@isnad1 id=finite.1h5v.s7.eede39a933f1 from=translated src=- shape=4f774ac1 vocab=6f5da101
+-/
 theorem CategoryTheory.FiniteIndecomposableDecomposition.summand_finite
     {M : ModuleCat.{v} A} (d : FiniteIndecomposableDecomposition M)
     (hM : Module.Finite k M) (j : Fin d.n) :
@@ -53,7 +55,9 @@ theorem CategoryTheory.FiniteIndecomposableDecomposition.summand_finite
     rfl).injective
 
 /-- Every finite-dimensional module over a finite-dimensional algebra is a
-finite biproduct of indecomposable modules.-/
+finite biproduct of indecomposable modules.
+@isnad1 id=nonempty.0h3v.s6.7f6d9f00a7ba from=translated src=- shape=226c3d1b vocab=4c1eb31d
+-/
 theorem finiteIndecomposableDecomposition_module_exists
     [Module.Finite k A] (M : ModuleCat.{v} A) [Module.Finite k M] :
     Nonempty (FiniteIndecomposableDecomposition M) := by
@@ -128,7 +132,9 @@ theorem finiteIndecomposableDecomposition_module_exists
 
 /-- Every finitely generated module that is finite-dimensional over the
 coefficient field admits a finite indecomposable decomposition inside
-`FGModuleCat`.-/
+`FGModuleCat`.
+@isnad1 id=nonempty.0h3v.s7.1de54e0f87ff from=translated src=- shape=d8d1c246 vocab=012b32e3
+-/
 theorem finiteIndecomposableDecomposition_fgModule_exists
     [Module.Finite k A] [IsNoetherianRing A]
     (M : FGModuleCat.{v} A) [Module.Finite k M] :

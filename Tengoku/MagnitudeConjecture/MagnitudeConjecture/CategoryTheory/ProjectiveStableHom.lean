@@ -121,6 +121,9 @@ def postcomp (X : D) {Y Z : D} (g : Y ⟶ Z) :
       obtain ⟨hfactor⟩ := hf
       exact ⟨hfactor.postcomp g⟩)
 
+/--
+@isnad1 id=eq.0h7v.s10.08432124f271 from=translated src=- shape=b2d6df9f vocab=374a5508
+-/
 @[simp]
 theorem postcomp_mk (X : D) {Y Z : D} (g : Y ⟶ Z) (f : X ⟶ Y) :
     postcomp (k := k) X g (mk (k := k) f) = mk (k := k) (f ≫ g) :=
@@ -128,7 +131,9 @@ theorem postcomp_mk (X : D) {Y Z : D} (g : Y ⟶ Z) (f : X ⟶ Y) :
 
 omit [Preadditive D] [HasZeroObject D] [HasBinaryBiproducts D] in
 /-- If the identity factors through a projective, then the object itself is
-projective.-/
+projective.
+@isnad1 id=projecti.0h3v.s4.6e62028bdde0 from=translated src=- shape=5d14298c vocab=87e30feb
+-/
 theorem projective_of_id_factorsThroughProjective
     (X : D) (h : FactorsThroughProjective (𝟙 X)) : Projective X := by
   letI : Projective h.middle := h.projective
@@ -138,7 +143,9 @@ theorem projective_of_id_factorsThroughProjective
       retract := h.fac }
   exact r.projective
 
-/-- A nonprojective object has a nonzero stable identity class.-/
+/-- A nonprojective object has a nonzero stable identity class.
+@isnad1 id=ne.1h3v.s9.eccf1c31f547 from=translated src=- shape=240a67d9 vocab=a142e9db
+-/
 theorem mk_id_ne_zero (X : D) (hX : ¬ Projective X) :
     mk (k := k) (𝟙 X) ≠ 0 := by
   intro hzero

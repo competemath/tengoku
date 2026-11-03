@@ -30,6 +30,9 @@ namespace WeaklyPositiveCartanData
 def columnTail (C : Matrix ι ι ℤ) (i j : ι) : ι → ℤ :=
   fun t ↦ if i ≤ t then C t j else 0
 
+/--
+@isnad1 id=blocktri.1h2v.s6.d3fd0c0c465f from=translated src=- shape=2abd3ea7 vocab=14346a2c
+-/
 theorem inverse_blockTriangular
     (D : WeaklyPositiveCartanData (ι := ι))
     (hC : D.C.BlockTriangular id) :
@@ -40,6 +43,9 @@ theorem inverse_blockTriangular
   rw [← hinv]
   exact blockTriangular_inv_of_blockTriangular hC
 
+/--
+@isnad1 id=eq.1h3v.s5.9811741e6dea from=translated src=- shape=d1252cd1 vocab=14346a2c
+-/
 theorem inverse_diagonal_eq_one
     (D : WeaklyPositiveCartanData (ι := ι))
     (hC : D.C.BlockTriangular id) (i : ι) :
@@ -56,6 +62,9 @@ theorem inverse_diagonal_eq_one
   · intro hi
     exact (hi (Finset.mem_univ i)).elim
 
+/--
+@isnad1 id=eq.2h5v.s6.17ec51ed8018 from=translated src=- shape=2f0832f8 vocab=3cadf6c9
+-/
 theorem inverse_mulVec_columnTail
     (D : WeaklyPositiveCartanData (ι := ι))
     (hC : D.C.BlockTriangular id)
@@ -80,6 +89,9 @@ theorem inverse_mulVec_columnTail
     _ = (Pi.single j (1 : ℤ) : ι → ℤ) t := by
       by_cases htj : t = j <;> simp [Matrix.one_apply, htj]
 
+/--
+@isnad1 id=eq.2h4v.s6.6ed10316ccdf from=translated src=- shape=3beb5d91 vocab=a5daeaa9
+-/
 theorem quadraticForm_columnTail
     (D : WeaklyPositiveCartanData (ι := ι))
     (hC : D.C.BlockTriangular id)
@@ -101,6 +113,9 @@ theorem quadraticForm_columnTail
         (dotProduct_single (columnTail D.C i j) (1 : ℤ) j)
     _ = 1 := by simp [columnTail, hij, D.diagonal j]
 
+/--
+@isnad1 id=eq.1h4v.s6.ae510dc0f03d from=translated src=- shape=989862ca vocab=b5fd72d8
+-/
 theorem columnTail_dot_inverse_unit
     (D : WeaklyPositiveCartanData (ι := ι))
     (hC : D.C.BlockTriangular id) (i j : ι) :
@@ -123,7 +138,9 @@ theorem columnTail_dot_inverse_unit
     exact (hi (Finset.mem_univ i)).elim
 
 /-- Every entry of a nonnegative upper-unitriangular weakly positive Cartan
-matrix is zero or one.-/
+matrix is zero or one.
+@isnad1 id=le.1h4v.s6.bc1a9c68499d from=translated src=- shape=02fc9f08 vocab=84d5c01a
+-/
 theorem entry_le_one_of_blockTriangular
     (D : WeaklyPositiveCartanData (ι := ι))
     (hC : D.C.BlockTriangular id) (i j : ι) :

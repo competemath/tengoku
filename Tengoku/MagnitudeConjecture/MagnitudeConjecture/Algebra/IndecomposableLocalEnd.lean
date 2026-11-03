@@ -55,6 +55,9 @@ def endRingEquivOfFullyFaithful
   map_add' _ _ := F.map_add
   map_mul' f g := F.map_comp g f
 
+/--
+@isnad1 id=eq.0h5v.s8.97b48138749b from=translated src=- shape=4faae606 vocab=cb7994da
+-/
 @[simp]
 theorem endRingEquivOfFullyFaithful_apply
     (F : C ⥤ D) [F.Additive] [F.Full] [F.Faithful]
@@ -91,7 +94,9 @@ noncomputable def rightRegularEndEquiv (R : Type v) [Ring R] :
     simp [Module.End.mul_apply]
 
 /-- A finite-dimensional indecomposable module has the Fitting alternative:
-each endomorphism is invertible or nilpotent.-/
+each endomorphism is invertible or nilpotent.
+@isnad1 id=or.1h4v.s7.45c0f488fba7 from=translated src=- shape=cdd49773 vocab=c497b82f
+-/
 theorem isUnit_or_isNilpotent_of_finite_indecomposable
     [Module.Finite k A] (M : ModuleCat.{v} A) [Module.Finite k M]
     (hM : Indecomposable M) (f : End M) :
@@ -146,7 +151,9 @@ theorem isUnit_or_isNilpotent_of_finite_indecomposable
     exact LinearMap.range_eq_bot.mp hrange
 
 /-- The categorical endomorphism ring of a finite-dimensional indecomposable
-module is local.-/
+module is local.
+@isnad1 id=islocalr.1h3v.s7.0c555994f3e1 from=translated src=- shape=b4c4bde6 vocab=fd295328
+-/
 theorem moduleCat_end_isLocalRing [Module.Finite k A]
     (M : ModuleCat.{v} A) [Module.Finite k M] (hM : Indecomposable M) :
     IsLocalRing (End M) := by
@@ -168,7 +175,9 @@ variable [FiniteDimensional k A]
 variable (S : RightModule.FiniteIndecomposableSkeleton k A)
 
 /-- The chosen skeleton object's endomorphism ring remains local after it is
-bundled in the literal category of finitely generated right modules.-/
+bundled in the literal category of finitely generated right modules.
+@isnad1 id=islocalr.0h4v.s7.96e18a45d1dd from=translated src=- shape=43f8ffde vocab=b026926d
+-/
 theorem fgObj_end_isLocalRing (i : Fin S.n) :
     IsLocalRing (End (S.fgObj i)) := by
   let U := forget₂ (RightModule.FinitelyGeneratedCategory A)

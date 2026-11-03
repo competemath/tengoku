@@ -69,7 +69,9 @@ private theorem indecomposable_iff_of_iso
     · intro Z W hXW
       exact hY Z W (e.symm.trans hXW)
 
-/-- An additive equivalence preserves and reflects indecomposability.-/
+/-- An additive equivalence preserves and reflects indecomposability.
+@isnad1 id=iff.0h4v.s6.f46079098cab from=translated src=- shape=2c2cbcbc vocab=e9864f64
+-/
 theorem indecomposable_functor_obj_iff
     {C : Type v} [Category.{w} C] [Preadditive C]
     [HasBinaryBiproducts C]
@@ -195,7 +197,9 @@ def fgModuleEquivalenceOfAlgEquiv
         (moduleEquivalenceOfAlgEquivObjLinearEquiv f M)
     exact Module.Finite.of_restrictScalars_finite k B (E.functor.obj M)
 
-/-- Representation-finiteness is preserved by an algebra equivalence.-/
+/-- Representation-finiteness is preserved by an algebra equivalence.
+@isnad1 id=isrepres.1h4v.s6.c91c695b8015 from=translated src=- shape=46acc9d1 vocab=6fdc4056
+-/
 theorem IsRepresentationFinite.of_algEquiv
     (hA : IsRepresentationFinite k A) (f : A ≃ₐ[k] B) :
     IsRepresentationFinite k B := by
@@ -206,7 +210,9 @@ theorem IsRepresentationFinite.of_algEquiv
     (moduleEquivalenceOfAlgEquivObjLinearEquiv f M)
 
 /-- Indecomposability in the literal finitely generated module category is
-equivalent to indecomposability of the underlying module.-/
+equivalent to indecomposability of the underlying module.
+@isnad1 id=iff.0h2v.s6.e4927d86a676 from=translated src=- shape=ab097016 vocab=2ea0b86c
+-/
 theorem fgModule_indecomposable_iff_obj
     {R : Type v} [Ring R] [IsNoetherianRing R]
     (M : FGModuleCat.{v} R) :
@@ -307,6 +313,9 @@ def quotientRestrictIso (I : TwoSidedIdeal A)
     change e.hom (e.inv x) = x
     exact DFunLike.congr_fun (ModuleCat.hom_ext_iff.mp e.inv_hom_id) x
 
+/--
+@isnad1 id=eq.0h6v.s14.4043264b0485 from=translated src=- shape=44650c9d vocab=86a5488b
+-/
 @[simp]
 theorem quotientRestrictIso_hom_apply (I : TwoSidedIdeal A)
     {M N : ModuleCat.{v} (A ⧸ I.asIdeal)}
@@ -316,7 +325,9 @@ theorem quotientRestrictIso_hom_apply (I : TwoSidedIdeal A)
         (Ideal.Quotient.mk I.asIdeal)).obj N) (m : M) :
     (quotientRestrictIso I e).hom m = e.hom m := rfl
 
-/-- Restriction along a quotient map preserves indecomposability.-/
+/-- Restriction along a quotient map preserves indecomposability.
+@isnad1 id=indecomp.1h3v.s11.dfb42b9ecd3e from=translated src=- shape=7ee6aaa2 vocab=af1bda3e
+-/
 theorem quotientRestrict_indecomposable (I : TwoSidedIdeal A)
     (M : ModuleCat.{v} (A ⧸ I.asIdeal)) (hM : Indecomposable M) :
     Indecomposable ((ModuleCat.restrictScalars
@@ -401,7 +412,9 @@ theorem quotientRestrict_indecomposable (I : TwoSidedIdeal A)
       exact hZB
 
 /-- Representation-finiteness descends to every two-sided algebra
-quotient.-/
+quotient.
+@isnad1 id=isrepres.1h3v.s8.8b05646936c7 from=translated src=- shape=bcf230e4 vocab=b5983a31
+-/
 theorem IsRepresentationFinite.quotient
     (hA : IsRepresentationFinite k A) (I : TwoSidedIdeal A) :
     IsRepresentationFinite k (A ⧸ I.asIdeal) := by

@@ -11,7 +11,9 @@ namespace MagnitudeConjecture.GradedInterval
 /-- The last retained degree for q positive blocks.-/
 def packingEnd (r h q : ℕ) : ℕ := (q - 1) * (r + h + 1) + r
 
-/-- This endpoint agrees with the manuscript's q(r+h+1)-h-1.-/
+/-- This endpoint agrees with the manuscript's q(r+h+1)-h-1.
+@isnad1 id=eq.1h3v.s6.26ea23126718 from=translated src=- shape=e39dd561 vocab=4fe49831
+-/
 theorem packingEnd_eq (r h q : ℕ) (hq : 1 ≤ q) :
     packingEnd r h q = q * (r + h + 1) - h - 1 := by
   have he : q * (r + h + 1) = (q - 1) * (r + h + 1) + (r + h + 1) := by
@@ -29,7 +31,9 @@ def blockPoint (r h q : ℕ) (j : Fin q) (t : Fin (r + 1)) : Fin (packingEnd r h
     unfold packingEnd
     omega⟩
 
-/-- Each block coordinate lies in its specified retained block.-/
+/-- Each block coordinate lies in its specified retained block.
+@isnad1 id=inblock.0h5v.s5.5facdade51ce from=translated src=- shape=c0a8d191 vocab=c713c383
+-/
 theorem blockPoint_inBlock (r h q : ℕ) (j : Fin q) (t : Fin (r + 1)) :
     InBlock r h j.val ((blockPoint r h q j t).val : ℤ) := by
   have ht := t.isLt
@@ -37,7 +41,9 @@ theorem blockPoint_inBlock (r h q : ℕ) (j : Fin q) (t : Fin (r + 1)) :
   push_cast
   constructor <;> omega
 
-/-- The pair of block number and offset is recovered from its degree.-/
+/-- The pair of block number and offset is recovered from its degree.
+@isnad1 id=injectiv.0h3v.s6.b2ea904c5548 from=translated src=- shape=278aeaf4 vocab=7f451042
+-/
 theorem blockPoint_injective (r h q : ℕ) :
     Function.Injective (fun p : Fin q × Fin (r + 1) ↦ blockPoint r h q p.1 p.2) := by
   intro p t he
@@ -52,7 +58,9 @@ theorem blockPoint_injective (r h q : ℕ) :
   rw [hj] at hn
   exact Nat.add_left_cancel hn
 
-/-- Every retained finite degree has a block coordinate.-/
+/-- Every retained finite degree has a block coordinate.
+@isnad1 id=ex.1h4v.s7.41c2f074aace from=translated src=- shape=a8993d27 vocab=43447aa4
+-/
 theorem exists_blockPoint_of_retained (r h q : ℕ)
     (d : Fin (packingEnd r h q + 1)) (hd : Retained r h q (d.val : ℤ)) :
     ∃ p : Fin q × Fin (r + 1), blockPoint r h q p.1 p.2 = d := by

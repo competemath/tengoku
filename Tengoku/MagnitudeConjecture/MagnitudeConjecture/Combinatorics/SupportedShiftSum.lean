@@ -10,7 +10,9 @@ namespace MagnitudeConjecture
 universe u v
 
 /-- If a prescribed shift belongs to every fiber, summing a weight supported
-at that shift retains one copy of each label's weight.-/
+at that shift retains one copy of each label's weight.
+@isnad1 id=eq.1h5v.s8.50994ac67392 from=translated src=- shape=f8a457f6 vocab=6c24355d
+-/
 theorem sum_supported_single_shift {ι : Type u} [Fintype ι] {α : Type v}
     [DecidableEq α] (F : ι → Finset α) (s : α) (hs : ∀ i, s ∈ F i)
     (w : ι → ℕ) :
@@ -26,7 +28,9 @@ theorem sum_supported_single_shift {ι : Type u} [Fintype ι] {α : Type v}
     simp [hbs]
   · simp
 
-/-- Apply the single-shift sum to any pointwise identified weight.-/
+/-- Apply the single-shift sum to any pointwise identified weight.
+@isnad1 id=eq.2h6v.s8.3eacdce4b32e from=translated src=- shape=d4900761 vocab=6c24355d
+-/
 theorem sum_eq_of_supported_single_shift {ι : Type u} [Fintype ι] {α : Type v}
     [DecidableEq α] (F : ι → Finset α) (s : α) (hs : ∀ i, s ∈ F i)
     (w : ι → ℕ) (f : ((i : ι) × ↥(F i)) → ℕ)

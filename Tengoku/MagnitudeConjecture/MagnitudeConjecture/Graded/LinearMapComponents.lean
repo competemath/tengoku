@@ -27,7 +27,9 @@ def mapPart (d : ℤ) (f : M →ₗ[k] N) : M →ₗ[k] N :=
   ∑ i ∈ G.degreeSupport, (H.projection (i + d)).comp (f.comp (G.projection i))
 
 /-- On a vector of degree `i`, the component takes the target projection
-in degree `i+d`.-/
+in degree `i+d`.
+@isnad1 id=eq.1h9v.s8.b637145bbcde from=translated src=- shape=304f8d5d vocab=909b9018
+-/
 theorem mapPart_apply_of_mem (d : ℤ) (f : M →ₗ[k] N)
     {i : ℤ} {x : M} (hx : x ∈ G.component i) :
     G.mapPart H d f x = H.projection (i + d) (f x) := by
@@ -46,6 +48,9 @@ theorem mapPart_apply_of_mem (d : ℤ) (f : M →ₗ[k] N)
         simp
     _ = _ := by rw [G.projection_of_mem hx]
 
+/--
+@isnad1 id=mem.1h9v.s8.98ec25d777de from=translated src=- shape=58271313 vocab=9a729f2c
+-/
 theorem mapPart_mem (d : ℤ) (f : M →ₗ[k] N)
     {i : ℤ} {x : M} (hx : x ∈ G.component i) :
     G.mapPart H d f x ∈ H.component (i + d) := by
@@ -58,6 +63,9 @@ variable [FiniteDimensional k N]
 def mapDegreeSupport : Finset ℤ :=
   G.degreeSupport.biUnion fun i ↦ H.degreeSupport.image (fun j ↦ j - i)
 
+/--
+@isnad1 id=eq.1h7v.s8.43f4806e22ec from=translated src=- shape=377f9e02 vocab=3cf536a1
+-/
 theorem mapPart_eq_zero_outside (d : ℤ) (f : M →ₗ[k] N)
     (hd : d ∉ G.mapDegreeSupport H) : G.mapPart H d f = 0 := by
   classical
@@ -75,6 +83,9 @@ theorem mapPart_eq_zero_outside (d : ℤ) (f : M →ₗ[k] N)
   rw [H.projection_eq_zero_outside hout]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.7fce1ffa15ad from=translated src=- shape=570cd2b8 vocab=d7138d20
+-/
 theorem sum_shifted_projections (i : ℤ) (hi : i ∈ G.degreeSupport) (y : N) :
     ∑ d ∈ G.mapDegreeSupport H, H.projection (i + d) y = y := by
   classical
@@ -97,7 +108,9 @@ theorem sum_shifted_projections (i : ℤ) (hi : i ∈ G.degreeSupport) (y : N) :
       rfl
     _ = y := H.sum_projection y
 
-/-- The finite homogeneous components reconstruct every linear map.-/
+/-- The finite homogeneous components reconstruct every linear map.
+@isnad1 id=eq.0h6v.s8.b4e09d0339e0 from=translated src=- shape=f85b7cd1 vocab=941758e3
+-/
 theorem sum_mapPart (f : M →ₗ[k] N) :
     ∑ d ∈ G.mapDegreeSupport H, G.mapPart H d f = f := by
   classical

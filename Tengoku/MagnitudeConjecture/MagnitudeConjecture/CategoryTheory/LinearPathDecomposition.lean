@@ -54,6 +54,9 @@ def singleOutgoingCoefficient {x z : Q} (a₀ : OutgoingArrow x)
       eqToHom (congrArg (fun b : OutgoingArrow x ↦ obj k Q b.1) h.symm) ≫ f
     else 0
 
+/--
+@isnad1 id=eq.0h6v.s8.c3d818343996 from=translated src=- shape=99ca76fe vocab=5d7471c2
+-/
 @[simp]
 theorem outgoingSum_single {x z : Q} (a₀ : OutgoingArrow x)
     (f : obj k Q a₀.1 ⟶ obj k Q z) :
@@ -80,6 +83,9 @@ variable (F₀ : Q → C)
 variable (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
 
 omit [(x : Q) → Fintype (OutgoingArrow x)] [Preadditive C] in
+/--
+@isnad1 id=eq.0h7v.s6.a8ca75eb7627 from=translated src=- shape=dd865de4 vocab=d7e800cf
+-/
 @[simp]
 theorem pathMap_toPath {i j : Q} (a : i ⟶ j) :
     pathMap F₀ F₁ a.toPath = F₁ a := by
@@ -94,7 +100,9 @@ variable [Preorder Q]
 
 omit [(x : Q) → Fintype (OutgoingArrow x)] in
 /-- If every quiver arrow strictly lowers an order, the endpoint of a path
-is below its starting vertex.-/
+is below its starting vertex.
+@isnad1 id=le.1h4v.s5.69a5f53770a0 from=translated src=- shape=f06196f6 vocab=161019f3
+-/
 theorem path_target_le_of_arrow_lt
     (harrow : ∀ {i j : Q}, (i ⟶ j) → j < i)
     {i j : Q} (p : Quiver.Path i j) :
@@ -108,7 +116,9 @@ variable {C : Type*} [CategoryTheory.Category C] [Preadditive C]
 
 omit [(x : Q) → Fintype (OutgoingArrow x)] [Preadditive C] in
 /-- Changing arrow representatives strictly above the start of a path does
-not change its evaluation.-/
+not change its evaluation.
+@isnad1 id=eq.2h8v.s7.4f6567bd1ad4 from=translated src=- shape=b5304874 vocab=2f1ed0d0
+-/
 theorem pathMap_eq_of_eq_on_source_le
     (F₀ : Q → C)
     (F₁ G₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
@@ -124,7 +134,9 @@ theorem pathMap_eq_of_eq_on_source_le
 
 omit [(x : Q) → Fintype (OutgoingArrow x)] in
 /-- The corresponding stability statement for a linear combination of
-paths.-/
+paths.
+@isnad1 id=eq.2h9v.s11.a06c4a62dcd7 from=translated src=- shape=b9d23424 vocab=0044e19e
+-/
 theorem homMap_eq_of_eq_on_source_le
     (F₀ : Q → C)
     (F₁ G₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))

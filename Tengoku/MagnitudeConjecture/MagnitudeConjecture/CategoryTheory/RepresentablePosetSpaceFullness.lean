@@ -31,7 +31,9 @@ variable [Category.{u} C] [Preadditive C] [Linear k C]
 
 /-- The usual finite-biproduct formula, with an index type in an arbitrary
 universe.  Mathlib's existing statement currently fixes the index in
-`Type 0`.-/
+`Type 0`.
+@isnad1 id=eq.0h5v.s7.f2d111065695 from=translated src=- shape=180c221e vocab=aa16eec8
+-/
 theorem biproduct_lift_eq_sum
     {J : Type w} [Fintype J] {F : J → C} [HasBiproduct F]
     {X : C} (g : ∀ j, X ⟶ F j) :
@@ -47,7 +49,9 @@ theorem biproduct_lift_eq_sum
   · simp
 
 /-- Composition through a finite biproduct is the sum of the coordinate
-composites, without a universe restriction on the index type.-/
+composites, without a universe restriction on the index type.
+@isnad1 id=eq.0h7v.s7.86045b0479f1 from=translated src=- shape=97c87c2b vocab=da40eff4
+-/
 theorem biproduct_lift_desc
     {J : Type w} [Fintype J] {F : J → C} [HasBiproduct F]
     {X Y : C} (g : ∀ j, X ⟶ F j) (h : ∀ j, F j ⟶ Y) :
@@ -115,6 +119,9 @@ def boundaryPrecomposition (D : RepresentableData k T C)
   map_add' h h' := by simp
   map_smul' c h := by simp
 
+/--
+@isnad1 id=eq.0h7v.s9.770c01d61f8b from=translated src=- shape=3754864d vocab=633663fd
+-/
 @[simp]
 theorem boundaryPrecomposition_apply
     (D : RepresentableData k T C) (q : Option T) (X : C)
@@ -126,6 +133,9 @@ theorem boundaryPrecomposition_apply
 abbrev boundaryGenerator (D : RepresentableData k T C) : C :=
   ⨁ D.boundaryFamily
 
+/--
+@isnad1 id=injectiv.1h6v.s9.285da291f09c from=translated src=- shape=8d8e966b vocab=1a0000f5
+-/
 theorem boundaryPrecomposition_injective
     (D : RepresentableData k T C)
     (hinj : ∀ (t : T) (X : C),

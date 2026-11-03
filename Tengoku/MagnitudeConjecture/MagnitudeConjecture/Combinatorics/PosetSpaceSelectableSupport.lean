@@ -29,7 +29,9 @@ def supportAtFor (R : ReverseEnumeration T)
     (j : Fin (Fintype.card T + 1)) : Set T :=
   {t | (ReverseEnumeration.index T R t).val < j.val}
 
-/-- Every selected support prefix is an upper set in the original poset.-/
+/-- Every selected support prefix is an upper set in the original poset.
+@isnad1 id=isuppers.0h3v.s5.7ef73b8c4ad4 from=translated src=- shape=63c5e0f2 vocab=68320b5b
+-/
 theorem supportAtFor_isUpperSet (R : ReverseEnumeration T)
     (j : Fin (Fintype.card T + 1)) :
     IsUpperSet (supportAtFor T R j) := by
@@ -42,7 +44,9 @@ theorem supportAtFor_isUpperSet (R : ReverseEnumeration T)
       (ReverseEnumeration.index T R s).val := hindex
   exact lt_of_le_of_lt hindex_val hs
 
-/-- Selected support prefixes are monotone in their length.-/
+/-- Selected support prefixes are monotone in their length.
+@isnad1 id=le.1h4v.s6.bd33c8f2a41a from=translated src=- shape=a46db81f vocab=45c7a014
+-/
 theorem supportAtFor_mono (R : ReverseEnumeration T)
     {i j : Fin (Fintype.card T + 1)} (hij : i ≤ j) :
     supportAtFor T R i ⊆ supportAtFor T R j := by
@@ -50,7 +54,9 @@ theorem supportAtFor_mono (R : ReverseEnumeration T)
   change (ReverseEnumeration.index T R t).val < i.val at ht
   exact lt_of_lt_of_le ht hij
 
-/-- Consecutive selected support prefixes are strictly increasing.-/
+/-- Consecutive selected support prefixes are strictly increasing.
+@isnad1 id=lt.0h3v.s5.b2ad26402d15 from=translated src=- shape=a38eb48a vocab=77988c47
+-/
 theorem supportAtFor_strictMono (R : ReverseEnumeration T)
     (j : Fin (Fintype.card T)) :
     supportAtFor T R j.castSucc ⊂ supportAtFor T R j.succ := by
@@ -78,18 +84,26 @@ abbrev supportLineStepFor (R : ReverseEnumeration T)
     (hV := supportAtFor_isUpperSet T R j.succ)
     (supportAtFor_strictMono T R j).1
 
+/--
+@isnad1 id=ne.0h4v.s7.53a199580ac3 from=translated src=- shape=5ba4c447 vocab=189b6c8f
+-/
 theorem supportLineStepFor_ne_zero (R : ReverseEnumeration T)
     (j : Fin (Fintype.card T)) :
     supportLineStepFor k T R j ≠ 0 :=
   lineHom_ne_zero k T (supportAtFor_strictMono T R j).1
 
+/--
+@isnad1 id=not.0h4v.s6.7946edf67f49 from=translated src=- shape=2801c5b3 vocab=c41ad1a5
+-/
 theorem supportLineStepFor_not_isIso (R : ReverseEnumeration T)
     (j : Fin (Fintype.card T)) :
     ¬IsIso (supportLineStepFor k T R j) :=
   lineHom_not_isIso k T (supportAtFor_strictMono T R j)
 
 /-- Along any selected support chain, a Schur-positive grading grows by at
-least the difference of support indices.-/
+least the difference of support indices.
+@isnad1 id=le.1h7v.s7.b5499398ffef from=translated src=- shape=a9782d27 vocab=0fa470d1
+-/
 theorem supportLineFor_level_add_index_le
     (R : ReverseEnumeration T) {L : ℕ}
     (G : PositiveGrading (Obj k T) (IsSchur k T) L)
@@ -138,7 +152,9 @@ structure SelectableSchurDetour (R : ReverseEnumeration T)
   outMap_not_isIso : ¬IsIso outMap
 
 /-- Splicing a two-step Schur detour into any selected support chain forces
-the strict realization bound `|T|+1 ≤ L`.-/
+the strict realization bound `|T|+1 ≤ L`.
+@isnad1 id=le.1h7v.s6.d61accd8a1fa from=translated src=- shape=5df00773 vocab=62700dd4
+-/
 theorem card_add_one_le_of_selectableSchurDetour
     (R : ReverseEnumeration T) {L q : ℕ}
     (G : PositiveGrading (Obj k T) (IsSchur k T) L)

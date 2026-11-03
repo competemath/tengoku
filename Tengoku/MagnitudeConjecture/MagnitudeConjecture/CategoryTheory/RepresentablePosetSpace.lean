@@ -88,6 +88,9 @@ def map (D : RepresentableData k T C) {X Y : C} (f : X ⟶ Y) :
     dsimp only [precomposition, postcomposition]
     exact (Category.assoc (D.unit t) g f).symm
 
+/--
+@isnad1 id=eq.0h7v.s8.d983558cdc96 from=translated src=- shape=0066ba9e vocab=7f7642f8
+-/
 @[simp]
 theorem map_linear (D : RepresentableData k T C) {X Y : C} (f : X ⟶ Y) :
     (D.map f).linear = D.postcomposition f :=
@@ -110,24 +113,34 @@ def functor (D : RepresentableData k T C) : C ⥤ Obj k T where
     change h ≫ (f ≫ g) = (h ≫ f) ≫ g
     exact (Category.assoc _ _ _).symm
 
+/--
+@isnad1 id=eq.0h5v.s6.e6c66a491bb7 from=translated src=- shape=93544855 vocab=66b807b3
+-/
 @[simp]
 theorem functor_obj (D : RepresentableData k T C) (X : C) :
     D.functor.obj X = D.obj X :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.9369c1950529 from=translated src=- shape=c650ca86 vocab=ef910b36
+-/
 @[simp]
 theorem functor_map (D : RepresentableData k T C) {X Y : C} (f : X ⟶ Y) :
     D.functor.map f = D.map f :=
   rfl
 
 /-- The total dimension of the realized poset space is exactly the dimension
-of the represented Hom space.-/
+of the represented Hom space.
+@isnad1 id=eq.0h5v.s7.5a08fc0ccefd from=translated src=- shape=cdb31843 vocab=6843d311
+-/
 theorem finrank_obj (D : RepresentableData k T C) (X : C) :
     Module.finrank k (D.obj X) = Module.finrank k (D.source ⟶ X) :=
   rfl
 
 /-- Fullness on one object and scalar endomorphisms in the source category
-make its representable poset space Schur.-/
+make its representable poset space Schur.
+@isnad1 id=isschur.3h5v.s9.1e7eeddd9ed6 from=translated src=- shape=37b98b2c vocab=aa9993a8
+-/
 theorem obj_isSchur
     (D : RepresentableData k T C) {X : C}
     (hnonzero : ∃ h : D.source ⟶ X, h ≠ 0)
@@ -149,7 +162,9 @@ theorem obj_isSchur
     simp
 
 /-- Faithfulness of `Hom(P,-)` in elementwise form makes the representable
-poset-space functor faithful.-/
+poset-space functor faithful.
+@isnad1 id=injectiv.1h6v.s8.5116bdec27c7 from=translated src=- shape=ca55ce2c vocab=d294cb6f
+-/
 theorem map_injective
     (D : RepresentableData k T C)
     (hfaithful : ∀ {X Y : C} (f g : X ⟶ Y),
@@ -164,7 +179,9 @@ theorem map_injective
   change h ≫ f = h ≫ g at happ
   exact happ
 
-/-- The corresponding `Functor.Faithful` package.-/
+/-- The corresponding `Functor.Faithful` package.
+@isnad1 id=faithful.1h4v.s7.56062431538d from=translated src=- shape=0c50be27 vocab=cf7fa259
+-/
 theorem faithful
     (D : RepresentableData k T C)
     (hfaithful : ∀ {X Y : C} (f g : X ⟶ Y),
@@ -186,20 +203,28 @@ namespace EquivalenceData
 
 variable {D : RepresentableData k T C}
 
-/-- Fullness of the concrete functor.-/
+/-- Fullness of the concrete functor.
+@isnad1 id=full.1h4v.s6.66777298c8aa from=translated src=- shape=81f8fb62 vocab=efc0ad8f
+-/
 theorem functorFull (R : EquivalenceData D) : D.functor.Full where
   map_surjective := fun {_ _} f ↦ R.full f
 
-/-- Faithfulness of the concrete functor.-/
+/-- Faithfulness of the concrete functor.
+@isnad1 id=faithful.1h4v.s6.5bb1915f4e65 from=translated src=- shape=81f8fb62 vocab=9f454458
+-/
 theorem functorFaithful (R : EquivalenceData D) : D.functor.Faithful where
   map_injective := fun {_ _} f g heq ↦ R.faithful f g heq
 
-/-- Essential surjectivity of the concrete functor.-/
+/-- Essential surjectivity of the concrete functor.
+@isnad1 id=esssurj.1h4v.s6.9d0a401b2790 from=translated src=- shape=81f8fb62 vocab=e5f9fabb
+-/
 theorem functorEssSurj (R : EquivalenceData D) : D.functor.EssSurj where
   mem_essImage Y := R.essSurj Y
 
 /-- A nonzero scalar-endomorphism object is sent to a Schur poset space by
-the completed realization.-/
+the completed realization.
+@isnad1 id=isschur.3h5v.s8.4a5d8f39b079 from=translated src=- shape=90fcc63e vocab=422f7a11
+-/
 theorem obj_isSchur (R : EquivalenceData D) {X : C}
     (hnonzero : ∃ h : D.source ⟶ X, h ≠ 0)
     (hscalar : ∀ g : X ⟶ X, ∃ a : k, g = a • 𝟙 X) :

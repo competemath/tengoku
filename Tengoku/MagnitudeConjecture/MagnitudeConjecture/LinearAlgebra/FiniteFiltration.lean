@@ -30,6 +30,9 @@ def restrictionMap (f : V →ₗ[k] W) (U : Submodule k V) (U' : Submodule k W)
     intro x
     exact h ⟨x, x.2, rfl⟩)
 
+/--
+@isnad1 id=eq.1h7v.s9.632b3434119f from=translated src=- shape=911b5b17 vocab=6110783b
+-/
 @[simp]
 theorem restrictionMap_coe (f : V →ₗ[k] W)
     (U : Submodule k V) (U' : Submodule k W)
@@ -51,6 +54,9 @@ def layerMap (f : V →ₗ[k] W)
       change f x.1 ∈ U'
       exact hU ⟨x.1, hx, rfl⟩)
 
+/--
+@isnad1 id=eq.4h9v.s12.95dad8aed577 from=translated src=- shape=0064a8fa vocab=8b8fb8b1
+-/
 @[simp]
 theorem layerMap_mk (f : V →ₗ[k] W)
     (U X : Submodule k V) (U' X' : Submodule k W)
@@ -62,7 +68,9 @@ theorem layerMap_mk (f : V →ₗ[k] W)
   Submodule.mapQ_apply _ _ _ x
 
 /-- Bijectivity on one filtration term and the following quotient implies
-bijectivity on the following term.-/
+bijectivity on the following term.
+@isnad1 id=bijectiv.6h8v.s12.8a6f863d85a5 from=translated src=- shape=81526a39 vocab=fcdf19e5
+-/
 theorem restrictionMap_bijective_of_layerMap_bijective
     (f : V →ₗ[k] W)
     (U X : Submodule k V) (U' X' : Submodule k W)
@@ -157,7 +165,9 @@ def gradedMap (f : V →ₗ[k] W)
     (G.monotone_subspace i.castSucc_le_succ) (h i.succ) (h i.castSucc)
 
 /-- Bijectivity on every successive quotient of two compatible finite
-filtrations implies bijectivity of the original linear map.-/
+filtrations implies bijectivity of the original linear map.
+@isnad1 id=bijectiv.2h7v.s12.8e81c809752d from=translated src=- shape=c310e647 vocab=ab38bf86
+-/
 theorem map_bijective_of_gradedMap_bijective
     (f : V →ₗ[k] W)
     (F : Filtration k V n) (G : Filtration k W n)

@@ -24,7 +24,9 @@ namespace MagnitudeConjecture.CategoryTheory
 
 universe v u
 
-/-- Categorical indecomposability is invariant under isomorphism.-/
+/-- Categorical indecomposability is invariant under isomorphism.
+@isnad1 id=iff.0h4v.s5.dcddaf844972 from=translated src=- shape=4187a547 vocab=d6e286c0
+-/
 theorem indecomposable_iff_of_iso
     {C : Type u} [Category.{v} C] [Preadditive C]
     [HasBinaryBiproducts C] {X Y : C} (e : X ≅ Y) :
@@ -44,7 +46,9 @@ theorem indecomposable_iff_of_iso
       exact hY Z W (e.symm.trans hXW)
 
 /-- Passing to the opposite category preserves and reflects categorical
-indecomposability.-/
+indecomposability.
+@isnad1 id=iff.0h2v.s5.b193e9af767d from=translated src=- shape=b7246106 vocab=9072fb92
+-/
 theorem indecomposable_op_iff
     {C : Type u} [Category.{v} C] [Preadditive C]
     [HasBinaryBiproducts C] (X : C) :
@@ -72,7 +76,9 @@ theorem indecomposable_op_iff
 universe v' u'
 
 /-- A fully faithful additive functor reflects indecomposability from the
-image of an object.-/
+image of an object.
+@isnad1 id=indecomp.1h4v.s6.714c4d8d76ff from=translated src=- shape=2056a476 vocab=56939266
+-/
 theorem indecomposable_of_fully_faithful_additive
     {C : Type u} [Category.{v} C] [Preadditive C]
     [HasBinaryBiproducts C]
@@ -92,7 +98,9 @@ theorem indecomposable_of_fully_faithful_additive
     · exact Or.inl (IsZero.of_full_of_faithful_of_isZero F Y hY)
     · exact Or.inr (IsZero.of_full_of_faithful_of_isZero F Z hZ)
 
-/-- An additive equivalence preserves and reflects indecomposability.-/
+/-- An additive equivalence preserves and reflects indecomposability.
+@isnad1 id=iff.0h4v.s6.f684fd6c86f4 from=translated src=- shape=db3aed60 vocab=7e720b2e
+-/
 theorem indecomposable_map_iff_of_equivalence
     {C : Type u} [Category.{v} C] [Preadditive C]
     [HasBinaryBiproducts C]
@@ -122,7 +130,9 @@ namespace MagnitudeConjecture.RingEquiv
 universe u₁ u₂
 
 /-- Localness transports across a ring equivalence without a commutativity
-hypothesis.-/
+hypothesis.
+@isnad1 id=islocalr.0h3v.s5.5e497a58b40b from=translated src=- shape=8157dbee vocab=f2ffc398
+-/
 theorem isLocalRing_noncomm {R : Type u₁} {S : Type u₂} [Ring R] [Ring S]
     [IsLocalRing R] (e : R ≃+* S) : IsLocalRing S := by
   letI : Nontrivial S := e.injective.nontrivial

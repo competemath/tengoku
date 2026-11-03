@@ -38,14 +38,18 @@ def generatorModuleGrading (X : C) :
     intro d n a f ha hf
     exact G.generatorHom_precomp_mem P ha hf
 
-/-- Multiplication in the opposite algebra adds degrees.-/
+/-- Multiplication in the opposite algebra adds degrees.
+@isnad1 id=mem.2h9v.s11.0c1d4d00e4ae from=translated src=- shape=9fb16b48 vocab=16f34406
+-/
 theorem generatorAlgebra_mul_mem {d n : ℤ} {a b : (End (⨁ P))ᵐᵒᵖ}
     (ha : a ∈ (G.generatorAlgebraGrading P).component d)
     (hb : b ∈ (G.generatorAlgebraGrading P).component n) :
     a * b ∈ (G.generatorAlgebraGrading P).component (d + n) :=
   G.generatorEnd_comp_mem P ha hb
 
-/-- The algebra unit has degree zero.-/
+/-- The algebra unit has degree zero.
+@isnad1 id=mem.0h5v.s9.901b31f460f8 from=translated src=- shape=1d3c1187 vocab=c422bdc6
+-/
 theorem generatorAlgebra_one_mem :
     (1 : (End (⨁ P))ᵐᵒᵖ) ∈ (G.generatorAlgebraGrading P).component 0 :=
   G.generatorEnd_id_mem P
@@ -57,7 +61,9 @@ def generatorModuleMap {X Y : C} (f : X ⟶ Y) :
   map_add' x y := Preadditive.add_comp _ _ _ _ _ _
   map_smul' a x := Category.assoc _ _ _
 
-/-- The represented module map has the degree of its original morphism.-/
+/-- The represented module map has the degree of its original morphism.
+@isnad1 id=homogene.1h9v.s9.118b653f3aee from=translated src=- shape=c002569c vocab=53b0c88b
+-/
 theorem generatorModuleMap_homogeneous {X Y : C} {d : ℤ} {f : X ⟶ Y}
     (hf : f ∈ G.component X Y d) :
     (G.generatorModuleGrading P X).Homogeneous (G.generatorModuleGrading P Y) d

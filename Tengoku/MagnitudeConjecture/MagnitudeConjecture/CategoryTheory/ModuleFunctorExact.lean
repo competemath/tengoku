@@ -26,7 +26,9 @@ variable {R : Type w} [Ring R]
 variable {C : Type u} [Category.{v} C]
 
 /-- A short complex of module-valued functors is exact when its evaluated
-linear maps have image equal to kernel at every object.-/
+linear maps have image equal to kernel at every object.
+@isnad1 id=exact.1h3v.s10.53676983f173 from=translated src=- shape=6e6df240 vocab=a44de79d
+-/
 theorem moduleFunctor_exact_of_app_range_eq_ker
     (S : ShortComplex (C ⥤ ModuleCat.{t} R))
     (h : ∀ X : C,

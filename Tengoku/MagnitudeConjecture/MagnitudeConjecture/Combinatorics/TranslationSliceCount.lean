@@ -27,7 +27,9 @@ open MagnitudeConjecture.DirectedDeletion
 universe u w
 
 /-- The pruning/translation/attachment recurrence propagates the tree edge
-count from the first slice to every slice below `L`.-/
+count from the first slice to every slice below `L`.
+@isnad1 id=eq.4h6v.s8.fd17e549303e from=translated src=- shape=817f073c vocab=ed8ae198
+-/
 theorem sliceEdgeCount_of_translationRecurrence
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
     (firstSlice : arrows 0 = vertices 0 + vertices 1 - 1)
@@ -46,7 +48,9 @@ theorem sliceEdgeCount_of_translationRecurrence
       rw [arrowStep j hj, ih hj_lt, vertexStep j hj]
       ring
 
-/-- Finite-level form of the propagated slice edge count.-/
+/-- Finite-level form of the propagated slice edge count.
+@isnad1 id=eq.3h6v.s8.fe1e8fa1c36a from=translated src=- shape=6f4a8bdc vocab=295a05e5
+-/
 theorem finiteSliceEdgeCount_of_translationRecurrence
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
     (firstSlice : arrows 0 = vertices 0 + vertices 1 - 1)
@@ -62,7 +66,9 @@ theorem finiteSliceEdgeCount_of_translationRecurrence
   simpa using sliceEdgeCount_of_translationRecurrence vertices arrows
     tauInjectives tauProjectives firstSlice arrowStep vertexStep j.val j.isLt
 
-/-- The translation recurrence gives the manuscript's total arrow count.-/
+/-- The translation recurrence gives the manuscript's total arrow count.
+@isnad1 id=eq.5h5v.s8.2df7da25bfb1 from=translated src=- shape=a4dc3985 vocab=a3311625
+-/
 theorem arrowTotal_eq_of_translationRecurrence
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
     (source_singleton : vertices 0 = 1)
@@ -83,7 +89,9 @@ theorem arrowTotal_eq_of_translationRecurrence
       tauInjectives tauProjectives firstSlice arrowStep vertexStep
 
 /-- Under the translation recurrence, the intrinsic factor excess is the
-grading length minus the number of non-root projectives.-/
+grading length minus the number of non-root projectives.
+@isnad1 id=eq.5h6v.s8.60792f9ad984 from=translated src=- shape=f823354a vocab=e6d223c9
+-/
 theorem intrinsicExcessFromCounts_eq_of_translationRecurrence
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
     (projectives : ℤ)
@@ -107,7 +115,9 @@ theorem intrinsicExcessFromCounts_eq_of_translationRecurrence
       tauInjectives tauProjectives firstSlice arrowStep vertexStep
 
 /-- Matrix form: the translation recurrence and realization-length bound
-discharge the intrinsic nonnegativity hypothesis of directed deletion.-/
+discharge the intrinsic nonnegativity hypothesis of directed deletion.
+@isnad1 id=le.7h8v.s8.7309f12fbc4b from=translated src=- shape=686894f3 vocab=91134e27
+-/
 theorem matrixIntrinsicEulerExcess_nonnegative_of_translationRecurrence
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
@@ -138,7 +148,9 @@ theorem matrixIntrinsicEulerExcess_nonnegative_of_translationRecurrence
   · exact meshEulerTotal
   · exact realization_length_bound
 
-/-- Matrix equality criterion under the translation recurrence.-/
+/-- Matrix equality criterion under the translation recurrence.
+@isnad1 id=iff.6h8v.s8.d610ec61536d from=translated src=- shape=fa74d77a vocab=3dc79771
+-/
 theorem matrixIntrinsicEulerExcess_eq_zero_iff_of_translationRecurrence
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
@@ -169,7 +181,9 @@ theorem matrixIntrinsicEulerExcess_eq_zero_iff_of_translationRecurrence
 
 /-- The poset-space realization and its positive grading construct the
 realization-length bound, so the translation recurrence alone then gives
-nonnegative intrinsic factor excess.-/
+nonnegative intrinsic factor excess.
+@isnad1 id=le.7h11v.s8.f5ce3472252f from=translated src=- shape=ad64a238 vocab=db6c40e9
+-/
 theorem matrixIntrinsicEulerExcess_nonnegative_of_translationRecurrence_and_posetSpace
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)
@@ -205,7 +219,9 @@ theorem matrixIntrinsicEulerExcess_nonnegative_of_translationRecurrence_and_pose
   omega
 
 /-- Vanishing intrinsic excess makes the realization bound sharp and hence
-forces every Schur poset space to be one-dimensional.-/
+forces every Schur poset space to be one-dimensional.
+@isnad1 id=eq.9h12v.s8.14d314eab65e from=translated src=- shape=6aa07254 vocab=b1473dde
+-/
 theorem finrank_eq_one_of_matrixIntrinsicEulerExcess_eq_zero_of_translationRecurrence_and_posetSpace
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (vertices arrows tauInjectives tauProjectives : ℕ → ℤ)

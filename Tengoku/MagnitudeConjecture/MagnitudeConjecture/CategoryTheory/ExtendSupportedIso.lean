@@ -25,6 +25,9 @@ def supportedExtensionIsoAt (c : C) : F.obj c ≅ G.obj c := by
   else (hF c h).iso (hG c h)
 
 include hI in
+/--
+@isnad1 id=eq.3h8v.s7.d3d7cc2c6cc9 from=translated src=- shape=eca22482 vocab=09a554a4
+-/
 theorem supportedExtensionIsoAt_image (d : D) :
     supportedExtensionIsoAt I F G α hF hG (I.obj d) = α.app d := by
   classical

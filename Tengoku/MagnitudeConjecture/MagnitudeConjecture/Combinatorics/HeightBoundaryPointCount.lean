@@ -8,7 +8,9 @@ namespace MagnitudeConjecture.HeightArrowCount
 universe u
 variable {V : Type u} [Fintype V]
 
-/-- Boundary degrees are one except at a single distinguished vertex.-/
+/-- Boundary degrees are one except at a single distinguished vertex.
+@isnad1 id=and.1h4v.s6.96b14d0a38d1 from=translated src=- shape=7579e97a vocab=47201b9b
+-/
 theorem boundary_sums [DecidableEq V] (s : V) (h d : V → ℤ)
     (hd : ∀ x, d x = if x = s then 0 else 1) :
     (∑ x, d x) = Fintype.card V - 1 ∧
@@ -22,7 +24,9 @@ theorem boundary_sums [DecidableEq V] (s : V) (h d : V → ℤ)
   · simp [he, Finset.sum_sub_distrib]
   · simp [he, mul_sub, Finset.sum_sub_distrib]
 
-/-- Complementary translation sets have equally many boundary vertices.-/
+/-- Complementary translation sets have equally many boundary vertices.
+@isnad1 id=eq.0h4v.s6.b30eacca42c4 from=translated src=- shape=bb856b6b vocab=bc4cbaee
+-/
 theorem boundary_card_eq (P I : V → Prop) [DecidablePred P] [DecidablePred I]
     (e : {x // ¬ P x} ≃ {x // ¬ I x}) :
     Fintype.card {x // P x} = Fintype.card {x // I x} := by

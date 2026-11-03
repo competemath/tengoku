@@ -10,7 +10,9 @@ open scoped BigOperators
 namespace MagnitudeConjecture
 universe u v
 
-/-- Transport a uniform incoming-weight bound through a bijection of labels.-/
+/-- Transport a uniform incoming-weight bound through a bijection of labels.
+@isnad1 id=le.2h7v.s6.e0aae86775b2 from=translated src=- shape=57a9fbe3 vocab=82e8aba9
+-/
 theorem incoming_sum_le_of_equiv {α : Type u} {β : Type v} [Fintype α] [Fintype β]
     (e : α ≃ β) (f : α → α → ℕ) (g : β → β → ℕ)
     (h : ∀ a b, f a b = g (e a) (e b)) (B : ℕ)

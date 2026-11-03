@@ -21,7 +21,9 @@ universe u v
 variable {G : Type u} [Group G]
 
 /-- Residual finiteness separates every member of a finite set from the
-identity using one finite-index normal subgroup.-/
+identity using one finite-index normal subgroup.
+@isnad1 id=ex.1h2v.s6.ce81ce20dfca from=translated src=- shape=ef5c2aea vocab=e4c4ac98
+-/
 theorem exists_finiteIndexNormalSubgroup_avoiding_finset
     [Group.ResiduallyFinite G]
     (bad : Finset G) (hne : ∀ g ∈ bad, g ≠ 1) :
@@ -46,7 +48,9 @@ theorem exists_finiteIndexNormalSubgroup_avoiding_finset
       · exact hNg hmem.1
       · exact hNbad x hx hmem.2
 
-/-- Set-valued form of simultaneous residual separation.-/
+/-- Set-valued form of simultaneous residual separation.
+@isnad1 id=ex.2h2v.s6.7116778dc26e from=translated src=- shape=86c94182 vocab=379c7383
+-/
 theorem exists_finiteIndexNormalSubgroup_avoiding
     [Group.ResiduallyFinite G]
     {bad : Set G} (hfinite : bad.Finite) (hne : ∀ g ∈ bad, g ≠ 1) :
@@ -69,7 +73,9 @@ def badTranslations (R : X → X → Prop) (W : Set X) : Set G :=
   {g | g ≠ 1 ∧ WindowInteracts R W g}
 
 /-- Pointwise finiteness of interacting translates makes the bad-translation
-set of every finite window finite.-/
+set of every finite window finite.
+@isnad1 id=finite.2h4v.s6.d214d8f6a907 from=translated src=- shape=9b18ce85 vocab=6869f584
+-/
 theorem badTranslations_finite
     (R : X → X → Prop) (W : Set X) (hW : W.Finite)
     (locallyFinite : ∀ x y : X,
@@ -96,7 +102,9 @@ window, residual finiteness supplies a finite-index normal subgroup whose
 distinct translates are pairwise interaction-free.
 
 For the covering application, `R x y` means that `x = y` or that there is a
-nonzero Hom in either direction.-/
+nonzero Hom in either direction.
+@isnad1 id=ex.2h4v.s7.c2fb7596d082 from=translated src=- shape=bee6fc3f vocab=ca9f8759
+-/
 theorem exists_finiteIndexNormalSubgroup_pairwise_windowSeparated
     [Group.ResiduallyFinite G]
     (R : X → X → Prop)
@@ -123,7 +131,9 @@ theorem exists_finiteIndexNormalSubgroup_pairwise_windowSeparated
   exact hN g ⟨hgne, hinteracts⟩ hgN
 
 /-- Local finiteness of interacting translates is the direct hypothesis used
-in the covering proof to obtain a pairwise separated finite quotient.-/
+in the covering proof to obtain a pairwise separated finite quotient.
+@isnad1 id=ex.3h4v.s8.d039ee8b66bc from=translated src=- shape=c24fbd00 vocab=3a182ee8
+-/
 theorem exists_finiteIndexNormalSubgroup_pairwise_windowSeparated_of_localFinite
     [Group.ResiduallyFinite G]
     (R : X → X → Prop)

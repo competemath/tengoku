@@ -42,7 +42,9 @@ def homProjection (d : ℤ) : (M →ₗ[A] N) →ₗ[k] (M →ₗ[A] N) where
 
 variable [FiniteDimensional k N]
 
-/-- Every module map is uniquely a finite sum of homogeneous module maps.-/
+/-- Every module map is uniquely a finite sum of homogeneous module maps.
+@isnad1 id=isintern.0h7v.s9.81353ab6c29b from=translated src=- shape=71f73de4 vocab=18778f54
+-/
 theorem homComponent_isInternal : DirectSum.IsInternal (G.homComponent H) := by
   apply DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
   · rw [iSupIndep_def]

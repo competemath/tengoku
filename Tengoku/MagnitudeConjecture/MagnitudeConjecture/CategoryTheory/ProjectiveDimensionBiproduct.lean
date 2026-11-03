@@ -25,7 +25,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C] [HasExt.{w} C]
   [HasFiniteBiproducts C]
 
 /-- A finite biproduct has projective dimension below `d` if every summand
-does.-/
+does.
+@isnad1 id=hasproje.1h4v.s6.9403e8c4456e from=translated src=- shape=5acf8468 vocab=ecd00601
+-/
 theorem hasProjectiveDimensionLT_biproduct
     {J : Type*} [Fintype J] (F : J → C) (d : ℕ)
     (hF : ∀ j, HasProjectiveDimensionLT (F j) d) :

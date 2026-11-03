@@ -78,6 +78,9 @@ def linearExtPrecompAlong (T : D ⥤ C) (n : ℕ)
       LinearMap.flip_apply]
     exact h.symm
 
+/--
+@isnad1 id=eq.0h6v.s7.9d17c56894a3 from=translated src=- shape=933d40f2 vocab=6b1a02d8
+-/
 @[simp]
 theorem linearExtPrecompAlong_id (T : D ⥤ C) (X : C) (n : ℕ) :
     linearExtPrecompAlong (R := R) T n (𝟙 X) = 𝟙 _ := by
@@ -92,6 +95,9 @@ theorem linearExtPrecompAlong_id (T : D ⥤ C) (X : C) (n : ℕ) :
   change (Ext.mk₀ (𝟙 X)).comp xi (zero_add n) = xi
   exact Ext.mk₀_id_comp xi
 
+/--
+@isnad1 id=eq.0h10v.s8.0a63606ad472 from=translated src=- shape=213cb828 vocab=ad664db9
+-/
 @[simp]
 theorem linearExtPrecompAlong_comp (T : D ⥤ C) (n : ℕ)
     {X Y Z : C} (a : Y ⟶ X) (b : Z ⟶ Y) :

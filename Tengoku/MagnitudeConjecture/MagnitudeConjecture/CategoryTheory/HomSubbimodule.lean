@@ -35,7 +35,9 @@ def twoSidedEndomorphismSpan {X Y : C} (f : X ⟶ Y) :
   Submodule.span k {g | ∃ (a : End X) (b : End Y),
     g = (a.asHom ≫ f) ≫ b.asHom}
 
-/-- A principal two-sided endomorphism span is endpoint-stable.-/
+/-- A principal two-sided endomorphism span is endpoint-stable.
+@isnad1 id=ishomsub.0h5v.s5.e915bbd1f4a0 from=translated src=- shape=abc361e0 vocab=26bf4926
+-/
 theorem isHomSubbimodule_twoSidedEndomorphismSpan
     {X Y : C} (f : X ⟶ Y) :
     IsHomSubbimodule (twoSidedEndomorphismSpan (k := k) f) := by
@@ -67,7 +69,9 @@ theorem isHomSubbimodule_twoSidedEndomorphismSpan
         simpa using
           (twoSidedEndomorphismSpan (k := k) f).smul_mem c hg
 
-/-- The generator belongs to its principal two-sided span.-/
+/-- The generator belongs to its principal two-sided span.
+@isnad1 id=mem.0h5v.s7.d97f2e16fa7d from=translated src=- shape=16305427 vocab=48d96917
+-/
 theorem mem_twoSidedEndomorphismSpan
     {X Y : C} (f : X ⟶ Y) :
     f ∈ twoSidedEndomorphismSpan (k := k) f := by
@@ -75,7 +79,9 @@ theorem mem_twoSidedEndomorphismSpan
   exact ⟨1, 1, by simp⟩
 
 /-- Membership in a principal two-sided span implies inclusion of principal
-spans.-/
+spans.
+@isnad1 id=le.1h6v.s8.b7f91b52335f from=translated src=- shape=91478cd4 vocab=ec9d512b
+-/
 theorem twoSidedEndomorphismSpan_le_of_mem
     {X Y : C} {f g : X ⟶ Y}
     (hg : g ∈ twoSidedEndomorphismSpan (k := k) f) :

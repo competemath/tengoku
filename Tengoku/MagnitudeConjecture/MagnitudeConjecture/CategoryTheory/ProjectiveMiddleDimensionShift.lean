@@ -27,7 +27,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C] [Linear k C]
   [HasExt.{w} C]
 
 /-- The connecting map in positive degree is bijective when the middle term
-of the short exact sequence is projective.-/
+of the short exact sequence is projective.
+@isnad1 id=bijectiv.1h5v.s9.2b9f98db629d from=translated src=- shape=49a4a07d vocab=12657eb2
+-/
 theorem connecting_bijective
     {S : ShortComplex C} (hS : S.ShortExact) [Projective S.X₂]
     (Y : C) (n : ℕ) :
@@ -64,6 +66,9 @@ def linearEquiv
       (show 1 + (n + 1) = n + 2 by omega))
     (connecting_bijective (k := k) hS Y n)
 
+/--
+@isnad1 id=eq.1h6v.s10.41183557bc24 from=translated src=- shape=e4206912 vocab=fb6b30fa
+-/
 @[simp]
 theorem linearEquiv_apply
     {S : ShortComplex C} (hS : S.ShortExact) [Projective S.X₂]
@@ -73,7 +78,9 @@ theorem linearEquiv_apply
   rfl
 
 /-- Dimension shifting is natural under postcomposition in the second Ext
-variable.-/
+variable.
+@isnad1 id=eq.1h8v.s11.a9192bcf2f28 from=translated src=- shape=fd85f33a vocab=ba7487d8
+-/
 theorem linearEquiv_postcomp
     {S : ShortComplex C} (hS : S.ShortExact) [Projective S.X₂]
     {Y Z : C} (a : Y ⟶ Z) (n : ℕ)

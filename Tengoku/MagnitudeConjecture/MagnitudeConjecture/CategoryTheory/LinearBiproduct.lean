@@ -89,7 +89,9 @@ def biproductHomLinearEquivOfIso (X Y : C) (F : J → C)
     (biproductHomLinearEquiv k Y F)
 
 /-- Hom dimension into a displayed finite biproduct is the sum of the Hom
-dimensions into its summands.-/
+dimensions into its summands.
+@isnad1 id=eq.0h7v.s8.2c2b434e255a from=translated src=- shape=65fd6b8d vocab=da9ed806
+-/
 theorem finrank_hom_eq_sum_of_iso_biproduct
     (X Y : C) (F : J → C) (e : Y ≅ ⨁ F)
     [FiniteDimensional k (X ⟶ Y)]
@@ -104,7 +106,9 @@ theorem finrank_hom_eq_sum_of_iso_biproduct
       Module.finrank_pi_fintype k
 
 /-- Hom dimension from a displayed finite biproduct is the sum of the Hom
-dimensions from its summands.-/
+dimensions from its summands.
+@isnad1 id=eq.0h7v.s8.c7bbed52dc72 from=translated src=- shape=d5effb95 vocab=da9ed806
+-/
 theorem finrank_hom_eq_sum_of_biproduct_iso
     (X Y : C) (F : J → C) (e : X ≅ ⨁ F)
     [FiniteDimensional k (X ⟶ Y)]

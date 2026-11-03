@@ -15,7 +15,9 @@ variable (hneg : ∀ d : ℤ, d < 0 → R.component d = ⊥)
 include hmul hneg
 
 /-- The product coefficient between interval degrees is the sum over intermediate
-interval degrees: no term can leave the interval and then return.-/
+interval degrees: no term can leave the interval and then return.
+@isnad1 id=eq.2h8v.s10.7a4ca9ad20ba from=translated src=- shape=05538b15 vocab=b97186d2
+-/
 theorem interval_convolution (m : ℕ) (r t : Fin (m + 1)) (a b : A) :
     R.projection ((r.val : ℤ) - t.val) (a * b) =
       ∑ s : Fin (m + 1), R.projection ((r.val : ℤ) - s.val) a *

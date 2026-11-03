@@ -37,11 +37,17 @@ def pointMap (V : FGModuleCat.{u} k) (v : V) :
     FGModuleCat.of k k ⟶ V :=
   FGModuleCat.ofHom (LinearMap.toSpanSingleton k V v)
 
+/--
+@isnad1 id=eq.0h4v.s10.c79c9e763842 from=translated src=- shape=fc8fc2bb vocab=d1a95f08
+-/
 @[simp]
 theorem pointMap_apply (V : FGModuleCat.{u} k) (v : V) (a : k) :
     (pointMap V v).hom.hom a = a • v :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.676993cdd2c9 from=translated src=- shape=5c65f02c vocab=7d690e2a
+-/
 @[simp]
 theorem pointMap_add (V : FGModuleCat.{u} k) (v w : V) :
     pointMap V (v + w) = pointMap V v + pointMap V w := by
@@ -49,6 +55,9 @@ theorem pointMap_add (V : FGModuleCat.{u} k) (v w : V) :
   rw [LinearMap.toSpanSingleton_add]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.f2925808f185 from=translated src=- shape=5c85abf9 vocab=028e00ad
+-/
 @[simp]
 theorem pointMap_smul (V : FGModuleCat.{u} k) (r : k) (v : V) :
     pointMap V (r • v) = r • pointMap V v := by
@@ -93,6 +102,9 @@ def functorEvaluation
     (F.obj (FGModuleCat.of k k) ⊗ V) ⟶ F.obj V :=
   FGModuleCat.ofHom (TensorProduct.lift (functorEvaluationBilinear F V))
 
+/--
+@isnad1 id=eq.0h5v.s12.90a8bc464de7 from=translated src=- shape=70574812 vocab=4a3a2a50
+-/
 @[simp]
 theorem functorEvaluation_tmul
     (F : FGModuleCat.{u} k ⥤ FGModuleCat.{u} k)
@@ -129,6 +141,9 @@ def functorEvaluationNatTrans
     exact congrArg (fun q ↦ q.hom.hom x)
       (F.map_comp (pointMap V v) f)
 
+/--
+@isnad1 id=eq.0h5v.s10.1bd2f21843a2 from=translated src=- shape=9d62201d vocab=318194eb
+-/
 @[simp]
 theorem hom_hom_sum {ι : Type*} [Fintype ι]
     {V W : FGModuleCat.{u} k} (f : ι → (V ⟶ W)) :
@@ -144,13 +159,18 @@ def coordinateMap {ι : Type*} [Fintype ι]
     V ⟶ FGModuleCat.of k k :=
   FGModuleCat.ofHom (b.coord i)
 
+/--
+@isnad1 id=eq.0h6v.s10.33c9559b55f3 from=translated src=- shape=83a78578 vocab=f2606124
+-/
 @[simp]
 theorem coordinateMap_apply {ι : Type*} [Fintype ι]
     (V : FGModuleCat.{u} k) (b : Module.Basis ι k V) (i : ι) (v : V) :
     (coordinateMap V b i).hom.hom v = b.repr v i :=
   rfl
 
-/-- The rank-one maps supplied by a finite basis sum to the identity.-/
+/-- The rank-one maps supplied by a finite basis sum to the identity.
+@isnad1 id=eq.0h4v.s9.8443aa65e5ec from=translated src=- shape=7ae29911 vocab=0e6b4464
+-/
 theorem sum_coordinateMap_comp_pointMap_eq_id {ι : Type*} [Fintype ι]
     (V : FGModuleCat.{u} k) (b : Module.Basis ι k V) :
     ∑ i, coordinateMap V b i ≫ pointMap V (b i) = 𝟙 V := by
@@ -173,6 +193,9 @@ def functorEvaluationSection
       (F.obj (FGModuleCat.of k k) : Type u) V).flip (b i)).comp
         (F.map (coordinateMap V b i)).hom.hom)
 
+/--
+@isnad1 id=eq.0h4v.s13.f3cba2bef46d from=translated src=- shape=7565f1f7 vocab=e70e8b51
+-/
 @[simp]
 theorem functorEvaluationSection_apply
     (F : FGModuleCat.{u} k ⥤ FGModuleCat.{u} k)
@@ -189,7 +212,9 @@ theorem functorEvaluationSection_apply
   rw [LinearMap.sum_apply]
   rfl
 
-/-- The basis section is a right inverse of the canonical evaluation map.-/
+/-- The basis section is a right inverse of the canonical evaluation map.
+@isnad1 id=eq.0h3v.s9.13b47ed1c35b from=translated src=- shape=7b4e2f4a vocab=fa17056e
+-/
 theorem functorEvaluationSection_comp_evaluation
     (F : FGModuleCat.{u} k ⥤ FGModuleCat.{u} k)
     [F.Additive] [F.Linear k] (V : FGModuleCat.{u} k) :
@@ -218,7 +243,9 @@ theorem functorEvaluationSection_comp_evaluation
   rfl
 
 /-- The canonical evaluation map of an additive linear endofunctor is
-bijective on every finite-dimensional vector space.-/
+bijective on every finite-dimensional vector space.
+@isnad1 id=bijectiv.0h3v.s11.a0307714fd38 from=translated src=- shape=b2c9b5e7 vocab=77616f5f
+-/
 theorem functorEvaluation_bijective
     (F : FGModuleCat.{u} k ⥤ FGModuleCat.{u} k)
     [F.Additive] [F.Linear k] (V : FGModuleCat.{u} k) :

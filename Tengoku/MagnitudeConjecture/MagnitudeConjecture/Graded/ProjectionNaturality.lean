@@ -12,6 +12,9 @@ variable [AddCommGroup N] [Module k N] [Module A N] [IsScalarTower k A N]
 variable {R : VectorGrading k A}
 variable (G : ModuleGrading (M := M) R) (H : ModuleGrading (M := N) R)
 
+/--
+@isnad1 id=eq.1h11v.s9.fc304da87056 from=translated src=- shape=0e3d228d vocab=903b0ae7
+-/
 theorem projection_map_homogeneous (f : M →ₗ[A] N) (t : ℤ) (hf : G.Homogeneous H t f)
     (d : ℤ) (x : M) : H.projection (d + t) (f x) = f (G.projection d x) := by
   classical
@@ -29,6 +32,9 @@ theorem projection_map_homogeneous (f : M →ₗ[A] N) (t : ℤ) (hf : G.Homogen
   · intro x y hx hy
     simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h12v.s9.4cf23c0f8598 from=translated src=- shape=b40cf201 vocab=5769a60a
+-/
 theorem idempotentProjection_map (f : M →ₗ[A] N) (t : ℤ) (hf : G.Homogeneous H t f)
     (e : A) (d : ℤ) (x : M) :
     H.idempotentProjection e (d + t) (f x) = f (G.idempotentProjection e d x) := by

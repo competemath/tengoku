@@ -22,15 +22,24 @@ variable {k M : Type*} [Field k] [AddCommGroup M] [Module k M]
 def integerComponent (A : ℕ → Submodule k M) (d : ℤ) : Submodule k M :=
   if 0 ≤ d then A d.toNat else ⊥
 
+/--
+@isnad1 id=eq.0h4v.s6.a8d137d2bd5d from=translated src=- shape=bd986a17 vocab=08a8520e
+-/
 @[simp]
 theorem integerComponent_nat (A : ℕ → Submodule k M) (n : ℕ) :
     integerComponent A (n : ℤ) = A n := by
   simp [integerComponent]
 
+/--
+@isnad1 id=eq.1h4v.s6.c6aa0f0d87c2 from=translated src=- shape=299dd18f vocab=2a732140
+-/
 theorem integerComponent_negative (A : ℕ → Submodule k M) (d : ℤ) (hd : d < 0) :
     integerComponent A d = ⊥ := by
   simp [integerComponent, show ¬ 0 ≤ d by omega]
 
+/--
+@isnad1 id=isintern.1h3v.s6.6a9b1307faa2 from=translated src=- shape=11f8c3ae vocab=441a9801
+-/
 theorem integerComponent_isInternal (A : ℕ → Submodule k M)
     (hA : DirectSum.IsInternal A) : DirectSum.IsInternal (integerComponent A) := by
   apply DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top

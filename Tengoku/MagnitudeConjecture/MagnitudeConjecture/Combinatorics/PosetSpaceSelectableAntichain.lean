@@ -38,7 +38,9 @@ structure ConsecutiveAntichainBlockFor (R : ReverseEnumeration T) (q : ℕ)
     s ≤ t → s = t
 
 /-- Three prescribed consecutive antichain elements certify that their
-positions form an antichain block.-/
+positions form an antichain block.
+@isnad1 id=consecut.5h6v.s6.dd338689b8ec from=translated src=- shape=abdd007a vocab=f5ef5fe9
+-/
 theorem consecutiveAntichainBlockForOfThree
     (R : ReverseEnumeration T) {a b c : T} (H : IsThreeAntichain a b c)
     (q : ℕ) (hq : q + 2 < Fintype.card T)
@@ -204,6 +206,9 @@ def blockOutMapFor (R : ReverseEnumeration T) (q : ℕ)
           simp
       simpa [supportLineFor, supportAtFor, htargetle, hzero]
 
+/--
+@isnad1 id=ne.2h4v.s8.122be6a2f228 from=translated src=- shape=37644116 vocab=12d59ed8
+-/
 theorem blockInMapFor_ne_zero (R : ReverseEnumeration T) (q : ℕ)
     (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlockFor R q hq) :
@@ -213,6 +218,9 @@ theorem blockInMapFor_ne_zero (R : ReverseEnumeration T) (q : ℕ)
   change ((1 : k), 0) = (0, 0) at h
   exact one_ne_zero (congrArg Prod.fst h)
 
+/--
+@isnad1 id=ne.2h4v.s8.15ebb2c501c3 from=translated src=- shape=7b475df7 vocab=5c470a55
+-/
 theorem blockOutMapFor_ne_zero (R : ReverseEnumeration T) (q : ℕ)
     (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlockFor R q hq) :
@@ -224,6 +232,9 @@ theorem blockOutMapFor_ne_zero (R : ReverseEnumeration T) (q : ℕ)
   rw [hcalc, zero_linear, LinearMap.zero_apply] at h
   exact one_ne_zero h
 
+/--
+@isnad1 id=not.2h4v.s6.c01ac49ca226 from=translated src=- shape=d3ed031c vocab=c2977c8a
+-/
 theorem blockInMapFor_not_isIso (R : ReverseEnumeration T) (q : ℕ)
     (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlockFor R q hq) :
@@ -232,6 +243,9 @@ theorem blockInMapFor_not_isIso (R : ReverseEnumeration T) (q : ℕ)
   simp only [Module.finrank_self, Module.finrank_prod]
   omega
 
+/--
+@isnad1 id=not.2h4v.s6.bca9a5c43391 from=translated src=- shape=c7987ca8 vocab=df75cd3d
+-/
 theorem blockOutMapFor_not_isIso (R : ReverseEnumeration T) (q : ℕ)
     (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlockFor R q hq) :
@@ -240,7 +254,9 @@ theorem blockOutMapFor_not_isIso (R : ReverseEnumeration T) (q : ℕ)
   simp only [Module.finrank_self, Module.finrank_prod]
   omega
 
-/-- The selectable global three-line plane is Schur.-/
+/-- The selectable global three-line plane is Schur.
+@isnad1 id=isschur.2h4v.s5.1d2864730a5b from=translated src=- shape=e2283b7f vocab=ce1540d1
+-/
 theorem blockThreeLinePlaneFor_isSchur (R : ReverseEnumeration T) (q : ℕ)
     (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlockFor R q hq) :
@@ -322,7 +338,9 @@ def ConsecutiveAntichainBlockFor.selectableSchurDetour
   outMap_not_isIso := blockOutMapFor_not_isIso k R q hq D
 
 /-- The manuscript's strict realization bound whenever the poset contains a
-three-element antichain.-/
+three-element antichain.
+@isnad1 id=le.1h7v.s6.d2a4dfa4abed from=translated src=- shape=e17d7366 vocab=5d28e714
+-/
 theorem card_add_one_le_of_threeAntichain {a b c : T} {L : ℕ}
     (H : IsThreeAntichain a b c)
     (G : PositiveGrading (Obj k T) (IsSchur k T) L) :

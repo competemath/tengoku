@@ -70,7 +70,9 @@ def coxeterInv (D : WeaklyPositiveCartanData (ι := ι)) : Matrix ι ι ℤ :=
   inverseCoxeterMatrix D.C D.Cinv
 
 omit [DecidableEq ι] in
-/-- Polarization of the integral quadratic form.-/
+/-- Polarization of the integral quadratic form.
+@isnad1 id=eq.0h4v.s6.204b30c9d90d from=translated src=- shape=50e9bea1 vocab=5c4e3f4d
+-/
 theorem quadraticForm_add (Cinv : Matrix ι ι ℤ) (x y : ι → ℤ) :
     quadraticForm Cinv (x + y) =
       quadraticForm Cinv x + quadraticForm Cinv y +
@@ -81,7 +83,9 @@ theorem quadraticForm_add (Cinv : Matrix ι ι ℤ) (x y : ι → ℤ) :
   ring
 
 /-- The polarized pairing with a projective root is the coordinate change
-under the Coxeter transformation.-/
+under the Coxeter transformation.
+@isnad1 id=eq.1h5v.s7.2fa8f8c0af63 from=translated src=- shape=5c3141d8 vocab=3e411003
+-/
 theorem crossTerm_projectiveRoot
     (C Cinv : Matrix ι ι ℤ) (hinv : Cinv * C = 1)
     (x : ι → ℤ) (a : ι) :
@@ -108,7 +112,9 @@ theorem crossTerm_projectiveRoot
     _ = Matrix.vecMul x (Cinv.transpose * C) a := by
       rw [Matrix.vecMul_vecMul]
 
-/-- Every Cartan column is a positive integral vector.-/
+/-- Every Cartan column is a positive integral vector.
+@isnad1 id=ispositi.0h3v.s4.d964ac952695 from=translated src=- shape=8595b6da vocab=6a260dc8
+-/
 theorem projectiveRoot_positive
     (D : WeaklyPositiveCartanData (ι := ι)) (a : ι) :
     IsPositive (projectiveRoot D.C a) := by
@@ -118,7 +124,9 @@ theorem projectiveRoot_positive
     have h := congrFun hzero a
     simp [projectiveRoot, D.diagonal a] at h
 
-/-- Every Cartan column is a root of the quadratic form.-/
+/-- Every Cartan column is a root of the quadratic form.
+@isnad1 id=eq.0h3v.s5.7be34ccafa2f from=translated src=- shape=f53d6934 vocab=e7181716
+-/
 theorem projectiveRoot_quadraticForm
     (D : WeaklyPositiveCartanData (ι := ι)) (a : ι) :
     quadraticForm D.Cinv (projectiveRoot D.C a) = 1 := by
@@ -134,7 +142,9 @@ theorem projectiveRoot_quadraticForm
   simp [projectiveRoot, D.diagonal a]
 
 /-- Forward half of the quadratic estimate: a positive root changes
-upward by at most one under the Coxeter transformation.-/
+upward by at most one under the Coxeter transformation.
+@isnad1 id=le.2h4v.s6.a7ed201b9525 from=translated src=- shape=d438bb6b vocab=65ea01b7
+-/
 theorem coxeter_apply_le_add_one
     (D : WeaklyPositiveCartanData (ι := ι)) (x : ι → ℤ)
     (hxpos : IsPositive x) (hxroot : quadraticForm D.Cinv x = 1)
@@ -164,7 +174,9 @@ theorem coxeter_apply_le_add_one
   rw [hqadd] at hweak
   omega
 
-/-- The displayed Coxeter inverse is a right inverse.-/
+/-- The displayed Coxeter inverse is a right inverse.
+@isnad1 id=eq.0h2v.s6.c78fd9af0e12 from=translated src=- shape=1c193597 vocab=b8ccb85b
+-/
 theorem coxeter_mul_coxeterInv
     (D : WeaklyPositiveCartanData (ι := ι)) :
     D.coxeter * D.coxeterInv = 1 := by
@@ -179,7 +191,9 @@ theorem coxeter_mul_coxeterInv
     _ = (D.C * D.Cinv).transpose := by rw [Matrix.transpose_mul]
     _ = 1 := by rw [D.mul_inverse]; simp
 
-/-- The Coxeter transformation preserves the inverse-Cartan bilinear matrix.-/
+/-- The Coxeter transformation preserves the inverse-Cartan bilinear matrix.
+@isnad1 id=eq.0h2v.s6.913fcace3c48 from=translated src=- shape=8aa5e223 vocab=5c8931e1
+-/
 theorem coxeter_mul_Cinv_mul_transpose
     (D : WeaklyPositiveCartanData (ι := ι)) :
     D.coxeter * D.Cinv * D.coxeter.transpose = D.Cinv := by
@@ -195,7 +209,9 @@ theorem coxeter_mul_Cinv_mul_transpose
     _ = D.Cinv := by rw [D.mul_inverse]; simp
 
 /-- The inverse-Cartan quadratic form is invariant under the Coxeter
-transformation.-/
+transformation.
+@isnad1 id=eq.0h3v.s5.5787d78bdf46 from=translated src=- shape=e79bc929 vocab=0a5c84e1
+-/
 theorem quadraticForm_coxeter
     (D : WeaklyPositiveCartanData (ι := ι)) (x : ι → ℤ) :
     quadraticForm D.Cinv (Matrix.vecMul x D.coxeter) =
@@ -223,7 +239,9 @@ theorem quadraticForm_coxeter
       rw [D.coxeter_mul_Cinv_mul_transpose]
 
 /-- Applying the Coxeter transformation and then its displayed inverse
-returns the original row vector.-/
+returns the original row vector.
+@isnad1 id=eq.0h3v.s5.265c64d946fe from=translated src=- shape=57c7662c vocab=1e6610c0
+-/
 theorem vecMul_coxeter_coxeterInv
     (D : WeaklyPositiveCartanData (ι := ι)) (x : ι → ℤ) :
     Matrix.vecMul (Matrix.vecMul x D.coxeter) D.coxeterInv = x := by
@@ -231,7 +249,9 @@ theorem vecMul_coxeter_coxeterInv
   simp
 
 omit [DecidableEq ι] in
-/-- Transposing the inverse matrix leaves its quadratic form unchanged.-/
+/-- Transposing the inverse matrix leaves its quadratic form unchanged.
+@isnad1 id=eq.0h3v.s4.1878b1be9187 from=translated src=- shape=ecd948a5 vocab=365a6309
+-/
 theorem quadraticForm_transpose (M : Matrix ι ι ℤ) (x : ι → ℤ) :
     quadraticForm M.transpose x = quadraticForm M x := by
   unfold quadraticForm
@@ -262,6 +282,9 @@ def transpose (D : WeaklyPositiveCartanData (ι := ι)) :
     rw [quadraticForm_transpose]
     exact D.weaklyPositive x hx
 
+/--
+@isnad1 id=eq.0h2v.s5.96c9f64ca13c from=translated src=- shape=b06e7fc4 vocab=3f98b186
+-/
 @[simp]
 theorem transpose_coxeter
     (D : WeaklyPositiveCartanData (ι := ι)) :
@@ -271,7 +294,9 @@ theorem transpose_coxeter
 
 /-- Quadratic-form form of the coordinate estimate.  If both `x`
 and its Coxeter transform are positive roots, every coordinate changes by at
-most one.-/
+most one.
+@isnad1 id=le.4h4v.s7.21d1d20300c1 from=translated src=- shape=22eed078 vocab=549b0eb5
+-/
 theorem coxeter_coordinate_abs_sub_le_one
     (D : WeaklyPositiveCartanData (ι := ι)) (x : ι → ℤ)
     (hxpos : IsPositive x) (hxroot : quadraticForm D.Cinv x = 1)
@@ -325,7 +350,9 @@ structure LocalRootPairCoordinateData (a b : ℤ) where
 namespace LocalRootPairCoordinateData
 
 /-- The local positive-root package implies the manuscript's bound for its
-identified coordinate.-/
+identified coordinate.
+@isnad1 id=le.0h3v.s4.32749916efc6 from=translated src=- shape=ef99d033 vocab=c3b6df40
+-/
 theorem abs_sub_le_one {a b : ℤ} (D : LocalRootPairCoordinateData a b) :
     abs (a - b) ≤ 1 := by
   letI := D.indexFintype

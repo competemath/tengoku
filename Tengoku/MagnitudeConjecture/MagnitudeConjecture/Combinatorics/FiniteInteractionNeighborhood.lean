@@ -29,6 +29,9 @@ variable {X : Type v}
 def interactionNeighborhood (R : X → X → Prop) (W : Set X) : Set X :=
   {y | ∃ x ∈ W, R x y}
 
+/--
+@isnad1 id=iff.0h4v.s5.8015958616ce from=translated src=- shape=e3e77be7 vocab=df54620c
+-/
 @[simp]
 theorem mem_interactionNeighborhood_iff
     (R : X → X → Prop) (W : Set X) (y : X) :
@@ -36,14 +39,18 @@ theorem mem_interactionNeighborhood_iff
   Iff.rfl
 
 /-- A reflexive interaction relation makes each window lie in its first
-enlargement.-/
+enlargement.
+@isnad1 id=le.0h4v.s4.cd7116b19edd from=translated src=- shape=e7014483 vocab=3a50b246
+-/
 theorem subset_interactionNeighborhood
     (R : X → X → Prop) (reflexive : ∀ x : X, R x x) (W : Set X) :
     W ⊆ interactionNeighborhood R W := by
   intro x hx
   exact ⟨x, hx, reflexive x⟩
 
-/-- Interaction-neighborhood enlargement is monotone in the seed set.-/
+/-- Interaction-neighborhood enlargement is monotone in the seed set.
+@isnad1 id=monotone.0h2v.s5.5d91f2c61170 from=translated src=- shape=dc84b615 vocab=bcacf6fd
+-/
 theorem interactionNeighborhood_mono
     (R : X → X → Prop) :
     Monotone (interactionNeighborhood R) := by
@@ -52,7 +59,9 @@ theorem interactionNeighborhood_mono
   exact ⟨x, hUW hx, hxy⟩
 
 /-- A finite set has finite interaction neighborhood when every point has only
-finitely many interaction neighbors.-/
+finitely many interaction neighbors.
+@isnad1 id=finite.2h3v.s5.dd515945b552 from=translated src=- shape=75ff3a80 vocab=f5daf664
+-/
 theorem interactionNeighborhood_finite
     (R : X → X → Prop)
     (locallyFinite : ∀ x : X, {y : X | R x y}.Finite)
@@ -71,12 +80,18 @@ def iterateInteractionNeighborhood (R : X → X → Prop) :
   | n + 1, W =>
       interactionNeighborhood R (iterateInteractionNeighborhood R n W)
 
+/--
+@isnad1 id=eq.0h3v.s4.6324ae7a9a5e from=translated src=- shape=8ebe66fe vocab=c9f9f592
+-/
 @[simp]
 theorem iterateInteractionNeighborhood_zero
     (R : X → X → Prop) (W : Set X) :
     iterateInteractionNeighborhood R 0 W = W :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fd20d0f8093d from=translated src=- shape=f1c82554 vocab=4913e5e3
+-/
 @[simp]
 theorem iterateInteractionNeighborhood_succ
     (R : X → X → Prop) (n : ℕ) (W : Set X) :
@@ -84,7 +99,9 @@ theorem iterateInteractionNeighborhood_succ
       interactionNeighborhood R (iterateInteractionNeighborhood R n W) :=
   rfl
 
-/-- Every finite seed has finite iterated neighborhoods.-/
+/-- Every finite seed has finite iterated neighborhoods.
+@isnad1 id=finite.2h4v.s5.badaaf3001d2 from=translated src=- shape=1244932b vocab=9d1f1c2a
+-/
 theorem iterateInteractionNeighborhood_finite
     (R : X → X → Prop)
     (locallyFinite : ∀ x : X, {y : X | R x y}.Finite)
@@ -94,7 +111,9 @@ theorem iterateInteractionNeighborhood_finite
   | n + 1 => interactionNeighborhood_finite R locallyFinite _
       (iterateInteractionNeighborhood_finite R locallyFinite W hW n)
 
-/-- For a reflexive relation the control windows form an increasing sequence.-/
+/-- For a reflexive relation the control windows form an increasing sequence.
+@isnad1 id=le.0h5v.s5.18ff17b964b9 from=translated src=- shape=a159b187 vocab=f87410f0
+-/
 theorem iterateInteractionNeighborhood_subset_succ
     (R : X → X → Prop) (reflexive : ∀ x : X, R x x)
     (W : Set X) (n : ℕ) :
@@ -105,7 +124,9 @@ theorem iterateInteractionNeighborhood_subset_succ
 variable {G : Type u} [Group G] [MulAction G X]
 
 /-- Invariance of the interaction relation makes one neighborhood enlargement
-commute with the group action.-/
+commute with the group action.
+@isnad1 id=eq.1h5v.s7.e39e99187e00 from=translated src=- shape=a310926a vocab=a31a03d0
+-/
 theorem interactionNeighborhood_smul
     (R : X → X → Prop)
     (invariant : ∀ (g : G) (x y : X), R (g • x) (g • y) ↔ R x y)
@@ -124,7 +145,9 @@ theorem interactionNeighborhood_smul
     · have := (invariant g x (g⁻¹ • y)).mpr hxy
       simpa only [smul_smul, mul_inv_cancel, one_smul] using this
 
-/-- Every iterated control window commutes with the group action.-/
+/-- Every iterated control window commutes with the group action.
+@isnad1 id=eq.1h6v.s7.ffef05695edc from=translated src=- shape=e839a567 vocab=39294f5b
+-/
 theorem iterateInteractionNeighborhood_smul
     (R : X → X → Prop)
     (invariant : ∀ (g : G) (x y : X), R (g • x) (g • y) ↔ R x y)
@@ -147,7 +170,9 @@ enlargements.-/
 def threeStepControlWindow (R : X → X → Prop) (W : Set X) : Set X :=
   iterateInteractionNeighborhood R 3 W
 
-/-- The three-step control window of a finite seed is finite.-/
+/-- The three-step control window of a finite seed is finite.
+@isnad1 id=finite.2h3v.s5.3900c3991891 from=translated src=- shape=75ff3a80 vocab=73aca635
+-/
 theorem threeStepControlWindow_finite
     (R : X → X → Prop)
     (locallyFinite : ∀ x : X, {y : X | R x y}.Finite)
@@ -155,7 +180,9 @@ theorem threeStepControlWindow_finite
     (threeStepControlWindow R W).Finite :=
   iterateInteractionNeighborhood_finite R locallyFinite W hW 3
 
-/-- The three-step control-window construction is equivariant.-/
+/-- The three-step control-window construction is equivariant.
+@isnad1 id=eq.1h5v.s7.3de7a55bc964 from=translated src=- shape=a310926a vocab=f8d40571
+-/
 theorem threeStepControlWindow_smul
     (R : X → X → Prop)
     (invariant : ∀ (g : G) (x y : X), R (g • x) (g • y) ↔ R x y)

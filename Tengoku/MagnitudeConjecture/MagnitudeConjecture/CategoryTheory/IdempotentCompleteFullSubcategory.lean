@@ -20,7 +20,9 @@ namespace MagnitudeConjecture
 universe u v
 
 /-- A retract-stable full subcategory of an idempotent-complete category is
-idempotent-complete.-/
+idempotent-complete.
+@isnad1 id=isidempo.0h2v.s4.da323cb8edd6 from=translated src=- shape=300f4aff vocab=6f0739e2
+-/
 theorem isIdempotentComplete_fullSubcategory_of_stableUnderRetracts
     {C : Type u} [Category.{v} C] (P : ObjectProperty C)
     [P.IsStableUnderRetracts] [IsIdempotentComplete C] :

@@ -26,7 +26,9 @@ variable {C : Type u} [Category.{v} C] [Preadditive C]
   [Linear k C] [HasBinaryBiproducts C]
 
 /-- A nonzero object with only scalar endomorphisms cannot split as a
-biproduct of two nonzero objects.-/
+biproduct of two nonzero objects.
+@isnad1 id=indecomp.2h3v.s8.622b89922e45 from=translated src=- shape=5fd562e6 vocab=47320657
+-/
 theorem indecomposable_of_endomorphism_eq_smul_id
     (X : C) (hX : ¬ IsZero X)
     (hscalar : ∀ f : X ⟶ X, ∃ c : k, c • 𝟙 X = f) :

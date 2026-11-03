@@ -35,6 +35,9 @@ def explicitBasisOfFamily
   rw [hfamily] at hspan
   exact hspan.ge
 
+/--
+@isnad1 id=eq.1h6v.s6.c1e045a25283 from=translated src=- shape=f2d2faa7 vocab=8d2e18fd
+-/
 @[simp]
 theorem explicitBasisOfFamily_apply
     {ι R M : Type u} [Semiring R] [AddCommMonoid M] [Module R M]
@@ -52,7 +55,9 @@ def piSingle
   exact Pi.single a x
 
 /-- Equality in the selected coordinate gives equality of the corresponding
-single-coordinate vectors.-/
+single-coordinate vectors.
+@isnad1 id=eq.1h5v.s5.0c05e671c8a9 from=translated src=- shape=e116bf0a vocab=8c80059f
+-/
 theorem piSingle_congr
     {η : Type u} {M : η → Type u} [∀ a, Zero (M a)]
     {a : η} {x y : M a} (h : x = y) :
@@ -78,6 +83,9 @@ def piBasisVector
     (t : Σ a, ι a) : ∀ a, M a :=
   piSingle t.1 (s t.1 t.2)
 
+/--
+@isnad1 id=eq.0h7v.s7.1c07cc8bc50b from=translated src=- shape=98a8814f vocab=aa154af5
+-/
 @[simp]
 theorem piBasisVector_mk
     {R η : Type u} {ι : η → Type u} {M : η → Type u}
@@ -87,7 +95,9 @@ theorem piBasisVector_mk
     piBasisVector s ⟨a, i⟩ = piSingle a (s a i) :=
   rfl
 
-/-- The named single-coordinate basis vectors span the dependent product.-/
+/-- The named single-coordinate basis vectors span the dependent product.
+@isnad1 id=eq.0h5v.s7.891a97bb9b84 from=translated src=- shape=190d3717 vocab=b243b60c
+-/
 theorem span_range_piBasisVector_eq_top
     {R η : Type u} {ι : η → Type u} {M : η → Type u}
     [Semiring R] [Fintype η]
@@ -119,6 +129,9 @@ def piExplicitBasis
   apply Module.Basis.mk hli
   exact (span_range_piBasisVector_eq_top s).ge
 
+/--
+@isnad1 id=eq.0h6v.s7.5480b45d647a from=translated src=- shape=97dd3624 vocab=a7bb2e1c
+-/
 @[simp]
 theorem piExplicitBasis_apply
     {R η : Type u} {ι : η → Type u} {M : η → Type u}

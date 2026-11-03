@@ -24,7 +24,9 @@ universe u v
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- A commutative square whose top map is split epic is a pullback when the
-restriction of its left map to the top kernel is a kernel of the bottom map.-/
+restriction of its left map to the top kernel is a kernel of the bottom map.
+@isnad1 id=ispullba.1h10v.s7.66e66354b2c7 from=translated src=- shape=8830e5ee vocab=b32a7aaa
+-/
 theorem isPullback_of_splitEpi_of_kernel_restriction
     {E P D Q : C} (t : E ⟶ P) (b : E ⟶ D) (q : P ⟶ Q) (h : D ⟶ Q)
     [IsSplitEpi t] (hsq : b ≫ h = t ≫ q)

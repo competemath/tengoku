@@ -27,6 +27,9 @@ variable {k : Type uk} {M : Type uM} {E : Type uE} [CommRing k]
 def annihilator (N : Submodule k M) : Submodule k (M →ₗ[k] E) :=
   LinearMap.ker (LinearMap.lcomp k E N.subtype)
 
+/--
+@isnad1 id=iff.0h5v.s9.69edb7afb77d from=translated src=- shape=a85730bd vocab=2dd96c7e
+-/
 @[simp]
 theorem mem_annihilator_iff (N : Submodule k M) (phi : M →ₗ[k] E) :
     phi ∈ annihilator (E := E) N ↔ ∀ n ∈ N, phi n = 0 := by
@@ -39,7 +42,9 @@ theorem mem_annihilator_iff (N : Submodule k M) (phi : M →ₗ[k] E) :
     ext n
     exact h n.1 n.2
 
-/-- Dual precomposition by `t` has image the annihilator of `ker t`.-/
+/-- Dual precomposition by `t` has image the annihilator of `ker t`.
+@isnad1 id=eq.0h5v.s9.d89f7995f46a from=translated src=- shape=5705a220 vocab=388fa08a
+-/
 theorem range_lcomp_eq_annihilator_ker
     {N : Type uN} [AddCommGroup N] [Module k N]
     [Small.{uE} k] [Module.Injective k E]

@@ -17,7 +17,9 @@ variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 variable {R : VectorGrading k A}
 
 /-- Distinct shifts of a nonzero finite-dimensional graded module are not
-isomorphic by homogeneous degree-preserving maps.-/
+isomorphic by homogeneous degree-preserving maps.
+@isnad1 id=eq.0h7v.s7.6ba37c21b592 from=translated src=- shape=d9f331a3 vocab=166b1dcc
+-/
 theorem shift_eq_of_iso (X : FiniteGradedModule.{u,v} R) [Nontrivial X.module]
     (s t : ℤ)
     (e : (⟨X, s⟩ : GradedCategory.DegreeObject homGrading) ≅ ⟨X, t⟩) : s = t := by

@@ -43,12 +43,17 @@ def toFullSupport (Y : Obj k T) : Y ⟶ fullSupport Y where
     intro t x hx
     exact Submodule.mem_top
 
+/--
+@isnad1 id=eq.0h3v.s7.0cfa8418fa83 from=translated src=- shape=783543cd vocab=64f0d71e
+-/
 @[simp]
 theorem toFullSupport_linear (Y : Obj k T) :
     (toFullSupport Y).linear = (LinearMap.id : Y →ₗ[k] Y) :=
   rfl
 
-/-- An injective underlying linear map is a monomorphism of poset spaces.-/
+/-- An injective underlying linear map is a monomorphism of poset spaces.
+@isnad1 id=mono.1h5v.s8.f80c675f1582 from=translated src=- shape=a5fef87a vocab=4651c626
+-/
 theorem mono_of_linear_injective {X Y : Obj k T} (f : X ⟶ Y)
     (hf : Function.Injective f.linear) : Mono f := by
   constructor
@@ -60,7 +65,9 @@ theorem mono_of_linear_injective {X Y : Obj k T} (f : X ⟶ Y)
   have happ := congrArg (fun q : Z ⟶ Y ↦ q.linear z) hgh
   exact happ
 
-/-- A surjective underlying linear map is an epimorphism of poset spaces.-/
+/-- A surjective underlying linear map is an epimorphism of poset spaces.
+@isnad1 id=epi.1h5v.s8.0f8dc8d934ca from=translated src=- shape=a5fef87a vocab=b113a0da
+-/
 theorem epi_of_linear_surjective {X Y : Obj k T} (f : X ⟶ Y)
     (hf : Function.Surjective f.linear) : Epi f := by
   constructor
@@ -72,7 +79,9 @@ theorem epi_of_linear_surjective {X Y : Obj k T} (f : X ⟶ Y)
   have happ := congrArg (fun q : X ⟶ Z ↦ q.linear x) hgh
   exact happ
 
-/-- The canonical map into the full-support envelope is monic.-/
+/-- The canonical map into the full-support envelope is monic.
+@isnad1 id=mono.0h3v.s5.a1fb703f0a0d from=translated src=- shape=632807e8 vocab=7a4ccb7a
+-/
 theorem toFullSupport_mono (Y : Obj k T) : Mono (toFullSupport Y) :=
   mono_of_linear_injective (toFullSupport Y) (fun _ _ h ↦ h)
 
@@ -89,7 +98,9 @@ def EssentialImageClosedUnderSubobjects
     ∃ Z : C, Nonempty (D.obj Z ≅ Y)
 
 /-- Once all full-support envelopes are represented, closure of the essential
-image under subobjects implies essential surjectivity.-/
+image under subobjects implies essential surjectivity.
+@isnad1 id=ex.2h5v.s6.ba9b02018479 from=translated src=- shape=57836f4c vocab=5df5cd2f
+-/
 theorem essSurj_of_fullSupport_of_closedUnderSubobjects
     (D : RepresentableData k T C)
     (hfull : ∀ Y : Obj k T,

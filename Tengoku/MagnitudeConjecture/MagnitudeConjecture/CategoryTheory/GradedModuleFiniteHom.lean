@@ -16,6 +16,9 @@ universe u v
 variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 variable {R : VectorGrading k A}
 
+/--
+@isnad1 id=finitedi.0h5v.s7.685183ee0981 from=translated src=- shape=94522017 vocab=d7b3458a
+-/
 instance finiteHom (X Y : FiniteGradedModule.{u,v} R) : FiniteDimensional k (X ⟶ Y) := by
   change FiniteDimensional k (X.module →ₗ[A] Y.module)
   exact Module.Finite.of_injective

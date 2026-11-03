@@ -23,7 +23,9 @@ namespace MagnitudeConjecture.CategoryTheory
 universe u v uK
 
 /-- An indecomposable object in an idempotent-complete preadditive category
-has no nontrivial idempotent endomorphisms.-/
+has no nontrivial idempotent endomorphisms.
+@isnad1 id=or.2h3v.s6.ce5ab75423e0 from=translated src=- shape=94813cf1 vocab=b26adbe1
+-/
 theorem indecomposable_idempotent_eq_zero_or_one
     {C : Type u} [Category.{v} C] [Preadditive C]
     [HasBinaryBiproducts C] [IsIdempotentComplete C]

@@ -37,6 +37,9 @@ def pathMap (F₀ : Q → C)
   | _, _, .cons p a => F₁ a ≫ pathMap F₀ F₁ p
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.0h5v.s6.04873a6132b1 from=translated src=- shape=482dcadb vocab=0b339e5a
+-/
 @[simp]
 theorem pathMap_nil (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i)) (i : Q) :
@@ -44,6 +47,9 @@ theorem pathMap_nil (F₀ : Q → C)
   simp [pathMap]
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.0h9v.s7.cfe4f1d8af02 from=translated src=- shape=f35806f9 vocab=20950217
+-/
 @[simp]
 theorem pathMap_cons (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
@@ -53,7 +59,9 @@ theorem pathMap_cons (F₀ : Q → C)
 
 omit [Preadditive C] in
 /-- Reversed path evaluation turns concatenation into categorical
-composition.-/
+composition.
+@isnad1 id=eq.0h9v.s7.6e945a4e9ba3 from=translated src=- shape=5f608acf vocab=992daaf7
+-/
 theorem pathMap_comp (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
     {i j l : Q} (p : Quiver.Path i j) (q : Quiver.Path j l) :
@@ -72,6 +80,9 @@ def homMap (F₀ : Q → C)
       Quiver.Path (vertex y) (vertex x) ↦ pathMap F₀ F₁ p).comp
     (homPathLinearEquiv x y).toLinearMap
 
+/--
+@isnad1 id=eq.0h8v.s10.75fa9d721744 from=translated src=- shape=c4cafc82 vocab=b2165f40
+-/
 @[simp]
 theorem homMap_pathHom (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
@@ -81,7 +92,9 @@ theorem homMap_pathHom (F₀ : Q → C)
   simp [homMap]
 
 /-- A scalar multiple of one path basis vector, transported back from the
-Finsupp coordinates.-/
+Finsupp coordinates.
+@isnad1 id=eq.0h6v.s12.ab6c4a08af89 from=translated src=- shape=0099193e vocab=716433da
+-/
 theorem homPathLinearEquiv_symm_single {x y : Category k Q}
     (p : Quiver.Path (vertex y) (vertex x)) (r : k) :
     (homPathLinearEquiv x y).symm (Finsupp.single p r) = r • pathHom p := by
@@ -125,6 +138,9 @@ def lift (F₀ : Q → C)
               LinearPathCategory.pathHom_comp, homMap_pathHom,
               pathMap_comp, smul_smul]
 
+/--
+@isnad1 id=additive.0h5v.s7.2010ed49c1bc from=translated src=- shape=f430852e vocab=dae8b01e
+-/
 instance lift_additive (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i)) :
     (lift (k := k) F₀ F₁).Additive where
@@ -132,11 +148,17 @@ instance lift_additive (F₀ : Q → C)
     intro x y f g
     exact (homMap F₀ F₁ x y).map_add f g
 
+/--
+@isnad1 id=linear.0h5v.s8.934f92a6210a from=translated src=- shape=07941b55 vocab=04fc7956
+-/
 instance lift_linear (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i)) :
     (lift (k := k) F₀ F₁).Linear k where
   map_smul f r := (homMap F₀ F₁ _ _).map_smul r f
 
+/--
+@isnad1 id=eq.0h6v.s7.525308fa5758 from=translated src=- shape=24b11d0b vocab=99c708d4
+-/
 @[simp]
 theorem lift_obj (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
@@ -144,6 +166,9 @@ theorem lift_obj (F₀ : Q → C)
     (lift (k := k) F₀ F₁).obj x = F₀ (vertex x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.17475cbbfb7d from=translated src=- shape=bc5203b1 vocab=76738ae3
+-/
 @[simp]
 theorem lift_map_pathHom (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))
@@ -154,7 +179,9 @@ theorem lift_map_pathHom (F₀ : Q → C)
 
 omit [Preadditive C] in
 /-- Unary-arrow naturality for reversed assignments propagates along every
-path.-/
+path.
+@isnad1 id=eq.1h10v.s7.88e67c14abda from=translated src=- shape=c61b686e vocab=d53aa50a
+-/
 theorem pathMap_naturality
     (F₀ G₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))

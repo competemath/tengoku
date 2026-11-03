@@ -47,7 +47,9 @@ def generatorHomGrading (X : C) : Graded.VectorGrading k (⨁ P ⟶ X) :=
 def generatorEndGrading : Graded.VectorGrading k (⨁ P ⟶ ⨁ P) :=
   (G.projectiveMatrixGrading P).comap (generatorMatrixEquiv P)
 
-/-- Postcomposition respects the grading on the actual generator Hom space.-/
+/-- Postcomposition respects the grading on the actual generator Hom space.
+@isnad1 id=mem.2h11v.s10.c64cc9dc920c from=translated src=- shape=ea95b3a6 vocab=9a439897
+-/
 theorem generatorHom_postcomp_mem {X Y : C} {n d : ℤ} {f : ⨁ P ⟶ X} {g : X ⟶ Y}
     (hf : f ∈ (G.generatorHomGrading P X).component n)
     (hg : g ∈ G.component X Y d) :
@@ -58,7 +60,9 @@ theorem generatorHom_postcomp_mem {X Y : C} {n d : ℤ} {f : ⨁ P ⟶ X} {g : X
   change biproduct.ι P i ≫ (f ≫ g) ∈ G.component (P i) Y (n+d)
   simpa only [Category.assoc] using hh
 
-/-- Precomposition respects the grading on actual generator Hom spaces.-/
+/-- Precomposition respects the grading on actual generator Hom spaces.
+@isnad1 id=mem.2h10v.s10.2c7fa6f2e94c from=translated src=- shape=bd5e8fa3 vocab=79af480e
+-/
 theorem generatorHom_precomp_mem {X : C} {d n : ℤ} {a : ⨁ P ⟶ ⨁ P} {f : ⨁ P ⟶ X}
     (ha : a ∈ (G.generatorEndGrading P).component d)
     (hf : f ∈ (G.generatorHomGrading P X).component n) :
@@ -79,7 +83,9 @@ theorem generatorHom_precomp_mem {X : C} {d n : ℤ} {a : ⨁ P ⟶ ⨁ P} {f : 
     G.component (P i) X (d+n) at hh
   exact hh
 
-/-- Composition adds degrees in the actual generator endomorphism space.-/
+/-- Composition adds degrees in the actual generator endomorphism space.
+@isnad1 id=mem.2h9v.s10.e6e5bbc816c9 from=translated src=- shape=9a6e09b9 vocab=55293a81
+-/
 theorem generatorEnd_comp_mem {d n : ℤ} {a b : ⨁ P ⟶ ⨁ P}
     (ha : a ∈ (G.generatorEndGrading P).component d)
     (hb : b ∈ (G.generatorEndGrading P).component n) :
@@ -95,7 +101,9 @@ theorem generatorEnd_comp_mem {d n : ℤ} {a b : ⨁ P ⟶ ⨁ P}
     G.component (P i) (P j) (d+n)
   simpa only [Category.assoc] using hh
 
-/-- The generator identity is homogeneous of degree zero.-/
+/-- The generator identity is homogeneous of degree zero.
+@isnad1 id=mem.0h5v.s9.f08bff0a6322 from=translated src=- shape=f793e16e vocab=a9cede25
+-/
 theorem generatorEnd_id_mem :
     𝟙 (⨁ P) ∈ (G.generatorEndGrading P).component 0 := by
   classical

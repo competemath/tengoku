@@ -30,11 +30,17 @@ def Prefunctor.pathCostar (v : U) :
     Quiver.PathCostar v → Quiver.PathCostar (φ.obj v) :=
   fun p ↦ ⟨φ.obj p.1, φ.mapPath p.2⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.b5bdc7acbc90 from=translated src=- shape=ded570c1 vocab=c8d91c60
+-/
 @[simp]
 theorem Prefunctor.pathCostar_apply {u v : U} (p : Path u v) :
     φ.pathCostar v ⟨u, p⟩ = ⟨φ.obj u, φ.mapPath p⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s5.f271a6fc03af from=translated src=- shape=ba3d3dbc vocab=ecb85d52
+-/
 theorem Quiver.Path.length_cast_eq {a b a' b' : U}
     (p : Path a b) (ha : a = a') (hb : b = b') :
     (p.cast ha hb).length = p.length := by
@@ -42,6 +48,9 @@ theorem Quiver.Path.length_cast_eq {a b a' b' : U}
   subst b'
   rfl
 
+/--
+@isnad1 id=surjecti.1h4v.s6.9755e8c6d397 from=translated src=- shape=f0e7bd90 vocab=417c1879
+-/
 theorem Prefunctor.pathCostar_surjective
     (hφ : ∀ v, Surjective (φ.costar v)) (v : U) :
     Surjective (φ.pathCostar v) := by
@@ -72,6 +81,9 @@ theorem Prefunctor.pathCostar_surjective
   simp only [Prefunctor.pathCostar_apply, Sigma.mk.inj_iff]
   exact ⟨hu, hq⟩
 
+/--
+@isnad1 id=injectiv.1h4v.s6.b23895e9fdd3 from=translated src=- shape=f0e7bd90 vocab=e2ab7c02
+-/
 theorem Prefunctor.pathCostar_injective
     (hφ : ∀ v, Injective (φ.costar v)) (v : U) :
     Injective (φ.pathCostar v) := by
@@ -126,6 +138,9 @@ theorem Prefunctor.pathCostar_injective
           rfl
   exact aux p₁ p₂ h
 
+/--
+@isnad1 id=bijectiv.1h4v.s6.bdd402d53cce from=translated src=- shape=f0e7bd90 vocab=29714cb8
+-/
 theorem Prefunctor.pathCostar_bijective
     (hφ : ∀ v, Bijective (φ.costar v)) (v : U) :
     Bijective (φ.pathCostar v) :=
@@ -137,7 +152,9 @@ namespace Prefunctor.IsCovering
 variable {φ}
 
 /-- A quiver covering gives unique path lifting with the terminal vertex
-fixed.-/
+fixed.
+@isnad1 id=bijectiv.1h4v.s5.ff2a3360bf31 from=translated src=- shape=2b35fb1e vocab=f174f160
+-/
 protected theorem pathCostar_bijective (hφ : φ.IsCovering) (v : U) :
     Bijective (φ.pathCostar v) :=
   φ.pathCostar_bijective hφ.costar_bijective v

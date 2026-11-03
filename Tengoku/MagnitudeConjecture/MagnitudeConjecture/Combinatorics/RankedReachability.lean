@@ -10,7 +10,9 @@ universe u
 variable {V : Type u}
 
 /-- In a relation with strictly increasing natural rank, every vertex is
-reachable from its unique source.-/
+reachable from its unique source.
+@isnad1 id=refltran.2h5v.s5.06cf1dae4f8d from=translated src=- shape=cdf8cac5 vocab=dec87ef5
+-/
 theorem source_reaches (rank : V → ℕ) (E : V → V → Prop)
     (hE : ∀ x y, E x y → rank x < rank y)
     (source : V) (hsource : ∀ x, (¬ ∃ y, E y x) → x = source) :

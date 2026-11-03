@@ -365,7 +365,9 @@ private theorem allowsCotransit_of_radicalSpan_le
 
 /-- Kupisch's cyclicity argument: linearly ordered endpoint-stable subspaces,
 split residue maps, and nilpotent endpoint radicals force every morphism to
-allow transit or cotransit.-/
+allow transit or cotransit.
+@isnad1 id=or.3h7v.s10.00732fe4dc7d from=translated src=- shape=cd7965f1 vocab=86ff50e9
+-/
 theorem transit_or_cotransit_of_homSubbimodule_comparable
     {X Y : C} (f : X ⟶ Y)
     [IsArtinianRing (End X)] [IsArtinianRing (End Y)]

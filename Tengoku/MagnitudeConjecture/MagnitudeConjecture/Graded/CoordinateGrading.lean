@@ -25,11 +25,17 @@ def coordinateProjection (d : ℤ) : (∀ i, V i) →ₗ[k] (∀ i, V i) := by
       map_add' := by intro x y; funext i; by_cases h : degree i = d <;> simp [h]
       map_smul' := by intro c x; funext i; by_cases h : degree i = d <;> simp [h] }
 
+/--
+@isnad1 id=mem.0h6v.s8.cc5e5c46497e from=translated src=- shape=b0982bba vocab=87f68645
+-/
 theorem coordinateProjection_mem (d : ℤ) (x : ∀ i, V i) :
     coordinateProjection (k := k) V degree d x ∈ coordinateComponent (k := k) V degree d := by
   intro i hi
   simp only [coordinateProjection, LinearMap.coe_mk, AddHom.coe_mk, ite_eq_right hi]
 
+/--
+@isnad1 id=eq.1h6v.s8.1a4a32c782bc from=translated src=- shape=5ef09ad6 vocab=87f68645
+-/
 theorem coordinateProjection_of_mem {d : ℤ} {x : ∀ i, V i}
     (hx : x ∈ coordinateComponent (k := k) V degree d) : coordinateProjection (k := k) V degree d x = x := by
   classical
@@ -38,6 +44,9 @@ theorem coordinateProjection_of_mem {d : ℤ} {x : ∀ i, V i}
   · simp [coordinateProjection, hi]
   · simp [coordinateProjection, hi, hx i hi]
 
+/--
+@isnad1 id=eq.2h7v.s8.35899feaa17a from=translated src=- shape=af950aa8 vocab=87f68645
+-/
 theorem coordinateProjection_of_mem_ne {d n : ℤ} {x : ∀ i, V i}
     (hx : x ∈ coordinateComponent (k := k) V degree d) (hdn : d ≠ n) :
     coordinateProjection (k := k) V degree n x = 0 := by
@@ -48,6 +57,9 @@ theorem coordinateProjection_of_mem_ne {d n : ℤ} {x : ∀ i, V i}
     simp [coordinateProjection, hi, hx i hid]
   · simp [coordinateProjection, hi]
 
+/--
+@isnad1 id=eq.0h5v.s8.12e2b32aa865 from=translated src=- shape=987ba570 vocab=df7ec5f4
+-/
 theorem sum_coordinateProjection (x : ∀ i, V i) :
     ∑ d ∈ Finset.univ.image degree, coordinateProjection (k := k) V degree d x = x := by
   classical

@@ -37,6 +37,9 @@ def shiftHomId (X : C) : ShiftHom X X (0 : A) :=
 def shiftHomZero {X Y : C} (f : X ⟶ Y) : ShiftHom X Y (0 : A) :=
   CategoryTheory.ShiftedHom.mk₀ 0 rfl f
 
+/--
+@isnad1 id=eq.0h3v.s5.c932bb707482 from=translated src=- shape=d07ee2bc vocab=9668f84e
+-/
 @[simp]
 theorem shiftHomZero_id (X : C) :
     shiftHomZero (A := A) (𝟙 X) = shiftHomId X := by
@@ -60,7 +63,9 @@ def shiftHomComp
   shiftHomComp' rfl f g
 
 /-- Canonical homogeneous composition agrees heterogeneously with composition
-at any propositionally equal output degree.-/
+at any propositionally equal output degree.
+@isnad1 id=heq.1h10v.s6.76bc36b6441c from=translated src=- shape=fc14b7a4 vocab=ff191d42
+-/
 theorem shiftHomComp_heq_shiftHomComp'
     {X Y Z : C} {a b c : A} (h : b + a = c)
     (f : ShiftHom X Y a) (g : ShiftHom Y Z b) :
@@ -69,6 +74,9 @@ theorem shiftHomComp_heq_shiftHomComp'
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s7.2f9dc0d8f958 from=translated src=- shape=06356649 vocab=4bbfecb6
+-/
 @[simp]
 theorem shiftHomComp'_zero_zero
     {X Y Z : C} (f : X ⟶ Y) (g : Y ⟶ Z) :
@@ -79,6 +87,9 @@ theorem shiftHomComp'_zero_zero
     CategoryTheory.ShiftedHom.mk₀_comp_mk₀ f g (zero_add (0 : A)) rfl rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s6.29b42647b94c from=translated src=- shape=caa962cf vocab=cc337463
+-/
 @[simp]
 theorem shiftHomComp'_id_left
     {X Y : C} {a : A} (f : ShiftHom X Y a) :
@@ -89,6 +100,9 @@ theorem shiftHomComp'_id_left
   simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s6.66d33772c079 from=translated src=- shape=68703ccc vocab=e9bbee4a
+-/
 @[simp]
 theorem shiftHomComp'_id_right
     {X Y : C} {a : A} (f : ShiftHom X Y a) :
@@ -100,7 +114,9 @@ theorem shiftHomComp'_id_right
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Associativity of homogeneous composition, including all degree
-reassociations.-/
+reassociations.
+@isnad1 id=eq.4h15v.s7.969bc5d7309e from=translated src=- shape=b530c05a vocab=a025ebef
+-/
 theorem shiftHomComp'_assoc
     {W X Y Z : C} {a b c ba cb d : A}
     (hba : b + a = ba) (hcb : c + b = cb)
@@ -137,7 +153,9 @@ noncomputable def shiftOrbitOf (X Y : C) (a : A) :
 
 omit [∀ a : A, (shiftFunctor C a).Additive] in
 /-- With a fixed decidable equality on the degree monoid, the homogeneous
-inclusion is the corresponding direct-sum generator.-/
+inclusion is the corresponding direct-sum generator.
+@isnad1 id=eq.0h6v.s10.4c2471ee38fe from=translated src=- shape=0e5aae05 vocab=3992b7a0
+-/
 theorem shiftOrbitOf_eq_directSumOf [DecidableEq A]
     (X Y : C) (a : A) (f : ShiftHom X Y a) :
     shiftOrbitOf X Y a f =
@@ -174,6 +192,9 @@ variable [∀ a : A, (shiftFunctor C a).Linear k]
 
 omit [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k] in
+/--
+@isnad1 id=eq.0h7v.s9.bd509e8037f1 from=translated src=- shape=76d4db19 vocab=8ed31820
+-/
 @[simp]
 theorem shiftHomZero_smul
     {X Y : C} (r : k) (f : X ⟶ Y) :
@@ -183,6 +204,9 @@ theorem shiftHomZero_smul
 
 omit [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k] in
+/--
+@isnad1 id=eq.0h11v.s10.88191bbb5848 from=translated src=- shape=3bbb38d9 vocab=b431e543
+-/
 @[simp]
 theorem shiftHomComp_smul_left
     {X Y Z : C} {a b : A} (r : k)
@@ -191,6 +215,9 @@ theorem shiftHomComp_smul_left
   simp [shiftHomComp, shiftHomComp', CategoryTheory.Linear.smul_comp]
 
 omit [∀ a : A, (shiftFunctor C a).Additive] in
+/--
+@isnad1 id=eq.0h11v.s10.3270957d8067 from=translated src=- shape=f3a62074 vocab=1ff249df
+-/
 @[simp]
 theorem shiftHomComp_smul_right
     {X Y Z : C} {a b : A} (r : k)
@@ -218,6 +245,9 @@ noncomputable def shiftOrbitLof (X Y : C) (a : A) :
 
 omit [∀ a : A, (shiftFunctor C a).Additive]
   [∀ a : A, (shiftFunctor C a).Linear k] in
+/--
+@isnad1 id=eq.0h7v.s9.c2494980faf9 from=translated src=- shape=aa1278bf vocab=fe4951a1
+-/
 @[simp]
 theorem shiftOrbitLof_apply
     {X Y : C} {a : A} (f : ShiftHom X Y a) :
@@ -259,6 +289,9 @@ noncomputable def shiftOrbitCompLinearMap
       (DirectSum.toModule k A _ fun b ↦
         (shiftHomCompLofLinearMap (k := k) (X := X) (Y := Y) (Z := Z) a b).flip).flip
 
+/--
+@isnad1 id=eq.0h10v.s12.0ad0dd91de84 from=translated src=- shape=45696c76 vocab=10387444
+-/
 @[simp]
 theorem shiftOrbitCompLinearMap_of_of
     {X Y Z : C} {a b : A}

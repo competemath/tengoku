@@ -46,7 +46,9 @@ def translationQuiverSurplus (vertices simples arrows : ℤ) : ℤ :=
   2 * (vertices - simples) - arrows
 
 /-- The usual Auslander--Reiten surplus is the translation-quiver surplus
-formed from its literal vertex, projective, and arrow counts.-/
+formed from its literal vertex, projective, and arrow counts.
+@isnad1 id=eq.0h3v.s5.87af379e7090 from=translated src=- shape=2ae7b0d9 vocab=3ca507f0
+-/
 theorem surplus_eq_translationQuiverSurplus
     (arrowMultiplicity : H → H → ℕ)
     (IsProjective : H → Prop) [DecidablePred IsProjective] :
@@ -61,7 +63,9 @@ theorem surplus_eq_translationQuiverSurplus
 
 /-- The live manuscript's direct deletion identity.  The hypotheses are the
 literal vertex, simple, ambient-arrow, quotient-arrow, factor-Euler, and
-crossing-mesh counts appearing in the proof.-/
+crossing-mesh counts appearing in the proof.
+@isnad1 id=eq.6h15v.s7.60013aa26997 from=translated src=- shape=834cbace vocab=28f9f191
+-/
 theorem translationQuiverSurplus_difference_eq_deletionCost
     (Phi : Matrix H H ℤ)
     (vA nA aA vB nB aB q a0 aH z p newArrows newMeshes : ℤ)
@@ -79,7 +83,9 @@ theorem translationQuiverSurplus_difference_eq_deletionCost
   omega
 
 /-- The directed deletion is monotone once the factor Euler excess is
-nonnegative and new meshes inject into gained arrow occurrences.-/
+nonnegative and new meshes inject into gained arrow occurrences.
+@isnad1 id=le.8h15v.s7.78ebd2d58a89 from=translated src=- shape=4a03dfce vocab=a8e5ac4b
+-/
 theorem translationQuiverSurplus_difference_nonnegative
     (Phi : Matrix H H ℤ)
     (vA nA aA vB nB aB q a0 aH z p newArrows newMeshes : ℤ)
@@ -101,7 +107,9 @@ theorem translationQuiverSurplus_difference_nonnegative
   omega
 
 /-- Equality in a directed deletion forces both nonnegative contributions to
-vanish separately.-/
+vanish separately.
+@isnad1 id=iff.2h4v.s5.fb4fd70540a1 from=translated src=- shape=38f3ee2f vocab=383382d6
+-/
 theorem equality_iff_zero_factorExcess_and_equal_correction
     (Phi : Matrix H H ℤ) (newArrows newMeshes : ℤ)
     (factorExcess_nonnegative : 0 ≤ intrinsicEulerExcess Phi)

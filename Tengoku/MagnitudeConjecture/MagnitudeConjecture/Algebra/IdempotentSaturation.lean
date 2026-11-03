@@ -24,7 +24,9 @@ universe u
 variable {R M : Type u} [Ring R] [AddCommGroup M] [Module R M]
 
 /-- Universal vanishing of linear maps is unchanged when the source is
-replaced by a linearly equivalent module.-/
+replaced by a linearly equivalent module.
+@isnad1 id=iff.0h5v.s8.109936088685 from=translated src=- shape=6546d11f vocab=1768ee2e
+-/
 theorem forall_linearMap_eq_zero_congr
     {P Q : Type u} [AddCommGroup P] [Module R P]
     [AddCommGroup Q] [Module R Q]
@@ -62,7 +64,9 @@ def principalLeftIdealGenerator (e : R) : principalLeftIdeal e :=
   ⟨e, ⟨1, by simp [rightMultiplication]⟩⟩
 
 /-- Every element of `R e` is fixed by right multiplication by an
-idempotent `e`.-/
+idempotent `e`.
+@isnad1 id=eq.1h3v.s7.66189511f546 from=translated src=- shape=acfbd722 vocab=f8775d07
+-/
 theorem principalLeftIdeal_fixed
     {e : R} (he : IsIdempotentElem e)
     (y : principalLeftIdeal e) :
@@ -82,6 +86,9 @@ def principalLeftIdealHomOf (e : R) (x : M) :
     change (a * y.1) • x = a • y.1 • x
     exact mul_smul a y.1 x
 
+/--
+@isnad1 id=eq.0h4v.s8.6b946e620564 from=translated src=- shape=8741f5ac vocab=c91151b1
+-/
 @[simp]
 theorem principalLeftIdealHomOf_generator (e : R) (x : M) :
     principalLeftIdealHomOf e x (principalLeftIdealGenerator e) =
@@ -89,7 +96,9 @@ theorem principalLeftIdealHomOf_generator (e : R) (x : M) :
   rfl
 
 /-- If `e` annihilates a module, every map from the principal left ideal
-`R e` to that module is zero.-/
+`R e` to that module is zero.
+@isnad1 id=eq.2h4v.s9.ea2b04f1136b from=translated src=- shape=cf59caf4 vocab=3bccfe62
+-/
 theorem principalLeftIdeal_hom_eq_zero_of_smul_eq_zero
     {e : R} (he : IsIdempotentElem e)
     (hzero : ∀ x : M, e • x = 0)
@@ -117,7 +126,9 @@ theorem principalLeftIdeal_hom_eq_zero_of_smul_eq_zero
   rw [hy, f.map_smul, hgenerator, smul_zero,
     LinearMap.zero_apply]
 
-/-- Vanishing of all maps from `R e` is exactly annihilation by `e`.-/
+/-- Vanishing of all maps from `R e` is exactly annihilation by `e`.
+@isnad1 id=iff.1h3v.s9.e4da07b1ae08 from=translated src=- shape=d87e3972 vocab=3bccfe62
+-/
 theorem principalLeftIdeal_hom_eq_zero_iff
     {e : R} (he : IsIdempotentElem e) :
     (∀ f : principalLeftIdeal e →ₗ[R] M, f = 0) ↔
@@ -145,19 +156,26 @@ def torsionSubmodule (e : R) : Submodule R M where
     rw [smul_smul, mul_assoc]
     exact hx (r * a)
 
+/--
+@isnad1 id=iff.0h4v.s7.6a34150354b6 from=translated src=- shape=da08c99c vocab=d1b141b3
+-/
 @[simp]
 theorem mem_torsionSubmodule_iff (e : R) (x : M) :
     x ∈ torsionSubmodule e ↔ ∀ r : R, (e * r) • x = 0 :=
   Iff.rfl
 
-/-- In particular, `e` annihilates its torsion submodule.-/
+/-- In particular, `e` annihilates its torsion submodule.
+@isnad1 id=eq.1h4v.s7.5942534bd677 from=translated src=- shape=528ba00a vocab=f6615241
+-/
 theorem smul_eq_zero_of_mem_torsionSubmodule
     (e : R) {x : M} (hx : x ∈ torsionSubmodule e) :
     e • x = 0 := by
   simpa using hx 1
 
 /-- Any submodule annihilated by `e` is contained in the torsion submodule.
-Closure under all scalars supplies the stronger defining condition.-/
+Closure under all scalars supplies the stronger defining condition.
+@isnad1 id=le.1h4v.s7.49df0744998b from=translated src=- shape=b9cd881e vocab=4908410a
+-/
 theorem le_torsionSubmodule
     (e : R) (N : Submodule R M)
     (hN : ∀ x : M, x ∈ N → e • x = 0) :
@@ -172,13 +190,18 @@ theorem le_torsionSubmodule
 def saturation (e : R) (L : Submodule R M) : Submodule R M :=
   (torsionSubmodule (M := M ⧸ L) e).comap L.mkQ
 
+/--
+@isnad1 id=iff.0h5v.s8.9cf1a94c4e02 from=translated src=- shape=bdeca9ca vocab=b3187289
+-/
 @[simp]
 theorem mem_saturation_iff (e : R) (L : Submodule R M) (x : M) :
     x ∈ saturation e L ↔
       ∀ r : R, (e * r) • L.mkQ x = 0 :=
   Iff.rfl
 
-/-- Saturation really enlarges the original submodule.-/
+/-- Saturation really enlarges the original submodule.
+@isnad1 id=le.0h4v.s6.2d448ddecaa4 from=translated src=- shape=f2260ef1 vocab=95288da0
+-/
 theorem le_saturation (e : R) (L : Submodule R M) :
     L ≤ saturation e L := by
   intro x hx
@@ -189,7 +212,9 @@ theorem le_saturation (e : R) (L : Submodule R M) :
     exact hx
   rw [hxzero, smul_zero]
 
-/-- The quotient of the saturation by `L` is annihilated by `e`.-/
+/-- The quotient of the saturation by `L` is annihilated by `e`.
+@isnad1 id=eq.1h5v.s8.5c528af73aff from=translated src=- shape=5b220206 vocab=6c4f5855
+-/
 theorem smul_mkQ_eq_zero_of_mem_saturation
     (e : R) (L : Submodule R M) {x : M}
     (hx : x ∈ saturation e L) :
@@ -197,7 +222,9 @@ theorem smul_mkQ_eq_zero_of_mem_saturation
   smul_eq_zero_of_mem_torsionSubmodule e hx
 
 /-- Maximality: every enlargement of `L` whose image in `M / L` is
-annihilated by `e` lies in the saturation.-/
+annihilated by `e` lies in the saturation.
+@isnad1 id=le.1h5v.s8.f3e101bcb27d from=translated src=- shape=a8f0ca94 vocab=97018824
+-/
 theorem le_saturation_of_smul_mkQ_eq_zero
     (e : R) (L N : Submodule R M)
     (hN : ∀ x : M, x ∈ N → e • L.mkQ x = 0) :
@@ -210,7 +237,9 @@ theorem le_saturation_of_smul_mkQ_eq_zero
 
 /-- Saturating once removes all remaining idempotent torsion: the quotient
 by `saturation e L` has no nonzero submodule element whose scalar translates
-are all annihilated by `e`.-/
+are all annihilated by `e`.
+@isnad1 id=eq.1h4v.s8.0e96fbd0b8ff from=translated src=- shape=97ccdd14 vocab=64716ab6
+-/
 theorem torsionSubmodule_quotient_saturation_eq_bot
     {e : R} (he : IsIdempotentElem e) (L : Submodule R M) :
     torsionSubmodule (M := M ⧸ saturation e L) e = ⊥ := by

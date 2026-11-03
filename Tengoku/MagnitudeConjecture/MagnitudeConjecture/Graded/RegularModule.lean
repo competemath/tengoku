@@ -20,7 +20,9 @@ def regularModuleGrading : ModuleGrading (M := A) R where
 variable {M : Type*} [AddCommGroup M] [Module k M] [Module A M] [IsScalarTower k A M]
 variable (G : ModuleGrading (M := M) R)
 
-/-- Evaluation at one detects the degree of a map out of the regular module.-/
+/-- Evaluation at one detects the degree of a map out of the regular module.
+@isnad1 id=iff.2h7v.s9.3f2c197ec380 from=translated src=- shape=491af696 vocab=ff8f28c6
+-/
 theorem regular_homogeneous_iff (h1 : (1 : A) ∈ R.component 0) (d : ℤ) (f : A →ₗ[A] M) :
     (R.regularModuleGrading hmul).Homogeneous G d f ↔ f 1 ∈ G.component d := by
   constructor

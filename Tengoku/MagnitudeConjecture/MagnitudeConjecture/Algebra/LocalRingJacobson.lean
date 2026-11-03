@@ -17,7 +17,9 @@ set_option autoImplicit false
 namespace MagnitudeConjecture
 
 /-- Reversing multiplication preserves the noncommutative local-ring
-property.-/
+property.
+@isnad1 id=islocalr.0h1v.s4.8f98199a2963 from=translated src=- shape=d96e9922 vocab=fff8f50e
+-/
 theorem mulOpposite_isLocalRing
     {R : Type*} [Ring R] [IsLocalRing R] : IsLocalRing Rᵐᵒᵖ := by
   apply IsLocalRing.of_isUnit_or_isUnit_one_sub_self
@@ -37,11 +39,17 @@ def nonunitsIdeal : Ideal R where
   add_mem' := IsLocalRing.nonunits_add
   smul_mem' _ _ hb := fun hab ↦ hb (isUnit_of_mul_isUnit_right hab)
 
+/--
+@isnad1 id=iff.0h2v.s6.86131bdf613a from=translated src=- shape=ed5be7fc vocab=621dbc8e
+-/
 @[simp]
 theorem mem_nonunitsIdeal_iff_not_isUnit (x : R) :
     x ∈ nonunitsIdeal R ↔ ¬ IsUnit x :=
   Iff.rfl
 
+/--
+@isnad1 id=ismaxima.0h1v.s5.6b8aa8adcf73 from=translated src=- shape=456cb356 vocab=6acb95ab
+-/
 instance nonunitsIdeal_isMaximal : (nonunitsIdeal R).IsMaximal := by
   rw [Ideal.isMaximal_iff]
   constructor
@@ -60,7 +68,9 @@ theorem Ideal.IsMaximal.eq_nonunitsIdeal {I : Ideal R} (hI : I.IsMaximal) :
   intro x hx
   exact coe_subset_nonunits hI.ne_top hx
 
-/-- The ring Jacobson radical is the ideal of nonunits.-/
+/-- The ring Jacobson radical is the ideal of nonunits.
+@isnad1 id=eq.0h1v.s5.721837e515b8 from=translated src=- shape=2f3fa677 vocab=a8712242
+-/
 theorem ringJacobson_eq_nonunitsIdeal :
     Ring.jacobson R = nonunitsIdeal R := by
   rw [Ring.jacobson_eq_sInf_isMaximal]
@@ -74,7 +84,9 @@ theorem ringJacobson_eq_nonunitsIdeal :
     rw [MagnitudeConjecture.Ideal.IsMaximal.eq_nonunitsIdeal R hI]
     exact hx
 
-/-- Jacobson-radical membership is failure to be a unit.-/
+/-- Jacobson-radical membership is failure to be a unit.
+@isnad1 id=iff.0h2v.s6.445d718d6cdd from=translated src=- shape=ed5be7fc vocab=8718296b
+-/
 theorem mem_ringJacobson_iff_not_isUnit (x : R) :
     x ∈ Ring.jacobson R ↔ ¬ IsUnit x := by
   rw [ringJacobson_eq_nonunitsIdeal]

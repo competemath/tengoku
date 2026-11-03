@@ -12,7 +12,9 @@ variable {ν : Type*} [Fintype ν] (δ : ν → ℤ) (hδ : Function.Injective �
 variable (hcover : ∀ d, G.component d ≠ ⊥ → ∃ q, δ q = d)
 
 include hδ hcover in
-/-- Only the nonzero degrees need to be covered, so extra zero coordinates cause no difficulty.-/
+/-- Only the nonzero degrees need to be covered, so extra zero coordinates cause no difficulty.
+@isnad1 id=eq.2h6v.s7.d79591a3833a from=translated src=- shape=28f76732 vocab=fd86f536
+-/
 theorem sum_projection_of_cover (x : M) : ∑ q, G.projection (δ q) x = x := by
   classical
   letI := G.internal.chooseDecomposition

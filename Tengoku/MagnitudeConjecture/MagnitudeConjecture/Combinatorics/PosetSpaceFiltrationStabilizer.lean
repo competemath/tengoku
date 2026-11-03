@@ -46,7 +46,9 @@ instance (n : ℕ) : Fintype (TriangularIndex n) :=
   Fintype.ofEquiv (Σ j : Fin n, Fin (j.val + 1))
     (triangularIndexEquivSigma n).symm
 
-/-- Twice the number of triangular matrix units is `n(n+1)`.-/
+/-- Twice the number of triangular matrix units is `n(n+1)`.
+@isnad1 id=eq.0h1v.s5.a538c1d8b30f from=translated src=- shape=c1e80e1b vocab=ee12430f
+-/
 theorem two_mul_card_triangularIndex (n : ℕ) :
     2 * Fintype.card (TriangularIndex n) = n * (n + 1) := by
   rw [Fintype.card_congr (triangularIndexEquivSigma n), Fintype.card_sigma]
@@ -88,7 +90,9 @@ def triangularEndSpan {V : Type u} [AddCommGroup V] [Module k V]
     Submodule k (Module.End k V) :=
   Submodule.span k (Set.range (triangularEnd b))
 
-/-- The triangular matrix units are linearly independent.-/
+/-- The triangular matrix units are linearly independent.
+@isnad1 id=linearin.0h4v.s7.99b6c2d85754 from=translated src=- shape=2d25ecd1 vocab=7228eb45
+-/
 theorem linearIndependent_triangularEnd {V : Type u}
     [AddCommGroup V] [Module k V] {n : ℕ}
     (b : Basis (Fin n) k V) :
@@ -112,7 +116,9 @@ theorem linearIndependent_triangularEnd {V : Type u}
       simp [hcol, hrow]
     · simp [hcol]
 
-/-- The triangular endomorphism subspace has the expected dimension.-/
+/-- The triangular endomorphism subspace has the expected dimension.
+@isnad1 id=eq.0h4v.s9.c46ee574727a from=translated src=- shape=aef179ac vocab=00b02cd9
+-/
 theorem finrank_triangularEndSpan {V : Type u}
     [AddCommGroup V] [Module k V] {n : ℕ}
     (b : Basis (Fin n) k V) :
@@ -121,7 +127,9 @@ theorem finrank_triangularEndSpan {V : Type u}
   exact finrank_span_eq_card (linearIndependent_triangularEnd b)
 
 /-- Every upper-triangular matrix unit preserves every flag subspace of its
-basis.-/
+basis.
+@isnad1 id=mem.1h7v.s8.7fb9a39a5ef7 from=translated src=- shape=4732050d vocab=eb1879d5
+-/
 theorem triangularEnd_preserves_flag {V : Type u}
     [AddCommGroup V] [Module k V] {n : ℕ}
     (b : Basis (Fin n) k V) (p : TriangularIndex n)
@@ -162,6 +170,9 @@ def stabilizerOn (X : Obj k T) (S : Set T) :
     intro c f hf t ht x hx
     exact Submodule.smul_mem _ c (hf t ht x hx)
 
+/--
+@isnad1 id=iff.0h5v.s10.1a7d3808b951 from=translated src=- shape=dcc88d4e vocab=56ff8347
+-/
 @[simp]
 theorem mem_stabilizerOn_iff (X : Obj k T) (S : Set T) (f : X →ₗ[k] X) :
     f ∈ stabilizerOn X S ↔
@@ -169,7 +180,9 @@ theorem mem_stabilizerOn_iff (X : Obj k T) (S : Set T) (f : X →ₗ[k] X) :
   Iff.rfl
 
 /-- The triangular endomorphism subspace attached to a flag basis lies in the
-stabilizer of all subspaces belonging to that flag.-/
+stabilizer of all subspaces belonging to that flag.
+@isnad1 id=le.1h5v.s10.e11153487778 from=translated src=- shape=a1f2554c vocab=d72bc27c
+-/
 theorem triangularEndSpan_le_stabilizerOn
     (X : Obj k T) (S : Set T)
     (b : Basis (Fin (Module.finrank k X)) k X)
@@ -187,7 +200,9 @@ theorem triangularEndSpan_le_stabilizerOn
   exact triangularEnd_preserves_flag b p m hx
 
 /-- A family of subspaces contained in one complete flag has a stabilizer of
-dimension at least `n(n+1)/2`.-/
+dimension at least `n(n+1)/2`.
+@isnad1 id=le.1h4v.s10.c967654a5bdc from=translated src=- shape=dfb329e2 vocab=9b0902f0
+-/
 theorem card_triangularIndex_le_finrank_stabilizerOn
     (X : Obj k T) (S : Set T) (hflag : HasFlagBasisOn X S) :
     Fintype.card (TriangularIndex (Module.finrank k X)) ≤
@@ -198,7 +213,9 @@ theorem card_triangularIndex_le_finrank_stabilizerOn
     (triangularEndSpan_le_stabilizerOn X S b hb)
 
 /-- Preserving a union of index sets is the intersection of the two
-stabilizer subspaces.-/
+stabilizer subspaces.
+@isnad1 id=eq.0h5v.s9.95f7a34745f0 from=translated src=- shape=abb93a22 vocab=31b5cd9a
+-/
 theorem stabilizerOn_union (X : Obj k T) (A B : Set T) :
     stabilizerOn X (A ∪ B) = stabilizerOn X A ⊓ stabilizerOn X B := by
   ext f
@@ -213,7 +230,9 @@ def homOfMemStabilizerOnUniv (X : Obj k T)
     intro t x hx
     exact f.2 t (Set.mem_univ t) x hx
 
-/-- The full stabilizer of a Schur poset space has dimension at most one.-/
+/-- The full stabilizer of a Schur poset space has dimension at most one.
+@isnad1 id=le.1h3v.s10.86df47b52320 from=translated src=- shape=0e48ea42 vocab=9788896a
+-/
 theorem finrank_stabilizerOn_univ_le_one_of_isSchur
     (X : Obj k T) (hschur : IsSchur k T X) :
     Module.finrank k (stabilizerOn X Set.univ) ≤ 1 := by
@@ -236,7 +255,9 @@ theorem finrank_stabilizerOn_univ_le_one_of_isSchur
 
 /-- If two partial stabilizers are jointly larger than the ambient
 endomorphism space by at least two dimensions, then their intersection has
-dimension at least two.-/
+dimension at least two.
+@isnad1 id=le.1h5v.s12.8f8be73da16a from=translated src=- shape=4e5346d3 vocab=332433e4
+-/
 theorem two_le_finrank_stabilizerOn_union
     (X : Obj k T) (A B : Set T)
     (hlarge : Module.finrank k (X →ₗ[k] X) + 2 ≤
@@ -253,7 +274,9 @@ theorem two_le_finrank_stabilizerOn_union
   omega
 
 /-- Dimension bounds for two covering filtration stabilizers force a Schur
-poset space to have dimension at most one.-/
+poset space to have dimension at most one.
+@isnad1 id=le.3h5v.s11.a46e90536ff6 from=translated src=- shape=10be5aa2 vocab=2f2b6d32
+-/
 theorem finrank_le_one_of_isSchur_of_two_stabilizer_bounds
     (X : Obj k T) (hschur : IsSchur k T X)
     (A B : Set T) (hcover : A ∪ B = Set.univ)
@@ -270,7 +293,9 @@ theorem finrank_le_one_of_isSchur_of_two_stabilizer_bounds
   omega
 
 /-- Two flag-indexed covering families give the stabilizer dimension bound
-needed in the Schur argument.-/
+needed in the Schur argument.
+@isnad1 id=le.3h5v.s11.5230c6ab3b3d from=translated src=- shape=1ca5c1e2 vocab=36cac694
+-/
 theorem two_flag_bases_stabilizer_bound
     (X : Obj k T) (A B : Set T)
     (hA : HasFlagBasisOn X A) (hB : HasFlagBasisOn X B)
@@ -295,7 +320,9 @@ theorem two_flag_bases_stabilizer_bound
   exact hquad.trans (by omega)
 
 /-- A Schur poset space whose distinguished subspaces are covered by two
-complete flags has total dimension at most one.-/
+complete flags has total dimension at most one.
+@isnad1 id=le.4h5v.s6.0fe654bda228 from=translated src=- shape=f819dca4 vocab=70acb8c0
+-/
 theorem finrank_le_one_of_isSchur_of_two_flag_bases
     (X : Obj k T) (hschur : IsSchur k T X)
     (A B : Set T) (hcover : A ∪ B = Set.univ)
@@ -306,7 +333,9 @@ theorem finrank_le_one_of_isSchur_of_two_flag_bases
       two_flag_bases_stabilizer_bound X A B hA hB hrank
 
 /-- In particular, a nonzero Schur poset space covered by two flag-indexed
-families is one-dimensional.-/
+families is one-dimensional.
+@isnad1 id=eq.4h5v.s6.546fbc0bb535 from=translated src=- shape=91602584 vocab=d18c9bb5
+-/
 theorem finrank_eq_one_of_isSchur_of_two_flag_bases
     (X : Obj k T) (hschur : IsSchur k T X)
     (A B : Set T) (hcover : A ∪ B = Set.univ)

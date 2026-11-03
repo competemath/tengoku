@@ -33,7 +33,9 @@ variable {V : Type v} [AddCommGroup V] [Module k V]
 variable {ι : Type w} [DecidableEq ι]
 
 /-- A one-dimensional internally graded vector space has exactly one
-nonzero component, and that component is the whole space.-/
+nonzero component, and that component is the whole space.
+@isnad1 id=existsun.2h4v.s7.a0a63e28a104 from=translated src=- shape=a81c3c37 vocab=7ad6bded
+-/
 theorem existsUnique_component_eq_top_of_finrank_eq_one
     (A : ι → Submodule k V) (hA : DirectSum.IsInternal A)
     (hfin : Module.finrank k V = 1) :
@@ -60,7 +62,9 @@ theorem existsUnique_component_eq_top_of_finrank_eq_one
   exact hnontrivial (disjoint_self.1 hdisj).symm
 
 /-- Every nonzero vector in a one-dimensional internally graded vector space
-lies in a unique homogeneous component.-/
+lies in a unique homogeneous component.
+@isnad1 id=existsun.3h5v.s7.21012c64e7c9 from=translated src=- shape=84e71b6b vocab=7341225b
+-/
 theorem existsUnique_mem_of_finrank_eq_one
     (A : ι → Submodule k V) (hA : DirectSum.IsInternal A)
     (hfin : Module.finrank k V = 1) {v : V} (hv : v ≠ 0) :
@@ -91,7 +95,9 @@ def ShiftsDegree (A : ℕ → Submodule k V) (B : ℕ → Submodule k W)
   ∀ i ⦃v : V⦄, v ∈ A i → f v ∈ B (i + d)
 
 /-- The range of a degree-shifting linear map is homogeneous in the target
-grading.-/
+grading.
+@isnad1 id=ishomoge.3h7v.s8.02c5c4dc4bed from=translated src=- shape=c763d1fd vocab=bdd14b8b
+-/
 theorem ShiftsDegree.range_isHomogeneous
     (A : ℕ → Submodule k V) (B : ℕ → Submodule k W)
     (hA : DirectSum.IsInternal A) (hB : DirectSum.IsInternal B)
@@ -153,6 +159,9 @@ noncomputable def projection (G : InternalGrading X) (i : ℕ) : X ⟶ X := by
             rfl }
       map_subspace := fun t x hx ↦ G.subspace_isHomogeneous t i hx }
 
+/--
+@isnad1 id=eq.0h6v.s11.43f5e10b985e from=translated src=- shape=4ac2f5b2 vocab=90d55b30
+-/
 @[simp]
 theorem projection_apply (G : InternalGrading X) (i : ℕ) (x : X) :
     (G.projection i).linear x =
@@ -160,6 +169,9 @@ theorem projection_apply (G : InternalGrading X) (i : ℕ) (x : X) :
       (DirectSum.decompose G.component x i : X) :=
   rfl
 
+/--
+@isnad1 id=ex.1h4v.s7.36ac4560e219 from=translated src=- shape=331ca903 vocab=13a26fa6
+-/
 theorem exists_component_ne_bot (G : InternalGrading X)
     (hne : ∃ x : X, x ≠ 0) :
     ∃ i, G.component i ≠ ⊥ := by
@@ -172,6 +184,9 @@ theorem exists_component_ne_bot (G : InternalGrading X)
     have : x ∈ (⊥ : Submodule k X) := hsup ▸ Submodule.mem_top
     simpa using this)
 
+/--
+@isnad1 id=eq.2h5v.s8.be51ac4dd05f from=translated src=- shape=f918c770 vocab=d0352ed8
+-/
 theorem component_eq_top_of_ne_bot_of_isSchur
     (G : InternalGrading X) (hX : IsSchur k T X)
     (i : ℕ) (hi : G.component i ≠ ⊥) :
@@ -199,7 +214,9 @@ theorem component_eq_top_of_ne_bot_of_isSchur
   exact (DirectSum.decompose G.component x i).property
 
 /-- A Schur poset space carrying a compatible internal grading is
-concentrated in one unique degree.-/
+concentrated in one unique degree.
+@isnad1 id=existsun.1h4v.s7.e43de6fac972 from=translated src=- shape=9921e583 vocab=65aa91e9
+-/
 theorem existsUnique_component_eq_top
     (G : InternalGrading X) (hX : IsSchur k T X) :
     ∃! i, G.component i = ⊤ := by
@@ -221,6 +238,9 @@ theorem existsUnique_component_eq_top
 noncomputable def level (G : InternalGrading X) (hX : IsSchur k T X) : ℕ :=
   (G.existsUnique_component_eq_top hX).choose
 
+/--
+@isnad1 id=eq.1h4v.s7.28a533334a6f from=translated src=- shape=71a2326a vocab=96dc1ca2
+-/
 @[simp]
 theorem component_level_eq_top (G : InternalGrading X)
     (hX : IsSchur k T X) :
@@ -232,6 +252,9 @@ theorem eq_level_of_component_eq_top (G : InternalGrading X)
     i = G.level hX :=
   (G.existsUnique_component_eq_top hX).choose_spec.2 i hi
 
+/--
+@isnad1 id=eq.2h5v.s7.1dd962c646ba from=translated src=- shape=22df56ea vocab=081e92e8
+-/
 theorem component_eq_bot_of_ne_level (G : InternalGrading X)
     (hX : IsSchur k T X) {i : ℕ} (hi : i ≠ G.level hX) :
     G.component i = ⊥ := by
@@ -247,7 +270,9 @@ def HomogeneousOfDegree (GX : InternalGrading X) (GY : InternalGrading Y)
     f.linear x ∈ GY.component (i + d)
 
 /-- A nonzero homogeneous morphism between compatibly graded Schur poset
-spaces identifies the target level with source level plus its degree.-/
+spaces identifies the target level with source level plus its degree.
+@isnad1 id=eq.4h8v.s7.6ff03e40e2db from=translated src=- shape=d0ece74d vocab=4b9c72fa
+-/
 theorem level_add_degree_eq
     (GX : InternalGrading X) (GY : InternalGrading Y)
     (hX : IsSchur k T X) (hY : IsSchur k T Y)
@@ -279,7 +304,9 @@ theorem level_add_degree_eq
     (GY.component_eq_top_of_ne_bot_of_isSchur hY _ hcomponent_ne_bot)
 
 /-- A nonzero homogeneous morphism of positive degree strictly raises the
-concentration level.-/
+concentration level.
+@isnad1 id=lt.5h8v.s7.eccc4d072eb4 from=translated src=- shape=77262365 vocab=59ff48d2
+-/
 theorem level_lt_of_homogeneousOfDegree
     (GX : InternalGrading X) (GY : InternalGrading Y)
     (hX : IsSchur k T X) (hY : IsSchur k T Y)

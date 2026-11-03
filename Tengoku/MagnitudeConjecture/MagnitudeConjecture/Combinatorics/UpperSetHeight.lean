@@ -11,7 +11,9 @@ universe u
 variable {T : Type u} [PartialOrder T] [Fintype T]
 
 /-- A strictly increasing height on upper sets rises by at least the number
-of elements added between any two upper sets.-/
+of elements added between any two upper sets.
+@isnad1 id=le.4h4v.s7.11c1cc9fac5d from=translated src=- shape=84ed334f vocab=0d82d913
+-/
 theorem card_difference_le_height_difference
     (height : Finset T → ℕ)
     (hstep : ∀ U V : Finset T, IsUpperSet (U : Set T) → IsUpperSet (V : Set T) →
@@ -50,7 +52,9 @@ theorem card_difference_le_height_difference
     omega
 
 /-- If the total height bound is the size of the poset, every upper set
-has height equal to its cardinality.-/
+has height equal to its cardinality.
+@isnad1 id=eq.3h3v.s6.ea1cb8886fdf from=translated src=- shape=a6413459 vocab=6491706f
+-/
 theorem height_eq_card
     (height : Finset T → ℕ)
     (hstep : ∀ U V : Finset T, IsUpperSet (U : Set T) → IsUpperSet (V : Set T) →

@@ -28,7 +28,9 @@ def blockDiagonal (f : End (blockMatrixTuple X)) (j : J) : End (blockMatrixTuple
 variable (hzero : ∀ j l : J, j ≠ l → ∀ i t : I, ∀ f : X j i ⟶ X l t, f = 0)
 
 include hzero in
-/-- Orthogonality makes restriction to a diagonal block preserve composition.-/
+/-- Orthogonality makes restriction to a diagonal block preserve composition.
+@isnad1 id=eq.1h7v.s8.8d4172d89428 from=translated src=- shape=2c68df7f vocab=daf95fb6
+-/
 theorem blockDiagonal_comp (f g : End (blockMatrixTuple X)) (j : J) :
     blockDiagonal X (f ≫ g) j = blockDiagonal X f j ≫ blockDiagonal X g j := by
   classical
@@ -79,7 +81,9 @@ def blockDiagonalAlgHom : End (blockMatrixTuple X) →ₐ[k] ∀ j, End (blockMa
     · rw [Mat_.id_apply_of_ne _ _ _ (by intro hh; exact hi (congrArg Prod.snd hh)), Mat_.id_apply_of_ne _ _ _ hi]
 
 include hzero in
-/-- Every endomorphism is determined by its diagonal blocks.-/
+/-- Every endomorphism is determined by its diagonal blocks.
+@isnad1 id=injectiv.1h4v.s7.a71dc3910fd1 from=translated src=- shape=be38049d vocab=2698f893
+-/
 theorem blockDiagonal_injective : Function.Injective (blockDiagonal X) := by
   intro f g hfg
   apply Mat_.hom_ext
@@ -89,7 +93,9 @@ theorem blockDiagonal_injective : Function.Injective (blockDiagonal X) := by
     exact congrArg (fun F ↦ F j i t) hfg
   · rw [hzero j l hj i t (f (j, i) (l, t)), hzero j l hj i t (g (j, i) (l, t))]
 
-/-- Any family of block endomorphisms extends to the full matrix object.-/
+/-- Any family of block endomorphisms extends to the full matrix object.
+@isnad1 id=surjecti.0h4v.s6.02cea57522ed from=translated src=- shape=0c594bf5 vocab=cb4594a7
+-/
 theorem blockDiagonal_surjective : Function.Surjective (blockDiagonal X) := by
   classical
   intro f

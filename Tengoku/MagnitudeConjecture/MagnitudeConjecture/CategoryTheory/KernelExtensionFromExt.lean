@@ -12,7 +12,9 @@ universe v w t
 variable {C : Type v} [Category.{w} C] [Abelian C] [HasExt.{t} C]
 
 /-- If Ext¹(U,Z) vanishes for every subobject U of I, every map ker f to Z
-extends to an endomorphism of Z, for every f from Z to I.-/
+extends to an endomorphism of Z, for every f from Z to I.
+@isnad1 id=ex.1h5v.s8.66e514a8426e from=translated src=- shape=0e65e29c vocab=dece3cfb
+-/
 theorem kernel_extension_of_ext_vanishing {Z I : C} (f : Z ⟶ I)
     (hext : ∀ (U : C) (j : U ⟶ I), Mono j → ∀ xi : Ext.{t} U Z 1, xi = 0) :
     ∀ h : kernel f ⟶ Z, ∃ a : Z ⟶ Z, kernel.ι f ≫ a = h := by

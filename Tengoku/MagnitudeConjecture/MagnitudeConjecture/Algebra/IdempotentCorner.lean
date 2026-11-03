@@ -25,6 +25,9 @@ def idempotentCorner {ι : Type*} (e : ι → A) (i j : ι) : Submodule k A :=
   LinearMap.range
     ((LinearMap.mulRight k (e j)).comp (LinearMap.mulLeft k (e i)))
 
+/--
+@isnad1 id=iff.0h7v.s7.904612b4671d from=translated src=- shape=780fee4f vocab=1e0195f7
+-/
 theorem mem_idempotentCorner_iff {ι : Type*} (e : ι → A) (i j : ι) (x : A) :
     x ∈ idempotentCorner (k := k) e i j ↔
       ∃ a : A, e i * a * e j = x :=

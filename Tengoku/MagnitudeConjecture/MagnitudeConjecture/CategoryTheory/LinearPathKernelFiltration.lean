@@ -26,6 +26,9 @@ variable {Q : Type v} [Quiver.{w} Q]
 variable {C : Type z} [CategoryTheory.Category C] [Preadditive C]
   [CategoryTheory.Linear k C]
 
+/--
+@isnad1 id=ex.1h4v.s5.c32cab6d5ceb from=translated src=- shape=8c4a81c4 vocab=a0f8975b
+-/
 theorem exists_eq_toPath_of_length_one {x y : Q} (p : Quiver.Path x y)
     (hp : p.length = 1) :
     ∃ a : x ⟶ y, p = a.toPath := by
@@ -41,11 +44,17 @@ def arrowOfLengthOne {x y : Q}
     (p : {p : Quiver.Path x y // p.length = 1}) : x ⟶ y :=
   Classical.choose (exists_eq_toPath_of_length_one p.1 p.2)
 
+/--
+@isnad1 id=eq.0h4v.s6.edfdb09e2643 from=translated src=- shape=daf6f669 vocab=fd130b7f
+-/
 theorem lengthOnePath_eq_toPath {x y : Q}
     (p : {p : Quiver.Path x y // p.length = 1}) :
     p.1 = (arrowOfLengthOne p).toPath :=
   Classical.choose_spec (exists_eq_toPath_of_length_one p.1 p.2)
 
+/--
+@isnad1 id=eq.0h4v.s5.e2a16242b6ef from=translated src=- shape=0a3fb66c vocab=ba96cfb4
+-/
 @[simp]
 theorem arrowOfLengthOne_toPath {x y : Q} (a : x ⟶ y) :
     arrowOfLengthOne ⟨a.toPath, rfl⟩ = a := by
@@ -53,6 +62,9 @@ theorem arrowOfLengthOne_toPath {x y : Q} (a : x ⟶ y) :
     (⟨a.toPath, rfl⟩ : {p : Quiver.Path x y // p.length = 1})
   injection h.symm
 
+/--
+@isnad1 id=injectiv.0h3v.s5.e685b6118fbd from=translated src=- shape=d4b6ee66 vocab=a1d101ce
+-/
 theorem arrowOfLengthOne_injective {x y : Q} :
     Function.Injective (arrowOfLengthOne (Q := Q) :
       {p : Quiver.Path x y // p.length = 1} → (x ⟶ y)) := by
@@ -108,7 +120,9 @@ def optionArrowEquivLowPath (x : Q) :
 
 /-- If all paths at or above `n` map into `W` and the shorter paths remain
 linearly independent modulo `W`, then every element of the realization kernel
-is supported in path lengths at least `n`.-/
+is supported in path lengths at least `n`.
+@isnad1 id=mem.3h10v.s12.88018c49e7ac from=translated src=- shape=cad0843c vocab=e8040112
+-/
 theorem mem_lengthTail_of_map_eq_zero_of_low_independent
     (F₀ : Q → C)
     (F₁ : ∀ {i j : Q}, (i ⟶ j) → (F₀ j ⟶ F₀ i))

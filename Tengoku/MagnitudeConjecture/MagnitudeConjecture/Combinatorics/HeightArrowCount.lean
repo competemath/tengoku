@@ -11,7 +11,9 @@ universe u
 variable {V : Type u} [Fintype V]
 
 /-- Each arrow contributes one to the difference of incoming and outgoing
-height-weighted sums. Multiplicities are retained.-/
+height-weighted sums. Multiplicities are retained.
+@isnad1 id=eq.1h3v.s7.399a576fe404 from=translated src=- shape=d5c38ec3 vocab=1020030d
+-/
 theorem weighted_difference (a : V → V → ℤ) (h : V → ℤ)
     (ha : ∀ x y, a x y ≠ 0 → h y = h x + 1) :
     (∑ x, ∑ y, a x y) =
@@ -35,7 +37,9 @@ theorem weighted_difference (a : V → V → ℤ) (h : V → ℤ)
 
 /-- Solving the weighted-height balance gives the arrow count and excess.
 Here A is the arrow count, N the vertex count, p the projective count,
-and L the sink height.-/
+and L the sink height.
+@isnad1 id=and.3h7v.s7.d3f687153e1d from=translated src=- shape=5ef06eb2 vocab=c85d5191
+-/
 theorem count_of_balance (A N p L Hp Hm outside : ℤ)
     (hheight : Hm - Hp = 2 * (N - p))
     (hout : outside = A - p + 1)

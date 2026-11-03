@@ -29,7 +29,9 @@ def minimalIn (A : Finset T) : Finset T := by
   exact A.filter fun x ↦ ∀ y ∈ A, ¬y < x
 
 /-- If the ambient poset has no three-element antichain, a finite subset has
-at most two minimal elements.-/
+at most two minimal elements.
+@isnad1 id=le.1h2v.s5.74881b542f1a from=translated src=- shape=bfc22a81 vocab=a39b8a6d
+-/
 theorem card_minimalIn_le_two
     (hno : ∀ a b c : T, ¬IsThreeAntichain a b c)
     (A : Finset T) :
@@ -73,7 +75,9 @@ def successorRel (x : T) : T ⊕ Fin 2 → Prop
   | Sum.inr _ => True
 
 /-- Hall's theorem supplies an injective successor assignment with two
-terminals.-/
+terminals.
+@isnad1 id=ex.1h1v.s6.470a0b11b9bc from=translated src=- shape=b5fb2bb3 vocab=46c32666
+-/
 theorem exists_injective_successor
     (hno : ∀ a b c : T, ¬IsThreeAntichain a b c) :
     ∃ f : T → T ⊕ Fin 2, Function.Injective f ∧
@@ -132,7 +136,9 @@ def strictUpperFinset (x : T) : Finset T := by
   exact Finset.univ.filter fun y ↦ x < y
 
 /-- Moving strictly upward strictly decreases the cardinality of the strict
-upper set.-/
+upper set.
+@isnad1 id=lt.1h3v.s5.c8eeb289557a from=translated src=- shape=d54a0562 vocab=5ae46e44
+-/
 theorem card_strictUpperFinset_lt_of_lt {x y : T} (hxy : x < y) :
     (strictUpperFinset y).card < (strictUpperFinset x).card := by
   classical
@@ -156,6 +162,9 @@ namespace TwoSuccessor
 
 variable (F : TwoSuccessor T)
 
+/--
+@isnad1 id=lt.1h4v.s5.a64a97e0fbce from=translated src=- shape=0ffc6988 vocab=1ce02c71
+-/
 theorem lt_of_next_eq_inl {S : Type u} [PartialOrder S]
     (F : TwoSuccessor S) {x y : S} (h : F.next x = Sum.inl y) :
     x < y := by
@@ -175,12 +184,18 @@ termination_by (strictUpperFinset x).card
 decreasing_by
   exact card_strictUpperFinset_lt_of_lt (F.lt_of_next_eq_inl h)
 
+/--
+@isnad1 id=eq.1h4v.s6.0fdb1189dd5a from=translated src=- shape=76f19694 vocab=aef1b0e6
+-/
 @[simp]
 theorem trace_of_next_eq_inr {x : T} {d : Fin 2}
     (h : F.next x = Sum.inr d) :
     F.trace x = (d, 0) := by
   rw [trace.eq_1, h]
 
+/--
+@isnad1 id=eq.1h4v.s6.148fc7ca04d5 from=translated src=- shape=68e5e6a8 vocab=ec95eba3
+-/
 @[simp]
 theorem trace_of_next_eq_inl {x y : T}
     (h : F.next x = Sum.inl y) :
@@ -229,14 +244,18 @@ termination_by (strictUpperFinset x).card
 decreasing_by
   exact card_strictUpperFinset_lt_of_lt (F.lt_of_next_eq_inl hx)
 
-/-- The full two-terminal trace is injective.-/
+/-- The full two-terminal trace is injective.
+@isnad1 id=injectiv.0h2v.s4.e321d21182d7 from=translated src=- shape=bb58814c vocab=e5d12dba
+-/
 theorem trace_injective (F : TwoSuccessor T) :
     Function.Injective F.trace := by
   intro x y h
   exact eq_of_trace_eq F h
 
 /-- Along one terminal fiber, greater remaining path length means a smaller
-poset element.-/
+poset element.
+@isnad1 id=le.2h4v.s6.80d0cf9d3bb4 from=translated src=- shape=261ef04b vocab=cf23f396
+-/
 theorem le_of_trace_fst_eq_of_snd_le
     {S : Type u} [PartialOrder S] [Fintype S]
     (F : TwoSuccessor S) {x y : S}
@@ -269,7 +288,9 @@ termination_by (strictUpperFinset x).card
 decreasing_by
   exact card_strictUpperFinset_lt_of_lt (F.lt_of_next_eq_inl hx)
 
-/-- Vertices with the same terminal label are comparable.-/
+/-- Vertices with the same terminal label are comparable.
+@isnad1 id=or.1h4v.s6.b7e1d841ddef from=translated src=- shape=a2092319 vocab=9a8a4b0a
+-/
 theorem comparable_of_trace_fst_eq (F : TwoSuccessor T) {x y : T}
     (hfst : (F.trace x).1 = (F.trace y).1) :
     x ≤ y ∨ y ≤ x := by
@@ -281,13 +302,17 @@ theorem comparable_of_trace_fst_eq (F : TwoSuccessor T) {x y : T}
 def terminalFiber (F : TwoSuccessor T) (d : Fin 2) : Set T :=
   {x | (F.trace x).1 = d}
 
-/-- Each terminal fiber is a chain.-/
+/-- Each terminal fiber is a chain.
+@isnad1 id=ischain.0h3v.s5.738c7925174a from=translated src=- shape=d77b2009 vocab=044fc94d
+-/
 theorem isChain_terminalFiber (F : TwoSuccessor T) (d : Fin 2) :
     IsChain (· ≤ ·) (terminalFiber F d) := by
   intro x hx y hy hxy
   exact F.comparable_of_trace_fst_eq (hx.trans hy.symm)
 
-/-- The two terminal fibers cover the whole poset.-/
+/-- The two terminal fibers cover the whole poset.
+@isnad1 id=eq.0h2v.s6.2d5eac86e86d from=translated src=- shape=9d80445b vocab=70633161
+-/
 theorem terminalFiber_zero_union_one (F : TwoSuccessor T) :
     terminalFiber F 0 ∪ terminalFiber F 1 = Set.univ := by
   ext x
@@ -298,7 +323,9 @@ theorem terminalFiber_zero_union_one (F : TwoSuccessor T) :
 
 end TwoSuccessor
 
-/-- The Hall assignment as a bundled successor structure.-/
+/-- The Hall assignment as a bundled successor structure.
+@isnad1 id=nonempty.1h1v.s4.848d51ae65a9 from=translated src=- shape=7dd860bb vocab=4956be64
+-/
 theorem exists_twoSuccessor
     (hno : ∀ a b c : T, ¬IsThreeAntichain a b c) :
     Nonempty (TwoSuccessor T) := by
@@ -306,7 +333,9 @@ theorem exists_twoSuccessor
   exact ⟨⟨f, hf, hrel⟩⟩
 
 /-- Width-two Dilworth: a finite poset without a three-element antichain is
-covered by two chains.-/
+covered by two chains.
+@isnad1 id=ex.1h1v.s6.01635e58b51a from=translated src=- shape=0b240e27 vocab=86034697
+-/
 theorem exists_two_chain_cover_of_no_threeAntichain
     (hno : ∀ a b c : T, ¬IsThreeAntichain a b c) :
     ∃ A B : Set T,
@@ -322,7 +351,9 @@ section Schur
 variable {k : Type u} [Field k]
 
 /-- If the indexing poset has width at most two, every Schur poset space is
-one-dimensional.-/
+one-dimensional.
+@isnad1 id=eq.2h3v.s6.9e1a90bf5911 from=translated src=- shape=d39b1af9 vocab=ae7a0431
+-/
 theorem finrank_eq_one_of_isSchur_of_no_threeAntichain
     (X : Obj k T) (hschur : IsSchur k T X)
     (hno : ∀ a b c : T, ¬IsThreeAntichain a b c) :
@@ -333,7 +364,9 @@ theorem finrank_eq_one_of_isSchur_of_no_threeAntichain
     X hschur A B hcover hA hB
 
 /-- Consequently, every Schur poset space of dimension at least two forces a
-three-element antichain in the indexing poset.-/
+three-element antichain in the indexing poset.
+@isnad1 id=ex.2h3v.s6.3baff2f88309 from=translated src=- shape=9d3c046c vocab=aedfc970
+-/
 theorem exists_threeAntichain_of_isSchur_of_two_le_finrank
     (X : Obj k T) (hschur : IsSchur k T X)
     (hrank : 2 ≤ Module.finrank k X) :

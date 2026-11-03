@@ -108,7 +108,9 @@ instance : G.forget.Faithful where
 instance : G.forget.Additive where
   map_add := by intros; rfl
 
-/-- A nonzero homogeneous map cannot have degree outside the grading bound.-/
+/-- A nonzero homogeneous map cannot have degree outside the grading bound.
+@isnad1 id=and.2h7v.s8.87d4f262536d from=translated src=- shape=dabb30f8 vocab=8cb19e64
+-/
 theorem degree_bounds_of_ne_zero
     (h : ℕ)
     (hbound : ∀ X Y d, d < 0 ∨ (h : ℤ) < d → G.component X Y d = ⊥)
@@ -126,7 +128,9 @@ theorem degree_bounds_of_ne_zero
   omega
 
 /-- For a skeletal degree-zero category, a nonzero map between distinct
-degree-labelled objects strictly decreases their shift.-/
+degree-labelled objects strictly decreases their shift.
+@isnad1 id=lt.4h7v.s9.0874fc273743 from=translated src=- shape=cefbb648 vocab=5f5f15e7
+-/
 theorem degree_strict_of_ne_zero_of_ne
     (h : ℕ)
     (hbound : ∀ X Y d, d < 0 ∨ (h : ℤ) < d → G.component X Y d = ⊥)

@@ -41,7 +41,9 @@ def biproductLinearEquivPi {n : ℕ} (V : Fin n → FGModuleCat.{u} k) :
         (ModuleCat.piIsoPi (fun i ↦ (V i).obj)).toLinearEquiv))
 
 /-- Finrank is additive on a finite biproduct of finite-dimensional vector
-spaces.-/
+spaces.
+@isnad1 id=eq.0h3v.s9.f1bc91e967e8 from=translated src=- shape=5a86c2b2 vocab=8ae660d2
+-/
 theorem finrank_biproduct {n : ℕ} (V : Fin n → FGModuleCat.{u} k) :
     Module.finrank k ((⨁ V : FGModuleCat.{u} k) : Type u) =
       ∑ i, Module.finrank k (V i) := by
@@ -71,7 +73,9 @@ def isoBiproductUnit (V : FGModuleCat.{u} k) :
   (coordinateEquiv.trans (biproductLinearEquivPi copies).symm).toFGModuleCatIso
 
 /-- An additive endofunctor of finite-dimensional vector spaces scales
-finrank by the finrank of its value on the ground field.-/
+finrank by the finrank of its value on the ground field.
+@isnad1 id=eq.0h3v.s10.e89e04f49c80 from=translated src=- shape=cb67a6ac vocab=806ca4b3
+-/
 theorem finrank_map_eq_mul (F : FGModuleCat.{u} k ⥤ FGModuleCat.{u} k)
     [F.Additive] (V : FGModuleCat.{u} k) :
     Module.finrank k (F.obj V) =

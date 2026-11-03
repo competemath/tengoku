@@ -10,7 +10,9 @@ universe u
 variable {k T : Type u} [Field k] [PartialOrder T] [Fintype T]
 
 /-- In a sharp positive grading every upper-set line has its support size
-as height, independently of any chosen reverse enumeration.-/
+as height, independently of any chosen reverse enumeration.
+@isnad1 id=eq.2h5v.s6.fbea609ce7da from=translated src=- shape=6c41aeec vocab=ea3d78cf
+-/
 theorem line_level_eq_card_of_sharp_grading
     {L : ℕ} (G : PositiveGrading (Obj k T) (IsSchur k T) L)
     (hL : L ≤ Fintype.card T) (U : Finset T) (hU : IsUpperSet (U : Set T)) :

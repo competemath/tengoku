@@ -37,7 +37,9 @@ def binaryBiproductShortComplex
 
 /-- Exactness of an explicit mapped binary-biproduct complex reflects
 through a faithful additive functor, even though the functor's image of the
-chosen biproduct is only canonically isomorphic to the target biproduct.-/
+chosen biproduct is only canonically isomorphic to the target biproduct.
+@isnad1 id=exact.2h11v.s8.c4f024a97f5c from=translated src=- shape=c2632b1b vocab=67f74afb
+-/
 theorem binaryBiproductShortComplex_exact_of_map
     (F : C ⥤ D) [F.Additive] [F.Faithful]
     {X A B Y : C} [PreservesBinaryBiproduct A B F]

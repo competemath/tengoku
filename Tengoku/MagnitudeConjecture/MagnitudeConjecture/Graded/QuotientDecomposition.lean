@@ -26,7 +26,9 @@ variable [AddCommGroup M] [Module k M]
 variable [AddCommGroup N] [Module k N]
 variable {d : Type z} [DecidableEq d]
 
-/-- The span of a set of homogeneous vectors is a homogeneous submodule.-/
+/-- The span of a set of homogeneous vectors is a homogeneous submodule.
+@isnad1 id=ishomoge.1h5v.s7.5808a4ea1523 from=translated src=- shape=13b57c38 vocab=01762e15
+-/
 theorem span_isHomogeneous_of_forall_mem_component
     (A : d → Submodule k M) [DirectSum.Decomposition A]
     (S : Set M) (hS : ∀ m ∈ S, ∃ i, m ∈ A i) :
@@ -50,7 +52,9 @@ theorem span_isHomogeneous_of_forall_mem_component
       exact Submodule.smul_mem _ c hx
 
 /-- A surjective linear map whose kernel is homogeneous transports an
-internal decomposition to the images of its homogeneous pieces.-/
+internal decomposition to the images of its homogeneous pieces.
+@isnad1 id=isintern.2h6v.s8.130e4d47f04a from=translated src=- shape=c4c48833 vocab=a64e8c94
+-/
 theorem image_isInternal_of_surjective_of_ker_isHomogeneous
     (A : d → Submodule k M) [DirectSum.Decomposition A]
     (f : M →ₗ[k] N) (hf : Function.Surjective f)
@@ -100,7 +104,9 @@ theorem image_isInternal_of_surjective_of_ker_isHomogeneous
     exact LinearMap.range_eq_top.2 hf
 
 /-- A linear equivalence transports an internal decomposition to the images
-of its homogeneous pieces.-/
+of its homogeneous pieces.
+@isnad1 id=isintern.1h6v.s8.5c49962fdc8c from=translated src=- shape=d1d34b83 vocab=71bae94c
+-/
 theorem image_isInternal_of_equiv
     (A : d → Submodule k M) (hA : DirectSum.IsInternal A)
     (e : M ≃ₗ[k] N) :

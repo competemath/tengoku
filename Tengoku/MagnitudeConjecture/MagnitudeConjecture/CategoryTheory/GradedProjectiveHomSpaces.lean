@@ -31,7 +31,9 @@ def projectiveHomMap {X Y : C} (f : X ⟶ Y) :
   map_add' x y := by funext i; exact Preadditive.add_comp _ _ _ _ _ _
   map_smul' c x := by funext i; exact Linear.smul_comp _ _ _ _ _ _
 
-/-- Homogeneous postcomposition has the same degree as the original morphism.-/
+/-- Homogeneous postcomposition has the same degree as the original morphism.
+@isnad1 id=mem.2h11v.s10.b31c12aac617 from=translated src=- shape=1f4ea597 vocab=44836f5a
+-/
 theorem projectiveHomMap_mem {X Y : C} {d n : ℤ} {f : X ⟶ Y}
     (hf : f ∈ G.component X Y d) {x : ∀ i, P i ⟶ X}
     (hx : x ∈ (G.projectiveHomGrading P X).component n) :
@@ -45,7 +47,9 @@ def projectiveMatrixGrading : Graded.VectorGrading k (∀ i j, P i ⟶ P j) :=
     { component := G.component (P i) (P j), internal := G.internal (P i) (P j) }
 
 /-- Precomposition by a homogeneous matrix shifts the degree of Hom coordinates.
-This is the right module action used in the manuscript.-/
+This is the right module action used in the manuscript.
+@isnad1 id=mem.2h10v.s11.57349c3c745c from=translated src=- shape=9a5627d8 vocab=d0e88ce2
+-/
 theorem projectiveMatrixAction_mem {X : C} {d n : ℤ}
     {a : ∀ i j, P i ⟶ P j} {x : ∀ i, P i ⟶ X}
     (ha : a ∈ (G.projectiveMatrixGrading P).component d)

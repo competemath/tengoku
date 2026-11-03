@@ -49,7 +49,9 @@ def singleIncomingCoefficient {x z : Q} (a₀ : IncomingArrow z)
     else 0
 
 /-- Summing a family supported at one incoming arrow recovers the displayed
-composite.-/
+composite.
+@isnad1 id=eq.0h6v.s8.c5b2e749eb08 from=translated src=- shape=a3f4bf50 vocab=c7d7ce63
+-/
 @[simp]
 theorem incomingSum_single {x z : Q} (a₀ : IncomingArrow z)
     (f : obj k Q x ⟶ obj k Q a₀.1) :
@@ -74,6 +76,9 @@ def incomingSumLinearMap (x z : Q) :
     intro r c
     simp [incomingSum, CategoryTheory.Linear.smul_comp, Finset.smul_sum]
 
+/--
+@isnad1 id=eq.0h5v.s11.44d6ac9f661c from=translated src=- shape=daab6c28 vocab=b7855b22
+-/
 @[simp]
 theorem incomingSumLinearMap_apply {x z : Q}
     (c : IncomingCoefficient (k := k) x z) :
@@ -89,7 +94,9 @@ def prependIncomingPath {x z : Q}
 
 omit [(z : Q) → Fintype (IncomingArrow z)] in
 /-- Distinct incoming arrows followed by arbitrary tails produce distinct
-paths.-/
+paths.
+@isnad1 id=injectiv.0h3v.s5.1456db36c4c2 from=translated src=- shape=8a8611bf vocab=abadaecd
+-/
 theorem prependIncomingPath_injective (x z : Q) :
     Function.Injective (prependIncomingPath (Q := Q) (x := x) (z := z)) := by
   rintro ⟨⟨y, a⟩, p⟩ ⟨⟨y', a'⟩, p'⟩ h

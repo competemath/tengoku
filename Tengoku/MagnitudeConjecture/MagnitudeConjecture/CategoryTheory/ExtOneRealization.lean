@@ -34,11 +34,17 @@ variable (f : kernel p ⟶ T)
 def projection : pushout (kernel.ι p) f ⟶ X :=
   pushout.desc p 0 (by simp)
 
+/--
+@isnad1 id=eq.0h6v.s7.c6dfe3af5709 from=translated src=- shape=d9e85fa2 vocab=5d3c9d72
+-/
 @[simp, reassoc]
 theorem inl_projection :
     pushout.inl (kernel.ι p) f ≫ projection p f = p := by
   exact pushout.inl_desc _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.7f586d9cdbcc from=translated src=- shape=17c9bfb7 vocab=9f15f8ef
+-/
 @[simp, reassoc]
 theorem inr_projection :
     pushout.inr (kernel.ι p) f ≫ projection p f = 0 := by

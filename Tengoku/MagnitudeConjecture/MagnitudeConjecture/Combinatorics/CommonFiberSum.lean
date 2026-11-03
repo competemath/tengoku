@@ -21,7 +21,9 @@ def commonFiberEquiv {ι : Type u} {α : Type v} (F : ι → Finset α)
   left_inv _ := rfl
   right_inv _ := rfl
 
-/-- A weight depending only on the label repeats once for each common shift.-/
+/-- A weight depending only on the label repeats once for each common shift.
+@isnad1 id=eq.1h5v.s9.7d4747aa143e from=translated src=- shape=a99d955a vocab=cae5eb59
+-/
 theorem sum_common_fiber {ι : Type u} [Fintype ι] {α : Type v} [DecidableEq α]
     (F : ι → Finset α) (I : Finset α) (hI : ∀ i, I ⊆ F i) (w : ι → ℕ) :
     (∑ a : {a : (i : ι) × ↥(F i) // a.2.val ∈ I}, w a.val.1) =

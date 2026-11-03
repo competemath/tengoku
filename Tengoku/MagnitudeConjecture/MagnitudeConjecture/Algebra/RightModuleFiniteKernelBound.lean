@@ -17,7 +17,9 @@ variable [FiniteDimensional k A] [IsNoetherianRing Aᵐᵒᵖ]
 variable [HasExt.{u} (FGModuleCat.{u} Aᵐᵒᵖ)]
 
 /-- Scalar endpoint endomorphisms and Ext vanishing on submodules of an
-injective target bound the Hom dimension by one.-/
+injective target bound the Hom dimension by one.
+@isnad1 id=le.3h5v.s11.ea58fe93cee8 from=translated src=- shape=16bb9cde vocab=d852808b
+-/
 theorem finrank_hom_le_one_of_ext_vanishing
     (S : FiniteIndecomposableSkeleton k A)
     (Z I : FinitelyGeneratedCategory A) [Injective I]

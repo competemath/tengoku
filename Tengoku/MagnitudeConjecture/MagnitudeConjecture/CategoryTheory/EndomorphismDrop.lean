@@ -33,7 +33,9 @@ variable {U : Type v} {V : Type v} {W : Type v}
   [FiniteDimensional k W]
 
 /-- Exactness at the middle term gives the elementary dimension bound
-`dim V ≤ dim U + dim W`.-/
+`dim V ≤ dim U + dim W`.
+@isnad1 id=le.1h6v.s8.bb3d961c8e43 from=translated src=- shape=19d02ecd vocab=df068ef9
+-/
 theorem finrank_le_add_of_exact
     (f : U →ₗ[k] V) (g : V →ₗ[k] W)
     (hfg : Function.Exact f g) :
@@ -51,7 +53,9 @@ theorem finrank_le_add_of_exact
     _ = Module.finrank k U + Module.finrank k W := Nat.add_comm _ _
 
 /-- If the second map in an exact pair is not onto, the middle dimension
-bound is strict.-/
+bound is strict.
+@isnad1 id=lt.2h6v.s8.87b7becb60ee from=translated src=- shape=a2321a67 vocab=5e2670ec
+-/
 theorem finrank_lt_add_of_exact_of_not_surjective
     (f : U →ₗ[k] V) (g : V →ₗ[k] W)
     (hfg : Function.Exact f g)
@@ -74,7 +78,9 @@ theorem finrank_lt_add_of_exact_of_not_surjective
 
 omit [FiniteDimensional k U] [FiniteDimensional k W] in
 /-- A short exact pair of linear maps gives additivity of finite
-dimensions.-/
+dimensions.
+@isnad1 id=eq.3h6v.s9.ce49038024f5 from=translated src=- shape=58269c3e vocab=0013bed3
+-/
 theorem finrank_eq_add_of_exact_of_injective_of_surjective
     (f : U →ₗ[k] V) (g : V →ₗ[k] W)
     (hfg : Function.Exact f g)
@@ -223,7 +229,9 @@ def biproductIsoPairComplement
 omit [HasBinaryBiproducts C] [HasFiniteBiproducts C]
   [∀ X Y : C, FiniteDimensional k (X ⟶ Y)] in
 /-- Composition out of a fixed object carries a short exact sequence to an
-exact pair of linear maps on Hom spaces.-/
+exact pair of linear maps on Hom spaces.
+@isnad1 id=exact.1h4v.s9.304419226eb9 from=translated src=- shape=17766917 vocab=d42dab25
+-/
 theorem ShortComplex.ShortExact.rightComp_exact
     {S : ShortComplex C} (hS : S.ShortExact) (W : C) :
     Function.Exact
@@ -245,7 +253,9 @@ theorem ShortComplex.ShortExact.rightComp_exact
 omit [HasBinaryBiproducts C] [HasFiniteBiproducts C]
   [∀ X Y : C, FiniteDimensional k (X ⟶ Y)] in
 /-- Composition into a fixed object carries a short exact sequence to the
-contravariant exact pair of linear maps on Hom spaces.-/
+contravariant exact pair of linear maps on Hom spaces.
+@isnad1 id=exact.1h4v.s9.f48fa1996865 from=translated src=- shape=18e9088b vocab=97cbf55b
+-/
 theorem ShortComplex.ShortExact.leftComp_exact
     {S : ShortComplex C} (hS : S.ShortExact) (W : C) :
     Function.Exact
@@ -266,7 +276,9 @@ theorem ShortComplex.ShortExact.leftComp_exact
 
 omit [HasBinaryBiproducts C] [HasFiniteBiproducts C] in
 /-- Hom out of the middle term is no larger than Hom out of the direct sum
-of the two endpoints.-/
+of the two endpoints.
+@isnad1 id=le.1h4v.s8.f61f13409f78 from=translated src=- shape=0d362c13 vocab=c0c0fc7e
+-/
 theorem ShortComplex.ShortExact.finrank_hom_from_middle_le
     {S : ShortComplex C} (hS : S.ShortExact) (W : C) :
     Module.finrank k (S.X₂ ⟶ W) ≤
@@ -278,7 +290,9 @@ theorem ShortComplex.ShortExact.finrank_hom_from_middle_le
 
 omit [HasBinaryBiproducts C] [HasFiniteBiproducts C] in
 /-- Hom into the middle term is no larger than Hom into the direct sum of
-the two endpoints.-/
+the two endpoints.
+@isnad1 id=le.1h4v.s8.4a7f4ee3c6cd from=translated src=- shape=8bd3d99b vocab=c0c0fc7e
+-/
 theorem ShortComplex.ShortExact.finrank_hom_to_middle_le
     {S : ShortComplex C} (hS : S.ShortExact) (W : C) :
     Module.finrank k (W ⟶ S.X₂) ≤
@@ -290,7 +304,9 @@ theorem ShortComplex.ShortExact.finrank_hom_to_middle_le
 
 omit [HasBinaryBiproducts C] [HasFiniteBiproducts C] in
 /-- For a nonsplit short exact sequence, the Hom bound into the source is
-strict: the identity of the source cannot extend across the monomorphism.-/
+strict: the identity of the source cannot extend across the monomorphism.
+@isnad1 id=lt.2h3v.s8.b0b8bb04be7c from=translated src=- shape=64535daa vocab=c8c9234f
+-/
 theorem ShortComplex.ShortExact.finrank_hom_middle_to_source_lt
     {S : ShortComplex C} (hS : S.ShortExact)
     (hnonsplit : ¬ IsSplitMono S.f) :
@@ -308,7 +324,9 @@ theorem ShortComplex.ShortExact.finrank_hom_middle_to_source_lt
 omit [HasBinaryBiproducts C] [HasFiniteBiproducts C] in
 /-- Ringel's strict comparison: the middle term of a nonsplit extension has
 smaller endomorphism dimension than the direct sum of its endpoints, written
-as the sum of the four matrix-block dimensions.-/
+as the sum of the four matrix-block dimensions.
+@isnad1 id=lt.2h3v.s9.bd75021a1789 from=translated src=- shape=767ef750 vocab=c8c9234f
+-/
 theorem ShortComplex.ShortExact.finrank_end_middle_lt_endpoint_blocks
     {S : ShortComplex C} (hS : S.ShortExact)
     (hnonsplit : ¬ IsSplitMono S.f) :
@@ -326,7 +344,9 @@ theorem ShortComplex.ShortExact.finrank_end_middle_lt_endpoint_blocks
   omega
 
 omit [Balanced C] [HasFiniteBiproducts C] in
-/-- Endomorphisms of a binary biproduct are the four Hom matrix blocks.-/
+/-- Endomorphisms of a binary biproduct are the four Hom matrix blocks.
+@isnad1 id=eq.0h4v.s8.e87a80491312 from=translated src=- shape=513cb5de vocab=e81ecb32
+-/
 theorem finrank_end_biprod (X Y : C) :
     Module.finrank k ((X ⊞ Y) ⟶ (X ⊞ Y)) =
       Module.finrank k (X ⟶ X) +
@@ -371,7 +391,9 @@ theorem finrank_end_biprod (X Y : C) :
 omit [HasFiniteBiproducts C] in
 /-- Ringel Section 2.3, Lemma 1 in the form needed for the minimization
 argument: replacing two summands by a nonsplit extension strictly lowers the
-endomorphism dimension even after adjoining an arbitrary unchanged summand.-/
+endomorphism dimension even after adjoining an arbitrary unchanged summand.
+@isnad1 id=lt.2h4v.s9.177c66e8299d from=translated src=- shape=6b6266a4 vocab=47e28f47
+-/
 theorem ShortComplex.ShortExact.finrank_end_middle_biprod_lt
     {S : ShortComplex C} (hS : S.ShortExact)
     (hnonsplit : ¬ IsSplitMono S.f) (R : C) :

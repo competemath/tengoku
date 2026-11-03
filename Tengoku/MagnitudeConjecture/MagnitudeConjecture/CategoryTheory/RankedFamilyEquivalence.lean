@@ -13,7 +13,9 @@ variable {D : Type u'} [Category.{v'} D] [Preadditive D]
 variable (E : C ≌ D) [E.functor.Additive]
 variable {ι : Type w} (F : ι → D) (rank : ι → ℤ)
 
-/-- Strict descent of nonzero nonisomorphisms is invariant under an additive equivalence.-/
+/-- Strict descent of nonzero nonisomorphisms is invariant under an additive equivalence.
+@isnad1 id=lt.3h9v.s8.dbe0acf70029 from=translated src=- shape=d9acc389 vocab=862c9628
+-/
 theorem ranked_family_of_equivalence
     (hF : ∀ i j, ∀ f : F i ⟶ F j, f ≠ 0 → ¬ IsIso f → rank j < rank i)
     (i j : ι) (f : E.inverse.obj (F i) ⟶ E.inverse.obj (F j))

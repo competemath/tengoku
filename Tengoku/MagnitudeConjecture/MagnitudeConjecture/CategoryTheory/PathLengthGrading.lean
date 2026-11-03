@@ -32,6 +32,9 @@ degree function.-/
 def degreeComponent (degree : P → ℕ) (n : ℕ) : Submodule k (P →₀ k) :=
   Finsupp.supported k k {p | degree p = n}
 
+/--
+@isnad1 id=isupinde.0h3v.s7.cde24986521d from=translated src=- shape=53430212 vocab=1db17946
+-/
 theorem degreeComponent_iSupIndep (degree : P → ℕ) :
     iSupIndep (degreeComponent (k := k) degree) := by
   rw [iSupIndep_def]
@@ -44,6 +47,9 @@ theorem degreeComponent_iSupIndep (degree : P → ℕ) :
   refine iSup_le fun m ↦ iSup_le fun hmn ↦ ?_
   exact Finsupp.supported_mono fun p hp hpn ↦ hmn (hp.symm.trans hpn)
 
+/--
+@isnad1 id=eq.0h3v.s9.237e39c254ba from=translated src=- shape=45b842de vocab=bd9dfa04
+-/
 theorem iSup_degreeComponent_eq_top (degree : P → ℕ) :
     ⨆ n, degreeComponent (k := k) degree n = ⊤ := by
   change (⨆ n, Finsupp.supported k k {p : P | degree p = n}) = ⊤
@@ -54,7 +60,9 @@ theorem iSup_degreeComponent_eq_top (degree : P → ℕ) :
   rw [h, Finsupp.supported_univ]
 
 /-- Finitely supported functions decompose internally according to any
-natural-number-valued degree on their basis indices.-/
+natural-number-valued degree on their basis indices.
+@isnad1 id=isintern.0h3v.s7.26980817ae1e from=translated src=- shape=737cd109 vocab=ee3f1fbd
+-/
 theorem degreeComponent_isInternal (degree : P → ℕ) :
     DirectSum.IsInternal (degreeComponent (k := k) degree) :=
   DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
@@ -69,7 +77,9 @@ variable {C : Type z} [Category.{w} C] [Preadditive C] [Linear k C]
 
 /-- Binary degree compatibility implies the corresponding three-factor
 compatibility.  This is kept generic so no concrete category implementation
-is unfolded while checking the associativity step.-/
+is unfolded while checking the associativity step.
+@isnad1 id=mem.4h13v.s10.211da21e97e0 from=translated src=- shape=90139f6b vocab=8431723f
+-/
 theorem comp_comp_mem
     (A : ∀ X Y : C, ℕ → Submodule k (X ⟶ Y))
     (hcomp : ∀ {W X Y : C} {i j : ℕ} {a : W ⟶ X} {b : X ⟶ Y},
@@ -97,6 +107,9 @@ def lengthComponent (x y : Category k Q) (n : ℕ) : Submodule k (x ⟶ y) :=
     (fun p : Quiver.Path (vertex y) (vertex x) ↦ p.length) n).comap
       (homPathLinearEquiv x y).toLinearMap
 
+/--
+@isnad1 id=iff.0h6v.s11.46fc181fd9e1 from=translated src=- shape=0b2fd8ee vocab=34c5f7f1
+-/
 @[simp]
 theorem mem_lengthComponent_iff (x y : Category k Q) (n : ℕ) (f : x ⟶ y) :
     f ∈ lengthComponent x y n ↔
@@ -105,6 +118,9 @@ theorem mem_lengthComponent_iff (x y : Category k Q) (n : ℕ) (f : x ⟶ y) :
           {p : Quiver.Path (vertex y) (vertex x) | p.length = n} :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s10.8110c0f89e49 from=translated src=- shape=8ac91dda vocab=85e1e7cf
+-/
 @[simp]
 theorem pathHom_mem_lengthComponent_iff {x y : Category k Q}
     (p : Quiver.Path (vertex y) (vertex x)) (n : ℕ) :
@@ -112,6 +128,9 @@ theorem pathHom_mem_lengthComponent_iff {x y : Category k Q}
   rw [mem_lengthComponent_iff, homPathLinearEquiv_pathHom]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s11.f8cfeffc68d2 from=translated src=- shape=de4fb11e vocab=306d8b3e
+-/
 theorem lengthComponent_eq_map (x y : Category k Q) (n : ℕ) :
     lengthComponent x y n =
       (GradedFinsupp.degreeComponent
@@ -120,7 +139,9 @@ theorem lengthComponent_eq_map (x y : Category k Q) (n : ℕ) :
   Submodule.comap_equiv_eq_map_symm (homPathLinearEquiv x y) _
 
 /-- The path-length pieces form an internal direct-sum decomposition of every
-Hom space.-/
+Hom space.
+@isnad1 id=isintern.0h4v.s10.474148d34900 from=translated src=- shape=2a305547 vocab=df5966e3
+-/
 theorem lengthComponent_isInternal (x y : Category k Q) :
     DirectSum.IsInternal (lengthComponent x y) := by
   let e := homPathLinearEquiv x y
@@ -144,6 +165,9 @@ theorem lengthComponent_isInternal (x y : Category k Q) :
 def lengthBasisSet (x y : Category k Q) (n : ℕ) : Set (x ⟶ y) :=
   pathHom '' {p : Quiver.Path (vertex y) (vertex x) | p.length = n}
 
+/--
+@isnad1 id=eq.0h5v.s9.fbbac6f96578 from=translated src=- shape=9cc87629 vocab=0cdab4fa
+-/
 theorem lengthComponent_eq_span (x y : Category k Q) (n : ℕ) :
     lengthComponent x y n = Submodule.span k (lengthBasisSet x y n) := by
   rw [lengthComponent_eq_map, GradedFinsupp.degreeComponent,
@@ -157,7 +181,9 @@ theorem lengthComponent_eq_span (x y : Category k Q) (n : ℕ) :
   · rintro ⟨p, hp, rfl⟩
     exact ⟨Finsupp.single p 1, ⟨p, hp, rfl⟩, rfl⟩
 
-/-- Composition in the free linear path category adds path length.-/
+/-- Composition in the free linear path category adds path length.
+@isnad1 id=mem.2h9v.s12.24af89f6284e from=translated src=- shape=c92ab6b2 vocab=4529f0f1
+-/
 theorem comp_mem_lengthComponent {x y z : Category k Q} {i j : ℕ}
     {f : x ⟶ y} {g : y ⟶ z}
     (hf : f ∈ lengthComponent x y i)
@@ -182,13 +208,18 @@ theorem comp_mem_lengthComponent {x y z : Category k Q} {i j : ℕ}
   | add f h _ _ hf hh => simpa using Submodule.add_mem _ hf hh
   | smul c f _ hf => simpa using Submodule.smul_mem _ c hf
 
+/--
+@isnad1 id=mem.0h3v.s10.ce0f5c8238c7 from=translated src=- shape=d50ab27f vocab=66485558
+-/
 @[simp]
 theorem id_mem_lengthComponent_zero (x : Category k Q) :
     𝟙 x ∈ lengthComponent x x 0 := by
   rw [← pathHom_nil x, pathHom_mem_lengthComponent_iff]
   exact Quiver.Path.length_nil
 
-/-- Between distinct vertices there is no degree-zero morphism.-/
+/-- Between distinct vertices there is no degree-zero morphism.
+@isnad1 id=eq.1h4v.s10.40091872f2c9 from=translated src=- shape=c2a4ba1c vocab=8d222fa1
+-/
 theorem lengthComponent_zero_eq_bot_of_vertex_ne {x y : Category k Q}
     (hxy : vertex y ≠ vertex x) :
     lengthComponent x y 0 = ⊥ := by
@@ -198,7 +229,9 @@ theorem lengthComponent_zero_eq_bot_of_vertex_ne {x y : Category k Q}
   exact False.elim (hxy (Quiver.Path.eq_of_length_zero p hp))
 
 /-- At one vertex the degree-zero endomorphisms are exactly the scalar
-multiples of the identity.-/
+multiples of the identity.
+@isnad1 id=eq.0h3v.s10.095ebb59c13b from=translated src=- shape=4c3061cd vocab=56ceafc5
+-/
 theorem lengthComponent_zero_self (x : Category k Q) :
     lengthComponent x x 0 = k ∙ (𝟙 x) := by
   rw [lengthComponent_eq_span]
@@ -219,6 +252,9 @@ def lengthTail (x y : Category k Q) (n : ℕ) : Submodule k (x ⟶ y) :=
     {p : Quiver.Path (vertex y) (vertex x) | n ≤ p.length}).comap
       (homPathLinearEquiv x y).toLinearMap
 
+/--
+@isnad1 id=iff.0h6v.s11.a38b32d97b42 from=translated src=- shape=51d021c2 vocab=45fc223d
+-/
 @[simp]
 theorem mem_lengthTail_iff (x y : Category k Q) (n : ℕ) (f : x ⟶ y) :
     f ∈ lengthTail x y n ↔
@@ -227,6 +263,9 @@ theorem mem_lengthTail_iff (x y : Category k Q) (n : ℕ) (f : x ⟶ y) :
           {p : Quiver.Path (vertex y) (vertex x) | n ≤ p.length} :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s10.555b3516a6d6 from=translated src=- shape=b80be8f0 vocab=b229c05d
+-/
 @[simp]
 theorem pathHom_mem_lengthTail_iff {x y : Category k Q}
     (p : Quiver.Path (vertex y) (vertex x)) (n : ℕ) :
@@ -235,7 +274,9 @@ theorem pathHom_mem_lengthTail_iff {x y : Category k Q}
   simp
 
 /-- The path-length tail is the span of the corresponding path-basis
-elements.-/
+elements.
+@isnad1 id=eq.0h5v.s9.eedb9fb63c35 from=translated src=- shape=6da0afb4 vocab=714521aa
+-/
 theorem lengthTail_eq_span (x y : Category k Q) (n : ℕ) :
     lengthTail x y n =
       Submodule.span k
@@ -252,14 +293,18 @@ theorem lengthTail_eq_span (x y : Category k Q) (n : ℕ) :
   · rintro ⟨p, hp, rfl⟩
     exact ⟨Finsupp.single p 1, ⟨p, hp, rfl⟩, by simp [pathHom]⟩
 
-/-- Raising the cutoff shrinks the free path-length tail.-/
+/-- Raising the cutoff shrinks the free path-length tail.
+@isnad1 id=le.1h6v.s10.d3765f82e335 from=translated src=- shape=714cc64b vocab=c1142814
+-/
 theorem lengthTail_antitone (x y : Category k Q) {m n : ℕ} (hmn : m ≤ n) :
     lengthTail x y n ≤ lengthTail x y m := by
   intro f hf
   rw [mem_lengthTail_iff] at hf ⊢
   exact fun p hp ↦ hmn.trans (hf hp)
 
-/-- Composition adds lower bounds on path length.-/
+/-- Composition adds lower bounds on path length.
+@isnad1 id=mem.2h9v.s12.4334b68c7aef from=translated src=- shape=c92ab6b2 vocab=17e3df7c
+-/
 theorem comp_mem_lengthTail {x y z : Category k Q} {i j : ℕ}
     {f : x ⟶ y} {g : y ⟶ z}
     (hf : f ∈ lengthTail x y i)
@@ -292,6 +337,9 @@ def positivePathSubmodule (x y : Category k Q) : Submodule k (x ⟶ y) :=
     {p : Quiver.Path (vertex y) (vertex x) | p.length ≠ 0}).comap
       (homPathLinearEquiv x y).toLinearMap
 
+/--
+@isnad1 id=iff.0h5v.s11.4cd02b03b2ad from=translated src=- shape=fa9a3dbd vocab=c4fa98a6
+-/
 @[simp]
 theorem mem_positivePathSubmodule_iff (x y : Category k Q) (f : x ⟶ y) :
     f ∈ positivePathSubmodule x y ↔
@@ -300,7 +348,9 @@ theorem mem_positivePathSubmodule_iff (x y : Category k Q) (f : x ⟶ y) :
           {p : Quiver.Path (vertex y) (vertex x) | p.length ≠ 0} :=
   Iff.rfl
 
-/-- The positive-path submodule is the span of its path-basis elements.-/
+/-- The positive-path submodule is the span of its path-basis elements.
+@isnad1 id=eq.0h4v.s9.cd8f4da616d4 from=translated src=- shape=643a8465 vocab=e51fb7e6
+-/
 theorem positivePathSubmodule_eq_span (x y : Category k Q) :
     positivePathSubmodule x y =
       Submodule.span k
@@ -318,7 +368,9 @@ theorem positivePathSubmodule_eq_span (x y : Category k Q) :
     exact ⟨Finsupp.single p 1, ⟨p, hp, rfl⟩, by simp [pathHom]⟩
 
 /-- Between distinct vertices every free linear morphism is a combination of
-positive-length paths.-/
+positive-length paths.
+@isnad1 id=eq.1h4v.s10.2dedadcff356 from=translated src=- shape=f5b59013 vocab=c4bdbd0e
+-/
 theorem positivePathSubmodule_eq_top_of_vertex_ne {x y : Category k Q}
     (hxy : vertex y ≠ vertex x) :
     positivePathSubmodule x y = ⊤ := by
@@ -332,13 +384,18 @@ theorem positivePathSubmodule_eq_top_of_vertex_ne {x y : Category k Q}
 def nilPathCoefficient (x : Category k Q) : (x ⟶ x) →ₗ[k] k :=
   (Finsupp.lapply Quiver.Path.nil).comp (homPathLinearEquiv x x).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s10.110f073adcdd from=translated src=- shape=2373f3b0 vocab=3cf27eda
+-/
 @[simp]
 theorem nilPathCoefficient_id (x : Category k Q) :
     nilPathCoefficient x (𝟙 x) = 1 := by
   simp [nilPathCoefficient]
 
 /-- For endomorphisms, having no trivial-path coefficient is exactly being a
-linear combination of positive-length paths.-/
+linear combination of positive-length paths.
+@isnad1 id=iff.0h4v.s11.5d613f8cb2cb from=translated src=- shape=677df4a8 vocab=f4b96693
+-/
 theorem mem_positivePathSubmodule_self_iff (x : Category k Q) (f : x ⟶ x) :
     f ∈ positivePathSubmodule x x ↔ nilPathCoefficient x f = 0 := by
   rw [mem_positivePathSubmodule_iff, nilPathCoefficient,
@@ -354,7 +411,9 @@ theorem mem_positivePathSubmodule_self_iff (x : Category k Q) (f : x ⟶ x) :
     exact (Finsupp.mem_support_iff.mp hp) hnil
 
 /-- A positive-length homogeneous endomorphism has zero trivial-path
-coefficient.-/
+coefficient.
+@isnad1 id=eq.2h5v.s11.88e9a6752455 from=translated src=- shape=c3745975 vocab=c9ef2288
+-/
 theorem nilPathCoefficient_eq_zero_of_mem_lengthComponent
     (x : Category k Q) {n : ℕ} (hn : n ≠ 0) {f : x ⟶ x}
     (hf : f ∈ lengthComponent x x n) :

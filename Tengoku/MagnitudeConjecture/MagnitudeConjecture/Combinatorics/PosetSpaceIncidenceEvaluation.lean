@@ -36,7 +36,9 @@ variable {k T : Type u} [Field k] [PartialOrder T]
 def coPrincipalSupport (t : T) : Set T :=
   {s | ¬ s ≤ t}
 
-/-- The complement of a principal ideal is an upper set.-/
+/-- The complement of a principal ideal is an upper set.
+@isnad1 id=isuppers.0h2v.s4.c55ca79bd83d from=translated src=- shape=101348a6 vocab=668355d1
+-/
 theorem coPrincipalSupport_isUpperSet (t : T) :
     IsUpperSet (coPrincipalSupport t) := by
   intro s r hsr hs hrt
@@ -102,7 +104,9 @@ def homFromPrincipalLineEquiv (t : T) (X : Obj k T) :
       apply Subtype.ext
       simp [principalLineEvaluation, principalLineMapOfVector]⟩
 
-/-- Every map `X ⟶ Q_t` vanishes on the distinguished subspace `X_t`.-/
+/-- Every map `X ⟶ Q_t` vanishes on the distinguished subspace `X_t`.
+@isnad1 id=le.0h5v.s8.98f0fd6a562b from=translated src=- shape=c3696dcd vocab=4ac17d53
+-/
 theorem homToCoPrincipalLine_vanishes (t : T) (X : Obj k T)
     (f : X ⟶ coPrincipalLine (k := k) t) :
     X.subspace t ≤ LinearMap.ker f.linear := by
@@ -191,7 +195,9 @@ def incidenceBoundaryEvaluation [Fintype T]
     (X.subspace t).mkQ
 
 /-- The incidence boundary functional evaluates a map `X ⟶ Q_t` on the
-chosen vector of `X`.-/
+chosen vector of `X`.
+@isnad1 id=eq.0h6v.s10.db260416df6c from=translated src=- shape=375133f0 vocab=01addd3b
+-/
 @[simp]
 theorem incidenceBoundaryEvaluation_apply [Fintype T]
     (t : T) (X : Obj k T) (x : X)
@@ -200,14 +206,18 @@ theorem incidenceBoundaryEvaluation_apply [Fintype T]
   rfl
 
 /-- The kernel of the boundary evaluation is exactly the distinguished
-subspace `X_t`.-/
+subspace `X_t`.
+@isnad1 id=eq.0h4v.s8.6fa0176b3c0f from=translated src=- shape=fabaeabc vocab=505bbc41
+-/
 theorem incidenceBoundaryEvaluation_ker [Fintype T]
     (t : T) (X : Obj k T) :
     LinearMap.ker (incidenceBoundaryEvaluation t X) = X.subspace t := by
   rw [incidenceBoundaryEvaluation, LinearMap.ker_comp, LinearEquiv.ker,
     Submodule.comap_bot, Submodule.ker_mkQ]
 
-/-- The boundary evaluation is onto.-/
+/-- The boundary evaluation is onto.
+@isnad1 id=surjecti.0h4v.s10.af540d855cb5 from=translated src=- shape=fb489c18 vocab=558726f8
+-/
 theorem incidenceBoundaryEvaluation_surjective [Fintype T]
     (t : T) (X : Obj k T) :
     Function.Surjective (incidenceBoundaryEvaluation t X) := by
@@ -224,7 +234,9 @@ def homToCoPrincipalLinePrecomposition (t : T) {X Y : Obj k T}
   map_smul' c g := by simp
 
 /-- Naturality of the incidence boundary evaluation.  Postcomposition on
-the total spaces agrees with the dual of precomposition into `Q_t`.-/
+the total spaces agrees with the dual of precomposition into `Q_t`.
+@isnad1 id=eq.0h7v.s12.295e5ebe616a from=translated src=- shape=9ff86df4 vocab=9070e8a6
+-/
 theorem incidenceBoundaryEvaluation_natural [Fintype T]
     (t : T) {X Y : Obj k T} (f : X ⟶ Y) (x : X) :
     incidenceBoundaryEvaluation t Y (f.linear x) =
@@ -239,7 +251,9 @@ theorem incidenceBoundaryEvaluation_natural [Fintype T]
 `0 → X_t → X → D Hom(X,Q_t) → 0`.
 
 The first map is the literal subspace inclusion and the second is
-`incidenceBoundaryEvaluation`.-/
+`incidenceBoundaryEvaluation`.
+@isnad1 id=exact.0h4v.s11.4fba07f45084 from=translated src=- shape=19e7dd1f vocab=9d4d4434
+-/
 theorem principalSubspace_incidenceBoundaryEvaluation_exact [Fintype T]
     (t : T) (X : Obj k T) :
     Function.Exact (X.subspace t).subtype
@@ -249,7 +263,9 @@ theorem principalSubspace_incidenceBoundaryEvaluation_exact [Fintype T]
     (X.subspace t).range_subtype.symm
 
 /-- For a one-dimensional total space, the two incidence evaluations are
-complementary.-/
+complementary.
+@isnad1 id=iff.1h4v.s8.71c2d0202be1 from=translated src=- shape=37303630 vocab=2f24597c
+-/
 theorem homFromPrincipalLine_nonzero_iff_homToCoPrincipalLine_eq_zero
     [Fintype T] (t : T) (X : Obj k T)
     (hX : Module.finrank k X = 1) :

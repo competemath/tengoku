@@ -25,7 +25,9 @@ def outgoingComponent (a : X ⟶ M) (j : Fin d.n) : X ⟶ d.summand j :=
   a ≫ d.isoBiproduct.hom ≫ biproduct.π d.summand j
 
 /-- A composite is the sum of its components through the summands whose
-maps to the target are nonzero.-/
+maps to the target are nonzero.
+@isnad1 id=eq.0h7v.s8.9fcf041af160 from=translated src=- shape=ee7e204a vocab=32a6e844
+-/
 theorem comp_eq_sum_incoming (a : X ⟶ M) (b : M ⟶ Y) :
     letI : Fintype (d.IncomingIndex b) := Fintype.ofFinite _
     a ≫ b = ∑ j : d.IncomingIndex b,
@@ -56,14 +58,18 @@ theorem comp_eq_sum_incoming (a : X ⟶ M) (b : M ⟶ Y) :
   simp
 
 /-- Any property shared by all indecomposables mapping nontrivially to Y
-holds for each intermediate object in the reduced sum.-/
+holds for each intermediate object in the reduced sum.
+@isnad1 id=var.0h8v.s7.c2c99684a6bd from=translated src=- shape=cc61a4cb vocab=b645f1f7
+-/
 theorem incoming_summand_property (P : C → Prop)
     (hP : ∀ Z : C, Indecomposable Z → ∀ f : Z ⟶ Y, f ≠ 0 → P Z)
     (b : M ⟶ Y) (j : d.IncomingIndex b) : P (d.summand j.val) :=
   hP _ (d.indecomposable j.val) (d.incomingComponent b j.val) j.property
 
 /-- A displayed decomposition supplies a reduced factorization whose
-intermediates all have the incoming-object property.-/
+intermediates all have the incoming-object property.
+@isnad1 id=ex.1h8v.s9.7d3607162bb2 from=translated src=- shape=d2427491 vocab=7c6c66ff
+-/
 theorem exists_factorization_decomposition (P : C → Prop)
     (hP : ∀ Z : C, Indecomposable Z → ∀ f : Z ⟶ Y, f ≠ 0 → P Z)
     (hd : Nonempty (FiniteIndecomposableDecomposition M))

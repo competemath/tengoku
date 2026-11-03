@@ -25,7 +25,9 @@ def sigmaFinsetFilterEquiv (F : ι → Finset ℤ) (P : ι → ℤ → Prop)
       left_inv := fun ⟨⟨i, t, ht⟩, hp⟩ ↦ rfl
       right_inv := fun ⟨i, t, ht⟩ ↦ rfl }
 
-/-- Summing uniform fibre bounds bounds the whole exceptional label set.-/
+/-- Summing uniform fibre bounds bounds the whole exceptional label set.
+@isnad1 id=le.1h4v.s7.fadce4e225b8 from=translated src=- shape=b7454cba vocab=ed26fad3
+-/
 theorem sigmaFinset_filter_card_le (F : ι → Finset ℤ) (P : ι → ℤ → Prop)
     [∀ i, DecidablePred (P i)] (B : ℕ)
     (hB : ∀ i, ((F i).filter (P i)).card ≤ B) :
@@ -36,7 +38,9 @@ theorem sigmaFinset_filter_card_le (F : ι → Finset ℤ) (P : ι → ℤ → P
     _ ≤ ∑ _i : ι, B := Finset.sum_le_sum (fun i _ ↦ by simpa using hB i)
     _ = _ := by simp
 
-/-- At most `3h` boundary targets occur for each original label, uniformly in m.-/
+/-- At most `3h` boundary targets occur for each original label, uniformly in m.
+@isnad1 id=le.1h5v.s8.78b6681c55f5 from=translated src=- shape=c570c9f1 vocab=00491790
+-/
 theorem total_exceptional_allowedShifts_card_le (m h : ℕ) (l r : ι → ℕ)
     (hl : ∀ i, l i ≤ h) :
     Nat.card {a : Σ i, ↥(allowedShifts m (l i) (r i)) //

@@ -50,6 +50,9 @@ structure Hom (X Y : Obj k T) where
   map_subspace : ∀ (t : T) (x : X),
     x ∈ X.subspace t → linear x ∈ Y.subspace t
 
+/--
+@isnad1 id=eq.1h6v.s7.e39a06d2fe67 from=translated src=- shape=6fe87533 vocab=65e075c8
+-/
 @[ext]
 theorem Hom.ext {X Y : Obj k T} {f g : Hom k T X Y}
     (h : f.linear = g.linear) : f = g := by
@@ -80,6 +83,9 @@ instance {X Y : Obj k T} : Zero (X ⟶ Y) where
     { linear := 0
       map_subspace := by simp }
 
+/--
+@isnad1 id=eq.0h4v.s8.77c163cb4f8f from=translated src=- shape=fe686682 vocab=ae3f166f
+-/
 @[simp]
 theorem zero_linear {X Y : Obj k T} :
     (0 : X ⟶ Y).linear = 0 :=
@@ -92,6 +98,9 @@ instance {X Y : Obj k T} : Add (X ⟶ Y) where
         (Y.subspace t).add_mem (f.map_subspace t x hx)
           (g.map_subspace t x hx) }
 
+/--
+@isnad1 id=eq.0h6v.s9.df2e0c5fb441 from=translated src=- shape=524e01f8 vocab=5bb13d6a
+-/
 @[simp]
 theorem add_linear {X Y : Obj k T} (f g : X ⟶ Y) :
     (f + g).linear = f.linear + g.linear :=
@@ -103,6 +112,9 @@ instance {X Y : Obj k T} : Neg (X ⟶ Y) where
       map_subspace := fun t x hx ↦
         (Y.subspace t).neg_mem (f.map_subspace t x hx) }
 
+/--
+@isnad1 id=eq.0h5v.s8.28bc995c2551 from=translated src=- shape=d071d16b vocab=42a03418
+-/
 @[simp]
 theorem neg_linear {X Y : Obj k T} (f : X ⟶ Y) :
     (-f).linear = -f.linear :=
@@ -115,6 +127,9 @@ instance {X Y : Obj k T} : Sub (X ⟶ Y) where
         (Y.subspace t).sub_mem (f.map_subspace t x hx)
           (g.map_subspace t x hx) }
 
+/--
+@isnad1 id=eq.0h6v.s9.25a439dbbb24 from=translated src=- shape=524e01f8 vocab=d50c86fe
+-/
 @[simp]
 theorem sub_linear {X Y : Obj k T} (f g : X ⟶ Y) :
     (f - g).linear = f.linear - g.linear :=
@@ -126,6 +141,9 @@ instance {X Y : Obj k T} : SMul ℕ (X ⟶ Y) where
       map_subspace := fun t x hx ↦
         (Y.subspace t).nsmul_mem (f.map_subspace t x hx) n }
 
+/--
+@isnad1 id=eq.0h6v.s9.81f2873ebbf6 from=translated src=- shape=fe7b5031 vocab=3cb659d7
+-/
 @[simp]
 theorem nsmul_linear {X Y : Obj k T} (n : ℕ) (f : X ⟶ Y) :
     (n • f).linear = n • f.linear :=
@@ -138,6 +156,9 @@ instance {X Y : Obj k T} : SMul ℤ (X ⟶ Y) where
         (Y.subspace t).toAddSubgroup.zsmul_mem
           (f.map_subspace t x hx) n }
 
+/--
+@isnad1 id=eq.0h6v.s9.3691952cf6f2 from=translated src=- shape=fe7b5031 vocab=91dd7fc1
+-/
 @[simp]
 theorem zsmul_linear {X Y : Obj k T} (n : ℤ) (f : X ⟶ Y) :
     (n • f).linear = n • f.linear :=
@@ -155,6 +176,9 @@ instance {X Y : Obj k T} : SMul k (X ⟶ Y) where
       map_subspace := fun t x hx ↦
         (Y.subspace t).smul_mem c (f.map_subspace t x hx) }
 
+/--
+@isnad1 id=eq.0h6v.s9.b8eb7f8f2ce0 from=translated src=- shape=c45a6eab vocab=8c073a6c
+-/
 @[simp]
 theorem smul_linear {X Y : Obj k T} (c : k) (f : X ⟶ Y) :
     (c • f).linear = c • f.linear :=
@@ -205,11 +229,17 @@ instance : HasZeroMorphisms (Obj k T) where
     intro x
     exact LinearMap.map_zero _
 
+/--
+@isnad1 id=eq.0h3v.s7.128435c8f713 from=translated src=- shape=3a5ba2cd vocab=79130206
+-/
 @[simp]
 theorem id_linear (X : Obj k T) :
     (𝟙 X : X ⟶ X).linear = LinearMap.id :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.14638df81a3b from=translated src=- shape=bbee2dca vocab=df45c9c0
+-/
 @[simp]
 theorem comp_linear {X Y Z : Obj k T} (f : X ⟶ Y) (g : Y ⟶ Z) :
     (f ≫ g).linear = g.linear.comp f.linear :=
@@ -229,6 +259,9 @@ abbrev line (U : Set T) (hU : IsUpperSet U) : Obj k T := by
           simp [hs, ht]
         · simp [hs] }
 
+/--
+@isnad1 id=eq.2h4v.s7.4eef05a03fd7 from=translated src=- shape=01407f79 vocab=f49ba364
+-/
 @[simp]
 theorem line_subspace_of_mem (U : Set T) (hU : IsUpperSet U) (t : T)
     (ht : t ∈ U) :
@@ -237,6 +270,9 @@ theorem line_subspace_of_mem (U : Set T) (hU : IsUpperSet U) (t : T)
   change (if t ∈ U then ⊤ else ⊥) = ⊤
   rw [ite_eq_left ht]
 
+/--
+@isnad1 id=eq.2h4v.s7.1d9438a79daf from=translated src=- shape=f55bb18c vocab=c923fa62
+-/
 @[simp]
 theorem line_subspace_of_not_mem (U : Set T) (hU : IsUpperSet U) (t : T)
     (ht : t ∉ U) :
@@ -265,6 +301,9 @@ def lineHom {U V : Set T} {hU : IsUpperSet U} {hV : IsUpperSet V}
           subst x
           simp }
 
+/--
+@isnad1 id=eq.3h4v.s7.fb8a86fbb802 from=translated src=- shape=367a0f30 vocab=b4981280
+-/
 @[simp]
 theorem lineHom_linear {U V : Set T} {hU : IsUpperSet U}
     {hV : IsUpperSet V} (hUV : U ⊆ V) :
@@ -272,7 +311,9 @@ theorem lineHom_linear {U V : Set T} {hU : IsUpperSet U}
       (LinearMap.id : k →ₗ[k] k) :=
   rfl
 
-/-- Every support-inclusion map is nonzero.-/
+/-- Every support-inclusion map is nonzero.
+@isnad1 id=ne.3h4v.s7.a2eb74ecb0f7 from=translated src=- shape=53822c0f vocab=9753bb93
+-/
 theorem lineHom_ne_zero {U V : Set T} {hU : IsUpperSet U}
     {hV : IsUpperSet V} (hUV : U ⊆ V) :
     lineHom k T (hU := hU) (hV := hV) hUV ≠ 0 := by
@@ -285,7 +326,9 @@ theorem lineHom_ne_zero {U V : Set T} {hU : IsUpperSet U}
   exact (one_ne_zero : (1 : k) ≠ 0) hone
 
 /-- A strict inclusion of upper supports gives a nonisomorphism between the
-corresponding one-dimensional `T`-spaces.-/
+corresponding one-dimensional `T`-spaces.
+@isnad1 id=not.3h4v.s6.a169be207487 from=translated src=- shape=5850d90f vocab=3c072720
+-/
 theorem lineHom_not_isIso {U V : Set T} {hU : IsUpperSet U}
     {hV : IsUpperSet V} (hUV : U ⊂ V) :
     ¬ IsIso (lineHom k T (hU := hU) (hV := hV) hUV.1) := by
@@ -325,7 +368,9 @@ def IsSchur (X : Obj k T) : Prop :=
     ∀ f : X ⟶ X, ∃ a : k,
       f.linear = a • (LinearMap.id : X →ₗ[k] X)
 
-/-- Every one-dimensional support object is Schur.-/
+/-- Every one-dimensional support object is Schur.
+@isnad1 id=isschur.1h3v.s5.5c090b809f41 from=translated src=- shape=d5b88cf9 vocab=202d77e9
+-/
 theorem line_isSchur (U : Set T) (hU : IsUpperSet U) :
     IsSchur k T (line k T U hU) := by
   constructor
@@ -360,7 +405,9 @@ def reverseIndex (t : T) : Fin (Fintype.card T) :=
   (reverseOrderIso T).symm
     (toLinearExtension (OrderDual.toDual t))
 
-/-- The reverse-extension index reverses the original partial order.-/
+/-- The reverse-extension index reverses the original partial order.
+@isnad1 id=le.1h3v.s5.cf83dfd1b715 from=translated src=- shape=86d8375e vocab=2251d7a9
+-/
 theorem reverseIndex_anti {s t : T} (hst : s ≤ t) :
     reverseIndex T t ≤ reverseIndex T s := by
   have hdual : OrderDual.toDual t ≤ OrderDual.toDual s := hst
@@ -375,7 +422,9 @@ def supportAt (j : Fin (Fintype.card T + 1)) : Set T :=
   {t | (reverseIndex T t).val < j.val}
 
 /-- Every prefix of the reverse linear extension is an upper set in the
-original poset.-/
+original poset.
+@isnad1 id=isuppers.0h2v.s5.4482b75ab852 from=translated src=- shape=a6a80cee vocab=56075151
+-/
 theorem supportAt_isUpperSet (j : Fin (Fintype.card T + 1)) :
     IsUpperSet (supportAt T j) := by
   intro s t hst hs
@@ -385,7 +434,9 @@ theorem supportAt_isUpperSet (j : Fin (Fintype.card T + 1)) :
   have hindex_val : (reverseIndex T t).val ≤ (reverseIndex T s).val := hindex
   exact lt_of_le_of_lt hindex_val hs
 
-/-- The support prefixes are monotone in the prefix length.-/
+/-- The support prefixes are monotone in the prefix length.
+@isnad1 id=le.1h3v.s6.2d109caaaa47 from=translated src=- shape=50344087 vocab=97e10a70
+-/
 theorem supportAt_mono {i j : Fin (Fintype.card T + 1)} (hij : i ≤ j) :
     supportAt T i ⊆ supportAt T j := by
   intro t ht
@@ -397,6 +448,9 @@ theorem supportAt_mono {i j : Fin (Fintype.card T + 1)} (hij : i ≤ j) :
 def reverseElement (j : Fin (Fintype.card T)) : T :=
   OrderDual.ofDual (reverseOrderIso T j)
 
+/--
+@isnad1 id=eq.0h2v.s4.fa4b246603a9 from=translated src=- shape=6442e89f vocab=7b8ceeae
+-/
 @[simp]
 theorem reverseIndex_reverseElement (j : Fin (Fintype.card T)) :
     reverseIndex T (reverseElement T j) = j := by
@@ -415,29 +469,41 @@ namespace ReverseEnumeration
 def index (R : ReverseEnumeration T) (t : T) : Fin (Fintype.card T) :=
   R.equiv.symm t
 
+/--
+@isnad1 id=eq.0h3v.s6.6d8836af571f from=translated src=- shape=19d07cbe vocab=1a86d3b2
+-/
 @[simp]
 theorem index_equiv (R : ReverseEnumeration T) (j : Fin (Fintype.card T)) :
     index T R (R.equiv j) = j :=
   R.equiv.symm_apply_apply j
 
+/--
+@isnad1 id=injectiv.0h2v.s4.660bb6740d40 from=translated src=- shape=e374ccd1 vocab=f932bc09
+-/
 theorem index_injective (R : ReverseEnumeration T) :
     Function.Injective (index T R) :=
   R.equiv.symm.injective
 
 end ReverseEnumeration
 
-/-- The support chain starts at the empty set.-/
+/-- The support chain starts at the empty set.
+@isnad1 id=eq.0h1v.s5.0033c2ba5da8 from=translated src=- shape=29cb9487 vocab=eaba2814
+-/
 theorem supportAt_zero : supportAt T 0 = ∅ := by
   ext t
   simp [supportAt]
 
-/-- The support chain ends at the full set.-/
+/-- The support chain ends at the full set.
+@isnad1 id=eq.0h1v.s4.8a53d6502eb5 from=translated src=- shape=2debbced vocab=523500b2
+-/
 theorem supportAt_last : supportAt T (Fin.last (Fintype.card T)) = Set.univ := by
   ext t
   simp [supportAt, Fin.is_lt]
 
 /-- Consecutive supports in the reverse-linear-extension chain are strictly
-increasing.-/
+increasing.
+@isnad1 id=lt.0h2v.s5.e629b855fcea from=translated src=- shape=8cd1a546 vocab=ed91fa1f
+-/
 theorem supportAt_strictMono (j : Fin (Fintype.card T)) :
     supportAt T j.castSucc ⊂ supportAt T j.succ := by
   constructor
@@ -463,7 +529,9 @@ abbrev supportLineStep (j : Fin (Fintype.card T)) :
     (hV := supportAt_isUpperSet T j.succ)
     (supportAt_strictMono T j).1
 
-/-- Every step in the canonical support chain is a nonisomorphism.-/
+/-- Every step in the canonical support chain is a nonisomorphism.
+@isnad1 id=not.0h3v.s5.46cfbf2d83f4 from=translated src=- shape=7c44b9a7 vocab=7a95aa03
+-/
 theorem supportLineStep_not_isIso (j : Fin (Fintype.card T)) :
     ¬ IsIso (supportLineStep k T j) :=
   lineHom_not_isIso k T
@@ -485,13 +553,17 @@ abbrev supportLineChain :
   map_comp := by intros; apply Hom.ext; rfl
 
 /-- The total composite of the canonical support chain is the identity on
-its one-dimensional underlying vector space.-/
+its one-dimensional underlying vector space.
+@isnad1 id=eq.0h2v.s8.f02eda17760d from=translated src=- shape=1e13cd3d vocab=e8bce6e5
+-/
 @[simp]
 theorem supportLineChain_hom_linear :
     (supportLineChain k T).hom.linear = (LinearMap.id : k →ₗ[k] k) :=
   rfl
 
-/-- Hence the total composite of the support chain is nonzero.-/
+/-- Hence the total composite of the support chain is nonzero.
+@isnad1 id=ne.0h2v.s8.3b2451f547d8 from=translated src=- shape=5630922c vocab=7215856a
+-/
 theorem supportLineChain_hom_ne_zero :
     (supportLineChain k T).hom ≠ 0 := by
   intro hzero
@@ -503,7 +575,9 @@ theorem supportLineChain_hom_ne_zero :
   exact (one_ne_zero : (1 : k) ≠ 0) hone
 
 /-- The adjacent arrow of the full support chain is the previously defined
-strict support-inclusion morphism.-/
+strict support-inclusion morphism.
+@isnad1 id=eq.0h3v.s8.81fa663d66de from=translated src=- shape=6d2064ea vocab=cd0f9c80
+-/
 theorem supportLineChain_map_succ (j : Fin (Fintype.card T)) :
     (supportLineChain k T).map'
         j.val (j.val + 1) (Nat.le_succ _) (Nat.succ_le_of_lt j.isLt) =
@@ -511,7 +585,9 @@ theorem supportLineChain_map_succ (j : Fin (Fintype.card T)) :
   apply Hom.ext
   rfl
 
-/-- Every adjacent arrow in the full support chain is a nonisomorphism.-/
+/-- Every adjacent arrow in the full support chain is a nonisomorphism.
+@isnad1 id=not.0h3v.s8.bb61b7608229 from=translated src=- shape=19b019a4 vocab=b30c03af
+-/
 theorem supportLineChain_map_succ_not_isIso
     (j : Fin (Fintype.card T)) :
     ¬ IsIso ((supportLineChain k T).map'
@@ -519,7 +595,9 @@ theorem supportLineChain_map_succ_not_isIso
   rw [supportLineChain_map_succ]
   exact supportLineStep_not_isIso k T j
 
-/-- Every adjacent arrow in the full support chain is nonzero.-/
+/-- Every adjacent arrow in the full support chain is nonzero.
+@isnad1 id=ne.0h3v.s10.cb972a913bec from=translated src=- shape=537859f1 vocab=1d261ea1
+-/
 theorem supportLineChain_map_succ_ne_zero
     (j : Fin (Fintype.card T)) :
     (supportLineChain k T).map'
@@ -565,7 +643,9 @@ structure PositiveGrading
     P X → P Y → f ≠ 0 → ¬ IsIso f → level X < level Y
 
 /-- A positive grading bounds the length of every nonzero chain of
-nonisomorphisms.-/
+nonisomorphisms.
+@isnad1 id=hasnonze.0h4v.s4.8d53b42dabb3 from=translated src=- shape=1a55830f vocab=9d4fe58e
+-/
 theorem PositiveGrading.hasNonzeroNonisomorphismLengthAtMost
     {C : Type u} [Category C] [HasZeroMorphisms C]
     {P : C → Prop} {L : ℕ} (G : PositiveGrading C P L) :
@@ -590,7 +670,9 @@ section Finite
 variable [Fintype T]
 
 /-- The canonical support chain is a nonzero nonisomorphism chain of length
-exactly `|T|`.-/
+exactly `|T|`.
+@isnad1 id=isnonzer.0h4v.s6.adeae99cb97c from=translated src=- shape=67d72c92 vocab=cab0e92b
+-/
 theorem supportLineChain_isNonzeroNonisomorphismChain :
     ∀ {P : Obj k T → Prop},
       (∀ j, P (supportLine k T j)) →
@@ -605,7 +687,9 @@ theorem supportLineChain_isNonzeroNonisomorphismChain :
   · exact supportLineChain_hom_ne_zero k T
 
 /-- The path-length bound in the poset-space category forces the
-manuscript's realization inequality `|T| ≤ L`.-/
+manuscript's realization inequality `|T| ≤ L`.
+@isnad1 id=le.1h5v.s6.5d85fdb03f5e from=translated src=- shape=10a514c9 vocab=278496b2
+-/
 theorem card_le_of_nonzeroNonisomorphismLengthAtMost {L : ℕ}
     {P : Obj k T → Prop}
     (support_admissible : ∀ j, P (supportLine k T j))
@@ -615,7 +699,9 @@ theorem card_le_of_nonzeroNonisomorphismLengthAtMost {L : ℕ}
     (supportLineChain_isNonzeroNonisomorphismChain k T support_admissible)
 
 /-- In particular, a positive grading on the poset-space category gives the
-realization-length inequality `|T| ≤ L`.-/
+realization-length inequality `|T| ≤ L`.
+@isnad1 id=le.0h6v.s6.6561bcdf2735 from=translated src=- shape=10a514c9 vocab=e1bd292a
+-/
 theorem card_le_of_positiveGrading {L : ℕ}
     {P : Obj k T → Prop}
     (support_admissible : ∀ j, P (supportLine k T j))
@@ -625,7 +711,9 @@ theorem card_le_of_positiveGrading {L : ℕ}
     G.hasNonzeroNonisomorphismLengthAtMost
 
 /-- The manuscript-shaped specialization: a positive grading on the Schur
-`T`-spaces forces `|T| ≤ L`, since every canonical support object is Schur.-/
+`T`-spaces forces `|T| ≤ L`, since every canonical support object is Schur.
+@isnad1 id=le.0h4v.s5.1d6c817d72e9 from=translated src=- shape=c28fcbe1 vocab=8e8e5990
+-/
 theorem card_le_of_schurPositiveGrading {L : ℕ}
     (G : PositiveGrading (Obj k T) (IsSchur k T) L) :
     Fintype.card T ≤ L :=
@@ -634,7 +722,9 @@ theorem card_le_of_schurPositiveGrading {L : ℕ}
 
 /-- Along the canonical support chain, a Schur-positive grading grows by at
 least the difference of the support indices.  The subtraction-free statement
-is convenient for natural-number arithmetic.-/
+is convenient for natural-number arithmetic.
+@isnad1 id=le.1h6v.s7.696647132a9e from=translated src=- shape=888143a7 vocab=64e6521f
+-/
 theorem supportLine_level_add_index_le
     {L : ℕ}
     (G : PositiveGrading (Obj k T) (IsSchur k T) L)
@@ -683,7 +773,9 @@ structure SchurDetour (q : ℕ) (hq : q + 2 < Fintype.card T) where
   outMap_not_isIso : ¬ IsIso outMap
 
 /-- Splicing a two-step Schur detour into the `|T|`-step support chain forces
-the strict equality obstruction `|T|+1 ≤ L`.-/
+the strict equality obstruction `|T|+1 ≤ L`.
+@isnad1 id=le.1h6v.s6.61af57998d89 from=translated src=- shape=961ef1d5 vocab=1a8f81c9
+-/
 theorem card_add_one_le_of_schurDetour
     {L q : ℕ}
     (G : PositiveGrading (Obj k T) (IsSchur k T) L)

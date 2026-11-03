@@ -27,7 +27,9 @@ variable {P : Type} (H : P → C)
 
 /-- A functor is faithful if its map is injective between every pair of
 coordinate objects and every source object is a finite biproduct of
-coordinates.-/
+coordinates.
+@isnad1 id=faithful.2h5v.s7.c307a6e361a9 from=translated src=- shape=28828bc7 vocab=4d9c79a1
+-/
 theorem functor_faithful_of_finite_coordinates
     (F : C ⥤ D)
     (hcoord : ∀ X : C, ∃ (n : ℕ) (p : Fin n → P),
@@ -55,7 +57,9 @@ set_option backward.isDefEq.respectTransparency false
 
 /-- An additive functor is full if its map is surjective between every pair
 of coordinate objects and every source object is a finite biproduct of
-coordinates.-/
+coordinates.
+@isnad1 id=full.2h5v.s7.b68b49a0691a from=translated src=- shape=bd0c8a22 vocab=c8fdad10
+-/
 theorem functor_full_of_finite_coordinates
     (F : C ⥤ D) [F.Additive]
     (hcoord : ∀ X : C, ∃ (n : ℕ) (p : Fin n → P),

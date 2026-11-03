@@ -26,9 +26,15 @@ def boundaryLE [LE T] : Option T → Option T → Prop
   | some _, none => False
   | some t, some s => s ≤ t
 
+/--
+@isnad1 id=boundary.0h2v.s3.9c81bdaef43f from=translated src=- shape=82448d51 vocab=2d22019b
+-/
 theorem boundaryLE_refl [Preorder T] (q : Option T) : boundaryLE q q := by
   cases q <;> simp [boundaryLE]
 
+/--
+@isnad1 id=boundary.2h4v.s5.a30465ca0dd5 from=translated src=- shape=5499c893 vocab=2d22019b
+-/
 theorem boundaryLE_trans [Preorder T] {q r s : Option T} :
     boundaryLE q r → boundaryLE r s → boundaryLE q s := by
   intro hqr hrs
@@ -42,6 +48,9 @@ theorem boundaryLE_trans [Preorder T] {q r s : Option T} :
           | none => exact False.elim hrs
           | some s => exact hrs.trans hqr
 
+/--
+@isnad1 id=eq.2h3v.s5.4c39a4970d3f from=translated src=- shape=b8c261bb vocab=a0e26250
+-/
 theorem boundaryLE_antisymm [PartialOrder T] {q r : Option T}
     (hqr : boundaryLE q r) (hrq : boundaryLE r q) : q = r := by
   cases q with
@@ -77,16 +86,25 @@ def BoundaryIndex.equivOption : BoundaryIndex T ≃ Option T where
 noncomputable instance [Fintype T] : Fintype (BoundaryIndex T) :=
   Fintype.ofEquiv (Option T) BoundaryIndex.equivOption.symm
 
+/--
+@isnad1 id=eq.0h1v.s3.29bd98915707 from=translated src=- shape=d7e42ba8 vocab=49fb350d
+-/
 @[simp]
 theorem BoundaryIndex.toOption_root :
     (BoundaryIndex.root : BoundaryIndex T).toOption = none :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.7e77919ebd33 from=translated src=- shape=eca97296 vocab=61d7e97a
+-/
 @[simp]
 theorem BoundaryIndex.toOption_nonroot (t : T) :
     (BoundaryIndex.nonroot t).toOption = some t :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s3.59156d9fcea9 from=translated src=- shape=fc766b23 vocab=cac77624
+-/
 theorem BoundaryIndex.toOption_injective :
     Function.Injective (BoundaryIndex.toOption (T := T)) := by
   intro q r h
@@ -101,6 +119,9 @@ instance [PartialOrder T] : PartialOrder (BoundaryIndex T) where
   le_antisymm q r hqr hrq :=
     BoundaryIndex.toOption_injective (boundaryLE_antisymm hqr hrq)
 
+/--
+@isnad1 id=iff.0h3v.s5.aa769ba436c4 from=translated src=- shape=e9c9c5cf vocab=30d46a74
+-/
 theorem boundaryLE_toOption_iff_le [PartialOrder T]
     (q r : BoundaryIndex T) :
     boundaryLE q.toOption r.toOption ↔ q ≤ r :=

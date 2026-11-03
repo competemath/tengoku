@@ -37,7 +37,9 @@ def vertexTotal {L : ℕ} (verticesAt : Fin (L + 1) → ℤ) : ℤ :=
 def arrowTotal {L : ℕ} (arrowsAt : Fin L → ℤ) : ℤ :=
   ∑ j, arrowsAt j
 
-/-- Summing the tree edge formula over all slices.-/
+/-- Summing the tree edge formula over all slices.
+@isnad1 id=eq.3h3v.s7.f0adbc188a4e from=translated src=- shape=d7176696 vocab=ed069b58
+-/
 theorem arrowTotal_eq_two_mul_vertexTotal_sub_length_sub_two
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
     (arrowsAt : Fin L → ℤ)
@@ -67,7 +69,9 @@ def intrinsicExcessFromCounts
   vertices - arrows + (vertices - projectives) - 1
 
 /-- The tree-slice count identifies intrinsic excess with the difference
-between grading length and the number of non-root projectives.-/
+between grading length and the number of non-root projectives.
+@isnad1 id=eq.3h4v.s7.06831f3edc50 from=translated src=- shape=fc951ba2 vocab=a0913455
+-/
 theorem intrinsicExcessFromCounts_eq_length_sub_projectives_sub_one
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
     (arrowsAt : Fin L → ℤ) (projectives : ℤ)
@@ -86,7 +90,9 @@ theorem intrinsicExcessFromCounts_eq_length_sub_projectives_sub_one
   ring
 
 /-- The realization bound `projectives - 1 ≤ L` is precisely what makes the
-intrinsic factor excess nonnegative.-/
+intrinsic factor excess nonnegative.
+@isnad1 id=le.4h4v.s7.a01ffe900d2e from=translated src=- shape=8e901415 vocab=8f3dc83f
+-/
 theorem intrinsicExcessFromCounts_nonnegative
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
     (arrowsAt : Fin L → ℤ) (projectives : ℤ)
@@ -105,7 +111,9 @@ theorem intrinsicExcessFromCounts_nonnegative
   omega
 
 /-- Under the tree-slice hypotheses, vanishing of the factor excess is
-equivalent to sharpness of the realization length bound.-/
+equivalent to sharpness of the realization length bound.
+@isnad1 id=iff.3h4v.s7.03db8d43fbbd from=translated src=- shape=93b81586 vocab=a0913455
+-/
 theorem intrinsicExcessFromCounts_eq_zero_iff
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
     (arrowsAt : Fin L → ℤ) (projectives : ℤ)
@@ -124,7 +132,9 @@ theorem intrinsicExcessFromCounts_eq_zero_iff
   omega
 
 /-- The strengthened bound `projectives ≤ L`, supplied in the manuscript by a
-thick indecomposable poset-space, makes the intrinsic excess strictly positive.-/
+thick indecomposable poset-space, makes the intrinsic excess strictly positive.
+@isnad1 id=lt.4h4v.s7.a805f805e88d from=translated src=- shape=62ea7057 vocab=def60829
+-/
 theorem intrinsicExcessFromCounts_pos
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
     (arrowsAt : Fin L → ℤ) (projectives : ℤ)
@@ -143,7 +153,9 @@ theorem intrinsicExcessFromCounts_pos
   omega
 
 /-- Bridge from the graded count to the matrix-defined intrinsic factor
-excess used by directed deletion.-/
+excess used by directed deletion.
+@isnad1 id=eq.4h6v.s7.f55f3474dba1 from=translated src=- shape=2cf45a6e vocab=78637ecb
+-/
 theorem matrixIntrinsicEulerExcess_eq_length_sub_projectives_sub_one
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
@@ -164,7 +176,9 @@ theorem matrixIntrinsicEulerExcess_eq_length_sub_projectives_sub_one
     verticesAt arrowsAt projectives source_singleton sink_singleton
       slice_tree_edges
 
-/-- Matrix form of nonnegative intrinsic factor excess.-/
+/-- Matrix form of nonnegative intrinsic factor excess.
+@isnad1 id=le.5h6v.s7.591e57e99a6d from=translated src=- shape=7ffcf80f vocab=0eb3fb5f
+-/
 theorem matrixIntrinsicEulerExcess_nonnegative
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)
@@ -186,7 +200,9 @@ theorem matrixIntrinsicEulerExcess_nonnegative
       slice_tree_edges meshEulerTotal]
   omega
 
-/-- Matrix form of the sharp equality criterion for the length bound.-/
+/-- Matrix form of the sharp equality criterion for the length bound.
+@isnad1 id=iff.4h6v.s7.76e13b47a8db from=translated src=- shape=5608a165 vocab=78637ecb
+-/
 theorem matrixIntrinsicEulerExcess_eq_zero_iff
     {ι : Type u} [Fintype ι] (Phi : Matrix ι ι ℤ)
     {L : ℕ} (verticesAt : Fin (L + 1) → ℤ)

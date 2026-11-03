@@ -14,7 +14,9 @@ def InBlock (r h j : ℕ) (d : ℤ) : Prop :=
   (j : ℤ) * ((r : ℤ) + h + 1) ≤ d ∧
     d ≤ (j : ℤ) * ((r : ℤ) + h + 1) + r
 
-/-- Degrees in different retained blocks differ by more than the Hom bound.-/
+/-- Degrees in different retained blocks differ by more than the Hom bound.
+@isnad1 id=lt.3h6v.s5.4dab7a3dcccf from=translated src=- shape=9d559875 vocab=c3a0076d
+-/
 theorem block_gap (r h : ℕ) {i j : ℕ} {x y : ℤ}
     (hij : i < j) (hx : InBlock r h i x) (hy : InBlock r h j y) :
     (h : ℤ) < y - x := by
@@ -25,7 +27,9 @@ theorem block_gap (r h : ℕ) {i j : ℕ} {x y : ℤ}
   obtain ⟨hy, _⟩ := hy
   nlinarith
 
-/-- A nonzero Hom degree can connect only one retained block.-/
+/-- A nonzero Hom degree can connect only one retained block.
+@isnad1 id=eq.3h6v.s5.036e6da7d3a0 from=translated src=- shape=bdadb0ec vocab=d1012d35
+-/
 theorem block_index_eq_of_close (r h : ℕ) {i j : ℕ} {x y : ℤ}
     (hx : InBlock r h i x) (hy : InBlock r h j y)
     (hclose : |y - x| ≤ h) : i = j := by
@@ -39,7 +43,9 @@ theorem block_index_eq_of_close (r h : ℕ) {i j : ℕ} {x y : ℤ}
     omega
 
 /-- Intermediate degrees between two degrees of a retained block stay in
-that block.-/
+that block.
+@isnad1 id=inblock.4h6v.s5.300de804f7bf from=translated src=- shape=5970a359 vocab=b8601433
+-/
 theorem inBlock_of_between (r h j : ℕ) {x y z : ℤ}
     (hx : InBlock r h j x) (hy : InBlock r h j y)
     (hxz : x ≤ z) (hzy : z ≤ y) : InBlock r h j z :=
@@ -48,7 +54,9 @@ theorem inBlock_of_between (r h j : ℕ) {x y z : ℤ}
 /-- The retained degrees for q separated copies of [0,r].-/
 def Retained (r h q : ℕ) (d : ℤ) : Prop := ∃ j < q, InBlock r h j d
 
-/-- A degree between close retained endpoints is retained.-/
+/-- A degree between close retained endpoints is retained.
+@isnad1 id=retained.5h6v.s5.98f0d8afea38 from=translated src=- shape=a98ff50b vocab=7e972667
+-/
 theorem retained_of_between_close (r h q : ℕ) {x y z : ℤ}
     (hx : Retained r h q x) (hy : Retained r h q y)
     (hclose : |y - x| ≤ h) (hxz : x ≤ z) (hzy : z ≤ y) :

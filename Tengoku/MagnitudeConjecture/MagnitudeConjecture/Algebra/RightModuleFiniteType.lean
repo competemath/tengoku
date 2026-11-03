@@ -67,7 +67,9 @@ def IsRepresentationFiniteFinitelyGenerated : Prop :=
         ∃ i, Nonempty (M ≅ X i)
 
 /-- A finitely generated right module over a finite-dimensional algebra is
-finite-dimensional over the coefficient field.-/
+finite-dimensional over the coefficient field.
+@isnad1 id=finite.0h3v.s7.67afdc3039c5 from=translated src=- shape=ccdea736 vocab=ac5c8086
+-/
 theorem finite_over_field_of_finitelyGenerated
     [FiniteDimensional k A] (M : FinitelyGeneratedCategory A) :
     Module.Finite k M := by
@@ -79,7 +81,9 @@ def finitelyGeneratedOfFiniteDimensional
   ⟨M, Module.Finite.of_restrictScalars_finite k Aᵐᵒᵖ M⟩
 
 /-- For a finite-dimensional algebra, the finite-dimensional and literally
-finitely generated formulations of right representation-finiteness agree.-/
+finitely generated formulations of right representation-finiteness agree.
+@isnad1 id=iff.0h2v.s5.9eb36e5ad034 from=translated src=- shape=a2648114 vocab=3a1b16cc
+-/
 theorem isRepresentationFinite_iff_finitelyGenerated
     [FiniteDimensional k A] :
     IsRepresentationFinite k A ↔
@@ -128,7 +132,9 @@ def moduleIsoSetoid {σ : Type*} (X : σ → Category A) : Setoid σ where
     trans := fun hij hjl ↦ Nonempty.map2 Iso.trans hij hjl }
 
 /-- Representation-finiteness supplies an actual finite skeleton with no
-repeated isomorphism classes.-/
+repeated isomorphism classes.
+@isnad1 id=nonempty.1h2v.s5.05bdc342ec6c from=translated src=- shape=4a219cb6 vocab=027982b6
+-/
 theorem exists_of_isRepresentationFinite
     (hA : IsRepresentationFinite k A) :
     Nonempty (FiniteIndecomposableSkeleton k A) := by
@@ -170,7 +176,9 @@ theorem exists_of_isRepresentationFinite
 variable (S : FiniteIndecomposableSkeleton k A)
 
 /-- Every finite-dimensional right module is a finite biproduct of objects
-from the chosen duplicate-free indecomposable skeleton.-/
+from the chosen duplicate-free indecomposable skeleton.
+@isnad1 id=ex.0h4v.s7.01fa18385200 from=translated src=- shape=05974527 vocab=82b9b359
+-/
 theorem obj_decomposition [FiniteDimensional k A]
     (M : Category A) [Module.Finite k M] :
     ∃ n : ℕ, ∃ label : Fin n → Fin S.n,
@@ -191,7 +199,9 @@ def fgObj (i : Fin S.n) : FinitelyGeneratedCategory A :=
   @finitelyGeneratedOfFiniteDimensional k _ A _ _ (S.obj i) (S.obj_finite i)
 
 /-- Indecomposability of a finitely generated right module is detected by the
-fully faithful inclusion into all right modules.-/
+fully faithful inclusion into all right modules.
+@isnad1 id=iff.0h3v.s7.b0d4bd1fccd4 from=translated src=- shape=facbedb6 vocab=177de32e
+-/
 theorem indecomposable_iff_obj [FiniteDimensional k A]
     [IsNoetherianRing Aᵐᵒᵖ] (M : FinitelyGeneratedCategory A) :
     Indecomposable M ↔ Indecomposable M.obj := by
@@ -241,7 +251,9 @@ theorem indecomposable_iff_obj [FiniteDimensional k A]
       · exact Or.inr (IsZero.of_full_of_faithful_of_isZero U Z hZ)
 
 /-- A chosen skeleton object remains indecomposable when bundled as a
-finitely generated right module.-/
+finitely generated right module.
+@isnad1 id=indecomp.0h4v.s7.2709aafea878 from=translated src=- shape=36691bbb vocab=8e2d3131
+-/
 theorem fgObj_indecomposable [FiniteDimensional k A]
     [IsNoetherianRing Aᵐᵒᵖ] (i : Fin S.n) :
     Indecomposable (S.fgObj i) :=
@@ -249,7 +261,9 @@ theorem fgObj_indecomposable [FiniteDimensional k A]
     (S.obj_indecomposable i)
 
 /-- The chosen finitely generated skeleton contains every indecomposable
-finitely generated right module.-/
+finitely generated right module.
+@isnad1 id=ex.1h4v.s7.ff6b521f6acf from=translated src=- shape=07cd3b74 vocab=b98ec201
+-/
 theorem fgObj_complete [FiniteDimensional k A]
     [IsNoetherianRing Aᵐᵒᵖ] (M : FinitelyGeneratedCategory A)
     (hM : Indecomposable M) :
@@ -260,7 +274,9 @@ theorem fgObj_complete [FiniteDimensional k A]
   exact ⟨i, ⟨ObjectProperty.isoMk _ e⟩⟩
 
 /-- The chosen finitely generated skeleton has no repeated isomorphism
-classes.-/
+classes.
+@isnad1 id=eq.1h5v.s6.ea08b7a1afbd from=translated src=- shape=98ce28e6 vocab=c1da4fe0
+-/
 theorem fgObj_skeletal {i j : Fin S.n}
     (h : Nonempty (S.fgObj i ≅ S.fgObj j)) : i = j := by
   apply S.eq_of_iso
@@ -272,14 +288,18 @@ theorem fgObj_skeletal {i j : Fin S.n}
 /-- The opposite of a finite-dimensional algebra is Noetherian, so its
 finitely generated module category is abelian and idempotent-complete.  This
 is a named value rather than a global instance because the coefficient field
-is not determined by the target ring.-/
+is not determined by the target ring.
+@isnad1 id=isnoethe.0h2v.s5.06c5d2414c73 from=translated src=- shape=b42af6cb vocab=534b5a99
+-/
 theorem oppositeIsNoetherian [FiniteDimensional k A] :
     IsNoetherianRing Aᵐᵒᵖ :=
   IsNoetherianRing.of_finite k Aᵐᵒᵖ
 
 /-- Every finitely generated right module over a finite-dimensional algebra
 is a finite biproduct of the chosen skeleton objects, now inside the literal
-finitely generated module category.-/
+finitely generated module category.
+@isnad1 id=ex.0h4v.s7.7d351503736f from=translated src=- shape=c4b6433e vocab=6e2cafae
+-/
 theorem fgObj_decomposition [FiniteDimensional k A]
     [IsNoetherianRing Aᵐᵒᵖ] (M : FinitelyGeneratedCategory A) :
     ∃ n : ℕ, ∃ label : Fin n → Fin S.n,
@@ -307,18 +327,24 @@ the right-module category.-/
 abbrev inclusion : S.IndecCategory ⥤ Category A :=
   inducedFunctor S.obj
 
-/-- Every chosen skeleton object is finite-dimensional over `k`.-/
+/-- Every chosen skeleton object is finite-dimensional over `k`.
+@isnad1 id=finite.0h4v.s8.c9abbe1353e8 from=translated src=- shape=36a5bde7 vocab=fed64901
+-/
 theorem indecCategory_obj_finite (i : S.IndecCategory) :
     Module.Finite k (S.inclusion.obj i) :=
   S.obj_finite i
 
-/-- Every chosen skeleton object is indecomposable.-/
+/-- Every chosen skeleton object is indecomposable.
+@isnad1 id=indecomp.0h4v.s6.392710e4e7ac from=translated src=- shape=9e4081ad vocab=290f893b
+-/
 theorem indecCategory_obj_indecomposable (i : S.IndecCategory) :
     Indecomposable (S.inclusion.obj i) :=
   S.obj_indecomposable i
 
 /-- Hom spaces between finite-dimensional right modules are finite-dimensional
-over the coefficient field.-/
+over the coefficient field.
+@isnad1 id=finite.0h4v.s7.1bbbda173daf from=translated src=- shape=6cb1c2fd vocab=b2d43a0c
+-/
 theorem moduleCat_hom_finite (M N : Category A)
     [Module.Finite k M] [Module.Finite k N] :
     Module.Finite k (M ⟶ N) := by
@@ -330,7 +356,9 @@ theorem moduleCat_hom_finite (M N : Category A)
       ModuleCat.homLinearEquiv.injective)
 
 /-- Hom spaces in the literal category of finitely generated right modules
-are finite-dimensional over the coefficient field.-/
+are finite-dimensional over the coefficient field.
+@isnad1 id=finite.0h4v.s8.86f722865748 from=translated src=- shape=8f2bd565 vocab=6f7e3a21
+-/
 noncomputable instance fgModuleCatHomFinite [FiniteDimensional k A]
     (M N : FinitelyGeneratedCategory A) :
     Module.Finite k (M ⟶ N) := by
@@ -339,7 +367,9 @@ noncomputable instance fgModuleCatHomFinite [FiniteDimensional k A]
   exact (moduleCat_hom_finite (k := k) (A := A) M.obj N.obj).equiv
     InducedCategory.homLinearEquiv.symm
 
-/-- Isomorphic objects of the chosen right-module skeleton have equal labels.-/
+/-- Isomorphic objects of the chosen right-module skeleton have equal labels.
+@isnad1 id=eq.1h5v.s6.acfc342ddcfc from=translated src=- shape=4deaee29 vocab=07c6cdf6
+-/
 theorem indecCategory_eq_of_iso {i j : S.IndecCategory}
     (h : Nonempty (i ≅ j)) : i = j := by
   apply S.eq_of_iso

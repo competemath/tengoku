@@ -31,6 +31,9 @@ def orbitInvariantDescend
     obtain ⟨g, rfl⟩ := hab
     exact invariant g b
 
+/--
+@isnad1 id=eq.1h5v.s6.a656c794fe27 from=translated src=- shape=96ecae76 vocab=4bc42f1e
+-/
 @[simp]
 theorem orbitInvariantDescend_mk
     {M : Type*} [AddCommMonoid M]
@@ -53,6 +56,9 @@ def orbitClassifierDescend
     obtain ⟨g, rfl⟩ := hab
     exact invariant g b
 
+/--
+@isnad1 id=eq.1h5v.s6.c485af5371b6 from=translated src=- shape=56d17e0b vocab=98b84565
+-/
 @[simp]
 theorem orbitClassifierDescend_mk
     {Y : Type*} (c : X → Y)
@@ -63,7 +69,9 @@ theorem orbitClassifierDescend_mk
   rfl
 
 /-- An orbit classifier is bijective on the orbit quotient when it is
-surjective and its fibres are exactly the orbits.-/
+surjective and its fibres are exactly the orbits.
+@isnad1 id=bijectiv.3h4v.s7.68dcb7a7fd92 from=translated src=- shape=8e09a601 vocab=cdbe231b
+-/
 theorem orbitClassifierDescend_bijective
     {Y : Type*} (c : X → Y)
     (invariant : ∀ (g : G) (x : X), c (g • x) = c x)
@@ -95,7 +103,9 @@ noncomputable def orbitClassifierEquiv
     (orbitClassifierDescend_bijective c invariant surjective fiber)
 
 /-- Reindex an orbit sum along a complete orbit classifier whose fibres are
-exactly the orbits.-/
+exactly the orbits.
+@isnad1 id=eq.5h7v.s7.f743a8777d25 from=translated src=- shape=b040ca0a vocab=ae127c6b
+-/
 theorem sum_orbitInvariantDescend_eq_sum_of_orbitClassifier
     {Y M : Type*} [Fintype X]
     [Fintype (MulAction.orbitRel.Quotient G X)] [Fintype Y]
@@ -119,7 +129,9 @@ theorem sum_orbitInvariantDescend_eq_sum_of_orbitClassifier
   | _ x => exact value_eq x
 
 /-- For a finite free action, the sum of an invariant function is the group
-order times its sum over the orbit quotient.-/
+order times its sum over the orbit quotient.
+@isnad1 id=eq.1h4v.s7.0101c66988f7 from=translated src=- shape=9d1f38a5 vocab=75d7a274
+-/
 theorem sum_eq_card_nsmul_sum_orbitInvariantDescend
     {M : Type*} [AddCommMonoid M]
     [Fintype G] [Fintype X]
@@ -147,7 +159,9 @@ theorem sum_eq_card_nsmul_sum_orbitInvariantDescend
       rw [Finset.sum_nsmul]
 
 /-- Integer form of invariant-sum scaling, matching the covering-average
-arithmetic.-/
+arithmetic.
+@isnad1 id=eq.1h3v.s7.3da14bc635bd from=translated src=- shape=84c41aea vocab=aaa8ab97
+-/
 theorem sum_eq_card_mul_sum_orbitInvariantDescend
     [Fintype G] [Fintype X]
     [Fintype (MulAction.orbitRel.Quotient G X)]
@@ -162,7 +176,9 @@ theorem sum_eq_card_mul_sum_orbitInvariantDescend
 
 /-- Every orbit quotient of a finite free action has uniform fibre size equal
 to the order of the acting group.  This cardinal form is what scales the
-vertex, arrow-occurrence, and mesh counts at the covering endpoints.-/
+vertex, arrow-occurrence, and mesh counts at the covering endpoints.
+@isnad1 id=eq.0h2v.s6.ae4f58c956a6 from=translated src=- shape=5f789a34 vocab=773d25fe
+-/
 theorem card_eq_orbitQuotient_card_mul_group_card
     {Q : Type u} [Group Q] {Y : Type v} [MulAction Q Y]
     [IsCancelSMul Q Y] [Fintype Q] [Fintype Y]
@@ -175,7 +191,9 @@ theorem card_eq_orbitQuotient_card_mul_group_card
       (fun y ↦ IsCancelSMul.stabilizer_eq_bot y))
 
 /-- Uniform free fibres scale the integer mesh-minus-arrow surplus by the
-order of the acting group.-/
+order of the acting group.
+@isnad1 id=eq.0h3v.s7.182fa1012327 from=translated src=- shape=8e8e341d vocab=b57f9729
+-/
 theorem eulerSurplus_scale_of_free_actions
     {Q : Type u} [Group Q] {Arrow Mesh : Type v}
     [MulAction Q Arrow] [MulAction Q Mesh]
@@ -244,7 +262,9 @@ noncomputable instance orbitQuotientMulAction (N : Subgroup G) [N.Normal] :
     (QuotientGroup.mk'_surjective N) (fun _ _ ↦ rfl)
 
 /-- The quotient action is represented by applying a representative before
-passing to the orbit quotient.-/
+passing to the orbit quotient.
+@isnad1 id=eq.0h5v.s8.4f8c3406d2d4 from=translated src=- shape=75487357 vocab=834f73e2
+-/
 @[simp]
 theorem quotient_smul_orbit_mk (N : Subgroup G) [N.Normal]
     (g : G) (x : X) :
@@ -307,6 +327,9 @@ noncomputable def orbitTowerEquiv (N : Subgroup G) [N.Normal] :
     induction z using Quotient.inductionOn' with
     | _ x => simp [orbitTowerFlatten, orbitTowerExpand]
 
+/--
+@isnad1 id=eq.0h4v.s9.c64dd6c4d570 from=translated src=- shape=27c97f96 vocab=bfb504a6
+-/
 @[simp]
 theorem orbitTowerEquiv_mk (N : Subgroup G) [N.Normal] (x : X) :
     orbitTowerEquiv N
@@ -315,6 +338,9 @@ theorem orbitTowerEquiv_mk (N : Subgroup G) [N.Normal] (x : X) :
       (Quotient.mk'' x : MulAction.orbitRel.Quotient G X) := by
   simp [orbitTowerEquiv, orbitTowerFlatten]
 
+/--
+@isnad1 id=eq.0h4v.s9.3de3ba6fca2d from=translated src=- shape=9d347630 vocab=ac722d28
+-/
 @[simp]
 theorem orbitTowerEquiv_symm_mk (N : Subgroup G) [N.Normal] (x : X) :
     (orbitTowerEquiv N).symm

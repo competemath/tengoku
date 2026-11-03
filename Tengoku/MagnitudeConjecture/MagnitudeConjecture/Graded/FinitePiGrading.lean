@@ -15,6 +15,9 @@ variable [∀ i, FiniteDimensional k (M i)] (G : ∀ i, VectorGrading k (M i))
 /-- The union of the finite homogeneous supports of all coordinates.-/
 def piSupport : Finset ℤ := Finset.univ.biUnion fun i ↦ (G i).degreeSupport
 
+/--
+@isnad1 id=eq.0h6v.s7.ce42be60a823 from=translated src=- shape=8e605c71 vocab=091e4e19
+-/
 theorem sum_piSupport (i : ι) (x : M i) :
     ∑ d ∈ piSupport G, (G i).projection d x = x := by
   have hs : (G i).degreeSupport ⊆ piSupport G := by

@@ -39,7 +39,9 @@ section Idempotent
 variable [HasZeroMorphisms D] [IsIdempotentComplete D]
 
 /-- An idempotent which factors through an injective vanishes if its source
-has no nonzero injective retract.-/
+has no nonzero injective retract.
+@isnad1 id=eq.3h3v.s6.a85a974bffd6 from=translated src=- shape=fe532a56 vocab=65a04b8d
+-/
 theorem idempotent_eq_zero_of_factorsThroughInjective
     {T : D} (a : T ⟶ T)
     (haa : a ≫ a = a)
@@ -169,6 +171,9 @@ def postcomp (X : D) {Y Z : D} (g : Y ⟶ Z) :
       obtain ⟨hfactor⟩ := hf
       exact ⟨hfactor.postcomp g⟩)
 
+/--
+@isnad1 id=eq.0h7v.s10.6f752614979e from=translated src=- shape=be338db8 vocab=1abc8fa4
+-/
 @[simp]
 theorem postcomp_mk (X : D) {Y Z : D} (g : Y ⟶ Z) (f : X ⟶ Y) :
     postcomp (k := k) X g (mk (k := k) f) = mk (k := k) (f ≫ g) :=
@@ -184,6 +189,9 @@ def precomp {W X : D} (g : W ⟶ X) (Y : D) :
       obtain ⟨hfactor⟩ := hf
       exact ⟨hfactor.precomp g⟩)
 
+/--
+@isnad1 id=eq.0h7v.s10.01bdd513e1be from=translated src=- shape=3638ba1b vocab=0096b32a
+-/
 @[simp]
 theorem precomp_mk {W X : D} (g : W ⟶ X) (Y : D) (f : X ⟶ Y) :
     precomp (k := k) g Y (mk (k := k) f) = mk (k := k) (g ≫ f) :=
@@ -191,7 +199,9 @@ theorem precomp_mk {W X : D} (g : W ⟶ X) (Y : D) (f : X ⟶ Y) :
 
 omit [Preadditive D] [HasZeroObject D] [HasBinaryBiproducts D] in
 /-- If the identity factors through an injective, then the object itself is
-injective.-/
+injective.
+@isnad1 id=injectiv.0h3v.s4.cb362c33f761 from=translated src=- shape=5d14298c vocab=026e330d
+-/
 theorem injective_of_id_factorsThroughInjective
     (X : D) (h : FactorsThroughInjective (𝟙 X)) : Injective X := by
   letI : Injective h.middle := h.injective
@@ -201,7 +211,9 @@ theorem injective_of_id_factorsThroughInjective
       retract := h.fac }
   exact r.injective
 
-/-- A noninjective object has a nonzero injective-stable identity class.-/
+/-- A noninjective object has a nonzero injective-stable identity class.
+@isnad1 id=ne.1h3v.s9.60f167d9c696 from=translated src=- shape=42e94ad8 vocab=b3f21a4d
+-/
 theorem mk_id_ne_zero (X : D) (hX : ¬ Injective X) :
     mk (k := k) (𝟙 X) ≠ 0 := by
   intro hzero

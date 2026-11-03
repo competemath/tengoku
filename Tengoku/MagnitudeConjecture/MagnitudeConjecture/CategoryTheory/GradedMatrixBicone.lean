@@ -24,6 +24,9 @@ def matrixBicone (M : Mat_ C) : Bicone (fun i ↦ (Mat_.embedding C).obj (M.X i)
     rw [Category.assoc, Iso.inv_hom_id_assoc]
     exact biproduct.ι_π _ i j
 
+/--
+@isnad1 id=eq.0h2v.s9.188ac6ecea07 from=translated src=- shape=1eab618e vocab=266859c6
+-/
 theorem matrixBicone_total (M : Mat_ C) :
     ∑ i, (matrixBicone M).π i ≫ (matrixBicone M).ι i = 𝟙 M := by
   let e := M.isoBiproductEmbedding
@@ -37,7 +40,9 @@ theorem matrixBicone_total (M : Mat_ C) :
         have hi : (𝟙 (⨁ V)) ≫ e.inv = e.inv := Category.id_comp _
         exact (congrArg (fun f ↦ e.hom ≫ f) hi).trans e.hom_inv_id)
 
-/-- The singleton projections have degree zero.-/
+/-- The singleton projections have degree zero.
+@isnad1 id=mem.0h5v.s9.81828b8eec1a from=translated src=- shape=4855369c vocab=f48f53fd
+-/
 theorem matrixBicone_π_homogeneous (M : Mat_ C) (i : M.ι) :
     (matrixBicone M).π i ∈ G.additiveEnvelope.component M ((Mat_.embedding C).obj (M.X i)) 0 := by
   classical
@@ -49,7 +54,9 @@ theorem matrixBicone_π_homogeneous (M : Mat_ C) (i : M.ι) :
     exact G.id_mem _
   · exact (G.component _ _ _).zero_mem
 
-/-- The singleton injections have degree zero.-/
+/-- The singleton injections have degree zero.
+@isnad1 id=mem.0h5v.s9.c94a582523de from=translated src=- shape=63f05bbc vocab=31248e1b
+-/
 theorem matrixBicone_ι_homogeneous (M : Mat_ C) (i : M.ι) :
     (matrixBicone M).ι i ∈ G.additiveEnvelope.component ((Mat_.embedding C).obj (M.X i)) M 0 := by
   classical

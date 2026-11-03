@@ -32,7 +32,9 @@ def lengthOneArrowEquiv (X Y : Category k Q) :
   (lengthComponentPathEquiv X Y 1).trans
     (Finsupp.domLCongr (arrowEquivLengthOnePath (vertex Y) (vertex X)).symm)
 
-/-- Variance is reversed: maps X to Y have the arrows from vertex Y to vertex X.-/
+/-- Variance is reversed: maps X to Y have the arrows from vertex Y to vertex X.
+@isnad1 id=eq.0h4v.s11.31364c69ae58 from=translated src=- shape=d6dd7189 vocab=35d6bfdf
+-/
 theorem lengthComponent_one_finrank (X Y : Category k Q)
     [Fintype (vertex Y ⟶ vertex X)] :
     Module.finrank k (lengthComponent X Y 1) = Fintype.card (vertex Y ⟶ vertex X) :=

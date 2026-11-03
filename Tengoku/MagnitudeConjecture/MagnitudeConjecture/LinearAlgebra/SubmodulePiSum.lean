@@ -12,7 +12,9 @@ variable {R M ι : Type*} [Semiring R] [AddCommMonoid M] [Module R M]
   [Fintype ι] [DecidableEq ι]
 
 /-- The ambient sum of a family supported in one submodule is its nonzero
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h6v.s7.3c5113dceb1e from=translated src=- shape=42ccedfd vocab=170fd9d3
+-/
 theorem sum_coe_single (p : ι → Submodule R M) (i : ι) (x : p i) :
     (∑ j, ((Pi.single i x : ∀ j, p j) j : M)) = (x : M) := by
   classical

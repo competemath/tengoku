@@ -7,7 +7,9 @@ set_option autoImplicit false
 namespace MagnitudeConjecture.GradedInterval
 
 /-- An eventual uniform absolute error and interval nonnegativity force a
-nonnegative ambient surplus.-/
+nonnegative ambient surplus.
+@isnad1 id=le.2h4v.s6.ce0acb4517c3 from=translated src=- shape=d42fa90c vocab=94c1d9df
+-/
 theorem ambient_nonnegative_of_interval_absolute_error
     (s : ℤ) (f : ℕ → ℤ) (C : ℤ) (m₀ : ℕ)
     (hpos : ∀ m, 0 ≤ f m)

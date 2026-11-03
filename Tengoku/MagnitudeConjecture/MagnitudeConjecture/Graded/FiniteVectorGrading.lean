@@ -38,14 +38,23 @@ def projection (d : ℤ) : M →ₗ[k] M :=
   (G.component d).subtype.comp
     ((DirectSum.component k ℤ (fun i ↦ G.component i) d).comp G.decompose.toLinearMap)
 
+/--
+@isnad1 id=mem.0h5v.s7.d0e835f782f7 from=translated src=- shape=6b4cc80d vocab=ad956268
+-/
 theorem projection_mem (d : ℤ) (x : M) : G.projection d x ∈ G.component d :=
   (G.decompose x d).property
 
+/--
+@isnad1 id=eq.1h5v.s7.36a9df607f02 from=translated src=- shape=43c6708c vocab=ad956268
+-/
 theorem projection_of_mem {d : ℤ} {x : M} (hx : x ∈ G.component d) :
     G.projection d x = x := by
   letI := G.internal.chooseDecomposition
   exact DirectSum.decompose_of_mem_same G.component hx
 
+/--
+@isnad1 id=eq.2h6v.s7.b31320dd2bb9 from=translated src=- shape=5568ad4a vocab=ad956268
+-/
 theorem projection_of_mem_ne {d e : ℤ} {x : M} (hx : x ∈ G.component d)
     (hde : d ≠ e) : G.projection e x = 0 := by
   letI := G.internal.chooseDecomposition
@@ -57,6 +66,9 @@ variable [FiniteDimensional k M]
 def degreeSupport : Finset ℤ :=
   Finset.univ.biUnion fun i ↦ (G.decompose (Module.finBasis k M i)).support
 
+/--
+@isnad1 id=eq.1h4v.s7.4d82c6610f75 from=translated src=- shape=e1295bb3 vocab=8bdf3528
+-/
 theorem projection_eq_zero_outside {d : ℤ} (hd : d ∉ G.degreeSupport) :
     G.projection d = 0 := by
   apply (Module.finBasis k M).ext
@@ -70,6 +82,9 @@ theorem projection_eq_zero_outside {d : ℤ} (hd : d ∉ G.degreeSupport) :
   rw [hz]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.8d358dd86a63 from=translated src=- shape=100cad2e vocab=d4f49189
+-/
 theorem component_eq_bot_outside {d : ℤ} (hd : d ∉ G.degreeSupport) :
     G.component d = ⊥ := by
   apply le_antisymm _ bot_le
@@ -78,7 +93,9 @@ theorem component_eq_bot_outside {d : ℤ} (hd : d ∉ G.degreeSupport) :
   rw [G.projection_eq_zero_outside hd] at hp
   simpa using hp.symm
 
-/-- The finite degree projections sum to the identity.-/
+/-- The finite degree projections sum to the identity.
+@isnad1 id=eq.0h4v.s7.d05daa88bf15 from=translated src=- shape=a63ec0fd vocab=65d2b4bf
+-/
 theorem sum_projection (x : M) :
     ∑ d ∈ G.degreeSupport, G.projection d x = x := by
   classical

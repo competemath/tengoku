@@ -13,7 +13,9 @@ variable {M : Type w} [AddCommGroup M] [Module R M] [Module k M]
 variable [IsScalarTower k R M]
 
 /-- Multiplying a generated relation back into the corner stays in the
-original vector-space relation subspace.-/
+original vector-space relation subspace.
+@isnad1 id=mem.3h6v.s9.5489b79e7258 from=translated src=- shape=4455d06c vocab=dd633b81
+-/
 theorem smul_mem_of_mem_span (p : R) (W : Submodule k M)
     (hfix : ∀ x ∈ W, p • x = x)
     (hcorner : ∀ a : R, ∃ c : k, p * a * p = algebraMap k R c * p)
@@ -40,7 +42,9 @@ theorem smul_mem_of_mem_span (p : R) (W : Submodule k M)
   simpa using hs 1
 
 /-- The p-fixed vectors in the generated module are exactly the original
-relations, viewed inside the ambient module.-/
+relations, viewed inside the ambient module.
+@isnad1 id=iff.2h6v.s9.de19f363bc6a from=translated src=- shape=fe8b0367 vocab=dd633b81
+-/
 theorem mem_span_and_fixed_iff (p : R) (W : Submodule k M)
     (hfix : ∀ x ∈ W, p • x = x)
     (hcorner : ∀ a : R, ∃ c : k, p * a * p = algebraMap k R c * p)

@@ -35,7 +35,9 @@ def prefunctorArrowHom (π : Q₁ ⥤q Q₂) {i j : Q₁} (a : i ⟶ j) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Mapping a source path under the reversed free realization gives the
-path-basis morphism of its mapped path.-/
+path-basis morphism of its mapped path.
+@isnad1 id=eq.0h7v.s7.de2d970d1a7e from=translated src=- shape=b13f159a vocab=5e75f6e9
+-/
 theorem pathMap_prefunctorArrowHom (π : Q₁ ⥤q Q₂)
     {i j : Q₁} (p : Quiver.Path i j) :
     pathMap (fun x ↦ obj k Q₂ (π.obj x))
@@ -57,22 +59,34 @@ def prefunctorFunctor (π : Q₁ ⥤q Q₂) :
   lift (fun x ↦ obj k Q₂ (π.obj x))
     (fun {_ _} a ↦ prefunctorArrowHom (k := k) π a)
 
+/--
+@isnad1 id=additive.0h4v.s7.c3baaeb49d91 from=translated src=- shape=daaa34fe vocab=1127206a
+-/
 noncomputable instance prefunctorFunctor_additive (π : Q₁ ⥤q Q₂) :
     (prefunctorFunctor (k := k) π).Additive := by
   dsimp only [prefunctorFunctor]
   infer_instance
 
+/--
+@isnad1 id=linear.0h4v.s8.8729027e56c3 from=translated src=- shape=5c7ecbc3 vocab=457980c5
+-/
 noncomputable instance prefunctorFunctor_linear (π : Q₁ ⥤q Q₂) :
     (prefunctorFunctor (k := k) π).Linear k := by
   dsimp only [prefunctorFunctor]
   infer_instance
 
+/--
+@isnad1 id=eq.0h5v.s7.b01aef7880d8 from=translated src=- shape=67b83e24 vocab=46fc84b8
+-/
 @[simp]
 theorem prefunctorFunctor_obj (π : Q₁ ⥤q Q₂) (x : Q₁) :
     (prefunctorFunctor (k := k) π).obj (obj k Q₁ x) =
       obj k Q₂ (π.obj x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.347bc8ba0144 from=translated src=- shape=cec1134e vocab=8daa77ad
+-/
 @[simp]
 theorem vertex_prefunctorFunctor_obj (π : Q₁ ⥤q Q₂) (x : Q₁) :
     vertex ((prefunctorFunctor (k := k) π).obj (obj k Q₁ x)) =
@@ -80,6 +94,9 @@ theorem vertex_prefunctorFunctor_obj (π : Q₁ ⥤q Q₂) (x : Q₁) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s8.5f84523a260f from=translated src=- shape=cddaf0e0 vocab=1f55d043
+-/
 @[simp]
 theorem prefunctorFunctor_map_pathHom (π : Q₁ ⥤q Q₂)
     {i j : Q₁} (p : Quiver.Path i j) :
@@ -104,6 +121,9 @@ def sourcePathMap (π : Q₁ ⥤q Q₂) (x : Q₂) (y : Q₁) :
       Quiver.Path (π.obj y) x :=
   fun Zp ↦ (π.mapPath Zp.2).cast rfl Zp.1.2
 
+/--
+@isnad1 id=bijectiv.1h5v.s6.324e941c9d1b from=translated src=- shape=d513e995 vocab=3177c754
+-/
 theorem targetPathMap_bijective (π : Q₁ ⥤q Q₂)
     (hπ : π.IsCovering) (x : Q₁) (y : Q₂) :
     Function.Bijective (targetPathMap π x y) := by
@@ -127,6 +147,9 @@ theorem targetPathMap_bijective (π : Q₁ ⥤q Q₂)
     refine ⟨⟨⟨z, hz⟩, p⟩, ?_⟩
     exact (Quiver.Path.cast_eq_iff_heq hz rfl _ _).2 hpath
 
+/--
+@isnad1 id=bijectiv.1h5v.s6.77bb6b0dae2d from=translated src=- shape=ca7d622a vocab=dcd4a9af
+-/
 theorem sourcePathMap_bijective (π : Q₁ ⥤q Q₂)
     (hπ : π.IsCovering) (x : Q₂) (y : Q₁) :
     Function.Bijective (sourcePathMap π x y) := by
@@ -166,6 +189,9 @@ def sourcePathEquiv (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering)
   Equiv.ofBijective (sourcePathMap π x y)
     (sourcePathMap_bijective π hπ x y)
 
+/--
+@isnad1 id=eq.1h6v.s8.7442c77a9f17 from=translated src=- shape=f8100945 vocab=10f0ff0d
+-/
 @[simp]
 theorem targetPathEquiv_apply (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering)
     (x : Q₁) (y : Q₂)
@@ -173,6 +199,9 @@ theorem targetPathEquiv_apply (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering)
     targetPathEquiv π hπ x y p = targetPathMap π x y p :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.532e090e3bf2 from=translated src=- shape=850bc9be vocab=3e89fdc0
+-/
 @[simp]
 theorem sourcePathEquiv_apply (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering)
     (x : Q₂) (y : Q₁)
@@ -181,7 +210,9 @@ theorem sourcePathEquiv_apply (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering)
   rfl
 
 /-- A basis assembled on a dependent direct sum evaluates by including the
-corresponding component basis vector.-/
+corresponding component basis vector.
+@isnad1 id=eq.0h7v.s9.88e8ee3aa52c from=translated src=- shape=5b968fd7 vocab=932960da
+-/
 theorem dfinsuppBasis_apply
     {ι : Type*} {M : ι → Type*} [DecidableEq ι]
     [∀ i, AddCommMonoid (M i)] [∀ i, Module k (M i)]
@@ -210,7 +241,9 @@ theorem dfinsuppBasis_apply
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Postcomposing a represented reversed path by an object equality casts
-the initial vertex of the path.-/
+the initial vertex of the path.
+@isnad1 id=eq.1h6v.s7.1ed41f6cafa5 from=translated src=- shape=5b8ad929 vocab=ea18dbf5
+-/
 theorem pathHom_comp_eqToHom_eq_cast_start
     {i i' j : Q₂} (p : Quiver.Path i j) (h : i = i') :
     pathHom p ≫ eqToHom (congrArg (obj k Q₂) h) =
@@ -220,7 +253,9 @@ theorem pathHom_comp_eqToHom_eq_cast_start
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Precomposing a represented reversed path by an object equality casts the
-terminal vertex of the path.-/
+terminal vertex of the path.
+@isnad1 id=eq.1h6v.s7.2cd576121498 from=translated src=- shape=b2e3c6af vocab=57ccaac5
+-/
 theorem eqToHom_comp_pathHom_eq_cast_end
     {i j j' : Q₂} (p : Quiver.Path i j) (h : j = j') :
     eqToHom (congrArg (obj k Q₂) h).symm ≫ pathHom p =
@@ -230,7 +265,9 @@ theorem eqToHom_comp_pathHom_eq_cast_end
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A represented path equals its endpoint cast preceded by the corresponding
-object equality.-/
+object equality.
+@isnad1 id=eq.1h6v.s7.ef1da253c21c from=translated src=- shape=6d343e44 vocab=ea18dbf5
+-/
 theorem pathHom_eq_eqToHom_comp_cast_end
     {i j j' : Q₂} (p : Quiver.Path i j) (h : j = j') :
     pathHom p = eqToHom (congrArg (obj k Q₂) h) ≫
@@ -303,6 +340,9 @@ def sourceFiberHomBasis (π : Q₁ ⥤q Q₂) (x : Q₂) (y : Q₁) :
         (fun Z ↦ Z.1 ⟶ obj k Q₁ y)) :=
   DFinsupp.basis fun Z ↦ homPathBasis Z.1 (obj k Q₁ y)
 
+/--
+@isnad1 id=eq.0h8v.s14.8f9611923cca from=translated src=- shape=71808062 vocab=89a1c35c
+-/
 theorem targetFiberHomBasis_apply (π : Q₁ ⥤q Q₂)
     (x : Q₁) (y : Q₂)
     (Z : MagnitudeConjecture.LinearCovering.Fiber
@@ -324,6 +364,9 @@ theorem targetFiberHomBasis_apply (π : Q₁ ⥤q Q₂)
     (η := fun Z ↦ Quiver.Path (vertex Z.1) x)
     (fun Z ↦ homPathBasis (obj k Q₁ x) Z.1) Z p
 
+/--
+@isnad1 id=eq.0h8v.s14.6c4362f197b1 from=translated src=- shape=9240295a vocab=6269f8d0
+-/
 theorem sourceFiberHomBasis_apply (π : Q₁ ⥤q Q₂)
     (x : Q₂) (y : Q₁)
     (Z : MagnitudeConjecture.LinearCovering.Fiber
@@ -378,6 +421,9 @@ def sourceFiberHomBasisEquiv (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering)
     (sourceFunctorPathEquiv (k := k) π hπ x y)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s12.30cda9d7ddf5 from=translated src=- shape=c3632dfd vocab=c1ffb765
+-/
 theorem targetFiberHomBasisEquiv_eq_map
     (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering) (x : Q₁) (y : Q₂) :
     (targetFiberHomBasisEquiv (k := k) π hπ x y).toLinearMap =
@@ -398,6 +444,9 @@ theorem targetFiberHomBasisEquiv_eq_map
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s12.e15809710fa8 from=translated src=- shape=48dbdd5f vocab=17f201b7
+-/
 theorem sourceFiberHomBasisEquiv_eq_map
     (π : Q₁ ⥤q Q₂) (hπ : π.IsCovering) (x : Q₂) (y : Q₁) :
     (sourceFiberHomBasisEquiv (k := k) π hπ x y).toLinearMap =
@@ -418,7 +467,9 @@ theorem sourceFiberHomBasisEquiv_eq_map
   rfl
 
 /-- A quiver covering induces a covering functor between its free linear path
-categories.-/
+categories.
+@isnad1 id=iscoveri.1h4v.s8.229a6fd248ed from=translated src=- shape=aa210b99 vocab=3ef2ba20
+-/
 theorem prefunctorFunctor_isCovering (π : Q₁ ⥤q Q₂)
     (hπ : π.IsCovering) :
     MagnitudeConjecture.LinearCovering.IsCovering

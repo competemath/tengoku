@@ -23,7 +23,9 @@ open Module
 
 variable {k : Type u} [Field k]
 
-/-- The `m`-th subspace in a basis flag has dimension `m`.-/
+/-- The `m`-th subspace in a basis flag has dimension `m`.
+@isnad1 id=eq.0h5v.s7.5e8d8120e18e from=translated src=- shape=0c6c7068 vocab=b3236c50
+-/
 theorem finrank_flag {V : Type u} [AddCommGroup V] [Module k V]
     {n : ℕ} (b : Basis (Fin n) k V) (m : Fin (n + 1)) :
     Module.finrank k (b.flag m) = m.val := by
@@ -50,6 +52,9 @@ def appendQuotientBasis {V : Type u} [AddCommGroup V] [Module k V]
     Basis (Fin (d + q)) k V :=
   (bU.sumQuot bQ).reindex finSumFinEquiv
 
+/--
+@isnad1 id=eq.0h8v.s9.664c3bfa77d9 from=translated src=- shape=aa1a0ff6 vocab=4346ea41
+-/
 @[simp]
 theorem appendQuotientBasis_castAdd {V : Type u}
     [AddCommGroup V] [Module k V]
@@ -60,7 +65,9 @@ theorem appendQuotientBasis_castAdd {V : Type u}
   simp [appendQuotientBasis, Basis.reindex_apply]
 
 /-- A flag subspace of the basis of `U` becomes the same initial flag
-subspace after appending a quotient basis.-/
+subspace after appending a quotient basis.
+@isnad1 id=eq.0h8v.s9.0813e3f97cfb from=translated src=- shape=15bd6986 vocab=6e7e3339
+-/
 theorem map_flag_eq_appendQuotientBasis_flag {V : Type u}
     [AddCommGroup V] [Module k V] [FiniteDimensional k V]
     (U : Submodule k V) {d q : ℕ}
@@ -164,7 +171,9 @@ private theorem exists_flag_basis_of_finset_chain_aux {V : Type u}
         exact ⟨Fin.last n, by simp [b]⟩
 
 /-- Every finite chain of subspaces of a finite-dimensional vector space is
-contained in the complete flag of some basis.-/
+contained in the complete flag of some basis.
+@isnad1 id=ex.1h3v.s8.f34d6ea25ef6 from=translated src=- shape=f2135b4c vocab=05f73027
+-/
 theorem exists_flag_basis_of_finset_chain {V : Type u}
     [AddCommGroup V] [Module k V] [FiniteDimensional k V]
     (C : Finset (Submodule k V))
@@ -180,7 +189,9 @@ section Poset
 variable {T : Type u} [PartialOrder T] [Fintype T]
 
 /-- A chain of indices gives a family of distinguished subspaces lying in
-one complete basis flag.-/
+one complete basis flag.
+@isnad1 id=hasflagb.1h4v.s5.eda95bfb9a4d from=translated src=- shape=0b66d797 vocab=6bbf7fbb
+-/
 theorem hasFlagBasisOn_of_isChain (X : Obj k T) (S : Set T)
     (hS : IsChain (· ≤ ·) S) :
     HasFlagBasisOn X S := by
@@ -202,7 +213,9 @@ theorem hasFlagBasisOn_of_isChain (X : Obj k T) (S : Set T)
     ⟨⟨t, ht⟩, Finset.mem_univ _, rfl⟩
 
 /-- If two chains cover the indexing poset, every Schur poset space is
-one-dimensional.-/
+one-dimensional.
+@isnad1 id=eq.4h5v.s6.659acae03073 from=translated src=- shape=821d2dbf vocab=3f25f070
+-/
 theorem finrank_eq_one_of_isSchur_of_two_chain_cover
     (X : Obj k T) (hschur : IsSchur k T X)
     (A B : Set T) (hcover : A ∪ B = Set.univ)

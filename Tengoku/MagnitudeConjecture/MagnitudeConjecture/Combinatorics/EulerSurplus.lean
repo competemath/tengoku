@@ -66,14 +66,18 @@ def localDensity
     (X : ι) : ℤ :=
   2 * (if IsProjective X then 0 else 1) - indegree arrowMultiplicity X
 
-/-- Incoming multiplicities sum to the total arrow multiplicity.-/
+/-- Incoming multiplicities sum to the total arrow multiplicity.
+@isnad1 id=eq.0h2v.s4.28fabd347c65 from=translated src=- shape=0d210eae vocab=d11dfb55
+-/
 theorem sum_indegree_eq_arrowCount
     (arrowMultiplicity : ι → ι → ℕ) :
     ∑ X, indegree arrowMultiplicity X = arrowCount arrowMultiplicity := by
   simp only [indegree, arrowCount]
   rw [Finset.sum_comm]
 
-/-- The sum of nonprojective indicators is the number of meshes.-/
+/-- The sum of nonprojective indicators is the number of meshes.
+@isnad1 id=eq.0h2v.s5.03d8b6591e7f from=translated src=- shape=a3e81dc6 vocab=28129fa4
+-/
 theorem sum_nonprojectiveIndicator_eq_meshCount
     (IsProjective : ι → Prop) [DecidablePred IsProjective] :
     ∑ X : ι, (if IsProjective X then (0 : ℤ) else 1) =
@@ -86,7 +90,9 @@ theorem sum_nonprojectiveIndicator_eq_meshCount
   rw [Finset.sum_boole]
   simp [meshCount, Fintype.card_subtype]
 
-/-- The sum of projective indicators is the number of projective vertices.-/
+/-- The sum of projective indicators is the number of projective vertices.
+@isnad1 id=eq.0h2v.s5.2867b858e4c4 from=translated src=- shape=a3e81dc6 vocab=dfbe8578
+-/
 theorem sum_projectiveIndicator_eq_projectiveCount
     (IsProjective : ι → Prop) [DecidablePred IsProjective] :
     ∑ X : ι, (if IsProjective X then (1 : ℤ) else 0) =
@@ -95,7 +101,9 @@ theorem sum_projectiveIndicator_eq_projectiveCount
   rw [Finset.sum_boole]
   simp [projectiveCount, Fintype.card_subtype]
 
-/-- Projective and nonprojective vertices partition the finite AR vertex set.-/
+/-- Projective and nonprojective vertices partition the finite AR vertex set.
+@isnad1 id=eq.0h2v.s5.8b8d84322abe from=translated src=- shape=97694f58 vocab=fca68bc6
+-/
 theorem vertexCount_eq_projectiveCount_add_meshCount
     (IsProjective : ι → Prop) [DecidablePred IsProjective] :
     vertexCount (ι := ι) =
@@ -112,7 +120,9 @@ theorem vertexCount_eq_projectiveCount_add_meshCount
     congrArg (fun n : ℕ ↦ (n : ℤ)) hnat
 
 /-- Frozen manuscript, equations (2.1)--(2.2): the magnitude surplus is twice
-the number of meshes minus the total arrow multiplicity.-/
+the number of meshes minus the total arrow multiplicity.
+@isnad1 id=eq.0h3v.s5.1c408ca319a6 from=translated src=- shape=44a959fc vocab=e4a233bd
+-/
 theorem surplus_eq_two_mul_meshCount_sub_arrowCount
     (arrowMultiplicity : ι → ι → ℕ)
     (IsProjective : ι → Prop) [DecidablePred IsProjective] :
@@ -123,7 +133,9 @@ theorem surplus_eq_two_mul_meshCount_sub_arrowCount
   ring
 
 /-- Frozen manuscript, local-density formula: summing the vertexwise density
-recovers the Auslander--Reiten surplus.-/
+recovers the Auslander--Reiten surplus.
+@isnad1 id=eq.0h3v.s5.d9f9fd320c14 from=translated src=- shape=d4751268 vocab=b1461fe3
+-/
 theorem sum_localDensity_eq_surplus
     (arrowMultiplicity : ι → ι → ℕ)
     (IsProjective : ι → Prop) [DecidablePred IsProjective] :

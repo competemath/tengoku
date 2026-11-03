@@ -28,7 +28,9 @@ variable {R V : Type u} [Ring R] [AddCommGroup V] [Module R V]
 /-- Dimension shifting in the form used at the end of Iyama's saturation
 argument: in a short exact sequence, projective dimension at most one of the
 middle term and at most two of the right term force projective dimension at
-most one of the left term.-/
+most one of the left term.
+@isnad1 id=hasproje.3h2v.s7.647cb666e0fb from=translated src=- shape=9216127a vocab=9eec66bd
+-/
 theorem projectiveDimensionLE_one_of_shortExact
     {S : ShortComplex (ModuleCat.{u} R)}
     (hS : S.ShortExact)
@@ -41,7 +43,9 @@ theorem projectiveDimensionLE_one_of_shortExact
 
 /-- Concrete monomorphism form of the same dimension shift.  This is the
 precise step used after embedding a saturated quotient into its injective
-hull.-/
+hull.
+@isnad1 id=hasproje.3h4v.s8.015ce5bbbc7c from=translated src=- shape=0f281820 vocab=793bd83a
+-/
 theorem projectiveDimensionLE_one_of_injective
     {W Z : Type u} [AddCommGroup W] [Module R W]
     [AddCommGroup Z] [Module R Z]
@@ -62,7 +66,9 @@ theorem projectiveDimensionLE_one_of_injective
   exact projectiveDimensionLE_one_of_shortExact hS hZ hcokernel
 
 /-- A submodule of a projective module is projective as soon as the quotient
-has projective dimension at most one.-/
+has projective dimension at most one.
+@isnad1 id=projecti.2h3v.s7.10b6d9de67ca from=translated src=- shape=f5ff6983 vocab=6bd72a68
+-/
 theorem submodule_projective_of_quotient_projectiveDimensionLE_one
     (N : Submodule R V)
     (hV : Projective (ModuleCat.of R V))
@@ -88,7 +94,9 @@ theorem submodule_projective_of_quotient_projectiveDimensionLE_one
   exact hS.hasProjectiveDimensionLT_X₁ 1 inferInstance inferInstance
 
 /-- In particular, an idempotent saturation is projective once its quotient
-in the ambient projective has projective dimension at most one.-/
+in the ambient projective has projective dimension at most one.
+@isnad1 id=projecti.2h4v.s7.9c080416f978 from=translated src=- shape=7e74efcb vocab=eb94d2b1
+-/
 theorem saturation_projective_of_quotient_projectiveDimensionLE_one
     (e : R) (L : Submodule R V)
     (hV : Projective (ModuleCat.of R V))

@@ -10,7 +10,9 @@ variable {k A M : Type*} [Field k] [Ring A] [Algebra k A]
 variable [AddCommGroup M] [Module k M] [Module A M] [IsScalarTower k A M]
 variable {R : VectorGrading k A} (G : ModuleGrading (M := M) R)
 
-/-- For a homogeneous vector, the target projection selects one coefficient of the algebra element.-/
+/-- For a homogeneous vector, the target projection selects one coefficient of the algebra element.
+@isnad1 id=eq.1h9v.s9.358b58c5fcbc from=translated src=- shape=df5afec4 vocab=00dab443
+-/
 theorem projection_smul_of_mem {t : ℤ} {x : M} (hx : x ∈ G.component t)
     (s : ℤ) (a : A) : G.projection s (a • x) = R.projection (s - t) a • x := by
   classical
@@ -36,7 +38,9 @@ variable (δ : ν → ℤ) (hδ : Function.Injective δ)
 variable (hcover : ∀ d, G.component d ≠ ⊥ → ∃ q, δ q = d)
 
 include he he0 hsum hδ hcover in
-/-- The action matrix is given by homogeneous corners of the algebra.-/
+/-- The action matrix is given by homogeneous corners of the algebra.
+@isnad1 id=eq.5h12v.s10.b98f81942596 from=translated src=- shape=e9ce14fa vocab=529b45f2
+-/
 theorem idempotentProjection_smul (p : ι × ν) (a : A) (x : M) :
     G.idempotentProjection (e p.1) (δ p.2) (a • x) =
       ∑ q : ι × ν, (e p.1 * R.projection (δ p.2 - δ q.2) a * e q.1) •

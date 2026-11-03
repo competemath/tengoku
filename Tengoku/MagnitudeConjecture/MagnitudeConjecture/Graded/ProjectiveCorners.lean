@@ -43,7 +43,9 @@ def principalCornerHomEquiv (e f : A) (he : e * e = e) (hf : f * f = f)
   (principalHomEquiv R hmul (principalProjectiveGrading R hmul f hf0) e he he0 d).trans
     (principalCoordinateEquiv R hmul e f hf hf0 d)
 
-/-- Maps from Ae are determined on every vector by their value at e.-/
+/-- Maps from Ae are determined on every vector by their value at e.
+@isnad1 id=eq.1h5v.s10.c64d06380bb4 from=translated src=- shape=e073d1fe vocab=65f899e6
+-/
 theorem principal_apply {M : Type*} [AddCommGroup M] [Module A M]
     (e : A) (he : e * e = e) (f : principalProjective e →ₗ[A] M)
     (z : principalProjective e) : f z = z.val • f (principalGenerator e) := by
@@ -52,7 +54,9 @@ theorem principal_apply {M : Type*} [AddCommGroup M] [Module A M]
   apply Subtype.ext
   exact (principal_fixed he z).symm
 
-/-- Composition of projective maps is multiplication of their corner coordinates.-/
+/-- Composition of projective maps is multiplication of their corner coordinates.
+@isnad1 id=eq.1h6v.s11.5c7d377363d2 from=translated src=- shape=26e4a827 vocab=c3728c74
+-/
 theorem principal_comp_evaluation (e f g : A) (hf : f * f = f)
     (a : principalProjective e →ₗ[A] principalProjective f)
     (b : principalProjective f →ₗ[A] principalProjective g) :

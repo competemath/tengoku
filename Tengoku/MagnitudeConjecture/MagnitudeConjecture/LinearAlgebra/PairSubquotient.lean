@@ -35,6 +35,9 @@ def quotientEquivOfEq
   subst D'
   exact LinearEquiv.refl k _
 
+/--
+@isnad1 id=eq.2h7v.s12.98162e028e46 from=translated src=- shape=6c687950 vocab=24ad438e
+-/
 @[simp]
 theorem quotientEquivOfEq_apply_mk
     (U U' D D' : Submodule k V) (hU : U = U') (hD : D = D')
@@ -62,6 +65,9 @@ def targetNumerator : Submodule k W :=
 def targetDenominator : Submodule k W :=
   (Aplus.map f ⊓ Bminus) ⊔ (Aminus.map f ⊓ Bplus)
 
+/--
+@isnad1 id=le.2h8v.s8.332630cad250 from=translated src=- shape=5c3b95ef vocab=4557c7e3
+-/
 theorem sourceDenominator_le_sourceNumerator
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus) :
     sourceDenominator f Aminus Aplus Bminus Bplus ≤
@@ -70,6 +76,9 @@ theorem sourceDenominator_le_sourceNumerator
   · exact inf_le_inf le_rfl (Submodule.comap_mono hB)
   · exact inf_le_inf hA le_rfl
 
+/--
+@isnad1 id=le.2h8v.s8.4c217b701995 from=translated src=- shape=33294d14 vocab=bd046963
+-/
 theorem targetDenominator_le_targetNumerator
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus) :
     targetDenominator f Aminus Aplus Bminus Bplus ≤
@@ -99,11 +108,17 @@ def numeratorMap :
       intro x
       exact ⟨⟨x, x.2.1, rfl⟩, x.2.2⟩)
 
+/--
+@isnad1 id=eq.0h7v.s10.d6813038b631 from=translated src=- shape=117967c1 vocab=72ff9236
+-/
 @[simp]
 theorem numeratorMap_coe (x : sourceNumerator f Aplus Bplus) :
     (numeratorMap f Aplus Bplus x : W) = f x :=
   rfl
 
+/--
+@isnad1 id=le.2h8v.s10.305dfc476133 from=translated src=- shape=adfed551 vocab=618134bc
+-/
 theorem denominator_map_le
     (_hA : Aminus ≤ Aplus) (_hB : Bminus ≤ Bplus) :
     (sourceDenominatorInNumerator f Aminus Aplus Bminus Bplus).map
@@ -135,6 +150,9 @@ def quotientMap
       rw [← Submodule.map_le_iff_le_comap]
       exact denominator_map_le f Aminus Aplus Bminus Bplus hA hB)
 
+/--
+@isnad1 id=eq.2h9v.s12.ef95c8513211 from=translated src=- shape=2b749722 vocab=a1a135f6
+-/
 @[simp]
 theorem quotientMap_mk
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus)
@@ -144,6 +162,9 @@ theorem quotientMap_mk
       Submodule.Quotient.mk (numeratorMap f Aplus Bplus x) := by
   exact Submodule.mapQ_apply _ _ _ x
 
+/--
+@isnad1 id=surjecti.2h8v.s12.6da8b7c9e9c5 from=translated src=- shape=8eb89e28 vocab=b2b75ba6
+-/
 theorem quotientMap_surjective
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus) :
     Function.Surjective
@@ -163,6 +184,9 @@ theorem quotientMap_surjective
       apply Subtype.ext
       exact hfx
 
+/--
+@isnad1 id=injectiv.2h8v.s12.8313160f1a93 from=translated src=- shape=8eb89e28 vocab=f1adcf66
+-/
 theorem quotientMap_injective
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus) :
     Function.Injective
@@ -248,6 +272,9 @@ def swappedNumeratorMap :
       intro x
       exact ⟨x.2.1, ⟨x, x.2.2, rfl⟩⟩)
 
+/--
+@isnad1 id=eq.0h7v.s10.4cf08abfe877 from=translated src=- shape=117967c1 vocab=aa677677
+-/
 @[simp]
 theorem swappedNumeratorMap_coe
     (x : swappedSourceNumerator f Aplus Bplus) :
@@ -266,6 +293,9 @@ def swappedTargetDenominatorInNumerator :
   (swappedTargetDenominator f Aminus Aplus Bminus Bplus).comap
     (swappedTargetNumerator f Aplus Bplus).subtype
 
+/--
+@isnad1 id=le.0h8v.s9.32056dca150f from=translated src=- shape=6d59804e vocab=83cddab6
+-/
 theorem swappedDenominator_map_le :
     (swappedSourceDenominatorInNumerator
         f Aminus Aplus Bminus Bplus).map
@@ -302,6 +332,9 @@ def swappedQuotientMap :
       rw [← Submodule.map_le_iff_le_comap]
       exact swappedDenominator_map_le f Aminus Aplus Bminus Bplus)
 
+/--
+@isnad1 id=eq.0h9v.s12.4e847eaa2a8d from=translated src=- shape=ea3d7590 vocab=d5f7486a
+-/
 @[simp]
 theorem swappedQuotientMap_mk
     (x : swappedSourceNumerator f Aplus Bplus) :
@@ -310,6 +343,9 @@ theorem swappedQuotientMap_mk
       Submodule.Quotient.mk (swappedNumeratorMap f Aplus Bplus x) := by
   exact Submodule.mapQ_apply _ _ _ x
 
+/--
+@isnad1 id=surjecti.0h8v.s12.3ba0ec48849c from=translated src=- shape=cb35e2c2 vocab=1c39824c
+-/
 theorem swappedQuotientMap_surjective :
     Function.Surjective
       (swappedQuotientMap f Aminus Aplus Bminus Bplus) := by
@@ -328,6 +364,9 @@ theorem swappedQuotientMap_surjective :
       apply Subtype.ext
       exact hfx
 
+/--
+@isnad1 id=injectiv.1h8v.s12.baa54ba4d279 from=translated src=- shape=e2598d69 vocab=3dd0782d
+-/
 theorem swappedQuotientMap_injective
     (hA : Aminus ≤ Aplus) :
     Function.Injective
@@ -388,6 +427,9 @@ def quotientEquivSwapped
     ⟨swappedQuotientMap_injective f Aminus Aplus Bminus Bplus hA,
       swappedQuotientMap_surjective f Aminus Aplus Bminus Bplus⟩
 
+/--
+@isnad1 id=eq.2h9v.s12.8d5a39611a83 from=translated src=- shape=7bcc85a6 vocab=a4b5074d
+-/
 @[simp]
 theorem quotientEquiv_apply_mk
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus)
@@ -397,6 +439,9 @@ theorem quotientEquiv_apply_mk
       Submodule.Quotient.mk (numeratorMap f Aplus Bplus x) := by
   exact quotientMap_mk f Aminus Aplus Bminus Bplus hA hB x
 
+/--
+@isnad1 id=eq.2h9v.s13.cc21b914b2ca from=translated src=- shape=cf5ece03 vocab=4ab2d712
+-/
 @[simp]
 theorem quotientEquivSwapped_apply_mk
     (hA : Aminus ≤ Aplus) (hB : Bminus ≤ Bplus)
@@ -425,6 +470,9 @@ def quotientEquivIdentified
         (targetDenominator f Aminus Aplus Bminus Bplus) D'
         hTargetNum hTargetDen))
 
+/--
+@isnad1 id=eq.6h13v.s12.a9fda5acd518 from=translated src=- shape=0a4528e8 vocab=adbd1486
+-/
 @[simp]
 theorem quotientEquivIdentified_apply_mk
     (U D : Submodule k V) (U' D' : Submodule k W)
@@ -491,6 +539,9 @@ def quotientEquivSwappedIdentified
         (swappedTargetDenominator f Aminus Aplus Bminus Bplus) D'
         hTargetNum hTargetDen))
 
+/--
+@isnad1 id=eq.6h13v.s12.67df07239105 from=translated src=- shape=0a4528e8 vocab=276aeec8
+-/
 @[simp]
 theorem quotientEquivSwappedIdentified_apply_mk
     (U D : Submodule k V) (U' D' : Submodule k W)

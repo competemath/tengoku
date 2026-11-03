@@ -34,7 +34,9 @@ variable (F : C ⥤ D) [F.Additive] [F.Linear k]
 surjective quotient square, provided that every element which becomes zero
 downstairs already becomes zero in the source quotient.  This is the linear
 algebra core used to descend covering-functor Hom equivalences through
-relation ideals.-/
+relation ideals.
+@isnad1 id=bijectiv.4h9v.s10.3d5ea1ed86d5 from=translated src=- shape=285b0682 vocab=70112303
+-/
 theorem bijective_of_surjective_quotient_square
     {A A' B B' : Type*}
     [AddCommGroup A] [AddCommGroup A'] [AddCommGroup B] [AddCommGroup B']
@@ -144,6 +146,9 @@ def sourceFiberPostcomp (X : D) {Y Z : C} (e : Y ⟶ Z) :
     exact
       (DirectSum.lof k (Fiber F X) (fun V ↦ V.1 ⟶ Z) W).comp post
 
+/--
+@isnad1 id=eq.0h8v.s11.1685c38b9d19 from=translated src=- shape=8fb99909 vocab=5ef54026
+-/
 @[simp]
 theorem targetFiberHomMap_lof (X : C) (Y : D)
     (Z : Fiber F Y) (f : X ⟶ Z.1) :
@@ -153,6 +158,9 @@ theorem targetFiberHomMap_lof (X : C) (Y : D)
   classical
   simp [targetFiberHomMap, targetFiberLof]
 
+/--
+@isnad1 id=eq.0h8v.s11.54956062bfd0 from=translated src=- shape=87324dc5 vocab=c7f50ab6
+-/
 @[simp]
 theorem sourceFiberHomMap_lof (X : D) (Y : C)
     (Z : Fiber F X) (f : Z.1 ⟶ Y) :
@@ -163,6 +171,9 @@ theorem sourceFiberHomMap_lof (X : D) (Y : C)
   simp [sourceFiberHomMap, sourceFiberLof]
 
 omit [Preadditive D] [CategoryTheory.Linear k D] [F.Additive] [F.Linear k] in
+/--
+@isnad1 id=eq.0h10v.s11.393bea425224 from=translated src=- shape=cb9081f7 vocab=7106848a
+-/
 @[simp]
 theorem targetFiberPrecomp_lof (Y : D) {X' X : C} (e : X' ⟶ X)
     (W : Fiber F Y) (f : X ⟶ W.1) :
@@ -173,7 +184,9 @@ theorem targetFiberPrecomp_lof (Y : D) {X' X : C} (e : X' ⟶ X)
   simp [targetFiberPrecomp, targetFiberLof]
 
 omit [Preadditive D] [CategoryTheory.Linear k D] [F.Additive] [F.Linear k] in
-/-- Precomposition in a target fibre acts componentwise.-/
+/-- Precomposition in a target fibre acts componentwise.
+@isnad1 id=eq.0h10v.s11.9b0dc11af422 from=translated src=- shape=307b9968 vocab=63b4200a
+-/
 @[simp]
 theorem targetFiberPrecomp_apply (Y : D) {X' X : C} (e : X' ⟶ X)
     (a : DirectSum (Fiber F Y) (fun W ↦ X ⟶ W.1))
@@ -199,6 +212,9 @@ theorem targetFiberPrecomp_apply (Y : D) {X' X : C} (e : X' ⟶ X)
         Preadditive.comp_add]
 
 omit [Preadditive D] [CategoryTheory.Linear k D] [F.Additive] [F.Linear k] in
+/--
+@isnad1 id=eq.0h10v.s11.331fc0da2d91 from=translated src=- shape=fa167450 vocab=ba7058a9
+-/
 @[simp]
 theorem sourceFiberPostcomp_lof (X : D) {Y Z : C} (e : Y ⟶ Z)
     (W : Fiber F X) (f : W.1 ⟶ Y) :
@@ -209,7 +225,9 @@ theorem sourceFiberPostcomp_lof (X : D) {Y Z : C} (e : Y ⟶ Z)
   simp [sourceFiberPostcomp, sourceFiberLof]
 
 omit [Preadditive D] [CategoryTheory.Linear k D] [F.Additive] [F.Linear k] in
-/-- Postcomposition in a source fibre acts componentwise.-/
+/-- Postcomposition in a source fibre acts componentwise.
+@isnad1 id=eq.0h10v.s11.9d2d7d345473 from=translated src=- shape=aea66ecc vocab=b52204bf
+-/
 @[simp]
 theorem sourceFiberPostcomp_apply (X : D) {Y Z : C} (e : Y ⟶ Z)
     (a : DirectSum (Fiber F X) (fun W ↦ W.1 ⟶ Y))
@@ -235,7 +253,9 @@ theorem sourceFiberPostcomp_apply (X : D) {Y Z : C} (e : Y ⟶ Z)
         Preadditive.add_comp]
 
 /-- The fixed-source fibre map intertwines precomposition upstairs with
-precomposition by the mapped morphism downstairs.-/
+precomposition by the mapped morphism downstairs.
+@isnad1 id=eq.0h9v.s11.567fa8d5c6f6 from=translated src=- shape=cc03077e vocab=f9e56d06
+-/
 theorem targetFiberHomMap_targetFiberPrecomp
     (Y : D) {X' X : C} (e : X' ⟶ X)
     (a : DirectSum (Fiber F Y) (fun W ↦ X ⟶ W.1)) :
@@ -261,7 +281,9 @@ theorem targetFiberHomMap_targetFiberPrecomp
       simp only [map_add, ha, hb, Preadditive.comp_add]
 
 /-- The fixed-target fibre map intertwines postcomposition upstairs with
-postcomposition by the mapped morphism downstairs.-/
+postcomposition by the mapped morphism downstairs.
+@isnad1 id=eq.0h9v.s11.ae8b90021dd3 from=translated src=- shape=8acc369c vocab=869773fe
+-/
 theorem sourceFiberHomMap_sourceFiberPostcomp
     (X : D) {Y Z : C} (e : Y ⟶ Z)
     (a : DirectSum (Fiber F X) (fun W ↦ W.1 ⟶ Y)) :
@@ -288,7 +310,9 @@ theorem sourceFiberHomMap_sourceFiberPostcomp
 
 omit [Preadditive D] [CategoryTheory.Linear k D] [F.Additive] [F.Linear k] in
 /-- Successive postcomposition of a source-fibre family is postcomposition
-by the composite upstairs.-/
+by the composite upstairs.
+@isnad1 id=eq.0h11v.s12.8f4e460ac570 from=translated src=- shape=aa1a1512 vocab=06be154b
+-/
 theorem sourceFiberPostcomp_comp
     (X : D) {Y Z W : C} (e : Y ⟶ Z) (f : Z ⟶ W)
     (a : DirectSum (Fiber F X) (fun V ↦ V.1 ⟶ Y)) :
@@ -313,7 +337,9 @@ theorem sourceFiberPostcomp_comp
 
 omit [Preadditive D] [CategoryTheory.Linear k D] [F.Additive] [F.Linear k] in
 /-- Successive precomposition of a target-fibre family is precomposition by
-the composite upstairs.-/
+the composite upstairs.
+@isnad1 id=eq.0h11v.s12.c19040c487ef from=translated src=- shape=f842986c vocab=0c4db241
+-/
 theorem targetFiberPrecomp_comp
     (Y : D) {X'' X' X : C} (e : X'' ⟶ X') (f : X' ⟶ X)
     (a : DirectSum (Fiber F Y) (fun V ↦ X ⟶ V.1)) :
@@ -367,6 +393,9 @@ def sourceFiberHomLinearEquiv (hF : IsCovering (k := k) F)
   LinearEquiv.ofBijective (sourceFiberHomMap (k := k) F X Y)
     (hF.source_bijective X Y)
 
+/--
+@isnad1 id=eq.1h7v.s11.a28d052f7ac0 from=translated src=- shape=5f284bbf vocab=9da14b70
+-/
 @[simp]
 theorem targetFiberHomLinearEquiv_apply (hF : IsCovering (k := k) F)
     (X : C) (Y : D)
@@ -375,6 +404,9 @@ theorem targetFiberHomLinearEquiv_apply (hF : IsCovering (k := k) F)
       targetFiberHomMap (k := k) F X Y f :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.6d9ce5cbfc12 from=translated src=- shape=b1740dd5 vocab=29071d44
+-/
 @[simp]
 theorem sourceFiberHomLinearEquiv_apply (hF : IsCovering (k := k) F)
     (X : D) (Y : C)
@@ -384,7 +416,9 @@ theorem sourceFiberHomLinearEquiv_apply (hF : IsCovering (k := k) F)
   rfl
 
 /-- Every linear covering functor is faithful: an individual Hom space is
-one summand of either covering decomposition.-/
+one summand of either covering decomposition.
+@isnad1 id=injectiv.1h6v.s7.f4be075d50bb from=translated src=- shape=cf6f9eb2 vocab=90d94d45
+-/
 theorem map_injective (hF : IsCovering (k := k) F) (X Y : C) :
     Function.Injective (F.map : (X ⟶ Y) → (F.obj X ⟶ F.obj Y)) := by
   classical
@@ -402,7 +436,9 @@ theorem map_injective (hF : IsCovering (k := k) F) (X Y : C) :
       (fun W ↦ W.1 ⟶ Y) Z) hlof
   simpa [sourceFiberLof] using hcomponent
 
-/-- The faithful structure carried by a linear covering functor.-/
+/-- The faithful structure carried by a linear covering functor.
+@isnad1 id=faithful.1h4v.s6.d27c4e8e74fe from=translated src=- shape=1f65765c vocab=f9eb0a8b
+-/
 theorem faithful (hF : IsCovering (k := k) F) : F.Faithful where
   map_injective := fun {_ _} _ _ h ↦ hF.map_injective _ _ h
 
@@ -410,7 +446,9 @@ theorem faithful (hF : IsCovering (k := k) F) : F.Faithful where
 
 Indeed, the fibre over `F.obj Y` then consists only of `Y`, so the
 fixed-source covering isomorphism is just the ordinary map on the Hom space
-`X ⟶ Y`.-/
+`X ⟶ Y`.
+@isnad1 id=bijectiv.2h6v.s7.3c986cf0daef from=translated src=- shape=d2758801 vocab=d8329984
+-/
 theorem map_bijective_of_obj_injective (hF : IsCovering (k := k) F)
     (hobj : Function.Injective F.obj) (X Y : C) :
     Function.Bijective
@@ -455,7 +493,9 @@ noncomputable def fullyFaithfulOfObjInjective
   exact Functor.FullyFaithful.ofFullyFaithful F
 
 /-- A covering functor which is bijective on objects is an equivalence of
-categories.-/
+categories.
+@isnad1 id=isequiva.2h4v.s6.6ce33d06f5ea from=translated src=- shape=ed8319e3 vocab=0cd17135
+-/
 theorem isEquivalenceOfObjBijective (hF : IsCovering (k := k) F)
     (hobj : Function.Bijective F.obj) : F.IsEquivalence := by
   let hff := hF.fullyFaithfulOfObjInjective hobj.injective

@@ -30,7 +30,9 @@ def IsResidueScalar (k : Type*) {E : Type*} [Field k] [Ring E] [Algebra k E]
     (a : E) (c : k) : Prop :=
   ¬ IsUnit (a - algebraMap k E c)
 
-/-- Every element has a residue scalar, by nonemptiness of its spectrum.-/
+/-- Every element has a residue scalar, by nonemptiness of its spectrum.
+@isnad1 id=ex.0h3v.s6.1a7053b47758 from=translated src=- shape=0be05941 vocab=ed89417e
+-/
 theorem exists_isResidueScalar (k : Type*) {E : Type*} [Field k] [Ring E]
     [Algebra k E] [IsAlgClosed k] [FiniteDimensional k E] [IsLocalRing E]
     (a : E) : ∃ c : k, IsResidueScalar k a c := by
@@ -41,7 +43,9 @@ theorem exists_isResidueScalar (k : Type*) {E : Type*} [Field k] [Ring E]
   simpa only [neg_sub]
 
 omit [IsAlgClosed k] [FiniteDimensional k E] in
-/-- Locality makes the residue scalar unique.-/
+/-- Locality makes the residue scalar unique.
+@isnad1 id=eq.2h5v.s5.400650ab3585 from=translated src=- shape=a97d18be vocab=65eabe98
+-/
 theorem isResidueScalar_unique {a : E} {c d : k}
     (hc : IsResidueScalar k a c) (hd : IsResidueScalar k a d) : c = d := by
   by_contra hcd
@@ -68,19 +72,31 @@ def residueScalar (k : Type*) {E : Type*} [Field k] [Ring E] [Algebra k E]
     [IsAlgClosed k] [FiniteDimensional k E] [IsLocalRing E] (a : E) : k :=
   Classical.choose (exists_isResidueScalar k a)
 
+/--
+@isnad1 id=isresidu.0h3v.s6.17df21e8b700 from=translated src=- shape=7f0b6147 vocab=15884910
+-/
 theorem residueScalar_spec (a : E) :
     IsResidueScalar k a (residueScalar k a) :=
   Classical.choose_spec (exists_isResidueScalar k a)
 
+/--
+@isnad1 id=eq.1h4v.s6.1018555c624c from=translated src=- shape=3c30ce62 vocab=15884910
+-/
 theorem residueScalar_eq_of_isResidueScalar {a : E} {c : k}
     (hc : IsResidueScalar k a c) : residueScalar k a = c :=
   isResidueScalar_unique (residueScalar_spec a) hc
 
+/--
+@isnad1 id=eq.0h2v.s6.8c38d5e2ce42 from=translated src=- shape=5dd34ecd vocab=e0b38068
+-/
 @[simp]
 theorem residueScalar_zero : residueScalar k (0 : E) = 0 := by
   apply residueScalar_eq_of_isResidueScalar
   simp [IsResidueScalar]
 
+/--
+@isnad1 id=eq.0h4v.s6.17bf2b0b3b1a from=translated src=- shape=1ac6b9af vocab=45a69e48
+-/
 theorem residueScalar_add (a b : E) :
     residueScalar k (a + b) = residueScalar k a + residueScalar k b := by
   apply residueScalar_eq_of_isResidueScalar
@@ -94,6 +110,9 @@ theorem residueScalar_add (a b : E) :
       (b - algebraMap k E (residueScalar k b))) at h
   simpa only [map_add, sub_add_sub_comm] using h
 
+/--
+@isnad1 id=eq.0h4v.s6.d73d717aa4f3 from=translated src=- shape=5c3f0fbb vocab=5e1e91d9
+-/
 theorem residueScalar_smul (c : k) (a : E) :
     residueScalar k (c • a) = c * residueScalar k a := by
   apply residueScalar_eq_of_isResidueScalar
@@ -118,11 +137,17 @@ def residueLinearMap (k E : Type*) [Field k] [Ring E] [Algebra k E]
   map_add' := residueScalar_add
   map_smul' := residueScalar_smul
 
+/--
+@isnad1 id=eq.0h3v.s7.bf3383b216ff from=translated src=- shape=a5c69342 vocab=50fbd5eb
+-/
 @[simp]
 theorem residueLinearMap_apply (a : E) :
     residueLinearMap k E a = residueScalar k a :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.9b7280644717 from=translated src=- shape=5dfeb52a vocab=74da3a45
+-/
 @[simp]
 theorem residueScalar_algebraMap (c : k) :
     residueScalar k (algebraMap k E c) = c := by
@@ -131,7 +156,9 @@ theorem residueScalar_algebraMap (c : k) :
 
 /-- The residue scalar is multiplicative.  Finite-dimensionality is used here
 to make the possibly noncommutative algebra Dedekind-finite, so a product can
-be a unit only when both its factors are units.-/
+be a unit only when both its factors are units.
+@isnad1 id=eq.0h4v.s6.6658cf906d91 from=translated src=- shape=1ac6b9af vocab=a168ba19
+-/
 theorem residueScalar_mul (a b : E) :
     residueScalar k (a * b) = residueScalar k a * residueScalar k b := by
   letI : IsArtinianRing E := IsArtinianRing.of_finite k E
@@ -160,12 +187,17 @@ def residueAlgHom (k E : Type*) [Field k] [Ring E] [Algebra k E]
   map_mul' := residueScalar_mul
   commutes' := residueScalar_algebraMap
 
+/--
+@isnad1 id=eq.0h3v.s7.dbb4ee724500 from=translated src=- shape=9cd8fbc8 vocab=ae51d918
+-/
 @[simp]
 theorem residueAlgHom_apply (a : E) : residueAlgHom k E a = residueScalar k a :=
   rfl
 
 /-- The residue map is the unique `k`-algebra homomorphism from the local
-algebra to its algebraically closed coefficient field.-/
+algebra to its algebraically closed coefficient field.
+@isnad1 id=eq.0h3v.s6.e0d11c3b505f from=translated src=- shape=09d49ffa vocab=226a7020
+-/
 theorem algHom_eq_residueAlgHom (φ : E →ₐ[k] k) :
     φ = residueAlgHom k E := by
   ext a
@@ -177,13 +209,17 @@ theorem algHom_eq_residueAlgHom (φ : E →ₐ[k] k) :
     rw [hzero] at hmapped
     exact not_isUnit_zero hmapped).symm
 
-/-- The residue map is onto the ground field.-/
+/-- The residue map is onto the ground field.
+@isnad1 id=surjecti.0h2v.s7.4e8a2906ff0b from=translated src=- shape=a3171a63 vocab=50164d89
+-/
 theorem residueLinearMap_surjective :
     Function.Surjective (residueLinearMap k E : E → k) := by
   intro c
   exact ⟨algebraMap k E c, residueScalar_algebraMap c⟩
 
-/-- Its kernel is exactly the set of nonunits of the local algebra.-/
+/-- Its kernel is exactly the set of nonunits of the local algebra.
+@isnad1 id=iff.0h3v.s7.833d6aa4eb21 from=translated src=- shape=61f9bd83 vocab=d2661c6f
+-/
 theorem mem_ker_residueLinearMap_iff (a : E) :
     a ∈ LinearMap.ker (residueLinearMap k E) ↔ ¬ IsUnit a := by
   rw [LinearMap.mem_ker]

@@ -17,7 +17,9 @@ variable {ι : Type} [Fintype ι]
 
 /-- A finite additive classification bounds the possible kernel classes.
 If kernel maps extend to a scalar-endomorphism source and the target is
-injective with scalar endomorphisms, the Hom dimension is at most one.-/
+injective with scalar endomorphisms, the Hom dimension is at most one.
+@isnad1 id=le.5h7v.s10.fc057be9142a from=translated src=- shape=32d50770 vocab=102b70ad
+-/
 theorem finrank_hom_le_one_of_finite_decompositions
     (F : ι → C) (G : C) [∀ X : C, FiniteDimensional k (G ⟶ X)]
     (hG : ∀ i, 1 ≤ Module.finrank k (G ⟶ F i))
@@ -44,7 +46,9 @@ theorem finrank_hom_le_one_of_finite_decompositions
   exact exists_scalar_of_kernel_iso hZ hI f.val g.val e (hext f.val f.property)
 
 /-- The sum of the finite family detects every nonzero summand, so a Hom-finite
-category with a finite additive classification satisfies the finite-kernel bound.-/
+category with a finite additive classification satisfies the finite-kernel bound.
+@isnad1 id=le.5h6v.s9.f8996ff13422 from=translated src=- shape=76cd0f92 vocab=c8a4e387
+-/
 theorem finrank_hom_le_one_of_finite_additive_family
     [∀ X Y : C, FiniteDimensional k (X ⟶ Y)]
     (F : ι → C) (hF : ∀ i, ¬ IsZero (F i))

@@ -49,6 +49,9 @@ def LinearEquiv.quotientOfMapEq (e : M ≃ₗ[R] N)
       intro x
       simp [f, g])
 
+/--
+@isnad1 id=eq.1h7v.s9.149d5176c3b0 from=translated src=- shape=afe383c6 vocab=35d3faff
+-/
 @[simp]
 theorem LinearEquiv.quotientOfMapEq_mk (e : M ≃ₗ[R] N)
     (p : Submodule R M) (q : Submodule R N)

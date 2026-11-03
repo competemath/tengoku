@@ -36,13 +36,18 @@ nonzero distinguished subspaces.-/
 def support (X : Obj k T) : Finset T :=
   Finset.univ.filter fun t ↦ X.subspace t = ⊤
 
+/--
+@isnad1 id=iff.0h4v.s7.9451a4af2c9f from=translated src=- shape=14d8e177 vocab=cfad3867
+-/
 @[simp]
 theorem mem_support {X : Obj k T} {t : T} :
     t ∈ support k T X ↔ X.subspace t = ⊤ := by
   simp [support]
 
 /-- Every subspace of a one-dimensional vector space is zero or the whole
-space.-/
+space.
+@isnad1 id=or.1h3v.s7.15e0cdf333aa from=translated src=- shape=285fa746 vocab=e1addddd
+-/
 theorem submodule_eq_bot_or_eq_top_of_finrank_eq_one
     {V : Type u} [AddCommGroup V] [Module k V]
     (hV : Module.finrank k V = 1) (S : Submodule k V) :
@@ -52,7 +57,9 @@ theorem submodule_eq_bot_or_eq_top_of_finrank_eq_one
   exact IsSimpleOrder.eq_bot_or_eq_top S
 
 /-- A nonzero map into a one-dimensional poset space can only enlarge
-support.-/
+support.
+@isnad1 id=le.2h5v.s7.11671393dca7 from=translated src=- shape=65aa4010 vocab=c264b335
+-/
 theorem support_mono_of_ne_zero_of_finrank_eq_one
     {X Y : Obj k T} (f : X ⟶ Y) (hf : f ≠ 0)
     (hY : Module.finrank k Y = 1) :
@@ -72,7 +79,9 @@ theorem support_mono_of_ne_zero_of_finrank_eq_one
   exact f.map_subspace t x (by rw [ht]; exact Submodule.mem_top)
 
 /-- A nonzero map between one-dimensional poset spaces with equal support is
-an isomorphism.-/
+an isomorphism.
+@isnad1 id=isiso.4h5v.s7.8d7c51ed5133 from=translated src=- shape=2dc921f0 vocab=3a08fdc4
+-/
 theorem isIso_of_ne_zero_of_finrank_eq_one_of_support_eq
     {X Y : Obj k T} (f : X ⟶ Y) (hf : f ≠ 0)
     (hX : Module.finrank k X = 1)
@@ -132,7 +141,9 @@ theorem isIso_of_ne_zero_of_finrank_eq_one_of_support_eq
   exact E.isIso_hom
 
 /-- Thus a nonzero nonisomorphism between one-dimensional poset spaces
-strictly enlarges support.-/
+strictly enlarges support.
+@isnad1 id=lt.4h5v.s8.301fba37745f from=translated src=- shape=57c58d2a vocab=a7547795
+-/
 theorem support_ssubset_of_ne_zero_of_not_isIso_of_finrank_eq_one
     {X Y : Obj k T} (f : X ⟶ Y) (hf : f ≠ 0) (hnot : ¬IsIso f)
     (hX : Module.finrank k X = 1)
@@ -163,7 +174,9 @@ structure SchurRealizationFamily (I : Type v) where
 
 omit [Fintype T] in
 /-- Any theorem forcing every Schur poset space to be a line immediately
-forces all multiplicities in a realized family to be one.-/
+forces all multiplicities in a realized family to be one.
+@isnad1 id=eq.1h5v.s6.32ceef2fe2f9 from=translated src=- shape=51e8011f vocab=d54f5304
+-/
 theorem SchurRealizationFamily.multiplicity_eq_one
     {I : Type v} (R : SchurRealizationFamily k T I)
     (hline : ∀ X : Obj k T, IsSchur k T X → Module.finrank k X = 1) :
@@ -174,7 +187,9 @@ theorem SchurRealizationFamily.multiplicity_eq_one
 
 /-- If every admissible poset space is one-dimensional, strict support growth
 bounds every nonzero chain of nonisomorphisms by the cardinality of the
-indexing poset.-/
+indexing poset.
+@isnad1 id=hasnonze.1h3v.s6.ab2c98cf8774 from=translated src=- shape=283f6b4e vocab=6804af8c
+-/
 theorem hasNonzeroNonisomorphismLengthAtMost_card_of_finrank_eq_one
     {P : Obj k T → Prop}
     (hline : ∀ X, P X → Module.finrank k X = 1) :
@@ -211,7 +226,9 @@ theorem hasNonzeroNonisomorphismLengthAtMost_card_of_finrank_eq_one
         (Finset.subset_univ (support k T (F.obj (Fin.last n))))
 
 /-- Under the sharp numerical bound `L ≤ |T|`, the three-antichain detour
-rules out every higher-dimensional Schur object.-/
+rules out every higher-dimensional Schur object.
+@isnad1 id=eq.2h5v.s6.a2c3fc8adcbf from=translated src=- shape=ec42c804 vocab=962c2044
+-/
 theorem finrank_eq_one_of_isSchur_of_positiveGrading_of_le_card
     {L : ℕ} (G : PositiveGrading (Obj k T) (IsSchur k T) L)
     (hL : L ≤ Fintype.card T) (X : Obj k T) (hX : IsSchur k T X) :
@@ -227,7 +244,9 @@ theorem finrank_eq_one_of_isSchur_of_positiveGrading_of_le_card
 
 /-- The frozen manuscript's sharp equality conclusion for the realization
 category: once `L ≤ |T|`, every nonzero composable chain of Schur
-nonisomorphisms has at most `|T|` arrows.-/
+nonisomorphisms has at most `|T|` arrows.
+@isnad1 id=hasnonze.1h4v.s6.78c23db6da60 from=translated src=- shape=04103f3a vocab=599c4608
+-/
 theorem schurLengthAtMostCard_of_positiveGrading_of_le_card
     {L : ℕ} (G : PositiveGrading (Obj k T) (IsSchur k T) L)
     (hL : L ≤ Fintype.card T) :

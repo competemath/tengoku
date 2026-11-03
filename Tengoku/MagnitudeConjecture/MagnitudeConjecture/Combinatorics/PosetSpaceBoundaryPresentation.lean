@@ -46,12 +46,17 @@ def kernelInclusion {X Y : Obj k T} (f : X ⟶ Y) :
     intro t x hx
     exact hx
 
+/--
+@isnad1 id=eq.0h5v.s8.0ebe70bc13f2 from=translated src=- shape=b032a3fa vocab=34b6c689
+-/
 @[simp]
 theorem kernelInclusion_linear {X Y : Obj k T} (f : X ⟶ Y) :
     (kernelInclusion f).linear = (LinearMap.ker f.linear).subtype :=
   rfl
 
-/-- The kernel inclusion is annihilated by the original morphism.-/
+/-- The kernel inclusion is annihilated by the original morphism.
+@isnad1 id=eq.0h5v.s7.b1d7c9038ad8 from=translated src=- shape=8e89711c vocab=bf0f9432
+-/
 theorem kernelInclusion_comp {X Y : Obj k T} (f : X ⟶ Y) :
     kernelInclusion f ≫ f = 0 := by
   apply Hom.ext
@@ -73,6 +78,9 @@ def kernelLift {W X Y : Obj k T} (f : X ⟶ Y) (g : W ⟶ X)
     intro t w hw
     exact g.map_subspace t w hw
 
+/--
+@isnad1 id=eq.1h7v.s8.cd3b5fca44c2 from=translated src=- shape=2456bccc vocab=2bf349b2
+-/
 @[simp]
 theorem kernelLift_comp_inclusion
     {W X Y : Obj k T} (f : X ⟶ Y) (g : W ⟶ X)
@@ -109,7 +117,9 @@ def desc {X Y Z : Obj k T} {f : X ⟶ Y}
         simpa [e, lift] using q.map_subspace r x hx }
 
 /-- The quotient factor supplied by boundary surjectivity has the requested
-composite.-/
+composite.
+@isnad1 id=eq.2h7v.s8.7d4b625dd5c4 from=translated src=- shape=5764aa23 vocab=e7f3b633
+-/
 theorem comp_desc {X Y Z : Obj k T} {f : X ⟶ Y}
     (hf : BoundarySurjective f) (q : X ⟶ Z)
     (hq : kernelInclusion f ≫ q = 0) :
@@ -139,7 +149,9 @@ def boundaryRelationMap (Y : Obj k T) :
   boundaryCoverMap (boundaryKernel Y) ≫
     kernelInclusion (boundaryCoverMap Y)
 
-/-- The relation map is annihilated by the boundary-cover projection.-/
+/-- The relation map is annihilated by the boundary-cover projection.
+@isnad1 id=eq.0h3v.s7.f0d50d6939f4 from=translated src=- shape=3d549100 vocab=aa93bb48
+-/
 theorem boundaryRelationMap_comp (Y : Obj k T) :
     boundaryRelationMap Y ≫ boundaryCoverMap Y = 0 := by
   rw [boundaryRelationMap, Category.assoc,
@@ -147,7 +159,9 @@ theorem boundaryRelationMap_comp (Y : Obj k T) :
 
 /-- The canonical boundary-cover projection is a weak cokernel of the
 relation map.  Thus every finite poset space has a two-term presentation by
-explicit boundary-projective objects.-/
+explicit boundary-projective objects.
+@isnad1 id=ex.1h5v.s8.b8d7cd2a4ef2 from=translated src=- shape=825a1a95 vocab=aa93bb48
+-/
 theorem boundaryCoverMap_weakCokernel
     (Y : Obj k T) {Z : Obj k T} (q : boundaryCover Y ⟶ Z)
     (hq : boundaryRelationMap Y ≫ q = 0) :

@@ -20,7 +20,9 @@ def height (rank : V → ℕ) (E : V → V → Prop)
 termination_by rank x
 decreasing_by exact hE _ _ hx.choose_spec
 
-/-- An empty incoming neighborhood has height zero.-/
+/-- An empty incoming neighborhood has height zero.
+@isnad1 id=eq.2h4v.s5.a2b1a55c201a from=translated src=- shape=fb5a9f63 vocab=e396c614
+-/
 theorem height_eq_zero (x : V) (hx : ¬ ∃ y, E y x) :
     height rank E hE x = 0 := by
   rw [height]
@@ -28,7 +30,9 @@ theorem height_eq_zero (x : V) (hx : ¬ ∃ y, E y x) :
 
 /-- A boundary vertex has at most one predecessor; at an interior vertex all
 predecessors receive an arrow from its translate. These local conditions force
-every arrow to increase height by exactly one.-/
+every arrow to increase height by exactly one.
+@isnad1 id=eq.2h6v.s6.9d1824210eb4 from=translated src=- shape=542e16cc vocab=e41a2375
+-/
 theorem height_arrow
     (hmesh : ∀ x, (∀ a b, E a x → E b x → a = b) ∨
       ∃ t, ∀ y, E y x → E t y) :
@@ -49,7 +53,9 @@ theorem height_arrow
       rw [height, dite_eq_left hy, heq]
   exact fun x y ↦ aux y x
 
-/-- Every nonempty mesh places its target two levels above its translate.-/
+/-- Every nonempty mesh places its target two levels above its translate.
+@isnad1 id=eq.3h6v.s6.25b3ae1b32f0 from=translated src=- shape=e44ee0cb vocab=e41a2375
+-/
 theorem height_mesh
     (hmesh : ∀ x, (∀ a b, E a x → E b x → a = b) ∨
       ∃ t, ∀ y, E y x → E t y)
@@ -60,7 +66,9 @@ theorem height_mesh
   rw [height_arrow rank E hE hmesh y x hy,
     height_arrow rank E hE hmesh t y (ht y hy)]
 
-/-- Along any path, height increases by its length.-/
+/-- Along any path, height increases by its length.
+@isnad1 id=eq.2h7v.s6.60174ac3304e from=translated src=- shape=f7a1773a vocab=60d3c25e
+-/
 theorem height_path [Quiver V]
     (hmesh : ∀ x, (∀ a b, E a x → E b x → a = b) ∨
       ∃ t, ∀ y, E y x → E t y)
@@ -75,7 +83,9 @@ theorem height_path [Quiver V]
     omega
 
 include rank hE in
-/-- Any two paths with the same endpoints have equal length.-/
+/-- Any two paths with the same endpoints have equal length.
+@isnad1 id=eq.2h8v.s6.c610fd1e4a40 from=translated src=- shape=2a280591 vocab=c163fdde
+-/
 theorem path_length_eq [Quiver V]
     (hmesh : ∀ x, (∀ a b, E a x → E b x → a = b) ∨
       ∃ t, ∀ y, E y x → E t y)

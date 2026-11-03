@@ -33,7 +33,9 @@ namespace ModuleGrading
 
 variable {R : VectorGrading k A} (G : ModuleGrading (M := M) R)
 
-/-- Multiplication by a homogeneous algebra element shifts the projections.-/
+/-- Multiplication by a homogeneous algebra element shifts the projections.
+@isnad1 id=eq.1h9v.s9.78e03db44b11 from=translated src=- shape=796d26b7 vocab=e69fdadd
+-/
 theorem projection_smul {i : ℤ} {a : A} (ha : a ∈ R.component i)
     (j : ℤ) (x : M) :
     G.projection (i + j) (a • x) = a • G.projection j x := by
@@ -55,6 +57,9 @@ theorem projection_smul {i : ℤ} {a : A} (ha : a ∈ R.component i)
 variable {N : Type*} [AddCommGroup N] [Module k N] [Module A N] [IsScalarTower k A N]
 variable (H : ModuleGrading (M := N) R) [FiniteDimensional k M]
 
+/--
+@isnad1 id=eq.2h13v.s9.63c29c5c99cb from=translated src=- shape=0cbfcc23 vocab=25fe0501
+-/
 theorem mapPart_smul_homogeneous (d : ℤ) (f : M →ₗ[A] N)
     {i j : ℤ} {a : A} {x : M} (ha : a ∈ R.component i) (hx : x ∈ G.component j) :
     G.toVectorGrading.mapPart H.toVectorGrading d (f.restrictScalars k) (a • x) =
@@ -66,7 +71,9 @@ theorem mapPart_smul_homogeneous (d : ℤ) (f : M →ₗ[A] N)
   exact H.projection_smul ha (j + d) (f x)
 
 /-- Every homogeneous component of an algebra-linear map commutes with all
-algebra elements, not just homogeneous ones.-/
+algebra elements, not just homogeneous ones.
+@isnad1 id=eq.0h11v.s9.3ea54d8b2c96 from=translated src=- shape=d5c2992f vocab=45a3e1ab
+-/
 theorem mapPart_smul (d : ℤ) (f : M →ₗ[A] N) (a : A) (x : M) :
     G.toVectorGrading.mapPart H.toVectorGrading d (f.restrictScalars k) (a • x) =
       a • G.toVectorGrading.mapPart H.toVectorGrading d (f.restrictScalars k) x := by
@@ -94,6 +101,9 @@ def homPart (d : ℤ) (f : M →ₗ[A] N) : M →ₗ[A] N where
   map_add' := map_add _
   map_smul' := G.mapPart_smul H d f
 
+/--
+@isnad1 id=mem.1h11v.s9.d0eda7a40dd7 from=translated src=- shape=91a4d559 vocab=9e1b6e45
+-/
 theorem homPart_mem (d : ℤ) (f : M →ₗ[A] N)
     {i : ℤ} {x : M} (hx : x ∈ G.component i) :
     G.homPart H d f x ∈ H.component (i + d) :=
@@ -103,10 +113,16 @@ theorem homPart_mem (d : ℤ) (f : M →ₗ[A] N)
 def Homogeneous (d : ℤ) (f : M →ₗ[A] N) : Prop :=
   ∀ i : ℤ, ∀ x ∈ G.component i, f x ∈ H.component (i + d)
 
+/--
+@isnad1 id=homogene.0h9v.s8.d6c81ce0b371 from=translated src=- shape=2ef9a498 vocab=499a3ad8
+-/
 theorem homPart_homogeneous (d : ℤ) (f : M →ₗ[A] N) :
     G.Homogeneous H d (G.homPart H d f) :=
   fun _ _ hx ↦ G.homPart_mem H d f hx
 
+/--
+@isnad1 id=eq.1h9v.s8.5d51f0b89b09 from=translated src=- shape=a194ddaf vocab=499a3ad8
+-/
 theorem homPart_of_homogeneous {d : ℤ} {f : M →ₗ[A] N}
     (hf : G.Homogeneous H d f) : G.homPart H d f = f := by
   apply LinearMap.ext
@@ -122,6 +138,9 @@ theorem homPart_of_homogeneous {d : ℤ} {f : M →ₗ[A] N}
   · intro x y hx hy
     simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.2h10v.s9.856953e2dda4 from=translated src=- shape=2df44109 vocab=499a3ad8
+-/
 theorem homPart_of_homogeneous_ne {d e : ℤ} {f : M →ₗ[A] N}
     (hf : G.Homogeneous H d f) (hde : d ≠ e) : G.homPart H e f = 0 := by
   apply LinearMap.ext
@@ -137,6 +156,9 @@ theorem homPart_of_homogeneous_ne {d e : ℤ} {f : M →ₗ[A] N}
   · intro x y hx hy
     simp only [map_add, hx, hy, add_zero]
 
+/--
+@isnad1 id=eq.0h8v.s9.80bab576b1ec from=translated src=- shape=5f6a3026 vocab=c4af53f8
+-/
 theorem sum_homPart [FiniteDimensional k N] (f : M →ₗ[A] N) :
     ∑ d ∈ G.toVectorGrading.mapDegreeSupport H.toVectorGrading, G.homPart H d f = f := by
   apply LinearMap.ext
@@ -146,6 +168,9 @@ theorem sum_homPart [FiniteDimensional k N] (f : M →ₗ[A] N) :
   simpa only [LinearMap.sum_apply, homPart, LinearMap.coe_mk,
     AddHom.coe_mk, LinearMap.restrictScalars_apply] using hs
 
+/--
+@isnad1 id=eq.1h9v.s9.4a87b61ef623 from=translated src=- shape=4ec9db1e vocab=911a0064
+-/
 theorem homPart_eq_zero_outside [FiniteDimensional k N] (d : ℤ) (f : M →ₗ[A] N)
     (hd : d ∉ G.toVectorGrading.mapDegreeSupport H.toVectorGrading) :
     G.homPart H d f = 0 := by
@@ -154,12 +179,18 @@ theorem homPart_eq_zero_outside [FiniteDimensional k N] (d : ℤ) (f : M →ₗ[
   exact LinearMap.congr_fun
     (G.toVectorGrading.mapPart_eq_zero_outside H.toVectorGrading d (f.restrictScalars k) hd) x
 
+/--
+@isnad1 id=homogene.0h5v.s7.7429411d81e4 from=translated src=- shape=34ccb4ce vocab=81d22cf5
+-/
 theorem id_homogeneous : G.Homogeneous G 0 (LinearMap.id : M →ₗ[A] M) := by
   intro i x hx
   simpa using hx
 
 variable {P : Type*} [AddCommGroup P] [Module k P] [Module A P] [IsScalarTower k A P]
 
+/--
+@isnad1 id=homogene.2h13v.s9.d550fd8ca182 from=translated src=- shape=30aff093 vocab=841fc1a6
+-/
 theorem homogeneous_comp (J : ModuleGrading (M := P) R)
     {d e : ℤ} {f : M →ₗ[A] N} {g : N →ₗ[A] P}
     (hf : G.Homogeneous H d f) (hg : H.Homogeneous J e g) :

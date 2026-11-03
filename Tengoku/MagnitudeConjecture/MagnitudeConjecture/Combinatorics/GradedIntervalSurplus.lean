@@ -17,7 +17,9 @@ set_option autoImplicit false
 namespace MagnitudeConjecture.GradedInterval
 
 /-- Object and arrow error bounds give the surplus error bound when the
-number of simple modules scales exactly. Surplus is `2N-a-2p`.-/
+number of simple modules scales exactly. Surplus is `2N-a-2p`.
+@isnad1 id=le.3h9v.s7.ce9f065e3e98 from=translated src=- shape=6a9561af vocab=4a01c04c
+-/
 theorem surplus_error_bound
     (N a p Nₘ aₘ pₘ c Cₙ Cₐ : ℤ)
     (hN : |Nₘ - c * N| ≤ Cₙ) (ha : |aₘ - c * a| ≤ Cₐ)
@@ -29,7 +31,9 @@ theorem surplus_error_bound
   rw [abs_le]
   constructor <;> nlinarith
 
-/-- An eventually bounded sequence of integer multiples has nonpositive slope.-/
+/-- An eventually bounded sequence of integer multiples has nonpositive slope.
+@isnad1 id=le.1h3v.s5.7a94cea7cd4b from=translated src=- shape=63b4aa7f vocab=96c21ee8
+-/
 theorem slope_nonpositive_of_eventually_bounded
     (s C : ℤ) (n₀ : ℕ)
     (h : ∀ n : ℕ, n₀ ≤ n → (n : ℤ) * s ≤ C) : s ≤ 0 := by
@@ -44,7 +48,9 @@ theorem slope_nonpositive_of_eventually_bounded
   nlinarith
 
 /-- Nonnegative interval surpluses with a uniform upper error force the
-ambient surplus to be nonnegative.-/
+ambient surplus to be nonnegative.
+@isnad1 id=le.2h4v.s6.b1a716ad4e2b from=translated src=- shape=13ebe1a2 vocab=2ed219bf
+-/
 theorem ambient_nonnegative_of_interval_bound
     (σ : ℤ) (interval : ℕ → ℤ) (C : ℤ) (m₀ : ℕ)
     (hnonneg : ∀ m, 0 ≤ interval m)
@@ -60,7 +66,9 @@ theorem ambient_nonnegative_of_interval_bound
 
 /-- Packing arbitrarily many separated copies bounds each interval surplus
 by the separation length times the ambient surplus. The constant absorbs
-both the fixed end correction and the uniform counting error.-/
+both the fixed end correction and the uniform counting error.
+@isnad1 id=le.1h5v.s6.990389d17b97 from=translated src=- shape=44cf9ddf vocab=2ed219bf
+-/
 theorem interval_le_length_mul_of_packing
     (σ δ : ℤ) (ℓ : ℕ) (C : ℤ) (q₀ : ℕ)
     (hpacking : ∀ q : ℕ, q₀ ≤ q →
@@ -75,7 +83,9 @@ theorem interval_le_length_mul_of_packing
   omega
 
 /-- At zero ambient surplus, packing and directed nonnegativity force every
-finite interval surplus to vanish.-/
+finite interval surplus to vanish.
+@isnad1 id=eq.2h3v.s5.b18af0cbc7f1 from=translated src=- shape=b9415623 vocab=96c21ee8
+-/
 theorem interval_eq_zero_of_packing
     (δ : ℤ) (C : ℤ) (q₀ : ℕ) (hnonneg : 0 ≤ δ)
     (hpacking : ∀ q : ℕ, q₀ ≤ q → (q : ℤ) * δ ≤ C) : δ = 0 := by

@@ -34,11 +34,16 @@ def SupportWindow.ofNonnegative (D : Finset ℤ) (hne : D.Nonempty)
         rw [hl', hu']
         exact ⟨Finset.min'_le D d hd, Finset.le_max' D d hd⟩ }
 
+/--
+@isnad1 id=le.0h2v.s3.ab28c63e23a3 from=translated src=- shape=8b7cba42 vocab=11f6c603
+-/
 theorem SupportWindow.lower_le_upper {D : Finset ℤ} (W : SupportWindow D) : W.lower ≤ W.upper := by
   have h := (W.bounds W.upper W.upper_mem).1
   exact_mod_cast h
 
-/-- Support containment after a shift is exactly the allowed-shift condition.-/
+/-- Support containment after a shift is exactly the allowed-shift condition.
+@isnad1 id=iff.0h4v.s6.0208e823bddf from=translated src=- shape=2039f7ba vocab=f60382ee
+-/
 theorem SupportWindow.shift_supported_iff {D : Finset ℤ} (W : SupportWindow D) (m : ℕ) (t : ℤ) :
     (∀ d ∈ D, 0 ≤ d + t ∧ d + t ≤ m) ↔ t ∈ allowedShifts m W.lower W.upper := by
   rw [mem_allowedShifts]

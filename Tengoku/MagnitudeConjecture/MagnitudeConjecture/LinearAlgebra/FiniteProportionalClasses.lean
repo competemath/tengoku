@@ -15,7 +15,9 @@ variable {k : Type u} [Field k] [Infinite k]
 variable {V : Type v} [AddCommGroup V] [Module k V]
 
 /-- Over an infinite field, a finite labelling of nonzero vectors whose equal
-labels imply proportionality forces dimension at most one.-/
+labels imply proportionality forces dimension at most one.
+@isnad1 id=le.1h4v.s8.63dfab78f2a3 from=translated src=- shape=870b91b6 vocab=6e000df0
+-/
 theorem finrank_le_one_of_finite_proportional_classes {ι : Type w} [Finite ι]
     (label : {v : V // v ≠ 0} → ι)
     (hlabel : ∀ v w, label v = label w → ∃ c : k, c • v.val = w.val) :

@@ -38,6 +38,9 @@ instance {α : Type u} : PartialOrder (Three α) where
   le_antisymm _ _ hab _ := hab
   lt_iff_le_not_ge := by simp
 
+/--
+@isnad1 id=isuppers.0h2v.s4.5c35dd0dfb64 from=translated src=- shape=37b27007 vocab=e9f456a4
+-/
 theorem three_isUpperSet {α : Type u} (U : Set (Three α)) : IsUpperSet U := by
   intro s t hst hs
   change s = t at hst
@@ -86,16 +89,25 @@ def diagonal : Submodule k (k × k) where
     simp only [Set.mem_ofPred_eq, Prod.smul_fst, Prod.smul_snd]
     rw [hx]
 
+/--
+@isnad1 id=iff.0h2v.s8.12c0ba24d02b from=translated src=- shape=0be3c247 vocab=4a561aa4
+-/
 @[simp]
 theorem mem_firstAxis_iff (x : k × k) :
     x ∈ firstAxis k ↔ x.2 = 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s8.d783c5fcb5a7 from=translated src=- shape=0be3c247 vocab=925b164c
+-/
 @[simp]
 theorem mem_secondAxis_iff (x : k × k) :
     x ∈ secondAxis k ↔ x.1 = 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s8.58a40bb0000a from=translated src=- shape=7feae65d vocab=98110bdb
+-/
 @[simp]
 theorem mem_diagonal_iff (x : k × k) :
     x ∈ diagonal k ↔ x.1 = x.2 :=
@@ -182,28 +194,46 @@ def threePathMap23 : threeLinePlane k ⟶ threePathObj3 k where
 abbrev threePathMap34 : threePathObj3 k ⟶ threePathObj4 k :=
   lineHom k (Three k) (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s8.b17cd75bfeb4 from=translated src=- shape=3d50f629 vocab=c41b48bf
+-/
 @[simp]
 theorem threePathMap12_apply (x : k) :
     (threePathMap12 k).linear x = (x, 0) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.b1b0797faacf from=translated src=- shape=91e28476 vocab=e0c2833e
+-/
 @[simp]
 theorem threePathMap23_apply (x : k × k) :
     (threePathMap23 k).linear x = x.1 - x.2 :=
   rfl
 
+/--
+@isnad1 id=ne.0h1v.s7.9f2f0ba8607e from=translated src=- shape=3fe8e84b vocab=97c8af37
+-/
 theorem threePathMap12_ne_zero : threePathMap12 k ≠ 0 := by
   intro hzero
   have h := congrArg (fun f ↦ f.linear (1 : k)) hzero
   change ((1 : k), 0) = (0, 0) at h
   exact one_ne_zero (congrArg Prod.fst h)
 
+/--
+@isnad1 id=ne.0h1v.s7.c2c20fc73ee3 from=translated src=- shape=3fe8e84b vocab=42494802
+-/
 theorem threePathMap01_ne_zero : threePathMap01 k ≠ 0 :=
   lineHom_ne_zero k (Three k) (by simp)
 
+/--
+@isnad1 id=ne.0h1v.s7.4e282f5904ad from=translated src=- shape=3fe8e84b vocab=482348b6
+-/
 theorem threePathMap34_ne_zero : threePathMap34 k ≠ 0 :=
   lineHom_ne_zero k (Three k) (by simp)
 
+/--
+@isnad1 id=ne.0h1v.s7.2e36ff2cd2e4 from=translated src=- shape=3fe8e84b vocab=604fbf0e
+-/
 theorem threePathMap23_ne_zero : threePathMap23 k ≠ 0 := by
   intro hzero
   have h := congrArg (fun f ↦ f.linear ((1 : k), 0)) hzero
@@ -228,6 +258,9 @@ def linearEquivOfIsIso {S : Type u} [PartialOrder S]
       (IsIso.inv_hom_id f)
     exact h
 
+/--
+@isnad1 id=not.1h5v.s7.b71e72fcd3b7 from=translated src=- shape=5286cad5 vocab=db0c4308
+-/
 theorem not_isIso_of_finrank_ne {S : Type u} [PartialOrder S]
     {X Y : Obj k S} (f : X ⟶ Y)
     (hfinrank : Module.finrank k X ≠ Module.finrank k Y) :
@@ -236,15 +269,24 @@ theorem not_isIso_of_finrank_ne {S : Type u} [PartialOrder S]
   letI : IsIso f := hf
   exact hfinrank (LinearEquiv.finrank_eq (linearEquivOfIsIso k f))
 
+/--
+@isnad1 id=not.0h1v.s4.07842f050bf3 from=translated src=- shape=185eadd4 vocab=3f4192dd
+-/
 theorem threePathMap12_not_isIso : ¬ IsIso (threePathMap12 k) := by
   apply not_isIso_of_finrank_ne k
   simp only [Module.finrank_self, Module.finrank_prod]
   omega
 
+/--
+@isnad1 id=not.0h1v.s4.8ee4e9a7c23a from=translated src=- shape=185eadd4 vocab=1a4cb315
+-/
 theorem threePathMap01_not_isIso : ¬ IsIso (threePathMap01 k) := by
   apply lineHom_not_isIso k (Three k)
   simp
 
+/--
+@isnad1 id=not.0h1v.s4.1dca390b704a from=translated src=- shape=185eadd4 vocab=4f23a376
+-/
 theorem threePathMap34_not_isIso : ¬ IsIso (threePathMap34 k) := by
   apply lineHom_not_isIso k (Three k)
   constructor
@@ -255,12 +297,17 @@ theorem threePathMap34_not_isIso : ¬ IsIso (threePathMap34 k) := by
       simp
     exact hnot (hEq hmem)
 
+/--
+@isnad1 id=not.0h1v.s4.bbd1923d527f from=translated src=- shape=185eadd4 vocab=1f79fad1
+-/
 theorem threePathMap23_not_isIso : ¬ IsIso (threePathMap23 k) := by
   apply not_isIso_of_finrank_ne k
   simp only [Module.finrank_self, Module.finrank_prod]
   omega
 
-/-- The four displayed arrows have nonzero total composite.-/
+/-- The four displayed arrows have nonzero total composite.
+@isnad1 id=eq.0h1v.s8.ea50e4bdf120 from=translated src=- shape=ab5cdc28 vocab=012dfccc
+-/
 @[simp]
 theorem threePathComposite_apply :
     (threePathMap01 k ≫ threePathMap12 k ≫
@@ -271,7 +318,9 @@ theorem threePathComposite_apply :
     rw [threePathMap12_apply, threePathMap23_apply]
     simp
 
-/-- The four displayed arrows have nonzero total composite.-/
+/-- The four displayed arrows have nonzero total composite.
+@isnad1 id=ne.0h1v.s7.67699b6bbd1b from=translated src=- shape=13662ea4 vocab=cdbec7ba
+-/
 theorem threePathComposite_ne_zero :
     threePathMap01 k ≫ threePathMap12 k ≫
       threePathMap23 k ≫ threePathMap34 k ≠ 0 := by
@@ -283,7 +332,9 @@ theorem threePathComposite_ne_zero :
 /-- The two-dimensional three-line configuration is Schur.  Preserving the
 two coordinate axes makes an endomorphism diagonal, and preserving the third
 line forces the two diagonal entries to agree.  This is the manuscript's
-indecomposability argument in a stronger endomorphism-ring form.-/
+indecomposability argument in a stronger endomorphism-ring form.
+@isnad1 id=isschur.0h1v.s3.7cc9a341cefb from=translated src=- shape=a638af76 vocab=f8703385
+-/
 theorem threeLinePlane_isSchur :
     IsSchur k (Three k) (threeLinePlane k) := by
   constructor
@@ -329,7 +380,9 @@ theorem threeLinePlane_isSchur :
 
 /-- A positive grading on the Schur objects of the discrete three-point
 poset-space category has length at least four.  This is one more than the
-three ordinary support additions.-/
+three ordinary support additions.
+@isnad1 id=le.0h3v.s5.750299286d33 from=translated src=- shape=7f598712 vocab=ca752f89
+-/
 theorem four_le_of_three_schurPositiveGrading {L : ℕ}
     (G : PositiveGrading (Obj k (Three k)) (IsSchur k (Three k)) L) :
     4 ≤ L := by
@@ -476,18 +529,27 @@ def blockOutMap (q : ℕ) (hq : q + 2 < Fintype.card T)
           simp
       simpa [supportLine, supportAt, htargetle, hzero]
 
+/--
+@isnad1 id=eq.2h4v.s9.dbacef0d944e from=translated src=- shape=c7ae389b vocab=10f45adf
+-/
 @[simp]
 theorem blockInMap_apply (q : ℕ) (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) (x : k) :
     (blockInMap k q hq D).linear x = (x, 0) :=
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.0fb53f458af9 from=translated src=- shape=d2100f09 vocab=ce6c210e
+-/
 @[simp]
 theorem blockOutMap_apply (q : ℕ) (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) (x : k × k) :
     (blockOutMap k q hq D).linear x = x.1 - x.2 :=
   rfl
 
+/--
+@isnad1 id=ne.2h3v.s8.97417f1171ca from=translated src=- shape=912dc087 vocab=a2bd92a2
+-/
 theorem blockInMap_ne_zero (q : ℕ) (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) :
     blockInMap k q hq D ≠ 0 := by
@@ -497,6 +559,9 @@ theorem blockInMap_ne_zero (q : ℕ) (hq : q + 2 < Fintype.card T)
   rw [hcalc, zero_linear, LinearMap.zero_apply] at h
   exact one_ne_zero (congrArg Prod.fst h)
 
+/--
+@isnad1 id=ne.2h3v.s8.c902f1d7ecfe from=translated src=- shape=019ade12 vocab=c300557f
+-/
 theorem blockOutMap_ne_zero (q : ℕ) (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) :
     blockOutMap k q hq D ≠ 0 := by
@@ -507,6 +572,9 @@ theorem blockOutMap_ne_zero (q : ℕ) (hq : q + 2 < Fintype.card T)
   rw [hcalc, zero_linear, LinearMap.zero_apply] at h
   exact one_ne_zero h
 
+/--
+@isnad1 id=not.2h3v.s6.8c636da3bb8e from=translated src=- shape=a55876d0 vocab=61f35cbe
+-/
 theorem blockInMap_not_isIso (q : ℕ) (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) :
     ¬ IsIso (blockInMap k q hq D) := by
@@ -514,6 +582,9 @@ theorem blockInMap_not_isIso (q : ℕ) (hq : q + 2 < Fintype.card T)
   simp only [Module.finrank_self, Module.finrank_prod]
   omega
 
+/--
+@isnad1 id=not.2h3v.s6.4c725e708353 from=translated src=- shape=23530bf5 vocab=4bdcd803
+-/
 theorem blockOutMap_not_isIso (q : ℕ) (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) :
     ¬ IsIso (blockOutMap k q hq D) := by
@@ -523,7 +594,9 @@ theorem blockOutMap_not_isIso (q : ℕ) (hq : q + 2 < Fintype.card T)
 
 /-- The global three-line plane remains Schur: the surrounding full and zero
 subspaces add no endomorphism freedom, while the three block positions impose
-the same axis/diagonal constraints as the local construction.-/
+the same axis/diagonal constraints as the local construction.
+@isnad1 id=isschur.2h3v.s5.fa4fe9601335 from=translated src=- shape=12aa0041 vocab=6be1db99
+-/
 theorem blockThreeLinePlane_isSchur (q : ℕ)
     (hq : q + 2 < Fintype.card T)
     (D : ConsecutiveAntichainBlock (T := T) q hq) :
@@ -603,7 +676,9 @@ def ConsecutiveAntichainBlock.schurDetour (q : ℕ)
   outMap_not_isIso := blockOutMap_not_isIso k q hq D
 
 /-- The manuscript's strict equality obstruction for an antichain block in
-the chosen reverse extension.-/
+the chosen reverse extension.
+@isnad1 id=le.2h5v.s6.88a58f62ad7a from=translated src=- shape=88a90c7f vocab=563a89cc
+-/
 theorem card_add_one_le_of_consecutiveAntichainBlock
     {L q : ℕ}
     (G : PositiveGrading (Obj k T) (IsSchur k T) L)

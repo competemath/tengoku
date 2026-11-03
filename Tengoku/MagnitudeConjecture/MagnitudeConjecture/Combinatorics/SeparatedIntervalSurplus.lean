@@ -10,7 +10,9 @@ set_option autoImplicit false
 namespace MagnitudeConjecture.GradedInterval
 
 /-- A uniform linear error and separated packing bound every interval by
-its separation length times the ambient surplus.-/
+its separation length times the ambient surplus.
+@isnad1 id=le.2h5v.s7.31bc1ed05711 from=translated src=- shape=aaedcd08 vocab=de00575c
+-/
 theorem interval_le_length_mul_of_separated_packing
     (σ : ℤ) (interval : ℕ → ℤ) (C : ℤ) (h : ℕ)
     (hupper : ∀ m, 2 * h ≤ m → |interval m - ((m : ℤ) + 1) * σ| ≤ C)

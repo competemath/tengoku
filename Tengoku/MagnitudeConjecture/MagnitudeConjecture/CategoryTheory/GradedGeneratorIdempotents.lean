@@ -17,6 +17,9 @@ variable {ι : Type} [Fintype ι] (P : ι → C)
 def generatorIdempotent (p : ι) : (End (⨁ P))ᵐᵒᵖ :=
   MulOpposite.op (End.of (biproduct.π P p ≫ biproduct.ι P p))
 
+/--
+@isnad1 id=eq.0h4v.s7.09c259b704f5 from=translated src=- shape=f51e28ea vocab=a9c00789
+-/
 theorem generatorIdempotent_idempotent (p : ι) :
     generatorIdempotent P p * generatorIdempotent P p = generatorIdempotent P p := by
   apply MulOpposite.unop_injective
@@ -24,6 +27,9 @@ theorem generatorIdempotent_idempotent (p : ι) :
     (biproduct.π P p ≫ biproduct.ι P p)) = End.of (biproduct.π P p ≫ biproduct.ι P p)
   simp [Category.assoc]
 
+/--
+@isnad1 id=pairwise.0h3v.s8.16fc655e4803 from=translated src=- shape=8ae26762 vocab=789af2c2
+-/
 theorem generatorIdempotent_orthogonal : Pairwise fun p q ↦
     generatorIdempotent P p * generatorIdempotent P q = 0 := by
   intro p q hpq
@@ -33,6 +39,9 @@ theorem generatorIdempotent_orthogonal : Pairwise fun p q ↦
   simp [Category.assoc, biproduct.ι_π, hpq]
 
 include k in
+/--
+@isnad1 id=eq.0h4v.s7.44c2e770e148 from=translated src=- shape=5383cc40 vocab=8344ac16
+-/
 theorem sum_generatorIdempotent : ∑ p, generatorIdempotent P p = 1 := by
   apply (generatorOppositeEquiv (k := k) P).injective
   rw [map_sum]
@@ -41,7 +50,9 @@ theorem sum_generatorIdempotent : ∑ p, generatorIdempotent P p = 1 := by
 
 variable (G : HomGrading k C) [∀ i X, FiniteDimensional k (P i ⟶ X)]
 
-/-- Each summand projection is homogeneous of degree zero.-/
+/-- Each summand projection is homogeneous of degree zero.
+@isnad1 id=mem.0h6v.s9.316334564281 from=translated src=- shape=51f4bac7 vocab=ee53b7b3
+-/
 theorem generatorIdempotent_mem_zero (p : ι) :
     generatorIdempotent P p ∈ (G.generatorAlgebraGrading P).component 0 := by
   classical
@@ -56,7 +67,9 @@ theorem generatorIdempotent_mem_zero (p : ι) :
     · simp [Category.assoc, hpj]
   · simp [← Category.assoc, hip]
 
-/-- A degree absent in every projective Hom space is absent in the generator algebra.-/
+/-- A degree absent in every projective Hom space is absent in the generator algebra.
+@isnad1 id=eq.1h6v.s9.5905de0cab12 from=translated src=- shape=2465f14d vocab=6e18bb63
+-/
 theorem generatorAlgebra_component_eq_bot (d : ℤ)
     (hd : ∀ i j, G.component (P i) (P j) d = ⊥) :
     (G.generatorAlgebraGrading P).component d = ⊥ := by

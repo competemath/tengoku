@@ -26,6 +26,9 @@ noncomputable def mapRangeLinearEquiv
     DirectSum iota beta ≃ₗ[R] DirectSum iota gamma :=
   DFinsupp.mapRange.linearEquiv e
 
+/--
+@isnad1 id=eq.0h7v.s9.c33b0c77a2ee from=translated src=- shape=1237319e vocab=e7851ea0
+-/
 @[simp]
 theorem mapRangeLinearEquiv_of
     {R : Type uR} [Semiring R] {iota : Type uI}
@@ -49,6 +52,9 @@ theorem mapRangeLinearEquiv_of
       DFinsupp.single_eq_of_ne (Ne.symm h)]
     exact (e j).map_zero
 
+/--
+@isnad1 id=eq.0h7v.s11.740a90ff7410 from=translated src=- shape=a474d3a8 vocab=696cf092
+-/
 @[simp]
 theorem sigmaLcurryEquiv_symm_of_of
     {R : Type uR} [Semiring R] {iota : Type uI}
@@ -67,6 +73,9 @@ theorem sigmaLcurryEquiv_symm_of_of
   exact DFinsupp.sigmaUncurry_single i j x
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s12.8c534d5faeb8 from=translated src=- shape=5b92cf56 vocab=a62496ed
+-/
 @[simp]
 theorem reindexCastLinearEquiv_of
     {R : Type uR} [Semiring R] {iota : Type uI} {kappa : Type uM}

@@ -185,7 +185,9 @@ def FiniteIndecomposableDecomposition.mapOpOfIndecomposable
 
 /-- A natural-number-valued rank which is positive on nonzero objects and
 additive across binary biproduct decompositions guarantees existence of a
-finite decomposition into indecomposable objects.-/
+finite decomposition into indecomposable objects.
+@isnad1 id=nonempty.2h3v.s6.a65ca83a8e40 from=translated src=- shape=3aea9111 vocab=fb30b948
+-/
 theorem finiteIndecomposableDecomposition_of_rank
     {C : Type u} [Category.{v} C] [Preadditive C]
     [HasBinaryBiproducts C] [HasFiniteBiproducts C]
@@ -226,7 +228,9 @@ theorem finiteIndecomposableDecomposition_of_rank
 
 /-- An additive functor is essentially surjective if every target object has
 a finite indecomposable decomposition and every indecomposable target object
-has a lift.-/
+has a lift.
+@isnad1 id=esssurj.2h3v.s6.336996d7d7db from=translated src=- shape=93f642ad vocab=16a89e8d
+-/
 theorem functor_essSurj_of_indec_dense
     {D : Type u'} [Category.{v'} D] [Preadditive D]
     [HasBinaryBiproducts D]

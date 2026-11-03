@@ -145,7 +145,9 @@ private def rightHomotopy_of_rawCokernel_map_eq_of_projective_objects
         simpa only [F.map_sub, F.map_comp, hhV] using hfactor }
 
 /-- Cokernel realization along a fully faithful functor with projective
-values is full.-/
+values is full.
+@isnad1 id=full.1h3v.s6.7672e6906fa3 from=translated src=- shape=63158385 vocab=9f59ccab
+-/
 theorem cokernelFunctor_full_of_projective_objects
     (F : V ⥤ C) [F.Additive] [F.Full] [F.Faithful]
     (hP : ∀ X : V, Projective (F.obj X)) :
@@ -158,7 +160,9 @@ theorem cokernelFunctor_full_of_projective_objects
     exact ⟨(Preadditive.RightFreyd.quotient _).map s, hs⟩
 
 /-- Cokernel realization along a fully faithful functor with projective
-values is faithful.-/
+values is faithful.
+@isnad1 id=faithful.1h3v.s6.dbecd845458c from=translated src=- shape=915142da vocab=9f59ccab
+-/
 theorem cokernelFunctor_faithful_of_projective_objects
     (F : V ⥤ C) [F.Additive] [F.Full] [F.Faithful]
     (hP : ∀ X : V, Projective (F.obj X)) :
@@ -177,7 +181,9 @@ section DenseCovers
 /-- If every target object is an epimorphic image of an object in the image
 of `F`, then every target object is the cokernel realization of a right-Freyd
 presentation.  Applying the same hypothesis to the kernel of a chosen cover
-produces the two-term presentation.-/
+produces the two-term presentation.
+@isnad1 id=esssurj.1h3v.s6.526a7d842be8 from=translated src=- shape=b9432d50 vocab=36d7bdb2
+-/
 theorem cokernelFunctor_essSurj_of_epi_covers
     (F : V ⥤ C) [F.Additive] [F.Full]
     (hcover : ∀ Y : C, ∃ (X : V) (p : F.obj X ⟶ Y), Epi p) :

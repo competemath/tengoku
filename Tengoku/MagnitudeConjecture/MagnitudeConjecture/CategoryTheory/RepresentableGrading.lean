@@ -50,7 +50,9 @@ namespace HomGrading
 variable {D : RepresentableData k T C}
 
 /-- Precomposition by a chosen homogeneous map `P ⟶ P_t` shifts degree by
-the degree of that map.-/
+the degree of that map.
+@isnad1 id=shiftsde.0h7v.s7.5a922cfa773a from=translated src=- shape=54a7485d vocab=025f8394
+-/
 theorem precomposition_shiftsDegree (G : D.HomGrading) (t : T) (X : C) :
     GradedLinear.ShiftsDegree
       (G.component (D.projective t) X)
@@ -61,7 +63,9 @@ theorem precomposition_shiftsDegree (G : D.HomGrading) (t : T) (X : C) :
   simpa [Nat.add_comm] using G.comp_mem (G.unit_mem t) hf
 
 /-- Every distinguished subspace in the represented poset space is
-homogeneous for the grading inherited from `Hom(P, X)`.-/
+homogeneous for the grading inherited from `Hom(P, X)`.
+@isnad1 id=ishomoge.0h7v.s9.7df9d01a09ca from=translated src=- shape=be20bd46 vocab=a5c3e6df
+-/
 theorem subspace_isHomogeneous (G : D.HomGrading) (X : C) (t : T) :
     letI : DirectSum.Decomposition (G.component D.source X) :=
       (G.isInternal D.source X).chooseDecomposition
@@ -86,7 +90,9 @@ def objInternalGrading (G : D.HomGrading) (X : C) :
   subspace_isHomogeneous := G.subspace_isHomogeneous X
 
 /-- A homogeneous categorical morphism induces a homogeneous morphism of the
-represented poset spaces, of the same degree.-/
+represented poset spaces, of the same degree.
+@isnad1 id=homogene.1h9v.s8.efc3fd9aea00 from=translated src=- shape=23fbd07f vocab=0371a1c3
+-/
 theorem map_homogeneousOfDegree (G : D.HomGrading)
     {X Y : C} {f : X ⟶ Y} {d : ℕ}
     (hf : f ∈ G.component X Y d) :
@@ -96,7 +102,9 @@ theorem map_homogeneousOfDegree (G : D.HomGrading)
   exact G.comp_mem hx hf
 
 /-- A nonzero homogeneous morphism between objects whose represented poset
-spaces are Schur raises their concentration levels by exactly its degree.-/
+spaces are Schur raises their concentration levels by exactly its degree.
+@isnad1 id=eq.4h9v.s9.1e0fb047aed4 from=translated src=- shape=f259ca40 vocab=ffc15c66
+-/
 theorem objLevel_add_degree_eq (G : D.HomGrading)
     {X Y : C} (hX : IsSchur k T (D.obj X)) (hY : IsSchur k T (D.obj Y))
     {f : X ⟶ Y} {d : ℕ} (hf : D.map f ≠ 0)

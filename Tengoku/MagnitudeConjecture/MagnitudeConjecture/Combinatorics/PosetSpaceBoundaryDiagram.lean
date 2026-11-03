@@ -51,18 +51,27 @@ def boundaryRestriction (Y : Obj k T) {q r : BoundaryIndex T} (h : q ≤ r) :
       | nonroot s =>
           exact ModuleCat.ofHom (Submodule.inclusion (Y.monotone_subspace h))
 
+/--
+@isnad1 id=eq.1h3v.s6.664c3b36d987 from=translated src=- shape=f123ddc8 vocab=b783a5d9
+-/
 @[simp]
 theorem boundaryRestriction_root_root (Y : Obj k T)
     (h : (BoundaryIndex.root : BoundaryIndex T) ≤ .root) :
     boundaryRestriction k T Y h = 𝟙 _ :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.6fbcd0c392ac from=translated src=- shape=df9ddab2 vocab=2b2a7ee4
+-/
 @[simp]
 theorem boundaryRestriction_root_nonroot (Y : Obj k T) (t : T)
     (h : (BoundaryIndex.root : BoundaryIndex T) ≤ .nonroot t) :
     (boundaryRestriction k T Y h).hom = (Y.subspace t).subtype :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.6db3f134e07e from=translated src=- shape=179a0134 vocab=7f7fdad6
+-/
 @[simp]
 theorem boundaryRestriction_nonroot_nonroot (Y : Obj k T) (s t : T)
     (h : (BoundaryIndex.nonroot t : BoundaryIndex T) ≤ .nonroot s) :
@@ -70,6 +79,9 @@ theorem boundaryRestriction_nonroot_nonroot (Y : Obj k T) (s t : T)
       Submodule.inclusion (Y.monotone_subspace h) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.006b5e85f2ad from=translated src=- shape=532fdc5c vocab=f43b2fa9
+-/
 theorem boundaryRestriction_refl (Y : Obj k T) (q : BoundaryIndex T) :
     boundaryRestriction k T Y (le_refl q) = 𝟙 _ := by
   cases q with
@@ -80,6 +92,9 @@ theorem boundaryRestriction_refl (Y : Obj k T) (q : BoundaryIndex T) :
       intro x
       rfl
 
+/--
+@isnad1 id=eq.2h6v.s7.7c4580e7dbde from=translated src=- shape=a43e7230 vocab=4981f073
+-/
 theorem boundaryRestriction_trans (Y : Obj k T)
     {q r s : BoundaryIndex T} (hqr : q ≤ r) (hrs : r ≤ s) :
     boundaryRestriction k T Y (hqr.trans hrs) =
@@ -121,12 +136,18 @@ def boundaryDiagram (Y : Obj k T) :
     exact boundaryRestriction_trans k T Y
       (le_of_op_hom g) (le_of_op_hom f)
 
+/--
+@isnad1 id=eq.0h3v.s6.0a3047984d29 from=translated src=- shape=39d17ac7 vocab=1cffd3ca
+-/
 @[simp]
 theorem boundaryDiagram_obj_root (Y : Obj k T) :
     (boundaryDiagram k T Y).obj (op (.root : BoundaryIndex T)) =
       ModuleCat.of k Y :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.ea9571c61c23 from=translated src=- shape=67e8d31d vocab=0d7af10b
+-/
 @[simp]
 theorem boundaryDiagram_obj_nonroot (Y : Obj k T) (t : T) :
     (boundaryDiagram k T Y).obj (op (.nonroot t : BoundaryIndex T)) =
@@ -147,6 +168,9 @@ def boundaryNonrootArrow {s t : T} (hst : s ≤ t) :
   (homOfLE
     (show (BoundaryIndex.nonroot t : BoundaryIndex T) ≤ .nonroot s from hst)).op
 
+/--
+@isnad1 id=eq.0h4v.s9.6e207afa15e4 from=translated src=- shape=99847174 vocab=c0459a93
+-/
 @[simp]
 theorem boundaryDiagram_map_rootArrow_hom (Y : Obj k T) (t : T) :
     ((boundaryDiagram k T Y).map (boundaryRootArrow T t)).hom =
@@ -184,6 +208,9 @@ def boundaryDiagramMap {X Y : Obj k T} (f : X ⟶ Y) :
                 | root => exact False.elim hba
                 | nonroot s => rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.5f129d691671 from=translated src=- shape=8c25c0d9 vocab=9a96e848
+-/
 @[simp]
 theorem boundaryDiagramMap_app_root_linear {X Y : Obj k T} (f : X ⟶ Y) :
     ((boundaryDiagramMap k T f).app (op (.root : BoundaryIndex T))).hom =
@@ -225,6 +252,9 @@ maps into the root.-/
 abbrev FiniteInjectiveBoundaryDiagram :=
   (IsFiniteInjectiveBoundaryDiagram k T).FullSubcategory
 
+/--
+@isnad1 id=isfinite.0h3v.s4.01873075895a from=translated src=- shape=94fdd1c3 vocab=b5f00b1f
+-/
 theorem boundaryDiagram_isFiniteInjective (Y : Obj k T) :
     IsFiniteInjectiveBoundaryDiagram k T (boundaryDiagram k T Y) := by
   constructor
@@ -258,7 +288,9 @@ def boundaryDiagramMapNonroot {X Y : Obj k T}
   exact (α.app (op (.nonroot t : BoundaryIndex T))).hom
 
 /-- Naturality at the arrow into the root says that the root component
-restricts to each non-root component.-/
+restricts to each non-root component.
+@isnad1 id=eq.0h7v.s11.44ce937de81e from=translated src=- shape=b7b218e4 vocab=ecfb8003
+-/
 theorem boundaryDiagramMap_root_eq_nonroot {X Y : Obj k T}
     (α : boundaryDiagram k T X ⟶ boundaryDiagram k T Y) (t : T)
     (x : X.subspace t) :
@@ -281,6 +313,9 @@ def homOfBoundaryDiagramMap {X Y : Obj k T}
     rw [boundaryDiagramMap_root_eq_nonroot k T α t xt]
     exact (boundaryDiagramMapNonroot k T α t xt).property
 
+/--
+@isnad1 id=eq.0h5v.s8.828da762bae7 from=translated src=- shape=ee29c871 vocab=fe89c365
+-/
 theorem boundaryDiagramMap_homOfBoundaryDiagramMap {X Y : Obj k T}
     (α : boundaryDiagram k T X ⟶ boundaryDiagram k T Y) :
     boundaryDiagramMap k T (homOfBoundaryDiagramMap k T α) = α := by
@@ -293,6 +328,9 @@ theorem boundaryDiagramMap_homOfBoundaryDiagramMap {X Y : Obj k T}
           apply Subtype.ext
           exact boundaryDiagramMap_root_eq_nonroot k T α t x
 
+/--
+@isnad1 id=faithful.0h2v.s6.6444e0e6ae72 from=translated src=- shape=4ee118f9 vocab=bf70982a
+-/
 instance finiteInjectiveBoundaryDiagramFunctor_faithful :
     (finiteInjectiveBoundaryDiagramFunctor k T).Faithful where
   map_injective := by
@@ -302,6 +340,9 @@ instance finiteInjectiveBoundaryDiagramFunctor_faithful :
       (fun a ↦ (a.hom.app (op (.root : BoundaryIndex T))).hom) h
     exact happ
 
+/--
+@isnad1 id=full.0h2v.s6.c06241baf057 from=translated src=- shape=4ee118f9 vocab=1064e63d
+-/
 instance finiteInjectiveBoundaryDiagramFunctor_full :
     (finiteInjectiveBoundaryDiagramFunctor k T).Full where
   map_surjective := by
@@ -319,7 +360,9 @@ def boundaryDiagramRootMap
   (F.map (boundaryRootArrow T t)).hom
 
 /-- The map along a comparable pair of non-root points commutes with the two
-maps into the root.-/
+maps into the root.
+@isnad1 id=eq.1h6v.s11.c12a4dd4214f from=translated src=- shape=ae189e13 vocab=4b831901
+-/
 theorem boundaryDiagramRootMap_map_nonroot
     (F : (BoundaryIndex T)ᵒᵖ ⥤ ModuleCat.{u} k)
     {s t : T} (hst : s ≤ t)
@@ -382,7 +425,9 @@ def boundaryReconstructionComponent (F : FiniteInjectiveBoundaryDiagram k T)
           exact (boundaryRangeLinearEquiv k T F t).toModuleIso.symm
 
 /-- The non-root reconstruction component is inverse to range restriction,
-so applying the original root map recovers the underlying root vector.-/
+so applying the original root map recovers the underlying root vector.
+@isnad1 id=eq.0h5v.s13.3c70bdab32c6 from=translated src=- shape=ae04a128 vocab=536d521f
+-/
 theorem boundaryReconstructionComponent_rootMap
     (F : FiniteInjectiveBoundaryDiagram k T) (t : T)
     (x : LinearMap.range (boundaryDiagramRootMap k T F.obj t)) :
@@ -463,6 +508,9 @@ def boundaryReconstructionIso (F : FiniteInjectiveBoundaryDiagram k T) :
                                 xs)) :=
                         (boundaryDiagramRootMap_map_nonroot k T F.obj hst _).symm)
 
+/--
+@isnad1 id=esssurj.0h2v.s6.1b5c30e94292 from=translated src=- shape=4ee118f9 vocab=4902babb
+-/
 instance finiteInjectiveBoundaryDiagramFunctor_essSurj :
     (finiteInjectiveBoundaryDiagramFunctor k T).EssSurj where
   mem_essImage F :=
@@ -470,6 +518,9 @@ instance finiteInjectiveBoundaryDiagramFunctor_essSurj :
       ⟨(IsFiniteInjectiveBoundaryDiagram k T).isoMk
         (boundaryReconstructionIso k T F)⟩⟩
 
+/--
+@isnad1 id=isequiva.0h2v.s6.45c04c2d6fcd from=translated src=- shape=4ee118f9 vocab=0b591d70
+-/
 instance finiteInjectiveBoundaryDiagramFunctor_isEquivalence :
     (finiteInjectiveBoundaryDiagramFunctor k T).IsEquivalence where
 

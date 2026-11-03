@@ -37,7 +37,9 @@ variable {Q : Type v} [Quiver.{w} Q]
 abbrev QuiverRep (k : Type u) (Q : Type v) [Field k] [Quiver Q] :=
   Paths Q ⥤ ModuleCat k
 
-/-- The trivial path acts as the identity in every quiver representation.-/
+/-- The trivial path acts as the identity in every quiver representation.
+@isnad1 id=eq.0h4v.s7.c14512dd37f5 from=translated src=- shape=4486754d vocab=08523a3c
+-/
 @[simp]
 theorem QuiverRep.map_nil (M : QuiverRep k Q) (a : Q) :
     M.map (Quiver.Path.nil : Quiver.Path a a) =
@@ -87,7 +89,9 @@ noncomputable def representableBasis (i j : Q) :
       ((representable k Q i).obj (show Paths Q from j)) :=
   Finsupp.basisSingleOne
 
-/-- A path acts on a representable by concatenation.-/
+/-- A path acts on a representable by concatenation.
+@isnad1 id=eq.0h7v.s10.3c2709656be7 from=translated src=- shape=c2ed5cc5 vocab=782f73f9
+-/
 @[simp]
 theorem representable_map_basis (i : Q) {a b : Q}
     (p : Quiver.Path a b) (q : Quiver.Path i a) :
@@ -115,6 +119,9 @@ noncomputable def representableHom (i : Q) (M : QuiverRep k Q)
       (v' := fun r : Quiver.Path i b ↦ M.map r x)
       (fun q : Quiver.Path i a ↦ q.comp p) (M.map p).hom hcomp)
 
+/--
+@isnad1 id=eq.0h7v.s10.cc6b2953c018 from=translated src=- shape=804ab22a vocab=b6e2ebde
+-/
 @[simp]
 theorem representableHom_app_basis (i : Q) (M : QuiverRep k Q)
     (x : M.obj (show Paths Q from i)) (j : Q) (p : Quiver.Path i j) :
@@ -123,12 +130,18 @@ theorem representableHom_app_basis (i : Q) (M : QuiverRep k Q)
       (1 : k) • M.map p x := Finsupp.linearCombination_single k 1 p
   rwa [one_smul] at h
 
+/--
+@isnad1 id=eq.0h5v.s10.aece8f05a42c from=translated src=- shape=cff5731a vocab=22b8e80a
+-/
 theorem representableHom_app_nil (i : Q) (M : QuiverRep k Q)
     (x : M.obj (show Paths Q from i)) :
     (representableHom i M x).app i
       (representableBasis i i Quiver.Path.nil) = x := by
   simp
 
+/--
+@isnad1 id=eq.0h5v.s10.3c02baf62608 from=translated src=- shape=0be6fd50 vocab=c7c5d8cf
+-/
 @[simp]
 theorem representableHom_app_nil_self {i : Q} {M : QuiverRep k Q}
     (f : representable k Q i ⟶ M) :
@@ -154,6 +167,9 @@ noncomputable def representableHomEquiv (i : Q) (M : QuiverRep k Q) :
   left_inv f := representableHom_app_nil_self f
   right_inv x := representableHom_app_nil i M x
 
+/--
+@isnad1 id=eq.0h5v.s11.f1b1c5886259 from=translated src=- shape=dd365f2f vocab=b7d64f61
+-/
 @[simp]
 theorem representableHomEquiv_apply (i : Q) (M : QuiverRep k Q)
     (f : representable k Q i ⟶ M) :
@@ -161,6 +177,9 @@ theorem representableHomEquiv_apply (i : Q) (M : QuiverRep k Q)
       f.app i (representableBasis i i Quiver.Path.nil) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.4a09ae9a3ac9 from=translated src=- shape=8a800767 vocab=60522915
+-/
 @[simp]
 theorem representableHomEquiv_symm_apply (i : Q) (M : QuiverRep k Q)
     (x : M.obj (show Paths Q from i)) :
@@ -200,6 +219,9 @@ def homPathBasis (x y : Category k Q) :
     Module.Basis (Quiver.Path (vertex y) (vertex x)) k (x ⟶ y) :=
   Finsupp.basisSingleOne.map (homPathLinearEquiv x y).symm
 
+/--
+@isnad1 id=eq.0h5v.s10.441a6630885a from=translated src=- shape=5fedf3ee vocab=842180eb
+-/
 @[simp]
 theorem homPathBasis_apply (x y : Category k Q)
     (p : Quiver.Path (vertex y) (vertex x)) :
@@ -207,12 +229,18 @@ theorem homPathBasis_apply (x y : Category k Q)
   apply (homPathLinearEquiv x y).injective
   simp [homPathBasis, pathHom]
 
+/--
+@isnad1 id=eq.0h5v.s10.de3c5a91720b from=translated src=- shape=92987bd2 vocab=36f43770
+-/
 @[simp]
 theorem homPathLinearEquiv_pathHom {x y : Category k Q}
     (p : Quiver.Path (vertex y) (vertex x)) :
     homPathLinearEquiv x y (pathHom p) = Finsupp.single p 1 :=
   (homPathLinearEquiv x y).apply_symm_apply _
 
+/--
+@isnad1 id=eq.0h3v.s10.f4f0a3a685fa from=translated src=- shape=95c468ee vocab=5e2825f1
+-/
 @[simp]
 theorem homPathLinearEquiv_id (x : Category k Q) :
     homPathLinearEquiv x x (𝟙 x) = Finsupp.single Quiver.Path.nil 1 := by
@@ -227,13 +255,18 @@ theorem homPathLinearEquiv_id (x : Category k Q) :
       Finsupp.single Quiver.Path.nil 1
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.5fde200b60bd from=translated src=- shape=6d627d2b vocab=1289e74d
+-/
 @[simp]
 theorem pathHom_nil (x : Category k Q) :
     pathHom (Quiver.Path.nil : Quiver.Path (vertex x) (vertex x)) = 𝟙 x := by
   apply (homPathLinearEquiv x x).injective
   simp
 
-/-- The natural transformation underlying a path-basis morphism.-/
+/-- The natural transformation underlying a path-basis morphism.
+@isnad1 id=eq.0h5v.s9.aad4e849908e from=translated src=- shape=301b82b5 vocab=59e84bef
+-/
 theorem pathHom_hom {x y : Category k Q}
     (p : Quiver.Path (vertex y) (vertex x)) :
     (pathHom p).hom =
@@ -245,6 +278,9 @@ theorem pathHom_hom {x y : Category k Q}
   change homPathLinearEquiv x y (pathHom p) = _
   simp
 
+/--
+@isnad1 id=eq.0h7v.s7.6d390396b2f3 from=translated src=- shape=59ae5179 vocab=a8c396bd
+-/
 @[simp, reassoc]
 theorem pathHom_comp {x y z : Category k Q}
     (p : Quiver.Path (vertex y) (vertex x))

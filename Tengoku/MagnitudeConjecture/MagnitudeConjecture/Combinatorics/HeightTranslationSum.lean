@@ -11,7 +11,9 @@ universe u
 variable {V : Type u} [Fintype V]
 
 /-- Translation identifies the two complementary boundary sets. Summing its
-height change gives the difference of boundary height sums.-/
+height change gives the difference of boundary height sums.
+@isnad1 id=eq.1h5v.s8.28ca529c3126 from=translated src=- shape=40fa233b vocab=5bd915b0
+-/
 theorem boundary_height_difference
     (P I : V → Prop) [DecidablePred P] [DecidablePred I]
     (e : {x // ¬ P x} ≃ {x // ¬ I x}) (h : V → ℤ)

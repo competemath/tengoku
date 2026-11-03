@@ -10,7 +10,9 @@ universe u
 variable {V : Type u} [Fintype V]
 
 /-- Translation reindexes the incoming weighted sum off the projective
-boundary into the outgoing weighted sum off the injective boundary.-/
+boundary into the outgoing weighted sum off the injective boundary.
+@isnad1 id=eq.2h7v.s9.2779e4772030 from=translated src=- shape=89568c9c vocab=2351e33d
+-/
 theorem weighted_translation_sum
     (P I : V → Prop) [DecidablePred P] [DecidablePred I]
     (e : {x // ¬ P x} ≃ {x // ¬ I x})
@@ -27,7 +29,9 @@ theorem weighted_translation_sum
       e.sum_comp (fun x ↦ (h x.1 + 2) * outgoing x.1)
     _ = _ := by simp only [add_mul, Finset.sum_add_distrib, Finset.mul_sum]
 
-/-- The complete weighted-height count, with boundary sums explicit.-/
+/-- The complete weighted-height count, with boundary sums explicit.
+@isnad1 id=and.7h9v.s9.b9c359260b5f from=translated src=- shape=587e0490 vocab=5bd915b0
+-/
 theorem count_of_boundary_sums
     (P I : V → Prop) [DecidablePred P] [DecidablePred I]
     (e : {x // ¬ P x} ≃ {x // ¬ I x})

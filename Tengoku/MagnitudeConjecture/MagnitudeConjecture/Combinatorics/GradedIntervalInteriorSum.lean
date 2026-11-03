@@ -9,7 +9,9 @@ noncomputable section
 open scoped BigOperators
 namespace MagnitudeConjecture.GradedInterval
 
-/-- The common interior interval is contained in every bounded support window.-/
+/-- The common interior interval is contained in every bounded support window.
+@isnad1 id=le.1h4v.s6.e3a368cb4b28 from=translated src=- shape=d964ef12 vocab=9fb4cb52
+-/
 theorem interior_subset_allowedShifts (m h l r : ℕ) (hr : r ≤ h) :
     Finset.Icc (0 : ℤ) ((m : ℤ) - 2 * h) ⊆ allowedShifts m l r := by
   intro t ht
@@ -17,7 +19,9 @@ theorem interior_subset_allowedShifts (m h l r : ℕ) (hr : r ≤ h) :
   rw [mem_allowedShifts]
   constructor <;> omega
 
-/-- Each ordinary label contributes once for each of the m-2h+1 interior shifts.-/
+/-- Each ordinary label contributes once for each of the m-2h+1 interior shifts.
+@isnad1 id=eq.2h6v.s11.5ca562c72641 from=translated src=- shape=1136e954 vocab=32029e2c
+-/
 theorem interior_weighted_sum {ι : Type*} [Fintype ι]
     (m h : ℕ) (l r : ι → ℕ) (hr : ∀ i, r i ≤ h) (hm : 2 * h ≤ m)
     (w : ι → ℕ) :

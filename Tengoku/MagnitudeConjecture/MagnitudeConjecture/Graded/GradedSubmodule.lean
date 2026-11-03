@@ -15,7 +15,9 @@ variable [AddCommGroup N] [Module k N] [Module A N] [IsScalarTower k A N]
 variable {R : VectorGrading k A} (G : ModuleGrading (M := M) R)
 variable (H : ModuleGrading (M := N) R)
 
-/-- Degree-zero module maps commute with every homogeneous projection.-/
+/-- Degree-zero module maps commute with every homogeneous projection.
+@isnad1 id=eq.1h10v.s9.6af6f5e46b0f from=translated src=- shape=88dc425d vocab=c5da2944
+-/
 theorem projection_map (f : M →ₗ[A] N) (hf : G.Homogeneous H 0 f)
     (d : ℤ) (x : M) : H.projection d (f x) = f (G.projection d x) := by
   letI := G.internal.chooseDecomposition
@@ -43,6 +45,9 @@ def restrict (P : Submodule A M) (hP : G.toVectorGrading.Stable (P.restrictScala
     intro i j a x ha hx
     exact G.smul_mem ha hx
 
+/--
+@isnad1 id=stable.1h8v.s9.fe049fe5daa6 from=translated src=- shape=a1ff22ed vocab=4fea5739
+-/
 theorem kernel_stable (f : M →ₗ[A] N) (hf : G.Homogeneous H 0 f) :
     G.toVectorGrading.Stable (f.ker.restrictScalars k) := by
   intro d x hx
@@ -53,6 +58,9 @@ theorem kernel_stable (f : M →ₗ[A] N) (hf : G.Homogeneous H 0 f) :
 
 variable [FiniteDimensional k N]
 
+/--
+@isnad1 id=stable.1h8v.s9.b1a97b9f4e43 from=translated src=- shape=8e45484d vocab=074d782c
+-/
 theorem range_stable (f : M →ₗ[A] N) (hf : G.Homogeneous H 0 f) :
     H.toVectorGrading.Stable (f.range.restrictScalars k) := by
   intro d y hy

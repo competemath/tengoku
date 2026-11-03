@@ -6,7 +6,9 @@ import Tengoku.Seed.Data.Int.Basic
 set_option autoImplicit false
 namespace MagnitudeConjecture
 
-/-- Three degree ranges determine a dimension function supported on adjacent shifts.-/
+/-- Three degree ranges determine a dimension function supported on adjacent shifts.
+@isnad1 id=eq.3h4v.s7.fb2ecc870215 from=translated src=- shape=eb427084 vocab=bc5545b5
+-/
 theorem degreeOne_function_formula (q : ℤ → ℤ → ℕ) (D : ℕ)
     (hone : ∀ t, q (t + 1) t = D)
     (hlow : ∀ s t, s ≤ t → q s t = 0)
