@@ -27,11 +27,17 @@ minus one.-/
 def cubicNormalForm (c d s : R) : R[X] :=
   X ^ 3 + C s * X ^ 2 + C (s - (1 + c + d)) * X - C c
 
+/--
+@isnad1 id=eq.0h4v.s5.88062295a255 from=translated src=- shape=3520aa0a vocab=4d15d4c4
+-/
 @[simp]
 theorem cubicNormalForm_eval_zero (c d s : R) :
     (cubicNormalForm c d s).eval 0 = -c := by
   simp [cubicNormalForm]
 
+/--
+@isnad1 id=eq.0h4v.s5.53cd85d03353 from=translated src=- shape=e6bbd816 vocab=4d15d4c4
+-/
 @[simp]
 theorem cubicNormalForm_eval_neg_one (c d s : R) :
     (cubicNormalForm c d s).eval (-1) = d := by
@@ -39,7 +45,9 @@ theorem cubicNormalForm_eval_neg_one (c d s : R) :
   ring
 
 /-- The endpoint values determine the linear coefficient of a cubic once its
-quadratic parameter and leading coefficient are fixed.-/
+quadratic parameter and leading coefficient are fixed.
+@isnad1 id=eq.4h4v.s7.00470ad5fefb from=translated src=- shape=b1bf8ac9 vocab=8537188f
+-/
 theorem coeff_one_eq_of_cubic_endpoints
     (q : R[X]) (c d : R)
     (hqDegree : q.natDegree <= 3)
@@ -98,7 +106,9 @@ theorem eq_cubicNormalForm_of_endpoints
   simp [h0, h1, h2, h3]
 
 /-- Only the two `(2,3)` and `(3,2)` summands can contribute to coefficient
-five in a product of degree-at-most-three polynomials.-/
+five in a product of degree-at-most-three polynomials.
+@isnad1 id=eq.2h3v.s7.a71b20f9b0c2 from=translated src=- shape=2cd5956e vocab=705205c1
+-/
 theorem coeff_five_mul_of_cubic_bounds
     (q r : R[X])
     (hqDegree : q.natDegree <= 3)
@@ -117,7 +127,9 @@ theorem coeff_five_mul_of_cubic_bounds
   simp [Finset.sum_range_succ, hq4, hq5, hr4, hr5]
 
 /-- Only the three central summands can contribute to coefficient four in a
-product of degree-at-most-three polynomials.-/
+product of degree-at-most-three polynomials.
+@isnad1 id=eq.2h3v.s8.356efddb3bd6 from=translated src=- shape=83701c39 vocab=705205c1
+-/
 theorem coeff_four_mul_of_cubic_bounds
     (q r : R[X])
     (hqDegree : q.natDegree <= 3)
@@ -135,7 +147,9 @@ theorem coeff_four_mul_of_cubic_bounds
 /-- Two normalized monic cubic factors force the quadratic relation used in
 the first-Tits scalar reduction.  All hypotheses needed by the polynomial
 calculation are explicit; the theorem does not assert that a matrix problem
-supplies such a factorization.-/
+supplies such a factorization.
+@isnad1 id=eq.9h6v.s9.0307e9ec0d5a from=translated src=- shape=f1222896 vocab=966cd021
+-/
 theorem coeff_two_satisfies_quadratic_of_cubic_factorization
     (q r p : R[X]) (c d : R)
     (hqDegree : q.natDegree <= 3)

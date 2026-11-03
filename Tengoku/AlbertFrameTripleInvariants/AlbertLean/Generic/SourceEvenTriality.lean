@@ -37,7 +37,9 @@ private theorem C_reflect_mul (a v : VCoord K) (ha : nV a ≠ 0) :
 
 /-- The raw even Clifford element intertwines Clifford multiplication with the
 composition of its two vector reflections.  Keeping this as an identity in the
-endomorphism algebra makes both half-spin component identities reusable.-/
+endomorphism algebra makes both half-spin component identities reusable.
+@isnad1 id=eq.2h4v.s13.a21e64ba3f8c from=translated src=- shape=f7836242 vocab=72755147
+-/
 theorem C_evenV_intertwine (a b v : VCoord K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0) :
     (C a * C b) * C v = C (evenV a b v) * (C a * C b) := by
@@ -60,7 +62,9 @@ theorem C_evenV_intertwine (a b v : VCoord K)
       simp only [Module.End.mul_apply, LinearMap.neg_apply, map_neg, neg_neg]
 
 /-- The `S` component of `C_evenV_intertwine`, with the common normalization
-factor retained explicitly.-/
+factor retained explicitly.
+@isnad1 id=eq.2h7v.s6.7f5ab1095bb6 from=translated src=- shape=8bbc624e vocab=82e2dfcf
+-/
 theorem evenS_muS_intertwine (a b v : VCoord K) (rho : K)
     (s : SCoord K) (c : CCoord K) (ha : nV a ≠ 0) (hb : nV b ≠ 0) :
     evenS a b rho (sourceMuS c v) =
@@ -81,7 +85,9 @@ theorem evenS_muS_intertwine (a b v : VCoord K) (rho : K)
       exact ((muSLinear (evenV a b v)).map_smul rho⁻¹ _).symm
     _ = sourceMuS (evenC a b rho c) (evenV a b v) := rfl
 
-/-- The companion `C` component of the even Clifford intertwiner.-/
+/-- The companion `C` component of the even Clifford intertwiner.
+@isnad1 id=eq.2h7v.s6.d08d0318a5d7 from=translated src=- shape=d0a50646 vocab=baa4cae4
+-/
 theorem evenC_muC_intertwine (a b v : VCoord K) (rho : K)
     (s : SCoord K) (c : CCoord K) (ha : nV a ≠ 0) (hb : nV b ≠ 0) :
     evenC a b rho (sourceMuC v s) =
@@ -102,19 +108,27 @@ theorem evenC_muC_intertwine (a b v : VCoord K) (rho : K)
       exact ((muCLinear (evenV a b v)).map_smul rho⁻¹ _).symm
     _ = sourceMuC (evenV a b v) (evenS a b rho s) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.fff559d914d8 from=translated src=- shape=0c489e22 vocab=b1c84418
+-/
 theorem evenS_add (a b : VCoord K) (rho : K) (s t : SCoord K) :
     evenS a b rho (s + t) = evenS a b rho s + evenS a b rho t := by
   change rho⁻¹ • muSLinear a (muCLinear b (s + t)) =
     rho⁻¹ • muSLinear a (muCLinear b s) + rho⁻¹ • muSLinear a (muCLinear b t)
   rw [map_add, map_add, smul_add]
 
+/--
+@isnad1 id=eq.0h6v.s6.2102b4ec5296 from=translated src=- shape=0c489e22 vocab=b336f836
+-/
 theorem evenC_add (a b : VCoord K) (rho : K) (c d : CCoord K) :
     evenC a b rho (c + d) = evenC a b rho c + evenC a b rho d := by
   change rho⁻¹ • muCLinear a (muSLinear b (c + d)) =
     rho⁻¹ • muCLinear a (muSLinear b c) + rho⁻¹ • muCLinear a (muSLinear b d)
   rw [map_add, map_add, smul_add]
 
-/-- Polarization of `nS_evenS`.-/
+/-- Polarization of `nS_evenS`.
+@isnad1 id=eq.2h6v.s7.8dd3bc56f10f from=translated src=- shape=13de1be9 vocab=c452e655
+-/
 theorem BS_evenS (a b : VCoord K) (rho : K) (s t : SCoord K)
     (hrho : rho ^ 2 = nV a * nV b) (hrho0 : rho ≠ 0) :
     BS (evenS a b rho s) (evenS a b rho t) = BS s t := by
@@ -124,7 +138,9 @@ theorem BS_evenS (a b : VCoord K) (rho : K) (s t : SCoord K)
     nS_evenS a b rho t hrho hrho0] at hst
   linear_combination hst
 
-/-- Polarization of `nC_evenC`.-/
+/-- Polarization of `nC_evenC`.
+@isnad1 id=eq.2h6v.s7.65e560929309 from=translated src=- shape=13de1be9 vocab=725dcfbd
+-/
 theorem BC_evenC (a b : VCoord K) (rho : K) (c d : CCoord K)
     (hrho : rho ^ 2 = nV a * nV b) (hrho0 : rho ≠ 0) :
     BC (evenC a b rho c) (evenC a b rho d) = BC c d := by
@@ -134,7 +150,9 @@ theorem BC_evenC (a b : VCoord K) (rho : K) (c d : CCoord K)
     nC_evenC a b rho d hrho hrho0] at hcd
   linear_combination hcd
 
-/-- A normalized even pair preserves the accepted source triality tensor.-/
+/-- A normalized even pair preserves the accepted source triality tensor.
+@isnad1 id=eq.4h7v.s7.811c725181a3 from=translated src=- shape=8a31fd43 vocab=62ad4d00
+-/
 theorem triality_even (a b : VCoord K) (rho : K)
     (v : VCoord K) (s : SCoord K) (c : CCoord K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)

@@ -96,6 +96,9 @@ def residualSection (p : OpenParameters K) : ResidualPair K where
   A := moment p.toParameters * X0Inv p.Delta
   X := X0 p.Delta
 
+/--
+@isnad1 id=eq.0h2v.s5.92b679ed477f from=translated src=- shape=230ca600 vocab=35deb468
+-/
 theorem residualSection_moment (p : OpenParameters K) :
     AlbertLean.Residual.SL4PairAction.moment (residualSection p) =
       moment p.toParameters := by
@@ -118,10 +121,16 @@ def insert (p : OpenParameters K) : ExplicitFrameChart K :=
       c2 := 0 }
     (residualSection p)
 
+/--
+@isnad1 id=eq.0h2v.s5.2c2dcd92cafa from=translated src=- shape=8358e7b5 vocab=ea682175
+-/
 @[simp] theorem insert_residualPair (p : OpenParameters K) :
     residualPairOfChart (insert p) = residualSection p := by
   simp [insert]
 
+/--
+@isnad1 id=eq.0h2v.s5.f0846e9b08d3 from=translated src=- shape=6d14922e vocab=aeef1986
+-/
 theorem insert_matrixM (p : OpenParameters K) :
     matrixM (insert p) = moment p.toParameters := by
   rw [matrixM, momentMatrix_eq_AMatrix_mul_XMatrix]
@@ -129,17 +138,25 @@ theorem insert_matrixM (p : OpenParameters K) :
     (residualPairOfChart (insert p)) = moment p.toParameters
   rw [insert_residualPair, residualSection_moment]
 
+/--
+@isnad1 id=eq.0h2v.s6.faeb7662ac8d from=translated src=- shape=f063a654 vocab=2dc8b3aa
+-/
 theorem insert_orientation (p : OpenParameters K) :
     orientation (insert p) = p.c - p.a * p.b := by
   simp [insert, chartWithResidualPair, orientation, mul_comm]
 
+/--
+@isnad1 id=iskappal.0h2v.s4.79377129db97 from=translated src=- shape=10965991 vocab=068a0eda
+-/
 theorem insert_isKappaLift (p : OpenParameters K) : IsKappaLift (insert p) := by
   simp only [IsKappaLift, insert_orientation]
   rfl
 
 /-- The inserted chart satisfies the six accepted source frame equations.
 This is the central equation proof; it uses the actual accepted definitions
-through `explicitFrameEquationValues`.-/
+through `explicitFrameEquationValues`.
+@isnad1 id=equation.0h2v.s5.28f852d5a501 from=translated src=- shape=fe7756e3 vocab=030d1238
+-/
 theorem insert_equations (p : OpenParameters K) :
     EquationsVanish (explicitFrameEquationValues (insert p)) := by
   simp only [EquationsVanish, explicitFrameEquationValues, insert_matrixM]
@@ -164,7 +181,9 @@ theorem insert_equations (p : OpenParameters K) :
     simp [moment, m33]
     linear_combination -h
 
-/-- Restatement in the accepted source cubic coordinates.-/
+/-- Restatement in the accepted source cubic coordinates.
+@isnad1 id=and.0h2v.s7.41edd0673e43 from=translated src=- shape=dd2105ab vocab=ea4fdef8
+-/
 theorem insert_source_fixedSpectrum (p : OpenParameters K) :
     sourceTrace (encoderA (insert p)) = 0 ∧
       sourceSpur (encoderA (insert p)) = -1 ∧
@@ -175,7 +194,9 @@ theorem insert_source_fixedSpectrum (p : OpenParameters K) :
   exact (equationsVanish_iff_source_fixedSpectrum (insert p)).mp
     (insert_equations p)
 
-/-- Reading every independent scalar after insertion recovers it literally.-/
+/-- Reading every independent scalar after insertion recovers it literally.
+@isnad1 id=and.0h2v.s8.692df78e99cc from=translated src=- shape=be703df3 vocab=e835cc3f
+-/
 theorem read_insert (p : OpenParameters K) :
     (insert p).diagA 0 = p.dA0 ∧ (insert p).diagA 1 = p.dA1 ∧
     (insert p).diagB 0 = p.dB0 ∧ (insert p).diagB 1 = p.dB1 ∧
@@ -189,7 +210,9 @@ theorem read_insert (p : OpenParameters K) :
   · rw [insert_residualPair]
     simp [residualSection]
 
-/-- The branch direction is the numerator of `Delta - det(M)/Delta`.-/
+/-- The branch direction is the numerator of `Delta - det(M)/Delta`.
+@isnad1 id=ne.0h2v.s6.6b26cf1224ee from=translated src=- shape=86df2aac vocab=01853b70
+-/
 theorem branchDirection_ne_zero (p : OpenParameters K) :
     p.Delta - Matrix.det (moment p.toParameters) / p.Delta ≠ 0 := by
   intro h
@@ -210,27 +233,45 @@ def normalizedSection (p : OpenParameters K) :
   Delta_ne_zero := p.Delta_ne
   detM_ne_zero := p.detMoment_ne
 
+/--
+@isnad1 id=eq.0h2v.s5.5092fac938b5 from=translated src=- shape=6d14922e vocab=7e49c4e0
+-/
 @[simp] theorem normalizedSection_M (p : OpenParameters K) :
     (normalizedSection p).M = moment p.toParameters := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.92465a37fac4 from=translated src=- shape=0e595997 vocab=3e8ca855
+-/
 @[simp] theorem normalizedSection_Delta (p : OpenParameters K) :
     (normalizedSection p).Delta = p.Delta := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.a1e8f67dbfce from=translated src=- shape=a65f5a89 vocab=1b01979c
+-/
 theorem reciprocal_value (p : OpenParameters K) :
     (AlbertLean.Residual.NormalizedRootSwap.rootSwap
       (normalizedSection p)).Delta =
       Matrix.det (moment p.toParameters) / p.Delta := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.06d8fe606a43 from=translated src=- shape=5bbaca14 vocab=3c834caa
+-/
 theorem reciprocal_M_fixed (p : OpenParameters K) :
     (AlbertLean.Residual.NormalizedRootSwap.rootSwap
       (normalizedSection p)).M = moment p.toParameters := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.0f057e625f91 from=translated src=- shape=c88ed79f vocab=0348ed01
+-/
 theorem reciprocal_involutive (p : OpenParameters K) :
     AlbertLean.Residual.NormalizedRootSwap.rootSwap
         (AlbertLean.Residual.NormalizedRootSwap.rootSwap
           (normalizedSection p)) = normalizedSection p := by
   exact AlbertLean.Residual.NormalizedRootSwap.rootSwap_involutive _
 
+/--
+@isnad1 id=ne.0h2v.s5.b67d38530602 from=translated src=- shape=ffe9f645 vocab=434e3107
+-/
 theorem reciprocal_is_distinct (p : OpenParameters K) :
     (AlbertLean.Residual.NormalizedRootSwap.rootSwap
       (normalizedSection p)).Delta ≠ p.Delta := by

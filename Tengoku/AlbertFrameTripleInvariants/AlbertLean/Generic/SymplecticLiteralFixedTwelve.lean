@@ -18,6 +18,9 @@ def scheduleOfLengthTwelve
     FixedTwelveSchedule (K := K) (V := V) :=
   fun i => word[i.val]'(by simpa [hlen] using i.isLt)
 
+/--
+@isnad1 id=eq.1h3v.s6.0fbdfa2d0b43 from=translated src=- shape=5a91e762 vocab=7a558a77
+-/
 theorem ofFn_scheduleOfLengthTwelve
     (word : List (Step (K := K) (V := V))) (hlen : word.length = 12) :
     List.ofFn (scheduleOfLengthTwelve word hlen) = word := by
@@ -27,12 +30,18 @@ theorem ofFn_scheduleOfLengthTwelve
   · intro i hi₁ hi₂
     rw [List.getElem_ofFn]
 
+/--
+@isnad1 id=eq.1h4v.s6.7a89be33d2de from=translated src=- shape=0e3fff3f vocab=5ed00c37
+-/
 theorem fixedTwelveMap_scheduleOfLengthTwelve
     (omega : BilinForm (K := K) (V := V))
     (word : List (Step (K := K) (V := V))) (hlen : word.length = 12) :
     fixedTwelveMap omega (scheduleOfLengthTwelve word hlen) = wordMap omega word := by
   rw [fixedTwelveMap, ofFn_scheduleOfLengthTwelve]
 
+/--
+@isnad1 id=ex.5h7v.s9.43e57c6ef220 from=translated src=- shape=27f6c062 vocab=d5d41718
+-/
 theorem exists_literal_fixed_twelve_triple_alignment
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)

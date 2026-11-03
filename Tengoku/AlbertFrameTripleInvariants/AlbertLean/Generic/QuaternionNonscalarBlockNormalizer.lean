@@ -34,6 +34,9 @@ def cyclicBasisAtInv (X : Mat2 K) (v : Vec2 K) : Mat2 K :=
     !![cyclicBasisAt X v 1 1, -cyclicBasisAt X v 0 1;
        -cyclicBasisAt X v 1 0, cyclicBasisAt X v 0 0]
 
+/--
+@isnad1 id=eq.1h3v.s7.a3bf3a2f8f39 from=translated src=- shape=36cbdd15 vocab=29947ae5
+-/
 theorem cyclicBasisAt_mul_inv (X : Mat2 K) (v : Vec2 K)
     (hv : cyclicDet X v ≠ 0) :
     cyclicBasisAt X v * cyclicBasisAtInv X v = 1 := by
@@ -47,6 +50,9 @@ theorem cyclicBasisAt_mul_inv (X : Mat2 K) (v : Vec2 K)
       Matrix.one_apply] <;> field_simp [hv, hn] <;> ring
   linear_combination mul_inv_cancel₀ hn
 
+/--
+@isnad1 id=eq.1h3v.s7.775b091fa4b5 from=translated src=- shape=36cbdd15 vocab=29947ae5
+-/
 theorem cyclicBasisAt_inv_mul (X : Mat2 K) (v : Vec2 K)
     (hv : cyclicDet X v ≠ 0) :
     cyclicBasisAtInv X v * cyclicBasisAt X v = 1 := by
@@ -56,6 +62,9 @@ theorem cyclicBasisAt_inv_mul (X : Mat2 K) (v : Vec2 K)
     simp [cyclicBasisAtInv, cyclicDet, Matrix.mul_apply, Fin.sum_univ_two,
       Matrix.one_apply] <;> field_simp [hv] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s7.48f4d8877e11 from=translated src=- shape=3524d108 vocab=8d2279f1
+-/
 theorem cyclicBasisAt_intertwines (X : Mat2 K) (v : Vec2 K) :
     X * cyclicBasisAt X v = cyclicBasisAt X v * companion X := by
   ext i j
@@ -63,21 +72,32 @@ theorem cyclicBasisAt_intertwines (X : Mat2 K) (v : Vec2 K) :
     simp [cyclicBasisAt, companion, matrix, trace2, determinant,
       Matrix.mul_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_two] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s5.95897473fab5 from=translated src=- shape=b6b65d95 vocab=38bea982
+-/
 @[simp] theorem cyclicDet_e0 (X : Mat2 K) : cyclicDet X e0 = X 1 0 := by
   simp [cyclicDet, cyclicBasisAt, e0, Matrix.mulVec, dotProduct,
     Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s6.72d6dc12f9ba from=translated src=- shape=aa983b54 vocab=712862bb
+-/
 @[simp] theorem cyclicDet_e1 (X : Mat2 K) : cyclicDet X e1 = -X 0 1 := by
   simp [cyclicDet, cyclicBasisAt, e1, Matrix.mulVec, dotProduct,
     Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.f3031cd81277 from=translated src=- shape=8c60155a vocab=46df2cf1
+-/
 @[simp] theorem cyclicDet_e0_add_e1 (X : Mat2 K) :
     cyclicDet X (e0 + e1) = X 1 0 + X 1 1 - X 0 0 - X 0 1 := by
   simp [cyclicDet, cyclicBasisAt, e0, e1, Matrix.mulVec, dotProduct,
     Fin.sum_univ_two]
   ring
 
-/-- One of `e₀,e₁,e₀+e₁` is cyclic for every nonscalar matrix.-/
+/-- One of `e₀,e₁,e₀+e₁` is cyclic for every nonscalar matrix.
+@isnad1 id=ex.1h2v.s7.895d1d24e190 from=translated src=- shape=855e2ec9 vocab=67635f00
+-/
 theorem exists_three_cyclic (X : Mat2 K)
     (hX : ¬ ∃ a : K, X = a • (1 : Mat2 K)) :
     ∃ v : Vec2 K, (v = e0 ∨ v = e1 ∨ v = e0 + e1) ∧ cyclicDet X v ≠ 0 := by
@@ -97,7 +117,9 @@ theorem exists_three_cyclic (X : Mat2 K)
   · exact ⟨e0, Or.inl rfl, by simpa using h10⟩
 
 /-- Nonscalar equal-trace/equal-determinant matrices have explicit mutually
-inverse rational intertwiners, selected from three fixed cyclic vectors.-/
+inverse rational intertwiners, selected from three fixed cyclic vectors.
+@isnad1 id=ex.4h3v.s10.b043573b38fd from=translated src=- shape=22b1cffb vocab=1754d52e
+-/
 theorem rational_intertwiner_of_nonscalar (X Y : Mat2 K)
     (hX : ¬ ∃ a : K, X = a • (1 : Mat2 K))
     (hY : ¬ ∃ a : K, Y = a • (1 : Mat2 K))
@@ -143,7 +165,9 @@ theorem rational_intertwiner_of_nonscalar (X Y : Mat2 K)
       _ = cyclicBasisAt X vx * (cyclicBasisAtInv Y vy * Y) := by rw [Matrix.mul_assoc, hi]
       _ = _ := by simp only [Matrix.mul_assoc]
 
-/-- A nonzero characteristic discriminant excludes scalar matrices.-/
+/-- A nonzero characteristic discriminant excludes scalar matrices.
+@isnad1 id=not.1h2v.s7.df05ffc04a95 from=translated src=- shape=f675d470 vocab=e6c5a5db
+-/
 theorem nonscalar_of_discriminant_ne_zero (X : Mat2 K)
     (hdisc : trace2 X ^ 2 - 4 * determinant X ≠ 0) :
     ¬ ∃ a : K, X = a • (1 : Mat2 K) := by
@@ -152,7 +176,9 @@ theorem nonscalar_of_discriminant_ne_zero (X : Mat2 K)
   simp [trace2, determinant, Matrix.one_apply]
   ring
 
-/-- Direct chart-free consumer for the accepted propagation theorem.-/
+/-- Direct chart-free consumer for the accepted propagation theorem.
+@isnad1 id=ex.12h5v.s11.f9721cf41043 from=translated src=- shape=e94bf9a1 vocab=29be5213
+-/
 theorem exists_all_blocks_conjugate (B C : Fin 3 → Fin 3 → Mat2 K)
     (p q : Fin 3 → K) (hp1 : p 1 ≠ 0) (hp2 : p 2 ≠ 0)
     (hdB : ∀ i, B i i = q i • (1 : Mat2 K))

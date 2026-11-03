@@ -30,7 +30,9 @@ def parameters (q : ExplicitFrameChart K) : Parameters K where
   offDiag ij _ := matrixM q ij.1 ij.2
   Delta := Matrix.det (residualPairOfChart q).X
 
-/-- The two trace laws reconstruct the omitted diagonal source entries.-/
+/-- The two trace laws reconstruct the omitted diagonal source entries.
+@isnad1 id=and.1h2v.s6.9de347a1d510 from=translated src=- shape=50ab849f vocab=2fcd33e3
+-/
 theorem omitted_diagonal (q : ExplicitFrameChart K)
     (hq : EquationsVanish (explicitFrameEquationValues q)) :
     dA2 (parameters q) = q.diagA 2 ∧ dB2 (parameters q) = q.diagB 2 := by
@@ -43,7 +45,9 @@ theorem omitted_diagonal (q : ExplicitFrameChart K)
   · change -q.diagB 0 - q.diagB 1 = q.diagB 2
     linear_combination -hTB
 
-/-- This is the exact scalar inversion used by all four diagonal M entries.-/
+/-- This is the exact scalar inversion used by all four diagonal M entries.
+@isnad1 id=and.3h7v.s8.61c5a0ff138d from=translated src=- shape=739799e6 vocab=4c76edc2
+-/
 theorem solve_diagonal_pair (d₁ d₂ S N x y : K)
     (hp : d₁ - d₂ ≠ 0) (hS : x + y = S)
     (hN : d₁ * x + d₂ * y = N) :
@@ -57,7 +61,9 @@ theorem solve_diagonal_pair (d₁ d₂ S N x y : K)
   linear_combination -hS
 
 /-- Read the four systems from the actual six source equations. The only
-extra hypothesis is r1=1, already supplied by targetFirst normalization.-/
+extra hypothesis is r1=1, already supplied by targetFirst normalization.
+@isnad1 id=and.2h2v.s9.a0d3383e4702 from=translated src=- shape=9ce94e5b vocab=76bd10ab
+-/
 theorem actual_diagonal_systems (q : ExplicitFrameChart K)
     (hr : q.r1 = 1)
     (hq : EquationsVanish (explicitFrameEquationValues q)) :

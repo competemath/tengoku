@@ -59,7 +59,9 @@ private theorem finiteOmega_eq_omega (x y : Vec6 K) :
     finiteOmega x y = (omega (K := K)) x y := rfl
 
 /-- Pairing extraction computes the inverse of the exact, already selected
-`weightedCoordinateEquiv`; no replacement equivalence is introduced.-/
+`weightedCoordinateEquiv`; no replacement equivalence is introduced.
+@isnad1 id=other.4h7v.s12.a02634e5e5ef from=translated src=- shape=520992fa vocab=dd95bec2
+-/
 theorem weightedCoordinateEquiv_symm_apply
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -111,7 +113,9 @@ theorem weightedCoordinateEquiv_symm_apply
       _ = (omega (K := K)) (matrixAction (E i : Mat6 K) u) w *
           (p i)⁻¹ := by rw [← h.1]
 
-/-- Function-valued form of the preceding coordinate equations.-/
+/-- Function-valued form of the preceding coordinate equations.
+@isnad1 id=other.4h6v.s12.b3491660a8b3 from=translated src=- shape=9900a790 vocab=cd32ffc2
+-/
 theorem weightedCoordinateEquiv_symm_eq_formula
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -160,7 +164,9 @@ private theorem weightedCoordinateEquiv_apply_eq_formula
   simp only [Finset.sum_apply, Pi.smul_apply, Pi.add_apply, smul_eq_mul]
 
 /-- `coordinateConjugate` for the exact weighted equivalence is the finite
-pairing formula with only the three explicit inverses `p i⁻¹`.-/
+pairing formula with only the three explicit inverses `p i⁻¹`.
+@isnad1 id=other.4h7v.s12.440bf0e0a665 from=translated src=- shape=05cfa9bd vocab=88ba1508
+-/
 theorem coordinateConjugate_eq_formula
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -184,7 +190,9 @@ theorem coordinateConjugate_eq_formula
   rfl
 
 /-- In particular, every entry of the pivot block used by the deterministic
-splitter is given by the same finite formula.-/
+splitter is given by the same finite formula.
+@isnad1 id=other.4h8v.s12.c1491c03f513 from=translated src=- shape=69ef12f9 vocab=b519c8ea
+-/
 theorem pivotBlock_entry_eq_formula
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

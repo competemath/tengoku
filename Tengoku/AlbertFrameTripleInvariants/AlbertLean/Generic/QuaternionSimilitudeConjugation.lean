@@ -22,7 +22,9 @@ variable {K : Type u} [Field K] [CharZero K]
 variable (M N : Mat6 K) (c : K)
 
 /-- The first useful form of the multiplier identity, with the explicit
-inverse on the right.-/
+inverse on the right.
+@isnad1 id=eq.2h4v.s8.2d28dd794407 from=translated src=- shape=f4415811 vocab=b91de919
+-/
 theorem left_form (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = c • symplecticJ) :
     M.transpose * symplecticJ = c • (symplecticJ * N) := by
@@ -35,7 +37,9 @@ theorem left_form (hMN : M * N = 1)
     _ = c • (symplecticJ * N) := by rw [Matrix.smul_mul]
 
 /-- The companion identity.  Keeping the multiplier on the left avoids any
-choice of a square root of `c`.-/
+choice of a square root of `c`.
+@isnad1 id=eq.2h4v.s8.75deb5b0432a from=translated src=- shape=956bcc7e vocab=b91de919
+-/
 theorem scaled_right_form (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = c • symplecticJ) :
     c • (N.transpose * symplecticJ) = symplecticJ * M := by
@@ -47,7 +51,9 @@ theorem scaled_right_form (hMN : M * N = 1)
       simp only [Matrix.transpose_mul, Matrix.mul_assoc]
     _ = symplecticJ * M := by rw [hMN, Matrix.transpose_one, Matrix.one_mul]
 
-/-- The explicit inverse is a similitude of inverse multiplier.-/
+/-- The explicit inverse is a similitude of inverse multiplier.
+@isnad1 id=eq.3h4v.s9.55ef7604eaf5 from=translated src=- shape=17021531 vocab=9e8be3fa
+-/
 theorem inverse_form (hMN : M * N = 1) (hc : c ≠ 0)
     (hform : M.transpose * symplecticJ * M = c • symplecticJ) :
     N.transpose * symplecticJ * N = c⁻¹ • symplecticJ := by
@@ -62,7 +68,9 @@ theorem inverse_form (hMN : M * N = 1) (hc : c ≠ 0)
     _ = c⁻¹ • symplecticJ := by rw [hscaled]
 
 /-- Conjugation by an invertible symplectic similitude preserves the actual
-`PᵀJ=JP` carrier.-/
+`PᵀJ=JP` carrier.
+@isnad1 id=isselfad.2h5v.s9.11eda195bab8 from=translated src=- shape=3d1cded1 vocab=4cf860f8
+-/
 theorem conjugate_mem (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = c • symplecticJ)
     (P : Carrier K) : IsSelfAdjoint (M * (P : Mat6 K) * N) := by
@@ -98,6 +106,9 @@ def conjugateLinear (hMN : M * N = 1)
     apply Subtype.ext
     simp [Matrix.mul_smul, Matrix.smul_mul]
 
+/--
+@isnad1 id=eq.2h5v.s11.7abd61baeb82 from=translated src=- shape=aa20eadc vocab=31575d52
+-/
 @[simp] theorem conjugateLinear_coe (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = c • symplecticJ) (P : Carrier K) :
     ((conjugateLinear M N c hMN hform P : Carrier K) : Mat6 K) = M * P * N := rfl

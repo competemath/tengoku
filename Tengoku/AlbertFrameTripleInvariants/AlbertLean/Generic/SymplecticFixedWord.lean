@@ -25,15 +25,24 @@ def wordMap (omega : BilinForm (K := K) (V := V)) :
   | [] => LinearMap.id
   | (d, t) :: word => (map omega d t).comp (wordMap omega word)
 
+/--
+@isnad1 id=eq.0h3v.s6.1f1bc5926e22 from=translated src=- shape=c602b6d2 vocab=41b88771
+-/
 @[simp] theorem wordMap_nil
     (omega : BilinForm (K := K) (V := V)) :
     wordMap omega [] = LinearMap.id := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.fcdda3c7086e from=translated src=- shape=71ddc9de vocab=bfa7a629
+-/
 @[simp] theorem wordMap_cons_apply
     (omega : BilinForm (K := K) (V := V)) (d : V) (t : K)
     (word : List (Step (K := K) (V := V))) (x : V) :
     wordMap omega ((d, t) :: word) x = map omega d t (wordMap omega word x) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.adecaa7bd2a8 from=translated src=- shape=aa2fa419 vocab=466bf795
+-/
 theorem wordMap_preserves
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0)
@@ -46,6 +55,9 @@ theorem wordMap_preserves
       rw [wordMap_cons_apply, wordMap_cons_apply,
         map_preserves omega halt d t, ih]
 
+/--
+@isnad1 id=eq.1h5v.s9.2e1a0672404f from=translated src=- shape=37307532 vocab=f16e7d64
+-/
 theorem wordMap_fixes_of_centers
     (omega : BilinForm (K := K) (V := V))
     (word : List (Step (K := K) (V := V))) (q : V)
@@ -60,6 +72,9 @@ theorem wordMap_fixes_of_centers
       · intro step hstep
         exact hfix step (by simp [hstep])
 
+/--
+@isnad1 id=eq.0h5v.s7.a3324b3873e5 from=translated src=- shape=800df3a9 vocab=1227ee66
+-/
 theorem wordMap_append
     (omega : BilinForm (K := K) (V := V))
     (left right : List (Step (K := K) (V := V))) :
@@ -82,6 +97,9 @@ def fixedTwelveMap
     (schedule : FixedTwelveSchedule (K := K) (V := V)) : V →ₗ[K] V :=
   wordMap omega (List.ofFn schedule)
 
+/--
+@isnad1 id=eq.1h6v.s10.c5b361a9d77d from=translated src=- shape=0ff1f3b0 vocab=59f21c5c
+-/
 theorem fixedTwelveMap_preserves
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0)
@@ -90,6 +108,9 @@ theorem fixedTwelveMap_preserves
       omega x y :=
   wordMap_preserves omega halt (List.ofFn schedule) x y
 
+/--
+@isnad1 id=eq.0h4v.s6.1b566302b809 from=translated src=- shape=2dd0a869 vocab=697f8bb3
+-/
 theorem map_zero_parameter
     (omega : BilinForm (K := K) (V := V)) (d : V) :
     map omega d 0 = LinearMap.id := by
@@ -97,6 +118,9 @@ theorem map_zero_parameter
   intro x
   simp [map_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.ca3182a271b6 from=translated src=- shape=4e8d1c98 vocab=572e7714
+-/
 theorem wordMap_zero_parameters
     (omega : BilinForm (K := K) (V := V)) (directions : List V) :
     wordMap omega (directions.map fun d => (d, (0 : K))) = LinearMap.id := by

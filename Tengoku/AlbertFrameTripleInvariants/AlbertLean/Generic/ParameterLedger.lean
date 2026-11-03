@@ -54,13 +54,18 @@ def sourceProjector (z : JCoord ℚ) (i : Fin 3) : JCoord ℚ :=
   sourceCombo z (projectorSquareCoeff i) (projectorLinearCoeff i)
     (projectorOneCoeff i)
 
+/--
+@isnad1 id=eq.0h1v.s8.a13a57cdecd6 from=translated src=- shape=2ed0334c vocab=ac620425
+-/
 theorem structuredEquiv_sourceSquare (z : JCoord ℚ) :
     structuredEquiv (sourceSquare z) =
       structuredProduct (structuredEquiv z) (structuredEquiv z) := by
   exact StructuredSourceProductAgreesWithF0 z z
 
 /-- The source polynomial is exactly the frozen public projector in every
-ordered slot.-/
+ordered slot.
+@isnad1 id=eq.0h2v.s8.264e11461665 from=translated src=- shape=e867aa03 vocab=1a6f417b
+-/
 theorem structuredEquiv_sourceProjector (z : JCoord ℚ) (i : Fin 3) :
     structuredEquiv (sourceProjector z i) = projector (structuredEquiv z) i := by
   rw [sourceProjector, sourceCombo, map_add, map_add, map_smul, map_smul,
@@ -312,7 +317,9 @@ private theorem sourceProjector_v_pair_reinsert
 
 /-- With all non-residual chart fields and the residual moment fixed, a
 projector pairing changes only through the symmetric determinant-root sum.
-The coefficient is the product of the two projector-square coefficients.-/
+The coefficient is the product of the two projector-square coefficients.
+@isnad1 id=eq.1h4v.s7.108d0488ba5d from=translated src=- shape=f955fdef vocab=04c09db5
+-/
 theorem sourceProjector_pairing_reinsert (x : ExplicitFrameChart ℚ)
     (Q : ResidualPair ℚ)
     (hM : moment Q = moment (residualPairOfChart x)) (j l : Fin 3) :
@@ -341,7 +348,9 @@ private theorem ledger_Q_eq_source (x : ExplicitFrameChart ℚ) (j l : Fin 3) :
   rfl
 
 /-- Every public `Q` entry is affine in the symmetric determinant-root sum
-when the residual moment and all non-residual chart fields are fixed.-/
+when the residual moment and all non-residual chart fields are fixed.
+@isnad1 id=eq.1h4v.s6.cc3c5a1b95b3 from=translated src=- shape=698c2485 vocab=421d0491
+-/
 theorem ledger_Q_reinsert (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
     (hM : moment Q = moment (residualPairOfChart x)) (j l : Fin 3) :
     (ledger (chartWitnessTriple (chartWithResidualPair x Q))).Q j l =
@@ -352,7 +361,9 @@ theorem ledger_Q_reinsert (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
   exact sourceProjector_pairing_reinsert x Q hM j l
 
 /-- The two public pair tables involving the fixed diagonal frame do not
-change when the residual moment is fixed.-/
+change when the residual moment is fixed.
+@isnad1 id=eq.1h2v.s5.78084d74a3ca from=translated src=- shape=097df56e vocab=6c97fa66
+-/
 theorem ledger_P_reinsert (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
     (hM : moment Q = moment (residualPairOfChart x)) :
     (ledger (chartWitnessTriple (chartWithResidualPair x Q))).P =
@@ -372,6 +383,9 @@ theorem ledger_P_reinsert (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
   · exact h.2.1
   · exact h.2.2
 
+/--
+@isnad1 id=eq.1h2v.s5.479bb2188df6 from=translated src=- shape=097df56e vocab=f4f24bab
+-/
 theorem ledger_R_reinsert (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
     (hM : moment Q = moment (residualPairOfChart x)) :
     (ledger (chartWitnessTriple (chartWithResidualPair x Q))).R =
@@ -506,6 +520,9 @@ private theorem rawJoint_reinsert (x : ExplicitFrameChart ℚ)
 subtracted from the raw joint moment.-/
 def centeredJointCoeff (i : Fin 3) : ℚ := rawJointCoeff i - 1 / 3
 
+/--
+@isnad1 id=eq.1h5v.s6.67a85d5a91fc from=translated src=- shape=08598326 vocab=059de409
+-/
 theorem ledger_C0_reinsert (x : ExplicitFrameChart ℚ) (Q : ResidualPair ℚ)
     (hM : moment Q = moment (residualPairOfChart x)) (i j l : Fin 3) :
     (ledger (chartWitnessTriple (chartWithResidualPair x Q))).C0 i j l =
@@ -550,7 +567,9 @@ def shiftLedger (L : Ledger) (d : ℚ) : Ledger where
       projectorSquareCoeff l * d
 
 /-- Complete 54-entry public-ledger variation with fixed retained chart data
-and residual moment.-/
+and residual moment.
+@isnad1 id=eq.1h2v.s5.997ea9eae0b6 from=translated src=- shape=0aff989c vocab=9dab6d3f
+-/
 theorem ledger_reinsert_eq_shiftLedger (x : ExplicitFrameChart ℚ)
     (Q : ResidualPair ℚ)
     (hM : moment Q = moment (residualPairOfChart x)) :
@@ -568,14 +587,18 @@ theorem ledger_reinsert_eq_shiftLedger (x : ExplicitFrameChart ℚ)
 /-- The symmetric determinant-root sum along the normalized family.-/
 def parameterRootSum (t : ℚ) : ℚ := t + witnessScale / t
 
-/-- The genuine normalized root exchange fixes the symmetric root sum.-/
+/-- The genuine normalized root exchange fixes the symmetric root sum.
+@isnad1 id=eq.1h1v.s4.666408c34b0e from=translated src=- shape=87e591bd vocab=a1264920
+-/
 theorem parameterRootSum_reciprocal (t : ℚ) (ht : t ≠ 0) :
     parameterRootSum (witnessScale / t) = parameterRootSum t := by
   have h := (parameterResidualPair_reciprocal_sameBase t ht).2
   simpa only [parameterResidualPair_baseRootSum, parameterRootSum] using h
 
 /-- The complete public `Q` table is an explicit affine function of the
-symmetric determinant-root sum.-/
+symmetric determinant-root sum.
+@isnad1 id=eq.1h3v.s6.e32a2093a5c3 from=translated src=- shape=458c8556 vocab=75be53f4
+-/
 theorem parameter_Q_affine (t : ℚ) (ht : t ≠ 0) (j l : Fin 3) :
     (ledger (parameterTriple t ht)).Q j l =
       (ledger (parameterTriple 1 one_ne_zero)).Q j l +
@@ -588,7 +611,9 @@ theorem parameter_Q_affine (t : ℚ) (ht : t ≠ 0) (j l : Fin 3) :
       witnessChart1_deltaStar]
   · exact parameterResidualPair_moment t ht
 
-/-- The full public ledger is affine in the symmetric root sum.-/
+/-- The full public ledger is affine in the symmetric root sum.
+@isnad1 id=eq.1h1v.s5.c142b1d6c0d8 from=translated src=- shape=740aa7c2 vocab=9b56ca32
+-/
 theorem parameter_ledger_affine (t : ℚ) (ht : t ≠ 0) :
     ledger (parameterTriple t ht) =
       shiftLedger (ledger (parameterTriple 1 one_ne_zero))
@@ -601,7 +626,9 @@ theorem parameter_ledger_affine (t : ℚ) (ht : t ≠ 0) :
   · exact parameterResidualPair_moment t ht
 
 /-- At the two accepted parameters the public ledgers agree.  This is the
-existing finite witness theorem transported through the chart readers.-/
+existing finite witness theorem transported through the chart readers.
+@isnad1 id=eq.0h0v.s3.8fc8ba9b3f0c from=translated src=- shape=f3663c79 vocab=64c08f92
+-/
 theorem parameterLedger_one_eq_witnessScale :
     ledger (parameterTriple 1 one_ne_zero) =
       ledger (parameterTriple witnessScale witnessScale_ne_zero) := by
@@ -616,7 +643,9 @@ def RootSumLedgerLaw : Prop :=
     ledger (parameterTriple t ht) = L (parameterRootSum t)
 
 /-- The complete source-sector calculation establishes root-sum
-factorization; this is no longer an assumption at the parameter-family level.-/
+factorization; this is no longer an assumption at the parameter-family level.
+@isnad1 id=rootsuml.0h0v.s0.0e52ce3148ce from=translated src=- shape=45709ebd vocab=0e52ce31
+-/
 theorem parameter_rootSumLedgerLaw : RootSumLedgerLaw := by
   refine ⟨fun s => shiftLedger (ledger (parameterTriple 1 one_ne_zero))
     ((1 + witnessScale) - s), ?_⟩
@@ -624,7 +653,9 @@ theorem parameter_rootSumLedgerLaw : RootSumLedgerLaw := by
   exact parameter_ledger_affine t ht
 
 /-- Root-sum factorization makes the full public ledger invariant under the
-genuine reciprocal root exchange.-/
+genuine reciprocal root exchange.
+@isnad1 id=eq.2h1v.s4.dff94f1f16c0 from=translated src=- shape=406d6199 vocab=1e7b9577
+-/
 theorem ledger_eq_reciprocal_of_rootSumLedgerLaw
     (hLaw : RootSumLedgerLaw) (t : ℚ) (ht : t ≠ 0) :
     ledger
@@ -635,7 +666,9 @@ theorem ledger_eq_reciprocal_of_rootSumLedgerLaw
   rw [hL, hL, parameterRootSum_reciprocal t ht]
 
 /-- The complete public ledger is invariant under the genuine normalized
-root exchange on every nonzero member of the parameter family.-/
+root exchange on every nonzero member of the parameter family.
+@isnad1 id=eq.1h1v.s4.cd5e6efb32cb from=translated src=- shape=78eb8352 vocab=46fc038d
+-/
 theorem parameter_ledger_reciprocal (t : ℚ) (ht : t ≠ 0) :
     ledger
         (parameterTriple (witnessScale / t)
@@ -655,7 +688,9 @@ def Q11AffineLaw : Prop :=
   ∀ (t : ℚ) (ht : t ≠ 0),
     (ledger (parameterTriple t ht)).Q 1 1 = q11AffineValue t
 
-/-- The source-sector pairing calculation proves the predicted `Q₁₁` law.-/
+/-- The source-sector pairing calculation proves the predicted `Q₁₁` law.
+@isnad1 id=q11affin.0h0v.s0.774930f5f7c9 from=translated src=- shape=45709ebd vocab=774930f5
+-/
 theorem parameter_Q11_affine : Q11AffineLaw := by
   intro t ht
   rw [parameter_Q_affine t ht 1 1]
@@ -663,7 +698,9 @@ theorem parameter_Q11_affine : Q11AffineLaw := by
   ring
 
 /-- Equality of complete public ledgers is exactly equality of the symmetric
-determinant-root sum on the nonzero normalized parameter family.-/
+determinant-root sum on the nonzero normalized parameter family.
+@isnad1 id=iff.2h2v.s5.827cbd86eb7e from=translated src=- shape=9ecbfbed vocab=1c2984bf
+-/
 theorem parameter_ledger_eq_iff (t u : ℚ) (ht : t ≠ 0) (hu : u ≠ 0) :
     ledger (parameterTriple t ht) = ledger (parameterTriple u hu) ↔
       parameterRootSum t = parameterRootSum u := by
@@ -676,13 +713,17 @@ theorem parameter_ledger_eq_iff (t u : ℚ) (ht : t ≠ 0) (hu : u ≠ 0) :
   · intro h
     rw [parameter_ledger_affine t ht, parameter_ledger_affine u hu, h]
 
-/-- The predicted `Q₁₁` formula holds at the original accepted parameter.-/
+/-- The predicted `Q₁₁` formula holds at the original accepted parameter.
+@isnad1 id=eq.0h0v.s5.d177db08d9f6 from=translated src=- shape=f78e792d vocab=68e72fa7
+-/
 theorem q11AffineValue_one :
     (ledger (parameterTriple 1 one_ne_zero)).Q 1 1 = q11AffineValue 1 := by
   simp [q11AffineValue, parameterRootSum]
 
 /-- The predicted `Q₁₁` formula also holds at the accepted reciprocal
-parameter, using the independently proved complete-ledger equality.-/
+parameter, using the independently proved complete-ledger equality.
+@isnad1 id=eq.0h0v.s5.da8ec5f9b8bf from=translated src=- shape=93851438 vocab=d7eccf68
+-/
 theorem q11AffineValue_witnessScale :
     (ledger (parameterTriple witnessScale witnessScale_ne_zero)).Q 1 1 =
       q11AffineValue witnessScale := by
@@ -693,7 +734,9 @@ theorem q11AffineValue_witnessScale :
   ring
 
 /-- Under the targeted `Q₁₁` identity, that single public ledger entry
-recovers the symmetric determinant-root sum.-/
+recovers the symmetric determinant-root sum.
+@isnad1 id=eq.2h1v.s6.f40d571aeb5b from=translated src=- shape=f752c9e6 vocab=7ea096fd
+-/
 theorem parameterRootSum_eq_of_Q11AffineLaw
     (hLaw : Q11AffineLaw) (t : ℚ) (ht : t ≠ 0) :
     parameterRootSum t =
@@ -704,7 +747,9 @@ theorem parameterRootSum_eq_of_Q11AffineLaw
   simp only [q11AffineValue]
   ring
 
-/-- The proved `Q₁₁` identity recovers the root sum without a hypothesis.-/
+/-- The proved `Q₁₁` identity recovers the root sum without a hypothesis.
+@isnad1 id=eq.1h1v.s6.3c6810c64642 from=translated src=- shape=1c7cf9a2 vocab=3a0cf053
+-/
 theorem parameterRootSum_eq_Q11 (t : ℚ) (ht : t ≠ 0) :
     parameterRootSum t =
       1 + witnessScale +

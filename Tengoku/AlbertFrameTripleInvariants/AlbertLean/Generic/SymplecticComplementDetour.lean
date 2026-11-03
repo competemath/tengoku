@@ -12,6 +12,9 @@ universe u v
 variable {K : Type u} [Field K] [CharZero K]
 variable {V : Type v} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=ex.10h7v.s12.bd0d56ed4782 from=translated src=- shape=06071fb8 vocab=dc8be386
+-/
 theorem exists_detour_orthogonal_one_pair
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0)
@@ -49,6 +52,9 @@ theorem exists_detour_orthogonal_one_pair
       simp only [map_add, LinearMap.add_apply, hpx.1, hpx.2, hpy.1, hpy.2,
         zero_add]
 
+/--
+@isnad1 id=ex.19h9v.s13.c662b69041b0 from=translated src=- shape=6f0539ed vocab=dc8be386
+-/
 theorem exists_detour_orthogonal_two_pairs
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0)

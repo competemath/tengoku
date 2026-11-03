@@ -25,7 +25,9 @@ variable {K : Type u} [Field K] [CharZero K]
 weighted block arrays with the same literal diagonal scalars, together with
 all row, weighted-column, and weighted-adjoint identities.  Thus the later
 nonscalar pivot normalizer receives facts derived from actual frames rather
-than assumed block equations.-/
+than assumed block equations.
+@isnad1 id=other.16h10v.s14.7d63fb5dbe55 from=translated src=- shape=33abb6af vocab=9a037eb2
+-/
 theorem actual_same_ledger_weighted_pair_data
     (E F E' F' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

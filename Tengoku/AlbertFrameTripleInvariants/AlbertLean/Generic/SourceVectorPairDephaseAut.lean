@@ -43,11 +43,17 @@ def evenSourceAut (A B : VCoord K) (rho : K)
     ResidualAction.SourceAut (K := K) :=
   recoveryAutToSourceAut (sourceEvenAut A B rho hA hB hrho hrho0)
 
+/--
+@isnad1 id=eq.4h5v.s9.70105be79850 from=translated src=- shape=afaa73c8 vocab=09d62d99
+-/
 @[simp] theorem evenSourceAut_apply_v (A B : VCoord K) (rho : K)
     (hA : nV A ≠ 0) (hB : nV B ≠ 0)
     (hrho : rho ^ 2 = nV A * nV B) (hrho0 : rho ≠ 0) (x : JCoord K) :
     ((evenSourceAut A B rho hA hB hrho hrho0).linear x).v = evenV A B x.v := rfl
 
+/--
+@isnad1 id=eq.4h5v.s10.479ed473c017 from=translated src=- shape=ea46667c vocab=22a3437c
+-/
 @[simp] theorem evenSourceAut_apply_diagonal (A B : VCoord K) (rho : K)
     (hA : nV A ≠ 0) (hB : nV B ≠ 0)
     (hrho : rho ^ 2 = nV A * nV B) (hrho0 : rho ≠ 0) (x : JCoord K) :

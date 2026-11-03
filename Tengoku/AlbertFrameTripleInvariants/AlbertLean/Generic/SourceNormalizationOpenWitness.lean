@@ -32,6 +32,9 @@ def parameters : Parameters K where
   offDiag _ _ := 0
   Delta := 1
 
+/--
+@isnad1 id=eq.0h1v.s8.14b6a940dcca from=translated src=- shape=ffcfd4fd vocab=ec598fca
+-/
 theorem moment_parameters : moment (parameters K) =
     Matrix.diagonal ![-(1/2 : K), -1, -(1/2 : K), -1] := by
   ext i j
@@ -40,6 +43,9 @@ theorem moment_parameters : moment (parameters K) =
       normWeightedA, normWeightedB, spurSumA, spurSumB,
       pivotA, pivotB, dA2, dB2, rawOffDiag, Matrix.diagonal]
 
+/--
+@isnad1 id=eq.0h1v.s6.2d25e2df1f61 from=translated src=- shape=58725d18 vocab=ba8937c3
+-/
 theorem determinant_moment : Matrix.det (moment (parameters K)) = (1/4 : K) := by
   rw [moment_parameters, Matrix.det_diagonal]
   norm_num [Fin.prod_univ_succ]
@@ -53,7 +59,9 @@ def openParameters : OpenParameters K where
   branch_ne := by rw [determinant_moment]; norm_num [parameters]
 
 /-- These six values certify all additional V-normalization and rational
-family pivots at the same point.-/
+family pivots at the same point.
+@isnad1 id=and.0h1v.s8.34b49f936af0 from=translated src=- shape=df139848 vocab=a0dc6fc3
+-/
 theorem fixed_difference_values :
     nV (targetFirst (1 : K)) = 1 ∧
     nV (targetRemainder (1 : K) 3 1) = -(1/4 : K) ∧

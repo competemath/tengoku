@@ -21,6 +21,9 @@ structure HyperbolicTriple (omega : BilinForm (K := K) (V := V))
   vu : ∀ i j, i ≠ j → omega (v i) (u j) = 0
   vv : ∀ i j, i ≠ j → omega (v i) (v j) = 0
 
+/--
+@isnad1 id=ex.5h7v.s10.bb991566def6 from=translated src=- shape=2cda5566 vocab=c3f0f2ed
+-/
 theorem exists_four_step_pair
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)
@@ -38,6 +41,9 @@ theorem exists_four_step_pair
 /-! Three explicit four-step blocks cover two ordered hyperbolic triples.
 The later blocks are constructed in the complements of the pairs already
 aligned, so the concatenated word has exactly twelve slots. -/
+/--
+@isnad1 id=ex.5h7v.s9.233e937b96c7 from=translated src=- shape=214441de vocab=31cab3aa
+-/
 theorem exists_fixed_twelve_triple_alignment
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)

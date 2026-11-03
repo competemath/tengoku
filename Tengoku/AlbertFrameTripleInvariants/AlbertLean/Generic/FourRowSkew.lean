@@ -54,6 +54,9 @@ section Coordinates
 
 variable {K : Type u} [Field K]
 
+/--
+@isnad1 id=eq.0h7v.s8.56688cd28a71 from=translated src=- shape=1dd1acc5 vocab=6d04c2db
+-/
 @[simp] theorem skew3_mulVec (a b c x y z : K) :
     skew3 a b c *ᵥ vec3 x y z =
       vec3 (a * y + b * z) (-a * x + c * z) (-b * x - c * y) := by
@@ -62,6 +65,9 @@ variable {K : Type u} [Field K]
     simp [skew3, vec3, Matrix.mulVec, dotProduct, Fin.sum_univ_succ] <;>
     ring
 
+/--
+@isnad1 id=iff.0h4v.s7.85392c7e5c44 from=translated src=- shape=7af9bc18 vocab=b85d65b2
+-/
 @[simp] theorem skew3_zero_iff (a b c : K) :
     skew3 a b c = 0 ↔ a = 0 ∧ b = 0 ∧ c = 0 := by
   constructor
@@ -74,6 +80,9 @@ variable {K : Type u} [Field K]
     ext i j
     fin_cases i <;> fin_cases j <;> simp [skew3]
 
+/--
+@isnad1 id=or.1h4v.s7.3c8eba52a98b from=translated src=- shape=ba8b861e vocab=b85d65b2
+-/
 theorem skew3_ne_zero_coefficients {a b c : K} (h : skew3 a b c ≠ 0) :
     a ≠ 0 ∨ b ≠ 0 ∨ c ≠ 0 := by
   by_cases ha : a = 0
@@ -82,6 +91,9 @@ theorem skew3_ne_zero_coefficients {a b c : K} (h : skew3 a b c ≠ 0) :
     · exact Or.inr (Or.inl hb)
   · exact Or.inl ha
 
+/--
+@isnad1 id=or.1h4v.s6.08ebd65c13c1 from=translated src=- shape=ba8b861e vocab=efe0e5fc
+-/
 theorem vec3_ne_zero_coordinates {x y z : K} (h : vec3 x y z ≠ 0) :
     x ≠ 0 ∨ y ≠ 0 ∨ z ≠ 0 := by
   by_cases hx : x = 0
@@ -92,11 +104,17 @@ theorem vec3_ne_zero_coordinates {x y z : K} (h : vec3 x y z ≠ 0) :
     · exact Or.inr (Or.inl hy)
   · exact Or.inl hx
 
+/--
+@isnad1 id=eq.0h5v.s7.c284b4c106e6 from=translated src=- shape=2b1e3cd1 vocab=079ae75f
+-/
 theorem skew3_smul (t a b c : K) :
     skew3 (t * a) (t * b) (t * c) = t • skew3 a b c := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [skew3] <;> ring
 
+/--
+@isnad1 id=eq.0h8v.s8.156f6ecb2f4d from=translated src=- shape=e9ae145d vocab=1e944620
+-/
 theorem skew3_smul_sub (t p q r p' q' r' : K) :
     t • skew3 p' q' r' - skew3 p q r =
       skew3 (t * p' - p) (t * q' - q) (t * r' - r) := by
@@ -104,7 +122,9 @@ theorem skew3_smul_sub (t p q r p' q' r' : K) :
   fin_cases i <;> fin_cases j <;> simp [skew3] <;> ring
 
 /-- A nonzero skew `3 x 3` matrix is determined up to scale by any nonzero
-vector in its kernel.  Both nonzero hypotheses are essential.-/
+vector in its kernel.  Both nonzero hypotheses are essential.
+@isnad1 id=ex.4h10v.s9.fa9a36ac3023 from=translated src=- shape=b38401a3 vocab=5b1b6252
+-/
 theorem skew3_common_kernel_proportional
     (a b c a' b' c' x y z : K)
     (hB : skew3 a b c ≠ 0)
@@ -249,7 +269,9 @@ theorem skew3_common_kernel_proportional
     rw [hta, htb, htc]
     exact skew3_smul t a b c
 
-/-- The product of two skew matrices, exposed as nine scalar expressions.-/
+/-- The product of two skew matrices, exposed as nine scalar expressions.
+@isnad1 id=eq.0h7v.s9.1d26dce6ed52 from=translated src=- shape=9b8a0449 vocab=def6cffb
+-/
 theorem skew3_mul_skew3 (a b c p q r : K) :
     skew3 a b c * skew3 p q r =
       !![-a * p - b * q, -b * r, a * r;
@@ -261,7 +283,9 @@ theorem skew3_mul_skew3 (a b c p q r : K) :
 
 /-- A nonzero skew `3 x 3` matrix has no nonzero skew right factor whose
 product with it vanishes.  This is the rank-free coordinate form of the
-image/kernel argument.-/
+image/kernel argument.
+@isnad1 id=eq.2h7v.s8.828fa0481043 from=translated src=- shape=5a58c976 vocab=7d12cdb3
+-/
 theorem skew3_mul_eq_zero_right
     (a b c p q r : K)
     (hB : skew3 a b c ≠ 0)
@@ -326,7 +350,9 @@ theorem skew3_mul_eq_zero_right
 
 /-- The block consequence used after a same-`a` comparison has supplied
 `B' = t B`: the displayed upper-left idempotency difference forces the lower
-skew block to scale by `t⁻¹`.-/
+skew block to scale by `t⁻¹`.
+@isnad1 id=eq.3h11v.s9.7c976bae3b9e from=translated src=- shape=8e3f5abd vocab=039aeb15
+-/
 theorem skew3_inverse_scale_of_product
     (a b c p q r p' q' r' t : K)
     (hB : skew3 a b c ≠ 0)
@@ -395,7 +421,9 @@ theorem eq_skew3_of_transpose_eq_neg
     exact (mul_eq_zero.mp hz).resolve_left hchar
 
 /-- Arbitrary skew matrices with a shared nonzero kernel vector are
-proportional.  The first matrix is assumed nonzero to orient the scalar.-/
+proportional.  The first matrix is assumed nonzero to orient the scalar.
+@isnad1 id=ex.7h4v.s8.da2ecd52bb14 from=translated src=- shape=0e962a2b vocab=9dd082bf
+-/
 theorem common_kernel_proportional
     (hchar : (2 : K) ≠ 0) (B C : Mat3 K) (v : Vec3 K)
     (hBskew : B.transpose = -B) (hCskew : C.transpose = -C)
@@ -416,7 +444,9 @@ theorem common_kernel_proportional
     (v 0) (v 1) (v 2) hB hv hBv hCv
 
 /-- Product cancellation for arbitrary skew `3 x 3` matrices in
-characteristic other than two.-/
+characteristic other than two.
+@isnad1 id=eq.5h3v.s8.45d336673943 from=translated src=- shape=c26f54da vocab=7534118b
+-/
 theorem mul_eq_zero_right
     (hchar : (2 : K) ≠ 0) (B C : Mat3 K)
     (hBskew : B.transpose = -B) (hCskew : C.transpose = -C)
@@ -431,7 +461,9 @@ theorem mul_eq_zero_right
 
 /-- Same-`a` lower-block consequence for arbitrary skew blocks.  The premise
 `B * (t • C' - C) = 0` is exactly the coordinate-free equation left after
-substituting `B' = t B` in the upper-left idempotency equations.-/
+substituting `B' = t B` in the upper-left idempotency equations.
+@isnad1 id=eq.7h5v.s9.ab3a86e6a9dd from=translated src=- shape=6330e516 vocab=8f042856
+-/
 theorem inverse_scale_of_product
     (hchar : (2 : K) ≠ 0) (B C C' : Mat3 K) (t : K)
     (hBskew : B.transpose = -B)

@@ -48,7 +48,9 @@ structure ComponentSolution (a0 a1 a2 X : Mat3 K) : Prop where
     (reconstructionDenominator (componentU a0 a1 a2) (componentV a0 a1)
       (a1.det / a0.det) (a2.det / a0.det) (Matrix.trace X)).det ≠ 0
 
-/-- Normalization derives both determinant ratios with the dimension-three sign.-/
+/-- Normalization derives both determinant ratios with the dimension-three sign.
+@isnad1 id=and.2h5v.s8.d9294ecb7230 from=translated src=- shape=f7dd093c vocab=c453c2ec
+-/
 theorem determinant_ratios (a0 a1 a2 X : Mat3 K) (ha0 : a0.det ≠ 0)
     (hX : ComponentSolution a0 a1 a2 X) :
     X.det = a1.det / a0.det ∧ (1 + X).det = -(a2.det / a0.det) := by
@@ -63,7 +65,9 @@ theorem determinant_ratios (a0 a1 a2 X : Mat3 K) (ha0 : a0.det ≠ 0)
       simpa only [neg_mul] using hb
     exact neg_eq_iff_eq_neg.mp hn
 
-/-- The component equations supply every `GoodSolution` requirement.-/
+/-- The component equations supply every `GoodSolution` requirement.
+@isnad1 id=goodsolu.4h5v.s8.2c95ed6ec69b from=translated src=- shape=9f60ecfa vocab=7723f91c
+-/
 theorem goodSolution_of_components
     (a0 a1 a2 X : Mat3 K)
     (ha0 : a0.det ≠ 0) (ha1 : a1.det ≠ 0) (ha2 : a2.det ≠ 0)
@@ -96,7 +100,9 @@ theorem eq_of_components_of_trace_eq
     (goodSolution_of_components a0 a1 a2 Y ha0 ha1 ha2 hY) ht
 
 /-- Any three normalized component solutions on this open contain an equal pair.
-The quadratic and shared determinant constraints are derived inside the proof.-/
+The quadratic and shared determinant constraints are derived inside the proof.
+@isnad1 id=or.6h7v.s7.3eaa7003ce7d from=translated src=- shape=76210b0a vocab=a6208ed4
+-/
 theorem three_componentSolutions_pairwise_eq
     (a0 a1 a2 : Mat3 K)
     (ha0 : a0.det ≠ 0) (ha1 : a1.det ≠ 0) (ha2 : a2.det ≠ 0)

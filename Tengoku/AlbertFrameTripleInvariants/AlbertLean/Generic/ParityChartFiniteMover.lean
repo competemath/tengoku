@@ -27,10 +27,16 @@ def pivotPolynomial (A : VCoord K) : K[X] :=
     C (A.omega .i14) * X ^ 4 + C (A.omega .i13) * X ^ 5 -
     C (A.omega .i12) * X ^ 6
 
+/--
+@isnad1 id=eq.0h3v.s5.f20a8bbedb5b from=translated src=- shape=3e3bfb1f vocab=35038314
+-/
 @[simp] theorem eval_pivotPolynomial (A : VCoord K) (t : K) :
     (pivotPolynomial A).eval t = pivotValue A t := by
   simp [pivotPolynomial, pivotValue]
 
+/--
+@isnad1 id=ne.1h2v.s6.d900ed551006 from=translated src=- shape=f1e0cbb9 vocab=03b2f73a
+-/
 theorem pivotPolynomial_ne_zero (A : VCoord K) (hA : nV A ≠ 0) :
     pivotPolynomial A ≠ 0 := by
   intro h
@@ -59,6 +65,9 @@ theorem pivotPolynomial_ne_zero (A : VCoord K) (hA : nV A ≠ 0) :
   rw [hzero]
   simp [nV, pf_coordinate]
 
+/--
+@isnad1 id=le.0h2v.s5.92facb713eb1 from=translated src=- shape=39aa866a vocab=cdf36d2f
+-/
 theorem natDegree_pivotPolynomial_le (A : VCoord K) :
     (pivotPolynomial A).natDegree ≤ 7 := by
   apply natDegree_le_iff_coeff_eq_zero.mpr
@@ -74,6 +83,9 @@ theorem natDegree_pivotPolynomial_le (A : VCoord K) :
   simp [pivotPolynomial, coeff_C, coeff_X, coeff_X_pow,
     h0, h1, Ne.symm h1, h2, h3, h4, h5, h6, h7]
 
+/--
+@isnad1 id=le.0h3v.s6.c0ff6f39c6f8 from=translated src=- shape=484925f1 vocab=5a2faf72
+-/
 theorem natDegree_pivotPolynomial_mul_le (A B : VCoord K) :
     (pivotPolynomial A * pivotPolynomial B).natDegree ≤ 14 := by
   calc
@@ -84,7 +96,9 @@ theorem natDegree_pivotPolynomial_mul_le (A B : VCoord K) :
       (natDegree_pivotPolynomial_le B)
 
 /-- Among the fifteen fixed numeral values, one simultaneously puts both
-anisotropic centers in the `r ≠ 0` parity chart.-/
+anisotropic centers in the `r ≠ 0` parity chart.
+@isnad1 id=ex.2h3v.s7.f67bc904adac from=translated src=- shape=754fcddf vocab=6b46f6e1
+-/
 theorem exists_fin15_move_centers (A B : VCoord K)
     (hA : nV A ≠ 0) (hB : nV B ≠ 0) :
     ∃ t : Fin 15,

@@ -23,14 +23,23 @@ open scoped BigOperators
 
 def tripleForm (x y z : Coord) : ℚ := traceForm x (structuredProduct y z)
 
+/--
+@isnad1 id=eq.0h3v.s4.ea370b5f9287 from=translated src=- shape=4ed00171 vocab=aa847059
+-/
 theorem tripleForm_swap23 (x y z : Coord) : tripleForm x y z = tripleForm x z y := by
   unfold tripleForm
   rw [productCommutative y z]
 
+/--
+@isnad1 id=eq.0h3v.s4.2fa24e79ee33 from=translated src=- shape=04cb69ef vocab=aa847059
+-/
 theorem tripleForm_cycle (x y z : Coord) : tripleForm x y z = tripleForm z x y := by
   unfold tripleForm
   rw [← traceFormAssociative, traceForm_symmetric]
 
+/--
+@isnad1 id=eq.0h2v.s8.540d2e72d5ca from=translated src=- shape=4cdd61c7 vocab=a72da168
+-/
 theorem tripleForm_perm (σ : Equiv.Perm (Fin 3)) (x : Fin 3 → Coord) :
     tripleForm (x (σ 0)) (x (σ 1)) (x (σ 2)) = tripleForm (x 0) (x 1) (x 2) := by
   have h01 := σ.injective.ne (show (0 : Fin 3) ≠ 1 by decide)
@@ -54,6 +63,9 @@ def tensor (X : WitnessTriple) (a : Fin 3 → Fin 3) : ℚ :=
 def relabel (σ : Equiv.Perm (Fin 3)) (π : Fin 3 → Equiv.Perm (Fin 3))
     (a : Fin 3 → Fin 3) (s : Fin 3) : Fin 3 := π (σ.symm s) (a (σ.symm s))
 
+/--
+@isnad1 id=eq.0h4v.s9.b45aae963c09 from=translated src=- shape=adbafa90 vocab=076cf154
+-/
 theorem tensor_relabel (X : WitnessTriple) (σ : Equiv.Perm (Fin 3))
     (π : Fin 3 → Equiv.Perm (Fin 3)) (a : Fin 3 → Fin 3) :
     tensor X (relabel σ π a) =
@@ -62,30 +74,48 @@ theorem tensor_relabel (X : WitnessTriple) (σ : Equiv.Perm (Fin 3))
   simpa [tensor, relabel] using tripleForm_perm σ.symm
     (fun r => family X (σ r) (π r (a r)))
 
+/--
+@isnad1 id=eq.1h2v.s5.5125fc181fae from=translated src=- shape=a1752117 vocab=cb0288d2
+-/
 theorem family_sum (X : WitnessTriple) (hX : LawfulFrameTriple X) (r : Fin 3) :
     (∑ i, family X r i) = one := by
   simpa [Fin.sum_univ_succ, family, add_assoc] using (hX r).2.2.2.1
 
+/--
+@isnad1 id=eq.1h3v.s6.3a85bdfd3d7b from=translated src=- shape=7fcaaaee vocab=de50c4ac
+-/
 theorem family_sum_perm (X : WitnessTriple) (hX : LawfulFrameTriple X)
     (r : Fin 3) (π : Equiv.Perm (Fin 3)) : (∑ i, family X r (π i)) = one := by
   rw [Equiv.sum_comp π, family_sum X hX]
 
+/--
+@isnad1 id=eq.0h3v.s6.ffc45714724b from=translated src=- shape=79b26b86 vocab=c65d3d0d
+-/
 theorem tripleForm_sum3 (x y : Coord) (z : Fin 3 → Coord) :
     (∑ i, tripleForm x y (z i)) = tripleForm x y (∑ i, z i) := by
   change (∑ i, tracePairing x ((leftMulLinear productQBilinear y) (z i))) =
     tracePairing x ((leftMulLinear productQBilinear y) (∑ i, z i))
   rw [map_sum, map_sum]
 
+/--
+@isnad1 id=eq.0h2v.s3.a8fb4ec505b7 from=translated src=- shape=fd451acd vocab=f840aec5
+-/
 theorem tripleForm_one3 (x y : Coord) : tripleForm x y one = traceForm x y := by
   unfold tripleForm
   rw [(unitLaw y).2]
 
+/--
+@isnad1 id=eq.0h3v.s6.c9dde53f53b2 from=translated src=- shape=fda52638 vocab=c65d3d0d
+-/
 theorem tripleForm_sum1 (x : Fin 3 → Coord) (y z : Coord) :
     (∑ i, tripleForm (x i) y z) = tripleForm (∑ i, x i) y z := by
   change (∑ i, (tracePairing (x i)) (structuredProduct y z)) =
     (tracePairing (∑ i, x i)) (structuredProduct y z)
   simp only [map_sum, LinearMap.sum_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.eb813ff3b5e0 from=translated src=- shape=d9b33a85 vocab=c65d3d0d
+-/
 theorem tripleForm_sum2 (x z : Coord) (y : Fin 3 → Coord) :
     (∑ i, tripleForm x (y i) z) = tripleForm x (∑ i, y i) z := by
   calc
@@ -93,14 +123,22 @@ theorem tripleForm_sum2 (x z : Coord) (y : Fin 3 → Coord) :
     _ = tripleForm x z (∑ i, y i) := tripleForm_sum3 _ _ _
     _ = _ := tripleForm_swap23 _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s3.8ed085104ae6 from=translated src=- shape=88abb201 vocab=f840aec5
+-/
 theorem tripleForm_one1 (y z : Coord) : tripleForm one y z = traceForm y z := by
   rw [tripleForm_cycle, tripleForm_swap23, tripleForm_one3, traceForm_symmetric]
 
+/--
+@isnad1 id=eq.0h2v.s3.5f771d7191e1 from=translated src=- shape=d35529e8 vocab=f840aec5
+-/
 theorem tripleForm_one2 (x z : Coord) : tripleForm x one z = traceForm z x := by
   rw [tripleForm_swap23, tripleForm_one3, traceForm_symmetric]
 
 /-- Every pair trace is a marginal of the raw tensor, so tensor symmetry forces
-symmetry of the numerical marginal matrices.-/
+symmetry of the numerical marginal matrices.
+@isnad1 id=and.1h2v.s6.c9c26baeb6e8 from=translated src=- shape=3c7bae18 vocab=ba765f0b
+-/
 theorem tensor_stabilizer_trivial (σ : Equiv.Perm (Fin 3))
     (π : Fin 3 → Equiv.Perm (Fin 3))
     (h : ∀ a, tensor witnessTheta1 a = tensor witnessTheta1 (relabel σ π a)) :

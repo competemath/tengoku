@@ -23,6 +23,9 @@ def m07W0Theta1Scratch : Coord := fun i =>
   | 22 => q (-1) 6 | 23 => q (-3) 4 | 24 => q 155 324
   | 25 => q (-151) 216 | 26 => q 89 108 | _ => 0
 
+/--
+@isnad1 id=eq.0h0v.s2.fc0a9d71f09d from=translated src=- shape=4b736592 vocab=a79ae093
+-/
 theorem m07W0_theta1_eq_scratch :
     m07W0 witnessTheta1 = m07W0Theta1Scratch := by
   funext k

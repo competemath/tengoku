@@ -65,6 +65,9 @@ def uncenteredCell (L : CarrierLedger K) (i j l : Fin 3) : K :=
   L.centered i j l +
     (L.pairEF i j + L.pairFP j l + L.pairPE l i) / 3 - 2 / 9
 
+/--
+@isnad1 id=eq.0h7v.s10.f96e64ebcee4 from=translated src=- shape=030eda94 vocab=48473bdf
+-/
 @[simp] theorem uncenteredCell_carrierLedger
     (E F P : Fin 3 → Carrier K) (i j l : Fin 3) :
     uncenteredCell (carrierLedger E F P) i j l =
@@ -74,7 +77,9 @@ def uncenteredCell (L : CarrierLedger K) (i j l : Fin 3) : K :=
   ring
 
 /-- In common split coordinates, an uncentered joint cell is exactly half
-the corresponding division-free labelled FourRow probe.-/
+the corresponding division-free labelled FourRow probe.
+@isnad1 id=eq.0h6v.s8.efb5d264b319 from=translated src=- shape=cea1c07a vocab=de8af11a
+-/
 theorem labelledProbe_eq_two_split_joint
     (f a : Mat3 K) (u v : Vec3 K) (i : Fin 3) :
     labelledProbe f a i = 2 * jordanTrace (K := K)
@@ -86,7 +91,9 @@ theorem labelledProbe_eq_two_split_joint
       Fin.sum_univ_succ, hat] <;> ring
 
 /-- Completeness of an actual grouped frame gives both vector sum equations
-used by `common_frame_scalar_fibre`.-/
+used by `common_frame_scalar_fibre`.
+@isnad1 id=and.2h5v.s10.36701ee3b4b9 from=translated src=- shape=21c8fbd0 vocab=224f9c1d
+-/
 theorem grouped_frame_threeSumZero
     (P : Fin 3 → Carrier K)
     (a : Fin 3 → Mat3 K) (u v : Fin 3 → Vec3 K)
@@ -113,7 +120,9 @@ theorem grouped_frame_threeSumZero
 third-frame top-left blocks under `hprobeOpen`. The frame equations,
 `hadj` and `hrankTwo` then give a scalar similitude matching all nine
 carrier elements. Here `hLabel` supplies the probe equalities; the later
-same-measurement theorem derives them from the full measurement record.-/
+same-measurement theorem derives them from the full measurement record.
+@isnad1 id=ex.21h14v.s14.9426d84d0d3b from=translated src=- shape=226170ec vocab=dfa9bbae
+-/
 theorem exists_split_actual_three_frame_jordanAut_of_labelled_probes
     (E F P E' F' P' : Fin 3 → Carrier K)
     (f a a' : Fin 3 → Mat3 K)
@@ -199,7 +208,9 @@ theorem exists_split_actual_three_frame_jordanAut_of_labelled_probes
 
 /-- Literal same-54-ledger endpoint after the pair has been put into common
 split coordinates.  Ledger equality is converted here, rather than by a
-premise, into the nine labelled probes consumed above.-/
+premise, into the nine labelled probes consumed above.
+@isnad1 id=ex.21h14v.s13.a629dec071ec from=translated src=- shape=70256771 vocab=e49bcf4a
+-/
 theorem exists_split_actual_three_frame_jordanAut_of_same_ledger
     (E F P E' F' P' : Fin 3 → Carrier K)
     (f a a' : Fin 3 → Mat3 K)

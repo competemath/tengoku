@@ -11,7 +11,9 @@ open AlbertLean.Generic.QuaternionRow.BlockEigenbasis
 open AlbertLean.Generic.QuaternionRow.SymplecticMatrixBridge
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- Coordinate conjugacy is transported back to the original six-space.-/
+/-- Coordinate conjugacy is transported back to the original six-space.
+@isnad1 id=eq.1h7v.s11.b7724b47941a from=translated src=- shape=6f8e9960 vocab=55d2dfa0
+-/
 theorem coordinate_transport
     (L L' : Vec6 K ≃ₗ[K] Vec6 K) (P Q : Vec6 K →ₗ[K] Vec6 K)
     (S T : Mat2 K)

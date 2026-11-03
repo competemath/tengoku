@@ -141,7 +141,9 @@ private theorem map_stageOneVector {S : Type v} [CommRing S]
     map_parity, map_firstCenter, map_one]
 
 /-- Exact coefficient naturality of all data constructed before the two lift
-roots. The inverse scalars are mapped as displayed ring elements.-/
+roots. The inverse scalars are mapped as displayed ring elements.
+@isnad1 id=eq.0h11v.s8.e7f2e78a1a3c from=translated src=- shape=b0da4bd8 vocab=53aea235
+-/
 theorem map_secondCenter {S : Type v} [CommRing S] [Algebra ℚ S]
     [Invertible (2 : S)] (f : R →+* S)
     (v1 v2 : VCoord R) (twoInv aInv a h sigma n1Inv : R) :
@@ -167,6 +169,9 @@ private theorem targetZ_field (a h sigma : K) (ha : a ≠ 0) :
   · funext i
     simp [targetZ, targetSecond, targetB, targetC, plane, planeVector]
 
+/--
+@isnad1 id=and.1h4v.s7.a05012ad9cc3 from=translated src=- shape=845e5e0d vocab=741accfe
+-/
 theorem targets_field (a h sigma : K) (ha : a ≠ 0) :
     targetT a = targetFirst a ∧
     targetZ (2 : K)⁻¹ a⁻¹ a h sigma = targetSecond a h sigma ∧
@@ -182,6 +187,9 @@ theorem targets_field (a h sigma : K) (ha : a ≠ 0) :
     rw [hc]
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.9dbed4075701 from=translated src=- shape=992009d7 vocab=6d205f0f
+-/
 theorem stageOneVector_field (v1 v2 : VCoord K) (a : K)
     (hB1 : nV (firstCenter v1 a) ≠ 0) :
     stageOneVector v1 v2 a (nV (firstCenter v1 a))⁻¹ =
@@ -192,6 +200,9 @@ theorem stageOneVector_field (v1 v2 : VCoord K) (a : K)
       (ringReflectV (firstCenter v1 a) (nV (firstCenter v1 a))⁻¹ v2) = _
   rw [← hp, ringReflectV_eq, ringReflectV_eq, evenV]
 
+/--
+@isnad1 id=eq.3h6v.s8.a95820e64f97 from=translated src=- shape=553f2576 vocab=71ea6846
+-/
 theorem secondCenter_field (v1 v2 : VCoord K) (a h sigma : K)
     (ha : a ≠ 0) (hB1 : nV (firstCenter v1 a) ≠ 0)
     (hpair : BV (targetFirst a)

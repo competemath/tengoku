@@ -98,7 +98,9 @@ theorem eq_of_goodSolution_of_trace_eq
 /-- Concrete at-most-two endpoint.  Under the shared endpoint identities,
 every good solution has a trace satisfying the same scalar quadratic; the
 preceding reconstruction lemma makes that trace injective on good solutions.
-Thus any three displayed solutions contain an equal pair.-/
+Thus any three displayed solutions contain an equal pair.
+@isnad1 id=or.7h8v.s8.62834c544081 from=translated src=- shape=0539a050 vocab=bee68413
+-/
 theorem three_goodSolutions_pairwise_eq
     (U V : Mat3 K) (c d : K)
     (hc : c ≠ 0) (hd : d ≠ 0)

@@ -27,7 +27,9 @@ def reflection (μ : A →ₗ[K] A →ₗ[K] A) (p x : A) : A :=
 
 /-- Once the polarized Jordan identity supplies the Peirce operator cubic,
 the polynomial `1 - 8L_p + 8L_p²` is involutive.  This is an intermediate
-algebra lemma, not the final Jordan-automorphism theorem.-/
+algebra lemma, not the final Jordan-automorphism theorem.
+@isnad1 id=eq.1h5v.s11.ff34a5d810b0 from=translated src=- shape=532c3585 vocab=c261b1fc
+-/
 theorem reflection_reflection
     (μ : A →ₗ[K] A →ₗ[K] A) (p : A)
     (hcubic : ∀ x,
@@ -41,7 +43,9 @@ theorem reflection_reflection
   linear_combination (norm := module)
     (-16 : K) • h3 + (32 : K) • h4
 
-/-- The same polynomial fixes the unit once `p²=p` and `p∘1=p` are known.-/
+/-- The same polynomial fixes the unit once `p²=p` and `p∘1=p` are known.
+@isnad1 id=eq.2h5v.s10.f5e4d77b82a6 from=translated src=- shape=1d5416e4 vocab=5bd2300b
+-/
 theorem reflection_one
     (μ : A →ₗ[K] A →ₗ[K] A) (one p : A)
     (hone : μ p one = p) (hidem : μ p p = p) :

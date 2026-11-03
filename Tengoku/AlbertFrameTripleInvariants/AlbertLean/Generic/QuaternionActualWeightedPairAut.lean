@@ -20,7 +20,9 @@ variable {K : Type*} [Field K] [CharZero K]
 
 /-- Actual Q1 pair comparison: equality of the displayed pair ledger on the
 weighted nonscalar-pivot open produces one genuine Jordan automorphism taking
-all three labelled projectors of each frame to their primed counterparts.-/
+all three labelled projectors of each frame to their primed counterparts.
+@isnad1 id=ex.17h11v.s14.de8eacceadf0 from=translated src=- shape=401117d6 vocab=0163d893
+-/
 theorem exists_actual_same_ledger_pair_jordanAut
     (E F E' F' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

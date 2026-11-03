@@ -44,6 +44,9 @@ def mapJ (f : K →+* L) (x : JCoord K) : JCoord L :=
   { d1 := f x.d1, d2 := f x.d2, d3 := f x.d3
     v := mapV f x.v, s := mapS f x.s, c := mapC f x.c }
 
+/--
+@isnad1 id=eq.0h4v.s6.c280bc89723d from=translated src=- shape=806d46ba vocab=a60bca86
+-/
 theorem mapJ_eq_mapSource (f : K →+* L) (x : JCoord K) :
     mapJ f x = mapSource f x := by
   apply (AlbertLean.Triality.GenericCoordinates.structuredEquivK L).injective
@@ -51,21 +54,33 @@ theorem mapJ_eq_mapSource (f : K →+* L) (x : JCoord K) :
   funext i
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.3b0dda342543 from=translated src=- shape=8b42bc84 vocab=fc24f67b
+-/
 theorem mapPf (f : K →+* L) (w : W K) :
     Pf (mapW f w) = f (Pf w) := by
   rw [pf_coordinate, pf_coordinate]
   simp [mapW]
 
+/--
+@isnad1 id=eq.0h4v.s6.2d7c2749c8ff from=translated src=- shape=8b42bc84 vocab=70b6e34e
+-/
 theorem map_nV (f : K →+* L) (x : VCoord K) :
     nV (mapV f x) = f (nV x) := by
   simp only [nV, mapV, map_mul]
   rw [mapPf]
   simp only [map_add, map_mul]
 
+/--
+@isnad1 id=eq.0h5v.s7.7aac2c3b5d16 from=translated src=- shape=57185446 vocab=724b84df
+-/
 theorem map_BV (f : K →+* L) (x y : VCoord K) :
     BV (mapV f x) (mapV f y) = f (BV x y) := by
   simp [BV, mapV, BW, mapW]
 
+/--
+@isnad1 id=eq.0h7v.s7.c90fc73427a2 from=translated src=- shape=e9f2afc2 vocab=3759d760
+-/
 theorem map_center (f : K →+* L) (alpha r : K) (omega : W K) (rho : K) :
     mapV f (center alpha r omega rho) =
       center (f alpha) (f r) (mapW f omega) (f rho) := by
@@ -75,7 +90,9 @@ theorem map_center (f : K →+* L) (alpha r : K) (omega : W K) (rho : K) :
   · rfl
 
 /-- Division-free numerator identity for the sole rational coordinate of the
-eight-parameter center chart.-/
+eight-parameter center chart.
+@isnad1 id=eq.2h5v.s7.5a0631990d45 from=translated src=- shape=a39fecc5 vocab=53b1062b
+-/
 theorem center_cleared (alpha r : K) (omega : W K) (rho : K)
     (ha : alpha ≠ 0) (hr : r ≠ 0) :
     alpha * r * (center alpha r omega rho).z =
@@ -83,9 +100,15 @@ theorem center_cleared (alpha r : K) (omega : W K) (rho : K)
   simp only [center]
   field_simp [ha, hr]
 
+/--
+@isnad1 id=eq.0h5v.s7.374de4700bbf from=translated src=- shape=2b16d41d vocab=059ee57e
+-/
 theorem map_open_denominator (f : K →+* L) (r rho : K) :
     f (r * rho) = f r * f rho := map_mul f r rho
 
+/--
+@isnad1 id=eq.0h5v.s6.b34fe190e918 from=translated src=- shape=47357877 vocab=7bbc1e6f
+-/
 theorem map_reflectV (f : K →+* L) (a x : VCoord K) :
     mapV f (reflectV a x) = reflectV (mapV f a) (mapV f x) := by
   have hquot : f (BV a x / nV a) =
@@ -97,20 +120,32 @@ theorem map_reflectV (f : K →+* L) (a x : VCoord K) :
   · funext i
     simp [reflectV, mapV, mapW, hquot]
 
+/--
+@isnad1 id=eq.0h6v.s6.3f3506c77569 from=translated src=- shape=823d5c5e vocab=5070d18b
+-/
 theorem map_evenV (f : K →+* L) (a b x : VCoord K) :
     mapV f (evenV a b x) = evenV (mapV f a) (mapV f b) (mapV f x) := by
   simp only [evenV, map_reflectV]
 
+/--
+@isnad1 id=eq.0h5v.s6.c62fb1b00234 from=translated src=- shape=fa7352ce vocab=d4587ab3
+-/
 theorem map_sourceMuS (f : K →+* L) (c : CCoord K) (x : VCoord K) :
     mapS f (sourceMuS c x) = sourceMuS (mapC f c) (mapV f x) := by
   apply SCoord.ext <;> funext i <;> fin_cases i <;>
     simp [sourceMuS, mapS, mapC, mapV, mapW] <;> ring
 
+/--
+@isnad1 id=eq.0h5v.s6.a84f152352e0 from=translated src=- shape=fa7352ce vocab=912f9fa5
+-/
 theorem map_sourceMuC (f : K →+* L) (x : VCoord K) (s : SCoord K) :
     mapC f (sourceMuC x s) = sourceMuC (mapV f x) (mapS f s) := by
   apply CCoord.ext <;> funext i <;> fin_cases i <;>
     simp [sourceMuC, mapS, mapC, mapV, mapW] <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s7.74582367957d from=translated src=- shape=17d871b4 vocab=57f19750
+-/
 theorem map_evenS (f : K →+* L) (a b : VCoord K) (rho : K) (s : SCoord K) :
     mapS f (evenS a b rho s) =
       evenS (mapV f a) (mapV f b) (f rho) (mapS f s) := by
@@ -118,6 +153,9 @@ theorem map_evenS (f : K →+* L) (a b : VCoord K) (rho : K) (s : SCoord K) :
   apply SCoord.ext <;> funext i <;>
     simp [mapS, map_inv₀]
 
+/--
+@isnad1 id=eq.0h7v.s7.ceadcce12381 from=translated src=- shape=17d871b4 vocab=e8d5953d
+-/
 theorem map_evenC (f : K →+* L) (a b : VCoord K) (rho : K) (c : CCoord K) :
     mapC f (evenC a b rho c) =
       evenC (mapV f a) (mapV f b) (f rho) (mapC f c) := by
@@ -126,7 +164,9 @@ theorem map_evenC (f : K →+* L) (a b : VCoord K) (rho : K) (c : CCoord K) :
     simp [mapC, map_inv₀]
 
 /-- Naturality of the actual source-even coordinate formula.  The proof
-objects establishing anisotropy and the root equation do not enter the map.-/
+objects establishing anisotropy and the root equation do not enter the map.
+@isnad1 id=eq.4h7v.s10.3e65f9a5f067 from=translated src=- shape=7b09ec9f vocab=855d1f85
+-/
 theorem map_evenJEquiv
     (f : K →+* L) (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)
@@ -148,7 +188,9 @@ theorem map_evenJEquiv
   · exact map_evenC f a b rho x.c
 
 /-- Full-family field-hom naturality.  This is the coefficient identity used
-before clearing numerators in a grid argument.-/
+before clearing numerators in a grid argument.
+@isnad1 id=eq.3h8v.s10.84160e3767d8 from=translated src=- shape=96d91238 vocab=c5bf2a3c
+-/
 theorem familyAut_natural
     (f : K →+* L) (A : VCoord K) (hA : nV A ≠ 0)
     (r : K) (omega : W K) (rho : K) (hr : r ≠ 0) (hp : rho ≠ 0)

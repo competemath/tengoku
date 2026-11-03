@@ -21,6 +21,9 @@ private theorem regression_traceCube_of_trace_zero (x : Coord)
   simp only [traceN_structuredProduct_eq_traceForm] at hn
   linear_combination (3 : ℚ) * hn
 
+/--
+@isnad1 id=and.0h0v.s5.75674e6dd7a9 from=translated src=- shape=aeba8697 vocab=2df9a07d
+-/
 theorem regressionM07 :
     m07TraceCubeDetector witnessTheta1 = q 656291 62208 ∧
     m07TraceCubeDetector witnessTheta1 ≠ q (-2591357) 62208 := by

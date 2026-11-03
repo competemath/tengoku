@@ -143,7 +143,9 @@ private theorem standardProjector_matrix (i : Fin 3) :
 
 /-- One actual weighted pair, one ordered discriminant root, one symplectic
 basis. All six labelled first/second-frame projectors are split by this same
-basis. No eigenbasis, split-frame, or conjugacy premise appears.-/
+basis. No eigenbasis, split-frame, or conjugacy premise appears.
+@isnad1 id=ex.9h8v.s13.a553783be762 from=translated src=- shape=2259b4ef vocab=102e8144
+-/
 theorem exists_actual_common_splitter
     (E F : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -420,7 +422,9 @@ private theorem actual_common_splitter_of_ordered_split
   · exact hF2
 
 /-- A supplied cyclic vector constructs the ordered basis used by the actual
-splitter. Its cyclic determinant is the only extra open condition.-/
+splitter. Its cyclic determinant is the only extra open condition.
+@isnad1 id=other.9h10v.s13.6fdf851ec596 from=translated src=- shape=31d524ed vocab=d267fdee
+-/
 theorem actual_common_splitter_of_cyclic_vector
     (E F : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

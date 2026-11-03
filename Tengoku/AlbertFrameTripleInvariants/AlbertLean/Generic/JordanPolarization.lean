@@ -57,18 +57,25 @@ def polarizationMap (μ : V →ₗ[K] V →ₗ[K] V) :
         simp [polarization, term, Function.update_apply, map_smul,
           LinearMap.smul_apply, smul_add, smul_sub])
 
+/--
+@isnad1 id=eq.0h4v.s8.fe7901af5260 from=translated src=- shape=f8bad030 vocab=1d3b6956
+-/
 @[simp] theorem polarizationMap_apply
     (μ : V →ₗ[K] V →ₗ[K] V) (z : Fin 4 → V) :
     polarizationMap μ z = polarization μ (z 0) (z 1) (z 2) (z 3) := rfl
 
-/-- On the cubic diagonal each of the six terms is exactly the residual.-/
+/-- On the cubic diagonal each of the six terms is exactly the residual.
+@isnad1 id=eq.0h5v.s8.0d92e785b4d6 from=translated src=- shape=4c05b1c1 vocab=3a22e427
+-/
 theorem polarization_diagonal (μ : V →ₗ[K] V →ₗ[K] V) (x y : V) :
     polarization μ x x x y = (6 : K) • residual μ x y := by
   dsimp only [polarization, term, residual]
   module
 
 /-- The eight-subset polarization formula, including its identically zero
-empty-subset term. It needs bilinearity alone, not commutativity or division.-/
+empty-subset term. It needs bilinearity alone, not commutativity or division.
+@isnad1 id=eq.0h7v.s8.f77dcb0429a4 from=translated src=- shape=226bc5c1 vocab=fc9e18a2
+-/
 theorem polarization_eq_alternating
     (μ : V →ₗ[K] V →ₗ[K] V) (a b c y : V) :
     polarization μ a b c y =
@@ -80,13 +87,18 @@ theorem polarization_eq_alternating
   abel
 
 /-- An all-vector Jordan identity implies the corresponding four-linear
-identity, ready for a separately proved structure-constant extension.-/
+identity, ready for a separately proved structure-constant extension.
+@isnad1 id=eq.1h7v.s7.fee2d4844353 from=translated src=- shape=f29e9a9c vocab=f5530fe5
+-/
 theorem polarization_eq_zero_of_residual_eq_zero
     (μ : V →ₗ[K] V →ₗ[K] V) (h : ∀ x y, residual μ x y = 0)
     (a b c y : V) : polarization μ a b c y = 0 := by
   rw [polarization_eq_alternating]
   simp only [h, sub_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h3v.s8.d0290e70510d from=translated src=- shape=15982511 vocab=14b3ceb2
+-/
 theorem polarizationMap_eq_zero_of_residual_eq_zero
     (μ : V →ₗ[K] V →ₗ[K] V) (h : ∀ x y, residual μ x y = 0) :
     polarizationMap μ = 0 := by

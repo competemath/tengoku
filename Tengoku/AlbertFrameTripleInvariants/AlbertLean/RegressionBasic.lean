@@ -13,6 +13,9 @@ open Generated
 set_option maxRecDepth 200000
 set_option maxHeartbeats 1000000
 
+/--
+@isnad1 id=and.0h0v.s7.f3fb6d262b1b from=translated src=- shape=07ba4c74 vocab=5d753194
+-/
 theorem regressionM01 :
     m01TensorProduct (basisVec 0) (basisVec 11) (11 : Slot) = q (-1) 2 ∧
     m01TensorProduct (basisVec 11) (basisVec 0) (11 : Slot) = q 1 2 ∧
@@ -35,6 +38,9 @@ theorem regressionM01 :
     simp [m01TensorProduct, tensorProduct_eq_productForm] at h11
     norm_num [productForm, basisVec, v, q, Fin.ext_iff] at h11
 
+/--
+@isnad1 id=and.0h0v.s6.196a36280d26 from=translated src=- shape=b35ef2c3 vocab=870d0ab8
+-/
 theorem regressionM02 :
     m02Product one (basisVec 0) (0 : Slot) = q 2 1 ∧
     m02Product one (basisVec 0) ≠ basisVec 0 := by
@@ -49,6 +55,9 @@ theorem regressionM02 :
     rw [hprod, (unitLaw (basisVec 0)).1] at h0
     norm_num [basisVec, q] at h0
 
+/--
+@isnad1 id=and.0h0v.s4.b5535c22072b from=translated src=- shape=68498e05 vocab=ac977899
+-/
 theorem regressionM05 :
     traceN m05ThetaMK = q 1 1 ∧
     ¬ LawfulFrameTriple m05WitnessThetaM := by
@@ -63,6 +72,9 @@ theorem regressionM05 :
   rw [htrace] at hzero'
   norm_num [q] at hzero'
 
+/--
+@isnad1 id=and.0h0v.s5.70317f6f80e5 from=translated src=- shape=b6999875 vocab=437b2d3e
+-/
 theorem regressionM04T :
     cubicNorm m04TTheta1.cF = q 245 54 ∧
     cubicNorm m04TThetaM.cF = q 245 54 ∧
@@ -92,6 +104,9 @@ theorem regressionM04T :
     rw [hnm] at hzero'
     norm_num [q] at hzero'
 
+/--
+@isnad1 id=and.0h0v.s6.332bb9ea84da from=translated src=- shape=0211ad01 vocab=2e42c446
+-/
 theorem regressionM11 :
     m11ProductTrace (basisVec 0) = q 9 8 ∧
     m11ProductTrace (basisVec 0) ≠ traceN (basisVec 0) := by

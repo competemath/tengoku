@@ -40,6 +40,9 @@ private theorem sourceResidual_zero (x y : JCoord K) :
 def sourcePeirceReflection (p x : JCoord K) : JCoord K :=
   PeircePolynomial.reflection (sourceProductLinear (K := K)) p x
 
+/--
+@isnad1 id=eq.0h3v.s8.762a5002bb15 from=translated src=- shape=1c6f9b5c vocab=48ba2e17
+-/
 theorem sourcePeirceReflection_formula (p x : JCoord K) :
     sourcePeirceReflection p x =
       x - (8 : K) • sourceProduct p x +
@@ -51,18 +54,27 @@ def sourcePeirceLinearEquiv (p : JCoord K)
     (hp : sourceProduct p p = p) : JCoord K ≃ₗ[K] JCoord K :=
   reflectionEquiv sourceProductLinear sourceProduct_comm sourceResidual_zero p hp
 
+/--
+@isnad1 id=eq.1h3v.s8.b89c14de1847 from=translated src=- shape=75616c00 vocab=3344fe83
+-/
 @[simp] theorem sourcePeirceLinearEquiv_apply (p : JCoord K)
     (hp : sourceProduct p p = p) (x : JCoord K) :
     sourcePeirceLinearEquiv p hp x = sourcePeirceReflection p x := by
   exact reflectionEquiv_apply sourceProductLinear sourceProduct_comm
     sourceResidual_zero p hp x
 
+/--
+@isnad1 id=eq.1h2v.s8.e7a1e65ce0cb from=translated src=- shape=044f4cd3 vocab=d5f056e3
+-/
 @[simp] theorem sourcePeirceLinearEquiv_one (p : JCoord K)
     (hp : sourceProduct p p = p) :
     sourcePeirceLinearEquiv p hp sourceOne = sourceOne := by
   exact reflectionEquiv_unit sourceProductLinear sourceProduct_comm
     sourceResidual_zero sourceOne p (sourceProduct_one_right p) hp
 
+/--
+@isnad1 id=eq.1h4v.s10.6bf10f9cf40f from=translated src=- shape=aa40084e vocab=75e4b733
+-/
 theorem sourcePeirceLinearEquiv_product (p : JCoord K)
     (hp : sourceProduct p p = p) (x y : JCoord K) :
     sourcePeirceLinearEquiv p hp (sourceProduct x y) =

@@ -33,6 +33,9 @@ def anchor (a0 b0 : Mat3 K) : Mat3 K := b0⁻¹ * a0
 def normalizedX (a0 b0 b1 : Mat3 K) : Mat3 K :=
   (b1 * anchor a0 b0) * a0⁻¹
 
+/--
+@isnad1 id=and.2h3v.s9.00e80250b3b7 from=translated src=- shape=9b0653db vocab=e1d0ba00
+-/
 theorem anchor_properties (a0 b0 : Mat3 K)
     (ha0 : a0.det ≠ 0) (hb0 : b0.det = a0.det) :
     (anchor a0 b0).det = 1 ∧ b0 * anchor a0 b0 = a0 ∧
@@ -50,13 +53,18 @@ theorem anchor_properties (a0 b0 : Mat3 K)
   · rw [mul_assoc, ← mul_assoc a0, Matrix.mul_nonsing_inv a0 ha,
       one_mul, Matrix.nonsing_inv_mul b0 hb]
 
+/--
+@isnad1 id=eq.2h4v.s7.981697851853 from=translated src=- shape=8b7f010d vocab=4d22ea10
+-/
 theorem anchor_unique (a0 b0 h : Mat3 K) (hb0 : b0.det ≠ 0)
     (hh : b0 * h = a0) : h = anchor a0 b0 := by
   have hm := congrArg (fun Z : Mat3 K => b0⁻¹ * Z) hh
   simpa only [anchor, ← mul_assoc,
     Matrix.nonsing_inv_mul b0 (isUnit_iff_ne_zero.mpr hb0), one_mul] using hm
 
-/-- An explicit left inverse suffices for square matrices over a field.-/
+/-- An explicit left inverse suffices for square matrices over a field.
+@isnad1 id=eq.2h4v.s8.d661f29f00ce from=translated src=- shape=3e985566 vocab=71600ab3
+-/
 theorem inverse_after_right_change (b g h : Mat3 K)
     (hb : b.det ≠ 0) (hgh : g * h = 1) :
     (b * h)⁻¹ = g * b⁻¹ := by
@@ -64,7 +72,9 @@ theorem inverse_after_right_change (b g h : Mat3 K)
   rw [mul_assoc, ← mul_assoc b⁻¹,
     Matrix.nonsing_inv_mul b (isUnit_iff_ne_zero.mpr hb), one_mul, hgh]
 
-/-- The inverse-adjugate sum transforms by left multiplication.-/
+/-- The inverse-adjugate sum transforms by left multiplication.
+@isnad1 id=eq.4h9v.s9.9aa0f2d7dcad from=translated src=- shape=bed41980 vocab=d4671d1d
+-/
 theorem cslotSum_right_change
     (b0 b1 b2 A0 A1 A2 g h : Mat3 K)
     (hb0 : b0.det ≠ 0) (hb1 : b1.det ≠ 0) (hb2 : b2.det ≠ 0)
@@ -75,7 +85,9 @@ theorem cslotSum_right_change
     inverse_after_right_change b1 g h hb1 hgh,
     inverse_after_right_change b2 g h hb2 hgh, mul_add, mul_assoc]
 
-/-- A zero second-component sum gives the complete normalized parameterization.-/
+/-- A zero second-component sum gives the complete normalized parameterization.
+@isnad1 id=and.3h5v.s9.7d80294cf0ca from=translated src=- shape=19ecfce5 vocab=b948ab02
+-/
 theorem normalized_second_components
     (a0 b0 b1 b2 : Mat3 K) (ha0 : a0.det ≠ 0)
     (hb0 : b0.det = a0.det) (hsum : b0 + b1 + b2 = 0) :
@@ -95,7 +107,9 @@ theorem normalized_second_components
   simpa only [neg_mul, add_mul, one_mul] using ht
 
 /-- Every invertible raw component system can be anchored before applying the
-existing reconstruction theorem. The reconstruction denominator remains explicit.-/
+existing reconstruction theorem. The reconstruction denominator remains explicit.
+@isnad1 id=componen.9h7v.s9.95c5c288df00 from=translated src=- shape=35970013 vocab=2cf3b2e3
+-/
 theorem componentSolution_of_raw
     (a0 a1 a2 b0 b1 b2 : Mat3 K)
     (ha0 : a0.det ≠ 0) (ha1 : a1.det ≠ 0) (ha2 : a2.det ≠ 0)

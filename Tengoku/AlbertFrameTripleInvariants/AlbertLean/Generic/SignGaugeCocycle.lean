@@ -20,19 +20,26 @@ namespace AlbertLean.Generic.RealRow
 
 variable {K : Type*} [Field K]
 
-/-- A scalar whose square is one is nonzero and is its own inverse.-/
+/-- A scalar whose square is one is nonzero and is its own inverse.
+@isnad1 id=ne.1h2v.s6.366445dde739 from=translated src=- shape=b0e5c05c vocab=73a33ec7
+-/
 theorem sign_ne_zero {x : K} (hx : x ^ 2 = 1) : x ≠ 0 := by
   intro h
   rw [h, zero_pow (by decide : 2 ≠ 0)] at hx
   exact zero_ne_one hx
 
+/--
+@isnad1 id=eq.1h2v.s6.b95d6135ff87 from=translated src=- shape=437d50a0 vocab=f98f2d4f
+-/
 theorem sign_mul_self {x : K} (hx : x ^ 2 = 1) : x * x = 1 := by
   simpa only [pow_two] using hx
 
 /-- Triangle signs factor through signs at the three vertex sets.  The chosen
 gauge is `epsilon i = s i 0`, `eta j = s 0 0 * s 0 j`, and
 `zeta l = t 0 l`.  Simultaneously negating all three families leaves the edge signs unchanged;
-no uniqueness or exact-kernel assertion is needed here.-/
+no uniqueness or exact-kernel assertion is needed here.
+@isnad1 id=ex.4h4v.s9.64b011a53de4 from=translated src=- shape=008d191b vocab=aafd7ad2
+-/
 theorem sign_cocycle_factorization
     (s t r : Fin 3 → Fin 3 → K)
     (hs : ∀ i j, (s i j) ^ 2 = 1)
@@ -105,7 +112,9 @@ theorem sign_cocycle_factorization
 
 /-- Equal nonzero overlap squares and equal oriented triple cells imply exact
 three-sided vertex-sign gauge equivalence.  This is the source normalization
-statement in overlap coordinates, with no selected square roots.-/
+statement in overlap coordinates, with no selected square roots.
+@isnad1 id=ex.7h7v.s9.daf8f3361852 from=translated src=- shape=797a42ba vocab=aafd7ad2
+-/
 theorem overlap_triples_gauge_related
     (U V W U' V' W' : Fin 3 → Fin 3 → K)
     (hUnz : ∀ i j, U i j ≠ 0) (hVnz : ∀ j l, V j l ≠ 0)

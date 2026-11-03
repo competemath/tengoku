@@ -46,18 +46,26 @@ private theorem f0Product_rat_eq_structuredProduct (x y : Coord) :
     mapCoordQK_self (structuredProduct x y)] at h
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s6.132f7259c5aa from=translated src=- shape=b5e67756 vocab=3e7ff844
+-/
 theorem rational_f0_residual_zero (x y : Coord) :
     residual (f0ProductLinearK (K := ℚ)) x y = 0 := by
   rw [residual]
   simp only [f0ProductLinearK_apply, f0Product_rat_eq_structuredProduct]
   exact sub_eq_zero.mpr (AlbertLean.jordanIdentity x y)
 
+/--
+@isnad1 id=eq.0h4v.s6.cca00f149547 from=translated src=- shape=9c4b815a vocab=87105683
+-/
 theorem rational_f0_polarization_zero (a b c y : Coord) :
     polarization (f0ProductLinearK (K := ℚ)) a b c y = 0 := by
   exact polarization_eq_zero_of_residual_eq_zero
     (f0ProductLinearK (K := ℚ)) rational_f0_residual_zero a b c y
 
-/-- Scalar extension commutes with the explicit six-term polarization.-/
+/-- Scalar extension commutes with the explicit six-term polarization.
+@isnad1 id=eq.0h5v.s7.f318b43f9553 from=translated src=- shape=a20c38c5 vocab=52a38090
+-/
 theorem f0Polarization_mapCoordQK (a b c y : Coord) :
     polarization (f0ProductLinearK (K := K))
         (mapCoordQK K a) (mapCoordQK K b)
@@ -68,6 +76,9 @@ theorem f0Polarization_mapCoordQK (a b c y : Coord) :
     f0ProductK_mapCoordQK, mapCoordQK_add, mapCoordQK_sub,
     f0Product_rat_eq_structuredProduct]
 
+/--
+@isnad1 id=eq.0h5v.s9.3cb383c77368 from=translated src=- shape=4008c0ae vocab=8b702ff7
+-/
 theorem f0Polarization_basis_zero (i₀ i₁ i₂ i₃ : Fin 27) :
     polarization (f0ProductLinearK (K := K))
         (Pi.basisFun K (Fin 27) i₀) (Pi.basisFun K (Fin 27) i₁)
@@ -80,7 +91,9 @@ theorem f0Polarization_basis_zero (i₀ i₁ i₂ i₃ : Fin 27) :
     mapCoordQK_zero]
 
 /-- Four symbolic basis slots suffice because the polarization is genuinely
-four-linear.-/
+four-linear.
+@isnad1 id=eq.0h1v.s9.2f8c828b32df from=translated src=- shape=f8e9d0e2 vocab=99143d0c
+-/
 theorem f0PolarizationMap_eq_zero :
     polarizationMap (f0ProductLinearK (K := K)) = 0 := by
   apply Module.Basis.ext_multilinear
@@ -89,7 +102,9 @@ theorem f0PolarizationMap_eq_zero :
   simp only [polarizationMap_apply, zero_apply]
   exact f0Polarization_basis_zero (K := K) (v 0) (v 1) (v 2) (v 3)
 
-/-- The generic F0 tensor satisfies the Jordan identity.-/
+/-- The generic F0 tensor satisfies the Jordan identity.
+@isnad1 id=eq.0h3v.s5.c714c9b3c876 from=translated src=- shape=ad5a2b24 vocab=11cb1bd3
+-/
 theorem f0JordanIdentity (x y : F0Coord K) :
     f0ProductK (f0ProductK x y) (f0ProductK x x) =
       f0ProductK x (f0ProductK y (f0ProductK x x)) := by
@@ -105,7 +120,9 @@ theorem f0JordanIdentity (x y : F0Coord K) :
     simpa only [residual, f0ProductLinearK_apply] using hr)
 
 /-- The accepted source product satisfies the Jordan identity over every
-characteristic-zero field.-/
+characteristic-zero field.
+@isnad1 id=eq.0h3v.s5.e60ee261472c from=translated src=- shape=ad5a2b24 vocab=3cafcf91
+-/
 theorem sourceJordanIdentity (x y : JCoord K) :
     sourceProduct (sourceProduct x y) (sourceProduct x x) =
       sourceProduct x (sourceProduct y (sourceProduct x x)) := by

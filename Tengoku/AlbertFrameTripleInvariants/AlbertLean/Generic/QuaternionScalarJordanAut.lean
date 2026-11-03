@@ -16,6 +16,9 @@ open AlbertLean.Generic.QuaternionRow.SelfAdjointCarrier
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=isselfad.1h3v.s9.2bdb5ddba4dd from=translated src=- shape=f49e34a4 vocab=1cb34711
+-/
 theorem conjugate_mem (t : K) (ht : t ≠ 0) (P : Carrier K) :
     IsSelfAdjoint
       (scalarSimilitude t * (P : Mat6 K) * scalarSimilitudeInv t) := by
@@ -33,6 +36,9 @@ def actLinear (t : K) (ht : t ≠ 0) : Carrier K →ₗ[K] Carrier K where
     apply Subtype.ext
     simp [Matrix.mul_smul, Matrix.smul_mul]
 
+/--
+@isnad1 id=eq.1h3v.s11.e2e0a96672a4 from=translated src=- shape=85bf8363 vocab=4f3b0137
+-/
 @[simp] theorem actLinear_coe (t : K) (ht : t ≠ 0) (P : Carrier K) :
     ((actLinear t ht P : Carrier K) : Mat6 K) =
       scalarSimilitude t * P * scalarSimilitudeInv t := rfl
@@ -96,6 +102,9 @@ def scalarAut (t : K) (ht : t ≠ 0) : Aut (K := K) where
     apply Subtype.ext
     exact scalarSimilitude_map_jordan t ht A B
 
+/--
+@isnad1 id=eq.2h6v.s11.084e03587ef3 from=translated src=- shape=7fc06217 vocab=c89885c4
+-/
 @[simp] theorem scalarAut_grouped
     (t : K) (ht : t ≠ 0) (a : ScalarFibre.Mat3 K)
     (u v : ScalarFibre.Vec3 K)

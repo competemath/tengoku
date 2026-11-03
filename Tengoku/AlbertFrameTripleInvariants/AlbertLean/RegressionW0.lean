@@ -22,6 +22,9 @@ def w0Theta1Scratch : Coord := fun i =>
   | 21 => q 1 6 | 22 => 0 | 23 => q 1 2 | 24 => q (-7) 12
   | 25 => q 11 216 | 26 => q 1 12 | _ => 0
 
+/--
+@isnad1 id=eq.0h0v.s2.faa426a3f6e2 from=translated src=- shape=4b736592 vocab=b073d83e
+-/
 theorem W0_theta1_eq_scratch : W0 witnessTheta1 = w0Theta1Scratch := by
   funext k
   fin_cases k <;>

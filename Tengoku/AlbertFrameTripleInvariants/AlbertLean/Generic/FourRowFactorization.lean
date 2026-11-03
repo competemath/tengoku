@@ -27,7 +27,9 @@ section AbstractRing
 variable {A : Type*} [Ring A]
 
 /-- The ordered noncommutative factorization behind the characteristic
-polynomial argument.  Only the displayed commutation with `r` is needed.-/
+polynomial argument.  Only the displayed commutation with `r` is needed.
+@isnad1 id=eq.2h5v.s7.7d06cda3ce91 from=translated src=- shape=69d24692 vocab=b3099133
+-/
 theorem quadratic_factor_of_right_quadratic
     (r X U V : A) (hrX : r * X = X * r)
     (hquad : X ^ 2 + X * U + V = 0) :
@@ -58,7 +60,9 @@ def quadraticPolynomial (U V : Matrix n n R) : R[X] :=
   (quadraticMatrix U V).det
 
 /-- A right-quadratic solution factors its polynomial matrix into the
-characteristic matrices of `X` and its complement `-U-X`.-/
+characteristic matrices of `X` and its complement `-U-X`.
+@isnad1 id=eq.1h5v.s8.5a62fcf79d0b from=translated src=- shape=a64d6fe3 vocab=d1b0f70d
+-/
 theorem quadraticMatrix_eq_charmatrix_mul_charmatrix
     (X U V : Matrix n n R)
     (hquad : X ^ 2 + X * U + V = 0) :
@@ -87,7 +91,9 @@ theorem quadraticMatrix_eq_charmatrix_mul_charmatrix
   exact hfactor.symm
 
 /-- Determinant multiplicativity turns the direct matrix factorization into
-the desired product of characteristic polynomials.-/
+the desired product of characteristic polynomials.
+@isnad1 id=eq.1h5v.s8.f055ed4d4c7e from=translated src=- shape=943d210a vocab=50310477
+-/
 theorem quadraticPolynomial_eq_charpoly_mul
     (X U V : Matrix n n R)
     (hquad : X ^ 2 + X * U + V = 0) :
@@ -97,7 +103,9 @@ theorem quadraticPolynomial_eq_charpoly_mul
     Matrix.det_mul]
   rfl
 
-/-- Evaluation at zero recovers the constant determinant.-/
+/-- Evaluation at zero recovers the constant determinant.
+@isnad1 id=eq.0h4v.s5.e9b4f36b4d0c from=translated src=- shape=e9591043 vocab=a73d74e8
+-/
 theorem quadraticPolynomial_eval_zero (U V : Matrix n n R) :
     (quadraticPolynomial U V).eval 0 = V.det := by
   rw [quadraticPolynomial, ← Polynomial.coe_evalRingHom, RingHom.map_det]
@@ -107,7 +115,9 @@ theorem quadraticPolynomial_eval_zero (U V : Matrix n n R) :
     simp [quadraticMatrix, Matrix.scalar_apply, pow_two,
       Matrix.diagonal_mul_diagonal, hij]
 
-/-- Evaluation at minus one gives `det(I-U+V)`.-/
+/-- Evaluation at minus one gives `det(I-U+V)`.
+@isnad1 id=eq.0h4v.s7.69239c932f33 from=translated src=- shape=712f2d59 vocab=02ebdbba
+-/
 theorem quadraticPolynomial_eval_neg_one (U V : Matrix n n R) :
     (quadraticPolynomial U V).eval (-1) = (1 - U + V).det := by
   rw [quadraticPolynomial, ← Polynomial.coe_evalRingHom, RingHom.map_det]
@@ -124,7 +134,9 @@ section ThreeByThree
 variable {R : Type*} [CommRing R]
 
 /-- For a three-by-three matrix, the characteristic polynomial at zero is
-minus the determinant.-/
+minus the determinant.
+@isnad1 id=eq.0h2v.s6.06acc7933e0f from=translated src=- shape=bc7b4f5d vocab=58619dc0
+-/
 theorem charpoly_eval_zero_three (M : Matrix (Fin 3) (Fin 3) R) :
     M.charpoly.eval 0 = -M.det := by
   rw [Matrix.eval_charpoly]
@@ -133,7 +145,9 @@ theorem charpoly_eval_zero_three (M : Matrix (Fin 3) (Fin 3) R) :
   simp [pow_succ]
 
 /-- For a three-by-three matrix, evaluation at minus one is
-`-det(I+M)`.-/
+`-det(I+M)`.
+@isnad1 id=eq.0h2v.s8.8c768fd61a23 from=translated src=- shape=4a024604 vocab=398272e9
+-/
 theorem charpoly_eval_neg_one_three (M : Matrix (Fin 3) (Fin 3) R) :
     M.charpoly.eval (-1) = -(1 + M).det := by
   rw [Matrix.eval_charpoly]
@@ -152,7 +166,9 @@ variable {K : Type*} [Field K]
 
 /-- Under the two determinant constraints, the complementary characteristic
 factor has the same values at zero and minus one as the original factor.
-The nonzero hypotheses are precisely the cancellation assumptions.-/
+The nonzero hypotheses are precisely the cancellation assumptions.
+@isnad1 id=other.7h6v.s10.8d2eb4a8ae07 from=translated src=- shape=ab2b3f46 vocab=03896615
+-/
 theorem complementary_charpoly_endpoints
     (X U V : Matrix (Fin 3) (Fin 3) K) (c d : K)
     (hquad : X ^ 2 + X * U + V = 0)

@@ -34,16 +34,24 @@ def symplecticJ : Mat6 K :=
 def grouped (a : Mat3 K) (u v : Vec3 K) : Mat6 K :=
   Matrix.fromBlocks a (hat u) (hat v) a.transpose
 
+/--
+@isnad1 id=eq.0h2v.s6.74f1d63b2bf7 from=translated src=- shape=4475fbad vocab=19a03f87
+-/
 @[simp] theorem hat_transpose (u : Vec3 K) : (hat u).transpose = -hat u := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [hat, Matrix.transpose_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.dc7bcaddf98b from=translated src=- shape=67b8137e vocab=97f31c76
+-/
 @[simp] theorem hat_smul (t : K) (u : Vec3 K) : hat (t • u) = t • hat u := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [hat]
 
 /-- The grouped matrices are precisely presented with the required
-symplectic-selfadjoint sign: `PᵀJ=JP`.-/
+symplectic-selfadjoint sign: `PᵀJ=JP`.
+@isnad1 id=eq.0h4v.s7.2502a1bea59d from=translated src=- shape=04713b1f vocab=451dbf3b
+-/
 theorem grouped_symplectic_selfadjoint (a : Mat3 K) (u v : Vec3 K) :
     (grouped a u v).transpose * symplecticJ =
       symplecticJ * grouped a u v := by
@@ -60,6 +68,9 @@ def scalarSimilitude (t : K) : Mat6 K :=
 def scalarSimilitudeInv (t : K) : Mat6 K :=
   Matrix.fromBlocks (t⁻¹ • (1 : Mat3 K)) 0 0 1
 
+/--
+@isnad1 id=eq.1h2v.s7.1138c4e20003 from=translated src=- shape=39ced7a1 vocab=4d2fdd6d
+-/
 theorem scalarSimilitude_mul_inv (t : K) (ht : t ≠ 0) :
     scalarSimilitude t * scalarSimilitudeInv t = 1 := by
   ext i j
@@ -68,6 +79,9 @@ theorem scalarSimilitude_mul_inv (t : K) (ht : t ≠ 0) :
     simp [scalarSimilitude, scalarSimilitudeInv, Matrix.mul_apply,
       Fintype.sum_sum_type, Matrix.one_apply, Fin.sum_univ_succ, ht]
 
+/--
+@isnad1 id=eq.1h2v.s7.e6db49f0ac15 from=translated src=- shape=39ced7a1 vocab=4d2fdd6d
+-/
 theorem scalarSimilitude_inv_mul (t : K) (ht : t ≠ 0) :
     scalarSimilitudeInv t * scalarSimilitude t = 1 := by
   ext i j
@@ -77,7 +91,9 @@ theorem scalarSimilitude_inv_mul (t : K) (ht : t ≠ 0) :
       Fintype.sum_sum_type, Matrix.one_apply, Fin.sum_univ_succ, ht]
 
 /-- Direct calculation of `h_tᵀ J h_t=tJ`; this is a similitude, and no
-square root of `t` is chosen.-/
+square root of `t` is chosen.
+@isnad1 id=eq.0h2v.s7.492dbf304c25 from=translated src=- shape=5c07be5b vocab=db9e0c12
+-/
 theorem scalarSimilitude_form (t : K) :
     (scalarSimilitude t).transpose * symplecticJ * scalarSimilitude t =
       t • symplecticJ := by
@@ -89,7 +105,9 @@ theorem scalarSimilitude_form (t : K) :
       Fin.sum_univ_succ] <;> ring
 
 /-- Conjugation gives exactly `(a,u,v) ↦ (a,tu,t⁻¹v)` in grouped
-coordinates.-/
+coordinates.
+@isnad1 id=eq.1h5v.s8.5de2096eb81b from=translated src=- shape=8af33984 vocab=54effb4e
+-/
 theorem scalarSimilitude_conjugates_grouped
     (t : K) (ht : t ≠ 0) (a : Mat3 K) (u v : Vec3 K) :
     scalarSimilitude t * grouped a u v * scalarSimilitudeInv t =
@@ -105,7 +123,9 @@ def matrixJordan (A B : Mat6 K) : Mat6 K :=
   (2 : K)⁻¹ • (A * B + B * A)
 
 /-- Associativity alone proves that conjugation by the displayed inverse is
-an actual unital linear Jordan automorphism of the ambient matrix algebra.-/
+an actual unital linear Jordan automorphism of the ambient matrix algebra.
+@isnad1 id=eq.1h4v.s8.5ba33b410740 from=translated src=- shape=8fbec12b vocab=5e476dd5
+-/
 theorem scalarSimilitude_map_jordan
     (t : K) (ht : t ≠ 0) (A B : Mat6 K) :
     scalarSimilitude t * matrixJordan A B * scalarSimilitudeInv t =
@@ -131,6 +151,9 @@ theorem scalarSimilitude_map_jordan
   rw [Matrix.mul_add, Matrix.add_mul]
   rw [hmul A B, hmul B A]
 
+/--
+@isnad1 id=eq.1h2v.s8.567ff63e5f65 from=translated src=- shape=a2f99aa1 vocab=4d2fdd6d
+-/
 theorem scalarSimilitude_map_one (t : K) (ht : t ≠ 0) :
     scalarSimilitude t * (1 : Mat6 K) * scalarSimilitudeInv t = 1 := by
   simpa using scalarSimilitude_mul_inv t ht

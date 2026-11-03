@@ -23,11 +23,17 @@ open SourceEvenReflections SourceVectorReflectionTransport
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.0h4v.s6.740ec0e45b95 from=translated src=- shape=b399cc4f vocab=fb524301
+-/
 theorem reflectV_add (a v w : VCoord K) :
     reflectV a (v + w) = reflectV a v + reflectV a w := by
   rw [reflectV, reflectV, reflectV, BV_add_right, add_div]
   module
 
+/--
+@isnad1 id=eq.0h4v.s8.3564fd1e2429 from=translated src=- shape=eb41e40a vocab=019f44b4
+-/
 theorem reflectV_smul (a v : VCoord K) (k : K) :
     reflectV a (k • v) = k • reflectV a v := by
   rw [reflectV, reflectV, BV_smul_right, mul_div_assoc]
@@ -38,10 +44,15 @@ def reflectVLinear (a : VCoord K) : VCoord K →ₗ[K] VCoord K where
   map_add' := reflectV_add a
   map_smul' := fun k v => reflectV_smul a v k
 
+/--
+@isnad1 id=eq.0h3v.s8.346f43bcf9e8 from=translated src=- shape=8c4ef92f vocab=de3e9c41
+-/
 @[simp] theorem reflectVLinear_apply (a v : VCoord K) :
     reflectVLinear a v = reflectV a v := rfl
 
-/-- Polarization of norm preservation gives the full bilinear isometry law.-/
+/-- Polarization of norm preservation gives the full bilinear isometry law.
+@isnad1 id=eq.1h4v.s6.2d45b18d7560 from=translated src=- shape=5cd0cc0d vocab=844f7496
+-/
 theorem BV_reflectV (a v w : VCoord K) (ha : nV a ≠ 0) :
     BV (reflectV a v) (reflectV a w) = BV v w := by
   have hvw := nV_reflectV a (v + w) ha
@@ -49,7 +60,9 @@ theorem BV_reflectV (a v w : VCoord K) (ha : nV a ≠ 0) :
     nV_reflectV a v ha, nV_reflectV a w ha] at hvw
   linear_combination hvw
 
-/-- A reflection vector orthogonal to `v` fixes `v` pointwise.-/
+/-- A reflection vector orthogonal to `v` fixes `v` pointwise.
+@isnad1 id=eq.1h3v.s5.f6f116fd068c from=translated src=- shape=ef77511b vocab=08d10c1a
+-/
 theorem reflectV_eq_of_orthogonal (a v : VCoord K)
     (horth : BV a v = 0) : reflectV a v = v := by
   rw [reflectV, horth, zero_div, zero_smul, sub_zero]
@@ -62,6 +75,9 @@ def projectionCoeff (y₁ y₂ : VCoord K) : K :=
 def orthogonalRemainder (y₁ y₂ : VCoord K) : VCoord K :=
   y₂ - projectionCoeff y₁ y₂ • y₁
 
+/--
+@isnad1 id=eq.1h3v.s6.7239a37c7a82 from=translated src=- shape=712262ad vocab=32e10dfe
+-/
 theorem BV_orthogonalRemainder (y₁ y₂ : VCoord K)
     (hy₁ : nV y₁ ≠ 0) :
     BV y₁ (orthogonalRemainder y₁ y₂) = 0 := by
@@ -70,7 +86,9 @@ theorem BV_orthogonalRemainder (y₁ y₂ : VCoord K)
   field_simp [hy₁]
   ring
 
-/-- Clearing the projection denominator gives the binary Gram determinant.-/
+/-- Clearing the projection denominator gives the binary Gram determinant.
+@isnad1 id=eq.1h3v.s7.6eadc74f327c from=translated src=- shape=7430d38b vocab=792f93cd
+-/
 theorem nV_orthogonalRemainder_identity (y₁ y₂ : VCoord K)
     (hy₁ : nV y₁ ≠ 0) :
     4 * nV y₁ * nV (orthogonalRemainder y₁ y₂) =
@@ -80,7 +98,9 @@ theorem nV_orthogonalRemainder_identity (y₁ y₂ : VCoord K)
   field_simp [hy₁]
   ring
 
-/-- On the nondegenerate Gram open, the orthogonal remainder is anisotropic.-/
+/-- On the nondegenerate Gram open, the orthogonal remainder is anisotropic.
+@isnad1 id=ne.2h3v.s7.37760e2abb69 from=translated src=- shape=30c17344 vocab=792f93cd
+-/
 theorem nV_orthogonalRemainder_ne_zero (y₁ y₂ : VCoord K)
     (hy₁ : nV y₁ ≠ 0)
     (hGram : 4 * nV y₁ * nV y₂ - (BV y₁ y₂) ^ 2 ≠ 0) :

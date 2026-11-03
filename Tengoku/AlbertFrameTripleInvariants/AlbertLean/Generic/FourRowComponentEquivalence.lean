@@ -28,7 +28,9 @@ section Ring
 
 variable {R : Type*} [Ring R]
 
-/-- Reverse the final right multiplication in the forward reduction.-/
+/-- Reverse the final right multiplication in the forward reduction.
+@isnad1 id=eq.2h6v.s8.6826465f8a22 from=translated src=- shape=a1405e5b vocab=b3099133
+-/
 theorem right_quadratic_implies_anchored_equation
     (X A0 A0i A1 A2 : R) (hA0i : A0i * A0 = 1)
     (hquad : X ^ 2 + X * ((A0 + A1 - A2) * A0i) + A1 * A0i = 0) :
@@ -36,7 +38,9 @@ theorem right_quadratic_implies_anchored_equation
   have hm := congrArg (fun Z : R => Z * A0) hquad
   simpa only [zero_mul, add_mul, mul_assoc, hA0i, mul_one] using hm
 
-/-- Reverse clearing by `X(1+X)`.  Right-inverse laws expand the product; left-inverse laws cancel it.-/
+/-- Reverse clearing by `X(1+X)`.  Right-inverse laws expand the product; left-inverse laws cancel it.
+@isnad1 id=eq.5h7v.s8.0d04a293919a from=translated src=- shape=32eb5b6d vocab=b3099133
+-/
 theorem anchored_equation_implies_weighted_cslot
     (X Xi Yi A0 A1 A2 : R)
     (hXiX : Xi * X = 1) (hXXi : X * Xi = 1)
@@ -78,7 +82,9 @@ section Matrices
 variable {K : Type*} [Field K]
 abbrev Mat3K (K : Type*) := Matrix (Fin 3) (Fin 3) K
 
-/-- Recover the raw inverse-adjugate sum from its normalized weighted form.-/
+/-- Recover the raw inverse-adjugate sum from its normalized weighted form.
+@isnad1 id=eq.6h6v.s10.b509a3e4da6c from=translated src=- shape=0c61ed52 vocab=2513b7b1
+-/
 theorem cslot_sum_of_normalized_equation
     (a0 X A0 A1 A2 : Mat3K K)
     (ha0 : a0.det ≠ 0) (hX : X.det ≠ 0)
@@ -126,7 +132,9 @@ theorem cslot_sum_of_normalized_equation
     Matrix.nonsing_inv_mul a0 (isUnit_iff_ne_zero.mpr ha0), one_mul] using hm
 
 /-- On fixed nonzero first components, every good right-quadratic solution
-recovers all four fields of `ComponentSolution`.-/
+recovers all four fields of `ComponentSolution`.
+@isnad1 id=componen.4h5v.s8.5eba194b03d6 from=translated src=- shape=7d27dc2b vocab=e7fa1ecb
+-/
 theorem components_of_goodSolution
     (a0 a1 a2 X : Mat3K K)
     (ha0 : a0.det ≠ 0) (ha1 : a1.det ≠ 0) (ha2 : a2.det ≠ 0)
@@ -162,7 +170,9 @@ theorem components_of_goodSolution
     ha0 hnX hnOne (by rw [hdetb1]; exact ha1) (by rw [hdetb2]; exact ha2)
     hnormalized
 
-/-- Exact equivalence on the displayed invertible ordinary-matrix chart.-/
+/-- Exact equivalence on the displayed invertible ordinary-matrix chart.
+@isnad1 id=iff.3h5v.s8.56756066f334 from=translated src=- shape=c93c34f5 vocab=e7fa1ecb
+-/
 theorem components_iff_goodSolution
     (a0 a1 a2 X : Mat3K K)
     (ha0 : a0.det ≠ 0) (ha1 : a1.det ≠ 0) (ha2 : a2.det ≠ 0) :

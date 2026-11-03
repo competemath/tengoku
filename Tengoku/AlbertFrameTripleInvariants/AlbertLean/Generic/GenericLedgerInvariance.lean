@@ -55,6 +55,9 @@ private theorem include_fixed {z : Base k} (h : reorient k z = z) :
   change nu k (includeBase k z) = includeBase k z
   rw [nu_base, h]
 
+/--
+@isnad1 id=eq.0h3v.s10.8b7ef62f737e from=translated src=- shape=81e541af vocab=51bd8ba8
+-/
 theorem generic_matrix (i j : Fin 4) :
     matrixM (genericChart k) i j = includeBase k (rationalM k i j) := by
   change matrixM (GenericNormalizedFrameChart.insert (genericOpen k)) i j = _
@@ -371,6 +374,9 @@ private theorem sector12_fixed :
     (gramV_fixed k) (gramS_fixed k) (gramC_fixed k)
     (trialityA2C2_fixed k) (trialityB1C2_fixed k) (trialityB2C1_fixed k)
 
+/--
+@isnad1 id=ledgerin.0h1v.s9.49eb4e01687f from=translated src=- shape=857501af vocab=bf6c4c73
+-/
 theorem ledgerIn_nuFixed :
     LedgerIn (nuFixed k) (sourceLedger (encoderA (genericChart k))
       (encoderB (genericChart k))) := by
@@ -380,6 +386,9 @@ theorem ledgerIn_nuFixed :
     ⟨gramV_fixed k, gramS_fixed k, gramC_fixed k⟩
     (sector12_fixed k) (sector21_fixed k) (UV_fixed k) (US_fixed k) (UC_fixed k)
 
+/--
+@isnad1 id=le.0h1v.s10.f9181642ba01 from=translated src=- shape=6746b013 vocab=93a07b34
+-/
 theorem H_le_nuFixed : H k ≤ nuFixed k := by
   apply Subfield.closure_le.2
   rintro z (hz | hz)
@@ -390,6 +399,9 @@ theorem H_le_nuFixed : H k ≤ nuFixed k := by
     exact hg hz
   · exact (ledgerCells_subset_iff (nuFixed k) _ _).2 (ledgerIn_nuFixed k) hz
 
+/--
+@isnad1 id=eq.1h2v.s13.f2ab9dee6405 from=translated src=- shape=79d90c8a vocab=452ab146
+-/
 theorem deck_fixed_of_mem_H {z : FunctionField k} (hz : z ∈ H k) : deck k z = z := by
   have ho : z ∈ orientationLedgerField (groundBase k) (genericChart k) :=
     Subfield.subset_closure (Or.inl hz)
@@ -397,10 +409,16 @@ theorem deck_fixed_of_mem_H {z : FunctionField k} (hz : z ∈ H k) : deck k z = 
   exact (fixed_iff_mem_invariantField (Base k) (Matrix.det (rationalM k))
     (det_rationalM_ne_zero k) z).2 ho
 
+/--
+@isnad1 id=eq.1h2v.s13.8adb63412b84 from=translated src=- shape=79d90c8a vocab=916b5522
+-/
 theorem tau_fixed_of_mem_H {z : FunctionField k} (hz : z ∈ H k) : tau k z = z := by
   rw [tau_apply, show nu k z = z from H_le_nuFixed k hz]
   exact deck_fixed_of_mem_H k hz
 
+/--
+@isnad1 id=not.0h1v.s10.ee4f1c0c5dcb from=translated src=- shape=e76dfdec vocab=779c7a1b
+-/
 theorem kappa_not_mem_H : kappa k ∉ H k := by
   intro hk
   have h : -kappa k = kappa k := (nu_kappa k).symm.trans (H_le_nuFixed k hk)

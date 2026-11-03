@@ -24,7 +24,9 @@ variable {K : Type u} [Field K] [CharZero K]
 
 /-- A genuine carrier frame has a labelled hyperbolic eigenbasis which spans
 the ambient six-space.  This exposes the witnesses hidden inside the accepted
-twelve-step normalization theorem and avoids a matrix-rank detour.-/
+twelve-step normalization theorem and avoids a matrix-rank detour.
+@isnad1 id=ex.3h2v.s11.c7899437d9c2 from=translated src=- shape=e6bc8dcc vocab=63c89208
+-/
 theorem exists_spanning_carrier_frame_eigenbasis
     (P : Fin 3 → Carrier K)
     (hidem : ∀ i, (P i : Mat6 K) * P i = P i)
@@ -63,7 +65,9 @@ theorem exists_spanning_carrier_frame_eigenbasis
   simpa only [map_add, map_sum, map_smul, hwu, hwv] using hx
 
 /-- Consequently the actual image of the first projector is exactly the span
-of its displayed hyperbolic pair.  This is the rank-two input used by Q1.-/
+of its displayed hyperbolic pair.  This is the rank-two input used by Q1.
+@isnad1 id=ex.3h2v.s11.d1d5c2fbb61f from=translated src=- shape=2b805529 vocab=cd69d133
+-/
 theorem first_projector_image_spanned
     (P : Fin 3 → Carrier K)
     (hidem : ∀ i, (P i : Mat6 K) * P i = P i)

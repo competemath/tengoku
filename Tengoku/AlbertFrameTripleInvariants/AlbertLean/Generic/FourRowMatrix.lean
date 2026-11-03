@@ -25,7 +25,9 @@ section Ring
 variable {R : Type*} [Ring R]
 
 /-- A solution of the right quadratic `X² + XU + V = 0` has the displayed
-cubic reduction.  Multiplication order is part of the conclusion.-/
+cubic reduction.  Multiplication order is part of the conclusion.
+@isnad1 id=eq.1h4v.s7.168fbf973d04 from=translated src=- shape=8ff967a1 vocab=b3099133
+-/
 theorem cube_eq_of_right_quadratic (X U V : R)
     (hquad : X ^ 2 + X * U + V = 0) :
     X ^ 3 = X * (U ^ 2 - V) + V * U := by
@@ -40,7 +42,9 @@ theorem cube_eq_of_right_quadratic (X U V : R)
 /-- Cayley--Hamilton data combined with the right quadratic gives the
 division-free reconstruction certificate.  `t` and `u` are stated as ring
 elements; the two visible commutation hypotheses are exactly what is used for
-scalar coefficients.-/
+scalar coefficients.
+@isnad1 id=eq.4h7v.s8.f93abf5342be from=translated src=- shape=c8a15055 vocab=b3099133
+-/
 theorem mul_reconstruction_of_right_quadratic
     (X U V t u v : R)
     (hquad : X ^ 2 + X * U + V = 0)
@@ -65,7 +69,9 @@ theorem mul_reconstruction_of_right_quadratic
     _ = 0 := by rw [hcubic, hquad, mul_zero, add_zero]
 
 /-- If the reconstruction denominator is invertible, the certificate solves
-for `X` by a single right multiplication.-/
+for `X` by a single right multiplication.
+@isnad1 id=eq.4h7v.s9.39dbee0a5222 from=translated src=- shape=6a5e5c34 vocab=53d4b9dd
+-/
 theorem reconstruction_of_right_quadratic
     (X U V t u v : R)
     (hquad : X ^ 2 + X * U + V = 0)
@@ -82,7 +88,9 @@ theorem reconstruction_of_right_quadratic
     _ = (v - V * U - t * V) * ⅟E := by rw [hmul]
 
 /-- The Sylvester equation identifies conjugation by `L` with the explicit
-additive formula used by the branch construction.-/
+additive formula used by the branch construction.
+@isnad1 id=eq.1h4v.s7.da663537faec from=translated src=- shape=ec8afb70 vocab=5a5c09ed
+-/
 theorem sylvester_conjugate_eq_add_invOf
     (X U L : R) [Invertible L]
     (hsylvester : (-U - X) * L - L * X = 1) :
@@ -96,7 +104,9 @@ theorem sylvester_conjugate_eq_add_invOf
     _ = 0 := by rw [hsylvester, sub_self, mul_zero]
 
 /-- Multiplying the Sylvester equation on both sides by `L⁻¹` gives the
-inverse relation used to verify the branch quadratic.-/
+inverse relation used to verify the branch quadratic.
+@isnad1 id=eq.1h4v.s8.55c0ff22abe6 from=translated src=- shape=1ef22c3f vocab=5a5c09ed
+-/
 theorem sylvester_invOf_relation
     (X U L : R) [Invertible L]
     (hsylvester : (-U - X) * L - L * X = 1) :
@@ -122,7 +132,9 @@ theorem sylvester_invOf_relation
     _ = 0 := by rw [hleft, sub_self]
 
 /-- An invertible solution of the Sylvester equation constructs another
-solution of the same right quadratic.-/
+solution of the same right quadratic.
+@isnad1 id=other.2h5v.s8.9e1eeacadb52 from=translated src=- shape=109e5e4f vocab=52369191
+-/
 theorem sylvester_branch_right_quadratic
     (X U V L : R) [Invertible L]
     (hquad : X ^ 2 + X * U + V = 0)
@@ -141,7 +153,9 @@ theorem sylvester_branch_right_quadratic
     _ = 0 := by rw [hquad, hinv, add_zero]
 
 /-- The branch matrix is `X + L⁻¹`, useful independently of its quadratic
-equation.-/
+equation.
+@isnad1 id=eq.1h4v.s7.da663537faec from=translated src=- shape=ec8afb70 vocab=5a5c09ed
+-/
 theorem sylvester_branch_eq_add_invOf
     (X U L : R) [Invertible L]
     (hsylvester : (-U - X) * L - L * X = 1) :
@@ -155,7 +169,9 @@ section MatrixTrace
 variable {n K : Type*} [Fintype n] [DecidableEq n] [CommRing K]
 
 /-- Matrix form of the division-free reconstruction certificate, with the
-Cayley--Hamilton coefficients displayed as scalars times the identity.-/
+Cayley--Hamilton coefficients displayed as scalars times the identity.
+@isnad1 id=eq.2h8v.s10.eac1c3ac6d4e from=translated src=- shape=db72fab1 vocab=7ca3d09a
+-/
 theorem matrix_mul_reconstruction_of_right_quadratic
     (X U V : Matrix n n K) (t u v : K)
     (hquad : X ^ 2 + X * U + V = 0)
@@ -172,7 +188,9 @@ theorem matrix_mul_reconstruction_of_right_quadratic
       hquad (by simpa [Matrix.smul_mul] using hcubic) ht hu
 
 /-- Matrix reconstruction from scalar Cayley--Hamilton data when the displayed
-denominator is invertible.-/
+denominator is invertible.
+@isnad1 id=eq.2h8v.s10.9b1b605b84c1 from=translated src=- shape=f5c33330 vocab=1ed06306
+-/
 theorem matrix_reconstruction_of_right_quadratic
     (X U V : Matrix n n K) (t u v : K)
     (hquad : X ^ 2 + X * U + V = 0)
@@ -188,7 +206,9 @@ theorem matrix_reconstruction_of_right_quadratic
     X = X * E * ⅟E := by rw [Matrix.mul_assoc, mul_invOf_self, Matrix.mul_one]
     _ = (v • 1 - V * U - t • V) * ⅟E := by rw [hmul]
 
-/-- Trace is unchanged by conjugation using an `Invertible` matrix.-/
+/-- Trace is unchanged by conjugation using an `Invertible` matrix.
+@isnad1 id=eq.0h4v.s7.b38326286664 from=translated src=- shape=5bdaa923 vocab=4b0c9b7f
+-/
 theorem trace_invOf_mul_mul
     (Z L : Matrix n n K) [Invertible L] :
     Matrix.trace (⅟L * Z * L) = Matrix.trace Z := by
@@ -199,7 +219,9 @@ theorem trace_invOf_mul_mul
       rw [← Matrix.mul_assoc, mul_invOf_self, Matrix.one_mul]
 
 /-- For the complementary matrix `Z = -U-X`, the Sylvester branch has the
-complementary trace.-/
+complementary trace.
+@isnad1 id=eq.0h5v.s8.29835cf34b31 from=translated src=- shape=db72d935 vocab=a03e03c5
+-/
 theorem trace_sylvester_branch
     (X U L : Matrix n n K) [Invertible L] :
     Matrix.trace (⅟L * (-U - X) * L) =
@@ -208,7 +230,9 @@ theorem trace_sylvester_branch
   simp
 
 /-- The useful branch package: the Sylvester construction satisfies the same
-right quadratic, has its explicit additive form, and has complementary trace.-/
+right quadratic, has its explicit additive form, and has complementary trace.
+@isnad1 id=other.2h6v.s9.374444de692b from=translated src=- shape=54c85194 vocab=4a23eb24
+-/
 theorem sylvester_branch_package
     (X U V L : Matrix n n K) [Invertible L]
     (hquad : X ^ 2 + X * U + V = 0)

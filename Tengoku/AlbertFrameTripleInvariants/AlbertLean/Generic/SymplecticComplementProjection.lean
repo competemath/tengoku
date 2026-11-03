@@ -19,6 +19,9 @@ variable {V : Type v} [AddCommGroup V] [Module K V]
 def projectPair (omega : BilinForm (K := K) (V := V)) (e f c : V) : V :=
   c - (omega e c • f - omega f c • e)
 
+/--
+@isnad1 id=eq.2h7v.s10.a70477ce3eab from=translated src=- shape=82c1b313 vocab=6b4f90ca
+-/
 theorem projectPair_pairing_right
     (omega : BilinForm (K := K) (V := V)) (e f c q : V)
     (heq : omega e q = 0) (hfq : omega f q = 0) :
@@ -26,6 +29,9 @@ theorem projectPair_pairing_right
   simp only [projectPair, map_sub, LinearMap.sub_apply, map_smul,
     LinearMap.smul_apply, smul_eq_mul, heq, hfq, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.2h7v.s10.2b1eebdbabae from=translated src=- shape=99d298ff vocab=6b4f90ca
+-/
 theorem projectPair_pairing_left
     (omega : BilinForm (K := K) (V := V)) (e f c q : V)
     (hqe : omega q e = 0) (hqf : omega q f = 0) :
@@ -38,6 +44,9 @@ def projectPairs (omega : BilinForm (K := K) (V := V)) :
   | [], c => c
   | (e, f) :: pairs, c => projectPairs omega pairs (projectPair omega e f c)
 
+/--
+@isnad1 id=eq.1h6v.s10.faeac16ec8bf from=translated src=- shape=e4258253 vocab=953d9a79
+-/
 theorem projectPairs_pairing_right
     (omega : BilinForm (K := K) (V := V))
     (pairs : List (V × V)) (c q : V)
@@ -53,6 +62,9 @@ theorem projectPairs_pairing_right
       · intro pair hpair
         exact hortho pair (by simp [hpair])
 
+/--
+@isnad1 id=eq.1h6v.s10.433d86d35e30 from=translated src=- shape=6aee588c vocab=953d9a79
+-/
 theorem projectPairs_pairing_left
     (omega : BilinForm (K := K) (V := V))
     (pairs : List (V × V)) (c q : V)

@@ -19,6 +19,9 @@ namespace OneBit.Closeout
 def edgeHas (r s : Fin 3) (v : ℚ) : Prop := ∃ i j, marginal r s i j = v
 instance (r s : Fin 3) (v : ℚ) : Decidable (edgeHas r s v) := inferInstanceAs (Decidable (∃ i j, marginal r s i j = v))
 
+/--
+@isnad1 id=eq.1h1v.s7.f1de0fd3568a from=translated src=- shape=848e42a4 vocab=a74be892
+-/
 theorem edges_determine_frame (σ : Equiv.Perm (Fin 3))
     (h : ∀ r s, r ≠ s → ∀ v : ℚ, edgeHas r s v ↔ edgeHas (σ r) (σ s) v) :
     σ = Equiv.refl _ := by
@@ -39,15 +42,24 @@ theorem edges_determine_frame (σ : Equiv.Perm (Fin 3))
   ext r
   fin_cases r <;> simp [hs.1, hs.2.1, hs.2.2]
 
+/--
+@isnad1 id=iff.0h2v.s6.4c79ce1606e7 from=translated src=- shape=d2c584a9 vocab=8aec3a82
+-/
 theorem marginal_zero_01 (i j : Fin 3) :
     marginal 0 1 i j = 0 ↔ i = 0 ∧ j = 0 := by
   fin_cases i <;> fin_cases j <;> norm_num [marginal]
 
+/--
+@isnad1 id=eq.1h3v.s8.fbfc3d3bbe9e from=translated src=- shape=ef0ed74d vocab=38068d09
+-/
 theorem marginal_column_injective (r : Fin 3) (i j : Fin 3) :
     (if r = 0 then marginal 0 1 i 0 else marginal r 0 i 0) =
     (if r = 0 then marginal 0 1 j 0 else marginal r 0 j 0) → i = j := by
   fin_cases r <;> fin_cases i <;> fin_cases j <;> norm_num [marginal]
 
+/--
+@isnad1 id=and.1h2v.s8.01b928469451 from=translated src=- shape=aecbe24d vocab=f9988f56
+-/
 theorem marginal_stabilizer_trivial (σ : Equiv.Perm (Fin 3))
     (π : Fin 3 → Equiv.Perm (Fin 3))
     (h : ∀ r s, r ≠ s → ∀ i j,

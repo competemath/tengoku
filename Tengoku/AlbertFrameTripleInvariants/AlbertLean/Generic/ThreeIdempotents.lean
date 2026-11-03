@@ -27,7 +27,9 @@ variable {A : Type u} [NonAssocRing A]
 
 /-- Three idempotents summing to one are pairwise orthogonal when additive
 doubling is injective. Only distributivity, commutativity, and the unit laws
-are used; multiplication need not be associative.-/
+are used; multiplication need not be associative.
+@isnad1 id=and.6h4v.s8.8f495b3bd5fb from=translated src=- shape=0bcc62b3 vocab=e64b1f37
+-/
 theorem pairwise_mul_eq_zero_of_sum_eq_one
     (e0 e1 e2 : A)
     (hcomm : ∀ x y : A, x * y = y * x)
@@ -78,7 +80,9 @@ variable [Field K] [NonAssocRing A] [Module K A]
 omit [Module K A] in
 /-- Abstract cubic-adjoint step. `trace_sharp` and `trace_zero` isolate the
 trace identity normally used to deduce that the quadratic scalar coefficient
-vanishes when the adjoint does.-/
+vanishes when the adjoint does.
+@isnad1 id=eq.3h6v.s6.3639982c10f1 from=translated src=- shape=6dade0b7 vocab=abbb7a30
+-/
 theorem scalar_coefficient_eq_zero_of_adjoint_eq_zero
     (trace scalar : A → K) (sharp : A → A) (x : A)
     (trace_sharp : trace (sharp x) = scalar x)
@@ -88,7 +92,9 @@ theorem scalar_coefficient_eq_zero_of_adjoint_eq_zero
   exact trace_sharp.symm
 
 /-- Trace one and adjoint zero imply idempotence from the standard cubic
-adjoint identity. No power-associativity or Jordan identity is used here.-/
+adjoint identity. No power-associativity or Jordan identity is used here.
+@isnad1 id=eq.5h6v.s8.0fbd727b9bab from=translated src=- shape=2a25241e vocab=dcb1ca52
+-/
 theorem mul_self_eq_self_of_adjoint_eq_zero
     (trace scalar : A → K) (sharp : A → A) (x : A)
     (adjoint_identity :
@@ -105,7 +111,9 @@ theorem mul_self_eq_self_of_adjoint_eq_zero
   exact sub_eq_zero.mp hdiff
 
 /-- In trace dimension three the converse needs only the same trace/sharp
-identity and scalar doubling cancellation; no Newton identity is needed.-/
+identity and scalar doubling cancellation; no Newton identity is needed.
+@isnad1 id=iff.6h6v.s9.a274a771c041 from=translated src=- shape=3ec2d863 vocab=dcb1ca52
+-/
 theorem adjoint_eq_zero_iff_mul_self_eq_self
     (trace scalar : A → K) (sharp : A → A) (x : A)
     (adjoint_identity : sharp x = x * x - trace x • x + scalar x • (1 : A))

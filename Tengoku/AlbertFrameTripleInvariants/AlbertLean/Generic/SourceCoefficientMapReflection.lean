@@ -17,12 +17,18 @@ universe u v
 variable {K : Type u} {L : Type v}
 variable [Field K] [CharZero K] [Field L] [CharZero L]
 
+/--
+@isnad1 id=eq.0h5v.s6.f69884724dbf from=translated src=- shape=47357877 vocab=f74b892f
+-/
 theorem mapSource_reflection (f : K →+* L) (p x : JCoord K) :
     mapSource f (sourcePeirceReflection p x) =
       sourcePeirceReflection (mapSource f p) (mapSource f x) := by
   simp only [sourcePeirceReflection_formula, mapSource_sub, mapSource_add,
     mapSource_smul, mapSource_product, map_ofNat]
 
+/--
+@isnad1 id=laws.1h4v.s6.b35cefcbd785 from=translated src=- shape=6850c838 vocab=6752b327
+-/
 theorem mapSource_frameLaws (f : K →+* L) (P : Fin 3 → JCoord K)
     (hP : Laws P) : Laws (fun i => mapSource f (P i)) := by
   refine ⟨?_, ?_, ?_⟩

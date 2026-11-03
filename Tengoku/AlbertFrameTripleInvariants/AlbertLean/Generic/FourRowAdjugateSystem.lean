@@ -23,7 +23,9 @@ open FourRowUniqueness (reconstructionDenominator)
 variable {K : Type*} [Field K]
 
 /-- Raw cyclic equations and zero component sums imply the normalized system.
-Only the three second matrices are assumed invertible.-/
+Only the three second matrices are assumed invertible.
+@isnad1 id=componen.5h4v.s10.8af381912738 from=translated src=- shape=f5aa44cb vocab=bc94373c
+-/
 theorem componentSolution_of_adjugate_equations
     (a b c : Fin 3 → Mat3 K)
     (hb : ∀ i, (b i).det ≠ 0)
@@ -44,7 +46,9 @@ theorem componentSolution_of_adjugate_equations
 
 /-- Reconstructed normalized components satisfy all cyclic adjugate equations
 and both zero-sum laws. The fixed first matrices may be supplied separately
-with trace-one and sum-identity hypotheses at a later model interface.-/
+with trace-one and sum-identity hypotheses at a later model interface.
+@isnad1 id=other.4h5v.s10.ee4717591f82 from=translated src=- shape=026f397c vocab=05ec6319
+-/
 theorem adjugate_equations_of_componentSolution
     (a0 a1 a2 X : Mat3 K)
     (ha0 : a0.det ≠ 0) (ha1 : a1.det ≠ 0) (ha2 : a2.det ≠ 0)

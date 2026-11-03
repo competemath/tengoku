@@ -78,7 +78,9 @@ private theorem nonsing_inv_eq_specified (g : DetOneMatrix K) :
         (isUnit_iff_ne_zero.mpr (by simpa [g.det_g])), Matrix.mul_one]
 
 /-- Substituting the sixteen entries of an existing determinant-one matrix
-recovers the complete witness, including its specified inverse.-/
+recovers the complete witness, including its specified inverse.
+@isnad1 id=eq.0h2v.s5.42ba1a7f1b61 from=translated src=- shape=69281212 vocab=f8e778ba
+-/
 theorem detOneFamily_surjective (g : DetOneMatrix K) :
     detOneFamily g.g (by simpa [g.det_g]) = g := by
   apply DetOneMatrix.ext
@@ -92,10 +94,16 @@ def familySourceAut (Z : Mat4 K) (hZ : Matrix.det Z ≠ 0) :
     SourceAut (K := K) :=
   sourceAut (detOneFamily Z hZ)
 
+/--
+@isnad1 id=eq.0h2v.s5.4978b85749cd from=translated src=- shape=aa7c599d vocab=04106eaf
+-/
 theorem familySourceAut_surjective (g : DetOneMatrix K) :
     familySourceAut g.g (by simpa [g.det_g]) = sourceAut g := by
   rw [familySourceAut, detOneFamily_surjective]
 
+/--
+@isnad1 id=eq.0h3v.s9.c7c5a7e01769 from=translated src=- shape=71b82b93 vocab=ac0f195d
+-/
 theorem familySourceAut_linear_surjective (g : DetOneMatrix K) (x : JCoord K) :
     (familySourceAut g.g (by simpa [g.det_g])).linear x =
       (sourceAut g).linear x := by

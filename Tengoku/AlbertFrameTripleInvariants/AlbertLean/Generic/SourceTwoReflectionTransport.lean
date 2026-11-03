@@ -14,6 +14,9 @@ open SourceEvenReflections SourceVectorReflectionTransport SourceVectorPairRefle
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=ex.4h4v.s7.cc2ae8c48c7c from=translated src=- shape=333e67df vocab=2b933c85
+-/
 theorem evenV_eq_of_centers (e x y : VCoord K)
     (he : nV e ≠ 0) (hxy : nV x = nV y) (hx : nV x ≠ 0)
     (hey : BV e y = 0) :
@@ -30,6 +33,9 @@ theorem evenV_eq_of_centers (e x y : VCoord K)
     rw [evenV, reflect_difference x y hxy hd,
       reflectV_eq_of_orthogonal e y hey]
 
+/--
+@isnad1 id=ex.7h5v.s8.d67787649d94 from=translated src=- shape=07011a48 vocab=2b933c85
+-/
 theorem evenV_eq_fixing (e f x y : VCoord K)
     (he : nV e ≠ 0) (hxy : nV x = nV y) (hx : nV x ≠ 0)
     (hey : BV e y = 0) (hfe : BV f e = 0)

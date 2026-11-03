@@ -33,7 +33,9 @@ def measurementMatrix (Z : n × n → Matrix n n K) : Matrix (n × n) (n × n) K
 def measurements (Z : n × n → Matrix n n K) (A : Matrix n n K) : n × n → K :=
   fun p => Matrix.trace (Z p * A)
 
-/-- The trace pairing is the stated linear system in literal index order.-/
+/-- The trace pairing is the stated linear system in literal index order.
+@isnad1 id=eq.0h4v.s6.edda515fde61 from=translated src=- shape=35519088 vocab=2e837769
+-/
 theorem measurements_eq_mulVec (Z : n × n → Matrix n n K) (A : Matrix n n K) :
     measurements Z A = (measurementMatrix Z).mulVec (transposeVector A) := by
   funext p
@@ -42,7 +44,9 @@ theorem measurements_eq_mulVec (Z : n × n → Matrix n n K) (A : Matrix n n K) 
 
 variable [DecidableEq n]
 
-/-- On the nonzero determinant open, all entries are recovered by one inverse.-/
+/-- On the nonzero determinant open, all entries are recovered by one inverse.
+@isnad1 id=eq.1h4v.s7.7122640174cf from=translated src=- shape=dd5547c7 vocab=f6413da5
+-/
 theorem transposeVector_eq_inverse_measurements
     (Z : n × n → Matrix n n K) (hZ : (measurementMatrix Z).det ≠ 0)
     (A : Matrix n n K) :

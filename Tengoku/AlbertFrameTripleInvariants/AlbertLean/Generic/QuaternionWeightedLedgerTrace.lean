@@ -21,12 +21,18 @@ open AlbertLean.Generic.SymplecticProjectorFrame
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.0h2v.s10.52377bfa9d13 from=translated src=- shape=39ebd787 vocab=8546c480
+-/
 theorem operatorTrace_matrixAction (A : Mat6 K) :
     LinearMap.trace K (Vec6 K) (matrixAction A) = Matrix.trace A := by
   rw [LinearMap.trace_eq_matrix_trace K (Pi.basisFun K Ix6)]
   simp [Matrix.trace, LinearMap.toMatrix_apply', matrixAction, basisVector,
     Pi.single_apply, Fintype.sum_sum_type, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s10.0e9c166a7087 from=translated src=- shape=615b53e4 vocab=f22df197
+-/
 theorem trace_standardProjector_comp (B : Vec6 K →ₗ[K] Vec6 K) (i : Fin 3) :
     LinearMap.trace K (Vec6 K) ((standardProjector i).comp B) =
       weightedBlock B i i 0 0 + weightedBlock B i i 1 1 := by
@@ -36,6 +42,9 @@ theorem trace_standardProjector_comp (B : Vec6 K →ₗ[K] Vec6 K) (i : Fin 3) :
       standardProjector, coordinateLabel, weightedBlock, weightedPairIndex,
       basisVector, Pi.single_apply, Fintype.sum_sum_type, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.2h5v.s11.99104aa2795e from=translated src=- shape=39d48ef6 vocab=e3c1cfde
+-/
 theorem first_frame_intertwines_weighted_coordinates
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -78,6 +87,9 @@ theorem first_frame_intertwines_weighted_coordinates
     · rw [← LinearMap.comp_apply, hcomp i j hij]
       simp [standardProjector, coordinateLabel, hij, Ne.symm hij]
 
+/--
+@isnad1 id=eq.4h6v.s11.4a07f6271cce from=translated src=- shape=cef5a83b vocab=4d593dfc
+-/
 theorem coordinateConjugate_first_frame
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -102,7 +114,9 @@ theorem coordinateConjugate_first_frame
   exact L.symm_apply_apply _
 
 /-- The scalar on diagonal block `i` is exactly the actual half-trace pair
-ledger cell `jordanTrace (E_i F_1)`.-/
+ledger cell `jordanTrace (E_i F_1)`.
+@isnad1 id=eq.5h8v.s11.ad97bf3be43c from=translated src=- shape=00a5bec4 vocab=6f16896f
+-/
 theorem diagonal_scalar_eq_actual_pair_ledger
     (E : Fin 3 → Carrier K) (F1 : Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

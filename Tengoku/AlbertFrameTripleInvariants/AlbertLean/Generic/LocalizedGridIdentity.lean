@@ -30,6 +30,9 @@ abbrev AwayRing (D : MvPolynomial σ k) :=
 def constantEval (t : σ → k) : Base (σ := σ) K →+* K :=
   MvPolynomial.eval₂Hom (RingHom.id K) (fun i => algebraMap k K (t i))
 
+/--
+@isnad1 id=eq.0h5v.s8.e02cb257126d from=translated src=- shape=a7f1d525 vocab=66e97cc8
+-/
 theorem constantEval_mappedDenominator (D : MvPolynomial σ k) (t : σ → k) :
     constantEval k K t (mappedDenominator k K D) =
       algebraMap k K (MvPolynomial.eval t D) := by
@@ -47,6 +50,9 @@ def localizedConstantEval (D : MvPolynomial σ k)
       apply isUnit_iff_ne_zero.mpr
       simpa only [map_zero] using (algebraMap k K).injective.ne ht)
 
+/--
+@isnad1 id=eq.1h7v.s9.191d5e030cfc from=translated src=- shape=60c8c47f vocab=d8458696
+-/
 @[simp] theorem localizedConstantEval_algebraMap
     (D : MvPolynomial σ k)
     [IsLocalization.Away (mappedDenominator k K D) S]
@@ -94,6 +100,9 @@ def extensionEval (D : MvPolynomial σ k)
       (MvPolynomial.eval₂Hom φ b (mappedDenominator k K D))) : S →+* E :=
   IsLocalization.Away.lift (mappedDenominator k K D) hDunit
 
+/--
+@isnad1 id=eq.2h9v.s8.089c558b9639 from=translated src=- shape=558add09 vocab=fbac4c84
+-/
 theorem extensionEval_eq_zero_of_eq_zero
     (D : MvPolynomial σ k)
     [IsLocalization.Away (mappedDenominator k K D) S]

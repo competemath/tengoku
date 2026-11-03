@@ -40,6 +40,9 @@ def ringReflection (p x : F0Ring R) : F0Ring R :=
 def mapF0Ring {S : Type v} [CommRing S] (f : R →+* S) (x : F0Ring R) : F0Ring S :=
   fun i => f (x i)
 
+/--
+@isnad1 id=eq.1h5v.s7.697d7503bab0 from=translated src=- shape=46aa45b6 vocab=4615c682
+-/
 theorem map_ringProduct {S : Type v} [CommRing S] [Algebra ℚ S]
     (f : R →+* S) (hf : f.comp (algebraMap ℚ R) = algebraMap ℚ S)
     (x y : F0Ring R) :
@@ -50,6 +53,9 @@ theorem map_ringProduct {S : Type v} [CommRing S] [Algebra ℚ S]
     DFunLike.congr_fun hf q
   simp [mapF0Ring, ringProduct, map_sum, map_mul, hc]
 
+/--
+@isnad1 id=eq.1h5v.s7.339413efd491 from=translated src=- shape=46aa45b6 vocab=a33dc00f
+-/
 theorem map_ringReflection {S : Type v} [CommRing S] [Algebra ℚ S]
     (f : R →+* S) (hf : f.comp (algebraMap ℚ R) = algebraMap ℚ S)
     (p x : F0Ring R) :
@@ -64,13 +70,18 @@ theorem map_ringReflection {S : Type v} [CommRing S] [Algebra ℚ S]
   simp only [ringReflection, mapF0Ring, Pi.add_apply, Pi.sub_apply, Pi.smul_apply,
     smul_eq_mul, map_add, map_sub, map_mul, map_ofNat, hpx, hppx]
 
+/--
+@isnad1 id=eq.0h3v.s5.5b08b4504d2a from=translated src=- shape=907f91ef vocab=b666d463
+-/
 theorem ringProduct_eq_f0ProductK {K : Type v} [Field K] [CharZero K]
     (x y : F0Ring K) : ringProduct x y = f0ProductK x y := by
   funext c
   simp [ringProduct, f0ProductK, tensorCoeffK]
 
 /-- Over a characteristic-zero field, the ring formula is exactly the
-accepted source Peirce reflection in literal F0 coordinates.-/
+accepted source Peirce reflection in literal F0 coordinates.
+@isnad1 id=eq.0h3v.s10.ee4aaa517767 from=translated src=- shape=904d5c32 vocab=500a11d4
+-/
 theorem ringReflection_eq_source {K : Type v} [Field K] [CharZero K]
     (p x : JCoord K) :
     ringReflection (structuredEquivK K p) (structuredEquivK K x) =

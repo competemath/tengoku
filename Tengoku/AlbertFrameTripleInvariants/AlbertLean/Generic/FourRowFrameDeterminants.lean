@@ -39,7 +39,9 @@ right-inverse certificate.
 
 For the intended adjugate specialization, `hdetA1` and `hdetA2` follow from
 `det(adjugate a) = det(a)^2` together with
-`det a1 = c * det a0` and `det a2 = d * det a0`.-/
+`det a1 = c * det a0` and `det a2 = d * det a0`.
+@isnad1 id=and.5h9v.s9.5ae6a515f909 from=translated src=- shape=d7995f0a vocab=f6af96c8
+-/
 theorem normalized_endpoint_determinants
     (A0 A1 A2 A0i U V : Mat3 K) (c d : K)
     (hA0i : A0 * A0i = 1)
@@ -66,7 +68,9 @@ theorem normalized_endpoint_determinants
 
 /-- Preferred bridge interface when `A0i` is the standard nonsingular inverse.
 The caller supplies only nonsingularity of `A0`, the definitions of `U,V`, and
-the two adjugate determinant scaling identities.-/
+the two adjugate determinant scaling identities.
+@isnad1 id=and.5h8v.s9.46f4a20758ae from=translated src=- shape=44a034d1 vocab=311b6d90
+-/
 theorem normalized_endpoint_determinants_nonsing_inv
     (A0 A1 A2 U V : Mat3 K) (c d : K)
     (hA0 : IsUnit A0.det)
@@ -83,7 +87,9 @@ theorem normalized_endpoint_determinants_nonsing_inv
   · exact hdetA2
 
 /-- Fully specialized endpoint identities for the normalized first-Tits
-components.  No frame-sum or commutation hypothesis is needed at this stage.-/
+components.  No frame-sum or commutation hypothesis is needed at this stage.
+@isnad1 id=other.1h4v.s10.07cd263699c5 from=translated src=- shape=28c58bc0 vocab=ff3f6fe8
+-/
 theorem adjugate_normalized_endpoint_determinants
     (a0 a1 a2 : Mat3 K) (ha0 : a0.det ≠ 0) :
     let A0 := Matrix.adjugate a0

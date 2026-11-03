@@ -62,7 +62,9 @@ private theorem EvenFactorData.aut_apply_diagonal
       (z.d1, z.d2, z.d3) := by
   exact evenSourceAut_apply_diagonal p.A p.B p.rho p.hA p.hB p.root p.rho_ne z
 
-/-- Both retained factors fix every labelled standard diagonal unit.-/
+/-- Both retained factors fix every labelled standard diagonal unit.
+@isnad1 id=eq.0h3v.s8.835b29bd9800 from=translated src=- shape=8db715d4 vocab=6d1c8822
+-/
 theorem TwoEvenWord.fixes_diagonalUnit
     {L : Type u} [Field L] [CharZero L]
     (w : TwoEvenWord L) (i : Fin 3) :
@@ -70,7 +72,9 @@ theorem TwoEvenWord.fixes_diagonalUnit
   change w.outer.aut.linear (w.inner.aut.linear (diagonalUnit i)) = diagonalUnit i
   rw [w.inner.aut_diagonalUnit, w.outer.aut_diagonalUnit]
 
-/-- Both retained factors preserve all three labelled diagonal coordinates.-/
+/-- Both retained factors preserve all three labelled diagonal coordinates.
+@isnad1 id=eq.0h3v.s10.aad3bbf55e25 from=translated src=- shape=f28bb0ea vocab=2841ac11
+-/
 theorem TwoEvenWord.apply_diagonal
     {L : Type u} [Field L] [CharZero L]
     (w : TwoEvenWord L) (z : JCoord L) :
@@ -83,7 +87,9 @@ theorem TwoEvenWord.apply_diagonal
     (w.inner.aut_apply_diagonal z)
 
 /-- The accepted common-field construction, with its two lifted even factors
-retained rather than forgotten behind an existential source automorphism.-/
+retained rather than forgotten behind an existential source automorphism.
+@isnad1 id=ex.2h3v.s10.b8a451786b26 from=translated src=- shape=f5316589 vocab=66260bee
+-/
 theorem exists_common_field_twoEven
     (x y : JCoord K) (ha : nV x.v ≠ 0)
     (hGram : 4 * nV x.v * nV y.v - (BV x.v y.v)^2 ≠ 0) :

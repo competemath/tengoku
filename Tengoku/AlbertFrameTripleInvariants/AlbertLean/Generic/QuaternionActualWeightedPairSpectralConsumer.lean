@@ -21,7 +21,9 @@ private theorem adj2_eq_adj (X : Mat2 K) : adj2 X = adj X := by
 pairs.  In the intended call all displayed block identities and the two pivot
 identities are supplied by `actual_same_ledger_weighted_pair_data` and
 `actual_weighted_pivot_idempotent`; only the two stated nonvanishing conditions
-are additional open conditions.-/
+are additional open conditions.
+@isnad1 id=ex.13h5v.s11.12775f3ef3c5 from=translated src=- shape=afb5266f vocab=dd87bfc7
+-/
 theorem exists_pair_conjugator_of_actual_weighted_data
     (B C : Fin 3 → Fin 3 → Mat2 K) (p q : Fin 3 → K)
     (hp : ∀ i, p i ≠ 0) (hp12 : p 1 + p 2 ≠ 0)

@@ -49,6 +49,9 @@ def weightedFirstMatrix (p : Fin 3 → K) : Mat6 K
   | Sum.inl _, Sum.inr _ => 0
   | Sum.inr _, Sum.inl _ => 0
 
+/--
+@isnad1 id=eq.0h2v.s7.68f46dfe01e3 from=translated src=- shape=43f5e8e6 vocab=e8471c2e
+-/
 theorem matrixAction_weightedFirstMatrix (p : Fin 3 → K) :
     matrixAction (weightedFirstMatrix p) = weightedFirstAction p := by
   apply LinearMap.ext
@@ -59,7 +62,9 @@ theorem matrixAction_weightedFirstMatrix (p : Fin 3 → K) :
       Fintype.sum_sum_type]
 
 /-- Actual compression identities force the first projector to have literal
-weighted block columns `p_j I` under the genuine weighted coordinate map.-/
+weighted block columns `p_j I` under the genuine weighted coordinate map.
+@isnad1 id=eq.3h6v.s11.f81a6c97e363 from=translated src=- shape=135218be vocab=d44a8b77
+-/
 theorem first_projector_intertwines_weighted_coordinates
     (E : Fin 3 → Carrier K) (F0 : Carrier K)
     (hEsum : (E 0 : Mat6 K) + E 1 + E 2 = 1)

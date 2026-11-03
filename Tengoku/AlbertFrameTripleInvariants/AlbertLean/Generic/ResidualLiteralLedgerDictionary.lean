@@ -59,7 +59,9 @@ Proof recipe (all identities are definitional or already checked): split the
 sums `M01+M10`, `M23+M32`.  The `(1,2)` and `(2,1)` sectors use the eight
 gauge-weighted cross entries.  The `(2,2)` S/C sectors use the two normalized
 adjoint pairings, and its V sector uses
-`normalizedUV_exterior_identity`, hence `exteriorQ M - (deltaX+deltaStarA)`.-/
+`normalizedUV_exterior_identity`, hence `exteriorQ M - (deltaX+deltaStarA)`.
+@isnad1 id=mem.2h6v.s8.886d3bf40312 from=translated src=- shape=6f9f4ecc vocab=4deb2d76
+-/
 theorem chart_power_diagonal_mem (F : Subfield K) (x : ExplicitFrameChart K)
     (hc : CoefficientsIn F x) (hr : ResidualDataIn F x) :
     ∀ i p q, diagLinear i
@@ -235,7 +237,9 @@ theorem chart_power_diagonal_mem (F : Subfield K) (x : ExplicitFrameChart K)
 
 /-- All 54 actual source-ledger cells lie in any subfield containing the
 effective chart data.  Centering is supplied only by
-`ledgerIn_of_power_diagonal_mem`; it is not re-expanded here.-/
+`ledgerIn_of_power_diagonal_mem`; it is not re-expanded here.
+@isnad1 id=ledgerin.2h3v.s5.2b81362e7a41 from=translated src=- shape=3e01808e vocab=ace7144c
+-/
 theorem ledgerIn_of_chart_data (F : Subfield K) (x : ExplicitFrameChart K)
     (hc : CoefficientsIn F x) (hr : ResidualDataIn F x) :
     LedgerIn F (sourceLedger (encoderA x) (encoderB x)) :=
@@ -253,7 +257,9 @@ def chartField (base : Subfield K) (x : ExplicitFrameChart K) : Subfield K :=
 containment is the checked inverse `residual_moments_mem_ledgerField`, plus
 the diagonal power measurements.  The reverse containment is the theorem
 above.  The four gauge coefficients must be in `base`; no orientation-open
-or norm equation is concealed.-/
+or norm equation is concealed.
+@isnad1 id=eq.7h3v.s7.07dde92c6904 from=translated src=- shape=878e06a6 vocab=3a02b016
+-/
 theorem ledgerField_eq_chartField (base : Subfield K) (x : ExplicitFrameChart K)
     (hr1 : x.r1 ∈ base) (hz1 : x.z1 ∈ base)
     (hr2 : x.r2 ∈ base) (hz2 : x.z2 ∈ base)
@@ -300,6 +306,9 @@ theorem ledgerField_eq_chartField (base : Subfield K) (x : ExplicitFrameChart K)
       · rcases ht with ⟨⟨i,j⟩, rfl⟩; exact hInv.1 i j
       · rcases ht with rfl; exact hInv.2
 
+/--
+@isnad1 id=mem.2h3v.s6.4acee3d6b949 from=translated src=- shape=cba6168f vocab=45081257
+-/
 theorem kappa_mem_of_lift (F : Subfield K) (x : ExplicitFrameChart K)
     (hc : CoefficientsIn F x) (hlift : IsKappaLift x) : x.kappa ∈ F := by
   rcases hc with ⟨_, _, hr1, hz1, hr2, hz2⟩

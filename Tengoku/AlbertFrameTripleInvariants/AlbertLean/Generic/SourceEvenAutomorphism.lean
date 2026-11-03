@@ -23,16 +23,25 @@ open AlbertLean.Generic
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.0h4v.s6.740ec0e45b95 from=translated src=- shape=b399cc4f vocab=fb524301
+-/
 theorem reflectV_add (a v w : VCoord K) :
     reflectV a (v + w) = reflectV a v + reflectV a w := by
   rw [reflectV, reflectV, reflectV, BV_add_right]
   module
 
+/--
+@isnad1 id=eq.0h4v.s8.3564fd1e2429 from=translated src=- shape=eb41e40a vocab=019f44b4
+-/
 theorem reflectV_smul (a v : VCoord K) (k : K) :
     reflectV a (k • v) = k • reflectV a v := by
   rw [reflectV, reflectV, BV_smul_right]
   module
 
+/--
+@isnad1 id=eq.1h3v.s6.606137ee8d58 from=translated src=- shape=6aab0813 vocab=d5139c86
+-/
 theorem BV_reflectV (a v : VCoord K) (ha : nV a ≠ 0) :
     BV a (reflectV a v) = -BV a v := by
   rw [reflectV, sub_eq_add_neg, ← neg_smul, BV_add_right,
@@ -40,6 +49,9 @@ theorem BV_reflectV (a v : VCoord K) (ha : nV a ≠ 0) :
   field_simp [ha]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.c08be15a3ee4 from=translated src=- shape=5db8a7e4 vocab=ae3db609
+-/
 theorem reflectV_involutive (a v : VCoord K) (ha : nV a ≠ 0) :
     reflectV a (reflectV a v) = v := by
   rw [reflectV, BV_reflectV a v ha, reflectV]
@@ -54,6 +66,9 @@ def reflectVLinear (a : VCoord K) : VCoord K →ₗ[K] VCoord K where
 def evenVLinear (a b : VCoord K) : VCoord K →ₗ[K] VCoord K :=
   (reflectVLinear a).comp (reflectVLinear b)
 
+/--
+@isnad1 id=eq.0h4v.s8.903627b48e2d from=translated src=- shape=12c62803 vocab=c9919af5
+-/
 @[simp] theorem evenVLinear_apply (a b v : VCoord K) :
     evenVLinear a b v = evenV a b v := rfl
 
@@ -73,6 +88,9 @@ def evenVEquiv (a b : VCoord K) (ha : nV a ≠ 0) (hb : nV b ≠ 0) :
 def evenSLinear (a b : VCoord K) (rho : K) : SCoord K →ₗ[K] SCoord K :=
   rho⁻¹ • (muSLinear a).comp (muCLinear b)
 
+/--
+@isnad1 id=eq.0h5v.s8.08e4935954bf from=translated src=- shape=aa7addc0 vocab=dee59d72
+-/
 @[simp] theorem evenSLinear_apply (a b : VCoord K) (rho : K) (s : SCoord K) :
     evenSLinear a b rho s = evenS a b rho s := rfl
 
@@ -93,6 +111,9 @@ def evenSEquiv (a b : VCoord K) (rho : K)
 def evenCLinear (a b : VCoord K) (rho : K) : CCoord K →ₗ[K] CCoord K :=
   rho⁻¹ • (muCLinear a).comp (muSLinear b)
 
+/--
+@isnad1 id=eq.0h5v.s8.ca47465181e7 from=translated src=- shape=aa7addc0 vocab=97fe10a7
+-/
 @[simp] theorem evenCLinear_apply (a b : VCoord K) (rho : K) (c : CCoord K) :
     evenCLinear a b rho c = evenC a b rho c := rfl
 
@@ -133,6 +154,9 @@ def evenJEquiv (a b : VCoord K) (rho : K)
   map_smul' k x := by
     apply JCoord.ext <;> simp
 
+/--
+@isnad1 id=eq.4h5v.s9.20b1267fc49f from=translated src=- shape=48db9e77 vocab=2a3d231f
+-/
 @[simp] theorem evenJEquiv_apply (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)
     (hrho : rho ^ 2 = nV a * nV b) (hrho0 : rho ≠ 0) (x : JCoord K) :
@@ -142,6 +166,9 @@ def evenJEquiv (a b : VCoord K) (rho : K)
         s := evenS a b rho x.s
         c := evenC a b rho x.c } := rfl
 
+/--
+@isnad1 id=eq.4h5v.s9.741c3d5f400d from=translated src=- shape=e2085e8d vocab=a6eb9280
+-/
 theorem evenJEquiv_sourceNorm (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)
     (hrho : rho ^ 2 = nV a * nV b) (hrho0 : rho ≠ 0) (x : JCoord K) :
@@ -151,6 +178,9 @@ theorem evenJEquiv_sourceNorm (a b : VCoord K) (rho : K)
     nC_evenC a b rho x.c hrho hrho0,
     triality_even a b rho x.v x.s x.c ha hb hrho hrho0]
 
+/--
+@isnad1 id=eq.4h4v.s9.610a98874ed5 from=translated src=- shape=e4952d10 vocab=27e7c190
+-/
 theorem evenJEquiv_sourceOne (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)
     (hrho : rho ^ 2 = nV a * nV b) (hrho0 : rho ≠ 0) :

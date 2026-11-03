@@ -123,7 +123,9 @@ private theorem inverse_of_cleared
   rw [hn, ← mul_smul, inv_mul_cancel₀ hz, one_smul]
 
 /-- Every one of the sixteen entries is recovered from the actual source pair.
-The only inverse is the common vector determinant `2*a*sigma`.-/
+The only inverse is the common vector determinant `2*a*sigma`.
+@isnad1 id=eq.9h6v.s8.019df7aed119 from=translated src=- shape=46df64fa vocab=79389f4d
+-/
 theorem matrixM_eq_uniform_inverse (q : ExplicitFrameChart K) (a b c sigma : K)
     (hq : EquationsVanish (explicitFrameEquationValues q))
     (hr1 : q.r1 = 1) (hz1 : q.z1 = a) (hr2 : q.r2 = b) (hz2 : q.z2 = c)

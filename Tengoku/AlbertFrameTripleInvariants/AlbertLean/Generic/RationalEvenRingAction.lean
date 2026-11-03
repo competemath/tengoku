@@ -69,6 +69,9 @@ def centerB (alphaInv r : R) (omega : W R) (rho rInv : R) : VCoord R :=
     z := (rho ^ 2 * alphaInv - Pf omega) * rInv
     omega := omega }
 
+/--
+@isnad1 id=eq.2h7v.s7.54625ff872e0 from=translated src=- shape=dbb946bb vocab=98468f17
+-/
 theorem ringNV_centerB (alpha alphaInv r : R) (omega : W R)
     (rho rInv : R) (ha : alpha * alphaInv = 1) (hr : r * rInv = 1) :
     ringNV (centerB alphaInv r omega rho rInv) = rho ^ 2 * alphaInv := by
@@ -78,6 +81,9 @@ theorem ringNV_centerB (alpha alphaInv r : R) (omega : W R)
         (rho ^ 2 * alphaInv - Pf omega) * (r * rInv) + Pf omega := by ring
     _ = rho ^ 2 * alphaInv := by rw [hr]; ring
 
+/--
+@isnad1 id=eq.3h8v.s7.9a1b8a2a5349 from=translated src=- shape=ef476459 vocab=98468f17
+-/
 theorem centerB_inverseNorm (alpha alphaInv r : R) (omega : W R)
     (rho rInv rhoInv : R) (ha : alpha * alphaInv = 1)
     (hr : r * rInv = 1) (hp : rho * rhoInv = 1) :
@@ -119,6 +125,9 @@ def ofF0 (x : F0Ring R) : JCoord R :=
     s := { p := ![x 11, x 12, x 13, x 14], phi := ![x 15, x 16, x 17, x 18] }
     c := { q := ![x 19, x 20, x 21, x 22], psi := ![x 23, x 24, x 25, x 26] } }
 
+/--
+@isnad1 id=eq.0h2v.s6.a663fea8d709 from=translated src=- shape=41d12750 vocab=4a568b65
+-/
 @[simp] theorem ofF0_toF0 (x : JCoord R) : ofF0 (toF0 x) = x := by
   apply JCoord.ext
   · rfl
@@ -128,6 +137,9 @@ def ofF0 (x : F0Ring R) : JCoord R :=
   · apply SCoord.ext <;> funext i <;> fin_cases i <;> rfl
   · apply CCoord.ext <;> funext i <;> fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.a72966289602 from=translated src=- shape=41d12750 vocab=cca16782
+-/
 @[simp] theorem toF0_ofF0 (x : F0Ring R) : toF0 (ofF0 x) = x := by
   funext i
   fin_cases i <;> rfl
@@ -259,7 +271,9 @@ private theorem map_ofF0 {S : Type*} [CommRing S]
 
 /-- The entire rational coordinate map specializes coefficientwise.  This is
 the composition-safe interface: several `familyF0` maps may be composed in
-the localization before applying this theorem once.-/
+the localization before applying this theorem once.
+@isnad1 id=eq.0h12v.s8.6f404fe15fe8 from=translated src=- shape=857c2668 vocab=9824de57
+-/
 theorem map_familyF0 {S : Type*} [CommRing S] [Algebra ℚ S] [Invertible (2 : S)]
     (f : R →+* S) (A : VCoord R) (alpha alphaInv r : R) (omega : W R)
     (rho rInv rhoInv : R) (x : F0Ring R) :
@@ -270,7 +284,9 @@ theorem map_familyF0 {S : Type*} [CommRing S] [Algebra ℚ S] [Invertible (2 : S
 
 /-- Two stages are specialized only after their coordinate maps have been
 composed.  No map from an intermediate normalized ambient function field is
-introduced.-/
+introduced.
+@isnad1 id=eq.0h20v.s9.cae68181e6df from=translated src=- shape=b849594c vocab=9824de57
+-/
 theorem map_twoFamilyF0 {S : Type*} [CommRing S] [Algebra ℚ S]
     [Invertible (2 : S)] (f : R →+* S)
     (A₁ A₂ : VCoord R)
@@ -291,15 +307,33 @@ section FieldAgreement
 variable {K : Type*} [Field K] [CharZero K]
 local instance : Invertible (2 : K) := invertibleOfNonzero (by norm_num)
 
+/--
+@isnad1 id=eq.0h2v.s5.d1fe0922219e from=translated src=- shape=061290fe vocab=ea9269b3
+-/
 theorem ringNV_eq_nV (v : VCoord K) : ringNV v = nV v := rfl
+/--
+@isnad1 id=eq.0h3v.s5.36ba5fee1dec from=translated src=- shape=fc4301df vocab=e8b0c0a1
+-/
 theorem ringBV_eq_BV (v w : VCoord K) : ringBV v w = BV v w := rfl
+/--
+@isnad1 id=eq.0h3v.s5.9fd4babac82b from=translated src=- shape=b8bbb0a1 vocab=f9110fa5
+-/
 theorem ringMuS_eq (c : CCoord K) (v : VCoord K) : ringMuS c v = sourceMuS c v := rfl
+/--
+@isnad1 id=eq.0h3v.s5.93fa3dd78573 from=translated src=- shape=b8bbb0a1 vocab=268b2f30
+-/
 theorem ringMuC_eq (v : VCoord K) (s : SCoord K) : ringMuC v s = sourceMuC v s := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.1b07f09f37c3 from=translated src=- shape=fdd9f8f9 vocab=bc9a184f
+-/
 theorem ringReflectV_eq (a v : VCoord K) :
     ringReflectV a (nV a)⁻¹ v = reflectV a v := by
   simp [ringReflectV, reflectV, ringBV_eq_BV, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h5v.s6.c8beb4d18913 from=translated src=- shape=8f9df193 vocab=249e4496
+-/
 theorem centerB_eq_center (alpha r : K) (omega : W K) (rho : K) :
     centerB alpha⁻¹ r omega rho r⁻¹ = center alpha r omega rho := by
   apply VCoord.ext
@@ -307,7 +341,9 @@ theorem centerB_eq_center (alpha r : K) (omega : W K) (rho : K) :
   · simp [centerB, center, div_eq_mul_inv]
   · rfl
 
-/-- Evaluation correctness for all 27 coordinates at once.-/
+/-- Evaluation correctness for all 27 coordinates at once.
+@isnad1 id=eq.3h6v.s10.44ef2deb74f9 from=translated src=- shape=b6c9d956 vocab=a702aa8a
+-/
 theorem familyF0_eq_sourceEvenAut
     (A : VCoord K) (hA : nV A ≠ 0)
     (r : K) (omega : W K) (rho : K) (hr : r ≠ 0) (hp : rho ≠ 0)

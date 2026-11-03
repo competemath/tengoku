@@ -20,7 +20,9 @@ variable {K : Type*} [Field K] [CharZero K]
 /-- The concrete matrices underlying the common-plane automorphism retain
 both inverse laws and the similitude multiplier of the forward plane matrix.
 The orientation agrees with `commonPlaneJordanAut_apply_coe`: `S` is forward
-and `T` is backward.-/
+and `T` is backward.
+@isnad1 id=other.9h10v.s12.64458240d5a9 from=translated src=- shape=af4eb29b vocab=a79fa7a2
+-/
 theorem commonPlaneForwardBackward_matrix_laws
     (E E' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -101,7 +103,9 @@ theorem commonPlaneForwardBackward_matrix_laws
 
 /-- Actual Q1 pair comparison retaining the concrete GSp matrices underlying
 the constructed Jordan automorphism.  The hypotheses use the same selected
-vectors and the same single left-pivot discriminant as the existing endpoint.-/
+vectors and the same single left-pivot discriminant as the existing endpoint.
+@isnad1 id=ex.17h11v.s14.51c23feb1787 from=translated src=- shape=b92352b7 vocab=f424b03e
+-/
 theorem exists_actual_same_ledger_pair_jordanAut_provenance
     (E F E' F' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

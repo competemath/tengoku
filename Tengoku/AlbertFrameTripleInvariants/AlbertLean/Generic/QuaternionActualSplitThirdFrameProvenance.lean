@@ -114,7 +114,9 @@ private theorem exists_scalar_provenance_of_labelled_probes
       hu i, hv i]
 
 /-- The same open hypotheses as the existing same-ledger theorem now retain
-the constructed scalar similitude and its full nine-point conjugacy.-/
+the constructed scalar similitude and its full nine-point conjugacy.
+@isnad1 id=ex.21h14v.s13.9f4bf0942b64 from=translated src=- shape=8c5caf09 vocab=66192830
+-/
 theorem exists_split_actual_three_frame_scalar_provenance_of_same_ledger
     (E F P E' F' P' : Fin 3 → Carrier K)
     (f a a' : Fin 3 → Mat3 K)
@@ -180,7 +182,9 @@ theorem exists_split_actual_three_frame_scalar_provenance_of_same_ledger
     hPsum hPsum' hfsum hf0 hf2 hf02 hf20 hprobeOpen hLabel hadj hrankTwo
 
 /-- Forgetting the retained matrices recovers the original existential
-Jordan-automorphism conclusion from the stronger provenance theorem.-/
+Jordan-automorphism conclusion from the stronger provenance theorem.
+@isnad1 id=ex.21h14v.s13.a629dec071ec from=translated src=- shape=70256771 vocab=e49bcf4a
+-/
 theorem exists_split_actual_three_frame_jordanAut_from_scalar_provenance
     (E F P E' F' P' : Fin 3 → Carrier K)
     (f a a' : Fin 3 → Mat3 K)

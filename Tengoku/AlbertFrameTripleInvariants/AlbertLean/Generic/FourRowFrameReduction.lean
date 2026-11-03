@@ -27,7 +27,9 @@ section RingElimination
 variable {R : Type*} [Ring R]
 
 /-- Clear the two left inverses in the normalized c-slot equation.  Right-inverse
-equations suffice; only X and 1+X commute with each other.-/
+equations suffice; only X and 1+X commute with each other.
+@isnad1 id=eq.3h7v.s8.67736e912c80 from=translated src=- shape=c697c839 vocab=b3099133
+-/
 theorem weighted_cslot_implies_anchored_equation
     (X Xi Yi A0 A1 A2 : R)
     (hXXi : X * Xi = 1) (hOneYi : (1 + X) * Yi = 1)
@@ -56,7 +58,9 @@ theorem weighted_cslot_implies_anchored_equation
     _ = 0 := hm
 
 /-- Right cancellation by `A0i` puts the anchored equation into the exact
-right-quadratic convention used by `FourRowUniqueness.GoodSolution`.-/
+right-quadratic convention used by `FourRowUniqueness.GoodSolution`.
+@isnad1 id=eq.2h6v.s8.fcb319f95497 from=translated src=- shape=09eae80e vocab=b3099133
+-/
 theorem anchored_equation_implies_right_quadratic
     (X A0 A0i A1 A2 : R)
     (hA0i : A0 * A0i = 1)
@@ -91,7 +95,9 @@ def cslotSum (b0 b1 b2 A0 A1 A2 : Mat3 K) : Mat3 K :=
   b0⁻¹ * A0 + b1⁻¹ * A1 + b2⁻¹ * A2
 
 /-- Normalizing `b0=a0`, `b1=X*a0`, and `b2=-(1+X)*a0` turns the raw c-slot
-sum into the weighted equation used by the short elimination lemma.-/
+sum into the weighted equation used by the short elimination lemma.
+@isnad1 id=eq.9h9v.s10.0b069d0107eb from=translated src=- shape=a26bebc8 vocab=6d29fae2
+-/
 theorem normalized_cslot_equation_of_sum
     (a0 b0 b1 b2 X A0 A1 A2 : Mat3 K)
     (hb0 : b0 = a0)
@@ -137,7 +143,9 @@ theorem normalized_cslot_equation_of_sum
 
 /-- Component reduction: the normalized b-slots and vanishing sum of
 `b_i⁻¹ A_i` force the exact right quadratic, with explicit `U` and `V`.
-All hypotheses are ordinary matrix equalities or determinant nonvanishing.-/
+All hypotheses are ordinary matrix equalities or determinant nonvanishing.
+@isnad1 id=eq.10h9v.s9.b3e6c5384483 from=translated src=- shape=700f7b0d vocab=f373d4df
+-/
 theorem right_quadratic_of_normalized_cslots
     (a0 b0 b1 b2 X A0 A1 A2 : Mat3 K)
     (hb0 : b0 = a0)

@@ -22,7 +22,9 @@ private theorem scalarSimilitude_one : scalarSimilitude (1 : K) = 1 := by
   rcases i with i | i <;> rcases j with j | j <;>
     simp [scalarSimilitude, Matrix.one_apply]
 
-/-- Central rescaling cancels on every matrix, without a carrier hypothesis.-/
+/-- Central rescaling cancels on every matrix, without a carrier hypothesis.
+@isnad1 id=eq.1h5v.s8.0e37964b4a3c from=translated src=- shape=9ba82e42 vocab=ad46db6b
+-/
 theorem central_rescale_conjugation (M N X : Mat6 K) (r : K) (hr : r ≠ 0) :
     (r⁻¹ • M) * X * (r • N) = M * X * N := by
   simp only [Matrix.smul_mul, Matrix.mul_smul, smul_smul]
@@ -39,7 +41,9 @@ private theorem normalized_form (M : Mat6 K) (mu r : K) (hr : r ≠ 0)
   rw [hform, smul_smul, hscale, one_smul]
 
 /-- Once a root of the multiplier is available, an actual twelve-word acts
-exactly as the original similitude on the entire matrix algebra.-/
+exactly as the original similitude on the entire matrix algebra.
+@isnad1 id=ex.5h5v.s9.38c39f1594ae from=translated src=- shape=daf19def vocab=32eec83a
+-/
 theorem exists_twelve_word_of_multiplier_root
     (M N : Mat6 K) (mu r : K)
     (hMN : M * N = 1) (hNM : N * M = 1) (hr : r ≠ 0)
@@ -96,7 +100,9 @@ private theorem map_similitude_form
   exact h
 
 /-- No square-root hypothesis is added to the input: one existing finite
-root extension supplies an actual word and the full conjugation identity.-/
+root extension supplies an actual word and the full conjugation identity.
+@isnad1 id=ex.4h4v.s11.9eea77e535ca from=translated src=- shape=b5ba874a vocab=0f41d267
+-/
 theorem exists_twelve_word_after_root
     (M N : Mat6 K) (mu : K)
     (hMN : M * N = 1) (hNM : N * M = 1) (hmu : mu ≠ 0)

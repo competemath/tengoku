@@ -16,11 +16,17 @@ variable {K : Type*} [Field K] [CharZero K]
 
 def adj (X : Mat2 K) : Mat2 K := matrix (X 1 1) (-X 0 1) (-X 1 0) (X 0 0)
 
+/--
+@isnad1 id=eq.0h2v.s7.b8b2f891902d from=translated src=- shape=08f4a857 vocab=895306ea
+-/
 theorem mul_adj (X : Mat2 K) : X * adj X = determinant X • (1 : Mat2 K) := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [adj, matrix, Matrix.mul_apply, Fin.sum_univ_two, determinant] <;> ring
 
+/--
+@isnad1 id=eq.1h5v.s8.264b6eb18efd from=translated src=- shape=06a0c439 vocab=895306ea
+-/
 theorem weighted_product (p q : K) (X Y : Mat2 K)
     (h : p • Y = q • adj X) :
     p • (X * Y) = (q * determinant X) • (1 : Mat2 K) := by
@@ -30,7 +36,9 @@ theorem weighted_product (p q : K) (X Y : Mat2 K)
     _ = q • (X * adj X) := mul_smul_comm q X (adj X)
     _ = (q * determinant X) • (1 : Mat2 K) := by rw [mul_adj, smul_smul]
 
-/-- The weighted adjoint relation recovers the trace from the overlap data.-/
+/-- The weighted adjoint relation recovers the trace from the overlap data.
+@isnad1 id=eq.4h4v.s10.487707a22bfa from=translated src=- shape=7141fbf5 vocab=67d6b702
+-/
 theorem pivot_trace_relation (B : Fin 3 → Fin 3 → Mat2 K) (p q : Fin 3 → K)
     (hd : ∀ i, B i i = q i • (1 : Mat2 K))
     (hr : ∀ i, B i 0 + B i 1 + B i 2 = 0)
@@ -45,7 +53,9 @@ theorem pivot_trace_relation (B : Fin 3 → Fin 3 → Mat2 K) (p q : Fin 3 → K
   linear_combination hb00 - hs00
 
 /-- The first diagonal projector equation determines the determinant of the
-remaining block once its trace and the overlaps are known.-/
+remaining block once its trace and the overlaps are known.
+@isnad1 id=eq.6h4v.s11.c100ad1d3818 from=translated src=- shape=1015cbe7 vocab=8a73af4d
+-/
 theorem pivot_determinant_relation (B : Fin 3 → Fin 3 → Mat2 K) (p q : Fin 3 → K)
     (hd : ∀ i, B i i = q i • (1 : Mat2 K))
     (hr : ∀ i, B i 0 + B i 1 + B i 2 = 0)

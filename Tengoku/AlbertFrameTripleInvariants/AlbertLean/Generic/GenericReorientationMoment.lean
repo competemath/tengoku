@@ -64,7 +64,9 @@ def weightedTranspose (M : Matrix (Fin 4) (Fin 4) (B k)) :
   (weight k i)⁻¹ * weight k j * M j i
 
 /-- This includes the four dependent diagonal entries, not only the twelve
-independent off-diagonal generators.-/
+independent off-diagonal generators.
+@isnad1 id=eq.0h1v.s9.de91c59f5269 from=translated src=- shape=aa8c3b5c vocab=e503dc56
+-/
 theorem rationalM_reorient :
     (rationalM k).map (reorient k).toRingHom = weightedTranspose k (rationalM k) := by
   ext i j
@@ -84,7 +86,9 @@ private theorem weightedTranspose_eq (M : Matrix (Fin 4) (Fin 4) (B k)) :
   ext i j
   simp [weightedTranspose, Matrix.diagonal_mul, Matrix.mul_diagonal] <;> ring
 
-/-- Weighted transposition preserves every matrix determinant.-/
+/-- Weighted transposition preserves every matrix determinant.
+@isnad1 id=eq.0h2v.s8.36e3616f1a8e from=translated src=- shape=8058ac8a vocab=eb3545dc
+-/
 theorem weightedTranspose_det (M : Matrix (Fin 4) (Fin 4) (B k)) :
     Matrix.det (weightedTranspose k M) = Matrix.det M := by
   have hd : Matrix.diagonal (fun i => (weight k i)⁻¹) *
@@ -101,6 +105,9 @@ theorem weightedTranspose_det (M : Matrix (Fin 4) (Fin 4) (B k)) :
         Matrix.det (Matrix.diagonal (weight k))) * Matrix.det M := by ring
     _ = Matrix.det M := by rw [← Matrix.det_mul, hd, Matrix.det_one, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s11.bdba9f1c9a66 from=translated src=- shape=850b23c5 vocab=0ba03ec6
+-/
 @[simp] theorem reorient_det_rationalM :
     reorient k (Matrix.det (rationalM k)) = Matrix.det (rationalM k) := by
   change (reorient k).toRingHom (Matrix.det (rationalM k)) = _

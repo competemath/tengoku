@@ -21,7 +21,9 @@ historical `AlbertLean.challenge` (a `sorry` placeholder) is not used here.
 
 namespace OneBit
 
-/-- The complete existing finite witness result, exposed without additional hypotheses.-/
+/-- The complete existing finite witness result, exposed without additional hypotheses.
+@isnad1 id=combined.0h0v.s0.dc7e3c5dd717 from=translated src=- shape=45709ebd vocab=dc7e3c5d
+-/
 theorem exactWitness : AlbertLean.CombinedTarget := AlbertLean.solution
 
 end OneBit

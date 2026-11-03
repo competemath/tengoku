@@ -38,6 +38,9 @@ def adj2 (A : Matrix (Fin 2) (Fin 2) K) : Matrix (Fin 2) (Fin 2) K :=
 
 def scalar2 (q : K) : Matrix (Fin 2) (Fin 2) K := q • 1
 
+/--
+@isnad1 id=eq.0h4v.s9.927f3aef38a6 from=translated src=- shape=da28f280 vocab=5c6c7379
+-/
 theorem coordinateConjugate_comp
     (L : Vec6 K ≃ₗ[K] Vec6 K) (A B : Vec6 K →ₗ[K] Vec6 K) :
     coordinateConjugate L (A.comp B) =
@@ -46,6 +49,9 @@ theorem coordinateConjugate_comp
   intro x
   simp [coordinateConjugate, LinearMap.comp_apply]
 
+/--
+@isnad1 id=eq.0h2v.s9.5323c8fec6fd from=translated src=- shape=48989f0e vocab=db5319dc
+-/
 theorem coordinateConjugate_zero
     (L : Vec6 K ≃ₗ[K] Vec6 K) :
     coordinateConjugate L (0 : Vec6 K →ₗ[K] Vec6 K) = 0 := by
@@ -53,6 +59,9 @@ theorem coordinateConjugate_zero
   intro x
   simp [coordinateConjugate]
 
+/--
+@isnad1 id=eq.6h6v.s12.16e1940e937d from=translated src=- shape=bc48679b vocab=a3d5704a
+-/
 theorem coordinateConjugate_first_projector
     (E : Fin 3 → Carrier K) (F0 : Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -78,7 +87,9 @@ theorem coordinateConjugate_first_projector
   rw [hx, L.symm_apply_apply]
 
 /-- The two zero-composition equations are derived from the actual `F` frame
-before any block algebra is invoked.-/
+before any block algebra is invoked.
+@isnad1 id=other.8h6v.s13.71bd190ca77a from=translated src=- shape=050de6e9 vocab=807210ed
+-/
 theorem actual_second_projector_weighted_zero_compositions
     (E F : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -115,7 +126,9 @@ theorem actual_second_projector_weighted_zero_compositions
       coordinateConjugate_zero]
 
 /-- The action-level zero products give the row and weighted-column block
-relations used by `QuaternionWeightedBlockEquations`.-/
+relations used by `QuaternionWeightedBlockEquations`.
+@isnad1 id=and.3h3v.s10.9a9a8a2c346c from=translated src=- shape=e7da50e1 vocab=0b0aff30
+-/
 theorem weighted_block_zero_sums
     (B : Vec6 K →ₗ[K] Vec6 K) (p : Fin 3 → K) (hp0 : p 0 ≠ 0)
     (hrow : B.comp (weightedFirstAction p) = 0)
@@ -150,6 +163,9 @@ theorem weighted_block_zero_sums
         weightedPairIndex, basisVector, Pi.single_apply,
         Fin.sum_univ_succ] using h
 
+/--
+@isnad1 id=eq.0h5v.s9.cb3aae2cac8c from=translated src=- shape=9471e622 vocab=2dc89f89
+-/
 theorem weightedCoordinateLinear_basis_left
     (E : Fin 3 → Carrier K) (u v : Vec6 K) (i : Fin 3) :
     weightedCoordinateLinear E u v (basisVector (Sum.inl i)) =
@@ -159,6 +175,9 @@ theorem weightedCoordinateLinear_basis_left
     simp [weightedCoordinateLinear, basisVector, Pi.single_apply,
       Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h5v.s9.09398722cc5d from=translated src=- shape=a28f256c vocab=3b3fff4b
+-/
 theorem weightedCoordinateLinear_basis_right
     (E : Fin 3 → Carrier K) (u v : Vec6 K) (i : Fin 3) :
     weightedCoordinateLinear E u v (basisVector (Sum.inr i)) =
@@ -169,7 +188,9 @@ theorem weightedCoordinateLinear_basis_right
       Fin.sum_univ_succ]
 
 /-- Pairing with the two vectors of plane `i` extracts the two weighted
-coordinates.-/
+coordinates.
+@isnad1 id=and.3h7v.s12.fce7e4a691b7 from=translated src=- shape=7b11d0b0 vocab=fe3995d1
+-/
 theorem weighted_pairing_extract
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -199,6 +220,9 @@ theorem weighted_pairing_extract
   · simp [weightedCoordinateLinear, LinearMap.add_apply, LinearMap.sum_apply,
       LinearMap.smul_apply, smul_eq_mul, huu, hrev]
 
+/--
+@isnad1 id=and.3h7v.s12.18f63d580cc4 from=translated src=- shape=dcde8d35 vocab=fe3995d1
+-/
 theorem weighted_pairing_extract_reverse
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -218,7 +242,9 @@ theorem weighted_pairing_extract_reverse
     linear_combination -h1
 
 /-- Actual self-adjointness of `F1`, transported through the weighted
-coordinate equivalence, gives the correctly oriented block adjoint law.-/
+coordinate equivalence, gives the correctly oriented block adjoint law.
+@isnad1 id=other.4h6v.s11.7f0e1c8b8ed8 from=translated src=- shape=11f7158e vocab=6380bb5c
+-/
 theorem actual_weighted_block_adjoint
     (E : Fin 3 → Carrier K) (F1 : Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -305,6 +331,9 @@ theorem actual_weighted_block_adjoint
     simp only [weightedPairIndex]
     linear_combination -hs
 
+/--
+@isnad1 id=other.4h6v.s11.ca6ca14bb233 from=translated src=- shape=52261417 vocab=25a6099f
+-/
 theorem actual_weighted_diagonal_scalar
     (E : Fin 3 → Carrier K) (F1 : Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

@@ -19,6 +19,9 @@ def cyclicBasisInv (X : Mat2 K) : Mat2 K :=
   matrix (-X 1 1 / X 0 1) 1 ((X 0 1)⁻¹) 0
 def companion (X : Mat2 K) : Mat2 K := matrix 0 (-determinant X) 1 (trace2 X)
 
+/--
+@isnad1 id=eq.0h2v.s7.cd282a6bae88 from=translated src=- shape=0be363be vocab=fb9d2065
+-/
 theorem cyclic_intertwines (X : Mat2 K) :
     X * cyclicBasis X = cyclicBasis X * companion X := by
   ext i j
@@ -26,6 +29,9 @@ theorem cyclic_intertwines (X : Mat2 K) :
     simp [cyclicBasis, companion, matrix, trace2, determinant,
       Matrix.mul_apply, Fin.sum_univ_two] <;> ring
 
+/--
+@isnad1 id=eq.1h2v.s7.c061d879db75 from=translated src=- shape=aa7dfcac vocab=1f4cdbdc
+-/
 theorem cyclic_mul_inv (X : Mat2 K) (h : X 0 1 ≠ 0) :
     cyclicBasis X * cyclicBasisInv X = 1 := by
   ext i j
@@ -33,6 +39,9 @@ theorem cyclic_mul_inv (X : Mat2 K) (h : X 0 1 ≠ 0) :
     simp [cyclicBasis, cyclicBasisInv, matrix, Matrix.mul_apply,
       Fin.sum_univ_two, h] <;> field_simp <;> ring
 
+/--
+@isnad1 id=eq.1h2v.s7.06f1daab1f47 from=translated src=- shape=aa7dfcac vocab=1f4cdbdc
+-/
 theorem cyclic_inv_mul (X : Mat2 K) (h : X 0 1 ≠ 0) :
     cyclicBasisInv X * cyclicBasis X = 1 := by
   ext i j
@@ -41,7 +50,9 @@ theorem cyclic_inv_mul (X : Mat2 K) (h : X 0 1 ≠ 0) :
       Fin.sum_univ_two, h] <;> field_simp <;> ring
 
 /-- Equal trace and determinant yield an explicit GL2 intertwiner, with no
-field extension. Its use on all three planes is a symplectic similitude.-/
+field extension. Its use on all three planes is a symplectic similitude.
+@isnad1 id=other.4h3v.s9.d02708e7234d from=translated src=- shape=11c4882a vocab=4c0ef6ba
+-/
 theorem rational_intertwiner (X Y : Mat2 K)
     (hx : X 0 1 ≠ 0) (hy : Y 0 1 ≠ 0)
     (ht : trace2 X = trace2 Y) (hd : determinant X = determinant Y) :

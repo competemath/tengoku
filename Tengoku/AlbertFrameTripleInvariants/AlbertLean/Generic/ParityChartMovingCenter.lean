@@ -31,6 +31,9 @@ def curveOmega (t : K) : ExteriorSix.W K
   | .i24 => t ^ 5
   | .i34 => t ^ 6
 
+/--
+@isnad1 id=eq.0h2v.s5.869161e60936 from=translated src=- shape=8e89c0bf vocab=584b2b75
+-/
 theorem curveOmega_pf (t : K) : Pf (curveOmega t) = t ^ 7 := by
   rw [pf_coordinate]
   simp only [curveOmega]
@@ -38,10 +41,16 @@ theorem curveOmega_pf (t : K) : Pf (curveOmega t) = t ^ 7 := by
 
 def movingCenter (t : K) : VCoord K := center 1 1 (curveOmega t) 1
 
+/--
+@isnad1 id=eq.0h2v.s5.7be7a5ce3ed5 from=translated src=- shape=e224aef9 vocab=9c91a835
+-/
 theorem movingCenter_norm (t : K) : nV (movingCenter t) = 1 := by
   rw [movingCenter, norm_center 1 1 (curveOmega t) 1 (by norm_num)]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s5.f3beca66a254 from=translated src=- shape=e224aef9 vocab=003695de
+-/
 @[simp] theorem movingCenter_r (t : K) : (movingCenter t).r = 1 := rfl
 
 /-- The eight coefficients recover the eight coordinates of A, up to signs.-/
@@ -50,6 +59,9 @@ def pivotValue (A : VCoord K) (t : K) : K :=
     A.omega .i23 * t ^ 3 - A.omega .i14 * t ^ 4 +
     A.omega .i13 * t ^ 5 - A.omega .i12 * t ^ 6
 
+/--
+@isnad1 id=eq.0h3v.s5.edd6a2887a0c from=translated src=- shape=b546590f vocab=f1918805
+-/
 theorem moved_r (A : VCoord K) (t : K) :
     (evenV parityVector (movingCenter t) A).r = pivotValue A t := by
   simp only [evenV, reflectV]

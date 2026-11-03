@@ -12,14 +12,23 @@ open Generated
 set_option maxRecDepth 200000
 set_option maxHeartbeats 2000000
 
+/--
+@isnad1 id=eq.0h1v.s5.1b2f6a68b0df from=translated src=- shape=7db6e9ef vocab=a4b605f7
+-/
 theorem traceForm_basis_0_scratch (y : Coord) :
     traceForm (basisVec 0) y = y 0 := by
   norm_num [traceForm_eq_gram, traceFormGram, basisVec, v, q, Fin.ext_iff]
 
+/--
+@isnad1 id=eq.0h1v.s5.cde2f528a2ef from=translated src=- shape=7db6e9ef vocab=a4b605f7
+-/
 theorem traceForm_basis_1_scratch (y : Coord) :
     traceForm (basisVec 1) y = y 1 := by
   norm_num [traceForm_eq_gram, traceFormGram, basisVec, v, q, Fin.ext_iff]
 
+/--
+@isnad1 id=and.0h0v.s6.11df5209bbfb from=translated src=- shape=e3fe0f56 vocab=76140218
+-/
 theorem regressionM09 :
     m09LedgerTheta1.P 0 1 = q 1 36 ∧
     (ledger witnessThetaM).P 0 1 = q 4 3 ∧

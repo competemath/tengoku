@@ -20,7 +20,9 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 
 /-- Each lifted even pair fixes every labelled standard idempotent, including
-its zero V/S/C slots.-/
+its zero V/S/C slots.
+@isnad1 id=eq.4h5v.s9.6ff514b09a4b from=translated src=- shape=229dd418 vocab=c5db4ade
+-/
 theorem evenSourceAut_diagonalUnit (A B : VCoord K) (rho : K)
     (hA : nV A ≠ 0) (hB : nV B ≠ 0)
     (hr : rho^2 = nV A*nV B) (hr0 : rho ≠ 0) (i : Fin 3) :
@@ -94,7 +96,9 @@ private theorem exists_two_even_sourceAut
     exact hy
 
 /-- No algebraic closure or universal square-root hypothesis; no ambient
-raw-domain, density, or rational invariant assertion.-/
+raw-domain, density, or rational invariant assertion.
+@isnad1 id=ex.2h3v.s11.d2c2c8c133a5 from=translated src=- shape=1912c518 vocab=64652817
+-/
 theorem exists_common_field_sourceAut
     (x y : JCoord K) (ha : nV x.v ≠ 0)
     (hGram : 4*nV x.v*nV y.v - (BV x.v y.v)^2 ≠ 0) :

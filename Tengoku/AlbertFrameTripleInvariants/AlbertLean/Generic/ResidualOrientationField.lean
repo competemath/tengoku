@@ -28,7 +28,9 @@ def gaugeAugmentedLedgerField (base : Subfield K) (x : ExplicitFrameChart K) : S
   Subfield.closure (((ledgerField base (encoderA x) (encoderB x) : Subfield K) : Set K) ∪
     {x.r1, x.z1, x.r2, x.z2})
 
-/-- Here `g` is the full polar Gram.  The paper's `p` is `g/2`.-/
+/-- Here `g` is the full polar Gram.  The paper's `p` is `g/2`.
+@isnad1 id=other.2h2v.s7.2c8f3f220c7a from=translated src=- shape=57d977ef vocab=7714ccb8
+-/
 theorem normalized_gauge_formulas (x : ExplicitFrameChart K) (hr1 : x.r1 = 1)
     (hz1 : x.z1 ≠ 0) :
     let g := BV (vectorA x) (vectorB x)
@@ -45,6 +47,9 @@ theorem normalized_gauge_formulas (x : ExplicitFrameChart K) (hr1 : x.r1 = 1)
   · simp [BV, BW, vectorA, vectorB, orientation, hr1]
     ring
 
+/--
+@isnad1 id=eq.2h3v.s6.f0f03b5e8070 from=translated src=- shape=b1c5a93d vocab=02afe295
+-/
 theorem gaugeAugmentedLedgerField_eq_orientationLedgerField
     (base : Subfield K) (x : ExplicitFrameChart K)
     (hr1 : x.r1 = 1) (hz1 : x.z1 ≠ 0) :

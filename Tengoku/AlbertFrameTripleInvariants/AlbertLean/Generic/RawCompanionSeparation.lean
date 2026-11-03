@@ -15,6 +15,9 @@ namespace AlbertLean.Generic.RawCompanionSeparation
 
 variable {R F K : Type*} [CommRing R] [Field F] [Field K]
 
+/--
+@isnad1 id=eq.3h8v.s9.a1b490f2ac03 from=translated src=- shape=e6906554 vocab=eb8d9cf0
+-/
 theorem agreement_of_mem_generated_field
     (i : R →+* F) (hi : Function.Injective i)
     (phi : F →+* K) (e : R →+* K) (S : Set R)
@@ -44,7 +47,9 @@ theorem agreement_of_mem_generated_field
 
 /-- Separation at an actual ring-valued companion rules out membership in
 the original measurement field. Neither injectivity of the companion map
-nor a dominant chart is a hypothesis.-/
+nor a dominant chart is a hypothesis.
+@isnad1 id=not.3h8v.s9.72ba644f6628 from=translated src=- shape=7f78ec1f vocab=eb8d9cf0
+-/
 theorem not_mem_generated_field_of_companion
     (i : R →+* F) (hi : Function.Injective i)
     (phi : F →+* K) (e : R →+* K) (S : Set R)

@@ -47,7 +47,9 @@ def commonPlaneBackward
       (weightedCoordinateEquiv E' hEidem' hEsum' u' v' p hp' hpne).symm.toLinearMap)
 
 /-- Application formula for the genuine automorphism.  Its first plane
-matrix is the forward one; Q1 therefore passes `S,T` in this order.-/
+matrix is the forward one; Q1 therefore passes `S,T` in this order.
+@isnad1 id=eq.10h11v.s13.bd7d45323e19 from=translated src=- shape=9fc98a79 vocab=d3aa09d0
+-/
 theorem commonPlaneJordanAut_apply_coe
     (E E' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i) (hEsum : (E 0 : Mat6 K) + E 1 + E 2 = 1)
@@ -65,7 +67,9 @@ theorem commonPlaneJordanAut_apply_coe
         u v u' v' p hp hp' hpne T) := by
   rfl
 
-/-- A full vector-action conjugacy proves equality of actual carrier points.-/
+/-- A full vector-action conjugacy proves equality of actual carrier points.
+@isnad1 id=eq.11h12v.s13.b9695c337ffe from=translated src=- shape=cd2ff715 vocab=2ab1d835
+-/
 theorem commonPlaneJordanAut_maps_of_action
     (E E' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i) (hEsum : (E 0 : Mat6 K) + E 1 + E 2 = 1)

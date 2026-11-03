@@ -31,6 +31,9 @@ vector.-/
 def matrixOfLinear (L : Vec6 K →ₗ[K] Vec6 K) : Mat6 K :=
   fun i j => L (basisVector j) i
 
+/--
+@isnad1 id=eq.0h2v.s8.7a219d5f757e from=translated src=- shape=587f3591 vocab=3e654172
+-/
 theorem matrixAction_matrixOfLinear (L : Vec6 K →ₗ[K] Vec6 K) :
     matrixAction (matrixOfLinear L) = L := by
   apply LinearMap.ext
@@ -48,6 +51,9 @@ theorem matrixAction_matrixOfLinear (L : Vec6 K →ₗ[K] Vec6 K) :
     simp [matrixAction, matrixOfLinear, standardF, basisVector,
       Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h2v.s9.a382755ea9e7 from=translated src=- shape=3bd4479b vocab=05142cf2
+-/
 theorem inverseWord_left
     (word : List (Step (K := K) (V := Vec6 K))) :
     (wordMap omega (inverseWord word)).comp (wordMap omega word) = LinearMap.id := by
@@ -71,6 +77,9 @@ private theorem inverseWord_involutive
     inverseWord (inverseWord word) = word := by
   simp [inverseWord, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h2v.s9.1709922ec38d from=translated src=- shape=ccde0fc8 vocab=05142cf2
+-/
 theorem inverseWord_right
     (word : List (Step (K := K) (V := Vec6 K))) :
     (wordMap omega word).comp (wordMap omega (inverseWord word)) = LinearMap.id := by
@@ -84,6 +93,9 @@ def wordMatrix (word : List (Step (K := K) (V := Vec6 K))) : Mat6 K :=
 def inverseWordMatrix (word : List (Step (K := K) (V := Vec6 K))) : Mat6 K :=
   matrixOfLinear (wordMap omega (inverseWord word))
 
+/--
+@isnad1 id=eq.0h2v.s7.4ac1133c027b from=translated src=- shape=4e28454c vocab=a12cf908
+-/
 theorem wordMatrix_mul_inverse (word : List (Step (K := K) (V := Vec6 K))) :
     wordMatrix word * inverseWordMatrix word = 1 := by
   apply matrixAction_injective
@@ -91,6 +103,9 @@ theorem wordMatrix_mul_inverse (word : List (Step (K := K) (V := Vec6 K))) :
   rw [matrixAction_mul, matrixAction_matrixOfLinear, matrixAction_matrixOfLinear,
     inverseWord_right, matrixAction_one]
 
+/--
+@isnad1 id=eq.0h2v.s7.a95e0edb9716 from=translated src=- shape=4e28454c vocab=a12cf908
+-/
 theorem inverse_mul_wordMatrix (word : List (Step (K := K) (V := Vec6 K))) :
     inverseWordMatrix word * wordMatrix word = 1 := by
   apply matrixAction_injective
@@ -99,7 +114,9 @@ theorem inverse_mul_wordMatrix (word : List (Step (K := K) (V := Vec6 K))) :
     inverseWord_left, matrixAction_one]
 
 /-- Acting on a literal coordinate vector reads the corresponding matrix
-column.-/
+column.
+@isnad1 id=eq.0h3v.s8.3dc30550b5ec from=translated src=- shape=0a2453e1 vocab=da27c890
+-/
 theorem matrixAction_basisVector (M : Mat6 K) (j : Ix6) :
     matrixAction (K := K) M (basisVector (K := K) j) = fun i => M i j := by
   classical
@@ -110,7 +127,9 @@ theorem matrixAction_basisVector (M : Mat6 K) (j : Ix6) :
 
 /-- The `(i,j)` entry of `M transpose * J * M` is the literal symplectic
 pairing of columns `i` and `j`.  The matrix indices remain abstract while the
-two small summation indices are expanded.-/
+two small summation indices are expanded.
+@isnad1 id=eq.0h4v.s9.c765f8cbf34c from=translated src=- shape=f9efe979 vocab=c1bf7e79
+-/
 theorem symplectic_product_entry (M : Mat6 K) (i j : Ix6) :
     ((M.transpose * (symplecticJ : Mat6 K) * M) : Mat6 K) i j =
       (omega (K := K)) (fun r => M r i) (fun r => M r j) := by
@@ -118,7 +137,9 @@ theorem symplectic_product_entry (M : Mat6 K) (i j : Ix6) :
     Matrix.transpose_apply, Matrix.one_apply, Fintype.sum_sum_type, Fin.sum_univ_succ]
   ring
 
-/-- The literal coordinate vectors have Gram matrix `J`.-/
+/-- The literal coordinate vectors have Gram matrix `J`.
+@isnad1 id=eq.0h3v.s9.8c72fba14a67 from=translated src=- shape=ec014d58 vocab=ac35b1e3
+-/
 theorem omega_basisVector (i j : Ix6) :
     (omega (K := K)) (basisVector (K := K) i) (basisVector (K := K) j) =
       symplecticJ i j := by
@@ -129,7 +150,9 @@ theorem omega_basisVector (i j : Ix6) :
       Fin.sum_univ_succ, Matrix.one_apply]
 
 /-- A flat action-level preservation statement implies the literal matrix
-symplectic equation, through the three column identities above.-/
+symplectic equation, through the three column identities above.
+@isnad1 id=eq.1h2v.s11.75b8743b838e from=translated src=- shape=3039ba3f vocab=ae1fbc17
+-/
 theorem matrix_symplectic_of_action_preserves
     (M : Mat6 K)
     (hpres : ∀ x y : Vec6 K,
@@ -142,7 +165,9 @@ theorem matrix_symplectic_of_action_preserves
   rw [hpres]
   exact omega_basisVector i j
 
-/-- Form preservation of the word is the literal matrix symplectic equation.-/
+/-- Form preservation of the word is the literal matrix symplectic equation.
+@isnad1 id=eq.0h2v.s7.e111aaa13f61 from=translated src=- shape=53f51bcb vocab=6d255774
+-/
 theorem wordMatrix_symplectic (word : List (Step (K := K) (V := Vec6 K))) :
     (wordMatrix word).transpose * symplecticJ * wordMatrix word = symplecticJ := by
   apply matrix_symplectic_of_action_preserves

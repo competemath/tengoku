@@ -21,7 +21,9 @@ variable {S : Type v} [CommRing S] [IsDomain S]
 
 /-- If every prime over `J` admits a field-valued commuting square whose
 quotient leg is injective, then the kernel of the domain-valued
-parametrization is exactly `J.radical`.-/
+parametrization is exactly `J.radical`.
+@isnad1 id=eq.2h4v.s9.94e2ac8b0654 from=translated src=- shape=f847a5dc vocab=d37957d1
+-/
 theorem radical_eq_ker_of_prime_field_squares
     (J : Ideal R) (psi : R →+* S)
     (hJ : J ≤ RingHom.ker psi)

@@ -15,7 +15,9 @@ open AlbertLean.Generic.QuaternionRow.CyclicBlockNormalizer
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- Once the pivot blocks are conjugate, the weighted linear equations force
-all nine blocks to have the same conjugation.-/
+all nine blocks to have the same conjugation.
+@isnad1 id=eq.10h9v.s10.95190e03295c from=translated src=- shape=394a9c75 vocab=e4425e24
+-/
 theorem all_blocks_conjugate (B C : Fin 3 → Fin 3 → Mat2 K)
     (p q : Fin 3 → K) (hp1 : p 1 ≠ 0) (hp2 : p 2 ≠ 0)
     (hdB : ∀ i, B i i = q i • (1 : Mat2 K))
@@ -50,7 +52,9 @@ theorem all_blocks_conjugate (B C : Fin 3 → Fin 3 → Mat2 K)
   exact congrFun (congrFun h i) j
 
 /-- An explicit root-free common-block conjugator for equal pivot trace and
-determinant on the two cyclic charts.-/
+determinant on the two cyclic charts.
+@isnad1 id=ex.12h5v.s11.7d680b68dec7 from=translated src=- shape=88005713 vocab=29be5213
+-/
 theorem exists_common_conjugator (B C : Fin 3 → Fin 3 → Mat2 K)
     (p q : Fin 3 → K) (hp1 : p 1 ≠ 0) (hp2 : p 2 ≠ 0)
     (hdB : ∀ i, B i i = q i • (1 : Mat2 K))

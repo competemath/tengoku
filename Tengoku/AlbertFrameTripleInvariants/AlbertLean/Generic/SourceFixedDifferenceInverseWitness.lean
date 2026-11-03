@@ -27,17 +27,26 @@ variable {K : Type u} [Field K] [CharZero K]
 
 def doubledCenter (t : VCoord K) : VCoord K := (-2 : K) • t
 
+/--
+@isnad1 id=ne.1h2v.s6.ccd87d88a234 from=translated src=- shape=741e9487 vocab=12907d18
+-/
 theorem doubledCenter_norm_ne (t : VCoord K) (ht : nV t ≠ 0) :
     nV (doubledCenter t) ≠ 0 := by
   rw [doubledCenter, nV_smul]
   exact mul_ne_zero (by norm_num) ht
 
+/--
+@isnad1 id=eq.1h2v.s6.2ef0e70b071d from=translated src=- shape=46a5ff80 vocab=b601c794
+-/
 theorem reflect_doubled_neg (t : VCoord K) (ht : nV t ≠ 0) :
     reflectV (doubledCenter t) (-t) = t := by
   have hd : -t - t = doubledCenter t := by unfold doubledCenter; module
   have hn : nV (-t - t) ≠ 0 := by rw [hd]; exact doubledCenter_norm_ne t ht
   simpa only [hd] using reflect_difference (-t) t (nV_neg t) hn
 
+/--
+@isnad1 id=eq.1h2v.s6.48c74fbe7045 from=translated src=- shape=3908466c vocab=b601c794
+-/
 theorem reflect_doubled_self (t : VCoord K) (ht : nV t ≠ 0) :
     reflectV (doubledCenter t) t = -t := by
   have h := SourceEvenAutomorphism.reflectV_involutive
@@ -45,12 +54,18 @@ theorem reflect_doubled_self (t : VCoord K) (ht : nV t ≠ 0) :
   rw [reflect_doubled_neg t ht] at h
   exact h
 
+/--
+@isnad1 id=eq.2h3v.s6.1bbdc6ebf13b from=translated src=- shape=33f2df0b vocab=87a75c52
+-/
 theorem even_doubled_self (e t : VCoord K) (ht : nV t ≠ 0)
     (het : BV e t = 0) : evenV e (doubledCenter t) t = -t := by
   rw [evenV, reflect_doubled_self t ht]
   apply reflectV_eq_of_orthogonal
   rw [BV_neg_right, het, neg_zero]
 
+/--
+@isnad1 id=eq.2h4v.s6.a503ec308db0 from=translated src=- shape=057211c1 vocab=b7817e48
+-/
 theorem even_doubled_orthogonal (e t q : VCoord K)
     (heq : BV e q = 0) (htq : BV t q = 0) :
     evenV e (doubledCenter t) q = q := by
@@ -58,7 +73,9 @@ theorem even_doubled_orthogonal (e t q : VCoord K)
   · exact reflectV_eq_of_orthogonal e q heq
   · rw [doubledCenter, BV_smul_left, htq, mul_zero]
 
-/-- The selected two even stages negate the whole target plane.-/
+/-- The selected two even stages negate the whole target plane.
+@isnad1 id=eq.5h6v.s9.8908b27abb94 from=translated src=- shape=97f65dae vocab=7741784b
+-/
 theorem two_even_negates_span (e t q : VCoord K)
     (ht : nV t ≠ 0) (hq : nV q ≠ 0)
     (het : BV e t = 0) (heq : BV e q = 0) (htq : BV t q = 0)
@@ -79,7 +96,9 @@ theorem two_even_negates_span (e t q : VCoord K)
   module
 
 /-- The first fixed branch sends the negative target pair's second member
-exactly to beta*t-q, so the SECOND algorithmic difference is really -2q.-/
+exactly to beta*t-q, so the SECOND algorithmic difference is really -2q.
+@isnad1 id=eq.4h5v.s9.95be53f80c26 from=translated src=- shape=3a6441fa vocab=14d0488b
+-/
 theorem first_stage_negative_second (e t q : VCoord K)
     (ht : nV t ≠ 0) (het : BV e t = 0) (heq : BV e q = 0)
     (htq : BV t q = 0) (beta : K) :
@@ -92,6 +111,9 @@ theorem first_stage_negative_second (e t q : VCoord K)
     h1t, h1q]
   module
 
+/--
+@isnad1 id=eq.4h5v.s8.39140c6a3a22 from=translated src=- shape=ee5240dc vocab=ad19d3d6
+-/
 theorem second_algorithmic_difference (e t q : VCoord K)
     (ht : nV t ≠ 0) (het : BV e t = 0) (heq : BV e q = 0)
     (htq : BV t q = 0) (beta : K) :
@@ -127,7 +149,9 @@ private theorem inverse_pair_of_v_intertwining
 /-- Given actual target encoders with arbitrary spinor slots, the inverse
 of the displayed two-stage lift is a compatible witness input. This proves
 its negative V slots and exact full-carrier output, rather than assuming
-that a choice of V normalization also recovers its S/C coordinates.-/
+that a choice of V normalization also recovers its S/C coordinates.
+@isnad1 id=other.12h9v.s11.bfca3a2f09eb from=translated src=- shape=da40df5c vocab=69f3a270
+-/
 theorem full_source_inverse_witness
     (e t q : VCoord K) (rho1 rho2 beta : K)
     (he : nV e ≠ 0) (ht : nV t ≠ 0) (hq : nV q ≠ 0)

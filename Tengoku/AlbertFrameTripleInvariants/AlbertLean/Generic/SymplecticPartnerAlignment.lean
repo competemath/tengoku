@@ -22,11 +22,17 @@ def avoidanceScalar (c : K) : K := by
   classical
   exact if c = 1 then 2 else 1
 
+/--
+@isnad1 id=ne.0h2v.s5.2fcc4e6bb879 from=translated src=- shape=472fca04 vocab=fa4c3fcd
+-/
 theorem avoidanceScalar_ne_zero (c : K) : avoidanceScalar c ≠ 0 := by
   classical
   unfold avoidanceScalar
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=ne.0h2v.s4.254ec4b24148 from=translated src=- shape=fb05e317 vocab=fa4c3fcd
+-/
 theorem avoidanceScalar_ne (c : K) : avoidanceScalar c ≠ c := by
   classical
   unfold avoidanceScalar
@@ -35,6 +41,9 @@ theorem avoidanceScalar_ne (c : K) : avoidanceScalar c ≠ c := by
     norm_num
   · exact fun e => h e.symm
 
+/--
+@isnad1 id=and.3h7v.s11.036d13216503 from=translated src=- shape=8c827afb vocab=fc67ddb1
+-/
 theorem partner_intermediate_pairings
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (e v f : V)
@@ -51,6 +60,9 @@ theorem partner_intermediate_pairings
       smul_eq_mul, hfe, hef]
     ring
 
+/--
+@isnad1 id=and.3h7v.s11.d5336e24731b from=translated src=- shape=d2a72098 vocab=fc67ddb1
+-/
 theorem partner_centers_fix_first
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (e v f : V)
@@ -69,6 +81,9 @@ theorem partner_centers_fix_first
       add_zero, hve, hfe, hev, hef]
     ring
 
+/--
+@isnad1 id=other.3h6v.s11.a488421acc64 from=translated src=- shape=c4bc5445 vocab=d1581bcf
+-/
 theorem partner_two_step_align
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (e v f : V)
@@ -86,6 +101,9 @@ theorem partner_two_step_align
       (avoidanceScalar (omega f v))).2]
     exact sub_ne_zero.mpr (avoidanceScalar_ne (omega f v)).symm
 
+/--
+@isnad1 id=other.3h6v.s11.a366b4140199 from=translated src=- shape=b87a59a7 vocab=d1581bcf
+-/
 theorem partner_two_step_fixes_first
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (e v f : V)

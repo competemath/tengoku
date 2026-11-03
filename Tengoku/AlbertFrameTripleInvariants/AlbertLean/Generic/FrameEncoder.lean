@@ -29,7 +29,9 @@ variable {A : Type u} [NonAssocRing A]
 
 /-- Division-free encoder closure for three idempotents summing to one. The
 three final equalities are exactly the numerators of the usual spectral
-projector formulas.-/
+projector formulas.
+@isnad1 id=other.6h4v.s8.f1d96be3b56c from=translated src=- shape=870d1d2f vocab=664ded15
+-/
 theorem encoder_identities
     (e0 e1 e2 : A)
     (hcomm : ∀ a b : A, a * b = b * a)
@@ -74,7 +76,9 @@ variable {K : Type u} {A : Type v}
 variable [Field K] [NonAssocRing A] [Module K A]
 
 /-- The division-free numerator identities recover the literal half-projector
-formulas over a field in which two is nonzero.-/
+formulas over a field in which two is nonzero.
+@isnad1 id=and.4h6v.s9.afc171548db6 from=translated src=- shape=111c7967 vocab=95818122
+-/
 theorem literal_projectors
     (e0 e1 e2 x : A) (htwoK : (2 : K) ≠ 0)
     (hminus : x * x - x = e0 + e0)
@@ -93,7 +97,9 @@ theorem literal_projectors
 
 omit [Module K A] in
 /-- An additive trace taking value one on the two endpoint idempotents sends
-the encoder to zero and its square to two.-/
+the encoder to zero and its square to two.
+@isnad1 id=and.4h6v.s8.cb5617f2362e from=translated src=- shape=9f4911f6 vocab=64f81936
+-/
 theorem trace_encoder
     (trace : A →+ K) (e0 e2 x : A)
     (hx : x = e2 - e0) (hsquare : x * x = e0 + e2)

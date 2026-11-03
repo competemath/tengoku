@@ -24,6 +24,9 @@ open AlbertLean.Generic.SourceChartDiagonalReadback
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.4h2v.s7.5920bf5cace2 from=translated src=- shape=78c46c8a vocab=d552677a
+-/
 theorem moment_parameters (q : ExplicitFrameChart K)
     (hr : q.r1 = 1)
     (hq : EquationsVanish (explicitFrameEquationValues q))
@@ -98,7 +101,9 @@ private theorem chartWithResidualPair_self (x : ExplicitFrameChart K) :
   apply ExplicitFrameChart.ext <;> try rfl
 
 /-- The accepted determinant-one normalizer sends the actual chart to the
-literal normalized insertion of its twenty read coordinates.-/
+literal normalized insertion of its twenty read coordinates.
+@isnad1 id=other.8h2v.s8.012896452739 from=translated src=- shape=b6696ad2 vocab=d0ee9b5e
+-/
 theorem insert_openParameters_eq_normalized (q : ExplicitFrameChart K)
     (hr : q.r1 = 1) (hk : IsKappaLift q)
     (hq : EquationsVanish (explicitFrameEquationValues q))

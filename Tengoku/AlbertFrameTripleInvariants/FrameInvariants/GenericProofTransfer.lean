@@ -9,6 +9,9 @@ namespace FrameInvariants.GenericTransfer
 
 variable {M N : Type*} [Field M] [Field N]
 
+/--
+@isnad1 id=and.6h9v.s10.e9d20c96047e from=translated src=- shape=4cb91032 vocab=31a177d8
+-/
 theorem quadratic_basis (e : M ≃+* N) (H B : Subfield M) (H' B' : Subfield N)
     (d : M) (d' : N) (hd : e d = d')
     (hH : ∀ x, x ∈ H ↔ e x ∈ H') (hB : ∀ x, x ∈ B ↔ e x ∈ B')

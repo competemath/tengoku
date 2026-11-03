@@ -51,7 +51,9 @@ private theorem sumAlgEquiv_secondCopy (p : MvPolynomial ι k) :
   exact h
 
 /-- Coefficient comparison in the second copy.  No infinitude, finite-variable,
-or chosen evaluation point is needed.-/
+or chosen evaluation point is needed.
+@isnad1 id=eq.2h5v.s8.17c15b6d1e28 from=translated src=- shape=b1ca8153 vocab=aa7502ae
+-/
 theorem proportional_of_two_copy_cross_mul
     (A B : MvPolynomial ι k) (α : ι →₀ ℕ) (hBα : B.coeff α ≠ 0)
     (hcross : firstCopy A * secondCopy B = secondCopy A * firstCopy B) :
@@ -70,7 +72,9 @@ theorem proportional_of_two_copy_cross_mul
       rw [mul_comm, div_mul_cancel₀ _ hBα]
 
 /-- The fraction represented by `A/B` is the image of the selected coefficient
-ratio in `Frac(MvPolynomial ι k)`.-/
+ratio in `Frac(MvPolynomial ι k)`.
+@isnad1 id=eq.2h5v.s11.08f2817eb78e from=translated src=- shape=f7af107e vocab=b0a3bee1
+-/
 theorem fraction_eq_coefficient_ratio
     (A B : MvPolynomial ι k) (α : ι →₀ ℕ) (hBα : B.coeff α ≠ 0)
     (hcross : firstCopy A * secondCopy B = secondCopy A * firstCopy B) :

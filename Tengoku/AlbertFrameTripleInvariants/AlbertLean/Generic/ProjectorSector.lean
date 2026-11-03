@@ -45,22 +45,33 @@ def mixedV (v : VCoord ℚ) (s : SCoord ℚ) (c : CCoord ℚ)
     (u a : ℚ) : VCoord ℚ :=
   u • v + a • normalizedMuV s c
 
+/--
+@isnad1 id=eq.0h4v.s6.34a313e67054 from=translated src=- shape=e7fa4bec vocab=d261bb19
+-/
 theorem sourceCombo_d1 (z : JCoord ℚ) (a b c : ℚ) :
     (sourceCombo z a b c).d1 =
       c + b * z.d1 + a * (z.d1 ^ 2 + nS z.s + nC z.c) := by
   simp [sourceCombo, sourceOne, sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h4v.s6.b0fb18ade109 from=translated src=- shape=e7fa4bec vocab=dd6a93fd
+-/
 theorem sourceCombo_d2 (z : JCoord ℚ) (a b c : ℚ) :
     (sourceCombo z a b c).d2 =
       c + b * z.d2 + a * (z.d2 ^ 2 + nC z.c + nV z.v) := by
   simp [sourceCombo, sourceOne, sourceSquare_formula]
 
+/--
+@isnad1 id=eq.0h4v.s6.01560e0c2b13 from=translated src=- shape=e7fa4bec vocab=66899066
+-/
 theorem sourceCombo_d3 (z : JCoord ℚ) (a b c : ℚ) :
     (sourceCombo z a b c).d3 =
       c + b * z.d3 + a * (z.d3 ^ 2 + nV z.v + nS z.s) := by
   simp [sourceCombo, sourceOne, sourceSquare_formula]
 
-/-- The source square formula reduces the S block to two linear combinations.-/
+/-- The source square formula reduces the S block to two linear combinations.
+@isnad1 id=eq.1h4v.s6.916dce0ad5ab from=translated src=- shape=dd0c030e vocab=9259ffde
+-/
 theorem sourceCombo_s_of_plane (x : JCoord ℚ) (a b c : ℚ)
     (hx : x.v.omega = 0) :
     (sourceCombo x a b c).s =
@@ -75,7 +86,9 @@ theorem sourceCombo_s_of_plane (x : JCoord ℚ) (a b c : ℚ)
       simp [sourceCombo, sourceSquare_formula, sourceOne, mixedS, sWeight,
         sourceMuS, hx, Matrix.vecHead, Matrix.vecTail, Pi.smul_apply] <;> ring
 
-/-- The source square formula reduces the C block to two linear combinations.-/
+/-- The source square formula reduces the C block to two linear combinations.
+@isnad1 id=eq.1h4v.s6.9087fa7d34f6 from=translated src=- shape=89cae00a vocab=e752bbbd
+-/
 theorem sourceCombo_c_of_plane (x : JCoord ℚ) (a b c : ℚ)
     (hx : x.v.omega = 0) :
     (sourceCombo x a b c).c =
@@ -90,6 +103,9 @@ theorem sourceCombo_c_of_plane (x : JCoord ℚ) (a b c : ℚ)
       simp [sourceCombo, sourceSquare_formula, sourceOne, mixedC, cWeight,
         sourceMuC, hx, Matrix.vecHead, Matrix.vecTail, Pi.smul_apply] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s5.c0d1bd8ad1d0 from=translated src=- shape=c1bda7de vocab=2bd3a87c
+-/
 theorem sourceCombo_v (x : JCoord ℚ) (a b c : ℚ) :
     (sourceCombo x a b c).v =
       mixedV x.v x.s x.c (vWeight x a b) a := by
@@ -99,7 +115,9 @@ theorem sourceCombo_v (x : JCoord ℚ) (a b c : ℚ) :
   simp only [smul_zero, zero_add, mixedV, vWeight]
   module
 
-/-- Seven matrix contractions give every S-sector projector pairing.-/
+/-- Seven matrix contractions give every S-sector projector pairing.
+@isnad1 id=eq.0h12v.s9.da2615c78371 from=translated src=- shape=4df0ad12 vocab=61587211
+-/
 theorem mixedS_pair (s1 s2 : SCoord ℚ) (c1 c2 : CCoord ℚ)
     (u u' a a' r1 z1 r2 z2 : ℚ) :
     BS (mixedS s1 c1 u a r1 z1) (mixedS s2 c2 u' a' r2 z2) =
@@ -113,7 +131,9 @@ theorem mixedS_pair (s1 s2 : SCoord ℚ) (c1 c2 : CCoord ℚ)
   simp [BS, mixedS, momentMatrix, evalU]
   ring
 
-/-- Seven matrix contractions give every C-sector projector pairing.-/
+/-- Seven matrix contractions give every C-sector projector pairing.
+@isnad1 id=eq.0h12v.s9.9bbbdd5eb64e from=translated src=- shape=030a6291 vocab=f34587eb
+-/
 theorem mixedC_pair (s1 s2 : SCoord ℚ) (c1 c2 : CCoord ℚ)
     (u u' a a' r1 z1 r2 z2 : ℚ) :
     BC (mixedC s1 c1 u a r1 z1) (mixedC s2 c2 u' a' r2 z2) =
@@ -166,7 +186,9 @@ private theorem BV_mu_plane (v : VCoord ℚ) (hv : v.omega = 0)
   exact BV_plane_mu v hv s c
 
 /-- Only the V-sector pairing contains determinant-root data, and it contains
-exactly their sum with coefficient minus the product of square coefficients.-/
+exactly their sum with coefficient minus the product of square coefficients.
+@isnad1 id=eq.2h10v.s8.5cdb46b33894 from=translated src=- shape=9de3b641 vocab=406fabcd
+-/
 theorem mixedV_pair (v1 v2 : VCoord ℚ)
     (h1 : v1.omega = 0) (h2 : v2.omega = 0)
     (s1 s2 : SCoord ℚ) (c1 c2 : CCoord ℚ) (u u' a a' : ℚ) :

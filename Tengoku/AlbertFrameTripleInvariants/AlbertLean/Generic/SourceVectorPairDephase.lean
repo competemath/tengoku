@@ -16,22 +16,33 @@ open SourceEvenReflections SourceVectorPairReflection SourceEvenAutomorphism
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.2h5v.s6.9b8a2c576333 from=translated src=- shape=6512f357 vocab=2b933c85
+-/
 theorem BV_evenV (A B x y : VCoord K) (hA : nV A ≠ 0) (hB : nV B ≠ 0) :
     BV (evenV A B x) (evenV A B y) = BV x y := by
   simp only [evenV]
   rw [SourceVectorPairReflection.BV_reflectV A _ _ hA,
     SourceVectorPairReflection.BV_reflectV B _ _ hB]
 
+/--
+@isnad1 id=eq.0h5v.s6.582547c9e3f1 from=translated src=- shape=8f6bc521 vocab=db10274e
+-/
 theorem evenV_add (A B x y : VCoord K) :
     evenV A B (x + y) = evenV A B x + evenV A B y := by
   simp only [evenV, SourceVectorPairReflection.reflectV_add]
 
+/--
+@isnad1 id=eq.0h5v.s8.8a61d3e350f2 from=translated src=- shape=028862c3 vocab=cd00a758
+-/
 theorem evenV_smul (A B x : VCoord K) (q : K) :
     evenV A B (q • x) = q • evenV A B x := by
   simp only [evenV, SourceVectorPairReflection.reflectV_smul]
 
 /-- Two explicit even stages. Each pair `(A_j,B_j)` is applied as reflection
-in `B_j` followed by reflection in `A_j`. The orientation root is supplied.-/
+in `B_j` followed by reflection in `A_j`. The orientation root is supplied.
+@isnad1 id=ex.3h4v.s8.d77b87142b18 from=translated src=- shape=d4fd0c50 vocab=71bcafa5
+-/
 theorem exists_two_even_pairs_dephasing
     (v1 v2 : VCoord K) (s : K)
     (ha : nV v1 ≠ 0)

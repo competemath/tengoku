@@ -20,7 +20,9 @@ open AlbertLean.Generic.QuaternionRow.ActualFrameCoverage
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
-/-- Expansion of a linear map on the literal grouped coordinate basis.-/
+/-- Expansion of a linear map on the literal grouped coordinate basis.
+@isnad1 id=eq.0h3v.s10.78ffb94f68a8 from=translated src=- shape=152d9ca2 vocab=d19fc7aa
+-/
 theorem linear_apply_eq_sum_basis (A : Vec6 K →ₗ[K] Vec6 K) (x : Vec6 K) :
     A x = (∑ i, x (Sum.inl i) • A (basisVector (Sum.inl i))) +
       ∑ i, x (Sum.inr i) • A (basisVector (Sum.inr i)) := by
@@ -45,7 +47,9 @@ theorem linear_apply_eq_sum_basis (A : Vec6 K →ₗ[K] Vec6 K) (x : Vec6 K) :
     _ = _ := by simp only [map_add, map_sum, map_smul, standardE, standardF]
 
 /-- Composition is ordinary `3×3` block multiplication with `2×2` entries
-in the exact grouped `(inl i,inr i)` plane convention.-/
+in the exact grouped `(inl i,inr i)` plane convention.
+@isnad1 id=eq.0h5v.s9.48786e5e8890 from=translated src=- shape=d4d2a627 vocab=eccb8719
+-/
 theorem weightedBlock_comp (A B : Vec6 K →ₗ[K] Vec6 K) (i l : Fin 3) :
     weightedBlock (A.comp B) i l =
       ∑ j, weightedBlock A i j * weightedBlock B j l := by
@@ -60,7 +64,9 @@ theorem weightedBlock_comp (A B : Vec6 K →ₗ[K] Vec6 K) (i l : Fin 3) :
       smul_eq_mul] at h ⊢ <;> linear_combination h
 
 /-- Actual projector idempotence supplies every block row-column product
-identity after transport to weighted coordinates.-/
+identity after transport to weighted coordinates.
+@isnad1 id=other.5h6v.s12.417070091c36 from=translated src=- shape=b29106d7 vocab=b2edbbf1
+-/
 theorem actual_weighted_block_idempotent
     (E : Fin 3 → Carrier K) (F1 : Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -85,7 +91,9 @@ theorem actual_weighted_block_idempotent
   intro i l
   rw [← weightedBlock_comp B B i l, hB]
 
-/-- The exact pivot equation expected by `pivot_determinant_relation`.-/
+/-- The exact pivot equation expected by `pivot_determinant_relation`.
+@isnad1 id=other.5h6v.s12.5bd35f93a693 from=translated src=- shape=4c4a84f2 vocab=447eeb27
+-/
 theorem actual_weighted_pivot_idempotent
     (E : Fin 3 → Carrier K) (F1 : Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

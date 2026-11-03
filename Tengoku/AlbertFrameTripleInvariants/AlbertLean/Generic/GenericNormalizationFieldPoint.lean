@@ -19,6 +19,9 @@ variable {A B : Type u} [CommRing A] [CommRing B] [IsDomain A] [Nontrivial B]
   [Algebra A B] [Module.IsTorsionFree A B]
 variable {L : Type v} [Field L]
 
+/--
+@isnad1 id=ex.1h5v.s9.701a78ea21d4 from=translated src=- shape=098f2214 vocab=d612d0c8
+-/
 theorem exists_generic_normalization_field_point
     (w : B →+* L) (D : B) (hD : w D ≠ 0) :
     ∃ (E : Type u) (_ : Field E) (j : FractionRing A →+* E),

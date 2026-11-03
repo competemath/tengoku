@@ -37,14 +37,23 @@ def S : Omega B := T B + algebraMap B (Omega B) m / T B
 def invariantField : Subfield (Omega B) :=
   Subfield.closure (Set.range (algebraMap B (Omega B)) ∪ {S B m})
 
+/--
+@isnad1 id=eq.1h3v.s11.23d86ad56ff5 from=translated src=- shape=2dbfbf88 vocab=5fc371e4
+-/
 @[simp] theorem sigma_base (b : B) : σ B m hm (algebraMap B (Omega B) b) =
     algebraMap B (Omega B) b := reciprocalHom_base B m hm b
 
+/--
+@isnad1 id=eq.1h2v.s11.6ac1dcfc898f from=translated src=- shape=73a0ef5f vocab=b9231594
+-/
 @[simp] theorem sigma_S : σ B m hm (S B m) = S B m := by
   simp only [S, map_add, map_div₀, sigma_base, reciprocalEquiv_T]
   rw [div_div_cancel₀ ((map_ne_zero (algebraMap B (Omega B))).mpr hm)]
   ac_rfl
 
+/--
+@isnad1 id=eq.2h3v.s11.f2ae7592c821 from=translated src=- shape=935e76e1 vocab=3f99d8a1
+-/
 theorem invariantField_fixed (x : Omega B) (hx : x ∈ invariantField B m) :
     σ B m hm x = x := by
   refine Subfield.closure_induction (p := fun x _ => σ B m hm x = x)
@@ -58,20 +67,32 @@ theorem invariantField_fixed (x : Omega B) (hx : x ∈ invariantField B m) :
   · intro x _ hx; simpa only [map_inv₀, hx]
   · intro x y _ _ hx hy; simpa only [map_mul, hx, hy]
 
+/--
+@isnad1 id=eq.1h3v.s11.2413331f2481 from=translated src=- shape=114ca964 vocab=928a4556
+-/
 @[simp] theorem sigma_invariantField_coe (a : invariantField B m) :
     σ B m hm (a : Omega B) = a :=
   invariantField_fixed B m hm a a.property
 
+/--
+@isnad1 id=eq.0h2v.s10.0491c3c879ff from=translated src=- shape=952927d8 vocab=0d11f639
+-/
 theorem T_quadratic :
     T B ^ 2 = S B m * T B - algebraMap B (Omega B) m := by
   rw [S]
   field_simp [T_ne_zero B]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s11.bea8c0f37101 from=translated src=- shape=0bfef828 vocab=a49bc049
+-/
 theorem sigma_T_sub : σ B m hm (T B) = S B m - T B := by
   rw [reciprocalEquiv_T, S]
   ring
 
+/--
+@isnad1 id=ne.1h2v.s11.c64cfd683d1a from=translated src=- shape=659df445 vocab=ae711a5d
+-/
 theorem sigma_T_ne_T : σ B m hm (T B) ≠ T B := by
   intro h
   rw [reciprocalEquiv_T] at h
@@ -140,6 +161,9 @@ def quadraticSpan : Subfield (Omega B) where
       push_cast
       ring
 
+/--
+@isnad1 id=mem.1h3v.s10.f70ac621c482 from=translated src=- shape=f3f46d50 vocab=70a815e4
+-/
 theorem polynomialMap_mem_quadraticSpan (p : Polynomial B) :
     algebraMap (Polynomial B) (Omega B) p ∈ quadraticSpan B m hm := by
   rw [← evalT_eq_algebraMap B]
@@ -154,6 +178,9 @@ theorem polynomialMap_mem_quadraticSpan (p : Polynomial B) :
       · exact (quadraticSpan B m hm).pow_mem
           (show T B ∈ quadraticSpan B m hm from ⟨0,1,by simp⟩) n
 
+/--
+@isnad1 id=eq.1h2v.s8.72347f451b75 from=translated src=- shape=498814d4 vocab=9b80ef46
+-/
 theorem quadraticSpan_eq_top : quadraticSpan B m hm = ⊤ := by
   apply top_unique
   intro x _
@@ -195,7 +222,9 @@ include hm in theorem unique_two_coefficients (x : Omega B) :
     exact sub_eq_zero.mp (by simpa using he)
   exact Prod.ext ha.symm hb.symm
 
-/-- Exact fixed-field identification, with no assumed fixed-field premise.-/
+/-- Exact fixed-field identification, with no assumed fixed-field premise.
+@isnad1 id=iff.1h3v.s11.78b5b228ef5e from=translated src=- shape=7853e569 vocab=3f99d8a1
+-/
 theorem fixed_iff_mem_invariantField (x : Omega B) :
     σ B m hm x = x ↔ x ∈ invariantField B m := by
   constructor
@@ -248,6 +277,9 @@ def fixedCoordinatesEquiv (hm : m ≠ 0) :
     (invariantField B m × invariantField B m) ≃ₗ[invariantField B m] Omega B :=
   LinearEquiv.ofBijective (fixedCoordinates B m) (fixedCoordinates_bijective B m hm)
 
+/--
+@isnad1 id=eq.1h2v.s10.61cb729981f8 from=translated src=- shape=929d02f5 vocab=8b71036d
+-/
 theorem invariantField_degree_two (hm : m ≠ 0) :
     Module.finrank (invariantField B m) (Omega B) = 2 := by
   rw [← (fixedCoordinatesEquiv B m hm).finrank_eq]

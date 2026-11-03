@@ -42,6 +42,9 @@ def standardProjector (i : Fin 3) : Vec6 K →ₗ[K] Vec6 K where
     funext p
     by_cases h : coordinateLabel p = i <;> simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s8.958af2cc276c from=translated src=- shape=a9b581f4 vocab=45bf171b
+-/
 theorem standardProjector_E (i j : Fin 3) :
     standardProjector (K := K) i (standardE j) =
       if i = j then standardE j else 0 := by
@@ -58,6 +61,9 @@ theorem standardProjector_E (i j : Fin 3) :
       simp_all [standardProjector, standardE, coordinateLabel, basisVector,
         Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.8df08cc829cd from=translated src=- shape=a9b581f4 vocab=f94445f0
+-/
 theorem standardProjector_F (i j : Fin 3) :
     standardProjector (K := K) i (standardF j) =
       if i = j then standardF j else 0 := by
@@ -74,6 +80,9 @@ theorem standardProjector_F (i j : Fin 3) :
       simp_all [standardProjector, standardF, coordinateLabel, basisVector,
         Pi.single_apply]
 
+/--
+@isnad1 id=hyperbol.0h1v.s6.ac54c9d330f0 from=translated src=- shape=078e5d2c vocab=94f968ff
+-/
 theorem standard_hyperbolicTriple :
     HyperbolicTriple (omega (K := K)) standardE standardF := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
@@ -85,7 +94,9 @@ theorem standard_hyperbolicTriple :
       simp_all [omega, omegaFun, standardE, standardF, basisVector,
         Pi.single_apply, Fin.sum_univ_succ]
 
-/-- The six displayed target vectors span by their literal coordinates.-/
+/-- The six displayed target vectors span by their literal coordinates.
+@isnad1 id=ex.0h2v.s7.6cdf9fe02573 from=translated src=- shape=64cacfc6 vocab=aa7611cd
+-/
 theorem standard_spans (x : Vec6 K) :
     ∃ a b : Fin 3 → K,
       x = (∑ j, a j • standardE j) + ∑ j, b j • standardF j := by
@@ -97,7 +108,9 @@ theorem standard_spans (x : Vec6 K) :
 
 /-- Every actual complete trace-one self-adjoint projector frame on the
 grouped carrier is intertwined with the literal standard frame by a word of
-exactly twelve transvections over the original field.-/
+exactly twelve transvections over the original field.
+@isnad1 id=ex.3h2v.s11.9e1bcee0bbc2 from=translated src=- shape=4693d81a vocab=227fa070
+-/
 theorem exists_twelve_actual_carrier_frame_alignment
     (P : Fin 3 → Carrier K)
     (hidem : ∀ i, (P i : Mat6 K) * P i = P i)
@@ -121,7 +134,9 @@ theorem exists_twelve_actual_carrier_frame_alignment
   · exact standardProjector_F (K := K)
   · exact standard_spans (K := K)
 
-/-- Literal `Fin 12` version of the same actual-carrier normalization.-/
+/-- Literal `Fin 12` version of the same actual-carrier normalization.
+@isnad1 id=ex.3h2v.s11.828cbc88aa54 from=translated src=- shape=84b4a7e4 vocab=d24666ae
+-/
 theorem exists_literal_twelve_actual_carrier_frame_alignment
     (P : Fin 3 → Carrier K)
     (hidem : ∀ i, (P i : Mat6 K) * P i = P i)

@@ -21,7 +21,9 @@ variable {K : Type*} [Field K] [CharZero K]
 /-- The normalized compression weights supplied by an actual pair are the
 literal half-trace overlap cells.  No nonvanishing assumption is used in this
 identification: the auxiliary coordinate system is the complete `F`-frame
-basis and has constant weight one.-/
+basis and has constant weight one.
+@isnad1 id=ex.6h3v.s12.741bf2a41777 from=translated src=- shape=65a222ac vocab=db39fe5f
+-/
 theorem exists_actual_first_projector_ledger_coordinates
     (E F : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -141,7 +143,9 @@ theorem exists_actual_first_projector_ledger_coordinates
 /-- Actual trace-one frame pairs with a common literal overlap table are in
 one genuine Jordan-automorphism orbit on the stated nonzero and nonscalar
 open.  The weighted basis and every compression identity are constructed from
-the frame laws.-/
+the frame laws.
+@isnad1 id=ex.15h6v.s14.37d946f2ce62 from=translated src=- shape=bd426fa1 vocab=ebe476ba
+-/
 theorem exists_actual_same_pair_ledger_jordanAut
     (E F E' F' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

@@ -29,12 +29,16 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 local instance : Invertible (2 : K) := invertibleOfNonzero (by norm_num)
 
-/-- Reflection in the fixed parity vector preserves the `r` coordinate.-/
+/-- Reflection in the fixed parity vector preserves the `r` coordinate.
+@isnad1 id=eq.0h2v.s5.d9760c671ec0 from=translated src=- shape=d6af11f8 vocab=a5fef959
+-/
 @[simp] theorem reflectV_parityVector_r (D : VCoord K) :
     (reflectV parityVector D).r = D.r := by
   simp [reflectV, parityVector]
 
-/-- The fixed parity vector is defined over the prime field.-/
+/-- The fixed parity vector is defined over the prime field.
+@isnad1 id=eq.0h3v.s6.ca1dc9ea3128 from=translated src=- shape=8d477ad9 vocab=7778e4f0
+-/
 @[simp] theorem mapV_parityVector {L : Type*} [Field L] [CharZero L]
     (f : K →+* L) : mapV f parityVector = parityVector := by
   apply VCoord.ext
@@ -43,14 +47,18 @@ local instance : Invertible (2 : K) := invertibleOfNonzero (by norm_num)
   · funext i
     fin_cases i <;> simp [mapV, parityVector, wBasis]
 
-/-- The numeral-power curve commutes with extension of coefficients.-/
+/-- The numeral-power curve commutes with extension of coefficients.
+@isnad1 id=eq.0h4v.s7.423465ab7571 from=translated src=- shape=b469c59e vocab=d79e6fdb
+-/
 theorem map_curveOmega {L : Type*} [Field L] [CharZero L]
     (f : K →+* L) (t : K) :
     (fun i => f (curveOmega t i)) = curveOmega (f t) := by
   funext i
   fin_cases i <;> simp [curveOmega]
 
-/-- The moving center is the same point after extension of coefficients.-/
+/-- The moving center is the same point after extension of coefficients.
+@isnad1 id=eq.0h4v.s6.c5dfc44c3bfb from=translated src=- shape=f10c445b vocab=62eea9cf
+-/
 @[simp] theorem mapV_movingCenter {L : Type*} [Field L] [CharZero L]
     (f : K →+* L) (t : K) :
     mapV f (movingCenter t) = movingCenter (f t) := by
@@ -65,6 +73,9 @@ def fixedParityAut (D : VCoord K) (s : K)
   recoveryAutToSourceAut
     (familyAut parityVector (by simp) D.r D.omega s hr hs)
 
+/--
+@isnad1 id=eq.3h3v.s8.78576233d41b from=translated src=- shape=0952324d vocab=cd40dcda
+-/
 theorem fixedParityAut_linear_eq (D : VCoord K) (s : K)
     (hr : D.r ≠ 0) (hs : s ≠ 0) (hsq : s ^ 2 = nV D) :
     (fixedParityAut D s hr hs).linear =
@@ -77,7 +88,9 @@ theorem fixedParityAut_linear_eq (D : VCoord K) (s : K)
 
 set_option maxHeartbeats 1000000 in
 /-- Same-field core: a unit-norm parity mover, a single root of `nV A`, and
-the preserved signed product root give the four literal family factors.-/
+the preserved signed product root give the four literal family factors.
+@isnad1 id=other.13h8v.s11.61b68e19fd85 from=translated src=- shape=75f5e382 vocab=cd9c8867
+-/
 theorem four_fixedParity_apply
     (A B c : VCoord K) (rho alpha beta : K)
     (hc : nV c = 1)
@@ -172,7 +185,9 @@ The only representation equality below explicitly unfolds this wrapper. -/
 attribute [local irreducible] fixedParityAut
 
 /-- Package the same-field four-factor identity before specializing to the
-concrete carrier of a one-root extension.-/
+concrete carrier of a one-root extension.
+@isnad1 id=nonempty.13h7v.s8.5929417afd51 from=translated src=- shape=ad52f7f9 vocab=f9177e10
+-/
 theorem four_fixedParity_factorization
     (A B c : VCoord K) (rho alpha beta : K)
     (hc : nV c = 1)
@@ -239,7 +254,9 @@ theorem four_fixedParity_factorization
     _ = (F 0).linear ((F 1).linear ((F 2).linear ((F 3).linear x))) := by rw [hF3]
 
 /-- Primary A2 endpoint. It returns four genuine fixed-parity family members
-over the explicit one-root field, with no choice term in the result surface.-/
+over the explicit one-root field, with no choice term in the result surface.
+@isnad1 id=ex.4h4v.s9.ef41dcfe1316 from=translated src=- shape=4b9f51f8 vocab=9ea7a54f
+-/
 theorem exists_oneRoot_four_fixedParity
     (A B : VCoord K) (rho : K)
     (hA : nV A ≠ 0) (hB : nV B ≠ 0)

@@ -16,7 +16,9 @@ theorems. It explains why the detector values of the example, −2591357/62208 a
 namespace OneBit
 
 /-- Unconditional rational normalization identity for the displayed commutator
-word. The cubic norm is the original independent coordinate polynomial.-/
+word. The cubic norm is the original independent coordinate polynomial.
+@isnad1 id=eq.0h1v.s4.c41a93e64f49 from=translated src=- shape=9fc36aa0 vocab=14316a5d
+-/
 theorem traceCube_eq_three_cubicNorm (X : AlbertLean.WitnessTriple) :
     AlbertLean.traceCubeDetector X = 3 * AlbertLean.cubicNormDetector X :=
   AlbertLean.Generic.CommutatorGeometry.detectorFactorThree_unconditional X

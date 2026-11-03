@@ -25,6 +25,9 @@ def firstAlignment
   (equiv omega halt (z - x) (omega z x)⁻¹).trans
     (equiv omega halt (y - z) (omega y z)⁻¹)
 
+/--
+@isnad1 id=eq.3h7v.s11.3e4db273e6b9 from=translated src=- shape=a25f63f1 vocab=c91156a4
+-/
 @[simp] theorem firstAlignment_apply
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (x z y : V)
@@ -33,6 +36,9 @@ def firstAlignment
       equiv omega halt (y - z) (omega y z)⁻¹
         (equiv omega halt (z - x) (omega z x)⁻¹ q) := rfl
 
+/--
+@isnad1 id=eq.3h6v.s10.092e0a8d52ad from=translated src=- shape=5ceade0e vocab=45b8305c
+-/
 theorem firstAlignment_source
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (x z y : V)
@@ -40,6 +46,9 @@ theorem firstAlignment_source
     firstAlignment omega halt x z y hxz hzy x = y :=
   two_step_align omega halt x z y hxz hzy
 
+/--
+@isnad1 id=eq.3h8v.s11.dc65c0bcc33e from=translated src=- shape=4b5c7e0f vocab=45b8305c
+-/
 theorem firstAlignment_preserves
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (x z y : V)
@@ -60,6 +69,9 @@ def fourStepPairWord
   [(f - w, (omega f w)⁻¹), (w - vp, (omega w vp)⁻¹),
     (y - z, (omega y z)⁻¹), (z - x, (omega z x)⁻¹)]
 
+/--
+@isnad1 id=eq.5h8v.s11.4dd07a1d87d7 from=translated src=- shape=3a6d3e73 vocab=2a2c4810
+-/
 theorem fourStepPairWord_source
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (x z y v f : V)
@@ -80,6 +92,9 @@ theorem fourStepPairWord_source
   rw [firstAlignment_source]
   exact partner_two_step_fixes_first omega halt y vp f hyp hyf
 
+/--
+@isnad1 id=eq.5h8v.s11.a2193ea425d4 from=translated src=- shape=0b62c9c7 vocab=2a2c4810
+-/
 theorem fourStepPairWord_partner
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (x z y v f : V)

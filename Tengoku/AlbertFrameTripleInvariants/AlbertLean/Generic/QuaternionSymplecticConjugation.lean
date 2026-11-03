@@ -17,6 +17,9 @@ open AlbertLean.Generic.QuaternionRow.ScalarJordanAut
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=eq.2h3v.s8.372611365209 from=translated src=- shape=dc4faf3e vocab=e74ad03e
+-/
 theorem left_form_of_symplectic_inverse
     (M N : Mat6 K) (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = symplecticJ) :
@@ -28,6 +31,9 @@ theorem left_form_of_symplectic_inverse
       simp only [Matrix.mul_assoc]
     _ = symplecticJ * N := by rw [hform]
 
+/--
+@isnad1 id=eq.2h3v.s8.b02d97db003f from=translated src=- shape=b856f9b8 vocab=e74ad03e
+-/
 theorem right_form_of_symplectic_inverse
     (M N : Mat6 K) (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = symplecticJ) :
@@ -39,6 +45,9 @@ theorem right_form_of_symplectic_inverse
       simp only [Matrix.transpose_mul, Matrix.mul_assoc]
     _ = symplecticJ * M := by rw [hMN, Matrix.transpose_one, Matrix.one_mul]
 
+/--
+@isnad1 id=eq.3h3v.s9.2d1ad740aca9 from=translated src=- shape=0610cbca vocab=e74ad03e
+-/
 theorem inverse_is_symplectic
     (M N : Mat6 K) (hMN : M * N = 1) (hNM : N * M = 1)
     (hform : M.transpose * symplecticJ * M = symplecticJ) :
@@ -47,7 +56,9 @@ theorem inverse_is_symplectic
     Matrix.mul_one]
 
 /-- Conjugation by an explicitly invertible symplectic matrix preserves the
-actual `PᵀJ=JP` carrier.-/
+actual `PᵀJ=JP` carrier.
+@isnad1 id=isselfad.2h4v.s9.10fa02bd506c from=translated src=- shape=00e12f78 vocab=429bf580
+-/
 theorem conjugate_mem
     (M N : Mat6 K) (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = symplecticJ)
@@ -86,6 +97,9 @@ def conjugateLinear
     apply Subtype.ext
     simp [Matrix.mul_smul, Matrix.smul_mul]
 
+/--
+@isnad1 id=eq.2h4v.s11.31c4d180df96 from=translated src=- shape=4b8191b4 vocab=63f7305d
+-/
 @[simp] theorem conjugateLinear_coe
     (M N : Mat6 K) (hMN : M * N = 1)
     (hform : M.transpose * symplecticJ * M = symplecticJ) (P : Carrier K) :
@@ -116,10 +130,16 @@ def conjugateLinearEquiv
       _ = 1 * (P : Mat6 K) * 1 := by rw [hMN]
       _ = (P : Mat6 K) := by simp
 
+/--
+@isnad1 id=eq.1h3v.s8.2d9df70d11ff from=translated src=- shape=16edc93d vocab=9d330ec2
+-/
 theorem conjugate_map_one
     (M N : Mat6 K) (hMN : M * N = 1) : M * (1 : Mat6 K) * N = 1 := by
   simpa using hMN
 
+/--
+@isnad1 id=eq.1h5v.s9.8541950071b5 from=translated src=- shape=35be6d12 vocab=64e318e3
+-/
 theorem conjugate_map_jordan
     (M N : Mat6 K) (hNM : N * M = 1) (A B : Mat6 K) :
     M * matrixJordan A B * N =

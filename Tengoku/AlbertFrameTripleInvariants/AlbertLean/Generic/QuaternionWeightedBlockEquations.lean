@@ -16,7 +16,9 @@ open AlbertLean.Generic.QuaternionRow.BlockEigenbasis
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- Clearing the overlap denominators first keeps the block calculation
-linear over an arbitrary coefficient field.-/
+linear over an arbitrary coefficient field.
+@isnad1 id=and.3h4v.s11.63d50ab6d8f7 from=translated src=- shape=27af9487 vocab=3ab26084
+-/
 theorem scaled_block_equations (B : Fin 3 → Fin 3 → Mat2 K)
     (p q : Fin 3 → K)
     (hd : ∀ i, B i i = q i • (1 : Mat2 K))
@@ -47,7 +49,9 @@ theorem scaled_block_equations (B : Fin 3 → Fin 3 → Mat2 K)
   · linear_combination (norm := module) p 1 • h12 - h10 + p 2 • h20 - h21
 
 /-- One block and the six overlap scalars determine the entire matrix in the
-weighted gauge; no eigenvalue choice is needed for this uniqueness step.-/
+weighted gauge; no eigenvalue choice is needed for this uniqueness step.
+@isnad1 id=eq.9h5v.s10.a2eed87e54c5 from=translated src=- shape=d50af96b vocab=160993b4
+-/
 theorem blocks_eq_of_pivot_eq (B C : Fin 3 → Fin 3 → Mat2 K)
     (p q : Fin 3 → K) (hp1 : p 1 ≠ 0) (hp2 : p 2 ≠ 0)
     (hdB : ∀ i, B i i = q i • (1 : Mat2 K))

@@ -28,7 +28,9 @@ variable {K : Type u} [Field K] [CharZero K]
 local instance : Invertible (2 : K) := invertibleOfNonzero (by norm_num)
 
 /-- Polarization says that reflecting the second Clifford vector reverses
-its product with the first, with the required minus sign.-/
+its product with the first, with the required minus sign.
+@isnad1 id=eq.1h3v.s13.67df9103d961 from=translated src=- shape=22323def vocab=0b5814c8
+-/
 theorem C_mul_reflectV (a b : VCoord K) (ha : nV a ≠ 0) :
     C a * C (reflectV a b) = -(C b * C a) := by
   rw [reflectV, map_sub, map_smul, mul_sub, mul_smul_comm, C_square,
@@ -40,7 +42,9 @@ theorem C_mul_reflectV (a b : VCoord K) (ha : nV a ≠ 0) :
   abel
 
 /-- The S half of `C_mul_reflectV`; it is kept separate so later family
-specialization never expands the eight spinor coordinates.-/
+specialization never expands the eight spinor coordinates.
+@isnad1 id=eq.1h4v.s6.dab449c32af9 from=translated src=- shape=a58aae13 vocab=16f39516
+-/
 theorem muS_reflectV_reverse (a b : VCoord K) (ha : nV a ≠ 0)
     (s : SCoord K) :
     sourceMuS (sourceMuC (reflectV a b) s) a =
@@ -48,7 +52,9 @@ theorem muS_reflectV_reverse (a b : VCoord K) (ha : nV a ≠ 0)
   have h := LinearMap.congr_fun (C_mul_reflectV a b ha) (s, 0)
   simpa [C_mul_C_apply] using congrArg Prod.fst h
 
-/-- The C half of the same joint Clifford identity.-/
+/-- The C half of the same joint Clifford identity.
+@isnad1 id=eq.1h4v.s6.1d9f842f290f from=translated src=- shape=fce7f624 vocab=ebba7615
+-/
 theorem muC_reflectV_reverse (a b : VCoord K) (ha : nV a ≠ 0)
     (c : CCoord K) :
     sourceMuC a (sourceMuS c (reflectV a b)) =
@@ -57,7 +63,9 @@ theorem muC_reflectV_reverse (a b : VCoord K) (ha : nV a ≠ 0)
   simpa [C_mul_C_apply] using congrArg Prod.snd h
 
 /-- Conjugating a reflection by the anisotropic reflection in `a` reflects
-its center.  The proof uses only the full bilinear isometry law.-/
+its center.  The proof uses only the full bilinear isometry law.
+@isnad1 id=eq.1h4v.s6.e47115ed0b43 from=translated src=- shape=8747c8f8 vocab=ae3db609
+-/
 theorem reflectV_reflected_conjugate (a b v : VCoord K) (ha : nV a ≠ 0) :
     reflectV a (reflectV (reflectV a b) v) =
       reflectV b (reflectV a v) := by
@@ -75,16 +83,25 @@ theorem reflectV_reflected_conjugate (a b v : VCoord K) (ha : nV a ≠ 0) :
     reflectV a v - (BV b (reflectV a v) / nV b) • b
   rw [habv, nV_reflectV a b ha]
 
+ /--
+ @isnad1 id=eq.1h4v.s6.64de25c227df from=translated src=- shape=078927ae vocab=4dc2d511
+ -/
  theorem evenV_reflected_reverse (a b v : VCoord K) (ha : nV a ≠ 0) :
     evenV a (reflectV a b) v = evenV b a v := by
   exact reflectV_reflected_conjugate a b v ha
 
+ /--
+ @isnad1 id=eq.2h5v.s6.c9e417a29154 from=translated src=- shape=b0509083 vocab=14cde188
+ -/
  theorem evenS_reflected_neg_reverse (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hrho0 : rho ≠ 0) (s : SCoord K) :
     evenS a (reflectV a b) (-rho) s = evenS b a rho s := by
   rw [evenS, evenS, muS_reflectV_reverse a b ha]
   simp only [inv_neg, smul_neg, neg_smul, neg_neg]
 
+ /--
+ @isnad1 id=eq.2h5v.s6.408c5ad2e918 from=translated src=- shape=b0509083 vocab=68dfa863
+ -/
  theorem evenC_reflected_neg_reverse (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hrho0 : rho ≠ 0) (c : CCoord K) :
     evenC a (reflectV a b) (-rho) c = evenC b a rho c := by
@@ -92,7 +109,9 @@ theorem reflectV_reflected_conjugate (a b v : VCoord K) (ha : nV a ≠ 0) :
   simp only [inv_neg, smul_neg, neg_smul, neg_neg]
 
 /-- The reflected center and negated square root give the genuine inverse on
-all six source blocks, including both half-spin slots.-/
+all six source blocks, including both half-spin slots.
+@isnad1 id=other.4h4v.s9.a19c7bb7a788 from=translated src=- shape=304a136a vocab=9e84baea
+-/
 theorem sourceEvenAut_reflected_inverse
     (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)
@@ -127,17 +146,26 @@ def inverseOmega (w : ExteriorSix.W K) : ExteriorSix.W K
   | .i24 => w .i24
   | .i34 => -w .i12
 
+/--
+@isnad1 id=eq.0h2v.s4.1aa76ca91298 from=translated src=- shape=e17ccb0b vocab=049b7207
+-/
 @[simp] theorem inverseOmega_involutive (w : ExteriorSix.W K) :
     inverseOmega (inverseOmega w) = w := by
   funext i
   cases i <;> simp [inverseOmega]
 
+/--
+@isnad1 id=eq.0h2v.s5.387d9e0ac811 from=translated src=- shape=a72591ef vocab=11b99ac4
+-/
 @[simp] theorem Pf_inverseOmega (w : ExteriorSix.W K) :
     Pf (inverseOmega w) = Pf w := by
   rw [pf_coordinate, pf_coordinate]
   simp [inverseOmega]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.22f0b80bd7a4 from=translated src=- shape=2b2808c1 vocab=8870d989
+-/
 theorem parity_center_inverse (r : K) (w : ExteriorSix.W K) (rho : K) :
     center 1 r (inverseOmega w) (-rho) =
       reflectV (parityVector : VCoord K) (center 1 r w rho) := by
@@ -150,7 +178,9 @@ theorem parity_center_inverse (r : K) (w : ExteriorSix.W K) (rho : K) :
       simp [center, parityVector, inverseOmega, BV, BW, wBasis] <;> ring
 
 /-- The actual eight-parameter parity chart is closed under inverse by
-`(r,w,rho) ↦ (r,inverseOmega w,-rho)`.-/
+`(r,w,rho) ↦ (r,inverseOmega w,-rho)`.
+@isnad1 id=eq.2h4v.s8.523e3ab14b2d from=translated src=- shape=93d9d70a vocab=60fc24e2
+-/
 theorem fixedParity_family_inverse (r : K) (w : ExteriorSix.W K) (rho : K)
     (hr : r ≠ 0) (hp : rho ≠ 0) :
     (familyAut parityVector (by simp) r (inverseOmega w) (-rho)

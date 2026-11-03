@@ -83,10 +83,16 @@ def encodeLinear : Carrier K →ₗ[K] Coordinates K where
         rw [hblock, unhat_smul]
         rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.bb915ad9ee16 from=translated src=- shape=d61aa895 vocab=4f0e86b9
+-/
 theorem decode_encode (P : Carrier K) : decode (encode P) = P := by
   apply Subtype.ext
   exact grouped_extract (P : Mat6 K) (carrier_property P)
 
+/--
+@isnad1 id=eq.0h2v.s5.15ad5d495b36 from=translated src=- shape=e17ccb0b vocab=3080baae
+-/
 theorem encode_decode (x : Coordinates K) : encode (decode x) = x := by
   funext i
   rcases i with ⟨i, j⟩ | i
@@ -116,17 +122,25 @@ Jordan product through the displayed inverse coordinate laws.-/
 def coordinateJordan (x y : Coordinates K) : Coordinates K :=
   encode (jordan (decode x) (decode y))
 
+/--
+@isnad1 id=eq.0h3v.s12.cbec127feabf from=translated src=- shape=8b38f426 vocab=c573c661
+-/
 theorem linearEquiv_jordan (P Q : Carrier K) :
     linearEquiv (jordan P Q) = coordinateJordan (linearEquiv P) (linearEquiv Q) := by
   change encode (jordan P Q) =
     encode (jordan (decode (encode P)) (decode (encode Q)))
   rw [decode_encode, decode_encode]
 
+/--
+@isnad1 id=eq.0h3v.s7.b16c5a0921d3 from=translated src=- shape=8987ee21 vocab=21971047
+-/
 theorem decode_coordinateJordan (x y : Coordinates K) :
     decode (coordinateJordan x y) = jordan (decode x) (decode y) := by
   exact decode_encode _
 
-/-- Uniqueness of grouped coordinates, exposed at the carrier level.-/
+/-- Uniqueness of grouped coordinates, exposed at the carrier level.
+@isnad1 id=injectiv.0h1v.s7.8a8ba5bc8484 from=translated src=- shape=a7b8a842 vocab=d653ec89
+-/
 theorem decode_injective : Function.Injective (decode (K := K)) := by
   intro x y h
   have hg : grouped

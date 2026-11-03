@@ -28,18 +28,27 @@ local instance : Invertible (2 : K) := invertibleOfNonzero (by norm_num)
 def center (alpha r : K) (omega : W K) (rho : K) : VCoord K :=
   { r := r, z := (rho ^ 2 / alpha - Pf omega) / r, omega := omega }
 
+/--
+@isnad1 id=eq.1h5v.s6.66254c0828af from=translated src=- shape=ca466228 vocab=36babb60
+-/
 theorem norm_center (alpha r : K) (omega : W K) (rho : K) (hr : r ≠ 0) :
     nV (center alpha r omega rho) = rho ^ 2 / alpha := by
   change r * ((rho ^ 2 / alpha - Pf omega) / r) + Pf omega = rho ^ 2 / alpha
   rw [mul_div_cancel₀ _ hr]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s6.a2209b47b0c0 from=translated src=- shape=de24e9c9 vocab=07e15be2
+-/
 theorem center_root (alpha r : K) (omega : W K) (rho : K)
     (ha : alpha ≠ 0) (hr : r ≠ 0) :
     rho ^ 2 = alpha * nV (center alpha r omega rho) := by
   rw [norm_center alpha r omega rho hr]
   exact (mul_div_cancel₀ _ ha).symm
 
+/--
+@isnad1 id=ne.3h5v.s6.5b15d44eae29 from=translated src=- shape=961ad0a7 vocab=fd1ea577
+-/
 theorem norm_center_ne_zero (alpha r : K) (omega : W K) (rho : K)
     (ha : alpha ≠ 0) (hr : r ≠ 0) (hp : rho ≠ 0) :
     nV (center alpha r omega rho) ≠ 0 := by
@@ -47,7 +56,9 @@ theorem norm_center_ne_zero (alpha r : K) (omega : W K) (rho : K)
   exact div_ne_zero (pow_ne_zero 2 hp) ha
 
 /-- Every actual root-bearing center with nonzero r is in this chart,
-including its specified rho sign.-/
+including its specified rho sign.
+@isnad1 id=eq.3h4v.s7.d1aaf1443c6a from=translated src=- shape=2ddfa03f vocab=8e1dfc38
+-/
 theorem center_eq (alpha : K) (B : VCoord K) (rho : K)
     (ha : alpha ≠ 0) (hr : B.r ≠ 0)
     (hroot : rho ^ 2 = alpha * nV B) :

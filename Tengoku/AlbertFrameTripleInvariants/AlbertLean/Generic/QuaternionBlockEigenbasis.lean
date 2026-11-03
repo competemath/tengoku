@@ -25,18 +25,26 @@ def matrix (a b c d : K) : Mat2 K := !![a, b; c, d]
 def trace2 (X : Mat2 K) : K := X 0 0 + X 1 1
 def determinant (X : Mat2 K) : K := X 0 0 * X 1 1 - X 0 1 * X 1 0
 
+/--
+@isnad1 id=eq.0h2v.s5.838c457e73da from=translated src=- shape=cc71c2ae vocab=fb8cf2e9
+-/
 theorem determinant_eq_det (X : Mat2 K) : determinant X = X.det := by
   simp [determinant, Matrix.det_fin_two]
 
 def affine (s t : K) (X : Mat2 K) : Mat2 K := s • (1 : Mat2 K) + t • X
 
+/--
+@isnad1 id=eq.0h4v.s7.6659832d9e19 from=translated src=- shape=2d85b4e8 vocab=5ae711db
+-/
 theorem determinant_affine (s t : K) (X : Mat2 K) :
     determinant (affine s t X) = s ^ 2 + s * t * trace2 X + t ^ 2 * determinant X := by
   simp [determinant, affine, trace2, Matrix.one_apply, smul_eq_mul]
   ring
 
 /-- Once the first row and column are scalar blocks, a second block determinant
-recovers the remaining block trace.-/
+recovers the remaining block trace.
+@isnad1 id=eq.4h5v.s6.6f7751ce1bfb from=translated src=- shape=feccd4a5 vocab=ff571b80
+-/
 theorem trace_eq_of_two_determinants (s t : K) (hs : s ≠ 0) (ht : t ≠ 0)
     (X Y : Mat2 K) (hdet : determinant X = determinant Y)
     (haffine : determinant (affine s t X) = determinant (affine s t Y)) :
@@ -49,6 +57,9 @@ theorem trace_eq_of_two_determinants (s t : K) (hs : s ≠ 0) (ht : t ≠ 0)
 def lambdaPlus (X : Mat2 K) (sigma : K) : K := (trace2 X + sigma) / 2
 def lambdaMinus (X : Mat2 K) (sigma : K) : K := (trace2 X - sigma) / 2
 
+/--
+@isnad1 id=and.1h3v.s8.150c5ab6fde6 from=translated src=- shape=0bc762d5 vocab=0943f9f0
+-/
 theorem characteristic_roots (X : Mat2 K) (sigma : K)
     (hroot : sigma ^ 2 = trace2 X ^ 2 - 4 * determinant X) :
     (lambdaPlus X sigma) ^ 2 - trace2 X * lambdaPlus X sigma + determinant X = 0 ∧
@@ -65,7 +76,9 @@ def eigenvalues (X : Mat2 K) (sigma : K) : Mat2 K :=
   matrix (lambdaPlus X sigma) 0 0 (lambdaMinus X sigma)
 
 /-- Rescaling one eigenvector gives determinant one, without adjoining
-another square root.-/
+another square root.
+@isnad1 id=eq.2h3v.s6.fbb3f9f94e39 from=translated src=- shape=4d20b511 vocab=a49941e9
+-/
 theorem eigenbasis_det (X : Mat2 K) (sigma : K)
     (hb : X 0 1 ≠ 0) (hs : sigma ≠ 0) :
     determinant (eigenbasis X sigma) = 1 := by
@@ -73,7 +86,9 @@ theorem eigenbasis_det (X : Mat2 K) (sigma : K)
   field_simp [hb, hs]
   <;> ring
 
-/-- An explicit SL2 eigenbasis on the nonzero off-diagonal discriminant chart.-/
+/-- An explicit SL2 eigenbasis on the nonzero off-diagonal discriminant chart.
+@isnad1 id=eq.3h3v.s8.59029df8daae from=translated src=- shape=3c351335 vocab=04bf6f25
+-/
 theorem eigenbasis_intertwines (X : Mat2 K) (sigma : K)
     (hb : X 0 1 ≠ 0) (hs : sigma ≠ 0)
     (hroot : sigma ^ 2 = trace2 X ^ 2 - 4 * determinant X) :

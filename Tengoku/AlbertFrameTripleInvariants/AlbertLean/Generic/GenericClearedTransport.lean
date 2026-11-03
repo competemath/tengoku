@@ -20,7 +20,9 @@ No intermediate pointwise denominator is assumed nonzero.
 namespace AlbertLean.Generic.GenericClearedTransport
 
 /-- An evaluation square with an injective bottom composite certifies that
-the coefficient map into the independent raw ring is injective.-/
+the coefficient map into the independent raw ring is injective.
+@isnad1 id=injectiv.2h8v.s8.74d2cfe7213c from=translated src=- shape=1471692b vocab=449c9af2
+-/
 theorem injective_of_evaluation_square
     {R S F L : Type*} [CommRing R] [CommRing S] [Field F] [Field L]
     (i : R →+* F) (hi : Function.Injective i)
@@ -34,7 +36,9 @@ theorem injective_of_evaluation_square
   rw [← hx, ← hy, hxy]
 
 /-- Cleared invariance is closed under composition in the independent
-domain. The inner action is `β`, and the outer action is `α`.-/
+domain. The inner action is `β`, and the outer action is `α`.
+@isnad1 id=eq.3h5v.s10.1f3db6e313e5 from=translated src=- shape=1a07071c vocab=1891a4e4
+-/
 theorem ratio_fixed_comp
     {S : Type*} [CommRing S] [IsDomain S]
     (a b : S) (hb : b ≠ 0) (α β : S ≃+* S)
@@ -55,7 +59,9 @@ theorem ratio_fixed_comp
     _ = (a * α (β b)) * α b := mul_right_comm _ _ _
 
 /-- A genuine inverse preserves the same cleared ratio. This needs no
-nonzero-denominator premise and supports reversing normalizing actions.-/
+nonzero-denominator premise and supports reversing normalizing actions.
+@isnad1 id=eq.1h4v.s9.cb86163f86b9 from=translated src=- shape=eee3171c vocab=e8cab30b
+-/
 theorem ratio_fixed_inverse
     {S : Type*} [CommRing S]
     (a b : S) (α : S ≃+* S)
@@ -67,7 +73,9 @@ theorem ratio_fixed_inverse
 /-- Evaluate only the final cleared identity. The two endpoint denominators
 are nonzero because they are images under field embeddings of the original
 nonzero denominator. No domain or injectivity premise is needed for the
-evaluation map or its source ring.-/
+evaluation map or its source ring.
+@isnad1 id=eq.4h12v.s10.eabea4c27712 from=translated src=- shape=cac6ef2e vocab=129b1faa
+-/
 theorem agreement_of_generic_cleared_transport
     {R S F L : Type*} [CommRing R] [CommRing S] [Field F] [Field L]
     (i : R →+* F) (j : R →+* S) (e : S →+* L)

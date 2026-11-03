@@ -15,6 +15,9 @@ universe u v
 variable {K : Type u} [Field K] [CharZero K]
 variable {V : Type v} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=ex.2h7v.s10.efdd16ea0e4b from=translated src=- shape=c1878455 vocab=afc4ef10
+-/
 theorem common_detour_of_two_witnesses
     (omega : BilinForm (K := K) (V := V)) (x y zx zy : V)
     (hzx : omega zx x ≠ 0) (hzy : omega y zy ≠ 0) :
@@ -29,6 +32,9 @@ theorem common_detour_of_two_witnesses
   · simp only [map_add, LinearMap.add_apply, not_ne_iff.mp hyzx, zero_add]
     exact hzy
 
+/--
+@isnad1 id=eq.8h9v.s11.1c1694888e70 from=translated src=- shape=ceb63d4a vocab=2a2c4810
+-/
 theorem fourStepPairWord_fixes
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (x z y v f q : V)
@@ -65,6 +71,9 @@ theorem fourStepPairWord_fixes
   rw [hAq]
   simp only [equiv_apply, hwvpq, hfwq, mul_zero, zero_smul, add_zero]
 
+/--
+@isnad1 id=and.2h6v.s10.22ff163c03cb from=translated src=- shape=559596e9 vocab=41b7d2ae
+-/
 theorem projectPair_orthogonal
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0) (e f c : V)

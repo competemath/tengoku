@@ -22,6 +22,9 @@ def IsRightNondegenerate (omega : BilinForm (K := K) (V := V)) : Prop :=
 
 /-! Two nonzero linear functionals have a common nonvanishing point.  The
 proof uses only `zx`, `zy`, or `zx + zy`, with no infinitude argument. -/
+/--
+@isnad1 id=ex.4h5v.s9.e5bf87bac03c from=translated src=- shape=b2217f84 vocab=2199587c
+-/
 theorem exists_common_detour
     (omega : BilinForm (K := K) (V := V))
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)
@@ -39,6 +42,9 @@ theorem exists_common_detour
   · simp only [map_add, LinearMap.add_apply, not_ne_iff.mp hyzx, zero_add]
     exact hzy
 
+/--
+@isnad1 id=ex.5h5v.s10.095b108c53e1 from=translated src=- shape=5b723ce6 vocab=6beba67c
+-/
 theorem exists_two_step_alignment
     (omega : BilinForm (K := K) (V := V))
     (halt : ∀ x, omega x x = 0)

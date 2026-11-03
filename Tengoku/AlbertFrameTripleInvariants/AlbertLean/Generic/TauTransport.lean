@@ -24,7 +24,9 @@ local instance : Invertible (2 : ℚ) := invertibleOfNonzero (by decide)
 def ledgerCopy (L : AlbertLean.Ledger) : SecondStatement.Ledger :=
   ⟨L.P, L.Q, L.R, L.C0⟩
 
-/-- Copying the public tables to the statement ledger loses no information.-/
+/-- Copying the public tables to the statement ledger loses no information.
+@isnad1 id=injectiv.0h0v.s2.8d6e8f0bd09b from=translated src=- shape=54c8eceb vocab=cf8178b2
+-/
 theorem ledgerCopy_injective : Function.Injective ledgerCopy := by
   rintro ⟨P, Q, R, C0⟩ ⟨P', Q', R', C0'⟩ h
   simp only [ledgerCopy, SecondStatement.Ledger.mk.injEq] at h

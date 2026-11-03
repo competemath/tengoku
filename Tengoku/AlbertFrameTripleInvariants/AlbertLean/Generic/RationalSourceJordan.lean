@@ -22,6 +22,9 @@ open AlbertLean.Triality.StructuredProduct
 open AlbertLean.Comparison.StructuredF0
 open AlbertLean.Comparison.StructuredProductF0
 
+/--
+@isnad1 id=eq.0h2v.s5.f70911be2c0c from=translated src=- shape=803be47c vocab=6e75ef91
+-/
 theorem sourceJordanIdentity_rat (x y : JCoord ℚ) :
     sourceProduct (sourceProduct x y) (sourceProduct x x) =
       sourceProduct x (sourceProduct y (sourceProduct x x)) := by

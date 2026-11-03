@@ -25,6 +25,9 @@ open AlbertLean.Generic.ResidualLedgerMomentField
 
 variable {K : Type*} [Field K] [CharZero K]
 
+/--
+@isnad1 id=diagin.4h4v.s7.6b68fb626fec from=translated src=- shape=7ff09d6b vocab=34de6976
+-/
 theorem power_diagonals_of_norms (F : Subfield K) (a : JCoord K)
     (ha : DiagIn F a) (hv : nV a.v ∈ F) (hs : nS a.s ∈ F) (hc : nC a.c ∈ F) :
     ∀ p, DiagIn F (power a p) := by
@@ -45,6 +48,9 @@ theorem power_diagonals_of_norms (F : Subfield K) (a : JCoord K)
       rw [sourceSquare_d3]
       exact F.add_mem (F.add_mem (F.pow_mem (ha 2) 2) hv) hs
 
+/--
+@isnad1 id=mem.6h8v.s8.d481ea7aa2db from=translated src=- shape=793ed37f vocab=1569072e
+-/
 theorem uncentered_mem (F : Subfield K) (la lb g11 g12 g21 g22 : K)
     (hla : la ∈ F) (hlb : lb ∈ F) (h11 : g11 ∈ F)
     (h12 : g12 ∈ F) (h21 : g21 ∈ F)
@@ -54,6 +60,9 @@ theorem uncentered_mem (F : Subfield K) (la lb g11 g12 g21 g22 : K)
     (F.mul_mem (F.mul_mem hla hlb) h11)
   convert h using 1 <;> ring
 
+/--
+@isnad1 id=sectorin.8h4v.s7.b6d4139132dc from=translated src=- shape=70cf910b vocab=5b7dafbe
+-/
 theorem square_sectors_mem (F : Subfield K) (a b : JCoord K)
     (ha : DiagIn F a) (hb : DiagIn F b)
     (h11 : SectorIn F a b)
@@ -75,7 +84,9 @@ theorem square_sectors_mem (F : Subfield K) (a b : JCoord K)
       (F.add_mem (hb 0) (hb 1)) h11.2.2 h12.2.2 h21.2.2 hUC
 
 /-- The three nontrivial sector pairs and their U correction recover every
-power pair, and hence every original centered ledger cell.-/
+power pair, and hence every original centered ledger cell.
+@isnad1 id=ledgerin.8h4v.s7.552c0dd59874 from=translated src=- shape=46e2f565 vocab=d8f15fa0
+-/
 theorem ledgerIn_of_measurements (F : Subfield K) (a b : JCoord K)
     (ha : ∀ p, DiagIn F (power a p)) (hb : ∀ p, DiagIn F (power b p))
     (h11 : SectorIn F a b)

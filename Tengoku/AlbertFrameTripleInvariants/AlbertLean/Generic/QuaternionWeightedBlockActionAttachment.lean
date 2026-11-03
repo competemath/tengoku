@@ -16,7 +16,9 @@ open AlbertLean.Generic.QuaternionRow.SymplecticMatrixBridge
 open AlbertLean.Generic.QuaternionRow.BlockEigenbasis
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- All `3×3` literal two-plane blocks determine the linear operator.-/
+/-- All `3×3` literal two-plane blocks determine the linear operator.
+@isnad1 id=eq.1h3v.s8.0f11e369c4ad from=translated src=- shape=d11e65cd vocab=4878ed54
+-/
 theorem linear_eq_of_weightedBlock_eq (A B : Vec6 K →ₗ[K] Vec6 K)
     (h : ∀ i j, weightedBlock A i j = weightedBlock B i j) : A = B := by
   apply LinearMap.ext
@@ -49,7 +51,9 @@ private theorem commonPlaneMap_basis
     simp [commonPlaneMap, weightedPairIndex, basisVector, Pi.single_apply] <;> ring
 
 /-- Applying the same `2×2` coordinate change on all three source and target
-planes conjugates each literal block by those two matrices.-/
+planes conjugates each literal block by those two matrices.
+@isnad1 id=eq.0h6v.s9.bb8ad5ea5db9 from=translated src=- shape=441ada2a vocab=932332b7
+-/
 theorem weightedBlock_commonPlane_conjugate
     (R T : Mat2 K) (B : Vec6 K →ₗ[K] Vec6 K) (i j : Fin 3) :
     weightedBlock ((commonPlaneMap R).comp (B.comp (commonPlaneMap T))) i j =
@@ -67,7 +71,9 @@ theorem weightedBlock_commonPlane_conjugate
       LinearMap.smul_apply, smul_eq_mul] <;> ring
 
 /-- The orientation needed by Q1: if `B=T*C*S`, then conjugating the source
-operator by `S` forward and `T` backward yields the target operator.-/
+operator by `S` forward and `T` backward yields the target operator.
+@isnad1 id=eq.3h5v.s10.1ed3ed0c60ed from=translated src=- shape=5059e98a vocab=932332b7
+-/
 theorem commonPlane_conjugates_operator_of_blocks
     (B C : Vec6 K →ₗ[K] Vec6 K) (T S : Mat2 K)
     (hTS : T * S = 1) (hST : S * T = 1)

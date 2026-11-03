@@ -31,6 +31,9 @@ def standardCarrierProjector (i : Fin 3) : Carrier K :=
   ⟨grouped (diagonalProjector i) 0 0,
     grouped_symplectic_selfadjoint _ _ _⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.d77ce614a3d3 from=translated src=- shape=9c888d41 vocab=2aba4aac
+-/
 theorem matrixAction_standardCarrierProjector (i : Fin 3) :
     matrixAction ((standardCarrierProjector (K := K) i : Carrier K) : Mat6 K) = standardProjector i := by
   apply LinearMap.ext
@@ -42,7 +45,9 @@ theorem matrixAction_standardCarrierProjector (i : Fin 3) :
       Fintype.sum_sum_type, Fin.sum_univ_succ]
 
 /-- The matrix attached to a word conjugates every input projector whenever
-the word intertwines its column action with the literal standard action.-/
+the word intertwines its column action with the literal standard action.
+@isnad1 id=eq.1h4v.s10.74e292dde1a8 from=translated src=- shape=1604ae58 vocab=fbf72655
+-/
 theorem word_conjugates_projector
     (word : List (Step (K := K) (V := Vec6 K)))
     (P : Carrier K) (i : Fin 3)
@@ -68,7 +73,9 @@ theorem word_conjugates_projector
 
 /-- Actual trace-one self-adjoint projector frames are carried to the literal
 standard frame by one genuine unital Jordan automorphism arising from exactly
-twelve transvections.-/
+twelve transvections.
+@isnad1 id=ex.3h2v.s12.a04cc4a67af6 from=translated src=- shape=a56876f5 vocab=cf4d7dc4
+-/
 theorem exists_jordanAut_to_standard_frame
     (P : Fin 3 → Carrier K)
     (hidem : ∀ i, (P i : Mat6 K) * P i = P i)

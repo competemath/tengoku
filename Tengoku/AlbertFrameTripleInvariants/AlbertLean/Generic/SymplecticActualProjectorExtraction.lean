@@ -19,6 +19,9 @@ universe u v
 variable {K : Type u} [Field K] [CharZero K]
 variable {V : Type v} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=and.4h5v.s10.dbf8ffec186d from=translated src=- shape=80059273 vocab=d95f96fe
+-/
 theorem first_two_comp_zero_of_sum (A B C : V →ₗ[K] V)
     (hA : IsIdempotent A) (hB : IsIdempotent B) (hC : IsIdempotent C)
     (hsum : A + B + C = LinearMap.id) : A.comp B = 0 ∧ B.comp A = 0 := by
@@ -37,6 +40,9 @@ theorem first_two_comp_zero_of_sum (A B C : V →ₗ[K] V)
   exact ⟨comp_eq_zero_of_jordan_orthogonal A B hA hB hanti,
     reverse_comp_eq_zero_of_jordan_orthogonal A B hA hB hanti⟩
 
+/--
+@isnad1 id=eq.3h5v.s9.9ac0e4f06474 from=translated src=- shape=5f841ff8 vocab=cb5dc0fc
+-/
 theorem comp_zero_of_complete_frame (P : Fin 3 → V →ₗ[K] V)
     (hidem : ∀ i, IsIdempotent (P i))
     (hsum : P 0 + P 1 + P 2 = LinearMap.id) :
@@ -53,7 +59,9 @@ theorem comp_zero_of_complete_frame (P : Fin 3 → V →ₗ[K] V)
   intro i j hij
   fin_cases i <;> fin_cases j <;> simp_all
 
-/-- The pair is constructed inside the actual projector image.-/
+/-- The pair is constructed inside the actual projector image.
+@isnad1 id=ex.4h4v.s9.73aba0432348 from=translated src=- shape=7fbfc340 vocab=333b3530
+-/
 theorem exists_image_hyperbolic_pair
     (omega : BilinForm (K := K) (V := V))
     (hright : IsRightNondegenerate omega) (P : V →ₗ[K] V)
@@ -72,7 +80,9 @@ theorem exists_image_hyperbolic_pair
     normalizedPartner_pairs_one omega P hP hself x y hy⟩
 
 /-- Three nonzero self-adjoint idempotents summing to one yield an ordered
-hyperbolic triple, with the full labelled projector action on its vectors.-/
+hyperbolic triple, with the full labelled projector action on its vectors.
+@isnad1 id=ex.5h4v.s10.d48c59f3cf7b from=translated src=- shape=ae2cdde5 vocab=2ad03b5f
+-/
 theorem exists_hyperbolicTriple_of_complete_frame
     (omega : BilinForm (K := K) (V := V))
     (hright : IsRightNondegenerate omega) (P : Fin 3 → V →ₗ[K] V)

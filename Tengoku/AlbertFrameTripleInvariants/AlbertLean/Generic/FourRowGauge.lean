@@ -36,7 +36,9 @@ def ratio {a : Fin 3 → Mat3 K} (S : RawSystem a) : Mat3 K :=
   S.b 1 * (S.b 0)⁻¹
 
 /-- The anchored coordinate used by the existing normalization module reduces
-to the raw right ratio.-/
+to the raw right ratio.
+@isnad1 id=eq.1h4v.s7.c8f2b13788d9 from=translated src=- shape=c018ecd8 vocab=35ef924e
+-/
 theorem normalizedX_eq_ratio (a0 b0 b1 : Mat3 K) (ha0 : a0.det ≠ 0) :
     normalizedX a0 b0 b1 = b1 * b0⁻¹ := by
   simp only [normalizedX, anchor, mul_assoc]
@@ -46,17 +48,26 @@ def GaugeRelated {a : Fin 3 → Mat3 K} (S T : RawSystem a) : Prop :=
   ∃ h : Mat3 K, h.det = 1 ∧
     (∀ i, T.b i = S.b i * h) ∧ (∀ i, T.c i = h⁻¹ * S.c i)
 
+/--
+@isnad1 id=eq.0h4v.s6.a73e1b5e9432 from=translated src=- shape=99764a39 vocab=554f64e3
+-/
 theorem det_b_eq {a : Fin 3 → Mat3 K} (S : RawSystem a) (i : Fin 3) :
     (S.b i).det = (a i).det :=
   (parametrized_iff_adjugate_equations (a i) (S.b i) (S.c i) (S.b_ne i)).mpr
     (S.equations i) |>.1
 
+/--
+@isnad1 id=eq.0h4v.s7.3aad3d8febca from=translated src=- shape=69c29398 vocab=197f1258
+-/
 theorem c_eq_inverse_adjugate {a : Fin 3 → Mat3 K}
     (S : RawSystem a) (i : Fin 3) :
     S.c i = (S.b i)⁻¹ * (a i).adjugate :=
   (parametrized_iff_adjugate_equations (a i) (S.b i) (S.c i) (S.b_ne i)).mpr
     (S.equations i) |>.2
 
+/--
+@isnad1 id=eq.1h4v.s5.90d08ee4ace4 from=translated src=- shape=2571d701 vocab=e5d69672
+-/
 theorem ratio_eq_of_gaugeRelated {a : Fin 3 → Mat3 K}
     {S T : RawSystem a} (hg : GaugeRelated S T) : ratio S = ratio T := by
   rcases hg with ⟨h, hdet, hb, _⟩
@@ -68,7 +79,9 @@ theorem ratio_eq_of_gaugeRelated {a : Fin 3 → Mat3 K}
   rw [mul_assoc, ← mul_assoc h h⁻¹,
     Matrix.mul_nonsing_inv h (isUnit_iff_ne_zero.mpr hh), one_mul]
 
-/-- Equality of normalized ratios constructs the unique determinant-one gauge.-/
+/-- Equality of normalized ratios constructs the unique determinant-one gauge.
+@isnad1 id=gaugerel.1h4v.s5.17594da3fb41 from=translated src=- shape=958433b8 vocab=e5d69672
+-/
 theorem gaugeRelated_of_ratio_eq {a : Fin 3 → Mat3 K}
     {S T : RawSystem a} (hratio : ratio S = ratio T) : GaugeRelated S T := by
   let h : Mat3 K := (S.b 0)⁻¹ * T.b 0
@@ -106,11 +119,16 @@ theorem gaugeRelated_of_ratio_eq {a : Fin 3 → Mat3 K}
       mul_assoc]
   exact ⟨h, hdet, hb, hc⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.97d0b3c28aef from=translated src=- shape=cc43120b vocab=e5d69672
+-/
 theorem gaugeRelated_iff_ratio_eq {a : Fin 3 → Mat3 K} (S T : RawSystem a) :
     GaugeRelated S T ↔ ratio S = ratio T :=
   ⟨ratio_eq_of_gaugeRelated, gaugeRelated_of_ratio_eq⟩
 
-/-- The displayed transporter relation is an equivalence relation on raw systems.-/
+/-- The displayed transporter relation is an equivalence relation on raw systems.
+@isnad1 id=equivale.0h2v.s4.3ae66d151023 from=translated src=- shape=15cb83f1 vocab=9da988f6
+-/
 theorem gaugeRelated_equivalence (a : Fin 3 → Mat3 K) :
     Equivalence (GaugeRelated (a := a)) := by
   refine ⟨?_, ?_, ?_⟩
@@ -123,7 +141,9 @@ theorem gaugeRelated_equivalence (a : Fin 3 → Mat3 K) :
       (((gaugeRelated_iff_ratio_eq S T).mp hST).trans
         ((gaugeRelated_iff_ratio_eq T W).mp hTW))
 
-/-- The right transporter is forced by its action on the nonsingular zeroth component.-/
+/-- The right transporter is forced by its action on the nonsingular zeroth component.
+@isnad1 id=eq.1h5v.s8.9d7dfccfb9ab from=translated src=- shape=43fbd063 vocab=eb9330a6
+-/
 theorem gauge_transporter_unique {a : Fin 3 → Mat3 K} (S T : RawSystem a)
     (h : Mat3 K) (hb0 : T.b 0 = S.b 0 * h) :
     h = (S.b 0)⁻¹ * T.b 0 := by

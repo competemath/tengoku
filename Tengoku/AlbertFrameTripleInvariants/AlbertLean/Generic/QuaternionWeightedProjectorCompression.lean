@@ -23,7 +23,9 @@ variable {V : Type v} [AddCommGroup V] [Module K V]
 
 /-- A self-adjoint compression of a self-adjoint projector to an explicitly
 spanned hyperbolic projector image is scalar.  Its scalar is the displayed
-symplectic overlap, so no rank theorem or assumed weighted normal form enters.-/
+symplectic overlap, so no rank theorem or assumed weighted normal form enters.
+@isnad1 id=other.8h7v.s11.30d7dd30994a from=translated src=- shape=72e266db vocab=e642cb54
+-/
 theorem scalar_compression_on_hyperbolic_image
     (omega : BilinForm (K := K) (V := V))
     (F E : V →ₗ[K] V) (hFidem : IsIdempotent F)
@@ -87,7 +89,9 @@ theorem scalar_compression_on_hyperbolic_image
 /-- Q1's load-bearing actual coordinate statement after the first frame is
 literal: for the first projector of `F`, every `E_i`-plane is compressed by
 the overlap `p_i`, and hence its two transported columns are `p_i` times the
-same image basis.  The weighted form identity is derived as well.-/
+same image basis.  The weighted form identity is derived as well.
+@isnad1 id=ex.6h3v.s13.840252c0dc04 from=translated src=- shape=60805396 vocab=db39fe5f
+-/
 theorem exists_actual_weighted_first_projector_coordinates
     (E F : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

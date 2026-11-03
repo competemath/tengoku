@@ -25,6 +25,9 @@ def weightedOmega (p : Fin 3 → K) (x y : Vec6 K) : K :=
   ∑ i, p i * (x (Sum.inl i) * y (Sum.inr i) -
     x (Sum.inr i) * y (Sum.inl i))
 
+/--
+@isnad1 id=eq.3h7v.s12.a723be25b611 from=translated src=- shape=8bc3cb48 vocab=b4deb6c1
+-/
 theorem weightedCoordinate_form
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -62,6 +65,9 @@ def commonPlaneMap (T : Matrix (Fin 2) (Fin 2) K) : Vec6 K →ₗ[K] Vec6 K wher
 def det2 (T : Matrix (Fin 2) (Fin 2) K) : K :=
   T 0 0 * T 1 1 - T 0 1 * T 1 0
 
+/--
+@isnad1 id=eq.0h5v.s9.a0b86a851c64 from=translated src=- shape=492d3284 vocab=2d960256
+-/
 theorem commonPlaneMap_form (p : Fin 3 → K)
     (T : Matrix (Fin 2) (Fin 2) K) (x y : Vec6 K) :
     weightedOmega p (commonPlaneMap T x) (commonPlaneMap T y) =
@@ -77,6 +83,9 @@ theorem commonPlaneMap_form (p : Fin 3 → K)
           (T 0 0 * y (Sum.inl i) + T 0 1 * y (Sum.inr i))) = _
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.8c57b12f44a4 from=translated src=- shape=c8ee5dcc vocab=bd137424
+-/
 theorem commonPlaneMap_comp (T S : Matrix (Fin 2) (Fin 2) K)
     (hTS : T * S = 1) :
     (commonPlaneMap T).comp (commonPlaneMap S) = LinearMap.id := by

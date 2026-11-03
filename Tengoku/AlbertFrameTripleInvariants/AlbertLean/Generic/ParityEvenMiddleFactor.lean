@@ -21,6 +21,9 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 
 set_option maxHeartbeats 600000 in
+/--
+@isnad1 id=eq.4h8v.s7.902fbed74a11 from=translated src=- shape=70d7f126 vocab=36dd50e8
+-/
 theorem evenS_middle (e A B : VCoord K) (alpha beta rho : K)
     (he : nV e = 1) (hab : alpha * beta = rho)
     (ha0 : alpha ≠ 0) (hb0 : beta ≠ 0) (s : SCoord K) :
@@ -44,6 +47,9 @@ theorem evenS_middle (e A B : VCoord K) (alpha beta rho : K)
   rfl
 
 set_option maxHeartbeats 600000 in
+/--
+@isnad1 id=eq.4h8v.s7.77349bf9dacf from=translated src=- shape=70d7f126 vocab=29307b08
+-/
 theorem evenC_middle (e A B : VCoord K) (alpha beta rho : K)
     (he : nV e = 1) (hab : alpha * beta = rho)
     (ha0 : alpha ≠ 0) (hb0 : beta ≠ 0) (c : CCoord K) :
@@ -66,6 +72,9 @@ theorem evenC_middle (e A B : VCoord K) (alpha beta rho : K)
   rw [hi]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.f8cc4337725f from=translated src=- shape=abe0de71 vocab=4dc2d511
+-/
 theorem evenV_middle (e A B v : VCoord K) (he0 : nV e ≠ 0) :
     evenV e (reflectV e A) (evenV e B v) = evenV A B v := by
   rw [evenV_reflected_reverse e A _ he0]
@@ -74,7 +83,9 @@ theorem evenV_middle (e A B v : VCoord K) (he0 : nV e ≠ 0) :
 
 set_option maxHeartbeats 800000 in
 /-- The two fixed-first-center factors equal the arbitrary even action on the
-entire source carrier.-/
+entire source carrier.
+@isnad1 id=other.9h8v.s10.edf82d076dd4 from=translated src=- shape=3c64f034 vocab=63148948
+-/
 theorem sourceEvenAut_middle_apply
     (e A B : VCoord K) (alpha beta rho : K)
     (he : nV e = 1)

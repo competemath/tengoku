@@ -33,12 +33,18 @@ variable (k : Type u) [Field k] [CharZero k]
 abbrev Base := GenericDeterminantOpen.B k
 abbrev FunctionField := Omega (Base k)
 
+/--
+@isnad1 id=charzero.0h1v.s7.a9e1223ecc93 from=translated src=- shape=d96e9922 vocab=1dc04ac8
+-/
 instance baseCharZero : CharZero (Base k) where
   cast_injective n m h := by
     apply (Nat.cast_injective (R := k))
     apply (algebraMap k (Base k)).injective
     simpa only [map_natCast] using h
 
+/--
+@isnad1 id=charzero.0h1v.s9.5d822b3565f0 from=translated src=- shape=d96e9922 vocab=13a0ae7c
+-/
 instance fieldCharZero : CharZero (FunctionField k) where
   cast_injective n m h := by
     apply (Nat.cast_injective (R := Base k))
@@ -59,16 +65,24 @@ def baseParameters : Parameters (Base k) where
   offDiag := fun ij h => ι k (offX k ⟨ij,h⟩)
   Delta := 1
 
+/--
+@isnad1 id=eq.0h1v.s8.6bcd9d02c91c from=translated src=- shape=733fd0d8 vocab=84796307
+-/
 theorem baseParameters_pivotA : pivotA (baseParameters k) = ι k (PA k) := by
   simp [pivotA, GenericNormalizedFrameChart.dA2, baseParameters, PA,
     GenericDeterminantOpen.dA2]
 
+/--
+@isnad1 id=eq.0h1v.s8.7f3e6b951028 from=translated src=- shape=733fd0d8 vocab=8c401972
+-/
 theorem baseParameters_pivotB : pivotB (baseParameters k) = ι k (PB k) := by
   simp [pivotB, GenericNormalizedFrameChart.dB2, baseParameters, PB,
     GenericDeterminantOpen.dB2]
 
 /-- The solved chart moment is literally the previously proved generic
-rational moment.-/
+rational moment.
+@isnad1 id=eq.0h1v.s6.62c21d3b57a1 from=translated src=- shape=b205a460 vocab=6ca5b3a4
+-/
 theorem baseParameters_moment : moment (baseParameters k) = rationalM k := by
   have ha := PA_ne_zero k
   have hb := PB_ne_zero k
@@ -110,6 +124,9 @@ def fieldParameters : Parameters (FunctionField k) where
   offDiag := fun ij h => includeBase k ((baseParameters k).offDiag ij h)
   Delta := T (Base k)
 
+/--
+@isnad1 id=eq.0h1v.s10.00443a3c0f80 from=translated src=- shape=e3f4b1bd vocab=dde8dc08
+-/
 theorem fieldParameters_moment : moment (fieldParameters k) =
     (rationalM k).map (includeBase k) := by
   rw [← baseParameters_moment k]
@@ -120,6 +137,9 @@ theorem fieldParameters_moment : moment (fieldParameters k) =
       GenericNormalizedFrameChart.dA2, GenericNormalizedFrameChart.dB2,
       rawOffDiag, includeBase, map_div₀]
 
+/--
+@isnad1 id=eq.0h1v.s11.c483e25908f7 from=translated src=- shape=878d88f2 vocab=f6d49692
+-/
 theorem fieldParameters_detMoment :
     Matrix.det (moment (fieldParameters k)) =
       includeBase k (Matrix.det (rationalM k)) := by
@@ -154,6 +174,9 @@ def genericOpen : OpenParameters (FunctionField k) where
 
 def genericChart := insert (genericOpen k)
 
+/--
+@isnad1 id=and.0h1v.s13.0198b838b620 from=translated src=- shape=486e23e8 vocab=4103ff30
+-/
 theorem genericChart_source_fixedSpectrum :
     AlbertLean.Triality.StructuredCubic.sourceTrace
         (AlbertLean.Residual.FrameIdeal.encoderA (genericChart k)) = 0 ∧
@@ -173,15 +196,24 @@ def deck : FunctionField k ≃+* FunctionField k :=
   reciprocalEquiv (Base k) (Matrix.det (rationalM k))
     (det_rationalM_ne_zero k)
 
+/--
+@isnad1 id=eq.0h1v.s13.35d1ebeaae9b from=translated src=- shape=3a883d52 vocab=2686a780
+-/
 @[simp] theorem deck_Delta : deck k (fieldParameters k).Delta =
     includeBase k (Matrix.det (rationalM k)) / (fieldParameters k).Delta := by
   exact reciprocalEquiv_T (Base k) _ _
 
+/--
+@isnad1 id=eq.0h2v.s13.0a2073ae0378 from=translated src=- shape=29c6af02 vocab=74f87a2d
+-/
 @[simp] theorem deck_base (b : Base k) :
     deck k (includeBase k b) = includeBase k b := by
   exact reciprocalHom_base (Base k) (Matrix.det (rationalM k))
     (det_rationalM_ne_zero k) b
 
+/--
+@isnad1 id=eq.0h1v.s13.52f5f72ce28f from=translated src=- shape=d5a6b725 vocab=b86481eb
+-/
 @[simp] theorem deck_involutive : (deck k).trans (deck k) = RingEquiv.refl _ := by
   ext z
   exact (deck k).left_inv z

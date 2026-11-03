@@ -40,6 +40,9 @@ def marginal (r s i j : Fin 3) : ℚ :=
 set_option maxRecDepth 100000
 set_option maxHeartbeats 5000000
 
+/--
+@isnad1 id=eq.1h4v.s5.75c805afe72f from=translated src=- shape=a1fc163f vocab=382a6ac7
+-/
 theorem pair_eq_marginal (r s i j : Fin 3) (hrs : r ≠ s) :
     pair witnessTheta1 r s i j = marginal r s i j := by
   fin_cases r <;> fin_cases s <;> try contradiction

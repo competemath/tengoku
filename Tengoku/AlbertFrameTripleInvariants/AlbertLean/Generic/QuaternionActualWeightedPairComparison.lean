@@ -17,7 +17,9 @@ open AlbertLean.Generic.QuaternionRow.BlockEigenbasis
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- Actual two-pair Q1 comparison through the rational nonscalar pivot.  No
-block equation is assumed: all of them come from the actual frames.-/
+block equation is assumed: all of them come from the actual frames.
+@isnad1 id=other.17h11v.s13.58c4b39fc70a from=translated src=- shape=59dae628 vocab=a03cca4b
+-/
 theorem exists_actual_same_ledger_pair_block_conjugator
     (E F E' F' : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

@@ -20,7 +20,9 @@ universe u v
 
 /-- Arbitrary localization preserves torsion-freeness over the base, even if
 the localized algebra is the zero ring.  No domain hypothesis on `B` or `S`
-and no nonvanishing hypothesis on `D` is used.-/
+and no nonvanishing hypothesis on `D` is used.
+@isnad1 id=istorsio.0h4v.s7.bc1f1de30aa2 from=translated src=- shape=6e6b7a50 vocab=e43b8fd5
+-/
 theorem away_isTorsionFree
     {A B S : Type u} [CommRing A] [IsDomain A] [CommRing B] [CommRing S]
     [Algebra A B] [Module.IsTorsionFree A B]
@@ -72,6 +74,9 @@ def quadraticRootEval (w : B →+* L) (c : B) (r : L)
     simpa only [pow_two, Algebra.smul_def, map_zero, zero_mul, add_zero,
       map_one, mul_one, hw] using hr⟩).toRingHom
 
+/--
+@isnad1 id=eq.1h5v.s7.78626fed79cb from=translated src=- shape=bcd8acdf vocab=a98713d2
+-/
 @[simp] theorem quadraticRootEval_omega (w : B →+* L) (c : B) (r : L)
     (hr : r ^ 2 = w c) :
     quadraticRootEval w c r hr QuadraticAlgebra.omega = r := by
@@ -88,6 +93,9 @@ def quadraticRootAwayEval (w : B →+* L) (c : B) (r : L)
 def rootOmega (c : B) (D : QuadraticRootRing c) : QuadraticRootAway c D :=
   algebraMap (QuadraticRootRing c) (QuadraticRootAway c D) QuadraticAlgebra.omega
 
+/--
+@isnad1 id=eq.0h3v.s10.a6d8035010fc from=translated src=- shape=a7dcc094 vocab=01d5c75b
+-/
 theorem rootOmega_sq (c : B) (D : QuadraticRootRing c) :
     rootOmega c D ^ 2 =
       algebraMap (QuadraticRootRing c) (QuadraticRootAway c D)
@@ -98,6 +106,9 @@ theorem rootOmega_sq (c : B) (D : QuadraticRootRing c) :
     (QuadraticAlgebra.omega_mul_omega_eq_algebraMap
       (R := B) (a := c) (b := 0))
 
+/--
+@isnad1 id=eq.2h6v.s9.8f95157446d0 from=translated src=- shape=df652159 vocab=336ca423
+-/
 @[simp] theorem quadraticRootAwayEval_rootOmega
     (w : B →+* L) (c : B) (r : L) (hr : r ^ 2 = w c)
     (D : QuadraticRootRing c) (hD : quadraticRootEval w c r hr D ≠ 0) :
@@ -106,7 +117,9 @@ theorem rootOmega_sq (c : B) (D : QuadraticRootRing c) :
   exact quadraticRootEval_omega w c r hr
 
 /-- The same lawful field evaluation simultaneously proves that the localized
-quadratic root ring is nontrivial.-/
+quadratic root ring is nontrivial.
+@isnad1 id=nontrivi.2h6v.s7.9d27ee7d47a5 from=translated src=- shape=79c11031 vocab=86e0dc3f
+-/
 theorem quadraticRootAway_nontrivial
     (w : B →+* L) (c : B) (r : L) (hr : r ^ 2 = w c)
     (D : QuadraticRootRing c) (hD : quadraticRootEval w c r hr D ≠ 0) :
@@ -115,7 +128,9 @@ theorem quadraticRootAway_nontrivial
 
 /-- One directly iterable step: adjoining an actual square root and then
 localizing at a denominator that survives the supplied field point preserves
-torsion-freeness over the original base.-/
+torsion-freeness over the original base.
+@isnad1 id=istorsio.2h7v.s9.9d2304a804a3 from=translated src=- shape=ef268218 vocab=72dc4efa
+-/
 theorem quadraticRootAway_isTorsionFree
     (w : B →+* L) (c : B) (r : L) (hr : r ^ 2 = w c)
     (D : QuadraticRootRing c) (hD : quadraticRootEval w c r hr D ≠ 0) :

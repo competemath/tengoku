@@ -13,6 +13,9 @@ universe u v
 variable {K : Type u} [Field K] [CharZero K]
 variable {V : Type v} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=ex.14h9v.s12.dbc934710492 from=translated src=- shape=5a8473aa vocab=c3f0f2ed
+-/
 theorem exists_four_step_fixing_one_pair
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)
@@ -46,6 +49,9 @@ theorem exists_four_step_fixing_one_pair
     · exact (skew_of_alternating omega halt v f0).trans (by rw [hf0v]; simp)
     · exact hff0
 
+/--
+@isnad1 id=ex.27h11v.s13.17285237c8f5 from=translated src=- shape=bc59abb4 vocab=c3f0f2ed
+-/
 theorem exists_four_step_fixing_two_pairs
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)

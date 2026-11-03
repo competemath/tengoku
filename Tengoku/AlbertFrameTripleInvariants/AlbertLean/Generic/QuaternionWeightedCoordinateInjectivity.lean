@@ -24,7 +24,9 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 
 /-- Different images of an actual complete carrier frame are symplectically
-orthogonal.-/
+orthogonal.
+@isnad1 id=eq.3h6v.s11.235291171e56 from=translated src=- shape=bdf9763a vocab=dad71a8c
+-/
 theorem carrier_frame_images_orthogonal
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -42,7 +44,9 @@ theorem carrier_frame_images_orthogonal
   exact different_images_orthogonal (omega (K := K)) (Q i) (Q j)
     (carrier_action_selfAdjoint (E i)) hcomp x y
 
-/-- The six transported vectors have diagonal weighted Gram matrix.-/
+/-- The six transported vectors have diagonal weighted Gram matrix.
+@isnad1 id=and.3h5v.s12.1f964c2f7e16 from=translated src=- shape=738c5d84 vocab=06f6407c
+-/
 theorem weighted_pairings
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -76,7 +80,9 @@ theorem weighted_pairings
 
 /-- On the nonzero-overlap open, the weighted coordinate expression has
 unique coefficients.  Since both source and target have the literal six
-coordinates, this is the injective half of the desired coordinate isomorphism.-/
+coordinates, this is the injective half of the desired coordinate isomorphism.
+@isnad1 id=and.5h7v.s12.097e697a715e from=translated src=- shape=9f7101ba vocab=ce614bf1
+-/
 theorem weighted_coordinates_injective
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)
@@ -134,6 +140,9 @@ def weightedCoordinateLinear (E : Fin 3 → Carrier K) (u v : Vec6 K) :
     simp only [Pi.smul_apply, RingHom.id_apply, smul_eq_mul, smul_add,
       Finset.smul_sum, smul_smul]
 
+/--
+@isnad1 id=injectiv.4h5v.s11.fbccce80d886 from=translated src=- shape=c40dab4d vocab=86f4f07d
+-/
 theorem weightedCoordinateLinear_injective
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

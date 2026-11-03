@@ -49,17 +49,23 @@ def parameterKInv : Coord :=
 def parameterKConst : Coord := theta1K - parameterKPos - parameterKInv
 
 /-- At the accepted unit parameter, the fixed moment is literally the first
-accepted covector matrix.-/
+accepted covector matrix.
+@isnad1 id=eq.0h0v.s4.c04e80954c5b from=translated src=- shape=a64ad2b1 vocab=6b08eb2a
+-/
 theorem parameterMoment_eq_witnessChart1_A :
     parameterMoment = (residualPairOfChart witnessChart1).A := by
   rw [parameterMoment, moment, witnessChart1_X, Matrix.mul_one]
 
-/-- The first public encoder is fixed throughout the family.-/
+/-- The first public encoder is fixed throughout the family.
+@isnad1 id=eq.1h1v.s4.797df9a5bcb3 from=translated src=- shape=63be9574 vocab=77372447
+-/
 theorem parameterTriple_cE (t : ℚ) (ht : t ≠ 0) :
     (parameterTriple t ht).cE = theta1E := by
   exact chartBaseEncoder_eq_theta1E
 
-/-- The second public encoder has Laurent exponents `0` and `-1`.-/
+/-- The second public encoder has Laurent exponents `0` and `-1`.
+@isnad1 id=eq.1h1v.s5.a193626f4eca from=translated src=- shape=92448c51 vocab=514fd8ce
+-/
 theorem parameterTriple_cF (t : ℚ) (ht : t ≠ 0) :
     (parameterTriple t ht).cF =
       parameterFConst + t⁻¹ • parameterFInv := by
@@ -76,7 +82,9 @@ theorem parameterTriple_cF (t : ℚ) (ht : t ≠ 0) :
       theta1F, basisVec, q] <;>
     ring
 
-/-- The third public encoder has Laurent exponents `-1`, `0`, and `1`.-/
+/-- The third public encoder has Laurent exponents `-1`, `0`, and `1`.
+@isnad1 id=eq.1h1v.s6.0849dad6bcc2 from=translated src=- shape=0a992d66 vocab=94119840
+-/
 theorem parameterTriple_cK (t : ℚ) (ht : t ≠ 0) :
     (parameterTriple t ht).cK =
       parameterKConst + t • parameterKPos + t⁻¹ • parameterKInv := by
@@ -94,7 +102,9 @@ theorem parameterTriple_cK (t : ℚ) (ht : t ≠ 0) :
     ring
 
 /-- Exact bridge from the lawful chart family to the generic Laurent detector
-surface.-/
+surface.
+@isnad1 id=eq.1h1v.s4.5bd7f3192f63 from=translated src=- shape=825d7b8b vocab=178f36f7
+-/
 theorem parameterTriple_eq_laurentTriple (t : ℚ) (ht : t ≠ 0) :
     parameterTriple t ht =
       laurentTriple theta1E parameterFConst parameterFInv

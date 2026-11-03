@@ -38,11 +38,17 @@ private theorem cancel_left {L R M : Mat3 K}
   have h' := congrArg (fun X => M⁻¹ * X) h
   simpa only [← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ hM, Matrix.one_mul] using h'
 
+/--
+@isnad1 id=eq.1h2v.s8.a5f1ee9687da from=translated src=- shape=e93f8646 vocab=17c624ff
+-/
 theorem cayley_mul {A : Mat3 K} (hplus : Matrix.det (I₃ + A) ≠ 0) :
     cayley A * (I₃ + A) = I₃ - A := by
   simp only [cayley, Matrix.mul_assoc, Matrix.nonsing_inv_mul _ (detUnit hplus),
     Matrix.mul_one]
 
+/--
+@isnad1 id=eq.1h2v.s8.613bda1ec8c2 from=translated src=- shape=1c824aaa vocab=a46bf3e2
+-/
 theorem one_add_cayley_mul {A : Mat3 K}
     (hplus : Matrix.det (I₃ + A) ≠ 0) :
     (I₃ + cayley A) * (I₃ + A) = (2 : K) • I₃ := by
@@ -50,6 +56,9 @@ theorem one_add_cayley_mul {A : Mat3 K}
   ext i j
   by_cases hij : i = j <;> simp [Matrix.one_apply, hij] <;> ring
 
+/--
+@isnad1 id=eq.1h2v.s8.c165b4cfc46a from=translated src=- shape=e20acfd2 vocab=8815c358
+-/
 theorem one_sub_cayley_mul {A : Mat3 K}
     (hplus : Matrix.det (I₃ + A) ≠ 0) :
     (I₃ - cayley A) * (I₃ + A) = (2 : K) • A := by
@@ -58,6 +67,9 @@ theorem one_sub_cayley_mul {A : Mat3 K}
   simp [Matrix.one_apply]
   ring
 
+/--
+@isnad1 id=ne.1h2v.s8.780b205bcd42 from=translated src=- shape=583f8267 vocab=68838749
+-/
 theorem det_one_add_cayley_ne_zero {A : Mat3 K}
     (hplus : Matrix.det (I₃ + A) ≠ 0) :
     Matrix.det (I₃ + cayley A) ≠ 0 := by
@@ -66,6 +78,9 @@ theorem det_one_add_cayley_ne_zero {A : Mat3 K}
   rw [Matrix.det_mul, hzero, zero_mul] at hdet
   norm_num [Matrix.det_smul, Fintype.card_fin] at hdet
 
+/--
+@isnad1 id=eq.1h2v.s7.9d5ab07a80ad from=translated src=- shape=1808737d vocab=68838749
+-/
 theorem cayley_cayley {A : Mat3 K}
     (hplus : Matrix.det (I₃ + A) ≠ 0) : cayley (cayley A) = A := by
   apply cancel_right (detUnit (det_one_add_cayley_ne_zero hplus))
@@ -74,6 +89,9 @@ theorem cayley_cayley {A : Mat3 K}
   rw [one_sub_cayley_mul hplus, Matrix.mul_assoc, one_add_cayley_mul hplus]
   simp
 
+/--
+@isnad1 id=isorthog.2h2v.s7.2701d28c89cc from=translated src=- shape=edf510e1 vocab=e1a2a8eb
+-/
 theorem cayley_orthogonal {A : Mat3 K} (hA : IsSkew A)
     (hplus : Matrix.det (I₃ + A) ≠ 0) : IsOrthogonal (cayley A) := by
   have hu := detUnit hplus
@@ -94,6 +112,9 @@ theorem cayley_orthogonal {A : Mat3 K} (hA : IsSkew A)
         noncomm_ring
   exact ⟨horth, mul_eq_one_comm.mp horth⟩
 
+/--
+@isnad1 id=isskew.2h2v.s7.af26646a6c5b from=translated src=- shape=edf510e1 vocab=e1a2a8eb
+-/
 theorem cayley_skew_of_orthogonal {Q : Mat3 K} (hQ : IsOrthogonal Q)
     (hplus : Matrix.det (I₃ + Q) ≠ 0) : IsSkew (cayley Q) := by
   have hu := detUnit hplus

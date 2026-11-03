@@ -35,7 +35,9 @@ theorem eq_of_mul_eq_mul_left
         Matrix.nonsing_inv_mul M (isUnit_iff_ne_zero.mpr hM), Matrix.one_mul]
 
 /-- The determinant of the parametrized third matrix equals the common
-determinant.  This is the only scalar calculation needed below.-/
+determinant.  This is the only scalar calculation needed below.
+@isnad1 id=eq.2h3v.s8.3739f4a1e2c6 from=translated src=- shape=9105fc1f vocab=df1ed370
+-/
 theorem det_nonsing_inv_mul_adjugate
     (a b : Mat3 K) (hb : b.det ≠ 0) (hdet : b.det = a.det) :
     (b⁻¹ * a.adjugate).det = a.det := by
@@ -45,7 +47,9 @@ theorem det_nonsing_inv_mul_adjugate
   field_simp [hb]
   norm_num
 
-/-- The first adjugate equation is immediate from the definition of `c`.-/
+/-- The first adjugate equation is immediate from the definition of `c`.
+@isnad1 id=eq.1h3v.s8.5f2d22a16315 from=translated src=- shape=8d7bfb3b vocab=df1ed370
+-/
 theorem adjugate_eq_mul_parametrized
     (a b : Mat3 K) (hb : b.det ≠ 0) :
     a.adjugate = b * (b⁻¹ * a.adjugate) := by
@@ -53,7 +57,9 @@ theorem adjugate_eq_mul_parametrized
     Matrix.mul_nonsing_inv b (isUnit_iff_ne_zero.mpr hb), Matrix.one_mul]
 
 /-- The third adjugate equation follows by comparing after multiplication by
-`b`; no commutation or adjugate-of-product formula is used.-/
+`b`; no commutation or adjugate-of-product formula is used.
+@isnad1 id=eq.2h3v.s8.02a6412bd62e from=translated src=- shape=bef497c7 vocab=df1ed370
+-/
 theorem adjugate_b_eq_parametrized_mul_a
     (a b : Mat3 K) (hb : b.det ≠ 0) (hdet : b.det = a.det) :
     b.adjugate = (b⁻¹ * a.adjugate) * a := by
@@ -67,7 +73,9 @@ theorem adjugate_b_eq_parametrized_mul_a
         Matrix.mul_nonsing_inv b (isUnit_iff_ne_zero.mpr hb), Matrix.one_mul]
 
 /-- The middle adjugate equation follows from its defining determinant
-identity and cancellation by the now-proved nonsingular matrix `c`.-/
+identity and cancellation by the now-proved nonsingular matrix `c`.
+@isnad1 id=eq.2h3v.s8.01659509df78 from=translated src=- shape=acc04326 vocab=df1ed370
+-/
 theorem adjugate_parametrized_eq_mul
     (a b : Mat3 K) (hb : b.det ≠ 0) (hdet : b.det = a.det) :
     (b⁻¹ * a.adjugate).adjugate = a * b := by
@@ -87,7 +95,9 @@ theorem adjugate_parametrized_eq_mul
     _ = c * (a * b) := by rw [Matrix.mul_assoc]
 
 /-- Complete forward package for `c=b⁻¹ adj(a)`.  The single nonsingularity
-hypothesis on `b`, together with equal determinants, is sufficient.-/
+hypothesis on `b`, together with equal determinants, is sufficient.
+@isnad1 id=other.2h3v.s9.648207545ca5 from=translated src=- shape=16ed74a4 vocab=df1ed370
+-/
 theorem parametrized_adjugate_equations
     (a b : Mat3 K) (hb : b.det ≠ 0) (hdet : b.det = a.det) :
     let c := b⁻¹ * a.adjugate
@@ -109,7 +119,9 @@ theorem eq_nonsing_inv_mul_adjugate_of_adjugate_eq_mul
     _ = b⁻¹ * a.adjugate := by rw [← h]
 
 /-- The first and third raw adjugate equations already force equality of the
-two determinants.  Reading one diagonal entry avoids scalar-matrix extensionality.-/
+two determinants.  Reading one diagonal entry avoids scalar-matrix extensionality.
+@isnad1 id=eq.2h4v.s8.09a41b6ace0b from=translated src=- shape=9315b5aa vocab=b2dc626f
+-/
 theorem det_eq_of_adjugate_equations
     (a b c : Mat3 K) (ha : a.adjugate = b * c)
     (hb : b.adjugate = c * a) : b.det = a.det := by
@@ -125,7 +137,9 @@ theorem det_eq_of_adjugate_equations
 
 /-- Exact characterization without a redundant determinant hypothesis on the
 raw-equation side.  The first and third equations recover equal determinants;
-then nonsingularity of `b` recovers the displayed parameter `c`.-/
+then nonsingularity of `b` recovers the displayed parameter `c`.
+@isnad1 id=iff.1h4v.s9.f426e662f22f from=translated src=- shape=f07d718e vocab=df1ed370
+-/
 theorem parametrized_iff_adjugate_equations
     (a b c : Mat3 K) (hb : b.det ≠ 0) :
     (b.det = a.det ∧ c = b⁻¹ * a.adjugate) ↔

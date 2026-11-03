@@ -24,6 +24,9 @@ def eigenCoefficients (X : Mat2 K) (sigma d : K) : Mat2 K :=
   matrix (-lambdaMinus X sigma / (sigma * d)) (-lambdaPlus X sigma)
     ((sigma * d)⁻¹) 1
 
+/--
+@isnad1 id=eq.1h4v.s8.dd5222d68dd9 from=translated src=- shape=be634f4c vocab=99e37430
+-/
 theorem eigenCoefficients_intertwines (X : Mat2 K) (sigma d : K)
     (hroot : sigma ^ 2 = trace2 X ^ 2 - 4 * determinant X) :
     companion X * eigenCoefficients X sigma d =
@@ -40,6 +43,9 @@ theorem eigenCoefficients_intertwines (X : Mat2 K) (sigma d : K)
       Fin.sum_univ_two, div_eq_mul_inv] <;>
     simp only [← hprod, ← hsum] <;> ring
 
+/--
+@isnad1 id=eq.2h4v.s6.fb805ba97a16 from=translated src=- shape=10731b75 vocab=2d090f4e
+-/
 theorem eigenCoefficients_det (X : Mat2 K) (sigma d : K)
     (hs : sigma ≠ 0) (hd : d ≠ 0) :
     determinant (eigenCoefficients X sigma d) = d⁻¹ := by
@@ -50,6 +56,9 @@ theorem eigenCoefficients_det (X : Mat2 K) (sigma d : K)
 def cyclicSplitBasis (X : Mat2 K) (sigma : K) (v : Vec2 K) : Mat2 K :=
   cyclicBasisAt X v * eigenCoefficients X sigma (cyclicDet X v)
 
+/--
+@isnad1 id=eq.2h4v.s6.92b55b817bd0 from=translated src=- shape=bee22093 vocab=315c77c1
+-/
 theorem cyclicSplitBasis_det (X : Mat2 K) (sigma : K) (v : Vec2 K)
     (hs : sigma ≠ 0) (hv : cyclicDet X v ≠ 0) :
     determinant (cyclicSplitBasis X sigma v) = 1 := by
@@ -58,6 +67,9 @@ theorem cyclicSplitBasis_det (X : Mat2 K) (sigma : K) (v : Vec2 K)
     ← determinant_eq_det, ← determinant_eq_det, hdet,
     eigenCoefficients_det X sigma (cyclicDet X v) hs hv, mul_inv_cancel₀ hv]
 
+/--
+@isnad1 id=eq.1h4v.s8.4cbbd00d467d from=translated src=- shape=444f5609 vocab=fcc4eff5
+-/
 theorem cyclicSplitBasis_intertwines (X : Mat2 K) (sigma : K) (v : Vec2 K)
     (hroot : sigma ^ 2 = trace2 X ^ 2 - 4 * determinant X) :
     X * cyclicSplitBasis X sigma v =
@@ -69,6 +81,9 @@ theorem cyclicSplitBasis_intertwines (X : Mat2 K) (sigma : K) (v : Vec2 K)
 def inverseSL (H : Mat2 K) : Mat2 K :=
   matrix (H 1 1) (-H 0 1) (-H 1 0) (H 0 0)
 
+/--
+@isnad1 id=eq.1h2v.s7.26c86cac0ce9 from=translated src=- shape=c87c4d39 vocab=aa6d7a1b
+-/
 theorem inverseSL_mul (H : Mat2 K) (hH : determinant H = 1) :
     inverseSL H * H = 1 := by
   dsimp [determinant] at hH
@@ -78,6 +93,9 @@ theorem inverseSL_mul (H : Mat2 K) (hH : determinant H = 1) :
       Matrix.one_apply]
   all_goals ring_nf at hH ⊢ <;> exact hH
 
+/--
+@isnad1 id=eq.1h2v.s7.c7e23d9f5bbe from=translated src=- shape=133e8c9f vocab=aa6d7a1b
+-/
 theorem mul_inverseSL (H : Mat2 K) (hH : determinant H = 1) :
     H * inverseSL H = 1 := by
   dsimp [determinant] at hH
@@ -87,7 +105,9 @@ theorem mul_inverseSL (H : Mat2 K) (hH : determinant H = 1) :
       Matrix.one_apply]
   all_goals ring_nf at hH ⊢ <;> exact hH
 
-/-- The ordered split basis is constructed; it is not an eigenbasis premise.-/
+/-- The ordered split basis is constructed; it is not an eigenbasis premise.
+@isnad1 id=ex.2h3v.s9.06247cc166de from=translated src=- shape=d6c2f9fa vocab=24c94a7c
+-/
 theorem exists_ordered_sl2_split (X : Mat2 K) (sigma : K)
     (hs : sigma ≠ 0)
     (hroot : sigma ^ 2 = trace2 X ^ 2 - 4 * determinant X) :
@@ -106,7 +126,9 @@ theorem exists_ordered_sl2_split (X : Mat2 K) (sigma : K)
     ← Matrix.mul_assoc, hi, Matrix.one_mul]
 
 /-- Any linear measurement vanishing on `I` and the pivot vanishes on every
-labelled block. This is the entire simultaneous-diagonalization propagation.-/
+labelled block. This is the entire simultaneous-diagonalization propagation.
+@isnad1 id=eq.7h7v.s10.4e06d55478d4 from=translated src=- shape=e3a8b81e vocab=55141ef1
+-/
 theorem all_blocks_killed
     (B : Fin 3 → Fin 3 → Mat2 K) (p q : Fin 3 → K)
     (hp1 : p 1 ≠ 0) (hp2 : p 2 ≠ 0)
@@ -142,6 +164,9 @@ def conjugateEntry (S H : Mat2 K) (r s : Fin 2) : Mat2 K →ₗ[K] K where
   map_add' X Y := by simp [Matrix.mul_add, Matrix.add_mul]
   map_smul' t X := by simp [Matrix.mul_smul, Matrix.smul_mul]
 
+/--
+@isnad1 id=and.7h9v.s10.5687df351649 from=translated src=- shape=643c0a51 vocab=806fb996
+-/
 theorem all_blocks_diagonal
     (B : Fin 3 → Fin 3 → Mat2 K) (p q : Fin 3 → K)
     (hp1 : p 1 ≠ 0) (hp2 : p 2 ≠ 0)
@@ -170,11 +195,17 @@ def planeScale (t : Fin 3 → K) : Vec6 K →ₗ[K] Vec6 K where
     funext b
     rcases b with i | i <;> simp <;> ring
 
+/--
+@isnad1 id=eq.1h3v.s8.a4a4436dbb74 from=translated src=- shape=474efdc0 vocab=4f3918aa
+-/
 theorem planeScale_comp (t s : Fin 3 → K) (h : ∀ i, t i * s i = 1) :
     (planeScale t).comp (planeScale s) = LinearMap.id := by
   ext x a
   rcases a with i | i <;> simp [planeScale, ← mul_assoc, h]
 
+/--
+@isnad1 id=eq.1h4v.s10.87fd43f67b7c from=translated src=- shape=d154372b vocab=bfb4e235
+-/
 theorem planeScale_weighted_form (p : Fin 3 → K) (hp : ∀ i, p i ≠ 0)
     (x y : Vec6 K) :
     weightedOmega p (planeScale (fun i => (p i)⁻¹) x)
@@ -196,6 +227,9 @@ def splitBackward (L : Vec6 K ≃ₗ[K] Vec6 K) (p : Fin 3 → K) (S : Mat2 K) :
     Vec6 K →ₗ[K] Vec6 K :=
   (planeScale p).comp ((commonPlaneMap S).comp L.symm.toLinearMap)
 
+/--
+@isnad1 id=and.3h5v.s10.7f3150af363e from=translated src=- shape=6d3d0b7e vocab=f188add5
+-/
 theorem split_inverse (L : Vec6 K ≃ₗ[K] Vec6 K) (p : Fin 3 → K)
     (hp : ∀ i, p i ≠ 0) (H S : Mat2 K) (hHS : H * S = 1) (hSH : S * H = 1) :
     (splitForward L p H).comp (splitBackward L p S) = LinearMap.id ∧
@@ -224,6 +258,9 @@ theorem split_inverse (L : Vec6 K ≃ₗ[K] Vec6 K) (p : Fin 3 → K)
       (L.symm (L (commonPlaneMap H (planeScale (fun i => (p i)⁻¹) x))))) = x
     rw [L.symm_apply_apply, hw, hz]
 
+/--
+@isnad1 id=other.5h6v.s11.589ccaa12a00 from=translated src=- shape=8c7bb1fa vocab=e3b978bc
+-/
 theorem splitForward_symplectic
     (E : Fin 3 → Carrier K)
     (hEidem : ∀ i, (E i : Mat6 K) * E i = E i)

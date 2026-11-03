@@ -17,6 +17,9 @@ universe u v
 variable {K : Type u} [Field K] [CharZero K]
 variable {V : Type v} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=injectiv.1h4v.s9.6e8106cd283a from=translated src=- shape=db338d4d vocab=6a578d9b
+-/
 theorem wordMap_injective
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (word : List (Step (K := K) (V := V))) :
@@ -31,7 +34,9 @@ theorem wordMap_injective
     exact h
 
 /-- A map aligning six projector eigenvectors with a spanning target already
-intertwines the projectors. No source dimension/rank calculation is needed.-/
+intertwines the projectors. No source dimension/rank calculation is needed.
+@isnad1 id=eq.8h10v.s10.c6e96cbf7954 from=translated src=- shape=3521c873 vocab=f0dc882c
+-/
 theorem intertwines_of_spanning_target
     (L : V →ₗ[K] V) (hL : Function.Injective L)
     (P Q : Fin 3 → V →ₗ[K] V) (u v e f : Fin 3 → V)
@@ -58,7 +63,9 @@ theorem intertwines_of_spanning_target
 
 /-- Actual complete nonzero self-adjoint projector frames are normalized by
 exactly twelve transvections over the original field. All target hypotheses
-are fixed standard-coordinate identities, independent of the input frame.-/
+are fixed standard-coordinate identities, independent of the input frame.
+@isnad1 id=ex.11h7v.s11.8cb8559855be from=translated src=- shape=883858dd vocab=1a2cb98f
+-/
 theorem exists_twelve_actual_frame_alignment
     (omega : BilinForm (K := K) (V := V)) (halt : ∀ x, omega x x = 0)
     (hleft : IsLeftNondegenerate omega) (hright : IsRightNondegenerate omega)

@@ -13,7 +13,9 @@ open AlbertLean.Generic.QuaternionRow.ActualFrameCoverage
 open AlbertLean.Generic.QuaternionRow.BlockEigenbasis
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- A common plane change preserves every labelled first-frame plane.-/
+/-- A common plane change preserves every labelled first-frame plane.
+@isnad1 id=eq.0h3v.s9.e9bb40e593e1 from=translated src=- shape=1338b1fd vocab=b21be29f
+-/
 theorem commonPlaneMap_comm_standardProjector (T : Mat2 K) (i : Fin 3) :
     (commonPlaneMap T).comp (standardProjector i) =
       (standardProjector i).comp (commonPlaneMap T) := by
@@ -24,7 +26,9 @@ theorem commonPlaneMap_comm_standardProjector (T : Mat2 K) (i : Fin 3) :
     simp [commonPlaneMap, standardProjector, coordinateLabel, hqi]
 
 /-- The weighted first projector is scalar on the common two-dimensional
-factor, hence commutes with every common plane change.-/
+factor, hence commutes with every common plane change.
+@isnad1 id=eq.0h3v.s9.efa1413e1e11 from=translated src=- shape=1ae3b818 vocab=3c9bfa3f
+-/
 theorem commonPlaneMap_comm_weightedFirst (T : Mat2 K) (p : Fin 3 → K) :
     (commonPlaneMap T).comp (weightedFirstAction p) =
       (weightedFirstAction p).comp (commonPlaneMap T) := by

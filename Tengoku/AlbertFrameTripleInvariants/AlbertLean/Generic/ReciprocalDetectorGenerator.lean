@@ -13,7 +13,9 @@ open NestedReciprocalField
 
 variable (B : Type*) [Field B] [CharZero B] (m : B) (hm : m ≠ 0)
 
-/-- A moved detector recovers the original determinant root over the fixed field.-/
+/-- A moved detector recovers the original determinant root over the fixed field.
+@isnad1 id=eq.2h3v.s11.2fc50f404a38 from=translated src=- shape=87750976 vocab=b4d8a3ce
+-/
 theorem moved_generates (d : Omega B) (hd : σ B m hm d ≠ d) :
     Subfield.closure ((invariantField B m : Set (Omega B)) ∪ {d}) = ⊤ := by
   let D := Subfield.closure ((invariantField B m : Set (Omega B)) ∪ {d})

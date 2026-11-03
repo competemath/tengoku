@@ -19,6 +19,9 @@ open SourceVectorPairReflection RationalEvenFamilyInverse
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/--
+@isnad1 id=injectiv.1h2v.s5.32366652c6b9 from=translated src=- shape=e6bd6910 vocab=6aee5c18
+-/
 theorem reflectV_injective (a : VCoord K) (ha : nV a ≠ 0) :
     Function.Injective (reflectV a) := by
   intro x y h
@@ -26,6 +29,9 @@ theorem reflectV_injective (a : VCoord K) (ha : nV a ≠ 0) :
   simpa only [reflectV_involutive a x ha,
     reflectV_involutive a y ha] using this
 
+/--
+@isnad1 id=eq.1h4v.s6.afdb193e4522 from=translated src=- shape=341e80f5 vocab=ae3db609
+-/
 theorem reflectV_covariant (a b v : VCoord K) (ha : nV a ≠ 0) :
     reflectV (reflectV a b) (reflectV a v) =
       reflectV a (reflectV b v) := by
@@ -34,6 +40,9 @@ theorem reflectV_covariant (a b v : VCoord K) (ha : nV a ≠ 0) :
     reflectV_involutive a v ha,
     reflectV_involutive a (reflectV b v) ha]
 
+/--
+@isnad1 id=eq.2h5v.s6.07316943c6a4 from=translated src=- shape=b28fb649 vocab=4dc2d511
+-/
 theorem evenV_reflect_covariant (e c A v : VCoord K)
     (he : nV e ≠ 0) (hc : nV c ≠ 0) :
     reflectV (evenV e c A) (evenV e c v) =
@@ -42,6 +51,9 @@ theorem evenV_reflect_covariant (e c A v : VCoord K)
   rw [reflectV_covariant e (reflectV c A) (reflectV c v) he,
     reflectV_covariant c A v hc]
 
+/--
+@isnad1 id=eq.2h6v.s6.4045286ce1dd from=translated src=- shape=5a82b055 vocab=4dc2d511
+-/
 theorem evenV_conjugate (e c A B v : VCoord K)
     (he : nV e ≠ 0) (hc : nV c ≠ 0) :
     evenV e (reflectV e c)
@@ -55,7 +67,9 @@ theorem evenV_conjugate (e c A B v : VCoord K)
   rw [reflectV_involutive e _ he, reflectV_involutive c _ hc]
 
 /-- Clifford intertwining gives conjugation of a two-vector product by the
-unit-norm even lift.-/
+unit-norm even lift.
+@isnad1 id=eq.2h5v.s14.f17ffd40ddc8 from=translated src=- shape=49121c33 vocab=72755147
+-/
 theorem clifford_even_conjugate (e c A B : VCoord K)
     (he : nV e = 1) (hc : nV c = 1) :
     (C c * C e) * (C (evenV e c A) * C (evenV e c B)) *
@@ -99,6 +113,9 @@ private theorem sourceMuC_smul_input (v : VCoord K) (a : K) (s : SCoord K) :
   exact (muCLinear v).map_smul a s
 
 set_option maxHeartbeats 600000 in
+/--
+@isnad1 id=eq.2h7v.s7.fc98cea63ef5 from=translated src=- shape=e3d381b1 vocab=47c86819
+-/
 theorem evenS_conjugate (e c A B : VCoord K) (rho : K)
     (he : nV e = 1) (hc : nV c = 1) (s : SCoord K) :
     evenS e (reflectV e c) (-1)
@@ -112,6 +129,9 @@ theorem evenS_conjugate (e c A B : VCoord K) (rho : K)
   rw [sourceMuC_smul_input, sourceMuS_smul_input, hs]
 
 set_option maxHeartbeats 600000 in
+/--
+@isnad1 id=eq.2h7v.s7.b1b52e8e820d from=translated src=- shape=e3d381b1 vocab=5ff1241a
+-/
 theorem evenC_conjugate (e c A B : VCoord K) (rho : K)
     (he : nV e = 1) (hc : nV c = 1) (d : CCoord K) :
     evenC e (reflectV e c) (-1)
@@ -125,7 +145,9 @@ theorem evenC_conjugate (e c A B : VCoord K) (rho : K)
   rw [sourceMuS_smul_input, sourceMuC_smul_input, hd]
 
 /-- Opaque application bridge: expose only the six carrier components, not
-the cubic-automorphism proof fields packaged by `sourceEvenAut`.-/
+the cubic-automorphism proof fields packaged by `sourceEvenAut`.
+@isnad1 id=eq.4h5v.s9.0674f2f7ee41 from=translated src=- shape=ac051a58 vocab=9ff69b90
+-/
 @[simp] theorem sourceEvenAut_linear_apply
     (a b : VCoord K) (rho : K)
     (ha : nV a ≠ 0) (hb : nV b ≠ 0)
@@ -138,6 +160,9 @@ the cubic-automorphism proof fields packaged by `sourceEvenAut`.-/
   exact evenJEquiv_apply a b rho ha hb hr hr0 x
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=other.6h7v.s11.435bd9e0a0de from=translated src=- shape=3b68e251 vocab=324d1153
+-/
 theorem sourceEvenAut_conjugate_apply
     (e c A B : VCoord K) (rho : K)
     (he : nV e = 1) (hc : nV c = 1)

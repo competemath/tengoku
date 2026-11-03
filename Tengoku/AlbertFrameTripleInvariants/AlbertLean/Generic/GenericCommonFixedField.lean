@@ -36,6 +36,9 @@ open AlbertLean.Generic.NestedReciprocalField
 universe u
 variable (k : Type u) [Field k] [CharZero k]
 
+/--
+@isnad1 id=mem.0h1v.s10.b095a1da2d36 from=translated src=- shape=c4399155 vocab=8b3e21b2
+-/
 theorem kappa_square_mem_H : kappa k ^ 2 ∈ H k := by
   let x := genericChart k
   have hl : LedgerIn (H k) (sourceLedger (encoderA x) (encoderB x)) :=
@@ -55,13 +58,18 @@ theorem kappa_square_mem_H : kappa k ^ 2 ∈ H k := by
   exact (H k).sub_mem ((H k).pow_mem hg 2)
     ((H k).mul_mem ((H k).mul_mem (natCast_mem (H k) 4) ha.1) hb.1)
 
+/--
+@isnad1 id=eq.0h1v.s10.0a4db191c7f6 from=translated src=- shape=885e66d2 vocab=4ef7927b
+-/
 theorem orientation_adjoin_eq_invariant :
     Subfield.closure (((H k : Subfield (FunctionField k)) : Set (FunctionField k)) ∪
       {kappa k}) = invariantField (Base k) (Matrix.det (rationalM k)) := by
   rw [kappa_eq_orientation]
   exact orientation_eq_invariantField k
 
-/-- Both concrete symmetries fix exactly the original ledger field in common.-/
+/-- Both concrete symmetries fix exactly the original ledger field in common.
+@isnad1 id=iff.0h2v.s14.3fde259b2c3a from=translated src=- shape=b7b31953 vocab=5c090af6
+-/
 theorem joint_fixed_iff (z : FunctionField k) :
     (tau k z = z ∧ deck k z = z) ↔ z ∈ H k := by
   constructor
@@ -109,11 +117,16 @@ def descentData : QuadraticCharacterDescent.Data (k := H k) (Ω := FunctionField
     rw [joint_fixed_iff]
     exact ⟨fun hz => ⟨⟨z,hz⟩,rfl⟩,fun ⟨a,ha⟩ => ha ▸ a.property⟩
 
-/-- Exact quadratic degree for the concrete tau-fixed field over the ledger.-/
+/-- Exact quadratic degree for the concrete tau-fixed field over the ledger.
+@isnad1 id=eq.0h1v.s15.6886957178ea from=translated src=- shape=5a43c1bb vocab=5d5c64b0
+-/
 theorem fixedField_degree_two :
     Module.finrank (H k) (descentData k).fixedField = 2 :=
   (descentData k).fixedField_finrank
 
+/--
+@isnad1 id=eq.0h1v.s12.f75001c09295 from=translated src=- shape=8a401a24 vocab=f02cb045
+-/
 theorem fixedField_generated_by_product :
     Subfield.closure ((H k : Set (FunctionField k)) ∪ {kappa k * eta k}) =
       (descentData k).fixedField := by
@@ -124,6 +137,9 @@ theorem fixedField_generated_by_product :
   have hu : (descentData k).u = kappa k * eta k := rfl
   simpa only [hr, hu] using (descentData k).fixedField_generated_by_u
 
+/--
+@isnad1 id=not.0h1v.s10.490a304cd24f from=translated src=- shape=c7200c1c vocab=93042be3
+-/
 theorem product_not_mem_H : kappa k * eta k ∉ H k := by
   intro h
   exact (descentData k).u_not_base ⟨⟨kappa k * eta k,h⟩,rfl⟩

@@ -24,6 +24,9 @@ private theorem regression_traceForm_neg_left (x y : Coord) :
     show -x = (-1 : ℚ) • x by simp, productQBilinear.2.1, traceN_smul]
   ring
 
+/--
+@isnad1 id=and.0h0v.s5.2553d0ef0f81 from=translated src=- shape=aeba8697 vocab=4dc42e1a
+-/
 theorem regressionM06 :
     m06TraceCubeDetector witnessTheta1 = q 2591357 62208 ∧
     m06TraceCubeDetector witnessTheta1 ≠ q (-2591357) 62208 := by

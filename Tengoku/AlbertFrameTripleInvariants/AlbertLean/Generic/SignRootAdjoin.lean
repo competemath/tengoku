@@ -67,6 +67,9 @@ def span : Subfield K where
       push_cast
       ring
 
+/--
+@isnad1 id=eq.3h4v.s8.913b03b04430 from=translated src=- shape=6376a7ee vocab=084e3ac7
+-/
 theorem closure_eq_span :
     Subfield.closure ((H : Set K) ∪ {t}) = span H s hfix t hsq hneg := by
   apply le_antisymm
@@ -81,12 +84,18 @@ theorem closure_eq_span :
         (Subfield.subset_closure (Or.inr rfl))
 
 include s hfix hsq hneg in
+/--
+@isnad1 id=ex.4h5v.s9.3af1b6f56ea5 from=translated src=- shape=1e06b57a vocab=ee3033c4
+-/
 theorem exists_coefficients {z : K} (hz : z ∈ Subfield.closure ((H : Set K) ∪ {t})) :
     ∃ a b : H, z = (a : K) + (b : K) * t := by
   rw [closure_eq_span H s hfix t hsq hneg] at hz
   exact hz
 
 include hfix hsq hneg in
+/--
+@isnad1 id=iff.5h5v.s9.7f3d984fbfbe from=translated src=- shape=1e160dc9 vocab=5b50d7a7
+-/
 theorem fixed_iff_mem_base [CharZero K] (ht : t ≠ 0) {z : K}
     (hz : z ∈ Subfield.closure ((H : Set K) ∪ {t})) : s z = z ↔ z ∈ H := by
   constructor

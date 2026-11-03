@@ -27,7 +27,9 @@ variable {K : Type u} [Field K] [CharZero K]
 def symplecticPart (M : Mat6 K) (mu : K) : Mat6 K :=
   M * scalarSimilitudeInv mu
 
-/-- The right-normalized part of a similitude is symplectic.-/
+/-- The right-normalized part of a similitude is symplectic.
+@isnad1 id=eq.2h3v.s8.cf40fc0ece10 from=translated src=- shape=d5baf36e vocab=1b541477
+-/
 theorem symplecticPart_form
     (M : Mat6 K) (mu : K) (hmu : mu ≠ 0)
     (hform : M.transpose * symplecticJ * M = mu • symplecticJ) :
@@ -65,7 +67,9 @@ private theorem symplecticPart_preserves_basis_pair
     omega_basisVector]
 
 /-- The images of the literal grouped basis by the normalized part form the
-hyperbolic triple needed by the fixed-word coverage theorem.-/
+hyperbolic triple needed by the fixed-word coverage theorem.
+@isnad1 id=hyperbol.2h3v.s9.b0d9ceec5fe1 from=translated src=- shape=fac2aa6c vocab=54400eb4
+-/
 theorem symplecticPart_standard_hyperbolicTriple
     (M : Mat6 K) (mu : K) (hmu : mu ≠ 0)
     (hform : M.transpose * symplecticJ * M = mu • symplecticJ) :
@@ -109,7 +113,9 @@ theorem symplecticPart_standard_hyperbolicTriple
 identity argument: twelve transvections (72 direction coordinates and 12 coefficients) followed by
 one scalar similitude parameter.  The inverse matrix is retained as an
 explicit hypothesis, matching the GSp input interface, although the displayed
-factorization itself only needs the multiplier equation.-/
+factorization itself only needs the multiplier equation.
+@isnad1 id=ex.4h4v.s9.3f65a3960a35 from=translated src=- shape=15dcd758 vocab=b1dcbffe
+-/
 theorem exists_fixed_twelve_scalar_presentation_for_gsp_extension_agreement
     (M N : Mat6 K) (mu : K)
     (hMN : M * N = 1) (hNM : N * M = 1) (hmu : mu ≠ 0)

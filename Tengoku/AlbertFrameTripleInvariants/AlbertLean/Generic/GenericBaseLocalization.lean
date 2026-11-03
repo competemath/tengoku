@@ -41,7 +41,9 @@ private theorem baseNonzeroImages_le_nonZeroDivisors :
     (mem_nonZeroDivisors_iff_ne_zero.mp ha)
 
 /-- Torsion-freeness is precisely what prevents a nonzero base denominator
-from killing an element of `B`.-/
+from killing an element of `B`.
+@isnad1 id=injectiv.0h2v.s7.e32321056b23 from=translated src=- shape=1783b052 vocab=abb63d2d
+-/
 theorem algebraMap_injective : Function.Injective
     (algebraMap B (GenericBaseRing A B)) :=
   IsLocalization.injective (GenericBaseRing A B)
@@ -51,6 +53,9 @@ theorem algebraMap_injective : Function.Injective
 def coefficientMap : A →+* GenericBaseRing A B :=
   (algebraMap B (GenericBaseRing A B)).comp (algebraMap A B)
 
+/--
+@isnad1 id=injectiv.0h2v.s7.64a3c2526db2 from=translated src=- shape=cf62c061 vocab=3e493984
+-/
 theorem coefficientMap_injective : Function.Injective (coefficientMap A B) :=
   (algebraMap_injective A B).comp
     (FaithfulSMul.algebraMap_injective A B)
@@ -65,6 +70,9 @@ def fractionMap : FractionRing A →+* GenericBaseRing A B :=
     change IsUnit (algebraMap B (GenericBaseRing A B) (algebraMap A B a))
     exact IsLocalization.map_units (GenericBaseRing A B) b
 
+/--
+@isnad1 id=eq.0h3v.s9.9cee17b5c15b from=translated src=- shape=a8bde244 vocab=09aad4f1
+-/
 @[simp] theorem fractionMap_algebraMap (a : A) :
     fractionMap A B (algebraMap A (FractionRing A) a) = coefficientMap A B a :=
   by
@@ -72,7 +80,9 @@ def fractionMap : FractionRing A →+* GenericBaseRing A B :=
     exact IsLocalization.lift_eq _ a
 
 /-- The canonical fraction-field map is injective because its source is a
-field and its target is nontrivial.-/
+field and its target is nontrivial.
+@isnad1 id=injectiv.0h2v.s7.7bf704c95c90 from=translated src=- shape=8d452bd4 vocab=868ccb8c
+-/
 theorem fractionMap_injective : Function.Injective (fractionMap A B) :=
   haveI : Nontrivial (GenericBaseRing A B) :=
     (algebraMap_injective A B).nontrivial

@@ -37,7 +37,9 @@ private theorem a_det_ne_zero {a : Fin 3 → Mat3 K} (S : RawSystem a)
   exact S.b_ne i
 
 /-- Every raw system on the displayed open supplies a component solution at
-its gauge-invariant normalized ratio.-/
+its gauge-invariant normalized ratio.
+@isnad1 id=componen.1h3v.s6.2411ea5a03ab from=translated src=- shape=001dedb3 vocab=96a4373f
+-/
 theorem componentSolution_ratio {a : Fin 3 → Mat3 K} (S : RawSystem a)
     (hopen : OnReconstructionOpen S) :
     ComponentSolution (a 0) (a 1) (a 2) (ratio S) := by
@@ -49,7 +51,9 @@ theorem componentSolution_ratio {a : Fin 3 → Mat3 K} (S : RawSystem a)
   simpa only [OnReconstructionOpen, hnorm] using hopen
 
 /-- On the reconstruction open, equality of the scalar traces is exactly
-determinant-one gauge relatedness.-/
+determinant-one gauge relatedness.
+@isnad1 id=iff.2h4v.s6.a9d7175fa5b2 from=translated src=- shape=a58a16d5 vocab=36093cf0
+-/
 theorem gaugeRelated_iff_trace_ratio_eq {a : Fin 3 → Mat3 K}
     (S T : RawSystem a) (hS : OnReconstructionOpen S)
     (hT : OnReconstructionOpen T) :
@@ -64,7 +68,9 @@ theorem gaugeRelated_iff_trace_ratio_eq {a : Fin 3 → Mat3 K}
       (componentSolution_ratio S hS) (componentSolution_ratio T hT) htrace
 
 /-- Any three raw systems over the same fixed first components and on the
-reconstruction open contain a gauge-related pair.-/
+reconstruction open contain a gauge-related pair.
+@isnad1 id=or.3h5v.s6.4c4636216116 from=translated src=- shape=0474218b vocab=9a5e53f0
+-/
 theorem three_rawSystems_gaugeRelated_pair {a : Fin 3 → Mat3 K}
     (S T W : RawSystem a)
     (hS : OnReconstructionOpen S) (hT : OnReconstructionOpen T)

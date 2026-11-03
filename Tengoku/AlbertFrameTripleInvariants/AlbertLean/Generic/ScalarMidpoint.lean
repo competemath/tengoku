@@ -40,7 +40,9 @@ private theorem one_add_ne_zero {s : K} (hs : s ≠ -1) : 1 + s ≠ 0 := by
     _ = -1 := by rw [h]; simp
 
 /-- The three scalar-normalized products that make the midpoint useful.
-Symmetry is used only for the reverse entries of the explicit pair table.-/
+Symmetry is used only for the reverse entries of the explicit pair table.
+@isnad1 id=and.5h8v.s11.c8485172e45d from=translated src=- shape=25135b60 vocab=d7f228de
+-/
 theorem midpoint_products
     (μ : V →ₗ[K] V →ₗ[K] V) (hsym : ∀ x y, μ x y = μ y x)
     (e f c : V) (t s : K) (h : PairTable μ e f c t)
@@ -62,7 +64,9 @@ theorem midpoint_products
       h.ee, h.ff, h.ef, hfe, h.ec, hce, h.fc, hcf, h.cc]
     match_scalars <;> field_simp [hs0, hs1] <;> ring
 
-/-- Idempotence of the literal midpoint, conditional on the six pair entries.-/
+/-- Idempotence of the literal midpoint, conditional on the six pair entries.
+@isnad1 id=eq.5h8v.s10.13ab8203a022 from=translated src=- shape=0349caea vocab=1a138ec2
+-/
 theorem midpoint_square
     (μ : V →ₗ[K] V →ₗ[K] V) (hsym : ∀ x y, μ x y = μ y x)
     (e f c : V) (t s : K) (h : PairTable μ e f c t)
@@ -77,7 +81,9 @@ theorem midpoint_square
   match_scalars <;> field_simp [hs0, hs1] <;> ring
 
 /-- The prescribed quadratic expression sends e to f. This theorem does not
-assert that this expression is an automorphism on the surrounding module.-/
+assert that this expression is an automorphism on the surrounding module.
+@isnad1 id=eq.5h8v.s11.8a4d6d7e0fdb from=translated src=- shape=4b09ef5e vocab=a2cea538
+-/
 theorem midpoint_reflection_apply
     (μ : V →ₗ[K] V →ₗ[K] V) (hsym : ∀ x y, μ x y = μ y x)
     (e f c : V) (t s : K) (h : PairTable μ e f c t)

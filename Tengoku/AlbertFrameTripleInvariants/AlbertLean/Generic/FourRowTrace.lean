@@ -31,7 +31,9 @@ open FourRowFactorization FourRowMatrix FourRowQuadratic
 variable {K : Type*} [Field K]
 
 /-- In dimension three the quadratic coefficient of the characteristic
-polynomial is minus the matrix trace.-/
+polynomial is minus the matrix trace.
+@isnad1 id=eq.0h2v.s6.3c98c70aa42b from=translated src=- shape=8c2e7ac0 vocab=c15cb796
+-/
 theorem charpoly_coeff_two_eq_neg_trace
     (X : Matrix (Fin 3) (Fin 3) K) :
     X.charpoly.coeff 2 = -Matrix.trace X := by
@@ -40,7 +42,9 @@ theorem charpoly_coeff_two_eq_neg_trace
   linear_combination hTrace
 
 /-- The determinant at `X` and at `1+X` put the characteristic polynomial in
-the same one-parameter cubic normal form used by the scalar factor lemma.-/
+the same one-parameter cubic normal form used by the scalar factor lemma.
+@isnad1 id=eq.2h4v.s8.5030eb4cb542 from=translated src=- shape=82cbb5dd vocab=5aab58bc
+-/
 theorem charpoly_eq_cubicNormalForm_of_det_constraints
     (X : Matrix (Fin 3) (Fin 3) K) (c d : K)
     (hdetX : X.det = c)
@@ -62,7 +66,9 @@ theorem charpoly_eq_cubicNormalForm_of_det_constraints
 
 /-- Cayley--Hamilton in the coefficient order needed by matrix
 reconstruction.  The linear coefficient is recovered solely from the two
-determinant constraints.-/
+determinant constraints.
+@isnad1 id=eq.2h4v.s10.f8da8f72d8d9 from=translated src=- shape=45859940 vocab=4496f70f
+-/
 theorem matrix_cubic_identity_of_det_constraints
     (X : Matrix (Fin 3) (Fin 3) K) (c d : K)
     (hdetX : X.det = c)
@@ -77,7 +83,9 @@ theorem matrix_cubic_identity_of_det_constraints
   convert hCH using 1 <;> module
 
 /-- The trace of every determinant-filtered solution satisfies the scalar
-quadratic obtained from the two characteristic cubic factors.-/
+quadratic obtained from the two characteristic cubic factors.
+@isnad1 id=eq.7h6v.s10.5d898999d770 from=translated src=- shape=18c536a8 vocab=0779e019
+-/
 theorem trace_satisfies_quadratic_of_matrix_constraints
     (X U V : Matrix (Fin 3) (Fin 3) K) (c d : K)
     (hquad : X ^ 2 + X * U + V = 0)
@@ -143,7 +151,9 @@ theorem eq_or_eq_or_eq_of_three_quadratic_roots
 
 /-- On the reconstruction open, a solution is a rational expression in its
 trace.  The typeclass is exactly the invertibility of the displayed
-denominator matrix.-/
+denominator matrix.
+@isnad1 id=eq.3h6v.s11.95a6d934c660 from=translated src=- shape=54d49f11 vocab=a486dae0
+-/
 theorem matrix_eq_trace_reconstruction_of_constraints
     (X U V : Matrix (Fin 3) (Fin 3) K) (c d : K)
     (hquad : X ^ 2 + X * U + V = 0)
@@ -159,7 +169,9 @@ theorem matrix_eq_trace_reconstruction_of_constraints
     (matrix_cubic_identity_of_det_constraints X c d hdetX hdetOneX)
 
 /-- Over a field, nonzero determinant is an explicit sufficient hypothesis
-for the reconstruction denominator above to be invertible.-/
+for the reconstruction denominator above to be invertible.
+@isnad1 id=eq.4h6v.s11.ffdbd9aef672 from=translated src=- shape=1c402a4f vocab=8808bbd4
+-/
 theorem matrix_eq_trace_reconstruction_of_det_ne_zero
     (X U V : Matrix (Fin 3) (Fin 3) K) (c d : K)
     (hquad : X ^ 2 + X * U + V = 0)

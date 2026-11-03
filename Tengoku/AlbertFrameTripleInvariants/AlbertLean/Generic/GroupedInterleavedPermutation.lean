@@ -42,7 +42,9 @@ def mat2Star (A : Mat2 K) : Mat2 K :=
 
 def blockStar (A : Block3 K) : Block3 K := fun i j => mat2Star (A j i)
 
-/-- Exact entry dictionary after applying the displayed permutation.-/
+/-- Exact entry dictionary after applying the displayed permutation.
+@isnad1 id=eq.0h6v.s8.66ab9e6f267c from=translated src=- shape=824b4b71 vocab=4e81b2ed
+-/
 theorem blockify_grouped_apply
     (a : Mat3 K) (u v : Vec3 K) (i j : Fin 3) :
     blockify (grouped a u v) i j =
@@ -51,7 +53,9 @@ theorem blockify_grouped_apply
   fin_cases p <;> fin_cases q <;> rfl
 
 /-- Thus the grouped symplectic-selfadjoint carrier lands in precisely the
-existing block-star-fixed carrier, with no suppressed basis permutation.-/
+existing block-star-fixed carrier, with no suppressed basis permutation.
+@isnad1 id=eq.0h4v.s5.c86d3178e172 from=translated src=- shape=3ff52eda vocab=55ef069e
+-/
 theorem blockStar_blockify_grouped
     (a : Mat3 K) (u v : Vec3 K) :
     blockStar (blockify (grouped a u v)) = blockify (grouped a u v) := by
