@@ -224,11 +224,13 @@ ARGUMENT = re.compile(
 )  # a letter (Greek and other scripts too), `_` or «, then word characters, dots, guillemets, primes, subscripts
 
 
-def check_argument(arg: str) -> None:
+def lean_name(arg: str) -> str:
     """A module or theorem name goes to `tengoku-isnad` as a command-line argument: it is a Lean name (it never starts with a dash, so it cannot be taken for an option, and
-    holds no space or shell character), or the run stops."""
-    if ARGUMENT.fullmatch(arg) is None:
+    holds no space or shell character), or the run stops. What comes back is the name as the pattern matched it: the callers use that, not the argument."""
+    match = ARGUMENT.fullmatch(arg)
+    if match is None:
         sys.exit(f"isnad: {arg!r} is not a Lean module or theorem name: not passed to tengoku-isnad")
+    return match.group(0)
 
 
 def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BATCH, exact: bool = False) -> tuple[list[Record], list[str]]:
@@ -239,8 +241,8 @@ def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BA
     directory `A/B/` (derived-alg-geo-lean part 2, 3 Nov 2026: `CentralCharge/Exponential.lean` beside four modules in `Exponential/`) makes the batch that lists `A.B`
     report the theorems of `A.B.C` as well as the batch that lists `A.B.C`: each of them came twice, was skipped as "the same name for two theorems of the module", and the
     module came out untagged and refused. With `exact`, a batch keeps only the theorems of the modules it lists: every theorem comes from one batch, the one that lists its module."""
-    for arg in [*modules, *names]:
-        check_argument(arg)
+    modules = [lean_name(m) for m in modules]
+    names = [lean_name(n) for n in names]
     size = batch if batch > 0 else max(len(modules), 1)
     recs: list[Record] = []
     ranges: list[str] = []

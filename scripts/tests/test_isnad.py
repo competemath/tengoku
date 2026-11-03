@@ -572,7 +572,7 @@ class Batches(unittest.TestCase):
             "ι_total_d",
             "ω₂_ne_zero",
         ):
-            isnad.check_argument(ok)
+            self.assertEqual(isnad.lean_name(ok), ok)
 
     def test_both_commands_take_a_batch_option_with_the_default(self):
         ap = isnad.build_parser()
