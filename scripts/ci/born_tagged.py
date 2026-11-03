@@ -39,7 +39,15 @@ UMBRELLAS = ("Tengoku/All.lean", "Tengoku/Studied.lean")
 ROOT_FILE = re.compile(r"Tengoku/[^/]+\.lean")  # a library's (or a target's) file that only imports its modules
 MARKER = re.compile(r"Tengoku/[^/]+/Deps\.lean")  # a bundle's marker: only comments, no module imports it, so it is never built or tagged
 # a theorem a tagger tags: not private (it skips those by rule), one per line start; an approximation that only decides whether "no tag at all" is an error
-THEOREM = re.compile(r"^(?:@\[[^\]\n]*\][ \t]*)*(?:protected[ \t]+)?(?:theorem|lemma)[ \t]+\S", re.M)
+THEOREM = re.compile(r"^(?:@\[[^\]\n]*\][ \t]*)*(?:protected[ \t]+)?(?:theorem|lemma)[ \t]+(\S+)", re.M)
+# the names the tagger's Lean side leaves out (TengokuIsnad.lean okName: "the generated and internal ones"): a lemma called `eq_of_toNat_eq` is not seen by it
+# (azurite part 1, 2 Nov 2026: `isnad: 0 theorems` for a module that declares exactly that), so a module whose only theorems have such names cannot carry a tag
+LEFT_OUT = re.compile(r"(?:eq_|proof_|match_|sizeOf_|_).*|injEq")
+
+
+def taggable(text: str) -> bool:
+    """whether the module declares a theorem the tagger records: the last component of the name decides, as in okName"""
+    return any(not LEFT_OUT.fullmatch(m.group(1).split(".")[-1]) for m in THEOREM.finditer(text))
 
 
 def lane_of(base: str, head: str) -> str | None:
@@ -98,7 +106,7 @@ def module_errors(path: str, text: str, name: str | None = None, require_theorem
     if name is not None:
         if not decl_tagged(text, name):
             errors.append(f"{path}: the theorem {name} has no isnad tag as the last line of its docstring")
-    elif (require_theorem_tag or THEOREM.search(code_only(text))) and not tags:
+    elif (require_theorem_tag or taggable(code_only(text))) and not tags:
         errors.append(f"{path}: declares theorems and carries no isnad tag")
     return errors
 
