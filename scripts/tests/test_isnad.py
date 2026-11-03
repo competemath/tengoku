@@ -568,6 +568,9 @@ class Batches(unittest.TestCase):
             "Foo.bar'",
             "Foo._private.x",
             "_root_.foo",
+            "δ_apply",
+            "ι_total_d",
+            "ω₂_ne_zero",
         ):
             isnad.check_argument(ok)
 

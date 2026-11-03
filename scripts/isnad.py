@@ -219,7 +219,9 @@ def run_exe(args: list[str], exe: str | None = None, cwd: Path = ROOT, extra_pat
 BATCH = 25  # modules per `tengoku-isnad` process (see facts)
 
 
-ARGUMENT = re.compile(r"[A-Za-z_«][\w.«»'!?-]*")
+ARGUMENT = re.compile(
+    r"(?:[^\W\d]|«)[\w.«»'!?\u2100-\u214f\u2080-\u209c-]*"
+)  # a letter (Greek and other scripts too), `_` or «, then word characters, dots, guillemets, primes, subscripts
 
 
 def check_argument(arg: str) -> None:
