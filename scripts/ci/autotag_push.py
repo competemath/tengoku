@@ -104,8 +104,8 @@ def pr_files(api: Api, repo: str, pr: int) -> dict[str, str]:
         page += 1
 
 
-def check(api: Api, repo: str, pr: int, head: str, files: dict[str, str], env: dict[str, str]) -> dict:
-    """Everything that must hold before anything is written. Returns the PR's JSON."""
+def check(api: Api, repo: str, pr: int, head: str, files: dict[str, str], env: dict[str, str]) -> tuple[dict, dict[str, str]]:
+    """Everything that must hold before anything is written. Returns the PR's JSON and the modules the tagger changed (the others are the PR's own bytes)."""
     if not REPO.fullmatch(repo) or pr < 1 or not SHA40.fullmatch(head):
         raise Refused("repo, pr and head must be an owner/name, a number and a 40-hex commit")
     if not files:
@@ -131,19 +131,25 @@ def check(api: Api, repo: str, pr: int, head: str, files: dict[str, str], env: d
     if not BRANCH.fullmatch(ref) or ref in ("main", "master") or ref.startswith("-"):
         raise Refused(f"the branch {ref!r} is not one the autotag writes to")
     listed = pr_files(api, repo, pr)
+    changed: dict[str, str] = {}
     for path, new in sorted(files.items()):
         if listed.get(path) != "added":
             raise Refused(f"{path}: not a module this PR adds (status {listed.get(path)!r})")
         raw = api("GET", f"repos/{repo}/contents/{path}?ref={head}", raw=True)
         old = raw.decode("utf-8") if isinstance(raw, bytes) else str(raw)
         if new == old:
-            raise Refused(f"{path}: the artifact's copy is the PR's: nothing was tagged")
+            # a module that declares nothing a tagger tags (definitions only, a library's marker) comes out of the tagger as it went in: that is fine, and nothing is written for it;
+            # one that declares theorems must come out tagged (azurite part 1, 2 Nov 2026: ExactDiv.lean has none, and the whole PR was refused for it)
+            if module_errors(path, old):
+                raise Refused(f"{path}: the artifact's copy is the PR's: nothing was tagged")
+            continue
         if not tg.equivalent(old, new):
             raise Refused(f"{path}: changes more than tags")
         errors = module_errors(path, new)
         if errors:
             raise Refused("; ".join(errors[:3]))
-    return info
+        changed[path] = new
+    return info, changed
 
 
 def message(n: int, bot: str, email: str) -> str:
@@ -156,7 +162,9 @@ def message(n: int, bot: str, email: str) -> str:
 
 
 def push(api: Api, repo: str, pr: int, head: str, files: dict[str, str], env: dict[str, str], dry_run: bool = False) -> str:
-    info = check(api, repo, pr, head, files, env)
+    info, files = check(api, repo, pr, head, files, env)
+    if not files:
+        return "nothing to tag: every module is already as the lane attested it"
     bot = env.get("TENGOKU_BOT") or "tengoku-bot"
     email = env.get("TENGOKU_BOT_EMAIL") or f"{bot}@users.noreply.github.com"
     if dry_run:
