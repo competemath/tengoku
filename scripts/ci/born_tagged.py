@@ -48,6 +48,8 @@ NAME_PART = re.compile(r"«[^»]*»|[^.«»]+")
 def left_out(name: str) -> bool:
     """okName: internal when ANY component starts with `_`; then the LAST component decides (eq_*, proof_*, match_*, sizeOf_*, injEq). A «quoted.component» is one component."""
     parts = [c.strip("«»") for c in NAME_PART.findall(name)]
+    if parts[:1] == ["_root_"]:
+        parts = parts[1:]  # the elaborator strips `_root_`: `theorem _root_.foo` declares `foo`
     return (
         not parts
         or any(c.startswith("_") for c in parts)

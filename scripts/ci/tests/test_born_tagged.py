@@ -223,6 +223,10 @@ class Intake(unittest.TestCase):
         self.assertIn("declares theorems and carries no isnad tag", out)
         rc, out = verdict("theorem «a.eq_x» : 1 + 1 = 2 := rfl\n")
         self.assertNotEqual(rc, 0, "«a.eq_x» is one component named a.eq_x: the tagger sees it, so it needs a tag")
+        rc, out = verdict("theorem _root_.foo : 1 + 1 = 2 := rfl\n")
+        self.assertNotEqual(rc, 0, "_root_.foo declares foo, which the tagger sees: it needs a tag")
+        rc, out = verdict("theorem _root_.eq_foo : 1 + 1 = 2 := rfl\n")
+        self.assertEqual(rc, 0, out)
         rc, out = verdict("theorem Foo._bar.baz : 1 + 1 = 2 := rfl\n")
         self.assertEqual(rc, 0, out)  # a component starting with an underscore makes the name internal
         rc, out = verdict("theorem equal_two : 1 + 1 = 2 := rfl\n")
