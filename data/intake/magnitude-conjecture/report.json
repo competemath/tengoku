@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "237abe5f43ef0bd481e82c171d402465764216e0cbe536510c41be9a1ac468fe",
+ "gate2_unjudged": [],
+ "library": "magnitude-conjecture",
+ "lint_mode": "proposed",
+ "modules": 185,
+ "part": 1,
+ "theorems": 824
+}

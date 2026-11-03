@@ -1,0 +1,1 @@
+-- Azurite: a factory bundle (data/intake/azurite). This file only marks the library for Tengoku/All.lean.

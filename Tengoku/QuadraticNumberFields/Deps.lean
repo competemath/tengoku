@@ -1,0 +1,1 @@
+-- QuadraticNumberFields: a factory bundle (data/intake/quadratic-number-fields). This file only marks the library for Tengoku/All.lean.
