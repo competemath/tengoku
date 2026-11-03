@@ -55,9 +55,15 @@ def rightFlattening (t : X ⊗[F] Y) : Module.Dual F X →ₗ[F] Y where
     | add a b ha hb => simp only [map_add, ha, hb, smul_add]
     | tmul x y => simp [smul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s9.ad3478a86fba from=translated src=- shape=862f96d3 vocab=eff3969f
+-/
 @[simp] theorem leftFlattening_apply (t : X ⊗[F] Y) (eta : Module.Dual F Y) :
     leftFlattening t eta = contractRight eta t := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.9c5714494244 from=translated src=- shape=adebce68 vocab=690bd5bc
+-/
 @[simp] theorem rightFlattening_apply (t : X ⊗[F] Y) (phi : Module.Dual F X) :
     rightFlattening t phi = extendedPair phi t := rfl
 
@@ -71,6 +77,9 @@ def fixedRightMap (z : Z) : Y →ₗ[F] Y ⊗[F] Z where
   map_add' _ _ := add_tmul _ _ _
   map_smul' _ _ := (smul_tmul' _ _ _).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.1f23a780a4b8 from=translated src=- shape=f8fddf76 vocab=bea1146d
+-/
 @[simp] theorem fixedRightMap_apply (z : Z) (y : Y) :
     fixedRightMap z y = y ⊗ₜ[F] z := rfl
 
@@ -79,11 +88,16 @@ The input functional may mix the whole discarded factor.-/
 def specializeRight (z : Z) (eta : Module.Dual F (Y ⊗[F] Z)) : Module.Dual F Y :=
   eta.comp (fixedRightMap z)
 
+/--
+@isnad1 id=eq.0h6v.s8.678793106e83 from=translated src=- shape=0d18ac45 vocab=c9e80d80
+-/
 @[simp] theorem specializeRight_apply (z : Z)
     (eta : Module.Dual F (Y ⊗[F] Z)) (y : Y) :
     specializeRight z eta y = eta (y ⊗ₜ[F] z) := rfl
 
-/-- Honest full contraction after attaching a fixed last factor.-/
+/-- Honest full contraction after attaching a fixed last factor.
+@isnad1 id=eq.0h7v.s11.2a2abd6eb630 from=translated src=- shape=effe85c9 vocab=30ea4e0b
+-/
 theorem leftFlattening_append_apply (t : X ⊗[F] Y) (z : Z)
     (eta : Module.Dual F (Y ⊗[F] Z)) :
     leftFlattening (TensorProduct.assoc F X Y Z (t ⊗ₜ[F] z)) eta =
@@ -97,7 +111,9 @@ theorem leftFlattening_append_apply (t : X ⊗[F] Y) (z : Z)
       contractRight_tmul, specializeRight_apply]
 
 /-- Nonzero fixed factors allow every functional on `Y` to be recovered
-from a functional on the whole actual factor `Y ⊗ Z`.-/
+from a functional on the whole actual factor `Y ⊗ Z`.
+@isnad1 id=surjecti.1h4v.s7.de6b2b5e444f from=translated src=- shape=f9821582 vocab=7b329b45
+-/
 theorem specializeRight_surjective (z : Z) (hz : z ≠ 0) :
     Function.Surjective (specializeRight (F := F) (Y := Y) z) := by
   obtain ⟨psi, hpsi⟩ := Module.Projective.exists_dual_eq_one F hz
@@ -108,7 +124,9 @@ theorem specializeRight_surjective (z : Z) (hz : z ≠ 0) :
     hpsi, one_smul]
 
 /-- Appending a fixed nonzero tensor factor preserves the complete prefix
-support itself, including functionals mixing all outside coordinates.-/
+support itself, including functionals mixing all outside coordinates.
+@isnad1 id=eq.1h6v.s11.0260ad8d900d from=translated src=- shape=fca3604e vocab=86785141
+-/
 theorem leftFlattening_append_range (t : X ⊗[F] Y) (z : Z) (hz : z ≠ 0) :
     LinearMap.range (leftFlattening (TensorProduct.assoc F X Y Z (t ⊗ₜ[F] z))) =
       LinearMap.range (leftFlattening t) := by
@@ -119,13 +137,17 @@ theorem leftFlattening_append_range (t : X ⊗[F] Y) (z : Z) (hz : z ≠ 0) :
     obtain ⟨theta, htheta⟩ := specializeRight_surjective z hz eta
     exact ⟨theta, by rw [leftFlattening_append_apply, htheta]⟩
 
-/-- Consequently the actual cut rank is unchanged.-/
+/-- Consequently the actual cut rank is unchanged.
+@isnad1 id=eq.1h6v.s10.c50050dd7910 from=translated src=- shape=1fa435f8 vocab=e3afd762
+-/
 theorem tensorCutRank_append (t : X ⊗[F] Y) (z : Z) (hz : z ≠ 0) :
     tensorCutRank (TensorProduct.assoc F X Y Z (t ⊗ₜ[F] z)) = tensorCutRank t := by
   unfold tensorCutRank
   rw [leftFlattening_append_range t z hz]
 
-/-- Honest full contraction after attaching a fixed first factor.-/
+/-- Honest full contraction after attaching a fixed first factor.
+@isnad1 id=eq.0h7v.s11.ae0cff7e4aee from=translated src=- shape=d072b049 vocab=8994e528
+-/
 theorem leftFlattening_prepend_apply (z : Z) (t : X ⊗[F] Y)
     (eta : Module.Dual F Y) :
     leftFlattening ((TensorProduct.assoc F Z X Y).symm (z ⊗ₜ[F] t)) eta =
@@ -140,7 +162,9 @@ theorem leftFlattening_prepend_apply (z : Z) (t : X ⊗[F] Y)
         contractRight_tmul, tmul_smul]
 
 /-- The actual prefix support after a fixed first factor is the image
-under the actual fixed-left tensor map.-/
+under the actual fixed-left tensor map.
+@isnad1 id=eq.0h6v.s11.8ae06886afad from=translated src=- shape=f54a2f5c vocab=ff802465
+-/
 theorem leftFlattening_prepend_range (z : Z) (t : X ⊗[F] Y) :
     LinearMap.range
         (leftFlattening ((TensorProduct.assoc F Z X Y).symm (z ⊗ₜ[F] t))) =
@@ -153,7 +177,9 @@ theorem leftFlattening_prepend_range (z : Z) (t : X ⊗[F] Y) :
     exact ⟨eta, leftFlattening_prepend_apply z t eta⟩
 
 /-- Finrank is preserved under an injective linear map, by restricting the
-map to the given subspace.-/
+map to the given subspace.
+@isnad1 id=eq.1h5v.s8.2c232d78a83f from=translated src=- shape=7e0c7339 vocab=e34079e2
+-/
 theorem finrank_map_of_injective {A B : Type*} [AddCommGroup A] [Module F A]
     [AddCommGroup B] [Module F B] (f : A →ₗ[F] B) (hf : Function.Injective f)
     (S : Submodule F A) : Module.finrank F (S.map f) = Module.finrank F S := by
@@ -164,7 +190,9 @@ theorem finrank_map_of_injective {A B : Type*} [AddCommGroup A] [Module F A]
   exact LinearMap.finrank_range_of_inj hg
 
 /-- Prepending a fixed nonzero factor preserves the actual cut rank,
-although the retained support lives in a larger actual ambient space.-/
+although the retained support lives in a larger actual ambient space.
+@isnad1 id=eq.1h6v.s11.5e5f405df965 from=translated src=- shape=4d3263b1 vocab=dcff2a92
+-/
 theorem tensorCutRank_prepend (z : Z) (hz : z ≠ 0) (t : X ⊗[F] Y) :
     tensorCutRank ((TensorProduct.assoc F Z X Y).symm (z ⊗ₜ[F] t)) =
       tensorCutRank t := by
@@ -173,7 +201,9 @@ theorem tensorCutRank_prepend (z : Z) (hz : z ≠ 0) (t : X ⊗[F] Y) :
   exact finrank_map_of_injective (TensorProduct.mk F Z X z)
     (fixed_left_tensor_injective z hz) (LinearMap.range (leftFlattening t))
 
-/-- Actual transport of the retained factor transports the entire range.-/
+/-- Actual transport of the retained factor transports the entire range.
+@isnad1 id=eq.0h6v.s10.92d475cef291 from=translated src=- shape=58d0998c vocab=e35ca04c
+-/
 theorem leftFlattening_leftEquiv_range {A : Type*} [AddCommGroup A] [Module F A]
     (e : X ≃ₗ[F] A) (t : X ⊗[F] Y) :
     LinearMap.range (leftFlattening (e.rTensor Y t)) =
@@ -195,7 +225,9 @@ theorem leftFlattening_leftEquiv_range {A : Type*} [AddCommGroup A] [Module F A]
     exact ⟨eta, heval eta⟩
 
 /-- Actual transport of the discarded factor leaves complete support
-unchanged; functionals are transported through the inverse equivalence.-/
+unchanged; functionals are transported through the inverse equivalence.
+@isnad1 id=eq.0h6v.s10.35faa2d2f402 from=translated src=- shape=17775de2 vocab=d99691b3
+-/
 theorem leftFlattening_rightEquiv_range {A : Type*} [AddCommGroup A] [Module F A]
     (e : Y ≃ₗ[F] A) (t : X ⊗[F] Y) :
     LinearMap.range (leftFlattening (e.lTensor X t)) =
@@ -220,6 +252,9 @@ theorem leftFlattening_rightEquiv_range {A : Type*} [AddCommGroup A] [Module F A
     ext y
     simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.01f1fcfe6768 from=translated src=- shape=03c82870 vocab=2a6adb47
+-/
 theorem tensorCutRank_leftEquiv {A : Type*} [AddCommGroup A] [Module F A]
     (e : X ≃ₗ[F] A) (t : X ⊗[F] Y) :
     tensorCutRank (e.rTensor Y t) = tensorCutRank t := by
@@ -227,6 +262,9 @@ theorem tensorCutRank_leftEquiv {A : Type*} [AddCommGroup A] [Module F A]
   rw [leftFlattening_leftEquiv_range]
   exact e.finrank_map_eq (LinearMap.range (leftFlattening t))
 
+/--
+@isnad1 id=eq.0h6v.s9.d7f4dc64ec78 from=translated src=- shape=7a532307 vocab=0617cdda
+-/
 theorem tensorCutRank_rightEquiv {A : Type*} [AddCommGroup A] [Module F A]
     (e : Y ≃ₗ[F] A) (t : X ⊗[F] Y) :
     tensorCutRank (e.lTensor X t) = tensorCutRank t := by
@@ -234,7 +272,9 @@ theorem tensorCutRank_rightEquiv {A : Type*} [AddCommGroup A] [Module F A]
   rw [leftFlattening_rightEquiv_range]
 
 /-- The two honest flattenings are actual transposes, through the finite
-evaluation equivalence. Thus complete suffix and prefix cut ranks agree.-/
+evaluation equivalence. Thus complete suffix and prefix cut ranks agree.
+@isnad1 id=eq.0h4v.s9.a7960a923f05 from=translated src=- shape=de5a5d30 vocab=ccc0b442
+-/
 theorem rightFlattening_finrank_eq_left [FiniteDimensional F X] [FiniteDimensional F Y]
     (t : X ⊗[F] Y) :
     Module.finrank F (LinearMap.range (rightFlattening t)) = tensorCutRank t := by

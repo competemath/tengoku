@@ -26,6 +26,9 @@ def positivePower {R : Type*} [Mul R] (x : R) : ℕ → R
   | 0 => x
   | e + 1 => x * positivePower x e
 
+/--
+@isnad1 id=eq.0h3v.s5.b78c871f56dd from=translated src=- shape=79a4e3c4 vocab=60c462be
+-/
 theorem positivePower_eq_pow {R : Type*} [Monoid R] (x : R) (e : ℕ) :
     positivePower x e = x ^ (e + 1) := by
   induction e with
@@ -36,7 +39,9 @@ theorem positivePower_eq_pow {R : Type*} [Monoid R] (x : R) (e : ℕ) :
       exact (pow_succ' x (e + 1)).symm
 
 /-- An algebra mapping to a matrix algebra over a field, with nil kernel,
-is algebraic over that field.-/
+is algebraic over that field.
+@isnad1 id=isalgebr.1h5v.s8.a08d8181ed77 from=translated src=- shape=401c4b50 vocab=461a510a
+-/
 theorem isAlgebraic_of_matrix_quotient_nil_kernel
     {K C n : Type*} [Field K] [Ring C] [Algebra K C]
     [Fintype n] [DecidableEq n]
@@ -58,7 +63,9 @@ variable {K A n : Type*} [Field K] [NonUnitalRing A] [Module K A]
   [IsScalarTower K A A] [SMulCommClass K A A]
   [Fintype n] [DecidableEq n]
 
-/-- Coercing matrices into their actual unitization preserves all positive powers.-/
+/-- Coercing matrices into their actual unitization preserves all positive powers.
+@isnad1 id=eq.0h5v.s10.d81acf2337ff from=translated src=- shape=abbcb393 vocab=df647627
+-/
 theorem unitization_map_positivePower (M : Matrix n n A) (e : ℕ) :
     (positivePower M e).map (Unitization.inrNonUnitalAlgHom K A) =
       positivePower (M.map (Unitization.inrNonUnitalAlgHom K A)) e := by
@@ -69,7 +76,9 @@ theorem unitization_map_positivePower (M : Matrix n n A) (e : ℕ) :
       rfl
 
 /-- Actual scalar-kernel matrices in the unitization are nilpotent, assuming
-that every matrix over the underlying non-unital algebra is nilpotent.-/
+that every matrix over the underlying non-unital algebra is nilpotent.
+@isnad1 id=isnilpot.2h4v.s9.019b45b32154 from=translated src=- shape=51a4ab9a vocab=ee371c02
+-/
 theorem unitization_matrix_kernel_nil
     (matrixNil : ∀ M : Matrix n n A, ∃ e : ℕ, positivePower M e = 0)
     (T : Matrix n n (Unitization K A))
@@ -93,7 +102,9 @@ theorem unitization_matrix_kernel_nil
   exact Unitization.inr_zero K
 
 /-- Every matrix over the unitization is algebraic if the corresponding
-non-unital matrix algebra is nil.-/
+non-unital matrix algebra is nil.
+@isnad1 id=isalgebr.1h4v.s8.159e6523f1e8 from=translated src=- shape=634b091b vocab=fa0d0c23
+-/
 theorem unitization_matrix_isAlgebraic
     (matrixNil : ∀ M : Matrix n n A, ∃ e : ℕ, positivePower M e = 0)
     (T : Matrix n n (Unitization K A)) : IsAlgebraic K T := by
@@ -101,7 +112,9 @@ theorem unitization_matrix_isAlgebraic
     (Unitization.fstHom K A).mapMatrix
     (unitization_matrix_kernel_nil matrixNil)
 
-/-- The whole actual matrix algebra over the unitization is algebraic.-/
+/-- The whole actual matrix algebra over the unitization is algebraic.
+@isnad1 id=isalgebr.1h3v.s8.dfcb9d67f8f0 from=translated src=- shape=9f3235cc vocab=0457478c
+-/
 theorem unitization_matrix_algebraic
     (matrixNil : ∀ M : Matrix n n A, ∃ e : ℕ, positivePower M e = 0) :
     Algebra.IsAlgebraic K (Matrix n n (Unitization K A)) := by
@@ -116,7 +129,9 @@ variable {K A : Type*} [Field K] [NonUnitalRing A] [Module K A]
 
 /-- If every finite matrix over a non-unital algebra `A` is nilpotent, every
 finite matrix over its unitization is algebraic over the field `K`.
-The statement includes matrices of order zero.-/
+The statement includes matrices of order zero.
+@isnad1 id=isalgebr.1h4v.s8.e9899c602690 from=translated src=- shape=24a9fe19 vocab=c96fb91a
+-/
 theorem all_unitization_matrices_isAlgebraic
     (matrixNil : ∀ r : ℕ, ∀ M : Matrix (Fin r) (Fin r) A,
       ∃ e : ℕ, positivePower M e = 0) :
@@ -126,7 +141,9 @@ theorem all_unitization_matrices_isAlgebraic
   exact unitization_matrix_isAlgebraic (matrixNil r) T
 
 /-- Algebraicity of all matrix orders, expressed using Mathlib's
-`Algebra.IsAlgebraic` class.-/
+`Algebra.IsAlgebraic` class.
+@isnad1 id=isalgebr.1h3v.s8.d2a237eefcda from=translated src=- shape=53053b96 vocab=d6ab203d
+-/
 theorem all_unitization_matrix_algebras_algebraic
     (matrixNil : ∀ r : ℕ, ∀ M : Matrix (Fin r) (Fin r) A,
       ∃ e : ℕ, positivePower M e = 0) :

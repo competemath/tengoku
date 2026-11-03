@@ -48,6 +48,9 @@ def subspaceSuffixBilinear (S : Submodule F (X ⊗[F] Y)) :
     change extendedPair phi (c • a.val) = c • extendedPair phi a.val
     exact (extendedPair phi).map_smul c a.val
 
+/--
+@isnad1 id=eq.0h4v.s11.4d922849af26 from=translated src=- shape=6c9acbae vocab=cabf5b63
+-/
 theorem tensorPrefixSupport_eq_bilinear_range (S : Submodule F (X ⊗[F] Y)) :
     tensorPrefixSupport S = LinearMap.range (TensorProduct.lift (subspacePrefixBilinear S)) := by
   apply le_antisymm
@@ -65,6 +68,9 @@ theorem tensorPrefixSupport_eq_bilinear_range (S : Submodule F (X ⊗[F] Y)) :
     | tmul s eta =>
         exact contractRight_mem_tensorPrefixSupport S eta s.val s.property
 
+/--
+@isnad1 id=eq.0h4v.s11.f0722bdb1544 from=translated src=- shape=88ef1af0 vocab=51630257
+-/
 theorem tensorSuffixSupport_eq_bilinear_range (S : Submodule F (X ⊗[F] Y)) :
     tensorSuffixSupport S = LinearMap.range (TensorProduct.lift (subspaceSuffixBilinear S)) := by
   apply le_antisymm
@@ -82,6 +88,9 @@ theorem tensorSuffixSupport_eq_bilinear_range (S : Submodule F (X ⊗[F] Y)) :
     | tmul s phi =>
         exact extendedPair_mem_tensorSuffixSupport S phi s.val s.property
 
+/--
+@isnad1 id=le.0h4v.s9.fdeef199d6ff from=translated src=- shape=de0454b3 vocab=ea541662
+-/
 theorem tensorPrefixSupport_finrank_le [FiniteDimensional F X] [FiniteDimensional F Y]
     (S : Submodule F (X ⊗[F] Y)) :
     Module.finrank F (tensorPrefixSupport S) ≤ Module.finrank F S * Module.finrank F Y := by
@@ -95,6 +104,9 @@ theorem tensorPrefixSupport_finrank_le [FiniteDimensional F X] [FiniteDimensiona
     _ = Module.finrank F S * Module.finrank F Y := by
       rw [Module.finrank_tensorProduct, Subspace.dual_finrank_eq]
 
+/--
+@isnad1 id=le.0h4v.s9.bf279c601607 from=translated src=- shape=37bab46f vocab=0bd08895
+-/
 theorem tensorSuffixSupport_finrank_le [FiniteDimensional F X] [FiniteDimensional F Y]
     (S : Submodule F (X ⊗[F] Y)) :
     Module.finrank F (tensorSuffixSupport S) ≤ Module.finrank F S * Module.finrank F X := by

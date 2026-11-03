@@ -37,6 +37,9 @@ def unitizationScalarLinearEquiv :
         (((TensorProduct.rid F K).prodCongr (LinearEquiv.refl F (K ⊗[F] A))).trans
           (Unitization.linearEquiv F K (K ⊗[F] A)).symm)))
 
+/--
+@isnad1 id=eq.0h5v.s11.1088f44fe4a0 from=translated src=- shape=b102517f vocab=0d3d46b4
+-/
 @[simp]
 theorem unitizationScalarLinearEquiv_tmul (u : Unitization F A) (c : K) :
     unitizationScalarLinearEquiv F K A (u ⊗ₜ[F] c) =
@@ -48,7 +51,9 @@ theorem unitizationScalarLinearEquiv_tmul (u : Unitization F A) (c : K) :
     Unitization.linearEquiv_symm_apply]
 
 /-- The actual compatibility between the old F-action and the new left
-K-action on pure tensors.-/
+K-action on pure tensors.
+@isnad1 id=eq.0h7v.s9.bc7638b09eb8 from=translated src=- shape=a78e205f vocab=1e444c93
+-/
 theorem unitizationBaseChange_scalar_tensor (a : F) (c d : K) (z : A) :
     (c * d) ⊗ₜ[F] (a • z) = (a • c) • (d ⊗ₜ[F] z) := by
   rw [TensorProduct.tmul_smul, TensorProduct.smul_tmul', TensorProduct.smul_tmul']
@@ -56,7 +61,9 @@ theorem unitizationBaseChange_scalar_tensor (a : F) (c d : K) (z : A) :
   rw [smul_mul_assoc]
 
 /-- Actual pure tensor multiplication, including both mixed scalar terms
-in the unitization multiplication formula.-/
+in the unitization multiplication formula.
+@isnad1 id=eq.0h7v.s13.ca782bec643c from=translated src=- shape=07d3f9ee vocab=d6165ccf
+-/
 theorem unitizationScalarLinearEquiv_tmul_mul
     (u v : Unitization F A) (c d : K) :
     unitizationScalarLinearEquiv F K A ((u ⊗ₜ[F] c) * (v ⊗ₜ[F] d)) =
@@ -78,7 +85,9 @@ theorem unitizationScalarLinearEquiv_tmul_mul
     rw [Unitization.snd_mul, TensorProduct.tmul_add, TensorProduct.tmul_add,
       hleft, hright, Algebra.TensorProduct.tmul_mul_tmul]
 
-/-- Actual multiplicativity for all tensors, proved by tensor induction.-/
+/-- Actual multiplicativity for all tensors, proved by tensor induction.
+@isnad1 id=eq.0h5v.s12.d13a193e00b8 from=translated src=- shape=4ccd668d vocab=b7f5e287
+-/
 theorem unitizationScalarLinearEquiv_map_mul
     (x y : (Unitization F A) ⊗[F] K) :
     unitizationScalarLinearEquiv F K A (x * y) =
@@ -138,7 +147,9 @@ def unitizationRightScalarAlgEquiv :
 
 /-- Every matrix over the literal scalar extension of the original
 F-unitization is algebraic, supplied by actual absolute matrix nilness of A.
-The scalar extension/unitization identification is proved above.-/
+The scalar extension/unitization identification is proved above.
+@isnad1 id=isalgebr.2h4v.s10.8928e701c132 from=translated src=- shape=852eac42 vocab=71413e57
+-/
 theorem unitization_tensor_matrix_algebraic_of_scalar_matrix_nil
     (hsource : ∀ r : ℕ, 0 < r →
       ∀ M : Matrix (Fin r) (Fin r) (A ⊗[F] K), ∃ e : ℕ, positivePower M e = 0) :

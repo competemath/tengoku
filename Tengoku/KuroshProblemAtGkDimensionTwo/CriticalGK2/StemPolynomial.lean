@@ -20,7 +20,9 @@ noncomputable def stemPolynomial (F : Type*) [Field F] (n : ℕ)
     (t : StemWord n → F) : BinaryFreeAlgebra F :=
   ∑ a : StemWord n, t a • MonoidAlgebra.single (FreeMonoid.ofList (List.ofFn a)) 1
 
-/-- Every actual word of degree `n` is represented by one fixed-length tuple.-/
+/-- Every actual word of degree `n` is represented by one fixed-length tuple.
+@isnad1 id=ex.1h2v.s5.31841378d22b from=translated src=- shape=2ad6f03b vocab=0a7dfc2b
+-/
 theorem exists_stemWord_of_length (n : ℕ) (w : FreeMonoid Bool) (hw : w.length = n) :
     ∃ a : StemWord n, FreeMonoid.ofList (List.ofFn a) = w := by
   subst n

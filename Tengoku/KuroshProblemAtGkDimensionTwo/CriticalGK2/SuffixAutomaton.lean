@@ -68,9 +68,15 @@ def wordTransition (c : Coefficients R r d) : List Bool →
   | [] => 1
   | α :: w => letterTransition c α * wordTransition c w
 
+/--
+@isnad1 id=eq.0h4v.s7.d81b5ba13616 from=translated src=- shape=4c3812f6 vocab=4149f196
+-/
 @[simp]
 theorem wordTransition_nil (c : Coefficients R r d) : wordTransition c [] = 1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.1ca3e0879e45 from=translated src=- shape=c7d9fc02 vocab=cd58c3c8
+-/
 @[simp]
 theorem wordTransition_cons (c : Coefficients R r d) (α : Bool) (w : List Bool) :
     wordTransition c (α :: w) = letterTransition c α * wordTransition c w := rfl
@@ -79,6 +85,9 @@ def headValue (c : Coefficients R r d) (hd : 0 < d)
     (w : List Bool) (a b : Fin r) : Polynomial R :=
   wordTransition c w (headState d hd a) (headState d hd b)
 
+/--
+@isnad1 id=eq.1h7v.s7.7edc4c388f95 from=translated src=- shape=9628bcf2 vocab=0698dc9f
+-/
 @[simp]
 theorem letterTransition_head (c : Coefficients R r d) (hd : 0 < d)
     (α : Bool) (a : Fin r) (t : State r d) :
@@ -86,7 +95,9 @@ theorem letterTransition_head (c : Coefficients R r d) (hd : 0 < d)
       Polynomial.monomial 1 (c a t.1 α t.2) := by
   simp [letterTransition, headState, emptyResidual]
 
-/-- Every non-head row has exactly the deterministic residual edge.-/
+/-- Every non-head row has exactly the deterministic residual edge.
+@isnad1 id=eq.1h10v.s7.0492ca44cbd8 from=translated src=- shape=7269fdc7 vocab=53684bb6
+-/
 theorem letterTransition_internal_row (c : Coefficients R r d)
     (α β : Bool) (a : Fin r) (p : Residual d) (q : List Bool)
     (hp : p.val = β :: q) (t : State r d) :
@@ -99,7 +110,9 @@ theorem letterTransition_internal_row (c : Coefficients R r d)
   · simp [letterTransition, hp, h, Ne.symm h, List.cons.injEq]
 
 /-- Matrix multiplication over the deterministic internal row consumes
-one residual letter, without summing over further paths.-/
+one residual letter, without summing over further paths.
+@isnad1 id=eq.2h11v.s7.6d9e102bc120 from=translated src=- shape=34edc573 vocab=9fb48d5c
+-/
 theorem wordTransition_internal_step (c : Coefficients R r d) (hd : 0 < d)
     (α β : Bool) (w : List Bool) (a b : Fin r)
     (p : Residual d) (q : List Bool) (hp : p.val = β :: q) :
@@ -111,7 +124,9 @@ theorem wordTransition_internal_step (c : Coefficients R r d) (hd : 0 < d)
   by_cases h : β = α <;> simp [h]
 
 /-- Exact internal-state path identity.  An internal state must consume its
-entire prescribed residual before any new generic monomial can be chosen.-/
+entire prescribed residual before any new generic monomial can be chosen.
+@isnad1 id=eq.1h8v.s6.1cc68e21064b from=translated src=- shape=3e62e49d vocab=d8af9c4e
+-/
 theorem internal_state_consumption (c : Coefficients R r d) (hd : 0 < d)
     (p : Residual d) (w : List Bool) (a b : Fin r) :
     wordTransition c w (a, p) (headState d hd b) =
@@ -140,13 +155,18 @@ theorem internal_state_consumption (c : Coefficients R r d) (hd : 0 < d)
         simpa [afterConsume, consumePrefix, hp, htail] using ih (tailResidual p)
       · simp [afterConsume, consumePrefix, hp, h]
 
+/--
+@isnad1 id=eq.1h6v.s6.360488cd04d0 from=translated src=- shape=d68dc06b vocab=e02f520b
+-/
 @[simp]
 theorem headValue_nil (c : Coefficients R r d) (hd : 0 < d) (a b : Fin r) :
     headValue c hd [] a b = if a = b then 1 else 0 := by
   simp [headValue, wordTransition, Matrix.one_apply, headState]
 
 /-- Exact head recurrence obtained from actual matrix multiplication and
-the proved deterministic internal-state identity.-/
+the proved deterministic internal-state identity.
+@isnad1 id=eq.1h8v.s8.1554811c64f7 from=translated src=- shape=61d46076 vocab=e57755ac
+-/
 theorem headValue_cons (c : Coefficients R r d) (hd : 0 < d)
     (α : Bool) (w : List Bool) (a b : Fin r) :
     headValue c hd (α :: w) a b =

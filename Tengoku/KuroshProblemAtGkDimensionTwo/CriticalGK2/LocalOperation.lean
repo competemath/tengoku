@@ -50,12 +50,17 @@ noncomputable def stemRetraction (F : Type*) [Field F] (n : ℕ)
 def blockWordCode (n : ℕ) (g : BlockAlphabet n) : List Bool :=
   List.ofFn g.1 ++ [g.2]
 
+/--
+@isnad1 id=eq.0h2v.s4.1f67726c2a73 from=translated src=- shape=7b0ac8a7 vocab=f2ded4ad
+-/
 @[simp]
 theorem blockWordCode_length (n : ℕ) (g : BlockAlphabet n) :
     (blockWordCode n g).length = n + 1 := by
   simp [blockWordCode]
 
-/-- A physical block can be decoded uniquely into its stem and last letter.-/
+/-- A physical block can be decoded uniquely into its stem and last letter.
+@isnad1 id=injectiv.0h1v.s3.ed16006f2fe5 from=translated src=- shape=995c1cb5 vocab=0529d0db
+-/
 theorem blockWordCode_injective (n : ℕ) : Function.Injective (blockWordCode n) := by
   intro g g' h
   rcases g with ⟨a, b⟩
@@ -83,7 +88,9 @@ def flattenBlocks (n : ℕ) : FreeMonoid (BlockAlphabet n) →* FreeMonoid Bool 
       a.toList.flatMap (blockWordCode n) ++ b.toList.flatMap (blockWordCode n)
     simp only [List.flatMap_append]
 
-/-- Equal-length parsing proves that flattening loses no block-word information.-/
+/-- Equal-length parsing proves that flattening loses no block-word information.
+@isnad1 id=injectiv.0h1v.s6.0f8713e188f0 from=translated src=- shape=16d05396 vocab=700d11f5
+-/
 theorem flattenBlocks_injective (n : ℕ) : Function.Injective (flattenBlocks n) := by
   intro u v h
   apply FreeMonoid.toList.injective
@@ -96,7 +103,9 @@ noncomputable def flattenBlockAlgebra (F : Type*) [Field F] (n : ℕ) :
     BlockFreeAlgebra F n →ₐ[F] BinaryFreeAlgebra F :=
   MonoidAlgebra.mapDomainAlgHom F F (flattenBlocks n)
 
-/-- Flattening is injective on all linear combinations, over the original field.-/
+/-- Flattening is injective on all linear combinations, over the original field.
+@isnad1 id=injectiv.0h2v.s8.fc4f42f5c971 from=translated src=- shape=522b47d8 vocab=fd1eaec4
+-/
 theorem flattenBlockAlgebra_injective (F : Type*) [Field F] (n : ℕ) :
     Function.Injective (flattenBlockAlgebra F n) := by
   exact MonoidAlgebra.mapDomain_injective (flattenBlocks_injective n)

@@ -21,7 +21,9 @@ def supportBudget (κ : ℕ → ℕ) : ℕ → ℕ
   | 0 => 2
   | j + 1 => 2 ^ κ j * supportBudget κ j
 
-/-- A convenient intentionally loose scale bound, proved without evaluating huge powers.-/
+/-- A convenient intentionally loose scale bound, proved without evaluating huge powers.
+@isnad1 id=le.0h1v.s4.7a35469a2be0 from=translated src=- shape=e17d9afa vocab=74f5fafa
+-/
 theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
   induction n with
   | zero => norm_num
@@ -30,7 +32,9 @@ theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
       rw [pow_succ]
       omega
 
-/-- All three scale constraints can be paid at once.-/
+/-- All three scale constraints can be paid at once.
+@isnad1 id=ex.1h5v.s6.cf82a8aaaad0 from=translated src=- shape=f1e1ace1 vocab=78a590a1
+-/
 theorem exists_next_scale (Λ : ℕ → ℝ) (hΛ : EnvelopeDiverges Λ)
     (C prev duration j : ℕ) :
     ∃ h : ℕ, prev + duration < h ∧
@@ -50,6 +54,9 @@ noncomputable def nextScale (Λ : ℕ → ℝ) (hΛ : EnvelopeDiverges Λ)
     (C prev duration j : ℕ) : ℕ :=
   Classical.choose (exists_next_scale Λ hΛ C prev duration j)
 
+/--
+@isnad1 id=and.1h5v.s7.78d5c2fe14f2 from=translated src=- shape=eef36e03 vocab=141802d6
+-/
 theorem nextScale_spec (Λ : ℕ → ℝ) (hΛ : EnvelopeDiverges Λ)
     (C prev duration j : ℕ) :
     prev + duration < nextScale Λ hΛ C prev duration j ∧
@@ -64,6 +71,9 @@ noncomputable def scaleHeight (κ duration : ℕ → ℕ)
   | j + 1 => nextScale Λ hΛ (supportBudget κ (j + 2))
       (scaleHeight κ duration Λ hΛ j) (duration j) (j + 1)
 
+/--
+@isnad1 id=lt.1h4v.s5.7e36a54c1db9 from=translated src=- shape=5a26bc47 vocab=b0101e6b
+-/
 theorem scaleHeight_separated (κ duration : ℕ → ℕ)
     (Λ : ℕ → ℝ) (hΛ : EnvelopeDiverges Λ) (j : ℕ) :
     scaleHeight κ duration Λ hΛ j + duration j <
@@ -71,6 +81,9 @@ theorem scaleHeight_separated (κ duration : ℕ → ℕ)
   exact (nextScale_spec Λ hΛ (supportBudget κ (j + 2))
     (scaleHeight κ duration Λ hΛ j) (duration j) (j + 1)).1
 
+/--
+@isnad1 id=le.1h4v.s6.59501af849b3 from=translated src=- shape=fe61b3cb vocab=2b212720
+-/
 theorem scaleHeight_budget_pow (κ duration : ℕ → ℕ)
     (Λ : ℕ → ℝ) (hΛ : EnvelopeDiverges Λ) (j : ℕ) :
     supportBudget κ (j + 1) ^ (j + 1) ≤
@@ -81,6 +94,9 @@ theorem scaleHeight_budget_pow (κ duration : ℕ → ℕ)
       exact (nextScale_spec Λ hΛ (supportBudget κ (j + 2))
         (scaleHeight κ duration Λ hΛ j) (duration j) (j + 1)).2.1
 
+/--
+@isnad1 id=strictmo.1h3v.s4.81876a7e4fc3 from=translated src=- shape=d4214246 vocab=d477dc4f
+-/
 theorem scaleHeight_strictMono (κ duration : ℕ → ℕ)
     (Λ : ℕ → ℝ) (hΛ : EnvelopeDiverges Λ) :
     StrictMono (scaleHeight κ duration Λ hΛ) := by

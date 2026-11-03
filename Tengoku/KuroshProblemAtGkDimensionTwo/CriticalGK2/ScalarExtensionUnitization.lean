@@ -25,6 +25,9 @@ noncomputable section
 variable (F K A : Type*) [Field F] [Field K] [Algebra F K]
   [NonUnitalRing A] [Module F A] [IsScalarTower F A A] [SMulCommClass F A A]
 
+/--
+@isnad1 id=eq.0h5v.s12.ac10603df89b from=translated src=- shape=4e273edd vocab=b0c2222e
+-/
 theorem scalarTensorComm_map_mul (x y : A ⊗[F] K) :
     TensorProduct.comm F A K (x * y) =
       TensorProduct.comm F A K x * TensorProduct.comm F A K y := by
@@ -45,10 +48,16 @@ def scalarTensorComm : A ⊗[F] K ≃+* K ⊗[F] A where
   __ := (TensorProduct.comm F A K).toAddEquiv
   map_mul' := scalarTensorComm_map_mul F K A
 
+/--
+@isnad1 id=eq.0h5v.s10.de901554959c from=translated src=- shape=abb6cf61 vocab=8dfd9716
+-/
 @[simp]
 theorem scalarTensorComm_tmul (a : A) (c : K) :
     scalarTensorComm F K A (a ⊗ₜ[F] c) = c ⊗ₜ[F] a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.1a19398dce4c from=translated src=- shape=aa0bd25f vocab=fd47fae9
+-/
 theorem scalarTensorComm_matrix_positivePower (r : ℕ)
     (M : Matrix (Fin r) (Fin r) (A ⊗[F] K)) (e : ℕ) :
     (CriticalGK2.positivePower M e).map (scalarTensorComm F K A) =
@@ -60,7 +69,9 @@ theorem scalarTensorComm_matrix_positivePower (r : ℕ)
       rfl
 
 /-- Matrix nilness transports to the same scalar-extended algebra in the
-canonical left K-module presentation.-/
+canonical left K-module presentation.
+@isnad1 id=ex.2h5v.s10.bd3229371477 from=translated src=- shape=640f7139 vocab=54a2ae34
+-/
 theorem left_scalar_matrix_nil_of_right_scalar_matrix_nil
     (matrixNil : ∀ r : ℕ, 0 < r → ∀ M : Matrix (Fin r) (Fin r) (A ⊗[F] K),
       ∃ e : ℕ, CriticalGK2.positivePower M e = 0) :
@@ -82,7 +93,9 @@ theorem left_scalar_matrix_nil_of_right_scalar_matrix_nil
   exact map_zero (scalarTensorComm F K A)
 
 /-- Actual K-unitization algebraicity, applied to the proved nil input for
-the original actual scalar-extended algebra.-/
+the original actual scalar-extended algebra.
+@isnad1 id=isalgebr.2h4v.s10.d8c4ef1a9739 from=translated src=- shape=55496a2c vocab=d5153dc6
+-/
 theorem scalarExtension_unitization_matrix_algebraic
     (matrixNil : ∀ r : ℕ, 0 < r → ∀ M : Matrix (Fin r) (Fin r) (A ⊗[F] K),
       ∃ e : ℕ, CriticalGK2.positivePower M e = 0) :

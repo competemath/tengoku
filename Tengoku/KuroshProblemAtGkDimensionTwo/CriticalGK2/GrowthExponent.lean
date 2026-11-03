@@ -37,7 +37,9 @@ its defining set is proved nonempty and bounded below.-/
 def GKExponent (γ : ℕ → ℕ) : ℝ := sInf (UpperExponentSet γ)
 
 /-- A quadratic lower bound and a literal C*n^d upper bound give a literal
-upper bound on n^(2-d), with division justified by n>=1.-/
+upper bound on n^(2-d), with division justified by n>=1.
+@isnad1 id=le.3h4v.s7.201f358171b3 from=translated src=- shape=646661b2 vocab=81fe82b2
+-/
 theorem rpow_gap_bound_of_quadratic_lower_upper (γ : ℕ → ℕ) (d C : ℝ)
     (hlower : ∀ n : ℕ, 1 ≤ n → (n : ℝ) ^ (2 : ℕ) ≤ 2 * (γ n : ℝ))
     (hupper : ∀ n : ℕ, 1 ≤ n → (γ n : ℝ) ≤ C * (n : ℝ) ^ d)
@@ -55,7 +57,9 @@ theorem rpow_gap_bound_of_quadratic_lower_upper (γ : ℕ → ℕ) (d C : ℝ)
 
 /-- No literal polynomial upper exponent below two is compatible with
 actual quadratic lower growth. The contradiction uses n^(2-d) at real atTop
-composed with the actual natural-number cast.-/
+composed with the actual natural-number cast.
+@isnad1 id=le.2h2v.s6.0aec1766c14a from=translated src=- shape=b9c5c6d1 vocab=3e5c2ade
+-/
 theorem upperExponent_ge_two_of_quadratic_lower (γ : ℕ → ℕ)
     (hlower : ∀ n : ℕ, 1 ≤ n → (n : ℝ) ^ (2 : ℕ) ≤ 2 * (γ n : ℝ))
     (d : ℝ) (hd : d ∈ UpperExponentSet γ) : 2 ≤ d := by
@@ -75,20 +79,26 @@ theorem upperExponent_ge_two_of_quadratic_lower (γ : ℕ → ℕ)
     (max N 1) (le_max_right N 1)
   linarith
 
-/-- The actual upper-exponent set has two as a proved lower bound.-/
+/-- The actual upper-exponent set has two as a proved lower bound.
+@isnad1 id=bddbelow.1h1v.s6.9a488fd7eaa1 from=translated src=- shape=81c3b9f7 vocab=3b7fbe47
+-/
 theorem upperExponentSet_bddBelow_of_quadratic_lower (γ : ℕ → ℕ)
     (hlower : ∀ n : ℕ, 1 ≤ n → (n : ℝ) ^ (2 : ℕ) ≤ 2 * (γ n : ℝ)) :
     BddBelow (UpperExponentSet γ) :=
   ⟨2, fun d hd => upperExponent_ge_two_of_quadratic_lower γ hlower d hd⟩
 
-/-- Near-quadratic polynomial upper bounds give a literal nonempty set.-/
+/-- Near-quadratic polynomial upper bounds give a literal nonempty set.
+@isnad1 id=nonempty.1h1v.s5.8044bbe6c5d3 from=translated src=- shape=d3ca5608 vocab=30962d3c
+-/
 theorem upperExponentSet_nonempty_of_near_two_upper (γ : ℕ → ℕ)
     (hupper : ∀ ε : ℝ, 0 < ε → 2 + ε ∈ UpperExponentSet γ) :
     (UpperExponentSet γ).Nonempty :=
   ⟨2 + 1, hupper 1 (by norm_num)⟩
 
 /-- The exact growth exponent equals two under the explicit numerical lower
-and all-positive-epsilon upper bounds. All infimum side conditions are proved.-/
+and all-positive-epsilon upper bounds. All infimum side conditions are proved.
+@isnad1 id=eq.2h1v.s6.f321878557d3 from=translated src=- shape=b7ce8118 vocab=d25f6358
+-/
 theorem gkExponent_eq_two_of_quadratic_lower_near_two_upper (γ : ℕ → ℕ)
     (hlower : ∀ n : ℕ, 1 ≤ n → (n : ℝ) ^ (2 : ℕ) ≤ 2 * (γ n : ℝ))
     (hupper : ∀ ε : ℝ, 0 < ε → 2 + ε ∈ UpperExponentSet γ) : GKExponent γ = 2 := by

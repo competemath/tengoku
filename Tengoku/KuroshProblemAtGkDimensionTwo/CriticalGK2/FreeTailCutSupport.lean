@@ -37,19 +37,27 @@ def freeTailTensorSpace (t : X ⊗[F] Y) : Submodule F (X ⊗[F] (Y ⊗[F] Z)) :
   LinearMap.range ((TensorProduct.assoc F X Y Z).toLinearMap.comp
     (TensorProduct.mk F (X ⊗[F] Y) Z t))
 
+/--
+@isnad1 id=mem.1h6v.s9.c51b9e6b6d17 from=translated src=- shape=a0e0c882 vocab=95489c82
+-/
 theorem contractRight_mem_tensorPrefixSupport (S : Submodule F (X ⊗[F] Y))
     (eta : Module.Dual F Y) (u : X ⊗[F] Y) (hu : u ∈ S) :
     contractRight eta u ∈ tensorPrefixSupport S :=
   (le_iSup (fun theta : Module.Dual F Y => S.map (contractRight theta)) eta)
     ⟨u, hu, rfl⟩
 
+/--
+@isnad1 id=mem.1h6v.s9.98a71cd63971 from=translated src=- shape=d80b11d6 vocab=ab92c810
+-/
 theorem extendedPair_mem_tensorSuffixSupport (S : Submodule F (X ⊗[F] Y))
     (phi : Module.Dual F X) (u : X ⊗[F] Y) (hu : u ∈ S) :
     extendedPair phi u ∈ tensorSuffixSupport S :=
   (le_iSup (fun psi : Module.Dual F X => S.map (extendedPair psi)) phi)
     ⟨u, hu, rfl⟩
 
-/-- Actual whole-exterior suffix contraction through an appended factor.-/
+/-- Actual whole-exterior suffix contraction through an appended factor.
+@isnad1 id=eq.0h7v.s11.1c3f50b182c5 from=translated src=- shape=1862aabc vocab=80f30ce1
+-/
 theorem extendedPair_append (phi : Module.Dual F X) (t : X ⊗[F] Y) (z : Z) :
     extendedPair phi (TensorProduct.assoc F X Y Z (t ⊗ₜ[F] z)) =
       extendedPair phi t ⊗ₜ[F] z := by
@@ -59,7 +67,9 @@ theorem extendedPair_append (phi : Module.Dual F X) (t : X ⊗[F] Y) (z : Z) :
   | tmul x y => simp only [TensorProduct.assoc_tmul, extendedPair_tmul, smul_tmul']
 
 /-- No whole-exterior prefix functional adds support after a free tail,
-and a fixed nonzero tail recovers every old prefix functional.-/
+and a fixed nonzero tail recovers every old prefix functional.
+@isnad1 id=eq.1h6v.s8.4661ed990dfe from=translated src=- shape=c71c2063 vocab=1a73fc46
+-/
 theorem freeTailTensorSpace_prefixSupport (t : X ⊗[F] Y) (z0 : Z) (hz0 : z0 ≠ 0) :
     tensorPrefixSupport (freeTailTensorSpace (Z := Z) t) =
       LinearMap.range (leftFlattening t) := by
@@ -81,7 +91,9 @@ theorem freeTailTensorSpace_prefixSupport (t : X ⊗[F] Y) (z0 : Z) (hz0 : z0 �
     exact hc
 
 /-- The entire actual suffix support is the included tensor product of the
-old suffix support with the free final factor.-/
+old suffix support with the free final factor.
+@isnad1 id=eq.0h5v.s8.298694ef7435 from=translated src=- shape=0f74ffc8 vocab=12f62259
+-/
 theorem freeTailTensorSpace_suffixSupport (t : X ⊗[F] Y) :
     tensorSuffixSupport (freeTailTensorSpace (Z := Z) t) =
       scalarExtension (C := Z) (LinearMap.range (rightFlattening t)) := by
@@ -114,7 +126,9 @@ theorem freeTailTensorSpace_suffixSupport (t : X ⊗[F] Y) :
         simpa only [LinearMap.rTensor_tmul, Submodule.subtype_apply] using hc
 
 /-- The actual included tensor image has its actual full tensor dimension.
-Injectivity is proved by tensoring an actual linear left inverse.-/
+Injectivity is proved by tensoring an actual linear left inverse.
+@isnad1 id=eq.0h4v.s9.976d0cf985a2 from=translated src=- shape=11784b31 vocab=bd64856e
+-/
 theorem scalarExtension_finrank {A B : Type*} [AddCommGroup A] [Module F A]
     [AddCommGroup B] [Module F B] [FiniteDimensional F A] [FiniteDimensional F B]
     (S : Submodule F A) :
@@ -136,6 +150,9 @@ theorem scalarExtension_finrank {A B : Type*} [AddCommGroup A] [Module F A]
   rw [LinearMap.finrank_range_of_inj hinj]
   exact Module.finrank_tensorProduct
 
+/--
+@isnad1 id=eq.1h6v.s8.af660074c688 from=translated src=- shape=406351e4 vocab=2a869d50
+-/
 theorem freeTailTensorSpace_prefixSupport_finrank (t : X ⊗[F] Y)
     (z0 : Z) (hz0 : z0 ≠ 0) :
     Module.finrank F (tensorPrefixSupport (freeTailTensorSpace (Z := Z) t)) =
@@ -143,6 +160,9 @@ theorem freeTailTensorSpace_prefixSupport_finrank (t : X ⊗[F] Y)
   rw [freeTailTensorSpace_prefixSupport t z0 hz0]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.fc96449fda14 from=translated src=- shape=64542da5 vocab=5c81365c
+-/
 theorem freeTailTensorSpace_suffixSupport_finrank [FiniteDimensional F X]
     [FiniteDimensional F Y] [FiniteDimensional F Z] (t : X ⊗[F] Y) :
     Module.finrank F (tensorSuffixSupport (freeTailTensorSpace (Z := Z) t)) =

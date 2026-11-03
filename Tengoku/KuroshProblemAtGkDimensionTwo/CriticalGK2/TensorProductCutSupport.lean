@@ -28,11 +28,17 @@ variable {F X Y Z : Type*} [Field F]
   [AddCommGroup Y] [Module F Y]
   [AddCommGroup Z] [Module F Z]
 
+/--
+@isnad1 id=le.1h5v.s8.13476e7011f8 from=translated src=- shape=9fb09987 vocab=827803c2
+-/
 theorem tensorPrefixSupport_mono {S T : Submodule F (X ⊗[F] Y)} (h : S ≤ T) :
     tensorPrefixSupport S ≤ tensorPrefixSupport T :=
   iSup_le fun eta => (Submodule.map_mono h).trans
     (le_iSup (fun theta : Module.Dual F Y => T.map (contractRight theta)) eta)
 
+/--
+@isnad1 id=le.1h5v.s8.8fec6b8ad47f from=translated src=- shape=3d5d43a1 vocab=1f816bfd
+-/
 theorem tensorSuffixSupport_mono {S T : Submodule F (X ⊗[F] Y)} (h : S ≤ T) :
     tensorSuffixSupport S ≤ tensorSuffixSupport T :=
   iSup_le fun phi => (Submodule.map_mono h).trans
@@ -44,6 +50,9 @@ def tensorTailProductSpace (S : Submodule F (X ⊗[F] Y)) (T : Submodule F Z) :
   (LinearMap.range (TensorProduct.map S.subtype T.subtype)).map
     (TensorProduct.assoc F X Y Z).toLinearMap
 
+/--
+@isnad1 id=le.0h6v.s8.2a80193b12c6 from=translated src=- shape=09e701f9 vocab=41567466
+-/
 theorem tensorTailProductSpace_prefixSupport_le (S : Submodule F (X ⊗[F] Y))
     (T : Submodule F Z) :
     tensorPrefixSupport (tensorTailProductSpace S T) ≤ tensorPrefixSupport S := by
@@ -71,6 +80,9 @@ theorem tensorTailProductSpace_prefixSupport_le (S : Submodule F (X ⊗[F] Y))
       rw [he]
       exact contractRight_mem_tensorPrefixSupport S (specializeRight t.val eta) s.val s.property
 
+/--
+@isnad1 id=le.0h6v.s10.b347cf992b41 from=translated src=- shape=33a1f06f vocab=cf937188
+-/
 theorem tensorTailProductSpace_suffixSupport_le (S : Submodule F (X ⊗[F] Y))
     (T : Submodule F Z) :
     tensorSuffixSupport (tensorTailProductSpace S T) ≤
@@ -100,12 +112,18 @@ theorem tensorTailProductSpace_suffixSupport_le (S : Submodule F (X ⊗[F] Y))
       simp only [TensorProduct.map_tmul, Submodule.subtype_apply]
       rfl
 
+/--
+@isnad1 id=le.0h6v.s9.4ae15ba7d636 from=translated src=- shape=26fcff7a vocab=e76b75bc
+-/
 theorem tensorTailProductSpace_prefixSupport_finrank_le [FiniteDimensional F X]
     (S : Submodule F (X ⊗[F] Y)) (T : Submodule F Z) :
     Module.finrank F (tensorPrefixSupport (tensorTailProductSpace S T)) ≤
       Module.finrank F (tensorPrefixSupport S) :=
   Submodule.finrank_mono (tensorTailProductSpace_prefixSupport_le S T)
 
+/--
+@isnad1 id=le.0h6v.s10.d4d941cf9a51 from=translated src=- shape=144e3519 vocab=7268735e
+-/
 theorem tensorTailProductSpace_suffixSupport_finrank_le [FiniteDimensional F Y]
     [FiniteDimensional F Z] (S : Submodule F (X ⊗[F] Y)) (T : Submodule F Z) :
     Module.finrank F (tensorSuffixSupport (tensorTailProductSpace S T)) ≤

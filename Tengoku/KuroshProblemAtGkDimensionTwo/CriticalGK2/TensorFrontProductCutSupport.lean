@@ -34,6 +34,9 @@ variable {F X Y Z : Type*} [Field F]
 
 variable {A : Type*} [AddCommGroup A] [Module F A]
 
+/--
+@isnad1 id=eq.0h7v.s10.3a6c14c327fe from=translated src=- shape=6a3a7b8a vocab=9870b18a
+-/
 theorem contractRight_leftEquiv (e : X ≃ₗ[F] A) (t : X ⊗[F] Y)
     (eta : Module.Dual F Y) :
     contractRight eta (e.rTensor Y t) = e (contractRight eta t) := by
@@ -43,6 +46,9 @@ theorem contractRight_leftEquiv (e : X ≃ₗ[F] A) (t : X ⊗[F] Y)
   | tmul x y =>
       simp only [LinearEquiv.rTensor_tmul, contractRight_tmul, map_smul]
 
+/--
+@isnad1 id=eq.0h7v.s10.2265903d5726 from=translated src=- shape=4eee3f0d vocab=27a15b73
+-/
 theorem extendedPair_leftEquiv (e : X ≃ₗ[F] A) (t : X ⊗[F] Y)
     (phi : Module.Dual F A) :
     extendedPair phi (e.rTensor Y t) = extendedPair (phi.comp e.toLinearMap) t := by
@@ -54,7 +60,9 @@ theorem extendedPair_leftEquiv (e : X ≃ₗ[F] A) (t : X ⊗[F] Y)
         LinearMap.comp_apply, LinearEquiv.coe_coe]
 
 /-- Retained-factor transport identifies the complete prefix support with
-the corresponding subspace image.-/
+the corresponding subspace image.
+@isnad1 id=eq.0h6v.s9.f923eab9f373 from=translated src=- shape=52a49f05 vocab=ed3c14b8
+-/
 theorem tensorPrefixSupport_leftEquiv (e : X ≃ₗ[F] A)
     (S : Submodule F (X ⊗[F] Y)) :
     tensorPrefixSupport (S.map (e.rTensor Y).toLinearMap) =
@@ -76,7 +84,9 @@ theorem tensorPrefixSupport_leftEquiv (e : X ≃ₗ[F] A)
     exact hc
 
 /-- Functionals on the transported discarded factor are pulled back through
-the equivalence and its inverse, so actual suffix support is unchanged.-/
+the equivalence and its inverse, so actual suffix support is unchanged.
+@isnad1 id=eq.0h6v.s8.691f72f50186 from=translated src=- shape=25b62bbc vocab=c8994150
+-/
 theorem tensorSuffixSupport_leftEquiv (e : X ≃ₗ[F] A)
     (S : Submodule F (X ⊗[F] Y)) :
     tensorSuffixSupport (S.map (e.rTensor Y).toLinearMap) = tensorSuffixSupport S := by
@@ -102,11 +112,16 @@ factors after fixing the actual first-factor vector.-/
 def specializeLeft (x : X) (eta : Module.Dual F (X ⊗[F] Y)) : Module.Dual F Y :=
   eta.comp (TensorProduct.mk F X Y x)
 
+/--
+@isnad1 id=eq.0h6v.s8.84805a71cdd1 from=translated src=- shape=bcfaaea0 vocab=671ec083
+-/
 @[simp]
 theorem specializeLeft_apply (x : X) (eta : Module.Dual F (X ⊗[F] Y)) (y : Y) :
     specializeLeft x eta y = eta (x ⊗ₜ[F] y) := rfl
 
-/-- Prefix contraction through a fixed first factor retains that factor.-/
+/-- Prefix contraction through a fixed first factor retains that factor.
+@isnad1 id=eq.0h7v.s11.659a5042e0f5 from=translated src=- shape=feda1426 vocab=669a031a
+-/
 theorem contractRight_prepend (x : X) (t : Y ⊗[F] Z) (eta : Module.Dual F Z) :
     contractRight eta ((TensorProduct.assoc F X Y Z).symm (x ⊗ₜ[F] t)) =
       x ⊗ₜ[F] contractRight eta t := by
@@ -114,7 +129,9 @@ theorem contractRight_prepend (x : X) (t : Y ⊗[F] Z) (eta : Module.Dual F Z) :
   simpa only [leftFlattening_apply] using h
 
 /-- Whole-exterior suffix contraction specializes the whole functional
-only after fixing the first actual tensor factor.-/
+only after fixing the first actual tensor factor.
+@isnad1 id=eq.0h7v.s11.4352aa4c70e4 from=translated src=- shape=32cf8650 vocab=2d4a875a
+-/
 theorem extendedPair_prepend (x : X) (t : Y ⊗[F] Z)
     (eta : Module.Dual F (X ⊗[F] Y)) :
     extendedPair eta ((TensorProduct.assoc F X Y Z).symm (x ⊗ₜ[F] t)) =
@@ -132,7 +149,9 @@ def tensorFrontProductSpace (S : Submodule F X) (T : Submodule F (Y ⊗[F] Z)) :
     (TensorProduct.assoc F X Y Z).symm.toLinearMap
 
 /-- Every actual whole prefix contraction lies in S tensor the old prefix
-support for arbitrary whole-exterior functionals.-/
+support for arbitrary whole-exterior functionals.
+@isnad1 id=le.0h6v.s10.8dbcfbe181ca from=translated src=- shape=03a87d31 vocab=0d022eb9
+-/
 theorem tensorFrontProductSpace_prefixSupport_le (S : Submodule F X)
     (T : Submodule F (Y ⊗[F] Z)) :
     tensorPrefixSupport (tensorFrontProductSpace S T) ≤
@@ -163,7 +182,9 @@ theorem tensorFrontProductSpace_prefixSupport_le (S : Submodule F X)
       rfl
 
 /-- Every arbitrary whole suffix functional specializes to an old second-
-block functional, so suffix support does not grow.-/
+block functional, so suffix support does not grow.
+@isnad1 id=le.0h6v.s8.6431ef03ced5 from=translated src=- shape=2a1bfc48 vocab=f82baa31
+-/
 theorem tensorFrontProductSpace_suffixSupport_le (S : Submodule F X)
     (T : Submodule F (Y ⊗[F] Z)) :
     tensorSuffixSupport (tensorFrontProductSpace S T) ≤ tensorSuffixSupport T := by
@@ -188,6 +209,9 @@ theorem tensorFrontProductSpace_suffixSupport_le (S : Submodule F X)
       rw [extendedPair_prepend]
       exact extendedPair_mem_tensorSuffixSupport T (specializeLeft s.val eta) t.val t.property
 
+/--
+@isnad1 id=le.0h6v.s10.e98670c301d3 from=translated src=- shape=1f085233 vocab=6251b92d
+-/
 theorem tensorFrontProductSpace_prefixSupport_finrank_le [FiniteDimensional F X]
     [FiniteDimensional F Y] (S : Submodule F X) (T : Submodule F (Y ⊗[F] Z)) :
     Module.finrank F (tensorPrefixSupport (tensorFrontProductSpace S T)) ≤
@@ -210,13 +234,18 @@ theorem tensorFrontProductSpace_prefixSupport_finrank_le [FiniteDimensional F X]
     _ ≤ Module.finrank F (S ⊗[F] (tensorPrefixSupport T)) := LinearMap.finrank_range_le f
     _ = Module.finrank F S * Module.finrank F (tensorPrefixSupport T) := Module.finrank_tensorProduct
 
+/--
+@isnad1 id=le.0h6v.s9.a22cc354b584 from=translated src=- shape=6f88f624 vocab=fd105d7f
+-/
 theorem tensorFrontProductSpace_suffixSupport_finrank_le [FiniteDimensional F Z]
     (S : Submodule F X) (T : Submodule F (Y ⊗[F] Z)) :
     Module.finrank F (tensorSuffixSupport (tensorFrontProductSpace S T)) ≤
       Module.finrank F (tensorSuffixSupport T) :=
   Submodule.finrank_mono (tensorFrontProductSpace_suffixSupport_le S T)
 
-/-- Retained-factor transport in the form used by the word-cut bridge.-/
+/-- Retained-factor transport in the form used by the word-cut bridge.
+@isnad1 id=le.0h8v.s11.6ce7012a6342 from=translated src=- shape=c6feba59 vocab=c956e589
+-/
 theorem tensorFrontProductSpace_leftEquiv_prefixSupport_finrank_le
     [FiniteDimensional F X] [FiniteDimensional F Y] (e : X ⊗[F] Y ≃ₗ[F] A)
     (S : Submodule F X) (T : Submodule F (Y ⊗[F] Z)) :
@@ -226,6 +255,9 @@ theorem tensorFrontProductSpace_leftEquiv_prefixSupport_finrank_le
   rw [tensorPrefixSupport_leftEquiv, e.finrank_map_eq]
   exact tensorFrontProductSpace_prefixSupport_finrank_le S T
 
+/--
+@isnad1 id=le.0h8v.s11.c3734f8fba2f from=translated src=- shape=6b2a7814 vocab=073c741a
+-/
 theorem tensorFrontProductSpace_leftEquiv_suffixSupport_finrank_le
     [FiniteDimensional F Z] (e : X ⊗[F] Y ≃ₗ[F] A)
     (S : Submodule F X) (T : Submodule F (Y ⊗[F] Z)) :

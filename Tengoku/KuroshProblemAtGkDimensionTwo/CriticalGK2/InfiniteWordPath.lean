@@ -40,7 +40,9 @@ def UnboundedExtensions (L : Set (List Bool)) (u : List Bool) : Prop :=
   ∀ N : ℕ, ∃ v : List Bool, u <+: v ∧ v ∈ L ∧ N ≤ v.length
 
 /-- Finite binary branching: if both children had a finite obstruction
-threshold, their maximum would obstruct arbitrarily long parent extensions.-/
+threshold, their maximum would obstruct arbitrarily long parent extensions.
+@isnad1 id=ex.1h2v.s5.86d5f9309a14 from=translated src=- shape=51ffac7d vocab=2971f5c0
+-/
 theorem exists_unbounded_child (L : Set (List Bool)) (u : List Bool)
     (hu : UnboundedExtensions L u) :
     ∃ b : Bool, UnboundedExtensions L (u ++ [b]) := by
@@ -67,6 +69,9 @@ def unboundedChildLetter (L : Set (List Bool))
     (u : {u : List Bool // UnboundedExtensions L u}) : Bool :=
   Classical.choose (exists_unbounded_child L u.val u.property)
 
+/--
+@isnad1 id=unbounde.0h2v.s5.ab53d687938e from=translated src=- shape=a97925fc vocab=17046f46
+-/
 theorem unboundedChildLetter_property (L : Set (List Bool))
     (u : {u : List Bool // UnboundedExtensions L u}) :
     UnboundedExtensions L (u.val ++ [unboundedChildLetter L u]) :=
@@ -96,20 +101,31 @@ def streamPrefix (x : ℕ → Bool) (n : ℕ) : List Bool :=
 def streamFactor (x : ℕ → Bool) (s n : ℕ) : List Bool :=
   List.ofFn (fun i : Fin n => x (s + i.val))
 
+/--
+@isnad1 id=eq.0h2v.s3.9e06dbf3573e from=translated src=- shape=9bea7da9 vocab=15365cb3
+-/
 @[simp]
 theorem streamPrefix_length (x : ℕ → Bool) (n : ℕ) :
     (streamPrefix x n).length = n := List.length_ofFn
 
+/--
+@isnad1 id=eq.0h3v.s4.af2d97ae71f6 from=translated src=- shape=3d9ded67 vocab=7c0d5893
+-/
 @[simp]
 theorem streamFactor_length (x : ℕ → Bool) (s n : ℕ) :
     (streamFactor x s n).length = n := List.length_ofFn
 
+/--
+@isnad1 id=eq.0h2v.s5.3c1333cea726 from=translated src=- shape=8bf32ea6 vocab=e756817d
+-/
 theorem streamPrefix_succ (x : ℕ → Bool) (n : ℕ) :
     streamPrefix x (n + 1) = streamPrefix x n ++ [x n] := by
   exact List.ofFn_succ_last
 
 /-- The list obtained by taking actual stream coordinates is exactly the
-list constructed by the proved child recursion.-/
+list constructed by the proved child recursion.
+@isnad1 id=eq.1h2v.s5.26565f06c251 from=translated src=- shape=32d7f044 vocab=a59b39ba
+-/
 theorem streamPrefix_unboundedWordStream (L : Set (List Bool))
     (hroot : UnboundedExtensions L []) (n : ℕ) :
     streamPrefix (unboundedWordStream L hroot) n = (unboundedWordPath L hroot n).val := by
@@ -119,11 +135,17 @@ theorem streamPrefix_unboundedWordStream (L : Set (List Bool))
       rw [streamPrefix_succ, ih]
       rfl
 
+/--
+@isnad1 id=mem.2h2v.s4.28d65bf83cd2 from=translated src=- shape=396ea8e4 vocab=2d555199
+-/
 theorem unboundedExtensions_mem (L : Set (List Bool)) (hL : PrefixClosed L)
     (u : List Bool) (hu : UnboundedExtensions L u) : u ∈ L := by
   obtain ⟨v, huv, hv, _⟩ := hu 0
   exact hL huv hv
 
+/--
+@isnad1 id=unbounde.1h1v.s5.03f0a5886e26 from=translated src=- shape=2bbcd13b vocab=f90947bf
+-/
 theorem empty_unboundedExtensions_of_every_length (L : Set (List Bool))
     (hwords : ∀ n : ℕ, ∃ u : List Bool, u ∈ L ∧ u.length = n) :
     UnboundedExtensions L [] := by
@@ -132,7 +154,9 @@ theorem empty_unboundedExtensions_of_every_length (L : Set (List Bool))
   exact ⟨u, List.nil_prefix, hu, hlen.ge⟩
 
 /-- Every unbounded binary prefix language contains the prefixes of an
-infinite binary word.-/
+infinite binary word.
+@isnad1 id=ex.2h1v.s5.b6c38fcb3a3e from=translated src=- shape=405460a1 vocab=71136ddb
+-/
 theorem exists_stream_prefix_mem (L : Set (List Bool)) (hL : PrefixClosed L)
     (hwords : ∀ n : ℕ, ∃ u : List Bool, u ∈ L ∧ u.length = n) :
     ∃ x : ℕ → Bool, ∀ n : ℕ, streamPrefix x n ∈ L := by
@@ -143,18 +167,25 @@ theorem exists_stream_prefix_mem (L : Set (List Bool)) (hL : PrefixClosed L)
   exact unboundedExtensions_mem L hL _ (unboundedWordPath L hroot n).property
 
 /-- The actual longer prefix splits into the specified initial prefix and
-the actual shifted factor.-/
+the actual shifted factor.
+@isnad1 id=eq.0h3v.s5.b82f919d232f from=translated src=- shape=d9bf7185 vocab=b1973174
+-/
 theorem streamPrefix_add (x : ℕ → Bool) (s n : ℕ) :
     streamPrefix x (s + n) = streamPrefix x s ++ streamFactor x s n := by
   exact List.ofFn_add
 
+/--
+@isnad1 id=isinfix.0h3v.s4.f70e2b08199d from=translated src=- shape=d4c0efac vocab=4155dc9b
+-/
 theorem streamFactor_infix_prefix (x : ℕ → Bool) (s n : ℕ) :
     streamFactor x s n <:+: streamPrefix x (s + n) := by
   rw [streamPrefix_add]
   exact List.infix_append_right
 
 /-- For a factorial actual language, every actual factor of the constructed
-stream belongs to the language.-/
+stream belongs to the language.
+@isnad1 id=ex.2h1v.s5.cc295948e2c7 from=translated src=- shape=c737f30c vocab=0bf87400
+-/
 theorem exists_stream_factors_mem (L : Set (List Bool)) (hL : FactorClosed L)
     (hwords : ∀ n : ℕ, ∃ u : List Bool, u ∈ L ∧ u.length = n) :
     ∃ x : ℕ → Bool, ∀ s n : ℕ, streamFactor x s n ∈ L := by
