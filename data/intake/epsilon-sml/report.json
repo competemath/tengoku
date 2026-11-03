@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "c94c155420e02ecab523da2954b5115884af2ec67acb9237df86f55e317c1e21",
+ "gate2_unjudged": [],
+ "library": "epsilon-sml",
+ "lint_mode": "proposed",
+ "modules": 5,
+ "part": 1,
+ "theorems": 11
+}
