@@ -1,0 +1,69 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Seed.Data.Nat.Basic
+import Tengoku.Azurite.Azurite.UInt64.SubWithBorrow
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace UInt64
+
+/--
+@isnad1 id=eq.0h2v.s6.5e75bb59c91f from=translated src=- shape=599d2c52 vocab=22b71dfd
+-/
+theorem subWithBorrow_zero_eq (a b : UInt64) :
+  (subWithBorrow a b false).1.toNat + b.toNat + 0 =
+    a.toNat + (if (subWithBorrow a b false).2 then 1 else 0) * 2^64 := by
+  unfold subWithBorrow
+  dsimp
+  have ha := UInt64.toNat_lt a
+  have hb := UInt64.toNat_lt b
+  have he1 : (a - b).toNat = (2 ^ 64 - b.toNat + a.toNat) % 2^64 := UInt64.toNat_sub a b
+  have hl1 : decide (a < b) = true ↔ a.toNat < b.toNat := by
+    rw [decide_eq_true_eq, UInt64.lt_iff_toNat_lt]
+  by_cases h : a < b <;> simp [h] at * <;> omega
+
+/--
+@isnad1 id=eq.0h2v.s6.dd26915fe2c0 from=translated src=- shape=e895e410 vocab=9926a035
+-/
+theorem subWithBorrow_one_eq (a b : UInt64) :
+  (subWithBorrow a b true).1.toNat + b.toNat + 1 =
+    a.toNat + (if (subWithBorrow a b true).2 then 1 else 0) * 2^64 := by
+  unfold subWithBorrow
+  dsimp
+  have ha := UInt64.toNat_lt a
+  have hb := UInt64.toNat_lt b
+  have he1 : (a - b).toNat = (2 ^ 64 - b.toNat + a.toNat) % 2^64 := UInt64.toNat_sub a b
+  have he2 : (a - b - 1).toNat = (2 ^ 64 - (1 : UInt64).toNat + (a - b).toNat) % 2^64 :=
+    UInt64.toNat_sub (a - b) 1
+  have h_one : (1 : UInt64).toNat = 1 := rfl
+
+  have hl1 : decide (a < b) = true ↔ a.toNat < b.toNat := by
+    rw [decide_eq_true_eq, UInt64.lt_iff_toNat_lt]
+  have hl2 : decide (a - b < 1) = true ↔ (a - b).toNat < 1 := by
+    rw [decide_eq_true_eq, UInt64.lt_iff_toNat_lt, h_one]
+
+  by_cases h1 : a < b <;> by_cases h2 : a - b < 1 <;>
+    simp [h1, h2, h_one] at * <;> omega
+
+/--
+@isnad1 id=eq.0h3v.s6.6ecdfa52cb67 from=translated src=- shape=95bd4f00 vocab=9926a035
+-/
+theorem subWithBorrow_eq (a b : UInt64) (c : Bool) :
+  (subWithBorrow a b c).1.toNat + b.toNat + (if c then 1 else 0) =
+    a.toNat + (if (subWithBorrow a b c).2 then 1 else 0) * 2^64 := by
+  cases c
+  · have h0 : (if false = true then 1 else 0 : Nat) = 0 := rfl
+    rw [h0]
+    apply subWithBorrow_zero_eq
+  · have h1 : (if true = true then 1 else 0 : Nat) = 1 := rfl
+    rw [h1]
+    apply subWithBorrow_one_eq
+
+end UInt64
