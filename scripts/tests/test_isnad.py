@@ -464,7 +464,8 @@ class Batches(unittest.TestCase):
 
     # a theorem that two modules of one environment declare (same name and type, which Lean accepts) belongs to only one of them in that environment: grothendieck-riemann-roch
     # part 1, 3 Nov 2026, `Chow/ReesDepth.lean` has three theorems the tree's Seed has too, and in a batch it came out with no record
-    SHADOWED, PLAIN, EMPTY = "Tengoku.Lib.Dup", "Tengoku.Lib.Plain", "Tengoku.Lib.Defs"
+    SHADOWED, PARTLY, PLAIN, EMPTY = "Tengoku.Lib.Dup", "Tengoku.Lib.Part", "Tengoku.Lib.Plain", "Tengoku.Lib.Defs"
+    DECLARED = {SHADOWED: {"s1", "s2"}, PARTLY: {"own", "dup"}, PLAIN: {"p1"}, EMPTY: set()}
 
     def shadowing_exe(self):
         calls = []
@@ -473,10 +474,12 @@ class Batches(unittest.TestCase):
             return [a for i, a in enumerate(args) if i and args[i - 1] == "--module"]
 
         def rows(args):
-            mods = listed(args)
+            mods, alone = listed(args), len(listed(args)) == 1
             out = [(self.PLAIN, "p1")] if self.PLAIN in mods else []
-            if self.SHADOWED in mods and len(mods) == 1:  # in a batch the other module of the environment holds the theorem
+            if self.SHADOWED in mods and alone:  # in a batch the other module of the environment holds these theorems
                 out += [(self.SHADOWED, "s1"), (self.SHADOWED, "s2")]
+            if self.PARTLY in mods:
+                out += [(self.PARTLY, "own")] + ([(self.PARTLY, "dup")] if alone else [])
             return out
 
         def fake_exe(args, exe=None, **_):
@@ -489,51 +492,63 @@ class Batches(unittest.TestCase):
 
         return fake_exe, fake_lines, calls
 
-    def shadowed_facts(self, exact):
+    def shadowed_facts(self, exact, declared=None):
         fake_exe, fake_lines, calls = self.shadowing_exe()
-        mods = [self.SHADOWED, self.PLAIN, self.EMPTY]
+        mods = [self.SHADOWED, self.PARTLY, self.PLAIN, self.EMPTY]
+        declared = self.DECLARED if declared is None else declared
         with (
             mock.patch.object(isnad, "run_exe", fake_exe),
             mock.patch.object(isnad, "run_exe_lines", fake_lines),
-            mock.patch.object(isnad, "declares_theorem", lambda m, root=None: m != self.EMPTY),
+            mock.patch.object(isnad, "declared_theorem_names", lambda m, root=None: declared[m]),
         ):
             recs, ranges = isnad.facts(mods, [], None, 100, exact)
         return recs, ranges, calls
 
-    def test_a_module_with_theorems_and_no_record_in_the_batch_is_asked_again_alone(self):
+    def test_a_module_with_a_declared_theorem_and_no_record_in_the_batch_is_asked_again_alone(self):
         recs, ranges, calls = self.shadowed_facts(exact=True)
-        self.assertEqual(
-            sorted((r.module, r.name) for r in recs), sorted([(self.PLAIN, "p1"), (self.SHADOWED, "s1"), (self.SHADOWED, "s2")])
-        )
-        self.assertEqual(len(ranges), 3)
-        alone = [(k, m) for k, m in calls if len(m) == 1]
-        self.assertEqual(alone, [("recs", [self.SHADOWED]), ("ranges", [self.SHADOWED])], "one more process, for that module only")
+        got = sorted((r.module, r.name) for r in recs)
+        self.assertIn((self.SHADOWED, "s1"), got)
+        self.assertIn((self.SHADOWED, "s2"), got)
+        self.assertEqual(sum(1 for ln in ranges if f"\t{self.SHADOWED}\t" in ln), 2)
+        self.assertIn(("recs", [self.SHADOWED]), calls)
+        self.assertIn(("ranges", [self.SHADOWED]), calls)
 
-    def test_a_module_that_declares_no_theorem_is_not_asked_again(self):
+    def test_a_module_with_only_some_of_its_theorems_recorded_is_asked_again_and_gets_each_once(self):
+        recs, ranges, calls = self.shadowed_facts(exact=True)
+        part = sorted(r.name for r in recs if r.module == self.PARTLY)
+        self.assertEqual(part, ["dup", "own"], "the retry replaces the batch's records of the module, it does not add to them")
+        self.assertEqual(sum(1 for ln in ranges if f"\t{self.PARTLY}\t" in ln), 2)
+        plan, skipped = isnad.plan_tags(recs, ranges)
+        self.assertEqual(skipped, [])
+        self.assertEqual(sorted(it.name for it in plan[self.PARTLY]), ["dup", "own"])
+
+    def test_a_module_whose_declared_theorems_all_have_records_is_not_asked_again(self):
         _, _, calls = self.shadowed_facts(exact=True)
-        self.assertFalse(any(self.EMPTY in m and len(m) == 1 for _, m in calls))
-        self.assertFalse(any(self.PLAIN in m and len(m) == 1 for _, m in calls), "a module with records is not asked again")
+        alone = [m[0] for _, m in calls if len(m) == 1]
+        self.assertNotIn(self.PLAIN, alone)
+        self.assertNotIn(self.EMPTY, alone, "and a module that declares no theorem neither")
 
     def test_without_exact_the_batch_is_all_there_is(self):
         recs, _, calls = self.shadowed_facts(exact=False)
-        self.assertEqual([(r.module, r.name) for r in recs], [(self.PLAIN, "p1")])
+        self.assertEqual(sorted((r.module, r.name) for r in recs), sorted([(self.PLAIN, "p1"), (self.PARTLY, "own")]))
         self.assertEqual(len(calls), 2)
 
-    def test_declares_theorem_reads_the_source_for_a_theorem_or_lemma_command(self):
+    def test_declared_theorem_names_reads_the_commands_of_the_source(self):
         import tempfile
 
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
             (root / "Tengoku" / "Lib").mkdir(parents=True)
             cases = {
-                "A": "import X\n/-- doc -/\ntheorem foo : True := trivial\n",
-                "B": "@[simp] private lemma bar : True := trivial\n",
-                "C": "def f := 1\n-- a theorem in a comment\n/- theorem baz -/\n",
+                "A": "import X\n/-- doc -/\ntheorem Foo.foo : True := trivial\nlemma bar (n : Nat) : True := trivial\n",
+                "B": "@[simp] public theorem pub : True := trivial\nprotected noncomputable lemma nc : True := trivial\n",
+                "C": "def f := 1\n-- a theorem in a comment\n/- theorem baz -/\nprivate lemma hidden : True := trivial\n",
+                "D": "theorem eq_1 : True := trivial\ntheorem _aux : True := trivial\ntheorem «odd.name» : True := trivial\n",
             }
             for name, text in cases.items():
                 (root / "Tengoku" / "Lib" / f"{name}.lean").write_text(text, encoding="utf-8")
-            got = {n: isnad.declares_theorem(f"Tengoku.Lib.{n}", root) for n in (*cases, "Missing")}
-        self.assertEqual(got, {"A": True, "B": True, "C": False, "Missing": False})
+            got = {n: isnad.declared_theorem_names(f"Tengoku.Lib.{n}", root) for n in (*cases, "Missing")}
+        self.assertEqual(got, {"A": {"foo", "bar"}, "B": {"pub", "nc"}, "C": set(), "D": {"name"}, "Missing": set()})
 
     def test_both_commands_take_a_batch_option_with_the_default(self):
         ap = isnad.build_parser()
