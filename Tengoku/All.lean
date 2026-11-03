@@ -13,6 +13,7 @@ import Tengoku.Zflean
 import Tengoku.Degiorgi
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Expdb
+import Tengoku.DerivedAlgGeoLean
 import Tengoku.FltRegular
 import Tengoku.GibbsMeasure
 import Tengoku.Leanforcontrol

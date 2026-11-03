@@ -1,0 +1,221 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.AlgebraicGeometry.Numerical.GrothendieckGroup.Discriminant
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.LinearAlgebra.Lattice.Mukai.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# A polarisation, the Mumford slope, and the two `H`-discriminants
+
+The numerical layer has an intersection ring, a Chern character and a rank, but
+no **polarisation**: nothing yet picks a class `H` in codimension one against
+which degrees are taken. This file adds one, and the three quantities that need
+it.
+
+## Definitions only
+
+Every statement here is a definition, a grading lemma, or an evaluation. **No
+inequality is proved and none is assumed** — not Bogomolov–Gieseker, not Hodge
+index, not `0 ≤ discrH`. Those are the next slice's, and `discrH`'s docstring
+says so where a reader will look.
+
+## The two discriminants must not be conflated
+
+There are two different things called "the `H`-discriminant" and they are not
+equal:
+
+```
+discDegH E = ∫ Δ(E) · H^(n-2)          -- what Bogomolov–Gieseker is about in dimension n
+discrH   E = (∫ch₁(E)·H)² - 2(∫H²)·rk(E)·∫ch₂(E)   -- the surface tilt discriminant
+```
+
+`discrH` **weights the rank slot by `∫H²`**, because that is what the charge
+formula of `Walls/Numerical/Basic.lean` requires of a class transported to the
+`(s, t)` plane. The two agree only when `∫H² = 1`. Conflating them is the
+mistake this section exists to prevent, and it is why `discrH` is defined only
+at `n = 2`, under `Surface`, rather than in general.
+
+## `ℕ`-subtraction in the exponents
+
+`degH` twists by `H^(n-1)` and `discDegH` by `H^(n-2)`, both written with
+`ℕ`-subtraction. At `n = 0` and `n < 2` respectively the exponent truncates to
+`0` and the definition is junk. That is harmless and is the convention the rest
+of the layer already lives with; the grading lemmas that need the exponent to
+mean what it says carry `2 ≤ n` as an explicit hypothesis.
+
+At `n = 2` the `discDegH` twist is `H^0 = 1`, which is why the surface
+statements downstream carry no polarisation in their conclusions —
+`Surface.discDegH_eq` records exactly that.
+
+## Explicit data, never an instance
+
+`Polarization` hangs off `NumericalRingData`, **not** off
+`NumericalVarietyData`: a polarisation is a fact about the intersection ring and
+says nothing about the Grothendieck group, and keeping it there lets one `H`
+serve several presentations on the same carrier. It is a `structure`, it is
+passed explicitly, and it is never selected by instance search — the idiom
+`NumericalRingData` and `NumericalVarietyData` already follow.
+
+`degree_pow_pos` is the only positivity assumed anywhere in this file. It is a
+field, supplied by whoever builds the polarisation.
+
+## Main results
+
+* `Polarization` and `Polarization.pow_mem`.
+* `degH`, `degH_add`, `degHHom` — the `H`-degree, additive in the class.
+* `slopeH` — the Mumford slope, junk at rank zero.
+* `discDegH`, `discDegH_mul_mem` and `Surface.discDegH_eq`.
+* `Surface.discrH` — the tilt discriminant, and **not** `∫Δ(E)`.
+-/
+
+universe u v
+
+namespace AlgebraicGeometry.Numerical
+
+variable {n : ℕ} {A : Type u} {N : Type v}
+variable [CommRing A] [Algebra ℚ A] [AddCommGroup N]
+
+/-! ### The polarisation -/
+
+/-- **A polarisation of a numerical intersection ring**: a codimension-one class
+whose top self-intersection is positive.
+
+`degree_pow_pos` is supplied, not proved. It stands for `∫_X Hⁿ > 0`, which for
+an actual ample class follows from Nakai–Moishezon; nothing here relates this
+structure to Mathlib's `IsAmple`, and nothing here needs to.-/
+structure Polarization (R : NumericalRingData n A) where
+  /-- The polarising class `H`.-/
+  cls : A
+  /-- `H` lives in codimension one.-/
+  cls_mem : cls ∈ R.piece 1
+  /-- `∫_X Hⁿ > 0`. Supplied by the caller.-/
+  degree_pow_pos : 0 < R.degree (cls ^ n)
+
+namespace Polarization
+
+variable {R : NumericalRingData n A}
+
+/-- `Hⁱ` lives in codimension `i`.
+@isnad1 id=mem.0h5v.s7.6877abdab20e from=translated src=- shape=8753247d vocab=64f64924
+-/
+theorem pow_mem (P : Polarization R) (i : ℕ) : P.cls ^ i ∈ R.piece i := by
+  induction i with
+  | zero => simpa using R.one_mem_piece_zero
+  | succ i ih => simpa [pow_succ] using R.mul_mem_piece ih P.cls_mem
+
+end Polarization
+
+/-! ### The `H`-degree and the Mumford slope -/
+
+variable (V : NumericalVarietyData n A N) (P : Polarization V.ring)
+
+/-- **The `H`-degree** `deg_H(E) = ∫_X ch₁(E) · H^(n-1)`.
+
+The exponent is `ℕ`-subtraction, so at `n = 0` it truncates to `0` and the
+definition is junk — the same convention the rest of the numerical layer uses.-/
+noncomputable def degH (E : N) : ℚ := V.ring.degree (V.chComp E 1 * P.cls ^ (n - 1))
+
+/-- The `H`-degree is additive, because `ch₁` is.
+@isnad1 id=eq.0h7v.s6.21000cb25d48 from=translated src=- shape=4f7f0d0b vocab=e34281bd
+-/
+theorem degH_add (E F : N) : degH V P (E + F) = degH V P E + degH V P F := by
+  simp only [degH, V.chComp_add, add_mul, map_add]
+
+/-- The `H`-degree, bundled as an additive homomorphism.-/
+noncomputable def degHHom : N →+ ℚ := AddMonoidHom.mk' (degH V P) (degH_add V P)
+
+/--
+@isnad1 id=eq.0h6v.s6.b1c9b03919d1 from=translated src=- shape=4164e938 vocab=f09db3bb
+-/
+@[simp]
+theorem degHHom_apply (E : N) : degHHom V P E = degH V P E := rfl
+
+/-- **The Mumford slope** `μ_H(E) = deg_H(E) / rk(E)`.
+
+Junk at rank zero, exactly as `SlopeData.slope` in
+`CategoryTheory/Abelian/Stability/Slope.lean` is, so the two agree where they
+meet.-/
+noncomputable def slopeH (E : N) : ℚ := degH V P E / (V.rank E : ℚ)
+
+/--
+@isnad1 id=eq.0h6v.s7.a45b3bd88086 from=translated src=- shape=e7d59591 vocab=dde1d42f
+-/
+theorem slopeH_eq (E : N) : slopeH V P E = degH V P E / (V.rank E : ℚ) := rfl
+
+/-! ### The two discriminants -/
+
+/-- **The `H`-twisted discriminant degree** `∫_X Δ(E) · H^(n-2)`.
+
+This is the quantity the Bogomolov–Gieseker inequality is about in dimension
+`n`. It is **not** `Surface.discrH`; see the module docstring.-/
+noncomputable def discDegH (E : N) : ℚ :=
+  V.ring.degree (V.discriminant E * P.cls ^ (n - 2))
+
+/-- The integrand of `discDegH` sits in the top piece, which is what makes
+`discDegH` the integral of a top-dimensional class rather than a truncation.
+`2 ≤ n` is where the `ℕ`-subtraction in the exponent stops being junk.
+@isnad1 id=mem.1h6v.s7.9aa918f0196f from=translated src=- shape=22bed4c9 vocab=f969617f
+-/
+theorem discDegH_mul_mem (hn : 2 ≤ n) (E : N) :
+    V.discriminant E * P.cls ^ (n - 2) ∈ V.ring.piece n := by
+  have h := V.ring.mul_mem_piece (V.discriminant_mem_piece_two E) (P.pow_mem (n - 2))
+  rwa [Nat.add_sub_cancel' hn] at h
+
+namespace Surface
+
+variable (V : NumericalVarietyData 2 A N) (P : Polarization V.ring)
+
+/-- At `n = 2` the twist is `H⁰ = 1`, so the polarisation drops out of
+`discDegH` entirely. This is why the surface statements downstream carry no
+polarisation in their conclusions.
+@isnad1 id=eq.0h5v.s7.b03c1078d4bc from=translated src=- shape=eab6a446 vocab=b61747e3
+-/
+theorem discDegH_eq (E : N) : discDegH V P E = V.ring.degree (V.discriminant E) := by
+  simp [discDegH]
+
+/-- **The surface tilt discriminant**
+`discrH(E) = (∫ch₁(E)·H)² − 2·(∫H²)·rk(E)·∫ch₂(E)`.
+
+**This is not `discDegH`, and it is not `∫Δ(E)`.** It weights the rank slot by
+`∫H²`, because that is what the twisted-charge formula of
+`Walls/Numerical/Basic.lean` requires of a class transported to the `(s, t)`
+plane. The two agree only when `∫H² = 1`.
+
+`0 ≤ discrH` is **not** proved here. It needs Bogomolov–Gieseker and the Hodge
+index inequality, both of which are supplied data in the next slice.-/
+noncomputable def discrH (E : N) : ℚ :=
+  degH V P E ^ 2
+    - 2 * V.ring.degree (P.cls ^ 2) * (V.rank E : ℚ) * V.ring.degree (V.chComp E 2)
+
+/--
+@isnad1 id=eq.0h5v.s8.a05ebfaf69ec from=translated src=- shape=e6f145cd vocab=b0ec71ff
+-/
+theorem discrH_eq (E : N) :
+    discrH V P E = degH V P E ^ 2
+      - 2 * V.ring.degree (P.cls ^ 2) * (V.rank E : ℚ) * V.ring.degree (V.chComp E 2) := rfl
+
+/-- **The tilt discriminant is the Mukai self-pairing**, at coefficient ring
+`ℚ` with the multiplication of `ℚ` as the bilinear form.
+
+The rank slot carries `∫H²`, exactly as it does in the `(s,t)` wall plane. That
+weighting is why `discrH` is the quantity `Wall.NumClass.discr` computes on a
+transported class and `∫Δ(E)` is not; see `WallTransport.lean`, which records
+the mistake of reading it the other way.
+@isnad1 id=eq.0h5v.s8.f2bcfc21716d from=translated src=- shape=c98a0384 vocab=4a13418c
+-/
+theorem discrH_eq_selfPairing (E : N) :
+    discrH V P E
+      = Mukai.selfPairing (LinearMap.mul ℚ ℚ)
+          (V.ring.degree (P.cls ^ 2) * (V.rank E : ℚ), degH V P E,
+            V.ring.degree (V.chComp E 2)) := by
+  rw [Mukai.selfPairing_mk, discrH_eq]
+  show _ = degH V P E * degH V P E
+    - 2 * (V.ring.degree (P.cls ^ 2) * (V.rank E : ℚ) * V.ring.degree (V.chComp E 2))
+  ring
+
+end Surface
+
+end AlgebraicGeometry.Numerical
