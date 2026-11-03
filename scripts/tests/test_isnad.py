@@ -550,6 +550,27 @@ class Batches(unittest.TestCase):
             got = {n: isnad.declared_theorem_names(f"Tengoku.Lib.{n}", root) for n in (*cases, "Missing")}
         self.assertEqual(got, {"A": {"foo", "bar"}, "B": {"pub", "nc"}, "C": set(), "D": {"name"}, "Missing": set()})
 
+    def test_a_module_or_theorem_name_that_is_not_a_lean_name_is_refused_before_any_process_runs(self):
+        for bad in ("--import", "-x", "A B", "A;rm", "$(x)", "A\nB", "", ".A"):
+            for modules, names in (([bad], []), (["Tengoku.Lib.M"], [bad])):
+                fake = mock.Mock()
+                with mock.patch.object(isnad, "run_exe", fake), mock.patch.object(isnad, "run_exe_lines", fake):
+                    with self.assertRaises(SystemExit, msg=repr(bad)):
+                        isnad.facts(modules, names, None, 25, True)
+                fake.assert_not_called()
+
+    def test_the_names_of_the_tree_pass_the_check(self):
+        for ok in (
+            "Tengoku.Lib.Foo",
+            "Tengoku.Lib.«A-B».C",
+            "Tengoku.Azurite.Azurite.UInt64.Equiv.Basic",
+            "Nat.add_comm",
+            "Foo.bar'",
+            "Foo._private.x",
+            "_root_.foo",
+        ):
+            isnad.check_argument(ok)
+
     def test_both_commands_take_a_batch_option_with_the_default(self):
         ap = isnad.build_parser()
         for cmd in ("tag", "check-tags"):

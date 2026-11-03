@@ -219,6 +219,16 @@ def run_exe(args: list[str], exe: str | None = None, cwd: Path = ROOT, extra_pat
 BATCH = 25  # modules per `tengoku-isnad` process (see facts)
 
 
+ARGUMENT = re.compile(r"[A-Za-z_«][\w.«»'!?-]*")
+
+
+def check_argument(arg: str) -> None:
+    """A module or theorem name goes to `tengoku-isnad` as a command-line argument: it is a Lean name (it never starts with a dash, so it cannot be taken for an option, and
+    holds no space or shell character), or the run stops."""
+    if ARGUMENT.fullmatch(arg) is None:
+        sys.exit(f"isnad: {arg!r} is not a Lean module or theorem name: not passed to tengoku-isnad")
+
+
 def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BATCH, exact: bool = False) -> tuple[list[Record], list[str]]:
     """The records and the range lines of the modules, from one `tengoku-isnad` process per `batch` modules (all of them in one process when batch < 1). One
     process over a whole 400-module tag part held the import closure and the analysis of every module, and the hosted runner was shut down for memory (exit 143,
@@ -227,6 +237,8 @@ def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BA
     directory `A/B/` (derived-alg-geo-lean part 2, 3 Nov 2026: `CentralCharge/Exponential.lean` beside four modules in `Exponential/`) makes the batch that lists `A.B`
     report the theorems of `A.B.C` as well as the batch that lists `A.B.C`: each of them came twice, was skipped as "the same name for two theorems of the module", and the
     module came out untagged and refused. With `exact`, a batch keeps only the theorems of the modules it lists: every theorem comes from one batch, the one that lists its module."""
+    for arg in [*modules, *names]:
+        check_argument(arg)
     size = batch if batch > 0 else max(len(modules), 1)
     recs: list[Record] = []
     ranges: list[str] = []
