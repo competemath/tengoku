@@ -62,6 +62,7 @@ import Tengoku.LanaEllipticCurves
 import Tengoku.Apap
 import Tengoku.DgLean
 import Tengoku.Leancert
+import Tengoku.QuotientSubmoduleEquidistribution
 import Tengoku.ChandraFurstLipton
 import Tengoku.LanaIut
 import Tengoku.LerayHopf
