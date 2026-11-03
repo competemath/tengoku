@@ -58,39 +58,60 @@ namespace IsThick
 variable {P : ObjectProperty C} (hP : IsThick P)
 include hP
 
-/-- A thick property is closed under isomorphisms.-/
+/-- A thick property is closed under isomorphisms.
+@isnad1 id=var.1h6v.s6.90042db30079 from=translated src=- shape=e0e11a90 vocab=167cb802
+-/
 theorem of_iso {X Y : C} (e : X ≅ Y) (hY : P Y) : P X :=
   hP.retract ⟨e.hom, e.inv, e.hom_inv_id⟩ hY
 
+/--
+@isnad1 id=isclosed.1h2v.s6.a0dfc40a0865 from=translated src=- shape=84fedaf3 vocab=8c10cf22
+-/
 theorem isClosedUnderIsomorphisms : P.IsClosedUnderIsomorphisms :=
   ⟨fun e hX => hP.of_iso e.symm hX⟩
 
-/-- A thick property contains every zero object.-/
+/-- A thick property contains every zero object.
+@isnad1 id=var.2h3v.s6.ae7951b15bfe from=translated src=- shape=4460a8e2 vocab=6084de1b
+-/
 theorem of_isZero {X : C} (hX : IsZero X) : P X :=
   hP.of_iso hX.isoZero hP.zero
 
+/--
+@isnad1 id=iff.1h4v.s6.aff34055203e from=translated src=- shape=dc373426 vocab=b8d14fc4
+-/
 theorem shift_iff (X : C) (n : ℤ) : P (X⟦n⟧) ↔ P X :=
   ⟨fun h => hP.of_iso ((shiftEquiv C n).unitIso.app X) (hP.shift _ (-n) h), hP.shift X n⟩
 
-/-- Two-out-of-three: cones.-/
+/-- Two-out-of-three: cones.
+@isnad1 id=var.2h5v.s6.11b62c0d1a68 from=translated src=- shape=950079d2 vocab=886b5c2c
+-/
 theorem ext₃ (T : Triangle C) (hT : T ∈ distTriang C) (h₁ : P T.obj₁) (h₂ : P T.obj₂) :
     P T.obj₃ :=
   hP.ext₂ T.rotate (rot_of_distTriang T hT) h₂ (hP.shift _ 1 h₁)
 
-/-- Two-out-of-three: cocones.-/
+/-- Two-out-of-three: cocones.
+@isnad1 id=var.2h5v.s6.0289df667b6b from=translated src=- shape=950079d2 vocab=886b5c2c
+-/
 theorem ext₁ (T : Triangle C) (hT : T ∈ distTriang C) (h₂ : P T.obj₂) (h₃ : P T.obj₃) :
     P T.obj₁ :=
   hP.ext₂ T.invRotate (inv_rot_of_distTriang T hT) (hP.shift _ (-1) h₃) h₂
 
-/-- A thick property is closed under binary biproducts.-/
+/-- A thick property is closed under binary biproducts.
+@isnad1 id=var.1h6v.s6.e7b38b08b7f8 from=translated src=- shape=ade8a7fd vocab=fd90c692
+-/
 theorem biprod {X Y : C} (hX : P X) (hY : P Y) : P (X ⊞ Y) :=
   hP.ext₂ _ (binaryBiproductTriangle_distinguished X Y) hX hY
 
+/--
+@isnad1 id=iff.1h4v.s6.385725250ad9 from=translated src=- shape=0a89c28c vocab=fd90c692
+-/
 theorem biprod_iff (X Y : C) : P (X ⊞ Y) ↔ P X ∧ P Y :=
   ⟨fun h => ⟨hP.retract ⟨biprod.inl, biprod.fst, biprod.inl_fst⟩ h,
     hP.retract ⟨biprod.inr, biprod.snd, biprod.inr_snd⟩ h⟩, fun h => hP.biprod h.1 h.2⟩
 
-/-- A thick property is a triangulated subcategory.-/
+/-- A thick property is a triangulated subcategory.
+@isnad1 id=istriang.1h2v.s6.e32f397f62af from=translated src=- shape=84fedaf3 vocab=940ed7ee
+-/
 theorem isTriangulated : P.IsTriangulated :=
   have := hP.isClosedUnderIsomorphisms
   { toContainsZero := ⟨⟨0, isZero_zero C, hP.zero⟩⟩
@@ -101,6 +122,9 @@ omit hP in
 /-- The strictly full triangulated subcategory defined by a thick property.-/
 def subcategory (_ : IsThick P) : ObjectProperty C := P
 
+/--
+@isnad1 id=eq.1h2v.s6.6dd8cd03ff88 from=translated src=- shape=ac03f1e1 vocab=29871ba3
+-/
 @[simp]
 theorem subcategory_P : hP.subcategory = P := rfl
 
@@ -123,19 +147,25 @@ inductive ThickClosure (S : ObjectProperty C) : C → Prop
 
 variable (S : ObjectProperty C)
 
-/-- The thick closure of `S` is thick.-/
+/-- The thick closure of `S` is thick.
+@isnad1 id=isthick.0h2v.s6.76926d966e5d from=translated src=- shape=09f62fc8 vocab=aa5c0e29
+-/
 theorem isThick_thickClosure : IsThick (ThickClosure S) where
   zero := .zero
   shift _ n h := .shift n h
   ext₂ T hT h₁ h₃ := .ext₂ T hT h₁ h₃
   retract h hY := .retract h hY
 
-/-- `S` is contained in its thick closure.-/
+/-- `S` is contained in its thick closure.
+@isnad1 id=le.0h2v.s6.7026f48ddddd from=translated src=- shape=0009a1ec vocab=2c9257f9
+-/
 theorem le_thickClosure : S ≤ ThickClosure S := fun _ h => .of_mem h
 
 variable {S}
 
-/-- Minimality of the thick closure: it is contained in every thick property containing `S`.-/
+/-- Minimality of the thick closure: it is contained in every thick property containing `S`.
+@isnad1 id=le.2h3v.s6.5456d01e6759 from=translated src=- shape=1b63646d vocab=b6b77a58
+-/
 theorem thickClosure_le {P : ObjectProperty C} (hP : IsThick P) (h : S ≤ P) :
     ThickClosure S ≤ P := by
   intro X hX
@@ -146,10 +176,16 @@ theorem thickClosure_le {P : ObjectProperty C} (hP : IsThick P) (h : S ≤ P) :
   | ext₂ T hT _ _ ih₁ ih₃ => exact hP.ext₂ T hT ih₁ ih₃
   | retract e _ ih => exact hP.retract e ih
 
+/--
+@isnad1 id=le.1h3v.s6.da68146b2293 from=translated src=- shape=7fc5a661 vocab=2c9257f9
+-/
 theorem thickClosure_mono {S S' : ObjectProperty C} (h : S ≤ S') :
     ThickClosure S ≤ ThickClosure S' :=
   thickClosure_le (isThick_thickClosure S') (h.trans (le_thickClosure S'))
 
+/--
+@isnad1 id=iff.1h3v.s6.221f4e461adb from=translated src=- shape=9b257479 vocab=b6b77a58
+-/
 theorem thickClosure_le_iff {P : ObjectProperty C} (hP : IsThick P) :
     ThickClosure S ≤ P ↔ S ≤ P :=
   ⟨fun h => (le_thickClosure S).trans h, thickClosure_le hP⟩
@@ -161,6 +197,9 @@ thick subcategory generated by `S`.-/
 def thickClosure : ObjectProperty C :=
   (isThick_thickClosure S).subcategory
 
+/--
+@isnad1 id=eq.0h2v.s6.ec2d66a9ae0a from=translated src=- shape=cd5e441e vocab=291c0556
+-/
 @[simp]
 theorem thickClosure_P : thickClosure S = ThickClosure S := rfl
 
@@ -168,7 +207,9 @@ section compact
 
 variable (C) in
 /-- In a pretriangulated category with coproducts, the compact objects form a thick property
-(`DG.compactSubcategory` together with `DG.IsCompact.of_retract`).-/
+(`DG.compactSubcategory` together with `DG.IsCompact.of_retract`).
+@isnad1 id=isthick.0h1v.s5.a9e39bffb1a5 from=translated src=- shape=6c776935 vocab=f58c504f
+-/
 theorem isThick_isCompact [HasCoproducts.{w} C] : IsThick (IsCompact.{w} (C := C)) where
   zero := IsCompact.of_isZero (isZero_zero C)
   shift _ n h := h.shift n
@@ -177,7 +218,9 @@ theorem isThick_isCompact [HasCoproducts.{w} C] : IsThick (IsCompact.{w} (C := C
 
 variable {S}
 
-/-- The thick closure of a property consisting of compact objects consists of compact objects.-/
+/-- The thick closure of a property consisting of compact objects consists of compact objects.
+@isnad1 id=le.1h2v.s6.a2a409997875 from=translated src=- shape=828cd2da vocab=bc698523
+-/
 theorem thickClosure_le_isCompact [HasCoproducts.{w} C] (h : S ≤ IsCompact.{w}) :
     ThickClosure S ≤ IsCompact.{w} :=
   thickClosure_le (isThick_isCompact C) h

@@ -59,9 +59,21 @@ def unmk : InternalShift k M ≃+ M := AddEquiv.refl M
 
 variable {k}
 
+/--
+@isnad1 id=eq.0h3v.s7.59aca56bd8d8 from=translated src=- shape=0a56ca7f vocab=5d16c7ae
+-/
 @[simp] theorem unmk_mk (m : M) : unmk k (mk k m) = m := rfl
+/--
+@isnad1 id=eq.0h3v.s7.3af715401829 from=translated src=- shape=ece0b734 vocab=5d16c7ae
+-/
 @[simp] theorem mk_unmk (m : InternalShift k M) : mk k (unmk k m) = m := rfl
+/--
+@isnad1 id=eq.0h2v.s6.b1bf41d7b7f0 from=translated src=- shape=7a6c3231 vocab=8fb4ca58
+-/
 @[simp] theorem mk_symm : (mk k (M := M)).symm = unmk k := rfl
+/--
+@isnad1 id=eq.0h2v.s6.e0c4f63aed19 from=translated src=- shape=7617732b vocab=8fb4ca58
+-/
 @[simp] theorem unmk_symm : (unmk k (M := M)).symm = mk k := rfl
 
 end AddCommGroup
@@ -72,7 +84,13 @@ variable {k} [AddCommGroup M] [DGAddCommGroup M]
 
 instance : DGAddCommGroup (InternalShift k M) := inferInstanceAs (DGAddCommGroup M)
 
+/--
+@isnad1 id=eq.0h3v.s8.b0145cc37836 from=translated src=- shape=c5625c42 vocab=51f58481
+-/
 @[simp] theorem d_mk (m : M) : d (mk k m) = mk k (d m) := rfl
+/--
+@isnad1 id=eq.0h3v.s8.4ebb1989d64c from=translated src=- shape=dd4b3a4a vocab=e7475b29
+-/
 @[simp] theorem unmk_d (m : InternalShift k M) : unmk k (d m) = d (unmk k m) := rfl
 
 variable [InternalGrading M]
@@ -92,6 +110,9 @@ instance instInternalGrading : InternalGrading (InternalShift k M) where
     exact decompose_wgrading_mem_grading (M := M) hm _
   d_mem_wgrading' hm := d_mem_wgrading (M := M) hm
 
+/--
+@isnad1 id=iff.0h4v.s7.95d1a92bdae1 from=translated src=- shape=9d706ab9 vocab=93cfed97
+-/
 theorem mem_wgrading_iff' {j : ℤ} {m : InternalShift k M} :
     m ∈ wgrading j ↔ unmk k m ∈ wgrading (j + k) := Iff.rfl
 
@@ -133,7 +154,13 @@ def zeroEquiv : InternalShift 0 M ≃ᵈᵍ[A] M where
   map_mem' hm := hm
   map_d' _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.164bf3f46155 from=translated src=- shape=ded7608b vocab=07705052
+-/
 @[simp] theorem zeroEquiv_apply (m : InternalShift 0 M) : zeroEquiv A m = unmk 0 m := rfl
+/--
+@isnad1 id=eq.0h3v.s8.9b8369772a69 from=translated src=- shape=d45d6635 vocab=79f09c70
+-/
 @[simp] theorem zeroEquiv_symm_apply (m : M) : (zeroEquiv A).symm m = mk 0 m := rfl
 
 variable (A) in
@@ -148,14 +175,23 @@ def addEquiv (k l : ℤ) : InternalShift k (InternalShift l M) ≃ᵈᵍ[A] Inte
   map_mem' hm := hm
   map_d' _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.ff095df96faa from=translated src=- shape=09c49b23 vocab=0189cbf2
+-/
 @[simp] theorem addEquiv_apply (k l : ℤ) (x : InternalShift k (InternalShift l M)) :
     addEquiv A k l x = mk (k + l) (unmk l (unmk k x)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.ed42150f5e41 from=translated src=- shape=2b1b52cd vocab=56b74663
+-/
 @[simp] theorem addEquiv_symm_apply (k l : ℤ) (y : InternalShift (k + l) M) :
     (addEquiv A k l).symm y = mk k (mk l (unmk (k + l) y)) := rfl
 
 variable [InternalGrading M]
 
+/--
+@isnad1 id=iff.0h4v.s8.91f4c6e2a339 from=translated src=- shape=7a3fe60f vocab=8e6de169
+-/
 theorem mem_wgrading_zeroEquiv_iff {j : ℤ} {m : InternalShift 0 M} :
     zeroEquiv A m ∈ wgrading j ↔ m ∈ wgrading j := by
   rw [mem_wgrading_iff', add_zero]
@@ -182,12 +218,17 @@ instance instInternalGrading : InternalGrading (Shift n M) where
     rw [Units.smul_def]
     exact zsmul_mem (d_mem_wgrading (M := M) (show unmk n m ∈ wgrading (M := M) k from hm)) _
 
+/--
+@isnad1 id=iff.0h4v.s7.f938a7495a58 from=translated src=- shape=a5968fab vocab=721c8e91
+-/
 theorem mem_wgrading_iff' {k : ℤ} {m : Shift n M} : m ∈ wgrading k ↔ unmk n m ∈ wgrading k :=
   Iff.rfl
 
 variable {A : Type*} [Ring A] [DGAddCommGroup A] [DGRing A] [InternalGrading A]
 
-/-- The twist `a ↦ (-1)^{n |a|} a` preserves weights.-/
+/-- The twist `a ↦ (-1)^{n |a|} a` preserves weights.
+@isnad1 id=mem.1h4v.s7.646f29a8f204 from=translated src=- shape=33241d6a vocab=5d890d5b
+-/
 theorem twist_mem_wgrading {k : ℤ} {a : A} (ha : a ∈ wgrading k) :
     twist A n a ∈ wgrading k := by
   refine induction_on_of_isHomogeneous (isHomogeneous_wgrading A k) (P := fun a =>
@@ -204,7 +245,9 @@ theorem twist_mem_wgrading {k : ℤ} {a : A} (ha : a ∈ wgrading k) :
 variable [Module A M] [BigradedDGModule A M]
 
 /-- The cohomological shift `M[n]` of a bigraded dg module is a bigraded dg module: the Koszul
-twist of the action does not affect weights.-/
+twist of the action does not affect weights.
+@isnad1 id=bigraded.0h3v.s6.62e2ae37852f from=translated src=- shape=1e530568 vocab=bf02797a
+-/
 instance instBigradedDGModule : BigradedDGModule A (Shift n M) where
   smul_mem {i j} a m ha hm := by
     rw [mem_wgrading_iff'] at hm ⊢
@@ -233,9 +276,15 @@ def shiftEquiv (n k : ℤ) : InternalShift k (Shift n M) ≃ᵈᵍ[A] Shift n (I
   map_mem' hm := hm
   map_d' _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.c74a90340b9e from=translated src=- shape=5c4211b3 vocab=1a783668
+-/
 @[simp] theorem shiftEquiv_apply (n k : ℤ) (x : InternalShift k (Shift n M)) :
     shiftEquiv A n k x = Shift.mk n (mk k (Shift.unmk n (unmk k x))) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.3f6cc03d25ae from=translated src=- shape=b273d35c vocab=60754809
+-/
 @[simp] theorem shiftEquiv_symm_apply (n k : ℤ) (y : Shift n (InternalShift k M)) :
     (shiftEquiv A n k).symm y = mk k (Shift.mk n (unmk k (Shift.unmk n y))) := rfl
 
@@ -260,23 +309,40 @@ def internalShift (k : ℤ) (f : M →ᵈᵍ[A] N) : InternalShift k M →ᵈᵍ
   map_mem' hm := f.map_mem hm
   map_d' m := f.map_d (unmk k m)
 
+/--
+@isnad1 id=eq.0h6v.s8.543052075508 from=translated src=- shape=60b1813d vocab=901763fc
+-/
 @[simp]
 theorem internalShift_apply (k : ℤ) (f : M →ᵈᵍ[A] N) (m : M) :
     f.internalShift k (InternalShift.mk k m) = InternalShift.mk k (f m) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6478dfc49bbe from=translated src=- shape=fb2ca26e vocab=df4fe2cf
+-/
 @[simp]
 theorem internalShift_id (k : ℤ) :
     (DGModuleHom.id : M →ᵈᵍ[A] M).internalShift k = DGModuleHom.id := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.418621924f04 from=translated src=- shape=5105f597 vocab=34c7a994
+-/
 @[simp]
 theorem internalShift_comp (k : ℤ) (g : N →ᵈᵍ[A] P) (f : M →ᵈᵍ[A] N) :
     (g.comp f).internalShift k = (g.internalShift k).comp (f.internalShift k) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.49edd0dbe179 from=translated src=- shape=cc5c5716 vocab=227aedf2
+-/
 @[simp] theorem internalShift_zero (k : ℤ) : (0 : M →ᵈᵍ[A] N).internalShift k = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s8.5087f5ac5571 from=translated src=- shape=ff78bb23 vocab=8fecf169
+-/
 @[simp] theorem internalShift_add (k : ℤ) (f g : M →ᵈᵍ[A] N) :
     (f + g).internalShift k = f.internalShift k + g.internalShift k := rfl
 
-/-- The internal shift of a weight-preserving morphism preserves weights.-/
+/-- The internal shift of a weight-preserving morphism preserves weights.
+@isnad1 id=mem.2h7v.s8.cde70a267081 from=translated src=- shape=2c1e6de4 vocab=81eda0d3
+-/
 theorem internalShift_mem_wgrading [InternalGrading M] [InternalGrading N] (k : ℤ)
     (f : M →ᵈᵍ[A] N) (hf : ∀ {j : ℤ} {m : M}, m ∈ wgrading j → f m ∈ wgrading j) {j : ℤ}
     {m : InternalShift k M} (hm : m ∈ wgrading j) : f.internalShift k m ∈ wgrading j :=

@@ -28,6 +28,9 @@ variable (A M : Type*) [Ring A] [DGAddCommGroup A] [DGRing A]
 /-- The half-regraded diagonal ordinary module, with all periodic copies retained.-/
 abbrev RegradedModule := HalfRegrade (grading M) 2
 
+/--
+@isnad1 id=gradedsm.0h2v.s7.ac78c0e2de14 from=translated src=- shape=bd8acb96 vocab=c10729fc
+-/
 instance gradedSMul : SetLike.GradedSMul
     (halfGrading (HalfGradedDGRing.ofDGRing A).hgrading 2)
     (halfGrading (grading M) 2) where
@@ -43,7 +46,9 @@ instance instModule : Module (HalfGradedDGRing.ofDGRing A).Regraded (RegradedMod
 
 variable {A M}
 
-/-- The regraded action is the original action on each pair of homogeneous generators.-/
+/-- The regraded action is the original action on each pair of homogeneous generators.
+@isnad1 id=eq.2h6v.s10.139c3527c4f0 from=translated src=- shape=8aa4e152 vocab=6605a1b5
+-/
 theorem place_smul_mk {p q : ℤ × ℤ} {a : A} {m : M}
     (ha : a ∈ grading A (halfDegree 2 p)) (hm : m ∈ grading M (halfDegree 2 q)) :
     (HalfGradedDGRing.ofDGRing A).place p a ha • HalfRegrade.mk (grading M) 2 q m hm =
@@ -70,6 +75,9 @@ instance instInternalGrading : InternalGrading (RegradedModule M) where
 
 variable {M}
 
+/--
+@isnad1 id=eq.1h3v.s10.d14c0b898eac from=translated src=- shape=7c326f41 vocab=d9bbb07f
+-/
 @[simp] theorem d_mk (p : ℤ × ℤ) (m : M) (hm : m ∈ grading M (halfDegree 2 p)) :
     d (HalfRegrade.mk (grading M) 2 p m hm) =
       HalfRegrade.mk (grading M) 2 (p + (1, 0)) (d m)
@@ -87,6 +95,9 @@ private theorem mk_add_of_eq {p₁ p₂ p : ℤ × ℤ} (h₁ : p₁ = p) (h₂ 
 
 variable (A M)
 
+/--
+@isnad1 id=dgmodule.0h2v.s6.2106acd62613 from=translated src=- shape=17a38ff3 vocab=ba402b72
+-/
 instance instDGModule : DGModule (HalfGradedDGRing.ofDGRing A).Regraded (RegradedModule M) where
   smul_mem i j x y hx hy := by
     refine HalfGradedDGRing.grading_induction
@@ -117,6 +128,9 @@ instance instDGModule : DGModule (HalfGradedDGRing.ofDGRing A).Regraded (Regrade
     | add y y' hy hy' =>
       rw [smul_add, d_add, hy, hy', d_add, smul_add, smul_add, smul_add]; abel
 
+/--
+@isnad1 id=bigraded.0h2v.s7.cb4f47721a7b from=translated src=- shape=e37f8c29 vocab=ff27fe2a
+-/
 instance instBigradedDGModule :
     BigradedDGModule (HalfGradedDGRing.ofDGRing A).Regraded (RegradedModule M) where
   smul_mem i j x y hx hy := by
@@ -135,7 +149,9 @@ def toCatModuleObj : CatModule (WeightCategory (HalfGradedDGRing.ofDGRing A).Reg
   BigradedDGModuleCat.toCatModuleObj
     (BigradedDGModuleCat.of (HalfGradedDGRing.ofDGRing A).Regraded (RegradedModule M))
 
-/-- At weight zero the component in cohomological degree `n` is exactly `Mⁿ`.-/
+/-- At weight zero the component in cohomological degree `n` is exactly `Mⁿ`.
+@isnad1 id=eq.0h2v.s5.1331ffccf775 from=translated src=- shape=7cf67515 vocab=ca5392f3
+-/
 theorem halfGrading_zero_weight (n : ℤ) :
     halfGrading (grading M) 2 (n, 0) = DG.grading (M := M) n := by
   change grading M (halfDegree 2 (n, 0)) = _

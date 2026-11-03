@@ -73,6 +73,9 @@ def postcomp {Y Z : C} (g : Y ⟶ Z) : HomK ρ Y →ₗ[K] HomK ρ Z where
   map_add' _ _ := Preadditive.add_comp _ _ _ _ _ _
   map_smul' _ _ := assoc _ _ _
 
+/--
+@isnad1 id=eq.0h8v.s8.74ce458d9bf3 from=translated src=- shape=f5551a90 vocab=7ba3f6a1
+-/
 @[simp]
 theorem postcomp_apply {Y Z : C} (g : Y ⟶ Z) (f : G ⟶ Y) : postcomp ρ g f = f ≫ g := rfl
 
@@ -99,6 +102,9 @@ variable {ρ}
 def IsExactAt {X Y Z : C} (f : X ⟶ Y) (g : Y ⟶ Z) : Prop :=
   ∀ φ : G ⟶ Y, φ ≫ g = 0 → ∃ ψ : G ⟶ X, φ = ψ ≫ f
 
+/--
+@isnad1 id=eq.2h9v.s8.12997b0b5c65 from=translated src=- shape=ec2ed3ad vocab=a393af4a
+-/
 theorem range_eq_ker {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : f ≫ g = 0)
     (h : IsExactAt (G := G) f g) :
     LinearMap.range (postcomp ρ f) = LinearMap.ker (postcomp ρ g) := by
@@ -109,7 +115,9 @@ theorem range_eq_ker {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : f ≫ g = 0)
     exact ⟨ψ, hψ.symm⟩
 
 /-- For an exact sequence `Hom(G, X) → Hom(G, Y) → Hom(G, Z)` with `Hom(G, Y)`
-finite-dimensional, `dim Hom(G, Y) = rank f + rank g`.-/
+finite-dimensional, `dim Hom(G, Y) = rank f + rank g`.
+@isnad1 id=eq.2h9v.s7.7c3e75b30557 from=translated src=- shape=c5a85f4b vocab=37ad8eb6
+-/
 theorem finrankHom_eq_add {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : f ≫ g = 0)
     (h : IsExactAt (G := G) f g) [FiniteDimensional K (HomK ρ Y)] :
     finrankHom ρ Y = rankHom ρ f + rankHom ρ g := by
@@ -117,7 +125,9 @@ theorem finrankHom_eq_add {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : f ≫ g
     rankHom, rankHom, add_comm]
 
 /-- The middle term of an exact sequence `Hom(G, X) → Hom(G, Y) → Hom(G, Z)` with
-finite-dimensional outer terms is finite-dimensional.-/
+finite-dimensional outer terms is finite-dimensional.
+@isnad1 id=finitedi.2h9v.s7.382f2ad2c901 from=translated src=- shape=a3ad658e vocab=0498ebc0
+-/
 theorem finiteDimensional_of_isExactAt {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : f ≫ g = 0)
     (h : IsExactAt (G := G) f g) [FiniteDimensional K (HomK ρ X)]
     [FiniteDimensional K (HomK ρ Z)] : FiniteDimensional K (HomK ρ Y) := by
@@ -134,7 +144,9 @@ end HomK
 /-- For functions `d₁ d₂ d₃ a b c : ℤ → ℕ` related as the dimensions and ranks of a long exact
 sequence `⋯ → D₁(n) → D₂(n) → D₃(n) → D₁(n + 1) → ⋯` (`dim D₂(n) = a n + b n`,
 `dim D₃(n) = b n + c n`, `dim D₁(n + 1) = c n + a (n + 1)`), with `d₁` and `d₃` of finite
-support, `d₂` has finite support and the alternating sums satisfy `χ₂ = χ₁ + χ₃`.-/
+support, `d₂` has finite support and the alternating sums satisfy `χ₂ = χ₁ + χ₃`.
+@isnad1 id=and.5h6v.s7.bb6698bf2e07 from=translated src=- shape=16e9a699 vocab=0f00f5ea
+-/
 theorem alternating_finsum_of_exact (d₁ d₂ d₃ a b c : ℤ → ℕ)
     (h₁ : ∀ n, d₁ (n + 1) = c n + a (n + 1)) (h₂ : ∀ n, d₂ n = a n + b n)
     (h₃ : ∀ n, d₃ n = b n + c n) (hd₁ : (Function.support d₁).Finite)
@@ -202,6 +214,9 @@ namespace HomK
 variable (ρ : K →+* End G)
 
 omit [HasZeroObject C] [Pretriangulated C] in
+/--
+@isnad1 id=eq.0h6v.s9.43f93bb9b4fc from=translated src=- shape=ec21af85 vocab=f25b29a5
+-/
 theorem shift_map_units_smul {X Y : C} (n : ℤ) (u : ℤˣ) (f : X ⟶ Y) :
     (u • f)⟦n⟧' = u • f⟦n⟧' := by
   rw [Units.smul_def, Units.smul_def, Functor.map_zsmul]
@@ -216,14 +231,23 @@ noncomputable def connecting (T : Triangle C) (n : ℤ) : T.obj₃⟦n⟧ ⟶ T.
 variable (T : Triangle C) (hT : T ∈ distTriang C) (n : ℤ)
 include hT
 
+/--
+@isnad1 id=mem.1h3v.s10.310d5377bc2d from=translated src=- shape=ccd48adc vocab=816608c6
+-/
 theorem shift_mem_distTriang :
     Triangle.mk (n.negOnePow • T.mor₁⟦n⟧') (n.negOnePow • T.mor₂⟦n⟧')
       (n.negOnePow • T.mor₃⟦n⟧' ≫ (shiftFunctorComm C 1 n).hom.app T.obj₁) ∈ distTriang C :=
   Triangle.shift_distinguished T hT n
 
+/--
+@isnad1 id=eq.1h3v.s8.a5ab8feb6bf0 from=translated src=- shape=9ce81795 vocab=c868bdb5
+-/
 theorem comp_zero₁₂ : T.mor₁⟦n⟧' ≫ T.mor₂⟦n⟧' = 0 := by
   rw [← Functor.map_comp, comp_distTriang_mor_zero₁₂ T hT, Functor.map_zero]
 
+/--
+@isnad1 id=isexacta.1h4v.s7.6e8b752f4200 from=translated src=- shape=d4782607 vocab=74737709
+-/
 theorem isExactAt₁₂ : IsExactAt (G := G) (T.mor₁⟦n⟧') (T.mor₂⟦n⟧') := by
   intro φ hφ
   obtain ⟨ψ, hψ⟩ := Triangle.coyoneda_exact₂ _ (shift_mem_distTriang T hT n) φ (by
@@ -233,12 +257,18 @@ theorem isExactAt₁₂ : IsExactAt (G := G) (T.mor₁⟦n⟧') (T.mor₂⟦n⟧
   dsimp only [Triangle.mk_mor₁] at hψ
   rw [hψ, Linear.comp_units_smul, Linear.units_smul_comp]
 
+/--
+@isnad1 id=eq.1h3v.s8.fb1b7e5a3fb8 from=translated src=- shape=bb7df53c vocab=a99f4cde
+-/
 theorem comp_zero₂₃ : T.mor₂⟦n⟧' ≫ connecting T n = 0 := by
   have h := comp_distTriang_mor_zero₂₃ _ (shift_mem_distTriang T hT n)
   dsimp only [Triangle.mk_mor₂, Triangle.mk_mor₃] at h
   rw [Linear.units_smul_comp, smul_eq_zero_iff_eq] at h
   rw [connecting, ← assoc, h, zero_comp]
 
+/--
+@isnad1 id=isexacta.1h4v.s7.5bd57de3d238 from=translated src=- shape=f37a8497 vocab=0bb0edff
+-/
 theorem isExactAt₂₃ : IsExactAt (G := G) (T.mor₂⟦n⟧') (connecting T n) := by
   intro φ hφ
   rw [connecting, ← assoc, Preadditive.IsIso.comp_right_eq_zero] at hφ
@@ -249,17 +279,26 @@ theorem isExactAt₂₃ : IsExactAt (G := G) (T.mor₂⟦n⟧') (connecting T n)
 
 omit hT [Preadditive C] [HasZeroObject C] [∀ n : ℤ, (shiftFunctor C n).Additive]
   [Pretriangulated C] in
+/--
+@isnad1 id=eq.0h3v.s9.c1a5ad314e2f from=translated src=- shape=be8712dd vocab=1fae8ac0
+-/
 theorem shift_mor₁_naturality :
     (shiftFunctorAdd' C n 1 (n + 1) rfl).inv.app T.obj₁ ≫ T.mor₁⟦n + 1⟧' =
       (T.mor₁⟦n⟧')⟦1⟧' ≫ (shiftFunctorAdd' C n 1 (n + 1) rfl).inv.app T.obj₂ :=
   ((shiftFunctorAdd' C n 1 (n + 1) rfl).inv.naturality T.mor₁).symm
 
+/--
+@isnad1 id=eq.1h3v.s8.ea2d978e5597 from=translated src=- shape=0b912b21 vocab=d68f8021
+-/
 theorem comp_zero₃₁ : connecting T n ≫ T.mor₁⟦n + 1⟧' = 0 := by
   have h := comp_distTriang_mor_zero₃₁ _ (shift_mem_distTriang T hT n)
   dsimp only [Triangle.mk_mor₁, Triangle.mk_mor₃, Triangle.mk_obj₁] at h
   rw [shift_map_units_smul, Linear.comp_units_smul, smul_eq_zero_iff_eq] at h
   rw [connecting, assoc, shift_mor₁_naturality, ← assoc, h, zero_comp]
 
+/--
+@isnad1 id=isexacta.1h4v.s7.0f0abd98e0da from=translated src=- shape=f7cba9c9 vocab=9428c1be
+-/
 theorem isExactAt₃₁ : IsExactAt (G := G) (connecting T n) (T.mor₁⟦n + 1⟧') := by
   intro φ hφ
   obtain ⟨ψ, hψ⟩ := Triangle.coyoneda_exact₁ _ (shift_mem_distTriang T hT n)
@@ -274,14 +313,23 @@ theorem isExactAt₃₁ : IsExactAt (G := G) (connecting T n) (T.mor₁⟦n + 1�
   dsimp only [Triangle.mk_mor₃] at hψ
   rw [connecting, ← assoc, ← hψ, assoc, Iso.hom_inv_id_app, comp_id]
 
+/--
+@isnad1 id=eq.1h6v.s8.1d2e036db43d from=translated src=- shape=10d5af31 vocab=83c33e2a
+-/
 theorem finrankHom_obj₂ [FiniteDimensional K (HomK ρ (T.obj₂⟦n⟧))] :
     finrankHom ρ (T.obj₂⟦n⟧) = rankHom ρ (T.mor₁⟦n⟧') + rankHom ρ (T.mor₂⟦n⟧') :=
   finrankHom_eq_add (ρ := ρ) (comp_zero₁₂ T hT n) (isExactAt₁₂ T hT n)
 
+/--
+@isnad1 id=eq.1h6v.s8.c271817e5031 from=translated src=- shape=12fd44e0 vocab=55997675
+-/
 theorem finrankHom_obj₃ [FiniteDimensional K (HomK ρ (T.obj₃⟦n⟧))] :
     finrankHom ρ (T.obj₃⟦n⟧) = rankHom ρ (T.mor₂⟦n⟧') + rankHom ρ (connecting T n) :=
   finrankHom_eq_add (ρ := ρ) (comp_zero₂₃ T hT n) (isExactAt₂₃ T hT n)
 
+/--
+@isnad1 id=eq.1h6v.s8.7e32d762927e from=translated src=- shape=a14a3938 vocab=aedc38c4
+-/
 theorem finrankHom_obj₁ [FiniteDimensional K (HomK ρ (T.obj₁⟦n + 1⟧))] :
     finrankHom ρ (T.obj₁⟦n + 1⟧) = rankHom ρ (connecting T n) + rankHom ρ (T.mor₁⟦n + 1⟧') :=
   finrankHom_eq_add (ρ := ρ) (comp_zero₃₁ T hT n) (isExactAt₃₁ T hT n)
@@ -306,7 +354,9 @@ variable {ρ}
 
 include hT in
 /-- In a distinguished triangle whose outer vertices have finite `G`-cohomology, so does the
-middle vertex, and the Euler characteristic is additive.-/
+middle vertex, and the Euler characteristic is additive.
+@isnad1 id=and.3h5v.s7.09b9d3670aba from=translated src=- shape=98192b66 vocab=a7f70ec2
+-/
 theorem isFin_obj₂_and_eulerChar (h₁ : IsFin ρ T.obj₁) (h₃ : IsFin ρ T.obj₃) :
     IsFin ρ T.obj₂ ∧ eulerChar ρ T.obj₂ = eulerChar ρ T.obj₁ + eulerChar ρ T.obj₃ := by
   have fd₂ : ∀ n : ℤ, FiniteDimensional K (HomK ρ (T.obj₂⟦n⟧)) := fun n => by
@@ -369,6 +419,9 @@ variable {𝒮 : ObjectProperty C} {G : J → C} {ρ : ∀ j, K →+* End (G j)}
   (hG : IsOrthonormalGenerating 𝒮 G ρ)
 include hG
 
+/--
+@isnad1 id=injectiv.1h7v.s7.3d6c090c6ffc from=translated src=- shape=bd8aa364 vocab=9d011c15
+-/
 theorem ρ_injective (j : J) : Function.Injective (ρ j) := by
   refine (injective_iff_map_eq_zero _).mpr fun c hc => ?_
   by_contra h

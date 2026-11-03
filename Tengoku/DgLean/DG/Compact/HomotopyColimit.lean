@@ -78,11 +78,17 @@ noncomputable def directSumShift :
   DirectSum.toAddMonoid fun n =>
     (DirectSum.of (fun n => (K ⟶ X n)) (n + 1)).comp (Preadditive.rightComp K (f n))
 
+/--
+@isnad1 id=eq.0h6v.s11.f998678b3ed5 from=translated src=- shape=a8ce57cd vocab=73d2f5ef
+-/
 @[simp]
 theorem directSumShift_of (n : ℕ) (a : K ⟶ X n) :
     directSumShift f (DirectSum.of _ n a) = DirectSum.of (fun n => (K ⟶ X n)) (n + 1) (a ≫ f n) :=
   DirectSum.toAddMonoid_of _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s10.2f74f87b8876 from=translated src=- shape=3706faac vocab=557aa889
+-/
 theorem directSumShift_apply_zero (a : DirectSum ℕ fun n => (K ⟶ X n)) :
     directSumShift f a 0 = 0 := by
   induction a using DirectSum.induction_on with
@@ -90,6 +96,9 @@ theorem directSumShift_apply_zero (a : DirectSum ℕ fun n => (K ⟶ X n)) :
   | of n x => simp [DirectSum.of_apply]
   | add a b ha hb => simp [ha, hb]
 
+/--
+@isnad1 id=eq.0h6v.s10.306c0001b62e from=translated src=- shape=9b836e6a vocab=2405ae9a
+-/
 theorem directSumShift_apply_succ (a : DirectSum ℕ fun n => (K ⟶ X n)) (n : ℕ) :
     directSumShift f a (n + 1) = a n ≫ f n := by
   induction a using DirectSum.induction_on with
@@ -102,7 +111,9 @@ theorem directSumShift_apply_succ (a : DirectSum ℕ fun n => (K ⟶ X n)) (n : 
         Limits.zero_comp]
   | add a b ha hb => simp [ha, hb, Preadditive.add_comp]
 
-/-- `1 - shift` is injective on `⨁ n, (K ⟶ X n)`.-/
+/-- `1 - shift` is injective on `⨁ n, (K ⟶ X n)`.
+@isnad1 id=eq.1h5v.s10.4ce0bde82651 from=translated src=- shape=fbbe1964 vocab=4366328c
+-/
 theorem directSumShift_eq_self {a : DirectSum ℕ fun n => (K ⟶ X n)}
     (h : directSumShift f a = a) : a = 0 := by
   have key : ∀ n, a n = 0 := by
@@ -114,7 +125,9 @@ theorem directSumShift_eq_self {a : DirectSum ℕ fun n => (K ⟶ X n)}
   simp [key n]
 
 /-- If `a - shift a` is concentrated in degree `n` with value `w`, then `a` is concentrated in
-degrees `≥ n` and `a m = w ≫ (X n ⟶ X m)` for `m ≥ n`.-/
+degrees `≥ n` and `a m = w ≫ (X n ⟶ X m)` for `m ≥ n`.
+@isnad1 id=eq.2h8v.s11.a4013e3c907f from=translated src=- shape=f8596a59 vocab=2f47b347
+-/
 theorem apply_eq_of_sub_directSumShift_eq {a : DirectSum ℕ fun n => (K ⟶ X n)} {n : ℕ}
     {w : K ⟶ X n} (h : a - directSumShift f a = DirectSum.of _ n w) {m : ℕ} (hnm : n ≤ m) :
     a m = w ≫ (Functor.ofSequence f).map (homOfLE hnm) := by
@@ -179,9 +192,15 @@ noncomputable def hocolimδ : hocolim X f ⟶ (∐ X)⟦(1 : ℤ)⟧ :=
 noncomputable def hocolimTriangle : Triangle C :=
   Triangle.mk (hocolimDiff X f) (hocolimπ X f) (hocolimδ X f)
 
+/--
+@isnad1 id=mem.0h3v.s6.c313960ec729 from=translated src=- shape=c0e75bf2 vocab=39db832d
+-/
 theorem hocolimTriangle_distinguished : hocolimTriangle X f ∈ distTriang C :=
   (distinguished_cocone_triangle (hocolimDiff X f)).choose_spec.choose_spec.choose_spec
 
+/--
+@isnad1 id=eq.0h3v.s7.705f400cc971 from=translated src=- shape=aa40d0c8 vocab=65ddb966
+-/
 @[reassoc (attr := simp)]
 theorem hocolimDiff_hocolimπ : hocolimDiff X f ≫ hocolimπ X f = 0 :=
   comp_distTriang_mor_zero₁₂ _ (hocolimTriangle_distinguished X f)

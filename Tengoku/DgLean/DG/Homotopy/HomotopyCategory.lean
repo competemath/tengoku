@@ -62,6 +62,9 @@ def DGHomotopy.smul (r : R) (h : DGHomotopy f g) : DGHomotopy (r • f) (r • g
   hom := (Cochain.ofHom (r • DGModuleHom.id)).comp h.hom (add_zero _)
   ofHom_eq := (h.compRight (r • DGModuleHom.id)).ofHom_eq
 
+/--
+@isnad1 id=homotopi.1h7v.s9.03aed1e73d89 from=translated src=- shape=10b51190 vocab=43a13705
+-/
 theorem Homotopic.smul (r : R) (h : Homotopic f g) : Homotopic (r • f) (r • g) :=
   ⟨h.some.smul r⟩
 
@@ -74,6 +77,9 @@ namespace DGModuleCat
 /-- The homotopy relation on the morphisms of `DGModuleCat A`.-/
 def homotopic : HomRel (DGModuleCat.{v} A) := fun _ _ f g => Homotopic f.hom g.hom
 
+/--
+@isnad1 id=congruen.0h1v.s4.04a3ccd726ea from=translated src=- shape=da9a72aa vocab=2852c035
+-/
 instance homotopic_congruence : Congruence (homotopic.{v} A) where
   equivalence :=
     { refl := fun f => Homotopic.refl f.hom
@@ -131,17 +137,25 @@ end Linear
 
 variable {A}
 
+/--
+@isnad1 id=ex.0h2v.s5.bba01be9f3ac from=translated src=- shape=ce8f321f vocab=1cfe54b5
+-/
 theorem quotient_obj_surjective (X : HomotopyCategory.{v} A) :
     ∃ M : DGModuleCat.{v} A, (quotient A).obj M = X :=
   ⟨_, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.8cd4f5f00216 from=translated src=- shape=3a390e5d vocab=3f5076a1
+-/
 @[simp]
 theorem quotient_map_out {M N : HomotopyCategory.{v} A} (f : M ⟶ N) :
     (quotient A).map (Quot.out f) = f :=
   Quot.out_eq _
 
 /-- Two morphisms of dg modules become equal in the homotopy category iff they are
-homotopic.-/
+homotopic.
+@isnad1 id=iff.0h5v.s7.041341848b55 from=translated src=- shape=d818186d vocab=9d43fe03
+-/
 theorem quotient_map_eq_iff {M N : DGModuleCat.{v} A} (f g : M ⟶ N) :
     (quotient A).map f = (quotient A).map g ↔ Homotopic f.hom g.hom :=
   Quotient.functor_map_eq_iff _ _ _
@@ -168,7 +182,9 @@ def isoOfHomotopyEquiv {M N : DGModuleCat.{v} A} (e : DGHomotopyEquiv A M N) :
     rw [← (quotient A).map_comp, ← (quotient A).map_id]
     exact eq_of_homotopy _ _ e.homotopyInvHomId
 
-/-- A dg module is a zero object of the homotopy category iff it is contractible.-/
+/-- A dg module is a zero object of the homotopy category iff it is contractible.
+@isnad1 id=iff.0h2v.s6.4cc8abf5051e from=translated src=- shape=4e4edfc9 vocab=8c13333b
+-/
 theorem isZero_quotient_obj_iff (M : DGModuleCat.{v} A) :
     IsZero ((quotient A).obj M) ↔ IsContractible A M := by
   rw [IsZero.iff_id_eq_zero, ← (quotient A).map_id, ← (quotient A).map_zero,
@@ -192,12 +208,18 @@ def quotientNullHomotopicAddHom :
       rw [← (quotient A).map_zero M N, quotient_map_eq_iff]
       exact hf
 
+/--
+@isnad1 id=eq.0h4v.s12.ab30807b3c16 from=translated src=- shape=7237321b vocab=829491d1
+-/
 @[simp]
 theorem quotientNullHomotopicAddHom_mk (f : M →ᵈᵍ[A] N) :
     quotientNullHomotopicAddHom M N (QuotientAddGroup.mk f) =
       (quotient A).map (DGModuleCat.ofHom f) :=
   rfl
 
+/--
+@isnad1 id=bijectiv.0h3v.s12.ff0ca5bcfe3c from=translated src=- shape=ae3a9230 vocab=1d03e988
+-/
 theorem quotientNullHomotopicAddHom_bijective :
     Function.Bijective (quotientNullHomotopicAddHom M N) := by
   refine ⟨(injective_iff_map_eq_zero _).mpr fun x hx => ?_, fun φ => ?_⟩
@@ -215,6 +237,9 @@ noncomputable def homAddEquivQuotient :
     ((quotient A).obj M ⟶ (quotient A).obj N) ≃+ ((M →ᵈᵍ[A] N) ⧸ nullHomotopic A M N) :=
   (AddEquiv.ofBijective _ (quotientNullHomotopicAddHom_bijective M N)).symm
 
+/--
+@isnad1 id=eq.0h4v.s13.9a79332ecc7c from=translated src=- shape=4068e035 vocab=b1dcefce
+-/
 @[simp]
 theorem homAddEquivQuotient_quotient_map (f : M ⟶ N) :
     homAddEquivQuotient M N ((quotient A).map f) = QuotientAddGroup.mk f.hom := by
@@ -227,6 +252,9 @@ noncomputable def homAddEquivCohomology :
     ((quotient A).obj M ⟶ (quotient A).obj N) ≃+ cohomology (DGModule.HOM A M N) 0 :=
   (homAddEquivQuotient M N).trans (quotientNullHomotopicAddEquivCohomology A M N)
 
+/--
+@isnad1 id=eq.0h4v.s14.d4f005d07e20 from=translated src=- shape=8f1ae973 vocab=ab217eb0
+-/
 @[simp]
 theorem homAddEquivCohomology_quotient_map (f : M ⟶ N) :
     homAddEquivCohomology M N ((quotient A).map f) =

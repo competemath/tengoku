@@ -45,7 +45,9 @@ section Compact
 variable {C : Type u} [Category.{v} C] [Preadditive C]
   {D : Type u'} [Category.{v'} D] [Preadditive D]
 
-/-- An additive equivalence of categories preserves compact objects.-/
+/-- An additive equivalence of categories preserves compact objects.
+@isnad1 id=iscompac.1h4v.s6.fe639a9cbad7 from=translated src=- shape=56e7c9bd vocab=2e4e947a
+-/
 theorem IsCompact.map_equivalence [HasCoproducts.{w} C] (e : C ≌ D) [e.functor.Additive]
     {X : C} (hX : IsCompact.{w} X) : IsCompact.{w} (e.functor.obj X) := by
   intro ι _ W _
@@ -80,7 +82,9 @@ theorem IsCompact.map_equivalence [HasCoproducts.{w} C] (e : C ≌ D) [e.functor
     exact (hX ι W').comp hΦ
   exact (Function.Bijective.of_comp_iff' hψ _).1 this
 
-/-- An additive equivalence of categories preserves and reflects compact objects.-/
+/-- An additive equivalence of categories preserves and reflects compact objects.
+@isnad1 id=iff.0h4v.s6.82a67414110a from=translated src=- shape=f9884c76 vocab=2e4e947a
+-/
 theorem isCompact_equivalence_functor_obj_iff [HasCoproducts.{w} C] [HasCoproducts.{w} D]
     (e : C ≌ D) [e.functor.Additive] (X : C) :
     IsCompact.{w} (e.functor.obj X) ↔ IsCompact.{w} X :=
@@ -127,9 +131,15 @@ noncomputable def equivalence (n : ℤ) : 𝒯 ≌ 𝒯 :=
     (σ.zeroIso.symm ≪≫ σ.isoOfEq (add_neg_cancel n).symm ≪≫ σ.addIso n (-n))
     ((σ.addIso (-n) n).symm ≪≫ σ.isoOfEq (neg_add_cancel n) ≪≫ σ.zeroIso)
 
+/--
+@isnad1 id=eq.0h3v.s6.be98ba892ef3 from=translated src=- shape=d7c92a0a vocab=8991f281
+-/
 @[simp]
 theorem equivalence_functor (n : ℤ) : (σ.equivalence n).functor = σ.functor n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.d37cd7687574 from=translated src=- shape=fc926de4 vocab=2ba53254
+-/
 @[simp]
 theorem equivalence_inverse (n : ℤ) : (σ.equivalence n).inverse = σ.functor (-n) := rfl
 
@@ -143,7 +153,9 @@ section Compact
 
 variable [HasCoproducts.{w} 𝒯]
 
-/-- The functors `⟨n⟩` preserve and reflect compact objects.-/
+/-- The functors `⟨n⟩` preserve and reflect compact objects.
+@isnad1 id=iff.0h4v.s6.ecfbb33df592 from=translated src=- shape=c1acdb7e vocab=5b12b9b4
+-/
 theorem isCompact_functor_obj_iff (n : ℤ) (X : 𝒯) :
     IsCompact.{w} ((σ.functor n).obj X) ↔ IsCompact.{w} X :=
   isCompact_equivalence_functor_obj_iff (σ.equivalence n) X
@@ -174,6 +186,9 @@ noncomputable def compact : TriangulatedIntAction (compactSubcategory.{w} 𝒯).
   addIso m n := ((compactSubcategory.{w} 𝒯).fullyFaithfulι.whiskeringRight _).preimageIso
     (Functor.isoWhiskerLeft (compactSubcategory.{w} 𝒯).ι (σ.addIso m n))
 
+/--
+@isnad1 id=eq.0h4v.s7.b8a35041aa7c from=translated src=- shape=0bcb89b8 vocab=370e9f3f
+-/
 @[simp]
 theorem compact_functor_obj_obj (n : ℤ) (X : (compactSubcategory.{w} 𝒯).FullSubcategory) :
     ((σ.compact.functor n).obj X).obj = (σ.functor n).obj X.obj := rfl
@@ -194,6 +209,9 @@ noncomputable def K0Hom : Multiplicative ℤ →* Module.End ℤ (K0 𝒯) where
       K0.map (σ.functor m.toAdd) (K0.map (σ.functor n.toAdd) x)
     rw [add_comm, K0.map_eq_of_iso (σ.addIso _ _), K0.map_comp_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.782530336221 from=translated src=- shape=bbc5085d vocab=c80d8377
+-/
 theorem K0Hom_apply (n : Multiplicative ℤ) (x : K0 𝒯) :
     σ.K0Hom n x = K0.map (σ.functor n.toAdd) x := rfl
 
@@ -202,6 +220,9 @@ theorem K0Hom_apply (n : Multiplicative ℤ) (x : K0 𝒯) :
 noncomputable def laurentHom : LaurentPolynomial ℤ →ₐ[ℤ] Module.End ℤ (K0 𝒯) :=
   AddMonoidAlgebra.lift ℤ (Module.End ℤ (K0 𝒯)) ℤ σ.K0Hom
 
+/--
+@isnad1 id=eq.0h3v.s10.b48298cdfe9a from=translated src=- shape=78f8f554 vocab=a115360b
+-/
 @[simp]
 theorem laurentHom_T (n : ℤ) :
     σ.laurentHom (LaurentPolynomial.T n) = σ.K0Hom (Multiplicative.ofAdd n) := by
@@ -212,17 +233,25 @@ functors: `qⁿ • [X] = [X⟨n⟩]` (`DG.TriangulatedIntAction.T_smul_mk`).-/
 noncomputable abbrev K0Module : Module (LaurentPolynomial ℤ) (K0 𝒯) :=
   Module.compHom (K0 𝒯) σ.laurentHom.toRingHom
 
+/--
+@isnad1 id=eq.0h4v.s9.c46dc803ac67 from=translated src=- shape=4998b6d5 vocab=0f281f52
+-/
 theorem smul_def (p : LaurentPolynomial ℤ) (x : K0 𝒯) :
     letI := σ.K0Module
     p • x = σ.laurentHom p x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.2d38c28d758b from=translated src=- shape=059635ff vocab=1aa78b16
+-/
 theorem T_smul (n : ℤ) (x : K0 𝒯) :
     letI := σ.K0Module
     (LaurentPolynomial.T n : LaurentPolynomial ℤ) • x = K0.map (σ.functor n) x := by
   rw [smul_def, laurentHom_T, K0Hom_apply]
   rfl
 
-/-- `qⁿ • [X] = [X⟨n⟩]`.-/
+/-- `qⁿ • [X] = [X⟨n⟩]`.
+@isnad1 id=eq.0h4v.s8.acdeadaca673 from=translated src=- shape=50adcc1b vocab=a93ad101
+-/
 theorem T_smul_mk (n : ℤ) (X : 𝒯) :
     letI := σ.K0Module
     (LaurentPolynomial.T n : LaurentPolynomial ℤ) • K0.mk X = K0.mk ((σ.functor n).obj X) := by

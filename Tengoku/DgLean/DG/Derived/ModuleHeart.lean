@@ -48,7 +48,9 @@ theorem _root_.CategoryTheory.ShortComplex.Exact.moduleCat_finite [IsNoetherianR
   · rw [top_inf_eq, ← hS.moduleCat_range_eq_ker, LinearMap.range_eq_map]
     exact h₁.fg_top.map _
 
-/-- A module isomorphic in `ModuleCat` to a finitely generated module is finitely generated.-/
+/-- A module isomorphic in `ModuleCat` to a finitely generated module is finitely generated.
+@isnad1 id=finite.1h4v.s6.df4e456ba0d6 from=translated src=- shape=b9d71742 vocab=7875434c
+-/
 theorem moduleFinite_of_iso {M N : ModuleCat.{u} R} (e : M ≅ N) (hM : Module.Finite R M) :
     Module.Finite R N :=
   Module.Finite.equiv e.toLinearEquiv
@@ -62,7 +64,9 @@ def fgSingle : ObjectProperty (DerivedCategory (ModuleCat.{u} R)) :=
 
 variable {R}
 
-/-- `H⁰` of a finitely generated module in degree `0` is finitely generated.-/
+/-- `H⁰` of a finitely generated module in degree `0` is finitely generated.
+@isnad1 id=finite.1h4v.s8.4c4271d3387c from=translated src=- shape=be45210f vocab=5df2e895
+-/
 theorem moduleFinite_homology_single {M : ModuleCat.{u} R} (hM : Module.Finite R M)
     {X : DerivedCategory (ModuleCat.{u} R)} (e : X ≅ (singleFunctor (ModuleCat.{u} R) 0).obj M) :
     Module.Finite R ((homologyFunctor (ModuleCat.{u} R) 0).obj X) :=
@@ -72,7 +76,9 @@ theorem moduleFinite_homology_single {M : ModuleCat.{u} R} (hM : Module.Finite R
 variable [IsNoetherianRing R]
 
 /-- **The finitely generated modules in degree `0` form a heart family** in the derived category
-of a noetherian ring.-/
+of a noetherian ring.
+@isnad1 id=isheartf.0h1v.s6.b7701f19e05a from=translated src=- shape=39aeec26 vocab=8bfe0b48
+-/
 theorem isHeartFamily_fgSingle : IsHeartFamily (fgSingle R) where
   prop_of_iso e := fun ⟨M, hM, ⟨e'⟩⟩ => ⟨M, hM, ⟨e.symm ≪≫ e'⟩⟩
   hom_eq_zero := by

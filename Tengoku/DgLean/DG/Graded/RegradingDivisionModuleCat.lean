@@ -55,6 +55,9 @@ class IsConcentratedInMultiples (𝒜 : ℤ → τ) (k : ℕ) : Prop where
 variable {𝒜 : ℤ → τ} {k : ℕ}
 
 variable (k) in
+/--
+@isnad1 id=mem.1h6v.s6.80f230280529 from=translated src=- shape=7f7dc614 vocab=a08db2dd
+-/
 theorem IsConcentratedInMultiples.mem_ediv [IsConcentratedInMultiples 𝒜 k] {n : ℤ} {a : A}
     (ha : a ∈ 𝒜 n) : a ∈ 𝒜 (n / k * k + 0) := by
   by_cases hn : (k : ℤ) ∣ n
@@ -73,6 +76,9 @@ def regradeAddHom : A →+ RegradeByDivision 𝒜 k 0 :=
       map_zero' := RegradeByDivision.mk_zero _
       map_add' := fun _ _ => RegradeByDivision.mk_add _ _ _ }
 
+/--
+@isnad1 id=eq.1h6v.s9.ff4ab9fe6fcc from=translated src=- shape=fbde16a9 vocab=44921ed1
+-/
 theorem regradeAddHom_of_mem {q : ℤ} {a : A}
     (ha : a ∈ 𝒜 (q * k + 0)) : regradeAddHom 𝒜 k a = RegradeByDivision.mk 𝒜 k 0 q a ha := by
   rw [regradeAddHom, liftHomogeneous_of_mem 𝒜 _ ha]
@@ -103,6 +109,9 @@ def regradeRingHom : A →+* RegradeByDivision 𝒜 k 0 :=
         | add b b' hb hb' => rw [mul_add, map_add, hb, hb', map_add, mul_add]
       | add a a' ha ha' => rw [add_mul, map_add, ha, ha', map_add, add_mul] }
 
+/--
+@isnad1 id=eq.1h6v.s8.0b840cfa22cd from=translated src=- shape=fbde16a9 vocab=f6e74c38
+-/
 theorem regradeRingHom_of_mem {q : ℤ} {a : A}
     (ha : a ∈ 𝒜 (q * k + 0)) : regradeRingHom 𝒜 k a = RegradeByDivision.mk 𝒜 k 0 q a ha :=
   regradeAddHom_of_mem ha
@@ -136,6 +145,9 @@ def regradeRingEquiv : A ≃+* RegradeByDivision 𝒜 k 0 :=
         rw [map_add, map_add]
         exact congrArg₂ (· + ·) hx hy }
 
+/--
+@isnad1 id=eq.0h5v.s10.ea76f3606733 from=translated src=- shape=0c1fb7fa vocab=b3288365
+-/
 @[simp]
 theorem regradeRingEquiv_apply (a : A) :
     regradeRingEquiv 𝒜 k a = regradeRingHom 𝒜 k a := rfl
@@ -157,6 +169,9 @@ def mapHom (f : M →+ N) (hf : ∀ {n : ℤ} {m : M}, m ∈ ℳ n → f m ∈ �
   DirectSum.map fun q =>
     (f.comp (AddSubmonoidClass.subtype (divGrading ℳ k r q))).codRestrict _ fun m => hf m.2
 
+/--
+@isnad1 id=eq.2h11v.s9.52d94c28a3f4 from=translated src=- shape=6438c9eb vocab=82293114
+-/
 theorem mapHom_mk (f : M →+ N) (hf : ∀ {n : ℤ} {m : M}, m ∈ ℳ n → f m ∈ 𝒩 n) (q : ℤ) (m : M)
     (hm : m ∈ ℳ (q * k + r)) : mapHom ℳ 𝒩 k r f hf (mk ℳ k r q m hm) = mk 𝒩 k r q (f m) (hf hm) :=
   DirectSum.map_of _ _ _
@@ -189,6 +204,9 @@ def regradeMapAddHom {M N : GradedModuleCat.{v} 𝒜} (f : M ⟶ N) :
     fun hm => f.map_mem hm
 
 omit [AddSubgroupClass τ A] [GradedRing 𝒜] [NeZero k] in
+/--
+@isnad1 id=eq.1h10v.s12.0ace13c80e53 from=translated src=- shape=edae050e vocab=3369570a
+-/
 theorem regradeMapAddHom_mk {M N : GradedModuleCat.{v} 𝒜} (f : M ⟶ N) (q : ℤ) (m : M)
     (hm : m ∈ M.grading (q * k + (r.val : ℤ))) :
     regradeMapAddHom r f (RegradeByDivision.mk _ k _ q m hm) =
@@ -216,6 +234,9 @@ def regradeMap {M N : GradedModuleCat.{v} 𝒜} (f : M ⟶ N) :
     exact RegradeByDivision.mk_mem _ _
 
 omit [NeZero k] in
+/--
+@isnad1 id=eq.1h10v.s12.d28bc9efa7b2 from=translated src=- shape=4dfea8f0 vocab=1e0e61a6
+-/
 theorem regradeMap_mk {M N : GradedModuleCat.{v} 𝒜} (f : M ⟶ N) (q : ℤ) (m : M)
     (hm : m ∈ M.grading (q * k + (r.val : ℤ))) :
     (regradeMap r f).hom (RegradeByDivision.mk _ k _ q m hm) =
@@ -260,12 +281,18 @@ def unregradeGrading (n : ℤ) : AddSubgroup (⨁ r : ZMod k, (N r : Type v)) :=
   ((N (n : ZMod k)).grading (n / k)).map (DirectSum.of (fun r => (N r : Type v)) (n : ZMod k))
 
 omit [NeZero k] in
+/--
+@isnad1 id=mem.3h9v.s14.e5971b3f8878 from=translated src=- shape=b7ed202e vocab=01ba9fb2
+-/
 theorem of_mem_unregradeGrading {r : ZMod k} {q n : ℤ} (hr : (n : ZMod k) = r) (hq : n / k = q)
     {y : N r} (hy : y ∈ (N r).grading q) :
     DirectSum.of (fun r => (N r : Type v)) r y ∈ unregradeGrading N n := by
   subst hr hq
   exact ⟨y, hy, rfl⟩
 
+/--
+@isnad1 id=mem.1h8v.s14.61cabc762af8 from=translated src=- shape=8d9c2f80 vocab=651c29f0
+-/
 theorem of_mem_unregradeGrading' (r : ZMod k) (q : ℤ) {y : N r} (hy : y ∈ (N r).grading q) :
     DirectSum.of (fun r => (N r : Type v)) r y ∈ unregradeGrading N (q * k + (r.val : ℤ)) :=
   of_mem_unregradeGrading N (intCast_mul_add_val k q r) (mul_add_val_ediv k q r) hy
@@ -279,6 +306,9 @@ def unregradeDecompose : (⨁ r : ZMod k, (N r : Type v)) →+ ⨁ n : ℤ, unre
           (AddSubmonoidClass.subtype ((N r).grading q))).codRestrict _ fun y =>
             of_mem_unregradeGrading' N r q y.2)
 
+/--
+@isnad1 id=eq.1h8v.s19.ab8ce3a202f9 from=translated src=- shape=4b9048b5 vocab=72fca400
+-/
 theorem unregradeDecompose_of_mem (r : ZMod k) {q : ℤ} {y : N r} (hy : y ∈ (N r).grading q) :
     unregradeDecompose N (DirectSum.of _ r y) =
       DirectSum.of (fun n => ↥(unregradeGrading N n)) (q * k + (r.val : ℤ))
@@ -287,6 +317,9 @@ theorem unregradeDecompose_of_mem (r : ZMod k) {q : ℤ} {y : N r} (hy : y ∈ (
   rfl
 
 omit [NeZero k] in
+/--
+@isnad1 id=eq.3h8v.s19.95850b630ee1 from=translated src=- shape=f6920bbc vocab=29ca714d
+-/
 theorem of_congr_unregrade {n n' : ℤ} (h : n = n') {x : ⨁ r : ZMod k, (N r : Type v)}
     (hx : x ∈ unregradeGrading N n) (hx' : x ∈ unregradeGrading N n') :
     DirectSum.of (fun n => ↥(unregradeGrading N n)) n ⟨x, hx⟩ =
@@ -315,9 +348,15 @@ variable [IsConcentratedInMultiples 𝒜 k]
 instance unregradeModule : Module A (⨁ r : ZMod k, (N r : Type v)) :=
   Module.compHom _ (regradeRingHom 𝒜 k)
 
+/--
+@isnad1 id=eq.0h7v.s14.8893bfbc4bee from=translated src=- shape=25cd373b vocab=5dbc3cc3
+-/
 theorem unregrade_smul_def (a : A) (x : ⨁ r : ZMod k, (N r : Type v)) :
     a • x = regradeRingHom 𝒜 k a • x := rfl
 
+/--
+@isnad1 id=gradedsm.0h5v.s14.46e1affa22bd from=translated src=- shape=d213b6f7 vocab=bba920a1
+-/
 instance unregrade_gradedSMul : SetLike.GradedSMul 𝒜 (unregradeGrading N) where
   smul_mem := by
     intro i j a x ha hx
@@ -350,12 +389,18 @@ def unregradeMapAddHom (g : N ⟶ N') :
   DirectSum.map fun r => (g r).hom.toAddMonoidHom
 
 omit [NeZero k] [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=eq.0h9v.s16.9b3c7aece9a6 from=translated src=- shape=ffe32b8d vocab=8d641681
+-/
 theorem unregradeMapAddHom_of (g : N ⟶ N') (r : ZMod k) (y : N r) :
     unregradeMapAddHom g (DirectSum.of (fun r => (N r : Type v)) r y) =
       DirectSum.of (fun r => (N' r : Type v)) r ((g r).hom y) :=
   DirectSum.map_of _ _ _
 
 omit [NeZero k] [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=eq.0h9v.s15.042d87c1c5b2 from=translated src=- shape=a5b3960b vocab=15e32569
+-/
 @[simp]
 theorem unregradeMapAddHom_apply (g : N ⟶ N') (x : ⨁ r : ZMod k, (N r : Type v)) (r : ZMod k) :
     unregradeMapAddHom g x r = (g r).hom (x r) :=
@@ -376,6 +421,9 @@ def unregradeMap (g : N ⟶ N') : unregradeObj N ⟶ unregradeObj N' where
     rw [unregradeMapAddHom_of]
     exact ⟨_, (g _).map_mem hy, rfl⟩
 
+/--
+@isnad1 id=eq.0h9v.s14.34bcea32af0e from=translated src=- shape=2d767a09 vocab=9a6105d5
+-/
 theorem unregradeMap_apply (g : N ⟶ N') (x : ⨁ r : ZMod k, (N r : Type v)) (r : ZMod k) :
     ((unregradeMap g).hom x : ⨁ r : ZMod k, (N' r : Type v)) r = (g r).hom (x r) :=
   DirectSum.map_apply _ _ _
@@ -439,6 +487,9 @@ def regradeUnitIsoApp (M : GradedModuleCat.{v} 𝒜) :
       rwa [ediv_mul_add_val] at hm)
 
 omit [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=eq.1h9v.s15.2b685ee60de7 from=translated src=- shape=5cd7059e vocab=f8cabade
+-/
 theorem regradeUnit_naturality {M M' : GradedModuleCat.{v} 𝒜} (f : M ⟶ M') {n : ℤ} {m : M}
     (hm : m ∈ M.grading n) :
     residueEquiv M'.grading k (f.hom m) =
@@ -471,6 +522,9 @@ def counitAddHom : RegradeByDivision (unregradeGrading N) k (r.val : ℤ) →+ N
   map_add' x y := by simp
 
 omit [NeZero k] [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=eq.1h8v.s17.1a9ba17fc797 from=translated src=- shape=2abbcf68 vocab=1fdcabb3
+-/
 theorem counitAddHom_mk {q : ℤ} {x : ⨁ r : ZMod k, (N r : Type v)}
     (hx : x ∈ unregradeGrading N (q * k + (r.val : ℤ))) :
     counitAddHom N r (RegradeByDivision.mk _ k _ q x hx) = x r := by
@@ -487,6 +541,9 @@ def counitInvAddHom : N r →+ RegradeByDivision (unregradeGrading N) k (r.val :
         exact RegradeByDivision.mk_add _ _ _ }
 
 omit [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=eq.1h8v.s17.360113f87e97 from=translated src=- shape=d7f68aed vocab=c17cf2dc
+-/
 theorem counitInvAddHom_of_mem {q : ℤ} {y : N r} (hy : y ∈ (N r).grading q) :
     counitInvAddHom N r y =
       RegradeByDivision.mk _ k _ q (DirectSum.of _ r y) (of_mem_unregradeGrading' N r q hy) := by
@@ -494,6 +551,9 @@ theorem counitInvAddHom_of_mem {q : ℤ} {y : N r} (hy : y ∈ (N r).grading q) 
   rfl
 
 omit [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=and.4h10v.s17.62adc0f4433a from=translated src=- shape=0f286a90 vocab=c21718e9
+-/
 theorem counit_aux {r' : ZMod k} (hr : r' = r) {q q' : ℤ} (hq : q' = q) {y : N r'}
     (hy : y ∈ (N r').grading q')
     (hx : DirectSum.of (fun r => (N r : Type v)) r' y ∈
@@ -506,6 +566,9 @@ theorem counit_aux {r' : ZMod k} (hr : r' = r) {q q' : ℤ} (hq : q' = q) {y : N
   exact ⟨counitInvAddHom_of_mem N r' hy, hy⟩
 
 omit [IsConcentratedInMultiples 𝒜 k] in
+/--
+@isnad1 id=and.1h8v.s17.85c03a367ba2 from=translated src=- shape=cf92b3b2 vocab=51de7db3
+-/
 theorem counit_mem {q : ℤ} {x : ⨁ r : ZMod k, (N r : Type v)}
     (hx : x ∈ unregradeGrading N (q * k + (r.val : ℤ))) :
     counitInvAddHom N r (x r) = RegradeByDivision.mk _ k _ q x hx ∧ x r ∈ (N r).grading q := by
@@ -558,6 +621,9 @@ def regradeCounitIsoApp : (regrade 𝒜 k).obj ((unregrade 𝒜 k).obj N) r ≅ 
       exact RegradeByDivision.mk_mem _ _)
 
 variable {N} in
+/--
+@isnad1 id=eq.0h9v.s18.a8c9ec2be555 from=translated src=- shape=9ff6b3f3 vocab=4bb9b00c
+-/
 theorem counitAddHom_regradeMap {N' : ZMod k → GradedModuleCat.{v} (regradeGrading 𝒜 k 0)}
     (g : N ⟶ N') (r : ZMod k) (z : RegradeByDivision (unregradeGrading N) k (r.val : ℤ)) :
     counitAddHom N' r ((regradeMap r (unregradeMap g)).hom z) =

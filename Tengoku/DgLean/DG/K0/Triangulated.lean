@@ -89,17 +89,28 @@ variable {C}
 /-- The class `[X] ∈ K₀(C)` of an object `X` of `C`.-/
 def mk (X : C) : K0 C := mkHom C (FreeAbelianGroup.of X)
 
+/--
+@isnad1 id=eq.0h2v.s7.9853e92a8498 from=translated src=- shape=8e2de78c vocab=32ada65e
+-/
 theorem mkHom_of (X : C) : mkHom C (FreeAbelianGroup.of X) = mk X := rfl
 
+/--
+@isnad1 id=surjecti.0h1v.s7.e3d9842f002c from=translated src=- shape=dd6ba23e vocab=da0a4358
+-/
 theorem mkHom_surjective : Function.Surjective (mkHom C) := QuotientAddGroup.mk'_surjective _
 
+/--
+@isnad1 id=mem.1h2v.s7.72870ae5b059 from=translated src=- shape=3e873b75 vocab=0c3293aa
+-/
 theorem relation_mem (T : Triangle C) (hT : T ∈ distTriang C) :
     FreeAbelianGroup.of T.obj₂ - FreeAbelianGroup.of T.obj₁ - FreeAbelianGroup.of T.obj₃ ∈
       relations C :=
   AddSubgroup.subset_closure ⟨T, hT, rfl⟩
 
 /-- The defining relation of `K₀(C)`: `[T.obj₂] = [T.obj₁] + [T.obj₃]` for a distinguished
-triangle `T`.-/
+triangle `T`.
+@isnad1 id=eq.1h2v.s7.ad015cfb21b0 from=translated src=- shape=b6c6c772 vocab=e9b58164
+-/
 theorem mk_obj₂ (T : Triangle C) (hT : T ∈ distTriang C) :
     mk T.obj₂ = mk T.obj₁ + mk T.obj₃ := by
   have h := (QuotientAddGroup.eq_zero_iff _).2 (relation_mem T hT)
@@ -108,7 +119,9 @@ theorem mk_obj₂ (T : Triangle C) (hT : T ∈ distTriang C) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Induction principle for `K₀(C)`: every element is obtained from the classes of objects by
-sums and negatives.-/
+sums and negatives.
+@isnad1 id=var.0h7v.s8.3101145df000 from=translated src=- shape=d089cc9b vocab=1342a34d
+-/
 theorem induction_on {p : K0 C → Prop} (x : K0 C) (zero : p 0) (mk : ∀ X : C, p (mk X))
     (neg : ∀ x, p x → p (-x)) (add : ∀ x y, p x → p y → p (x + y)) : p x := by
   obtain ⟨y, rfl⟩ := mkHom_surjective x
@@ -123,7 +136,9 @@ section lift
 variable {G : Type*} [AddCommGroup G]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two homomorphisms out of `K₀(C)` which agree on the classes of objects are equal.-/
+/-- Two homomorphisms out of `K₀(C)` which agree on the classes of objects are equal.
+@isnad1 id=eq.1h4v.s9.f9b6a98df303 from=translated src=- shape=8ab6bf8c vocab=8dbb6a04
+-/
 @[ext]
 theorem addMonoidHom_ext ⦃f g : K0 C →+ G⦄ (h : ∀ X : C, f (mk X) = g (mk X)) : f = g := by
   apply QuotientAddGroup.addMonoidHom_ext
@@ -143,11 +158,17 @@ def lift (f : C → G) (hf : ∀ T ∈ distTriang C, f T.obj₂ = f T.obj₁ + f
     abel)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s8.1b77d4ceb9f3 from=translated src=- shape=93d784ae vocab=bd2fa382
+-/
 @[simp]
 theorem lift_mk (f : C → G) (hf) (X : C) : lift f hf (mk X) = f X :=
   (QuotientAddGroup.lift_mk' (relations C) _ (FreeAbelianGroup.of X)).trans
     (FreeAbelianGroup.lift_apply_of f X)
 
+/--
+@isnad1 id=eq.2h4v.s8.15ad39229eb8 from=translated src=- shape=1e274690 vocab=bd2fa382
+-/
 theorem lift_unique (f : C → G) (hf) (g : K0 C →+ G) (hg : ∀ X, g (mk X) = f X) :
     g = lift f hf := by
   ext X
@@ -157,20 +178,30 @@ end lift
 
 /-! ### Basic relations -/
 
+/--
+@isnad1 id=eq.1h2v.s7.444b9e9b58ce from=translated src=- shape=b6c6c772 vocab=af24689b
+-/
 theorem mk_obj₁ (T : Triangle C) (hT : T ∈ distTriang C) :
     mk T.obj₁ = mk T.obj₂ - mk T.obj₃ := by
   rw [mk_obj₂ T hT, add_sub_cancel_right]
 
+/--
+@isnad1 id=eq.1h2v.s7.c8064131e3f0 from=translated src=- shape=b6c6c772 vocab=af24689b
+-/
 theorem mk_obj₃ (T : Triangle C) (hT : T ∈ distTriang C) :
     mk T.obj₃ = mk T.obj₂ - mk T.obj₁ := by
   rw [mk_obj₂ T hT, add_sub_cancel_left]
 
-/-- The triangle relation, for a distinguished triangle given by its three morphisms.-/
+/-- The triangle relation, for a distinguished triangle given by its three morphisms.
+@isnad1 id=eq.1h7v.s7.32210ce7d24a from=translated src=- shape=d2cacd9b vocab=5eccfc23
+-/
 theorem mk_eq_add_of_distTriang {X Y Z : C} (f : X ⟶ Y) (g : Y ⟶ Z) (h : Z ⟶ X⟦(1 : ℤ)⟧)
     (hT : Triangle.mk f g h ∈ distTriang C) : mk Y = mk X + mk Z :=
   mk_obj₂ _ hT
 
-/-- The class of the zero object is `0`.-/
+/-- The class of the zero object is `0`.
+@isnad1 id=eq.0h1v.s7.1f0b29b70287 from=translated src=- shape=18fdd8ab vocab=382dc982
+-/
 @[simp]
 theorem mk_zero : mk (0 : C) = 0 := by
   have h := mk_obj₂ _ (contractible_distinguished₁ (0 : C))
@@ -178,7 +209,9 @@ theorem mk_zero : mk (0 : C) = 0 := by
   exact right_eq_add.1 h
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Isomorphic objects have the same class in `K₀(C)`.-/
+/-- Isomorphic objects have the same class in `K₀(C)`.
+@isnad1 id=eq.0h4v.s6.2d42efb2a723 from=translated src=- shape=903313e3 vocab=6e3ded06
+-/
 theorem mk_eq_of_iso {X Y : C} (e : X ≅ Y) : mk X = mk Y := by
   have h := mk_obj₂ _ (isomorphic_distinguished _ (contractible_distinguished X) _
     (Triangle.isoMk (Triangle.mk e.hom (0 : Y ⟶ 0) 0) (contractibleTriangle X) (Iso.refl X)
@@ -186,12 +219,17 @@ theorem mk_eq_of_iso {X Y : C} (e : X ≅ Y) : mk X = mk Y := by
   dsimp at h
   rw [h, mk_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h2v.s7.9b76d27b2866 from=translated src=- shape=3e13a36b vocab=479fa70f
+-/
 theorem mk_eq_zero_of_isZero {X : C} (hX : IsZero X) : mk X = 0 := by
   rw [mk_eq_of_iso hX.isoZero, mk_zero]
 
 /-! ### Shifts -/
 
-/-- `[X⟦1⟧] = -[X]`, from the distinguished triangle `X ⟶ 0 ⟶ X⟦1⟧ ⟶ X⟦1⟧`.-/
+/-- `[X⟦1⟧] = -[X]`, from the distinguished triangle `X ⟶ 0 ⟶ X⟦1⟧ ⟶ X⟦1⟧`.
+@isnad1 id=eq.0h2v.s7.f14230acf00a from=translated src=- shape=230bd3e1 vocab=5b8f79b3
+-/
 theorem mk_shift_one (X : C) : mk (X⟦(1 : ℤ)⟧) = -mk X := by
   have h := mk_obj₂ _ (contractible_distinguished₂ X)
   dsimp at h
@@ -199,7 +237,9 @@ theorem mk_shift_one (X : C) : mk (X⟦(1 : ℤ)⟧) = -mk X := by
   exact eq_neg_of_add_eq_zero_right h.symm
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `[X⟦n⟧] = (-1)^n • [X]`, with the sign `Int.negOnePow n : ℤˣ`.-/
+/-- `[X⟦n⟧] = (-1)^n • [X]`, with the sign `Int.negOnePow n : ℤˣ`.
+@isnad1 id=eq.0h3v.s7.1242140464ed from=translated src=- shape=8d4868f7 vocab=fe9cf2e0
+-/
 theorem mk_shift (n : ℤ) (X : C) : mk (X⟦n⟧) = n.negOnePow • mk X := by
   induction n using Int.induction_on with
   | zero => rw [mk_eq_of_iso ((shiftFunctorZero C ℤ).app X), Functor.id_obj, Int.negOnePow_zero,
@@ -213,26 +253,43 @@ theorem mk_shift (n : ℤ) (X : C) : mk (X⟦n⟧) = n.negOnePow • mk X := by
     rw [Int.negOnePow_sub, Int.negOnePow_one, mul_neg, mul_one, Units.smul_def, Units.val_neg,
       neg_smul, ← Units.smul_def, ← hn, neg_neg]
 
+/--
+@isnad1 id=eq.0h2v.s7.5c60cdae2955 from=translated src=- shape=2dbc2e9d vocab=5b8f79b3
+-/
 theorem mk_shift_neg_one (X : C) : mk (X⟦(-1 : ℤ)⟧) = -mk X := by
   rw [mk_shift, Int.negOnePow_neg, Int.negOnePow_one, Units.smul_def, Units.val_neg, Units.val_one,
     neg_smul, one_smul]
 
+/--
+@isnad1 id=eq.1h3v.s6.92f56503fa10 from=translated src=- shape=76b4d380 vocab=3a4ca749
+-/
 theorem mk_shift_even {n : ℤ} (hn : Even n) (X : C) : mk (X⟦n⟧) = mk X := by
   rw [mk_shift, Int.negOnePow_even n hn, one_smul]
 
+/--
+@isnad1 id=eq.1h3v.s7.ed7c81529439 from=translated src=- shape=5d436f42 vocab=d4feb342
+-/
 theorem mk_shift_odd {n : ℤ} (hn : Odd n) (X : C) : mk (X⟦n⟧) = -mk X := by
   rw [mk_shift, Int.negOnePow_odd n hn, Units.smul_def, Units.val_neg, Units.val_one, neg_smul,
     one_smul]
 
 /-! ### Biproducts -/
 
-/-- `[X ⊞ Y] = [X] + [Y]`, from the distinguished triangle `X ⟶ X ⊞ Y ⟶ Y ⟶ X⟦1⟧`.-/
+/-- `[X ⊞ Y] = [X] + [Y]`, from the distinguished triangle `X ⟶ X ⊞ Y ⟶ Y ⟶ X⟦1⟧`.
+@isnad1 id=eq.0h3v.s7.b22bcd180fc0 from=translated src=- shape=505a1a7f vocab=ae4976a4
+-/
 theorem mk_biprod (X Y : C) : mk (X ⊞ Y) = mk X + mk Y :=
   mk_obj₂ _ (binaryBiproductTriangle_distinguished X Y)
 
+/--
+@isnad1 id=eq.0h3v.s7.56e6e39c3254 from=translated src=- shape=505a1a7f vocab=7b6a0fe0
+-/
 theorem mk_prod (X Y : C) : mk (X ⨯ Y) = mk X + mk Y :=
   mk_obj₂ _ (binaryProductTriangle_distinguished X Y)
 
+/--
+@isnad1 id=eq.0h3v.s7.c8f49a81cd1a from=translated src=- shape=505a1a7f vocab=fb33529e
+-/
 theorem mk_coprod (X Y : C) : mk (X ⨿ Y) = mk X + mk Y :=
   (mk_eq_of_iso (biprod.isoCoprod X Y).symm).trans (mk_biprod X Y)
 
@@ -241,7 +298,9 @@ theorem mk_coprod (X Y : C) : mk (X ⨿ Y) = mk X + mk Y :=
 /-- Additivity of `K₀` over a finite sequence of distinguished triangles: given objects
 `X 0, X 1, …, X n` and `Q 0, …, Q (n-1)` and distinguished triangles
 `X i ⟶ X (i+1) ⟶ Q i ⟶ (X i)⟦1⟧`, one has `[X n] = [X 0] + ∑ i, [Q i]`. This is the
-additivity over a finite filtration whose subquotients are the `Q i`.-/
+additivity over a finite filtration whose subquotients are the `Q i`.
+@isnad1 id=eq.1h4v.s8.fe7a10e2460a from=translated src=- shape=872e2d4d vocab=739f9d80
+-/
 theorem mk_last_eq_add_sum {n : ℕ} (X : Fin (n + 1) → C) (Q : Fin n → C)
     (h : ∀ i : Fin n, ∃ (f : X i.castSucc ⟶ X i.succ) (g : X i.succ ⟶ Q i)
       (k : Q i ⟶ (X i.castSucc)⟦(1 : ℤ)⟧), Triangle.mk f g k ∈ distTriang C) :
@@ -268,26 +327,40 @@ variable {E : Type*} [Category E] [HasZeroObject E] [HasShift E ℤ] [Preadditiv
 def map (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated] : K0 C →+ K0 D :=
   lift (fun X => mk (F.obj X)) (fun T hT => mk_obj₂ _ (F.map_distinguished T hT))
 
+/--
+@isnad1 id=eq.0h4v.s8.bc6242eb17ca from=translated src=- shape=f98b46c5 vocab=6836481a
+-/
 @[simp]
 theorem map_mk (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated] (X : C) :
     map F (mk X) = mk (F.obj X) :=
   lift_mk _ _ X
 
+/--
+@isnad1 id=eq.0h1v.s7.df131f2e9dd0 from=translated src=- shape=704322d0 vocab=2d4c662c
+-/
 @[simp]
 theorem map_id : map (𝟭 C) = AddMonoidHom.id (K0 C) := by
   ext X
   simp
 
+/--
+@isnad1 id=eq.0h5v.s9.e43ceae944f5 from=translated src=- shape=fff25177 vocab=803b5428
+-/
 theorem map_comp (F : C ⥤ D) (G : D ⥤ E) [F.CommShift ℤ] [F.IsTriangulated]
     [G.CommShift ℤ] [G.IsTriangulated] : map (F ⋙ G) = (map G).comp (map F) := by
   ext X
   simp
 
+/--
+@isnad1 id=eq.0h6v.s10.4b0d7a018736 from=translated src=- shape=0c3df712 vocab=ae366bed
+-/
 theorem map_comp_apply (F : C ⥤ D) (G : D ⥤ E) [F.CommShift ℤ] [F.IsTriangulated]
     [G.CommShift ℤ] [G.IsTriangulated] (x : K0 C) : map (F ⋙ G) x = map G (map F x) := by
   rw [map_comp, AddMonoidHom.comp_apply]
 
-/-- Naturally isomorphic triangulated functors induce the same map on `K₀`.-/
+/-- Naturally isomorphic triangulated functors induce the same map on `K₀`.
+@isnad1 id=eq.0h5v.s8.00e3829b0808 from=translated src=- shape=ff6b186c vocab=db9bd303
+-/
 theorem map_eq_of_iso {F₁ F₂ : C ⥤ D} (e : F₁ ≅ F₂) [F₁.CommShift ℤ] [F₁.IsTriangulated]
     [F₂.CommShift ℤ] [F₂.IsTriangulated] : map F₁ = map F₂ := by
   ext X
@@ -310,18 +383,27 @@ def mapEquiv (e : C ≌ D) [e.functor.CommShift ℤ] [e.inverse.CommShift ℤ]
       AddMonoidHom.id_apply]
   map_add' := map_add _
 
+/--
+@isnad1 id=eq.0h4v.s9.8b65274ae0b9 from=translated src=- shape=f51a766c vocab=50734fca
+-/
 @[simp]
 theorem mapEquiv_apply (e : C ≌ D) [e.functor.CommShift ℤ] [e.inverse.CommShift ℤ]
     [e.functor.IsTriangulated] [e.inverse.IsTriangulated] (x : K0 C) :
     mapEquiv e x = map e.functor x :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.2d8150f973f4 from=translated src=- shape=3482e6ae vocab=caa99d15
+-/
 @[simp]
 theorem mapEquiv_symm_apply (e : C ≌ D) [e.functor.CommShift ℤ] [e.inverse.CommShift ℤ]
     [e.functor.IsTriangulated] [e.inverse.IsTriangulated] (y : K0 D) :
     (mapEquiv e).symm y = map e.inverse y :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.d2f5c8d9eb33 from=translated src=- shape=ceda959d vocab=5b735c18
+-/
 theorem mapEquiv_mk (e : C ≌ D) [e.functor.CommShift ℤ] [e.inverse.CommShift ℤ]
     [e.functor.IsTriangulated] [e.inverse.IsTriangulated] (X : C) :
     mapEquiv e (mk X) = mk (e.functor.obj X) :=

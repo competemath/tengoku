@@ -64,10 +64,16 @@ def shiftShiftEquiv (a b c : ℤ) (h : a + b = c) : Shift c M ≃ᵈᵍ[A] Shift
     rw [unmk_d, d_mk, d_mk, ← h, koszulSign_add, mul_comm, ← smul_smul]
     rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.91705eabb082 from=translated src=- shape=3085880a vocab=6410f9e5
+-/
 @[simp]
 theorem shiftShiftEquiv_apply (a b c : ℤ) (h : a + b = c) (x : Shift c M) :
     shiftShiftEquiv (A := A) a b c h x = mk b (mk a (unmk c x)) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.e1521a709e91 from=translated src=- shape=cb8efe9f vocab=b82b78e4
+-/
 @[simp]
 theorem shiftShiftEquiv_symm_apply (a b c : ℤ) (h : a + b = c) (y : Shift b (Shift a M)) :
     (shiftShiftEquiv (A := A) a b c h).symm y = mk c (unmk a (unmk b y)) := rfl
@@ -76,12 +82,18 @@ theorem shiftShiftEquiv_symm_apply (a b c : ℤ) (h : a + b = c) (y : Shift b (S
 def shiftComm (a b : ℤ) : Shift b (Shift a M) ≃ᵈᵍ[A] Shift a (Shift b M) :=
   (shiftShiftEquiv a b (a + b) rfl).symm.trans (shiftShiftEquiv b a (a + b) (add_comm b a))
 
+/--
+@isnad1 id=eq.0h5v.s10.377bd17d665f from=translated src=- shape=ee772de2 vocab=fb66f0df
+-/
 @[simp]
 theorem shiftComm_apply (a b : ℤ) (x : Shift b (Shift a M)) :
     shiftComm (A := A) a b x = mk a (mk b (unmk a (unmk b x))) := rfl
 
 variable (R : Type*) [CommRing R] [Algebra R A] [DGAlgebra R A]
 
+/--
+@isnad1 id=eq.0h4v.s7.25acc4ac2df2 from=translated src=- shape=831cbc73 vocab=36273405
+-/
 theorem twist_algebraMap (n : ℤ) (r : R) : twist A n (algebraMap R A r) = algebraMap R A r := by
   rw [twist_of_mem (algebraMap_mem_grading R r), mul_zero, koszulSign_zero, one_smul]
 
@@ -123,6 +135,9 @@ def shiftFunctorAddAux (a b : ℤ) :
     shiftFunctorAux.{v} A (a + b) ≅ shiftFunctorAux A a ⋙ shiftFunctorAux A b :=
   NatIso.ofComponents (fun _ => (shiftShiftEquiv a b (a + b) rfl).toDGModuleCatIso) fun _ => rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.f230d07e1b7c from=translated src=- shape=10c85143 vocab=29a3d023
+-/
 theorem eqToHom_shift_apply {a b : ℤ} (h : a = b) (M : DGModuleCat.{v} A)
     (p : (shiftFunctorAux A a).obj M = (shiftFunctorAux A b).obj M) (x : Shift a M) :
     (eqToHom p) x = Shift.mk b (unmk a x) := by
@@ -150,14 +165,23 @@ instance hasShift : HasShift (DGModuleCat.{v} A) ℤ :=
 
 variable {A}
 
+/--
+@isnad1 id=eq.0h3v.s6.483fe6f78a18 from=translated src=- shape=84775aa6 vocab=ec07c4e9
+-/
 @[simp]
 theorem shiftFunctor_obj (n : ℤ) (M : DGModuleCat.{v} A) :
     (shiftFunctor (DGModuleCat.{v} A) n).obj M = of A (Shift n M) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.9758cbc4111d from=translated src=- shape=62df45ab vocab=cdc3f6c0
+-/
 @[simp]
 theorem shiftFunctor_map_hom (n : ℤ) {M N : DGModuleCat.{v} A} (f : M ⟶ N) :
     ((shiftFunctor (DGModuleCat.{v} A) n).map f).hom = f.hom.shift n := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.d50506a4f467 from=translated src=- shape=9fb61b29 vocab=b33ae606
+-/
 theorem shiftFunctorAdd'_hom_app_apply (a b c : ℤ) (h : a + b = c) (M : DGModuleCat.{v} A)
     (x : Shift c M) :
     ((shiftFunctorAdd' (DGModuleCat.{v} A) a b c h).hom.app M) x =
@@ -165,6 +189,9 @@ theorem shiftFunctorAdd'_hom_app_apply (a b c : ℤ) (h : a + b = c) (M : DGModu
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.5c8dd6c7e38b from=translated src=- shape=0570f229 vocab=8e80a37a
+-/
 theorem shiftFunctorAdd'_inv_app_apply (a b c : ℤ) (h : a + b = c) (M : DGModuleCat.{v} A)
     (x : Shift b (Shift a M)) :
     ((shiftFunctorAdd' (DGModuleCat.{v} A) a b c h).inv.app M) x =
@@ -173,6 +200,9 @@ theorem shiftFunctorAdd'_inv_app_apply (a b c : ℤ) (h : a + b = c) (M : DGModu
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s11.0203e237c358 from=translated src=- shape=55f1ac13 vocab=5d054ad9
+-/
 theorem shiftFunctorComm_hom_app_apply (a b : ℤ) (M : DGModuleCat.{v} A)
     (x : Shift b (Shift a M)) :
     ((shiftFunctorComm (DGModuleCat.{v} A) a b).hom.app M) x =
@@ -181,6 +211,9 @@ theorem shiftFunctorComm_hom_app_apply (a b : ℤ) (M : DGModuleCat.{v} A)
     comp_apply, shiftFunctorAdd'_inv_app_apply, shiftFunctorAdd'_hom_app_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.e6497ba9d83e from=translated src=- shape=a68a16db vocab=419f9175
+-/
 theorem shiftFunctorComm_hom_app_eq (a b : ℤ) (M : DGModuleCat.{v} A) :
     (shiftFunctorComm (DGModuleCat.{v} A) a b).hom.app M =
       ofHom (Shift.shiftComm (M := M) a b).toDGModuleHom :=
@@ -210,6 +243,9 @@ def shift (h : DGHomotopy f g) (n : ℤ) : DGHomotopy (f.shift n) (g.shift n) wh
 
 end DGHomotopy
 
+/--
+@isnad1 id=homotopi.1h6v.s7.0e8e10c5b0c0 from=translated src=- shape=e5d178f3 vocab=e20988fc
+-/
 theorem Homotopic.shift {A : Type*} {M N : Type*} [Ring A] [DGAddCommGroup A] [DGRing A]
     [AddCommGroup M] [DGAddCommGroup M] [Module A M] [DGModule A M]
     [AddCommGroup N] [DGAddCommGroup N] [Module A N] [DGModule A N] {f g : M →ᵈᵍ[A] N}
@@ -249,6 +285,9 @@ open Shift DGModuleCat.Algebra
 variable (R : Type w) {A : Type u} [CommRing R] [Ring A] [DGAddCommGroup A] [Algebra R A]
   [DGRing A] [DGAlgebra R A]
 
+/--
+@isnad1 id=eq.1h6v.s11.862fc6a6971f from=translated src=- shape=e43ea370 vocab=75155168
+-/
 theorem toComplex_d_hom_apply (M : DGModuleCat.{v} A) {i j : ℤ} (h : i + 1 = j)
     (x : DGModule.gradingSubmodule R A M i) :
     (((toComplex R M).d i j).hom x).1 = d (x : M) := by
@@ -256,6 +295,9 @@ theorem toComplex_d_hom_apply (M : DGModuleCat.{v} A) {i j : ℤ} (h : i + 1 = j
   rw [toComplex_d]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s12.cf70b5d0d048 from=translated src=- shape=c6b9bc12 vocab=16e92cb2
+-/
 theorem forget_obj_XIsoOfEq_hom_apply (M : DGModuleCat.{v} A) {i j : ℤ} (h : i = j)
     (x : DGModule.gradingSubmodule R A M i) :
     ((((forget R A).obj M).XIsoOfEq h).hom.hom x).1 = x := by

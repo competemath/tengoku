@@ -42,12 +42,18 @@ def yonedaCochainApp (m : M.obj X) (Y : C) : (X ⟶ Y) →+ M.obj Y :=
   (koszulTwist (M.act (X := X) (Y := Y))).flip m
 
 omit [DGCategory C] in
+/--
+@isnad1 id=eq.2h8v.s9.4473d880f2f2 from=translated src=- shape=75b2452a vocab=0772e794
+-/
 theorem yonedaCochainApp_of_mem {n : ℤ} {m : M.obj X} (hm : m ∈ grading n) {Y : C} {i : ℤ}
     {h : X ⟶ Y} (hh : h ∈ grading i) :
     yonedaCochainApp m Y h = koszulSign (i * n) • (h • m) := by
   rw [yonedaCochainApp, AddMonoidHom.flip_apply]
   exact koszulTwist_apply_of_mem _ hh hm
 
+/--
+@isnad1 id=eq.2h10v.s9.4dd0b22897c9 from=translated src=- shape=9d98b9e1 vocab=08e875e1
+-/
 theorem yonedaCochainApp_comp {n : ℤ} {m : M.obj X} (hm : m ∈ grading n) {Y Z : C} {i : ℤ}
     {f : Y ⟶ Z} (hf : f ∈ grading i) (h : X ⟶ Y) :
     yonedaCochainApp m Z (h ≫ f) = koszulSign (n * i) • (f • yonedaCochainApp m Y h) := by
@@ -71,19 +77,27 @@ def yonedaCochain (n : ℤ) (m : grading (M := M.obj X) n) : Cochain (representa
     exact zsmul_mem (smul_mem_grading hh m.2) _
   map_smul' {Y Z i f} hf h := yonedaCochainApp_comp m.2 hf h
 
+/--
+@isnad1 id=eq.1h8v.s9.b446e33aff36 from=translated src=- shape=f6d440f5 vocab=9f7a2b56
+-/
 @[simp]
 theorem yonedaCochain_app_of_mem (n : ℤ) (m : grading (M := M.obj X) n) {Y : C} {i : ℤ}
     {h : X ⟶ Y} (hh : h ∈ grading i) :
     (yonedaCochain n m).app Y h = koszulSign (i * n) • (h • (m : M.obj X)) :=
   yonedaCochainApp_of_mem m.2 hh
 
+/--
+@isnad1 id=eq.0h5v.s9.fd602c1fb30b from=translated src=- shape=5ccee44e vocab=57d8cefd
+-/
 theorem yonedaCochain_app_id (n : ℤ) (m : grading (M := M.obj X) n) :
     (yonedaCochain n m).app X (𝟙 X) = m := by
   rw [yonedaCochain_app_of_mem n m (id_mem_grading X), zero_mul, koszulSign_zero, one_smul]
   exact id_smul (M := M) _
 
 /-- A cochain `z` from `C(X, -)` is determined by `z (𝟙 X)`:
-`z (h) = (-1)^{n |h|} • (h • z (𝟙 X))`.-/
+`z (h) = (-1)^{n |h|} • (h • z (𝟙 X))`.
+@isnad1 id=eq.0h5v.s10.c422356e62be from=translated src=- shape=a764a023 vocab=0e30ec54
+-/
 theorem yonedaCochain_eval {n : ℤ} (z : Cochain (representable X) M n) :
     yonedaCochain n ⟨z.app X (𝟙 X), by simpa using z.map_mem (id_mem_grading X)⟩ = z := by
   ext Y h
@@ -163,18 +177,26 @@ def yonedaHOM : DGAddEquiv (HOM (representable X) M) (M.obj X) :=
         rw [d_id, map_zero, _root_.smul_zero, sub_zero]
       | add x y hx hy => rw [d_add, map_add, map_add, hx, hy, d_add])
 
+/--
+@isnad1 id=eq.0h5v.s10.00bdcc4a60e4 from=translated src=- shape=8c76d3ff vocab=a6fb06a5
+-/
 @[simp]
 theorem yonedaHOM_of {n : ℤ} (z : Cochain (representable X) M n) :
     yonedaHOM X M (DirectSum.of (fun n => Cochain (representable X) M n) n z) = z.app X (𝟙 X) :=
   DirectSum.toAddMonoid_of _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s10.ce547b7c45aa from=translated src=- shape=dc7b934e vocab=e4464ed5
+-/
 theorem yonedaHOM_symm_of_mem {n : ℤ} {m : M.obj X} (hm : m ∈ grading n) :
     (yonedaHOM X M).symm m =
       DirectSum.of (fun n => Cochain (representable X) M n) n (yonedaCochain n ⟨m, hm⟩) :=
   liftHomogeneous_of_mem _ _ hm
 
 /-- On degree-`0` cocycles, the Yoneda isomorphism for Hom complexes is the dg Yoneda lemma
-`DG.CatModule.yonedaEquiv`.-/
+`DG.CatModule.yonedaEquiv`.
+@isnad1 id=eq.0h4v.s11.e36267badba9 from=translated src=- shape=1489c6be vocab=5302e26b
+-/
 theorem yonedaHOM_ofHom (φ : representable X ⟶ M) :
     yonedaHOM X M (DirectSum.of (fun n => Cochain (representable X) M n) 0 (Cochain.ofHom φ)) =
       (yonedaEquiv φ : M.obj X) :=

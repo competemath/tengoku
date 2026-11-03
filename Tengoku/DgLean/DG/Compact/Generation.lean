@@ -68,7 +68,9 @@ open CategoryTheory Limits Pretriangulated ZeroObject
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
-/-- Compactness relative to a universe implies compactness relative to any smaller universe.-/
+/-- Compactness relative to a universe implies compactness relative to any smaller universe.
+@isnad1 id=iscompac.1h2v.s4.487de9d3865c from=translated src=- shape=b0c8cbfb vocab=77b22ffb
+-/
 theorem IsCompact.down {X : C} (h : IsCompact.{max w w'} X) : IsCompact.{w} X := by
   rw [isCompact_iff_preservesColimitsOfShape] at h ⊢
   intro ι
@@ -84,9 +86,15 @@ namespace CompactlyFactorsThrough
 
 variable {P : ObjectProperty C}
 
+/--
+@isnad1 id=compactl.0h4v.s4.58c346d600fe from=translated src=- shape=3890ef72 vocab=4b2b1fa9
+-/
 theorem of_mem {Y : C} (hY : P Y) : CompactlyFactorsThrough.{w} P Y :=
   fun _ _ φ => ⟨Y, hY, φ, 𝟙 Y, (Category.comp_id φ).symm⟩
 
+/--
+@isnad1 id=compactl.1h5v.s5.e32e1cd739fa from=translated src=- shape=37439035 vocab=d7cf3634
+-/
 theorem of_retract {Y Y' : C} (e : Retract Y Y') (h : CompactlyFactorsThrough.{w} P Y') :
     CompactlyFactorsThrough.{w} P Y := by
   intro K hK φ
@@ -104,7 +112,9 @@ namespace CompactlyFactorsThrough
 variable {P : ObjectProperty C}
 
 /-- A morphism from a compact object to a coproduct of objects of a thick property `P` factors
-through an object of `P`: it factors through a finite subcoproduct.-/
+through an object of `P`: it factors through a finite subcoproduct.
+@isnad1 id=compactl.1h5v.s6.46ae33c5e297 from=translated src=- shape=bd10db34 vocab=3f71ccae
+-/
 theorem coproduct (hP : IsThick P) {ι : Type w} (Y : ι → C) [HasCoproduct Y]
     (hY : ∀ i, P (Y i)) : CompactlyFactorsThrough.{w} P (∐ Y) := by
   classical
@@ -119,7 +129,9 @@ theorem coproduct (hP : IsThick P) {ι : Type w} (Y : ι → C) [HasCoproduct Y]
     exact ⟨L₁ ⊞ L₂, hP.biprod h₁ h₂, biprod.lift a₁ a₂, biprod.desc b₁ b₂, by simp [e₁, e₂]⟩
 
 /-- The shift `(∐ Y)⟦1⟧` of a coproduct of objects of a thick property `P`: morphisms from
-compact objects factor through `P`.-/
+compact objects factor through `P`.
+@isnad1 id=compactl.1h6v.s6.2e303be04989 from=translated src=- shape=69edddd8 vocab=ee12156f
+-/
 theorem coproduct_shift [HasCoproducts.{w} C] (hP : IsThick P) {ι : Type w} (Y : ι → C)
     (hY : ∀ i, P (Y i)) (n : ℤ) : CompactlyFactorsThrough.{w} P ((∐ Y)⟦n⟧) := by
   let e := sigmaComparison (shiftFunctor C n) Y
@@ -128,7 +140,9 @@ theorem coproduct_shift [HasCoproducts.{w} C] (hP : IsThick P) {ι : Type w} (Y 
 /-- The inductive step of the cellular construction. Let `X₁ ⟶ X₂ ⟶ X₃ ⟶ X₁⟦1⟧` be a
 distinguished triangle in a triangulated category, and `P` a thick property consisting of
 compact objects. If morphisms from compact objects to `X₁⟦1⟧` and to `X₂` factor through `P`,
-so do morphisms from compact objects to `X₃`.-/
+so do morphisms from compact objects to `X₃`.
+@isnad1 id=compactl.5h3v.s7.558111be29ae from=translated src=- shape=4c9a0261 vocab=cb5e6d2e
+-/
 theorem ext₃ [IsTriangulated C] [HasCoproducts.{w} C] (hP : IsThick P)
     (hPc : P ≤ IsCompact.{w}) (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : CompactlyFactorsThrough.{w} P (T.obj₁⟦(1 : ℤ)⟧))
@@ -201,6 +215,9 @@ noncomputable def kerMap (A : Over X) : (∐ fun c : KerCells G A => (G c.1)⟦c
   Sigma.desc fun c => c.2.2.1
 
 omit [HasZeroObject C] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C] in
+/--
+@isnad1 id=eq.0h5v.s13.215cfeebc626 from=translated src=- shape=46c95e31 vocab=bba635ed
+-/
 theorem kerMap_comp_hom (A : Over X) : kerMap G A ≫ A.hom = 0 := by
   ext c
   simp [kerMap, c.2.2.2]
@@ -210,6 +227,9 @@ noncomputable def nextTriangle (A : Over X) : Triangle C :=
   Triangle.mk (kerMap G A) (distinguished_cocone_triangle (kerMap G A)).choose_spec.choose
     (distinguished_cocone_triangle (kerMap G A)).choose_spec.choose_spec.choose
 
+/--
+@isnad1 id=mem.0h5v.s6.c2c1eb45e6f2 from=translated src=- shape=8720bac1 vocab=267db178
+-/
 theorem nextTriangle_distinguished (A : Over X) : nextTriangle G A ∈ distTriang C :=
   (distinguished_cocone_triangle (kerMap G A)).choose_spec.choose_spec.choose_spec
 
@@ -234,18 +254,25 @@ variable (X) in
 noncomputable def towerMap (n : ℕ) : (tower G X n).left ⟶ (tower G X (n + 1)).left :=
   (toNext G (tower G X n)).left
 
+/--
+@isnad1 id=eq.0h5v.s7.77b892353798 from=translated src=- shape=2177abca vocab=14964212
+-/
 @[reassoc (attr := simp)]
 theorem towerMap_comp_hom (n : ℕ) :
     towerMap G X n ≫ (tower G X (n + 1)).hom = (tower G X n).hom :=
   Over.w (toNext G (tower G X n))
 
-/-- Every morphism `G i⟦m⟧ ⟶ X` lifts to the first stage.-/
+/-- Every morphism `G i⟦m⟧ ⟶ X` lifts to the first stage.
+@isnad1 id=ex.0h7v.s8.56735992670c from=translated src=- shape=91782e85 vocab=f127327d
+-/
 theorem exists_lift_base {i : ι} {m : ℤ} (φ : (G i)⟦m⟧ ⟶ X) :
     ∃ ψ : (G i)⟦m⟧ ⟶ (tower G X 0).left, ψ ≫ (tower G X 0).hom = φ :=
   ⟨Sigma.ι (fun c : Cells G X => (G c.1)⟦c.2.1⟧) ⟨i, m, φ⟩, by simp [tower, base]⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A morphism `G i⟦m⟧ ⟶ P n` which vanishes in `X` vanishes in `P (n + 1)`.-/
+/-- A morphism `G i⟦m⟧ ⟶ P n` which vanishes in `X` vanishes in `P (n + 1)`.
+@isnad1 id=eq.1h8v.s9.571a92fd765a from=translated src=- shape=538acf95 vocab=d83c7ee8
+-/
 theorem comp_towerMap_eq_zero {n : ℕ} {i : ι} {m : ℤ} (ψ : (G i)⟦m⟧ ⟶ (tower G X n).left)
     (hψ : ψ ≫ (tower G X n).hom = 0) : ψ ≫ towerMap G X n = 0 := by
   have h : ψ = Sigma.ι (fun c : KerCells G (tower G X n) => (G c.1)⟦c.2.1⟧) ⟨i, m, ψ, hψ⟩ ≫
@@ -256,7 +283,9 @@ theorem comp_towerMap_eq_zero {n : ℕ} {i : ι} {m : ℤ} (ψ : (G i)⟦m⟧ �
   rw [comp_distTriang_mor_zero₁₂ _ (nextTriangle_distinguished G _), Limits.comp_zero]
 
 /-- Morphisms from compact objects to each stage of the cellular tower factor through the
-thick closure of `G` (in fact, through objects built from finitely many cells).-/
+thick closure of `G` (in fact, through objects built from finitely many cells).
+@isnad1 id=compactl.1h5v.s6.e24222bbb287 from=translated src=- shape=98f648bf vocab=bfd35758
+-/
 theorem compactlyFactorsThrough_tower [IsTriangulated C] (hG : ∀ i, IsCompact.{max w v} (G i))
     (n : ℕ) :
     CompactlyFactorsThrough.{max w v} (ThickClosure fun Y => ∃ i, G i = Y) (tower G X n).left := by

@@ -31,14 +31,22 @@ variable {A : Type u} [Ring A] [DGAddCommGroup A]
 instance instDGAddCommGroupHom (X Y : SingleObj A) : DGAddCommGroup (X ⟶ Y) :=
   inferInstanceAs (DGAddCommGroup A)
 
+/--
+@isnad1 id=iff.0h5v.s7.843d2ebf52a0 from=translated src=- shape=fa9d817f vocab=127a111c
+-/
 theorem mem_grading_iff {X Y : SingleObj A} {n : ℤ} {f : X ⟶ Y} :
     f ∈ grading n ↔ (f : A) ∈ grading (M := A) n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.eecb0816e3d1 from=translated src=- shape=cc167c57 vocab=aaae3b26
+-/
 theorem d_def {X Y : SingleObj A} (f : X ⟶ Y) : d f = (d (f : A) : A) :=
   rfl
 
-/-- The one-object category of a dg ring is a dg category.-/
+/-- The one-object category of a dg ring is a dg category.
+@isnad1 id=dgcatego.0h1v.s5.c0e2328c242c from=translated src=- shape=46b8a2f7 vocab=76d50a8f
+-/
 instance instDGCategory [DGRing A] : DGCategory (SingleObj A) where
   comp_mem' {_ _ _ i j f g} hf hg := by
     rw [add_comm]
@@ -46,7 +54,9 @@ instance instDGCategory [DGRing A] : DGCategory (SingleObj A) where
   id_mem' _ := one_mem_grading (A := A)
   d_comp' f _ hg := d_mul (A := A) hg f
 
-/-- If `SingleObj A` is a dg category then `A` is a dg ring.-/
+/-- If `SingleObj A` is a dg category then `A` is a dg ring.
+@isnad1 id=dgring.0h1v.s5.711e002465d0 from=translated src=- shape=74e6ef00 vocab=76d50a8f
+-/
 theorem dgRing_of_dgCategory [DGCategory (SingleObj A)] : DGRing A where
   one_mem := id_mem_grading (SingleObj.star A)
   mul_mem i j a b ha hb := by
@@ -56,7 +66,9 @@ theorem dgRing_of_dgCategory [DGCategory (SingleObj A)] : DGRing A where
   d_mul' {_ a} ha b := d_comp (X := SingleObj.star A) (Y := SingleObj.star A)
     (Z := SingleObj.star A) b ha
 
-/-- `SingleObj A` is a dg category if and only if `A` is a dg ring.-/
+/-- `SingleObj A` is a dg category if and only if `A` is a dg ring.
+@isnad1 id=iff.0h1v.s5.d422911a6120 from=translated src=- shape=46d5e16b vocab=76d50a8f
+-/
 theorem dgCategory_iff : DGCategory (SingleObj A) ↔ DGRing A :=
   ⟨fun _ => dgRing_of_dgCategory, fun _ => inferInstance⟩
 
@@ -74,7 +86,9 @@ instance instDGAddCommGroup (X : C) : DGAddCommGroup (End X) :=
 variable [DGCategory C]
 
 /-- The endomorphism ring `End X` of an object of a dg category, with product `f * g = g ≫ f`,
-is a dg ring.-/
+is a dg ring.
+@isnad1 id=dgring.0h2v.s5.df3db0daaa25 from=translated src=- shape=65c7daae vocab=e40910cb
+-/
 instance instDGRing (X : C) : DGRing (End X) where
   one_mem := id_mem_grading X
   mul_mem i j f g hf hg := by

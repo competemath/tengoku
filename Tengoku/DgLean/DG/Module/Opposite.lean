@@ -70,6 +70,9 @@ def koszulTwist (f : A →+ M →+ N) : A →+ M →+ N :=
       map_add' := fun a a' => decompose_addHom_ext (grading (M := M)) fun j m => by
         simp [smul_add] }
 
+/--
+@isnad1 id=eq.2h8v.s10.6866261bc33d from=translated src=- shape=b6adf066 vocab=51874035
+-/
 theorem koszulTwist_apply_of_mem (f : A →+ M →+ N) {i j : ℤ} {a : A} {m : M}
     (ha : a ∈ grading i) (hm : m ∈ grading j) :
     koszulTwist f a m = koszulSign (i * j) • f a m := by
@@ -78,6 +81,9 @@ theorem koszulTwist_apply_of_mem (f : A →+ M →+ N) {i j : ℤ} {a : A} {m : 
   rw [liftHomogeneous_of_mem _ _ hm]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.98a279998db5 from=translated src=- shape=496416c5 vocab=093e3618
+-/
 @[simp]
 theorem koszulTwist_koszulTwist (f : A →+ M →+ N) : koszulTwist (koszulTwist f) = f :=
   decompose_addHom_ext (grading (M := A)) fun _ a =>
@@ -105,11 +111,17 @@ def actHom : A →+ M →+ M :=
   (smulAddHom Aᵐᵒᵖ M).comp (MulOpposite.opAddEquiv : A ≃+ Aᵐᵒᵖ).toAddMonoidHom
 
 omit [DGAddCommGroup A] [DGRing A] [DGAddCommGroup M] in
+/--
+@isnad1 id=eq.0h4v.s9.357c96ffa970 from=translated src=- shape=65c8b3c8 vocab=aff23ab0
+-/
 @[simp]
 theorem actHom_apply (a : A) (m : M) : actHom A M a m = MulOpposite.op a • m := rfl
 
 variable [DGRightModule A M]
 
+/--
+@isnad1 id=eq.2h8v.s12.42e9de5f1cec from=translated src=- shape=0c46809c vocab=c0fbe3b2
+-/
 theorem koszulTwist_actHom_mul_of_mem {i j : ℤ} {x y : Aᵒᵖ} (hx : x ∈ grading i)
     (hy : y ∈ grading j) (m : M) :
     koszulTwist (actHom A M) (GradedOpposite.unop 𝒜 (x * y)) m =
@@ -163,18 +175,26 @@ def opRingHom : Aᵒᵖ →+* AddMonoid.End M where
 @[instance_reducible]
 def opModule : Module Aᵒᵖ M := Module.compHom M (opRingHom R (A := A) (M := M))
 
+/--
+@isnad1 id=eq.0h5v.s10.cc2a081299c4 from=translated src=- shape=411f9bfc vocab=7b07f429
+-/
 theorem opModule_smul (x : Aᵒᵖ) (m : M) :
     (letI := opModule R (A := A) (M := M); x • m) =
       koszulTwist (actHom A M) (GradedOpposite.unop 𝒜 x) m :=
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s10.19b442a39946 from=translated src=- shape=91cdd43c vocab=0ae9f405
+-/
 theorem opModule_op_smul_of_mem {i j : ℤ} {a : A} {m : M} (ha : a ∈ grading i)
     (hm : m ∈ grading j) :
     (letI := opModule R (A := A) (M := M); GradedOpposite.op 𝒜 a • m) =
       koszulSign (i * j) • (MulOpposite.op a • m) :=
   koszulTwist_apply_of_mem (actHom A M) ha hm
 
-/-- A right dg `A`-module is a left dg `Aᵒᵖ`-module for the action `DGRightModule.opModule`.-/
+/-- A right dg `A`-module is a left dg `Aᵒᵖ`-module for the action `DGRightModule.opModule`.
+@isnad1 id=dgmodule.0h3v.s7.210cd82b7283 from=translated src=- shape=09626c21 vocab=a293daa5
+-/
 theorem dgModule_opModule :
     letI := opModule R (A := A) (M := M)
     DGModule Aᵒᵖ M :=
@@ -216,12 +236,18 @@ def opActHom : A →+ M →+ M :=
     (GradedOpposite.op (DGAlgebra.gradingSubmodule R A)).toLinearMap.toAddMonoidHom
 
 omit [DGAddCommGroup M] in
+/--
+@isnad1 id=eq.0h5v.s10.9145092c1692 from=translated src=- shape=7d49427f vocab=c4b6df6a
+-/
 @[simp]
 theorem opActHom_apply (a : A) (m : M) :
     opActHom R A M a m = GradedOpposite.op 𝒜 a • m := rfl
 
 variable [DGModule (GradedOpposite (DGAlgebra.gradingSubmodule R A)) M]
 
+/--
+@isnad1 id=eq.0h6v.s10.2705949b0cc2 from=translated src=- shape=7e031a35 vocab=d55e4341
+-/
 theorem koszulTwist_opActHom_mul (a b : A) (m : M) :
     koszulTwist (opActHom R A M) (b * a) m =
       koszulTwist (opActHom R A M) a (koszulTwist (opActHom R A M) b m) := by
@@ -279,6 +305,9 @@ def mulOppositeRingHom : Aᵐᵒᵖ →+* AddMonoid.End M where
 @[instance_reducible]
 def mulOppositeModule : Module Aᵐᵒᵖ M := Module.compHom M (mulOppositeRingHom R (A := A) (M := M))
 
+/--
+@isnad1 id=eq.2h7v.s10.56f02f13bdc2 from=translated src=- shape=9b441e86 vocab=171dc6de
+-/
 theorem mulOppositeModule_op_smul_of_mem {i j : ℤ} {a : A} {m : M} (ha : a ∈ grading i)
     (hm : m ∈ grading j) :
     (letI := mulOppositeModule R (A := A) (M := M); MulOpposite.op a • m) =
@@ -286,7 +315,9 @@ theorem mulOppositeModule_op_smul_of_mem {i j : ℤ} {a : A} {m : M} (ha : a ∈
   koszulTwist_apply_of_mem (opActHom R A M) ha hm
 
 /-- A left dg `Aᵒᵖ`-module is a right dg `A`-module for the action
-`DGModule.mulOppositeModule`.-/
+`DGModule.mulOppositeModule`.
+@isnad1 id=dgrightm.0h3v.s7.72e405ce4cf6 from=translated src=- shape=17b49b62 vocab=8e5317d3
+-/
 theorem dgRightModule_mulOppositeModule :
     letI := mulOppositeModule R (A := A) (M := M)
     DGRightModule A M :=

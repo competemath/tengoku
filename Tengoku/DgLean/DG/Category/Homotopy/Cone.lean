@@ -45,6 +45,9 @@ variable {C : Type u} [Category.{v} C] [Preadditive C] [∀ X Y : C, DGAddCommGr
   [DGCategory C] {M N : CatModule.{w} C}
 
 omit [DGCategory C] in
+/--
+@isnad1 id=eq.0h7v.s9.062af148509f from=translated src=- shape=e4573c9d vocab=6bc4b318
+-/
 theorem Hom.map_units_smul (φ : M ⟶ N) {X : C} (u : ℤˣ) (m : M.obj X) :
     φ.app X (u • m) = u • φ.app X m := by
   rw [Units.smul_def, Units.smul_def, map_zsmul]
@@ -144,53 +147,96 @@ def fstHom : cone f ⟶ shift 1 M where
 
 variable {f} {X : C}
 
+/--
+@isnad1 id=eq.0h6v.s10.708984df5d34 from=translated src=- shape=280d59a0 vocab=dbd9cc91
+-/
 @[simp] theorem fstHom_inlAddHom (x : (shift 1 M).obj X) :
     (fstHom f).app X (inlAddHom f X x) = x := rfl
+/--
+@isnad1 id=eq.0h6v.s10.93fd6012e2cb from=translated src=- shape=43b2dade vocab=8748e619
+-/
 @[simp] theorem sndAddHom_inlAddHom (x : (shift 1 M).obj X) :
     sndAddHom f X (inlAddHom f X x) = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s10.c34dbb2fff38 from=translated src=- shape=17ed1467 vocab=a3039e91
+-/
 @[simp] theorem fstHom_inr (y : N.obj X) : (fstHom f).app X ((inr f).app X y) = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s9.337554eed64b from=translated src=- shape=6d2b0a59 vocab=4ff4f152
+-/
 @[simp] theorem sndAddHom_inr (y : N.obj X) : sndAddHom f X ((inr f).app X y) = y := rfl
 
+/--
+@isnad1 id=eq.2h7v.s11.c591a87ebfd4 from=translated src=- shape=cdb535b6 vocab=d7b70400
+-/
 @[ext]
 theorem ext {p q : (cone f).obj X} (h₁ : (fstHom f).app X p = (fstHom f).app X q)
     (h₂ : sndAddHom f X p = sndAddHom f X q) : p = q :=
   Prod.ext h₁ h₂
 
+/--
+@isnad1 id=eq.0h6v.s11.4b586078b752 from=translated src=- shape=db8f0bc5 vocab=787f0869
+-/
 theorem inlAddHom_fstHom_add_inr_sndAddHom (p : (cone f).obj X) :
     inlAddHom f X ((fstHom f).app X p) + (inr f).app X (sndAddHom f X p) = p :=
   ext (add_zero _) (zero_add _)
 
 variable (f) in
+/--
+@isnad1 id=eq.0h4v.s8.c525ede5cbd4 from=translated src=- shape=8fdcfaad vocab=0efc810a
+-/
 @[simp]
 theorem inr_comp_fstHom : inr f ≫ fstHom f = 0 := rfl
 
+/--
+@isnad1 id=iff.0h7v.s10.a238ec8ee1c3 from=translated src=- shape=5572982e vocab=8e6a42b5
+-/
 theorem mem_grading_iff {k : ℤ} {p : (cone f).obj X} :
     p ∈ grading k ↔ (fstHom f).app X p ∈ grading k ∧ sndAddHom f X p ∈ grading k :=
   Prod.mem_grading
 
+/--
+@isnad1 id=mem.1h7v.s10.b4eec7d9f38a from=translated src=- shape=ff92985b vocab=690dc68c
+-/
 theorem inlAddHom_mem {k : ℤ} {x : (shift 1 M).obj X} (hx : x ∈ grading k) :
     inlAddHom f X x ∈ grading k :=
   mem_grading_iff.mpr ⟨hx, zero_mem _⟩
 
+/--
+@isnad1 id=mem.1h7v.s9.f36270e0e454 from=translated src=- shape=1cbd17a0 vocab=85921b6b
+-/
 theorem sndAddHom_mem {k : ℤ} {p : (cone f).obj X} (hp : p ∈ grading k) :
     sndAddHom f X p ∈ grading k :=
   (mem_grading_iff.mp hp).2
 
+/--
+@isnad1 id=eq.0h8v.s10.f4ef02493c8b from=translated src=- shape=5f6326d4 vocab=259eed0c
+-/
 theorem inlAddHom_smul {Y : C} (g : X ⟶ Y) (x : (shift 1 M).obj X) :
     inlAddHom f Y (g • x) = g • inlAddHom f X x :=
   Prod.ext rfl (smul_zero (M := N) g).symm
 
+/--
+@isnad1 id=eq.0h8v.s9.f5a40c141762 from=translated src=- shape=d738ad72 vocab=70bd0621
+-/
 theorem sndAddHom_smul {Y : C} (g : X ⟶ Y) (p : (cone f).obj X) :
     sndAddHom f Y (g • p) = g • sndAddHom f X p := rfl
 
-/-- The first component of the differential of the cone: `fstHom` is a chain map.-/
+/-- The first component of the differential of the cone: `fstHom` is a chain map.
+@isnad1 id=eq.0h6v.s11.ed696dfc411e from=translated src=- shape=e8cc70a8 vocab=acdac673
+-/
 theorem fstHom_d (p : (cone f).obj X) : (fstHom f).app X (d p) = d ((fstHom f).app X p) := rfl
 
-/-- The second component of the differential of the cone.-/
+/-- The second component of the differential of the cone.
+@isnad1 id=eq.0h6v.s11.0afc7ea2e4ea from=translated src=- shape=4a4fa96c vocab=58e8a2d0
+-/
 theorem sndAddHom_d (p : (cone f).obj X) :
     sndAddHom f X (d p) = f.app X (shift.unmk 1 ((fstHom f).app X p)) + d (sndAddHom f X p) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.bafab7527c3f from=translated src=- shape=121d9ff1 vocab=06147a85
+-/
 theorem d_inlAddHom (x : (shift 1 M).obj X) :
     d (inlAddHom f X x) = inlAddHom f X (d x) + (inr f).app X (f.app X (shift.unmk 1 x)) :=
   ext (by simp) (by simp [sndAddHom_d])
@@ -215,17 +261,29 @@ def map (h : f ≫ g = e ≫ f') : cone f ⟶ cone f' where
       rw [map_add, Hom.map_d, unmk_shiftMap_app, ← comp_app, h, comp_app]
   map_smul' {X Y} k p := Prod.ext ((shiftMap 1 e).map_smul k p.1) (g.map_smul k p.2)
 
+/--
+@isnad1 id=eq.1h11v.s11.0fead1a9f035 from=translated src=- shape=31176985 vocab=78df4f5b
+-/
 @[simp]
 theorem fstHom_map (h : f ≫ g = e ≫ f') (p : (cone f).obj X) :
     (fstHom f').app X ((map e g h).app X p) = (shiftMap 1 e).app X ((fstHom f).app X p) := rfl
 
+/--
+@isnad1 id=eq.1h11v.s10.50b19051e5a7 from=translated src=- shape=29011983 vocab=696b8845
+-/
 @[simp]
 theorem sndAddHom_map (h : f ≫ g = e ≫ f') (p : (cone f).obj X) :
     sndAddHom f' X ((map e g h).app X p) = g.app X (sndAddHom f X p) := rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.5651e2080844 from=translated src=- shape=32609ae4 vocab=a4f6d87d
+-/
 theorem inr_comp_map (h : f ≫ g = e ≫ f') : inr f ≫ map e g h = g ≫ inr f' :=
   hom_ext fun X _ => ext (map_zero ((shiftMap 1 e).app X)) rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.20d1f6273c83 from=translated src=- shape=604e0d76 vocab=8f4bce8b
+-/
 theorem map_comp_fstHom (h : f ≫ g = e ≫ f') :
     map e g h ≫ fstHom f' = fstHom f ≫ shiftMap 1 e :=
   rfl

@@ -50,7 +50,9 @@ namespace DG
 
 open DirectSum
 
-/-- The Koszul sign only depends on the parity.-/
+/-- The Koszul sign only depends on the parity.
+@isnad1 id=eq.1h2v.s6.ae579ecd9a04 from=translated src=- shape=7753e56d vocab=0c1c5f5f
+-/
 theorem koszulSign_congr {m n : ℤ} (h : (m : ZMod 2) = n) : koszulSign m = koszulSign n := by
   obtain ⟨c, hc⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub m n 2).mp h
   have hn : n = m + 2 * c := by push_cast at hc; omega
@@ -103,11 +105,17 @@ def dHom (hd : IsOddDifferential ℳ d) : Periodize ℳ →+ Periodize ℳ :=
 
 variable {ℳ}
 
+/--
+@isnad1 id=eq.2h6v.s8.c02f3ccd7c7a from=translated src=- shape=02c5d167 vocab=8e83c010
+-/
 theorem dHom_mk (hd : IsOddDifferential ℳ d) (n : ℤ) (m : M) (hm : m ∈ ℳ n) :
     dHom ℳ hd (mk ℳ n m hm) =
       mk ℳ (n + 1) (d m) (by rw [Int.cast_add, Int.cast_one]; exact hd.map_mem hm) :=
   DirectSum.toAddMonoid_of (β := fun n => ↥(periodicGrading ℳ n)) _ n ⟨m, hm⟩
 
+/--
+@isnad1 id=eq.1h5v.s9.01a4bc17ef18 from=translated src=- shape=9400ba13 vocab=78716c28
+-/
 theorem dHom_dHom (hd : IsOddDifferential ℳ d) (x : Periodize ℳ) :
     dHom ℳ hd (dHom ℳ hd x) = 0 := by
   induction x using induction_on with
@@ -180,6 +188,9 @@ def dgAddCommGroup (hN : IsPeriodicDGModule hA 𝒩 dN) [Decomposition 𝒩] : D
   d_mem' := hN.map_mem
   d_d' := hN.d_d
 
+/--
+@isnad1 id=dgmodule.2h7v.s8.0f8651c64ab1 from=translated src=- shape=1d2ff17a vocab=ba1ef7b8
+-/
 theorem dgModule (hN : IsPeriodicDGModule hA 𝒩 dN) [Decomposition 𝒩]
     [SetLike.GradedSMul (periodizeGrading ℬ) 𝒩] :
     letI := Periodize.dgAddCommGroup ℬ hA.toIsOddDifferential
@@ -190,6 +201,9 @@ theorem dgModule (hN : IsPeriodicDGModule hA 𝒩 dN) [Decomposition 𝒩]
   { toGradedSMul := inferInstanceAs (SetLike.GradedSMul (periodizeGrading ℬ) 𝒩)
     d_smul' := fun hp x => hN.d_smul hp x }
 
+/--
+@isnad1 id=isperiod.4h7v.s9.c56841e32a04 from=translated src=- shape=1e453271 vocab=25601225
+-/
 theorem of_dgModule [Decomposition 𝒩] (hd : ∀ {n : ℤ} {x : N}, x ∈ 𝒩 n → dN x ∈ 𝒩 (n + 1))
     (hdd : ∀ x, dN (dN x) = 0)
     (h : letI := Periodize.dgAddCommGroup ℬ hA.toIsOddDifferential
@@ -253,21 +267,33 @@ namespace RegradeByDivision
 
 variable {ℳ : ℤ → σ} {k r : ℤ} {d : M →+ M}
 
+/--
+@isnad1 id=eq.1h8v.s7.f74349a75214 from=translated src=- shape=c2561fdc vocab=1412a55f
+-/
 theorem mk_zsmul (q : ℤ) (z : ℤ) {m : M} (hm : m ∈ ℳ (q * k + r)) :
     mk ℳ k r q (z • m) (zsmul_mem hm z) = z • mk ℳ k r q m hm :=
   map_zsmul (DirectSum.of (fun q => ↥(divGrading ℳ k r q)) q) z ⟨m, hm⟩
 
+/--
+@isnad1 id=eq.1h8v.s7.be98474e77f6 from=translated src=- shape=b2f4dc09 vocab=a5009889
+-/
 theorem mk_units_smul (q : ℤ) (z : ℤˣ) {m : M} (hm : m ∈ ℳ (q * k + r)) :
     mk ℳ k r q (z • m) (by rw [Units.smul_def]; exact zsmul_mem hm _) = z • mk ℳ k r q m hm :=
   (mk_congr rfl (Units.smul_def z m) _ (zsmul_mem hm _)).trans
     ((mk_zsmul q (z : ℤ) hm).trans (Units.smul_def z _).symm)
 
+/--
+@isnad1 id=eq.6h11v.s8.56a63ee28a47 from=translated src=- shape=62f74581 vocab=f19775e3
+-/
 theorem mk_eq_add {q q₁ q₂ : ℤ} (h₁ : q₁ = q) (h₂ : q₂ = q) {m m₁ m₂ : M} (h : m = m₁ + m₂)
     (hm : m ∈ ℳ (q * k + r)) (hm₁ : m₁ ∈ ℳ (q₁ * k + r)) (hm₂ : m₂ ∈ ℳ (q₂ * k + r)) :
     mk ℳ k r q m hm = mk ℳ k r q₁ m₁ hm₁ + mk ℳ k r q₂ m₂ hm₂ := by
   subst h₁ h₂ h; exact mk_add _ _ _
 
 omit [AddSubgroupClass σ M] in
+/--
+@isnad1 id=mem.2h8v.s7.f0d94dbbdd69 from=translated src=- shape=54593799 vocab=d6e4f9cf
+-/
 theorem map_mem_succ (hd : IsDifferentialOfDegree ℳ k d) {q : ℤ} {m : M} (hm : m ∈ ℳ (q * k + r)) :
     d m ∈ ℳ ((q + 1) * k + r) := by
   have := hd.map_mem hm
@@ -286,10 +312,16 @@ def dHom (hd : IsDifferentialOfDegree ℳ k d) : RegradeByDivision ℳ k r →+ 
 
 variable {ℳ k r}
 
+/--
+@isnad1 id=eq.2h8v.s9.b63065597baf from=translated src=- shape=6a6d7c5f vocab=3601932e
+-/
 theorem dHom_mk (hd : IsDifferentialOfDegree ℳ k d) (q : ℤ) (m : M) (hm : m ∈ ℳ (q * k + r)) :
     dHom ℳ k r hd (mk ℳ k r q m hm) = mk ℳ k r (q + 1) (d m) (map_mem_succ hd hm) :=
   DirectSum.toAddMonoid_of (β := fun q => ↥(divGrading ℳ k r q)) _ q ⟨m, hm⟩
 
+/--
+@isnad1 id=eq.1h7v.s10.fb899717ce17 from=translated src=- shape=199e8cb1 vocab=a20a5d80
+-/
 theorem dHom_dHom (hd : IsDifferentialOfDegree ℳ k d) (x : RegradeByDivision ℳ k r) :
     dHom ℳ k r hd (dHom ℳ k r hd x) = 0 := by
   induction x using induction_on with
@@ -329,13 +361,18 @@ section Ring
 variable {𝒜 : ℤ → τ} [SetLike.GradedMonoid 𝒜] {k : ℤ} {d : A →+ A}
 
 omit [Ring A] [AddSubgroupClass τ A] [SetLike.GradedMonoid 𝒜] in
+/--
+@isnad1 id=mem.1h6v.s6.6c4d17a27e1f from=translated src=- shape=94ba8fa9 vocab=205d7159
+-/
 theorem mem_of_mem_mul_add_zero {q : ℤ} {a : A} (ha : a ∈ 𝒜 (q * k + 0)) : a ∈ 𝒜 (q * k) := by
   rwa [add_zero] at ha
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **The residue-`0` part is a dg ring.** For a differential `d` of degree `k` on a `ℤ`-graded
 ring `A` satisfying the Leibniz rule with the sign `(-1)^{|a| / k}` on elements of degree
-divisible by `k`, `⨁ q, A^{q k}` is a dg ring for the induced differential of degree `1`.-/
+divisible by `k`, `⨁ q, A^{q k}` is a dg ring for the induced differential of degree `1`.
+@isnad1 id=dgring.1h5v.s7.e1f578e1eafb from=translated src=- shape=104f4c27 vocab=33b95ea8
+-/
 theorem dgRing (hd : IsDivDGRing 𝒜 k d) :
     letI := dgAddCommGroup 𝒜 k 0 hd.toIsDifferentialOfDegree
     DGRing (RegradeByDivision 𝒜 k 0) :=

@@ -23,7 +23,9 @@ section Decompose
 
 variable {M N : Type*} [AddCommGroup M] [DGAddCommGroup M] [AddCommGroup N] [DGAddCommGroup N]
 
-/-- An additive map of degree `0` commutes with the homogeneous decompositions.-/
+/-- An additive map of degree `0` commutes with the homogeneous decompositions.
+@isnad1 id=eq.1h5v.s10.09bcf593dd5b from=translated src=- shape=87e4ca7a vocab=2548c823
+-/
 theorem coe_decompose_map_of_map_mem (f : M →+ N)
     (hf : ∀ {n : ℤ} {m : M}, m ∈ grading n → f m ∈ grading n) (m : M) (j : ℤ) :
     (decompose (grading (M := N)) (f m) j : N) = f (decompose (grading (M := M)) m j) := by
@@ -39,7 +41,9 @@ theorem coe_decompose_map_of_map_mem (f : M →+ N)
   | h_add m m' hm hm' => simp [decompose_add, hm, hm']
 
 /-- An injective additive map of degree `0` reflects the grading: if `f m` is homogeneous of
-degree `k`, so is `m`.-/
+degree `k`, so is `m`.
+@isnad1 id=mem.3h5v.s8.2dc6421681e5 from=translated src=- shape=f0e91c4b vocab=49f5a157
+-/
 theorem mem_grading_of_injective (f : M →+ N)
     (hf : ∀ {n : ℤ} {m : M}, m ∈ grading n → f m ∈ grading n) (hinj : Function.Injective f)
     {k : ℤ} {m : M} (hm : f m ∈ grading k) : m ∈ grading k := by
@@ -87,23 +91,41 @@ instance : EquivLike (DGAddEquiv M N) M N where
 instance : AddEquivClass (DGAddEquiv M N) M N where
   map_add e := e.map_add'
 
+/--
+@isnad1 id=eq.0h3v.s7.02ef3213ba2a from=translated src=- shape=784c6025 vocab=33424d72
+-/
 @[simp]
 theorem coe_toAddEquiv (e : DGAddEquiv M N) : ⇑e.toAddEquiv = e := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.407885c57537 from=translated src=- shape=86acd962 vocab=e41ea989
+-/
 @[ext]
 theorem ext {e e' : DGAddEquiv M N} (h : ∀ m, e m = e' m) : e = e' :=
   DFunLike.ext e e' h
 
+/--
+@isnad1 id=mem.1h5v.s6.4ece76031c8e from=translated src=- shape=bdc52a53 vocab=a7e18fa3
+-/
 theorem map_mem (e : DGAddEquiv M N) {n : ℤ} {m : M} (hm : m ∈ grading n) : e m ∈ grading n :=
   e.map_mem' hm
 
+/--
+@isnad1 id=eq.0h4v.s7.cfe01e144e7c from=translated src=- shape=6aeb57b3 vocab=04d60fa0
+-/
 @[simp]
 theorem map_d (e : DGAddEquiv M N) (m : M) : e (d m) = d (e m) :=
   e.map_d' m
 
+/--
+@isnad1 id=injectiv.0h3v.s5.4c7094a9bdf3 from=translated src=- shape=21e4185b vocab=951e2f2d
+-/
 theorem injective (e : DGAddEquiv M N) : Function.Injective e :=
   EquivLike.injective e
 
+/--
+@isnad1 id=surjecti.0h3v.s5.8df93ea979a7 from=translated src=- shape=21e4185b vocab=5972945c
+-/
 theorem surjective (e : DGAddEquiv M N) : Function.Surjective e :=
   EquivLike.surjective e
 
@@ -113,6 +135,9 @@ def refl : DGAddEquiv M M where
   map_mem' hm := hm
   map_d' _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.233dfff51e92 from=translated src=- shape=3147685f vocab=19d67ec1
+-/
 @[simp]
 theorem refl_apply (m : M) : (refl : DGAddEquiv M M) m = m := rfl
 
@@ -128,14 +153,23 @@ def symm (e : DGAddEquiv M N) : DGAddEquiv N M where
     change e (e.toAddEquiv.symm (d y)) = e (d (e.toAddEquiv.symm y))
     rw [map_d, ← coe_toAddEquiv, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.7924fa715e2d from=translated src=- shape=106c0e0f vocab=d23a9944
+-/
 @[simp]
 theorem apply_symm_apply (e : DGAddEquiv M N) (y : N) : e (e.symm y) = y :=
   e.right_inv y
 
+/--
+@isnad1 id=eq.0h4v.s6.ff43fc659e97 from=translated src=- shape=adb0b6b9 vocab=d23a9944
+-/
 @[simp]
 theorem symm_apply_apply (e : DGAddEquiv M N) (m : M) : e.symm (e m) = m :=
   e.left_inv m
 
+/--
+@isnad1 id=eq.0h3v.s5.1b2a2b044bbf from=translated src=- shape=01b1f24c vocab=362f53a9
+-/
 @[simp]
 theorem symm_symm (e : DGAddEquiv M N) : e.symm.symm = e := rfl
 
@@ -147,6 +181,9 @@ def trans (e : DGAddEquiv M N) (e' : DGAddEquiv N P) : DGAddEquiv M P where
     change e' (e (d m)) = d (e' (e m))
     rw [map_d, map_d]
 
+/--
+@isnad1 id=eq.0h6v.s7.cb1175ac275a from=translated src=- shape=07bf8e51 vocab=488825d0
+-/
 @[simp]
 theorem trans_apply (e : DGAddEquiv M N) (e' : DGAddEquiv N P) (m : M) :
     e.trans e' m = e' (e m) := rfl
@@ -164,10 +201,16 @@ def ofAddMonoidHom (f : M →+ N) (g : N →+ M) (hgf : ∀ m, g (f m) = m) (hfg
   map_mem' := hf
   map_d' := hd
 
+/--
+@isnad1 id=eq.4h5v.s9.0b94124ae92a from=translated src=- shape=ae031e20 vocab=72e00bd8
+-/
 @[simp]
 theorem ofAddMonoidHom_apply (f : M →+ N) (g : N →+ M) (hgf hfg) (hf) (hd) (m : M) :
     ofAddMonoidHom f g hgf hfg hf hd m = f m := rfl
 
+/--
+@isnad1 id=eq.4h5v.s9.5e0d35481ec3 from=translated src=- shape=186bf64e vocab=0d0c228a
+-/
 @[simp]
 theorem ofAddMonoidHom_symm_apply (f : M →+ N) (g : N →+ M) (hgf hfg) (hf) (hd) (n : N) :
     (ofAddMonoidHom f g hgf hfg hf hd).symm n = g n := rfl

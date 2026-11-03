@@ -56,7 +56,9 @@ def δ (n : ℤ) : cohomology S.X₃ n →+ cohomology S.X₁ (n + 1) :=
 variable (R : Type w) [CommRing R] [Algebra R A] [DGAlgebra R A]
 
 include hS in
-/-- If `f x₁ = d x₂`, then `x₁` is a cocycle, since `f` is injective.-/
+/-- If `f x₁ = d x₂`, then `x₁` is a cocycle, since `f` is injective.
+@isnad1 id=eq.2h4v.s11.26d9f3e5cada from=translated src=- shape=3e80d2d1 vocab=42bf2caa
+-/
 theorem d_eq_zero_of_f_eq_d {x₂ : S.X₂} {x₁ : S.X₁} (h₁ : S.f x₁ = d x₂) : d x₁ = 0 :=
   ((shortExact_iff S).1 hS).1 (by
     change S.f.hom (d x₁) = S.f.hom 0
@@ -64,7 +66,9 @@ theorem d_eq_zero_of_f_eq_d {x₂ : S.X₂} {x₁ : S.X₁} (h₁ : S.f x₁ = d
     exact (congrArg d h₁).trans (d_d x₂))
 
 /-- The connecting morphism of the underlying short exact sequence of cochain complexes of
-`R`-modules, on the class of a cocycle.-/
+`R`-modules, on the class of a cocycle.
+@isnad1 id=eq.5h7v.s15.d35d7d4036ac from=translated src=- shape=ad9a4bac vocab=7b493daa
+-/
 theorem δ_forget_apply (n : ℤ) (z₃ : cocycles S.X₃ n) (x₂ : S.X₂) (hx₂ : x₂ ∈ grading n)
     (h₂ : S.g x₂ = z₃) (x₁ : S.X₁) (hx₁ : x₁ ∈ grading (n + 1)) (h₁ : S.f x₁ = d x₂) :
     (shortExact_map_forget R hS).δ n (n + 1) rfl
@@ -79,7 +83,9 @@ theorem δ_forget_apply (n : ℤ) (z₃ : cocycles S.X₃ n) (x₂ : S.X₂) (hx
     (Subtype.ext (h₁.trans (toComplex_d_apply R S.X₂ rfl ⟨x₂, hx₂⟩).symm)) _ _
 
 /-- Explicit description of the connecting morphism: for a cocycle `z₃ ∈ X₃ⁿ`, choose
-`x₂ ∈ X₂ⁿ` with `g x₂ = z₃` and `x₁ ∈ X₁ⁿ⁺¹` with `f x₁ = d x₂`; then `δ [z₃] = [x₁]`.-/
+`x₂ ∈ X₂ⁿ` with `g x₂ = z₃` and `x₁ ∈ X₁ⁿ⁺¹` with `f x₁ = d x₂`; then `δ [z₃] = [x₁]`.
+@isnad1 id=eq.5h6v.s14.8152a713ac40 from=translated src=- shape=e59b8adb vocab=db0bd041
+-/
 theorem δ_mk (n : ℤ) (z₃ : cocycles S.X₃ n) (x₂ : S.X₂) (hx₂ : x₂ ∈ grading n)
     (h₂ : S.g x₂ = z₃) (x₁ : S.X₁) (hx₁ : x₁ ∈ grading (n + 1)) (h₁ : S.f x₁ = d x₂) :
     δ hS n (cohomology.mk _ n z₃) =
@@ -90,7 +96,9 @@ theorem δ_mk (n : ℤ) (z₃ : cocycles S.X₃ n) (x₂ : S.X₂) (hx₂ : x₂
 
 include hS in
 /-- The elements used in the description `DG.DGModuleCat.δ_mk` of the connecting morphism
-exist.-/
+exist.
+@isnad1 id=ex.1h4v.s11.4d43647e057b from=translated src=- shape=8932fbec vocab=049935b9
+-/
 theorem exists_δ_data (n : ℤ) (z₃ : cocycles S.X₃ n) :
     ∃ x₂ : S.X₂, x₂ ∈ grading n ∧ S.g x₂ = z₃ ∧
       ∃ x₁ : S.X₁, x₁ ∈ grading (n + 1) ∧ S.f x₁ = d x₂ := by
@@ -109,7 +117,9 @@ theorem exists_δ_data (n : ℤ) (z₃ : cocycles S.X₃ n) :
 
 /-- The connecting morphism `DG.DGModuleCat.δ` agrees, under the comparison isomorphisms
 `DG.DGModuleCat.cohomologyAddEquiv`, with Mathlib's connecting morphism of the underlying short
-exact sequence of cochain complexes of `R`-modules.-/
+exact sequence of cochain complexes of `R`-modules.
+@isnad1 id=eq.1h5v.s14.367308e39b5e from=translated src=- shape=3ff45929 vocab=f9d0fce0
+-/
 theorem cohomologyAddEquiv_δ (n : ℤ) (x : cohomology S.X₃ n) :
     cohomologyAddEquiv R S.X₁ (n + 1) (δ hS n x) =
       (shortExact_map_forget R hS).δ n (n + 1) rfl (cohomologyAddEquiv R S.X₃ n x) := by
@@ -122,7 +132,9 @@ theorem cohomologyAddEquiv_δ (n : ℤ) (x : cohomology S.X₃ n) :
 
 include hS in
 /-- Exactness of the long exact cohomology sequence at `Hⁿ(X₂)`:
-`Hⁿ(X₁) → Hⁿ(X₂) → Hⁿ(X₃)`.-/
+`Hⁿ(X₁) → Hⁿ(X₂) → Hⁿ(X₃)`.
+@isnad1 id=exact.1h3v.s12.6180bbd17ce4 from=translated src=- shape=9bdfc45f vocab=62c2108b
+-/
 theorem cohomology_exact₂ (n : ℤ) :
     Function.Exact (cohomology.map S.f.hom n) (cohomology.map S.g.hom n) :=
   (Function.Exact.iff_of_ladder_addEquiv (cohomologyAddEquiv ℤ S.X₁ n)
@@ -137,7 +149,9 @@ theorem cohomology_exact₂ (n : ℤ) :
       ((shortExact_map_forget ℤ hS).homology_exact₂ n))
 
 /-- Exactness of the long exact cohomology sequence at `Hⁿ(X₃)`:
-`Hⁿ(X₂) → Hⁿ(X₃) → Hⁿ⁺¹(X₁)`.-/
+`Hⁿ(X₂) → Hⁿ(X₃) → Hⁿ⁺¹(X₁)`.
+@isnad1 id=exact.1h3v.s12.d002186c0e6a from=translated src=- shape=d2a528f1 vocab=5d505783
+-/
 theorem cohomology_exact₃ (n : ℤ) :
     Function.Exact (cohomology.map S.g.hom n) (δ hS n) :=
   (Function.Exact.iff_of_ladder_addEquiv (cohomologyAddEquiv ℤ S.X₂ n)
@@ -151,7 +165,9 @@ theorem cohomology_exact₃ (n : ℤ) :
       ((shortExact_map_forget ℤ hS).homology_exact₃ n (n + 1) rfl))
 
 /-- Exactness of the long exact cohomology sequence at `Hⁿ⁺¹(X₁)`:
-`Hⁿ(X₃) → Hⁿ⁺¹(X₁) → Hⁿ⁺¹(X₂)`.-/
+`Hⁿ(X₃) → Hⁿ⁺¹(X₁) → Hⁿ⁺¹(X₂)`.
+@isnad1 id=exact.1h3v.s12.3412e884cb25 from=translated src=- shape=00d9135b vocab=0176b501
+-/
 theorem cohomology_exact₁ (n : ℤ) :
     Function.Exact (δ hS n) (cohomology.map S.f.hom (n + 1)) :=
   (Function.Exact.iff_of_ladder_addEquiv (cohomologyAddEquiv ℤ S.X₃ n)

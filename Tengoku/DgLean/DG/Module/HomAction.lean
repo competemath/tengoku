@@ -70,7 +70,9 @@ namespace DG
 
 /-! ### Koszul signs attached to degrees -/
 
-/-- Two Koszul signs whose degrees have the same parity act in the same way.-/
+/-- Two Koszul signs whose degrees have the same parity act in the same way.
+@isnad1 id=eq.1h4v.s6.561bf8cfbd8b from=translated src=- shape=6b599944 vocab=d1b537a0
+-/
 theorem koszulSign_smul_congr {X : Type*} [AddCommGroup X] {a b : ℤ} (h : Even (a - b))
     (x : X) : koszulSign a • x = koszulSign b • x := by
   rw [show koszulSign a = koszulSign b from (Int.negOnePow_eq_iff a b).mpr h]
@@ -87,16 +89,25 @@ def gradeSign (j : ℤ) : M →+ M :=
 
 variable {M}
 
+/--
+@isnad1 id=eq.1h4v.s7.654e151eabe5 from=translated src=- shape=fbd6cfb7 vocab=34b3a109
+-/
 theorem gradeSign_of_mem (j : ℤ) {i : ℤ} {x : M} (hx : x ∈ grading i) :
     gradeSign M j x = koszulSign (j * i) • x := by
   rw [gradeSign, liftHomogeneous_of_mem _ _ hx, Units.smul_def]
   rfl
 
+/--
+@isnad1 id=mem.1h4v.s6.056ee5e80ebc from=translated src=- shape=42c48213 vocab=13e1c133
+-/
 theorem gradeSign_mem (j : ℤ) {i : ℤ} {x : M} (hx : x ∈ grading i) :
     gradeSign M j x ∈ grading i := by
   rw [gradeSign_of_mem j hx]
   exact units_smul_mem_grading _ hx
 
+/--
+@isnad1 id=eq.0h3v.s7.e402a1bc8946 from=translated src=- shape=b9f9adf3 vocab=c5df1b38
+-/
 @[simp]
 theorem gradeSign_gradeSign (j : ℤ) (x : M) : gradeSign M j (gradeSign M j x) = x := by
   induction x using induction_on with
@@ -106,6 +117,9 @@ theorem gradeSign_gradeSign (j : ℤ) (x : M) : gradeSign M j (gradeSign M j x) 
       ← Units.smul_def, smul_smul, Int.units_mul_self, one_smul]
   | h_add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h6v.s8.2196d29cdb52 from=translated src=- shape=b6037419 vocab=b02e58bf
+-/
 theorem gradeSign_smul {A : Type*} [Ring A] [DGAddCommGroup A] [Module A M] [DGModule A M]
     (j : ℤ) {l : ℤ} {a : A} (ha : a ∈ grading l) (x : M) :
     gradeSign M j (a • x) = koszulSign (j * l) • (a • gradeSign M j x) := by
@@ -160,7 +174,9 @@ instance instGmodule :
 
 /-- For `P = M`, the graded action of `DG.DGModule.HOM.instGmodule` is the graded
 multiplication of `END A M` (`DG.DGModule.END.instGRing`), through Mathlib's
-`DirectSum.GSemiring.toGmodule`.-/
+`DirectSum.GSemiring.toGmodule`.
+@isnad1 id=eq.0h2v.s8.560a25274e98 from=translated src=- shape=0c1f39e3 vocab=31ad9c95
+-/
 theorem instGmodule_eq_toGmodule :
     instGmodule A M M = DirectSum.GSemiring.toGmodule (fun n => Cochain A M M n) :=
   rfl
@@ -168,7 +184,9 @@ theorem instGmodule_eq_toGmodule :
 variable {A M P}
 
 /-- The action of `END A M` on `HOM A M P` on homogeneous elements:
-`F • f = (-1)^{|F||f|} • f ∘ F`.-/
+`F • f = (-1)^{|F||f|} • f ∘ F`.
+@isnad1 id=eq.0h7v.s11.dcf774e261ed from=translated src=- shape=ce6a8878 vocab=a46b36a9
+-/
 theorem of_smul_of {k n : ℤ} (F : Cochain A M M k) (f : Cochain A M P n) :
     (DirectSum.of (fun n => Cochain A M M n) k F : END A M) •
         (DirectSum.of (fun n => Cochain A M P n) n f : HOM A M P) =
@@ -183,7 +201,9 @@ variable {A : Type*} {M P : Type*} [Ring A] [DGAddCommGroup A]
   [AddCommGroup M] [DGAddCommGroup M] [Module A M] [DGModule A M]
   [AddCommGroup P] [DGAddCommGroup P] [Module A P] [DGModule A P]
 
-/-- The Leibniz rule for the action of `END A M` on `HOM A M P`, on homogeneous elements.-/
+/-- The Leibniz rule for the action of `END A M` on `HOM A M P`, on homogeneous elements.
+@isnad1 id=eq.0h7v.s13.261d6db3fde1 from=translated src=- shape=877fea50 vocab=401a6276
+-/
 theorem d_of_smul_of {k n : ℤ} (F : Cochain A M M k) (f : Cochain A M P n) :
     d ((DirectSum.of (fun n => Cochain A M M n) k F : END A M) •
         (DirectSum.of (fun n => Cochain A M P n) n f : HOM A M P)) =
@@ -213,7 +233,9 @@ theorem eq_of_mem {k : ℤ} {x : HOM A M P} (hx : x ∈ grading k) :
 
 variable (A M P) in
 /-- `HOM A M P` is a left dg module over the endomorphism dg ring `END A M`, for the action
-`F • f = (-1)^{|F||f|} • f ∘ F` on homogeneous elements.-/
+`F • f = (-1)^{|F||f|} • f ∘ F` on homogeneous elements.
+@isnad1 id=dgmodule.0h3v.s8.294b24947149 from=translated src=- shape=d2b88980 vocab=2d857122
+-/
 instance instDGModule : DGModule (END A M) (HOM A M P) where
   smul_mem := by
     rintro k n _ _ ⟨F, rfl⟩ ⟨f, rfl⟩
@@ -245,6 +267,9 @@ def toENDDGRingHom : B →ᵈᵍ+* DGModule.END A M where
   map_mem' := toEND_mem_grading
   map_d' := toEND_d
 
+/--
+@isnad1 id=eq.0h4v.s8.5b948600cfdf from=translated src=- shape=35179a9e vocab=a8dfcc45
+-/
 @[simp]
 theorem toENDDGRingHom_apply (b : B) : toENDDGRingHom A M b = toEND A M b := rfl
 
@@ -264,11 +289,16 @@ variable {A B : Type*} {M P : Type*} [Ring A] [DGAddCommGroup A] [Ring B] [DGAdd
 scoped instance instModule : Module B (HOM A M P) :=
   Module.compHom _ (DGBimodule.toENDDGRingHom A M).toRingHom
 
+/--
+@isnad1 id=eq.0h6v.s9.a5dbdfb6fd7d from=translated src=- shape=42634c63 vocab=81cc0014
+-/
 theorem smul_def (b : B) (f : HOM A M P) : b • f = DGBimodule.toEND A M b • f := rfl
 
 /-- The action of a homogeneous `b ∈ Bᵏ` on a cochain `f` of degree `n`: `b • f` is the
 cochain `(-1)^{k n} • f ∘ ρ_b` of degree `k + n`, where `ρ_b x = (-1)^{k |x|} • (x • b)`
-(`DG.DGBimodule.rightMulCochain`).-/
+(`DG.DGBimodule.rightMulCochain`).
+@isnad1 id=eq.1h8v.s11.c5400005df1c from=translated src=- shape=d96daf5b vocab=ac84b5e3
+-/
 theorem smul_of {k n : ℤ} {b : B} (hb : b ∈ grading k) (f : Cochain A M P n) :
     b • (DirectSum.of (fun n => Cochain A M P n) n f : HOM A M P) =
       DirectSum.of _ (k + n)
@@ -278,7 +308,9 @@ theorem smul_of {k n : ℤ} {b : B} (hb : b ∈ grading k) (f : Cochain A M P n)
 variable [DGModule A P]
 
 /-- For a dg `(A, B)`-bimodule `M` and a left dg `A`-module `P`, `HOM_A(M, P)` is a left dg
-`B`-module, by restriction of scalars along `B →ᵈᵍ+* END_A(M)`.-/
+`B`-module, by restriction of scalars along `B →ᵈᵍ+* END_A(M)`.
+@isnad1 id=dgmodule.0h4v.s7.eb29ab5384b1 from=translated src=- shape=c491e6e9 vocab=c9151751
+-/
 scoped instance instDGModule : DGModule B (HOM A M P) :=
   DGModule.compHom (DGBimodule.toENDDGRingHom A M) (HOM A M P)
 
@@ -308,6 +340,9 @@ def postcompAddHom (h : P →ᵈᵍ[A] P') : HOM A M P →+ HOM A M P' :=
         map_add' := fun f f' => Cochain.comp_add f f' _ _ }
 
 omit [DGModule A M] [DGModule A P] [DGModule A P'] in
+/--
+@isnad1 id=eq.0h7v.s11.bdd24ea7b5ae from=translated src=- shape=8d7e56c8 vocab=76a21a34
+-/
 @[simp]
 theorem postcompAddHom_of (h : P →ᵈᵍ[A] P') {n : ℤ} (f : Cochain A M P n) :
     postcompAddHom M h (DirectSum.of _ n f) =
@@ -343,6 +378,9 @@ def postcompEND (h : P →ᵈᵍ[A] P') : HOM A M P →ᵈᵍ[END A M] HOM A M P
     | of n f => rw [HOM.d_of, postcompAddHom_of, postcompAddHom_of, HOM.d_of, δ_comp_ofHom]
     | add x y hx hy => rw [d_add, map_add, hx, hy, map_add, d_add]
 
+/--
+@isnad1 id=eq.0h7v.s11.3d407fab0369 from=translated src=- shape=28e6ed02 vocab=152b2bb6
+-/
 @[simp]
 theorem postcompEND_of (h : P →ᵈᵍ[A] P') {n : ℤ} (f : Cochain A M P n) :
     postcompEND M h (DirectSum.of _ n f) =
@@ -368,6 +406,9 @@ def postcomp (h : P →ᵈᵍ[A] P') : HOM A M P →ᵈᵍ[B] HOM A M P' where
   map_mem' := (postcompEND M h).map_mem'
   map_d' := (postcompEND M h).map_d'
 
+/--
+@isnad1 id=eq.0h8v.s11.c2e37ae11c69 from=translated src=- shape=e3a19d9b vocab=639cb295
+-/
 @[simp]
 theorem postcomp_of (h : P →ᵈᵍ[A] P') {n : ℤ} (f : Cochain A M P n) :
     postcomp B M h (DirectSum.of _ n f) =
@@ -399,6 +440,9 @@ def evalOne : HOM A A P →+ P :=
 
 set_option backward.isDefEq.respectTransparency false in
 omit [DGRing A] in
+/--
+@isnad1 id=eq.0h4v.s10.8e208c607999 from=translated src=- shape=7ed8af6d vocab=8c15cc2a
+-/
 @[simp]
 theorem evalOne_of {n : ℤ} (f : Cochain A A P n) :
     evalOne A P (DirectSum.of (fun n => Cochain A A P n) n f) = f 1 := by
@@ -426,9 +470,15 @@ def smulRightCochain {n : ℤ} (p : grading (M := P) n) : Cochain A A P n where
     show gradeSign A n (a • x) • (p : P) = _ • (a • (gradeSign A n x • (p : P)))
     rw [gradeSign_smul n ha, smul_assoc, smul_eq_mul, mul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.109adbe1ad63 from=translated src=- shape=61b71851 vocab=c0419a19
+-/
 theorem smulRightCochain_apply {n : ℤ} (p : grading (M := P) n) (x : A) :
     smulRightCochain p x = gradeSign A n x • (p : P) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.bb0cdc150e3a from=translated src=- shape=e247a3c6 vocab=c08c9e9d
+-/
 @[simp]
 theorem smulRightCochain_apply_one {n : ℤ} (p : grading (M := P) n) :
     smulRightCochain (A := A) p 1 = p := by
@@ -446,16 +496,25 @@ def coevalOne : P →+ HOM A A P :=
         map_add' := fun p p' => Cochain.ext fun x => by
           simp [smulRightCochain_apply, Cochain.add_apply, smul_add] }
 
+/--
+@isnad1 id=eq.1h4v.s10.31375e69e86e from=translated src=- shape=0e0b8865 vocab=894a30fe
+-/
 theorem coevalOne_of_mem {n : ℤ} {p : P} (hp : p ∈ grading n) :
     coevalOne A P p = DirectSum.of (fun n => Cochain A A P n) n (smulRightCochain ⟨p, hp⟩) :=
   liftHomogeneous_of_mem _ _ hp
 
+/--
+@isnad1 id=eq.0h3v.s9.dc94be96c362 from=translated src=- shape=e275d9b1 vocab=f6d27e13
+-/
 theorem evalOne_coevalOne (p : P) : evalOne A P (coevalOne A P p) = p := by
   induction p using DG.induction_on with
   | h_zero => simp
   | h_homogeneous p => rw [coevalOne_of_mem p.2, evalOne_of, smulRightCochain_apply_one]
   | h_add p p' hp hp' => rw [map_add, map_add, hp, hp']
 
+/--
+@isnad1 id=eq.0h3v.s9.a7f07795b7a4 from=translated src=- shape=999a5eed vocab=f6d27e13
+-/
 theorem coevalOne_evalOne (F : HOM A A P) : coevalOne A P (evalOne A P F) = F := by
   induction F using DirectSum.induction_on with
   | zero => simp
@@ -472,6 +531,9 @@ theorem coevalOne_evalOne (F : HOM A A P) : coevalOne A P (evalOne A P F) = F :=
   | add F G hF hG => rw [map_add, map_add, hF, hG]
 
 omit [DGModule A P] in
+/--
+@isnad1 id=eq.0h4v.s10.c558a680f02c from=translated src=- shape=e70e6bde vocab=36974dfc
+-/
 theorem evalOne_smul (a : A) (F : HOM A A P) : evalOne A P (a • F) = a • evalOne A P F := by
   induction a using DG.induction_on with
   | h_zero => simp
@@ -515,6 +577,9 @@ def evalOneEquiv : HOM A A P ≃ᵈᵍ[A] P where
 
 variable {A P}
 
+/--
+@isnad1 id=eq.0h4v.s10.5f950b47a98f from=translated src=- shape=4e40eb56 vocab=5b63ff1a
+-/
 @[simp]
 theorem evalOneEquiv_of {n : ℤ} (f : Cochain A A P n) :
     evalOneEquiv A P (DirectSum.of (fun n => Cochain A A P n) n f) = f 1 :=

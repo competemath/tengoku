@@ -45,7 +45,9 @@ namespace ComplexTensor
 variable {R : Type u} [CommRing R] {K L N : CochainComplex (ModuleCat.{u} R) ℤ}
 
 /-- The value of a morphism out of a tensor product on `x ⊗ y`, as an element of the graded
-monoid `Σ n, Nⁿ`, does not depend on the choice of the degree `n = p + q`.-/
+monoid `Σ n, Nⁿ`, does not depend on the choice of the degree `n = p + q`.
+@isnad1 id=eq.2h11v.s12.2aa3ef927ccc from=translated src=- shape=59c8769c vocab=c39e4039
+-/
 theorem mk_f_tmul (φ : K ⊗ L ⟶ N) {p q n n' : ℤ} (h : p + q = n) (h' : p + q = n')
     (x : K.X p) (y : L.X q) :
     GradedMonoid.mk (A := fun n => N.X n) n (φ.f n (tmul K L h x y)) =
@@ -54,7 +56,9 @@ theorem mk_f_tmul (φ : K ⊗ L ⟶ N) {p q n n' : ℤ} (h : p + q = n) (h' : p 
   rfl
 
 /-- The value of a morphism out of a tensor product on `x ⊗ y`, as an element of
-`ComplexSum N`, does not depend on the choice of the degree `n = p + q`.-/
+`ComplexSum N`, does not depend on the choice of the degree `n = p + q`.
+@isnad1 id=eq.2h11v.s12.ed499889f385 from=translated src=- shape=92325f4c vocab=fbf78912
+-/
 theorem of_f_tmul (φ : K ⊗ L ⟶ N) {p q n n' : ℤ} (h : p + q = n) (h' : p + q = n')
     (x : K.X p) (y : L.X q) :
     ComplexSum.of N n (φ.f n (tmul K L h x y)) = ComplexSum.of N n' (φ.f n' (tmul K L h' x y)) := by
@@ -76,7 +80,9 @@ def one : M.X.X 0 := (η[M.X]).f 0 (unitOne R)
 def mul {i j : ℤ} (x : M.X.X i) (y : M.X.X j) : M.X.X (i + j) :=
   (μ[M.X]).f (i + j) (tmul M.X M.X rfl x y)
 
-/-- The left unit axiom of a monoid object on elements: `μ (1 ⊗ x) = x`.-/
+/-- The left unit axiom of a monoid object on elements: `μ (1 ⊗ x) = x`.
+@isnad1 id=eq.0h4v.s13.85b6aac3e81d from=translated src=- shape=a1937bf0 vocab=3b4dbaec
+-/
 theorem one_mul_apply {n : ℤ} (x : M.X.X n) :
     (μ[M.X]).f n (tmul M.X M.X (zero_add n) (one M) x) = x := by
   have := congrArg (fun φ => φ.f n (tmul _ M.X (zero_add n) (unitOne R) x))
@@ -84,7 +90,9 @@ theorem one_mul_apply {n : ℤ} (x : M.X.X n) :
   simp only [comp_f, ModuleCat.comp_apply, whiskerRight_f_tmul, leftUnitor_hom_f_tmul] at this
   exact this
 
-/-- The right unit axiom of a monoid object on elements: `μ (x ⊗ 1) = x`.-/
+/-- The right unit axiom of a monoid object on elements: `μ (x ⊗ 1) = x`.
+@isnad1 id=eq.0h4v.s13.a0d1ab144b28 from=translated src=- shape=dfa8357e vocab=1bcce594
+-/
 theorem mul_one_apply {n : ℤ} (x : M.X.X n) :
     (μ[M.X]).f n (tmul M.X M.X (add_zero n) x (one M)) = x := by
   have := congrArg (fun φ => φ.f n (tmul M.X _ (add_zero n) x (unitOne R)))
@@ -93,7 +101,9 @@ theorem mul_one_apply {n : ℤ} (x : M.X.X n) :
   exact this
 
 /-- The associativity axiom of a monoid object on elements:
-`μ (μ (x ⊗ y) ⊗ z) = μ (x ⊗ μ (y ⊗ z))`.-/
+`μ (μ (x ⊗ y) ⊗ z) = μ (x ⊗ μ (y ⊗ z))`.
+@isnad1 id=eq.1h9v.s15.3e3361c5d6ee from=translated src=- shape=63f365a0 vocab=e93e061e
+-/
 theorem mul_assoc_apply {p q r n : ℤ} (h : p + q + r = n) (x : M.X.X p) (y : M.X.X q)
     (z : M.X.X r) :
     (μ[M.X]).f n (tmul M.X M.X h ((μ[M.X]).f (p + q) (tmul M.X M.X rfl x y)) z) =
@@ -135,12 +145,18 @@ instance gRing : DirectSum.GRing (fun n : ℤ => (M.X.X n : Type u)) where
   intCast_ofNat n := natCast_zsmul (one M) n
   intCast_negSucc_ofNat n := negSucc_zsmul (one M) n
 
+/--
+@isnad1 id=eq.0h5v.s14.ab7b2e3c32aa from=translated src=- shape=894c9103 vocab=806aabfa
+-/
 theorem mk_smul_one_mul (r : R) {i : ℤ} (x : M.X.X i) :
     GradedMonoid.mk (A := fun n => M.X.X n) (0 + i) (mul M (r • one M) x) =
       GradedMonoid.mk i (r • x) :=
   (mk_f_tmul μ[M.X] rfl (zero_add i) _ _).trans (by
     rw [tmul_smul_left, map_smul, one_mul_apply])
 
+/--
+@isnad1 id=eq.0h5v.s14.0a8fac02c15d from=translated src=- shape=4cdcdd0f vocab=806aabfa
+-/
 theorem mk_mul_smul_one (r : R) {i : ℤ} (x : M.X.X i) :
     GradedMonoid.mk (A := fun n => M.X.X n) (i + 0) (mul M x (r • one M)) =
       GradedMonoid.mk i (r • x) :=
@@ -170,20 +186,30 @@ instance : Ring (ComplexSum M.X) :=
 instance : Algebra R (ComplexSum M.X) :=
   inferInstanceAs (Algebra R (⨁ n, M.X.X n))
 
-/-- The product of `⨁ n, Mⁿ` on summands.-/
+/-- The product of `⨁ n, Mⁿ` on summands.
+@isnad1 id=eq.0h6v.s15.a425bd98434b from=translated src=- shape=52d9a8d9 vocab=d9a3dd19
+-/
 theorem of_mul_of {i j : ℤ} (x : M.X.X i) (y : M.X.X j) :
     ComplexSum.of M.X i x * ComplexSum.of M.X j y =
       ComplexSum.of M.X (i + j) ((μ[M.X]).f (i + j) (tmul M.X M.X rfl x y)) :=
   DirectSum.of_mul_of (A := fun n => M.X.X n) x y
 
+/--
+@isnad1 id=eq.0h2v.s13.b0a9363fe55c from=translated src=- shape=2c0e1f9a vocab=2fbd2406
+-/
 theorem one_def : (1 : ComplexSum M.X) = ComplexSum.of M.X 0 (one M) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.dfd74db85a92 from=translated src=- shape=63398f43 vocab=b0af8cf1
+-/
 theorem algebraMap_apply (r : R) :
     algebraMap R (ComplexSum M.X) r = ComplexSum.of M.X 0 (r • one M) :=
   rfl
 
-/-- The Leibniz rule for `⨁ n, Mⁿ` on summands.-/
+/-- The Leibniz rule for `⨁ n, Mⁿ` on summands.
+@isnad1 id=eq.0h6v.s16.b3d098d67293 from=translated src=- shape=804c90f5 vocab=087e4d66
+-/
 theorem d_of_mul_of {n j : ℤ} (x : M.X.X n) (y : M.X.X j) :
     d (ComplexSum.of M.X n x * ComplexSum.of M.X j y) =
       d (ComplexSum.of M.X n x) * ComplexSum.of M.X j y +
@@ -192,6 +218,9 @@ theorem d_of_mul_of {n j : ℤ} (x : M.X.X n) (y : M.X.X j) :
     ← Hom.comm_apply, d_tmul, map_add, map_add, Units.smul_def, Units.smul_def, map_zsmul,
     map_zsmul, of_f_tmul μ[M.X] _ (rfl : n + 1 + j = _), of_f_tmul μ[M.X] _ (rfl : n + (j + 1) = _)]
 
+/--
+@isnad1 id=eq.2h6v.s17.6196b75b7645 from=translated src=- shape=5ea67f0d vocab=087e4d66
+-/
 theorem d_of_mul_add {n : ℤ} (x : M.X.X n) (b b' : ComplexSum M.X)
     (hb : d (ComplexSum.of M.X n x * b) =
       d (ComplexSum.of M.X n x) * b + koszulSign n • (ComplexSum.of M.X n x * d b))

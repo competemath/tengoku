@@ -35,7 +35,9 @@ open CategoryTheory CategoryTheory.Limits
 
 universe v u w
 
-/-- A faithful additive functor induces a faithful functor on homological complexes.-/
+/-- A faithful additive functor induces a faithful functor on homological complexes.
+@isnad1 id=faithful.0h5v.s6.7e2d1ff1b1b9 from=translated src=- shape=30c47730 vocab=5b10dad0
+-/
 instance CategoryTheory.Functor.mapHomologicalComplex_faithful {C D : Type*} [Category C]
     [Category D] [Preadditive C] [Preadditive D] (F : C ⥤ D) [F.Additive] [F.Faithful]
     {ι : Type*} (c : ComplexShape ι) : (F.mapHomologicalComplex c).Faithful where
@@ -54,6 +56,9 @@ namespace Algebra
 scoped instance instModule (M : DGModuleCat.{v} A) : Module R M :=
   Module.compHom M (algebraMap R A)
 
+/--
+@isnad1 id=isscalar.0h3v.s8.2404ead4f044 from=translated src=- shape=efebf98b vocab=ae2e078c
+-/
 scoped instance instIsScalarTower (M : DGModuleCat.{v} A) : IsScalarTower R A M where
   smul_assoc r a m := by
     change (r • a) • m = algebraMap R A r • a • m
@@ -74,6 +79,9 @@ def dRestrict (n : ℤ) :
     DGModule.gradingSubmodule R A M n →ₗ[R] DGModule.gradingSubmodule R A M (n + 1) :=
   (DGModule.dLinear R A M).restrict fun _ hm => d_mem hm
 
+/--
+@isnad1 id=eq.0h5v.s11.750d94b2e2b1 from=translated src=- shape=94d57f49 vocab=a0d41d59
+-/
 @[simp]
 theorem coe_dRestrict_apply (n : ℤ) (m : DGModule.gradingSubmodule R A M n) :
     (dRestrict R M n m : M) = d (m : M) := rfl
@@ -85,10 +93,16 @@ def toComplex : CochainComplex (ModuleCat.{v} R) ℤ :=
       ext m
       exact d_d (m : M)
 
+/--
+@isnad1 id=eq.0h4v.s8.7544ce3b963e from=translated src=- shape=34b442dc vocab=b2a21f36
+-/
 @[simp]
 theorem toComplex_X (n : ℤ) :
     (toComplex R M).X n = ModuleCat.of R (DGModule.gradingSubmodule R A M n) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.fab5d45f6f97 from=translated src=- shape=416f1ab3 vocab=2775807c
+-/
 @[simp]
 theorem toComplex_d (n : ℤ) :
     (toComplex R M).d n (n + 1) = ModuleCat.ofHom (dRestrict R M n) :=
@@ -107,6 +121,9 @@ def homRestrict (f : M ⟶ N) (n : ℤ) :
     DGModule.gradingSubmodule R A M n →ₗ[R] DGModule.gradingSubmodule R A N n :=
   (f.hom.toLinearMap.restrictScalars R).restrict fun _ hm => f.hom.map_mem hm
 
+/--
+@isnad1 id=eq.0h7v.s11.ef7ce03d4bff from=translated src=- shape=0650682b vocab=eea733e0
+-/
 @[simp]
 theorem coe_homRestrict_apply (f : M ⟶ N) (n : ℤ) (m : DGModule.gradingSubmodule R A M n) :
     (homRestrict R f n m : N) = f m := rfl
@@ -118,6 +135,9 @@ def toComplexMap (f : M ⟶ N) : toComplex R M ⟶ toComplex R N :=
     ext m
     exact Subtype.ext (f.hom.map_d m.1).symm
 
+/--
+@isnad1 id=eq.0h6v.s9.60c459e93098 from=translated src=- shape=6feb0e13 vocab=9e4227b2
+-/
 @[simp]
 theorem toComplexMap_f (f : M ⟶ N) (n : ℤ) :
     (toComplexMap R f).f n = ModuleCat.ofHom (homRestrict R f n) := rfl
@@ -131,9 +151,15 @@ def forget : DGModuleCat.{v} A ⥤ CochainComplex (ModuleCat.{v} R) ℤ where
   map_id _ := by ext; rfl
   map_comp _ _ := by ext; rfl
 
+/--
+@isnad1 id=additive.0h2v.s7.e2534c1a1dcb from=translated src=- shape=6e7442fe vocab=a5867363
+-/
 instance forget_additive : (forget R A).Additive where
   map_add := by intros; ext; rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.7cc762372b64 from=translated src=- shape=9130370e vocab=c677983e
+-/
 theorem forget_map_injective {f g : M ⟶ N} (h : (forget R A).map f = (forget R A).map g) :
     f = g := by
   refine hom_ext_apply fun m => ?_
@@ -145,10 +171,15 @@ theorem forget_map_injective {f g : M ⟶ N} (h : (forget R A).map f = (forget R
     exact congrArg Subtype.val (LinearMap.congr_fun h1 ⟨m, m.2⟩)
   | h_add m m' hm hm' => rw [map_add, map_add, hm, hm']
 
-/-- The forgetful functor to cochain complexes is faithful.-/
+/-- The forgetful functor to cochain complexes is faithful.
+@isnad1 id=faithful.0h2v.s7.ffe902cde90a from=translated src=- shape=6e7442fe vocab=a871636c
+-/
 instance forget_faithful : (forget R A).Faithful where
   map_injective h := forget_map_injective R h
 
+/--
+@isnad1 id=bijectiv.0h5v.s9.5d29c2f3f862 from=translated src=- shape=a7ee995f vocab=706ebd5a
+-/
 theorem bijective_of_forget_map_isIso (f : M ⟶ N) [IsIso ((forget R A).map f)] :
     Function.Bijective f := by
   have hn : ∀ n : ℤ, Function.Bijective (homRestrict R f n) := fun n => by
@@ -185,7 +216,9 @@ theorem bijective_of_forget_map_isIso (f : M ⟶ N) [IsIso ((forget R A).map f)]
       obtain ⟨x', rfl⟩ := hy'
       exact ⟨x + x', map_add _ _ _⟩
 
-/-- The forgetful functor to cochain complexes reflects isomorphisms.-/
+/-- The forgetful functor to cochain complexes reflects isomorphisms.
+@isnad1 id=reflects.0h2v.s7.d01590eb9328 from=translated src=- shape=6e7442fe vocab=fe3191a0
+-/
 instance forget_reflectsIsomorphisms : (forget R A).ReflectsIsomorphisms where
   reflects f _ := isIso_of_bijective f (bijective_of_forget_map_isIso R f)
 
@@ -199,6 +232,9 @@ variable (A)
 noncomputable def forgetToAddCommGrp : DGModuleCat.{v} A ⥤ CochainComplex AddCommGrpCat.{v} ℤ :=
   forget ℤ A ⋙ (forget₂ (ModuleCat.{v} ℤ) AddCommGrpCat.{v}).mapHomologicalComplex _
 
+/--
+@isnad1 id=faithful.0h1v.s6.f2d6ff09c2bc from=translated src=- shape=cd0f0cd2 vocab=5601c14c
+-/
 instance forgetToAddCommGrp_faithful : (forgetToAddCommGrp A).Faithful := by
   unfold forgetToAddCommGrp
   infer_instance

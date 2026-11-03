@@ -48,27 +48,45 @@ instance : SetLike (DGSubmodule A M) M where
 
 instance : PartialOrder (DGSubmodule A M) := .ofSetLike (DGSubmodule A M) M
 
+/--
+@isnad1 id=iff.0h4v.s6.3196109c62fd from=translated src=- shape=f67bb2e2 vocab=87a906c0
+-/
 @[simp]
 theorem mem_toSubmodule {S : DGSubmodule A M} {m : M} : m ∈ S.toSubmodule ↔ m ∈ S :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.2h4v.s10.52712aeac793 from=translated src=- shape=ec171fb8 vocab=595e7945
+-/
 @[simp]
 theorem mem_mk {p : Submodule A M} {h₁ h₂} {m : M} : m ∈ mk p h₁ h₂ ↔ m ∈ p :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.c9268bbe6598 from=translated src=- shape=f667638b vocab=ce219961
+-/
 @[ext]
 theorem ext {S T : DGSubmodule A M} (h : ∀ m, m ∈ S ↔ m ∈ T) : S = T :=
   SetLike.ext h
 
+/--
+@isnad1 id=injectiv.0h2v.s5.2af76b107b8a from=translated src=- shape=c69e4dc3 vocab=8d50e3c5
+-/
 theorem toSubmodule_injective :
     Function.Injective (DGSubmodule.toSubmodule : DGSubmodule A M → Submodule A M) :=
   fun _ _ h => ext fun m => by rw [← mem_toSubmodule, h, mem_toSubmodule]
 
 variable (S : DGSubmodule A M)
 
+/--
+@isnad1 id=mem.1h4v.s7.3917544733fc from=translated src=- shape=ed8ba181 vocab=0ea24f45
+-/
 theorem d_mem {m : M} (hm : m ∈ S) : d m ∈ S :=
   S.d_mem' hm
 
+/--
+@isnad1 id=mem.1h5v.s9.ff43e71ed108 from=translated src=- shape=7bfb0558 vocab=8d288f84
+-/
 theorem decompose_mem (n : ℤ) {m : M} (hm : m ∈ S) :
     (decompose (grading (M := M)) m n : M) ∈ S :=
   S.decompose_mem' n hm
@@ -81,12 +99,21 @@ instance : AddSubgroupClass (DGSubmodule A M) M where
 instance : SMulMemClass (DGSubmodule A M) A M where
   smul_mem := fun {S} a => S.toSubmodule.smul_mem a
 
+/--
+@isnad1 id=eq.0h5v.s8.fe86785d1943 from=translated src=- shape=41b8104c vocab=98eef84d
+-/
 @[simp, norm_cast]
 theorem coe_add (x y : S) : ((x + y : S) : M) = x + y := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.2eb095c83b0e from=translated src=- shape=7a7e01c9 vocab=11e8c435
+-/
 @[simp, norm_cast]
 theorem coe_zero : ((0 : S) : M) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.10d22a5d1a4c from=translated src=- shape=944e5f57 vocab=2d9dd41d
+-/
 @[simp, norm_cast]
 theorem coe_smul (a : A) (x : S) : ((a • x : S) : M) = a • (x : M) := rfl
 
@@ -94,9 +121,15 @@ theorem coe_smul (a : A) (x : S) : ((a • x : S) : M) = a • (x : M) := rfl
 def grading (n : ℤ) : AddSubgroup S :=
   (DGAddCommGroup.grading n).comap (AddSubgroupClass.subtype S)
 
+/--
+@isnad1 id=iff.0h5v.s8.f8f0466c7bdc from=translated src=- shape=8da6a284 vocab=7be2ed04
+-/
 theorem mem_grading_iff {n : ℤ} {x : S} : x ∈ S.grading n ↔ (x : M) ∈ DGAddCommGroup.grading n :=
   Iff.rfl
 
+/--
+@isnad1 id=isintern.0h3v.s8.652db49015e8 from=translated src=- shape=95591b26 vocab=78dd9f59
+-/
 theorem isInternal_grading : DirectSum.IsInternal S.grading := by
   classical
   refine ⟨coeAddMonoidHom_injective_of_injective S.grading (AddSubgroupClass.subtype S)
@@ -116,6 +149,9 @@ def d : S →+ S :=
   AddMonoidHom.codRestrict ((DGAddCommGroup.d : M →+ M).comp (AddSubgroupClass.subtype S)) S
     fun x => S.d_mem x.2
 
+/--
+@isnad1 id=eq.0h4v.s10.faeaa9a75eb0 from=translated src=- shape=4621a822 vocab=76d53fd1
+-/
 @[simp]
 theorem coe_d_apply (x : S) : (S.d x : M) = DGAddCommGroup.d (x : M) := rfl
 
@@ -126,9 +162,15 @@ noncomputable instance instDGAddCommGroup : DGAddCommGroup S where
   d_mem' hx := DG.d_mem hx
   d_d' x := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h4v.s10.fa02572fc77a from=translated src=- shape=ec4d0a5f vocab=267be56e
+-/
 @[simp]
 theorem coe_d (x : S) : ((DGAddCommGroup.d x : S) : M) = DGAddCommGroup.d (x : M) := rfl
 
+/--
+@isnad1 id=iff.0h5v.s9.3f5abc0601ad from=translated src=- shape=4d279259 vocab=3ee7b1cb
+-/
 @[simp]
 theorem mem_grading {n : ℤ} {x : S} :
     x ∈ DGAddCommGroup.grading n ↔ (x : M) ∈ DGAddCommGroup.grading n :=
@@ -136,6 +178,9 @@ theorem mem_grading {n : ℤ} {x : S} :
 
 variable [DGModule A M]
 
+/--
+@isnad1 id=dgmodule.0h3v.s7.937484676306 from=translated src=- shape=fde272f8 vocab=5d9ab92b
+-/
 instance instDGModule : DGModule A S where
   smul_mem _ _ _ _ ha hx := smul_mem_grading (M := M) ha hx
   d_smul' ha x := Subtype.ext (by
@@ -150,10 +195,16 @@ def subtype : S →ᵈᵍ[A] M where
   map_d' _ := rfl
 
 omit [DGModule A M] in
+/--
+@isnad1 id=eq.0h4v.s8.e56d38a72c47 from=translated src=- shape=bcd3c116 vocab=fc3ca433
+-/
 @[simp]
 theorem subtype_apply (x : S) : S.subtype x = x := rfl
 
 omit [DGModule A M] in
+/--
+@isnad1 id=injectiv.0h3v.s8.86b6b0e435c2 from=translated src=- shape=33917638 vocab=4843b5fe
+-/
 theorem subtype_injective : Function.Injective S.subtype :=
   Subtype.val_injective
 
@@ -167,15 +218,23 @@ def codRestrict (f : N →ᵈᵍ[A] M) (h : ∀ x, f x ∈ S) : N →ᵈᵍ[A] S
   map_mem' hx := f.map_mem hx
   map_d' x := Subtype.ext (f.map_d x)
 
+/--
+@isnad1 id=eq.1h6v.s8.0c62fa3a5694 from=translated src=- shape=ec9bd4be vocab=b017fe30
+-/
 @[simp]
 theorem coe_codRestrict_apply (f : N →ᵈᵍ[A] M) (h : ∀ x, f x ∈ S) (x : N) :
     (codRestrict f h x : M) = f x := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.15094ceb7a29 from=translated src=- shape=ee3562fe vocab=baafd257
+-/
 @[simp]
 theorem subtype_comp_codRestrict (f : N →ᵈᵍ[A] M) (h : ∀ x, f x ∈ S) :
     S.subtype.comp (codRestrict f h) = f := rfl
 
-/-- The decomposition of `S` is the restriction of that of `M`.-/
+/-- The decomposition of `S` is the restriction of that of `M`.
+@isnad1 id=eq.0h5v.s13.d05c28d4f230 from=translated src=- shape=0557b251 vocab=8d288f84
+-/
 theorem coe_decompose_apply (x : S) (n : ℤ) :
     ((decompose (DGAddCommGroup.grading (M := S)) x n : S) : M) =
       decompose (DGAddCommGroup.grading (M := M)) (x : M) n :=
@@ -204,6 +263,9 @@ def ker : DGSubmodule A M where
     rw [hm', decompose_zero,
       DirectSum.zero_apply, ZeroMemClass.coe_zero]
 
+/--
+@isnad1 id=iff.0h5v.s7.90c077985f0e from=translated src=- shape=d0eb6eda vocab=a4f5f24a
+-/
 @[simp]
 theorem mem_ker {m : M} : m ∈ f.ker ↔ f m = 0 :=
   Iff.rfl
@@ -219,10 +281,16 @@ def range : DGSubmodule A N where
     exact ⟨decompose (grading (M := M)) m n,
       (coe_decompose_map_of_map_mem f.toLinearMap.toAddMonoidHom (fun hx => f.map_mem hx) m n).symm⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.31ea7fb888d6 from=translated src=- shape=5529b259 vocab=567a177b
+-/
 @[simp]
 theorem mem_range {n : N} : n ∈ f.range ↔ ∃ m, f m = n :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h5v.s7.9d19eefa80ec from=translated src=- shape=503a00c6 vocab=567a177b
+-/
 theorem apply_mem_range (m : M) : f m ∈ f.range :=
   ⟨m, rfl⟩
 
@@ -230,6 +298,9 @@ theorem apply_mem_range (m : M) : f m ∈ f.range :=
 def rangeRestrict : M →ᵈᵍ[A] f.range :=
   DGSubmodule.codRestrict f f.apply_mem_range
 
+/--
+@isnad1 id=eq.0h5v.s8.209f26f27740 from=translated src=- shape=89820f6d vocab=acc610ed
+-/
 @[simp]
 theorem coe_rangeRestrict_apply (m : M) : (f.rangeRestrict m : N) = f m := rfl
 

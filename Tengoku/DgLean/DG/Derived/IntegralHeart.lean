@@ -54,7 +54,9 @@ open CategoryTheory Limits Pretriangulated DerivedCategory
 /-- **Induction principle for finitely generated abelian groups**: a property of `ℤ`-modules
 which is invariant under isomorphisms and binary biproducts and holds for zero modules, `ℤ`, and
 the cyclic groups `ℤ/m` (`m ≠ 0`) holds for every finitely generated `ℤ`-module (structure
-theorem).-/
+theorem).
+@isnad1 id=var.1h7v.s7.5d374f46ea0e from=translated src=- shape=4e2c4d42 vocab=e7ebef64
+-/
 theorem moduleCat_int_induction (Pr : ModuleCat.{0} ℤ → Prop)
     (hiso : ∀ {M N : ModuleCat.{0} ℤ}, (M ≅ N) → Pr M → Pr N)
     (hzero : ∀ M : ModuleCat.{0} ℤ, IsZero M → Pr M)
@@ -104,6 +106,9 @@ noncomputable abbrev cyclicShortComplex (m : ℤ) : ShortComplex (ModuleCat.{0} 
       (Submodule.Quotient.mk_eq_zero _).mpr (Submodule.mem_span_singleton.mpr
         ⟨x, by simp [mul_comm]⟩))
 
+/--
+@isnad1 id=shortexa.1h1v.s4.c534a2872132 from=translated src=- shape=35dc8251 vocab=66cd107f
+-/
 theorem cyclicShortComplex_shortExact {m : ℤ} (hm : m ≠ 0) :
     (cyclicShortComplex m).ShortExact :=
   ModuleCat.shortComplex_shortExact _
@@ -121,6 +126,9 @@ theorem cyclicShortComplex_shortExact {m : ℤ} (hm : m ≠ 0) :
       mul_left_cancel₀ hm (by simpa using h))
     (Submodule.mkQ_surjective _)
 
+/--
+@isnad1 id=eq.0h1v.s8.0cdec9b920d0 from=translated src=- shape=cc44b792 vocab=69294bf9
+-/
 theorem ofHom_zsmul_id (m : ℤ) :
     ModuleCat.ofHom (m • LinearMap.id : ℤ →ₗ[ℤ] ℤ) = m • 𝟙 (ModuleCat.of ℤ ℤ) := by
   ext
@@ -128,6 +136,9 @@ theorem ofHom_zsmul_id (m : ℤ) :
   rw [ModuleCat.hom_zsmul]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.cbf7fd42cc6c from=translated src=- shape=f386da85 vocab=5371a37a
+-/
 theorem cyclicShortComplex_f (m : ℤ) : (cyclicShortComplex m).f = m • 𝟙 _ := by
   ext
   change (m • LinearMap.id : ℤ →ₗ[ℤ] ℤ) 1 = (m • 𝟙 (ModuleCat.of ℤ ℤ)).hom 1
@@ -147,6 +158,9 @@ noncomputable def shiftHomAddHom (X M : C) (a : ℤ) : (X⟦a⟧ ⟶ M) →+ (X 
   map_zero' := by rw [Functor.map_zero, Limits.comp_zero]
   map_add' g g' := by rw [Functor.map_add]; exact Preadditive.comp_add _ _ _ _ _ _
 
+/--
+@isnad1 id=injectiv.0h4v.s9.d5cfcb238a2b from=translated src=- shape=9bdcf5ee vocab=1c66d125
+-/
 theorem shiftHomAddHom_injective (X M : C) (a : ℤ) :
     Function.Injective (shiftHomAddHom X M a) := by
   intro g g' h
@@ -160,6 +174,9 @@ noncomputable def homShiftAddHom (X M : C) (k : ℤ) : (X ⟶ M⟦k⟧) →+ (X�
   map_zero' := by rw [Functor.map_zero, Limits.zero_comp]
   map_add' g g' := by rw [Functor.map_add]; exact Preadditive.add_comp _ _ _ _ _ _
 
+/--
+@isnad1 id=injectiv.0h4v.s9.57541deb7ff3 from=translated src=- shape=bea675ec vocab=0d9a214f
+-/
 theorem homShiftAddHom_injective (X M : C) (k : ℤ) :
     Function.Injective (homShiftAddHom X M k) := by
   intro g g' h
@@ -218,6 +235,9 @@ structure Good (Y : DerivedCategory (ModuleCat.{0} ℤ)) : Prop where
 
 variable {F}
 
+/--
+@isnad1 id=good.1h5v.s8.86958fdfa726 from=translated src=- shape=f5f03e79 vocab=160cbd08
+-/
 theorem Good.of_iso {Y Y' : DerivedCategory (ModuleCat.{0} ℤ)} (h : Good F Y) (e : Y ≅ Y') :
     Good F Y' where
   neg k hk g := by
@@ -236,11 +256,17 @@ theorem Good.of_iso {Y Y' : DerivedCategory (ModuleCat.{0} ℤ)} (h : Good F Y) 
       rw [show F.map f = g ≫ F.map e.inv from hf, Category.assoc, ← F.map_comp, e.inv_hom_id,
         F.map_id, Category.comp_id]
 
+/--
+@isnad1 id=good.1h3v.s7.ce144e1a0142 from=translated src=- shape=1d08ba5a vocab=e567d7b3
+-/
 theorem Good.of_isZero {Y : DerivedCategory (ModuleCat.{0} ℤ)} (hY : IsZero Y) : Good F Y where
   neg _ _ _ := ((shiftFunctor C _).map_isZero (F.map_isZero hY)).eq_of_tgt _ _
   one _ := ((shiftFunctor C (1 : ℤ)).map_isZero (F.map_isZero hY)).eq_of_tgt _ _
   bij := ⟨fun _ _ _ => hY.eq_of_tgt _ _, fun _ => ⟨0, (F.map_isZero hY).eq_of_tgt _ _⟩⟩
 
+/--
+@isnad1 id=good.2h4v.s8.92b517255292 from=translated src=- shape=a9d3eb1a vocab=48b2ebaf
+-/
 theorem Good.biprod {Y₁ Y₂ : DerivedCategory (ModuleCat.{0} ℤ)} (h₁ : Good F Y₁)
     (h₂ : Good F Y₂) : Good F (Y₁ ⊞ Y₂) := by
   have htot : F.map (biprod.fst : Y₁ ⊞ Y₂ ⟶ Y₁) ≫ F.map biprod.inl +
@@ -274,7 +300,9 @@ theorem Good.biprod {Y₁ Y₂ : DerivedCategory (ModuleCat.{0} ℤ)} (h₁ : Go
       show F.map f₁ = g ≫ F.map biprod.fst from hf₁, show F.map f₂ = g ≫ F.map biprod.snd from hf₂,
       Category.assoc, Category.assoc, ← Preadditive.comp_add, htot, Category.comp_id]
 
-/-- Every endomorphism of `ℤ` in degree `0` is an integer multiple of the identity.-/
+/-- Every endomorphism of `ℤ` in degree `0` is an integer multiple of the identity.
+@isnad1 id=ex.0h1v.s9.1459fc18ebd1 from=translated src=- shape=9764ec9f vocab=a20a4db6
+-/
 theorem Z_endo (f : (Z : DerivedCategory (ModuleCat.{0} ℤ)) ⟶ Z) : ∃ n : ℤ, f = n • 𝟙 _ := by
   obtain ⟨f₀, rfl⟩ := (singleFunctor (ModuleCat.{0} ℤ) 0).map_surjective f
   refine ⟨f₀.hom 1, ?_⟩
@@ -282,6 +310,9 @@ theorem Z_endo (f : (Z : DerivedCategory (ModuleCat.{0} ℤ)) ⟶ Z) : ∃ n : �
   conv_lhs => rw [this]
   rw [Functor.map_zsmul, CategoryTheory.Functor.map_id]
 
+/--
+@isnad1 id=good.1h2v.s7.daa9e9611c33 from=translated src=- shape=6ba3ad58 vocab=21630bea
+-/
 theorem good_Z (h : Hyp F) : Good F Z where
   neg := h.neg
   one := h.one
@@ -321,7 +352,9 @@ noncomputable abbrev cycTriangleF : Triangle C :=
     (F.map (cycTriangle hm).mor₃ ≫ (F.commShiftIso (1 : ℤ)).hom.app Z)
 
 include hm in
-/-- `End(P)` has no torsion.-/
+/-- `End(P)` has no torsion.
+@isnad1 id=eq.3h4v.s9.8ed604a31852 from=translated src=- shape=76e672dc vocab=83175c7a
+-/
 theorem Hyp.zsmul_eq_zero (h : Hyp F) {x : P F ⟶ P F} (hx : m • x = 0) : x = 0 := by
   obtain ⟨n, rfl⟩ := h.zero.2 x
   have h0 : (m * n) • 𝟙 (P F) = (0 : ℤ) • 𝟙 (P F) := by
@@ -345,6 +378,9 @@ structure Good₂ (X Y : DerivedCategory (ModuleCat.{0} ℤ)) : Prop where
   one : ∀ g : F.obj X ⟶ (F.obj Y)⟦(1 : ℤ)⟧,
     ∃ f : X ⟶ Y⟦(1 : ℤ)⟧, F.map f ≫ (F.commShiftIso (1 : ℤ)).hom.app Y = g
 
+/--
+@isnad1 id=good.1h6v.s8.c3c42ef4c3bc from=translated src=- shape=6dd5a6ec vocab=87e20dec
+-/
 theorem Good₂.of_iso_left {X X' Y : DerivedCategory (ModuleCat.{0} ℤ)} (h : Good₂ F X Y)
     (e : X ≅ X') : Good₂ F X' Y where
   bij := by
@@ -366,6 +402,9 @@ theorem Good₂.of_iso_left {X X' Y : DerivedCategory (ModuleCat.{0} ℤ)} (h : 
     rw [F.map_comp, Category.assoc, hf, ← Category.assoc, ← F.map_comp, e.inv_hom_id, F.map_id,
       Category.id_comp]
 
+/--
+@isnad1 id=good.1h6v.s8.ff461ad90e98 from=translated src=- shape=919b60c3 vocab=87e20dec
+-/
 theorem Good₂.of_iso_right {X Y Y' : DerivedCategory (ModuleCat.{0} ℤ)} (h : Good₂ F X Y)
     (e : Y ≅ Y') : Good₂ F X Y' where
   bij := by
@@ -388,12 +427,18 @@ theorem Good₂.of_iso_right {X Y Y' : DerivedCategory (ModuleCat.{0} ℤ)} (h :
       Category.assoc, ← Functor.map_comp, ← F.map_comp, e.inv_hom_id, F.map_id,
       CategoryTheory.Functor.map_id, Category.comp_id]
 
+/--
+@isnad1 id=good.1h4v.s7.2fec54a6bda1 from=translated src=- shape=416dad71 vocab=d2ffa126
+-/
 theorem Good₂.of_isZero_left {X Y : DerivedCategory (ModuleCat.{0} ℤ)} (hX : IsZero X) :
     Good₂ F X Y where
   bij := ⟨fun _ _ _ => hX.eq_of_src _ _, fun _ => ⟨0, (F.map_isZero hX).eq_of_src _ _⟩⟩
   neg _ _ _ := (F.map_isZero hX).eq_of_src _ _
   one _ := ⟨0, (F.map_isZero hX).eq_of_src _ _⟩
 
+/--
+@isnad1 id=good.2h5v.s8.53b8d3d65c60 from=translated src=- shape=c6adf45f vocab=95d2189d
+-/
 theorem Good₂.biprod_left {X₁ X₂ Y : DerivedCategory (ModuleCat.{0} ℤ)} (h₁ : Good₂ F X₁ Y)
     (h₂ : Good₂ F X₂ Y) : Good₂ F (X₁ ⊞ X₂) Y := by
   have htot : F.map (biprod.fst : X₁ ⊞ X₂ ⟶ X₁) ≫ F.map biprod.inl +
@@ -424,6 +469,9 @@ theorem Good₂.biprod_left {X₁ X₂ Y : DerivedCategory (ModuleCat.{0} ℤ)} 
     rw [F.map_add, Preadditive.add_comp, F.map_comp, F.map_comp, Category.assoc, Category.assoc,
       hf₁, hf₂, ← hsplit]
 
+/--
+@isnad1 id=good.1h3v.s7.75c7414095e8 from=translated src=- shape=78ecc0c4 vocab=1a19f3d8
+-/
 theorem good₂_Z {Y : DerivedCategory (ModuleCat.{0} ℤ)} (hY : Good F Y) : Good₂ F Z Y where
   bij := hY.bij
   neg := hY.neg
@@ -431,7 +479,9 @@ theorem good₂_Z {Y : DerivedCategory (ModuleCat.{0} ℤ)} (hY : Good F Y) : Go
 
 /-! ### The heart family and `K₀` -/
 
-/-- `P` has a heart tower (with one cell).-/
+/-- `P` has a heart tower (with one cell).
+@isnad1 id=hasheart.0h2v.s7.a7d3b283f649 from=translated src=- shape=9f29c4fb vocab=44e11a44
+-/
 theorem hasHeartTower_P : IsHeartFamily.HasHeartTower (mapHeart F (fgSingle ℤ)) (P F) :=
   ⟨0, HeartTower.of_shiftedProp ⟨P F, ⟨Z, ⟨ModuleCat.of ℤ ℤ, inferInstance, ⟨Iso.refl _⟩⟩,
     ⟨Iso.refl _⟩⟩, ⟨((shiftFunctorZero C ℤ).app (P F)).symm⟩⟩⟩

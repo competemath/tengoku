@@ -69,13 +69,22 @@ abbrev ofHom {A B : Type u} [Ring A] [Algebra R A] [DGAddCommGroup A] [DGRing A]
     (f : A →ᵈᵍₐ[R] B) : of R A ⟶ of R B :=
   ⟨f⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.f196a595ad7c from=translated src=- shape=33f0c149 vocab=4e6c62e8
+-/
 @[simp]
 theorem hom_id (A : DGAlgCat.{w, u} R) : Hom.hom (𝟙 A) = DGAlgHom.id := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.9e09f84bac3f from=translated src=- shape=bee14914 vocab=2237a07c
+-/
 @[simp]
 theorem hom_comp {A B C : DGAlgCat.{w, u} R} (f : A ⟶ B) (g : B ⟶ C) :
     Hom.hom (f ≫ g) = g.hom.comp f.hom := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.495b54ac345b from=translated src=- shape=f17fb6dc vocab=d5d48991
+-/
 @[ext]
 theorem hom_ext {A B : DGAlgCat.{w, u} R} {f g : A ⟶ B} (h : ∀ a, f.hom a = g.hom a) : f = g :=
   Hom.ext (DGAlgHom.ext h)

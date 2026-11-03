@@ -43,7 +43,9 @@ section Object
 
 variable (M : DGModuleCat.{v} A)
 
-/-- The differential `(toComplex R M).d i j` is `d` for `j = i + 1`.-/
+/-- The differential `(toComplex R M).d i j` is `d` for `j = i + 1`.
+@isnad1 id=eq.1h6v.s10.b0696ec58b19 from=translated src=- shape=b4e13faa vocab=3b756b8e
+-/
 theorem toComplex_d_apply {i j : ℤ} (h : i + 1 = j) (x : DGModule.gradingSubmodule R A M i) :
     (Subtype.val ((toComplex R M).d i j x) : M) = d (x : M) := by
   subst h
@@ -69,7 +71,9 @@ private theorem prev_add_one (n : ℤ) : (ComplexShape.up ℤ).prev n + 1 = n :=
   rw [CochainComplex.prev]; omega
 
 /-- Under `DG.DGModuleCat.cocyclesAddEquiv`, the coboundaries correspond to the image of the
-map `X (n - 1) → ker (d : X n → X (n + 1))`.-/
+map `X (n - 1) → ker (d : X n → X (n + 1))`.
+@isnad1 id=iff.0h5v.s16.83bb5c346f85 from=translated src=- shape=f0d99f38 vocab=9c711e77
+-/
 theorem mem_map_cocyclesAddEquiv_iff (n : ℤ) (y : LinearMap.ker ((toComplex R M).sc n).g.hom) :
     y ∈ ((coboundaries M n).addSubgroupOf (cocycles M n)).map
       (cocyclesAddEquiv R M n).toAddMonoidHom ↔
@@ -97,7 +101,9 @@ def cohomologyAddEquiv (n : ℤ) : cohomology M n ≃+ ((forget R A).obj M).homo
 
 set_option backward.isDefEq.respectTransparency false in
 /-- `DG.DGModuleCat.cohomologyAddEquiv` sends the class of a cocycle to the homology class of
-the corresponding cycle of the underlying cochain complex.-/
+the corresponding cycle of the underlying cochain complex.
+@isnad1 id=eq.0h5v.s13.c14cc6cdebd1 from=translated src=- shape=53a2bfde vocab=eed5cc71
+-/
 theorem cohomologyAddEquiv_mk (n : ℤ) (z : cocycles M n) :
     cohomologyAddEquiv R M n (cohomology.mk M n z) =
       (forget₂ (ModuleCat R) Ab).map (((forget R A).obj M).homologyπ n)
@@ -122,7 +128,9 @@ section Naturality
 variable {M N : DGModuleCat.{v} A} (f : M ⟶ N)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The comparison `Hⁿ(M) ≃+ Hⁿ(toComplex R M)` is natural in `M`.-/
+/-- The comparison `Hⁿ(M) ≃+ Hⁿ(toComplex R M)` is natural in `M`.
+@isnad1 id=eq.0h7v.s13.0a1bda5570a1 from=translated src=- shape=5d34c77d vocab=197e9cc4
+-/
 theorem cohomologyAddEquiv_naturality (n : ℤ) (x : cohomology M n) :
     cohomologyAddEquiv R N n (cohomology.map f.hom n x) =
       HomologicalComplex.homologyMap ((forget R A).map f) n (cohomologyAddEquiv R M n x) := by
@@ -144,7 +152,9 @@ theorem cohomologyAddEquiv_naturality (n : ℤ) (x : cohomology M n) :
     rw [HomologicalComplex.i_cyclesMk]
     rfl
 
-/-- Naturality of `cohomologyAddEquiv`, as an equality of additive maps.-/
+/-- Naturality of `cohomologyAddEquiv`, as an equality of additive maps.
+@isnad1 id=eq.0h6v.s13.dd03e084661c from=translated src=- shape=b689e4c2 vocab=b1a1b67d
+-/
 theorem cohomologyAddEquiv_comp_map (n : ℤ) :
     (cohomologyAddEquiv R N n).toAddMonoidHom.comp (cohomology.map f.hom n) =
       (HomologicalComplex.homologyMap ((forget R A).map f) n).hom.toAddMonoidHom.comp

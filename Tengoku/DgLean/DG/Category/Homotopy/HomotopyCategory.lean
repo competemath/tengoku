@@ -48,6 +48,9 @@ variable (C : Type u) [Category.{v} C] [Preadditive C] [∀ X Y : C, DGAddCommGr
 /-- The homotopy relation on the morphisms of `CatModule C`.-/
 def homotopic : HomRel (CatModule.{w} C) := fun _ _ f g => Homotopic f g
 
+/--
+@isnad1 id=congruen.0h1v.s5.f5bdc1a4064d from=translated src=- shape=28c2d72a vocab=6a481722
+-/
 instance homotopic_congruence : Congruence (homotopic.{w} C) where
   equivalence :=
     { refl := fun f => Homotopic.refl f
@@ -93,17 +96,25 @@ instance : HasZeroObject (HomotopyCategory.{w} C) :=
 
 variable {C}
 
+/--
+@isnad1 id=ex.0h2v.s6.ca425aa83133 from=translated src=- shape=14ff25df vocab=82a08697
+-/
 theorem quotient_obj_surjective (X : HomotopyCategory.{w} C) :
     ∃ M : CatModule.{w} C, (quotient C).obj M = X :=
   ⟨_, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.a9d65bd4f898 from=translated src=- shape=ea0fa04e vocab=9512341f
+-/
 @[simp]
 theorem quotient_map_out {M N : HomotopyCategory.{w} C} (f : M ⟶ N) :
     (quotient C).map (Quot.out f) = f :=
   Quot.out_eq _
 
 /-- Two morphisms of dg modules become equal in the homotopy category iff they are
-homotopic.-/
+homotopic.
+@isnad1 id=iff.0h5v.s7.5106453b21e4 from=translated src=- shape=9ccffe48 vocab=31309e57
+-/
 theorem quotient_map_eq_iff {M N : CatModule.{w} C} (f g : M ⟶ N) :
     (quotient C).map f = (quotient C).map g ↔ Homotopic f g :=
   Quotient.functor_map_eq_iff _ _ _
@@ -130,7 +141,9 @@ def isoOfHomotopyEquiv {M N : CatModule.{w} C} (e : DGHomotopyEquiv M N) :
     rw [← (quotient C).map_comp, ← (quotient C).map_id]
     exact eq_of_homotopy _ _ e.homotopyInvHomId
 
-/-- A dg module is a zero object of the homotopy category iff it is contractible.-/
+/-- A dg module is a zero object of the homotopy category iff it is contractible.
+@isnad1 id=iff.0h2v.s6.52395e66c02a from=translated src=- shape=3c64cf51 vocab=18086cc1
+-/
 theorem isZero_quotient_obj_iff (M : CatModule.{w} C) :
     IsZero ((quotient C).obj M) ↔ IsContractible M := by
   rw [IsZero.iff_id_eq_zero, ← (quotient C).map_id, ← (quotient C).map_zero,
@@ -152,11 +165,17 @@ def quotientNullHomotopicAddHom :
     rw [← (quotient C).map_zero M N, quotient_map_eq_iff]
     exact hf
 
+/--
+@isnad1 id=eq.0h4v.s11.1ce458590cb0 from=translated src=- shape=73364d97 vocab=bca9775e
+-/
 @[simp]
 theorem quotientNullHomotopicAddHom_mk (f : M ⟶ N) :
     quotientNullHomotopicAddHom M N (QuotientAddGroup.mk f) = (quotient C).map f :=
   rfl
 
+/--
+@isnad1 id=bijectiv.0h3v.s11.129b32a26b27 from=translated src=- shape=e90427cb vocab=b456cfd3
+-/
 theorem quotientNullHomotopicAddHom_bijective :
     Function.Bijective (quotientNullHomotopicAddHom M N) := by
   refine ⟨(injective_iff_map_eq_zero _).mpr fun x hx => ?_, fun φ => ?_⟩
@@ -174,6 +193,9 @@ noncomputable def homAddEquivQuotient :
     ((quotient C).obj M ⟶ (quotient C).obj N) ≃+ ((M ⟶ N) ⧸ nullHomotopic M N) :=
   (AddEquiv.ofBijective _ (quotientNullHomotopicAddHom_bijective M N)).symm
 
+/--
+@isnad1 id=eq.0h4v.s12.055977cf8237 from=translated src=- shape=8649a5fd vocab=a8b3826d
+-/
 @[simp]
 theorem homAddEquivQuotient_quotient_map (f : M ⟶ N) :
     homAddEquivQuotient M N ((quotient C).map f) = QuotientAddGroup.mk f := by
@@ -186,6 +208,9 @@ noncomputable def homAddEquivCohomology :
     ((quotient C).obj M ⟶ (quotient C).obj N) ≃+ cohomology (HOM M N) 0 :=
   (homAddEquivQuotient M N).trans (quotientNullHomotopicAddEquivCohomology M N)
 
+/--
+@isnad1 id=eq.0h4v.s12.b0d081c824b5 from=translated src=- shape=324d7997 vocab=5cfb756d
+-/
 @[simp]
 theorem homAddEquivCohomology_quotient_map (f : M ⟶ N) :
     homAddEquivCohomology M N ((quotient C).map f) =

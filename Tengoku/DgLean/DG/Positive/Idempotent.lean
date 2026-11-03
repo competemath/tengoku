@@ -26,6 +26,9 @@ namespace DG
 
 variable {R : Type*} [Ring R]
 
+/--
+@isnad1 id=iff.1h3v.s6.6f1b2b68431e from=translated src=- shape=3476de07 vocab=4816a3f6
+-/
 theorem mem_span_singleton_iff_mul_eq {g x : R} (hg : IsIdempotentElem g) :
     x ∈ Submodule.span R {g} ↔ x * g = x := by
   rw [Submodule.mem_span_singleton]
@@ -35,6 +38,9 @@ theorem mem_span_singleton_iff_mul_eq {g x : R} (hg : IsIdempotentElem g) :
   · intro h
     exact ⟨x, h⟩
 
+/--
+@isnad1 id=ne.1h2v.s7.6dc082723e23 from=translated src=- shape=41627e5b vocab=11cf1523
+-/
 theorem ne_zero_of_isSimpleModule {e : R} (he : IsSimpleModule R (Submodule.span R {e})) :
     e ≠ 0 := by
   rintro rfl
@@ -43,7 +49,9 @@ theorem ne_zero_of_isSimpleModule {e : R} (he : IsSimpleModule R (Submodule.span
 
 /-- **Schur's lemma** for simple idempotents: if `R e` and `R f` are simple and `b ≠ 0` with
 `e b = b = b f`, then right multiplication by `b` is an isomorphism `R e ≅ R f`, with inverse the
-right multiplication by some `c` with `f c = c = c e`, `b c = e` and `c b = f`.-/
+right multiplication by some `c` with `f c = c = c e`, `b c = e` and `c b = f`.
+@isnad1 id=ex.7h4v.s8.d952f1fdf499 from=translated src=- shape=e6fba260 vocab=c1fafa46
+-/
 theorem exists_mul_eq_of_isSimpleModule {e f b : R} (he : IsIdempotentElem e)
     (hf : IsIdempotentElem f) (hse : IsSimpleModule R (Submodule.span R {e}))
     (hsf : IsSimpleModule R (Submodule.span R {f})) (heb : e * b = b) (hbf : b * f = b)
@@ -77,7 +85,9 @@ theorem exists_mul_eq_of_isSimpleModule {e f b : R} (he : IsIdempotentElem e)
     rw [mul_assoc, hcb', hbf, heb]
 
 /-- In a semisimple ring, an idempotent `g` with `R g ≠ 0` is the sum `g = s + t` of two
-orthogonal idempotents with `R s` simple and `R t < R g`.-/
+orthogonal idempotents with `R s` simple and `R t < R g`.
+@isnad1 id=ex.2h2v.s8.711ef0500f59 from=translated src=- shape=7fd2b37f vocab=3311e226
+-/
 theorem exists_isSimpleModule_add_of_isSemisimpleRing [IsSemisimpleRing R] {g : R}
     (hg : IsIdempotentElem g) (hN : Submodule.span R {g} ≠ ⊥) :
     ∃ s t : R, IsIdempotentElem s ∧ IsIdempotentElem t ∧ s * t = 0 ∧ t * s = 0 ∧ s + t = g ∧

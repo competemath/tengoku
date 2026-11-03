@@ -46,17 +46,29 @@ namespace CatSubmodule
 
 variable {M : CatModule.{w} C} (S : CatSubmodule M)
 
+/--
+@isnad1 id=mem.1h6v.s11.f38d299b8bbe from=translated src=- shape=f3230045 vocab=53034a67
+-/
 theorem decompose_mem {X : C} {m : M.obj X} (hm : m ∈ S.carrier X) (n : ℤ) :
     (decompose (grading (M := M.obj X)) m n : M.obj X) ∈ S.carrier X :=
   S.decompose_mem' hm n
 
+/--
+@isnad1 id=mem.1h5v.s8.3de329b754fb from=translated src=- shape=6dad23b5 vocab=ca78a95a
+-/
 theorem d_mem {X : C} {m : M.obj X} (hm : m ∈ S.carrier X) : d m ∈ S.carrier X :=
   S.d_mem' hm
 
+/--
+@isnad1 id=mem.1h7v.s8.e928e699df90 from=translated src=- shape=943d8ef1 vocab=2d1d89ce
+-/
 theorem smul_mem {X Y : C} (f : X ⟶ Y) {m : M.obj X} (hm : m ∈ S.carrier X) :
     f • m ∈ S.carrier Y :=
   S.smul_mem' f hm
 
+/--
+@isnad1 id=isdgadds.0h4v.s6.5dc8c5398a21 from=translated src=- shape=983364ef vocab=4e4eca64
+-/
 instance isDGAddSubgroup (X : C) : IsDGAddSubgroup (S.carrier X) where
   decompose_mem hm n := S.decompose_mem hm n
   d_mem hm := S.d_mem hm
@@ -92,14 +104,23 @@ noncomputable def toCatModule : CatModule.{w} C where
     change d (f • (m : M.obj X)) = d f • (m : M.obj X) + ((koszulSign i : ℤ) • f • d (m : M.obj X))
     rw [CatModule.d_smul hf, Units.smul_def])
 
+/--
+@isnad1 id=eq.0h7v.s8.e46a444b06c3 from=translated src=- shape=f54f7104 vocab=bb0ac6d0
+-/
 @[simp]
 theorem coe_smul {X Y : C} (f : X ⟶ Y) (m : S.toCatModule.obj X) :
     (f • m : S.toCatModule.obj Y).1 = f • m.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.7e8e413565db from=translated src=- shape=44b39bcd vocab=ee5acc30
+-/
 @[simp]
 theorem coe_d {X : C} (m : S.toCatModule.obj X) :
     (d m : S.toCatModule.obj X).1 = d m.1 := rfl
 
+/--
+@isnad1 id=iff.0h6v.s8.80d36357ba96 from=translated src=- shape=bfeebbdc vocab=fc64acea
+-/
 theorem mem_grading_iff {X : C} {n : ℤ} {m : S.toCatModule.obj X} :
     m ∈ grading n ↔ m.1 ∈ grading n :=
   Iff.rfl
@@ -112,6 +133,9 @@ noncomputable def subtype : S.toCatModule ⟶ M where
   map_d' _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s8.f2c768c9cdf2 from=translated src=- shape=c2595cc6 vocab=48b8e2e3
+-/
 theorem subtype_injective (X : C) : Function.Injective (S.subtype.app X) :=
   Subtype.val_injective
 
@@ -125,6 +149,9 @@ noncomputable def codRestrict {N : CatModule.{w} C} (φ : N ⟶ M)
   map_d' m := Subtype.ext (φ.map_d m)
   map_smul' f m := Subtype.ext (φ.map_smul f m)
 
+/--
+@isnad1 id=eq.1h5v.s8.0d5ee9591817 from=translated src=- shape=68153696 vocab=c4fe1c16
+-/
 @[simp]
 theorem codRestrict_comp_subtype {N : CatModule.{w} C} (φ : N ⟶ M)
     (h : ∀ X (m : N.obj X), φ.app X m ∈ S.carrier X) : codRestrict φ h ≫ S.subtype = φ :=
@@ -169,9 +196,15 @@ noncomputable def mkQ : M ⟶ S.quotient where
   map_d' _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=surjecti.0h4v.s8.1c84b3f8280b from=translated src=- shape=93292af9 vocab=d7faffda
+-/
 theorem mkQ_surjective (X : C) : Function.Surjective (S.mkQ.app X) :=
   QuotientAddGroup.mk'_surjective _
 
+/--
+@isnad1 id=iff.0h5v.s9.4ddb34bf0b21 from=translated src=- shape=628b0c19 vocab=285df33f
+-/
 theorem mkQ_eq_zero_iff {X : C} {m : M.obj X} : S.mkQ.app X m = 0 ↔ m ∈ S.carrier X :=
   QuotientAddGroup.eq_zero_iff m
 
@@ -191,12 +224,17 @@ noncomputable def liftQ {N : CatModule.{w} C} (φ : M ⟶ N)
     induction y using QuotientAddGroup.induction_on with
     | H m => exact φ.map_smul f m
 
+/--
+@isnad1 id=eq.1h5v.s9.f8b76ce12e68 from=translated src=- shape=a2f1bf06 vocab=cb8f3dea
+-/
 @[simp]
 theorem mkQ_comp_liftQ {N : CatModule.{w} C} (φ : M ⟶ N)
     (h : ∀ X, ∀ m ∈ S.carrier X, φ.app X m = 0) : S.mkQ ≫ liftQ φ h = φ :=
   rfl
 
-/-- Two morphisms out of `M ⧸ S` agreeing after composition with the quotient map are equal.-/
+/-- Two morphisms out of `M ⧸ S` agreeing after composition with the quotient map are equal.
+@isnad1 id=eq.1h6v.s7.b8346a179dd0 from=translated src=- shape=a9a8fc20 vocab=ed96ff89
+-/
 theorem quotient_hom_ext {N : CatModule.{w} C} {φ ψ : S.quotient ⟶ N}
     (h : S.mkQ ≫ φ = S.mkQ ≫ ψ) : φ = ψ :=
   CatModule.hom_ext fun X y => by
@@ -223,6 +261,9 @@ def ker : CatSubmodule M where
     rw [AddMonoidHom.mem_ker] at hm ⊢
     rw [φ.map_smul, hm, smul_zero]
 
+/--
+@isnad1 id=iff.0h6v.s8.01aae3f39427 from=translated src=- shape=4bdb1a35 vocab=d946eff8
+-/
 @[simp]
 theorem mem_ker {X : C} {m : M.obj X} : m ∈ (ker φ).carrier X ↔ φ.app X m = 0 :=
   AddMonoidHom.mem_ker
@@ -240,6 +281,9 @@ def range : CatSubmodule N where
     rintro X Y f _ ⟨m, rfl⟩
     exact ⟨f • m, φ.map_smul f m⟩
 
+/--
+@isnad1 id=iff.0h6v.s8.fe40fe5ea4cc from=translated src=- shape=c31da6c7 vocab=0a5d65c1
+-/
 @[simp]
 theorem mem_range {X : C} {n : N.obj X} : n ∈ (range φ).carrier X ↔ ∃ m, φ.app X m = n :=
   AddMonoidHom.mem_range

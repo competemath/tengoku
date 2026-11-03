@@ -75,15 +75,24 @@ def coarseGrading (k : κ) : AddSubgroup (⨁ i, β i) where
 
 variable {β f}
 
+/--
+@isnad1 id=iff.0h6v.s8.680059a558d7 from=translated src=- shape=64cc965e vocab=e30e54d0
+-/
 theorem mem_coarseGrading_iff {k : κ} {x : ⨁ i, β i} :
     x ∈ coarseGrading β f k ↔ ∀ i, f i ≠ k → x i = 0 :=
   Iff.rfl
 
 variable [DecidableEq ι]
 
+/--
+@isnad1 id=mem.0h6v.s8.5a3ac44a7a20 from=translated src=- shape=299facd1 vocab=9335345c
+-/
 theorem of_mem_coarseGrading (i : ι) (b : β i) : DirectSum.of β i b ∈ coarseGrading β f (f i) :=
   fun j hj => of_eq_of_ne i j b fun h => hj (h ▸ rfl)
 
+/--
+@isnad1 id=mem.1h7v.s8.df72bb9f30b3 from=translated src=- shape=5a4c5112 vocab=9335345c
+-/
 theorem of_mem_coarseGrading' {i : ι} {k : κ} (h : f i = k) (b : β i) :
     DirectSum.of β i b ∈ coarseGrading β f k :=
   h ▸ of_mem_coarseGrading i b
@@ -103,6 +112,9 @@ def coarseDecompose : (⨁ i, β i) →+ ⨁ k, coarseGrading β f k :=
 
 variable {β f}
 
+/--
+@isnad1 id=eq.0h7v.s13.487366baff4e from=translated src=- shape=70a9458a vocab=9ee897df
+-/
 theorem coe_coarseDecompose_apply (x : ⨁ i, β i) (k : κ) (i : ι) :
     ((coarseDecompose β f x k : ⨁ i, β i) i) = if f i = k then x i else 0 := by
   induction x using DirectSum.induction_on with
@@ -124,6 +136,9 @@ theorem coe_coarseDecompose_apply (x : ⨁ i, β i) (k : κ) (i : ι) :
     rw [map_add, add_apply, AddSubgroup.coe_add, add_apply, hx, hy, add_apply]
     split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s11.f53a759822f6 from=translated src=- shape=03aea53c vocab=d92d7f3d
+-/
 theorem coeAddMonoidHom_comp_coarseDecompose :
     (DirectSum.coeAddMonoidHom (coarseGrading β f)).comp (coarseDecompose β f) =
       AddMonoidHom.id _ := by
@@ -132,6 +147,9 @@ theorem coeAddMonoidHom_comp_coarseDecompose :
     AddMonoidHom.id_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.86b9d02767d1 from=translated src=- shape=4be22571 vocab=d92d7f3d
+-/
 theorem coarseDecompose_comp_coeAddMonoidHom :
     (coarseDecompose β f).comp (DirectSum.coeAddMonoidHom (coarseGrading β f)) =
       AddMonoidHom.id _ := by
@@ -160,12 +178,16 @@ instance instDecompositionCoarseGrading : Decomposition (coarseGrading β f) :=
 variable {β f}
 
 /-- The components of the coarse decomposition: the component of `k` of `x` is the restriction
-of `x` to `f⁻¹ {k}`.-/
+of `x` to `f⁻¹ {k}`.
+@isnad1 id=eq.0h7v.s12.19d2468df097 from=translated src=- shape=8f290865 vocab=c12d6511
+-/
 theorem coe_decompose_coarseGrading_apply (x : ⨁ i, β i) (k : κ) (i : ι) :
     ((decompose (coarseGrading β f) x k : ⨁ i, β i) i) = if f i = k then x i else 0 :=
   coe_coarseDecompose_apply x k i
 
-/-- Induction on an element of a component of the coarse grading.-/
+/-- Induction on an element of a component of the coarse grading.
+@isnad1 id=var.1h10v.s9.4f183086c662 from=translated src=- shape=c62a9267 vocab=84613f32
+-/
 theorem coarseGrading_induction {k : κ} {P : (⨁ i, β i) → Prop} (zero : P 0)
     (of : ∀ i (b : β i), f i = k → P (DirectSum.of β i b)) (add : ∀ x y, P x → P y → P (x + y))
     {x : ⨁ i, β i} (hx : x ∈ coarseGrading β f k) : P x := by
@@ -193,12 +215,17 @@ def halfDegree (k : ℤ) : ℤ × ℤ →+ ℤ × ZMod 2 where
     simp only [Prod.fst_add, Prod.snd_add, Int.cast_add, Prod.mk_add_mk, Prod.mk.injEq, and_true]
     ring
 
+/--
+@isnad1 id=eq.0h2v.s8.44971ca2fec8 from=translated src=- shape=a47f5909 vocab=7453ad32
+-/
 @[simp]
 theorem halfDegree_apply (k : ℤ) (p : ℤ × ℤ) :
     halfDegree k p = (p.2 + p.1 * k, (p.1 : ZMod 2)) :=
   rfl
 
-/-- Raising the cohomological degree by `1` raises the half-degree by `(k, 1̄)`.-/
+/-- Raising the cohomological degree by `1` raises the half-degree by `(k, 1̄)`.
+@isnad1 id=eq.0h2v.s9.3160b3bfde02 from=translated src=- shape=149bdd92 vocab=86cb8d90
+-/
 theorem halfDegree_add_one_zero (k : ℤ) (p : ℤ × ℤ) :
     halfDegree k (p + (1, 0)) = halfDegree k p + (k, 1) := by
   simp only [halfDegree_apply, Prod.fst_add, Prod.snd_add, add_zero, Int.cast_add, Int.cast_one,
@@ -213,6 +240,9 @@ variable {M σ : Type*} [AddCommGroup M] [SetLike σ M] [AddSubgroupClass σ M]
 def halfGrading (ℳ : ℤ × ZMod 2 → σ) (k : ℤ) (p : ℤ × ℤ) : σ := ℳ (halfDegree k p)
 
 omit [AddCommGroup M] [AddSubgroupClass σ M] in
+/--
+@isnad1 id=iff.0h6v.s7.f877afdbf69a from=translated src=- shape=6168614e vocab=c1bc8321
+-/
 @[simp]
 theorem mem_halfGrading {ℳ : ℤ × ZMod 2 → σ} {k : ℤ} {p : ℤ × ℤ} {m : M} :
     m ∈ halfGrading ℳ k p ↔ m ∈ ℳ (halfDegree k p) := Iff.rfl
@@ -250,29 +280,47 @@ instance instDecompositionWeightGrading : Decomposition (weightGrading ℳ k) :=
 
 variable {ℳ k}
 
+/--
+@isnad1 id=eq.4h8v.s8.674bd4c9a037 from=translated src=- shape=5e028484 vocab=e4727738
+-/
 theorem mk_congr {p p' : ℤ × ℤ} (h : p = p') {m m' : M} (h' : m = m')
     (hm : m ∈ ℳ (halfDegree k p)) (hm' : m' ∈ ℳ (halfDegree k p')) :
     mk ℳ k p m hm = mk ℳ k p' m' hm' := by
   subst h h'; rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.977eced19670 from=translated src=- shape=873962e5 vocab=4ab02f03
+-/
 @[simp]
 theorem mk_zero (p : ℤ × ℤ) : mk ℳ k p 0 (zero_mem _) = 0 :=
   (DirectSum.of (fun p => ↥(halfGrading ℳ k p)) p).map_zero
 
+/--
+@isnad1 id=eq.2h7v.s9.dcc158a74e9e from=translated src=- shape=3868dd3c vocab=e4f03751
+-/
 theorem mk_add (p : ℤ × ℤ) {m m' : M} (hm : m ∈ ℳ (halfDegree k p))
     (hm' : m' ∈ ℳ (halfDegree k p)) :
     mk ℳ k p (m + m') (add_mem hm hm') = mk ℳ k p m hm + mk ℳ k p m' hm' :=
   (DirectSum.of (fun p => ↥(halfGrading ℳ k p)) p).map_add ⟨m, hm⟩ ⟨m', hm'⟩
 
+/--
+@isnad1 id=eq.1h7v.s8.07da90584ff8 from=translated src=- shape=609fdea0 vocab=9550ad7c
+-/
 theorem mk_zsmul (p : ℤ × ℤ) (c : ℤ) {m : M} (hm : m ∈ ℳ (halfDegree k p)) :
     mk ℳ k p (c • m) (zsmul_mem hm c) = c • mk ℳ k p m hm :=
   (DirectSum.of (fun p => ↥(halfGrading ℳ k p)) p).map_zsmul c ⟨m, hm⟩
 
+/--
+@isnad1 id=eq.1h7v.s8.cfc4f2e77a0e from=translated src=- shape=61b4eaec vocab=9b5a85bd
+-/
 theorem mk_units_smul (p : ℤ × ℤ) (c : ℤˣ) {m : M} (hm : m ∈ ℳ (halfDegree k p)) :
     mk ℳ k p (c • m) (by rw [Units.smul_def]; exact zsmul_mem hm _) = c • mk ℳ k p m hm := by
   simp only [Units.smul_def]
   exact mk_zsmul p (c : ℤ) hm
 
+/--
+@isnad1 id=var.0h9v.s8.b2f66b415bb7 from=translated src=- shape=fef61d81 vocab=c72f0bcf
+-/
 @[elab_as_elim]
 theorem induction_on {P : HalfRegrade ℳ k → Prop} (x : HalfRegrade ℳ k) (zero : P 0)
     (mk : ∀ (p : ℤ × ℤ) (m : M) (hm : m ∈ ℳ (halfDegree k p)), P (mk ℳ k p m hm))
@@ -282,15 +330,23 @@ theorem induction_on {P : HalfRegrade ℳ k → Prop} (x : HalfRegrade ℳ k) (z
   | of p m => exact mk p m.1 m.2
   | add x y hx hy => exact add x y hx hy
 
+/--
+@isnad1 id=mem.1h6v.s8.861ce9e53661 from=translated src=- shape=efd3c9de vocab=69a81341
+-/
 theorem mk_mem_cohGrading (p : ℤ × ℤ) {m : M} (hm : m ∈ ℳ (halfDegree k p)) :
     mk ℳ k p m hm ∈ cohGrading ℳ k p.1 :=
   of_mem_coarseGrading (f := Prod.fst) p _
 
+/--
+@isnad1 id=mem.1h6v.s8.d05020e7e2f7 from=translated src=- shape=efd3c9de vocab=9a62324f
+-/
 theorem mk_mem_weightGrading (p : ℤ × ℤ) {m : M} (hm : m ∈ ℳ (halfDegree k p)) :
     mk ℳ k p m hm ∈ weightGrading ℳ k p.2 :=
   of_mem_coarseGrading (f := Prod.snd) p _
 
-/-- Induction on an element of cohomological degree `n`.-/
+/-- Induction on an element of cohomological degree `n`.
+@isnad1 id=var.1h10v.s9.482b908e7985 from=translated src=- shape=83b717d6 vocab=72041273
+-/
 theorem cohGrading_induction {n : ℤ} {P : HalfRegrade ℳ k → Prop} (zero : P 0)
     (mk : ∀ (w : ℤ) (m : M) (hm : m ∈ ℳ (halfDegree k (n, w))), P (mk ℳ k (n, w) m hm))
     (add : ∀ x y, P x → P y → P (x + y)) {x : HalfRegrade ℳ k} (hx : x ∈ cohGrading ℳ k n) :
@@ -298,7 +354,9 @@ theorem cohGrading_induction {n : ℤ} {P : HalfRegrade ℳ k → Prop} (zero : 
   coarseGrading_induction (f := Prod.fst) zero
     (fun (p : ℤ × ℤ) b hp => by rcases p with ⟨n', w⟩; subst hp; exact mk w b.1 b.2) add hx
 
-/-- Induction on an element of weight `w`.-/
+/-- Induction on an element of weight `w`.
+@isnad1 id=var.1h10v.s9.f8c76d5598f8 from=translated src=- shape=03878a6f vocab=ca370083
+-/
 theorem weightGrading_induction {w : ℤ} {P : HalfRegrade ℳ k → Prop} (zero : P 0)
     (mk : ∀ (n : ℤ) (m : M) (hm : m ∈ ℳ (halfDegree k (n, w))), P (mk ℳ k (n, w) m hm))
     (add : ∀ x y, P x → P y → P (x + y)) {x : HalfRegrade ℳ k} (hx : x ∈ weightGrading ℳ k w) :
@@ -307,7 +365,9 @@ theorem weightGrading_induction {w : ℤ} {P : HalfRegrade ℳ k → Prop} (zero
     (fun (p : ℤ × ℤ) b hp => by rcases p with ⟨n, w'⟩; subst hp; exact mk n b.1 b.2) add hx
 
 /-- The two gradings of `HalfRegrade ℳ k` commute: the weight components of an element of
-cohomological degree `n` have cohomological degree `n`.-/
+cohomological degree `n` have cohomological degree `n`.
+@isnad1 id=mem.1h7v.s11.82e3fb1da18d from=translated src=- shape=804d92a0 vocab=568d26e9
+-/
 theorem decompose_weightGrading_mem_cohGrading {n : ℤ} {x : HalfRegrade ℳ k}
     (hx : x ∈ cohGrading ℳ k n) (w : ℤ) :
     (decompose (weightGrading ℳ k) x w : HalfRegrade ℳ k) ∈ cohGrading ℳ k n := by
@@ -319,7 +379,9 @@ theorem decompose_weightGrading_mem_cohGrading {n : ℤ} {x : HalfRegrade ℳ k}
   · exact hx p hp
   · rfl
 
-/-- The weight grading is homogeneous for the cohomological grading.-/
+/-- The weight grading is homogeneous for the cohomological grading.
+@isnad1 id=ishomoge.0h5v.s7.c9aa8147a83d from=translated src=- shape=aa614d87 vocab=337f31c4
+-/
 theorem isHomogeneous_cohGrading (n : ℤ) :
     SetLike.IsHomogeneous (weightGrading ℳ k) (cohGrading ℳ k n) :=
   fun w _ hx => decompose_weightGrading_mem_cohGrading hx w
@@ -331,6 +393,9 @@ variable (ℳ k) (d : M →+ M)
 
 omit [AddSubgroupClass σ M] in
 include hd in
+/--
+@isnad1 id=mem.2h7v.s9.60002c134620 from=translated src=- shape=881351dc vocab=9c23214b
+-/
 theorem d_mem_halfDegree_add {p : ℤ × ℤ} {m : M} (hm : m ∈ ℳ (halfDegree k p)) :
     d m ∈ ℳ (halfDegree k (p + (1, 0))) := by
   rw [halfDegree_add_one_zero]
@@ -348,12 +413,18 @@ def dHom : HalfRegrade ℳ k →+ HalfRegrade ℳ k :=
 
 variable {d hd}
 
+/--
+@isnad1 id=eq.2h7v.s9.8a3921f55bed from=translated src=- shape=3df8ca9b vocab=544b7085
+-/
 @[simp]
 theorem dHom_mk (p : ℤ × ℤ) (m : M) (hm : m ∈ ℳ (halfDegree k p)) :
     dHom ℳ k d hd (mk ℳ k p m hm) =
       mk ℳ k (p + (1, 0)) (d m) (d_mem_halfDegree_add ℳ k d hd hm) :=
   DirectSum.toAddMonoid_of (β := fun p => ↥(halfGrading ℳ k p)) _ p ⟨m, hm⟩
 
+/--
+@isnad1 id=mem.2h7v.s9.a7169bf59dc6 from=translated src=- shape=b9c830d4 vocab=adf5c887
+-/
 theorem dHom_mem_cohGrading {n : ℤ} {x : HalfRegrade ℳ k} (hx : x ∈ cohGrading ℳ k n) :
     dHom ℳ k d hd x ∈ cohGrading ℳ k (n + 1) := by
   refine cohGrading_induction (P := fun x => dHom ℳ k d hd x ∈ cohGrading ℳ k (n + 1)) ?_
@@ -362,6 +433,9 @@ theorem dHom_mem_cohGrading {n : ℤ} {x : HalfRegrade ℳ k} (hx : x ∈ cohGra
   · rw [dHom_mk]; exact mk_mem_cohGrading (ℳ := ℳ) (k := k) ((n, w) + (1, 0)) _
   · rw [map_add]; exact add_mem hx hy
 
+/--
+@isnad1 id=mem.2h7v.s9.dbe6fa8f7aa9 from=translated src=- shape=3dce1be2 vocab=75fb28dc
+-/
 theorem dHom_mem_weightGrading {w : ℤ} {x : HalfRegrade ℳ k} (hx : x ∈ weightGrading ℳ k w) :
     dHom ℳ k d hd x ∈ weightGrading ℳ k w := by
   refine weightGrading_induction (P := fun x => dHom ℳ k d hd x ∈ weightGrading ℳ k w) ?_
@@ -373,6 +447,9 @@ theorem dHom_mem_weightGrading {w : ℤ} {x : HalfRegrade ℳ k} (hx : x ∈ wei
     simpa using this
   · rw [map_add]; exact add_mem hx hy
 
+/--
+@isnad1 id=eq.2h6v.s10.e9b81d684cbb from=translated src=- shape=6cc93f7e vocab=fc1024d7
+-/
 theorem dHom_dHom (hdd : ∀ m, d (d m) = 0) (x : HalfRegrade ℳ k) :
     dHom ℳ k d hd (dHom ℳ k d hd x) = 0 := by
   induction x using induction_on with
@@ -413,6 +490,9 @@ namespace HalfGradedDGRing
 
 variable {A : Type*} [Ring A] {k : ℤ} (H : HalfGradedDGRing A k)
 
+/--
+@isnad1 id=gradedmo.0h3v.s5.38ad8a0937ca from=translated src=- shape=a715339b vocab=011e1067
+-/
 instance gradedMonoid_halfGrading : SetLike.GradedMonoid (halfGrading H.hgrading k) where
   one_mem := by
     rw [mem_halfGrading, map_zero]
@@ -435,20 +515,32 @@ def place (p : ℤ × ℤ) (a : A) (ha : a ∈ H.hgrading (halfDegree k p)) : H.
 
 variable {H}
 
+/--
+@isnad1 id=eq.4h7v.s8.df077f705ea6 from=translated src=- shape=991abd87 vocab=88495c1c
+-/
 theorem place_congr {p p' : ℤ × ℤ} (h : p = p') {a a' : A} (h' : a = a')
     (ha : a ∈ H.hgrading (halfDegree k p)) (ha' : a' ∈ H.hgrading (halfDegree k p')) :
     H.place p a ha = H.place p' a' ha' :=
   HalfRegrade.mk_congr h h' ha ha'
 
+/--
+@isnad1 id=eq.0h4v.s6.8d2549b4e6b8 from=translated src=- shape=4b3d2859 vocab=31ed8f60
+-/
 @[simp]
 theorem place_zero (p : ℤ × ℤ) : H.place p 0 (zero_mem _) = 0 :=
   HalfRegrade.mk_zero p
 
+/--
+@isnad1 id=eq.2h6v.s9.7f37959430ae from=translated src=- shape=d5ea97cc vocab=17da7543
+-/
 theorem place_add (p : ℤ × ℤ) {a a' : A} (ha : a ∈ H.hgrading (halfDegree k p))
     (ha' : a' ∈ H.hgrading (halfDegree k p)) :
     H.place p (a + a') (add_mem ha ha') = H.place p a ha + H.place p a' ha' :=
   HalfRegrade.mk_add p ha ha'
 
+/--
+@isnad1 id=eq.4h8v.s10.20433db666e4 from=translated src=- shape=f3ebd17d vocab=c71e014f
+-/
 theorem place_add_of_eq {p₁ p₂ p : ℤ × ℤ} (h₁ : p₁ = p) (h₂ : p₂ = p) {a a' : A}
     (ha : a ∈ H.hgrading (halfDegree k p₁)) (ha' : a' ∈ H.hgrading (halfDegree k p₂)) :
     H.place p₁ a ha + H.place p₂ a' ha' =
@@ -456,10 +548,16 @@ theorem place_add_of_eq {p₁ p₂ p : ℤ × ℤ} (h₁ : p₁ = p) (h₂ : p�
   subst h₁ h₂
   exact (place_add _ ha ha').symm
 
+/--
+@isnad1 id=eq.1h6v.s8.0827b2fb8f21 from=translated src=- shape=6be1192d vocab=b1bd1226
+-/
 theorem place_units_smul (p : ℤ × ℤ) (c : ℤˣ) {a : A} (ha : a ∈ H.hgrading (halfDegree k p)) :
     H.place p (c • a) (by rw [Units.smul_def]; exact zsmul_mem ha _) = c • H.place p a ha :=
   HalfRegrade.mk_units_smul p c ha
 
+/--
+@isnad1 id=eq.2h7v.s9.0367cee6c548 from=translated src=- shape=eaeb18e0 vocab=0934904d
+-/
 theorem place_mul_place {p q : ℤ × ℤ} {a b : A} (ha : a ∈ H.hgrading (halfDegree k p))
     (hb : b ∈ H.hgrading (halfDegree k q)) :
     H.place p a ha * H.place q b hb =
@@ -467,10 +565,16 @@ theorem place_mul_place {p q : ℤ × ℤ} {a b : A} (ha : a ∈ H.hgrading (hal
         SetLike.GradedMul.mul_mem (A := halfGrading H.hgrading k) ha hb) :=
   DirectSum.of_mul_of _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.e78df2537ebd from=translated src=- shape=8f99f733 vocab=ea2efef4
+-/
 theorem one_eq_place : (1 : H.Regraded) =
     H.place 0 1 (SetLike.GradedOne.one_mem (A := halfGrading H.hgrading k)) :=
   rfl
 
+/--
+@isnad1 id=var.0h8v.s8.33d4c93b79e8 from=translated src=- shape=9df1ff54 vocab=42177beb
+-/
 @[elab_as_elim]
 theorem induction_on {P : H.Regraded → Prop} (x : H.Regraded) (zero : P 0)
     (mk : ∀ (p : ℤ × ℤ) (a : A) (ha : a ∈ H.hgrading (halfDegree k p)), P (H.place p a ha))
@@ -497,14 +601,23 @@ instance instInternalGrading : InternalGrading H.Regraded where
 
 variable {H}
 
+/--
+@isnad1 id=mem.1h5v.s8.a7e7467bcceb from=translated src=- shape=0fdb72b0 vocab=94c25c51
+-/
 theorem place_mem_grading (p : ℤ × ℤ) {a : A} (ha : a ∈ H.hgrading (halfDegree k p)) :
     H.place p a ha ∈ grading (M := H.Regraded) p.1 :=
   HalfRegrade.mk_mem_cohGrading p ha
 
+/--
+@isnad1 id=mem.1h5v.s8.b4072e94d24c from=translated src=- shape=3a97e8ee vocab=e45c8b57
+-/
 theorem place_mem_wgrading (p : ℤ × ℤ) {a : A} (ha : a ∈ H.hgrading (halfDegree k p)) :
     H.place p a ha ∈ wgrading (M := H.Regraded) p.2 :=
   HalfRegrade.mk_mem_weightGrading p ha
 
+/--
+@isnad1 id=eq.1h5v.s9.749773b9a409 from=translated src=- shape=89473532 vocab=a0d26dc2
+-/
 @[simp]
 theorem d_place (p : ℤ × ℤ) (a : A) (ha : a ∈ H.hgrading (halfDegree k p)) :
     d (H.place p a ha) =
@@ -512,13 +625,17 @@ theorem d_place (p : ℤ × ℤ) (a : A) (ha : a ∈ H.hgrading (halfDegree k p)
         (HalfRegrade.d_mem_halfDegree_add H.hgrading k H.hd H.hd_mem ha) :=
   HalfRegrade.dHom_mk H.hgrading k p a ha
 
-/-- Induction on an element of cohomological degree `n`.-/
+/-- Induction on an element of cohomological degree `n`.
+@isnad1 id=var.1h9v.s8.cf227fcc6d52 from=translated src=- shape=4ca64aff vocab=6dce18d9
+-/
 theorem grading_induction {n : ℤ} {P : H.Regraded → Prop} (zero : P 0)
     (mk : ∀ (w : ℤ) (a : A) (ha : a ∈ H.hgrading (halfDegree k (n, w))), P (H.place (n, w) a ha))
     (add : ∀ x y, P x → P y → P (x + y)) {x : H.Regraded} (hx : x ∈ grading n) : P x :=
   HalfRegrade.cohGrading_induction zero mk add hx
 
-/-- Induction on an element of weight `w`.-/
+/-- Induction on an element of weight `w`.
+@isnad1 id=var.1h9v.s8.d0c136166928 from=translated src=- shape=9e47d778 vocab=07d4a4c5
+-/
 theorem wgrading_induction {w : ℤ} {P : H.Regraded → Prop} (zero : P 0)
     (mk : ∀ (n : ℤ) (a : A) (ha : a ∈ H.hgrading (halfDegree k (n, w))), P (H.place (n, w) a ha))
     (add : ∀ x y, P x → P y → P (x + y)) {x : H.Regraded} (hx : x ∈ wgrading w) : P x :=
@@ -526,7 +643,9 @@ theorem wgrading_induction {w : ℤ} {P : H.Regraded → Prop} (zero : P 0)
 
 variable (H)
 
-/-- The weight grading of the regraded ring is a ring grading.-/
+/-- The weight grading of the regraded ring is a ring grading.
+@isnad1 id=bigraded.0h3v.s5.a8ccdabb97ef from=translated src=- shape=54d0cce0 vocab=efd0cdce
+-/
 instance instBigradedDGRing : BigradedDGRing H.Regraded where
   one_mem := by
     rw [one_eq_place]
@@ -540,7 +659,9 @@ instance instBigradedDGRing : BigradedDGRing H.Regraded where
     exact place_mem_wgrading (H := H) ((n, i) + (n', j)) _
 
 /-- The regraded ring is a dg ring: the Leibniz rule for the cohomological degree is the Leibniz
-rule of `A` for the parity.-/
+rule of `A` for the parity.
+@isnad1 id=dgring.0h3v.s4.de9ba11db435 from=translated src=- shape=54d0cce0 vocab=c2f6fbf4
+-/
 instance instDGRing : DGRing H.Regraded where
   one_mem := by
     rw [one_eq_place]
@@ -573,19 +694,31 @@ section PeriodUnit
 
 variable {H}
 
+/--
+@isnad1 id=eq.0h3v.s6.491558766855 from=translated src=- shape=e4d31fc2 vocab=3833b7ae
+-/
 theorem hd_one : H.hd 1 = 0 := by
   have h := H.hd_mul (j := 0) (n := 0) (SetLike.GradedOne.one_mem (A := H.hgrading)) 1
   rw [mul_one, one_mul, koszulSign_zero, one_smul, mul_one] at h
   exact left_eq_add.mp h
 
+/--
+@isnad1 id=mem.1h4v.s9.6063a1adc4aa from=translated src=- shape=054985b1 vocab=863bcd9e
+-/
 theorem one_mem_of_halfDegree_eq_zero {p : ℤ × ℤ} (hp : halfDegree k p = 0) :
     (1 : A) ∈ H.hgrading (halfDegree k p) := by
   rw [hp]; exact SetLike.GradedOne.one_mem
 
+/--
+@isnad1 id=eq.0h1v.s8.6ba554661f93 from=translated src=- shape=1d5eecaa vocab=9ccb8888
+-/
 theorem halfDegree_two : halfDegree k (2, -2 * k) = 0 := by
   simp only [halfDegree_apply, Int.cast_ofNat, Prod.mk_eq_zero]
   exact ⟨by ring, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.a8a9d8896b09 from=translated src=- shape=4d37d42c vocab=9ccb8888
+-/
 theorem halfDegree_neg_two : halfDegree k (-2, 2 * k) = 0 := by
   simp only [halfDegree_apply, Int.cast_neg, Int.cast_ofNat, Prod.mk_eq_zero]
   exact ⟨by ring, rfl⟩
@@ -605,18 +738,27 @@ def periodUnitInv : H.Regraded :=
 
 variable {H}
 
+/--
+@isnad1 id=eq.1h5v.s8.843a21440b21 from=translated src=- shape=404704aa vocab=8784ed47
+-/
 theorem place_mul_periodUnit (p : ℤ × ℤ) {a : A} (ha : a ∈ H.hgrading (halfDegree k p)) :
     H.place p a ha * H.periodUnit =
       H.place (p + (2, -2 * k)) a (by rw [map_add, halfDegree_two, add_zero]; exact ha) := by
   rw [periodUnit, place_mul_place]
   exact place_congr rfl (mul_one a) _ _
 
+/--
+@isnad1 id=eq.1h5v.s8.e28e488182c6 from=translated src=- shape=c2e4fde3 vocab=554712fd
+-/
 theorem place_mul_periodUnitInv (p : ℤ × ℤ) {a : A} (ha : a ∈ H.hgrading (halfDegree k p)) :
     H.place p a ha * H.periodUnitInv =
       H.place (p + (-2, 2 * k)) a (by rw [map_add, halfDegree_neg_two, add_zero]; exact ha) := by
   rw [periodUnitInv, place_mul_place]
   exact place_congr rfl (mul_one a) _ _
 
+/--
+@isnad1 id=eq.1h5v.s8.b7dafaecc806 from=translated src=- shape=f58b7a66 vocab=554712fd
+-/
 theorem periodUnitInv_mul_place (p : ℤ × ℤ) {a : A} (ha : a ∈ H.hgrading (halfDegree k p)) :
     H.periodUnitInv * H.place p a ha =
       H.place (p + (-2, 2 * k)) a (by rw [map_add, halfDegree_neg_two, add_zero]; exact ha) := by
@@ -625,41 +767,67 @@ theorem periodUnitInv_mul_place (p : ℤ × ℤ) {a : A} (ha : a ∈ H.hgrading 
 
 variable (H)
 
+/--
+@isnad1 id=eq.0h3v.s6.6d3f1af6efba from=translated src=- shape=3f4ac762 vocab=09cc810f
+-/
 theorem periodUnit_mul_periodUnitInv : H.periodUnit * H.periodUnitInv = 1 := by
   rw [periodUnit, place_mul_periodUnitInv, one_eq_place]
   exact place_congr (by ext <;> simp) rfl _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.d6c0d5f5f9e8 from=translated src=- shape=3f4ac762 vocab=09cc810f
+-/
 theorem periodUnitInv_mul_periodUnit : H.periodUnitInv * H.periodUnit = 1 := by
   rw [periodUnitInv, place_mul_periodUnit, one_eq_place]
   exact place_congr (by ext <;> simp) rfl _ _
 
-/-- The inverse of the periodicity unit is central.-/
+/-- The inverse of the periodicity unit is central.
+@isnad1 id=eq.0h4v.s6.dd60f91091e1 from=translated src=- shape=45d2d7f2 vocab=42628c00
+-/
 theorem periodUnitInv_mul_comm (x : H.Regraded) : H.periodUnitInv * x = x * H.periodUnitInv := by
   induction x using induction_on with
   | zero => simp
   | mk p a ha => rw [periodUnitInv_mul_place, place_mul_periodUnitInv]
   | add x y hx hy => rw [mul_add, add_mul, hx, hy]
 
+/--
+@isnad1 id=mem.0h3v.s6.defcf8ee3ec6 from=translated src=- shape=f72a4b9b vocab=75a604ca
+-/
 theorem periodUnit_mem_grading : H.periodUnit ∈ grading (M := H.Regraded) 2 :=
   place_mem_grading (H := H) (2, -2 * k) _
 
+/--
+@isnad1 id=mem.0h3v.s7.4a3f4a0334f6 from=translated src=- shape=80895c9a vocab=9c382a30
+-/
 theorem periodUnit_mem_wgrading :
     H.periodUnit ∈ wgrading (M := H.Regraded) (-2 * k) :=
   place_mem_wgrading (H := H) (2, -2 * k) _
 
+/--
+@isnad1 id=mem.0h3v.s7.7712f8953ca6 from=translated src=- shape=4e2e77fe vocab=9296b858
+-/
 theorem periodUnitInv_mem_grading :
     H.periodUnitInv ∈ grading (M := H.Regraded) (-2) :=
   place_mem_grading (H := H) (-2, 2 * k) _
 
+/--
+@isnad1 id=mem.0h3v.s7.ae992e7eee54 from=translated src=- shape=9c917ed9 vocab=6cd72a7e
+-/
 theorem periodUnitInv_mem_wgrading :
     H.periodUnitInv ∈ wgrading (M := H.Regraded) (2 * k) :=
   place_mem_wgrading (H := H) (-2, 2 * k) _
 
+/--
+@isnad1 id=eq.0h3v.s8.ac7f86f163c4 from=translated src=- shape=13071d6c vocab=bd90d066
+-/
 @[simp]
 theorem d_periodUnit : d H.periodUnit = 0 := by
   rw [periodUnit, d_place]
   exact (place_congr rfl hd_one _ _).trans (place_zero _)
 
+/--
+@isnad1 id=eq.0h3v.s8.47df44469a4a from=translated src=- shape=13071d6c vocab=c7823a26
+-/
 @[simp]
 theorem d_periodUnitInv : d H.periodUnitInv = 0 := by
   rw [periodUnitInv, d_place]

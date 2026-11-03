@@ -72,10 +72,16 @@ variable {A : Type*} [Ring A]
 def merge {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) : Fin n → A :=
   Fin.contractNth i.castSucc (· * ·) a
 
+/--
+@isnad1 id=eq.0h5v.s6.780b0ac771e0 from=translated src=- shape=32cece18 vocab=8986f2f8
+-/
 theorem merge_apply {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (k : Fin n) :
     merge i a k = if (k : ℕ) < i then a k.castSucc
       else if (k : ℕ) = i then a k.castSucc * a k.succ else a k.succ := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.27388355e173 from=translated src=- shape=aaec7013 vocab=38edc345
+-/
 theorem merge_update_of_lt {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (p : Fin (n + 1)) (x : A)
     (h : (p : ℕ) < i) :
     merge i (Function.update a p x) = Function.update (merge i a) ⟨p, by omega⟩ x := by
@@ -83,6 +89,9 @@ theorem merge_update_of_lt {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (p : Fi
   simp only [merge_apply, Function.update_apply, Fin.ext_iff, Fin.val_castSucc, Fin.val_succ]
   split_ifs <;> first | rfl | omega
 
+/--
+@isnad1 id=eq.1h6v.s7.94b8e4dac9da from=translated src=- shape=84038e9e vocab=eab51ff6
+-/
 theorem merge_update_of_gt {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (p : Fin (n + 1)) (x : A)
     (h : (i : ℕ) + 1 < p) :
     merge i (Function.update a p x) = Function.update (merge i a) ⟨p - 1, by omega⟩ x := by
@@ -90,6 +99,9 @@ theorem merge_update_of_gt {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (p : Fi
   simp only [merge_apply, Function.update_apply, Fin.ext_iff, Fin.val_castSucc, Fin.val_succ]
   split_ifs <;> first | rfl | omega
 
+/--
+@isnad1 id=eq.0h5v.s6.1edfeb252531 from=translated src=- shape=3d87cdb9 vocab=853f9c68
+-/
 theorem merge_update_castSucc {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (x : A) :
     merge i (Function.update a i.castSucc x) =
       Function.update (merge i a) i (x * a i.succ) := by
@@ -97,6 +109,9 @@ theorem merge_update_castSucc {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (x :
   simp only [merge_apply, Function.update_apply, Fin.ext_iff, Fin.val_castSucc, Fin.val_succ]
   split_ifs <;> first | rfl | omega | (obtain rfl : k = i := Fin.ext (by omega); rfl)
 
+/--
+@isnad1 id=eq.0h5v.s6.ab0115097398 from=translated src=- shape=b93c5771 vocab=853f9c68
+-/
 theorem merge_update_succ {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (x : A) :
     merge i (Function.update a i.succ x) =
       Function.update (merge i a) i (a i.castSucc * x) := by
@@ -105,7 +120,9 @@ theorem merge_update_succ {n : ℕ} (i : Fin n) (a : Fin (n + 1) → A) (x : A) 
   split_ifs <;> first | rfl | omega | (obtain rfl : k = i := Fin.ext (by omega); rfl)
 
 /-- The simplicial identity for merges: for `i < j`, merging at `j` and then at `i` is the same
-as merging at `i` and then at `j - 1`. For `j = i + 1` this is associativity.-/
+as merging at `i` and then at `j - 1`. For `j = i + 1` this is associativity.
+@isnad1 id=eq.1h5v.s7.9185db1a7600 from=translated src=- shape=172c975b vocab=a0c570f4
+-/
 theorem merge_merge {m : ℕ} (a : Fin (m + 3) → A) (i : Fin (m + 1)) (j : Fin (m + 2))
     (h : (i : ℕ) < j) :
     merge i (merge j a) = merge ⟨j - 1, by omega⟩ (merge i.castSucc a) := by
@@ -119,38 +136,65 @@ section Outer
 
 variable {n : ℕ} (a : Fin (n + 3) → A)
 
+/--
+@isnad1 id=eq.0h3v.s7.7edda07e7908 from=translated src=- shape=aa4f00bf vocab=44046698
+-/
 theorem merge_zero_apply_zero : merge 0 a 0 = a 0 * a 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.0ce3e60d5d3b from=translated src=- shape=ced2217f vocab=55c6de92
+-/
 theorem merge_zero_apply_last : merge 0 a (Fin.last (n + 1)) = a (Fin.last (n + 2)) := by
   rw [merge_apply, ite_eq_right (by simp), ite_eq_right (by simp)]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.051eb2c17105 from=translated src=- shape=c233f978 vocab=43b793c3
+-/
 theorem init_tail_merge_zero :
     Fin.init (Fin.tail (merge 0 a)) = Fin.tail (Fin.init (Fin.tail a)) := by
   ext k
   simp only [Fin.init, Fin.tail, merge_apply]
   rw [ite_eq_right (by simp), ite_eq_right (by simp)]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.dd652eb230a9 from=translated src=- shape=01b5539f vocab=26668979
+-/
 theorem merge_succ_apply_zero (i : Fin n) : merge i.castSucc.succ a 0 = a 0 := by
   rw [merge_apply, ite_eq_left (by simp)]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.0474591bb620 from=translated src=- shape=a6de8b91 vocab=56527120
+-/
 theorem merge_succ_apply_last (i : Fin n) :
     merge i.castSucc.succ a (Fin.last (n + 1)) = a (Fin.last (n + 2)) := by
   rw [merge_apply, ite_eq_right (by simp), ite_eq_right (by simp; omega)]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.e1783e1fd69f from=translated src=- shape=b5b7d0d9 vocab=3b60f986
+-/
 theorem init_tail_merge_succ (i : Fin n) :
     Fin.init (Fin.tail (merge i.castSucc.succ a)) = merge i (Fin.init (Fin.tail a)) := by
   ext k
   simp only [Fin.init, Fin.tail, merge_apply, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> first | rfl | omega
 
+/--
+@isnad1 id=eq.0h3v.s7.eddb208a7777 from=translated src=- shape=453436c0 vocab=e0d1c5bc
+-/
 theorem merge_last_apply_zero : merge (Fin.last n).succ a 0 = a 0 := by
   rw [merge_apply, ite_eq_left (by simp)]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.9e63bc339e9a from=translated src=- shape=1e08ae09 vocab=c25a79f7
+-/
 theorem merge_last_apply_last :
     merge (Fin.last n).succ a (Fin.last (n + 1)) =
       a (Fin.last (n + 1)).castSucc * a (Fin.last (n + 2)) := by
   rw [merge_apply, ite_eq_right (by simp), ite_eq_left (by simp)]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.416d11e1574b from=translated src=- shape=3756efee vocab=891726c1
+-/
 theorem init_tail_merge_last :
     Fin.init (Fin.tail (merge (Fin.last n).succ a)) = Fin.init (Fin.init (Fin.tail a)) := by
   ext k
@@ -161,7 +205,9 @@ end Outer
 
 /-! Degrees of merged tuples. -/
 
-/-- Merging adjacent entries of a tuple of integers by addition does not change the sum.-/
+/-- Merging adjacent entries of a tuple of integers by addition does not change the sum.
+@isnad1 id=eq.0h3v.s6.54215f47d189 from=translated src=- shape=68731e50 vocab=59996d03
+-/
 theorem sum_contractNth_add {n : ℕ} (i : Fin n) (p : Fin (n + 1) → ℤ) :
     ∑ k, Fin.contractNth i.castSucc (· + ·) p k = ∑ k, p k := by
   induction n with
@@ -189,6 +235,9 @@ on arbitrary functions of tuples.-/
 def barD {m : ℕ} (g : (Fin (m + 1) → A) → M) : (Fin (m + 2) → A) → M :=
   fun a => ∑ j : Fin (m + 1), koszulSign ((j : ℕ) : ℤ) • g (merge j a)
 
+/--
+@isnad1 id=eq.0h4v.s7.a51c52f29539 from=translated src=- shape=0aa06b16 vocab=77b4a6d0
+-/
 theorem barD_barD {m : ℕ} (g : (Fin (m + 1) → A) → M) : barD (barD g) = 0 := by
   ext a
   simp only [barD, Finset.smul_sum, smul_smul, Pi.zero_apply]
@@ -250,16 +299,25 @@ def DGAlgebra.twist (k : ℤ) : A →ₗ[R] A :=
 
 variable {R A}
 
+/--
+@isnad1 id=eq.1h5v.s7.486dd95b4ba6 from=translated src=- shape=ddfbfd12 vocab=1794de72
+-/
 theorem DGAlgebra.twist_of_mem (k : ℤ) {i : ℤ} {a : A} (ha : a ∈ grading i) :
     DGAlgebra.twist R A k a = koszulSign (i * k) • a := by
   rw [DGAlgebra.twist, LinearMap.comp_apply, LinearEquiv.coe_coe, decomposeLinearEquiv_apply,
     decompose_of_mem (DGAlgebra.gradingSubmodule R A) (i := i) ha, ← lof_eq_of R,
     toModule_lof, LinearMap.smul_apply, Submodule.subtype_apply, Units.smul_def]
 
+/--
+@isnad1 id=eq.0h3v.s7.4a29a1215891 from=translated src=- shape=796f972c vocab=b696ddda
+-/
 @[simp]
 theorem DGAlgebra.twist_one (k : ℤ) : DGAlgebra.twist R A k 1 = 1 := by
   rw [DGAlgebra.twist_of_mem k one_mem_grading, zero_mul, koszulSign_zero, one_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.962ee88b1bcd from=translated src=- shape=485ce7ad vocab=3100812f
+-/
 theorem DGAlgebra.twist_mul (k : ℤ) (a b : A) :
     DGAlgebra.twist R A k (a * b) = DGAlgebra.twist R A k a * DGAlgebra.twist R A k b := by
   refine map_mul_of_homogeneous (DGAlgebra.gradingSubmodule R A) (DGAlgebra.twist R A k)
@@ -269,6 +327,9 @@ theorem DGAlgebra.twist_mul (k : ℤ) (a b : A) :
   simp only [Units.smul_def, smul_mul_assoc, mul_smul_comm]
   exact smul_comm _ _ _
 
+/--
+@isnad1 id=mem.1h5v.s7.720aa4b27f2d from=translated src=- shape=9cb1f419 vocab=965b370b
+-/
 theorem DGAlgebra.twist_mem (k : ℤ) {i : ℤ} {a : A} (ha : a ∈ grading i) :
     DGAlgebra.twist R A k a ∈ grading i := by
   rw [DGAlgebra.twist_of_mem k ha, Units.smul_def]
@@ -312,6 +373,9 @@ def compMerge {n : ℕ} (f : HochschildCochain R A M n) (i : Fin n) :
           simp only [merge_update_succ, mul_smul_comm, f.map_update_smul]
         · simp only [merge_update_of_gt i a p _ h', f.map_update_smul])
 
+/--
+@isnad1 id=eq.0h7v.s8.3ff7e81e7ec0 from=translated src=- shape=2e1def8a vocab=f2739618
+-/
 @[simp]
 theorem compMerge_apply {n : ℕ} (f : HochschildCochain R A M n) (i : Fin n)
     (a : Fin (n + 1) → A) : compMerge f i a = f (merge i a) := rfl
@@ -335,6 +399,9 @@ def leftTerm {n : ℕ} (f : HochschildCochain R A M n) : HochschildCochain R A M
       map_add' := fun a b => by ext; simp [leftAct]
       map_smul' := fun r a => by ext; simp [leftAct] }
 
+/--
+@isnad1 id=eq.0h7v.s9.dfaf84070224 from=translated src=- shape=063f61aa vocab=bf5bbc72
+-/
 @[simp]
 theorem leftTerm_apply {n : ℕ} (f : HochschildCochain R A M n) (a : Fin (n + 1) → A) :
     leftTerm k f a = DGAlgebra.twist R A k (a 0) • f (Fin.tail a) := rfl
@@ -356,6 +423,9 @@ def rightAct : M →ₗ[R] A →ₗ[R] M :=
 def rightTerm {n : ℕ} (f : HochschildCochain R A M n) : HochschildCochain R A M (n + 1) :=
   MultilinearMap.uncurryRight ((rightAct R A M).compMultilinearMap f)
 
+/--
+@isnad1 id=eq.0h6v.s9.c97114bef7dd from=translated src=- shape=28746307 vocab=7a29f9ac
+-/
 @[simp]
 theorem rightTerm_apply {n : ℕ} (f : HochschildCochain R A M n) (a : Fin (n + 1) → A) :
     rightTerm f a = op (a (Fin.last n)) • f (Fin.init a) := rfl
@@ -377,6 +447,9 @@ def hochschildDiff (k : ℤ) {n : ℕ} (f : HochschildCochain R A M n) :
   leftTerm k f + ∑ i : Fin n, koszulSign ((i : ℕ) + 1 : ℤ) • compMerge f i +
     koszulSign ((n : ℤ) + 1) • rightTerm f
 
+/--
+@isnad1 id=eq.0h7v.s10.b71a95b7c4d0 from=translated src=- shape=17bb53e8 vocab=17d1ca3c
+-/
 theorem hochschildDiff_apply (k : ℤ) {n : ℕ} (f : HochschildCochain R A M n)
     (a : Fin (n + 1) → A) :
     hochschildDiff k f a = DGAlgebra.twist R A k (a 0) • f (Fin.tail a) +
@@ -402,6 +475,9 @@ private theorem units_smul_comm {X : Type*} [SMul X M] [SMulCommClass X ℤ M] (
     (m : M) : x • (u • m) = u • (x • m) := by
   rw [Units.smul_def, Units.smul_def, smul_comm]
 
+/--
+@isnad1 id=eq.0h6v.s9.4907e6a3524f from=translated src=- shape=f1a67323 vocab=00734239
+-/
 theorem extend_hochschildDiff {n : ℕ} (f : HochschildCochain R A M n) :
     extend k (hochschildDiff k f) = barD (extend k f) := by
   funext a
@@ -417,6 +493,9 @@ theorem extend_hochschildDiff {n : ℕ} (f : HochschildCochain R A M n) :
   rfl
 
 omit [IsScalarTower R A M] [IsScalarTower R Aᵐᵒᵖ M] [SMulCommClass A Aᵐᵒᵖ M] in
+/--
+@isnad1 id=eq.0h7v.s7.d3337e725da2 from=translated src=- shape=0d6ac253 vocab=f34191a1
+-/
 theorem extend_cons_snoc {n : ℕ} (f : HochschildCochain R A M n) (b : Fin n → A) :
     extend k f (Fin.cons (1 : A) (Fin.snoc b (1 : A) : Fin (n + 1) → A)) = f b := by
   simp only [extend, Fin.cons_zero, Fin.tail_cons, Fin.init_snoc, ← Fin.succ_last, Fin.cons_succ,
@@ -424,7 +503,9 @@ theorem extend_cons_snoc {n : ℕ} (f : HochschildCochain R A M n) (b : Fin n �
 
 end Hochschild
 
-/-- The Hochschild differential squares to zero.-/
+/-- The Hochschild differential squares to zero.
+@isnad1 id=eq.0h6v.s9.86b041afd384 from=translated src=- shape=7724608d vocab=a78dea49
+-/
 theorem hochschildDiff_hochschildDiff (k : ℤ) {n : ℕ} (f : HochschildCochain R A M n) :
     hochschildDiff k (hochschildDiff k f) = 0 := by
   ext b
@@ -448,6 +529,9 @@ def hochschildD (k : ℤ) (n : ℕ) :
     simp only [hochschildDiff_apply, _root_.smul_apply, RingHom.id_apply, smul_add,
       Finset.smul_sum, Units.smul_def, smul_comm r]
 
+/--
+@isnad1 id=eq.0h6v.s10.917e1de941cb from=translated src=- shape=39b2dc7f vocab=1d361598
+-/
 theorem hochschildD_apply (k : ℤ) {n : ℕ} (f : HochschildCochain R A M n) :
     hochschildD k n f = hochschildDiff k f := rfl
 
@@ -455,6 +539,9 @@ section Square
 
 variable [SMulCommClass A Aᵐᵒᵖ M]
 
+/--
+@isnad1 id=eq.0h5v.s11.5929321c98d9 from=translated src=- shape=e1521b41 vocab=58bb99d1
+-/
 theorem hochschildD_comp_hochschildD (k : ℤ) (n : ℕ) :
     hochschildD (R := R) (A := A) (M := M) k (n + 1) ∘ₗ hochschildD k n = 0 :=
   LinearMap.ext fun f => hochschildDiff_hochschildDiff k f
@@ -483,6 +570,9 @@ def hochschildCochains (k : ℤ) (n : ℕ) : Submodule R (HochschildCochain R A 
 variable {R A M}
 
 omit [IsScalarTower R Aᵐᵒᵖ M] in
+/--
+@isnad1 id=iff.0h6v.s9.a424e98e0658 from=translated src=- shape=6061a0d6 vocab=2c39be5f
+-/
 theorem mem_hochschildCochains {k : ℤ} {n : ℕ} {f : HochschildCochain R A M n} :
     f ∈ hochschildCochains R A M k n ↔ ∀ (p : Fin n → ℤ) (a : Fin n → A),
       (∀ i, a i ∈ grading (p i)) → f a ∈ grading (k + ∑ i, p i) :=
@@ -492,6 +582,9 @@ private theorem mem_grading_of_eq {X : Type*} [AddCommGroup X] [DGAddCommGroup X
     (h : i = j) {x : X} (hx : x ∈ grading i) : x ∈ grading j :=
   h ▸ hx
 
+/--
+@isnad1 id=mem.1h6v.s7.ce7f5539bbe3 from=translated src=- shape=9c633992 vocab=30d5970b
+-/
 theorem Hochschild.merge_mem_grading {n : ℕ} (i : Fin n) {p : Fin (n + 1) → ℤ}
     {a : Fin (n + 1) → A} (ha : ∀ j, a j ∈ grading (p j)) (k : Fin n) :
     Hochschild.merge i a k ∈ grading (Fin.contractNth i.castSucc (· + ·) p k) := by
@@ -501,7 +594,9 @@ theorem Hochschild.merge_mem_grading {n : ℕ} (i : Fin n) {p : Fin (n + 1) → 
   · exact mul_mem_grading (ha _) (ha _)
   · exact ha _
 
-/-- The Hochschild differential preserves the internal degree.-/
+/-- The Hochschild differential preserves the internal degree.
+@isnad1 id=mem.1h6v.s11.836814808532 from=translated src=- shape=7ad3054d vocab=6ba4f535
+-/
 theorem hochschildD_mem {k : ℤ} {n : ℕ} {f : HochschildCochain R A M n}
     (hf : f ∈ hochschildCochains R A M k n) :
     hochschildD k n f ∈ hochschildCochains R A M k (n + 1) := by
@@ -549,6 +644,9 @@ def hochschildCoboundaries (k : ℤ) : (n : ℕ) → Submodule R (HochschildCoch
   | 0 => ⊥
   | n + 1 => (hochschildCochains R A M k n).map (hochschildD k n)
 
+/--
+@isnad1 id=le.0h5v.s9.1ac36f19f25b from=translated src=- shape=1b02751e vocab=06b5cb70
+-/
 theorem hochschildCoboundaries_le_cocycles (k : ℤ) (n : ℕ) :
     hochschildCoboundaries R A M k n ≤ hochschildCocycles R A M k n := by
   cases n with
@@ -579,12 +677,18 @@ def gradedCenter (k : ℤ) : Submodule R M where
 
 variable {R A M}
 
+/--
+@isnad1 id=iff.0h5v.s9.5a30dc5479cc from=translated src=- shape=5dc9a92d vocab=a10a061e
+-/
 theorem mem_gradedCenter {k : ℤ} {m : M} :
     m ∈ gradedCenter R A M k ↔ m ∈ grading k ∧
       ∀ (p : ℤ) (a : A), a ∈ grading p → op a • m = koszulSign (p * k) • (a • m) :=
   Iff.rfl
 
 omit [DGAddCommGroup M] [DGBimodule A A M] in
+/--
+@isnad1 id=eq.0h6v.s10.6984282126fc from=translated src=- shape=53d173f3 vocab=abc89d50
+-/
 theorem hochschildD_zero_apply (k : ℤ) (f : HochschildCochain R A M 0) (a : Fin 1 → A) :
     hochschildD k 0 f a = DGAlgebra.twist R A k (a 0) • f 0 - op (a 0) • f 0 := by
   rw [hochschildD_apply, hochschildDiff_apply, Subsingleton.elim (Fin.tail a) 0,
@@ -594,7 +698,9 @@ theorem hochschildD_zero_apply (k : ℤ) (f : HochschildCochain R A M 0) (a : Fi
   rfl
 
 /-- A `0`-cochain, i.e. an element `m ∈ M`, is a Hochschild cocycle of internal degree `k` if and
-only if `m` lies in the degree-`k` graded center.-/
+only if `m` lies in the degree-`k` graded center.
+@isnad1 id=iff.0h5v.s9.c5a0cb911df1 from=translated src=- shape=c5d771bc vocab=857e613d
+-/
 theorem constOfIsEmpty_mem_hochschildCocycles_zero_iff (k : ℤ) (m : M) :
     MultilinearMap.constOfIsEmpty R (fun _ : Fin 0 => A) m ∈ hochschildCocycles R A M k 0 ↔
       m ∈ gradedCenter R A M k := by
@@ -645,7 +751,9 @@ omit [AddCommGroup M] [DGAddCommGroup M] [Module A M] [Module Aᵐᵒᵖ M] [DGB
   [Module R M] [IsScalarTower R A M] [IsScalarTower R Aᵐᵒᵖ M] in
 /-- For `M = A`, the degree-`k` graded center consists of the `z ∈ Aᵏ` with
 `z * a = (-1)^(|a| k) • (a * z)` for all homogeneous `a`; thus `HH⁰(A, A)ᵏ` is the degree-`k`
-part of the graded center `Z(A)` (`DG.hochschildCohomologyZeroEquiv`).-/
+part of the graded center `Z(A)` (`DG.hochschildCohomologyZeroEquiv`).
+@isnad1 id=iff.0h4v.s8.44c464255c83 from=translated src=- shape=bac0291a vocab=1e39fe4f
+-/
 theorem mem_gradedCenter_self_iff {k : ℤ} {z : A} :
     z ∈ gradedCenter R A A k ↔ z ∈ grading k ∧
       ∀ (p : ℤ) (a : A), a ∈ grading p → z * a = koszulSign (p * k) • (a * z) :=
@@ -704,12 +812,21 @@ def hochschildTotalD (N : ℤ) : hochschildTotal R A M N →ₗ[R] hochschildTot
     | zero => exact (smul_zero r).symm
     | succ n => exact map_smul (hochschildD (N - n) n) r (f.1 n)
 
+/--
+@isnad1 id=eq.0h5v.s12.d9ce474970a3 from=translated src=- shape=7767af6b vocab=7ba59f7e
+-/
 theorem hochschildTotalD_apply_zero (N : ℤ) (f : hochschildTotal R A M N) :
     (hochschildTotalD R A M N f).1 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.05691fe1e635 from=translated src=- shape=685ae43e vocab=f0f8f8e0
+-/
 theorem hochschildTotalD_apply_succ (N : ℤ) (f : hochschildTotal R A M N) (n : ℕ) :
     (hochschildTotalD R A M N f).1 (n + 1) = hochschildD (N - n) n (f.1 n) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.4e1c80fcc599 from=translated src=- shape=81cc0277 vocab=91dc8230
+-/
 theorem hochschildTotalD_hochschildTotalD (N : ℤ) (f : hochschildTotal R A M N) :
     hochschildTotalD R A M (N + 1) (hochschildTotalD R A M N f) = 0 := by
   ext1
@@ -754,6 +871,9 @@ def dHom : HochschildTotal R A M →+ HochschildTotal R A M :=
 
 variable {R A M}
 
+/--
+@isnad1 id=eq.0h5v.s13.e6efc713a12e from=translated src=- shape=6385af5d vocab=c8aff6e2
+-/
 theorem dHom_of (N : ℤ) (f : HochschildTotalDeg R A M N) :
     dHom R A M (DirectSum.of _ N f) =
       DirectSum.of (fun N => HochschildTotalDeg R A M N) (N + 1) (hochschildTotalD R A M N f) :=

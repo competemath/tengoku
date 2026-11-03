@@ -86,6 +86,9 @@ def twistAddHom : A →+ A :=
 
 variable {A} {n}
 
+/--
+@isnad1 id=eq.1h4v.s7.c41a6ee8712b from=translated src=- shape=e8a51438 vocab=f40f365d
+-/
 theorem twistAddHom_of_mem {i : ℤ} {a : A} (ha : a ∈ grading i) :
     twistAddHom A n a = koszulSign (n * i) • a := by
   simp only [twistAddHom, AddMonoidHom.comp_apply, AddEquiv.coe_toAddMonoidHom,
@@ -121,14 +124,23 @@ def twist : A →+* A where
 
 variable {A} {n}
 
+/--
+@isnad1 id=eq.1h4v.s7.dac7880c2e19 from=translated src=- shape=e8a51438 vocab=6cdee0c0
+-/
 theorem twist_of_mem {i : ℤ} {a : A} (ha : a ∈ grading i) :
     twist A n a = koszulSign (n * i) • a :=
   twistAddHom_of_mem ha
 
+/--
+@isnad1 id=mem.1h4v.s6.ae1101533ce6 from=translated src=- shape=29cc7e16 vocab=c259b368
+-/
 theorem twist_mem {i : ℤ} {a : A} (ha : a ∈ grading i) : twist A n a ∈ grading i := by
   rw [twist_of_mem ha, Units.smul_def]
   exact zsmul_mem ha _
 
+/--
+@isnad1 id=eq.0h2v.s5.b38180d67d69 from=translated src=- shape=ee88a429 vocab=9621dbf2
+-/
 @[simp]
 theorem twist_zero (a : A) : twist A 0 a = a := by
   induction a using induction_on with
@@ -136,6 +148,9 @@ theorem twist_zero (a : A) : twist A 0 a = a := by
   | h_homogeneous a => rw [twist_of_mem a.2, zero_mul, koszulSign, Int.negOnePow_zero, one_smul]
   | h_add a a' ha ha' => rw [map_add, ha, ha']
 
+/--
+@isnad1 id=eq.0h4v.s7.40173f2ad385 from=translated src=- shape=b5699bbc vocab=e3512e10
+-/
 theorem twist_twist (m : ℤ) (a : A) : twist A m (twist A n a) = twist A (m + n) a := by
   induction a using induction_on with
   | h_zero => simp
@@ -144,6 +159,9 @@ theorem twist_twist (m : ℤ) (a : A) : twist A m (twist A n a) = twist A (m + n
       twist_of_mem a.2, smul_smul, ← koszulSign_add, add_mul, add_comm]
   | h_add a a' ha ha' => rw [map_add, map_add, ha, ha', map_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.c9157d7f6209 from=translated src=- shape=c6dafc40 vocab=177cac21
+-/
 theorem twist_comp_twist (m : ℤ) : (twist A m).comp (twist A n) = twist A (m + n) :=
   RingHom.ext fun a => twist_twist m a
 
@@ -165,25 +183,73 @@ def unmk : Shift n M ≃+ M := AddEquiv.refl M
 
 variable {n}
 
+/--
+@isnad1 id=eq.0h3v.s7.cf0821f5f9a3 from=translated src=- shape=0a56ca7f vocab=daea1ca1
+-/
 @[simp] theorem unmk_mk (m : M) : unmk n (mk n m) = m := rfl
+/--
+@isnad1 id=eq.0h3v.s7.583b96241b1b from=translated src=- shape=ece0b734 vocab=daea1ca1
+-/
 @[simp] theorem mk_unmk (m : Shift n M) : mk n (unmk n m) = m := rfl
+/--
+@isnad1 id=eq.0h2v.s6.b6d397449b98 from=translated src=- shape=7a6c3231 vocab=e4fb9118
+-/
 @[simp] theorem mk_symm : (mk n (M := M)).symm = unmk n := rfl
+/--
+@isnad1 id=eq.0h2v.s6.b0beeafa0480 from=translated src=- shape=7617732b vocab=e4fb9118
+-/
 @[simp] theorem unmk_symm : (unmk n (M := M)).symm = mk n := rfl
 
+/--
+@isnad1 id=surjecti.0h2v.s7.f373e529491e from=translated src=- shape=ba04719b vocab=a617b760
+-/
 theorem mk_surjective : Function.Surjective (mk n (M := M)) := (mk n).surjective
 
+/--
+@isnad1 id=iff.0h4v.s8.6f8fe15709c8 from=translated src=- shape=aec1439f vocab=88132af4
+-/
 @[simp] theorem mk_inj {m m' : M} : mk n m = mk n m' ↔ m = m' := (mk n).injective.eq_iff
+/--
+@isnad1 id=iff.0h4v.s8.4f7a8b8d240b from=translated src=- shape=65538f56 vocab=bb1eaf40
+-/
 @[simp] theorem unmk_inj {m m' : Shift n M} : unmk n m = unmk n m' ↔ m = m' :=
   (unmk n).injective.eq_iff
 
+/--
+@isnad1 id=eq.0h2v.s7.dd2365719af7 from=translated src=- shape=5fa29c70 vocab=88132af4
+-/
 @[simp] theorem mk_zero : mk n (0 : M) = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s7.c3e274eb535e from=translated src=- shape=25797d00 vocab=bb1eaf40
+-/
 @[simp] theorem unmk_zero : unmk n (0 : Shift n M) = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s8.5d8d6be3d053 from=translated src=- shape=84ef4d89 vocab=3b703f42
+-/
 theorem mk_add (m m' : M) : mk n (m + m') = mk n m + mk n m' := rfl
+/--
+@isnad1 id=eq.0h4v.s8.33483b6b7da1 from=translated src=- shape=54d1ab3f vocab=2a1906ad
+-/
 theorem unmk_add (m m' : Shift n M) : unmk n (m + m') = unmk n m + unmk n m' := rfl
+/--
+@isnad1 id=eq.0h4v.s8.0e915431b868 from=translated src=- shape=54d1ab3f vocab=849a431d
+-/
 theorem unmk_sub (m m' : Shift n M) : unmk n (m - m') = unmk n m - unmk n m' := rfl
+/--
+@isnad1 id=eq.0h4v.s8.c9554b839380 from=translated src=- shape=d2d62862 vocab=d66e09e6
+-/
 @[simp] theorem mk_zsmul (k : ℤ) (m : M) : mk n (k • m) = k • mk n m := rfl
+/--
+@isnad1 id=eq.0h4v.s8.4ff3fc3103a8 from=translated src=- shape=793f08e8 vocab=36ae28d9
+-/
 @[simp] theorem unmk_zsmul (k : ℤ) (m : Shift n M) : unmk n (k • m) = k • unmk n m := rfl
+/--
+@isnad1 id=eq.0h4v.s8.6b3486baaaf7 from=translated src=- shape=57a839f1 vocab=89a4b595
+-/
 @[simp] theorem mk_units_smul (u : ℤˣ) (m : M) : mk n (u • m) = u • mk n m := rfl
+/--
+@isnad1 id=eq.0h4v.s8.f10c278dcc77 from=translated src=- shape=8d5db42b vocab=42cfeb8a
+-/
 @[simp] theorem unmk_units_smul (u : ℤˣ) (m : Shift n M) : unmk n (u • m) = u • unmk n m := rfl
 
 end AddCommGroup
@@ -205,19 +271,37 @@ instance : DGAddCommGroup (Shift n M) where
     change koszulSign n • d (koszulSign n • d (unmk n m)) = 0
     rw [d_units_smul, d_d, smul_zero, smul_zero]
 
+/--
+@isnad1 id=iff.0h4v.s7.b40d4af1c316 from=translated src=- shape=dfdf8c2e vocab=53f5971b
+-/
 theorem mem_grading_iff {k : ℤ} {m : M} : mk n m ∈ grading k ↔ m ∈ grading (k + n) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.774d40f2a4e2 from=translated src=- shape=92347aaf vocab=92dd2281
+-/
 theorem mem_grading_iff' {k : ℤ} {m : Shift n M} :
     m ∈ grading k ↔ unmk n m ∈ grading (k + n) := Iff.rfl
 
+/--
+@isnad1 id=mem.1h4v.s7.23b41e578e83 from=translated src=- shape=0d471962 vocab=d1ec2df9
+-/
 theorem mk_mem_grading {k : ℤ} {m : M} (hm : m ∈ grading k) : mk n m ∈ grading (k - n) :=
   mem_grading_iff.mpr (by rwa [sub_add_cancel])
 
+/--
+@isnad1 id=mem.1h4v.s7.b33ed48c573b from=translated src=- shape=0b50b6a8 vocab=92dd2281
+-/
 theorem unmk_mem_grading {k : ℤ} {m : Shift n M} (hm : m ∈ grading k) :
     unmk n m ∈ grading (k + n) :=
   mem_grading_iff'.mp hm
 
+/--
+@isnad1 id=eq.0h3v.s8.2e3653f5070d from=translated src=- shape=48d2cfe5 vocab=2f67215d
+-/
 @[simp] theorem d_mk (m : M) : d (mk n m) = mk n (koszulSign n • d m) := rfl
+/--
+@isnad1 id=eq.0h3v.s8.dbbaf5c2de5d from=translated src=- shape=851ce845 vocab=e8efeb4e
+-/
 @[simp] theorem unmk_d (m : Shift n M) : unmk n (d m) = koszulSign n • d (unmk n m) := rfl
 
 end DGAddCommGroup
@@ -230,18 +314,33 @@ variable {n} {A : Type*} [Ring A] [DGAddCommGroup A] [DGRing A] [AddCommGroup M]
 `a • m = (-1)^{n |a|} (a • m)` for `a` homogeneous.-/
 instance : Module A (Shift n M) := Module.compHom M (twist A n)
 
+/--
+@isnad1 id=eq.0h5v.s8.c398b3dda158 from=translated src=- shape=316c0ad5 vocab=87b44a53
+-/
 theorem smul_mk_eq (a : A) (m : M) : a • mk n m = mk n (twist A n a • m) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.32c1d786817e from=translated src=- shape=e859d02a vocab=df974c88
+-/
 theorem unmk_smul_eq (a : A) (m : Shift n M) : unmk n (a • m) = twist A n a • unmk n m := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.96631890d401 from=translated src=- shape=2a5e765b vocab=50cdf254
+-/
 theorem smul_mk {i : ℤ} {a : A} (ha : a ∈ grading i) (m : M) :
     a • mk n m = mk n (koszulSign (n * i) • (a • m)) := by
   rw [smul_mk_eq, twist_of_mem ha, smul_assoc]
 
+/--
+@isnad1 id=eq.1h6v.s9.996f77939e0d from=translated src=- shape=57edab2f vocab=c9b1f223
+-/
 theorem unmk_smul {i : ℤ} {a : A} (ha : a ∈ grading i) (m : Shift n M) :
     unmk n (a • m) = koszulSign (n * i) • (a • unmk n m) := by
   rw [unmk_smul_eq, twist_of_mem ha, smul_assoc]
 
+/--
+@isnad1 id=eq.1h6v.s9.0df9278dc9c6 from=translated src=- shape=32b96de5 vocab=50cdf254
+-/
 theorem mk_smul {i : ℤ} {a : A} (ha : a ∈ grading i) (m : M) :
     mk n (a • m) = koszulSign (n * i) • (a • mk n m) := by
   rw [smul_mk ha, mk_units_smul, smul_smul, ← koszulSign_add, ← two_mul,
@@ -295,24 +394,48 @@ def shift (n : ℤ) (f : M →ᵈᵍ[A] N) : Shift n M →ᵈᵍ[A] Shift n N wh
   map_d' m := by
     rw [unmk_d, Units.smul_def, map_zsmul, ← Units.smul_def, map_d, d_mk]
 
+/--
+@isnad1 id=eq.0h6v.s8.4a3c08acce30 from=translated src=- shape=db1e74be vocab=31d1b8e6
+-/
 @[simp]
 theorem shift_apply (n : ℤ) (f : M →ᵈᵍ[A] N) (m : M) :
     f.shift n (Shift.mk n m) = Shift.mk n (f m) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.137b6fa91c3a from=translated src=- shape=cd66aa92 vocab=ee1c0086
+-/
 theorem unmk_shift_apply (n : ℤ) (f : M →ᵈᵍ[A] N) (m : Shift n M) :
     unmk n (f.shift n m) = f (unmk n m) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e28ad16655cc from=translated src=- shape=1a7e71aa vocab=6323473b
+-/
 @[simp]
 theorem shift_id (n : ℤ) : (DGModuleHom.id : M →ᵈᵍ[A] M).shift n = DGModuleHom.id := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.bdb1cbf435b8 from=translated src=- shape=072a5456 vocab=3e38467e
+-/
 @[simp]
 theorem shift_comp (n : ℤ) (g : N →ᵈᵍ[A] P) (f : M →ᵈᵍ[A] N) :
     (g.comp f).shift n = (g.shift n).comp (f.shift n) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.193e9e8e4462 from=translated src=- shape=8bfe3756 vocab=cd430046
+-/
 @[simp] theorem shift_zero (n : ℤ) : (0 : M →ᵈᵍ[A] N).shift n = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s8.70c2daf2cefe from=translated src=- shape=2d77f428 vocab=712a2763
+-/
 @[simp] theorem shift_add (n : ℤ) (f g : M →ᵈᵍ[A] N) :
     (f + g).shift n = f.shift n + g.shift n := rfl
+/--
+@isnad1 id=eq.0h5v.s8.998ab9647062 from=translated src=- shape=c41c7dc0 vocab=a1065db6
+-/
 @[simp] theorem shift_neg (n : ℤ) (f : M →ᵈᵍ[A] N) : (-f).shift n = -f.shift n := rfl
+/--
+@isnad1 id=eq.0h6v.s8.bbf3602f1f77 from=translated src=- shape=2d77f428 vocab=a24c96d2
+-/
 @[simp] theorem shift_sub (n : ℤ) (f g : M →ᵈᵍ[A] N) :
     (f - g).shift n = f.shift n - g.shift n := rfl
 
@@ -340,7 +463,13 @@ def zeroEquiv : Shift 0 M ≃ᵈᵍ[A] M where
   map_mem' {k m} hm := by rw [mem_grading_iff', add_zero] at hm; exact hm
   map_d' m := by rw [unmk_d, koszulSign, Int.negOnePow_zero, one_smul]
 
+/--
+@isnad1 id=eq.0h3v.s8.7a2413e1b1a6 from=translated src=- shape=897b1cea vocab=10093591
+-/
 @[simp] theorem zeroEquiv_apply (m : Shift 0 M) : zeroEquiv (A := A) m = unmk 0 m := rfl
+/--
+@isnad1 id=eq.0h3v.s8.f9a2105a09b9 from=translated src=- shape=4bba64eb vocab=9923d5ae
+-/
 @[simp] theorem zeroEquiv_symm_apply (m : M) : (zeroEquiv (A := A)).symm m = mk 0 m := rfl
 
 /-- Shifts compose: `(M⟦n⟧)⟦m⟧ ≃ M⟦m + n⟧`. On underlying elements this is the identity; the
@@ -362,9 +491,15 @@ def addEquiv (m n : ℤ) : Shift m (Shift n M) ≃ᵈᵍ[A] Shift (m + n) M wher
   map_d' x := by
     rw [unmk_d, unmk_units_smul, unmk_d, d_mk, smul_smul, ← koszulSign_add]
 
+/--
+@isnad1 id=eq.0h5v.s10.95d4688a90f5 from=translated src=- shape=2b2f2ebb vocab=8abbcec8
+-/
 @[simp] theorem addEquiv_apply (m n : ℤ) (x : Shift m (Shift n M)) :
     addEquiv (A := A) m n x = mk (m + n) (unmk n (unmk m x)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.a661ee86cd7e from=translated src=- shape=67380391 vocab=4c078bf4
+-/
 @[simp] theorem addEquiv_symm_apply (m n : ℤ) (y : Shift (m + n) M) :
     (addEquiv (A := A) m n).symm y = mk m (mk n (unmk (m + n) y)) := rfl
 

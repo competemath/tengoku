@@ -60,12 +60,21 @@ instance instGMul : GradedMonoid.GMul fun n => Cochain A M M n :=
 /-- The graded unit of `END A M` is the identity.-/
 instance instGOne : GradedMonoid.GOne fun n => Cochain A M M n := ⟨Cochain.id A M⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.fc1c7e32e96c from=translated src=- shape=d8f2b995 vocab=9df7c290
+-/
 theorem gMul_def {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
     (GradedMonoid.GMul.mul f g : Cochain A M M (m + n)) = koszulSign (m * n) • g.comp f rfl :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.bf50c09c5c8f from=translated src=- shape=2b50650a vocab=e9734075
+-/
 theorem gOne_def : (GradedMonoid.GOne.one : Cochain A M M 0) = Cochain.id A M := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.af43a010f62c from=translated src=- shape=cd7ed4a9 vocab=304970ec
+-/
 theorem gMul_apply {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) (x : M) :
     (GradedMonoid.GMul.mul f g : Cochain A M M (m + n)) x = koszulSign (m * n) • g (f x) :=
   rfl
@@ -102,10 +111,15 @@ instance instGRing : DirectSum.GRing fun n => Cochain A M M n where
 
 variable {A M}
 
+/--
+@isnad1 id=eq.0h2v.s9.89fff0558197 from=translated src=- shape=592d217d vocab=f31dc803
+-/
 theorem one_def : (1 : END A M) = DirectSum.of (fun n => Cochain A M M n) 0 (Cochain.id A M) :=
   rfl
 
-/-- The product of homogeneous elements of `END A M`: `f * g = (-1)^{m n} • g ∘ f`.-/
+/-- The product of homogeneous elements of `END A M`: `f * g = (-1)^{m n} • g ∘ f`.
+@isnad1 id=eq.0h6v.s11.967cba7cace7 from=translated src=- shape=1c4e05a6 vocab=a46b36a9
+-/
 theorem of_mul_of {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
     (DirectSum.of (fun n => Cochain A M M n) m f * DirectSum.of _ n g : END A M) =
       DirectSum.of _ (m + n) (koszulSign (m * n) • g.comp f rfl) :=
@@ -124,7 +138,9 @@ namespace END
 
 variable {A M}
 
-/-- The Leibniz rule for the product of two homogeneous elements of `END A M`.-/
+/-- The Leibniz rule for the product of two homogeneous elements of `END A M`.
+@isnad1 id=eq.0h6v.s13.ad8a6f2444f9 from=translated src=- shape=8334304f vocab=86d0e294
+-/
 theorem d_of_mul_of {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
     d (DirectSum.of (fun n => Cochain A M M n) m f * DirectSum.of _ n g : END A M) =
       d (DirectSum.of (fun n => Cochain A M M n) m f : END A M) * DirectSum.of _ n g +
@@ -146,7 +162,9 @@ theorem d_of_mul_of {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
 variable (A M)
 
 /-- `END A M` is a dg ring: its grading is a ring grading and the differential of the Hom
-complex satisfies the graded Leibniz rule for the product `f * g = (-1)^{|f||g|} • g ∘ f`.-/
+complex satisfies the graded Leibniz rule for the product `f * g = (-1)^{|f||g|} • g ∘ f`.
+@isnad1 id=dgring.0h2v.s6.80854c72e9e3 from=translated src=- shape=b325e259 vocab=85825060
+-/
 noncomputable instance instDGRing : DGRing (END A M) where
   toGradedMonoid := inferInstanceAs (SetLike.GradedMonoid (summand fun n => Cochain A M M n))
   d_mul' := by
@@ -176,6 +194,9 @@ def signedApply {n : ℤ} (z : Cochain A M N n) : M →+ N :=
   liftHomogeneous (grading (M := M)) fun i =>
     koszulSign (n * i) • (z : M →+ N).comp (AddSubgroup.subtype (grading i))
 
+/--
+@isnad1 id=eq.1h7v.s7.3f95856358a3 from=translated src=- shape=7b0200a2 vocab=364cdfdc
+-/
 theorem signedApply_of_mem {n : ℤ} (z : Cochain A M N n) {i : ℤ} {x : M}
     (hx : x ∈ grading i) : z.signedApply x = koszulSign (n * i) • z x := by
   rw [signedApply, liftHomogeneous_of_mem _ _ hx, Units.smul_def, Units.smul_def]
@@ -190,6 +211,9 @@ def signedApplyHom (n : ℤ) : Cochain A M N n →+ (M →+ N) where
   map_add' z₁ z₂ := decompose_addHom_ext (grading (M := M)) fun i x => by
     simp [signedApply_of_mem _ x.2, smul_add]
 
+/--
+@isnad1 id=eq.0h5v.s9.1e9fb41c840a from=translated src=- shape=59c22323 vocab=d50bbbe2
+-/
 @[simp]
 theorem signedApplyHom_apply {n : ℤ} (z : Cochain A M N n) :
     signedApplyHom A M N n z = z.signedApply := rfl
@@ -207,11 +231,17 @@ it is `Cochain.signedApply f`, `x ↦ (-1)^{|f||x|} • f x`.-/
 def signedEval : END A M →+ (M →+ M) :=
   DirectSum.toAddMonoid fun n => Cochain.signedApplyHom A M M n
 
+/--
+@isnad1 id=eq.0h4v.s10.f178fbb1adcc from=translated src=- shape=ff99c523 vocab=cc8f1a6e
+-/
 @[simp]
 theorem signedEval_of {n : ℤ} (f : Cochain A M M n) :
     signedEval A M (DirectSum.of (fun n => Cochain A M M n) n f) = f.signedApply := by
   rw [signedEval, DirectSum.toAddMonoid_of]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.78a2e49296a8 from=translated src=- shape=4800fc93 vocab=83366527
+-/
 theorem signedEval_of_mul_of {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
     signedEval A M (DirectSum.of (fun n => Cochain A M M n) m f * DirectSum.of _ n g : END A M) =
       g.signedApply.comp f.signedApply := by
@@ -228,6 +258,9 @@ theorem signedEval_of_mul_of {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M 
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.c09151551eb3 from=translated src=- shape=3198ce42 vocab=975391d8
+-/
 @[simp]
 theorem signedEval_one : signedEval A M 1 = AddMonoidHom.id M := by
   rw [one_def, signedEval_of]
@@ -235,7 +268,9 @@ theorem signedEval_one : signedEval A M 1 = AddMonoidHom.id M := by
   rw [Cochain.signedApply_of_mem _ x.2, zero_mul, koszulSign, Int.negOnePow_zero, one_smul]
   rfl
 
-/-- The signed evaluation is anti-multiplicative, `x · (F * G) = (x · F) · G`.-/
+/-- The signed evaluation is anti-multiplicative, `x · (F * G) = (x · F) · G`.
+@isnad1 id=eq.0h4v.s10.b6b1f57d9020 from=translated src=- shape=c98b6244 vocab=1a2f9a4f
+-/
 theorem signedEval_mul (F G : END A M) :
     signedEval A M (F * G) = (signedEval A M G).comp (signedEval A M F) := by
   induction F using DirectSum.induction_on with
@@ -258,9 +293,15 @@ def rightAction : END A M →+* (AddMonoid.End M)ᵐᵒᵖ where
   map_zero' := by simp
   map_add' F G := by simp
 
+/--
+@isnad1 id=eq.0h4v.s10.2e1e7c1556d4 from=translated src=- shape=04a38f93 vocab=9644a07e
+-/
 theorem rightAction_apply (F : END A M) (x : M) :
     (rightAction A M F).unop x = signedEval A M F x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.5c189c04acc9 from=translated src=- shape=0bcda33b vocab=5fc9c8ee
+-/
 theorem rightAction_of_apply {n : ℤ} (f : Cochain A M M n) {i : ℤ} {x : M}
     (hx : x ∈ grading i) :
     (rightAction A M (DirectSum.of (fun n => Cochain A M M n) n f)).unop x =

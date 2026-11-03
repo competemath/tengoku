@@ -87,6 +87,9 @@ def rightShift (a n' : ℤ) (hn' : n' + a = n) : Cochain A M (Shift a N) n' wher
   map_smul' {i b} hb x := by
     rw [z.map_smul hb, smul_mk hb, ← mk_units_smul, smul_smul, ← koszulSign_add, ← add_mul, hn']
 
+/--
+@isnad1 id=eq.1h8v.s8.f0a518c32999 from=translated src=- shape=50bdd478 vocab=f3c972d6
+-/
 @[simp]
 theorem rightShift_apply (a n' : ℤ) (hn' : n' + a = n) (x : M) :
     z.rightShift a n' hn' x = Shift.mk a (z x) := rfl
@@ -110,9 +113,15 @@ def leftShift (a n' : ℤ) (hn' : n + a = n') : Cochain A (Shift a M) N n' where
     congr 1
     ring
 
+/--
+@isnad1 id=eq.1h8v.s8.0430b5e5c376 from=translated src=- shape=a793ba1e vocab=abc89efb
+-/
 theorem leftShift_apply (a n' : ℤ) (hn' : n + a = n') (x : Shift a M) :
     z.leftShift a n' hn' x = leftShiftSign a n' • z (unmk a x) := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.53dff7a34808 from=translated src=- shape=544fcb7f vocab=eab98b46
+-/
 @[simp]
 theorem leftShift_apply_mk (a n' : ℤ) (hn' : n + a = n') (x : M) :
     z.leftShift a n' hn' (Shift.mk a x) = leftShiftSign a n' • z x := rfl
@@ -130,9 +139,15 @@ def shift (a : ℤ) : Cochain A (Shift a M) (Shift a N) n where
     rw [unmk_smul hb, map_units_smul, z.map_smul hb, smul_mk hb, ← mk_units_smul, smul_smul,
       smul_smul, mul_comm]
 
+/--
+@isnad1 id=eq.0h7v.s8.387c81f77716 from=translated src=- shape=2560cba0 vocab=b6429eed
+-/
 theorem shift_apply (a : ℤ) (x : Shift a M) :
     z.shift a x = Shift.mk a (z (unmk a x)) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.5184df301224 from=translated src=- shape=7a41a09d vocab=78fae006
+-/
 @[simp]
 theorem shift_apply_mk (a : ℤ) (x : M) : z.shift a (Shift.mk a x) = Shift.mk a (z x) := rfl
 
@@ -151,6 +166,9 @@ def rightUnshift {n' a : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ) (hn : n
   map_smul' {i b} hb x := by
     rw [z.map_smul hb, unmk_units_smul, unmk_smul hb, smul_smul, ← koszulSign_add, ← add_mul, hn]
 
+/--
+@isnad1 id=eq.1h8v.s8.24f7662ad610 from=translated src=- shape=b9eeace9 vocab=620e3688
+-/
 @[simp]
 theorem rightUnshift_apply {n' a : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ)
     (hn : n' + a = n) (x : M) : z.rightUnshift n hn x = unmk a (z x) := rfl
@@ -175,6 +193,9 @@ def leftUnshift {n' a : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ) (hn : n 
     simp only [leftShiftSign, ← koszulSign_add]
     exact koszulSign_eq_of_sub_eq_two_mul (a * i) (by ring)
 
+/--
+@isnad1 id=eq.1h8v.s8.eaaa8211fb7b from=translated src=- shape=22572fb0 vocab=958a5d56
+-/
 @[simp]
 theorem leftUnshift_apply {n' a : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ)
     (hn : n + a = n') (x : M) : z.leftUnshift n hn x = leftShiftSign a n' • z (Shift.mk a x) :=
@@ -184,36 +205,57 @@ section Lemmas
 
 variable {n : ℤ} (z z₁ z₂ : Cochain A M N n)
 
+/--
+@isnad1 id=eq.1h7v.s7.66bdd9423878 from=translated src=- shape=38df58b9 vocab=1b6a17be
+-/
 @[simp]
 theorem rightUnshift_rightShift (a n' : ℤ) (hn' : n' + a = n) :
     (z.rightShift a n' hn').rightUnshift n hn' = z := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.3fdc57522322 from=translated src=- shape=06fb4da9 vocab=ddb2138a
+-/
 @[simp]
 theorem rightShift_rightUnshift {a n' : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ)
     (hn' : n' + a = n) : (z.rightUnshift n hn').rightShift a n' hn' = z := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.28675a87fd17 from=translated src=- shape=385667f9 vocab=04503230
+-/
 @[simp]
 theorem leftUnshift_leftShift (a n' : ℤ) (hn' : n + a = n') :
     (z.leftShift a n' hn').leftUnshift n hn' = z := by
   ext x
   simp [leftShift_apply, smul_smul]
 
+/--
+@isnad1 id=eq.1h7v.s7.cb3b2a09633f from=translated src=- shape=797a87db vocab=b55c3514
+-/
 @[simp]
 theorem leftShift_leftUnshift {a n' : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ)
     (hn' : n + a = n') : (z.leftUnshift n hn').leftShift a n' hn' = z := by
   ext x
   simp [leftShift_apply, smul_smul]
 
+/--
+@isnad1 id=eq.1h8v.s8.e20daf7c28fd from=translated src=- shape=418e94fe vocab=63f85e2b
+-/
 @[simp]
 theorem rightShift_add (a n' : ℤ) (hn' : n' + a = n) :
     (z₁ + z₂).rightShift a n' hn' = z₁.rightShift a n' hn' + z₂.rightShift a n' hn' := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.fb14f44eb82c from=translated src=- shape=b906aa48 vocab=57aa9bda
+-/
 @[simp]
 theorem leftShift_add (a n' : ℤ) (hn' : n + a = n') :
     (z₁ + z₂).leftShift a n' hn' = z₁.leftShift a n' hn' + z₂.leftShift a n' hn' := by
   ext x
   simp [leftShift_apply, smul_add]
 
+/--
+@isnad1 id=eq.0h7v.s8.f0599645e955 from=translated src=- shape=423a1c5b vocab=db3ccda6
+-/
 @[simp]
 theorem shift_add (a : ℤ) : (z₁ + z₂).shift a = z₁.shift a + z₂.shift a := rfl
 
@@ -251,117 +293,194 @@ def shiftAddHom (n a : ℤ) : Cochain A M N n →+ Cochain A (Shift a M) (Shift 
 
 variable (A M N n)
 
+/--
+@isnad1 id=eq.1h6v.s8.a1fce5a51854 from=translated src=- shape=2ad749a8 vocab=63f85e2b
+-/
 @[simp]
 theorem rightShift_zero (a n' : ℤ) (hn' : n' + a = n) :
     (0 : Cochain A M N n).rightShift a n' hn' = 0 := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.1713e946da15 from=translated src=- shape=198dd1d0 vocab=4576c821
+-/
 @[simp]
 theorem rightUnshift_zero (a n' : ℤ) (hn' : n' + a = n) :
     (0 : Cochain A M (Shift a N) n').rightUnshift n hn' = 0 := rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.de3f4ad81aee from=translated src=- shape=73ab4d99 vocab=57aa9bda
+-/
 @[simp]
 theorem leftShift_zero (a n' : ℤ) (hn' : n + a = n') :
     (0 : Cochain A M N n).leftShift a n' hn' = 0 :=
   map_zero (leftShiftAddEquiv A M N n a n' hn')
 
+/--
+@isnad1 id=eq.1h6v.s7.74abf08ea869 from=translated src=- shape=94b6863e vocab=cbb56bd3
+-/
 @[simp]
 theorem leftUnshift_zero (a n' : ℤ) (hn' : n + a = n') :
     (0 : Cochain A (Shift a M) N n').leftUnshift n hn' = 0 :=
   map_zero (leftShiftAddEquiv A M N n a n' hn').symm
 
+/--
+@isnad1 id=eq.0h5v.s8.f58b8ed87169 from=translated src=- shape=1a75a760 vocab=33b5113a
+-/
 @[simp]
 theorem shift_zero (a : ℤ) : (0 : Cochain A M N n).shift a = 0 := rfl
 
 variable {A M N n}
 
+/--
+@isnad1 id=eq.1h7v.s7.d8546d34ec16 from=translated src=- shape=9fc5ecec vocab=15f275ae
+-/
 @[simp]
 theorem rightShift_neg (a n' : ℤ) (hn' : n' + a = n) :
     (-z).rightShift a n' hn' = -z.rightShift a n' hn' := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.76ea255e4b98 from=translated src=- shape=5688a595 vocab=a38c0cb5
+-/
 @[simp]
 theorem rightShift_sub (a n' : ℤ) (hn' : n' + a = n) :
     (z₁ - z₂).rightShift a n' hn' = z₁.rightShift a n' hn' - z₂.rightShift a n' hn' := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.a73af4ec04c2 from=translated src=- shape=5e70e5ca vocab=585f080d
+-/
 @[simp]
 theorem rightUnshift_neg {n' a : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ) (hn : n' + a = n) :
     (-z).rightUnshift n hn = -z.rightUnshift n hn := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.fd2ca0301d0f from=translated src=- shape=882e30df vocab=4576c821
+-/
 @[simp]
 theorem rightUnshift_add {n' a : ℤ} (z₁ z₂ : Cochain A M (Shift a N) n') (n : ℤ)
     (hn : n' + a = n) :
     (z₁ + z₂).rightUnshift n hn = z₁.rightUnshift n hn + z₂.rightUnshift n hn := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.ca020e7db6fe from=translated src=- shape=85bd2dbc vocab=72792343
+-/
 @[simp]
 theorem leftShift_neg (a n' : ℤ) (hn' : n + a = n') :
     (-z).leftShift a n' hn' = -z.leftShift a n' hn' :=
   map_neg (leftShiftAddEquiv A M N n a n' hn') z
 
+/--
+@isnad1 id=eq.1h8v.s8.d96895f1ea8d from=translated src=- shape=69c25cb6 vocab=06ca9630
+-/
 @[simp]
 theorem leftShift_sub (a n' : ℤ) (hn' : n + a = n') :
     (z₁ - z₂).leftShift a n' hn' = z₁.leftShift a n' hn' - z₂.leftShift a n' hn' :=
   map_sub (leftShiftAddEquiv A M N n a n' hn') z₁ z₂
 
+/--
+@isnad1 id=eq.1h7v.s7.c5400dc1fad0 from=translated src=- shape=17c65f65 vocab=45961a1b
+-/
 @[simp]
 theorem leftUnshift_neg {n' a : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ) (hn : n + a = n') :
     (-z).leftUnshift n hn = -z.leftUnshift n hn :=
   map_neg (leftShiftAddEquiv A M N n a n' hn).symm z
 
+/--
+@isnad1 id=eq.1h8v.s8.cfb89a548f68 from=translated src=- shape=7292d3e3 vocab=cbb56bd3
+-/
 @[simp]
 theorem leftUnshift_add {n' a : ℤ} (z₁ z₂ : Cochain A (Shift a M) N n') (n : ℤ)
     (hn : n + a = n') :
     (z₁ + z₂).leftUnshift n hn = z₁.leftUnshift n hn + z₂.leftUnshift n hn :=
   map_add (leftShiftAddEquiv A M N n a n' hn).symm z₁ z₂
 
+/--
+@isnad1 id=eq.0h6v.s8.534b4115d3d7 from=translated src=- shape=86792d50 vocab=8379a0d7
+-/
 @[simp]
 theorem shift_neg (a : ℤ) : (-z).shift a = -z.shift a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.d52af26bb93c from=translated src=- shape=423a1c5b vocab=4871e4b8
+-/
 @[simp]
 theorem shift_sub (a : ℤ) : (z₁ - z₂).shift a = z₁.shift a - z₂.shift a := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.b7a9efeb36ab from=translated src=- shape=3f608e18 vocab=7c4dadbb
+-/
 @[simp]
 theorem rightShift_zsmul (a n' : ℤ) (hn' : n' + a = n) (k : ℤ) :
     (k • z).rightShift a n' hn' = k • z.rightShift a n' hn' := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.5a1827da4d64 from=translated src=- shape=1fb4a96b vocab=5a4eeda4
+-/
 @[simp]
 theorem rightShift_units_smul (a n' : ℤ) (hn' : n' + a = n) (u : ℤˣ) :
     (u • z).rightShift a n' hn' = u • z.rightShift a n' hn' := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.83281c779e98 from=translated src=- shape=895bd67a vocab=c392d6c4
+-/
 @[simp]
 theorem rightUnshift_units_smul {n' a : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ)
     (hn : n' + a = n) (u : ℤˣ) : (u • z).rightUnshift n hn = u • z.rightUnshift n hn := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.03bb8f663cb5 from=translated src=- shape=037edf6e vocab=461bce11
+-/
 @[simp]
 theorem leftShift_zsmul (a n' : ℤ) (hn' : n + a = n') (k : ℤ) :
     (k • z).leftShift a n' hn' = k • z.leftShift a n' hn' :=
   map_zsmul (leftShiftAddEquiv A M N n a n' hn') k z
 
+/--
+@isnad1 id=eq.1h8v.s8.be5ca959f6a4 from=translated src=- shape=95afcc5e vocab=b8ff7c55
+-/
 @[simp]
 theorem leftShift_units_smul (a n' : ℤ) (hn' : n + a = n') (u : ℤˣ) :
     (u • z).leftShift a n' hn' = u • z.leftShift a n' hn' := by
   rw [Units.smul_def, Units.smul_def, leftShift_zsmul]
 
+/--
+@isnad1 id=eq.1h8v.s8.ca44449b892b from=translated src=- shape=169cc34a vocab=abf5dbf4
+-/
 @[simp]
 theorem leftUnshift_units_smul {n' a : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ)
     (hn : n + a = n') (u : ℤˣ) : (u • z).leftUnshift n hn = u • z.leftUnshift n hn := by
   rw [Units.smul_def, Units.smul_def]
   exact map_zsmul (leftShiftAddEquiv A M N n a n' hn).symm _ z
 
+/--
+@isnad1 id=eq.0h7v.s8.b8e265fe5329 from=translated src=- shape=71043d9b vocab=53dfa475
+-/
 @[simp]
 theorem shift_zsmul (a k : ℤ) : (k • z).shift a = k • z.shift a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.e1817175c8f6 from=translated src=- shape=5e2dea5d vocab=c1d26364
+-/
 @[simp]
 theorem shift_units_smul (a : ℤ) (u : ℤˣ) : (u • z).shift a = u • z.shift a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.8849431e641b from=translated src=- shape=79492565 vocab=1a86e589
+-/
 @[simp]
 theorem shift_id (a : ℤ) : (Cochain.id A M).shift a = Cochain.id A (Shift a M) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.968a8d596878 from=translated src=- shape=849b6d01 vocab=539f9faf
+-/
 @[simp]
 theorem shift_ofHom (φ : M →ᵈᵍ[A] N) (a : ℤ) : (ofHom φ).shift a = ofHom (φ.shift a) := rfl
 
 /-! ### Composition -/
 
 /-- The left shift of a composition (Mathlib's `Cochain.leftShift_comp`): for `z` of degree
-`n` and `z'` of degree `m`, `(z' ∘ z).leftShift a = (-1)^{a m} • z' ∘ z.leftShift a`.-/
+`n` and `z'` of degree `m`, `(z' ∘ z).leftShift a = (-1)^{a m} • z' ∘ z.leftShift a`.
+@isnad1 id=eq.3h12v.s8.f55ae17f7c33 from=translated src=- shape=96dd5a1e vocab=a5d5bde7
+-/
 theorem leftShift_comp (a n' : ℤ) (hn' : n + a = n') {m t t' : ℤ} (z' : Cochain A N P m)
     (h : n + m = t) (ht' : t + a = t') :
     (z'.comp z h).leftShift a t' ht' = koszulSign (a * m) • z'.comp (z.leftShift a n' hn')
@@ -374,6 +493,9 @@ theorem leftShift_comp (a n' : ℤ) (hn' : n + a = n') {m t t' : ℤ} (z' : Coch
   rw [← ht', ← h, ← hn']
   ring
 
+/--
+@isnad1 id=eq.1h9v.s8.c979211dd3f4 from=translated src=- shape=9ce3757f vocab=61daac0b
+-/
 @[simp]
 theorem leftShift_comp_zero_cochain (a n' : ℤ) (hn' : n + a = n') (z' : Cochain A N P 0) :
     (z'.comp z (add_zero n)).leftShift a n' hn' =
@@ -381,7 +503,9 @@ theorem leftShift_comp_zero_cochain (a n' : ℤ) (hn' : n + a = n') (z' : Cochai
   rw [leftShift_comp z a n' hn' z' (add_zero _) hn', mul_zero, koszulSign, Int.negOnePow_zero,
     one_smul]
 
-/-- The shift of a composition is the composition of the shifts.-/
+/-- The shift of a composition is the composition of the shifts.
+@isnad1 id=eq.1h10v.s8.77c1b133edec from=translated src=- shape=1acb2e5c vocab=77257fe2
+-/
 @[simp]
 theorem shift_comp (a : ℤ) {m nm : ℤ} (z' : Cochain A N P m) (h : n + m = nm) :
     (z'.comp z h).shift a = (z'.shift a).comp (z.shift a) h := rfl
@@ -396,6 +520,9 @@ variable [DGModule A M] [DGModule A N]
 
 variable {n : ℤ} (z : Cochain A M N n)
 
+/--
+@isnad1 id=eq.2h9v.s8.6a3780c65e23 from=translated src=- shape=cbf61fe3 vocab=222e1aa9
+-/
 theorem δ_rightShift (a n' m' : ℤ) (hn' : n' + a = n) (m : ℤ) (hm' : m' + a = m) :
     δ n' m' (z.rightShift a n' hn') = koszulSign a • (δ n m z).rightShift a m' hm' := by
   by_cases hnm : n + 1 = m
@@ -410,6 +537,9 @@ theorem δ_rightShift (a n' m' : ℤ) (hn' : n' + a = n) (m : ℤ) (hm' : m' + a
   · have hnm' : ¬ n' + 1 = m' := fun _ => hnm (by omega)
     rw [δ_shape _ _ hnm', δ_shape _ _ hnm, rightShift_zero, smul_zero]
 
+/--
+@isnad1 id=eq.2h9v.s8.cb59b6200e78 from=translated src=- shape=6d7102cc vocab=8c69348a
+-/
 theorem δ_rightUnshift {a n' : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ) (hn : n' + a = n)
     (m m' : ℤ) (hm' : m' + a = m) :
     δ n m (z.rightUnshift n hn) = koszulSign a • (δ n' m' z).rightUnshift m hm' := by
@@ -417,6 +547,9 @@ theorem δ_rightUnshift {a n' : ℤ} (z : Cochain A M (Shift a N) n') (n : ℤ) 
   simp only [rightShiftAddEquiv_apply, rightUnshift_rightShift, z.δ_rightShift a n' m' hn m hm',
     rightUnshift_units_smul, smul_smul, Int.units_mul_self, one_smul]
 
+/--
+@isnad1 id=eq.2h9v.s8.58529773d2ae from=translated src=- shape=fe775aeb vocab=827e9003
+-/
 theorem δ_leftShift (a n' m' : ℤ) (hn' : n + a = n') (m : ℤ) (hm' : m + a = m') :
     δ n' m' (z.leftShift a n' hn') = koszulSign a • (δ n m z).leftShift a m' hm' := by
   by_cases hnm : n + 1 = m
@@ -432,6 +565,9 @@ theorem δ_leftShift (a n' m' : ℤ) (hn' : n + a = n') (m : ℤ) (hm' : m + a =
   · have hnm' : ¬ n' + 1 = m' := fun _ => hnm (by omega)
     rw [δ_shape _ _ hnm', δ_shape _ _ hnm, leftShift_zero, smul_zero]
 
+/--
+@isnad1 id=eq.2h9v.s8.28027905fbf5 from=translated src=- shape=f99cce52 vocab=85397ace
+-/
 theorem δ_leftUnshift {a n' : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ) (hn : n + a = n')
     (m m' : ℤ) (hm' : m + a = m') :
     δ n m (z.leftUnshift n hn) = koszulSign a • (δ n' m' z).leftUnshift m hm' := by
@@ -439,6 +575,9 @@ theorem δ_leftUnshift {a n' : ℤ} (z : Cochain A (Shift a M) N n') (n : ℤ) (
   simp only [leftShiftAddEquiv_apply, leftUnshift_leftShift, z.δ_leftShift a n' m' hn m hm',
     leftUnshift_units_smul, smul_smul, Int.units_mul_self, one_smul]
 
+/--
+@isnad1 id=eq.0h7v.s8.e5a4f90d25d5 from=translated src=- shape=acebfc5e vocab=7f9bd640
+-/
 @[simp]
 theorem δ_shift (a m : ℤ) : δ n m (z.shift a) = koszulSign a • (δ n m z).shift a := by
   by_cases hnm : n + 1 = m

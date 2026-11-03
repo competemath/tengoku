@@ -52,7 +52,9 @@ namespace IsFGProjective
 
 variable {R}
 
-/-- A retract of a finitely generated projective module is finitely generated projective.-/
+/-- A retract of a finitely generated projective module is finitely generated projective.
+@isnad1 id=isfgproj.1h6v.s6.c7c38d2643e4 from=translated src=- shape=d3fbcede vocab=c2abbce0
+-/
 theorem of_retract {M N : ModuleCat.{v} R} (i : M ⟶ N) (r : N ⟶ M) (h : i ≫ r = 𝟙 M)
     (hN : IsFGProjective R N) : IsFGProjective R M := by
   obtain ⟨_, _⟩ := hN
@@ -62,15 +64,24 @@ theorem of_retract {M N : ModuleCat.{v} R} (i : M ⟶ N) (r : N ⟶ M) (h : i �
   · exact LinearMap.congr_fun h' x
   · exact Module.Projective.of_split i.hom r.hom h'
 
+/--
+@isnad1 id=isfgproj.0h5v.s5.fc338160ba4a from=translated src=- shape=fe2488fe vocab=116d6425
+-/
 theorem of_iso {M N : ModuleCat.{v} R} (e : M ≅ N) (hN : IsFGProjective R N) :
     IsFGProjective R M :=
   of_retract e.hom e.inv e.hom_inv_id hN
 
+/--
+@isnad1 id=isfgproj.1h2v.s4.6958227523f0 from=translated src=- shape=27f0f383 vocab=2914d661
+-/
 theorem of_isZero {M : ModuleCat.{v} R} (hM : IsZero M) : IsFGProjective R M := by
   have : Subsingleton M := ModuleCat.subsingleton_of_isZero hM
   exact ⟨Module.Finite.of_surjective (0 : (Fin 0 → R) →ₗ[R] M)
     fun x => ⟨0, Subsingleton.elim _ _⟩, Module.Projective.of_free⟩
 
+/--
+@isnad1 id=isfgproj.0h5v.s5.485b5761fea0 from=translated src=- shape=0540dca0 vocab=0d55c8eb
+-/
 theorem biprod {M N : ModuleCat.{v} R} (hM : IsFGProjective R M) (hN : IsFGProjective R N) :
     IsFGProjective R (M ⊞ N) := by
   obtain ⟨_, _⟩ := hM
@@ -113,11 +124,16 @@ variable {R}
 def mk (P : ModuleCat.{v} R) (hP : IsFGProjective R P) : ProjK0.{v} R :=
   mkHom R (FreeAbelianGroup.of ⟨P, hP⟩)
 
+/--
+@isnad1 id=surjecti.0h1v.s8.f8593f1c6540 from=translated src=- shape=e36a771b vocab=dfce8a88
+-/
 theorem mkHom_surjective : Function.Surjective (mkHom.{v} R) :=
   QuotientAddGroup.mk'_surjective _
 
 /-- The defining relation: `[P₂] = [P₁] + [P₃]` for a short exact sequence of finitely generated
-projective modules.-/
+projective modules.
+@isnad1 id=eq.1h5v.s7.42242d51fb50 from=translated src=- shape=2e951ee9 vocab=2547fe2b
+-/
 theorem mk_X₂ {S : ShortComplex (ModuleCat.{v} R)} (hS : S.ShortExact)
     (h₁ : IsFGProjective R S.X₁) (h₂ : IsFGProjective R S.X₂) (h₃ : IsFGProjective R S.X₃) :
     mk S.X₂ h₂ = mk S.X₁ h₁ + mk S.X₃ h₃ := by
@@ -127,7 +143,9 @@ theorem mk_X₂ {S : ShortComplex (ModuleCat.{v} R)} (hS : S.ShortExact)
   rwa [map_sub, map_sub, sub_sub, sub_eq_zero] at h
 
 /-- Induction principle for `K₀(R)`: every element is obtained from the classes of finitely
-generated projective modules by sums and negatives.-/
+generated projective modules by sums and negatives.
+@isnad1 id=var.0h7v.s7.2ed3c7b9f692 from=translated src=- shape=bb38d15a vocab=fb11dc21
+-/
 theorem induction_on {p : ProjK0.{v} R → Prop} (x : ProjK0.{v} R) (zero : p 0)
     (mk : ∀ (P : ModuleCat.{v} R) (hP : IsFGProjective R P), p (mk P hP))
     (neg : ∀ x, p x → p (-x)) (add : ∀ x y, p x → p y → p (x + y)) : p x := by
@@ -142,7 +160,9 @@ section lift
 
 variable {G : Type*} [AddCommGroup G]
 
-/-- Two homomorphisms out of `K₀(R)` which agree on the classes of modules are equal.-/
+/-- Two homomorphisms out of `K₀(R)` which agree on the classes of modules are equal.
+@isnad1 id=eq.1h4v.s8.1541dcb63983 from=translated src=- shape=4e5207f5 vocab=78e0724e
+-/
 @[ext]
 theorem addMonoidHom_ext ⦃f g : ProjK0.{v} R →+ G⦄
     (h : ∀ (P : ModuleCat.{v} R) (hP : IsFGProjective R P), f (mk P hP) = g (mk P hP)) :
@@ -165,6 +185,9 @@ def lift (f : ∀ P : ModuleCat.{v} R, IsFGProjective R P → G)
     rw [hf S hS h₁ h₂ h₃]
     abel)
 
+/--
+@isnad1 id=eq.1h5v.s8.63cc3aec267d from=translated src=- shape=f90080ff vocab=26f136ba
+-/
 @[simp]
 theorem lift_mk (f : ∀ P : ModuleCat.{v} R, IsFGProjective R P → G) (hf)
     (P : ModuleCat.{v} R) (hP : IsFGProjective R P) : lift f hf (mk P hP) = f P hP :=
@@ -175,7 +198,9 @@ end lift
 
 /-! ### Basic relations -/
 
-/-- The class of the zero module is `0`.-/
+/-- The class of the zero module is `0`.
+@isnad1 id=eq.0h1v.s5.13e4ef5c37ed from=translated src=- shape=1e3a913e vocab=d0cddb49
+-/
 theorem mk_zero : mk (0 : ModuleCat.{v} R) (IsFGProjective.of_isZero (isZero_zero _)) = 0 := by
   have h := mk_X₂ ((ShortComplex.Splitting.ofIsZeroOfIsIso
     (ShortComplex.mk (0 : (0 : ModuleCat.{v} R) ⟶ 0) (𝟙 0) (by simp)) (isZero_zero _)
@@ -183,7 +208,9 @@ theorem mk_zero : mk (0 : ModuleCat.{v} R) (IsFGProjective.of_isZero (isZero_zer
     (IsFGProjective.of_isZero (isZero_zero _)) (IsFGProjective.of_isZero (isZero_zero _))
   exact right_eq_add.1 h
 
-/-- Isomorphic modules have the same class.-/
+/-- Isomorphic modules have the same class.
+@isnad1 id=eq.0h6v.s5.ce2ca6afb5d7 from=translated src=- shape=20b497f5 vocab=2df83369
+-/
 theorem mk_eq_of_iso {P Q : ModuleCat.{v} R} (e : P ≅ Q) (hP : IsFGProjective R P)
     (hQ : IsFGProjective R Q) : mk P hP = mk Q hQ := by
   have h := mk_X₂ ((ShortComplex.Splitting.ofIsZeroOfIsIso
@@ -192,11 +219,16 @@ theorem mk_eq_of_iso {P Q : ModuleCat.{v} R} (e : P ≅ Q) (hP : IsFGProjective 
   dsimp at h
   rw [h, mk_zero, zero_add]
 
+/--
+@isnad1 id=eq.1h3v.s6.3a57a2bf6940 from=translated src=- shape=9ff66e19 vocab=26f007c8
+-/
 theorem mk_eq_zero_of_isZero {P : ModuleCat.{v} R} (hP : IsZero P) (h : IsFGProjective R P) :
     mk P h = 0 := by
   rw [mk_eq_of_iso hP.isoZero h (IsFGProjective.of_isZero (isZero_zero _)), mk_zero]
 
-/-- `[P ⊕ Q] = [P] + [Q]`.-/
+/-- `[P ⊕ Q] = [P] + [Q]`.
+@isnad1 id=eq.0h5v.s6.bed28894dd28 from=translated src=- shape=0a238f73 vocab=2fc0d2e1
+-/
 theorem mk_biprod {P Q : ModuleCat.{v} R} (hP : IsFGProjective R P) (hQ : IsFGProjective R Q) :
     mk (P ⊞ Q) (hP.biprod hQ) = mk P hP + mk Q hQ :=
   mk_X₂ (ShortComplex.Splitting.ofHasBinaryBiproduct P Q).shortExact hP (hP.biprod hQ) hQ

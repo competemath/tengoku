@@ -57,7 +57,9 @@ def IsGradedDivisionRing : Prop :=
 
 variable {𝒜}
 
-/-- In a graded division ring, `1` is a graded simple idempotent.-/
+/-- In a graded division ring, `1` is a graded simple idempotent.
+@isnad1 id=isgraded.1h3v.s5.bd26c1274993 from=translated src=- shape=f3f98637 vocab=c9acb1a9
+-/
 theorem IsGradedDivisionRing.isGradedSimpleIdempotent_one (h : IsGradedDivisionRing 𝒜) :
     IsGradedSimpleIdempotent 𝒜 1 :=
   ⟨h.1, fun _ _ hx _ hx0 => h.2 hx hx0⟩
@@ -75,6 +77,9 @@ def concentratedGrading (i : ι) : AddSubgroup R := if i = 0 then ⊤ else ⊥
 
 variable {ι R}
 
+/--
+@isnad1 id=iff.0h4v.s6.641082c1f74e from=translated src=- shape=7997d2f7 vocab=b8d3fba7
+-/
 theorem mem_concentratedGrading_iff {i : ι} {x : R} : x ∈ concentratedGrading ι R i ↔ i = 0 ∨ x = 0 := by
   unfold concentratedGrading
   split_ifs with h <;> simp [h]
@@ -112,7 +117,9 @@ instance : SetLike.GradedMonoid (concentratedGrading ι R) where
 
 instance : GradedRing (concentratedGrading ι R) where
 
-/-- A division ring concentrated in degree `0` is a graded division ring.-/
+/-- A division ring concentrated in degree `0` is a graded division ring.
+@isnad1 id=isgraded.0h2v.s4.8ec2c0c443b0 from=translated src=- shape=3bec1b46 vocab=a4c241e4
+-/
 theorem isGradedDivisionRing_concentratedGrading (D : Type*) [DivisionRing D] :
     IsGradedDivisionRing (concentratedGrading ι D) := by
   refine ⟨one_ne_zero, fun i x hx hx0 => ⟨x⁻¹, ?_, inv_mul_cancel₀ hx0⟩⟩
@@ -141,10 +148,16 @@ def matrixGrading (i : ι) : AddSubgroup (Matrix n n R) where
 variable {𝒜 p}
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=iff.0h7v.s7.d28ac35d5001 from=translated src=- shape=87e59dd9 vocab=0e6605ef
+-/
 theorem mem_matrixGrading_iff {i : ι} {x : Matrix n n R} :
     x ∈ matrixGrading 𝒜 p i ↔ ∀ a b, x a b ∈ 𝒜 (i + p a - p b) :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.1h9v.s7.26ca0a640dc6 from=translated src=- shape=79ed8e48 vocab=dfdf0e08
+-/
 theorem single_mem_matrixGrading {a b : n} {i : ι} {y : R} (hy : y ∈ 𝒜 (i + p a - p b)) :
     Matrix.single a b y ∈ matrixGrading 𝒜 p i := by
   intro a' b'
@@ -181,6 +194,9 @@ def matrixComponent (i : ι) : Matrix n n R →+ matrixGrading 𝒜 p i where
     rfl)
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h9v.s10.0a9a960bd318 from=translated src=- shape=413e3f50 vocab=c03c1f71
+-/
 theorem coe_matrixComponent_apply (i : ι) (x : Matrix n n R) (a b : n) :
     (matrixComponent 𝒜 p i x : Matrix n n R) a b = decompose 𝒜 (x a b) (i + p a - p b) :=
   rfl
@@ -192,6 +208,9 @@ def matrixDecompose : Matrix n n R →+ ⨁ i, matrixGrading 𝒜 p i :=
   ∑ i, (DirectSum.of (fun i => matrixGrading 𝒜 p i) i).comp (matrixComponent 𝒜 p i)
 
 omit [AddCommGroup ι] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s9.abcb082ac968 from=translated src=- shape=9a10eacc vocab=8465465e
+-/
 theorem sum_coe_decompose (r : R) : ∑ j, (decompose 𝒜 r j : R) = r := by
   classical
   conv_rhs => rw [← DirectSum.sum_support_decompose 𝒜 r]
@@ -238,7 +257,9 @@ variable {ι : Type*} [AddCommGroup ι] {R : Type*} [Ring R] {𝒜 : ι → AddS
 
 /-- Over a graded division ring, the diagonal matrix unit `E_{cc}` is a graded simple
 idempotent: a nonzero homogeneous `x` with `x E_{cc} = x` is supported in column `c`, and if
-`y x_{ac} = 1` with `y` homogeneous, then `(y E_{ca}) x = E_{cc}`.-/
+`y x_{ac} = 1` with `y` homogeneous, then `(y E_{ca}) x = E_{cc}`.
+@isnad1 id=isgraded.1h6v.s6.1cef22528742 from=translated src=- shape=386a4386 vocab=aaf74965
+-/
 theorem IsGradedDivisionRing.isGradedSimpleIdempotent_single (h : IsGradedDivisionRing 𝒜)
     (c : n) : IsGradedSimpleIdempotent (matrixGrading 𝒜 p) (Matrix.single c c (1 : R)) := by
   refine ⟨fun h0 => h.1 (by rw [← Matrix.single_apply_same c c (1 : R), h0]; rfl),
@@ -292,7 +313,9 @@ instance : GradedRing (groupAlgebraGrading K G) where
 
 omit [DecidableEq G] in
 /-- The group algebra of an abelian group over a field, graded by the group, is a graded
-division ring: `(a⁻¹ (-g)) (a g) = 1`.-/
+division ring: `(a⁻¹ (-g)) (a g) = 1`.
+@isnad1 id=isgraded.0h2v.s5.56e370fd1cdc from=translated src=- shape=8ca15a24 vocab=df1547ff
+-/
 theorem isGradedDivisionRing_groupAlgebraGrading :
     IsGradedDivisionRing (groupAlgebraGrading K G) := by
   refine ⟨one_ne_zero, fun g x hx hx0 => ?_⟩

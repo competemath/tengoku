@@ -52,12 +52,17 @@ def ofComponents (T : ℤ → AddSubgroup M) : AddSubgroup M where
     rw [decompose_neg]
     exact neg_mem (ha n)
 
+/--
+@isnad1 id=iff.0h3v.s9.f6b77167ba25 from=translated src=- shape=0e529467 vocab=8eca69f4
+-/
 theorem mem_ofComponents {T : ℤ → AddSubgroup M} {a : M} :
     a ∈ ofComponents T ↔ ∀ n, (decompose (grading (M := M)) a n : M) ∈ T n :=
   Iff.rfl
 
 /-- A homogeneous element of degree `k` lies in `ofComponents T` if and only if it lies in
-`T k`.-/
+`T k`.
+@isnad1 id=iff.1h4v.s6.f3760ab530e7 from=translated src=- shape=31bdbe25 vocab=acf3e3b1
+-/
 theorem mem_ofComponents_of_mem_grading {T : ℤ → AddSubgroup M} {k : ℤ} {x : M}
     (hx : x ∈ grading k) : x ∈ ofComponents T ↔ x ∈ T k := by
   constructor
@@ -72,6 +77,9 @@ theorem mem_ofComponents_of_mem_grading {T : ℤ → AddSubgroup M} {k : ℤ} {x
     · rw [decompose_of_mem_ne _ hx hn]
       exact zero_mem _
 
+/--
+@isnad1 id=ishomoge.0h2v.s5.657705bdb130 from=translated src=- shape=cf7c4ae8 vocab=9f653d5b
+-/
 theorem isHomogeneous_ofComponents (T : ℤ → AddSubgroup M) :
     SetLike.IsHomogeneous (grading (M := M)) (ofComponents T) := by
   intro i a ha
@@ -94,6 +102,9 @@ def truncLEZeroComponents (n : ℤ) : AddSubgroup A :=
 variable {A}
 
 omit [DGRing A] in
+/--
+@isnad1 id=iff.1h3v.s7.a6f9034dd26c from=translated src=- shape=0f818ab3 vocab=468e3a8a
+-/
 theorem mem_truncLEZeroComponents_iff {k : ℤ} {x : A} (hx : x ∈ grading k) :
     x ∈ ofComponents (truncLEZeroComponents A) ↔ (0 < k → x = 0) ∧ (k = 0 → d x = 0) := by
   rw [mem_ofComponents_of_mem_grading hx, truncLEZeroComponents]
@@ -104,6 +115,9 @@ theorem mem_truncLEZeroComponents_iff {k : ℤ} {x : A} (hx : x ∈ grading k) :
       simp [mem_cocycles, hx]
     · simp [h1, h2]
 
+/--
+@isnad1 id=mem.2h3v.s7.ea06713e1dcd from=translated src=- shape=bf13c282 vocab=f7707009
+-/
 theorem truncLEZero_mul_mem {a b : A} (ha : a ∈ ofComponents (truncLEZeroComponents A))
     (hb : b ∈ ofComponents (truncLEZeroComponents A)) :
     a * b ∈ ofComponents (truncLEZeroComponents A) := by
@@ -128,6 +142,9 @@ theorem truncLEZero_mul_mem {a b : A} (ha : a ∈ ofComponents (truncLEZeroCompo
   rw [d_mul_of_mem_zero hai, haS.2 rfl, hbS.2 rfl, zero_mul, mul_zero, add_zero]
 
 omit [DGRing A] in
+/--
+@isnad1 id=mem.1h2v.s7.9876c1651753 from=translated src=- shape=06d348a2 vocab=9599af7d
+-/
 theorem truncLEZero_d_mem {a : A} (ha : a ∈ ofComponents (truncLEZeroComponents A)) :
     d a ∈ ofComponents (truncLEZeroComponents A) := by
   refine induction_on_of_isHomogeneous (isHomogeneous_ofComponents _)
@@ -158,10 +175,16 @@ def truncLEZero : DGSubring A where
 
 variable {A}
 
+/--
+@isnad1 id=iff.1h3v.s7.a7efe4f5cdd6 from=translated src=- shape=731943fa vocab=d26d556b
+-/
 theorem mem_truncLEZero_iff_of_mem_grading {k : ℤ} {x : A} (hx : x ∈ grading k) :
     x ∈ truncLEZero A ↔ (0 < k → x = 0) ∧ (k = 0 → d x = 0) :=
   mem_truncLEZeroComponents_iff hx
 
+/--
+@isnad1 id=mem.2h3v.s6.8265023e7258 from=translated src=- shape=a9e5cd42 vocab=93ccff00
+-/
 theorem mem_truncLEZero_of_neg {k : ℤ} {x : A} (hx : x ∈ grading k) (hk : k < 0) :
     x ∈ truncLEZero A :=
   (mem_truncLEZero_iff_of_mem_grading hx).mpr ⟨fun h => absurd h (by omega),
@@ -183,6 +206,9 @@ def truncGEZeroComponents (n : ℤ) : AddSubgroup A :=
   if n = 0 then coboundaries A 0 else ⊤
 
 omit [DGRing A] in
+/--
+@isnad1 id=iff.1h3v.s7.1afe9da86124 from=translated src=- shape=9799e434 vocab=a75b6dc4
+-/
 theorem mem_truncGEZeroComponents_iff {k : ℤ} {x : A} (hx : x ∈ grading k) :
     x ∈ ofComponents (truncGEZeroComponents A) ↔ (k = 0 → x ∈ coboundaries A 0) := by
   rw [mem_ofComponents_of_mem_grading hx, truncGEZeroComponents]
@@ -197,10 +223,16 @@ theorem eq_zero_of_mem_grading_of_pos {k : ℤ} {x : A} (hx : x ∈ grading k) (
 
 omit [DGRing A] in
 include hA in
+/--
+@isnad1 id=eq.2h2v.s7.917f3eafac6c from=translated src=- shape=61ec9abd vocab=c1b30d64
+-/
 theorem d_eq_zero_of_mem_grading_zero {x : A} (hx : x ∈ grading 0) : d x = 0 :=
   eq_zero_of_mem_grading_of_pos hA (d_mem hx) (by norm_num)
 
 omit [DGRing A] in
+/--
+@isnad1 id=mem.0h2v.s6.fa0e9ede82f5 from=translated src=- shape=541090d6 vocab=a0776ffa
+-/
 theorem truncGEZero_d_mem (a : A) : d a ∈ ofComponents (truncGEZeroComponents A) := by
   induction a using induction_on with
   | h_zero => rw [d_zero]; exact zero_mem _
@@ -214,6 +246,9 @@ theorem truncGEZero_d_mem (a : A) : d a ∈ ofComponents (truncGEZeroComponents 
     exact ⟨a, ha, rfl⟩
 
 include hA in
+/--
+@isnad1 id=mem.2h3v.s7.2f114214a9f6 from=translated src=- shape=8f49728f vocab=11b0119f
+-/
 theorem truncGEZero_mul_mem_left (c : A) {a : A}
     (ha : a ∈ ofComponents (truncGEZeroComponents A)) :
     c * a ∈ ofComponents (truncGEZeroComponents A) := by
@@ -243,6 +278,9 @@ theorem truncGEZero_mul_mem_left (c : A) {a : A}
     rw [d_mul_of_mem_zero hc, d_eq_zero_of_mem_grading_zero hA hc, zero_mul, zero_add]
 
 include hA in
+/--
+@isnad1 id=mem.2h3v.s7.2c1690f042ea from=translated src=- shape=a10705cf vocab=11b0119f
+-/
 theorem truncGEZero_mul_mem_right {a : A} (c : A)
     (ha : a ∈ ofComponents (truncGEZeroComponents A)) :
     a * c ∈ ofComponents (truncGEZeroComponents A) := by
@@ -282,6 +320,9 @@ def truncGEZeroIdeal : DGIdeal A where
   isHomogeneous' := isHomogeneous_ofComponents _
   d_mem' {a} _ := truncGEZero_d_mem a
 
+/--
+@isnad1 id=iff.2h3v.s7.e4a8ed07dd7d from=translated src=- shape=7de05a46 vocab=ab750073
+-/
 theorem mem_truncGEZeroIdeal_iff_of_mem_grading {k : ℤ} {x : A} (hx : x ∈ grading k) :
     x ∈ truncGEZeroIdeal hA ↔ (k = 0 → x ∈ coboundaries A 0) :=
   mem_truncGEZeroComponents_iff hx
@@ -291,12 +332,17 @@ rings.-/
 def truncGEZeroπ : A →ᵈᵍ+* A ⧸ truncGEZeroIdeal hA :=
   DGIdeal.Quotient.mk (truncGEZeroIdeal hA)
 
+/--
+@isnad1 id=surjecti.1h1v.s7.5bc643f63898 from=translated src=- shape=22053d8c vocab=f8b00169
+-/
 theorem truncGEZeroπ_surjective : Function.Surjective (truncGEZeroπ hA) :=
   DGIdeal.Quotient.mk_surjective _
 
 namespace truncGEZero
 
-/-- The differential of `τ^{≥ 0} A` is zero.-/
+/-- The differential of `τ^{≥ 0} A` is zero.
+@isnad1 id=eq.1h2v.s9.d5b59137980b from=translated src=- shape=043f035b vocab=d8c98ac1
+-/
 theorem d_eq_zero (x : A ⧸ truncGEZeroIdeal hA) : d x = 0 := by
   obtain ⟨a, rfl⟩ := truncGEZeroπ_surjective hA x
   rw [← DGRingHom.map_d]
@@ -304,7 +350,9 @@ theorem d_eq_zero (x : A ⧸ truncGEZeroIdeal hA) : d x = 0 := by
 
 end truncGEZero
 
-/-- The projection `A → τ^{≥ 0} A` induces an isomorphism `H⁰(A) ≅ H⁰(τ^{≥ 0} A)`.-/
+/-- The projection `A → τ^{≥ 0} A` induces an isomorphism `H⁰(A) ≅ H⁰(τ^{≥ 0} A)`.
+@isnad1 id=bijectiv.1h1v.s10.e6ee41c493d0 from=translated src=- shape=46679cbe vocab=f22d6f71
+-/
 theorem bijective_cohomologyMap_truncGEZeroπ :
     Function.Bijective ((truncGEZeroπ hA).cohomologyMap 0) := by
   constructor

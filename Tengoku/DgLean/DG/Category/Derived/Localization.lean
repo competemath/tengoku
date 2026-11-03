@@ -39,6 +39,9 @@ variable (C) in
 def homotopyEquivalences : MorphismProperty (CatModule.{w} C) :=
   fun M N f => ∃ e : DGHomotopyEquiv M N, e.hom = f
 
+/--
+@isnad1 id=homotopy.0h4v.s6.f40bf5f887f3 from=translated src=- shape=b3a6b3f4 vocab=70589d0b
+-/
 theorem homotopyEquivalences_of_equiv {M N : CatModule.{w} C} (e : DGHomotopyEquiv M N) :
     homotopyEquivalences C e.hom :=
   ⟨e, rfl⟩
@@ -55,6 +58,9 @@ noncomputable abbrev cyl (M : CatModule.{w} C) : CatModule.{w} C :=
 noncomputable def cylInr (M : CatModule.{w} C) : M ⟶ cyl M :=
   biprod.lift (𝟙 M) (cone.inr (𝟙 M))
 
+/--
+@isnad1 id=eq.0h2v.s7.fb6fac77244e from=translated src=- shape=c8c25c8e vocab=ba08f57b
+-/
 @[reassoc (attr := simp)]
 theorem cylInr_fst (M : CatModule.{w} C) : cylInr M ≫ biprod.fst = 𝟙 M :=
   biprod.lift_fst _ _
@@ -92,16 +98,24 @@ noncomputable def cylDescCone : cone (𝟙 M) ⟶ N :=
 noncomputable def cylDesc : cyl M ⟶ N :=
   biprod.desc f (cylDescCone h)
 
+/--
+@isnad1 id=eq.0h6v.s8.ca9ee0d5f6fd from=translated src=- shape=d20756d8 vocab=01a91ebe
+-/
 theorem inl_cylDesc : biprod.inl ≫ cylDesc h = f :=
   biprod.inl_desc _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.21841938cd1d from=translated src=- shape=fa687635 vocab=52a360e1
+-/
 theorem cylInr_cylDesc : cylInr M ≫ cylDesc h = g := by
   rw [cylInr, cylDesc, biprod.lift_desc, Category.id_comp, cylDescCone, cone.inr_desc,
     add_sub_cancel]
 
 include h in
 /-- Homotopic morphisms of dg modules are identified by every functor inverting homotopy
-equivalences.-/
+equivalences.
+@isnad1 id=eq.1h8v.s7.b5accd1d7117 from=translated src=- shape=98048b25 vocab=c6bd51d0
+-/
 theorem map_eq_of_inverts_homotopyEquivalences {E : Type*} [Category E]
     (F : CatModule.{w} C ⥤ E) (hF : (homotopyEquivalences C).IsInvertedBy F) :
     F.map f = F.map g := by
@@ -119,7 +133,9 @@ namespace HomotopyCategory
 
 variable (C)
 
-/-- Homotopy equivalences become isomorphisms in the homotopy category.-/
+/-- Homotopy equivalences become isomorphisms in the homotopy category.
+@isnad1 id=isinvert.0h1v.s5.ecf367ea314f from=translated src=- shape=a059026b vocab=68f26701
+-/
 theorem quotient_inverts_homotopyEquivalences :
     (homotopyEquivalences.{w} C).IsInvertedBy (quotient C) := by
   rintro M N f ⟨e, rfl⟩

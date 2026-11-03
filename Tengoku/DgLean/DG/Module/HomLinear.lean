@@ -50,9 +50,15 @@ instance instSMulGround : SMul R (Cochain A M N n) :=
         show r • f (a • x) = koszulSign (n * i) • (a • (r • f x))
         rw [f.map_smul ha, Units.smul_def, Units.smul_def, smul_comm r, smul_comm r a] }⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.4d8c6594a0b8 from=translated src=- shape=321afdd1 vocab=07a99fd4
+-/
 @[simp]
 theorem coe_smul_ground (r : R) (f : Cochain A M N n) : ⇑(r • f) = r • ⇑f := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.65e7dd8adc3c from=translated src=- shape=2eaea360 vocab=07a99fd4
+-/
 theorem smul_ground_apply (r : R) (f : Cochain A M N n) (x : M) : (r • f) x = r • f x := rfl
 
 /-- Cochains of degree `n` form an `R`-module.-/
@@ -63,7 +69,9 @@ instance instModuleGround : Module R (Cochain A M N n) :=
 variable [Module R M] [IsScalarTower R A M]
 
 omit [DGModule A N] in
-/-- Cochains are `R`-linear.-/
+/-- Cochains are `R`-linear.
+@isnad1 id=eq.0h8v.s9.938a82fa4697 from=translated src=- shape=20a7b69b vocab=c652bdb7
+-/
 theorem map_smul_ground (f : Cochain A M N n) (r : R) (x : M) : f (r • x) = r • f x := by
   rw [← algebraMap_smul A r x, f.map_smul (algebraMap_mem_grading R r), mul_zero, koszulSign_zero,
     one_smul, algebraMap_smul]
@@ -72,11 +80,17 @@ variable [AddCommGroup P] [DGAddCommGroup P] [Module A P] [DGModule A P] [Module
   [IsScalarTower R A P]
 
 omit [DGModule A N] [Module R N] [IsScalarTower R A N] [Module R M] [IsScalarTower R A M] in
+/--
+@isnad1 id=eq.1h11v.s8.81d3a30ddb25 from=translated src=- shape=057da30a vocab=1874ee2e
+-/
 @[simp]
 theorem smul_comp {n₁ n₂ n₁₂ : ℤ} (r : R) (z₁ : Cochain A M N n₁) (z₂ : Cochain A N P n₂)
     (h : n₁ + n₂ = n₁₂) : (r • z₂).comp z₁ h = r • z₂.comp z₁ h := rfl
 
 omit [Module R M] [IsScalarTower R A M] in
+/--
+@isnad1 id=eq.1h11v.s9.71c5d7e6b271 from=translated src=- shape=0cc0d26b vocab=1874ee2e
+-/
 @[simp]
 theorem comp_smul {n₁ n₂ n₁₂ : ℤ} (r : R) (z₁ : Cochain A M N n₁) (z₂ : Cochain A N P n₂)
     (h : n₁ + n₂ = n₁₂) : z₂.comp (r • z₁) h = r • z₂.comp z₁ h :=
@@ -86,7 +100,9 @@ end Cochain
 
 variable [DGModule A M]
 
-/-- The differential of the Hom complex is `R`-linear.-/
+/-- The differential of the Hom complex is `R`-linear.
+@isnad1 id=eq.0h8v.s8.786aa4050e29 from=translated src=- shape=eca1fca3 vocab=25c3d603
+-/
 @[simp]
 theorem δ_smul_ground (n m : ℤ) (r : R) (z : Cochain A M N n) : δ n m (r • z) = r • δ n m z := by
   by_cases hnm : n + 1 = m
@@ -99,12 +115,17 @@ theorem δ_smul_ground (n m : ℤ) (r : R) (z : Cochain A M N n) : δ n m (r •
 namespace DGModule.HOM
 
 omit [DGModule A M] in
+/--
+@isnad1 id=eq.0h7v.s11.5205b2f94b09 from=translated src=- shape=461fb361 vocab=f26f58be
+-/
 theorem smul_of (r : R) (n : ℤ) (f : Cochain A M N n) :
     r • (DirectSum.of (fun n => Cochain A M N n) n f : HOM A M N) =
       DirectSum.of (fun n => Cochain A M N n) n (r • f) := by
   rw [← DirectSum.lof_eq_of R, ← DirectSum.lof_eq_of R, map_smul]
 
-/-- The differential of `HOM_A(M, N)` is `R`-linear.-/
+/-- The differential of `HOM_A(M, N)` is `R`-linear.
+@isnad1 id=eq.0h6v.s10.b553e9a590d9 from=translated src=- shape=a0f0acd0 vocab=97be85f5
+-/
 theorem d_smul_ground (r : R) (F : HOM A M N) : d (r • F) = r • d F := by
   induction F using DirectSum.induction_on with
   | zero => simp
@@ -123,6 +144,9 @@ variable (R A : Type*) [CommRing R] [Ring A] [Algebra R A] [DGAddCommGroup A] [D
 
 set_option backward.isDefEq.respectTransparency false in
 variable {R A M} in
+/--
+@isnad1 id=eq.0h8v.s12.81839b84205d from=translated src=- shape=d8219347 vocab=6dfce861
+-/
 theorem smul_of_mul_of (r : R) {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
     (r • DirectSum.of (fun n => Cochain A M M n) m f) * DirectSum.of _ n g =
       r • (DirectSum.of (fun n => Cochain A M M n) m f * DirectSum.of _ n g : END A M) := by
@@ -134,6 +158,9 @@ theorem smul_of_mul_of (r : R) {m n : ℤ} (f : Cochain A M M m) (g : Cochain A 
 
 set_option backward.isDefEq.respectTransparency false in
 variable {R A M} in
+/--
+@isnad1 id=eq.0h8v.s12.f42e49887808 from=translated src=- shape=8e404be4 vocab=6dfce861
+-/
 theorem of_mul_smul_of (r : R) {m n : ℤ} (f : Cochain A M M m) (g : Cochain A M M n) :
     DirectSum.of (fun n => Cochain A M M n) m f * (r • DirectSum.of _ n g) =
       r • (DirectSum.of (fun n => Cochain A M M n) m f * DirectSum.of _ n g : END A M) := by
@@ -144,6 +171,9 @@ theorem of_mul_smul_of (r : R) {m n : ℤ} (f : Cochain A M M m) (g : Cochain A 
     Units.smul_def, smul_comm r]
 
 variable {R A M} in
+/--
+@isnad1 id=eq.0h6v.s9.450ef6dcf592 from=translated src=- shape=f81d23e1 vocab=4a0ea819
+-/
 theorem smul_mul_assoc_ground (r : R) (F G : END A M) : (r • F) * G = r • (F * G) := by
   induction F using DirectSum.induction_on with
   | zero => simp
@@ -155,6 +185,9 @@ theorem smul_mul_assoc_ground (r : R) (F G : END A M) : (r • F) * G = r • (F
     | of n g => exact smul_of_mul_of r f g
 
 variable {R A M} in
+/--
+@isnad1 id=eq.0h6v.s9.3c2dc04c4686 from=translated src=- shape=0e4198d8 vocab=4a0ea819
+-/
 theorem mul_smul_comm_ground (r : R) (F G : END A M) : F * (r • G) = r • (F * G) := by
   induction F using DirectSum.induction_on with
   | zero => simp
@@ -166,6 +199,9 @@ theorem mul_smul_comm_ground (r : R) (F G : END A M) : F * (r • G) = r • (F 
     | of n g => exact of_mul_smul_of r f g
 
 variable {R A M} in
+/--
+@isnad1 id=eq.0h4v.s10.583efd4685a1 from=translated src=- shape=51e20802 vocab=157f7b57
+-/
 theorem of_zero_smul_id (r : R) :
     DirectSum.of (fun n => Cochain A M M n) 0 (r • Cochain.id A M) = r • (1 : END A M) := by
   rw [one_def, HOM.smul_of]
@@ -194,11 +230,16 @@ noncomputable instance instAlgebra : Algebra R (END A M) where
     rw [of_zero_smul_id, smul_mul_assoc_ground, one_mul]
 
 variable {R A M} in
+/--
+@isnad1 id=eq.0h4v.s10.077c7a248ae2 from=translated src=- shape=5c5c0deb vocab=a9b51b74
+-/
 theorem algebraMap_apply (r : R) :
     algebraMap R (END A M) r = DirectSum.of (fun n => Cochain A M M n) 0 (r • Cochain.id A M) :=
   rfl
 
-/-- `END_A(M)` is a dg `R`-algebra.-/
+/-- `END_A(M)` is a dg `R`-algebra.
+@isnad1 id=dgalgebr.0h3v.s8.5d014667f7e8 from=translated src=- shape=b6396ca7 vocab=7ab83ce9
+-/
 noncomputable instance instDGAlgebra : DGAlgebra R (END A M) where
   algebraMap_mem' r := by
     rw [algebraMap_apply]

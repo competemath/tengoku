@@ -47,9 +47,15 @@ def representable (X : C) : CatModule.{v} C where
   act_comp' f g h := (Category.assoc h f g).symm
   d_act' hf h := d_comp h hf
 
+/--
+@isnad1 id=eq.0h3v.s6.3067d65e9d13 from=translated src=- shape=c1238b70 vocab=9ffb77cb
+-/
 @[simp]
 theorem representable_obj (X Y : C) : (representable X).obj Y = (X ⟶ Y) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.1006bf43a98b from=translated src=- shape=22ffc309 vocab=a3b182fa
+-/
 @[simp]
 theorem representable_smul {X Y Z : C} (f : Y ⟶ Z) (h : (representable X).obj Y) :
     f • h = (h : X ⟶ Y) ≫ f := rfl
@@ -79,19 +85,29 @@ def yonedaEquiv : (representable X ⟶ M) ≃+ cocycles (M.obj X) 0 where
   right_inv m := Subtype.ext (id_smul (M := M) (m : M.obj X))
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.6930c2d200d9 from=translated src=- shape=2f3610fa vocab=3b80ed09
+-/
 @[simp]
 theorem coe_yonedaEquiv_apply (φ : representable X ⟶ M) :
     (yonedaEquiv φ : M.obj X) = φ.app X (𝟙 X) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.8c25c9bf0a5b from=translated src=- shape=4d588ddd vocab=eab97d6a
+-/
 @[simp]
 theorem yonedaEquiv_symm_app_apply (m : cocycles (M.obj X) 0) {Y : C} (h : X ⟶ Y) :
     (yonedaEquiv.symm m).app Y h = h • (m : M.obj X) := rfl
 
-/-- The dg Yoneda isomorphism is natural in the module.-/
+/-- The dg Yoneda isomorphism is natural in the module.
+@isnad1 id=eq.0h6v.s11.0901f986c334 from=translated src=- shape=ff0012d6 vocab=1a11eaf4
+-/
 theorem yonedaEquiv_comp {N : CatModule.{v} C} (φ : representable X ⟶ M) (ψ : M ⟶ N) :
     (yonedaEquiv (φ ≫ ψ) : N.obj X) = ψ.app X (yonedaEquiv φ) := rfl
 
-/-- The dg Yoneda isomorphism is natural in the module: the inverse direction.-/
+/-- The dg Yoneda isomorphism is natural in the module: the inverse direction.
+@isnad1 id=eq.0h6v.s12.beff04b0ce15 from=translated src=- shape=188dd831 vocab=5544ecfe
+-/
 theorem yonedaEquiv_symm_comp {N : CatModule.{v} C} (m : cocycles (M.obj X) 0) (ψ : M ⟶ N) :
     yonedaEquiv.symm m ≫ ψ =
       yonedaEquiv.symm ⟨ψ.app X m, ψ.map_mem m.2.1,
@@ -108,6 +124,9 @@ def yoneda : (DGCategory.Z0 C)ᵒᵖ ⥤ CatModule.{v} C where
   map_id _ := hom_ext fun _ h => Category.id_comp h
   map_comp _ _ := hom_ext fun _ h => Category.assoc _ _ h
 
+/--
+@isnad1 id=eq.0h6v.s10.01b797bb00e4 from=translated src=- shape=85c42e1e vocab=1c12ef1d
+-/
 @[simp]
 theorem yoneda_map_app {X X' : (DGCategory.Z0 C)ᵒᵖ} (f : X ⟶ X') {Y : C}
     (h : (representable X.unop.as).obj Y) :

@@ -79,19 +79,31 @@ def HasOrderedCellTower (X : C) : Prop :=
 
 variable {cell}
 
+/--
+@isnad1 id=iff.0h3v.s6.f2791578cb9a from=translated src=- shape=e53aa42a vocab=b15ae1a2
+-/
 theorem cellsOrdered_append {l l' : List (ι × ℤ)} :
     CellsOrdered (l ++ l') ↔
       CellsOrdered l ∧ CellsOrdered l' ∧ ∀ a ∈ l, ∀ b ∈ l', b.2 ≤ a.2 :=
   List.pairwise_append
 
+/--
+@isnad1 id=cellsord.0h2v.s4.e5a3c8cd1a69 from=translated src=- shape=9aca011a vocab=78da05fa
+-/
 theorem cellsOrdered_singleton (c : ι × ℤ) : CellsOrdered [c] :=
   List.pairwise_singleton _ _
 
+/--
+@isnad1 id=cellsord.0h1v.s3.aa5bf79cbcb8 from=translated src=- shape=cfb11697 vocab=b763f7f1
+-/
 theorem cellsOrdered_nil : CellsOrdered ([] : List (ι × ℤ)) :=
   List.Pairwise.nil
 
 namespace CellTower
 
+/--
+@isnad1 id=celltowe.1h7v.s6.fae65dfac670 from=translated src=- shape=57d03414 vocab=ca1bbba8
+-/
 theorem of_iso {l : List (ι × ℤ)} {X Y : C} (h : CellTower cell l X) (e : X ≅ Y) :
     CellTower cell l Y := by
   cases h with
@@ -101,18 +113,25 @@ theorem of_iso {l : List (ι × ℤ)} {X Y : C} (h : CellTower cell l X) (e : X 
     exact isomorphic_distinguished T hT _
       (Triangle.isoMk _ _ (Iso.refl _) e.symm (Iso.refl _) (by simp) (by simp) (by simp))
 
+/--
+@isnad1 id=iszero.1h4v.s6.f99b428e9f96 from=translated src=- shape=8b8a467f vocab=af0bbc26
+-/
 theorem isZero {X : C} (h : CellTower cell [] X) : IsZero X := by
   generalize hl : ([] : List (ι × ℤ)) = l at h
   cases h with
   | zero hX => exact hX
   | ext T _ _ _ => simp at hl
 
-/-- A cell has the cell tower consisting of itself.-/
+/-- A cell has the cell tower consisting of itself.
+@isnad1 id=celltowe.0h5v.s6.ce53922bb140 from=translated src=- shape=c172832a vocab=d2d4f8be
+-/
 theorem single (i : ι) (n : ℤ) : CellTower cell [(i, n)] (cell i n) := by
   simpa using CellTower.ext (c := (i, n)) (Triangle.mk (0 : 0 ⟶ cell i n) (𝟙 _) 0)
     (contractible_distinguished₁ _) (.zero (isZero_zero C)) ⟨Iso.refl _⟩
 
-/-- Shifting a cell tower.-/
+/-- Shifting a cell tower.
+@isnad1 id=celltowe.2h6v.s7.447ee3a34a16 from=translated src=- shape=0e27ce1f vocab=6d5d753c
+-/
 theorem shift (hs : ∀ i n k, Nonempty ((cell i n)⟦k⟧ ≅ cell i (n + k)))
     {l : List (ι × ℤ)} {X : C} (h : CellTower cell l X) (k : ℤ) :
     CellTower cell (l.map fun c => (c.1, c.2 + k)) (X⟦k⟧) := by
@@ -123,7 +142,9 @@ theorem shift (hs : ∀ i n k, Nonempty ((cell i n)⟦k⟧ ≅ cell i (n + k)))
     exact .ext ((Triangle.shiftFunctor C k).obj T) (Triangle.shift_distinguished T hT k) ih
       ⟨(shiftFunctor C k).mapIso h₃.some ≪≫ (hs _ _ _).some⟩
 
-/-- An object with a cell tower belongs to every thick subcategory containing its cells.-/
+/-- An object with a cell tower belongs to every thick subcategory containing its cells.
+@isnad1 id=var.2h7v.s6.60ce2213b034 from=translated src=- shape=cee65408 vocab=8667419c
+-/
 theorem mem_of_isThick {P : ObjectProperty C} (hP : IsThick P) {l : List (ι × ℤ)} {X : C}
     (h : CellTower cell l X) (hl : ∀ c ∈ l, P (cell c.1 c.2)) : P X := by
   induction h with
@@ -136,16 +157,28 @@ end CellTower
 
 namespace HasOrderedCellTower
 
+/--
+@isnad1 id=hasorder.1h6v.s6.897ae9392c04 from=translated src=- shape=34d97450 vocab=d479759c
+-/
 theorem of_iso {X Y : C} (h : HasOrderedCellTower cell X) (e : X ≅ Y) :
     HasOrderedCellTower cell Y :=
   ⟨h.choose, h.choose_spec.1, h.choose_spec.2.of_iso e⟩
 
+/--
+@isnad1 id=hasorder.1h4v.s6.ca6e808f3c98 from=translated src=- shape=c719c1af vocab=fee73ff7
+-/
 theorem of_isZero {X : C} (hX : IsZero X) : HasOrderedCellTower cell X :=
   ⟨[], cellsOrdered_nil, .zero hX⟩
 
+/--
+@isnad1 id=hasorder.0h5v.s6.b03ebbdbdd3d from=translated src=- shape=42a6b49f vocab=86f8b041
+-/
 theorem of_cell (i : ι) (n : ℤ) : HasOrderedCellTower cell (cell i n) :=
   ⟨_, cellsOrdered_singleton _, .single i n⟩
 
+/--
+@isnad1 id=hasorder.2h5v.s7.246d451bc1e2 from=translated src=- shape=86bce5f0 vocab=bd411878
+-/
 theorem shift (hs : ∀ i n k, Nonempty ((cell i n)⟦k⟧ ≅ cell i (n + k))) {X : C}
     (h : HasOrderedCellTower cell X) (k : ℤ) : HasOrderedCellTower cell (X⟦k⟧) := by
   obtain ⟨l, hl, h⟩ := h
@@ -177,7 +210,9 @@ include hc
 /-- Two ways to compute a cone of a morphism from a cell `cell i n` to an object `X` with an
 ordered cell tower `l` ([Sch, Thm. 13, the case `λ(X̄) = 1`]): the cone has an ordered cell
 tower `L` whose cells are cells of `l` or `(i, n + 1)`; if the morphism is nonzero and all
-shifts of `l` are at most `n`, then `L` has one cell less than `l` (a cell is cancelled).-/
+shifts of `l` are at most `n`, then `L` has one cell less than `l` (a cell is cancelled).
+@isnad1 id=ex.3h8v.s8.b21f9b5d827c from=translated src=- shape=f35ca272 vocab=5f7f5290
+-/
 theorem exists_cone [IsTriangulated C] {l : List (ι × ℤ)} {X : C} (h : CellTower cell l X)
     (i : ι) (n : ℤ) : CellsOrdered l → ∀ φ : cell i n ⟶ X,
     ∃ (Z : C) (v : X ⟶ Z) (w : Z ⟶ (cell i n)⟦(1 : ℤ)⟧), Triangle.mk φ v w ∈ distTriang C ∧
@@ -267,7 +302,9 @@ theorem exists_cone [IsTriangulated C] {l : List (ι × ℤ)} {X : C} (h : CellT
 
 /-- The objects with an ordered cell tower are closed under cones ([Sch, Thm. 13]): for a
 morphism `f : X ⟶ Y` between such objects, some (hence every) cone of `f` has an ordered cell
-tower.-/
+tower.
+@isnad1 id=ex.3h7v.s7.0e64cb36d13d from=translated src=- shape=9cce0abe vocab=25e386aa
+-/
 theorem exists_cone_of_hasOrderedCellTower [IsTriangulated C] {l : List (ι × ℤ)} {X : C}
     (h : CellTower cell l X) : ∀ {Y : C} (f : X ⟶ Y), HasOrderedCellTower cell Y →
     ∃ (Z : C) (v : Y ⟶ Z) (w : Z ⟶ X⟦(1 : ℤ)⟧), Triangle.mk f v w ∈ distTriang C ∧
@@ -291,12 +328,16 @@ theorem exists_cone_of_hasOrderedCellTower [IsTriangulated C] {l : List (ι × �
       (Arrow.isoMk e (Iso.refl _) (by simp))
     exact ⟨Z, v, w, hTf, L', hLo', hL'.of_iso (Triangle.π₃.mapIso e').symm⟩
 
-/-- The objects with an ordered cell tower are closed under shifts.-/
+/-- The objects with an ordered cell tower are closed under shifts.
+@isnad1 id=hasorder.2h5v.s6.fe0ed0cc5348 from=translated src=- shape=4a8e8d62 vocab=9ad06340
+-/
 theorem hasOrderedCellTower_shift {X : C} (h : HasOrderedCellTower cell X) (k : ℤ) :
     HasOrderedCellTower cell (X⟦k⟧) :=
   h.shift hc.nonempty_shiftIso k
 
-/-- Two-out-of-three for cones.-/
+/-- Two-out-of-three for cones.
+@isnad1 id=hasorder.4h4v.s7.f61a98b18d65 from=translated src=- shape=8a7039b0 vocab=0753b1d2
+-/
 theorem hasOrderedCellTower_obj₃ [IsTriangulated C] (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : HasOrderedCellTower cell T.obj₁) (h₂ : HasOrderedCellTower cell T.obj₂) :
     HasOrderedCellTower cell T.obj₃ := by
@@ -305,7 +346,9 @@ theorem hasOrderedCellTower_obj₃ [IsTriangulated C] (T : Triangle C) (hT : T �
   obtain ⟨e, -, -⟩ := exists_iso_of_arrow_iso _ _ hT' hT (Iso.refl _)
   exact hZ.of_iso (Triangle.π₃.mapIso e)
 
-/-- Two-out-of-three for extensions.-/
+/-- Two-out-of-three for extensions.
+@isnad1 id=hasorder.4h4v.s7.6145c43f65ef from=translated src=- shape=8a7039b0 vocab=0753b1d2
+-/
 theorem hasOrderedCellTower_obj₂ [IsTriangulated C] (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : HasOrderedCellTower cell T.obj₁) (h₃ : HasOrderedCellTower cell T.obj₃) :
     HasOrderedCellTower cell T.obj₂ :=
@@ -313,7 +356,9 @@ theorem hasOrderedCellTower_obj₂ [IsTriangulated C] (T : Triangle C) (hT : T �
     h₁
 
 /-- If the first cell of an ordered cell tower of `X` is `(i, n)`, there is a nonzero morphism
-`cell i n ⟶ X` (the inclusion of the first step).-/
+`cell i n ⟶ X` (the inclusion of the first step).
+@isnad1 id=ex.4h8v.s7.8f33895a87a7 from=translated src=- shape=53f180a2 vocab=db4c9298
+-/
 theorem exists_ne_zero {l : List (ι × ℤ)} {X : C} (h : CellTower cell l X) :
     ∀ {i : ι} {n : ℤ} {rest : List (ι × ℤ)}, l = (i, n) :: rest → CellsOrdered l →
       ∃ z : cell i n ⟶ X, z ≠ 0 := by
@@ -351,7 +396,9 @@ theorem exists_ne_zero {l : List (ι × ℤ)} {X : C} (h : CellTower cell l X) :
 
 /-- The objects with an ordered cell tower are closed under direct summands. The proof is by
 induction on the length of an ordered cell tower of the ambient object, peeling off its first
-cell.-/
+cell.
+@isnad1 id=hasorder.4h8v.s6.d68d26c6f1f8 from=translated src=- shape=a03b5073 vocab=d264bbd0
+-/
 theorem hasOrderedCellTower_of_retract [IsTriangulated C] (k : ℕ) :
     ∀ {l : List (ι × ℤ)} {X : C}, CellTower cell l X → CellsOrdered l → l.length = k →
       ∀ {Y : C}, Retract Y X → HasOrderedCellTower cell Y := by
@@ -424,7 +471,9 @@ theorem hasOrderedCellTower_of_retract [IsTriangulated C] (k : ℕ) :
 
 /-- **Thickness** of the objects with an ordered cell tower (abstract form of [Sch, Thm. 1]):
 for an ordered cell family in a triangulated category, the objects with an ordered cell tower
-form a thick subcategory.-/
+form a thick subcategory.
+@isnad1 id=isthick.1h3v.s6.8f1ba58f214b from=translated src=- shape=2ec71dc6 vocab=ec3522e9
+-/
 theorem isThick [IsTriangulated C] : IsThick (HasOrderedCellTower cell) where
   zero := .of_isZero (isZero_zero C)
   shift X n h := hc.hasOrderedCellTower_shift h n
@@ -434,7 +483,9 @@ theorem isThick [IsTriangulated C] : IsThick (HasOrderedCellTower cell) where
     exact hc.hasOrderedCellTower_of_retract _ hl hlo rfl r
 
 /-- The thick closure of a family of objects with ordered cell towers consists of objects with
-ordered cell towers.-/
+ordered cell towers.
+@isnad1 id=le.2h4v.s7.b4ccde5b6e31 from=translated src=- shape=d6e5b0aa vocab=b2f59ba0
+-/
 theorem thickClosure_le [IsTriangulated C] {S : ObjectProperty C}
     (hS : S ≤ HasOrderedCellTower cell) : ThickClosure S ≤ HasOrderedCellTower cell :=
   DG.thickClosure_le hc.isThick hS

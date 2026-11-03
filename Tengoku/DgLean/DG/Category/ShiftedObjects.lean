@@ -110,15 +110,30 @@ def homMk {i j : ShiftedObjects φ} (f : (φ i.as).1 ⟶ (φ j.as).1) : i ⟶ j 
 /-- The morphism of `C` underlying a morphism of `ShiftedObjects φ`.-/
 def homVal {i j : ShiftedObjects φ} (f : i ⟶ j) : (φ i.as).1 ⟶ (φ j.as).1 := f
 
+/--
+@isnad1 id=eq.0h6v.s6.d2af66bb10c8 from=translated src=- shape=6ebb13de vocab=3d43d84c
+-/
 @[simp] theorem homVal_homMk {i j : ShiftedObjects φ} (f : (φ i.as).1 ⟶ (φ j.as).1) :
     homVal (homMk (i := i) (j := j) f) = f := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.8d00d07a8eee from=translated src=- shape=864f8d98 vocab=9a7df32f
+-/
 @[simp] theorem homMk_homVal {i j : ShiftedObjects φ} (f : i ⟶ j) : homMk (homVal f) = f := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.5a348ef6ef24 from=translated src=- shape=b04a5dde vocab=ad373c03
+-/
 theorem hom_ext {i j : ShiftedObjects φ} {f g : i ⟶ j} (h : homVal f = homVal g) : f = g := h
 
+/--
+@isnad1 id=eq.0h4v.s6.ed113384eba9 from=translated src=- shape=a2112af8 vocab=dbe71782
+-/
 @[simp] theorem homVal_id (i : ShiftedObjects φ) : homVal (𝟙 i) = 𝟙 (φ i.as).1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.ba10bd95b502 from=translated src=- shape=a9b20c68 vocab=e551ca6e
+-/
 @[simp] theorem homVal_comp {i j l : ShiftedObjects φ} (f : i ⟶ j) (g : j ⟶ l) :
     homVal (f ≫ g) = homVal f ≫ homVal g := rfl
 
@@ -131,17 +146,38 @@ instance (i j : ShiftedObjects φ) : AddCommGroup (i ⟶ j) :=
 def homValAddEquiv (i j : ShiftedObjects φ) : (i ⟶ j) ≃+ ((φ i.as).1 ⟶ (φ j.as).1) :=
   AddEquiv.refl _
 
+/--
+@isnad1 id=eq.0h7v.s9.446570f4d4e4 from=translated src=- shape=4fd02e3e vocab=9c29ae86
+-/
 @[simp] theorem homVal_add {i j : ShiftedObjects φ} (f g : i ⟶ j) :
     homVal (f + g) = homVal f + homVal g := rfl
+/--
+@isnad1 id=eq.0h5v.s8.ee29d963f028 from=translated src=- shape=455f2015 vocab=b9727d8a
+-/
 @[simp] theorem homVal_zero (i j : ShiftedObjects φ) : homVal (0 : i ⟶ j) = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s8.5fa52ad1b11b from=translated src=- shape=debe06bf vocab=137adfb3
+-/
 @[simp] theorem homVal_neg {i j : ShiftedObjects φ} (f : i ⟶ j) : homVal (-f) = -homVal f := rfl
+/--
+@isnad1 id=eq.0h7v.s8.719d4e50d188 from=translated src=- shape=4fd02e3e vocab=f54ae4c5
+-/
 @[simp] theorem homVal_sub {i j : ShiftedObjects φ} (f g : i ⟶ j) :
     homVal (f - g) = homVal f - homVal g := rfl
+/--
+@isnad1 id=eq.0h7v.s8.87c3b59f0746 from=translated src=- shape=39811657 vocab=a3766dae
+-/
 @[simp] theorem homVal_zsmul {i j : ShiftedObjects φ} (n : ℤ) (f : i ⟶ j) :
     homVal (n • f) = n • homVal f := rfl
+/--
+@isnad1 id=eq.0h7v.s9.7d455db61671 from=translated src=- shape=bd4b8107 vocab=0c8e51c9
+-/
 @[simp] theorem homVal_units_smul {i j : ShiftedObjects φ} (n : ℤˣ) (f : i ⟶ j) :
     homVal (n • f) = n • homVal f := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.98cc454638bb from=translated src=- shape=26632fe7 vocab=f7ce7cbe
+-/
 @[simp] theorem homMk_add {i j : ShiftedObjects φ} (f g : (φ i.as).1 ⟶ (φ j.as).1) :
     homMk (i := i) (j := j) (f + g) = homMk f + homMk g := rfl
 
@@ -159,10 +195,16 @@ instance instDGAddCommGroupHom (i j : ShiftedObjects φ) : DGAddCommGroup (i ⟶
   inferInstanceAs
     (DGAddCommGroup (ShiftedHom (φ i.as).2 (φ j.as).2 ((φ i.as).1 ⟶ (φ j.as).1)))
 
+/--
+@isnad1 id=iff.0h7v.s9.f4b9cf6e99a2 from=translated src=- shape=8b6d8820 vocab=e0806284
+-/
 theorem mem_grading_iff {i j : ShiftedObjects φ} {n : ℤ} {f : i ⟶ j} :
     f ∈ grading n ↔ homVal f ∈ grading (n + ((φ j.as).2 - (φ i.as).2)) :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.60fd6e88c3b6 from=translated src=- shape=1872d37b vocab=d33fe2b3
+-/
 theorem homVal_d {i j : ShiftedObjects φ} (f : i ⟶ j) :
     homVal (d f) = koszulSign (φ j.as).2 • d (homVal f) :=
   rfl
@@ -184,6 +226,9 @@ def reindexFunctor {κ : Type*} (ψ : κ → ι) : ShiftedObjects (φ ∘ ψ) �
   map_comp _ _ := rfl
 
 omit [Preadditive C] [∀ X Y : C, DGAddCommGroup (X ⟶ Y)] [DGCategory C] in
+/--
+@isnad1 id=eq.0h8v.s8.a004e73feecc from=translated src=- shape=730e009f vocab=d4af7535
+-/
 @[simp]
 theorem homVal_reindexFunctor_map {κ : Type*} (ψ : κ → ι) {k l : ShiftedObjects (φ ∘ ψ)}
     (f : k ⟶ l) : homVal ((reindexFunctor φ ψ).map f) = homVal f :=
@@ -200,6 +245,9 @@ def toClosure : C ⥤ ShiftedObjects (id : C × ℤ → C × ℤ) where
   map_comp _ _ := rfl
 
 omit [Preadditive C] [∀ X Y : C, DGAddCommGroup (X ⟶ Y)] [DGCategory C] in
+/--
+@isnad1 id=eq.0h4v.s7.ce0a7298ec12 from=translated src=- shape=17cb31b3 vocab=93615dc3
+-/
 @[simp]
 theorem homVal_toClosure_map {X Y : C} (f : X ⟶ Y) : homVal ((toClosure C).map f) = f :=
   rfl
@@ -222,6 +270,9 @@ variable {D : Type*} [Category D] [Preadditive D] [∀ X Y : D, DGAddCommGroup (
 
 omit [Preadditive C] [∀ X Y : C, DGAddCommGroup (X ⟶ Y)] [DGCategory C] [F.Additive]
   [F.IsDGFunctor] in
+/--
+@isnad1 id=eq.0h8v.s9.999cefcd4275 from=translated src=- shape=618b5400 vocab=151e5192
+-/
 @[simp]
 theorem homVal_mapFunctor_map {i j : ShiftedObjects φ} (f : i ⟶ j) :
     homVal ((mapFunctor F φ).map f) = F.map (homVal f) :=

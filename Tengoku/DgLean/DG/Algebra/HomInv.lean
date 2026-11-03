@@ -35,8 +35,14 @@ def invOfBijective : S →ᵈᵍ+* R where
     (by change f (Function.surjInv hf.2 x) ∈ _; rwa [Function.surjInv_eq hf.2])
   map_d' x := hf.1 (by rw [Function.surjInv_eq hf.2, f.map_d, Function.surjInv_eq hf.2])
 
+/--
+@isnad1 id=eq.1h4v.s6.cebc71e24c28 from=translated src=- shape=1fde7b51 vocab=d4a13318
+-/
 theorem apply_invOfBijective (x : S) : f (invOfBijective f hf x) = x := Function.surjInv_eq hf.2 x
 
+/--
+@isnad1 id=eq.1h4v.s6.9d591d6de564 from=translated src=- shape=d30b514a vocab=d4a13318
+-/
 theorem invOfBijective_apply (a : R) : invOfBijective f hf (f a) = a := hf.1 (apply_invOfBijective f hf _)
 
 end Inv

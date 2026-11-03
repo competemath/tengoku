@@ -34,7 +34,9 @@ namespace DG
 open CategoryTheory DirectSum
 
 /-- Extensionality for the action on graded objects: an additive map commutes with the action of
-`A` if it commutes with the action of homogeneous elements on homogeneous elements.-/
+`A` if it commutes with the action of homogeneous elements on homogeneous elements.
+@isnad1 id=eq.1h12v.s9.1a8145069b82 from=translated src=- shape=63ed2fdc vocab=d516cd74
+-/
 theorem map_smul_of_homogeneous {ι κ A M N τ σ : Type*} [DecidableEq ι] [DecidableEq κ]
     [Ring A] [SetLike τ A] [AddSubgroupClass τ A] (𝒜 : ι → τ) [Decomposition 𝒜]
     [AddCommGroup M] [Module A M] [SetLike σ M] [AddSubgroupClass σ M] (ℳ : κ → σ)
@@ -97,20 +99,34 @@ instance category : Category.{v} (GradedModuleCat.{v} 𝒜) where
 
 variable {M N P : GradedModuleCat.{v} 𝒜}
 
+/--
+@isnad1 id=mem.1h9v.s9.2576cb5963f0 from=translated src=- shape=7e5a902a vocab=592f1296
+-/
 theorem Hom.map_mem (f : Hom M N) {i : ι} {m : M} (hm : m ∈ M.grading i) :
     f.hom m ∈ N.grading i :=
   f.map_mem' hm
 
+/--
+@isnad1 id=eq.1h8v.s8.74c4f54f39c7 from=translated src=- shape=0f78f42c vocab=1ff2e6a4
+-/
 @[ext]
 theorem hom_ext {f g : M ⟶ N} (h : f.hom = g.hom) : f = g := Hom.ext h
 
+/--
+@isnad1 id=eq.0h5v.s7.e84789fcaa08 from=translated src=- shape=725110b1 vocab=4853353c
+-/
 @[simp]
 theorem hom_id : (𝟙 M : M ⟶ M).hom = LinearMap.id := rfl
 
+/--
+@isnad1 id=eq.0h9v.s8.347893019354 from=translated src=- shape=6d5d632a vocab=a521b64b
+-/
 @[simp]
 theorem hom_comp (f : M ⟶ N) (g : N ⟶ P) : (f ≫ g).hom = g.hom.comp f.hom := rfl
 
-/-- Two morphisms out of a graded module agreeing on homogeneous elements are equal.-/
+/-- Two morphisms out of a graded module agreeing on homogeneous elements are equal.
+@isnad1 id=eq.1h8v.s9.51b5aeafaedd from=translated src=- shape=5cd8fe7e vocab=31e13351
+-/
 theorem hom_ext_homogeneous {f g : M ⟶ N}
     (h : ∀ (i : ι) (m : M), m ∈ M.grading i → f.hom m = g.hom m) : f = g := by
   refine hom_ext (LinearMap.ext fun m => ?_)
@@ -123,6 +139,9 @@ theorem hom_ext_homogeneous {f g : M ⟶ N}
 def Hom.restrict (f : Hom M N) (i : ι) : M.grading i →+ N.grading i :=
   (f.hom.toAddMonoidHom.comp (M.grading i).subtype).codRestrict _ fun m => f.map_mem m.2
 
+/--
+@isnad1 id=eq.0h9v.s12.7d68c3a5f1bc from=translated src=- shape=f4a79cab vocab=7c857e43
+-/
 @[simp]
 theorem Hom.coe_restrict_apply (f : Hom M N) (i : ι) (m : M.grading i) :
     (f.restrict i m : N) = f.hom m := rfl
@@ -135,9 +154,15 @@ def isoMk (e : M ≃ₗ[A] N) (he : ∀ (i : ι) (m : M), m ∈ M.grading i → 
   hom_inv_id := hom_ext (LinearMap.ext e.symm_apply_apply)
   inv_hom_id := hom_ext (LinearMap.ext e.apply_symm_apply)
 
+/--
+@isnad1 id=eq.2h7v.s10.caf053a2eecc from=translated src=- shape=7d404e71 vocab=c8506a6a
+-/
 @[simp]
 theorem isoMk_hom_hom (e : M ≃ₗ[A] N) (he he') : (isoMk e he he').hom.hom = e.toLinearMap := rfl
 
+/--
+@isnad1 id=eq.2h7v.s10.c3166ea76fa5 from=translated src=- shape=a92d3ef7 vocab=37bcc9e1
+-/
 @[simp]
 theorem isoMk_inv_hom (e : M ≃ₗ[A] N) (he he') : (isoMk e he he').inv.hom = e.symm.toLinearMap :=
   rfl
@@ -174,16 +199,28 @@ instance category : Category.{v} (WithDifferential P) where
 
 variable {X Y : WithDifferential P}
 
+/--
+@isnad1 id=eq.1h9v.s8.29871b17b8b3 from=translated src=- shape=76335a90 vocab=556726cb
+-/
 @[ext]
 theorem hom_ext {f g : X ⟶ Y} (h : f.hom = g.hom) : f = g := Hom.ext h
 
+/--
+@isnad1 id=eq.0h6v.s8.a25b1ff5c99c from=translated src=- shape=c4f597ee vocab=43a1735e
+-/
 @[simp]
 theorem id_hom : (𝟙 X : X ⟶ X).hom = 𝟙 X.obj := rfl
 
+/--
+@isnad1 id=eq.0h10v.s8.645f77043842 from=translated src=- shape=87ca62d1 vocab=1aedc1d6
+-/
 @[simp]
 theorem comp_hom {Z : WithDifferential P} (f : X ⟶ Y) (g : Y ⟶ Z) :
     (f ≫ g).hom = f.hom ≫ g.hom := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.67d4a94e41e9 from=translated src=- shape=959f099e vocab=9da6b898
+-/
 theorem Hom.comm' (f : X ⟶ Y) (x : X.obj) : f.hom.hom (X.d x) = Y.d (f.hom.hom x) := f.comm x
 
 /-- An isomorphism in `WithDifferential P` from an isomorphism of graded modules commuting with
@@ -202,9 +239,15 @@ def isoMk (e : X.obj ≅ Y.obj) (he : ∀ x, e.hom.hom (X.d x) = Y.d (e.hom.hom 
   hom_inv_id := hom_ext e.hom_inv_id
   inv_hom_id := hom_ext e.inv_hom_id
 
+/--
+@isnad1 id=eq.1h8v.s11.fdb63ce93573 from=translated src=- shape=cbe8aa6e vocab=174e8ddb
+-/
 @[simp]
 theorem isoMk_hom_hom (e : X.obj ≅ Y.obj) (he) : (isoMk e he).hom.hom = e.hom := rfl
 
+/--
+@isnad1 id=eq.1h8v.s11.96e15adcf05a from=translated src=- shape=2e92be8b vocab=958eff0f
+-/
 @[simp]
 theorem isoMk_inv_hom (e : X.obj ≅ Y.obj) (he) : (isoMk e he).inv.hom = e.inv := rfl
 

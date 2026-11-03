@@ -57,13 +57,22 @@ def freeGrading (n : ℤ) : Submodule R (FreeAlgebra R X) :=
 
 variable {R deg}
 
+/--
+@isnad1 id=mem.0h4v.s7.7c0680a08d01 from=translated src=- shape=753481dd vocab=d892fe29
+-/
 theorem prod_mem_freeGrading (l : List X) :
     (l.map (FreeAlgebra.ι R)).prod ∈ freeGrading R deg (l.map deg).sum :=
   Submodule.subset_span ⟨l, rfl, rfl⟩
 
+/--
+@isnad1 id=mem.0h4v.s7.e4104226dea0 from=translated src=- shape=7df767b3 vocab=7de28b63
+-/
 theorem ι_mem_freeGrading (x : X) : FreeAlgebra.ι R x ∈ freeGrading R deg (deg x) := by
   simpa using prod_mem_freeGrading (R := R) (deg := deg) [x]
 
+/--
+@isnad1 id=gradedmo.0h3v.s7.71e297ac4178 from=translated src=- shape=d90a4463 vocab=62c8dd57
+-/
 instance freeGrading.gradedMonoid : SetLike.GradedMonoid (freeGrading R deg) where
   one_mem := by simpa using prod_mem_freeGrading (R := R) (deg := deg) []
   mul_mem i j a b ha hb := by
@@ -85,6 +94,9 @@ homomorphism.-/
 def decomposeAlgHom : FreeAlgebra R X →ₐ[R] ⨁ n, freeGrading R deg n :=
   FreeAlgebra.lift R gradedι
 
+/--
+@isnad1 id=eq.0h4v.s13.0de70e4ad239 from=translated src=- shape=4b2faad4 vocab=5a30ad73
+-/
 theorem decomposeAlgHom_prod (l : List X) :
     decomposeAlgHom R deg (l.map (FreeAlgebra.ι R)).prod =
       DirectSum.of (fun n => freeGrading R deg n) (l.map deg).sum
@@ -99,6 +111,9 @@ theorem decomposeAlgHom_prod (l : List X) :
     rw [map_mul, ih, decomposeAlgHom, FreeAlgebra.lift_ι_apply, gradedι, DirectSum.of_mul_of]
     exact DirectSum.of_eq_of_gradedMonoid_eq (Sigma.subtype_ext rfl rfl)
 
+/--
+@isnad1 id=eq.0h5v.s13.479f21992ddd from=translated src=- shape=93fcd61b vocab=e3ba2f9a
+-/
 theorem decomposeAlgHom_coe (n : ℤ) (a : freeGrading R deg n) :
     decomposeAlgHom R deg (a : FreeAlgebra R X) =
       DirectSum.of (fun n => freeGrading R deg n) n a := by
@@ -138,7 +153,9 @@ def decompositionAddSubgroup : Decomposition fun n => (freeGrading R deg n).toAd
 end freeGrading
 
 /-- Induction over the homogeneous elements of degree `n` of the free algebra: monomials,
-sums and scalar multiples.-/
+sums and scalar multiples.
+@isnad1 id=var.1h10v.s10.d729e78aa3b7 from=translated src=- shape=42537493 vocab=b02d32c0
+-/
 @[elab_as_elim]
 theorem freeGrading.induction_on {n : ℤ}
     {P : ∀ a : FreeAlgebra R X, a ∈ freeGrading R deg n → Prop}
@@ -174,11 +191,17 @@ def freeDerivMatrix : FreeAlgebra R X →ₐ[R] Matrix (Fin 2) (Fin 2) (FreeAlge
   FreeAlgebra.lift R fun x =>
     !![koszulSign (deg x) • FreeAlgebra.ι R x, δ x; 0, FreeAlgebra.ι R x]
 
+/--
+@isnad1 id=eq.0h4v.s7.589b64c9bb11 from=translated src=- shape=ca5c0707 vocab=0f2aeebd
+-/
 @[simp]
 theorem freeSignAut_ι (x : X) :
     freeSignAut deg (FreeAlgebra.ι R x) = koszulSign (deg x) • FreeAlgebra.ι R x :=
   FreeAlgebra.lift_ι_apply _ x
 
+/--
+@isnad1 id=and.0h5v.s10.2b2dc0c5b593 from=translated src=- shape=33055af1 vocab=699e7334
+-/
 theorem freeDerivMatrix_apply (a : FreeAlgebra R X) :
     freeDerivMatrix deg δ a 1 0 = 0 ∧ freeDerivMatrix deg δ a 1 1 = a ∧
       freeDerivMatrix deg δ a 0 0 = freeSignAut deg a := by
@@ -201,35 +224,55 @@ def freeDeriv : FreeAlgebra R X →ₗ[R] FreeAlgebra R X where
   map_add' a b := by simp [Matrix.add_apply]
   map_smul' r a := by simp [Matrix.smul_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.5e29b70da1a7 from=translated src=- shape=c3297122 vocab=26ef65a1
+-/
 theorem freeDeriv_apply (a : FreeAlgebra R X) : freeDeriv deg δ a = freeDerivMatrix deg δ a 0 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.c54a81a9a716 from=translated src=- shape=030ae5c2 vocab=264381bd
+-/
 @[simp]
 theorem freeDeriv_ι (x : X) : freeDeriv deg δ (FreeAlgebra.ι R x) = δ x := by
   simp [freeDeriv_apply, freeDerivMatrix]
 
+/--
+@isnad1 id=eq.0h5v.s8.79361063fb69 from=translated src=- shape=62e24454 vocab=bc0d64ec
+-/
 @[simp]
 theorem freeDeriv_algebraMap (r : R) :
     freeDeriv deg δ (algebraMap R (FreeAlgebra R X) r) = 0 := by
   rw [freeDeriv_apply, AlgHom.commutes]
   simp [Matrix.algebraMap_matrix_apply]
 
+/--
+@isnad1 id=eq.0h4v.s8.3407ae739f8e from=translated src=- shape=8c662ceb vocab=a2d1b0cb
+-/
 @[simp]
 theorem freeDeriv_one : freeDeriv deg δ (1 : FreeAlgebra R X) = 0 := by
   simpa using freeDeriv_algebraMap deg δ (1 : R)
 
-/-- The Leibniz rule in terms of the grading automorphism: `d (a * b) = d a * b + ε a * d b`.-/
+/-- The Leibniz rule in terms of the grading automorphism: `d (a * b) = d a * b + ε a * d b`.
+@isnad1 id=eq.0h6v.s10.baf1393ac48a from=translated src=- shape=c6d89676 vocab=9b58bfcb
+-/
 theorem freeDeriv_mul (a b : FreeAlgebra R X) :
     freeDeriv deg δ (a * b) = freeDeriv deg δ a * b + freeSignAut deg a * freeDeriv deg δ b := by
   rw [freeDeriv_apply, map_mul, Matrix.mul_apply, Fin.sum_univ_two,
     (freeDerivMatrix_apply deg δ a).2.2, (freeDerivMatrix_apply deg δ b).2.1, add_comm]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.7d56d7c7cd9d from=translated src=- shape=82109009 vocab=b48a0777
+-/
 theorem freeDeriv_units_smul (u : ℤˣ) (a : FreeAlgebra R X) :
     freeDeriv deg δ (u • a) = u • freeDeriv deg δ a := by
   rw [Units.smul_def, Units.smul_def, map_zsmul]
 
 variable {deg} in
+/--
+@isnad1 id=eq.1h5v.s8.d474bb627074 from=translated src=- shape=cc650876 vocab=e1efa7ae
+-/
 theorem freeSignAut_of_mem {n : ℤ} {a : FreeAlgebra R X} (ha : a ∈ freeGrading R deg n) :
     freeSignAut deg a = koszulSign n • a := by
   induction ha using freeGrading.induction_on with
@@ -247,14 +290,18 @@ theorem freeSignAut_of_mem {n : ℤ} {a : FreeAlgebra R X} (ha : a ∈ freeGradi
     rw [map_smul, ha, Units.smul_def, Units.smul_def, smul_comm r]
 
 variable {deg} in
-/-- The graded Leibniz rule: `d (a * b) = d a * b + (-1)^n a * d b` for `a` of degree `n`.-/
+/-- The graded Leibniz rule: `d (a * b) = d a * b + (-1)^n a * d b` for `a` of degree `n`.
+@isnad1 id=eq.1h7v.s10.df17c1cb8939 from=translated src=- shape=9d274385 vocab=63998882
+-/
 theorem freeDeriv_mul_of_mem {n : ℤ} {a : FreeAlgebra R X} (ha : a ∈ freeGrading R deg n)
     (b : FreeAlgebra R X) :
     freeDeriv deg δ (a * b) = freeDeriv deg δ a * b + koszulSign n • (a * freeDeriv deg δ b) := by
   rw [freeDeriv_mul, freeSignAut_of_mem ha, smul_mul_assoc]
 
 variable {deg δ} in
-/-- If `δ x` has degree `deg x + 1` for every generator, the derivation has degree `+1`.-/
+/-- If `δ x` has degree `deg x + 1` for every generator, the derivation has degree `+1`.
+@isnad1 id=mem.2h6v.s9.559c3dc49035 from=translated src=- shape=e395f1e9 vocab=3b075b28
+-/
 theorem freeDeriv_mem (hδ : ∀ x, δ x ∈ freeGrading R deg (deg x + 1)) {n : ℤ}
     {a : FreeAlgebra R X} (ha : a ∈ freeGrading R deg n) :
     freeDeriv deg δ a ∈ freeGrading R deg (n + 1) := by
@@ -278,7 +325,9 @@ theorem freeDeriv_mem (hδ : ∀ x, δ x ∈ freeGrading R deg (deg x + 1)) {n :
   | h_smul r a _ ha => rw [map_smul]; exact Submodule.smul_mem _ r ha
 
 variable {deg δ} in
-/-- `d ∘ d` is an (ungraded) derivation: `d² (a * b) = d² a * b + a * d² b`.-/
+/-- `d ∘ d` is an (ungraded) derivation: `d² (a * b) = d² a * b + a * d² b`.
+@isnad1 id=eq.1h6v.s10.5a5630d253a4 from=translated src=- shape=8423cb49 vocab=9834218f
+-/
 theorem freeDeriv_freeDeriv_mul (hδ : ∀ x, δ x ∈ freeGrading R deg (deg x + 1))
     (a b : FreeAlgebra R X) :
     freeDeriv deg δ (freeDeriv deg δ (a * b)) =
@@ -299,7 +348,9 @@ theorem freeDeriv_freeDeriv_mul (hδ : ∀ x, δ x ∈ freeGrading R deg (deg x 
     abel
 
 variable {deg δ} in
-/-- `d ∘ d = 0` if and only if `d (δ x) = 0` for every generator `x`.-/
+/-- `d ∘ d = 0` if and only if `d (δ x) = 0` for every generator `x`.
+@isnad1 id=iff.1h4v.s9.869817736b55 from=translated src=- shape=5ec9fc3f vocab=3b075b28
+-/
 theorem freeDeriv_freeDeriv_eq_zero_iff (hδ : ∀ x, δ x ∈ freeGrading R deg (deg x + 1)) :
     (∀ a, freeDeriv deg δ (freeDeriv deg δ a) = 0) ↔ ∀ x, freeDeriv deg δ (δ x) = 0 := by
   refine ⟨fun h x => by simpa using h (FreeAlgebra.ι R x), fun h a => ?_⟩
@@ -367,6 +418,9 @@ def toFree : SemiFree S ≃ₐ[R] FreeAlgebra R X := AlgEquiv.refl
 /-- A generator, as an element of `SemiFree S`.-/
 def ι (x : X) : SemiFree S := FreeAlgebra.ι R x
 
+/--
+@isnad1 id=eq.0h4v.s9.db9eb33b4f9c from=translated src=- shape=575e6fc5 vocab=e0307977
+-/
 theorem freeDeriv_freeDeriv (a : FreeAlgebra R X) :
     freeDeriv S.deg S.δ (freeDeriv S.deg S.δ a) = 0 :=
   (freeDeriv_freeDeriv_eq_zero_iff S.δ_mem).mpr S.freeDeriv_δ a
@@ -381,9 +435,15 @@ instance instDGAddCommGroup : DGAddCommGroup (SemiFree S) where
 
 variable {S}
 
+/--
+@isnad1 id=mem.0h4v.s7.5ff13156edbd from=translated src=- shape=df4e7f41 vocab=2c71df49
+-/
 theorem ι_mem (x : X) : ι S x ∈ grading (S.deg x) :=
   ι_mem_freeGrading x
 
+/--
+@isnad1 id=eq.0h4v.s8.333b9941b64c from=translated src=- shape=490d6506 vocab=2c220db9
+-/
 @[simp]
 theorem d_ι (x : X) : d (ι S x) = (toFree S).symm (S.δ x) :=
   freeDeriv_ι S.deg S.δ x
@@ -402,6 +462,9 @@ def GeneratorMap (B : Type*) [Ring B] [Algebra R B] [DGAddCommGroup B] : Type _ 
 
 variable {S}
 
+/--
+@isnad1 id=mem.2h7v.s9.9c8f1d3135f6 from=translated src=- shape=3bed3333 vocab=408ff67d
+-/
 theorem lift_mem (f : X → B) (hf : ∀ x, f x ∈ grading (S.deg x)) {n : ℤ}
     {a : FreeAlgebra R X} (ha : a ∈ freeGrading R S.deg n) :
     FreeAlgebra.lift R f a ∈ grading n := by
@@ -418,6 +481,9 @@ theorem lift_mem (f : X → B) (hf : ∀ x, f x ∈ grading (S.deg x)) {n : ℤ}
   | h_add a b _ _ ha hb => rw [map_add]; exact add_mem ha hb
   | h_smul r a _ ha => rw [map_smul]; exact DGAlgebra.smul_mem r ha
 
+/--
+@isnad1 id=eq.0h6v.s10.3710441fe5fe from=translated src=- shape=f50ad663 vocab=e5a5b8a4
+-/
 theorem lift_freeDeriv (f : GeneratorMap S B) (a : FreeAlgebra R X) :
     FreeAlgebra.lift R f.1 (freeDeriv S.deg S.δ a) = d (FreeAlgebra.lift R f.1 a) := by
   induction a using DirectSum.Decomposition.inductionOn (freeGrading R S.deg) with
@@ -464,6 +530,9 @@ noncomputable def liftEquiv : GeneratorMap S B ≃ (SemiFree S →ᵈᵍₐ[R] B
 
 variable {S B}
 
+/--
+@isnad1 id=eq.0h6v.s9.a3195aed3774 from=translated src=- shape=92ce1a91 vocab=3fd57974
+-/
 @[simp]
 theorem liftEquiv_apply_ι (f : GeneratorMap S B) (x : X) : liftEquiv S B f (ι S x) = f.1 x :=
   FreeAlgebra.lift_ι_apply f.1 x

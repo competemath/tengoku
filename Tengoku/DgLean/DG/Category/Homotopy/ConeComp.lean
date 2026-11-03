@@ -53,19 +53,31 @@ def compMor₃ : cone g ⟶ shift 1 (cone f) :=
 
 variable {f g} {X : C}
 
+/--
+@isnad1 id=eq.0h8v.s11.5c715ecd074e from=translated src=- shape=26b2871f vocab=2f493be6
+-/
 @[simp]
 theorem compMor₁_fst_apply (p : (cone f).obj X) :
     (fst (f ≫ g)).1.app X ((compMor₁ f g).app X p) = (fst f).1.app X p :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.cfb57174ba6b from=translated src=- shape=3d7daf18 vocab=ceda5711
+-/
 @[simp]
 theorem compMor₁_snd_apply (p : (cone f).obj X) :
     (snd (f ≫ g)).app X ((compMor₁ f g).app X p) = g.app X ((snd f).app X p) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.14af6f073465 from=translated src=- shape=51be22a5 vocab=1f02ef59
+-/
 @[simp]
 theorem compMor₂_fst_apply (p : (cone (f ≫ g)).obj X) :
     (fst g).1.app X ((compMor₂ f g).app X p) = f.app X ((fst (f ≫ g)).1.app X p) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.ec351adab60b from=translated src=- shape=86426b3e vocab=a755125f
+-/
 @[simp]
 theorem compMor₂_snd_apply (p : (cone (f ≫ g)).obj X) :
     (snd g).app X ((compMor₂ f g).app X p) = (snd (f ≫ g)).app X p :=
@@ -95,6 +107,9 @@ def inv : cone (compMor₁ f g) ⟶ cone g :=
       · simp [descCochain_apply, δ_neg_one_apply, inl_d_apply, d_snd_apply]
       · simp [descCochain_apply, δ_neg_one_apply, inl_d_apply, d_snd_apply])
 
+/--
+@isnad1 id=eq.0h6v.s8.28805819aacf from=translated src=- shape=f5d09dda vocab=ef73d641
+-/
 @[simp]
 theorem hom_comp_inv : hom f g ≫ inv f g = 𝟙 _ := by
   refine hom_ext fun X p => ext_to ?_ ?_
@@ -127,6 +142,9 @@ def mappingConeCompHomotopyEquiv : DGHomotopyEquiv (cone g) (cone (compMor₁ f 
   homotopyHomInvId := DGHomotopy.ofEq (MappingConeCompHomotopyEquiv.hom_comp_inv f g)
   homotopyInvHomId := MappingConeCompHomotopyEquiv.homotopyInvHomId f g
 
+/--
+@isnad1 id=eq.0h6v.s8.6e24a2b6c316 from=translated src=- shape=4216459a vocab=7e40848f
+-/
 @[simp]
 theorem mappingConeCompHomotopyEquiv_hom_comp_inv :
     (mappingConeCompHomotopyEquiv f g).hom ≫ (mappingConeCompHomotopyEquiv f g).inv = 𝟙 _ :=

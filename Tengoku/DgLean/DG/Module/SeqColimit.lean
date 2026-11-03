@@ -48,10 +48,16 @@ noncomputable def relHom : (⨁ n, S n) →ᵈᵍ[A] ⨁ n, S n :=
 
 variable {S}
 
+/--
+@isnad1 id=eq.0h5v.s10.ff2313b22d28 from=translated src=- shape=e78f1e0c vocab=724c2b16
+-/
 theorem relHom_of (n : ℕ) (x : S n) :
     relHom S ι (DirectSum.of S n x) = DirectSum.of S n x - DirectSum.of S (n + 1) (ι n x) := by
   simp [relHom]
 
+/--
+@isnad1 id=eq.0h4v.s9.3c023ce91dcf from=translated src=- shape=c3a4516f vocab=a7a8df20
+-/
 theorem relHom_apply_zero (y : ⨁ n, S n) : relHom S ι y 0 = y 0 := by
   induction y using DirectSum.induction_on with
   | zero => rw [map_zero]
@@ -59,6 +65,9 @@ theorem relHom_apply_zero (y : ⨁ n, S n) : relHom S ι y 0 = y 0 := by
     rw [relHom_of, DirectSum.sub_apply, of_eq_of_ne _ _ _ (Nat.succ_ne_zero n).symm, sub_zero]
   | add x y hx hy => rw [map_add, DirectSum.add_apply, DirectSum.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s10.9f93be047c09 from=translated src=- shape=49f155c6 vocab=d4ba9da3
+-/
 theorem relHom_apply_succ (y : ⨁ n, S n) (k : ℕ) :
     relHom S ι y (k + 1) = y (k + 1) - ι k (y k) := by
   induction y using DirectSum.induction_on with
@@ -89,19 +98,30 @@ noncomputable def of (n : ℕ) : S n →ᵈᵍ[A] SeqColimit S ι :=
 
 variable {S ι}
 
+/--
+@isnad1 id=eq.0h5v.s11.0de9de34d45e from=translated src=- shape=dfad4779 vocab=2fe39fbb
+-/
 theorem of_apply (n : ℕ) (x : S n) :
     of S ι n x = (relHom S ι).range.mkQ (DirectSum.of S n x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.bf014737bad4 from=translated src=- shape=e5b79725 vocab=df879901
+-/
 theorem of_succ_ι (n : ℕ) (x : S n) : of S ι (n + 1) (ι n x) = of S ι n x := by
   rw [of_apply, of_apply, eq_comm, ← sub_eq_zero, ← map_sub, DGSubmodule.mkQ_eq_zero_iff,
     ← relHom_of]
   exact DGModuleHom.apply_mem_range _ _
 
+/--
+@isnad1 id=eq.0h4v.s10.24e31797497a from=translated src=- shape=5e7cb8f9 vocab=317df42a
+-/
 @[simp]
 theorem of_comp_ι (n : ℕ) : (of S ι (n + 1)).comp (ι n) = of S ι n :=
   DGModuleHom.ext (of_succ_ι n)
 
-/-- If the transition maps are injective, so are the canonical maps into the colimit.-/
+/-- If the transition maps are injective, so are the canonical maps into the colimit.
+@isnad1 id=injectiv.1h4v.s10.c9a8db7e0207 from=translated src=- shape=62632425 vocab=8ab91200
+-/
 theorem of_injective (hι : ∀ n, Function.Injective (ι n)) (n : ℕ) :
     Function.Injective (of S ι n) := by
   rw [injective_iff_map_eq_zero]
@@ -150,19 +170,30 @@ theorem of_injective (hι : ∀ n, Function.Injective (ι n)) (n : ℕ) :
 noncomputable def filtration (n : ℕ) : DGSubmodule A (SeqColimit S ι) :=
   (of S ι n).range
 
+/--
+@isnad1 id=iff.0h5v.s11.937a06db8955 from=translated src=- shape=bba03ec2 vocab=617b95c5
+-/
 theorem mem_filtration_iff {n : ℕ} {x : SeqColimit S ι} :
     x ∈ filtration n ↔ ∃ y, of S ι n y = x :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h5v.s11.6d7a97302f65 from=translated src=- shape=d95cca21 vocab=617b95c5
+-/
 theorem of_mem_filtration (n : ℕ) (x : S n) : of S ι n x ∈ filtration n :=
   ⟨x, rfl⟩
 
+/--
+@isnad1 id=monotone.0h3v.s10.650c17d6e920 from=translated src=- shape=c5855234 vocab=6ba2fcc3
+-/
 theorem filtration_mono : Monotone (filtration (S := S) (ι := ι)) := by
   refine monotone_nat_of_le_succ fun n x hx => ?_
   obtain ⟨y, rfl⟩ := hx
   exact ⟨ι n y, of_succ_ι n y⟩
 
-/-- The filtration by the images of the `S n` is exhaustive.-/
+/-- The filtration by the images of the `S n` is exhaustive.
+@isnad1 id=ex.0h4v.s10.efb397dd25a6 from=translated src=- shape=2b09842f vocab=e3c7a883
+-/
 theorem exists_mem_filtration (x : SeqColimit S ι) : ∃ n, x ∈ filtration n := by
   obtain ⟨y, rfl⟩ := (relHom S ι).range.mkQ_surjective x
   induction y using DirectSum.induction_on with
@@ -175,7 +206,9 @@ theorem exists_mem_filtration (x : SeqColimit S ι) : ∃ n, x ∈ filtration n 
     exact ⟨max i j, add_mem (filtration_mono (le_max_left i j) hi)
       (filtration_mono (le_max_right i j) hj)⟩
 
-/-- Every element of the colimit comes from some `S n`.-/
+/-- Every element of the colimit comes from some `S n`.
+@isnad1 id=ex.0h4v.s10.ae2d81d4ee0f from=translated src=- shape=3de5f27c vocab=df879901
+-/
 theorem exists_of_eq (x : SeqColimit S ι) : ∃ n y, of S ι n y = x :=
   (exists_mem_filtration x).imp fun _ h => h
 
@@ -185,6 +218,9 @@ variable {N : Type*} [AddCommGroup N] [DGAddCommGroup N] [Module A N]
   (g : ∀ n, S n →ᵈᵍ[A] N) (hg : ∀ n, (g (n + 1)).comp (ι n) = g n)
 
 include hg in
+/--
+@isnad1 id=eq.1h6v.s9.4dc461e0a142 from=translated src=- shape=a1684234 vocab=a3a67ecc
+-/
 theorem toModule_relHom (y : ⨁ n, S n) : DGModuleHom.toModule g (relHom S ι y) = 0 := by
   induction y using DirectSum.induction_on with
   | zero => rw [map_zero, map_zero]
@@ -200,10 +236,16 @@ noncomputable def desc : SeqColimit S ι →ᵈᵍ[A] N :=
     obtain ⟨y, rfl⟩ := hx
     exact toModule_relHom g hg y
 
+/--
+@isnad1 id=eq.1h7v.s11.dc87c7d5a0fc from=translated src=- shape=bc5417a8 vocab=c8f9b16c
+-/
 @[simp]
 theorem desc_of (n : ℕ) (x : S n) : desc g hg (of S ι n x) = g n x :=
   DGModuleHom.toModule_lof g n x
 
+/--
+@isnad1 id=eq.1h6v.s9.6f4252098801 from=translated src=- shape=7a8a85b6 vocab=b8d037f8
+-/
 @[simp]
 theorem desc_comp_of (n : ℕ) : (desc g hg).comp (of S ι n) = g n :=
   DGModuleHom.ext (desc_of g hg n)

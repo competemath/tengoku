@@ -55,6 +55,9 @@ noncomputable def liftQCochain {n : ℤ} (c : CatModule.Cochain M N n)
     induction y using QuotientAddGroup.induction_on with
     | H m => exact c.map_smul hf m
 
+/--
+@isnad1 id=eq.1h8v.s10.f1cf274b892a from=translated src=- shape=23ed7347 vocab=da67134b
+-/
 @[simp]
 theorem liftQCochain_app_mkQ {n : ℤ} (c : CatModule.Cochain M N n)
     (h : ∀ X, ∀ m ∈ S.carrier X, c.app X m = 0) {X : C} (m : M.obj X) :
@@ -80,12 +83,18 @@ noncomputable def relHomApp (X : C) : (⨁ n, (S n).obj X) →+ ⨁ n, (S n).obj
 
 variable {S}
 
+/--
+@isnad1 id=eq.0h6v.s11.5956d7503daa from=translated src=- shape=dc799f4a vocab=4ec84a4e
+-/
 theorem relHom_of {X : C} (n : ℕ) (x : (S n).obj X) :
     relHomApp S ι X (DirectSum.of (fun n => (S n).obj X) n x) =
       DirectSum.of (fun n => (S n).obj X) n x -
         DirectSum.of (fun n => (S n).obj X) (n + 1) ((ι n).app X x) :=
   DirectSum.toAddMonoid_of (fun n => (directSumι S n - ι n ≫ directSumι S (n + 1)).app X) n x
 
+/--
+@isnad1 id=eq.0h5v.s10.713771199d37 from=translated src=- shape=0e905f30 vocab=c30e963e
+-/
 theorem relHom_apply_zero {X : C} y : relHomApp S ι X y 0 = y 0 := by
   induction y using DirectSum.induction_on with
   | zero => rw [map_zero]
@@ -93,6 +102,9 @@ theorem relHom_apply_zero {X : C} y : relHomApp S ι X y 0 = y 0 := by
     rw [relHom_of, DirectSum.sub_apply, of_eq_of_ne _ _ _ (Nat.succ_ne_zero n).symm, sub_zero]
   | add x y hx hy => rw [map_add, DirectSum.add_apply, DirectSum.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s11.02652163c34a from=translated src=- shape=fb802790 vocab=0fbde0a0
+-/
 theorem relHom_apply_succ {X : C} y (k : ℕ) :
     relHomApp S ι X y (k + 1) = y (k + 1) - (ι k).app X (y k) := by
   induction y using DirectSum.induction_on with
@@ -123,22 +135,33 @@ noncomputable def of (n : ℕ) : S n ⟶ seqColimit S ι :=
 
 variable {S ι}
 
+/--
+@isnad1 id=eq.0h6v.s11.a86444d65867 from=translated src=- shape=6d65d083 vocab=4b70574a
+-/
 theorem of_app (n : ℕ) {X : C} (x : (S n).obj X) :
     (of S ι n).app X x =
       (Hom.range (relHom S ι)).mkQ.app X (DirectSum.of (fun n => (S n).obj X) n x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.a0b2874c1221 from=translated src=- shape=1d454945 vocab=adb7c854
+-/
 theorem of_succ_ι (n : ℕ) {X : C} (x : (S n).obj X) :
     (of S ι (n + 1)).app X ((ι n).app X x) = (of S ι n).app X x := by
   rw [of_app, of_app, eq_comm, ← sub_eq_zero, ← map_sub, CatSubmodule.mkQ_eq_zero_iff,
     ← relHom_of]
   exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.f5ece451799e from=translated src=- shape=33d6d8c1 vocab=f33521fd
+-/
 @[simp, reassoc]
 theorem ι_comp_of (n : ℕ) : ι n ≫ of S ι (n + 1) = of S ι n :=
   hom_ext fun _ x => of_succ_ι n x
 
-/-- Every element of the colimit comes from some `S n`.-/
+/-- Every element of the colimit comes from some `S n`.
+@isnad1 id=ex.0h5v.s9.e7133c5b10d2 from=translated src=- shape=ba4e295a vocab=adb7c854
+-/
 theorem exists_of_eq {X : C} (x : (seqColimit S ι).obj X) :
     ∃ n y, (of S ι n).app X y = x := by
   obtain ⟨y, rfl⟩ := (Hom.range (relHom S ι)).mkQ_surjective X x
@@ -163,7 +186,9 @@ theorem exists_of_eq {X : C} (x : (seqColimit S ι).obj X) :
     rw [map_add, ha', hb', ha, hb]
     rfl
 
-/-- If the transition maps are injective, so are the canonical maps into the colimit.-/
+/-- If the transition maps are injective, so are the canonical maps into the colimit.
+@isnad1 id=injectiv.1h5v.s10.0afe306b1cf8 from=translated src=- shape=a7c2a070 vocab=8964b79a
+-/
 theorem of_injective (hι : ∀ n X, Function.Injective ((ι n).app X)) (n : ℕ) (X : C) :
     Function.Injective ((of S ι n).app X) := by
   rw [injective_iff_map_eq_zero]
@@ -235,6 +260,9 @@ noncomputable def descCochain {k : ℤ} (c : ∀ n, Cochain (S n) N k)
       rw [map_add, map_add]
       exact (congrArg₂ (· + ·) hx hy).trans (add_zero 0))
 
+/--
+@isnad1 id=eq.1h9v.s11.383cd9973cfa from=translated src=- shape=7fa45f18 vocab=25b0960f
+-/
 @[simp]
 theorem descCochain_of {k : ℤ} (c : ∀ n, Cochain (S n) N k)
     (hc : ∀ n {X : C} (x : (S n).obj X), (c (n + 1)).app X ((ι n).app X x) = (c n).app X x)
@@ -257,11 +285,17 @@ noncomputable def desc : seqColimit S ι ⟶ N :=
         Category.assoc, directSumι_desc, hg, sub_self, Limits.comp_zero]
     exact congrArg (fun χ : directSum S ⟶ N => χ.app X y) h)
 
+/--
+@isnad1 id=eq.1h8v.s10.33c4382cbc7f from=translated src=- shape=e5703f2a vocab=b6f109c8
+-/
 @[simp]
 theorem desc_of (n : ℕ) {X : C} (x : (S n).obj X) :
     (desc g hg).app X ((of S ι n).app X x) = (g n).app X x :=
   DirectSum.toAddMonoid_of (fun n => (g n).app X) n x
 
+/--
+@isnad1 id=eq.1h6v.s8.5e7676ce34eb from=translated src=- shape=3287019e vocab=a09c68fd
+-/
 @[simp, reassoc]
 theorem of_comp_desc (n : ℕ) : of S ι n ≫ desc g hg = g n :=
   hom_ext fun _ x => desc_of g hg n x

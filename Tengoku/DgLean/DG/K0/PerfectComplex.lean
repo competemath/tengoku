@@ -50,20 +50,26 @@ noncomputable def eulerChar (X : _root_.DerivedCategory (ModuleCat.{u} R))
   hX.choose_spec.choose.eulerChar
 
 /-- The Euler characteristic of a perfect object can be computed from any perfect complex
-representing it.-/
+representing it.
+@isnad1 id=eq.1h5v.s7.c4c874658f76 from=translated src=- shape=bf77a92c vocab=a8d9d714
+-/
 theorem eulerChar_eq {X : _root_.DerivedCategory (ModuleCat.{u} R)} (hX : IsPerfect R X)
     {K : CochainComplex (ModuleCat.{u} R) ℤ} (hK : IsPerfectComplex K)
     (e : _root_.DerivedCategory.Q.obj K ≅ X) : eulerChar X hX = hK.eulerChar :=
   IsPerfectComplex.eulerChar_eq_of_iso_Q _ hK (hX.choose_spec.choose_spec.some ≪≫ e.symm)
 
-/-- Isomorphic perfect objects have the same Euler characteristic.-/
+/-- Isomorphic perfect objects have the same Euler characteristic.
+@isnad1 id=eq.0h6v.s6.81791988dbea from=translated src=- shape=27933af5 vocab=4151ba60
+-/
 theorem eulerChar_eq_of_iso {X Y : _root_.DerivedCategory (ModuleCat.{u} R)} (e : X ≅ Y)
     (hX : IsPerfect R X) (hY : IsPerfect R Y) : eulerChar X hX = eulerChar Y hY := by
   have hY' := hY
   obtain ⟨K, hK, ⟨e'⟩⟩ := hY'
   rw [eulerChar_eq hY hK e', eulerChar_eq hX hK (e' ≪≫ e.symm)]
 
-/-- The Euler characteristic of a finitely generated projective module placed in degree `n`.-/
+/-- The Euler characteristic of a finitely generated projective module placed in degree `n`.
+@isnad1 id=eq.0h5v.s7.31f3e0c6f14d from=translated src=- shape=85e7ea47 vocab=dd758365
+-/
 theorem eulerChar_singleFunctor_obj {M : ModuleCat.{u} R} (hM : IsFGProjective R M) (n : ℤ)
     (h : IsPerfect R ((_root_.DerivedCategory.singleFunctor (ModuleCat.{u} R) n).obj M)) :
     eulerChar _ h = n.negOnePow • ProjK0.mk M hM := by
@@ -71,7 +77,9 @@ theorem eulerChar_singleFunctor_obj {M : ModuleCat.{u} R} (hM : IsFGProjective R
     IsPerfectComplex.eulerChar_single]
 
 /-- **Additivity of the Euler characteristic**: `χ(Y) = χ(X) + χ(Z)` for a distinguished
-triangle `X ⟶ Y ⟶ Z ⟶ X⟦1⟧` of perfect objects.-/
+triangle `X ⟶ Y ⟶ Z ⟶ X⟦1⟧` of perfect objects.
+@isnad1 id=eq.1h5v.s8.b3511dcbaa0a from=translated src=- shape=2dcc6ab5 vocab=dba0885a
+-/
 theorem eulerChar_obj₂ (T : Triangle (_root_.DerivedCategory (ModuleCat.{u} R)))
     (hT : T ∈ distTriang _) (h₁ : IsPerfect R T.obj₁) (h₂ : IsPerfect R T.obj₂)
     (h₃ : IsPerfect R T.obj₃) :
@@ -98,6 +106,9 @@ noncomputable def K0ToProjK0 : K0 P.FullSubcategory →+ ProjK0.{u} R :=
       ((hP _).1 T.obj₁.property) ((hP _).1 T.obj₂.property) ((hP _).1 T.obj₃.property))
 
 omit [P.IsClosedUnderIsomorphisms] in
+/--
+@isnad1 id=eq.1h3v.s11.a4bec513782e from=translated src=- shape=a4712a76 vocab=cde98728
+-/
 @[simp]
 theorem K0ToProjK0_mk [P.IsClosedUnderIsomorphisms] (X : P.FullSubcategory) :
     K0ToProjK0 P hP (K0.mk X) = eulerChar X.obj ((hP _).1 X.property) :=

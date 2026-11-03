@@ -72,11 +72,20 @@ namespace Idempotent
 
 variable {X : C} (e : Idempotent X)
 
+/--
+@isnad1 id=mem.0h3v.s7.7b0cf24fa959 from=translated src=- shape=136351a5 vocab=32512f5b
+-/
 theorem mem_grading : e.val ∈ grading (M := X ⟶ X) 0 := e.mem_cocycles.1
 
+/--
+@isnad1 id=eq.0h3v.s8.aee3f3c09020 from=translated src=- shape=9b4432e1 vocab=96594735
+-/
 @[simp]
 theorem d_val : d e.val = 0 := e.mem_cocycles.2
 
+/--
+@isnad1 id=eq.0h5v.s6.c8e3ca29730c from=translated src=- shape=dc93a97f vocab=af402e82
+-/
 @[simp]
 theorem comp_self_assoc {Y : C} (f : X ⟶ Y) : e.val ≫ e.val ≫ f = e.val ≫ f := by
   rw [← Category.assoc, e.comp_self]
@@ -91,6 +100,9 @@ def id (X : C) : Idempotent X where
   comp_self := Category.comp_id _
 
 omit [DGCategory C] in
+/--
+@isnad1 id=eq.0h4v.s8.265c73dd33c2 from=translated src=- shape=81181e88 vocab=b1e59d83
+-/
 @[simp]
 theorem twist_val (n : ℤ) : CatModule.twist n e.val = e.val := by
   rw [CatModule.twist_of_mem e.mem_grading, mul_zero, koszulSign_zero, one_smul]
@@ -123,10 +135,16 @@ noncomputable def ulift : CatModule.{max w w'} C where
 
 variable {M}
 
+/--
+@isnad1 id=eq.0h6v.s7.2909ebc60de8 from=translated src=- shape=95aa1a29 vocab=0b29bf34
+-/
 @[simp]
 theorem ulift_smul_down {X Y : C} (f : X ⟶ Y) (m : (ulift.{w'} M).obj X) :
     (f • m : (ulift.{w'} M).obj Y).down = f • m.down := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.af530c9245e8 from=translated src=- shape=7bb8eeed vocab=cec2a3df
+-/
 theorem ulift_smul_up {X Y : C} (f : X ⟶ Y) (m : M.obj X) :
     f • (show (ulift.{w'} M).obj X from ULift.up m) =
       (show (ulift.{w'} M).obj Y from ULift.up (f • m)) := rfl
@@ -165,6 +183,9 @@ def cornerSubmodule : CatSubmodule (representable X) where
     rw [← Category.assoc]
     exact congrArg (· ≫ f) hh
 
+/--
+@isnad1 id=iff.0h5v.s7.bae2fd4c1b31 from=translated src=- shape=b4533228 vocab=a4ba26d9
+-/
 theorem mem_cornerSubmodule_iff {Y : C} {h : X ⟶ Y} :
     h ∈ (cornerSubmodule e).carrier Y ↔ e.val ≫ h = h :=
   Iff.rfl
@@ -200,7 +221,9 @@ namespace IsCornerGenerator
 variable {R : CatModule.{w} C} {X : C} {e : DGCategory.Idempotent X} {k : ℤ} {g : R.obj X}
   (hg : IsCornerGenerator R e k g)
 
-/-- The generator of `R`, a free generator: `f ↦ f • g` is bijective.-/
+/-- The generator of `R`, a free generator: `f ↦ f • g` is bijective.
+@isnad1 id=iscorner.3h5v.s9.1a42c9d2bfc1 from=translated src=- shape=7fc91d95 vocab=5defa3c0
+-/
 theorem of_bijective [DGCategory C] (hk : g ∈ grading k) (hd : d g = 0)
     (hb : ∀ Y : C, Function.Bijective fun f : X ⟶ Y => f • g) :
     IsCornerGenerator R (DGCategory.Idempotent.id X) k g where
@@ -217,7 +240,9 @@ theorem of_bijective [DGCategory C] (hk : g ∈ grading k) (hd : d g = 0)
 variable {N : CatModule.{w} C}
 
 /-- Every cochain of degree `n` out of `R` is determined on the generator:
-`z (f • g) = (-1)^{n |f|} f • z g`, i.e. `z (f • g) = twist n f • z g` for all `f`.-/
+`z (f • g) = (-1)^{n |f|} f • z g`, i.e. `z (f • g) = twist n f • z g` for all `f`.
+@isnad1 id=eq.0h9v.s9.b032bcd7fdbd from=translated src=- shape=4755c639 vocab=710d93d0
+-/
 theorem app_smul_gen {n : ℤ} (z : Cochain R N n) {Y : C} (f : X ⟶ Y) :
     z.app Y (f • g) = twist n f • z.app X g := by
   induction f using DG.induction_on with
@@ -227,10 +252,16 @@ theorem app_smul_gen {n : ℤ} (z : Cochain R N n) {Y : C} (f : X ⟶ Y) :
 
 include hg
 
+/--
+@isnad1 id=eq.2h9v.s7.ed8d74069a29 from=translated src=- shape=81658855 vocab=4f9a7d3d
+-/
 theorem val_comp_eq {Y : C} {f f' : X ⟶ Y} (h : f • g = f' • g) : e.val ≫ f = e.val ≫ f' := by
   rw [← sub_eq_zero, ← Preadditive.comp_sub]
   exact hg.val_comp_eq_zero _ (by rw [sub_smul, h, sub_self])
 
+/--
+@isnad1 id=eq.1h8v.s7.e5748d01591f from=translated src=- shape=9ccf510b vocab=4f9a7d3d
+-/
 theorem val_comp_smul {Y : C} (f : X ⟶ Y) : (e.val ≫ f) • g = f • g := by
   rw [comp_smul, hg.val_smul]
 
@@ -244,51 +275,86 @@ noncomputable def coord (Y : C) : R.obj Y →+ (X ⟶ Y) where
     refine hg.val_comp_eq ?_
     simp only [add_smul, Function.surjInv_eq (hg.surjective Y)]
 
+/--
+@isnad1 id=eq.1h8v.s8.fba9d42fc584 from=translated src=- shape=d6b38c22 vocab=5dcb67a6
+-/
 theorem coord_apply {Y : C} (r : R.obj Y) :
     hg.coord Y r = e.val ≫ Function.surjInv (hg.surjective Y) r := rfl
 
+/--
+@isnad1 id=eq.2h9v.s8.83c4b74886c9 from=translated src=- shape=4518193c vocab=fc1603fc
+-/
 theorem coord_eq {Y : C} {r : R.obj Y} {f : X ⟶ Y} (h : f • g = r) :
     hg.coord Y r = e.val ≫ f :=
   hg.val_comp_eq ((Function.surjInv_eq (hg.surjective Y) r).trans h.symm)
 
+/--
+@isnad1 id=eq.1h8v.s8.d794ca24f7ad from=translated src=- shape=6ef0a200 vocab=fc1603fc
+-/
 @[simp]
 theorem coord_smul_gen {Y : C} (f : X ⟶ Y) : hg.coord Y (f • g) = e.val ≫ f :=
   hg.coord_eq rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.e439577bec73 from=translated src=- shape=df153f0e vocab=dae33d22
+-/
 @[simp]
 theorem coord_gen : hg.coord X g = e.val := by
   rw [hg.coord_eq (id_smul g), Category.comp_id]
 
+/--
+@isnad1 id=eq.1h8v.s8.2170376b1693 from=translated src=- shape=852eeb04 vocab=53453727
+-/
 @[simp]
 theorem coord_smul {Y : C} (r : R.obj Y) : hg.coord Y r • g = r := by
   rw [coord_apply, hg.val_comp_smul, Function.surjInv_eq (hg.surjective Y)]
 
+/--
+@isnad1 id=eq.1h8v.s9.747ce506284a from=translated src=- shape=52a24b31 vocab=9aa717b9
+-/
 @[simp]
 theorem val_comp_coord {Y : C} (r : R.obj Y) : e.val ≫ hg.coord Y r = hg.coord Y r := by
   rw [coord_apply, e.comp_self_assoc]
 
+/--
+@isnad1 id=eq.1h10v.s9.3b012074b5cb from=translated src=- shape=5dac0a40 vocab=0018cdca
+-/
 theorem coord_act {Y Z : C} (f : Y ⟶ Z) (r : R.obj Y) :
     hg.coord Z (f • r) = hg.coord Y r ≫ f := by
   conv_lhs => rw [← hg.coord_smul r, ← comp_smul]
   rw [coord_smul_gen, ← Category.assoc, val_comp_coord]
 
+/--
+@isnad1 id=eq.1h11v.s10.7a43e4be4681 from=translated src=- shape=536fb121 vocab=6f7700f1
+-/
 theorem app_eq {n : ℤ} (z : Cochain R N n) {Y : C} (r : R.obj Y) :
     z.app Y r = twist n (hg.coord Y r) • z.app X g := by
   conv_lhs => rw [← hg.coord_smul r]
   exact app_smul_gen z _
 
-/-- Two cochains out of `R` agreeing on the generator are equal.-/
+/-- Two cochains out of `R` agreeing on the generator are equal.
+@isnad1 id=eq.2h10v.s9.82ac01d034fc from=translated src=- shape=23cfd8f7 vocab=f23f4b37
+-/
 theorem ext_gen {n : ℤ} {z z' : Cochain R N n} (h : z.app X g = z'.app X g) : z = z' :=
   Cochain.ext fun Y r => by rw [hg.app_eq z r, hg.app_eq z' r, h]
 
+/--
+@isnad1 id=mem.1h9v.s8.898585855548 from=translated src=- shape=30cb9957 vocab=83037e5d
+-/
 theorem app_gen_mem {n : ℤ} (z : Cochain R N n) : z.app X g ∈ grading (k + n) :=
   z.map_mem hg.mem_grading
 
+/--
+@isnad1 id=eq.1h9v.s9.20df49ed242f from=translated src=- shape=1c1645cd vocab=14ffe52d
+-/
 theorem val_smul_app_gen {n : ℤ} (z : Cochain R N n) : e.val • z.app X g = z.app X g := by
   rw [← e.twist_val n, ← app_smul_gen z, hg.val_smul]
 
 variable [DGCategory C]
 
+/--
+@isnad1 id=mem.2h9v.s9.65b9e85c2f56 from=translated src=- shape=7cf8884f vocab=b019d27f
+-/
 theorem coord_mem {Y : C} {i : ℤ} {r : R.obj Y} (hr : r ∈ grading i) :
     hg.coord Y r ∈ grading (i - k) := by
   set f := Function.surjInv (hg.surjective Y) r
@@ -304,6 +370,9 @@ theorem coord_mem {Y : C} {i : ℤ} {r : R.obj Y} (hr : r ∈ grading i) :
     (SetLike.coe_mem (decompose (grading (M := X ⟶ Y)) f (i - k)))
   rwa [zero_add] at this
 
+/--
+@isnad1 id=eq.1h8v.s10.4b599efc4c1d from=translated src=- shape=12236c0a vocab=60fc0176
+-/
 theorem coord_d {Y : C} (r : R.obj Y) : hg.coord Y (d r) = d (hg.coord Y r) := by
   conv_lhs => rw [← hg.coord_smul r, d_smul_of_d_eq_zero_right hg.d_eq_zero]
   rw [coord_smul_gen, ← d_comp_of_d_eq_zero_left e.d_val, val_comp_coord]
@@ -320,19 +389,31 @@ noncomputable def ofElement {n : ℤ} (y : N.obj X) (hy : y ∈ grading (k + n))
     change twist n (hg.coord Z (f • r)) • y = _ • (f • (twist n (hg.coord Y r) • y))
     rw [hg.coord_act, twist_comp, comp_smul, twist_of_mem hf, units_smul_smul]
 
+/--
+@isnad1 id=eq.2h11v.s10.6fa3fd1a6ec9 from=translated src=- shape=c0c93ede vocab=4f70c4eb
+-/
 theorem ofElement_apply {n : ℤ} (y : N.obj X) (hy : y ∈ grading (k + n)) {Y : C}
     (r : R.obj Y) : (hg.ofElement y hy).app Y r = twist n (hg.coord Y r) • y := rfl
 
+/--
+@isnad1 id=eq.2h11v.s9.bcdc704c01ee from=translated src=- shape=15e47530 vocab=d2b4e08f
+-/
 @[simp]
 theorem ofElement_smul_gen {n : ℤ} (y : N.obj X) (hy : y ∈ grading (k + n)) {Y : C}
     (f : X ⟶ Y) : (hg.ofElement y hy).app Y (f • g) = twist n (e.val ≫ f) • y := by
   rw [ofElement_apply, coord_smul_gen]
 
+/--
+@isnad1 id=eq.2h9v.s9.a27e6869e640 from=translated src=- shape=723dda3a vocab=55e5bfdd
+-/
 @[simp]
 theorem ofElement_gen {n : ℤ} (y : N.obj X) (hy : y ∈ grading (k + n)) :
     (hg.ofElement y hy).app X g = e.val • y := by
   rw [ofElement_apply, coord_gen, e.twist_val]
 
+/--
+@isnad1 id=eq.4h10v.s8.6af7ad9e30fd from=translated src=- shape=e3b3f7ea vocab=4e0a289a
+-/
 theorem ofElement_congr {n : ℤ} {y y' : N.obj X} (h : y = y') (hy : y ∈ grading (k + n))
     (hy' : y' ∈ grading (k + n)) : hg.ofElement y hy = hg.ofElement y' hy' := by
   subst h; rfl
@@ -342,23 +423,33 @@ its value at the generator.-/
 theorem eq_ofElement {n : ℤ} (z : Cochain R N n) : z = hg.ofElement _ (hg.app_gen_mem z) :=
   hg.ext_gen (by rw [ofElement_gen, hg.val_smul_app_gen])
 
-/-- The differential of `ofElement y` is `ofElement (d y)`.-/
+/-- The differential of `ofElement y` is `ofElement (d y)`.
+@isnad1 id=eq.4h10v.s9.5487a8b3c4a6 from=translated src=- shape=dc1a2a7a vocab=2ae74ddb
+-/
 theorem δ_ofElement {n m : ℤ} (hnm : n + 1 = m) (y : N.obj X) (hy : y ∈ grading (k + n))
     (hdy : d y ∈ grading (k + m)) : δ n m (hg.ofElement y hy) = hg.ofElement (d y) hdy :=
   hg.ext_gen (by
     rw [δ_apply _ _ hnm, hg.d_eq_zero, map_zero, _root_.smul_zero, sub_zero, ofElement_gen,
       ofElement_gen, d_smul_of_d_eq_zero (e.mem_grading) e.d_val, koszulSign_zero, one_smul])
 
+/--
+@isnad1 id=eq.3h10v.s8.bf10a215d4f9 from=translated src=- shape=5d9c1837 vocab=cf7d8452
+-/
 theorem ofElement_add {n : ℤ} (y y' : N.obj X) (hy : y ∈ grading (k + n))
     (hy' : y' ∈ grading (k + n)) :
     hg.ofElement (y + y') (add_mem hy hy') = hg.ofElement y hy + hg.ofElement y' hy' :=
   Cochain.ext fun _ _ => by simp [ofElement_apply]
 
+/--
+@isnad1 id=eq.1h8v.s7.9bd9c889dacb from=translated src=- shape=4890f322 vocab=0c43067c
+-/
 @[simp]
 theorem ofElement_zero {n : ℤ} : hg.ofElement (0 : N.obj X) (zero_mem (grading (k + n))) = 0 :=
   Cochain.ext fun _ _ => by simp [ofElement_apply]
 
-/-- The `0`-cochain of a morphism out of `R` is `ofElement` of the image of the generator.-/
+/-- The `0`-cochain of a morphism out of `R` is `ofElement` of the image of the generator.
+@isnad1 id=eq.1h8v.s8.d2952f28c768 from=translated src=- shape=a6f6b50c vocab=5eafd2b3
+-/
 theorem ofHom_eq_ofElement (φ : R ⟶ N) :
     Cochain.ofHom φ = hg.ofElement (φ.app X g) (by simpa using φ.map_mem hg.mem_grading) :=
   hg.ext_gen (by rw [ofElement_gen, Cochain.ofHom_apply, ← φ.map_smul, hg.val_smul])
@@ -366,6 +457,9 @@ theorem ofHom_eq_ofElement (φ : R ⟶ N) :
 /-! #### Stability under shifts and universe lifts -/
 
 omit hg [DGCategory C] in
+/--
+@isnad1 id=eq.0h5v.s9.dea79942b5b1 from=translated src=- shape=5f9ef025 vocab=1d52562d
+-/
 theorem twist_twist_self (n : ℤ) {Y : C} (f : X ⟶ Y) : twist n (twist n f) = f := by
   rw [twist_twist]
   induction f using DG.induction_on with
@@ -376,7 +470,9 @@ theorem twist_twist_self (n : ℤ) {Y : C} (f : X ⟶ Y) : twist n (twist n f) =
   | h_add f f' hf hf' => rw [map_add, hf, hf']
 
 /-- A corner generator of `R` gives a corner generator of the shift `R⟦n⟧`, of degree
-`k - n`.-/
+`k - n`.
+@isnad1 id=iscorner.1h7v.s9.bd672bed340c from=translated src=- shape=034f0cb4 vocab=9c043d4e
+-/
 theorem shift (n : ℤ) : IsCornerGenerator (CatModule.shift n R) e (k - n) (shift.mk n g) where
   mem_grading := shift.mk_mem_grading hg.mem_grading
   d_eq_zero := by rw [shift.d_mk, hg.d_eq_zero, _root_.smul_zero]; rfl
@@ -394,7 +490,9 @@ theorem shift (n : ℤ) : IsCornerGenerator (CatModule.shift n R) e (k - n) (shi
     rw [← twist_twist_self n (e.val ≫ f), h, map_zero]
 
 omit [DGCategory C] in
-/-- A corner generator of `R` gives a corner generator of its universe lift.-/
+/-- A corner generator of `R` gives a corner generator of its universe lift.
+@isnad1 id=iscorner.1h6v.s6.69a7e0de8059 from=translated src=- shape=92c92bfe vocab=62722d46
+-/
 theorem ulift : IsCornerGenerator (CatModule.ulift.{w'} R) e k (ULift.up g) where
   mem_grading := hg.mem_grading
   d_eq_zero := ULift.ext _ _ hg.d_eq_zero
@@ -408,7 +506,9 @@ end IsCornerGenerator
 
 variable [DGCategory C] (X : C)
 
-/-- The representable module `C(X, -)` is free on `𝟙 X`.-/
+/-- The representable module `C(X, -)` is free on `𝟙 X`.
+@isnad1 id=iscorner.0h2v.s6.1b43fbefe75f from=translated src=- shape=dd3a6e9d vocab=14248fea
+-/
 theorem isCornerGenerator_representable :
     IsCornerGenerator (representable X) (DGCategory.Idempotent.id X) 0 (𝟙 X) :=
   IsCornerGenerator.of_bijective (id_mem_grading X) (d_id X) fun Y =>
@@ -417,7 +517,9 @@ theorem isCornerGenerator_representable :
       simpa using h', fun h => ⟨h, show 𝟙 X ≫ h = h from Category.id_comp h⟩⟩
 
 variable {X} in
-/-- The corner `e · C(X, -)` is generated by `e`.-/
+/-- The corner `e · C(X, -)` is generated by `e`.
+@isnad1 id=iscorner.0h3v.s6.26267d6b414e from=translated src=- shape=fb222457 vocab=6534a429
+-/
 theorem isCornerGenerator_corner (e : DGCategory.Idempotent X) :
     IsCornerGenerator (corner e) e 0 (cornerGen e) where
   mem_grading := e.mem_grading

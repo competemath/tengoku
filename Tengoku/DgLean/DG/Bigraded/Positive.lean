@@ -37,12 +37,18 @@ def degreeZeroWGrading (k : ℤ) : AddSubgroup (degreeZeroSubring A) :=
 
 variable {A}
 
+/--
+@isnad1 id=iff.0h3v.s8.75b4b6545ef7 from=translated src=- shape=155dc592 vocab=5db5b4ce
+-/
 theorem mem_degreeZeroWGrading_iff {k : ℤ} {a : degreeZeroSubring A} :
     a ∈ degreeZeroWGrading A k ↔ (a : A) ∈ bigrading A (0, k) :=
   ⟨fun h => ⟨a.2, h⟩, fun h => h.2⟩
 
 variable (A)
 
+/--
+@isnad1 id=isintern.0h1v.s8.735488c3463d from=translated src=- shape=0ec5ef96 vocab=19ae66ec
+-/
 theorem isInternal_degreeZeroWGrading : DirectSum.IsInternal (degreeZeroWGrading A) :=
   isInternal_comap _ _ Subtype.val_injective fun k a =>
     ⟨⟨_, decompose_wgrading_mem_grading (M := A) a.2 k⟩, rfl⟩
@@ -54,7 +60,9 @@ noncomputable instance degreeZeroWGrading.decomposition :
 
 variable {A}
 
-/-- The weight components of an element of `A⁰` are its weight components in `A`.-/
+/-- The weight components of an element of `A⁰` are its weight components in `A`.
+@isnad1 id=eq.0h3v.s13.ea986493595a from=translated src=- shape=f6e1e120 vocab=410f6573
+-/
 theorem coe_decompose_degreeZeroWGrading (a : degreeZeroSubring A) (k : ℤ) :
     ((decompose (degreeZeroWGrading A) a k : degreeZeroSubring A) : A) =
       decompose (wgrading (M := A)) (a : A) k := by
@@ -65,6 +73,9 @@ theorem coe_decompose_degreeZeroWGrading (a : degreeZeroSubring A) (k : ℤ) :
 
 variable (A) [BigradedDGRing A]
 
+/--
+@isnad1 id=gradedmo.0h1v.s8.d51162cfdcf3 from=translated src=- shape=e31ecb2b vocab=e1350cb4
+-/
 instance degreeZeroWGrading.gradedMonoid : SetLike.GradedMonoid (degreeZeroWGrading A) where
   one_mem := one_mem_wgrading (A := A)
   mul_mem _ _ _ _ ha hb := mul_mem_wgrading (A := A) ha hb

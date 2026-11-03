@@ -49,7 +49,9 @@ variable {ι : Type*} [DecidableEq ι] {β : ι → Type*} [∀ i, AddCommGroup 
   [AddCommGroup T] (f : ∀ i, β i →+ T)
 
 /-- If `⨁ i, β i → T` is bijective, then `T` is the internal
-direct sum of the ranges of the `f i`.-/
+direct sum of the ranges of the `f i`.
+@isnad1 id=isintern.1h4v.s8.4f3d2789ea91 from=translated src=- shape=df1631e9 vocab=5e01e0ab
+-/
 theorem isInternal_range_of_bijective
     (h : Function.Bijective (DirectSum.toAddMonoid f)) :
     DirectSum.IsInternal fun i => (f i).range := by
@@ -82,7 +84,9 @@ theorem isInternal_range_of_bijective
   · obtain ⟨w, rfl⟩ := h.2 t
     exact ⟨m w, hm w⟩
 
-/-- The components of the decomposition by the ranges of the `f i`.-/
+/-- The components of the decomposition by the ranges of the `f i`.
+@isnad1 id=eq.0h6v.s10.b9dde9e17e50 from=translated src=- shape=80b86e80 vocab=5ca77b35
+-/
 theorem coe_decompose_range [Decomposition fun i => (f i).range]
     (w : ⨁ i, β i) (i : ι) :
     (decompose (fun i => (f i).range) (DirectSum.toAddMonoid f w) i : T) = f i (w i) := by
@@ -108,6 +112,9 @@ def homOfMem {j : ℤ} {a : A} (ha : a ∈ wgrading (M := A) j) (k l : ℤ) (h :
     (⟨k⟩ : WeightCategory A) ⟶ ⟨l⟩ :=
   ⟨a, show a ∈ wgrading (M := A) (l - k) by rw [h]; exact ha⟩
 
+/--
+@isnad1 id=eq.2h5v.s7.81432b11e920 from=translated src=- shape=aa1ee9da vocab=87e72027
+-/
 @[simp]
 theorem homOfMem_val {j : ℤ} {a : A} (ha : a ∈ wgrading (M := A) j) (k l : ℤ) (h : l - k = j) :
     (homOfMem ha k l h).1 = a := rfl
@@ -145,6 +152,9 @@ def toCatModuleObj : CatModule.{v} (WeightCategory A) where
     change d (f.1 • m.1) = d f.1 • m.1 + ((koszulSign i : ℤ) • (f.1 • d m.1))
     rw [d_smul (A := A) (a := f.1) hf, Units.smul_def])
 
+/--
+@isnad1 id=eq.0h3v.s7.599b67036722 from=translated src=- shape=629ad24f vocab=fb866955
+-/
 @[simp]
 theorem toCatModuleObj_obj (k : WeightCategory A) :
     (toCatModuleObj M).obj k = wgrading (M := M) k.as := rfl
@@ -161,6 +171,9 @@ def toCatModule : BigradedDGModuleCat.{v} A ⥤ CatModule.{v} (WeightCategory A)
       map_d' := fun m => Subtype.ext (φ.hom.map_d m.1)
       map_smul' := fun f m => Subtype.ext (φ.hom.map_smul f.1 m.1) }
 
+/--
+@isnad1 id=eq.0h6v.s11.9f9a12128578 from=translated src=- shape=1a2b544a vocab=3cc42c0d
+-/
 @[simp]
 theorem toCatModule_map_app_coe {M N : BigradedDGModuleCat.{v} A} (φ : M ⟶ N)
     (k : WeightCategory A) (m : (toCatModuleObj M).obj k) :
@@ -183,7 +196,9 @@ abbrev WeightSum : Type v :=
 abbrev weightSumOf (k : ℤ) : N.obj ⟨k⟩ →+ N.WeightSum :=
   DirectSum.of (fun k => N.obj ⟨k⟩) k
 
-/-- Moving a summand along an equality of indices.-/
+/-- Moving a summand along an equality of indices.
+@isnad1 id=eq.2h8v.s10.bb4f5a1bacd1 from=translated src=- shape=632a1d56 vocab=1a1eb306
+-/
 theorem of_act_eq {k l l' : ℤ} (h : l = l') (f : (⟨k⟩ : WeightCategory A) ⟶ ⟨l⟩)
     (f' : (⟨k⟩ : WeightCategory A) ⟶ ⟨l'⟩) (hf : f.1 = f'.1) (y : N.obj ⟨k⟩) :
     weightSumOf N l (f • y) =
@@ -211,9 +226,14 @@ def weightSumSMulHom : A →+ N.WeightSum →+ N.WeightSum :=
 instance : SMul A N.WeightSum :=
   ⟨fun a x => weightSumSMulHom N a x⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.6f4311a0ba48 from=translated src=- shape=531ea8d6 vocab=b804636f
+-/
 theorem weightSum_smul_def (a : A) (x : N.WeightSum) : a • x = weightSumSMulHom N a x := rfl
 
-/-- The action of a homogeneous element on a summand.-/
+/-- The action of a homogeneous element on a summand.
+@isnad1 id=eq.1h6v.s10.853f2c5670b4 from=translated src=- shape=439113c2 vocab=1b17c7e1
+-/
 theorem weightSum_smul_of {j : ℤ} {a : A} (ha : a ∈ wgrading (M := A) j) (k : ℤ)
     (y : N.obj ⟨k⟩) :
     a • weightSumOf N k y =
@@ -223,18 +243,33 @@ theorem weightSum_smul_of {j : ℤ} {a : A} (ha : a ∈ wgrading (M := A) j) (k 
   erw [DirectSum.toAddMonoid_of]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.aadb44cf394d from=translated src=- shape=1a741c39 vocab=724bafa2
+-/
 theorem weightSum_add_smul (a b : A) (x : N.WeightSum) : (a + b) • x = a • x + b • x := by
   simp only [weightSum_smul_def, map_add, AddMonoidHom.add_apply]
 
+/--
+@isnad1 id=eq.0h5v.s8.8dabad9c0278 from=translated src=- shape=ff81dcef vocab=724bafa2
+-/
 theorem weightSum_smul_add (a : A) (x y : N.WeightSum) : a • (x + y) = a • x + a • y := by
   simp only [weightSum_smul_def, map_add]
 
+/--
+@isnad1 id=eq.0h3v.s7.49b5cb828485 from=translated src=- shape=e6e48284 vocab=ac0069aa
+-/
 theorem weightSum_zero_smul (x : N.WeightSum) : (0 : A) • x = 0 := by
   simp only [weightSum_smul_def, map_zero, AddMonoidHom.zero_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.ad226a41d20b from=translated src=- shape=f57cb545 vocab=ac0069aa
+-/
 theorem weightSum_smul_zero (a : A) : a • (0 : N.WeightSum) = 0 := by
   simp only [weightSum_smul_def, map_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.5b7abd195f0a from=translated src=- shape=b03a62d6 vocab=5b7ee8f2
+-/
 theorem weightSum_one_smul (x : N.WeightSum) : (1 : A) • x = x := by
   induction x using DirectSum.induction_on with
   | zero => exact weightSum_smul_zero N 1
@@ -243,6 +278,9 @@ theorem weightSum_one_smul (x : N.WeightSum) : (1 : A) • x = x := by
       of_act_eq N (add_zero k) _ (𝟙 (⟨k⟩ : WeightCategory A)) rfl, id_smul]
   | add x y hx hy => rw [weightSum_smul_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s7.855568f15634 from=translated src=- shape=e2f28aa5 vocab=e60ce875
+-/
 theorem weightSum_mul_smul (a b : A) (x : N.WeightSum) : (a * b) • x = a • b • x := by
   induction a using DirectSum.Decomposition.inductionOn (wgrading (M := A)) with
   | zero => simp only [zero_mul, weightSum_zero_smul]
@@ -272,6 +310,9 @@ instance instModule : Module A N.WeightSum where
   add_smul a b := weightSum_add_smul N a b
   zero_smul := weightSum_zero_smul N
 
+/--
+@isnad1 id=mem.2h6v.s9.162ce049508c from=translated src=- shape=99dbb08b vocab=97f74a7c
+-/
 theorem weightSum_smul_mem_grading {i j : ℤ} {a : A} (ha : a ∈ grading i) {x : N.WeightSum}
     (hx : x ∈ grading j) : a • x ∈ grading (i + j) := by
   classical
@@ -284,10 +325,16 @@ theorem weightSum_smul_mem_grading {i j : ℤ} {a : A} (ha : a ∈ grading i) {x
   exact DG.DirectSum.of_mem_grading _ _
     (smul_mem_grading (M := N) (decompose_wgrading_mem_grading ha l) (hx k))
 
+/--
+@isnad1 id=eq.0h4v.s11.6e55edeb372c from=translated src=- shape=06dd35b5 vocab=ada778e6
+-/
 theorem weightSum_d_of (k : ℤ) (y : N.obj ⟨k⟩) :
     d (weightSumOf N k y) = weightSumOf N k (d y) :=
   DG.DirectSum.d_of (fun k => N.obj ⟨k⟩) k y
 
+/--
+@isnad1 id=eq.1h5v.s10.d03230e8fa32 from=translated src=- shape=efbe4a0a vocab=6d6dd6c9
+-/
 theorem weightSum_d_smul {n : ℤ} {a : A} (ha : a ∈ grading n) (x : N.WeightSum) :
     d (a • x) = d a • x + koszulSign n • (a • d x) := by
   classical
@@ -310,7 +357,9 @@ theorem weightSum_d_smul {n : ℤ} {a : A} (ha : a ∈ grading n) (x : N.WeightS
   exact Finset.sum_congr rfl fun l _ => hom l _ (decompose (wgrading (M := A)) a l).2
     (decompose_wgrading_mem_grading ha l) x
 
-/-- `⨁ k, N⟨k⟩` is a dg `A`-module.-/
+/-- `⨁ k, N⟨k⟩` is a dg `A`-module.
+@isnad1 id=dgmodule.0h2v.s7.17031ae6f7fd from=translated src=- shape=1c560952 vocab=d9acf77e
+-/
 instance instDGModule : DGModule A N.WeightSum where
   smul_mem _ _ _ _ ha hx := weightSum_smul_mem_grading N ha hx
   d_smul' ha x := weightSum_d_smul N ha x
@@ -319,10 +368,16 @@ instance instDGModule : DGModule A N.WeightSum where
 abbrev weightSumGrading (k : ℤ) : AddSubgroup N.WeightSum :=
   (weightSumOf N k).range
 
+/--
+@isnad1 id=mem.0h4v.s9.f4440ce2136b from=translated src=- shape=a826b730 vocab=aab75a1d
+-/
 theorem of_mem_weightSumGrading (k : ℤ) (y : N.obj ⟨k⟩) :
     weightSumOf N k y ∈ weightSumGrading N k :=
   ⟨y, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.8734429f8dc0 from=translated src=- shape=1544a598 vocab=8ae2c804
+-/
 theorem weightSum_toAddMonoid_of (x : N.WeightSum) :
     DirectSum.toAddMonoid (weightSumOf N) x = x := by
   induction x using DirectSum.induction_on with
@@ -336,6 +391,9 @@ instance weightSumDecomposition : Decomposition (weightSumGrading N) :=
     ⟨fun x y h => by rwa [weightSum_toAddMonoid_of, weightSum_toAddMonoid_of] at h,
       fun x => ⟨x, weightSum_toAddMonoid_of N x⟩⟩).chooseDecomposition
 
+/--
+@isnad1 id=eq.0h4v.s12.c55c160a20c9 from=translated src=- shape=3f01eef9 vocab=4cd0db23
+-/
 theorem coe_decompose_weightSumGrading (x : N.WeightSum) (k : ℤ) :
     (decompose (weightSumGrading N) x k : N.WeightSum) = weightSumOf N k (x k) := by
   conv_lhs => rw [← weightSum_toAddMonoid_of N x]
@@ -351,7 +409,9 @@ instance instInternalGrading : InternalGrading N.WeightSum where
     rintro k _ ⟨y, rfl⟩
     exact ⟨d y, (weightSum_d_of N k y).symm⟩
 
-/-- `⨁ k, N⟨k⟩` is a bigraded dg `A`-module.-/
+/-- `⨁ k, N⟨k⟩` is a bigraded dg `A`-module.
+@isnad1 id=bigraded.0h2v.s7.33ddb6845d57 from=translated src=- shape=1c560952 vocab=372c97a8
+-/
 instance instBigradedDGModule : BigradedDGModule A N.WeightSum where
   smul_mem := by
     rintro i j a _ ha ⟨y, rfl⟩
@@ -390,6 +450,9 @@ def weightSumMap {N' : CatModule.{v} (WeightCategory A)} (φ : N ⟶ N') :
       DirectSum.map_apply, φ.map_d]
 
 variable {N} in
+/--
+@isnad1 id=eq.0h6v.s11.e98d511636ab from=translated src=- shape=25f66237 vocab=f66b525d
+-/
 theorem weightSumMap_of {N' : CatModule.{v} (WeightCategory A)} (φ : N ⟶ N') (k : ℤ)
     (y : N.obj ⟨k⟩) :
     weightSumMap φ (weightSumOf N k y) =
@@ -424,6 +487,9 @@ namespace BigradedDGModuleCat
 
 variable (M : BigradedDGModuleCat.{v} A)
 
+/--
+@isnad1 id=eq.0h4v.s13.b48b4d3b1faf from=translated src=- shape=d64a4c5b vocab=0bc45d20
+-/
 theorem coe_smul_weightSum (a : A) (x : (toCatModuleObj M).WeightSum) :
     ((decomposeAddEquiv (wgrading (M := M))).symm (a • x) : M) =
       a • (decomposeAddEquiv (wgrading (M := M))).symm x := by
@@ -461,9 +527,15 @@ def weightDecomposeEquiv : M ≃ᵈᵍ[A] (toCatModuleObj M).WeightSum where
       d (decompose (wgrading (M := M)) m k : M)
     exact decompose_wgrading_d m k
 
+/--
+@isnad1 id=eq.0h3v.s10.008805208e53 from=translated src=- shape=41c39be9 vocab=e4ceeb81
+-/
 theorem weightDecomposeEquiv_apply (m : M) :
     weightDecomposeEquiv M m = decompose (wgrading (M := M)) m := rfl
 
+/--
+@isnad1 id=iff.0h4v.s10.b791a00ed02c from=translated src=- shape=4f63039c vocab=f4e8dbc3
+-/
 theorem mem_wgrading_weightDecomposeEquiv_iff {k : ℤ} {m : M} :
     weightDecomposeEquiv M m ∈ wgrading k ↔ m ∈ wgrading k := by
   constructor
@@ -485,6 +557,9 @@ def unitIsoApp : M ≅ (CatModule.toBigraded A).obj ((toCatModule A).obj M) :=
 
 variable {M} in
 omit [BigradedDGRing A] in
+/--
+@isnad1 id=eq.0h6v.s12.d5ea4bf6f48a from=translated src=- shape=7c8ded0e vocab=142bdd1d
+-/
 theorem decompose_hom_apply {N : BigradedDGModuleCat.{v} A} (φ : M ⟶ N) (m : M) (k : ℤ) :
     (decompose (wgrading (M := N)) (φ.hom m) k : N) =
       φ.hom (decompose (wgrading (M := M)) m k) := by
@@ -541,9 +616,15 @@ def weightEquivalence : CatModule.{v} (WeightCategory A) ≌ BigradedDGModuleCat
         rw [AddEquiv.symm_apply_apply, AddEquiv.symm_apply_eq]
         exact Subtype.ext (weightSumMap_of φ k.as y))).symm
 
+/--
+@isnad1 id=eq.0h1v.s7.f8250c0ef0f5 from=translated src=- shape=b41e7577 vocab=1786cd3c
+-/
 @[simp]
 theorem weightEquivalence_functor : (weightEquivalence A).functor = toBigraded A := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.cf60a2396e79 from=translated src=- shape=019087b3 vocab=70d83b48
+-/
 @[simp]
 theorem weightEquivalence_inverse :
     (weightEquivalence A).inverse = BigradedDGModuleCat.toCatModule A := rfl

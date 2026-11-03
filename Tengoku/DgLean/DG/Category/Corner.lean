@@ -65,6 +65,9 @@ variable {ι C} (P : IdempotentFamily ι C)
 
 attribute [reassoc (attr := simp)] idem_comp_idem
 
+/--
+@isnad1 id=mem.0h4v.s8.25540c662c56 from=translated src=- shape=02d6f9f3 vocab=0fcca899
+-/
 theorem idem_mem_cocycles (i : ι) : P.idem i ∈ cocycles (P.obj i ⟶ P.obj i) 0 :=
   ⟨P.idem_mem i, P.d_idem i⟩
 
@@ -76,10 +79,16 @@ def homSubgroup (i j : ι) : AddSubgroup (P.obj i ⟶ P.obj j) where
     by rw [Preadditive.add_comp, hf.2, hg.2]⟩
   neg_mem' {f} hf := ⟨by rw [Preadditive.comp_neg, hf.1], by rw [Preadditive.neg_comp, hf.2]⟩
 
+/--
+@isnad1 id=iff.0h6v.s8.00199d5e6b14 from=translated src=- shape=702528ce vocab=5daa13e9
+-/
 theorem mem_homSubgroup {i j : ι} {f : P.obj i ⟶ P.obj j} :
     f ∈ P.homSubgroup i j ↔ P.idem i ≫ f = f ∧ f ≫ P.idem j = f :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h6v.s8.6adef8365a99 from=translated src=- shape=fc48c881 vocab=5daa13e9
+-/
 theorem idem_comp_comp_idem_mem (i j : ι) (f : P.obj i ⟶ P.obj j) :
     P.idem i ≫ f ≫ P.idem j ∈ P.homSubgroup i j :=
   ⟨by simp, by simp⟩
@@ -102,27 +111,60 @@ instance category : Category.{v} P.Corner where
 
 variable {P}
 
+/--
+@isnad1 id=eq.1h7v.s10.20ab0c0bd6da from=translated src=- shape=cf2837b1 vocab=f6f400e7
+-/
 theorem hom_ext {i j : P.Corner} {f g : i ⟶ j} (h : f.1 = g.1) : f = g :=
   Subtype.ext h
 
+/--
+@isnad1 id=eq.0h4v.s9.4354cdf06493 from=translated src=- shape=c49f593d vocab=d4a7a861
+-/
 @[simp] theorem id_val (i : P.Corner) : (𝟙 i : i ⟶ i).1 = P.idem i.as := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.8e44f96dcdfe from=translated src=- shape=c10923ea vocab=5a13b178
+-/
 @[simp] theorem comp_val {i j k : P.Corner} (f : i ⟶ j) (g : j ⟶ k) :
     (f ≫ g).1 = f.1 ≫ g.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.d167cb44ab46 from=translated src=- shape=1e1128c8 vocab=e385524e
+-/
 theorem idem_comp_val {i j : P.Corner} (f : i ⟶ j) : P.idem i.as ≫ f.1 = f.1 := f.2.1
 
+/--
+@isnad1 id=eq.0h6v.s10.dd0715647a2d from=translated src=- shape=18a1e9ec vocab=e385524e
+-/
 theorem val_comp_idem {i j : P.Corner} (f : i ⟶ j) : f.1 ≫ P.idem j.as = f.1 := f.2.2
 
 instance (i j : P.Corner) : AddCommGroup (i ⟶ j) :=
   inferInstanceAs (AddCommGroup (P.homSubgroup i.as j.as))
 
+/--
+@isnad1 id=eq.0h7v.s11.e9f4f7599c9b from=translated src=- shape=e63c3dbf vocab=2879f18f
+-/
 @[simp] theorem add_val {i j : P.Corner} (f g : i ⟶ j) : (f + g).1 = f.1 + g.1 := rfl
+/--
+@isnad1 id=eq.0h6v.s10.1469be0913ba from=translated src=- shape=7ae59695 vocab=609e02bf
+-/
 @[simp] theorem neg_val {i j : P.Corner} (f : i ⟶ j) : (-f).1 = -f.1 := rfl
+/--
+@isnad1 id=eq.0h5v.s9.8d13fdebfd57 from=translated src=- shape=b404a8c5 vocab=f6f400e7
+-/
 @[simp] theorem zero_val (i j : P.Corner) : (0 : i ⟶ j).1 = 0 := rfl
+/--
+@isnad1 id=eq.0h7v.s11.111ce1b038a5 from=translated src=- shape=e63c3dbf vocab=1700308b
+-/
 @[simp] theorem sub_val {i j : P.Corner} (f g : i ⟶ j) : (f - g).1 = f.1 - g.1 := rfl
+/--
+@isnad1 id=eq.0h7v.s10.4491defbdf9b from=translated src=- shape=6f0bb219 vocab=7b22392a
+-/
 @[simp] theorem zsmul_val {i j : P.Corner} (n : ℤ) (f : i ⟶ j) : (n • f).1 = n • f.1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.b633e0560dac from=translated src=- shape=f5f82952 vocab=b241e422
+-/
 @[simp] theorem sum_val {i j : P.Corner} {J : Type*} (s : Finset J) (f : J → (i ⟶ j)) :
     (∑ a ∈ s, f a).1 = ∑ a ∈ s, (f a).1 :=
   map_sum (AddSubgroupClass.subtype (P.homSubgroup i.as j.as)) f s
@@ -134,6 +176,9 @@ instance preadditive : Preadditive P.Corner where
 variable [DGCategory C]
 
 variable (P) in
+/--
+@isnad1 id=mem.1h6v.s10.f92991aac72d from=translated src=- shape=bc7148cd vocab=264bacae
+-/
 theorem d_mem_homSubgroup {i j : ι} {f : P.obj i ⟶ P.obj j} (hf : f ∈ P.homSubgroup i j) :
     d f ∈ P.homSubgroup i j := by
   constructor
@@ -143,6 +188,9 @@ theorem d_mem_homSubgroup {i j : ι} {f : P.obj i ⟶ P.obj j} (hf : f ∈ P.hom
     exact h.symm
 
 variable (P) in
+/--
+@isnad1 id=mem.1h7v.s13.58f48a1a4724 from=translated src=- shape=eea8d555 vocab=0f47c4d6
+-/
 theorem decompose_mem_homSubgroup {i j : ι} {f : P.obj i ⟶ P.obj j}
     (hf : f ∈ P.homSubgroup i j) (n : ℤ) :
     (decompose (grading (M := P.obj i ⟶ P.obj j)) f n : P.obj i ⟶ P.obj j) ∈
@@ -163,20 +211,31 @@ noncomputable instance instDGAddCommGroupHom (i j : P.Corner) : DGAddCommGroup (
       fun f => P.d_mem_homSubgroup f.2)
     (fun _ => rfl) fun n f => ⟨⟨_, P.decompose_mem_homSubgroup f.2 n⟩, rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s10.50adb8e6aa5e from=translated src=- shape=a53ec3ad vocab=c451eda3
+-/
 theorem mem_grading_iff {i j : P.Corner} {n : ℤ} {f : i ⟶ j} :
     f ∈ grading n ↔ f.1 ∈ grading (M := P.obj i.as ⟶ P.obj j.as) n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.6e6bafcbf737 from=translated src=- shape=a8c010db vocab=6132ffc1
+-/
 @[simp]
 theorem d_val {i j : P.Corner} (f : i ⟶ j) : (d f).1 = d f.1 := rfl
 
+/--
+@isnad1 id=iff.0h7v.s10.f3c4489cab16 from=translated src=- shape=e376f465 vocab=08c43f4c
+-/
 theorem mem_cocycles_iff {i j : P.Corner} {n : ℤ} {f : i ⟶ j} :
     f ∈ cocycles (i ⟶ j) n ↔ f.1 ∈ cocycles (P.obj i.as ⟶ P.obj j.as) n := by
   simp only [mem_cocycles, mem_grading_iff]
   exact and_congr_right fun _ => ⟨fun h => by rw [← d_val, h, zero_val],
     fun h => hom_ext (by rw [d_val, h, zero_val])⟩
 
-/-- The corner category of a family of degree-`0` cocycle idempotents is a dg category.-/
+/-- The corner category of a family of degree-`0` cocycle idempotents is a dg category.
+@isnad1 id=dgcatego.0h3v.s6.f4ea1b14cf0c from=translated src=- shape=b76e3636 vocab=a547b5f8
+-/
 instance instDGCategory : DGCategory P.Corner where
   comp_mem' hf hg := comp_mem_grading (C := C) hf hg
   id_mem' i := P.idem_mem i.as
@@ -205,9 +264,21 @@ def augment : IdempotentFamily (C ⊕ ι) C where
     | .inl X => d_id X
     | .inr i => P.d_idem i
 
+/--
+@isnad1 id=eq.0h4v.s6.da1d8ce6131f from=translated src=- shape=b178f0b4 vocab=2e0987e0
+-/
 @[simp] theorem augment_obj_inl (X : C) : P.augment.obj (.inl X) = X := rfl
+/--
+@isnad1 id=eq.0h4v.s6.56894e67959e from=translated src=- shape=48f010bc vocab=659a356c
+-/
 @[simp] theorem augment_obj_inr (i : ι) : P.augment.obj (.inr i) = P.obj i := rfl
+/--
+@isnad1 id=eq.0h4v.s6.de3a4d7cf59f from=translated src=- shape=df9db7a9 vocab=3c46631d
+-/
 @[simp] theorem augment_idem_inl (X : C) : P.augment.idem (.inl X) = 𝟙 X := rfl
+/--
+@isnad1 id=eq.0h4v.s6.f6bda609b785 from=translated src=- shape=be3fdb81 vocab=e3af3dc2
+-/
 @[simp] theorem augment_idem_inr (i : ι) : P.augment.idem (.inr i) = P.idem i := rfl
 
 /-- The dg functor `C ⥤ P.augment.Corner`, `X ↦ (X, 𝟙 X)`, the identity on Hom complexes.-/
@@ -218,6 +289,9 @@ def inl : C ⥤ P.augment.Corner where
   map_id _ := rfl
   map_comp _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.643597175338 from=translated src=- shape=143a695d vocab=65fcd8b0
+-/
 @[simp] theorem inl_map_val {X Y : C} (f : X ⟶ Y) : ((P.inl).map f).1 = f := rfl
 
 /-- The dg functor `P.Corner ⥤ P.augment.Corner`, `i ↦ (Xᵢ, eᵢ)`, the identity on Hom
@@ -229,6 +303,9 @@ def inr : P.Corner ⥤ P.augment.Corner where
   map_id _ := rfl
   map_comp _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.926c0e4c46f4 from=translated src=- shape=68885a91 vocab=ef4bf95d
+-/
 @[simp] theorem inr_map_val {i j : P.Corner} (f : i ⟶ j) : ((P.inr).map f).1 = f.1 := rfl
 
 instance : P.inl.Additive where
@@ -250,17 +327,26 @@ section Map
 
 variable {X Y Z : C}
 
+/--
+@isnad1 id=mem.1h3v.s7.7573c7df3c73 from=translated src=- shape=4e2854f1 vocab=bba2e348
+-/
 theorem eqToHom_mem_cocycles (h : X = Y) : eqToHom h ∈ cocycles (X ⟶ Y) 0 := by
   subst h
   exact id_mem_cocycles X
 
 omit [DGCategory C] in
+/--
+@isnad1 id=mem.3h7v.s8.b427996fa032 from=translated src=- shape=5ecb09e7 vocab=eb59a6b8
+-/
 theorem eqToHom_comp_comp_eqToHom_mem {X' Y' : C} (h : X' = X) (h' : Y = Y') {n : ℤ}
     {f : X ⟶ Y} (hf : f ∈ grading n) : eqToHom h ≫ f ≫ eqToHom h' ∈ grading n := by
   subst h h'
   simpa using hf
 
 omit [DGCategory C] in
+/--
+@isnad1 id=eq.2h6v.s9.c97f28f3678a from=translated src=- shape=3facb7e6 vocab=00fecd78
+-/
 theorem d_eqToHom_comp_comp_eqToHom {X' Y' : C} (h : X' = X) (h' : Y = Y') (f : X ⟶ Y) :
     d (eqToHom h ≫ f ≫ eqToHom h') = eqToHom h ≫ d f ≫ eqToHom h' := by
   subst h h'
@@ -287,6 +373,9 @@ def mapCorner : P.Corner ⥤ P.Corner where
   map_comp f g := hom_ext (by simp)
 
 omit [DGCategory C] [σ.Additive] [σ.IsDGFunctor] in
+/--
+@isnad1 id=eq.2h8v.s11.ac63c582450a from=translated src=- shape=9b3dc6e7 vocab=2d05602b
+-/
 @[simp]
 theorem mapCorner_map_val {i j : P.Corner} (f : i ⟶ j) :
     ((P.mapCorner σ τ hobj hidem).map f).1 =
@@ -306,12 +395,18 @@ instance : (P.mapCorner σ τ hobj hidem).IsDGFunctor where
 
 omit [σ.Additive] [σ.IsDGFunctor] in
 include hobj in
+/--
+@isnad1 id=eq.1h6v.s7.38d0a8ef100c from=translated src=- shape=2abc864a vocab=c026d8cc
+-/
 theorem augment_hobj : ∀ x, σ.obj (P.augment.obj x) = P.augment.obj (Sum.map σ.obj τ x)
   | .inl _ => rfl
   | .inr i => hobj i
 
 omit [σ.Additive] [σ.IsDGFunctor] in
 include hidem in
+/--
+@isnad1 id=eq.2h6v.s9.56f1f71cb685 from=translated src=- shape=8b87638e vocab=53eddef0
+-/
 theorem augment_hidem : ∀ x, eqToHom (P.augment_hobj σ τ hobj x).symm ≫
     σ.map (P.augment.idem x) ≫ eqToHom (P.augment_hobj σ τ hobj x) =
       P.augment.idem (Sum.map σ.obj τ x)

@@ -43,12 +43,21 @@ noncomputable instance ULift.instDGAddCommGroup : DGAddCommGroup (ULift.{w'} A) 
 
 variable {A}
 
+/--
+@isnad1 id=iff.0h3v.s6.f8ce77c9b048 from=translated src=- shape=21f48890 vocab=423dff5f
+-/
 theorem ULift.mem_grading_iff {n : ℤ} {a : ULift.{w'} A} : a ∈ grading n ↔ a.down ∈ grading n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.42174a679063 from=translated src=- shape=8497c931 vocab=17851cfb
+-/
 @[simp]
 theorem ULift.d_down (a : ULift.{w'} A) : (d a).down = d a.down := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.9c45632dca41 from=translated src=- shape=8958703b vocab=22010cbf
+-/
 @[simp]
 theorem ULift.d_up (a : A) : d (ULift.up.{w'} a) = ULift.up (d a) := rfl
 
@@ -59,7 +68,9 @@ section Module
 variable {A : Type u} [Ring A] [DGAddCommGroup A] (M : Type w) [AddCommGroup M]
   [DGAddCommGroup M] [Module A M] [DGModule A M]
 
-/-- The universe lift of a dg module is a dg module.-/
+/-- The universe lift of a dg module is a dg module.
+@isnad1 id=dgmodule.0h2v.s5.f39aed752913 from=translated src=- shape=f38a42aa vocab=d4facf66
+-/
 instance ULift.instDGModule : DGModule A (ULift.{w'} M) where
   smul_mem _ _ _ _ ha hx := smul_mem_grading (M := M) ha (ULift.mem_grading_iff.mp hx)
   d_smul' ha x := ULift.ext _ _ (d_smul ha x.down)
@@ -81,6 +92,9 @@ def ULift.downHom : ULift.{w'} M →ᵈᵍ[A] M where
   map_d' _ := rfl
 
 omit [DGModule A M] in
+/--
+@isnad1 id=eq.0h2v.s6.8f70657d77aa from=translated src=- shape=e0af65b7 vocab=f9de7ae4
+-/
 @[simp]
 theorem ULift.downHom_comp_upHom :
     (ULift.downHom.{w'} M).comp (ULift.upHom.{w'} M) = (DGModuleHom.id : M →ᵈᵍ[A] M) :=

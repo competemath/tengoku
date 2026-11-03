@@ -39,24 +39,38 @@ section IsDGFunctor
 
 variable (F : C ⥤ D) [F.Additive] [F.IsDGFunctor]
 
+/--
+@isnad1 id=mem.1h7v.s9.666b39ef00ab from=translated src=- shape=9c7f91eb vocab=4706aeaa
+-/
 theorem map_mem_grading {X Y : C} {n : ℤ} {f : X ⟶ Y} (hf : f ∈ grading n) :
     F.map f ∈ grading n :=
   IsDGFunctor.map_mem' hf
 
+/--
+@isnad1 id=eq.0h6v.s10.9d5e41f9a246 from=translated src=- shape=901649b0 vocab=516e6689
+-/
 @[simp]
 theorem map_d {X Y : C} (f : X ⟶ Y) : F.map (d f) = d (F.map f) :=
   IsDGFunctor.map_d' f
 
+/--
+@isnad1 id=mem.1h7v.s9.55c08839e792 from=translated src=- shape=118510cc vocab=cc880337
+-/
 theorem map_mem_cocycles {X Y : C} {n : ℤ} {f : X ⟶ Y} (hf : f ∈ cocycles (X ⟶ Y) n) :
     F.map f ∈ cocycles (F.obj X ⟶ F.obj Y) n :=
   ⟨F.map_mem_grading hf.1, show d (F.map f) = 0 by rw [← F.map_d, hf.2, F.map_zero]⟩
 
+/--
+@isnad1 id=mem.1h7v.s9.1dad234b801f from=translated src=- shape=118510cc vocab=f8b4f6bf
+-/
 theorem map_mem_coboundaries {X Y : C} {n : ℤ} {f : X ⟶ Y}
     (hf : f ∈ coboundaries (X ⟶ Y) n) : F.map f ∈ coboundaries (F.obj X ⟶ F.obj Y) n := by
   obtain ⟨g, hg, rfl⟩ := hf
   exact ⟨F.map g, F.map_mem_grading hg, (F.map_d g).symm⟩
 
-/-- The action of a dg functor on the homogeneous components of a morphism.-/
+/-- The action of a dg functor on the homogeneous components of a morphism.
+@isnad1 id=eq.0h7v.s13.e3ecc1f8f4cb from=translated src=- shape=6e9d597b vocab=0d58195e
+-/
 theorem map_decompose {X Y : C} (f : X ⟶ Y) (n : ℤ) :
     F.map (DirectSum.decompose (grading (M := X ⟶ Y)) f n : X ⟶ Y) =
       (DirectSum.decompose (grading (M := F.obj X ⟶ F.obj Y)) (F.map f) n : F.obj X ⟶ F.obj Y) :=
@@ -66,10 +80,16 @@ theorem map_decompose {X Y : C} (f : X ⟶ Y) (n : ℤ) :
 
 end IsDGFunctor
 
+/--
+@isnad1 id=isdgfunc.0h1v.s5.57aae4fd3d60 from=translated src=- shape=39955e73 vocab=c6cf862d
+-/
 instance isDGFunctor_id : (𝟭 C).IsDGFunctor where
   map_mem' hf := hf
   map_d' _ := rfl
 
+/--
+@isnad1 id=isdgfunc.0h5v.s7.8daff44c1c89 from=translated src=- shape=6da23231 vocab=facc775a
+-/
 instance isDGFunctor_comp (F : C ⥤ D) [F.Additive] [F.IsDGFunctor] (G : D ⥤ E) [G.Additive]
     [G.IsDGFunctor] : (F ⋙ G).IsDGFunctor where
   map_mem' hf := G.map_mem_grading (F.map_mem_grading hf)
@@ -92,6 +112,9 @@ functors.-/
 def mapZ0CompForgetIso : F.mapZ0 ⋙ Z0.forget D ≅ Z0.forget C ⋙ F :=
   Iso.refl _
 
+/--
+@isnad1 id=homotopi.0h8v.s8.eb1ce4a5993b from=translated src=- shape=9076b230 vocab=cf0fc30f
+-/
 theorem mapZ0_homotopic {X Y : Z0 C} {f g : X ⟶ Y} (h : Z0.homotopic C f g) :
     Z0.homotopic D (F.mapZ0.map f) (F.mapZ0.map g) := by
   rw [Z0.homotopic_iff] at h ⊢
@@ -108,6 +131,9 @@ def mapH0 : H0 C ⥤ H0 D :=
 def quotientCompMapH0Iso : H0.quotient C ⋙ F.mapH0 ≅ F.mapZ0 ⋙ H0.quotient D :=
   CategoryTheory.Quotient.lift.isLift _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s9.c1e284f2a27c from=translated src=- shape=e105c68f vocab=ca0e2b95
+-/
 theorem mapH0_map_quotient_map {X Y : Z0 C} (f : X ⟶ Y) :
     F.mapH0.map ((H0.quotient C).map f) = (H0.quotient D).map (F.mapZ0.map f) :=
   CategoryTheory.Quotient.lift_map_functor_map _ _ _ f

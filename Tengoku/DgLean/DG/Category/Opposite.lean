@@ -55,6 +55,9 @@ def signedCompAux :
     (DirectSum.toAddMonoid fun j =>
       (signedCompHomogeneous (X := X) (Y := Y) (Z := Z) i j).flip).flip
 
+/--
+@isnad1 id=eq.0h8v.s15.95d12e4c5d86 from=translated src=- shape=13f498ec vocab=442df215
+-/
 theorem signedCompAux_of_of (i j : ℤ) (f : grading (M := X ⟶ Y) i) (g : grading (M := Y ⟶ Z) j) :
     signedCompAux (DirectSum.of _ i f) (DirectSum.of _ j g) =
       koszulSign (i * j) • ((f : X ⟶ Y) ≫ (g : Y ⟶ Z)) := by
@@ -72,23 +75,34 @@ def signedComp : (X ⟶ Y) →+ (Y ⟶ Z) →+ (X ⟶ Z) :=
       ext g
       simp only [decompose_add, map_add, AddMonoidHom.add_apply, AddMonoidHom.comp_apply]
 
+/--
+@isnad1 id=eq.0h6v.s15.317870ec2876 from=translated src=- shape=7af1eed8 vocab=9118b90d
+-/
 theorem signedComp_apply (f : X ⟶ Y) (g : Y ⟶ Z) :
     signedComp X Y Z f g =
       signedCompAux (decompose (grading (M := X ⟶ Y)) f) (decompose (grading (M := Y ⟶ Z)) g) :=
   rfl
 
-/-- The signed composition of homogeneous morphisms.-/
+/-- The signed composition of homogeneous morphisms.
+@isnad1 id=eq.2h8v.s11.75a13d64c87b from=translated src=- shape=bfdb45fe vocab=d4b69585
+-/
 theorem signedComp_of_mem {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z} (hf : f ∈ grading i)
     (hg : g ∈ grading j) : signedComp X Y Z f g = koszulSign (i * j) • (f ≫ g) := by
   rw [signedComp_apply, decompose_of_mem _ hf, decompose_of_mem _ hg, signedCompAux_of_of]
 
 variable [DGCategory C]
 
+/--
+@isnad1 id=mem.2h8v.s11.7bdd07723874 from=translated src=- shape=6295f351 vocab=74d1b231
+-/
 theorem signedComp_mem_grading {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z} (hf : f ∈ grading i)
     (hg : g ∈ grading j) : signedComp X Y Z f g ∈ grading (i + j) := by
   rw [signedComp_of_mem hf hg, Units.smul_def]
   exact zsmul_mem (comp_mem_grading hf hg) _
 
+/--
+@isnad1 id=eq.0h4v.s11.d7c00312e921 from=translated src=- shape=f519e000 vocab=a8711970
+-/
 @[simp]
 theorem signedComp_id (f : X ⟶ Y) : signedComp X Y Y f (𝟙 Y) = f := by
   induction f using induction_on with
@@ -98,6 +112,9 @@ theorem signedComp_id (f : X ⟶ Y) : signedComp X Y Y f (𝟙 Y) = f := by
       Category.comp_id]
   | h_add f f' hf hf' => rw [map_add, AddMonoidHom.add_apply, hf, hf']
 
+/--
+@isnad1 id=eq.0h4v.s11.940f34c782a7 from=translated src=- shape=f6bcbe9f vocab=a8711970
+-/
 @[simp]
 theorem id_signedComp (f : X ⟶ Y) : signedComp X X Y (𝟙 X) f = f := by
   induction f using induction_on with
@@ -107,7 +124,9 @@ theorem id_signedComp (f : X ⟶ Y) : signedComp X X Y (𝟙 X) f = f := by
       Category.id_comp]
   | h_add f f' hf hf' => rw [map_add, hf, hf']
 
-/-- The signed composition is associative.-/
+/-- The signed composition is associative.
+@isnad1 id=eq.0h8v.s13.c561eebc83b2 from=translated src=- shape=b48493d2 vocab=2c1078c1
+-/
 theorem signedComp_assoc {W : C} (f : W ⟶ X) (g : X ⟶ Y) (h : Y ⟶ Z) :
     signedComp W Y Z (signedComp W X Y f g) h = signedComp W X Z f (signedComp X Y Z g h) := by
   induction f using induction_on with
@@ -133,7 +152,9 @@ theorem signedComp_assoc {W : C} (f : W ⟶ X) (g : X ⟶ Y) (h : Y ⟶ Z) :
         ring
 
 /-- The Leibniz rule for the signed composition, for `g` homogeneous of degree `j`:
-`d (signedComp g f) = signedComp (d g) f + (-1)^j • signedComp g (d f)`.-/
+`d (signedComp g f) = signedComp (d g) f + (-1)^j • signedComp g (d f)`.
+@isnad1 id=eq.1h7v.s13.50cc4b0d399f from=translated src=- shape=2001745c vocab=405254ae
+-/
 theorem d_signedComp {j : ℤ} {g : X ⟶ Y} (hg : g ∈ grading j) (f : Y ⟶ Z) :
     d (signedComp X Y Z g f) =
       signedComp X Y Z (d g) f + koszulSign j • signedComp X Y Z g (d f) := by
@@ -162,7 +183,13 @@ structure DGOpposite (C : Type u) where
 
 namespace DGOpposite
 
+/--
+@isnad1 id=eq.0h2v.s3.5ce33c0c6f25 from=translated src=- shape=efbf31f7 vocab=6391361c
+-/
 @[simp] theorem op_unop {C : Type u} (X : DGOpposite C) : op X.unop = X := rfl
+/--
+@isnad1 id=eq.0h2v.s3.be78b4a2b25c from=translated src=- shape=9290c416 vocab=81a85ddd
+-/
 @[simp] theorem unop_op {C : Type u} (X : C) : (op X).unop = X := rfl
 
 variable {C : Type u} [Category.{v} C] [Preadditive C] [∀ X Y : C, DGAddCommGroup (X ⟶ Y)]
@@ -183,11 +210,23 @@ def homOp {X Y : C} (f : X ⟶ Y) : op Y ⟶ op X := f
 /-- A morphism of the opposite dg category as a morphism of `C`.-/
 def homUnop {X Y : DGOpposite C} (f : X ⟶ Y) : Y.unop ⟶ X.unop := f
 
+/--
+@isnad1 id=eq.0h4v.s6.859ea7e38b5e from=translated src=- shape=468260a2 vocab=fb4992db
+-/
 @[simp] theorem homOp_homUnop {X Y : DGOpposite C} (f : X ⟶ Y) : homOp (homUnop f) = f := rfl
+/--
+@isnad1 id=eq.0h4v.s6.d6f499a78ee2 from=translated src=- shape=89958601 vocab=a2c3e3bc
+-/
 @[simp] theorem homUnop_homOp {X Y : C} (f : X ⟶ Y) : homUnop (homOp f) = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.9a442086f2b2 from=translated src=- shape=4d885f8c vocab=43ec2223
+-/
 @[simp] theorem homUnop_id (X : DGOpposite C) : homUnop (𝟙 X) = 𝟙 X.unop := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.1fc6e9e3a603 from=translated src=- shape=4d17641b vocab=069225b8
+-/
 theorem homUnop_comp {X Y Z : DGOpposite C} (f : X ⟶ Y) (g : Y ⟶ Z) :
     homUnop (f ≫ g) = signedComp Z.unop Y.unop X.unop (homUnop g) (homUnop f) := rfl
 
@@ -211,23 +250,39 @@ differential.-/
 instance instDGAddCommGroupHom (X Y : DGOpposite C) : DGAddCommGroup (X ⟶ Y) :=
   inferInstanceAs (DGAddCommGroup (Y.unop ⟶ X.unop))
 
+/--
+@isnad1 id=eq.0h5v.s8.6b3130f5b815 from=translated src=- shape=6f53a713 vocab=0072ec67
+-/
 @[simp] theorem homUnop_add {X Y : DGOpposite C} (f g : X ⟶ Y) :
     homUnop (f + g) = homUnop f + homUnop g := rfl
+/--
+@isnad1 id=eq.0h4v.s8.3a687519f1ad from=translated src=- shape=c7044607 vocab=463944c0
+-/
 @[simp] theorem homUnop_neg {X Y : DGOpposite C} (f : X ⟶ Y) : homUnop (-f) = -homUnop f := rfl
+/--
+@isnad1 id=eq.0h3v.s7.2ea32fc97b1a from=translated src=- shape=2a8b3229 vocab=066815e2
+-/
 @[simp] theorem homUnop_zero (X Y : DGOpposite C) : homUnop (0 : X ⟶ Y) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.e8b7832bae93 from=translated src=- shape=0d1151b0 vocab=9c76ff94
+-/
 @[simp]
 theorem homUnop_d {X Y : DGOpposite C} (f : X ⟶ Y) : homUnop (d f) = d (homUnop f) := rfl
 
 /-- The composition of homogeneous morphisms in the opposite dg category:
-`f ≫ g = (-1)^{|f||g|} • (g ≫ f)`.-/
+`f ≫ g = (-1)^{|f||g|} • (g ≫ f)`.
+@isnad1 id=eq.2h8v.s9.8e79a8ce4f9d from=translated src=- shape=d85fcacf vocab=f6602f26
+-/
 theorem homUnop_comp_of_mem {X Y Z : DGOpposite C} {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : f ∈ grading i) (hg : g ∈ grading j) :
     homUnop (f ≫ g) = koszulSign (i * j) • (homUnop g ≫ homUnop f) := by
   rw [homUnop_comp, signedComp_of_mem (X := Z.unop) (Y := Y.unop) (Z := X.unop)
     (f := homUnop g) (g := homUnop f) hg hf, mul_comm]
 
-/-- The opposite of a dg category is a dg category.-/
+/-- The opposite of a dg category is a dg category.
+@isnad1 id=dgcatego.0h1v.s6.da97180a090e from=translated src=- shape=3b97cc71 vocab=e76b2fc7
+-/
 instance instDGCategory : DGCategory (DGOpposite C) where
   comp_mem' {X Y Z i j f g} hf hg := by
     rw [add_comm]

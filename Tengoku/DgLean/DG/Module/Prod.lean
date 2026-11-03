@@ -107,20 +107,35 @@ instance Prod.instDGAddCommGroup : DGAddCommGroup (M × N) where
 
 variable {M N}
 
+/--
+@isnad1 id=eq.0h3v.s6.cb535742f54b from=translated src=- shape=30859dde vocab=834d2d03
+-/
 @[simp]
 theorem Prod.grading_eq (n : ℤ) :
     grading (M := M × N) n = (grading (M := M) n).prod (grading (M := N) n) := rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.d73c9ddbae78 from=translated src=- shape=8ce6f370 vocab=fad98188
+-/
 theorem Prod.mem_grading {n : ℤ} {p : M × N} :
     p ∈ grading (M := M × N) n ↔ p.1 ∈ grading n ∧ p.2 ∈ grading n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.c09fdfead518 from=translated src=- shape=4341cad5 vocab=4d1c7e84
+-/
 @[simp]
 theorem Prod.d_apply (p : M × N) : d p = (d p.1, d p.2) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.c4b3e0d6e55a from=translated src=- shape=ced6b84c vocab=29c1a41b
+-/
 @[simp]
 theorem Prod.fst_d (p : M × N) : (d p).1 = d p.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.8c3096d539b1 from=translated src=- shape=eb6f227d vocab=eadb0b3f
+-/
 @[simp]
 theorem Prod.snd_d (p : M × N) : (d p).2 = d p.2 := rfl
 
@@ -132,7 +147,9 @@ variable {A : Type*} [Ring A] [DGAddCommGroup A]
 variable (M N : Type*) [AddCommGroup M] [DGAddCommGroup M] [Module A M]
   [AddCommGroup N] [DGAddCommGroup N] [Module A N]
 
-/-- The product of two dg `A`-modules is a dg `A`-module.-/
+/-- The product of two dg `A`-modules is a dg `A`-module.
+@isnad1 id=dgmodule.0h3v.s6.09bad2853f34 from=translated src=- shape=191e2e7b vocab=0cde366e
+-/
 instance Prod.instDGModule [DGModule A M] [DGModule A N] : DGModule A (M × N) where
   smul_mem _ _ _ _ ha hp := ⟨smul_mem_grading ha hp.1, smul_mem_grading ha hp.2⟩
   d_smul' ha p := by ext <;> simp [d_smul ha]
@@ -172,12 +189,27 @@ def prod {P : Type*} [AddCommGroup P] [DGAddCommGroup P] [Module A P]
 
 variable {M N}
 
+/--
+@isnad1 id=eq.0h7v.s8.358a85e2773b from=translated src=- shape=55eb5876 vocab=6f57017e
+-/
 @[simp] theorem prod_apply {P : Type*} [AddCommGroup P] [DGAddCommGroup P] [Module A P]
     (f : P →ᵈᵍ[A] M) (g : P →ᵈᵍ[A] N) (x : P) : prod M N f g x = (f x, g x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.c96272ee51a3 from=translated src=- shape=56622ad1 vocab=fe818e70
+-/
 @[simp] theorem fst_apply (p : M × N) : fst (A := A) M N p = p.1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.6e5d73c25fe9 from=translated src=- shape=5d15532f vocab=f8dd6773
+-/
 @[simp] theorem snd_apply (p : M × N) : snd (A := A) M N p = p.2 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.d03fa3c133c9 from=translated src=- shape=9f276e2e vocab=1cff26b5
+-/
 @[simp] theorem inl_apply (m : M) : inl (A := A) M N m = (m, 0) := rfl
+/--
+@isnad1 id=eq.0h4v.s7.b38e4800d1fd from=translated src=- shape=da000e67 vocab=d1cb280d
+-/
 @[simp] theorem inr_apply (n : N) : inr (A := A) M N n = (0, n) := rfl
 
 end DGModuleHom

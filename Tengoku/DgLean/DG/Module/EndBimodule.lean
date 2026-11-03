@@ -71,17 +71,28 @@ instance instModuleOp : Module (END A M)ᵐᵒᵖ M where
     show signedEval A M (unop 0) x = 0
     rw [unop_zero, map_zero]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.595da73978ab from=translated src=- shape=945bd6dc vocab=803f48cf
+-/
 theorem op_smul_eq_signedEval (F : END A M) (x : M) : op F • x = signedEval A M F x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.475303f52871 from=translated src=- shape=254abdf7 vocab=b7a21dbc
+-/
 theorem op_smul_eq_rightAction (F : END A M) (x : M) :
     op F • x = (rightAction A M F).unop x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.53baa1d55017 from=translated src=- shape=e32636e0 vocab=0c2c4c32
+-/
 theorem op_of_smul {n : ℤ} (f : Cochain A M M n) {i : ℤ} {x : M} (hx : x ∈ grading i) :
     op (DirectSum.of (fun n => Cochain A M M n) n f) • x = koszulSign (n * i) • f x := by
   rw [op_smul_eq_signedEval, signedEval_of, Cochain.signedApply_of_mem f hx]
 
 /-- The homogeneous components of `x · F`: for `x` of degree `i`, the component of degree
-`i + n` of `x · F` is `(-1)^{n i} • F n x`.-/
+`i + n` of `x · F` is `(-1)^{n i} • F n x`.
+@isnad1 id=eq.1h6v.s10.f3c1fc179484 from=translated src=- shape=3ebd3f9b vocab=9d563811
+-/
 theorem decompose_op_smul (F : END A M) (n : ℤ) {i : ℤ} {x : M} (hx : x ∈ grading i) :
     (decompose (grading (M := M)) (op F • x) (i + n) : M) = koszulSign (n * i) • F n x := by
   induction F using DirectSum.induction_on with
@@ -99,7 +110,9 @@ theorem decompose_op_smul (F : END A M) (n : ℤ) {i : ℤ} {x : M} (hx : x ∈ 
       DirectSum.add_apply, Cochain.add_apply, smul_add]
 
 /-- `M` is a faithful right `END A M`-module: an element of `END A M` is determined by its
-action on `M`.-/
+action on `M`.
+@isnad1 id=eq.1h4v.s9.fef32fe98fc2 from=translated src=- shape=a3c29418 vocab=00cfbed3
+-/
 theorem ext_op_smul {F G : END A M} (h : ∀ x : M, op F • x = op G • x) : F = G := by
   ext n x
   induction x using DG.induction_on with
@@ -110,6 +123,9 @@ theorem ext_op_smul {F G : END A M} (h : ∀ x : M, op F • x = op G • x) : F
     exact (smul_left_cancel_iff _).mp hF.symm
   | h_add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=injectiv.0h2v.s8.34f8ee1be447 from=translated src=- shape=cb8d8d48 vocab=366418f1
+-/
 theorem op_smul_injective : Function.Injective fun F : END A M => (op F • · : M → M) :=
   fun _ _ h => ext_op_smul fun x => congrFun h x
 
@@ -122,7 +138,9 @@ variable {A : Type*} {M : Type*} [Ring A] [DGAddCommGroup A]
 
 /-- `M` is a dg right `END A M`-module. The right Leibniz rule
 `d (x · F) = d x · F + (-1)^{|x|} • (x · d F)` follows from the definition of the differential
-of the Hom complex, `δ f = d ∘ f - (-1)^{|f|} • f ∘ d`.-/
+of the Hom complex, `δ f = d ∘ f - (-1)^{|f|} • f ∘ d`.
+@isnad1 id=dgrightm.0h2v.s6.065b5e28e689 from=translated src=- shape=38399235 vocab=59e144db
+-/
 instance instDGRightModule : DGRightModule (END A M) M where
   op_smul_mem' := by
     rintro i j _ x ⟨f, rfl⟩ hx
@@ -144,13 +162,17 @@ instance instDGRightModule : DGRightModule (END A M) M where
       abel
 
 /-- The differential of `END A M` in terms of the action: for `x` of degree `j`,
-`x · d F = (-1)^{j} • (d (x · F) - d x · F)`.-/
+`x · d F = (-1)^{j} • (d (x · F) - d x · F)`.
+@isnad1 id=eq.1h5v.s10.5aac52c55dd6 from=translated src=- shape=6bada26c vocab=b7b7994d
+-/
 theorem op_d_smul {j : ℤ} {x : M} (hx : x ∈ grading j) (F : END A M) :
     op (d F) • x = koszulSign j • (d (op F • x) - op F • d x) := by
   rw [d_op_smul hx, add_sub_cancel_left, smul_smul, Int.units_mul_self, one_smul]
 
 /-- The left action of `A` and the right action of `END A M` on `M` commute:
-`a • (x · F) = (a • x) · F`, by the Koszul-signed `A`-linearity of cochains.-/
+`a • (x · F) = (a • x) · F`, by the Koszul-signed `A`-linearity of cochains.
+@isnad1 id=smulcomm.0h2v.s8.00c867408652 from=translated src=- shape=4de5233b vocab=174d1a8b
+-/
 instance instSMulCommClass : SMulCommClass A (END A M)ᵐᵒᵖ M where
   smul_comm a F x := by
     induction F using MulOpposite.rec' with | _ F => ?_
@@ -178,7 +200,9 @@ theorem eq_of_op_smul_eq {m₀ : M} (hgen : ∀ x : M, ∃ a : A, a • m₀ = x
     obtain ⟨a, rfl⟩ := hgen x
     rw [← smul_comm a (op F) m₀, h, smul_comm]
 
-/-- A dg `A`-module `M` is a dg `(A, END_A(M))`-bimodule.-/
+/-- A dg `A`-module `M` is a dg `(A, END_A(M))`-bimodule.
+@isnad1 id=dgbimodu.0h2v.s6.b11a67b5cd94 from=translated src=- shape=ac51db91 vocab=e262c385
+-/
 instance instDGBimodule : DGBimodule A (END A M) M := DGBimodule.mk'
 
 end DG
@@ -188,7 +212,9 @@ end DGModule.END
 /-! ### Right actions as dg ring homomorphisms into `END` -/
 
 /-- A graded additive map (one preserving the degrees) commutes with the homogeneous
-projections.-/
+projections.
+@isnad1 id=eq.1h5v.s10.09bcf593dd5b from=translated src=- shape=87e4ca7a vocab=2548c823
+-/
 theorem coe_decompose_map {M N : Type*} [AddCommGroup M] [DGAddCommGroup M] [AddCommGroup N]
     [DGAddCommGroup N] (f : M →+ N) (hf : ∀ {i : ℤ} {x : M}, x ∈ grading i → f x ∈ grading i)
     (x : M) (n : ℤ) :
@@ -219,17 +245,26 @@ def signedRightMul (n : ℤ) (b : B) : M →+ M :=
 
 variable {M}
 
+/--
+@isnad1 id=eq.1h6v.s7.11fefd0f5956 from=translated src=- shape=5e7eec9b vocab=1abe108c
+-/
 theorem signedRightMul_of_mem (n : ℤ) (b : B) {j : ℤ} {x : M} (hx : x ∈ grading j) :
     signedRightMul M n b x = koszulSign (n * j) • (op b • x) := by
   rw [signedRightMul, liftHomogeneous_of_mem _ _ hx, Units.smul_def, Units.smul_def]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.04e912754382 from=translated src=- shape=816d785b vocab=2fc70140
+-/
 theorem signedRightMul_add (n : ℤ) (b b' : B) :
     signedRightMul M n (b + b') = signedRightMul M n b + signedRightMul M n b' :=
   decompose_addHom_ext (grading (M := M)) fun _ x => by
     rw [AddMonoidHom.add_apply, signedRightMul_of_mem _ _ x.2, signedRightMul_of_mem _ _ x.2,
       signedRightMul_of_mem _ _ x.2, op_add, add_smul, smul_add]
 
+/--
+@isnad1 id=eq.0h3v.s7.9d3649e5a46f from=translated src=- shape=23ac4a16 vocab=6fc54330
+-/
 theorem signedRightMul_zero (n : ℤ) : signedRightMul M n (0 : B) = 0 :=
   decompose_addHom_ext (grading (M := M)) fun _ x => by
     rw [AddMonoidHom.zero_apply, signedRightMul_of_mem _ _ x.2, op_zero, zero_smul, smul_zero]
@@ -260,6 +295,9 @@ def rightMulCochain {n : ℤ} (b : grading (M := B) n) : Cochain A M M n where
         koszulSign_add]
     | h_add x y hx hy => rw [smul_add, map_add, map_add, hx, hy, smul_add, smul_add]
 
+/--
+@isnad1 id=eq.0h6v.s8.d25b6ff5ad70 from=translated src=- shape=68634900 vocab=378e0e27
+-/
 @[simp]
 theorem rightMulCochain_apply {n : ℤ} (b : grading (M := B) n) (x : M) :
     rightMulCochain A M b x = signedRightMul M n (b : B) x := rfl
@@ -279,10 +317,16 @@ def toENDAddHom : B →+ DGModule.END A M :=
 
 variable {A M}
 
+/--
+@isnad1 id=eq.1h5v.s10.6b91ce55d64c from=translated src=- shape=acb1640f vocab=d90fe7c7
+-/
 theorem toENDAddHom_of_mem {n : ℤ} {b : B} (hb : b ∈ grading n) :
     toENDAddHom A M b = DirectSum.of (fun n => Cochain A M M n) n (rightMulCochain A M ⟨b, hb⟩) :=
   liftHomogeneous_of_mem _ _ hb
 
+/--
+@isnad1 id=eq.0h5v.s9.c0df669e19f8 from=translated src=- shape=da6559db vocab=7c96c33f
+-/
 theorem op_toENDAddHom_smul (b : B) (x : M) : op (toENDAddHom A M b) • x = op b • x := by
   induction b using DG.induction_on with
   | h_zero => simp
@@ -316,18 +360,29 @@ def toEND : B →+* DGModule.END A M where
 
 variable {A M}
 
+/--
+@isnad1 id=eq.0h5v.s9.53467c972b47 from=translated src=- shape=da6559db vocab=e8d09056
+-/
 @[simp]
 theorem op_toEND_smul (b : B) (x : M) : op (toEND A M b) • x = op b • x :=
   op_toENDAddHom_smul b x
 
+/--
+@isnad1 id=eq.1h5v.s10.b8af38182311 from=translated src=- shape=dfebb51b vocab=4624d5b0
+-/
 theorem toEND_of_mem {n : ℤ} {b : B} (hb : b ∈ grading n) :
     toEND A M b = DirectSum.of (fun n => Cochain A M M n) n (rightMulCochain A M ⟨b, hb⟩) :=
   toENDAddHom_of_mem hb
 
+/--
+@isnad1 id=mem.1h5v.s9.ff7c05e611ce from=translated src=- shape=9fb78c61 vocab=4c809a1c
+-/
 theorem toEND_mem_grading {n : ℤ} {b : B} (hb : b ∈ grading n) : toEND A M b ∈ grading n :=
   ⟨_, (toEND_of_mem hb).symm⟩
 
-/-- `DG.DGBimodule.toEND` commutes with the differentials.-/
+/-- `DG.DGBimodule.toEND` commutes with the differentials.
+@isnad1 id=eq.0h4v.s9.3fa1d6307f34 from=translated src=- shape=426272cb vocab=a5c324d6
+-/
 theorem toEND_d (b : B) : toEND A M (d b) = d (toEND A M b) := by
   refine DGModule.END.ext_op_smul fun x => ?_
   induction x using DG.induction_on with
@@ -337,11 +392,17 @@ theorem toEND_d (b : B) : toEND A M (d b) = d (toEND A M b) := by
       d_op_smul x.2 b, add_sub_cancel_left, smul_smul, Int.units_mul_self, one_smul]
   | h_add x y hx hy => rw [smul_add, smul_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s12.05ab3d1bbf17 from=translated src=- shape=f5b140a6 vocab=3f800614
+-/
 theorem coe_decompose_toEND (b : B) (n : ℤ) :
     (decompose (grading (M := DGModule.END A M)) (toEND A M b) n : DGModule.END A M) =
       toEND A M (decompose (grading (M := B)) b n : B) :=
   coe_decompose_map (toEND A M).toAddMonoidHom (fun hb => toEND_mem_grading hb) b n
 
+/--
+@isnad1 id=iff.1h5v.s9.ed0f14123c49 from=translated src=- shape=a409dfd3 vocab=14eedf18
+-/
 theorem toEND_mem_grading_iff (hinj : Function.Injective (toEND A M : B → DGModule.END A M))
     {n : ℤ} {b : B} : toEND A M b ∈ grading n ↔ b ∈ grading n := by
   refine ⟨fun h => ?_, toEND_mem_grading⟩
@@ -378,15 +439,23 @@ variable {A M} {m₀ : M} {hgen : ∀ x : M, ∃ a : A, a • m₀ = x}
   {hinj : Function.Injective fun b : B => op b • m₀} {φ : DGModule.END A M → B}
   {hφ : ∀ F, op (φ F) • m₀ = op F • m₀}
 
+/--
+@isnad1 id=eq.3h6v.s10.f7c507199ab0 from=translated src=- shape=9a727b8c vocab=51c6dcb3
+-/
 @[simp]
 theorem endEquivOfGenerator_apply (F : DGModule.END A M) :
     endEquivOfGenerator A M m₀ hgen hinj φ hφ F = φ F := rfl
 
+/--
+@isnad1 id=eq.3h6v.s10.5b7ee3045f28 from=translated src=- shape=9bb8bbd5 vocab=6049d52d
+-/
 @[simp]
 theorem endEquivOfGenerator_symm_apply (b : B) :
     (endEquivOfGenerator A M m₀ hgen hinj φ hφ).symm b = toEND A M b := rfl
 
-/-- The isomorphism `DG.DGBimodule.endEquivOfGenerator` commutes with the differentials.-/
+/-- The isomorphism `DG.DGBimodule.endEquivOfGenerator` commutes with the differentials.
+@isnad1 id=eq.3h6v.s11.09524ff907a0 from=translated src=- shape=1f669357 vocab=cc4fe3c9
+-/
 theorem endEquivOfGenerator_d (F : DGModule.END A M) :
     endEquivOfGenerator A M m₀ hgen hinj φ hφ (d F) =
       d (endEquivOfGenerator A M m₀ hgen hinj φ hφ F) := by
@@ -395,7 +464,9 @@ theorem endEquivOfGenerator_d (F : DGModule.END A M) :
     ← endEquivOfGenerator_symm_apply (hgen := hgen) (hinj := hinj) (hφ := hφ),
     RingEquiv.symm_apply_apply]
 
-/-- The isomorphism `DG.DGBimodule.endEquivOfGenerator` preserves the degrees.-/
+/-- The isomorphism `DG.DGBimodule.endEquivOfGenerator` preserves the degrees.
+@isnad1 id=iff.3h7v.s10.dc7366401620 from=translated src=- shape=21acf8ee vocab=ba8117dd
+-/
 theorem endEquivOfGenerator_mem_grading_iff {n : ℤ} {F : DGModule.END A M} :
     endEquivOfGenerator A M m₀ hgen hinj φ hφ F ∈ grading n ↔ F ∈ grading n := by
   have hinj' : Function.Injective (toEND A M : B → DGModule.END A M) :=

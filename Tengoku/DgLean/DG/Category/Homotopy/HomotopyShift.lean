@@ -53,6 +53,9 @@ def shift (h : DGHomotopy f g) (n : ℤ) : DGHomotopy (shiftMap n f) (shiftMap n
 
 end DGHomotopy
 
+/--
+@isnad1 id=homotopi.1h6v.s7.0e07fc1d87db from=translated src=- shape=d26e22d5 vocab=557e268b
+-/
 theorem Homotopic.shift {M N : CatModule.{w} C} {f g : M ⟶ N} (h : Homotopic f g) (n : ℤ) :
     Homotopic (shiftMap n f) (shiftMap n g) :=
   ⟨h.some.shift n⟩

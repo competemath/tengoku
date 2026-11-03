@@ -70,6 +70,9 @@ def directSum : CatModule.{max w w'} C where
       DirectSum.map_apply, DirectSum.map_apply, DG.DirectSum.coe_d_apply]
     exact (d_smul hf (x j)).trans (by rw [Units.smul_def]; rfl)
 
+/--
+@isnad1 id=eq.0h8v.s9.cb02a28eb7b6 from=translated src=- shape=1afcfabc vocab=04058b0b
+-/
 theorem directSum_smul_apply {X Y : C} (f : X ⟶ Y) (x : ⨁ j, (F j).obj X) (j : J) :
     (show ⨁ j, (F j).obj Y from (f • (show (directSum F).obj X from x))) j = f • x j :=
   DirectSum.map_apply _ _ _
@@ -81,6 +84,9 @@ def directSumι (j : J) : F j ⟶ directSum F where
   map_d' {X} m := (DG.DirectSum.d_of (fun j => (F j).obj X) j m).symm
   map_smul' f m := (DirectSum.map_of (fun j => (F j).act f) j m).symm
 
+/--
+@isnad1 id=eq.0h6v.s10.5d5ba569e264 from=translated src=- shape=46c1bc16 vocab=c338675a
+-/
 theorem directSumι_app (j : J) (X : C) (m : (F j).obj X) :
     (directSumι F j).app X m = DirectSum.of (fun j => (F j).obj X) j m := rfl
 
@@ -112,12 +118,17 @@ def directSumDesc {N : CatModule.{max w w'} C} (φ : ∀ j, F j ⟶ N) : directS
         exact (φ j).map_smul f m
     exact congrArg (fun χ : (⨁ j, (F j).obj X) →+ N.obj Y => χ x) h
 
+/--
+@isnad1 id=eq.0h6v.s7.7c12916150cf from=translated src=- shape=f54d2570 vocab=1b103b8b
+-/
 @[simp]
 theorem directSumι_desc {N : CatModule.{max w w'} C} (φ : ∀ j, F j ⟶ N) (j : J) :
     directSumι F j ≫ directSumDesc φ = φ j :=
   hom_ext fun X m => DirectSum.toAddMonoid_of (fun j => (φ j).app X) j m
 
-/-- Two morphisms out of the direct sum agreeing on the summands are equal.-/
+/-- Two morphisms out of the direct sum agreeing on the summands are equal.
+@isnad1 id=eq.1h6v.s8.2e219b00337e from=translated src=- shape=7a3951ac vocab=be116f5c
+-/
 theorem directSum_hom_ext {N : CatModule.{max w w'} C} {φ ψ : directSum F ⟶ N}
     (h : ∀ j, directSumι F j ≫ φ = directSumι F j ≫ ψ) : φ = ψ :=
   hom_injective (funext fun X => DirectSum.addHom_ext fun j m => by
@@ -128,9 +139,15 @@ theorem directSum_hom_ext {N : CatModule.{max w w'} C} {φ ψ : directSum F ⟶ 
 def coproductCocone : Cofan F :=
   Cofan.mk (directSum F) (directSumι F)
 
+/--
+@isnad1 id=eq.0h3v.s6.0f5f75f12f3f from=translated src=- shape=6914dab9 vocab=a8a84713
+-/
 @[simp]
 theorem coproductCocone_pt : (coproductCocone F).pt = directSum F := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.a13cf3ef962f from=translated src=- shape=28025af1 vocab=3556f393
+-/
 @[simp]
 theorem coproductCocone_inj (j : J) : (coproductCocone F).inj j = directSumι F j := rfl
 

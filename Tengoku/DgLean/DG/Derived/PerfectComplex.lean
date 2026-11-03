@@ -60,6 +60,9 @@ section Complex
 
 variable {K L : CochainComplex (ModuleCat.{u} R) ℤ}
 
+/--
+@isnad1 id=ex.1h2v.s6.3fcf75a63233 from=translated src=- shape=0e181e5b vocab=3394a8b5
+-/
 theorem exists_bounds (hK : IsPerfectComplex K) :
     ∃ (a : ℤ) (m : ℕ), ∀ n, n < a ∨ a + m ≤ n → IsZero (K.X n) := by
   obtain ⟨a, b, _, _⟩ := hK.bounded
@@ -72,6 +75,9 @@ theorem exists_bounds (hK : IsPerfectComplex K) :
 noncomputable def eulerChar (hK : IsPerfectComplex K) : ProjK0.{u} R :=
   ∑ᶠ n : ℤ, n.negOnePow • ProjK0.mk (K.X n) (hK.fgProjective n)
 
+/--
+@isnad1 id=eq.2h4v.s8.5726a086a177 from=translated src=- shape=4f523244 vocab=c30910b3
+-/
 theorem eulerChar_eq_sum_range (hK : IsPerfectComplex K) (a : ℤ) (m : ℕ)
     (h : ∀ n, n < a ∨ a + m ≤ n → IsZero (K.X n)) :
     hK.eulerChar = ∑ i ∈ Finset.range m,
@@ -79,6 +85,9 @@ theorem eulerChar_eq_sum_range (hK : IsPerfectComplex K) (a : ℤ) (m : ℕ)
   AbelianK0.finsum_eq_sum_range _ a m fun n hn => by
     rw [ProjK0.mk_eq_zero_of_isZero (h n hn), smul_zero]
 
+/--
+@isnad1 id=finite.1h2v.s7.fc9e78885069 from=translated src=- shape=9d83ccc0 vocab=da0f60f3
+-/
 theorem support_finite (hK : IsPerfectComplex K) :
     (Function.support fun n : ℤ => n.negOnePow • ProjK0.mk (K.X n) (hK.fgProjective n)).Finite
     := by
@@ -91,13 +100,18 @@ theorem support_finite (hK : IsPerfectComplex K) :
     rw [ProjK0.mk_eq_zero_of_isZero (h n (by omega)), smul_zero])
 
 /-- A cochain complex of finitely generated projective modules whose terms vanish outside
-`[a, a + m)` is perfect.-/
+`[a, a + m)` is perfect.
+@isnad1 id=isperfec.1h5v.s7.b45aa625db39 from=translated src=- shape=d9ea8afd vocab=df5596b5
+-/
 theorem mk' (hK : ∀ n, IsFGProjective R (K.X n)) (a : ℤ) (m : ℕ)
     (h : ∀ n, n < a ∨ a + m ≤ n → IsZero (K.X n)) : IsPerfectComplex K where
   bounded := ⟨a, a + m, (K.isStrictlyGE_iff a).2 fun i hi => h i (Or.inl hi),
     (K.isStrictlyLE_iff _).2 fun i hi => h i (Or.inr (by omega))⟩
   fgProjective := hK
 
+/--
+@isnad1 id=isperfec.1h4v.s7.904a17a5b858 from=translated src=- shape=f18430b8 vocab=324854ed
+-/
 theorem of_iso (e : K ≅ L) (hL : IsPerfectComplex L) : IsPerfectComplex K where
   bounded := by
     obtain ⟨a, b, _, _⟩ := hL.bounded
@@ -105,6 +119,9 @@ theorem of_iso (e : K ≅ L) (hL : IsPerfectComplex L) : IsPerfectComplex K wher
   fgProjective n := IsFGProjective.of_iso ((HomologicalComplex.eval _ _ n).mapIso e)
     (hL.fgProjective n)
 
+/--
+@isnad1 id=eq.2h4v.s7.055d751b3758 from=translated src=- shape=0f9d3b58 vocab=8d5965ef
+-/
 theorem eulerChar_eq_of_iso (e : K ≅ L) (hK : IsPerfectComplex K) (hL : IsPerfectComplex L) :
     hK.eulerChar = hL.eulerChar := by
   unfold eulerChar
@@ -125,6 +142,9 @@ variable (φ : K ⟶ L)
 noncomputable def mappingConeXIso (n : ℤ) : (mappingCone φ).X n ≅ K.X (n + 1) ⊞ L.X n :=
   HomologicalComplex.homotopyCofiber.XIsoBiprod φ n (n + 1) rfl
 
+/--
+@isnad1 id=isperfec.2h4v.s7.f1c5c3322d9b from=translated src=- shape=f73310e0 vocab=2b4fe78e
+-/
 theorem mappingCone (hK : IsPerfectComplex K) (hL : IsPerfectComplex L) :
     IsPerfectComplex (mappingCone φ) := by
   obtain ⟨a, m, hm⟩ := hK.exists_bounds
@@ -139,6 +159,9 @@ theorem mappingCone (hK : IsPerfectComplex K) (hL : IsPerfectComplex L) :
   · exact hm _ (by omega)
   · exact hm' _ (by omega)
 
+/--
+@isnad1 id=eq.2h4v.s8.785d85b90246 from=translated src=- shape=eadd3281 vocab=73b988ee
+-/
 theorem eulerChar_mappingCone (hK : IsPerfectComplex K) (hL : IsPerfectComplex L) :
     (hK.mappingCone φ hL).eulerChar = hL.eulerChar - hK.eulerChar := by
   have h₁ : ∀ n : ℤ, n.negOnePow • ProjK0.mk ((CochainComplex.mappingCone φ).X n)
@@ -164,12 +187,18 @@ theorem eulerChar_mappingCone (hK : IsPerfectComplex K) (hL : IsPerfectComplex L
 
 end MappingCone
 
+/--
+@isnad1 id=isperfec.1h3v.s8.768ef7fb21d6 from=translated src=- shape=b0b264ae vocab=1a294408
+-/
 theorem shift (hK : IsPerfectComplex K) (n : ℤ) : IsPerfectComplex (K⟦n⟧) := by
   obtain ⟨a, m, hm⟩ := hK.exists_bounds
   refine mk' (fun i => IsFGProjective.of_iso (K.shiftFunctorObjXIso n i _ rfl)
     (hK.fgProjective _)) (a - n) m fun i hi => ?_
   exact IsZero.of_iso (hm _ (by omega)) (K.shiftFunctorObjXIso n i _ rfl)
 
+/--
+@isnad1 id=isperfec.0h4v.s6.ffb595575064 from=translated src=- shape=0c26acef vocab=eeeefffe
+-/
 theorem single {P : ModuleCat.{u} R} (hP : IsFGProjective R P) (n : ℤ) :
     IsPerfectComplex ((HomologicalComplex.single _ (ComplexShape.up ℤ) n).obj P) := by
   refine mk' (fun i => ?_) n 1 fun i hi => HomologicalComplex.isZero_single_obj_X _ _ _ _
@@ -179,6 +208,9 @@ theorem single {P : ModuleCat.{u} R} (hP : IsFGProjective R P) (n : ℤ) :
     exact IsFGProjective.of_iso (HomologicalComplex.singleObjXSelf _ i P) hP
   · exact IsFGProjective.of_isZero (HomologicalComplex.isZero_single_obj_X _ _ _ _ hi)
 
+/--
+@isnad1 id=eq.0h4v.s7.79d5e4a872cc from=translated src=- shape=d7e86066 vocab=577fdbe4
+-/
 theorem eulerChar_single {P : ModuleCat.{u} R} (hP : IsFGProjective R P) (n : ℤ) :
     (single hP n).eulerChar = n.negOnePow • ProjK0.mk P hP := by
   unfold eulerChar
@@ -187,6 +219,9 @@ theorem eulerChar_single {P : ModuleCat.{u} R} (hP : IsFGProjective R P) (n : �
       smul_zero]),
     ProjK0.mk_eq_of_iso (HomologicalComplex.singleObjXSelf _ n P) _ hP]
 
+/--
+@isnad1 id=isperfec.0h1v.s7.f242e0a64d16 from=translated src=- shape=52db5a99 vocab=34c6459a
+-/
 theorem zero : IsPerfectComplex (0 : CochainComplex (ModuleCat.{u} R) ℤ) :=
   mk' (fun i => IsFGProjective.of_isZero (by
     exact (HomologicalComplex.eval _ _ i).map_isZero (isZero_zero _))) 0 0
@@ -282,7 +317,9 @@ theorem _root_.DG.isZero_cyclesModule_of_homotopy (h : Homotopy (𝟙 C) 0) {n :
   exact ModuleCat.isZero_of_subsingleton _
 
 /-- The Euler characteristic of a contractible perfect complex vanishes: with `Zⁿ = ker dⁿ`,
-`[Cⁿ] = [Zⁿ] + [Zⁿ⁺¹]` and the alternating sum telescopes.-/
+`[Cⁿ] = [Zⁿ] + [Zⁿ⁺¹]` and the alternating sum telescopes.
+@isnad1 id=eq.1h3v.s9.3cd855f2b032 from=translated src=- shape=e8cb169e vocab=6d68270d
+-/
 theorem eulerChar_eq_zero_of_homotopy (hC : IsPerfectComplex C) (h : Homotopy (𝟙 C) 0) :
     hC.eulerChar = 0 := by
   obtain ⟨a, m, hm⟩ := hC.exists_bounds
@@ -315,7 +352,9 @@ variable [_root_.HasDerivedCategory.{w} (ModuleCat.{u} R)]
   {K L : CochainComplex (ModuleCat.{u} R) ℤ}
 
 omit [_root_.HasDerivedCategory (ModuleCat R)] in
-/-- A perfect complex is K-projective (a bounded above complex of projectives).-/
+/-- A perfect complex is K-projective (a bounded above complex of projectives).
+@isnad1 id=iskproje.1h2v.s5.826b3b4dd310 from=translated src=- shape=7b1ebee6 vocab=40901e2c
+-/
 theorem isKProjective (hK : IsPerfectComplex K) : K.IsKProjective := by
   obtain ⟨a, b, _, _⟩ := hK.bounded
   have : ∀ n, Projective (K.X n) := fun n =>
@@ -323,7 +362,9 @@ theorem isKProjective (hK : IsPerfectComplex K) : K.IsKProjective := by
   exact CochainComplex.isKProjective_of_projective K b
 
 /-- Morphisms in the derived category out of a perfect complex are induced by morphisms of
-complexes.-/
+complexes.
+@isnad1 id=ex.1h4v.s10.2f7c87082c5c from=translated src=- shape=6a22f51b vocab=b3e3c1b6
+-/
 theorem exists_Q_map_eq (hK : IsPerfectComplex K)
     (f : _root_.DerivedCategory.Q.obj K ⟶ _root_.DerivedCategory.Q.obj L) :
     ∃ g : K ⟶ L, _root_.DerivedCategory.Q.map g = f := by
@@ -339,7 +380,9 @@ theorem exists_Q_map_eq (hK : IsPerfectComplex K)
   simpa using h.symm
 
 /-- Two morphisms out of a perfect complex which agree in the derived category are
-homotopic.-/
+homotopic.
+@isnad1 id=nonempty.2h5v.s9.fbdaef1cd013 from=translated src=- shape=acca686e vocab=c429cbea
+-/
 theorem nonempty_homotopy_of_Q_map_eq (hK : IsPerfectComplex K) {g₁ g₂ : K ⟶ L}
     (h : _root_.DerivedCategory.Q.map g₁ = _root_.DerivedCategory.Q.map g₂) :
     Nonempty (Homotopy g₁ g₂) := by
@@ -355,7 +398,9 @@ theorem nonempty_homotopy_of_Q_map_eq (hK : IsPerfectComplex K) {g₁ g₂ : K �
 /-- **Invariance of the Euler characteristic**: perfect complexes which are isomorphic in the
 derived category have the same Euler characteristic. A morphism `g : K ⟶ L` inducing the
 isomorphism is a quasi-isomorphism, so its mapping cone is acyclic and K-projective, hence
-contractible, and `χ(L) - χ(K) = χ(C(g)) = 0`.-/
+contractible, and `χ(L) - χ(K) = χ(C(g)) = 0`.
+@isnad1 id=eq.2h4v.s8.d4b94fb05d59 from=translated src=- shape=f1d76a04 vocab=ce42b265
+-/
 theorem eulerChar_eq_of_iso_Q (hK : IsPerfectComplex K) (hL : IsPerfectComplex L)
     (e : _root_.DerivedCategory.Q.obj K ≅ _root_.DerivedCategory.Q.obj L) :
     hK.eulerChar = hL.eulerChar := by
@@ -393,19 +438,31 @@ variable {R}
 
 namespace IsPerfect
 
+/--
+@isnad1 id=isperfec.0h5v.s6.1bce80f55150 from=translated src=- shape=b6c706ea vocab=7878af37
+-/
 theorem of_iso {X Y : _root_.DerivedCategory (ModuleCat.{u} R)} (e : X ≅ Y)
     (hY : IsPerfect R Y) : IsPerfect R X := by
   obtain ⟨K, hK, ⟨e'⟩⟩ := hY
   exact ⟨K, hK, ⟨e' ≪≫ e.symm⟩⟩
 
+/--
+@isnad1 id=isperfec.1h2v.s7.9e02a9b95cac from=translated src=- shape=a5092004 vocab=780bfee7
+-/
 theorem Q_obj {K : CochainComplex (ModuleCat.{u} R) ℤ} (hK : IsPerfectComplex K) :
     IsPerfect R (_root_.DerivedCategory.Q.obj K) :=
   ⟨K, hK, ⟨Iso.refl _⟩⟩
 
+/--
+@isnad1 id=isperfec.1h2v.s5.ee18fcc75408 from=translated src=- shape=41c74b30 vocab=f60e74f7
+-/
 theorem of_isZero {X : _root_.DerivedCategory (ModuleCat.{u} R)} (hX : IsZero X) :
     IsPerfect R X :=
   ⟨0, IsPerfectComplex.zero, ⟨(_root_.DerivedCategory.Q.map_isZero (isZero_zero _)).iso hX⟩⟩
 
+/--
+@isnad1 id=isperfec.0h4v.s6.bfd14dc0307d from=translated src=- shape=9340c496 vocab=7872cbe3
+-/
 theorem shift {X : _root_.DerivedCategory (ModuleCat.{u} R)} (hX : IsPerfect R X) (n : ℤ) :
     IsPerfect R (X⟦n⟧) := by
   obtain ⟨K, hK, ⟨e⟩⟩ := hX
@@ -414,7 +471,9 @@ theorem shift {X : _root_.DerivedCategory (ModuleCat.{u} R)} (hX : IsPerfect R X
 
 /-- In a distinguished triangle whose first two objects are represented by perfect complexes `K`
 and `L`, the morphism is induced by a morphism of complexes `g : K ⟶ L` and the third object is
-isomorphic to the mapping cone of `g`.-/
+isomorphic to the mapping cone of `g`.
+@isnad1 id=ex.2h6v.s10.b9698ce62efa from=translated src=- shape=aa8ee899 vocab=f2c8511a
+-/
 theorem exists_iso_mappingCone (T : Triangle (_root_.DerivedCategory (ModuleCat.{u} R)))
     (hT : T ∈ distTriang _) {K L : CochainComplex (ModuleCat.{u} R) ℤ} (hK : IsPerfectComplex K)
     (e₁ : _root_.DerivedCategory.Q.obj K ≅ T.obj₁)
@@ -429,7 +488,9 @@ theorem exists_iso_mappingCone (T : Triangle (_root_.DerivedCategory (ModuleCat.
   simp
 
 /-- The third object of a distinguished triangle whose first two objects are perfect is
-perfect.-/
+perfect.
+@isnad1 id=isperfec.1h4v.s8.337379e4d5dc from=translated src=- shape=68ed80f5 vocab=7d136bec
+-/
 theorem ext₃ (T : Triangle (_root_.DerivedCategory (ModuleCat.{u} R))) (hT : T ∈ distTriang _)
     (h₁ : IsPerfect R T.obj₁) (h₂ : IsPerfect R T.obj₂) : IsPerfect R T.obj₃ := by
   obtain ⟨K, hK, ⟨e₁⟩⟩ := h₁
@@ -437,7 +498,9 @@ theorem ext₃ (T : Triangle (_root_.DerivedCategory (ModuleCat.{u} R))) (hT : T
   obtain ⟨g, ⟨e⟩⟩ := exists_iso_mappingCone T hT hK e₁ e₂
   exact ⟨_, hK.mappingCone g hL, ⟨e⟩⟩
 
-/-- The middle object of a distinguished triangle whose outer objects are perfect is perfect.-/
+/-- The middle object of a distinguished triangle whose outer objects are perfect is perfect.
+@isnad1 id=isperfec.1h4v.s8.762c25e55685 from=translated src=- shape=68ed80f5 vocab=7d136bec
+-/
 theorem ext₂ (T : Triangle (_root_.DerivedCategory (ModuleCat.{u} R))) (hT : T ∈ distTriang _)
     (h₁ : IsPerfect R T.obj₁) (h₃ : IsPerfect R T.obj₃) : IsPerfect R T.obj₂ :=
   ext₃ _ (inv_rot_of_distTriang _ hT) (h₃.shift _) h₁

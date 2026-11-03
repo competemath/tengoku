@@ -79,6 +79,9 @@ def IsSimple (e : Idempotent X) : Prop :=
 def Orthogonal (e f : Idempotent X) : Prop :=
   e.val ≫ f.val = 0 ∧ f.val ≫ e.val = 0
 
+/--
+@isnad1 id=orthogon.1h4v.s5.fecc62133e94 from=translated src=- shape=c24d00b7 vocab=1ae50d46
+-/
 theorem Orthogonal.symm {e f : Idempotent X} (h : e.Orthogonal f) : f.Orthogonal e :=
   ⟨h.2, h.1⟩
 
@@ -109,12 +112,17 @@ def listSum (l : List (Idempotent X)) (hl : l.Pairwise Orthogonal) : Idempotent 
       simp only [List.map_cons, List.sum_cons, Preadditive.add_comp, Preadditive.comp_add,
         e.comp_self, h1, h2, ih hl, add_zero, zero_add]
 
+/--
+@isnad1 id=eq.1h3v.s7.d9d9a5b82b73 from=translated src=- shape=07efe7f5 vocab=728f0b73
+-/
 @[simp]
 theorem listSum_val (l : List (Idempotent X)) (hl : l.Pairwise Orthogonal) :
     (listSum l hl).val = (l.map Idempotent.val).sum :=
   rfl
 
-/-- An idempotent orthogonal to all members of a list is orthogonal to their sum.-/
+/-- An idempotent orthogonal to all members of a list is orthogonal to their sum.
+@isnad1 id=and.2h4v.s7.4cae92cb3de3 from=translated src=- shape=82e23446 vocab=cbd9330f
+-/
 theorem orthogonal_listSum {e : Idempotent X} {l : List (Idempotent X)}
     (he : ∀ f ∈ l, e.Orthogonal f) (hl : l.Pairwise Orthogonal) :
     e.val ≫ (listSum l hl).val = 0 ∧ (listSum l hl).val ≫ e.val = 0 := by
@@ -135,7 +143,9 @@ variable [DGCategory C]
 /-- **Schur's lemma** for simple idempotents: if `e` (of `X`) and `f` (of `Y`) are simple and
 `b : Y ⟶ X` is a nonzero degree-`0` morphism with `f ≫ b = b = b ≫ e`, then `b` is invertible
 between the corners: there is a degree-`0` `c : X ⟶ Y` with `e ≫ c = c = c ≫ f`, `b ≫ c = f` and
-`c ≫ b = e`.-/
+`c ≫ b = e`.
+@isnad1 id=ex.6h6v.s9.5644510748d3 from=translated src=- shape=38aa2ce1 vocab=de6463fa
+-/
 theorem IsSimple.exists_inv {Y : C} {e : Idempotent X} {f : Idempotent Y} (he : e.IsSimple)
     (hf : f.IsSimple) {b : Y ⟶ X} (hb : b ∈ grading 0) (hfb : f.val ≫ b = b)
     (hbe : b ≫ e.val = b) (hb0 : b ≠ 0) :

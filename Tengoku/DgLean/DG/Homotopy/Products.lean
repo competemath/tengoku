@@ -45,9 +45,15 @@ def coproductCocone : Cofan F :=
   Cofan.mk (of A (⨁ j : J, F j)) fun j =>
     ofHom (DGModuleHom.lof A (fun j => (F j : Type (max v w))) j)
 
+/--
+@isnad1 id=eq.0h3v.s7.062d1618a444 from=translated src=- shape=b9dedf65 vocab=5c83566e
+-/
 @[simp]
 theorem coproductCocone_pt : (coproductCocone F).pt = of A (⨁ j : J, F j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.be9c68d316ce from=translated src=- shape=3834d678 vocab=42ecbe78
+-/
 @[simp]
 theorem coproductCocone_inj (j : J) :
     (coproductCocone F).inj j = ofHom (DGModuleHom.lof A (fun j => (F j : Type (max v w))) j) :=
@@ -75,10 +81,16 @@ def productCone : Fan F :=
   Fan.mk (of A (GradedPi A fun j => (F j : Type (max v w)))) fun j =>
     ofHom (DGModuleHom.proj A (fun j => (F j : Type (max v w))) j)
 
+/--
+@isnad1 id=eq.0h3v.s7.56dc1d414183 from=translated src=- shape=1300f0ba vocab=b023c7f3
+-/
 @[simp]
 theorem productCone_pt : (productCone F).pt = of A (GradedPi A fun j => (F j : Type (max v w))) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.efb7c6ba6203 from=translated src=- shape=12700fa3 vocab=7c72131c
+-/
 @[simp]
 theorem productCone_proj (j : J) :
     (productCone F).proj j = ofHom (DGModuleHom.proj A (fun j => (F j : Type (max v w))) j) :=
@@ -107,6 +119,9 @@ def gradingDirectSum (n : ℤ) :
   DirectSum.toModule R J (DGModule.gradingSubmodule R A (coproductCocone F).pt n) fun j =>
     homRestrict R ((coproductCocone F).inj j) n
 
+/--
+@isnad1 id=eq.0h7v.s13.dbe64807cb5b from=translated src=- shape=1e499715 vocab=3a4a3b3a
+-/
 theorem gradingDirectSum_lof (n : ℤ) (j : J) (x : DGModule.gradingSubmodule R A (F j) n) :
     gradingDirectSum R F n (DirectSum.lof R J (fun j => DGModule.gradingSubmodule R A (F j) n) j x)
       = homRestrict R ((coproductCocone F).inj j) n x := by
@@ -120,6 +135,9 @@ abbrev toFamily {n : ℤ} (x : DGModule.gradingSubmodule R A (coproductCocone F)
     ⨁ j : J, F j :=
   (x : (coproductCocone F).pt)
 
+/--
+@isnad1 id=eq.0h7v.s13.0190f3509993 from=translated src=- shape=e6eb8ac7 vocab=8d479e34
+-/
 theorem toFamily_gradingDirectSum (n : ℤ) (y : ⨁ j, DGModule.gradingSubmodule R A (F j) n)
     (j : J) : toFamily R F (gradingDirectSum R F n y) j = (y j : F j) := by
   induction y using DirectSum.induction_on with
@@ -137,6 +155,9 @@ theorem toFamily_gradingDirectSum (n : ℤ) (y : ⨁ j, DGModule.gradingSubmodul
     change toFamily R F _ j + toFamily R F _ j = _
     rw [hx, hy]; rfl
 
+/--
+@isnad1 id=bijectiv.0h5v.s12.754adeb3b182 from=translated src=- shape=6ef5852b vocab=ba673654
+-/
 theorem gradingDirectSum_bijective (n : ℤ) : Function.Bijective (gradingDirectSum R F n) := by
   classical
   constructor
@@ -160,6 +181,9 @@ def gradingDirectSumEquiv (n : ℤ) :
       DGModule.gradingSubmodule R A (coproductCocone F).pt n :=
   LinearEquiv.ofBijective _ (gradingDirectSum_bijective R F n)
 
+/--
+@isnad1 id=eq.0h7v.s14.3c717bed787e from=translated src=- shape=7ea7824d vocab=f5693c7d
+-/
 theorem gradingDirectSumEquiv_symm_homRestrict (n : ℤ) (j : J)
     (x : DGModule.gradingSubmodule R A (F j) n) :
     (gradingDirectSumEquiv R F n).symm (homRestrict R ((coproductCocone F).inj j) n x) =
@@ -176,6 +200,9 @@ def descEval {n : ℤ}
     (gradingDirectSumEquiv R F n).symm.toLinearMap)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s11.44eb434e1bbf from=translated src=- shape=333e31bb vocab=c5d48dd4
+-/
 theorem descEval_fac {n : ℤ}
     (s : Cocone ((Discrete.functor F) ⋙ forget R A ⋙ HomologicalComplex.eval _ _ n)) (j : J) :
     ((forget R A ⋙ HomologicalComplex.eval _ _ n).mapCocone (coproductCocone F)).ι.app ⟨j⟩ ≫
@@ -188,6 +215,9 @@ theorem descEval_fac {n : ℤ}
   exact DirectSum.toModule_lof R (M := fun j => DGModule.gradingSubmodule R A (F j) n)
     (N := s.pt) (φ := fun j => (s.ι.app ⟨j⟩).hom) j x
 
+/--
+@isnad1 id=eq.1h7v.s13.9766e614d4b1 from=translated src=- shape=c236a468 vocab=12a48e56
+-/
 theorem descEval_uniq {n : ℤ}
     (s : Cocone ((Discrete.functor F) ⋙ forget R A ⋙ HomologicalComplex.eval _ _ n))
     (m : ModuleCat.of R (DGModule.gradingSubmodule R A (coproductCocone F).pt n) ⟶ s.pt)

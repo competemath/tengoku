@@ -27,7 +27,9 @@ variable {A : Type*} {M N : Type*} [Ring A] [DGAddCommGroup A]
   [AddCommGroup M] [DGAddCommGroup M] [Module A M]
   [AddCommGroup N] [DGAddCommGroup N] [Module A N]
 
-/-- A morphism of dg modules commutes with the homogeneous decompositions.-/
+/-- A morphism of dg modules commutes with the homogeneous decompositions.
+@isnad1 id=eq.0h6v.s10.f4ecca60f765 from=translated src=- shape=85939934 vocab=ba712da6
+-/
 theorem DGModuleHom.coe_decompose_apply (f : M →ᵈᵍ[A] N) (m : M) (j : ℤ) :
     (decompose (grading (M := N)) (f m) j : N) = f (decompose (grading (M := M)) m j) := by
   induction m using induction_on with
@@ -42,7 +44,9 @@ theorem DGModuleHom.coe_decompose_apply (f : M →ᵈᵍ[A] N) (m : M) (j : ℤ)
   | h_add m m' hm hm' => simp [decompose_add, hm, hm']
 
 /-- An injective morphism of dg modules reflects the grading: if `f m` is homogeneous of
-degree `k`, so is `m`.-/
+degree `k`, so is `m`.
+@isnad1 id=mem.2h6v.s7.030580135ab8 from=translated src=- shape=d5af47f4 vocab=419284ba
+-/
 theorem DGModuleHom.mem_grading_of_injective (f : M →ᵈᵍ[A] N) (hf : Function.Injective f)
     {k : ℤ} {m : M} (hm : f m ∈ grading k) : m ∈ grading k := by
   set ℳ := grading (M := M)
@@ -96,16 +100,28 @@ instance : LinearEquivClass (M ≃ᵈᵍ[A] N) A M N where
   map_add e := e.map_add'
   map_smulₛₗ e := e.map_smul'
 
+/--
+@isnad1 id=eq.0h4v.s7.6f361a000272 from=translated src=- shape=d8f4526c vocab=588b71c6
+-/
 @[simp]
 theorem coe_toLinearEquiv (e : M ≃ᵈᵍ[A] N) : ⇑e.toLinearEquiv = e := rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.3c5c8eb66dc7 from=translated src=- shape=11aaea2d vocab=827998a4
+-/
 @[ext]
 theorem ext {e e' : M ≃ᵈᵍ[A] N} (h : ∀ m, e m = e' m) : e = e' :=
   DFunLike.ext e e' h
 
+/--
+@isnad1 id=mem.1h6v.s7.3180130ec4e3 from=translated src=- shape=3c45d893 vocab=192d2fca
+-/
 theorem map_mem (e : M ≃ᵈᵍ[A] N) {n : ℤ} {m : M} (hm : m ∈ grading n) : e m ∈ grading n :=
   e.map_mem' hm
 
+/--
+@isnad1 id=eq.0h5v.s8.ef201238e025 from=translated src=- shape=d6997d71 vocab=fb3b1abb
+-/
 @[simp]
 theorem map_d (e : M ≃ᵈᵍ[A] N) (m : M) : e (d m) = d (e m) :=
   e.map_d' m
@@ -116,12 +132,21 @@ def toDGModuleHom (e : M ≃ᵈᵍ[A] N) : M →ᵈᵍ[A] N where
   map_mem' := e.map_mem'
   map_d' := e.map_d'
 
+/--
+@isnad1 id=eq.0h4v.s7.f8db44aa5b9d from=translated src=- shape=a2c0993c vocab=53f7dbff
+-/
 @[simp]
 theorem coe_toDGModuleHom (e : M ≃ᵈᵍ[A] N) : ⇑e.toDGModuleHom = e := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s6.0fa1b39e9201 from=translated src=- shape=769fb268 vocab=22952efe
+-/
 theorem injective (e : M ≃ᵈᵍ[A] N) : Function.Injective e :=
   EquivLike.injective e
 
+/--
+@isnad1 id=surjecti.0h4v.s6.8104abec02b8 from=translated src=- shape=769fb268 vocab=6a4bdc7c
+-/
 theorem surjective (e : M ≃ᵈᵍ[A] N) : Function.Surjective e :=
   EquivLike.surjective e
 
@@ -131,6 +156,9 @@ def refl : M ≃ᵈᵍ[A] M where
   map_mem' hm := hm
   map_d' _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.ec05555df9ea from=translated src=- shape=ca333403 vocab=917350c8
+-/
 @[simp]
 theorem refl_apply (m : M) : (refl : M ≃ᵈᵍ[A] M) m = m := rfl
 
@@ -146,14 +174,23 @@ def symm (e : M ≃ᵈᵍ[A] N) : N ≃ᵈᵍ[A] M where
     change e (e.toLinearEquiv.symm (d y)) = e (d (e.toLinearEquiv.symm y))
     rw [map_d, ← coe_toLinearEquiv, LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s7.09c71bb14e62 from=translated src=- shape=f87e0636 vocab=56def280
+-/
 @[simp]
 theorem apply_symm_apply (e : M ≃ᵈᵍ[A] N) (y : N) : e (e.symm y) = y :=
   e.right_inv y
 
+/--
+@isnad1 id=eq.0h5v.s7.551e58a81267 from=translated src=- shape=07e2e662 vocab=56def280
+-/
 @[simp]
 theorem symm_apply_apply (e : M ≃ᵈᵍ[A] N) (m : M) : e.symm (e m) = m :=
   e.left_inv m
 
+/--
+@isnad1 id=eq.0h4v.s6.774cd5e8ee3b from=translated src=- shape=95b39492 vocab=046b671c
+-/
 @[simp]
 theorem symm_symm (e : M ≃ᵈᵍ[A] N) : e.symm.symm = e := rfl
 
@@ -165,6 +202,9 @@ def trans (e : M ≃ᵈᵍ[A] N) (e' : N ≃ᵈᵍ[A] P) : M ≃ᵈᵍ[A] P wher
     change e' (e (d m)) = d (e' (e m))
     rw [map_d, map_d]
 
+/--
+@isnad1 id=eq.0h7v.s7.0a6743cdef88 from=translated src=- shape=63151fa5 vocab=a336cdac
+-/
 @[simp]
 theorem trans_apply (e : M ≃ᵈᵍ[A] N) (e' : N ≃ᵈᵍ[A] P) (m : M) : e.trans e' m = e' (e m) := rfl
 

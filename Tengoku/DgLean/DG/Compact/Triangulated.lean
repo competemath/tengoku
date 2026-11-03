@@ -45,7 +45,9 @@ section yoneda
 variable [HasZeroObject C] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
 
 /-- Exactness of `(T.obj₃ ⟶ M) → (T.obj₂ ⟶ M) → (T.obj₁ ⟶ M)` for a distinguished triangle `T`,
-as `Function.Exact`.-/
+as `Function.Exact`.
+@isnad1 id=exact.1h3v.s9.d434ec036cd6 from=translated src=- shape=8007c351 vocab=c8e5d999
+-/
 theorem exact_leftComp_of_distTriang (T : Triangle C) (hT : T ∈ distTriang C) (M : C) :
     Function.Exact (Preadditive.leftComp M T.mor₂) (Preadditive.leftComp M T.mor₁) := by
   intro f
@@ -57,12 +59,16 @@ theorem exact_leftComp_of_distTriang (T : Triangle C) (hT : T ∈ distTriang C) 
     change T.mor₁ ≫ T.mor₂ ≫ g = 0
     rw [← Category.assoc, comp_distTriang_mor_zero₁₂ T hT, Limits.zero_comp]
 
-/-- Exactness of `(T.obj₁⟦1⟧ ⟶ M) → (T.obj₃ ⟶ M) → (T.obj₂ ⟶ M)`.-/
+/-- Exactness of `(T.obj₁⟦1⟧ ⟶ M) → (T.obj₃ ⟶ M) → (T.obj₂ ⟶ M)`.
+@isnad1 id=exact.1h3v.s10.26968caf49a7 from=translated src=- shape=22436035 vocab=8caf2b68
+-/
 theorem exact_leftComp_of_distTriang' (T : Triangle C) (hT : T ∈ distTriang C) (M : C) :
     Function.Exact (Preadditive.leftComp M T.mor₃) (Preadditive.leftComp M T.mor₂) :=
   exact_leftComp_of_distTriang T.rotate (rot_of_distTriang T hT) M
 
-/-- Exactness of `(T.obj₂⟦1⟧ ⟶ M) → (T.obj₁⟦1⟧ ⟶ M) → (T.obj₃ ⟶ M)`.-/
+/-- Exactness of `(T.obj₂⟦1⟧ ⟶ M) → (T.obj₁⟦1⟧ ⟶ M) → (T.obj₃ ⟶ M)`.
+@isnad1 id=exact.1h3v.s11.58ac2a151ba6 from=translated src=- shape=dfab3e97 vocab=baba4b24
+-/
 theorem exact_leftComp_of_distTriang'' (T : Triangle C) (hT : T ∈ distTriang C) (M : C) :
     Function.Exact (Preadditive.leftComp M (-T.mor₁⟦(1 : ℤ)⟧')) (Preadditive.leftComp M T.mor₃) :=
   exact_leftComp_of_distTriang T.rotate.rotate (rot_of_distTriang _ (rot_of_distTriang T hT)) M
@@ -73,7 +79,9 @@ section shift
 
 variable [∀ n : ℤ, (shiftFunctor C n).Additive] [HasCoproducts.{w} C]
 
-/-- Compact objects are closed under shifts.-/
+/-- Compact objects are closed under shifts.
+@isnad1 id=iscompac.1h3v.s5.8faf0b71486a from=translated src=- shape=e3251331 vocab=250eb8a7
+-/
 theorem IsCompact.shift {X : C} (hX : IsCompact.{w} X) (n : ℤ) : IsCompact.{w} (X⟦n⟧) := by
   intro ι _ W _
   let adj : shiftFunctor C n ⊣ shiftFunctor C (-n) := (shiftEquiv C n).toAdjunction
@@ -105,6 +113,9 @@ theorem IsCompact.shift {X : C} (hX : IsCompact.{w} X) (n : ℤ) : IsCompact.{w}
     exact (hX ι W').comp hΦ
   exact (Function.Bijective.of_comp_iff' hψ _).1 this
 
+/--
+@isnad1 id=iff.0h3v.s5.e6412ea18f49 from=translated src=- shape=6fbcde62 vocab=250eb8a7
+-/
 theorem isCompact_shift_iff (X : C) (n : ℤ) : IsCompact.{w} (X⟦n⟧) ↔ IsCompact.{w} X :=
   ⟨fun h => (h.shift (-n)).of_iso ((shiftEquiv C n).unitIso.app X), fun h => h.shift n⟩
 
@@ -117,7 +128,9 @@ variable [HasZeroObject C] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriang
 
 /-- In a distinguished triangle `X₁ ⟶ X₂ ⟶ X₃ ⟶ X₁⟦1⟧`, if `X₁` and `X₂` are compact then so is
 `X₃`: the five lemma applied to the comparison maps between the direct sum of the Yoneda
-sequences of the `Y i` and the Yoneda sequence of `∐ Y`.-/
+sequences of the `Y i` and the Yoneda sequence of `∐ Y`.
+@isnad1 id=iscompac.3h2v.s6.7c4c326d0a57 from=translated src=- shape=481ecd30 vocab=ad2e2a81
+-/
 theorem IsCompact.ext₃ (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : IsCompact.{w} T.obj₁) (h₂ : IsCompact.{w} T.obj₂) : IsCompact.{w} T.obj₃ := by
   intro ι _ W _
@@ -138,13 +151,17 @@ theorem IsCompact.ext₃ (T : Triangle C) (hT : T ∈ distTriang C)
     ((h₂.shift 1) ι W).2 ((h₁.shift 1) ι W) (h₂ ι W) (h₁ ι W).1
 
 /-- In a distinguished triangle `X₁ ⟶ X₂ ⟶ X₃ ⟶ X₁⟦1⟧`, if `X₁` and `X₃` are compact then so is
-`X₂`.-/
+`X₂`.
+@isnad1 id=iscompac.3h2v.s6.1265cc27ea80 from=translated src=- shape=481ecd30 vocab=ad2e2a81
+-/
 theorem IsCompact.ext₂ (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : IsCompact.{w} T.obj₁) (h₃ : IsCompact.{w} T.obj₃) : IsCompact.{w} T.obj₂ :=
   IsCompact.ext₃ T.invRotate (inv_rot_of_distTriang T hT) (h₃.shift (-1)) h₁
 
 /-- In a distinguished triangle `X₁ ⟶ X₂ ⟶ X₃ ⟶ X₁⟦1⟧`, if `X₂` and `X₃` are compact then so is
-`X₁`.-/
+`X₁`.
+@isnad1 id=iscompac.3h2v.s6.e86a6ee41c86 from=translated src=- shape=481ecd30 vocab=ad2e2a81
+-/
 theorem IsCompact.ext₁ (T : Triangle C) (hT : T ∈ distTriang C)
     (h₂ : IsCompact.{w} T.obj₂) (h₃ : IsCompact.{w} T.obj₃) : IsCompact.{w} T.obj₁ :=
   (isCompact_shift_iff T.obj₁ 1).1 (IsCompact.ext₃ T.rotate (rot_of_distTriang T hT) h₂ h₃)
@@ -158,6 +175,9 @@ def compactSubcategory : ObjectProperty C := IsCompact.{w}
 
 omit [HasZeroObject C] [HasShift C ℤ] [∀ (n : ℤ), (shiftFunctor C n).Additive]
   [Pretriangulated C] [HasCoproducts.{w} C] in
+/--
+@isnad1 id=eq.0h1v.s4.8931e63db56e from=translated src=- shape=cbac796f vocab=cacb3091
+-/
 @[simp]
 theorem compactSubcategory_P : compactSubcategory.{w} C = IsCompact.{w} := rfl
 
@@ -173,7 +193,9 @@ variable {C}
 
 omit [HasZeroObject C] [HasShift C ℤ] [∀ (n : ℤ), (shiftFunctor C n).Additive]
   [Pretriangulated C] [HasCoproducts.{w} C] in
-/-- The subcategory of compact objects is closed under retracts (it is thick).-/
+/-- The subcategory of compact objects is closed under retracts (it is thick).
+@isnad1 id=compacts.0h5v.s4.9625f771aafd from=translated src=- shape=79cd4cd8 vocab=f34c8e03
+-/
 theorem compactSubcategory_of_retract {X Y : C} (h : Retract X Y)
     (hY : compactSubcategory.{w} C Y) : compactSubcategory.{w} C X :=
   IsCompact.of_retract h hY

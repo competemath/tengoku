@@ -87,17 +87,28 @@ variable {C}
 /-- The class `[X] ∈ K₀(C)` of an object `X` of `C`.-/
 def mk (X : C) : AbelianK0 C := mkHom C (FreeAbelianGroup.of X)
 
+/--
+@isnad1 id=eq.0h2v.s7.bcd9dbc5cd46 from=translated src=- shape=6a151a0d vocab=f6f9de27
+-/
 theorem mkHom_of (X : C) : mkHom C (FreeAbelianGroup.of X) = mk X := rfl
 
+/--
+@isnad1 id=surjecti.0h1v.s7.3660b871946f from=translated src=- shape=e937283c vocab=87ccd959
+-/
 theorem mkHom_surjective : Function.Surjective (mkHom C) := QuotientAddGroup.mk'_surjective _
 
+/--
+@isnad1 id=mem.1h2v.s7.6f354f56a2b3 from=translated src=- shape=38836128 vocab=8d944d06
+-/
 theorem relation_mem {S : ShortComplex C} (hS : S.ShortExact) :
     FreeAbelianGroup.of S.X₂ - FreeAbelianGroup.of S.X₁ - FreeAbelianGroup.of S.X₃ ∈
       relations C :=
   AddSubgroup.subset_closure ⟨S, hS, rfl⟩
 
 /-- The defining relation of `K₀(C)`: `[S.X₂] = [S.X₁] + [S.X₃]` for a short exact sequence
-`S`.-/
+`S`.
+@isnad1 id=eq.1h2v.s6.018831ba8bd5 from=translated src=- shape=41cabd4a vocab=9cf2528d
+-/
 theorem mk_X₂ {S : ShortComplex C} (hS : S.ShortExact) : mk S.X₂ = mk S.X₁ + mk S.X₃ := by
   have h := (QuotientAddGroup.eq_zero_iff _).2 (relation_mem hS)
   change mkHom C _ = 0 at h
@@ -105,7 +116,9 @@ theorem mk_X₂ {S : ShortComplex C} (hS : S.ShortExact) : mk S.X₂ = mk S.X₁
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Induction principle for `K₀(C)`: every element is obtained from the classes of objects by
-sums and negatives.-/
+sums and negatives.
+@isnad1 id=var.0h7v.s7.bf60dfe20710 from=translated src=- shape=3df6d5c6 vocab=8d55a485
+-/
 theorem induction_on {p : AbelianK0 C → Prop} (x : AbelianK0 C) (zero : p 0)
     (mk : ∀ X : C, p (mk X)) (neg : ∀ x, p x → p (-x)) (add : ∀ x y, p x → p y → p (x + y)) :
     p x := by
@@ -121,7 +134,9 @@ section lift
 variable {G : Type*} [AddCommGroup G]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two homomorphisms out of `K₀(C)` which agree on the classes of objects are equal.-/
+/-- Two homomorphisms out of `K₀(C)` which agree on the classes of objects are equal.
+@isnad1 id=eq.1h4v.s8.a19c12440d05 from=translated src=- shape=46bdf645 vocab=8ed8ec30
+-/
 @[ext]
 theorem addMonoidHom_ext ⦃f g : AbelianK0 C →+ G⦄ (h : ∀ X : C, f (mk X) = g (mk X)) :
     f = g := by
@@ -142,11 +157,17 @@ def lift (f : C → G) (hf : ∀ S : ShortComplex C, S.ShortExact → f S.X₂ =
     abel)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s7.2f85dce0a2ba from=translated src=- shape=c0bd3634 vocab=75238d35
+-/
 @[simp]
 theorem lift_mk (f : C → G) (hf) (X : C) : lift f hf (mk X) = f X :=
   (QuotientAddGroup.lift_mk' (relations C) _ (FreeAbelianGroup.of X)).trans
     (FreeAbelianGroup.lift_apply_of f X)
 
+/--
+@isnad1 id=eq.2h4v.s8.f0e3227e5472 from=translated src=- shape=1951dbd7 vocab=75238d35
+-/
 theorem lift_unique (f : C → G) (hf) (g : AbelianK0 C →+ G) (hg : ∀ X, g (mk X) = f X) :
     g = lift f hf := by
   ext X
@@ -156,18 +177,28 @@ end lift
 
 /-! ### Basic relations -/
 
+/--
+@isnad1 id=eq.1h2v.s6.7243893f6e41 from=translated src=- shape=41cabd4a vocab=02262536
+-/
 theorem mk_X₁ {S : ShortComplex C} (hS : S.ShortExact) : mk S.X₁ = mk S.X₂ - mk S.X₃ := by
   rw [mk_X₂ hS, add_sub_cancel_right]
 
+/--
+@isnad1 id=eq.1h2v.s6.28f7d42d5536 from=translated src=- shape=41cabd4a vocab=02262536
+-/
 theorem mk_X₃ {S : ShortComplex C} (hS : S.ShortExact) : mk S.X₃ = mk S.X₂ - mk S.X₁ := by
   rw [mk_X₂ hS, add_sub_cancel_left]
 
-/-- The short exact sequence relation, for a short exact sequence given by its two morphisms.-/
+/-- The short exact sequence relation, for a short exact sequence given by its two morphisms.
+@isnad1 id=eq.2h6v.s7.2144a8dbd9e1 from=translated src=- shape=b5ec32db vocab=18982b6a
+-/
 theorem mk_eq_add_of_shortExact {X₁ X₂ X₃ : C} (f : X₁ ⟶ X₂) (g : X₂ ⟶ X₃) (w : f ≫ g = 0)
     (h : (ShortComplex.mk f g w).ShortExact) : mk X₂ = mk X₁ + mk X₃ :=
   mk_X₂ h
 
-/-- The class of the zero object is `0`.-/
+/-- The class of the zero object is `0`.
+@isnad1 id=eq.0h1v.s6.0fa5643958da from=translated src=- shape=0dd0c4c7 vocab=ccde5a39
+-/
 @[simp]
 theorem mk_zero : mk (0 : C) = 0 := by
   have h := mk_X₂ ((ShortComplex.Splitting.ofIsZeroOfIsIso
@@ -176,7 +207,9 @@ theorem mk_zero : mk (0 : C) = 0 := by
   exact right_eq_add.1 h
 
 /-- Isomorphic objects have the same class in `K₀(C)`, by the short exact sequence
-`0 ⟶ 0 ⟶ X ⟶ Y ⟶ 0`.-/
+`0 ⟶ 0 ⟶ X ⟶ Y ⟶ 0`.
+@isnad1 id=eq.0h4v.s5.f22d29149a27 from=translated src=- shape=e0c253cd vocab=e165c63e
+-/
 theorem mk_eq_of_iso {X Y : C} (e : X ≅ Y) : mk X = mk Y := by
   have h := mk_X₂ ((ShortComplex.Splitting.ofIsZeroOfIsIso
     (ShortComplex.mk (0 : (0 : C) ⟶ X) e.hom (by simp)) (isZero_zero C)
@@ -184,25 +217,38 @@ theorem mk_eq_of_iso {X Y : C} (e : X ≅ Y) : mk X = mk Y := by
   dsimp at h
   rw [h, mk_zero, zero_add]
 
+/--
+@isnad1 id=eq.1h2v.s6.c2fb65a7cb8c from=translated src=- shape=f348da3b vocab=d215368d
+-/
 theorem mk_eq_zero_of_isZero {X : C} (hX : IsZero X) : mk X = 0 := by
   rw [mk_eq_of_iso hX.isoZero, mk_zero]
 
 /-! ### Biproducts -/
 
-/-- `[X ⊞ Y] = [X] + [Y]`, from the split short exact sequence `0 ⟶ X ⟶ X ⊞ Y ⟶ Y ⟶ 0`.-/
+/-- `[X ⊞ Y] = [X] + [Y]`, from the split short exact sequence `0 ⟶ X ⟶ X ⊞ Y ⟶ Y ⟶ 0`.
+@isnad1 id=eq.0h3v.s6.a43b9336fca0 from=translated src=- shape=46ffa5bf vocab=5befef82
+-/
 theorem mk_biprod (X Y : C) : mk (X ⊞ Y) = mk X + mk Y :=
   mk_X₂ (ShortComplex.Splitting.ofHasBinaryBiproduct X Y).shortExact
 
+/--
+@isnad1 id=eq.0h3v.s6.078b68f8eb1c from=translated src=- shape=46ffa5bf vocab=87c43cf7
+-/
 theorem mk_prod (X Y : C) : mk (X ⨯ Y) = mk X + mk Y :=
   (mk_eq_of_iso (biprod.isoProd X Y).symm).trans (mk_biprod X Y)
 
+/--
+@isnad1 id=eq.0h3v.s6.3825b63be56e from=translated src=- shape=46ffa5bf vocab=3738d28a
+-/
 theorem mk_coprod (X Y : C) : mk (X ⨿ Y) = mk X + mk Y :=
   (mk_eq_of_iso (biprod.isoCoprod X Y).symm).trans (mk_biprod X Y)
 
 /-! ### Kernels, images and homology -/
 
 /-- `[X] = [ker f] + [coim f]` for `f : X ⟶ Y`, from the short exact sequence
-`0 ⟶ ker f ⟶ X ⟶ coim f ⟶ 0`.-/
+`0 ⟶ ker f ⟶ X ⟶ coim f ⟶ 0`.
+@isnad1 id=eq.0h4v.s6.018018d84163 from=translated src=- shape=4be1701c vocab=28730307
+-/
 theorem mk_eq_mk_kernel_add_mk_coimage {X Y : C} (f : X ⟶ Y) :
     mk X = mk (kernel f) + mk (Abelian.coimage f) :=
   mk_X₂ (S := ShortComplex.mk (kernel.ι f) (Abelian.coimage.π f) (by simp))
@@ -210,22 +256,32 @@ theorem mk_eq_mk_kernel_add_mk_coimage {X Y : C} (f : X ⟶ Y) :
       (cokernelIsCokernel (kernel.ι f))) (by dsimp; infer_instance) (by dsimp; infer_instance))
 
 /-- `[Y] = [im f] + [coker f]` for `f : X ⟶ Y`, from the short exact sequence
-`0 ⟶ im f ⟶ Y ⟶ coker f ⟶ 0`.-/
+`0 ⟶ im f ⟶ Y ⟶ coker f ⟶ 0`.
+@isnad1 id=eq.0h4v.s6.f333c40554eb from=translated src=- shape=3d0cf9d8 vocab=ae563715
+-/
 theorem mk_eq_mk_image_add_mk_cokernel {X Y : C} (f : X ⟶ Y) :
     mk Y = mk (Abelian.image f) + mk (cokernel f) :=
   mk_X₂ (S := ShortComplex.mk (Abelian.image.ι f) (cokernel.π f) (by simp))
     (ShortComplex.ShortExact.mk' (ShortComplex.exact_of_f_is_kernel _
       (kernelIsKernel (cokernel.π f))) (by dsimp; infer_instance) (by dsimp; infer_instance))
 
-/-- `[Y] = [coim f] + [coker f]` for `f : X ⟶ Y`, using `coim f ≅ im f`.-/
+/-- `[Y] = [coim f] + [coker f]` for `f : X ⟶ Y`, using `coim f ≅ im f`.
+@isnad1 id=eq.0h4v.s6.f10a15381cb9 from=translated src=- shape=3d0cf9d8 vocab=32ccccd3
+-/
 theorem mk_eq_mk_coimage_add_mk_cokernel {X Y : C} (f : X ⟶ Y) :
     mk Y = mk (Abelian.coimage f) + mk (cokernel f) := by
   rw [mk_eq_mk_image_add_mk_cokernel f, mk_eq_of_iso (Abelian.coimageIsoImage f)]
 
+/--
+@isnad1 id=eq.1h4v.s6.d2012bbbd44e from=translated src=- shape=8afbc813 vocab=73092f1e
+-/
 theorem mk_coimage_eq_zero_of_isZero_source {X Y : C} (f : X ⟶ Y) (hX : IsZero X) :
     mk (Abelian.coimage f) = 0 :=
   mk_eq_zero_of_isZero (IsZero.of_epi (Abelian.coimage.π f) hX)
 
+/--
+@isnad1 id=eq.1h4v.s6.2af0c61f0173 from=translated src=- shape=4a023233 vocab=73092f1e
+-/
 theorem mk_coimage_eq_zero_of_isZero_target {X Y : C} (f : X ⟶ Y) (hY : IsZero Y) :
     mk (Abelian.coimage f) = 0 := by
   rw [mk_eq_of_iso (Abelian.coimageIsoImage f)]
@@ -234,7 +290,9 @@ theorem mk_coimage_eq_zero_of_isZero_target {X Y : C} (f : X ⟶ Y) (hY : IsZero
 /-- For a short complex `S : X₁ ⟶ X₂ ⟶ X₃` in an abelian category,
 `[X₂] = [H(S)] + [coim S.f] + [coim S.g]`. It combines the short exact sequences
 `0 ⟶ Z ⟶ X₂ ⟶ coim S.g ⟶ 0` and `0 ⟶ B ⟶ Z ⟶ H(S) ⟶ 0`, where `Z = S.cycles` is the kernel of
-`S.g` and `B ≅ coim S.f` is the image of `S.f`.-/
+`S.g` and `B ≅ coim S.f` is the image of `S.f`.
+@isnad1 id=eq.0h2v.s7.e6947c92b2ac from=translated src=- shape=20ecf98a vocab=2fae8a5d
+-/
 theorem mk_X₂_eq_mk_homology_add (S : ShortComplex C) :
     mk S.X₂ = mk S.homology + mk (Abelian.coimage S.f) + mk (Abelian.coimage S.g) := by
   have e₁ : S.homology ≅ cokernel S.toCycles :=
@@ -267,23 +325,34 @@ def map (F : C ⥤ D) [F.PreservesZeroMorphisms] [PreservesFiniteLimits F]
     [PreservesFiniteColimits F] : AbelianK0 C →+ AbelianK0 D :=
   lift (fun X => mk (F.obj X)) (fun _ hS => mk_X₂ (hS.map_of_exact F))
 
+/--
+@isnad1 id=eq.0h4v.s7.f790fc0b28db from=translated src=- shape=c4c2f1ec vocab=bb43366b
+-/
 @[simp]
 theorem map_mk (F : C ⥤ D) [F.PreservesZeroMorphisms] [PreservesFiniteLimits F]
     [PreservesFiniteColimits F] (X : C) : map F (mk X) = mk (F.obj X) :=
   lift_mk _ _ X
 
+/--
+@isnad1 id=eq.0h1v.s6.a34debfe7d27 from=translated src=- shape=ad52765a vocab=e3d4f99c
+-/
 @[simp]
 theorem map_id : map (𝟭 C) = AddMonoidHom.id (AbelianK0 C) := by
   ext X
   simp
 
+/--
+@isnad1 id=eq.0h5v.s8.b208b6701455 from=translated src=- shape=d04e495a vocab=bd34c2c1
+-/
 theorem map_comp (F : C ⥤ D) (G : D ⥤ E) [F.PreservesZeroMorphisms] [PreservesFiniteLimits F]
     [PreservesFiniteColimits F] [G.PreservesZeroMorphisms] [PreservesFiniteLimits G]
     [PreservesFiniteColimits G] : map (F ⋙ G) = (map G).comp (map F) := by
   ext X
   simp
 
-/-- Naturally isomorphic exact functors induce the same map on `K₀`.-/
+/-- Naturally isomorphic exact functors induce the same map on `K₀`.
+@isnad1 id=eq.0h5v.s7.89d7c075d234 from=translated src=- shape=146a3f56 vocab=8ea1d62e
+-/
 theorem map_eq_of_iso {F₁ F₂ : C ⥤ D} (e : F₁ ≅ F₂) [F₁.PreservesZeroMorphisms]
     [PreservesFiniteLimits F₁] [PreservesFiniteColimits F₁] [F₂.PreservesZeroMorphisms]
     [PreservesFiniteLimits F₂] [PreservesFiniteColimits F₂] : map F₁ = map F₂ := by
@@ -303,15 +372,24 @@ def mapEquiv (e : C ≌ D) : AbelianK0 C ≃+ AbelianK0 D where
       AddMonoidHom.id_apply]
   map_add' := map_add _
 
+/--
+@isnad1 id=eq.0h4v.s8.b3b3a1121e02 from=translated src=- shape=4ab5656b vocab=0b610e53
+-/
 @[simp]
 theorem mapEquiv_apply (e : C ≌ D) (x : AbelianK0 C) : mapEquiv e x = map e.functor x :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.dd9ec39d1a66 from=translated src=- shape=568f9479 vocab=c2f48a1e
+-/
 @[simp]
 theorem mapEquiv_symm_apply (e : C ≌ D) (y : AbelianK0 D) :
     (mapEquiv e).symm y = map e.inverse y :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.505e69f20b8f from=translated src=- shape=26e53400 vocab=88b39bae
+-/
 theorem mapEquiv_mk (e : C ≌ D) (X : C) : mapEquiv e (mk X) = mk (e.functor.obj X) :=
   map_mk _ X
 

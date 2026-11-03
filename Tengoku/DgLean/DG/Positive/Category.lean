@@ -32,7 +32,9 @@ section Ring
 variable {R : Type*} [Ring R]
 
 /-- In a semisimple ring, every idempotent `g` is the sum of a list of pairwise orthogonal
-idempotents `s` with `R s` simple, all satisfying `s g = s = g s`.-/
+idempotents `s` with `R s` simple, all satisfying `s g = s = g s`.
+@isnad1 id=ex.1h2v.s8.c868db0e40c6 from=translated src=- shape=61431a77 vocab=81126536
+-/
 theorem exists_list_sum_eq_of_isSemisimpleRing [IsSemisimpleRing R] {g : R}
     (hg : IsIdempotentElem g) :
     ∃ l : List R, (∀ s ∈ l, IsIdempotentElem s ∧ IsSimpleModule R (Submodule.span R {s}) ∧
@@ -76,7 +78,9 @@ def idempotentToZero {X : SingleObj A} (e : DGCategory.Idempotent X) : degreeZer
   ⟨e.val, e.mem_grading⟩
 
 /-- A degree-`0` idempotent cocycle `e` of `SingleObj A` is simple (in the degree-`0` category)
-iff `A⁰ e` is a simple left `A⁰`-module.-/
+iff `A⁰ e` is a simple left `A⁰`-module.
+@isnad1 id=iff.0h3v.s11.8cb146bf7b8d from=translated src=- shape=3f3eb39c vocab=1c6c11a8
+-/
 theorem idempotent_isSimple_iff {X : SingleObj A} (e : DGCategory.Idempotent X) :
     e.IsSimple ↔ IsSimpleModule (degreeZeroSubring A)
       (Submodule.span (degreeZeroSubring A) {idempotentToZero e}) := by
@@ -118,7 +122,9 @@ theorem idempotent_isSimple_iff {X : SingleObj A} (e : DGCategory.Idempotent X) 
 
 /-- The one-object dg category `SingleObj A` of a dg ring is positive (in the sense of
 `DG.DGCategory.IsPositive`) iff `A` is positive in the sense of Schnürer: the degree-`0`
-category of `SingleObj A` is semisimple iff `A⁰` is a semisimple ring.-/
+category of `SingleObj A` is semisimple iff `A⁰` is a semisimple ring.
+@isnad1 id=iff.0h1v.s5.635e4b838155 from=translated src=- shape=faab2282 vocab=16092bdc
+-/
 theorem isPositive_iff : DGCategory.IsPositive (SingleObj A) ↔ IsPositive A := by
   constructor
   · intro h

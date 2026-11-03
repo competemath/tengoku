@@ -74,6 +74,9 @@ def mulBilin (p q n : ℤ) (h : p + q = n) :
       show x.1 * (algebraMap R A r * y.1) = algebraMap R A r * (x.1 * y.1)
       rw [← mul_assoc, ← Algebra.commutes, mul_assoc]))
 
+/--
+@isnad1 id=eq.1h7v.s13.8177ced6915d from=translated src=- shape=414b5fd6 vocab=6a447547
+-/
 @[simp]
 theorem coe_mulBilin_apply {p q n : ℤ} (h : p + q = n) (x : (complex A).X p)
     (y : (complex A).X q) : (mulBilin A p q n h x y).1 = x.1 * y.1 :=
@@ -89,6 +92,9 @@ def mul : complex A ⊗ complex A ⟶ complex A :=
     change d (x.1 * y.1) = d x.1 * y.1 + ((p.negOnePow : ℤ) • (x.1 * d y.1))
     rw [d_mul x.2, Units.smul_def])
 
+/--
+@isnad1 id=eq.1h7v.s12.9d6e44e3a535 from=translated src=- shape=daf3b146 vocab=9d141c1a
+-/
 @[simp]
 theorem coe_mul_f_tmul {p q n : ℤ} (h : p + q = n) (x : (complex A).X p)
     (y : (complex A).X q) : ((mul A).f n (tmul _ _ h x y)).1 = x.1 * y.1 := by
@@ -105,6 +111,9 @@ def one : 𝟙_ (CochainComplex (ModuleCat.{u} R) ℤ) ⟶ complex A :=
     rw [mul_one, d_algebraMap])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s11.0504220d9c29 from=translated src=- shape=f89b4747 vocab=cc49c287
+-/
 @[simp]
 theorem one_f_unitOne : (one A).f 0 (unitOne R) = oneX A := by
   rw [one, mkHomFromSingle_f, ModuleCat.comp_apply, unitOne]
@@ -140,20 +149,34 @@ instance monObjComplex : CategoryTheory.MonObj (complex A) where
 def toMonObj : Mon (CochainComplex (ModuleCat.{u} R) ℤ) where
   X := complex A
 
+/--
+@isnad1 id=eq.0h2v.s10.22e56351d0d5 from=translated src=- shape=d00003ca vocab=c6b34c63
+-/
 theorem toMonObj_one : η[(toMonObj A).X] = one A := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.d7084307fb1a from=translated src=- shape=40cc95e5 vocab=eadcd14a
+-/
 theorem toMonObj_mul : μ[(toMonObj A).X] = mul A := rfl
 
+/--
+@isnad1 id=eq.1h7v.s13.dd4d5a48fef5 from=translated src=- shape=c0614ddb vocab=a811d1ff
+-/
 @[simp]
 theorem coe_toMonObj_mul_f_tmul {p q n : ℤ} (h : p + q = n) (x : (toMonObj A).X.X p)
     (y : (toMonObj A).X.X q) :
     ((μ[(toMonObj A).X]).f n (tmul (toMonObj A).X (toMonObj A).X h x y)).1 = x.1 * y.1 :=
   coe_mul_f_tmul A h x y
 
+/--
+@isnad1 id=eq.0h2v.s12.dd80ce8f47e5 from=translated src=- shape=e74db5dd vocab=10ac3040
+-/
 theorem toMonObj_one_f_unitOne : (η[(toMonObj A).X]).f 0 (unitOne R) = oneX A :=
   one_f_unitOne A
 
-/-- The differential of the complex of `A` is the differential of `A`.-/
+/-- The differential of the complex of `A` is the differential of `A`.
+@isnad1 id=eq.0h4v.s13.9f2dd4743d7a from=translated src=- shape=a867b7f3 vocab=b3110ced
+-/
 theorem toMonObj_X_d_apply {n : ℤ} (a : (toMonObj A).X.X n) :
     (toMonObj A).X.d n (n + 1) a = ⟨d a.1, d_mem a.2⟩ :=
   congrArg (fun φ => ModuleCat.Hom.hom φ a) (DGModuleCat.toComplex_d R (DGModuleCat.of A A) n)
@@ -168,6 +191,9 @@ def restrictX (f : A ⟶ B) (n : ℤ) : (complex A).X n →ₗ[R] (complex B).X 
     show f.hom (algebraMap R A r * x.1) = algebraMap R B r * f.hom x.1
     rw [map_mul, AlgHomClass.commutes])
 
+/--
+@isnad1 id=eq.0h6v.s11.6a5581c58e17 from=translated src=- shape=daca02a8 vocab=e06a6d45
+-/
 @[simp]
 theorem coe_restrictX_apply (f : A ⟶ B) (n : ℤ) (x : (complex A).X n) :
     (restrictX f n x).1 = f.hom x.1 :=
@@ -180,6 +206,9 @@ def complexMap (f : A ⟶ B) : complex A ⟶ complex B :=
     ext x
     exact Subtype.ext (f.hom.map_d x.1).symm
 
+/--
+@isnad1 id=eq.0h6v.s11.fc5ce28497dd from=translated src=- shape=68e4c636 vocab=a78a9505
+-/
 @[simp]
 theorem coe_complexMap_f_apply (f : A ⟶ B) (n : ℤ) (x : (complex A).X n) :
     ((complexMap f).f n x).1 = f.hom x.1 :=
@@ -247,6 +276,9 @@ def ofMonMap (f : M ⟶ N) : ofMonObj M ⟶ ofMonObj N :=
       map_mem' := ComplexSum.map_mem f.hom
       map_d' := ComplexSum.map_d f.hom }
 
+/--
+@isnad1 id=eq.0h5v.s13.dac47dbd14a9 from=translated src=- shape=5a84f27e vocab=e1ca97c8
+-/
 @[simp]
 theorem ofMonMap_hom_apply (f : M ⟶ N) (z : ComplexSum M.X) :
     (ofMonMap f).hom z = ComplexSum.map f.hom z :=
@@ -281,6 +313,9 @@ def unitFun : A →+ ComplexSum (toMonObj A).X :=
         map_zero' := rfl
         map_add' := fun _ _ => rfl }
 
+/--
+@isnad1 id=eq.1h4v.s13.9190c5461c3a from=translated src=- shape=57552908 vocab=d8ec6c4c
+-/
 theorem unitFun_of_mem {n : ℤ} {a : A} (ha : a ∈ grading n) :
     unitFun A a = ComplexSum.of ((toMonObj A).X) n ⟨a, ha⟩ :=
   liftHomogeneous_of_mem _ _ ha
@@ -292,18 +327,27 @@ def counitFun : ComplexSum (toMonObj A).X →+ A :=
       map_zero' := rfl
       map_add' := fun _ _ => rfl }
 
+/--
+@isnad1 id=eq.0h4v.s13.1e4ca1f85111 from=translated src=- shape=39ed59c7 vocab=b021bb60
+-/
 @[simp]
 theorem counitFun_of (n : ℤ) (x : ((toMonObj A).X).X n) :
     counitFun A (ComplexSum.of ((toMonObj A).X) n x) = x.1 :=
   DirectSum.toAddMonoid_of (β := fun n => ((toMonObj A).X).X n) _ n x
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s13.07e1304b5da5 from=translated src=- shape=3c95f031 vocab=dc168723
+-/
 theorem counitFun_unitFun (a : A) : counitFun A (unitFun A a) = a := by
   induction a using DG.induction_on with
   | h_zero => simp
   | h_homogeneous a => rw [unitFun_of_mem A a.2, counitFun_of]
   | h_add a a' ha ha' => rw [map_add, map_add, ha, ha']
 
+/--
+@isnad1 id=eq.0h3v.s13.36bbf45ae0bc from=translated src=- shape=32220f85 vocab=dc168723
+-/
 theorem unitFun_counitFun (z : ComplexSum (toMonObj A).X) : unitFun A (counitFun A z) = z := by
   induction z using ComplexSum.induction_on with
   | zero => simp
@@ -313,6 +357,9 @@ theorem unitFun_counitFun (z : ComplexSum (toMonObj A).X) : unitFun A (counitFun
   | add z z' hz hz' => rw [map_add, map_add, hz, hz']
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s13.7c609ceba65a from=translated src=- shape=392a42cf vocab=b7a447dc
+-/
 theorem unitFun_mul (a b : A) : unitFun A (a * b) = unitFun A a * unitFun A b := by
   induction a using DG.induction_on with
   | h_zero => rw [zero_mul, map_zero, zero_mul]
@@ -327,11 +374,17 @@ theorem unitFun_mul (a b : A) : unitFun A (a * b) = unitFun A a * unitFun A b :=
     | h_add b b' hb hb' => rw [mul_add, map_add, hb, hb', map_add, mul_add]
   | h_add a a' ha ha' => rw [add_mul, map_add, ha, ha', map_add, add_mul]
 
+/--
+@isnad1 id=eq.0h2v.s12.74eead0e1e94 from=translated src=- shape=40ec8672 vocab=44223dd9
+-/
 theorem unitFun_one : unitFun A 1 = 1 := by
   rw [unitFun_of_mem A one_mem_grading, MonObj.one_def]
   congr 1
   exact (one_f_unitOne A).symm
 
+/--
+@isnad1 id=eq.0h3v.s12.8cb86f43dd58 from=translated src=- shape=c09b5fe7 vocab=38e6f4c8
+-/
 theorem unitFun_algebraMap (r : R) :
     unitFun A (algebraMap R A r) = algebraMap R (ComplexSum (toMonObj A).X) r := by
   rw [unitFun_of_mem A (algebraMap_mem_grading R r), MonObj.algebraMap_apply]
@@ -341,6 +394,9 @@ theorem unitFun_algebraMap (r : R) :
   rw [one_f_unitOne, oneX, mul_one]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s14.397ce55fbcc5 from=translated src=- shape=d1669b08 vocab=6b9d500e
+-/
 theorem unitFun_d (a : A) : unitFun A (d a) = d (unitFun A a) := by
   induction a using DG.induction_on with
   | h_zero => simp
@@ -412,6 +468,9 @@ section Counit
 
 variable (M : Mon (CochainComplex (ModuleCat.{u} R) ℤ))
 
+/--
+@isnad1 id=eq.0h5v.s14.5455abfa12e8 from=translated src=- shape=88e5dabb vocab=3d1695f6
+-/
 theorem algebraMap_smul_of (r : R) (n : ℤ) (x : M.X.X n) :
     algebraMap R (ComplexSum M.X) r • ComplexSum.of M.X n x = ComplexSum.of M.X n (r • x) := by
   rw [smul_eq_mul, MonObj.algebraMap_apply, MonObj.of_mul_of, of_f_tmul μ[M.X] rfl (zero_add n),
@@ -421,6 +480,9 @@ theorem algebraMap_smul_of (r : R) (n : ℤ) (x : M.X.X n) :
 def counitIsoX : (toMonObj (ofMonObj M)).X ≅ M.X :=
   ComplexSum.toComplexIso (K := M.X) (A := ComplexSum M.X) (algebraMap_smul_of M)
 
+/--
+@isnad1 id=eq.0h4v.s13.d5a63d8d512b from=translated src=- shape=d8e8f362 vocab=99c8cbe8
+-/
 theorem counitIsoX_hom_f_apply (n : ℤ) (z : (toMonObj (ofMonObj M)).X.X n) :
     (counitIsoX M).hom.f n z = ComplexSum.component M.X n z.1 :=
   rfl
@@ -450,12 +512,18 @@ def counitIso : toMonObj (ofMonObj M) ≅ M :=
 
 end Counit
 
+/--
+@isnad1 id=eq.0h4v.s13.28b01d00fbc8 from=translated src=- shape=0d21e417 vocab=2715aaeb
+-/
 theorem counitIso_hom_hom_f_apply (M : Mon (CochainComplex (ModuleCat.{u} R) ℤ)) (n : ℤ)
     (z : (toMonObj (ofMonObj M)).X.X n) :
     (counitIso M).hom.hom.f n z = ComplexSum.component M.X n z.1 :=
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s12.382c7c9197d9 from=translated src=- shape=d6dc910d vocab=ad322748
+-/
 theorem counitIso_naturality (f : M ⟶ N) :
     toMonMap (ofMonMap f) ≫ (counitIso N).hom = (counitIso M).hom ≫ f := by
   refine Mon.Hom.ext (HomologicalComplex.hom_ext _ _ fun n =>

@@ -21,14 +21,26 @@ namespace DG
 /-- The Koszul sign `(-1)^n` of a degree `n : ℤ`, as a unit of `ℤ`.-/
 abbrev koszulSign (n : ℤ) : ℤˣ := Int.negOnePow n
 
+/--
+@isnad1 id=eq.0h0v.s4.ca608950e4d4 from=translated src=- shape=f33ffcdd vocab=d1df8e7a
+-/
 @[simp] theorem koszulSign_zero : koszulSign 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f42b24a80a33 from=translated src=- shape=0e4a67e3 vocab=e6bca7c7
+-/
 theorem koszulSign_add (m n : ℤ) : koszulSign (m + n) = koszulSign m * koszulSign n :=
   Int.negOnePow_add m n
 
+/--
+@isnad1 id=eq.1h1v.s4.aaae4aecad11 from=translated src=- shape=719c9ca8 vocab=3d773dc0
+-/
 theorem koszulSign_even {n : ℤ} (h : Even n) : koszulSign n = 1 :=
   Int.negOnePow_even n h
 
+/--
+@isnad1 id=eq.1h1v.s5.fb01ffece4da from=translated src=- shape=5f322fc2 vocab=8accc0c6
+-/
 theorem koszulSign_odd {n : ℤ} (h : Odd n) : koszulSign n = -1 :=
   Int.negOnePow_odd n h
 

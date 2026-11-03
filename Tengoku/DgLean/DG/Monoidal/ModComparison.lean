@@ -50,15 +50,24 @@ variable {A : DGAlgCat.{u, u} R}
 def act (P : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X) : (toMonObj A).X ⊗ P.X ⟶ P.X :=
   γ[(toMonObj A).X, P.X]
 
+/--
+@isnad1 id=eq.0h3v.s14.98ebe41366f7 from=translated src=- shape=aa71e96f vocab=a68515dc
+-/
 theorem act_one (P : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X) :
     η[(toMonObj A).X] ▷ P.X ≫ act P = (λ_ P.X).hom :=
   CategoryTheory.ModObj.one_smul (M := (toMonObj A).X) P.X
 
+/--
+@isnad1 id=eq.0h3v.s15.c610472a9f65 from=translated src=- shape=fa4f61ac vocab=9d1451ca
+-/
 theorem act_assoc (P : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X) :
     μ[(toMonObj A).X] ▷ P.X ≫ act P =
       (α_ (toMonObj A).X (toMonObj A).X P.X).hom ≫ (toMonObj A).X ◁ act P ≫ act P :=
   CategoryTheory.ModObj.mul_smul (M := (toMonObj A).X) P.X
 
+/--
+@isnad1 id=eq.0h5v.s14.29e3d8febe38 from=translated src=- shape=bfbd1568 vocab=52a4c761
+-/
 theorem act_hom {P Q : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X} (g : P ⟶ Q) :
     act P ≫ g.hom = (toMonObj A).X ◁ g.hom ≫ act Q :=
   g.isModHom.smul_hom
@@ -85,7 +94,9 @@ def actBilin (p q n : ℤ) (h : p + q = n) :
       rw [← mul_smul, ← Algebra.commutes, mul_smul]))
 
 /-- The action satisfies the Leibniz rule `d (a • m) = d a • m + (-1)^p a • d m` on the
-underlying complexes.-/
+underlying complexes.
+@isnad1 id=eq.1h8v.s14.76adb645afc1 from=translated src=- shape=048cb17e vocab=f06dba70
+-/
 theorem actBilin_leibniz (p q n : ℤ) (h : p + q = n) (a : (complex A).X p)
     (m : (toComplex R N).X q) :
     (toComplex R N).d n (n + 1) (actBilin N p q n h a m) =
@@ -102,6 +113,9 @@ is a morphism of complexes is the Leibniz rule for the action (`actBilin_leibniz
 def act : (toMonObj A).X ⊗ toComplex R N ⟶ toComplex R N :=
   tensorDesc (toMonObj A).X (toComplex R N) (toComplex R N) (actBilin N) (actBilin_leibniz N)
 
+/--
+@isnad1 id=eq.1h8v.s13.8c733396df5a from=translated src=- shape=12ab2522 vocab=01b3657d
+-/
 @[simp]
 theorem coe_act_f_tmul {p q n : ℤ} (h : p + q = n) (a : (toMonObj A).X.X p)
     (m : (toComplex R N).X q) :
@@ -135,10 +149,16 @@ instance modObjToComplex : CategoryTheory.ModObj (toMonObj A).X (toComplex R N) 
 def toModObj : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X where
   X := toComplex R N
 
+/--
+@isnad1 id=eq.0h3v.s11.a0b5249b9eb7 from=translated src=- shape=c227cad7 vocab=f52ab41b
+-/
 theorem toModObj_act : ModObj.act (toModObj N) = act N := rfl
 
 variable {N} {N' N'' : DGModuleCat.{u} A}
 
+/--
+@isnad1 id=eq.0h7v.s11.c3d400f52659 from=translated src=- shape=92eff9aa vocab=4b8aef28
+-/
 theorem coe_toComplexMap_f_apply (f : N ⟶ N') (n : ℤ) (m : (toComplex R N).X n) :
     ((toComplexMap R f).f n m).1 = f m.1 :=
   rfl
@@ -176,7 +196,9 @@ namespace ModObj
 
 variable {A : DGAlgCat.{u, u} R} (P : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X)
 
-/-- The unit axiom of a module object on elements: `act (1 ⊗ x) = x`.-/
+/-- The unit axiom of a module object on elements: `act (1 ⊗ x) = x`.
+@isnad1 id=eq.0h5v.s14.43b6de8f934a from=translated src=- shape=7a2d19fb vocab=473e07dc
+-/
 theorem one_act_apply {n : ℤ} (x : P.X.X n) :
     (ModObj.act P).f n (tmul (toMonObj A).X P.X (zero_add n) (oneX A) x) = x := by
   have := congrArg (fun φ => φ.f n (tmul _ P.X (zero_add n) (unitOne R) x)) (ModObj.act_one P)
@@ -186,7 +208,9 @@ theorem one_act_apply {n : ℤ} (x : P.X.X n) :
   exact this
 
 /-- The associativity axiom of a module object on elements:
-`act (μ (a ⊗ b) ⊗ x) = act (a ⊗ act (b ⊗ x))`.-/
+`act (μ (a ⊗ b) ⊗ x) = act (a ⊗ act (b ⊗ x))`.
+@isnad1 id=eq.1h10v.s16.14ff06d41ead from=translated src=- shape=7ceea03c vocab=3102c27c
+-/
 theorem assoc_apply {p q r n : ℤ} (h : p + q + r = n) (a : (toMonObj A).X.X p)
     (b : (toMonObj A).X.X q) (x : P.X.X r) :
     (ModObj.act P).f n (tmul _ P.X h ((μ[(toMonObj A).X]).f (p + q) (tmul _ _ rfl a b)) x) =
@@ -241,18 +265,27 @@ def smulHomogeneous (i : ℤ) : grading (M := A) i →+ ComplexSum P.X →+ Comp
 def smulHom : A →+ ComplexSum P.X →+ ComplexSum P.X :=
   liftHomogeneous (grading (M := A)) (smulHomogeneous P)
 
+/--
+@isnad1 id=eq.1h7v.s18.9614ac70e4cc from=translated src=- shape=3c627c6d vocab=7e509228
+-/
 theorem smulHom_of_mem {i : ℤ} {a : A} (ha : a ∈ grading i) {j : ℤ} (x : P.X.X j) :
     smulHom P a (ComplexSum.of P.X j x) =
       ComplexSum.of P.X (i + j) ((ModObj.act P).f (i + j) (tmul (toMonObj A).X P.X rfl ⟨a, ha⟩ x)) := by
   rw [smulHom, liftHomogeneous_of_mem _ _ ha]
   exact DirectSum.toAddMonoid_of (β := fun n => P.X.X n) _ j x
 
+/--
+@isnad1 id=eq.0h4v.s18.a1929117d4e5 from=translated src=- shape=86107277 vocab=9252a0f9
+-/
 theorem smulHom_one (z : ComplexSum P.X) : smulHom P 1 z = z :=
   DFunLike.congr_fun (ComplexSum.addHom_ext (f := smulHom P 1) (g := AddMonoidHom.id _)
     fun j x => by
       rw [smulHom_of_mem P one_mem_grading, of_f_tmul (ModObj.act P) rfl (zero_add j)]
       exact congrArg (ComplexSum.of P.X j) (one_act_apply P x)) z
 
+/--
+@isnad1 id=eq.2h9v.s19.532da25b0cb2 from=translated src=- shape=714557d5 vocab=d85fb503
+-/
 theorem smulHom_mul_of_mem {i j : ℤ} {a b : A} (ha : a ∈ grading i) (hb : b ∈ grading j) {k : ℤ}
     (x : P.X.X k) :
     smulHom P (a * b) (ComplexSum.of P.X k x) =
@@ -264,6 +297,9 @@ theorem smulHom_mul_of_mem {i j : ℤ} {a b : A} (ha : a ∈ grading i) (hb : b 
   congr 2
   exact Subtype.ext (coe_toMonObj_mul_f_tmul A rfl ⟨a, ha⟩ ⟨b, hb⟩).symm
 
+/--
+@isnad1 id=eq.1h8v.s19.8b736efc6945 from=translated src=- shape=fe36044e vocab=d85fb503
+-/
 theorem smulHom_mul_of_mem_left {i : ℤ} {a : A} (ha : a ∈ grading i) (b : A) {k : ℤ}
     (x : P.X.X k) :
     smulHom P (a * b) (ComplexSum.of P.X k x) =
@@ -273,6 +309,9 @@ theorem smulHom_mul_of_mem_left {i : ℤ} {a : A} (ha : a ∈ grading i) (b : A)
     (g := (smulHom P a).comp ((smulHom P).flip (ComplexSum.of P.X k x)))
     fun _ b => smulHom_mul_of_mem P ha b.2 x) b
 
+/--
+@isnad1 id=eq.0h7v.s19.8b23ab59058e from=translated src=- shape=47800693 vocab=8ee391ce
+-/
 theorem smulHom_mul_of (a b : A) {k : ℤ} (x : P.X.X k) :
     smulHom P (a * b) (ComplexSum.of P.X k x) =
       smulHom P a (smulHom P b (ComplexSum.of P.X k x)) :=
@@ -281,6 +320,9 @@ theorem smulHom_mul_of (a b : A) {k : ℤ} (x : P.X.X k) :
     (g := (smulHom P).flip (smulHom P b (ComplexSum.of P.X k x)))
     fun _ a => smulHom_mul_of_mem_left P a.2 b x) a
 
+/--
+@isnad1 id=eq.0h6v.s19.e97dd160c964 from=translated src=- shape=c7115894 vocab=cf108af6
+-/
 theorem smulHom_mul (a b : A) (z : ComplexSum P.X) :
     smulHom P (a * b) z = smulHom P a (smulHom P b z) :=
   DFunLike.congr_fun (ComplexSum.addHom_ext (f := smulHom P (a * b))
@@ -300,12 +342,17 @@ instance : Module A (ComplexSum P.X) where
     change smulHom P 0 z = 0
     rw [map_zero, AddMonoidHom.zero_apply]
 
-/-- The action of `a ∈ Aⁱ` on the summand `Pʲ` of `⨁ n, Pⁿ`.-/
+/-- The action of `a ∈ Aⁱ` on the summand `Pʲ` of `⨁ n, Pⁿ`.
+@isnad1 id=eq.1h7v.s16.32b46bb1e6d5 from=translated src=- shape=7c4464b9 vocab=cbc7d1b7
+-/
 theorem smul_of_mem {i : ℤ} {a : A} (ha : a ∈ grading i) {j : ℤ} (x : P.X.X j) :
     a • ComplexSum.of P.X j x =
       ComplexSum.of P.X (i + j) ((ModObj.act P).f (i + j) (tmul (toMonObj A).X P.X rfl ⟨a, ha⟩ x)) :=
   smulHom_of_mem P ha x
 
+/--
+@isnad1 id=mem.2h7v.s16.cc63885be3e1 from=translated src=- shape=786cb613 vocab=5c770004
+-/
 theorem smul_mem {i j : ℤ} {a : A} {z : ComplexSum P.X} (ha : a ∈ grading i)
     (hz : z ∈ grading (M := ComplexSum P.X) j) : a • z ∈ grading (M := ComplexSum P.X) (i + j) := by
   obtain ⟨x, rfl⟩ := ComplexSum.mem_grading_iff.mp hz
@@ -313,6 +360,9 @@ theorem smul_mem {i j : ℤ} {a : A} {z : ComplexSum P.X} (ha : a ∈ grading i)
   exact ComplexSum.of_mem_grading _ _
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=eq.1h7v.s18.520e304bc922 from=translated src=- shape=f9eab8e1 vocab=4245c5a5
+-/
 theorem d_smul_of {n : ℤ} {a : A} (ha : a ∈ grading n) {j : ℤ} (x : P.X.X j) :
     d (a • ComplexSum.of P.X j x) =
       d a • ComplexSum.of P.X j x + koszulSign n • (a • d (ComplexSum.of P.X j x)) := by
@@ -322,7 +372,9 @@ theorem d_smul_of {n : ℤ} {a : A} (ha : a ∈ grading n) {j : ℤ} (x : P.X.X 
     of_f_tmul (ModObj.act P) _ (rfl : n + 1 + j = _), of_f_tmul (ModObj.act P) _ (rfl : n + (j + 1) = _)]
 
 set_option maxHeartbeats 800000 in
-/-- The Leibniz rule for the action of `A` on `⨁ n, Pⁿ`.-/
+/-- The Leibniz rule for the action of `A` on `⨁ n, Pⁿ`.
+@isnad1 id=eq.1h6v.s17.885f74962578 from=translated src=- shape=86814f8a vocab=0aaa1146
+-/
 theorem d_smul {n : ℤ} {a : A} (ha : a ∈ grading n) (z : ComplexSum P.X) :
     d (a • z) = d a • z + koszulSign n • (a • d z) := by
   induction z using ComplexSum.induction_on with
@@ -337,6 +389,9 @@ instance : DGModule A (ComplexSum P.X) where
   smul_mem _ _ _ _ ha hz := smul_mem P ha hz
   d_smul' ha z := d_smul P ha z
 
+/--
+@isnad1 id=eq.0h6v.s16.036acd75ad88 from=translated src=- shape=45418d9e vocab=227eaddc
+-/
 theorem algebraMap_smul_of (r : R) {n : ℤ} (x : P.X.X n) :
     algebraMap R A r • ComplexSum.of P.X n x = ComplexSum.of P.X n (r • x) := by
   rw [smul_of_mem P (algebraMap_mem_grading R r), of_f_tmul (ModObj.act P) rfl (zero_add n)]
@@ -357,6 +412,9 @@ abbrev ofModObj (P : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X) 
 
 variable {P Q S : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X}
 
+/--
+@isnad1 id=eq.1h9v.s17.663a5aaee0ec from=translated src=- shape=1bae9088 vocab=6958513d
+-/
 theorem map_smul_of_mem (g : P ⟶ Q) {i : ℤ} {a : A} (ha : a ∈ grading i) {j : ℤ}
     (x : P.X.X j) :
     ComplexSum.map g.hom (a • ComplexSum.of P.X j x) =
@@ -367,6 +425,9 @@ theorem map_smul_of_mem (g : P ⟶ Q) {i : ℤ} {a : A} (ha : a ∈ grading i) {
   simpa only [comp_f, ModuleCat.comp_apply, whiskerLeft_f_tmul] using this
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=eq.0h7v.s16.34952692a9f5 from=translated src=- shape=11e62212 vocab=20f3b642
+-/
 theorem map_smul (g : P ⟶ Q) (a : A) (z : ComplexSum P.X) :
     ComplexSum.map g.hom (a • z) = a • ComplexSum.map g.hom z := by
   have h : ∀ {i : ℤ} {a : A}, a ∈ grading i →
@@ -390,6 +451,9 @@ def ofModMap (g : P ⟶ Q) : ofModObj P ⟶ ofModObj Q :=
       map_mem' := ComplexSum.map_mem g.hom
       map_d' := ComplexSum.map_d g.hom }
 
+/--
+@isnad1 id=eq.0h6v.s15.bb3389a091e1 from=translated src=- shape=619ee43a vocab=d1bb78a4
+-/
 @[simp]
 theorem ofModMap_apply (g : P ⟶ Q) (z : ComplexSum P.X) :
     ofModMap g z = ComplexSum.map g.hom z :=
@@ -419,6 +483,9 @@ def unitFun : N →+ ComplexSum (toModObj N).X :=
         map_zero' := rfl
         map_add' := fun _ _ => rfl }
 
+/--
+@isnad1 id=eq.1h5v.s15.d7416e51b173 from=translated src=- shape=eadde6dd vocab=5e3e5049
+-/
 theorem unitFun_of_mem {n : ℤ} {m : N} (hm : m ∈ grading n) :
     unitFun N m = ComplexSum.of (toModObj N).X n ⟨m, hm⟩ :=
   liftHomogeneous_of_mem _ _ hm
@@ -430,17 +497,26 @@ def counitFun : ComplexSum (toModObj N).X →+ N :=
       map_zero' := rfl
       map_add' := fun _ _ => rfl }
 
+/--
+@isnad1 id=eq.0h5v.s15.d5d56f6f797f from=translated src=- shape=732e91c0 vocab=760f6d68
+-/
 @[simp]
 theorem counitFun_of (n : ℤ) (x : (toModObj N).X.X n) :
     counitFun N (ComplexSum.of (toModObj N).X n x) = x.1 :=
   DirectSum.toAddMonoid_of (β := fun n => (toModObj N).X.X n) _ n x
 
+/--
+@isnad1 id=eq.0h4v.s15.7efdebb4a721 from=translated src=- shape=1e588b00 vocab=8f15238e
+-/
 theorem counitFun_unitFun (m : N) : counitFun N (unitFun N m) = m := by
   induction m using DG.induction_on with
   | h_zero => rw [map_zero, map_zero]
   | h_homogeneous m => rw [unitFun_of_mem N m.2, counitFun_of]
   | h_add m m' hm hm' => rw [map_add, map_add, hm, hm']
 
+/--
+@isnad1 id=eq.0h4v.s15.93f9ff8a3015 from=translated src=- shape=ab5b4f6a vocab=8f15238e
+-/
 theorem unitFun_counitFun (z : ComplexSum (toModObj N).X) : unitFun N (counitFun N z) = z := by
   induction z using ComplexSum.induction_on with
   | zero => rw [map_zero, map_zero]
@@ -449,6 +525,9 @@ theorem unitFun_counitFun (z : ComplexSum (toModObj N).X) : unitFun N (counitFun
     rfl
   | add z z' hz hz' => rw [map_add, map_add, hz, hz']
 
+/--
+@isnad1 id=eq.2h7v.s16.4f5a3d49d0a2 from=translated src=- shape=e3ad532b vocab=08e5a24d
+-/
 theorem unitFun_smul_of_mem {i : ℤ} {a : A} (ha : a ∈ grading i) {j : ℤ} {m : N}
     (hm : m ∈ grading j) : unitFun N (a • m) = a • unitFun N m := by
   rw [unitFun_of_mem N (smul_mem_grading ha hm), unitFun_of_mem N hm,
@@ -456,6 +535,9 @@ theorem unitFun_smul_of_mem {i : ℤ} {a : A} (ha : a ∈ grading i) {j : ℤ} {
   congr 1
   exact Subtype.ext (coe_act_f_tmul N rfl ⟨a, ha⟩ ⟨m, hm⟩).symm
 
+/--
+@isnad1 id=eq.0h5v.s16.d1bc13edb866 from=translated src=- shape=a0470ec0 vocab=b8d5445b
+-/
 theorem unitFun_smul (a : A) (m : N) : unitFun N (a • m) = a • unitFun N m := by
   have h : ∀ {i : ℤ} {a : A}, a ∈ grading i →
       (unitFun N).comp (DistribSMul.toAddMonoidHom N a) =
@@ -476,6 +558,9 @@ theorem unitFun_smul (a : A) (m : N) : unitFun N (a • m) = a • unitFun N m :
           AddMonoidHom.add_apply])
     fun _ a => h a.2) a) m
 
+/--
+@isnad1 id=eq.0h4v.s16.4a115f99ae0e from=translated src=- shape=3b665c2c vocab=1d1ae4c7
+-/
 theorem unitFun_d (m : N) : unitFun N (d m) = d (unitFun N m) := by
   induction m using DG.induction_on with
   | h_zero => rw [d_zero, map_zero, map_zero]
@@ -544,10 +629,16 @@ variable (P : Mod (CochainComplex (ModuleCat.{u} R) ℤ) (toMonObj A).X)
 def counitIsoX : (toModObj (ofModObj P)).X ≅ P.X :=
   ComplexSum.toComplexIso (K := P.X) (A := A) fun r _ x => ModObj.algebraMap_smul_of P r x
 
+/--
+@isnad1 id=eq.0h5v.s15.126c693f7dbd from=translated src=- shape=7cdc4a62 vocab=bdec6fda
+-/
 theorem counitIsoX_hom_f_apply (n : ℤ) (z : (toModObj (ofModObj P)).X.X n) :
     (counitIsoX P).hom.f n z = ComplexSum.component P.X n z.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s15.19a72ae782ec from=translated src=- shape=d39e4489 vocab=78ecbd4b
+-/
 theorem coe_counitIsoX_inv_f_apply (n : ℤ) (x : P.X.X n) :
     ((counitIsoX P).inv.f n x).1 = ComplexSum.of P.X n x :=
   rfl
@@ -585,12 +676,18 @@ def counitIso : toModObj (ofModObj P) ≅ P where
   hom_inv_id := Mod.hom_ext _ _ (counitIsoX P).hom_inv_id
   inv_hom_id := Mod.hom_ext _ _ (counitIsoX P).inv_hom_id
 
+/--
+@isnad1 id=eq.0h5v.s15.a095347bd968 from=translated src=- shape=3915163b vocab=ba78d7c6
+-/
 theorem counitIso_hom_hom_f_apply (n : ℤ) (z : (toModObj (ofModObj P)).X.X n) :
     (counitIso P).hom.hom.f n z = ComplexSum.component P.X n z.1 :=
   rfl
 
 end Counit
 
+/--
+@isnad1 id=eq.0h5v.s14.f663f7f07229 from=translated src=- shape=c77420a2 vocab=5e537e8d
+-/
 theorem counitIso_naturality (g : P ⟶ Q) :
     toModMap (ofModMap g) ≫ (counitIso Q).hom = (counitIso P).hom ≫ g := by
   refine Mod.hom_ext _ _ (HomologicalComplex.hom_ext _ _ fun n =>

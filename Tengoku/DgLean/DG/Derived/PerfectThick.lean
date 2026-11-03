@@ -57,7 +57,9 @@ universe w u
 namespace DG
 
 /-- A retract of the image of an object under a fully faithful functor whose source is
-idempotent complete is isomorphic to the image of a retract.-/
+idempotent complete is isomorphic to the image of a retract.
+@isnad1 id=ex.0h6v.s6.8cf3487476d9 from=translated src=- shape=2c2628fb vocab=e519f99a
+-/
 theorem exists_iso_obj_of_retract {C D : Type*} [Category C] [Category D]
     [IsIdempotentComplete C] (F : C ⥤ D) [F.Full] [F.Faithful] {X : D} {M : C}
     (h : Retract X (F.obj M)) : ∃ (M' : C) (_ : Retract M' M), Nonempty (X ≅ F.obj M') := by
@@ -83,7 +85,9 @@ variable {C : CochainComplex (ModuleCat.{u} R) ℤ}
 
 /-- If the differential `Cᵖ ⟶ Cᵖ⁺¹` of a complex of finitely generated projective modules is
 surjective, the cocycles `Zᵖ` are finitely generated projective: the differential splits, so
-`Zᵖ` is a direct summand of `Cᵖ`.-/
+`Zᵖ` is a direct summand of `Cᵖ`.
+@isnad1 id=isfgproj.2h4v.s7.3885d51d78bc from=translated src=- shape=a766f69b vocab=7b9b4d59
+-/
 theorem fgProjective_cycles (hC : IsPerfectComplex C) (p q : ℤ) (hpq : p + 1 = q)
     [Epi (C.d p q)] : IsFGProjective R (C.cycles p) := by
   have : Projective (C.X q) := (IsProjective.iff_projective (C.X q)).1 (hC.fgProjective q).2
@@ -97,7 +101,9 @@ theorem fgProjective_cycles (hC : IsPerfectComplex C) (p q : ℤ) (hpq : p + 1 =
     comp_id, HomologicalComplex.iCycles_d_assoc, zero_comp, sub_zero, id_comp]
 
 /-- A complex which vanishes above degree `p + 1` and whose differential `Cᵖ ⟶ Cᵖ⁺¹` is
-surjective has no cohomology above degree `p`.-/
+surjective has no cohomology above degree `p`.
+@isnad1 id=isle.2h4v.s8.c859339e236f from=translated src=- shape=f85ff606 vocab=8c432ee1
+-/
 theorem isLE_of_epi_d (p q : ℤ) (hpq : p + 1 = q) (h₁ : ∀ n, q < n → IsZero (C.X n))
     [Epi (C.d p q)] : C.IsLE p := by
   subst hpq
@@ -113,7 +119,9 @@ theorem isLE_of_epi_d (p q : ℤ) (hpq : p + 1 = q) (h₁ : ∀ n, q < n → IsZ
 /-- A perfect complex `C` with `Cⁿ = 0` for `n < a` and for `n > p + 1` whose differential
 `Cᵖ ⟶ Cᵖ⁺¹` is surjective is quasi-isomorphic to a perfect complex which vanishes outside
 `[a, p]`, namely its canonical truncation `τ_{≤ p} C`, whose term in degree `p` is the module of
-cocycles `Zᵖ`.-/
+cocycles `Zᵖ`.
+@isnad1 id=ex.4h5v.s9.a61c3073b5e7 from=translated src=- shape=64798120 vocab=bbb72b0b
+-/
 theorem exists_quasiIso_of_epi_d (hC : IsPerfectComplex C) (a p q : ℤ) (hpq : p + 1 = q)
     (h₀ : ∀ n, n < a → IsZero (C.X n)) (h₁ : ∀ n, q < n → IsZero (C.X n)) [Epi (C.d p q)] :
     ∃ (C' : CochainComplex (ModuleCat.{u} R) ℤ) (f : C' ⟶ C), IsPerfectComplex C' ∧
@@ -153,7 +161,9 @@ variable {S K : CochainComplex (ModuleCat.{u} R) ℤ}
 
 /-- Let `g : S ⟶ K` be a morphism of perfect complexes, where `S` is concentrated in degree `b`,
 `K` vanishes outside `[a, b]` with `a < b`, and `g` is surjective in degree `b`. Then the mapping
-cone of `g` is quasi-isomorphic to a perfect complex which vanishes outside `[a, b - 1]`.-/
+cone of `g` is quasi-isomorphic to a perfect complex which vanishes outside `[a, b - 1]`.
+@isnad1 id=ex.5h6v.s9.ece2bd67313e from=translated src=- shape=81baf299 vocab=d38e5081
+-/
 theorem exists_quasiIso_mappingCone (hS : IsPerfectComplex S) (hK : IsPerfectComplex K)
     (g : S ⟶ K) (a b : ℤ) (hab : a < b) (hS' : ∀ n, n ≠ b → IsZero (S.X n))
     (hK' : ∀ n, n < a ∨ b < n → IsZero (K.X n)) [Epi (g.f b)] :
@@ -191,13 +201,17 @@ noncomputable def singleFunctorObjIso (n : ℤ) (M : ModuleCat.{u} R) :
   ((SingleFunctors.evaluation _ _ n).mapIso
     (_root_.DerivedCategory.singleFunctorsPostcompQIso (ModuleCat.{u} R))).app M
 
-/-- A finitely generated projective module placed in a single degree is perfect.-/
+/-- A finitely generated projective module placed in a single degree is perfect.
+@isnad1 id=isperfec.0h4v.s6.2d6f431a09a8 from=translated src=- shape=6b672fdc vocab=efa4435f
+-/
 theorem singleFunctor_obj {M : ModuleCat.{u} R} (hM : IsFGProjective R M) (n : ℤ) :
     IsPerfect R ((_root_.DerivedCategory.singleFunctor (ModuleCat.{u} R) n).obj M) :=
   ⟨_, IsPerfectComplex.single hM n, ⟨(singleFunctorObjIso n M).symm⟩⟩
 
 /-- A direct summand, in the derived category, of a perfect complex concentrated in a single
-degree is perfect: it is a direct summand of the module, placed in that degree.-/
+degree is perfect: it is a direct summand of the module, placed in that degree.
+@isnad1 id=isperfec.2h5v.s8.750fa83dded5 from=translated src=- shape=d09012c6 vocab=803af101
+-/
 theorem of_retract_single {X : _root_.DerivedCategory (ModuleCat.{u} R)}
     {S : CochainComplex (ModuleCat.{u} R) ℤ} (hS : IsPerfectComplex S) (b : ℤ)
     (hS' : ∀ n, n ≠ b → IsZero (S.X n)) (h : Retract X (_root_.DerivedCategory.Q.obj S)) :
@@ -269,7 +283,9 @@ theorem _root_.DG.IsPerfectComplex.exists_shortExact {K : CochainComplex (Module
 category which is invariant under isomorphisms, holds for finitely generated projective modules
 placed in degree `0`, and is stable under shifts and extensions, holds for all perfect objects.
 In other words, the perfect objects form the triangulated subcategory generated by the finitely
-generated projective modules.-/
+generated projective modules.
+@isnad1 id=var.0h8v.s9.0fdd563daa04 from=translated src=- shape=0736f8af vocab=b8a34541
+-/
 theorem induction
     {motive : ∀ X : _root_.DerivedCategory (ModuleCat.{u} R), IsPerfect R X → Prop}
     (iso : ∀ {X Y : _root_.DerivedCategory (ModuleCat.{u} R)} (hX : IsPerfect R X)

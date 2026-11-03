@@ -55,8 +55,14 @@ variable {C r}
 /-- The class of an object.-/
 def mk (X : C) : K0Rel C r := mkHom C r (FreeAbelianGroup.of X)
 
+/--
+@isnad1 id=surjecti.0h2v.s8.42bf454e3cf5 from=translated src=- shape=91fc4227 vocab=0e47b61b
+-/
 theorem mkHom_surjective : Function.Surjective (mkHom C r) := QuotientAddGroup.mk'_surjective _
 
+/--
+@isnad1 id=eq.1h3v.s7.278cacdaa01f from=translated src=- shape=6fae0210 vocab=fb16fd18
+-/
 theorem mk_obj₂ (T : Triangle C) (hT : T ∈ distTriang C) :
     (mk T.obj₂ : K0Rel C r) = mk T.obj₁ + mk T.obj₃ := by
   have h := (QuotientAddGroup.eq_zero_iff _).2
@@ -64,6 +70,9 @@ theorem mk_obj₂ (T : Triangle C) (hT : T ∈ distTriang C) :
   change mkHom C r _ = 0 at h
   rwa [map_sub, map_sub, sub_sub, sub_eq_zero] at h
 
+/--
+@isnad1 id=eq.0h5v.s6.97ea225360e7 from=translated src=- shape=33269410 vocab=6894cbb0
+-/
 theorem mk_eq_of_rel {X Y : C} (h : r X Y) : (mk X : K0Rel C r) = mk Y := by
   have h := (QuotientAddGroup.eq_zero_iff _).2
     ((le_sup_right : _ ≤ relations C r) (AddSubgroup.subset_closure
@@ -73,7 +82,9 @@ theorem mk_eq_of_rel {X Y : C} (h : r X Y) : (mk X : K0Rel C r) = mk Y := by
   rwa [map_sub, sub_eq_zero] at h
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two homomorphisms out of `K0Rel C r` which agree on the classes of objects are equal.-/
+/-- Two homomorphisms out of `K0Rel C r` which agree on the classes of objects are equal.
+@isnad1 id=eq.1h5v.s9.5aa9dfc57608 from=translated src=- shape=f6133ecf vocab=15223b83
+-/
 @[ext]
 theorem addMonoidHom_ext {G : Type*} [AddCommGroup G] ⦃f g : K0Rel C r →+ G⦄
     (h : ∀ X : C, f (mk X) = g (mk X)) : f = g := by
@@ -96,6 +107,9 @@ def lift {G : Type*} [AddCommGroup G] (f : C → G)
       rw [hr X Y h, sub_self])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h5v.s8.b2c355385d76 from=translated src=- shape=6b41a940 vocab=75d11dbc
+-/
 @[simp]
 theorem lift_mk {G : Type*} [AddCommGroup G] (f : C → G) (hf) (hr) (X : C) :
     lift (r := r) f hf hr (mk X) = f X :=
@@ -109,6 +123,9 @@ section Comparison
 variable (P : C → C) (hr : ∀ X Y, r X Y → Nonempty (X ≅ Y) ∨ Nonempty (P X ≅ Y))
   (hP : ∀ X, r X (P X))
 
+/--
+@isnad1 id=mem.0h4v.s6.bddebc6ce085 from=translated src=- shape=08954279 vocab=a678486f
+-/
 theorem of_sub_of_mem_relations_of_iso {X Y : C} (e : X ≅ Y) :
     FreeAbelianGroup.of X - FreeAbelianGroup.of Y ∈ K0.relations C := by
   have h := K0.mk_eq_of_iso e
@@ -116,6 +133,9 @@ theorem of_sub_of_mem_relations_of_iso {X Y : C} (e : X ≅ Y) :
   exact (QuotientAddGroup.eq_zero_iff _).mp h
 
 include hr hP in
+/--
+@isnad1 id=eq.1h4v.s7.2c0bf3d823d2 from=translated src=- shape=57c6d740 vocab=51f9d783
+-/
 theorem relations_eq : relations C r = K0.relations C ⊔
     AddSubgroup.closure {x | ∃ X, x = FreeAbelianGroup.of (P X) - FreeAbelianGroup.of X} := by
   apply le_antisymm
@@ -160,6 +180,9 @@ def equivQuotient : K0Rel C r ≃+ K0 C ⧸ parityRelations P :=
         · rintro ⟨X, rfl⟩
           exact ⟨_, ⟨X, rfl⟩, by rw [map_sub]; rfl⟩)))
 
+/--
+@isnad1 id=eq.1h5v.s10.26dec732b506 from=translated src=- shape=b623be77 vocab=3c4dd9bd
+-/
 theorem equivQuotient_mk (X : C) :
     equivQuotient P hr hP (mk X) = QuotientAddGroup.mk (K0.mk X) :=
   rfl

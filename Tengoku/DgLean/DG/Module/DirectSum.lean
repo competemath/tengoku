@@ -48,10 +48,16 @@ def grading (n : ℤ) : AddSubgroup (⨁ i, M i) where
     exact neg_mem (hx i)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h4v.s8.28aeb37bd6cb from=translated src=- shape=2ef9d650 vocab=37b20ae9
+-/
 theorem mem_grading_iff {n : ℤ} {x : ⨁ i, M i} :
     x ∈ grading M n ↔ ∀ i, x i ∈ DGAddCommGroup.grading n :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.1h5v.s8.cbd1675be907 from=translated src=- shape=5b91d818 vocab=5bfb2c2d
+-/
 theorem of_mem_grading {n : ℤ} (i : ι) {m : M i} (hm : m ∈ DGAddCommGroup.grading n) :
     DirectSum.of M i m ∈ grading M n := by
   intro j
@@ -59,6 +65,9 @@ theorem of_mem_grading {n : ℤ} (i : ι) {m : M i} (hm : m ∈ DGAddCommGroup.g
   · subst hij; rwa [DirectSum.of_eq_same]
   · rw [DirectSum.of_eq_of_ne _ _ _ (Ne.symm hij)]; exact zero_mem _
 
+/--
+@isnad1 id=mem.0h3v.s8.109c692a787d from=translated src=- shape=7aee7795 vocab=bf2ea7e4
+-/
 theorem mem_iSup_grading (x : ⨁ i, M i) : x ∈ ⨆ n, grading M n := by
   induction x using DirectSum.induction_on with
   | zero => exact zero_mem _
@@ -69,6 +78,9 @@ theorem mem_iSup_grading (x : ⨁ i, M i) : x ∈ ⨆ n, grading M n := by
     | h_add m m' hm hm' => rw [map_add]; exact add_mem hm hm'
   | add x y hx hy => exact add_mem hx hy
 
+/--
+@isnad1 id=isintern.0h2v.s7.35426c138119 from=translated src=- shape=d0daa24e vocab=dbe1c2e3
+-/
 theorem isInternal_grading : DirectSum.IsInternal (grading M) :=
   ⟨coeAddMonoidHom_injective_of_forall_eq_zero _ (fun i => DFinsupp.evalAddMonoidHom i)
       (fun _ _ _ hx => hx _) fun _ hx => DFinsupp.ext hx,
@@ -79,6 +91,9 @@ def d : (⨁ i, M i) →+ ⨁ i, M i :=
   DirectSum.map fun i => (DGAddCommGroup.d : M i →+ M i)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s9.2fcc33042bf7 from=translated src=- shape=7810394e vocab=7b2193d3
+-/
 @[simp]
 theorem d_apply (x : ⨁ i, M i) (i : ι) : d M x i = DGAddCommGroup.d (x i) :=
   DirectSum.map_apply _ _ _
@@ -90,20 +105,32 @@ noncomputable instance instDGAddCommGroup : DGAddCommGroup (⨁ i, M i) where
   d_mem' hx i := by rw [d_apply]; exact DG.d_mem (hx i)
   d_d' x := by ext i; simp
 
+/--
+@isnad1 id=iff.0h4v.s8.cc4ff552b5e6 from=translated src=- shape=bdd90b6c vocab=9b930ee4
+-/
 theorem mem_grading {n : ℤ} {x : ⨁ i, M i} :
     x ∈ DGAddCommGroup.grading n ↔ ∀ i, x i ∈ DGAddCommGroup.grading n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.65933d21ace1 from=translated src=- shape=290b29fb vocab=82b90930
+-/
 @[simp]
 theorem coe_d_apply (x : ⨁ i, M i) (i : ι) : DGAddCommGroup.d x i = DGAddCommGroup.d (x i) :=
   d_apply M x i
 
+/--
+@isnad1 id=eq.0h4v.s10.b53a3788577e from=translated src=- shape=2edb8398 vocab=6c0b149a
+-/
 theorem d_of (i : ι) (m : M i) :
     DGAddCommGroup.d (DirectSum.of M i m) = DirectSum.of M i (DGAddCommGroup.d m) :=
   DirectSum.map_of _ _ _
 
 variable [∀ i, Module A (M i)] [∀ i, DGModule A (M i)]
 
+/--
+@isnad1 id=dgmodule.0h3v.s6.f1a260e89fb6 from=translated src=- shape=c6c19fd8 vocab=5006fc83
+-/
 instance instDGModule : DGModule A (⨁ i, M i) where
   smul_mem _ _ _ _ ha hx i := by rw [DirectSum.smul_apply]; exact smul_mem_grading ha (hx i)
   d_smul' ha x := by
@@ -125,6 +152,9 @@ def lof (i : ι) : M i →ᵈᵍ[A] ⨁ i, M i where
   map_mem' hm := DirectSum.of_mem_grading M i hm
   map_d' m := (DirectSum.d_of M i m).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.0b4779e11acd from=translated src=- shape=9bc5ec71 vocab=78061f02
+-/
 @[simp]
 theorem lof_apply (i : ι) (m : M i) : lof A M i m = DirectSum.of M i m := rfl
 
@@ -154,17 +184,25 @@ def toModule (f : ∀ i, M i →ᵈᵍ[A] N) : (⨁ i, M i) →ᵈᵍ[A] N where
         exact (f i).map_d m
     exact congrArg (fun φ : (⨁ i, M i) →+ N => φ x) h
 
+/--
+@isnad1 id=eq.0h7v.s9.66887f7eb00a from=translated src=- shape=e0332b40 vocab=17b7eb03
+-/
 @[simp]
 theorem toModule_lof (f : ∀ i, M i →ᵈᵍ[A] N) (i : ι) (m : M i) :
     toModule f (DirectSum.of M i m) = f i m :=
   DirectSum.toModule_lof A i m
 
+/--
+@isnad1 id=eq.0h6v.s7.afd96d1a965b from=translated src=- shape=2dfb4443 vocab=d37fc3d7
+-/
 @[simp]
 theorem toModule_comp_lof (f : ∀ i, M i →ᵈᵍ[A] N) (i : ι) :
     (toModule f).comp (lof A M i) = f i :=
   DGModuleHom.ext fun m => toModule_lof f i m
 
-/-- Two morphisms out of a direct sum agreeing on the summands are equal.-/
+/-- Two morphisms out of a direct sum agreeing on the summands are equal.
+@isnad1 id=eq.1h6v.s8.60a8c7b5c25f from=translated src=- shape=7621ed7a vocab=5712662f
+-/
 theorem directSum_ext {f g : (⨁ i, M i) →ᵈᵍ[A] N}
     (h : ∀ i, f.comp (lof A M i) = g.comp (lof A M i)) : f = g :=
   toLinearMap_injective <| DirectSum.linearMap_ext A fun i => LinearMap.ext fun m =>
@@ -180,6 +218,9 @@ namespace GradedPi
 def piGrading (n : ℤ) : AddSubgroup (∀ i, M i) :=
   AddSubgroup.pi Set.univ fun _ => DGAddCommGroup.grading n
 
+/--
+@isnad1 id=iff.0h4v.s7.8c6e95c3b167 from=translated src=- shape=7b38cbad vocab=74716c8a
+-/
 theorem mem_piGrading_iff {n : ℤ} {x : ∀ i, M i} :
     x ∈ piGrading M n ↔ ∀ i, x i ∈ DGAddCommGroup.grading n := by
   simp [piGrading, AddSubgroup.mem_pi]
@@ -204,9 +245,15 @@ def submodule : Submodule A (∀ i, M i) where
       exact smul_mem_grading a.2 ((mem_piGrading_iff M).mp hx i)
     | h_add a a' ha ha' => rw [add_smul]; exact add_mem ha ha'
 
+/--
+@isnad1 id=iff.0h4v.s8.c1da7d443236 from=translated src=- shape=86db9bb7 vocab=3ed45428
+-/
 theorem mem_submodule_iff {x : ∀ i, M i} : x ∈ submodule A M ↔ x ∈ ⨆ n, piGrading M n :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h4v.s7.5d2b0c710b40 from=translated src=- shape=71ac8c6e vocab=fbf9789b
+-/
 theorem piGrading_le_submodule (n : ℤ) : piGrading M n ≤ (submodule A M).toAddSubgroup :=
   fun _ hx => AddSubgroup.mem_iSup_of_mem n hx
 
@@ -234,18 +281,33 @@ instance : Module A (GradedPi A M) :=
 def toPi : GradedPi A M →ₗ[A] ∀ i, M i :=
   (submodule A M).subtype
 
+/--
+@isnad1 id=eq.0h5v.s9.e22341454e79 from=translated src=- shape=a1204ada vocab=34c438a4
+-/
 @[simp]
 theorem toPi_add (x y : GradedPi A M) : toPi A M (x + y) = toPi A M x + toPi A M y := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.fb20d52595db from=translated src=- shape=41de58f3 vocab=8e46b555
+-/
 @[simp]
 theorem toPi_zero : toPi A M 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.12cd14b8131f from=translated src=- shape=be79d0c0 vocab=1d254865
+-/
 @[simp]
 theorem toPi_smul (a : A) (x : GradedPi A M) : toPi A M (a • x) = a • toPi A M x := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s8.3f2856ab8236 from=translated src=- shape=ce3f8611 vocab=9c1ff339
+-/
 theorem toPi_injective : Function.Injective (toPi A M) :=
   Subtype.val_injective
 
+/--
+@isnad1 id=eq.1h5v.s9.760b2ee7aa70 from=translated src=- shape=96c71891 vocab=8e46b555
+-/
 @[ext]
 theorem ext {x y : GradedPi A M} (h : ∀ i, toPi A M x i = toPi A M y i) : x = y :=
   toPi_injective A M (funext h)
@@ -254,6 +316,9 @@ theorem ext {x y : GradedPi A M} (h : ∀ i, toPi A M x i = toPi A M y i) : x = 
 def mk (x : ∀ i, M i) (hx : x ∈ ⨆ n, piGrading M n) : GradedPi A M :=
   ⟨x, hx⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.cbd4acacef0b from=translated src=- shape=dd994836 vocab=660af8fd
+-/
 @[simp]
 theorem toPi_mk (x : ∀ i, M i) (hx : x ∈ ⨆ n, piGrading M n) : toPi A M (mk A M x hx) = x := rfl
 
@@ -261,10 +326,16 @@ theorem toPi_mk (x : ∀ i, M i) (hx : x ∈ ⨆ n, piGrading M n) : toPi A M (m
 def grading (n : ℤ) : AddSubgroup (GradedPi A M) :=
   (piGrading M n).comap (toPi A M).toAddMonoidHom
 
+/--
+@isnad1 id=iff.0h5v.s8.9ad5ddea4e3e from=translated src=- shape=cb4f208a vocab=8724b701
+-/
 theorem mem_grading_iff {n : ℤ} {x : GradedPi A M} :
     x ∈ grading A M n ↔ ∀ i, toPi A M x i ∈ DGAddCommGroup.grading n :=
   mem_piGrading_iff M
 
+/--
+@isnad1 id=isintern.0h3v.s7.8e2bab789873 from=translated src=- shape=f00e1e52 vocab=51129ffc
+-/
 theorem isInternal_grading : DirectSum.IsInternal (grading A M) :=
   ⟨coeAddMonoidHom_injective_of_forall_eq_zero _
       (fun i => (Pi.evalAddMonoidHom M i).comp (toPi A M).toAddMonoidHom)
@@ -282,9 +353,15 @@ theorem isInternal_grading : DirectSum.IsInternal (grading A M) :=
 def dPi : (∀ i, M i) →+ ∀ i, M i :=
   AddMonoidHom.pi fun i => (DGAddCommGroup.d : M i →+ M i).comp (Pi.evalAddMonoidHom M i)
 
+/--
+@isnad1 id=eq.0h4v.s8.2c27f66e9e90 from=translated src=- shape=7d5b1af8 vocab=c44e6518
+-/
 @[simp]
 theorem dPi_apply (x : ∀ i, M i) (i : ι) : dPi M x i = DGAddCommGroup.d (x i) := rfl
 
+/--
+@isnad1 id=mem.1h3v.s9.1561bfdea6e4 from=translated src=- shape=58bcf147 vocab=07a322f2
+-/
 theorem dPi_mem {x : ∀ i, M i} (hx : x ∈ ⨆ n, piGrading M n) : dPi M x ∈ ⨆ n, piGrading M n := by
   refine AddSubgroup.iSup_induction _ (C := fun x => dPi M x ∈ ⨆ n, piGrading M n) hx
     (fun n x hx => ?_) (by rw [map_zero]; exact zero_mem _)
@@ -297,6 +374,9 @@ def d : GradedPi A M →+ GradedPi A M :=
   AddMonoidHom.codRestrict ((dPi M).comp (toPi A M).toAddMonoidHom) (submodule A M)
     fun x => dPi_mem M x.2
 
+/--
+@isnad1 id=eq.0h5v.s9.8c9bd0fa1cd7 from=translated src=- shape=5b8cd5e7 vocab=a4640488
+-/
 @[simp]
 theorem toPi_d_apply (x : GradedPi A M) (i : ι) :
     toPi A M (d A M x) i = DGAddCommGroup.d (toPi A M x i) := rfl
@@ -309,14 +389,23 @@ noncomputable instance instDGAddCommGroup : DGAddCommGroup (GradedPi A M) where
     DG.d_mem ((mem_grading_iff A M).mp hx i)
   d_d' x := ext A M fun i => by simp
 
+/--
+@isnad1 id=iff.0h5v.s8.b47207a343f7 from=translated src=- shape=60b9a779 vocab=9fba91a0
+-/
 theorem mem_grading {n : ℤ} {x : GradedPi A M} :
     x ∈ DGAddCommGroup.grading n ↔ ∀ i, toPi A M x i ∈ DGAddCommGroup.grading n :=
   mem_grading_iff A M
 
+/--
+@isnad1 id=eq.0h5v.s9.fe941c98a9c6 from=translated src=- shape=7f73fc77 vocab=c0ed8348
+-/
 @[simp]
 theorem toPi_d (x : GradedPi A M) (i : ι) :
     toPi A M (DGAddCommGroup.d x) i = DGAddCommGroup.d (toPi A M x i) := rfl
 
+/--
+@isnad1 id=dgmodule.0h3v.s6.b664fc4e2911 from=translated src=- shape=e2af9e28 vocab=1523c73e
+-/
 instance instDGModule : DGModule A (GradedPi A M) where
   smul_mem _ _ _ _ ha hx := (mem_grading A M).mpr fun i => by
     rw [toPi_smul, Pi.smul_apply]
@@ -338,12 +427,18 @@ def proj (i : ι) : GradedPi A M →ᵈᵍ[A] M i where
   map_mem' hx := (GradedPi.mem_grading A M).mp hx i
   map_d' _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.8047e9bbb8eb from=translated src=- shape=d0ade714 vocab=83ea5342
+-/
 @[simp]
 theorem proj_apply (i : ι) (x : GradedPi A M) : proj A M i x = GradedPi.toPi A M x i := rfl
 
 variable {A M} {N : Type*} [AddCommGroup N] [DGAddCommGroup N] [Module A N]
 
 omit [∀ i, DGModule A (M i)] in
+/--
+@isnad1 id=mem.0h6v.s8.a8ab46d8697a from=translated src=- shape=f3f17535 vocab=a6ed0aa8
+-/
 theorem pi_mem (f : ∀ i, N →ᵈᵍ[A] M i) (x : N) :
     (fun i => f i x) ∈ ⨆ n, GradedPi.piGrading M n := by
   induction x using DG.induction_on with
@@ -365,14 +460,22 @@ def pi (f : ∀ i, N →ᵈᵍ[A] M i) : N →ᵈᵍ[A] GradedPi A M where
   map_mem' hx := (GradedPi.mem_grading A M).mpr fun i => (f i).map_mem hx
   map_d' x := GradedPi.ext A M fun i => (f i).map_d x
 
+/--
+@isnad1 id=eq.0h7v.s9.43e4e088a657 from=translated src=- shape=7b344c61 vocab=6f3c1512
+-/
 @[simp]
 theorem toPi_pi_apply (f : ∀ i, N →ᵈᵍ[A] M i) (x : N) (i : ι) :
     GradedPi.toPi A M (pi f x) i = f i x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.1267e61274e5 from=translated src=- shape=aa31b766 vocab=61bc03c1
+-/
 @[simp]
 theorem proj_comp_pi (f : ∀ i, N →ᵈᵍ[A] M i) (i : ι) : (proj A M i).comp (pi f) = f i := rfl
 
-/-- Two morphisms into a graded product with the same components are equal.-/
+/-- Two morphisms into a graded product with the same components are equal.
+@isnad1 id=eq.1h6v.s8.da3394dd049b from=translated src=- shape=f0057551 vocab=bddc6bca
+-/
 theorem gradedPi_ext {f g : N →ᵈᵍ[A] GradedPi A M}
     (h : ∀ i, (proj A M i).comp f = (proj A M i).comp g) : f = g :=
   DGModuleHom.ext fun x => GradedPi.ext A M fun i =>

@@ -41,20 +41,27 @@ def component (i : ι) (n : ℤ) : cohomology (⨁ i, M i) n →+ cohomology (M 
 
 variable {M}
 
-/-- `DG.cohomology.ofSummand` on the class of a cocycle.-/
+/-- `DG.cohomology.ofSummand` on the class of a cocycle.
+@isnad1 id=eq.0h5v.s12.cb99e1c3f990 from=translated src=- shape=0a0c615d vocab=ea8c62bd
+-/
 theorem ofSummand_mk (i : ι) (n : ℤ) (z : cocycles (M i) n) :
     ofSummand M i n (mk _ n z) = mk _ n ⟨DirectSum.of M i z, mem_cocycles.mpr
       ⟨DirectSum.of_mem_grading M i (cocycles.mem_grading z),
         by rw [DirectSum.d_of, cocycles.d_eq_zero z, _root_.map_zero]⟩⟩ :=
   mapAddMonoidHom_mk _ _ _ n z
 
-/-- `DG.cohomology.component` on the class of a cocycle.-/
+/-- `DG.cohomology.component` on the class of a cocycle.
+@isnad1 id=eq.0h5v.s12.d0346fe05f62 from=translated src=- shape=94da8f25 vocab=ec1d6043
+-/
 theorem component_mk (i : ι) (n : ℤ) (z : cocycles (⨁ i, M i) n) :
     component M i n (mk _ n z) = mk _ n ⟨(z : ⨁ i, M i) i, mem_cocycles.mpr
       ⟨(DirectSum.mem_grading M).mp (cocycles.mem_grading z) i,
         by rw [← DirectSum.coe_d_apply, cocycles.d_eq_zero z, DirectSum.zero_apply]⟩⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.44f3f4d3ed6b from=translated src=- shape=ea52dbc4 vocab=43c9aad8
+-/
 theorem component_ofSummand_self (i : ι) (n : ℤ) (y : cohomology (M i) n) :
     component M i n (ofSummand M i n y) = y := by
   induction y using induction_on with
@@ -64,6 +71,9 @@ theorem component_ofSummand_self (i : ι) (n : ℤ) (y : cohomology (M i) n) :
     ext
     exact DirectSum.of_eq_same i _
 
+/--
+@isnad1 id=eq.1h6v.s10.892e39d4e440 from=translated src=- shape=aae2c8ef vocab=43c9aad8
+-/
 theorem component_ofSummand_of_ne {i j : ι} (h : i ≠ j) (n : ℤ) (y : cohomology (M i) n) :
     component M j n (ofSummand M i n y) = 0 := by
   induction y using induction_on with
@@ -78,10 +88,16 @@ variable (M) in
 def fromDirectSum (n : ℤ) : (⨁ i, cohomology (M i) n) →+ cohomology (⨁ i, M i) n :=
   DirectSum.toAddMonoid fun i => ofSummand M i n
 
+/--
+@isnad1 id=eq.0h5v.s11.d1cf42febaf7 from=translated src=- shape=81f9f5f3 vocab=de81b026
+-/
 theorem fromDirectSum_of (n : ℤ) (i : ι) (y : cohomology (M i) n) :
     fromDirectSum M n (DirectSum.of _ i y) = ofSummand M i n y :=
   DirectSum.toAddMonoid_of (fun i => ofSummand M i n) i y
 
+/--
+@isnad1 id=eq.0h5v.s11.b2ef1df9340d from=translated src=- shape=0f0d5ae9 vocab=4f9db95c
+-/
 theorem component_fromDirectSum (n : ℤ) (x : ⨁ i, cohomology (M i) n) (j : ι) :
     component M j n (fromDirectSum M n x) = x j := by
   induction x using DirectSum.induction_on with
@@ -94,11 +110,17 @@ theorem component_fromDirectSum (n : ℤ) (x : ⨁ i, cohomology (M i) n) (j : �
     · rw [component_ofSummand_of_ne h, DirectSum.of_eq_of_ne _ _ _ (Ne.symm h)]
   | add x y hx hy => rw [_root_.map_add, _root_.map_add, hx, hy, DirectSum.add_apply]
 
+/--
+@isnad1 id=injectiv.0h3v.s10.b90784c41dfd from=translated src=- shape=0900b61c vocab=051a3099
+-/
 theorem fromDirectSum_injective (n : ℤ) : Function.Injective (fromDirectSum M n) := by
   intro x y h
   ext j
   rw [← component_fromDirectSum n x j, ← component_fromDirectSum n y j, h]
 
+/--
+@isnad1 id=surjecti.0h3v.s10.3c42b92aea3a from=translated src=- shape=0900b61c vocab=913274c4
+-/
 theorem fromDirectSum_surjective (n : ℤ) : Function.Surjective (fromDirectSum M n) := by
   classical
   intro x
@@ -128,21 +150,31 @@ def directSumAddEquiv (n : ℤ) :
   (AddEquiv.ofBijective (fromDirectSum M n)
     ⟨fromDirectSum_injective n, fromDirectSum_surjective n⟩).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.fc8eea29768e from=translated src=- shape=14621feb vocab=07dad438
+-/
 theorem directSumAddEquiv_symm_apply (n : ℤ) (x : ⨁ i, cohomology (M i) n) :
     (directSumAddEquiv M n).symm x = fromDirectSum M n x :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.60f8e25dd819 from=translated src=- shape=30f160e7 vocab=d4fbcb93
+-/
 theorem directSumAddEquiv_symm_of (n : ℤ) (i : ι) (y : cohomology (M i) n) :
     (directSumAddEquiv M n).symm (DirectSum.of _ i y) = ofSummand M i n y :=
   fromDirectSum_of n i y
 
 /-- The isomorphism `Hⁿ(⨁ i, M i) ≃+ ⨁ i, Hⁿ(M i)` is compatible with the inclusions of the
-summands.-/
+summands.
+@isnad1 id=eq.0h5v.s11.a9d362815f20 from=translated src=- shape=9967d9f2 vocab=08f985fb
+-/
 theorem directSumAddEquiv_ofSummand (n : ℤ) (i : ι) (y : cohomology (M i) n) :
     directSumAddEquiv M n (ofSummand M i n y) = DirectSum.of _ i y := by
   rw [← directSumAddEquiv_symm_of, AddEquiv.apply_symm_apply]
 
-/-- The components of `Hⁿ(⨁ i, M i) ≃+ ⨁ i, Hⁿ(M i)` are induced by the projections.-/
+/-- The components of `Hⁿ(⨁ i, M i) ≃+ ⨁ i, Hⁿ(M i)` are induced by the projections.
+@isnad1 id=eq.0h5v.s11.44af97d9cc46 from=translated src=- shape=483357fd vocab=e46a375e
+-/
 theorem directSumAddEquiv_apply (n : ℤ) (x : cohomology (⨁ i, M i) n) (j : ι) :
     directSumAddEquiv M n x j = component M j n x := by
   obtain ⟨y, rfl⟩ := (directSumAddEquiv M n).symm.surjective x
@@ -152,13 +184,17 @@ section DGModule
 
 variable {A : Type*} [Ring A] [DGAddCommGroup A] [∀ i, Module A (M i)]
 
-/-- The map induced by the inclusion `DG.DGModuleHom.lof` is `DG.cohomology.ofSummand`.-/
+/-- The map induced by the inclusion `DG.DGModuleHom.lof` is `DG.cohomology.ofSummand`.
+@isnad1 id=eq.0h5v.s8.9b9960e4ce02 from=translated src=- shape=49715873 vocab=0cf2c555
+-/
 theorem map_lof (n : ℤ) (i : ι) :
     map (DGModuleHom.lof A M i) n = ofSummand M i n :=
   rfl
 
 /-- The isomorphism `Hⁿ(⨁ i, M i) ≃+ ⨁ i, Hⁿ(M i)` is compatible with the maps induced by the
-inclusions `DG.DGModuleHom.lof` of dg modules.-/
+inclusions `DG.DGModuleHom.lof` of dg modules.
+@isnad1 id=eq.0h6v.s11.0594a898b9bd from=translated src=- shape=dc0e6561 vocab=79eea554
+-/
 theorem directSumAddEquiv_map_lof (n : ℤ) (i : ι) (y : cohomology (M i) n) :
     directSumAddEquiv M n (map (DGModuleHom.lof A M i) n y) = DirectSum.of _ i y :=
   directSumAddEquiv_ofSummand n i y

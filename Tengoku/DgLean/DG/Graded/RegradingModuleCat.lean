@@ -50,6 +50,9 @@ instance : AddCommGroup (Unperiodize ℬ 𝒩) :=
 
 namespace Unperiodize
 
+/--
+@isnad1 id=eq.0h2v.s7.569ccf53e95e from=translated src=- shape=f1acf1a9 vocab=e7acd78e
+-/
 theorem cast_sub_val (i j : ZMod 2) : ((((i + j).val : ℤ) - (j.val : ℤ) : ℤ) : ZMod 2) = i := by
   rw [Int.cast_sub, intCast_val_zmodTwo, intCast_val_zmodTwo, add_sub_cancel_right]
 
@@ -59,6 +62,9 @@ def of (j : ZMod 2) : lowGrading 𝒩 j →+ Unperiodize ℬ 𝒩 :=
 
 variable {ℬ 𝒩}
 
+/--
+@isnad1 id=var.0h9v.s9.afb60d2a2818 from=translated src=- shape=ffa545dc vocab=6fb3fc08
+-/
 @[elab_as_elim]
 theorem induction_on {P : Unperiodize ℬ 𝒩 → Prop} (y : Unperiodize ℬ 𝒩) (zero : P 0)
     (of : ∀ (j : ZMod 2) (x : lowGrading 𝒩 j), P (of ℬ 𝒩 j x))
@@ -75,9 +81,15 @@ instance : Decomposition (grading ℬ 𝒩) :=
 
 variable {ℬ 𝒩}
 
+/--
+@isnad1 id=mem.0h6v.s9.b66a5cce7652 from=translated src=- shape=9ab7d121 vocab=471a7095
+-/
 theorem of_mem_grading (j : ZMod 2) (x : lowGrading 𝒩 j) : of ℬ 𝒩 j x ∈ grading ℬ 𝒩 j :=
   of_mem_summand (β := fun j => ↥(lowGrading 𝒩 j)) j x
 
+/--
+@isnad1 id=iff.0h6v.s9.862b6d19f4de from=translated src=- shape=78a2c129 vocab=471a7095
+-/
 theorem mem_grading_iff {j : ZMod 2} {y : Unperiodize ℬ 𝒩} :
     y ∈ grading ℬ 𝒩 j ↔ ∃ x, of ℬ 𝒩 j x = y := mem_summand
 
@@ -85,10 +97,16 @@ theorem mem_grading_iff {j : ZMod 2} {y : Unperiodize ℬ 𝒩} :
 def fold : Unperiodize ℬ 𝒩 →+ N :=
   DirectSum.toAddMonoid fun j => (lowGrading 𝒩 j).subtype
 
+/--
+@isnad1 id=eq.0h6v.s9.dafafa26760b from=translated src=- shape=05ef6cd9 vocab=c5f3046d
+-/
 @[simp]
 theorem fold_of (j : ZMod 2) (x : lowGrading 𝒩 j) : fold (of ℬ 𝒩 j x) = x := by
   exact DirectSum.toAddMonoid_of (fun j => (lowGrading 𝒩 j).subtype) j x
 
+/--
+@isnad1 id=mem.1h6v.s8.7a9f8e50bcfb from=translated src=- shape=e7ae7088 vocab=f6552f0d
+-/
 theorem fold_mem {j : ZMod 2} {y : Unperiodize ℬ 𝒩} (hy : y ∈ grading ℬ 𝒩 j) :
     fold y ∈ lowGrading 𝒩 j := by
   obtain ⟨x, rfl⟩ := mem_grading_iff.mp hy
@@ -102,6 +120,9 @@ def map (f : ∀ j : ZMod 2, lowGrading 𝒩 j →+ lowGrading 𝒩' j) :
     Unperiodize ℬ 𝒩 →+ Unperiodize ℬ 𝒩' :=
   DirectSum.map f
 
+/--
+@isnad1 id=eq.0h9v.s11.aa4203b34c13 from=translated src=- shape=e413f644 vocab=0603a7f8
+-/
 @[simp]
 theorem map_of (f : ∀ j : ZMod 2, lowGrading 𝒩 j →+ lowGrading 𝒩' j) (j : ZMod 2)
     (x : lowGrading 𝒩 j) : map ℬ f (of ℬ 𝒩 j x) = of ℬ 𝒩' j (f j x) :=
@@ -122,6 +143,9 @@ namespace Unperiodize
 
 variable {ℬ 𝒩}
 
+/--
+@isnad1 id=mem.2h9v.s9.697a902007eb from=translated src=- shape=05adb336 vocab=4981c8c2
+-/
 theorem smul_mem_aux {i j : ZMod 2} {b : B} (hb : b ∈ ℬ i) {x : N} (hx : x ∈ lowGrading 𝒩 j) :
     Periodize.mk ℬ ((i + j).val - j.val) b (by rwa [cast_sub_val]) • x ∈ lowGrading 𝒩 (i + j) := by
   have := SetLike.GradedSMul.smul_mem (Periodize.mk_mem (ℳ := ℬ) ((i + j).val - j.val : ℤ)
@@ -177,6 +201,9 @@ instance module : Module B (Unperiodize ℬ 𝒩) :=
 
 variable {ℬ 𝒩}
 
+/--
+@isnad1 id=eq.1h9v.s11.675994e11bd9 from=translated src=- shape=39a44d26 vocab=f35e2fe8
+-/
 theorem smul_of {i j : ZMod 2} {b : B} (hb : b ∈ ℬ i) (x : lowGrading 𝒩 j) :
     b • of ℬ 𝒩 j x = of ℬ 𝒩 (i + j) (gsmul ℬ 𝒩 i j ⟨b, hb⟩ x) := by
   change (decompose ℬ b) • (DirectSum.of (fun j => ↥(lowGrading 𝒩 j)) j x) = _
@@ -197,9 +224,15 @@ namespace Periodize
 variable {B τ : Type*} [Ring B] [SetLike τ B] [AddSubgroupClass τ B] (ℬ : ZMod 2 → τ)
   [SetLike.GradedMonoid ℬ]
 
+/--
+@isnad1 id=eq.0h1v.s7.f5b9faca98d0 from=translated src=- shape=69c20d33 vocab=237293ce
+-/
 theorem cast_sub_val_cast (n : ℤ) : ((n - ((n : ZMod 2).val : ℤ) : ℤ) : ZMod 2) = 0 := by
   rw [Int.cast_sub, intCast_val_zmodTwo, sub_self]
 
+/--
+@isnad1 id=eq.0h1v.s7.304f08ce9e24 from=translated src=- shape=702843cc vocab=237293ce
+-/
 theorem cast_val_cast_sub (n : ℤ) : ((((n : ZMod 2).val : ℤ) - n : ℤ) : ZMod 2) = 0 := by
   rw [Int.cast_sub, intCast_val_zmodTwo, sub_self]
 
@@ -210,11 +243,17 @@ def evenOne (k : ℤ) (hk : (k : ZMod 2) = 0) : Periodize ℬ :=
 
 variable {ℬ}
 
+/--
+@isnad1 id=eq.2h5v.s8.a1324adbdebc from=translated src=- shape=0cd4ec32 vocab=ed5d722e
+-/
 theorem evenOne_mul_evenOne {k l : ℤ} (hk : (k : ZMod 2) = 0) (hl : (l : ZMod 2) = 0) :
     evenOne ℬ k hk * evenOne ℬ l hl =
       evenOne ℬ (k + l) (by rw [Int.cast_add, hk, hl, add_zero]) := by
   rw [evenOne, evenOne, mk_mul_mk]; exact mk_congr rfl (one_mul 1) _ _
 
+/--
+@isnad1 id=eq.2h4v.s8.dbb56c97a386 from=translated src=- shape=897de2cc vocab=0a261ac8
+-/
 theorem evenOne_eq_one {k : ℤ} (hk : (k : ZMod 2) = 0) (h : k = 0) : evenOne ℬ k hk = 1 := by
   subst h; rfl
 
@@ -240,6 +279,9 @@ def periodizeHom {M N : GradedModuleCat.{v} ℬ} (f : M ⟶ N) :
   DirectSum.map fun n => f.restrict (n : ZMod 2)
 
 omit [AddSubgroupClass τ B] [GradedRing ℬ] in
+/--
+@isnad1 id=eq.1h8v.s14.cabe6be1ddb1 from=translated src=- shape=5be2427a vocab=2a0dbb4a
+-/
 theorem periodizeHom_mk {M N : GradedModuleCat.{v} ℬ} (f : M ⟶ N) (n : ℤ) (m : M)
     (hm : m ∈ M.grading n) :
     periodizeHom f (Periodize.mk M.grading n m hm) =
@@ -268,6 +310,9 @@ def periodizeMap {M N : GradedModuleCat.{v} ℬ} (f : M ⟶ N) :
     change periodizeHom f _ ∈ _
     rw [periodizeHom_mk]; exact Periodize.mk_mem _ _
 
+/--
+@isnad1 id=eq.1h8v.s12.0882e8acef8c from=translated src=- shape=aba5c209 vocab=2d756330
+-/
 @[simp]
 theorem periodizeMap_hom_mk {M N : GradedModuleCat.{v} ℬ} (f : M ⟶ N) (n : ℤ) (m : M)
     (hm : m ∈ M.grading n) :
@@ -316,6 +361,9 @@ def unperiodizeMap {N N' : GradedModuleCat.{v} (periodizeGrading ℬ)} (g : N �
     change Unperiodize.map ℬ _ _ ∈ _
     rw [Unperiodize.map_of]; exact Unperiodize.of_mem_grading _ _
 
+/--
+@isnad1 id=eq.0h8v.s16.d72244f4fc18 from=translated src=- shape=8a7ebb08 vocab=1a756fed
+-/
 @[simp]
 theorem unperiodizeMap_hom_of {N N' : GradedModuleCat.{v} (periodizeGrading ℬ)} (g : N ⟶ N')
     (j : ZMod 2) (x : lowGrading N.grading j) :
@@ -355,6 +403,9 @@ def unitHom : M →+ Unperiodize ℬ (periodizeGrading M.grading) :=
 variable {M}
 
 omit [AddSubgroupClass τ B] [GradedRing ℬ] in
+/--
+@isnad1 id=eq.1h6v.s17.601c48db415c from=translated src=- shape=0d307722 vocab=08c740a8
+-/
 theorem unitHom_of_mem {j : ZMod 2} {m : M} (hm : m ∈ M.grading j) :
     unitHom M m = Unperiodize.of ℬ (periodizeGrading M.grading) j
       ⟨Periodize.mk M.grading (j.val : ℤ) m (by rwa [intCast_val_zmodTwo]),
@@ -376,6 +427,9 @@ def unitInv : Unperiodize ℬ (periodizeGrading M.grading) →+ M :=
   (Periodize.fold M.grading).comp Unperiodize.fold
 
 omit [AddSubgroupClass τ B] [GradedRing ℬ] in
+/--
+@isnad1 id=eq.0h5v.s15.a0e7b4c7d9d3 from=translated src=- shape=990008e5 vocab=c3810397
+-/
 theorem unitInv_unitHom (m : M) : unitInv (unitHom M m) = m := by
   induction m using Decomposition.inductionOn M.grading with
   | zero => simp
@@ -385,6 +439,9 @@ theorem unitInv_unitHom (m : M) : unitInv (unitHom M m) = m := by
   | add m m' hm hm' => rw [map_add, map_add, hm, hm']
 
 omit [AddSubgroupClass τ B] [GradedRing ℬ] in
+/--
+@isnad1 id=eq.0h5v.s15.0ee09fd18c42 from=translated src=- shape=7c484904 vocab=c3810397
+-/
 theorem unitHom_unitInv (y : Unperiodize ℬ (periodizeGrading M.grading)) :
     unitHom M (unitInv y) = y := by
   induction y using Unperiodize.induction_on with
@@ -398,6 +455,9 @@ theorem unitHom_unitInv (y : Unperiodize ℬ (periodizeGrading M.grading)) :
     rw [Periodize.fold_mk, unitHom_of_mem (by rwa [intCast_val_zmodTwo] at hm)]
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s16.03f2e6fc7b42 from=translated src=- shape=ad3ae42c vocab=cb10796a
+-/
 theorem unitHom_smul (b : B) (m : M) : unitHom M (b • m) = b • unitHom M m := by
   refine map_smul_of_homogeneous ℬ M.grading (unitHom M) (fun i j b m hb hm => ?_) b m
   rw [unitHom_of_mem (SetLike.GradedSMul.smul_mem hb hm), unitHom_of_mem hm,
@@ -451,6 +511,9 @@ def counitHom : Periodize (Unperiodize.grading ℬ N.grading) →+ N :=
 
 variable {N}
 
+/--
+@isnad1 id=eq.1h6v.s15.32e6667a4d64 from=translated src=- shape=6e8879bc vocab=37bce5db
+-/
 theorem counitHom_mk (n : ℤ) (y : Unperiodize ℬ N.grading)
     (hy : y ∈ Unperiodize.grading ℬ N.grading n) :
     counitHom N (Periodize.mk _ n y hy) =
@@ -459,10 +522,16 @@ theorem counitHom_mk (n : ℤ) (y : Unperiodize ℬ N.grading)
   DirectSum.toAddMonoid_of (β := fun n => ↥(periodicGrading (Unperiodize.grading ℬ N.grading) n))
     _ n ⟨y, hy⟩
 
+/--
+@isnad1 id=mem.2h7v.s12.0b0aef023b14 from=translated src=- shape=26d0431b vocab=33f838b1
+-/
 theorem evenOne_smul_mem {k n : ℤ} (hk : (k : ZMod 2) = 0) {x : N} (hx : x ∈ N.grading n) :
     Periodize.evenOne ℬ k hk • x ∈ N.grading (k + n) :=
   SetLike.GradedSMul.smul_mem (Periodize.mk_mem k _) hx
 
+/--
+@isnad1 id=eq.3h7v.s12.eb81f11114c3 from=translated src=- shape=00d54257 vocab=1ccf98dd
+-/
 theorem evenOne_smul_evenOne_smul {k l : ℤ} (hk : (k : ZMod 2) = 0) (hl : (l : ZMod 2) = 0)
     (h : k + l = 0) (x : N) : Periodize.evenOne ℬ k hk • Periodize.evenOne ℬ l hl • x = x := by
   rw [← mul_smul, Periodize.evenOne_mul_evenOne, Periodize.evenOne_eq_one _ h, one_smul]
@@ -486,6 +555,9 @@ def counitInv : N →+ Periodize (Unperiodize.grading ℬ N.grading) :=
 
 variable {N}
 
+/--
+@isnad1 id=eq.1h6v.s16.6226b0baf17c from=translated src=- shape=bc37e377 vocab=3de9c014
+-/
 theorem counitInv_of_mem {n : ℤ} {x : N} (hx : x ∈ N.grading n) :
     counitInv N x = Periodize.mk _ n (Unperiodize.of ℬ N.grading (n : ZMod 2)
       ⟨Periodize.evenOne ℬ (((n : ZMod 2).val : ℤ) - n) (Periodize.cast_val_cast_sub n) • x,
@@ -495,6 +567,9 @@ theorem counitInv_of_mem {n : ℤ} {x : N} (hx : x ∈ N.grading n) :
           exact this⟩) (Unperiodize.of_mem_grading _ _) := by
   rw [counitInv, liftHomogeneous_of_mem N.grading _ hx]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.cd37aedc9ddb from=translated src=- shape=13e88979 vocab=6a0421eb
+-/
 theorem counitHom_counitInv (x : N) : counitHom N (counitInv N x) = x := by
   induction x using Decomposition.inductionOn N.grading with
   | zero => simp
@@ -503,6 +578,9 @@ theorem counitHom_counitInv (x : N) : counitHom N (counitInv N x) = x := by
     exact evenOne_smul_evenOne_smul _ _ (by ring) _
   | add x x' hx hx' => rw [map_add, map_add, hx, hx']
 
+/--
+@isnad1 id=mem.1h6v.s13.35ad4f56199c from=translated src=- shape=13cd048a vocab=0441a95e
+-/
 theorem counitHom_mem {n : ℤ} {y : Unperiodize ℬ N.grading}
     (hy : y ∈ Unperiodize.grading ℬ N.grading n) :
     Periodize.evenOne ℬ (n - ((n : ZMod 2).val : ℤ)) (Periodize.cast_sub_val_cast n) •
@@ -510,6 +588,9 @@ theorem counitHom_mem {n : ℤ} {y : Unperiodize ℬ N.grading}
   have := evenOne_smul_mem (Periodize.cast_sub_val_cast n) (Unperiodize.fold_mem (ℬ := ℬ) hy)
   rwa [sub_add_cancel] at this
 
+/--
+@isnad1 id=eq.0h5v.s16.664b894f3efd from=translated src=- shape=1fc709af vocab=6a0421eb
+-/
 theorem counitInv_counitHom (z : Periodize (Unperiodize.grading ℬ N.grading)) :
     counitInv N (counitHom N z) = z := by
   induction z using Periodize.induction_on with
@@ -525,6 +606,9 @@ theorem counitInv_counitHom (z : Periodize (Unperiodize.grading ℬ N.grading)) 
   | add z z' hz hz' => rw [map_add, map_add, hz, hz']
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s17.7653ef7cccf9 from=translated src=- shape=c5a56b3f vocab=779ff6a1
+-/
 theorem counitHom_smul (p : Periodize ℬ) (z : Periodize (Unperiodize.grading ℬ N.grading)) :
     counitHom N (p • z) = p • counitHom N z := by
   refine map_smul_of_homogeneous (periodizeGrading ℬ)
@@ -554,6 +638,9 @@ def counitEquiv : Periodize (Unperiodize.grading ℬ N.grading) ≃ₗ[Periodize
   map_add' := map_add _
   map_smul' := counitHom_smul
 
+/--
+@isnad1 id=eq.0h5v.s16.3c9d16d9b7d4 from=translated src=- shape=1492c002 vocab=f9200812
+-/
 theorem counitEquiv_apply (z : Periodize (Unperiodize.grading ℬ N.grading)) :
     counitEquiv N z = counitHom N z := rfl
 

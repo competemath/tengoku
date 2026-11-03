@@ -61,12 +61,18 @@ variable (R : Type*) (A : Type*) (M : Type*) [CommRing R] [Ring A] [Algebra R A]
 include A
 
 variable {R M} in
+/--
+@isnad1 id=mem.1h6v.s8.b5a3a85cb07d from=translated src=- shape=dc4969ea vocab=a1e6cddb
+-/
 theorem DGModule.ground_smul_mem_cocycles {n : ℤ} (r : R) {m : M} (hm : m ∈ cocycles M n) :
     r • m ∈ cocycles M n := by
   rw [mem_cocycles] at hm ⊢
   exact ⟨DGModule.ground_smul_mem A r hm.1, by rw [d_ground_smul A, hm.2, smul_zero]⟩
 
 variable {R M} in
+/--
+@isnad1 id=mem.1h6v.s8.7d5c85e6be6b from=translated src=- shape=dc4969ea vocab=d427305e
+-/
 theorem DGModule.ground_smul_mem_coboundaries {n : ℤ} (r : R) {m : M}
     (hm : m ∈ coboundaries M n) : r • m ∈ coboundaries M n := by
   obtain ⟨m', hm', rfl⟩ := hm
@@ -82,10 +88,16 @@ def DGModule.coboundariesSubmodule (n : ℤ) : Submodule R M where
   __ := coboundaries M n
   smul_mem' r _ hm := DGModule.ground_smul_mem_coboundaries A r hm
 
+/--
+@isnad1 id=eq.0h4v.s7.d84f2714b5dc from=translated src=- shape=04c023da vocab=61c2035b
+-/
 @[simp]
 theorem DGModule.cocyclesSubmodule_toAddSubgroup (n : ℤ) :
     (DGModule.cocyclesSubmodule R A M n).toAddSubgroup = cocycles M n := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.52a3af0f8da6 from=translated src=- shape=04c023da vocab=7b38833c
+-/
 @[simp]
 theorem DGModule.coboundariesSubmodule_toAddSubgroup (n : ℤ) :
     (DGModule.coboundariesSubmodule R A M n).toAddSubgroup = coboundaries M n := rfl
@@ -100,6 +112,9 @@ def groundSMulCocycles (n : ℤ) (r : R) : cocycles M n →+ cocycles M n where
   map_add' _ _ := by ext; simp [smul_add]
 
 variable {R M} in
+/--
+@isnad1 id=eq.0h6v.s10.0d172ec79162 from=translated src=- shape=2cb5bf24 vocab=2061ac3b
+-/
 @[simp]
 theorem coe_groundSMulCocycles_apply (n : ℤ) (r : R) (z : cocycles M n) :
     (groundSMulCocycles A n r z : M) = r • (z : M) := rfl
@@ -135,6 +150,9 @@ abbrev groundModule (n : ℤ) : Module R (cohomology M n) :=
 
 variable {R M}
 
+/--
+@isnad1 id=eq.0h6v.s11.ff2bf791daa8 from=translated src=- shape=dee330f5 vocab=d2c3a04a
+-/
 theorem groundModule_smul_mk {n : ℤ} (r : R) (z : cocycles M n) :
     letI := groundModule R A M n
     r • mk M n z = mk M n (groundSMulCocycles A n r z) := rfl
@@ -142,7 +160,9 @@ theorem groundModule_smul_mk {n : ℤ} (r : R) (z : cocycles M n) :
 variable {N : Type*} [AddCommGroup N] [DGAddCommGroup N] [Module A N] [DGModule A N]
   [Module R N] [IsScalarTower R A N]
 
-/-- The map induced on cohomology by a morphism of dg modules is `R`-linear.-/
+/-- The map induced on cohomology by a morphism of dg modules is `R`-linear.
+@isnad1 id=eq.0h8v.s10.ba283368ba0e from=translated src=- shape=dc6ef824 vocab=c8a46f94
+-/
 theorem map_groundSMul (f : M →ᵈᵍ[A] N) (n : ℤ) (r : R) (x : cohomology M n) :
     letI := groundModule R A M n
     letI := groundModule R A N n
@@ -181,6 +201,9 @@ instance instModuleOfAlgebra (n : ℤ) : Module R (cohomology A n) :=
 
 variable {R A}
 
+/--
+@isnad1 id=eq.0h5v.s11.1aaf635bad7c from=translated src=- shape=5f36470e vocab=939e7541
+-/
 theorem smul_mk {n : ℤ} (r : R) (z : cocycles A n) :
     r • mk A n z = mk A n (groundSMulCocycles A n r z) := rfl
 
@@ -202,7 +225,9 @@ def algebraMapZero : R →+ cohomology A 0 :=
 variable {R A}
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The structure map `R → H⁰(A)` sends `r` to the class of `algebraMap R A r`.-/
+/-- The structure map `R → H⁰(A)` sends `r` to the class of `algebraMap R A r`.
+@isnad1 id=eq.0h3v.s10.276752ad365f from=translated src=- shape=62b2f5f3 vocab=a90a5da7
+-/
 theorem algebraMapZero_eq_mk (r : R) :
     algebraMapZero R A r = cohomology.mk A 0 ⟨algebraMap R A r,
       mem_cocycles.mpr ⟨algebraMap_mem_grading R r, d_algebraMap R r⟩⟩ :=
@@ -246,13 +271,18 @@ instance galgebra : DirectSum.GAlgebra R (fun n => cohomology A n) where
 
 variable {R A}
 
+/--
+@isnad1 id=eq.0h3v.s9.5ce7bd4089a8 from=translated src=- shape=55f335b2 vocab=28025985
+-/
 theorem algebraMap_apply (r : R) :
     algebraMap R (Cohomology A) r =
       DirectSum.of (fun n => cohomology A n) 0 (algebraMapZero R A r) := rfl
 
 variable (R A)
 
-/-- The cohomology `H(A)` of a dg `R`-algebra is a dg `R`-algebra with zero differential.-/
+/-- The cohomology `H(A)` of a dg `R`-algebra is a dg `R`-algebra with zero differential.
+@isnad1 id=dgalgebr.0h2v.s7.8ea6814ef8ab from=translated src=- shape=51aa1236 vocab=7b7fa4be
+-/
 instance dgAlgebra : DGAlgebra R (Cohomology A) where
   algebraMap_mem' r := ⟨algebraMapZero R A r, rfl⟩
   d_algebraMap' _ := rfl
@@ -267,7 +297,9 @@ variable {R A B : Type*} [CommRing R] [Ring A] [Algebra R A] [DGAddCommGroup A] 
   [DGAlgebra R A] [Ring B] [Algebra R B] [DGAddCommGroup B] [DGRing B] [DGAlgebra R B]
   (f : A →ᵈᵍₐ[R] B)
 
-/-- The map `Hⁿ(A) → Hⁿ(B)` induced by a morphism of dg `R`-algebras is `R`-linear.-/
+/-- The map `Hⁿ(A) → Hⁿ(B)` induced by a morphism of dg `R`-algebras is `R`-linear.
+@isnad1 id=eq.0h7v.s10.f4cca4feef72 from=translated src=- shape=fba28bec vocab=4148add8
+-/
 theorem cohomologyMap_smul (n : ℤ) (r : R) (x : cohomology A n) :
     f.toDGRingHom.cohomologyMap n (r • x) = r • f.toDGRingHom.cohomologyMap n x := by
   induction x using cohomology.induction_on with
@@ -287,12 +319,18 @@ def cohomologyAlgHom : Cohomology A →ₐ[R] Cohomology B :=
         DirectSum.of _ 0 (r • GradedMonoid.GOne.one)
       rw [DGRingHom.cohomologyRingHom_of, cohomologyMap_smul, DGRingHom.cohomologyMap_one] }
 
+/--
+@isnad1 id=eq.0h6v.s10.859757d7c3fb from=translated src=- shape=7594d30f vocab=1abb92e9
+-/
 @[simp]
 theorem cohomologyAlgHom_of (n : ℤ) (x : cohomology A n) :
     f.cohomologyAlgHom (DirectSum.of (fun n => cohomology A n) n x) =
       DirectSum.of (fun n => cohomology B n) n (f.toDGRingHom.cohomologyMap n x) :=
   DGRingHom.cohomologyRingHom_of _ n x
 
+/--
+@isnad1 id=eq.0h4v.s9.fd0818efe992 from=translated src=- shape=e42aee9f vocab=e23cee0b
+-/
 @[simp]
 theorem toRingHom_cohomologyAlgHom :
     (f.cohomologyAlgHom : Cohomology A →+* Cohomology B) = f.toDGRingHom.cohomologyRingHom :=

@@ -53,16 +53,24 @@ noncomputable instance instDGAddCommGroupWgrading (k : ℤ) :
     (((d : M →+ M).comp (AddSubgroupClass.subtype _)).codRestrict _ fun m => d_mem_wgrading m.2)
     (fun _ => rfl) fun n m => ⟨⟨_, decompose_grading_mem_wgrading m.2 n⟩, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.713a3d4ce24f from=translated src=- shape=66a94942 vocab=d6d28b93
+-/
 theorem mem_grading_wgrading_iff {k n : ℤ} {m : wgrading (M := M) k} :
     m ∈ grading n ↔ (m : M) ∈ grading n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.fd622d183815 from=translated src=- shape=0eaae393 vocab=fb1607dd
+-/
 @[simp]
 theorem coe_d_wgrading {k : ℤ} (m : wgrading (M := M) k) : ((d m : wgrading k) : M) = d (m : M) :=
   rfl
 
 /-- The homogeneous components of an element of `M⟨k⟩` are those of the underlying element of
-`M`.-/
+`M`.
+@isnad1 id=eq.0h4v.s13.b9219301ac19 from=translated src=- shape=88eb398b vocab=853a5697
+-/
 theorem coe_decompose_wgrading {k : ℤ} (m : wgrading (M := M) k) (n : ℤ) :
     ((decompose (grading (M := wgrading (M := M) k)) m n : wgrading (M := M) k) : M) =
       decompose (grading (M := M)) (m : M) n :=
@@ -98,24 +106,51 @@ abbrev homMk {k l : WeightCategory A} (a : A) (ha : a ∈ wgrading (M := A) (l.a
     k ⟶ l :=
   ⟨a, ha⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.9fbda047c50a from=translated src=- shape=ba9b5b59 vocab=23a38bf1
+-/
 theorem hom_ext {k l : WeightCategory A} {f g : k ⟶ l} (h : f.1 = g.1) : f = g :=
   Subtype.ext h
 
+/--
+@isnad1 id=mem.0h4v.s7.ac09b8874e5c from=translated src=- shape=f3c7cd88 vocab=23a38bf1
+-/
 theorem mem_wgrading {k l : WeightCategory A} (f : k ⟶ l) : f.1 ∈ wgrading (M := A) (l.as - k.as) :=
   f.2
 
+/--
+@isnad1 id=eq.0h2v.s6.45e0bbbb6b39 from=translated src=- shape=754195f5 vocab=2a6cb29d
+-/
 @[simp] theorem id_val (k : WeightCategory A) : (𝟙 k : k ⟶ k).1 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.27b758c0b091 from=translated src=- shape=be3c55cd vocab=368c8cb5
+-/
 @[simp] theorem comp_val {k l m : WeightCategory A} (f : k ⟶ l) (g : l ⟶ m) :
     (f ≫ g).1 = g.1 * f.1 := rfl
 
 instance (k l : WeightCategory A) : AddCommGroup (k ⟶ l) :=
   inferInstanceAs (AddCommGroup (wgrading (M := A) (l.as - k.as)))
 
+/--
+@isnad1 id=eq.0h5v.s8.d67225a191a5 from=translated src=- shape=9c43e707 vocab=d4f697f8
+-/
 @[simp] theorem add_val {k l : WeightCategory A} (f g : k ⟶ l) : (f + g).1 = f.1 + g.1 := rfl
+/--
+@isnad1 id=eq.0h4v.s8.7e0905b9ca58 from=translated src=- shape=d53657f7 vocab=c4df99bb
+-/
 @[simp] theorem neg_val {k l : WeightCategory A} (f : k ⟶ l) : (-f).1 = -f.1 := rfl
+/--
+@isnad1 id=eq.0h3v.s7.09eadc79cf9d from=translated src=- shape=f5e8d06e vocab=23a38bf1
+-/
 @[simp] theorem zero_val (k l : WeightCategory A) : (0 : k ⟶ l).1 = 0 := rfl
+/--
+@isnad1 id=eq.0h5v.s8.b4f0fd622a6a from=translated src=- shape=7fee0b7f vocab=23a38bf1
+-/
 @[simp] theorem sub_val {k l : WeightCategory A} (f g : k ⟶ l) : (f - g).1 = f.1 - g.1 := rfl
+/--
+@isnad1 id=eq.0h5v.s8.50705bb565e4 from=translated src=- shape=2f52e193 vocab=8c8c51e2
+-/
 @[simp] theorem zsmul_val {k l : WeightCategory A} (n : ℤ) (f : k ⟶ l) : (n • f).1 = n • f.1 :=
   rfl
 
@@ -128,10 +163,16 @@ noncomputable instance instDGAddCommGroupHom (k l : WeightCategory A) :
     DGAddCommGroup (k ⟶ l) :=
   inferInstanceAs (DGAddCommGroup (wgrading (M := A) (l.as - k.as)))
 
+/--
+@isnad1 id=iff.0h5v.s8.8d63df888f12 from=translated src=- shape=fa6cfaad vocab=c2b4dcd3
+-/
 theorem mem_grading_iff {k l : WeightCategory A} {n : ℤ} {f : k ⟶ l} :
     f ∈ grading n ↔ f.1 ∈ grading (M := A) n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.9d9e783b604d from=translated src=- shape=8b37e627 vocab=9d420d3f
+-/
 @[simp]
 theorem d_val {k l : WeightCategory A} (f : k ⟶ l) : (d f).1 = d f.1 := rfl
 
@@ -145,6 +186,9 @@ def shiftFunctor (s : ℤ) : WeightCategory A ⥤ WeightCategory A where
   obj k := ⟨k.as + s⟩
   map {k l} f := ⟨f.1, by simp [add_sub_add_right_eq_sub, f.2]⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.1bfa536dc3e4 from=translated src=- shape=077b52cd vocab=e184dacd
+-/
 @[simp]
 theorem shiftFunctor_map_val (s : ℤ) {k l : WeightCategory A} (f : k ⟶ l) :
     ((shiftFunctor A s).map f).1 = f.1 := rfl
@@ -172,15 +216,23 @@ def shiftEquiv (s : ℤ) : WeightCategory A ≌ WeightCategory A :=
     (NatIso.ofComponents (fun k => isoOfEq (by simp))
       fun f => Subtype.ext (by simp))
 
+/--
+@isnad1 id=eq.0h2v.s6.2a7c8b1dedcb from=translated src=- shape=03504c2e vocab=37096587
+-/
 @[simp]
 theorem shiftEquiv_functor (s : ℤ) : (shiftEquiv A s).functor = shiftFunctor A s := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.6cd1731b55d8 from=translated src=- shape=4e7394e0 vocab=5d18c685
+-/
 @[simp]
 theorem shiftEquiv_inverse (s : ℤ) : (shiftEquiv A s).inverse = shiftFunctor A (-s) := rfl
 
 variable [DGRing A]
 
-/-- `C_A` is a dg category.-/
+/-- `C_A` is a dg category.
+@isnad1 id=dgcatego.0h1v.s5.c5c3c3e86bb2 from=translated src=- shape=c0c0ff52 vocab=0fa3356a
+-/
 instance instDGCategory : DGCategory (WeightCategory A) where
   comp_mem' {_ _ _ i j f g} hf hg := by
     rw [mem_grading_iff, comp_val, add_comm]

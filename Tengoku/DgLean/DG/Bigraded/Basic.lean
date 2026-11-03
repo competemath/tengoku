@@ -61,7 +61,9 @@ variable {ι κ M σ : Type*} [DecidableEq ι] [DecidableEq κ] [AddCommMonoid M
   [AddSubmonoidClass σ M] (ℳ : ι → σ) [Decomposition ℳ] (e : κ ≃ ι)
 
 /-- The components of a decomposition of `M` by `fun k => ℳ (e k)` (for instance the reindexed
-decomposition `DirectSum.Decomposition.reindex`) are the components of `ℳ`.-/
+decomposition `DirectSum.Decomposition.reindex`) are the components of `ℳ`.
+@isnad1 id=eq.0h8v.s10.ebc501acdf4a from=translated src=- shape=bbf72daf vocab=50b86339
+-/
 theorem coe_decompose_reindex [Decomposition fun k => ℳ (e k)] (m : M) (k : κ) :
     (decompose (fun k => ℳ (e k)) m k : M) = decompose ℳ m (e k) := by
   induction m using Decomposition.inductionOn ℳ with
@@ -91,7 +93,9 @@ variable {M : Type*} [AddCommGroup M] {ι κ : Type*} [DecidableEq ι] [Decidabl
   (ℳ : ι → AddSubgroup M) (𝒩 : κ → AddSubgroup M) [Decomposition ℳ] [Decomposition 𝒩]
 
 /-- For an element `y` of the external direct sum of the `ℳ i ⊓ 𝒩 j`, the `(i, j)` component
-of `y` is obtained from its image in `M` by projecting to `ℳ i` and then to `𝒩 j`.-/
+of `y` is obtained from its image in `M` by projecting to `ℳ i` and then to `𝒩 j`.
+@isnad1 id=eq.0h7v.s11.6a00411280ea from=translated src=- shape=dba5c64b vocab=0970b1f0
+-/
 theorem decompose_decompose_coeAddMonoidHom_inf
     (y : ⨁ p : ι × κ, (ℳ p.1 ⊓ 𝒩 p.2 : AddSubgroup M)) (p : ι × κ) :
     (decompose 𝒩 (decompose ℳ
@@ -116,7 +120,9 @@ theorem decompose_decompose_coeAddMonoidHom_inf
 
 /-- Two decompositions `M = ⨁ i, ℳ i` and `M = ⨁ j, 𝒩 j` commute (the projections onto the
 `𝒩 j` preserve every `ℳ i`) if and only if `M` is the internal direct sum of the intersections
-`ℳ i ⊓ 𝒩 j`, i.e. `(i, j) ↦ ℳ i ⊓ 𝒩 j` is an `ι × κ`-grading of `M`.-/
+`ℳ i ⊓ 𝒩 j`, i.e. `(i, j) ↦ ℳ i ⊓ 𝒩 j` is an `ι × κ`-grading of `M`.
+@isnad1 id=iff.0h5v.s7.6597bf87ebc9 from=translated src=- shape=f868350c vocab=04349dc9
+-/
 theorem isInternal_inf_iff :
     DirectSum.IsInternal (fun p : ι × κ => ℳ p.1 ⊓ 𝒩 p.2) ↔
       ∀ i, SetLike.IsHomogeneous 𝒩 (ℳ i) := by
@@ -155,6 +161,9 @@ variable {M : Type*} [AddCommGroup M] {ι : Type*} [DecidableEq ι] (ℳ : ι �
   [Decomposition ℳ] {T : Type*} [AddCommGroup T] (f : T →+ M)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isintern.2h5v.s9.863389df51bd from=translated src=- shape=5ced2950 vocab=b05bcde1
+-/
 theorem isInternal_comap (hf : Function.Injective f)
     (hhom : ∀ (i : ι) (t : T), (decompose ℳ (f t) i : M) ∈ f.range) :
     DirectSum.IsInternal fun i => (ℳ i).comap f := by
@@ -185,7 +194,9 @@ theorem isInternal_comap (hf : Function.Injective f)
       exact Finset.sum_congr rfl fun i _ => hs i
 
 /-- The components of an element for a decomposition pulled back along an injective map are
-the pullbacks of its components.-/
+the pullbacks of its components.
+@isnad1 id=eq.0h7v.s10.f36c92da8db5 from=translated src=- shape=e81fc388 vocab=4a1227d9
+-/
 theorem coe_decompose_comap [Decomposition fun i => (ℳ i).comap f] (t : T) (i : ι) :
     f (decompose (fun i => (ℳ i).comap f) t i) = decompose ℳ (f t) i := by
   induction t using Decomposition.inductionOn (fun i => (ℳ i).comap f) with
@@ -238,18 +249,28 @@ section InternalGrading
 variable {M : Type*} [AddCommGroup M] [DGAddCommGroup M] [InternalGrading M]
 
 variable (M) in
-/-- The cohomological components are homogeneous for the weight grading.-/
+/-- The cohomological components are homogeneous for the weight grading.
+@isnad1 id=ishomoge.0h2v.s5.b605c613985d from=translated src=- shape=1a43acc5 vocab=059e1358
+-/
 theorem isHomogeneous_grading (n : ℤ) : SetLike.IsHomogeneous (wgrading (M := M)) (grading n) :=
   InternalGrading.isHomogeneous_grading' n
 
+/--
+@isnad1 id=mem.1h4v.s9.528a6bdc3aea from=translated src=- shape=15d88fde vocab=853a5697
+-/
 theorem decompose_wgrading_mem_grading {n : ℤ} {m : M} (hm : m ∈ grading n) (k : ℤ) :
     (decompose (wgrading (M := M)) m k : M) ∈ grading n :=
   isHomogeneous_grading M n k hm
 
+/--
+@isnad1 id=mem.1h3v.s7.a60bc2cc10c8 from=translated src=- shape=5ee1ec39 vocab=c5b06946
+-/
 theorem d_mem_wgrading {k : ℤ} {m : M} (hm : m ∈ wgrading k) : d m ∈ wgrading k :=
   InternalGrading.d_mem_wgrading' hm
 
-/-- The weight projections and the cohomological projections commute.-/
+/-- The weight projections and the cohomological projections commute.
+@isnad1 id=eq.0h4v.s11.d4efba16097c from=translated src=- shape=36804232 vocab=853a5697
+-/
 theorem decompose_wgrading_decompose_grading (m : M) (n k : ℤ) :
     (decompose (wgrading (M := M)) (decompose (grading (M := M)) m n : M) k : M) =
       decompose (grading (M := M)) (decompose (wgrading (M := M)) m k : M) n := by
@@ -267,17 +288,24 @@ theorem decompose_wgrading_decompose_grading (m : M) (n k : ℤ) :
     simp only [decompose_add, add_apply, AddSubgroup.coe_add, hm, hm']
 
 variable (M) in
-/-- The weight components are homogeneous for the cohomological grading.-/
+/-- The weight components are homogeneous for the cohomological grading.
+@isnad1 id=ishomoge.0h2v.s5.d5c10a2ab2c8 from=translated src=- shape=f1fa6e83 vocab=059e1358
+-/
 theorem isHomogeneous_wgrading (k : ℤ) : SetLike.IsHomogeneous (grading (M := M)) (wgrading k) := by
   intro n m hm
   rw [← decompose_of_mem_same _ hm, ← decompose_wgrading_decompose_grading]
   exact (decompose (wgrading (M := M)) _ k).2
 
+/--
+@isnad1 id=mem.1h4v.s9.60bc81712b2c from=translated src=- shape=e1cce4c7 vocab=853a5697
+-/
 theorem decompose_grading_mem_wgrading {k : ℤ} {m : M} (hm : m ∈ wgrading k) (n : ℤ) :
     (decompose (grading (M := M)) m n : M) ∈ wgrading k :=
   isHomogeneous_wgrading M k n hm
 
-/-- The differential commutes with the weight projections.-/
+/-- The differential commutes with the weight projections.
+@isnad1 id=eq.0h3v.s10.a2027fc02351 from=translated src=- shape=3c850f9f vocab=3e5f62ab
+-/
 theorem decompose_wgrading_d (m : M) (k : ℤ) :
     (decompose (wgrading (M := M)) (d m) k : M) = d (decompose (wgrading (M := M)) m k : M) := by
   induction m using Decomposition.inductionOn (wgrading (M := M)) with
@@ -290,19 +318,25 @@ theorem decompose_wgrading_d (m : M) (k : ℤ) :
     · rw [decompose_of_mem_ne _ x.2 h, decompose_of_mem_ne _ (d_mem_wgrading x.2) h, d_zero]
   | add m m' hm hm' => simp only [d_add, decompose_add, add_apply, AddSubgroup.coe_add, hm, hm']
 
-/-- The kernel of `d` is homogeneous for the weight grading.-/
+/-- The kernel of `d` is homogeneous for the weight grading.
+@isnad1 id=ishomoge.0h1v.s6.cc01da1ce04c from=translated src=- shape=d2deea1b vocab=da5e079a
+-/
 theorem isHomogeneous_wgrading_ker_d :
     SetLike.IsHomogeneous (wgrading (M := M)) (d : M →+ M).ker := by
   intro k m hm
   rw [AddMonoidHom.mem_ker] at hm ⊢
   rw [← decompose_wgrading_d, hm, decompose_zero, zero_apply, ZeroMemClass.coe_zero]
 
-/-- The cocycles `Zⁿ(M)` are homogeneous for the weight grading.-/
+/-- The cocycles `Zⁿ(M)` are homogeneous for the weight grading.
+@isnad1 id=ishomoge.0h2v.s5.2032e0561271 from=translated src=- shape=fc4c94ca vocab=0cba650c
+-/
 theorem isHomogeneous_wgrading_cocycles (n : ℤ) :
     SetLike.IsHomogeneous (wgrading (M := M)) (cocycles M n) :=
   fun k _ hm => ⟨decompose_wgrading_mem_grading hm.1 k, isHomogeneous_wgrading_ker_d k hm.2⟩
 
-/-- The coboundaries `Bⁿ(M)` are homogeneous for the weight grading.-/
+/-- The coboundaries `Bⁿ(M)` are homogeneous for the weight grading.
+@isnad1 id=ishomoge.0h2v.s5.b05587dd151a from=translated src=- shape=fc4c94ca vocab=6cfefaac
+-/
 theorem isHomogeneous_wgrading_coboundaries (n : ℤ) :
     SetLike.IsHomogeneous (wgrading (M := M)) (coboundaries M n) := by
   rintro k _ ⟨m, hm, rfl⟩
@@ -313,12 +347,17 @@ variable (M) in
 def bigrading (p : ℤ × ℤ) : AddSubgroup M :=
   grading (M := M) p.1 ⊓ wgrading (M := M) p.2
 
+/--
+@isnad1 id=iff.0h3v.s6.f25b8715b97e from=translated src=- shape=7926e0a0 vocab=44810f7f
+-/
 theorem mem_bigrading {p : ℤ × ℤ} {m : M} :
     m ∈ bigrading M p ↔ m ∈ grading p.1 ∧ m ∈ wgrading p.2 :=
   AddSubgroup.mem_inf
 
 variable (M) in
-/-- `M` is the internal direct sum of its bihomogeneous components `Mⁿ ∩ M⟨k⟩`.-/
+/-- `M` is the internal direct sum of its bihomogeneous components `Mⁿ ∩ M⟨k⟩`.
+@isnad1 id=isintern.0h1v.s5.25ddb88672d7 from=translated src=- shape=ad4908b7 vocab=2607e44a
+-/
 theorem isInternal_bigrading : DirectSum.IsInternal (bigrading M) :=
   (isInternal_inf_iff (grading (M := M)) (wgrading (M := M))).mpr (isHomogeneous_grading M)
 
@@ -327,7 +366,9 @@ noncomputable instance bigrading.decomposition : DirectSum.Decomposition (bigrad
   (isInternal_bigrading M).chooseDecomposition
 
 /-- The bihomogeneous components are obtained by projecting to the cohomological and then to the
-weight components.-/
+weight components.
+@isnad1 id=eq.0h3v.s11.813d92dd88d9 from=translated src=- shape=9cc7a241 vocab=fa816cae
+-/
 theorem coe_decompose_bigrading (m : M) (p : ℤ × ℤ) :
     (decompose (bigrading M) m p : M) =
       decompose (wgrading (M := M)) (decompose (grading (M := M)) m p.1 : M) p.2 := by
@@ -339,7 +380,9 @@ theorem coe_decompose_bigrading (m : M) (p : ℤ × ℤ) :
   rw [hm] at h
   exact h.symm
 
-/-- The differential has bidegree `(1, 0)`.-/
+/-- The differential has bidegree `(1, 0)`.
+@isnad1 id=mem.1h4v.s7.593b5591422b from=translated src=- shape=3cab8e56 vocab=5da4bfd4
+-/
 theorem d_mem_bigrading {n k : ℤ} {m : M} (hm : m ∈ bigrading M (n, k)) :
     d m ∈ bigrading M (n + 1, k) :=
   ⟨d_mem hm.1, d_mem_wgrading hm.2⟩
@@ -361,16 +404,24 @@ variable {A : Type*} [Ring A] [DGAddCommGroup A] [InternalGrading A] [BigradedDG
 instance BigradedDGRing.toGradedRing : GradedRing (wgrading (M := A)) :=
   { BigradedDGRing.toGradedMonoid (A := A), InternalGrading.wdecomposition (M := A) with }
 
+/--
+@isnad1 id=mem.0h1v.s6.7fc6fb0c9541 from=translated src=- shape=905d5c84 vocab=2d47495e
+-/
 theorem one_mem_wgrading : (1 : A) ∈ wgrading (M := A) 0 :=
   SetLike.GradedOne.one_mem
 
+/--
+@isnad1 id=mem.2h5v.s7.9d45c91c591d from=translated src=- shape=f7f93f9e vocab=b05980ea
+-/
 theorem mul_mem_wgrading {i j : ℤ} {a b : A} (ha : a ∈ wgrading i) (hb : b ∈ wgrading j) :
     a * b ∈ wgrading (i + j) :=
   SetLike.GradedMul.mul_mem ha hb
 
 variable [DGRing A]
 
-/-- The bigrading of a bigraded dg ring is a ring grading.-/
+/-- The bigrading of a bigraded dg ring is a ring grading.
+@isnad1 id=gradedmo.0h1v.s6.33cad653d63c from=translated src=- shape=35528d7d vocab=9c5c2c9c
+-/
 instance bigrading.gradedMonoid : SetLike.GradedMonoid (bigrading A) where
   one_mem := ⟨one_mem_grading, one_mem_wgrading⟩
   mul_mem _ _ _ _ ha hb := ⟨mul_mem_grading ha.1 hb.1, mul_mem_wgrading ha.2 hb.2⟩
@@ -394,6 +445,9 @@ section BigradedDGModule
 variable {A : Type*} {M : Type*} [Ring A] [DGAddCommGroup A] [InternalGrading A]
   [AddCommGroup M] [DGAddCommGroup M] [InternalGrading M] [Module A M] [BigradedDGModule A M]
 
+/--
+@isnad1 id=mem.2h6v.s7.47187ab6fa95 from=translated src=- shape=0f2e24b7 vocab=670b3a01
+-/
 theorem smul_mem_wgrading {i j : ℤ} {a : A} {m : M} (ha : a ∈ wgrading i)
     (hm : m ∈ wgrading j) : a • m ∈ wgrading (i + j) :=
   SetLike.GradedSMul.smul_mem ha hm

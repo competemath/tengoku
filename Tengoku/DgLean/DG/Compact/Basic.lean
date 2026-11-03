@@ -63,7 +63,9 @@ section DirectSum
 variable {ι : Type*} {α β γ : ι → Type*}
   [∀ i, AddCommGroup (α i)] [∀ i, AddCommGroup (β i)] [∀ i, AddCommGroup (γ i)]
 
-/-- A direct sum of exact sequences of abelian groups is exact.-/
+/-- A direct sum of exact sequences of abelian groups is exact.
+@isnad1 id=exact.1h6v.s10.230b4f697cc8 from=translated src=- shape=430829ea vocab=0abb43b1
+-/
 theorem exact_directSum_map (f : ∀ i, α i →+ β i) (g : ∀ i, β i →+ γ i)
     (h : ∀ i, Function.Exact (f i) (g i)) :
     Function.Exact (DirectSum.map f) (DirectSum.map g) := by
@@ -99,26 +101,41 @@ noncomputable def precompDirectSum (Y : ι → C) {X X' : C} (u : X' ⟶ X) :
 
 variable {Y : ι → C} {X X' : C}
 
+/--
+@isnad1 id=eq.0h8v.s10.1f200c5a3f6e from=translated src=- shape=a96de2ce vocab=08a20114
+-/
 @[simp]
 theorem precompDirectSum_apply (u : X' ⟶ X) (a : DirectSum ι fun i => (X ⟶ Y i)) (i : ι) :
     precompDirectSum Y u a i = u ≫ a i :=
   DirectSum.map_apply _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s10.69873167d0ab from=translated src=- shape=4be28e1a vocab=ef8e20db
+-/
 theorem precompDirectSum_id (a : DirectSum ι fun i => (X ⟶ Y i)) :
     precompDirectSum Y (𝟙 X) a = a := by
   ext i; simp
 
+/--
+@isnad1 id=eq.0h9v.s11.90d43241bfd0 from=translated src=- shape=7660a2b3 vocab=56870bdf
+-/
 theorem precompDirectSum_comp {X'' : C} (u : X'' ⟶ X') (v : X' ⟶ X)
     (a : DirectSum ι fun i => (X ⟶ Y i)) :
     precompDirectSum Y (u ≫ v) a = precompDirectSum Y u (precompDirectSum Y v a) := by
   ext i; simp
 
+/--
+@isnad1 id=eq.0h8v.s11.059bac0b253d from=translated src=- shape=c9fc9b8b vocab=4925545a
+-/
 theorem precompDirectSum_add (u v : X' ⟶ X) (a : DirectSum ι fun i => (X ⟶ Y i)) :
     precompDirectSum Y (u + v) a = precompDirectSum Y u a + precompDirectSum Y v a := by
   ext i; simp [Preadditive.add_comp]
 
 variable [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h8v.s11.dbe7766de252 from=translated src=- shape=f937ccf2 vocab=fa542623
+-/
 @[simp]
 theorem precompDirectSum_of (u : X' ⟶ X) (i : ι) (f : X ⟶ Y i) :
     precompDirectSum Y u (DirectSum.of _ i f) = DirectSum.of (fun i => (X' ⟶ Y i)) i (u ≫ f) :=
@@ -130,19 +147,26 @@ noncomputable def coproductComparison (X : C) (Y : ι → C) [HasCoproduct Y] :
     (DirectSum ι fun i => (X ⟶ Y i)) →+ (X ⟶ ∐ Y) :=
   DirectSum.toAddMonoid fun i => Preadditive.rightComp X (Sigma.ι Y i)
 
+/--
+@isnad1 id=eq.0h6v.s10.5d39c6a47389 from=translated src=- shape=1a1f5ab0 vocab=b55063ba
+-/
 @[simp]
 theorem coproductComparison_of (X : C) (Y : ι → C) [HasCoproduct Y] (i : ι) (f : X ⟶ Y i) :
     coproductComparison X Y (DirectSum.of _ i f) = f ≫ Sigma.ι Y i :=
   DirectSum.toAddMonoid_of _ _ _
 
-/-- Naturality of the comparison map in `X`, as an equality of additive maps.-/
+/-- Naturality of the comparison map in `X`, as an equality of additive maps.
+@isnad1 id=eq.0h6v.s10.3dc6161b4131 from=translated src=- shape=c76d9a5b vocab=e669a46e
+-/
 theorem leftComp_comp_coproductComparison [HasCoproduct Y] (u : X' ⟶ X) :
     (Preadditive.leftComp (∐ Y) u).comp (coproductComparison X Y) =
       (coproductComparison X' Y).comp (precompDirectSum Y u) := by
   ext i f
   simp [Preadditive.leftComp]
 
-/-- Naturality of the comparison map in `X`.-/
+/-- Naturality of the comparison map in `X`.
+@isnad1 id=eq.0h7v.s11.aa86bcc66617 from=translated src=- shape=f41b0c8e vocab=fd8e74ae
+-/
 theorem coproductComparison_precompDirectSum [HasCoproduct Y] (u : X' ⟶ X)
     (a : DirectSum ι fun i => (X ⟶ Y i)) :
     coproductComparison X' Y (precompDirectSum Y u a) = u ≫ coproductComparison X Y a :=
@@ -162,7 +186,9 @@ namespace IsCompact
 
 variable {X Y : C}
 
-/-- A retract of a compact object is compact [Ne, Lemma 4.2.4 style].-/
+/-- A retract of a compact object is compact [Ne, Lemma 4.2.4 style].
+@isnad1 id=iscompac.1h4v.s4.5e0be2649fd0 from=translated src=- shape=79cd4cd8 vocab=ec9b1357
+-/
 theorem of_retract (h : Retract X Y) (hY : IsCompact.{w} Y) : IsCompact.{w} X := by
   intro ι _ W _
   constructor
@@ -178,15 +204,22 @@ theorem of_retract (h : Retract X Y) (hY : IsCompact.{w} Y) : IsCompact.{w} X :=
     refine ⟨precompDirectSum W h.i b, ?_⟩
     rw [coproductComparison_precompDirectSum, hb, ← Category.assoc, h.retract, Category.id_comp]
 
-/-- Compactness is invariant under isomorphism.-/
+/-- Compactness is invariant under isomorphism.
+@isnad1 id=iscompac.1h4v.s4.2aebc6a05c86 from=translated src=- shape=79cd4cd8 vocab=2110d493
+-/
 theorem of_iso (e : X ≅ Y) (hY : IsCompact.{w} Y) : IsCompact.{w} X :=
   of_retract ⟨e.hom, e.inv, e.hom_inv_id⟩ hY
 
+/--
+@isnad1 id=iff.0h4v.s4.5048ebbdcb40 from=translated src=- shape=89549be0 vocab=2110d493
+-/
 theorem iff_of_iso (e : X ≅ Y) : IsCompact.{w} X ↔ IsCompact.{w} Y :=
   ⟨of_iso e.symm, of_iso e⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A zero object is compact.-/
+/-- A zero object is compact.
+@isnad1 id=iscompac.1h2v.s4.2b23ae4e81a7 from=translated src=- shape=b0c8cbfb vocab=0f623923
+-/
 theorem of_isZero (hX : IsZero X) : IsCompact.{w} X := by
   intro ι _ W _
   exact ⟨fun a b _ => DirectSum.ext fun i => hX.eq_of_src _ _, fun f => ⟨0, hX.eq_of_src _ _⟩⟩
@@ -195,7 +228,9 @@ section biprod
 
 variable [HasBinaryBiproduct X Y]
 
-/-- A biproduct of two compact objects is compact.-/
+/-- A biproduct of two compact objects is compact.
+@isnad1 id=iscompac.2h3v.s5.03c79ffc2b1a from=translated src=- shape=e8319058 vocab=14ff47e1
+-/
 theorem biprod (hX : IsCompact.{w} X) (hY : IsCompact.{w} Y) : IsCompact.{w} (X ⊞ Y) := by
   intro ι _ W _
   constructor
@@ -217,11 +252,15 @@ theorem biprod (hX : IsCompact.{w} X) (hY : IsCompact.{w} Y) : IsCompact.{w} (X 
       hc, ← Category.assoc, ← Category.assoc, ← Preadditive.add_comp, biprod.total,
       Category.id_comp]
 
-/-- If `X ⊞ Y` is compact, so is `X`.-/
+/-- If `X ⊞ Y` is compact, so is `X`.
+@isnad1 id=iscompac.1h3v.s5.a582b488486b from=translated src=- shape=301663a5 vocab=14ff47e1
+-/
 theorem of_biprod_left (h : IsCompact.{w} (X ⊞ Y)) : IsCompact.{w} X :=
   of_retract ⟨biprod.inl, biprod.fst, biprod.inl_fst⟩ h
 
-/-- If `X ⊞ Y` is compact, so is `Y`.-/
+/-- If `X ⊞ Y` is compact, so is `Y`.
+@isnad1 id=iscompac.1h3v.s5.9bdec779b62f from=translated src=- shape=6f4b28cc vocab=14ff47e1
+-/
 theorem of_biprod_right (h : IsCompact.{w} (X ⊞ Y)) : IsCompact.{w} Y :=
   of_retract ⟨biprod.inr, biprod.snd, biprod.inr_snd⟩ h
 
@@ -229,12 +268,16 @@ end biprod
 
 end IsCompact
 
-/-- `X ⊞ Y` is compact if and only if both `X` and `Y` are compact.-/
+/-- `X ⊞ Y` is compact if and only if both `X` and `Y` are compact.
+@isnad1 id=iff.0h3v.s5.3c39fe323f50 from=translated src=- shape=1d59fd62 vocab=14ff47e1
+-/
 theorem isCompact_biprod_iff (X Y : C) [HasBinaryBiproduct X Y] :
     IsCompact.{w} (X ⊞ Y) ↔ IsCompact.{w} X ∧ IsCompact.{w} Y :=
   ⟨fun h => ⟨h.of_biprod_left, h.of_biprod_right⟩, fun h => h.1.biprod h.2⟩
 
-/-- The property of being compact is closed under isomorphisms.-/
+/-- The property of being compact is closed under isomorphisms.
+@isnad1 id=isclosed.0h1v.s4.ca812fdca6f6 from=translated src=- shape=4c9b52a8 vocab=f1e5acd2
+-/
 instance isClosedUnderIsomorphisms_isCompact :
     ObjectProperty.IsClosedUnderIsomorphisms (IsCompact.{w} (C := C)) where
   of_iso e hX := hX.of_iso e.symm
@@ -247,7 +290,9 @@ variable {ι : Type w} [DecidableEq ι] (X : C) (Y : ι → C) [HasCoproduct Y]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- If the comparison map of `X` for the family `Y` is bijective, the functor
-`Hom(X, -) : C ⥤ AddCommGrpCat` preserves the coproduct of `Y`.-/
+`Hom(X, -) : C ⥤ AddCommGrpCat` preserves the coproduct of `Y`.
+@isnad1 id=preserve.1h4v.s9.19317b012af9 from=translated src=- shape=ac03ed90 vocab=35fdb413
+-/
 theorem preservesColimit_of_bijective (h : Function.Bijective (coproductComparison X Y)) :
     PreservesColimit (Discrete.functor Y) (preadditiveCoyoneda.obj (op X)) := by
   let e := AddEquiv.ofBijective _ h
@@ -283,7 +328,9 @@ theorem preservesColimit_of_bijective (h : Function.Bijective (coproductComparis
 set_option backward.isDefEq.respectTransparency false in
 /-- If the functor `Hom(X, -) : C ⥤ AddCommGrpCat` preserves the coproduct of `Y`, the comparison
 map of `X` for the family `Y` is bijective. The injectivity uses the test cocones projecting onto
-one summand, the surjectivity the test cocone with values in the quotient by the image.-/
+one summand, the surjectivity the test cocone with values in the quotient by the image.
+@isnad1 id=bijectiv.0h4v.s9.e7371adfef4c from=translated src=- shape=16c70ad4 vocab=35fdb413
+-/
 theorem bijective_of_preservesColimit
     [PreservesColimit (Discrete.functor Y) (preadditiveCoyoneda.obj (op X))] :
     Function.Bijective (coproductComparison X Y) := by
@@ -341,7 +388,9 @@ theorem bijective_of_preservesColimit
     exact h3
 
 /-- `X` is compact if and only if the functor `Hom(X, -) : C ⥤ AddCommGrpCat` preserves coproducts
-indexed by types in `Type w`.-/
+indexed by types in `Type w`.
+@isnad1 id=iff.0h2v.s5.5ca57758d5da from=translated src=- shape=51ad1c0f vocab=c0b8d0bb
+-/
 theorem isCompact_iff_preservesColimitsOfShape (X : C) :
     IsCompact.{w} X ↔
       ∀ ι : Type w, PreservesColimitsOfShape (Discrete ι) (preadditiveCoyoneda.obj (op X)) := by

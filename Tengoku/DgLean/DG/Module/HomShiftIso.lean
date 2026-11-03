@@ -62,6 +62,9 @@ def cohomologyAddEquiv (e : DGAddEquiv M N) (n : ℤ) : cohomology M n ≃+ coho
       exact congrArg _ (Subtype.ext (e.apply_symm_apply (z : N)))
   map_add' := map_add _
 
+/--
+@isnad1 id=eq.0h5v.s10.ec3f4110b781 from=translated src=- shape=c86415a9 vocab=87c817ab
+-/
 @[simp]
 theorem cohomologyAddEquiv_mk (e : DGAddEquiv M N) (n : ℤ) (z : cocycles M n) :
     e.cohomologyAddEquiv n (cohomology.mk M n z) =
@@ -78,6 +81,9 @@ open Shift
 variable (X : Type*) [AddCommGroup X] [DGAddCommGroup X]
 
 variable {X} in
+/--
+@isnad1 id=iff.0h3v.s8.bf681669a85b from=translated src=- shape=b1cb23bb vocab=4e802615
+-/
 theorem d_unmk_eq_zero_iff (a : ℤ) (x : Shift a X) : d (unmk a x) = 0 ↔ d x = 0 := by
   constructor
   · intro h
@@ -100,6 +106,9 @@ def shiftCocyclesAddEquiv (a k l : ℤ) (h : k + a = l) :
   map_add' _ _ := rfl
 
 variable {X} in
+/--
+@isnad1 id=iff.1h5v.s9.3367bc51ca2b from=translated src=- shape=152e36a4 vocab=bd2f2192
+-/
 theorem shiftCocyclesAddEquiv_mem_coboundaries_iff (a k l : ℤ) (h : k + a = l)
     (z : cocycles (Shift a X) k) :
     (shiftCocyclesAddEquiv X a k l h z : X) ∈ coboundaries X l ↔
@@ -134,6 +143,9 @@ def shiftAddEquiv (a k l : ℤ) (h : k + a = l) : cohomology (Shift a X) k ≃+ 
         ((shiftCocyclesAddEquiv_mem_coboundaries_iff a k l h y).mp hz), rfl⟩)
 
 variable {X} in
+/--
+@isnad1 id=eq.1h5v.s11.28081fe42890 from=translated src=- shape=e26b3b58 vocab=cb29e991
+-/
 @[simp]
 theorem shiftAddEquiv_mk (a k l : ℤ) (h : k + a = l) (z : cocycles (Shift a X) k) :
     shiftAddEquiv X a k l h (mk _ k z) = mk X l (shiftCocyclesAddEquiv X a k l h z) :=
@@ -173,12 +185,18 @@ noncomputable def rightUnshiftAddHom : Shift a (HOM A M N) →+ HOM A M (Shift a
 variable {A M N a}
 
 omit [DGModule A M] [DGModule A N] in
+/--
+@isnad1 id=eq.0h6v.s12.94ef8b3c319e from=translated src=- shape=94e01669 vocab=d48eb329
+-/
 theorem rightShiftAddHom_of (k : ℤ) (z : Cochain A M (Shift a N) k) :
     rightShiftAddHom A M N a (DirectSum.of _ k z) =
       Shift.mk a (DirectSum.of _ (k + a) (z.rightUnshift (k + a) rfl)) := by
   simp [rightShiftAddHom]
 
 omit [DGModule A M] [DGModule A N] in
+/--
+@isnad1 id=eq.0h6v.s12.9b40209ae111 from=translated src=- shape=80ce7bd6 vocab=29bc5f7c
+-/
 theorem rightUnshiftAddHom_mk_of (n : ℤ) (z : Cochain A M N n) :
     rightUnshiftAddHom A M N a (Shift.mk a (DirectSum.of _ n z)) =
       DirectSum.of _ (n - a) (z.rightShift a (n - a) (sub_add_cancel n a)) := by
@@ -220,12 +238,18 @@ noncomputable def rightShiftEquiv : DGAddEquiv (HOM A M (Shift a N)) (Shift a (H
         exact congrArg (Shift.mk a) (of_congr (by omega) fun _ => rfl)
       | add x y hx hy => rw [d_add, map_add, map_add, hx, hy, d_add])
 
+/--
+@isnad1 id=eq.0h6v.s12.d7ae594998ff from=translated src=- shape=5633dde2 vocab=131277fe
+-/
 @[simp]
 theorem rightShiftEquiv_of (k : ℤ) (z : Cochain A M (Shift a N) k) :
     rightShiftEquiv A M N a (DirectSum.of _ k z) =
       Shift.mk a (DirectSum.of _ (k + a) (z.rightUnshift (k + a) rfl)) :=
   rightShiftAddHom_of k z
 
+/--
+@isnad1 id=eq.0h6v.s12.2d7ff4195dae from=translated src=- shape=1ddfa28f vocab=88bcadf0
+-/
 @[simp]
 theorem rightShiftEquiv_symm_mk_of (n : ℤ) (z : Cochain A M N n) :
     (rightShiftEquiv A M N a).symm (Shift.mk a (DirectSum.of _ n z)) =
@@ -256,6 +280,9 @@ noncomputable def leftUnshiftAddHom : Shift (-a) (HOM A M N) →+ HOM A (Shift a
 variable {A M N a}
 
 omit [DGModule A M] [DGModule A N] in
+/--
+@isnad1 id=eq.0h6v.s12.644eb93da51d from=translated src=- shape=f8851d89 vocab=73d36cd9
+-/
 theorem leftShiftAddHom_of (k : ℤ) (z : Cochain A (Shift a M) N k) :
     leftShiftAddHom A M N a (DirectSum.of _ k z) =
       Shift.mk (-a)
@@ -263,6 +290,9 @@ theorem leftShiftAddHom_of (k : ℤ) (z : Cochain A (Shift a M) N k) :
   simp [leftShiftAddHom]
 
 omit [DGModule A M] [DGModule A N] in
+/--
+@isnad1 id=eq.0h6v.s12.5aee7a84c3eb from=translated src=- shape=4cabfcb7 vocab=2d809315
+-/
 theorem leftUnshiftAddHom_mk_of (n : ℤ) (z : Cochain A M N n) :
     leftUnshiftAddHom A M N a (Shift.mk (-a) (DirectSum.of _ n z)) =
       DirectSum.of _ (n + a) (z.leftShift a (n + a) rfl) := by
@@ -309,12 +339,18 @@ noncomputable def leftShiftEquiv : DGAddEquiv (HOM A (Shift a M) N) (Shift (-a) 
         exact congrArg (Shift.mk (-a)) (of_congr (by omega) fun _ => rfl)
       | add x y hx hy => rw [d_add, map_add, map_add, hx, hy, d_add])
 
+/--
+@isnad1 id=eq.0h6v.s12.5f482e7405b6 from=translated src=- shape=15173696 vocab=4cef92a9
+-/
 @[simp]
 theorem leftShiftEquiv_of (k : ℤ) (z : Cochain A (Shift a M) N k) :
     leftShiftEquiv A M N a (DirectSum.of _ k z) =
       Shift.mk (-a) (DirectSum.of _ (k + -a) (z.leftUnshift (k + -a) (neg_add_cancel_right k a))) :=
   leftShiftAddHom_of k z
 
+/--
+@isnad1 id=eq.0h6v.s12.3bbc65d90ab9 from=translated src=- shape=f1b76283 vocab=29f6771e
+-/
 @[simp]
 theorem leftShiftEquiv_symm_mk_of (n : ℤ) (z : Cochain A M N n) :
     (leftShiftEquiv A M N a).symm (Shift.mk (-a) (DirectSum.of _ n z)) =
@@ -357,10 +393,16 @@ def homShiftAddEquiv (n : ℤ) : (M →ᵈᵍ[A] Shift n N) ≃+ Cocycle A M N n
 
 variable {A M N}
 
+/--
+@isnad1 id=eq.0h6v.s10.95fdf43529c0 from=translated src=- shape=a805c19a vocab=6beb2a71
+-/
 @[simp]
 theorem homShiftAddEquiv_apply (n : ℤ) (f : M →ᵈᵍ[A] Shift n N) (x : M) :
     (homShiftAddEquiv A M N n f : Cochain A M N n) x = unmk n (f x) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.3e0dce9d7b5d from=translated src=- shape=f38ebb55 vocab=904c3484
+-/
 @[simp]
 theorem homShiftAddEquiv_symm_apply (n : ℤ) (z : Cocycle A M N n) (x : M) :
     (homShiftAddEquiv A M N n).symm z x = Shift.mk n ((z : Cochain A M N n) x) := rfl

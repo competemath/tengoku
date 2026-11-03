@@ -44,6 +44,9 @@ noncomputable def homShiftAddEquivCocycles (n : ℤ) :
     (M →ᵈᵍ[A] Shift n N) ≃+ cocycles (HOM A M N) n :=
   (Cocycle.homShiftAddEquiv A M N n).trans (cocyclesAddEquiv A M N n)
 
+/--
+@isnad1 id=eq.0h5v.s11.f5192eb080f9 from=translated src=- shape=a858d1d5 vocab=d3178938
+-/
 @[simp]
 theorem coe_homShiftAddEquivCocycles_apply (n : ℤ) (f : M →ᵈᵍ[A] Shift n N) :
     (homShiftAddEquivCocycles M N n f : HOM A M N) =

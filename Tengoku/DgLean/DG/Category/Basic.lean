@@ -60,13 +60,17 @@ section Preadditive
 
 omit [∀ X Y : C, DGAddCommGroup (X ⟶ Y)]
 
-/-- Composition commutes with the action of signs.-/
+/-- Composition commutes with the action of signs.
+@isnad1 id=eq.0h7v.s8.3bcfbc5622fa from=translated src=- shape=be70b511 vocab=657b8229
+-/
 @[simp]
 theorem comp_units_smul {X Y Z : C} (f : X ⟶ Y) (u : ℤˣ) (g : Y ⟶ Z) :
     f ≫ (u • g) = u • (f ≫ g) := by
   rw [Units.smul_def, Units.smul_def, Preadditive.comp_zsmul]
 
-/-- Composition commutes with the action of signs.-/
+/-- Composition commutes with the action of signs.
+@isnad1 id=eq.0h7v.s8.0680940454c8 from=translated src=- shape=69ec175d vocab=657b8229
+-/
 @[simp]
 theorem units_smul_comp {X Y Z : C} (u : ℤˣ) (f : X ⟶ Y) (g : Y ⟶ Z) :
     (u • f) ≫ g = u • (f ≫ g) := by
@@ -76,39 +80,60 @@ end Preadditive
 
 variable [DGCategory C]
 
+/--
+@isnad1 id=mem.2h8v.s8.465d764ad6c2 from=translated src=- shape=323460f4 vocab=141c66f9
+-/
 theorem comp_mem_grading {X Y Z : C} {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z} (hf : f ∈ grading i)
     (hg : g ∈ grading j) : f ≫ g ∈ grading (i + j) :=
   DGCategory.comp_mem' hf hg
 
+/--
+@isnad1 id=mem.0h2v.s7.1a07feee4d72 from=translated src=- shape=8e9e0981 vocab=e9230e15
+-/
 theorem id_mem_grading (X : C) : 𝟙 X ∈ grading (M := X ⟶ X) 0 :=
   DGCategory.id_mem' X
 
 /-- The Leibniz rule for composition, in diagrammatic order: the sign is that of the second
-morphism.-/
+morphism.
+@isnad1 id=eq.1h7v.s10.c25f15c066d8 from=translated src=- shape=77c03747 vocab=115e5889
+-/
 theorem d_comp {X Y Z : C} {j : ℤ} (f : X ⟶ Y) {g : Y ⟶ Z} (hg : g ∈ grading j) :
     d (f ≫ g) = f ≫ d g + koszulSign j • (d f ≫ g) :=
   DGCategory.d_comp' f hg
 
+/--
+@isnad1 id=eq.2h7v.s10.9ac6925cdf82 from=translated src=- shape=19c08046 vocab=6774a20d
+-/
 theorem d_comp_of_even {X Y Z : C} {j : ℤ} (f : X ⟶ Y) {g : Y ⟶ Z} (hg : g ∈ grading j)
     (hj : Even j) : d (f ≫ g) = f ≫ d g + d f ≫ g := by
   rw [d_comp f hg, koszulSign_even hj, one_smul]
 
+/--
+@isnad1 id=eq.2h7v.s10.6101ced2baae from=translated src=- shape=19c08046 vocab=cbc5cce0
+-/
 theorem d_comp_of_odd {X Y Z : C} {j : ℤ} (f : X ⟶ Y) {g : Y ⟶ Z} (hg : g ∈ grading j)
     (hj : Odd j) : d (f ≫ g) = f ≫ d g - d f ≫ g := by
   rw [d_comp f hg, koszulSign_odd hj, Units.neg_smul, one_smul, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h6v.s10.7d7778f8c902 from=translated src=- shape=87cebd3c vocab=72ba423d
+-/
 theorem d_comp_of_mem_zero {X Y Z : C} (f : X ⟶ Y) {g : Y ⟶ Z} (hg : g ∈ grading 0) :
     d (f ≫ g) = f ≫ d g + d f ≫ g :=
   d_comp_of_even f hg Even.zero
 
-/-- Identities are cocycles.-/
+/-- Identities are cocycles.
+@isnad1 id=eq.0h2v.s8.7a046b3b8157 from=translated src=- shape=f2d399d7 vocab=eee28e7e
+-/
 @[simp]
 theorem d_id (X : C) : d (𝟙 X) = 0 := by
   have h := d_comp (𝟙 X) (id_mem_grading X)
   rw [Category.id_comp, Category.id_comp, Category.comp_id, koszulSign_zero, one_smul] at h
   exact left_eq_add.mp h
 
-/-- If `f` is a cocycle then `d (f ≫ g) = f ≫ d g` for every `g`.-/
+/-- If `f` is a cocycle then `d (f ≫ g) = f ≫ d g` for every `g`.
+@isnad1 id=eq.1h6v.s10.2dd84fb2dfcc from=translated src=- shape=7ab0aac5 vocab=e6ed60b0
+-/
 theorem d_comp_of_d_eq_zero_left {X Y Z : C} {f : X ⟶ Y} (hf : d f = 0) (g : Y ⟶ Z) :
     d (f ≫ g) = f ≫ d g := by
   induction g using induction_on with
@@ -116,18 +141,24 @@ theorem d_comp_of_d_eq_zero_left {X Y Z : C} {f : X ⟶ Y} (hf : d f = 0) (g : Y
   | h_homogeneous g => rw [d_comp f g.2, hf, Limits.zero_comp, smul_zero, add_zero]
   | h_add g g' hg hg' => rw [Preadditive.comp_add, d_add, hg, hg', d_add, Preadditive.comp_add]
 
-/-- If `g` is a homogeneous cocycle of degree `j` then `d (f ≫ g) = (-1)^j • (d f ≫ g)`.-/
+/-- If `g` is a homogeneous cocycle of degree `j` then `d (f ≫ g) = (-1)^j • (d f ≫ g)`.
+@isnad1 id=eq.2h7v.s10.082bab2ed155 from=translated src=- shape=4f89313f vocab=66c83d4e
+-/
 theorem d_comp_of_d_eq_zero_right {X Y Z : C} {j : ℤ} (f : X ⟶ Y) {g : Y ⟶ Z}
     (hg : g ∈ grading j) (hdg : d g = 0) : d (f ≫ g) = koszulSign j • (d f ≫ g) := by
   rw [d_comp f hg, hdg, Limits.comp_zero, zero_add]
 
-/-- The differential of a composite of two cocycles vanishes.-/
+/-- The differential of a composite of two cocycles vanishes.
+@isnad1 id=eq.2h6v.s10.2b231ac4081f from=translated src=- shape=9ef17d03 vocab=e6ed60b0
+-/
 theorem d_comp_eq_zero {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hf : d f = 0) (hg : d g = 0) :
     d (f ≫ g) = 0 := by
   rw [d_comp_of_d_eq_zero_left hf, hg, Limits.comp_zero]
 
 /-- Composition with a homogeneous morphism on the left commutes with taking homogeneous
-components.-/
+components.
+@isnad1 id=eq.1h8v.s12.9c981a91b94a from=translated src=- shape=2cab1b93 vocab=df02b96c
+-/
 theorem decompose_comp_left {X Y Z : C} {i : ℤ} {f : X ⟶ Y} (hf : f ∈ grading i) (g : Y ⟶ Z)
     (j : ℤ) :
     (DirectSum.decompose (grading (M := X ⟶ Z)) (f ≫ g) (j + i) : X ⟶ Z) =
@@ -136,7 +167,9 @@ theorem decompose_comp_left {X Y Z : C} {i : ℤ} {f : X ⟶ Y} (hf : f ∈ grad
     (fun {n _} hg => by rw [add_comm]; exact comp_mem_grading hf hg) g j
 
 /-- Composition with a homogeneous morphism on the right commutes with taking homogeneous
-components.-/
+components.
+@isnad1 id=eq.1h8v.s12.07135c043e7b from=translated src=- shape=6955c82d vocab=df02b96c
+-/
 theorem decompose_comp_right {X Y Z : C} {j : ℤ} (f : X ⟶ Y) {g : Y ⟶ Z} (hg : g ∈ grading j)
     (i : ℤ) :
     (DirectSum.decompose (grading (M := X ⟶ Z)) (f ≫ g) (i + j) : X ⟶ Z) =
@@ -145,15 +178,23 @@ theorem decompose_comp_right {X Y Z : C} {j : ℤ} (f : X ⟶ Y) {g : Y ⟶ Z} (
 
 /-! ### Cocycles and coboundaries -/
 
+/--
+@isnad1 id=mem.0h2v.s7.a3465dbd58b0 from=translated src=- shape=63312df5 vocab=ff229f15
+-/
 theorem id_mem_cocycles (X : C) : 𝟙 X ∈ cocycles (X ⟶ X) 0 :=
   ⟨id_mem_grading X, d_id X⟩
 
+/--
+@isnad1 id=mem.2h8v.s8.3f27f8857e98 from=translated src=- shape=15928701 vocab=f7878370
+-/
 theorem comp_mem_cocycles {X Y Z : C} {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : f ∈ cocycles (X ⟶ Y) i) (hg : g ∈ cocycles (Y ⟶ Z) j) :
     f ≫ g ∈ cocycles (X ⟶ Z) (i + j) :=
   ⟨comp_mem_grading hf.1 hg.1, d_comp_eq_zero hf.2 hg.2⟩
 
-/-- A coboundary followed by a homogeneous cocycle is a coboundary.-/
+/-- A coboundary followed by a homogeneous cocycle is a coboundary.
+@isnad1 id=mem.2h8v.s8.502f7ddb3db1 from=translated src=- shape=fad6c73b vocab=6084615b
+-/
 theorem comp_mem_coboundaries_left {X Y Z : C} {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : f ∈ coboundaries (X ⟶ Y) i) (hg : g ∈ cocycles (Y ⟶ Z) j) :
     f ≫ g ∈ coboundaries (X ⟶ Z) (i + j) := by
@@ -166,7 +207,9 @@ theorem comp_mem_coboundaries_left {X Y Z : C} {i j : ℤ} {f : X ⟶ Y} {g : Y 
   · rw [d_units_smul, d_comp_of_d_eq_zero_right h hg.1 hg.2, smul_smul, ← koszulSign_add,
       koszulSign_even (by simp), one_smul]
 
-/-- A cocycle followed by a coboundary is a coboundary.-/
+/-- A cocycle followed by a coboundary is a coboundary.
+@isnad1 id=mem.2h8v.s8.c9c3db21e9d8 from=translated src=- shape=9c79884a vocab=6084615b
+-/
 theorem comp_mem_coboundaries_right {X Y Z : C} {i j : ℤ} {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : f ∈ cocycles (X ⟶ Y) i) (hg : g ∈ coboundaries (Y ⟶ Z) j) :
     f ≫ g ∈ coboundaries (X ⟶ Z) (i + j) := by
@@ -205,17 +248,29 @@ instance category : Category.{v} (Z0 C) where
   id X := ⟨𝟙 X.as, id_mem_cocycles X.as⟩
   comp f g := ⟨f.hom ≫ g.hom, by simpa using comp_mem_cocycles f.mem_cocycles g.mem_cocycles⟩
 
+/--
+@isnad1 id=mem.0h4v.s7.f97090a01090 from=translated src=- shape=7eec84cb vocab=5423e58d
+-/
 theorem Hom.mem_grading {X Y : Z0 C} (f : X ⟶ Y) : f.hom ∈ grading 0 :=
   f.mem_cocycles.1
 
+/--
+@isnad1 id=eq.0h4v.s9.4595cfda56b1 from=translated src=- shape=f08c3de6 vocab=431844ba
+-/
 @[simp]
 theorem Hom.d_hom {X Y : Z0 C} (f : X ⟶ Y) : d f.hom = 0 :=
   f.mem_cocycles.2
 
+/--
+@isnad1 id=eq.1h5v.s7.224b407e80a1 from=translated src=- shape=578dd1f0 vocab=3a1ed518
+-/
 @[ext]
 theorem hom_ext {X Y : Z0 C} {f g : X ⟶ Y} (h : f.hom = g.hom) : f = g :=
   Hom.ext h
 
+/--
+@isnad1 id=injectiv.0h3v.s6.025bae67c2b3 from=translated src=- shape=16a0dd3a vocab=896b7c1a
+-/
 theorem hom_injective {X Y : Z0 C} : Function.Injective (Hom.hom : (X ⟶ Y) → (X.as ⟶ Y.as)) :=
   fun _ _ h => hom_ext h
 
@@ -223,13 +278,22 @@ theorem hom_injective {X Y : Z0 C} : Function.Injective (Hom.hom : (X ⟶ Y) →
 abbrev homMk {X Y : Z0 C} (f : X.as ⟶ Y.as) (hf : f ∈ cocycles (X.as ⟶ Y.as) 0) : X ⟶ Y :=
   ⟨f, hf⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.aa596e46af66 from=translated src=- shape=77039520 vocab=f76aaa0c
+-/
 @[simp]
 theorem homMk_hom {X Y : Z0 C} (f : X.as ⟶ Y.as) (hf : f ∈ cocycles (X.as ⟶ Y.as) 0) :
     (homMk f hf).hom = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.55f7cbad1491 from=translated src=- shape=4d885f8c vocab=c9b59377
+-/
 @[simp]
 theorem id_hom (X : Z0 C) : (𝟙 X : X ⟶ X).hom = 𝟙 X.as := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.b30ea19fd5d8 from=translated src=- shape=c828657d vocab=db04d5df
+-/
 @[simp]
 theorem comp_hom {X Y Z : Z0 C} (f : X ⟶ Y) (g : Y ⟶ Z) : (f ≫ g).hom = f.hom ≫ g.hom := rfl
 
@@ -244,11 +308,29 @@ instance : Sub (X ⟶ Y) := ⟨fun f g => ⟨f.hom - g.hom, sub_mem f.mem_cocycl
 instance : SMul ℕ (X ⟶ Y) := ⟨fun n f => ⟨n • f.hom, nsmul_mem f.mem_cocycles n⟩⟩
 instance : SMul ℤ (X ⟶ Y) := ⟨fun n f => ⟨n • f.hom, zsmul_mem f.mem_cocycles n⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.884df9c9b43e from=translated src=- shape=b933af16 vocab=903ad0b0
+-/
 @[simp] theorem add_hom (f g : X ⟶ Y) : (f + g).hom = f.hom + g.hom := rfl
+/--
+@isnad1 id=eq.0h3v.s7.e3e9fe919c91 from=translated src=- shape=4f064982 vocab=3a1ed518
+-/
 @[simp] theorem zero_hom : (0 : X ⟶ Y).hom = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.a463eb1dfd94 from=translated src=- shape=65238d3e vocab=15f9bdb0
+-/
 @[simp] theorem neg_hom (f : X ⟶ Y) : (-f).hom = -f.hom := rfl
+/--
+@isnad1 id=eq.0h5v.s8.9a436009d744 from=translated src=- shape=b933af16 vocab=106817ea
+-/
 @[simp] theorem sub_hom (f g : X ⟶ Y) : (f - g).hom = f.hom - g.hom := rfl
+/--
+@isnad1 id=eq.0h5v.s8.9c2340c55c0e from=translated src=- shape=90e60035 vocab=ae5faa9d
+-/
 @[simp] theorem zsmul_hom (n : ℤ) (f : X ⟶ Y) : (n • f).hom = n • f.hom := rfl
+/--
+@isnad1 id=eq.0h5v.s8.b0bdd94cc489 from=translated src=- shape=90e60035 vocab=dd779483
+-/
 @[simp] theorem nsmul_hom (n : ℕ) (f : X ⟶ Y) : (n • f).hom = n • f.hom := rfl
 
 instance : AddCommGroup (X ⟶ Y) :=
@@ -269,6 +351,9 @@ def homAddEquiv (X Y : Z0 C) : (X ⟶ Y) ≃+ cocycles (X.as ⟶ Y.as) 0 where
   right_inv _ := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.561d7e9f2f94 from=translated src=- shape=435ef6f0 vocab=54efb005
+-/
 @[simp]
 theorem coe_homAddEquiv_apply {X Y : Z0 C} (f : X ⟶ Y) :
     (homAddEquiv X Y f : X.as ⟶ Y.as) = f.hom :=
@@ -288,6 +373,9 @@ variable (C) in
 def homotopic : HomRel (Z0 C) :=
   fun X Y f g => f.hom - g.hom ∈ coboundaries (X.as ⟶ Y.as) 0
 
+/--
+@isnad1 id=iff.0h5v.s8.d802b4325ca5 from=translated src=- shape=ed2d18c6 vocab=f01d0397
+-/
 theorem homotopic_iff {X Y : Z0 C} (f g : X ⟶ Y) :
     homotopic C f g ↔ f.hom - g.hom ∈ coboundaries (X.as ⟶ Y.as) 0 :=
   Iff.rfl
@@ -337,11 +425,16 @@ instance : (quotient C).Additive where
 variable {C}
 
 /-- Two morphisms of `Z⁰(C)` become equal in `H⁰(C)` if and only if their difference is a
-coboundary.-/
+coboundary.
+@isnad1 id=iff.0h5v.s9.bc02e2c32138 from=translated src=- shape=c39a4c6b vocab=f5f7d499
+-/
 theorem quotient_map_eq_iff {X Y : Z0 C} (f g : X ⟶ Y) :
     (quotient C).map f = (quotient C).map g ↔ f.hom - g.hom ∈ coboundaries (X.as ⟶ Y.as) 0 :=
   Quotient.functor_map_eq_iff _ f g
 
+/--
+@isnad1 id=iff.0h4v.s9.5de4143cf407 from=translated src=- shape=f6eabef5 vocab=dd0a8dbd
+-/
 theorem quotient_map_eq_zero_iff {X Y : Z0 C} (f : X ⟶ Y) :
     (quotient C).map f = 0 ↔ f.hom ∈ coboundaries (X.as ⟶ Y.as) 0 := by
   rw [← Functor.map_zero (quotient C) X Y, quotient_map_eq_iff, Z0.zero_hom, sub_zero]

@@ -38,6 +38,9 @@ abbrev piFunctor : C ⥤ D where
     ext j
     simp
 
+/--
+@isnad1 id=eq.0h8v.s7.98269c515f9c from=translated src=- shape=2e353d7c vocab=9384f027
+-/
 @[reassoc (attr := simp)]
 theorem piFunctor_map_π {X Y : C} (f : X ⟶ Y) (j : J) :
     (piFunctor Φ).map f ≫ Pi.π _ j = Pi.π _ j ≫ (Φ j).map f :=
@@ -55,6 +58,9 @@ def piFunctorCommShiftIsoApp (n : ℤ) (X : C) :
   Limits.Pi.mapIso (fun j => ((Φ j).commShiftIso n).app X) ≪≫
     (asIso (piComparison (shiftFunctor D n) fun j => (Φ j).obj X)).symm
 
+/--
+@isnad1 id=eq.0h7v.s9.c60854da5098 from=translated src=- shape=86015f63 vocab=b6d2044b
+-/
 @[reassoc (attr := simp)]
 theorem piFunctorCommShiftIsoApp_hom_π (n : ℤ) (X : C) (j : J) :
     (piFunctorCommShiftIsoApp Φ n X).hom ≫ (Pi.π _ j)⟦n⟧' =
@@ -62,7 +68,9 @@ theorem piFunctorCommShiftIsoApp_hom_π (n : ℤ) (X : C) (j : J) :
   rw [← piComparison_comp_π]
   simp [piFunctorCommShiftIsoApp]
 
-/-- Morphisms into a shifted product are determined by their components.-/
+/-- Morphisms into a shifted product are determined by their components.
+@isnad1 id=eq.1h7v.s8.fad9d907b239 from=translated src=- shape=3ba39d0c vocab=2d1c35f7
+-/
 theorem shift_pi_hom_ext (n : ℤ) {f : J → D} {Y : D} {g g' : Y ⟶ (∏ᶜ f)⟦n⟧}
     (h : ∀ j, g ≫ (Pi.π f j)⟦n⟧' = g' ≫ (Pi.π f j)⟦n⟧') : g = g' := by
   rw [← cancel_mono (piComparison (shiftFunctor D n) f)]

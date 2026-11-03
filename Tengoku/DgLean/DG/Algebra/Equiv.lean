@@ -23,7 +23,9 @@ section Inverse
 variable {M N : Type*} [AddCommGroup M] [DGAddCommGroup M] [AddCommGroup N] [DGAddCommGroup N]
 
 /-- If a bijective additive map of degree `0` between graded abelian groups maps `Mⁿ` into `Nⁿ`
-for every `n`, then its inverse maps `Nⁿ` into `Mⁿ`.-/
+for every `n`, then its inverse maps `Nⁿ` into `Mⁿ`.
+@isnad1 id=mem.2h5v.s8.392e19861111 from=translated src=- shape=2fcc4466 vocab=1079869c
+-/
 theorem symm_mem_of_map_mem (e : M ≃+ N) (he : ∀ {n : ℤ} {m : M}, m ∈ grading n → e m ∈ grading n)
     {n : ℤ} {x : N} (hx : x ∈ grading n) : e.symm x ∈ grading n := by
   classical
@@ -76,16 +78,28 @@ instance : EquivLike (A ≃ᵈᵍₐ[R] B) A B where
     congr
     exact AlgEquiv.ext (congrFun h₁)
 
+/--
+@isnad1 id=eq.0h4v.s7.2f81dd120d5d from=translated src=- shape=f3447abd vocab=66be76d4
+-/
 @[simp]
 theorem coe_toAlgEquiv (e : A ≃ᵈᵍₐ[R] B) : ⇑e.toAlgEquiv = e := rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.b32b2e855ecb from=translated src=- shape=c6455738 vocab=6cd80730
+-/
 @[ext]
 theorem ext {e e' : A ≃ᵈᵍₐ[R] B} (h : ∀ a, e a = e' a) : e = e' :=
   DFunLike.ext e e' h
 
+/--
+@isnad1 id=mem.1h6v.s7.77f25f1500e6 from=translated src=- shape=aecf0e18 vocab=068d76b1
+-/
 theorem map_mem (e : A ≃ᵈᵍₐ[R] B) {n : ℤ} {a : A} (ha : a ∈ grading n) : e a ∈ grading n :=
   e.map_mem' ha
 
+/--
+@isnad1 id=eq.0h5v.s8.581db052944c from=translated src=- shape=eb72e9b1 vocab=94ab4b55
+-/
 @[simp]
 theorem map_d (e : A ≃ᵈᵍₐ[R] B) (a : A) : e (d a) = d (e a) :=
   e.map_d' a
@@ -96,6 +110,9 @@ def toDGAlgHom (e : A ≃ᵈᵍₐ[R] B) : A →ᵈᵍₐ[R] B where
   map_mem' := e.map_mem'
   map_d' := e.map_d'
 
+/--
+@isnad1 id=eq.0h4v.s7.5bdf2bcd9811 from=translated src=- shape=f3447abd vocab=8b146fcf
+-/
 @[simp]
 theorem coe_toDGAlgHom (e : A ≃ᵈᵍₐ[R] B) : ⇑e.toDGAlgHom = e := rfl
 
@@ -107,6 +124,9 @@ def ofAlgEquiv (e : A ≃ₐ[R] B) (map_mem : ∀ {n : ℤ} {a : A}, a ∈ gradi
   map_mem' := map_mem
   map_d' := map_d
 
+/--
+@isnad1 id=eq.2h4v.s8.ca5fa8997e76 from=translated src=- shape=a4159b4f vocab=4362152f
+-/
 @[simp]
 theorem coe_ofAlgEquiv (e : A ≃ₐ[R] B) (map_mem) (map_d) : ⇑(ofAlgEquiv e map_mem map_d) = e :=
   rfl
@@ -115,6 +135,9 @@ theorem coe_ofAlgEquiv (e : A ≃ₐ[R] B) (map_mem) (map_d) : ⇑(ofAlgEquiv e 
 def refl : A ≃ᵈᵍₐ[R] A :=
   ofAlgEquiv AlgEquiv.refl (fun ha => ha) fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.5cfdb7577df7 from=translated src=- shape=ff45a947 vocab=4cd047af
+-/
 @[simp]
 theorem refl_apply (a : A) : (refl : A ≃ᵈᵍₐ[R] A) a = a := rfl
 
@@ -126,10 +149,16 @@ def symm (e : A ≃ᵈᵍₐ[R] B) : B ≃ᵈᵍₐ[R] A :=
       rw [AlgEquiv.apply_symm_apply, coe_toAlgEquiv, map_d, ← coe_toAlgEquiv e,
         AlgEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s7.84ff94a5c307 from=translated src=- shape=e3b44f24 vocab=2ce950e5
+-/
 @[simp]
 theorem apply_symm_apply (e : A ≃ᵈᵍₐ[R] B) (b : B) : e (e.symm b) = b :=
   e.toAlgEquiv.apply_symm_apply b
 
+/--
+@isnad1 id=eq.0h5v.s7.e2c5e54e99f1 from=translated src=- shape=959459d2 vocab=2ce950e5
+-/
 @[simp]
 theorem symm_apply_apply (e : A ≃ᵈᵍₐ[R] B) (a : A) : e.symm (e a) = a :=
   e.toAlgEquiv.symm_apply_apply a
@@ -139,6 +168,9 @@ def trans (e : A ≃ᵈᵍₐ[R] B) (e' : B ≃ᵈᵍₐ[R] C) : A ≃ᵈᵍₐ[
   ofAlgEquiv (e.toAlgEquiv.trans e'.toAlgEquiv) (fun ha => e'.map_mem (e.map_mem ha))
     fun a => by simp
 
+/--
+@isnad1 id=eq.0h7v.s7.2dbc9bf0bb6d from=translated src=- shape=8a160ddd vocab=ef443045
+-/
 @[simp]
 theorem trans_apply (e : A ≃ᵈᵍₐ[R] B) (e' : B ≃ᵈᵍₐ[R] C) (a : A) : e.trans e' a = e' (e a) :=
   rfl

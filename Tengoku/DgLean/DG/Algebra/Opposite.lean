@@ -59,20 +59,34 @@ instance GradedOpposite.instDGAddCommGroup : DGAddCommGroup Aᵒᵖ where
 
 namespace GradedOpposite
 
+/--
+@isnad1 id=eq.0h3v.s11.8ec6cd14c3a9 from=translated src=- shape=9c5e6e54 vocab=dee90839
+-/
 @[simp]
 theorem d_op (a : A) : d (op 𝒜 a) = op 𝒜 (d a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.cf2349752856 from=translated src=- shape=7fca6154 vocab=07dd14b8
+-/
 @[simp]
 theorem d_unop (x : Aᵒᵖ) : d (unop 𝒜 x) = unop 𝒜 (d x) := rfl
 
+/--
+@isnad1 id=iff.0h4v.s10.14962ccd7007 from=translated src=- shape=46810145 vocab=fe525085
+-/
 theorem mem_dgGrading_iff {n : ℤ} {x : Aᵒᵖ} : x ∈ DG.grading n ↔ unop 𝒜 x ∈ DG.grading n :=
   mem_grading_iff 𝒜
 
+/--
+@isnad1 id=iff.0h4v.s10.7c088af00d2c from=translated src=- shape=425d7c61 vocab=32e1af81
+-/
 theorem op_mem_dgGrading_iff {n : ℤ} {a : A} : op 𝒜 a ∈ DG.grading n ↔ a ∈ DG.grading n :=
   mem_grading_iff 𝒜
 
 /-- The opposite of a dg algebra is a dg ring: the Leibniz rule holds for the signed opposite
-product.-/
+product.
+@isnad1 id=dgring.0h2v.s6.a8e81f8b64db from=translated src=- shape=4720a692 vocab=c1fffc4c
+-/
 instance instDGRing : DGRing Aᵒᵖ where
   one_mem := (GradedOpposite.instGradedMonoid 𝒜).one_mem
   mul_mem := (GradedOpposite.instGradedMonoid 𝒜).mul_mem
@@ -95,6 +109,9 @@ instance instDGRing : DGRing Aᵒᵖ where
       abel
     | h_add y y' hy hy' => rw [mul_add, d_add, hy, hy', d_add, mul_add, mul_add, smul_add]; abel
 
+/--
+@isnad1 id=dgalgebr.0h2v.s6.36097338ebfe from=translated src=- shape=64e1a352 vocab=c1fffc4c
+-/
 instance instDGAlgebra : DGAlgebra R Aᵒᵖ where
   algebraMap_mem' r := by
     rw [← op_algebraMap, op_mem_dgGrading_iff]
@@ -107,6 +124,9 @@ def opOpDGAlgEquiv : GradedOpposite (DGAlgebra.gradingSubmodule R Aᵒᵖ) ≃�
   DGAlgEquiv.ofAlgEquiv (opOpAlgEquiv 𝒜) (fun hx => (opOpAlgEquiv_mem_iff 𝒜).mpr hx)
     fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.81b5716633a8 from=translated src=- shape=dd492199 vocab=97b42eca
+-/
 @[simp]
 theorem opOpDGAlgEquiv_apply (x : GradedOpposite (DGAlgebra.gradingSubmodule R Aᵒᵖ)) :
     opOpDGAlgEquiv x = unop 𝒜 (unop (DGAlgebra.gradingSubmodule R Aᵒᵖ) x) := rfl
@@ -115,6 +135,9 @@ theorem opOpDGAlgEquiv_apply (x : GradedOpposite (DGAlgebra.gradingSubmodule R A
 def opDGAlgEquiv [IsGradedComm 𝒜] : A ≃ᵈᵍₐ[R] Aᵒᵖ :=
   DGAlgEquiv.ofAlgEquiv (opAlgEquiv 𝒜) (fun ha => op_mem_grading 𝒜 ha) fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.8d1638419543 from=translated src=- shape=876e300e vocab=6e7f1d1e
+-/
 @[simp]
 theorem opDGAlgEquiv_apply [IsGradedComm 𝒜] (a : A) : opDGAlgEquiv a = op 𝒜 a := rfl
 

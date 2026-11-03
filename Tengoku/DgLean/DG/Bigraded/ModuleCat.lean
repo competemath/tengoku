@@ -84,21 +84,36 @@ instance category : Category.{v, max (v + 1) u} (BigradedDGModuleCat.{v} A) wher
   id _ := ⟨DGModuleHom.id, fun hm => hm⟩
   comp f g := ⟨g.hom.comp f.hom, fun hm => g.map_mem_wgrading (f.map_mem_wgrading hm)⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.287bfd30fc0e from=translated src=- shape=59871107 vocab=65504452
+-/
 @[simp]
 theorem hom_id {M : BigradedDGModuleCat.{v} A} : (𝟙 M : M ⟶ M).hom = DGModuleHom.id := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.a4db585ee747 from=translated src=- shape=aeb7d79e vocab=4923389e
+-/
 @[simp]
 theorem hom_comp {M N P : BigradedDGModuleCat.{v} A} (f : M ⟶ N) (g : N ⟶ P) :
     (f ≫ g).hom = g.hom.comp f.hom := rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.b021795ea421 from=translated src=- shape=2c6cdb04 vocab=316a44ea
+-/
 @[ext]
 theorem hom_ext {M N : BigradedDGModuleCat.{v} A} {f g : M ⟶ N} (h : f.hom = g.hom) : f = g :=
   Hom.ext h
 
+/--
+@isnad1 id=eq.1h5v.s8.6cecd8252753 from=translated src=- shape=d9b64fc8 vocab=5585d212
+-/
 theorem hom_ext_apply {M N : BigradedDGModuleCat.{v} A} {f g : M ⟶ N}
     (h : ∀ x, f.hom x = g.hom x) : f = g :=
   hom_ext (DGModuleHom.ext h)
 
+/--
+@isnad1 id=injectiv.0h3v.s6.66665b187fd9 from=translated src=- shape=8035b712 vocab=a3a2815e
+-/
 theorem hom_injective {M N : BigradedDGModuleCat.{v} A} :
     Function.Injective (Hom.hom : (M ⟶ N) → (M →ᵈᵍ[A] N)) :=
   fun _ _ h => hom_ext h
@@ -108,6 +123,9 @@ abbrev ofHom {M N : BigradedDGModuleCat.{v} A} (f : M →ᵈᵍ[A] N)
     (hf : ∀ {k : ℤ} {m : M}, m ∈ wgrading k → f m ∈ wgrading k) : M ⟶ N :=
   ⟨f, hf⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.40c80d2f9040 from=translated src=- shape=db89b03a vocab=de1a9cba
+-/
 theorem eqToHom_hom_apply {M N : BigradedDGModuleCat.{v} A} (h : M = N) (x : M) :
     (eqToHom h).hom x = cast (congrArg carrier h) x := by
   subst h
@@ -123,10 +141,16 @@ def isoMk {M N : BigradedDGModuleCat.{v} A} (e : M ≃ᵈᵍ[A] N)
   hom_inv_id := hom_ext_apply fun x => e.symm_apply_apply x
   inv_hom_id := hom_ext_apply fun x => e.apply_symm_apply x
 
+/--
+@isnad1 id=eq.1h4v.s9.6126d420fc6f from=translated src=- shape=32999e30 vocab=dd692ce2
+-/
 @[simp] theorem isoMk_hom_hom {M N : BigradedDGModuleCat.{v} A} (e : M ≃ᵈᵍ[A] N)
     (he : ∀ {k : ℤ} {m : M}, e m ∈ wgrading k ↔ m ∈ wgrading k) :
     (isoMk e he).hom.hom = e.toDGModuleHom := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.c85897f16ed8 from=translated src=- shape=d47b1836 vocab=7c319d7f
+-/
 @[simp] theorem isoMk_inv_hom {M N : BigradedDGModuleCat.{v} A} (e : M ≃ᵈᵍ[A] N)
     (he : ∀ {k : ℤ} {m : M}, e m ∈ wgrading k ↔ m ∈ wgrading k) :
     (isoMk e he).inv.hom = e.symm.toDGModuleHom := rfl
@@ -140,31 +164,49 @@ variable {M N : BigradedDGModuleCat.{v} A}
 instance : Add (M ⟶ N) where
   add f g := ⟨f.hom + g.hom, fun hm => add_mem (f.map_mem_wgrading hm) (g.map_mem_wgrading hm)⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.0ed2ac7afe65 from=translated src=- shape=2104f8f5 vocab=a02d1d43
+-/
 @[simp] theorem hom_add (f g : M ⟶ N) : (f + g).hom = f.hom + g.hom := rfl
 
 instance : Zero (M ⟶ N) where
   zero := ⟨0, fun _ => zero_mem _⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.eb8f1a0aac42 from=translated src=- shape=39c964d6 vocab=316a44ea
+-/
 @[simp] theorem hom_zero : (0 : M ⟶ N).hom = 0 := rfl
 
 instance : SMul ℕ (M ⟶ N) where
   smul n f := ⟨n • f.hom, fun hm => nsmul_mem (f.map_mem_wgrading hm) n⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.00bd120e682f from=translated src=- shape=697270b8 vocab=289aa57d
+-/
 @[simp] theorem hom_nsmul (n : ℕ) (f : M ⟶ N) : (n • f).hom = n • f.hom := rfl
 
 instance : Neg (M ⟶ N) where
   neg f := ⟨-f.hom, fun hm => neg_mem (f.map_mem_wgrading hm)⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.99a47f7ac59c from=translated src=- shape=9454150b vocab=7dec4958
+-/
 @[simp] theorem hom_neg (f : M ⟶ N) : (-f).hom = -f.hom := rfl
 
 instance : Sub (M ⟶ N) where
   sub f g := ⟨f.hom - g.hom, fun hm => sub_mem (f.map_mem_wgrading hm) (g.map_mem_wgrading hm)⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.a5faea10aee1 from=translated src=- shape=2104f8f5 vocab=ad95f817
+-/
 @[simp] theorem hom_sub (f g : M ⟶ N) : (f - g).hom = f.hom - g.hom := rfl
 
 instance : SMul ℤ (M ⟶ N) where
   smul n f := ⟨n • f.hom, fun hm => zsmul_mem (f.map_mem_wgrading hm) n⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.0509abdb86cf from=translated src=- shape=697270b8 vocab=1c5cfd8d
+-/
 @[simp] theorem hom_zsmul (n : ℤ) (f : M ⟶ N) : (n • f).hom = n • f.hom := rfl
 
 instance : AddCommGroup (M ⟶ N) :=
@@ -186,6 +228,9 @@ def toDGModuleCat : BigradedDGModuleCat.{v} A ⥤ DGModuleCat.{v} A where
   obj M := DGModuleCat.of A M
   map f := DGModuleCat.ofHom f.hom
 
+/--
+@isnad1 id=eq.0h4v.s8.70ae96ed0fd1 from=translated src=- shape=60f614e7 vocab=2f8c91c8
+-/
 @[simp]
 theorem toDGModuleCat_map_hom {M N : BigradedDGModuleCat.{v} A} (f : M ⟶ N) :
     ((toDGModuleCat A).map f).hom = f.hom := rfl
@@ -199,6 +244,9 @@ def internalShiftFunctor (k : ℤ) : BigradedDGModuleCat.{v} A ⥤ BigradedDGMod
   map f := ⟨f.hom.internalShift k, fun hm => f.hom.internalShift_mem_wgrading k
     (fun hm' => f.map_mem_wgrading hm') hm⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.f10519ac29f7 from=translated src=- shape=e40da4cb vocab=4fc72d8e
+-/
 @[simp]
 theorem internalShiftFunctor_map_hom (k : ℤ) {M N : BigradedDGModuleCat.{v} A} (f : M ⟶ N) :
     ((internalShiftFunctor k).map f).hom = f.hom.internalShift k := rfl
@@ -220,6 +268,9 @@ def internalShiftAddEquiv (k l : ℤ) (M : BigradedDGModuleCat.{v} A) :
   map_mem' hm := hm
   map_d' _ := rfl
 
+/--
+@isnad1 id=iff.0h6v.s10.1b17c42c40d1 from=translated src=- shape=abcd2275 vocab=3abd8841
+-/
 theorem mem_wgrading_internalShiftAddEquiv_iff (k l : ℤ) (M : BigradedDGModuleCat.{v} A)
     {j : ℤ} {x : InternalShift (k + l) M} :
     internalShiftAddEquiv k l M x ∈ wgrading j ↔ x ∈ wgrading j := by
@@ -263,6 +314,9 @@ internal shift by `-k`.-/
 def internalShiftEquiv (k : ℤ) : BigradedDGModuleCat.{v} A ≌ BigradedDGModuleCat.{v} A :=
   @shiftEquiv _ _ _ _ (internalHasShift.{v} A) k
 
+/--
+@isnad1 id=eq.0h2v.s6.27f5b0460e72 from=translated src=- shape=7f2d9712 vocab=44317d99
+-/
 @[simp]
 theorem internalShiftEquiv_functor (k : ℤ) :
     (internalShiftEquiv.{v} (A := A) k).functor = internalShiftFunctor k :=
@@ -291,6 +345,9 @@ def cohShiftFunctor (n : ℤ) : BigradedDGModuleCat.{v} A ⥤ BigradedDGModuleCa
   obj M := of A (Shift n M)
   map f := ⟨f.hom.shift n, fun hm => f.map_mem_wgrading hm⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.b51f2a5c2ff6 from=translated src=- shape=81e521da vocab=58eca471
+-/
 @[simp]
 theorem cohShiftFunctor_map_hom (n : ℤ) {M N : BigradedDGModuleCat.{v} A} (f : M ⟶ N) :
     ((cohShiftFunctor n).map f).hom = f.hom.shift n := rfl
@@ -352,6 +409,9 @@ def internalShiftShiftIso (n k : ℤ) :
   NatIso.ofComponents (fun M => isoMk (InternalShift.shiftEquiv (M := M) A n k) Iff.rfl)
     fun _ => rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.29951a0aa1da from=translated src=- shape=67d0716b vocab=043eebcc
+-/
 @[simp]
 theorem internalShiftShiftIso_hom_app_hom (n k : ℤ) (M : BigradedDGModuleCat.{v} A) :
     ((internalShiftShiftIso n k).hom.app M).hom =

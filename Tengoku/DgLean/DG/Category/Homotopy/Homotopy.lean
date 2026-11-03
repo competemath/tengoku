@@ -57,7 +57,9 @@ variable {C : Type u} [Category.{v} C] [Preadditive C] [∀ X Y : C, DGAddCommGr
 
 open DG.CatModule.Cochain
 
-/-- The differential of a `(-1)`-cochain: `δ h = d ∘ h + h ∘ d`.-/
+/-- The differential of a `(-1)`-cochain: `δ h = d ∘ h + h ∘ d`.
+@isnad1 id=eq.0h6v.s10.b372335f2173 from=translated src=- shape=8af5f536 vocab=9ab7d413
+-/
 theorem δ_neg_one_apply (z : Cochain M N (-1)) {X : C} (x : M.obj X) :
     (δ (-1) 0 z).app X x = d (z.app X x) + z.app X (d x) := by
   rw [δ_apply' (-1) 0 (neg_add_cancel 1), koszulSign, Int.negOnePow_zero, one_smul]
@@ -78,7 +80,9 @@ namespace DGHomotopy
 
 variable {f g : M ⟶ N}
 
-/-- The homotopy relation, pointwise: `f x = d (h x) + h (d x) + g x`.-/
+/-- The homotopy relation, pointwise: `f x = d (h x) + h (d x) + g x`.
+@isnad1 id=eq.0h8v.s10.6fac6b875c6d from=translated src=- shape=fe7a5608 vocab=8c8ceb8d
+-/
 theorem comm (h : DGHomotopy f g) {X : C} (x : M.obj X) :
     f.app X x = d (h.hom.app X x) + h.hom.app X (d x) + g.app X x := by
   have := congrArg (fun z : Cochain M N 0 => z.app X x) h.ofHom_eq
@@ -198,10 +202,16 @@ it is null-homotopic (`DG.CatModule.DGHomotopy.nullHomotopy`).-/
 def nullHomotopicMap (h : Cochain M N (-1)) : M ⟶ N :=
   Cocycle.homOf (Cocycle.mk (δ (-1) 0 h) 1 (zero_add 1) (δ_δ _ _ _ h))
 
+/--
+@isnad1 id=eq.0h6v.s10.395f12e0b84f from=translated src=- shape=a9de4bdb vocab=2a67fb7a
+-/
 @[simp]
 theorem nullHomotopicMap_app (h : Cochain M N (-1)) {X : C} (x : M.obj X) :
     (nullHomotopicMap h).app X x = d (h.app X x) + h.app X (d x) := δ_neg_one_apply h x
 
+/--
+@isnad1 id=eq.0h4v.s6.7d6493fde882 from=translated src=- shape=137e5478 vocab=7d80e57d
+-/
 @[simp]
 theorem ofHom_nullHomotopicMap (h : Cochain M N (-1)) :
     ofHom (nullHomotopicMap h) = δ (-1) 0 h := rfl
@@ -225,50 +235,86 @@ variable {e f g : M ⟶ N}
 
 theorem _root_.DG.CatModule.DGHomotopy.homotopic (h : DGHomotopy f g) : Homotopic f g := ⟨h⟩
 
+/--
+@isnad1 id=homotopi.1h5v.s7.287c454f9548 from=translated src=- shape=977e9ab7 vocab=f4573b9b
+-/
 theorem of_eq (h : f = g) : Homotopic f g := ⟨DGHomotopy.ofEq h⟩
 
+/--
+@isnad1 id=homotopi.0h4v.s6.a488aa2914e6 from=translated src=- shape=035b870a vocab=f4573b9b
+-/
 @[refl]
 theorem refl (f : M ⟶ N) : Homotopic f f := ⟨DGHomotopy.refl f⟩
 
+/--
+@isnad1 id=homotopi.1h5v.s6.55941887530f from=translated src=- shape=06308027 vocab=f4573b9b
+-/
 @[symm]
 theorem symm (h : Homotopic f g) : Homotopic g f := ⟨h.some.symm⟩
 
+/--
+@isnad1 id=homotopi.2h6v.s7.2cadbd7e7b01 from=translated src=- shape=40b8bac9 vocab=f4573b9b
+-/
 @[trans]
 theorem trans (h₁ : Homotopic e f) (h₂ : Homotopic f g) : Homotopic e g :=
   ⟨h₁.some.trans h₂.some⟩
 
+/--
+@isnad1 id=homotopi.2h7v.s8.866834d41eb6 from=translated src=- shape=2917dadb vocab=3c50f47b
+-/
 theorem add {f₁ g₁ f₂ g₂ : M ⟶ N} (h₁ : Homotopic f₁ g₁) (h₂ : Homotopic f₂ g₂) :
     Homotopic (f₁ + f₂) (g₁ + g₂) :=
   ⟨h₁.some.add h₂.some⟩
 
+/--
+@isnad1 id=homotopi.1h5v.s7.ee6d2476b789 from=translated src=- shape=ca0631d1 vocab=57a1d21c
+-/
 theorem neg (h : Homotopic f g) : Homotopic (-f) (-g) := ⟨h.some.neg⟩
 
+/--
+@isnad1 id=homotopi.2h7v.s8.66a6b7061724 from=translated src=- shape=2917dadb vocab=42a30b83
+-/
 theorem sub {f₁ g₁ f₂ g₂ : M ⟶ N} (h₁ : Homotopic f₁ g₁) (h₂ : Homotopic f₂ g₂) :
     Homotopic (f₁ - f₂) (g₁ - g₂) :=
   ⟨h₁.some.sub h₂.some⟩
 
+/--
+@isnad1 id=homotopi.1h6v.s8.6b358f0e57fa from=translated src=- shape=53e8f2f5 vocab=9e8d57f6
+-/
 theorem zsmul (k : ℤ) (h : Homotopic f g) : Homotopic (k • f) (k • g) := ⟨h.some.zsmul k⟩
 
-/-- Homotopy is compatible with postcomposition.-/
+/-- Homotopy is compatible with postcomposition.
+@isnad1 id=homotopi.1h7v.s7.2ccba475b564 from=translated src=- shape=7c847349 vocab=8d9dc981
+-/
 theorem comp_right (h : Homotopic e f) (g : N ⟶ P) : Homotopic (e ≫ g) (f ≫ g) :=
   ⟨h.some.compRight g⟩
 
-/-- Homotopy is compatible with precomposition.-/
+/-- Homotopy is compatible with precomposition.
+@isnad1 id=homotopi.1h7v.s7.bacaa74df8a9 from=translated src=- shape=63b662b6 vocab=8d9dc981
+-/
 theorem comp_left {f g : N ⟶ P} (h : Homotopic f g) (e : M ⟶ N) :
     Homotopic (e ≫ f) (e ≫ g) :=
   ⟨h.some.compLeft e⟩
 
+/--
+@isnad1 id=homotopi.2h8v.s7.41679ff67254 from=translated src=- shape=fbfbad82 vocab=8d9dc981
+-/
 theorem comp {f₁ g₁ : M ⟶ N} {f₂ g₂ : N ⟶ P} (h₁ : Homotopic f₁ g₁)
     (h₂ : Homotopic f₂ g₂) : Homotopic (f₁ ≫ f₂) (g₁ ≫ g₂) :=
   ⟨h₁.some.comp h₂.some⟩
 
+/--
+@isnad1 id=iff.0h5v.s8.8d861dd2d08a from=translated src=- shape=4ce75cfd vocab=42a30b83
+-/
 theorem iff_sub : Homotopic f g ↔ Homotopic (f - g) 0 :=
   ⟨fun ⟨h⟩ => ⟨DGHomotopy.equivSubZero h⟩, fun ⟨h⟩ => ⟨DGHomotopy.equivSubZero.symm h⟩⟩
 
 end Homotopic
 
 variable (M N) in
-/-- Homotopy is an equivalence relation on `M ⟶ N`.-/
+/-- Homotopy is an equivalence relation on `M ⟶ N`.
+@isnad1 id=equivale.0h3v.s6.062a05b61e2e from=translated src=- shape=aa128846 vocab=735f1efd
+-/
 theorem homotopic_equivalence : Equivalence (Homotopic : (M ⟶ N) → (M ⟶ N) → Prop) :=
   ⟨Homotopic.refl, Homotopic.symm, Homotopic.trans⟩
 
@@ -286,29 +332,44 @@ def nullHomotopic : AddSubgroup (M ⟶ N) where
   add_mem' hf hg := (Homotopic.add hf hg).trans (Homotopic.of_eq (add_zero 0))
   neg_mem' hf := (Homotopic.neg hf).trans (Homotopic.of_eq neg_zero)
 
+/--
+@isnad1 id=iff.0h4v.s8.e8bc0888e883 from=translated src=- shape=0375a6d3 vocab=e421232a
+-/
 theorem mem_nullHomotopic_iff {f : M ⟶ N} : f ∈ nullHomotopic M N ↔ Homotopic f 0 :=
   Iff.rfl
 
-/-- A morphism is null-homotopic iff it is a coboundary in the Hom complex.-/
+/-- A morphism is null-homotopic iff it is a coboundary in the Hom complex.
+@isnad1 id=iff.0h4v.s8.f892295b834e from=translated src=- shape=397deb89 vocab=6ba2daa3
+-/
 theorem mem_nullHomotopic_iff_exists {f : M ⟶ N} :
     f ∈ nullHomotopic M N ↔ ∃ h : Cochain M N (-1), ofHom f = δ (-1) 0 h := by
   refine ⟨fun ⟨h⟩ => ⟨h.hom, by rw [h.ofHom_eq, ofHom_zero, add_zero]⟩, fun ⟨h, hh⟩ =>
     ⟨⟨h, by rw [hh, ofHom_zero, add_zero]⟩⟩⟩
 
+/--
+@isnad1 id=iff.0h5v.s8.854915c03c81 from=translated src=- shape=a90a5d81 vocab=a86d760c
+-/
 theorem homotopic_iff_sub_mem {f g : M ⟶ N} :
     Homotopic f g ↔ f - g ∈ nullHomotopic M N :=
   Homotopic.iff_sub
 
+/--
+@isnad1 id=mem.0h4v.s8.eca7a34b6588 from=translated src=- shape=a3e4cd46 vocab=ce77af7d
+-/
 theorem nullHomotopicMap_mem (h : Cochain M N (-1)) :
     DGHomotopy.nullHomotopicMap h ∈ nullHomotopic M N :=
   ⟨DGHomotopy.nullHomotopy h⟩
 
-/-- Null-homotopic morphisms form a left ideal: `f ≫ g` is null-homotopic if `f` is.-/
+/-- Null-homotopic morphisms form a left ideal: `f ≫ g` is null-homotopic if `f` is.
+@isnad1 id=mem.1h6v.s9.cd2baaf46c4b from=translated src=- shape=ee2c2f85 vocab=c1176994
+-/
 theorem comp_mem_nullHomotopic {f : M ⟶ N} (hf : f ∈ nullHomotopic M N)
     (g : N ⟶ P) : f ≫ g ∈ nullHomotopic M P :=
   (Homotopic.comp_right hf g).trans (Homotopic.of_eq Limits.zero_comp)
 
-/-- Null-homotopic morphisms form a right ideal: `e ≫ f` is null-homotopic if `f` is.-/
+/-- Null-homotopic morphisms form a right ideal: `e ≫ f` is null-homotopic if `f` is.
+@isnad1 id=mem.1h6v.s9.798cd6e25435 from=translated src=- shape=69c3a92f vocab=c1176994
+-/
 theorem mem_nullHomotopic_comp {f : N ⟶ P} (hf : f ∈ nullHomotopic N P)
     (e : M ⟶ N) : e ≫ f ∈ nullHomotopic M P :=
   (Homotopic.comp_left hf e).trans (Homotopic.of_eq Limits.comp_zero)
@@ -322,6 +383,9 @@ variable (M N) in
 def coboundaries (n : ℤ) : AddSubgroup (Cocycle M N n) :=
   (δ_hom M N (n - 1) n).range.comap (cocycle M N n).subtype
 
+/--
+@isnad1 id=iff.1h6v.s8.577d491b1bcd from=translated src=- shape=9ac72cad vocab=f6d3071c
+-/
 theorem mem_coboundaries_iff {n : ℤ} (m : ℤ) (hmn : m + 1 = n) (z : Cocycle M N n) :
     z ∈ Cocycle.coboundaries M N n ↔ ∃ y : Cochain M N m, δ m n y = z := by
   obtain rfl : m = n - 1 := by omega
@@ -345,6 +409,9 @@ def quotientNullHomotopicAddEquiv :
       refine ⟨Cocycle.homOf z, mem_nullHomotopic_iff_exists.mpr ⟨y, hy.symm⟩, ?_⟩
       exact Cocycle.ofHom_homOf_eq_self z)
 
+/--
+@isnad1 id=eq.0h4v.s12.e8613ea7f493 from=translated src=- shape=3cc8660f vocab=e7c402cd
+-/
 @[simp]
 theorem quotientNullHomotopicAddEquiv_mk (f : M ⟶ N) :
     quotientNullHomotopicAddEquiv M N (QuotientAddGroup.mk f) =
@@ -378,12 +445,18 @@ noncomputable def cocyclesAddEquiv (n : ℤ) : Cocycle M N n ≃+ cocycles (HOM 
         exact hdx
       exact ⟨Cocycle.mk z (n + 1) rfl hz, rfl⟩)
 
+/--
+@isnad1 id=eq.0h5v.s11.230419cc2e19 from=translated src=- shape=bf47ecd4 vocab=d95a2491
+-/
 @[simp]
 theorem coe_cocyclesAddEquiv_apply (n : ℤ) (z : Cocycle M N n) :
     (cocyclesAddEquiv M N n z : HOM M N) =
       DirectSum.of (fun n => Cochain M N n) n (z : Cochain M N n) :=
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s10.be615d534901 from=translated src=- shape=f5bcc259 vocab=86c706c1
+-/
 theorem cocyclesAddEquiv_mem_coboundaries_iff (n : ℤ) (z : Cocycle M N n) :
     (cocyclesAddEquiv M N n z : HOM M N) ∈ coboundaries (HOM M N) n ↔
       z ∈ Cocycle.coboundaries M N n := by
@@ -422,6 +495,9 @@ noncomputable def cohomologyAddEquiv (n : ℤ) :
       exact AddSubgroup.mem_addSubgroupOf.mpr
         ((cocyclesAddEquiv_mem_coboundaries_iff n z).mpr hz))
 
+/--
+@isnad1 id=eq.0h5v.s12.0d91d891cb27 from=translated src=- shape=e1706c2f vocab=76cd53aa
+-/
 @[simp]
 theorem cohomologyAddEquiv_mk (n : ℤ) (z : Cocycle M N n) :
     cohomologyAddEquiv M N n (cohomology.mk _ n (cocyclesAddEquiv M N n z)) =
@@ -439,6 +515,9 @@ noncomputable def quotientNullHomotopicAddEquivCohomology :
     ((M ⟶ N) ⧸ nullHomotopic M N) ≃+ cohomology (HOM M N) 0 :=
   (quotientNullHomotopicAddEquiv M N).trans (HOM.cohomologyAddEquiv M N 0).symm
 
+/--
+@isnad1 id=eq.0h4v.s12.4e6b99354a90 from=translated src=- shape=e476ac1a vocab=f76fdfc9
+-/
 @[simp]
 theorem quotientNullHomotopicAddEquivCohomology_mk (f : M ⟶ N) :
     quotientNullHomotopicAddEquivCohomology M N (QuotientAddGroup.mk f) =
@@ -454,29 +533,43 @@ def cohomologyMap (φ : M ⟶ N) (X : C) (n : ℤ) :
     cohomology (M.obj X) n →+ cohomology (N.obj X) n :=
   cohomology.mapAddMonoidHom (φ.app X) φ.map_mem φ.map_d n
 
+/--
+@isnad1 id=eq.0h7v.s12.44fbf02378a5 from=translated src=- shape=e577f724 vocab=e085f5df
+-/
 @[simp]
 theorem cohomologyMap_mk (φ : M ⟶ N) (X : C) (n : ℤ) (z : cocycles (M.obj X) n) :
     cohomologyMap φ X n (cohomology.mk _ n z) =
       cohomology.mk _ n (cocycles.mapAddMonoidHom (φ.app X) φ.map_mem φ.map_d n z) :=
   cohomology.mapAddMonoidHom_mk _ _ _ n z
 
+/--
+@isnad1 id=eq.0h4v.s9.e8738a0275da from=translated src=- shape=cff85895 vocab=4893ebfc
+-/
 theorem cohomologyMap_id (M : CatModule.{w} C) (X : C) (n : ℤ) :
     cohomologyMap (𝟙 M) X n = AddMonoidHom.id _ := by
   ext x
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.476a6c43bfa7 from=translated src=- shape=55a4f5a3 vocab=f0d895fd
+-/
 theorem cohomologyMap_zero (X : C) (n : ℤ) : cohomologyMap (0 : M ⟶ N) X n = 0 := by
   ext z
   exact (congrArg (cohomology.mk _ n)
     (Subtype.ext rfl : (⟨0, zero_mem _⟩ : cocycles (N.obj X) n) = 0)).trans (map_zero _)
 
+/--
+@isnad1 id=eq.0h9v.s11.ebaef264781d from=translated src=- shape=497fed4e vocab=3f5d2860
+-/
 theorem cohomologyMap_comp_apply (φ : M ⟶ N) (ψ : N ⟶ P) (X : C) (n : ℤ)
     (x : cohomology (M.obj X) n) :
     cohomologyMap (φ ≫ ψ) X n x = cohomologyMap ψ X n (cohomologyMap φ X n x) := by
   induction x using QuotientAddGroup.induction_on with
   | H z => rfl
 
-/-- Homotopic morphisms induce the same map on the cohomology at every object.-/
+/-- Homotopic morphisms induce the same map on the cohomology at every object.
+@isnad1 id=eq.0h8v.s8.7ab0097467df from=translated src=- shape=730d82d5 vocab=97cdc0ee
+-/
 theorem DGHomotopy.cohomologyMap_eq {f g : M ⟶ N} (h : DGHomotopy f g) (X : C) (n : ℤ) :
     cohomologyMap f X n = cohomologyMap g X n := by
   ext z
@@ -486,6 +579,9 @@ theorem DGHomotopy.cohomologyMap_eq {f g : M ⟶ N} (h : DGHomotopy f g) (X : C)
   · simpa [sub_eq_add_neg] using h.hom.map_mem (cocycles.mem_grading z)
   · simp [h.comm (z : M.obj X), cocycles.d_eq_zero z]
 
+/--
+@isnad1 id=eq.1h7v.s8.81645740ed27 from=translated src=- shape=730d82d5 vocab=c02b0a43
+-/
 theorem Homotopic.cohomologyMap_eq {f g : M ⟶ N} (h : Homotopic f g) (X : C) (n : ℤ) :
     cohomologyMap f X n = cohomologyMap g X n :=
   h.some.cohomologyMap_eq X n
@@ -538,19 +634,27 @@ def trans (e : DGHomotopyEquiv M N) (e' : DGHomotopyEquiv N P) : DGHomotopyEquiv
       (((e.homotopyInvHomId.compRight e'.hom).compLeft e'.inv).trans
         ((DGHomotopy.ofEq (by rw [Category.id_comp])).trans e'.homotopyInvHomId))
 
+/--
+@isnad1 id=eq.0h7v.s10.4eff7bc7b064 from=translated src=- shape=d135bb06 vocab=6d9559e8
+-/
 theorem cohomologyMap_inv_hom (e : DGHomotopyEquiv M N) (X : C) (n : ℤ)
     (x : cohomology (M.obj X) n) :
     cohomologyMap e.inv X n (cohomologyMap e.hom X n x) = x := by
   rw [← cohomologyMap_comp_apply, e.homotopyHomInvId.cohomologyMap_eq, cohomologyMap_id]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.ac9779cab690 from=translated src=- shape=b10efb69 vocab=6d9559e8
+-/
 theorem cohomologyMap_hom_inv (e : DGHomotopyEquiv M N) (X : C) (n : ℤ)
     (x : cohomology (N.obj X) n) :
     cohomologyMap e.hom X n (cohomologyMap e.inv X n x) = x :=
   e.symm.cohomologyMap_inv_hom X n x
 
 /-- A homotopy equivalence induces bijections on the cohomology at every object (it is a
-quasi-isomorphism).-/
+quasi-isomorphism).
+@isnad1 id=bijectiv.0h6v.s9.a2843d43c73b from=translated src=- shape=4dd2dad4 vocab=e832fab5
+-/
 theorem bijective_cohomologyMap_hom (e : DGHomotopyEquiv M N) (X : C) (n : ℤ) :
     Function.Bijective (cohomologyMap e.hom X n) :=
   Function.bijective_iff_has_inverse.mpr
@@ -566,24 +670,33 @@ def IsContractible : Prop := Homotopic (𝟙 M) 0
 
 namespace IsContractible
 
-/-- Every morphism out of a contractible dg module is null-homotopic.-/
+/-- Every morphism out of a contractible dg module is null-homotopic.
+@isnad1 id=homotopi.1h4v.s7.0b713651af77 from=translated src=- shape=9cbc4a3b vocab=85456bc4
+-/
 theorem homotopic_zero_of_left (hM : IsContractible M) (f : M ⟶ N) : Homotopic f 0 :=
   (Homotopic.of_eq (Category.id_comp f).symm).trans
     ((hM.comp_right f).trans (Homotopic.of_eq Limits.zero_comp))
 
-/-- Every morphism into a contractible dg module is null-homotopic.-/
+/-- Every morphism into a contractible dg module is null-homotopic.
+@isnad1 id=homotopi.1h4v.s7.e2cd6ace082b from=translated src=- shape=e7b09366 vocab=85456bc4
+-/
 theorem homotopic_zero_of_right (hN : IsContractible N) (f : M ⟶ N) : Homotopic f 0 :=
   (Homotopic.of_eq (Category.comp_id f).symm).trans
     ((hN.comp_left f).trans (Homotopic.of_eq Limits.comp_zero))
 
 /-- A contractible dg module is acyclic: all the cohomology groups of all its values
-vanish.-/
+vanish.
+@isnad1 id=subsingl.1h4v.s6.7f34a65d3541 from=translated src=- shape=40f17fff vocab=06885b6d
+-/
 theorem subsingleton_cohomology (hM : IsContractible M) (X : C) (n : ℤ) :
     Subsingleton (cohomology (M.obj X) n) := by
   refine subsingleton_of_forall_eq 0 fun x => ?_
   have h := congrArg (fun φ => φ x) (hM.cohomologyMap_eq X n)
   simpa [cohomologyMap_id, cohomologyMap_zero] using h
 
+/--
+@isnad1 id=eq.1h5v.s8.50b4edb79ca5 from=translated src=- shape=5fe4f3cc vocab=c5e96345
+-/
 theorem cohomology_eq_zero (hM : IsContractible M) {X : C} {n : ℤ}
     (x : cohomology (M.obj X) n) : x = 0 :=
   (hM.subsingleton_cohomology X n).elim x 0

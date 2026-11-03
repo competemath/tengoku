@@ -54,12 +54,17 @@ def singleObjModule : Module A (M.obj (SingleObj.star A)) where
     change M.act 0 m = 0
     rw [map_zero, AddMonoidHom.zero_apply]
 
+/--
+@isnad1 id=eq.0h4v.s12.0d515badb78e from=translated src=- shape=a56dff29 vocab=05040581
+-/
 theorem singleObjModule_smul (a : A) (m : M.obj (SingleObj.star A)) :
     letI := singleObjModule M
     a • m = M.act (X := SingleObj.star A) (Y := SingleObj.star A) a m :=
   rfl
 
-/-- The value at the unique object of a dg module over `SingleObj A` is a dg `A`-module.-/
+/-- The value at the unique object of a dg module over `SingleObj A` is a dg `A`-module.
+@isnad1 id=dgmodule.0h2v.s6.de416a67543a from=translated src=- shape=30771b65 vocab=56b2913b
+-/
 theorem singleObjDGModule :
     letI := singleObjModule M
     DGModule A (M.obj (SingleObj.star A)) :=
@@ -74,6 +79,9 @@ def toDGModuleCatObj : DGModuleCat.{w} A :=
   haveI := singleObjDGModule M
   DGModuleCat.of A (M.obj (SingleObj.star A))
 
+/--
+@isnad1 id=eq.0h2v.s6.d2e4d3c373ed from=translated src=- shape=e07b8f93 vocab=7b8f25f1
+-/
 @[simp]
 theorem toDGModuleCatObj_carrier : (toDGModuleCatObj M : Type w) = M.obj (SingleObj.star A) :=
   rfl
@@ -91,6 +99,9 @@ def toDGModuleCat : CatModule.{w} (SingleObj A) ⥤ DGModuleCat.{w} A where
       map_mem' := fun hm => φ.map_mem hm
       map_d' := fun m => φ.map_d m }
 
+/--
+@isnad1 id=eq.0h5v.s11.e3178d5c3c2c from=translated src=- shape=f79d145d vocab=c4c1e434
+-/
 @[simp]
 theorem toDGModuleCat_map_apply {M N : CatModule.{w} (SingleObj A)} (φ : M ⟶ N)
     (m : M.obj (SingleObj.star A)) :
@@ -111,6 +122,9 @@ def toCatModuleObj (M : DGModuleCat.{w} A) : CatModule.{w} (SingleObj A) where
   act_comp' f g m := mul_smul (g : A) (f : A) m
   d_act' hf m := d_smul (A := A) hf m
 
+/--
+@isnad1 id=eq.0h6v.s8.ceea4ab4b5f5 from=translated src=- shape=35a3efd1 vocab=827c376f
+-/
 theorem toCatModuleObj_smul (M : DGModuleCat.{w} A) {X Y : SingleObj A} (a : X ⟶ Y) (m : M) :
     (a • m : (toCatModuleObj M).obj Y) = (a : A) • (m : M) :=
   rfl
@@ -126,6 +140,9 @@ def toCatModule : DGModuleCat.{w} A ⥤ CatModule.{w} (SingleObj A) where
       map_d' := fun m => φ.hom.map_d m
       map_smul' := fun a m => φ.hom.map_smul (a : A) m }
 
+/--
+@isnad1 id=eq.0h6v.s11.67b74a088c75 from=translated src=- shape=c754ea18 vocab=d506eb23
+-/
 @[simp]
 theorem toCatModule_map_app {M N : DGModuleCat.{w} A} (φ : M ⟶ N) (X : SingleObj A) (m : M) :
     ((toCatModule A).map φ).app X m = φ.hom m :=

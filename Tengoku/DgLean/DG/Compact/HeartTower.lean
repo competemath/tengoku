@@ -69,27 +69,44 @@ namespace ShiftedProp
 
 variable {H : ObjectProperty C}
 
+/--
+@isnad1 id=shiftedp.1h6v.s5.79fa91d5e618 from=translated src=- shape=c0683c09 vocab=3061ed87
+-/
 theorem of_iso {n : ℤ} {X X' : C} (h : ShiftedProp H n X) (e : X ≅ X') : ShiftedProp H n X' :=
   let ⟨Y, hY, ⟨e'⟩⟩ := h
   ⟨Y, hY, ⟨e.symm ≪≫ e'⟩⟩
 
+/--
+@isnad1 id=shiftedp.1h5v.s5.cfdf0ce59503 from=translated src=- shape=450f0291 vocab=88665d82
+-/
 theorem shift {n : ℤ} {X : C} (h : ShiftedProp H n X) (k : ℤ) : ShiftedProp H (n + k) (X⟦k⟧) :=
   let ⟨Y, hY, ⟨e⟩⟩ := h
   ⟨Y, hY, ⟨(shiftFunctor C k).mapIso e ≪≫ ((shiftFunctorAdd' C n k (n + k) rfl).app Y).symm⟩⟩
 
+/--
+@isnad1 id=shiftedp.2h6v.s6.3fe422db10ff from=translated src=- shape=ff187dab vocab=88665d82
+-/
 theorem shift' {n : ℤ} {X : C} (h : ShiftedProp H n X) (k m : ℤ) (hm : n + k = m) :
     ShiftedProp H m (X⟦k⟧) := by
   subst hm
   exact h.shift k
 
+/--
+@isnad1 id=shiftedp.0h5v.s5.ec73d13f34f3 from=translated src=- shape=04aee1bf vocab=1ba0f678
+-/
 theorem of_prop {X : C} (hX : H X) (n : ℤ) : ShiftedProp H n (X⟦n⟧) :=
   ⟨X, hX, ⟨Iso.refl _⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.5a1fed2bc64e from=translated src=- shape=881e706b vocab=b3edb472
+-/
 theorem zero_iff [H.IsClosedUnderIsomorphisms] (X : C) : ShiftedProp H 0 X ↔ H X :=
   ⟨fun ⟨_, hY, ⟨e⟩⟩ => H.prop_of_iso (e ≪≫ (shiftFunctorZero C ℤ).app _).symm hY,
     fun h => ⟨X, h, ⟨((shiftFunctorZero C ℤ).app X).symm⟩⟩⟩
 
-/-- Unshifting: `X⟦-n⟧` has the property `H`.-/
+/-- Unshifting: `X⟦-n⟧` has the property `H`.
+@isnad1 id=var.1h4v.s5.8199c9fef4b7 from=translated src=- shape=1c9d06a4 vocab=7745de9e
+-/
 theorem prop_shift_neg [H.IsClosedUnderIsomorphisms] {n : ℤ} {X : C} (h : ShiftedProp H n X) :
     H (X⟦-n⟧) := by
   exact (zero_iff _).mp (h.shift' (-n) 0 (by omega))
@@ -122,10 +139,15 @@ namespace IsHeartFamily
 variable {H : ObjectProperty C} (hc : IsHeartFamily H)
 include hc
 
+/--
+@isnad1 id=isclosed.1h2v.s6.6df50a594eba from=translated src=- shape=e97fa3ca vocab=8a5eb569
+-/
 theorem isClosedUnderIsomorphisms : H.IsClosedUnderIsomorphisms :=
   ⟨fun e h => hc.prop_of_iso e h⟩
 
-/-- Morphisms from a shifted object of `H` to an object of `H` shifted less vanish.-/
+/-- Morphisms from a shifted object of `H` to an object of `H` shifted less vanish.
+@isnad1 id=eq.4h7v.s7.3d830dbc295f from=translated src=- shape=c0edf874 vocab=3b4b5d3e
+-/
 theorem shifted_hom_eq_zero {m n : ℤ} {X Y : C} (hX : ShiftedProp H m X)
     (hY : ShiftedProp H n Y) (h : n < m) (f : X ⟶ Y) : f = 0 := by
   have := hc.isClosedUnderIsomorphisms
@@ -138,7 +160,9 @@ theorem shifted_hom_eq_zero {m n : ℤ} {X Y : C} (hX : ShiftedProp H m X)
     rw [← cancel_mono e.hom, h0, zero_comp]
   exact (shiftFunctor C (-m)).map_injective (by rw [h1, Functor.map_zero])
 
-/-- Extensions of shifted objects of `H` (of the same shift).-/
+/-- Extensions of shifted objects of `H` (of the same shift).
+@isnad1 id=shiftedp.4h4v.s6.52972c24f364 from=translated src=- shape=5bd04207 vocab=73abf6dc
+-/
 theorem ext_shifted {m : ℤ} (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : ShiftedProp H m T.obj₁) (h₃ : ShiftedProp H m T.obj₃) : ShiftedProp H m T.obj₂ := by
   have := hc.isClosedUnderIsomorphisms
@@ -146,7 +170,9 @@ theorem ext_shifted {m : ℤ} (T : Triangle C) (hT : T ∈ distTriang C)
     h₃.prop_shift_neg
   exact ⟨_, h, ⟨(shiftNegShift T.obj₂ m).symm⟩⟩
 
-/-- Idempotents of shifted objects of `H` split.-/
+/-- Idempotents of shifted objects of `H` split.
+@isnad1 id=ex.3h5v.s7.4c8425017caa from=translated src=- shape=5ccd77ca vocab=522b8324
+-/
 theorem split_shifted {m : ℤ} {X : C} (hX : ShiftedProp H m X) (e : X ⟶ X) (he : e ≫ e = e) :
     ∃ (Y : C) (s : Y ⟶ X) (p : X ⟶ Y), ShiftedProp H m Y ∧ s ≫ p = 𝟙 Y ∧ p ≫ s = e := by
   have := hc.isClosedUnderIsomorphisms
@@ -158,7 +184,9 @@ theorem split_shifted {m : ℤ} {X : C} (hX : ShiftedProp H m X) (e : X ⟶ X) (
   · rw [Category.assoc, ← Functor.map_comp_assoc, hps]
     simp [ε]
 
-/-- Cones of morphisms between shifted objects of `H` (of the same shift).-/
+/-- Cones of morphisms between shifted objects of `H` (of the same shift).
+@isnad1 id=ex.4h4v.s8.3ab1a64635d0 from=translated src=- shape=39d2761d vocab=ad8a04d2
+-/
 theorem cone_shifted {m : ℤ} (T : Triangle C) (hT : T ∈ distTriang C)
     (h₁ : ShiftedProp H m T.obj₁) (h₂ : ShiftedProp H m T.obj₂) :
     ∃ (A B : C) (a : A ⟶ T.obj₃) (b : T.obj₃ ⟶ B) (c : B ⟶ A⟦(1 : ℤ)⟧),
@@ -194,6 +222,9 @@ namespace HeartTower
 
 variable {H : ObjectProperty C}
 
+/--
+@isnad1 id=hearttow.1h6v.s6.3c72e022f096 from=translated src=- shape=0433509e vocab=9c26fb78
+-/
 theorem of_iso {a : ℤ} {X Y : C} (h : HeartTower H a X) (e : X ≅ Y) : HeartTower H a Y := by
   cases h with
   | zero hX => exact .zero (hX.of_iso e.symm)
@@ -202,16 +233,24 @@ theorem of_iso {a : ℤ} {X Y : C} (h : HeartTower H a X) (e : X ≅ Y) : HeartT
     exact isomorphic_distinguished T hT _
       (Triangle.isoMk _ _ (Iso.refl _) e.symm (Iso.refl _) (by simp) (by simp) (by simp))
 
+/--
+@isnad1 id=hearttow.2h5v.s6.3d2944d0da74 from=translated src=- shape=835f807f vocab=c9b9860b
+-/
 theorem mono {a b : ℤ} {X : C} (h : HeartTower H b X) (hab : a ≤ b) : HeartTower H a X := by
   cases h with
   | zero hX => exact .zero hX
   | ext hb T hT h₁ h₃ => exact .ext (hab.trans hb) T hT h₁ h₃
 
-/-- A shifted object of `H` has a heart tower with one cell.-/
+/-- A shifted object of `H` has a heart tower with one cell.
+@isnad1 id=hearttow.1h4v.s6.9f2e21d15afe from=translated src=- shape=a9e3c8c2 vocab=f5e7259d
+-/
 theorem of_shiftedProp {b : ℤ} {X : C} (h : ShiftedProp H b X) : HeartTower H b X :=
   .ext le_rfl (Triangle.mk (0 : 0 ⟶ X) (𝟙 X) 0) (contractible_distinguished₁ X)
     (.zero (isZero_zero C)) h
 
+/--
+@isnad1 id=hearttow.1h5v.s6.267249e807be from=translated src=- shape=8a8aef1e vocab=da627f16
+-/
 theorem shift {a : ℤ} {X : C} (h : HeartTower H a X) (k : ℤ) : HeartTower H (a + k) (X⟦k⟧) := by
   induction h with
   | zero hX => exact .zero (Functor.map_isZero _ hX)
@@ -229,7 +268,9 @@ variable {H : ObjectProperty C} (hc : IsHeartFamily H)
 include hc
 
 /-- **Orthogonality**: there are no nonzero morphisms from an object with a heart tower with
-shifts `≥ a` to a shifted object `Y⟦n⟧` of `H` with `n < a`.-/
+shifts `≥ a` to a shifted object `Y⟦n⟧` of `H` with `n < a`.
+@isnad1 id=eq.4h7v.s7.a136c791e37a from=translated src=- shape=02c1e76d vocab=f218861b
+-/
 theorem heartTower_hom_eq_zero {a : ℤ} {X : C} (h : HeartTower H a X) :
     ∀ {n : ℤ} {Y : C}, ShiftedProp H n Y → n < a → ∀ f : X ⟶ Y, f = 0 := by
   induction h with
@@ -243,7 +284,9 @@ theorem heartTower_hom_eq_zero {a : ℤ} {X : C} (h : HeartTower H a X) :
 variable [IsTriangulated C]
 
 /-- **Merging** a bottom cell of shift `b` into an object with a heart tower with shifts
-`≥ b`.-/
+`≥ b`.
+@isnad1 id=hearttow.4h9v.s7.6fa010d5dc01 from=translated src=- shape=7196c4e6 vocab=d0153b37
+-/
 theorem heartTower_merge {b : ℤ} {X E K : C} (hX : HeartTower H b X) (f : X ⟶ E) (g : E ⟶ K)
     (h : K ⟶ X⟦(1 : ℤ)⟧) (hT : Triangle.mk f g h ∈ distTriang C) (hK : ShiftedProp H b K) :
     HeartTower H b E := by
@@ -258,7 +301,9 @@ theorem heartTower_merge {b : ℤ} {X E K : C} (hX : HeartTower H b X) (f : X �
       exact .ext le_rfl _ hZ h₁ (hc.ext_shifted _ o.mem h₃ hK)
 
 /-- **The cone of a cell** `Y⟦n⟧ ⟶ X`, `Y` in `H`, into an object with a heart tower with shifts
-`≥ a` has a heart tower with shifts `≥ min a (n + 1)`.-/
+`≥ a` has a heart tower with shifts `≥ min a (n + 1)`.
+@isnad1 id=hearttow.4h10v.s7.b9a3d48163a4 from=translated src=- shape=cab3f9c4 vocab=de3e9c08
+-/
 theorem heartTower_cone_cell {a : ℤ} {X : C} (hX : HeartTower H a X) :
     ∀ {n : ℤ} {Y Z : C}, ShiftedProp H n Y → ∀ (c : Y ⟶ X) (v : X ⟶ Z) (w : Z ⟶ Y⟦(1 : ℤ)⟧),
       Triangle.mk c v w ∈ distTriang C → HeartTower H (min a (n + 1)) Z := by
@@ -298,7 +343,9 @@ theorem heartTower_cone_cell {a : ℤ} {X : C} (hX : HeartTower H a X) :
       exact .ext (by omega) _ o.mem hZ₁ h₃
 
 /-- **Cones**: the cone of a morphism `X ⟶ Y` between objects with heart towers with shifts
-`≥ a` and `≥ b` has a heart tower with shifts `≥ min b (a + 1)`.-/
+`≥ a` and `≥ b` has a heart tower with shifts `≥ min b (a + 1)`.
+@isnad1 id=hearttow.4h10v.s7.0e169356ddf9 from=translated src=- shape=3d68c344 vocab=c5b10f20
+-/
 theorem heartTower_cone {a : ℤ} {X : C} (hX : HeartTower H a X) :
     ∀ {b : ℤ} {Y Z : C}, HeartTower H b Y → ∀ (f : X ⟶ Y) (v : Y ⟶ Z) (w : Z ⟶ X⟦(1 : ℤ)⟧),
       Triangle.mk f v w ∈ distTriang C → HeartTower H (min b (a + 1)) Z := by
@@ -316,7 +363,9 @@ theorem heartTower_cone {a : ℤ} {X : C} (hX : HeartTower H a X) :
 
 omit [IsTriangulated C] in
 /-- **Splitting of idempotents**: every idempotent endomorphism `e` of an object with a heart
-tower with shifts `≥ a` splits, through an object with a heart tower with shifts `≥ a`.-/
+tower with shifts `≥ a` splits, through an object with a heart tower with shifts `≥ a`.
+@isnad1 id=ex.3h5v.s7.37eb6f85655f from=translated src=- shape=5ccd77ca vocab=3981c7c4
+-/
 theorem heartTower_split {a : ℤ} {X : C} (hX : HeartTower H a X) :
     ∀ e : X ⟶ X, e ≫ e = e →
       ∃ (Y : C) (s : Y ⟶ X) (p : X ⟶ Y), HeartTower H a Y ∧ s ≫ p = 𝟙 Y ∧ p ≫ s = e := by
@@ -452,7 +501,9 @@ theorem heartTower_split {a : ℤ} {X : C} (hX : HeartTower H a X) :
         _ = e := by rw [hqu, IsIso.inv_hom_id_assoc]
 
 omit [IsTriangulated C] in
-/-- Direct summands of objects with heart towers have heart towers.-/
+/-- Direct summands of objects with heart towers have heart towers.
+@isnad1 id=hearttow.2h6v.s6.57fe39ef5dcc from=translated src=- shape=fbdf66b1 vocab=ec9d538a
+-/
 theorem heartTower_of_retract {a : ℤ} {X Y : C} (r : Retract Y X) (hX : HeartTower H a X) :
     HeartTower H a Y := by
   obtain ⟨Y₀, s, p, hY₀, hsp, hps⟩ := hc.heartTower_split hX (r.r ≫ r.i) (by
@@ -469,7 +520,9 @@ theorem heartTower_of_retract {a : ℤ} {X Y : C} (r : Retract Y X) (hX : HeartT
 def HasHeartTower (H : ObjectProperty C) (X : C) : Prop := ∃ a : ℤ, HeartTower H a X
 
 /-- **Thickness**: in a triangulated category, the objects with a heart tower for a heart family
-form a thick subcategory.-/
+form a thick subcategory.
+@isnad1 id=isthick.1h2v.s6.7df89cee1cb7 from=translated src=- shape=97174aad vocab=1a970724
+-/
 theorem isThick : IsThick (HasHeartTower H) where
   zero := ⟨0, .zero (isZero_zero C)⟩
   shift X n h := let ⟨a, ha⟩ := h; ⟨a + n, ha.shift n⟩
@@ -479,7 +532,9 @@ theorem isThick : IsThick (HasHeartTower H) where
     exact ⟨_, hc.heartTower_cone (hc₃.shift (-1)) ha _ _ _ (inv_rot_of_distTriang T hT)⟩
   retract r h := let ⟨a, ha⟩ := h; ⟨a, hc.heartTower_of_retract r ha⟩
 
-/-- The thick closure of the objects of `H` consists of objects with heart towers.-/
+/-- The thick closure of the objects of `H` consists of objects with heart towers.
+@isnad1 id=le.1h2v.s6.ee81a0ebfe2b from=translated src=- shape=91371971 vocab=fdcfd19d
+-/
 theorem thickClosure_le : ThickClosure H ≤ HasHeartTower H :=
   DG.thickClosure_le hc.isThick fun X hX =>
     have := hc.isClosedUnderIsomorphisms

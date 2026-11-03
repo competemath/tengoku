@@ -68,7 +68,9 @@ section telescope
 variable {G : Type*} [AddCommGroup G]
 
 /-- A `finsum` over `ℤ` of a family vanishing outside `[a, a + m)` is the sum over
-`a, a + 1, …, a + m - 1`.-/
+`a, a + 1, …, a + m - 1`.
+@isnad1 id=eq.1h4v.s6.02e3b2456a23 from=translated src=- shape=9f74e0f7 vocab=0e3d2447
+-/
 theorem finsum_eq_sum_range (f : ℤ → G) (a : ℤ) (m : ℕ)
     (hf : ∀ n, n < a ∨ a + m ≤ n → f n = 0) :
     ∑ᶠ n, f n = ∑ i ∈ Finset.range m, f (a + i) := by
@@ -86,7 +88,9 @@ theorem finsum_eq_sum_range (f : ℤ → G) (a : ℤ) (m : ℕ)
 
 /-- Telescoping of an alternating sum: if `x n = h n + c (n - 1) + c n` for all `n`, then
 `Σᵢ (-1)^(a+i) x (a+i) = Σᵢ (-1)^(a+i) h (a+i) + (-1)^a c (a-1) - (-1)^(a+m) c (a+m-1)`,
-the sums running over `0 ≤ i < m`.-/
+the sums running over `0 ≤ i < m`.
+@isnad1 id=eq.1h6v.s8.ba49f298c298 from=translated src=- shape=a52f5c4c vocab=f8ba1b32
+-/
 theorem sum_range_negOnePow_telescope (x h c : ℤ → G) (hx : ∀ n, x n = h n + c (n - 1) + c n)
     (a : ℤ) (m : ℕ) :
     ∑ i ∈ Finset.range m, (a + i).negOnePow • x (a + i) =
@@ -108,7 +112,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C]
 /-! ### The Euler characteristic -/
 
 /-- The degreewise identity `[Kⁿ] = [Hⁿ(K)] + [Bⁿ] + [Bⁿ⁺¹]`, where `Bⁿ⁺¹ ≅ coim (dⁿ)` is the
-image of the differential `dⁿ : Kⁿ ⟶ Kⁿ⁺¹`.-/
+image of the differential `dⁿ : Kⁿ ⟶ Kⁿ⁺¹`.
+@isnad1 id=eq.0h3v.s9.1ae5ab92b5e6 from=translated src=- shape=694d5d6f vocab=ff87cb96
+-/
 theorem mk_X_eq (K : CochainComplex C ℤ) (n : ℤ) :
     mk (K.X n) = mk (K.homology n) + mk (Abelian.coimage (K.d (n - 1) (n - 1 + 1))) +
       mk (Abelian.coimage (K.d n (n + 1))) := by
@@ -126,11 +132,16 @@ abelian category `C` (Weibel, *The K-book*, II.6), defined as a `finsum` with th
 (`DG.AbelianK0.eulerChar_eq_sum_Icc`).-/
 noncomputable def eulerChar : AbelianK0 C := ∑ᶠ n : ℤ, n.negOnePow • mk (K.X n)
 
+/--
+@isnad1 id=eq.1h4v.s7.77de7364a9ea from=translated src=- shape=2805eebd vocab=5aa9bd8a
+-/
 theorem eulerChar_eq_sum_range (a : ℤ) (m : ℕ) (hK : ∀ n, n < a ∨ a + m ≤ n → IsZero (K.X n)) :
     eulerChar K = ∑ i ∈ Finset.range m, (a + i).negOnePow • mk (K.X (a + i)) :=
   finsum_eq_sum_range _ a m (fun n hn => by rw [mk_eq_zero_of_isZero (hK n hn), smul_zero])
 
-/-- For a complex `K` with `Kⁿ = 0` for `n < a` and `n > b`, `χ(K) = Σ_{a ≤ n ≤ b} (-1)ⁿ [Kⁿ]`.-/
+/-- For a complex `K` with `Kⁿ = 0` for `n < a` and `n > b`, `χ(K) = Σ_{a ≤ n ≤ b} (-1)ⁿ [Kⁿ]`.
+@isnad1 id=eq.0h4v.s7.d0eea1c17c2b from=translated src=- shape=7b9a322b vocab=e4d0a31a
+-/
 theorem eulerChar_eq_sum_Icc (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictlyLE b] :
     eulerChar K = ∑ n ∈ Finset.Icc a b, n.negOnePow • mk (K.X n) := by
   refine finsum_eq_sum_of_support_subset _ (fun n hn => ?_)
@@ -144,7 +155,9 @@ theorem eulerChar_eq_sum_Icc (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictlyLE b] :
 
 /-- **The Euler characteristic of a bounded complex is the alternating sum of the classes of its
 cohomology objects**: if `Kⁿ = 0` for `n < a` and for `n > b`, then
-`χ(K) = Σₙ (-1)ⁿ [Kⁿ] = Σₙ (-1)ⁿ [Hⁿ(K)]` in `K₀(C)`.-/
+`χ(K) = Σₙ (-1)ⁿ [Kⁿ] = Σₙ (-1)ⁿ [Hⁿ(K)]` in `K₀(C)`.
+@isnad1 id=eq.0h4v.s7.a3c59f0cd4e0 from=translated src=- shape=0d547abf vocab=6792bfd4
+-/
 theorem eulerChar_eq_finsum_homology (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictlyLE b] :
     eulerChar K = ∑ᶠ n : ℤ, n.negOnePow • mk (K.homology n) := by
   set m := (b + 1 - a).toNat
@@ -162,7 +175,9 @@ theorem eulerChar_eq_finsum_homology (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictl
     add_zero, sub_zero]
 
 /-- The alternating sum of the classes of the objects of a bounded exact sequence vanishes:
-if `K` is strictly bounded and exact in every degree, then `χ(K) = 0`.-/
+if `K` is strictly bounded and exact in every degree, then `χ(K) = 0`.
+@isnad1 id=eq.1h4v.s7.39ae16ef8797 from=translated src=- shape=c9c69edc vocab=a98a9f9e
+-/
 theorem eulerChar_eq_zero_of_exactAt (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictlyLE b]
     (hK : ∀ n, K.ExactAt n) : eulerChar K = 0 := by
   rw [eulerChar_eq_finsum_homology K a b]
@@ -170,7 +185,9 @@ theorem eulerChar_eq_zero_of_exactAt (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictl
     rw [mk_eq_zero_of_isZero ((hK n).isZero_homology), smul_zero])
 
 variable {K} in
-/-- Isomorphic complexes have the same Euler characteristic.-/
+/-- Isomorphic complexes have the same Euler characteristic.
+@isnad1 id=eq.0h4v.s7.f249dbd0e750 from=translated src=- shape=c38b1ce8 vocab=8b915de2
+-/
 theorem eulerChar_eq_of_iso {L : CochainComplex C ℤ} (e : K ≅ L) :
     eulerChar K = eulerChar L := by
   unfold eulerChar
@@ -179,7 +196,9 @@ theorem eulerChar_eq_of_iso {L : CochainComplex C ℤ} (e : K ≅ L) :
   rw [mk_eq_of_iso (show K.X n ≅ L.X n from (HomologicalComplex.eval C _ n).mapIso e)]
 
 variable {K} in
-/-- Quasi-isomorphic bounded complexes have the same Euler characteristic.-/
+/-- Quasi-isomorphic bounded complexes have the same Euler characteristic.
+@isnad1 id=eq.0h8v.s8.bed594cdf525 from=translated src=- shape=06509d89 vocab=206a1d4d
+-/
 theorem eulerChar_eq_of_quasiIso {L : CochainComplex C ℤ} (φ : K ⟶ L) [QuasiIso φ]
     (a b : ℤ) [K.IsStrictlyGE a] [K.IsStrictlyLE b] (a' b' : ℤ) [L.IsStrictlyGE a']
     [L.IsStrictlyLE b'] : eulerChar K = eulerChar L := by
@@ -201,6 +220,9 @@ noncomputable def toDerived : AbelianK0 C →+ K0 (DerivedCategory C) :=
   lift (fun X => K0.mk ((DerivedCategory.singleFunctor C 0).obj X))
     (fun _ hS => K0.mk_obj₂ _ hS.singleTriangle_distinguished)
 
+/--
+@isnad1 id=eq.0h2v.s9.32ca1cbcbaee from=translated src=- shape=5d53e850 vocab=f0e58e48
+-/
 @[simp]
 theorem toDerived_mk (X : C) :
     toDerived (mk X) = K0.mk ((DerivedCategory.singleFunctor C 0).obj X) :=

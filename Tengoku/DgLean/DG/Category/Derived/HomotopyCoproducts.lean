@@ -71,6 +71,9 @@ def Cochain.directSumDesc {n : ℤ} (c : ∀ j, Cochain (F j) N n) : Cochain (di
       exact (c j).map_smul hf y
     | add x y hx hy => rw [map_add, map_add, hx, hy, map_add, map_add, _root_.smul_add]
 
+/--
+@isnad1 id=eq.0h9v.s10.c90284693e61 from=translated src=- shape=c4526973 vocab=be6bdb81
+-/
 @[simp]
 theorem Cochain.directSumDesc_app_of {n : ℤ} (c : ∀ j, Cochain (F j) N n) (j : J) {X : C}
     (x : (F j).obj X) :
@@ -78,7 +81,9 @@ theorem Cochain.directSumDesc_app_of {n : ℤ} (c : ∀ j, Cochain (F j) N n) (j
   DirectSum.toAddMonoid_of (fun j => (c j).app X) j x
 
 /-- Two morphisms out of a direct sum of dg modules are homotopic if their restrictions to all
-summands are homotopic.-/
+summands are homotopic.
+@isnad1 id=homotopi.1h6v.s7.d1f5f427054a from=translated src=- shape=6d00c135 vocab=5a57c3b1
+-/
 theorem Homotopic.of_directSum {φ ψ : directSum F ⟶ N}
     (h : ∀ j, Homotopic (directSumι F j ≫ φ) (directSumι F j ≫ ψ)) : Homotopic φ ψ := by
   rw [Homotopic.iff_sub]
@@ -112,6 +117,9 @@ noncomputable def coproductCofan : Cofan X :=
   Cofan.mk ((quotient C).obj (directSum fun j => (X j).as)) fun j =>
     (quotient C).map (directSumι (fun j => (X j).as) j)
 
+/--
+@isnad1 id=eq.0h4v.s7.963a1439ad1c from=translated src=- shape=ddbbf04b vocab=5af263f0
+-/
 @[simp]
 theorem coproductCofan_inj (j : J) :
     (coproductCofan X).inj j = (quotient C).map (directSumι (fun j => (X j).as) j) := rfl
@@ -132,7 +140,9 @@ noncomputable def isColimitCoproductCofan : IsColimit (coproductCofan X) :=
 
 variable (F : J → CatModule.{max w w'} C)
 
-/-- The quotient functor sends the direct sum of dg modules to a coproduct.-/
+/-- The quotient functor sends the direct sum of dg modules to a coproduct.
+@isnad1 id=preserve.0h3v.s6.d37bffae8123 from=translated src=- shape=c6ce78c2 vocab=1c1dff67
+-/
 instance quotient_preservesColimit_discreteFunctor :
     PreservesColimit (Discrete.functor F) (quotient C) :=
   preservesColimit_of_preserves_colimit_cocone (coproductCoconeIsColimit F)
@@ -143,7 +153,9 @@ end
 
 variable (C)
 
-/-- The quotient functor from dg modules to the homotopy category preserves coproducts.-/
+/-- The quotient functor from dg modules to the homotopy category preserves coproducts.
+@isnad1 id=preserve.0h2v.s5.31666053499d from=translated src=- shape=2f86d89f vocab=9be2a62a
+-/
 instance quotient_preservesColimitsOfShape_discrete (J : Type w') :
     PreservesColimitsOfShape (Discrete J) (quotient.{max w w'} C) where
   preservesColimit {K} := by

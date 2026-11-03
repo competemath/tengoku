@@ -63,14 +63,23 @@ def curryEquiv (n : ℕ) : MCochain R 𝔤 (n + 1) ≃ₗ[R] (𝔤 →ₗ[R] MCo
 
 variable {R 𝔤}
 
+/--
+@isnad1 id=eq.0h6v.s11.09c0282b202b from=translated src=- shape=6611362d vocab=44701e51
+-/
 @[simp]
 theorem curryEquiv_apply {n : ℕ} (f : MCochain R 𝔤 (n + 1)) (x : 𝔤) (v : Fin n → 𝔤) :
     curryEquiv R 𝔤 n f x v = f (Fin.cons x v) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.474a6f81e10a from=translated src=- shape=5f5e431e vocab=d8a8ca3c
+-/
 @[simp]
 theorem curryEquiv_symm_apply {n : ℕ} (φ : 𝔤 →ₗ[R] MCochain R 𝔤 n) (v : Fin (n + 1) → 𝔤) :
     (curryEquiv R 𝔤 n).symm φ v = φ (v 0) (Fin.tail v) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.524bfa90bdbf from=translated src=- shape=d45a660d vocab=47dcfbef
+-/
 theorem ext_curry {n : ℕ} {f g : MCochain R 𝔤 (n + 1)}
     (h : ∀ x, curryEquiv R 𝔤 n f x = curryEquiv R 𝔤 n g x) : f = g :=
   (curryEquiv R 𝔤 n).injective (LinearMap.ext h)
@@ -100,23 +109,37 @@ def ceDiff : (n : ℕ) → MCochain R 𝔤 n →ₗ[R] MCochain R 𝔤 (n + 1)
 
 variable {R 𝔤}
 
+/--
+@isnad1 id=eq.0h6v.s13.7bc4207645c1 from=translated src=- shape=5acef19f vocab=38947f3e
+-/
 theorem curry_lieAct {n : ℕ} (x : 𝔤) (f : MCochain R 𝔤 (n + 1)) (y : 𝔤) :
     curryEquiv R 𝔤 n (lieAct R 𝔤 (n + 1) x f) y =
       lieAct R 𝔤 n x (curryEquiv R 𝔤 n f y) - curryEquiv R 𝔤 n f ⁅x, y⁆ := by
   ext v
   simp [lieAct]
 
+/--
+@isnad1 id=eq.0h5v.s13.c9bc2492189e from=translated src=- shape=efcbf1b0 vocab=2dee2d23
+-/
 theorem curry_ceDiff {n : ℕ} (f : MCochain R 𝔤 (n + 1)) (x : 𝔤) :
     curryEquiv R 𝔤 (n + 1) (ceDiff R 𝔤 (n + 1) f) x =
       lieAct R 𝔤 (n + 1) x f - ceDiff R 𝔤 n (curryEquiv R 𝔤 n f x) := by
   ext v
   simp [ceDiff]
 
+/--
+@isnad1 id=eq.0h4v.s11.36328c7c4abf from=translated src=- shape=923e809c vocab=6894fb9f
+-/
 @[simp] theorem lieAct_zero (x : 𝔤) (f : MCochain R 𝔤 0) : lieAct R 𝔤 0 x f = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.88b69bf7896f from=translated src=- shape=0b6ea87a vocab=687c3ee1
+-/
 @[simp] theorem ceDiff_zero (f : MCochain R 𝔤 0) : ceDiff R 𝔤 0 f = 0 := rfl
 
-/-- The coadjoint action is a representation: `[x, y] • f = x • y • f - y • x • f`.-/
+/-- The coadjoint action is a representation: `[x, y] • f = x • y • f - y • x • f`.
+@isnad1 id=eq.0h6v.s13.9b09d714688f from=translated src=- shape=3b5f74eb vocab=2e79c535
+-/
 theorem lieAct_lie {n : ℕ} (x y : 𝔤) (f : MCochain R 𝔤 n) :
     lieAct R 𝔤 n ⁅x, y⁆ f =
       lieAct R 𝔤 n x (lieAct R 𝔤 n y f) - lieAct R 𝔤 n y (lieAct R 𝔤 n x f) := by
@@ -129,7 +152,9 @@ theorem lieAct_lie {n : ℕ} (x y : 𝔤) (f : MCochain R 𝔤 n) :
     simp only [map_add]
     abel
 
-/-- The differential commutes with the coadjoint action.-/
+/-- The differential commutes with the coadjoint action.
+@isnad1 id=eq.0h5v.s13.70bb0d56d8c9 from=translated src=- shape=ebe04f09 vocab=7464f5dc
+-/
 theorem ceDiff_lieAct {n : ℕ} (x : 𝔤) (f : MCochain R 𝔤 n) :
     ceDiff R 𝔤 n (lieAct R 𝔤 n x f) = lieAct R 𝔤 (n + 1) x (ceDiff R 𝔤 n f) := by
   induction n with
@@ -141,7 +166,9 @@ theorem ceDiff_lieAct {n : ℕ} (x : 𝔤) (f : MCochain R 𝔤 n) :
     simp only [map_neg]
     abel
 
-/-- `d ∘ d = 0` on multilinear cochains.-/
+/-- `d ∘ d = 0` on multilinear cochains.
+@isnad1 id=eq.0h4v.s11.704c812eb26c from=translated src=- shape=30b3f150 vocab=687c3ee1
+-/
 theorem ceDiff_ceDiff {n : ℕ} (f : MCochain R 𝔤 n) : ceDiff R 𝔤 (n + 1) (ceDiff R 𝔤 n f) = 0 := by
   induction n with
   | zero => simp
@@ -151,7 +178,9 @@ theorem ceDiff_ceDiff {n : ℕ} (f : MCochain R 𝔤 n) : ceDiff R 𝔤 (n + 1) 
     simp
 
 /-- The coadjoint action on multilinear cochains:
-`(x • f)(v₁, …, vₙ) = -∑ⱼ f (v₁, …, [x, vⱼ], …, vₙ)`.-/
+`(x • f)(v₁, …, vₙ) = -∑ⱼ f (v₁, …, [x, vⱼ], …, vₙ)`.
+@isnad1 id=eq.0h6v.s11.affd43779371 from=translated src=- shape=4f4ae731 vocab=20d0eb70
+-/
 theorem lieAct_apply {n : ℕ} (x : 𝔤) (f : MCochain R 𝔤 n) (v : Fin n → 𝔤) :
     lieAct R 𝔤 n x f v = -∑ j, f (Function.update v j ⁅x, v j⁆) := by
   induction n with
@@ -170,30 +199,50 @@ theorem lieAct_apply {n : ℕ} (x : 𝔤) (f : MCochain R 𝔤 n) (v : Fin n →
 def IsAlt {n : ℕ} (f : MCochain R 𝔤 n) : Prop :=
   ∀ (v : Fin n → 𝔤) (i j : Fin n), v i = v j → i ≠ j → f v = 0
 
+/--
+@isnad1 id=isalt.0h3v.s6.66123e7897da from=translated src=- shape=acf24338 vocab=c68c034a
+-/
 theorem isAlt_zero {n : ℕ} : IsAlt (0 : MCochain R 𝔤 n) := fun _ _ _ _ _ => rfl
 
+/--
+@isnad1 id=isalt.2h5v.s7.be3a75915df2 from=translated src=- shape=8e100ce0 vocab=32db5128
+-/
 theorem IsAlt.sub {n : ℕ} {f g : MCochain R 𝔤 n} (hf : IsAlt f) (hg : IsAlt g) :
     IsAlt (f - g) := fun v i j h hij => by
   rw [sub_apply, hf v i j h hij, hg v i j h hij, sub_zero]
 
+/--
+@isnad1 id=isalt.0h4v.s6.b64dfefcd4fa from=translated src=- shape=a9ca6d61 vocab=c30bb591
+-/
 theorem isAlt_toMultilinearMap {n : ℕ} (ω : 𝔤 [⋀^Fin n]→ₗ[R] R) : IsAlt ω.toMultilinearMap :=
   fun v _ _ h hij => ω.map_eq_zero_of_eq v h hij
 
+/--
+@isnad1 id=isalt.1h5v.s11.ea5fd877c48d from=translated src=- shape=7f91e1d8 vocab=4e1012ed
+-/
 theorem IsAlt.curry {n : ℕ} {f : MCochain R 𝔤 (n + 1)} (hf : IsAlt f) (x : 𝔤) :
     IsAlt (curryEquiv R 𝔤 n f x) := fun v i j h hij => by
   rw [curryEquiv_apply]
   exact hf _ i.succ j.succ (by simpa using h) ((Fin.succ_injective _).ne hij)
 
+/--
+@isnad1 id=eq.1h5v.s12.09c7e49a7ad4 from=translated src=- shape=bd4a9e66 vocab=4e1012ed
+-/
 theorem IsAlt.curry_curry {n : ℕ} {f : MCochain R 𝔤 (n + 2)} (hf : IsAlt f) (x : 𝔤) :
     curryEquiv R 𝔤 n (curryEquiv R 𝔤 (n + 1) f x) x = 0 := by
   ext v
   exact hf _ 0 1 (by simp) Fin.zero_ne_one
 
+/--
+@isnad1 id=eq.2h7v.s7.8cded383ff7c from=translated src=- shape=15bec6b6 vocab=fa6779c7
+-/
 theorem IsAlt.map_swap {n : ℕ} {f : MCochain R 𝔤 n} (hf : IsAlt f) (v : Fin n → 𝔤) {i j : Fin n}
     (hij : i ≠ j) : f (v ∘ Equiv.swap i j) = -f v :=
   (⟨f, hf⟩ : 𝔤 [⋀^Fin n]→ₗ[R] R).map_swap v hij
 
-/-- The coadjoint action preserves alternating cochains.-/
+/-- The coadjoint action preserves alternating cochains.
+@isnad1 id=isalt.1h5v.s11.8b7ca03ae737 from=translated src=- shape=9fc44df9 vocab=1a678e2e
+-/
 theorem IsAlt.lieAct {n : ℕ} {f : MCochain R 𝔤 n} (hf : IsAlt f) (x : 𝔤) :
     IsAlt (lieAct R 𝔤 n x f) := fun v i j h hij => by
   rw [lieAct_apply, neg_eq_zero, ← Finset.add_sum_erase _ _ (Finset.mem_univ i),
@@ -227,7 +276,9 @@ theorem IsAlt.eq_zero_of_apply_eq {n : ℕ} {f : MCochain R 𝔤 (n + 1)} (hf : 
     simp [hk]
 
 /-- Uncurrying a family `φ` of alternating cochains with `φ x (…, x, …) = 0` gives an
-alternating cochain.-/
+alternating cochain.
+@isnad1 id=isalt.2h4v.s12.0b17977b6b32 from=translated src=- shape=906b0e42 vocab=d2e3f588
+-/
 theorem isAlt_curryEquiv_symm {n : ℕ} (φ : 𝔤 →ₗ[R] MCochain R 𝔤 n) (h₁ : ∀ x, IsAlt (φ x))
     (h₂ : ∀ (x : 𝔤) (w : Fin n → 𝔤) (k : Fin n), w k = x → φ x w = 0) :
     IsAlt ((curryEquiv R 𝔤 n).symm φ) := fun v i j h hij => by
@@ -242,7 +293,9 @@ theorem isAlt_curryEquiv_symm {n : ℕ} (φ : 𝔤 →ₗ[R] MCochain R 𝔤 n) 
     | zero => exact h₂ _ _ i (by simpa [Fin.tail] using h)
     | succ j => exact h₁ _ _ i j (by simpa [Fin.tail] using h) (fun h' => hij (by rw [h']))
 
-/-- The differential preserves alternating cochains.-/
+/-- The differential preserves alternating cochains.
+@isnad1 id=isalt.1h4v.s9.3d23b2499951 from=translated src=- shape=68d452d0 vocab=680a6193
+-/
 theorem IsAlt.ceDiff {n : ℕ} {f : MCochain R 𝔤 n} (hf : IsAlt f) :
     IsAlt (ChevalleyEilenberg.ceDiff R 𝔤 n f) := by
   induction n with
@@ -285,17 +338,27 @@ def ceD (n : ℕ) : CECochain R 𝔤 n →ₗ[R] CECochain R 𝔤 (n + 1) where
 
 variable {R 𝔤}
 
+/--
+@isnad1 id=eq.0h5v.s10.aac562e0e4dc from=translated src=- shape=bee2fe45 vocab=5089c43b
+-/
 theorem ceD_apply {n : ℕ} (ω : CECochain R 𝔤 n) (v : Fin (n + 1) → 𝔤) :
     ceD R 𝔤 n ω v = ceDiff R 𝔤 n ω.toMultilinearMap v := rfl
 
-/-- `d ∘ d = 0` for the Chevalley–Eilenberg differential.-/
+/-- `d ∘ d = 0` for the Chevalley–Eilenberg differential.
+@isnad1 id=eq.0h4v.s10.e1e8ae01a774 from=translated src=- shape=30b3f150 vocab=7561d472
+-/
 theorem ceD_ceD {n : ℕ} (ω : CECochain R 𝔤 n) : ceD R 𝔤 (n + 1) (ceD R 𝔤 n ω) = 0 :=
   AlternatingMap.ext fun v => congrArg (fun f : MCochain R 𝔤 (n + 2) => f v) (ceDiff_ceDiff _)
 
+/--
+@isnad1 id=eq.0h3v.s9.faf97884784b from=translated src=- shape=0b6ea87a vocab=7561d472
+-/
 @[simp]
 theorem ceD_zero (ω : CECochain R 𝔤 0) : ceD R 𝔤 0 ω = 0 := AlternatingMap.ext fun _ => rfl
 
-/-- Moving the `i`-th argument of an alternating map to the front costs the sign `(-1)^i`.-/
+/-- Moving the `i`-th argument of an alternating map to the front costs the sign `(-1)^i`.
+@isnad1 id=eq.0h6v.s8.7ba5be708e64 from=translated src=- shape=b840adc0 vocab=daeca5ed
+-/
 theorem map_cons_removeNth {n : ℕ} (ω : CECochain R 𝔤 (n + 1)) (v : Fin (n + 1) → 𝔤)
     (i : Fin (n + 1)) :
     ω (Fin.cons (v i) (Fin.removeNth i v)) = koszulSign ((i : ℕ) : ℤ) • ω v := by
@@ -307,6 +370,9 @@ theorem map_cons_removeNth {n : ℕ} (ω : CECochain R 𝔤 (n + 1)) (v : Fin (n
   rw [h, ω.map_perm, Equiv.Perm.sign_symm, Fin.sign_cycleRange, koszulSign, Int.negOnePow_def,
     zpow_natCast]
 
+/--
+@isnad1 id=eq.0h7v.s8.d06db9406ecb from=translated src=- shape=7b9676c8 vocab=b90edb58
+-/
 theorem map_cons_cons_swap {n : ℕ} (ω : CECochain R 𝔤 (n + 2)) (a b : 𝔤) (w : Fin n → 𝔤) :
     ω (Fin.cons a (Fin.cons b w)) = -ω (Fin.cons b (Fin.cons a w)) := by
   rw [← ω.map_swap _ (i := 0) (j := 1) (by simp)]
@@ -324,6 +390,9 @@ theorem map_cons_cons_swap {n : ℕ} (ω : CECochain R 𝔤 (n + 2)) (a b : 𝔤
       simp only [Fin.cons_succ]
 
 omit [LieRing 𝔤] in
+/--
+@isnad1 id=eq.0h5v.s7.51d843c7a975 from=translated src=- shape=ebcda25b vocab=ed6c37c2
+-/
 theorem removeNth_succ_cons {n : ℕ} (j : Fin (n + 1)) (a : 𝔤) (y : Fin (n + 1) → 𝔤) :
     Fin.removeNth j.succ (Fin.cons a y : Fin (n + 2) → 𝔤) = Fin.cons a (Fin.removeNth j y) := by
   ext k
@@ -332,11 +401,16 @@ theorem removeNth_succ_cons {n : ℕ} (j : Fin (n + 1)) (a : 𝔤) (y : Fin (n +
   | succ k => simp [Fin.removeNth, Fin.succ_succAbove_succ]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s11.33eed7adbcfc from=translated src=- shape=9f2dd161 vocab=bfccc34f
+-/
 theorem curryEquiv_toMultilinearMap {n : ℕ} (ω : CECochain R 𝔤 (n + 1)) (x : 𝔤) :
     curryEquiv R 𝔤 n ω.toMultilinearMap x = (ω.curryLeft x).toMultilinearMap := rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- One step of the Chevalley–Eilenberg differential.-/
+/-- One step of the Chevalley–Eilenberg differential.
+@isnad1 id=eq.0h6v.s11.b791e059cdc4 from=translated src=- shape=5e435410 vocab=4e6e92ed
+-/
 theorem ceD_cons {n : ℕ} (ω : CECochain R 𝔤 (n + 1)) (x₀ : 𝔤) (y : Fin (n + 1) → 𝔤) :
     ceD R 𝔤 (n + 1) ω (Fin.cons x₀ y) =
       -(∑ j : Fin (n + 1), koszulSign ((j : ℕ) : ℤ) • ω (Fin.cons ⁅x₀, y j⁆ (Fin.removeNth j y)))
@@ -355,7 +429,9 @@ private theorem ks_succ (k : ℕ) : koszulSign ((k + 1 : ℕ) : ℤ) = -koszulSi
 set_option backward.isDefEq.respectTransparency false in
 /-- The Chevalley–Eilenberg differential is given by the standard formula
 `(d ω)(x₀, …, xₙ₊₁) = ∑_{i < j} (-1)^(i + j) ω([xᵢ, xⱼ], x₀, …, x̂ᵢ, …, x̂ⱼ, …, xₙ₊₁)`. Here
-`Fin.removeNth i (Fin.removeNth j x)` is `x` with the entries `j` and then `i < j` removed.-/
+`Fin.removeNth i (Fin.removeNth j x)` is `x` with the entries `j` and then `i < j` removed.
+@isnad1 id=eq.0h5v.s10.0bc24caafbe9 from=translated src=- shape=54b2cf72 vocab=15037085
+-/
 theorem ceD_apply_eq_sum {n : ℕ} (ω : CECochain R 𝔤 (n + 1)) (x : Fin (n + 2) → 𝔤) :
     ceD R 𝔤 (n + 1) ω x = ∑ j : Fin (n + 2), ∑ i : Fin (n + 1),
       if (i : ℕ) < j then koszulSign (((i : ℕ) + (j : ℕ) : ℕ) : ℤ) •
@@ -412,6 +488,9 @@ def ceCoboundaries : (n : ℕ) → Submodule R (CECochain R 𝔤 n)
   | 0 => ⊥
   | n + 1 => LinearMap.range (ceD R 𝔤 n)
 
+/--
+@isnad1 id=le.0h3v.s8.b7307ed22a51 from=translated src=- shape=b888778f vocab=60d58954
+-/
 theorem ceCoboundaries_le_ceCocycles (n : ℕ) : ceCoboundaries R 𝔤 n ≤ ceCocycles R 𝔤 n := by
   cases n with
   | zero => exact bot_le
@@ -429,11 +508,17 @@ set_option backward.isDefEq.respectTransparency false in
 abbrev CECohomology (n : ℕ) : Type _ :=
   ceCocycles R 𝔤 n ⧸ (ceCoboundaries R 𝔤 n).comap (ceCocycles R 𝔤 n).subtype
 
+/--
+@isnad1 id=eq.0h2v.s11.c871174a3f39 from=translated src=- shape=f753fc77 vocab=eacf65ed
+-/
 theorem comap_ceCoboundaries_zero :
     (ceCoboundaries R 𝔤 0).comap (ceCocycles R 𝔤 0).subtype = ⊥ := by
   show Submodule.comap _ ⊥ = ⊥
   rw [Submodule.comap_bot, Submodule.ker_subtype]
 
+/--
+@isnad1 id=eq.0h2v.s11.1c9be7b6c273 from=translated src=- shape=f753fc77 vocab=eacf65ed
+-/
 theorem comap_ceCoboundaries_one :
     (ceCoboundaries R 𝔤 1).comap (ceCocycles R 𝔤 1).subtype = ⊥ := by
   have h : ceCoboundaries R 𝔤 1 = ⊥ := by
@@ -462,17 +547,26 @@ def cochainOneEquiv : CECochain R 𝔤 1 ≃ₗ[R] Module.Dual R 𝔤 where
 
 variable {R 𝔤}
 
+/--
+@isnad1 id=eq.0h4v.s10.68266a77427c from=translated src=- shape=70aea4bd vocab=15b1f471
+-/
 @[simp]
 theorem cochainOneEquiv_apply (ω : CECochain R 𝔤 1) (x : 𝔤) :
     cochainOneEquiv R 𝔤 ω x = ω ![x] := by
   simp only [cochainOneEquiv, LinearEquiv.coe_mk]
   exact congrArg ω (funext fun i => by fin_cases i; rfl)
 
+/--
+@isnad1 id=eq.0h4v.s10.a11633a808a9 from=translated src=- shape=f44d05cc vocab=a89322bd
+-/
 @[simp]
 theorem cochainOneEquiv_symm_apply (φ : Module.Dual R 𝔤) (v : Fin 1 → 𝔤) :
     (cochainOneEquiv R 𝔤).symm φ v = φ (v 0) := rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.a94d3122caff from=translated src=- shape=d95e0787 vocab=dd72fa85
+-/
 theorem ceD_one_apply (ω : CECochain R 𝔤 1) (x y : 𝔤) :
     ceD R 𝔤 1 ω ![x, y] = -ω ![⁅x, y⁆] := by
   rw [show (![x, y] : Fin 2 → 𝔤) = Fin.cons x ![y] from rfl, ceD_cons, ceD_zero,
@@ -480,7 +574,9 @@ theorem ceD_one_apply (ω : CECochain R 𝔤 1) (x y : 𝔤) :
   simp only [Fin.val_zero, Nat.cast_zero, koszulSign_zero, one_smul]
   congr 2
 
-/-- A `1`-cochain is a cocycle if and only if it vanishes on brackets.-/
+/-- A `1`-cochain is a cocycle if and only if it vanishes on brackets.
+@isnad1 id=iff.0h3v.s9.f1934b5f8694 from=translated src=- shape=2a14f232 vocab=d9e58ab6
+-/
 theorem mem_ceCocycles_one {ω : CECochain R 𝔤 1} :
     ω ∈ ceCocycles R 𝔤 1 ↔ ∀ x y : 𝔤, ω ![⁅x, y⁆] = 0 := by
   constructor
@@ -497,6 +593,9 @@ variable (R 𝔤) in
 abbrev derivedSubmodule : Submodule R 𝔤 :=
   LieSubmodule.toSubmodule (⁅(⊤ : LieIdeal R 𝔤), ⊤⁆ : LieIdeal R 𝔤)
 
+/--
+@isnad1 id=iff.0h3v.s9.86b345f953a9 from=translated src=- shape=f6527f9d vocab=0cf4350a
+-/
 theorem mem_dualAnnihilator_derivedSubmodule (φ : Module.Dual R 𝔤) :
     φ ∈ (derivedSubmodule R 𝔤).dualAnnihilator ↔ ∀ x y : 𝔤, φ ⁅x, y⁆ = 0 := by
   unfold derivedSubmodule
