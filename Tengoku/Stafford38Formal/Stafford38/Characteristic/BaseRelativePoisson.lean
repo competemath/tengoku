@@ -1,0 +1,104 @@
+module
+public import Tengoku.Stafford38Formal.Stafford38.Geometry.CoisotropicTranslation
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms IsPoisson.isBaseRelativePoisson` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms hamiltonIter_mem_of_isBaseRelativePoisson` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms fibreLinePolynomial_eq_zero_of_isBaseRelativePoisson` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms zeroSection_stable_under_differential_translation_of_isBaseRelativePoisson` (it only prints; the queue checks the axioms of every declaration). -/
+
+@[expose] public section
+
+/-!
+# Base-relative Poisson closure
+
+The vertical-translation argument needs brackets whose left entry comes from
+the base-coordinate ring. This file defines that fragment and proves its
+consequences for Hamiltonian iteration and fibre-line translation. It does
+not assert that a particular ideal has the property; the unconditional
+canonical-support proof is assembled in `FoundationClosure`.
+-/
+
+namespace Stafford38.Characteristic.BaseRelativePoisson
+
+open Stafford38.Characteristic
+open Stafford38.Geometry.CoisotropicTranslation
+
+noncomputable section
+
+variable {k : Type*} [Field k] {n : ℕ}
+
+/--
+The exact base-relative fragment of Poisson involutivity:
+`{J ∩ k[x], J} ⊆ J`, expressed using the canonical base embedding.-/
+def IsBaseRelativePoisson (J : Ideal (SymbolRing k n)) : Prop :=
+  ∀ f : MvPolynomial (Fin n) k, baseLift f ∈ J →
+    ∀ g ∈ J, poissonBracket (baseLift f) g ∈ J
+
+/-- Full Poisson closure implies the base-relative fragment.
+@isnad1 id=isbasere.1h3v.s5.da67940ffd77 from=translated src=- shape=d8da6301 vocab=8698ad5b
+-/
+theorem IsPoisson.isBaseRelativePoisson
+    (J : Ideal (SymbolRing k n)) (hJ : IsPoisson J) :
+    IsBaseRelativePoisson J := by
+  intro f hf g hg
+  exact hJ (baseLift f) hf g
+
+/-- Base-relative closure is preserved through all iterated Hamiltonian brackets.
+@isnad1 id=mem.3h6v.s9.22c986141946 from=translated src=- shape=0e8643c5 vocab=0da4af9f
+-/
+theorem hamiltonIter_mem_of_isBaseRelativePoisson
+    (J : Ideal (SymbolRing k n)) (hJ : IsBaseRelativePoisson J)
+    (f : MvPolynomial (Fin n) k) (hf : baseLift f ∈ J)
+    (g : SymbolRing k n) (hg : g ∈ J) :
+    ∀ m, hamiltonIter f m g ∈ J := by
+  intro m
+  induction m with
+  | zero => exact hg
+  | succ m hm => exact hJ f hf (hamiltonIter f m g) hm
+
+/--
+The fibre-line polynomial vanishes under the exact base-relative Gabber
+fragment; full Poisson closure is not needed.
+@isnad1 id=eq.4h6v.s10.0c8ee8295eb8 from=translated src=- shape=0506babc vocab=6b3a31e2
+-/
+theorem fibreLinePolynomial_eq_zero_of_isBaseRelativePoisson
+    [CharZero k]
+    (J : Ideal (SymbolRing k n)) (hJ : IsBaseRelativePoisson J)
+    (y : Fin n → k)
+    (hzero : ∀ g ∈ J, MvPolynomial.eval (zeroSectionPoint y) g = 0)
+    (f : MvPolynomial (Fin n) k) (hf : baseLift f ∈ J)
+    (g : SymbolRing k n) (hg : g ∈ J) :
+    fibreLinePolynomial y (differentialAt y f) g = 0 := by
+  apply polynomial_eq_zero_of_eval_iterate_derivative_zero
+  intro m
+  rw [iterate_derivative_fibreLinePolynomial, eval_zero_fibreLinePolynomial]
+  exact hzero _ (hamiltonIter_mem_of_isBaseRelativePoisson J hJ f hf g hg m)
+
+/--
+A zero-section common zero remains a common zero after translation by
+`t df_y`, assuming only `{J ∩ k[x], J} ⊆ J`.
+@isnad1 id=eq.4h7v.s10.398628a39ff6 from=translated src=- shape=72982ac5 vocab=8eab43ec
+-/
+theorem zeroSection_stable_under_differential_translation_of_isBaseRelativePoisson
+    [CharZero k]
+    (J : Ideal (SymbolRing k n)) (hJ : IsBaseRelativePoisson J)
+    (y : Fin n → k)
+    (hzero : ∀ g ∈ J, MvPolynomial.eval (zeroSectionPoint y) g = 0)
+    (f : MvPolynomial (Fin n) k) (hf : baseLift f ∈ J)
+    (g : SymbolRing k n) (hg : g ∈ J) (t : k) :
+    MvPolynomial.eval (differentialTranslatePoint y f t) g = 0 := by
+  have heval :
+      MvPolynomial.eval (differentialTranslatePoint y f t) g =
+        MvPolynomial.eval (Sum.elim y (fun i => t * differentialAt y f i)) g := by
+    apply MvPolynomial.eval₂_congr
+    intro i c hi hc
+    rcases i with i | i <;> simp [differentialTranslatePoint, affineFibreTranslatePoint]
+  rw [heval, ← eval_fibreLinePolynomial]
+  rw [fibreLinePolynomial_eq_zero_of_isBaseRelativePoisson J hJ y hzero f hf g hg]
+  exact Polynomial.eval_zero
+
+end
+
+end Stafford38.Characteristic.BaseRelativePoisson
