@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "cf9d5be380ca7bc857ea15e4e54cbe122b1c458e8b674576dbd526c34e257a55",
+ "gate2_unjudged": [],
+ "library": "quadratic-number-fields",
+ "lint_mode": "proposed",
+ "modules": 78,
+ "part": 1,
+ "theorems": 572
+}
