@@ -523,7 +523,7 @@ jobs:
   queue-recheck:
     if: github.event_name == 'merge_group'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
     permissions: { contents: read, pull-requests: read }   # pull-requests: a studied PR's reviews are read below
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2

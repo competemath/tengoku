@@ -2,7 +2,7 @@
 
 3 Nov 2026: with four more libraries in main, `actions/checkout` (full history, blobless, then main's whole tree) and `every import resolves` (one blob fetched per module of an
 intake PR) took longer than the 5 and 10 minutes the jobs were given; on the three intake PRs of that evening (#698, #699, #702) one job or another was cancelled at its limit
-in 12 of 15 attempts, and the PR stayed red with every check it was waiting for passing on the next. A job that checks a PR out the way pr-gate does has room for it.
+repeatedly, and the PR stayed red with every check it was waiting for passing on the next. A job that checks a PR out the way pr-gate does has room for it.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ sys.path.insert(0, str(TREE / "scripts" / "ci"))
 
 CHECKOUT_MINUTES = 15  # the least a job that checks out main's tree blobless may be given
 IMPORTS_MINUTES = 30  # `every import resolves` reads one blob per module of the PR
+QUEUE_RECHECK_MINUTES = 45  # the queue runs that check and the rest of the gate on the merged result; #698 (217 modules) was ejected when it was cancelled at 15 minutes
 
 
 class GateLimits(unittest.TestCase):
@@ -42,6 +43,9 @@ class GateLimits(unittest.TestCase):
 
     def test_the_import_check_has_at_least_thirty_minutes(self):
         self.assertGreaterEqual(self.jobs()["imports"]["timeout-minutes"], IMPORTS_MINUTES)
+
+    def test_the_queue_recheck_has_at_least_forty_five_minutes(self):
+        self.assertGreaterEqual(self.jobs()["queue-recheck"]["timeout-minutes"], QUEUE_RECHECK_MINUTES)
 
     def test_the_jobs_that_check_out_blobless_are_found(self):
         # the test above must not pass by finding nothing
