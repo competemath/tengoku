@@ -28,12 +28,21 @@ def w1 : ℂ ⊗[ℚ] V2 := bc 0 + Complex.I • bc 1
 /-- `w₂ = e₀ - i e₁ = σ w₁`.-/
 def w2 : ℂ ⊗[ℚ] V2 := bc 0 - Complex.I • bc 1
 
+/--
+@isnad1 id=eq.0h1v.s11.04848f30d01b from=translated src=- shape=aaa5ea19 vocab=36b3a225
+-/
 @[simp] theorem sigmaQR_bc (i : Fin 2) : sigmaQR V2 (bc i) = bc i := by
   simp [bc, Algebra.TensorProduct.basis_apply]
 
+/--
+@isnad1 id=eq.0h0v.s10.13b2ed3efa8d from=translated src=- shape=fb936850 vocab=53eaa144
+-/
 theorem sigmaQ_w1 : sigmaQ V2 w1 = w2 := by
   simp [w1, w2, map_add, map_smulₛₗ, Complex.conj_I, sub_eq_add_neg, neg_smul]
 
+/--
+@isnad1 id=eq.0h0v.s10.6f67124157bb from=translated src=- shape=fb936850 vocab=53eaa144
+-/
 theorem sigmaQ_w2 : sigmaQ V2 w2 = w1 := by
   rw [← sigmaQ_w1]; exact sigmaQ_sigmaQ V2 w1
 
@@ -45,6 +54,9 @@ private theorem coeffs_zero (a b : ℂ) (h : a • bc 0 + b • bc 1 = 0) :
     (by simpa [Fin.sum_univ_two] using h)
   exact ⟨by simpa using hz 0, by simpa using hz 1⟩
 
+/--
+@isnad1 id=not.0h0v.s10.f4cd3b2f44b1 from=translated src=- shape=d72e7874 vocab=3d6c69bc
+-/
 theorem w2_not_mem_span_w1 : w2 ∉ (ℂ ∙ w1) := by
   rw [Submodule.mem_span_singleton]
   rintro ⟨a, ha⟩
@@ -59,9 +71,15 @@ theorem w2_not_mem_span_w1 : w2 ∉ (ℂ ∙ w1) := by
   · norm_num at h
   · exact Complex.I_ne_zero h
 
+/--
+@isnad1 id=disjoint.0h0v.s10.b9c191ea0ec5 from=translated src=- shape=ccc69f85 vocab=4e459705
+-/
 theorem disjoint_w1_w2 : Disjoint (ℂ ∙ w1) (ℂ ∙ w2) :=
   Submodule.disjoint_span_singleton.mpr fun h => absurd h w2_not_mem_span_w1
 
+/--
+@isnad1 id=mem.0h0v.s11.91832e68ff60 from=translated src=- shape=d3465af7 vocab=4c929a13
+-/
 theorem bc0_mem : bc 0 ∈ (ℂ ∙ w1) ⊔ (ℂ ∙ w2) := by
   have hw1 : w1 ∈ (ℂ ∙ w1) ⊔ (ℂ ∙ w2) :=
     Submodule.mem_sup_left (Submodule.mem_span_singleton_self _)
@@ -74,6 +92,9 @@ theorem bc0_mem : bc 0 ∈ (ℂ ∙ w1) ⊔ (ℂ ∙ w2) := by
   rw [h]
   exact Submodule.smul_mem _ _ (Submodule.add_mem _ hw1 hw2)
 
+/--
+@isnad1 id=mem.0h0v.s11.deff2f5ebd6d from=translated src=- shape=d3465af7 vocab=4c929a13
+-/
 theorem bc1_mem : bc 1 ∈ (ℂ ∙ w1) ⊔ (ℂ ∙ w2) := by
   have hw1 : w1 ∈ (ℂ ∙ w1) ⊔ (ℂ ∙ w2) :=
     Submodule.mem_sup_left (Submodule.mem_span_singleton_self _)
@@ -88,14 +109,23 @@ theorem bc1_mem : bc 1 ∈ (ℂ ∙ w1) ⊔ (ℂ ∙ w2) := by
   rw [h]
   exact Submodule.smul_mem _ _ (Submodule.sub_mem _ hw1 hw2)
 
+/--
+@isnad1 id=eq.0h0v.s11.29a05bc06b24 from=translated src=- shape=4d5b5e44 vocab=ebba9824
+-/
 theorem span_w_top : (ℂ ∙ w1) ⊔ (ℂ ∙ w2) = ⊤ := by
   rw [eq_top_iff, ← bc.span_eq, Submodule.span_le, Set.range_subset_iff]
   rw [Fin.forall_fin_two]
   exact ⟨bc0_mem, bc1_mem⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.cfa6efb7596e from=translated src=- shape=939c1e84 vocab=babe3dfa
+-/
 theorem map_span_w1 : (ℂ ∙ w1).map (sigmaQ V2) = ℂ ∙ w2 := by
   rw [Submodule.map_span, Set.image_singleton, sigmaQ_w1]
 
+/--
+@isnad1 id=eq.0h0v.s10.f2c66230fe95 from=translated src=- shape=939c1e84 vocab=babe3dfa
+-/
 theorem map_span_w2 : (ℂ ∙ w2).map (sigmaQ V2) = ℂ ∙ w1 := by
   rw [Submodule.map_span, Set.image_singleton, sigmaQ_w2]
 

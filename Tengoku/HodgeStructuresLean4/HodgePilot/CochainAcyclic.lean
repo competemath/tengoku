@@ -91,7 +91,9 @@ variable {X : TopCat.{0}}
 set_option backward.isDefEq.respectTransparency false in
 /-- Flasque abelian sheaves satisfy the engine's sections-surjectivity
 predicate over `⊤` — repackaging of Mathlib's Zorn theorem
-`TopCat.Sheaf.IsFlasque.epi_of_shortExact`.-/
+`TopCat.Sheaf.IsFlasque.epi_of_shortExact`.
+@isnad1 id=issectio.0h2v.s7.423d7126b0b1 from=translated src=- shape=a0b825af vocab=4efaf952
+-/
 theorem isSectionsSurjectiveKernel_of_isFlasque
     (G : TopCat.Sheaf AddCommGrpCat.{0} X) [G.IsFlasque] :
     IsSectionsSurjectiveKernel (⊤ : Opens X) G := by
@@ -105,7 +107,9 @@ theorem isSectionsSurjectiveKernel_of_isFlasque
 set_option backward.isDefEq.respectTransparency false in
 /-- The committed Lemma W of `HodgePilot.SingularGamma`, repackaged into the
 engine's predicate: on a paracompact Hausdorff space the sheafified cochain
-sheaves satisfy the sections-surjectivity predicate over `⊤`.-/
+sheaves satisfy the sections-surjectivity predicate over `⊤`.
+@isnad1 id=issectio.0h2v.s7.d049f7acfd35 from=translated src=- shape=99905aff vocab=b6236bbc
+-/
 theorem isSectionsSurjectiveKernel_sheafifiedCochain
     [ParacompactSpace ↑X] [T2Space ↑X] (n : ℕ) :
     IsSectionsSurjectiveKernel (⊤ : Opens X)
@@ -135,7 +139,9 @@ sheafified cochain sheaf is flasque: a section of the cokernel over an open
 (`HodgePilot.SingularGammaRel.relativeLemmaW`), the lift extends to any larger
 open by flasqueness of the injective middle
 (`HodgePilot.FlasqueEmbed.isFlasque_of_injective`), and pushing back down hits
-the original section by naturality.-/
+the original section by naturality.
+@isnad1 id=isflasqu.4h6v.s9.e9bfe1b8ad15 from=translated src=- shape=016db044 vocab=ca8c275b
+-/
 theorem flasqueCokernel_sheafifiedCochain [T2Space ↑X]
     (hpar : ∀ W : Opens X, ParacompactSpace ↥W) :
     ∀ (n : ℕ) ⦃B R : TopCat.Sheaf AddCommGrpCat.{0} X⦄
@@ -165,7 +171,9 @@ Hausdorff space, if the cokernel of every injective embedding of a sheafified
 cochain sheaf is flasque (`hcok`, consumed), then every sheafified cochain
 sheaf has subsingleton sheaf cohomology in every positive degree — feed the
 class `FlasqueOrCochain X` to the parametric engine of
-`HodgePilot.AcyclicClassC`.-/
+`HodgePilot.AcyclicClassC`.
+@isnad1 id=subsingl.1h3v.s9.14d899df20cc from=translated src=- shape=2129f529 vocab=3a91bc17
+-/
 theorem subsingleton_H_sheafifiedCochain_of_flasqueCokernel
     [ParacompactSpace ↑X] [T2Space ↑X]
     (hcok : ∀ (n : ℕ) ⦃B R : TopCat.Sheaf AddCommGrpCat.{0} X⦄
@@ -199,7 +207,9 @@ carry paracompact subspace topology, every sheafified cochain sheaf has
 subsingleton sheaf cohomology in every positive degree:
 `Subsingleton (Sheaf.H ((sheafifiedCochainComplex X).X k) (m + 1))` for all
 `k` and `m`.  Claimed at exactly these hypotheses; the metrizable corollary
-below discharges all of them at once.-/
+below discharges all of them at once.
+@isnad1 id=subsingl.1h3v.s7.4c4ca13b97fe from=translated src=- shape=59400ceb vocab=d6469e31
+-/
 theorem subsingleton_H_sheafifiedCochain
     [ParacompactSpace ↑X] [T2Space ↑X]
     (hpar : ∀ W : Opens X, ParacompactSpace ↥W) (k m : ℕ) :
@@ -212,7 +222,9 @@ theorem subsingleton_H_sheafifiedCochain
 /-- On a metrizable space every open carries paracompact subspace topology:
 the subtype inclusion is an embedding, so the open is metrizable, and every
 metrizable space is paracompact (endow it with a compatible metric; every
-pseudo-e-metric space is paracompact).-/
+pseudo-e-metric space is paracompact).
+@isnad1 id=paracomp.0h2v.s6.15710be1cd3d from=translated src=- shape=052fa344 vocab=87550dca
+-/
 theorem paracompactSpace_opens_of_metrizableSpace
     [MetrizableSpace ↑X] (W : Opens X) : ParacompactSpace ↥W := by
   haveI : MetrizableSpace ↥W :=
@@ -224,7 +236,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **The metrizable corollary.**  On a metrizable space, every sheafified
 cochain sheaf has subsingleton sheaf cohomology in every positive degree —
 metrizability supplies Hausdorffness, paracompactness of the space, and
-paracompactness of every open.-/
+paracompactness of every open.
+@isnad1 id=subsingl.0h3v.s7.a27d83ed49c7 from=translated src=- shape=9800d8c9 vocab=b2aee05c
+-/
 theorem subsingleton_H_sheafifiedCochain_of_metrizable (X : TopCat.{0})
     [MetrizableSpace ↑X] (k m : ℕ) :
     Subsingleton (Sheaf.H ((sheafifiedCochainComplex X).X k) (m + 1)) := by
@@ -240,7 +254,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **Instantiation at the affine analytic point-space**: for a finite-type
 ℂ-algebra `A`, every sheafified cochain sheaf on the analytic point-space
 `CPoints A` has subsingleton sheaf cohomology in every positive degree —
-`CPoints A` is metrizable by `HodgePilot.Analytic.instMetrizableSpaceCPoints`.-/
+`CPoints A` is metrizable by `HodgePilot.Analytic.instMetrizableSpaceCPoints`.
+@isnad1 id=subsingl.0h3v.s8.9e1614f87de9 from=translated src=- shape=3e4fb798 vocab=eb1b6698
+-/
 theorem subsingleton_H_sheafifiedCochain_cpoints (A : Type) [CommRing A]
     [Algebra ℂ A] [Algebra.FiniteType ℂ A] (k m : ℕ) :
     Subsingleton (Sheaf.H
@@ -256,7 +272,9 @@ set_option backward.isDefEq.respectTransparency false in
 ℂ-scheme**: for a finite-type ℂ-algebra `A`, every sheafified cochain sheaf on
 `SPoints (structMor A)` has subsingleton sheaf cohomology in every positive
 degree — metrizability by
-`HodgePilot.Analytic.instMetrizableSpaceSPointsAffine`.-/
+`HodgePilot.Analytic.instMetrizableSpaceSPointsAffine`.
+@isnad1 id=subsingl.0h3v.s9.510cbe36ffa2 from=translated src=- shape=97ed08bd vocab=82320a6f
+-/
 theorem subsingleton_H_sheafifiedCochain_spoints (A : Type) [CommRing A]
     [Algebra ℂ A] [Algebra.FiniteType ℂ A] (k m : ℕ) :
     Subsingleton (Sheaf.H

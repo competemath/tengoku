@@ -64,7 +64,9 @@ namespace HodgePilot.SingularGammaRel
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **Relative local lifts**: an epimorphism of abelian sheaves admits local
-lifts, on opens inside `W`, of any section of the target over `W`.-/
+lifts, on opens inside `W`, of any section of the target over `W`.
+@isnad1 id=ex.1h7v.s12.096afc6095ff from=translated src=- shape=6e2366aa vocab=ce02af82
+-/
 lemma exists_local_lift_rel {X : TopCat.{0}} {B R : TopCat.Sheaf AddCommGrpCat.{0} X}
     (g : B ⟶ R) [Epi g] {W : Opens X} (r : R.1.obj (op W)) (x : ↑X) (hx : x ∈ W) :
     ∃ (V : Opens X) (hVW : V ≤ W) (_ : x ∈ V) (b : B.1.obj (op V)),
@@ -82,7 +84,9 @@ set_option backward.isDefEq.respectTransparency false in
 finiteness is recorded only pointwise at the points of `O`: each point of `O`
 gets an open neighbourhood inside `O` meeting only a finite, recorded set of
 the supports.  (The shipped `exists_pack` asked for global local finiteness
-but used only this.)-/
+but used only this.)
+@isnad1 id=ex.1h4v.s9.4b3b53f5555d from=translated src=- shape=b8cb5ac1 vocab=af816575
+-/
 lemma exists_pack_rel {X : TopCat.{0}} {ι : Type} (Z : ι → Set ↑X) (O : Opens X)
     (hlf : ∀ x : ↑X, x ∈ O → ∃ N ∈ nhds x, {i | (Z i ∩ N).Nonempty}.Finite) :
     ∃ (V : ↥O → Opens X) (S : ↥O → Finset ι),
@@ -108,7 +112,9 @@ such that the ambient closure of each piece meets `W` inside the corresponding
 cover member and the supports `closure (A i) ∩ W` are pointwise locally finite
 at the points of `W`.  This is the shipped `exists_subordinate_partition`
 instantiated at the subspace `TopCat.of ↥W` and transported along the open
-inclusion (closure in `W` = ambient closure intersected with `W`).-/
+inclusion (closure in `W` = ambient closure intersected with `W`).
+@isnad1 id=ex.1h4v.s8.16485b3b4d76 from=translated src=- shape=7f43bb9e vocab=e1745971
+-/
 lemma exists_subordinate_partition_rel {X : TopCat.{0}} [T2Space ↑X]
     (W : Opens X) [ParacompactSpace ↥W]
     {ι : Type} (u : ι → Opens X) (hu : W ≤ ⨆ i, u i) :
@@ -177,7 +183,9 @@ the locally finite sum over `j` of the extension by zero of the
 `A j`-partition image of `δ i j`, exactly as in the shipped global
 `exists_correction`; the supports are `closure (A j) ∩ W`, and an open inside
 `W` disjoint from `closure (A j) ∩ W` is disjoint from `closure (A j)`, so
-every shipped receipt fires unchanged.-/
+every shipped receipt fires unchanged.
+@isnad1 id=ex.5h7v.s14.8edea1897a47 from=translated src=- shape=6cbb97fd vocab=1158500d
+-/
 lemma exists_correction_rel (X : TopCat.{0}) (n : ℕ) {ι : Type}
     (W : Opens X) (A : ι → Set ↑X) (V : ι → Opens X)
     (hVW : ∀ i, V i ≤ W)
@@ -346,7 +354,9 @@ set_option backward.isDefEq.respectTransparency false in
 subspace topology**: on a Hausdorff space `X`, for an open `W` whose subspace
 topology is paracompact, every short exact sequence of abelian sheaves on `X`
 whose kernel is a sheafified cochain sheaf has surjective induced map on
-sections over `W`.  Steps A–E of the shipped global lemma, run over `W`.-/
+sections over `W`.  Steps A–E of the shipped global lemma, run over `W`.
+@isnad1 id=surjecti.2h7v.s11.3d649f20b272 from=translated src=- shape=53c3753d vocab=cf900567
+-/
 theorem gammaSurjective_rel (X : TopCat.{0}) [T2Space ↑X]
     (W : Opens X) [ParacompactSpace ↥W] (n : ℕ)
     {B R : TopCat.Sheaf AddCommGrpCat.{0} X}
@@ -466,7 +476,9 @@ def RelativeLemmaWStatement (X : TopCat.{0}) [T2Space ↑X] : Prop :=
     Function.Surjective (g.hom.app (op W))
 
 /-- Relative Lemma W, packaged in the statement shape: on every Hausdorff
-space, `RelativeLemmaWStatement` holds.-/
+space, `RelativeLemmaWStatement` holds.
+@isnad1 id=relative.0h1v.s3.1a667c725444 from=translated src=- shape=77e6bbc5 vocab=34d6904c
+-/
 theorem relativeLemmaW (X : TopCat.{0}) [T2Space ↑X] : RelativeLemmaWStatement X := by
   intro W hW n B R f g hfg hexact
   haveI := hW

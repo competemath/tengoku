@@ -76,12 +76,21 @@ variable (A) in
 /-- Restriction of a ℂ-point of the localization to `A`.-/
 def awayRes : CPoints S → CPoints A := comap (IsScalarTower.toAlgHom ℂ A S)
 
+/--
+@isnad1 id=eq.0h4v.s7.f6a6b852da6a from=translated src=- shape=24d4e9c0 vocab=27b66c61
+-/
 lemma awayRes_apply (ψ : CPoints S) (a : A) : awayRes A S ψ a = ψ (algebraMap A S a) := rfl
 
+/--
+@isnad1 id=ne.0h4v.s7.bc0410b0c93c from=translated src=- shape=e0c51b76 vocab=cd8b7139
+-/
 lemma awayRes_ne_zero (ψ : CPoints S) : awayRes A S ψ f ≠ 0 :=
   (IsUnit.map ψ (IsLocalization.map_units S
     (⟨f, Submonoid.mem_powers f⟩ : Submonoid.powers f))).ne_zero
 
+/--
+@isnad1 id=isunit.1h4v.s7.61186a940e2c from=translated src=- shape=9369742c vocab=d4aba260
+-/
 lemma isUnit_apply_powers (φ : CPoints A) (hφ : φ f ≠ 0) (y : Submonoid.powers f) :
     IsUnit (φ y) := by
   obtain ⟨n, hn⟩ := y.2
@@ -93,11 +102,17 @@ def awayLift (φ : CPoints A) (hφ : φ f ≠ 0) : CPoints S :=
   IsLocalization.liftAlgHom (M := Submonoid.powers f) (S := S)
     (f := φ) (fun y => isUnit_apply_powers f φ hφ y)
 
+/--
+@isnad1 id=eq.1h5v.s7.1d6d7cf4298f from=translated src=- shape=eefbfe25 vocab=f4d1bf47
+-/
 @[simp]
 lemma awayLift_algebraMap (φ : CPoints A) (hφ : φ f ≠ 0) (a : A) :
     awayLift f S φ hφ (algebraMap A S a) = φ a :=
   IsLocalization.lift_eq _ a
 
+/--
+@isnad1 id=eq.1h4v.s7.6bb564dc15ac from=translated src=- shape=ac22b9d5 vocab=f8c60f68
+-/
 lemma awayRes_awayLift (φ : CPoints A) (hφ : φ f ≠ 0) :
     awayRes A S (awayLift f S φ hφ) = φ :=
   AlgHom.ext fun a => awayLift_algebraMap f S φ hφ a
@@ -116,11 +131,20 @@ def awayEquiv : CPoints S ≃ {φ : CPoints A // φ f ≠ 0} where
     rfl
   right_inv s := Subtype.ext (awayRes_awayLift f S s.1 s.2)
 
+/--
+@isnad1 id=continuo.0h2v.s6.9344b5ce17a1 from=translated src=- shape=f373645a vocab=f9c37cfb
+-/
 lemma continuous_awayRes : Continuous (awayRes A S) := continuous_comap _
 
+/--
+@isnad1 id=continuo.0h3v.s8.2500b6b26cea from=translated src=- shape=cb2c4e0d vocab=a07b7c49
+-/
 lemma continuous_awayEquiv : Continuous (awayEquiv f S) := by
   exact Continuous.subtype_mk (continuous_awayRes S) _
 
+/--
+@isnad1 id=continuo.0h3v.s8.129a66a44522 from=translated src=- shape=7ea3e6c5 vocab=46530e53
+-/
 lemma continuous_awayLift :
     Continuous fun s : {φ : CPoints A // φ f ≠ 0} => awayLift f S s.1 s.2 := by
   refine continuous_induced_rng.2 (continuous_pi fun x => ?_)
@@ -148,14 +172,23 @@ def awayHomeomorph : CPoints S ≃ₜ {φ : CPoints A // φ f ≠ 0} where
   continuous_toFun := continuous_awayEquiv f S
   continuous_invFun := continuous_awayLift f S
 
+/--
+@isnad1 id=eq.0h3v.s9.2c468793a232 from=translated src=- shape=bd88b5a9 vocab=486889fa
+-/
 lemma awayRes_eq_val_comp : awayRes A S = Subtype.val ∘ (awayHomeomorph f S) := rfl
 
 include f in
+/--
+@isnad1 id=isopenem.0h3v.s6.5ffd8115bb63 from=translated src=- shape=d82d4168 vocab=19e6a6e7
+-/
 theorem isOpenEmbedding_awayRes : IsOpenEmbedding (awayRes A S) := by
   rw [awayRes_eq_val_comp f S]
   exact ((isOpen_setOf_ne_zero f).isOpenEmbedding_subtypeVal).comp
     (awayHomeomorph f S).isOpenEmbedding
 
+/--
+@isnad1 id=eq.0h3v.s7.773f608838e8 from=translated src=- shape=0d1ec3b0 vocab=fcc16905
+-/
 theorem range_awayRes : Set.range (awayRes A S) = {φ : CPoints A | φ f ≠ 0} := by
   rw [awayRes_eq_val_comp f S, (awayHomeomorph f S).surjective.range_comp]
   exact Subtype.range_coe
@@ -185,6 +218,9 @@ def algHomOfSpecHom {R S : Type} [CommRing R] [Algebra ℂ R] [CommRing S] [Alge
     have h3 := RingHom.congr_fun (congrArg CommRingCat.Hom.hom h2) c
     simpa using h3
 
+/--
+@isnad1 id=eq.1h3v.s7.91ad764fb46f from=translated src=- shape=b32bb825 vocab=843e73dc
+-/
 lemma SpecMap_algHomOfSpecHom {R S : Type} [CommRing R] [Algebra ℂ R] [CommRing S]
     [Algebra ℂ S] (g : Spec (CommRingCat.of S) ⟶ Spec (CommRingCat.of R))
     (hg : g ≫ structMor R = structMor S) :
@@ -209,6 +245,9 @@ def probe {B : Type} [CommRing B] [Algebra ℂ B] (h : Spec (CommRingCat.of B) �
     (hh : h ≫ sX = structMor B) : CPoints B → SPoints sX := fun φ =>
   ⟨(bridge B φ).1 ≫ h, by rw [Category.assoc, hh]; exact (bridge B φ).2⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.52d449996e8c from=translated src=- shape=0f32ac9d vocab=1a44c009
+-/
 lemma probe_coe {B : Type} [CommRing B] [Algebra ℂ B] (h : Spec (CommRingCat.of B) ⟶ X)
     (hh : h ≫ sX = structMor B) (φ : CPoints B) :
     (probe sX h hh φ).1 = Spec.map (CommRingCat.ofHom φ.toRingHom) ≫ h := rfl
@@ -233,17 +272,25 @@ all affine charts.  No affine cover is chosen — the family of all charts is ca
 instance instTopSPoints : TopologicalSpace (SPoints sX) :=
   ⨆ c : Chart sX, TopologicalSpace.coinduced (probe sX c.hom c.over) (instTopCPoints c.A)
 
+/--
+@isnad1 id=eq.0h2v.s6.5489d948fcd1 from=translated src=- shape=00840e7c vocab=2148d0bf
+-/
 lemma topSPoints_eq : instTopSPoints sX =
     ⨆ c : Chart sX, TopologicalSpace.coinduced (probe sX c.hom c.over) (instTopCPoints c.A) :=
   rfl
 
+/--
+@isnad1 id=continuo.0h3v.s6.430a4766e7f2 from=translated src=- shape=451dcc86 vocab=73f02282
+-/
 theorem continuous_probeChart (c : Chart sX) : Continuous (probe sX c.hom c.over) := by
   rw [continuous_iff_coinduced_le, topSPoints_eq sX]
   exact le_iSup
     (fun c : Chart sX => TopologicalSpace.coinduced (probe sX c.hom c.over) (instTopCPoints c.A)) c
 
 /-- Universal property of the analytic topology: a map out of `SPoints sX` is continuous
-iff its composite with every chart probe is.-/
+iff its composite with every chart probe is.
+@isnad1 id=continuo.1h4v.s6.bf80adc8c878 from=translated src=- shape=13f1f396 vocab=75852898
+-/
 theorem continuous_of_probeCharts {T : Type*} [TopologicalSpace T] {k : SPoints sX → T}
     (H : ∀ c : Chart sX, Continuous (k ∘ probe sX c.hom c.over)) : Continuous k := by
   rw [continuous_iff_le_induced, topSPoints_eq sX, iSup_le_iff]
@@ -251,7 +298,9 @@ theorem continuous_of_probeCharts {T : Type*} [TopologicalSpace T] {k : SPoints 
   rw [coinduced_le_iff_le_induced, induced_compose]
   exact continuous_iff_le_induced.mp (H c)
 
-/-- Openness in the analytic topology is detected on all charts.-/
+/-- Openness in the analytic topology is detected on all charts.
+@isnad1 id=iff.0h3v.s6.1baaca411a01 from=translated src=- shape=32ef7b3c vocab=c9c82696
+-/
 lemma isOpen_SPoints_iff {V : Set (SPoints sX)} :
     IsOpen V ↔ ∀ c : Chart sX, IsOpen (probe sX c.hom c.over ⁻¹' V) := by
   show IsOpen[⨆ c : Chart sX,
@@ -259,6 +308,9 @@ lemma isOpen_SPoints_iff {V : Set (SPoints sX)} :
   rw [isOpen_iSup_iff]
   exact forall_congr' fun c => isOpen_coinduced
 
+/--
+@isnad1 id=injectiv.0h3v.s5.b6b1c63113bc from=translated src=- shape=451dcc86 vocab=3e146fe2
+-/
 theorem injective_probeChart (c : Chart sX) : Function.Injective (probe sX c.hom c.over) := by
   intro φ ψ hfψ
   have h1 : Spec.map (CommRingCat.ofHom φ.toRingHom) ≫ c.hom =
@@ -276,15 +328,24 @@ section AffineComparison
 
 variable (A : Type) [CommRing A] [Algebra ℂ A]
 
+/--
+@isnad1 id=eq.0h1v.s9.9e8ff70c5f7b from=translated src=- shape=1ebd5ff3 vocab=5b79017e
+-/
 lemma bridge_eq_probe_id : ⇑(bridge A) = probe (structMor A) (𝟙 _) (Category.id_comp _) := by
   funext φ
   exact Subtype.ext (Category.comp_id _).symm
 
+/--
+@isnad1 id=continuo.0h1v.s9.8c3142215511 from=translated src=- shape=ba77d11b vocab=06f55269
+-/
 theorem continuous_bridge : Continuous (bridge A) := by
   rw [bridge_eq_probe_id A]
   exact continuous_probeChart (structMor A)
     { A := A, hom := 𝟙 _, over := Category.id_comp _ }
 
+/--
+@isnad1 id=continuo.0h1v.s9.8b5b5e294716 from=translated src=- shape=876efff4 vocab=399ab505
+-/
 theorem continuous_bridge_symm : Continuous (bridge A).symm := by
   apply continuous_of_probeCharts
   intro c
@@ -337,6 +398,9 @@ section Glue
 
 variable {X : Scheme} (sX : X ⟶ Spec (CommRingCat.of ℂ))
 
+/--
+@isnad1 id=iff.0h3v.s6.8d524f1f456f from=translated src=- shape=c23b3657 vocab=d24f6f40
+-/
 lemma mem_basicOpen_toZariski {B : Type} [CommRing B] [Algebra ℂ B] (φ : CPoints B) (g : B) :
     toZariski φ ∈ PrimeSpectrum.basicOpen g ↔ φ g ≠ 0 := by
   rw [PrimeSpectrum.mem_basicOpen]
@@ -344,7 +408,9 @@ lemma mem_basicOpen_toZariski {B : Type} [CommRing B] [Algebra ℂ B] (φ : CPoi
 
 /-- Local factorization of an affine probe through a chart: near any ℂ-point whose
 underlying scheme point lands in the chart, the probe factors, after inverting one
-element, through the chart via localization compatibility.-/
+element, through the chart via localization compatibility.
+@isnad1 id=ex.2h6v.s10.654fb98ba6d8 from=translated src=- shape=9c824d3a vocab=345a1736
+-/
 theorem exists_away_factor {B : Type} [CommRing B] [Algebra ℂ B]
     (h : Spec (CommRingCat.of B) ⟶ X) (hh : h ≫ sX = structMor B) (c : Chart sX)
     {φ₀ : CPoints B} (hc : h (toZariski φ₀) ∈ Set.range ⇑c.hom) :
@@ -411,10 +477,16 @@ def mapSPoints {Y : Scheme} (sY : Y ⟶ Spec (CommRingCat.of ℂ)) (k : X ⟶ Y)
     (hk : k ≫ sY = sX) : SPoints sX → SPoints sY := fun p =>
   ⟨p.1 ≫ k, by rw [Category.assoc, hk]; exact p.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.d1f8ab23c81a from=translated src=- shape=cfa25909 vocab=b6c1b925
+-/
 theorem mapSPoints_id : mapSPoints sX sX (𝟙 X) (Category.id_comp sX) = id := by
   funext p
   exact Subtype.ext (Category.comp_id p.1)
 
+/--
+@isnad1 id=eq.2h8v.s7.72404262c739 from=translated src=- shape=ba034f7e vocab=d6693c14
+-/
 theorem mapSPoints_comp {Y Z : Scheme} (sY : Y ⟶ Spec (CommRingCat.of ℂ))
     (sZ : Z ⟶ Spec (CommRingCat.of ℂ)) (k : X ⟶ Y) (m : Y ⟶ Z)
     (hk : k ≫ sY = sX) (hm : m ≫ sZ = sY) :

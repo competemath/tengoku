@@ -80,7 +80,9 @@ def holomorphicSheafOfChartedSpace (H M : Type) [TopologicalSpace H]
   (contDiffWithinAt_localInvariantProp (I := I) (I' := 𝓘(ℂ)) ω).sheaf M ℂ
 
 /-- Sections of `holomorphicSheaf n` over `U` are *definitionally* the bundled
-`C^ω` maps `U → ℂ`.-/
+`C^ω` maps `U → ℂ`.
+@isnad1 id=eq.0h2v.s10.f0806ac74db3 from=translated src=- shape=60d6ce48 vocab=175a0892
+-/
 lemma holomorphicSheaf_obj_eq (n : ℕ) (U : (Opens (TopCat.of (Fin n → ℂ)))ᵒᵖ) :
     (holomorphicSheaf n).presheaf.obj U =
       ContMDiffMap 𝓘(ℂ, Fin n → ℂ) 𝓘(ℂ) (unop U : Opens (Fin n → ℂ)) ℂ ω := rfl
@@ -100,14 +102,18 @@ instance holomorphicSheaf.coeFun (n : ℕ) (U : (Opens (TopCat.of (Fin n → ℂ
   coe a := a.1
 
 /-- The dictionary on the model space: a global `C^ω` function `ℂⁿ → ℂ` is
-exactly an everywhere-analytic function.-/
+exactly an everywhere-analytic function.
+@isnad1 id=iff.0h2v.s8.12230a0ac5ee from=translated src=- shape=f075544c vocab=a28cc649
+-/
 theorem contMDiff_omega_iff_analyticOnNhd (n : ℕ) (f : (Fin n → ℂ) → ℂ) :
     ContMDiff 𝓘(ℂ, Fin n → ℂ) 𝓘(ℂ) ω f ↔ AnalyticOnNhd ℂ f Set.univ := by
   rw [contMDiff_iff_contDiff, contDiff_omega_iff_analyticOnNhd]
 
 variable {n : ℕ}
 
-/-- The underlying function of a section of the holomorphic sheaf is `C^ω`.-/
+/-- The underlying function of a section of the holomorphic sheaf is `C^ω`.
+@isnad1 id=contmdif.0h3v.s11.020e8926695c from=translated src=- shape=cd33bf11 vocab=a934bf1e
+-/
 lemma holomorphicSheaf.contMDiff_section {U : (Opens (TopCat.of (Fin n → ℂ)))ᵒᵖ}
     (f : (holomorphicSheaf n).presheaf.obj U) :
     ContMDiff 𝓘(ℂ, Fin n → ℂ) 𝓘(ℂ) ω f.1 :=
@@ -128,6 +134,9 @@ def sectionExtend {U : Opens (Fin n → ℂ)}
     (f : (holomorphicSheaf n).presheaf.obj (op U)) : (Fin n → ℂ) → ℂ :=
   fun y => if h : y ∈ U then f.1 ⟨y, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h4v.s11.05d62ad20032 from=translated src=- shape=1bd6f29b vocab=4a4b7dd8
+-/
 @[simp] lemma sectionExtend_apply_of_mem {U : Opens (Fin n → ℂ)}
     (f : (holomorphicSheaf n).presheaf.obj (op U)) {y : Fin n → ℂ} (hy : y ∈ U) :
     sectionExtend f y = f.1 ⟨y, hy⟩ :=
@@ -135,7 +144,9 @@ def sectionExtend {U : Opens (Fin n → ℂ)}
 
 /-- **Sections are analytic**: a section of the holomorphic sheaf over `U`,
 extended by junk, is analytic at every point of `U`.  (The junk extension is
-invisible to `AnalyticAt` since `U` is open.)-/
+invisible to `AnalyticAt` since `U` is open.)
+@isnad1 id=analytic.0h3v.s9.8f7a1ae7cfa2 from=translated src=- shape=0826d0af vocab=91d7e6b1
+-/
 theorem analyticOnNhd_sectionExtend {U : Opens (Fin n → ℂ)}
     (f : (holomorphicSheaf n).presheaf.obj (op U)) :
     AnalyticOnNhd ℂ (sectionExtend f) (U : Set (Fin n → ℂ)) := by
@@ -159,13 +170,18 @@ def sectionOfAnalyticOnNhd {U : Opens (Fin n → ℂ)} {g : (Fin n → ℂ) → 
   ⟨fun y => g ↑y, fun y =>
     contMDiffAt_subtype_iff.mpr ((hg ↑y y.2).contDiffAt.contMDiffAt)⟩
 
+/--
+@isnad1 id=eq.1h4v.s11.6aebcc4b2974 from=translated src=- shape=5078eebe vocab=e7014325
+-/
 @[simp] lemma sectionOfAnalyticOnNhd_apply {U : Opens (Fin n → ℂ)}
     {g : (Fin n → ℂ) → ℂ} (hg : AnalyticOnNhd ℂ g (U : Set (Fin n → ℂ)))
     (y : ↥U) :
     (sectionOfAnalyticOnNhd hg).1 y = g ↑y := rfl
 
 /-- Round trip: extending the section obtained from an analytic function
-recovers the function on `U`.-/
+recovers the function on `U`.
+@isnad1 id=eq.2h4v.s8.f41a46ac8d5c from=translated src=- shape=29a2c40e vocab=37be6717
+-/
 lemma sectionExtend_sectionOfAnalyticOnNhd {U : Opens (Fin n → ℂ)}
     {g : (Fin n → ℂ) → ℂ} (hg : AnalyticOnNhd ℂ g (U : Set (Fin n → ℂ)))
     {y : Fin n → ℂ} (hy : y ∈ U) :
@@ -190,7 +206,9 @@ def constRingHom (n : ℕ) (U : (Opens (TopCat.of (Fin n → ℂ)))ᵒᵖ) :
   map_add' _ _ := rfl
 
 /-- Constant sections are compatible with restriction: the augmentation is a
-morphism of presheaves.-/
+morphism of presheaves.
+@isnad1 id=eq.0h5v.s12.e41133490011 from=translated src=- shape=12b0023e vocab=95460518
+-/
 @[simp] lemma map_constSection {U V : (Opens (TopCat.of (Fin n → ℂ)))ᵒᵖ}
     (i : U ⟶ V) (c : ℂ) :
     (holomorphicSheaf n).presheaf.map i (constSection n U c) = constSection n V c :=
@@ -227,6 +245,9 @@ def holomorphicSheafEval (n : ℕ) (x : TopCat.of (Fin n → ℂ)) :
   TopCat.stalkToFiber
     (StructureGroupoid.LocalInvariantProp.localPredicate (Fin n → ℂ) ℂ _) x
 
+/--
+@isnad1 id=eq.1h4v.s12.d5b5dc929fd7 from=translated src=- shape=169ba1c6 vocab=7bb195bc
+-/
 @[simp] lemma holomorphicSheafEval_germ (U : Opens (TopCat.of (Fin n → ℂ)))
     (x : TopCat.of (Fin n → ℂ)) (hx : x ∈ U)
     (f : (holomorphicSheaf n).presheaf.obj (op U)) :
@@ -234,7 +255,9 @@ def holomorphicSheafEval (n : ℕ) (x : TopCat.of (Fin n → ℂ)) :
       f.1 ⟨x, hx⟩ :=
   TopCat.stalkToFiber_germ _ U x hx f
 
-/-- Stalk evaluation is surjective.-/
+/-- Stalk evaluation is surjective.
+@isnad1 id=surjecti.0h2v.s6.f617ec041659 from=translated src=- shape=8f290994 vocab=de60e3a1
+-/
 lemma holomorphicSheafEval_surjective (n : ℕ) (x : TopCat.of (Fin n → ℂ)) :
     Function.Surjective (holomorphicSheafEval n x) := by
   apply TopCat.stalkToFiber_surjective
@@ -252,7 +275,9 @@ open ContinuousAlternatingMap
 variable {n p : ℕ}
 
 /-- `d` preserves analyticity: the exterior derivative of an analytic `p`-form on
-an open set in `ℂⁿ` is an analytic `(p+1)`-form.  (Any dimension, any degree.)-/
+an open set in `ℂⁿ` is an analytic `(p+1)`-form.  (Any dimension, any degree.)
+@isnad1 id=analytic.2h4v.s10.2cda6bef2515 from=translated src=- shape=6ecdf8cc vocab=be50a60a
+-/
 theorem AnalyticOnNhd.extDeriv_analytic {s : Set (Fin n → ℂ)} (hs : IsOpen s)
     {ω : (Fin n → ℂ) → ((Fin n → ℂ) [⋀^Fin p]→L[ℂ] ℂ)}
     (hω : AnalyticOnNhd ℂ ω s) :
@@ -261,7 +286,9 @@ theorem AnalyticOnNhd.extDeriv_analytic {s : Set (Fin n → ℂ)} (hs : IsOpen s
   have h1 : AnalyticAt ℂ (fderiv ℂ ω) x := hω.fderiv_of_isOpen hs x hx
   exact ((alternatizeUncurryFinCLM ℂ (Fin n → ℂ) ℂ).analyticAt _).comp h1
 
-/-- `d ∘ d = 0` on analytic forms (pointwise).-/
+/-- `d ∘ d = 0` on analytic forms (pointwise).
+@isnad1 id=eq.1h4v.s10.02ee19805d99 from=translated src=- shape=7d3d609d vocab=370a779a
+-/
 theorem extDeriv_extDeriv_of_analytic
     {ω : (Fin n → ℂ) → ((Fin n → ℂ) [⋀^Fin p]→L[ℂ] ℂ)} {x : Fin n → ℂ}
     (hω : AnalyticAt ℂ ω x) :
@@ -283,7 +310,9 @@ def coeff1 (ω : ℂ → (ℂ [⋀^Fin 1]→L[ℂ] ℂ)) (z : ℂ) : ℂ :=
   ω z (fun _ => 1)
 
 /-- Reconstruction: a `Fin 1`-alternating map on ℂ is determined by its value
-at the single basis vector.-/
+at the single basis vector.
+@isnad1 id=eq.0h2v.s8.71528d032a31 from=translated src=- shape=614b647e vocab=c11619db
+-/
 lemma alt_fin1_eq (φ : ℂ [⋀^Fin 1]→L[ℂ] ℂ) (v : Fin 1 → ℂ) :
     φ v = v 0 * φ (fun _ => 1) := by
   have h : v = fun i => v i • (fun _ : Fin 1 => (1 : ℂ)) i := by
@@ -293,7 +322,9 @@ lemma alt_fin1_eq (φ : ℂ [⋀^Fin 1]→L[ℂ] ℂ) (v : Fin 1 → ℂ) :
 
 /-- **Holomorphic Poincaré lemma on a disc, one variable, degree one.**
 Every analytic 1-form on a disc in ℂ is the exterior derivative of a
-holomorphic 0-form.-/
+holomorphic 0-form.
+@isnad1 id=ex.1h3v.s9.e213c32ce64c from=translated src=- shape=5908b8c2 vocab=9c472313
+-/
 theorem exists_primitive_form (ω : ℂ → (ℂ [⋀^Fin 1]→L[ℂ] ℂ))
     (hω : AnalyticOnNhd ℂ ω (ball c r)) :
     ∃ G : ℂ → ℂ, ∀ z ∈ ball c r,

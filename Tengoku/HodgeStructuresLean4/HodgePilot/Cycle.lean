@@ -110,11 +110,17 @@ classically; no `DecidableEq` hypothesis is exposed.)-/
 abbrev single (x : X) (r : R) [Zero R] : Cycle X R :=
   Function.locallyFinsuppWithin.single x r
 
+/--
+@isnad1 id=eq.0h5v.s7.547e37effcfd from=translated src=- shape=164525c1 vocab=4c0cf390
+-/
 @[simp]
 lemma single_apply [Zero R] (x : X) (r : R) (y : X) :
     single x r y = if y = x then r else 0 :=
   Function.locallyFinsuppWithin.single_apply
 
+/--
+@isnad1 id=le.0h4v.s7.77cef5f737e4 from=translated src=- shape=4b0f0e75 vocab=940e094b
+-/
 lemma support_single_subset [Zero R] (x : X) (r : R) :
     Function.support ⇑(single x r) ⊆ {x} := by
   rw [Function.locallyFinsuppWithin.coe_single]
@@ -147,12 +153,16 @@ abbrev dimClosure {X : Scheme.{u}} (x : X) : ℕ∞ :=
   Order.height x
 
 /-- The codimension of a point is the Krull dimension of the local ring at
-that point (Stacks 02IZ).-/
+that point (Stacks 02IZ).
+@isnad1 id=eq.0h2v.s6.2c9b6d6cbe25 from=translated src=- shape=f465b372 vocab=8db9ba2e
+-/
 lemma codim_eq_ringKrullDim_stalk {X : Scheme.{u}} (x : X) :
     (codim x : WithBot ℕ∞) = ringKrullDim (X.presheaf.stalk x) :=
   (ringKrullDim_stalk_eq_coheight x).symm
 
-/-- On an integral scheme, the generic point has codimension zero.-/
+/-- On an integral scheme, the generic point has codimension zero.
+@isnad1 id=eq.0h1v.s5.7954b68fd8b1 from=translated src=- shape=eb261808 vocab=a2deac77
+-/
 @[simp]
 lemma codim_genericPoint (X : Scheme.{u}) [IsIntegral X] :
     codim (genericPoint X) = 0 :=
@@ -196,15 +206,23 @@ def cyclesOfDim (X : Scheme.{u}) (d : ℕ∞) : AddSubgroup (Cycle X ℤ) where
     · exact hb x h
   neg_mem' {a} ha := by intro x hx; exact ha x (by simpa using hx)
 
+/--
+@isnad1 id=iff.0h3v.s8.ec803f931c0d from=translated src=- shape=58e596c9 vocab=9c96bcbf
+-/
 lemma mem_cyclesOfCodim_iff {X : Scheme.{u}} {p : ℕ∞} {c : Cycle X ℤ} :
     c ∈ cyclesOfCodim X p ↔ ∀ x ∈ Function.support ⇑c, codim x = p :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s8.aaad77fa302c from=translated src=- shape=58e596c9 vocab=f05615db
+-/
 lemma mem_cyclesOfDim_iff {X : Scheme.{u}} {d : ℕ∞} {c : Cycle X ℤ} :
     c ∈ cyclesOfDim X d ↔ ∀ x ∈ Function.support ⇑c, dimClosure x = d :=
   Iff.rfl
 
-/-- The prime cycle at a codimension-`p` point lies in `Z^p(X)`.-/
+/-- The prime cycle at a codimension-`p` point lies in `Z^p(X)`.
+@isnad1 id=mem.1h4v.s7.d081fc0d43a5 from=translated src=- shape=d79e46dd vocab=fa092442
+-/
 lemma single_mem_cyclesOfCodim {X : Scheme.{u}} {x : X} {p : ℕ∞}
     (h : codim x = p) (n : ℤ) :
     Cycle.single x n ∈ cyclesOfCodim X p := by
@@ -212,7 +230,9 @@ lemma single_mem_cyclesOfCodim {X : Scheme.{u}} {x : X} {p : ℕ∞}
   obtain rfl : y = x := Set.eq_of_mem_singleton (Cycle.support_single_subset x n hy)
   exact h
 
-/-- The prime cycle at a point of closure-dimension `d` lies in `Z_d(X)`.-/
+/-- The prime cycle at a point of closure-dimension `d` lies in `Z_d(X)`.
+@isnad1 id=mem.1h4v.s7.676257b5369e from=translated src=- shape=d79e46dd vocab=230efaad
+-/
 lemma single_mem_cyclesOfDim {X : Scheme.{u}} {x : X} {d : ℕ∞}
     (h : dimClosure x = d) (n : ℤ) :
     Cycle.single x n ∈ cyclesOfDim X d := by
@@ -226,14 +246,18 @@ lemma single_mem_cyclesOfDim {X : Scheme.{u}} {x : X} {d : ℕ∞}
 
 namespace Cycle
 
-/-- On a quasi-compact scheme, every cycle has finite support.-/
+/-- On a quasi-compact scheme, every cycle has finite support.
+@isnad1 id=finite.0h3v.s6.e0c8e7888445 from=translated src=- shape=05d130aa vocab=7c77c08a
+-/
 lemma finite_support {X : Scheme.{u}} [CompactSpace X] [Zero R] (c : Cycle X R) :
     (Function.support ⇑c).Finite := by
   have h := c.locallyFiniteSupport.finite_inter_support_of_isCompact
     (W := Set.univ) CompactSpace.isCompact_univ
   simpa using h
 
-/-- On a Noetherian scheme, every cycle has finite support.-/
+/-- On a Noetherian scheme, every cycle has finite support.
+@isnad1 id=finite.0h3v.s6.c486ed9f31f4 from=translated src=- shape=f0a87c7d vocab=626d1d50
+-/
 lemma finite_support_of_isNoetherian {X : Scheme.{u}}
     [AlgebraicGeometry.IsNoetherian X] [Zero R] (c : Cycle X R) :
     (Function.support ⇑c).Finite :=
@@ -269,16 +293,25 @@ def toFinsupp : Scheme.Cycle X ℤ ≃+ (X →₀ ℤ) where
     ext x
     simp [Finsupp.onFinset_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.b0142179e90a from=translated src=- shape=88662675 vocab=f4187230
+-/
 @[simp]
 lemma toFinsupp_apply (c : Scheme.Cycle X ℤ) (x : X) :
     toFinsupp c x = c x :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.5f4635daef33 from=translated src=- shape=3a792325 vocab=c8388600
+-/
 @[simp]
 lemma toFinsupp_symm_apply (F : X →₀ ℤ) (x : X) :
     toFinsupp.symm F x = F x :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.30b5006a55f7 from=translated src=- shape=561b52aa vocab=f7bf75d2
+-/
 @[simp]
 lemma toFinsupp_single (x : X) (n : ℤ) :
     toFinsupp (single x n) = Finsupp.single x n := by
@@ -400,6 +433,9 @@ def residueDegree (f : X ⟶ Y) (x : X) : ℕ :=
   letI := (f.residueFieldMap x).hom.toAlgebra
   Module.finrank (Y.residueField (f x)) (X.residueField x)
 
+/--
+@isnad1 id=eq.0h2v.s4.4731c8bb35b8 from=translated src=- shape=e5543608 vocab=e59257f0
+-/
 @[simp]
 lemma residueDegree_id (x : X) : residueDegree (𝟙 X) x = 1 := by
   dsimp [residueDegree]
@@ -430,11 +466,17 @@ def map (f : X ⟶ Y) [QuasiCompact f] (c : Scheme.Cycle X ℤ) : Scheme.Cycle Y
   Function.locallyFinsupp.map f (fun x => (Scheme.Hom.residueDegree f x : ℤ))
     f.isSpectralMap c
 
+/--
+@isnad1 id=eq.0h5v.s9.d07bd88f06a1 from=translated src=- shape=da195390 vocab=6e3250e9
+-/
 @[simp]
 lemma map_apply (f : X ⟶ Y) [QuasiCompact f] (c : Scheme.Cycle X ℤ) (z : Y) :
     map f c z = ∑ᶠ x ∈ f ⁻¹' {z}, c x * (Scheme.Hom.residueDegree f x : ℤ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.cae9d0094664 from=translated src=- shape=1f5c8814 vocab=e3097f6a
+-/
 @[simp]
 lemma map_id (c : Scheme.Cycle X ℤ) : map (𝟙 X) c = c := by
   apply Function.locallyFinsupp.map_id
@@ -443,7 +485,9 @@ lemma map_id (c : Scheme.Cycle X ℤ) : map (𝟙 X) c = c := by
 
 /-- The pushforward is additive. (The content is that the two supports meet
 each fiber in a finite set: the fiber sits inside the preimage of a compact
-open neighbourhood, which is compact because the morphism is spectral.)-/
+open neighbourhood, which is compact because the morphism is spectral.)
+@isnad1 id=eq.0h5v.s7.ab6cdb9c6698 from=translated src=- shape=8480667f vocab=a419147f
+-/
 lemma map_add (f : X ⟶ Y) [QuasiCompact f] (c₁ c₂ : Scheme.Cycle X ℤ) :
     map f (c₁ + c₂) = map f c₁ + map f c₂ := by
   ext z
@@ -476,7 +520,9 @@ namespace Scheme.Hom
 
 variable {X Y : Scheme.{u}}
 
-/-- The residue field map of a closed immersion is surjective.-/
+/-- The residue field map of a closed immersion is surjective.
+@isnad1 id=surjecti.0h4v.s10.28e29bacfab2 from=translated src=- shape=10393556 vocab=da8efdd1
+-/
 lemma residueFieldMap_surjective (f : X ⟶ Y) [IsClosedImmersion f] (x : X) :
     Function.Surjective (f.residueFieldMap x) := by
   intro y
@@ -492,13 +538,17 @@ lemma residueFieldMap_surjective (f : X ⟶ Y) [IsClosedImmersion f] (x : X) :
   exact h3
 
 /-- The residue field map of a closed immersion is bijective: it is a
-surjective homomorphism of fields.-/
+surjective homomorphism of fields.
+@isnad1 id=bijectiv.0h4v.s10.5a166e3e26d8 from=translated src=- shape=10393556 vocab=4bc98d31
+-/
 lemma residueFieldMap_bijective (f : X ⟶ Y) [IsClosedImmersion f] (x : X) :
     Function.Bijective (f.residueFieldMap x) :=
   ⟨(f.residueFieldMap x).hom.injective, residueFieldMap_surjective f x⟩
 
 /-- Along a closed immersion, the residue degree is `1`: the residue field
-extension is an isomorphism.-/
+extension is an isomorphism.
+@isnad1 id=eq.0h4v.s5.fab520b67d65 from=translated src=- shape=40bf4918 vocab=0c3d7fa5
+-/
 @[simp]
 lemma residueDegree_eq_one_of_isClosedImmersion (f : X ⟶ Y) [IsClosedImmersion f]
     (x : X) :
@@ -518,7 +568,9 @@ variable {X Y : Scheme.{u}}
 
 /-- A closed immersion preserves the dimension of point-closures
 (`Order.height` in the specialization order): the specialization order of `X`
-embeds into that of `Y` as a downward-closed suborder.-/
+embeds into that of `Y` as a downward-closed suborder.
+@isnad1 id=eq.0h4v.s7.dcf8a80c7c09 from=translated src=- shape=b1bcaa6f vocab=f6ca92e6
+-/
 lemma dimClosure_map (f : X ⟶ Y) [IsClosedImmersion f] (x : X) :
     dimClosure (f x) = dimClosure x := by
   have hle : ∀ a b : X, f a ≤ f b ↔ a ≤ b := by
@@ -560,7 +612,9 @@ namespace Scheme.Cycle
 variable {X Y : Scheme.{u}}
 
 /-- Pushforward along a closed immersion is coefficient-preserving on prime
-cycles: `f_*(n · [x]) = n · [f x]`.-/
+cycles: `f_*(n · [x]) = n · [f x]`.
+@isnad1 id=eq.0h5v.s7.25bb49d80525 from=translated src=- shape=ec6fd57f vocab=45ba8f95
+-/
 @[simp]
 lemma map_single (f : X ⟶ Y) [IsClosedImmersion f] (x : X) (n : ℤ) :
     map f (single x n) = single (f x) n := by
@@ -584,7 +638,9 @@ lemma map_single (f : X ⟶ Y) [IsClosedImmersion f] (x : X) (n : ℤ) :
 
 /-- The pushforward along a closed immersion respects the grading by
 dimension of point-closures. (No such statement holds for the codimension
-grading without catenary hypotheses.)-/
+grading without catenary hypotheses.)
+@isnad1 id=mem.1h5v.s8.6e790156e535 from=translated src=- shape=32df152f vocab=fb18309b
+-/
 lemma map_mem_cyclesOfDim (f : X ⟶ Y) [IsClosedImmersion f] {d : ℕ∞}
     {c : Scheme.Cycle X ℤ} (hc : c ∈ cyclesOfDim X d) :
     map f c ∈ cyclesOfDim Y d := by
@@ -613,6 +669,9 @@ def weightedDegree {X : Scheme.{u}} [CompactSpace X] (w : X → ℤ) :
     rw [_root_.map_add]
     exact Finsupp.sum_add_index' (fun a => zero_mul _) fun a b₁ b₂ => add_mul _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s7.63c5a84b5edd from=translated src=- shape=93cc2bc9 vocab=27e64302
+-/
 @[simp]
 lemma weightedDegree_single {X : Scheme.{u}} [CompactSpace X] (w : X → ℤ)
     (x : X) (n : ℤ) :
@@ -630,6 +689,9 @@ def degree (k : Type u) [Field k] {X : Scheme.{u}} [CompactSpace X]
     [X.Over (Spec (CommRingCat.of k))] : Scheme.Cycle X ℤ →+ ℤ :=
   weightedDegree fun x => (residueFieldDegreeOver k x : ℤ)
 
+/--
+@isnad1 id=eq.0h4v.s7.7ee8a1116d03 from=translated src=- shape=5e11dbaf vocab=eac549cc
+-/
 @[simp]
 lemma degree_single (k : Type u) [Field k] {X : Scheme.{u}} [CompactSpace X]
     [X.Over (Spec (CommRingCat.of k))] (x : X) (n : ℤ) :

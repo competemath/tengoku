@@ -34,19 +34,27 @@ def QHodgeStructure.filtration (h : QHodgeStructure n V) (p : ℤ) :
     Submodule ℂ (ℂ ⊗[ℚ] V) :=
   ⨆ (pq : ℤ × ℤ) (_ : p ≤ pq.1), h.H pq
 
+/--
+@isnad1 id=antitone.0h3v.s8.d97fad541adf from=translated src=- shape=1b0ca646 vocab=c9e76105
+-/
 theorem QHodgeStructure.filtration_antitone (h : QHodgeStructure n V) :
     Antitone h.filtration := by
   intro p q hpq
   exact iSup₂_le fun pq hq =>
     le_iSup₂ (f := fun pq' (_ : p ≤ pq'.1) => h.H pq') pq (hpq.trans hq)
 
+/--
+@isnad1 id=le.0h4v.s9.de5047a5c895 from=translated src=- shape=43e89d48 vocab=2cf82427
+-/
 theorem QHodgeStructure.H_le_filtration (h : QHodgeStructure n V)
     (pq : ℤ × ℤ) : h.H pq ≤ h.filtration pq.1 :=
   le_iSup₂ (f := fun pq' (_ : pq.1 ≤ pq'.1) => h.H pq') pq le_rfl
 
 /-- The easy half of the classical `H^{p,q} = F^p ∩ σ(F^q)`: each piece sits
 inside the intersection. The reverse inclusion requires internality and is
-the substance of the decomposition ↔ filtration equivalence.-/
+the substance of the decomposition ↔ filtration equivalence.
+@isnad1 id=le.0h5v.s10.674299df9270 from=translated src=- shape=be925da5 vocab=9849321d
+-/
 theorem QHodgeStructure.H_le_filtration_inf_conj (h : QHodgeStructure n V)
     (p q : ℤ) :
     h.H (p, q) ≤ h.filtration p ⊓ (h.filtration q).map (sigmaQ V) := by
@@ -55,7 +63,9 @@ theorem QHodgeStructure.H_le_filtration_inf_conj (h : QHodgeStructure n V)
   exact Submodule.map_mono (h.H_le_filtration (q, p))
 
 /-- `σ` carries the filtration onto the "column filtration": the image
-`σ(F^q)` is the span of the pieces `H^{r,s}` with `s ≥ q`.-/
+`σ(F^q)` is the span of the pieces `H^{r,s}` with `s ≥ q`.
+@isnad1 id=eq.0h4v.s10.7aada10fdc48 from=translated src=- shape=ba350115 vocab=a7705a2b
+-/
 theorem QHodgeStructure.map_filtration_sigmaQ (h : QHodgeStructure n V)
     (q : ℤ) :
     (h.filtration q).map (sigmaQ V) =
@@ -73,7 +83,9 @@ theorem QHodgeStructure.map_filtration_sigmaQ (h : QHodgeStructure n V)
 /-- Core estimate for both structure theorems: `F^p ∩ σ(F^q)` is contained in
 the span of the pieces `H^{r,s}` with `r ≥ p` **and** `s ≥ q`. This is where
 internality (independence of the pieces) enters, through
-`biSup_inf_biSup_le_of_iSupIndep`.-/
+`biSup_inf_biSup_le_of_iSupIndep`.
+@isnad1 id=le.0h5v.s11.01069008d002 from=translated src=- shape=537f9d19 vocab=b4559349
+-/
 theorem QHodgeStructure.filtration_inf_conj_le_biSup (h : QHodgeStructure n V)
     (p q : ℤ) :
     h.filtration p ⊓ (h.filtration q).map (sigmaQ V) ≤
@@ -83,7 +95,9 @@ theorem QHodgeStructure.filtration_inf_conj_le_biSup (h : QHodgeStructure n V)
     (fun pq => p ≤ pq.1) (fun pq => q ≤ pq.2)
 
 /-- The hard half of Theorem 1: for `p + q = n` the intersection
-`F^p ∩ σ(F^q)` collapses onto the single piece `H^{p,q}`.-/
+`F^p ∩ σ(F^q)` collapses onto the single piece `H^{p,q}`.
+@isnad1 id=le.1h5v.s10.89030baa0bb2 from=translated src=- shape=a8bc28f3 vocab=853e0103
+-/
 theorem QHodgeStructure.filtration_inf_conj_le (h : QHodgeStructure n V)
     {p q : ℤ} (hpq : p + q = n) :
     h.filtration p ⊓ (h.filtration q).map (sigmaQ V) ≤ h.H (p, q) := by
@@ -102,14 +116,18 @@ theorem QHodgeStructure.filtration_inf_conj_le (h : QHodgeStructure n V)
 pure Hodge structure and `p + q = n`, the Hodge piece is recovered from the
 filtration as `H^{p,q} = F^p ∩ σ(F^q)`. Together with
 `H_le_filtration_inf_conj` this shows the decomposition and filtration
-presentations of a pure Hodge structure carry the same data.-/
+presentations of a pure Hodge structure carry the same data.
+@isnad1 id=eq.1h5v.s9.6bc67a4475bc from=translated src=- shape=5fa19ebf vocab=663c61f1
+-/
 theorem QHodgeStructure.H_eq_filtration_inf_conj (h : QHodgeStructure n V)
     {p q : ℤ} (hpq : p + q = n) :
     h.H (p, q) = h.filtration p ⊓ (h.filtration q).map (sigmaQ V) :=
   le_antisymm (h.H_le_filtration_inf_conj p q) (h.filtration_inf_conj_le hpq)
 
 /-- Below the antidiagonal the filtration meets its conjugate trivially:
-if `n < p + q` then `F^p ∩ σ(F^q) = 0`.-/
+if `n < p + q` then `F^p ∩ σ(F^q) = 0`.
+@isnad1 id=eq.1h5v.s10.4027cd98f4a3 from=translated src=- shape=42e3c41a vocab=6ccbda29
+-/
 theorem QHodgeStructure.filtration_inf_conj_eq_bot (h : QHodgeStructure n V)
     {p q : ℤ} (hpq : n < p + q) :
     h.filtration p ⊓ (h.filtration q).map (sigmaQ V) = ⊥ := by
@@ -121,7 +139,9 @@ theorem QHodgeStructure.filtration_inf_conj_eq_bot (h : QHodgeStructure n V)
   exact le_of_eq (h.supported (a, b) (by omega))
 
 /-- Above the antidiagonal the filtration and its conjugate jointly span:
-if `p + q ≤ n + 1` then `F^p + σ(F^q) = ⊤`.-/
+if `p + q ≤ n + 1` then `F^p + σ(F^q) = ⊤`.
+@isnad1 id=eq.1h5v.s10.6280f1ac3539 from=translated src=- shape=f1e863b0 vocab=30ea8160
+-/
 theorem QHodgeStructure.filtration_sup_conj_eq_top (h : QHodgeStructure n V)
     {p q : ℤ} (hpq : p + q ≤ n + 1) :
     h.filtration p ⊔ (h.filtration q).map (sigmaQ V) = ⊤ := by
@@ -141,7 +161,9 @@ theorem QHodgeStructure.filtration_sup_conj_eq_top (h : QHodgeStructure n V)
 /-- **Theorem 2** (opposedness): for `p + q = n + 1`, the filtration and its
 conjugate are complementary, `F^p ⊕ σ(F^q) = ℂ ⊗ V`. This is Deligne's
 condition that `F` and `σ(F)` are `n`-opposed (Théorie de Hodge II, §1.2),
-here derived from internality of the decomposition.-/
+here derived from internality of the decomposition.
+@isnad1 id=iscompl.1h5v.s9.98b0ede60429 from=translated src=- shape=0648b594 vocab=6e9ebf0b
+-/
 theorem QHodgeStructure.isCompl_filtration_conj (h : QHodgeStructure n V)
     {p q : ℤ} (hpq : p + q = n + 1) :
     IsCompl (h.filtration p) ((h.filtration q).map (sigmaQ V)) :=
@@ -149,7 +171,9 @@ theorem QHodgeStructure.isCompl_filtration_conj (h : QHodgeStructure n V)
     codisjoint_iff.mpr (h.filtration_sup_conj_eq_top (by omega))⟩
 
 /-- Morphisms of Hodge structures are automatically filtered: the
-complexification of a `HodgeHom` carries `F^p` into `F^p`.-/
+complexification of a `HodgeHom` carries `F^p` into `F^p`.
+@isnad1 id=le.0h7v.s9.67769063ab38 from=translated src=- shape=1c9c64a4 vocab=b45173ea
+-/
 theorem HodgeHom.maps_filtration {W : Type*} [AddCommGroup W] [Module ℚ W]
     [Module.Finite ℚ W] {hV : QHodgeStructure n V} {hW : QHodgeStructure n W}
     (f : HodgeHom hV hW) (p : ℤ) :

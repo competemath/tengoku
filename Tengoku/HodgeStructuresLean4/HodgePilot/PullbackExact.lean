@@ -57,7 +57,9 @@ set_option maxHeartbeats 1600000 in
 limits.  This is present in Mathlib but synthesis-opaque: `inferInstance`
 head-fails (def-opaque head) or times out (deep `lan` instance search); the
 working route `show`-unfolds to the `Functor.sheafPullback` head and feeds
-the chain by `haveI`.-/
+the chain by `haveI`.
+@isnad1 id=preserve.0h3v.s7.44968a4e3869 from=translated src=- shape=9bd04b19 vocab=e6fbb2d9
+-/
 instance pullbackPreservesFiniteLimits :
     PreservesFiniteLimits (TopCat.Sheaf.pullback AddCommGrpCat.{u} f) := by
   show PreservesFiniteLimits
@@ -71,12 +73,17 @@ instance pullbackPreservesFiniteLimits :
   exact Functor.sheafPullbackConstruction.preservesFiniteLimits _ _ _ _
 
 /-- The pullback of abelian sheaves preserves finite colimits (it is a left
-adjoint); registered keyed at the `TopCat.Sheaf.pullback` head.-/
+adjoint); registered keyed at the `TopCat.Sheaf.pullback` head.
+@isnad1 id=preserve.0h3v.s7.2c49e10c6760 from=translated src=- shape=9bd04b19 vocab=121034f5
+-/
 instance pullbackPreservesFiniteColimits :
     PreservesFiniteColimits (TopCat.Sheaf.pullback AddCommGrpCat.{u} f) :=
   inferInstance
 
 attribute [local instance] Limits.preservesBinaryBiproducts_of_preservesBinaryCoproducts in
+/--
+@isnad1 id=additive.0h3v.s7.e2dac96ec1d8 from=translated src=- shape=9bd04b19 vocab=d452dee5
+-/
 instance pullbackAdditive :
     (TopCat.Sheaf.pullback AddCommGrpCat.{u} f).Additive :=
   Functor.additive_of_preservesBinaryBiproducts _

@@ -107,12 +107,16 @@ variable {n q : ℕ} {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
 
 /-! ## Openness of polydiscs and the sup-norm dictionary -/
 
-/-- The open polydisc is open.-/
+/-- The open polydisc is open.
+@isnad1 id=isopen.0h3v.s5.b67a32fdcf6d from=translated src=- shape=155195a9 vocab=9ffaae1f
+-/
 theorem isOpen_polydisc (c : Fin n → ℂ) (R : Fin n → ℝ) : IsOpen (polydisc c R) :=
   isOpen_set_pi finite_univ fun _ _ => isOpen_ball
 
 /-- Closed sup-norm balls in `Fin n → ℂ` are the closed polydiscs with equal
-radii.-/
+radii.
+@isnad1 id=eq.1h3v.s5.f865467b3096 from=translated src=- shape=8c408105 vocab=95eed5e4
+-/
 theorem closedBall_eq_closedPolydisc (x : Fin n → ℂ) {r : ℝ} (hr : 0 ≤ r) :
     closedBall x r = closedPolydisc x (fun _ => r) := by
   ext z
@@ -126,7 +130,9 @@ every point of the set.  Around each point the open set contains a closed
 sup-norm ball, i.e. a closed polydisc, and the stage-2 Cauchy power series
 (`HodgePilot.PolydiscCauchy.analyticAt_of_differentiableOn_closedPolydisc`)
 applies.  The hypothesis is *joint* differentiability; no separate-variable
-weakening is claimed.-/
+weakening is claimed.
+@isnad1 id=analytic.2h4v.s7.01d0008b252f from=translated src=- shape=b3163f66 vocab=38b06262
+-/
 theorem analyticOnNhd_of_differentiableOn [CompleteSpace F] {f : (Fin n → ℂ) → F}
     {s : Set (Fin n → ℂ)} (hs : IsOpen s) (hf : DifferentiableOn ℂ f s) :
     AnalyticOnNhd ℂ f s := by
@@ -146,7 +152,9 @@ this property; it is what the radial homotopy needs.-/
 def DiscStar (c : Fin n → ℂ) (U : Set (Fin n → ℂ)) : Prop :=
   ∀ z ∈ U, ∀ s : ℂ, ‖s‖ ≤ 1 → c + s • (z - c) ∈ U
 
-/-- Polydiscs absorb complex disc scalings about their centre.-/
+/-- Polydiscs absorb complex disc scalings about their centre.
+@isnad1 id=discstar.0h3v.s4.19622ae2d93e from=translated src=- shape=b9fc3dc7 vocab=bef1aa2e
+-/
 theorem discStar_polydisc (c : Fin n → ℂ) (R : Fin n → ℝ) :
     DiscStar c (polydisc c R) := by
   intro z hz s hs
@@ -161,7 +169,9 @@ theorem discStar_polydisc (c : Fin n → ℂ) (R : Fin n → ℝ) :
     _ = ‖z i - c i‖ := one_mul _
     _ < R i := mem_ball_iff_norm.1 (mem_polydisc.1 hz i)
 
-/-- Balls absorb complex disc scalings about their centre.-/
+/-- Balls absorb complex disc scalings about their centre.
+@isnad1 id=discstar.0h3v.s5.7c5ae54be43b from=translated src=- shape=a9dbacf7 vocab=fda9347c
+-/
 theorem discStar_ball (c : Fin n → ℂ) (r : ℝ) : DiscStar c (ball c r) := by
   intro z hz s hs
   rw [mem_ball_iff_norm] at hz ⊢
@@ -174,6 +184,9 @@ theorem discStar_ball (c : Fin n → ℂ) (r : ℝ) : DiscStar c (ball c r) := b
 def segMap (c : Fin n → ℂ) (t : ℝ) (z : Fin n → ℂ) : Fin n → ℂ :=
   c + (t : ℂ) • (z - c)
 
+/--
+@isnad1 id=mem.3h5v.s6.9691e6f85583 from=translated src=- shape=d26c7900 vocab=77f783e0
+-/
 theorem segMap_mem {c : Fin n → ℂ} {U : Set (Fin n → ℂ)} (hst : DiscStar c U)
     {z : Fin n → ℂ} (hz : z ∈ U) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) 1) :
     segMap c t z ∈ U := by
@@ -181,17 +194,25 @@ theorem segMap_mem {c : Fin n → ℂ} {U : Set (Fin n → ℂ)} (hst : DiscStar
   rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg ht.1]
   exact ht.2
 
+/--
+@isnad1 id=eq.0h3v.s4.f97cacd2866f from=translated src=- shape=4d0ffd47 vocab=b874ff5c
+-/
 @[simp] theorem segMap_one (c z : Fin n → ℂ) : segMap c 1 z = z := by
   simp only [segMap, Complex.ofReal_one, one_smul]
   ring
 
+/--
+@isnad1 id=continuo.0h3v.s6.8072ccfb0486 from=translated src=- shape=09f7b01c vocab=425b9649
+-/
 theorem continuousOn_segMap (c : Fin n → ℂ) (z : Fin n → ℂ) :
     ContinuousOn (fun t : ℝ => segMap c t z) (Icc 0 1) :=
   (continuous_const.add (Complex.continuous_ofReal.smul continuous_const)).continuousOn
 
 /-! ## Alternating-map utilities -/
 
-/-- `removeNth` at a successor index commutes with `Fin.cons`.-/
+/-- `removeNth` at a successor index commutes with `Fin.cons`.
+@isnad1 id=eq.0h5v.s7.c9be21acad11 from=translated src=- shape=5e51b51a vocab=ed6c37c2
+-/
 theorem removeNth_succ_cons {α : Type*} (x : α) (v : Fin (q + 1) → α) (i : Fin (q + 1)) :
     Fin.removeNth (α := fun _ => α) i.succ (Fin.cons x v) =
       Fin.cons x (Fin.removeNth i v) := by
@@ -212,11 +233,16 @@ noncomputable def curryApplyCLM (u : Fin n → ℂ) :
       calc ‖A.curryLeft u‖ ≤ ‖A.curryLeft‖ * ‖u‖ := (A.curryLeft).le_opNorm u
       _ = ‖u‖ * ‖A‖ := by rw [norm_curryLeft]; ring)
 
+/--
+@isnad1 id=eq.0h5v.s11.8662851b6c7f from=translated src=- shape=146ead98 vocab=67a998bb
+-/
 @[simp] theorem curryApplyCLM_apply (u : Fin n → ℂ)
     (A : (Fin n → ℂ) [⋀^Fin (q + 1)]→L[ℂ] F) :
     curryApplyCLM u A = A.curryLeft u := rfl
 
-/-- `(A, u) ↦ A.curryLeft u` is a bounded bilinear map (with constant `1`).-/
+/-- `(A, u) ↦ A.curryLeft u` is a bounded bilinear map (with constant `1`).
+@isnad1 id=isbounde.0h3v.s11.40858542ad65 from=translated src=- shape=64b20d71 vocab=8a1efa20
+-/
 theorem isBoundedBilinearMap_curryApply :
     IsBoundedBilinearMap ℂ (fun p :
       ((Fin n → ℂ) [⋀^Fin (q + 1)]→L[ℂ] F) × (Fin n → ℂ) => p.1.curryLeft p.2) where
@@ -258,7 +284,9 @@ noncomputable def radialContract (c : Fin n → ℂ)
     (Fin n → ℂ) [⋀^Fin q]→L[ℂ] F :=
   ∫ t in (0 : ℝ)..1, radialIntegrand c ω t z
 
-/-- Continuity of the radial integrand in the parameter `t`.-/
+/-- Continuity of the radial integrand in the parameter `t`.
+@isnad1 id=continuo.3h7v.s9.743d67d84b3d from=translated src=- shape=4e44e857 vocab=fab18620
+-/
 theorem continuousOn_radialIntegrand (hst : DiscStar c U) (hω : AnalyticOnNhd ℂ ω U)
     {z : Fin n → ℂ} (hz : z ∈ U) :
     ContinuousOn (fun t : ℝ => radialIntegrand c ω t z) (Icc 0 1) := by
@@ -271,6 +299,9 @@ theorem continuousOn_radialIntegrand (hst : DiscStar c U) (hω : AnalyticOnNhd �
     (curryApplyCLM (z - c)).continuous.comp_continuousOn hωγ
   exact (Complex.continuous_ofReal.pow q).continuousOn.smul hcurry
 
+/--
+@isnad1 id=interval.3h7v.s9.8d38a7ae7b31 from=translated src=- shape=29982da0 vocab=0a7540bb
+-/
 theorem intervalIntegrable_radialIntegrand (hst : DiscStar c U)
     (hω : AnalyticOnNhd ℂ ω U) {z : Fin n → ℂ} (hz : z ∈ U) :
     IntervalIntegrable (fun t : ℝ => radialIntegrand c ω t z) volume 0 1 := by
@@ -280,7 +311,9 @@ theorem intervalIntegrable_radialIntegrand (hst : DiscStar c U)
 
 /-- Pointwise differentiability of the radial integrand in `z`, with
 derivative `radialIntegrandFDeriv` (through the bounded-bilinear-map calculus
-of `curryLeft`).-/
+of `curryLeft`).
+@isnad1 id=hasfderi.4h8v.s9.ad9b2e112cb9 from=translated src=- shape=689a0e13 vocab=77cd7f82
+-/
 theorem hasFDerivAt_radialIntegrand (hst : DiscStar c U) (hω : AnalyticOnNhd ℂ ω U)
     {z : Fin n → ℂ} (hz : z ∈ U) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) 1) :
     HasFDerivAt (fun y => radialIntegrand c ω t y) (radialIntegrandFDeriv c ω t z) z := by
@@ -321,7 +354,9 @@ theorem hasFDerivAt_radialIntegrand (hst : DiscStar c U) (hω : AnalyticOnNhd �
 /-- **Differentiation under the integral sign for the radial contraction**:
 at every point of a `DiscStar` open set on which `ω` is analytic, the radial
 contraction is complex differentiable (jointly) with derivative
-`∫ t in 0..1, radialIntegrandFDeriv c ω t z₀`.-/
+`∫ t in 0..1, radialIntegrandFDeriv c ω t z₀`.
+@isnad1 id=hasfderi.4h7v.s11.796344aba229 from=translated src=- shape=b769dce0 vocab=24c89ffd
+-/
 theorem hasFDerivAt_radialContract [CompleteSpace F] (hU : IsOpen U) (hst : DiscStar c U)
     (hω : AnalyticOnNhd ℂ ω U) {z₀ : Fin n → ℂ} (hz₀ : z₀ ∈ U) :
     HasFDerivAt (radialContract c ω)
@@ -453,7 +488,9 @@ theorem hasFDerivAt_radialContract [CompleteSpace F] (hU : IsOpen U) (hst : Disc
 /-- **Joint analyticity of the radial contraction** on a `DiscStar` open set:
 differentiation under the integral sign gives joint complex differentiability,
 and stage 2 upgrades joint differentiability to joint analyticity on open
-subsets of `ℂⁿ`.-/
+subsets of `ℂⁿ`.
+@isnad1 id=analytic.3h6v.s9.dec4f107434a from=translated src=- shape=8d3682d8 vocab=30c81cc9
+-/
 theorem analyticOnNhd_radialContract [CompleteSpace F] (hU : IsOpen U)
     (hst : DiscStar c U) (hω : AnalyticOnNhd ℂ ω U) :
     AnalyticOnNhd ℂ (radialContract c ω) U :=
@@ -463,7 +500,9 @@ theorem analyticOnNhd_radialContract [CompleteSpace F] (hU : IsOpen U)
 /-! ## The Cartan identity and the fundamental theorem of calculus -/
 
 /-- A complex derivative restricts to a real derivative along the real axis
-(vector-valued version of `HasDerivAt.comp_ofReal`).-/
+(vector-valued version of `HasDerivAt.comp_ofReal`).
+@isnad1 id=hasderiv.1h4v.s6.90bc81c7c33a from=translated src=- shape=8fe26873 vocab=b28ed411
+-/
 theorem hasDerivAt_comp_ofReal {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W]
     {h : ℂ → W} {h' : W} {t : ℝ} (hf : HasDerivAt h h' (t : ℂ)) :
     HasDerivAt (fun τ : ℝ => h τ) h' t := by
@@ -471,7 +510,9 @@ theorem hasDerivAt_comp_ofReal {W : Type*} [NormedAddCommGroup W] [NormedSpace �
     (hf.hasFDerivAt.restrictScalars ℝ).comp_hasDerivAt t Complex.ofRealCLM.hasDerivAt
 
 /-- Evaluation of continuous linear maps (into the forms space) at a fixed
-vector is Lipschitz.-/
+vector is Lipschitz.
+@isnad1 id=lipschit.0h4v.s11.e08cf618050c from=translated src=- shape=65374a59 vocab=f5c1257e
+-/
 theorem lipschitzWith_clm_apply (u : Fin n → ℂ) :
     LipschitzWith ‖u‖₊
       (fun M : (Fin n → ℂ) →L[ℂ] ((Fin n → ℂ) [⋀^Fin (q + 1)]→L[ℂ] F) => M u) := by
@@ -482,7 +523,9 @@ theorem lipschitzWith_clm_apply (u : Fin n → ℂ) :
     _ = ‖u‖ * ‖M - M'‖ := mul_comm _ _
 
 /-- The signed-sum formula for `alternatizeUncurryFin`, with the signs read in
-`ℂ` (the library's `zsmul` signs converted through the module structure).-/
+`ℂ` (the library's `zsmul` signs converted through the module structure).
+@isnad1 id=eq.0h5v.s11.40eda2683858 from=translated src=- shape=b9d90576 vocab=b83548a7
+-/
 theorem alternatizeUncurryFin_apply_complexSign
     (f : (Fin n → ℂ) →L[ℂ] ((Fin n → ℂ) [⋀^Fin q]→L[ℂ] F))
     (v : Fin (q + 1) → (Fin n → ℂ)) :
@@ -493,7 +536,9 @@ theorem alternatizeUncurryFin_apply_complexSign
 
 /-- The closedness relation: if `extDeriv ω = 0` on `U`, then the contraction
 of `fderiv ω` against a fixed vector `u` is the signed sum of the values of
-`fderiv ω` on the `Fin.cons`-tuples.-/
+`fderiv ω` on the `Fin.cons`-tuples.
+@isnad1 id=eq.2h8v.s12.d5f2323f2379 from=translated src=- shape=afa59377 vocab=af2d748f
+-/
 theorem fderiv_contraction_of_closed (hcl : ∀ y ∈ U, extDeriv ω y = 0)
     {y : Fin n → ℂ} (hy : y ∈ U) (u : Fin n → ℂ) (v : Fin (q + 1) → (Fin n → ℂ)) :
     (fderiv ℂ ω y u) v =
@@ -511,7 +556,9 @@ theorem fderiv_contraction_of_closed (hcl : ∀ y ∈ U, extDeriv ω y = 0)
 
 /-- **The pointwise Cartan identity for the radial integrand**: for a closed
 `ω`, the signed evaluation sum of the `z`-derivative of the radial integrand
-is the `t`-derivative of `t ↦ t^(q+1) • ω (segMap c t z)`, evaluated at `v`.-/
+is the `t`-derivative of `t ↦ t^(q+1) • ω (segMap c t z)`, evaluated at `v`.
+@isnad1 id=eq.2h9v.s11.ce3d14c78652 from=translated src=- shape=ff63e4a1 vocab=67b49a94
+-/
 theorem alternatizeUncurryFin_radialIntegrandFDeriv
     (hcl : ∀ y ∈ U, extDeriv ω y = 0) {z : Fin n → ℂ} {t : ℝ}
     (hy : segMap c t z ∈ U) (v : Fin (q + 1) → (Fin n → ℂ)) :
@@ -552,7 +599,9 @@ theorem alternatizeUncurryFin_radialIntegrandFDeriv
 
 /-- **The radial contraction is a primitive**: for a closed analytic
 `(q+1)`-form `ω` on a `DiscStar` open set `U`, the exterior derivative of the
-radial contraction recovers `ω` at every point of `U`.-/
+radial contraction recovers `ω` at every point of `U`.
+@isnad1 id=eq.5h7v.s10.b9c755088642 from=translated src=- shape=eeee041c vocab=e564c53a
+-/
 theorem extDeriv_radialContract_of_closed [CompleteSpace F] (hU : IsOpen U)
     (hst : DiscStar c U) (hω : AnalyticOnNhd ℂ ω U)
     (hcl : ∀ y ∈ U, extDeriv ω y = 0) {z : Fin n → ℂ} (hz : z ∈ U) :
@@ -712,7 +761,9 @@ section Existence
 variable {c : Fin n → ℂ} {ω : (Fin n → ℂ) → ((Fin n → ℂ) [⋀^Fin (q + 1)]→L[ℂ] F)}
 
 /-- **Primitives on disc-star-shaped open sets**: a closed analytic
-`(q+1)`-form on an open `DiscStar` set has an analytic `q`-form primitive.-/
+`(q+1)`-form on an open `DiscStar` set has an analytic `q`-form primitive.
+@isnad1 id=ex.4h6v.s11.d868ab45af39 from=translated src=- shape=8a45365e vocab=232a21d6
+-/
 theorem exists_primitive_form_discStar [CompleteSpace F] {U : Set (Fin n → ℂ)}
     (hU : IsOpen U) (hst : DiscStar c U) (hω : AnalyticOnNhd ℂ ω U)
     (hcl : ∀ z ∈ U, extDeriv ω z = 0) :
@@ -725,7 +776,9 @@ theorem exists_primitive_form_discStar [CompleteSpace F] {U : Set (Fin n → ℂ
 closed analytic `(q+1)`-form on an open polydisc in `ℂⁿ` is the exterior
 derivative of an analytic `q`-form on the polydisc — in every dimension `n`,
 every degree `q + 1 ≥ 1`, and with values in every complete normed
-`ℂ`-space.-/
+`ℂ`-space.
+@isnad1 id=ex.2h6v.s11.a7b7505933ab from=translated src=- shape=771389f0 vocab=d9763c25
+-/
 theorem exists_primitive_form_polydisc [CompleteSpace F] {R : Fin n → ℝ}
     (hω : AnalyticOnNhd ℂ ω (polydisc c R))
     (hcl : ∀ z ∈ polydisc c R, extDeriv ω z = 0) :
@@ -734,7 +787,9 @@ theorem exists_primitive_form_polydisc [CompleteSpace F] {R : Fin n → ℝ}
   exists_primitive_form_discStar (isOpen_polydisc c R) (discStar_polydisc c R) hω hcl
 
 /-- The holomorphic Poincaré lemma on sup-norm balls in `ℂⁿ` (the equal-radii
-polydiscs), positive degrees.-/
+polydiscs), positive degrees.
+@isnad1 id=ex.2h6v.s11.3c1ecace0907 from=translated src=- shape=0b214ca0 vocab=a7edc4d9
+-/
 theorem exists_primitive_form_ball [CompleteSpace F] {r : ℝ}
     (hω : AnalyticOnNhd ℂ ω (ball c r)) (hcl : ∀ z ∈ ball c r, extDeriv ω z = 0) :
     ∃ η : (Fin n → ℂ) → ((Fin n → ℂ) [⋀^Fin q]→L[ℂ] F),
@@ -749,7 +804,9 @@ end Existence
 with vanishing exterior derivative takes the same value at any two points of
 the ball (the degree-`0` companion of the positive-degree exactness above;
 dimension-generic port of the one-variable
-`HodgePilot.DiscResolution.const_of_extDeriv_eq_zero`).-/
+`HodgePilot.DiscResolution.const_of_extDeriv_eq_zero`).
+@isnad1 id=eq.4h7v.s10.d3c9681022dc from=translated src=- shape=ee0ca3cb vocab=9c7b1565
+-/
 theorem const_of_extDeriv_eq_zero_ball {x : Fin n → ℂ} {r : ℝ}
     {g : (Fin n → ℂ) → ((Fin n → ℂ) [⋀^Fin 0]→L[ℂ] F)}
     (hg : AnalyticOnNhd ℂ g (ball x r))

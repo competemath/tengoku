@@ -112,7 +112,9 @@ variable {R : Type u} {A : Type v} {M : Type w} [CommSemiring R]
   [AddCommMonoid A] [Module R A] [CoalgebraStruct R A]
   [AddCommMonoid M] [Module R M]
 
-/-- Two comodule structures with the same coaction are equal.-/
+/-- Two comodule structures with the same coaction are equal.
+@isnad1 id=eq.1h5v.s7.f34a8e33eca6 from=translated src=- shape=9c1dcbef vocab=46d7f43b
+-/
 theorem ComoduleStruct.ext {inst₁ inst₂ : ComoduleStruct R A M}
     (h : inst₁.coaction = inst₂.coaction) : inst₁ = inst₂ := by
   cases inst₁; cases inst₂; congr 1
@@ -154,7 +156,9 @@ section ComoduleExt
 variable {R : Type u} {A : Type v} {M : Type w} [CommSemiring R]
   [AddCommMonoid A] [Module R A] [Coalgebra R A] [AddCommMonoid M] [Module R M]
 
-/-- Two comodule instances with the same coaction are equal.-/
+/-- Two comodule instances with the same coaction are equal.
+@isnad1 id=eq.1h5v.s7.1199ee6e4955 from=translated src=- shape=4ac8672e vocab=b874278e
+-/
 theorem Comodule.ext {inst₁ inst₂ : Comodule R A M}
     (h : inst₁.coaction = inst₂.coaction) : inst₁ = inst₂ := by
   cases inst₁; cases inst₂
@@ -171,6 +175,9 @@ variable {R : Type u} {A : Type v} {M : Type w} {ι : Type*} {κ Λ : ι → Typ
   [CommSemiring R] [AddCommMonoid A] [Module R A] [Coalgebra R A]
   [AddCommMonoid M] [Module R M] [Comodule R A M] {m : M}
 
+/--
+@isnad1 id=eq.0h4v.s9.fdb2638a5135 from=translated src=- shape=29a18350 vocab=dc42a0dd
+-/
 @[simp]
 theorem coaction_counit_apply (m : M) :
     TensorProduct.rid R M
@@ -178,6 +185,9 @@ theorem coaction_counit_apply (m : M) :
         (coaction (R := R) (A := A) m)) = m :=
   LinearMap.congr_fun (coaction_counit (R := R) (A := A) (M := M)) m
 
+/--
+@isnad1 id=eq.0h4v.s8.049b9cd3b409 from=translated src=- shape=669ad1e7 vocab=5ecad886
+-/
 @[simp]
 theorem lTensor_counit_coaction (m : M) :
     LinearMap.lTensor M (Coalgebra.counit (R := R) (A := A))
@@ -185,6 +195,9 @@ theorem lTensor_counit_coaction (m : M) :
   rw [← TensorProduct.rid_symm_apply, LinearEquiv.eq_symm_apply]
   exact coaction_counit_apply m
 
+/--
+@isnad1 id=eq.0h4v.s11.37cfe2297928 from=translated src=- shape=7dd3e557 vocab=a8f42446
+-/
 theorem coaction_coassoc_apply (m : M) :
     LinearMap.rTensor A (coaction (R := R) (A := A) (M := M))
         (coaction (R := R) (A := A) m) =
@@ -193,6 +206,9 @@ theorem coaction_coassoc_apply (m : M) :
           (coaction (R := R) (A := A) m)) :=
   LinearMap.congr_fun (coaction_coassoc (R := R) (A := A) (M := M)) m
 
+/--
+@isnad1 id=eq.0h4v.s10.a8766d01e784 from=translated src=- shape=ff108c54 vocab=3d1b5289
+-/
 @[simp]
 theorem assoc_rTensor_coaction (m : M) :
     TensorProduct.assoc R M A A
@@ -204,7 +220,9 @@ theorem assoc_rTensor_coaction (m : M) :
   exact (TensorProduct.assoc R M A A).apply_symm_apply _
 
 /-- Coassociativity with the associator on the coaction side; mirrors
-`Coalgebra.coassoc`.-/
+`Coalgebra.coassoc`.
+@isnad1 id=eq.0h3v.s10.23087b598347 from=translated src=- shape=6216a103 vocab=489bb74c
+-/
 theorem coaction_coassoc' :
     (TensorProduct.assoc R M A A).toLinearMap ∘ₗ
         LinearMap.rTensor A (coaction (R := R) (A := A) (M := M)) ∘ₗ coaction =
@@ -212,7 +230,9 @@ theorem coaction_coassoc' :
   LinearMap.ext fun m => assoc_rTensor_coaction m
 
 /-- The counit law in summation form: for `coaction m = ∑ mᵢ ⊗ aᵢ` we get
-`∑ ε(aᵢ) • mᵢ = m`; mirrors `Coalgebra.sum_counit_smul`.-/
+`∑ ε(aᵢ) • mᵢ = m`; mirrors `Coalgebra.sum_counit_smul`.
+@isnad1 id=eq.0h6v.s8.b3772159751f from=translated src=- shape=86bb2888 vocab=666fac52
+-/
 lemma sum_counit_smul (repr : Comodule.Repr R A m ι) :
     ∑ i ∈ repr.index, Coalgebra.counit (R := R) (repr.right i) • repr.left i = m := by
   have h := coaction_counit_apply (R := R) (A := A) m
@@ -221,7 +241,9 @@ lemma sum_counit_smul (repr : Comodule.Repr R A m ι) :
 
 /-- The counit law in summation form, tensor version: for
 `coaction m = ∑ mᵢ ⊗ aᵢ` we get `∑ mᵢ ⊗ ε(aᵢ) = m ⊗ 1`; mirrors
-`Coalgebra.sum_tmul_counit_eq`.-/
+`Coalgebra.sum_tmul_counit_eq`.
+@isnad1 id=eq.0h6v.s8.ee17cedf6e0e from=translated src=- shape=798d8ab5 vocab=9bfe64e9
+-/
 @[simp]
 lemma sum_tmul_counit_eq (repr : Comodule.Repr R A m ι) :
     ∑ i ∈ repr.index, repr.left i ⊗ₜ Coalgebra.counit (R := R) (repr.right i) =
@@ -231,7 +253,9 @@ lemma sum_tmul_counit_eq (repr : Comodule.Repr R A m ι) :
 /-- Coassociativity in summation form ("Sweedler bookkeeping"): expanding
 `(ρ ⊗ 1) ∘ ρ` along a representation of `m` and representations of its left
 legs agrees with expanding `(1 ⊗ Δ) ∘ ρ` along representations of its right
-legs; mirrors `Coalgebra.sum_tmul_tmul_eq`.-/
+legs; mirrors `Coalgebra.sum_tmul_tmul_eq`.
+@isnad1 id=eq.0h10v.s10.fdaefd3c64d1 from=translated src=- shape=5d8b8e4d vocab=9bd15590
+-/
 lemma sum_tmul_tmul_eq (repr : Comodule.Repr R A m ι)
     (m₁ : (i : ι) → Comodule.Repr R A (repr.left i) (κ i))
     (a₂ : (i : ι) → Coalgebra.Repr R (repr.right i) (Λ i)) :
@@ -262,7 +286,9 @@ instance Comodule.regular : Comodule R A A where
 
 variable {R A}
 
-/-- On the regular comodule the coaction is the comultiplication.-/
+/-- On the regular comodule the coaction is the comultiplication.
+@isnad1 id=eq.0h2v.s6.b72e20489839 from=translated src=- shape=451fcac8 vocab=c4ef1933
+-/
 @[simp]
 theorem Comodule.coaction_eq_comul :
     Comodule.coaction (R := R) (A := A) (M := A) = Coalgebra.comul := rfl
@@ -298,34 +324,57 @@ instance funLike : FunLike (ComodHom R A M N) M N where
     rcases g with ⟨⟨⟨_, _⟩, _⟩, _⟩
     congr
 
+/--
+@isnad1 id=linearma.0h4v.s6.7bd2c19b5276 from=translated src=- shape=e171609e vocab=75dd23b9
+-/
 instance linearMapClass : LinearMapClass (ComodHom R A M N) R M N where
   map_add f := f.map_add'
   map_smulₛₗ f := f.map_smul'
 
+/--
+@isnad1 id=eq.1h5v.s8.d11cc2250511 from=translated src=- shape=38ec48b9 vocab=dfd07b08
+-/
 @[simp]
 theorem coe_mk {f : M →ₗ[R] N} (h) : ((⟨f, h⟩ : ComodHom R A M N) : M → N) = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d196b7e1a660 from=translated src=- shape=d9ab3a5d vocab=cc441db9
+-/
 @[simp]
 theorem toLinearMap_eq_coe (f : ComodHom R A M N) : f.toLinearMap = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.04aeb3579d52 from=translated src=- shape=b9449e8e vocab=30109848
+-/
 @[simp, norm_cast]
 theorem coe_toLinearMap (f : ComodHom R A M N) : ⇑(f : M →ₗ[R] N) = f :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s6.ff96142a94ab from=translated src=- shape=727180bf vocab=096c33d4
+-/
 theorem toLinearMap_injective :
     Function.Injective (toLinearMap : ComodHom R A M N → M →ₗ[R] N) :=
   fun _f _g h => DFunLike.ext _ _ fun m => DFunLike.congr_fun h m
 
+/--
+@isnad1 id=eq.1h6v.s7.8409d0429bad from=translated src=- shape=38bf4e4d vocab=cb01e7ff
+-/
 @[ext]
 theorem ext {f g : ComodHom R A M N} (h : ∀ m, f m = g m) : f = g :=
   DFunLike.ext _ _ h
 
+/--
+@isnad1 id=eq.1h7v.s7.87c5d08235dd from=translated src=- shape=22186a5e vocab=cb01e7ff
+-/
 protected theorem congr_fun {f g : ComodHom R A M N} (h : f = g) (m : M) : f m = g m :=
   DFunLike.congr_fun h m
 
-/-- The defining law of a comodule morphism, applied to an element.-/
+/-- The defining law of a comodule morphism, applied to an element.
+@isnad1 id=eq.0h6v.s9.1f8de092d71a from=translated src=- shape=683b5d5d vocab=4a26bcfd
+-/
 @[simp]
 theorem coaction_comm_apply (f : ComodHom R A M N) (m : M) :
     LinearMap.rTensor A (f : M →ₗ[R] N) (Comodule.coaction (R := R) (A := A) m) =
@@ -338,14 +387,23 @@ protected def id : ComodHom R A M M :=
   { LinearMap.id with
     coaction_comm := by rw [LinearMap.rTensor_id, LinearMap.id_comp, LinearMap.comp_id] }
 
+/--
+@isnad1 id=eq.0h3v.s6.7a7deb5d8e78 from=translated src=- shape=a1f249bd vocab=eff65f17
+-/
 @[simp]
 theorem coe_id : ⇑(ComodHom.id R A M) = _root_.id :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.29e992fc2b3a from=translated src=- shape=7743f42f vocab=98884b77
+-/
 @[simp]
 theorem id_apply (m : M) : ComodHom.id R A M m = m :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.0c62bbcfb318 from=translated src=- shape=36d3e15a vocab=3a94012e
+-/
 @[simp]
 theorem id_toLinearMap : (ComodHom.id R A M).toLinearMap = LinearMap.id :=
   rfl
@@ -357,15 +415,24 @@ def comp (g : ComodHom R A N P) (f : ComodHom R A M N) : ComodHom R A M P :=
       rw [LinearMap.rTensor_comp, LinearMap.comp_assoc, f.coaction_comm,
         ← LinearMap.comp_assoc, g.coaction_comm, LinearMap.comp_assoc] }
 
+/--
+@isnad1 id=eq.0h7v.s8.2417800d2faa from=translated src=- shape=247cb907 vocab=fb9f0086
+-/
 @[simp]
 theorem coe_comp (g : ComodHom R A N P) (f : ComodHom R A M N) : ⇑(g.comp f) = g ∘ f :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.135b9533bca4 from=translated src=- shape=904fc0f9 vocab=c2db4f67
+-/
 @[simp]
 theorem comp_apply (g : ComodHom R A N P) (f : ComodHom R A M N) (m : M) :
     g.comp f m = g (f m) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.a12658926194 from=translated src=- shape=8601a61e vocab=8bfd595f
+-/
 @[simp]
 theorem comp_toLinearMap (g : ComodHom R A N P) (f : ComodHom R A M N) :
     (g.comp f).toLinearMap = g.toLinearMap ∘ₗ f.toLinearMap :=
@@ -373,14 +440,23 @@ theorem comp_toLinearMap (g : ComodHom R A N P) (f : ComodHom R A M N) :
 
 /-! Raw-level category axioms (the bundled category is Stage 2). -/
 
+/--
+@isnad1 id=eq.0h5v.s7.38746b6f4f77 from=translated src=- shape=aef676b4 vocab=0887afba
+-/
 @[simp]
 theorem id_comp (f : ComodHom R A M N) : (ComodHom.id R A N).comp f = f :=
   ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d9d787603977 from=translated src=- shape=f0dab2e3 vocab=0887afba
+-/
 @[simp]
 theorem comp_id (f : ComodHom R A M N) : f.comp (ComodHom.id R A M) = f :=
   ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h9v.s8.c37fa426347f from=translated src=- shape=30691b98 vocab=5005569f
+-/
 theorem comp_assoc (h : ComodHom R A P Q) (g : ComodHom R A N P) (f : ComodHom R A M N) :
     (h.comp g).comp f = h.comp (g.comp f) :=
   ext fun _ => rfl
@@ -427,6 +503,9 @@ abbrev Comodule.base : Comodule R A R where
   coaction_counit := by ext; simp
   coaction_coassoc := by ext; simp [Algebra.TensorProduct.one_def]
 
+/--
+@isnad1 id=eq.0h3v.s8.9b6266ad53b3 from=translated src=- shape=63e8b3e2 vocab=1f4c205d
+-/
 @[simp]
 theorem Comodule.base_coaction_apply (r : R) :
     (Comodule.base R A).coaction r = r ⊗ₜ[R] (1 : A) :=
@@ -455,19 +534,26 @@ abbrev ComoduleStruct.corestrict [ComoduleStruct R A M] (f : A →ₗc[R] B) :
     ComoduleStruct R B M where
   coaction := LinearMap.lTensor M f.toLinearMap ∘ₗ coaction (R := R) (A := A)
 
+/--
+@isnad1 id=eq.0h5v.s8.e421e0a3decd from=translated src=- shape=866e8e4c vocab=f0a4026e
+-/
 @[simp]
 theorem ComoduleStruct.corestrict_coaction [ComoduleStruct R A M] (f : A →ₗc[R] B) :
     (ComoduleStruct.corestrict M f).coaction =
       LinearMap.lTensor M f.toLinearMap ∘ₗ coaction (R := R) (A := A) :=
   rfl
 
-/-- Corestriction along the identity is the identity.-/
+/-- Corestriction along the identity is the identity.
+@isnad1 id=eq.0h3v.s6.e262ac15fac6 from=translated src=- shape=93e9557c vocab=d551a2db
+-/
 theorem ComoduleStruct.corestrict_id [ComoduleStruct R A M] :
     ComoduleStruct.corestrict M (CoalgHom.id R A) = ‹ComoduleStruct R A M› :=
   ComoduleStruct.ext (by simp)
 
 /-- Corestriction along a composite is the composite of the corestrictions
-(functoriality at the raw level).-/
+(functoriality at the raw level).
+@isnad1 id=eq.0h7v.s7.73de81ec5e79 from=translated src=- shape=4b5ddd86 vocab=edc80410
+-/
 theorem ComoduleStruct.corestrict_comp [ComoduleStruct R A M]
     (g : B →ₗc[R] C) (f : A →ₗc[R] B) :
     ComoduleStruct.corestrict M (g.comp f) =
@@ -496,6 +582,9 @@ def ComodHom.corestrict [ComoduleStruct R A M] [ComoduleStruct R A N]
         ← LinearMap.lTensor_comp_rTensor, LinearMap.comp_assoc, φ.coaction_comm,
         ← LinearMap.comp_assoc] }
 
+/--
+@isnad1 id=eq.0h7v.s8.c6e332948b3c from=translated src=- shape=d9a46e79 vocab=1ce8d237
+-/
 @[simp]
 theorem ComodHom.coe_corestrict [ComoduleStruct R A M] [ComoduleStruct R A N]
     (f : A →ₗc[R] B) (φ : ComodHom R A M N) : ⇑(φ.corestrict f) = ⇑φ :=
@@ -546,13 +635,18 @@ abbrev Comodule.corestrict [Comodule R A M] (f : A →ₗc[R] B) : Comodule R B 
       ← LinearMap.lTensor_comp, ← f.map_comp_comul, LinearMap.lTensor_comp,
       LinearMap.comp_assoc]
 
+/--
+@isnad1 id=eq.0h5v.s8.11dd96bf32e0 from=translated src=- shape=4ce6c4d5 vocab=de2e71e4
+-/
 @[simp]
 theorem Comodule.corestrict_coaction [Comodule R A M] (f : A →ₗc[R] B) :
     (Comodule.corestrict M f).coaction =
       LinearMap.lTensor M f.toLinearMap ∘ₗ Comodule.coaction (R := R) (A := A) :=
   rfl
 
-/-- Corestriction along the identity is the identity (law level).-/
+/-- Corestriction along the identity is the identity (law level).
+@isnad1 id=eq.0h3v.s6.7f732fbc7ace from=translated src=- shape=93e9557c vocab=1c4fb08e
+-/
 theorem Comodule.corestrict_id [Comodule R A M] :
     Comodule.corestrict M (CoalgHom.id R A) = ‹Comodule R A M› :=
   Comodule.ext (by simp)
@@ -622,7 +716,9 @@ variable {R : Type u} {A : Type v} {M : Type w} {N : Type w'} [CommRing R]
 /-- **Kernels of comodule morphisms are coaction-invariant.** Over a ring, by
 right-exactness of the tensor product, `ker (φ ⊗ 1) = im (ker φ ⊗ 1 → M ⊗ A)`
 once the injective `M ⧸ ker φ → N` stays injective after tensoring — which
-flatness of `A` guarantees.-/
+flatness of `A` guarantees.
+@isnad1 id=iscoacti.0h5v.s7.ec8919b1497e from=translated src=- shape=a4593235 vocab=64e0d314
+-/
 theorem ComodHom.isCoactionInvariant_ker [Module.Flat R A] (φ : ComodHom R A M N) :
     IsCoactionInvariant A (LinearMap.ker φ.toLinearMap) := by
   intro x hx

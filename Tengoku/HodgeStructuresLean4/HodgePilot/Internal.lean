@@ -17,7 +17,9 @@ variable {R : Type*} [Ring R] {M : Type*} [AddCommGroup M] [Module R M]
 variable {ι : Type*} [DecidableEq ι]
 
 /-- A family of submodules that is `⊥` away from `i₀` and `⊤` at `i₀` is an
-internal direct sum.-/
+internal direct sum.
+@isnad1 id=isintern.2h5v.s7.d9fe0293644b from=translated src=- shape=f14a441a vocab=ffe91a88
+-/
 theorem isInternal_of_eq_bot {A : ι → Submodule R M} {i₀ : ι}
     (hbot : ∀ i, i ≠ i₀ → A i = ⊥) (htop : A i₀ = ⊤) :
     DirectSum.IsInternal A := by
@@ -37,7 +39,9 @@ theorem isInternal_of_eq_bot {A : ι → Submodule R M} {i₀ : ι}
     exact le_iSup A i₀
 
 /-- A family of submodules that is `⊥` away from two indices carrying
-complementary submodules is an internal direct sum.-/
+complementary submodules is an internal direct sum.
+@isnad1 id=isintern.3h6v.s7.54d0b44e8fbc from=translated src=- shape=e3e8e496 vocab=ed40c457
+-/
 theorem isInternal_of_isCompl_of_eq_bot {A : ι → Submodule R M} {i₀ i₁ : ι}
     (hne : i₀ ≠ i₁) (hbot : ∀ i, i ≠ i₀ → i ≠ i₁ → A i = ⊥)
     (hcompl : IsCompl (A i₀) (A i₁)) :
@@ -79,7 +83,9 @@ Mathlib has this only for *disjoint* index sets
 (`biSup_inter_of_pairwise_disjoint`, which needs `Frame`); submodule lattices
 are merely modular, so independence has to do the work: every element has a
 unique `DFinsupp` decomposition, and a decomposition supported in `P` that
-equals one supported in `Q` is supported in both.-/
+equals one supported in `Q` is supported in both.
+@isnad1 id=le.1h6v.s8.b17337637c1e from=translated src=- shape=b1277101 vocab=6f7d7a3e
+-/
 theorem biSup_inf_biSup_le_of_iSupIndep {A : ι → Submodule R M}
     (hA : iSupIndep A) (P Q : ι → Prop) :
     (⨆ (i) (_ : P i), A i) ⊓ (⨆ (i) (_ : Q i), A i) ≤
@@ -107,7 +113,9 @@ theorem biSup_inf_biSup_le_of_iSupIndep {A : ι → Submodule R M}
 
 omit [DecidableEq ι] in
 /-- Equality form of `biSup_inf_biSup_le_of_iSupIndep`: for an independent
-family, `(⨆ i ∈ P, A i) ⊓ (⨆ i ∈ Q, A i) = ⨆ i ∈ P ∩ Q, A i`.-/
+family, `(⨆ i ∈ P, A i) ⊓ (⨆ i ∈ Q, A i) = ⨆ i ∈ P ∩ Q, A i`.
+@isnad1 id=eq.1h6v.s8.354656a0be1b from=translated src=- shape=b1277101 vocab=961028bf
+-/
 theorem biSup_inf_biSup_of_iSupIndep {A : ι → Submodule R M}
     (hA : iSupIndep A) (P Q : ι → Prop) :
     (⨆ (i) (_ : P i), A i) ⊓ (⨆ (i) (_ : Q i), A i) =

@@ -29,11 +29,16 @@ variable {n : ℤ} {V : Type*} [AddCommGroup V] [Module ℚ V] [Module.Finite �
 
 /-! ### Two more facts about `σ` -/
 
+/--
+@isnad1 id=injectiv.0h1v.s9.39781fc65f01 from=translated src=- shape=c0e197d0 vocab=7523df0b
+-/
 theorem sigmaQ_injective (V : Type*) [AddCommGroup V] [Module ℚ V] :
     Function.Injective (sigmaQ V) :=
   Function.Involutive.injective (sigmaQ_sigmaQ V)
 
-/-- Applying `σ` twice to a submodule returns the submodule.-/
+/-- Applying `σ` twice to a submodule returns the submodule.
+@isnad1 id=eq.0h2v.s9.da8e755c3310 from=translated src=- shape=fcdd1f64 vocab=08b5d45c
+-/
 @[simp] theorem map_sigmaQ_map_sigmaQ (V : Type*) [AddCommGroup V]
     [Module ℚ V] (S : Submodule ℂ (ℂ ⊗[ℚ] V)) :
     (S.map (sigmaQ V)).map (sigmaQ V) = S := by
@@ -68,17 +73,29 @@ antidiagonal, `⊥` elsewhere.-/
 def piece (pq : ℤ × ℤ) : Submodule ℂ (ℂ ⊗[ℚ] V) :=
   if pq.1 + pq.2 = n then Φ.F pq.1 ⊓ (Φ.F pq.2).map (sigmaQ V) else ⊥
 
+/--
+@isnad1 id=eq.1h4v.s8.02ba70daf9b3 from=translated src=- shape=9c75cd7e vocab=4d2563c0
+-/
 theorem piece_of_ne (pq : ℤ × ℤ) (h : pq.1 + pq.2 ≠ n) : Φ.piece pq = ⊥ :=
   ite_eq_right h
 
+/--
+@isnad1 id=eq.1h5v.s9.3b324b522f16 from=translated src=- shape=5fa19ebf vocab=9b555ba5
+-/
 theorem piece_of_eq (p q : ℤ) (h : p + q = n) :
     Φ.piece (p, q) = Φ.F p ⊓ (Φ.F q).map (sigmaQ V) :=
   ite_eq_left h
 
+/--
+@isnad1 id=le.1h5v.s9.3829bd85e730 from=translated src=- shape=b5892305 vocab=63e9b741
+-/
 theorem piece_le_F (p q : ℤ) (h : p + q = n) : Φ.piece (p, q) ≤ Φ.F p := by
   rw [Φ.piece_of_eq p q h]
   exact inf_le_left
 
+/--
+@isnad1 id=le.1h5v.s9.98087e3b4f59 from=translated src=- shape=652411b7 vocab=474646e3
+-/
 theorem piece_le_conj (p q : ℤ) (h : p + q = n) :
     Φ.piece (p, q) ≤ (Φ.F q).map (sigmaQ V) := by
   rw [Φ.piece_of_eq p q h]
@@ -86,7 +103,9 @@ theorem piece_le_conj (p q : ℤ) (h : p + q = n) :
 
 /-- The crux disjointness, by pure modular-lattice algebra: for `p + q = n`,
 `(F^p ⊓ σF^q) ⊓ (F^{p+1} ⊔ σF^{q+1}) = ⊥`. Both opposedness hypotheses at
-level `n + 1` enter once each.-/
+level `n + 1` enter once each.
+@isnad1 id=eq.1h5v.s11.1d9bf9699781 from=translated src=- shape=af48595f vocab=663fc27d
+-/
 theorem inf_step (p q : ℤ) (hpq : p + q = n) :
     (Φ.F p ⊓ (Φ.F q).map (sigmaQ V)) ⊓
       (Φ.F (p + 1) ⊔ (Φ.F (q + 1)).map (sigmaQ V)) = ⊥ := by
@@ -108,7 +127,9 @@ theorem inf_step (p q : ℤ) (hpq : p + q = n) :
 
 /-- The one-step splitting of the filtration: for any `p`,
 `F^p = (F^p ⊓ σF^{n-p}) ⊔ F^{p+1}` — the top Hodge piece splits off, by the
-modular law and opposedness at `(p+1) + (n-p) = n+1`.-/
+modular law and opposedness at `(p+1) + (n-p) = n+1`.
+@isnad1 id=eq.0h4v.s10.3f72ebd2b177 from=translated src=- shape=98d916c0 vocab=7e39fb07
+-/
 theorem F_eq_piece_sup_succ (p : ℤ) :
     Φ.F p = (Φ.F p ⊓ (Φ.F (n - p)).map (sigmaQ V)) ⊔ Φ.F (p + 1) := by
   set A := Φ.F p
@@ -123,7 +144,9 @@ theorem F_eq_piece_sup_succ (p : ℤ) :
 
 /-- The pieces of an opposed filtration are independent. Element-free:
 the sup of all other pieces is bounded by `F^{p+1} ⊔ σF^{q+1}`, which meets
-`H^{p,q}` trivially by `inf_step`.-/
+`H^{p,q}` trivially by `inf_step`.
+@isnad1 id=isupinde.0h3v.s8.b23d5eac4702 from=translated src=- shape=774feec2 vocab=0ad9096d
+-/
 theorem iSupIndep_piece : iSupIndep Φ.piece := by
   intro pq
   obtain ⟨a, b⟩ := pq
@@ -154,7 +177,9 @@ theorem iSupIndep_piece : iSupIndep Φ.piece := by
     exact disjoint_bot_left
 
 /-- The pieces of an opposed filtration span, by descending induction along
-the filtration from the exhaustion bounds.-/
+the filtration from the exhaustion bounds.
+@isnad1 id=eq.0h3v.s10.b450b1a5349d from=translated src=- shape=d0903538 vocab=29b673ed
+-/
 theorem iSup_piece_eq_top : ⨆ pq, Φ.piece pq = ⊤ := by
   obtain ⟨a, ha⟩ := Φ.exhaustive_top
   obtain ⟨b, hb⟩ := Φ.exhaustive_bot
@@ -202,6 +227,9 @@ def toQHodgeStructure : QHodgeStructure n V where
     · rw [Φ.piece_of_ne (p, q) hpq, Φ.piece_of_ne (q, p) (by omega),
         Submodule.map_bot]
 
+/--
+@isnad1 id=eq.0h4v.s7.71cf2911007d from=translated src=- shape=5c54d8a5 vocab=9bdb5694
+-/
 @[simp] theorem toQHodgeStructure_H (pq : ℤ × ℤ) :
     Φ.toQHodgeStructure.H pq = Φ.piece pq := rfl
 
@@ -210,7 +238,9 @@ end OpposedFiltration
 /-! ### The converse packaging and the round trip -/
 
 /-- Two Hodge structures with the same pieces are equal (the remaining
-fields are propositional).-/
+fields are propositional).
+@isnad1 id=eq.1h4v.s7.503882d72e5b from=translated src=- shape=4ad53cb7 vocab=8f4d120f
+-/
 theorem QHodgeStructure.ext_H {h₁ h₂ : QHodgeStructure n V}
     (hH : h₁.H = h₂.H) : h₁ = h₂ := by
   cases h₁
@@ -256,7 +286,9 @@ def QHodgeStructure.toOpposedFiltration (h : QHodgeStructure n V) :
 /-- **The round trip**: passing from a pure Hodge structure to its opposed
 filtration and back recovers the Hodge structure on the nose. This is
 Theorem 1 speaking through the two constructions: the decomposition and
-opposed-filtration presentations carry the same data.-/
+opposed-filtration presentations carry the same data.
+@isnad1 id=eq.0h3v.s5.20acbbaa65ce from=translated src=- shape=9e436214 vocab=fef1c036
+-/
 theorem QHodgeStructure.toOpposedFiltration_toQHodgeStructure
     (h : QHodgeStructure n V) :
     h.toOpposedFiltration.toQHodgeStructure = h := by
@@ -277,7 +309,9 @@ namespace OpposedFiltration
 variable (Φ : OpposedFiltration n V)
 
 /-- Two opposed filtrations with the same underlying filtration are equal
-(the remaining fields are propositional).-/
+(the remaining fields are propositional).
+@isnad1 id=eq.1h4v.s7.7da9a8ea16e3 from=translated src=- shape=ab006540 vocab=d3189ae3
+-/
 theorem ext_F {Φ₁ Φ₂ : OpposedFiltration n V} (hF : Φ₁.F = Φ₂.F) :
     Φ₁ = Φ₂ := by
   cases Φ₁
@@ -285,6 +319,9 @@ theorem ext_F {Φ₁ Φ₂ : OpposedFiltration n V} (hF : Φ₁.F = Φ₂.F) :
   cases hF
   rfl
 
+/--
+@isnad1 id=le.0h4v.s9.8998424d7a92 from=translated src=- shape=2e67480c vocab=d45bfb55
+-/
 theorem filtration_le_F (p : ℤ) :
     Φ.toQHodgeStructure.filtration p ≤ Φ.F p := by
   rw [show Φ.toQHodgeStructure.filtration p
@@ -296,6 +333,9 @@ theorem filtration_le_F (p : ℤ) :
   · rw [Φ.piece_of_ne (a, b) hn]
     exact bot_le
 
+/--
+@isnad1 id=le.0h4v.s9.f4150fe838eb from=translated src=- shape=dc09701d vocab=d45bfb55
+-/
 theorem F_le_filtration (p : ℤ) :
     Φ.F p ≤ Φ.toQHodgeStructure.filtration p := by
   rw [show Φ.toQHodgeStructure.filtration p
@@ -333,7 +373,9 @@ theorem F_le_filtration (p : ℤ) :
     exact bot_le
 
 /-- The filtration of the Hodge structure built from an opposed filtration
-is the original filtration.-/
+is the original filtration.
+@isnad1 id=eq.0h4v.s7.64a54a88ccc9 from=translated src=- shape=2e67480c vocab=55f7623d
+-/
 theorem filtration_toQHodgeStructure (p : ℤ) :
     Φ.toQHodgeStructure.filtration p = Φ.F p :=
   le_antisymm (Φ.filtration_le_F p) (Φ.F_le_filtration p)
@@ -341,7 +383,9 @@ theorem filtration_toQHodgeStructure (p : ℤ) :
 /-- **The filtration-side round trip**: the two constructions are mutually
 inverse. Together with `toOpposedFiltration_toQHodgeStructure`, the
 decomposition and opposed-filtration presentations of a pure Hodge structure
-are equivalent in the strongest sense.-/
+are equivalent in the strongest sense.
+@isnad1 id=eq.0h3v.s5.7dcec0d0d70f from=translated src=- shape=9e436214 vocab=58f101bc
+-/
 theorem toQHodgeStructure_toOpposedFiltration :
     Φ.toQHodgeStructure.toOpposedFiltration = Φ :=
   ext_F (funext fun p => Φ.filtration_toQHodgeStructure p)

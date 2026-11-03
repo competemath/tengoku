@@ -84,18 +84,31 @@ instance instTopCPoints : TopologicalSpace (CPoints A) :=
 
 variable {A}
 
+/--
+@isnad1 id=isinduci.0h1v.s5.52fd1b7fffd0 from=translated src=- shape=ad23afb4 vocab=f8805442
+-/
 lemma isInducing_toPi : IsInducing (toPi A) := ⟨rfl⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s4.cf1be73e5b3b from=translated src=- shape=ad23afb4 vocab=f994e9fb
+-/
 lemma injective_toPi : Function.Injective (toPi A) :=
   fun _ _ h => AlgHom.ext (congrFun h)
 
+/--
+@isnad1 id=isembedd.0h1v.s5.b5d3bc5a711a from=translated src=- shape=ad23afb4 vocab=c488f97a
+-/
 lemma isEmbedding_toPi : IsEmbedding (toPi A) := ⟨isInducing_toPi, injective_toPi⟩
 
-/-- Evaluation at a fixed element of `A` is continuous.-/
+/-- Evaluation at a fixed element of `A` is continuous.
+@isnad1 id=continuo.0h2v.s6.bd811b8f9223 from=translated src=- shape=535007ff vocab=2c11c79d
+-/
 lemma continuous_ev (a : A) : Continuous fun φ : CPoints A => φ a :=
   (continuous_apply a).comp isInducing_toPi.continuous
 
-/-- The analytic topology as an infimum of evaluation topologies.-/
+/-- The analytic topology as an infimum of evaluation topologies.
+@isnad1 id=eq.0h1v.s6.59a2e30f723d from=translated src=- shape=b772efe7 vocab=4da1c73b
+-/
 lemma topology_eq_iInf :
     instTopCPoints A =
       ⨅ a : A, TopologicalSpace.induced (fun φ : CPoints A => φ a) inferInstance :=
@@ -104,7 +117,9 @@ lemma topology_eq_iInf :
 /-- **Presentation independence** of the analytic topology: for any generating
 family `g` of the ℂ-algebra `A`, evaluation at the generators alone induces
 the analytic topology.  Classical proof: every element of `A` is a polynomial
-in the generators, and polynomial maps `ℂ^ι → ℂ` are continuous.-/
+in the generators, and polynomial maps `ℂ^ι → ℂ` are continuous.
+@isnad1 id=isinduci.1h3v.s8.bcbcaa5e349a from=translated src=- shape=8c98c219 vocab=6673d7a5
+-/
 theorem isInducing_evalGen {ι : Type v} (g : ι → A)
     (hg : Algebra.adjoin ℂ (Set.range g) = ⊤) :
     IsInducing (fun (φ : CPoints A) (i : ι) => φ (g i)) := by
@@ -131,7 +146,9 @@ theorem isInducing_evalGen {ι : Type v} (g : ι → A)
     _ = TopologicalSpace.induced (fun φ : CPoints A => φ a) inferInstance := by
         rw [induced_compose, ← hev]
 
-/-- A ℂ-point is determined by its values on a generating family.-/
+/-- A ℂ-point is determined by its values on a generating family.
+@isnad1 id=injectiv.1h3v.s8.8a0ec74f97ac from=translated src=- shape=8c98c219 vocab=f49b4365
+-/
 theorem injective_evalGen {ι : Type v} (g : ι → A)
     (hg : Algebra.adjoin ℂ (Set.range g) = ⊤) :
     Function.Injective (fun (φ : CPoints A) (i : ι) => φ (g i)) := by
@@ -143,7 +160,9 @@ theorem injective_evalGen {ι : Type v} (g : ι → A)
 /-- **Presentation independence**, embedding form: evaluation at any
 generating family of `A` is a topological embedding `CPoints A ↪ (ι → ℂ)`.
 In particular any presentation of `A` by `n` generators realizes the
-ℂ-points, with their analytic topology, as a subspace of `ℂⁿ`.-/
+ℂ-points, with their analytic topology, as a subspace of `ℂⁿ`.
+@isnad1 id=isembedd.1h3v.s8.dfde1929fea3 from=translated src=- shape=8c98c219 vocab=60686046
+-/
 theorem isEmbedding_evalGen {ι : Type v} (g : ι → A)
     (hg : Algebra.adjoin ℂ (Set.range g) = ⊤) :
     IsEmbedding (fun (φ : CPoints A) (i : ι) => φ (g i)) :=
@@ -168,14 +187,23 @@ induces `CPoints B → CPoints A` by precomposition.-/
 def comap {B : Type v} [CommRing B] [Algebra ℂ B] (f : A →ₐ[ℂ] B) :
     CPoints B → CPoints A := fun ψ => ψ.comp f
 
+/--
+@isnad1 id=continuo.0h3v.s6.beb74d5ae53a from=translated src=- shape=12f96ae9 vocab=f6566f21
+-/
 theorem continuous_comap {B : Type v} [CommRing B] [Algebra ℂ B] (f : A →ₐ[ℂ] B) :
     Continuous (comap (A := A) f) := by
   refine continuous_induced_rng.2 ?_
   exact continuous_pi fun a => continuous_ev (f a)
 
+/--
+@isnad1 id=eq.0h1v.s5.f11ef2f3bcd4 from=translated src=- shape=776a7881 vocab=72f6837e
+-/
 @[simp]
 theorem comap_id : comap (AlgHom.id ℂ A) = (id : CPoints A → CPoints A) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.80f428d22205 from=translated src=- shape=8a1ec7cb vocab=061ee2c3
+-/
 theorem comap_comp {B : Type v} [CommRing B] [Algebra ℂ B]
     {C : Type w} [CommRing C] [Algebra ℂ C] (f : A →ₐ[ℂ] B) (g : B →ₐ[ℂ] C) :
     comap (g.comp f) = comap (A := A) f ∘ comap (A := B) g := rfl
@@ -183,7 +211,9 @@ theorem comap_comp {B : Type v} [CommRing B] [Algebra ℂ B]
 /-- A surjection of ℂ-algebras induces a *closed* embedding on analytic
 spaces of ℂ-points: the closed subvariety `Spec B ⊆ Spec A` cut out by
 `ker f` sits as a closed subspace, namely the common zero locus of the
-kernel (computed inside the proof).-/
+kernel (computed inside the proof).
+@isnad1 id=isclosed.1h3v.s6.43a795b64570 from=translated src=- shape=fb1256a7 vocab=4e8a2c2f
+-/
 theorem isClosedEmbedding_comap {B : Type v} [CommRing B] [Algebra ℂ B]
     (f : A →ₐ[ℂ] B) (hf : Function.Surjective f) :
     IsClosedEmbedding (comap (A := A) f) := by
@@ -233,7 +263,9 @@ def toZariski : CPoints A → PrimeSpectrum A := fun φ =>
 
 /-- The non-vanishing locus of an element of `A` is open in the analytic
 topology (the analytic counterpart of a basic open; seed for localization
-compatibility).-/
+compatibility).
+@isnad1 id=isopen.0h2v.s6.49af01da6f0d from=translated src=- shape=1c3225c9 vocab=1d28ed5c
+-/
 theorem isOpen_setOf_ne_zero (a : A) : IsOpen {φ : CPoints A | φ a ≠ 0} :=
   isOpen_compl_singleton.preimage (continuous_ev a)
 
@@ -249,13 +281,18 @@ def evAlgHom : A →ₐ[ℂ] C(CPoints A, ℂ) where
   map_add' a b := ContinuousMap.ext fun φ => map_add φ a b
   commutes' c := ContinuousMap.ext fun φ => φ.commutes c
 
+/--
+@isnad1 id=eq.0h3v.s8.8ab7c326151f from=translated src=- shape=d1ab0cc8 vocab=27d23e02
+-/
 @[simp]
 theorem evAlgHom_apply (a : A) (φ : CPoints A) : evAlgHom A a φ = φ a := rfl
 
 variable (A) in
 /-- A finite-type ℂ-algebra has its analytic space of ℂ-points realized as
 a closed subspace of some `ℂⁿ` (compose a surjective presentation
-`ℂ[x₁, …, xₙ] → A` with the homeomorphism `𝔸ⁿ(ℂ) ≃ₜ ℂⁿ`).-/
+`ℂ[x₁, …, xₙ] → A` with the homeomorphism `𝔸ⁿ(ℂ) ≃ₜ ℂⁿ`).
+@isnad1 id=ex.0h1v.s6.dea6deb5619b from=translated src=- shape=ead940ab vocab=86dd34b4
+-/
 theorem exists_isClosedEmbedding_of_finiteType [Algebra.FiniteType ℂ A] :
     ∃ (n : ℕ) (e : CPoints A → (Fin n → ℂ)), IsClosedEmbedding e := by
   obtain ⟨n, π, hπ⟩ :=

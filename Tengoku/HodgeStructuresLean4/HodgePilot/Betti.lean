@@ -110,10 +110,16 @@ coefficient homomorphism `ℚ → ℂ`.-/
 def toComplexCoeffs (n : ℕ) : bettiQ X n →+ bettiC X n :=
   Sheaf.H.map ((constantSheaf _ _).map (coeffHom.{u})) n
 
+/--
+@isnad1 id=eq.0h2v.s11.89f9fb4f25e0 from=translated src=- shape=23c470a5 vocab=c036d6ac
+-/
 @[simp]
 lemma toComplexCoeffs_zero (n : ℕ) : toComplexCoeffs X n 0 = 0 :=
   map_zero _
 
+/--
+@isnad1 id=eq.0h4v.s12.96321ff790c7 from=translated src=- shape=cc455550 vocab=776477d7
+-/
 lemma toComplexCoeffs_add (n : ℕ) (x y : bettiQ X n) :
     toComplexCoeffs X n (x + y) = toComplexCoeffs X n x + toComplexCoeffs X n y :=
   map_add _ _ _

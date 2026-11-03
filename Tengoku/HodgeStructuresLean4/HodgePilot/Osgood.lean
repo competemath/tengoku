@@ -73,13 +73,17 @@ variable {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-! ## Slice bookkeeping on polydiscs -/
 
-/-- The open polydisc is open.-/
+/-- The open polydisc is open.
+@isnad1 id=isopen.0h3v.s5.b67a32fdcf6d from=translated src=- shape=155195a9 vocab=9ffaae1f
+-/
 theorem isOpen_polydisc (c : Fin n → ℂ) (R : Fin n → ℝ) :
     IsOpen (polydisc c R) :=
   isOpen_set_pi Set.finite_univ fun _ _ => isOpen_ball
 
 /-- Updating one coordinate of a point of the closed polydisc by a point of
-the corresponding closed disc stays in the closed polydisc.-/
+the corresponding closed disc stays in the closed polydisc.
+@isnad1 id=mem.2h6v.s6.dc1740bd4fe3 from=translated src=- shape=5e811342 vocab=bda0a514
+-/
 theorem update_mem_closedPolydisc {c w : Fin n → ℂ} {R : Fin n → ℝ}
     (hw : w ∈ closedPolydisc c R) {i : Fin n} {t : ℂ}
     (ht : t ∈ closedBall (c i) (R i)) :
@@ -92,7 +96,9 @@ theorem update_mem_closedPolydisc {c w : Fin n → ℂ} {R : Fin n → ℝ}
 
 /-- Pointwise separate complex differentiability on a set `U` restricts, on
 any closed polydisc contained in `U`, to the slicewise `DifferentiableOn`
-form consumed by the polydisc Cauchy machinery.-/
+form consumed by the polydisc Cauchy machinery.
+@isnad1 id=differen.3h8v.s8.4d667e5fb6a0 from=translated src=- shape=9b4b7fbf vocab=8b0d3d16
+-/
 theorem separately_differentiableOn_of_differentiableAt {f : (Fin n → ℂ) → E}
     {U : Set (Fin n → ℂ)}
     (hsep : ∀ (i : Fin n), ∀ w ∈ U,
@@ -125,7 +131,9 @@ then
 No joint differentiability is assumed.  Proof: the induction of
 `PolydiscCauchy.torusIntegral_sub_inv_smul`, with the one-variable Cauchy
 integral formula fed by the separate hypothesis in the active coordinate and
-torus integrability supplied by continuity.-/
+torus integrability supplied by continuity.
+@isnad1 id=eq.3h6v.s8.36e9ccd62765 from=translated src=- shape=4bc54f69 vocab=d749b822
+-/
 theorem torusIntegral_sub_inv_smul_of_separately_differentiableOn
     [CompleteSpace E] :
     ∀ {n : ℕ} {f : (Fin n → ℂ) → E} {c z : Fin n → ℂ} {R : Fin n → ℝ},
@@ -238,7 +246,9 @@ Cauchy integral formula.  The proofs are those of
 `hasFPowerSeriesOnBall_polydiscSeries`, unchanged except at the joints. -/
 
 /-- Exchange of summation and torus integration for the kernel expansion,
-from continuity plus the Cauchy integral formula at `z`.-/
+from continuity plus the Cauchy integral formula at `z`.
+@isnad1 id=hassum.3h6v.s9.f5e91eb8be5f from=translated src=- shape=b9d03260 vocab=3f91a854
+-/
 theorem hasSum_torusIntegral_pow_kernel_smul_of_cauchy [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hcont : ContinuousOn f (closedPolydisc c R)) (hz : z ∈ polydisc c R)
@@ -407,7 +417,9 @@ theorem hasSum_torusIntegral_pow_kernel_smul_of_cauchy [CompleteSpace E]
   exact hswap
 
 /-- The monomial Cauchy expansion at `z`, from continuity plus the Cauchy
-integral formula at `z`.-/
+integral formula at `z`.
+@isnad1 id=hassum.3h6v.s8.bc7dee838f50 from=translated src=- shape=0ed7a7b6 vocab=2b11ca9d
+-/
 theorem hasSum_cauchyCoeff_smul_of_cauchy [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hcont : ContinuousOn f (closedPolydisc c R)) (hz : z ∈ polydisc c R)
@@ -427,7 +439,9 @@ theorem hasSum_cauchyCoeff_smul_of_cauchy [CompleteSpace E]
   exact H
 
 /-- The Cauchy power series converges to `f` on balls, from continuity plus
-the Cauchy integral formula at every point of the open polydisc.-/
+the Cauchy integral formula at every point of the open polydisc.
+@isnad1 id=hasfpowe.4h6v.s8.ba87ce0932c8 from=translated src=- shape=8248e9da vocab=92333022
+-/
 theorem hasFPowerSeriesOnBall_polydiscSeries_of_cauchy [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hcont : ContinuousOn f (closedPolydisc c R))
@@ -469,7 +483,9 @@ theorem hasFPowerSeriesOnBall_polydiscSeries_of_cauchy [CompleteSpace E]
 
 /-- The Cauchy power series converges to `f` on sup-norm balls under Osgood
 hypotheses: continuity plus separate complex differentiability on the closed
-polydisc.-/
+polydisc.
+@isnad1 id=hasfpowe.4h6v.s8.c324f1a7ffc5 from=translated src=- shape=841c579c vocab=1d4c3f3d
+-/
 theorem hasFPowerSeriesOnBall_of_separately_differentiableOn [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hcont : ContinuousOn f (closedPolydisc c R))
@@ -484,7 +500,9 @@ theorem hasFPowerSeriesOnBall_of_separately_differentiableOn [CompleteSpace E]
     hr hrR
 
 /-- A function continuous and separately complex differentiable on a closed
-polydisc with positive radii is jointly analytic at the center.-/
+polydisc with positive radii is jointly analytic at the center.
+@isnad1 id=analytic.3h5v.s8.b9c7d885ddc2 from=translated src=- shape=ecdaa157 vocab=37b388af
+-/
 theorem analyticAt_center_of_separately_differentiableOn [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hcont : ContinuousOn f (closedPolydisc c R))
@@ -508,7 +526,9 @@ point `w ∈ U`, in every coordinate `i`, the one-variable function
 is jointly analytic on `U` (`AnalyticOnNhd ℂ f U`).
 
 The continuity hypothesis is an assumption, not a conclusion: no Hartogs-type
-removal of continuity is proved or claimed anywhere in this development.-/
+removal of continuity is proved or claimed anywhere in this development.
+@isnad1 id=analytic.3h4v.s8.46d2959aad99 from=translated src=- shape=977ef747 vocab=808271af
+-/
 theorem osgood [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)}
     (hU : IsOpen U) (hcont : ContinuousOn f U)
     (hsep : ∀ (i : Fin n), ∀ w ∈ U,
@@ -527,7 +547,9 @@ theorem osgood [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n →
 
 /-- Osgood's lemma, polydisc form: a function continuous and separately
 complex differentiable on a closed polydisc is jointly analytic on the open
-polydisc.-/
+polydisc.
+@isnad1 id=analytic.2h5v.s8.cebcda04c373 from=translated src=- shape=ac9056fc vocab=2285dff5
+-/
 theorem osgood_polydisc [CompleteSpace E] {f : (Fin n → ℂ) → E}
     {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hcont : ContinuousOn f (closedPolydisc c R))

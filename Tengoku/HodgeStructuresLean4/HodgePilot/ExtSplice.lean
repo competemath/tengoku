@@ -68,7 +68,9 @@ variable {S}
 
 omit [HasExt.{w} C] in
 /-- The pullback of a short exact sequence along any map into its third
-object is short exact.-/
+object is short exact.
+@isnad1 id=shortexa.1h4v.s6.173428ed509b from=translated src=- shape=24f1a213 vocab=10633496
+-/
 theorem pbSES_shortExact (hS : S.ShortExact) : (pbSES S x).ShortExact := by
   have := hS.epi_g
   haveI : Mono S.f := hS.mono_f
@@ -109,7 +111,9 @@ noncomputable def pbExtClass (hS : S.ShortExact) : Ext Z S.X₁ 1 :=
 /-- THE pullback-extClass identity: the class of the pulled-back short exact
 sequence is the Yoneda composite of `x` (in degree 0) with the class of `S` —
 via `extClass_naturality`, ascribed at uniform endpoints so `comp_mk₀_id`
-fires.-/
+fires.
+@isnad1 id=eq.1h4v.s7.9498703e0fa7 from=translated src=- shape=2c63847c vocab=7476cb5e
+-/
 theorem pbExtClass_eq (hS : S.ShortExact) :
     pbExtClass x hS = (Ext.mk₀ x).comp hS.extClass (zero_add 1) := by
   have h2 : (pbExtClass x hS).comp (Ext.mk₀ (𝟙 S.X₁)) (add_zero 1) =
@@ -121,7 +125,9 @@ end PbSES
 
 /-! ### Split SES ⇒ extClass = 0 (principal-vanishing engine) -/
 
-/-- A split short exact sequence has vanishing extension class.-/
+/-- A split short exact sequence has vanishing extension class.
+@isnad1 id=eq.1h3v.s8.8c87569f62dc from=translated src=- shape=3aac5c83 vocab=dd70236f
+-/
 theorem extClass_eq_zero_of_splitting {S : ShortComplex C} (hS : S.ShortExact)
     (σ : S.Splitting) : hS.extClass = 0 := by
   calc hS.extClass
@@ -143,13 +149,17 @@ variable {Z G : C} {T : ShortComplex C} (hT : T.ShortExact) (u : G ⟶ T.X₃)
 noncomputable def spliceClass (e₂ : Ext Z G 1) : Ext Z T.X₁ 2 :=
   (e₂.comp (Ext.mk₀ u) (add_zero 1)).comp hT.extClass rfl
 
-/-- The splice is additive in the degree-1 slot.-/
+/-- The splice is additive in the degree-1 slot.
+@isnad1 id=eq.1h7v.s8.ed9737944b74 from=translated src=- shape=be0579e1 vocab=023eb19d
+-/
 theorem spliceClass_add (e e' : Ext Z G 1) :
     spliceClass hT u (e + e') = spliceClass hT u e + spliceClass hT u e' := by
   unfold spliceClass
   rw [Ext.add_comp, Ext.add_comp]
 
-/-- The splice vanishes at the zero degree-1 class.-/
+/-- The splice vanishes at the zero degree-1 class.
+@isnad1 id=eq.1h5v.s8.6acc279c2d16 from=translated src=- shape=a4794fbc vocab=260d5ba0
+-/
 theorem spliceClass_zero : spliceClass hT u (0 : Ext Z G 1) = 0 := by
   unfold spliceClass
   rw [Ext.zero_comp, Ext.zero_comp]
@@ -161,7 +171,9 @@ noncomputable def spliceHom : Ext Z G 1 →+ Ext Z T.X₁ 2 where
   map_add' := spliceClass_add hT u
 
 /-- If the spliced short exact sequence splits, the splice vanishes
-(left-slot principal vanishing consumes this through `Splitting.map`).-/
+(left-slot principal vanishing consumes this through `Splitting.map`).
+@isnad1 id=eq.1h7v.s8.29c068f2cf2d from=translated src=- shape=46a7456d vocab=aa5dda76
+-/
 theorem spliceClass_eq_zero_of_splitting (σ : T.Splitting) (e₂ : Ext Z G 1) :
     spliceClass hT u e₂ = 0 := by
   unfold spliceClass

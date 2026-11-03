@@ -75,22 +75,33 @@ radius `R`: the set of `z` with `‖z i - c i‖ ≤ R i` for every `i`.-/
 def closedPolydisc {n : ℕ} (c : Fin n → ℂ) (R : Fin n → ℝ) : Set (Fin n → ℂ) :=
   Set.pi Set.univ fun i => closedBall (c i) (R i)
 
+/--
+@isnad1 id=iff.0h4v.s6.f1ea7c11a1ec from=translated src=- shape=cb7aa6b7 vocab=009eb633
+-/
 @[simp]
 theorem mem_polydisc {n : ℕ} {c z : Fin n → ℂ} {R : Fin n → ℝ} :
     z ∈ polydisc c R ↔ ∀ i, z i ∈ ball (c i) (R i) :=
   Set.mem_univ_pi
 
+/--
+@isnad1 id=iff.0h4v.s6.438018abefa4 from=translated src=- shape=cb7aa6b7 vocab=92e05224
+-/
 @[simp]
 theorem mem_closedPolydisc {n : ℕ} {c z : Fin n → ℂ} {R : Fin n → ℝ} :
     z ∈ closedPolydisc c R ↔ ∀ i, z i ∈ closedBall (c i) (R i) :=
   Set.mem_univ_pi
 
+/--
+@isnad1 id=le.0h3v.s4.66d6ede0d6b9 from=translated src=- shape=44bae224 vocab=5472d888
+-/
 theorem polydisc_subset_closedPolydisc {n : ℕ} (c : Fin n → ℂ) (R : Fin n → ℝ) :
     polydisc c R ⊆ closedPolydisc c R := fun _ hz =>
   mem_closedPolydisc.2 fun i => ball_subset_closedBall (mem_polydisc.1 hz i)
 
 /-- Prepending a point of the closed disc in the `0`-th coordinate to a point
-of the tail closed polydisc lands in the full closed polydisc.-/
+of the tail closed polydisc lands in the full closed polydisc.
+@isnad1 id=mem.2h5v.s8.48b0d978dcec from=translated src=- shape=36140ec5 vocab=41df0fe3
+-/
 theorem cons_mem_closedPolydisc {n : ℕ} {c : Fin (n + 1) → ℂ} {R : Fin (n + 1) → ℝ}
     {x : ℂ} {y : Fin n → ℂ} (hx : x ∈ closedBall (c 0) (R 0))
     (hy : y ∈ closedPolydisc (c ∘ Fin.succ) (R ∘ Fin.succ)) :
@@ -104,7 +115,9 @@ theorem cons_mem_closedPolydisc {n : ℕ} {c : Fin (n + 1) → ℂ} {R : Fin (n 
 
 /-! ## The torus map and the Cauchy kernel -/
 
-/-- The torus parametrization `torusMap c R` is continuous.-/
+/-- The torus parametrization `torusMap c R` is continuous.
+@isnad1 id=continuo.0h3v.s5.8eabfbc1aac1 from=translated src=- shape=269b273c vocab=d7ab5107
+-/
 theorem continuous_torusMap {n : ℕ} (c : Fin n → ℂ) (R : Fin n → ℝ) :
     Continuous (torusMap c R) := by
   refine continuous_pi fun i => ?_
@@ -115,7 +128,9 @@ theorem continuous_torusMap {n : ℕ} (c : Fin n → ℂ) (R : Fin n → ℝ) :
     ((Complex.continuous_ofReal.comp (continuous_apply i)).mul continuous_const)))
 
 /-- Each coordinate of `torusMap c R θ` lies at distance exactly `R i` from the
-center (for `0 ≤ R i`).-/
+center (for `0 ≤ R i`).
+@isnad1 id=eq.1h5v.s5.a4eab6c870c7 from=translated src=- shape=7b815e97 vocab=25be19ec
+-/
 theorem norm_torusMap_apply_sub_center {n : ℕ} (c : Fin n → ℂ) {R : Fin n → ℝ}
     {i : Fin n} (hR : 0 ≤ R i) (θ : Fin n → ℝ) :
     ‖torusMap c R θ i - c i‖ = R i := by
@@ -124,7 +139,9 @@ theorem norm_torusMap_apply_sub_center {n : ℕ} (c : Fin n → ℂ) {R : Fin n 
     rw [h0, add_sub_cancel_left]
   rw [h, norm_mul, Complex.norm_exp_ofReal_mul_I, mul_one, Complex.norm_of_nonneg hR]
 
-/-- The distinguished boundary (torus) is contained in the closed polydisc.-/
+/-- The distinguished boundary (torus) is contained in the closed polydisc.
+@isnad1 id=mem.1h4v.s5.efb4a8191850 from=translated src=- shape=4f512440 vocab=ea8ae978
+-/
 theorem torusMap_mem_closedPolydisc {n : ℕ} {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hR : ∀ i, 0 ≤ R i) (θ : Fin n → ℝ) :
     torusMap c R θ ∈ closedPolydisc c R :=
@@ -132,7 +149,9 @@ theorem torusMap_mem_closedPolydisc {n : ℕ} {c : Fin n → ℂ} {R : Fin n →
     mem_closedBall_iff_norm.2 (le_of_eq (norm_torusMap_apply_sub_center c (hR i) θ))
 
 /-- The Cauchy kernel does not vanish on the distinguished boundary: for `z`
-in the open polydisc, `torusMap c R θ i ≠ z i` in every coordinate.-/
+in the open polydisc, `torusMap c R θ i ≠ z i` in every coordinate.
+@isnad1 id=ne.1h6v.s6.39cb0e5cc4c4 from=translated src=- shape=6fcc101f vocab=c098ce94
+-/
 theorem torusMap_sub_ne_zero {n : ℕ} {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hz : z ∈ polydisc c R) (θ : Fin n → ℝ) (i : Fin n) :
     torusMap c R θ i - z i ≠ 0 := by
@@ -147,7 +166,9 @@ theorem torusMap_sub_ne_zero {n : ℕ} {c z : Fin n → ℂ} {R : Fin n → ℝ}
 
 /-- For `z` in the open polydisc and `f` continuous on the closed polydisc, the
 Cauchy-kernel-weighted integrand `w ↦ (∏ i, (w i - z i)⁻¹) • f w` is torus
-integrable.-/
+integrable.
+@isnad1 id=torusint.2h6v.s7.8b7cee06d6d2 from=translated src=- shape=d0e2698f vocab=231634d7
+-/
 theorem torusIntegrable_kernel_smul {n : ℕ} {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] {f : (Fin n → ℂ) → E} {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hz : z ∈ polydisc c R) (hf : ContinuousOn f (closedPolydisc c R)) :
@@ -181,7 +202,9 @@ integral formula in that coordinate.
 
 This is integral-formula content only: no power-series expansion of the
 kernel and no analyticity consequence in several variables is derived or
-claimed here.-/
+claimed here.
+@isnad1 id=eq.2h6v.s8.ddd4949358e3 from=translated src=- shape=bbc4a46c vocab=472bc240
+-/
 theorem torusIntegral_sub_inv_smul {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] :
     ∀ {n : ℕ} {f : (Fin n → ℂ) → E} {c z : Fin n → ℂ} {R : Fin n → ℝ},
@@ -266,7 +289,9 @@ theorem torusIntegral_sub_inv_smul {E : Type*} [NormedAddCommGroup E]
 
 /-! ## Corollaries -/
 
-/-- The Cauchy normalization constant `(2πI)^n` is nonzero.-/
+/-- The Cauchy normalization constant `(2πI)^n` is nonzero.
+@isnad1 id=ne.0h1v.s5.6d5af93f64e1 from=translated src=- shape=974fd078 vocab=44f8bed7
+-/
 theorem two_pi_I_pow_ne_zero (n : ℕ) : (2 * (Real.pi : ℂ) * Complex.I) ^ n ≠ 0 :=
   pow_ne_zero n (mul_ne_zero (mul_ne_zero two_ne_zero
     (Complex.ofReal_ne_zero.2 Real.pi_ne_zero)) Complex.I_ne_zero)

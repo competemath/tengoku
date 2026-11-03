@@ -85,7 +85,9 @@ def godementCompForgetIso (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
 
 /-- The Godement presheaf is a sheaf: a compatible family of families of
 stalk elements glues pointwise.  Proven by transport from Mathlib's sheaf of
-(not necessarily continuous) dependent functions.-/
+(not necessarily continuous) dependent functions.
+@isnad1 id=issheaf.0h2v.s3.b4bd31ab49e7 from=translated src=- shape=83a97904 vocab=c6d8ce8e
+-/
 theorem godementPresheaf_isSheaf (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
     (godementPresheaf F).IsSheaf :=
   (TopCat.Presheaf.isSheaf_iff_isSheaf_comp' (forget AddCommGrpCat.{u})
@@ -100,7 +102,9 @@ def godementSheaf (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
   ⟨godementPresheaf F, godementPresheaf_isSheaf F⟩
 
 /-- The Godement sheaf is flasque: a family of stalk elements over a smaller
-open extends by zero to a family over a larger open.-/
+open extends by zero to a family over a larger open.
+@isnad1 id=isflasqu.0h2v.s3.b94e1298c554 from=translated src=- shape=a1e5fe81 vocab=6cf2237d
+-/
 instance godementSheaf_isFlasque (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
     (godementSheaf F).IsFlasque where
   epi {U V} i := by
@@ -136,7 +140,9 @@ def toGodementSheaf (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
 
 /-- Componentwise injectivity of the canonical morphism into the Godement
 sheaf: two sections of a sheaf with the same germ at every point of `U` are
-equal.-/
+equal.
+@isnad1 id=injectiv.0h3v.s11.663d092b9502 from=translated src=- shape=1aeab8e2 vocab=d1595746
+-/
 theorem toGodementSheaf_app_injective (F : TopCat.Sheaf AddCommGrpCat.{u} X)
     (U : (Opens X)ᵒᵖ) :
     Function.Injective ((toGodementSheaf F).hom.app U) := by
@@ -145,13 +151,17 @@ theorem toGodementSheaf_app_injective (F : TopCat.Sheaf AddCommGrpCat.{u} X)
   intro x hx
   exact congrFun h ⟨x, hx⟩
 
-/-- The canonical morphism into the Godement sheaf is a monomorphism.-/
+/-- The canonical morphism into the Godement sheaf is a monomorphism.
+@isnad1 id=mono.0h2v.s4.7dcbe3f381b6 from=translated src=- shape=41d93968 vocab=f76106a0
+-/
 instance mono_toGodementSheaf (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
     Mono (toGodementSheaf F) :=
   Sheaf.mono_of_injective _ (toGodementSheaf_app_injective F)
 
 /-- **The Godement embedding.**  Every abelian sheaf on a topological space
-admits a monomorphism into a flasque sheaf.-/
+admits a monomorphism into a flasque sheaf.
+@isnad1 id=ex.0h2v.s6.713dc23b112d from=translated src=- shape=732d397a vocab=f74e9612
+-/
 theorem godementEmbedFlasque (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
     ∃ (G : TopCat.Sheaf AddCommGrpCat.{u} X) (m : F ⟶ G),
       Mono m ∧ G.IsFlasque :=
@@ -160,7 +170,9 @@ theorem godementEmbedFlasque (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
 /-! ## Retract stability and flasqueness of injective sheaves -/
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A retract of a flasque abelian sheaf is flasque.-/
+/-- A retract of a flasque abelian sheaf is flasque.
+@isnad1 id=isflasqu.1h5v.s6.6ea6ecd20a76 from=translated src=- shape=13a27fa2 vocab=adb3bfd7
+-/
 theorem isFlasque_of_retract {F G : TopCat.Sheaf AddCommGrpCat.{u} X}
     (ι : F ⟶ G) (r : G ⟶ F) (hri : ι ≫ r = 𝟙 F) [G.IsFlasque] :
     F.IsFlasque := by
@@ -182,7 +194,9 @@ theorem isFlasque_of_retract {F G : TopCat.Sheaf AddCommGrpCat.{u} X}
 set_option backward.isDefEq.respectTransparency false in
 /-- An injective abelian sheaf admitting a monomorphism into a flasque sheaf
 is flasque: the monomorphism splits by injectivity, and flasqueness passes to
-retracts.-/
+retracts.
+@isnad1 id=isflasqu.0h4v.s6.f2bb91f05443 from=translated src=- shape=9a488ad0 vocab=dee7c225
+-/
 theorem isFlasque_of_injective_of_monoIntoFlasque
     {I G : TopCat.Sheaf AddCommGrpCat.{u} X} [Injective I] (m : I ⟶ G)
     [Mono m] [G.IsFlasque] : I.IsFlasque :=
@@ -190,7 +204,9 @@ theorem isFlasque_of_injective_of_monoIntoFlasque
     (Injective.comp_factorThru _ _)
 
 /-- **Every injective abelian sheaf is flasque**: split the Godement
-embedding by injectivity and transport flasqueness along the retract.-/
+embedding by injectivity and transport flasqueness along the retract.
+@isnad1 id=isflasqu.1h2v.s4.e2e3872a81ec from=translated src=- shape=e2016878 vocab=96861976
+-/
 theorem isFlasque_of_injective (I : TopCat.Sheaf AddCommGrpCat.{u} X)
     (hI : Injective I) : I.IsFlasque :=
   haveI := hI
@@ -202,14 +218,18 @@ theorem isFlasque_of_injective (I : TopCat.Sheaf AddCommGrpCat.{u} X)
 the naive pullback `Topology.IsOpenEmbedding.sheafPullback` acts on the
 underlying presheaf by composition with the image functor on opens, so every
 restriction map of the pullback is a restriction map of the original
-sheaf.-/
+sheaf.
+@isnad1 id=isflasqu.1h5v.s7.1bb2eb8c2d9e from=translated src=- shape=ad8c8166 vocab=fff0a12a
+-/
 theorem isFlasque_sheafPullback {C : Type v} [Category.{u} C]
     {Y : TopCat.{u}} {f : Y ⟶ X} (hf : Topology.IsOpenEmbedding f)
     (F : TopCat.Sheaf C X) [F.IsFlasque] :
     ((hf.sheafPullback C).obj F).IsFlasque where
   epi {_ _} i := inferInstanceAs (Epi (F.1.map (hf.functor.op.map i)))
 
-/-- The restriction of a flasque sheaf to an open subspace is flasque.-/
+/-- The restriction of a flasque sheaf to an open subspace is flasque.
+@isnad1 id=isflasqu.0h4v.s7.e8b5110831b2 from=translated src=- shape=333a8cb3 vocab=72c0a7e6
+-/
 theorem isFlasque_restrict {C : Type v} [Category.{u} C] (W : Opens X)
     (F : TopCat.Sheaf C X) [F.IsFlasque] :
     ((W.isOpenEmbedding.sheafPullback C).obj F).IsFlasque :=

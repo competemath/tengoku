@@ -82,10 +82,16 @@ abbrev chainsFunctor : TopCat.{0} ⥤ ChainComplex QMod ℕ :=
 def terminalMap (U : TopCat.{0}) : U ⟶ pointSpace :=
   TopCat.ofHom ⟨fun _ => (), continuous_const⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.45268dab342a from=translated src=- shape=0a95e23c vocab=0050abde
+-/
 lemma comp_terminalMap {V U : TopCat.{0}} (f : V ⟶ U) :
     f ≫ terminalMap U = terminalMap V :=
   TopCat.hom_ext (ContinuousMap.ext fun _ => rfl)
 
+/--
+@isnad1 id=eq.0h0v.s4.d627475ec197 from=translated src=- shape=7a98b14d vocab=965ecf54
+-/
 lemma terminalMap_pointSpace : terminalMap pointSpace = 𝟙 pointSpace :=
   TopCat.hom_ext (ContinuousMap.ext fun _ => rfl)
 
@@ -95,6 +101,9 @@ def pointModuleSum : pointModule ⟶ Qcoef :=
   dualPointModuleEquiv.symm 1
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ne.0h0v.s5.32702c4bda20 from=translated src=- shape=34c907e5 vocab=525c557d
+-/
 lemma pointModuleSum_ne_zero : pointModuleSum ≠ 0 := by
   intro h
   have h1 := congrArg dualPointModuleEquiv h
@@ -112,7 +121,9 @@ abbrev pointChainsIso :
 
 /-- The degree-`(1,0)` differential of the singular chain complex of the
 one-point space vanishes (transported from the alternating-constant complex,
-whose odd-to-even differentials are zero).-/
+whose odd-to-even differentials are zero).
+@isnad1 id=eq.0h0v.s9.04e60ec8a970 from=translated src=- shape=55fd49bd vocab=d2d8975e
+-/
 lemma d_one_zero_pointChains : (chainsFunctor.obj pointSpace).d 1 0 = 0 := by
   have halt : (ChainComplex.alternatingConst.obj pointModule).d 1 0 = 0 := by
     simp [ChainComplex.alternatingConst, HomologicalComplex.alternatingConst]
@@ -136,12 +147,18 @@ point cochain along the unique map to the point.-/
 def unitCochainHom (U : TopCat.{0}) : (chainsFunctor.obj U).X 0 ⟶ Qcoef :=
   (chainsFunctor.map (terminalMap U)).f 0 ≫ pointUnitCochainHom
 
+/--
+@isnad1 id=eq.0h3v.s9.f2d40b63941b from=translated src=- shape=16d8e31e vocab=857f0d5c
+-/
 lemma unitCochainHom_comp {V U : TopCat.{0}} (f : V ⟶ U) :
     (chainsFunctor.map f).f 0 ≫ unitCochainHom U = unitCochainHom V := by
   show (chainsFunctor.map f).f 0 ≫ (chainsFunctor.map (terminalMap U)).f 0 ≫ pointUnitCochainHom
       = (chainsFunctor.map (terminalMap V)).f 0 ≫ pointUnitCochainHom
   rw [← Category.assoc, ← HomologicalComplex.comp_f, ← Functor.map_comp, comp_terminalMap]
 
+/--
+@isnad1 id=eq.0h1v.s9.6c4b7147475d from=translated src=- shape=f4f71e2e vocab=c52b41a8
+-/
 lemma d_comp_unitCochainHom (U : TopCat.{0}) :
     (chainsFunctor.obj U).d 1 0 ≫ unitCochainHom U = 0 := by
   show (chainsFunctor.obj U).d 1 0 ≫ (chainsFunctor.map (terminalMap U)).f 0 ≫ pointUnitCochainHom = 0
@@ -194,10 +211,16 @@ def sheafifiedCochainComplex (X : TopCat.{0}) :
   ((presheafToSheaf (Opens.grothendieckTopology X)
     AddCommGrpCat).mapHomologicalComplex (ComplexShape.up ℕ)).obj (singularPresheafComplex X)
 
+/--
+@isnad1 id=additive.0h1v.s8.5e1e7a6e77bf from=translated src=- shape=4c09efc2 vocab=6e9ac346
+-/
 instance instPresheafToSheafAdditive (X : TopCat.{0}) :
     (presheafToSheaf (Opens.grothendieckTopology X) AddCommGrpCat.{0}).Additive :=
   presheafToSheaf_additive
 
+/--
+@isnad1 id=preserve.0h1v.s8.dcd2cdaf83de from=translated src=- shape=4c09efc2 vocab=511550f5
+-/
 instance instPresheafToSheafPreservesZeroMorphisms (X : TopCat.{0}) :
     (presheafToSheaf (Opens.grothendieckTopology X) AddCommGrpCat.{0}).PreservesZeroMorphisms :=
   Functor.preservesZeroMorphisms_of_additive _
@@ -233,10 +256,16 @@ def smulUnitSection (X : TopCat.{0}) (U : Opens X) (q : ℚ) :
     (chainsFunctor.obj ((Opens.toTopCat X).obj U)).X 0 ⟶ Qcoef)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s9.9be79faed82e from=translated src=- shape=711aa0ee vocab=25e1a184
+-/
 lemma smulUnitSection_zero (X : TopCat.{0}) (U : Opens X) : smulUnitSection X U 0 = 0 :=
   zero_smul ℚ (unitCochainHom ((Opens.toTopCat X).obj U))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s9.80bbc40bea30 from=translated src=- shape=d9b257ac vocab=d6949342
+-/
 lemma smulUnitSection_add (X : TopCat.{0}) (U : Opens X) (a b : ℚ) :
     smulUnitSection X U (a + b) = smulUnitSection X U a + smulUnitSection X U b :=
   add_smul a b (unitCochainHom ((Opens.toTopCat X).obj U))
@@ -244,14 +273,18 @@ lemma smulUnitSection_add (X : TopCat.{0}) (U : Opens X) (a b : ℚ) :
 set_option backward.isDefEq.respectTransparency false in
 /-- The element-level form of `unitCochainHom_comp`: pulling the unit cochain
 back along a continuous map yields the unit cochain (the `ℚ`-dual acts by
-precomposition, definitionally).-/
+precomposition, definitionally).
+@isnad1 id=eq.0h3v.s10.efc1faff1a42 from=translated src=- shape=165f85fd vocab=8bac491e
+-/
 lemma unitCochain_map {V U : TopCat.{0}} (f : V ⟶ U) :
     (singularCochainFunctor.map f.op).f 0 (unitCochainHom U) = unitCochainHom V :=
   unitCochainHom_comp f
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Restriction of unit-cochain multiples along an inclusion of opens is
-again the corresponding unit-cochain multiple.-/
+again the corresponding unit-cochain multiple.
+@isnad1 id=eq.0h5v.s10.1ee782a19a82 from=translated src=- shape=71deaf89 vocab=c39e9528
+-/
 lemma presheafRes_smulUnitSection (X : TopCat.{0}) {U V : (Opens X)ᵒᵖ} (i : U ⟶ V) (q : ℚ) :
     ((singularPresheafComplex X).X 0).map i (smulUnitSection X (unop U) q)
       = smulUnitSection X (unop V) q := by
@@ -292,6 +325,9 @@ def augmentationSheaf (X : TopCat.{0}) :
   (presheafToSheaf (Opens.grothendieckTopology X) AddCommGrpCat).map (augmentationPresheaf X)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s8.d8b29bb149f7 from=translated src=- shape=fe1346a4 vocab=a1510b6a
+-/
 lemma augmentationPresheaf_comp_d (X : TopCat.{0}) :
     augmentationPresheaf X ≫ (singularPresheafComplex X).d 0 1 = 0 := by
   ext U q
@@ -306,6 +342,9 @@ lemma augmentationPresheaf_comp_d (X : TopCat.{0}) :
   rw [hd, d_comp_unitCochainHom, smul_zero]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s9.3bde9275bec3 from=translated src=- shape=fe1346a4 vocab=179e38c0
+-/
 lemma augmentationSheaf_comp_d (X : TopCat.{0}) :
     augmentationSheaf X ≫ (sheafifiedCochainComplex X).d 0 1 = 0 := by
   have h : augmentationSheaf X ≫ (sheafifiedCochainComplex X).d 0 1
@@ -328,7 +367,9 @@ def augmentedShortComplex (X : TopCat.{0}) : ShortComplex (TopCat.Sheaf AddCommG
 /-- Coboundary extraction on a contractible space, in the abelian-group
 carrier: in positive degree, a singular cocycle on a contractible space is a
 coboundary (the elementwise form of the vanishing from
-`HodgePilot.ContractibleSingular`).-/
+`HodgePilot.ContractibleSingular`).
+@isnad1 id=ex.1h3v.s11.156ebfb3adc3 from=translated src=- shape=576a6e1e vocab=1199735e
+-/
 lemma exists_coboundary (B : TopCat.{0}) [ContractibleSpace ↑B] (m : ℕ)
     (s : (singularCochainAbFunctor.obj (op B)).X (m + 1))
     (hs : (singularCochainAbFunctor.obj (op B)).d (m + 1) (m + 2) s = 0) :
@@ -346,7 +387,9 @@ lemma exists_coboundary (B : TopCat.{0}) [ContractibleSpace ↑B] (m : ℕ)
 set_option backward.isDefEq.respectTransparency false in
 /-- The `toSheafify` units are isomorphisms on stalks, so exactness of a
 stalk short complex transfers from the singular cochain presheaf complex to
-the sheafified complex.-/
+the sheafified complex.
+@isnad1 id=exact.1h5v.s7.f279a4fbf259 from=translated src=- shape=77557063 vocab=7d9a48f8
+-/
 lemma exact_map_stalk_of_exact (X : TopCat.{0}) (i j k : ℕ) (x : ↑X)
     (h : (((singularPresheafComplex X).sc' i j k).map
       (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{0} x)).Exact) :
@@ -390,7 +433,9 @@ scope and for what this does *not* say): on a strongly locally contractible
 space, the termwise-sheafified singular cochain complex is exact in every
 degree `n ≠ 0`, as a complex of sheafified cochain sheaves.  Nothing about
 any cohomology of this complex — sheaf, singular, or otherwise — is stated or
-implied.-/
+implied.
+@isnad1 id=exactat.1h2v.s6.fdf81d5916a0 from=translated src=- shape=351b863b vocab=9dd83718
+-/
 theorem exactAt_sheafifiedCochainComplex (X : TopCat.{0})
     [StronglyLocallyContractibleSpace ↑X] (n : ℕ) (hn : n ≠ 0) :
     (sheafifiedCochainComplex X).ExactAt n := by

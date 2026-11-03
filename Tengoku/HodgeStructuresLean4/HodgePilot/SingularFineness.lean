@@ -85,14 +85,18 @@ def keep (S : SSet.{0}) (n : ℕ) (P : S _⦋n⦌ → Prop) :
       (fun σ => if P σ then S.ιChainComplex σ else 0))
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The summand description of the weighting endomorphism.-/
+/-- The summand description of the weighting endomorphism.
+@isnad1 id=eq.0h4v.s9.10b79e5b2d5a from=translated src=- shape=d194dcf2 vocab=1de122f5
+-/
 @[simp] lemma ι_keep (S : SSet.{0}) (n : ℕ) (P : S _⦋n⦌ → Prop) (σ : S _⦋n⦌) :
     S.ιChainComplex σ ≫ keep S n P = if P σ then S.ιChainComplex σ else 0 :=
   (S.isColimitChainComplexXCofan Qcoef n).fac _ ⟨σ⟩
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Equivariance of the weighting endomorphisms under a simplicial map, for
-compatible predicates.-/
+compatible predicates.
+@isnad1 id=eq.1h6v.s9.0eb6371441a0 from=translated src=- shape=a6bd8e25 vocab=9b8a613b
+-/
 lemma keep_comm {S T : SSet.{0}} (f : S ⟶ T) (n : ℕ)
     (P : T _⦋n⦌ → Prop) (Q : S _⦋n⦌ → Prop)
     (hPQ : ∀ σ, Q σ ↔ P (f.app (op ⦋n⦌) σ)) :
@@ -105,7 +109,9 @@ lemma keep_comm {S T : SSet.{0}} (f : S ⟶ T) (n : ℕ)
   · rw [ite_eq_right h, ite_eq_right (fun hP => h ((hPQ σ).mpr hP)), Limits.zero_comp]
 
 /-- **Pair partition identity** (the minimal finite-sum organization): two
-complementary predicates sum to the identity.-/
+complementary predicates sum to the identity.
+@isnad1 id=eq.1h4v.s9.df2e53cb33e2 from=translated src=- shape=d849aeed vocab=44fff4fc
+-/
 lemma keep_partition_pair (S : SSet.{0}) (n : ℕ) (P Q : S _⦋n⦌ → Prop)
     (hPQ : ∀ σ, Q σ ↔ ¬ P σ) :
     keep S n P + keep S n Q = 𝟙 ((S.chainComplex Qcoef).X n) := by
@@ -118,7 +124,9 @@ lemma keep_partition_pair (S : SSet.{0}) (n : ℕ) (P Q : S _⦋n⦌ → Prop)
 /-- **Finset partition identity**: for a finite family of predicates such
 that each simplex satisfies exactly one, the weighting endomorphisms sum to
 the identity — the finite-sum-per-simplex organization of the fineness
-partition, with no infinite sum anywhere.-/
+partition, with no infinite sum anywhere.
+@isnad1 id=eq.1h5v.s9.e7a17efd9109 from=translated src=- shape=ceff972a vocab=c3e1e9a3
+-/
 lemma keep_finpartition (S : SSet.{0}) (n : ℕ) {ι' : Type} (s : Finset ι')
     (P : ι' → (S _⦋n⦌ → Prop)) (hcov : ∀ σ, ∃! i, i ∈ s ∧ P i σ) :
     ∑ i ∈ s, keep S n (P i) = 𝟙 ((S.chainComplex Qcoef).X n) := by
@@ -148,7 +156,9 @@ def firstVertex {U : TopCat.{0}} {n : ℕ} (σ : (TopCat.toSSet.obj U) _⦋n⦌)
   σ.down.hom (vertexPt n)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The first vertex is natural in the space.-/
+/-- The first vertex is natural in the space.
+@isnad1 id=eq.0h5v.s8.0238fe49fb2c from=translated src=- shape=8611bf9e vocab=b5cc9f25
+-/
 lemma firstVertex_map {V U : TopCat.{0}} (f : V ⟶ U) {n : ℕ}
     (σ : (TopCat.toSSet.obj V) _⦋n⦌) :
     firstVertex ((TopCat.toSSet.map f).app (op ⦋n⦌) σ) = f.hom (firstVertex σ) := rfl
@@ -164,7 +174,9 @@ def vertexPred (X : TopCat.{0}) (A : Set ↑X) (U : Opens X) (n : ℕ)
   ambient (firstVertex σ) ∈ A
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The ambient first vertex is invariant under restriction of opens.-/
+/-- The ambient first vertex is invariant under restriction of opens.
+@isnad1 id=eq.0h6v.s9.a6577e4ec056 from=translated src=- shape=a710c27f vocab=7a3d5376
+-/
 lemma ambient_firstVertex_map (X : TopCat.{0}) {V U : Opens X} (h : V ⟶ U) {n : ℕ}
     (σ : (TopCat.toSSet.obj ((Opens.toTopCat X).obj V)) _⦋n⦌) :
     ambient (firstVertex ((TopCat.toSSet.map ((Opens.toTopCat X).map h)).app (op ⦋n⦌) σ))
@@ -172,7 +184,9 @@ lemma ambient_firstVertex_map (X : TopCat.{0}) {V U : Opens X} (h : V ⟶ U) {n 
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Equivariance of the first-vertex weighting under restriction of opens
-(the first-vertex test only sees the ambient point).-/
+(the first-vertex test only sees the ambient point).
+@isnad1 id=eq.0h6v.s10.cfebddf38d11 from=translated src=- shape=8ab615b0 vocab=eb229988
+-/
 lemma keep_comm_opens (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) {V U : Opens X} (h : V ⟶ U) :
     (chainsFunctor.map ((Opens.toTopCat X).map h)).f n
         ≫ keep (TopCat.toSSet.obj ((Opens.toTopCat X).obj U)) n (vertexPred X A U n)
@@ -219,7 +233,9 @@ def partitionEndo (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) :
 set_option backward.isDefEq.respectTransparency false in
 /-- Vanishing on `A`-disjoint opens: over an open containing no point of `A`,
 the partition endomorphism is the zero endomorphism (so its "support" is
-contained in the closure of `A`).-/
+contained in the closure of `A`).
+@isnad1 id=eq.1h4v.s9.69a856f6b6c2 from=translated src=- shape=3ef223ec vocab=695eff89
+-/
 lemma partApp_disjoint (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) (U : Opens X)
     (h : ∀ u : ↑((Opens.toTopCat X).obj U), ambient u ∉ A) :
     partApp X A n U = 0 := by
@@ -236,7 +252,9 @@ lemma partApp_disjoint (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) (U : Opens X)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Pair partition identity at the presheaf level: the endomorphisms of a
-complementary pair of sets sum to the identity endomorphism.-/
+complementary pair of sets sum to the identity endomorphism.
+@isnad1 id=eq.0h3v.s10.de9977ae39ca from=translated src=- shape=7dc32eae vocab=253a5ccd
+-/
 lemma partitionEndo_pair (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) :
     partitionEndo X A n + partitionEndo X Aᶜ n
       = 𝟙 ((singularPresheafComplex X).X n) := by
@@ -272,7 +290,9 @@ def partitionEndoSheaf (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) :
 set_option backward.isDefEq.respectTransparency false in
 /-- Pair partition identity at the sheaf level, by additivity of
 sheafification (term-mode: the rewrite route trips the instance-key mismatch
-between `TopCat.Presheaf` and the raw functor category).-/
+between `TopCat.Presheaf` and the raw functor category).
+@isnad1 id=eq.0h3v.s10.7dbc0b6cd1bc from=translated src=- shape=7dc32eae vocab=a686a739
+-/
 lemma partitionEndoSheaf_pair (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) :
     partitionEndoSheaf X A n + partitionEndoSheaf X Aᶜ n
       = 𝟙 ((sheafifiedCochainComplex X).X n) :=

@@ -46,9 +46,15 @@ def toModuleCat : HodgeStructCat.{u} n ⥤ ModuleCat.{u} ℚ where
     -- `ofHom` turns composition of linear maps into `≫`.
     simp only [comp_toLinearMap, ModuleCat.ofHom_comp]
 
+/--
+@isnad1 id=eq.0h2v.s5.dd5baf0f5d58 from=translated src=- shape=2b3eec7a vocab=07826535
+-/
 @[simp] theorem toModuleCat_obj (X : HodgeStructCat.{u} n) :
     toModuleCat.obj X = ModuleCat.of ℚ X.carrier := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.4337d32c37e2 from=translated src=- shape=275e736d vocab=66e7be2a
+-/
 @[simp] theorem toModuleCat_map {X Y : HodgeStructCat.{u} n} (f : X ⟶ Y) :
     toModuleCat.map f = ModuleCat.ofHom f.toLinearMap := rfl
 

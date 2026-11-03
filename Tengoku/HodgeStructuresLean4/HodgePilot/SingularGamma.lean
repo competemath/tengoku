@@ -93,7 +93,9 @@ namespace HodgePilot.SingularGamma
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Restriction along a composite of inclusions of opens collapses (the target
-inclusion may be given by any morphism, inclusions of opens being unique).-/
+inclusion may be given by any morphism, inclusions of opens being unique).
+@isnad1 id=eq.0h9v.s12.00ad73c5ac3e from=translated src=- shape=17f81a32 vocab=86c96214
+-/
 lemma res_res' {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {O P Q : Opens X} (i : O ⟶ P) (j : P ⟶ Q) (k : O ⟶ Q) (s : F.1.obj (op Q)) :
     F.1.map i.op (F.1.map j.op s) = F.1.map k.op s := by
@@ -101,31 +103,41 @@ lemma res_res' {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Components of a sheaf morphism commute with restriction, elementwise.-/
+/-- Components of a sheaf morphism commute with restriction, elementwise.
+@isnad1 id=eq.0h8v.s12.b40f9f06e093 from=translated src=- shape=d923bd35 vocab=c7ccf95c
+-/
 lemma app_res {X : TopCat.{0}} {F G : TopCat.Sheaf AddCommGrpCat.{0} X} (η : F ⟶ G)
     {O P : Opens X} (i : O ⟶ P) (s : F.1.obj (op P)) :
     η.hom.app (op O) (F.1.map i.op s) = G.1.map i.op (η.hom.app (op P) s) := by
   rw [← ConcreteCategory.comp_apply, ← ConcreteCategory.comp_apply, η.hom.naturality]
 
-/-- Restriction of the zero section is zero.-/
+/-- Restriction of the zero section is zero.
+@isnad1 id=eq.0h5v.s11.e6a5e7362dd0 from=translated src=- shape=74dd339f vocab=86c96214
+-/
 lemma res_zero' {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {O P : Opens X} (i : O ⟶ P) :
     F.1.map i.op (0 : F.1.obj (op P)) = 0 :=
   map_zero _
 
-/-- Restriction of a sum of sections is the sum of the restrictions.-/
+/-- Restriction of a sum of sections is the sum of the restrictions.
+@isnad1 id=eq.0h7v.s12.0ee2c5bc3c14 from=translated src=- shape=6cc2e1b3 vocab=23f6dcef
+-/
 lemma res_add' {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {O P : Opens X} (i : O ⟶ P) (a b : F.1.obj (op P)) :
     F.1.map i.op (a + b) = F.1.map i.op a + F.1.map i.op b :=
   map_add _ _ _
 
-/-- Restriction of a finite sum of sections is the sum of the restrictions.-/
+/-- Restriction of a finite sum of sections is the sum of the restrictions.
+@isnad1 id=eq.0h8v.s12.6dca7935e2c3 from=translated src=- shape=3f831d77 vocab=399c254a
+-/
 lemma res_sum' {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {O P : Opens X} (i : O ⟶ P) {ι' : Type*} (T : Finset ι') (t : ι' → F.1.obj (op P)) :
     F.1.map i.op (∑ a ∈ T, t a) = ∑ a ∈ T, F.1.map i.op (t a) :=
   map_sum _ _ _
 
-/-- A finite sum of morphisms of abelian groups applied to an element.-/
+/-- A finite sum of morphisms of abelian groups applied to an element.
+@isnad1 id=eq.0h6v.s8.613c04e3521b from=translated src=- shape=a645a1f0 vocab=671c8b75
+-/
 lemma hom_sum_apply {A B : AddCommGrpCat.{0}} {ι' : Type*} (T : Finset ι')
     (f : ι' → (A ⟶ B)) (x : A) :
     (∑ a ∈ T, f a) x = ∑ a ∈ T, f a x := by
@@ -140,7 +152,9 @@ lemma hom_sum_apply {A B : AddCommGrpCat.{0}} {ι' : Type*} (T : Finset ι')
 set_option backward.isDefEq.respectTransparency false in
 /-- Every element of the stalk of a sheafification is the image of a stalk
 element of the underlying presheaf under the unit (the unit is an isomorphism
-on stalks).-/
+on stalks).
+@isnad1 id=ex.0h4v.s9.92fc0788053a from=translated src=- shape=6b3501ef vocab=69681ed0
+-/
 lemma exists_stalk_toSheafify_preimage {X : TopCat.{0}}
     (F : TopCat.Presheaf AddCommGrpCat.{0} X) (x : ↑X)
     (z : (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{0} x).obj
@@ -155,7 +169,9 @@ lemma exists_stalk_toSheafify_preimage {X : TopCat.{0}}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The stalk of a sheafified morphism, computed through the unit: the
-elementwise naturality square of `toSheafify` on stalks.-/
+elementwise naturality square of `toSheafify` on stalks.
+@isnad1 id=eq.0h6v.s12.a8636ccaf706 from=translated src=- shape=34ff2971 vocab=393266b3
+-/
 lemma stalk_presheafToSheaf_map_toSheafify {X : TopCat.{0}}
     {F G : TopCat.Presheaf AddCommGrpCat.{0} X} (φ : F ⟶ G) (x : ↑X) (w : F.stalk x) :
     (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{0} x).map
@@ -185,7 +201,9 @@ lemma stalk_presheafToSheaf_map_toSheafify {X : TopCat.{0}}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The stalk map of the presheaf-level partition endomorphism kills every
-stalk element at a point of an `A`-disjoint open.-/
+stalk element at a point of an `A`-disjoint open.
+@isnad1 id=eq.2h6v.s10.7bb8bf4cd6c4 from=translated src=- shape=3510b1c7 vocab=985b8795
+-/
 lemma stalkFunctor_map_partitionEndo_apply_eq_zero (X : TopCat.{0}) (A : Set ↑X) (n : ℕ)
     {U : Opens X} (hUA : Disjoint (U : Set ↑X) A) {x : ↑X} (hx : x ∈ U)
     (w : ((singularPresheafComplex X).X n).stalk x) :
@@ -207,7 +225,9 @@ lemma stalkFunctor_map_partitionEndo_apply_eq_zero (X : TopCat.{0}) (A : Set ↑
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **Sheaf-level disjoint vanishing**: over any open disjoint from `A`, the
-component of the sheafified partition endomorphism is the zero morphism.-/
+component of the sheafified partition endomorphism is the zero morphism.
+@isnad1 id=eq.1h4v.s11.3d004dbc0d3a from=translated src=- shape=4686a11e vocab=339cbaf9
+-/
 theorem partitionEndoSheaf_app_disjoint (X : TopCat.{0}) (A : Set ↑X) (n : ℕ)
     {U : Opens X} (hUA : Disjoint (U : Set ↑X) A) :
     (partitionEndoSheaf X A n).hom.app (op U) = 0 := by
@@ -250,7 +270,9 @@ def pairSections {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X) {U O : 
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The two-element extension-by-zero datum is compatible when the given
-section dies on the overlap with the carving open.-/
+section dies on the overlap with the carving open.
+@isnad1 id=iscompat.1h6v.s11.f8abf61b6867 from=translated src=- shape=65e5fd98 vocab=fd584944
+-/
 lemma pairSections_isCompatible {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {U Zc V : Opens X} (s : F.1.obj (op U))
     (hs : F.1.map (homOfLE (inf_le_left : U ⊓ Zc ≤ U)).op s = 0) :
@@ -288,7 +310,9 @@ lemma pairSections_isCompatible {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat
 set_option backward.isDefEq.respectTransparency false in
 /-- **Extension by zero, existence and uniqueness**: a section on `U` that
 dies on `U ⊓ Zc` extends uniquely to any `V ≤ U ⊔ Zc` containing `U`, by a
-section that restricts to zero on `Zc ⊓ V`.-/
+section that restricts to zero on `Zc ⊓ V`.
+@isnad1 id=existsun.3h6v.s13.1660b981a2b2 from=translated src=- shape=360f7c97 vocab=1db2dc8a
+-/
 theorem extendByZero_existsUnique {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {U V Zc : Opens X} (hUV : U ≤ V) (hcover : V ≤ U ⊔ Zc)
     (s : F.1.obj (op U))
@@ -318,7 +342,9 @@ def extendByZero {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     F.1.obj (op V) :=
   (extendByZero_existsUnique F hUV hcover s hs).exists.choose
 
-/-- The extension by zero restricts to the given section.-/
+/-- The extension by zero restricts to the given section.
+@isnad1 id=eq.3h6v.s12.19a5acc1bcf0 from=translated src=- shape=99a1e49e vocab=ad0371da
+-/
 lemma extendByZero_res {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {U V Zc : Opens X} (hUV : U ≤ V) (hcover : V ≤ U ⊔ Zc)
     (s : F.1.obj (op U))
@@ -326,7 +352,9 @@ lemma extendByZero_res {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     F.1.map (homOfLE hUV).op (extendByZero F hUV hcover s hs) = s :=
   (extendByZero_existsUnique F hUV hcover s hs).exists.choose_spec.1
 
-/-- The extension by zero restricts to zero on the carving open.-/
+/-- The extension by zero restricts to zero on the carving open.
+@isnad1 id=eq.3h6v.s12.6e8cabf1d483 from=translated src=- shape=18ef5162 vocab=c8b83917
+-/
 lemma extendByZero_res_compl {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {U V Zc : Opens X} (hUV : U ≤ V) (hcover : V ≤ U ⊔ Zc)
     (s : F.1.obj (op U))
@@ -335,7 +363,9 @@ lemma extendByZero_res_compl {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0
       (extendByZero F hUV hcover s hs) = 0 :=
   (extendByZero_existsUnique F hUV hcover s hs).exists.choose_spec.2
 
-/-- Uniqueness receipt for the extension by zero.-/
+/-- Uniqueness receipt for the extension by zero.
+@isnad1 id=eq.5h7v.s13.e6d0c041d617 from=translated src=- shape=5f43eb02 vocab=c8b83917
+-/
 lemma extendByZero_eq {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {U V Zc : Opens X} (hUV : U ≤ V) (hcover : V ≤ U ⊔ Zc)
     (s : F.1.obj (op U))
@@ -347,7 +377,9 @@ lemma extendByZero_eq {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     ⟨extendByZero_res F hUV hcover s hs, extendByZero_res_compl F hUV hcover s hs⟩
 
 /-- The extension by zero restricts to zero on any open inside the carving
-open.-/
+open.
+@isnad1 id=eq.5h7v.s12.61e3cf3ea3f4 from=translated src=- shape=176d96c9 vocab=ad0371da
+-/
 lemma extendByZero_res_of_le {X : TopCat.{0}} (F : TopCat.Sheaf AddCommGrpCat.{0} X)
     {U V Zc : Opens X} (hUV : U ≤ V) (hcover : V ≤ U ⊔ Zc)
     (s : F.1.obj (op U))
@@ -367,7 +399,9 @@ variable {ι κ : Type*} {W : Opens X}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Sums of restricted sections over two index sets agree whenever the
-symmetric difference of the index sets is supported away from the open.-/
+symmetric difference of the index sets is supported away from the open.
+@isnad1 id=eq.4h9v.s12.a71b1006e32f from=translated src=- shape=1808781c vocab=ba4cc11b
+-/
 lemma sum_res_drop (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
     {O : Opens X} (hOW : O ≤ W)
     (hsupp : ∀ i, Disjoint (O : Set ↑X) (Z i) → F.1.map (homOfLE hOW).op (t i) = 0)
@@ -382,7 +416,9 @@ lemma sum_res_drop (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
       (fun i hi hni => hsupp i (h₂ i hi (fun hT1 => hni (Finset.mem_inter.mpr ⟨hT1, hi⟩))))]
 
 /-- Restricting a finite partial sum further down collapses the two
-restriction steps.-/
+restriction steps.
+@isnad1 id=eq.3h8v.s12.47a64166a177 from=translated src=- shape=e8b23986 vocab=4366a1e8
+-/
 lemma res_psum (t : ι → F.1.obj (op W)) {O O' : Opens X} (h1 : O' ≤ O) (hOW : O ≤ W)
     (hO'W : O' ≤ W) (T : Finset ι) :
     F.1.map (homOfLE h1).op (∑ i ∈ T, F.1.map (homOfLE hOW).op (t i))
@@ -396,7 +432,9 @@ family of sections over `W`, each supported in a set `Z i` (in the sense that
 it restricts to zero on any open of `W` disjoint from `Z i`), sums by gluing
 along any cover of `W` each of whose members meets only the supports indexed
 by a prescribed finite set.  The glued section is the unique section
-restricting to the finite partial sums.-/
+restricting to the finite partial sums.
+@isnad1 id=existsun.4h9v.s12.8b8f344f8c06 from=translated src=- shape=a412d660 vocab=34344906
+-/
 theorem locFinSum_existsUnique (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
     (hsupp : ∀ i (O : Opens X) (hOW : O ≤ W), Disjoint (O : Set ↑X) (Z i) →
       F.1.map (homOfLE hOW).op (t i) = 0)
@@ -434,7 +472,9 @@ def locFinSum (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
   (locFinSum_existsUnique F t Z hsupp V hVW hcov S hS).exists.choose
 
 /-- The locally finite sum restricts on each cover member to the finite
-partial sum.-/
+partial sum.
+@isnad1 id=eq.4h10v.s12.bbd24c5ddbe3 from=translated src=- shape=e38c1262 vocab=f3c10c9b
+-/
 lemma locFinSum_res (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
     (hsupp : ∀ i (O : Opens X) (hOW : O ≤ W), Disjoint (O : Set ↑X) (Z i) →
       F.1.map (homOfLE hOW).op (t i) = 0)
@@ -445,7 +485,9 @@ lemma locFinSum_res (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
       = ∑ i ∈ S j, F.1.map (homOfLE (hVW j)).op (t i) :=
   (locFinSum_existsUnique F t Z hsupp V hVW hcov S hS).exists.choose_spec j
 
-/-- Uniqueness receipt for the locally finite sum.-/
+/-- Uniqueness receipt for the locally finite sum.
+@isnad1 id=eq.5h10v.s12.9907c684ec93 from=translated src=- shape=1b22536f vocab=f3c10c9b
+-/
 lemma locFinSum_unique (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
     (hsupp : ∀ i (O : Opens X) (hOW : O ≤ W), Disjoint (O : Set ↑X) (Z i) →
       F.1.map (homOfLE hOW).op (t i) = 0)
@@ -461,7 +503,9 @@ lemma locFinSum_unique (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
 set_option backward.isDefEq.respectTransparency false in
 /-- **Adequate-restriction receipt**: on any open of `W` that meets only the
 supports indexed by a finite set `T`, the locally finite sum restricts to the
-`T`-partial sum (not only on the members of the defining cover pack).-/
+`T`-partial sum (not only on the members of the defining cover pack).
+@isnad1 id=eq.6h11v.s12.c2d15df25e11 from=translated src=- shape=a3b4e7c7 vocab=f3c10c9b
+-/
 lemma locFinSum_res_adequate (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
     (hsupp : ∀ i (O : Opens X) (hOW : O ≤ W), Disjoint (O : Set ↑X) (Z i) →
       F.1.map (homOfLE hOW).op (t i) = 0)
@@ -499,7 +543,9 @@ lemma locFinSum_res_adequate (t : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
 
 /-- Additivity receipt: the locally finite sum of a pointwise sum of two
 families (with a common support datum) is the sum of the locally finite
-sums.-/
+sums.
+@isnad1 id=eq.6h10v.s13.dc122eae5a1b from=translated src=- shape=0fd8b446 vocab=3ed46010
+-/
 lemma locFinSum_add (t t' : ι → F.1.obj (op W)) (Z : ι → Set ↑X)
     (hsupp : ∀ i (O : Opens X) (hOW : O ≤ W), Disjoint (O : Set ↑X) (Z i) →
       F.1.map (homOfLE hOW).op (t i) = 0)
@@ -530,7 +576,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Elementwise finite partition identity at the presheaf level: over an open
 each of whose points lies in exactly one member (indexed by `S`) of a family
 of subsets, the partition endomorphisms indexed by `S` sum to the identity on
-sections.-/
+sections.
+@isnad1 id=eq.1h7v.s10.fd940103bc16 from=translated src=- shape=436d6f2a vocab=ce62fc24
+-/
 lemma sum_partitionEndo_app_apply (X : TopCat.{0}) (A : ι → Set ↑X) (S : Finset ι) (n : ℕ)
     (V : Opens X) (hone : ∀ y ∈ (V : Set ↑X), ∃! i, i ∈ S ∧ y ∈ A i)
     (u : ((singularPresheafComplex X).X n).obj (op V)) :
@@ -552,7 +600,9 @@ lemma sum_partitionEndo_app_apply (X : TopCat.{0}) (A : ι → Set ↑X) (S : Fi
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Finite partition identity on stalks: at a point of `V`, the stalk maps of
-the partition endomorphisms indexed by `S` sum to the identity.-/
+the partition endomorphisms indexed by `S` sum to the identity.
+@isnad1 id=eq.2h8v.s10.40c465cd3f2a from=translated src=- shape=173c1f50 vocab=b17e8dbc
+-/
 lemma sum_stalkFunctor_map_partitionEndo_apply (X : TopCat.{0}) (A : ι → Set ↑X)
     (S : Finset ι) (n : ℕ) {V : Opens X}
     (hone : ∀ y ∈ (V : Set ↑X), ∃! i, i ∈ S ∧ y ∈ A i)
@@ -583,7 +633,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **Sectionwise finite partition identity for the sheafified endomorphisms**:
 over an open each of whose points lies in exactly one member (indexed by `S`)
 of a family of subsets, the sheafified partition endomorphisms indexed by `S`
-sum to the identity on sections of the sheafified cochain sheaf.-/
+sum to the identity on sections of the sheafified cochain sheaf.
+@isnad1 id=eq.1h7v.s11.6e1d957297d4 from=translated src=- shape=5b1e5254 vocab=f6d4182c
+-/
 theorem sum_partitionEndoSheaf_app_apply (X : TopCat.{0}) (A : ι → Set ↑X)
     (S : Finset ι) (n : ℕ) {V : Opens X}
     (hone : ∀ y ∈ (V : Set ↑X), ∃! i, i ∈ S ∧ y ∈ A i)
@@ -618,7 +670,9 @@ theorem sum_partitionEndoSheaf_app_apply (X : TopCat.{0}) (A : ι → Set ↑X)
 set_option backward.isDefEq.respectTransparency false in
 /-- The image of a section under the sheafified partition endomorphism is
 supported in the closure of the partition set: it restricts to zero on any
-open disjoint from that closure.-/
+open disjoint from that closure.
+@isnad1 id=eq.2h6v.s12.b46d30c061d4 from=translated src=- shape=575de3af vocab=f37336f7
+-/
 lemma partitionEndoSheaf_app_supp (X : TopCat.{0}) (A : Set ↑X) (n : ℕ)
     {W : Opens X} (s : ((sheafifiedCochainComplex X).X n).presheaf.obj (op W))
     (O : Opens X) (hOW : O ≤ W) (hd : Disjoint (O : Set ↑X) (closure A)) :
@@ -632,7 +686,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **The partition-sum identity**: for a partition of the ambient space into
 subsets whose closures form the support datum of a cover pack over `W`, the
 locally finite sum of the partition-endomorphism images of a section `s` of
-the sheafified cochain sheaf over `W` recovers `s`.-/
+the sheafified cochain sheaf over `W` recovers `s`.
+@isnad1 id=eq.4h9v.s11.2fb97f0c9f33 from=translated src=- shape=a79931b0 vocab=504dac8e
+-/
 theorem partitionSum_eq_id (X : TopCat.{0}) (A : ι → Set ↑X) (n : ℕ)
     (hA : ∀ y : ↑X, ∃! i, y ∈ A i)
     {W : Opens X} (s : ((sheafifiedCochainComplex X).X n).presheaf.obj (op W))
@@ -662,7 +718,9 @@ theorem partitionSum_eq_id (X : TopCat.{0}) (A : ι → Set ↑X) (n : ℕ)
 
 /-- A cover pack over `W` extracted from a locally finite family of supports:
 each point of `W` gets an open neighbourhood inside `W` meeting only a finite,
-recorded set of the supports.-/
+recorded set of the supports.
+@isnad1 id=ex.1h4v.s8.115e5d1f43c3 from=translated src=- shape=a23532c6 vocab=2f7d5521
+-/
 lemma exists_pack {X : TopCat.{0}} (Z : ι → Set ↑X) (hlf : LocallyFinite Z)
     (W : Opens X) :
     ∃ (V : ↥W → Opens X) (S : ↥W → Finset ι),
@@ -686,7 +744,9 @@ section GammaTools
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A composite of sheaf morphisms with vanishing composite kills every
-section elementwise.-/
+section elementwise.
+@isnad1 id=eq.1h8v.s12.9dfd431fae47 from=translated src=- shape=fa999221 vocab=877864c8
+-/
 lemma comp_app_apply_eq_zero {X : TopCat.{0}} {F G H : TopCat.Sheaf AddCommGrpCat.{0} X}
     (f : F ⟶ G) (g : G ⟶ H) (hfg : f ≫ g = 0) (U : Opens X) (s : F.1.obj (op U)) :
     g.hom.app (op U) (f.hom.app (op U) s) = 0 := by
@@ -698,7 +758,9 @@ lemma comp_app_apply_eq_zero {X : TopCat.{0}} {F G H : TopCat.Sheaf AddCommGrpCa
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A monomorphism of abelian sheaves is injective on sections over every
-open.-/
+open.
+@isnad1 id=injectiv.0h5v.s11.e31cc694576a from=translated src=- shape=bae6f689 vocab=230616cb
+-/
 lemma app_injective_of_mono {X : TopCat.{0}} {K B : TopCat.Sheaf AddCommGrpCat.{0} X}
     (f : K ⟶ B) [Mono f] (U : Opens X) :
     Function.Injective (f.hom.app (op U)) :=
@@ -710,7 +772,9 @@ lemma app_injective_of_mono {X : TopCat.{0}} {K B : TopCat.Sheaf AddCommGrpCat.{
 
 set_option backward.isDefEq.respectTransparency false in
 /-- An epimorphism of abelian sheaves admits local lifts of any global
-section.-/
+section.
+@isnad1 id=ex.0h6v.s12.53c3d4cb6a27 from=translated src=- shape=59f49c80 vocab=e1bcac06
+-/
 lemma exists_local_lift {X : TopCat.{0}} {B R : TopCat.Sheaf AddCommGrpCat.{0} X}
     (g : B ⟶ R) [Epi g] (r : R.1.obj (op ⊤)) (x : ↑X) :
     ∃ (V : Opens X) (_ : x ∈ V) (b : B.1.obj (op V)),
@@ -725,7 +789,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **Sectionwise kernel extraction**: for a short exact sequence of abelian
 sheaves and a section of the middle sheaf killed by the quotient map, there is
 a unique section of the kernel sheaf mapping to it (the sections functor is
-left exact; done here by germ-local preimages and gluing).-/
+left exact; done here by germ-local preimages and gluing).
+@isnad1 id=existsun.3h8v.s12.fffa116a5206 from=translated src=- shape=97f910ad vocab=3405c8e0
+-/
 lemma existsUnique_section_preimage {X : TopCat.{0}}
     {K B R : TopCat.Sheaf AddCommGrpCat.{0} X}
     (f : K ⟶ B) (g : B ⟶ R) (hfg : f ≫ g = 0)
@@ -789,7 +855,9 @@ set_option backward.isDefEq.respectTransparency false in
 any open cover admits a partition of the space into (arbitrary) subsets, one
 per cover member, with each closure contained in the corresponding cover
 member and the closures locally finite (precise refinement, shrinking lemma,
-and disjointification along a well-order).-/
+and disjointification along a well-order).
+@isnad1 id=ex.1h3v.s8.221879d3c1cc from=translated src=- shape=4c4f1a5b vocab=5a5bb695
+-/
 lemma exists_subordinate_partition {X : TopCat.{0}} [ParacompactSpace ↑X] [T2Space ↑X]
     {ι : Type} (u : ι → Opens X) (hu : (⊤ : Opens X) ≤ ⨆ i, u i) :
     ∃ A : ι → Set ↑X, (∀ y : ↑X, ∃! i, y ∈ A i) ∧
@@ -826,7 +894,9 @@ closure sense) to a family of opens, and a family `δ` of sections of the
 sheafified cochain sheaf over the pairwise intersections satisfying the
 restricted cocycle identity, there is a family `c i` of sections over the `V i`
 whose overlap differences recover `δ` — each `c i` is the locally finite sum
-over `j` of the extension by zero of the `A j`-partition image of `δ i j`.-/
+over `j` of the extension by zero of the `A j`-partition image of `δ i j`.
+@isnad1 id=ex.4h5v.s14.def290ea82e2 from=translated src=- shape=a8e2b70d vocab=0e493fe9
+-/
 lemma exists_correction (X : TopCat.{0}) (n : ℕ)
     (A : ↑X → Set ↑X) (V : ↑X → Opens X)
     (hA : ∀ y : ↑X, ∃! i, y ∈ A i)
@@ -979,7 +1049,9 @@ lemma exists_correction (X : TopCat.{0}) (n : ℕ)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **Lemma W: `Γ`-surjectivity for short exact sequences of abelian sheaves
-with sheafified-cochain kernel**, on a paracompact Hausdorff space.-/
+with sheafified-cochain kernel**, on a paracompact Hausdorff space.
+@isnad1 id=surjecti.2h6v.s11.fe2943ae97bc from=translated src=- shape=4e05f8cb vocab=bb5b63e1
+-/
 theorem gammaSurjective_of_shortExact_sheafifiedCochain (X : TopCat.{0})
     [ParacompactSpace ↑X] [T2Space ↑X] (n : ℕ)
     {B R : TopCat.Sheaf AddCommGrpCat.{0} X}

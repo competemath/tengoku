@@ -88,6 +88,9 @@ def dualHomotopyEquiv {K L : ChainComplex QMod ℕ} (E : HomotopyEquiv K L) :
 
 /-! ## The one-point space and its dual singular complex -/
 
+/--
+@isnad1 id=totallyd.0h0v.s1.1abe505db169 from=translated src=- shape=49959d42 vocab=e5745dc3
+-/
 instance instTotallyDisconnectedSpaceUnit : TotallyDisconnectedSpace Unit :=
   ⟨fun _ _ _ => Set.subsingleton_of_subsingleton⟩
 
@@ -110,14 +113,18 @@ def pointChainsHomotopyEquiv :
     (ChainComplex.alternatingConstHomotopyEquiv pointModule)
 
 /-- The dual cochain complex of the one-point single complex has a zero object
-in every degree `n ≠ 0` (the dual of a zero object is a zero object).-/
+in every degree `n ≠ 0` (the dual of a zero object is a zero object).
+@isnad1 id=iszero.1h1v.s7.648862ad9153 from=translated src=- shape=5534947a vocab=a1bba9ea
+-/
 lemma isZero_dualSingle_X (n : ℕ) (hn : n ≠ 0) :
     IsZero ((dualComplex ((ChainComplex.single₀ QMod).obj pointModule)).X n) :=
   dualFunctor.map_isZero
     ((HomologicalComplex.isZero_single_obj_X (ComplexShape.down ℕ) 0 pointModule n hn).op)
 
 /-- The dual cochain complex of the one-point single complex is exact in every
-degree `n ≠ 0` (its component there is a zero object).-/
+degree `n ≠ 0` (its component there is a zero object).
+@isnad1 id=exactat.1h1v.s7.31d8bceaa431 from=translated src=- shape=0fc1c040 vocab=5a4fceea
+-/
 lemma exactAt_dualSingle (n : ℕ) (hn : n ≠ 0) :
     (dualComplex ((ChainComplex.single₀ QMod).obj pointModule)).ExactAt n :=
   HomologicalComplex.ExactAt.of_isZero (isZero_dualSingle_X n hn)
@@ -218,7 +225,9 @@ def pointCohomologyIso (n : ℕ) :
 
 /-- **Vanishing above degree 0**: for a contractible space `U`, the singular
 cohomology `Hⁿ(U, ℚ)` of the house singular-cochain carrier is zero in every
-degree `n ≠ 0`.-/
+degree `n ≠ 0`.
+@isnad1 id=iszero.1h2v.s5.cd95a1f65a8f from=translated src=- shape=3d57b29b vocab=36ea9f6a
+-/
 theorem isZero_singularCohomology_of_contractible (U : TopCat.{0}) [ContractibleSpace U]
     (n : ℕ) (hn : n ≠ 0) :
     IsZero ((singularCohomologyFunctor n).obj (op U)) :=
@@ -248,7 +257,9 @@ variable {E : Type} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E]
 
 /-- For a nonempty convex subset `s` of a real topological vector space, the
 singular cohomology `Hⁿ(s, ℚ)` of the house singular-cochain carrier is zero
-in every degree `n ≠ 0`.-/
+in every degree `n ≠ 0`.
+@isnad1 id=iszero.3h3v.s7.24de4231a6c0 from=translated src=- shape=b671de2b vocab=87e595dc
+-/
 theorem isZero_singularCohomology_convex {s : Set E} (hs : Convex ℝ s)
     (hne : s.Nonempty) (n : ℕ) (hn : n ≠ 0) :
     IsZero ((singularCohomologyFunctor n).obj (op (TopCat.of s))) :=
@@ -271,7 +282,9 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- For an open ball of positive radius in a real normed space, the singular
 cohomology `Hⁿ(ball x r, ℚ)` of the house singular-cochain carrier is zero in
-every degree `n ≠ 0`.-/
+every degree `n ≠ 0`.
+@isnad1 id=iszero.2h4v.s6.1482d8fbf8c3 from=translated src=- shape=042d79a0 vocab=13cf2fa4
+-/
 theorem isZero_singularCohomology_ball (x : E) {r : ℝ} (hr : 0 < r)
     (n : ℕ) (hn : n ≠ 0) :
     IsZero ((singularCohomologyFunctor n).obj (op (TopCat.of (Metric.ball x r)))) :=

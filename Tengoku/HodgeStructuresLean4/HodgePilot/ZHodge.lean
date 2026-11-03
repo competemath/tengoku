@@ -29,6 +29,9 @@ variable (V : Type*) [AddCommGroup V]
 already provided by Tier 5's integral smoke test; here we upgrade it to a
 semilinear map, mirroring the ℚ story. -/
 
+/--
+@isnad1 id=eq.0h3v.s9.86261234f307 from=translated src=- shape=d5206943 vocab=089b713e
+-/
 theorem sigmaZR_smul (c : ℂ) (x : ℂ ⊗[ℤ] V) :
     sigmaZR V (c • x) = (starRingEnd ℂ) c • sigmaZR V x := by
   induction x using TensorProduct.induction_on with
@@ -46,15 +49,26 @@ def sigmaZ : (ℂ ⊗[ℤ] V) →ₛₗ[starRingEnd ℂ] (ℂ ⊗[ℤ] V) where
   map_add' := map_add (sigmaZR V)
   map_smul' := sigmaZR_smul V
 
+/--
+@isnad1 id=eq.0h2v.s9.a693ff1023ba from=translated src=- shape=54eccb20 vocab=194cce30
+-/
 @[simp] theorem sigmaZ_apply (x : ℂ ⊗[ℤ] V) : sigmaZ V x = sigmaZR V x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.fbffea39bcc6 from=translated src=- shape=ce3af522 vocab=3655ad7a
+-/
 @[simp] theorem sigmaZ_tmul (c : ℂ) (v : V) :
     sigmaZ V (c ⊗ₜ[ℤ] v) = (starRingEnd ℂ) c ⊗ₜ[ℤ] v := rfl
 
-/-- `σ` is an involution (integral analogue of `sigmaQ_sigmaQ`).-/
+/-- `σ` is an involution (integral analogue of `sigmaQ_sigmaQ`).
+@isnad1 id=eq.0h2v.s9.3a3770dac09a from=translated src=- shape=dd3fd035 vocab=c6266ec2
+-/
 theorem sigmaZ_sigmaZ (x : ℂ ⊗[ℤ] V) : sigmaZ V (sigmaZ V x) = x := by
   simp [sigmaZR_involutive]
 
+/--
+@isnad1 id=surjecti.0h1v.s8.993d1c2c6851 from=translated src=- shape=a2d68275 vocab=c619acd6
+-/
 theorem sigmaZ_surjective : Function.Surjective (sigmaZ V) :=
   fun x => ⟨sigmaZ V x, sigmaZ_sigmaZ V x⟩
 
@@ -67,13 +81,22 @@ def sigmaZEquiv : (ℂ ⊗[ℤ] V) ≃ₛₗ[starRingEnd ℂ] (ℂ ⊗[ℤ] V) :
 
 /-! ### `Submodule.map` simp lemmas for `σ` (mirroring Tier 7) -/
 
+/--
+@isnad1 id=eq.0h1v.s8.ec9c96015e09 from=translated src=- shape=159fb2ec vocab=30eae1da
+-/
 @[simp] theorem range_sigmaZ : LinearMap.range (sigmaZ V) = ⊤ :=
   LinearMap.range_eq_top.mpr (sigmaZ_surjective V)
 
+/--
+@isnad1 id=eq.0h1v.s8.636e77932111 from=translated src=- shape=c6905ddf vocab=354fbae5
+-/
 @[simp] theorem map_top_sigmaZ :
     (⊤ : Submodule ℂ (ℂ ⊗[ℤ] V)).map (sigmaZ V) = ⊤ := by
   rw [Submodule.map_top, range_sigmaZ]
 
+/--
+@isnad1 id=eq.0h1v.s8.5ac9ce603e77 from=translated src=- shape=c6905ddf vocab=8b353758
+-/
 @[simp] theorem map_bot_sigmaZ :
     (⊥ : Submodule ℂ (ℂ ⊗[ℤ] V)).map (sigmaZ V) = ⊥ :=
   Submodule.map_bot _

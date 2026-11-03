@@ -70,7 +70,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A] [HasExt.{w} A]
 
 /-- **Degree-one brick.**  If every map `Z ⟶ S.X₃` lifts through `S.g` and
 `Ext Z S.X₂ 1` is a subsingleton, then `Ext Z S.X₁ 1` is a subsingleton — by
-the covariant `Ext` long exact sequence of the short exact sequence `S`.-/
+the covariant `Ext` long exact sequence of the short exact sequence `S`.
+@isnad1 id=subsingl.3h3v.s7.19f7a2b6cded from=translated src=- shape=386c1d71 vocab=09ea92e6
+-/
 theorem subsingleton_ext_one_of_liftable (Z : A) {S : ShortComplex A}
     (hS : S.ShortExact)
     (hlift : ∀ φ : Z ⟶ S.X₃, ∃ ψ : Z ⟶ S.X₂, ψ ≫ S.g = φ)
@@ -93,7 +95,9 @@ theorem subsingleton_ext_one_of_liftable (Z : A) {S : ShortComplex A}
 
 /-- **Dimension-shifting brick.**  If `Ext Z S.X₃ (m+1)` and `Ext Z S.X₂ (m+2)`
 are subsingletons, then so is `Ext Z S.X₁ (m+2)` — by the covariant `Ext` long
-exact sequence of the short exact sequence `S`.-/
+exact sequence of the short exact sequence `S`.
+@isnad1 id=subsingl.3h4v.s7.df125a56f6f1 from=translated src=- shape=53510db0 vocab=5e049f9d
+-/
 theorem subsingleton_ext_succ_of_shortExact (Z : A) {S : ShortComplex A}
     (hS : S.ShortExact) (m : ℕ)
     (hthird : Subsingleton (Ext.{w} Z S.X₃ (m + 1)))
@@ -130,7 +134,9 @@ variable [HasSheafify J AddCommGrpCat.{w}]
 set_option backward.isDefEq.respectTransparency false in
 /-- Injective sheaves satisfy the sections-surjectivity predicate: a short
 exact sequence with injective kernel splits, and the section of the splitting
-surjects componentwise.-/
+surjects componentwise.
+@isnad1 id=issectio.0h4v.s5.7312242f8ea1 from=translated src=- shape=047a6fae vocab=9937fd4d
+-/
 theorem isSectionsSurjectiveKernel_of_injective (T : C)
     (G : Sheaf J AddCommGrpCat.{w}) [Injective G] :
     IsSectionsSurjectiveKernel T G := by
@@ -156,7 +162,9 @@ variable {C : Type u} [Category.{v} C] {J : GrothendieckTopology C}
 
 /-- The bridge from sections-surjectivity to hom-surjectivity out of the
 constant abelian sheaf at `ULift ℤ`, over a terminal object of the site, via
-`homEquivSections`.-/
+`homEquivSections`.
+@isnad1 id=ex.3h10v.s9.9cc116e4314d from=translated src=- shape=21511c9a vocab=3661e809
+-/
 lemma exists_lift_of_isSectionsSurjectiveKernel {T : C} (hT : IsTerminal T)
     {G B R : Sheaf J AddCommGrpCat.{w}} (hG : IsSectionsSurjectiveKernel T G)
     (f : G ⟶ B) (g : B ⟶ R) (hfg : f ≫ g = 0)
@@ -171,7 +179,9 @@ variable [EnoughInjectives (Sheaf J AddCommGrpCat.{w})]
 /-- Over a terminal object of the site, a sheaf satisfying the
 sections-surjectivity predicate has subsingleton first sheaf cohomology:
 lifting against the injective-embedding short exact sequence kills the
-degree-one obstruction.-/
+degree-one obstruction.
+@isnad1 id=subsingl.1h5v.s6.1b10dbd9e504 from=translated src=- shape=a00917c3 vocab=a58001ff
+-/
 theorem subsingleton_H_one_of_isSectionsSurjectiveKernel {T : C}
     (hT : IsTerminal T) {G : Sheaf J AddCommGrpCat.{w}}
     (hG : IsSectionsSurjectiveKernel T G) :
@@ -194,7 +204,9 @@ with a terminal object such that
 
 Then every `P`-sheaf has subsingleton `Sheaf.H` in every positive degree, by
 induction over the injective-embedding cokernel tower.  Both hypotheses are
-consumed, not proven, here.-/
+consumed, not proven, here.
+@isnad1 id=subsingl.1h9v.s9.cda8d5389e58 from=translated src=- shape=5b6eb723 vocab=32897800
+-/
 theorem subsingleton_H_of_isSectionsSurjectiveKernel_class {T : C}
     (hT : IsTerminal T) (P : Sheaf J AddCommGrpCat.{w} → Prop)
     (hsurj : ∀ G, P G → IsSectionsSurjectiveKernel T G)
@@ -232,7 +244,9 @@ variable {X : TopCat.{0}}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Injective abelian sheaves on a topological space satisfy the
-sections-surjectivity predicate over `⊤ : Opens X`.-/
+sections-surjectivity predicate over `⊤ : Opens X`.
+@isnad1 id=issectio.0h2v.s7.9b0bf827ee24 from=translated src=- shape=68af3fa2 vocab=fcf7d40d
+-/
 theorem space_isSectionsSurjectiveKernel_of_injective
     (G : TopCat.Sheaf AddCommGrpCat.{0} X) [Injective G] :
     IsSectionsSurjectiveKernel (⊤ : Opens X) G :=
@@ -241,7 +255,9 @@ theorem space_isSectionsSurjectiveKernel_of_injective
 set_option backward.isDefEq.respectTransparency false in
 /-- Space-level degree-one vanishing: an abelian sheaf on a topological space
 satisfying the sections-surjectivity predicate over `⊤ : Opens X` has
-subsingleton first sheaf cohomology.-/
+subsingleton first sheaf cohomology.
+@isnad1 id=subsingl.1h2v.s7.02e84adfee38 from=translated src=- shape=467cf2be vocab=838c117c
+-/
 theorem space_subsingleton_H_one_of_isSectionsSurjectiveKernel
     {G : TopCat.Sheaf AddCommGrpCat.{0} X}
     (hG : IsSectionsSurjectiveKernel (⊤ : Opens X) G) :
@@ -254,7 +270,9 @@ set_option backward.isDefEq.respectTransparency false in
 topological space such that `P`-sheaves satisfy the sections-surjectivity
 predicate over `⊤ : Opens X` and `P` is stable under cokernels of `P`-kernels
 embedded in injectives, every `P`-sheaf has subsingleton `Sheaf.H` in every
-positive degree.  Both hypotheses are consumed, not proven, here.-/
+positive degree.  Both hypotheses are consumed, not proven, here.
+@isnad1 id=subsingl.1h6v.s9.019657330cda from=translated src=- shape=2e2b2445 vocab=94ba156f
+-/
 theorem space_subsingleton_H_of_isSectionsSurjectiveKernel_class
     (P : TopCat.Sheaf AddCommGrpCat.{0} X → Prop)
     (hsurj : ∀ G, P G → IsSectionsSurjectiveKernel (⊤ : Opens X) G)

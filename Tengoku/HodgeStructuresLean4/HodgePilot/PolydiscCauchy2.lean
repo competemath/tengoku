@@ -83,7 +83,9 @@ variable {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Real multivariable geometric series: for componentwise ratios
 `0 ≤ r i < 1`, the family `α ↦ ∏ i, r i ^ α i` is summable over the
-multi-index lattice `Fin n → ℕ`.-/
+multi-index lattice `Fin n → ℕ`.
+@isnad1 id=summable.2h2v.s6.201f2dfff357 from=translated src=- shape=173e0ee7 vocab=f0c4ff48
+-/
 theorem summable_prod_pow_of_lt_one :
     ∀ {n : ℕ} {r : Fin n → ℝ}, (∀ i, 0 ≤ r i) → (∀ i, r i < 1) →
       Summable fun α : Fin n → ℕ => ∏ i, r i ^ α i := by
@@ -117,7 +119,9 @@ every coordinate,
 
 `∑_{α : Fin n → ℕ} ∏ i, q i ^ α i = ∏ i, (1 - q i)⁻¹`
 
-with unconditional convergence over the multi-index lattice.-/
+with unconditional convergence over the multi-index lattice.
+@isnad1 id=hassum.1h2v.s6.db5ccd16c76d from=translated src=- shape=0ca2e980 vocab=92bfd479
+-/
 theorem hasSum_prod_geometric_of_norm_lt_one :
     ∀ {n : ℕ} {q : Fin n → ℂ}, (∀ i, ‖q i‖ < 1) →
       HasSum (fun α : Fin n → ℕ => ∏ i, q i ^ α i) (∏ i, (1 - q i)⁻¹) := by
@@ -170,7 +174,9 @@ theorem hasSum_prod_geometric_of_norm_lt_one :
 `‖z i - c i‖ < ‖w i - c i‖` in every coordinate, then
 
 `∑_{α : Fin n → ℕ} (∏ i, (z i - c i) ^ α i) * ∏ i, ((w i - c i) ^ (α i + 1))⁻¹
-  = ∏ i, (w i - z i)⁻¹`.-/
+  = ∏ i, (w i - z i)⁻¹`.
+@isnad1 id=hassum.1h4v.s7.18e40286f980 from=translated src=- shape=2d24ea03 vocab=025d0b3a
+-/
 theorem hasSum_cauchyKernel {c z w : Fin n → ℂ}
     (h : ∀ i, ‖z i - c i‖ < ‖w i - c i‖) :
     HasSum
@@ -204,14 +210,18 @@ theorem hasSum_cauchyKernel {c z w : Fin n → ℂ}
 
 /-! ## Cauchy coefficients and the Cauchy inequalities -/
 
-/-- The closed polydisc is compact.-/
+/-- The closed polydisc is compact.
+@isnad1 id=iscompac.0h3v.s5.5d2038d05267 from=translated src=- shape=155195a9 vocab=ba8bc5bf
+-/
 theorem isCompact_closedPolydisc (c : Fin n → ℂ) (R : Fin n → ℝ) :
     IsCompact (closedPolydisc c R) :=
   isCompact_univ_pi fun i => isCompact_closedBall (c i) (R i)
 
 /-- Torus integrability of the power-kernel-weighted integrand
 `w ↦ (k * ∏ i, ((w i - c i) ^ (α i + 1))⁻¹) • f w` for `f` continuous on the
-closed polydisc with positive radii.-/
+closed polydisc with positive radii.
+@isnad1 id=torusint.2h7v.s7.f9aa777d1d64 from=translated src=- shape=3d72833a vocab=dc7810e0
+-/
 theorem torusIntegrable_pow_kernel_smul {f : (Fin n → ℂ) → E} {c : Fin n → ℂ}
     {R : Fin n → ℝ} (hR : ∀ i, 0 < R i)
     (hf : ContinuousOn f (closedPolydisc c R)) (k : ℂ) (α : Fin n → ℕ) :
@@ -239,7 +249,9 @@ noncomputable def cauchyCoeff (f : (Fin n → ℂ) → E) (c : Fin n → ℂ)
   ((2 * (Real.pi : ℂ) * Complex.I) ^ n)⁻¹ •
     ∯ w in T(c, R), (∏ i, ((w i - c i) ^ (α i + 1))⁻¹) • f w
 
-/-- The norm of the Cauchy normalization constant.-/
+/-- The norm of the Cauchy normalization constant.
+@isnad1 id=eq.0h0v.s5.767b5fbb7c60 from=translated src=- shape=b44d8087 vocab=fca6114b
+-/
 theorem norm_two_pi_I : ‖2 * (Real.pi : ℂ) * Complex.I‖ = 2 * Real.pi := by
   have h : 2 * (Real.pi : ℂ) * Complex.I = ((2 * Real.pi : ℝ) : ℂ) * Complex.I := by
     push_cast
@@ -247,7 +259,9 @@ theorem norm_two_pi_I : ‖2 * (Real.pi : ℂ) * Complex.I‖ = 2 * Real.pi := b
   rw [h, norm_mul, Complex.norm_I, mul_one, Complex.norm_of_nonneg Real.two_pi_pos.le]
 
 /-- **Cauchy inequalities on a closed polydisc**: if `‖f‖ ≤ M` on the
-distinguished boundary, then `‖cauchyCoeff f c R α‖ ≤ M / ∏ i, R i ^ α i`.-/
+distinguished boundary, then `‖cauchyCoeff f c R α‖ ≤ M / ∏ i, R i ^ α i`.
+@isnad1 id=le.2h7v.s7.6e981cce1564 from=translated src=- shape=ba93f8a4 vocab=251dbbe2
+-/
 theorem norm_cauchyCoeff_le {f : (Fin n → ℂ) → E} {c : Fin n → ℂ}
     {R : Fin n → ℝ} (hR : ∀ i, 0 < R i) {M : ℝ}
     (hM : ∀ θ : Fin n → ℝ, ‖f (torusMap c R θ)‖ ≤ M) (α : Fin n → ℕ) :
@@ -296,7 +310,9 @@ theorem norm_cauchyCoeff_le {f : (Fin n → ℂ) → E} {c : Fin n → ℂ}
 polydisc,
 
 `∑_{α} (∏ i, (z i - c i) ^ α i) • ∯ (∏ i, ((w i - c i) ^ (α i + 1))⁻¹) • f w
-  = (2πI)^n • f z`.-/
+  = (2πI)^n • f z`.
+@isnad1 id=hassum.2h6v.s9.fa309e7c5ae3 from=translated src=- shape=abbcb748 vocab=ddf73647
+-/
 theorem hasSum_torusIntegral_pow_kernel_smul [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hf : DifferentiableOn ℂ f (closedPolydisc c R)) (hz : z ∈ polydisc c R) :
@@ -472,7 +488,9 @@ an unconditionally convergent sum over the multi-index lattice, in every
 dimension `n` and for every complete normed `ℂ`-vector space `E`.
 
 The hypothesis is *joint* differentiability; no Osgood/Hartogs-type
-weakening to separate differentiability is claimed here.-/
+weakening to separate differentiability is claimed here.
+@isnad1 id=hassum.2h6v.s8.816d0658611e from=translated src=- shape=24a8f111 vocab=918076dd
+-/
 theorem hasSum_cauchyCoeff_smul [CompleteSpace E] {f : (Fin n → ℂ) → E}
     {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hf : DifferentiableOn ℂ f (closedPolydisc c R)) (hz : z ∈ polydisc c R) :
@@ -504,6 +522,9 @@ noncomputable def monomialCM (α : Fin n → ℕ) (e : E) :
   (ContinuousMultilinearMap.mkPiRing ℂ (Fin (∑ i, α i)) e).compContinuousLinearMap
     fun j => ContinuousLinearMap.proj (finSigmaFinEquiv.symm j).1
 
+/--
+@isnad1 id=eq.0h5v.s9.92dd645f3ab7 from=translated src=- shape=bf721e5c vocab=a8e31fd0
+-/
 theorem monomialCM_apply_diag (α : Fin n → ℕ) (e : E) (y : Fin n → ℂ) :
     (monomialCM α e fun _ => y) = (∏ i, y i ^ α i) • e := by
   rw [monomialCM, ContinuousMultilinearMap.compContinuousLinearMap_apply,
@@ -524,6 +545,9 @@ theorem monomialCM_apply_diag (α : Fin n → ℕ) (e : E) (y : Fin n → ℂ) :
         exact Finset.prod_congr rfl fun i _ => by
           rw [Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=le.0h4v.s8.63344be0539d from=translated src=- shape=c853a13a vocab=a45614d3
+-/
 theorem norm_monomialCM_le (α : Fin n → ℕ) (e : E) : ‖monomialCM α e‖ ≤ ‖e‖ := by
   refine (ContinuousMultilinearMap.norm_compContinuousLinearMap_le _ _).trans ?_
   rw [ContinuousMultilinearMap.norm_mkPiRing]
@@ -549,6 +573,9 @@ noncomputable def polydiscSeries (f : (Fin n → ℂ) → E) (c : Fin n → ℂ)
     (monomialCM a.1 (cauchyCoeff f c R a.1)).domDomCongr
       (finCongr (Finset.Nat.mem_antidiagonalTuple.mp a.2))
 
+/--
+@isnad1 id=eq.0h7v.s9.d88c32f9d843 from=translated src=- shape=94b22b2e vocab=85fa7be1
+-/
 theorem polydiscSeries_apply_diag (f : (Fin n → ℂ) → E) (c : Fin n → ℂ)
     (R : Fin n → ℝ) (m : ℕ) (y : Fin n → ℂ) :
     (polydiscSeries f c R m fun _ => y) =
@@ -561,7 +588,9 @@ theorem polydiscSeries_apply_diag (f : (Fin n → ℂ) → E) (c : Fin n → ℂ
 
 /-- Fiberwise (fixed-total-degree) convergence: the degree-`m` term of
 `polydiscSeries` evaluated on the diagonal is the finite sum of the monomial
-terms of total degree `m`.-/
+terms of total degree `m`.
+@isnad1 id=hassum.0h7v.s9.8043f397fcf9 from=translated src=- shape=7dc38c2b vocab=6a39be66
+-/
 theorem hasSum_polydiscSeries_fiber (f : (Fin n → ℂ) → E) (c : Fin n → ℂ)
     (R : Fin n → ℝ) (m : ℕ) (y : Fin n → ℂ) :
     HasSum
@@ -576,7 +605,9 @@ theorem hasSum_polydiscSeries_fiber (f : (Fin n → ℂ) → E) (c : Fin n → �
     fun a : Fin n → ℕ => Finset.Nat.mem_antidiagonalTuple).hasSum_iff).mp h1
 
 /-- Radius bound: the Cauchy power series converges on every ball of radius
-`r < min R i`.-/
+`r < min R i`.
+@isnad1 id=le.3h7v.s7.97ef5c0c6440 from=translated src=- shape=637c3946 vocab=00cbb581
+-/
 theorem le_radius_polydiscSeries {f : (Fin n → ℂ) → E} {c : Fin n → ℂ}
     {R : Fin n → ℝ} (hR : ∀ i, 0 < R i) {M : ℝ}
     (hM : ∀ θ : Fin n → ℝ, ‖f (torusMap c R θ)‖ ≤ M) {r : ℝ≥0}
@@ -622,7 +653,9 @@ theorem le_radius_polydiscSeries {f : (Fin n → ℂ) → E} {c : Fin n → ℂ}
 differentiable on the closed polydisc `closedPolydisc c R` and `0 < r < R i`
 for every `i`, then `f` has `polydiscSeries f c R` as a power series on the
 ball of radius `r` around `c` (a sup-norm ball in `Fin n → ℂ`, i.e. the
-equal-radii polydisc).-/
+equal-radii polydisc).
+@isnad1 id=hasfpowe.3h6v.s8.c13f449817ee from=translated src=- shape=bf67b568 vocab=7e8daae6
+-/
 theorem hasFPowerSeriesOnBall_polydiscSeries [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hf : DifferentiableOn ℂ f (closedPolydisc c R)) {r : ℝ≥0} (hr : 0 < r)
@@ -658,7 +691,9 @@ theorem hasFPowerSeriesOnBall_polydiscSeries [CompleteSpace E]
     fun m => hasSum_polydiscSeries_fiber f c R m y
 
 /-- A function complex differentiable on a closed polydisc with positive
-radii is (jointly) analytic at the center.-/
+radii is (jointly) analytic at the center.
+@isnad1 id=analytic.2h5v.s7.fc60ff298430 from=translated src=- shape=aa878a26 vocab=67de0018
+-/
 theorem analyticAt_of_differentiableOn_closedPolydisc [CompleteSpace E]
     {f : (Fin n → ℂ) → E} {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hf : DifferentiableOn ℂ f (closedPolydisc c R)) (hR : ∀ i, 0 < R i) :
@@ -671,7 +706,9 @@ theorem analyticAt_of_differentiableOn_closedPolydisc [CompleteSpace E]
     fun i => by rw [Real.coe_toNNReal ε hε0.le]; exact hεR' i).analyticAt
 
 /-- A function complex differentiable on a closed polydisc is (jointly)
-analytic at every point of the open polydisc.-/
+analytic at every point of the open polydisc.
+@isnad1 id=analytic.2h6v.s7.adfd47906aba from=translated src=- shape=a63abe2c vocab=8c5c7b51
+-/
 theorem analyticAt_of_mem_polydisc [CompleteSpace E] {f : (Fin n → ℂ) → E}
     {c z : Fin n → ℂ} {R : Fin n → ℝ}
     (hf : DifferentiableOn ℂ f (closedPolydisc c R)) (hz : z ∈ polydisc c R) :
@@ -688,7 +725,9 @@ theorem analyticAt_of_mem_polydisc [CompleteSpace E] {f : (Fin n → ℂ) → E}
     fun i => sub_pos.2 (mem_ball.1 (mem_polydisc.1 hz i))
 
 /-- A function complex differentiable on a closed polydisc is (jointly)
-analytic on a neighborhood of each point of the open polydisc.-/
+analytic on a neighborhood of each point of the open polydisc.
+@isnad1 id=analytic.1h5v.s7.ee6db6085bd2 from=translated src=- shape=f802fa39 vocab=b8856492
+-/
 theorem analyticOnNhd_polydisc [CompleteSpace E] {f : (Fin n → ℂ) → E}
     {c : Fin n → ℂ} {R : Fin n → ℝ}
     (hf : DifferentiableOn ℂ f (closedPolydisc c R)) :

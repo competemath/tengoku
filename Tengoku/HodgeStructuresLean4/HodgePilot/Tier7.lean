@@ -17,13 +17,22 @@ namespace HodgePilot
 
 variable (V : Type*) [AddCommGroup V] [Module ℚ V]
 
+/--
+@isnad1 id=eq.0h1v.s9.0677693a85c6 from=translated src=- shape=1140bbce vocab=419b2383
+-/
 @[simp] theorem range_sigmaQ : LinearMap.range (sigmaQ V) = ⊤ :=
   LinearMap.range_eq_top.mpr (sigmaQ_surjective V)
 
+/--
+@isnad1 id=eq.0h1v.s10.655ac2e65767 from=translated src=- shape=eb3aac39 vocab=9a1f23c1
+-/
 @[simp] theorem map_top_sigmaQ :
     (⊤ : Submodule ℂ (ℂ ⊗[ℚ] V)).map (sigmaQ V) = ⊤ := by
   rw [Submodule.map_top, range_sigmaQ]
 
+/--
+@isnad1 id=eq.0h1v.s10.d7b462bdc078 from=translated src=- shape=eb3aac39 vocab=90f3beb2
+-/
 @[simp] theorem map_bot_sigmaQ :
     (⊥ : Submodule ℂ (ℂ ⊗[ℚ] V)).map (sigmaQ V) = ⊥ :=
   Submodule.map_bot _

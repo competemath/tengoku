@@ -44,22 +44,37 @@ def comp {hV : QHodgeStructure n V} {hW : QHodgeStructure n W}
     rw [LinearMap.baseChange_comp, Submodule.map_comp]
     exact le_trans (Submodule.map_mono (f.maps_pieces pq)) (g.maps_pieces pq)
 
+/--
+@isnad1 id=eq.0h3v.s6.f24e4922f9e8 from=translated src=- shape=6696177b vocab=b5b7e9b5
+-/
 @[simp] theorem id_toLinearMap (hV : QHodgeStructure n V) :
     (HodgeHom.id hV).toLinearMap = LinearMap.id := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.1cdafeb65863 from=translated src=- shape=9342113f vocab=b109e5d6
+-/
 @[simp] theorem comp_toLinearMap {hV : QHodgeStructure n V}
     {hW : QHodgeStructure n W} {hU : QHodgeStructure n U}
     (g : HodgeHom hW hU) (f : HodgeHom hV hW) :
     (g.comp f).toLinearMap = g.toLinearMap.comp f.toLinearMap := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.4b19ff85ae36 from=translated src=- shape=9687c9d5 vocab=75078ed9
+-/
 theorem comp_id {hV : QHodgeStructure n V} {hW : QHodgeStructure n W}
     (f : HodgeHom hV hW) : f.comp (HodgeHom.id hV) = f := by
   cases f; rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.97ea16ff0461 from=translated src=- shape=653b8090 vocab=75078ed9
+-/
 theorem id_comp {hV : QHodgeStructure n V} {hW : QHodgeStructure n W}
     (f : HodgeHom hV hW) : (HodgeHom.id hW).comp f = f := by
   cases f; rfl
 
+/--
+@isnad1 id=eq.0h12v.s7.3e5c3761669a from=translated src=- shape=c58714f9 vocab=0af34436
+-/
 theorem comp_assoc {S : Type*} [AddCommGroup S] [Module ℚ S] [Module.Finite ℚ S]
     {hV : QHodgeStructure n V} {hW : QHodgeStructure n W}
     {hU : QHodgeStructure n U} {hS : QHodgeStructure n S}

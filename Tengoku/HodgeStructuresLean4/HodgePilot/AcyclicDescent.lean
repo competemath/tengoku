@@ -97,14 +97,21 @@ variable {K : CochainComplex C ℕ} (D : Decomp K)
 /-- The short complexes of the decomposition.-/
 abbrev S (i : ℕ) : ShortComplex C := ShortComplex.mk (D.ι i) (D.π i) (D.ι_π i)
 
-/-- The short complexes of the decomposition are short exact.-/
+/-- The short complexes of the decomposition are short exact.
+@isnad1 id=shortexa.0h4v.s5.9f2ff96aebc2 from=translated src=- shape=df8d9a53 vocab=d4cb694e
+-/
 lemma hSE (i : ℕ) : (D.S i).ShortExact := D.shortExact i
 
+/--
+@isnad1 id=mono.0h4v.s6.5e6994b85908 from=translated src=- shape=9b62901d vocab=0db679ea
+-/
 instance mono_ι (i : ℕ) : Mono (D.ι i) := (D.hSE i).mono_f
 
 variable (Z : C)
 
-/-- Cocycle conditions: against the differential iff against the epi `π`.-/
+/-- Cocycle conditions: against the differential iff against the epi `π`.
+@isnad1 id=iff.0h6v.s9.035dc1378ab5 from=translated src=- shape=325ff625 vocab=53e7c177
+-/
 lemma cocycle_iff {n : ℕ} (x : Z ⟶ K.X n) :
     x ≫ K.d n (n + 1) = 0 ↔ x ≫ D.π n = 0 := by
   rw [D.fac n, ← Category.assoc]
@@ -119,11 +126,16 @@ def toCyc {n : ℕ} (x : Z ⟶ K.X n) (hx : x ≫ D.π n = 0) :
     Z ⟶ D.Cyc n :=
   (KernelFork.IsLimit.lift' ((D.hSE n).exact.fIsKernel) x hx).1
 
+/--
+@isnad1 id=eq.1h6v.s8.40cdd5363776 from=translated src=- shape=3244fc4d vocab=83bc5b99
+-/
 @[simp] lemma toCyc_ι {n : ℕ} (x : Z ⟶ K.X n) (hx : x ≫ D.π n = 0) :
     D.toCyc Z x hx ≫ D.ι n = x :=
   (KernelFork.IsLimit.lift' ((D.hSE n).exact.fIsKernel) x hx).2
 
-/-- Uniqueness of the kernel lift.-/
+/-- Uniqueness of the kernel lift.
+@isnad1 id=eq.2h7v.s8.fd91bd1012cd from=translated src=- shape=7d9468f8 vocab=83bc5b99
+-/
 lemma toCyc_unique {n : ℕ} (x : Z ⟶ K.X n) (hx : x ≫ D.π n = 0)
     (z : Z ⟶ D.Cyc n) (hz : z ≫ D.ι n = x) : z = D.toCyc Z x hx := by
   apply (cancel_mono (D.ι n)).1
@@ -159,8 +171,14 @@ def chainClass (n : ℕ) : Ext (D.Cyc n) (D.Cyc 0) n :=
     (Ext.mk₀ (𝟙 _))
     (fun k ih => ((D.hSE k).extClass).comp ih (show 1 + k = k + 1 by omega)) n
 
+/--
+@isnad1 id=eq.0h3v.s7.0a0444b870a4 from=translated src=- shape=feb46dfb vocab=93e33580
+-/
 @[simp] lemma chainClass_zero : D.chainClass 0 = Ext.mk₀ (𝟙 _) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.23a9596ecf7c from=translated src=- shape=5d6b107f vocab=0e34b982
+-/
 @[simp] lemma chainClass_succ (n : ℕ) :
     D.chainClass (n + 1) =
       ((D.hSE n).extClass).comp (D.chainClass n) (show 1 + n = n + 1 by omega) :=
@@ -173,7 +191,9 @@ def edge {n : ℕ} (x : Z ⟶ K.X n) (hx : x ≫ D.π n = 0) :
     Ext Z (D.Cyc 0) n :=
   (Ext.mk₀ (D.toCyc Z x hx)).comp (D.chainClass n) (zero_add n)
 
-/-- Additivity of the edge map in the cocycle.-/
+/-- Additivity of the edge map in the cocycle.
+@isnad1 id=eq.2h7v.s9.6eabffc0baf5 from=translated src=- shape=d4a555cc vocab=133c5981
+-/
 lemma edge_add {n : ℕ} (x y : Z ⟶ K.X n) (hx : x ≫ D.π n = 0)
     (hy : y ≫ D.π n = 0) :
     D.edge Z (x + y) (by rw [Preadditive.add_comp, hx, hy, add_zero]) =
@@ -185,7 +205,9 @@ lemma edge_add {n : ℕ} (x y : Z ⟶ K.X n) (hx : x ≫ D.π n = 0)
     rw [Preadditive.add_comp, D.toCyc_ι, D.toCyc_ι]
   rw [edge, edge, edge, h1, Ext.mk₀_add, Ext.add_comp]
 
-/-- Coboundaries die under the edge map.-/
+/-- Coboundaries die under the edge map.
+@isnad1 id=eq.1h6v.s9.d95a29c29fd4 from=translated src=- shape=1ab4c99b vocab=80570273
+-/
 lemma edge_coboundary {n : ℕ} (y : Z ⟶ K.X n)
     (hx : (y ≫ K.d n (n + 1)) ≫ D.π (n + 1) = 0) :
     D.edge Z (y ≫ K.d n (n + 1)) hx = 0 := by
@@ -204,7 +226,9 @@ lemma edge_coboundary {n : ℕ} (y : Z ⟶ K.X n)
 short exact sequence is bijective
 `Ext Z (Cyc (i+1)) (m+1) → Ext Z (Cyc i) (m+2)` when the middle terms are
 `Z`-acyclic (from the pin's Ext long exact sequences; no derived category
-enters).-/
+enters).
+@isnad1 id=bijectiv.1h6v.s10.2c96a489d1f8 from=translated src=- shape=dfd8f0ba vocab=5c379f93
+-/
 lemma postcomp_extClass_bijective
     (hAc : ∀ i m, Subsingleton (Ext.{w} Z (K.X i) (m + 1))) (i m : ℕ) :
     Function.Bijective
@@ -226,7 +250,9 @@ lemma postcomp_extClass_bijective
 
 /-- Composition with the `n`-fold chain class is bijective on `Ext`-groups of
 positive source degree (the target degree `c` is kept general to dodge
-`ℕ`-addition definitional-equality traps).-/
+`ℕ`-addition definitional-equality traps).
+@isnad1 id=bijectiv.2h7v.s9.9a4d81c4484f from=translated src=- shape=7c8af0dd vocab=37309776
+-/
 lemma postcomp_chainClass_bijective
     (hAc : ∀ i m, Subsingleton (Ext.{w} Z (K.X i) (m + 1))) :
     ∀ (n m c : ℕ) (h : (m + 1) + n = c),
@@ -261,7 +287,9 @@ lemma postcomp_chainClass_bijective
     exact hrest.comp hstep
 
 /-- **Surjectivity** of the edge map in positive degrees, given `Z`-acyclicity
-of the terms of `K`: every class in `Ext Z (Cyc 0) (n+1)` is hit by a cocycle.-/
+of the terms of `K`: every class in `Ext Z (Cyc 0) (n+1)` is hit by a cocycle.
+@isnad1 id=ex.1h6v.s9.2e0eda5f6174 from=translated src=- shape=dab4a285 vocab=1504777d
+-/
 theorem edge_surjective
     (hAc : ∀ i m, Subsingleton (Ext.{w} Z (K.X i) (m + 1))) (n : ℕ)
     (e : Ext Z (D.Cyc 0) (n + 1)) :
@@ -284,7 +312,9 @@ theorem edge_surjective
     exact he₁
 
 /-- **The kernel** of the edge map in positive degrees is exactly the
-coboundaries, given `Z`-acyclicity of the terms of `K`.-/
+coboundaries, given `Z`-acyclicity of the terms of `K`.
+@isnad1 id=iff.2h6v.s9.835f407193ab from=translated src=- shape=fb52271c vocab=8109736d
+-/
 theorem edge_eq_zero_iff
     (hAc : ∀ i m, Subsingleton (Ext.{w} Z (K.X i) (m + 1))) (n : ℕ)
     (x : Z ⟶ K.X (n + 1)) (hx : x ≫ D.π (n + 1) = 0) :
@@ -312,7 +342,9 @@ theorem edge_eq_zero_iff
     exact D.edge_coboundary Z y hx
 
 /-- Degree zero: the edge map is injective on cocycles (no acyclicity
-needed).-/
+needed).
+@isnad1 id=eq.3h6v.s9.b0579b84eeac from=translated src=- shape=ae342498 vocab=c04d9358
+-/
 theorem edge_zero_injective (x x' : Z ⟶ K.X 0) (hx : x ≫ D.π 0 = 0)
     (hx' : x' ≫ D.π 0 = 0) (h : D.edge Z x hx = D.edge Z x' hx') : x = x' := by
   rw [edge, edge, chainClass_zero, Ext.comp_mk₀_id, Ext.comp_mk₀_id] at h
@@ -320,7 +352,9 @@ theorem edge_zero_injective (x x' : Z ⟶ K.X 0) (hx : x ≫ D.π 0 = 0)
   rw [← D.toCyc_ι Z x hx, ← D.toCyc_ι Z x' hx', h2]
 
 /-- Degree zero: the edge map is surjective onto `Ext Z (Cyc 0) 0` (no
-acyclicity needed).-/
+acyclicity needed).
+@isnad1 id=ex.0h5v.s9.57d9f5c9093a from=translated src=- shape=0f80e9ed vocab=c04d9358
+-/
 theorem edge_zero_surjective (e : Ext Z (D.Cyc 0) 0) :
     ∃ (x : Z ⟶ K.X 0) (hx : x ≫ D.π 0 = 0), D.edge Z x hx = e := by
   refine ⟨(Ext.addEquiv₀ e) ≫ D.ι 0, ?_, ?_⟩
@@ -335,7 +369,9 @@ def edgeHom (n : ℕ) : ↥(D.cocycles Z n) →+ Ext Z (D.Cyc 0) n :=
   AddMonoidHom.mk' (fun x => D.edge Z x.1 x.2)
     (fun x y => D.edge_add Z x.1 y.1 x.2 y.2)
 
-/-- Coboundaries lie in the kernel of the edge homomorphism.-/
+/-- Coboundaries lie in the kernel of the edge homomorphism.
+@isnad1 id=le.0h5v.s12.9012624aa713 from=translated src=- shape=97d4218e vocab=9dfe65d5
+-/
 lemma coboundaries_le_ker (n : ℕ) :
     (coboundaries (K := K) Z n).addSubgroupOf (D.cocycles Z (n + 1)) ≤
       (D.edgeHom Z (n + 1)).ker := by
@@ -416,7 +452,9 @@ def step (waug : aug ≫ K.d 0 1 = 0) : ∀ i : ℕ, Step K i :=
 variable {K F aug}
 
 /-- Each floor composes exactly with the differential, given exactness of the
-augmented complex.-/
+augmented complex.
+@isnad1 id=exact.3h5v.s9.e229e3ac841e from=translated src=- shape=6564cdb9 vocab=33c75f88
+-/
 lemma step_exact (waug : aug ≫ K.d 0 1 = 0)
     (hex0 : (ShortComplex.mk aug (K.d 0 1) waug).Exact)
     (hexS : ∀ i, (ShortComplex.mk (K.d i (i + 1)) (K.d (i + 1) (i + 2))
@@ -438,7 +476,9 @@ lemma step_exact (waug : aug ≫ K.d 0 1 = 0)
       (inferInstanceAs (IsIso (𝟙 (K.X (i + 1)))))
       (inferInstanceAs (Mono (𝟙 (K.X (i + 2)))))).1 (hexS i)
 
-/-- Each floor's inclusion is mono, given exactness and mono augmentation.-/
+/-- Each floor's inclusion is mono, given exactness and mono augmentation.
+@isnad1 id=mono.4h5v.s9.a860ee3cd477 from=translated src=- shape=142ae382 vocab=d78472a5
+-/
 lemma step_mono (waug : aug ≫ K.d 0 1 = 0) (hmono : Mono aug)
     (hex0 : (ShortComplex.mk aug (K.d 0 1) waug).Exact)
     (hexS : ∀ i, (ShortComplex.mk (K.d i (i + 1)) (K.d (i + 1) (i + 2))
@@ -466,7 +506,9 @@ def decompOfExact (waug : aug ≫ K.d 0 1 = 0) (hmono : Mono aug)
 
 /-- The interface fact: the augmentation object is the zeroth cycle object
 *literally*, so every `Ext Z (Cyc 0) n` of the machinery above is an
-`Ext Z F n` on the nose.-/
+`Ext Z F n` on the nose.
+@isnad1 id=eq.4h4v.s9.16889a6aafeb from=translated src=- shape=f80e614b vocab=256c6bc7
+-/
 @[simp] lemma decompOfExact_cyc_zero (waug : aug ≫ K.d 0 1 = 0) (hmono : Mono aug)
     (hex0 : (ShortComplex.mk aug (K.d 0 1) waug).Exact)
     (hexS : ∀ i, (ShortComplex.mk (K.d i (i + 1)) (K.d (i + 1) (i + 2))
@@ -491,6 +533,9 @@ def sectionsD (n m : ℕ) :
     (K.X n).obj.obj (op T) →+ (K.X m).obj.obj (op T) :=
   ((K.d n m).hom.app (op T)).hom
 
+/--
+@isnad1 id=eq.0h8v.s13.fd79e84be3bf from=translated src=- shape=bb285efe vocab=7f11d06a
+-/
 lemma sectionsD_comp_apply (n m k : ℕ) (t : (K.X n).obj.obj (op T)) :
     sectionsD T K m k (sectionsD T K n m t) =
       ((K.d n m ≫ K.d m k).hom.app (op T)).hom t :=
@@ -504,7 +549,9 @@ def sectionsCocycles (n : ℕ) : AddSubgroup ((K.X n).obj.obj (op T)) :=
 def sectionsCoboundaries (n : ℕ) : AddSubgroup ((K.X (n + 1)).obj.obj (op T)) :=
   (sectionsD T K n (n + 1)).range
 
-/-- Coboundaries are cocycles: the sections of a complex form a complex.-/
+/-- Coboundaries are cocycles: the sections of a complex form a complex.
+@isnad1 id=le.0h5v.s10.f096bb517e65 from=translated src=- shape=6d40497f vocab=47ad7de7
+-/
 lemma sectionsCoboundaries_le (n : ℕ) :
     sectionsCoboundaries T K n ≤ sectionsCocycles T K (n + 1) := by
   rintro s ⟨t, rfl⟩
@@ -535,7 +582,9 @@ def homEquivSections (hT : IsTerminal T) (F : Sheaf J AddCommGrpCat.{w}) :
     (constZ J ⟶ F) ≃+ F.obj.obj (op T) :=
   Ext.addEquiv₀.symm.trans (Sheaf.H.equiv₀ F hT)
 
-/-- Naturality of `homEquivSections` in the sheaf.-/
+/-- Naturality of `homEquivSections` in the sheaf.
+@isnad1 id=eq.0h8v.s12.26f28009fd40 from=translated src=- shape=e5cae5eb vocab=8d73c571
+-/
 lemma homEquivSections_naturality (hT : IsTerminal T)
     {F G : Sheaf J AddCommGrpCat.{w}} (f : F ⟶ G) (u : constZ J ⟶ F) :
     f.hom.app (op T) (homEquivSections hT F u) = homEquivSections hT G (u ≫ f) := by
@@ -547,7 +596,9 @@ lemma homEquivSections_naturality (hT : IsTerminal T)
   rw [← h]
   exact Sheaf.H.equiv₀_naturality hT f _
 
-/-- Naturality of the inverse of `homEquivSections` in the sheaf.-/
+/-- Naturality of the inverse of `homEquivSections` in the sheaf.
+@isnad1 id=eq.0h8v.s12.9cc48178bccc from=translated src=- shape=fe17ce30 vocab=8cf2b858
+-/
 lemma homEquivSections_symm_naturality (hT : IsTerminal T)
     {F G : Sheaf J AddCommGrpCat.{w}} (f : F ⟶ G) (s : F.obj.obj (op T)) :
     (homEquivSections hT F).symm s ≫ f =
@@ -559,7 +610,9 @@ lemma homEquivSections_symm_naturality (hT : IsTerminal T)
 variable (K : CochainComplex (Sheaf J AddCommGrpCat.{w}) ℕ)
 
 /-- `homEquivSections` intertwines post-composition with the differential and
-the sections-level differential.-/
+the sections-level differential.
+@isnad1 id=eq.0h8v.s13.72823c30fc1f from=translated src=- shape=25a0c4db vocab=08c07a56
+-/
 lemma sectionsD_homEquivSections (hT : IsTerminal T) (n m : ℕ)
     (u : constZ J ⟶ K.X n) :
     sectionsD T K n m (homEquivSections hT (K.X n) u) =
@@ -590,7 +643,9 @@ def sectionsCocyclesEquiv (hT : IsTerminal T) (n : ℕ) :
 
 set_option synthInstance.maxHeartbeats 400000 in
 /-- The cocycle identification carries the (relativized) coboundary subgroup of
-the hom-complex onto that of the global-sections complex.-/
+the hom-complex onto that of the global-sections complex.
+@isnad1 id=eq.0h7v.s15.16c3f73643ff from=translated src=- shape=36b9afa0 vocab=d52eeac3
+-/
 lemma sectionsCoboundaries_map (hT : IsTerminal T) (n : ℕ) :
     (((Decomp.coboundaries (K := K) (constZ J) n).addSubgroupOf
         (D.cocycles (constZ J) (n + 1))).map

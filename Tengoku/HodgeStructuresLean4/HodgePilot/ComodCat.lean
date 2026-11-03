@@ -98,6 +98,9 @@ def ComodHom.inverse (φ : ComodHom R A M N) (g : N →ₗ[R] M)
       _ = ComoduleStruct.coaction (R := R) (A := A) (g n) := by
           rw [hgf, LinearMap.rTensor_id, LinearMap.id_apply]
 
+/--
+@isnad1 id=eq.2h6v.s8.7c03a8d97047 from=translated src=- shape=2e9183f9 vocab=98be72b8
+-/
 @[simp]
 theorem ComodHom.coe_inverse (φ : ComodHom R A M N) (g : N →ₗ[R] M)
     (hgf) (hfg) : ⇑(φ.inverse g hgf hfg) = ⇑g := rfl
@@ -126,6 +129,9 @@ namespace ComodCat
 instance instCoeSort : CoeSort (ComodCat.{v} R A) (Type v) :=
   ⟨(·.carrier)⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.57e83a1a590f from=translated src=- shape=cc077655 vocab=33cea330
+-/
 @[simp] theorem moduleCat_of_toModuleCat (X : ComodCat.{v} R A) :
     ModuleCat.of R X.toModuleCat = X.toModuleCat :=
   rfl
@@ -138,6 +144,9 @@ abbrev of (X : Type v) [AddCommGroup X] [Module R X] [Comodule R A X] :
   { ModuleCat.of R X with
     instComodule := (inferInstance : Comodule R A X) }
 
+/--
+@isnad1 id=eq.0h3v.s8.13633da9d0eb from=translated src=- shape=92ca73cf vocab=03068e79
+-/
 @[simp]
 lemma of_coaction {X : Type v} [AddCommGroup X] [Module R X] [Comodule R A X] :
     Comodule.coaction (R := R) (A := A) (M := of R A X) =
@@ -174,20 +183,32 @@ abbrev ofHom {X Y : Type v} [AddCommGroup X] [Module R X] [AddCommGroup Y]
     of R A X ⟶ of R A Y :=
   ConcreteCategory.ofHom f
 
+/--
+@isnad1 id=injectiv.0h4v.s8.3a2003ca2f75 from=translated src=- shape=5df23f46 vocab=ed629836
+-/
 lemma Hom.toComodHom_injective (M N : ComodCat.{v} R A) :
     Function.Injective (Hom.toComodHom' : Hom M N → _) :=
   fun ⟨f⟩ ⟨g⟩ _ => by congr
 
+/--
+@isnad1 id=eq.1h6v.s8.3948f3db4015 from=translated src=- shape=c7dcac78 vocab=6910c4d9
+-/
 @[ext]
 lemma hom_ext {M N : ComodCat.{v} R A} (f g : M ⟶ N)
     (h : f.toComodHom = g.toComodHom) : f = g :=
   Hom.ext h
 
+/--
+@isnad1 id=eq.0h7v.s9.e6e873225553 from=translated src=- shape=269e8b8d vocab=8cf85736
+-/
 @[simp] theorem toComodHom_comp {M N P : ComodCat.{v} R A}
     (f : M ⟶ N) (g : N ⟶ P) :
     (f ≫ g).toComodHom = g.toComodHom.comp f.toComodHom :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.25c5d5a02b24 from=translated src=- shape=a0483fc7 vocab=2970782a
+-/
 @[simp] theorem toComodHom_id {M : ComodCat.{v} R A} :
     Hom.toComodHom (𝟙 M) = ComodHom.id R A M :=
   rfl
@@ -198,11 +219,17 @@ instance hasForgetToModule :
     { obj := fun M => ModuleCat.of R M
       map := fun f => ModuleCat.ofHom f.toComodHom.toLinearMap }
 
+/--
+@isnad1 id=eq.0h3v.s9.d4723f2bd05d from=translated src=- shape=1c73667d vocab=c6bc2a1f
+-/
 @[simp]
 theorem forget₂_obj (X : ComodCat.{v} R A) :
     (forget₂ (ComodCat.{v} R A) (ModuleCat.{v} R)).obj X = ModuleCat.of R X :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.e1e880150a2c from=translated src=- shape=db242981 vocab=8b4c3a8d
+-/
 @[simp]
 theorem forget₂_map (X Y : ComodCat.{v} R A) (f : X ⟶ Y) :
     (forget₂ (ComodCat.{v} R A) (ModuleCat.{v} R)).map f =
@@ -210,7 +237,9 @@ theorem forget₂_map (X Y : ComodCat.{v} R A) (f : X ⟶ Y) :
   rfl
 
 /-- The forgetful functor to `R`-modules is faithful (kernel-audited witness;
-the instance itself is found by instance search).-/
+the instance itself is found by instance search).
+@isnad1 id=faithful.0h2v.s9.286c5c2bc090 from=translated src=- shape=cd7b77e2 vocab=6f336852
+-/
 theorem forget₂_faithful :
     (forget₂ (ComodCat.{v} R A) (ModuleCat.{v} R)).Faithful :=
   inferInstance
@@ -222,10 +251,16 @@ variable (R A) in
 comultiplication — as an object of `ComodCat R A`.-/
 def regular : ComodCat.{w} R A := of R A A
 
+/--
+@isnad1 id=eq.0h2v.s5.5b202bbd2b33 from=translated src=- shape=32dd05cd vocab=7b90d133
+-/
 @[simp] theorem regular_carrier : (regular R A : Type w) = A := rfl
 
 /-! ### Isomorphisms are detected on underlying modules -/
 
+/--
+@isnad1 id=isiso.1h5v.s9.339f96321647 from=translated src=- shape=089fd28d vocab=8583b651
+-/
 theorem isIso_of_bijective {M N : ComodCat.{v} R A} (f : M ⟶ N)
     (hf : Function.Bijective f.toComodHom) : IsIso f := by
   let e := LinearEquiv.ofBijective f.toComodHom.toLinearMap hf
@@ -253,10 +288,16 @@ def corestrict (f : A →ₗc[R] B) : ComodCat.{v} R A ⥤ ComodCat.{v} R B wher
   map_id _ := hom_ext _ _ (ComodHom.ext fun _ => rfl)
   map_comp _ _ := hom_ext _ _ (ComodHom.ext fun _ => rfl)
 
+/--
+@isnad1 id=eq.0h5v.s7.d2fa980105cf from=translated src=- shape=828027ed vocab=1a73a1b2
+-/
 @[simp]
 theorem corestrict_obj_carrier (f : A →ₗc[R] B) (M : ComodCat.{v} R A) :
     (((corestrict f).obj M : ComodCat.{v} R B) : Type v) = (M : Type v) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.65c4f2ee5ff2 from=translated src=- shape=094a9b98 vocab=2ccf856d
+-/
 @[simp]
 theorem corestrict_map_toLinearMap (f : A →ₗc[R] B) {M N : ComodCat.{v} R A}
     (φ : M ⟶ N) :
@@ -264,7 +305,9 @@ theorem corestrict_map_toLinearMap (f : A →ₗc[R] B) {M N : ComodCat.{v} R A}
       φ.toComodHom.toLinearMap := rfl
 
 /-- Corestriction commutes with the forgetful functors to `ModuleCat R` on
-the nose.-/
+the nose.
+@isnad1 id=eq.0h4v.s10.d2b5730a3377 from=translated src=- shape=a23254a2 vocab=6f864597
+-/
 theorem corestrict_comp_forget₂ (f : A →ₗc[R] B) :
     corestrict.{v} f ⋙ forget₂ (ComodCat.{v} R B) (ModuleCat.{v} R) =
       forget₂ (ComodCat.{v} R A) (ModuleCat.{v} R) := rfl
@@ -280,6 +323,9 @@ variable (R A) in
 def isFinite : ObjectProperty (ComodCat.{v} R A) :=
   fun M => Module.Finite R M
 
+/--
+@isnad1 id=iff.0h3v.s6.73d1a990a221 from=translated src=- shape=8f658b55 vocab=9adaac81
+-/
 lemma isFinite_iff (M : ComodCat.{v} R A) :
     isFinite R A M ↔ Module.Finite R M := Iff.rfl
 
@@ -303,6 +349,9 @@ instance instCoeSort : CoeSort (FComodCat.{v} R A) (Type v) :=
 
 attribute [coe] FComodCat.carrier
 
+/--
+@isnad1 id=eq.0h3v.s6.eb984dee3502 from=translated src=- shape=6a136a9e vocab=326235cd
+-/
 @[simp] lemma obj_carrier (M : FComodCat.{v} R A) :
     M.obj.carrier = M.carrier := rfl
 
@@ -312,6 +361,9 @@ abbrev of (X : Type v) [AddCommGroup X] [Module R X] [Comodule R A X]
     [Module.Finite R X] : FComodCat.{v} R A :=
   ⟨ComodCat.of R A X, inferInstanceAs (Module.Finite R X)⟩
 
+/--
+@isnad1 id=eq.1h6v.s10.ef201f12a4d2 from=translated src=- shape=4f70f7cf vocab=db6d4b80
+-/
 @[ext]
 lemma hom_ext {M N : FComodCat.{v} R A} {f g : M ⟶ N}
     (h : f.hom.toComodHom = g.hom.toComodHom) : f = g :=
@@ -355,10 +407,19 @@ instance instZero : Zero (ComodHom R A M N) :=
      coaction_comm := by
        rw [LinearMap.rTensor_zero, LinearMap.zero_comp, LinearMap.comp_zero] }⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.c918269707fa from=translated src=- shape=574a70be vocab=c4efcf7b
+-/
 @[simp] theorem coe_zero : ⇑(0 : ComodHom R A M N) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.a1fcfceefa63 from=translated src=- shape=1e39e405 vocab=c4efcf7b
+-/
 @[simp] theorem zero_apply (m : M) : (0 : ComodHom R A M N) m = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.45ac83c56885 from=translated src=- shape=600af85b vocab=9d3caf28
+-/
 @[simp] theorem toLinearMap_zero :
     (0 : ComodHom R A M N).toLinearMap = 0 := rfl
 
@@ -369,11 +430,20 @@ instance instAdd : Add (ComodHom R A M N) :=
         rw [LinearMap.rTensor_add, LinearMap.add_comp, LinearMap.comp_add,
           f.coaction_comm, g.coaction_comm] }⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.8187fb05654a from=translated src=- shape=04cb1281 vocab=7a76ea2b
+-/
 @[simp] theorem coe_add (f g : ComodHom R A M N) : ⇑(f + g) = ⇑f + ⇑g := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.32aee504500a from=translated src=- shape=1b5e976e vocab=7a76ea2b
+-/
 @[simp] theorem add_apply (f g : ComodHom R A M N) (m : M) :
     (f + g) m = f m + g m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.7e6c9eaa6617 from=translated src=- shape=e95f5bfc vocab=7d4ea4da
+-/
 @[simp] theorem toLinearMap_add (f g : ComodHom R A M N) :
     (f + g).toLinearMap = f.toLinearMap + g.toLinearMap := rfl
 
@@ -384,10 +454,19 @@ instance instNeg : Neg (ComodHom R A M N) :=
         rw [LinearMap.rTensor_neg, LinearMap.neg_comp, LinearMap.comp_neg,
           f.coaction_comm] }⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.f9c8ebaea14f from=translated src=- shape=05993dc7 vocab=f5ecc983
+-/
 @[simp] theorem coe_neg (f : ComodHom R A M N) : ⇑(-f) = -⇑f := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.960031761f5d from=translated src=- shape=04a9e1eb vocab=f5ecc983
+-/
 @[simp] theorem neg_apply (f : ComodHom R A M N) (m : M) : (-f) m = -f m := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.14af3d5f3845 from=translated src=- shape=06dda6a2 vocab=2d5b1f42
+-/
 @[simp] theorem toLinearMap_neg (f : ComodHom R A M N) :
     (-f).toLinearMap = -f.toLinearMap := rfl
 
@@ -398,11 +477,20 @@ instance instSub : Sub (ComodHom R A M N) :=
         rw [LinearMap.rTensor_sub, LinearMap.sub_comp, LinearMap.comp_sub,
           f.coaction_comm, g.coaction_comm] }⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.08902c7e5e55 from=translated src=- shape=04cb1281 vocab=7f292327
+-/
 @[simp] theorem coe_sub (f g : ComodHom R A M N) : ⇑(f - g) = ⇑f - ⇑g := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.254e96de846a from=translated src=- shape=1b5e976e vocab=7f292327
+-/
 @[simp] theorem sub_apply (f g : ComodHom R A M N) (m : M) :
     (f - g) m = f m - g m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.0f631919a6dc from=translated src=- shape=e95f5bfc vocab=43613080
+-/
 @[simp] theorem toLinearMap_sub (f g : ComodHom R A M N) :
     (f - g).toLinearMap = f.toLinearMap - g.toLinearMap := rfl
 
@@ -413,12 +501,21 @@ instance instSMul : SMul R (ComodHom R A M N) :=
         rw [LinearMap.rTensor_smul, LinearMap.smul_comp, LinearMap.comp_smul,
           f.coaction_comm] }⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.cfcbc2536e25 from=translated src=- shape=0fefa81c vocab=b66d3eca
+-/
 @[simp] theorem coe_smul (c : R) (f : ComodHom R A M N) : ⇑(c • f) = c • ⇑f :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.d07ef84c6c7c from=translated src=- shape=d9092733 vocab=b66d3eca
+-/
 @[simp] theorem smul_apply (c : R) (f : ComodHom R A M N) (m : M) :
     (c • f) m = c • f m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.8b859f1db9d3 from=translated src=- shape=a5e86f99 vocab=614b4ce9
+-/
 @[simp] theorem toLinearMap_smul (c : R) (f : ComodHom R A M N) :
     (c • f).toLinearMap = c • f.toLinearMap := rfl
 
@@ -461,35 +558,56 @@ variable {M N : ComodCat.{v} R A}
 
 instance instHomZero : Zero (M ⟶ N) := ⟨⟨0⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.55719d795e6d from=translated src=- shape=4096a6d2 vocab=6910c4d9
+-/
 @[simp] lemma toComodHom_zero : (0 : M ⟶ N).toComodHom = 0 := rfl
 
 instance instHomAdd : Add (M ⟶ N) := ⟨fun f g => ⟨f.toComodHom + g.toComodHom⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.171b5eb4d075 from=translated src=- shape=f32fc9be vocab=6b284f84
+-/
 @[simp] lemma toComodHom_add (f g : M ⟶ N) :
     (f + g).toComodHom = f.toComodHom + g.toComodHom := rfl
 
 instance instHomNeg : Neg (M ⟶ N) := ⟨fun f => ⟨-f.toComodHom⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.147466e97c42 from=translated src=- shape=d32e18ca vocab=26cdd6dd
+-/
 @[simp] lemma toComodHom_neg (f : M ⟶ N) :
     (-f).toComodHom = -f.toComodHom := rfl
 
 instance instHomSub : Sub (M ⟶ N) := ⟨fun f g => ⟨f.toComodHom - g.toComodHom⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.b03f93bdb8ae from=translated src=- shape=f32fc9be vocab=898993f6
+-/
 @[simp] lemma toComodHom_sub (f g : M ⟶ N) :
     (f - g).toComodHom = f.toComodHom - g.toComodHom := rfl
 
 instance instHomNSMul : SMul ℕ (M ⟶ N) := ⟨fun n f => ⟨n • f.toComodHom⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s11.0b6e5414f53c from=translated src=- shape=3399a1b5 vocab=d1927f64
+-/
 @[simp] lemma toComodHom_nsmul (n : ℕ) (f : M ⟶ N) :
     (n • f).toComodHom = n • f.toComodHom := rfl
 
 instance instHomZSMul : SMul ℤ (M ⟶ N) := ⟨fun n f => ⟨n • f.toComodHom⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s11.357c133f33a1 from=translated src=- shape=3399a1b5 vocab=ed8c1164
+-/
 @[simp] lemma toComodHom_zsmul (n : ℤ) (f : M ⟶ N) :
     (n • f).toComodHom = n • f.toComodHom := rfl
 
 instance instHomSMul : SMul R (M ⟶ N) := ⟨fun c f => ⟨c • f.toComodHom⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.d4417793086b from=translated src=- shape=20a14536 vocab=b4887951
+-/
 @[simp] lemma toComodHom_rsmul (c : R) (f : M ⟶ N) :
     (c • f).toComodHom = c • f.toComodHom := rfl
 
@@ -549,6 +667,9 @@ instance ComoduleStruct.prod : ComoduleStruct R A (M × N) where
         ComoduleStruct.coaction (R := R) (A := A) (M := N) ∘ₗ
           LinearMap.snd R M N
 
+/--
+@isnad1 id=eq.0h4v.s10.97902f2cc728 from=translated src=- shape=4d3efcd3 vocab=dedd31ee
+-/
 @[simp] theorem ComoduleStruct.prod_coaction :
     ComoduleStruct.coaction (R := R) (A := A) (M := M × N) =
       LinearMap.rTensor A (LinearMap.inl R M N) ∘ₗ
@@ -592,27 +713,51 @@ def ComodHom.snd : ComodHom R A (M × N) N where
       simp [ComoduleStruct.prod_coaction, ← LinearMap.rTensor_comp_apply,
         LinearMap.rTensor_zero]
 
+/--
+@isnad1 id=eq.0h5v.s7.b851707bc595 from=translated src=- shape=ed4eb6fd vocab=2b443c67
+-/
 @[simp] theorem ComodHom.inl_apply (m : M) :
     ComodHom.inl R A M N m = ((m, 0) : M × N) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.c3db14dc427e from=translated src=- shape=b128d55b vocab=3d57e7a3
+-/
 @[simp] theorem ComodHom.inr_apply (n : N) :
     ComodHom.inr R A M N n = ((0, n) : M × N) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.096d4e0bbee6 from=translated src=- shape=d54fa1e5 vocab=451ef274
+-/
 @[simp] theorem ComodHom.fst_apply (p : M × N) :
     ComodHom.fst R A M N p = p.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.b2f141797d71 from=translated src=- shape=3b4a5ca0 vocab=ca752275
+-/
 @[simp] theorem ComodHom.snd_apply (p : M × N) :
     ComodHom.snd R A M N p = p.2 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.8a589f240b27 from=translated src=- shape=47b2e9fe vocab=893854b1
+-/
 @[simp] theorem ComodHom.inl_toLinearMap :
     (ComodHom.inl R A M N).toLinearMap = LinearMap.inl R M N := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.4efc839d868c from=translated src=- shape=51a59a21 vocab=b4104923
+-/
 @[simp] theorem ComodHom.inr_toLinearMap :
     (ComodHom.inr R A M N).toLinearMap = LinearMap.inr R M N := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.8457f156df8c from=translated src=- shape=6ce5438a vocab=c71406c9
+-/
 @[simp] theorem ComodHom.fst_toLinearMap :
     (ComodHom.fst R A M N).toLinearMap = LinearMap.fst R M N := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.4c7b7bb00127 from=translated src=- shape=7afd97a8 vocab=98180a0f
+-/
 @[simp] theorem ComodHom.snd_toLinearMap :
     (ComodHom.snd R A M N).toLinearMap = LinearMap.snd R M N := rfl
 
@@ -896,12 +1041,18 @@ def binaryBicone (M N : ComodCat.{v} R A) : Limits.BinaryBicone M N where
   inr_fst := hom_ext _ _ (ComodHom.ext fun _ => rfl)
   inr_snd := hom_ext _ _ (ComodHom.ext fun _ => rfl)
 
+/--
+@isnad1 id=eq.0h4v.s10.075747b85d7e from=translated src=- shape=dc3632b2 vocab=9d2f1571
+-/
 theorem binaryBicone_total (M N : ComodCat.{v} R A) :
     (binaryBicone M N).fst ≫ (binaryBicone M N).inl +
         (binaryBicone M N).snd ≫ (binaryBicone M N).inr =
       𝟙 (binaryBicone M N).pt :=
   hom_ext _ _ (ComodHom.ext fun _ => Prod.ext (add_zero _) (zero_add _))
 
+/--
+@isnad1 id=iszero.0h3v.s6.ec861cd838d8 from=translated src=- shape=6733355b vocab=fcca5b8b
+-/
 theorem isZero_of_subsingleton (M : ComodCat.{v} R A) [Subsingleton M] :
     Limits.IsZero M where
   unique_to Y := ⟨⟨⟨(0 : M ⟶ Y)⟩, fun f => hom_ext f _ (ComodHom.ext fun m => by
@@ -929,6 +1080,9 @@ def base : ComodCat.{u} R A :=
   letI := Comodule.base R A
   of R A R
 
+/--
+@isnad1 id=eq.0h2v.s6.13712dc03a78 from=translated src=- shape=bf44951a vocab=87d8d784
+-/
 @[simp] theorem base_carrier : (base R A : Type u) = R := rfl
 
 end Base

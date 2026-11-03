@@ -147,7 +147,9 @@ def gammaComparison (X : TopCat.{0}) : gammaSingularComplex X ⟶ gammaSheafifie
     rw [← NatTrans.comp_app, ← NatTrans.comp_app, ← toSheafify_naturality]
 
 /-- The components of the comparison map are the `toSheafify` components
-(definitional receipt).-/
+(definitional receipt).
+@isnad1 id=eq.0h3v.s11.fcfe0851b77d from=translated src=- shape=4c1a9a2c vocab=de8720e8
+-/
 lemma gammaComparison_f_apply (X : TopCat.{0}) (n : ℕ)
     (s : ((singularPresheafComplex X).X n).obj (op (⊤ : Opens X))) :
     (gammaComparison X).f n s
@@ -158,7 +160,9 @@ lemma gammaComparison_f_apply (X : TopCat.{0}) (n : ℕ)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Restriction along a composite of inclusions of opens collapses, for any
-abelian presheaf (presheaf-level form of `HodgePilot.SingularGamma.res_res'`).-/
+abelian presheaf (presheaf-level form of `HodgePilot.SingularGamma.res_res'`).
+@isnad1 id=eq.0h9v.s11.84de2c96b029 from=translated src=- shape=aadfdc9f vocab=fd1dea10
+-/
 lemma pres_res_res {X : TopCat.{0}} (F : TopCat.Presheaf AddCommGrpCat.{0} X)
     {O P' Q : Opens X} (i : O ⟶ P') (j : P' ⟶ Q) (k : O ⟶ Q) (s : F.obj (op Q)) :
     F.map i.op (F.map j.op s) = F.map k.op s := by
@@ -166,7 +170,9 @@ lemma pres_res_res {X : TopCat.{0}} (F : TopCat.Presheaf AddCommGrpCat.{0} X)
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The `toSheafify` unit commutes with restriction, elementwise.-/
+/-- The `toSheafify` unit commutes with restriction, elementwise.
+@isnad1 id=eq.0h6v.s12.e47fde7fcd04 from=translated src=- shape=97903504 vocab=4ed6af99
+-/
 lemma unit_res {X : TopCat.{0}} (F : TopCat.Presheaf AddCommGrpCat.{0} X)
     {O P' : Opens X} (i : O ⟶ P') (s : F.obj (op P')) :
     (toSheafify (Opens.grothendieckTopology X) F).app (op O) (F.map i.op s)
@@ -177,7 +183,9 @@ lemma unit_res {X : TopCat.{0}} (F : TopCat.Presheaf AddCommGrpCat.{0} X)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The `toSheafify` unit intertwines the presheaf-level and sheafified
-partition endomorphisms, elementwise.-/
+partition endomorphisms, elementwise.
+@isnad1 id=eq.0h5v.s12.3a5d5586b96b from=translated src=- shape=14f817ec vocab=635c8681
+-/
 lemma unit_partitionEndo_app (X : TopCat.{0}) (A : Set ↑X) (n : ℕ) (O : Opens X)
     (c : ((singularPresheafComplex X).X n).obj (op O)) :
     (toSheafify (Opens.grothendieckTopology X) ((singularPresheafComplex X).X n)).app (op O)
@@ -211,7 +219,9 @@ locally zero.  Forward: the `toSheafify` unit is a stalk isomorphism, so a
 section with zero image has zero germs, and germ equality descends to honest
 restriction over some neighbourhood.  Backward: a locally-zero cochain has
 zero germs after sheafification, and sections of a sheaf are determined by
-their germs.-/
+their germs.
+@isnad1 id=iff.0h3v.s9.68918a8a7551 from=translated src=- shape=c5de3b5e vocab=b11e3d50
+-/
 theorem gammaComparison_eq_zero_iff (X : TopCat.{0}) (n : ℕ)
     (s : ((singularPresheafComplex X).X n).obj (op (⊤ : Opens X))) :
     (gammaComparison X).f n s = 0
@@ -294,7 +304,9 @@ def locallyZeroSubgroup (X : TopCat.{0}) (n : ℕ) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The kernel of the comparison map, as a subgroup, is exactly the
-locally-zero subgroup.-/
+locally-zero subgroup.
+@isnad1 id=eq.0h2v.s8.c3da27dcedbe from=translated src=- shape=b7964419 vocab=e7fcb2f0
+-/
 theorem ker_gammaComparison (X : TopCat.{0}) (n : ℕ) :
     (((gammaComparison X).f n).hom).ker = locallyZeroSubgroup X n := by
   refine AddSubgroup.ext fun s => ?_
@@ -335,13 +347,17 @@ def pushSimplex {U W : Opens X} (i : U ⟶ W) {n : ℕ}
   (TopCat.toSSet.map ((Opens.toTopCat X).map i)).app (op ⦋n⦌) σ
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Points of a pushed simplex have the same ambient values.-/
+/-- Points of a pushed simplex have the same ambient values.
+@isnad1 id=eq.0h7v.s9.a3b4ad8bbcee from=translated src=- shape=0d4f27db vocab=47ad3cea
+-/
 lemma ambient_pushSimplex {U W : Opens X} (i : U ⟶ W) {n : ℕ}
     (σ : (TopCat.toSSet.obj ((Opens.toTopCat X).obj U)) _⦋n⦌) (p) :
     ambient ((pushSimplex i σ).down.hom p) = ambient (σ.down.hom p) := rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Pushing a corestriction forward returns the original simplex.-/
+/-- Pushing a corestriction forward returns the original simplex.
+@isnad1 id=eq.2h5v.s7.7a22c302aa01 from=translated src=- shape=582fdd98 vocab=1b265806
+-/
 lemma pushSimplex_corestrict {W : Opens X} {n : ℕ}
     (σ : (TopCat.toSSet.obj ((Opens.toTopCat X).obj W)) _⦋n⦌) {U : Opens X}
     (h : SimplexIn σ U) (hUW : U ≤ W) :
@@ -350,7 +366,9 @@ lemma pushSimplex_corestrict {W : Opens X} {n : ℕ}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Corestricting a pushed simplex agrees with pushing into the target open
-directly.-/
+directly.
+@isnad1 id=eq.2h7v.s7.f69f184adeda from=translated src=- shape=87c65272 vocab=f3b7920e
+-/
 lemma corestrict_pushSimplex {O W : Opens X} {n : ℕ}
     (σ : (TopCat.toSSet.obj ((Opens.toTopCat X).obj O)) _⦋n⦌) (j : O ⟶ W)
     {V : Opens X} (h : SimplexIn (pushSimplex j σ) V) (hOV : O ≤ V) :
@@ -359,7 +377,9 @@ lemma corestrict_pushSimplex {O W : Opens X} {n : ℕ}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Restriction of a singular cochain, evaluated on a simplex summand, is
-evaluation of the cochain on the pushed simplex.-/
+evaluation of the cochain on the pushed simplex.
+@isnad1 id=eq.0h7v.s10.460efabc6cc5 from=translated src=- shape=2778d90a vocab=6553a0b1
+-/
 lemma ι_res_cochain {U W : Opens X} (i : U ⟶ W) (n : ℕ)
     (φ : ((singularPresheafComplex X).X n).obj (op W))
     (σ : (TopCat.toSSet.obj ((Opens.toTopCat X).obj U)) _⦋n⦌) :
@@ -401,7 +421,9 @@ def selectCochain (X : TopCat.{0}) (n : ℕ) (A : ι → Set ↑X) (V : ι → O
     (chainsFunctor.obj ((Opens.toTopCat X).obj (⊤ : Opens X))).X n ⟶ Qcoef)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The summand description of the selection cochain.-/
+/-- The summand description of the selection cochain.
+@isnad1 id=eq.1h7v.s12.6db998a04163 from=translated src=- shape=cf59109a vocab=0054f5d7
+-/
 lemma ι_selectCochain (X : TopCat.{0}) (n : ℕ) (A : ι → Set ↑X) (V : ι → Opens X)
     (hA : ∀ y : ↑X, ∃! i, y ∈ A i)
     (b : ∀ i, ((singularPresheafComplex X).X n).obj (op (V i)))
@@ -423,7 +445,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **Restriction of the selection cochain**: on any open meeting only
 partition sets whose indices lie in a finite set `T`, and contained in every
 `V i` with `i ∈ T`, the restricted selection cochain is the finite sum of the
-partition-endomorphism images of the restricted local representatives.-/
+partition-endomorphism images of the restricted local representatives.
+@isnad1 id=eq.3h8v.s12.6641c7f0ead4 from=translated src=- shape=81a6c2d6 vocab=b7d60d07
+-/
 lemma res_selectCochain (X : TopCat.{0}) (n : ℕ) (A : ι → Set ↑X) (V : ι → Opens X)
     (hA : ∀ y : ↑X, ∃! i, y ∈ A i)
     (b : ∀ i, ((singularPresheafComplex X).X n).obj (op (V i)))
@@ -510,7 +534,9 @@ end Selection
 set_option backward.isDefEq.respectTransparency false in
 /-- **Local representatives**: near every point, a global section of a
 sheafified cochain sheaf is the image under the `toSheafify` unit of a genuine
-singular cochain.-/
+singular cochain.
+@isnad1 id=ex.0h4v.s12.63ab5082ff63 from=translated src=- shape=13804280 vocab=2424ecc1
+-/
 lemma exists_localRep (X : TopCat.{0}) (n : ℕ)
     (s : ((sheafifiedCochainComplex X).X n).1.obj (op (⊤ : Opens X))) (x : ↑X) :
     ∃ (V : Opens X) (_ : x ∈ V) (b : ((singularPresheafComplex X).X n).obj (op V)),
@@ -536,7 +562,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **Adequate opens**: around every point of a space carrying a locally
 finite family of closed supports subordinate to opens `V i`, there is an open
 neighbourhood meeting only supports indexed by a finite set `T` and contained
-in every `V i` with `i ∈ T`.-/
+in every `V i` with `i ∈ T`.
+@isnad1 id=ex.2h5v.s8.001dc31333dc from=translated src=- shape=45bb9ce3 vocab=96864db1
+-/
 lemma exists_adequate_open (X : TopCat.{0}) {ι : Type} (A : ι → Set ↑X) (V : ι → Opens X)
     (hclA : ∀ i, closure (A i) ⊆ ((V i : Opens X) : Set ↑X))
     (hlf : LocallyFinite fun i => closure (A i)) (x : ↑X) :
@@ -576,7 +604,9 @@ under the comparison map.  Local representatives exist by the stalk bridges;
 a subordinate partition selects a representative per simplex
 (`selectCochain`); the partition-sum identity shows the selection maps onto
 the given section.  This is a statement about sections in one degree at a
-time; nothing about cohomology is stated or implied.-/
+time; nothing about cohomology is stated or implied.
+@isnad1 id=surjecti.0h2v.s9.470746109e16 from=translated src=- shape=d6c195b4 vocab=910d835e
+-/
 theorem gammaComparison_surjective (X : TopCat.{0})
     [ParacompactSpace ↑X] [T2Space ↑X] (n : ℕ) :
     Function.Surjective ((gammaComparison X).f n) := by
@@ -645,7 +675,9 @@ def gammaQuotientEquiv (X : TopCat.{0}) [ParacompactSpace ↑X] [T2Space ↑X] (
 /-! ## The degree-0 seed -/
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The topological `0`-simplex has a unique point.-/
+/-- The topological `0`-simplex has a unique point.
+@isnad1 id=eq.0h1v.s5.dad3186f2211 from=translated src=- shape=e4e35b49 vocab=e0835dbf
+-/
 lemma point_eq_vertexPt (p : ↑(SimplexCategory.toTop.{0}.obj ⦋0⦌)) : p = vertexPt 0 := by
   have hsum : ∑ i, p.down.1 i = 1 := p.down.2.2
   rw [Fin.sum_univ_one] at hsum
@@ -686,7 +718,9 @@ theorem eq_zero_of_locallyZero_degreeZero (X : TopCat.{0})
 
 set_option backward.isDefEq.respectTransparency false in
 /-- In degree `0` the comparison map is injective, on any space (the
-locally-zero subgroup is trivial there).-/
+locally-zero subgroup is trivial there).
+@isnad1 id=injectiv.0h1v.s9.40cd2330c157 from=translated src=- shape=82f46634 vocab=0b2ab2ab
+-/
 theorem gammaComparison_injective_degreeZero (X : TopCat.{0}) :
     Function.Injective ((gammaComparison X).f 0) := by
   intro a b hab
@@ -700,7 +734,9 @@ theorem gammaComparison_injective_degreeZero (X : TopCat.{0}) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Degreewise `Γ`-surjectivity at metrizable scope: metrizability supplies
-Hausdorffness and paracompactness.-/
+Hausdorffness and paracompactness.
+@isnad1 id=surjecti.0h2v.s9.6799cb7737c8 from=translated src=- shape=aa7efae1 vocab=78b0e9af
+-/
 theorem gammaComparison_surjective_of_metrizable (X : TopCat.{0})
     [MetrizableSpace ↑X] (n : ℕ) :
     Function.Surjective ((gammaComparison X).f n) := by
@@ -722,7 +758,9 @@ def gammaQuotientEquiv_of_metrizable (X : TopCat.{0}) [MetrizableSpace ↑X] (n 
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Degreewise `Γ`-surjectivity at the affine analytic point-space `CPoints A`
-of a finite-type ℂ-algebra.-/
+of a finite-type ℂ-algebra.
+@isnad1 id=surjecti.0h2v.s9.348a45877020 from=translated src=- shape=8ed8adf1 vocab=5c4a727a
+-/
 theorem gammaComparison_surjective_cpoints (A : Type) [CommRing A] [Algebra ℂ A]
     [Algebra.FiniteType ℂ A] (n : ℕ) :
     Function.Surjective
@@ -734,7 +772,9 @@ theorem gammaComparison_surjective_cpoints (A : Type) [CommRing A] [Algebra ℂ 
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Degreewise `Γ`-surjectivity at the scheme-level analytic point-space of an
-affine ℂ-scheme.-/
+affine ℂ-scheme.
+@isnad1 id=surjecti.0h2v.s9.7531e72aa235 from=translated src=- shape=b9e03ec3 vocab=5069d908
+-/
 theorem gammaComparison_surjective_spoints (A : Type) [CommRing A] [Algebra ℂ A]
     [Algebra.FiniteType ℂ A] (n : ℕ) :
     Function.Surjective

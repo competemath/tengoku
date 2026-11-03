@@ -64,7 +64,9 @@ instance category : Category (HodgeStructCat.{u} n) where
   assoc f g h := (HodgeHom.comp_assoc h g f).symm
 
 /-- Two morphisms of Hodge structures are equal when their underlying linear
-maps agree (the `maps_pieces` field is a `Prop`, so it is irrelevant).-/
+maps agree (the `maps_pieces` field is a `Prop`, so it is irrelevant).
+@isnad1 id=eq.1h7v.s7.5eb6d37cae5f from=translated src=- shape=fede1da9 vocab=c95dfc83
+-/
 theorem hodgeHom_ext {V W : Type u} [AddCommGroup V] [Module ℚ V]
     [Module.Finite ℚ V] [AddCommGroup W] [Module ℚ W] [Module.Finite ℚ W]
     {hV : QHodgeStructure n V} {hW : QHodgeStructure n W}
@@ -75,15 +77,23 @@ theorem hodgeHom_ext {V W : Type u} [AddCommGroup V] [Module ℚ V]
   rfl
 
 /-- Two morphisms in `HodgeStructCat n` are equal when their underlying linear
-maps agree.-/
+maps agree.
+@isnad1 id=eq.1h5v.s7.10a3f6963ee2 from=translated src=- shape=dedb6fe9 vocab=6383ef1d
+-/
 @[ext]
 theorem hom_ext {X Y : HodgeStructCat.{u} n} {f g : X ⟶ Y}
     (h : f.toLinearMap = g.toLinearMap) : f = g :=
   hodgeHom_ext (hV := X.str) (hW := Y.str) h
 
+/--
+@isnad1 id=eq.0h2v.s6.4b342cc42a99 from=translated src=- shape=24bd311c vocab=2c4f6ff6
+-/
 @[simp] theorem id_toLinearMap (X : HodgeStructCat n) :
     (𝟙 X : X ⟶ X).toLinearMap = LinearMap.id := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.9672ad0aa732 from=translated src=- shape=8d9e82f3 vocab=ba7037a3
+-/
 @[simp] theorem comp_toLinearMap {X Y Z : HodgeStructCat n}
     (f : X ⟶ Y) (g : Y ⟶ Z) :
     (f ≫ g).toLinearMap = g.toLinearMap.comp f.toLinearMap := rfl
