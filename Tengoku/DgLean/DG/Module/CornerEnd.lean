@@ -1,0 +1,641 @@
+import Tengoku.DgLean.DG.Module.Corner
+import Tengoku.DgLean.DG.Module.EndBimodule
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Endomorphism dg rings of corner modules
+
+Let `A` be a dg ring and `e ∈ A⁰` an idempotent. This file identifies the endomorphism dg ring
+`END_A(A e)` of the dg left `A`-module `A e` with the corner ring `e A e`.
+
+An `A`-linear map `f : A e → A e` of degree `n` (with the Koszul sign,
+`f (a • x) = (-1)^{n |a|} • (a • f x)`) is determined by `f e`, which lies in `e A e` since
+`f e = f (e • e) = e • f e`. With the product `f * g = (-1)^{|f||g|} • g ∘ f` of
+`DG.DGModule.END` (for which `M` is a right `END_A(M)`-module), `F ↦ e · F` is a ring
+isomorphism `END_A(A e) ≃+* e A e` with no opposite ring: for `f` of degree `m` and `g` of
+degree `n`, `(f * g) e = (-1)^{m n} • g (f e) = (-1)^{m n} (-1)^{m n} • (f e * g e)`. Its inverse
+sends `y` to the right multiplication `x ↦ x * y`. It is an instance of
+`DG.DGBimodule.endEquivOfGenerator`, applied to the dg `(A, e A e)`-bimodule `A e` and its
+generator `e`.
+
+## Main definitions and results
+
+* `DG.DGModule.END.selfEquiv : END A A ≃+* A`, the case `e = 1`.
+* `DG.DGIdempotent.endLeftCornerEquiv : END A e.LeftCorner ≃+* e.Corner` for a dg idempotent
+  (`d e = 0`), preserving degrees (`DG.DGIdempotent.endLeftCornerEquiv_mem_grading_iff`) and
+  differentials (`DG.DGIdempotent.endLeftCornerEquiv_d`).
+* `DG.LeftDGIdempotent A`: a degree-`0` idempotent with `d e ∈ A e` (equivalently
+  `e * d e = 0`, `DG.LeftDGIdempotent.val_mul_d`). Then `A e` is a dg left `A`-submodule of `A`,
+  and `e A e` (`DG.LeftDGIdempotent.Corner`, a type synonym of Mathlib's
+  `IsIdempotentElem.Corner`) is a dg ring for the differential `x ↦ e * d x`, that is,
+  `e a e ↦ e * d (a * e)` (`DG.LeftDGIdempotent.Corner.coe_d_mk`); `A e` is a dg
+  `(A, e A e)`-bimodule, and `DG.LeftDGIdempotent.endLeftCornerEquiv :
+  END A e.LeftCorner ≃+* e.Corner` is an isomorphism of dg rings. The differential is forced:
+  for `f` of degree `n`, `(δ f) e = d (f e) - (-1)^n • f (d e) = d (f e) - d e * f e`, since
+  `d e = d e • e`, and this equals `e * d (f e)` because `f e = e * f e`.
+* `DG.DGIdempotent.toLeftDGIdempotent` and `DG.DGIdempotent.toLeftDGIdempotentCornerEquiv`:
+  for `d e = 0` the two constructions of `e A e` agree (`e * d x = d x` on `e A e`).
+-/
+
+open scoped DG
+
+open DirectSum MulOpposite
+
+namespace DG
+
+/-! ### The regular module: `END_A(A) ≅ A` -/
+
+namespace DGModule.END
+
+variable (A : Type*) [Ring A] [DGAddCommGroup A] [DGRing A]
+
+/-- The endomorphism dg ring of the regular dg module is `A` itself: the isomorphism of dg
+rings `END_A(A) ≃+* A` sends `F` to `1 · F`, the value at `1` of its degree-`n` components
+summed over `n`; its inverse sends `a` to the right multiplication `x ↦ x * a` (with the Koszul
+sign `(-1)^{|a||x|}` built into the cochains).-/
+noncomputable def selfEquiv : END A A ≃+* A :=
+  DGBimodule.endEquivOfGenerator A A 1 (fun x => ⟨x, by rw [smul_eq_mul, mul_one]⟩)
+    (fun a b (h : op a • (1 : A) = op b • 1) => by simpa only [op_smul_eq_mul, one_mul] using h)
+    (fun F => op F • (1 : A)) fun F => by rw [op_smul_eq_mul, one_mul]
+
+variable {A}
+
+/--
+@isnad1 id=eq.0h2v.s10.e9013710a782 from=translated src=- shape=a289c68e vocab=0abffb0b
+-/
+@[simp]
+theorem selfEquiv_apply (F : END A A) : selfEquiv A F = op F • (1 : A) := rfl
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The inverse of `DG.DGModule.END.selfEquiv` acts on `A` by right multiplication.
+@isnad1 id=eq.0h3v.s11.a9b9183c4936 from=translated src=- shape=335240aa vocab=e2a70ed2
+-/
+@[simp]
+theorem op_selfEquiv_symm_smul (a x : A) : op ((selfEquiv A).symm a) • x = x * a := by
+  rw [selfEquiv, DGBimodule.endEquivOfGenerator_symm_apply, DGBimodule.op_toEND_smul,
+    op_smul_eq_mul]
+
+end DGModule.END
+
+/-! ### Corners of a dg idempotent with `d e = 0` -/
+
+namespace DGIdempotent
+
+variable {A : Type*} [Ring A] [DGAddCommGroup A] [DGRing A] (e : DGIdempotent A)
+
+namespace LeftCorner
+
+/-- The idempotent `e` as an element of `A e`; it generates `A e` as a left `A`-module.-/
+def idem : e.LeftCorner := ⟨e.val, e.mul_self⟩
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h2v.s6.7d4757d75c2d from=translated src=- shape=d8b96847 vocab=3d2335d8
+-/
+@[simp]
+theorem coe_idem : (idem e : A) = e.val := rfl
+
+/--
+@isnad1 id=mem.0h2v.s7.8b0f990bf93c from=translated src=- shape=b2e57d56 vocab=09cf5b68
+-/
+theorem idem_mem_grading : idem e ∈ grading 0 := e.mem_zero
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h3v.s7.5659654796af from=translated src=- shape=4a59c675 vocab=e21138fd
+-/
+theorem smul_idem (x : e.LeftCorner) : (x : A) • idem e = x := Subtype.ext x.2
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h2v.s6.b9c7705378ae from=translated src=- shape=77439392 vocab=da8ed834
+-/
+theorem val_smul_idem : e.val • idem e = idem e := Subtype.ext e.mul_self
+
+/-- The value `e · F` of an endomorphism of `A e` at the generator lies in `e A e`.
+@isnad1 id=mem.0h3v.s11.09732246cf47 from=translated src=- shape=e9e248d0 vocab=38f04c4f
+-/
+theorem op_smul_idem_mem (F : DGModule.END A e.LeftCorner) :
+    ((op F • idem e : e.LeftCorner) : A) ∈ Subsemigroup.corner e.val := by
+  refine (Corner.mem_iff e).mpr ⟨?_, (op F • idem e).2⟩
+  conv_rhs => rw [← val_smul_idem e, ← smul_comm]
+  rfl
+
+end LeftCorner
+
+open LeftCorner
+
+/-- The value at `e` of an endomorphism of `A e`, as an element of `e A e`.-/
+noncomputable def endToCorner (F : DGModule.END A e.LeftCorner) : e.Corner :=
+  ⟨_, op_smul_idem_mem e F⟩
+
+/-- For a dg idempotent `e` (`e ∈ A⁰`, `e * e = e`, `d e = 0`), the endomorphism dg ring of
+the dg left `A`-module `A e` is the corner dg ring `e A e`: the ring isomorphism sends `F` to
+`e · F`, which on a homogeneous `f` of degree `n` is `f e`
+(`DG.DGIdempotent.endLeftCornerEquiv_of`); it preserves the degrees and the differentials. With
+the product
+`f * g = (-1)^{|f||g|} • g ∘ f` of `END` there is no opposite ring: `(f * g) e = f e * g e`.
+The inverse sends `y ∈ e A e` to the right multiplication `x ↦ x * y` on `A e`.-/
+noncomputable def endLeftCornerEquiv : DGModule.END A e.LeftCorner ≃+* e.Corner :=
+  DGBimodule.endEquivOfGenerator A e.LeftCorner (idem e) (fun x => ⟨x, smul_idem e x⟩)
+    (fun y z h => Corner.ext e (by
+      simpa only [LeftCorner.coe_op_smul, coe_idem, Corner.val_mul_coe] using
+        congrArg Subtype.val h))
+    (endToCorner e) fun F => Subtype.ext (by
+      rw [LeftCorner.coe_op_smul, coe_idem]
+      exact ((Corner.mem_iff e).mp (op_smul_idem_mem e F)).1)
+
+/--
+@isnad1 id=eq.0h3v.s12.5fae0a7a0cca from=translated src=- shape=f7637e4c vocab=359a25fc
+-/
+theorem coe_endLeftCornerEquiv (F : DGModule.END A e.LeftCorner) :
+    (e.endLeftCornerEquiv F : A) = (op F • idem e : e.LeftCorner) := rfl
+
+/--
+@isnad1 id=eq.0h4v.s13.6450dae18d37 from=translated src=- shape=40e8b9a3 vocab=04cdfacb
+-/
+theorem endLeftCornerEquiv_of {n : ℤ} (f : Cochain A e.LeftCorner e.LeftCorner n) :
+    (e.endLeftCornerEquiv (DirectSum.of (fun n => Cochain A e.LeftCorner e.LeftCorner n) n f) :
+      A) = f (idem e) := by
+  rw [coe_endLeftCornerEquiv, DGModule.END.op_of_smul f (idem_mem_grading e), mul_zero,
+    koszulSign, Int.negOnePow_zero, one_smul]
+
+end DGIdempotent
+
+/-! ### Idempotents with `d e ∈ A e` -/
+
+/-- A degree-`0` idempotent of a dg ring whose differential lies in the left ideal `A e`:
+`e ∈ A⁰`, `e * e = e` and `d e * e = d e`. Equivalently (`DG.LeftDGIdempotent.val_mul_d`),
+`e * d e = 0`. Then `A e` is a dg left `A`-submodule of `A`, but `e A e` is in general not
+stable under `d`; it is a dg ring for the differential `x ↦ e * d x`
+(`DG.LeftDGIdempotent.Corner.instDGRing`). Every `DGIdempotent` (for which `d e = 0`) is one
+(`DG.DGIdempotent.toLeftDGIdempotent`).-/
+structure LeftDGIdempotent (A : Type*) [Ring A] [DGAddCommGroup A] where
+  /-- The underlying element.-/
+  val : A
+  mem_zero : val ∈ grading (M := A) 0
+  mul_self : val * val = val
+  d_mul_self : d val * val = d val
+
+/-- A degree-`0` idempotent cocycle is a degree-`0` idempotent with `d e ∈ A e`.-/
+def DGIdempotent.toLeftDGIdempotent {A : Type*} [Ring A] [DGAddCommGroup A]
+    (e : DGIdempotent A) : LeftDGIdempotent A where
+  val := e.val
+  mem_zero := e.mem_zero
+  mul_self := e.mul_self
+  d_mul_self := by rw [e.d_eq_zero, zero_mul]
+
+namespace LeftDGIdempotent
+
+variable {A : Type*} [Ring A] [DGAddCommGroup A] (e : LeftDGIdempotent A)
+
+/--
+@isnad1 id=isidempo.0h2v.s4.e8885df8d393 from=translated src=- shape=10965991 vocab=674f1100
+-/
+theorem isIdempotentElem : IsIdempotentElem e.val := e.mul_self
+
+/-- The left ideal `A e = {a | a * e = a}`.-/
+def leftIdeal : Ideal A where
+  carrier := {a | a * e.val = a}
+  add_mem' ha hb := by simp only [Set.mem_ofPred_eq] at *; rw [add_mul, ha, hb]
+  zero_mem' := zero_mul _
+  smul_mem' r a ha := by simp only [Set.mem_ofPred_eq, smul_eq_mul] at *; rw [mul_assoc, ha]
+
+/--
+@isnad1 id=iff.0h3v.s6.6c327cabcd9c from=translated src=- shape=10fb5a9c vocab=47b453c0
+-/
+theorem mem_leftIdeal {a : A} : a ∈ e.leftIdeal ↔ a * e.val = a := Iff.rfl
+
+/-! #### The corner ring `e A e` -/
+
+/-- The corner ring `e A e` (Mathlib's `IsIdempotentElem.Corner`, a ring with unit `e`), to be
+equipped with the differential `x ↦ e * d x`. It is a type synonym, so that this differential
+does not conflict with the restricted differential on `DG.DGIdempotent.Corner`.-/
+def Corner : Type _ := e.isIdempotentElem.Corner
+
+namespace Corner
+
+instance : Ring e.Corner := inferInstanceAs (Ring e.isIdempotentElem.Corner)
+
+/-- The underlying element of `A` of an element of `e A e`.-/
+def val (x : e.Corner) : A := Subtype.val (p := (· ∈ Subsemigroup.corner e.val)) x
+
+instance : CoeOut e.Corner A := ⟨val e⟩
+
+/-- The element of `e A e` given by an element of `A` in the corner.-/
+def mk (a : A) (h : a ∈ Subsemigroup.corner e.val) : e.Corner := ⟨a, h⟩
+
+/--
+@isnad1 id=eq.1h3v.s6.3694c43dc900 from=translated src=- shape=07f39cf0 vocab=0919873b
+-/
+@[simp] theorem coe_mk (a : A) (h : a ∈ Subsemigroup.corner e.val) : (mk e a h : A) = a := rfl
+
+/--
+@isnad1 id=mem.0h3v.s6.b876f0b1b636 from=translated src=- shape=1b7d7bd9 vocab=8d6ac3e3
+-/
+theorem coe_mem (x : e.Corner) : (x : A) ∈ Subsemigroup.corner e.val :=
+  Subtype.property (p := (· ∈ Subsemigroup.corner e.val)) x
+
+/--
+@isnad1 id=iff.0h3v.s6.923e28c73b49 from=translated src=- shape=6e9342c6 vocab=6c7c3355
+-/
+theorem mem_iff {a : A} : a ∈ Subsemigroup.corner e.val ↔ e.val * a = a ∧ a * e.val = a :=
+  Subsemigroup.mem_corner_iff e.isIdempotentElem
+
+/--
+@isnad1 id=eq.0h3v.s5.dfa06fbe3eb5 from=translated src=- shape=1e29a382 vocab=9c06b4ea
+-/
+theorem val_mul_coe (x : e.Corner) : e.val * (x : A) = x := (mem_iff e |>.mp (coe_mem e x)).1
+
+/--
+@isnad1 id=eq.0h3v.s5.e2b8683a1185 from=translated src=- shape=299548d8 vocab=9c06b4ea
+-/
+theorem coe_mul_val (x : e.Corner) : (x : A) * e.val = x := (mem_iff e |>.mp (coe_mem e x)).2
+
+/--
+@isnad1 id=eq.0h2v.s6.935b4bb7d7bb from=translated src=- shape=6e0728cd vocab=462a7f6f
+-/
+@[simp] theorem coe_zero : ((0 : e.Corner) : A) = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.e87c72e992c5 from=translated src=- shape=a8a340d3 vocab=bf571457
+-/
+@[simp] theorem coe_one : ((1 : e.Corner) : A) = e.val := rfl
+/--
+@isnad1 id=eq.0h4v.s6.be745a8302a4 from=translated src=- shape=3134deaa vocab=72e98f59
+-/
+@[simp] theorem coe_add (x y : e.Corner) : ((x + y : e.Corner) : A) = x + y := rfl
+/--
+@isnad1 id=eq.0h3v.s6.6970b0409ac8 from=translated src=- shape=e58ed588 vocab=47bf8212
+-/
+@[simp] theorem coe_neg (x : e.Corner) : ((-x : e.Corner) : A) = -x := rfl
+/--
+@isnad1 id=eq.0h4v.s6.788fee05a533 from=translated src=- shape=3134deaa vocab=f666edcb
+-/
+@[simp] theorem coe_sub (x y : e.Corner) : ((x - y : e.Corner) : A) = x - y := rfl
+/--
+@isnad1 id=eq.0h4v.s6.eaa5c3bfe7dc from=translated src=- shape=3134deaa vocab=7ab4afb4
+-/
+@[simp] theorem coe_mul (x y : e.Corner) : ((x * y : e.Corner) : A) = x * y := rfl
+/--
+@isnad1 id=eq.0h4v.s6.b150e6815c9a from=translated src=- shape=ded538cc vocab=35eba004
+-/
+@[simp] theorem coe_zsmul (k : ℤ) (x : e.Corner) : ((k • x : e.Corner) : A) = k • (x : A) :=
+  rfl
+
+/--
+@isnad1 id=injectiv.0h2v.s4.d8decff307c0 from=translated src=- shape=d8e430dc vocab=948b7b03
+-/
+theorem coe_injective : Function.Injective ((↑) : e.Corner → A) :=
+  Subtype.val_injective (p := (· ∈ Subsemigroup.corner e.val))
+
+/--
+@isnad1 id=eq.1h4v.s5.83e6dbeae415 from=translated src=- shape=d5ef98a4 vocab=462a7f6f
+-/
+@[ext] theorem ext {x y : e.Corner} (h : (x : A) = y) : x = y := coe_injective e h
+
+/-- The inclusion `e A e → A` as an additive map (it is not unital).-/
+def valAddHom : e.Corner →+ A where
+  toFun := val e
+  map_zero' := rfl
+  map_add' _ _ := rfl
+
+/--
+@isnad1 id=eq.0h3v.s7.b1efa5f2e186 from=translated src=- shape=6c5eb96a vocab=5c744338
+-/
+@[simp] theorem valAddHom_apply (x : e.Corner) : valAddHom e x = x := rfl
+
+end Corner
+
+variable [DGRing A]
+
+/-- For a degree-`0` idempotent, `d e ∈ A e` is equivalent to `e * d e = 0`.
+@isnad1 id=eq.0h2v.s6.a25c3db0fe87 from=translated src=- shape=4fa85272 vocab=1f543b14
+-/
+theorem val_mul_d : e.val * d e.val = 0 := by
+  have h := d_mul_of_mem_zero e.mem_zero e.val
+  rw [e.mul_self, e.d_mul_self] at h
+  exact left_eq_add.mp h
+
+/-- `A e` is stable under `d`: `d (a * e) * e = d (a * e)`.
+@isnad1 id=eq.0h3v.s7.07a9780315ab from=translated src=- shape=dcbd2745 vocab=1f543b14
+-/
+theorem d_mul_val_mul_val (a : A) : d (a * e.val) * e.val = d (a * e.val) := by
+  induction a using DG.induction_on with
+  | h_zero => simp
+  | h_homogeneous a =>
+    rw [d_mul a.2, add_mul, mul_assoc, e.mul_self, smul_mul_assoc, mul_assoc, e.d_mul_self]
+  | h_add a b ha hb => rw [add_mul, d_add, add_mul, ha, hb]
+
+/--
+@isnad1 id=mem.1h3v.s7.228422251c92 from=translated src=- shape=d578d292 vocab=6c18f7c0
+-/
+theorem d_mem_leftIdeal {a : A} (ha : a ∈ e.leftIdeal) : d a ∈ e.leftIdeal := by
+  rw [mem_leftIdeal] at *
+  conv_lhs => rw [← ha]
+  rw [e.d_mul_val_mul_val, ha]
+
+/--
+@isnad1 id=mem.1h4v.s10.6a95ceb7c96e from=translated src=- shape=91206207 vocab=cac52f71
+-/
+theorem decompose_mem_leftIdeal {a : A} (ha : a ∈ e.leftIdeal) (n : ℤ) :
+    (decompose (grading (M := A)) a n : A) ∈ e.leftIdeal := by
+  rw [mem_leftIdeal] at *
+  rw [← DirectSum.coe_decompose_mul_of_right_mem_zero _ e.mem_zero, ha]
+
+/-! #### The left ideal `A e` -/
+
+/-- The left ideal `A e` as a type; a dg left `A`-module (with the differential of `A`) and a
+dg right `e A e`-module.-/
+abbrev LeftCorner : Type _ := e.leftIdeal
+
+namespace LeftCorner
+
+/-- The differential of `A e`, the restriction of that of `A`.-/
+def dAddHom : e.LeftCorner →+ e.LeftCorner where
+  toFun a := ⟨d a, e.d_mem_leftIdeal a.2⟩
+  map_zero' := by ext; simp
+  map_add' _ _ := by ext; simp [d_add]
+
+noncomputable instance instDGAddCommGroup : DGAddCommGroup e.LeftCorner :=
+  DGAddCommGroup.ofInjective (AddSubmonoidClass.subtype e.leftIdeal) Subtype.val_injective
+    (dAddHom e) (fun _ => rfl) fun n a =>
+      ⟨⟨_, e.decompose_mem_leftIdeal a.2 n⟩, rfl⟩
+
+/--
+@isnad1 id=eq.0h3v.s8.d725b2d26912 from=translated src=- shape=86a18037 vocab=963578b6
+-/
+@[simp]
+theorem coe_d (a : e.LeftCorner) : ((d a : e.LeftCorner) : A) = d (a : A) := rfl
+
+/-- `A e` is a dg left `A`-module.
+@isnad1 id=dgmodule.0h2v.s6.1a198c306d05 from=translated src=- shape=4f7c7f00 vocab=7e6f3df8
+-/
+instance instDGModule : DGModule A e.LeftCorner where
+  smul_mem _ _ _ _ ha hb := mul_mem_grading ha hb
+  d_smul' {n a} ha b := by
+    apply Subtype.ext
+    simp only [coe_d, Submodule.coe_smul, Submodule.coe_add, Units.smul_def,
+      Submodule.coe_smul_of_tower]
+    exact d_mul ha b
+
+/-- The idempotent `e` as an element of `A e`; it generates `A e` as a left `A`-module.-/
+def idem : e.LeftCorner := ⟨e.val, e.mul_self⟩
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h2v.s6.5673823086da from=translated src=- shape=d8b96847 vocab=85546ea4
+-/
+@[simp]
+theorem coe_idem : (idem e : A) = e.val := rfl
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h3v.s7.53cf15654ff5 from=translated src=- shape=4a59c675 vocab=5dd3d1d0
+-/
+theorem smul_idem (x : e.LeftCorner) : (x : A) • idem e = x := Subtype.ext x.2
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h2v.s6.da1df9f0bebc from=translated src=- shape=77439392 vocab=4a8e2249
+-/
+theorem val_smul_idem : e.val • idem e = idem e := Subtype.ext e.mul_self
+
+end LeftCorner
+
+/-! #### The differential `x ↦ e * d x` on the corner ring `e A e` -/
+
+namespace Corner
+
+/--
+@isnad1 id=mem.1h4v.s10.11373eff7dc1 from=translated src=- shape=25fa7df5 vocab=c07392fb
+-/
+theorem decompose_mem {a : A} (ha : a ∈ Subsemigroup.corner e.val) (n : ℤ) :
+    (decompose (grading (M := A)) a n : A) ∈ Subsemigroup.corner e.val := by
+  obtain ⟨he, he'⟩ := (mem_iff e).mp ha
+  refine ⟨decompose (grading (M := A)) a n, ?_⟩
+  conv_rhs => rw [← he, ← he', DirectSum.coe_decompose_mul_of_left_mem_zero _ e.mem_zero,
+    DirectSum.coe_decompose_mul_of_right_mem_zero _ e.mem_zero, ← mul_assoc]
+
+/--
+@isnad1 id=mem.0h4v.s10.3a522fa70894 from=translated src=- shape=bb3119b9 vocab=c5038b60
+-/
+theorem hhom (n : ℤ) (x : e.Corner) :
+    (decompose (grading (M := A)) (valAddHom e x) n : A) ∈ (valAddHom e).range :=
+  ⟨mk e _ (decompose_mem e (coe_mem e x) n), rfl⟩
+
+/--
+@isnad1 id=mem.1h3v.s7.3f689265939d from=translated src=- shape=d43380b8 vocab=4281bd82
+-/
+theorem val_mul_d_mem {a : A} (ha : a ∈ Subsemigroup.corner e.val) :
+    e.val * d a ∈ Subsemigroup.corner e.val := by
+  have h := e.d_mul_val_mul_val a
+  rw [((mem_iff e).mp ha).2] at h
+  exact ⟨d a, show e.val * d a * e.val = _ by rw [mul_assoc, h]⟩
+
+/-- The differential `x ↦ e * d x` of `e A e`.-/
+def dAddHom : e.Corner →+ e.Corner where
+  toFun x := mk e _ (val_mul_d_mem e (coe_mem e x))
+  map_zero' := by ext; simp
+  map_add' _ _ := by ext; simp [d_add, mul_add]
+
+/-- `e A e` is a dg abelian group, with the grading restricted from `A` and the differential
+`x ↦ e * d x`.-/
+noncomputable instance instDGAddCommGroup : DGAddCommGroup e.Corner where
+  grading := gradingComap (valAddHom e)
+  decomposition :=
+    (isInternal_gradingComap (valAddHom e) (coe_injective e) (hhom e)).chooseDecomposition
+  d := dAddHom e
+  d_mem' {n x} hx := by
+    rw [mem_gradingComap]
+    simpa using! mul_mem_grading e.mem_zero (d_mem hx)
+  d_d' x := ext e (by
+    show e.val * d (e.val * d (x : A)) = 0
+    rw [d_mul_of_mem_zero e.mem_zero, d_d, mul_zero, add_zero, ← mul_assoc, val_mul_d,
+      zero_mul])
+
+/-- The differential of `e A e` is `x ↦ e * d x`.
+@isnad1 id=eq.0h3v.s8.4c2bd11b2baf from=translated src=- shape=59073c92 vocab=e396b7f6
+-/
+@[simp]
+theorem coe_d (x : e.Corner) : ((d x : e.Corner) : A) = e.val * d (x : A) := rfl
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The differential of `e A e` in the form `e a e ↦ e * d (a * e)`.
+@isnad1 id=eq.0h3v.s8.847bb49e69d2 from=translated src=- shape=a6476bb0 vocab=a50c56bc
+-/
+theorem coe_d_mk (a : A) :
+    ((d (mk e (e.val * a * e.val) ⟨a, rfl⟩) : e.Corner) : A) = e.val * d (a * e.val) := by
+  rw [coe_d, coe_mk, mul_assoc, d_mul_of_mem_zero e.mem_zero, mul_add, ← mul_assoc,
+    val_mul_d, zero_mul, zero_add, ← mul_assoc, e.mul_self]
+
+/-- If `d e = 0`, the differential of `e A e` is the restriction of that of `A`.
+@isnad1 id=eq.1h3v.s8.1d8c6d774a9b from=translated src=- shape=a10c9030 vocab=b41b53ec
+-/
+theorem coe_d_of_d_eq_zero (h : d e.val = 0) (x : e.Corner) :
+    ((d x : e.Corner) : A) = d (x : A) := by
+  rw [coe_d]
+  conv_rhs => rw [← val_mul_coe e x, d_mul_of_mem_zero e.mem_zero, h, zero_mul, zero_add]
+
+/-- The homogeneous components of an element of `e A e` are those of the underlying element
+of `A` (which lie in `e A e`).
+@isnad1 id=eq.0h4v.s11.083998972b18 from=translated src=- shape=1ae77e6b vocab=ef7eb250
+-/
+@[simp]
+theorem coe_decompose (x : e.Corner) (n : ℤ) :
+    ((decompose (grading (M := e.Corner)) x n : e.Corner) : A) =
+      decompose (grading (M := A)) (x : A) n := by
+  have h : gradingComapMap (valAddHom e) (decompose (grading (M := e.Corner)) x) =
+      decompose (grading (M := A)) (x : A) := by
+    apply (DirectSum.Decomposition.isInternal (grading (M := A))).injective
+    change DirectSum.coeAddMonoidHom _ _ = (decompose (grading (M := A))).symm _
+    rw [coeAddMonoidHom_gradingComapMap, Equiv.symm_apply_apply]
+    change valAddHom e ((decompose (grading (M := e.Corner))).symm _) = _
+    rw [Equiv.symm_apply_apply]
+    rfl
+  rw [← h]
+  simp only [gradingComapMap, DirectSum.map_apply]
+  rfl
+
+/-- `e A e` is a dg ring for the differential `x ↦ e * d x`.
+@isnad1 id=dgring.0h2v.s5.98b643a5e2bf from=translated src=- shape=c06409f0 vocab=d8051a9e
+-/
+instance instDGRing : DGRing e.Corner where
+  one_mem := e.mem_zero
+  mul_mem _ _ _ _ hx hy := mul_mem_grading (A := A) hx hy
+  d_mul' {n x} hx y := by
+    apply ext
+    have hx' : (x : A) ∈ grading n := hx
+    simp only [coe_d, coe_mul, coe_add, Units.smul_def, coe_zsmul]
+    rw [d_mul hx', mul_add, mul_smul_comm, ← mul_assoc, ← mul_assoc, val_mul_coe,
+      ← mul_assoc (x : A), coe_mul_val, Units.smul_def]
+
+end Corner
+
+/-! #### `A e` as a dg `(A, e A e)`-bimodule -/
+
+namespace LeftCorner
+
+omit [DGRing A] in
+/--
+@isnad1 id=mem.0h4v.s6.57ff81fc0bab from=translated src=- shape=03e55e42 vocab=7ae54020
+-/
+theorem coe_mul_corner_mem (a : e.LeftCorner) (y : e.Corner) :
+    (a : A) * (y : A) ∈ e.leftIdeal := by
+  rw [mem_leftIdeal, mul_assoc, Corner.coe_mul_val]
+
+/-- The right action of `e A e` on `A e` by multiplication, `op y • a = a * y`.-/
+instance instSMulOp : SMul e.Cornerᵐᵒᵖ e.LeftCorner :=
+  ⟨fun y a => ⟨(a : A) * (y.unop : A), coe_mul_corner_mem e a y.unop⟩⟩
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h4v.s7.766dc2c7082a from=translated src=- shape=d4510f64 vocab=51733d6e
+-/
+@[simp]
+theorem coe_op_smul (y : e.Corner) (a : e.LeftCorner) :
+    ((op y • a : e.LeftCorner) : A) = a * y :=
+  rfl
+
+omit [DGRing A] in
+/--
+@isnad1 id=eq.0h4v.s7.36d48bc5fe66 from=translated src=- shape=e820ed4c vocab=e29e453d
+-/
+theorem coe_smul_op (y : e.Cornerᵐᵒᵖ) (a : e.LeftCorner) :
+    ((y • a : e.LeftCorner) : A) = a * (y.unop : A) :=
+  rfl
+
+/-- `A e` is a right `e A e`-module.-/
+instance instModuleOp : Module e.Cornerᵐᵒᵖ e.LeftCorner where
+  one_smul a := Subtype.ext (by rw [coe_smul_op, unop_one, Corner.coe_one]; exact a.2)
+  mul_smul y z a := Subtype.ext (by simp only [coe_smul_op, unop_mul, Corner.coe_mul, mul_assoc])
+  smul_zero y := Subtype.ext (by simp only [coe_smul_op, Submodule.coe_zero, zero_mul])
+  smul_add y a b := Subtype.ext (by simp only [coe_smul_op, Submodule.coe_add, add_mul])
+  add_smul y z a := Subtype.ext (by
+    simp only [coe_smul_op, unop_add, Corner.coe_add, mul_add, Submodule.coe_add])
+  zero_smul a := Subtype.ext (by simp only [coe_smul_op, unop_zero, Corner.coe_zero, mul_zero,
+    Submodule.coe_zero])
+
+/-- `A e` is a dg right `e A e`-module, for the differential `x ↦ e * d x` of `e A e`.
+@isnad1 id=dgrightm.0h2v.s6.ba16dba4a1b3 from=translated src=- shape=92ceacdc vocab=1a97658e
+-/
+instance instDGRightModule : DGRightModule e.Corner e.LeftCorner where
+  op_smul_mem' hy ha := mul_mem_grading (A := A) ha hy
+  d_op_smul' {j a} ha y := by
+    apply Subtype.ext
+    simp only [coe_d, coe_op_smul, Submodule.coe_add, Units.smul_def, Submodule.coe_smul_of_tower,
+      Corner.coe_d]
+    have ha' : (a : A) ∈ grading j := ha
+    rw [d_mul ha', ← mul_assoc (a : A), a.2, Units.smul_def]
+
+/-- The left action of `A` and the right action of `e A e` on `A e` commute.
+@isnad1 id=smulcomm.0h2v.s6.e162612ecf0d from=translated src=- shape=7fdc6b0f vocab=d81a3267
+-/
+instance instSMulCommClass : SMulCommClass A e.Cornerᵐᵒᵖ e.LeftCorner where
+  smul_comm x y a := Subtype.ext (by
+    simp only [coe_smul_op, Submodule.coe_smul, smul_eq_mul, mul_assoc])
+
+/-- `A e` is a dg `(A, e A e)`-bimodule.
+@isnad1 id=dgbimodu.0h2v.s6.75a039748b1e from=translated src=- shape=6bfcf28b vocab=b39e544e
+-/
+instance instDGBimodule : DGBimodule A e.Corner e.LeftCorner := DGBimodule.mk'
+
+/-- The value `e · F` of an endomorphism of `A e` at the generator lies in `e A e`.
+@isnad1 id=mem.0h3v.s11.74a5ac1e57fa from=translated src=- shape=8d0b92fa vocab=64743491
+-/
+theorem op_smul_idem_mem (F : DGModule.END A e.LeftCorner) :
+    ((op F • idem e : e.LeftCorner) : A) ∈ Subsemigroup.corner e.val := by
+  refine (Corner.mem_iff e).mpr ⟨?_, (op F • idem e).2⟩
+  conv_rhs => rw [← val_smul_idem e, ← smul_comm]
+  rfl
+
+end LeftCorner
+
+open LeftCorner
+
+/-- The value at `e` of an endomorphism of `A e`, as an element of `e A e`.-/
+noncomputable def endToCorner (F : DGModule.END A e.LeftCorner) : e.Corner :=
+  Corner.mk e _ (op_smul_idem_mem e F)
+
+/-- For a degree-`0` idempotent `e` with `d e ∈ A e`, the endomorphism dg ring of the dg left
+`A`-module `A e` is the corner ring `e A e` with the differential `x ↦ e * d x`
+(equivalently `e a e ↦ e * d (a * e)`, `DG.LeftDGIdempotent.Corner.coe_d_mk`): the ring
+isomorphism sends `F` to `e · F`, which on a homogeneous `f` is `f e`; it preserves the degrees
+and the differentials. The inverse sends `y ∈ e A e` to the right multiplication `x ↦ x * y`.-/
+noncomputable def endLeftCornerEquiv : DGModule.END A e.LeftCorner ≃+* e.Corner :=
+  DGBimodule.endEquivOfGenerator A e.LeftCorner (idem e) (fun x => ⟨x, smul_idem e x⟩)
+    (fun y z h => Corner.ext e (by
+      simpa only [LeftCorner.coe_op_smul, coe_idem, Corner.val_mul_coe] using
+        congrArg Subtype.val h))
+    (endToCorner e) fun F => Subtype.ext (by
+      rw [LeftCorner.coe_op_smul, coe_idem]
+      exact ((Corner.mem_iff e).mp (op_smul_idem_mem e F)).1)
+
+end LeftDGIdempotent
+
+namespace DGIdempotent
+
+variable {A : Type*} [Ring A] [DGAddCommGroup A] [DGRing A] (e : DGIdempotent A)
+
+/-- For a dg idempotent `e` (`d e = 0`), the corner ring `e A e` of `e` regarded as a
+`DG.LeftDGIdempotent` is the corner dg ring `DG.DGIdempotent.Corner`: the identity of the
+underlying elements is a ring isomorphism preserving the degrees and the differentials
+(`DG.DGIdempotent.toLeftDGIdempotentCornerEquiv_d`).-/
+def toLeftDGIdempotentCornerEquiv : e.toLeftDGIdempotent.Corner ≃+* e.Corner where
+  toFun x := ⟨(x : A), LeftDGIdempotent.Corner.coe_mem _ x⟩
+  invFun y := LeftDGIdempotent.Corner.mk _ (y : A) (DGIdempotent.Corner.coe_mem e y)
+  left_inv _ := rfl
+  right_inv _ := rfl
+  map_mul' _ _ := rfl
+  map_add' _ _ := rfl
+
+/--
+@isnad1 id=eq.0h3v.s10.da7b7c4e13ac from=translated src=- shape=2ff195d2 vocab=c9cb2631
+-/
+theorem toLeftDGIdempotentCornerEquiv_d (x : e.toLeftDGIdempotent.Corner) :
+    e.toLeftDGIdempotentCornerEquiv (d x) = d (e.toLeftDGIdempotentCornerEquiv x) :=
+  DGIdempotent.Corner.ext e (LeftDGIdempotent.Corner.coe_d_of_d_eq_zero _ e.d_eq_zero x)
+
+end DGIdempotent
+
+end DG

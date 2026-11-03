@@ -1,0 +1,216 @@
+import Tengoku.DgLean.DG.Algebra.Constructions
+import Tengoku.DgLean.DG.Bigraded.InternalShift
+import Tengoku.DgLean.DG.Module.Cohomology
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Weight gradings on cohomology
+
+Let `M` be a dg abelian group with an internal grading (`DG.InternalGrading M`). Since `d`
+preserves weights and the weight projections preserve the cohomological degree, the cocycles
+and the coboundaries are homogeneous for the weight grading, so each cohomology group inherits
+a weight grading, `Hⁿ(M) = ⨁ k, Hⁿ(M)⟨k⟩` with `Hⁿ(M)⟨k⟩` the classes of cocycles of weight `k`.
+
+* `DG.cocycles.wgrading M n`: the weight grading `Zⁿ(M)⟨k⟩ = Zⁿ(M) ∩ M⟨k⟩` of the cocycles,
+  with its decomposition.
+* `DG.cohomology.wgrading M n`: the weight grading of `Hⁿ(M)`, the image of the weight grading
+  of the cocycles, with its decomposition `DG.cohomology.decomposition`
+  (`DG.cohomology.isInternal_wgrading`: `Hⁿ(M)` is the internal direct sum of the `Hⁿ(M)⟨k⟩`).
+* `DG.cohomology.map_mem_wgrading`: a morphism of dg modules preserving weights induces maps on
+  cohomology preserving weights.
+* `DG.cohomology.internalShiftAddEquiv k n : Hⁿ(M⟨k⟩) ≃ Hⁿ(M)`, the identity on classes of
+  cocycles, with `Hⁿ(M⟨k⟩)⟨j⟩ ≅ Hⁿ(M)⟨j + k⟩`
+  (`DG.cohomology.mem_wgrading_internalShiftAddEquiv_iff`); that is, `H(M⟨k⟩) ≅ H(M)⟨k⟩`.
+-/
+
+open scoped DG
+
+open DirectSum
+
+namespace DG
+
+variable {M : Type*} [AddCommGroup M] [DGAddCommGroup M] [InternalGrading M]
+
+namespace cocycles
+
+variable (M) in
+/-- The weight grading of the cocycles: `Zⁿ(M)⟨k⟩ = Zⁿ(M) ∩ M⟨k⟩`.-/
+def wgrading (n k : ℤ) : AddSubgroup (cocycles M n) :=
+  (InternalGrading.wgrading k).comap (cocycles M n).subtype
+
+/--
+@isnad1 id=iff.0h4v.s8.1684e66ffbc3 from=translated src=- shape=32164da2 vocab=80126b3f
+-/
+theorem mem_wgrading_iff {n k : ℤ} {z : cocycles M n} :
+    z ∈ cocycles.wgrading M n k ↔ (z : M) ∈ InternalGrading.wgrading k :=
+  Iff.rfl
+
+variable (M) in
+/--
+@isnad1 id=isintern.0h2v.s7.f0d936dcd96a from=translated src=- shape=43b3bfd2 vocab=4f614df0
+-/
+theorem isInternal_wgrading (n : ℤ) : DirectSum.IsInternal (cocycles.wgrading M n) :=
+  isInternal_comap _ _ Subtype.val_injective fun k z =>
+    ⟨⟨_, isHomogeneous_wgrading_cocycles n k z.2⟩, rfl⟩
+
+/-- The decomposition `Zⁿ(M) = ⨁ k, Zⁿ(M)⟨k⟩`.-/
+noncomputable instance decomposition (n : ℤ) : Decomposition (cocycles.wgrading M n) :=
+  (isInternal_wgrading M n).chooseDecomposition
+
+/-- The weight components of a cocycle are its weight components in `M`.
+@isnad1 id=eq.0h4v.s12.013cff1680d1 from=translated src=- shape=6c6add0e vocab=f52b3f59
+-/
+theorem coe_decompose_wgrading {n : ℤ} (z : cocycles M n) (k : ℤ) :
+    ((decompose (cocycles.wgrading M n) z k : cocycles M n) : M) =
+      decompose (InternalGrading.wgrading (M := M)) (z : M) k := by
+  let : Decomposition fun k =>
+      (InternalGrading.wgrading (M := M) k).comap (cocycles M n).subtype :=
+    cocycles.decomposition n
+  exact coe_decompose_comap _ (cocycles M n).subtype z k
+
+end cocycles
+
+namespace cohomology
+
+variable (M) in
+/-- The weight grading of the cohomology: `Hⁿ(M)⟨k⟩` is the subgroup of classes of cocycles of
+weight `k`.-/
+def wgrading (n k : ℤ) : AddSubgroup (cohomology M n) :=
+  (cocycles.wgrading M n k).map (mk M n)
+
+/--
+@isnad1 id=iff.0h4v.s9.765caeeb931d from=translated src=- shape=3c2d6f52 vocab=e6e445cb
+-/
+theorem mem_wgrading_iff {n k : ℤ} {x : cohomology M n} :
+    x ∈ cohomology.wgrading M n k ↔
+      ∃ z : cocycles M n, (z : M) ∈ InternalGrading.wgrading k ∧ mk M n z = x :=
+  AddSubgroup.mem_map
+
+/--
+@isnad1 id=mem.3h4v.s7.4f69434e7ee9 from=translated src=- shape=e7237b90 vocab=9284e8b4
+-/
+theorem mkOf_mem_wgrading {n k : ℤ} {m : M} (hm : m ∈ grading n) (hd : d m = 0)
+    (hk : m ∈ InternalGrading.wgrading k) : mkOf hm hd ∈ cohomology.wgrading M n k :=
+  mem_wgrading_iff.mpr ⟨⟨m, hm, hd⟩, hk, rfl⟩
+
+variable (M) in
+/-- The kernel of `Zⁿ(M) → Hⁿ(M)` (the coboundaries) is homogeneous for the weight grading.
+@isnad1 id=ishomoge.0h2v.s8.c35ce7e5f16f from=translated src=- shape=c780fe43 vocab=bbd87816
+-/
+theorem isHomogeneous_ker_mk (n : ℤ) :
+    SetLike.IsHomogeneous (cocycles.wgrading M n) (mk M n).ker := by
+  intro k z hz
+  rw [AddMonoidHom.mem_ker, mk_eq_zero_iff] at hz ⊢
+  rw [cocycles.coe_decompose_wgrading]
+  exact isHomogeneous_wgrading_coboundaries n k hz
+
+/-- The decomposition `Hⁿ(M) = ⨁ k, Hⁿ(M)⟨k⟩`.-/
+noncomputable instance decomposition (n : ℤ) : Decomposition (cohomology.wgrading M n) :=
+  Decomposition.map (cocycles.wgrading M n) (mk M n) (mk_surjective M n) (isHomogeneous_ker_mk M n)
+
+variable (M) in
+/-- `Hⁿ(M)` is the internal direct sum of its weight components `Hⁿ(M)⟨k⟩`.
+@isnad1 id=isintern.0h2v.s6.39d36d336165 from=translated src=- shape=aa0f40f5 vocab=12071bb8
+-/
+theorem isInternal_wgrading (n : ℤ) : DirectSum.IsInternal (cohomology.wgrading M n) :=
+  Decomposition.isInternal _
+
+/-- The weight components of the class of a cocycle are the classes of its weight
+components.
+@isnad1 id=eq.0h4v.s13.111b8382847d from=translated src=- shape=68392690 vocab=a7b94b83
+-/
+theorem decompose_mk {n : ℤ} (z : cocycles M n) (k : ℤ) :
+    (decompose (cohomology.wgrading M n) (mk M n z) k : cohomology M n) =
+      mk M n (decompose (cocycles.wgrading M n) z k) := by
+  induction z using Decomposition.inductionOn (cocycles.wgrading M n) with
+  | zero => simp
+  | homogeneous z =>
+    rename_i j
+    have hz : mk M n z ∈ cohomology.wgrading M n j := ⟨z, z.2, rfl⟩
+    by_cases h : j = k
+    · subst h
+      rw [decompose_of_mem_same _ hz, decompose_of_mem_same _ z.2]
+    · rw [decompose_of_mem_ne _ hz h, decompose_of_mem_ne _ z.2 h, _root_.map_zero]
+  | add z z' hz hz' =>
+    rw [_root_.map_add, decompose_add, add_apply, AddSubgroup.coe_add, hz, hz', decompose_add,
+      add_apply, AddSubgroup.coe_add, _root_.map_add]
+
+section Map
+
+variable {A : Type*} [Ring A] [DGAddCommGroup A] {N : Type*} [AddCommGroup N] [DGAddCommGroup N]
+  [InternalGrading N] [Module A M] [Module A N]
+
+/-- A morphism of dg modules preserving weights induces maps on cohomology preserving
+weights.
+@isnad1 id=mem.2h7v.s8.9953959bd66b from=translated src=- shape=159a424c vocab=e8fecbbd
+-/
+theorem map_mem_wgrading (f : M →ᵈᵍ[A] N)
+    (hf : ∀ {k : ℤ} {m : M}, m ∈ InternalGrading.wgrading k → f m ∈ InternalGrading.wgrading k)
+    {n k : ℤ} {x : cohomology M n} (hx : x ∈ cohomology.wgrading M n k) :
+    map f n x ∈ cohomology.wgrading N n k := by
+  obtain ⟨z, hz, rfl⟩ := mem_wgrading_iff.mp hx
+  exact mem_wgrading_iff.mpr ⟨_, hf hz, (map_mk f n z).symm⟩
+
+end Map
+
+section InternalShift
+
+omit [InternalGrading M]
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The cohomology of the internal shift: `Hⁿ(M⟨k⟩) ≃ Hⁿ(M)`, the identity on classes of
+cocycles. It sends `Hⁿ(M⟨k⟩)⟨j⟩` onto `Hⁿ(M)⟨j + k⟩`
+(`DG.cohomology.mem_wgrading_internalShiftAddEquiv_iff`), so that `H(M⟨k⟩) ≅ H(M)⟨k⟩`.-/
+def internalShiftAddEquiv (k n : ℤ) : cohomology (InternalShift k M) n ≃+ cohomology M n where
+  toFun := mapAddMonoidHom (InternalShift.unmk k).toAddMonoidHom (fun hm => hm) (fun _ => rfl) n
+  invFun := mapAddMonoidHom (InternalShift.mk k).toAddMonoidHom (fun hm => hm) (fun _ => rfl) n
+  left_inv x := by
+    induction x using induction_on with
+    | h z => rw [mapAddMonoidHom_mk, mapAddMonoidHom_mk]; rfl
+  right_inv x := by
+    induction x using induction_on with
+    | h z => rw [mapAddMonoidHom_mk, mapAddMonoidHom_mk]; rfl
+  map_add' := _root_.map_add _
+
+/--
+@isnad1 id=eq.0h4v.s11.f3250deb5c00 from=translated src=- shape=90deb500 vocab=41ac05b3
+-/
+theorem internalShiftAddEquiv_mk (k n : ℤ) (z : cocycles (InternalShift k M) n) :
+    internalShiftAddEquiv k n (mk _ n z) =
+      mk M n ⟨InternalShift.unmk k z, z.2⟩ :=
+  mapAddMonoidHom_mk (InternalShift.unmk k (M := M)).toAddMonoidHom (fun hm => hm) (fun _ => rfl)
+    n z
+
+/--
+@isnad1 id=eq.0h4v.s11.dd0dbd96de87 from=translated src=- shape=52212e8a vocab=79ec04e2
+-/
+theorem internalShiftAddEquiv_symm_mk (k n : ℤ) (z : cocycles M n) :
+    (internalShiftAddEquiv k n).symm (mk M n z) =
+      mk (InternalShift k M) n ⟨InternalShift.mk k z, z.2⟩ :=
+  mapAddMonoidHom_mk (InternalShift.mk k (M := M)).toAddMonoidHom (fun hm => hm) (fun _ => rfl)
+    n z
+
+variable [InternalGrading M]
+
+/-- `Hⁿ(M⟨k⟩)⟨j⟩ ≅ Hⁿ(M)⟨j + k⟩` under `DG.cohomology.internalShiftAddEquiv`.
+@isnad1 id=iff.0h5v.s9.7395506d24b0 from=translated src=- shape=d6cc4484 vocab=8b691b54
+-/
+theorem mem_wgrading_internalShiftAddEquiv_iff {k n j : ℤ} {x : cohomology (InternalShift k M) n} :
+    internalShiftAddEquiv k n x ∈ cohomology.wgrading M n (j + k) ↔
+      x ∈ cohomology.wgrading (InternalShift k M) n j := by
+  constructor
+  · intro hx
+    obtain ⟨z, hz, hzx⟩ := mem_wgrading_iff.mp hx
+    rw [← (internalShiftAddEquiv k n).symm_apply_apply x, ← hzx, internalShiftAddEquiv_symm_mk]
+    exact mem_wgrading_iff.mpr ⟨_, hz, rfl⟩
+  · intro hx
+    obtain ⟨z, hz, rfl⟩ := mem_wgrading_iff.mp hx
+    rw [internalShiftAddEquiv_mk]
+    exact mem_wgrading_iff.mpr ⟨_, hz, rfl⟩
+
+end InternalShift
+
+end cohomology
+
+end DG

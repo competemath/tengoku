@@ -1,0 +1,1 @@
+-- HodgeStructuresLean4: a factory bundle (data/intake/hodge-structures-lean4). This file only marks the library for Tengoku/All.lean.

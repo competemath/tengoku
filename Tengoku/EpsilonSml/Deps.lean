@@ -1,0 +1,1 @@
+-- EpsilonSml: a factory bundle (data/intake/epsilon-sml). This file only marks the library for Tengoku/All.lean.
