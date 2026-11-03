@@ -58,14 +58,18 @@ noncomputable def SRemV (P Q : K[X]) : ℕ → K[X]
     else -(SRemV P Q n) + (SRemS P Q n / SRemS P Q (n + 1)) * SRemV P Q (n + 1)
 
 open Classical in
-/-- Unfolding lemma for SRemU at index n+2 when SRemS(n+1) ≠ 0.-/
+/-- Unfolding lemma for SRemU at index n+2 when SRemS(n+1) ≠ 0.
+@isnad1 id=eq.1h4v.s8.5f20c175f269 from=translated src=- shape=33abdb56 vocab=99e51a49
+-/
 lemma SRemU_ss (P Q : K[X]) (n : ℕ) (hne : SRemS P Q (n + 1) ≠ 0) :
     SRemU P Q (n + 2) =
       -(SRemU P Q n) + (SRemS P Q n / SRemS P Q (n + 1)) * SRemU P Q (n + 1) := by
   simp [SRemU, hne]
 
 open Classical in
-/-- Unfolding lemma for SRemV at index n+2 when SRemS(n+1) ≠ 0.-/
+/-- Unfolding lemma for SRemV at index n+2 when SRemS(n+1) ≠ 0.
+@isnad1 id=eq.1h4v.s8.d416846687b0 from=translated src=- shape=33abdb56 vocab=7881b729
+-/
 lemma SRemV_ss (P Q : K[X]) (n : ℕ) (hne : SRemS P Q (n + 1) ≠ 0) :
     SRemV P Q (n + 2) =
       -(SRemV P Q n) + (SRemS P Q n / SRemS P Q (n + 1)) * SRemV P Q (n + 1) := by

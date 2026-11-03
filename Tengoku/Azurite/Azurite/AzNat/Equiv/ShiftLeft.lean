@@ -16,7 +16,9 @@ namespace Azurite.AzNat
 
 /-- Computing a single limb of the left-shift: write the input `x` shifted
     left by `sh` bits OR-ed with the incoming carry, and the outgoing carry
-    is the top `sh` bits of `x`.-/
+    is the top `sh` bits of `x`.
+@isnad1 id=and.3h3v.s7.82eceb0c2f42 from=translated src=- shape=092345c8 vocab=29743d46
+-/
 lemma limb_shift_step (x carry : UInt64) (sh : Nat)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) (hcarry : carry.toNat < 2 ^ sh) :
     ((x <<< UInt64.ofNat sh) ||| carry).toNat
@@ -280,7 +282,9 @@ private lemma shiftLimbsLeft.go_correct (hi sh : Nat) (hsh_lb : 1 ≤ sh) (hsh_u
     ring
 
 /-- Correctness of `shiftLimbsLeft`: the modified limbs `[lo, hi)` plus the returned
-    carry at the top represent the original slice shifted left by `sh` bits.-/
+    carry at the top represent the original slice shifted left by `sh` bits.
+@isnad1 id=match1.4h4v.s7.7ee54f3ed622 from=translated src=- shape=83443c2e vocab=27035d63
+-/
 theorem shiftLimbsLeft_toNat (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :
@@ -295,7 +299,9 @@ theorem shiftLimbsLeft_toNat (a : Array UInt64) (lo hi sh : Nat)
   simp at h
   exact h
 
-/-- `shiftLimbsLeft` leaves the prefix `[0, lo)` unchanged.-/
+/-- `shiftLimbsLeft` leaves the prefix `[0, lo)` unchanged.
+@isnad1 id=eq.4h4v.s6.600c190891bd from=translated src=- shape=aaa8842b vocab=803530d1
+-/
 theorem shiftLimbsLeft_toList_take (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :
@@ -331,7 +337,9 @@ private lemma shiftLimbsLeft.go_carry_lt (hi sh : Nat) (hsh_lb : 1 ≤ sh) (hsh_
       limb_shift_step a[i] carry sh hsh_lb hsh_ub hcarry
     exact ih _ _ _ (by rw [Array.size_set]; exact h_size) h_newCarry_lt h_rec
 
-/-- The carry returned by `shiftLimbsLeft` is bounded by `2^sh`.-/
+/-- The carry returned by `shiftLimbsLeft` is bounded by `2^sh`.
+@isnad1 id=lt.4h4v.s6.25a1ec7fbfdd from=translated src=- shape=7ce00240 vocab=2ccb18e1
+-/
 theorem shiftLimbsLeft_carry_lt (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :
@@ -373,7 +381,9 @@ private lemma shiftLimbsLeft.go_carry_eq (hi sh : Nat)
       rw [Array.getElem_set_ne _ _ h_ne]
 
 /-- The carry-out of `shiftLimbsLeft a lo hi sh` (when `lo < hi`) equals
-    `a[hi - 1] >>> (64 - sh)`.-/
+    `a[hi - 1] >>> (64 - sh)`.
+@isnad1 id=eq.5h4v.s6.3c37b78d869e from=translated src=- shape=39193336 vocab=236e0752
+-/
 theorem shiftLimbsLeft_carry_eq (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) (hlo_lt : lo < hi) :
@@ -381,7 +391,9 @@ theorem shiftLimbsLeft_carry_eq (a : Array UInt64) (lo hi sh : Nat)
       = a[hi - 1]'(by omega) >>> UInt64.ofNat (64 - sh) :=
   shiftLimbsLeft.go_carry_eq hi sh a lo 0 hhi hlo_lt
 
-/-- `shiftLeftMul64 a k` represents `a * 2^(64*k)`.-/
+/-- `shiftLeftMul64 a k` represents `a * 2^(64*k)`.
+@isnad1 id=eq.0h2v.s5.10f78f81a2b0 from=translated src=- shape=a29972e8 vocab=e3d6539b
+-/
 theorem toNat_shiftLeftMul64 (a : AzNat) (k : Nat) :
     (shiftLeftMul64 a k).toNat = a.toNat * 2 ^ (64 * k) := by
   by_cases hz : a.limbs.size = 0
@@ -400,7 +412,9 @@ theorem toNat_shiftLeftMul64 (a : AzNat) (k : Nat) :
     show toNatLimbsList a.limbs.toList * 2^(64*k) + 0 = toNatLimbsList a.limbs.toList * 2^(64*k)
     ring
 
-/-- Correctness of `shiftLeftGeneralLimbs`.-/
+/-- Correctness of `shiftLeftGeneralLimbs`.
+@isnad1 id=eq.2h2v.s6.3b41cd011dbc from=translated src=- shape=c857ff64 vocab=940fbb5e
+-/
 theorem toNat_shiftLeftGeneralLimbs (a : AzNat) (sh : Nat)
     (hz : ¬ a.limbs.size = 0) (hsm : ¬ sh % 64 = 0) :
     toNatLimbsList (shiftLeftGeneralLimbs a sh hz hsm).toList = a.toNat * 2 ^ sh := by
@@ -565,7 +579,9 @@ theorem toNat_shiftLeftGeneralLimbs (a : AzNat) (sh : Nat)
     rw [show (xL * E + xP) * (B * S) = xL * E * (B * S) + xP * S * B by ring, h_shift'']
     ring
 
-/-- Correctness of `shiftLeft`: `toNat (a <<< sh) = a.toNat * 2 ^ sh`.-/
+/-- Correctness of `shiftLeft`: `toNat (a <<< sh) = a.toNat * 2 ^ sh`.
+@isnad1 id=eq.0h2v.s5.e1440bd1b90a from=translated src=- shape=f16f25b5 vocab=01e4a957
+-/
 theorem toNat_shiftLeft (a : AzNat) (sh : Nat) :
     (shiftLeft a sh).toNat = a.toNat * 2 ^ sh := by
   unfold shiftLeft
@@ -588,15 +604,21 @@ theorem toNat_shiftLeft (a : AzNat) (sh : Nat) :
       show toNatLimbsList _ = _
       exact toNat_shiftLeftGeneralLimbs a sh hz hsm
 
-/-- Compatibility of `HShiftLeft` notation with `shiftLeft`.-/
+/-- Compatibility of `HShiftLeft` notation with `shiftLeft`.
+@isnad1 id=eq.0h2v.s4.1b31b41b5581 from=translated src=- shape=62f8b022 vocab=a622e478
+-/
 @[simp] lemma hShiftLeft_eq (a : AzNat) (sh : Nat) : a <<< sh = shiftLeft a sh := rfl
 
-/-- `toNat` respects left shift.-/
+/-- `toNat` respects left shift.
+@isnad1 id=eq.0h2v.s4.9dc29b34174c from=translated src=- shape=2bed0411 vocab=0d8396de
+-/
 theorem toNat_hShiftLeft (a : AzNat) (sh : Nat) :
     (a <<< sh).toNat = a.toNat <<< sh := by
   rw [hShiftLeft_eq, toNat_shiftLeft, Nat.shiftLeft_eq]
 
-/-- `ofNat` respects left shift.-/
+/-- `ofNat` respects left shift.
+@isnad1 id=eq.0h2v.s4.938ca270b4f3 from=translated src=- shape=bd88faf1 vocab=8aa1ea3d
+-/
 theorem ofNat_shiftLeft (n sh : Nat) : ofNat (n <<< sh) = ofNat n <<< sh := by
   apply toNat_injective
   rw [toNat_hShiftLeft, toNat_ofNat, toNat_ofNat]

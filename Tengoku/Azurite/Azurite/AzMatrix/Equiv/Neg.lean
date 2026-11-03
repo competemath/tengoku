@@ -18,13 +18,17 @@ import Tengoku.Seed.Algebra.Group.Pi.Basic
 namespace Azurite
 variable {R : Type _} [Neg R] {m n : Nat}
 
-/-- Negation commutes with `toFn`.-/
+/-- Negation commutes with `toFn`.
+@isnad1 id=eq.0h6v.s5.ae589bfd51be from=translated src=- shape=c5a79bc9 vocab=9b5025be
+-/
 @[simp]
 theorem AzMatrix.toFn_neg (M : AzMatrix R m n) (i : Fin m) (j : Fin n) :
     (-M).toFn i j = -(M.toFn i j) := by
   show (M.map (- ·)).toFn i j = -(M.toFn i j); simp
 
-/-- Negation commutes with `ofFn`.-/
+/-- Negation commutes with `ofFn`.
+@isnad1 id=eq.0h4v.s5.bc3e2e6443d4 from=translated src=- shape=8a6efc68 vocab=17a0921a
+-/
 @[simp]
 theorem AzMatrix.ofFn_neg (f : Fin m → Fin n → R) :
     -(AzMatrix.ofFn f) = AzMatrix.ofFn (fun i j => -(f i j)) := by

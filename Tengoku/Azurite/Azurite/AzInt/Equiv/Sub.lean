@@ -14,7 +14,9 @@ import Tengoku.Azurite.Azurite.AzInt.Equiv.Add
 
 namespace Azurite.AzInt
 
-/-- Correctness of `AzInt.subUInt64`.-/
+/-- Correctness of `AzInt.subUInt64`.
+@isnad1 id=eq.0h2v.s4.e3063048a76a from=translated src=- shape=df04f8ad vocab=8ff5c8e5
+-/
 theorem toInt_subUInt64 (z : AzInt) (u : UInt64) :
     (z.subUInt64 u).toInt = z.toInt - (u.toNat : Int) := by
   unfold subUInt64
@@ -54,7 +56,9 @@ theorem toInt_subUInt64 (z : AzInt) (u : UInt64) :
     rw [toInt_mkNonzero_false _ h_sum_pos, AzNat.toNat_addUInt64]
     omega
 
-/-- `ofInt`-version of `toInt_subUInt64`.-/
+/-- `ofInt`-version of `toInt_subUInt64`.
+@isnad1 id=eq.0h2v.s4.27a3a7b03c10 from=translated src=- shape=d6a30233 vocab=375a7e86
+-/
 theorem ofInt_subUInt64 (i : Int) (u : UInt64) :
     ofInt (i - (u.toNat : Int)) = (ofInt i).subUInt64 u := by
   have h : (ofInt (i - (u.toNat : Int))).toInt = ((ofInt i).subUInt64 u).toInt := by
@@ -62,7 +66,9 @@ theorem ofInt_subUInt64 (i : Int) (u : UInt64) :
   have := congrArg ofInt h
   rwa [ofInt_toInt, ofInt_toInt] at this
 
-/-- Correctness of `AzInt.addInt64`.-/
+/-- Correctness of `AzInt.addInt64`.
+@isnad1 id=eq.0h2v.s4.d9452538a738 from=translated src=- shape=fd891ac3 vocab=6a2df9d7
+-/
 theorem toInt_addInt64 (z : AzInt) (i : Int64) :
     (z.addInt64 i).toInt = z.toInt + i.toInt := by
   unfold addInt64
@@ -108,7 +114,9 @@ theorem toInt_addInt64 (z : AzInt) (i : Int64) :
     rw [h_neg_u_toNat, hi_neg]
     ring
 
-/-- `ofInt`-version of `toInt_addInt64`.-/
+/-- `ofInt`-version of `toInt_addInt64`.
+@isnad1 id=eq.0h2v.s4.0ee3c80996b8 from=translated src=- shape=c0c9f83a vocab=7ddc1ba4
+-/
 theorem ofInt_addInt64 (i : Int) (j : Int64) :
     ofInt (i + j.toInt) = (ofInt i).addInt64 j := by
   have h : (ofInt (i + j.toInt)).toInt = ((ofInt i).addInt64 j).toInt := by
@@ -116,7 +124,9 @@ theorem ofInt_addInt64 (i : Int) (j : Int64) :
   have := congrArg ofInt h
   rwa [ofInt_toInt, ofInt_toInt] at this
 
-/-- Correctness of `AzInt.subInt64`.-/
+/-- Correctness of `AzInt.subInt64`.
+@isnad1 id=eq.0h2v.s4.ab805157d822 from=translated src=- shape=fd891ac3 vocab=63b72adf
+-/
 theorem toInt_subInt64 (z : AzInt) (i : Int64) :
     (z.subInt64 i).toInt = z.toInt - i.toInt := by
   unfold subInt64
@@ -162,7 +172,9 @@ theorem toInt_subInt64 (z : AzInt) (i : Int64) :
     rw [h_neg_u_toNat, hi_neg]
     ring
 
-/-- `ofInt`-version of `toInt_subInt64`.-/
+/-- `ofInt`-version of `toInt_subInt64`.
+@isnad1 id=eq.0h2v.s4.cd79424b06e0 from=translated src=- shape=c0c9f83a vocab=08b985fd
+-/
 theorem ofInt_subInt64 (i : Int) (j : Int64) :
     ofInt (i - j.toInt) = (ofInt i).subInt64 j := by
   have h : (ofInt (i - j.toInt)).toInt = ((ofInt i).subInt64 j).toInt := by
@@ -170,7 +182,9 @@ theorem ofInt_subInt64 (i : Int) (j : Int64) :
   have := congrArg ofInt h
   rwa [ofInt_toInt, ofInt_toInt] at this
 
-/-- Correctness of `AzInt.sub`.-/
+/-- Correctness of `AzInt.sub`.
+@isnad1 id=eq.0h2v.s4.2996432205ab from=translated src=- shape=0438c7a3 vocab=d10cfb15
+-/
 theorem toInt_sub (a b : AzInt) : (a - b).toInt = a.toInt - b.toInt := by
   show (sub a b).toInt = a.toInt - b.toInt
   unfold sub
@@ -234,7 +248,9 @@ theorem toInt_sub (a b : AzInt) : (a - b).toInt = a.toInt - b.toInt := by
         rw [toInt_mkNonzero_false _ h_sub_ne, AzNat.toNat_sub]
         omega
 
-/-- `ofInt`-version of `toInt_sub`.-/
+/-- `ofInt`-version of `toInt_sub`.
+@isnad1 id=eq.0h2v.s4.2b99e5ba616a from=translated src=- shape=0438c7a3 vocab=0f897002
+-/
 theorem ofInt_sub (i j : Int) : ofInt (i - j) = ofInt i - ofInt j := by
   have h : (ofInt (i - j)).toInt = (ofInt i - ofInt j).toInt := by
     rw [toInt_ofInt, toInt_sub, toInt_ofInt, toInt_ofInt]

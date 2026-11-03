@@ -104,7 +104,9 @@ private lemma no_semi_in_intercalate_row : ∀ (row : List R),
     · exact no_semi_in_intercalate_row (r' :: rs) hc
 
 /-- `parseRowsN` correctly parses an intercalated list of row char-reps when
-    the expected row count matches and every row has the expected length.-/
+    the expected row count matches and every row has the expected length.
+@isnad1 id=eq.1h3v.s6.a6fdb1bebe6d from=translated src=- shape=f33ac2f3 vocab=cfd15dc9
+-/
 lemma parseRowsN_intercalate :
     ∀ (rows : List (List R)),
       (∀ row ∈ rows, row.length = n) →
@@ -198,7 +200,9 @@ private lemma toChars_of_degenerate (M : AzMatrix R m n) (h : m = 0 ∨ n = 0) :
   unfold toChars
   rw [ite_eq_left h]
 
-/-- Round-trip: `parseChars` is a left inverse of `toChars`.-/
+/-- Round-trip: `parseChars` is a left inverse of `toChars`.
+@isnad1 id=eq.0h4v.s5.172b07b85c13 from=translated src=- shape=ee47f168 vocab=220fbde7
+-/
 theorem parseChars_toChars (M : AzMatrix R m n) : parseChars (toChars M) = some M := by
   by_cases hm : m = 0
   · rw [toChars_of_degenerate M (Or.inl hm)]

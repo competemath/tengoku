@@ -38,6 +38,9 @@ structure AzPolynomial (R : Type _) [Semiring R] where
   last_ne_zero : coeffs.back? ≠ some 0
 deriving Repr, DecidableEq
 
+/--
+@isnad1 id=eq.1h3v.s4.43716658c2a1 from=translated src=- shape=38ece54e vocab=cfed0a2e
+-/
 @[ext] lemma AzPolynomial.ext {R : Type _} [Semiring R] {p q : Azurite.AzPolynomial R} (h : p.coeffs = q.coeffs) : p = q := by
   cases p
   cases q
@@ -49,8 +52,17 @@ variable {R : Type _} [Semiring R]
 
 def List.getCoeff (l : List R) (i : ℕ) : R := (l[i]?).getD 0
 
+/--
+@isnad1 id=eq.0h2v.s4.c213285a148f from=translated src=- shape=a96fbdfc vocab=e23210f4
+-/
 @[simp] lemma List.getCoeff_nil (i : ℕ) : ([] : List R).getCoeff i = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s4.bd39ee2bccaa from=translated src=- shape=0748bd36 vocab=9f2a5e37
+-/
 @[simp] lemma List.getCoeff_cons_zero (a : R) (as : List R) : (a :: as).getCoeff 0 = a := rfl
+/--
+@isnad1 id=eq.0h4v.s5.47733f851344 from=translated src=- shape=3256414a vocab=afb918cf
+-/
 @[simp] lemma List.getCoeff_cons_succ (a : R) (as : List R) (i : ℕ) : (a :: as).getCoeff (i + 1) = as.getCoeff i := rfl
 
 namespace Azurite.AzPolynomial
@@ -65,6 +77,9 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
 def dropTrailingZeros (l : List R) : List R :=
   (l.reverse.dropWhile (· = 0)).reverse
 
+/--
+@isnad1 id=ne.0h2v.s5.5fcc29972e78 from=translated src=- shape=a331977b vocab=7dde0be0
+-/
 lemma head?_dropWhile (l : List R) :
   (l.dropWhile (· = 0)).head? ≠ some 0 := by
   induction l with
@@ -75,6 +90,9 @@ lemma head?_dropWhile (l : List R) :
       exact ih
     · simp [ha]
 
+/--
+@isnad1 id=other.0h2v.s5.4b532f98f5c8 from=translated src=- shape=2cbb6a9e vocab=fc1f2bf2
+-/
 lemma dropTrailingZeros_last (l : List R) :
   let dropped := dropTrailingZeros l
   dropped = [] ∨ dropped.getLast? ≠ some 0 := by
@@ -88,6 +106,9 @@ lemma dropTrailingZeros_last (l : List R) :
     rw [h1]
     exact head?_dropWhile (l.reverse)
 
+/--
+@isnad1 id=isprefix.0h2v.s4.0a15048ea795 from=translated src=- shape=4f0690b0 vocab=f9a269c9
+-/
 lemma dropTrailingZeros_prefix (l : List R) :
   dropTrailingZeros l <+: l := by
   dsimp [dropTrailingZeros]
@@ -100,6 +121,9 @@ lemma dropTrailingZeros_prefix (l : List R) :
     exact h3
   exact ⟨(l.reverse.takeWhile (· = 0)).reverse, h1⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.07bd5045ef2e from=translated src=- shape=4ae42021 vocab=b41ed6f8
+-/
 lemma IsPrefix_get? {α : Type _} {l₁ l₂ : List α} (h : l₁ <+: l₂) (i : ℕ) (hi : i < l₁.length) :
   l₂[i]? = l₁[i]? := by
   rcases h with ⟨t, ht⟩
@@ -107,6 +131,9 @@ lemma IsPrefix_get? {α : Type _} {l₁ l₂ : List α} (h : l₁ <+: l₂) (i :
   rw [List.getElem?_append]
   rw [ite_eq_left hi]
 
+/--
+@isnad1 id=eq.0h3v.s6.71534549549b from=translated src=- shape=4fcd5a90 vocab=f4c11c3e
+-/
 lemma dropTrailingZeros_get? (l : List R) (i : ℕ) :
   (dropTrailingZeros l)[i]? = if i < (dropTrailingZeros l).length then l[i]? else none := by
   have h_pref := dropTrailingZeros_prefix l
@@ -117,6 +144,9 @@ lemma dropTrailingZeros_get? (l : List R) (i : ℕ) :
   · next h_ge =>
     exact List.getElem?_eq_none (by omega)
 
+/--
+@isnad1 id=eq.2h5v.s5.1aa6d97cc212 from=translated src=- shape=3a569f11 vocab=e8a9560d
+-/
 lemma takeWhile_getElem?_eq_some {α : Type _} {p : α → Bool} (l : List α) (j : ℕ) (hj : j < (l.takeWhile p).length) (x : α) (hx : (l.takeWhile p)[j]? = some x) :
   p x = true := by
   induction l generalizing j with
@@ -145,6 +175,9 @@ lemma eq_dropTrailingZeros_append_takeWhile (l : List R) :
     exact h3
   exact h1
 
+/--
+@isnad1 id=eq.0h2v.s5.cf7564a112e7 from=translated src=- shape=9ba07d85 vocab=d4c60d20
+-/
 lemma toList_popWhile_eq_dropTrailingZeros (a : Array R) :
   (a.popWhile (· = 0)).toList = dropTrailingZeros a.toList := by
   dsimp [dropTrailingZeros]
@@ -187,6 +220,9 @@ instance {R : Type _} [Semiring R] : Inhabited (AzPolynomial R) := ⟨zero⟩
 instance {R : Type _} [Semiring R] : Zero (AzPolynomial R) := ⟨zero⟩
 instance {R : Type _} [Semiring R] [DecidableEq R] : One (AzPolynomial R) := ⟨one⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.42cfb614658a from=translated src=- shape=a94d404e vocab=02a0a220
+-/
 @[simp] lemma coeffs_zero {R : Type _} [Semiring R] : (0 : AzPolynomial R).coeffs = #[] := rfl
 
 /-- The natural degree of a `AzPolynomial`. Expected behavior: 0 for the zero polynomial.-/
@@ -213,15 +249,24 @@ def nextCoeff {R : Type _} [Semiring R] (p : AzPolynomial R) : R :=
 def Monic {R : Type _} [Semiring R] (p : AzPolynomial R) :=
   p.leadingCoeff = (1 : R)
 
+/--
+@isnad1 id=iff.0h2v.s5.e4319239701c from=translated src=- shape=bd5ea267 vocab=9dec9372
+-/
 theorem Monic.def {R : Type _} [Semiring R] {p : AzPolynomial R} : p.Monic ↔ p.leadingCoeff = 1 :=
   Iff.rfl
 
 instance Monic.decidable {R : Type _} [Semiring R] [DecidableEq R] {p : AzPolynomial R} : Decidable p.Monic := by unfold Monic; infer_instance
 
+/--
+@isnad1 id=eq.1h2v.s5.911479d7f8ab from=translated src=- shape=2f86dcb3 vocab=9dec9372
+-/
 @[simp]
 theorem Monic.leadingCoeff_eq_one {R : Type _} [Semiring R] {p : AzPolynomial R} (hp : p.Monic) : p.leadingCoeff = 1 :=
   hp
 
+/--
+@isnad1 id=eq.1h2v.s5.6ebb2c8fb61e from=translated src=- shape=ae87b049 vocab=cbdda458
+-/
 theorem Monic.coeff_natDegree {R : Type _} [Semiring R] {p : AzPolynomial R} (hp : p.Monic) : p.coeff p.natDegree = 1 :=
   hp
 
@@ -231,6 +276,9 @@ variable {S : Type _} [Semiring S] [DecidableEq S]
 def map {R : Type _} [Semiring R] (f : R →+* S) (p : AzPolynomial R) : AzPolynomial S :=
   normalize (p.coeffs.map f)
 
+/--
+@isnad1 id=eq.0h4v.s4.c923f3c1cb03 from=translated src=- shape=8c999cca vocab=a963f4e3
+-/
 lemma Array_back?_map {α β : Type _} (a : Array α) (f : α → β) :
   (a.map f).back? = a.back?.map f := by
   dsimp [Array.back?]

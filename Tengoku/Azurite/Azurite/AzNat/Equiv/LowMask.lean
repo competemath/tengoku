@@ -42,6 +42,9 @@ private lemma shiftLeft_one_sub_one_toNat (k : Nat) :
   rw [heq, Nat.add_mod, Nat.mod_self, Nat.zero_add, Nat.mod_mod,
       Nat.mod_eq_of_lt (by omega)]
 
+/--
+@isnad1 id=eq.0h1v.s5.8d7027d3b8a9 from=translated src=- shape=de3fa9a7 vocab=c8cdb1d0
+-/
 theorem toNat_lowMask (k : Nat) : (AzNat.lowMask k).toNat = 2 ^ k - 1 := by
   unfold AzNat.lowMask toNat
   simp only
@@ -73,6 +76,9 @@ theorem toNat_lowMask (k : Nat) : (AzNat.lowMask k).toNat = 2 ^ k - 1 := by
       omega
     omega
 
+/--
+@isnad1 id=eq.0h1v.s5.22bd917df675 from=translated src=- shape=46f0e540 vocab=b8c844ec
+-/
 theorem lowMask_eq_ofNat (k : Nat) : AzNat.lowMask k = ofNat (2 ^ k - 1) := by
   apply toNat_injective
   rw [toNat_lowMask, toNat_ofNat]

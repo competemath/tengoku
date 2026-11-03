@@ -33,6 +33,9 @@ over `AzMvPolynomial`.
 
 /-! ### Char and digit helpers -/
 
+/--
+@isnad1 id=ne.0h1v.s4.ed532b212685 from=translated src=- shape=943afb1b vocab=cabd0440
+-/
 lemma char_ofNat_ne_dash (n : ℕ) : Char.ofNat ('0'.toNat + n % 10) ≠ '-' := by
   have h_mod : n % 10 < 10 := Nat.mod_lt _ (by decide)
   generalize h : n % 10 = k
@@ -40,6 +43,9 @@ lemma char_ofNat_ne_dash (n : ℕ) : Char.ofNat ('0'.toNat + n % 10) ≠ '-' := 
   rcases k with _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _
   all_goals { first | decide | contradiction}
 
+/--
+@isnad1 id=not.1h3v.s4.bffb02774402 from=translated src=- shape=d7f748f2 vocab=5a439f96
+-/
 lemma not_mem_natToCharsAux (f n : ℕ) (acc : List Char) (h : '-' ∉ acc) :
   '-' ∉ natToCharsAux f n acc := by
   induction f generalizing n acc with
@@ -55,6 +61,9 @@ lemma not_mem_natToCharsAux (f n : ℕ) (acc : List Char) (h : '-' ∉ acc) :
       · exact char_ofNat_ne_dash n h_head.symm
       · exact h h_tail
 
+/--
+@isnad1 id=not.0h1v.s3.9369075dc668 from=translated src=- shape=aef7e1d9 vocab=fd2ea43b
+-/
 lemma not_mem_natToChars (n : ℕ) : '-' ∉ natToChars n := by
   dsimp [natToChars]
   split
@@ -62,6 +71,9 @@ lemma not_mem_natToChars (n : ℕ) : '-' ∉ natToChars n := by
   · apply not_mem_natToCharsAux
     intro hc; nomatch hc
 
+/--
+@isnad1 id=not.0h1v.s4.0174485611eb from=translated src=- shape=6fa1fe3c vocab=18ef59da
+-/
 lemma not_mem_tail_intToChars (z : ℤ) : '-' ∉ (intToChars z).drop 1 := by
   dsimp [intToChars]
   split
@@ -75,6 +87,9 @@ lemma not_mem_tail_intToChars (z : ℤ) : '-' ∉ (intToChars z).drop 1 := by
     · intro hc
       exact not_mem_natToCharsAux _ _ _ (by intro hc2; nomatch hc2) (List.mem_of_mem_drop hc)
 
+/--
+@isnad1 id=ne.1h3v.s4.f6ddccce0b54 from=translated src=- shape=cbd24ded vocab=922b471f
+-/
 lemma natToCharsAux_ne_nil_of_acc_ne_nil (f n : ℕ) (acc : List Char) (h : acc ≠ []) :
     natToCharsAux f n acc ≠ [] := by
   induction f generalizing n acc with
@@ -87,6 +102,9 @@ lemma natToCharsAux_ne_nil_of_acc_ne_nil (f n : ℕ) (acc : List Char) (h : acc 
       intro hc
       contradiction
 
+/--
+@isnad1 id=ne.1h2v.s5.de7efd741ab0 from=translated src=- shape=4a657cd9 vocab=1ea15f5d
+-/
 lemma natToCharsAux_ne_nil_of_ne_zero (f n : ℕ) (h : n ≠ 0) :
     natToCharsAux (f + 1) n [] ≠ [] := by
   dsimp [natToCharsAux]
@@ -95,6 +113,9 @@ lemma natToCharsAux_ne_nil_of_ne_zero (f n : ℕ) (h : n ≠ 0) :
   · apply natToCharsAux_ne_nil_of_acc_ne_nil
     intro hc; contradiction
 
+/--
+@isnad1 id=ne.0h1v.s3.1dc7f407f799 from=translated src=- shape=8b9e0ca6 vocab=82612ee0
+-/
 lemma natToChars_ne_nil (n : ℕ) : natToChars n ≠ [] := by
   dsimp [natToChars]
   split_ifs with hn
@@ -104,10 +125,16 @@ lemma natToChars_ne_nil (n : ℕ) : natToChars n ≠ [] := by
     · rename_i k
       exact natToCharsAux_ne_nil_of_ne_zero k (k+1) (by simp)
 
+/--
+@isnad1 id=ne.0h2v.s4.15550d244b09 from=translated src=- shape=f641c6ec vocab=9facacc2
+-/
 lemma zmodToChars_ne_nil {n : ℕ} [NeZero n] (c : ZMod n) : zmodToChars c ≠ [] := by
   dsimp [zmodToChars]
   exact natToChars_ne_nil c.val
 
+/--
+@isnad1 id=ne.0h1v.s3.b9736f803135 from=translated src=- shape=8b9e0ca6 vocab=a4309a97
+-/
 lemma intToChars_ne_nil (z : ℤ) : intToChars z ≠ [] := by
   dsimp [intToChars]
   split
@@ -122,6 +149,9 @@ lemma intToChars_ne_nil (z : ℤ) : intToChars z ≠ [] := by
         apply natToCharsAux_ne_nil_of_ne_zero k (k+1)
         intro hc; contradiction
 
+/--
+@isnad1 id=ne.0h1v.s3.a0dfa214125d from=translated src=- shape=8b9e0ca6 vocab=825698ff
+-/
 lemma ratToChars_ne_nil (q : ℚ) : ratToChars q ≠ [] := by
   dsimp [ratToChars]
   split
@@ -132,6 +162,9 @@ lemma ratToChars_ne_nil (q : ℚ) : ratToChars q ≠ [] := by
     · intro hc
       contradiction
 
+/--
+@isnad1 id=not.0h1v.s4.dac6892ac4f7 from=translated src=- shape=6fa1fe3c vocab=7166584c
+-/
 lemma not_mem_tail_ratToChars (q : ℚ) : '-' ∉ (ratToChars q).drop 1 := by
   dsimp [ratToChars]
   split
@@ -156,6 +189,9 @@ lemma not_mem_tail_ratToChars (q : ℚ) : '-' ∉ (ratToChars q).drop 1 := by
       | inr h_rest =>
         exact not_mem_natToChars _ h_rest
 
+/--
+@isnad1 id=false.1h2v.s4.999f6ed2442f from=translated src=- shape=a7b091bd vocab=d1120e40
+-/
 lemma natToChars_not_dash (n : ℕ) (cs : List Char) : natToChars n = '-' :: cs → False := by
   intro h
   have h_parse := parseNatChars_natToChars n
@@ -164,6 +200,9 @@ lemma natToChars_not_dash (n : ℕ) (cs : List Char) : natToChars n = '-' :: cs 
   rw [h_none] at h_parse
   contradiction
 
+/--
+@isnad1 id=eq.0h1v.s5.9f6c10f72e7c from=translated src=- shape=dd74b577 vocab=b1979ed4
+-/
 lemma intToChars_natAbs (z : ℤ) :
     intToChars z = if z < 0 then '-' :: natToChars z.natAbs else natToChars z.natAbs := by
   unfold intToChars natToChars
@@ -172,6 +211,9 @@ lemma intToChars_natAbs (z : ℤ) :
   any_goals rfl
   any_goals omega
 
+/--
+@isnad1 id=eq.0h1v.s3.00a07dd8a65d from=translated src=- shape=edb93955 vocab=bc42c9aa
+-/
 lemma parseIntChars_intToChars (z : ℤ) : parseIntChars (intToChars z) = some z := by
   rw [intToChars_natAbs]
   split_ifs with hz
@@ -209,6 +251,9 @@ lemma parseIntChars_intToChars (z : ℤ) : parseIntChars (intToChars z) = some z
         congr 1
         omega
 
+/--
+@isnad1 id=not.2h4v.s5.641d34547dc7 from=translated src=- shape=e09a9dcb vocab=da9edcd9
+-/
 lemma not_mem_natToCharsAux_of_not_digit (c : Char) (hc : c.toNat < 48 ∨ 57 < c.toNat)
     (fuel n : ℕ) (acc : List Char) (h : c ∉ acc) :
     c ∉ natToCharsAux fuel n acc := by
@@ -240,6 +285,9 @@ lemma not_mem_natToCharsAux_of_not_digit (c : Char) (hc : c.toNat < 48 ∨ 57 < 
           omega
       · exact h
 
+/--
+@isnad1 id=not.1h2v.s5.87e99f4030a8 from=translated src=- shape=15f7d2fd vocab=30793e48
+-/
 lemma not_mem_natToChars_of_not_digit (c : Char) (hc : c.toNat < 48 ∨ 57 < c.toNat) (n : ℕ) :
     c ∉ natToChars n := by
   unfold natToChars
@@ -252,6 +300,9 @@ lemma not_mem_natToChars_of_not_digit (c : Char) (hc : c.toNat < 48 ∨ 57 < c.t
     omega
   · exact not_mem_natToCharsAux_of_not_digit c hc _ _ _ (by simp)
 
+/--
+@isnad1 id=and.1h2v.s4.14e330d2f891 from=translated src=- shape=9a0d05de vocab=f8c461e3
+-/
 lemma mem_natToChars_only_digits (n : ℕ) (c : Char) (h : c ∈ natToChars n) :
     '0'.toNat ≤ c.toNat ∧ c.toNat ≤ '9'.toNat := by
   by_contra hc
@@ -259,6 +310,9 @@ lemma mem_natToChars_only_digits (n : ℕ) (c : Char) (h : c ∈ natToChars n) :
   have h_not_mem := not_mem_natToChars_of_not_digit c hc n
   contradiction
 
+/--
+@isnad1 id=or.1h2v.s5.67f459d8f4dd from=translated src=- shape=36fea9e9 vocab=5b436eb0
+-/
 lemma mem_intToChars_only_digits_or_dash (z : ℤ) (c : Char) (h : c ∈ intToChars z) :
     c = '-' ∨ ('0'.toNat ≤ c.toNat ∧ c.toNat ≤ '9'.toNat) := by
   rw [intToChars_natAbs] at h
@@ -268,6 +322,9 @@ lemma mem_intToChars_only_digits_or_dash (z : ℤ) (c : Char) (h : c ∈ intToCh
     · exact Or.inr (mem_natToChars_only_digits _ _ h_nat)
   · exact Or.inr (mem_natToChars_only_digits _ _ h)
 
+/--
+@isnad1 id=or.1h2v.s5.54e3c4a80e64 from=translated src=- shape=900525f7 vocab=715b8030
+-/
 lemma mem_ratToChars_only_digits_or_dash_or_slash (q : ℚ) (c : Char) (h : c ∈ ratToChars q) :
     c = '/' ∨ c = '-' ∨ ('0'.toNat ≤ c.toNat ∧ c.toNat ≤ '9'.toNat) := by
   dsimp [ratToChars] at h
@@ -290,6 +347,9 @@ lemma mem_ratToChars_only_digits_or_dash_or_slash (q : ℚ) (c : Char) (h : c �
 
 /-! ### `'/'` not in `natToChars` / `intToChars`, used by `parseRatChars_ratToChars`. -/
 
+/--
+@isnad1 id=not.1h3v.s4.c0e1fd213e91 from=translated src=- shape=d7f748f2 vocab=5a439f96
+-/
 lemma not_mem_natToCharsAux_div (fuel n : ℕ) (acc : List Char) (h : '/' ∉ acc) :
     '/' ∉ natToCharsAux fuel n acc := by
   induction fuel generalizing n acc with
@@ -314,12 +374,18 @@ lemma not_mem_natToCharsAux_div (fuel n : ℕ) (acc : List Char) (h : '/' ∉ ac
         decide
       · exact h
 
+/--
+@isnad1 id=not.0h1v.s3.7e8582a7a3db from=translated src=- shape=aef7e1d9 vocab=fd2ea43b
+-/
 lemma not_mem_natToChars_div (n : ℕ) : '/' ∉ natToChars n := by
   unfold natToChars
   split_ifs with hn
   · intro hc; simp at hc
   · exact not_mem_natToCharsAux_div _ _ _ (by simp)
 
+/--
+@isnad1 id=not.0h1v.s3.df3d39eaea1f from=translated src=- shape=aef7e1d9 vocab=c16b47db
+-/
 lemma not_mem_intToChars (z : ℤ) : '/' ∉ intToChars z := by
   rw [intToChars_natAbs]
   split_ifs with hz
@@ -379,10 +445,15 @@ private lemma splitOnP_go_append_not_mem (sep : Char) (l1 l2 acc : List Char) (h
     rw [ih (x :: acc) (fun hc => h (List.Mem.tail _ hc))]
     simp [List.reverse_cons, List.append_assoc]
 
-/-- Splitting a list with no separator gives a single part.-/
+/-- Splitting a list with no separator gives a single part.
+@isnad1 id=eq.1h2v.s5.c7dd9ebe1972 from=translated src=- shape=040242ef vocab=7e0ad824
+-/
 lemma splitOn_not_mem (sep : Char) (l : List Char) (h : sep ∉ l) : l.splitOn sep = [l] := by
   simp [List.splitOn, List.splitOnP, splitOnP_go_not_mem sep l [] h]
 
+/--
+@isnad1 id=eq.2h3v.s6.ec1a2d5a217a from=translated src=- shape=214fc177 vocab=71f5ceda
+-/
 lemma splitOn_append_singleton_append_not_mem (sep : Char) (l1 l2 : List Char)
     (h1 : sep ∉ l1) (h2 : sep ∉ l2) :
     (l1 ++ [sep] ++ l2).splitOn sep = [l1, l2] := by
@@ -396,19 +467,29 @@ lemma splitOn_append_singleton_append_not_mem (sep : Char) (l1 l2 : List Char)
 
 /-! ### Derived `'/'` splitting lemmas used by `parseRatChars_ratToChars`. -/
 
-/-- `splitOn '/'` over a prefix with no `'/'`s.-/
+/-- `splitOn '/'` over a prefix with no `'/'`s.
+@isnad1 id=eq.1h1v.s5.9fbd59e4de69 from=translated src=- shape=8055c1e1 vocab=a3aab5c9
+-/
 lemma splitOn_not_mem_slash (l : List Char) (h : '/' ∉ l) : l.splitOn '/' = [l] :=
   splitOn_not_mem '/' l h
 
-/-- `splitOn '/'` splits at exactly one `/` surrounded by `/`-free strings.-/
+/-- `splitOn '/'` splits at exactly one `/` surrounded by `/`-free strings.
+@isnad1 id=eq.2h2v.s6.c62b8edf0d7e from=translated src=- shape=d8322453 vocab=5738cf04
+-/
 lemma splitOn_append_singleton_append_not_mem_slash (l1 l2 : List Char)
     (h1 : '/' ∉ l1) (h2 : '/' ∉ l2) :
     (l1 ++ ['/'] ++ l2).splitOn '/' = [l1, l2] :=
   splitOn_append_singleton_append_not_mem '/' l1 l2 h1 h2
 
+/--
+@isnad1 id=eq.0h1v.s4.d4d1a2e8a8e7 from=translated src=- shape=45a6bd8b vocab=a6c95a68
+-/
 lemma rat_ext_eq (q : ℚ) : q = (q.num : ℚ) / (q.den : ℚ) := by
   exact (Rat.num_div_den q).symm
 
+/--
+@isnad1 id=eq.0h1v.s3.647771112577 from=translated src=- shape=edb93955 vocab=c102000e
+-/
 lemma parseRatChars_ratToChars (q : ℚ) : parseRatChars (ratToChars q) = some q := by
   unfold ratToChars
   split_ifs with hd

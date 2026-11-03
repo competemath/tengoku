@@ -18,7 +18,9 @@ namespace Azurite.AzNat
 
 /-- Auxiliary: bit `r + 64 * q` of `toNatLimbsList l` is bit `r` of limb `q`, when the
 limb exists (and `r < 64`). This version indexes by `(q, r)` directly, avoiding
-dependently-typed rewrites of `i / 64`.-/
+dependently-typed rewrites of `i / 64`.
+@isnad1 id=eq.1h3v.s6.185788a56de7 from=translated src=- shape=176371fb vocab=36344384
+-/
 lemma testBit_toNatLimbsList_aux (q r : Nat) (hr : r < 64) :
     ∀ l : List UInt64,
       Nat.testBit (toNatLimbsList l) (r + 64 * q) =
@@ -52,6 +54,9 @@ lemma testBit_toNatLimbsList_aux (q r : Nat) (hr : r < 64) :
           simp only [List.length_cons, not_lt]; omega
         simp only [hk, dite_eq_right, not_false_eq_true, h_cons_not_lt]
 
+/--
+@isnad1 id=eq.0h2v.s3.1c316519cd43 from=translated src=- shape=b91d121f vocab=6147f522
+-/
 theorem testBit_eq_toNat_testBit (n : AzNat) (i : Nat) :
     n.testBit i = n.toNat.testBit i := by
   unfold testBit toNat
@@ -67,6 +72,9 @@ theorem testBit_eq_toNat_testBit (n : AzNat) (i : Nat) :
   · have h' : ¬ i / 64 < n.limbs.toList.length := fun hc => h (h_size_eq ▸ hc)
     simp only [h, dite_eq_right, not_false_eq_true, h', dite_eq_right]
 
+/--
+@isnad1 id=eq.0h2v.s3.6fbce49260f1 from=translated src=- shape=4c0f3495 vocab=9e8b30ff
+-/
 theorem testBit_ofNat (n i : Nat) : (ofNat n).testBit i = n.testBit i := by
   rw [testBit_eq_toNat_testBit, toNat_ofNat]
 

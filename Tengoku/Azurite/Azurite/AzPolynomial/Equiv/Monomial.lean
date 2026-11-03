@@ -16,6 +16,9 @@ namespace Azurite.AzPolynomial
 
 variable {R : Type _} [Semiring R] [DecidableEq R]
 
+/--
+@isnad1 id=eq.0h2v.s5.ec165e311807 from=translated src=- shape=4fa8de18 vocab=2b2b7442
+-/
 @[simp] lemma toPoly_C (c : R) : AzPolynomial.toPoly (C c) = Polynomial.C c := by
   unfold C
   split
@@ -26,11 +29,17 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
     dsimp [AzPolynomial.toPoly, List.toPoly]
     simp
 
+/--
+@isnad1 id=eq.0h2v.s6.4474fb93e39c from=translated src=- shape=8807bb92 vocab=936230f9
+-/
 @[simp] lemma ofPoly_C (c : R) : AzPolynomial.ofPoly (Polynomial.C c) = C c := by
   rw [← toPoly_inj]
   rw [toPoly_ofPoly]
   exact (toPoly_C c).symm
 
+/--
+@isnad1 id=eq.0h1v.s4.be225cf44dcc from=translated src=- shape=d7ff9a0e vocab=b08ef9e9
+-/
 @[simp] lemma toPoly_X : AzPolynomial.toPoly (X : AzPolynomial R) = Polynomial.X := by
   unfold X
   split
@@ -41,11 +50,17 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
     dsimp [AzPolynomial.toPoly, List.toPoly]
     simp
 
+/--
+@isnad1 id=eq.0h1v.s4.c6b1f8548f4d from=translated src=- shape=d7ff9a0e vocab=5eae37d1
+-/
 @[simp] lemma ofPoly_X : AzPolynomial.ofPoly (Polynomial.X : Polynomial R) = X := by
   rw [← toPoly_inj]
   rw [toPoly_ofPoly]
   exact toPoly_X.symm
 
+/--
+@isnad1 id=eq.0h3v.s6.2a476f5072ff from=translated src=- shape=6abd23d9 vocab=b0b081e6
+-/
 @[simp] lemma toPoly_monomial (n : ℕ) (a : R) : AzPolynomial.toPoly (monomial n a) = Polynomial.monomial n a := by
   unfold monomial
   split
@@ -92,11 +107,17 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
           rw [ht]
           rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.8f7ae7782da5 from=translated src=- shape=518705cf vocab=fe31d506
+-/
 @[simp] lemma ofPoly_monomial (n : ℕ) (a : R) : AzPolynomial.ofPoly (Polynomial.monomial n a) = monomial n a := by
   rw [← toPoly_inj]
   rw [toPoly_ofPoly]
   exact (toPoly_monomial n a).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.7ed4f9ed6c8f from=translated src=- shape=8d608ccd vocab=cc3ae40c
+-/
 @[simp] lemma toPoly_erase (n : ℕ) (p : AzPolynomial R) :
   AzPolynomial.toPoly (erase n p) = Polynomial.erase n (AzPolynomial.toPoly p) := by
   ext i
@@ -133,6 +154,9 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
       rw [← coeff]
       rw [coeff_toPoly_eq]
 
+/--
+@isnad1 id=eq.0h3v.s5.4705a2f4fcc9 from=translated src=- shape=8d608ccd vocab=8cb12789
+-/
 @[simp] lemma ofPoly_erase (n : ℕ) (p : Polynomial R) :
   AzPolynomial.ofPoly (Polynomial.erase n p) = erase n (AzPolynomial.ofPoly p) := by
   rw [← toPoly_inj]
@@ -143,6 +167,9 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
 
 /-! ### Coefficient of monomial -/
 
+/--
+@isnad1 id=eq.0h4v.s5.06d5e89bbf6f from=translated src=- shape=e3328075 vocab=c9e44e5e
+-/
 @[simp] lemma coeff_monomial' (n : ℕ) (c : R) (k : ℕ) :
     coeff (monomial n c) k = if k = n then c else 0 := by
   have h := coeff_toPoly_eq (monomial n c) k

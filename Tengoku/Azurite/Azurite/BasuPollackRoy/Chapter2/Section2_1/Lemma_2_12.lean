@@ -34,7 +34,9 @@ variable {K : Type*} [CommRing K]
     equals `(−1)ⁱ` times the `i`-th elementary symmetric function evaluated at
     the roots.
 
-    This is `Multiset.prod_X_sub_C_coeff` in Mathlib, specialized to `Fin k → K`.-/
+    This is `Multiset.prod_X_sub_C_coeff` in Mathlib, specialized to `Fin k → K`.
+@isnad1 id=eq.1h4v.s8.b2c3e2e7bf34 from=translated src=- shape=526dc955 vocab=fd9b66ea
+-/
 theorem lemma_2_12 {k : ℕ} (x : Fin k → K) {i : ℕ} (hi : i ≤ k) :
     (∏ j : Fin k, (X - C (x j))).coeff (k - i) =
     (-1) ^ i * (Finset.univ.val.map x).esymm i := by

@@ -17,7 +17,9 @@ import Tengoku.Azurite.Azurite.AzMatrix.Basic
 namespace Azurite
 variable {R : Type _} {m n : Nat}
 
-/-- `ofFn` is injective.-/
+/-- `ofFn` is injective.
+@isnad1 id=injectiv.0h3v.s4.e3e66d3a8a2d from=translated src=- shape=754975c7 vocab=b818dc1d
+-/
 theorem AzMatrix.ofFn_injective :
     Function.Injective (AzMatrix.ofFn (R := R) (m := m) (n := n)) := by
   intro f g h

@@ -32,7 +32,9 @@ intermediate field of `ℝ` to an archimedean ordered field.)
 namespace Azurite.BPR
 
 /-- Any intermediate field of an archimedean ordered field is archimedean,
-    via `Archimedean.comap` along the subtype inclusion.-/
+    via `Archimedean.comap` along the subtype inclusion.
+@isnad1 id=archimed.0h3v.s8.14dd1970c499 from=translated src=- shape=d93ec9a7 vocab=e3953cc0
+-/
 theorem IntermediateField.archimedean {F E : Type*} [Field F] [Field E]
     [Algebra F E] [LinearOrder E] [IsStrictOrderedRing E] [Archimedean E]
     (S : IntermediateField F E) : Archimedean ↥S :=

@@ -17,7 +17,9 @@ open Azurite
 namespace Azurite.AzPolynomialQ
 
 /-- Negating an array of numbers pointwise preserves that if you map it with neg,
-    the listIntGcd stays the same because `(-x).natAbs = x.natAbs`.-/
+    the listIntGcd stays the same because `(-x).natAbs = x.natAbs`.
+@isnad1 id=eq.0h1v.s4.8826f998fac1 from=translated src=- shape=8a064dcc vocab=55698435
+-/
 lemma listIntGcd_map_neg (l : List ℤ) :
     listIntGcd (l.map (fun x => -x)) = listIntGcd l := by
   dsimp [listIntGcd]
@@ -58,6 +60,9 @@ instance instNegAzPolynomialQ : Neg AzPolynomialQ where
         exact p.coprime
     ⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.d11daaa5faed from=translated src=- shape=23fa6e79 vocab=8bd48177
+-/
 @[simp] lemma coeff_neg (p : AzPolynomialQ) (i : ℕ) :
     (-p).coeff i = - p.coeff i := by
   dsimp [coeff, Neg.neg, instNegAzPolynomialQ]

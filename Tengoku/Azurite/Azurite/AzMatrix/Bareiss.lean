@@ -57,7 +57,9 @@ def AzMatrix.bareissBlock (M : AzMatrix R n n) (k : Nat) (hk : k ≤ n)
     M.get (AzMatrix.bareissIdx k hk i i') (AzMatrix.bareissIdx k hk j j')
 
 /-- Entrywise `toFn` form of `bareissBlock`: it agrees with
-    `Matrix.submatrix` along the row/column index maps.-/
+    `Matrix.submatrix` along the row/column index maps.
+@isnad1 id=eq.1h6v.s7.5ea3eac2b3f3 from=translated src=- shape=5b3176ac vocab=0eb50b05
+-/
 theorem AzMatrix.toFn_bareissBlock (M : AzMatrix R n n) (k : Nat) (hk : k ≤ n)
     (i j : Fin n) :
     (M.bareissBlock k hk i j).toFn =
@@ -91,14 +93,18 @@ def AzMatrix.principalMinor [CommRing R] (M : AzMatrix R n n) (k : Nat)
   M.bareissMinor k (le_of_lt hk) ⟨k, hk⟩ ⟨k, hk⟩
 
 /-- **BPR Notation 8.19 (final claim).** `b_{k+1, k+1}^{(k)}` is the principal
-    `(k+1)`-th minor of `M` (BPR's `b_{k,k}^{(k-1)}` in 1-indexed notation).-/
+    `(k+1)`-th minor of `M` (BPR's `b_{k,k}^{(k-1)}` in 1-indexed notation).
+@isnad1 id=eq.1h4v.s5.2a6eedfaa5bf from=translated src=- shape=cc998553 vocab=687edd9e
+-/
 theorem AzMatrix.bareissMinor_eq_principalMinor [CommRing R]
     (M : AzMatrix R n n) (k : Nat) (hk : k < n) :
     M.bareissMinor k (le_of_lt hk) ⟨k, hk⟩ ⟨k, hk⟩ = M.principalMinor k hk :=
   rfl
 
 /-- The principal `(k+1)`-th minor equals `det(Matrix.submatrix · ·)` with
-    both index maps being `Fin.castLE`, i.e., the top-left `(k+1)`-block.-/
+    both index maps being `Fin.castLE`, i.e., the top-left `(k+1)`-block.
+@isnad1 id=eq.1h4v.s6.e58615aba9f3 from=translated src=- shape=9b9cb559 vocab=1d99033b
+-/
 theorem AzMatrix.principalMinor_eq_top_left_det [CommRing R]
     (M : AzMatrix R n n) (k : Nat) (hk : k < n) :
     M.principalMinor k hk =

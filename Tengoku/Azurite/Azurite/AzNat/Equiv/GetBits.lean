@@ -283,7 +283,9 @@ private lemma testBit_getBitsAsLimb (n : AzNat) (i j : Nat) (h : j - i ≤ 64) (
 
 /-! ### Main correctness theorems -/
 
-/-- **Correctness of `getBitsAsLimb`.**-/
+/-- **Correctness of `getBitsAsLimb`.**
+@isnad1 id=eq.1h3v.s6.13476806de5a from=translated src=- shape=939fba64 vocab=19e82510
+-/
 theorem toNat_getBitsAsLimb (n : AzNat) (i j : Nat) (h : j - i ≤ 64) :
     (n.getBitsAsLimb i j h).toNat = n.toNat / 2 ^ i % 2 ^ (j - i) := by
   apply Nat.eq_of_testBit_eq
@@ -291,7 +293,9 @@ theorem toNat_getBitsAsLimb (n : AzNat) (i j : Nat) (h : j - i ≤ 64) :
   rw [Nat.testBit_mod_two_pow, Nat.testBit_div_two_pow, testBit_getBitsAsLimb n i j h k,
       Nat.add_comm k i]
 
-/-- **Correctness of `getBits`.**-/
+/-- **Correctness of `getBits`.**
+@isnad1 id=eq.0h3v.s6.4bb6b92b9320 from=translated src=- shape=bf954504 vocab=4d3f0669
+-/
 theorem toNat_getBits (n : AzNat) (i j : Nat) :
     (n.getBits i j).toNat = n.toNat / 2 ^ i % 2 ^ (j - i) := by
   apply Nat.eq_of_testBit_eq
@@ -352,7 +356,9 @@ theorem toNat_getBits (n : AzNat) (i j : Nat) :
     simp [this]
 
 /-- **AzNat-level equivalence**: `getBits i j` matches the obvious-but-inefficient spec
-    `(n >>> i).modPow2 (j - i)`.-/
+    `(n >>> i).modPow2 (j - i)`.
+@isnad1 id=eq.0h3v.s4.bf48ae8a5750 from=translated src=- shape=d9af1aac vocab=21dde636
+-/
 theorem getBits_eq_shiftRight_modPow2 (n : AzNat) (i j : Nat) :
     n.getBits i j = (n >>> i).modPow2 (j - i) := by
   apply toNat_injective

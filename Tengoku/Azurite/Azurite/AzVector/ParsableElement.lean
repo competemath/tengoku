@@ -40,7 +40,13 @@ namespace ParsableElement
 
 variable {R : Type _} [ParsableElement R]
 
+/--
+@isnad1 id=not.0h2v.s4.fdef98a56f02 from=translated src=- shape=71233992 vocab=b89dd11c
+-/
 lemma not_mem_toChars_comma (r : R) : ',' ∉ toChars r := toChars_no_comma r
+/--
+@isnad1 id=not.0h2v.s4.75d12926cfb4 from=translated src=- shape=71233992 vocab=b89dd11c
+-/
 lemma not_mem_toChars_semicolon (r : R) : ';' ∉ toChars r := toChars_no_semicolon r
 
 end ParsableElement

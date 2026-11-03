@@ -49,7 +49,9 @@ def copySub.go (a : Array UInt64) (loA k m i : Nat) (borrow : Bool)
     (r, borrow)
   termination_by k - i
 
-/-- Size preservation of `copySub.go`: the buffer stays at size `k`.-/
+/-- Size preservation of `copySub.go`: the buffer stays at size `k`.
+@isnad1 id=eq.4h7v.s6.23a0fa771363 from=translated src=- shape=3962fdd6 vocab=9f3604cb
+-/
 theorem copySub.go_size (a : Array UInt64) (loA k m i : Nat) (borrow : Bool)
     (r : Array UInt64) (h_a : loA + k + m ≤ a.size) (h_le : m ≤ k)
     (h_r : r.size = k) (h_i : i ≤ k) :
@@ -244,7 +246,9 @@ def karatsubaMulLimbs (threshold : Nat) (a b : Array UInt64)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) : Array UInt64 :=
   (karatsubaMulLimbsRec threshold a b loA loB len hA hB).1
 
-/-- The result of Karatsuba multiplication has size `2 * len`.-/
+/-- The result of Karatsuba multiplication has size `2 * len`.
+@isnad1 id=eq.2h6v.s6.732255e59a4e from=translated src=- shape=45a95c3a vocab=b84927f6
+-/
 theorem karatsubaMulLimbs_size (threshold : Nat) (a b : Array UInt64)
     (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :

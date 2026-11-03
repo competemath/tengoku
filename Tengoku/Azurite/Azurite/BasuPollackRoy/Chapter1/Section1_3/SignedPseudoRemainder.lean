@@ -44,9 +44,15 @@ variable {K : Type*} [Field K] [Algebra D K] [IsFractionRing D K]
 /-- `smallestEvenGe n`: the smallest even natural number `≥ n`.-/
 def smallestEvenGe (n : ℕ) : ℕ := n + n % 2
 
+/--
+@isnad1 id=even.0h1v.s2.9385edd6aafb from=translated src=- shape=6da4ece3 vocab=037f2e8c
+-/
 theorem smallestEvenGe_even (n : ℕ) : Even (smallestEvenGe n) := by
   rw [smallestEvenGe, Nat.even_iff]; omega
 
+/--
+@isnad1 id=le.0h1v.s3.541543bc5e06 from=translated src=- shape=e63234f4 vocab=4f974500
+-/
 theorem le_smallestEvenGe (n : ℕ) : n ≤ smallestEvenGe n := by
   rw [smallestEvenGe]; omega
 
@@ -59,10 +65,16 @@ def pRemExp (P Q : Polynomial D) : ℕ :=
                   else P.natDegree - Q.natDegree + 1)
 
 omit [IsDomain D] in
+/--
+@isnad1 id=even.0h3v.s4.ea3303c339d2 from=translated src=- shape=25e9acce vocab=43575523
+-/
 theorem pRemExp_even (P Q : Polynomial D) : Even (pRemExp P Q) :=
   smallestEvenGe_even _
 
 omit [IsDomain D] in
+/--
+@isnad1 id=le.1h3v.s6.af347e6c5121 from=translated src=- shape=31d30a24 vocab=4e7974cf
+-/
 theorem pRemExp_ge (P Q : Polynomial D) (h : Q.natDegree ≤ P.natDegree) :
     P.natDegree - Q.natDegree + 1 ≤ pRemExp P Q := by
   rw [pRemExp, ite_eq_right (Nat.not_lt.mpr h)]
@@ -81,7 +93,9 @@ noncomputable def PRem (K : Type*) [Field K] [Algebra D K]
 omit [IsDomain D] in
 /-- The degree bound on `PRem(P, Q)` inherited from Euclidean
 division: when `Q ≠ 0`, `PRem(P, Q)` has degree strictly less than
-`Q` (after mapping to `K[X]`).-/
+`Q` (after mapping to `K[X]`).
+@isnad1 id=lt.1h4v.s7.0556ea481961 from=translated src=- shape=b244e18c vocab=e77076ea
+-/
 theorem degree_pRem_lt (P Q : Polynomial D) (hQ : Q ≠ 0) :
     (PRem K P Q).degree < (Q.map (algebraMap D K)).degree := by
   unfold PRem
@@ -108,7 +122,9 @@ canonical embedding. The proof proceeds in two steps:
 /-- Pseudo-division in `D[X]`: for any exponent `n` at least
 `p - q + 1` (with the convention that the bound is `0` when `p < q`),
 there exist `A, R ∈ D[X]` with `b_q^n · P = A · Q + R` and
-`deg R < deg Q`. The proof is by strong induction on `natDegree P`.-/
+`deg R < deg Q`. The proof is by strong induction on `natDegree P`.
+@isnad1 id=ex.3h5v.s8.8f0dd19ac842 from=translated src=- shape=21660081 vocab=069faec6
+-/
 theorem pRem_exists_aux (Q : Polynomial D) (hQ : Q ≠ 0) :
     ∀ (p : ℕ) (P : Polynomial D), P.natDegree < p →
     ∀ (n : ℕ),
@@ -218,7 +234,9 @@ theorem pRem_exists_aux (Q : Polynomial D) (hQ : Q ≠ 0) :
           linear_combination hAR'
 
 /-- The signed pseudo-remainder `PRem(P, Q)` lies in `D[X]`: there
-exists `R : D[X]` whose image in `K[X]` equals `PRem K P Q`.-/
+exists `R : D[X]` whose image in `K[X]` equals `PRem K P Q`.
+@isnad1 id=ex.1h4v.s7.f5666e5baabf from=translated src=- shape=5670c023 vocab=a0f47796
+-/
 theorem PRem_descends (P Q : Polynomial D) (hQ : Q ≠ 0) :
     ∃ R : Polynomial D, R.map (algebraMap D K) = PRem K P Q := by
   have hbound : (if P.natDegree < Q.natDegree then 0

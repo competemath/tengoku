@@ -88,12 +88,18 @@ private lemma isDigit_digit (n : ℕ) : (Char.ofNat (48 + n % 10)).isDigit = tru
   apply isDigit_digit_mod
   exact Nat.mod_lt _ (by decide)
 
+/--
+@isnad1 id=eq.1h1v.s5.16577fc7fc87 from=translated src=- shape=e0b4dec2 vocab=f32929a7
+-/
 lemma toNat_digit_mod (m : ℕ) (h : m < 10) : (Char.ofNat (48 + m)).toNat - 48 = m := by
   match m with
   | 0 => decide | 1 => decide | 2 => decide | 3 => decide | 4 => decide
   | 5 => decide | 6 => decide | 7 => decide | 8 => decide | 9 => decide
   | m + 10 => omega
 
+/--
+@isnad1 id=eq.0h1v.s5.058f566b116b from=translated src=- shape=ba686e8d vocab=ac927346
+-/
 lemma toNat_digit (n : ℕ) : (Char.ofNat (48 + n % 10)).toNat - 48 = n % 10 := by
   apply toNat_digit_mod
   exact Nat.mod_lt _ (by decide)
@@ -164,6 +170,9 @@ private lemma lt_pow_self (n : ℕ) : n < 10 ^ n := by
     have h1 : 10 ^ n * 1 ≤ 10 ^ n * 10 := Nat.mul_le_mul_left _ (by decide)
     omega
 
+/--
+@isnad1 id=eq.0h1v.s3.871bd171bdbe from=translated src=- shape=edb93955 vocab=7dde2fbb
+-/
 lemma parseNatChars_natToChars (n : ℕ) : parseNatChars (natToChars n) = some n := by
   unfold natToChars
   split_ifs with hn

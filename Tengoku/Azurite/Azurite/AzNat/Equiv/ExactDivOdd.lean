@@ -29,6 +29,9 @@ congruent to `d · (Q / β^i)` modulo `β` and `dinv` inverts `d` modulo `β`.
 
 namespace Azurite.AzNat
 
+/--
+@isnad1 id=eq.1h3v.s6.85c5c41c31e9 from=translated src=- shape=c38fe556 vocab=2b5e8dd7
+-/
 lemma sliceVal_succ (a : Array UInt64) (lo len : Nat) (h : lo < a.size) :
     sliceVal a lo (len + 1) = (a[lo]'h).toNat + 2 ^ 64 * sliceVal a (lo + 1) len := by
   unfold sliceVal
@@ -37,6 +40,9 @@ lemma sliceVal_succ (a : Array UInt64) (lo len : Nat) (h : lo < a.size) :
   simp only [Array.getElem_toList]
   ring
 
+/--
+@isnad1 id=lt.1h3v.s5.a433b7aca261 from=translated src=- shape=d5be13be vocab=dfd9f1a6
+-/
 lemma sliceVal_lt (a : Array UInt64) (lo len : Nat) (hA : lo + len ≤ a.size) :
     sliceVal a lo len < 2 ^ (64 * len) := by
   unfold sliceVal
@@ -46,15 +52,22 @@ lemma sliceVal_lt (a : Array UInt64) (lo len : Nat) (hA : lo + len ≤ a.size) :
   have := toNatLimbsList_lt_pow ((a.toList.drop lo).take len)
   rwa [hlen] at this
 
+/--
+@isnad1 id=eq.0h0v.s3.f34d715aa00f from=translated src=- shape=35225b15 vocab=31588f0a
+-/
 lemma toNatLimbsList_nil : toNatLimbsList [] = 0 := rfl
 
-/-- `d.toNat · dinv.toNat ≡ 1 (mod 2^64)` from the `UInt64` equation `d * dinv = 1`.-/
+/-- `d.toNat · dinv.toNat ≡ 1 (mod 2^64)` from the `UInt64` equation `d * dinv = 1`.
+@isnad1 id=eq.1h2v.s6.c4d428bafdb3 from=translated src=- shape=90aa78b9 vocab=ec929861
+-/
 lemma toNat_mul_inv {d dinv : UInt64} (hinv : d * dinv = 1) :
     d.toNat * dinv.toNat % 2 ^ 64 = 1 := by
   have := congrArg UInt64.toNat hinv
   rwa [UInt64.toNat_mul] at this
 
-/-- The loop invariant, by induction on the number of remaining limbs.-/
+/-- The loop invariant, by induction on the number of remaining limbs.
+@isnad1 id=eq.7h11v.s8.82ae68cb4a07 from=translated src=- shape=5ee84974 vocab=82ea1665
+-/
 theorem exactDivOddLimbs.go_toNat (d dinv : UInt64) (hinv : d * dinv = 1) (a : Array UInt64)
     (lo len : Nat) (hA : lo + len ≤ a.size) (Q : Nat) :
     ∀ (n : Nat) (acc : Array UInt64) (i : Nat) (hi : UInt64) (borrow : Bool), len - i = n →
@@ -128,7 +141,9 @@ theorem exactDivOddLimbs.go_toNat (d dinv : UInt64) (hinv : d * dinv = 1) (a : A
     exact ih (acc.push (r * dinv)) (i + 1) hi' b' (by omega) (by omega)
       (by rw [Array.size_push, hsize]) hacc' (by rw [hQ_succ, ← hS'_eq]; rfl)
 
-/-- The slice version: if `d ∣ slice` then the result is the quotient.-/
+/-- The slice version: if `d ∣ slice` then the result is the quotient.
+@isnad1 id=eq.3h6v.s6.cbcdd71c4299 from=translated src=- shape=79d04a1b vocab=6ac56818
+-/
 theorem exactDivOddLimbs_toNat (d dinv : UInt64) (hinv : d * dinv = 1) (a : Array UInt64)
     (lo len : Nat) (hA : lo + len ≤ a.size) (Q : Nat) (hQ : sliceVal a lo len = d.toNat * Q) :
     toNatLimbsList (exactDivOddLimbs d dinv a lo len hA).toList = Q := by
@@ -151,7 +166,9 @@ theorem exactDivOddLimbs_toNat (d dinv : UInt64) (hinv : d * dinv = 1) (a : Arra
     (by simpa [sliceVal, Nat.mul_zero, Nat.pow_zero, Nat.div_one] using hQ)]
   exact Nat.mod_eq_of_lt hQ_lt
 
-/-- **Correctness of `exactDivOdd`**: with `d · dinv = 1` and `d ∣ n`, the result is `n / d`.-/
+/-- **Correctness of `exactDivOdd`**: with `d · dinv = 1` and `d ∣ n`, the result is `n / d`.
+@isnad1 id=eq.2h3v.s5.a4e68dd39d7d from=translated src=- shape=eedae846 vocab=74607cb4
+-/
 theorem exactDivOdd_toNat (d dinv : UInt64) (hinv : d * dinv = 1) (n : AzNat)
     (hd : d.toNat ∣ n.toNat) : (exactDivOdd d dinv n).toNat = n.toNat / d.toNat := by
   unfold exactDivOdd

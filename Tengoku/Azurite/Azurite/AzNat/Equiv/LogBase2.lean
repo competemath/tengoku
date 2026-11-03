@@ -27,10 +27,15 @@ n.toNat)`) and `checkedLogBasePowerOf2_eq_some_iff` (`= some e ↔ n.toNat = (2 
 
 namespace Azurite.AzNat
 
+/--
+@isnad1 id=ne.1h1v.s4.e725e05633c6 from=translated src=- shape=20a1293d vocab=e3edac28
+-/
 theorem toNat_ne_zero_of_ne_zero' {n : AzNat} (h : n ≠ 0) : n.toNat ≠ 0 :=
   fun h0 => h (toNat_injective (by rw [h0, toNat_zero]))
 
-/-- For `n ≠ 0`, `2^(size − 1) ≤ n < 2^size`.-/
+/-- For `n ≠ 0`, `2^(size − 1) ≤ n < 2^size`.
+@isnad1 id=and.1h1v.s6.95a4b9e87eb7 from=translated src=- shape=051f1954 vocab=a3b1ad84
+-/
 theorem size_bounds (n : AzNat) (h : n ≠ 0) :
     2 ^ (n.size - 1) ≤ n.toNat ∧ n.toNat < 2 ^ n.size := by
   have hpos : 0 < n.toNat := Nat.pos_of_ne_zero (toNat_ne_zero_of_ne_zero' h)
@@ -41,8 +46,14 @@ theorem size_bounds (n : AzNat) (h : n ≠ 0) :
     exact Nat.lt_size.mp (by omega)
   · rw [← size_toNat]; exact Nat.lt_size_self _
 
+/--
+@isnad1 id=eq.0h0v.s3.2fb7cbe3f5e8 from=translated src=- shape=58b8d025 vocab=d3cee220
+-/
 @[simp] theorem floorLogBase2_zero : (0 : AzNat).floorLogBase2 = none := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.74efcce61a66 from=translated src=- shape=98fade8e vocab=5b2d3c24
+-/
 theorem floorLogBase2_eq (n : AzNat) (h : n ≠ 0) :
     n.floorLogBase2 = some (Nat.log 2 n.toNat) := by
   unfold floorLogBase2
@@ -55,8 +66,14 @@ theorem floorLogBase2_eq (n : AzNat) (h : n ≠ 0) :
   apply Nat.log_eq_of_pow_le_of_lt_pow hlo
   rwa [Nat.sub_add_cancel hs]
 
+/--
+@isnad1 id=eq.0h0v.s3.ce73a0a9e5ec from=translated src=- shape=58b8d025 vocab=aebd4bd6
+-/
 @[simp] theorem ceilingLogBase2_zero : (0 : AzNat).ceilingLogBase2 = none := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.6588bfdc3ecd from=translated src=- shape=98fade8e vocab=f47fbc2b
+-/
 theorem ceilingLogBase2_eq (n : AzNat) (h : n ≠ 0) :
     n.ceilingLogBase2 = some (Nat.clog 2 n.toNat) := by
   unfold ceilingLogBase2
@@ -78,6 +95,9 @@ theorem ceilingLogBase2_eq (n : AzNat) (h : n ≠ 0) :
       have heq : n.toNat = 2 ^ (n.size - 1) := le_antisymm hle hlo
       exact hp ((isPowerOfTwo_iff n).mpr ⟨_, heq⟩)
 
+/--
+@isnad1 id=iff.0h2v.s5.314fcdea459c from=translated src=- shape=91cdc5b0 vocab=4b5ca120
+-/
 theorem checkedLogBase2_eq_some_iff (n : AzNat) (k : ℕ) :
     n.checkedLogBase2 = some k ↔ n.toNat = 2 ^ k := by
   unfold checkedLogBase2
@@ -97,6 +117,9 @@ theorem checkedLogBase2_eq_some_iff (n : AzNat) (k : ℕ) :
     rw [← size_toNat, h, Nat.size_pow]
     omega
 
+/--
+@isnad1 id=iff.0h1v.s5.c8860df6bac7 from=translated src=- shape=a49c83e0 vocab=04082610
+-/
 theorem checkedLogBase2_eq_none_iff (n : AzNat) :
     n.checkedLogBase2 = none ↔ ∀ k : ℕ, n.toNat ≠ 2 ^ k := by
   constructor
@@ -113,11 +136,17 @@ theorem checkedLogBase2_eq_none_iff (n : AzNat) :
 
 /-! ### Power-of-two bases -/
 
+/--
+@isnad1 id=eq.2h2v.s5.7384115b3756 from=translated src=- shape=f506455b vocab=1f7aae06
+-/
 theorem floorLogBasePowerOf2_eq (n : AzNat) (k : ℕ) (hn : n ≠ 0) (hk : 0 < k) :
     n.floorLogBasePowerOf2 k = some (Nat.log (2 ^ k) n.toNat) := by
   unfold floorLogBasePowerOf2
   rw [ite_eq_right hk.ne', floorLogBase2_eq n hn, Option.map_some, Nat.log_pow_left]
 
+/--
+@isnad1 id=eq.2h2v.s5.73f00d46b63a from=translated src=- shape=f506455b vocab=1cdd5c4e
+-/
 theorem ceilingLogBasePowerOf2_eq (n : AzNat) (k : ℕ) (hn : n ≠ 0) (hk : 0 < k) :
     n.ceilingLogBasePowerOf2 k = some (Nat.clog (2 ^ k) n.toNat) := by
   unfold ceilingLogBasePowerOf2
@@ -125,6 +154,9 @@ theorem ceilingLogBasePowerOf2_eq (n : AzNat) (k : ℕ) (hn : n ≠ 0) (hk : 0 <
   congr 2
   omega
 
+/--
+@isnad1 id=iff.1h3v.s5.32f7bc77e292 from=translated src=- shape=f88a7fbf vocab=8ea3587b
+-/
 theorem checkedLogBasePowerOf2_eq_some_iff (n : AzNat) (k : ℕ) (hk : 0 < k) (e : ℕ) :
     n.checkedLogBasePowerOf2 k = some e ↔ n.toNat = (2 ^ k) ^ e := by
   unfold checkedLogBasePowerOf2
@@ -142,6 +174,9 @@ theorem checkedLogBasePowerOf2_eq_some_iff (n : AzNat) (k : ℕ) (hk : 0 < k) (e
     rw [(checkedLogBase2_eq_some_iff n (k * e)).mpr h, Option.bind_some,
       ite_eq_left (Nat.mul_mod_right k e), Nat.mul_div_cancel_left e hk]
 
+/--
+@isnad1 id=iff.1h2v.s5.a443f1ee69b7 from=translated src=- shape=39208a05 vocab=b0a211bd
+-/
 theorem checkedLogBasePowerOf2_eq_none_iff (n : AzNat) (k : ℕ) (hk : 0 < k) :
     n.checkedLogBasePowerOf2 k = none ↔ ∀ e : ℕ, n.toNat ≠ (2 ^ k) ^ e := by
   constructor

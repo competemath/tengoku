@@ -46,6 +46,9 @@ def balancedProduct {α : Type*} [Mul α] [One α] (l : List α) : α := prodTre
 
 variable {α : Type*} [Monoid α]
 
+/--
+@isnad1 id=eq.0h2v.s5.8bbffe26cc82 from=translated src=- shape=660825d4 vocab=d34b12f8
+-/
 theorem mulAdjacentPairs_prod : ∀ l : List α, (mulAdjacentPairs l).prod = l.prod
   | [] => rfl
   | [_] => rfl
@@ -53,11 +56,17 @@ theorem mulAdjacentPairs_prod : ∀ l : List α, (mulAdjacentPairs l).prod = l.p
     rw [mulAdjacentPairs, List.prod_cons, mulAdjacentPairs_prod rest, List.prod_cons,
       List.prod_cons, mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s6.126de1f9edc4 from=translated src=- shape=d8570093 vocab=2ddb6907
+-/
 theorem foldl_mul_eq_mul_prod (l : List α) (acc : α) : l.foldl (· * ·) acc = acc * l.prod := by
   induction l generalizing acc with
   | nil => simp
   | cons x xs ih => rw [List.foldl_cons, ih, List.prod_cons, mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s5.f66e5963a208 from=translated src=- shape=adf70b88 vocab=f53de47d
+-/
 theorem prodTree_eq_prod : ∀ (fuel : ℕ) (l : List α), prodTree fuel l = l.prod
   | 0, l => by rw [prodTree, foldl_mul_eq_mul_prod, one_mul]
   | _ + 1, [] => by simp [prodTree]
@@ -66,7 +75,9 @@ theorem prodTree_eq_prod : ∀ (fuel : ℕ) (l : List α), prodTree fuel l = l.p
     show prodTree fuel (mulAdjacentPairs (x :: y :: rest)) = _
     rw [prodTree_eq_prod fuel, mulAdjacentPairs_prod]
 
-/-- **The balanced product is the product**, for every fuel and in any monoid.-/
+/-- **The balanced product is the product**, for every fuel and in any monoid.
+@isnad1 id=eq.0h2v.s5.775c81e32976 from=translated src=- shape=40e80979 vocab=0d933de1
+-/
 theorem balancedProduct_eq_prod (l : List α) : balancedProduct l = l.prod :=
   prodTree_eq_prod _ _
 
@@ -91,6 +102,9 @@ def balancedSum {β : Type*} [Add β] [Zero β] (l : List β) : β := sumTree l.
 
 variable {β : Type*} [AddMonoid β]
 
+/--
+@isnad1 id=eq.0h2v.s5.ae0b182657c1 from=translated src=- shape=660825d4 vocab=8fb907c2
+-/
 theorem addAdjacentPairs_sum : ∀ l : List β, (addAdjacentPairs l).sum = l.sum
   | [] => rfl
   | [_] => rfl
@@ -98,11 +112,17 @@ theorem addAdjacentPairs_sum : ∀ l : List β, (addAdjacentPairs l).sum = l.sum
     rw [addAdjacentPairs, List.sum_cons, addAdjacentPairs_sum rest, List.sum_cons, List.sum_cons,
       add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s5.601fb3b68ca4 from=translated src=- shape=d8570093 vocab=dabcbc50
+-/
 theorem foldl_add_eq_add_sum (l : List β) (acc : β) : l.foldl (· + ·) acc = acc + l.sum := by
   induction l generalizing acc with
   | nil => simp
   | cons x xs ih => rw [List.foldl_cons, ih, List.sum_cons, add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s5.238619c5b55f from=translated src=- shape=adf70b88 vocab=aa4bf907
+-/
 theorem sumTree_eq_sum : ∀ (fuel : ℕ) (l : List β), sumTree fuel l = l.sum
   | 0, l => by rw [sumTree, foldl_add_eq_add_sum, zero_add]
   | _ + 1, [] => by simp [sumTree]
@@ -111,7 +131,9 @@ theorem sumTree_eq_sum : ∀ (fuel : ℕ) (l : List β), sumTree fuel l = l.sum
     show sumTree fuel (addAdjacentPairs (x :: y :: rest)) = _
     rw [sumTree_eq_sum fuel, addAdjacentPairs_sum]
 
-/-- **The balanced sum is the sum**, for every fuel and in any additive monoid.-/
+/-- **The balanced sum is the sum**, for every fuel and in any additive monoid.
+@isnad1 id=eq.0h2v.s5.1c94b42a19b3 from=translated src=- shape=40e80979 vocab=8c4e58aa
+-/
 theorem balancedSum_eq_sum (l : List β) : balancedSum l = l.sum :=
   sumTree_eq_sum _ _
 

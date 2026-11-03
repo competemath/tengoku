@@ -106,29 +106,39 @@ noncomputable def round (mode : RoundingMode) (x : ℝ) : ↥S :=
       | .gt => C
       | .eq => tiebreak F C
 
-/-- The floor satisfies the defining `IsGreatest` property.-/
+/-- The floor satisfies the defining `IsGreatest` property.
+@isnad1 id=isgreate.0h2v.s5.ed11a716e74f from=translated src=- shape=c285df1a vocab=d60f7aa9
+-/
 lemma isGreatest_roundFloor (x : ℝ) :
     IsGreatest {s | s ∈ S ∧ s ≤ (x : EReal)} (roundFloor S x).val :=
   (existsGreatestLE (S := S) x).choose_spec
 
-/-- The ceiling satisfies the defining `IsLeast` property.-/
+/-- The ceiling satisfies the defining `IsLeast` property.
+@isnad1 id=isleast.0h2v.s5.0966bf236453 from=translated src=- shape=1969d09f vocab=13b247c2
+-/
 lemma isLeast_roundCeiling (x : ℝ) :
     IsLeast {s | s ∈ S ∧ (x : EReal) ≤ s} (roundCeiling S x).val :=
   (existsLeastGE (S := S) x).choose_spec
 
-/-- If `x` itself lies in `S`, the floor of `x` is `x`.-/
+/-- If `x` itself lies in `S`, the floor of `x` is `x`.
+@isnad1 id=eq.1h2v.s5.965cefd0cf76 from=translated src=- shape=2e1cacc8 vocab=54d05d3c
+-/
 lemma val_roundFloor_of_mem {x : ℝ} (hx : ((x : ℝ) : EReal) ∈ S) :
     (roundFloor S x).val = ((x : ℝ) : EReal) := by
   apply (isGreatest_roundFloor S x).unique
   exact ⟨⟨hx, le_refl _⟩, fun _ ⟨_, hsle⟩ => hsle⟩
 
-/-- If `x` itself lies in `S`, the ceiling of `x` is `x`.-/
+/-- If `x` itself lies in `S`, the ceiling of `x` is `x`.
+@isnad1 id=eq.1h2v.s5.93e533086a62 from=translated src=- shape=2e1cacc8 vocab=5065cebf
+-/
 lemma val_roundCeiling_of_mem {x : ℝ} (hx : ((x : ℝ) : EReal) ∈ S) :
     (roundCeiling S x).val = ((x : ℝ) : EReal) := by
   apply (isLeast_roundCeiling S x).unique
   exact ⟨⟨hx, le_refl _⟩, fun _ ⟨_, hxle⟩ => hxle⟩
 
-/-- If `x ∈ S`, then rounding `x` (in any mode) returns `x`.-/
+/-- If `x ∈ S`, then rounding `x` (in any mode) returns `x`.
+@isnad1 id=eq.1h3v.s5.eacebaff29a0 from=translated src=- shape=d275f4f3 vocab=56e4078a
+-/
 theorem val_round_of_mem (mode : RoundingMode) {x : ℝ} (hx : ((x : ℝ) : EReal) ∈ S) :
     (round S mode x).val = ((x : ℝ) : EReal) := by
   have hF : (roundFloor S x).val = ((x : ℝ) : EReal) := val_roundFloor_of_mem S hx

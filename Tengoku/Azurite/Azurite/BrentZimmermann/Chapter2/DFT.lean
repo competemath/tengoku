@@ -59,12 +59,16 @@ namespace IsPrincipalRoot
 
 variable {ω : R} {K : ℕ}
 
-/-- `ω^m` depends only on `m mod K`.-/
+/-- `ω^m` depends only on `m mod K`.
+@isnad1 id=eq.1h4v.s6.72859b633eae from=translated src=- shape=1969b6d8 vocab=019069d6
+-/
 theorem pow_mod (h : IsPrincipalRoot ω K) (m : ℕ) : ω ^ m = ω ^ (m % K) :=
   pow_eq_pow_mod m h.pow_eq_one
 
 /-- The geometric sums of a principal root: `∑_{j<K} ω^{mj}` is `K` when `K ∣ m` and `0`
-otherwise.-/
+otherwise.
+@isnad1 id=eq.1h4v.s6.16ce5fcdc4df from=translated src=- shape=d06d4c0f vocab=5d8ddaae
+-/
 theorem sum_pow_mul (h : IsPrincipalRoot ω K) (m : ℕ) :
     ∑ j ∈ range K, ω ^ (m * j) = if m % K = 0 then (K : R) else 0 := by
   have hterm : ∀ j, ω ^ (m * j) = ω ^ ((m % K) * j) := fun j => by
@@ -76,7 +80,9 @@ theorem sum_pow_mul (h : IsPrincipalRoot ω K) (m : ℕ) :
     · simp
     · exact h.sum_pow_eq_zero (m % K) (Nat.pos_of_ne_zero h0) (Nat.mod_lt _ hK)
 
-/-- `ω^(K−1)`, the inverse of `ω`, is again a principal `K`-th root of unity.-/
+/-- `ω^(K−1)`, the inverse of `ω`, is again a principal `K`-th root of unity.
+@isnad1 id=isprinci.1h3v.s5.8c443fe73da7 from=translated src=- shape=a9c22fb3 vocab=d52c4329
+-/
 theorem inv (h : IsPrincipalRoot ω K) : IsPrincipalRoot (ω ^ (K - 1)) K where
   pow_eq_one := by rw [← pow_mul, mul_comm, pow_mul, h.pow_eq_one, one_pow]
   sum_pow_eq_zero := by
@@ -102,7 +108,9 @@ def dft (ω : R) {K : ℕ} (a : Fin K → R) : Fin K → R :=
 def dftInv (ω : R) {K : ℕ} (a : Fin K → R) : Fin K → R :=
   dft (ω ^ (K - 1)) a
 
-/-- Two forward transforms give `K` times the vector with indices negated (MCA §2.3.1).-/
+/-- Two forward transforms give `K` times the vector with indices negated (MCA §2.3.1).
+@isnad1 id=eq.1h5v.s6.ea2880e17a5f from=translated src=- shape=690c79b2 vocab=9183e5cb
+-/
 theorem dft_dft_apply {ω : R} {K : ℕ} [NeZero K] (h : IsPrincipalRoot ω K) (a : Fin K → R)
     (i : Fin K) : dft ω (dft ω a) i = (K : R) * a (-i) := by
   unfold dft
@@ -125,12 +133,16 @@ theorem dft_dft_apply {ω : R} {K : ℕ} [NeZero K] (h : IsPrincipalRoot ω K) (
   · intro hmem
     exact absurd (Finset.mem_univ _) hmem
 
-/-- `dft ω (dft ω a) = K · [a_0, a_{K−1}, a_{K−2}, …, a_1]`.-/
+/-- `dft ω (dft ω a) = K · [a_0, a_{K−1}, a_{K−2}, …, a_1]`.
+@isnad1 id=eq.1h4v.s6.55cb00fb1b0d from=translated src=- shape=72a31158 vocab=9183e5cb
+-/
 theorem dft_dft {ω : R} {K : ℕ} [NeZero K] (h : IsPrincipalRoot ω K) (a : Fin K → R) :
     dft ω (dft ω a) = fun i => (K : R) * a (-i) :=
   funext (dft_dft_apply h a)
 
-/-- The backward transform inverts the forward one up to the factor `K` (MCA §2.3.1).-/
+/-- The backward transform inverts the forward one up to the factor `K` (MCA §2.3.1).
+@isnad1 id=eq.1h5v.s6.5151d021c320 from=translated src=- shape=a380e4d8 vocab=4c348a5d
+-/
 theorem dftInv_dft_apply {ω : R} {K : ℕ} [NeZero K] (h : IsPrincipalRoot ω K) (a : Fin K → R)
     (i : Fin K) : dftInv ω (dft ω a) i = (K : R) * a i := by
   unfold dftInv dft
@@ -161,7 +173,9 @@ theorem dftInv_dft_apply {ω : R} {K : ℕ} [NeZero K] (h : IsPrincipalRoot ω K
   · intro hmem
     exact absurd (Finset.mem_univ _) hmem
 
-/-- `dftInv ω (dft ω a) = K • a`.-/
+/-- `dftInv ω (dft ω a) = K • a`.
+@isnad1 id=eq.1h4v.s6.cf217340b42e from=translated src=- shape=f21165a8 vocab=4c348a5d
+-/
 theorem dftInv_dft {ω : R} {K : ℕ} [NeZero K] (h : IsPrincipalRoot ω K) (a : Fin K → R) :
     dftInv ω (dft ω a) = fun i => (K : R) * a i :=
   funext (dftInv_dft_apply h a)

@@ -15,15 +15,24 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.Pow2
 
 namespace Azurite.AzInt
 
+/--
+@isnad1 id=eq.0h1v.s4.34665ac14056 from=translated src=- shape=b2d260a1 vocab=8238cc71
+-/
 theorem toInt_pow2 (k : Nat) : (AzInt.pow2 k).toInt = 2 ^ k := by
   unfold AzInt.pow2 toInt
   simp [AzNat.toNat_pow2]
 
+/--
+@isnad1 id=eq.0h1v.s4.256c117928d3 from=translated src=- shape=0f5dd7ca vocab=76501710
+-/
 theorem pow2_eq_ofInt (k : Nat) : AzInt.pow2 k = ofInt (2 ^ k) := by
   have h : (AzInt.pow2 k).toInt = (ofInt (2 ^ k)).toInt := by
     rw [toInt_pow2, toInt_ofInt]
   exact ofInt_toInt (AzInt.pow2 k) ▸ ofInt_toInt (ofInt (2 ^ k)) ▸ congrArg ofInt h
 
+/--
+@isnad1 id=iff.0h1v.s5.6fb75582d0aa from=translated src=- shape=e291a371 vocab=4a21d639
+-/
 theorem isPowerOfTwo_iff (z : AzInt) :
     z.isPowerOfTwo = true ↔ ∃ k : Nat, z.toInt = 2 ^ k := by
   unfold AzInt.isPowerOfTwo
@@ -57,6 +66,9 @@ theorem isPowerOfTwo_iff (z : AzInt) :
     rw [← h2] at hk
     exact_mod_cast hk
 
+/--
+@isnad1 id=iff.0h1v.s5.10db72771919 from=translated src=- shape=69551d3f vocab=956d3982
+-/
 theorem isPowerOfTwo_ofInt (i : Int) :
     (ofInt i).isPowerOfTwo = true ↔ ∃ k : Nat, i = 2 ^ k := by
   rw [isPowerOfTwo_iff, toInt_ofInt]

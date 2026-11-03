@@ -32,6 +32,9 @@ def ofInt (i : Int) : AzInt where
     exact rfl
 
 -- Provide a default canonical evaluation linking `toInt` and `ofInt` natively.
+/--
+@isnad1 id=eq.0h1v.s3.3a0498a789ce from=translated src=- shape=47dcad53 vocab=518d8794
+-/
 lemma toInt_ofInt (i : Int) : (ofInt i).toInt = i := by
   unfold ofInt toInt
   simp
@@ -42,6 +45,9 @@ lemma toInt_ofInt (i : Int) : (ofInt i).toInt = i := by
     have h1 : (i.natAbs : Int) = -i := Int.ofNat_natAbs_of_nonpos (le_of_lt h_lt)
     rw [Azurite.AzNat.toNat_ofNat, h1, neg_neg]
 
+/--
+@isnad1 id=eq.0h1v.s3.138aae47a74b from=translated src=- shape=47dcad53 vocab=135779e6
+-/
 lemma ofInt_toInt (z : AzInt) : ofInt z.toInt = z := by
   cases z with
   | mk sign abs zero_sign =>
@@ -57,6 +63,9 @@ lemma ofInt_toInt (z : AzInt) : ofInt z.toInt = z := by
       rw [decide_eq_false h2]
       exact ⟨h_sign.symm, Azurite.AzNat.ofNat_toNat abs⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.4084ea732d54 from=translated src=- shape=1ac31801 vocab=aead3340
+-/
 @[simp] lemma toInt_zero : (0 : AzInt).toInt = 0 := by
   change (if (0 : AzInt).sign then _ else _) = 0
   have hs : (0 : AzInt).sign = true := rfl
@@ -64,6 +73,9 @@ lemma ofInt_toInt (z : AzInt) : ofInt z.toInt = z := by
   change ↑(0 : AzNat).toNat = (0 : Int)
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.24d66360b0d6 from=translated src=- shape=1ac31801 vocab=aead3340
+-/
 @[simp] lemma toInt_one : (1 : AzInt).toInt = 1 := by
   change (if (1 : AzInt).sign then _ else _) = 1
   have hs : (1 : AzInt).sign = true := rfl
@@ -71,10 +83,16 @@ lemma ofInt_toInt (z : AzInt) : ofInt z.toInt = z := by
   change ↑(1 : AzNat).toNat = (1 : Int)
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.faad9feb6749 from=translated src=- shape=1ac31801 vocab=409939c8
+-/
 @[simp] lemma ofInt_zero : ofInt 0 = 0 := by
   have hz : (0 : AzInt).toInt = 0 := toInt_zero
   rw [← hz, ofInt_toInt]
 
+/--
+@isnad1 id=eq.0h0v.s3.7ac120b352c1 from=translated src=- shape=1ac31801 vocab=409939c8
+-/
 @[simp] lemma ofInt_one : ofInt 1 = 1 := by
   have h1 : (1 : AzInt).toInt = 1 := toInt_one
   rw [← h1, ofInt_toInt]
@@ -86,6 +104,9 @@ def equivInt : AzInt ≃ Int where
   left_inv := ofInt_toInt
   right_inv := toInt_ofInt
 
+/--
+@isnad1 id=eq.1h1v.s4.e7cd359fff82 from=translated src=- shape=425b70b4 vocab=e8d3873d
+-/
 lemma Int64.toInt_of_nonneg {i : Int64} (hi : i ≥ 0) : i.toInt = (i.toBitVec.toNat : Int) := by
   revert hi
   change (decide ((0 : Int64).toBitVec.toInt ≤ i.toBitVec.toInt) = true) → i.toInt = (i.toBitVec.toNat : Int)
@@ -100,6 +121,9 @@ lemma Int64.toInt_of_nonneg {i : Int64} (hi : i ≥ 0) : i.toInt = (i.toBitVec.t
   · rfl
   · omega
 
+/--
+@isnad1 id=eq.1h1v.s5.b2d5681adcb3 from=translated src=- shape=02d4c541 vocab=f6f10820
+-/
 lemma Int64.toInt_of_neg {i : Int64} (hi : ¬i ≥ 0) : i.toInt = (i.toBitVec.toNat : Int) - 2^64 := by
   revert hi
   change ¬(decide ((0 : Int64).toBitVec.toInt ≤ i.toBitVec.toInt) = true) → i.toInt = (i.toBitVec.toNat : Int) - 2^64
@@ -115,6 +139,9 @@ lemma Int64.toInt_of_neg {i : Int64} (hi : ¬i ≥ 0) : i.toInt = (i.toBitVec.to
   · omega
   · rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.ed050a712c66 from=translated src=- shape=7c59cc52 vocab=b5090d40
+-/
 @[simp] theorem beqUInt64_eq (z : Azurite.AzInt) (u : UInt64) : z.beqUInt64 u = true ↔ z.toInt = (u.toNat : Int) := by
   unfold beqUInt64
   dsimp [toInt]
@@ -130,6 +157,9 @@ lemma Int64.toInt_of_neg {i : Int64} (hi : ¬i ≥ 0) : i.toInt = (i.toBitVec.to
     rw [hzs] at h
     contradiction
 
+/--
+@isnad1 id=iff.0h2v.s4.bf4788182ed0 from=translated src=- shape=7c59cc52 vocab=919da830
+-/
 @[simp] theorem beqAzNat_eq (z : Azurite.AzInt) (a : Azurite.AzNat) : z.beqAzNat a = true ↔ z.toInt = (a.toNat : Int) := by
   unfold beqAzNat
   dsimp [toInt]
@@ -151,6 +181,9 @@ lemma Int64.toInt_of_neg {i : Int64} (hi : ¬i ≥ 0) : i.toInt = (i.toBitVec.to
     rw [hzs] at h
     contradiction
 
+/--
+@isnad1 id=iff.0h2v.s4.701ff374f9d0 from=translated src=- shape=e6776f34 vocab=157fb250
+-/
 @[simp] theorem beqInt64_eq (z : Azurite.AzInt) (i : Int64) : z.beqInt64 i = true ↔ z.toInt = i.toInt := by
   unfold beqInt64
   split_ifs with hi

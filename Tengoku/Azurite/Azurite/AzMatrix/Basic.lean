@@ -34,7 +34,9 @@ def AzMatrix.ofFn (f : Fin m → Fin n → R) : AzMatrix R m n :=
 def AzMatrix.get (M : AzMatrix R m n) (i : Fin m) (j : Fin n) : R :=
   (M.data.get i).get j
 
-/-- Two matrices are equal iff all entries are equal.-/
+/-- Two matrices are equal iff all entries are equal.
+@isnad1 id=eq.1h5v.s5.6c1d3be25f7b from=translated src=- shape=402ee7b0 vocab=9566ef65
+-/
 @[ext]
 theorem AzMatrix.ext {M N : AzMatrix R m n}
     (h : ∀ i j, M.get i j = N.get i j) : M = N := by
@@ -43,17 +45,26 @@ theorem AzMatrix.ext {M N : AzMatrix R m n}
   apply Vector.ext; intro j hj
   exact h ⟨i, hi⟩ ⟨j, hj⟩
 
+/--
+@isnad1 id=eq.0h6v.s5.31883129534f from=translated src=- shape=5798ecf0 vocab=bc390f2d
+-/
 @[simp]
 theorem AzMatrix.toFn_ofFn (f : Fin m → Fin n → R) (i : Fin m) (j : Fin n) :
     (AzMatrix.ofFn f).toFn i j = f i j := by
   simp [toFn, ofFn, Vector.get]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.fb5d244c9375 from=translated src=- shape=f39cf9a7 vocab=9582bd61
+-/
 @[simp]
 theorem AzMatrix.ofFn_toFn (M : AzMatrix R m n) : AzMatrix.ofFn M.toFn = M := by
   ext i j; simp [toFn, ofFn, get, Vector.get]
   rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s4.2cedf2a1ee45 from=translated src=- shape=738e149d vocab=6d4e32fc
+-/
 theorem AzMatrix.toFn_injective :
     Function.Injective (AzMatrix.toFn (R := R) (m := m) (n := n)) := by
   intro a b h; ext i j; exact congr (congrFun h i) rfl
@@ -64,6 +75,9 @@ theorem AzMatrix.toFn_injective :
 def AzMatrix.map {S : Type _} (f : R → S) (M : AzMatrix R m n) : AzMatrix S m n :=
   ⟨M.data.map (fun row => row.map f)⟩
 
+/--
+@isnad1 id=eq.0h8v.s5.943036ad6b5c from=translated src=- shape=16d249ba vocab=0710e6da
+-/
 @[simp]
 theorem AzMatrix.toFn_map {S : Type _} (f : R → S) (M : AzMatrix R m n)
     (i : Fin m) (j : Fin n) :
@@ -78,6 +92,9 @@ def AzMatrix.zip {S T : Type _} (f : R → S → T)
     (M : AzMatrix R m n) (N : AzMatrix S m n) : AzMatrix T m n :=
   ⟨Vector.zipWith (fun r s => Vector.zipWith f r s) M.data N.data⟩
 
+/--
+@isnad1 id=eq.0h10v.s6.bd8ec5779825 from=translated src=- shape=99a6c8fe vocab=a775e78c
+-/
 @[simp]
 theorem AzMatrix.toFn_zip {S T : Type _} (f : R → S → T)
     (M : AzMatrix R m n) (N : AzMatrix S m n) (i : Fin m) (j : Fin n) :
@@ -103,16 +120,25 @@ def AzMatrix.ofLists (rows : List (List R))
 def AzMatrix.toLists (M : AzMatrix R m n) : List (List R) :=
   M.data.toList.map (·.toList)
 
+/--
+@isnad1 id=eq.0h4v.s4.52013d8ee192 from=translated src=- shape=da6f31aa vocab=52a8c755
+-/
 @[simp]
 theorem AzMatrix.toLists_length (M : AzMatrix R m n) : M.toLists.length = m := by
   simp [toLists]
 
+/--
+@isnad1 id=eq.1h5v.s5.1f8fab8f877c from=translated src=- shape=85a7cdfb vocab=18dc6dcf
+-/
 theorem AzMatrix.mem_toLists_length {M : AzMatrix R m n} {row : List R}
     (h : row ∈ M.toLists) : row.length = n := by
   simp only [toLists, List.mem_map] at h
   obtain ⟨v, _, rfl⟩ := h
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.2e6952695817 from=translated src=- shape=7bd3d0d6 vocab=e511f35e
+-/
 theorem AzMatrix.ofLists_toLists (M : AzMatrix R m n) :
     AzMatrix.ofLists M.toLists M.toLists_length
       (fun _ h => AzMatrix.mem_toLists_length h) = M := by

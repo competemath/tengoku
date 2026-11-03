@@ -18,7 +18,9 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.Compare
 
 namespace Azurite.AzInt
 
-/-- `mkNorm true a` represents `a` nonnegatively.-/
+/-- `mkNorm true a` represents `a` nonnegatively.
+@isnad1 id=eq.0h1v.s3.a3017a3dbe38 from=translated src=- shape=c1004c8b vocab=01d4ac72
+-/
 lemma toInt_mkNorm_true (a : AzNat) : (mkNorm true a).toInt = (a.toNat : Int) := by
   unfold mkNorm
   by_cases h : a = 0
@@ -29,7 +31,9 @@ lemma toInt_mkNorm_true (a : AzNat) : (mkNorm true a).toInt = (a.toNat : Int) :=
     show (if true then (a.toNat : Int) else _) = _
     simp
 
-/-- `mkNorm false a` represents `-a` when `a ≠ 0`.-/
+/-- `mkNorm false a` represents `-a` when `a ≠ 0`.
+@isnad1 id=eq.1h1v.s4.ab1d6a1e959a from=translated src=- shape=895b49c2 vocab=87dab87f
+-/
 lemma toInt_mkNorm_false (a : AzNat) (h : a ≠ 0) :
     (mkNorm false a).toInt = -(a.toNat : Int) := by
   unfold mkNorm
@@ -37,19 +41,25 @@ lemma toInt_mkNorm_false (a : AzNat) (h : a ≠ 0) :
   show (if false then _ else -(a.toNat : Int)) = _
   simp
 
-/-- `mkNonzero false a h` represents `-a`.-/
+/-- `mkNonzero false a h` represents `-a`.
+@isnad1 id=eq.1h1v.s4.676998959581 from=translated src=- shape=ff1d1bb6 vocab=89bde439
+-/
 lemma toInt_mkNonzero_false (a : AzNat) (h : a ≠ 0) :
     (mkNonzero false a h).toInt = -(a.toNat : Int) := by
   show (if false then _ else -(a.toNat : Int)) = _
   simp
 
-/-- `mkNonzero true a h` represents `a`.-/
+/-- `mkNonzero true a h` represents `a`.
+@isnad1 id=eq.1h1v.s4.c73750f696c2 from=translated src=- shape=747d5761 vocab=b83554fa
+-/
 lemma toInt_mkNonzero_true (a : AzNat) (h : a ≠ 0) :
     (mkNonzero true a h).toInt = (a.toNat : Int) := by
   show (if true then (a.toNat : Int) else _) = _
   simp
 
-/-- Correctness of `AzInt.addUInt64`.-/
+/-- Correctness of `AzInt.addUInt64`.
+@isnad1 id=eq.0h2v.s4.b40ce36b2619 from=translated src=- shape=df04f8ad vocab=104b0a50
+-/
 theorem toInt_addUInt64 (z : AzInt) (u : UInt64) :
     (z.addUInt64 u).toInt = z.toInt + (u.toNat : Int) := by
   unfold addUInt64
@@ -81,7 +91,9 @@ theorem toInt_addUInt64 (z : AzInt) (u : UInt64) :
       rw [toInt_mkNonzero_false _ h_sub_pos, AzNat.toNat_subUInt64]
       omega
 
-/-- `ofInt`-version of `toInt_addUInt64`.-/
+/-- `ofInt`-version of `toInt_addUInt64`.
+@isnad1 id=eq.0h2v.s4.4d509a9ee1d1 from=translated src=- shape=d6a30233 vocab=991cee79
+-/
 theorem ofInt_addUInt64 (i : Int) (u : UInt64) :
     ofInt (i + (u.toNat : Int)) = (ofInt i).addUInt64 u := by
   have h : (ofInt (i + (u.toNat : Int))).toInt = ((ofInt i).addUInt64 u).toInt := by
@@ -89,7 +101,9 @@ theorem ofInt_addUInt64 (i : Int) (u : UInt64) :
   have := congrArg ofInt h
   rwa [ofInt_toInt, ofInt_toInt] at this
 
-/-- Correctness of `AzInt.add`.-/
+/-- Correctness of `AzInt.add`.
+@isnad1 id=eq.0h2v.s4.20a54e94d10e from=translated src=- shape=0438c7a3 vocab=393d9100
+-/
 theorem toInt_add (a b : AzInt) : (a + b).toInt = a.toInt + b.toInt := by
   show (add a b).toInt = a.toInt + b.toInt
   unfold add
@@ -153,14 +167,18 @@ theorem toInt_add (a b : AzInt) : (a + b).toInt = a.toInt + b.toInt := by
       rw [toInt_mkNonzero_false _ h_sum_ne, AzNat.toNat_add]
       push_cast; ring
 
-/-- `ofInt`-version of `toInt_add`.-/
+/-- `ofInt`-version of `toInt_add`.
+@isnad1 id=eq.0h2v.s4.38874710eb5d from=translated src=- shape=0438c7a3 vocab=ef8299f7
+-/
 theorem ofInt_add (i j : Int) : ofInt (i + j) = ofInt i + ofInt j := by
   have h : (ofInt (i + j)).toInt = (ofInt i + ofInt j).toInt := by
     rw [toInt_ofInt, toInt_add, toInt_ofInt, toInt_ofInt]
   have := congrArg ofInt h
   rwa [ofInt_toInt, ofInt_toInt] at this
 
-/-- Correctness of `AzInt.neg`.-/
+/-- Correctness of `AzInt.neg`.
+@isnad1 id=eq.0h1v.s3.a1f9a6eab4dc from=translated src=- shape=5a02da31 vocab=396a8c3e
+-/
 @[simp] theorem toInt_neg (z : AzInt) : (-z).toInt = -z.toInt := by
   show (neg z).toInt = -z.toInt
   unfold neg
@@ -178,7 +196,9 @@ theorem ofInt_add (i j : Int) : ofInt (i + j) = ofInt i + ofInt j := by
       show _ = -(if z.sign then (z.abs.toNat : Int) else -(z.abs.toNat : Int))
       rw [hs]; simp
 
-/-- `ofInt`-version of `toInt_neg`.-/
+/-- `ofInt`-version of `toInt_neg`.
+@isnad1 id=eq.0h1v.s3.d0ed3d9fb663 from=translated src=- shape=5a02da31 vocab=c5d95cfe
+-/
 theorem ofInt_neg (i : Int) : ofInt (-i) = -ofInt i := by
   have h : (ofInt (-i)).toInt = (-ofInt i).toInt := by
     rw [toInt_ofInt, toInt_neg, toInt_ofInt]

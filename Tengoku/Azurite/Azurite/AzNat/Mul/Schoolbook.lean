@@ -73,7 +73,9 @@ def mulAddLimbs (a : Array UInt64) (offA lenA offAcc : Nat) (b : UInt64)
     Array UInt64 × UInt64 :=
   mulAddLimbs.go a offA lenA offAcc b acc 0 0 hA hAcc
 
-/-- Size preservation of `mulAddLimbs.go`.-/
+/-- Size preservation of `mulAddLimbs.go`.
+@isnad1 id=eq.2h8v.s6.d6258dddd191 from=translated src=- shape=fd8a84ef vocab=24332a55
+-/
 theorem mulAddLimbs.go_size (a : Array UInt64) (offA lenA offAcc : Nat) (b : UInt64)
     (acc : Array UInt64) (k : Nat) (carry : UInt64)
     (hA : offA + lenA ≤ a.size) (hAcc : offAcc + lenA ≤ acc.size) :
@@ -88,7 +90,9 @@ theorem mulAddLimbs.go_size (a : Array UInt64) (offA lenA offAcc : Nat) (b : UIn
     simp only [h_lt, ↓reduceDIte]
     rw [ih _ _ _ _ (by omega), Array.size_set]
 
-/-- Size preservation of `mulAddLimbs`.-/
+/-- Size preservation of `mulAddLimbs`.
+@isnad1 id=eq.2h6v.s6.f2705e347cc7 from=translated src=- shape=9c563fae vocab=af7aea55
+-/
 theorem mulAddLimbs_size (a : Array UInt64) (offA lenA offAcc : Nat) (b : UInt64)
     (acc : Array UInt64)
     (hA : offA + lenA ≤ a.size) (hAcc : offAcc + lenA ≤ acc.size) :
@@ -118,7 +122,9 @@ def mulAdd2Limbs.go (a : Array UInt64) (offA lenA offAcc : Nat) (b₀ b₁ : UIn
     (acc, c₀, c₁)
   termination_by lenA - k
 
-/-- Size preservation of `mulAdd2Limbs.go`.-/
+/-- Size preservation of `mulAdd2Limbs.go`.
+@isnad1 id=eq.2h10v.s6.18cd55cedee0 from=translated src=- shape=cf3264c6 vocab=82ec6a9f
+-/
 theorem mulAdd2Limbs.go_size (a : Array UInt64) (offA lenA offAcc : Nat) (b₀ b₁ : UInt64)
     (acc : Array UInt64) (k : Nat) (c₀ c₁ : UInt64)
     (hA : offA + lenA ≤ a.size) (hAcc : offAcc + lenA ≤ acc.size) :
@@ -140,7 +146,9 @@ def mulAdd2Limbs (a : Array UInt64) (offA lenA offAcc : Nat) (b₀ b₁ : UInt64
     Array UInt64 × UInt64 × UInt64 :=
   mulAdd2Limbs.go a offA lenA offAcc b₀ b₁ acc 0 0 0 hA hAcc
 
-/-- Size preservation of `mulAdd2Limbs`.-/
+/-- Size preservation of `mulAdd2Limbs`.
+@isnad1 id=eq.2h7v.s6.153e0b8ab253 from=translated src=- shape=e7a2cec0 vocab=1909c86f
+-/
 theorem mulAdd2Limbs_size (a : Array UInt64) (offA lenA offAcc : Nat) (b₀ b₁ : UInt64)
     (acc : Array UInt64)
     (hA : offA + lenA ≤ a.size) (hAcc : offAcc + lenA ≤ acc.size) :
@@ -201,7 +209,9 @@ def schoolbookMulLimbs (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (by rw [Array.size_replicate])
 
 /-- Size preservation of `schoolbookMulLimbs.go`: the accumulator's size is
-    unchanged by the outer loop.-/
+    unchanged by the outer loop.
+@isnad1 id=eq.3h8v.s6.2c214562ba4a from=translated src=- shape=6bb05dcb vocab=a2fe4693
+-/
 theorem schoolbookMulLimbs.go_size (a : Array UInt64) (loA lenA : Nat) (b : Array UInt64)
     (loB lenB : Nat) (acc : Array UInt64) (j : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
@@ -218,7 +228,9 @@ theorem schoolbookMulLimbs.go_size (a : Array UInt64) (loA lenA : Nat) (b : Arra
     simp only [h_lt, ↓reduceDIte]
     rw [ih _ _ _ h_new, Array.size_set, mulAddLimbs_size]
 
-/-- Size preservation of `schoolbookMulLimbs.go2`.-/
+/-- Size preservation of `schoolbookMulLimbs.go2`.
+@isnad1 id=eq.3h8v.s6.f3211430290f from=translated src=- shape=6bb05dcb vocab=25bc28ae
+-/
 theorem schoolbookMulLimbs.go2_size (a : Array UInt64) (loA lenA : Nat) (b : Array UInt64)
     (loB lenB : Nat) (acc : Array UInt64) (j : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
@@ -232,7 +244,9 @@ theorem schoolbookMulLimbs.go2_size (a : Array UInt64) (loA lenA : Nat) (b : Arr
         mulAdd2Limbs_size]
     · exact schoolbookMulLimbs.go_size _ _ _ _ _ _ _ _ _ _ _
 
-/-- Schoolbook multiplication produces a `lenA + lenB` limb result.-/
+/-- Schoolbook multiplication produces a `lenA + lenB` limb result.
+@isnad1 id=eq.2h6v.s6.e2f96b963a4e from=translated src=- shape=a4315780 vocab=f47bdc09
+-/
 theorem schoolbookMulLimbs_size (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size) :
     (schoolbookMulLimbs a b loA lenA loB lenB hA hB).size = lenA + lenB := by

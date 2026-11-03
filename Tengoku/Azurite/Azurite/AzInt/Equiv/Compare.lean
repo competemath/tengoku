@@ -15,6 +15,9 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.Compare
 
 namespace Azurite.AzInt
 
+/--
+@isnad1 id=iff.0h2v.s4.8812e449fa10 from=translated src=- shape=2e668731 vocab=4538dc9b
+-/
 lemma compare_eq_lt_iff_toInt_lt (a b : AzInt) : compare a b = Ordering.lt ↔ a.toInt < b.toInt := by
   change (if a.sign ≠ b.sign then if a.sign then Ordering.gt else Ordering.lt else if a.sign then Ord.compare a.abs b.abs else Ord.compare b.abs a.abs) = Ordering.lt ↔ a.toInt < b.toInt
   unfold toInt
@@ -40,6 +43,9 @@ lemma compare_eq_lt_iff_toInt_lt (a b : AzInt) : compare a b = Ordering.lt ↔ a
     rw [h1, AzNat.lt_iff_toNat_lt]
     constructor <;> intro h <;> omega
 
+/--
+@isnad1 id=iff.0h2v.s4.8d67fd75331d from=translated src=- shape=9fa1c6b4 vocab=6ba5349b
+-/
 lemma compare_eq_eq_iff_toInt_eq (a b : AzInt) : compare a b = Ordering.eq ↔ a.toInt = b.toInt := by
   change (if a.sign ≠ b.sign then if a.sign then Ordering.gt else Ordering.lt else if a.sign then Ord.compare a.abs b.abs else Ord.compare b.abs a.abs) = Ordering.eq ↔ a.toInt = b.toInt
   unfold toInt
@@ -78,6 +84,9 @@ lemma compare_eq_eq_iff_toInt_eq (a b : AzInt) : compare a b = Ordering.eq ↔ a
     rw [h1, h2]
     constructor <;> intro h <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s4.543bc2c3fb91 from=translated src=- shape=fdf5d803 vocab=01ebf8a4
+-/
 lemma compare_eq_compare_toInt (a b : AzInt) : compare a b = Ord.compare a.toInt b.toInt := by
   have hl : compare a b = Ordering.lt ↔ a.toInt < b.toInt := compare_eq_lt_iff_toInt_lt a b
   have he : compare a b = Ordering.eq ↔ a.toInt = b.toInt := compare_eq_eq_iff_toInt_eq a b
@@ -104,27 +113,45 @@ lemma compare_eq_compare_toInt (a b : AzInt) : compare a b = Ord.compare a.toInt
     rw [hc1] at hz; contradiction
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1321b0626665 from=translated src=- shape=88354a24 vocab=8329ca93
+-/
 theorem compare_ofInt_eq_compare (a b : Int) : compare (ofInt a) (ofInt b) = Ord.compare a b := by
   rw [compare_eq_compare_toInt]
   rw [toInt_ofInt, toInt_ofInt]
 
+/--
+@isnad1 id=iff.0h2v.s4.502c0edbbece from=translated src=- shape=af3aca10 vocab=c7e37aef
+-/
 lemma le_iff_toInt_le (a b : AzInt) : a ≤ b ↔ a.toInt ≤ b.toInt := by
   change compare a b ≠ Ordering.gt ↔ a.toInt ≤ b.toInt
   rw [compare_eq_compare_toInt]
   exact compare_le_iff_le
 
+/--
+@isnad1 id=iff.0h2v.s4.0add6c4dab7e from=translated src=- shape=af3aca10 vocab=af4ee27b
+-/
 lemma lt_iff_toInt_lt (a b : AzInt) : a < b ↔ a.toInt < b.toInt := by
   change compare a b = Ordering.lt ↔ a.toInt < b.toInt
   rw [compare_eq_compare_toInt]
   exact compare_lt_iff_lt
 
+/--
+@isnad1 id=le.0h1v.s2.be10eb199658 from=translated src=- shape=b554ad9b vocab=b1e945b0
+-/
 lemma le_refl (a : AzInt) : a ≤ a := by
   rw [le_iff_toInt_le]
 
+/--
+@isnad1 id=le.2h3v.s4.275b8c59a1df from=translated src=- shape=8b2dd8a3 vocab=b1e945b0
+-/
 lemma le_trans (a b c : AzInt) (h1 : a ≤ b) (h2 : b ≤ c) : a ≤ c := by
   rw [le_iff_toInt_le] at *
   exact Int.le_trans h1 h2
 
+/--
+@isnad1 id=eq.2h2v.s4.cc707cf59f7d from=translated src=- shape=4c719c5d vocab=b1e945b0
+-/
 lemma le_antisymm (a b : AzInt) (h1 : a ≤ b) (h2 : b ≤ a) : a = b := by
   rw [le_iff_toInt_le] at *
   have ht : a.toInt = b.toInt := Int.le_antisymm h1 h2
@@ -132,14 +159,23 @@ lemma le_antisymm (a b : AzInt) (h1 : a ≤ b) (h2 : b ≤ a) : a = b := by
   rw [ofInt_toInt, ofInt_toInt] at hr
   exact hr
 
+/--
+@isnad1 id=or.0h2v.s3.2ac47c5819df from=translated src=- shape=347deaeb vocab=b1e945b0
+-/
 lemma le_total (a b : AzInt) : a ≤ b ∨ b ≤ a := by
   rw [le_iff_toInt_le, le_iff_toInt_le]
   exact Int.le_total a.toInt b.toInt
 
+/--
+@isnad1 id=iff.0h2v.s4.7d3c5c68c426 from=translated src=- shape=98540705 vocab=c0f52569
+-/
 lemma lt_iff_le_not_ge (a b : AzInt) : a < b ↔ a ≤ b ∧ ¬ b ≤ a := by
   rw [lt_iff_toInt_lt, le_iff_toInt_le, le_iff_toInt_le]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.f4e2bdc6e625 from=translated src=- shape=64084b94 vocab=09961e60
+-/
 lemma compare_eq_compareOfLessAndEq (a b : AzInt) : compare a b = compareOfLessAndEq a b := by
   have hl1 : a < b ↔ a.toInt < b.toInt := lt_iff_toInt_lt a b
   have he1 : a = b ↔ a.toInt = b.toInt := by
@@ -187,6 +223,9 @@ private lemma neg_sign_toInt_neg {z : AzInt} (hs : z.sign = false) : z.toInt < 0
   have := neg_sign_abs_pos hs
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.682033b4268b from=translated src=- shape=79789d74 vocab=cc4c44b7
+-/
 theorem compareUInt64_eq (z : AzInt) (u : UInt64) :
     z.compareUInt64 u = Ord.compare z.toInt (u.toNat : Int) := by
   unfold compareUInt64 toInt
@@ -199,6 +238,9 @@ theorem compareUInt64_eq (z : AzInt) (u : UInt64) :
       omega
     symm; exact compare_lt_iff_lt.mpr h_neg
 
+/--
+@isnad1 id=eq.0h2v.s4.0ce9fb978b9e from=translated src=- shape=79789d74 vocab=5d6d696d
+-/
 theorem compareAzNat_eq (z : AzInt) (a : AzNat) :
     z.compareAzNat a = Ord.compare z.toInt (a.toNat : Int) := by
   unfold compareAzNat toInt
@@ -245,6 +287,9 @@ private lemma Int64.neg_toUInt64_toNat_eq {i : Int64} (hi : i < 0) :
   rw [h_neg_nat, h_toInt_eq]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.7195ad5f3ae7 from=translated src=- shape=63bbbcb1 vocab=4ecdd7ea
+-/
 theorem compareInt64_eq (z : AzInt) (i : Int64) :
     z.compareInt64 i = Ord.compare z.toInt i.toInt := by
   unfold compareInt64

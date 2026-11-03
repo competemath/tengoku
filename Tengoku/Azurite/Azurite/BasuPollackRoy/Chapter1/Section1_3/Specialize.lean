@@ -39,16 +39,25 @@ noncomputable def specialize (y : Fin k → C)
         (fun j : Fin k => Polynomial.C (y j))
         i) P
 
+/--
+@isnad1 id=eq.0h4v.s8.f59a2b46f71f from=translated src=- shape=574c9cbc vocab=7d04d0ad
+-/
 @[simp] theorem specialize_C (y : Fin k → C) (c : C) :
     specialize y (MvPolynomial.C c : MvPolynomial (Fin (k+1)) C) =
       Polynomial.C c := by
   simp [specialize]
 
+/--
+@isnad1 id=eq.0h3v.s5.88a4ae8232e6 from=translated src=- shape=2fc98214 vocab=d7095991
+-/
 @[simp] theorem specialize_X_last (y : Fin k → C) :
     specialize y (MvPolynomial.X (Fin.last k) :
       MvPolynomial (Fin (k+1)) C) = Polynomial.X := by
   simp [specialize]
 
+/--
+@isnad1 id=eq.0h4v.s7.a71a9b44fafc from=translated src=- shape=2a9b6b06 vocab=7a79fb4b
+-/
 @[simp] theorem specialize_X_castSucc (y : Fin k → C) (j : Fin k) :
     specialize y (MvPolynomial.X j.castSucc :
       MvPolynomial (Fin (k+1)) C) = Polynomial.C (y j) := by
@@ -57,7 +66,9 @@ noncomputable def specialize (y : Fin k → C)
 /-- Evaluating the specialization `P_y(X)` at `x` recovers
 `P(y₁, …, y_k, x)`, i.e. `MvPolynomial.eval (Fin.snoc y x) P`. This
 is the key compatibility relating BPR's `P_y(X)` notation to direct
-multivariate evaluation at a concatenated point.-/
+multivariate evaluation at a concatenated point.
+@isnad1 id=eq.0h5v.s8.ecaa760f7f73 from=translated src=- shape=5a82ced7 vocab=309a5444
+-/
 theorem eval_specialize (y : Fin k → C) (x : C)
     (P : MvPolynomial (Fin (k+1)) C) :
     Polynomial.eval x (specialize y P) =

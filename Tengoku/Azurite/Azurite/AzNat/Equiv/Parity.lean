@@ -35,6 +35,9 @@ private lemma toNatLimbsList_mod_two_cons (x : UInt64) (xs : List UInt64) :
     toNatLimbsList (x :: xs) % 2 = x.toNat % 2 := by
   rw [toNatLimbsList_cons]; omega
 
+/--
+@isnad1 id=iff.0h1v.s3.0799c7b827bc from=translated src=- shape=70149ad5 vocab=96230be9
+-/
 theorem isEven_iff (n : AzNat) : n.isEven = true ↔ Even n.toNat := by
   rw [Nat.even_iff]
   unfold isEven toNat
@@ -51,14 +54,23 @@ theorem isEven_iff (n : AzNat) : n.isEven = true ↔ Even n.toNat := by
       Array.getElem_toList (by omega), h]
     simp only [List.getElem_cons_zero, uint64_land_one_eq_zero_iff, toNatLimbsList_mod_two_cons]
 
+/--
+@isnad1 id=iff.0h1v.s3.467d842e4e1f from=translated src=- shape=70149ad5 vocab=137882c7
+-/
 theorem isOdd_iff (n : AzNat) : n.isOdd = true ↔ Odd n.toNat := by
   unfold isOdd
   rw [Bool.not_eq_true', Bool.eq_false_iff, ← Nat.not_even_iff_odd]
   exact Iff.not (isEven_iff n)
 
+/--
+@isnad1 id=iff.0h1v.s3.5738d113c727 from=translated src=- shape=58e99329 vocab=2f47cd7c
+-/
 theorem isEven_ofNat (n : Nat) : (ofNat n).isEven = true ↔ Even n := by
   rw [isEven_iff, toNat_ofNat]
 
+/--
+@isnad1 id=iff.0h1v.s3.eccd4400cebb from=translated src=- shape=58e99329 vocab=052fd398
+-/
 theorem isOdd_ofNat (n : Nat) : (ofNat n).isOdd = true ↔ Odd n := by
   rw [isOdd_iff, toNat_ofNat]
 

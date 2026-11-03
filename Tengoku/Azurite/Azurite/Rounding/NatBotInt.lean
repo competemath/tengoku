@@ -29,7 +29,9 @@ extend to `intSet` for nonnegative inputs without re-running the case analysis.
 namespace Azurite
 open RoundingTarget
 
-/-- Floor agrees on `natBotSet` and `intSet` for `x ≥ 0`.-/
+/-- Floor agrees on `natBotSet` and `intSet` for `x ≥ 0`.
+@isnad1 id=eq.1h1v.s5.bf0bd5f1e77a from=translated src=- shape=22985d3c vocab=7293b1b0
+-/
 lemma val_roundFloor_natBotSet_eq_intSet (x : ℝ) (hx : 0 ≤ x) :
     (roundFloor natBotSet x).val = (roundFloor intSet x).val := by
   rw [roundFloor_natBotSet_nonneg x hx, val_roundFloor_intSet]
@@ -38,7 +40,9 @@ lemma val_roundFloor_natBotSet_eq_intSet (x : ℝ) (hx : 0 ≤ x) :
   push_cast at h
   rw [h]
 
-/-- Ceiling agrees on `natBotSet` and `intSet` for `x ≥ 0`.-/
+/-- Ceiling agrees on `natBotSet` and `intSet` for `x ≥ 0`.
+@isnad1 id=eq.1h1v.s5.d2cec04f6ac3 from=translated src=- shape=22985d3c vocab=f136aa3d
+-/
 lemma val_roundCeiling_natBotSet_eq_intSet (x : ℝ) (hx : 0 ≤ x) :
     (roundCeiling natBotSet x).val = (roundCeiling intSet x).val := by
   rw [roundCeiling_natBotSet, val_roundCeiling_intSet]
@@ -142,7 +146,9 @@ private lemma natBot_int_tiebreak_value_agree {x : ℝ} (hx : 0 ≤ x)
       rw [ite_eq_right h3, ite_eq_right h4]
       rw [hFn_val, hFi_val]
 
-/-- For `x ≥ 0`, rounding against `natBotSet` and `intSet` give the same value.-/
+/-- For `x ≥ 0`, rounding against `natBotSet` and `intSet` give the same value.
+@isnad1 id=eq.1h2v.s5.b347ccc39499 from=translated src=- shape=7928b98b vocab=fa228036
+-/
 theorem val_round_natBotSet_eq_intSet (mode : RoundingMode) (x : ℝ) (hx : 0 ≤ x) :
     (round natBotSet mode x).val = (round intSet mode x).val := by
   have hF := val_roundFloor_natBotSet_eq_intSet x hx

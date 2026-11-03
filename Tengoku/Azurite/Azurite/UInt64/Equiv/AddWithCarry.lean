@@ -14,6 +14,9 @@ import Tengoku.Azurite.Azurite.UInt64.AddWithCarry
 
 namespace UInt64
 
+/--
+@isnad1 id=eq.0h2v.s6.af2f45793c10 from=translated src=- shape=2aa4672c vocab=6a51106b
+-/
 theorem addWithCarry_zero_eq (a b : UInt64) :
   a.toNat + b.toNat + 0 = (if (addWithCarry a b false).2 then 1 else 0) * 2^64 + (addWithCarry a b false).1.toNat := by
   unfold addWithCarry
@@ -26,6 +29,9 @@ theorem addWithCarry_zero_eq (a b : UInt64) :
     omega
   by_cases h : a + b < a <;> simp [h] at * <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s6.bc2ce413f034 from=translated src=- shape=d8c45817 vocab=ce5c57f9
+-/
 theorem addWithCarry_one_eq (a b : UInt64) :
   a.toNat + b.toNat + 1 = (if (addWithCarry a b true).2 then 1 else 0) * 2^64 + (addWithCarry a b true).1.toNat := by
   unfold addWithCarry
@@ -46,6 +52,9 @@ theorem addWithCarry_one_eq (a b : UInt64) :
 
   by_cases h1 : a + b < a <;> by_cases h2 : a + b + 1 < a + b <;> simp [h1, h2, h_one] at * <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s6.c344b6f61862 from=translated src=- shape=52faa7df vocab=ce5c57f9
+-/
 theorem addWithCarry_eq (a b : UInt64) (c : Bool) :
   a.toNat + b.toNat + (if c then 1 else 0) = (if (addWithCarry a b c).2 then 1 else 0) * 2^64 + (addWithCarry a b c).1.toNat := by
   cases c

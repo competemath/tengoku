@@ -18,12 +18,16 @@ import Tengoku.Seed.Algebra.Group.Pi.Basic
 namespace Azurite
 variable {R : Type _} [Sub R] {n : Nat}
 
-/-- Subtraction commutes with `toFn`.-/
+/-- Subtraction commutes with `toFn`.
+@isnad1 id=eq.0h4v.s6.b3bfa43328cf from=translated src=- shape=74e2239c vocab=5693f962
+-/
 @[simp]
 theorem AzVector.toFn_sub' (v w : AzVector R n) :
     (v - w).toFn = v.toFn - w.toFn := AzVector.toFn_sub v w
 
-/-- Subtraction commutes with `ofFn`.-/
+/-- Subtraction commutes with `ofFn`.
+@isnad1 id=eq.0h4v.s6.d9d24d6819eb from=translated src=- shape=a0978e6a vocab=d0cc0880
+-/
 @[simp]
 theorem AzVector.ofFn_sub (f g : Fin n → R) :
     AzVector.ofFn (f - g) = AzVector.ofFn f - AzVector.ofFn g := by

@@ -15,7 +15,9 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.ShiftLeft
 
 namespace Azurite.AzInt
 
-/-- Correctness of `AzInt.shiftLeft`.-/
+/-- Correctness of `AzInt.shiftLeft`.
+@isnad1 id=eq.0h2v.s5.523e45a7e605 from=translated src=- shape=dbe29c72 vocab=32633d9d
+-/
 theorem toInt_shiftLeft (z : AzInt) (sh : Nat) :
     (shiftLeft z sh).toInt = z.toInt * 2 ^ sh := by
   have h_abs : (z.abs <<< sh).toNat = z.abs.toNat * 2 ^ sh := by
@@ -40,15 +42,21 @@ theorem toInt_shiftLeft (z : AzInt) (sh : Nat) :
     simp only [↓reduceIte]
     push_cast; ring
 
-/-- Compatibility of `HShiftLeft` notation with `shiftLeft`.-/
+/-- Compatibility of `HShiftLeft` notation with `shiftLeft`.
+@isnad1 id=eq.0h2v.s4.a1a1c9588af2 from=translated src=- shape=62f8b022 vocab=3583e233
+-/
 @[simp] lemma hShiftLeft_eq (z : AzInt) (sh : Nat) : z <<< sh = shiftLeft z sh := rfl
 
-/-- `toInt` respects left shift.-/
+/-- `toInt` respects left shift.
+@isnad1 id=eq.0h2v.s5.5a41f51f0c96 from=translated src=- shape=b538a972 vocab=e3e762ed
+-/
 theorem toInt_hShiftLeft (z : AzInt) (sh : Nat) :
     (z <<< sh).toInt = z.toInt * 2 ^ sh := by
   rw [hShiftLeft_eq, toInt_shiftLeft]
 
-/-- `ofInt`-version of `toInt_shiftLeft`.-/
+/-- `ofInt`-version of `toInt_shiftLeft`.
+@isnad1 id=eq.0h2v.s5.2b2a1ded291c from=translated src=- shape=5027fddb vocab=b89bd508
+-/
 theorem ofInt_shiftLeft (i : Int) (sh : Nat) :
     ofInt (i * 2 ^ sh) = (ofInt i) <<< sh := by
   have h : (ofInt (i * 2 ^ sh)).toInt = ((ofInt i) <<< sh).toInt := by

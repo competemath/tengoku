@@ -82,12 +82,21 @@ namespace AzFloat
 
 instance : Inhabited AzFloat := ⟨nan⟩
 
+/--
+@isnad1 id=le.0h1v.s3.f150890f0fb7 from=translated src=- shape=e63234f4 vocab=3b016054
+-/
 theorem le_alignedBits (p : Nat) : p ≤ alignedBits p := by
   unfold alignedBits; omega
 
+/--
+@isnad1 id=lt.0h1v.s4.fd81b4034f1e from=translated src=- shape=31421b16 vocab=13d6902b
+-/
 theorem alignedBits_lt (p : Nat) : alignedBits p < p + 64 := by
   unfold alignedBits; omega
 
+/--
+@isnad1 id=eq.0h1v.s4.60b8fef00956 from=translated src=- shape=29a6d799 vocab=654b578b
+-/
 theorem alignedBits_mod (p : Nat) : alignedBits p % 64 = 0 := by
   unfold alignedBits; omega
 

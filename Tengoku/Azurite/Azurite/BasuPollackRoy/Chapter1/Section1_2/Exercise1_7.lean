@@ -31,7 +31,9 @@ open Polynomial
 variable {C : Type*} [Field C] [IsAlgClosed C]
 
 /-- Exercise 1.7: Over an algebraically closed field, every polynomial factors as
-    `P = C(leadingCoeff P) * ∏ (X − C x)` for `x ∈ P.roots`.-/
+    `P = C(leadingCoeff P) * ∏ (X − C x)` for `x ∈ P.roots`.
+@isnad1 id=eq.0h2v.s8.e5375200af00 from=translated src=- shape=aa3bc2f3 vocab=322a0ac9
+-/
 theorem exercise_1_7 (P : C[X]) :
     P = Polynomial.C P.leadingCoeff *
       (Multiset.map (fun a => X - Polynomial.C a) P.roots).prod :=

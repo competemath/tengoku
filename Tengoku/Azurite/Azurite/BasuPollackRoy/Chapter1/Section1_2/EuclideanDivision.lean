@@ -55,13 +55,17 @@ noncomputable def Rem (K : Type*) [Field K] [Algebra D K] [IsFractionRing D K]
     (P Q : D[X]) : K[X] :=
   (P.map (algebraMap D K)) % (Q.map (algebraMap D K))
 
-/-- Euclidean division equation: P = Q · Quo(P,Q) + Rem(P,Q) in K[X].-/
+/-- Euclidean division equation: P = Q · Quo(P,Q) + Rem(P,Q) in K[X].
+@isnad1 id=eq.0h4v.s7.1f7574106c28 from=translated src=- shape=f032a244 vocab=af947e84
+-/
 theorem map_eq_mul_quo_add_rem (P Q : D[X]) :
     P.map (algebraMap D K) =
     Q.map (algebraMap D K) * Quo K P Q + Rem K P Q :=
   (EuclideanDomain.div_add_mod _ _).symm
 
-/-- deg(Rem(P, Q)) < deg(Q) when Q ≠ 0.-/
+/-- deg(Rem(P, Q)) < deg(Q) when Q ≠ 0.
+@isnad1 id=lt.1h4v.s7.4bb7dc62933f from=translated src=- shape=b244e18c vocab=d98d7560
+-/
 theorem degree_rem_lt (P Q : D[X]) (hQ : Q ≠ 0) :
     (Rem K P Q).degree < (Q.map (algebraMap D K)).degree :=
   Polynomial.degree_mod_lt _

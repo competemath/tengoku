@@ -64,7 +64,9 @@ def addSameLengthLimbs (a b : Array UInt64) (loA loB len : Nat)
     Array UInt64 × Bool :=
   addSameLengthLimbs.go b loA loB len a 0 false hA hB
 
-/-- Size preservation of `addSameLengthLimbs.go`.-/
+/-- Size preservation of `addSameLengthLimbs.go`.
+@isnad1 id=eq.2h7v.s6.eed74c395b56 from=translated src=- shape=66f3b83e vocab=afa8b855
+-/
 theorem addSameLengthLimbs.go_size (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (carry : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -79,7 +81,9 @@ theorem addSameLengthLimbs.go_size (b : Array UInt64) (loA loB len : Nat)
     simp only [h_lt, ↓reduceDIte]
     rw [ih _ _ _ _ (by omega), Array.size_set]
 
-/-- Size preservation of `addSameLengthLimbs`.-/
+/-- Size preservation of `addSameLengthLimbs`.
+@isnad1 id=eq.2h5v.s5.de6c00f7e8d8 from=translated src=- shape=bc5f526b vocab=6d2edbad
+-/
 theorem addSameLengthLimbs_size (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
     (addSameLengthLimbs a b loA loB len hA hB).1.size = a.size :=
@@ -105,7 +109,9 @@ def add3SameLengthLimbs.go (b c : Array UInt64) (loA loB loC len : Nat)
     (a, c₁, c₂)
   termination_by len - k
 
-/-- Size preservation of `add3SameLengthLimbs.go`.-/
+/-- Size preservation of `add3SameLengthLimbs.go`.
+@isnad1 id=eq.3h10v.s6.cbea6760f080 from=translated src=- shape=578328be vocab=83a273d9
+-/
 theorem add3SameLengthLimbs.go_size (b c : Array UInt64) (loA loB loC len : Nat)
     (a : Array UInt64) (k : Nat) (c₁ c₂ : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (hC : loC + len ≤ c.size) :
@@ -148,7 +154,9 @@ def addLimbs (a b : Array UInt64) (loA lenA loB lenB : Nat)
   else
     addGeqLimbs b a loB lenB loA lenA hB hA (by omega) h_posB h_posA
 
-/-- Size preservation of `addLimb.go`.-/
+/-- Size preservation of `addLimb.go`.
+@isnad1 id=eq.1h4v.s5.e93605c351a7 from=translated src=- shape=ffb6c691 vocab=ec400cb5
+-/
 theorem addLimb.go_size (hi : Nat) (a : Array UInt64) (i : Nat) (carry : UInt64)
     (h_size : hi ≤ a.size) :
     (addLimb.go hi a i carry h_size).1.size = a.size := by
@@ -168,14 +176,18 @@ theorem addLimb.go_size (hi : Nat) (a : Array UInt64) (i : Nat) (carry : UInt64)
       simp only [h_carry, ↓reduceIte, h_lt, ↓reduceDIte]
       rw [ih _ _ _ _ h_new, Array.size_set]
 
-/-- Size preservation of `addLimb`.-/
+/-- Size preservation of `addLimb`.
+@isnad1 id=eq.2h4v.s5.e67fcf3fbfae from=translated src=- shape=f8cab86f vocab=ba3f2d37
+-/
 theorem addLimb_size (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) :
     (addLimb a lo hi b hlo hhi).1.size = a.size :=
   addLimb.go_size hi a lo b hhi
 
 /-- Positions below the recursion's current index `i` are unchanged by
-    `addLimb.go`.  Used to show `addLimb` leaves low limbs intact.-/
+    `addLimb.go`.  Used to show `addLimb` leaves low limbs intact.
+@isnad1 id=eq.3h5v.s6.18b75c438f14 from=translated src=- shape=de281732 vocab=df9126f2
+-/
 theorem addLimb.go_get_below (hi : Nat) (a : Array UInt64) (i : Nat)
     (carry : UInt64) (h_size : hi ≤ a.size) (j : Nat) (h_j : j < i)
     (h_j_size : j < a.size) :
@@ -205,7 +217,9 @@ theorem addLimb.go_get_below (hi : Nat) (a : Array UInt64) (i : Nat)
       have h_ne : i ≠ j := by omega
       simp [h_ne]
 
-/-- Positions strictly below `lo` are unchanged by `addLimb`.-/
+/-- Positions strictly below `lo` are unchanged by `addLimb`.
+@isnad1 id=eq.4h5v.s6.5a91781b8f42 from=translated src=- shape=d22a1e86 vocab=87c0d418
+-/
 theorem addLimb_get_below (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) (j : Nat) (h_j : j < lo)
     (h_j_size : j < a.size) :
@@ -213,7 +227,9 @@ theorem addLimb_get_below (a : Array UInt64) (lo hi : Nat) (b : UInt64)
       rw [addLimb_size]; exact h_j_size) = a[j] :=
   addLimb.go_get_below hi a lo b hhi j h_j h_j_size
 
-/-- Positions at or above `hi` are unchanged by `addLimb.go`.-/
+/-- Positions at or above `hi` are unchanged by `addLimb.go`.
+@isnad1 id=eq.3h5v.s6.b9651daf4fb2 from=translated src=- shape=e4032692 vocab=df9126f2
+-/
 theorem addLimb.go_get_above (hi : Nat) (a : Array UInt64) (i : Nat)
     (carry : UInt64) (h_size : hi ≤ a.size) (j : Nat) (h_j : hi ≤ j)
     (h_j_size : j < a.size) :
@@ -242,7 +258,9 @@ theorem addLimb.go_get_above (hi : Nat) (a : Array UInt64) (i : Nat)
       have h_ne : i ≠ j := by omega
       simp [h_ne]
 
-/-- Positions at or above `hi` are unchanged by `addLimb`.-/
+/-- Positions at or above `hi` are unchanged by `addLimb`.
+@isnad1 id=eq.4h5v.s6.7d73862df290 from=translated src=- shape=d534ed83 vocab=87c0d418
+-/
 theorem addLimb_get_above (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) (j : Nat) (h_j : hi ≤ j)
     (h_j_size : j < a.size) :
@@ -250,7 +268,9 @@ theorem addLimb_get_above (a : Array UInt64) (lo hi : Nat) (b : UInt64)
       rw [addLimb_size]; exact h_j_size) = a[j] :=
   addLimb.go_get_above hi a lo b hhi j h_j h_j_size
 
-/-- `addSameLengthLimbs.go` preserves positions outside `[loA + k, loA + len)`.-/
+/-- `addSameLengthLimbs.go` preserves positions outside `[loA + k, loA + len)`.
+@isnad1 id=eq.4h8v.s7.e76ac683b861 from=translated src=- shape=5453f72d vocab=9b6a2a17
+-/
 theorem addSameLengthLimbs.go_get_outside (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (carry : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (j : Nat)
@@ -282,7 +302,9 @@ theorem addSameLengthLimbs.go_get_outside (b : Array UInt64) (loA loB len : Nat)
       · omega
     simp [h_ne]
 
-/-- `addSameLengthLimbs` preserves positions outside `[loA, loA + len)`.-/
+/-- `addSameLengthLimbs` preserves positions outside `[loA, loA + len)`.
+@isnad1 id=eq.4h6v.s7.8fc229230b14 from=translated src=- shape=8e31f3ad vocab=2ea63578
+-/
 theorem addSameLengthLimbs_get_outside (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (j : Nat)
     (h_j : j < loA ∨ loA + len ≤ j) (h_j_size : j < a.size) :
@@ -294,7 +316,9 @@ theorem addSameLengthLimbs_get_outside (a b : Array UInt64) (loA loB len : Nat)
     · right; exact h
   exact addSameLengthLimbs.go_get_outside b loA loB len a 0 false hA hB j h_j' h_j_size
 
-/-- Size preservation of `addGeqLimbs`.-/
+/-- Size preservation of `addGeqLimbs`.
+@isnad1 id=eq.5h6v.s6.20c2275221da from=translated src=- shape=11980a6f vocab=e369846e
+-/
 theorem addGeqLimbs_size (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB) :
@@ -304,7 +328,9 @@ theorem addGeqLimbs_size (a b : Array UInt64) (loA lenA loB lenB : Nat)
   · rw [ite_eq_left h, addLimb_size, addSameLengthLimbs_size]
   · rw [ite_eq_right h, addSameLengthLimbs_size]
 
-/-- `addGeqLimbs` preserves positions outside `[loA, loA + lenA)`.-/
+/-- `addGeqLimbs` preserves positions outside `[loA, loA + lenA)`.
+@isnad1 id=eq.7h7v.s7.e13b0dc0ef95 from=translated src=- shape=a0880bbf vocab=b74571e4
+-/
 theorem addGeqLimbs_get_outside (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB) (j : Nat)

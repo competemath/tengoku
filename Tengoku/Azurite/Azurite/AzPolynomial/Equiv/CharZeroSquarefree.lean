@@ -42,7 +42,9 @@ open Polynomial
 
 /-- An irreducible factor of a **primitive squarefree** polynomial over a char-0
 UFD does not divide its derivative — the elementary degree/content replacement
-for the field-only `Squarefree → Separable`.-/
+for the field-only `Squarefree → Separable`.
+@isnad1 id=not.4h3v.s8.8753d0ba4e39 from=translated src=- shape=cce497b8 vocab=14438ee8
+-/
 theorem primitive_squarefree_irreducible_not_dvd_derivative
     {R : Type _} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] [CharZero R]
     {p : Polynomial R} (hprim : p.IsPrimitive) (hsq : Squarefree p)
@@ -77,7 +79,9 @@ theorem primitive_squarefree_irreducible_not_dvd_derivative
 a char-0 UFD — the direct char-0-UFD replacement for `Polynomial.Separable`
 (= `IsCoprime p p'`, which needs a field). Every common divisor of `p` and `p'`
 is a unit, since any non-unit common divisor would have an irreducible factor
-dividing both, contradicting the previous lemma.-/
+dividing both, contradicting the previous lemma.
+@isnad1 id=isrelpri.2h2v.s8.4908ba6bb71c from=translated src=- shape=ce9c4422 vocab=607bb83b
+-/
 theorem primitive_squarefree_isRelPrime_derivative
     {R : Type _} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] [CharZero R]
     {p : Polynomial R} (hprim : p.IsPrimitive) (hsq : Squarefree p) :

@@ -80,6 +80,9 @@ def backwardFFTRec (e : Nat) : (k : Nat) → (a : Array (AzFermat N)) → a.size
 def forwardFFT (e k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k) : Array (AzFermat N) :=
   (forwardFFTRec e k a ha).1
 
+/--
+@isnad1 id=eq.1h4v.s6.14e52e99b46b from=translated src=- shape=e44a89bf vocab=f592940b
+-/
 theorem forwardFFT_size (e k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k) :
     (forwardFFT e k a ha).size = 2 ^ k := (forwardFFTRec e k a ha).2
 
@@ -88,6 +91,9 @@ order.-/
 def backwardFFT (e k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k) : Array (AzFermat N) :=
   (backwardFFTRec e k a ha).1
 
+/--
+@isnad1 id=eq.1h4v.s6.91efc5e84b92 from=translated src=- shape=e44a89bf vocab=af6afa11
+-/
 theorem backwardFFT_size (e k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k) :
     (backwardFFT e k a ha).size = 2 ^ k := (backwardFFTRec e k a ha).2
 

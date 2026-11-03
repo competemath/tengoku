@@ -29,7 +29,9 @@ variable {K : Type*} [Field K]
 def AreCoprime (P Q : K[X]) : Prop :=
   ∀ G : K[X], IsGCD G P Q → IsUnit G
 
-/-- `AreCoprime` is equivalent to Mathlib's `IsCoprime`.-/
+/-- `AreCoprime` is equivalent to Mathlib's `IsCoprime`.
+@isnad1 id=iff.0h3v.s5.5b9771c5d207 from=translated src=- shape=e9bbc73a vocab=2291ca68
+-/
 theorem areCoprime_iff_isCoprime (P Q : K[X]) :
     AreCoprime P Q ↔ IsCoprime P Q := by
   constructor

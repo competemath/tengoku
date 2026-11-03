@@ -21,7 +21,9 @@ namespace Azurite
 open RoundingTarget
 
 /-- The value component of `AzNat.shiftRightRound` (ignoring the ordering tag).
-Agrees with the original shift-and-round logic.-/
+Agrees with the original shift-and-round logic.
+@isnad1 id=eq.0h3v.s7.4a6ec6fc6b00 from=translated src=- shape=72e2edb1 vocab=ad9075df
+-/
 theorem AzNat.shiftRightRound_fst (n : AzNat) (mode : RoundingMode) (sh : Nat) :
     (n.shiftRightRound mode sh).1 =
       match mode with
@@ -46,7 +48,9 @@ theorem AzNat.shiftRightRound_fst (n : AzNat) (mode : RoundingMode) (sh : Nat) :
 
 For any rounding mode and shift amount, the limb-level `shiftRightRound` on `AzNat`
 agrees with the abstract `round` of `n.toNat / 2^sh` against the rounding target
-`natBotSet ⊆ EReal`.-/
+`natBotSet ⊆ EReal`.
+@isnad1 id=eq.0h3v.s6.bd8f083d9797 from=translated src=- shape=e8dcc15a vocab=394bbb7b
+-/
 theorem AzNat.toNat_shiftRightRound (n : AzNat) (mode : RoundingMode) (sh : Nat) :
     (((n.shiftRightRound mode sh).1).toNat : EReal) =
       (round natBotSet mode ((n.toNat : ℝ) / ((2 : ℝ) ^ sh))).val := by
@@ -358,7 +362,9 @@ less than, equal to, or greater than the true real value `n.toNat / 2^sh`. -/
 
 /-- The ordering component of `AzNat.shiftRightRound`, expressed case-by-case.
 Mirrors `AzNat.shiftRightRound_fst` — together these recover the original match
-form of `shiftRightRound` after the `AzNat × Ordering` refactor.-/
+form of `shiftRightRound` after the `AzNat × Ordering` refactor.
+@isnad1 id=eq.0h3v.s7.34a2b7cb0e69 from=translated src=- shape=d2da84c4 vocab=6649aa0c
+-/
 theorem AzNat.shiftRightRound_snd (n : AzNat) (mode : RoundingMode) (sh : Nat) :
     (n.shiftRightRound mode sh).2 =
       match mode with
@@ -393,7 +399,9 @@ private lemma AzNat.compare_nat_mul_pow_eq_compare_real_div (a b sh : ℕ) :
     rw [div_lt_iff₀ h2]; exact_mod_cast h
 
 /-- When we return `n.shiftRight sh`, the scaled-back comparison is `.eq` when
-`n` is divisible by `2^sh` and `.lt` otherwise.-/
+`n` is divisible by `2^sh` and `.lt` otherwise.
+@isnad1 id=eq.0h2v.s5.c683d6ea34e0 from=translated src=- shape=3b0bcbad vocab=ce9b3fa9
+-/
 theorem AzNat.compare_shiftRight_mul (n : AzNat) (sh : Nat) :
     compare ((n.shiftRight sh).toNat * 2 ^ sh) n.toNat =
       (if n.isMultipleOfPow2 sh = true then Ordering.eq else Ordering.lt) := by
@@ -421,7 +429,9 @@ theorem AzNat.compare_shiftRight_mul (n : AzNat) (sh : Nat) :
 
 /-- When we return `(n.shiftRight sh).addUInt64 1`, the scaled-back comparison is
 always `.gt` (note `AzNat` is unbounded, so no overflow side-condition is needed —
-in contrast to the `UInt64` analogue).-/
+in contrast to the `UInt64` analogue).
+@isnad1 id=eq.0h2v.s5.da13e5bade6d from=translated src=- shape=29657626 vocab=fe4a6535
+-/
 theorem AzNat.compare_shiftRight_addUInt64_one_mul (n : AzNat) (sh : Nat) :
     compare (((n.shiftRight sh).addUInt64 1).toNat * 2 ^ sh) n.toNat = Ordering.gt := by
   rw [AzNat.toNat_addUInt64, AzNat.toNat_shiftRight, show (1 : UInt64).toNat = 1 from rfl]
@@ -452,7 +462,9 @@ private theorem AzNat.not_isMultipleOfPow2_of_testBit {n : AzNat} {sh : Nat}
 /-- **Ordering tag correctness for `AzNat.shiftRightRound`.**
 
 The ordering in `(n.shiftRightRound mode sh).2` records the relation between the
-rounded value and the true real value `n.toNat / 2^sh`.-/
+rounded value and the true real value `n.toNat / 2^sh`.
+@isnad1 id=eq.0h3v.s6.a5175fb371f0 from=translated src=- shape=241e294f vocab=9273953c
+-/
 theorem AzNat.snd_shiftRightRound (n : AzNat) (mode : RoundingMode) (sh : Nat) :
     (n.shiftRightRound mode sh).2 =
       compare (((n.shiftRightRound mode sh).1.toNat : ℕ) : ℝ)

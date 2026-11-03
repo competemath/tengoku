@@ -24,6 +24,9 @@ def compareLimbs (a b : Array UInt64) (aLo bLo k : Nat)
     | Ordering.eq => compareLimbs a b aLo bLo k (by omega) (by omega)
     | ord => ord
 
+/--
+@isnad1 id=eq.2h4v.s5.99cc8e78f574 from=translated src=- shape=16e4b38e vocab=108d0d06
+-/
 @[simp] theorem compareLimbs_zero (a b : Array UInt64) (aLo bLo : Nat)
     (ha : aLo ≤ a.size) (hb : bLo ≤ b.size) :
     compareLimbs a b aLo bLo 0 (by omega) (by omega) = Ordering.eq := rfl

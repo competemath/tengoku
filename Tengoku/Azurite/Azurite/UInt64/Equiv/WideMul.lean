@@ -39,7 +39,9 @@ private lemma loHalf_toNat_eq (u : UInt64) : u.loHalf.toNat = u.toNat % 2^32 := 
 /-- Adding a conditional value equals the conditional of the additions.
 Bridges the branchless carry shape used by the implementations
 (`z + (if P then w else 0)`, which codegen keeps scalar) to the branching
-shape (`if P then z + w else z`) that the correctness proofs case on.-/
+shape (`if P then z + w else z`) that the correctness proofs case on.
+@isnad1 id=eq.0h3v.s5.75717a375314 from=translated src=- shape=0f4f9e7b vocab=fb8cbe7b
+-/
 theorem add_ite_zero (z w : UInt64) (P : Prop) [Decidable P] :
     z + (if P then w else 0) = if P then z + w else z := by
   by_cases h : P <;> simp [h]
@@ -125,6 +127,9 @@ private lemma wideMul_nat_eq
       _ = Xh * Yh * 2^64 + Xl * Yh * 2^32 + Xh * Yl * 2^32 + A := by rw [hA_split]
       _ = Xh * Yh * 2^64 + Xh * Yl * 2^32 + Xl * Yh * 2^32 + A := by ring
 
+/--
+@isnad1 id=eq.0h2v.s6.8c74d497caa4 from=translated src=- shape=0f5fb4a2 vocab=8a5618fa
+-/
 theorem toNat_wideMul (x y : UInt64) :
     (wideMul x y).1.toNat * 2^64 + (wideMul x y).2.toNat = x.toNat * y.toNat := by
   -- Bounds

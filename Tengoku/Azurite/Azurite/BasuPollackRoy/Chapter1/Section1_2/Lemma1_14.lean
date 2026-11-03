@@ -28,6 +28,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 variable {C : Type*} [Field C]
 
+/--
+@isnad1 id=dvd.2h3v.s7.44d1c038186b from=translated src=- shape=610a11d9 vocab=1456a460
+-/
 lemma dvd_of_gcd_deg_eq [DecidableEq K] {P Q : K[X]} (hP : P ≠ 0)
     (hdeg : (gcd P Q).natDegree = P.natDegree) : P ∣ Q := by
   have h1 : gcd P Q ∣ P := gcd_dvd_left P Q
@@ -57,6 +60,9 @@ lemma dvd_of_gcd_deg_eq [DecidableEq K] {P Q : K[X]} (hP : P ≠ 0)
       _ = P * ↑(u⁻¹) := by rw [hu, ← hA]
   exact h3.trans (gcd_dvd_right P Q)
 
+/--
+@isnad1 id=iff.2h5v.s9.6f560a10436f from=translated src=- shape=74735116 vocab=770099bf
+-/
 lemma lemma_1_14_core [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq C]
     {P Q : K[X]} (hP : P ≠ 0) {d : ℕ} (hd : P.natDegree < d) :
     (∃ x : C, aeval x P = 0 ∧ aeval x Q ≠ 0) ↔ (gcd P (Q ^ d)).natDegree ≠ P.natDegree := by
@@ -89,7 +95,9 @@ lemma lemma_1_14_core [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq
     have hnorm_dvd_P : (gcd P (Q ^ d)).natDegree ≤ P.natDegree := natDegree_le_of_dvd H_gcd2 hP
     exact h (le_antisymm hnorm_dvd_P hP_dvd_norm)
 
-/-- BPR Lemma 1.14: Yields the non-root criteria for polynomial families using a shifted polynomial GCD algorithm equivalence bound-/
+/-- BPR Lemma 1.14: Yields the non-root criteria for polynomial families using a shifted polynomial GCD algorithm equivalence bound
+@isnad1 id=iff.2h5v.s9.aac16c33a7d0 from=translated src=- shape=96a0dd81 vocab=2239de13
+-/
 theorem lemma_1_14 [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq C]
     (P_fam Q_fam : List K[X]) (hP : listGcd P_fam ≠ 0) {d : ℕ}
     (hd : (listGcd P_fam).natDegree < d) :

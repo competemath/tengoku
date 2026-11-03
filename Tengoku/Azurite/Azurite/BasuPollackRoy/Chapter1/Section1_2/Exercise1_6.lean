@@ -24,7 +24,9 @@ open Polynomial
 
 variable {K : Type*} [Field K]
 
-/-- Exercise 1.6: x is a root of P iff (X − x) divides P in K[X].-/
+/-- Exercise 1.6: x is a root of P iff (X − x) divides P in K[X].
+@isnad1 id=iff.0h3v.s8.3bfd8e073093 from=translated src=- shape=1eba6466 vocab=7f66dea9
+-/
 theorem exercise_1_6 (P : K[X]) (x : K) :
     Polynomial.eval x P = 0 ↔ (X - Polynomial.C x) ∣ P :=
   dvd_iff_isRoot.symm

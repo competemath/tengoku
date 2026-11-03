@@ -63,7 +63,9 @@ def subSameLengthLimbs (a b : Array UInt64) (loA loB len : Nat)
     Array UInt64 × Bool :=
   subSameLengthLimbs.go b loA loB len a 0 false hA hB
 
-/-- Size preservation of `subSameLengthLimbs.go`.-/
+/-- Size preservation of `subSameLengthLimbs.go`.
+@isnad1 id=eq.2h7v.s6.46477fdfad9b from=translated src=- shape=66f3b83e vocab=2aebd493
+-/
 theorem subSameLengthLimbs.go_size (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (borrow : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -78,7 +80,9 @@ theorem subSameLengthLimbs.go_size (b : Array UInt64) (loA loB len : Nat)
     simp only [h_lt, ↓reduceDIte]
     rw [ih _ _ _ _ (by omega), Array.size_set]
 
-/-- Size preservation of `subSameLengthLimbs`.-/
+/-- Size preservation of `subSameLengthLimbs`.
+@isnad1 id=eq.2h5v.s5.9c90555254a8 from=translated src=- shape=bc5f526b vocab=c46eca77
+-/
 theorem subSameLengthLimbs_size (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
     (subSameLengthLimbs a b loA loB len hA hB).1.size = a.size :=
@@ -100,7 +104,9 @@ def subGeqLimbs (a b : Array UInt64) (loA lenA loB lenB : Nat)
   else
     (lo.1, false)
 
-/-- Size preservation of `subLimb.go`.-/
+/-- Size preservation of `subLimb.go`.
+@isnad1 id=eq.1h4v.s5.826c34c17c43 from=translated src=- shape=ffb6c691 vocab=4aced8de
+-/
 theorem subLimb.go_size (hi : Nat) (a : Array UInt64) (i : Nat) (borrow : UInt64)
     (h_size : hi ≤ a.size) :
     (subLimb.go hi a i borrow h_size).1.size = a.size := by
@@ -120,14 +126,18 @@ theorem subLimb.go_size (hi : Nat) (a : Array UInt64) (i : Nat) (borrow : UInt64
       simp only [h_borrow, ↓reduceIte, h_lt, ↓reduceDIte]
       rw [ih _ _ _ _ h_new, Array.size_set]
 
-/-- Size preservation of `subLimb`.-/
+/-- Size preservation of `subLimb`.
+@isnad1 id=eq.2h4v.s5.6b5d82fb19ec from=translated src=- shape=f8cab86f vocab=5df71b11
+-/
 theorem subLimb_size (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) :
     (subLimb a lo hi b hlo hhi).1.size = a.size :=
   subLimb.go_size hi a lo b hhi
 
 /-- Positions below the recursion's current index `i` are unchanged by
-    `subLimb.go`.-/
+    `subLimb.go`.
+@isnad1 id=eq.3h5v.s6.4e0e295582ed from=translated src=- shape=de281732 vocab=861e74d7
+-/
 theorem subLimb.go_get_below (hi : Nat) (a : Array UInt64) (i : Nat)
     (borrow : UInt64) (h_size : hi ≤ a.size) (j : Nat) (h_j : j < i)
     (h_j_size : j < a.size) :
@@ -156,7 +166,9 @@ theorem subLimb.go_get_below (hi : Nat) (a : Array UInt64) (i : Nat)
       have h_ne : i ≠ j := by omega
       simp [h_ne]
 
-/-- Positions at or above `hi` are unchanged by `subLimb.go`.-/
+/-- Positions at or above `hi` are unchanged by `subLimb.go`.
+@isnad1 id=eq.3h5v.s6.0670af2b318a from=translated src=- shape=e4032692 vocab=861e74d7
+-/
 theorem subLimb.go_get_above (hi : Nat) (a : Array UInt64) (i : Nat)
     (borrow : UInt64) (h_size : hi ≤ a.size) (j : Nat) (h_j : hi ≤ j)
     (h_j_size : j < a.size) :
@@ -185,7 +197,9 @@ theorem subLimb.go_get_above (hi : Nat) (a : Array UInt64) (i : Nat)
       have h_ne : i ≠ j := by omega
       simp [h_ne]
 
-/-- Positions strictly below `lo` are unchanged by `subLimb`.-/
+/-- Positions strictly below `lo` are unchanged by `subLimb`.
+@isnad1 id=eq.4h5v.s6.26a34274a74a from=translated src=- shape=d22a1e86 vocab=35f187cf
+-/
 theorem subLimb_get_below (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) (j : Nat) (h_j : j < lo)
     (h_j_size : j < a.size) :
@@ -193,7 +207,9 @@ theorem subLimb_get_below (a : Array UInt64) (lo hi : Nat) (b : UInt64)
       rw [subLimb_size]; exact h_j_size) = a[j] :=
   subLimb.go_get_below hi a lo b hhi j h_j h_j_size
 
-/-- Positions at or above `hi` are unchanged by `subLimb`.-/
+/-- Positions at or above `hi` are unchanged by `subLimb`.
+@isnad1 id=eq.4h5v.s6.5c3b0d093409 from=translated src=- shape=d534ed83 vocab=35f187cf
+-/
 theorem subLimb_get_above (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) (j : Nat) (h_j : hi ≤ j)
     (h_j_size : j < a.size) :
@@ -201,7 +217,9 @@ theorem subLimb_get_above (a : Array UInt64) (lo hi : Nat) (b : UInt64)
       rw [subLimb_size]; exact h_j_size) = a[j] :=
   subLimb.go_get_above hi a lo b hhi j h_j h_j_size
 
-/-- `subSameLengthLimbs.go` preserves positions outside `[loA + k, loA + len)`.-/
+/-- `subSameLengthLimbs.go` preserves positions outside `[loA + k, loA + len)`.
+@isnad1 id=eq.4h8v.s7.36243a8bac9f from=translated src=- shape=5453f72d vocab=638c2c08
+-/
 theorem subSameLengthLimbs.go_get_outside (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (borrow : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (j : Nat)
@@ -233,7 +251,9 @@ theorem subSameLengthLimbs.go_get_outside (b : Array UInt64) (loA loB len : Nat)
       · omega
     simp [h_ne]
 
-/-- `subSameLengthLimbs` preserves positions outside `[loA, loA + len)`.-/
+/-- `subSameLengthLimbs` preserves positions outside `[loA, loA + len)`.
+@isnad1 id=eq.4h6v.s7.e97d9a98857b from=translated src=- shape=8e31f3ad vocab=3b052304
+-/
 theorem subSameLengthLimbs_get_outside (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (j : Nat)
     (h_j : j < loA ∨ loA + len ≤ j) (h_j_size : j < a.size) :
@@ -245,7 +265,9 @@ theorem subSameLengthLimbs_get_outside (a b : Array UInt64) (loA loB len : Nat)
     · right; exact h
   exact subSameLengthLimbs.go_get_outside b loA loB len a 0 false hA hB j h_j' h_j_size
 
-/-- Size preservation of `subGeqLimbs`.-/
+/-- Size preservation of `subGeqLimbs`.
+@isnad1 id=eq.5h6v.s6.5f7628fd9990 from=translated src=- shape=11980a6f vocab=0a7c19c0
+-/
 theorem subGeqLimbs_size (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB) :
@@ -255,7 +277,9 @@ theorem subGeqLimbs_size (a b : Array UInt64) (loA lenA loB lenB : Nat)
   · rw [ite_eq_left h, subLimb_size, subSameLengthLimbs_size]
   · rw [ite_eq_right h, subSameLengthLimbs_size]
 
-/-- `subGeqLimbs` preserves positions outside `[loA, loA + lenA)`.-/
+/-- `subGeqLimbs` preserves positions outside `[loA, loA + lenA)`.
+@isnad1 id=eq.7h7v.s7.96ebef62bf44 from=translated src=- shape=a0880bbf vocab=6d57653a
+-/
 theorem subGeqLimbs_get_outside (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB) (j : Nat)

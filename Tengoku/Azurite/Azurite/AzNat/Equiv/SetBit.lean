@@ -19,7 +19,9 @@ namespace Azurite.AzNat
 
 /-- A limb-indexed view of `n.toNat.testBit`, mirroring the structure of
 `AzNat.testBit`: bit `j` of `n.toNat` is bit `j % 64` of limb `j / 64`, or `false`
-if that limb is absent.-/
+if that limb is absent.
+@isnad1 id=eq.0h2v.s7.46ee39496ab5 from=translated src=- shape=d8a1c98d vocab=b5709b40
+-/
 lemma testBit_toNat_limbs (n : AzNat) (j : Nat) :
     n.toNat.testBit j =
       if h : j / 64 < n.limbs.toList.length then
@@ -43,7 +45,9 @@ private lemma newLimb_toNat (i : Nat) :
     (Nat.pow_lt_pow_right (by norm_num : (1 : Nat) < 2) hi_lt)
 
 /-- Equality of decidable propositions: when `i / 64 = j / 64`, comparing `i % 64`
-with `j % 64` is the same as comparing `i` with `j`.-/
+with `j % 64` is the same as comparing `i` with `j`.
+@isnad1 id=eq.1h2v.s6.c5d45e619547 from=translated src=- shape=a4961e44 vocab=f9962fb1
+-/
 lemma decide_mod_eq_of_div_eq {i j : Nat} (h : i / 64 = j / 64) :
     decide (i % 64 = j % 64) = decide (i = j) := by
   by_cases h' : i = j
@@ -54,6 +58,9 @@ lemma decide_mod_eq_of_div_eq {i j : Nat} (h : i / 64 = j / 64) :
       omega
     simp [this, h']
 
+/--
+@isnad1 id=eq.0h2v.s5.11b200981a22 from=translated src=- shape=f16f25b5 vocab=81eeee22
+-/
 theorem toNat_setBit (n : AzNat) (i : Nat) :
     (n.setBit i).toNat = n.toNat ||| 2 ^ i := by
   apply Nat.eq_of_testBit_eq
@@ -185,6 +192,9 @@ theorem toNat_setBit (n : AzNat) (i : Nat) :
         omega
       rw [decide_eq_false h_ij, Bool.or_false]
 
+/--
+@isnad1 id=eq.0h2v.s5.fc50e734d702 from=translated src=- shape=30f8a640 vocab=cf3a38b7
+-/
 theorem setBit_ofNat (n i : Nat) : setBit (ofNat n) i = ofNat (n ||| 2 ^ i) := by
   apply toNat_injective
   rw [toNat_setBit, toNat_ofNat, toNat_ofNat]

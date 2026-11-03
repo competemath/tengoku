@@ -38,30 +38,43 @@ noncomputable instance gcdMonoidPolynomial : GCDMonoid K[X] :=
 def IsGCD (G P Q : K[X]) : Prop :=
   G ∣ P ∧ G ∣ Q ∧ ∀ D : K[X], D ∣ P → D ∣ Q → D ∣ G
 
+/--
+@isnad1 id=isgcd.1h4v.s5.8c4aac43e95d from=translated src=- shape=64ae8012 vocab=802d1e48
+-/
 theorem IsGCD.symm {G P Q : K[X]} (h : IsGCD G P Q) : IsGCD G Q P :=
   ⟨h.2.1, h.1, fun D hQ hP => h.2.2 D hP hQ⟩
 
-/-- Mathlib's `gcd P Q` satisfies the BPR IsGCD relation.-/
+/-- Mathlib's `gcd P Q` satisfies the BPR IsGCD relation.
+@isnad1 id=isgcd.0h3v.s5.87221d3f1380 from=translated src=- shape=7dec5008 vocab=e9d503c3
+-/
 theorem gcd_isGCD (P Q : K[X]) : IsGCD (gcd P Q) P Q :=
   ⟨gcd_dvd_left P Q, gcd_dvd_right P Q, fun _ hP hQ => dvd_gcd hP hQ⟩
 
-/-- Any two GCDs in the BPR sense are associates (differ by a unit in K[X]).-/
+/-- Any two GCDs in the BPR sense are associates (differ by a unit in K[X]).
+@isnad1 id=associat.2h5v.s6.70497c80cae9 from=translated src=- shape=76421fc2 vocab=8460b1a0
+-/
 theorem isGCD_associated {G₁ G₂ P Q : K[X]}
     (h₁ : IsGCD G₁ P Q) (h₂ : IsGCD G₂ P Q) :
     Associated G₁ G₂ :=
   associated_of_dvd_dvd (h₂.2.2 G₁ h₁.1 h₁.2.1) (h₁.2.2 G₂ h₂.1 h₂.2.1)
 
-/-- P is a GCD of P and 0.-/
+/-- P is a GCD of P and 0.
+@isnad1 id=isgcd.0h2v.s5.552dab0248b0 from=translated src=- shape=4e3dc9ad vocab=802d1e48
+-/
 theorem isGCD_self_zero (P : K[X]) : IsGCD P P 0 :=
   ⟨dvd_refl P, dvd_zero P, fun _ hP _ => hP⟩
 
-/-- Any two GCDs of P and Q divide each other.-/
+/-- Any two GCDs of P and Q divide each other.
+@isnad1 id=and.2h5v.s7.cc19927d1782 from=translated src=- shape=4b5bd016 vocab=e6361435
+-/
 theorem isGCD_dvd_dvd {G₁ G₂ P Q : K[X]}
     (h₁ : IsGCD G₁ P Q) (h₂ : IsGCD G₂ P Q) :
     G₁ ∣ G₂ ∧ G₂ ∣ G₁ :=
   ⟨h₂.2.2 G₁ h₁.1 h₁.2.1, h₁.2.2 G₂ h₂.1 h₂.2.1⟩
 
-/-- Any two GCDs of P and Q have the same degree.-/
+/-- Any two GCDs of P and Q have the same degree.
+@isnad1 id=eq.2h5v.s6.15dab86f2e0f from=translated src=- shape=e0f1e03b vocab=799387a7
+-/
 theorem isGCD_degree_eq {G₁ G₂ P Q : K[X]}
     (h₁ : IsGCD G₁ P Q) (h₂ : IsGCD G₂ P Q) :
     G₁.degree = G₂.degree := by
@@ -72,25 +85,37 @@ theorem isGCD_degree_eq {G₁ G₂ P Q : K[X]}
     have the same degree (by `isGCD_degree_eq`).-/
 noncomputable def degGcd (P Q : K[X]) : WithBot ℕ := (gcd P Q).degree
 
-/-- Any IsGCD witness has the same degree as `degGcd P Q`.-/
+/-- Any IsGCD witness has the same degree as `degGcd P Q`.
+@isnad1 id=eq.1h4v.s5.6a693e53e7a9 from=translated src=- shape=c785f603 vocab=583b8e74
+-/
 theorem isGCD_degree_eq_degGcd {G P Q : K[X]} (h : IsGCD G P Q) :
     G.degree = degGcd P Q :=
   isGCD_degree_eq h (gcd_isGCD P Q)
 
-/-- Negating a polynomial doesn't affect GCD.-/
+/-- Negating a polynomial doesn't affect GCD.
+@isnad1 id=isgcd.1h4v.s6.fdd425c6bbbd from=translated src=- shape=4a01f621 vocab=f6cbe3be
+-/
 theorem IsGCD.neg_right {G P Q : K[X]} (h : IsGCD G P Q) : IsGCD G P (-Q) :=
   ⟨h.1, dvd_neg.mpr h.2.1, fun E hEP hEQ => h.2.2 E hEP (dvd_neg.mp hEQ)⟩
 
+/--
+@isnad1 id=isgcd.1h4v.s6.d2d40ed1ce65 from=translated src=- shape=92ad408b vocab=f6cbe3be
+-/
 theorem IsGCD.of_neg_right {G P Q : K[X]} (h : IsGCD G P (-Q)) : IsGCD G P Q :=
   neg_neg Q ▸ h.neg_right
 
+/--
+@isnad1 id=iff.0h4v.s6.452267c11d38 from=translated src=- shape=ee98e060 vocab=f6cbe3be
+-/
 theorem isGCD_neg_right_iff {G P Q : K[X]} : IsGCD G P (-Q) ↔ IsGCD G P Q :=
   ⟨IsGCD.of_neg_right, IsGCD.neg_right⟩
 
 /-- GCD is preserved under pseudo-division: if `C(c) * P = A * Q + R`
     with `c ≠ 0` (so `C(c)` is a unit in `K[X]`), then
     `IsGCD G P Q ↔ IsGCD G Q R`. This is the key step that lets GCD be
-    computed by iterated pseudo-remainders.-/
+    computed by iterated pseudo-remainders.
+@isnad1 id=iff.2h7v.s8.be9496ba8fe9 from=translated src=- shape=5cb72e2c vocab=1782520b
+-/
 theorem isGCD_of_pseudo_div {G P Q R A : K[X]} {c : K} (hc : c ≠ 0)
     (h : Polynomial.C c * P = A * Q + R) :
     IsGCD G P Q ↔ IsGCD G Q R := by

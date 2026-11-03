@@ -14,6 +14,9 @@ import Tengoku.Azurite.Azurite.UInt64.SubWithBorrow
 
 namespace UInt64
 
+/--
+@isnad1 id=eq.0h2v.s6.5e75bb59c91f from=translated src=- shape=599d2c52 vocab=22b71dfd
+-/
 theorem subWithBorrow_zero_eq (a b : UInt64) :
   (subWithBorrow a b false).1.toNat + b.toNat + 0 =
     a.toNat + (if (subWithBorrow a b false).2 then 1 else 0) * 2^64 := by
@@ -26,6 +29,9 @@ theorem subWithBorrow_zero_eq (a b : UInt64) :
     rw [decide_eq_true_eq, UInt64.lt_iff_toNat_lt]
   by_cases h : a < b <;> simp [h] at * <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s6.dd26915fe2c0 from=translated src=- shape=e895e410 vocab=9926a035
+-/
 theorem subWithBorrow_one_eq (a b : UInt64) :
   (subWithBorrow a b true).1.toNat + b.toNat + 1 =
     a.toNat + (if (subWithBorrow a b true).2 then 1 else 0) * 2^64 := by
@@ -46,6 +52,9 @@ theorem subWithBorrow_one_eq (a b : UInt64) :
   by_cases h1 : a < b <;> by_cases h2 : a - b < 1 <;>
     simp [h1, h2, h_one] at * <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s6.6ecdfa52cb67 from=translated src=- shape=95bd4f00 vocab=9926a035
+-/
 theorem subWithBorrow_eq (a b : UInt64) (c : Bool) :
   (subWithBorrow a b c).1.toNat + b.toNat + (if c then 1 else 0) =
     a.toNat + (if (subWithBorrow a b c).2 then 1 else 0) * 2^64 := by

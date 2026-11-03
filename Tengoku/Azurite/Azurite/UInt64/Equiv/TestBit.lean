@@ -15,6 +15,9 @@ import Tengoku.Azurite.Azurite.UInt64.Equiv.Basic
 
 namespace UInt64
 
+/--
+@isnad1 id=eq.0h2v.s3.0f6e4482eb58 from=translated src=- shape=b91d121f vocab=fe39cf6c
+-/
 theorem testBit_eq_toNat_testBit (u : UInt64) (i : Nat) :
     u.testBit i = u.toNat.testBit i := by
   unfold testBit

@@ -29,6 +29,9 @@ import Tengoku.Azurite.Azurite.Rounding.Int
 namespace Azurite
 namespace RoundingTarget
 
+/--
+@isnad1 id=eq.0h2v.s4.fa48da37e68d from=translated src=- shape=2f8209e8 vocab=bdcdd179
+-/
 theorem compare_coe_coe (a b : ℝ) : compare (a : EReal) (b : EReal) = compare a b := by
   rcases lt_trichotomy a b with h | h | h
   · rw [compare_lt_iff_lt.mpr h, compare_lt_iff_lt.mpr (EReal.coe_lt_coe_iff.mpr h)]
@@ -39,7 +42,9 @@ private theorem coe_sub_coe (a b : ℝ) :
     ((a : ℝ) : EReal) - (b : EReal) = ((a - b : ℝ) : EReal) :=
   (EReal.coe_sub a b).symm
 
-/-- An integer within less than `1/2` of `x` is its nearest rounding.-/
+/-- An integer within less than `1/2` of `x` is its nearest rounding.
+@isnad1 id=eq.1h2v.s5.27dbbfbc0a76 from=translated src=- shape=9ecea886 vocab=2ae0a818
+-/
 theorem toInt_round_nearest_eq_of_abs_lt {x : ℝ} {n : ℤ} (h : |x - n| < 1 / 2) :
     toInt (round intSet .Nearest x) = n := by
   obtain ⟨h1, h2⟩ := abs_lt.mp h
@@ -69,7 +74,9 @@ theorem toInt_round_nearest_eq_of_abs_lt {x : ℝ} {n : ℤ} (h : |x - n| < 1 / 
     rw [compare_gt_iff_gt.mpr hcmp]
     exact toInt_eq_of_val (by rw [hC, hceil])
 
-/-- At an exact half, the even neighbour wins.-/
+/-- At an exact half, the even neighbour wins.
+@isnad1 id=eq.0h1v.s6.aa61efee3e2b from=translated src=- shape=47b6330c vocab=69d016c4
+-/
 theorem toInt_round_nearest_half (n : ℤ) :
     toInt (round intSet .Nearest ((n : ℝ) + 1 / 2)) = if Even n then n else n + 1 := by
   set x : ℝ := (n : ℝ) + 1 / 2 with hx
@@ -97,7 +104,9 @@ theorem toInt_round_nearest_half (n : ℤ) :
     split_ifs with h1 h2 <;>
       first | exact absurd h1.1 he | exact hCn | exact absurd ⟨hyes, he⟩ h2
 
-/-- The nearest integer is within `1/2`.-/
+/-- The nearest integer is within `1/2`.
+@isnad1 id=le.0h1v.s5.b509159a7750 from=translated src=- shape=c6fe8a7c vocab=ef8af680
+-/
 theorem abs_sub_toInt_round_nearest_le (x : ℝ) :
     |x - toInt (round intSet .Nearest x)| ≤ 1 / 2 := by
   set n := ⌊x + 1 / 2⌋ with hn
@@ -111,7 +120,9 @@ theorem abs_sub_toInt_round_nearest_le (x : ℝ) :
   · rw [toInt_round_nearest_eq_of_abs_lt (n := n) (by rw [abs_lt]; constructor <;> linarith)]
     rw [abs_le]; constructor <;> linarith
 
-/-- The nearest integer is at least as close as any integer.-/
+/-- The nearest integer is at least as close as any integer.
+@isnad1 id=le.0h2v.s5.64de514bb849 from=translated src=- shape=ffdcecb3 vocab=b17b29f4
+-/
 theorem abs_toInt_round_nearest_sub_le (x : ℝ) (m : ℤ) :
     |x - toInt (round intSet .Nearest x)| ≤ |x - m| := by
   rcases lt_or_ge |x - m| (1 / 2) with hlt | hge
@@ -124,7 +135,9 @@ def NearestTernary (y : ℝ) (R : ℤ) (o : Ordering) : Prop :=
   |y - R| ≤ 1 / 2 ∧ (|y - R| = 1 / 2 →
     (o = .lt → y < R) ∧ (o = .gt → (R : ℝ) < y) ∧ (o = .eq → Even R))
 
-/-- Negating the value and the result swaps the ternary.-/
+/-- Negating the value and the result swaps the ternary.
+@isnad1 id=nearestt.1h3v.s4.27aa6bf23867 from=translated src=- shape=228edfce vocab=ab55481f
+-/
 theorem nearestTernary_neg {y : ℝ} {R : ℤ} {o : Ordering} (h : NearestTernary y R o.swap) :
     NearestTernary (-y) (-R) o := by
   obtain ⟨h1, h2⟩ := h
@@ -143,7 +156,9 @@ theorem nearestTernary_neg {y : ℝ} {R : ℤ} {o : Ordering} (h : NearestTernar
 
 /-- **Double rounding with a ternary.**  `X` is at least as close to `w` as every integer and
 every half-integer in range (`|w| < B`, `1 ≤ B`), and `R` is `NearestTernary` for `X` with the
-ternary `compare X w`; then `R` is the nearest integer to `w`.-/
+ternary `compare X w`; then `R` is the nearest integer to `w`.
+@isnad1 id=eq.4h4v.s7.d559ea0f407e from=translated src=- shape=2c2c1e96 vocab=e69f40ca
+-/
 theorem toInt_round_nearest_of_ternary {w X : ℝ} {R : ℤ} {B : ℤ} (hB : |w| < B)
     (hclose : ∀ m : ℤ, |m| ≤ B → |X - w| ≤ |(m : ℝ) - w|)
     (hclose' : ∀ m : ℤ, -B ≤ m → m ≤ B - 1 → |X - w| ≤ |(m : ℝ) + 1 / 2 - w|)

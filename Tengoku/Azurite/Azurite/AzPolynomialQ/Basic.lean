@@ -64,7 +64,9 @@ private lemma foldl_gcd_dvd_mem (l : List ℤ) (n : ℤ) (hn : n ∈ l) :
     | inl h => subst h; exact dvd_trans (foldl_gcd_dvd_acc as _) (Nat.gcd_dvd_right acc n.natAbs)
     | inr h => exact ih n h (Nat.gcd acc a.natAbs)
 
-/-- The listIntGcd divides the absolute value of every element in the list.-/
+/-- The listIntGcd divides the absolute value of every element in the list.
+@isnad1 id=dvd.1h2v.s4.0ba46c13add3 from=translated src=- shape=b67e8727 vocab=6103b617
+-/
 lemma listIntGcd_dvd_of_mem (l : List ℤ) (n : ℤ) (hn : n ∈ l) :
     listIntGcd l ∣ n.natAbs := foldl_gcd_dvd_mem l n hn 0
 
@@ -115,7 +117,9 @@ namespace AzPolynomialQ
 /-! ## Basic instances and zero -/
 
 /-- Extensionality: two `AzPolynomialQ` are equal iff their numerators and
-    denominator are equal.-/
+    denominator are equal.
+@isnad1 id=eq.2h2v.s4.b6ee92714057 from=translated src=- shape=ecf53d7d vocab=f4060813
+-/
 @[ext]
 lemma ext {p q : AzPolynomialQ}
     (hnum : p.numerators = q.numerators) (hdenom : p.denom = q.denom) : p = q := by
@@ -147,7 +151,13 @@ def one : AzPolynomialQ :=
 
 instance : One AzPolynomialQ := ⟨one⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.55dcf6b3299d from=translated src=- shape=f024201e vocab=ea26c308
+-/
 @[simp] lemma zero_numerators : (0 : AzPolynomialQ).numerators = #[] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.c52943864887 from=translated src=- shape=1ac31801 vocab=d762dc15
+-/
 @[simp] lemma zero_denom : (0 : AzPolynomialQ).denom = 1 := rfl
 
 /-! ## Accessors -/
@@ -176,9 +186,15 @@ def nextCoeff (p : AzPolynomialQ) : ℚ :=
 def Monic (p : AzPolynomialQ) : Prop :=
   p.leadingCoeff = 1
 
+/--
+@isnad1 id=iff.0h1v.s3.f247d7e7dfe4 from=translated src=- shape=c8f3ecf3 vocab=c07af7b4
+-/
 theorem Monic.def {p : AzPolynomialQ} : p.Monic ↔ p.leadingCoeff = 1 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h1v.s5.b0a22c2376b1 from=translated src=- shape=c942e2e0 vocab=91afe5ab
+-/
 theorem Monic_iff (p : AzPolynomialQ) :
     p.Monic ↔ (p.numerators[p.natDegree]?.getD 0 : ℤ) = p.denom := by
   unfold Monic leadingCoeff coeff
@@ -189,17 +205,32 @@ theorem Monic_iff (p : AzPolynomialQ) :
 instance {p : AzPolynomialQ} : Decidable p.Monic :=
   decidable_of_iff ((p.numerators[p.natDegree]?.getD 0 : ℤ) = p.denom) (Monic_iff p).symm
 
+/--
+@isnad1 id=eq.1h1v.s3.c5e58911ed32 from=translated src=- shape=aa073f8f vocab=c07af7b4
+-/
 @[simp]
 theorem Monic.leadingCoeff_eq_one {p : AzPolynomialQ} (hp : p.Monic) : p.leadingCoeff = 1 :=
   hp
 
+/--
+@isnad1 id=eq.1h1v.s4.fd630d99fdf3 from=translated src=- shape=5d162b40 vocab=e42360f7
+-/
 theorem Monic.coeff_natDegree {p : AzPolynomialQ} (hp : p.Monic) : p.coeff p.natDegree = 1 :=
   hp
 
+/--
+@isnad1 id=eq.0h1v.s4.19a9293b6fa6 from=translated src=- shape=fcc0db09 vocab=a8eb520c
+-/
 @[simp] lemma coeff_zero (i : ℕ) : (0 : AzPolynomialQ).coeff i = 0 := by
   simp [coeff]
 
+/--
+@isnad1 id=eq.0h0v.s4.de452cb7f3e0 from=translated src=- shape=9b736a80 vocab=42c8602a
+-/
 @[simp] lemma one_numerators : (1 : AzPolynomialQ).numerators = #[1] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.bd6761723206 from=translated src=- shape=1ac31801 vocab=d762dc15
+-/
 @[simp] lemma one_denom : (1 : AzPolynomialQ).denom = 1 := rfl
 
 /-! ## Normalization -/
@@ -280,7 +311,9 @@ def normalize (nums : Array ℤ) (d : ℕ) (hd : 0 < d) : AzPolynomialQ :=
 
 /-- The rational coefficient of `normalize nums d hd` at position `i` equals
     `(nums.popWhile (\u00b7 = 0))[i]?.getD 0 / d`.
-    That is: normalization preserves rational values (GCD division cancels out).-/
+    That is: normalization preserves rational values (GCD division cancels out).
+@isnad1 id=eq.1h3v.s6.eded4e3430a6 from=translated src=- shape=91cb9ca7 vocab=4de20976
+-/
 lemma normalize_coeff (nums : Array ℤ) (d : ℕ) (hd : 0 < d) (i : ℕ) :
     (normalize nums d hd).coeff i =
     ((nums.popWhile (fun x => decide (x = 0)))[i]?.getD 0 : ℤ) / d := by

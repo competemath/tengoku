@@ -32,7 +32,9 @@ namespace Azurite.BPR
 open Polynomial
 
 /-- **BPR Lemma 10.16.** If `cont(P₁) = cont(P₂) = 1`, then
-`cont(P₁·P₂) = 1`.-/
+`cont(P₁·P₂) = 1`.
+@isnad1 id=eq.2h2v.s6.aa37a1aeab84 from=translated src=- shape=b7f8e43e vocab=98934c20
+-/
 theorem lemma_10_16 {P₁ P₂ : ℤ[X]} (h₁ : P₁.content = 1) (h₂ : P₂.content = 1) :
     (P₁ * P₂).content = 1 := by
   rw [Polynomial.content_mul, h₁, h₂, mul_one]

@@ -30,7 +30,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 variable {C : Type*} [Field C]
 
-/-- BPR Lemma 1.14 Corollary 1: A finite family of polynomials has a common root in an algebraically closed field if and only if its GCD is not a non-zero constant.-/
+/-- BPR Lemma 1.14 Corollary 1: A finite family of polynomials has a common root in an algebraically closed field if and only if its GCD is not a non-zero constant.
+@isnad1 id=iff.0h3v.s8.8330d051972d from=translated src=- shape=ee63d2e3 vocab=adc4efb5
+-/
 lemma lemma_1_14_cor1 [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq C]
     (P_fam : List K[X]) :
     (∃ x : C, ∀ P ∈ P_fam, aeval x P = 0) ↔ (listGcd P_fam).degree ≠ 0 := by
@@ -77,7 +79,9 @@ lemma lemma_1_14_cor1 [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq
     rw [← h_RHS]
     exact H
 
-/-- BPR Lemma 1.14 Corollary 2: There is a common non-root for a finite family of polynomials over an algebraically closed field if and only if no polynomial in the family is zero.-/
+/-- BPR Lemma 1.14 Corollary 2: There is a common non-root for a finite family of polynomials over an algebraically closed field if and only if no polynomial in the family is zero.
+@isnad1 id=iff.0h3v.s8.4d36230339ef from=translated src=- shape=b4919da7 vocab=8a450015
+-/
 lemma lemma_1_14_cor2 [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq C]
     (Q_fam : List K[X]) :
     (∃ x : C, ∀ Q ∈ Q_fam, aeval x Q ≠ 0) ↔ 0 ≤ (Q_fam.prod).degree := by

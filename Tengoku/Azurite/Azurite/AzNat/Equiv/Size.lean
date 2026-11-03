@@ -18,6 +18,9 @@ import Tengoku.Seed.Data.Nat.Size
 
 namespace Azurite.AzNat
 
+/--
+@isnad1 id=eq.2h3v.s6.3c02a9486fcc from=translated src=- shape=9c6a7776 vocab=6f515a38
+-/
 lemma size_mul_add (a k b : Nat) (ha : 0 < a) (hb : b < 2^k) : (a * 2^k + b).size = a.size + k := by
   apply le_antisymm
   · rw [Nat.size_le, Nat.pow_add]
@@ -58,6 +61,9 @@ lemma size_mul_add (a k b : Nat) (ha : 0 < a) (hb : b < 2^k) : (a * 2^k + b).siz
     rw [hk, Nat.pow_add] at hlt2
     omega
 
+/--
+@isnad1 id=eq.0h2v.s6.4fc39a024a30 from=translated src=- shape=cc79b85b vocab=c82f5cfb
+-/
 lemma toNatLimbsList_append_singleton (l : List UInt64) (x : UInt64) :
   toNatLimbsList (l ++ [x]) = x.toNat * 2 ^ (64 * l.length) + toNatLimbsList l := by
   have hl1 := toNatLimbsList_append l [x]
@@ -67,6 +73,9 @@ lemma toNatLimbsList_append_singleton (l : List UInt64) (x : UInt64) :
   rw [hl2] at hl1
   exact hl1
 
+/--
+@isnad1 id=eq.1h1v.s5.06b724556cf1 from=translated src=- shape=c391d3c5 vocab=52f4f747
+-/
 lemma uint64_size_eq_log2_add_one (x : UInt64) (hx : x.toNat ≠ 0) :
   x.toNat.size = x.log2.toNat + 1 := by
   have hl : x.log2.toNat = Nat.log2 x.toNat := rfl
@@ -77,6 +86,9 @@ lemma uint64_size_eq_log2_add_one (x : UInt64) (hx : x.toNat ≠ 0) :
   have hs2 : Nat.log 2 x.toNat < x.toNat.size := Nat.lt_size.mpr h1
   omega
 
+/--
+@isnad1 id=eq.2h1v.s6.04a8dde1c8b5 from=translated src=- shape=bdcc3fdc vocab=d504360e
+-/
 lemma size_toNatLimbsList (l : List UInt64) (hl : l ≠ []) (hx : (l.getLast hl).toNat ≠ 0) :
   (toNatLimbsList l).size = (l.length - 1) * 64 + (l.getLast hl).toNat.size := by
   have heq : l = l.dropLast ++ [l.getLast hl] := (List.dropLast_append_getLast hl).symm
@@ -95,6 +107,9 @@ lemma size_toNatLimbsList (l : List UInt64) (hl : l ≠ []) (hx : (l.getLast hl)
   rw [h_size, hlen2]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.a6976c5287d2 from=translated src=- shape=7718e021 vocab=168a93af
+-/
 lemma size_toNat (n : AzNat) : n.toNat.size = n.size := by
   have hsz : n.limbs.size > 0 ∨ n.limbs.size = 0 := by omega
   rcases hsz with hsz_pos | hsz_zero
@@ -146,6 +161,9 @@ lemma size_toNat (n : AzNat) : n.toNat.size = n.size := by
     rw [dite_eq_right (by omega)]
     rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.58e1c50571b3 from=translated src=- shape=c52356c6 vocab=8f8f210d
+-/
 lemma size_ofNat (n : Nat) : (ofNat n).size = n.size := by
   have h := size_toNat (ofNat n)
   have ht := toNat_ofNat n

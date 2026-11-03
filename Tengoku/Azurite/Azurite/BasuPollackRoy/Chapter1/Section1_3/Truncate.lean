@@ -38,7 +38,9 @@ noncomputable def truncate {R : Type*} [Semiring R] (i : ℕ)
   ∑ j ∈ Finset.range (i + 1), Polynomial.monomial j (Q.coeff j)
 
 /-- Coefficient characterization of `truncate`: the `j`-th coefficient
-of `Tru_i(Q)` is `Q.coeff j` when `j ≤ i`, and `0` otherwise.-/
+of `Tru_i(Q)` is `Q.coeff j` when `j ≤ i`, and `0` otherwise.
+@isnad1 id=eq.0h4v.s5.07c5660f8653 from=translated src=- shape=86a4f207 vocab=4117ef9b
+-/
 @[simp] theorem coeff_truncate {R : Type*} [Semiring R] (i : ℕ)
     (Q : Polynomial R) (j : ℕ) :
     (truncate i Q).coeff j = if j ≤ i then Q.coeff j else 0 := by
@@ -46,7 +48,9 @@ of `Tru_i(Q)` is `Q.coeff j` when `j ≤ i`, and `0` otherwise.-/
   simp only [Polynomial.coeff_monomial, Finset.sum_ite_eq', Finset.mem_range,
     Nat.lt_succ_iff]
 
-/-- The `natDegree` of a truncation is at most `i`.-/
+/-- The `natDegree` of a truncation is at most `i`.
+@isnad1 id=le.0h3v.s4.afde9289eb4b from=translated src=- shape=61b1528c vocab=72fcfc80
+-/
 theorem natDegree_truncate_le {R : Type*} [Semiring R] (i : ℕ)
     (Q : Polynomial R) : (truncate i Q).natDegree ≤ i := by
   rw [Polynomial.natDegree_le_iff_coeff_eq_zero]

@@ -26,7 +26,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 
 /-- Exercise 1.5: If Q ≠ 0, there exists a unique pair (A, R) in K[X]²
-    such that P = AQ + R and deg(R) < deg(Q).-/
+    such that P = AQ + R and deg(R) < deg(Q).
+@isnad1 id=existsun.1h3v.s8.1133958e55ca from=translated src=- shape=e65c4219 vocab=105d3993
+-/
 theorem exercise_1_5 (P Q : K[X]) (hQ : Q ≠ 0) :
     ∃! p : K[X] × K[X],
       P = p.1 * Q + p.2 ∧ p.2.degree < Q.degree := by

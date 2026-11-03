@@ -32,7 +32,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 
 open Classical in
-/-- BPR Proposition 1.9 (Helper): Assumes deg Q ≤ deg P-/
+/-- BPR Proposition 1.9 (Helper): Assumes deg Q ≤ deg P
+@isnad1 id=ex.5h4v.s8.1eae2c33c74a from=translated src=- shape=580f0ce4 vocab=bbf91afa
+-/
 theorem proposition_1_9_aux {P Q G : K[X]}
     (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hle : Q.degree ≤ P.degree)
@@ -137,7 +139,9 @@ theorem proposition_1_9_aux {P Q G : K[X]}
 /-- BPR Proposition 1.9: If G is a greatest common divisor of P and Q,
     and G is a proper divisor in terms of degree (deg G < deg P and deg G < deg Q),
     then there exist U and V with U·P + V·Q = G such that
-    natDeg(U) < natDeg(Q) − natDeg(G) and natDeg(V) < natDeg(P) − natDeg(G).-/
+    natDeg(U) < natDeg(Q) − natDeg(G) and natDeg(V) < natDeg(P) − natDeg(G).
+@isnad1 id=ex.5h4v.s8.0ef60273be62 from=translated src=- shape=9fa1a79e vocab=58430ede
+-/
 theorem proposition_1_9 {P Q G : K[X]}
     (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hG : IsGCD G P Q)

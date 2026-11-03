@@ -17,6 +17,9 @@ import Tengoku.Azurite.Azurite.UInt64.Equiv.ClearBit
 
 namespace Azurite.AzNat
 
+/--
+@isnad1 id=eq.0h2v.s4.13bf859d91d6 from=translated src=- shape=2ac60a1e vocab=471cf657
+-/
 theorem toNat_clearBit (n : AzNat) (i : Nat) :
     (n.clearBit i).toNat = Nat.ldiff n.toNat (2 ^ i) := by
   apply Nat.eq_of_testBit_eq
@@ -65,6 +68,9 @@ theorem toNat_clearBit (n : AzNat) (i : Nat) :
       rw [decide_eq_false h_ij, Bool.not_false, Bool.and_true]
     · rw [dite_eq_right hq, Bool.false_and]
 
+/--
+@isnad1 id=eq.0h2v.s4.70d3a3749133 from=translated src=- shape=59319eeb vocab=57e31f7e
+-/
 theorem clearBit_ofNat (n i : Nat) : clearBit (ofNat n) i = ofNat (Nat.ldiff n (2 ^ i)) := by
   apply toNat_injective
   rw [toNat_clearBit, toNat_ofNat, toNat_ofNat]

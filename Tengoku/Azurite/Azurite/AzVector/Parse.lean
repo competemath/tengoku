@@ -29,6 +29,9 @@ variable {R : Type _} [ParsableElement R] {n : ℕ}
 def toList (v : AzVector R n) : List R := v.data.toList
 
 omit [ParsableElement R] in
+/--
+@isnad1 id=eq.0h3v.s4.e34ceba98af3 from=translated src=- shape=53febf15 vocab=3a44cabb
+-/
 @[simp] theorem toList_length (v : AzVector R n) : v.toList.length = n := by
   simp [toList]
 
@@ -68,6 +71,9 @@ def parseChars (cs : List Char) : Option (AzVector R n) :=
 
 /-! ### Round-trip lemmas -/
 
+/--
+@isnad1 id=eq.1h3v.s6.8869ed98352b from=translated src=- shape=b6f29f58 vocab=c92b0fd9
+-/
 lemma takeWhile_ne_sep_append (sep : Char) (xs ys : List Char) (h : sep ∉ xs) :
     (xs ++ ys).takeWhile (· != sep) = xs ++ ys.takeWhile (· != sep) := by
   induction xs with
@@ -77,6 +83,9 @@ lemma takeWhile_ne_sep_append (sep : Char) (xs ys : List Char) (h : sep ∉ xs) 
     have hne : (x != sep) = true := by simp [hx]
     simp [hne, ih (fun hc => h (List.mem_cons_of_mem _ hc))]
 
+/--
+@isnad1 id=eq.1h3v.s5.e2926ca48619 from=translated src=- shape=a6276cd7 vocab=2340315b
+-/
 lemma dropWhile_ne_sep_append (sep : Char) (xs ys : List Char) (h : sep ∉ xs) :
     (xs ++ ys).dropWhile (· != sep) = ys.dropWhile (· != sep) := by
   induction xs with
@@ -87,7 +96,9 @@ lemma dropWhile_ne_sep_append (sep : Char) (xs ys : List Char) (h : sep ∉ xs) 
     simp [hne, ih (fun hc => h (List.mem_cons_of_mem _ hc))]
 
 /-- `parseElementsN` correctly parses an intercalated list of element
-    char-representations when the expected length matches.-/
+    char-representations when the expected length matches.
+@isnad1 id=eq.0h2v.s5.8d4df0739e75 from=translated src=- shape=3bf4ad17 vocab=edceb972
+-/
 lemma parseElementsN_intercalate :
     ∀ (xs : List R),
       parseElementsN xs.length
@@ -132,7 +143,9 @@ lemma parseElementsN_intercalate :
       exact parseElementsN_intercalate (r' :: rs)
     simp [hih]
 
-/-- Round-trip: `parseChars` is a left inverse of `toChars`.-/
+/-- Round-trip: `parseChars` is a left inverse of `toChars`.
+@isnad1 id=eq.0h3v.s4.267557fccb95 from=translated src=- shape=a2e6f0ea vocab=89bcf346
+-/
 theorem parseChars_toChars (v : AzVector R n) : parseChars (toChars v) = some v := by
   unfold parseChars toChars
   set body := List.intercalate [',', ' '] (v.toList.map ParsableElement.toChars) with hbody

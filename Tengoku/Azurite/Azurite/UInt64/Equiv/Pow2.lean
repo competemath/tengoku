@@ -37,6 +37,9 @@ private lemma and_sub_one_eq_zero_iff (u : UInt64) (hu : u ≠ 0) :
   have heq : (2 ^ 64 - 1 + u.toNat) % 2 ^ 64 = u.toNat - 1 := by omega
   rw [heq]
 
+/--
+@isnad1 id=iff.0h1v.s3.5170a3dd2791 from=translated src=- shape=aa58bbbd vocab=ca7e0343
+-/
 theorem isPowerOfTwo_iff (u : UInt64) :
     u.isPowerOfTwo = true ↔ u.toNat.isPowerOfTwo := by
   unfold isPowerOfTwo

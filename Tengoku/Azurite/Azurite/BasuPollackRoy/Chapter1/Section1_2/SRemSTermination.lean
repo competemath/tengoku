@@ -28,7 +28,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 
 open Classical in
-/-- Every signed remainder sequence terminates.-/
+/-- Every signed remainder sequence terminates.
+@isnad1 id=ex.1h3v.s7.b31769b9027e from=translated src=- shape=99586844 vocab=8b26a3ee
+-/
 lemma SRemS_terminates (P Q : K[X]) (hP : P ≠ 0) :
     ∃ k : ℕ, SRemS P Q (k + 1) = 0 ∧ SRemS P Q k ≠ 0 := by
   by_contra h
@@ -61,18 +63,27 @@ noncomputable def sremTermIndex (P Q : K[X]) : ℕ :=
   if hP : P = 0 then 0 else Classical.choose (SRemS_terminates P Q hP)
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s7.dc386b49b8f9 from=translated src=- shape=3e6df592 vocab=b6bbe1ab
+-/
 lemma SRemS_sremTermIndex_succ_eq_zero (P Q : K[X]) (hP : P ≠ 0) :
     SRemS P Q (sremTermIndex P Q + 1) = 0 := by
   rw [sremTermIndex, dite_eq_right hP]
   exact (Classical.choose_spec (SRemS_terminates P Q hP)).1
 
 open Classical in
+/--
+@isnad1 id=ne.1h3v.s6.199aa0bbf112 from=translated src=- shape=f341c1c7 vocab=77e913c1
+-/
 lemma SRemS_sremTermIndex_ne_zero (P Q : K[X]) (hP : P ≠ 0) :
     SRemS P Q (sremTermIndex P Q) ≠ 0 := by
   rw [sremTermIndex, dite_eq_right hP]
   exact (Classical.choose_spec (SRemS_terminates P Q hP)).2
 
 open Classical in
+/--
+@isnad1 id=ne.2h4v.s6.141388963c10 from=translated src=- shape=9219846e vocab=92bd2b99
+-/
 lemma SRemS_ne_zero_of_le_sremTermIndex (P Q : K[X]) (hP : P ≠ 0) (i : ℕ) (hi : i ≤ sremTermIndex P Q) :
     SRemS P Q i ≠ 0 := by
   cases i with

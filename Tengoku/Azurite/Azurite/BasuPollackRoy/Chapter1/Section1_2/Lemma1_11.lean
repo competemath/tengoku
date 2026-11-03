@@ -32,7 +32,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 
 open Classical in
-/-- BPR Lemma 1.11 (i): For all i, SRemS_i(P,Q) = SRemU_i(P,Q) · P + SRemV_i(P,Q) · Q.-/
+/-- BPR Lemma 1.11 (i): For all i, SRemS_i(P,Q) = SRemU_i(P,Q) · P + SRemV_i(P,Q) · Q.
+@isnad1 id=eq.0h4v.s7.c06205adfd58 from=translated src=- shape=9fea64e9 vocab=fae5e4a5
+-/
 theorem lemma_1_11_bezout (P Q : K[X]) (n : ℕ) :
     SRemS P Q n = SRemU P Q n * P + SRemV P Q n * Q := by
   match n with
@@ -53,7 +55,9 @@ theorem lemma_1_11_bezout (P Q : K[X]) (n : ℕ) :
 
 open Classical in
 /-- The degree of SRemS strictly decreases at each step: when SRemS(n+1) ≠ 0,
-    deg(SRemS(n+2)) < deg(SRemS(n+1)).-/
+    deg(SRemS(n+2)) < deg(SRemS(n+1)).
+@isnad1 id=lt.1h4v.s7.0a3e1524a279 from=translated src=- shape=ae517c0d vocab=694885c9
+-/
 theorem degree_SRemS_lt (P Q : K[X]) (n : ℕ) (hne : SRemS P Q (n + 1) ≠ 0) :
     (SRemS P Q (n + 2)).degree < (SRemS P Q (n + 1)).degree := by
   rw [SRemS_ss P Q n hne]
@@ -62,7 +66,9 @@ theorem degree_SRemS_lt (P Q : K[X]) (n : ℕ) (hne : SRemS P Q (n + 1) ≠ 0) :
 
 open Classical in
 /-- For consecutive nonzero entries in SRemS with n ≥ 1, the degrees
-    strictly decrease: deg(SRemS(n+1)) < deg(SRemS(n)).-/
+    strictly decrease: deg(SRemS(n+1)) < deg(SRemS(n)).
+@isnad1 id=lt.2h4v.s7.a769b5d598c3 from=translated src=- shape=9429560e vocab=7ea6ee1e
+-/
 theorem degree_SRemS_chain_lt (P Q : K[X]) (n : ℕ)
     (hn : n ≥ 1)
     (hne : SRemS P Q n ≠ 0) :
@@ -72,7 +78,9 @@ theorem degree_SRemS_chain_lt (P Q : K[X]) (n : ℕ)
   | succ m => exact degree_SRemS_lt P Q m hne
 
 open Classical in
-/-- Entries of SRemS between 0 and k are nonzero when the sequence terminates at k+1.-/
+/-- Entries of SRemS between 0 and k are nonzero when the sequence terminates at k+1.
+@isnad1 id=ne.4h5v.s7.f8e0e5811d9c from=translated src=- shape=5f0016a3 vocab=42cdba04
+-/
 theorem SRemS_ne_zero_of_le (P Q : K[X]) (k : ℕ) (j : ℕ)
     (_ : SRemS P Q (k + 1) = 0) (hk_ne : SRemS P Q k ≠ 0)
     (hj1 : 1 ≤ j) (hj2 : j ≤ k) : SRemS P Q j ≠ 0 := by
@@ -84,7 +92,9 @@ theorem SRemS_ne_zero_of_le (P Q : K[X]) (k : ℕ) (j : ℕ)
 
 open Classical in
 /-- The quotient SRemS(n) / SRemS(n+1) is nonzero when both entries are nonzero
-    and the degree decreases.-/
+    and the degree decreases.
+@isnad1 id=ne.3h4v.s8.25dc79bcbdc8 from=translated src=- shape=fb0e325f vocab=041e4755
+-/
 theorem SRemS_div_ne_zero (P Q : K[X]) (n : ℕ)
     (hne0 : SRemS P Q n ≠ 0) (hne : SRemS P Q (n + 1) ≠ 0)
     (hle : (SRemS P Q (n + 1)).degree ≤ (SRemS P Q n).degree) :
@@ -96,7 +106,9 @@ theorem SRemS_div_ne_zero (P Q : K[X]) (n : ℕ)
 
 open Classical in
 /-- natDegree of the quotient SRemS(n) / SRemS(n+1) when both are nonzero
-    and deg(SRemS(n+1)) ≤ deg(SRemS(n)).-/
+    and deg(SRemS(n+1)) ≤ deg(SRemS(n)).
+@isnad1 id=eq.3h4v.s8.7ab516026337 from=translated src=- shape=9ecd1f74 vocab=7ff69ffc
+-/
 theorem natDegree_SRemS_div (P Q : K[X]) (n : ℕ)
     (hne0 : SRemS P Q n ≠ 0)
     (hne : SRemS P Q (n + 1) ≠ 0)
@@ -111,7 +123,9 @@ theorem natDegree_SRemS_div (P Q : K[X]) (n : ℕ)
 
 open Classical in
 /-- natDegree of SRemS is strictly decreasing: for m < n with all entries nonzero,
-    natDegree(SRemS(n+1)) < natDegree(SRemS(m+1)).-/
+    natDegree(SRemS(n+1)) < natDegree(SRemS(m+1)).
+@isnad1 id=lt.2h5v.s7.05da3db224d9 from=translated src=- shape=10f96fd5 vocab=39cbe79b
+-/
 theorem natDegree_SRemS_lt_of_lt (P Q : K[X]) (m n : ℕ)
     (hmn : m < n)
     (hne : ∀ j, m + 1 ≤ j → j ≤ n + 1 → SRemS P Q j ≠ 0) :
@@ -131,7 +145,9 @@ theorem natDegree_SRemS_lt_of_lt (P Q : K[X]) (m n : ℕ)
 
 open Classical in
 /-- BPR Lemma 1.11 (ii): For 1 ≤ i ≤ k, natDeg(SRemU_{i+1}(P,Q)) = natDeg(Q) − natDeg(SRemS_i),
-    where the SRemS sequence terminates at index k+1.-/
+    where the SRemS sequence terminates at index k+1.
+@isnad1 id=eq.7h5v.s8.488e21270f93 from=translated src=- shape=f9e8741a vocab=0d66ea24
+-/
 theorem lemma_1_11_degU (P Q : K[X]) (k : ℕ) (i : ℕ)
     (hk : SRemS P Q (k + 1) = 0) (hk_ne : SRemS P Q k ≠ 0)
     (hi : 1 ≤ i) (hik : i ≤ k)
@@ -220,7 +236,9 @@ theorem lemma_1_11_degU (P Q : K[X]) (k : ℕ) (i : ℕ)
 
 open Classical in
 /-- BPR Lemma 1.11 (iii): For 1 ≤ i ≤ k, natDeg(SRemV_{i+1}(P,Q)) = natDeg(P) − natDeg(SRemS_i),
-    where the SRemS sequence terminates at index k+1.-/
+    where the SRemS sequence terminates at index k+1.
+@isnad1 id=eq.7h5v.s8.32a86033c9ff from=translated src=- shape=679cf233 vocab=f448e198
+-/
 theorem lemma_1_11_degV (P Q : K[X]) (k : ℕ) (i : ℕ)
     (hk : SRemS P Q (k + 1) = 0) (hk_ne : SRemS P Q k ≠ 0)
     (hi : 1 ≤ i) (hik : i ≤ k)

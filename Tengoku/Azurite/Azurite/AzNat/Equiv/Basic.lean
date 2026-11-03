@@ -19,9 +19,15 @@ namespace Azurite.AzNat
 def toNatLimbsList (l : List UInt64) : Nat :=
   l.foldr (fun limb acc => acc * (2 ^ 64) + limb.toNat) 0
 
+/--
+@isnad1 id=eq.0h2v.s5.04bb7c414094 from=translated src=- shape=f2715082 vocab=f5a21cb6
+-/
 lemma toNatLimbsList_cons (x : UInt64) (xs : List UInt64) :
   toNatLimbsList (x :: xs) = toNatLimbsList xs * 2^64 + x.toNat := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.29841169369b from=translated src=- shape=bc02f319 vocab=b5e4fae0
+-/
 lemma toNatLimbsList_append (l1 l2 : List UInt64) :
   toNatLimbsList (l1 ++ l2) = toNatLimbsList l2 * 2^(64 * l1.length) + toNatLimbsList l1 := by
   induction l1 with
@@ -36,6 +42,9 @@ lemma toNatLimbsList_append (l1 l2 : List UInt64) :
     rw [hp, Nat.pow_add, Nat.mul_assoc]
     omega
 
+/--
+@isnad1 id=lt.0h1v.s5.6ebac7b481c7 from=translated src=- shape=4cf23641 vocab=e0755877
+-/
 lemma toNatLimbsList_lt_pow (l : List UInt64) : toNatLimbsList l < 2 ^ (64 * l.length) := by
   induction l with
   | nil => decide
@@ -94,6 +103,9 @@ private lemma toNatLimbs_ofNatAux (n : Nat) (acc : Array UInt64) :
         (n / 2^64 * 2^64 + n % 2^64) * 2 ^ (64 * acc.size) + toNatLimbsList acc.toList := by ring
       rw [eqT, eqN]
 
+/--
+@isnad1 id=ne.1h2v.s4.52ccc470efea from=translated src=- shape=53bbf34c vocab=66194346
+-/
 theorem ofNatAux_back_ne_zero_of_pos (n : Nat) (hn : 0 < n) (acc : Array UInt64) :
   (ofNatAux n acc).back? ≠ some 0 := by
   unfold ofNatAux
@@ -138,6 +150,9 @@ def ofNat (n : Nat) : AzNat :=
 def toNat (n : AzNat) : Nat :=
   toNatLimbsList n.limbs.toList
 
+/--
+@isnad1 id=eq.0h1v.s3.a7c9e2a52f82 from=translated src=- shape=47dcad53 vocab=788a3d0b
+-/
 theorem toNat_ofNat (n : Nat) : toNat (ofNat n) = n := by
   unfold toNat ofNat
   change toNatLimbsList (ofNatAux n #[]).toList = n
@@ -145,10 +160,16 @@ theorem toNat_ofNat (n : Nat) : toNat (ofNat n) = n := by
   rw [ht]
   simp [toNatLimbsList]
 
+/--
+@isnad1 id=and.3h4v.s7.10586b9913a4 from=translated src=- shape=39252119 vocab=b9e5bafd
+-/
 lemma base_2_64_unique (A B x y : Nat) (hx : x < 2^64) (hy : y < 2^64)
   (h : A * 2^64 + x = B * 2^64 + y) : x = y ∧ A = B := by
   omega
 
+/--
+@isnad1 id=eq.2h1v.s5.b9421eee4630 from=translated src=- shape=e245c189 vocab=ba1a1447
+-/
 lemma toNatLimbsList_eq_zero_of_getLast_ne_zero (l : List UInt64) (hl : l.getLast? ≠ some 0) (h : toNatLimbsList l = 0) : l = [] := by
   induction l with
   | nil => rfl
@@ -172,6 +193,9 @@ lemma toNatLimbsList_eq_zero_of_getLast_ne_zero (l : List UInt64) (hl : l.getLas
     have hhx : ([0] : List UInt64).getLast? = some 0 := rfl
     contradiction
 
+/--
+@isnad1 id=eq.3h2v.s5.6f2f93f772bb from=translated src=- shape=d0489a97 vocab=dc03bd53
+-/
 lemma toNatLimbsList_inj (l1 l2 : List UInt64)
   (hl1 : l1.getLast? ≠ some 0) (hl2 : l2.getLast? ≠ some 0)
   (h : toNatLimbsList l1 = toNatLimbsList l2) : l1 = l2 := by
@@ -211,6 +235,9 @@ lemma toNatLimbsList_inj (l1 l2 : List UInt64)
       subst eq_xs
       rfl
 
+/--
+@isnad1 id=eq.1h2v.s3.82e9381a1894 from=translated src=- shape=296f4854 vocab=e3edac28
+-/
 theorem toNat_injective {a b : AzNat} (h : toNat a = toNat b) : a = b := by
   have ha : a.limbs.toList.getLast? ≠ some 0 := by
     have h1 := a.last_ne_zero
@@ -230,6 +257,9 @@ theorem toNat_injective {a b : AzNat} (h : toNat a = toNat b) : a = b := by
   subst h_arr
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.e8a329dac947 from=translated src=- shape=47dcad53 vocab=0e245f6f
+-/
 theorem ofNat_toNat (n : AzNat) : ofNat (toNat n) = n := by
   apply toNat_injective
   rw [toNat_ofNat]
@@ -240,18 +270,33 @@ def equivNat : AzNat ≃ Nat where
   left_inv := ofNat_toNat
   right_inv := toNat_ofNat
 
+/--
+@isnad1 id=eq.0h0v.s3.437a29014642 from=translated src=- shape=1ac31801 vocab=e3edac28
+-/
 @[simp] lemma toNat_zero : toNat (0 : AzNat) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.5f49a6c1255e from=translated src=- shape=1ac31801 vocab=538fe0df
+-/
 @[simp] lemma ofNat_zero : ofNat (0 : Nat) = 0 := by
   apply toNat_injective
   rw [toNat_ofNat, toNat_zero]
 
+/--
+@isnad1 id=eq.0h0v.s3.daee3eaa79a3 from=translated src=- shape=1ac31801 vocab=e3edac28
+-/
 @[simp] lemma toNat_one : toNat (1 : AzNat) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.59828b1989bb from=translated src=- shape=1ac31801 vocab=538fe0df
+-/
 @[simp] lemma ofNat_one : ofNat (1 : Nat) = 1 := by
   apply toNat_injective
   rw [toNat_ofNat, toNat_one]
 
+/--
+@isnad1 id=iff.0h2v.s4.97616464da1f from=translated src=- shape=e6776f34 vocab=8c95d54b
+-/
 @[simp] lemma beqUInt64_eq (a : AzNat) (u : UInt64) :
   a.beqUInt64 u = true ↔ a.toNat = u.toNat := by
   rcases a with ⟨⟨l⟩, hl⟩
@@ -295,6 +340,9 @@ def equivNat : AzNat ≃ Nat where
       have h_x_nonneg : x.toNat ≥ 0 := Nat.zero_le _
       omega
 
+/--
+@isnad1 id=iff.0h2v.s4.4f8099131878 from=translated src=- shape=3cfb99cf vocab=984764b3
+-/
 @[simp] lemma beqInt64_eq (a : AzNat) (i : Int64) :
   a.beqInt64 i = true ↔ (a.toNat : Int) = i.toInt := by
   unfold beqInt64
@@ -333,7 +381,9 @@ def equivNat : AzNat ≃ Nat where
     · omega
     · omega
 
-/-- `(drop lo).take (j+1) = (drop lo).take j ++ [a[lo+j]]`-style decomposition for arrays.-/
+/-- `(drop lo).take (j+1) = (drop lo).take j ++ [a[lo+j]]`-style decomposition for arrays.
+@isnad1 id=eq.1h3v.s7.daeb6a66a1b9 from=translated src=- shape=3f993911 vocab=8c77d755
+-/
 lemma toNatLimbsList_drop_take_succ (a : Array UInt64) (lo j : Nat)
     (h_idx : lo + j < a.size) :
     toNatLimbsList ((a.toList.drop lo).take (j + 1))
@@ -354,7 +404,9 @@ lemma toNatLimbsList_drop_take_succ (a : Array UInt64) (lo j : Nat)
   rw [h_single]; ring
 
 /-- A nonempty `AzNat` has positive `toNat`: the top limb is nonzero (by
-    `last_ne_zero`), so the whole number is at least `2 ^ (64 * (n - 1))`.-/
+    `last_ne_zero`), so the whole number is at least `2 ^ (64 * (n - 1))`.
+@isnad1 id=le.1h1v.s6.c6fc6fcbfd09 from=translated src=- shape=08cea328 vocab=4af6cce9
+-/
 theorem toNat_pos_of_size_pos (V : AzNat) (h : 0 < V.limbs.size) :
     2 ^ (64 * (V.limbs.size - 1)) ≤ V.toNat := by
   have h_top_idx : V.limbs.size - 1 < V.limbs.size := Nat.sub_lt h Nat.zero_lt_one
@@ -399,7 +451,9 @@ theorem toNat_pos_of_size_pos (V : AzNat) (h : 0 < V.limbs.size) :
     _ ≤ (V.limbs[V.limbs.size - 1]'h_top_idx).toNat * 2 ^ (64 * (V.limbs.size - 1)) +
           toNatLimbsList (V.limbs.toList.take (V.limbs.size - 1)) := Nat.le_add_right _ _
 
-/-- `U.toNat = 0` iff `U.limbs` is empty.-/
+/-- `U.toNat = 0` iff `U.limbs` is empty.
+@isnad1 id=iff.0h1v.s4.85510d8de52b from=translated src=- shape=ed693e60 vocab=09b9d8b1
+-/
 theorem toNat_eq_zero_iff (U : AzNat) : U.toNat = 0 ↔ U.limbs.size = 0 := by
   constructor
   · intro h
@@ -415,14 +469,18 @@ theorem toNat_eq_zero_iff (U : AzNat) : U.toNat = 0 ↔ U.limbs.size = 0 := by
     show toNatLimbsList U.limbs.toList = 0
     rw [h_nil]; rfl
 
-/-- `U.toNat < 2 ^ (64 * U.limbs.size)`.-/
+/-- `U.toNat < 2 ^ (64 * U.limbs.size)`.
+@isnad1 id=lt.0h1v.s5.cc338d60d97f from=translated src=- shape=313e9a3d vocab=ec26f0df
+-/
 theorem toNat_lt_pow (U : AzNat) : U.toNat < 2 ^ (64 * U.limbs.size) := by
   show toNatLimbsList U.limbs.toList < _
   have h := toNatLimbsList_lt_pow U.limbs.toList
   have h_len : U.limbs.toList.length = U.limbs.size := rfl
   rw [h_len] at h; exact h
 
-/-- For a divisor of size ≥ 1, `V.toNat` strictly exceeds anything with fewer limbs.-/
+/-- For a divisor of size ≥ 1, `V.toNat` strictly exceeds anything with fewer limbs.
+@isnad1 id=lt.1h2v.s4.59b1887d2070 from=translated src=- shape=9616e086 vocab=04fcd952
+-/
 theorem toNat_lt_of_size_lt (U V : AzNat) (h : U.limbs.size < V.limbs.size) :
     U.toNat < V.toNat := by
   have hV_pos : 0 < V.limbs.size := by omega

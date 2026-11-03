@@ -40,12 +40,18 @@ namespace Var
 
 variable {α : Type _} {n : ℕ} [LinearOrder α] [inst : Var α n]
 
+/--
+@isnad1 id=injectiv.0h2v.s4.f491435698fa from=translated src=- shape=54855955 vocab=7c8d98bc
+-/
 theorem toFin_injective : Function.Injective (inst.toFin) := by
   intro a b h
   have := congr_arg inst.ofFin h
   simp [inst.ofFin_toFin] at this
   exact this
 
+/--
+@isnad1 id=injectiv.0h2v.s4.2e39dfb3f0e0 from=translated src=- shape=e2c330bb vocab=12215440
+-/
 theorem ofFin_injective : Function.Injective (inst.ofFin) := by
   intro a b h
   have := congr_arg inst.toFin h
@@ -69,14 +75,18 @@ def embed (h : n ≤ m) (v : α) : β :=
   inst₂.ofFin (Fin.castLE h (inst.toFin v))
 
 /-- The Fin-level map induced by `embed` is `Fin.castLE`, which is strictly monotone.
-    This is the key fact needed by `AzMvPolynomial.renameMonotone`.-/
+    This is the key fact needed by `AzMvPolynomial.renameMonotone`.
+@isnad1 id=strictmo.1h4v.s6.a02fea86b5c5 from=translated src=- shape=aee8adda vocab=fe85d3c1
+-/
 theorem embed_fin_strictMono (h : n ≤ m) :
     StrictMono (fun i : Fin n => inst₂.toFin (Var.embed h (inst.ofFin i) : β)) := by
   intro a b hab
   simp only [embed, inst₂.toFin_ofFin, inst.toFin_ofFin, Fin.castLE_lt_castLE_iff]
   exact hab
 
-/-- `Var.embed` is injective.-/
+/-- `Var.embed` is injective.
+@isnad1 id=injectiv.1h4v.s5.bfb132cf41ea from=translated src=- shape=1aea2d25 vocab=b74ac6f2
+-/
 theorem embed_injective (h : n ≤ m) : Function.Injective (Var.embed h : α → β) := by
   intro v₁ v₂ hv
   have h1 := congr_arg inst₂.toFin hv
@@ -141,6 +151,9 @@ private theorem subscript_map_cancel (l : List Char)
            ih (fun c hc => h c (.tail _ hc))⟩
 
 open AzPolynomial in
+/--
+@isnad1 id=and.1h2v.s5.9df0c8a78902 from=translated src=- shape=31f22ecd vocab=6996cac2
+-/
 theorem mem_natToSubscriptChars_range (n : ℕ) (c : Char) (h : c ∈ natToSubscriptChars n) :
     c.toNat ≥ 8320 ∧ c.toNat ≤ 8329 := by
   simp only [natToSubscriptChars, List.mem_map] at h
@@ -152,6 +165,9 @@ theorem mem_natToSubscriptChars_range (n : ℕ) (c : Char) (h : c ∈ natToSubsc
   constructor <;> (rw [charOfNat_toNat_small (d.toNat - 48 + 8320) (by omega)]; omega)
 
 open AzPolynomial in
+/--
+@isnad1 id=eq.0h1v.s3.5fe39a654c7b from=translated src=- shape=edb93955 vocab=16b31f6a
+-/
 theorem parseSubscriptChars_natToSubscriptChars (n : ℕ) :
     parseSubscriptChars (natToSubscriptChars n) = some n := by
   unfold parseSubscriptChars
@@ -224,6 +240,9 @@ def parse {n : ℕ} (cs : List Char) : Option (IndexedVar n) :=
     if h : k < n then some ⟨⟨k, h⟩⟩ else none
   | _ => none
 
+/--
+@isnad1 id=eq.0h2v.s4.2f317c0bdbc8 from=translated src=- shape=e515e695 vocab=d56c4604
+-/
 theorem parse_toChars {n : ℕ} (v : IndexedVar n) :
     IndexedVar.parse (IndexedVar.toChars v) = some v := by
   simp only [toChars, parse, List.cons_append, List.nil_append]
@@ -304,6 +323,9 @@ def parse {n : ℕ} (cs : List Char) : Option (IndexedCapsVar n) :=
     if h : k < n then some ⟨⟨k, h⟩⟩ else none
   | _ => none
 
+/--
+@isnad1 id=eq.0h2v.s4.f0efcf276080 from=translated src=- shape=e515e695 vocab=c7192798
+-/
 theorem parse_toChars {n : ℕ} (v : IndexedCapsVar n) :
     IndexedCapsVar.parse (IndexedCapsVar.toChars v) = some v := by
   simp only [toChars, parse, List.cons_append, List.nil_append]
@@ -375,6 +397,9 @@ def parse {n : ℕ} (c : Char) : Option (AbcVar n) :=
     some ⟨c, h⟩
   else none
 
+/--
+@isnad1 id=eq.0h2v.s4.d6791e92b013 from=translated src=- shape=e515e695 vocab=3a1a1b29
+-/
 theorem parse_toChars {n : ℕ} (v : AbcVar n) :
     AbcVar.parse v.ch = some v := by
   simp only [parse, dite_eq_left v.is_valid]
@@ -387,6 +412,9 @@ def ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) : AbcVar n :=
     rw [charOfNat_toNat_small (97 + i.val) (by omega)]
     omega⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.be8ed7260b38 from=translated src=- shape=0ff8defb vocab=1964f815
+-/
 theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : AbcVar n) :
     AbcVar.ofIndex hn (AbcVar.index v) = v := by
   simp only [ofIndex, index]
@@ -396,6 +424,9 @@ theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : AbcVar n) :
   rw [show 97 + (v.ch.toNat - 97) = v.ch.toNat from by omega]
   exact Char.ofNat_toNat v.ch
 
+/--
+@isnad1 id=eq.1h2v.s4.848b341030de from=translated src=- shape=584f352e vocab=415b0f94
+-/
 theorem index_ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) :
     AbcVar.index (AbcVar.ofIndex hn i) = i := by
   simp only [index, ofIndex]
@@ -466,6 +497,9 @@ def parse {n : ℕ} (c : Char) : Option (AbcCapsVar n) :=
     some ⟨c, h⟩
   else none
 
+/--
+@isnad1 id=eq.0h2v.s4.c2406a16c5f8 from=translated src=- shape=e515e695 vocab=2c50ee7d
+-/
 theorem parse_toChars {n : ℕ} (v : AbcCapsVar n) :
     AbcCapsVar.parse v.ch = some v := by
   simp only [parse, dite_eq_left v.is_valid]
@@ -478,6 +512,9 @@ def ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) : AbcCapsVar n :=
     rw [charOfNat_toNat_small (65 + i.val) (by omega)]
     omega⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.dffb6ae7e19d from=translated src=- shape=0ff8defb vocab=8bab4d7c
+-/
 theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : AbcCapsVar n) :
     AbcCapsVar.ofIndex hn (AbcCapsVar.index v) = v := by
   simp only [ofIndex, index]
@@ -487,6 +524,9 @@ theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : AbcCapsVar n) :
   rw [show 65 + (v.ch.toNat - 65) = v.ch.toNat from by omega]
   exact Char.ofNat_toNat v.ch
 
+/--
+@isnad1 id=eq.1h2v.s4.902012395bb2 from=translated src=- shape=584f352e vocab=45373d05
+-/
 theorem index_ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) :
     AbcCapsVar.index (AbcCapsVar.ofIndex hn i) = i := by
   simp only [index, ofIndex]
@@ -552,6 +592,9 @@ namespace XyzVar
 def index {n : ℕ} (v : XyzVar n) : Fin n :=
   ⟨xyzRank (v.ch.toNat - 'a'.toNat), v.is_valid.2.2⟩
 
+/--
+@isnad1 id=eq.3h2v.s5.62c4f12a1164 from=translated src=- shape=86242407 vocab=ee55b218
+-/
 theorem xyzRank_injective :
     ∀ a b : ℕ, a ≤ 25 → b ≤ 25 → xyzRank a = xyzRank b → a = b := by
   intro a b ha hb h; simp [xyzRank] at h; split at h <;> split at h <;> omega
@@ -584,6 +627,9 @@ def parse {n : ℕ} (c : Char) : Option (XyzVar n) :=
     some ⟨c, h⟩
   else none
 
+/--
+@isnad1 id=eq.0h2v.s4.85b59ace782f from=translated src=- shape=e515e695 vocab=ab9f88f0
+-/
 theorem parse_toChars {n : ℕ} (v : XyzVar n) :
     XyzVar.parse v.ch = some v := by
   simp only [parse, dite_eq_left v.is_valid]
@@ -600,6 +646,9 @@ def ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) : XyzVar n :=
     rw [xyzRank_xyzUnrank i.val (by omega)]
     exact i.isLt⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.bd2a90070a18 from=translated src=- shape=0ff8defb vocab=33f46b8a
+-/
 theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : XyzVar n) :
     XyzVar.ofIndex hn (XyzVar.index v) = v := by
   simp only [ofIndex, index]
@@ -611,6 +660,9 @@ theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : XyzVar n) :
   rw [show 97 + (v.ch.toNat - 97) = v.ch.toNat from by omega]
   exact Char.ofNat_toNat v.ch
 
+/--
+@isnad1 id=eq.1h2v.s4.2e017bfd030e from=translated src=- shape=584f352e vocab=c7a54b21
+-/
 theorem index_ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) :
     XyzVar.index (XyzVar.ofIndex hn i) = i := by
   simp only [index, ofIndex]
@@ -690,6 +742,9 @@ def parse {n : ℕ} (c : Char) : Option (XyzCapsVar n) :=
     some ⟨c, h⟩
   else none
 
+/--
+@isnad1 id=eq.0h2v.s4.f8e42e5bc9e0 from=translated src=- shape=e515e695 vocab=fc9ce8f7
+-/
 theorem parse_toChars {n : ℕ} (v : XyzCapsVar n) :
     XyzCapsVar.parse v.ch = some v := by
   simp only [parse, dite_eq_left v.is_valid]
@@ -706,6 +761,9 @@ def ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) : XyzCapsVar n :=
     rw [xyzRank_xyzUnrank i.val (by omega)]
     exact i.isLt⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.2f6a44d58d7b from=translated src=- shape=0ff8defb vocab=e9d110dd
+-/
 theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : XyzCapsVar n) :
     XyzCapsVar.ofIndex hn (XyzCapsVar.index v) = v := by
   simp only [ofIndex, index]
@@ -717,6 +775,9 @@ theorem ofIndex_index {n : ℕ} (hn : n ≤ 26) (v : XyzCapsVar n) :
   rw [show 65 + (v.ch.toNat - 65) = v.ch.toNat from by omega]
   exact Char.ofNat_toNat v.ch
 
+/--
+@isnad1 id=eq.1h2v.s4.dc303efd5967 from=translated src=- shape=584f352e vocab=a1d2722b
+-/
 theorem index_ofIndex {n : ℕ} (hn : n ≤ 26) (i : Fin n) :
     XyzCapsVar.index (XyzCapsVar.ofIndex hn i) = i := by
   simp only [index, ofIndex]
@@ -857,6 +918,9 @@ def parse {n : ℕ} (c : Char) : Option (GreekVar n) :=
     some ⟨c, h⟩
   else none
 
+/--
+@isnad1 id=eq.0h2v.s4.9c6bf12769c9 from=translated src=- shape=e515e695 vocab=8d8e4841
+-/
 theorem parse_toChars {n : ℕ} (v : GreekVar n) :
     GreekVar.parse v.ch = some v := by
   simp only [parse, dite_eq_left v.is_valid]
@@ -869,12 +933,18 @@ def ofIndex {n : ℕ} (hn : n ≤ 24) (i : Fin n) : GreekVar n :=
     rw [greekCharIndex_greekCharOfIndex i.val (by omega)]
     exact i.isLt⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.478cf2fed55e from=translated src=- shape=0ff8defb vocab=033c715a
+-/
 theorem ofIndex_index {n : ℕ} (hn : n ≤ 24) (v : GreekVar n) :
     GreekVar.ofIndex hn (GreekVar.index v) = v := by
   simp only [ofIndex, index]
   congr 1
   exact greekCharOfIndex_greekCharIndex v.ch v.is_valid.1 v.is_valid.2.1 v.is_valid.2.2.1
 
+/--
+@isnad1 id=eq.1h2v.s4.228eec176c35 from=translated src=- shape=584f352e vocab=f3eaadc7
+-/
 theorem index_ofIndex {n : ℕ} (hn : n ≤ 24) (i : Fin n) :
     GreekVar.index (GreekVar.ofIndex hn i) = i := by
   simp only [index, ofIndex]
@@ -1007,6 +1077,9 @@ def parse {n : ℕ} (c : Char) : Option (GreekCapsVar n) :=
     some ⟨c, h⟩
   else none
 
+/--
+@isnad1 id=eq.0h2v.s4.f6d84c56da1a from=translated src=- shape=e515e695 vocab=8cde6ad5
+-/
 theorem parse_toChars {n : ℕ} (v : GreekCapsVar n) :
     GreekCapsVar.parse v.ch = some v := by
   simp only [parse, dite_eq_left v.is_valid]
@@ -1019,12 +1092,18 @@ def ofIndex {n : ℕ} (hn : n ≤ 24) (i : Fin n) : GreekCapsVar n :=
     rw [greekCapsCharIndex_greekCapsCharOfIndex i.val (by omega)]
     exact i.isLt⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.6b47584ffd46 from=translated src=- shape=0ff8defb vocab=cc3557f0
+-/
 theorem ofIndex_index {n : ℕ} (hn : n ≤ 24) (v : GreekCapsVar n) :
     GreekCapsVar.ofIndex hn (GreekCapsVar.index v) = v := by
   simp only [ofIndex, index]
   congr 1
   exact greekCapsCharOfIndex_greekCapsCharIndex v.ch v.is_valid.1 v.is_valid.2.1 v.is_valid.2.2.1
 
+/--
+@isnad1 id=eq.1h2v.s4.d53335b6450d from=translated src=- shape=584f352e vocab=170bbb11
+-/
 theorem index_ofIndex {n : ℕ} (hn : n ≤ 24) (i : Fin n) :
     GreekCapsVar.index (GreekCapsVar.ofIndex hn i) = i := by
   simp only [index, ofIndex]

@@ -33,16 +33,25 @@ variable {N : Nat}
 def toZModFun (a : Array (AzFermat N)) : ℕ → ZMod (2 ^ N + 1) :=
   fun i => if h : i < a.size then toZMod a[i] else 0
 
+/--
+@isnad1 id=eq.1h3v.s6.7de4831eadd1 from=translated src=- shape=4a22b152 vocab=6743e6e9
+-/
 theorem toZModFun_of_lt (a : Array (AzFermat N)) {i : ℕ} (h : i < a.size) :
     toZModFun a i = toZMod a[i] := by
   rw [toZModFun, dite_eq_left h]
 
+/--
+@isnad1 id=eq.1h3v.s8.8f5df616cc82 from=translated src=- shape=8c16b577 vocab=2f00abe1
+-/
 theorem toZModFun_of_le (a : Array (AzFermat N)) {i : ℕ} (h : a.size ≤ i) :
     toZModFun a i = 0 := by
   rw [toZModFun, dite_eq_right (Nat.not_lt.mpr h)]
 
 variable [NeZero N]
 
+/--
+@isnad1 id=eq.2h5v.s9.1d3c86dd07d7 from=translated src=- shape=d7a43c67 vocab=d263d6e0
+-/
 theorem toZMod_forwardFFTRec (e : Nat) : ∀ (k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k)
     (r : Nat) (hr : r < 2 ^ k),
     toZMod ((forwardFFTRec e k a ha).1[r]'(Nat.lt_of_lt_of_eq hr (forwardFFTRec e k a ha).2.symm))
@@ -87,13 +96,18 @@ theorem toZMod_forwardFFTRec (e : Nat) : ∀ (k : Nat) (a : Array (AzFermat N)) 
         ← pow_mul]
       ring
 
-/-- **`forwardFFT` is Algorithm 2.2** (through `toZMod`).-/
+/-- **`forwardFFT` is Algorithm 2.2** (through `toZMod`).
+@isnad1 id=eq.2h5v.s9.1ba65cf3019c from=translated src=- shape=154816ec vocab=2cff069b
+-/
 theorem toZMod_forwardFFT (e k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k) (r : Nat)
     (hr : r < 2 ^ k) :
     toZMod ((forwardFFT e k a ha)[r]'(Nat.lt_of_lt_of_eq hr (forwardFFT_size e k a ha).symm))
       = BZ.forwardFFT ((2 : ZMod (2 ^ N + 1)) ^ e) k (toZModFun a) r :=
   toZMod_forwardFFTRec e k a ha r hr
 
+/--
+@isnad1 id=eq.2h5v.s9.82b6ddf6c0d6 from=translated src=- shape=d7a43c67 vocab=a7073fea
+-/
 theorem toZMod_backwardFFTRec (e : Nat) : ∀ (k : Nat) (a : Array (AzFermat N))
     (ha : a.size = 2 ^ k) (r : Nat) (hr : r < 2 ^ k),
     toZMod ((backwardFFTRec e k a ha).1[r]'(Nat.lt_of_lt_of_eq hr (backwardFFTRec e k a ha).2.symm))
@@ -154,7 +168,9 @@ theorem toZMod_backwardFFTRec (e : Nat) : ∀ (k : Nat) (a : Array (AzFermat N))
         ← pow_mul, hlo' _ hj, hhi' _ hj]
       ring
 
-/-- **`backwardFFT` is Algorithm 2.3** (through `toZMod`).-/
+/-- **`backwardFFT` is Algorithm 2.3** (through `toZMod`).
+@isnad1 id=eq.2h5v.s9.ad8a88b29952 from=translated src=- shape=154816ec vocab=4259a5ee
+-/
 theorem toZMod_backwardFFT (e k : Nat) (a : Array (AzFermat N)) (ha : a.size = 2 ^ k) (r : Nat)
     (hr : r < 2 ^ k) :
     toZMod ((backwardFFT e k a ha)[r]'(Nat.lt_of_lt_of_eq hr (backwardFFT_size e k a ha).symm))

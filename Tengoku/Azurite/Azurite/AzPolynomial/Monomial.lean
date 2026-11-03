@@ -43,6 +43,9 @@ def monomial (n : ℕ) (a : R) : AzPolynomial R :=
   else
     ⟨(Array.replicate n 0).push a, by simp [h]⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.879e3c13a3ff from=translated src=- shape=00dd5e7c vocab=a7153d3a
+-/
 lemma coeff_normalize (a : Array R) (i : ℕ) :
   (normalize a).coeff i = (a[i]?).getD 0 := by
   have h_pop : (normalize a).coeffs.toList = dropTrailingZeros a.toList := toList_popWhile_eq_dropTrailingZeros a

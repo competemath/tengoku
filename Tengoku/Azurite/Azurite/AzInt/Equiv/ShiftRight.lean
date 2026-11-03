@@ -19,18 +19,24 @@ open RoundingTarget
 /-- **Correctness of `AzInt.shiftRight`.**
 
 `AzInt.shiftRight z sh` realises floor-rounding of `z.toInt / 2^sh` against the
-`intSet` rounding target.-/
+`intSet` rounding target.
+@isnad1 id=eq.0h2v.s6.a6f097617ce7 from=translated src=- shape=793b285a vocab=a058d861
+-/
 theorem AzInt.toInt_shiftRight (z : AzInt) (sh : Nat) :
     (((z.shiftRight sh).toInt : ℝ) : EReal) =
       (round intSet .Floor ((z.toInt : ℝ) / ((2 : ℝ) ^ sh))).val := by
   unfold AzInt.shiftRight
   exact AzInt.toInt_shiftRightRound z .Floor sh
 
-/-- Compatibility of `HShiftRight` notation with `shiftRight`.-/
+/-- Compatibility of `HShiftRight` notation with `shiftRight`.
+@isnad1 id=eq.0h2v.s4.679fd709769a from=translated src=- shape=62f8b022 vocab=d42c5b3e
+-/
 @[simp] lemma AzInt.hShiftRight_eq (z : AzInt) (sh : Nat) :
     z >>> sh = AzInt.shiftRight z sh := rfl
 
-/-- The `toInt` of `z >>> sh` matches the right-shift on `Int` (floor division by `2^sh`).-/
+/-- The `toInt` of `z >>> sh` matches the right-shift on `Int` (floor division by `2^sh`).
+@isnad1 id=eq.0h2v.s4.e8abee9fa20c from=translated src=- shape=d14eb2af vocab=630bd0f1
+-/
 theorem AzInt.toInt_hShiftRight (z : AzInt) (sh : Nat) :
     (z >>> sh).toInt = z.toInt >>> sh := by
   have h := AzInt.toInt_shiftRight z sh
@@ -47,7 +53,9 @@ theorem AzInt.toInt_hShiftRight (z : AzInt) (sh : Nat) :
   rw [AzInt.hShiftRight_eq]
   exact_mod_cast h
 
-/-- `ofInt`-version of `AzInt.toInt_shiftRight`.-/
+/-- `ofInt`-version of `AzInt.toInt_shiftRight`.
+@isnad1 id=eq.0h2v.s4.fe760d3ae4c6 from=translated src=- shape=d14eb2af vocab=0aead39a
+-/
 theorem AzInt.ofInt_shiftRight (i : Int) (sh : Nat) :
     AzInt.ofInt (i >>> sh) = (AzInt.ofInt i) >>> sh := by
   have h : (AzInt.ofInt (i >>> sh)).toInt = ((AzInt.ofInt i) >>> sh).toInt := by

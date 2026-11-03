@@ -30,7 +30,9 @@ namespace RoundingTarget
 /-- The image of `ℕ` in `EReal` (via `ℕ → ℝ → EReal`).-/
 def natSet : Set EReal := {e | ∃ n : ℕ, ((n : ℝ) : EReal) = e}
 
-/-- No element of `natSet` is `≤ -1`, so `{s ∈ natSet | s ≤ -1}` has no maximum.-/
+/-- No element of `natSet` is `≤ -1`, so `{s ∈ natSet | s ≤ -1}` has no maximum.
+@isnad1 id=not.0h0v.s5.24cfbae08e4c from=translated src=- shape=75ff2992 vocab=332e83eb
+-/
 theorem not_existsGreatestLE_natSet :
     ¬ ∃ M, IsGreatest {s | s ∈ natSet ∧ s ≤ ((-1 : ℝ) : EReal)} M := by
   rintro ⟨M, ⟨⟨n, hn⟩, hM_le⟩, _⟩
@@ -39,7 +41,9 @@ theorem not_existsGreatestLE_natSet :
   linarith [Nat.cast_nonneg (α := ℝ) n]
 
 /-- `natSet` cannot be equipped with a `RoundingTarget` structure: the
-`existsGreatestLE` field has no witness at `x = -1`.-/
+`existsGreatestLE` field has no witness at `x = -1`.
+@isnad1 id=not.0h0v.s2.56d9585bb8b1 from=translated src=- shape=ed5d6145 vocab=0593ae24
+-/
 theorem not_nonempty_roundingTarget_natSet :
     ¬ Nonempty (RoundingTarget natSet) := by
   rintro ⟨inst⟩

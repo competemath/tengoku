@@ -53,7 +53,9 @@ variable {R : Type*} [CommRing R]
 
 /-! ### Principal roots of two-power order -/
 
-/-- `∑_{j<2^k} τ^j = ∏_{t<k} (1 + τ^{2^t})`.-/
+/-- `∑_{j<2^k} τ^j = ∏_{t<k} (1 + τ^{2^t})`.
+@isnad1 id=eq.0h3v.s7.718a7ebf028e from=translated src=- shape=52507f8c vocab=22928f22
+-/
 theorem geom_sum_two_pow (τ : R) (k : ℕ) :
     ∑ j ∈ range (2 ^ k), τ ^ j = ∏ t ∈ range k, (1 + τ ^ 2 ^ t) := by
   induction k with
@@ -65,7 +67,9 @@ theorem geom_sum_two_pow (τ : R) (k : ℕ) :
     ring
 
 /-- If `ω^{K/2} = −1` for `K = 2^(k+1)` then `ω` is a principal `K`-th root of unity: for
-`0 < i < K`, some factor `1 + (ω^i)^{2^t}` of the geometric sum `∑_{j<K} ω^{ij}` vanishes.-/
+`0 < i < K`, some factor `1 + (ω^i)^{2^t}` of the geometric sum `∑_{j<K} ω^{ij}` vanishes.
+@isnad1 id=isprinci.1h3v.s6.f57cdca120b9 from=translated src=- shape=7247a2e1 vocab=46e9a115
+-/
 theorem IsPrincipalRoot.of_pow_two_pow_eq_neg_one {ω : R} (k : ℕ) (h : ω ^ 2 ^ k = -1) :
     IsPrincipalRoot ω (2 ^ (k + 1)) where
   pow_eq_one := by rw [pow_succ, pow_mul, h]; norm_num
@@ -86,7 +90,9 @@ theorem IsPrincipalRoot.of_pow_two_pow_eq_neg_one {ω : R} (k : ℕ) (h : ω ^ 2
       pow_mul, h, hu.neg_one_pow]
     norm_num
 
-/-- `2^n = −1` in `ℤ/(2^n + 1)`.-/
+/-- `2^n = −1` in `ℤ/(2^n + 1)`.
+@isnad1 id=eq.0h1v.s10.63246eb34cd7 from=translated src=- shape=24fa439d vocab=25833db7
+-/
 theorem two_pow_eq_neg_one_zmod (n : ℕ) : (2 : ZMod (2 ^ n + 1)) ^ n = -1 := by
   have h := ZMod.natCast_self (2 ^ n + 1)
   push_cast at h
@@ -98,7 +104,9 @@ theorem two_pow_eq_neg_one_zmod (n : ℕ) : (2 : ZMod (2 ^ n + 1)) ^ n = -1 := b
 def cyclicConv {K : ℕ} [NeZero K] (a b : Fin K → R) (i : Fin K) : R :=
   ∑ ℓ : Fin K, a ℓ * b (i - ℓ)
 
-/-- The sum of the entries of a cyclic convolution is the product of the sums of the entries.-/
+/-- The sum of the entries of a cyclic convolution is the product of the sums of the entries.
+@isnad1 id=eq.0h4v.s6.9e139348bf6d from=translated src=- shape=bd66b805 vocab=26a2e142
+-/
 theorem sum_cyclicConv {K : ℕ} [NeZero K] (a b : Fin K → R) :
     ∑ i, cyclicConv a b i = (∑ ℓ, a ℓ) * (∑ m, b m) := by
   unfold cyclicConv
@@ -109,7 +117,9 @@ theorem sum_cyclicConv {K : ℕ} [NeZero K] (a b : Fin K → R) :
   exact Equiv.sum_comp (Equiv.subRight ℓ) b
 
 /-- **The Convolution Theorem** (MCA §2.9): the transform of a cyclic convolution is the pointwise
-product of the transforms, for any `ω` with `ω^K = 1`.-/
+product of the transforms, for any `ω` with `ω^K = 1`.
+@isnad1 id=eq.1h6v.s6.f149479b40a7 from=translated src=- shape=e00548c5 vocab=bd574aee
+-/
 theorem dft_cyclicConv {K : ℕ} [NeZero K] {ω : R} (hω : ω ^ K = 1) (a b : Fin K → R)
     (j : Fin K) : dft ω (cyclicConv a b) j = dft ω a j * dft ω b j := by
   unfold dft cyclicConv
@@ -134,7 +144,9 @@ def negacyclicConv {K : ℕ} [NeZero K] (a b : Fin K → R) (i : Fin K) : R :=
   ∑ ℓ : Fin K, if ℓ ≤ i then a ℓ * b (i - ℓ) else -(a ℓ * b (i - ℓ))
 
 /-- With `θ^K = −1`, the cyclic convolution of the weighted vectors is `θ^i` times the negacyclic
-convolution: a wrapped-around index picks up the factor `θ^K = −1`.-/
+convolution: a wrapped-around index picks up the factor `θ^K = −1`.
+@isnad1 id=eq.1h6v.s7.6a9c61c1db43 from=translated src=- shape=216f5c80 vocab=9fbf4319
+-/
 theorem cyclicConv_weight {K : ℕ} [NeZero K] {θ : R} (hθ : θ ^ K = -1) (a b : Fin K → R)
     (i : Fin K) : cyclicConv (weight θ a) (weight θ b) i = θ ^ i.val * negacyclicConv a b i := by
   unfold cyclicConv negacyclicConv weight
@@ -157,7 +169,9 @@ theorem cyclicConv_weight {K : ℕ} [NeZero K] {θ : R} (hθ : θ ^ K = -1) (a b
 /-- **Steps 4–11 of Algorithm FFTMulMod, in any commutative ring**: for `θ^K = −1` with
 `ω = θ²` principal, transforming the weighted vectors, multiplying pointwise and transforming
 back gives `K θ^i c_i`, `c` the negacyclic convolution.  Dividing by `K θ^i` (step 11) leaves
-`c_i`.-/
+`c_i`.
+@isnad1 id=eq.2h6v.s8.7c89d0038e4f from=translated src=- shape=4543e0fc vocab=def746d1
+-/
 theorem dftInv_dft_weight_mul {K : ℕ} [NeZero K] {θ : R} (hθ : θ ^ K = -1)
     (hω : IsPrincipalRoot (θ ^ 2) K) (a b : Fin K → R) (i : Fin K) :
     dftInv (θ ^ 2) (fun j => dft (θ ^ 2) (weight θ a) j * dft (θ ^ 2) (weight θ b) j) i
@@ -170,7 +184,9 @@ theorem dftInv_dft_weight_mul {K : ℕ} [NeZero K] {θ : R} (hθ : θ ^ K = -1)
 
 /-- **Steps 6–9 with Algorithms 2.2 and 2.3**: the pointwise products are taken in bit-reversed
 order and the backward transform returns the normal order, so no explicit bit reversal is
-needed; only `θ^K = −1` is required (`K = 2^(k+1)`).-/
+needed; only `θ^K = −1` is required (`K = 2^(k+1)`).
+@isnad1 id=eq.1h6v.s9.f4ade77c80dc from=translated src=- shape=013d0546 vocab=7cef7a19
+-/
 theorem backwardFFT_forwardFFT_weight_mul (k : ℕ) {θ : R} (hθ : θ ^ 2 ^ (k + 1) = -1)
     (a b : Fin (2 ^ (k + 1)) → R) (i : Fin (2 ^ (k + 1))) :
     backwardFFT (θ ^ 2) (k + 1) (fun r =>
@@ -191,7 +207,9 @@ theorem backwardFFT_forwardFFT_weight_mul (k : ℕ) {θ : R} (hθ : θ ^ 2 ^ (k 
 
 /-- **Equation (2.2) at the ring level**: with `θ^K = −1`,
 `(∑_ℓ θ^ℓ a_ℓ)(∑_m θ^m b_m) = ∑_j θ^j c_j`.  In `ℤ/(2^{MK}+1)` with `θ = 2^M`
-(`two_pow_eq_neg_one_zmod`) this reads `A · B ≡ ∑_j c_j 2^{jM}`.-/
+(`two_pow_eq_neg_one_zmod`) this reads `A · B ≡ ∑_j c_j 2^{jM}`.
+@isnad1 id=eq.1h5v.s8.91a701ddbaef from=translated src=- shape=699bdbfe vocab=5753a922
+-/
 theorem sum_weight_mul_sum_weight {K : ℕ} [NeZero K] {θ : R} (hθ : θ ^ K = -1)
     (a b : Fin K → R) :
     (∑ ℓ, θ ^ ℓ.val * a ℓ) * (∑ m, θ ^ m.val * b m)
@@ -203,7 +221,9 @@ theorem sum_weight_mul_sum_weight {K : ℕ} [NeZero K] {θ : R} (hθ : θ ^ K = 
 /-! ### Size of the coefficients and their recovery from residues -/
 
 /-- **MCA's bound on `c_j`**: for digits `0 ≤ a_ℓ, b_m < B`,
-`−(K−1−j) B² ≤ c_j < (j+1) B²` (the first sum of (2.2) has `j+1` terms, the second `K−1−j`).-/
+`−(K−1−j) B² ≤ c_j < (j+1) B²` (the first sum of (2.2) has `j+1` terms, the second `K−1−j`).
+@isnad1 id=and.3h5v.s7.d4fc8e1fcfe4 from=translated src=- shape=00ef8ad3 vocab=3c00b393
+-/
 theorem negacyclicConv_bounds {K : ℕ} [NeZero K] (B : ℤ) (hB : 0 < B) (a b : Fin K → ℤ)
     (ha : ∀ ℓ, 0 ≤ a ℓ ∧ a ℓ < B) (hb : ∀ m, 0 ≤ b m ∧ b m < B) (j : Fin K) :
     -(((K - 1 - j.val : ℕ) : ℤ) * B ^ 2) ≤ negacyclicConv a b j
@@ -254,7 +274,9 @@ theorem negacyclicConv_bounds {K : ℕ} [NeZero K] (B : ℤ) (hB : 0 < B) (a b :
 
 /-- **Steps 12–13 of Algorithm FFTMulMod**: an integer in a window `[U − N, U)` of length `N`
 is determined by its residue modulo `N`: it is the residue, minus `N` when the residue is at
-least `U`.-/
+least `U`.
+@isnad1 id=eq.4h3v.s6.7fa7d8ef9b33 from=translated src=- shape=fbedebc9 vocab=f7939262
+-/
 theorem int_recover_of_mem_window {c U N : ℤ} (hU0 : 0 ≤ U) (hUN : U ≤ N) (hlo : U - N ≤ c)
     (hhi : c < U) : c = if U ≤ c % N then c % N - N else c % N := by
   by_cases hc : 0 ≤ c

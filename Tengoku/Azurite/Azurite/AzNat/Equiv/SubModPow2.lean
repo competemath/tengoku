@@ -149,7 +149,9 @@ private lemma lowDiffLimbs_correct (a b : Array UInt64) (L i : Nat) (borrow : Bo
     linear_combination hc + (P : ℕ) * key
 
 /-- **Spec of `subModPow2` as a congruence.** Adding `b` back recovers `a`
-    modulo `2 ^ k`.-/
+    modulo `2 ^ k`.
+@isnad1 id=modeq.0h3v.s5.231ef478aae8 from=translated src=- shape=a293c3a4 vocab=6b4395e1
+-/
 theorem subModPow2_modEq (a b : AzNat) (k : Nat) :
     (AzNat.subModPow2 a b k).toNat + b.toNat ≡ a.toNat [MOD 2 ^ k] := by
   set L := (k + 63) / 64 with hL

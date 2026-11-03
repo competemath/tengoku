@@ -42,16 +42,25 @@ noncomputable def splitLast :
         (fun j : Fin k => Polynomial.C (MvPolynomial.X j))
         i)
 
+/--
+@isnad1 id=eq.0h3v.s9.db0b6592aeb4 from=translated src=- shape=ff322853 vocab=73fbcb4a
+-/
 @[simp] theorem splitLast_C (d : D) :
     splitLast (MvPolynomial.C d : MvPolynomial (Fin (k+1)) D) =
       Polynomial.C (MvPolynomial.C d) := by
   simp [splitLast]
 
+/--
+@isnad1 id=eq.0h2v.s8.c18872aa7d1b from=translated src=- shape=e726beec vocab=0711986d
+-/
 @[simp] theorem splitLast_X_last :
     splitLast (MvPolynomial.X (Fin.last k) :
       MvPolynomial (Fin (k+1)) D) = Polynomial.X := by
   simp [splitLast]
 
+/--
+@isnad1 id=eq.0h3v.s9.6b226ece6d52 from=translated src=- shape=456ef1a9 vocab=36527ba6
+-/
 @[simp] theorem splitLast_X_castSucc (j : Fin k) :
     splitLast (MvPolynomial.X j.castSucc :
       MvPolynomial (Fin (k+1)) D) = Polynomial.C (MvPolynomial.X j) := by
@@ -59,7 +68,9 @@ noncomputable def splitLast :
 
 /-- Compatibility of `splitLast` with evaluation: evaluating the
 split/specialized polynomial at `x` recovers multivariate evaluation
-at `Fin.snoc y x`.-/
+at `Fin.snoc y x`.
+@isnad1 id=eq.0h6v.s9.7feffba5ca1a from=translated src=- shape=823dcd5d vocab=fe993928
+-/
 theorem aeval_snoc_eq_eval_splitLast {C : Type*} [CommSemiring C] [Algebra D C]
     (y : Fin k → C) (x : C) (P : MvPolynomial (Fin (k+1)) D) :
     MvPolynomial.aeval (Fin.snoc y x) P =

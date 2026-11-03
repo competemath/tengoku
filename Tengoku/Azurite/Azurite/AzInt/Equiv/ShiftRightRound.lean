@@ -54,7 +54,9 @@ private lemma mkNorm_true_toInt_real (a : AzNat) :
 
 For any rounding mode and shift amount, the limb-level `shiftRightRound` on `AzInt`
 agrees with the abstract `round` of `z.toInt / 2^sh` against the rounding target
-`intSet ⊆ EReal`.-/
+`intSet ⊆ EReal`.
+@isnad1 id=eq.0h3v.s6.74816ff956d0 from=translated src=- shape=a33062d7 vocab=eed7a734
+-/
 theorem AzInt.toInt_shiftRightRound (z : AzInt) (mode : RoundingMode) (sh : Nat) :
     ((((z.shiftRightRound mode sh).1).toInt : ℝ) : EReal) =
       (round intSet mode ((z.toInt : ℝ) / ((2 : ℝ) ^ sh))).val := by
@@ -87,7 +89,9 @@ theorem AzInt.toInt_shiftRightRound (z : AzInt) (mode : RoundingMode) (sh : Nat)
     rw [show -mode = (-mode : RoundingMode) from rfl]
     rw [← azInt_aux_round_intSet z (-mode) sh]
 
-/-- `ofInt`-version of `AzInt.toInt_shiftRightRound`.-/
+/-- `ofInt`-version of `AzInt.toInt_shiftRightRound`.
+@isnad1 id=eq.0h3v.s6.6d834562be2f from=translated src=- shape=2c9f5053 vocab=31d86306
+-/
 theorem AzInt.ofInt_toInt_shiftRightRound (i : Int) (mode : RoundingMode) (sh : Nat) :
     ((((((AzInt.ofInt i).shiftRightRound mode sh).1).toInt : ℝ) : EReal)) =
       (round intSet mode ((i : ℝ) / ((2 : ℝ) ^ sh))).val := by
@@ -107,7 +111,9 @@ private lemma compare_neg_neg_real (x y : ℝ) :
 /-- **Ordering tag correctness for `AzInt.shiftRightRound`.**
 
 The ordering in `(z.shiftRightRound mode sh).2` records the relation between the
-rounded value and the true real value `z.toInt / 2^sh`.-/
+rounded value and the true real value `z.toInt / 2^sh`.
+@isnad1 id=eq.0h3v.s6.1b419873630b from=translated src=- shape=241e294f vocab=740d4107
+-/
 theorem AzInt.snd_shiftRightRound (z : AzInt) (mode : RoundingMode) (sh : Nat) :
     (z.shiftRightRound mode sh).2 =
       compare (((z.shiftRightRound mode sh).1.toInt : ℤ) : ℝ)

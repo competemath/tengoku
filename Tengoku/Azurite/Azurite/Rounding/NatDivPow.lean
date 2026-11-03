@@ -26,7 +26,9 @@ namespace Azurite
 open RoundingTarget
 
 /-- Uniqueness of `roundFloor`: any witness to `IsGreatest {s ∈ S | s ≤ x} e` equals
-the value produced by `roundFloor`.-/
+the value produced by `roundFloor`.
+@isnad1 id=eq.1h3v.s5.2b4d2586334b from=translated src=- shape=583167cd vocab=d60f7aa9
+-/
 lemma roundFloor_val_of_isGreatest {S : Set EReal} [RoundingTarget S]
     {x : ℝ} {e : EReal} (h : IsGreatest {s | s ∈ S ∧ s ≤ (x : EReal)} e) :
     (roundFloor S x).val = e := by
@@ -34,14 +36,18 @@ lemma roundFloor_val_of_isGreatest {S : Set EReal} [RoundingTarget S]
   exact (existsGreatestLE (S := S) x).choose_spec.unique h
 
 /-- Uniqueness of `roundCeiling`: any witness to `IsLeast {s ∈ S | x ≤ s} e` equals
-the value produced by `roundCeiling`.-/
+the value produced by `roundCeiling`.
+@isnad1 id=eq.1h3v.s5.fcd38ac2bfb3 from=translated src=- shape=76ae1aea vocab=13b247c2
+-/
 lemma roundCeiling_val_of_isLeast {S : Set EReal} [RoundingTarget S]
     {x : ℝ} {e : EReal} (h : IsLeast {s | s ∈ S ∧ (x : EReal) ≤ s} e) :
     (roundCeiling S x).val = e := by
   unfold roundCeiling
   exact (existsLeastGE (S := S) x).choose_spec.unique h
 
-/-- For any real `x`, `roundCeiling natBotSet x = ((⌈x⌉₊ : ℝ) : EReal)`.-/
+/-- For any real `x`, `roundCeiling natBotSet x = ((⌈x⌉₊ : ℝ) : EReal)`.
+@isnad1 id=eq.0h1v.s5.31efef8b6d38 from=translated src=- shape=a5f0a29e vocab=68b475f7
+-/
 lemma roundCeiling_natBotSet (x : ℝ) :
     (roundCeiling natBotSet x).val = ((⌈x⌉₊ : ℝ) : EReal) := by
   apply roundCeiling_val_of_isLeast
@@ -53,7 +59,9 @@ lemma roundCeiling_natBotSet (x : ℝ) :
     · have : x ≤ (n : ℝ) := by exact_mod_cast hge
       exact_mod_cast Nat.ceil_le.mpr this
 
-/-- For nonneg real `x`, `roundFloor natBotSet x = ((⌊x⌋₊ : ℝ) : EReal)`.-/
+/-- For nonneg real `x`, `roundFloor natBotSet x = ((⌊x⌋₊ : ℝ) : EReal)`.
+@isnad1 id=eq.1h1v.s5.19d353ddd67e from=translated src=- shape=495999a4 vocab=7f0e2c1a
+-/
 lemma roundFloor_natBotSet_nonneg (x : ℝ) (hx : 0 ≤ x) :
     (roundFloor natBotSet x).val = ((⌊x⌋₊ : ℝ) : EReal) := by
   apply roundFloor_val_of_isGreatest
@@ -66,7 +74,9 @@ lemma roundFloor_natBotSet_nonneg (x : ℝ) (hx : 0 ≤ x) :
       exact_mod_cast Nat.le_floor this
 
 /-- If `s ∈ natBotSet` has real value `((q : ℝ) : EReal)` for some nat `q`,
-then `natBotToNat s = q`.-/
+then `natBotToNat s = q`.
+@isnad1 id=eq.1h2v.s5.dc159d54e37e from=translated src=- shape=dd6a326e vocab=c1e4537b
+-/
 lemma natBotToNat_eq_of_nat_val (q : ℕ) (s : ↥natBotSet)
     (hs : s.val = ((q : ℝ) : EReal)) : natBotToNat s = q := by
   unfold natBotToNat
@@ -76,20 +86,26 @@ lemma natBotToNat_eq_of_nat_val (q : ℕ) (s : ↥natBotSet)
   have h2 : ((hex.choose : ℝ) : EReal) = ((q : ℝ) : EReal) := h1.trans hs
   exact_mod_cast h2
 
-/-- The fractional argument `v / 2 ^ sh` is nonneg.-/
+/-- The fractional argument `v / 2 ^ sh` is nonneg.
+@isnad1 id=le.0h2v.s5.1feec77f8b46 from=translated src=- shape=929565a3 vocab=d8db5576
+-/
 lemma nat_div_pow_nonneg (v : ℕ) (sh : Nat) :
     0 ≤ (v : ℝ) / ((2 : ℝ) ^ sh) := by
   apply div_nonneg
   · exact_mod_cast Nat.zero_le _
   · exact pow_nonneg (by norm_num) _
 
-/-- Floor of `v / 2^sh` is nat division.-/
+/-- Floor of `v / 2^sh` is nat division.
+@isnad1 id=eq.0h2v.s6.56f5298f29f0 from=translated src=- shape=e8880235 vocab=bbe7e857
+-/
 lemma floor_nat_div_pow (v : ℕ) (sh : Nat) :
     ⌊(v : ℝ) / ((2 : ℝ) ^ sh)⌋₊ = v / 2 ^ sh := by
   have h1 : ((2 : ℝ) ^ sh) = (((2 ^ sh : ℕ) : ℝ)) := by push_cast; rfl
   rw [h1, Nat.floor_div_natCast, Nat.floor_natCast]
 
-/-- Ceiling of `v / 2^sh`, divisible case: equals nat division.-/
+/-- Ceiling of `v / 2^sh`, divisible case: equals nat division.
+@isnad1 id=eq.1h2v.s6.79ef48ee52cb from=translated src=- shape=23801885 vocab=d91f52ad
+-/
 lemma ceil_nat_div_pow_of_dvd (v : ℕ) (sh : Nat) (h : 2 ^ sh ∣ v) :
     ⌈(v : ℝ) / ((2 : ℝ) ^ sh)⌉₊ = v / 2 ^ sh := by
   obtain ⟨q, hq⟩ := h
@@ -97,7 +113,9 @@ lemma ceil_nat_div_pow_of_dvd (v : ℕ) (sh : Nat) (h : 2 ^ sh ∣ v) :
     rw [hq]; push_cast; field_simp
   rw [heq, Nat.ceil_natCast, hq, Nat.mul_div_cancel_left _ (Nat.two_pow_pos sh)]
 
-/-- Ceiling of `v / 2^sh`, non-divisible case: equals nat division plus one.-/
+/-- Ceiling of `v / 2^sh`, non-divisible case: equals nat division plus one.
+@isnad1 id=eq.1h2v.s6.37f6c5426f21 from=translated src=- shape=1fad2a7c vocab=b77f89e3
+-/
 lemma ceil_nat_div_pow_of_not_dvd (v : ℕ) (sh : Nat) (h : ¬ 2 ^ sh ∣ v) :
     ⌈(v : ℝ) / ((2 : ℝ) ^ sh)⌉₊ = v / 2 ^ sh + 1 := by
   have h2pos : (0 : ℝ) < (2 : ℝ) ^ sh := pow_pos (by norm_num) _
@@ -133,13 +151,17 @@ lemma ceil_nat_div_pow_of_not_dvd (v : ℕ) (sh : Nat) (h : ¬ 2 ^ sh ∣ v) :
       (a := (v : ℝ) / ((2 : ℝ) ^ sh))
     exact this.mpr h3
 
-/-- Decomposition: `v = (v / 2^sh) * 2^sh + v % 2^sh`.-/
+/-- Decomposition: `v = (v / 2^sh) * 2^sh + v % 2^sh`.
+@isnad1 id=eq.0h2v.s6.8de2c425f0c5 from=translated src=- shape=06c5fbef vocab=a5cfd73a
+-/
 lemma nat_eq_mul_pow_add_mod (v : ℕ) (sh : Nat) :
     v = (v / 2 ^ sh) * 2 ^ sh + v % 2 ^ sh := by
   conv_lhs => rw [← Nat.div_add_mod v (2 ^ sh)]
   ring
 
-/-- For `v < 2^sh` with `sh > 0`: bit `sh-1` is false iff `v < 2^(sh-1)`.-/
+/-- For `v < 2^sh` with `sh > 0`: bit `sh-1` is false iff `v < 2^(sh-1)`.
+@isnad1 id=iff.2h2v.s6.6ccd0b12dd5b from=translated src=- shape=48a8c1b9 vocab=0e409970
+-/
 lemma testBit_top_false_iff_lt_half (v sh : ℕ) (hsh : 0 < sh) (hv : v < 2 ^ sh) :
     v.testBit (sh - 1) = false ↔ v < 2 ^ (sh - 1) := by
   refine ⟨?_, Nat.testBit_eq_false_of_lt⟩
@@ -155,7 +177,9 @@ lemma testBit_top_false_iff_lt_half (v sh : ℕ) (hsh : 0 < sh) (hv : v < 2 ^ sh
   rw [h_v_eq, Nat.testBit_two_pow_mul_add _ h_rem_lt (sh - 1)] at h
   simp at h
 
-/-- For `v < 2^sh` with `sh > 0`: bit `sh-1` is true iff `v ≥ 2^(sh-1)`.-/
+/-- For `v < 2^sh` with `sh > 0`: bit `sh-1` is true iff `v ≥ 2^(sh-1)`.
+@isnad1 id=iff.2h2v.s6.73dff78c350f from=translated src=- shape=c66ecf5b vocab=cdbe57a3
+-/
 lemma testBit_top_true_iff_half_le (v sh : ℕ) (hsh : 0 < sh) (hv : v < 2 ^ sh) :
     v.testBit (sh - 1) = true ↔ 2 ^ (sh - 1) ≤ v := by
   rw [show (v.testBit (sh - 1) = true) ↔ ¬ v.testBit (sh - 1) = false from by

@@ -31,11 +31,15 @@ variable {K : Type*} [Field K]
 def IsLCM (G P Q : K[X]) : Prop :=
   P ∣ G ∧ Q ∣ G ∧ ∀ M : K[X], P ∣ M → Q ∣ M → G ∣ M
 
-/-- Mathlib's `lcm P Q` satisfies the BPR IsLCM relation.-/
+/-- Mathlib's `lcm P Q` satisfies the BPR IsLCM relation.
+@isnad1 id=islcm.0h3v.s5.e65a9b21bfc0 from=translated src=- shape=7dec5008 vocab=aad83f3a
+-/
 theorem lcm_isLCM (P Q : K[X]) : IsLCM (lcm P Q) P Q :=
   ⟨dvd_lcm_left P Q, dvd_lcm_right P Q, fun _ hP hQ => lcm_dvd hP hQ⟩
 
-/-- Any two LCMs of P and Q are associates (differ by a unit).-/
+/-- Any two LCMs of P and Q are associates (differ by a unit).
+@isnad1 id=associat.2h5v.s6.a64fdfd91c27 from=translated src=- shape=76421fc2 vocab=8d19e0dd
+-/
 theorem isLCM_associated {G₁ G₂ P Q : K[X]}
     (h₁ : IsLCM G₁ P Q) (h₂ : IsLCM G₂ P Q) :
     Associated G₁ G₂ :=
@@ -45,7 +49,9 @@ theorem isLCM_associated {G₁ G₂ P Q : K[X]}
     have the same degree (by `isLCM_associated`).-/
 noncomputable def degLcm (P Q : K[X]) : WithBot ℕ := (lcm P Q).degree
 
-/-- Any IsLCM witness has the same degree as `degLcm P Q`.-/
+/-- Any IsLCM witness has the same degree as `degLcm P Q`.
+@isnad1 id=eq.1h4v.s5.d96a881983a5 from=translated src=- shape=c785f603 vocab=5998045f
+-/
 theorem isLCM_degree_eq_degLcm {G P Q : K[X]} (h : IsLCM G P Q) :
     G.degree = degLcm P Q :=
   degree_eq_degree_of_associated

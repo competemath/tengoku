@@ -43,10 +43,15 @@ namespace Azurite.BPR
 variable {D : Type*} [CommRing D]
 variable {K : Type*} [Field K] [Algebra D K] [IsFractionRing D K]
 
+/--
+@isnad1 id=divisoro.0h3v.s6.a2ccaeab9136 from=translated src=- shape=fa911cc9 vocab=4eb0ff6c
+-/
 theorem divisorOver_zero (P : D[X]) : Polynomial.DivisorOver K P 0 := by
   simp [Polynomial.DivisorOver, Polynomial.map_zero]
 
-/-- 0 divides P over K if and only if P = 0.-/
+/-- 0 divides P over K if and only if P = 0.
+@isnad1 id=iff.0h3v.s6.00e8e5949667 from=translated src=- shape=b0782133 vocab=4eb0ff6c
+-/
 theorem zero_divisorOver_iff (P : D[X]) :
     Polynomial.DivisorOver K (0 : D[X]) P ↔ P = 0 := by
   constructor

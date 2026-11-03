@@ -27,7 +27,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 
 /-- BPR Corollary 1.6: degGcd(P, Q) + degLcm(P, Q) = deg(P) + deg(Q).
-    Stated additively since `WithBot ℕ` does not support subtraction.-/
+    Stated additively since `WithBot ℕ` does not support subtraction.
+@isnad1 id=eq.0h3v.s6.4a01f06c1527 from=translated src=- shape=273e9812 vocab=e6d9f1aa
+-/
 theorem corollary_1_6 (P Q : K[X]) :
     degGcd P Q + degLcm P Q = P.degree + Q.degree := by
   have h := degree_eq_degree_of_associated (gcd_mul_lcm P Q)

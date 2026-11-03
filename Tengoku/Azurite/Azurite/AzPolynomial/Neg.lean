@@ -20,6 +20,9 @@ namespace AzPolynomial
 instance instNegAzPolynomial : Neg (AzPolynomial R) where
   neg p := mapZeroInjective (fun x => -x) (fun r => ⟨fun hr => neg_eq_zero.mp hr, fun hr => by simp [hr]⟩) p
 
+/--
+@isnad1 id=eq.0h3v.s5.f0330270eb30 from=translated src=- shape=81d4d1ad vocab=f3284221
+-/
 @[simp] lemma coeff_neg (p : AzPolynomial R) (i : ℕ) : (-p).coeff i = - p.coeff i := by
   dsimp [coeff, Neg.neg, instNegAzPolynomial, mapZeroInjective]
   rcases hp : p.coeffs[i]? with _ | c

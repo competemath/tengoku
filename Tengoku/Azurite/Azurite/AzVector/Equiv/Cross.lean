@@ -21,7 +21,9 @@ import Tengoku.Seed.LinearAlgebra.CrossProduct
 namespace Azurite
 variable {R : Type _} [CommRing R]
 
-/-- Cross product commutes with `toFn`, yielding Mathlib's `crossProduct`.-/
+/-- Cross product commutes with `toFn`, yielding Mathlib's `crossProduct`.
+@isnad1 id=eq.0h3v.s10.9c05eab3f4d1 from=translated src=- shape=02b754ca vocab=8573bc1e
+-/
 theorem AzVector.toFn_cross (v w : AzVector R 3) :
     (v.cross w).toFn = (crossProduct v.toFn) w.toFn := by
   funext ⟨i, hi⟩
@@ -31,7 +33,9 @@ theorem AzVector.toFn_cross (v w : AzVector R 3) :
                    Matrix.cons_val_one]
   | 2, _ => simp [cross, crossProduct, AzVector.toFn, Vector.get]
 
-/-- Cross product commutes with `ofFn`.-/
+/-- Cross product commutes with `ofFn`.
+@isnad1 id=eq.0h3v.s10.24c67a268538 from=translated src=- shape=e24682dc vocab=3b60636d
+-/
 theorem AzVector.ofFn_cross (f g : Fin 3 → R) :
     (AzVector.ofFn f).cross (AzVector.ofFn g) = AzVector.ofFn ((crossProduct f) g) := by
   apply AzVector.toFn_injective

@@ -21,6 +21,9 @@ variable {R : Type _} {n : Nat}
 def AzVector.stdBasis [Zero R] [One R] (i : Fin n) : AzVector R n :=
   ⟨Vector.ofFn (fun j => if i = j then 1 else 0)⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.df691c21ebff from=translated src=- shape=5c7a7d7c vocab=5917a477
+-/
 @[simp]
 theorem AzVector.get_stdBasis_self [Zero R] [One R] (i : Fin n) :
     (AzVector.stdBasis i).get i = (1 : R) := by
@@ -28,6 +31,9 @@ theorem AzVector.get_stdBasis_self [Zero R] [One R] (i : Fin n) :
   intro hne
   exact absurd rfl hne
 
+/--
+@isnad1 id=eq.1h4v.s5.ab96224c1d34 from=translated src=- shape=efe10b89 vocab=5917a477
+-/
 theorem AzVector.get_stdBasis_ne [Zero R] [One R] {i j : Fin n} (h : i ≠ j) :
     (AzVector.stdBasis i).get j = (0 : R) := by
   simp [AzVector.get, stdBasis, Vector.get]

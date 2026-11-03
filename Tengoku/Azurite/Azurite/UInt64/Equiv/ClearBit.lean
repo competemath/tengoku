@@ -14,6 +14,9 @@ import Tengoku.Azurite.Azurite.UInt64.ClearBit
 
 namespace UInt64
 
+/--
+@isnad1 id=eq.1h2v.s6.8957ccbdc65f from=translated src=- shape=6427f8f0 vocab=4429654b
+-/
 theorem toNat_clearBit (u : UInt64) (i : Nat) (hi : i < 64) :
     (u.clearBit i).toNat = u.toNat &&& (2 ^ 64 - 1 - 2 ^ i) := by
   unfold clearBit
@@ -30,6 +33,9 @@ theorem toNat_clearBit (u : UInt64) (i : Nat) (hi : i < 64) :
   rw [Nat.mod_eq_of_lt hpow, Nat.one_shiftLeft]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.f2b243d45e5e from=translated src=- shape=087a8e1f vocab=d768dcf3
+-/
 theorem clearBit_of_ge (u : UInt64) (i : Nat) (hi : 64 ≤ i) : u.clearBit i = u := by
   unfold clearBit
   rw [ite_eq_right (by omega)]
@@ -57,6 +63,9 @@ private lemma testBit_compl64 (i j : Nat) (hi : i < 64) (hj : j < 64) :
     · rename_i h_jsub; rw [decide_eq_true_eq]; omega
     · rename_i h_jsub; rw [decide_eq_true_eq]; omega
 
+/--
+@isnad1 id=eq.0h3v.s4.49d53b117dd8 from=translated src=- shape=628bcf38 vocab=69640770
+-/
 theorem testBit_toNat_clearBit (u : UInt64) (i j : Nat) :
     (u.clearBit i).toNat.testBit j = (u.toNat.testBit j && !decide (i = j)) := by
   by_cases hj : j < 64

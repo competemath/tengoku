@@ -87,10 +87,16 @@ noncomputable def AzVector.linearEquivPi [CommSemiring R] :
     left_inv := AzVector.ofFn_toFn
     right_inv := fun f => funext (AzVector.toFn_ofFn f) }
 
+/--
+@isnad1 id=eq.0h3v.s8.77dfcb93de86 from=translated src=- shape=f0a08751 vocab=ee7120cb
+-/
 @[simp]
 theorem AzVector.linearEquivPi_apply [CommSemiring R] (v : AzVector R n) :
     AzVector.linearEquivPi v = v.toFn := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.f5d03e0cdb03 from=translated src=- shape=aab37c8c vocab=be8a73f6
+-/
 @[simp]
 theorem AzVector.linearEquivPi_symm_apply [CommSemiring R] (f : Fin n → R) :
     AzVector.linearEquivPi.symm f = AzVector.ofFn f := rfl

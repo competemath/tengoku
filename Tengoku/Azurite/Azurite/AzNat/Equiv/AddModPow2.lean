@@ -142,7 +142,9 @@ private lemma lowSumLimbs_correct (a b : Array UInt64) (L i : Nat) (carry : Bool
     rw [h_num]
 
 /-- **Correctness of `addModPow2`.** The fused add-and-mask equals
-    `(a.toNat + b.toNat) % 2 ^ k`.-/
+    `(a.toNat + b.toNat) % 2 ^ k`.
+@isnad1 id=eq.0h3v.s5.8931706bc6ed from=translated src=- shape=17d60a96 vocab=6b4bb7d4
+-/
 theorem toNat_addModPow2 (a b : AzNat) (k : Nat) :
     (addModPow2 a b k).toNat = (a.toNat + b.toNat) % 2 ^ k := by
   set L := (k + 63) / 64 with hL

@@ -69,19 +69,25 @@ noncomputable instance intRoundingTarget : RoundingTarget intSet where
     unfold intTiebreak
     split_ifs <;> first | exact Or.inl rfl | exact Or.inr rfl
 
-/-- The defining spec of `toInt`: its real-cast equals the underlying value.-/
+/-- The defining spec of `toInt`: its real-cast equals the underlying value.
+@isnad1 id=eq.0h1v.s4.bfd55bbf8854 from=translated src=- shape=677c1272 vocab=8f199026
+-/
 lemma toInt_spec (a : ↥intSet) : ((toInt a : ℝ) : EReal) = a.val := by
   unfold toInt
   exact Classical.choose_spec a.property
 
-/-- If `a : ↥intSet` has value `((z : ℝ) : EReal)`, then `toInt a = z`.-/
+/-- If `a : ↥intSet` has value `((z : ℝ) : EReal)`, then `toInt a = z`.
+@isnad1 id=eq.1h2v.s5.044c1b9d6a04 from=translated src=- shape=c9ced721 vocab=1e0fa4ac
+-/
 lemma toInt_eq_of_val {a : ↥intSet} {z : ℤ} (h : ((z : ℝ) : EReal) = a.val) :
     toInt a = z := by
   have hsp := toInt_spec a
   have heq : ((toInt a : ℝ) : EReal) = ((z : ℝ) : EReal) := hsp.trans h.symm
   exact_mod_cast heq
 
-/-- The floor of `x : ℝ` in `intSet` is `⌊x⌋`.-/
+/-- The floor of `x : ℝ` in `intSet` is `⌊x⌋`.
+@isnad1 id=eq.0h1v.s4.463ecc56c420 from=translated src=- shape=a5f0a29e vocab=2790b010
+-/
 lemma val_roundFloor_intSet (x : ℝ) :
     (roundFloor intSet x).val = ((⌊x⌋ : ℝ) : EReal) := by
   apply (isGreatest_roundFloor intSet x).unique
@@ -91,7 +97,9 @@ lemma val_roundFloor_intSet (x : ℝ) :
     have : (z : ℝ) ≤ x := by exact_mod_cast hz
     exact_mod_cast Int.le_floor.mpr this
 
-/-- The ceiling of `x : ℝ` in `intSet` is `⌈x⌉`.-/
+/-- The ceiling of `x : ℝ` in `intSet` is `⌈x⌉`.
+@isnad1 id=eq.0h1v.s4.0339c314d30a from=translated src=- shape=a5f0a29e vocab=785a2c01
+-/
 lemma val_roundCeiling_intSet (x : ℝ) :
     (roundCeiling intSet x).val = ((⌈x⌉ : ℝ) : EReal) := by
   apply (isLeast_roundCeiling intSet x).unique

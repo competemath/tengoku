@@ -42,7 +42,9 @@ def shiftLimbsRight (a : Array UInt64) (lo hi sh : Nat)
     Array UInt64 × UInt64 :=
   shiftLimbsRightAux lo sh a hi 0 hhi
 
-/-- Size preservation of `shiftLimbsRightAux`.-/
+/-- Size preservation of `shiftLimbsRightAux`.
+@isnad1 id=eq.1h5v.s5.32c6cc8d9e22 from=translated src=- shape=dcb25ab5 vocab=02e03e15
+-/
 theorem shiftLimbsRightAux_size (lo sh : Nat) (a : Array UInt64) (i : Nat)
     (carry : UInt64) (h_i : i ≤ a.size) :
     (shiftLimbsRightAux lo sh a i carry h_i).1.size = a.size := by
@@ -56,7 +58,9 @@ theorem shiftLimbsRightAux_size (lo sh : Nat) (a : Array UInt64) (i : Nat)
       rw [Array.size_set]
     · simp [hlt]
 
-/-- Size preservation of `shiftLimbsRight`.-/
+/-- Size preservation of `shiftLimbsRight`.
+@isnad1 id=eq.4h4v.s5.d1ecb86aff72 from=translated src=- shape=e0c83067 vocab=eb20314e
+-/
 theorem shiftLimbsRight_size (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :

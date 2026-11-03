@@ -26,11 +26,17 @@ open Polynomial
 variable {K : Type*} [Field K]
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s7.243ad82e1cb4 from=translated src=- shape=dad01e50 vocab=e7d659c0
+-/
 lemma SRemS_ss (P Q : K[X]) (n : ℕ) (hne : SRemS P Q (n + 1) ≠ 0) :
     SRemS P Q (n + 2) = -(SRemS P Q n % SRemS P Q (n + 1)) := by
   simp [SRemS, hne]
 
 open Classical in
+/--
+@isnad1 id=eq.2h5v.s7.551afbf3d06c from=translated src=- shape=3b928cec vocab=f8fb7683
+-/
 lemma SRemS_zero_ge (P Q : K[X]) (n : ℕ) (h : SRemS P Q (n + 1) = 0)
     (m : ℕ) (hm : m ≥ n + 1) : SRemS P Q m = 0 := by
   induction m with
@@ -45,7 +51,9 @@ lemma SRemS_zero_ge (P Q : K[X]) (n : ℕ) (h : SRemS P Q (n + 1) = 0)
 
 open Classical in
 /-- Forward induction: any common divisor of P and Q divides every entry
-    of the signed remainder sequence.-/
+    of the signed remainder sequence.
+@isnad1 id=dvd.2h5v.s8.a1c629b824b2 from=translated src=- shape=0ddd0c27 vocab=84f4b9f2
+-/
 theorem dvd_SRemS (P Q D : K[X]) (hP : D ∣ P) (hQ : D ∣ Q) (n : ℕ) :
     D ∣ SRemS P Q n := by
   match n with
@@ -90,7 +98,9 @@ termination_by k - m
 
 open Classical in
 /-- BPR Proposition 1.8: The last nonzero element of the signed remainder sequence
-    is a greatest common divisor of P and Q.-/
+    is a greatest common divisor of P and Q.
+@isnad1 id=isgcd.2h4v.s7.dce36bc288ab from=translated src=- shape=743f6389 vocab=81b3f265
+-/
 theorem prop_1_8 {P Q : K[X]} {k : ℕ}
     (hk : SRemS P Q (k + 1) = 0) (hk_ne : SRemS P Q k ≠ 0) :
     IsGCD (SRemS P Q k) P Q := by
@@ -101,26 +111,36 @@ theorem prop_1_8 {P Q : K[X]} {k : ℕ}
   | succ k' => exact SRemS_last_dvd P Q (k' + 1) hk hk_ne 1 (by omega)
 
 open Classical in
-/-- The signed remainder sequence of P and 0 has SRemS(0) = P.-/
+/-- The signed remainder sequence of P and 0 has SRemS(0) = P.
+@isnad1 id=eq.0h2v.s6.bec7db674950 from=translated src=- shape=31ddcac1 vocab=a8b8db07
+-/
 @[simp] theorem SRemS_zero_left (P : K[X]) : SRemS P 0 0 = P := rfl
 
 open Classical in
-/-- The signed remainder sequence of P and 0 stabilizes at 0 from index 1 onward.-/
+/-- The signed remainder sequence of P and 0 stabilizes at 0 from index 1 onward.
+@isnad1 id=eq.1h3v.s6.a3b7be8f4841 from=translated src=- shape=199cf038 vocab=d492c869
+-/
 theorem SRemS_zero_right (P : K[X]) (n : ℕ) (hn : n ≥ 1) :
     SRemS P 0 n = 0 :=
   SRemS_zero_ge P 0 0 rfl n hn
 
 open Classical in
-/-- The signed remainder sequence of 0 and Q has SRemS(0) = 0.-/
+/-- The signed remainder sequence of 0 and Q has SRemS(0) = 0.
+@isnad1 id=eq.0h2v.s6.b9b6418476f5 from=translated src=- shape=ff3d7b45 vocab=a8b8db07
+-/
 @[simp] theorem SRemS_zero_fst (Q : K[X]) : SRemS 0 Q 0 = 0 := rfl
 
 open Classical in
-/-- The signed remainder sequence of 0 and Q has SRemS(1) = Q.-/
+/-- The signed remainder sequence of 0 and Q has SRemS(1) = Q.
+@isnad1 id=eq.0h2v.s6.a55251ffcb26 from=translated src=- shape=c0aedce3 vocab=a8b8db07
+-/
 @[simp] theorem SRemS_zero_snd (Q : K[X]) : SRemS 0 Q 1 = Q := rfl
 
 open Classical in
 /-- When Q ≠ 0, the signed remainder sequence of 0 and Q stabilizes at 0
-    from index 2 onward: SRemS(0, Q) = [0, Q, 0, 0, …].-/
+    from index 2 onward: SRemS(0, Q) = [0, Q, 0, 0, …].
+@isnad1 id=eq.2h3v.s7.56b368884fcf from=translated src=- shape=88dc72d5 vocab=d492c869
+-/
 theorem SRemS_zero_left_stabilizes (Q : K[X]) (hQ : Q ≠ 0) (n : ℕ) (hn : n ≥ 2) :
     SRemS 0 Q n = 0 := by
   apply SRemS_zero_ge 0 Q 1 _ n (by omega)

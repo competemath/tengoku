@@ -58,7 +58,9 @@ section TRems
 open Classical
 
 omit [IsDomain D] in
-/-- `Tru Q` is always a finite set.-/
+/-- `Tru Q` is always a finite set.
+@isnad1 id=finite.0h3v.s6.8fd27cb17b33 from=translated src=- shape=2551ad7d vocab=c2ac0cfa
+-/
 theorem Tru_finite (Q : Polynomial (MvPolynomial (Fin k) D)) :
     (Tru Q).Finite := by
   rw [Tru]
@@ -77,7 +79,9 @@ decreasing_by
   omega
 
 omit [IsDomain D] in
-/-- Elements of `Tru Q` have `natDegree ≤ Q.natDegree`.-/
+/-- Elements of `Tru Q` have `natDegree ≤ Q.natDegree`.
+@isnad1 id=le.1h4v.s7.4919e43742e7 from=translated src=- shape=d223a1a6 vocab=c8396e74
+-/
 theorem natDegree_mem_Tru_le {Q Q' : Polynomial (MvPolynomial (Fin k) D)}
     (hQ' : Q' ∈ Tru Q) : Q'.natDegree ≤ Q.natDegree := by
   by_cases h0 : Q = 0
@@ -107,7 +111,9 @@ noncomputable def pRemMv
   else (@PRem_descends (MvPolynomial (Fin k) D) _ _
     (FractionRing (MvPolynomial (Fin k) D)) _ _ _ P Q hQ).choose
 
-/-- The descended `pRemMv` maps to `PRem` under `algebraMap`.-/
+/-- The descended `pRemMv` maps to `PRem` under `algebraMap`.
+@isnad1 id=eq.1h4v.s10.c1c5ef260d32 from=translated src=- shape=9b7e7146 vocab=5701448d
+-/
 theorem pRemMv_spec
     (P Q : Polynomial (MvPolynomial (Fin k) D)) (hQ : Q ≠ 0) :
     (pRemMv P Q).map (algebraMap (MvPolynomial (Fin k) D)
@@ -118,7 +124,9 @@ theorem pRemMv_spec
     (FractionRing (MvPolynomial (Fin k) D)) _ _ _ P Q hQ).choose_spec
 
 /-- The descended pseudo-remainder has degree strictly less than the
-divisor when the divisor is nonzero.-/
+divisor when the divisor is nonzero.
+@isnad1 id=lt.1h4v.s8.cc64472693fd from=translated src=- shape=62d02299 vocab=2acbd6fc
+-/
 theorem degree_pRemMv_lt
     (P Q : Polynomial (MvPolynomial (Fin k) D)) (hQ : Q ≠ 0) :
     (pRemMv P Q).degree < Q.degree := by
@@ -133,7 +141,9 @@ theorem degree_pRemMv_lt
     (FractionRing (MvPolynomial (Fin k) D)) _ _ _ P Q hQ
 
 /-- Pseudo-division identity in `D[Y₁,…,Yₖ][X]`:
-`C(b_q^d) · P = A · Q + pRemMv(P, Q)` for some `A`.-/
+`C(b_q^d) · P = A · Q + pRemMv(P, Q)` for some `A`.
+@isnad1 id=ex.1h4v.s10.2598ef217a8e from=translated src=- shape=79b2710b vocab=96145d04
+-/
 theorem pRemMv_pseudo_div
     (P Q : Polynomial (MvPolynomial (Fin k) D)) (hQ : Q ≠ 0) :
     ∃ A : Polynomial (MvPolynomial (Fin k) D),

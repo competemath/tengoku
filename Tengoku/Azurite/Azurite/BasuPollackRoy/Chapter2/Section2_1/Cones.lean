@@ -53,7 +53,9 @@ def IsCone (C : Subsemiring F) : Prop :=
 def IsProperCone (C : Subsemiring F) : Prop :=
   IsCone C ∧ (-1 : F) ∉ C
 
-/-- Every `RingPreordering` is a proper cone.-/
+/-- Every `RingPreordering` is a proper cone.
+@isnad1 id=isproper.0h2v.s4.06ae7030d0e0 from=translated src=- shape=ed10201d vocab=a07791bd
+-/
 lemma RingPreordering.isProperCone (P : RingPreordering F) :
     IsProperCone P.toSubsemiring :=
   ⟨fun x => by
@@ -73,11 +75,15 @@ def IsProperCone.toRingPreordering {C : Subsemiring F} (hC : IsProperCone C) :
 variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
 /-- **BPR Remark.** The positive cone `{x ∈ F | x ≥ 0}` of an ordered field
-    is a cone. This is `Subsemiring.nonneg` in Mathlib.-/
+    is a cone. This is `Subsemiring.nonneg` in Mathlib.
+@isnad1 id=iscone.0h1v.s5.9ff60b76f60a from=translated src=- shape=456cb356 vocab=c3d73476
+-/
 lemma isCone_nonneg : IsCone (Subsemiring.nonneg F) :=
   fun x => by simp [Subsemiring.mem_nonneg]; positivity
 
-/-- The positive cone of an ordered field is proper.-/
+/-- The positive cone of an ordered field is proper.
+@isnad1 id=isproper.0h1v.s5.0d81d9c689ef from=translated src=- shape=456cb356 vocab=c292a6fb
+-/
 lemma isProperCone_nonneg : IsProperCone (Subsemiring.nonneg F) :=
   ⟨isCone_nonneg, by simp [Subsemiring.mem_nonneg]⟩
 

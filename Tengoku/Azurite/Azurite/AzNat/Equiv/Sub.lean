@@ -17,7 +17,9 @@ import Tengoku.Azurite.Azurite.UInt64.Equiv.SubWithBorrow
 
 namespace Azurite.AzNat
 
-/-- `subLimb.go` preserves the prefix `[0, i)`.-/
+/-- `subLimb.go` preserves the prefix `[0, i)`.
+@isnad1 id=eq.1h4v.s5.0c62dafbcad8 from=translated src=- shape=6d54b005 vocab=f0778b1d
+-/
 theorem subLimb.go_toList_take (hi : Nat) (a : Array UInt64) (i : Nat)
     (borrow : UInt64) (h_size : hi ≤ a.size) :
     (subLimb.go hi a i borrow h_size).1.toList.take i = a.toList.take i := by
@@ -50,7 +52,9 @@ theorem subLimb.go_toList_take (hi : Nat) (a : Array UInt64) (i : Nat)
       rw [List.length_take, Array.length_toList]
       omega
 
-/-- `subLimb` preserves the prefix `[0, lo)`.-/
+/-- `subLimb` preserves the prefix `[0, lo)`.
+@isnad1 id=eq.2h4v.s5.47e70df2fb0a from=translated src=- shape=3bb59b30 vocab=cee552f9
+-/
 theorem subLimb_toList_take (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) :
     (subLimb a lo hi b hlo hhi).1.toList.take lo = a.toList.take lo :=
@@ -58,7 +62,9 @@ theorem subLimb_toList_take (a : Array UInt64) (lo hi : Nat) (b : UInt64)
 
 /-- Single-limb sub step: subtracting a borrow from a UInt64 produces a
     difference and a new borrow-out bit that together preserve the
-    numerical value.-/
+    numerical value.
+@isnad1 id=eq.0h2v.s6.09d911b2edce from=translated src=- shape=13a40977 vocab=b4c68068
+-/
 lemma limb_sub_step (x borrow : UInt64) :
     x.toNat + (if x < borrow then (1 : UInt64) else 0).toNat * 2 ^ 64
       = (x - borrow).toNat + borrow.toNat := by
@@ -205,7 +211,9 @@ private lemma subLimb.go_correct (hi : Nat) (a : Array UInt64) (i : Nat)
       ring
 
 /-- Correctness of `subLimb`: the original slice `[lo, hi)` plus `b` equals
-    the modified slice plus the returned borrow at the top.-/
+    the modified slice plus the returned borrow at the top.
+@isnad1 id=match1.3h4v.s7.bee3e2f14f3b from=translated src=- shape=dc763484 vocab=1fc99164
+-/
 theorem subLimb_toNat (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) (h_lo_lt : lo < hi) :
     let (a', c) := subLimb a lo hi b hlo hhi
@@ -217,7 +225,9 @@ theorem subLimb_toNat (a : Array UInt64) (lo hi : Nat) (b : UInt64)
 
 /-! ### Correctness of `subSameLengthLimbs` -/
 
-/-- `subSameLengthLimbs.go` preserves any prefix up to `loA + k`.-/
+/-- `subSameLengthLimbs.go` preserves any prefix up to `loA + k`.
+@isnad1 id=eq.3h8v.s6.7c23d95b4218 from=translated src=- shape=d0073ae9 vocab=21cdc595
+-/
 theorem subSameLengthLimbs.go_toList_take_le (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (borrow : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size)
@@ -237,7 +247,9 @@ theorem subSameLengthLimbs.go_toList_take_le (b : Array UInt64) (loA loB len : N
     rw [ih _ _ _ _ (by omega) h_rec]
     rw [Array.toList_set, List.take_set_of_le (by omega)]
 
-/-- `subSameLengthLimbs.go` preserves the prefix of `a` up to `loA + k`.-/
+/-- `subSameLengthLimbs.go` preserves the prefix of `a` up to `loA + k`.
+@isnad1 id=eq.2h7v.s6.adea50d61d4c from=translated src=- shape=358022d3 vocab=21cdc595
+-/
 theorem subSameLengthLimbs.go_toList_take (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (borrow : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -245,7 +257,9 @@ theorem subSameLengthLimbs.go_toList_take (b : Array UInt64) (loA loB len : Nat)
       = a.toList.take (loA + k) :=
   subSameLengthLimbs.go_toList_take_le b loA loB len a k borrow hA hB (loA + k) (Nat.le_refl _)
 
-/-- `subSameLengthLimbs.go` preserves the suffix of `a` from `loA + len`.-/
+/-- `subSameLengthLimbs.go` preserves the suffix of `a` from `loA + len`.
+@isnad1 id=eq.2h7v.s6.2698a174413f from=translated src=- shape=17463764 vocab=6f2b89a6
+-/
 theorem subSameLengthLimbs.go_toList_drop (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (borrow : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -386,7 +400,9 @@ private lemma subSameLengthLimbs.go_correct (b : Array UInt64) (loA loB len : Na
     ring
 
 /-- Correctness of `subSameLengthLimbs`: original-`a` subrange plus final borrow at
-    the top equals modified-`a` subrange plus `b` subrange.-/
+    the top equals modified-`a` subrange plus `b` subrange.
+@isnad1 id=match1.2h5v.s7.218e0fbcb51c from=translated src=- shape=9e2c3151 vocab=bc497144
+-/
 theorem subSameLengthLimbs_toNat (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
     let (a', c) := subSameLengthLimbs a b loA loB len hA hB
@@ -398,7 +414,9 @@ theorem subSameLengthLimbs_toNat (a b : Array UInt64) (loA loB len : Nat)
 
 /-! ### Correctness of `subGeqLimbs` -/
 
-/-- Correctness of `subGeqLimbs`: agrees with `Nat` subtraction over the slices.-/
+/-- Correctness of `subGeqLimbs`: agrees with `Nat` subtraction over the slices.
+@isnad1 id=match1.5h6v.s7.64c3a7b59579 from=translated src=- shape=6ca35eea vocab=0827f696
+-/
 theorem subGeqLimbs_toNat (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB) :
@@ -544,7 +562,9 @@ private theorem subSameLengthLimbs.go_high_le (b : Array UInt64) (loA loB len : 
     For `split = 0` this follows directly from `subSameLengthLimbs_toNat`.
     For `split > 0`, positions `[loA + split, loA + len)` of the intermediate
     array at step `split` agree with the original (only positions below `split`
-    have been modified), so `go_high_le` applied at step `split` gives the bound.-/
+    have been modified), so `go_high_le` applied at step `split` gives the bound.
+@isnad1 id=le.4h6v.s7.4feab8ec0b45 from=translated src=- shape=ba9aa973 vocab=fd38fff6
+-/
 theorem subSameLengthLimbs_high_le (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size)
     (split : Nat) (h_split : split ≤ len)
@@ -688,7 +708,9 @@ theorem subSameLengthLimbs_high_le (a b : Array UInt64) (loA loB len : Nat)
     range) is bounded by the corresponding portion of the original array.
 
     This extends `subSameLengthLimbs_high_le` to handle the borrow
-    propagation phase (via `subLimb`) that occurs when `lenB < lenA`.-/
+    propagation phase (via `subLimb`) that occurs when `lenB < lenA`.
+@isnad1 id=le.7h7v.s7.17ef54a2056c from=translated src=- shape=ffbbc960 vocab=92238dac
+-/
 theorem subGeqLimbs_high_le (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB)
@@ -740,7 +762,9 @@ theorem subGeqLimbs_high_le (a b : Array UInt64) (loA lenA loB lenB : Nat)
     have h3 : R_hi * β ≤ A_lo + A_hi * β := by omega
     omega
 
-/-- Correctness of `AzNat.subUInt64`: agrees with truncated `Nat` subtraction.-/
+/-- Correctness of `AzNat.subUInt64`: agrees with truncated `Nat` subtraction.
+@isnad1 id=eq.0h2v.s4.841fd17907ba from=translated src=- shape=fd891ac3 vocab=ac7eb9ae
+-/
 theorem toNat_subUInt64 (a : AzNat) (b : UInt64) :
     (a.subUInt64 b).toNat = a.toNat - b.toNat := by
   unfold subUInt64
@@ -784,7 +808,9 @@ theorem toNat_subUInt64 (a : AzNat) (b : UInt64) :
       have h0 : (0 : AzNat).toNat = 0 := rfl
       rw [h0, h_a]; omega
 
-/-- Correctness of `AzNat.sub`: agrees with truncated `Nat` subtraction.-/
+/-- Correctness of `AzNat.sub`: agrees with truncated `Nat` subtraction.
+@isnad1 id=eq.0h2v.s4.816c77245b91 from=translated src=- shape=0438c7a3 vocab=3446caff
+-/
 theorem toNat_sub (a b : AzNat) : (a - b).toNat = a.toNat - b.toNat := by
   show (sub a b).toNat = a.toNat - b.toNat
   unfold sub
@@ -872,13 +898,17 @@ theorem toNat_sub (a b : AzNat) : (a - b).toNat = a.toNat - b.toNat := by
           have h0 : (0 : AzNat).toNat = 0 := rfl
           rw [h0, h_a_eq, h_b_eq]; omega
 
-/-- `ofNat`-version of `toNat_subUInt64`.-/
+/-- `ofNat`-version of `toNat_subUInt64`.
+@isnad1 id=eq.0h2v.s4.decfcc477341 from=translated src=- shape=c0c9f83a vocab=af4881c6
+-/
 theorem ofNat_subUInt64 (n : Nat) (b : UInt64) :
     ofNat (n - b.toNat) = (ofNat n).subUInt64 b := by
   apply toNat_injective
   rw [toNat_ofNat, toNat_subUInt64, toNat_ofNat]
 
-/-- `ofNat`-version of `toNat_sub`.-/
+/-- `ofNat`-version of `toNat_sub`.
+@isnad1 id=eq.0h2v.s4.7fb65d2bbce9 from=translated src=- shape=0438c7a3 vocab=d3c467e9
+-/
 theorem ofNat_sub (m n : Nat) : ofNat (m - n) = ofNat m - ofNat n := by
   apply toNat_injective
   rw [toNat_ofNat, toNat_sub, toNat_ofNat, toNat_ofNat]

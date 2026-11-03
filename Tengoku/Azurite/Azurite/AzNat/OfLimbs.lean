@@ -27,7 +27,9 @@ def trimTrailingZeros (a : Array UInt64) : Array UInt64 :=
   termination_by a.size
   decreasing_by simp [Array.size_pop]; omega
 
-/-- `trimTrailingZeros` produces an array satisfying the `AzNat` invariant.-/
+/-- `trimTrailingZeros` produces an array satisfying the `AzNat` invariant.
+@isnad1 id=ne.0h1v.s4.805d1eb36bb3 from=translated src=- shape=e79a9ad9 vocab=18b4cdb9
+-/
 theorem back?_trimTrailingZeros (a : Array UInt64) :
     (trimTrailingZeros a).back? ≠ some 0 := by
   rw [trimTrailingZeros]

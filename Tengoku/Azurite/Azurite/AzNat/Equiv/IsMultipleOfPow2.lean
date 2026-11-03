@@ -90,6 +90,9 @@ private lemma toNat_lt_two_pow_of_size_le (n : AzNat) (k : Nat)
     Nat.pow_le_pow_right (by omega) (by omega)
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.26902d671f2d from=translated src=- shape=4ec9b9c1 vocab=b93d71a6
+-/
 theorem isMultipleOfPow2_eq (n : AzNat) (k : Nat) :
     n.isMultipleOfPow2 k = decide (2 ^ k ∣ n.toNat) := by
   rw [Bool.eq_iff_iff, decide_eq_true_eq, pow_two_dvd_iff_testBit]

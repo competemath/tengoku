@@ -40,7 +40,9 @@ there exists an injective ring homomorphism `ℚ → K`.-/
 def HasCharZero : Prop :=
   ∃ f : ℚ →+* K, Function.Injective f
 
-/-- BPR's characteristic-`p` condition is Mathlib's `CharP K p` (for prime `p`).-/
+/-- BPR's characteristic-`p` condition is Mathlib's `CharP K p` (for prime `p`).
+@isnad1 id=iff.0h2v.s4.11344651c464 from=translated src=- shape=c8f78bf9 vocab=7de631c4
+-/
 theorem hasCharP_iff_charP (p : ℕ) [Fact p.Prime] :
     HasCharP K p ↔ CharP K p := by
   constructor
@@ -52,7 +54,9 @@ theorem hasCharP_iff_charP (p : ℕ) [Fact p.Prime] :
   · intro _
     exact ⟨ZMod.castHom (dvd_refl p) K, ZMod.castHom_injective K⟩
 
-/-- BPR's characteristic-`0` condition is Mathlib's `CharZero K`.-/
+/-- BPR's characteristic-`0` condition is Mathlib's `CharZero K`.
+@isnad1 id=iff.0h1v.s4.e583bfbc6cef from=translated src=- shape=aa7e0af4 vocab=7f523f9b
+-/
 theorem hasCharZero_iff_charZero :
     HasCharZero K ↔ CharZero K := by
   constructor

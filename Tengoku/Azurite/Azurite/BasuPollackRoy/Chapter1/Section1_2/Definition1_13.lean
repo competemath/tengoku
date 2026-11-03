@@ -35,7 +35,9 @@ def IsListGCD (G : K[X]) (Ps : List K[X]) : Prop :=
 noncomputable def listGcd (Ps : List K[X]) : K[X] :=
   Ps.foldr gcd 0
 
-/-- The algorithm `listGcd` satisfies the `IsListGCD` specification.-/
+/-- The algorithm `listGcd` satisfies the `IsListGCD` specification.
+@isnad1 id=islistgc.0h2v.s4.4a3424fd8542 from=translated src=- shape=70a8027c vocab=8cc40065
+-/
 theorem listGcd_isListGCD (Ps : List K[X]) : IsListGCD (listGcd Ps) Ps := by
   induction Ps with
   | nil =>

@@ -53,7 +53,9 @@ private theorem foldl_range_add {n : ℕ} (f : ℕ → S) :
       Finset.sum_range_succ]
 
 /-- **Correctness of the expansion determinant**: `detFn n M` computes
-`Matrix.det A` whenever `M` agrees with `A` on the index square.-/
+`Matrix.det A` whenever `M` agrees with `A` on the index square.
+@isnad1 id=eq.1h4v.s6.4b340160ff58 from=translated src=- shape=c5184ae9 vocab=260d01ba
+-/
 theorem detFn_eq_det : ∀ (n : ℕ) (M : ℕ → ℕ → S) (A : Matrix (Fin n) (Fin n) S),
     (∀ (i j : ℕ) (hi : i < n) (hj : j < n), M i j = A ⟨i, hi⟩ ⟨j, hj⟩) →
     detFn n M = A.det
@@ -91,7 +93,9 @@ theorem detFn_eq_det : ∀ (n : ℕ) (M : ℕ → ℕ → S) (A : Matrix (Fin n)
         omega)]
       rfl
 
-/-- `detFn` commutes with ring homomorphisms.-/
+/-- `detFn` commutes with ring homomorphisms.
+@isnad1 id=eq.0h5v.s7.e3da8b8a9061 from=translated src=- shape=6ee6ec6e vocab=bc64f220
+-/
 theorem map_detFn {T : Type _} [CommRing T] (f : S →+* T) :
     ∀ (n : ℕ) (M : ℕ → ℕ → S), f (detFn n M) = detFn n (fun i j => f (M i j))
   | 0, _ => by rw [detFn, detFn, map_one]

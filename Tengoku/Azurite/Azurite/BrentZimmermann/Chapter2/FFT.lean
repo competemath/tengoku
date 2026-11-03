@@ -86,7 +86,9 @@ private lemma dftNat_two_mul_add_one (ω : R) (m : ℕ) (hω : ω ^ (2 * m) = 1)
   ring
 
 /-- **Correctness of the FFT** (MCA §2.3.2): for `ω^(2^k) = 1` and `i < 2^k`,
-`fftRec ω k a i = ∑_{j < 2^k} ω^{ij} a_j`.-/
+`fftRec ω k a i = ∑_{j < 2^k} ω^{ij} a_j`.
+@isnad1 id=eq.2h5v.s6.d2627d77962f from=translated src=- shape=77fcaa76 vocab=ea9b7a16
+-/
 theorem fftRec_eq_dftNat (k : ℕ) (ω : R) (hω : ω ^ (2 ^ k) = 1) (a : ℕ → R) (i : ℕ)
     (hi : i < 2 ^ k) : fftRec ω k a i = dftNat ω (2 ^ k) a i := by
   induction k generalizing ω a i with
@@ -115,6 +117,9 @@ def extendZero {K : ℕ} (a : Fin K → R) : ℕ → R :=
 def fft (k : ℕ) (ω : R) (a : Fin (2 ^ k) → R) : Fin (2 ^ k) → R :=
   fun i => fftRec ω k (extendZero a) i
 
+/--
+@isnad1 id=eq.0h5v.s5.da13b38690b8 from=translated src=- shape=672a7152 vocab=dfd78479
+-/
 theorem dft_eq_dftNat {K : ℕ} (ω : R) (a : Fin K → R) (i : Fin K) :
     dft ω a i = dftNat ω K (extendZero a) i := by
   unfold dft dftNat
@@ -122,7 +127,9 @@ theorem dft_eq_dftNat {K : ℕ} (ω : R) (a : Fin K → R) (i : Fin K) :
   refine Finset.sum_congr rfl fun j _ => ?_
   simp [extendZero, j.isLt]
 
-/-- **The FFT computes the transform (2.1)** whenever `ω^(2^k) = 1`.-/
+/-- **The FFT computes the transform (2.1)** whenever `ω^(2^k) = 1`.
+@isnad1 id=eq.1h4v.s7.0393251e3fea from=translated src=- shape=7e7a025d vocab=36f8b250
+-/
 theorem fft_eq_dft (k : ℕ) (ω : R) (hω : ω ^ (2 ^ k) = 1) (a : Fin (2 ^ k) → R) :
     fft k ω a = dft ω a := by
   funext i
@@ -150,14 +157,18 @@ private lemma sum_range_two_mul_pow_mul {ω : R} {m : ℕ} (hω : ω ^ (2 * m) =
     push_cast
     ring
 
-/-- For a principal `2m`-th root, `m · (1 + ω^m) = 0`.-/
+/-- For a principal `2m`-th root, `m · (1 + ω^m) = 0`.
+@isnad1 id=eq.2h3v.s7.235f993fd100 from=translated src=- shape=328836fe vocab=e834b4da
+-/
 theorem natCast_mul_one_add_pow_half {ω : R} {m : ℕ} (h : IsPrincipalRoot ω (2 * m)) (hm : 0 < m) :
     (m : R) * (1 + ω ^ m) = 0 := by
   rw [← sum_range_two_mul_pow_mul h.pow_eq_one m]
   exact h.sum_pow_eq_zero m hm (by omega)
 
 /-- `ω^{K/2} = −1` for a principal `K`-th root when `K/2` is a unit of `R` (MCA's "since
-`ω^4 = −1`").-/
+`ω^4 = −1`").
+@isnad1 id=eq.3h3v.s6.91d6e96af31a from=translated src=- shape=ff8653c1 vocab=3ad9b02a
+-/
 theorem pow_half_eq_neg_one {ω : R} {m : ℕ} (h : IsPrincipalRoot ω (2 * m)) (hm : 0 < m)
     (hu : IsUnit (m : R)) : ω ^ m = -1 := by
   have h0 := h.natCast_mul_one_add_pow_half hm
@@ -178,7 +189,9 @@ def fftRecSub (ω : R) : (k : ℕ) → (ℕ → R) → ℕ → R
     let ds := fftRecSub (ω ^ 2) k d
     fun r => if r % 2 = 0 then es (r / 2) else ds (r / 2)
 
-/-- The butterfly form agrees with `fftRec` once `ω^{K/2} = −1` (`K = 2^(k+1)`).-/
+/-- The butterfly form agrees with `fftRec` once `ω^{K/2} = −1` (`K = 2^(k+1)`).
+@isnad1 id=eq.1h4v.s6.ac67d55f53fe from=translated src=- shape=7eaeb599 vocab=db3e92a8
+-/
 theorem fftRecSub_eq_fftRec (k : ℕ) (ω : R) (hω : ω ^ (2 ^ k) = -1) (a : ℕ → R) :
     fftRecSub ω (k + 1) a = fftRec ω (k + 1) a := by
   induction k generalizing ω a with
@@ -199,14 +212,18 @@ theorem fftRecSub_eq_fftRec (k : ℕ) (ω : R) (hω : ω ^ (2 ^ k) = -1) (a : �
     simp [sub_eq_add_neg]
 
 /-- **Correctness of the butterfly FFT**: for `ω^{K/2} = −1` with `K = 2^(k+1)` and `i < K`,
-`fftRecSub ω (k+1) a i = ∑_{j<K} ω^{ij} a_j`.-/
+`fftRecSub ω (k+1) a i = ∑_{j<K} ω^{ij} a_j`.
+@isnad1 id=eq.2h5v.s7.00223ac575a8 from=translated src=- shape=2b11330b vocab=ba9f1132
+-/
 theorem fftRecSub_eq_dftNat (k : ℕ) (ω : R) (hω : ω ^ (2 ^ k) = -1) (a : ℕ → R) (i : ℕ)
     (hi : i < 2 ^ (k + 1)) : fftRecSub ω (k + 1) a i = dftNat ω (2 ^ (k + 1)) a i := by
   rw [fftRecSub_eq_fftRec k ω hω a]
   exact fftRec_eq_dftNat (k + 1) ω (by rw [pow_succ, pow_mul, hω]; norm_num) a i hi
 
 /-- The butterfly FFT computes the transform at any principal root of order `2^(k+1)` when
-`2^k` is a unit of the ring.-/
+`2^k` is a unit of the ring.
+@isnad1 id=eq.3h5v.s7.e4ed86d81efc from=translated src=- shape=c7d1bd31 vocab=5c0e9d95
+-/
 theorem fftRecSub_eq_dftNat_of_principal (k : ℕ) {ω : R} (h : IsPrincipalRoot ω (2 ^ (k + 1)))
     (hu : IsUnit ((2 ^ k : ℕ) : R)) (a : ℕ → R) (i : ℕ) (hi : i < 2 ^ (k + 1)) :
     fftRecSub ω (k + 1) a i = dftNat ω (2 ^ (k + 1)) a i := by
@@ -229,6 +246,9 @@ def bitrev : ℕ → ℕ → ℕ
   | 0, _ => 0
   | k + 1, j => j % 2 * 2 ^ k + bitrev k (j / 2)
 
+/--
+@isnad1 id=lt.0h2v.s4.a5c6123be241 from=translated src=- shape=a458b0eb vocab=27016da9
+-/
 theorem bitrev_lt (k j : ℕ) : bitrev k j < 2 ^ k := by
   induction k generalizing j with
   | zero => simp [bitrev]
@@ -238,15 +258,23 @@ theorem bitrev_lt (k j : ℕ) : bitrev k j < 2 ^ k := by
     rw [pow_succ]
     rcases Nat.mod_two_eq_zero_or_one j with h2 | h2 <;> rw [h2] <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s5.7c04e3aa0d00 from=translated src=- shape=496f1c31 vocab=312b286d
+-/
 theorem bitrev_two_mul (k j : ℕ) : bitrev (k + 1) (2 * j) = bitrev k j := by
   show 2 * j % 2 * 2 ^ k + bitrev k (2 * j / 2) = bitrev k j
   rw [Nat.mul_mod_right, Nat.zero_mul, Nat.zero_add, Nat.mul_div_cancel_left j (by norm_num)]
 
+/--
+@isnad1 id=eq.0h2v.s6.9ea70dd6badd from=translated src=- shape=e4c9f528 vocab=dd2b8565
+-/
 theorem bitrev_two_mul_add_one (k j : ℕ) : bitrev (k + 1) (2 * j + 1) = 2 ^ k + bitrev k j := by
   show (2 * j + 1) % 2 * 2 ^ k + bitrev k ((2 * j + 1) / 2) = 2 ^ k + bitrev k j
   rw [show (2 * j + 1) % 2 = 1 by omega, show (2 * j + 1) / 2 = j by omega, Nat.one_mul]
 
-/-- Reversing `k + 1` bits of a `k`-bit number appends a zero bit at the bottom.-/
+/-- Reversing `k + 1` bits of a `k`-bit number appends a zero bit at the bottom.
+@isnad1 id=eq.1h2v.s5.a1693fe6b49a from=translated src=- shape=17c531fa vocab=bb12afca
+-/
 theorem bitrev_succ_of_lt (k r : ℕ) (hr : r < 2 ^ k) : bitrev (k + 1) r = 2 * bitrev k r := by
   induction k generalizing r with
   | zero =>
@@ -258,7 +286,9 @@ theorem bitrev_succ_of_lt (k r : ℕ) (hr : r < 2 ^ k) : bitrev (k + 1) r = 2 * 
     rw [ih (r / 2) (by omega), h2]
     ring
 
-/-- Reversing `k + 1` bits of `2^k + r` (`r < 2^k`) appends a one bit at the bottom.-/
+/-- Reversing `k + 1` bits of `2^k + r` (`r < 2^k`) appends a one bit at the bottom.
+@isnad1 id=eq.1h2v.s6.305d9bb687b1 from=translated src=- shape=b6b4d6f1 vocab=bb12afca
+-/
 theorem bitrev_succ_pow_add (k r : ℕ) (hr : r < 2 ^ k) :
     bitrev (k + 1) (2 ^ k + r) = 2 * bitrev k r + 1 := by
   induction k generalizing r with
@@ -273,7 +303,9 @@ theorem bitrev_succ_pow_add (k r : ℕ) (hr : r < 2 ^ k) :
       show (2 ^ (k + 1) + r) / 2 = 2 ^ k + r / 2 by omega, ih (r / 2) (by omega), h2]
     ring
 
-/-- Bit reversal is an involution on `k`-bit numbers.-/
+/-- Bit reversal is an involution on `k`-bit numbers.
+@isnad1 id=eq.1h2v.s5.e4f4225845f9 from=translated src=- shape=f241a66f vocab=27016da9
+-/
 theorem bitrev_bitrev (k j : ℕ) (hj : j < 2 ^ k) : bitrev k (bitrev k j) = j := by
   induction k generalizing j with
   | zero =>
@@ -314,7 +346,9 @@ private lemma sum_range_two_mul_split (f : ℕ → R) (n : ℕ) :
     ring
 
 /-- **Theorem 2.1** (MCA): for `K = 2^(k+1)` and `ω^{K/2} = −1`, Algorithm ForwardFFT computes
-the transform in bit-reversed order, `forwardFFT ω (k+1) a r = â_{bitrev(r, K)}` for `r < K`.-/
+the transform in bit-reversed order, `forwardFFT ω (k+1) a r = â_{bitrev(r, K)}` for `r < K`.
+@isnad1 id=eq.2h5v.s7.67cc90e7d960 from=translated src=- shape=912b6f7b vocab=bd9ed649
+-/
 theorem forwardFFT_eq_dftNat (k : ℕ) :
     ∀ (ω : R) (a : ℕ → R) (r : ℕ), ω ^ 2 ^ k = -1 → r < 2 ^ (k + 1) →
       forwardFFT ω (k + 1) a r = dftNat ω (2 ^ (k + 1)) a (bitrev (k + 1) r) := by
@@ -357,7 +391,9 @@ theorem forwardFFT_eq_dftNat (k : ℕ) :
       ring
 
 /-- Theorem 2.1 on `Fin`-indexed vectors: `forwardFFT` at position `r` is `dft` at
-`bitrev(r, K)`.-/
+`bitrev(r, K)`.
+@isnad1 id=eq.1h5v.s8.52c4fdf841f4 from=translated src=- shape=d1822ffc vocab=fc63050d
+-/
 theorem forwardFFT_eq_dft (k : ℕ) (ω : R) (hω : ω ^ 2 ^ k = -1) (a : Fin (2 ^ (k + 1)) → R)
     (r : Fin (2 ^ (k + 1))) :
     forwardFFT ω (k + 1) (extendZero a) r = dft ω a ⟨bitrev (k + 1) r, bitrev_lt _ _⟩ := by
@@ -396,7 +432,9 @@ private lemma eq_of_mul_eq_one_of_mul_eq_one {u u' v : R} (h : u * v = 1) (h' : 
 
 /-- **Theorem 2.2** (MCA): for `K = 2^(k+1)` and `ω^{K/2} = −1`, if `a` holds `x` in
 bit-reversed order then Algorithm BackwardFFT returns the backward transform of `x` in normal
-order: `backwardFFT ω (k+1) a j = ∑_{ℓ<K} (ω^{K−1})^{jℓ} x_ℓ` for `j < K`.-/
+order: `backwardFFT ω (k+1) a j = ∑_{ℓ<K} (ω^{K−1})^{jℓ} x_ℓ` for `j < K`.
+@isnad1 id=eq.3h6v.s8.5c3d33be7299 from=translated src=- shape=959cef1f vocab=f3287763
+-/
 theorem backwardFFT_eq_dftNat (k : ℕ) :
     ∀ (ω : R) (a x : ℕ → R) (j : ℕ), ω ^ 2 ^ k = -1 →
       (∀ r, r < 2 ^ (k + 1) → a r = x (bitrev (k + 1) r)) → j < 2 ^ (k + 1) →
@@ -469,7 +507,9 @@ theorem backwardFFT_eq_dftNat (k : ℕ) :
         pow_mul ν (2 * m), hνK, one_pow, one_mul, one_mul, hνm]
       ring
 
-/-- `backwardFFT ω k a j` for `j < 2^k` depends only on `a` at positions below `2^k`.-/
+/-- `backwardFFT ω k a j` for `j < 2^k` depends only on `a` at positions below `2^k`.
+@isnad1 id=eq.2h6v.s6.fb9f954f8902 from=translated src=- shape=f3659ad4 vocab=80cd18ba
+-/
 theorem backwardFFT_congr (k : ℕ) (ω : R) : ∀ (a b : ℕ → R) (j : ℕ), j < 2 ^ k →
     (∀ s, s < 2 ^ k → a s = b s) → backwardFFT ω k a j = backwardFFT ω k b j := by
   induction k generalizing ω with
@@ -490,7 +530,9 @@ theorem backwardFFT_congr (k : ℕ) (ω : R) : ∀ (a b : ℕ → R) (j : ℕ), 
           (fun s hs => hab _ (by omega))]
 
 /-- **Forward then backward recovers `K · x` in normal order** (Theorems 2.1 and 2.2 with the
-inversion formula of §2.3.1), for a principal `K`-th root with `K/2` a unit of `R`.-/
+inversion formula of §2.3.1), for a principal `K`-th root with `K/2` a unit of `R`.
+@isnad1 id=eq.2h5v.s8.b029b1a33bca from=translated src=- shape=c625030c vocab=71584105
+-/
 theorem backwardFFT_forwardFFT (k : ℕ) {ω : R} (h : IsPrincipalRoot ω (2 ^ (k + 1)))
     (hu : IsUnit ((2 ^ k : ℕ) : R)) (x : Fin (2 ^ (k + 1)) → R) (j : Fin (2 ^ (k + 1))) :
     backwardFFT ω (k + 1) (forwardFFT ω (k + 1) (extendZero x)) j

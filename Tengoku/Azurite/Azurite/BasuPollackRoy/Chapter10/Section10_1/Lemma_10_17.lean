@@ -39,7 +39,9 @@ namespace Azurite.BPR
 open Polynomial
 
 /-- **BPR Lemma 10.17.** A factorization of `P ∈ ℤ[X]` over `ℚ` is realized
-over `ℤ` by polynomials proportional to the rational factors.-/
+over `ℤ` by polynomials proportional to the rational factors.
+@isnad1 id=ex.2h3v.s8.294ee513734e from=translated src=- shape=dfc1bf65 vocab=7a6bc872
+-/
 theorem lemma_10_17 {P : ℤ[X]} {P₁ P₂ : ℚ[X]} (hP : P ≠ 0)
     (hfac : P.map (Int.castRingHom ℚ) = P₁ * P₂) :
     ∃ (Q₁ Q₂ : ℤ[X]) (c₁ c₂ : ℚ), c₁ ≠ 0 ∧ c₂ ≠ 0 ∧

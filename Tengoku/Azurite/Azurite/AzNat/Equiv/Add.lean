@@ -19,6 +19,9 @@ import Tengoku.Seed.Tactic.LinearCombination
 
 namespace Azurite.AzNat
 
+/--
+@isnad1 id=eq.2h3v.s7.49930199430b from=translated src=- shape=db72f805 vocab=bd49bbd9
+-/
 lemma toNatLimbsList_take_succ (a : Array UInt64) (i hi : Nat)
     (h : i < a.size) (hi_lt : i + 1 ≤ hi) :
     toNatLimbsList ((a.toList.drop i).take (hi - i))
@@ -31,7 +34,9 @@ lemma toNatLimbsList_take_succ (a : Array UInt64) (i hi : Nat)
   rw [show a.toList[i] = a[i] from (Array.getElem_toList h).symm]
   ring
 
-/-- `addLimb.go` preserves the prefix `[0, i)`.-/
+/-- `addLimb.go` preserves the prefix `[0, i)`.
+@isnad1 id=eq.1h4v.s5.a477b1edf0b3 from=translated src=- shape=6d54b005 vocab=be17f9fe
+-/
 theorem addLimb.go_toList_take (hi : Nat) (a : Array UInt64) (i : Nat)
     (carry : UInt64) (h_size : hi ≤ a.size) :
     (addLimb.go hi a i carry h_size).1.toList.take i = a.toList.take i := by
@@ -64,14 +69,18 @@ theorem addLimb.go_toList_take (hi : Nat) (a : Array UInt64) (i : Nat)
       rw [List.length_take, Array.length_toList]
       omega
 
-/-- `addLimb` preserves the prefix `[0, lo)`.-/
+/-- `addLimb` preserves the prefix `[0, lo)`.
+@isnad1 id=eq.2h4v.s5.3b64b12a18a1 from=translated src=- shape=3bb59b30 vocab=0a1e43c5
+-/
 theorem addLimb_toList_take (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) :
     (addLimb a lo hi b hlo hhi).1.toList.take lo = a.toList.take lo :=
   addLimb.go_toList_take hi a lo b hhi
 
 /-- Single-limb add step: adding a carry to a UInt64 produces a sum and a
-    carry-out bit that together preserve the numerical value.-/
+    carry-out bit that together preserve the numerical value.
+@isnad1 id=eq.0h2v.s6.561524d97e9c from=translated src=- shape=83f4d0db vocab=606bfa78
+-/
 lemma limb_add_step (x carry : UInt64) :
     (x + carry).toNat
         + (if x + carry < carry then (1 : UInt64) else 0).toNat * 2 ^ 64
@@ -112,7 +121,9 @@ lemma limb_add_step (x carry : UInt64) :
 /-- Invariant of `addLimb.go`: starting from `(a, i, carry)`, the resulting
     modified slice `[i, hi)` together with the final carry bit at position
     `hi` equals the original slice plus the incoming `carry` at position `i`.
-    Valid whenever `carry ≤ 1` or the loop can still advance.-/
+    Valid whenever `carry ≤ 1` or the loop can still advance.
+@isnad1 id=eq.2h4v.s7.5a02f737a9d2 from=translated src=- shape=5ed064cb vocab=a056994f
+-/
 theorem addLimb.go_correct (hi : Nat) (a : Array UInt64) (i : Nat)
     (carry : UInt64) (h_size : hi ≤ a.size)
     (hcarry : carry.toNat ≤ 1 ∨ i < hi) :
@@ -227,7 +238,9 @@ theorem addLimb.go_correct (hi : Nat) (a : Array UInt64) (i : Nat)
       ring
 
 /-- Correctness of `addLimb`: the modified slice `[lo, hi)` plus the returned
-    carry at the top represent the original slice plus `b.toNat`.-/
+    carry at the top represent the original slice plus `b.toNat`.
+@isnad1 id=match1.3h4v.s7.e0c2f456ed05 from=translated src=- shape=74c13808 vocab=c2686aa8
+-/
 theorem addLimb_toNat (a : Array UInt64) (lo hi : Nat) (b : UInt64)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size) (h_lo_lt : lo < hi) :
     let (a', c) := addLimb a lo hi b hlo hhi
@@ -237,7 +250,9 @@ theorem addLimb_toNat (a : Array UInt64) (lo hi : Nat) (b : UInt64)
   have h := addLimb.go_correct hi a lo b hhi (Or.inr h_lo_lt)
   exact h
 
-/-- Correctness of `AzNat.addUInt64`: agrees with `Nat` addition.-/
+/-- Correctness of `AzNat.addUInt64`: agrees with `Nat` addition.
+@isnad1 id=eq.0h2v.s4.4918187bb029 from=translated src=- shape=fd891ac3 vocab=38e6be89
+-/
 theorem toNat_addUInt64 (a : AzNat) (b : UInt64) :
     (a.addUInt64 b).toNat = a.toNat + b.toNat := by
   unfold addUInt64
@@ -283,7 +298,9 @@ theorem toNat_addUInt64 (a : AzNat) (b : UInt64) :
 
 /-! ### Correctness of `addSameLengthLimbs` -/
 
-/-- `addSameLengthLimbs.go` preserves any prefix up to `loA + k`.-/
+/-- `addSameLengthLimbs.go` preserves any prefix up to `loA + k`.
+@isnad1 id=eq.3h8v.s6.d254e4ff2d94 from=translated src=- shape=d0073ae9 vocab=f68b76c1
+-/
 theorem addSameLengthLimbs.go_toList_take_le (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (carry : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size)
@@ -303,7 +320,9 @@ theorem addSameLengthLimbs.go_toList_take_le (b : Array UInt64) (loA loB len : N
     rw [ih _ _ _ _ (by omega) h_rec]
     rw [Array.toList_set, List.take_set_of_le (by omega)]
 
-/-- `addSameLengthLimbs.go` preserves the prefix of `a` up to `loA + k`.-/
+/-- `addSameLengthLimbs.go` preserves the prefix of `a` up to `loA + k`.
+@isnad1 id=eq.2h7v.s6.da6f4cade5c1 from=translated src=- shape=358022d3 vocab=f68b76c1
+-/
 theorem addSameLengthLimbs.go_toList_take (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (carry : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -311,7 +330,9 @@ theorem addSameLengthLimbs.go_toList_take (b : Array UInt64) (loA loB len : Nat)
       = a.toList.take (loA + k) :=
   addSameLengthLimbs.go_toList_take_le b loA loB len a k carry hA hB (loA + k) (Nat.le_refl _)
 
-/-- `addSameLengthLimbs.go` preserves the suffix of `a` from `loA + len`.-/
+/-- `addSameLengthLimbs.go` preserves the suffix of `a` from `loA + len`.
+@isnad1 id=eq.2h7v.s6.4ff4d2e586a4 from=translated src=- shape=17463764 vocab=65ff4f4c
+-/
 theorem addSameLengthLimbs.go_toList_drop (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (carry : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -332,7 +353,9 @@ theorem addSameLengthLimbs.go_toList_drop (b : Array UInt64) (loA loB len : Nat)
     simp
     omega
 
-/-- Invariant of `addSameLengthLimbs.go` at step `k`.-/
+/-- Invariant of `addSameLengthLimbs.go` at step `k`.
+@isnad1 id=eq.2h7v.s7.6a93a15e43fd from=translated src=- shape=5d46b8c0 vocab=8dd0977f
+-/
 theorem addSameLengthLimbs.go_correct (b : Array UInt64) (loA loB len : Nat)
     (a : Array UInt64) (k : Nat) (carry : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
@@ -455,7 +478,9 @@ theorem addSameLengthLimbs.go_correct (b : Array UInt64) (loA loB len : Nat)
     ring
 
 /-- Correctness of `addSameLengthLimbs`: sum of corresponding subranges equals
-    modified-`a` subrange plus final carry at the top.-/
+    modified-`a` subrange plus final carry at the top.
+@isnad1 id=match1.2h5v.s7.e1e457c014b6 from=translated src=- shape=4e99bbcf vocab=81c6d64d
+-/
 theorem addSameLengthLimbs_toNat (a b : Array UInt64) (loA loB len : Nat)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) :
     let (a', c) := addSameLengthLimbs a b loA loB len hA hB
@@ -467,7 +492,9 @@ theorem addSameLengthLimbs_toNat (a b : Array UInt64) (loA loB len : Nat)
 
 /-! ### Correctness of `add3SameLengthLimbs.go` -/
 
-/-- `add3SameLengthLimbs.go` preserves any prefix of `a` up to `loA + k`.-/
+/-- `add3SameLengthLimbs.go` preserves any prefix of `a` up to `loA + k`.
+@isnad1 id=eq.4h11v.s6.c7697deffb25 from=translated src=- shape=8cd517b0 vocab=4c02bbb9
+-/
 theorem add3SameLengthLimbs.go_toList_take_le (b c : Array UInt64) (loA loB loC len : Nat)
     (a : Array UInt64) (k : Nat) (c₁ c₂ : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (hC : loC + len ≤ c.size)
@@ -487,7 +514,9 @@ theorem add3SameLengthLimbs.go_toList_take_le (b c : Array UInt64) (loA loB loC 
     rw [ih _ _ _ _ _ (by omega) h_rec]
     rw [Array.toList_set, List.take_set_of_le (by omega)]
 
-/-- `add3SameLengthLimbs.go` preserves the suffix of `a` from `loA + len`.-/
+/-- `add3SameLengthLimbs.go` preserves the suffix of `a` from `loA + len`.
+@isnad1 id=eq.3h10v.s6.4a68168a7459 from=translated src=- shape=c45fc637 vocab=9a1990d2
+-/
 theorem add3SameLengthLimbs.go_toList_drop (b c : Array UInt64) (loA loB loC len : Nat)
     (a : Array UInt64) (k : Nat) (c₁ c₂ : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (hC : loC + len ≤ c.size) :
@@ -508,7 +537,9 @@ theorem add3SameLengthLimbs.go_toList_drop (b c : Array UInt64) (loA loB loC len
     simp
     omega
 
-/-- Invariant of `add3SameLengthLimbs.go` at step `k`: the two carries out have equal weight.-/
+/-- Invariant of `add3SameLengthLimbs.go` at step `k`: the two carries out have equal weight.
+@isnad1 id=eq.3h10v.s8.f9888a5c0c77 from=translated src=- shape=072e3882 vocab=0962c767
+-/
 theorem add3SameLengthLimbs.go_correct (b c : Array UInt64) (loA loB loC len : Nat)
     (a : Array UInt64) (k : Nat) (c₁ c₂ : Bool)
     (hA : loA + len ≤ a.size) (hB : loB + len ≤ b.size) (hC : loC + len ≤ c.size) :
@@ -610,7 +641,9 @@ theorem add3SameLengthLimbs.go_correct (b c : Array UInt64) (loA loB loC len : N
 /-! ### Correctness of `addGeqLimbs` -/
 
 /-- Splitting helper: a slice of length `lenA = lenB + (lenA - lenB)` decomposes
-    into a low part of length `lenB` and a high part of length `lenA - lenB`.-/
+    into a low part of length `lenB` and a high part of length `lenA - lenB`.
+@isnad1 id=eq.2h4v.s6.6f3ae3bf2940 from=translated src=- shape=b671a3a3 vocab=37fd73e9
+-/
 lemma toNatLimbsList_drop_take_split (arr : Array UInt64)
     (lo lenA lenB : Nat) (h_ge : lenB ≤ lenA) (h_bound : lo + lenA ≤ arr.size) :
     toNatLimbsList ((arr.toList.drop lo).take lenA)
@@ -627,7 +660,9 @@ lemma toNatLimbsList_drop_take_split (arr : Array UInt64)
     omega
   rw [h_len, Nat.add_comm]
 
-/-- Correctness of `addGeqLimbs`: agrees with `Nat` addition over the slices.-/
+/-- Correctness of `addGeqLimbs`: agrees with `Nat` addition over the slices.
+@isnad1 id=match1.5h6v.s7.2406c50492d1 from=translated src=- shape=921a5106 vocab=729f4b92
+-/
 theorem addGeqLimbs_toNat (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_ge : lenB ≤ lenA) (h_posA : 0 < lenA) (h_posB : 0 < lenB) :
@@ -770,7 +805,9 @@ theorem addGeqLimbs_toNat (a b : Array UInt64) (loA lenA loB lenB : Nat)
     ring
 
 /-- Correctness of `addLimbs`: dispatches to `addGeqLimbs` based on which slice
-    is longer; the result is read out at the offset of the longer slice.-/
+    is longer; the result is read out at the offset of the longer slice.
+@isnad1 id=match1.4h6v.s7.c6fc8ac9fd75 from=translated src=- shape=bc2f3f62 vocab=557a3e00
+-/
 theorem addLimbs_toNat (a b : Array UInt64) (loA lenA loB lenB : Nat)
     (hA : loA + lenA ≤ a.size) (hB : loB + lenB ≤ b.size)
     (h_posA : 0 < lenA) (h_posB : 0 < lenB) :
@@ -794,7 +831,9 @@ theorem addLimbs_toNat (a b : Array UInt64) (loA lenA loB lenB : Nat)
     rw [this]
     ring
 
-/-- Correctness of `AzNat.add`: agrees with `Nat` addition.-/
+/-- Correctness of `AzNat.add`: agrees with `Nat` addition.
+@isnad1 id=eq.0h2v.s4.fe38efdf60f2 from=translated src=- shape=0438c7a3 vocab=26fb28b5
+-/
 theorem toNat_add (a b : AzNat) : (a + b).toNat = a.toNat + b.toNat := by
   show (add a b).toNat = a.toNat + b.toNat
   unfold add
@@ -876,13 +915,17 @@ theorem toNat_add (a b : AzNat) : (a + b).toNat = a.toNat + b.toNat := by
         change _ + 1 * 2 ^ (64 * lenMax) = _ at h_main
         rw [h_a_eq, h_b_eq]; omega
 
-/-- `ofNat`-version of `toNat_addUInt64`.-/
+/-- `ofNat`-version of `toNat_addUInt64`.
+@isnad1 id=eq.0h2v.s4.72f7e52728c0 from=translated src=- shape=c0c9f83a vocab=f080082f
+-/
 theorem ofNat_addUInt64 (n : Nat) (b : UInt64) :
     ofNat (n + b.toNat) = (ofNat n).addUInt64 b := by
   apply toNat_injective
   rw [toNat_ofNat, toNat_addUInt64, toNat_ofNat]
 
-/-- `ofNat`-version of `toNat_add`.-/
+/-- `ofNat`-version of `toNat_add`.
+@isnad1 id=eq.0h2v.s4.969fd37fbf3e from=translated src=- shape=0438c7a3 vocab=5e86b8ed
+-/
 theorem ofNat_add (m n : Nat) : ofNat (m + n) = ofNat m + ofNat n := by
   apply toNat_injective
   rw [toNat_ofNat, toNat_add, toNat_ofNat, toNat_ofNat]

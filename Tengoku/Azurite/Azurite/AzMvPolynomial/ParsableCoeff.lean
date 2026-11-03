@@ -102,6 +102,9 @@ class ParsableCoeff (R : Type _) [Semiring R] [NeZero (1 : R)] where
 
 namespace Monomial
 
+/--
+@isnad1 id=eq.1h3v.s5.377428262c30 from=translated src=- shape=f35d1278 vocab=eb5fd1ff
+-/
 lemma coeffChars_bne_star {R : Type _} [Semiring R] [NeZero (1 : R)] [ParsableCoeff R] (r : R) :
     ∀ x ∈ ParsableCoeff.toChars r, (x != '*') = true := by
   intro x hx; simp [bne_iff_ne]

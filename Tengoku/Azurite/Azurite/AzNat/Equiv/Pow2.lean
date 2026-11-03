@@ -37,6 +37,9 @@ private lemma shiftLeft_one_toNat (k : Nat) :
   rw [h4]
   exact Nat.mod_eq_of_lt (Nat.pow_lt_pow_right (by omega) h1)
 
+/--
+@isnad1 id=eq.0h1v.s4.ce7d8e2b2918 from=translated src=- shape=5b09d1d5 vocab=6db2c577
+-/
 theorem toNat_pow2 (k : Nat) : (AzNat.pow2 k).toNat = 2 ^ k := by
   unfold AzNat.pow2 toNat
   simp only [Array.toList_push, Array.toList_replicate]
@@ -47,6 +50,9 @@ theorem toNat_pow2 (k : Nat) : (AzNat.pow2 k).toNat = 2 ^ k := by
   rw [shiftLeft_one_toNat, Nat.add_zero, ← Nat.pow_add]
   congr 1; omega
 
+/--
+@isnad1 id=eq.0h1v.s4.9216dc98810e from=translated src=- shape=d8ebc919 vocab=ac1c4cc2
+-/
 theorem pow2_eq_ofNat (k : Nat) : AzNat.pow2 k = ofNat (2 ^ k) := by
   apply toNat_injective
   rw [toNat_pow2, toNat_ofNat]
@@ -75,6 +81,9 @@ private lemma toNatLimbsList_eq_zero_iff_all_zero (l : List UInt64) :
       have hxs_zero : toNatLimbsList xs = 0 := ih.mpr hxs
       rw [hx_eq, hxs_zero]; decide
 
+/--
+@isnad1 id=iff.1h2v.s5.b387d6012c53 from=translated src=- shape=2b3643a7 vocab=4a5f2121
+-/
 lemma allZeroLoop_eq_true_iff (a : Array UInt64) (k : Nat) (h : k ≤ a.size) :
     AzNat.allZeroLoop a k h = true ↔ ∀ i (_hi : i < k), a[i]'(by omega) = 0 := by
   induction k with
@@ -115,6 +124,9 @@ private lemma toNat_decomp (a : AzNat) (n : Nat) (hsize : a.limbs.size = n + 1) 
   rw [show toNatLimbsList [a.limbs[n]'(by omega)] = (a.limbs[n]'(by omega)).toNat from by
     simp [toNatLimbsList]]
 
+/--
+@isnad1 id=iff.0h1v.s3.f54b81fa3ee7 from=translated src=- shape=aa58bbbd vocab=33232921
+-/
 theorem isPowerOfTwo_iff (a : AzNat) : a.isPowerOfTwo = true ↔ a.toNat.isPowerOfTwo := by
   unfold AzNat.isPowerOfTwo
   split
@@ -223,6 +235,9 @@ theorem isPowerOfTwo_iff (a : AzNat) : a.isPowerOfTwo = true ↔ a.toNat.isPower
       apply hall
       apply List.getElem_mem
 
+/--
+@isnad1 id=iff.0h1v.s3.1aef3b11723a from=translated src=- shape=e37e0ff7 vocab=7d3e27ee
+-/
 theorem isPowerOfTwo_ofNat (n : Nat) :
     (ofNat n).isPowerOfTwo = true ↔ n.isPowerOfTwo := by
   rw [isPowerOfTwo_iff, toNat_ofNat]

@@ -43,11 +43,15 @@ noncomputable def SRemS (P Q : K[X]) : ℕ → K[X]
     else -(SRemS P Q n % prev)
 
 open Classical in
-/-- SRemS(P, Q, 0) = P.-/
+/-- SRemS(P, Q, 0) = P.
+@isnad1 id=eq.0h3v.s5.838350b0460f from=translated src=- shape=0777a3e8 vocab=a8b8db07
+-/
 @[simp] theorem SRemS_fst (P Q : K[X]) : SRemS P Q 0 = P := rfl
 
 open Classical in
-/-- SRemS(P, Q, 1) = Q.-/
+/-- SRemS(P, Q, 1) = Q.
+@isnad1 id=eq.0h3v.s5.4cd6ee2f1e60 from=translated src=- shape=e3ae3aea vocab=a8b8db07
+-/
 @[simp] theorem SRemS_snd (P Q : K[X]) : SRemS P Q 1 = Q := by simp [SRemS]
 
 end Azurite.BPR

@@ -18,13 +18,17 @@ import Tengoku.Seed.Algebra.Group.Pi.Basic
 namespace Azurite
 variable {R : Type _} {m n : Nat}
 
-/-- Scalar multiplication commutes with `toFn`.-/
+/-- Scalar multiplication commutes with `toFn`.
+@isnad1 id=eq.0h8v.s6.785581b41633 from=translated src=- shape=7d878656 vocab=870b2542
+-/
 @[simp]
 theorem AzMatrix.toFn_smul [SMul α R] (c : α) (M : AzMatrix R m n) (i : Fin m) (j : Fin n) :
     (c • M).toFn i j = c • M.toFn i j := by
   show (M.map (c • ·)).toFn i j = c • M.toFn i j; simp
 
-/-- Scalar multiplication commutes with `ofFn`.-/
+/-- Scalar multiplication commutes with `ofFn`.
+@isnad1 id=eq.0h6v.s6.0afeb22fff57 from=translated src=- shape=102efb60 vocab=552b6eb0
+-/
 @[simp]
 theorem AzMatrix.ofFn_smul [SMul α R] (c : α) (f : Fin m → Fin n → R) :
     c • AzMatrix.ofFn f = AzMatrix.ofFn (fun i j => c • f i j) := by

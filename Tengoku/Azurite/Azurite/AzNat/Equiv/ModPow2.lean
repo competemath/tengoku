@@ -15,7 +15,9 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.ShiftRight
 
 namespace Azurite.AzNat
 
-/-- `toNatLimbsList (l.take k)` is the low-`64k`-bit chunk of `toNatLimbsList l`.-/
+/-- `toNatLimbsList (l.take k)` is the low-`64k`-bit chunk of `toNatLimbsList l`.
+@isnad1 id=eq.0h2v.s5.78fdee0dd60a from=translated src=- shape=bc17cff1 vocab=d5996834
+-/
 lemma toNatLimbsList_take (l : List UInt64) (k : Nat) :
     toNatLimbsList (l.take k) = toNatLimbsList l % 2 ^ (64 * k) := by
   by_cases hk : k ≤ l.length
@@ -82,7 +84,9 @@ private lemma mul_pow_add_mod (a b q r : Nat) (hb : b < 2 ^ q) :
   rw [Nat.mod_eq_of_lt h_result_lt]
   ring
 
-/-- **Correctness of `modPow2`.** The lowest `k` bits of `n` agree with `n mod 2 ^ k`.-/
+/-- **Correctness of `modPow2`.** The lowest `k` bits of `n` agree with `n mod 2 ^ k`.
+@isnad1 id=eq.0h2v.s5.31991a324d38 from=translated src=- shape=f16f25b5 vocab=b6d1e7fa
+-/
 theorem toNat_modPow2 (n : AzNat) (k : Nat) :
     (n.modPow2 k).toNat = n.toNat % 2 ^ k := by
   have hr_lt : k % 64 < 64 := Nat.mod_lt _ (by omega)

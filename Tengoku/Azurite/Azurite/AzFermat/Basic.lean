@@ -68,25 +68,39 @@ namespace AzFermat
 
 variable {N : Nat}
 
+/--
+@isnad1 id=eq.1h3v.s4.879fe068270c from=translated src=- shape=1cd6e48f vocab=6e2130e5
+-/
 @[ext] theorem ext {a b : AzFermat N} (h : a.val = b.val) : a = b := by
   cases a; cases b; cases h; rfl
 
 /-- The modulus `2^N + 1` as an `AzNat`.-/
 def modulus (N : Nat) : AzNat := AzNat.pow2 N + 1
 
+/--
+@isnad1 id=eq.0h1v.s5.0d41cbda1d3d from=translated src=- shape=de3fa9a7 vocab=e3484b48
+-/
 theorem toNat_modulus : (modulus N).toNat = 2 ^ N + 1 := by
   rw [modulus, AzNat.toNat_add, AzNat.toNat_pow2, AzNat.toNat_one]
 
 instance : Zero (AzFermat N) := ⟨⟨0, by rw [AzNat.toNat_zero]; exact Nat.zero_le _⟩⟩
 instance : Inhabited (AzFermat N) := ⟨0⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.e15a7b434ad0 from=translated src=- shape=c1d40c16 vocab=6e2130e5
+-/
 @[simp] theorem val_zero : (0 : AzFermat N).val = 0 := rfl
 
 /-- `s ≤ 2^N`, decided from the bit size and the power-of-two test without building `2^N`:
-`s < 2^N` iff `s.size ≤ N`, and `s = 2^N` iff `s.size = N + 1` and `s` is a power of two.-/
+`s < 2^N` iff `s.size ≤ N`, and `s = 2^N` iff `s.size = N + 1` and `s` is a power of two.
+@isnad1 id=le.1h2v.s5.f4fa2863f210 from=translated src=- shape=f4a2528a vocab=aca92a74
+-/
 theorem toNat_le_two_pow_of_size (s : AzNat) (h : s.size ≤ N) : s.toNat ≤ 2 ^ N :=
   Nat.le_of_lt (Nat.size_le.mp (by rwa [AzNat.size_toNat]))
 
+/--
+@isnad1 id=eq.2h2v.s5.09f2dca948b6 from=translated src=- shape=92dabd6f vocab=aa035e06
+-/
 theorem toNat_eq_two_pow_of_size (s : AzNat) (h1 : s.size = N + 1) (h2 : s.isPowerOfTwo = true) :
     s.toNat = 2 ^ N := by
   obtain ⟨k, hk⟩ := (AzNat.isPowerOfTwo_iff s).mp h2
@@ -96,6 +110,9 @@ theorem toNat_eq_two_pow_of_size (s : AzNat) (h1 : s.size = N + 1) (h2 : s.isPow
   congr 1
   omega
 
+/--
+@isnad1 id=lt.2h2v.s5.c60bd14e38e1 from=translated src=- shape=8a1a4f6e vocab=eeab7418
+-/
 theorem two_pow_lt_toNat_of_not (s : AzNat) (h1 : ¬ s.size ≤ N)
     (h2 : ¬ (s.size = N + 1 ∧ s.isPowerOfTwo = true)) : 2 ^ N < s.toNat := by
   have hge : 2 ^ N ≤ s.toNat := by
@@ -147,7 +164,9 @@ instance : Add (AzFermat N) := ⟨add⟩
 instance : Sub (AzFermat N) := ⟨sub⟩
 instance : Neg (AzFermat N) := ⟨neg⟩
 
-/-- The value of a limb slice.-/
+/-- The value of a limb slice.
+@isnad1 id=eq.0h3v.s5.4586393e341f from=translated src=- shape=d61c4532 vocab=0435b39f
+-/
 theorem toNatLimbsList_extract' (a : Array UInt64) (lo n : Nat) :
     AzNat.toNatLimbsList (a.extract lo (lo + n)).toList
       = AzNat.toNatLimbsList ((a.toList.drop lo).take n) := by

@@ -32,6 +32,9 @@ namespace Azurite
 
 open RoundingTarget
 
+/--
+@isnad1 id=nearestt.0h3v.s5.6e226e806e49 from=translated src=- shape=f7ccd103 vocab=cca88eb0
+-/
 theorem AzNat.toNat_shiftRightNearestTernary (n : AzNat) (o : Ordering) (sh : ℕ) :
     NearestTernary ((n.toNat : ℝ) / (2 : ℝ) ^ sh)
       ((n.shiftRightNearestTernary o sh).toNat : ℤ) o := by
@@ -128,7 +131,9 @@ theorem AzNat.toNat_shiftRightNearestTernary (n : AzNat) (o : Ordering) (sh : �
     push_cast at h
     linarith
 
-/-- The signed shift: `NearestTernary` for `z / 2^sh` with the ternary of the signed values.-/
+/-- The signed shift: `NearestTernary` for `z / 2^sh` with the ternary of the signed values.
+@isnad1 id=nearestt.0h3v.s5.79d3ee1108dc from=translated src=- shape=074c1e99 vocab=2a5098dc
+-/
 theorem AzInt.toInt_shiftRightNearestTernary (z : AzInt) (o : Ordering) (sh : ℕ) :
     NearestTernary ((z.toInt : ℝ) / (2 : ℝ) ^ sh)
       (z.shiftRightNearestTernary o sh).toInt o := by

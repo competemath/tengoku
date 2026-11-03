@@ -15,10 +15,16 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.Conversion
 
 namespace Azurite.AzNat
 
+/--
+@isnad1 id=eq.1h3v.s5.d889b671b6c9 from=translated src=- shape=854da445 vocab=ec22e432
+-/
 lemma drop_eq_cons_of_lt {α} (l : List α) (i : Nat) (hi : i < l.length) :
   l.drop i = l.get ⟨i, hi⟩ :: l.drop (i + 1) := by
   exact List.drop_eq_getElem_cons hi
 
+/--
+@isnad1 id=eq.1h2v.s6.248ca1f9b05f from=translated src=- shape=91d332dd vocab=71a11be2
+-/
 lemma toNatLimbsList_take_drop (l : List UInt64) (i : Nat) (h : i ≤ l.length) :
   toNatLimbsList l = toNatLimbsList (l.drop i) * 2 ^ (64 * i) + toNatLimbsList (l.take i) := by
   have ht : l = l.take i ++ l.drop i := (List.take_append_drop i l).symm
@@ -27,6 +33,9 @@ lemma toNatLimbsList_take_drop (l : List UInt64) (i : Nat) (h : i ≤ l.length) 
   have hz : (l.take i).length = i := List.length_take_of_le h
   rw [hz]
 
+/--
+@isnad1 id=eq.1h2v.s7.1b0d12a4be45 from=translated src=- shape=a7f0362d vocab=30951070
+-/
 lemma toNatLimbsList_eq_drop_take (l : List UInt64) (i : Nat) (h : i < l.length) :
   toNatLimbsList l = toNatLimbsList (l.drop (i + 1)) * 2 ^ (64 * (i + 1)) + (l.get ⟨i, h⟩).toNat * 2 ^ (64 * i) + toNatLimbsList (l.take i) := by
   have h1 : i ≤ l.length := by omega
@@ -45,6 +54,9 @@ lemma toNatLimbsList_eq_drop_take (l : List UInt64) (i : Nat) (h : i < l.length)
     toNatLimbsList (List.drop (i + 1) l) * (2 ^ 64 * 2 ^ (64 * i)) := Nat.mul_assoc _ _ _
   rw [h_assoc, Nat.mul_comm (2 ^ 64) _]
 
+/--
+@isnad1 id=lt.2h5v.s5.703584e0295a from=translated src=- shape=9dac2428 vocab=304a85f3
+-/
 lemma compare_mul_add_lt (a b pow rem1 rem2 : Nat) (hab : a < b) (hrem1 : rem1 < pow) : a * pow + rem1 < b * pow + rem2 := by
   calc
     a * pow + rem1 < a * pow + pow := Nat.add_lt_add_left hrem1 _
@@ -54,6 +66,9 @@ lemma compare_mul_add_lt (a b pow rem1 rem2 : Nat) (hab : a < b) (hrem1 : rem1 <
     _ ≤ b * pow := Nat.mul_le_mul_right pow (by omega)
     _ ≤ b * pow + rem2 := Nat.le_add_right _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.b3edf246b24f from=translated src=- shape=7d2fec37 vocab=19628de3
+-/
 lemma compare_add_eq (a b c : Nat) : Ord.compare (a + b) (a + c) = Ord.compare b c := by
   change (if a + b < a + c then Ordering.lt else if a + b = a + c then Ordering.eq else Ordering.gt) =
          (if b < c then Ordering.lt else if b = c then Ordering.eq else Ordering.gt)
@@ -68,6 +83,9 @@ lemma compare_add_eq (a b c : Nat) : Ord.compare (a + b) (a + c) = Ord.compare b
   · exfalso; omega
   · rfl
 
+/--
+@isnad1 id=eq.3h3v.s7.ed57600d52de from=translated src=- shape=10555406 vocab=2855c071
+-/
 lemma compare_eq_of_drop_eq (l1 l2 : List UInt64) (i : Nat) (h1 : i < l1.length) (h2 : i < l2.length)
   (h_drop : l1.drop (i + 1) = l2.drop (i + 1)) :
   Ord.compare (toNatLimbsList l1) (toNatLimbsList l2) =
@@ -107,6 +125,9 @@ lemma compare_eq_of_drop_eq (l1 l2 : List UInt64) (i : Nat) (h1 : i < l1.length)
     rw [heq]
     exact compare_add_eq (toNatLimbsList (List.drop (i + 1) l2) * 2 ^ (64 * (i + 1)) + (l2.get ⟨i, h2⟩).toNat * 2 ^ (64 * i)) (toNatLimbsList (List.take i l1)) (toNatLimbsList (List.take i l2))
 
+/--
+@isnad1 id=eq.0h2v.s4.30432f7db7fe from=translated src=- shape=32b24dbb vocab=6d66af0d
+-/
 lemma compare_UInt64_eq_compare_toNat (a b : UInt64) :
   Ord.compare a b = Ord.compare a.toNat b.toNat := by
   have hm1 : Ord.compare a b = if a.toNat < b.toNat then Ordering.lt else if a = b then Ordering.eq else Ordering.gt := rfl
@@ -121,12 +142,18 @@ lemma compare_UInt64_eq_compare_toNat (a b : UInt64) :
     contradiction
   · rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.dfbc78ba9bf1 from=translated src=- shape=2f663ef4 vocab=1b36c19e
+-/
 lemma compare_UInt64_eq_of_lt (a b : UInt64) (h : a < b) : Ord.compare a b = Ordering.lt := by
   have ht : a.toNat < b.toNat := h
   rw [compare_UInt64_eq_compare_toNat]
   have hc : Ord.compare a.toNat b.toNat = if a.toNat < b.toNat then Ordering.lt else if a.toNat = b.toNat then Ordering.eq else Ordering.gt := rfl
   rw [hc, ite_eq_left ht]
 
+/--
+@isnad1 id=eq.1h2v.s4.01b28832ba11 from=translated src=- shape=2f663ef4 vocab=40817671
+-/
 lemma compare_UInt64_eq_of_gt (a b : UInt64) (h : a > b) : Ord.compare a b = Ordering.gt := by
   have ht : a.toNat > b.toNat := h
   have ht2 : ¬ (a.toNat < b.toNat) := by omega
@@ -135,6 +162,9 @@ lemma compare_UInt64_eq_of_gt (a b : UInt64) (h : a > b) : Ord.compare a b = Ord
   have hc : Ord.compare a.toNat b.toNat = if a.toNat < b.toNat then Ordering.lt else if a.toNat = b.toNat then Ordering.eq else Ordering.gt := rfl
   rw [hc, ite_eq_right ht2, ite_eq_right ht3]
 
+/--
+@isnad1 id=eq.1h2v.s4.1f2f4c52620e from=translated src=- shape=79489849 vocab=86dccef8
+-/
 lemma compare_UInt64_eq_of_eq (a b : UInt64) (h : a = b) : Ord.compare a b = Ordering.eq := by
   rw [compare_UInt64_eq_compare_toNat, h]
   have hz : Ord.compare b.toNat b.toNat = if b.toNat < b.toNat then Ordering.lt else if b.toNat = b.toNat then Ordering.eq else Ordering.gt := rfl
@@ -144,9 +174,15 @@ lemma compare_UInt64_eq_of_eq (a b : UInt64) (h : a = b) : Ord.compare a b = Ord
   · rfl
   · omega
 
+/--
+@isnad1 id=eq.1h3v.s6.6dd198854edb from=translated src=- shape=b3d2d528 vocab=0871ac4c
+-/
 lemma list_get_take_eq {α} (l : List α) (i : Nat) (hi : i < l.length) :
   (l.take (i + 1)).get ⟨i, by rw [List.length_take_of_le (by omega)]; omega⟩ = l.get ⟨i, hi⟩ := by simp
 
+/--
+@isnad1 id=ne.1h1v.s4.7cbc3bd97a70 from=translated src=- shape=157fbcdc vocab=5f72cf5c
+-/
 lemma last_ne_zero_to_list {a : AzNat} (h : a.limbs.size > 0) :
   a.limbs.toList ≠ [] := by
   have hz : a.limbs.toList.length = a.limbs.size := rfl
@@ -154,6 +190,9 @@ lemma last_ne_zero_to_list {a : AzNat} (h : a.limbs.size > 0) :
   have hz2 : 0 = a.limbs.size := hz
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.f34256b29118 from=translated src=- shape=ee7c13c0 vocab=f91b6543
+-/
 lemma back_eq_getLast {a : AzNat} :
   a.limbs.back? = a.limbs.toList.getLast? := by
   have h1 := @List.back?_toArray UInt64 a.limbs.toList
@@ -161,6 +200,9 @@ lemma back_eq_getLast {a : AzNat} :
   rw [h2] at h1
   exact h1
 
+/--
+@isnad1 id=eq.1h2v.s5.6b5b3e71d1b3 from=translated src=- shape=0c1c880c vocab=15bc71ba
+-/
 lemma drop_length_sub_one {α} (l : List α) (h : l ≠ []) : l.drop (l.length - 1) = [l.getLast h] := by
   revert h
   induction l with
@@ -182,6 +224,9 @@ lemma drop_length_sub_one {α} (l : List α) (h : l ≠ []) : l.drop (l.length -
       rw [hlast]
       exact ih (by simp)
 
+/--
+@isnad1 id=le.2h1v.s6.556ca97a85f7 from=translated src=- shape=33f6b2b2 vocab=5daa60d8
+-/
 lemma pow_le_toNatLimbsList (l : List UInt64) (h_not_empty : l ≠ []) (hl : l.getLast? ≠ some 0) :
   2 ^ (64 * (l.length - 1)) ≤ toNatLimbsList l := by
   have htd := toNatLimbsList_take_drop l (l.length - 1) (by omega)
@@ -205,16 +250,25 @@ lemma pow_le_toNatLimbsList (l : List UInt64) (h_not_empty : l ≠ []) (hl : l.g
   rw [Nat.one_mul] at mul_bound
   exact Nat.le_trans mul_bound (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=eq.1h2v.s4.59fc593b4cdc from=translated src=- shape=2f663ef4 vocab=f4113d9a
+-/
 lemma compare_Nat_eq_of_lt (a b : Nat) (h : a < b) : Ord.compare a b = Ordering.lt := by
   change (if a < b then Ordering.lt else if a = b then Ordering.eq else Ordering.gt) = Ordering.lt
   rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h2v.s4.08f77b7c3606 from=translated src=- shape=2f663ef4 vocab=0695c023
+-/
 lemma compare_Nat_eq_of_gt (a b : Nat) (h : a > b) : Ord.compare a b = Ordering.gt := by
   change (if a < b then Ordering.lt else if a = b then Ordering.eq else Ordering.gt) = Ordering.gt
   have ht : ¬ (a < b) := by omega
   have ht2 : a ≠ b := by omega
   rw [ite_eq_right ht, ite_eq_right ht2]
 
+/--
+@isnad1 id=eq.1h1v.s5.c7f759003116 from=translated src=- shape=8bfb74a1 vocab=4b9a682f
+-/
 lemma toNatLimbsList_take_one (l : List UInt64) (h : 0 < l.length) :
   toNatLimbsList (l.take 1) = (l.get ⟨0, h⟩).toNat := by
   cases l
@@ -232,7 +286,9 @@ lemma match_compare_eq (a b : UInt64) :
   cases Ord.compare a b <;> rfl
 
 /-- `compareLimbs` compares two length-`k` subarrays lexicographically from the high limb down,
-which is equivalent to comparing them as multi-limb naturals (little-endian).-/
+which is equivalent to comparing them as multi-limb naturals (little-endian).
+@isnad1 id=eq.2h5v.s6.fdc4d9524045 from=translated src=- shape=573fa266 vocab=67128ea3
+-/
 theorem compareLimbs_eq_compare_slice (a b : Array UInt64) (aLo bLo k : Nat)
     (ha : aLo + k ≤ a.size) (hb : bLo + k ≤ b.size) :
     compareLimbs a b aLo bLo k ha hb =
@@ -278,6 +334,9 @@ theorem compareLimbs_eq_compare_slice (a b : Array UInt64) (aLo bLo k : Nat)
       rw [compare_UInt64_eq_of_eq _ _ h_eq_u]
       exact ih (by omega) (by omega)
 
+/--
+@isnad1 id=eq.0h2v.s4.f51d7369ffc7 from=translated src=- shape=fdf5d803 vocab=9e15079f
+-/
 theorem compare_eq_compare_toNat (a b : AzNat) : compare a b = Ord.compare a.toNat b.toNat := by
   unfold compare toNat
   have h_sizeA : a.limbs.toList.length = a.limbs.size := rfl
@@ -337,40 +396,67 @@ theorem compare_eq_compare_toNat (a b : AzNat) : compare a b = Ord.compare a.toN
         omega
       exact (compare_Nat_eq_of_gt _ _ h_a_gt_b).symm
 
+/--
+@isnad1 id=eq.0h2v.s4.850794091560 from=translated src=- shape=88354a24 vocab=51b1c48b
+-/
 theorem compare_ofNat_eq_compare (a b : Nat) : compare (ofNat a) (ofNat b) = Ord.compare a b := by
   rw [compare_eq_compare_toNat]
   rw [toNat_ofNat, toNat_ofNat]
 
+/--
+@isnad1 id=iff.0h2v.s4.934e84bdaded from=translated src=- shape=af3aca10 vocab=5d20b2a8
+-/
 lemma le_iff_toNat_le (a b : AzNat) : a ≤ b ↔ a.toNat ≤ b.toNat := by
   change compare a b ≠ Ordering.gt ↔ a.toNat ≤ b.toNat
   rw [compare_eq_compare_toNat]
   exact compare_le_iff_le
 
+/--
+@isnad1 id=iff.0h2v.s4.190935395cab from=translated src=- shape=af3aca10 vocab=b9453bc9
+-/
 lemma lt_iff_toNat_lt (a b : AzNat) : a < b ↔ a.toNat < b.toNat := by
   change compare a b = Ordering.lt ↔ a.toNat < b.toNat
   rw [compare_eq_compare_toNat]
   exact compare_lt_iff_lt
 
+/--
+@isnad1 id=le.0h1v.s2.97c5df983d43 from=translated src=- shape=b554ad9b vocab=2dcb6ab8
+-/
 lemma le_refl (a : AzNat) : a ≤ a := by
   rw [le_iff_toNat_le]
 
+/--
+@isnad1 id=le.2h3v.s4.e00d1a4e58cf from=translated src=- shape=8b2dd8a3 vocab=2dcb6ab8
+-/
 lemma le_trans (a b c : AzNat) (h1 : a ≤ b) (h2 : b ≤ c) : a ≤ c := by
   rw [le_iff_toNat_le] at *
   exact Nat.le_trans h1 h2
 
+/--
+@isnad1 id=eq.2h2v.s4.ee4b0dacceac from=translated src=- shape=4c719c5d vocab=2dcb6ab8
+-/
 lemma le_antisymm (a b : AzNat) (h1 : a ≤ b) (h2 : b ≤ a) : a = b := by
   rw [le_iff_toNat_le] at *
   exact toNat_injective (Nat.le_antisymm h1 h2)
 
+/--
+@isnad1 id=or.0h2v.s3.46db72aaf098 from=translated src=- shape=347deaeb vocab=2dcb6ab8
+-/
 lemma le_total (a b : AzNat) : a ≤ b ∨ b ≤ a := by
   rw [le_iff_toNat_le, le_iff_toNat_le]
   exact Nat.le_total _ _
 
+/--
+@isnad1 id=iff.0h2v.s4.b518c04a3739 from=translated src=- shape=98540705 vocab=dc3f5cb5
+-/
 lemma lt_iff_le_not_ge (a b : AzNat) : a < b ↔ a ≤ b ∧ ¬ b ≤ a := by
   rw [lt_iff_toNat_lt, le_iff_toNat_le, le_iff_toNat_le]
   have hz : a.toNat < b.toNat ↔ a.toNat ≤ b.toNat ∧ ¬b.toNat ≤ a.toNat := by omega
   exact hz
 
+/--
+@isnad1 id=eq.0h2v.s4.9249dd4abe6a from=translated src=- shape=64084b94 vocab=4cfed2c3
+-/
 lemma compare_eq_compareOfLessAndEq (a b : AzNat) : compare a b = compareOfLessAndEq a b := by
   dsimp [compareOfLessAndEq]
   have hl1 : a < b ↔ compare a b = Ordering.lt := Iff.rfl
@@ -409,6 +495,9 @@ instance : LinearOrder AzNat where
   compare := compare
   compare_eq_compareOfLessAndEq := compare_eq_compareOfLessAndEq
 
+/--
+@isnad1 id=eq.0h2v.s4.1b6f659ea6af from=translated src=- shape=63bbbcb1 vocab=5e232f1b
+-/
 theorem compareUInt64_eq (a : AzNat) (u : UInt64) :
     a.compareUInt64 u = Ord.compare a.toNat u.toNat := by
   unfold compareUInt64 toNat
@@ -453,6 +542,9 @@ theorem compareUInt64_eq (a : AzNat) (u : UInt64) :
     have h_gt : toNatLimbsList a.limbs.toList > u.toNat := by omega
     exact (compare_Nat_eq_of_gt _ _ h_gt).symm
 
+/--
+@isnad1 id=eq.0h2v.s4.4caf52003b06 from=translated src=- shape=3beb2122 vocab=33188916
+-/
 lemma compare_nat_cast_int (a b : Nat) : Ord.compare a b = Ord.compare (a : Int) (b : Int) := by
   change (if a < b then Ordering.lt else if a = b then Ordering.eq else Ordering.gt) =
          (if (a : Int) < (b : Int) then Ordering.lt else if (a : Int) = (b : Int) then Ordering.eq else Ordering.gt)
@@ -467,6 +559,9 @@ lemma compare_nat_cast_int (a b : Nat) : Ord.compare a b = Ord.compare (a : Int)
   · exfalso; omega
   · rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4dda77c13685 from=translated src=- shape=a3be802c vocab=52aac6ed
+-/
 theorem compareInt64_eq (a : AzNat) (i : Int64) :
     a.compareInt64 i = Ord.compare (a.toNat : Int) i.toInt := by
   unfold compareInt64

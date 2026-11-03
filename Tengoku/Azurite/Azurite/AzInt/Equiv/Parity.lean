@@ -21,6 +21,9 @@ private lemma even_int_iff_even_natAbs (z : Int) : Even z ↔ Even z.natAbs := b
   rw [Nat.even_iff, Int.even_iff]
   constructor <;> intro h <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s3.e8d882a0e5d9 from=translated src=- shape=70149ad5 vocab=12829c4c
+-/
 theorem isEven_iff (z : AzInt) : z.isEven = true ↔ Even z.toInt := by
   unfold AzInt.isEven
   rw [even_int_iff_even_natAbs, ← toNat_natAbs]
@@ -30,14 +33,23 @@ private lemma odd_int_iff_odd_natAbs (z : Int) : Odd z ↔ Odd z.natAbs := by
   rw [Nat.odd_iff, Int.odd_iff]
   constructor <;> intro h <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s3.7273bbf5429d from=translated src=- shape=70149ad5 vocab=8f6adc6c
+-/
 theorem isOdd_iff (z : AzInt) : z.isOdd = true ↔ Odd z.toInt := by
   unfold AzInt.isOdd
   rw [odd_int_iff_odd_natAbs, ← toNat_natAbs]
   exact AzNat.isOdd_iff z.abs
 
+/--
+@isnad1 id=iff.0h1v.s3.4ff52393b1f0 from=translated src=- shape=58e99329 vocab=baf225ba
+-/
 theorem isEven_ofInt (i : Int) : (ofInt i).isEven = true ↔ Even i := by
   rw [isEven_iff, toInt_ofInt]
 
+/--
+@isnad1 id=iff.0h1v.s3.bcf1211ee83b from=translated src=- shape=58e99329 vocab=d75645ba
+-/
 theorem isOdd_ofInt (i : Int) : (ofInt i).isOdd = true ↔ Odd i := by
   rw [isOdd_iff, toInt_ofInt]
 

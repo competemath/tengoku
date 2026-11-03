@@ -53,6 +53,9 @@ def exactDivOddLimbs (d dinv : UInt64) (a : Array UInt64) (lo len : Nat)
     (hA : lo + len ≤ a.size) : Array UInt64 :=
   exactDivOddLimbs.go d dinv a lo len hA #[] 0 0 false
 
+/--
+@isnad1 id=eq.2h10v.s6.7372296d6ebb from=translated src=- shape=a029c0b7 vocab=7ab3e586
+-/
 theorem exactDivOddLimbs.go_size (d dinv : UInt64) (a : Array UInt64) (lo len : Nat)
     (hA : lo + len ≤ a.size) :
     ∀ (n : Nat) (acc : Array UInt64) (i : Nat) (hi : UInt64) (borrow : Bool), len - i = n →
@@ -71,6 +74,9 @@ theorem exactDivOddLimbs.go_size (d dinv : UInt64) (a : Array UInt64) (lo len : 
     rw [ih _ (i + 1) _ _ (by omega), Array.size_push]
     omega
 
+/--
+@isnad1 id=eq.1h5v.s5.08b74835d60b from=translated src=- shape=999fc85d vocab=095b214c
+-/
 theorem exactDivOddLimbs_size (d dinv : UInt64) (a : Array UInt64) (lo len : Nat)
     (hA : lo + len ≤ a.size) : (exactDivOddLimbs d dinv a lo len hA).size = len := by
   unfold exactDivOddLimbs
@@ -90,9 +96,21 @@ def inv9 : UInt64 := 10248191152060862009
 /-- `45⁻¹ mod 2^64`.-/
 def inv45 : UInt64 := 5738987045154082725
 
+/--
+@isnad1 id=eq.0h0v.s4.04333e5ab27a from=translated src=- shape=f1614c97 vocab=482cc2f8
+-/
 theorem mul_inv3 : (3 : UInt64) * inv3 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.6d8606945d6c from=translated src=- shape=f1614c97 vocab=469cfcf4
+-/
 theorem mul_inv5 : (5 : UInt64) * inv5 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.ec0cce26578d from=translated src=- shape=f1614c97 vocab=a897212d
+-/
 theorem mul_inv9 : (9 : UInt64) * inv9 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.d0437996a8b2 from=translated src=- shape=f1614c97 vocab=b5ffdf79
+-/
 theorem mul_inv45 : (45 : UInt64) * inv45 = 1 := by decide
 
 end Azurite.AzNat

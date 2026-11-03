@@ -50,12 +50,16 @@ private theorem div_associated {a G₁ G₂ : K[X]}
     _ = a / G₂ := by simp⟩
 
 /-- BPR Proposition 1.5 for Mathlib's canonical gcd: P * Q / gcd(P, Q) = lcm(P, Q)
-    definitionally, so this is immediate.-/
+    definitionally, so this is immediate.
+@isnad1 id=islcm.0h3v.s7.16c786beddf0 from=translated src=- shape=f082e8fa vocab=a1f7ae1c
+-/
 theorem prop_1_5_gcd (P Q : K[X]) : IsLCM (P * Q / gcd P Q) P Q :=
   ⟨dvd_lcm_left P Q, dvd_lcm_right P Q, fun _ hP hQ => lcm_dvd hP hQ⟩
 
 /-- BPR Proposition 1.5: If G is a GCD of P and Q (with G ≠ 0),
-    then P * Q / G is a least common multiple of P and Q.-/
+    then P * Q / G is a least common multiple of P and Q.
+@isnad1 id=islcm.2h4v.s7.5dd3a30ce89a from=translated src=- shape=eacc179f vocab=6c1ed53b
+-/
 theorem prop_1_5 {P Q G : K[X]} (hG : IsGCD G P Q) (hG0 : G ≠ 0) :
     IsLCM (P * Q / G) P Q :=
   isLCM_of_associated (prop_1_5_gcd P Q)

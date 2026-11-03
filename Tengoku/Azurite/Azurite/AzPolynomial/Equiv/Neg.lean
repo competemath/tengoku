@@ -18,6 +18,9 @@ variable {R : Type _} [Ring R]
 
 namespace Azurite.AzPolynomial
 
+/--
+@isnad1 id=eq.0h2v.s5.14c4aa9d2c3e from=translated src=- shape=85eebe4e vocab=cccdf0b0
+-/
 lemma toPoly_map_neg (l : List R) : (l.map (-·)).toPoly = - l.toPoly := by
   induction l with
   | nil => simp [List.toPoly]
@@ -28,6 +31,9 @@ lemma toPoly_map_neg (l : List R) : (l.map (-·)).toPoly = - l.toPoly := by
     rw [map_neg, mul_neg]
     exact (neg_add (C a) (X * as.toPoly)).symm
 
+/--
+@isnad1 id=eq.0h2v.s5.a9a2147be1b1 from=translated src=- shape=d14b76a1 vocab=b77ae0c3
+-/
 @[simp] lemma toPoly_neg [DecidableEq R] (p : AzPolynomial R) : AzPolynomial.toPoly (-p) = - AzPolynomial.toPoly p := by
   change AzPolynomial.toPoly (mapZeroInjective _ _ p) = - AzPolynomial.toPoly p
   dsimp [AzPolynomial.mapZeroInjective, AzPolynomial.toPoly]
@@ -35,6 +41,9 @@ lemma toPoly_map_neg (l : List R) : (l.map (-·)).toPoly = - l.toPoly := by
   rw [hw]
   exact toPoly_map_neg p.coeffs.toList
 
+/--
+@isnad1 id=eq.0h2v.s5.59c73e599c11 from=translated src=- shape=d14b76a1 vocab=ffde4598
+-/
 @[simp] lemma ofPoly_neg [DecidableEq R] (p : Polynomial R) : AzPolynomial.ofPoly (-p) = - AzPolynomial.ofPoly p := by
   apply equivPolynomial.injective
   change AzPolynomial.toPoly (AzPolynomial.ofPoly (-p)) = AzPolynomial.toPoly (- AzPolynomial.ofPoly p)

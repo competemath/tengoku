@@ -14,6 +14,9 @@ import Tengoku.Azurite.Azurite.UInt64.SetBit
 
 namespace UInt64
 
+/--
+@isnad1 id=eq.1h2v.s5.27bc470844ee from=translated src=- shape=12457813 vocab=f8abd16c
+-/
 theorem toNat_setBit (u : UInt64) (i : Nat) (hi : i < 64) :
     (u.setBit i).toNat = u.toNat ||| (1 <<< i) := by
   unfold setBit
@@ -29,6 +32,9 @@ theorem toNat_setBit (u : UInt64) (i : Nat) (hi : i < 64) :
     exact Nat.pow_lt_pow_right (by omega) hi
   rw [Nat.mod_eq_of_lt hpow]
 
+/--
+@isnad1 id=eq.1h2v.s4.d987a05cd2c8 from=translated src=- shape=087a8e1f vocab=8f7d67c5
+-/
 theorem setBit_of_ge (u : UInt64) (i : Nat) (hi : 64 ≤ i) : u.setBit i = u := by
   unfold setBit
   rw [ite_eq_right (by omega)]

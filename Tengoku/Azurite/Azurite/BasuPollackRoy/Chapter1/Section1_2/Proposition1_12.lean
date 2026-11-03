@@ -37,7 +37,9 @@ variable {K : Type*} [Field K]
 /-- Determinant identity: `SRemU n * SRemV (n+1) - SRemV n * SRemU (n+1) = 1`,
     valid on any prefix where `SRemS i ≠ 0` for all `i ≤ n`.
     Unnumbered in BPR; the analogous BPR statement appears in its Lemma 1.10
-    with a $(-1)^i$ sign that arises from a different recurrence convention.-/
+    with a $(-1)^i$ sign that arises from a different recurrence convention.
+@isnad1 id=eq.1h4v.s8.b2cafd6feb4d from=translated src=- shape=41d7c7aa vocab=b10a67a2
+-/
 lemma sremUV_det_eq_one {P Q : K[X]} (n : ℕ) (hn : ∀ i ≤ n, SRemS P Q i ≠ 0) :
     SRemU P Q n * SRemV P Q (n + 1) - SRemV P Q n * SRemU P Q (n + 1) = 1 := by
   induction n generalizing P Q with
@@ -57,6 +59,9 @@ lemma sremUV_det_eq_one {P Q : K[X]} (n : ℕ) (hn : ∀ i ≤ n, SRemS P Q i �
       _ = SRemU P Q n * SRemV P Q (n + 1) - SRemV P Q n * SRemU P Q (n + 1) := by ring
       _ = 1 := by rw [ih_app]
 
+/--
+@isnad1 id=and.2h3v.s8.699451c8b977 from=translated src=- shape=f5384e56 vocab=7c008d75
+-/
 theorem proposition_1_12 {P Q: K[X]} (hP : P ≠ 0) (_hQ : Q ≠ 0) :
     (SRemU P Q (sremTermIndex P Q + 1) * P = - SRemV P Q (sremTermIndex P Q + 1) * Q) ∧
     IsLCM (SRemU P Q (sremTermIndex P Q + 1) * P) P Q := by

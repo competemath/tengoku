@@ -36,7 +36,9 @@ where
       (a, carry)
   termination_by hi - i
 
-/-- Size preservation of `shiftLimbsLeft.go`.-/
+/-- Size preservation of `shiftLimbsLeft.go`.
+@isnad1 id=eq.1h5v.s5.abd030b27845 from=translated src=- shape=bd95318a vocab=ce5afac5
+-/
 theorem shiftLimbsLeft.go_size (hi sh : Nat) (a : Array UInt64) (i : Nat)
     (carry : UInt64) (h_size : hi ≤ a.size) :
     (shiftLimbsLeft.go hi sh a i carry h_size).1.size = a.size := by
@@ -53,7 +55,9 @@ theorem shiftLimbsLeft.go_size (hi sh : Nat) (a : Array UInt64) (i : Nat)
     rw [ih _ _ _ _ h_rec]
     rw [Array.size_set]
 
-/-- Size preservation of `shiftLimbsLeft`.-/
+/-- Size preservation of `shiftLimbsLeft`.
+@isnad1 id=eq.4h4v.s5.b500c6b5b70e from=translated src=- shape=e0c83067 vocab=9abf314c
+-/
 theorem shiftLimbsLeft_size (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :
@@ -174,7 +178,9 @@ def shiftLeftGeneralLimbs (a : AzNat) (sh : Nat)
   let withLast := prefixShifted.set (bigShift + a.limbs.size - 1) new_last h_last_idx
   if top_carry = 0 then withLast else withLast.push top_carry
 
-/-- The last limb of `shiftLeftGeneralLimbs` is nonzero.-/
+/-- The last limb of `shiftLeftGeneralLimbs` is nonzero.
+@isnad1 id=ne.2h2v.s5.0b5bac4f99a4 from=translated src=- shape=9531caa1 vocab=db748205
+-/
 theorem shiftLeftGeneralLimbs_last_ne_zero (a : AzNat) (sh : Nat)
     (hz : ¬ a.limbs.size = 0) (hsm : ¬ sh % 64 = 0) :
     (shiftLeftGeneralLimbs a sh hz hsm).back? ≠ some 0 := by
@@ -229,7 +235,9 @@ def shiftLeft (a : AzNat) (sh : Nat) : AzNat :=
 
 instance : HShiftLeft AzNat Nat AzNat := ⟨shiftLeft⟩
 
-/-- Shifting left preserves the zero/nonzero distinction.-/
+/-- Shifting left preserves the zero/nonzero distinction.
+@isnad1 id=eq.1h2v.s4.3b090b081dcd from=translated src=- shape=af3d804a vocab=d62cb466
+-/
 theorem shiftLeft_eq_zero {a : AzNat} {sh : Nat} (h : a <<< sh = 0) : a = 0 := by
   show a = ⟨#[], by simp⟩
   have h_eq : a <<< sh = shiftLeft a sh := rfl

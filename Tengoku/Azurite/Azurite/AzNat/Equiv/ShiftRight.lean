@@ -30,7 +30,9 @@ private lemma toNatLimbsList_dropLast_of_getLast?_zero (l : List UInt64)
   rw [h_app]
   simp [toNatLimbsList]
 
-/-- `trimTrailingZeros` preserves the numeric value.-/
+/-- `trimTrailingZeros` preserves the numeric value.
+@isnad1 id=eq.0h1v.s3.b8d25fd01479 from=translated src=- shape=b1111990 vocab=18dbfe0c
+-/
 theorem toNatLimbsList_trimTrailingZeros (a : Array UInt64) :
     toNatLimbsList (trimTrailingZeros a).toList = toNatLimbsList a.toList := by
   rw [trimTrailingZeros]
@@ -50,13 +52,17 @@ theorem toNatLimbsList_trimTrailingZeros (a : Array UInt64) :
   termination_by a.size
   decreasing_by simp [Array.size_pop]; omega
 
-/-- `toNat` of `ofLimbs` equals `toNatLimbsList` of the input array.-/
+/-- `toNat` of `ofLimbs` equals `toNatLimbsList` of the input array.
+@isnad1 id=eq.0h1v.s3.747a0f69e029 from=translated src=- shape=87896831 vocab=d128014c
+-/
 theorem toNat_ofLimbs (a : Array UInt64) :
     (ofLimbs a).toNat = toNatLimbsList a.toList := by
   show toNatLimbsList (trimTrailingZeros a).toList = _
   exact toNatLimbsList_trimTrailingZeros a
 
-/-- Dropping the first `k` limbs corresponds to dividing by `2 ^ (64 * k)`.-/
+/-- Dropping the first `k` limbs corresponds to dividing by `2 ^ (64 * k)`.
+@isnad1 id=eq.0h2v.s5.124901b766d6 from=translated src=- shape=bc17cff1 vocab=0f00d89f
+-/
 theorem toNatLimbsList_drop (l : List UInt64) (k : Nat) :
     toNatLimbsList (l.drop k) = toNatLimbsList l / 2 ^ (64 * k) := by
   by_cases hk : k ≤ l.length
@@ -77,7 +83,9 @@ theorem toNatLimbsList_drop (l : List UInt64) (k : Nat) :
     rw [Nat.div_eq_of_lt h_lt]
     rfl
 
-/-- `Array.extract k size` corresponds to `List.drop k` on `toList`.-/
+/-- `Array.extract k size` corresponds to `List.drop k` on `toList`.
+@isnad1 id=eq.0h2v.s5.2fff8a12dc09 from=translated src=- shape=d1c01634 vocab=4c272936
+-/
 theorem toNatLimbsList_extract_size (a : Array UInt64) (k : Nat) :
     toNatLimbsList (a.extract k a.size).toList = toNatLimbsList a.toList / 2 ^ (64 * k) := by
   rw [Array.toList_extract, List.extract_eq_take_drop]
@@ -85,7 +93,9 @@ theorem toNatLimbsList_extract_size (a : Array UInt64) (k : Nat) :
   rw [List.take_of_length_le (by rw [List.length_drop, h_len])]
   rw [toNatLimbsList_drop]
 
-/-- `shiftRightMul64 a k` represents `a.toNat / 2 ^ (64 * k)`.-/
+/-- `shiftRightMul64 a k` represents `a.toNat / 2 ^ (64 * k)`.
+@isnad1 id=eq.0h2v.s5.8262c03bf8b6 from=translated src=- shape=5ec50077 vocab=092b28a3
+-/
 theorem toNat_shiftRightMul64 (a : AzNat) (k : Nat) :
     (shiftRightMul64 a k).toNat = a.toNat / 2 ^ (64 * k) := by
   show toNatLimbsList (shiftRightMul64 a k).limbs.toList = _
@@ -364,7 +374,9 @@ private lemma shiftLimbsRightAux_preserves_lt (lo sh : Nat)
     · simp [hlt]
 
 /-- Correctness of `shiftLimbsRight`: the modified limbs `[lo, hi)` times `2^64` plus the
-    returned carry represents the original slice shifted right by `sh` bits (times `2^(64-sh)`).-/
+    returned carry represents the original slice shifted right by `sh` bits (times `2^(64-sh)`).
+@isnad1 id=match1.4h4v.s7.d2252b53b653 from=translated src=- shape=982006b0 vocab=b20eeeb0
+-/
 theorem shiftLimbsRight_toNat (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :
@@ -379,7 +391,9 @@ theorem shiftLimbsRight_toNat (a : Array UInt64) (lo hi sh : Nat)
   simp at h
   exact h
 
-/-- `shiftLimbsRight` leaves the prefix `[0, lo)` unchanged.-/
+/-- `shiftLimbsRight` leaves the prefix `[0, lo)` unchanged.
+@isnad1 id=eq.4h4v.s6.42699a48a2ba from=translated src=- shape=aaa8842b vocab=3485dbc0
+-/
 theorem shiftLimbsRight_toList_take (a : Array UInt64) (lo hi sh : Nat)
     (hlo : lo ≤ hi) (hhi : hi ≤ a.size)
     (hsh_lb : 1 ≤ sh) (hsh_ub : sh ≤ 63) :
@@ -407,7 +421,9 @@ theorem shiftLimbsRight_toList_take (a : Array UInt64) (lo hi sh : Nat)
             (Array.getElem_toList _).symm]
     exact shiftLimbsRightAux_preserves_lt lo sh a hi 0 hhi j hj _ _
 
-/-- Correctness of `shiftRightGeneralLimbs`.-/
+/-- Correctness of `shiftRightGeneralLimbs`.
+@isnad1 id=eq.1h2v.s5.87e3c61bcd63 from=translated src=- shape=a2730f0a vocab=530a07d3
+-/
 theorem toNat_shiftRightGeneralLimbs (a : AzNat) (sh : Nat)
     (hsm : ¬ sh % 64 = 0) :
     (shiftRightGeneralLimbs a sh hsm).toNat = a.toNat / 2 ^ sh := by
@@ -535,7 +551,9 @@ theorem toNat_shiftRightGeneralLimbs (a : AzNat) (sh : Nat)
       _ = high * 2 ^ (64 - smallShift) / 2 ^ 64 := by rw [h_inv]
       _ = high / 2 ^ smallShift := h_rhs_div
 
-/-- Correctness of `shiftRight`: `toNat (a >>> sh) = a.toNat / 2 ^ sh`.-/
+/-- Correctness of `shiftRight`: `toNat (a >>> sh) = a.toNat / 2 ^ sh`.
+@isnad1 id=eq.0h2v.s5.9b4d6d11b264 from=translated src=- shape=f16f25b5 vocab=d94418dd
+-/
 theorem toNat_shiftRight (a : AzNat) (sh : Nat) :
     (shiftRight a sh).toNat = a.toNat / 2 ^ sh := by
   unfold shiftRight
@@ -557,15 +575,21 @@ theorem toNat_shiftRight (a : AzNat) (sh : Nat) :
     · rw [dite_eq_right hsm]
       exact toNat_shiftRightGeneralLimbs a sh hsm
 
-/-- Compatibility of `HShiftRight` notation with `shiftRight`.-/
+/-- Compatibility of `HShiftRight` notation with `shiftRight`.
+@isnad1 id=eq.0h2v.s4.f63e68c15137 from=translated src=- shape=62f8b022 vocab=ff7bc5f9
+-/
 @[simp] lemma hShiftRight_eq (a : AzNat) (sh : Nat) : a >>> sh = shiftRight a sh := rfl
 
-/-- `toNat` respects right shift.-/
+/-- `toNat` respects right shift.
+@isnad1 id=eq.0h2v.s4.b243ba1823c4 from=translated src=- shape=2bed0411 vocab=8f7d9d3d
+-/
 theorem toNat_hShiftRight (a : AzNat) (sh : Nat) :
     (a >>> sh).toNat = a.toNat >>> sh := by
   rw [hShiftRight_eq, toNat_shiftRight, Nat.shiftRight_eq_div_pow]
 
-/-- `ofNat` respects right shift.-/
+/-- `ofNat` respects right shift.
+@isnad1 id=eq.0h2v.s4.facb8734c060 from=translated src=- shape=bd88faf1 vocab=0ed3e2fb
+-/
 theorem ofNat_shiftRight (n sh : Nat) : ofNat (n >>> sh) = ofNat n >>> sh := by
   apply toNat_injective
   rw [toNat_hShiftRight, toNat_ofNat, toNat_ofNat]

@@ -45,7 +45,9 @@ private theorem list_zipWith_ofFn {α β γ : Type _} {m : Nat}
 
 /-! ### Dot product equivalence -/
 
-/-- The computable `dot` equals Mathlib's `dotProduct` (`⬝ᵥ`) via `toFn`.-/
+/-- The computable `dot` equals Mathlib's `dotProduct` (`⬝ᵥ`) via `toFn`.
+@isnad1 id=eq.0h4v.s6.f513576cd28d from=translated src=- shape=aa456a3c vocab=810cfd21
+-/
 theorem AzVector.dot_eq_dotProduct (v w : AzVector R n) :
     v.dot w = v.toFn ⬝ᵥ w.toFn := by
   unfold dot zip dotProduct
@@ -54,7 +56,9 @@ theorem AzVector.dot_eq_dotProduct (v w : AzVector R n) :
       list_zipWith_ofFn, List.sum_ofFn]
   simp [AzVector.toFn]
 
-/-- The computable `normSq` equals `v.toFn ⬝ᵥ v.toFn`.-/
+/-- The computable `normSq` equals `v.toFn ⬝ᵥ v.toFn`.
+@isnad1 id=eq.0h3v.s6.a0663e91a5de from=translated src=- shape=23300cdd vocab=3c061510
+-/
 theorem AzVector.normSq_eq_dotProduct (v : AzVector R n) :
     v.normSq = v.toFn ⬝ᵥ v.toFn :=
   AzVector.dot_eq_dotProduct v v

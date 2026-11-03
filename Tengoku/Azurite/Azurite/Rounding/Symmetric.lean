@@ -54,7 +54,9 @@ variable (S : Set EReal) [SymmetricRoundingTarget S]
 private lemma coe_neg (x : ℝ) : ((-x : ℝ) : EReal) = -((x : ℝ) : EReal) := by
   push_cast; rfl
 
-/-- Floor of `-x` equals the negation of the ceiling of `x`.-/
+/-- Floor of `-x` equals the negation of the ceiling of `x`.
+@isnad1 id=eq.0h2v.s5.46de2d033e08 from=translated src=- shape=a7bc3460 vocab=c4c51969
+-/
 lemma val_roundFloor_neg (x : ℝ) :
     (roundFloor S (-x)).val = -(roundCeiling S x).val := by
   apply (isGreatest_roundFloor S (-x)).unique
@@ -69,7 +71,9 @@ lemma val_roundFloor_neg (x : ℝ) :
     have h_le := (isLeast_roundCeiling S x).2 ⟨h_ms, h_x_le_ms⟩
     exact (EReal.le_neg).mp h_le
 
-/-- Ceiling of `-x` equals the negation of the floor of `x`.-/
+/-- Ceiling of `-x` equals the negation of the floor of `x`.
+@isnad1 id=eq.0h2v.s5.94bc72ea53f4 from=translated src=- shape=a7bc3460 vocab=c4c51969
+-/
 lemma val_roundCeiling_neg (x : ℝ) :
     (roundCeiling S (-x)).val = -(roundFloor S x).val := by
   apply (isLeast_roundCeiling S (-x)).unique
@@ -84,28 +88,36 @@ lemma val_roundCeiling_neg (x : ℝ) :
     have h_le := (isGreatest_roundFloor S x).2 ⟨h_ms, h_ms_le_x⟩
     exact (EReal.neg_le).mpr h_le
 
-/-- Floor of `0` equals `0`.-/
+/-- Floor of `0` equals `0`.
+@isnad1 id=eq.0h1v.s5.c574ec66cf13 from=translated src=- shape=8a14a8a4 vocab=60ad7b46
+-/
 lemma val_roundFloor_zero : (roundFloor S 0).val = 0 := by
   apply (isGreatest_roundFloor S 0).unique
   refine ⟨⟨SymmetricRoundingTarget.zero_mem, le_refl _⟩, ?_⟩
   rintro s ⟨_, hsle⟩
   exact_mod_cast hsle
 
-/-- Ceiling of `0` equals `0`.-/
+/-- Ceiling of `0` equals `0`.
+@isnad1 id=eq.0h1v.s5.5c9772b84210 from=translated src=- shape=8a14a8a4 vocab=eb01f071
+-/
 lemma val_roundCeiling_zero : (roundCeiling S 0).val = 0 := by
   apply (isLeast_roundCeiling S 0).unique
   refine ⟨⟨SymmetricRoundingTarget.zero_mem, le_refl _⟩, ?_⟩
   rintro s ⟨_, hxle⟩
   exact_mod_cast hxle
 
-/-- Floor of `-x` equals the negated ceiling of `x` as elements of `↥S`.-/
+/-- Floor of `-x` equals the negated ceiling of `x` as elements of `↥S`.
+@isnad1 id=eq.0h2v.s5.57ec890a55ae from=translated src=- shape=2135f5e7 vocab=959ea90e
+-/
 lemma roundFloor_neg (x : ℝ) :
     roundFloor S (-x) =
       ⟨-(roundCeiling S x).val,
         SymmetricRoundingTarget.neg_mem (roundCeiling S x).property⟩ :=
   Subtype.ext (val_roundFloor_neg S x)
 
-/-- Ceiling of `-x` equals the negated floor of `x` as elements of `↥S`.-/
+/-- Ceiling of `-x` equals the negated floor of `x` as elements of `↥S`.
+@isnad1 id=eq.0h2v.s5.7468bc51e9a1 from=translated src=- shape=2135f5e7 vocab=959ea90e
+-/
 lemma roundCeiling_neg (x : ℝ) :
     roundCeiling S (-x) =
       ⟨-(roundFloor S x).val,
@@ -114,7 +126,9 @@ lemma roundCeiling_neg (x : ℝ) :
 
 open Classical in
 /-- Over a `SymmetricRoundingTarget`, rounding `-x` with mode `m` equals the negation
-of rounding `x` with mode `-m`.-/
+of rounding `x` with mode `-m`.
+@isnad1 id=eq.0h3v.s5.a85a3f0e9d8a from=translated src=- shape=aab5ff15 vocab=65970132
+-/
 theorem round_neg (mode : RoundingMode) (x : ℝ) :
     (round S mode (-x)).val = -(round S (-mode) x).val := by
   cases mode with

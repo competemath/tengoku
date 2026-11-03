@@ -28,7 +28,9 @@ open Polynomial
 variable {K : Type*} [Field K]
 variable {C : Type*} [Field C]
 
-/-- Helper lemma: x is a root of gcd A B iff x is a root of A and B.-/
+/-- Helper lemma: x is a root of gcd A B iff x is a root of A and B.
+@isnad1 id=iff.0h5v.s9.e35da21fb5db from=translated src=- shape=d4b5261c vocab=945d0a2e
+-/
 lemma aeval_gcd_eq_zero_iff [Algebra K C] (A B : K[X]) (x : C) :
     aeval x (gcd A B) = 0 ↔ (aeval x A = 0 ∧ aeval x B = 0) := by
   constructor
@@ -59,7 +61,9 @@ lemma aeval_gcd_eq_zero_iff [Algebra K C] (A B : K[X]) (x : C) :
       _ = aeval x U * 0 + aeval x V * 0 := by rw [hA, hB]
       _ = 0 := by ring
 
-/-- Unnumbered Theorem (post Prop 1.13): x ∈ C is a root of every polynomial in 𝒫 if and only if it is a root of gcd(𝒫).-/
+/-- Unnumbered Theorem (post Prop 1.13): x ∈ C is a root of every polynomial in 𝒫 if and only if it is a root of gcd(𝒫).
+@isnad1 id=iff.0h4v.s8.efff0688e262 from=translated src=- shape=2f320d2d vocab=216f7ead
+-/
 theorem isRoot_listGcd_iff_forall_isRoot [Algebra K C] {Ps : List K[X]} {x : C} :
     aeval x (listGcd Ps) = 0 ↔ ∀ P ∈ Ps, aeval x P = 0 := by
   induction Ps with
@@ -70,7 +74,9 @@ theorem isRoot_listGcd_iff_forall_isRoot [Algebra K C] {Ps : List K[X]} {x : C} 
     intro _
     rwa [← listGcd]
 
-/-- Unnumbered Theorem (post Prop 1.13): x ∈ C is not a root of any polynomial in 𝒬 if and only if it is not a root of ∏ 𝒬.-/
+/-- Unnumbered Theorem (post Prop 1.13): x ∈ C is not a root of any polynomial in 𝒬 if and only if it is not a root of ∏ 𝒬.
+@isnad1 id=iff.0h4v.s8.7468d8b3ba4a from=translated src=- shape=29f0fea2 vocab=7985cff8
+-/
 theorem not_isRoot_listProd_iff_forall_not_isRoot [Algebra K C] {Qs : List K[X]} {x : C} :
     aeval x (Qs.prod) ≠ 0 ↔ (∀ Q ∈ Qs, aeval x Q ≠ 0) := by
   induction Qs with
@@ -81,7 +87,9 @@ theorem not_isRoot_listProd_iff_forall_not_isRoot [Algebra K C] {Qs : List K[X]}
     intro _
     exact ih
 
-/-- Unnumbered Theorem (post Prop 1.13): Every root of P in C is a root of Q if and only if P ∣ Q^(deg P). Explicitly requires P ≠ 0.-/
+/-- Unnumbered Theorem (post Prop 1.13): Every root of P in C is a root of Q if and only if P ∣ Q^(deg P). Explicitly requires P ≠ 0.
+@isnad1 id=iff.1h4v.s9.a3d4c293c779 from=translated src=- shape=62af9ce5 vocab=03e93c37
+-/
 theorem isRoot_subset_iff_dvd_pow [IsAlgClosed C] [Algebra K C] [DecidableEq K] [DecidableEq C]
     {P Q : K[X]} (hP : P ≠ 0) :
     (∀ x : C, aeval x P = 0 → aeval x Q = 0) ↔ P ∣ Q ^ P.natDegree := by

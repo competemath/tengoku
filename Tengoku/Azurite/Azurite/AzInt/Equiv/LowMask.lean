@@ -15,10 +15,16 @@ import Tengoku.Azurite.Azurite.AzNat.Equiv.LowMask
 
 namespace Azurite.AzInt
 
+/--
+@isnad1 id=eq.0h1v.s5.e72938a21ecb from=translated src=- shape=ee4ab1ce vocab=cf62b7d8
+-/
 theorem toInt_lowMask (k : Nat) : (AzInt.lowMask k).toInt = 2 ^ k - 1 := by
   unfold AzInt.lowMask toInt
   simp [AzNat.toNat_lowMask]
 
+/--
+@isnad1 id=eq.0h1v.s5.44c7cfbc28c1 from=translated src=- shape=33278cd2 vocab=861d0ec4
+-/
 theorem lowMask_eq_ofInt (k : Nat) : AzInt.lowMask k = ofInt (2 ^ k - 1) := by
   have h : (AzInt.lowMask k).toInt = (ofInt (2 ^ k - 1)).toInt := by
     rw [toInt_lowMask, toInt_ofInt]
