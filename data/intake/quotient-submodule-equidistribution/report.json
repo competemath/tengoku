@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "dfc668ae1048b2a97538d55fc5984cea54958cb1d9bff8562a272c06268ce014",
+ "gate2_unjudged": [],
+ "library": "quotient-submodule-equidistribution",
+ "lint_mode": "proposed",
+ "modules": 143,
+ "part": 1,
+ "theorems": 1205
+}

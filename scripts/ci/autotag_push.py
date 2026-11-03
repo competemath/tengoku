@@ -24,6 +24,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import Callable
 
@@ -45,6 +46,10 @@ class Refused(Exception):
     pass
 
 
+READ_ATTEMPTS = 4
+TRANSIENT = re.compile(r"HTTP 5\d\d|timed out|timeout|connection reset|EOF", re.I)
+
+
 def gh_api(method: str, path: str, body: dict | None = None, raw: bool = False) -> object:
     """`gh api` with the token in GH_TOKEN. Raw: the file's bytes, not JSON."""
     if method not in ("GET", "POST", "PATCH") or not API_PATH.fullmatch(path) or ".." in path.split("/"):
@@ -54,7 +59,14 @@ def gh_api(method: str, path: str, body: dict | None = None, raw: bool = False) 
         cmd += ["-H", "Accept: application/vnd.github.raw"]
     if body is not None:
         cmd += ["--input", "-"]
-    r = subprocess.run(cmd, input=json.dumps(body) if body is not None else None, capture_output=True, text=not raw, check=False)
+    # a read is repeated when GitHub answers with a server error (one HTTP 500 or 504 among the hundreds of reads of a big intake PR refused the whole PR, 3 Nov 2026:
+    # quadratic-number-fields, grothendieck-riemann-roch, derived-alg-geo-lean part 2); a write is never repeated
+    for attempt in range(READ_ATTEMPTS if method == "GET" else 1):
+        r = subprocess.run(cmd, input=json.dumps(body) if body is not None else None, capture_output=True, text=not raw, check=False)
+        err = r.stderr if not raw else r.stderr.decode("utf-8", "replace")
+        if r.returncode == 0 or not TRANSIENT.search(err) or attempt == READ_ATTEMPTS - 1 or method != "GET":
+            break
+        time.sleep(2**attempt)
     if r.returncode != 0:
         raise Refused(f"gh api {method} {path}: {(r.stderr if not raw else r.stderr.decode('utf-8', 'replace'))[:300]}")
     if raw:

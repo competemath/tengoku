@@ -393,8 +393,8 @@ class Batches(unittest.TestCase):
     def test_both_commands_hand_their_batch_option_to_facts(self):
         seen = []
 
-        def fake_facts(modules, names, exe, batch=None):
-            seen.append((list(modules), list(names), batch))
+        def fake_facts(modules, names, exe, batch=None, exact=False):
+            seen.append((list(modules), list(names), batch, exact))
             return [], []
 
         ap = isnad.build_parser()
@@ -407,7 +407,60 @@ class Batches(unittest.TestCase):
         ):
             isnad.cmd_tag(ap.parse_args(["tag", "--module", "A", "--module", "B", "--name", "n", "--batch", "7"]))
             isnad.cmd_check_tags(ap.parse_args(["check-tags", "--module", "A", "--batch", "9"]))
-        self.assertEqual(seen, [(["A", "B"], ["n"], 7), (["A"], [], 9)])
+        self.assertEqual(seen, [(["A", "B"], ["n"], 7, True), (["A"], [], 9, True)], "the PR's modules are exactly the modules")
+
+    # `--module A.B` selects by prefix: it reports the theorems of `A.B.C` too (derived-alg-geo-lean part 2, 3 Nov 2026: `Exponential.lean` beside `Exponential/Kernel.lean`)
+    PARENT, CHILD = "Tengoku.Lib.Dir", "Tengoku.Lib.Dir.Kid"
+
+    def prefix_selecting_exe(self):
+        """A `tengoku-isnad` that selects by prefix as the real one does: the records and ranges of every theorem whose module has a listed module as a prefix."""
+        theorems = {self.PARENT: ["p1"], self.CHILD: ["c1", "c2"], "Tengoku.Lib.Other": ["o1"]}
+
+        def chosen(args):
+            listed = [a for i, a in enumerate(args) if i and args[i - 1] == "--module"]
+            return [(m, n) for m, ns in theorems.items() for n in ns if any(m == x or m.startswith(x + ".") for x in listed)]
+
+        def fake_exe(args, exe=None, **_):
+            return [isnad.Record("\t".join(["isnad1", n, m, "thm", "0", "0", "1", "c", "s", "v"])) for m, n in chosen(args)]
+
+        def fake_lines(args, exe=None, **_):
+            return ["\t".join(["isnad1-range", n, m, "1:0", "2:0", "1:8", "1:10"]) for m, n in chosen(args)]
+
+        return fake_exe, fake_lines
+
+    def facts_of(self, modules, batch, exact):
+        fake_exe, fake_lines = self.prefix_selecting_exe()
+        with mock.patch.object(isnad, "run_exe", fake_exe), mock.patch.object(isnad, "run_exe_lines", fake_lines):
+            return isnad.facts(modules, [], None, batch, exact)
+
+    def test_a_module_that_is_a_prefix_of_another_made_the_theorems_of_the_other_come_twice(self):
+        recs, ranges = self.facts_of([self.PARENT, self.CHILD], 1, exact=False)
+        self.assertEqual(sorted(r.name for r in recs).count("c1"), 2)
+        self.assertEqual(sum(1 for ln in ranges if "\tc1\t" in ln), 2)
+
+    def test_with_exact_every_theorem_comes_once_from_the_batch_that_lists_its_module(self):
+        for batch in (1, 2, 100):
+            recs, ranges = self.facts_of([self.PARENT, self.CHILD], batch, exact=True)
+            want = sorted([(self.PARENT, "p1"), (self.CHILD, "c1"), (self.CHILD, "c2")])
+            self.assertEqual(sorted((r.module, r.name) for r in recs), want, batch)
+            self.assertEqual(len(ranges), 3, batch)
+
+    def test_a_theorem_is_planned_for_tagging_when_its_module_has_a_parent_module_in_the_pr(self):
+        recs, ranges = self.facts_of([self.PARENT, self.CHILD], 1, exact=True)
+        plan, skipped = isnad.plan_tags(recs, ranges)
+        self.assertEqual(sorted(plan), [self.PARENT, self.CHILD])
+        self.assertEqual([it.name for it in plan[self.CHILD]], ["c1", "c2"])
+        self.assertEqual(skipped, [])
+        recs2, ranges2 = self.facts_of([self.PARENT, self.CHILD], 1, exact=False)
+        plan2, skipped2 = isnad.plan_tags(recs2, ranges2)
+        self.assertNotIn(
+            self.CHILD, plan2, "main's behaviour: the child's theorems are 'the same name for two theorems' and the module is left untagged"
+        )
+        self.assertEqual(sorted(n for n, _ in skipped2), ["c1", "c1", "c2", "c2"])
+
+    def test_a_listed_parent_alone_reports_only_its_own_theorems_with_exact(self):
+        recs, _ = self.facts_of([self.PARENT], 100, exact=True)
+        self.assertEqual([(r.module, r.name) for r in recs], [(self.PARENT, "p1")])
 
     def test_both_commands_take_a_batch_option_with_the_default(self):
         ap = isnad.build_parser()
