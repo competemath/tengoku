@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "feb21e742d739d4a9c8f758d299df40b8e549318ca88bf6d4dacc78d9b5f6eaf",
+ "gate2_unjudged": [],
+ "library": "albert-frame-triple-invariants",
+ "lint_mode": "proposed",
+ "modules": 177,
+ "part": 1,
+ "theorems": 1079
+}
