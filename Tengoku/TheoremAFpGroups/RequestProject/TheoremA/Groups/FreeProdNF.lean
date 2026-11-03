@@ -39,17 +39,29 @@ def Red (L : List (Σ i, M i)) : Prop :=
 /-- The product of a letter list.-/
 def lprod (L : List (Σ i, M i)) : CoprodI M := (L.map fun l => CoprodI.of l.2).prod
 
+/--
+@isnad1 id=eq.0h2v.s7.898c0a347969 from=translated src=- shape=b66fa29f vocab=03c1a349
+-/
 @[simp] theorem lprod_nil : lprod ([] : List (Σ i, M i)) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.011452e34465 from=translated src=- shape=4c7b38db vocab=b2824268
+-/
 @[simp] theorem lprod_cons (l : Σ i, M i) (L : List (Σ i, M i)) :
     lprod (l :: L) = CoprodI.of l.2 * lprod L := by simp [lprod]
 
+/--
+@isnad1 id=eq.0h4v.s7.26ef93b6ecf0 from=translated src=- shape=85ae17cf vocab=21cf45c0
+-/
 @[simp] theorem lprod_append (L L' : List (Σ i, M i)) :
     lprod (L ++ L') = lprod L * lprod L' := by simp [lprod]
 
 /-- The reduced word of a reduced list.-/
 def toWord' (L : List (Σ i, M i)) (h : Red L) : CoprodI.Word M := ⟨L, h.1, h.2⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.cce573e9dec6 from=translated src=- shape=04754b1a vocab=ad438d18
+-/
 theorem prod_toWord' (L : List (Σ i, M i)) (h : Red L) : (toWord' L h).prod = lprod L := rfl
 
 /-- **Uniqueness of reduced lists.**-/
@@ -59,17 +71,28 @@ theorem eq_of_lprod_eq {L L' : List (Σ i, M i)} (h : Red L) (h' : Red L')
   have : toWord' L h = toWord' L' h' := CoprodI.Word.equiv.symm.injective he
   exact congrArg CoprodI.Word.toList this
 
-/-- Every element is the product of a reduced list.-/
+/-- Every element is the product of a reduced list.
+@isnad1 id=ex.0h3v.s6.b6defe98440b from=translated src=- shape=b4087621 vocab=097c0c36
+-/
 theorem exists_red (x : CoprodI M) : ∃ L : List (Σ i, M i), Red L ∧ lprod L = x := by
   classical
   exact ⟨(CoprodI.Word.equiv x).toList, ⟨(CoprodI.Word.equiv x).ne_one,
     (CoprodI.Word.equiv x).chain_ne⟩, CoprodI.Word.equiv.symm_apply_apply x⟩
 
+/--
+@isnad1 id=red.0h2v.s4.751f997b3402 from=translated src=- shape=c8f14f8e vocab=8f1f4265
+-/
 theorem red_nil : Red ([] : List (Σ i, M i)) := ⟨by simp, List.IsChain.nil⟩
 
+/--
+@isnad1 id=red.1h4v.s6.e8bb6ee85520 from=translated src=- shape=8b6036d6 vocab=adaead55
+-/
 theorem red_singleton {i : ι} (m : M i) (hm : m ≠ 1) : Red [(⟨i, m⟩ : Σ i, M i)] :=
   ⟨by simpa using hm, List.isChain_singleton _⟩
 
+/--
+@isnad1 id=red.1h4v.s5.959cd4b484f4 from=translated src=- shape=7c4107d5 vocab=1966518b
+-/
 theorem Red.tail {l : Σ i, M i} {L : List (Σ i, M i)} (h : Red (l :: L)) : Red L :=
   ⟨fun x hx => h.1 x (List.mem_cons_of_mem _ hx), h.2.tail⟩
 
@@ -81,6 +104,9 @@ variable {N : ι → Type*} [∀ i, Group (N i)]
 def cmap (f : ∀ i, M i →* N i) : CoprodI M →* CoprodI N :=
   CoprodI.lift fun i => (CoprodI.of : N i →* CoprodI N).comp (f i)
 
+/--
+@isnad1 id=eq.0h6v.s9.b292330d501e from=translated src=- shape=69050364 vocab=d8f8f6e8
+-/
 @[simp] theorem cmap_of (f : ∀ i, M i →* N i) {i : ι} (m : M i) :
     cmap f (CoprodI.of m) = CoprodI.of (f i m) := by simp [cmap]
 
@@ -88,12 +114,18 @@ def cmap (f : ∀ i, M i →* N i) : CoprodI M →* CoprodI N :=
 def lmap (f : ∀ i, M i →* N i) (L : List (Σ i, M i)) : List (Σ i, N i) :=
   L.map fun l => ⟨l.1, f l.1 l.2⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.38fac6c8ee96 from=translated src=- shape=55a17abb vocab=492e5598
+-/
 theorem cmap_lprod (f : ∀ i, M i →* N i) (L : List (Σ i, M i)) :
     cmap f (lprod L) = lprod (lmap f L) := by
   induction L with
   | nil => simp [lmap]
   | cons l L ih => simp [lmap, ih] at *
 
+/--
+@isnad1 id=red.2h5v.s7.9fcd211eb734 from=translated src=- shape=92e338c8 vocab=d146c135
+-/
 theorem red_lmap {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective (f i))
     {L : List (Σ i, M i)} (h : Red L) : Red (lmap f L) := by
   refine ⟨?_, ?_⟩
@@ -103,6 +135,9 @@ theorem red_lmap {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective (f i)
   · exact List.isChain_map_of_isChain (fun l : Σ i, M i => (⟨l.1, f l.1 l.2⟩ : Σ i, N i))
       (fun a b hab => hab) h.2
 
+/--
+@isnad1 id=injectiv.1h4v.s7.62fa91364311 from=translated src=- shape=5618090b vocab=af48d879
+-/
 theorem lmap_injective {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective (f i)) :
     Function.Injective (lmap f) := by
   intro L L' h
@@ -113,7 +148,9 @@ theorem lmap_injective {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective
   rw [heq_iff_eq] at he
   rw [hf i he]
 
-/-- **Free products of injective homomorphisms are injective.**-/
+/-- **Free products of injective homomorphisms are injective.**
+@isnad1 id=injectiv.1h4v.s9.7711bf13785b from=translated src=- shape=f4223e6d vocab=45cc31c4
+-/
 theorem cmap_injective {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective (f i)) :
     Function.Injective (cmap f) := by
   intro x y hxy
@@ -123,7 +160,9 @@ theorem cmap_injective {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective
   rw [lmap_injective hf (eq_of_lprod_eq (red_lmap hf hL) (red_lmap hf hL') hxy)]
 
 /-- **Membership in the image of a free product of injective homomorphisms**: every letter of
-the reduced word lies in the image of the corresponding factor.-/
+the reduced word lies in the image of the corresponding factor.
+@isnad1 id=iff.2h5v.s9.e91e036dc88e from=translated src=- shape=9d4c9464 vocab=0791c97d
+-/
 theorem mem_range_cmap_iff {f : ∀ i, M i →* N i} (hf : ∀ i, Function.Injective (f i))
     {L : List (Σ i, N i)} (hL : Red L) :
     lprod L ∈ (cmap f).range ↔ ∀ l ∈ L, l.2 ∈ (f l.1).range := by
@@ -161,6 +200,9 @@ noncomputable def altL (a₀ : P false) : List (P true × P false) → List (Σ 
   | [] => optF a₀
   | p :: L => optF a₀ ++ ⟨true, p.1⟩ :: altL p.2 L
 
+/--
+@isnad1 id=eq.0h2v.s8.731bcbbe0e5d from=translated src=- shape=e8372e5c vocab=5f191f12
+-/
 theorem lprod_optF (a : P false) : lprod (optF a) = CoprodI.of a := by
   unfold optF; split_ifs with h <;> simp [h]
 
@@ -169,6 +211,9 @@ def altProd (a₀ : P false) : List (P true × P false) → CoprodI P
   | [] => CoprodI.of a₀
   | p :: L => CoprodI.of a₀ * CoprodI.of p.1 * altProd p.2 L
 
+/--
+@isnad1 id=eq.0h3v.s5.a75094545709 from=translated src=- shape=f8fcebaa vocab=b779ae19
+-/
 theorem lprod_altL (a₀ : P false) (L : List (P true × P false)) :
     lprod (altL a₀ L) = altProd a₀ L := by
   induction L generalizing a₀ with
@@ -181,10 +226,16 @@ def AltOK : List (P true × P false) → Prop
   | [p] => p.1 ≠ 1
   | p :: q :: L => p.1 ≠ 1 ∧ p.2 ≠ 1 ∧ AltOK (q :: L)
 
+/--
+@isnad1 id=eq.1h3v.s6.07b62c456a20 from=translated src=- shape=a083e985 vocab=a9dace5d
+-/
 theorem altL_head (a₀ : P false) (L : List (P true × P false)) (ha : a₀ ≠ 1) :
     (altL a₀ L).head? = some ⟨false, a₀⟩ := by
   cases L <;> simp [altL, optF, ha]
 
+/--
+@isnad1 id=red.1h3v.s5.defcc74939d0 from=translated src=- shape=b18e639a vocab=3759fa53
+-/
 theorem red_altL : ∀ (a₀ : P false) (L : List (P true × P false)), AltOK L → Red (altL a₀ L)
   | a₀, [], _ => by
     unfold altL optF; split_ifs with h
@@ -235,15 +286,24 @@ def trueLetters : List (Σ b, P b) → List (P true)
   | ⟨false, _⟩ :: L => trueLetters L
 
 omit [∀ b, Group (P b)] in
+/--
+@isnad1 id=eq.0h3v.s6.6a4491f04a59 from=translated src=- shape=34dd7776 vocab=5e34a5d5
+-/
 theorem trueLetters_append (L L' : List (Σ b, P b)) :
     trueLetters (L ++ L') = trueLetters L ++ trueLetters L' := by
   induction L with
   | nil => rfl
   | cons l L ih => rcases l with ⟨_ | _, x⟩ <;> simp [trueLetters, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.1bcc513ca316 from=translated src=- shape=3bb0298b vocab=77435a97
+-/
 theorem trueLetters_optF (a : P false) : trueLetters (optF a) = [] := by
   unfold optF; split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2b1ad43cb57a from=translated src=- shape=b335ac56 vocab=08c8442c
+-/
 theorem trueLetters_altL (a₀ : P false) (L : List (P true × P false)) :
     trueLetters (altL a₀ L) = L.map Prod.fst := by
   induction L generalizing a₀ with
@@ -257,7 +317,9 @@ theorem eq_of_altProd_eq {a₀ a₀' : P false} {L L' : List (P true × P false)
   have := eq_of_lprod_eq (red_altL _ _ h) (red_altL _ _ h') he
   rw [← trueLetters_altL a₀, this, trueLetters_altL]
 
-/-- **A nonempty admissible alternating product is not in the `false` factor.**-/
+/-- **A nonempty admissible alternating product is not in the `false` factor.**
+@isnad1 id=ne.2h4v.s8.ac20125162ca from=translated src=- shape=a6ccde50 vocab=1f62be4a
+-/
 theorem altProd_not_mem_range {a₀ : P false} {L : List (P true × P false)} (h : AltOK L)
     (hL : L ≠ []) (a : P false) : altProd a₀ L ≠ CoprodI.of a := by
   intro he
@@ -276,11 +338,16 @@ section FreeGroupLetters
 
 variable {X : Type*} [DecidableEq X]
 
+/--
+@isnad1 id=mem.1h3v.s5.eef304ef59c0 from=translated src=- shape=e4293884 vocab=ef47d906
+-/
 theorem letters_reduce_subset (L : List (X × Bool)) :
     ∀ p ∈ FreeGroup.reduce L, p ∈ L :=
   fun _ hp => (FreeGroup.reduce.red).sublist.subset hp
 
-/-- **Letters criterion.**-/
+/-- **Letters criterion.**
+@isnad1 id=iff.0h3v.s6.f7237630e09e from=translated src=- shape=18d1b733 vocab=d7eb816b
+-/
 theorem mem_closure_of_iff (A : Set X) (x : FreeGroup X) :
     x ∈ Subgroup.closure (FreeGroup.of '' A) ↔ ∀ p ∈ x.toWord, p.1 ∈ A := by
   constructor
@@ -325,7 +392,9 @@ theorem mem_closure_of_iff (A : Set X) (x : FreeGroup X) :
         exact Subgroup.inv_mem _ (Subgroup.subset_closure ⟨a, ha, rfl⟩)
       · exact Subgroup.subset_closure ⟨a, ha, rfl⟩
 
-/-- **Intersections of subgroups generated by sets of generators.**-/
+/-- **Intersections of subgroups generated by sets of generators.**
+@isnad1 id=eq.0h3v.s6.cc2cee73bc1f from=translated src=- shape=7d8e2ccf vocab=cb82e70b
+-/
 theorem closure_of_inf_closure_of (A B : Set X) :
     Subgroup.closure (FreeGroup.of '' A) ⊓ Subgroup.closure (FreeGroup.of '' B) =
       Subgroup.closure (FreeGroup.of '' (A ∩ B)) := by

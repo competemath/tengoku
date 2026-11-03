@@ -26,6 +26,9 @@ structure FPData (G : Type u) [Group G] (n : ℕ) where
 
 variable {G : Type u} [Group G]
 
+/--
+@isnad1 id=isfp.0h3v.s4.f58cd1be6aab from=translated src=- shape=3c57a25d vocab=eac29b18
+-/
 theorem FPData.isFP {n : ℕ} (D : FPData G n) : IsFP n G :=
   ⟨D.c, D.d, D.ε, D.ε_inv, D.ε_surj, D.exact0, D.exact⟩
 
@@ -72,7 +75,9 @@ noncomputable def FPData.ofEquiv {n : ℕ} (X : ℕ → Type v) [∀ i, AddCommG
       rw [← hy]; simp
 
 /-- Adding a top term: if `g : ℤ[G]^q → ℤ[G]^{c (n+1)}` has image `ker d_n`, then `G` has type
-`FP_{n+2}`.-/
+`FP_{n+2}`.
+@isnad1 id=isfp.1h5v.s10.fc7a7c2de357 from=translated src=- shape=241ce6a0 vocab=77aba99d
+-/
 theorem FPData.isFP_succ {n : ℕ} (D : FPData G (n + 1)) (q : ℕ)
     (g : FreeMod G q →ₗ[ZG G] FreeMod G (D.c (n + 1)))
     (hg : LinearMap.range g = LinearMap.ker (D.d n)) : IsFP (n + 2) G := by

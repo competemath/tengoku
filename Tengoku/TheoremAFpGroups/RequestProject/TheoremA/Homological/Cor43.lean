@@ -29,6 +29,9 @@ def Lemma42 : Prop :=
       ∃ N : Submodule (ZG B) (FreeMod B (R.c (k + 1))), N.FG ∧ N ≤ R.S ∧
         ∀ s ∈ R.S, Φδ (k + 1) s - Φα (k + 1) s - Φβ (k + 1) s ∈ N
 
+/--
+@isnad1 id=eq.3h4v.s7.a3427b918ca5 from=translated src=- shape=de397d5f vocab=a907fdce
+-/
 theorem row_sum_eq {r : ℕ} {M : Type*} [AddCommGroup M] (t : Triple) (hi : t.1 < r)
     (hj : t.2.1 < r) (hk : t.2.2 < r) (F : Fin r → M) :
     ∑ v : Fin r, row t v • F v = F ⟨t.1, hi⟩ + F ⟨t.2.1, hj⟩ - F ⟨t.2.2, hk⟩ := by
@@ -44,7 +47,9 @@ theorem row_sum_eq {r : ℕ} {M : Type*} [AddCommGroup M] (t : Triple) (hi : t.1
   simp only [row, add_smul, sub_smul, Finset.sum_add_distrib, Finset.sum_sub_distrib]
   rw [key _ hi, key _ hj, key _ hk]
 
-/-- **Corollary 4.3** follows from Lemma 4.2.-/
+/-- **Corollary 4.3** follows from Lemma 4.2.
+@isnad1 id=cor43.1h0v.s1.5e920b682378 from=translated src=- shape=1d48f1ac vocab=78004314
+-/
 theorem cor43_of_lemma42 (h42 : Lemma42.{u}) : Cor43.{u} := by
   intro r T a hr hw ha k hk B _ R α hα
   choose Φ hΦ using fun v : Fin r => exists_chainLift R (α v)

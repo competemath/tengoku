@@ -36,7 +36,9 @@ def flag1 (j : ℕ) : ℕ := 10 + j
 /-- Used only for the retained flags, i.e. `1 ≤ j ≤ 6`.-/
 def flag3 (j : ℕ) : ℕ := 16 + j
 
-/-- The twenty retained flags and the three additional indices give exactly `Fin 23`.-/
+/-- The twenty retained flags and the three additional indices give exactly `Fin 23`.
+@isnad1 id=eq.0h0v.s6.80a19d4e1979 from=translated src=- shape=256252aa vocab=d1200ff3
+-/
 theorem index_labels :
     [0, a, b] ++ (List.range 7).map flag0 ++ (List.range 7).map flag1 ++
       (List.range 6).map (fun j => flag3 (j + 1)) = List.range 23 := by
@@ -57,28 +59,47 @@ def gamma : Triple := (b, 0, a)
 def triples : List Triple :=
   (List.range 7).map pointTriple ++ (List.range 7).map lineTriple ++ [gamma]
 
+/--
+@isnad1 id=eq.0h0v.s3.b107e23fb418 from=translated src=- shape=b3c4969c vocab=61e5ad52
+-/
 theorem triples_length : triples.length = 15 := by decide +kernel
 
-/-- The list represents a set of fifteen different triples, as in Definition 3.1.-/
+/-- The list represents a set of fifteen different triples, as in Definition 3.1.
+@isnad1 id=nodup.0h0v.s1.9ce68366e8ab from=translated src=- shape=25b03439 vocab=1ec1d613
+-/
 theorem triples_nodup : triples.Nodup := by decide +kernel
 
 /-- The coefficients are `+1` at point triples and `γ`, and `-1` at line triples.-/
 def nu (l : Fin triples.length) : ℤ :=
   if l.val < 7 then 1 else if l.val < 14 then -1 else 1
 
+/--
+@isnad1 id=or.0h1v.s4.7dc674b5d605 from=translated src=- shape=1c0ff9e5 vocab=0d203bef
+-/
 theorem nu_unit (l : Fin triples.length) : nu l = 1 ∨ nu l = -1 := by
   simp only [nu]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h0v.s3.1a7c92097937 from=translated src=- shape=801679d3 vocab=21a0a013
+-/
 theorem wellFormed_check : wellFormedCheck 23 triples = true := by decide +kernel
 
+/--
+@isnad1 id=wellform.0h0v.s2.d8f85b5813d5 from=translated src=- shape=cef8a6bf vocab=09fdb5ea
+-/
 theorem wellFormed : WellFormed 23 triples :=
   wellFormed_of_wellFormedCheck 23 triples wellFormed_check
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s3.cdf20263c8c9 from=translated src=- shape=4fcb0093 vocab=66d4d984
+-/
 theorem row_check : rowCheck 23 triples nu = true := by decide +kernel
 
-/-- Equation (3.2), with the signs prescribed in the manuscript.-/
+/-- Equation (3.2), with the signs prescribed in the manuscript.
+@isnad1 id=rowident.0h0v.s3.fb405cbe4073 from=translated src=- shape=fb58fac9 vocab=888bf996
+-/
 theorem rowIdentity : RowIdentity 23 triples nu :=
   rowIdentity_of_rowCheck 23 triples nu row_check
 
@@ -98,10 +119,16 @@ def tableTree : ℕ → (ℕ → List ℕ) → GirthKernel.NTree
 def tree : GirthKernel.NTree := tableTree 6 neighbors
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s4.ca5c63432325 from=translated src=- shape=826c4bcd vocab=d9171ee5
+-/
 theorem incidence_check : GirthKernel.incCheck tree 23 0 triples = true := by decide +kernel
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
+/--
+@isnad1 id=eq.0h0v.s3.922e976bf0d8 from=translated src=- shape=c1506343 vocab=0dcad026
+-/
 theorem girth_check : GirthKernel.girthCheckN 38 tree 23 = true := by decide +kernel
 
 end FanoTriples

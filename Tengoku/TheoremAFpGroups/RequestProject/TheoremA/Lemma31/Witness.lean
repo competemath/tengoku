@@ -120,6 +120,9 @@ def ConeIndexDevelopable : Prop :=
   ∀ (V T : Type w) (C : ConeComplex.{u, w} V T), C.NPC → ∀ v : V,
     Function.Injective (C.ι (Sum.inl v))
 
+/--
+@isnad1 id=coneinde.1h0v.s1.053a15576cd3 from=translated src=- shape=1d48f1ac vocab=a53600a7
+-/
 theorem coneIndexDevelopable_of_coneDevelopable (h : ConeDevelopable.{u, w}) :
     ConeIndexDevelopable.{u, w} :=
   fun V T C hC v => h V T C hC (Sum.inl v)

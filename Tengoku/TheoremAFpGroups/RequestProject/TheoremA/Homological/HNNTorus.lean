@@ -29,6 +29,9 @@ noncomputable abbrev ofE : B →* ascHNN φ hφ := HNNExtension.of
 /-- The stable letter `s = t⁻¹`, with `b s = s φ(b)`.-/
 noncomputable def sE : ascHNN φ hφ := HNNExtension.t⁻¹
 
+/--
+@isnad1 id=eq.1h3v.s10.182e99996fff from=translated src=- shape=bae87fd9 vocab=f9aad4d9
+-/
 theorem of_mul_sE (b : B) : ofE φ hφ b * sE φ hφ = sE φ hφ * ofE φ hφ (φ b) := by
   have h : (HNNExtension.t : ascHNN φ hφ) * HNNExtension.of b =
       HNNExtension.of (φ b) * HNNExtension.t :=
@@ -47,6 +50,9 @@ noncomputable def rmul : ascHNN φ hφ ⧸ (ofE φ hφ).range → ascHNN φ hφ 
     rw [mul_inv_rev, mul_assoc, ← mul_assoc a⁻¹, ← hc, of_mul_sE, ← mul_assoc, inv_mul_cancel,
       one_mul])
 
+/--
+@isnad1 id=eq.1h3v.s9.1e0ab1dfbcc4 from=translated src=- shape=ccf785e9 vocab=744606b0
+-/
 theorem rmul_mk (g : ascHNN φ hφ) :
     rmul φ hφ (cosetOf (ofE φ hφ) g) = cosetOf (ofE φ hφ) (g * sE φ hφ) := rfl
 
@@ -55,6 +61,9 @@ noncomputable def TM : ((ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) →+
     ((ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) :=
   Finsupp.mapDomain.addMonoidHom (rmul φ hφ)
 
+/--
+@isnad1 id=eq.1h4v.s12.7b1185c61284 from=translated src=- shape=c2130855 vocab=4ae1a3ff
+-/
 theorem TM_single (q : ascHNN φ hφ ⧸ (ofE φ hφ).range) (n : ℤ) :
     TM φ hφ (Finsupp.single q n) = Finsupp.single (rmul φ hφ q) n := by
   simp [TM]
@@ -63,9 +72,15 @@ theorem TM_single (q : ascHNN φ hφ ⧸ (ofE φ hφ).range) (n : ℤ) :
 noncomputable def ht : ascHNN φ hφ →* Multiplicative ℤ :=
   HNNExtension.lift (1 : B →* Multiplicative ℤ) (Multiplicative.ofAdd 1) (by simp)
 
+/--
+@isnad1 id=eq.1h3v.s9.0b50a6c7d9e6 from=translated src=- shape=c08a025d vocab=e437a3b4
+-/
 theorem ht_of (b : B) : ht φ hφ (ofE φ hφ b) = 1 := by
   simp [ht, ofE, HNNExtension.lift_of]
 
+/--
+@isnad1 id=eq.1h2v.s8.8e55feabcb58 from=translated src=- shape=ca28e017 vocab=3c8f8f86
+-/
 theorem ht_sE : ht φ hφ (sE φ hφ) = Multiplicative.ofAdd (-1) := by
   simp [ht, sE, HNNExtension.lift_t]
 
@@ -79,9 +94,15 @@ noncomputable def htQ : ascHNN φ hφ ⧸ (ofE φ hφ).range → ℤ :=
     rw [map_mul, map_inv, inv_mul_eq_one] at this
     simp [this])
 
+/--
+@isnad1 id=eq.1h3v.s9.d8d57aeeb87b from=translated src=- shape=63122a3a vocab=926eda6c
+-/
 theorem htQ_mk (g : ascHNN φ hφ) :
     htQ φ hφ (cosetOf (ofE φ hφ) g) = Multiplicative.toAdd (ht φ hφ g) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.74b5936e7e1b from=translated src=- shape=69aab50f vocab=c9415c51
+-/
 theorem htQ_rmul (q : ascHNN φ hφ ⧸ (ofE φ hφ).range) : htQ φ hφ (rmul φ hφ q) = htQ φ hφ q - 1 := by
   induction q using QuotientGroup.induction_on with
   | H g =>
@@ -89,7 +110,9 @@ theorem htQ_rmul (q : ascHNN φ hφ ⧸ (ofE φ hφ).range) : htQ φ hφ (rmul �
     rw [rmul_mk, htQ_mk, htQ_mk, map_mul, ht_sE, toAdd_mul, toAdd_ofAdd]
     ring
 
-/-- (5.3), first part: `1 - T_M` is injective.-/
+/-- (5.3), first part: `1 - T_M` is injective.
+@isnad1 id=eq.2h3v.s13.6e7e581d1826 from=translated src=- shape=dca1e755 vocab=944f3733
+-/
 theorem oneSubTM_injective (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ)
     (h : x - TM φ hφ x = 0) : x = 0 := by
   classical
@@ -112,6 +135,9 @@ theorem oneSubTM_injective (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ �
 noncomputable def rangeOneSubTM : AddSubgroup ((ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) :=
   (AddMonoidHom.id _ - TM φ hφ).range
 
+/--
+@isnad1 id=mem.1h4v.s12.e79aeb684a37 from=translated src=- shape=7f1abfb8 vocab=5ea235ac
+-/
 theorem single_mul_sub_mem (g g' : ascHNN φ hφ) :
     Finsupp.single (cosetOf (ofE φ hφ) (g' * g)) (1 : ℤ) -
       Finsupp.single (cosetOf (ofE φ hφ) g') 1 ∈ rangeOneSubTM φ hφ := by
@@ -134,6 +160,9 @@ theorem single_mul_sub_mem (g g' : ascHNN φ hφ) :
     convert this using 1
     abel
 
+/--
+@isnad1 id=mem.1h3v.s13.f1e8059810ce from=translated src=- shape=ecbc11ec vocab=a4e07e77
+-/
 theorem sub_augM_mem (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) :
     x - augM (ofE φ hφ) x • Finsupp.single (cosetOf (ofE φ hφ) 1) 1 ∈ rangeOneSubTM φ hφ := by
   induction x using Finsupp.induction_linear with
@@ -151,7 +180,9 @@ theorem sub_augM_mem (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) :
     rw [smul_sub, Finsupp.smul_single, smul_eq_mul, mul_one] at this
     exact this
 
-/-- (5.3), second part: the kernel of the augmentation is the image of `1 - T_M`.-/
+/-- (5.3), second part: the kernel of the augmentation is the image of `1 - T_M`.
+@isnad1 id=ex.2h3v.s13.245b022cb2fc from=translated src=- shape=ecd62ef0 vocab=98730f13
+-/
 theorem exists_oneSubTM (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) (hx : augM (ofE φ hφ) x = 0) :
     ∃ y, y - TM φ hφ y = x := by
   have := sub_augM_mem φ hφ x
@@ -159,6 +190,9 @@ theorem exists_oneSubTM (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) 
   obtain ⟨y, hy⟩ := this
   exact ⟨y, hy⟩
 
+/--
+@isnad1 id=eq.1h3v.s13.4679bb35205d from=translated src=- shape=7798ec7e vocab=eeb1dc8a
+-/
 theorem augM_TM (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) :
     augM (ofE φ hφ) (TM φ hφ x) = augM (ofE φ hφ) x := by
   induction x using Finsupp.induction_linear with
@@ -168,6 +202,9 @@ theorem augM_TM (x : (ascHNN φ hφ ⧸ (ofE φ hφ).range) →₀ ℤ) :
 
 /-! ### Interaction with `ℤ[E]` -/
 
+/--
+@isnad1 id=eq.1h3v.s11.8aa0d45e6f47 from=translated src=- shape=0a8aca53 vocab=fe853bd7
+-/
 theorem ρ_mul_sE (l : ZG B) :
     ρ (ofE φ hφ) l * MonoidAlgebra.single (sE φ hφ) (1 : ℤ) =
       MonoidAlgebra.single (sE φ hφ) (1 : ℤ) * ρ (ofE φ hφ) (hat φ l) := by
@@ -178,6 +215,9 @@ theorem ρ_mul_sE (l : ZG B) :
     simp only [ρ_single, MonoidAlgebra.mapDomainRingHom_apply, MonoidAlgebra.mapDomain_single,
       MonoidAlgebra.single_mul_single, of_mul_sE, mul_one, one_mul]
 
+/--
+@isnad1 id=eq.1h4v.s14.6222937d8194 from=translated src=- shape=a7bc24d0 vocab=907e2485
+-/
 theorem πM_mul_sE_mul (f : ZG (ascHNN φ hφ)) (l : ZG B) :
     πM (ofE φ hφ) (f * MonoidAlgebra.single (sE φ hφ) (1 : ℤ) * ρ (ofE φ hφ) l) =
       augZG l • TM φ hφ (πM (ofE φ hφ) f) := by

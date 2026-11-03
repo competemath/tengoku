@@ -51,7 +51,9 @@ endomorphism `φ` (eq. (5.1), up to replacing `t` by `t⁻¹`).-/
 abbrev ascHNN {B : Type*} [Group B] (φ : B →* B) (hφ : Function.Injective φ) : Type _ :=
   HNNExtension B ⊤ φ.range (Subgroup.topEquiv.trans (MonoidHom.ofInjective hφ))
 
-/-- The canonical embedding of the base into the ascending HNN extension (Britton's lemma).-/
+/-- The canonical embedding of the base into the ascending HNN extension (Britton's lemma).
+@isnad1 id=injectiv.1h2v.s10.2e0eec0ab7c5 from=translated src=- shape=159707e1 vocab=ac6344d4
+-/
 theorem ascHNN_of_injective {B : Type*} [Group B] (φ : B →* B) (hφ : Function.Injective φ) :
     Function.Injective (HNNExtension.of : B →* ascHNN φ hφ) :=
   HNNExtension.of_injective _

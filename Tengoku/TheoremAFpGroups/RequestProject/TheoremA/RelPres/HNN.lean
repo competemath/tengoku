@@ -32,7 +32,9 @@ universe u
 
 variable {B : Type u} [Group B] {n : ℕ} {S : Set (FreeGroup (Fin n))}
 
-/-- Evaluating along the generator images of a presentation factors through the presentation.-/
+/-- Evaluating along the generator images of a presentation factors through the presentation.
+@isnad1 id=eq.0h7v.s9.d8630cfd6087 from=translated src=- shape=7ffefe7d vocab=bdd068b2
+-/
 theorem lift_presentation {H : Type*} [Group H] (ψ : PresentedGroup S ≃* B) (χ : B →* H)
     (x : FreeGroup (Fin n)) :
     FreeGroup.lift (fun i => χ (ψ (PresentedGroup.of i))) x = χ (ψ (PresentedGroup.mk S x)) := by
@@ -41,7 +43,9 @@ theorem lift_presentation {H : Type*} [Group H] (ψ : PresentedGroup S ≃* B) (
     FreeGroup.ext_hom _ _ fun i => by simp [PresentedGroup.of]
   exact congrArg (fun F : FreeGroup (Fin n) →* H => F x) this
 
-/-- Two homomorphisms out of `B` agreeing on the generator images agree.-/
+/-- Two homomorphisms out of `B` agreeing on the generator images agree.
+@isnad1 id=eq.1h7v.s9.d675b583016e from=translated src=- shape=174f712e vocab=5b96c964
+-/
 theorem hom_ext_presentation {H : Type*} [Group H] (ψ : PresentedGroup S ≃* B)
     {f g : B →* H} (h : ∀ i, f (ψ (PresentedGroup.of i)) = g (ψ (PresentedGroup.of i))) :
     f = g := by
@@ -51,7 +55,9 @@ theorem hom_ext_presentation {H : Type*} [Group H] (ψ : PresentedGroup S ≃* B
   have := congrArg (fun F : PresentedGroup S →* H => F (ψ.symm b)) this
   simpa using this
 
-/-- Existence of a raw word representing `φ (x_i)`.-/
+/-- Existence of a raw word representing `φ (x_i)`.
+@isnad1 id=ex.0h6v.s9.7bb64a84730d from=translated src=- shape=b4ce592d vocab=f108ed12
+-/
 theorem exists_hnnWord (ψ : PresentedGroup S ≃* B) (φ : B →* B) (i : Fin n) :
     ∃ w : RawWord (Fin n), ψ (PresentedGroup.mk S w.eval) = φ (ψ (PresentedGroup.of i)) := by
   obtain ⟨x, hx⟩ := PresentedGroup.mk_surjective S (ψ.symm (φ (ψ (PresentedGroup.of i))))
@@ -63,6 +69,9 @@ noncomputable def hnnWord (ψ : PresentedGroup S ≃* B) (φ : B →* B) (i : Fi
     RawWord (Fin n) :=
   (exists_hnnWord ψ φ i).choose
 
+/--
+@isnad1 id=eq.0h6v.s9.de390ec66c2b from=translated src=- shape=06bf918f vocab=6f6cb05d
+-/
 theorem hnnWord_spec (ψ : PresentedGroup S ≃* B) (φ : B →* B) (i : Fin n) :
     ψ (PresentedGroup.mk S (hnnWord ψ φ i).eval) = φ (ψ (PresentedGroup.of i)) :=
   (exists_hnnWord ψ φ i).choose_spec
@@ -78,6 +87,9 @@ noncomputable def hnnRelators (ψ : PresentedGroup S ≃* B) (φ : B →* B) :
     List (RawWord (Fin (n + 1))) :=
   List.ofFn (hnnRelator ψ φ)
 
+/--
+@isnad1 id=eq.0h6v.s9.a1c55ceb5e76 from=translated src=- shape=4f110ec9 vocab=40f1c8d1
+-/
 theorem eval_hnnRelator (ψ : PresentedGroup S ≃* B) (φ : B →* B) (i : Fin n) :
     (hnnRelator ψ φ i).eval = FreeGroup.of (Fin.last n) * FreeGroup.of (Fin.castSucc i) *
       (FreeGroup.of (Fin.last n))⁻¹ *
@@ -95,10 +107,15 @@ noncomputable def hnnRelSet (ψ : PresentedGroup S ≃* B) (φ : B →* B) :
 
 variable (ψ : PresentedGroup S ≃* B) (φ : B →* B) (hφ : Function.Injective φ)
 
+/--
+@isnad1 id=mem.0h6v.s7.8132035008d9 from=translated src=- shape=574cd222 vocab=0d280307
+-/
 theorem hnnRelator_mem (i : Fin n) : (hnnRelator ψ φ i).eval ∈ hnnRelSet ψ φ :=
   Or.inr ⟨_, List.mem_ofFn.2 ⟨i, rfl⟩, rfl⟩
 
-/-- The ascending HNN relation `t b t⁻¹ = φ b` in the project's `ascHNN`.-/
+/-- The ascending HNN relation `t b t⁻¹ = φ b` in the project's `ascHNN`.
+@isnad1 id=eq.1h3v.s12.d26797c1e66d from=translated src=- shape=30ac758a vocab=fd521467
+-/
 theorem ascHNN_conj (b : B) :
     (t : ascHNN φ hφ) * of b * t⁻¹ = of (φ b) := by
   have h := t_mul_of (G := B) (A := ⊤) (B := φ.range)
@@ -110,6 +127,9 @@ theorem ascHNN_conj (b : B) :
 noncomputable def hnnFwdGen : Fin (n + 1) → ascHNN φ hφ :=
   Fin.lastCases t fun i => of (ψ (PresentedGroup.of i))
 
+/--
+@isnad1 id=eq.1h6v.s12.ff4db033390a from=translated src=- shape=939095c7 vocab=dd49b4d4
+-/
 theorem lift_hnnFwdGen_castSucc (x : FreeGroup (Fin n)) :
     FreeGroup.lift (hnnFwdGen ψ φ hφ) (FreeGroup.map Fin.castSucc x) =
       of (ψ (PresentedGroup.mk S x)) := by
@@ -141,6 +161,9 @@ noncomputable def hnnBaseAux : PresentedGroup S →* PresentedGroup (hnnRelSet �
     rw [this, MonoidHom.comp_apply]
     exact PresentedGroup.one_of_mem (Or.inl ⟨r, hr, rfl⟩))
 
+/--
+@isnad1 id=eq.0h6v.s10.cac6c780d587 from=translated src=- shape=f87a91dc vocab=f4a03460
+-/
 theorem hnnBaseAux_mk (x : FreeGroup (Fin n)) :
     hnnBaseAux ψ φ (PresentedGroup.mk S x) =
       PresentedGroup.mk (hnnRelSet ψ φ) (FreeGroup.map Fin.castSucc x) := by
@@ -154,6 +177,9 @@ theorem hnnBaseAux_mk (x : FreeGroup (Fin n)) :
 noncomputable def hnnBase : B →* PresentedGroup (hnnRelSet ψ φ) :=
   (hnnBaseAux ψ φ).comp (ψ.symm : B →* PresentedGroup S)
 
+/--
+@isnad1 id=eq.0h6v.s9.e3cf6d5b13b3 from=translated src=- shape=db688bab vocab=57549704
+-/
 theorem hnnBase_gen (i : Fin n) :
     hnnBase ψ φ (ψ (PresentedGroup.of i)) = PresentedGroup.of (Fin.castSucc i) := by
   simp [hnnBase, hnnBaseAux, PresentedGroup.toGroup.of]
@@ -161,7 +187,9 @@ theorem hnnBase_gen (i : Fin n) :
 /-- The image `τ` of the new letter in `P'`.-/
 noncomputable def hnnStable : PresentedGroup (hnnRelSet ψ φ) := PresentedGroup.of (Fin.last n)
 
-/-- The finitely many extra relators give `τ j(b) τ⁻¹ = j(φ b)` for **all** `b`.-/
+/-- The finitely many extra relators give `τ j(b) τ⁻¹ = j(φ b)` for **all** `b`.
+@isnad1 id=eq.0h6v.s10.23b0092db330 from=translated src=- shape=2759d3d8 vocab=8970a953
+-/
 theorem hnnStable_conj (b : B) :
     hnnStable ψ φ * hnnBase ψ φ b * (hnnStable ψ φ)⁻¹ = hnnBase ψ φ (φ b) := by
   have key : (MulAut.conj (hnnStable ψ φ)).toMonoidHom.comp (hnnBase ψ φ) =
@@ -187,16 +215,28 @@ noncomputable def hnnBwd : ascHNN φ hφ →* PresentedGroup (hnnRelSet ψ φ) :
     have e : ((Subgroup.topEquiv.trans (MonoidHom.ofInjective hφ)) a : B) = φ a := rfl
     rw [e, ← hnnStable_conj ψ φ a, inv_mul_cancel_right])
 
+/--
+@isnad1 id=eq.1h6v.s11.49cb71072426 from=translated src=- shape=c80841b5 vocab=710975e9
+-/
 theorem hnnBwd_of (b : B) : hnnBwd ψ φ hφ (of b) = hnnBase ψ φ b := by
   simp [hnnBwd]
 
+/--
+@isnad1 id=eq.1h5v.s9.337aaf2ed5a1 from=translated src=- shape=441e9925 vocab=6e9b7466
+-/
 theorem hnnBwd_t : hnnBwd ψ φ hφ t = hnnStable ψ φ := by
   simp [hnnBwd]
 
+/--
+@isnad1 id=eq.1h6v.s9.7a870603d858 from=translated src=- shape=fde06c7c vocab=6cfa3582
+-/
 theorem hnnFwd_of (x : Fin (n + 1)) :
     hnnFwd ψ φ hφ (PresentedGroup.of x) = hnnFwdGen ψ φ hφ x := by
   simp [hnnFwd, PresentedGroup.toGroup.of]
 
+/--
+@isnad1 id=eq.1h6v.s11.b0818a109fd9 from=translated src=- shape=6ed83d71 vocab=b79ebb70
+-/
 theorem hnnFwd_hnnBase (b : B) : hnnFwd ψ φ hφ (hnnBase ψ φ b) = of b := by
   have : (hnnFwd ψ φ hφ).comp (hnnBase ψ φ) = of := by
     apply hom_ext_presentation ψ
@@ -219,13 +259,17 @@ noncomputable def hnnPresentationEquiv : PresentedGroup (hnnRelSet ψ φ) ≃* a
         simp [hnnBwd_of, hnnFwd_hnnBase]
       · simp [hnnBwd_t, hnnStable, hnnFwd_of, hnnFwdGen])
 
-/-- Compatibility with the old generators.-/
+/-- Compatibility with the old generators.
+@isnad1 id=eq.1h6v.s11.3a87d4495369 from=translated src=- shape=61c8e98b vocab=a738b334
+-/
 theorem hnnPresentationEquiv_of_castSucc (i : Fin n) :
     hnnPresentationEquiv ψ φ hφ (PresentedGroup.of (Fin.castSucc i)) =
       of (ψ (PresentedGroup.of i)) := by
   simp [hnnPresentationEquiv, hnnFwd_of, hnnFwdGen]
 
-/-- Compatibility with the stable letter.-/
+/-- Compatibility with the stable letter.
+@isnad1 id=eq.1h5v.s10.9a838a58fcec from=translated src=- shape=d4089fba vocab=67940943
+-/
 theorem hnnPresentationEquiv_of_last :
     hnnPresentationEquiv ψ φ hφ (PresentedGroup.of (Fin.last n)) = t := by
   simp [hnnPresentationEquiv, hnnFwd_of, hnnFwdGen]

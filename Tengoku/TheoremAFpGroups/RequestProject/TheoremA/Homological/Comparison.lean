@@ -25,6 +25,9 @@ def HomEq (R : Res B k) (f g : ∀ i, FreeMod B (R.c i) →+ FreeMod B (R.c i))
   | 0 => ∀ x, f 0 x - g 0 x = R.d 0 (K 0 x)
   | n + 1 => ∀ x, f (n + 1) x - g (n + 1) x = R.d (n + 1) (K (n + 1) x) + K n (R.d n x)
 
+/--
+@isnad1 id=ex.2h7v.s10.3f9f19b23056 from=translated src=- shape=a9afbdb9 vocab=517babfe
+-/
 theorem exists_homotopy (R : Res B k) (θ : B →* B) (f g : ∀ i, FreeMod B (R.c i) →+ FreeMod B (R.c i))
     (hf : IsChainLift R θ f) (hg : IsChainLift R θ g) :
     ∀ n, ∃ K : ∀ i, FreeMod B (R.c i) →+ FreeMod B (R.c (i + 1)),
@@ -112,7 +115,9 @@ theorem exists_homotopy (R : Res B k) (θ : B →* B) (f g : ∀ i, FreeMod B (R
                 Function.update_of_ne (show j ≠ n + 1 by omega)]
     · exact ⟨K, hsl, fun j hj hjk => heq j (by omega) hjk⟩
 
-/-- **Lemma 4.1 (comparison).**-/
+/-- **Lemma 4.1 (comparison).**
+@isnad1 id=ex.2h6v.s11.6ebf0887b54d from=translated src=- shape=d10b7c7c vocab=2c007bdd
+-/
 theorem comparison (R : Res B k) (θ : B →* B) (f g : ∀ i, FreeMod B (R.c i) →+ FreeMod B (R.c i))
     (hf : IsChainLift R θ f) (hg : IsChainLift R θ g) :
     ∃ N : Submodule (ZG B) (FreeMod B (R.c (k + 1))), N.FG ∧ N ≤ R.S ∧

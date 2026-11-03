@@ -41,11 +41,17 @@ def tripleComplex (r : ℕ) (T : List Triple) (G : Type u) [Group G] :
   B _ := G × G
   φ v l _ := tripleMap G T[l] v
 
+/--
+@isnad1 id=eq.0h3v.s5.5a577e2fe278 from=translated src=- shape=30a50e95 vocab=188ae26d
+-/
 theorem tripleComplex_graph (r : ℕ) (T : List Triple) (G : Type u) [Group G] :
     (tripleComplex r T G).graph = incidenceGraph r T := by
   ext x y
   cases x <;> cases y <;> rfl
 
+/--
+@isnad1 id=eq.5h6v.s8.8195e3986699 from=translated src=- shape=75f9698f vocab=879e8723
+-/
 theorem tripleMap_inter_trivial (G : Type u) [Group G] (t : Triple)
     (hd : t.1 ≠ t.2.1 ∧ t.1 ≠ t.2.2 ∧ t.2.1 ≠ t.2.2) (v v' : ℕ)
     (hv : v ∈ t.entries) (hv' : v' ∈ t.entries) (hne : v ≠ v') (a a' : G)
@@ -59,6 +65,9 @@ theorem tripleMap_inter_trivial (G : Type u) [Group G] (t : Triple)
     simp_all [tripleMap, Prod.ext_iff]
   grind
 
+/--
+@isnad1 id=npc.2h3v.s5.814eb69347c9 from=translated src=- shape=7b6e27dd vocab=3a13e5da
+-/
 theorem tripleComplex_npc (r : ℕ) (T : List Triple) (hw : WellFormed r T)
     (hg : 12 ≤ (incidenceGraph r T).egirth) (G : Type u) [Group G] :
     (tripleComplex r T G).NPC where

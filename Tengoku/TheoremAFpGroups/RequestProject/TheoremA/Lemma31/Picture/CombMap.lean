@@ -77,6 +77,9 @@ def Step (x y : M.D) : Prop := y = M.σ x ∨ y = M.α x
 /-- The map is connected.-/
 def Connected : Prop := ∀ x y, Relation.EqvGen M.Step x y
 
+/--
+@isnad1 id=eqvgen.1h3v.s4.ccea2e1c9d3b from=translated src=- shape=dbfd64fe vocab=f9a983e8
+-/
 theorem eqvGen_of_sameCycle {x y : M.D} (h : M.σ.SameCycle x y) : Relation.EqvGen M.Step x y := by
   obtain ⟨n, rfl⟩ := h.exists_nat_pow_eq
   clear h
@@ -86,6 +89,9 @@ theorem eqvGen_of_sameCycle {x y : M.D} (h : M.σ.SameCycle x y) : Relation.EqvG
     refine ih.trans _ _ _ (Relation.EqvGen.rel _ _ (Or.inl ?_))
     rw [pow_succ', Perm.mul_apply]
 
+/--
+@isnad1 id=connecte.1h2v.s4.eaeac4347127 from=translated src=- shape=113dcabb vocab=403474c9
+-/
 theorem connected_of_base (d₀ : M.D) (h : ∀ x, Relation.EqvGen M.Step d₀ x) : M.Connected :=
   fun x y => ((h x).symm _ _).trans _ _ _ (h y)
 
@@ -101,20 +107,31 @@ def glue (M₁ M₂ : CombMap) (p₁ : M₁.D) (p₂ : M₂.D) : CombMap where
 
 variable (M₁ M₂ : CombMap) (p₁ : M₁.D) (p₂ : M₂.D)
 
+/--
+@isnad1 id=not.0h4v.s5.f8681185a521 from=translated src=- shape=7612a1ac vocab=eef52461
+-/
 theorem glue_not_sameCycle :
     ¬ (Perm.sumCongr M₁.σ M₂.σ).SameCycle (Sum.inl p₁) (Sum.inr p₂) :=
   not_sameCycle_sumCongr_inl_inr
 
+/--
+@isnad1 id=eq.0h4v.s5.646e743f8048 from=translated src=- shape=15e37719 vocab=0511dfad
+-/
 theorem glue_numVertices :
     (glue M₁ M₂ p₁ p₂).numVertices + 1 = M₁.numVertices + M₂.numVertices := by
   unfold numVertices
   rw [← numOrbits_sumCongr, numOrbits_swap_mul (glue_not_sameCycle M₁ M₂ p₁ p₂)]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.b9eb765de0e0 from=translated src=- shape=34d81c5b vocab=6b0d5c07
+-/
 theorem glue_numEdges : (glue M₁ M₂ p₁ p₂).numEdges = M₁.numEdges + M₂.numEdges :=
   numOrbits_sumCongr _ _
 
-/-- The cycles of the rotation of a gluing.-/
+/-- The cycles of the rotation of a gluing.
+@isnad1 id=iff.0h6v.s7.467c8f9082e3 from=translated src=- shape=1dabe80a vocab=62ac1070
+-/
 theorem glue_sameCycle_iff {x y : (glue M₁ M₂ p₁ p₂).D} :
     (glue M₁ M₂ p₁ p₂).σ.SameCycle x y ↔ (Perm.sumCongr M₁.σ M₂.σ).SameCycle x y ∨
       (((Perm.sumCongr M₁.σ M₂.σ).SameCycle (Sum.inl p₁) x ∨
@@ -123,6 +140,9 @@ theorem glue_sameCycle_iff {x y : (glue M₁ M₂ p₁ p₂).D} :
           (Perm.sumCongr M₁.σ M₂.σ).SameCycle (Sum.inr p₂) y)) :=
   sameCycle_swap_mul_iff (glue_not_sameCycle M₁ M₂ p₁ p₂)
 
+/--
+@isnad1 id=eqvgen.1h6v.s5.16a8494278ec from=translated src=- shape=f11168c1 vocab=e12e0995
+-/
 theorem glue_eqvGen_inl {x y : M₁.D} (h : Relation.EqvGen M₁.Step x y) :
     Relation.EqvGen (glue M₁ M₂ p₁ p₂).Step (Sum.inl x) (Sum.inl y) := by
   induction h with
@@ -135,6 +155,9 @@ theorem glue_eqvGen_inl {x y : M₁.D} (h : Relation.EqvGen M₁.Step x y) :
   | symm _ _ _ ih => exact ih.symm
   | trans _ _ _ _ _ ih₁ ih₂ => exact ih₁.trans _ _ _ ih₂
 
+/--
+@isnad1 id=eqvgen.1h6v.s5.1599be9421ff from=translated src=- shape=ae06fd1f vocab=764a8287
+-/
 theorem glue_eqvGen_inr {x y : M₂.D} (h : Relation.EqvGen M₂.Step x y) :
     Relation.EqvGen (glue M₁ M₂ p₁ p₂).Step (Sum.inr x) (Sum.inr y) := by
   induction h with
@@ -147,7 +170,9 @@ theorem glue_eqvGen_inr {x y : M₂.D} (h : Relation.EqvGen M₂.Step x y) :
   | symm _ _ _ ih => exact ih.symm
   | trans _ _ _ _ _ ih₁ ih₂ => exact ih₁.trans _ _ _ ih₂
 
-/-- **Gluing connected maps gives a connected map.**-/
+/-- **Gluing connected maps gives a connected map.**
+@isnad1 id=connecte.2h4v.s4.74884bc1f01d from=translated src=- shape=df9514ce vocab=bffaa5a2
+-/
 theorem glue_connected (h₁ : M₁.Connected) (h₂ : M₂.Connected) :
     (glue M₁ M₂ p₁ p₂).Connected := by
   refine connected_of_base _ (Sum.inl p₁) ?_
@@ -167,7 +192,9 @@ variable {D : Type} [Fintype D] [DecidableEq D]
 
 omit [DecidableEq D] in
 /-- Counting orbits of an explicit permutation through an invariant with explicit witnesses of
-reachability (all hypotheses are decidable for explicit data).-/
+reachability (all hypotheses are decidable for explicit data).
+@isnad1 id=eq.3h5v.s6.5a4843995dca from=translated src=- shape=8b475d92 vocab=1fe322ff
+-/
 theorem numOrbits_eq_of_invariant {n N : ℕ} (π : Perm D) (f : D → Fin n) (hf : Surjective f)
     (hinv : ∀ x, f (π x) = f x) (hreach : ∀ x y, f x = f y → ∃ k : Fin N, (π ^ (k : ℕ)) x = y) :
     numOrbits π = n := by
@@ -181,7 +208,9 @@ theorem numOrbits_eq_of_invariant {n N : ℕ} (π : Perm D) (f : D → Fin n) (h
 
 omit [DecidableEq D] in
 /-- The cycles of an explicit permutation, through an invariant with explicit witnesses of
-reachability.-/
+reachability.
+@isnad1 id=iff.2h7v.s6.2ca2e00fa3a3 from=translated src=- shape=d747db6e vocab=348071ed
+-/
 theorem sameCycle_iff_of_invariant {n N : ℕ} (π : Perm D) (f : D → Fin n)
     (hinv : ∀ x, f (π x) = f x) (hreach : ∀ x y, f x = f y → ∃ k : Fin N, (π ^ (k : ℕ)) x = y)
     (x y : D) : π.SameCycle x y ↔ f x = f y := by
@@ -196,6 +225,9 @@ def walk (σ α : Perm D) : D → List Bool → D
   | d, [] => d
   | d, b :: l => walk σ α (if b then σ d else α d) l
 
+/--
+@isnad1 id=eqvgen.0h3v.s4.0464ca4b2382 from=translated src=- shape=b484d759 vocab=b34b8d91
+-/
 theorem CombMap.eqvGen_walk (M : CombMap) (d : M.D) (l : List Bool) :
     Relation.EqvGen M.Step d (walk M.σ M.α d l) := by
   induction l generalizing d with
@@ -206,6 +238,9 @@ theorem CombMap.eqvGen_walk (M : CombMap) (d : M.D) (l : List Bool) :
     · exact Or.inr rfl
     · exact Or.inl rfl
 
+/--
+@isnad1 id=connecte.1h3v.s5.c66adae966fd from=translated src=- shape=1dc6eeb0 vocab=1570b7ed
+-/
 theorem CombMap.connected_of_walks (M : CombMap) (d₀ : M.D) (S : List (List Bool))
     (h : ∀ x, ∃ l ∈ S, walk M.σ M.α d₀ l = x) : M.Connected := by
   refine M.connected_of_base d₀ fun x => ?_
@@ -233,10 +268,16 @@ def digon : CombMap where
   α_α := by decide
   α_ne := by decide
 
+/--
+@isnad1 id=connecte.0h0v.s1.a772b99440cd from=translated src=- shape=49959d42 vocab=487f801a
+-/
 theorem triangle_connected : triangle.Connected :=
   triangle.connected_of_walks (0 : Fin 6)
     [[], [true], [false], [true, false], [false, true], [false, true, false]] (by decide)
 
+/--
+@isnad1 id=connecte.0h0v.s1.95a22ab2b7b5 from=translated src=- shape=49959d42 vocab=99692d15
+-/
 theorem digon_connected : digon.Connected :=
   digon.connected_of_walks (0 : Fin 4) [[], [true], [false], [true, false]] (by decide)
 

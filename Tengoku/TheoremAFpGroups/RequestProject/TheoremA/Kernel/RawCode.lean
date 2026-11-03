@@ -28,12 +28,21 @@ open TheoremA.RelPres
 /-- The digit of a letter: `a ↦ 1`, `b ↦ 2`, `a⁻¹ ↦ 3`, `b⁻¹ ↦ 4`.-/
 def digit (p : Fin 2 × Bool) : ℕ := if p.2 then p.1.val + 1 else p.1.val + 3
 
+/--
+@isnad1 id=le.0h1v.s4.fc730bf7309c from=translated src=- shape=6ec6b1c5 vocab=ed4a2d5f
+-/
 theorem digit_pos (p : Fin 2 × Bool) : 1 ≤ digit p := by
   unfold digit; split_ifs <;> omega
 
+/--
+@isnad1 id=le.0h1v.s4.ee198acdaab1 from=translated src=- shape=1c298320 vocab=ed4a2d5f
+-/
 theorem digit_le (p : Fin 2 × Bool) : digit p ≤ 4 := by
   unfold digit; have := p.1.isLt; split_ifs <;> omega
 
+/--
+@isnad1 id=injectiv.0h0v.s3.d136d6d1e456 from=translated src=- shape=5ff822d7 vocab=6cf30189
+-/
 theorem digit_injective : Function.Injective digit := by
   rintro ⟨a, b⟩ ⟨a', b'⟩ h
   unfold digit at h
@@ -43,21 +52,35 @@ theorem digit_injective : Function.Injective digit := by
 /-- The decimal code of a raw word.-/
 def code (w : RawWord (Fin 2)) : ℕ := w.foldl (fun n p => 10 * n + digit p) 0
 
+/--
+@isnad1 id=eq.0h0v.s4.b9c13b0ea421 from=translated src=- shape=fa276c5c vocab=b2c8aee2
+-/
 @[simp] theorem code_nil : code [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f5fd67afd8a7 from=translated src=- shape=4603c245 vocab=6d333e48
+-/
 theorem code_append_single (w : RawWord (Fin 2)) (p : Fin 2 × Bool) :
     code (w ++ [p]) = 10 * code w + digit p := by
   simp [code, List.foldl_append]
 
+/--
+@isnad1 id=lt.1h1v.s5.bdd060bffa54 from=translated src=- shape=90a44513 vocab=419ad293
+-/
 theorem code_pos_of_ne_nil {w : RawWord (Fin 2)} (hw : w ≠ []) : 0 < code w := by
   obtain ⟨u, p, rfl⟩ := List.eq_nil_or_concat w |>.resolve_left hw
   rw [List.concat_eq_append, code_append_single]; have := digit_pos p; omega
 
+/--
+@isnad1 id=iff.0h1v.s5.3aed4e46fe48 from=translated src=- shape=5ab69a3d vocab=82af1c3b
+-/
 theorem code_eq_zero_iff {w : RawWord (Fin 2)} : code w = 0 ↔ w = [] := by
   refine ⟨fun h => ?_, fun h => h ▸ rfl⟩
   by_contra hw; have := code_pos_of_ne_nil hw; omega
 
-/-- **Injectivity of the coding on raw words.**-/
+/-- **Injectivity of the coding on raw words.**
+@isnad1 id=injectiv.0h0v.s3.a40686c81860 from=translated src=- shape=0de2656b vocab=4802a6b8
+-/
 theorem code_injective : Function.Injective code := by
   intro w
   induction w using List.reverseRecOn with
@@ -74,7 +97,9 @@ theorem code_injective : Function.Injective code := by
       have hc : code u = code u' := by omega
       rw [ih hc, digit_injective hd]
 
-/-- **The last-digit property.**-/
+/-- **The last-digit property.**
+@isnad1 id=iff.0h2v.s6.70b418849735 from=translated src=- shape=2ee61453 vocab=72f1e4ac
+-/
 theorem mod_ten_code_eq_digit_iff (w : RawWord (Fin 2)) (p : Fin 2 × Bool) :
     code w % 10 = digit p ↔ ∃ u, w = u ++ [p] := by
   constructor
@@ -89,9 +114,14 @@ theorem mod_ten_code_eq_digit_iff (w : RawWord (Fin 2)) (p : Fin 2 × Bool) :
   · rintro ⟨u, rfl⟩
     rw [code_append_single]; have := digit_le p; omega
 
+/--
+@isnad1 id=primrec.0h0v.s4.1d90029ce6f3 from=translated src=- shape=5ff822d7 vocab=fca44640
+-/
 theorem primrec_digit : Primrec digit := Primrec.dom_finite digit
 
-/-- **`code` is primitive recursive.**-/
+/-- **`code` is primitive recursive.**
+@isnad1 id=primrec.0h0v.s5.8a8f41f9ff38 from=translated src=- shape=0de2656b vocab=543e230a
+-/
 theorem primrec_code : Primrec code := by
   have hstep : Primrec₂ fun (n : ℕ) (p : Fin 2 × Bool) => 10 * n + digit p :=
     (Primrec.nat_add.comp (Primrec.nat_mul.comp (Primrec.const 10) Primrec.fst)

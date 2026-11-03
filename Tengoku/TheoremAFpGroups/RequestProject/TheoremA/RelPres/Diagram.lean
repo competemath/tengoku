@@ -51,6 +51,9 @@ def mergeEnum {m : ℕ} (f g : ℕ →. RawWord (Fin m)) : ℕ →. RawWord (Fin
 /-- The nowhere-defined enumerator.-/
 def noneEnum {m : ℕ} : ℕ →. RawWord (Fin m) := fun _ => Part.none
 
+/--
+@isnad1 id=isenumer.0h2v.s3.ea72225450ab from=translated src=- shape=c554f1fb vocab=de06f4ec
+-/
 theorem IsEnumerator.noneEnum {m : ℕ} : IsEnumerator R (noneEnum : ℕ →. RawWord (Fin m)) := by
   unfold IsEnumerator TheoremA.RelPres.noneEnum
   have := RecursiveIn.of_partrec (O := oracle R) Nat.Partrec.none
@@ -66,11 +69,17 @@ theorem IsEnumerator.noneEnum {m : ℕ} : IsEnumerator R (noneEnum : ℕ →. Ra
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h1v.s4.8f8e5d5482fd from=translated src=- shape=03c93127 vocab=7f52c5fa
+-/
 theorem enumRelators_noneEnum {m : ℕ} :
     enumRelators (noneEnum : ℕ →. RawWord (Fin m)) = ∅ := by
   ext x
   simp [enumRelators, TheoremA.RelPres.noneEnum]
 
+/--
+@isnad1 id=iff.0h4v.s6.9293ee2bd363 from=translated src=- shape=84107104 vocab=64d8d0d8
+-/
 theorem mem_mergeEnum_iff {m : ℕ} (f g : ℕ →. RawWord (Fin m)) (w : RawWord (Fin m)) :
     (∃ k, w ∈ mergeEnum f g k) ↔ (∃ k, w ∈ f k) ∨ (∃ k, w ∈ g k) := by
   constructor
@@ -83,7 +92,9 @@ theorem mem_mergeEnum_iff {m : ℕ} (f g : ℕ →. RawWord (Fin m)) (w : RawWor
     · exact ⟨Nat.bit false k, by simpa [mergeEnum] using hk⟩
     · exact ⟨Nat.bit true k, by simpa [mergeEnum] using hk⟩
 
-/-- **Range of the merged enumerator**: the union of the two ranges.-/
+/-- **Range of the merged enumerator**: the union of the two ranges.
+@isnad1 id=eq.0h3v.s5.9f61a4b018c1 from=translated src=- shape=582e1933 vocab=9a77b77d
+-/
 theorem enumRelators_mergeEnum {m : ℕ} (f g : ℕ →. RawWord (Fin m)) :
     enumRelators (mergeEnum f g) = enumRelators f ∪ enumRelators g := by
   ext x
@@ -102,6 +113,9 @@ theorem enumRelators_mergeEnum {m : ℕ} (f g : ℕ →. RawWord (Fin m)) :
 def foldEnum {m : ℕ} (L : List (ℕ →. RawWord (Fin m))) : ℕ →. RawWord (Fin m) :=
   L.foldr mergeEnum noneEnum
 
+/--
+@isnad1 id=eq.0h2v.s6.104cba5edeb6 from=translated src=- shape=2187b7c7 vocab=c62495e0
+-/
 theorem enumRelators_foldEnum {m : ℕ} (L : List (ℕ →. RawWord (Fin m))) :
     enumRelators (foldEnum L) = ⋃ f ∈ L, enumRelators f := by
   induction L with
@@ -116,17 +130,29 @@ theorem enumRelators_foldEnum {m : ℕ} (L : List (ℕ →. RawWord (Fin m))) :
 /-- The letter `X_(v,a)` of the alphabet `Fin (r * n)`.-/
 def copyIdx (r n : ℕ) (v : Fin r) (a : Fin n) : Fin (r * n) := finProdFinEquiv (v, a)
 
+/--
+@isnad1 id=eq.0h3v.s5.9549fbc68eb9 from=translated src=- shape=6434be99 vocab=88268910
+-/
 theorem copyIdx_surj {r n : ℕ} (x : Fin (r * n)) : copyIdx r n x.divNat x.modNat = x :=
   finProdFinEquiv.apply_symm_apply x
 
+/--
+@isnad1 id=eq.0h4v.s4.15c71f016c00 from=translated src=- shape=42de6708 vocab=8f4cd686
+-/
 @[simp] theorem divNat_copyIdx {r n : ℕ} (v : Fin r) (a : Fin n) :
     (copyIdx r n v a).divNat = v :=
   congrArg Prod.fst (finProdFinEquiv.symm_apply_apply (v, a))
 
+/--
+@isnad1 id=eq.0h4v.s4.19d99f903f24 from=translated src=- shape=986c830e vocab=293ab3c3
+-/
 @[simp] theorem modNat_copyIdx {r n : ℕ} (v : Fin r) (a : Fin n) :
     (copyIdx r n v a).modNat = a :=
   congrArg Prod.snd (finProdFinEquiv.symm_apply_apply (v, a))
 
+/--
+@isnad1 id=eq.0h4v.s7.98792e553f53 from=translated src=- shape=e91f7880 vocab=51f8c6e2
+-/
 @[simp] theorem finProdFinEquiv_symm_copyIdx {r n : ℕ} (v : Fin r) (a : Fin n) :
     finProdFinEquiv.symm (copyIdx r n v a) = (v, a) := by
   simp [copyIdx]
@@ -135,6 +161,9 @@ theorem copyIdx_surj {r n : ℕ} (x : Fin (r * n)) : copyIdx r n x.divNat x.modN
 def copiesEnum {n : ℕ} (e : ℕ →. RawWord (Fin n)) (r : ℕ) : ℕ →. RawWord (Fin (r * n)) :=
   foldEnum ((List.finRange r).map fun v => extendEnum e (copyIdx r n v) [])
 
+/--
+@isnad1 id=eq.0h3v.s8.9cc406df5798 from=translated src=- shape=7cb77d9c vocab=20657591
+-/
 theorem enumRelators_copiesEnum {n : ℕ} (e : ℕ →. RawWord (Fin n)) (r : ℕ) :
     enumRelators (copiesEnum e r) = ⋃ v, FreeGroup.map (copyIdx r n v) '' enumRelators e := by
   rw [copiesEnum, enumRelators_foldEnum]
@@ -149,12 +178,18 @@ def commRel {m : ℕ} (x y : Fin m) : RawWord (Fin m) := [(x, true), (y, true), 
 /-- `D_(i,j,k,a) = X_(k,a)⁻¹ X_(i,a) X_(j,a)` (with `x = X_(i,a)`, `y = X_(j,a)`, `z = X_(k,a)`).-/
 def diagRel {m : ℕ} (x y z : Fin m) : RawWord (Fin m) := [(z, false), (x, true), (y, true)]
 
+/--
+@isnad1 id=eq.0h3v.s5.d8bc2e3d2f68 from=translated src=- shape=3c61cca6 vocab=a8303893
+-/
 theorem eval_commRel {m : ℕ} (x y : Fin m) :
     (commRel x y).eval = ⁅FreeGroup.of x, FreeGroup.of y⁆ := by
   rw [commutatorElement_def,
     show commRel x y = [(x, true)] ++ [(y, true)] ++ [(x, false)] ++ [(y, false)] from rfl]
   simp only [RawWord.eval_append, RawWord.eval_pos, RawWord.eval_neg]
 
+/--
+@isnad1 id=eq.0h4v.s6.61e6446c8458 from=translated src=- shape=6162c99d vocab=a98c5c97
+-/
 theorem eval_diagRel {m : ℕ} (x y z : Fin m) :
     (diagRel x y z).eval = (FreeGroup.of z)⁻¹ * FreeGroup.of x * FreeGroup.of y := by
   rw [show diagRel x y z = [(z, false)] ++ [(x, true)] ++ [(y, true)] from rfl]
@@ -174,6 +209,9 @@ def tripleRels (r n : ℕ) (t : Triple) : List (RawWord (Fin (r * n))) :=
 def diagExtraRels (r n : ℕ) (T : List Triple) : List (RawWord (Fin (r * n))) :=
   T.flatMap (tripleRels r n)
 
+/--
+@isnad1 id=mem.4h6v.s7.c98982fe63d6 from=translated src=- shape=8528245e vocab=86b4e6c8
+-/
 theorem commRel_mem {r n : ℕ} {T : List Triple} {t : Triple} (ht : t ∈ T) (hi : t.1 < r)
     (hj : t.2.1 < r) (hk : t.2.2 < r) (a b : Fin n) :
     commRel (copyIdx r n ⟨t.1, hi⟩ a) (copyIdx r n ⟨t.2.1, hj⟩ b) ∈ diagExtraRels r n T := by
@@ -182,6 +220,9 @@ theorem commRel_mem {r n : ℕ} {T : List Triple} {t : Triple} (ht : t ∈ T) (h
   exact List.mem_append_left _
     (List.mem_flatMap.2 ⟨a, List.mem_finRange _, List.mem_map.2 ⟨b, List.mem_finRange _, rfl⟩⟩)
 
+/--
+@isnad1 id=mem.4h5v.s7.074b094b0599 from=translated src=- shape=5f8ae701 vocab=d0572b18
+-/
 theorem diagRel_mem {r n : ℕ} {T : List Triple} {t : Triple} (ht : t ∈ T) (hi : t.1 < r)
     (hj : t.2.1 < r) (hk : t.2.2 < r) (a : Fin n) :
     diagRel (copyIdx r n ⟨t.1, hi⟩ a) (copyIdx r n ⟨t.2.1, hj⟩ a) (copyIdx r n ⟨t.2.2, hk⟩ a) ∈
@@ -190,7 +231,9 @@ theorem diagRel_mem {r n : ℕ} {T : List Triple} {t : Triple} (ht : t ∈ T) (h
   rw [tripleRels, dite_eq_left ⟨hi, hj, hk⟩]
   exact List.mem_append_right _ (List.mem_map.2 ⟨a, List.mem_finRange _, rfl⟩)
 
-/-- Every extra relator is a `C` or a `D` word for some triple occurrence.-/
+/-- Every extra relator is a `C` or a `D` word for some triple occurrence.
+@isnad1 id=ex.1h4v.s8.9f3e3dafc70a from=translated src=- shape=29db4831 vocab=ed6714b6
+-/
 theorem mem_diagExtraRels {r n : ℕ} {T : List Triple} {w : RawWord (Fin (r * n))}
     (hw : w ∈ diagExtraRels r n T) :
     ∃ t ∈ T, ∃ (hi : t.1 < r) (hj : t.2.1 < r) (hk : t.2.2 < r),
@@ -221,7 +264,9 @@ def diagEnum {n : ℕ} (e : ℕ →. RawWord (Fin n)) (r : ℕ) (T : List Triple
     ℕ →. RawWord (Fin (r * n)) :=
   extendEnum (copiesEnum e r) id (diagExtraRels r n T)
 
-/-- **Exact relator set of the enumerated presentation.**-/
+/-- **Exact relator set of the enumerated presentation.**
+@isnad1 id=eq.0h4v.s5.14db606de1a3 from=translated src=- shape=e7e2ad7f vocab=4c062748
+-/
 theorem enumRelators_diagEnum {n : ℕ} (e : ℕ →. RawWord (Fin n)) (r : ℕ) (T : List Triple) :
     enumRelators (diagEnum e r T) = diagRelSet (enumRelators e) r T := by
   rw [diagEnum, enumRelators_extendEnum, enumRelators_copiesEnum, diagRelSet]
@@ -239,7 +284,9 @@ section Algebra
 
 variable {B H : Type*} [Group B] [Group H] {s : Set B}
 
-/-- If the images of generators commute pairwise, the full images commute.-/
+/-- If the images of generators commute pairwise, the full images commute.
+@isnad1 id=commute.2h7v.s8.acca2f82cdbc from=translated src=- shape=1f41d1fd vocab=e2dd2e56
+-/
 theorem commute_of_closure (hs : Subgroup.closure s = ⊤) (f g : B →* H)
     (h : ∀ x ∈ s, ∀ y ∈ s, Commute (f x) (g y)) : ∀ x y, Commute (f x) (g y) := by
   have h1 : ∀ x ∈ s, ∀ y, Commute (f x) (g y) := by
@@ -284,7 +331,9 @@ end Algebra
 variable {B : Type u} [Group B] {n : ℕ} {S : Set (FreeGroup (Fin n))}
 variable (ψ : PresentedGroup S ≃* B) (r : ℕ) (T : List Triple)
 
-/-- The canonical maps `ι_v` satisfy all diagram relations in `diagramGroup r T B`.-/
+/-- The canonical maps `ι_v` satisfy all diagram relations in `diagramGroup r T B`.
+@isnad1 id=and.4h4v.s10.e91589c24088 from=translated src=- shape=2f5940b1 vocab=d73e9af3
+-/
 theorem diagramGroup_ι_rel (t : Triple) (ht : t ∈ T) (hi : t.1 < r) (hj : t.2.1 < r)
     (hk : t.2.2 < r) :
     (∀ g h : B, Commute (diagramGroup.ι r T B ⟨t.1, hi⟩ g) (diagramGroup.ι r T B ⟨t.2.1, hj⟩ h)) ∧
@@ -309,6 +358,9 @@ theorem diagramGroup_ι_rel (t : Triple) (ht : t ∈ T) (hi : t.1 < r) (hj : t.2
 noncomputable def diagFwdGen (x : Fin (r * n)) : diagramGroup r T B :=
   diagramGroup.ι r T B x.divNat (ψ (PresentedGroup.of x.modNat))
 
+/--
+@isnad1 id=eq.0h8v.s11.3b3375d71e9f from=translated src=- shape=85e85eca vocab=e4a8a34a
+-/
 theorem lift_diagFwdGen_copy (v : Fin r) (x : FreeGroup (Fin n)) :
     FreeGroup.lift (diagFwdGen ψ r T) (FreeGroup.map (copyIdx r n v) x) =
       diagramGroup.ι r T B v (ψ (PresentedGroup.mk S x)) := by
@@ -332,6 +384,9 @@ noncomputable def diagFwd : PresentedGroup (diagRelSet S r T) →* diagramGroup 
         have := (hD t ht hi hj hk).2 (ψ (PresentedGroup.of a))
         simp [diagFwdGen, this, mul_assoc])
 
+/--
+@isnad1 id=eq.0h7v.s9.310057fa07d3 from=translated src=- shape=448b52e0 vocab=5193ea84
+-/
 theorem diagFwd_of (x : Fin (r * n)) :
     diagFwd ψ r T (PresentedGroup.of x) = diagFwdGen ψ r T x := by
   simp [diagFwd, PresentedGroup.toGroup.of]
@@ -352,11 +407,16 @@ noncomputable def diagVertexAux (v : Fin r) :
 noncomputable def diagVertex (v : Fin r) : B →* PresentedGroup (diagRelSet S r T) :=
   (diagVertexAux r T v).comp (ψ.symm : B →* PresentedGroup S)
 
+/--
+@isnad1 id=eq.0h8v.s9.545850938ed1 from=translated src=- shape=17d7f13a vocab=5364cd53
+-/
 theorem diagVertex_gen (v : Fin r) (a : Fin n) :
     diagVertex ψ r T v (ψ (PresentedGroup.of a)) = PresentedGroup.of (copyIdx r n v a) := by
   simp [diagVertex, diagVertexAux, PresentedGroup.toGroup.of]
 
-/-- The homomorphisms `j_v` satisfy **all** diagram relations.-/
+/-- The homomorphisms `j_v` satisfy **all** diagram relations.
+@isnad1 id=and.4h7v.s10.44915c37cb1a from=translated src=- shape=ecafb592 vocab=577b5855
+-/
 theorem diagramRelations_diagVertex (t : Triple) (ht : t ∈ T) (hi : t.1 < r) (hj : t.2.1 < r)
     (hk : t.2.2 < r) :
     (∀ g h : B, Commute (diagVertex ψ r T ⟨t.1, hi⟩ g) (diagVertex ψ r T ⟨t.2.1, hj⟩ h)) ∧
@@ -391,10 +451,16 @@ noncomputable def diagBwd : diagramGroup r T B →* PresentedGroup (diagRelSet S
     · have := (diagramRelations_diagVertex ψ r T t ht hi hj hk).2 g
       simp [ofIdx, Monoid.CoprodI.lift_of, this, mul_assoc])
 
+/--
+@isnad1 id=eq.0h8v.s9.9976f80ecf9a from=translated src=- shape=82e0ef9b vocab=e29aced8
+-/
 theorem diagBwd_ι (v : Fin r) (b : B) :
     diagBwd ψ r T (diagramGroup.ι r T B v b) = diagVertex ψ r T v b := by
   simp [diagBwd, diagramGroup.ι, ofIdx]
 
+/--
+@isnad1 id=eq.0h8v.s9.b5b4f9c483a8 from=translated src=- shape=6800985c vocab=3455d6d5
+-/
 theorem diagFwd_diagVertex (v : Fin r) (b : B) :
     diagFwd ψ r T (diagVertex ψ r T v b) = diagramGroup.ι r T B v b := by
   have : (diagFwd ψ r T).comp (diagVertex ψ r T v) = diagramGroup.ι r T B v := by
@@ -421,7 +487,9 @@ noncomputable def diagramPresentationEquiv :
       rw [← diagBwd_ι] at this
       simpa [diagramGroup.ι, ofIdx] using this)
 
-/-- Compatibility with the generators: `X_(v,a) ↦ ι_v(x_a)`.-/
+/-- Compatibility with the generators: `X_(v,a) ↦ ι_v(x_a)`.
+@isnad1 id=eq.0h8v.s10.345ffa28f2d9 from=translated src=- shape=05098aad vocab=e0339593
+-/
 theorem diagramPresentationEquiv_of (v : Fin r) (a : Fin n) :
     diagramPresentationEquiv ψ r T (PresentedGroup.of (copyIdx r n v a)) =
       diagramGroup.ι r T B v (ψ (PresentedGroup.of a)) := by

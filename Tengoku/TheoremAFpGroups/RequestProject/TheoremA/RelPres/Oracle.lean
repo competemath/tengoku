@@ -34,7 +34,9 @@ open Nat.Partrec
 
 variable {O : Set (ℕ →. ℕ)}
 
-/-- Every partial recursive function is recursive relative to any set of oracles.-/
+/-- Every partial recursive function is recursive relative to any set of oracles.
+@isnad1 id=recursiv.1h2v.s3.7a62f978b7fc from=translated src=- shape=5f01ea29 vocab=dc86868b
+-/
 theorem RecursiveIn.of_partrec {f : ℕ →. ℕ} (hf : Nat.Partrec f) : RecursiveIn O f := by
   induction hf with
   | zero => exact RecursiveIn.zero

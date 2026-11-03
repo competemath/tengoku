@@ -23,11 +23,17 @@ noncomputable def semiExt {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ : Z
   map_zero' := by simp
   map_add' x x' := by simp [add_smul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h7v.s8.0a3935ed9620 from=translated src=- shape=c1f9f4e8 vocab=527a1a91
+-/
 theorem semiExt_smul {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ : ZG B →+* ZG B)
     {n : ℕ} (y : Fin n → N) (l : ZG B) (x : FreeMod B n) :
     semiExt σ y (l • x) = σ l • semiExt σ y x := by
   simp [semiExt, Finset.smul_sum, mul_smul]
 
+/--
+@isnad1 id=eq.0h6v.s7.c0bbd0f3a1a3 from=translated src=- shape=ae54b48e vocab=46671fe3
+-/
 theorem semiExt_single {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ : ZG B →+* ZG B)
     {n : ℕ} (y : Fin n → N) (j : Fin n) : semiExt σ y (Pi.single j 1) = y j := by
   simp [semiExt, Pi.single_apply]
@@ -36,7 +42,9 @@ theorem eq_sum_single {n : ℕ} (x : FreeMod B n) :
     x = ∑ i, x i • (Pi.single i 1 : FreeMod B n) := by
   ext j; simp [Pi.single_apply]
 
-/-- Two `σ`-semilinear additive maps on `Λ^n` agreeing on the basis are equal.-/
+/-- Two `σ`-semilinear additive maps on `Λ^n` agreeing on the basis are equal.
+@isnad1 id=eq.3h6v.s10.dbaac49b3414 from=translated src=- shape=93b2c681 vocab=953e4489
+-/
 theorem semilinear_ext {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ : ZG B →+* ZG B)
     {n : ℕ} (f g : FreeMod B n →+ N) (hf : ∀ l x, f (l • x) = σ l • f x)
     (hg : ∀ l x, g (l • x) = σ l • g x) (h : ∀ j, f (Pi.single j 1) = g (Pi.single j 1)) :
@@ -45,7 +53,9 @@ theorem semilinear_ext {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ : ZG B
   rw [eq_sum_single x]
   simp [map_sum, hf, hg, h]
 
-/-- The image of a `σ`-semilinear map on `Λ^n` lies in the span of the images of the basis.-/
+/-- The image of a `σ`-semilinear map on `Λ^n` lies in the span of the images of the basis.
+@isnad1 id=mem.1h6v.s9.78c88839db88 from=translated src=- shape=ef722bfa vocab=d4d001b1
+-/
 theorem semilinear_mem_span {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ : ZG B →+* ZG B)
     {n : ℕ} (f : FreeMod B n →+ N) (hf : ∀ l x, f (l • x) = σ l • f x) (x : FreeMod B n) :
     f x ∈ Submodule.span (ZG B) (Set.range fun j => f (Pi.single j 1)) := by
@@ -58,9 +68,15 @@ theorem semilinear_mem_span {N : Type*} [AddCommGroup N] [Module (ZG B) N] (σ :
 noncomputable def augZG : ZG B →+* ℤ :=
   (MonoidAlgebra.lift ℤ ℤ B (1 : B →* ℤ)).toRingHom
 
+/--
+@isnad1 id=eq.0h3v.s6.3f2519008d38 from=translated src=- shape=383bca90 vocab=6031d7f6
+-/
 @[simp] theorem augZG_single (g : B) (n : ℤ) : augZG (MonoidAlgebra.single g n : ZG B) = n := by
   simp [augZG, MonoidAlgebra.lift_single]
 
+/--
+@isnad1 id=eq.0h3v.s7.2ee73186d812 from=translated src=- shape=4c816bbc vocab=4be3f53e
+-/
 @[simp] theorem augZG_mapDomain (θ : B →* B) (l : ZG B) :
     augZG (MonoidAlgebra.mapDomain θ l) = augZG l := by
   induction l using MonoidAlgebra.induction_linear with
@@ -68,6 +84,9 @@ noncomputable def augZG : ZG B →+* ℤ :=
   | add a b ha hb => rw [MonoidAlgebra.mapDomain_add, map_add, map_add, ha, hb]
   | single g n => simp
 
+/--
+@isnad1 id=eq.0h3v.s7.89c70120ba4f from=translated src=- shape=f2145a96 vocab=15342cb8
+-/
 theorem augZG_hat (θ : B →* B) (l : ZG B) : augZG (hat θ l) = augZG l :=
   augZG_mapDomain θ l
 
@@ -75,6 +94,9 @@ namespace Res
 
 variable {k : ℕ} (R : Res B k)
 
+/--
+@isnad1 id=eq.0h5v.s9.f882e05734ca from=translated src=- shape=f322a944 vocab=fa7d9b95
+-/
 theorem ε_smul (l : ZG B) (x : FreeMod B (R.c 0)) : R.ε (l • x) = augZG l * R.ε x := by
   induction l using MonoidAlgebra.induction_linear with
   | zero => simp
@@ -85,12 +107,18 @@ theorem ε_smul (l : ZG B) (x : FreeMod B (R.c 0)) : R.ε (l • x) = augZG l * 
       simp
     rw [this, map_zsmul, R.ε_inv]; simp
 
+/--
+@isnad1 id=eq.1h5v.s10.43000f6da59b from=translated src=- shape=8346a736 vocab=23fac33b
+-/
 theorem d_d (i : ℕ) (hi : i < k) (x : FreeMod B (R.c (i + 2))) :
     R.d i (R.d (i + 1) x) = 0 := by
   have : R.d (i + 1) x ∈ LinearMap.ker (R.d i) := by
     rw [R.exact i hi]; exact ⟨x, rfl⟩
   exact this
 
+/--
+@isnad1 id=eq.0h4v.s9.3ab82a8d3534 from=translated src=- shape=8493bffd vocab=69672c83
+-/
 theorem ε_d (x : FreeMod B (R.c 1)) : R.ε (R.d 0 x) = 0 := by
   have : R.d 0 x ∈ R.ε.ker := by
     rw [R.exact0]; exact ⟨x, rfl⟩
@@ -105,6 +133,9 @@ def PartialLift {k : ℕ} (R : Res B k) (θ : B →* B) (n : ℕ)
   (∀ x, R.ε (Φ 0 x) = R.ε x) ∧
   (∀ i, i < n → i ≤ k → ∀ x, Φ i (R.d i x) = R.d i (Φ (i + 1) x))
 
+/--
+@isnad1 id=ex.0h5v.s8.045b35e6b565 from=translated src=- shape=e57cce4f vocab=9d92dfe1
+-/
 theorem exists_partialLift {k : ℕ} (R : Res B k) (θ : B →* B) :
     ∀ n, ∃ Φ, PartialLift R θ n Φ := by
   intro n
@@ -165,7 +196,9 @@ theorem exists_partialLift {k : ℕ} (R : Res B k) (θ : B →* B) :
           exact hcomm i (by omega) hik x
     · exact ⟨Φ, hsl, haug, fun i hi hik x => hcomm i (by omega) hik x⟩
 
-/-- Chain lifts exist (§4, before Lemma 4.1).-/
+/-- Chain lifts exist (§4, before Lemma 4.1).
+@isnad1 id=ex.0h4v.s8.e2126ef695d9 from=translated src=- shape=84567ddd vocab=9e1d3a7d
+-/
 theorem exists_chainLift {k : ℕ} (R : Res B k) (θ : B →* B) : ∃ Φ, IsChainLift R θ Φ := by
   obtain ⟨Φ, hsl, haug, hcomm⟩ := exists_partialLift R θ (k + 1)
   exact ⟨Φ, ⟨hsl, fun i hi x => hcomm i (by omega) hi x, haug⟩⟩

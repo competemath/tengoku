@@ -39,11 +39,20 @@ abbrev Letter (N : ℕ) := Fin N × Bool
 /-- The inverse letter.-/
 def Letter.inv (x : Letter N) : Letter N := (x.1, !x.2)
 
+/--
+@isnad1 id=eq.0h2v.s4.229578223045 from=translated src=- shape=74de683b vocab=d5d1cd47
+-/
 @[simp] theorem Letter.inv_fst (x : Letter N) : x.inv.1 = x.1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.6b8c0b230d43 from=translated src=- shape=6ddf6d3e vocab=af5b7365
+-/
 @[simp] theorem Letter.inv_inv (x : Letter N) : x.inv.inv = x := by
   simp [Letter.inv]
 
+/--
+@isnad1 id=ne.0h2v.s3.3d01bdab3290 from=translated src=- shape=9975f974 vocab=af5b7365
+-/
 theorem Letter.inv_ne (x : Letter N) : x.inv ≠ x := by
   intro h
   have := congrArg Prod.snd h
@@ -96,8 +105,14 @@ def IsPos (p : Tup N) : Prop := ∃ w, Reduced adj w ∧ proj adj w = p
 
 variable {adj}
 
+/--
+@isnad1 id=incol.0h3v.s4.031607e57c57 from=translated src=- shape=5c0bdb95 vocab=11c54255
+-/
 theorem inCol_self (s : Fin N) : InCol adj s s s := ⟨Or.inl rfl, Or.inl rfl⟩
 
+/--
+@isnad1 id=false.3h7v.s5.c76924f2e62d from=translated src=- shape=a145ec06 vocab=77eb76ed
+-/
 theorem inCol_disjoint (hG : IsGraph adj) {u v a b : Fin N} (huv : adj u v)
     (hu : InCol adj u a b) (hv : InCol adj v a b) : False := by
   obtain ⟨hu1, hu2⟩ := hu
@@ -113,7 +128,9 @@ theorem inCol_disjoint (hG : IsGraph adj) {u v a b : Fin N} (huv : adj u v)
     · subst h1; subst h2; exact hab (hG.symm _ _ huv)
     · exact hne (h1.symm.trans h2)
 
-/-- Letters of vertices adjacent to `s` do not occur in the columns of `s`.-/
+/-- Letters of vertices adjacent to `s` do not occur in the columns of `s`.
+@isnad1 id=eq.2h7v.s6.334384ca3130 from=translated src=- shape=bc173381 vocab=adf0127f
+-/
 theorem filter_eq_nil_of_adj (hG : IsGraph adj) {B : List (Letter N)} {s a b : Fin N}
     (hc : InCol adj s a b) (hB : ∀ y ∈ B, adj s y.1) :
     B.filter (fun y => decide (y.1 = a ∨ y.1 = b)) = [] := by
@@ -136,6 +153,9 @@ theorem filter_eq_nil_of_adj (hG : IsGraph adj) {B : List (Letter N)} {s a b : F
       · exact h2 h
     · exact hG.irrefl _ h
 
+/--
+@isnad1 id=eq.0h4v.s5.82d4f0f835c4 from=translated src=- shape=87051f74 vocab=859f3ddf
+-/
 theorem proj_cons (x : Letter N) (w : List (Letter N)) :
     proj adj (x :: w) = push adj x (proj adj w) := by
   funext a b
@@ -149,9 +169,15 @@ theorem proj_cons (x : Letter N) (w : List (Letter N)) :
       simp [h, h']
   · simp [hv]
 
+/--
+@isnad1 id=eq.0h2v.s4.3015f6976ae8 from=translated src=- shape=d79b687c vocab=11178617
+-/
 theorem proj_nil : proj adj ([] : List (Letter N)) = fun _ _ => [] := by
   funext a b; simp [proj]
 
+/--
+@isnad1 id=canpop.1h6v.s6.89b46a571b77 from=translated src=- shape=96c1e4a8 vocab=6526be98
+-/
 theorem canPop_proj_of (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
     (hB : ∀ y ∈ B, adj x.1 y.1) : CanPop adj x (proj adj (B ++ x.inv :: A)) := by
   intro a b hc
@@ -161,19 +187,30 @@ theorem canPop_proj_of (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
   have : (x.1 = a ∨ x.1 = b) := hc.1.imp Eq.symm Eq.symm
   simp [this, Letter.inv]
 
+/--
+@isnad1 id=eq.1h6v.s5.155c646c916d from=translated src=- shape=89f158a9 vocab=63ca8ddb
+-/
 theorem push_eq_of_not {x : Letter N} {p : Tup N} {a b : Fin N} (h : ¬ InCol adj x.1 a b) :
     push adj x p a b = p a b := by simp [push, h]
 
+/--
+@isnad1 id=eq.1h6v.s5.e85c88504a6c from=translated src=- shape=89f158a9 vocab=25f48775
+-/
 theorem pop_eq_of_not {x : Letter N} {p : Tup N} {a b : Fin N} (h : ¬ InCol adj x.1 a b) :
     pop adj x p a b = p a b := by simp [pop, h]
 
+/--
+@isnad1 id=eq.1h6v.s5.24e412fc4a3f from=translated src=- shape=89f158a9 vocab=9e6f15b8
+-/
 theorem step_eq_of_not {x : Letter N} {p : Tup N} {a b : Fin N} (h : ¬ InCol adj x.1 a b) :
     step adj x p a b = p a b := by
   unfold step; split_ifs
   · exact pop_eq_of_not h
   · exact push_eq_of_not h
 
-/-- Decomposition when all columns of `x` have top `x⁻¹`.-/
+/-- Decomposition when all columns of `x` have top `x⁻¹`.
+@isnad1 id=ex.2h4v.s6.06fe34685b0a from=translated src=- shape=1d632035 vocab=6526be98
+-/
 theorem exists_split_of_canPop (hG : IsGraph adj) {x : Letter N} :
     ∀ {w : List (Letter N)}, CanPop adj x (proj adj w) →
       ∃ B A, w = B ++ x.inv :: A ∧ ∀ y ∈ B, adj x.1 y.1
@@ -209,6 +246,9 @@ theorem exists_split_of_canPop (hG : IsGraph adj) {x : Letter N} :
         List.head?_cons, Option.some.injEq] at this
       exact hy this
 
+/--
+@isnad1 id=eq.1h6v.s6.7e073358acb6 from=translated src=- shape=c5f1c4e3 vocab=faa14ee6
+-/
 theorem pop_proj (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
     (hB : ∀ y ∈ B, adj x.1 y.1) : pop adj x (proj adj (B ++ x.inv :: A)) = proj adj (B ++ A) := by
   funext a b
@@ -227,6 +267,9 @@ theorem pop_proj (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
       simp [h1, h2, Letter.inv]
     · rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.c06942a1f6a9 from=translated src=- shape=48f93a02 vocab=a545b220
+-/
 theorem proj_cons_comm (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
     (hB : ∀ y ∈ B, adj x.1 y.1) : proj adj (x :: (B ++ A)) = proj adj (B ++ x :: A) := by
   funext a b
@@ -242,11 +285,17 @@ theorem proj_cons_comm (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
 
 /-! ### Reducedness -/
 
+/--
+@isnad1 id=cancella.1h4v.s4.ba83f5f39f67 from=translated src=- shape=993aed54 vocab=af5d2c1f
+-/
 theorem cancellable_cons {w : List (Letter N)} (b : Letter N) (h : Cancellable adj w) :
     Cancellable adj (b :: w) := by
   obtain ⟨B, x, A₁, A₂, rfl, h⟩ := h
   exact ⟨b :: B, x, A₁, A₂, by simp, h⟩
 
+/--
+@isnad1 id=reduced.3h4v.s5.028d80bcc418 from=translated src=- shape=33b2947a vocab=488a8435
+-/
 theorem reduced_cons (hG : IsGraph adj) {x : Letter N} {w : List (Letter N)}
     (hw : Reduced adj w) (hx : ¬ CanPop adj x (proj adj w)) : Reduced adj (x :: w) := by
   rintro ⟨B, y, A₁, A₂, hB, hA⟩
@@ -258,6 +307,9 @@ theorem reduced_cons (hG : IsGraph adj) {x : Letter N} {w : List (Letter N)}
     obtain ⟨rfl, rfl⟩ := hB
     exact hw ⟨B, y, A₁, A₂, rfl, hA⟩
 
+/--
+@isnad1 id=cancella.2h6v.s6.466b46ef1ccc from=translated src=- shape=88da2a1a vocab=81fce783
+-/
 theorem cancellable_insert (hG : IsGraph adj) (z : Letter N) :
     ∀ {B A : List (Letter N)}, (∀ y ∈ B, adj z.1 y.1) → Cancellable adj (B ++ A) →
       Cancellable adj (B ++ z :: A)
@@ -296,10 +348,16 @@ theorem cancellable_insert (hG : IsGraph adj) (z : Letter N) :
       have := cancellable_insert hG z (fun y hy => hB y (by simp [hy])) ⟨B0, y, A₁, A₂, hw, hA⟩
       simpa using cancellable_cons b this
 
+/--
+@isnad1 id=reduced.2h6v.s6.9259627be1d6 from=translated src=- shape=57604e4a vocab=30453a55
+-/
 theorem reduced_erase (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
     (hB : ∀ y ∈ B, adj x.1 y.1) (hw : Reduced adj (B ++ x.inv :: A)) : Reduced adj (B ++ A) :=
   fun h => hw (cancellable_insert hG x.inv (by simpa using hB) h)
 
+/--
+@isnad1 id=not.2h6v.s6.6a6ef1f9e1f4 from=translated src=- shape=1da5930c vocab=019ac026
+-/
 theorem not_canPop_after_pop (hG : IsGraph adj) {x : Letter N} {B A : List (Letter N)}
     (hB : ∀ y ∈ B, adj x.1 y.1) (hw : Reduced adj (B ++ x.inv :: A)) :
     ¬ CanPop adj x.inv (proj adj (B ++ A)) := by
@@ -319,6 +377,9 @@ theorem not_canPop_after_pop (hG : IsGraph adj) {x : Letter N} {B A : List (Lett
 
 /-! ### The action -/
 
+/--
+@isnad1 id=ispos.2h4v.s5.13cf8aa9d333 from=translated src=- shape=8957a736 vocab=6eec79d6
+-/
 theorem isPos_step (hG : IsGraph adj) (x : Letter N) {p : Tup N} (hp : IsPos adj p) :
     IsPos adj (step adj x p) := by
   obtain ⟨w, hw, rfl⟩ := hp
@@ -328,6 +389,9 @@ theorem isPos_step (hG : IsGraph adj) (x : Letter N) {p : Tup N} (hp : IsPos adj
     exact ⟨B ++ A, reduced_erase hG hB hw, (pop_proj hG hB).symm⟩
   · exact ⟨x :: w, reduced_cons hG hw h, proj_cons x w⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.8a864333a28c from=translated src=- shape=f732ccd4 vocab=fa29e045
+-/
 theorem step_inv_step (hG : IsGraph adj) (x : Letter N) {p : Tup N} (hp : IsPos adj p) :
     step adj x.inv (step adj x p) = p := by
   by_cases h : CanPop adj x p
@@ -348,6 +412,9 @@ theorem step_inv_step (hG : IsGraph adj) (x : Letter N) {p : Tup N} (hp : IsPos 
     · simp [pop, push, hc']
     · simp [pop, push, hc']
 
+/--
+@isnad1 id=eq.1h6v.s5.688cf3968831 from=translated src=- shape=ce9e24cb vocab=af7991ec
+-/
 theorem step_comm (hG : IsGraph adj) {x y : Letter N} (hxy : adj x.1 y.1) (p : Tup N) :
     step adj x (step adj y p) = step adj y (step adj x p) := by
   have hx : ∀ q : Tup N, CanPop adj x (step adj y q) ↔ CanPop adj x q := by
@@ -380,6 +447,9 @@ variable (adj) in
 /-- Positions: projections of reduced words.-/
 def Pos := {p : Tup N // IsPos adj p}
 
+/--
+@isnad1 id=reduced.0h2v.s4.1fa7208b9621 from=translated src=- shape=202baa46 vocab=6012d93f
+-/
 theorem reduced_nil : Reduced adj ([] : List (Letter N)) := by
   rintro ⟨B, x, A₁, A₂, h, -⟩
   simp at h
@@ -395,12 +465,21 @@ noncomputable def gen (hG : IsGraph adj) (v : Fin N) : Equiv.Perm (Pos adj) wher
   left_inv p := Subtype.ext (step_inv_step hG (v, true) p.2)
   right_inv p := Subtype.ext (step_inv_step hG (v, false) p.2)
 
+/--
+@isnad1 id=eq.1h4v.s6.3f9805e94ea6 from=translated src=- shape=ba5ab765 vocab=4ec9be72
+-/
 theorem gen_apply (hG : IsGraph adj) (v : Fin N) (p : Pos adj) :
     (gen hG v p).1 = step adj (v, true) p.1 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.740252f7fbd9 from=translated src=- shape=2122ad2c vocab=6090c0f6
+-/
 theorem gen_inv_apply (hG : IsGraph adj) (v : Fin N) (p : Pos adj) :
     ((gen hG v)⁻¹ p).1 = step adj (v, false) p.1 := rfl
 
+/--
+@isnad1 id=commute.1h5v.s5.d673f7ac335a from=translated src=- shape=19c6cd5e vocab=0f2135db
+-/
 theorem gen_commute (hG : IsGraph adj) {u v : Fin N} (h : adj u v) :
     Commute (gen hG u) (gen hG v) := by
   refine Equiv.ext fun p => Subtype.ext ?_
@@ -418,6 +497,9 @@ def Ivert (p : Tup N) : Set (Fin N) :=
 noncomputable def rest (K : Finset (Fin N)) (p : Tup N) : Tup N := fun a b =>
   (p a b).dropWhile (fun x => decide (x.1 ∈ K))
 
+/--
+@isnad1 id=eq.1h5v.s5.3fd5f8dd80bf from=translated src=- shape=182fc251 vocab=7258a048
+-/
 theorem rest_step {K : Finset (Fin N)} {x : Letter N} (hx : x.1 ∈ K) (p : Tup N) :
     rest K (step adj x p) = rest K p := by
   funext a b
@@ -448,17 +530,26 @@ noncomputable def restSub (K : Finset (Fin N)) : Subgroup (Equiv.Perm (Pos adj))
     intro g hg p
     simpa using (hg (g⁻¹ p)).symm
 
+/--
+@isnad1 id=le.1h3v.s6.17093e89b390 from=translated src=- shape=abb8ec0a vocab=8940db23
+-/
 theorem closure_le_restSub (hG : IsGraph adj) (K : Finset (Fin N)) :
     Subgroup.closure (gen hG '' (K : Set (Fin N))) ≤ restSub adj K := by
   rw [Subgroup.closure_le]
   rintro _ ⟨v, hv, rfl⟩ p
   exact rest_step (x := (v, true)) hv p.1
 
+/--
+@isnad1 id=eq.2h5v.s7.d7bc0cc01d54 from=translated src=- shape=8d30186b vocab=72551e50
+-/
 theorem rest_of_mem_closure (hG : IsGraph adj) {K : Finset (Fin N)} {g : Equiv.Perm (Pos adj)}
     (hg : g ∈ Subgroup.closure (gen hG '' (K : Set (Fin N)))) (p : Pos adj) :
     rest K (g p).1 = rest K p.1 :=
   closure_le_restSub hG K hg p
 
+/--
+@isnad1 id=eq.2h4v.s5.c5e3797ec8f8 from=translated src=- shape=39013f53 vocab=32a21fc8
+-/
 theorem getLast?_dropWhile_of {P : Letter N → Bool} :
     ∀ {l : List (Letter N)} {y : Letter N}, l.getLast? = some y → P y = false →
       (l.dropWhile P).getLast? = some y
@@ -472,6 +563,9 @@ theorem getLast?_dropWhile_of {P : Letter N → Bool} :
       · exact getLast?_dropWhile_of (by simpa [List.getLast?_cons] using h) hy
     · exact h
 
+/--
+@isnad1 id=eq.1h4v.s5.6ded83357fb5 from=translated src=- shape=93c5214f vocab=900a48d4
+-/
 theorem getLast?_of_dropWhile {P : Letter N → Bool} :
     ∀ {l : List (Letter N)} {y : Letter N}, (l.dropWhile P).getLast? = some y → l.getLast? = some y
   | [], y, h => by simp at h
@@ -485,7 +579,9 @@ theorem getLast?_of_dropWhile {P : Letter N → Bool} :
     · exact h
 
 /-- **Clique lemma.**  If `rest K p = rest K q` and `K` is a clique, then last-letter vertices of `p`
-and of `q` are equal or adjacent.-/
+and of `q` are equal or adjacent.
+@isnad1 id=or.4h7v.s7.3c4a7c294de0 from=translated src=- shape=a00a9ffa vocab=b327be47
+-/
 theorem ivert_adj_of_rest_eq {K : Finset (Fin N)} (hK : ∀ u ∈ K, ∀ v ∈ K, u = v ∨ adj u v)
     {p q : Tup N} (h : rest K p = rest K q) {s t : Fin N} (hs : s ∈ Ivert adj p)
     (ht : t ∈ Ivert adj q) : s = t ∨ adj s t := by
@@ -518,7 +614,9 @@ theorem ivert_adj_of_rest_eq {K : Finset (Fin N)} (hK : ∀ u ∈ K, ∀ v ∈ K
     simp only [Option.some.injEq, Prod.mk.injEq] at h2
     exact hne h2.1.symm
 
-/-- If all columns of `p` consist of letters of `v`, then `Ivert p ⊆ {v}`.-/
+/-- If all columns of `p` consist of letters of `v`, then `Ivert p ⊆ {v}`.
+@isnad1 id=eq.2h5v.s6.5b75783b93b8 from=translated src=- shape=b0ef27b5 vocab=19477ccb
+-/
 theorem ivert_subset_of_rest_nil {v : Fin N} {p : Tup N}
     (h : rest {v} p = fun _ _ => []) {s : Fin N} (hs : s ∈ Ivert adj p) : s = v := by
   obtain ⟨e, hs⟩ := hs
@@ -528,6 +626,9 @@ theorem ivert_subset_of_rest_nil {v : Fin N} {p : Tup N}
   have hm : (s, e) ∈ p s s := List.mem_of_getLast? h1
   exact h2 _ hm
 
+/--
+@isnad1 id=eq.0h3v.s5.c00bfdac037c from=translated src=- shape=052c79a5 vocab=4ac635bc
+-/
 theorem rest_proj_nil (K : Finset (Fin N)) : rest K (proj adj []) = fun _ _ => [] := by
   funext a b; simp [rest, proj]
 
@@ -542,6 +643,9 @@ def colSum (l : List (Letter N)) : ℤ := (l.map sgn).sum
 /-- The height: total exponent sum, read off the diagonal columns.-/
 noncomputable def height (p : Tup N) : ℤ := ∑ s : Fin N, colSum (p s s)
 
+/--
+@isnad1 id=eq.0h4v.s5.02ab1dfe4ed6 from=translated src=- shape=792250fc vocab=80ecccc5
+-/
 theorem height_step (x : Letter N) (p : Tup N) : height (step adj x p) = height p + sgn x := by
   have key : ∀ s, colSum (step adj x p s s) = colSum (p s s) + if s = x.1 then sgn x else 0 := by
     intro s
@@ -566,17 +670,29 @@ theorem height_step (x : Letter N) (p : Tup N) : height (step adj x p) = height 
       simp [step_eq_of_not hc, hs]
   simp only [height, key, Finset.sum_add_distrib, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.0h2v.s4.dd55df2fb7c5 from=translated src=- shape=4b50ae68 vocab=241d990d
+-/
 theorem height_proj_nil : height (proj adj ([] : List (Letter N))) = 0 := by
   simp [height, proj, colSum]
 
+/--
+@isnad1 id=eq.1h4v.s6.2990e6273762 from=translated src=- shape=48b9100e vocab=2d1530bc
+-/
 theorem height_gen (hG : IsGraph adj) (v : Fin N) (p : Pos adj) :
     height (gen hG v p).1 = height p.1 + 1 := by
   rw [gen_apply, height_step]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.353369393076 from=translated src=- shape=ce3fa792 vocab=c0241510
+-/
 theorem height_gen_inv (hG : IsGraph adj) (v : Fin N) (p : Pos adj) :
     height ((gen hG v)⁻¹ p).1 = height p.1 - 1 := by
   rw [gen_inv_apply, height_step]; simp [sgn]; ring
 
+/--
+@isnad1 id=eq.1h5v.s7.20d6ed8e1e40 from=translated src=- shape=5bf1adf1 vocab=9cf35731
+-/
 theorem height_gen_zpow (hG : IsGraph adj) (v : Fin N) (k : ℤ) (p : Pos adj) :
     height ((gen hG v ^ k) p).1 = height p.1 + k := by
   induction k using Int.induction_on generalizing p with
@@ -586,7 +702,9 @@ theorem height_gen_zpow (hG : IsGraph adj) (v : Fin N) (k : ℤ) (p : Pos adj) :
   | pred k ih =>
     rw [zpow_sub_one, Equiv.Perm.mul_apply, ih, height_gen_inv]; ring
 
-/-- A position of nonzero height has a last letter.-/
+/-- A position of nonzero height has a last letter.
+@isnad1 id=nonempty.2h3v.s5.5220d8df98ff from=translated src=- shape=461df00b vocab=fa10dddd
+-/
 theorem ivert_nonempty {p : Tup N} (hp : IsPos adj p) (hh : height p ≠ 0) :
     (Ivert adj p).Nonempty := by
   obtain ⟨w, -, rfl⟩ := hp

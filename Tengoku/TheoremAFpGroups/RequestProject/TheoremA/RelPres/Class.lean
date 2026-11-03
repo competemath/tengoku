@@ -46,30 +46,52 @@ def inv (w : RawWord A) : RawWord A := (w.map fun p => (p.1, !p.2)).reverse
 /-- Renaming along an alphabet map.-/
 def rename (f : A → A') (w : RawWord A) : RawWord A' := w.map fun p => (f p.1, p.2)
 
+/--
+@isnad1 id=eq.0h1v.s4.03a46b4e06a8 from=translated src=- shape=3db1e86a vocab=7578dc45
+-/
 @[simp] theorem eval_nil : eval ([] : RawWord A) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.30b91aae5a26 from=translated src=- shape=4d45420e vocab=330bfb10
+-/
 @[simp] theorem eval_append (v w : RawWord A) : eval (v ++ w) = eval v * eval w :=
   FreeGroup.mul_mk.symm
 
+/--
+@isnad1 id=eq.0h2v.s4.64326d90aa75 from=translated src=- shape=663936d3 vocab=834300a2
+-/
 @[simp] theorem eval_pos (a : A) : eval [(a, true)] = FreeGroup.of a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.102e08f43672 from=translated src=- shape=a2a045b3 vocab=d7b7cb49
+-/
 @[simp] theorem eval_neg (a : A) : eval [(a, false)] = (FreeGroup.of a)⁻¹ := by
   simp [eval, FreeGroup.of, FreeGroup.inv_mk, FreeGroup.invRev]
 
+/--
+@isnad1 id=eq.0h2v.s4.07ec72689676 from=translated src=- shape=af983816 vocab=3e458ee8
+-/
 @[simp] theorem eval_inv (w : RawWord A) : eval (inv w) = (eval w)⁻¹ := by
   simp only [eval, FreeGroup.inv_mk, FreeGroup.invRev, inv]
 
+/--
+@isnad1 id=eq.0h4v.s6.ce0df5edf300 from=translated src=- shape=26149876 vocab=7c181277
+-/
 @[simp] theorem eval_rename (f : A → A') (w : RawWord A) :
     eval (rename f w) = FreeGroup.map f (eval w) := by
   simp only [eval, rename, FreeGroup.map.mk]
 
-/-- Every free-group element is represented by a raw word.-/
+/-- Every free-group element is represented by a raw word.
+@isnad1 id=surjecti.0h1v.s3.7bf56d8f587f from=translated src=- shape=fc766b23 vocab=298a5324
+-/
 theorem eval_surjective : Function.Surjective (eval : RawWord A → FreeGroup A) := by
   intro x
   induction x using Quot.ind with
   | mk w => exact ⟨w, rfl⟩
 
-/-- Renaming along any map between finite alphabets is primitive recursive.-/
+/-- Renaming along any map between finite alphabets is primitive recursive.
+@isnad1 id=primrec.0h3v.s5.67b7b0a3e5e2 from=translated src=- shape=1f22ccfb vocab=4bd2a369
+-/
 theorem primrec_rename {n m : ℕ} (f : Fin n → Fin m) :
     Primrec (rename f : RawWord (Fin n) → RawWord (Fin m)) :=
   Primrec.list_map Primrec.id
@@ -104,17 +126,24 @@ def ClassCR (R : Set ℕ) (B : Type u) [Group B] : Prop :=
 
 variable {R : Set ℕ}
 
-/-- `C_R` is invariant under group isomorphism.-/
+/-- `C_R` is invariant under group isomorphism.
+@isnad1 id=classcr.1h4v.s5.fa457f9f78a4 from=translated src=- shape=48bae4f6 vocab=ff39e224
+-/
 theorem ClassCR.of_mulEquiv {B B' : Type u} [Group B] [Group B'] (h : ClassCR R B)
     (f : B ≃* B') : ClassCR R B' := by
   obtain ⟨n, e, he, ⟨ψ⟩⟩ := h
   exact ⟨n, e, he, ⟨ψ.trans f⟩⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.dcaba1bf809d from=translated src=- shape=af0172bd vocab=ff39e224
+-/
 theorem ClassCR.congr {B B' : Type u} [Group B] [Group B'] (f : B ≃* B') :
     ClassCR R B ↔ ClassCR R B' :=
   ⟨fun h => h.of_mulEquiv f, fun h => h.of_mulEquiv f.symm⟩
 
-/-- The images of the displayed generators generate the group.-/
+/-- The images of the displayed generators generate the group.
+@isnad1 id=eq.0h4v.s7.4ade3e2a3b4f from=translated src=- shape=84ef4972 vocab=ae2b1e10
+-/
 theorem closure_range_presentation {n : ℕ} {S : Set (FreeGroup (Fin n))} {B : Type*} [Group B]
     (ψ : PresentedGroup S ≃* B) :
     Subgroup.closure (Set.range fun i => ψ (PresentedGroup.of i)) = ⊤ := by
@@ -124,13 +153,17 @@ theorem closure_range_presentation {n : ℕ} {S : Set (FreeGroup (Fin n))} {B : 
     Subgroup.map_top_of_surjective _ ψ.surjective] at h
   exact h
 
-/-- Members of `C_R` are finitely generated.-/
+/-- Members of `C_R` are finitely generated.
+@isnad1 id=fg.1h2v.s4.f5148f30157b from=translated src=- shape=53f902a1 vocab=d1b67933
+-/
 theorem ClassCR.fg {B : Type u} [Group B] (h : ClassCR R B) : Group.FG B := by
   obtain ⟨n, e, -, ⟨ψ⟩⟩ := h
   rw [Group.fg_iff]
   exact ⟨_, closure_range_presentation ψ, Set.finite_range _⟩
 
-/-- Members of `C_R` are countable.-/
+/-- Members of `C_R` are countable.
+@isnad1 id=countabl.1h2v.s3.04687f990f33 from=translated src=- shape=53f902a1 vocab=a321e1d9
+-/
 theorem ClassCR.countable {B : Type u} [Group B] (h : ClassCR R B) : Countable B := by
   obtain ⟨n, e, -, ⟨ψ⟩⟩ := h
   have : Countable (PresentedGroup (enumRelators e)) :=
@@ -146,6 +179,9 @@ def extendEnum {n m : ℕ} (e : ℕ →. RawWord (Fin n)) (ρ : Fin n → Fin m)
     (hs : List (RawWord (Fin m))) : ℕ →. RawWord (Fin m) := fun k =>
   bif k.bodd then (hs[k.div2]? : Part (RawWord (Fin m))) else (e k.div2).map (RawWord.rename ρ)
 
+/--
+@isnad1 id=iff.0h6v.s6.84431a98e5ce from=translated src=- shape=60d23089 vocab=ce710fc8
+-/
 theorem mem_extendEnum_iff {n m : ℕ} (e : ℕ →. RawWord (Fin n)) (ρ : Fin n → Fin m)
     (hs : List (RawWord (Fin m))) (w : RawWord (Fin m)) :
     (∃ k, w ∈ extendEnum e ρ hs k) ↔ (∃ k, ∃ v ∈ e k, RawWord.rename ρ v = w) ∨ w ∈ hs := by
@@ -168,7 +204,9 @@ theorem mem_extendEnum_iff {n m : ℕ} (e : ℕ →. RawWord (Fin n)) (ρ : Fin 
       rw [List.getElem?_eq_getElem hi]
       exact Part.mem_some _
 
-/-- **Range of the extended enumerator.**-/
+/-- **Range of the extended enumerator.**
+@isnad1 id=eq.0h5v.s7.feb7ec16c1b0 from=translated src=- shape=dbf3fe9a vocab=8027c8f1
+-/
 theorem enumRelators_extendEnum {n m : ℕ} (e : ℕ →. RawWord (Fin n)) (ρ : Fin n → Fin m)
     (hs : List (RawWord (Fin m))) :
     enumRelators (extendEnum e ρ hs) =
@@ -186,7 +224,9 @@ theorem enumRelators_extendEnum {n m : ℕ} (e : ℕ →. RawWord (Fin n)) (ρ :
       exact ⟨k', w, hk', rfl⟩
 
 /-- A fixed finite table of raw words is computable (as a partial function `ℕ →. ℕ` of
-codes, diverging beyond the table).-/
+codes, diverging beyond the table).
+@isnad1 id=partrec.0h2v.s6.d9ffddf43d96 from=translated src=- shape=33acdc57 vocab=ea6913cb
+-/
 theorem partrec_table {m : ℕ} (hs : List (RawWord (Fin m))) :
     Nat.Partrec fun k => ((hs[k]?).map Encodable.encode : Part ℕ) := by
   apply Partrec.nat_iff.1

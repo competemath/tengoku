@@ -36,20 +36,35 @@ variable {G : Type*} [Group G] {A B : Subgroup G} (φ : A ≃* B)
 def wprod (h : G) (l : List (ℤˣ × G)) : HNNExtension G A B φ :=
   of h * (l.map fun x => t ^ (x.1 : ℤ) * of x.2).prod
 
+/--
+@isnad1 id=eq.0h5v.s7.3484eba06591 from=translated src=- shape=18f8c192 vocab=12378a52
+-/
 theorem wprod_nil (h : G) : wprod φ h [] = of h := by simp [wprod]
 
+/--
+@isnad1 id=eq.0h7v.s9.4a71db5a2153 from=translated src=- shape=79b7dd1f vocab=44b1d6f6
+-/
 theorem wprod_cons (h : G) (x : ℤˣ × G) (l : List (ℤˣ × G)) :
     wprod φ h (x :: l) = of h * (t ^ (x.1 : ℤ) * of x.2) * wprod φ 1 l := by
   simp [wprod, mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s7.c97cb7565b83 from=translated src=- shape=77d92855 vocab=2ba30531
+-/
 theorem wprod_append (h : G) (l₁ l₂ : List (ℤˣ × G)) :
     wprod φ h (l₁ ++ l₂) = wprod φ h l₁ * wprod φ 1 l₂ := by
   simp [wprod, mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s8.1f39908b311a from=translated src=- shape=d3dc7277 vocab=27310262
+-/
 theorem of_mul_wprod (k h : G) (l : List (ℤˣ × G)) :
     (of k : HNNExtension G A B φ) * wprod φ h l = wprod φ (k * h) l := by
   simp [wprod, mul_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s8.c20ba82a34fd from=translated src=- shape=4b2089eb vocab=a6a64de4
+-/
 theorem wprod_concat_mul_of (h : G) (L : List (ℤˣ × G)) (b : ℤˣ × G) (k : G) :
     wprod φ h (L ++ [b]) * of k = wprod φ h (L ++ [(b.1, b.2 * k)]) := by
   simp [wprod, mul_assoc]
@@ -60,11 +75,16 @@ theorem eq_nil_or_append_singleton {α : Type*} (l : List α) :
   · exact Or.inl h
   · exact Or.inr ⟨L, b, by simp [h]⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.65f3d22ae5c6 from=translated src=- shape=7955b2c5 vocab=a77579e7
+-/
 theorem units_eq_neg_of_ne {u v : ℤˣ} (h : u ≠ v) : v = -u := by
   rcases Int.units_eq_one_or u with rfl | rfl <;> rcases Int.units_eq_one_or v with rfl | rfl <;>
     simp_all
 
-/-- Absence of pinches gives Mathlib's chain condition for reduced words.-/
+/-- Absence of pinches gives Mathlib's chain condition for reduced words.
+@isnad1 id=ischain.1h4v.s7.0f3de6b8e59e from=translated src=- shape=db82bc1c vocab=619e924f
+-/
 theorem isChain_of_no_pinch : ∀ (l : List (ℤˣ × G)),
     (∀ l₁ u g g' l₂, l = l₁ ++ (u, g) :: (-u, g') :: l₂ → g ∉ toSubgroup A B u) →
     l.IsChain (fun a b => a.2 ∈ toSubgroup A B a.1 → a.1 = b.1)
@@ -78,7 +98,9 @@ theorem isChain_of_no_pinch : ∀ (l : List (ℤˣ × G)),
       exact H [] a.1 a.2 b.2 l (by rw [← hb]; rfl) ha
     · exact H (a :: l₁) u g g' l₂ (by rw [h]; rfl)
 
-/-- **Britton's lemma, pinch form.**-/
+/-- **Britton's lemma, pinch form.**
+@isnad1 id=ex.2h6v.s8.67e5fa727850 from=translated src=- shape=34465ec8 vocab=de61ada7
+-/
 theorem exists_pinch {h : G} {l : List (ℤˣ × G)} (hl : l ≠ [])
     (hr : wprod φ h l ∈ (of : G →* HNNExtension G A B φ).range) :
     ∃ l₁ u g g' l₂, l = l₁ ++ (u, g) :: (-u, g') :: l₂ ∧ g ∈ toSubgroup A B u := by
@@ -87,14 +109,18 @@ theorem exists_pinch {h : G} {l : List (ℤˣ × G)} (hl : l ≠ [])
   have hc := isChain_of_no_pinch l hne
   exact hl (ReducedWord.toList_eq_nil_of_mem_of_range φ ⟨h, l, hc⟩ hr)
 
-/-- Every element is the product of a reduced word.-/
+/-- Every element is the product of a reduced word.
+@isnad1 id=ex.0h5v.s7.a9a63187c652 from=translated src=- shape=3aa0d3a6 vocab=0b1c00be
+-/
 theorem exists_wprod (x : HNNExtension G A B φ) : ∃ h l, wprod φ h l = x ∧
     l.IsChain (fun a b => a.2 ∈ toSubgroup A B a.1 → a.1 = b.1) := by
   obtain ⟨d⟩ := TransversalPair.nonempty G A B
   exact ⟨((NormalWord.equiv φ d) x).head, ((NormalWord.equiv φ d) x).toList,
     (NormalWord.equiv φ d).symm_apply_apply x, ((NormalWord.equiv φ d) x).chain⟩
 
-/-- Evaluation of a pinch.-/
+/-- Evaluation of a pinch.
+@isnad1 id=or.1h6v.s10.92d9e90d9d05 from=translated src=- shape=82c6a51d vocab=d0e7a6c9
+-/
 theorem pinch_eq (u : ℤˣ) (g : G) (hg : g ∈ toSubgroup A B u) :
     ((u = 1 ∧ ∃ h : g ∈ A, (t ^ (u : ℤ) * of g * t ^ ((-u : ℤˣ) : ℤ) : HNNExtension G A B φ) =
         of (φ ⟨g, h⟩ : G)) ∨
@@ -104,7 +130,9 @@ theorem pinch_eq (u : ℤˣ) (g : G) (hg : g ∈ toSubgroup A B u) :
   · exact Or.inl ⟨rfl, hg, by simpa using (equiv_eq_conj (φ := φ) ⟨g, hg⟩).symm⟩
   · exact Or.inr ⟨rfl, hg, by simpa using (equiv_symm_eq_conj (φ := φ) ⟨g, hg⟩).symm⟩
 
-/-- **Abstract reduction principle.**-/
+/-- **Abstract reduction principle.**
+@isnad1 id=ex.3h9v.s9.b4c38c58d777 from=translated src=- shape=3d8bf3f5 vocab=0cd33e01
+-/
 theorem exists_mem_of_reduce (W₀ : Subgroup G) (Good : G → List (ℤˣ × G) → Prop)
     (hnil : ∀ h, Good h [] → h ∈ W₀)
     (hred : ∀ h l₁ u g g' l₂, Good h (l₁ ++ (u, g) :: (-u, g') :: l₂) → g ∈ toSubgroup A B u →
@@ -123,7 +151,9 @@ theorem exists_mem_of_reduce (W₀ : Subgroup G) (Good : G → List (ℤˣ × G)
     obtain ⟨w, hw, hweq⟩ := ih l'.length (hlen ▸ hlt) h' l' rfl hg' (heq ▸ hr)
     exact ⟨w, hw, hweq.trans heq⟩
 
-/-- Reduction of a pinch for words with entries in `W₀`.-/
+/-- Reduction of a pinch for words with entries in `W₀`.
+@isnad1 id=eq.1h11v.s9.a8ea4a66ac17 from=translated src=- shape=4a036ee8 vocab=b734dbef
+-/
 theorem wprod_pinch (h : G) (l₁ : List (ℤˣ × G)) (u : ℤˣ) (g g' : G) (l₂ : List (ℤˣ × G))
     (k : G) (hk : (t ^ (u : ℤ) * of g * t ^ ((-u : ℤˣ) : ℤ) : HNNExtension G A B φ) = of k) :
     wprod φ h (l₁ ++ (u, g) :: (-u, g') :: l₂) = wprod φ h l₁ * of (k * g') * wprod φ 1 l₂ := by
@@ -131,7 +161,9 @@ theorem wprod_pinch (h : G) (l₁ : List (ℤˣ × G)) (u : ℤˣ) (g g' : G) (l
   simp [mul_assoc]
 
 /-- **Invariant subgroups.**  If `φ(W₀ ∩ A) ⊆ W₀` and `φ⁻¹(W₀ ∩ B) ⊆ W₀` then every element of
-`⟨W₀, t⟩` lying in the base lies in `W₀`.-/
+`⟨W₀, t⟩` lying in the base lies in `W₀`.
+@isnad1 id=ex.4h6v.s10.500ca13869bb from=translated src=- shape=3f60be51 vocab=fb8b5cac
+-/
 theorem mem_of_mem_closure_invariant (W₀ : Subgroup G)
     (hA : ∀ a : A, (a : G) ∈ W₀ → (φ a : G) ∈ W₀)
     (hB : ∀ b : B, (b : G) ∈ W₀ → (φ.symm b : G) ∈ W₀) (x : HNNExtension G A B φ)
@@ -194,18 +226,30 @@ def pairList (m : List (G × G)) : List (ℤˣ × G) :=
   m.flatMap fun p => [((1 : ℤˣ), p.1), ((-1 : ℤˣ), p.2)]
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h1v.s4.824cf548ee1d from=translated src=- shape=bd0d65b6 vocab=451abe12
+-/
 theorem pairList_nil : pairList ([] : List (G × G)) = [] := rfl
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h3v.s6.5cdfad38291b from=translated src=- shape=25b6e432 vocab=c2d9169b
+-/
 theorem pairList_cons (p : G × G) (m : List (G × G)) :
     pairList (p :: m) = ((1 : ℤˣ), p.1) :: ((-1 : ℤˣ), p.2) :: pairList m := rfl
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h3v.s6.4e2bdff5486c from=translated src=- shape=2110e5ec vocab=75c74c88
+-/
 theorem pairList_append (m₁ m₂ : List (G × G)) :
     pairList (m₁ ++ m₂) = pairList m₁ ++ pairList m₂ := by
   simp [pairList]
 
 omit [Group G] in
+/--
+@isnad1 id=or.1h6v.s9.4a8bb1abb6a5 from=translated src=- shape=6b78246e vocab=ba5abf9a
+-/
 theorem pairList_decomp : ∀ (m : List (G × G)) (l₁ l₂ : List (ℤˣ × G)) (a b : ℤˣ × G),
     pairList m = l₁ ++ a :: b :: l₂ →
     (∃ m₁ p m₂, m = m₁ ++ p :: m₂ ∧ l₁ = pairList m₁ ∧ a = (1, p.1) ∧ b = (-1, p.2) ∧
@@ -238,10 +282,15 @@ theorem pairList_decomp : ∀ (m : List (G × G)) (l₁ l₂ : List (ℤˣ × G)
     · exact Or.inl ⟨p :: m₁, q, m₂, rfl, rfl, rfl, rfl, rfl⟩
     · exact Or.inr ⟨p :: m₁, q, r, m₂, rfl, rfl, rfl, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.b21722a22e57 from=translated src=- shape=5c2bae4c vocab=13a136c6
+-/
 theorem toSubgroup_self (u : ℤˣ) : toSubgroup V V u = V := by
   unfold toSubgroup; split_ifs <;> rfl
 
-/-- In the HNN extension centralizing `V`, the stable letter commutes with `V`.-/
+/-- In the HNN extension centralizing `V`, the stable letter commutes with `V`.
+@isnad1 id=eq.1h4v.s10.bc1210d4428e from=translated src=- shape=7b3078ba vocab=7b2d4dfe
+-/
 theorem conj_centralizing (u : ℤˣ) (g : G) (hg : g ∈ V) :
     (t ^ (u : ℤ) * of g * t ^ ((-u : ℤˣ) : ℤ) : HNNExtension G V V (MulEquiv.refl V)) = of g := by
   rcases pinch_eq (MulEquiv.refl V) u g (by rw [toSubgroup_self]; exact hg) with
@@ -249,7 +298,9 @@ theorem conj_centralizing (u : ℤˣ) (g : G) (hg : g ∈ V) :
 
 /-- **Centralizing join lemma.**  In the HNN extension of `G` centralizing `V`, if
 `X ⊓ V ≤ W₀` and `W₀ ⊓ V ≤ X`, then every element of `⟨W₀, t X t⁻¹⟩` lying in the base lies
-in `W₀`.-/
+in `W₀`.
+@isnad1 id=ex.4h5v.s11.0599e92628c4 from=translated src=- shape=4eee5bd9 vocab=df28f7f2
+-/
 theorem mem_of_mem_closure_centralizing (X W₀ : Subgroup G) (hXV : X ⊓ V ≤ W₀)
     (hWV : W₀ ⊓ V ≤ X) (x : HNNExtension G V V (MulEquiv.refl V))
     (hx : x ∈ Subgroup.closure ((of '' (W₀ : Set G)) ∪
@@ -353,12 +404,21 @@ noncomputable def hnnMap : HNNExtension G A B φ →* HNNExtension G' A' B' φ' 
     simp only [MonoidHom.coe_comp, Function.comp_apply]
     rw [this, hφ])
 
+/--
+@isnad1 id=eq.2h10v.s10.34f8f2569954 from=translated src=- shape=8c654f0b vocab=2c39ea1b
+-/
 theorem hnnMap_of (g : G) : hnnMap φ φ' f hfA hφ (of g) = of (f g) := by
   simp [hnnMap]
 
+/--
+@isnad1 id=eq.2h9v.s10.a7bb90a052b3 from=translated src=- shape=358252dc vocab=621f9a44
+-/
 theorem hnnMap_t : hnnMap φ φ' f hfA hφ t = t := by
   simp [hnnMap]
 
+/--
+@isnad1 id=eq.2h11v.s10.0be1fb3fa1ca from=translated src=- shape=71ad55b1 vocab=bb71c5aa
+-/
 theorem hnnMap_wprod (h : G) (l : List (ℤˣ × G)) :
     hnnMap φ φ' f hfA hφ (wprod φ h l) = wprod φ' (f h) (l.map fun p => (p.1, f p.2)) := by
   simp only [wprod, map_mul, hnnMap_of, map_list_prod, List.map_map]
@@ -368,7 +428,9 @@ theorem hnnMap_wprod (h : G) (l : List (ℤˣ × G)) :
   simp [hnnMap_of, hnnMap_t]
 
 /-- **Functoriality of HNN extensions**: injective when `f` is injective and
-`f⁻¹(A') ⊆ A`, `f⁻¹(B') ⊆ B`.-/
+`f⁻¹(A') ⊆ A`, `f⁻¹(B') ⊆ B`.
+@isnad1 id=injectiv.5h9v.s10.b799e4f87c5b from=translated src=- shape=f2e99c4f vocab=d9f0c196
+-/
 theorem hnnMap_injective (hf : Function.Injective f) (hA' : ∀ g, f g ∈ A' → g ∈ A)
     (hB' : ∀ g, f g ∈ B' → g ∈ B) : Function.Injective (hnnMap φ φ' f hfA hφ) := by
   rw [injective_iff_map_eq_one]

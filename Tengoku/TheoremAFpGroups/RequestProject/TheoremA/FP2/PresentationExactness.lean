@@ -34,7 +34,9 @@ variable {n : ℕ} (S : Set (FreeGroup (Fin n)))
 /-- The canonical generators of `PresentedGroup S`.-/
 abbrev presGens : Fin n → PresentedGroup S := PresentedGroup.of
 
-/-- `FreeGroup.lift` of the canonical generators is the canonical projection.-/
+/-- `FreeGroup.lift` of the canonical generators is the canonical projection.
+@isnad1 id=eq.0h2v.s8.6a833c98254e from=translated src=- shape=115d7f30 vocab=b547bbce
+-/
 theorem lift_presGens : FreeGroup.lift (presGens S) = PresentedGroup.mk S := by
   ext i; rfl
 
@@ -46,7 +48,9 @@ noncomputable abbrev relBoundary (r : FreeGroup (Fin n)) : FreeMod (PresentedGro
 noncomputable def relatorSpan : Submodule (ZG (PresentedGroup S)) (FreeMod (PresentedGroup S) n) :=
   Submodule.span (ZG (PresentedGroup S)) (relBoundary S '' S)
 
-/-- The easy inclusion `N ≤ ker d`.-/
+/-- The easy inclusion `N ≤ ker d`.
+@isnad1 id=le.0h2v.s9.a59a99d6b4aa from=translated src=- shape=cdf17092 vocab=02f07305
+-/
 theorem relatorSpan_le_ker : relatorSpan S ≤ LinearMap.ker (genBoundary (presGens S)) := by
   rw [relatorSpan, Submodule.span_le]
   rintro _ ⟨r, hr, rfl⟩
@@ -61,22 +65,31 @@ noncomputable def relQuotHom : FreeGroup (Fin n) →* BdExt (PresentedGroup S) (
   FreeGroup.lift fun i =>
     ⟨Multiplicative.ofAdd ((relatorSpan S).mkQ (stdBasis (PresentedGroup S) i)), presGens S i⟩
 
-/-- `relQuotHom` is the composite of `Φ` with the map induced by `π`.-/
+/-- `relQuotHom` is the composite of `Φ` with the map induced by `π`.
+@isnad1 id=eq.0h2v.s13.58535ae5b582 from=translated src=- shape=727ec782 vocab=ad03f24d
+-/
 theorem relQuotHom_eq : relQuotHom S = (BdExt.map (relatorSpan S).mkQ).comp (wordHom (presGens S)) := by
   ext i
   · simp [relQuotHom, wordHom]
   · simp [relQuotHom, wordHom]
 
-/-- `relQuotHom u = (π (D u), q u)`.-/
+/-- `relQuotHom u = (π (D u), q u)`.
+@isnad1 id=eq.0h3v.s12.54147a589bda from=translated src=- shape=ff7314c6 vocab=27313804
+-/
 theorem relQuotHom_left (u : FreeGroup (Fin n)) :
     (relQuotHom S u).left.toAdd = (relatorSpan S).mkQ (relBoundary S u) := by
   rw [relQuotHom_eq]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.019d9b9d10e2 from=translated src=- shape=19d6204b vocab=9ee30ab3
+-/
 theorem relQuotHom_right (u : FreeGroup (Fin n)) :
     (relQuotHom S u).right = PresentedGroup.mk S u := by
   rw [relQuotHom_eq, MonoidHom.comp_apply, BdExt.map_right, right_wordHom, lift_presGens]
 
-/-- `relQuotHom` kills every relator.-/
+/-- `relQuotHom` kills every relator.
+@isnad1 id=eq.1h3v.s14.4f40c47aea7e from=translated src=- shape=f28b5c84 vocab=06310b7c
+-/
 theorem relQuotHom_rel : ∀ r ∈ S, FreeGroup.lift (fun i =>
     (⟨Multiplicative.ofAdd ((relatorSpan S).mkQ (stdBasis (PresentedGroup S) i)), presGens S i⟩ :
       BdExt (PresentedGroup S) (RelQuot S))) r = 1 := by
@@ -94,7 +107,9 @@ theorem relQuotHom_rel : ∀ r ∈ S, FreeGroup.lift (fun i =>
 noncomputable def relSection : PresentedGroup S →* BdExt (PresentedGroup S) (RelQuot S) :=
   PresentedGroup.toGroup (relQuotHom_rel S)
 
-/-- The second coordinate of `σ` is the identity.-/
+/-- The second coordinate of `σ` is the identity.
+@isnad1 id=eq.0h3v.s12.87133bdf5548 from=translated src=- shape=5892f726 vocab=1ef71784
+-/
 theorem relSection_right (g : PresentedGroup S) : (relSection S g).right = g := by
   have : SemidirectProduct.rightHom.comp (relSection S) = MonoidHom.id _ := by
     apply PresentedGroup.ext
@@ -106,15 +121,22 @@ theorem relSection_right (g : PresentedGroup S) : (relSection S g).right = g := 
 noncomputable def relCocycle (g : PresentedGroup S) : RelQuot S :=
   (relSection S g).left.toAdd
 
-/-- `δ(g h) = δ g + [g] • δ h`.-/
+/-- `δ(g h) = δ g + [g] • δ h`.
+@isnad1 id=eq.0h4v.s9.ed5c23bfcf67 from=translated src=- shape=76bbee5f vocab=c8801a38
+-/
 theorem relCocycle_mul (g h : PresentedGroup S) :
     relCocycle S (g * h) = relCocycle S g + MonoidAlgebra.of ℤ _ g • relCocycle S h := by
   simp only [relCocycle, map_mul, BdExt.left_mul, relSection_right]
 
+/--
+@isnad1 id=eq.0h2v.s7.f97c8a77194b from=translated src=- shape=813c85f9 vocab=e6bb8f32
+-/
 theorem relCocycle_one : relCocycle S 1 = 0 := by
   simp [relCocycle]
 
-/-- `δ x_i = π e_i`.-/
+/-- `δ x_i = π e_i`.
+@isnad1 id=eq.0h3v.s11.7e717bcddae3 from=translated src=- shape=79706e07 vocab=1ee81c82
+-/
 theorem relCocycle_gen (i : Fin n) :
     relCocycle S (presGens S i) = (relatorSpan S).mkQ (stdBasis (PresentedGroup S) i) := by
   simp [relCocycle, relSection, PresentedGroup.toGroup.of]
@@ -124,11 +146,16 @@ noncomputable def relCocycleLin : ZG (PresentedGroup S) →+ RelQuot S :=
   (Finsupp.liftAddHom fun g => (zmultiplesHom (RelQuot S) (relCocycle S g))).comp
     MonoidAlgebra.coeffAddEquiv.toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h4v.s9.3f003d5f6f53 from=translated src=- shape=97c0bd54 vocab=4bbcf8af
+-/
 theorem relCocycleLin_single (g : PresentedGroup S) (m : ℤ) :
     relCocycleLin S (MonoidAlgebra.single g m) = m • relCocycle S g := by
   simp [relCocycleLin]
 
-/-- **Key identity** `b (d z) = π z`.-/
+/-- **Key identity** `b (d z) = π z`.
+@isnad1 id=eq.0h3v.s11.1973f77adf2f from=translated src=- shape=e82e211b vocab=9ebd297a
+-/
 theorem relCocycleLin_genBoundary (z : FreeMod (PresentedGroup S) n) :
     relCocycleLin S (genBoundary (presGens S) z) = (relatorSpan S).mkQ z := by
   classical
@@ -157,7 +184,9 @@ theorem relCocycleLin_genBoundary (z : FreeMod (PresentedGroup S) n) :
       hsingle, map_smul, hsm, smul_assoc, smul_add, add_sub_cancel_left]
 
 /-- **Exactness at degree one.** For `G = PresentedGroup S` with its canonical generators,
-`ker (genBoundary x) = span_Λ {D r | r ∈ S}`.-/
+`ker (genBoundary x) = span_Λ {D r | r ∈ S}`.
+@isnad1 id=eq.0h2v.s9.10155aa2ab1c from=translated src=- shape=1405b790 vocab=7f6021ea
+-/
 theorem ker_genBoundary_eq_span_relatorBoundary :
     LinearMap.ker (genBoundary (presGens S)) =
       Submodule.span (ZG (PresentedGroup S)) (wordBoundary (presGens S) '' S) := by

@@ -30,13 +30,25 @@ def encodeRawWordNat (w : RawWord ℕ) : ℕ := Encodable.encode w
 /-- Decoding of raw words on the natural-number alphabet (`none` on invalid codes).-/
 def decodeRawWordNat (z : ℕ) : Option (RawWord ℕ) := Encodable.decode z
 
+/--
+@isnad1 id=eq.0h1v.s3.5f455b3711aa from=translated src=- shape=db627983 vocab=fdfebb38
+-/
 @[simp] theorem decodeRawWordNat_encode (w : RawWord ℕ) :
     decodeRawWordNat (encodeRawWordNat w) = some w := Encodable.encodek w
 
+/--
+@isnad1 id=primrec.0h0v.s4.24c6840830b8 from=translated src=- shape=d7985952 vocab=db6836f8
+-/
 theorem primrec_encodeRawWordNat : Primrec encodeRawWordNat := Primrec.encode
 
+/--
+@isnad1 id=primrec.0h0v.s4.70dfe3e306bd from=translated src=- shape=64700cea vocab=22b58c19
+-/
 theorem primrec_decodeRawWordNat : Primrec decodeRawWordNat := Primrec.decode
 
+/--
+@isnad1 id=injectiv.0h0v.s2.f88ffb35d346 from=translated src=- shape=d7985952 vocab=7f6ca619
+-/
 theorem encodeRawWordNat_injective : Function.Injective encodeRawWordNat :=
   Encodable.encode_injective
 
@@ -54,6 +66,9 @@ instance (n : ℕ) : DecidablePred (bounded n) := fun w =>
 /-- Boolean version of `bounded`, written as a fold (for primitive recursiveness).-/
 def boundedB (n : ℕ) (w : RawWord ℕ) : Bool := w.foldr (fun p b => decide (p.1 < n) && b) true
 
+/--
+@isnad1 id=iff.0h2v.s3.4cc628f0c3c9 from=translated src=- shape=7f6e3267 vocab=b442ad85
+-/
 theorem boundedB_iff (n : ℕ) (w : RawWord ℕ) : boundedB n w = true ↔ bounded n w := by
   induction w with
   | nil => simp [boundedB, bounded]
@@ -64,6 +79,9 @@ theorem boundedB_iff (n : ℕ) (w : RawWord ℕ) : boundedB n w = true ↔ bound
 /-- `Fin n`-valued partial reading of a natural number.-/
 def finOpt (n a : ℕ) : Option (Fin n) := if h : a < n then some ⟨a, h⟩ else none
 
+/--
+@isnad1 id=eq.0h2v.s4.6cc636b4ce86 from=translated src=- shape=115070ac vocab=92a76b77
+-/
 theorem finOpt_eq_decode₂ (n a : ℕ) : finOpt n a = Encodable.decode₂ (Fin n) a := by
   unfold finOpt
   split_ifs with h
@@ -82,14 +100,23 @@ its indices read in `Fin n` if `bounded n w`, and `none` otherwise.-/
 def down (n : ℕ) (w : RawWord ℕ) : Option (RawWord (Fin n)) :=
   if bounded n w then some (w.filterMap (letterDown n)) else none
 
+/--
+@isnad1 id=eq.0h1v.s4.ed6ace22b561 from=translated src=- shape=faa435d9 vocab=3e8edea2
+-/
 @[simp] theorem up_nil (n : ℕ) : up n [] = [] := rfl
 
+/--
+@isnad1 id=bounded.0h2v.s3.408237a57c43 from=translated src=- shape=52838ee4 vocab=003ff90d
+-/
 theorem bounded_up (n : ℕ) (w : RawWord (Fin n)) : bounded n (up n w) := by
   intro p hp
   simp only [up, rename, List.mem_map] at hp
   obtain ⟨q, -, rfl⟩ := hp
   exact q.1.2
 
+/--
+@isnad1 id=eq.0h2v.s4.71bac39be4a3 from=translated src=- shape=95a79b73 vocab=82b667c7
+-/
 theorem filterMap_letterDown_up (n : ℕ) (w : RawWord (Fin n)) :
     (up n w).filterMap (letterDown n) = w := by
   induction w with
@@ -100,10 +127,15 @@ theorem filterMap_letterDown_up (n : ℕ) (w : RawWord (Fin n)) :
     · rw [ih]
     · simp [letterDown, finOpt, p.1.2]
 
-/-- **Round trip** `down_n (up_n w) = some w`.-/
+/-- **Round trip** `down_n (up_n w) = some w`.
+@isnad1 id=eq.0h2v.s4.7f599591f3b2 from=translated src=- shape=e12de8e4 vocab=e4696eed
+-/
 @[simp] theorem down_up (n : ℕ) (w : RawWord (Fin n)) : down n (up n w) = some w := by
   simp [down, bounded_up, filterMap_letterDown_up]
 
+/--
+@isnad1 id=eq.1h2v.s4.8d1891284153 from=translated src=- shape=786b5d6f vocab=67c4ee33
+-/
 theorem up_filterMap_letterDown (n : ℕ) (w : RawWord ℕ) (h : bounded n w) :
     up n (w.filterMap (letterDown n)) = w := by
   induction w with
@@ -116,7 +148,9 @@ theorem up_filterMap_letterDown (n : ℕ) (w : RawWord ℕ) (h : bounded n w) :
       rw [ih hw]
     · simp [letterDown, finOpt, hp]
 
-/-- **Forgetting the indices of a successful restriction recovers the word.**-/
+/-- **Forgetting the indices of a successful restriction recovers the word.**
+@isnad1 id=eq.1h3v.s4.e208e7d5e515 from=translated src=- shape=0d0d27f1 vocab=e4696eed
+-/
 theorem up_of_down_eq_some {n : ℕ} {w : RawWord ℕ} {v : RawWord (Fin n)}
     (h : down n w = some v) : up n v = w := by
   unfold down at h
@@ -124,32 +158,52 @@ theorem up_of_down_eq_some {n : ℕ} {w : RawWord ℕ} {v : RawWord (Fin n)}
   cases h
   exact up_filterMap_letterDown n w hb
 
+/--
+@isnad1 id=iff.0h2v.s4.daf838a2e9d1 from=translated src=- shape=e2adc410 vocab=e55721c9
+-/
 theorem down_isSome_iff (n : ℕ) (w : RawWord ℕ) : (down n w).isSome ↔ bounded n w := by
   unfold down; split_ifs with h <;> simp [h]
 
+/--
+@isnad1 id=iff.0h2v.s4.b5249e1120cf from=translated src=- shape=9bbcf0a9 vocab=01aaa571
+-/
 theorem down_eq_none_iff (n : ℕ) (w : RawWord ℕ) : down n w = none ↔ ¬ bounded n w := by
   unfold down; split_ifs with h <;> simp [h]
 
+/--
+@isnad1 id=iff.0h3v.s4.bdce8f3f6154 from=translated src=- shape=407a07a2 vocab=e4696eed
+-/
 theorem down_eq_some_iff (n : ℕ) (w : RawWord ℕ) (v : RawWord (Fin n)) :
     down n w = some v ↔ up n v = w := by
   constructor
   · exact up_of_down_eq_some
   · rintro rfl; exact down_up n v
 
-/-- The empty word is valid for every `n`, including `n = 0`.-/
+/-- The empty word is valid for every `n`, including `n = 0`.
+@isnad1 id=eq.0h1v.s4.805d5b55420b from=translated src=- shape=8724b256 vocab=257664f5
+-/
 @[simp] theorem down_nil (n : ℕ) : down n [] = some [] := down_up n []
 
+/--
+@isnad1 id=injectiv.0h1v.s3.a37f8e7ec6cb from=translated src=- shape=a4ae3a2f vocab=6613d255
+-/
 theorem up_injective (n : ℕ) : Function.Injective (up n) := by
   intro v v' h
   have := down_up n v
   rw [h, down_up] at this
   exact (Option.some.inj this).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.483a7510748d from=translated src=- shape=5d6e060d vocab=f7c6ec13
+-/
 theorem eval_up (n : ℕ) (w : RawWord (Fin n)) :
     eval (up n w) = FreeGroup.map Fin.val (eval w) := eval_rename _ _
 
 /-! ### Primitive recursiveness -/
 
+/--
+@isnad1 id=primrec.0h0v.s4.6625a5fd487e from=translated src=- shape=d1530203 vocab=3cb8cca2
+-/
 theorem primrec_boundedB : Primrec₂ boundedB := by
   have : Primrec fun a : ℕ × RawWord ℕ =>
       a.2.foldr (fun p b => (fun a q => decide (q.1.1 < a.1) && q.2) a (p, b)) true :=
@@ -160,17 +214,26 @@ theorem primrec_boundedB : Primrec₂ boundedB := by
         (Primrec.snd.comp Primrec.snd)).to₂
   exact this.of_eq fun a => rfl
 
+/--
+@isnad1 id=primrec.0h1v.s5.f3e7acf0f587 from=translated src=- shape=a4ae3a2f vocab=66460aa9
+-/
 theorem primrec_up (n : ℕ) : Primrec (up n) :=
   Primrec.list_map Primrec.id
     (Primrec.pair (Primrec.fin_val.comp (Primrec.fst.comp Primrec.snd))
       (Primrec.snd.comp Primrec.snd)).to₂
 
+/--
+@isnad1 id=primrec.0h1v.s5.0689f71f7a41 from=translated src=- shape=4e337539 vocab=939c597f
+-/
 theorem primrec_letterDown (n : ℕ) : Primrec (letterDown n) := by
   have h1 : Primrec fun p : ℕ × Bool => finOpt n p.1 := by
     simp only [finOpt_eq_decode₂]
     exact Primrec.decode₂.comp Primrec.fst
   exact Primrec.option_map h1 (Primrec.pair Primrec.snd (Primrec.snd.comp Primrec.fst)).to₂
 
+/--
+@isnad1 id=primrec.0h1v.s5.c8981909242c from=translated src=- shape=f6ccb047 vocab=6d623bd0
+-/
 theorem primrec_down (n : ℕ) : Primrec (down n) := by
   have hf : Primrec fun w : RawWord ℕ => w.filterMap (letterDown n) :=
     Primrec.listFilterMap Primrec.id ((primrec_letterDown n).comp Primrec.snd).to₂
@@ -195,7 +258,9 @@ def restrictCode (n z : ℕ) : Option (RawWord ℕ) :=
   (decodeRawWordNat z).bind fun w => if bounded n w then some w else none
 
 /-- **Uniformity**: decoding, checking `bounded n` and retaining the word is primitive recursive
-jointly in `n` and the code.-/
+jointly in `n` and the code.
+@isnad1 id=primrec.0h0v.s4.307691ae066c from=translated src=- shape=7cd26ef3 vocab=cf4f16e3
+-/
 theorem primrec_restrictCode : Primrec₂ restrictCode := by
   have := Primrec.option_bind (primrec_decodeRawWordNat.comp Primrec.snd)
     (Primrec.cond (primrec_boundedB.comp (Primrec.fst.comp Primrec.fst) Primrec.snd)
@@ -209,6 +274,9 @@ theorem primrec_restrictCode : Primrec₂ restrictCode := by
       rw [← Bool.not_eq_true, boundedB_iff]; exact h
     simp [h, this]
 
+/--
+@isnad1 id=eq.0h2v.s4.856bcc7c39ac from=translated src=- shape=4029aff9 vocab=fedb0000
+-/
 theorem restrictCode_eq (n z : ℕ) :
     restrictCode n z = ((decodeRawWordNat z).bind (down n)).map (up n) := by
   unfold restrictCode
@@ -229,23 +297,38 @@ def natCodeOfFinCode (n z : ℕ) : Option ℕ :=
 def finCodeOfNatCode (n z : ℕ) : Option ℕ :=
   ((decodeRawWordNat z).bind (down n)).map Encodable.encode
 
+/--
+@isnad1 id=primrec.0h1v.s4.c7df005998ff from=translated src=- shape=3d987a48 vocab=2d6fce7a
+-/
 theorem primrec_natCodeOfFinCode (n : ℕ) : Primrec (natCodeOfFinCode n) :=
   Primrec.option_map Primrec.decode
     (primrec_encodeRawWordNat.comp ((primrec_up n).comp Primrec.snd)).to₂
 
+/--
+@isnad1 id=primrec.0h1v.s4.269673cbab32 from=translated src=- shape=3d987a48 vocab=c7b05555
+-/
 theorem primrec_finCodeOfNatCode (n : ℕ) : Primrec (finCodeOfNatCode n) :=
   Primrec.option_map (Primrec.option_bind primrec_decodeRawWordNat
       ((primrec_down n).comp Primrec.snd).to₂)
     (Primrec.encode.comp Primrec.snd).to₂
 
+/--
+@isnad1 id=eq.0h2v.s5.e94634d5c594 from=translated src=- shape=74dcca6b vocab=cd1fde71
+-/
 @[simp] theorem natCodeOfFinCode_encode (n : ℕ) (w : RawWord (Fin n)) :
     natCodeOfFinCode n (Encodable.encode w) = some (encodeRawWordNat (up n w)) := by
   simp [natCodeOfFinCode]
 
+/--
+@isnad1 id=eq.0h2v.s5.1f2c9d2fcc63 from=translated src=- shape=9964b85c vocab=181f62d5
+-/
 @[simp] theorem finCodeOfNatCode_encode_up (n : ℕ) (w : RawWord (Fin n)) :
     finCodeOfNatCode n (encodeRawWordNat (up n w)) = some (Encodable.encode w) := by
   simp [finCodeOfNatCode]
 
+/--
+@isnad1 id=eq.1h2v.s4.eeff04bd47ca from=translated src=- shape=22e8a126 vocab=4ed397aa
+-/
 theorem finCodeOfNatCode_encode_of_not_bounded (n : ℕ) (w : RawWord ℕ) (h : ¬ bounded n w) :
     finCodeOfNatCode n (encodeRawWordNat w) = none := by
   simp [finCodeOfNatCode, (down_eq_none_iff n w).2 h]

@@ -82,6 +82,9 @@ abbrev colim : Type _ := Monoid.CoprodI C.loc ⧸ Subgroup.normalClosure C.rels
 def ι (x : V ⊕ T) : C.loc x →* C.colim :=
   (QuotientGroup.mk' _).comp (Monoid.CoprodI.of (i := x))
 
+/--
+@isnad1 id=eq.1h6v.s9.fd3bc1f057be from=translated src=- shape=61212651 vocab=405cb5c9
+-/
 theorem ι_inl_eq (v : V) (t : T) (h : C.inc v t) (a : C.A v) :
     C.ι (Sum.inl v) a = C.ι (Sum.inr t) (C.φ v t h a) := by
   have hmem : Monoid.CoprodI.of (i := Sum.inl v) a *

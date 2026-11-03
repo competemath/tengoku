@@ -44,6 +44,9 @@ noncomputable def coneD (j : ℕ) : ConeX φ hφ R (j + 1) →ₗ[ZG (ascHNN φ 
   LinearMap.prod ((indMap (ofE φ hφ) (R.d j)).coprod (LinearMap.id - Tmap φ hφ R Φ j))
     (-((dQ φ hφ R j).comp (LinearMap.snd _ _ _)))
 
+/--
+@isnad1 id=eq.1h8v.s14.3cd2c0f94545 from=translated src=- shape=f915ac58 vocab=632db877
+-/
 theorem coneD_apply (j : ℕ) (x : FreeMod (ascHNN φ hφ) (R.c (j + 1)))
     (y : FreeMod (ascHNN φ hφ) (R.c j)) :
     coneD φ hφ R Φ j (x, y) =
@@ -57,6 +60,9 @@ noncomputable def coneTop {q : ℕ} (n : Fin q → FreeMod B (R.c (k + 1))) :
       (LinearMap.id - Tmap φ hφ R Φ (k + 1)))
     (-((indMap (ofE φ hφ) (R.d k)).comp (LinearMap.snd _ _ _)))
 
+/--
+@isnad1 id=eq.1h9v.s14.54d63e81f72f from=translated src=- shape=66e1587d vocab=a53eb343
+-/
 theorem coneTop_apply {q : ℕ} (n : Fin q → FreeMod B (R.c (k + 1)))
     (z : FreeMod (ascHNN φ hφ) q) (y : FreeMod (ascHNN φ hφ) (R.c (k + 1))) :
     coneTop φ hφ R Φ n (z, y) =
@@ -69,19 +75,27 @@ noncomputable def coneε : ConeX φ hφ R 0 →+ ℤ :=
 
 variable {φ hφ R Φ}
 
+/--
+@isnad1 id=eq.2h6v.s13.17ae304aa822 from=translated src=- shape=43d2a19b vocab=83f6e772
+-/
 theorem indMap_d_d (i : ℕ) (hi : i < k) (x : FreeMod (ascHNN φ hφ) (R.c (i + 2))) :
     indMap (ofE φ hφ) (R.d i) (indMap (ofE φ hφ) (R.d (i + 1)) x) = 0 := by
   rw [indMap_eq_zero_iff (ofE φ hφ) (ascHNN_of_injective φ hφ)]
   intro q
   rw [compV_indMap, R.d_d i hi]
 
+/--
+@isnad1 id=mem.3h6v.s13.fa4aa2e6c6f1 from=translated src=- shape=c8ff0681 vocab=8fa55753
+-/
 theorem indMap_exact' (i : ℕ) (hi : i < k) (x : FreeMod (ascHNN φ hφ) (R.c (i + 1)))
     (hx : indMap (ofE φ hφ) (R.d i) x = 0) :
     x ∈ LinearMap.range (indMap (ofE φ hφ) (R.d (i + 1))) := by
   rw [← indMap_exact (ofE φ hφ) (ascHNN_of_injective φ hφ) _ _ (R.exact i hi)]
   exact hx
 
-/-- Exactness at `C_0`.-/
+/-- Exactness at `C_0`.
+@isnad1 id=iff.2h6v.s13.4bbb6096a334 from=translated src=- shape=7e0f8aef vocab=52a8673a
+-/
 theorem cone_exact0 (hΦ : IsChainLift R φ Φ) (x : ConeX φ hφ R 0) :
     coneε φ hφ R x = 0 ↔ x ∈ LinearMap.range (coneD φ hφ R Φ 0) := by
   obtain ⟨x, y⟩ := x
@@ -109,6 +123,9 @@ theorem cone_exact0 (hΦ : IsChainLift R φ Φ) (x : ConeX φ hφ R 0) :
     show augM _ (εM _ R _) = 0
     rw [indMap_d0_εM (ofE φ hφ) (ascHNN_of_injective φ hφ), map_zero]
 
+/--
+@isnad1 id=eq.3h7v.s14.7864ebd35daf from=translated src=- shape=6fd2ac29 vocab=000b9fcf
+-/
 theorem coneD_coneD (hΦ : IsChainLift R φ Φ) (i : ℕ) (hi : i < k)
     (x : ConeX φ hφ R (i + 2)) : coneD φ hφ R Φ i (coneD φ hφ R Φ (i + 1) x) = 0 := by
   obtain ⟨x, y⟩ := x
@@ -134,7 +151,9 @@ theorem coneD_coneD (hΦ : IsChainLift R φ Φ) (i : ℕ) (hi : i < k)
       simp only [dQ, map_neg, neg_neg]
       exact indMap_d_d i (by omega) y
 
-/-- Exactness at `C_{i+1}` for `i < k`.-/
+/-- Exactness at `C_{i+1}` for `i < k`.
+@isnad1 id=iff.3h7v.s14.cd4a7b519423 from=translated src=- shape=2af83681 vocab=93c0e2d0
+-/
 theorem cone_exact (hΦ : IsChainLift R φ Φ) (i : ℕ) (hi : i < k) (x : ConeX φ hφ R (i + 1)) :
     coneD φ hφ R Φ i x = 0 ↔ x ∈ LinearMap.range (coneD φ hφ R Φ (i + 1)) := by
   constructor
@@ -170,7 +189,9 @@ theorem cone_exact (hΦ : IsChainLift R φ Φ) (i : ℕ) (hi : i < k) (x : ConeX
   · rintro ⟨w, rfl⟩
     exact coneD_coneD hΦ i hi w
 
-/-- The top differential lands in the cycles and maps onto them.-/
+/-- The top differential lands in the cycles and maps onto them.
+@isnad1 id=iff.5h8v.s14.3a419f40072f from=translated src=- shape=0edcde0e vocab=cdfb4764
+-/
 theorem cone_top (hΦ : IsChainLift R φ Φ) (hk : 1 ≤ k) {q : ℕ}
     (n : Fin q → FreeMod B (R.c (k + 1)))
     (hnS : ∀ a, n a ∈ R.S)

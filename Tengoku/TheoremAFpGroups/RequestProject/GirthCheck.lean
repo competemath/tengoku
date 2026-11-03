@@ -44,7 +44,9 @@ def localCheck (nbrs : V → List V) (x : V) : Bool :=
 variable {G : SimpleGraph V}
 
 omit [DecidableEq V] in
-/-- Parity of walks in a properly 2-coloured graph.-/
+/-- Parity of walks in a properly 2-coloured graph.
+@isnad1 id=iff.1h6v.s5.b833c9fa9dc6 from=translated src=- shape=b0d8a77e vocab=78bcf53a
+-/
 theorem even_length_iff (col : V → Bool) (hcol : ∀ a b, G.Adj a b → col a ≠ col b)
     {u x : V} (p : G.Walk u x) : Even p.length ↔ col u = col x := by
   induction p with
@@ -55,7 +57,9 @@ theorem even_length_iff (col : V → Bool) (hcol : ∀ a b, G.Adj a b → col a 
     cases hA : col a <;> cases hB : col b <;> cases hC : col c <;> simp_all
 
 omit [DecidableEq V] in
-/-- Two distinct paths of length `≤ 5` with the same endpoints, extracted from a short even cycle.-/
+/-- Two distinct paths of length `≤ 5` with the same endpoints, extracted from a short even cycle.
+@isnad1 id=ex.2h4v.s7.2aa49b11803e from=translated src=- shape=c6a39fea vocab=de1a6bf1
+-/
 theorem exists_two_paths_of_cycle {u : V} (w : G.Walk u u) (hw : w.IsCycle)
     (he : Even w.length) :
     ∃ (y : V) (p q : G.Walk u y), p.IsPath ∧ q.IsPath ∧ p ≠ q ∧

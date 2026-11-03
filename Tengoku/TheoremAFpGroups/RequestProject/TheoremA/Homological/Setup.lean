@@ -58,7 +58,9 @@ variable {B : Type u} [Group B] {k : ℕ}
 /-- The top syzygy `S = ker (d_m : F_m → F_{m-1})`, `m = k + 1`.-/
 noncomputable def S (R : Res B k) : Submodule (ZG B) (FreeMod B (R.c (k + 1))) := LinearMap.ker (R.d k)
 
-/-- A group of type `FP_{k+1}` has a finite free partial resolution of length `k + 1`.-/
+/-- A group of type `FP_{k+1}` has a finite free partial resolution of length `k + 1`.
+@isnad1 id=nonempty.1h2v.s4.d2d114c48a4c from=translated src=- shape=9f622e83 vocab=35ec367c
+-/
 theorem nonempty_of_isFP (h : IsFP (k + 1) B) : Nonempty (Res B k) := by
   obtain ⟨c, d, ε, hinv, hsurj, h0, hex⟩ := h
   exact ⟨⟨c, d, ε, hinv, hsurj, h0 (Nat.succ_pos k), fun i hi => hex i (by omega)⟩⟩
@@ -92,7 +94,9 @@ def Prop51 : Prop :=
     ∀ N : Submodule (ZG B) (FreeMod B (R.c (k + 1))), N.FG → N ≤ R.S →
       (∀ s ∈ R.S, Φ (k + 1) s ∈ N) → IsFP (k + 2) (ascHNN φ hφ)
 
-/-- Corollary 5.2 is Corollary 4.3 followed by Proposition 5.1.-/
+/-- Corollary 5.2 is Corollary 4.3 followed by Proposition 5.1.
+@isnad1 id=corollar.2h0v.s2.3aff5d7cc976 from=translated src=- shape=f443e7c7 vocab=37029177
+-/
 theorem corollary52_of (h43 : Cor43.{u}) (h51 : Prop51.{u}) : Corollary52.{u} := by
   intro r T a hr hw ha m hm B _ hB α hα hinj
   obtain ⟨k, rfl⟩ : ∃ k, m = k + 1 := ⟨m - 1, by omega⟩

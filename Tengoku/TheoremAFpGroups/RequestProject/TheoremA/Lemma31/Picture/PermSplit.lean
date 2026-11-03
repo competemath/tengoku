@@ -30,11 +30,16 @@ section Split
 variable {D : Type*} [DecidableEq D] [Finite D] {π : Perm D} {a b : D}
 
 omit [DecidableEq D] in
+/--
+@isnad1 id=ex.1h4v.s5.30f264986c96 from=translated src=- shape=535682bf vocab=c310bd50
+-/
 theorem exists_pow_eq_of_sameCycle (h : π.SameCycle a b) : ∃ n : ℕ, (π ^ n) a = b :=
   h.exists_nat_pow_eq
 
 /-- **Splitting a cycle.**  If `a ≠ b` lie in the same cycle of `π`, they lie in different cycles
-of `swap a b * π`.-/
+of `swap a b * π`.
+@isnad1 id=not.2h4v.s5.8d40e2f386c3 from=translated src=- shape=b95c68f3 vocab=16c3e556
+-/
 theorem sameCycle_swap_mul_split (hab : a ≠ b) (h : π.SameCycle a b) :
     ¬ (swap a b * π).SameCycle a b := by
   classical
@@ -80,10 +85,15 @@ theorem sameCycle_swap_mul_split (hab : a ≠ b) (h : π.SameCycle a b) :
   exact hmin _ (Nat.mod_lt _ hk0) hn
 
 omit [Finite D] in
+/--
+@isnad1 id=eq.0h4v.s5.aeffb52ae638 from=translated src=- shape=f8ad06ab vocab=d8f6eb78
+-/
 theorem swap_mul_swap_mul (a b : D) (π : Perm D) : swap a b * (swap a b * π) = π := by
   rw [← mul_assoc, swap_mul_self, one_mul]
 
-/-- **Splitting a cycle adds exactly one orbit.**-/
+/-- **Splitting a cycle adds exactly one orbit.**
+@isnad1 id=eq.2h4v.s5.c3544c6ee771 from=translated src=- shape=615131bf vocab=676de517
+-/
 theorem numOrbits_swap_mul_split (hab : a ≠ b) (h : π.SameCycle a b) :
     numOrbits (swap a b * π) = numOrbits π + 1 := by
   have := numOrbits_swap_mul (sameCycle_swap_mul_split hab h)
@@ -91,7 +101,9 @@ theorem numOrbits_swap_mul_split (hab : a ≠ b) (h : π.SameCycle a b) :
   exact this
 
 /-- **The words of a split cycle.**  The old word based at `a` is the new word based at `a`
-followed by the new word based at `b`.-/
+followed by the new word based at `b`.
+@isnad1 id=eq.2h6v.s6.52da15b0adfe from=translated src=- shape=2004a0af vocab=4b717c61
+-/
 theorem cycleWord_swap_mul_split {M : Type*} [Monoid M] (f : D → M) (hab : a ≠ b)
     (h : π.SameCycle a b) :
     cycleWord π f a = cycleWord (swap a b * π) f a * cycleWord (swap a b * π) f b := by
@@ -100,7 +112,9 @@ theorem cycleWord_swap_mul_split {M : Type*} [Monoid M] (f : D → M) (hab : a �
 
 /-- **Cycles after splitting.**  Two darts are in the same cycle of `swap a b * π` iff they are in
 the same cycle of `π` and are not separated by the split (the cycle of `a` splits into the new
-cycle of `a` and the new cycle of `b`).-/
+cycle of `a` and the new cycle of `b`).
+@isnad1 id=iff.2h6v.s7.0a6d8dbe30d9 from=translated src=- shape=0bea4ab0 vocab=16c3e556
+-/
 theorem sameCycle_swap_mul_split_iff (hab : a ≠ b) (h : π.SameCycle a b) {x y : D} :
     π.SameCycle x y ↔ (swap a b * π).SameCycle x y ∨
       (((swap a b * π).SameCycle a x ∨ (swap a b * π).SameCycle b x) ∧
@@ -109,7 +123,9 @@ theorem sameCycle_swap_mul_split_iff (hab : a ≠ b) (h : π.SameCycle a b) {x y
     (sameCycle_swap_mul_split hab h)
   rwa [swap_mul_swap_mul] at this
 
-/-- One transposition changes the number of cycles by at most one.-/
+/-- One transposition changes the number of cycles by at most one.
+@isnad1 id=le.0h4v.s5.00bc0d3d15e4 from=translated src=- shape=a810af92 vocab=25026722
+-/
 theorem numOrbits_swap_mul_le (a b : D) (π : Perm D) :
     numOrbits (swap a b * π) ≤ numOrbits π + 1 := by
   by_cases hab : a = b

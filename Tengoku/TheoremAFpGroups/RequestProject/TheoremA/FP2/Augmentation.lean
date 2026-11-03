@@ -38,37 +38,56 @@ noncomputable abbrev gm1 (g : G) : ZG G := MonoidAlgebra.of ℤ G g - 1
 noncomputable def genBoundary {n : ℕ} (x : Fin n → G) : FreeMod G n →ₗ[ZG G] ZG G :=
   Fintype.linearCombination (ZG G) fun i => gm1 (x i)
 
+/--
+@isnad1 id=eq.0h4v.s8.566a73dd3b81 from=translated src=- shape=b5e4be58 vocab=94f45d5d
+-/
 theorem genBoundary_apply {n : ℕ} (x : Fin n → G) (v : FreeMod G n) :
     genBoundary x v = ∑ i, v i * gm1 (x i) := by
   simp [genBoundary, Fintype.linearCombination_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h4v.s8.85afd8cf1499 from=translated src=- shape=fe3923c5 vocab=b0492919
+-/
 theorem genBoundary_single {n : ℕ} (x : Fin n → G) (i : Fin n) :
     genBoundary x (Pi.single i 1) = gm1 (x i) := by
   rw [genBoundary_apply]
   simp [Pi.single_apply]
 
-/-- The augmentation is surjective.-/
+/-- The augmentation is surjective.
+@isnad1 id=surjecti.0h1v.s5.45de7b993c99 from=translated src=- shape=7cdd1ced vocab=c2cb630e
+-/
 theorem augZG_surjective : Function.Surjective (augZG : ZG G →+* ℤ) :=
   fun m => ⟨MonoidAlgebra.single 1 m, augZG_single 1 m⟩
 
-/-- The augmentation is `Λ`-linear to the trivial module `ℤ`.-/
+/-- The augmentation is `Λ`-linear to the trivial module `ℤ`.
+@isnad1 id=eq.0h3v.s7.d447e98c844d from=translated src=- shape=eaa59db7 vocab=139aeda3
+-/
 theorem augZG_smul (l a : ZG G) : augZG (l • a) = augZG l * augZG a := by
   rw [smul_eq_mul, map_mul]
 
-/-- The augmentation is invariant under the group action.-/
+/-- The augmentation is invariant under the group action.
+@isnad1 id=eq.0h3v.s8.0b2957953f7e from=translated src=- shape=dfcbdd8e vocab=3634973a
+-/
 theorem augZG_of_smul (g : G) (a : ZG G) : augZG (MonoidAlgebra.of ℤ G g • a) = augZG a := by
   rw [augZG_smul]; simp
 
+/--
+@isnad1 id=eq.0h2v.s6.5d157e4f4c3e from=translated src=- shape=fdbe5369 vocab=c522bedd
+-/
 theorem augZG_gm1 (g : G) : augZG (gm1 g) = 0 := by
   simp [gm1]
 
-/-- `ε ∘ d₁ = 0`.-/
+/-- `ε ∘ d₁ = 0`.
+@isnad1 id=eq.0h4v.s8.0c37a704ccd5 from=translated src=- shape=8ff4ef7f vocab=32207546
+-/
 theorem augZG_genBoundary {n : ℕ} (x : Fin n → G) (v : FreeMod G n) :
     augZG (genBoundary x v) = 0 := by
   rw [genBoundary_apply, map_sum]
   simp [augZG_gm1]
 
-/-- Every `[g] - 1` with `g` in the generated subgroup lies in the range of `d₁`.-/
+/-- Every `[g] - 1` with `g` in the generated subgroup lies in the range of `d₁`.
+@isnad1 id=mem.1h4v.s8.2cd0ce55d37b from=translated src=- shape=86b7cf1c vocab=43d4610d
+-/
 theorem gm1_mem_range_genBoundary {n : ℕ} (x : Fin n → G) {g : G}
     (hg : g ∈ Subgroup.closure (Set.range x)) : gm1 g ∈ LinearMap.range (genBoundary x) := by
   induction hg using Subgroup.closure_induction with
@@ -87,7 +106,9 @@ theorem gm1_mem_range_genBoundary {n : ℕ} (x : Fin n → G) {g : G}
     rw [this]
     exact Submodule.neg_mem _ (Submodule.smul_mem _ _ ha)
 
-/-- For a generating tuple, every element minus its augmentation lies in `range d₁`.-/
+/-- For a generating tuple, every element minus its augmentation lies in `range d₁`.
+@isnad1 id=mem.1h4v.s8.701a83f1803a from=translated src=- shape=a32c51e6 vocab=7f2e077b
+-/
 theorem sub_augZG_mem_range_genBoundary {n : ℕ} (x : Fin n → G)
     (hx : Subgroup.closure (Set.range x) = ⊤) (a : ZG G) :
     a - MonoidAlgebra.single 1 (augZG a) ∈ LinearMap.range (genBoundary x) := by
@@ -106,7 +127,9 @@ theorem sub_augZG_mem_range_genBoundary {n : ℕ} (x : Fin n → G)
     rw [this]
     exact Submodule.smul_mem _ _ (gm1_mem_range_genBoundary x (hx ▸ Subgroup.mem_top g))
 
-/-- **Exactness at `C₀`.** For a generating tuple `x`, `range d₁ = ker ε`.-/
+/-- **Exactness at `C₀`.** For a generating tuple `x`, `range d₁ = ker ε`.
+@isnad1 id=iff.1h4v.s8.85cbc2085914 from=translated src=- shape=8358d332 vocab=40f24468
+-/
 theorem mem_range_genBoundary_iff {n : ℕ} (x : Fin n → G)
     (hx : Subgroup.closure (Set.range x) = ⊤) (a : ZG G) :
     a ∈ LinearMap.range (genBoundary x) ↔ augZG a = 0 := by
@@ -116,7 +139,9 @@ theorem mem_range_genBoundary_iff {n : ℕ} (x : Fin n → G)
     have := sub_augZG_mem_range_genBoundary x hx a
     rwa [ha, MonoidAlgebra.single_zero, sub_zero] at this
 
-/-- **Exactness at `C₀`**, as an equality of additive subgroups of `ℤ[G]`.-/
+/-- **Exactness at `C₀`**, as an equality of additive subgroups of `ℤ[G]`.
+@isnad1 id=eq.1h3v.s7.ee44b4754c0d from=translated src=- shape=4e1411c0 vocab=976f56f0
+-/
 theorem range_genBoundary_eq_ker_augZG {n : ℕ} (x : Fin n → G)
     (hx : Subgroup.closure (Set.range x) = ⊤) :
     (LinearMap.range (genBoundary x)).toAddSubgroup = (augZG : ZG G →+* ℤ).toAddMonoidHom.ker := by

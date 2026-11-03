@@ -52,7 +52,9 @@ namespace TheoremA
 
 /-! ### Two counting lemmas -/
 
-/-- If every fibre of `f` on `s` has at least `k` elements, then `k · #f(s) ≤ #s`.-/
+/-- If every fibre of `f` on `s` has at least `k` elements, then `k · #f(s) ≤ #s`.
+@isnad1 id=le.1h5v.s6.065035845fdd from=translated src=- shape=058a9c39 vocab=0f104cc5
+-/
 theorem mul_card_image_le {ι β : Type*} [DecidableEq β] (f : ι → β) (s : Finset ι) (k : ℕ)
     (h : ∀ a ∈ s, k ≤ #{x ∈ s | f x = f a}) : k * #(s.image f) ≤ #s := by
   rw [card_eq_sum_card_image f s, mul_comm, ← smul_eq_mul]
@@ -61,7 +63,9 @@ theorem mul_card_image_le {ι β : Type*} [DecidableEq β] (f : ι → β) (s : 
   exact h a ha
 
 /-- If every fibre of `f` on `s` other than the fibre over `b₀` has at least `k` elements, then
-`k · (#f(s) - 1) ≤ #s`.-/
+`k · (#f(s) - 1) ≤ #s`.
+@isnad1 id=le.1h6v.s6.0c69a981133b from=translated src=- shape=664e9777 vocab=3930dd83
+-/
 theorem mul_card_image_sub_one_le {ι β : Type*} [DecidableEq β] (f : ι → β) (s : Finset ι)
     (k : ℕ) (b₀ : β) (h : ∀ a ∈ s, f a ≠ b₀ → k ≤ #{x ∈ s | f x = f a}) :
     k * (#(s.image f) - 1) ≤ #s := by
@@ -146,6 +150,9 @@ noncomputable def degree (d : M.E × Bool) : ℕ := #{x | M.σ.SameCycle d x}
 /-- The length of the face boundary at a dart: the size of its `φ`-orbit.-/
 noncomputable def faceLength (d : M.E × Bool) : ℕ := #{x | M.φ.SameCycle d x}
 
+/--
+@isnad1 id=eq.1h3v.s5.7047a10fd2c5 from=translated src=- shape=e75c983b vocab=c1b437ae
+-/
 theorem sameCycle_snd {d x : M.E × Bool} (h : M.σ.SameCycle d x) : x.2 = d.2 := by
   obtain ⟨n, rfl⟩ := h.exists_nat_pow_eq
   clear h
@@ -153,11 +160,16 @@ theorem sameCycle_snd {d x : M.E × Bool} (h : M.σ.SameCycle d x) : x.2 = d.2 :
   | zero => rfl
   | succ n ih => rw [pow_succ', Equiv.Perm.mul_apply, M.σ_snd, ih]
 
+/--
+@isnad1 id=eq.0h1v.s4.e2525df7715f from=translated src=- shape=10a19c95 vocab=bea0d260
+-/
 theorem card_darts : Fintype.card (M.E × Bool) = 2 * M.numEdges := by
   simp [numEdges, mul_comm]
 
 /-- The fibre of `vertexOf` through a dart of a given kind, inside the darts of that kind, is its
-whole `σ`-orbit.-/
+whole `σ`-orbit.
+@isnad1 id=eq.1h3v.s7.f3097801bb6f from=translated src=- shape=798c6553 vocab=ec882b9d
+-/
 theorem fiber_vertexOf (b : Bool) (d : M.E × Bool) (hd : d.2 = b) :
     #{x ∈ ({d | d.2 = b} : Finset (M.E × Bool)) | M.vertexOf x = M.vertexOf d} = M.degree d := by
   unfold degree
@@ -168,7 +180,9 @@ theorem fiber_vertexOf (b : Bool) (d : M.E × Bool) (hd : d.2 = b) :
   · rintro ⟨-, h⟩; exact (Equiv.Perm.SameCycle.symm h)
   · intro h; exact ⟨(M.sameCycle_snd h).trans hd, h.symm⟩
 
-/-- **Faces.** If every face boundary has at least `12` darts, then `12 F ≤ 2 E`.-/
+/-- **Faces.** If every face boundary has at least `12` darts, then `12 F ≤ 2 E`.
+@isnad1 id=le.1h1v.s5.4bbe799a2aad from=translated src=- shape=52e80065 vocab=556dd9c4
+-/
 theorem twelve_mul_numFaces_le (hF : ∀ d, 12 ≤ M.faceLength d) :
     12 * M.numFaces ≤ 2 * M.numEdges := by
   rw [← card_darts, ← card_univ]
@@ -187,7 +201,9 @@ def singleEdge : BipartiteMap where
   σ := 1
   σ_snd _ := rfl
 
-/-- The single-edge map has Euler characteristic `2`, as a spherical map should.-/
+/-- The single-edge map has Euler characteristic `2`, as a spherical map should.
+@isnad1 id=eq.0h0v.s3.b67130d0a2a1 from=translated src=- shape=b0ae1d2b vocab=153cf6b3
+-/
 theorem singleEdge_euler : singleEdge.euler = 2 := by
   have hall : ∀ d d' : singleEdge.E × Bool, singleEdge.φ.SameCycle d d' := by
     have key : singleEdge.φ.SameCycle ((), true) ((), false) := ⟨1, rfl⟩
@@ -235,19 +251,27 @@ i.e. its `(i+2)`-nd vertex differs from its `i`-th vertex.-/
 def Walk.NonBacktracking {u v : V} (p : G.Walk u v) : Prop :=
   ∀ i, i + 2 ≤ p.length → p.getVert (i + 2) ≠ p.getVert i
 
+/--
+@isnad1 id=nonbackt.2h6v.s5.32e8d32dc380 from=translated src=- shape=eb18ef71 vocab=f11aa562
+-/
 theorem Walk.NonBacktracking.of_cons {u v w : V} {h : G.Adj u v} {q : G.Walk v w}
     (hp : (Walk.cons h q).NonBacktracking) : q.NonBacktracking := by
   intro i hi
   have := hp (i + 1) (by simp [Walk.length_cons]; omega)
   simpa [Walk.getVert_cons_succ] using this
 
+/--
+@isnad1 id=ne.3h6v.s6.004c1df3724d from=translated src=- shape=56996706 vocab=e71ff2a3
+-/
 theorem Walk.NonBacktracking.cons_getVert_two {u v w : V} {h : G.Adj u v} {q : G.Walk v w}
     (hp : (Walk.cons h q).NonBacktracking) (hq : 2 ≤ q.length + 1) : q.getVert 1 ≠ u := by
   have := hp 0 (by simp [Walk.length_cons]; omega)
   simpa [Walk.getVert_cons_succ] using this
 
 /-- A non-backtracking walk whose support has a repetition contains a cycle no longer than the
-walk.-/
+walk.
+@isnad1 id=ex.2h5v.s6.a40fd8d24c62 from=translated src=- shape=b9f8c583 vocab=0541fb55
+-/
 theorem Walk.exists_isCycle_of_nonBacktracking [DecidableEq V] :
     ∀ {u v : V} (p : G.Walk u v), p.NonBacktracking → ¬ p.support.Nodup →
       ∃ (x : V) (c : G.Walk x x), c.IsCycle ∧ c.length ≤ p.length
@@ -295,7 +319,9 @@ theorem Walk.exists_isCycle_of_nonBacktracking [DecidableEq V] :
       exact ⟨y, c, hc, by simp [Walk.length_cons]; omega⟩
 
 /-- **Girth bounds non-backtracking closed walks.**  A nonempty non-backtracking closed walk has
-length at least the (extended) girth of the graph.-/
+length at least the (extended) girth of the graph.
+@isnad1 id=le.2h4v.s5.5b077dd01181 from=translated src=- shape=c9cf3b35 vocab=53592f37
+-/
 theorem egirth_le_length_of_nonBacktracking {u : V} (p : G.Walk u u) (hp : p.NonBacktracking)
     (hlen : 0 < p.length) : G.egirth ≤ p.length := by
   classical

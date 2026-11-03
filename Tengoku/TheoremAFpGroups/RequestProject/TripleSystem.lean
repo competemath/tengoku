@@ -94,6 +94,9 @@ def wellFormedCheck (r : ℕ) (T : List Triple) : Bool :=
 
 /-! ### Soundness -/
 
+/--
+@isnad1 id=iff.0h4v.s6.c57effb622d3 from=translated src=- shape=d66cb481 vocab=29b00546
+-/
 theorem adj_iff_mem_nbrsFast (r : ℕ) (T : List Triple) (a b : Fin r ⊕ Fin T.length) :
     (incidenceGraph r T).Adj a b ↔ b ∈ nbrsFast r T (nbrTable r T) a := by
   rcases a with v | l <;> rcases b with w | m
@@ -108,9 +111,15 @@ theorem adj_iff_mem_nbrsFast (r : ℕ) (T : List Triple) (a b : Fin r ⊕ Fin T.
       subst hx'; exact hx
   · simp [incidenceGraph, nbrsFast]
 
+/--
+@isnad1 id=mem.0h3v.s5.c3ab2ab617f6 from=translated src=- shape=3a56e6fd vocab=8f145d4d
+-/
 theorem mem_allVerts (r s : ℕ) (x : Fin r ⊕ Fin s) : x ∈ allVerts r s := by
   rcases x with v | l <;> simp [allVerts]
 
+/--
+@isnad1 id=rowident.1h3v.s4.b98db050ef46 from=translated src=- shape=1365d89d vocab=020b0a55
+-/
 theorem rowIdentity_of_rowCheck (r : ℕ) (T : List Triple) (a : Fin T.length → ℤ)
     (h : rowCheck r T a = true) : RowIdentity r T a := by
   intro v
@@ -119,6 +128,9 @@ theorem rowIdentity_of_rowCheck (r : ℕ) (T : List Triple) (a : Fin T.length �
   rw [List.sum_ofFn] at this
   simpa using this
 
+/--
+@isnad1 id=wellform.1h2v.s3.6a12ac5542aa from=translated src=- shape=a14c93d1 vocab=6870190a
+-/
 theorem wellFormed_of_wellFormedCheck (r : ℕ) (T : List Triple)
     (h : wellFormedCheck r T = true) : WellFormed r T := by
   intro t ht

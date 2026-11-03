@@ -36,10 +36,16 @@ noncomputable abbrev cosetMap : MonoidAlgebra ℤ G →+ ((G ⧸ H) →₀ ℤ) 
 noncomputable abbrev cosetTransl (g : G) : ((G ⧸ H) →₀ ℤ) →+ ((G ⧸ H) →₀ ℤ) :=
   Finsupp.mapDomain.addMonoidHom (fun a : G ⧸ H => g • a)
 
+/--
+@isnad1 id=eq.0h4v.s7.626495785d0c from=translated src=- shape=fc022923 vocab=7c8d1de7
+-/
 theorem cosetMap_single (a : G) (m : ℤ) :
     cosetMap H (MonoidAlgebra.single a m) = Finsupp.single (a : G ⧸ H) m :=
   by simp [cosetMap]
 
+/--
+@isnad1 id=eq.0h4v.s9.17cfa9f3162e from=translated src=- shape=0931d721 vocab=1770ab05
+-/
 theorem cosetMap_of_mul (g : G) (f : MonoidAlgebra ℤ G) :
     cosetMap H (MonoidAlgebra.of ℤ G g * f) = cosetTransl H g (cosetMap H f) := by
   induction f using MonoidAlgebra.induction_on with
@@ -56,14 +62,23 @@ variable {k : ℕ} (w : Fin k → ℤ)
 noncomputable def cosetTest : FreeMod G k →+ ((G ⧸ H) →₀ ℤ) :=
   ∑ i, w i • (cosetMap H).comp (Pi.evalAddMonoidHom (fun _ => MonoidAlgebra ℤ G) i)
 
+/--
+@isnad1 id=eq.0h5v.s8.f98dff419371 from=translated src=- shape=abc0940f vocab=886f121a
+-/
 theorem cosetTest_apply (v : FreeMod G k) :
     cosetTest H w v = ∑ i, w i • cosetMap H (v i) := by
   simp [cosetTest, AddMonoidHom.finsetSum_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.7cdbe44c63e2 from=translated src=- shape=80d65e5c vocab=3a3ad666
+-/
 theorem cosetTest_of_smul (g : G) (v : FreeMod G k) :
     cosetTest H w (MonoidAlgebra.of ℤ G g • v) = cosetTransl H g (cosetTest H w v) := by
   simp only [cosetTest_apply, Pi.smul_apply, smul_eq_mul, cosetMap_of_mul, map_sum, map_zsmul]
 
+/--
+@isnad1 id=eq.1h6v.s9.012d0f78c191 from=translated src=- shape=db8010db vocab=bc012cc1
+-/
 theorem cosetTest_smul_eq_zero {v : FreeMod G k} (hv : cosetTest H w v = 0)
     (r : MonoidAlgebra ℤ G) : cosetTest H w (r • v) = 0 := by
   induction r using MonoidAlgebra.induction_on with
@@ -79,11 +94,16 @@ noncomputable def vecSupport {k : ℕ} (v : FreeMod G k) : Finset G :=
   Finset.univ.biUnion fun i => (v i).coeff.support
 
 open Classical in
+/--
+@isnad1 id=mem.1h5v.s5.974e215bf31e from=translated src=- shape=f8e9b63e vocab=88bd9170
+-/
 theorem mem_vecSupport {k : ℕ} {v : FreeMod G k} {i : Fin k} {a : G} (ha : a ∈ (v i).coeff.support) :
     a ∈ vecSupport v :=
   Finset.mem_biUnion.2 ⟨i, Finset.mem_univ _, ha⟩
 
-/-- On vectors supported in `H`, the test map is `ε(v) [H]`.-/
+/-- On vectors supported in `H`, the test map is `ε(v) [H]`.
+@isnad1 id=eq.2h5v.s9.01f794245c96 from=translated src=- shape=b1dd6a7e vocab=c1fda403
+-/
 theorem cosetTest_of_support_le {k : ℕ} (ε : FreeMod G k →+ ℤ)
     (hε : ∀ (g : G) (x : FreeMod G k), ε (MonoidAlgebra.of ℤ G g • x) = ε x)
     (H : Subgroup G) (v : FreeMod G k) (hv : ∀ a ∈ vecSupport v, a ∈ H) :
@@ -126,7 +146,9 @@ theorem cosetTest_of_support_le {k : ℕ} (ε : FreeMod G k →+ ℤ)
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun a ha => ?_
   exact hterm i a (hv a (mem_vecSupport ha)) _
 
-/-- **`FP₁` groups are finitely generated.**-/
+/-- **`FP₁` groups are finitely generated.**
+@isnad1 id=fg.1h1v.s4.2531d403685b from=translated src=- shape=5a474f20 vocab=ce88b953
+-/
 theorem IsFP.fg (h : IsFP 1 G) : Group.FG G := by
   classical
   obtain ⟨c, d, ε, hε, hsurj, hker, -⟩ := h
@@ -173,12 +195,16 @@ theorem IsFP.fg (h : IsFP 1 G) : Group.FG G := by
     simpa using h3
   exact Group.fg_iff.2 ⟨A, eq_top_iff.2 fun g _ => hall g, A.finite_toSet⟩
 
-/-- `IsFP n G` with `1 ≤ n` implies `IsFP 1 G`.-/
+/-- `IsFP n G` with `1 ≤ n` implies `IsFP 1 G`.
+@isnad1 id=isfp.2h2v.s4.962031fb9962 from=translated src=- shape=e9215db6 vocab=8eb0a332
+-/
 theorem IsFP.one_of_le {n : ℕ} (h : IsFP n G) (hn : 1 ≤ n) : IsFP 1 G := by
   obtain ⟨c, d, ε, hε, hsurj, hker, -⟩ := h
   exact ⟨c, d, ε, hε, hsurj, fun _ => hker (by omega), fun i hi => by omega⟩
 
-/-- Groups of type `FP_n` with `1 ≤ n` are finitely generated.-/
+/-- Groups of type `FP_n` with `1 ≤ n` are finitely generated.
+@isnad1 id=fg.2h2v.s4.62c5ed5c8c1d from=translated src=- shape=43ade81c vocab=95cc0095
+-/
 theorem IsFP.fg_of_le {n : ℕ} (h : IsFP n G) (hn : 1 ≤ n) : Group.FG G :=
   (h.one_of_le hn).fg
 

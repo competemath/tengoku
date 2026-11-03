@@ -29,14 +29,23 @@ def powFlat (k : α → ℕ) (L : List (α × Bool)) : List (α × Bool) :=
 /-- The power substitution `a ↦ a ^ k a`.-/
 def powSubst (k : α → ℕ) : FreeGroup α →* FreeGroup α := FreeGroup.lift fun a => of a ^ k a
 
+/--
+@isnad1 id=eq.0h3v.s5.1ab998cafe32 from=translated src=- shape=f4425913 vocab=54804240
+-/
 theorem mk_replicate (p : α × Bool) (n : ℕ) : mk (List.replicate n p) = mk [p] ^ n := by
   induction n with
   | zero => rfl
   | succ n ih => rw [List.replicate_succ', ← FreeGroup.mul_mk, ih, pow_succ]
 
+/--
+@isnad1 id=eq.0h2v.s4.200133b650e4 from=translated src=- shape=a2a045b3 vocab=4a128381
+-/
 theorem mk_single_false (a : α) : (mk [(a, false)] : FreeGroup α) = (of a)⁻¹ := by
   simp [FreeGroup.of, FreeGroup.inv_mk, FreeGroup.invRev]
 
+/--
+@isnad1 id=eq.0h3v.s7.3f9d7b86e0a7 from=translated src=- shape=00cd189f vocab=7b6244cd
+-/
 theorem powSubst_mk_single (k : α → ℕ) (p : α × Bool) :
     powSubst k (mk [p]) = mk [p] ^ k p.1 := by
   obtain ⟨a, b⟩ := p
@@ -46,6 +55,9 @@ theorem powSubst_mk_single (k : α → ℕ) (p : α × Bool) :
   · show powSubst k (of a) = of a ^ k a
     simp [powSubst]
 
+/--
+@isnad1 id=eq.0h3v.s6.20585c86ef7b from=translated src=- shape=1db482c4 vocab=112a2548
+-/
 theorem powSubst_mk (k : α → ℕ) (L : List (α × Bool)) :
     powSubst k (mk L) = mk (powFlat k L) := by
   induction L with
@@ -55,10 +67,16 @@ theorem powSubst_mk (k : α → ℕ) (L : List (α × Bool)) :
       show powFlat k ([p] ++ L) = List.replicate (k p.1) p ++ powFlat k L by simp [powFlat],
       ← FreeGroup.mul_mk, mk_replicate, powSubst_mk_single]
 
+/--
+@isnad1 id=eq.0h4v.s6.d6bed9d8fb06 from=translated src=- shape=000515c4 vocab=51488020
+-/
 theorem powFlat_cons (k : α → ℕ) (p : α × Bool) (L : List (α × Bool)) :
     powFlat k (p :: L) = List.replicate (k p.1) p ++ powFlat k L := by
   simp [powFlat]
 
+/--
+@isnad1 id=eq.1h4v.s5.cacfd6a87536 from=translated src=- shape=256bf7c7 vocab=ccd429bd
+-/
 theorem head?_powFlat_cons (k : α → ℕ) (hk : ∀ a, 0 < k a) (p : α × Bool)
     (L : List (α × Bool)) : (powFlat k (p :: L)).head? = some p := by
   rw [powFlat_cons]
@@ -66,6 +84,9 @@ theorem head?_powFlat_cons (k : α → ℕ) (hk : ∀ a, 0 < k a) (p : α × Boo
   rw [hn, List.replicate_succ]
   rfl
 
+/--
+@isnad1 id=isreduce.2h3v.s5.c86108ae1bf0 from=translated src=- shape=2fc9e850 vocab=b8a3807c
+-/
 theorem isReduced_powFlat (k : α → ℕ) (hk : ∀ a, 0 < k a) :
     ∀ L : List (α × Bool), FreeGroup.IsReduced L → FreeGroup.IsReduced (powFlat k L)
   | [], _ => by simp [powFlat]
@@ -91,6 +112,9 @@ theorem isReduced_powFlat (k : α → ℕ) (hk : ∀ a, 0 < k a) :
     subst hx' hy
     exact h.1
 
+/--
+@isnad1 id=eq.2h4v.s5.822a067a731f from=translated src=- shape=8b329559 vocab=8ce94296
+-/
 theorem powFlat_injective (k : α → ℕ) (hk : ∀ a, 0 < k a) :
     ∀ L L' : List (α × Bool), powFlat k L = powFlat k L' → L = L'
   | [], [], _ => rfl
@@ -109,7 +133,9 @@ theorem powFlat_injective (k : α → ℕ) (hk : ∀ a, 0 < k a) :
     rw [powFlat_cons, powFlat_cons] at h
     rw [powFlat_injective k hk L L' (List.append_cancel_left h)]
 
-/-- **Power substitutions are injective.**-/
+/-- **Power substitutions are injective.**
+@isnad1 id=injectiv.1h2v.s6.88f25333f3aa from=translated src=- shape=b2656207 vocab=73adc940
+-/
 theorem powSubst_injective (k : α → ℕ) (hk : ∀ a, 0 < k a) :
     Function.Injective (powSubst k) := by
   classical

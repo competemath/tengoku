@@ -51,6 +51,9 @@ noncomputable def D : Qm R →+ Qm R where
   map_zero' := by funext p q; simp
   map_add' z w := by funext p q; simp only [Pi.add_apply, map_add, smul_add]; abel
 
+/--
+@isnad1 id=eq.0h6v.s12.23680c241220 from=translated src=- shape=8b3060cc vocab=090d6ffa
+-/
 theorem D_apply (z : Qm R) (p q : ℕ) :
     D R z p q = dL R p q (z (p + 1) q) + ((-1 : ℤ) ^ p) • dR R p q (z p (q + 1)) := rfl
 
@@ -60,6 +63,9 @@ noncomputable def gsm (p : ℕ) (g : B) : F R p →ₗ[ℤ] F R p where
   map_add' x y := smul_add _ x y
   map_smul' n x := smul_comm _ n x
 
+/--
+@isnad1 id=eq.0h6v.s9.ba0c94668e36 from=translated src=- shape=d8714597 vocab=313b784d
+-/
 @[simp] theorem gsm_apply (p : ℕ) (g : B) (x : F R p) :
     gsm R p g x = MonoidAlgebra.of ℤ B g • x := rfl
 
@@ -72,9 +78,15 @@ noncomputable def actQ (b c : B) : Qm R →+ Qm R where
   map_zero' := by funext p q; simp
   map_add' z w := by funext p q; simp
 
+/--
+@isnad1 id=eq.0h8v.s11.17f75fe765ec from=translated src=- shape=b6734be3 vocab=9aa7ea8d
+-/
 @[simp] theorem actQ_apply (b c : B) (z : Qm R) (p q : ℕ) :
     actQ R b c z p q = act R p q b c (z p q) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.1dbd5170a977 from=translated src=- shape=625df0ff vocab=f4f0399f
+-/
 theorem dZ_gsm (p : ℕ) (g : B) (x : F R (p + 1)) :
     dZ R p (gsm R (p + 1) g x) = gsm R p g (dZ R p x) := by
   simp
@@ -82,8 +94,14 @@ theorem dZ_gsm (p : ℕ) (g : B) (x : F R (p + 1)) :
 /-- The augmentation as a `ℤ`-linear map.-/
 noncomputable abbrev εZ : F R 0 →ₗ[ℤ] ℤ := R.ε.toIntLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.1fe8cc550579 from=translated src=- shape=42938381 vocab=9706012e
+-/
 theorem εZ_dZ (x : F R 1) : εZ R (dZ R 0 x) = 0 := R.ε_d x
 
+/--
+@isnad1 id=eq.0h5v.s10.c6dd7ed0cb92 from=translated src=- shape=5313d05f vocab=ec5b9d9a
+-/
 theorem εZ_gsm (g : B) (x : F R 0) : εZ R (gsm R 0 g x) = εZ R x := R.ε_inv g x
 
 /-- An integral contraction of the augmented complex `F_{k+1} → ⋯ → F_0 → ℤ`.-/
@@ -95,6 +113,9 @@ structure Contr where
   c0 : ∀ x, dZ R 0 (σ 0 x) + R.ε x • x0 = x
   ci : ∀ i, i < k → ∀ x : F R (i + 1), dZ R (i + 1) (σ (i + 1) x) + σ i (dZ R i x) = x
 
+/--
+@isnad1 id=nonempty.0h3v.s4.14dfdb282ec8 from=translated src=- shape=54d0cce0 vocab=4c9eda5f
+-/
 theorem exists_contr : Nonempty (Contr R) := by
   obtain ⟨x0, hx0⟩ := R.ε_surj 1
   -- partial contractions

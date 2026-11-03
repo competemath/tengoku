@@ -26,7 +26,9 @@ namespace TheoremA.Picture
 
 open Equiv Function
 
-/-- Orbits of a permutation are counted separately on an invariant set and its complement.-/
+/-- Orbits of a permutation are counted separately on an invariant set and its complement.
+@isnad1 id=eq.1h3v.s6.29c5847294f5 from=translated src=- shape=949d34b4 vocab=cfb296b3
+-/
 theorem numOrbits_subtypePerm_add {D : Type*} [Finite D] (π : Perm D) (p : D → Prop)
     (h : ∀ x, p (π x) ↔ p x) :
     numOrbits π = numOrbits (π.subtypePerm h) +
@@ -69,18 +71,32 @@ def restrict (p : M.D → Prop) [DecidablePred p] (hσ : ∀ x, p (M.σ x) ↔ p
 variable {M} (p : M.D → Prop) [DecidablePred p]
 
 omit [DecidablePred p] in
+/--
+@isnad1 id=iff.1h3v.s6.a89288b941aa from=translated src=- shape=3fbc206f vocab=9b99bdeb
+-/
 theorem not_invariant_σ (hσ : ∀ x, p (M.σ x) ↔ p x) : ∀ x, ¬ p (M.σ x) ↔ ¬ p x := fun x => not_congr (hσ x)
 
 omit [DecidablePred p] in
+/--
+@isnad1 id=iff.1h3v.s6.78e5f2dff517 from=translated src=- shape=3fbc206f vocab=0060ac1c
+-/
 theorem not_invariant_α (hα : ∀ x, p (M.α x) ↔ p x) : ∀ x, ¬ p (M.α x) ↔ ¬ p x := fun x => not_congr (hα x)
 
 omit [DecidablePred p] in
+/--
+@isnad1 id=iff.2h3v.s6.74199e8fc24c from=translated src=- shape=148ed881 vocab=cad90a21
+-/
 theorem invariant_φ (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.α x) ↔ p x) : ∀ x, p (M.φ x) ↔ p x := fun x => (hσ _).trans (hα x)
 
+/--
+@isnad1 id=eq.2h2v.s6.4bdc4342d2b6 from=translated src=- shape=e9054ec4 vocab=8b0838ce
+-/
 theorem restrict_φ (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.α x) ↔ p x) : (M.restrict p hσ hα).φ = M.φ.subtypePerm (invariant_φ p hσ hα) := by
   ext x; rfl
 
-/-- **Additivity of `χ`** over an invariant set of darts and its complement.-/
+/-- **Additivity of `χ`** over an invariant set of darts and its complement.
+@isnad1 id=eq.2h2v.s6.131740bb02ed from=translated src=- shape=59be5317 vocab=f1dabd68
+-/
 theorem euler_restrict_add (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.α x) ↔ p x) : M.euler = (M.restrict p hσ hα).euler +
     (M.restrict (fun x => ¬ p x) (not_invariant_σ p hσ) (not_invariant_α p hα)).euler := by
   have hV := numOrbits_subtypePerm_add M.σ p hσ
@@ -95,7 +111,9 @@ theorem euler_restrict_add (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.
   ring
 
 omit [DecidablePred p] in
-/-- Invariant sets are unions of components.-/
+/-- Invariant sets are unions of components.
+@isnad1 id=iff.3h4v.s6.c97d5f5e2313 from=translated src=- shape=0ebd9ef1 vocab=4e8424cd
+-/
 theorem invariant_of_eqvGen (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.α x) ↔ p x) {u v : M.D} (h : Relation.EqvGen M.Step u v) : p u ↔ p v := by
   induction h with
   | rel u v h => rcases h with rfl | rfl
@@ -105,7 +123,9 @@ theorem invariant_of_eqvGen (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M
   | symm _ _ _ ih => exact ih.symm
   | trans _ _ _ _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
-/-- A restriction whose darts are all connected (in `M`) to one of its darts is connected.-/
+/-- A restriction whose darts are all connected (in `M`) to one of its darts is connected.
+@isnad1 id=connecte.3h4v.s6.5e1ba0131b4b from=translated src=- shape=c125fa60 vocab=d79c7ac8
+-/
 theorem restrict_connected (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.α x) ↔ p x) (c : M.D) (hc : p c)
     (hreach : ∀ x, p x → Relation.EqvGen M.Step c x) : (M.restrict p hσ hα).Connected := by
   have key : ∀ u v, Relation.EqvGen M.Step u v → ∀ (hu : p u) (hv : p v),
@@ -132,11 +152,17 @@ theorem restrict_connected (hσ : ∀ x, p (M.σ x) ↔ p x) (hα : ∀ x, p (M.
 
 variable (M) (c : M.D)
 
+/--
+@isnad1 id=iff.0h3v.s5.ec4000526253 from=translated src=- shape=50839f42 vocab=72dcbec4
+-/
 theorem component_invariant_σ : ∀ x, Relation.EqvGen M.Step c (M.σ x) ↔
     Relation.EqvGen M.Step c x := fun x =>
   ⟨fun h => h.trans _ _ _ ((Relation.EqvGen.rel x (M.σ x) (Or.inl rfl)).symm _ _),
     fun h => h.trans _ _ _ (Relation.EqvGen.rel x (M.σ x) (Or.inl rfl))⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.167c4510a41b from=translated src=- shape=50839f42 vocab=5e50be4f
+-/
 theorem component_invariant_α : ∀ x, Relation.EqvGen M.Step c (M.α x) ↔
     Relation.EqvGen M.Step c x := fun x =>
   ⟨fun h => h.trans _ _ _ ((Relation.EqvGen.rel x (M.α x) (Or.inr rfl)).symm _ _),
@@ -154,17 +180,23 @@ noncomputable def componentCompl : CombMap :=
   M.restrict (fun x => ¬ Relation.EqvGen M.Step c x)
     (not_invariant_σ _ (M.component_invariant_σ c)) (not_invariant_α _ (M.component_invariant_α c))
 
-/-- `χ` is the sum over the component of `c` and the rest.-/
+/-- `χ` is the sum over the component of `c` and the rest.
+@isnad1 id=eq.0h2v.s4.5c592ffa88ce from=translated src=- shape=41e92ff8 vocab=0325ef8f
+-/
 theorem euler_component_add : M.euler = (M.component c).euler + (M.componentCompl c).euler := by
   classical
   exact euler_restrict_add _ (M.component_invariant_σ c) (M.component_invariant_α c)
 
-/-- The component of a dart is connected.-/
+/-- The component of a dart is connected.
+@isnad1 id=connecte.0h2v.s3.9dc55d94b321 from=translated src=- shape=1f8e965c vocab=768a2536
+-/
 theorem component_connected : (M.component c).Connected := by
   classical
   exact restrict_connected _ _ _ c (Relation.EqvGen.refl _) fun _ h => h
 
-/-- If every dart outside the component of `c` is connected to `d`, the rest is connected.-/
+/-- If every dart outside the component of `c` is connected to `d`, the rest is connected.
+@isnad1 id=connecte.2h3v.s5.a94ec0130a97 from=translated src=- shape=529b90cf vocab=7a303e1b
+-/
 theorem componentCompl_connected (d : M.D) (hd : ¬ Relation.EqvGen M.Step c d)
     (h : ∀ x, ¬ Relation.EqvGen M.Step c x → Relation.EqvGen M.Step d x) :
     (M.componentCompl c).Connected := by

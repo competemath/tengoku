@@ -34,6 +34,9 @@ variable {H : Type u} {K : Type v} [Group H] [Group K]
 noncomputable abbrev coeffMap (f : H →* K) : ZG H →+* ZG K :=
   MonoidAlgebra.mapDomainRingHom ℤ f
 
+/--
+@isnad1 id=eq.0h4v.s8.d2e6b5aa7960 from=translated src=- shape=5070c1c6 vocab=6aae7e00
+-/
 @[simp] theorem coeffMap_of (f : H →* K) (h : H) :
     coeffMap f (MonoidAlgebra.of ℤ H h) = MonoidAlgebra.of ℤ K (f h) := by
   simp [coeffMap, MonoidAlgebra.of_apply]
@@ -51,16 +54,24 @@ noncomputable def boundarySubst (f : H →* K) (y : Fin m → K)
   map_smul' a v := by
     simp only [Pi.smul_apply, smul_eq_mul, map_mul, mul_smul, Finset.smul_sum]
 
+/--
+@isnad1 id=eq.0h8v.s9.cb8f1fcf55b2 from=translated src=- shape=dda5f225 vocab=61b73fbb
+-/
 theorem boundarySubst_apply (f : H →* K) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m)) (v : FreeMod H n) :
     boundarySubst f y θ v = ∑ i, coeffMap f (v i) • wordBoundary y (θ (FreeGroup.of i)) := rfl
 
-/-- Semilinearity: `L(a • v) = f_ℤ(a) • L(v)`.-/
+/-- Semilinearity: `L(a • v) = f_ℤ(a) • L(v)`.
+@isnad1 id=eq.0h9v.s9.79cfbe8c08f4 from=translated src=- shape=addec817 vocab=45bdb131
+-/
 theorem boundarySubst_smul (f : H →* K) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m)) (a : ZG H) (v : FreeMod H n) :
     boundarySubst f y θ (a • v) = coeffMap f a • boundarySubst f y θ v :=
   (boundarySubst f y θ).map_smulₛₗ a v
 
+/--
+@isnad1 id=eq.0h8v.s9.c93054b28149 from=translated src=- shape=2678c33b vocab=87e4c6c9
+-/
 @[simp] theorem boundarySubst_stdBasis (f : H →* K) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m)) (i : Fin n) :
     boundarySubst f y θ (stdBasis H i) = wordBoundary y (θ (FreeGroup.of i)) := by
@@ -71,7 +82,9 @@ theorem boundarySubst_smul (f : H →* K) (y : Fin m → K)
     simp [stdBasis, hji]
   · simp
 
-/-- Compatibility (B) on generators gives `f ∘ q_x = q_y ∘ θ` on all words.-/
+/-- Compatibility (B) on generators gives `f ∘ q_x = q_y ∘ θ` on all words.
+@isnad1 id=eq.1h9v.s10.96e396bdf111 from=translated src=- shape=f46c107d vocab=f6c4cffa
+-/
 theorem lift_comp_of_compat (f : H →* K) (x : Fin n → H) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m))
     (hB : ∀ i, f (x i) = FreeGroup.lift y (θ (FreeGroup.of i))) (u : FreeGroup (Fin n)) :
@@ -80,7 +93,9 @@ theorem lift_comp_of_compat (f : H →* K) (x : Fin n → H) (y : Fin m → K)
     ext i; simpa using hB i
   exact DFunLike.congr_fun this u
 
-/-- **Chain rule.** Under (B), `L(D_x u) = D_y(θ u)` for every word `u`.-/
+/-- **Chain rule.** Under (B), `L(D_x u) = D_y(θ u)` for every word `u`.
+@isnad1 id=eq.1h9v.s9.f14b29d20a97 from=translated src=- shape=3959ab47 vocab=04bdbbd7
+-/
 theorem wordBoundary_substitution (f : H →* K) (x : Fin n → H) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m))
     (hB : ∀ i, f (x i) = FreeGroup.lift y (θ (FreeGroup.of i))) (u : FreeGroup (Fin n)) :
@@ -96,7 +111,9 @@ theorem wordBoundary_substitution (f : H →* K) (x : Fin n → H) (y : Fin m �
       lift_comp_of_compat f x y θ hB, map_mul, wordBoundary_mul]
 
 /-- **Span transport.** Under (B), if `z` lies in the `ℤ[H]`-span of `D_x '' T`, then `L z` lies
-in the `ℤ[K]`-span of `D_y '' (θ '' T)`.-/
+in the `ℤ[K]`-span of `D_y '' (θ '' T)`.
+@isnad1 id=mem.2h10v.s10.8f79a9646dfc from=translated src=- shape=af4910a9 vocab=d462b543
+-/
 theorem boundarySubstitution_mem_span (f : H →* K) (x : Fin n → H) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m))
     (hB : ∀ i, f (x i) = FreeGroup.lift y (θ (FreeGroup.of i)))
@@ -112,7 +129,9 @@ theorem boundarySubstitution_mem_span (f : H →* K) (x : Fin n → H) (y : Fin 
   exact hle hz
 
 /-- **Span transport of words.** Under (B), if `D_x r ∈ span (D_x '' T)`, then
-`D_y (θ r) ∈ span (D_y '' (θ '' T))`.-/
+`D_y (θ r) ∈ span (D_y '' (θ '' T))`.
+@isnad1 id=mem.2h10v.s10.4523bbbf282b from=translated src=- shape=1d3a6159 vocab=6a536666
+-/
 theorem wordBoundary_subst_mem_span (f : H →* K) (x : Fin n → H) (y : Fin m → K)
     (θ : FreeGroup (Fin n) →* FreeGroup (Fin m))
     (hB : ∀ i, f (x i) = FreeGroup.lift y (θ (FreeGroup.of i)))

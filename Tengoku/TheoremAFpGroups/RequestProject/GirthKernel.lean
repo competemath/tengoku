@@ -38,6 +38,9 @@ def memN (a : ℕ) : List ℕ → Bool
   | [] => false
   | b :: l => Nat.beq a b || memN a l
 
+/--
+@isnad1 id=iff.0h2v.s4.7321a24aaa1e from=translated src=- shape=d6702376 vocab=dc962b24
+-/
 theorem memN_iff (a : ℕ) (l : List ℕ) : memN a l = true ↔ a ∈ l := by
   induction l with
   | nil => simp [memN]
@@ -48,6 +51,9 @@ def bitsNodup : List ℕ → ℕ → Bool
   | [], _ => true
   | x :: xs, acc => !(acc.testBit x) && bitsNodup xs (acc ||| (1 <<< x))
 
+/--
+@isnad1 id=and.1h2v.s5.b1cfd268adb4 from=translated src=- shape=f4b35c1c vocab=c75a623b
+-/
 theorem bitsNodup_sound : ∀ (l : List ℕ) (acc : ℕ), bitsNodup l acc = true →
     l.Nodup ∧ ∀ x ∈ l, acc.testBit x = false
   | [], _, _ => ⟨List.nodup_nil, by simp⟩
@@ -77,6 +83,9 @@ def graph : SimpleGraph ℕ where
   symm := ⟨fun _ _ ⟨h1, h2, h3, h4, h5⟩ => ⟨h2, h1, h4, h3, Ne.symm h5⟩⟩
   loopless := ⟨fun _ h => h.2.2.2.2 rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.0b046076ce47 from=translated src=- shape=edf4e6cb vocab=6241141e
+-/
 theorem adj_iff (a b : ℕ) : (graph N t).Adj a b ↔ b ∈ nbrs N t a := by
   simp only [graph, nbrs]
   split_ifs with ha
@@ -88,6 +97,9 @@ theorem adj_iff (a b : ℕ) : (graph N t).Adj a b ↔ b ∈ nbrs N t a := by
 def localCheckN (nbrs : ℕ → List ℕ) (x : ℕ) : Bool :=
   bitsNodup (((List.range 6).flatMap (GirthCheck.pathsTo nbrs x)).map (fun p => p.headD 0)) 0
 
+/--
+@isnad1 id=ne.1h4v.s5.8446bc5e174b from=translated src=- shape=6fc499c4 vocab=7c91794d
+-/
 theorem pathsTo_ne_nil (nb : ℕ → List ℕ) (x : ℕ) :
     ∀ n, ∀ p ∈ GirthCheck.pathsTo nb x n, p ≠ []
   | 0, p, hp => by simp [GirthCheck.pathsTo] at hp; simp [hp]
@@ -100,6 +112,9 @@ theorem pathsTo_ne_nil (nb : ℕ → List ℕ) (x : ℕ) :
       obtain ⟨w, -, rfl⟩ := hq
       simp
 
+/--
+@isnad1 id=eq.1h2v.s4.39b3b9961553 from=translated src=- shape=7511b6a6 vocab=80273c9f
+-/
 theorem localCheck_of_localCheckN (nb : ℕ → List ℕ) (x : ℕ) (h : localCheckN nb x = true) :
     GirthCheck.localCheck nb x = true := by
   simp only [GirthCheck.localCheck, decide_eq_true_eq]
@@ -117,6 +132,9 @@ theorem localCheck_of_localCheckN (nb : ℕ → List ℕ) (x : ℕ) (h : localCh
   rw [hmap]
   exact hnd.map (Option.some_injective _)
 
+/--
+@isnad1 id=eq.1h3v.s4.f366e4a9cdbe from=translated src=- shape=4824b341 vocab=f18228ec
+-/
 theorem localCheck_of_ge (x : ℕ) (hx : N ≤ x) : GirthCheck.localCheck (nbrs N t) x = true := by
   have h1 : GirthCheck.pathsTo (nbrs N t) x 1 = [] := by
     simp [GirthCheck.pathsTo, GirthCheck.extend, nbrs, Nat.not_lt.2 hx]
@@ -141,6 +159,9 @@ def incCheck (r : ℕ) : ℕ → List TripleSystem.Triple → Bool
   | l, x :: T => x.entries.all (fun v => memN (r + l) (t.get v) && memN v (t.get (r + l))) &&
       incCheck r (l + 1) T
 
+/--
+@isnad1 id=and.3h6v.s6.62f886436714 from=translated src=- shape=da9c75d6 vocab=596f58fc
+-/
 theorem incCheck_spec (r : ℕ) : ∀ (T : List TripleSystem.Triple) (l₀ : ℕ),
     incCheck t r l₀ T = true → ∀ (l : ℕ) (hl : l < T.length), ∀ v ∈ T[l].entries,
       r + (l₀ + l) ∈ t.get v ∧ v ∈ t.get (r + (l₀ + l))

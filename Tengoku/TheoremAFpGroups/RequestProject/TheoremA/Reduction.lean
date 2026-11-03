@@ -75,7 +75,9 @@ def UniversalBases : Prop :=
       (∀ (X : Type u) [Group X], 𝒞 X →
         ∀ (φ : X →* X) (hφ : Function.Injective φ), 𝒞 (ascHNN φ hφ))
 
-/-- The maps `α_v = j ∘ ι_v` satisfy the commuting-product relations of `Σ` (eq. (3.1)).-/
+/-- The maps `α_v = j ∘ ι_v` satisfy the commuting-product relations of `Σ` (eq. (3.1)).
+@isnad1 id=diagramr.0h4v.s7.8ddc0166c69c from=translated src=- shape=489e7464 vocab=1383bac6
+-/
 theorem diagramRelations_comp (r : ℕ) (T : List Triple) {B : Type*} [Group B]
     (j : diagramGroup r T B →* B) :
     DiagramRelations r T (fun v => j.comp (diagramGroup.ι r T B v)) := by
@@ -100,7 +102,9 @@ theorem diagramRelations_comp (r : ℕ) (T : List Triple) {B : Type*} [Group B]
     simp only [MonoidHom.comp_apply, this, map_mul]
 
 /-- **Proposition 7.1** (abstract form).  Given the ingredients, for every `m ≥ 2` there is an
-`FP_m` group in `𝒞` containing `G` and a copy of every member of `𝒞`.-/
+`FP_m` group in `𝒞` containing `G` and a copy of every member of `𝒞`.
+@isnad1 id=ex.8h8v.s9.220dc882c088 from=translated src=- shape=e9d8452c vocab=319cece7
+-/
 theorem proposition_7_1 (h31 : Lemma31.{u}) (h52 : Corollary52.{u}) (r : ℕ) (T : List Triple)
     (a : Fin T.length → ℤ) (hr : 0 < r) (hw : WellFormed r T)
     (hg : 12 ≤ (incidenceGraph r T).egirth) (ha : RowIdentity r T a)

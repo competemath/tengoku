@@ -24,17 +24,25 @@ noncomputable def matMap {a b : ℕ} (y : Fin a → FreeMod E b) : FreeMod E a �
   map_add' x x' := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' l x := by simp [Finset.smul_sum, mul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.9a5fc658e805 from=translated src=- shape=fbba37b8 vocab=9a3b2ed8
+-/
 theorem matMap_single {a b : ℕ} (y : Fin a → FreeMod E b) (j : Fin a) :
     matMap y (Pi.single j 1) = y j := by
   simp [matMap, Pi.single_apply]
 
-/-- Two `ℤ[E]`-linear maps on `ℤ[E]^a` agreeing on the basis are equal.-/
+/-- Two `ℤ[E]`-linear maps on `ℤ[E]^a` agreeing on the basis are equal.
+@isnad1 id=eq.1h5v.s9.dca0e67fd2f5 from=translated src=- shape=a4b8342b vocab=95fade77
+-/
 theorem linear_ext_single {a : ℕ} {N : Type*} [AddCommGroup N] [Module (ZG E) N]
     (f g : FreeMod E a →ₗ[ZG E] N) (h : ∀ j, f (Pi.single j 1) = g (Pi.single j 1)) : f = g := by
   have := semilinear_ext (RingHom.id (ZG E)) f.toAddMonoidHom g.toAddMonoidHom
     (fun l x => by simp) (fun l x => by simp) h
   exact LinearMap.ext fun x => congrArg (fun F => F x) this
 
+/--
+@isnad1 id=eq.0h5v.s8.17d993257099 from=translated src=- shape=030e6901 vocab=aafe3c35
+-/
 theorem ρV_single (ι : B →* E) {n : ℕ} (j : Fin n) :
     ρV ι (Pi.single j 1 : FreeMod B n) = Pi.single j 1 := by
   ext i : 1
@@ -52,6 +60,9 @@ noncomputable def Tmap (i : ℕ) : FreeMod (ascHNN φ hφ) (R.c i) →ₗ[ZG (as
 
 variable {φ hφ R Φ}
 
+/--
+@isnad1 id=eq.2h7v.s12.2e5ba4f38278 from=translated src=- shape=27344ebb vocab=4b502a1d
+-/
 theorem Tmap_ρV (hΦ : IsChainLift R φ Φ) (i : ℕ) (w : FreeMod B (R.c i)) :
     Tmap φ hφ R Φ i (ρV (ofE φ hφ) w) =
       MonoidAlgebra.single (sE φ hφ) (1 : ℤ) • ρV (ofE φ hφ) (Φ i w) := by
@@ -60,6 +71,9 @@ theorem Tmap_ρV (hΦ : IsChainLift R φ Φ) (i : ℕ) (w : FreeMod B (R.c i)) :
   simp only [map_sum, ρV_smul, ρV_single, map_smul, Tmap, matMap_single, hΦ.semilinear,
     Finset.smul_sum, smul_smul, ρ_mul_sE]
 
+/--
+@isnad1 id=eq.3h7v.s14.462495367400 from=translated src=- shape=f4afe346 vocab=84788e8a
+-/
 theorem Tmap_comm (hΦ : IsChainLift R φ Φ) (i : ℕ) (hi : i ≤ k)
     (x : FreeMod (ascHNN φ hφ) (R.c (i + 1))) :
     indMap (ofE φ hφ) (R.d i) (Tmap φ hφ R Φ (i + 1) x) =
@@ -70,6 +84,9 @@ theorem Tmap_comm (hΦ : IsChainLift R φ Φ) (i : ℕ) (hi : i ≤ k)
       rw [indMap_single, ← Tmap, Tmap_ρV hΦ, hΦ.comm i hi])
   exact congrArg (fun F => F x) this
 
+/--
+@isnad1 id=eq.2h7v.s14.d758b931af7d from=translated src=- shape=ad85fa10 vocab=0c92a54f
+-/
 theorem εM_smul_sE_ρV (hΦ : IsChainLift R φ Φ) (f : ZG (ascHNN φ hφ)) (j : Fin (R.c 0)) :
     εM (ofE φ hφ) R (f • (MonoidAlgebra.single (sE φ hφ) (1 : ℤ) •
       ρV (ofE φ hφ) (Φ 0 (Pi.single j 1)))) =
@@ -80,6 +97,9 @@ theorem εM_smul_sE_ρV (hΦ : IsChainLift R φ Φ) (f : ZG (ascHNN φ hφ)) (j 
   congr 1
   exact Finset.sum_congr rfl fun j' _ => mul_comm _ _
 
+/--
+@isnad1 id=eq.1h6v.s13.7d4bbd196333 from=translated src=- shape=31719bd3 vocab=a80b2708
+-/
 theorem εM_smul_single (f : ZG (ascHNN φ hφ)) (j : Fin (R.c 0)) :
     εM (ofE φ hφ) R (f • (Pi.single j 1 : FreeMod (ascHNN φ hφ) (R.c 0))) =
       R.ε (Pi.single j 1) • πM (ofE φ hφ) f := by
@@ -89,6 +109,9 @@ theorem εM_smul_single (f : ZG (ascHNN φ hφ)) (j : Fin (R.c 0)) :
   · intro b _ hb; simp [hb]
   · simp
 
+/--
+@isnad1 id=eq.2h6v.s14.7f8d5b96d7cd from=translated src=- shape=1e1c500c vocab=4ff84038
+-/
 theorem εM_Tmap (hΦ : IsChainLift R φ Φ) (v : FreeMod (ascHNN φ hφ) (R.c 0)) :
     εM (ofE φ hφ) R (Tmap φ hφ R Φ 0 v) = TM φ hφ (εM (ofE φ hφ) R v) := by
   conv_lhs => rw [eq_sum_single v]
@@ -96,6 +119,9 @@ theorem εM_Tmap (hΦ : IsChainLift R φ Φ) (v : FreeMod (ascHNN φ hφ) (R.c 0
   simp only [map_sum, map_smul, Tmap, matMap_single, εM_smul_sE_ρV hΦ, εM_smul_single,
     map_zsmul]
 
+/--
+@isnad1 id=eq.2h6v.s12.4a06a4f77206 from=translated src=- shape=f6898b71 vocab=c37069e5
+-/
 theorem εA_Tmap (hΦ : IsChainLift R φ Φ) (v : FreeMod (ascHNN φ hφ) (R.c 0)) :
     εA (ofE φ hφ) R (Tmap φ hφ R Φ 0 v) = εA (ofE φ hφ) R v := by
   simp only [εA, AddMonoidHom.comp_apply, εM_Tmap hΦ, augM_TM]
