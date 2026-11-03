@@ -1,0 +1,55 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Seed.Data.Nat.Bitwise
+import Tengoku.Azurite.Azurite.UInt64.TestBit
+import Tengoku.Azurite.Azurite.UInt64.Equiv.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace UInt64
+
+/--
+@isnad1 id=eq.0h2v.s3.0f6e4482eb58 from=translated src=- shape=b91d121f vocab=fe39cf6c
+-/
+theorem testBit_eq_toNat_testBit (u : UInt64) (i : Nat) :
+    u.testBit i = u.toNat.testBit i := by
+  unfold testBit
+  split
+  · rename_i hi
+    have hshift : ((u >>> _root_.UInt64.ofNat i) &&& 1).toNat = u.toNat / 2 ^ i % 2 := by
+      rw [_root_.UInt64.toNat_and, _root_.UInt64.toNat_shiftRight,
+          show ((1 : UInt64).toNat = 1) from rfl, Nat.and_one_is_mod]
+      have hi_eq : (_root_.UInt64.ofNat i).toNat = i := by
+        show i % 2 ^ 64 = i
+        exact Nat.mod_eq_of_lt (by omega)
+      rw [hi_eq, Nat.mod_eq_of_lt hi, Nat.shiftRight_eq_div_pow]
+    rw [Nat.testBit_eq_decide_div_mod_eq]
+    have hmod_lt : u.toNat / 2 ^ i % 2 < 2 := Nat.mod_lt _ (by omega)
+    by_cases hb : (u >>> _root_.UInt64.ofNat i) &&& 1 = 0
+    · have h0 : ((u >>> _root_.UInt64.ofNat i) &&& 1).toNat = 0 := by rw [hb]; rfl
+      rw [hshift] at h0
+      simp [hb]
+      omega
+    · have hne : ((u >>> _root_.UInt64.ofNat i) &&& 1).toNat ≠ 0 := by
+        intro h
+        apply hb
+        apply _root_.UInt64.eq_of_toNat_eq
+        rw [h]
+        rfl
+      rw [hshift] at hne
+      have heq1 : u.toNat / 2 ^ i % 2 = 1 := by omega
+      simp [hb, heq1]
+  · rename_i hi
+    symm
+    apply Nat.testBit_eq_false_of_lt
+    have hu_lt : u.toNat < 2 ^ 64 := _root_.UInt64.toNat_lt _
+    exact lt_of_lt_of_le hu_lt (Nat.pow_le_pow_right (by omega) (by omega))
+
+end UInt64

@@ -1,0 +1,733 @@
+/-
+Copyright (c) 2026 Frankie Wang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Frankie Wang
+-/
+import Tengoku.Seed.Data.Nat.Factorization.Basic
+import Tengoku.Seed.NumberTheory.LegendreSymbol.JacobiSymbol
+import Tengoku.Seed.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Tengoku.QuadraticNumberFields.QNFMathlib.NumberTheory.LegendreSymbol.KroneckerSymbol
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Periodicity, Multiplicativity, and Vanishing for the Kronecker Symbol
+
+Material destined for mathlib.
+
+This file develops the arithmetic API needed to package `kroneckerSymNat` as a
+`MulChar` on `ZMod D.natAbs`, then transfers the core properties to the full
+integer-denominator symbol `kroneckerSym`:
+
+* `kroneckerSymNat_add_natAbs_eq` (Shim A): periodicity modulo `|D|`, conditional
+  on `D % 4 ∈ {0, 1}`.
+* `kroneckerSymNat_mod_natAbs_eq`: reduction of the denominator modulo `|D|`.
+* `kroneckerSymNat_eq_of_modEq`: invariance modulo any multiple of `|D|`.
+* `kroneckerSymNat_eq_jacobiSym_of_odd`: agreement with the Jacobi symbol at
+  odd denominators.
+* `kroneckerSymNat_sq_one_of_coprime`: a coprime denominator gives a sign.
+* `kroneckerSymNatUnit`: the corresponding unit-valued symbol under coprimality.
+* `kroneckerSymNat_mul` (Shim B): full multiplicativity in the lower argument
+  for nonzero inputs.
+* `kroneckerSymNat_eq_zero_iff_not_coprime` (Shim C): exact vanishing criterion.
+* `kroneckerSymNat_natAbs_sub_one_eq_sign`: the value at the representative of
+  `-1` in `ZMod D.natAbs`.
+* `kroneckerSym_mul`, `kroneckerSym_mul_left`: multiplicativity for nonzero
+  integer arguments.
+* `kroneckerSym_eq_zero_iff_not_coprime`, `kroneckerSym_trichotomy`: vanishing
+  and range for arbitrary integer denominators.
+
+These shims depend only on
+`QNFMathlib.NumberTheory.LegendreSymbol.KroneckerSymbol` and
+mathlib; they are project-quadratic-field-independent.
+-/
+
+/-- A nonzero natural number split into its 2-adic valuation and odd part evaluates
+under `kroneckerSymNat` as the product of the supplementary value at `2` (raised to
+the 2-adic valuation) and the Jacobi symbol at the odd part.-/
+private lemma kroneckerSymNat_two_pow_mul_odd (D : ℤ) (k : ℕ) {m : ℕ} (hm : Odd m) :
+    kroneckerSymNat D (2 ^ k * m) = kroneckerTwo D ^ k * jacobiSym D m := by
+  have hm0 : m ≠ 0 := hm.pos.ne'
+  have hmn0 : 2 ^ k * m ≠ 0 := mul_ne_zero (pow_ne_zero _ (by decide)) hm0
+  have h2 : (2 : ℕ).Prime := Nat.prime_two
+  have hfact : (2 ^ k * m).factorization 2 = k := by
+    rw [Nat.factorization_mul (pow_ne_zero _ (by decide)) hm0]
+    simp [Nat.factorization_pow, Nat.Prime.factorization_self h2,
+      Nat.factorization_eq_zero_of_not_dvd (Odd.not_two_dvd_nat hm)]
+  rw [kroneckerSymNat, ite_eq_right hmn0, hfact]
+  congr 1
+  rw [Nat.mul_div_cancel_left m (pow_pos (by decide : (0 : ℕ) < 2) k)]
+
+/-- At an odd natural denominator, the Kronecker symbol is the Jacobi symbol.
+@isnad1 id=eq.1h2v.s4.c10f1f88c52d from=translated src=- shape=357247a4 vocab=23e0b770
+-/
+theorem kroneckerSymNat_eq_jacobiSym_of_odd (D : ℤ) {n : ℕ} (hn : Odd n) :
+    kroneckerSymNat D n = jacobiSym D n := by
+  have hn0 : n ≠ 0 := hn.pos.ne'
+  have hfact : n.factorization 2 = 0 :=
+    Nat.factorization_eq_zero_of_not_dvd hn.not_two_dvd_nat
+  rw [kroneckerSymNat, ite_eq_right hn0, hfact, pow_zero, one_mul, pow_zero, Nat.div_one]
+
+private lemma kroneckerTwo_sq_one_of_natAbs_not_even (D : ℤ)
+    (hD : ¬2 ∣ D.natAbs) :
+    kroneckerTwo D ^ 2 = 1 := by
+  have hDmod : D % 2 ≠ 0 := by
+    intro hmod
+    have h2D : (2 : ℤ) ∣ D := Int.dvd_of_emod_eq_zero hmod
+    exact hD ((Int.natCast_dvd (m := 2) (n := D)).mp h2D)
+  unfold kroneckerTwo
+  by_cases hmod8 : D % 8 = 1 ∨ D % 8 = 7
+  · simp [hDmod, hmod8]
+  · simp [hDmod, hmod8]
+
+/-- If the natural denominator is coprime to `D.natAbs`, then its Kronecker
+symbol has square one.
+@isnad1 id=eq.1h2v.s5.3125b79bb789 from=translated src=- shape=c7b1821d vocab=6b37f8a2
+-/
+theorem kroneckerSymNat_sq_one_of_coprime (D : ℤ) {n : ℕ}
+    (h : Nat.Coprime n D.natAbs) :
+    kroneckerSymNat D n ^ 2 = 1 := by
+  rcases Nat.eq_zero_or_pos n with rfl | hn
+  · have hD : D.natAbs = 1 := by
+      simpa [Nat.Coprime] using h
+    simp [kroneckerSymNat, hD]
+  · obtain ⟨k, m, hm, rfl⟩ := Nat.exists_eq_two_pow_mul_odd hn.ne'
+    rw [kroneckerSymNat_two_pow_mul_odd D k hm]
+    have hm_coprime : Nat.Coprime m D.natAbs :=
+      Nat.Coprime.coprime_dvd_left (dvd_mul_left m (2 ^ k)) h
+    have hm_int_coprime : Int.gcd D m = 1 := by
+      simpa [Int.gcd_eq_natAbs, Nat.Coprime, Nat.gcd_comm] using hm_coprime
+    have hjac_sq : jacobiSym D m ^ 2 = 1 := jacobiSym.sq_one hm_int_coprime
+    have htwo_pow_sq : (kroneckerTwo D ^ k) ^ 2 = 1 := by
+      by_cases hk : k = 0
+      · simp [hk]
+      · have h2n : 2 ∣ 2 ^ k * m :=
+          dvd_mul_of_dvd_left (dvd_pow_self 2 hk) m
+        have h2D : ¬2 ∣ D.natAbs :=
+          (Nat.prime_two.coprime_iff_not_dvd).mp
+            (Nat.Coprime.coprime_dvd_left h2n h)
+        calc
+          (kroneckerTwo D ^ k) ^ 2 = (kroneckerTwo D ^ 2) ^ k := by
+            rw [← pow_mul, Nat.mul_comm, pow_mul]
+          _ = 1 := by simp [kroneckerTwo_sq_one_of_natAbs_not_even D h2D]
+    calc
+      (kroneckerTwo D ^ k * jacobiSym D m) ^ 2 =
+          (kroneckerTwo D ^ k) ^ 2 * (jacobiSym D m) ^ 2 := by
+        rw [mul_pow]
+      _ = 1 := by simp [htwo_pow_sq, hjac_sq]
+
+/-- At a denominator coprime to `D.natAbs`, the Kronecker symbol is `1` or
+`-1`.
+@isnad1 id=or.1h2v.s5.ac3362ce6fa3 from=translated src=- shape=f0dc6c59 vocab=3b8ba6d1
+-/
+theorem kroneckerSymNat_eq_one_or_neg_one_of_coprime (D : ℤ) {n : ℕ}
+    (h : Nat.Coprime n D.natAbs) :
+    kroneckerSymNat D n = 1 ∨ kroneckerSymNat D n = -1 :=
+  sq_eq_one_iff.mp (kroneckerSymNat_sq_one_of_coprime D h)
+
+/-- The unit-valued Kronecker symbol at a denominator coprime to `D.natAbs`.-/
+def kroneckerSymNatUnit (D : ℤ) {n : ℕ}
+    (h : Nat.Coprime n D.natAbs) : ℤˣ :=
+  Units.mkOfMulEqOne (kroneckerSymNat D n) (kroneckerSymNat D n) (by
+    simpa [pow_two] using kroneckerSymNat_sq_one_of_coprime D h)
+
+/-- Coercing the coprime unit-valued Kronecker symbol to `ℤ` recovers the
+ordinary Kronecker symbol.
+@isnad1 id=eq.1h2v.s4.3c9a7729626c from=translated src=- shape=a8a4741b vocab=5c76f01a
+-/
+@[simp]
+theorem coe_kroneckerSymNatUnit (D : ℤ) {n : ℕ}
+    (h : Nat.Coprime n D.natAbs) :
+    (kroneckerSymNatUnit D h : ℤ) = kroneckerSymNat D n :=
+  rfl
+
+private lemma odd_natAbs_of_emod_four_eq_one (D : ℤ) (hD : D % 4 = 1) :
+    Odd D.natAbs := by
+  rcases Int.natAbs_eq D with hpos | hneg
+  · have hN4 : D.natAbs % 4 = 1 := by omega
+    exact Nat.odd_iff.mpr (by omega)
+  · have hN4 : D.natAbs % 4 = 3 := by omega
+    exact Nat.odd_iff.mpr (by omega)
+
+private lemma kroneckerTwo_eq_jacobiSym_two_natAbs_of_emod_four_eq_one (D : ℤ)
+    (hD : D % 4 = 1) :
+    kroneckerTwo D = jacobiSym (2 : ℤ) D.natAbs := by
+  have hNodd : Odd D.natAbs := odd_natAbs_of_emod_four_eq_one D hD
+  rw [jacobiSym.at_two hNodd]
+  rw [ZMod.χ₈_nat_eq_if_mod_eight]
+  unfold kroneckerTwo
+  split_ifs <;> omega
+
+private lemma jacobiSym_self_eq_natAbs_right_of_emod_four_eq_one (D : ℤ)
+    (hD : D % 4 = 1) {m : ℕ} (hm : Odd m) :
+    jacobiSym D m = jacobiSym m D.natAbs := by
+  rcases Int.natAbs_eq D with hpos | hneg
+  · have hN4 : D.natAbs % 4 = 1 := by omega
+    rw (occs := .pos [1]) [hpos]
+    exact jacobiSym.quadratic_reciprocity_one_mod_four hN4 hm
+  · have hN4 : D.natAbs % 4 = 3 := by omega
+    have hm2 : m % 2 = 1 := Nat.odd_iff.mp hm
+    have hN2 : D.natAbs % 2 = 1 := by omega
+    calc
+      jacobiSym D m = jacobiSym (-(D.natAbs : ℤ)) m := by
+        rw (occs := .pos [1]) [hneg]
+      _ = ZMod.χ₄ (m : ZMod 4) * jacobiSym (D.natAbs : ℤ) m := by
+        exact jacobiSym.neg (D.natAbs : ℤ) hm
+      _ = jacobiSym (m : ℤ) D.natAbs := by
+        rcases Nat.odd_mod_four_iff.mp hm2 with hm4 | hm4
+        · have hrec :=
+            jacobiSym.quadratic_reciprocity_if (a := D.natAbs) (b := m) hN2 hm2
+          have hrec' : jacobiSym (D.natAbs : ℤ) m = jacobiSym (m : ℤ) D.natAbs := by
+            simpa [hN4, hm4] using hrec.symm
+          rw [ZMod.χ₄_nat_one_mod_four hm4, hrec']
+          ring
+        · have hrec :=
+            jacobiSym.quadratic_reciprocity_if (a := D.natAbs) (b := m) hN2 hm2
+          have hrec' : jacobiSym (D.natAbs : ℤ) m = -jacobiSym (m : ℤ) D.natAbs := by
+            simpa [hN4, hm4] using hrec.symm
+          rw [ZMod.χ₄_nat_three_mod_four hm4, hrec']
+          ring
+
+/-- For discriminants `D ≡ 1 [ZMOD 4]`, the natural-denominator Kronecker symbol
+is the Jacobi symbol with denominator `|D|`.
+@isnad1 id=eq.1h2v.s5.446a11c6dde8 from=translated src=- shape=4405002d vocab=d201cca2
+-/
+theorem kroneckerSymNat_eq_jacobiSym_natAbs_of_emod_four_eq_one (D : ℤ)
+    (hD : D % 4 = 1) (n : ℕ) :
+    kroneckerSymNat D n = jacobiSym n D.natAbs := by
+  rcases eq_or_ne n 0 with rfl | hn0
+  · rcases eq_or_ne D.natAbs 1 with hD1 | hD1
+    · simp [kroneckerSymNat, hD1]
+    · have hD0 : D.natAbs ≠ 0 := by omega
+      have hDgt : 1 < D.natAbs :=
+        lt_of_le_of_ne (Nat.one_le_iff_ne_zero.mpr hD0) (Ne.symm hD1)
+      rw [kroneckerSymNat, ite_eq_left rfl, ite_eq_right hD1]
+      exact (jacobiSym.zero_left hDgt).symm
+  · obtain ⟨k, m, hm, rfl⟩ := Nat.exists_eq_two_pow_mul_odd hn0
+    rw [kroneckerSymNat_two_pow_mul_odd D k hm]
+    rw [Nat.cast_mul, jacobiSym.mul_left, Nat.cast_pow, jacobiSym.pow_left]
+    have htwoPow : jacobiSym ((2 : ℕ) : ℤ) D.natAbs ^ k = kroneckerTwo D ^ k := by
+      exact (congrArg (fun z : ℤ => z ^ k)
+        (kroneckerTwo_eq_jacobiSym_two_natAbs_of_emod_four_eq_one D hD)).symm
+    rw [htwoPow, ← jacobiSym_self_eq_natAbs_right_of_emod_four_eq_one D hD hm]
+
+private lemma gcd_ne_one_of_two_dvd {m n : ℕ} (hm : 2 ∣ m) (hn : 2 ∣ n) :
+    Nat.gcd m n ≠ 1 := by
+  intro h
+  have h2 : 2 ∣ Nat.gcd m n := Nat.dvd_gcd hm hn
+  rw [h] at h2
+  norm_num at h2
+
+/-- The Kronecker symbol vanishes whenever the natural denominator shares a prime
+factor with `D.natAbs`.
+@isnad1 id=eq.1h2v.s4.a8d4332e3cb4 from=translated src=- shape=83bcd0eb vocab=cfcc1a0e
+-/
+theorem kroneckerSymNat_eq_zero_of_not_coprime (D : ℤ) {n : ℕ}
+    (h : Nat.gcd n D.natAbs ≠ 1) : kroneckerSymNat D n = 0 := by
+  rcases Nat.eq_zero_or_pos n with rfl | hn
+  · have hD : D.natAbs ≠ 1 := by simpa using h
+    simp [kroneckerSymNat, hD]
+  · obtain ⟨k, m, hm, rfl⟩ := Nat.exists_eq_two_pow_mul_odd hn.ne'
+    rw [kroneckerSymNat_two_pow_mul_odd D k hm]
+    obtain ⟨p, hp, hpdvd⟩ := Nat.exists_prime_and_dvd h
+    have hpn : p ∣ 2 ^ k * m := hpdvd.trans (Nat.gcd_dvd_left _ _)
+    have hpD : p ∣ D.natAbs := hpdvd.trans (Nat.gcd_dvd_right _ _)
+    rcases hp.eq_two_or_odd' with rfl | hp_odd
+    · -- p = 2: 2 ∣ D.natAbs so D is even, kroneckerTwo D = 0
+      have h2D_int : (2 : ℤ) ∣ D :=
+        (Int.natCast_dvd (m := 2) (n := D)).mpr (by exact_mod_cast hpD)
+      have hDeven : D % 2 = 0 := Int.emod_eq_zero_of_dvd h2D_int
+      have hkTwo : kroneckerTwo D = 0 := (kroneckerTwo_eq_zero_iff D).mpr hDeven
+      have hk_pos : 0 < k := by
+        by_contra hk0
+        have hk_eq : k = 0 := by omega
+        subst hk_eq
+        simp only [pow_zero, one_mul] at hpn
+        exact hm.not_two_dvd_nat hpn
+      rw [hkTwo, zero_pow hk_pos.ne', zero_mul]
+    · -- p odd: p ∣ m and p ∣ D.natAbs, so gcd(D.natAbs, m) ≥ p, so jacobiSym D m = 0
+      have hpm : p ∣ m := by
+        rcases (Nat.Prime.dvd_mul hp).mp hpn with h2k | hm_p
+        · exfalso
+          have hp2 : p ∣ 2 := hp.dvd_of_dvd_pow h2k
+          have hpeq : p = 2 := (Nat.prime_dvd_prime_iff_eq hp Nat.prime_two).mp hp2
+          subst hpeq
+          exact absurd hp_odd (by decide)
+        · exact hm_p
+      have hgcd : Int.gcd D m ≠ 1 := by
+        have hp_dvd_gcd : p ∣ Nat.gcd D.natAbs m := Nat.dvd_gcd hpD hpm
+        intro hgcd_eq_one
+        have hgcd_nat : D.natAbs.gcd m = 1 := by
+          have h := hgcd_eq_one
+          simp only [Int.gcd, Int.natAbs_natCast] at h
+          exact h
+        rw [hgcd_nat] at hp_dvd_gcd
+        exact hp.one_lt.ne' (Nat.dvd_one.mp hp_dvd_gcd)
+      have hm_ne : m ≠ 0 := hm.pos.ne'
+      have : NeZero m := ⟨hm_ne⟩
+      have hjac0 : jacobiSym D m = 0 := jacobiSym.eq_zero_iff_not_coprime.mpr hgcd
+      rw [hjac0, mul_zero]
+
+/-- The natural-denominator Kronecker symbol vanishes exactly when its
+denominator is not coprime to `D.natAbs`. This includes the denominator-zero
+convention.
+@isnad1 id=iff.0h2v.s4.6f56b814d865 from=translated src=- shape=1ce3bfa8 vocab=cfcc1a0e
+-/
+theorem kroneckerSymNat_eq_zero_iff_not_coprime (D : ℤ) (n : ℕ) :
+    kroneckerSymNat D n = 0 ↔ Nat.gcd n D.natAbs ≠ 1 := by
+  constructor
+  · intro hzero hcop
+    have hsq := kroneckerSymNat_sq_one_of_coprime D (by
+      simpa [Nat.Coprime] using hcop)
+    rw [hzero] at hsq
+    norm_num at hsq
+  · exact kroneckerSymNat_eq_zero_of_not_coprime D
+
+/-- The natural-denominator Kronecker symbol takes only the values `0`, `1`,
+and `-1`.
+@isnad1 id=or.0h2v.s5.0adc469ea2ce from=translated src=- shape=49b29fd3 vocab=84edaa15
+-/
+theorem kroneckerSymNat_trichotomy (D : ℤ) (n : ℕ) :
+    kroneckerSymNat D n = 0 ∨
+      kroneckerSymNat D n = 1 ∨ kroneckerSymNat D n = -1 := by
+  by_cases h : Nat.Coprime n D.natAbs
+  · exact Or.inr (kroneckerSymNat_eq_one_or_neg_one_of_coprime D h)
+  · exact Or.inl ((kroneckerSymNat_eq_zero_iff_not_coprime D n).2 (by
+      simpa [Nat.Coprime] using h))
+
+/-- Periodicity of the Kronecker symbol modulo `|D|`, valid for every integer
+discriminant `D` with `D % 4 ∈ {0, 1}`.
+@isnad1 id=eq.0h2v.s6.e310fa5c50da from=translated src=- shape=4c5090a9 vocab=abaf6d5e
+-/
+theorem kroneckerSymNat_add_natAbs_eq (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] (n : ℕ) :
+    kroneckerSymNat D (n + D.natAbs) = kroneckerSymNat D n := by
+  rcases eq_or_ne D.natAbs 0 with hD0 | hD0
+  · simp [hD0]
+  rcases (show D % 4 = 0 ∨ D % 4 = 1 from Fact.out) with hd4 | hd4
+  · have h4D : (4 : ℤ) ∣ D := Int.dvd_of_emod_eq_zero hd4
+    have h2Dint : (2 : ℤ) ∣ D := dvd_trans (by norm_num : (2 : ℤ) ∣ 4) h4D
+    have h2Dnat : 2 ∣ D.natAbs := (Int.natCast_dvd (n := D) (m := 2)).mp h2Dint
+    by_cases hn2 : 2 ∣ n
+    · have hsum2 : 2 ∣ n + D.natAbs := dvd_add hn2 h2Dnat
+      rw [kroneckerSymNat_eq_zero_of_not_coprime D (gcd_ne_one_of_two_dvd hsum2 h2Dnat),
+        kroneckerSymNat_eq_zero_of_not_coprime D (gcd_ne_one_of_two_dvd hn2 h2Dnat)]
+    · have hnodd : Odd n := Nat.not_even_iff_odd.mp (by rwa [even_iff_two_dvd])
+      have hD_even : Even D.natAbs := even_iff_two_dvd.mpr h2Dnat
+      have hsumodd : Odd (n + D.natAbs) := hnodd.add_even hD_even
+      rw [kroneckerSymNat_eq_jacobiSym_of_odd D hsumodd,
+        kroneckerSymNat_eq_jacobiSym_of_odd D hnodd]
+      obtain ⟨a, rfl⟩ := h4D
+      have h4mod : (4 * a) % 4 = 0 := Int.mul_emod_right 4 a
+      rw [← jacobiSym.div_four_left h4mod (Nat.odd_iff.mp hsumodd),
+        ← jacobiSym.div_four_left h4mod (Nat.odd_iff.mp hnodd)]
+      simp only [Int.mul_ediv_cancel_left _ (by norm_num : (4 : ℤ) ≠ 0)]
+      rw [jacobiSym.mod_right a hsumodd, jacobiSym.mod_right a hnodd]
+      congr 1
+      have hperiod : (4 * a).natAbs = 4 * a.natAbs := by simp [Int.natAbs_mul]
+      rw [← hperiod]
+      exact Nat.add_mod_right n (4 * a).natAbs
+  · rw [kroneckerSymNat_eq_jacobiSym_natAbs_of_emod_four_eq_one D hd4 (n + D.natAbs),
+      kroneckerSymNat_eq_jacobiSym_natAbs_of_emod_four_eq_one D hd4 n]
+    apply jacobiSym.mod_left'
+    rw [Nat.cast_add]
+    simpa using (Int.add_mul_emod_self_left (n : ℤ) (D.natAbs : ℤ) 1)
+
+/-- Iterated periodicity of the Kronecker symbol modulo `|D|`.
+@isnad1 id=eq.0h3v.s6.02b4af9bcaf6 from=translated src=- shape=ee3eaa67 vocab=10a010b7
+-/
+theorem kroneckerSymNat_add_natAbs_mul_eq (D : ℤ)
+    [Fact (D % 4 = 0 ∨ D % 4 = 1)] (n k : ℕ) :
+    kroneckerSymNat D (n + D.natAbs * k) = kroneckerSymNat D n := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+      rw [Nat.mul_succ, ← Nat.add_assoc, kroneckerSymNat_add_natAbs_eq D, ih]
+
+/-- Reducing the lower argument modulo `|D|` preserves the Kronecker symbol.
+@isnad1 id=eq.0h2v.s6.ff21d87f67ec from=translated src=- shape=5985be0b vocab=6f933319
+-/
+theorem kroneckerSymNat_mod_natAbs_eq (D : ℤ)
+    [Fact (D % 4 = 0 ∨ D % 4 = 1)] (n : ℕ) :
+    kroneckerSymNat D (n % D.natAbs) = kroneckerSymNat D n := by
+  conv_rhs => rw [← Nat.mod_add_div n D.natAbs]
+  exact (kroneckerSymNat_add_natAbs_mul_eq D (n % D.natAbs) (n / D.natAbs)).symm
+
+/-- The Kronecker symbol is constant on natural-number congruence classes modulo
+any multiple of the absolute value of its upper argument.
+@isnad1 id=eq.3h4v.s6.7b62fcd44209 from=translated src=- shape=5f94ec11 vocab=eff9b4df
+-/
+theorem kroneckerSymNat_eq_of_modEq {D : ℤ}
+    (hD : D % 4 = 0 ∨ D % 4 = 1) {m a b : ℕ} (hDm : D.natAbs ∣ m)
+    (hab : a ≡ b [MOD m]) :
+    kroneckerSymNat D a = kroneckerSymNat D b := by
+  letI : Fact (D % 4 = 0 ∨ D % 4 = 1) := ⟨hD⟩
+  have hperiodic : Function.Periodic (kroneckerSymNat D) D.natAbs :=
+    kroneckerSymNat_add_natAbs_eq D
+  rw [← hperiodic.map_mod_nat a, ← hperiodic.map_mod_nat b]
+  exact congrArg (kroneckerSymNat D) (hab.of_dvd hDm)
+
+/-- Auxiliary computation for the canonical `-1` representative: the denominator
+`4 * A - 1` is congruent to `-1` modulo `A`, so it is the natural representative
+of `-1` after reducing modulo `4 * A`.-/
+private lemma jacobiSym_nat_four_mul_sub_one (A : ℕ) (hA : A ≠ 0) :
+    jacobiSym (A : ℤ) (4 * A - 1) = 1 := by
+  obtain ⟨k, m, hm, hAeq⟩ := Nat.exists_eq_two_pow_mul_odd hA
+  subst hAeq
+  have hbodd : Odd (4 * (2 ^ k * m) - 1) := by
+    rw [Nat.odd_iff]
+    have hpos : 0 < 4 * (2 ^ k * m) := by positivity
+    omega
+  rw [Nat.cast_mul, jacobiSym.mul_left, Nat.cast_pow, jacobiSym.pow_left]
+  have htwoPow : jacobiSym ((2 : ℕ) : ℤ) (4 * (2 ^ k * m) - 1) ^ k = 1 := by
+    rcases k with rfl | k
+    · simp
+    · have hmul : 4 * (2 ^ (k + 1) * m) = 8 * (2 ^ k * m) := by
+        rw [pow_succ]
+        ring
+      have hmod8 : (4 * (2 ^ (k + 1) * m) - 1) % 8 = 7 := by
+        rw [hmul]
+        have hmpos : 0 < m := hm.pos
+        have hpos : 0 < 8 * (2 ^ k * m) := by positivity
+        omega
+      have htwo : jacobiSym ((2 : ℕ) : ℤ) (4 * (2 ^ (k + 1) * m) - 1) = 1 := by
+        have hb2 : (4 * (2 ^ (k + 1) * m) - 1) % 2 = 1 := Nat.odd_iff.mp hbodd
+        have hbodd_succ : Odd (4 * (2 ^ (k + 1) * m) - 1) := hbodd
+        rw [show ((2 : ℕ) : ℤ) = (2 : ℤ) by norm_num]
+        calc
+          jacobiSym (2 : ℤ) (4 * (2 ^ (k + 1) * m) - 1) =
+              ZMod.χ₈ ((4 * (2 ^ (k + 1) * m) - 1 : ℕ) : ZMod 8) :=
+            jacobiSym.at_two hbodd_succ
+          _ = 1 := by
+            rw [ZMod.χ₈_nat_eq_if_mod_eight]
+            simp [hb2, hmod8]
+      rw [htwo, one_pow]
+  have hoddpart : jacobiSym (m : ℤ) (4 * (2 ^ k * m) - 1) = 1 := by
+    have hm2 : m % 2 = 1 := Nat.odd_iff.mp hm
+    have hb2 : (4 * (2 ^ k * m) - 1) % 2 = 1 := Nat.odd_iff.mp hbodd
+    have hb4 : (4 * (2 ^ k * m) - 1) % 4 = 3 := by
+      have hpos : 0 < 4 * (2 ^ k * m) := by positivity
+      omega
+    have hmod : ((4 * (2 ^ k * m) - 1 : ℕ) : ℤ) % m = (-1 : ℤ) % m := by
+      rw [Int.emod_eq_emod_iff_emod_sub_eq_zero]
+      have hdiff :
+          ((4 * (2 ^ k * m) - 1 : ℕ) : ℤ) - (-1 : ℤ) =
+            4 * ((2 ^ k : ℕ) : ℤ) * (m : ℤ) := by
+        have hpos : 0 < 4 * (2 ^ k * m) := by positivity
+        rw [Nat.cast_sub (by omega : 1 ≤ 4 * (2 ^ k * m))]
+        norm_num
+        ring
+      rw [hdiff]
+      apply Int.emod_eq_zero_of_dvd
+      refine ⟨4 * ((2 ^ k : ℕ) : ℤ), by ring⟩
+    have hbm :
+        jacobiSym ((4 * (2 ^ k * m) - 1 : ℕ) : ℤ) m = jacobiSym (-1 : ℤ) m :=
+      jacobiSym.mod_left' hmod
+    rw [jacobiSym.at_neg_one hm] at hbm
+    rcases Nat.odd_mod_four_iff.mp hm2 with hm4 | hm4
+    · have hrec :=
+        jacobiSym.quadratic_reciprocity_if (a := m) (b := 4 * (2 ^ k * m) - 1)
+          hm2 hb2
+      have hrec' : jacobiSym (m : ℤ) (4 * (2 ^ k * m) - 1) =
+          jacobiSym ((4 * (2 ^ k * m) - 1 : ℕ) : ℤ) m := by
+        simpa [hm4, hb4] using hrec.symm
+      rw [hrec', hbm, ZMod.χ₄_nat_one_mod_four hm4]
+    · have hrec :=
+        jacobiSym.quadratic_reciprocity_if (a := m) (b := 4 * (2 ^ k * m) - 1)
+          hm2 hb2
+      have hrec' : jacobiSym (m : ℤ) (4 * (2 ^ k * m) - 1) =
+          -jacobiSym ((4 * (2 ^ k * m) - 1 : ℕ) : ℤ) m := by
+        simpa [hm4, hb4] using hrec.symm
+      rw [hrec', hbm, ZMod.χ₄_nat_three_mod_four hm4]
+      ring
+  rw [htwoPow, hoddpart, one_mul]
+
+private lemma jacobiSym_neg_nat_four_mul_sub_one (A : ℕ) (hA : A ≠ 0) :
+    jacobiSym (-(A : ℤ)) (4 * A - 1) = -1 := by
+  have hbodd : Odd (4 * A - 1) := by
+    rw [Nat.odd_iff]
+    have hpos : 0 < 4 * A := by positivity
+    omega
+  have hb4 : (4 * A - 1) % 4 = 3 := by
+    have hpos : 0 < 4 * A := by positivity
+    omega
+  rw [jacobiSym.neg (A : ℤ) hbodd, jacobiSym_nat_four_mul_sub_one A hA,
+    ZMod.χ₄_nat_three_mod_four hb4]
+  ring
+
+/-- The Kronecker symbol at the representative `|D| - 1` is the sign factor
+appearing in the integer-denominator convention `(D / -1)`.
+@isnad1 id=eq.1h1v.s6.3257878d089e from=translated src=- shape=df37e5d1 vocab=ff030311
+-/
+theorem kroneckerSymNat_natAbs_sub_one_eq_sign (D : ℤ)
+    [Fact (D % 4 = 0 ∨ D % 4 = 1)] (hD0 : D.natAbs ≠ 0) :
+    kroneckerSymNat D (D.natAbs - 1) = kroneckerNegOne D := by
+  change kroneckerSymNat D (D.natAbs - 1) = if D < 0 then -1 else 1
+  rcases (show D % 4 = 0 ∨ D % 4 = 1 from Fact.out) with hd4 | hd4
+  · have h4D : (4 : ℤ) ∣ D := Int.dvd_of_emod_eq_zero hd4
+    obtain ⟨a, rfl⟩ := h4D
+    have ha0 : a.natAbs ≠ 0 := by
+      intro ha
+      apply hD0
+      simp [ha, Int.natAbs_mul]
+    have hN : (4 * a).natAbs = 4 * a.natAbs := by simp [Int.natAbs_mul]
+    have hbodd : Odd ((4 * a).natAbs - 1) := by
+      rw [hN]
+      rw [Nat.odd_iff]
+      have hpos : 0 < 4 * a.natAbs := by positivity
+      omega
+    rw [kroneckerSymNat_eq_jacobiSym_of_odd (4 * a) hbodd]
+    have h4mod : (4 * a) % 4 = 0 := Int.mul_emod_right 4 a
+    rw [← jacobiSym.div_four_left h4mod (Nat.odd_iff.mp hbodd)]
+    simp only [Int.mul_ediv_cancel_left _ (by norm_num : (4 : ℤ) ≠ 0)]
+    rcases Int.natAbs_eq a with hpos | hneg
+    · rw (occs := .pos [1]) [hpos]
+      rw [hN]
+      have hlt : ¬4 * a < 0 := by omega
+      rw [ite_eq_right hlt]
+      exact jacobiSym_nat_four_mul_sub_one a.natAbs ha0
+    · calc
+        jacobiSym a ((4 * a).natAbs - 1) =
+            jacobiSym (-(a.natAbs : ℤ)) ((4 * a).natAbs - 1) := by
+          rw (occs := .pos [1]) [hneg]
+        _ = if 4 * a < 0 then -1 else 1 := by
+          rw [hN]
+          have hlt : 4 * a < 0 := by omega
+          rw [ite_eq_left hlt]
+          exact jacobiSym_neg_nat_four_mul_sub_one a.natAbs ha0
+  · rw [kroneckerSymNat_eq_jacobiSym_natAbs_of_emod_four_eq_one D hd4]
+    have hNodd : Odd D.natAbs := odd_natAbs_of_emod_four_eq_one D hd4
+    have hmod : ((D.natAbs - 1 : ℕ) : ℤ) % D.natAbs = (-1 : ℤ) % D.natAbs := by
+      rw [Int.emod_eq_emod_iff_emod_sub_eq_zero]
+      have hdiff : ((D.natAbs - 1 : ℕ) : ℤ) - (-1 : ℤ) = D.natAbs := by
+        have hNpos : 0 < D.natAbs := Nat.pos_of_ne_zero hD0
+        omega
+      rw [hdiff, Int.emod_self]
+    have hneg :
+        jacobiSym ((D.natAbs - 1 : ℕ) : ℤ) D.natAbs =
+          jacobiSym (-1 : ℤ) D.natAbs :=
+      jacobiSym.mod_left' hmod
+    rw [hneg, jacobiSym.at_neg_one hNodd]
+    change ZMod.χ₄ (D.natAbs : ZMod 4) = if D < 0 then -1 else 1
+    rcases Int.natAbs_eq D with hpos | hnegD
+    · have hN4 : D.natAbs % 4 = 1 := by omega
+      have hlt : ¬D < 0 := by omega
+      rw [ZMod.χ₄_nat_one_mod_four hN4, ite_eq_right hlt]
+    · have hN4 : D.natAbs % 4 = 3 := by omega
+      have hlt : D < 0 := by omega
+      rw [ZMod.χ₄_nat_three_mod_four hN4, ite_eq_left hlt]
+
+private lemma kroneckerTwo_eq_chi8 (D : ℤ) : kroneckerTwo D = ZMod.χ₈ D := by
+  rw [ZMod.χ₈_int_eq_if_mod_eight]
+  rfl
+
+/-- The supplementary Kronecker value is multiplicative in its numerator.
+@isnad1 id=eq.0h2v.s4.dcad4cfccdfc from=translated src=- shape=a13ca989 vocab=abb328a6
+-/
+theorem kroneckerTwo_mul (D E : ℤ) :
+    kroneckerTwo (D * E) = kroneckerTwo D * kroneckerTwo E := by
+  rw [kroneckerTwo_eq_chi8, kroneckerTwo_eq_chi8, kroneckerTwo_eq_chi8]
+  simpa [Int.cast_mul] using map_mul ZMod.χ₈ (D : ZMod 8) (E : ZMod 8)
+
+/-- The Kronecker symbol is multiplicative in the upper argument, for nonzero
+natural denominators.
+@isnad1 id=eq.1h3v.s5.7db66f854e11 from=translated src=- shape=e9e1d6bc vocab=2495431f
+-/
+theorem kroneckerSymNat_mul_left (D E : ℤ) {n : ℕ} (hn : n ≠ 0) :
+    kroneckerSymNat (D * E) n = kroneckerSymNat D n * kroneckerSymNat E n := by
+  rw [kroneckerSymNat, ite_eq_right hn, kroneckerSymNat, ite_eq_right hn,
+    kroneckerSymNat, ite_eq_right hn, kroneckerTwo_mul, jacobiSym.mul_left]
+  ring
+
+/-- The Kronecker symbol with upper argument `1` is trivial.
+@isnad1 id=eq.0h1v.s4.d561a1598ff7 from=translated src=- shape=004a7881 vocab=8776ca92
+-/
+@[simp]
+theorem kroneckerSymNat_one_left (n : ℕ) : kroneckerSymNat 1 n = 1 := by
+  by_cases hn : n = 0
+  · simp [kroneckerSymNat, hn]
+  · rw [kroneckerSymNat, ite_eq_right hn]
+    simp [kroneckerTwo]
+
+/-- Pull a finite product out of the upper argument of `kroneckerSymNat`, for a
+nonzero natural denominator.
+@isnad1 id=eq.1h4v.s5.c2510d6b6e50 from=translated src=- shape=3b043a29 vocab=cb7dea77
+-/
+theorem kroneckerSymNat_prod_left {ι : Type*} (s : Finset ι) (f : ι → ℤ)
+    {n : ℕ} (hn : n ≠ 0) :
+    kroneckerSymNat (s.prod f) n = s.prod (fun i ↦ kroneckerSymNat (f i) n) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => simp
+  | @insert a s ha ih =>
+      rw [Finset.prod_insert ha, Finset.prod_insert ha, kroneckerSymNat_mul_left _ _ hn, ih]
+
+/-- Full multiplicativity of the Kronecker symbol in the lower (natural) argument,
+for nonzero inputs.
+@isnad1 id=eq.2h3v.s5.f4d2394b01b6 from=translated src=- shape=796339c6 vocab=2495431f
+-/
+theorem kroneckerSymNat_mul (D : ℤ) {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
+    kroneckerSymNat D (m * n) = kroneckerSymNat D m * kroneckerSymNat D n := by
+  obtain ⟨km, m', hm', rfl⟩ := Nat.exists_eq_two_pow_mul_odd hm
+  obtain ⟨kn, n', hn', rfl⟩ := Nat.exists_eq_two_pow_mul_odd hn
+  have hm'n' : Odd (m' * n') := hm'.mul hn'
+  have hm'0 : m' ≠ 0 := hm'.pos.ne'
+  have hn'0 : n' ≠ 0 := hn'.pos.ne'
+  -- LHS: (2^km * m') * (2^kn * n') = 2^(km+kn) * (m' * n')
+  have hreorg : 2 ^ km * m' * (2 ^ kn * n') = 2 ^ (km + kn) * (m' * n') := by
+    rw [pow_add]; ring
+  rw [hreorg, kroneckerSymNat_two_pow_mul_odd D (km + kn) hm'n',
+    kroneckerSymNat_two_pow_mul_odd D km hm',
+    kroneckerSymNat_two_pow_mul_odd D kn hn',
+    jacobiSym.mul_right' _ hm'0 hn'0, pow_add]
+  ring
+
+private theorem kroneckerSymNat_list_prod (D : ℤ) :
+    ∀ l : List ℕ, (∀ p ∈ l, p ≠ 0) →
+      kroneckerSymNat D l.prod = (l.map (kroneckerSymNat D)).prod
+  | [], _ => by
+      simp [kroneckerSymNat, kroneckerTwo, jacobiSym.one_right]
+  | p :: l, h => by
+      have hp0 : p ≠ 0 := h p (by simp)
+      have hl0 : l.prod ≠ 0 := by
+        intro hzero
+        have hmem : 0 ∈ l := List.prod_eq_zero_iff.mp hzero
+        exact h 0 (by simp [hmem]) rfl
+      rw [List.prod_cons, List.map_cons, List.prod_cons]
+      rw [kroneckerSymNat_mul D hp0 hl0]
+      rw [kroneckerSymNat_list_prod D l]
+      intro q hq
+      exact h q (by simp [hq])
+
+/-- The Kronecker symbol of a nonzero natural denominator is the product of the
+Kronecker symbols over the denominator's prime factor list, with multiplicity.
+@isnad1 id=eq.1h2v.s5.3d292da79f7a from=translated src=- shape=22707bbf vocab=6039dd21
+-/
+theorem kroneckerSymNat_eq_primeFactorsList_prod (D : ℤ) {n : ℕ} (hn : n ≠ 0) :
+    kroneckerSymNat D n = (n.primeFactorsList.map (kroneckerSymNat D)).prod := by
+  calc
+    kroneckerSymNat D n = kroneckerSymNat D n.primeFactorsList.prod := by
+      rw [Nat.prod_primeFactorsList hn]
+    _ = (n.primeFactorsList.map (kroneckerSymNat D)).prod :=
+      kroneckerSymNat_list_prod D n.primeFactorsList fun p hp =>
+        (Nat.prime_of_mem_primeFactorsList hp).ne_zero
+
+/-- If every prime factor of a nonzero natural denominator has Kronecker value `1`,
+then the Kronecker symbol of the whole denominator is `1`.
+@isnad1 id=eq.2h2v.s5.6933b7ed0198 from=translated src=- shape=32bbdb7e vocab=cc16785d
+-/
+theorem kroneckerSymNat_eq_one_of_forall_primeFactors_eq_one
+    (D : ℤ) {n : ℕ} (hn : n ≠ 0)
+    (h : ∀ p ∈ n.primeFactors, kroneckerSymNat D p = 1) :
+    kroneckerSymNat D n = 1 := by
+  rw [kroneckerSymNat_eq_primeFactorsList_prod D hn]
+  exact List.prod_eq_one (by
+    intro z hz
+    rcases List.mem_map.mp hz with ⟨p, hp, rfl⟩
+    exact h p ((Nat.mem_primeFactors_iff_mem_primeFactorsList).2 hp))
+
+/-! ### Integer-denominator API -/
+
+/-- The integer-denominator Kronecker symbol vanishes exactly when the absolute
+denominator is not coprime to the absolute numerator.
+@isnad1 id=iff.0h2v.s4.c30998d26f02 from=translated src=- shape=837ad067 vocab=95481611
+-/
+theorem kroneckerSym_eq_zero_iff_not_coprime (D n : ℤ) :
+    kroneckerSym D n = 0 ↔ Nat.gcd n.natAbs D.natAbs ≠ 1 := by
+  by_cases hn : n < 0
+  · rw [kroneckerSym_of_neg D hn, mul_eq_zero]
+    simp [kroneckerSymNat_eq_zero_iff_not_coprime]
+  · rw [kroneckerSym, ite_eq_right hn, one_mul,
+      kroneckerSymNat_eq_zero_iff_not_coprime]
+
+/-- At a denominator coprime to the numerator, the integer-denominator
+Kronecker symbol has square one.
+@isnad1 id=eq.1h2v.s5.eade921f62fe from=translated src=- shape=162fc45d vocab=1ada23b3
+-/
+theorem kroneckerSym_sq_one_of_coprime (D n : ℤ)
+    (h : Nat.Coprime n.natAbs D.natAbs) :
+    kroneckerSym D n ^ 2 = 1 := by
+  have hnat := kroneckerSymNat_sq_one_of_coprime D h
+  by_cases hn : n < 0
+  · rw [kroneckerSym_of_neg D hn, mul_pow, kroneckerNegOne_sq,
+      hnat, one_mul]
+  · rw [kroneckerSym, ite_eq_right hn, one_mul, hnat]
+
+/-- At a denominator coprime to the numerator, the integer-denominator
+Kronecker symbol is `1` or `-1`.
+@isnad1 id=or.1h2v.s5.fbd2b4d52d83 from=translated src=- shape=978a0d3c vocab=235c01f6
+-/
+theorem kroneckerSym_eq_one_or_neg_one_of_coprime (D n : ℤ)
+    (h : Nat.Coprime n.natAbs D.natAbs) :
+    kroneckerSym D n = 1 ∨ kroneckerSym D n = -1 :=
+  sq_eq_one_iff.mp (kroneckerSym_sq_one_of_coprime D n h)
+
+/-- The integer-denominator Kronecker symbol takes only the values `0`, `1`,
+and `-1`.
+@isnad1 id=or.0h2v.s5.770202aff1d5 from=translated src=- shape=b1b8c699 vocab=f4973f9d
+-/
+theorem kroneckerSym_trichotomy (D n : ℤ) :
+    kroneckerSym D n = 0 ∨ kroneckerSym D n = 1 ∨ kroneckerSym D n = -1 := by
+  by_cases h : Nat.Coprime n.natAbs D.natAbs
+  · exact Or.inr (kroneckerSym_eq_one_or_neg_one_of_coprime D n h)
+  · exact Or.inl ((kroneckerSym_eq_zero_iff_not_coprime D n).2 (by
+      simpa [Nat.Coprime] using h))
+
+/-- The integer-denominator Kronecker symbol with upper argument `1` is
+trivial, including at denominators `0` and `-1`.
+@isnad1 id=eq.0h1v.s4.9b6431ba7a49 from=translated src=- shape=fe2c2146 vocab=e52570b9
+-/
+@[simp]
+theorem kroneckerSym_one_left (n : ℤ) : kroneckerSym 1 n = 1 := by
+  simp [kroneckerSym, kroneckerNegOne, kroneckerSymNat_one_left]
+
+private theorem kroneckerDenominatorSign_mul
+    (D m n : ℤ) (hm : m ≠ 0) (hn : n ≠ 0) :
+    (if m * n < 0 then kroneckerNegOne D else 1) =
+      (if m < 0 then kroneckerNegOne D else 1) *
+        (if n < 0 then kroneckerNegOne D else 1) := by
+  rcases lt_or_gt_of_ne hm with hmneg | hmpos <;>
+    rcases lt_or_gt_of_ne hn with hnneg | hnpos
+  · rw [ite_eq_right (not_lt_of_ge (mul_pos_of_neg_of_neg hmneg hnneg).le),
+      ite_eq_left hmneg, ite_eq_left hnneg]
+    simpa [pow_two] using (kroneckerNegOne_sq D).symm
+  · simp [mul_neg_of_neg_of_pos hmneg hnpos, hmneg, not_lt_of_ge hnpos.le]
+  · simp [mul_neg_of_pos_of_neg hmpos hnneg, not_lt_of_ge hmpos.le, hnneg]
+  · simp [not_lt_of_ge (mul_pos hmpos hnpos).le,
+      not_lt_of_ge hmpos.le, not_lt_of_ge hnpos.le]
+
+/-- The Kronecker symbol is multiplicative in nonzero integer denominators.
+@isnad1 id=eq.2h3v.s5.6ea482d35bf9 from=translated src=- shape=965ac053 vocab=17bd97e5
+-/
+theorem kroneckerSym_mul (D : ℤ) {m n : ℤ} (hm : m ≠ 0) (hn : n ≠ 0) :
+    kroneckerSym D (m * n) = kroneckerSym D m * kroneckerSym D n := by
+  simp only [kroneckerSym]
+  rw [Int.natAbs_mul,
+    kroneckerSymNat_mul D (Int.natAbs_ne_zero.mpr hm) (Int.natAbs_ne_zero.mpr hn),
+    kroneckerDenominatorSign_mul D m n hm hn]
+  ring
+
+/-- Negating a nonzero denominator multiplies the Kronecker symbol by the
+supplementary value `(D / -1)`.
+@isnad1 id=eq.1h2v.s5.5a9de42cc473 from=translated src=- shape=9b36a9cb vocab=59bff492
+-/
+theorem kroneckerSym_neg (D : ℤ) {n : ℤ} (hn : n ≠ 0) :
+    kroneckerSym D (-n) = kroneckerNegOne D * kroneckerSym D n := by
+  rw [← neg_one_mul n, kroneckerSym_mul D (by norm_num) hn,
+    kroneckerSym_neg_one_right]
+
+/-- The Kronecker symbol is multiplicative in nonzero integer numerators at a
+nonzero integer denominator. The nonzero hypotheses account for the exceptional
+convention `(0 / -1) = 1`.
+@isnad1 id=eq.3h3v.s5.a62bf39211ee from=translated src=- shape=ffe1a3bf vocab=17bd97e5
+-/
+theorem kroneckerSym_mul_left (D E : ℤ) {n : ℤ}
+    (hD : D ≠ 0) (hE : E ≠ 0) (hn : n ≠ 0) :
+    kroneckerSym (D * E) n = kroneckerSym D n * kroneckerSym E n := by
+  simp only [kroneckerSym]
+  rw [kroneckerSymNat_mul_left D E (Int.natAbs_ne_zero.mpr hn)]
+  by_cases hnneg : n < 0
+  · simp only [ite_eq_left hnneg]
+    rw [kroneckerNegOne_mul D E hD hE]
+    ring
+  · simp only [ite_eq_right hnneg]
+    ring

@@ -1,0 +1,1 @@
+-- QuotientSubmoduleEquidistribution: a factory bundle (data/intake/quotient-submodule-equidistribution). This file only marks the library for Tengoku/All.lean.

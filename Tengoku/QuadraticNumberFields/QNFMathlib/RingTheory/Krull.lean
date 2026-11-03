@@ -1,0 +1,50 @@
+/-
+Copyright (c) 2026 Frankie Wang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Frankie Wang
+-/
+
+import Tengoku.Seed.RingTheory.DedekindDomain.Basic
+import Tengoku.Seed.RingTheory.Ideal.Maps
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Krull-Dimension Transport Across Ring Equivalences
+
+Material destined for mathlib.
+-/
+
+namespace RingEquiv
+
+section CommRing
+
+variable {R S : Type*} [CommRing R] [CommRing S]
+
+/-- Transport `Ring.DimensionLEOne` across a ring equivalence.
+
+The proof pulls back prime ideals via `Ideal.comap`, applies `DimensionLEOne` on
+the source ring, then pushes forward via `Ideal.map`.
+@isnad1 id=dimensio.0h3v.s5.8447b2f02679 from=translated src=- shape=0751dee6 vocab=8cb5d8a3
+-/
+-- Repository use: `Mathlib/RingTheory/DedekindDomain/Basic.lean` uses this
+-- inside `RingEquiv.isDedekindDomain`; the use is implicit through a local
+-- `letI : Ring.DimensionLEOne S`.
+theorem dimensionLEOne (e : R ≃+* S) [Ring.DimensionLEOne R] :
+    Ring.DimensionLEOne S := by
+  refine ⟨?_⟩
+  intro p hp0 _
+  have hcomapNeBot : Ideal.comap e p ≠ ⊥ := by
+    intro hbot
+    have hmap := Ideal.map_comap_eq_self_of_equiv e p
+    rw [hbot, Ideal.map_bot] at hmap
+    exact hp0 hmap.symm
+  have hcomapMax : (Ideal.comap e p).IsMaximal :=
+    Ring.DimensionLEOne.maximalOfPrime hcomapNeBot (Ideal.comap_isPrime e p)
+  have hmapMax : (Ideal.map e (Ideal.comap e p)).IsMaximal :=
+    Ideal.map_isMaximal_of_equiv e
+  simpa [Ideal.map_comap_eq_self_of_equiv] using hmapMax
+
+end CommRing
+
+end RingEquiv
