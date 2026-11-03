@@ -1,0 +1,1 @@
+-- AlbertFrameTripleInvariants: a factory bundle (data/intake/albert-frame-triple-invariants). This file only marks the library for Tengoku/All.lean.
