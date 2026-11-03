@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "f54ee2950b0fcffbd49fa7cd24c6b783c400803cef46a211bcf8a11a26d169df",
+ "gate2_unjudged": [],
+ "library": "stafford38-formal",
+ "lint_mode": "proposed",
+ "modules": 71,
+ "part": 1,
+ "theorems": 322
+}

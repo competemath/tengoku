@@ -1,0 +1,1 @@
+-- TheoremAFpGroups: a factory bundle (data/intake/theorem-a-fp-groups). This file only marks the library for Tengoku/All.lean.

@@ -1,0 +1,1 @@
+-- DerivedAlgGeoLean: a factory bundle (data/intake/derived-alg-geo-lean). This file only marks the library for Tengoku/All.lean.
