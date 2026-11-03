@@ -1,0 +1,40 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.RealField
+import Tengoku.Seed.RingTheory.Algebraic.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! # BPR Section 2.1 — `HasNoNontrivialRealAlgebraicExtension`
+
+> A field `F` has *no non-trivial real algebraic extension* if `F` is a real
+> field and every algebraic extension of `F` that is also real must coincide
+> with `F` (i.e.\ the algebra map is surjective).
+
+This is the predicate appearing as condition (d) in BPR Theorem 2.11. It is
+extracted to its own file so that the (b ⇒ d) and (d ⇒ a) implication files —
+which respectively conclude and consume this predicate — can both import it
+without going through the larger Section 2.1 monolith.
+-/
+
+namespace Azurite.BPR
+
+variable {u : _} (F : Type u) [Field F]
+
+/-- **BPR Theorem 2.11 (d).** A field `F` has *no non-trivial real algebraic extension*
+    if it is a real field and every algebraic extension of `F` that is also real must
+    coincide with `F` (i.e., the algebra map is surjective).-/
+def HasNoNontrivialRealAlgebraicExtension : Prop :=
+  IsRealField F ∧
+  ∀ (F₁ : Type u) [Field F₁] [Algebra F F₁],
+    Algebra.IsAlgebraic F F₁ → IsRealField F₁ →
+    Function.Surjective (algebraMap F F₁)
+
+end Azurite.BPR

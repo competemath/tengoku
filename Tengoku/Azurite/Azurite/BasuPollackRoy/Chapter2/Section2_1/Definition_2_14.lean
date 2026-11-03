@@ -1,0 +1,34 @@
+/-
+Copyright © 2026 Mikhail Hogrefe
+
+This file is part of Azurite.
+
+Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
+License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
+-/
+
+import Tengoku.Seed.Order.PiLex
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! # BPR Section 2.1 — Definition 2.14: Lexicographic ordering
+
+> The *lexicographic ordering* on `Fin k → B` for a linearly ordered
+> type `B`: `a <ₗₑₓ b` iff there exists an index `i` such that
+> `a j = b j` for all `j < i` and `a i < b i`.
+
+This is `Pi.Lex (· < ·) (· < ·)` in Mathlib
+(`Mathlib.Order.PiLex`).
+-/
+
+namespace Azurite.BPR
+
+/-- **BPR Definition 2.14.** The *lexicographic ordering* on `Fin k → B` for a
+    linearly ordered type `B`: `a <ₗₑₓ b` iff there exists an index `i` such that
+    `a j = b j` for all `j < i` and `a i < b i`.
+
+    This is `Pi.Lex (· < ·) (· < ·)` in Mathlib (`Mathlib.Order.PiLex`).-/
+def LexOrder (k : ℕ) (B : Type*) [LT B] (a b : Fin k → B) : Prop :=
+  Pi.Lex (· < ·) (· < ·) a b
+
+end Azurite.BPR
