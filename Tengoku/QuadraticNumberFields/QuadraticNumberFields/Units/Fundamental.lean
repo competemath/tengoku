@@ -59,7 +59,9 @@ of `u`.-/
 def IsFundamentalUnit (u : Rˣ) : Prop :=
   ∀ v : Rˣ, ∃ n : ℤ, v = u ^ n ∨ v = -u ^ n
 
-/-- The inverse of a fundamental unit is fundamental.-/
+/-- The inverse of a fundamental unit is fundamental.
+@isnad1 id=isfundam.1h2v.s5.4afcd8616ba0 from=translated src=- shape=cb85e6d8 vocab=b2f7361e
+-/
 theorem IsFundamentalUnit.inv {u : Rˣ} (hu : IsFundamentalUnit u) :
     IsFundamentalUnit u⁻¹ := by
   intro v
@@ -79,7 +81,9 @@ private theorem neg_zpow_odd (u : Rˣ) {n : ℤ} (hn : Odd n) : (-u) ^ n = -u ^ 
   · rw [h, zpow_natCast, zpow_natCast, hnat.neg_pow]
   · rw [h, zpow_neg, zpow_neg, zpow_natCast, zpow_natCast, hnat.neg_pow, inv_neg]
 
-/-- The negation of a fundamental unit is fundamental.-/
+/-- The negation of a fundamental unit is fundamental.
+@isnad1 id=isfundam.1h2v.s5.2a6d3553bc25 from=translated src=- shape=cb85e6d8 vocab=f027b786
+-/
 theorem IsFundamentalUnit.neg {u : Rˣ} (hu : IsFundamentalUnit u) :
     IsFundamentalUnit (-u) := by
   intro v
@@ -94,7 +98,9 @@ theorem IsFundamentalUnit.neg {u : Rˣ} (hu : IsFundamentalUnit u) :
     · exact Or.inl (by rw [hn, neg_zpow_odd u ho])
 
 /-- Transport a fundamental unit along a multiplicative equivalence that
-preserves negation, e.g. (the multiplicative part of) a ring isomorphism.-/
+preserves negation, e.g. (the multiplicative part of) a ring isomorphism.
+@isnad1 id=isfundam.2h4v.s8.11200c13b028 from=translated src=- shape=87d186c2 vocab=fad2a157
+-/
 theorem IsFundamentalUnit.map {u : Rˣ} (e : R ≃* S) (he : ∀ x : R, e (-x) = -e x)
     (hu : IsFundamentalUnit u) : IsFundamentalUnit (Units.mapEquiv e u) := by
   have hneg : ∀ w : Rˣ, Units.mapEquiv e (-w) = -Units.mapEquiv e w := fun w =>
@@ -113,7 +119,9 @@ theorem IsFundamentalUnit.map {u : Rˣ} (e : R ≃* S) (he : ∀ x : R, e (-x) =
 
 end Monoid
 
-/-- If every unit is `±1`, then `1` is a fundamental unit.-/
+/-- If every unit is `±1`, then `1` is a fundamental unit.
+@isnad1 id=isfundam.1h1v.s6.65ad76873fad from=translated src=- shape=db8f05d9 vocab=fbcc9c05
+-/
 theorem isFundamentalUnit_one_of_forall_eq_one_or_neg_one
     {R : Type*} [Monoid R] [HasDistribNeg R]
     (h : ∀ v : Rˣ, (v : R) = 1 ∨ (v : R) = -1) :
@@ -124,21 +132,27 @@ theorem isFundamentalUnit_one_of_forall_eq_one_or_neg_one
   · exact Or.inl (Units.ext (by simpa using h1))
   · exact Or.inr (Units.ext (by simpa using hneg))
 
-/-- Transport a fundamental unit along a ring isomorphism.-/
+/-- Transport a fundamental unit along a ring isomorphism.
+@isnad1 id=isfundam.1h4v.s8.bf55620410ba from=translated src=- shape=b7157c52 vocab=ad4c72c3
+-/
 theorem IsFundamentalUnit.map_ringEquiv {R S : Type*} [Ring R] [Ring S] (e : R ≃+* S)
     {u : Rˣ} (hu : IsFundamentalUnit u) :
     IsFundamentalUnit (Units.mapEquiv (e : R ≃* S) u) :=
   hu.map _ fun x => map_neg e x
 
 /-- For `d < -1` the unit `1` is fundamental in `ℤ[√d]`: the unit group is
-`{±1}`.-/
+`{±1}`.
+@isnad1 id=isfundam.1h1v.s6.637a27c8b899 from=translated src=- shape=e0112157 vocab=625f95f4
+-/
 theorem isFundamentalUnit_one_zsqrtd {d : ℤ} (hd : d < -1) :
     IsFundamentalUnit (1 : (Zsqrtd d)ˣ) :=
   isFundamentalUnit_one_of_forall_eq_one_or_neg_one fun v =>
     (isUnit_zsqrtd_iff_of_lt_neg_one hd (v : Zsqrtd d)).mp v.isUnit
 
 /-- For `k ≤ -2` the unit `1` is fundamental in `ℤ[(1+√(1+4k))/2]`: the unit
-group is `{±1}`.-/
+group is `{±1}`.
+@isnad1 id=isfundam.1h1v.s6.fa4208299c1e from=translated src=- shape=e0112157 vocab=dda596df
+-/
 theorem isFundamentalUnit_one_zOnePlusSqrtOverTwo {k : ℤ} (hk : k ≤ -2) :
     IsFundamentalUnit (1 : (ZOnePlusSqrtdOverTwo k)ˣ) :=
   isFundamentalUnit_one_of_forall_eq_one_or_neg_one fun v =>
@@ -149,12 +163,17 @@ theorem isFundamentalUnit_one_zOnePlusSqrtOverTwo {k : ℤ} (hk : k ≤ -2) :
 def gaussianUnit : (Zsqrtd (-1))ˣ :=
   unitOfNormOne Zsqrtd.sqrtd (by simp)
 
+/--
+@isnad1 id=eq.0h0v.s6.7a34951ffb4c from=translated src=- shape=17945225 vocab=190a8d68
+-/
 @[simp]
 theorem val_gaussianUnit : (gaussianUnit : Zsqrtd (-1)) = Zsqrtd.sqrtd :=
   rfl
 
 /-- `√-1` is a fundamental unit of the Gaussian integers: every unit of
-`ℤ[√-1]` is, up to sign, an integer power of `i = √-1`.-/
+`ℤ[√-1]` is, up to sign, an integer power of `i = √-1`.
+@isnad1 id=isfundam.0h0v.s6.52d2abf551ba from=translated src=- shape=786e04a4 vocab=b22f5c73
+-/
 theorem isFundamentalUnit_gaussianUnit : IsFundamentalUnit gaussianUnit := by
   have hsq : ((gaussianUnit ^ (2 : ℤ) : (Zsqrtd (-1))ˣ) : Zsqrtd (-1)) = -1 := by
     rw [zpow_two, Units.val_mul, val_gaussianUnit]
@@ -172,12 +191,17 @@ theorem isFundamentalUnit_gaussianUnit : IsFundamentalUnit gaussianUnit := by
 def eisensteinUnit : (ZOnePlusSqrtdOverTwo (-1))ˣ :=
   unitOfNormOne ⟨0, 1⟩ (by simp)
 
+/--
+@isnad1 id=eq.0h0v.s6.6e1f09de4ca8 from=translated src=- shape=f0ffada5 vocab=35d76f34
+-/
 @[simp]
 theorem val_eisensteinUnit : (eisensteinUnit : ZOnePlusSqrtdOverTwo (-1)) = ⟨0, 1⟩ :=
   rfl
 
 /-- `ω` is a fundamental unit of the Eisenstein integers: every unit of
-`ℤ[(1+√-3)/2]` is, up to sign, an integer power of `ω = (1+√-3)/2`.-/
+`ℤ[(1+√-3)/2]` is, up to sign, an integer power of `ω = (1+√-3)/2`.
+@isnad1 id=isfundam.0h0v.s6.e864f4161e14 from=translated src=- shape=786e04a4 vocab=49e1e9ed
+-/
 theorem isFundamentalUnit_eisensteinUnit : IsFundamentalUnit eisensteinUnit := by
   have hsq : ((eisensteinUnit ^ (2 : ℤ) : (ZOnePlusSqrtdOverTwo (-1))ˣ) :
       ZOnePlusSqrtdOverTwo (-1)) = ⟨-1, 1⟩ := by

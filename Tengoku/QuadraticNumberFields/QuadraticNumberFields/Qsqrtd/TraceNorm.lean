@@ -37,7 +37,9 @@ Galois-group, classification, and `Conj` interfaces. -/
 
 namespace Qsqrtd
 
-/-- The sum `x + star x` is the trace of `x` viewed inside `Q(√d)`.-/
+/-- The sum `x + star x` is the trace of `x` viewed inside `Q(√d)`.
+@isnad1 id=eq.0h2v.s9.c19f39b18347 from=translated src=- shape=8ad2686d vocab=e29629c0
+-/
 theorem add_star_eq_trace_image {d : ℤ} (x : Qsqrtd (d : ℚ)) :
     x + star x =
       algebraMap ℚ (Qsqrtd (d : ℚ)) (Algebra.trace ℚ (Qsqrtd (d : ℚ)) x) := by
@@ -45,7 +47,9 @@ theorem add_star_eq_trace_image {d : ℤ} (x : Qsqrtd (d : ℚ)) :
   · simp [Qsqrtd.trace_eq_re_add_re_star, star]
   · simp [star]
 
-/-- The norm of `x`, viewed inside `Q(√d)`, is the product `x * star x`.-/
+/-- The norm of `x`, viewed inside `Q(√d)`, is the product `x * star x`.
+@isnad1 id=eq.0h2v.s7.7d3aabc2586e from=translated src=- shape=61db6253 vocab=99fba116
+-/
 theorem norm_image_eq_mul_star {d : ℤ} (x : Qsqrtd (d : ℚ)) :
     algebraMap ℚ (Qsqrtd (d : ℚ)) (Qsqrtd.norm x) = x * star x := by
   simpa [Qsqrtd.norm, mul_comm] using
@@ -58,7 +62,9 @@ private lemma isIntegral_star {d : ℤ} {x : Qsqrtd (d : ℚ)} (hx : IsIntegral 
     IsIntegral ℤ (star x) :=
   map_isIntegral_int (starRingEnd (Qsqrtd (d : ℚ))) hx
 
-/-- Norm in `Q(√d)` is `re² - d * im²`.-/
+/-- Norm in `Q(√d)` is `re² - d * im²`.
+@isnad1 id=eq.0h2v.s6.79d94ea847b9 from=translated src=- shape=2ef0db0e vocab=0d628e72
+-/
 theorem norm_eq_sqr_minus_d_sqr {d : ℤ} (x : Qsqrtd (d : ℚ)) :
     Qsqrtd.norm x = x.re ^ 2 - (d : ℚ) * x.im ^ 2 := by
   simp [Qsqrtd.norm, QuadraticAlgebra.norm]
@@ -75,7 +81,9 @@ private lemma isIntegral_trace {d : ℤ} {x : Qsqrtd (d : ℚ)} (hx : IsIntegral
   (isIntegral_algHom_iff (algebraMap ℚ (Qsqrtd (d : ℚ))).toIntAlgHom
     (algebraMap ℚ (Qsqrtd (d : ℚ))).injective).1 (isIntegral_trace_image hx)
 
-/-- The trace of an integral element of `Q(√d)` is an integer.-/
+/-- The trace of an integral element of `Q(√d)` is an integer.
+@isnad1 id=ex.1h2v.s8.bb0a435c3421 from=translated src=- shape=9de3e19e vocab=f4b2940c
+-/
 lemma exists_int_trace {d : ℤ} {x : Qsqrtd (d : ℚ)} (hx : IsIntegral ℤ x) :
     ∃ a' : ℤ, (a' : ℚ) = Algebra.trace ℚ (Qsqrtd d) x := by
   obtain ⟨a', ha'⟩ := (IsIntegrallyClosed.isIntegral_iff (R := ℤ) (K := ℚ)).1
@@ -93,14 +101,18 @@ private lemma isIntegral_norm {d : ℤ} {x : Qsqrtd (d : ℚ)} (hx : IsIntegral 
   (isIntegral_algHom_iff (algebraMap ℚ (Qsqrtd (d : ℚ))).toIntAlgHom
     (algebraMap ℚ (Qsqrtd (d : ℚ))).injective).1 (isIntegral_norm_image hx)
 
-/-- The norm of an integral element of `Q(√d)` is an integer.-/
+/-- The norm of an integral element of `Q(√d)` is an integer.
+@isnad1 id=ex.1h2v.s6.286470eda93f from=translated src=- shape=da27f2e4 vocab=b9fc9538
+-/
 lemma exists_int_norm {d : ℤ} {x : Qsqrtd (d : ℚ)} (hx : IsIntegral ℤ x) :
     ∃ n' : ℤ, (n' : ℚ) = Qsqrtd.norm x := by
   obtain ⟨n', hn'⟩ := (IsIntegrallyClosed.isIntegral_iff (R := ℤ) (K := ℚ)).1
     (isIntegral_norm hx)
   exact ⟨n', by simpa using hn'⟩
 
-/-- Once the trace is integral, the real part has denominator at most `2`.-/
+/-- Once the trace is integral, the real part has denominator at most `2`.
+@isnad1 id=eq.1h3v.s8.dfdc3dd75b9c from=translated src=- shape=8e794f4e vocab=911faa12
+-/
 lemma re_eq_half_trace_int {d : ℤ} {x : Qsqrtd (d : ℚ)} {a' : ℤ}
     (ha'trace : (a' : ℚ) = Algebra.trace ℚ (Qsqrtd d) x) :
     x.re = (a' : ℚ) / 2 := by
@@ -109,7 +121,9 @@ lemma re_eq_half_trace_int {d : ℤ} {x : Qsqrtd (d : ℚ)} {a' : ℤ}
       2 * x.re = Algebra.trace ℚ (Qsqrtd d) x := (Qsqrtd.trace_eq_two_re x).symm
       _ = (a' : ℚ) := ha'trace.symm]
 
-/-- A rational square equal to an integer is integral over `ℤ`.-/
+/-- A rational square equal to an integer is integral over `ℤ`.
+@isnad1 id=isintegr.1h2v.s5.fa62253a801a from=translated src=- shape=c1d99164 vocab=498993ea
+-/
 lemma isIntegral_of_sq_int {q : ℚ} {k : ℤ} (hq2 : q ^ 2 = (k : ℚ)) :
     IsIntegral ℤ q := by
   refine ⟨Polynomial.X ^ 2 - Polynomial.C k,
@@ -195,7 +209,9 @@ private lemma im_eq_half_of_double_im_eq {d : ℤ} {x : Qsqrtd (d : ℚ)} {b' : 
     x.im = (b' : ℚ) / 2 := by
   nlinarith [hb']
 
-/-- For an integral element of `Q(√d)`, the doubled imaginary part is an integer.-/
+/-- For an integral element of `Q(√d)`, the doubled imaginary part is an integer.
+@isnad1 id=ex.3h4v.s8.028efe6dee2b from=translated src=- shape=36fc824f vocab=6265fd37
+-/
 lemma exists_int_double_im
     (d : ℤ) (hd_sf : Squarefree d) {x : Qsqrtd (d : ℚ)} {a' n' : ℤ}
     (ha'trace : (a' : ℚ) = Algebra.trace ℚ (Qsqrtd d) x)
@@ -210,7 +226,9 @@ lemma exists_int_double_im
     ⟨b', hb'⟩
   exact ⟨b', im_eq_half_of_double_im_eq hb'⟩
 
-/-- If the half-integer norm is already an integer, then the numerator is divisible by `4`.-/
+/-- If the half-integer norm is already an integer, then the numerator is divisible by `4`.
+@isnad1 id=dvd.1h4v.s7.c05186666b14 from=translated src=- shape=e8687666 vocab=2435c288
+-/
 lemma dvd_four_sub_sq_of_norm_eq_int
     (a' b' d n' : ℤ)
     (hnorm :

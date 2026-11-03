@@ -22,7 +22,9 @@ open scoped NumberField
 namespace NumberField
 
 /-- Transfers `[IsGalois ℚ K]` to the fraction-field extension
-`FractionRing (𝓞 K) / FractionRing ℤ`.-/
+`FractionRing (𝓞 K) / FractionRing ℤ`.
+@isnad1 id=isgalois.0h1v.s7.39e9c251f06a from=translated src=- shape=73413698 vocab=1a51256b
+-/
 theorem isGalois_fractionRing_ringOfIntegers
     (K : Type*) [Field K] [NumberField K] [Algebra ℚ K] [IsGalois ℚ K] :
     haveI := FractionRing.liftAlgebra ℤ (FractionRing (𝓞 K))

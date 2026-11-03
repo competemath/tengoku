@@ -26,13 +26,18 @@ def IsReduced (Q : BinaryQuadraticForm) : Prop :=
     (|Q.b| = Q.a → 0 ≤ Q.b) ∧
     (Q.a = Q.c → 0 ≤ Q.b)
 
+/--
+@isnad1 id=iff.0h3v.s5.907505a88ff7 from=translated src=- shape=57b422ed vocab=7c9f953c
+-/
 theorem isReduced_mk_iff (a b c : ℤ) :
     IsReduced (BinaryQuadraticForm.mk a b c) ↔
       |b| ≤ a ∧ a ≤ c ∧ (|b| = a → 0 ≤ b) ∧ (a = c → 0 ≤ b) :=
   Iff.rfl
 
 /-- A reduced positive definite form satisfies the standard discriminant bound
-`3a² ≤ -D`. This is the arithmetic core of the finite reduced-form search.-/
+`3a² ≤ -D`. This is the arithmetic core of the finite reduced-form search.
+@isnad1 id=le.2h1v.s5.8d9082b2247c from=translated src=- shape=e8ac7773 vocab=32f7ab4f
+-/
 theorem three_mul_a_sq_le_neg_disc_of_isReduced (Q : BinaryQuadraticForm)
     (hpos : Q.IsPositiveDefinite) (hred : Q.IsReduced) :
     3 * Q.a ^ 2 ≤ -Q.disc := by
@@ -51,7 +56,9 @@ theorem three_mul_a_sq_le_neg_disc_of_isReduced (Q : BinaryQuadraticForm)
   nlinarith
 
 /-- Nat-valued version of `three_mul_a_sq_le_neg_disc_of_isReduced`, phrased
-for the eventual `Nat.sqrt D.natAbs + 1` search bound.-/
+for the eventual `Nat.sqrt D.natAbs + 1` search bound.
+@isnad1 id=le.2h1v.s5.8cc1fa07ecad from=translated src=- shape=65ec6627 vocab=dbd4ed16
+-/
 theorem three_mul_a_natAbs_sq_le_disc_natAbs (Q : BinaryQuadraticForm)
     (hpos : Q.IsPositiveDefinite) (hred : Q.IsReduced) :
     3 * Q.a.natAbs ^ 2 ≤ Q.disc.natAbs := by

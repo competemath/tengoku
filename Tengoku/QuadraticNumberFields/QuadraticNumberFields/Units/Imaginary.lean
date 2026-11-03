@@ -36,17 +36,23 @@ section Zsqrtd
 
 variable {d : ℤ}
 
-/-- For `d < 0` the norm on `ℤ[√d]` is nonnegative.-/
+/-- For `d < 0` the norm on `ℤ[√d]` is nonnegative.
+@isnad1 id=le.1h2v.s4.fda3244f5e0f from=translated src=- shape=a3c73dee vocab=dc3374bf
+-/
 theorem zsqrtd_norm_nonneg (hd : d < 0) (z : Zsqrtd d) : 0 ≤ Zsqrtd.norm z :=
   norm_nonneg_of_discr_nonpos (a := d) (b := 0) (by nlinarith) z
 
-/-- For `d < -1` the only units of `ℤ[√d]` are `±1`.-/
+/-- For `d < -1` the only units of `ℤ[√d]` are `±1`.
+@isnad1 id=iff.1h2v.s6.47851b6e0fde from=translated src=- shape=e60902fe vocab=77e4a0a8
+-/
 theorem isUnit_zsqrtd_iff_of_lt_neg_one (hd : d < -1) (z : Zsqrtd d) :
     IsUnit z ↔ z = 1 ∨ z = -1 :=
   isUnit_iff_eq_one_or_neg_one_of_discr_lt_neg_four (a := d) (b := 0)
     (by nlinarith) z
 
-/-- The units of the Gaussian integers `ℤ[√-1]` are `±1` and `±√-1`.-/
+/-- The units of the Gaussian integers `ℤ[√-1]` are `±1` and `±√-1`.
+@isnad1 id=iff.0h1v.s8.42dfde8960a9 from=translated src=- shape=36aee062 vocab=15abe2af
+-/
 theorem isUnit_zsqrtd_neg_one_iff (z : Zsqrtd (-1)) :
     IsUnit z ↔ z = 1 ∨ z = -1 ∨ z = Zsqrtd.sqrtd ∨ z = -Zsqrtd.sqrtd := by
   constructor
@@ -115,7 +121,9 @@ private lemma sq_add_two_mul_sq_eq_one_of_re_cube_neg_two_eq_neg_one {a b : ℤ}
     nlinarith [sq_nonneg b]
 
 /-- If a cube in `Zsqrtd (-1)` is associated to an element with imaginary part
-`1`, then the base of the cube has norm `1`.-/
+`1`, then the base of the cube has norm `1`.
+@isnad1 id=eq.2h2v.s7.458d73381e9c from=translated src=- shape=ad8b5ec2 vocab=b336bf7e
+-/
 -- Repository use: Cox's negative-square auxiliary equation factors
 -- `n ^ 3 = z ^ 2 + 1` in the project-owned Gaussian order `Zsqrtd (-1)`.
 theorem zsqrtd_neg_one_norm_eq_one_of_associated_cube_of_im_eq_one
@@ -160,7 +168,9 @@ theorem zsqrtd_neg_one_norm_eq_one_of_associated_cube_of_im_eq_one
     simpa [Zsqrtd.norm_mk, pow_two] using hnorm
 
 /-- If a cube in `Zsqrtd (-2)` is associated to an element with real part `1`,
-then the base of the cube has norm `1`.-/
+then the base of the cube has norm `1`.
+@isnad1 id=eq.2h2v.s7.7bc69b1a8c34 from=translated src=- shape=ad8b5ec2 vocab=88689e14
+-/
 -- Repository use: Cox's `ℤ[√-2]` auxiliary equation factors
 -- `n ^ 3 = 2 * z ^ 2 + 1` in the project-owned order `Zsqrtd (-2)`.
 theorem zsqrtd_neg_two_norm_eq_one_of_associated_cube_of_re_eq_one
@@ -193,7 +203,9 @@ end Zsqrtd
 section ZOnePlusSqrtdOverTwo
 
 /-- For `k ≤ -2` (so `d = 1 + 4k ≤ -7`) the only units of `ℤ[(1+√(1+4k))/2]`
-are `±1`.-/
+are `±1`.
+@isnad1 id=iff.1h2v.s6.6c7a87780a8a from=translated src=- shape=e60902fe vocab=53080b40
+-/
 theorem isUnit_zOnePlusSqrtOverTwo_iff_of_le_neg_two {k : ℤ} (hk : k ≤ -2)
     (z : ZOnePlusSqrtdOverTwo k) : IsUnit z ↔ z = 1 ∨ z = -1 :=
   isUnit_iff_eq_one_or_neg_one_of_discr_lt_neg_four (a := k) (b := 1)
@@ -201,7 +213,9 @@ theorem isUnit_zOnePlusSqrtOverTwo_iff_of_le_neg_two {k : ℤ} (hk : k ≤ -2)
 
 /-- The Eisenstein integers `ℤ[(1+√-3)/2]` (parameter `k = -1`) have exactly
 six units: `±1`, `±ω`, and `±(1 - ω)`, where `ω = (1+√-3)/2` is the
-generator `⟨0, 1⟩`.-/
+generator `⟨0, 1⟩`.
+@isnad1 id=iff.0h1v.s8.3ebaceb23954 from=translated src=- shape=246b1276 vocab=41c8ccb3
+-/
 theorem isUnit_zOnePlusSqrtOverTwo_neg_one_iff (z : ZOnePlusSqrtdOverTwo (-1)) :
     IsUnit z ↔
       z = 1 ∨ z = -1 ∨ z = ⟨0, 1⟩ ∨ z = ⟨0, -1⟩ ∨ z = ⟨1, -1⟩ ∨ z = ⟨-1, 1⟩ := by

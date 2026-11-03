@@ -31,7 +31,9 @@ arguments.-/
 private theorem irreducible_two_nat : Irreducible (2 : ℕ) :=
   (Nat.irreducible_iff_prime.mp Nat.prime_two).irreducible
 
-/-- An ideal of absolute norm `2` is prime.-/
+/-- An ideal of absolute norm `2` is prime.
+@isnad1 id=isprime.1h2v.s7.f2b33b7fa5ac from=translated src=- shape=b020077d vocab=2454ba57
+-/
 theorem Ideal.isPrime_of_absNorm_eq_two {R : Type*} [CommRing R]
     [IsDedekindDomain R] [Module.Free ℤ R] {I : Ideal R} (hI : Ideal.absNorm I = 2) :
     I.IsPrime :=
@@ -39,7 +41,9 @@ theorem Ideal.isPrime_of_absNorm_eq_two {R : Type*} [CommRing R]
     (hI ▸ irreducible_two_nat)
 
 /-- If every ideal class has a representative of absolute norm `< 3`, and all
-norm-`2` ideals are principal, then every ideal class is trivial.-/
+norm-`2` ideals are principal, then every ideal class is trivial.
+@isnad1 id=eq.2h2v.s12.ce524081a147 from=translated src=- shape=ad4c9f11 vocab=1e8581d5
+-/
 theorem classGroup_eq_one_of_exists_ideal_norm_lt_three
     {K : Type*} [Field K] [NumberField K]
     (hexists : ∀ C : ClassGroup (𝓞 K),
@@ -65,7 +69,9 @@ theorem classGroup_eq_one_of_exists_ideal_norm_lt_three
 
 /-- If every ideal class has a representative of absolute norm `< 3`, and all
 norm-`2` representatives have class `P`, then every ideal class is trivial or
-equal to `P`.-/
+equal to `P`.
+@isnad1 id=or.2h3v.s13.0ad4c52db536 from=translated src=- shape=dec7624f vocab=61fbb30d
+-/
 theorem classGroup_eq_one_or_of_exists_ideal_norm_lt_three
     {K : Type*} [Field K] [NumberField K] (P : ClassGroup (𝓞 K))
     (hexists : ∀ C : ClassGroup (𝓞 K),

@@ -51,7 +51,9 @@ The integer identities that drive the coordinate computations.  Each follows
 from substituting `B = -2u - bb` and `DD = u² + bb·u - A·C` and using the
 determinant relation `p s - q r = 1`. -/
 
-/-- Closed form for the transformed quadratic coordinate `v`.-/
+/-- Closed form for the transformed quadratic coordinate `v`.
+@isnad1 id=eq.3h10v.s8.5fae135577a5 from=translated src=- shape=31904fa4 vocab=01d1c51b
+-/
 theorem v_eq (hdet : p * s - q * r = 1) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
     v = -A * p * q + u * (p * s + q * r) + bb * (q * r) - C * r * s := by
@@ -61,7 +63,9 @@ theorem v_eq (hdet : p * s - q * r = 1) (hu : 2 * u = -(B + bb))
   linear_combination hv + bb * hdet
 
 /-- The imaginary-part identity: the real coordinate of `λ = p A - r β` agrees
-with the transformed first coefficient `A' = A p² + B p r + C r²`.-/
+with the transformed first coefficient `A' = A p² + B p r + C r²`.
+@isnad1 id=eq.3h10v.s8.03c8fd10c6a6 from=translated src=- shape=14520f3d vocab=d13119ac
+-/
 theorem lin (hdet : p * s - q * r = 1) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
     p * A - r * u - bb * r = s * (A * p ^ 2 + B * p * r + C * r ^ 2) + r * v := by
@@ -70,7 +74,9 @@ theorem lin (hdet : p * s - q * r = 1) (hu : 2 * u = -(B + bb))
   rw [hB, hvd]
   linear_combination (-(A * p) + u * r + bb * r) * hdet
 
-/-- The real-part identity relating `λ`, `β'` and the transformed coefficient.-/
+/-- The real-part identity relating `λ`, `β'` and the transformed coefficient.
+@isnad1 id=eq.4h11v.s8.8dca94e1ee4e from=translated src=- shape=29831924 vocab=d13119ac
+-/
 theorem root_re (hdet : p * s - q * r = 1)
     (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
@@ -82,7 +88,9 @@ theorem root_re (hdet : p * s - q * r = 1)
   subst hB hDD hvd
   linear_combination (r * (u ^ 2 + bb * u - A * C)) * hdet
 
-/-- The norm identity `N(λ) = A · A'`.-/
+/-- The norm identity `N(λ) = A · A'`.
+@isnad1 id=eq.2h8v.s8.0bdb6df3eeac from=translated src=- shape=e9972e03 vocab=d13119ac
+-/
 theorem norm_rel (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD)
     (hu : 2 * u = -(B + bb)) :
     (p * A - r * u) * (p * A - r * u - bb * r) - DD * r ^ 2 =
@@ -97,7 +105,9 @@ The three multiplicative relations between `λ`, `α = A'`, `β = ⟨u, 1⟩` an
 `β' = ⟨v, 1⟩` inside `QuadraticAlgebra ℤ DD bb`, obtained by reducing to the
 scalar identities above in each coordinate. -/
 
-/-- The root relation `λ · β' = α · (s β - q A)`.-/
+/-- The root relation `λ · β' = α · (s β - q A)`.
+@isnad1 id=eq.4h11v.s9.62159a9be348 from=translated src=- shape=f7017f0f vocab=ccf06fa8
+-/
 theorem root_relation (hdet : p * s - q * r = 1)
     (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
@@ -115,7 +125,9 @@ theorem root_relation (hdet : p * s - q * r = 1)
   · linear_combination hr
   · linear_combination hl
 
-/-- The conjugate relation `λ · (s A' + r β') = α · A`.-/
+/-- The conjugate relation `λ · (s A' + r β') = α · A`.
+@isnad1 id=eq.4h11v.s9.d31d7b443e5d from=translated src=- shape=f96536a1 vocab=ccf06fa8
+-/
 theorem conj_relation (hdet : p * s - q * r = 1)
     (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
@@ -136,7 +148,9 @@ theorem conj_relation (hdet : p * s - q * r = 1)
     linear_combination hn
   · linear_combination r * hl
 
-/-- The basis relation `λ · (p β' + q A') = α · β`.-/
+/-- The basis relation `λ · (p β' + q A') = α · β`.
+@isnad1 id=eq.4h11v.s9.f573f589d680 from=translated src=- shape=3f910e6d vocab=ccf06fa8
+-/
 theorem beta_relation (hdet : p * s - q * r = 1)
     (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
@@ -162,7 +176,9 @@ theorem beta_relation (hdet : p * s - q * r = 1)
       _ = (A * p ^ 2 + B * p * r + C * r ^ 2) * u := by rw [hdet]; ring
   · linear_combination p * hl + (A * p ^ 2 + B * p * r + C * r ^ 2) * hdet
 
-/-- The generator `λ = p A - r β` is nonzero whenever `A ≠ 0`.-/
+/-- The generator `λ = p A - r β` is nonzero whenever `A ≠ 0`.
+@isnad1 id=ne.2h8v.s7.4db11c8dba93 from=translated src=- shape=2926ce97 vocab=e26c12a3
+-/
 theorem lam_ne_zero (hA : A ≠ 0) (hdet : p * s - q * r = 1) :
     (((p * A : ℤ) : QuadraticAlgebra ℤ DD bb) -
       (r : QuadraticAlgebra ℤ DD bb) * (⟨u, 1⟩ : QuadraticAlgebra ℤ DD bb)) ≠ 0 := by
@@ -186,7 +202,9 @@ theorem lam_ne_zero (hA : A ≠ 0) (hdet : p * s - q * r = 1) :
 
 where `A' = A p² + B p r + C r²`, `β = ⟨u, 1⟩`, `β' = ⟨v, 1⟩` and
 `λ = p A - r β`.  This is the proper-equivalence step underlying the Cox bridge,
-proved once generically in the linear coefficient `bb`.-/
+proved once generically in the linear coefficient `bb`.
+@isnad1 id=eq.4h11v.s10.67c4b4f3fe65 from=translated src=- shape=efa00881 vocab=3f606bdc
+-/
 theorem ideal_relation (hdet : p * s - q * r = 1)
     (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) (hu : 2 * u = -(B + bb))
     (hv : 2 * v = -(2 * A * p * q + B * (p * s + q * r) + 2 * C * r * s + bb)) :
@@ -269,10 +287,19 @@ basis to `𝓞K` and reads off its `K`-coordinates. -/
 /-- The second Cox `ℤ`-basis generator, the negated quadratic generator `-⟨u, 1⟩`.-/
 def coxBeta (DD bb u : ℤ) : QuadraticAlgebra ℤ DD bb := ⟨-u, -1⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.b3151bd2bbbb from=translated src=- shape=00e3881b vocab=8c4a622a
+-/
 @[simp] theorem coxBeta_re (DD bb u : ℤ) : (coxBeta DD bb u).re = -u := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.beead1409c97 from=translated src=- shape=c14c2183 vocab=b956824e
+-/
 @[simp] theorem coxBeta_im (DD bb u : ℤ) : (coxBeta DD bb u).im = -1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.0df0e1d85b24 from=translated src=- shape=f88dcecc vocab=ee3c39d9
+-/
 theorem coxBeta_eq_neg (DD bb u : ℤ) :
     coxBeta DD bb u = -(⟨u, 1⟩ : QuadraticAlgebra ℤ DD bb) := by
   apply QuadraticAlgebra.ext <;> simp [coxBeta]
@@ -282,10 +309,16 @@ def coxIdeal (DD bb A u : ℤ) : Ideal (QuadraticAlgebra ℤ DD bb) :=
   Ideal.span ({(A : QuadraticAlgebra ℤ DD bb), (⟨u, 1⟩ : QuadraticAlgebra ℤ DD bb)} :
     Set (QuadraticAlgebra ℤ DD bb))
 
+/--
+@isnad1 id=mem.0h4v.s7.9a4c9038d5a6 from=translated src=- shape=4898f150 vocab=4371dfd0
+-/
 theorem self_mem_coxIdeal (DD bb A u : ℤ) :
     (A : QuadraticAlgebra ℤ DD bb) ∈ coxIdeal DD bb A u :=
   Ideal.subset_span (by simp)
 
+/--
+@isnad1 id=mem.0h4v.s6.a4c6bf40e341 from=translated src=- shape=30db229a vocab=fdfa871e
+-/
 theorem coxBeta_mem_coxIdeal (DD bb A u : ℤ) :
     coxBeta DD bb u ∈ coxIdeal DD bb A u := by
   rw [coxBeta_eq_neg]
@@ -296,7 +329,9 @@ theorem coxBeta_mem_coxIdeal (DD bb A u : ℤ) :
 and the root relation `2u = -(B + bb)` hold.  The integer coefficients are
 `m = x₁ - u·x₂ - C·y₂` and `n = -(x₂·A + y₁ + y₂·u + bb·y₂)`, where
 `x = ⟨x₁, x₂⟩`, `y = ⟨y₁, y₂⟩` express the ideal membership `z = x·A + y·⟨u,1⟩`;
-integrality of the leading coefficient uses `DD = u² + bb·u - A·C`.-/
+integrality of the leading coefficient uses `DD = u² + bb·u - A·C`.
+@isnad1 id=mem.3h7v.s8.c98957c263ba from=translated src=- shape=d8e17caf vocab=5825ce69
+-/
 theorem mem_span_coxBeta_of_mem_coxIdeal {DD bb A B C u : ℤ}
     (hu : 2 * u = -(B + bb)) (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD)
     {z : QuadraticAlgebra ℤ DD bb} (hz : z ∈ coxIdeal DD bb A u) :
@@ -378,14 +413,18 @@ noncomputable def coxIdealBasis {DD bb A B C u : ℤ} (hA : A ≠ 0)
       (Submodule.smul_mem _ _ (Submodule.subset_span (by simp)))
       (Submodule.smul_mem _ _ (Submodule.subset_span (by simp)))
 
-/-- The value of the generic Cox basis at index 0 is the scalar `A`.-/
+/-- The value of the generic Cox basis at index 0 is the scalar `A`.
+@isnad1 id=eq.3h6v.s10.9f77c74c93ff from=translated src=- shape=8396f024 vocab=b2f5f0a7
+-/
 theorem coxIdealBasis_val_0 {DD bb A B C u : ℤ} (hA : A ≠ 0)
     (hu : 2 * u = -(B + bb)) (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) :
     ((coxIdealBasis hA hu hdisc) 0 : QuadraticAlgebra ℤ DD bb) =
       (A : QuadraticAlgebra ℤ DD bb) := by
   unfold coxIdealBasis; simp
 
-/-- The value of the generic Cox basis at index 1 is `coxBeta`.-/
+/-- The value of the generic Cox basis at index 1 is `coxBeta`.
+@isnad1 id=eq.3h6v.s10.68960e5b2369 from=translated src=- shape=847d396e vocab=242337c3
+-/
 theorem coxIdealBasis_val_1 {DD bb A B C u : ℤ} (hA : A ≠ 0)
     (hu : 2 * u = -(B + bb)) (hdisc : B ^ 2 - 4 * A * C = bb ^ 2 + 4 * DD) :
     ((coxIdealBasis hA hu hdisc) 1 : QuadraticAlgebra ℤ DD bb) =

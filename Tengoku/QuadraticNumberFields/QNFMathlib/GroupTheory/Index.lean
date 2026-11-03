@@ -22,7 +22,9 @@ section FiniteGroups
 variable {G H : Type*} [Group G] [Group H]
 
 /-- A surjective homomorphism between finite groups is injective iff its domain
-and codomain have the same cardinality.-/
+and codomain have the same cardinality.
+@isnad1 id=iff.1h3v.s7.12b3b94bfb0f from=translated src=- shape=3516394b vocab=b93a5562
+-/
 theorem injective_iff_nat_card_eq_of_surjective
     [Finite G] (f : G →* H) (hf : Function.Surjective f) :
     Function.Injective f ↔ Nat.card G = Nat.card H := by
@@ -33,7 +35,9 @@ theorem injective_iff_nat_card_eq_of_surjective
     exact (hf.bijective_of_nat_card_le (le_of_eq hcard)).1
 
 /-- A surjective homomorphism between finite groups has trivial kernel iff its
-domain and codomain have the same cardinality.-/
+domain and codomain have the same cardinality.
+@isnad1 id=iff.1h3v.s6.de707d2314a9 from=translated src=- shape=9a326ece vocab=ad0bcd10
+-/
 theorem ker_eq_bot_iff_nat_card_eq_of_surjective
     [Finite G] (f : G →* H) (hf : Function.Surjective f) :
     f.ker = ⊥ ↔ Nat.card G = Nat.card H := by
@@ -41,7 +45,9 @@ theorem ker_eq_bot_iff_nat_card_eq_of_surjective
   exact MonoidHom.ker_eq_bot_iff f
 
 /-- The cardinality of the domain of a surjective homomorphism of finite groups
-is the product of the cardinalities of its kernel and codomain.-/
+is the product of the cardinalities of its kernel and codomain.
+@isnad1 id=eq.1h3v.s7.e0ab1cddcfae from=translated src=- shape=556b8976 vocab=79ac2b41
+-/
 theorem nat_card_eq_card_ker_mul_card_of_surjective
     (f : G →* H) (hf : Function.Surjective f) :
     Nat.card G = Nat.card f.ker * Nat.card H := by
@@ -53,7 +59,9 @@ theorem nat_card_eq_card_ker_mul_card_of_surjective
     _ = Nat.card f.ker * Nat.card H := mul_comm _ _
 
 /-- If a homomorphism from a finite group has nontrivial kernel, then its image
-has cardinality at most half the domain cardinality.-/
+has cardinality at most half the domain cardinality.
+@isnad1 id=le.1h3v.s6.0cc3f8edc2b0 from=translated src=- shape=9587f123 vocab=2f73b0a5
+-/
 theorem two_mul_card_range_le
     [Finite G] (f : G →* H) (hker : f.ker ≠ ⊥) :
     2 * Nat.card f.range ≤ Nat.card G := by

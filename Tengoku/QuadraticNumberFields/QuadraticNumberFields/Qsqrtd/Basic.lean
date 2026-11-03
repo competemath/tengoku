@@ -48,7 +48,9 @@ open QuadraticAlgebra
 
 variable {d : ℚ}
 
-/-- The trace in `Q(√d)` is `x.re + x̄.re`.-/
+/-- The trace in `Q(√d)` is `x.re + x̄.re`.
+@isnad1 id=eq.0h2v.s8.51cfa6c2dfd0 from=translated src=- shape=e67e59d1 vocab=f6dfe7bc
+-/
 @[simp] theorem trace_eq_re_add_re_star (x : Qsqrtd d) :
     Algebra.trace ℚ (Qsqrtd d) x = x.re + (star x).re := by
   -- The trace is the matrix trace of left multiplication, so we just
@@ -57,7 +59,9 @@ variable {d : ℚ}
     QuadraticAlgebra.leftMulMatrix_eq, Matrix.trace_fin_two_of]
   simp
 
-/-- In the model `Q(√d) = QuadraticAlgebra ℚ d 0`, the trace is `2 * re`.-/
+/-- In the model `Q(√d) = QuadraticAlgebra ℚ d 0`, the trace is `2 * re`.
+@isnad1 id=eq.0h2v.s8.e56f05527811 from=translated src=- shape=a63f308d vocab=f54bca66
+-/
 theorem trace_eq_two_re (x : Qsqrtd d) :
     Algebra.trace ℚ (Qsqrtd d) x = 2 * x.re := by
   -- In `QuadraticAlgebra ℚ d 0`, conjugation fixes the real part.
@@ -72,7 +76,9 @@ abbrev norm {d : ℚ} (x : Qsqrtd d) : ℚ := QuadraticAlgebra.norm x
 abbrev normHom (d : ℚ) : Qsqrtd d →* ℚ :=
   QuadraticAlgebra.norm
 
-/-- `normHom` evaluates to the quadratic norm.-/
+/-- `normHom` evaluates to the quadratic norm.
+@isnad1 id=eq.0h2v.s6.677619bfe43d from=translated src=- shape=151cf303 vocab=b38a2b37
+-/
 theorem normHom_apply (d : ℚ) (x : Qsqrtd d) :
     normHom d x = Qsqrtd.norm x :=
   rfl
@@ -82,12 +88,16 @@ abbrev normUnitsHom (d : ℚ) : (Qsqrtd d)ˣ →* ℚˣ :=
   Units.map (normHom d)
 
 /-- Coercing `normUnitsHom` back to `ℚ` gives the quadratic norm of the
-underlying unit.-/
+underlying unit.
+@isnad1 id=eq.0h2v.s7.0d0cc780d298 from=translated src=- shape=cbccf160 vocab=8a3355eb
+-/
 theorem normUnitsHom_coe (d : ℚ) (u : (Qsqrtd d)ˣ) :
     ((normUnitsHom d u : ℚˣ) : ℚ) = Qsqrtd.norm (u : Qsqrtd d) := by
   simp [normUnitsHom, normHom]
 
-/-- `Q(√0)` is not reduced because `√0² = 0` but `√0 ≠ 0`.-/
+/-- `Q(√0)` is not reduced because `√0² = 0` but `√0 ≠ 0`.
+@isnad1 id=not.0h0v.s6.b109b988148f from=translated src=- shape=f4d8664b vocab=77ac2836
+-/
  lemma zero_not_isReduced : ¬ IsReduced (Qsqrtd (0 : ℚ)) := by
   intro ⟨h⟩
   -- When `d = 0`, the element `ε = ⟨0, 1⟩` satisfies `ε² = 0`,
@@ -99,13 +109,17 @@ theorem normUnitsHom_coe (d : ℚ) (u : (Qsqrtd d)ˣ) :
     exact one_ne_zero (congr_arg QuadraticAlgebra.im heq)
   exact hne (h _ hnil)
 
-/-- `Q(√0)` is not a field (it has nilpotents).-/
+/-- `Q(√0)` is not a field (it has nilpotents).
+@isnad1 id=not.0h0v.s4.116ecfc1f9ad from=translated src=- shape=f4d8664b vocab=f436df56
+-/
 lemma zero_not_isField : ¬ IsField (Qsqrtd (0 : ℚ)) := by
   intro hF
   haveI := hF.isDomain
   exact zero_not_isReduced (inferInstance : IsReduced (Qsqrtd (0 : ℚ)))
 
-/-- `Q(√1) ≅ ℚ × ℚ` is not a field (it has zero divisors).-/
+/-- `Q(√1) ≅ ℚ × ℚ` is not a field (it has zero divisors).
+@isnad1 id=not.0h0v.s4.9e50e5fa51a6 from=translated src=- shape=f4d8664b vocab=f436df56
+-/
  lemma one_not_isField : ¬ IsField (Qsqrtd (1 : ℚ)) := by
   intro hF
   haveI := hF.isDomain
@@ -122,7 +136,9 @@ lemma zero_not_isField : ¬ IsField (Qsqrtd (0 : ℚ)) := by
   rcases mul_eq_zero.mp hprod with h | h <;> contradiction
 
 /-- Bridge: `¬ IsSquare d` implies the technical `Fact` needed by
-`QuadraticAlgebra.instField`.-/
+`QuadraticAlgebra.instField`.
+@isnad1 id=fact.0h1v.s5.e7155f260716 from=translated src=- shape=e63ba786 vocab=df1b4ba6
+-/
 instance instFact_of_not_isSquare (d : ℚ) [Fact (¬ IsSquare d)] :
     Fact (∀ r : ℚ, r ^ 2 ≠ d + 0 * r) :=
   -- For `b = 0`, the field criterion for `QuadraticAlgebra ℚ d b`
@@ -132,7 +148,9 @@ instance instFact_of_not_isSquare (d : ℚ) [Fact (¬ IsSquare d)] :
 /-- The two `ℚ`-algebra structures on `Qsqrtd d` give the same `ℚ`-dimension.
 
 Coordinate proofs use `QuadraticAlgebra.instAlgebra`. Some number-field APIs use
-`DivisionRing.toRatAlgebra`, so this lemma transfers finrank statements between them.-/
+`DivisionRing.toRatAlgebra`, so this lemma transfers finrank statements between them.
+@isnad1 id=eq.0h1v.s7.e522d063ba9c from=translated src=- shape=ec1eb768 vocab=ed114e7c
+-/
 theorem finrank_ratAlgebra_eq_finrank_quadraticAlgebra (d : ℚ)
     [Fact (¬ IsSquare d)] :
     @Module.finrank ℚ (Qsqrtd d) _ _
@@ -149,14 +167,18 @@ section RatAlgebra
 
 attribute [local instance] DivisionRing.toRatAlgebra
 
-/-- The `DivisionRing.toRatAlgebra` version of the finrank computation for `Qsqrtd d`.-/
+/-- The `DivisionRing.toRatAlgebra` version of the finrank computation for `Qsqrtd d`.
+@isnad1 id=eq.0h1v.s6.ed5713e32c1b from=translated src=- shape=7db9b3c3 vocab=0321f66a
+-/
 theorem finrank_ratAlgebra_eq_two (d : ℚ) [Fact (¬ IsSquare d)] :
     @Module.finrank ℚ (Qsqrtd d) _ _
       (@Algebra.toModule ℚ (Qsqrtd d) _ _ DivisionRing.toRatAlgebra) = 2 := by
   rw [finrank_ratAlgebra_eq_finrank_quadraticAlgebra]
   exact QuadraticAlgebra.finrank_eq_two d 0
 
-/-- `Qsqrtd d` is quadratic over `ℚ` for the `DivisionRing.toRatAlgebra` structure.-/
+/-- `Qsqrtd d` is quadratic over `ℚ` for the `DivisionRing.toRatAlgebra` structure.
+@isnad1 id=isquadra.0h1v.s5.d975098996c9 from=translated src=- shape=66c81b7c vocab=a31b83b6
+-/
 instance instRatAlgebraIsQuadraticExtension (d : ℚ) [Fact (¬ IsSquare d)] :
     Algebra.IsQuadraticExtension ℚ (Qsqrtd d) where
   finrank_eq_two' := finrank_ratAlgebra_eq_two d
@@ -170,7 +192,9 @@ isomorphism fixing the scalar `⟨d, 0⟩`, then writing `φ ⟨0, 1⟩ = ⟨a, 
 
 Being stated for `≃+*` (rather than `≃ₐ[ℚ]`), this sidesteps the `Algebra ℚ`
 instance diamond on `Qsqrtd`, so it serves call sites that elaborate against
-either the canonical or the `Field` algebra instance.-/
+either the canonical or the `Field` algebra instance.
+@isnad1 id=and.2h3v.s9.ca5c59fa9e3f from=translated src=- shape=2f4e338f vocab=a26a98df
+-/
 theorem ringEquiv_param_rel {d d' : ℚ} (hd : ¬ IsSquare d)
     (φ : Qsqrtd d ≃+* Qsqrtd d') (hfix : φ ⟨d, 0⟩ = ⟨d, 0⟩) :
     (φ ⟨0, 1⟩).re = 0 ∧ (φ ⟨0, 1⟩).im ≠ 0 ∧ d = d' * (φ ⟨0, 1⟩).im ^ 2 := by
@@ -210,7 +234,9 @@ parameters differ by the rational square `b²`.
 
 This is the `Algebra` version of `ringEquiv_param_rel`: `φ.commutes` proves
 `⟨d, 0⟩ = algebraMap d`. Used by `param_unique` and
-`algEquiv_iff_isSquareRatio`.-/
+`algEquiv_iff_isSquareRatio`.
+@isnad1 id=and.1h3v.s9.d4e47813794f from=translated src=- shape=1312e70d vocab=7f146b07
+-/
 theorem algEquiv_param_rel {d d' : ℚ} (hd : ¬ IsSquare d)
     (φ : Qsqrtd d ≃ₐ[ℚ] Qsqrtd d') :
     (φ ⟨0, 1⟩).re = 0 ∧ (φ ⟨0, 1⟩).im ≠ 0 ∧ d = d' * (φ ⟨0, 1⟩).im ^ 2 :=
@@ -225,19 +251,25 @@ end Qsqrtd
 
 /-! ## Integer Parameter Lemmas -/
 
-/-- For a squarefree integer `d ≠ 1`, `d` is not a perfect square in `ℤ`.-/
+/-- For a squarefree integer `d ≠ 1`, `d` is not a perfect square in `ℤ`.
+@isnad1 id=not.2h1v.s4.7c013f299898 from=translated src=- shape=04eb94a6 vocab=a97af9b3
+-/
 lemma not_isSquare_int_of_squarefree_ne_one {d : ℤ}
     (hd : Squarefree d) (h1 : d ≠ 1) : ¬ IsSquare d := by
   intro hsq
   rcases eq_one_of_squarefree_isSquare hd hsq with rfl | rfl <;> simp_all
 
-/-- For a squarefree integer `d ≠ 1`, `(d : ℚ)` is not a perfect square in `ℚ`.-/
+/-- For a squarefree integer `d ≠ 1`, `(d : ℚ)` is not a perfect square in `ℚ`.
+@isnad1 id=not.2h1v.s4.8233c3183f19 from=translated src=- shape=9196607b vocab=4482373f
+-/
 lemma not_isSquare_ratCast_of_squarefree_ne_one {d : ℤ}
     (hd : Squarefree d) (h1 : d ≠ 1) : ¬ IsSquare ((d : ℤ) : ℚ) := by
   intro hsqQ
   exact not_isSquare_int_of_squarefree_ne_one hd h1 (Rat.isSquare_intCast_iff.mp hsqQ)
 
-/-- Bridge squarefree integer parameters to the field-level non-square condition.-/
+/-- Bridge squarefree integer parameters to the field-level non-square condition.
+@isnad1 id=fact.0h1v.s4.6f04dedfd846 from=translated src=- shape=17fda95b vocab=f5d14b00
+-/
 instance instFact_not_isSquare_ratCast_of_squarefree_ne_one
     (d : ℤ) [Fact (Squarefree d)] [Fact (d ≠ 1)] :
     Fact (¬ IsSquare ((d : ℤ) : ℚ)) :=
@@ -255,7 +287,9 @@ variable {d : ℤ}
 noncomputable def imPartRatio (x : Qsqrtd (d : ℚ)) : ℚ :=
   (QuadraticAlgebra.basis (d : ℚ) 0).repr x (1 : Fin 2)
 
-/-- `imPartRatio` is exactly the `im` coordinate.-/
+/-- `imPartRatio` is exactly the `im` coordinate.
+@isnad1 id=eq.0h2v.s4.1e567a4f82b1 from=translated src=- shape=e8a0f1b4 vocab=c9d60a1b
+-/
 theorem imPartRatio_eq_im (x : Qsqrtd (d : ℚ)) : imPartRatio x = x.im := by
   simp [imPartRatio, QuadraticAlgebra.basis]
 
@@ -296,18 +330,24 @@ The alternating wedge `imPartRatio (u v̄ − v ū)` and the `re`/`im` coordinat
 integer scalar multiple, used by the Cox norm-form machinery.  These are pure
 coordinate facts about `Qsqrtd (d : ℚ)`. -/
 
-/-- The `re` coordinate of an integer scalar multiple.-/
+/-- The `re` coordinate of an integer scalar multiple.
+@isnad1 id=eq.0h3v.s6.13c0ce9033f9 from=translated src=- shape=cb9c2c0d vocab=f66db35d
+-/
 theorem re_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).re = (n : ℚ) * z.re := by
   rw [zsmul_eq_mul]
   simp [QuadraticAlgebra.re_mul, QuadraticAlgebra.re_intCast, QuadraticAlgebra.im_intCast]
 
-/-- The `im` coordinate of an integer scalar multiple.-/
+/-- The `im` coordinate of an integer scalar multiple.
+@isnad1 id=eq.0h3v.s6.aae35ba59f70 from=translated src=- shape=cb9c2c0d vocab=ed89f4b8
+-/
 theorem im_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).im = (n : ℚ) * z.im := by
   rw [zsmul_eq_mul]
   simp [QuadraticAlgebra.im_mul, QuadraticAlgebra.re_intCast, QuadraticAlgebra.im_intCast]
 
 /-- The wedge `imPartRatio (u v̄ − v ū)` in coordinates: it is `2 (uᵢ vᵣ − uᵣ vᵢ)`,
-a bilinear alternating form of the `re`/`im` coordinates.-/
+a bilinear alternating form of the `re`/`im` coordinates.
+@isnad1 id=eq.0h3v.s7.0dc930632658 from=translated src=- shape=43bd27c1 vocab=f1741205
+-/
 theorem imPartRatio_wedge (u v : Qsqrtd (d : ℚ)) :
     imPartRatio (u * star v - v * star u) =
       2 * ((u.im : ℚ) * v.re - u.re * v.im) := by
@@ -317,7 +357,9 @@ theorem imPartRatio_wedge (u v : Qsqrtd (d : ℚ)) :
   ring
 
 /-- Multiplying both wedge arguments by `x` scales the wedge by the field norm
-`x.re² − d·x.im²` of `x`.-/
+`x.re² − d·x.im²` of `x`.
+@isnad1 id=eq.0h4v.s9.cbee41c339ef from=translated src=- shape=cec29b38 vocab=10954ab5
+-/
 theorem imPartRatio_wedge_mul_left (x u v : Qsqrtd (d : ℚ)) :
     imPartRatio (x * u * star (x * v) - x * v * star (x * u)) =
       ((x.re : ℚ) ^ 2 - (d : ℚ) * x.im ^ 2) * imPartRatio (u * star v - v * star u) := by

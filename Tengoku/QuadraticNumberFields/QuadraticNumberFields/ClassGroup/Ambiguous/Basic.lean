@@ -29,17 +29,23 @@ fixes `I`.-/
 def IsAmbiguousIdeal (σ : B ≃+* B) (I : Ideal B) : Prop :=
   Ideal.map (σ : B →+* B) I = I
 
-/-- Ambiguous ideals are exactly fixed points of the induced ideal map.-/
+/-- Ambiguous ideals are exactly fixed points of the induced ideal map.
+@isnad1 id=iff.0h3v.s7.b780d7afdef0 from=translated src=- shape=e8f80e7a vocab=2364ca6d
+-/
 theorem isAmbiguousIdeal_iff_isFixedPt (σ : B ≃+* B) (I : Ideal B) :
     IsAmbiguousIdeal σ I ↔ Function.IsFixedPt (Ideal.map (σ : B →+* B)) I :=
   Iff.rfl
 
-/-- The top ideal is ambiguous.-/
+/-- The top ideal is ambiguous.
+@isnad1 id=isambigu.0h2v.s6.1a072d33c389 from=translated src=- shape=525248ea vocab=2eb73bb8
+-/
 @[simp]
 theorem isAmbiguousIdeal_top (σ : B ≃+* B) : IsAmbiguousIdeal σ (⊤ : Ideal B) := by
   rw [IsAmbiguousIdeal, Ideal.map_top]
 
-/-- The product of ambiguous ideals is ambiguous.-/
+/-- The product of ambiguous ideals is ambiguous.
+@isnad1 id=isambigu.2h4v.s7.2c61009e5ef2 from=translated src=- shape=01e30dd9 vocab=d53e2a8b
+-/
 theorem IsAmbiguousIdeal.mul {σ : B ≃+* B} {I J : Ideal B}
     (hI : IsAmbiguousIdeal σ I) (hJ : IsAmbiguousIdeal σ J) :
     IsAmbiguousIdeal σ (I * J) := by

@@ -18,7 +18,9 @@ Material destined for mathlib.
 namespace Nat
 
 /-- An odd squarefree composite natural number has a prime divisor `q` with
-`4 * q < n + 1`.-/
+`4 * q < n + 1`.
+@isnad1 id=ex.4h1v.s6.509add32a80f from=translated src=- shape=fb918980 vocab=e7f31a6f
+-/
 theorem exists_prime_dvd_and_four_mul_lt_succ_of_squarefree_of_odd_of_not_prime
     {n : ℕ} (hsq : Squarefree n) (hodd : Odd n) (hgt : 1 < n) (hnprime : ¬ n.Prime) :
     ∃ q : ℕ, q.Prime ∧ q ∣ n ∧ 4 * q < n + 1 := by

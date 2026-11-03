@@ -15,7 +15,9 @@ import Tengoku.QuadraticNumberFields.QNFMathlib.Algebra.Squarefree.Basic
 Material destined for mathlib.
 -/
 
-/-- `-1` is not a square in `ℚ`.-/
+/-- `-1` is not a square in `ℚ`.
+@isnad1 id=not.0h0v.s3.1601fe51afa6 from=translated src=- shape=9d0cceca vocab=adcd887f
+-/
 -- Repository use: `QuadraticField/Parameters.lean` uses this to rule out the
 -- negative square-ratio case in squarefree parameter uniqueness.
 lemma not_isSquare_neg_one_rat : ¬ IsSquare (- (1 : ℚ)) := by
@@ -23,7 +25,9 @@ lemma not_isSquare_neg_one_rat : ¬ IsSquare (- (1 : ℚ)) := by
   have hnonneg : 0 ≤ r ^ 2 := sq_nonneg r
   nlinarith [hr, hnonneg]
 
-/-- A squarefree integer that is a perfect square (as an integer) must equal `1`.-/
+/-- A squarefree integer that is a perfect square (as an integer) must equal `1`.
+@isnad1 id=eq.2h1v.s4.89b71f1a5d67 from=translated src=- shape=aaf7728e vocab=a210c365
+-/
 -- Repository use: internal support for `int_dvd_of_ratio_square`.
 lemma nat_eq_one_of_squarefree_intcast_of_isSquare (m : ℕ)
     (hsm : Squarefree (m : ℤ)) (hsq : IsSquare (m : ℤ)) : m = 1 := by
@@ -38,7 +42,9 @@ lemma nat_eq_one_of_squarefree_intcast_of_isSquare (m : ℕ)
 This is a **general number-theoretic fact** about squarefree integers: if a
 squarefree integer divides the denominator of a reduced fraction that is a perfect
 square, then the denominator must be `1` (since its square part is constrained
-by squarefreeness).-/
+by squarefreeness).
+@isnad1 id=dvd.3h2v.s5.1e3e646476a6 from=translated src=- shape=08305508 vocab=25102a10
+-/
 -- Repository use: `QuadraticField/Parameters.lean` uses this for uniqueness of
 -- squarefree parameters; `Qsqrtd/TraceNorm.lean` uses it in integrality
 -- denominator control.

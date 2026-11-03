@@ -23,7 +23,9 @@ open scoped NumberField
 namespace NumberField
 
 /-- If every ideal class is `1` or a fixed class `C₀ ≠ 1`, the class number
-is `2`.-/
+is `2`.
+@isnad1 id=eq.2h2v.s7.ac52c06f0754 from=translated src=- shape=cd0d4bda vocab=16bf56fa
+-/
 theorem classNumber_eq_two_of_forall_eq_one_or
     {K : Type*} [Field K] [NumberField K] {C₀ : ClassGroup (𝓞 K)}
     (hC₀ : C₀ ≠ 1) (h : ∀ C : ClassGroup (𝓞 K), C = 1 ∨ C = C₀) :

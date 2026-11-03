@@ -42,13 +42,17 @@ noncomputable def squareQuotientLinearMap (f : G →* H) :
     Additive (squareQuotient G) →ₗ[ZMod 2] Additive (squareQuotient H) :=
   (MonoidHom.toAdditive (squareQuotientMap f)).toZModLinearMap 2
 
-/-- The underlying group map of `squareQuotientLinearMap f` is `squareQuotientMap f`.-/
+/-- The underlying group map of `squareQuotientLinearMap f` is `squareQuotientMap f`.
+@isnad1 id=eq.0h4v.s9.ff855ef3613e from=translated src=- shape=386249d2 vocab=1781d85e
+-/
 @[simp]
 theorem squareQuotientLinearMap_apply (f : G →* H) (x : Additive (squareQuotient G)) :
     (squareQuotientLinearMap f x).toMul = squareQuotientMap f x.toMul :=
   rfl
 
-/-- The linear map on square quotients is surjective when the group homomorphism is.-/
+/-- The linear map on square quotients is surjective when the group homomorphism is.
+@isnad1 id=surjecti.1h3v.s8.c67603e57ac3 from=translated src=- shape=a9ce6f8f vocab=a46030f8
+-/
 theorem squareQuotientLinearMap_surjective (f : G →* H) (hf : Function.Surjective f) :
     Function.Surjective (squareQuotientLinearMap f) := by
   simpa [squareQuotientLinearMap] using squareQuotientMap_surjective f hf
@@ -60,7 +64,9 @@ noncomputable def squareQuotientLinearEquiv (e : G ≃* H) :
   { (squareQuotientMulEquiv e).toAdditive with
     map_smul' := ZMod.map_smul (squareQuotientMulEquiv e).toAdditive }
 
-/-- The underlying group equivalence is `squareQuotientMulEquiv e`.-/
+/-- The underlying group equivalence is `squareQuotientMulEquiv e`.
+@isnad1 id=eq.0h4v.s9.6ed5c5b98ee5 from=translated src=- shape=2c6631cf vocab=4e86dbdc
+-/
 @[simp]
 theorem squareQuotientLinearEquiv_apply (e : G ≃* H)
     (x : Additive (squareQuotient G)) :
@@ -73,7 +79,9 @@ noncomputable def twoRank : ℕ :=
   Module.finrank (ZMod 2) (Additive (squareQuotient G))
 
 /-- A finite square-class group has cardinality
-`2 ^ twoRank G`.-/
+`2 ^ twoRank G`.
+@isnad1 id=eq.0h1v.s5.a4d2e1e157a7 from=translated src=- shape=52472c73 vocab=87d7d730
+-/
 theorem card_squareQuotient_eq_two_pow_twoRank [Finite (squareQuotient G)] :
     Nat.card (squareQuotient G) = 2 ^ twoRank G := by
   letI : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩

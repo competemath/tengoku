@@ -22,7 +22,9 @@ namespace QuadraticAlgebra
 
 variable {R : Type*} [CommRing R] {a b : R}
 
-/-- The norm of `⟨x, y⟩ : QuadraticAlgebra R a b` in coordinates.-/
+/-- The norm of `⟨x, y⟩ : QuadraticAlgebra R a b` in coordinates.
+@isnad1 id=eq.0h5v.s7.5598035696ec from=translated src=- shape=b558feb3 vocab=ec03ef79
+-/
 -- Repository use: coordinate computations for units of `ℤ[√d]` and `ℤ[(1+√d)/2]`.
 theorem norm_mk (x y : R) :
     norm (⟨x, y⟩ : QuadraticAlgebra R a b) = x * x + b * x * y - a * y * y :=
@@ -38,11 +40,17 @@ def unitOfNormOne (z : QuadraticAlgebra R a b) (h : norm z = 1) :
   val_inv := by rw [← algebraMap_norm_eq_mul_star, h, map_one]
   inv_val := by rw [mul_comm, ← algebraMap_norm_eq_mul_star, h, map_one]
 
+/--
+@isnad1 id=eq.1h4v.s7.3fc1357dfe75 from=translated src=- shape=65a2daa1 vocab=1cadc04d
+-/
 @[simp]
 theorem val_unitOfNormOne (z : QuadraticAlgebra R a b) (h : norm z = 1) :
     (unitOfNormOne z h : QuadraticAlgebra R a b) = z :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.67679480a750 from=translated src=- shape=24a066f7 vocab=c5b765a9
+-/
 @[simp]
 theorem val_inv_unitOfNormOne (z : QuadraticAlgebra R a b) (h : norm z = 1) :
     (((unitOfNormOne z h)⁻¹ : (QuadraticAlgebra R a b)ˣ) : QuadraticAlgebra R a b) = star z :=
@@ -59,11 +67,17 @@ def unitOfNormNegOne (z : QuadraticAlgebra R a b) (h : norm z = -1) :
   inv_val := by
     rw [neg_mul, mul_comm (star z) z, ← algebraMap_norm_eq_mul_star, h, map_neg, map_one, neg_neg]
 
+/--
+@isnad1 id=eq.1h4v.s7.b56892a8f9b6 from=translated src=- shape=4e50c208 vocab=187728d8
+-/
 @[simp]
 theorem val_unitOfNormNegOne (z : QuadraticAlgebra R a b) (h : norm z = -1) :
     (unitOfNormNegOne z h : QuadraticAlgebra R a b) = z :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.137acfcdf131 from=translated src=- shape=f53d1e22 vocab=8988b0de
+-/
 @[simp]
 theorem val_inv_unitOfNormNegOne (z : QuadraticAlgebra R a b) (h : norm z = -1) :
     (((unitOfNormNegOne z h)⁻¹ : (QuadraticAlgebra R a b)ˣ) : QuadraticAlgebra R a b) =
@@ -74,14 +88,18 @@ section Int
 
 variable {a b : ℤ}
 
-/-- Over `ℤ`, an element of a quadratic algebra is a unit iff its norm is `±1`.-/
+/-- Over `ℤ`, an element of a quadratic algebra is a unit iff its norm is `±1`.
+@isnad1 id=iff.0h3v.s8.a674d7953d4c from=translated src=- shape=679c201b vocab=1357c9ed
+-/
 -- Repository use: unit criteria for the two explicit quadratic-integer models.
 theorem isUnit_iff_norm_eq_one_or_neg_one (z : QuadraticAlgebra ℤ a b) :
     IsUnit z ↔ norm z = 1 ∨ norm z = -1 :=
   isUnit_iff_norm_isUnit.trans Int.isUnit_iff
 
 /-- Over `ℤ`, a nonpositive discriminant `b² + 4a ≤ 0` makes the norm
-nonnegative: `4·N(z) = (2·re + b·im)² - (b² + 4a)·im²`.-/
+nonnegative: `4·N(z) = (2·re + b·im)² - (b² + 4a)·im²`.
+@isnad1 id=le.1h3v.s7.08c7fd639c9c from=translated src=- shape=f3238337 vocab=82e824af
+-/
 -- Repository use: unit-group classification for imaginary quadratic orders.
 theorem norm_nonneg_of_discr_nonpos (h : b ^ 2 + 4 * a ≤ 0) (z : QuadraticAlgebra ℤ a b) :
     0 ≤ norm z := by
@@ -89,7 +107,9 @@ theorem norm_nonneg_of_discr_nonpos (h : b ^ 2 + 4 * a ≤ 0) (z : QuadraticAlge
   nlinarith [sq_nonneg (2 * z.re + b * z.im), sq_nonneg z.im]
 
 /-- Over `ℤ`, a discriminant `b² + 4a < -4` forces the unit group of
-`QuadraticAlgebra ℤ a b` to be `{±1}`.-/
+`QuadraticAlgebra ℤ a b` to be `{±1}`.
+@isnad1 id=iff.1h3v.s7.8b8b45b898fe from=translated src=- shape=7746cd1e vocab=aac591e7
+-/
 -- Repository use: the `±1` unit classifications for `ℤ[√d]` (`d < -1`) and
 -- `ℤ[(1+√d)/2]` (`d ≤ -7`) are instances of this single statement.
 theorem isUnit_iff_eq_one_or_neg_one_of_discr_lt_neg_four (h : b ^ 2 + 4 * a < -4)

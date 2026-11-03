@@ -48,15 +48,23 @@ noncomputable def tauOfForm (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite
     have hpos : (0 : ℝ) < 4 * (Q.a : ℝ) * (Q.c : ℝ) - (Q.b : ℝ) ^ 2 := by linarith
     exact div_pos (Real.sqrt_pos.mpr hpos) (by linarith)⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.b5b0c6330063 from=translated src=- shape=d1f6ae5f vocab=f2e04ad5
+-/
 @[simp] theorem tauOfForm_re (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     (tauOfForm Q hQ).re = -(Q.b : ℝ) / (2 * (Q.a : ℝ)) := rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.2d14da29e277 from=translated src=- shape=f18d4573 vocab=3fa5f4b3
+-/
 @[simp] theorem tauOfForm_im (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     (tauOfForm Q hQ).im =
       Real.sqrt (4 * (Q.a : ℝ) * (Q.c : ℝ) - (Q.b : ℝ) ^ 2) / (2 * (Q.a : ℝ)) := rfl
 
 /-- The norm-square of the upper half-plane point is `c / a`; this is the
-analytic shadow of the reduced-form bound `a ≤ c ⟺ 1 ≤ |τ|²`.-/
+analytic shadow of the reduced-form bound `a ≤ c ⟺ 1 ≤ |τ|²`.
+@isnad1 id=eq.1h1v.s5.e618c252ed72 from=translated src=- shape=c94efe38 vocab=50eb90a4
+-/
 theorem normSq_tauOfForm (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     Complex.normSq (tauOfForm Q hQ : ℂ) = (Q.c : ℝ) / (Q.a : ℝ) := by
   have ha : (Q.a : ℝ) ≠ 0 := by exact_mod_cast (ne_of_gt hQ.1)
@@ -70,7 +78,9 @@ theorem normSq_tauOfForm (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
   field_simp
   ring
 
-/-- The upper half-plane point as an explicit complex number.-/
+/-- The upper half-plane point as an explicit complex number.
+@isnad1 id=eq.1h1v.s6.bfed300a798c from=translated src=- shape=5c0e6a44 vocab=0612c654
+-/
 theorem tauOfForm_coe (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     (tauOfForm Q hQ : ℂ) =
       (-(Q.b : ℂ) + (Real.sqrt (4 * (Q.a : ℝ) * Q.c - (Q.b : ℝ) ^ 2) : ℝ) * Complex.I) /
@@ -83,7 +93,9 @@ theorem tauOfForm_coe (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     field_simp
 
 /-- The defining property: the form's quadratic `a X² + b X + c` vanishes at its
-upper half-plane point.-/
+upper half-plane point.
+@isnad1 id=eq.1h1v.s6.bd0c4412b5f5 from=translated src=- shape=305c38bf vocab=d8cdfcfb
+-/
 theorem tauOfForm_root (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     (Q.a : ℂ) * (tauOfForm Q hQ : ℂ) ^ 2 + (Q.b : ℂ) * (tauOfForm Q hQ : ℂ) + (Q.c : ℂ) = 0 := by
   have ha : (Q.a : ℂ) ≠ 0 := by exact_mod_cast (ne_of_gt hQ.1)
@@ -120,18 +132,24 @@ theorem eq_tauOfForm_of_root (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinit
       Complex.zero_im, zero_mul, add_zero] at him
     nlinarith [him, hzi, hτi, ha_pos]
 
-/-- The `a`-coefficient of a transformed binary quadratic form.-/
+/-- The `a`-coefficient of a transformed binary quadratic form.
+@isnad1 id=eq.0h2v.s8.df9a5f143170 from=translated src=- shape=bd75a011 vocab=459cc655
+-/
 @[simp] theorem transform_a (Q : BinaryQuadraticForm) (g : SL2Z) :
     (transform Q g).a = Q.a * g 0 0 ^ 2 + Q.b * g 0 0 * g 1 0 + Q.c * g 1 0 ^ 2 :=
   rfl
 
-/-- The `b`-coefficient of a transformed binary quadratic form.-/
+/-- The `b`-coefficient of a transformed binary quadratic form.
+@isnad1 id=eq.0h2v.s9.79976d3c8a9a from=translated src=- shape=bd31ff33 vocab=c194247b
+-/
 @[simp] theorem transform_b (Q : BinaryQuadraticForm) (g : SL2Z) :
     (transform Q g).b = 2 * Q.a * g 0 0 * g 0 1 +
       Q.b * (g 0 0 * g 1 1 + g 0 1 * g 1 0) + 2 * Q.c * g 1 0 * g 1 1 :=
   rfl
 
-/-- The `c`-coefficient of a transformed binary quadratic form.-/
+/-- The `c`-coefficient of a transformed binary quadratic form.
+@isnad1 id=eq.0h2v.s8.1262380641b3 from=translated src=- shape=1eb82773 vocab=459cc655
+-/
 @[simp] theorem transform_c (Q : BinaryQuadraticForm) (g : SL2Z) :
     (transform Q g).c = Q.a * g 0 1 ^ 2 + Q.b * g 0 1 * g 1 1 + Q.c * g 1 1 ^ 2 :=
   rfl
@@ -156,7 +174,9 @@ private theorem transform_polynomial_eq_eval (Q : BinaryQuadraticForm) (g : SL2Z
   simp [transform]
   ring
 
-/-- The upper half-plane point is contravariant for the form coordinate transform.-/
+/-- The upper half-plane point is contravariant for the form coordinate transform.
+@isnad1 id=eq.2h2v.s6.c19589177eb7 from=translated src=- shape=920c6201 vocab=be508dbb
+-/
 theorem tauOfForm_transform (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite)
     (g : SL2Z) (hQg : (transform Q g).IsPositiveDefinite) :
     tauOfForm (transform Q g) hQg = g⁻¹ • tauOfForm Q hQ := by
@@ -316,7 +336,9 @@ private theorem abs_re_lt_half_iff {a b : ℤ} (ha : 0 < a) :
     nlinarith
 
 /-- Membership of `tauOfForm` in the closed modular fundamental domain is the pair of
-weak reduced-form inequalities.-/
+weak reduced-form inequalities.
+@isnad1 id=iff.1h1v.s5.8ce4874ae86f from=translated src=- shape=8db068e5 vocab=094036a2
+-/
 theorem tauOfForm_mem_fd_iff (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     tauOfForm Q hQ ∈ ModularGroup.fd ↔ |Q.b| ≤ Q.a ∧ Q.a ≤ Q.c := by
   rw [ModularGroup.fd]
@@ -325,14 +347,18 @@ theorem tauOfForm_mem_fd_iff (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinit
   exact and_comm
 
 /-- A reduced positive definite form has its upper half-plane point in the closed
-modular fundamental domain.-/
+modular fundamental domain.
+@isnad1 id=mem.2h1v.s4.5b3fc0b31052 from=translated src=- shape=be5f508b vocab=329efe73
+-/
 theorem tauOfForm_mem_fd_of_isReduced (Q : BinaryQuadraticForm)
     (hQ : Q.IsPositiveDefinite) (hred : Q.IsReduced) :
     tauOfForm Q hQ ∈ ModularGroup.fd :=
   (tauOfForm_mem_fd_iff Q hQ).2 ⟨hred.1, hred.2.1⟩
 
 /-- Membership of `tauOfForm` in the open modular fundamental domain is the pair of
-strict reduced-form inequalities.-/
+strict reduced-form inequalities.
+@isnad1 id=iff.1h1v.s5.9fbf4cabbcbd from=translated src=- shape=8db068e5 vocab=b3b7d8a1
+-/
 theorem tauOfForm_mem_fdo_iff (Q : BinaryQuadraticForm) (hQ : Q.IsPositiveDefinite) :
     tauOfForm Q hQ ∈ ModularGroup.fdo ↔ |Q.b| < Q.a ∧ Q.a < Q.c := by
   rw [ModularGroup.fdo]
@@ -386,7 +412,9 @@ private theorem isReduced_transform_S_of_neg_a_eq_c (Q : BinaryQuadraticForm)
     exact hneg_nonneg
 
 /-- A point of a positive definite form in the closed modular fundamental domain can be
-boundary-normalized by one of the standard generators.-/
+boundary-normalized by one of the standard generators.
+@isnad1 id=ex.2h1v.s4.b1e4be2b2655 from=translated src=- shape=01c238ba vocab=5d12b638
+-/
 theorem exists_isReduced_transform_of_mem_fd (Q : BinaryQuadraticForm)
     (hQ : Q.IsPositiveDefinite) (hfd : tauOfForm Q hQ ∈ ModularGroup.fd) :
     ∃ g : SL2Z, (transform Q g).IsReduced := by

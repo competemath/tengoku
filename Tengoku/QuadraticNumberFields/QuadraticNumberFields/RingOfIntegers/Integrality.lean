@@ -59,7 +59,9 @@ noncomputable def ringOfIntegers_equiv_of_integralClosure
     𝓞 K ≃+* R :=
   NumberField.RingOfIntegers.equiv (K := K) (R := R)
 
-/-- The equiv `𝓞 K ≃+* R` commutes with the natural maps to `K`.-/
+/-- The equiv `𝓞 K ≃+* R` commutes with the natural maps to `K`.
+@isnad1 id=eq.0h3v.s8.697bf5f5f1ed from=translated src=- shape=78fadce5 vocab=4b5ae252
+-/
 @[simp]
 lemma ringOfIntegers_equiv_of_integralClosure_apply
     {K : Type*} [Field K] {R : Type*} [CommRing R] [Algebra R K] [IsIntegralClosure R ℤ K]
@@ -96,7 +98,9 @@ noncomputable def ringOfIntegers_equiv_of_embedding
   ringOfIntegers_equiv_of_integralClosure K R
 
 /-- The general embedding equiv commutes with `φ`: for any `α : 𝓞 K`, the underlying
-element `(α : K)` equals `φ (e α)`.-/
+element `(α : K)` equals `φ (e α)`.
+@isnad1 id=eq.3h4v.s8.f7816360a830 from=translated src=- shape=ec8cc1f0 vocab=499997cb
+-/
 lemma ringOfIntegers_equiv_of_embedding_apply
     {K : Type*} [Field K]
     {R : Type*} [CommRing R]
@@ -124,7 +128,9 @@ end RingOfIntegersEquiv
 /-! ## Divisibility-Carrier Equivalences -/
 
 /-- In the non-`1 mod 4` branch, divisibility by `4` is equivalent to representability
-in the image of `Zsqrtd d` under the canonical embedding into `Q(√d)`.-/
+in the image of `Zsqrtd d` under the canonical embedding into `Q(√d)`.
+@isnad1 id=iff.2h3v.s7.01d8f0d2735d from=translated src=- shape=22104177 vocab=2803f196
+-/
 theorem dvd_four_sub_sq_iff_exists_zsqrtd_image_of_ne_one_mod_four
     (d a' b' : ℤ) (hd : Squarefree d) (hd4 : d % 4 ≠ 1) :
     4 ∣ (a' ^ 2 - d * b' ^ 2) ↔
@@ -134,14 +140,18 @@ theorem dvd_four_sub_sq_iff_exists_zsqrtd_image_of_ne_one_mod_four
   rw [dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four d a' b' hd hd4,
     (Zsqrtd.halfInt_mem_range_toQsqrtdHom_iff_even_even d a' b').symm]
 
-/-- Forward direction in the non-`1 mod 4` branch.-/
+/-- Forward direction in the non-`1 mod 4` branch.
+@isnad1 id=ex.3h3v.s7.eff2989d7dfd from=translated src=- shape=73869682 vocab=2803f196
+-/
 theorem exists_zsqrtd_image_of_dvd_four_sub_sq_of_ne_one_mod_four
     (d a' b' : ℤ) (hd : Squarefree d) (hd4 : d % 4 ≠ 1)
     (hdiv : 4 ∣ (a' ^ 2 - d * b' ^ 2)) :
     ∃ z : Zsqrtd d, Zsqrtd.toQsqrtdHom d z = Zsqrtd.halfInt (d := d) a' b' :=
   (dvd_four_sub_sq_iff_exists_zsqrtd_image_of_ne_one_mod_four d a' b' hd hd4).1 hdiv
 
-/-- Reverse direction in the non-`1 mod 4` branch.-/
+/-- Reverse direction in the non-`1 mod 4` branch.
+@isnad1 id=dvd.3h3v.s7.55a5f39e4ac6 from=translated src=- shape=c87a8056 vocab=2803f196
+-/
 theorem dvd_four_sub_sq_of_exists_zsqrtd_image_of_ne_one_mod_four
     (d a' b' : ℤ) (hd : Squarefree d) (hd4 : d % 4 ≠ 1)
     (hz : ∃ z : Zsqrtd d, Zsqrtd.toQsqrtdHom d z = Zsqrtd.halfInt (d := d) a' b') :
@@ -149,7 +159,9 @@ theorem dvd_four_sub_sq_of_exists_zsqrtd_image_of_ne_one_mod_four
   (dvd_four_sub_sq_iff_exists_zsqrtd_image_of_ne_one_mod_four d a' b' hd hd4).2 hz
 
 /-- In the `1 mod 4` branch (`d = 1 + 4k`), divisibility by `4` is equivalent to
-representability in the image of `ZOnePlusSqrtdOverTwo k`.-/
+representability in the image of `ZOnePlusSqrtdOverTwo k`.
+@isnad1 id=iff.1h3v.s7.d18f92ad58c2 from=translated src=- shape=fef16205 vocab=0884ba13
+-/
 theorem dvd_four_sub_sq_iff_exists_zOnePlusSqrtOverTwo_image_of_one_mod_four
     (k a' b' : ℤ) (hd : Squarefree (1 + 4 * k)) :
     4 ∣ (a' ^ 2 - (1 + 4 * k) * b' ^ 2) ↔
@@ -163,7 +175,9 @@ theorem dvd_four_sub_sq_iff_exists_zOnePlusSqrtOverTwo_image_of_one_mod_four
   rw [dvd_four_sub_sq_iff_same_parity_of_one_mod_four (d := 1 + 4 * k) a' b' hd hd4,
     (ZOnePlusSqrtdOverTwo.halfInt_mem_carrierSet_iff_same_parity k a' b').symm]
 
-/-- Forward direction in the `1 mod 4` branch.-/
+/-- Forward direction in the `1 mod 4` branch.
+@isnad1 id=ex.2h3v.s7.6944e57ce3b8 from=translated src=- shape=78f96fdf vocab=0884ba13
+-/
 theorem exists_zOnePlusSqrtOverTwo_image_of_dvd_four_sub_sq_of_one_mod_four
     (k a' b' : ℤ) (hd : Squarefree (1 + 4 * k))
     (hdiv : 4 ∣ (a' ^ 2 - (1 + 4 * k) * b' ^ 2)) :
@@ -172,7 +186,9 @@ theorem exists_zOnePlusSqrtOverTwo_image_of_dvd_four_sub_sq_of_one_mod_four
         halfInt (1 + 4 * k) a' b' :=
   (dvd_four_sub_sq_iff_exists_zOnePlusSqrtOverTwo_image_of_one_mod_four k a' b' hd).1 hdiv
 
-/-- Reverse direction in the `1 mod 4` branch.-/
+/-- Reverse direction in the `1 mod 4` branch.
+@isnad1 id=dvd.2h3v.s7.ef4097048c64 from=translated src=- shape=aa94a3d7 vocab=0884ba13
+-/
 theorem dvd_four_sub_sq_of_exists_zOnePlusSqrtOverTwo_image_of_one_mod_four
     (k a' b' : ℤ) (hd : Squarefree (1 + 4 * k))
     (hz : ∃ z : ZOnePlusSqrtdOverTwo k,
@@ -190,13 +206,17 @@ private lemma isIntegral_of_intModel_image
     IsIntegral ℤ (φ z) :=
   map_isIntegral_int φ (Algebra.IsIntegral.isIntegral (R := ℤ) z)
 
-/-- Every element in the image of `Zsqrtd d → Q(√d)` is integral over `ℤ`.-/
+/-- Every element in the image of `Zsqrtd d → Q(√d)` is integral over `ℤ`.
+@isnad1 id=isintegr.0h2v.s7.6611b3e2f25d from=translated src=- shape=55e65e22 vocab=bf2d2b09
+-/
 lemma isIntegral_toQsqrtd (d : ℤ) (z : Zsqrtd d) :
     IsIntegral ℤ (Zsqrtd.toQsqrtdHom d z) :=
   isIntegral_of_intModel_image (Zsqrtd d) (Qsqrtd (d : ℚ)) (Zsqrtd.toQsqrtdHom d) z
 
 /-- Every element in the image of `ZOnePlusSqrtdOverTwo k → Q(√(1 + 4k))` is
-integral over `ℤ`.-/
+integral over `ℤ`.
+@isnad1 id=isintegr.0h2v.s6.456b6f33e6a8 from=translated src=- shape=309dfe41 vocab=51c7c447
+-/
 lemma isIntegral_toQsqrtd_of_zOnePlusSqrtOverTwo (k : ℤ) (z : ZOnePlusSqrtdOverTwo k) :
     IsIntegral ℤ (_root_.ZOnePlusSqrtdOverTwo.toQsqrtdHom k z) :=
   isIntegral_of_intModel_image (ZOnePlusSqrtdOverTwo k) (Qsqrtd ((1 + 4 * k : ℤ) : ℚ))
@@ -233,7 +253,9 @@ private lemma dvd_four_sub_sq_of_int_norm_halfInt
     (int_norm_eq_norm_halfInt d a' b' n' hxHalf hn'norm)
 
 /-- Any element of `Q(√d)` integral over `ℤ` has half-integer coordinates with
-`4 ∣ (a'^2 - d * b'^2)`.-/
+`4 ∣ (a'^2 - d * b'^2)`.
+@isnad1 id=ex.3h2v.s7.43417d05df78 from=translated src=- shape=d5acd67a vocab=cc32755e
+-/
 @[nolint unusedArguments]
 lemma exists_halfInt_with_div_four_of_isIntegral
     (d : ℤ) (hd_sf : Squarefree d) (_hd_ne : d ≠ 1)
@@ -268,7 +290,9 @@ private lemma exists_intModel_of_isIntegral
   exact ⟨z, by simpa [hxHalf] using hz⟩
 
 /-- Integrality classification in the `d % 4 ≠ 1` branch: integral elements of `Q(√d)`
-lie in the image of `Zsqrtd d`.-/
+lie in the image of `Zsqrtd d`.
+@isnad1 id=ex.4h2v.s7.293c393d6e2b from=translated src=- shape=59070683 vocab=66515f23
+-/
 lemma exists_zsqrtd_of_isIntegral_of_ne_one_mod_four
     (d : ℤ) (hd_sf : Squarefree d) (hd_ne : d ≠ 1) (hd4 : d % 4 ≠ 1)
     {x : Qsqrtd (d : ℚ)} (hx : IsIntegral ℤ x) :
@@ -278,7 +302,9 @@ lemma exists_zsqrtd_of_isIntegral_of_ne_one_mod_four
       exists_zsqrtd_image_of_dvd_four_sub_sq_of_ne_one_mod_four d a' b' hd_sf hd4 hdiv)
     hx
 /-- Integrality classification in the `1 mod 4` branch model (`d = 1 + 4k`):
-integral elements of `Q(√(1 + 4k))` lie in the image of `ZOnePlusSqrtdOverTwo k`.-/
+integral elements of `Q(√(1 + 4k))` lie in the image of `ZOnePlusSqrtdOverTwo k`.
+@isnad1 id=ex.3h2v.s8.fb0ad6f2bc36 from=translated src=- shape=c59e4d48 vocab=68ee71bc
+-/
 lemma exists_zOnePlusSqrtOverTwo_of_isIntegral_of_one_mod_four
     (k : ℤ) (hd_sf : Squarefree (1 + 4 * k)) (hd_ne : (1 + 4 * k) ≠ 1)
     {x : Qsqrtd (((1 + 4 * k : ℤ) : ℚ))} (hx : IsIntegral ℤ x) :

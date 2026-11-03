@@ -14,7 +14,9 @@ import Tengoku.Seed.Algebra.Squarefree.Basic
 Material destined for mathlib.
 -/
 
-/-- If `r` is squarefree and `p` is not a unit, then `p * p` does not divide `r`.-/
+/-- If `r` is squarefree and `p` is not a unit, then `p * p` does not divide `r`.
+@isnad1 id=not.2h3v.s5.163afeff4e1d from=translated src=- shape=552e2c91 vocab=aff0462b
+-/
 -- Repository use: internal support for `squarefree_int_not_dvd_four`; no direct
 -- project use is expected because this is the generalized squarefree lemma.
 lemma Squarefree.not_mul_self_dvd_of_not_isUnit {R : Type*} [Monoid R]
@@ -26,7 +28,9 @@ lemma Squarefree.not_mul_self_dvd_of_not_isUnit {R : Type*} [Monoid R]
     Squarefree.eq_zero_or_one_of_pow_of_not_isUnit hsq hp
   omega
 
-/-- A squarefree integer is not divisible by `4`.-/
+/-- A squarefree integer is not divisible by `4`.
+@isnad1 id=not.1h1v.s4.87c33aacedda from=translated src=- shape=de5d23e9 vocab=9dd16470
+-/
 -- Repository use: `Mathlib/Data/Int/ModFour.lean` uses this to rule out the
 -- even/odd parity cases in half-integrality arguments.
 lemma squarefree_int_not_dvd_four (d : ℤ) (hd : Squarefree d) : ¬ (4 : ℤ) ∣ d := by
@@ -34,7 +38,9 @@ lemma squarefree_int_not_dvd_four (d : ℤ) (hd : Squarefree d) : ¬ (4 : ℤ) �
   exact Squarefree.not_mul_self_dvd_of_not_isUnit hd (p := (2 : ℤ))
     (fun hunit => absurd (Int.isUnit_iff.mp hunit) (by omega)) (by simpa using h)
 
-/-- A squarefree integer has remainder `1`, `2`, or `3` modulo `4`.-/
+/-- A squarefree integer has remainder `1`, `2`, or `3` modulo `4`.
+@isnad1 id=or.1h1v.s6.0ca2c6a3c27a from=translated src=- shape=da52a290 vocab=31e60025
+-/
 -- Repository use: currently a reusable mod-four fact for the ring-of-integers
 -- branch split; no direct non-patch reference at the moment.
 lemma squarefree_int_emod_four (d : ℤ) (hd : Squarefree d) :

@@ -58,7 +58,9 @@ private lemma kroneckerSymNat_two_pow_mul_odd (D : ℤ) (k : ℕ) {m : ℕ} (hm 
   congr 1
   rw [Nat.mul_div_cancel_left m (pow_pos (by decide : (0 : ℕ) < 2) k)]
 
-/-- At an odd natural denominator, the Kronecker symbol is the Jacobi symbol.-/
+/-- At an odd natural denominator, the Kronecker symbol is the Jacobi symbol.
+@isnad1 id=eq.1h2v.s4.c10f1f88c52d from=translated src=- shape=357247a4 vocab=23e0b770
+-/
 theorem kroneckerSymNat_eq_jacobiSym_of_odd (D : ℤ) {n : ℕ} (hn : Odd n) :
     kroneckerSymNat D n = jacobiSym D n := by
   have hn0 : n ≠ 0 := hn.pos.ne'
@@ -79,7 +81,9 @@ private lemma kroneckerTwo_sq_one_of_natAbs_not_even (D : ℤ)
   · simp [hDmod, hmod8]
 
 /-- If the natural denominator is coprime to `D.natAbs`, then its Kronecker
-symbol has square one.-/
+symbol has square one.
+@isnad1 id=eq.1h2v.s5.3125b79bb789 from=translated src=- shape=c7b1821d vocab=6b37f8a2
+-/
 theorem kroneckerSymNat_sq_one_of_coprime (D : ℤ) {n : ℕ}
     (h : Nat.Coprime n D.natAbs) :
     kroneckerSymNat D n ^ 2 = 1 := by
@@ -113,7 +117,9 @@ theorem kroneckerSymNat_sq_one_of_coprime (D : ℤ) {n : ℕ}
       _ = 1 := by simp [htwo_pow_sq, hjac_sq]
 
 /-- At a denominator coprime to `D.natAbs`, the Kronecker symbol is `1` or
-`-1`.-/
+`-1`.
+@isnad1 id=or.1h2v.s5.ac3362ce6fa3 from=translated src=- shape=f0dc6c59 vocab=3b8ba6d1
+-/
 theorem kroneckerSymNat_eq_one_or_neg_one_of_coprime (D : ℤ) {n : ℕ}
     (h : Nat.Coprime n D.natAbs) :
     kroneckerSymNat D n = 1 ∨ kroneckerSymNat D n = -1 :=
@@ -126,7 +132,9 @@ def kroneckerSymNatUnit (D : ℤ) {n : ℕ}
     simpa [pow_two] using kroneckerSymNat_sq_one_of_coprime D h)
 
 /-- Coercing the coprime unit-valued Kronecker symbol to `ℤ` recovers the
-ordinary Kronecker symbol.-/
+ordinary Kronecker symbol.
+@isnad1 id=eq.1h2v.s4.3c9a7729626c from=translated src=- shape=a8a4741b vocab=5c76f01a
+-/
 @[simp]
 theorem coe_kroneckerSymNatUnit (D : ℤ) {n : ℕ}
     (h : Nat.Coprime n D.natAbs) :
@@ -181,7 +189,9 @@ private lemma jacobiSym_self_eq_natAbs_right_of_emod_four_eq_one (D : ℤ)
           ring
 
 /-- For discriminants `D ≡ 1 [ZMOD 4]`, the natural-denominator Kronecker symbol
-is the Jacobi symbol with denominator `|D|`.-/
+is the Jacobi symbol with denominator `|D|`.
+@isnad1 id=eq.1h2v.s5.446a11c6dde8 from=translated src=- shape=4405002d vocab=d201cca2
+-/
 theorem kroneckerSymNat_eq_jacobiSym_natAbs_of_emod_four_eq_one (D : ℤ)
     (hD : D % 4 = 1) (n : ℕ) :
     kroneckerSymNat D n = jacobiSym n D.natAbs := by
@@ -209,7 +219,9 @@ private lemma gcd_ne_one_of_two_dvd {m n : ℕ} (hm : 2 ∣ m) (hn : 2 ∣ n) :
   norm_num at h2
 
 /-- The Kronecker symbol vanishes whenever the natural denominator shares a prime
-factor with `D.natAbs`.-/
+factor with `D.natAbs`.
+@isnad1 id=eq.1h2v.s4.a8d4332e3cb4 from=translated src=- shape=83bcd0eb vocab=cfcc1a0e
+-/
 theorem kroneckerSymNat_eq_zero_of_not_coprime (D : ℤ) {n : ℕ}
     (h : Nat.gcd n D.natAbs ≠ 1) : kroneckerSymNat D n = 0 := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -258,7 +270,9 @@ theorem kroneckerSymNat_eq_zero_of_not_coprime (D : ℤ) {n : ℕ}
 
 /-- The natural-denominator Kronecker symbol vanishes exactly when its
 denominator is not coprime to `D.natAbs`. This includes the denominator-zero
-convention.-/
+convention.
+@isnad1 id=iff.0h2v.s4.6f56b814d865 from=translated src=- shape=1ce3bfa8 vocab=cfcc1a0e
+-/
 theorem kroneckerSymNat_eq_zero_iff_not_coprime (D : ℤ) (n : ℕ) :
     kroneckerSymNat D n = 0 ↔ Nat.gcd n D.natAbs ≠ 1 := by
   constructor
@@ -270,7 +284,9 @@ theorem kroneckerSymNat_eq_zero_iff_not_coprime (D : ℤ) (n : ℕ) :
   · exact kroneckerSymNat_eq_zero_of_not_coprime D
 
 /-- The natural-denominator Kronecker symbol takes only the values `0`, `1`,
-and `-1`.-/
+and `-1`.
+@isnad1 id=or.0h2v.s5.0adc469ea2ce from=translated src=- shape=49b29fd3 vocab=84edaa15
+-/
 theorem kroneckerSymNat_trichotomy (D : ℤ) (n : ℕ) :
     kroneckerSymNat D n = 0 ∨
       kroneckerSymNat D n = 1 ∨ kroneckerSymNat D n = -1 := by
@@ -280,7 +296,9 @@ theorem kroneckerSymNat_trichotomy (D : ℤ) (n : ℕ) :
       simpa [Nat.Coprime] using h))
 
 /-- Periodicity of the Kronecker symbol modulo `|D|`, valid for every integer
-discriminant `D` with `D % 4 ∈ {0, 1}`.-/
+discriminant `D` with `D % 4 ∈ {0, 1}`.
+@isnad1 id=eq.0h2v.s6.e310fa5c50da from=translated src=- shape=4c5090a9 vocab=abaf6d5e
+-/
 theorem kroneckerSymNat_add_natAbs_eq (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] (n : ℕ) :
     kroneckerSymNat D (n + D.natAbs) = kroneckerSymNat D n := by
   rcases eq_or_ne D.natAbs 0 with hD0 | hD0
@@ -314,7 +332,9 @@ theorem kroneckerSymNat_add_natAbs_eq (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     rw [Nat.cast_add]
     simpa using (Int.add_mul_emod_self_left (n : ℤ) (D.natAbs : ℤ) 1)
 
-/-- Iterated periodicity of the Kronecker symbol modulo `|D|`.-/
+/-- Iterated periodicity of the Kronecker symbol modulo `|D|`.
+@isnad1 id=eq.0h3v.s6.02b4af9bcaf6 from=translated src=- shape=ee3eaa67 vocab=10a010b7
+-/
 theorem kroneckerSymNat_add_natAbs_mul_eq (D : ℤ)
     [Fact (D % 4 = 0 ∨ D % 4 = 1)] (n k : ℕ) :
     kroneckerSymNat D (n + D.natAbs * k) = kroneckerSymNat D n := by
@@ -323,7 +343,9 @@ theorem kroneckerSymNat_add_natAbs_mul_eq (D : ℤ)
   | succ k ih =>
       rw [Nat.mul_succ, ← Nat.add_assoc, kroneckerSymNat_add_natAbs_eq D, ih]
 
-/-- Reducing the lower argument modulo `|D|` preserves the Kronecker symbol.-/
+/-- Reducing the lower argument modulo `|D|` preserves the Kronecker symbol.
+@isnad1 id=eq.0h2v.s6.ff21d87f67ec from=translated src=- shape=5985be0b vocab=6f933319
+-/
 theorem kroneckerSymNat_mod_natAbs_eq (D : ℤ)
     [Fact (D % 4 = 0 ∨ D % 4 = 1)] (n : ℕ) :
     kroneckerSymNat D (n % D.natAbs) = kroneckerSymNat D n := by
@@ -331,7 +353,9 @@ theorem kroneckerSymNat_mod_natAbs_eq (D : ℤ)
   exact (kroneckerSymNat_add_natAbs_mul_eq D (n % D.natAbs) (n / D.natAbs)).symm
 
 /-- The Kronecker symbol is constant on natural-number congruence classes modulo
-any multiple of the absolute value of its upper argument.-/
+any multiple of the absolute value of its upper argument.
+@isnad1 id=eq.3h4v.s6.7b62fcd44209 from=translated src=- shape=5f94ec11 vocab=eff9b4df
+-/
 theorem kroneckerSymNat_eq_of_modEq {D : ℤ}
     (hD : D % 4 = 0 ∨ D % 4 = 1) {m a b : ℕ} (hDm : D.natAbs ∣ m)
     (hab : a ≡ b [MOD m]) :
@@ -431,7 +455,9 @@ private lemma jacobiSym_neg_nat_four_mul_sub_one (A : ℕ) (hA : A ≠ 0) :
   ring
 
 /-- The Kronecker symbol at the representative `|D| - 1` is the sign factor
-appearing in the integer-denominator convention `(D / -1)`.-/
+appearing in the integer-denominator convention `(D / -1)`.
+@isnad1 id=eq.1h1v.s6.3257878d089e from=translated src=- shape=df37e5d1 vocab=ff030311
+-/
 theorem kroneckerSymNat_natAbs_sub_one_eq_sign (D : ℤ)
     [Fact (D % 4 = 0 ∨ D % 4 = 1)] (hD0 : D.natAbs ≠ 0) :
     kroneckerSymNat D (D.natAbs - 1) = kroneckerNegOne D := by
@@ -494,21 +520,27 @@ private lemma kroneckerTwo_eq_chi8 (D : ℤ) : kroneckerTwo D = ZMod.χ₈ D := 
   rw [ZMod.χ₈_int_eq_if_mod_eight]
   rfl
 
-/-- The supplementary Kronecker value is multiplicative in its numerator.-/
+/-- The supplementary Kronecker value is multiplicative in its numerator.
+@isnad1 id=eq.0h2v.s4.dcad4cfccdfc from=translated src=- shape=a13ca989 vocab=abb328a6
+-/
 theorem kroneckerTwo_mul (D E : ℤ) :
     kroneckerTwo (D * E) = kroneckerTwo D * kroneckerTwo E := by
   rw [kroneckerTwo_eq_chi8, kroneckerTwo_eq_chi8, kroneckerTwo_eq_chi8]
   simpa [Int.cast_mul] using map_mul ZMod.χ₈ (D : ZMod 8) (E : ZMod 8)
 
 /-- The Kronecker symbol is multiplicative in the upper argument, for nonzero
-natural denominators.-/
+natural denominators.
+@isnad1 id=eq.1h3v.s5.7db66f854e11 from=translated src=- shape=e9e1d6bc vocab=2495431f
+-/
 theorem kroneckerSymNat_mul_left (D E : ℤ) {n : ℕ} (hn : n ≠ 0) :
     kroneckerSymNat (D * E) n = kroneckerSymNat D n * kroneckerSymNat E n := by
   rw [kroneckerSymNat, ite_eq_right hn, kroneckerSymNat, ite_eq_right hn,
     kroneckerSymNat, ite_eq_right hn, kroneckerTwo_mul, jacobiSym.mul_left]
   ring
 
-/-- The Kronecker symbol with upper argument `1` is trivial.-/
+/-- The Kronecker symbol with upper argument `1` is trivial.
+@isnad1 id=eq.0h1v.s4.d561a1598ff7 from=translated src=- shape=004a7881 vocab=8776ca92
+-/
 @[simp]
 theorem kroneckerSymNat_one_left (n : ℕ) : kroneckerSymNat 1 n = 1 := by
   by_cases hn : n = 0
@@ -517,7 +549,9 @@ theorem kroneckerSymNat_one_left (n : ℕ) : kroneckerSymNat 1 n = 1 := by
     simp [kroneckerTwo]
 
 /-- Pull a finite product out of the upper argument of `kroneckerSymNat`, for a
-nonzero natural denominator.-/
+nonzero natural denominator.
+@isnad1 id=eq.1h4v.s5.c2510d6b6e50 from=translated src=- shape=3b043a29 vocab=cb7dea77
+-/
 theorem kroneckerSymNat_prod_left {ι : Type*} (s : Finset ι) (f : ι → ℤ)
     {n : ℕ} (hn : n ≠ 0) :
     kroneckerSymNat (s.prod f) n = s.prod (fun i ↦ kroneckerSymNat (f i) n) := by
@@ -528,7 +562,9 @@ theorem kroneckerSymNat_prod_left {ι : Type*} (s : Finset ι) (f : ι → ℤ)
       rw [Finset.prod_insert ha, Finset.prod_insert ha, kroneckerSymNat_mul_left _ _ hn, ih]
 
 /-- Full multiplicativity of the Kronecker symbol in the lower (natural) argument,
-for nonzero inputs.-/
+for nonzero inputs.
+@isnad1 id=eq.2h3v.s5.f4d2394b01b6 from=translated src=- shape=796339c6 vocab=2495431f
+-/
 theorem kroneckerSymNat_mul (D : ℤ) {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
     kroneckerSymNat D (m * n) = kroneckerSymNat D m * kroneckerSymNat D n := by
   obtain ⟨km, m', hm', rfl⟩ := Nat.exists_eq_two_pow_mul_odd hm
@@ -563,7 +599,9 @@ private theorem kroneckerSymNat_list_prod (D : ℤ) :
       exact h q (by simp [hq])
 
 /-- The Kronecker symbol of a nonzero natural denominator is the product of the
-Kronecker symbols over the denominator's prime factor list, with multiplicity.-/
+Kronecker symbols over the denominator's prime factor list, with multiplicity.
+@isnad1 id=eq.1h2v.s5.3d292da79f7a from=translated src=- shape=22707bbf vocab=6039dd21
+-/
 theorem kroneckerSymNat_eq_primeFactorsList_prod (D : ℤ) {n : ℕ} (hn : n ≠ 0) :
     kroneckerSymNat D n = (n.primeFactorsList.map (kroneckerSymNat D)).prod := by
   calc
@@ -574,7 +612,9 @@ theorem kroneckerSymNat_eq_primeFactorsList_prod (D : ℤ) {n : ℕ} (hn : n ≠
         (Nat.prime_of_mem_primeFactorsList hp).ne_zero
 
 /-- If every prime factor of a nonzero natural denominator has Kronecker value `1`,
-then the Kronecker symbol of the whole denominator is `1`.-/
+then the Kronecker symbol of the whole denominator is `1`.
+@isnad1 id=eq.2h2v.s5.6933b7ed0198 from=translated src=- shape=32bbdb7e vocab=cc16785d
+-/
 theorem kroneckerSymNat_eq_one_of_forall_primeFactors_eq_one
     (D : ℤ) {n : ℕ} (hn : n ≠ 0)
     (h : ∀ p ∈ n.primeFactors, kroneckerSymNat D p = 1) :
@@ -588,7 +628,9 @@ theorem kroneckerSymNat_eq_one_of_forall_primeFactors_eq_one
 /-! ### Integer-denominator API -/
 
 /-- The integer-denominator Kronecker symbol vanishes exactly when the absolute
-denominator is not coprime to the absolute numerator.-/
+denominator is not coprime to the absolute numerator.
+@isnad1 id=iff.0h2v.s4.c30998d26f02 from=translated src=- shape=837ad067 vocab=95481611
+-/
 theorem kroneckerSym_eq_zero_iff_not_coprime (D n : ℤ) :
     kroneckerSym D n = 0 ↔ Nat.gcd n.natAbs D.natAbs ≠ 1 := by
   by_cases hn : n < 0
@@ -598,7 +640,9 @@ theorem kroneckerSym_eq_zero_iff_not_coprime (D n : ℤ) :
       kroneckerSymNat_eq_zero_iff_not_coprime]
 
 /-- At a denominator coprime to the numerator, the integer-denominator
-Kronecker symbol has square one.-/
+Kronecker symbol has square one.
+@isnad1 id=eq.1h2v.s5.eade921f62fe from=translated src=- shape=162fc45d vocab=1ada23b3
+-/
 theorem kroneckerSym_sq_one_of_coprime (D n : ℤ)
     (h : Nat.Coprime n.natAbs D.natAbs) :
     kroneckerSym D n ^ 2 = 1 := by
@@ -609,14 +653,18 @@ theorem kroneckerSym_sq_one_of_coprime (D n : ℤ)
   · rw [kroneckerSym, ite_eq_right hn, one_mul, hnat]
 
 /-- At a denominator coprime to the numerator, the integer-denominator
-Kronecker symbol is `1` or `-1`.-/
+Kronecker symbol is `1` or `-1`.
+@isnad1 id=or.1h2v.s5.fbd2b4d52d83 from=translated src=- shape=978a0d3c vocab=235c01f6
+-/
 theorem kroneckerSym_eq_one_or_neg_one_of_coprime (D n : ℤ)
     (h : Nat.Coprime n.natAbs D.natAbs) :
     kroneckerSym D n = 1 ∨ kroneckerSym D n = -1 :=
   sq_eq_one_iff.mp (kroneckerSym_sq_one_of_coprime D n h)
 
 /-- The integer-denominator Kronecker symbol takes only the values `0`, `1`,
-and `-1`.-/
+and `-1`.
+@isnad1 id=or.0h2v.s5.770202aff1d5 from=translated src=- shape=b1b8c699 vocab=f4973f9d
+-/
 theorem kroneckerSym_trichotomy (D n : ℤ) :
     kroneckerSym D n = 0 ∨ kroneckerSym D n = 1 ∨ kroneckerSym D n = -1 := by
   by_cases h : Nat.Coprime n.natAbs D.natAbs
@@ -625,7 +673,9 @@ theorem kroneckerSym_trichotomy (D n : ℤ) :
       simpa [Nat.Coprime] using h))
 
 /-- The integer-denominator Kronecker symbol with upper argument `1` is
-trivial, including at denominators `0` and `-1`.-/
+trivial, including at denominators `0` and `-1`.
+@isnad1 id=eq.0h1v.s4.9b6431ba7a49 from=translated src=- shape=fe2c2146 vocab=e52570b9
+-/
 @[simp]
 theorem kroneckerSym_one_left (n : ℤ) : kroneckerSym 1 n = 1 := by
   simp [kroneckerSym, kroneckerNegOne, kroneckerSymNat_one_left]
@@ -645,7 +695,9 @@ private theorem kroneckerDenominatorSign_mul
   · simp [not_lt_of_ge (mul_pos hmpos hnpos).le,
       not_lt_of_ge hmpos.le, not_lt_of_ge hnpos.le]
 
-/-- The Kronecker symbol is multiplicative in nonzero integer denominators.-/
+/-- The Kronecker symbol is multiplicative in nonzero integer denominators.
+@isnad1 id=eq.2h3v.s5.6ea482d35bf9 from=translated src=- shape=965ac053 vocab=17bd97e5
+-/
 theorem kroneckerSym_mul (D : ℤ) {m n : ℤ} (hm : m ≠ 0) (hn : n ≠ 0) :
     kroneckerSym D (m * n) = kroneckerSym D m * kroneckerSym D n := by
   simp only [kroneckerSym]
@@ -655,7 +707,9 @@ theorem kroneckerSym_mul (D : ℤ) {m n : ℤ} (hm : m ≠ 0) (hn : n ≠ 0) :
   ring
 
 /-- Negating a nonzero denominator multiplies the Kronecker symbol by the
-supplementary value `(D / -1)`.-/
+supplementary value `(D / -1)`.
+@isnad1 id=eq.1h2v.s5.5a9de42cc473 from=translated src=- shape=9b36a9cb vocab=59bff492
+-/
 theorem kroneckerSym_neg (D : ℤ) {n : ℤ} (hn : n ≠ 0) :
     kroneckerSym D (-n) = kroneckerNegOne D * kroneckerSym D n := by
   rw [← neg_one_mul n, kroneckerSym_mul D (by norm_num) hn,
@@ -663,7 +717,9 @@ theorem kroneckerSym_neg (D : ℤ) {n : ℤ} (hn : n ≠ 0) :
 
 /-- The Kronecker symbol is multiplicative in nonzero integer numerators at a
 nonzero integer denominator. The nonzero hypotheses account for the exceptional
-convention `(0 / -1) = 1`.-/
+convention `(0 / -1) = 1`.
+@isnad1 id=eq.3h3v.s5.a62bf39211ee from=translated src=- shape=ffe1a3bf vocab=17bd97e5
+-/
 theorem kroneckerSym_mul_left (D E : ℤ) {n : ℤ}
     (hD : D ≠ 0) (hE : E ≠ 0) (hn : n ≠ 0) :
     kroneckerSym (D * E) n = kroneckerSym D n * kroneckerSym E n := by

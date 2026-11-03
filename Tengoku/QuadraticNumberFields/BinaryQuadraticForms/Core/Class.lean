@@ -50,6 +50,9 @@ def ofProperEquivalent {D : ℤ} (Q : PrimitivePositiveDefiniteForm D)
     · exact BinaryQuadraticForm.isPrimitive_of_properEquivalent Q.2.2.1 hQR
     · exact BinaryQuadraticForm.isPositiveDefinite_of_properEquivalent Q.2.2.2 hQR
 
+/--
+@isnad1 id=eq.1h3v.s5.5b0104881450 from=translated src=- shape=ca801747 vocab=07e07c5b
+-/
 @[simp]
 theorem ofProperEquivalent_val {D : ℤ} (Q : PrimitivePositiveDefiniteForm D)
     {R : BinaryQuadraticForm} (hQR : BinaryQuadraticForm.ProperEquivalent Q.1 R) :
@@ -57,7 +60,9 @@ theorem ofProperEquivalent_val {D : ℤ} (Q : PrimitivePositiveDefiniteForm D)
   rfl
 
 /-- The restricted form obtained from a proper-equivalent raw form remains
-properly equivalent to the original restricted form.-/
+properly equivalent to the original restricted form.
+@isnad1 id=propereq.1h3v.s5.2ca8a6e5ad31 from=translated src=- shape=752d6aec vocab=e4bd18df
+-/
 theorem properEquivalent_ofProperEquivalent {D : ℤ} (Q : PrimitivePositiveDefiniteForm D)
     {R : BinaryQuadraticForm} (hQR : BinaryQuadraticForm.ProperEquivalent Q.1 R) :
     ProperEquivalent Q (Q.ofProperEquivalent hQR) :=
@@ -69,13 +74,18 @@ def transform {D : ℤ} (Q : PrimitivePositiveDefiniteForm D) (g : SL2Z) :
     PrimitivePositiveDefiniteForm D :=
   Q.ofProperEquivalent ⟨g, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.5ff19fd1a11a from=translated src=- shape=eef39baf vocab=3b65ba5e
+-/
 @[simp]
 theorem transform_val {D : ℤ} (Q : PrimitivePositiveDefiniteForm D) (g : SL2Z) :
     (Q.transform g).1 = BinaryQuadraticForm.transform Q.1 g :=
   rfl
 
 /-- The restricted `SL₂(ℤ)` transform is properly equivalent to the original
-restricted form.-/
+restricted form.
+@isnad1 id=propereq.0h3v.s3.3fbf2496c73d from=translated src=- shape=940e110f vocab=7869c301
+-/
 theorem properEquivalent_transform {D : ℤ} (Q : PrimitivePositiveDefiniteForm D) (g : SL2Z) :
     ProperEquivalent Q (Q.transform g) :=
   ⟨g, rfl⟩
@@ -95,7 +105,9 @@ instance instMulAction (D : ℤ) : MulAction SL2Zᵐᵒᵖ (PrimitivePositiveDef
     rw [MulOpposite.unop_mul]
     exact (BinaryQuadraticForm.transform_mul Q.1 h.unop g.unop).symm
 
-/-- Restricted proper equivalence is the orbit relation for the opposite-group action.-/
+/-- Restricted proper equivalence is the orbit relation for the opposite-group action.
+@isnad1 id=iff.0h3v.s5.c67560a84a24 from=translated src=- shape=299ee2cd vocab=a01d314f
+-/
 theorem properEquivalent_iff_orbitRel {D : ℤ} {Q R : PrimitivePositiveDefiniteForm D} :
     ProperEquivalent Q R ↔
       (MulAction.orbitRel SL2Zᵐᵒᵖ (PrimitivePositiveDefiniteForm D)).r R Q := by
@@ -132,24 +144,32 @@ abbrev FormClass (D : ℤ) : Type :=
 def fieldDiscriminant (d : ℤ) : ℤ :=
   if d % 4 = 1 then d else 4 * d
 
-/-- In the `d % 4 = 1` branch, the field discriminant is `d`.-/
+/-- In the `d % 4 = 1` branch, the field discriminant is `d`.
+@isnad1 id=eq.1h1v.s4.a79647498437 from=translated src=- shape=4363cab9 vocab=e851baf4
+-/
 theorem fieldDiscriminant_of_mod_four_eq_one {d : ℤ} (hd4 : d % 4 = 1) :
     fieldDiscriminant d = d := by
   simp [fieldDiscriminant, hd4]
 
-/-- In the `d % 4 ≠ 1` branch, the field discriminant is `4 * d`.-/
+/-- In the `d % 4 ≠ 1` branch, the field discriminant is `4 * d`.
+@isnad1 id=eq.1h1v.s5.0c9d4fc8aed6 from=translated src=- shape=d3a2adeb vocab=36e145a4
+-/
 theorem fieldDiscriminant_of_mod_four_ne_one {d : ℤ} (hd4 : d % 4 ≠ 1) :
     fieldDiscriminant d = 4 * d := by
   simp [fieldDiscriminant, hd4]
 
-/-- Imaginary squarefree parameters have negative field discriminant.-/
+/-- Imaginary squarefree parameters have negative field discriminant.
+@isnad1 id=lt.1h1v.s4.7e86e8fcb430 from=translated src=- shape=5aedd577 vocab=11eb33a3
+-/
 theorem fieldDiscriminant_neg {d : ℤ} (hdneg : d < 0) :
     fieldDiscriminant d < 0 := by
   by_cases hd4 : d % 4 = 1 <;> simp [fieldDiscriminant, hd4] <;> nlinarith
 
 /-- In the `d % 4 ≠ 1` Cox branch, a form of field discriminant has even
 middle coefficient. This justifies the `-b / 2` coordinate in the `Zsqrtd`
-ideal generator.-/
+ideal generator.
+@isnad1 id=even.2h2v.s5.a00223f43171 from=translated src=- shape=6f37abc8 vocab=5b5c07cd
+-/
 theorem even_b_of_hasDiscriminant_fieldDiscriminant_of_mod_four_ne_one
     {d : ℤ} (hd4 : d % 4 ≠ 1) {Q : BinaryQuadraticForm}
     (hdisc : Q.HasDiscriminant (fieldDiscriminant d)) : Even Q.b := by
@@ -166,7 +186,9 @@ theorem even_b_of_hasDiscriminant_fieldDiscriminant_of_mod_four_ne_one
 
 /-- In the `d % 4 = 1` Cox branch, a form of field discriminant has odd
 middle coefficient. This justifies the `-(b + 1) / 2` coordinate in the
-`ZOnePlusSqrtdOverTwo` ideal generator.-/
+`ZOnePlusSqrtdOverTwo` ideal generator.
+@isnad1 id=odd.2h2v.s5.775cfd73ee53 from=translated src=- shape=6f37abc8 vocab=924b5361
+-/
 theorem odd_b_of_hasDiscriminant_fieldDiscriminant_of_mod_four_eq_one
     {d : ℤ} (hd4 : d % 4 = 1) {Q : BinaryQuadraticForm}
     (hdisc : Q.HasDiscriminant (fieldDiscriminant d)) : Odd Q.b := by
@@ -268,7 +290,9 @@ private theorem odd_prime_not_common_coefficients_of_fieldDiscriminant_ne_one
   exact Squarefree.not_mul_self_dvd_of_not_isUnit (Fact.out : Squarefree d) hpunit (by
     simpa using hp2dvdd)
 
-/-- A form with squarefree field discriminant is primitive.-/
+/-- A form with squarefree field discriminant is primitive.
+@isnad1 id=isprimit.1h2v.s4.57fec45e577f from=translated src=- shape=b443bda6 vocab=0aafc59a
+-/
 theorem isPrimitive_of_hasDiscriminant_fieldDiscriminant
     {d : ℤ} [Fact (Squarefree d)] (Q : BinaryQuadraticForm)
     (hdisc : Q.HasDiscriminant (fieldDiscriminant d)) : Q.IsPrimitive := by

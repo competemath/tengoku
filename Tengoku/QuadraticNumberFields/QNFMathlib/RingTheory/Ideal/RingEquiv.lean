@@ -34,6 +34,9 @@ noncomputable def mapRingEquivNonZeroDivisorsMulEquiv (σ : R ≃+* R) :
   ((mapRingEquivMulEquiv σ).submonoidMap (nonZeroDivisors (Ideal R))).trans
     (MulEquiv.submonoidCongr (MulEquivClass.map_nonZeroDivisors (mapRingEquivMulEquiv σ)))
 
+/--
+@isnad1 id=eq.0h3v.s12.4c719df870f9 from=translated src=- shape=b75d5f1e vocab=cb103b6f
+-/
 @[simp]
 theorem coe_mapRingEquivNonZeroDivisorsMulEquiv_apply
     (σ : R ≃+* R) (I : nonZeroDivisors (Ideal R)) :
@@ -42,19 +45,25 @@ theorem coe_mapRingEquivNonZeroDivisorsMulEquiv_apply
   rfl
 
 /-- The image of a non-zero-divisor ideal under a ring equivalence is again a
-non-zero-divisor ideal.-/
+non-zero-divisor ideal.
+@isnad1 id=mem.1h3v.s9.275443450963 from=translated src=- shape=0277109d vocab=453afa02
+-/
 theorem map_ringEquiv_mem_nonZeroDivisors (σ : R ≃+* R)
     {I : Ideal R} (hI : I ∈ nonZeroDivisors (Ideal R)) :
     Ideal.map (σ : R →+* R) I ∈ nonZeroDivisors (Ideal R) := by
   rw [← MulEquivClass.map_nonZeroDivisors (mapRingEquivMulEquiv σ)]
   exact ⟨I, hI, rfl⟩
 
-/-- Mapping ideals by a ring equivalence is injective.-/
+/-- Mapping ideals by a ring equivalence is injective.
+@isnad1 id=injectiv.0h2v.s7.201f778d4fe0 from=translated src=- shape=2ce2e378 vocab=e2456b0a
+-/
 theorem map_ringEquiv_injective (σ : R ≃+* R) :
     Function.Injective (fun P : Ideal R => Ideal.map (σ : R →+* R) P) := by
   exact σ.idealComapOrderIso.symm.injective
 
-/-- Mapping a multiset product of ideals by a ring equivalence maps each factor.-/
+/-- Mapping a multiset product of ideals by a ring equivalence maps each factor.
+@isnad1 id=eq.0h3v.s9.1a95759f1707 from=translated src=- shape=907a8cc3 vocab=d641fcfa
+-/
 theorem map_ringEquiv_multiset_prod (σ : R ≃+* R) (s : Multiset (Ideal R)) :
     Ideal.map (σ : R →+* R) s.prod =
       (s.map fun P ↦ Ideal.map (σ : R →+* R) P).prod := by
@@ -69,7 +78,9 @@ section Dedekind
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
 
 /-- A ring equivalence maps the normalized factorization multiset of a nonzero
-Dedekind ideal to the normalized factorization multiset of its image.-/
+Dedekind ideal to the normalized factorization multiset of its image.
+@isnad1 id=eq.1h3v.s9.612835b94967 from=translated src=- shape=e1e8492f vocab=f735fc89
+-/
 theorem normalizedFactors_map_ringEquiv (σ : R ≃+* R)
     {I : Ideal R} (hI : I ≠ ⊥) :
     UniqueFactorizationMonoid.normalizedFactors (Ideal.map (σ : R →+* R) I) =
@@ -88,7 +99,9 @@ theorem normalizedFactors_map_ringEquiv (σ : R ≃+* R)
     (UniqueFactorizationMonoid.prime_of_normalized_factor P hP).ne_zero
 
 /-- A ring equivalence preserves normalized-factor multiplicities after applying
-the equivalence to the counted factor.-/
+the equivalence to the counted factor.
+@isnad1 id=eq.1h4v.s9.5beb78be9771 from=translated src=- shape=f451c669 vocab=a56f21c8
+-/
 theorem normalizedFactors_count_map_ringEquiv (σ : R ≃+* R)
     {P I : Ideal R} (hI : I ≠ ⊥) :
     (UniqueFactorizationMonoid.normalizedFactors (Ideal.map (σ : R →+* R) I)).count

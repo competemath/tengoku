@@ -16,14 +16,18 @@ import Tengoku.QuadraticNumberFields.QNFMathlib.Algebra.Squarefree.Basic
 Material destined for mathlib.
 -/
 
-/-- The square of an even integer is `0 mod 4`.-/
+/-- The square of an even integer is `0 mod 4`.
+@isnad1 id=eq.1h1v.s5.0c2fe27b8389 from=translated src=- shape=f24a1903 vocab=be6f823a
+-/
 -- Repository use: internal support for the mod-four parity criteria below.
 lemma Int.sq_emod_four_of_even (n : ℤ) (h : 2 ∣ n) : n ^ 2 % 4 = 0 := by
   obtain ⟨k, rfl⟩ := h
   ring_nf
   omega
 
-/-- The square of an odd integer is `1 mod 4`.-/
+/-- The square of an odd integer is `1 mod 4`.
+@isnad1 id=eq.1h1v.s5.5b55de8def7a from=translated src=- shape=675f8bce vocab=be6f823a
+-/
 -- Repository use: internal support for the mod-four parity criteria below.
 lemma Int.sq_emod_four_of_odd (n : ℤ) (h : ¬ 2 ∣ n) : n ^ 2 % 4 = 1 := by
   set k := n / 2
@@ -82,7 +86,9 @@ private lemma mod_four_eq_one_of_odd_odd_of_mod_eq_zero
   ring_nf at hmod'
   omega
 
-/-- Main mod-4 criterion for the binary quadratic form `a'² − d·b'²`.-/
+/-- Main mod-4 criterion for the binary quadratic form `a'² − d·b'²`.
+@isnad1 id=iff.1h3v.s7.d3036db5423d from=translated src=- shape=023c2473 vocab=394a46ce
+-/
 -- Repository use: internal support for the two branch-specific criteria used
 -- by `RingOfIntegers/Integrality.lean`.
 theorem dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one
@@ -111,7 +117,9 @@ theorem dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one
       ring_nf
       omega
 
-/-- If `d % 4 ≠ 1`, divisibility by `4` forces both numerators even.-/
+/-- If `d % 4 ≠ 1`, divisibility by `4` forces both numerators even.
+@isnad1 id=and.3h3v.s6.e2c4c48813f5 from=translated src=- shape=af7f4043 vocab=394a46ce
+-/
 -- Repository use: internal support for
 -- `dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four`.
 theorem even_even_of_dvd_four_sub_sq_of_ne_one_mod_four
@@ -123,7 +131,9 @@ theorem even_even_of_dvd_four_sub_sq_of_ne_one_mod_four
   · exact hab
   · exact absurd hd1 hd4
 
-/-- If `d % 4 ≠ 1`, divisibility by `4` is equivalent to both numerators even.-/
+/-- If `d % 4 ≠ 1`, divisibility by `4` is equivalent to both numerators even.
+@isnad1 id=iff.2h3v.s6.fbe69f7e2c83 from=translated src=- shape=44137344 vocab=394a46ce
+-/
 -- Repository use: `RingOfIntegers/Integrality.lean` uses this in the
 -- `ℤ[√d]` branch of the integral-closure classification.
 theorem dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four
@@ -133,7 +143,9 @@ theorem dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four
   · exact even_even_of_dvd_four_sub_sq_of_ne_one_mod_four d a' b' hd hd4
   · exact fun h => (dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one d a' b' hd).2 (Or.inl h)
 
-/-- If `d % 4 = 1`, divisibility by `4` is equivalent to same parity.-/
+/-- If `d % 4 = 1`, divisibility by `4` is equivalent to same parity.
+@isnad1 id=iff.2h3v.s6.33051724a406 from=translated src=- shape=8db21137 vocab=394a46ce
+-/
 -- Repository use: `RingOfIntegers/Integrality.lean` uses this in the
 -- `ℤ[(1+√d)/2]` branch of the integral-closure classification.
 theorem dvd_four_sub_sq_iff_same_parity_of_one_mod_four

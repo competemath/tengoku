@@ -62,7 +62,9 @@ theorem eq_zero_or_eq_one_of_nonneg_of_sq_sub_self_add_one_eq_sq
     nlinarith
   omega
 
-/-- An integer square plus one is coprime to `3`.-/
+/-- An integer square plus one is coprime to `3`.
+@isnad1 id=iscoprim.0h1v.s5.d2f93f8e9031 from=translated src=- shape=b51fdec3 vocab=b90b2632
+-/
 -- Repository use: Cox's Heegner Diophantine reduction uses this after reducing
 -- the common divisor of `W ^ 2 + 1` and `W ^ 4 - W ^ 2 + 1` to a divisor of
 -- `3`.
@@ -94,7 +96,9 @@ theorem isCoprime_sq_add_one_three (W : ℤ) : IsCoprime (W ^ 2 + 1) (3 : ℤ) :
     rw [hWdecomp]
     ring
 
-/-- The two nontrivial factors in `W ^ 6 + 1` are coprime.-/
+/-- The two nontrivial factors in `W ^ 6 + 1` are coprime.
+@isnad1 id=iscoprim.0h1v.s6.81b790746c2a from=translated src=- shape=0bec1995 vocab=e2a4498f
+-/
 -- Repository use: Cox's Heegner Diophantine reduction factors
 -- `W ^ 6 + 1` as `(W ^ 2 + 1) * (W ^ 4 - W ^ 2 + 1)`.
 theorem isCoprime_sq_add_one_quartic_sub_sq_add_one (W : ℤ) :
@@ -104,7 +108,9 @@ theorem isCoprime_sq_add_one_quartic_sub_sq_add_one (W : ℤ) :
   exact IsCoprime.add_mul_right_right hcop3 (W ^ 2 - 2)
 
 /-- In the equation `W ^ 6 + 1 = 2 * Z ^ 2`, `W ^ 2 + 1` cannot itself be
-a square.-/
+a square.
+@isnad1 id=not.1h2v.s6.35922679ee77 from=translated src=- shape=99f6bf80 vocab=85af4b90
+-/
 -- Repository use: Cox's Heegner Diophantine reduction uses this to rule out
 -- one of the coprime factorization branches.
 theorem not_exists_sq_add_one_eq_sq_of_sixth_add_one_eq_two_mul_sq
@@ -139,7 +145,9 @@ theorem eq_zero_or_eq_one_or_neg_one_of_quartic_sub_sq_add_one_eq_sq
     · exact Or.inl h1
     · exact Or.inr h1
 
-/-- If `9 * A` is a square, then `A` is a square.-/
+/-- If `9 * A` is a square, then `A` is a square.
+@isnad1 id=ex.1h2v.s5.fa55dbe2ef90 from=translated src=- shape=df5d3345 vocab=36c32c22
+-/
 -- Repository use: Cox's Exercise 12.29 divides a square identity by `3 ^ 2`
 -- after Exercise 12.28 shows that one factor is divisible by `3`.
 theorem exists_eq_sq_of_nine_mul_eq_sq {A z : ℤ} (h : 9 * A = z ^ 2) :
@@ -153,7 +161,9 @@ theorem exists_eq_sq_of_nine_mul_eq_sq {A z : ℤ} (h : 9 * A = z ^ 2) :
   ring_nf at h ⊢
   nlinarith
 
-/-- If a nonzero square factor times `A` is a square, then `A` is a square.-/
+/-- If a nonzero square factor times `A` is a square, then `A` is a square.
+@isnad1 id=ex.2h3v.s6.ba70cd044a23 from=translated src=- shape=df4aa69c vocab=36c32c22
+-/
 theorem exists_eq_sq_of_sq_mul_eq_sq {A d z : ℤ} (hd : d ≠ 0)
     (h : d ^ 2 * A = z ^ 2) :
     ∃ w : ℤ, A = w ^ 2 := by
@@ -171,7 +181,9 @@ theorem exists_eq_sq_of_sq_mul_eq_sq {A d z : ℤ} (hd : d ≠ 0)
   obtain ⟨w, hw⟩ := hsquare_rat
   exact ⟨w, by exact_mod_cast hw⟩
 
-/-- If an integer is not divisible by `3`, then it is coprime to `3`.-/
+/-- If an integer is not divisible by `3`, then it is coprime to `3`.
+@isnad1 id=iscoprim.1h1v.s4.f62cad9b909e from=translated src=- shape=d4be380b vocab=b72baae1
+-/
 theorem isCoprime_three_of_not_dvd {n : ℤ} (h : ¬ (3 : ℤ) ∣ n) :
     IsCoprime n (3 : ℤ) := by
   rw [Int.isCoprime_iff_nat_coprime]
@@ -181,7 +193,9 @@ theorem isCoprime_three_of_not_dvd {n : ℤ} (h : ¬ (3 : ℤ) ∣ n) :
   simpa using ((Nat.Prime.coprime_iff_not_dvd Nat.prime_three).mpr hnat).symm
 
 /-- If three positive pairwise coprime integers have square product, then each
-factor is a square.-/
+factor is a square.
+@isnad1 id=and.7h4v.s7.f070709bb809 from=translated src=- shape=e07310e5 vocab=0d2a82fc
+-/
 theorem exists_sq_factors_of_pos_pairwise_isCoprime_mul_mul_eq_sq
     {a b d z : ℤ} (ha : 0 < a) (hb : 0 < b) (hd : 0 < d)
     (hab : IsCoprime a b) (had : IsCoprime a d) (hbd : IsCoprime b d)
@@ -219,7 +233,9 @@ theorem exists_sq_factors_of_pos_pairwise_isCoprime_mul_mul_eq_sq
       contradiction
   exact ⟨ha_sq, hb_sq, hd_sq⟩
 
-/-- A natural prime is not a unit after coercion to `ℤ`.-/
+/-- A natural prime is not a unit after coercion to `ℤ`.
+@isnad1 id=not.1h1v.s3.92214a99ef5a from=translated src=- shape=c3f62c21 vocab=ffc716e7
+-/
 theorem not_isUnit_natCast_of_prime {p : ℕ} (hp : Nat.Prime p) : ¬ IsUnit (p : ℤ) := by
   intro hunit
   have hp_unit_nat : IsUnit p := Int.ofNat_isUnit.mp hunit
@@ -229,7 +245,9 @@ theorem not_isUnit_natCast_of_prime {p : ℕ} (hp : Nat.Prime p) : ¬ IsUnit (p 
   omega
 
 /-- If two positive coprime integers multiply to twice a square, then one is a
-square and the other is twice a square.-/
+square and the other is twice a square.
+@isnad1 id=or.4h3v.s7.53fec48e033f from=translated src=- shape=fd55ee5e vocab=0d2a82fc
+-/
 -- Repository use: Cox's Heegner Diophantine reduction applies this to the
 -- factorization `(W ^ 2 + 1) * (W ^ 4 - W ^ 2 + 1) = 2 * Z ^ 2`.
 theorem sq_and_two_mul_sq_or_two_mul_sq_and_sq_of_isCoprime_mul_eq_two_mul_sq

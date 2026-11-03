@@ -87,13 +87,18 @@ def subgroupQuotientToQuotient (N M : Subgroup G) :
     intro x hx
     exact Subgroup.mem_subgroupOf.mp hx)
 
+/--
+@isnad1 id=eq.0h4v.s10.dbe9d2637627 from=translated src=- shape=5ad3eec5 vocab=d1544d7d
+-/
 @[simp]
 theorem subgroupQuotientToQuotient_mk (N M : Subgroup G) (x : M) :
     subgroupQuotientToQuotient N M (x : M ⧸ N.subgroupOf M) =
       QuotientGroup.mk' N (x : G) :=
   QuotientGroup.map_mk' _ _ _ _ x
 
-/-- For `N ≤ M ≤ G`, the sequence `M / N → G / N → G / M` is exact at `G / N`.-/
+/-- For `N ≤ M ≤ G`, the sequence `M / N → G / N → G / M` is exact at `G / N`.
+@isnad1 id=mulexact.1h3v.s10.c22656940990 from=translated src=- shape=9e6122f5 vocab=1f9d4502
+-/
 theorem mulExact_subgroupQuotientToQuotient_mapOfLE (N M : Subgroup G) (hNM : N ≤ M) :
     Function.MulExact (subgroupQuotientToQuotient N M)
       (QuotientGroup.map N M (MonoidHom.id G) hNM) := by
@@ -136,7 +141,9 @@ def IsTotallyPositive (x : K) : Prop :=
   ∀ σ : K →+* ℝ, 0 < σ x
 
 /-- Over a field with a `ℚ`-algebra structure, total positivity can be tested on
-`ℚ`-algebra homomorphisms to `ℝ`.-/
+`ℚ`-algebra homomorphisms to `ℝ`.
+@isnad1 id=iff.0h2v.s6.33bd5f6615f1 from=translated src=- shape=99aafb1e vocab=73b1edad
+-/
 theorem isTotallyPositive_iff_forall_ratAlgHom [Algebra ℚ K] (x : K) :
     IsTotallyPositive x ↔ ∀ σ : K →ₐ[ℚ] ℝ, 0 < σ x := by
   constructor
@@ -158,32 +165,42 @@ def totallyPositiveUnits (K : Type*) [Field K] : Subgroup Kˣ where
     intro x hx σ
     simpa using inv_pos.mpr (hx σ)
 
-/-- Membership in the subgroup of totally positive units.-/
+/-- Membership in the subgroup of totally positive units.
+@isnad1 id=iff.0h2v.s7.73b9bf7669a0 from=translated src=- shape=a8f4e913 vocab=590f96f4
+-/
 theorem mem_totallyPositiveUnits_iff (x : Kˣ) :
     x ∈ totallyPositiveUnits K ↔ IsTotallyPositive (x : K) :=
   Iff.rfl
 
 /-- If a field has no real embeddings, every element is totally positive by
-vacuity.-/
+vacuity.
+@isnad1 id=istotall.0h2v.s4.3a9b2d098b8b from=translated src=- shape=6bae7eb6 vocab=e7568149
+-/
 theorem isTotallyPositive_of_isEmpty [IsEmpty (K →+* ℝ)] (x : K) :
     IsTotallyPositive x := by
   intro σ
   exact isEmptyElim σ
 
-/-- A nonzero square in a field is totally positive.-/
+/-- A nonzero square in a field is totally positive.
+@isnad1 id=istotall.1h2v.s5.bfc5b2016b38 from=translated src=- shape=fba428df vocab=1b2335c6
+-/
 theorem isTotallyPositive_sq_of_ne_zero (x : K) (hx : x ≠ 0) :
     IsTotallyPositive (x ^ 2) := by
   intro σ
   have hσx : σ x ≠ 0 := (_root_.map_ne_zero σ).mpr hx
   simpa using sq_pos_of_ne_zero hσx
 
-/-- Integer powers of a totally positive field unit are totally positive.-/
+/-- Integer powers of a totally positive field unit are totally positive.
+@isnad1 id=istotall.1h3v.s6.faaed517a4b6 from=translated src=- shape=8f75f0a1 vocab=d13a2b35
+-/
 theorem isTotallyPositive_zpow (u : Kˣ) (hu : IsTotallyPositive (u : K)) (n : ℤ) :
     IsTotallyPositive ((u ^ n : Kˣ) : K) := by
   intro σ
   simpa using zpow_pos (hu σ) n
 
-/-- A totally positive element plus `1` is totally positive.-/
+/-- A totally positive element plus `1` is totally positive.
+@isnad1 id=istotall.1h2v.s5.9bb38226244a from=translated src=- shape=69e55368 vocab=51ffebd2
+-/
 theorem isTotallyPositive_one_add {x : K} (hx : IsTotallyPositive x) :
     IsTotallyPositive (1 + x) := by
   intro σ
@@ -191,7 +208,9 @@ theorem isTotallyPositive_one_add {x : K} (hx : IsTotallyPositive x) :
 
 /-- If the field has a real embedding, `1 + x` is nonzero for a totally
 positive `x`. This is the small positivity input in the concrete positive
-Hilbert 90 proof.-/
+Hilbert 90 proof.
+@isnad1 id=ne.1h2v.s6.509dff970f08 from=translated src=- shape=3155b599 vocab=1cc3a58a
+-/
 theorem one_add_ne_zero_of_isTotallyPositive [Nonempty (K →+* ℝ)]
     {x : K} (hx : IsTotallyPositive x) :
     1 + x ≠ 0 := by
@@ -207,7 +226,9 @@ theorem one_add_ne_zero_of_isTotallyPositive [Nonempty (K →+* ℝ)]
 For the order-two Galois action in Emerton's strict class group item 10, this is
 the statement that every totally positive norm-one cocycle `a` is the positive
 coboundary of `b = 1 + a`. The real-embedding hypothesis is exactly what rules
-out the degenerate imaginary/vacuous case `a = -1`.-/
+out the degenerate imaginary/vacuous case `a = -1`.
+@isnad1 id=ex.2h3v.s9.ca80279ef7f5 from=translated src=- shape=fd05245f vocab=424e9f1c
+-/
 theorem exists_positive_coboundary_of_mul_apply_eq_one
     [Nonempty (K →+* ℝ)] (τ : K ≃+* K) {a : Kˣ}
     (ha_pos : IsTotallyPositive (a : K))
@@ -254,7 +275,9 @@ noncomputable def narrowPrincipalIdeals (R K : Type*) [CommRing R] [Field K]
     Subgroup ((FractionalIdeal R⁰ K)ˣ) :=
   (toNarrowPrincipalIdeal R K).range
 
-/-- Narrow principal ideals are ordinary principal ideals.-/
+/-- Narrow principal ideals are ordinary principal ideals.
+@isnad1 id=le.0h2v.s9.043699845b5f from=translated src=- shape=46effc36 vocab=6c4d98e7
+-/
 theorem narrowPrincipalIdeals_le_principalIdeals :
     narrowPrincipalIdeals R K ≤ (toPrincipalIdeal R K).range := by
   intro I hI
@@ -262,7 +285,9 @@ theorem narrowPrincipalIdeals_le_principalIdeals :
   exact ⟨x.1, rfl⟩
 
 /-- If every field unit is totally positive, the narrow and usual principal
-fractional ideals are the same subgroup.-/
+fractional ideals are the same subgroup.
+@isnad1 id=eq.1h2v.s8.b79452645193 from=translated src=- shape=7f78a955 vocab=1fea6e7d
+-/
 theorem narrowPrincipalIdeals_eq_principalIdeals_of_forall_isTotallyPositive
     (hpos : ∀ x : Kˣ, IsTotallyPositive (x : K)) :
     narrowPrincipalIdeals R K = (toPrincipalIdeal R K).range := by
@@ -273,7 +298,9 @@ theorem narrowPrincipalIdeals_eq_principalIdeals_of_forall_isTotallyPositive
     exact ⟨⟨x, hpos x⟩, rfl⟩
 
 /-- If there are no real embeddings, the positivity condition disappears, so
-the narrow and usual principal fractional ideals coincide.-/
+the narrow and usual principal fractional ideals coincide.
+@isnad1 id=eq.0h2v.s8.b2c005bd8da6 from=translated src=- shape=cbcd66b4 vocab=92805b89
+-/
 theorem narrowPrincipalIdeals_eq_principalIdeals_of_isEmpty [IsEmpty (K →+* ℝ)] :
     narrowPrincipalIdeals R K = (toPrincipalIdeal R K).range :=
   narrowPrincipalIdeals_eq_principalIdeals_of_forall_isTotallyPositive
@@ -306,7 +333,9 @@ def totallyPositiveRingUnits : Subgroup Rˣ where
     intro u hu σ
     simpa [ringUnitToFractionRing] using inv_pos.mpr (hu σ)
 
-/-- Membership in `O_Kˣ⁺`.-/
+/-- Membership in `O_Kˣ⁺`.
+@isnad1 id=iff.0h3v.s8.e666b60c8540 from=translated src=- shape=32841d82 vocab=fb2497db
+-/
 theorem mem_totallyPositiveRingUnits_iff (u : Rˣ) :
     u ∈ totallyPositiveRingUnits R K ↔
       IsTotallyPositive ((ringUnitToFractionRing R K u : Kˣ) : K) :=
@@ -327,7 +356,9 @@ noncomputable def toPositivePrincipalIdeals :
     totallyPositiveUnits K →* narrowPrincipalIdeals R K :=
   (toNarrowPrincipalIdeal R K).rangeRestrict
 
-/-- The map `Kˣ⁺ → P_K⁺` is surjective by definition of `P_K⁺`.-/
+/-- The map `Kˣ⁺ → P_K⁺` is surjective by definition of `P_K⁺`.
+@isnad1 id=surjecti.0h2v.s13.318c61036652 from=translated src=- shape=589e8c62 vocab=d57637ca
+-/
 theorem toPositivePrincipalIdeals_surjective :
     Function.Surjective (toPositivePrincipalIdeals R K) := by
   intro I
@@ -339,7 +370,9 @@ theorem toPositivePrincipalIdeals_surjective :
 If a totally positive unit `a` is norm-one for an involution `τ`, then the
 positive principal ideal `(a)` is the coboundary `(b) / (τ b)` for a totally
 positive unit `b`. This is the multiplicative, concrete replacement for the
-`H¹(G, P_K⁺) = 1` conclusion in Emerton's item 10.-/
+`H¹(G, P_K⁺) = 1` conclusion in Emerton's item 10.
+@isnad1 id=ex.2h4v.s15.22e5dd9e1c98 from=translated src=- shape=48d52c85 vocab=f65629b8
+-/
 theorem toPositivePrincipalIdeals_coboundary_of_mul_apply_eq_one
     [Nonempty (K →+* ℝ)] (τ : K ≃+* K)
     (hτpos : ∀ x : K, IsTotallyPositive x → IsTotallyPositive (τ x))
@@ -408,7 +441,9 @@ noncomputable def mk : (FractionalIdeal R⁰ K)ˣ →* NarrowClassGroup R :=
   (QuotientGroup.mk' (narrowPrincipalIdeals R (FractionRing R))).comp
     (Units.map (FractionalIdeal.canonicalEquiv R⁰ K (FractionRing R)).toMonoidHom)
 
-/-- Unfolding lemma for the narrow ideal-class map.-/
+/-- Unfolding lemma for the narrow ideal-class map.
+@isnad1 id=eq.0h3v.s14.e766b42cfb8e from=translated src=- shape=eb046f68 vocab=a7323317
+-/
 theorem mk_def (I : (FractionalIdeal R⁰ K)ˣ) :
     mk I =
       (QuotientGroup.mk' (narrowPrincipalIdeals R (FractionRing R)))
@@ -431,7 +466,9 @@ noncomputable def toClassGroup (R : Type*) [CommRing R] [IsDomain R] :
       exact narrowPrincipalIdeals_le_principalIdeals (R := R) (K := FractionRing R) hI)
 
 /-- The natural map to the wide class group sends a narrow ideal class to the
-corresponding ordinary ideal class.-/
+corresponding ordinary ideal class.
+@isnad1 id=eq.0h3v.s10.4f840d9cc5cd from=translated src=- shape=1455b3eb vocab=a2d852d8
+-/
 @[simp]
 theorem toClassGroup_mk (I : (FractionalIdeal R⁰ K)ˣ) :
     toClassGroup R (mk I) = ClassGroup.mk K I := by
@@ -450,20 +487,26 @@ and for the conjugation action on narrow classes.-/
 noncomputable def mk0 [IsDedekindDomain R] : (Ideal R)⁰ →* NarrowClassGroup R :=
   mk.comp (FractionalIdeal.mk0 (FractionRing R))
 
-/-- The narrow ideal-class map on an integral ideal agrees with `mk0`.-/
+/-- The narrow ideal-class map on an integral ideal agrees with `mk0`.
+@isnad1 id=eq.0h2v.s12.e6028e6d2526 from=translated src=- shape=8919a3ac vocab=260fe16e
+-/
 theorem mk_mk0 [IsDedekindDomain R] (I : (Ideal R)⁰) :
     mk (FractionalIdeal.mk0 (FractionRing R) I) = mk0 I := by
   rfl
 
 /-- The map to the wide class group sends the narrow class of an integral ideal
-to its usual ideal class.-/
+to its usual ideal class.
+@isnad1 id=eq.0h2v.s11.0b0022dde0b6 from=translated src=- shape=3bf87e01 vocab=6eeda61b
+-/
 @[simp]
 theorem toClassGroup_mk0 [IsDedekindDomain R] (I : (Ideal R)⁰) :
     toClassGroup R (mk0 I) = ClassGroup.mk0 I := by
   rw [mk0, MonoidHom.comp_apply, toClassGroup_mk, ClassGroup.mk_mk0]
 
 /-- Evaluate `toClassGroup` on a quotient representative: the narrow class of
-`J` maps to the usual class of `J`.-/
+`J` maps to the usual class of `J`.
+@isnad1 id=eq.0h2v.s15.064f6bff3fcd from=translated src=- shape=7270b72b vocab=eedfa916
+-/
 theorem toClassGroup_mk' (R : Type*) [CommRing R] [IsDomain R]
     (J : (FractionalIdeal R⁰ (FractionRing R))ˣ) :
     toClassGroup R (QuotientGroup.mk' (narrowPrincipalIdeals R (FractionRing R)) J) =
@@ -471,7 +514,9 @@ theorem toClassGroup_mk' (R : Type*) [CommRing R] [IsDomain R]
   QuotientGroup.map_mk' _ _ _ _ J
 
 /-- The natural map from the narrow ideal class group to the ordinary ideal
-class group is surjective.-/
+class group is surjective.
+@isnad1 id=surjecti.0h1v.s7.103ffc426a7d from=translated src=- shape=e937283c vocab=0bd7ed3f
+-/
 theorem toClassGroup_surjective (R : Type*) [CommRing R] [IsDomain R] :
     Function.Surjective (toClassGroup R) := by
   intro C
@@ -494,7 +539,9 @@ variable {R : Type*} [CommRing R] [IsDomain R]
 
 /-! ### Quotient representatives -/
 
-/-- Over the chosen fraction field, `mk` is just the quotient map.-/
+/-- Over the chosen fraction field, `mk` is just the quotient map.
+@isnad1 id=eq.0h2v.s14.234f01a9e0f6 from=translated src=- shape=367ccecb vocab=608defa3
+-/
 theorem mk_eq_mk' (I : (FractionalIdeal R⁰ (FractionRing R))ˣ) :
     mk I = QuotientGroup.mk' (narrowPrincipalIdeals R (FractionRing R)) I := by
   rw [mk_def, canonicalEquiv_self]
@@ -504,7 +551,9 @@ theorem mk_eq_mk' (I : (FractionalIdeal R⁰ (FractionRing R))ˣ) :
 
 section PositivePrincipalIntegral
 
-/-- Positive rational integers are totally positive in any fraction field.-/
+/-- Positive rational integers are totally positive in any fraction field.
+@isnad1 id=istotall.1h2v.s7.63a76b7c8290 from=translated src=- shape=755b0923 vocab=09372ef8
+-/
 theorem isTotallyPositive_natCast_fractionRing (n : ℕ) (hn : 0 < n) :
     IsTotallyPositive (algebraMap R (FractionRing R) (n : R)) := by
   intro σ
@@ -516,7 +565,9 @@ theorem isTotallyPositive_natCast_fractionRing (n : ℕ) (hn : 0 < n) :
 variable [IsDedekindDomain R]
 
 /-- A principal integral ideal generated by a totally positive element is trivial
-in the narrow class group.-/
+in the narrow class group.
+@isnad1 id=eq.2h2v.s11.eae41528065b from=translated src=- shape=2b606aff vocab=c0729b6b
+-/
 theorem mk0_span_singleton_eq_one_of_isTotallyPositive
     {a : R} (ha : a ≠ 0)
     (hpos : IsTotallyPositive (algebraMap R (FractionRing R) a)) :
@@ -560,7 +611,9 @@ noncomputable def principalIdealsQuotientToNarrow (R : Type*) [CommRing R] [IsDo
     (toPrincipalIdeal R (FractionRing R)).range
 
 /-- The image of principal fractional ideals in the narrow class group is exactly
-the kernel of the map `Cl⁺(K) → Cl(K)`.-/
+the kernel of the map `Cl⁺(K) → Cl(K)`.
+@isnad1 id=mulexact.0h1v.s9.ffefd023c4d6 from=translated src=- shape=59c5e68d vocab=510e1fb0
+-/
 theorem mulExact_principalToNarrow_toClassGroup (R : Type*) [CommRing R] [IsDomain R] :
     Function.MulExact (principalToNarrow R) (toClassGroup R) := by
   rw [MonoidHom.mulExact_iff]
@@ -585,7 +638,9 @@ theorem mulExact_principalToNarrow_toClassGroup (R : Type*) [CommRing R] [IsDoma
     exact ⟨x⁻¹, by rw [map_inv, mul_inv_cancel]⟩
 
 /-- The kernel of `Cl⁺(K) → Cl(K)` is the image of principal ideals in the
-narrow class group.-/
+narrow class group.
+@isnad1 id=eq.0h1v.s7.7c5d3a33677c from=translated src=- shape=5d31e4b1 vocab=12e65766
+-/
 theorem toClassGroup_ker_eq_principalToNarrow_range
     (R : Type*) [CommRing R] [IsDomain R] :
     (toClassGroup R).ker = (principalToNarrow R).range :=
@@ -595,7 +650,9 @@ theorem toClassGroup_ker_eq_principalToNarrow_range
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Two invertible fractional ideals have the same narrow class exactly when
-they differ by a totally positive principal fractional ideal.-/
+they differ by a totally positive principal fractional ideal.
+@isnad1 id=iff.0h3v.s13.4953dc364503 from=translated src=- shape=74ffd14d vocab=2ed7ad38
+-/
 theorem mk_eq_mk {I J : (FractionalIdeal R⁰ (FractionRing R))ˣ} :
     mk I = mk J ↔
       ∃ x : totallyPositiveUnits (FractionRing R),
@@ -610,7 +667,9 @@ theorem mk_eq_mk {I J : (FractionalIdeal R⁰ (FractionRing R))ˣ} :
     exact ⟨toNarrowPrincipalIdeal R (FractionRing R) x, ⟨x, rfl⟩, hIP⟩
 
 /-- A principal nonzero integral ideal has a fraction-field generator whose
-principal fractional ideal is its `mk0`.-/
+principal fractional ideal is its `mk0`.
+@isnad1 id=ex.1h2v.s12.c9a702ea7657 from=translated src=- shape=2b6a20a2 vocab=8f77e1ea
+-/
 theorem exists_toPrincipalIdeal_eq_mk0_of_isPrincipal [IsDedekindDomain R]
     {I : (Ideal R)⁰} (hI : (I : Ideal R).IsPrincipal) :
     ∃ γ : (FractionRing R)ˣ,
@@ -633,7 +692,9 @@ theorem exists_toPrincipalIdeal_eq_mk0_of_isPrincipal [IsDedekindDomain R]
   rw [← FractionalIdeal.coeIdeal_span_singleton (P := FractionRing R) a, hIa]
   rfl
 
-/-- Negating a fraction-field unit does not change its principal fractional ideal.-/
+/-- Negating a fraction-field unit does not change its principal fractional ideal.
+@isnad1 id=eq.0h2v.s12.26270449ffd7 from=translated src=- shape=a678ea14 vocab=879768f5
+-/
 theorem toPrincipalIdeal_neg (γ : (FractionRing R)ˣ) :
     toPrincipalIdeal R (FractionRing R) (-γ) = toPrincipalIdeal R (FractionRing R) γ := by
   rw [← Units.val_inj]
@@ -653,7 +714,9 @@ private theorem toPrincipalIdeal_algebraMap_unit_eq_one (u : Rˣ) :
   rfl
 
 /-- Multiplying a fraction-field generator by an integral unit does not change
-its principal fractional ideal.-/
+its principal fractional ideal.
+@isnad1 id=eq.0h3v.s12.f0c91661088a from=translated src=- shape=df2efb42 vocab=5dc5963e
+-/
 -- Retain the Dedekind hypothesis to preserve the existing public theorem signature.
 @[nolint unusedArguments]
 theorem toPrincipalIdeal_mul_algebraMap_unit [IsDedekindDomain R]
@@ -675,7 +738,9 @@ hence by a totally positive element.-/
 def integralRep (I : FractionalIdeal R⁰ (FractionRing R)) : Ideal R :=
   Ideal.span ({(I.den : R)} : Set R) * I.num
 
-/-- The narrow integral representative of a nonzero fractional ideal is nonzero.-/
+/-- The narrow integral representative of a nonzero fractional ideal is nonzero.
+@isnad1 id=mem.1h2v.s9.4b3a2c8c3fca from=translated src=- shape=d8faa2ea vocab=e58b4dbf
+-/
 theorem integralRep_mem_nonZeroDivisors
     {I : FractionalIdeal R⁰ (FractionRing R)} (hI : I ≠ 0) :
     integralRep I ∈ (Ideal R)⁰ := by
@@ -696,7 +761,9 @@ noncomputable def mulEquivClassGroupOfEq (R : Type*) [CommRing R] [IsDomain R]
   QuotientGroup.quotientMulEquivOfEq h
 
 /-- If the narrow and usual principal fractional ideals coincide, then
-`toClassGroup` is bijective.-/
+`toClassGroup` is bijective.
+@isnad1 id=bijectiv.1h1v.s10.b7f743bb19cb from=translated src=- shape=9577355a vocab=76bffe4a
+-/
 theorem toClassGroup_bijective_of_eq (R : Type*) [CommRing R] [IsDomain R]
     (h : narrowPrincipalIdeals R (FractionRing R) =
       (toPrincipalIdeal R (FractionRing R)).range) :
@@ -713,7 +780,9 @@ noncomputable def mulEquivClassGroupOfForallIsTotallyPositive
     (narrowPrincipalIdeals_eq_principalIdeals_of_forall_isTotallyPositive
       (R := R) (K := FractionRing R) hpos)
 
-/-- Nonempty form of `mulEquivClassGroupOfForallIsTotallyPositive`.-/
+/-- Nonempty form of `mulEquivClassGroupOfForallIsTotallyPositive`.
+@isnad1 id=nonempty.1h1v.s7.789c8dcea9d7 from=translated src=- shape=b067127a vocab=78280cd3
+-/
 theorem nonempty_mulEquivClassGroup_of_forall_isTotallyPositive
     (R : Type*) [CommRing R] [IsDomain R]
     (hpos : ∀ x : (FractionRing R)ˣ, IsTotallyPositive (x : FractionRing R)) :
@@ -721,7 +790,9 @@ theorem nonempty_mulEquivClassGroup_of_forall_isTotallyPositive
   ⟨mulEquivClassGroupOfForallIsTotallyPositive R hpos⟩
 
 /-- If every unit of the fraction field is totally positive, then
-`toClassGroup` is bijective.-/
+`toClassGroup` is bijective.
+@isnad1 id=bijectiv.1h1v.s7.cc680c97786f from=translated src=- shape=290ce2f9 vocab=a9a0dfde
+-/
 theorem toClassGroup_bijective_of_forall_isTotallyPositive
     (R : Type*) [CommRing R] [IsDomain R]
     (hpos : ∀ x : (FractionRing R)ˣ, IsTotallyPositive (x : FractionRing R)) :
@@ -738,14 +809,18 @@ noncomputable def mulEquivClassGroupOfIsEmpty (R : Type*) [CommRing R] [IsDomain
   mulEquivClassGroupOfForallIsTotallyPositive R
     (fun x => isTotallyPositive_of_isEmpty (x : FractionRing R))
 
-/-- Nonempty form of `mulEquivClassGroupOfIsEmpty`.-/
+/-- Nonempty form of `mulEquivClassGroupOfIsEmpty`.
+@isnad1 id=nonempty.0h1v.s7.f33b28d6d446 from=translated src=- shape=b1b0e302 vocab=7a221bc5
+-/
 theorem nonempty_mulEquivClassGroup_of_isEmpty (R : Type*) [CommRing R] [IsDomain R]
     [IsEmpty (FractionRing R →+* ℝ)] :
     Nonempty (NarrowClassGroup R ≃* ClassGroup R) :=
   ⟨mulEquivClassGroupOfIsEmpty R⟩
 
 /-- If the fraction field has no real embeddings, then `toClassGroup` is
-bijective.-/
+bijective.
+@isnad1 id=bijectiv.0h1v.s7.e343ec54d623 from=translated src=- shape=b8987098 vocab=1e97e944
+-/
 theorem toClassGroup_bijective_of_isEmpty (R : Type*) [CommRing R] [IsDomain R]
     [IsEmpty (FractionRing R →+* ℝ)] :
     Function.Bijective (toClassGroup R) :=
@@ -766,6 +841,9 @@ sign vectors. -/
 def realSignUnitHom : ℝˣ →* SignTypeˣ :=
   Units.map (signHom : ℝ →*₀ SignType).toMonoidHom
 
+/--
+@isnad1 id=eq.0h1v.s7.3eaceae71545 from=translated src=- shape=27132441 vocab=9457447b
+-/
 theorem realSignUnitHom_apply (u : ℝˣ) :
     ((realSignUnitHom u : SignTypeˣ) : SignType) = SignType.sign (u : ℝ) :=
   rfl
@@ -777,12 +855,17 @@ def signVectorHom (K : Type*) [Field K] : Kˣ →* ((K →+* ℝ) → SignTypeˣ
   map_one' := by funext σ; simp
   map_mul' a b := by funext σ; simp [map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s9.5c9a66e471b5 from=translated src=- shape=b0655359 vocab=4c35adb1
+-/
 theorem signVectorHom_apply (K : Type*) [Field K] (x : Kˣ) (σ : K →+* ℝ) :
     signVectorHom K x σ = realSignUnitHom (Units.map (σ : K →+* ℝ).toMonoidHom x) :=
   rfl
 
 /-- The subgroup of totally positive units is exactly the kernel of the sign-vector
-homomorphism.-/
+homomorphism.
+@isnad1 id=eq.0h1v.s7.5b049ca9260c from=translated src=- shape=60a2e948 vocab=fd6510d9
+-/
 theorem totallyPositiveUnits_eq_ker (K : Type*) [Field K] :
     totallyPositiveUnits K = (signVectorHom K).ker := by
   ext x
@@ -801,14 +884,18 @@ theorem totallyPositiveUnits_eq_ker (K : Type*) [Field K] :
     exact sign_eq_one_iff.mp hxσ_val
 
 /-- If there are finitely many real embeddings, then units modulo totally
-positive units form a finite group.-/
+positive units form a finite group.
+@isnad1 id=finite.0h1v.s6.7d2e04fdbce3 from=translated src=- shape=8b5c2150 vocab=78e58bcf
+-/
 instance instFiniteUnitsQuotientTotallyPositiveUnits (K : Type*) [Field K]
     [Finite (K →+* ℝ)] : Finite (Kˣ ⧸ totallyPositiveUnits K) := by
   rw [totallyPositiveUnits_eq_ker]
   exact Finite.of_injective _ (QuotientGroup.kerLift_injective (signVectorHom K))
 
 /-- The image of field units in the narrow class group is finite when the fraction field
-has finitely many real embeddings.-/
+has finitely many real embeddings.
+@isnad1 id=finite.0h1v.s7.b3a1a5146c60 from=translated src=- shape=8898bf22 vocab=d6621c15
+-/
 theorem finite_range_principalToNarrow (R : Type*) [CommRing R] [IsDomain R]
     [Finite (FractionRing R →+* ℝ)] : Finite (principalToNarrow R).range := by
   let φ := principalToNarrow R
@@ -829,14 +916,18 @@ theorem finite_range_principalToNarrow (R : Type*) [CommRing R] [IsDomain R]
   simpa [φ]
 
 /-- The kernel of `Cl⁺(K) → Cl(K)` is finite when the fraction field has finitely
-many real embeddings.-/
+many real embeddings.
+@isnad1 id=finite.0h1v.s7.136b60a8098c from=translated src=- shape=55b7fd2b vocab=a1f47dff
+-/
 theorem finite_ker_toClassGroup (R : Type*) [CommRing R] [IsDomain R]
     [Finite (FractionRing R →+* ℝ)] : Finite (toClassGroup R).ker := by
   rw [toClassGroup_ker_eq_principalToNarrow_range]
   exact finite_range_principalToNarrow R
 
 /-- The narrow class group is finite if the wide class group is finite and the
-fraction field has finitely many real embeddings.-/
+fraction field has finitely many real embeddings.
+@isnad1 id=finite.0h1v.s6.2378f449cf4d from=translated src=- shape=403a6b5c vocab=2e023238
+-/
 instance instFiniteNarrowClassGroup (R : Type*) [CommRing R] [IsDomain R]
     [Finite (ClassGroup R)] [Finite (FractionRing R →+* ℝ)] :
     Finite (NarrowClassGroup R) := by

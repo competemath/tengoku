@@ -31,7 +31,9 @@ section CommSemiring
 variable {R : Type*} [CommSemiring R] {a b : R}
 
 /-- The left multiplication matrix of an element in `QuadraticAlgebra R a b`
-with respect to the basis `{1, i}`.-/
+with respect to the basis `{1, i}`.
+@isnad1 id=eq.0h4v.s9.7685fce786a5 from=translated src=- shape=31845fd3 vocab=682643e0
+-/
 -- Repository use: `Qsqrtd.trace_eq_re_add_re_star` uses this directly, and the
 -- integer trace/discriminant computations below reuse it.
 theorem leftMulMatrix_eq (x : QuadraticAlgebra R a b) :
@@ -51,7 +53,9 @@ section CommRing
 variable {R : Type*} [CommRing R] {a : R}
 
 /-- The fundamental identity for `re + im` of a product in
-`QuadraticAlgebra R a 0`.-/
+`QuadraticAlgebra R a 0`.
+@isnad1 id=eq.0h4v.s9.554745222d34 from=translated src=- shape=d6636e78 vocab=f83aeab2
+-/
 -- Repository use: this is the generic version behind the mathlib-`Zsqrtd`
 -- coordinate identity used in `Zsqrtd/Ideals.lean`.
 lemma mul_re_add_im_eq (x y : QuadraticAlgebra R a 0) :
@@ -61,7 +65,9 @@ lemma mul_re_add_im_eq (x y : QuadraticAlgebra R a 0) :
   ring
 
 /-- The fundamental identity for `re - im` of a product in
-`QuadraticAlgebra R a 0`.-/
+`QuadraticAlgebra R a 0`.
+@isnad1 id=eq.0h4v.s9.641efc50fca6 from=translated src=- shape=60b58bad vocab=f83aeab2
+-/
 -- Repository use: this is the generic version behind the mathlib-`Zsqrtd`
 -- coordinate identity used in `Zsqrtd/Ideals.lean`.
 lemma mul_re_sub_im_eq (x y : QuadraticAlgebra R a 0) :
@@ -76,7 +82,9 @@ section Int
 
 open Matrix
 
-/-- The algebraic trace on `QuadraticAlgebra ℤ a b` is `2 * x.re + b * x.im`.-/
+/-- The algebraic trace on `QuadraticAlgebra ℤ a b` is `2 * x.re + b * x.im`.
+@isnad1 id=eq.0h3v.s8.7f08ee6fef32 from=translated src=- shape=0d7fbaad vocab=7b9ce172
+-/
 -- Repository use: `RingOfIntegers/Discriminant.lean` uses this to compute the
 -- standard integral bases for `ℤ[√d]` and `ℤ[(1+√d)/2]`.
 theorem trace_int (a b : ℤ) (x : QuadraticAlgebra ℤ a b) :
@@ -87,7 +95,9 @@ theorem trace_int (a b : ℤ) (x : QuadraticAlgebra ℤ a b) :
   ring
 
 /-- The trace matrix of the standard basis of `QuadraticAlgebra ℤ a b` is
-`[[2, b], [b, 2 * a + b²]]`.-/
+`[[2, b], [b, 2 * a + b²]]`.
+@isnad1 id=eq.0h2v.s8.4d127ad5b81f from=translated src=- shape=33dc2ee7 vocab=4aefb176
+-/
 -- Repository use: `RingOfIntegers/Discriminant.lean` uses this through
 -- `QuadraticAlgebra.discr_basis_int`.
 theorem traceMatrix_basis_int (a b : ℤ) :
@@ -98,7 +108,9 @@ theorem traceMatrix_basis_int (a b : ℤ) :
   fin_cases i <;> fin_cases j <;>
     simp [trace_int, QuadraticAlgebra.basis, pow_two]
 
-/-- The discriminant of the standard basis of `QuadraticAlgebra ℤ a b` is `4a + b²`.-/
+/-- The discriminant of the standard basis of `QuadraticAlgebra ℤ a b` is `4a + b²`.
+@isnad1 id=eq.0h2v.s7.6f0fed29b853 from=translated src=- shape=ea866dd1 vocab=e8260a37
+-/
 -- Repository use: `RingOfIntegers/Discriminant.lean` uses this for both
 -- ring-of-integers branches.
 theorem discr_basis_int (a b : ℤ) :

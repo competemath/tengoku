@@ -18,7 +18,9 @@ Material destined for mathlib.
 
 /-- A quadratic Dedekind extension with `ringChar R ≠ 2` is a Galois extension at the
 level of fraction fields. This is the bridge from `IsQuadraticExtension R S` to
-`IsGaloisGroup Gal(L/K) R S`, where `K = FractionRing R` and `L = FractionRing S`.-/
+`IsGaloisGroup Gal(L/K) R S`, where `K = FractionRing R` and `L = FractionRing S`.
+@isnad1 id=isgalois.1h2v.s8.83aec2881d58 from=translated src=- shape=1c173bbd vocab=c270e83c
+-/
 -- Repository use: `Splitting/Factorization.lean` installs this as a local
 -- instance so `ramificationIdxIn_eq_of_mem` can rewrite the Dedekind
 -- factorization exponents uniformly. This use is partly implicit through

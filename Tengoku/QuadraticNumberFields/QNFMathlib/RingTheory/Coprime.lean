@@ -21,7 +21,9 @@ namespace IsCoprime
 
 variable {R : Type*} [CommSemiring R] {a b : R}
 
-/-- If `a` is coprime to `2 * b`, then it is coprime to `4 * b`.-/
+/-- If `a` is coprime to `2 * b`, then it is coprime to `4 * b`.
+@isnad1 id=iscoprim.1h3v.s6.9053136904c0 from=translated src=- shape=9ede621a vocab=949d1709
+-/
 -- Repository use: Heegner's Diophantine reduction uses this after rewriting
 -- `X ^ 3 + 1` as twice a square.
 theorem four_mul_right_of_two_mul_right (h : IsCoprime a ((2 : R) * b)) :
@@ -34,7 +36,9 @@ theorem four_mul_right_of_two_mul_right (h : IsCoprime a ((2 : R) * b)) :
 variable {S : Type*} [CommSemiring S] [GCDMonoid S] {x y z : S}
 
 /-- If two coprime factors multiply to a `k`-th power, then the left factor is
-associated to a `k`-th power.-/
+associated to a `k`-th power.
+@isnad1 id=ex.2h5v.s6.12501956b530 from=translated src=- shape=13fa59a0 vocab=afafe390
+-/
 -- Repository use: Cox's Gaussian-integer auxiliary equation applies this to
 -- the coprime factors `z + √-1` and `z - √-1`.
 theorem exists_associated_pow_left_of_mul_eq_pow (hcop : IsCoprime x y)
@@ -48,7 +52,9 @@ end IsCoprime
 
 namespace Int
 
-/-- A common divisor of an odd cube and `4` is an integer unit.-/
+/-- A common divisor of an odd cube and `4` is an integer unit.
+@isnad1 id=isunit.3h2v.s5.fb7abe92bf34 from=translated src=- shape=90ba42bd vocab=f7aa2ac9
+-/
 -- Repository use: Cox's Gaussian-integer auxiliary equation applies this to
 -- the norm of a common divisor of `z + √-1` and `z - √-1`.
 theorem isUnit_of_dvd_odd_cube_and_dvd_four {n m : ℤ} (hn : Odd n)

@@ -21,7 +21,9 @@ namespace Int
 namespace CoxEuler
 
 /-- The first Cox-Euler quadratic factor is coprime to `b` when `b` and `c`
-are coprime.-/
+are coprime.
+@isnad1 id=iscoprim.1h2v.s6.d3696ed4325e from=translated src=- shape=bd554560 vocab=479dcf32
+-/
 theorem isCoprime_left_quadratic_factor {b c : ℤ} (hcop : IsCoprime b c) :
     IsCoprime b (c ^ 2 - 3 * b * c + 3 * b ^ 2) := by
   have hbc2 : IsCoprime b (c ^ 2) := hcop.pow_right
@@ -30,7 +32,9 @@ theorem isCoprime_left_quadratic_factor {b c : ℤ} (hcop : IsCoprime b c) :
   exact IsCoprime.add_mul_left_right hbc2 (-3 * c + 3 * b)
 
 /-- The first Cox-Euler quadratic factor is coprime to `c` when `b` and `c`
-are coprime and `3 ∤ c`.-/
+are coprime and `3 ∤ c`.
+@isnad1 id=iscoprim.2h2v.s6.7f6e11f49979 from=translated src=- shape=15049cb5 vocab=b3c91bb6
+-/
 theorem isCoprime_right_quadratic_factor {b c : ℤ} (hcop : IsCoprime b c)
     (h3c : ¬ (3 : ℤ) ∣ c) :
     IsCoprime c (c ^ 2 - 3 * b * c + 3 * b ^ 2) := by
@@ -42,7 +46,9 @@ theorem isCoprime_right_quadratic_factor {b c : ℤ} (hcop : IsCoprime b c)
   exact IsCoprime.add_mul_left_right hc3b2 (c - 3 * b)
 
 /-- The Cox-Euler quadratic factor `c² - 3bc + 3b²` is positive for positive
-`b`.-/
+`b`.
+@isnad1 id=lt.1h2v.s6.c52c8bca45af from=translated src=- shape=3a66e0ff vocab=d8280655
+-/
 theorem quadratic_factor_pos {b c : ℤ} (hb : 0 < b) :
     0 < c ^ 2 - 3 * b * c + 3 * b ^ 2 := by
   have hbne : b ≠ 0 := ne_of_gt hb
@@ -54,7 +60,9 @@ theorem quadratic_factor_pos {b c : ℤ} (hb : 0 < b) :
   nlinarith
 
 /-- A positive rational number represented as `a / b` has coprime positive
-integer numerator and denominator.-/
+integer numerator and denominator.
+@isnad1 id=ex.2h2v.s6.3a4899a9274d from=translated src=- shape=65a8f3a2 vocab=420e6c86
+-/
 theorem exists_pos_isCoprime_mul_eq_mul_of_pos {a b : ℤ} (ha : 0 < a) (hb : 0 < b) :
     ∃ m n : ℤ, 0 < m ∧ 0 < n ∧ IsCoprime m n ∧ m * b = n * a := by
   let r : ℚ := (a : ℚ) / b
@@ -75,7 +83,9 @@ theorem exists_pos_isCoprime_mul_eq_mul_of_pos {a b : ℤ} (ha : 0 < a) (hb : 0 
     rw [ha_t, hb_t]
     ring
 
-/-- A positive integer pair has a positive coprime reduction.-/
+/-- A positive integer pair has a positive coprime reduction.
+@isnad1 id=ex.2h2v.s6.1c61995c9309 from=translated src=- shape=d259f2e4 vocab=420e6c86
+-/
 theorem exists_pos_isCoprime_eq_mul_of_pos {a b : ℤ} (ha : 0 < a) (hb : 0 < b) :
     ∃ d m n : ℤ, 0 < d ∧ 0 < m ∧ 0 < n ∧ IsCoprime m n ∧
       a = d * m ∧ b = d * n := by
@@ -101,7 +111,9 @@ theorem exists_pos_isCoprime_eq_mul_of_pos {a b : ℤ} (ha : 0 < a) (hb : 0 < b)
 
 /-- Cox-Euler parameterization step: from
 `k² = c² - 3bc + 3b²`, choose coprime positive `m,n` representing
-`(k+c)/b` and obtain the linear identity used in the descent.-/
+`(k+c)/b` and obtain the linear identity used in the descent.
+@isnad1 id=ex.4h3v.s8.101e30767f44 from=translated src=- shape=82e37f5f vocab=f08de1ee
+-/
 theorem exists_pos_isCoprime_quadratic_param
     {b c k : ℤ} (hb : 0 < b) (hc : 0 < c) (hk : 0 < k)
     (hkq : c ^ 2 - 3 * b * c + 3 * b ^ 2 = k ^ 2) :
@@ -117,7 +129,9 @@ theorem exists_pos_isCoprime_quadratic_param
     rw [hlin]
   nlinarith [hsq, hkq, hb]
 
-/-- In the Cox-Euler parameterization, the numerator `2mn - 3n²` is positive.-/
+/-- In the Cox-Euler parameterization, the numerator `2mn - 3n²` is positive.
+@isnad1 id=lt.5h5v.s7.b4b317b2bca4 from=translated src=- shape=2648c5d1 vocab=d8280655
+-/
 theorem two_mul_param_sub_three_mul_den_pos
     {b c k m n : ℤ} (hb : 0 < b) (hk : 0 < k)
     (hn : 0 < n) (hmul : m * b = n * (k + c))
@@ -141,7 +155,9 @@ theorem two_mul_param_sub_three_mul_den_pos
   nlinarith
 
 /-- In the Cox-Euler parameterization, both denominator factors in the descent
-fraction are positive.-/
+fraction are positive.
+@isnad1 id=and.7h5v.s8.7783b3401281 from=translated src=- shape=d0c64fcf vocab=d8280655
+-/
 theorem quadratic_param_num_den_pos
     {b c k m n : ℤ} (hb : 0 < b) (hc : 0 < c) (hk : 0 < k)
     (hn : 0 < n) (hmul : m * b = n * (k + c))
@@ -174,7 +190,9 @@ theorem eq_of_pos_isCoprime_mul_eq_mul
   exact Rat.div_int_inj hb hd hab_nat hcd_nat hrat
 
 /-- If `m,n` are coprime and `3 ∤ m`, then the two descent factors in Cox's
-Euler parameterization are coprime.-/
+Euler parameterization are coprime.
+@isnad1 id=iscoprim.2h2v.s7.fcad7d60fd6a from=translated src=- shape=9f4ef0fe vocab=d2ad94ad
+-/
 theorem isCoprime_param_num_den_of_not_three_dvd {m n : ℤ}
     (hmn : IsCoprime m n) (h3m : ¬ (3 : ℤ) ∣ m) :
     IsCoprime (2 * m * n - 3 * n ^ 2) (m ^ 2 - 3 * n ^ 2) := by
@@ -229,7 +247,9 @@ theorem isCoprime_param_num_den_of_not_three_dvd {m n : ℤ}
       exact hpm hpm_from_n
 
 /-- If `r,n` are coprime and `3 ∤ n`, then the two descent factors in the
-`3 ∣ m` Cox-Euler branch are coprime.-/
+`3 ∣ m` Cox-Euler branch are coprime.
+@isnad1 id=iscoprim.2h2v.s6.3990b597011d from=translated src=- shape=238810f7 vocab=d2ad94ad
+-/
 theorem isCoprime_three_dvd_param_num_den {r n : ℤ}
     (hrn : IsCoprime r n) (h3n : ¬ (3 : ℤ) ∣ n) :
     IsCoprime (2 * r * n - n ^ 2) (3 * r ^ 2 - n ^ 2) := by
@@ -292,7 +312,9 @@ theorem isCoprime_three_dvd_param_num_den {r n : ℤ}
       · have hpr_from_sq : (p : ℤ) ∣ r := Int.Prime.dvd_pow' hp hpr2
         exact hpr hpr_from_sq
 
-/-- If `x ≡ 0 [ZMOD 3]`, then `x² ≡ 0 [ZMOD 3]`.-/
+/-- If `x ≡ 0 [ZMOD 3]`, then `x² ≡ 0 [ZMOD 3]`.
+@isnad1 id=eq.1h1v.s5.59ecacf6aec7 from=translated src=- shape=fbd7857e vocab=875f24ae
+-/
 theorem sq_emod_three_eq_zero_of_emod_eq_zero {x : ℤ} (hx : x % 3 = 0) :
     x ^ 2 % 3 = 0 := by
   let q : ℤ := x / 3
@@ -304,7 +326,9 @@ theorem sq_emod_three_eq_zero_of_emod_eq_zero {x : ℤ} (hx : x % 3 = 0) :
   ring_nf
   omega
 
-/-- If `x ≡ 1 [ZMOD 3]`, then `x² ≡ 1 [ZMOD 3]`.-/
+/-- If `x ≡ 1 [ZMOD 3]`, then `x² ≡ 1 [ZMOD 3]`.
+@isnad1 id=eq.1h1v.s5.cabb84101d94 from=translated src=- shape=fbd7857e vocab=875f24ae
+-/
 theorem sq_emod_three_eq_one_of_emod_eq_one {x : ℤ} (hx : x % 3 = 1) :
     x ^ 2 % 3 = 1 := by
   let q : ℤ := x / 3
@@ -316,7 +340,9 @@ theorem sq_emod_three_eq_one_of_emod_eq_one {x : ℤ} (hx : x % 3 = 1) :
   ring_nf
   omega
 
-/-- If `x ≡ 2 [ZMOD 3]`, then `x² ≡ 1 [ZMOD 3]`.-/
+/-- If `x ≡ 2 [ZMOD 3]`, then `x² ≡ 1 [ZMOD 3]`.
+@isnad1 id=eq.1h1v.s5.efea25600f12 from=translated src=- shape=fbd7857e vocab=875f24ae
+-/
 theorem sq_emod_three_eq_one_of_emod_eq_two {x : ℤ} (hx : x % 3 = 2) :
     x ^ 2 % 3 = 1 := by
   let q : ℤ := x / 3
@@ -328,7 +354,9 @@ theorem sq_emod_three_eq_one_of_emod_eq_two {x : ℤ} (hx : x % 3 = 2) :
   ring_nf
   omega
 
-/-- If `3 ∤ n`, then `3r² - n²` cannot be an integer square.-/
+/-- If `3 ∤ n`, then `3r² - n²` cannot be an integer square.
+@isnad1 id=ne.1h3v.s6.8f8ae8bb1967 from=translated src=- shape=2a1bc6c5 vocab=7aa71840
+-/
 theorem not_sq_eq_three_mul_sq_sub_sq_of_not_three_dvd {C r n : ℤ}
     (h3n : ¬ (3 : ℤ) ∣ n) :
     C ^ 2 ≠ 3 * r ^ 2 - n ^ 2 := by
@@ -358,7 +386,9 @@ theorem not_sq_eq_three_mul_sq_sub_sq_of_not_three_dvd {C r n : ℤ}
   rcases hC_sq with hC_sq | hC_sq <;> omega
 
 /-- In the `3 ∤ m` branch of Cox's Euler descent, choose a positive
-`p = m ± C` that is not divisible by `3`.-/
+`p = m ± C` that is not divisible by `3`.
+@isnad1 id=ex.4h3v.s7.230276b67ff8 from=translated src=- shape=28a12f98 vocab=6abe821d
+-/
 theorem exists_pos_not_three_dvd_param_of_sq_sub
     {m n C : ℤ} (hm : 0 < m) (hn : 0 < n) (h3m : ¬ (3 : ℤ) ∣ m)
     (hC : C ^ 2 = m ^ 2 - 3 * n ^ 2) :
@@ -391,7 +421,9 @@ theorem exists_pos_not_three_dvd_param_of_sq_sub
     nlinarith
 
 /-- In the `3 ∤ m` branch of Cox's Euler descent, the unreduced new product
-is a square.-/
+is a square.
+@isnad1 id=ex.4h5v.s8.84d0c8d10f92 from=translated src=- shape=373623af vocab=d8280655
+-/
 theorem exists_sq_unreduced_descent_product
     {b B m n p : ℤ} (hn : 0 < n) (hB : b = B ^ 2)
     (hb : b = 2 * m * n - 3 * n ^ 2) (hp : p ^ 2 + 3 * n ^ 2 = 2 * m * p) :
@@ -413,7 +445,9 @@ theorem exists_sq_unreduced_descent_product
   exact exists_eq_sq_of_sq_mul_eq_sq hn_ne hsqmul
 
 /-- If the unreduced Cox-Euler descent product is a square, then the product
-after reducing the positive pair is still a square.-/
+after reducing the positive pair is still a square.
+@isnad1 id=ex.4h6v.s8.6021a1e74c3b from=translated src=- shape=6114f9fa vocab=fb2191f5
+-/
 theorem exists_sq_reduced_descent_product
     {p n d p0 q0 w : ℤ} (hd : d ≠ 0)
     (hp : p = d * p0) (hn : n = d * q0)
@@ -428,7 +462,9 @@ theorem exists_sq_reduced_descent_product
   exact exists_eq_sq_of_sq_mul_eq_sq hd2_ne hscaled
 
 /-- The reduced denominator in Cox's Euler descent is strictly smaller than
-the original `b`.-/
+the original `b`.
+@isnad1 id=lt.10h6v.s7.2d992a43e9a3 from=translated src=- shape=92ebeed7 vocab=c3f48fed
+-/
 theorem reduced_descent_den_lt
     {b c m n d q0 : ℤ} (hb : 0 < b) (hc : 0 < c) (hn : 0 < n) (hd : 0 < d)
     (hq0 : 0 < q0) (hn_dvd_b : n ∣ b)
@@ -475,7 +511,9 @@ theorem reduced_descent_den_lt
   exact lt_of_le_of_ne hq0_le_b hq0_ne_b
 
 /-- The reduced numerator and denominator produced by Cox's Euler descent are
-not equal, unless the original pair was already the excluded diagonal case.-/
+not equal, unless the original pair was already the excluded diagonal case.
+@isnad1 id=ne.7h8v.s8.a190fd2c6d08 from=translated src=- shape=4deb6bc8 vocab=d8280655
+-/
 theorem reduced_descent_num_ne_den
     {b c m n d p p0 q0 : ℤ} (hn : 0 < n)
     (hp_id : p ^ 2 + 3 * n ^ 2 = 2 * m * p)

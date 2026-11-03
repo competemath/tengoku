@@ -45,6 +45,9 @@ def omega (k : ℤ) : Qsqrtd (d_of_k k) := ⟨(1 / 2 : ℚ), (1 / 2 : ℚ)⟩
 abbrev Zomega (k : ℤ) : Subalgebra ℤ (Qsqrtd (d_of_k k)) :=
   Algebra.adjoin ℤ ({omega k} : Set (Qsqrtd (d_of_k k)))
 
+/--
+@isnad1 id=mem.0h1v.s6.b92775850e7f from=translated src=- shape=cf01479f vocab=a48b13b4
+-/
 lemma omega_mem_Zomega (k : ℤ) : omega k ∈ Zomega k :=
   Algebra.subset_adjoin (by simp)
 
@@ -66,6 +69,9 @@ abbrev qParam (d : ℤ) : ℚ := Qsqrtd.d_of_k d
 abbrev normHom (d : ℤ) : ZOnePlusSqrtdOverTwo d →* ℤ :=
   QuadraticAlgebra.norm
 
+/--
+@isnad1 id=eq.0h2v.s7.4c1906ad0a65 from=translated src=- shape=73b9d87c vocab=5b08e28a
+-/
 theorem normHom_apply (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
     normHom d z = QuadraticAlgebra.norm z :=
   rfl
@@ -74,11 +80,16 @@ theorem normHom_apply (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
 abbrev normUnitsHom (d : ℤ) : (ZOnePlusSqrtdOverTwo d)ˣ →* ℤˣ :=
   Units.map (normHom d)
 
+/--
+@isnad1 id=eq.0h2v.s8.d6f711db7cef from=translated src=- shape=481a9fc8 vocab=0bc6275e
+-/
 theorem normUnitsHom_coe (d : ℤ) (u : (ZOnePlusSqrtdOverTwo d)ˣ) :
     ((normUnitsHom d u : ℤˣ) : ℤ) = QuadraticAlgebra.norm (u : ZOnePlusSqrtdOverTwo d) := by
   simp [normUnitsHom, normHom]
 
-/-- The norm of `x + y·ω` in coordinates: `‖x + y·ω‖ = x² + x·y - d·y²`.-/
+/-- The norm of `x + y·ω` in coordinates: `‖x + y·ω‖ = x² + x·y - d·y²`.
+@isnad1 id=eq.0h3v.s7.2b5fa2c3e297 from=translated src=- shape=b3c01702 vocab=c4d9618e
+-/
 @[simp]
 theorem norm_mk (d x y : ℤ) :
     QuadraticAlgebra.norm (⟨x, y⟩ : ZOnePlusSqrtdOverTwo d) = x ^ 2 + x * y - d * y ^ 2 := by
@@ -86,7 +97,9 @@ theorem norm_mk (d x y : ℤ) :
       x * x + 1 * x * y - d * y * y := QuadraticAlgebra.norm_def _
   rw [h]; ring
 
-/-- `x + y·ω` is a unit of `ℤ[(1 + √(1 + 4d))/2]` iff `x² + x·y - d·y² = ±1`.-/
+/-- `x + y·ω` is a unit of `ℤ[(1 + √(1 + 4d))/2]` iff `x² + x·y - d·y² = ±1`.
+@isnad1 id=iff.0h3v.s7.1fe4596fb2a2 from=translated src=- shape=d2c5be26 vocab=ee6cd537
+-/
 theorem isUnit_mk_iff {d x y : ℤ} :
     IsUnit (⟨x, y⟩ : ZOnePlusSqrtdOverTwo d) ↔
       x ^ 2 + x * y - d * y ^ 2 = 1 ∨ x ^ 2 + x * y - d * y ^ 2 = -1 := by
@@ -117,40 +130,63 @@ def toQsqrtdHom (d : ℤ) : ZOnePlusSqrtdOverTwo d →+* Qsqrtd (qParam d) where
     intro x y
     ext <;> simp [toQsqrtdFun, QuadraticAlgebra.re_add, QuadraticAlgebra.im_add] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s6.9110c0d7b1b6 from=translated src=- shape=1ee31dcf vocab=2a742cd5
+-/
 @[simp] theorem toQsqrtdHom_apply (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
     toQsqrtdHom d z = toQsqrtdFun d z := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.601ba5d83274 from=translated src=- shape=641a30f2 vocab=182ee5aa
+-/
 @[simp]
 theorem toQsqrtdFun_re (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
     (toQsqrtdFun d z).re = (z.re : ℚ) + (z.im : ℚ) / 2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.47a6c19b437f from=translated src=- shape=b4b92100 vocab=714c2ff8
+-/
 @[simp]
 theorem toQsqrtdFun_im (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
     (toQsqrtdFun d z).im = (z.im : ℚ) / 2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.13f783c1dcde from=translated src=- shape=d3cb3938 vocab=318e5755
+-/
 @[simp]
 theorem toQsqrtdHom_re (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
     (toQsqrtdHom d z).re = (z.re : ℚ) + (z.im : ℚ) / 2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.5508bea5c8d8 from=translated src=- shape=708487fe vocab=9f1057be
+-/
 @[simp]
 theorem toQsqrtdHom_im (d : ℤ) (z : ZOnePlusSqrtdOverTwo d) :
     (toQsqrtdHom d z).im = (z.im : ℚ) / 2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.ae7d59a66c90 from=translated src=- shape=a8189094 vocab=2e27f360
+-/
 @[simp]
 theorem toQsqrtdHom_mk_re (d x y : ℤ) :
     (toQsqrtdHom d (⟨x, y⟩ : ZOnePlusSqrtdOverTwo d)).re = (x : ℚ) + (y : ℚ) / 2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7267705778ba from=translated src=- shape=537625d5 vocab=2410ae00
+-/
 @[simp]
 theorem toQsqrtdHom_mk_im (d x y : ℤ) :
     (toQsqrtdHom d (⟨x, y⟩ : ZOnePlusSqrtdOverTwo d)).im = (y : ℚ) / 2 :=
   rfl
 
-/-- The canonical map `toQsqrtdHom` is injective.-/
+/-- The canonical map `toQsqrtdHom` is injective.
+@isnad1 id=injectiv.0h1v.s6.8d267cc5af25 from=translated src=- shape=401465cd vocab=5521eef8
+-/
 theorem toQsqrtdHom_injective (d : ℤ) : Function.Injective (toQsqrtdHom d) := by
   intro x y hxy
   -- Equality of images first identifies the `ω`-coefficients from the imaginary parts,
@@ -171,7 +207,9 @@ theorem toQsqrtdHom_injective (d : ℤ) : Function.Injective (toQsqrtdHom d) := 
 def carrierSet (d : ℤ) : Set (Qsqrtd (qParam d)) := Set.range (toQsqrtdFun d)
 
 /-- A half-integer element belongs to the `ℤ[(1 + √(1+4k))/2]` carrier iff the two
-numerators have the same parity.-/
+numerators have the same parity.
+@isnad1 id=iff.0h3v.s6.f4220141119a from=translated src=- shape=502936ba vocab=4265add7
+-/
 theorem halfInt_mem_carrierSet_iff_same_parity (k a' b' : ℤ) :
     (∃ z : ZOnePlusSqrtdOverTwo k,
       toQsqrtdFun k z = RingOfIntegers.halfInt (1 + 4 * k) a' b') ↔
@@ -209,7 +247,9 @@ theorem halfInt_mem_carrierSet_iff_same_parity (k a' b' : ℤ) :
       ring
     · simp [toQsqrtdFun, RingOfIntegers.halfInt]
 
-/-- Equivalent set-membership form of `halfInt_mem_carrierSet_iff_same_parity`.-/
+/-- Equivalent set-membership form of `halfInt_mem_carrierSet_iff_same_parity`.
+@isnad1 id=iff.0h3v.s6.2fb115f45117 from=translated src=- shape=eb48e910 vocab=b572f210
+-/
 theorem halfInt_mem_carrierSet_iff_same_parity_set (k a' b' : ℤ) :
     RingOfIntegers.halfInt (1 + 4 * k) a' b' ∈ carrierSet k ↔
       a' % 2 = b' % 2 :=

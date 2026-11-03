@@ -25,7 +25,9 @@ namespace Ideal
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
 
 /-- In a Dedekind domain, an ideal whose prime divisors are all principal is
-itself principal.-/
+itself principal.
+@isnad1 id=isprinci.1h2v.s7.10ecef6c75c2 from=translated src=- shape=3af02380 vocab=aabf5b0b
+-/
 theorem isPrincipal_of_forall_isPrime_dvd_isPrincipal {I : Ideal R}
     (h : ∀ P : Ideal R, P.IsPrime → P ∣ I → P.IsPrincipal) :
     I.IsPrincipal := by

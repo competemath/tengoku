@@ -24,14 +24,18 @@ section OfAdd
 
 variable {α ι : Type*} [Zero α]
 
-/-- A nonzero additive element remains nontrivial when viewed multiplicatively.-/
+/-- A nonzero additive element remains nontrivial when viewed multiplicatively.
+@isnad1 id=ne.1h2v.s5.46652c16a233 from=translated src=- shape=1115344a vocab=f807b4d5
+-/
 theorem ofAdd_ne_one_of_ne_zero {a : α} (ha : a ≠ 0) :
     ofAdd a ≠ 1 := by
   intro h
   exact ha (by simpa using congrArg toAdd h)
 
 /-- A function with a nonzero coordinate remains nontrivial when viewed
-multiplicatively.-/
+multiplicatively.
+@isnad1 id=ne.1h4v.s6.770ebfd138a4 from=translated src=- shape=6a2f3d21 vocab=f807b4d5
+-/
 theorem ofAdd_ne_one_of_apply_ne_zero (v : ι → α) {i : ι} (hi : v i ≠ 0) :
     ofAdd v ≠ 1 :=
   ofAdd_ne_one_of_ne_zero (by
@@ -39,7 +43,9 @@ theorem ofAdd_ne_one_of_apply_ne_zero (v : ι → α) {i : ι} (hi : v i ≠ 0) 
     exact hi (by simp [hv]))
 
 /-- A function with some nonzero coordinate remains nontrivial when viewed
-multiplicatively.-/
+multiplicatively.
+@isnad1 id=ne.1h3v.s6.6d159826a565 from=translated src=- shape=9d63a3f4 vocab=f807b4d5
+-/
 theorem ofAdd_ne_one_of_exists_apply_ne_zero (v : ι → α) (hv : ∃ i, v i ≠ 0) :
     ofAdd v ≠ 1 := by
   rcases hv with ⟨i, hi⟩
@@ -79,6 +85,9 @@ noncomputable def zmodPiPowHom
       exact (pow_eq_pow_mod _ (hg i)).symm
     rw [hmod, hpow_mod]
 
+/--
+@isnad1 id=eq.1h5v.s8.b40c906807fc from=translated src=- shape=ad768a71 vocab=d5c32775
+-/
 @[simp]
 theorem zmodPiPowHom_apply
     (n : ℕ) [NeZero n] (g : ι → M) (hg : ∀ i, g i ^ n = 1)

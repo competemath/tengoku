@@ -44,14 +44,18 @@ def IsSquareRatioByDivision (d d' : ℚ) : Prop :=
   ∃ a : ℚˣ, d' / d = (a : ℚ) ^ 2
 
 /-- Rescaling gives an algebra equivalence whenever the parameters differ by a
-rational square factor.-/
+rational square factor.
+@isnad1 id=nonempty.1h2v.s6.7f8352700726 from=translated src=- shape=4271f56a vocab=d763ddd7
+-/
 theorem nonempty_algEquiv_of_isSquareRatio {d d' : ℚ} :
     IsSquareRatio d d' → Nonempty (Qsqrtd d ≃ₐ[ℚ] Qsqrtd d') := by
   rintro ⟨a, rfl⟩
   exact ⟨Qsqrtd.rescale d a⟩
 
 /-- Multiplicative and division forms of square-ratio equivalence agree away
-from `d = 0`.-/
+from `d = 0`.
+@isnad1 id=iff.1h2v.s4.4ef4b7b496c3 from=translated src=- shape=f0484c38 vocab=6df50310
+-/
 theorem isSquareRatio_iff_isSquareRatioByDivision {d d' : ℚ} (hd : d ≠ 0) :
     IsSquareRatio d d' ↔ IsSquareRatioByDivision d d' := by
   constructor
@@ -65,7 +69,9 @@ theorem isSquareRatio_iff_isSquareRatioByDivision {d d' : ℚ} (hd : d ≠ 0) :
       _ = (a : ℚ) ^ 2 * d := by rw [ha]
 
 /-- Non-square standard models are equivalent exactly when their parameters
-differ by a rational square factor.-/
+differ by a rational square factor.
+@isnad1 id=iff.0h2v.s6.0295a268e5ad from=translated src=- shape=ebc6b386 vocab=a039bfb3
+-/
 theorem algEquiv_iff_isSquareRatio
     (d d' : ℚ) [Fact (¬ IsSquare d)] [Fact (¬ IsSquare d')] :
     Nonempty (Qsqrtd d ≃ₐ[ℚ] Qsqrtd d') ↔ IsSquareRatio d d' := by
@@ -81,7 +87,9 @@ theorem algEquiv_iff_isSquareRatio
   · exact nonempty_algEquiv_of_isSquareRatio
 
 /-- Division form of the classification, matching the usual informal statement
-`d' / d ∈ ℚ×²`.-/
+`d' / d ∈ ℚ×²`.
+@isnad1 id=iff.0h2v.s6.6dc923cd2b64 from=translated src=- shape=ebc6b386 vocab=94a5d7c8
+-/
 theorem algEquiv_iff_isSquareRatioByDivision
     (d d' : ℚ) [Fact (¬ IsSquare d)] [Fact (¬ IsSquare d')] :
     Nonempty (Qsqrtd d ≃ₐ[ℚ] Qsqrtd d') ↔ IsSquareRatioByDivision d d' := by

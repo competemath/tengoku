@@ -26,18 +26,24 @@ local notation "ℚ√" d => Qsqrtd d
 namespace QuadraticNumberFields
 namespace Zsqrtd
 
-/-- The project-owned Gaussian order `Zsqrtd (-1)` is a principal ideal ring.-/
+/-- The project-owned Gaussian order `Zsqrtd (-1)` is a principal ideal ring.
+@isnad1 id=isprinci.0h0v.s5.f63c2d64873a from=translated src=- shape=297d7a60 vocab=1c83fe8c
+-/
 noncomputable instance instIsPrincipalIdealRingNegOne :
     IsPrincipalIdealRing (Zsqrtd (-1)) :=
   RingEquiv.isPrincipalIdealRing (Zsqrtd.equivMathlib (-1)).symm
 
-/-- The project-owned Gaussian order `Zsqrtd (-1)` is a domain.-/
+/-- The project-owned Gaussian order `Zsqrtd (-1)` is a domain.
+@isnad1 id=isdomain.0h0v.s5.039f0df4209f from=translated src=- shape=297d7a60 vocab=a48d5763
+-/
 instance instIsDomainNegOne : IsDomain (Zsqrtd (-1)) := by
   haveI : Fact ((-1 : ℤ) < 0) := ⟨by norm_num⟩
   infer_instance
 
 /-- In the project-owned Gaussian order, the two factors `z ± √-1` are
-coprime when their product has odd cube norm `n ^ 3 = z ^ 2 + 1`.-/
+coprime when their product has odd cube norm `n ^ 3 = z ^ 2 + 1`.
+@isnad1 id=iscoprim.1h2v.s7.4fc49dd7dc1c from=translated src=- shape=6226af8f vocab=ec2bad52
+-/
 theorem isCoprime_mk_im_one_mk_im_neg_one_of_cube_eq_sq_add_one {n z : ℤ}
     (h : n ^ 3 = z ^ 2 + 1) :
     IsCoprime (⟨z, 1⟩ : Zsqrtd (-1)) (⟨z, -1⟩ : Zsqrtd (-1)) := by
@@ -69,7 +75,9 @@ theorem isCoprime_mk_im_one_mk_im_neg_one_of_cube_eq_sq_add_one {n z : ℤ}
     exact (mem_nonunits_iff.mp hc_nonunit) hc_unit
 
 /-- If `n ^ 3 = z ^ 2 + 1`, then the Gaussian factor `z + √-1` is associated
-to a cube in the project-owned `Zsqrtd (-1)`.-/
+to a cube in the project-owned `Zsqrtd (-1)`.
+@isnad1 id=ex.1h2v.s7.28ea081fac56 from=translated src=- shape=1f6441f6 vocab=0a8d2e93
+-/
 theorem exists_associated_cube_mk_im_one_of_cube_eq_sq_add_one {n z : ℤ}
     (h : n ^ 3 = z ^ 2 + 1) :
     ∃ w : Zsqrtd (-1), Associated (w ^ 3) (⟨z, 1⟩ : Zsqrtd (-1)) := by

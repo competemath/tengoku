@@ -29,7 +29,9 @@ choose reduced representatives of `FormClass`.
 namespace QuadraticNumberFields
 namespace BinaryQuadraticForm
 
-/-- Gauss reduction existence statement for positive definite forms.-/
+/-- Gauss reduction existence statement for positive definite forms.
+@isnad1 id=ex.1h1v.s3.f993187fc30a from=translated src=- shape=9c140c95 vocab=06b2e551
+-/
 theorem exists_isReduced_properEquivalent (Q : BinaryQuadraticForm)
     (hQ : Q.IsPositiveDefinite) : ∃ R, R.IsReduced ∧ ProperEquivalent Q R := by
   obtain ⟨g, hgfd⟩ := ModularGroup.exists_smul_mem_fd (tauOfForm Q hQ)

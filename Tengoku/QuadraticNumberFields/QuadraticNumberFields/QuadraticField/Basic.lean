@@ -48,7 +48,9 @@ instance (K : Type*) [Field K] [Algebra ℚ K] [QuadraticField K] :
 
 namespace QuadraticField
 
-/-- A quadratic field has degree two over `ℚ`.-/
+/-- A quadratic field has degree two over `ℚ`.
+@isnad1 id=eq.0h1v.s5.0c2bb7841098 from=translated src=- shape=a962aec1 vocab=21a40806
+-/
 theorem finrank_eq_two (K : Type*) [Field K] [Algebra ℚ K] [QuadraticField K] :
     Module.finrank ℚ K = 2 :=
   Algebra.IsQuadraticExtension.finrank_eq_two ℚ K
@@ -56,7 +58,9 @@ theorem finrank_eq_two (K : Type*) [Field K] [Algebra ℚ K] [QuadraticField K] 
 end QuadraticField
 
 /-- A quadratic field is a number field: it has characteristic zero
-and is finite-dimensional over `ℚ`.-/
+and is finite-dimensional over `ℚ`.
+@isnad1 id=numberfi.0h1v.s4.66bc45603afd from=translated src=- shape=8e42a0f8 vocab=5b51e447
+-/
 instance QuadraticField.instNumberField (K : Type*) [Field K] [Algebra ℚ K]
     [QuadraticField K] : NumberField K where
   to_charZero := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
@@ -74,7 +78,9 @@ section RatAlgebra
 
 attribute [local instance] DivisionRing.toRatAlgebra
 
-/-- `Qsqrtd d` is a `QuadraticField` for the `DivisionRing.toRatAlgebra` structure.-/
+/-- `Qsqrtd d` is a `QuadraticField` for the `DivisionRing.toRatAlgebra` structure.
+@isnad1 id=quadrati.0h1v.s5.4dc2f75f8f0e from=translated src=- shape=c5a8cc19 vocab=f78ef7c0
+-/
 instance instRatAlgebraQuadraticField (d : ℚ) [Fact (¬ IsSquare d)] :
     QuadraticField (Qsqrtd d) where
   isQuadratic := @Qsqrtd.instRatAlgebraIsQuadraticExtension d _

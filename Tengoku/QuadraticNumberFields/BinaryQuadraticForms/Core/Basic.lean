@@ -43,6 +43,9 @@ attribute [nolint unusedArguments] instReprBinaryQuadraticForm.repr
 
 namespace BinaryQuadraticForm
 
+/--
+@isnad1 id=eq.3h2v.s4.95b2bd6e1cc9 from=translated src=- shape=966c8f3f vocab=2e9f6fb2
+-/
 @[ext] theorem ext {Q R : BinaryQuadraticForm}
     (ha : Q.a = R.a) (hb : Q.b = R.b) (hc : Q.c = R.c) : Q = R := by
   cases Q
@@ -69,9 +72,15 @@ def IsPositiveDefinite (Q : BinaryQuadraticForm) : Prop :=
 def IsPrimitive (Q : BinaryQuadraticForm) : Prop :=
   Int.gcd Q.a (Int.gcd Q.b Q.c) = 1
 
+/--
+@isnad1 id=eq.0h3v.s5.7296c5a97762 from=translated src=- shape=aa48115a vocab=fdda163c
+-/
 @[simp] theorem disc_mk (a b c : ℤ) :
     disc (BinaryQuadraticForm.mk a b c) = b ^ 2 - 4 * a * c := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.0982a9fa691b from=translated src=- shape=b2f27708 vocab=5b69ad9d
+-/
 @[simp] theorem eval_mk (a b c x y : ℤ) :
     eval (BinaryQuadraticForm.mk a b c) x y =
       a * x ^ 2 + b * x * y + c * y ^ 2 := rfl

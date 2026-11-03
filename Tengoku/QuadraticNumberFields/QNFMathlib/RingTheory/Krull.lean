@@ -24,7 +24,9 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 /-- Transport `Ring.DimensionLEOne` across a ring equivalence.
 
 The proof pulls back prime ideals via `Ideal.comap`, applies `DimensionLEOne` on
-the source ring, then pushes forward via `Ideal.map`.-/
+the source ring, then pushes forward via `Ideal.map`.
+@isnad1 id=dimensio.0h3v.s5.8447b2f02679 from=translated src=- shape=0751dee6 vocab=8cb5d8a3
+-/
 -- Repository use: `Mathlib/RingTheory/DedekindDomain/Basic.lean` uses this
 -- inside `RingEquiv.isDedekindDomain`; the use is implicit through a local
 -- `letI : Ring.DimensionLEOne S`.

@@ -62,8 +62,14 @@ namespace Ideal
 
 variable (d : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s7.b8e23f713240 from=translated src=- shape=6cabad98 vocab=ede1be30
+-/
 @[simp] lemma algebraMap_int_coe (n : ℤ) : algebraMap ℤ (Zsqrtd d) n = n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.4081945cb29d from=translated src=- shape=3f331e5a vocab=c3d035d7
+-/
 lemma map_span_int_singleton (n : ℤ) :
     Ideal.map (algebraMap ℤ (Zsqrtd d)) (Ideal.span {n}) = Ideal.span {(n : Zsqrtd d)} := by
   rw [Ideal.map_span, Set.image_singleton, algebraMap_int_coe]
@@ -148,6 +154,9 @@ noncomputable def liftModP (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1))
     Zsqrtd d →+* ZMod p :=
   Zsqrtd.lift (1 : ZMod p) (by simp [d_cast_zmodp_eq_one p hd])
 
+/--
+@isnad1 id=eq.1h3v.s7.11ea8541a7a3 from=translated src=- shape=af57721e vocab=94396d7d
+-/
 lemma liftModP_apply (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) (z : Zsqrtd d) :
     liftModP p hd z = (z.re + z.im : ZMod p) := by
   simp [liftModP, Zsqrtd.lift_apply]
@@ -158,12 +167,17 @@ noncomputable def liftModPNeg (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 
     Zsqrtd d →+* ZMod p :=
   Zsqrtd.lift (-1 : ZMod p) (by simp [d_cast_zmodp_eq_one p hd])
 
+/--
+@isnad1 id=eq.1h3v.s7.60fac3bfd539 from=translated src=- shape=c1d15029 vocab=7564c4d8
+-/
 lemma liftModPNeg_apply (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) (z : Zsqrtd d) :
     liftModPNeg p hd z = (z.re - z.im : ZMod p) := by
   simp [liftModPNeg, Zsqrtd.lift_apply, sub_eq_add_neg]
 
 /-- An element of `Zsqrtd d` belongs to `(p, 1-√d)` iff `p ∣ (re + im)`,
-provided `p ∣ (d - 1)` for a prime `p`.-/
+provided `p ∣ (d - 1)` for a prime `p`.
+@isnad1 id=iff.1h3v.s7.f251c746e5e8 from=translated src=- shape=b0d2b0e0 vocab=5ec99b7c
+-/
 @[nolint unusedArguments]
 lemma mem_span_p_one_minus_sqrtd_iff (p : ℕ) [Fact p.Prime]
     (hd : (p : ℤ) ∣ (d - 1)) (z : Zsqrtd d) :
@@ -193,7 +207,9 @@ lemma mem_span_p_one_minus_sqrtd_iff (p : ℕ) [Fact p.Prime]
     · simp [sqrtd, QuadraticAlgebra.re_natCast, QuadraticAlgebra.im_natCast]
 
 /-- An element of `Zsqrtd d` belongs to `(p, 1+√d)` iff `p ∣ (re - im)`,
-provided `p ∣ (d - 1)` for a prime `p`.-/
+provided `p ∣ (d - 1)` for a prime `p`.
+@isnad1 id=iff.1h3v.s7.6069ce99507a from=translated src=- shape=048656ec vocab=5ec99b7c
+-/
 @[nolint unusedArguments]
 lemma mem_span_p_one_plus_sqrtd_iff (p : ℕ) [Fact p.Prime]
     (hd : (p : ℤ) ∣ (d - 1)) (z : Zsqrtd d) :
@@ -222,7 +238,9 @@ lemma mem_span_p_one_plus_sqrtd_iff (p : ℕ) [Fact p.Prime]
     · simp [sqrtd, QuadraticAlgebra.re_natCast, QuadraticAlgebra.im_natCast]; linarith
     · simp [sqrtd, QuadraticAlgebra.re_natCast, QuadraticAlgebra.im_natCast]
 
-/-- The ideal `(p, 1-√d)` is prime in `Zsqrtd d` when `p ∣ (d - 1)` for a prime `p`.-/
+/-- The ideal `(p, 1-√d)` is prime in `Zsqrtd d` when `p ∣ (d - 1)` for a prime `p`.
+@isnad1 id=isprime.1h2v.s7.06fb1b2a7f27 from=translated src=- shape=f91526a8 vocab=ab5715a3
+-/
 theorem isPrime_span_p_one_minus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
     IsPrime (Ideal.span ({(p : Zsqrtd d), 1 - sqrtd} : Set (Zsqrtd d)) : Ideal (Zsqrtd d)) := by
   rw [Ideal.isPrime_iff]
@@ -240,7 +258,9 @@ theorem isPrime_span_p_one_minus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) 
       ⟨c * a.im * b.im, by rw [hc]; ring⟩
     exact prime_dvd_or_dvd_of_dvd_mul_add p hab hcorr
 
-/-- The ideal `(p, 1+√d)` is prime in `Zsqrtd d` when `p ∣ (d - 1)` for a prime `p`.-/
+/-- The ideal `(p, 1+√d)` is prime in `Zsqrtd d` when `p ∣ (d - 1)` for a prime `p`.
+@isnad1 id=isprime.1h2v.s7.fef5225e5995 from=translated src=- shape=f28095b8 vocab=ad4eb6e5
+-/
 theorem isPrime_span_p_one_plus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
     IsPrime (Ideal.span ({(p : Zsqrtd d), 1 + sqrtd} : Set (Zsqrtd d)) : Ideal (Zsqrtd d)) := by
   rw [Ideal.isPrime_iff]
@@ -258,6 +278,9 @@ theorem isPrime_span_p_one_plus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) �
       ⟨c * a.im * b.im, by rw [hc]; ring⟩
     exact prime_dvd_or_dvd_of_dvd_mul_add p hab hcorr
 
+/--
+@isnad1 id=eq.1h2v.s7.eaa6c1338198 from=translated src=- shape=eb175743 vocab=8a9ac27a
+-/
 lemma ker_liftModP (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
     RingHom.ker (liftModP p hd) =
       (Ideal.span ({(p : Zsqrtd d), 1 - sqrtd} : Set (Zsqrtd d))) := by
@@ -269,6 +292,9 @@ lemma ker_liftModP (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
   · intro z
     exact mem_span_p_one_minus_sqrtd_iff p hd z
 
+/--
+@isnad1 id=eq.1h2v.s7.7d096f57b326 from=translated src=- shape=ca34b399 vocab=a85d2db4
+-/
 lemma ker_liftModPNeg (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
     RingHom.ker (liftModPNeg p hd) =
       (Ideal.span ({(p : Zsqrtd d), 1 + sqrtd} : Set (Zsqrtd d))) := by
@@ -294,6 +320,9 @@ noncomputable def quotEquivZModPNeg (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣
     (Ideal.span ({(p : Zsqrtd d), 1 + sqrtd} : Set (Zsqrtd d)))
     (ker_liftModPNeg p hd)
 
+/--
+@isnad1 id=eq.1h2v.s8.209504b6a73b from=translated src=- shape=29bd2b26 vocab=2240c98e
+-/
 lemma comap_span_p_one_minus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
     Ideal.comap (algebraMap ℤ (Zsqrtd d))
       (Ideal.span ({(p : Zsqrtd d), 1 - sqrtd} : Set (Zsqrtd d))) =
@@ -306,6 +335,9 @@ lemma comap_span_p_one_minus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ 
   · intro z
     simp [QuadraticAlgebra.re_intCast, QuadraticAlgebra.im_intCast]
 
+/--
+@isnad1 id=eq.1h2v.s8.b42c0a666e4e from=translated src=- shape=d811f05a vocab=9660971e
+-/
 lemma comap_span_p_one_plus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (d - 1)) :
     Ideal.comap (algebraMap ℤ (Zsqrtd d))
       (Ideal.span ({(p : Zsqrtd d), 1 + sqrtd} : Set (Zsqrtd d))) =
@@ -321,7 +353,9 @@ lemma comap_span_p_one_plus_sqrtd (p : ℕ) [Fact p.Prime] (hd : (p : ℤ) ∣ (
 /-! ## Explicit factorization of rational primes -/
 
 /-- Divisibility by a rational integer in `Zsqrtd d` is coordinatewise:
-`(n : Zsqrtd d) ∣ w ↔ n ∣ w.re ∧ n ∣ w.im`.-/
+`(n : Zsqrtd d) ∣ w ↔ n ∣ w.re ∧ n ∣ w.im`.
+@isnad1 id=iff.0h3v.s6.d9852bc6d0f4 from=translated src=- shape=3ebd712b vocab=c7b3b7a7
+-/
 lemma intCast_dvd_iff (n : ℤ) (w : Zsqrtd d) :
     (n : Zsqrtd d) ∣ w ↔ n ∣ w.re ∧ n ∣ w.im := by
   constructor
@@ -338,7 +372,9 @@ lemma intCast_dvd_iff (n : ℤ) (w : Zsqrtd d) :
 
 This generalizes concrete computations such as `(3) = (3, 1+√-5)(3, 1-√-5)`.
 The oddness of `p` is essential: at `p = 2` the two ideals coincide and the
-product becomes a square (see `span_two_eq_sq`).-/
+product becomes a square (see `span_two_eq_sq`).
+@isnad1 id=eq.2h2v.s8.8b81ed779034 from=translated src=- shape=551af7e2 vocab=532c61ac
+-/
 theorem span_p_eq_span_mul_span (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (hd : (p : ℤ) ∣ (d - 1)) :
     Ideal.span ({(p : Zsqrtd d)} : Set (Zsqrtd d)) =
@@ -407,7 +443,9 @@ prime `2` is the square of the prime `(2, 1 + √d)` in `Zsqrtd d`:
 
 This generalizes the concrete identity `(2) = (2, 1+√-5)²`. The congruence
 `d ≡ 3 (mod 4)` is exactly the condition for the equality: at `d ≡ 1 (mod 4)`
-the order `Zsqrtd d` is non-maximal at `2` and `(2, 1+√d)² = 2·(2, 1+√d) ⊊ (2)`.-/
+the order `Zsqrtd d` is non-maximal at `2` and `(2, 1+√d)² = 2·(2, 1+√d) ⊊ (2)`.
+@isnad1 id=eq.1h1v.s8.312452dfec2e from=translated src=- shape=560c6518 vocab=1fc17749
+-/
 theorem span_two_eq_sq (hd4 : d % 4 = 3) :
     Ideal.span ({(2 : Zsqrtd d)} : Set (Zsqrtd d)) =
       (Ideal.span ({(2 : Zsqrtd d), 1 + sqrtd} : Set (Zsqrtd d))) ^ 2 := by

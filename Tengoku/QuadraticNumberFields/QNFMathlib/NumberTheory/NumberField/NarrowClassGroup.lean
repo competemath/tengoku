@@ -50,7 +50,9 @@ namespace NumberField
 
 /-! ### Totally complex fields -/
 
-/-- A totally complex field has no real embeddings.-/
+/-- A totally complex field has no real embeddings.
+@isnad1 id=isempty.0h1v.s4.3d018ba16ea1 from=translated src=- shape=4e11b0d0 vocab=f7eb86cd
+-/
 theorem isEmpty_realEmbeddings_of_isTotallyComplex (K : Type*) [Field K] [IsTotallyComplex K] :
     IsEmpty (K →+* ℝ) := by
   refine ⟨fun σ => ?_⟩
@@ -62,7 +64,9 @@ theorem isEmpty_realEmbeddings_of_isTotallyComplex (K : Type*) [Field K] [IsTota
 
 variable (K : Type*) [Field K] [NumberField K]
 
-/-- The fraction field of `𝓞 K` has no real embeddings when `K` is totally complex.-/
+/-- The fraction field of `𝓞 K` has no real embeddings when `K` is totally complex.
+@isnad1 id=isempty.0h1v.s6.10d8782d8467 from=translated src=- shape=b7fd1ed6 vocab=59e5d23d
+-/
 theorem isEmpty_fractionRing_realEmbeddings_of_isTotallyComplex
     [IsTotallyComplex K] :
     IsEmpty (FractionRing (𝓞 K) →+* ℝ) := by
@@ -71,7 +75,9 @@ theorem isEmpty_fractionRing_realEmbeddings_of_isTotallyComplex
   let e := IsLocalization.algEquiv (nonZeroDivisors (𝓞 K)) (FractionRing (𝓞 K)) K
   exact isEmptyElim (σ.comp e.symm.toRingHom)
 
-/-- For a totally complex number field, narrow and ordinary principal fractional ideals agree.-/
+/-- For a totally complex number field, narrow and ordinary principal fractional ideals agree.
+@isnad1 id=eq.0h1v.s11.d38bb23d49cd from=translated src=- shape=e5258159 vocab=691dc3d8
+-/
 theorem narrowPrincipalIdeals_eq_principalIdeals_of_isTotallyComplex
     [IsTotallyComplex K] :
     NarrowClassGroup.narrowPrincipalIdeals (𝓞 K) (FractionRing (𝓞 K)) =
@@ -93,10 +99,14 @@ noncomputable def narrowMulEquivClassGroupOfIsTotallyComplex
 noncomputable def narrowClassNumber : ℕ :=
   NarrowClassGroup.narrowClassNumber (𝓞 K)
 
-/-- The narrow class number of a number field is nonzero.-/
+/-- The narrow class number of a number field is nonzero.
+@isnad1 id=ne.0h1v.s4.30553dfae4d6 from=translated src=- shape=21777def vocab=c5164c70
+-/
 theorem narrowClassNumber_ne_zero : narrowClassNumber K ≠ 0 := Fintype.card_ne_zero
 
-/-- The narrow class number of a number field is positive.-/
+/-- The narrow class number of a number field is positive.
+@isnad1 id=lt.0h1v.s4.7281cbea4cd8 from=translated src=- shape=31b077a1 vocab=56826210
+-/
 theorem narrowClassNumber_pos : 0 < narrowClassNumber K := Fintype.card_pos
 
 end NumberField

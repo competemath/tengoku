@@ -59,7 +59,9 @@ structure UnitedBezout (Q R : BinaryQuadraticForm) where
   linear_combination : u * Q.a + v * R.a + w * sigma Q R = 1
 
 /-- A united pair admits three-term Bézout coefficients
-`u * a + v * a' + w * sigma = 1`.-/
+`u * a + v * a' + w * sigma = 1`.
+@isnad1 id=nonempty.1h2v.s3.a9b5cdb48ef5 from=translated src=- shape=080e7217 vocab=7ff5b873
+-/
 theorem exists_unitedBezout_of_isUnited {Q R : BinaryQuadraticForm}
     (h : Q.IsUnited R) : Nonempty (UnitedBezout Q R) := by
   let g : ℕ := Int.gcd R.a (sigma Q R)
@@ -100,7 +102,9 @@ def IsConcordant (Q R : BinaryQuadraticForm) : Prop :=
   Q.disc = R.disc ∧ Q.b = R.b ∧ Int.gcd Q.a R.a = 1
 
 /-- If two forms have the same middle coefficient, their Gauss `sigma` is that
-middle coefficient.-/
+middle coefficient.
+@isnad1 id=eq.1h2v.s4.63f66e182917 from=translated src=- shape=f994356f vocab=fe559c19
+-/
 theorem sigma_eq_left_b_of_b_eq {Q R : BinaryQuadraticForm} (h : Q.b = R.b) :
     sigma Q R = Q.b := by
   unfold sigma
@@ -108,14 +112,18 @@ theorem sigma_eq_left_b_of_b_eq {Q R : BinaryQuadraticForm} (h : Q.b = R.b) :
   rw [show Q.b + Q.b = 2 * Q.b by ring]
   exact Int.mul_ediv_cancel_left Q.b (by norm_num : (2 : ℤ) ≠ 0)
 
-/-- Concordance is symmetric.-/
+/-- Concordance is symmetric.
+@isnad1 id=isconcor.1h2v.s3.93f99c58f1a8 from=translated src=- shape=7e524d71 vocab=16fa08d0
+-/
 theorem IsConcordant.symm {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) : R.IsConcordant Q := by
   rcases h with ⟨hdisc, hb, hgcd⟩
   refine ⟨hdisc.symm, hb.symm, ?_⟩
   simpa [Int.gcd, Nat.gcd_comm] using hgcd
 
-/-- Concordant forms are united.-/
+/-- Concordant forms are united.
+@isnad1 id=isunited.1h2v.s3.c75f2533c692 from=translated src=- shape=8584b719 vocab=18fdcd9b
+-/
 theorem IsConcordant.isUnited {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) : Q.IsUnited R := by
   refine ⟨h.1, ?_⟩
@@ -130,7 +138,9 @@ theorem IsConcordant.isUnited {Q R : BinaryQuadraticForm}
     (dvd_trans (Nat.gcd_dvd_right _ _) (Nat.gcd_dvd_left _ _))
 
 /-- Concordant forms have united Bézout data with zero coefficient on
-`sigma`.-/
+`sigma`.
+@isnad1 id=nonempty.1h2v.s3.a0b1a28656df from=translated src=- shape=080e7217 vocab=25e5e0f5
+-/
 theorem exists_unitedBezout_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) : Nonempty (UnitedBezout Q R) := by
   have hbezout : (1 : ℤ) = Q.a * Int.gcdA Q.a R.a + R.a * Int.gcdB Q.a R.a := by
@@ -169,29 +179,47 @@ noncomputable def composeUnitedOfIsUnited
     (Q R : BinaryQuadraticForm) (h : Q.IsUnited R) : BinaryQuadraticForm :=
   composeUnited Q R (UnitedBezout.ofIsUnited h)
 
+/--
+@isnad1 id=eq.0h2v.s4.37079141eaa5 from=translated src=- shape=88b36870 vocab=dd19e8df
+-/
 @[simp] theorem composeConcordant_a (Q R : BinaryQuadraticForm) :
     (composeConcordant Q R).a = Q.a * R.a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.7733f5d1b700 from=translated src=- shape=baddaacb vocab=8cd8188f
+-/
 @[simp] theorem composeConcordant_b (Q R : BinaryQuadraticForm) :
     (composeConcordant Q R).b = Q.b :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.af80acacb3dd from=translated src=- shape=720728be vocab=353d7442
+-/
 @[simp] theorem composeConcordant_c (Q R : BinaryQuadraticForm) :
     (composeConcordant Q R).c = (Q.b ^ 2 - Q.disc) / (4 * Q.a * R.a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.e837babef882 from=translated src=- shape=742d57e0 vocab=381c004f
+-/
 @[simp] theorem composeUnited_a (Q R : BinaryQuadraticForm)
     (bezout : UnitedBezout Q R) :
     (composeUnited Q R bezout).a = Q.a * R.a :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.09f433eccbe7 from=translated src=- shape=b80eaeef vocab=483dc2e5
+-/
 @[simp] theorem composeUnited_b (Q R : BinaryQuadraticForm)
     (bezout : UnitedBezout Q R) :
     (composeUnited Q R bezout).b =
       Q.b + 2 * Q.a * (bezout.v * (sigma Q R - Q.b) - bezout.w * Q.c) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e85f9eda7f3d from=translated src=- shape=374915d7 vocab=2d802804
+-/
 @[simp] theorem composeUnited_c (Q R : BinaryQuadraticForm)
     (bezout : UnitedBezout Q R) :
     (composeUnited Q R bezout).c =
@@ -199,6 +227,9 @@ noncomputable def composeUnitedOfIsUnited
         Q.disc) / (4 * (Q.a * R.a)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.e88df1d8bbdf from=translated src=- shape=742d57e0 vocab=9a7159b5
+-/
 @[simp] theorem composeUnitedOfIsUnited_a (Q R : BinaryQuadraticForm)
     (h : Q.IsUnited R) :
     (composeUnitedOfIsUnited Q R h).a = Q.a * R.a :=
@@ -206,7 +237,9 @@ noncomputable def composeUnitedOfIsUnited
 
 /-- The united formula recovers the concordant formula when the middle
 coefficients are aligned and the chosen Bézout data has zero `sigma`
-coefficient.-/
+coefficient.
+@isnad1 id=eq.2h3v.s5.346fab765481 from=translated src=- shape=31a1cd02 vocab=6954fb39
+-/
 theorem composeUnited_eq_composeConcordant_of_sigma_eq_b_of_w_eq_zero
     {Q R : BinaryQuadraticForm} {bezout : UnitedBezout Q R}
     (hsigma : sigma Q R = Q.b) (hw : bezout.w = 0) :
@@ -221,7 +254,9 @@ theorem composeUnited_eq_composeConcordant_of_sigma_eq_b_of_w_eq_zero
       (show 4 * (Q.a * R.a) = 4 * Q.a * R.a by ring)
 
 /-- Concordant forms with equal discriminants and equal middle coefficient
-satisfy `a c = a' c'`.-/
+satisfy `a c = a' c'`.
+@isnad1 id=eq.1h2v.s5.0bfc1fe6c36f from=translated src=- shape=223f289f vocab=ced1568c
+-/
 theorem mul_c_eq_mul_c_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) : Q.a * Q.c = R.a * R.c := by
   rcases h with ⟨hdisc, hb, _⟩
@@ -229,7 +264,9 @@ theorem mul_c_eq_mul_c_of_isConcordant {Q R : BinaryQuadraticForm}
   nlinarith
 
 /-- For concordant forms, the right leading coefficient divides the left
-trailing coefficient.-/
+trailing coefficient.
+@isnad1 id=dvd.1h2v.s3.afecd4f5a731 from=translated src=- shape=0069f895 vocab=008e0b94
+-/
 theorem right_a_dvd_left_c_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) : R.a ∣ Q.c := by
   have hprod := mul_c_eq_mul_c_of_isConcordant h
@@ -241,7 +278,9 @@ theorem right_a_dvd_left_c_of_isConcordant {Q R : BinaryQuadraticForm}
   exact Int.dvd_of_dvd_mul_right_of_gcd_one hdiv hgcd
 
 /-- For concordant forms, the left leading coefficient divides the right
-trailing coefficient.-/
+trailing coefficient.
+@isnad1 id=dvd.1h2v.s3.8d7a4e1b5e4c from=translated src=- shape=52d409ee vocab=008e0b94
+-/
 theorem left_a_dvd_right_c_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) : Q.a ∣ R.c := by
   have hprod := mul_c_eq_mul_c_of_isConcordant h
@@ -251,7 +290,9 @@ theorem left_a_dvd_right_c_of_isConcordant {Q R : BinaryQuadraticForm}
   exact Int.dvd_of_dvd_mul_right_of_gcd_one hdiv h.2.2
 
 /-- If the integer division in the concordant formula is exact, the composed
-form has the same discriminant as the left factor.-/
+form has the same discriminant as the left factor.
+@isnad1 id=eq.2h3v.s6.744f9f68988a from=translated src=- shape=4bd6e83a vocab=9f1f4944
+-/
 theorem disc_composeConcordant_of_eq_mul (Q R : BinaryQuadraticForm) {c : ℤ}
     (hden : 4 * Q.a * R.a ≠ 0)
     (hc : Q.b ^ 2 - Q.disc = (4 * Q.a * R.a) * c) :
@@ -267,7 +308,9 @@ theorem disc_composeConcordant_of_eq_mul (Q R : BinaryQuadraticForm) {c : ℤ}
   nlinarith [hc]
 
 /-- Concordant forms with nonzero leading coefficients compose to a form with
-the same discriminant.-/
+the same discriminant.
+@isnad1 id=eq.3h2v.s5.1843ca15f70e from=translated src=- shape=eb01d60f vocab=6b9d9841
+-/
 theorem disc_composeConcordant_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) (hQa : Q.a ≠ 0) (hRa : R.a ≠ 0) :
     (composeConcordant Q R).disc = Q.disc := by
@@ -283,7 +326,9 @@ theorem disc_composeConcordant_of_isConcordant {Q R : BinaryQuadraticForm}
       _ = (4 * Q.a * R.a) * (Q.c / R.a) := by ring
 
 /-- For concordant forms with nonzero leading coefficients, the final
-coefficient in the direct composition formula is `c / a'`.-/
+coefficient in the direct composition formula is `c / a'`.
+@isnad1 id=eq.3h2v.s5.e5af05af9cdd from=translated src=- shape=24f35698 vocab=6fb0527a
+-/
 theorem composeConcordant_c_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) (hQa : Q.a ≠ 0) (hRa : R.a ≠ 0) :
     (composeConcordant Q R).c = Q.c / R.a := by
@@ -302,7 +347,9 @@ theorem composeConcordant_c_of_isConcordant {Q R : BinaryQuadraticForm}
   exact Int.mul_ediv_cancel_left (Q.c / R.a) hden
 
 /-- Concordant composition preserves a prescribed discriminant when both
-leading coefficients are nonzero.-/
+leading coefficients are nonzero.
+@isnad1 id=hasdiscr.4h3v.s5.d5b8879daa9a from=translated src=- shape=f7cafc7d vocab=8942c130
+-/
 theorem hasDiscriminant_composeConcordant_of_isConcordant
     {Q R : BinaryQuadraticForm} {D : ℤ}
     (hQD : Q.HasDiscriminant D) (h : Q.IsConcordant R)
@@ -311,7 +358,9 @@ theorem hasDiscriminant_composeConcordant_of_isConcordant
   unfold HasDiscriminant at hQD ⊢
   rw [disc_composeConcordant_of_isConcordant h hQa hRa, hQD]
 
-/-- Concordant composition preserves positive definiteness.-/
+/-- Concordant composition preserves positive definiteness.
+@isnad1 id=ispositi.3h2v.s4.73fb5b9817d0 from=translated src=- shape=16a315ea vocab=20de1dfa
+-/
 theorem isPositiveDefinite_composeConcordant_of_isConcordant
     {Q R : BinaryQuadraticForm} (h : Q.IsConcordant R)
     (hQ : Q.IsPositiveDefinite) (hR : R.IsPositiveDefinite) :
@@ -321,7 +370,9 @@ theorem isPositiveDefinite_composeConcordant_of_isConcordant
   · rw [disc_composeConcordant_of_isConcordant h (ne_of_gt hQ.1) (ne_of_gt hR.1)]
     exact hQ.2
 
-/-- Concordant composition is symmetric at the representative-formula level.-/
+/-- Concordant composition is symmetric at the representative-formula level.
+@isnad1 id=eq.1h2v.s4.08fab42b4af0 from=translated src=- shape=317054d4 vocab=5f48ca58
+-/
 theorem composeConcordant_comm_of_isConcordant {Q R : BinaryQuadraticForm}
     (h : Q.IsConcordant R) :
     composeConcordant Q R = composeConcordant R Q := by
@@ -336,7 +387,9 @@ def concordantUnitRepresentative (Q : BinaryQuadraticForm) : BinaryQuadraticForm
   b := Q.b
   c := Q.a * Q.c
 
-/-- The attached unit representative is concordant to the original form.-/
+/-- The attached unit representative is concordant to the original form.
+@isnad1 id=isconcor.0h1v.s2.31e4c54f2bc4 from=translated src=- shape=b54cd39a vocab=918d7f00
+-/
 theorem concordantUnitRepresentative_isConcordant (Q : BinaryQuadraticForm) :
     (concordantUnitRepresentative Q).IsConcordant Q := by
   refine ⟨?_, rfl, ?_⟩
@@ -345,7 +398,9 @@ theorem concordantUnitRepresentative_isConcordant (Q : BinaryQuadraticForm) :
   · simp [concordantUnitRepresentative, Int.gcd]
 
 /-- The attached unit representative is a left identity for direct concordant
-composition.-/
+composition.
+@isnad1 id=eq.1h1v.s4.1460edb04aed from=translated src=- shape=92962fdc vocab=64871a64
+-/
 theorem composeConcordant_concordantUnitRepresentative (Q : BinaryQuadraticForm)
     (hQa : Q.a ≠ 0) :
     composeConcordant (concordantUnitRepresentative Q) Q = Q := by
@@ -362,7 +417,9 @@ theorem composeConcordant_concordantUnitRepresentative (Q : BinaryQuadraticForm)
       (mul_ne_zero (by norm_num : (4 : ℤ) ≠ 0) hQa)
 
 /-- The attached unit representative is a right identity for direct concordant
-composition.-/
+composition.
+@isnad1 id=eq.1h1v.s4.d2863ea3d4ef from=translated src=- shape=37527299 vocab=64871a64
+-/
 theorem composeConcordant_concordantUnitRepresentative_right (Q : BinaryQuadraticForm)
     (hQa : Q.a ≠ 0) :
     composeConcordant Q (concordantUnitRepresentative Q) = Q := by
@@ -370,7 +427,9 @@ theorem composeConcordant_concordantUnitRepresentative_right (Q : BinaryQuadrati
     (concordantUnitRepresentative_isConcordant Q).symm]
   exact composeConcordant_concordantUnitRepresentative Q hQa
 
-/-- Primitive forms have no prime common divisor of all three coefficients.-/
+/-- Primitive forms have no prime common divisor of all three coefficients.
+@isnad1 id=false.5h2v.s5.425defdb9649 from=translated src=- shape=ce7d1021 vocab=9d73a5ff
+-/
 theorem not_prime_dvd_coefficients_of_isPrimitive {Q : BinaryQuadraticForm}
     (hQ : Q.IsPrimitive) {p : ℕ} (hp : Nat.Prime p)
     (ha : (p : ℤ) ∣ Q.a) (hb : (p : ℤ) ∣ Q.b) (hc : (p : ℤ) ∣ Q.c) :
@@ -382,7 +441,9 @@ theorem not_prime_dvd_coefficients_of_isPrimitive {Q : BinaryQuadraticForm}
   rw [hQ] at hgcd
   exact hp.not_dvd_one hgcd
 
-/-- Concordant composition preserves primitivity.-/
+/-- Concordant composition preserves primitivity.
+@isnad1 id=isprimit.5h2v.s5.8fbaca485da1 from=translated src=- shape=334344da vocab=4549cfc6
+-/
 theorem isPrimitive_composeConcordant_of_isConcordant
     {Q R : BinaryQuadraticForm} (h : Q.IsConcordant R)
     (hQ : Q.IsPrimitive) (hR : R.IsPrimitive) (hQa : Q.a ≠ 0) (hRa : R.a ≠ 0) :
@@ -448,7 +509,9 @@ section Lemma_2_25
 open scoped Function
 
 /-- For a primitive form and a prime `p`, one of the three canonical vectors
-`(1,0)`, `(0,1)`, `(1,1)` evaluates to an integer not divisible by `p`.-/
+`(1,0)`, `(0,1)`, `(1,1)` evaluates to an integer not divisible by `p`.
+@isnad1 id=or.2h2v.s6.548027230645 from=translated src=- shape=15f73ac0 vocab=2df37ff5
+-/
 theorem exists_eval_not_dvd_of_isPrimitive_of_prime {Q : BinaryQuadraticForm}
     (hQ : Q.IsPrimitive) {p : ℕ} (hp : Nat.Prime p) :
     (¬ (p : ℤ) ∣ Q.eval 1 0) ∨ (¬ (p : ℤ) ∣ Q.eval 0 1)
@@ -482,7 +545,9 @@ theorem exists_eval_not_dvd_of_isPrimitive_of_prime {Q : BinaryQuadraticForm}
     rw [ha]
     exact hpa
 
-/-- If no prime divisor of `M` divides `n`, then `n` is coprime to `M`.-/
+/-- If no prime divisor of `M` divides `n`, then `n` is coprime to `M`.
+@isnad1 id=eq.1h2v.s5.05fce71ba046 from=translated src=- shape=fa8f1a51 vocab=f3fc89e7
+-/
 theorem gcd_eq_one_of_forall_prime_not_dvd {n M : ℤ}
     (h : ∀ p : ℕ, p.Prime → (p : ℤ) ∣ M → ¬ (p : ℤ) ∣ n) :
     Int.gcd n M = 1 := by
@@ -494,7 +559,9 @@ theorem gcd_eq_one_of_forall_prime_not_dvd {n M : ℤ}
   exact (h p hp hpz_dvd_M) hpz_dvd_n
 
 /-- Evaluation of an integral binary quadratic form respects congruent input
-vectors.-/
+vectors.
+@isnad1 id=modeq.2h6v.s5.b6c7c09d1f22 from=translated src=- shape=180b2561 vocab=4f91ab87
+-/
 theorem eval_modEq {Q : BinaryQuadraticForm} {m x x' y y' : ℤ}
     (hx : x ≡ x' [ZMOD m]) (hy : y ≡ y' [ZMOD m]) :
     Q.eval x y ≡ Q.eval x' y' [ZMOD m] := by
@@ -504,7 +571,9 @@ theorem eval_modEq {Q : BinaryQuadraticForm} {m x x' y y' : ℤ}
       (Int.ModEq.mul_left Q.b (Int.ModEq.mul hx hy)))
       (Int.ModEq.mul_left Q.c (Int.ModEq.pow 2 hy)))
 
-/-- Binary quadratic form evaluation is homogeneous of degree two.-/
+/-- Binary quadratic form evaluation is homogeneous of degree two.
+@isnad1 id=eq.0h4v.s5.67fe7271abe5 from=translated src=- shape=08d32853 vocab=6e53476c
+-/
 theorem eval_mul_right (Q : BinaryQuadraticForm) (x y k : ℤ) :
     Q.eval (x * k) (y * k) = k ^ 2 * Q.eval x y := by
   unfold eval
@@ -620,7 +689,9 @@ The proof uses the Chinese Remainder Theorem: for each prime `p | |M|`, pick
 `(u_p, v_p) ∈ {(1,0),(0,1),(1,1)}` with `p ∤ Q(u_p, v_p)` (by
 `exists_eval_not_dvd_of_isPrimitive_of_prime`), then combine via CRT to get
 `(x, y)` satisfying all congruences simultaneously. After dividing by `d =
-gcd(x, y)`, the resulting coprime pair still works.-/
+gcd(x, y)`, the resulting coprime pair still works.
+@isnad1 id=ex.2h2v.s5.2bf9798e0624 from=translated src=- shape=18d0d6e1 vocab=16fe315a
+-/
 theorem exists_coprime_eval_of_isPrimitive {Q : BinaryQuadraticForm}
     (hQ : Q.IsPrimitive) {M : ℤ} (hM : M ≠ 0) :
     ∃ x y : ℤ, Int.gcd x y = 1 ∧ Int.gcd (Q.eval x y) M = 1 := by
@@ -704,7 +775,9 @@ def sl2z_of_coprime (x y : ℤ) (h : Int.gcd x y = 1) : SL2Z := by
     _ = (1 : ℤ) := hone
 
 /-- The transform of a form by `sl2z_of_coprime x y h` has leading coefficient
-equal to `Q.eval x y`.-/
+equal to `Q.eval x y`.
+@isnad1 id=eq.1h3v.s4.1cf9affa22d9 from=translated src=- shape=5aadbc05 vocab=d1a409ee
+-/
 theorem transform_sl2z_of_coprime_a (Q : BinaryQuadraticForm) (x y : ℤ)
     (h : Int.gcd x y = 1) :
     (transform Q (sl2z_of_coprime x y h)).a = Q.eval x y := by
@@ -713,7 +786,9 @@ theorem transform_sl2z_of_coprime_a (Q : BinaryQuadraticForm) (x y : ℤ)
   simp [transform, eval, h00, h10]
 
 /-- The transform of a form by `sl2z_of_coprime x y h` preserves the discriminant
-and primitivity (inherited from `Action.lean`).-/
+and primitivity (inherited from `Action.lean`).
+@isnad1 id=propereq.1h3v.s4.d020b1479b0d from=translated src=- shape=0b461c1a vocab=fb34c348
+-/
 theorem properEquivalent_sl2z_of_coprime (Q : BinaryQuadraticForm) (x y : ℤ)
     (h : Int.gcd x y = 1) : ProperEquivalent Q (transform Q (sl2z_of_coprime x y h)) :=
   ⟨sl2z_of_coprime x y h, rfl⟩
@@ -723,39 +798,62 @@ def translateSL2Z (n : ℤ) : SL2Z := by
   refine ⟨!![1, n; 0, 1], ?_⟩
   norm_num [Matrix.det_fin_two]
 
+/--
+@isnad1 id=eq.0h1v.s6.ac0cb2acec38 from=translated src=- shape=13fd8018 vocab=6a2eed18
+-/
 @[simp] theorem translateSL2Z_apply_00 (n : ℤ) :
     (translateSL2Z n : Matrix (Fin 2) (Fin 2) ℤ) 0 0 = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.eedd01c01e05 from=translated src=- shape=c01ba379 vocab=6a2eed18
+-/
 @[simp] theorem translateSL2Z_apply_01 (n : ℤ) :
     (translateSL2Z n : Matrix (Fin 2) (Fin 2) ℤ) 0 1 = n :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.74ea19c1440f from=translated src=- shape=13fd8018 vocab=6a2eed18
+-/
 @[simp] theorem translateSL2Z_apply_10 (n : ℤ) :
     (translateSL2Z n : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.4805853d3f57 from=translated src=- shape=13fd8018 vocab=6a2eed18
+-/
 @[simp] theorem translateSL2Z_apply_11 (n : ℤ) :
     (translateSL2Z n : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.439f6ebdec27 from=translated src=- shape=c3b0ceec vocab=e579c5b6
+-/
 @[simp, nolint simpNF] theorem transform_translate_a (Q : BinaryQuadraticForm) (n : ℤ) :
     (transform Q (translateSL2Z n)).a = Q.a := by
   change Q.a * 1 ^ 2 + Q.b * 1 * 0 + Q.c * 0 ^ 2 = Q.a
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.0d502f6ec9e6 from=translated src=- shape=29df7f63 vocab=ec6aaa5a
+-/
 @[simp, nolint simpNF] theorem transform_translate_b (Q : BinaryQuadraticForm) (n : ℤ) :
     (transform Q (translateSL2Z n)).b = Q.b + 2 * Q.a * n := by
   change 2 * Q.a * 1 * n + Q.b * (1 * 1 + n * 0) + 2 * Q.c * 0 * 1 =
     Q.b + 2 * Q.a * n
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.729d09a0c5aa from=translated src=- shape=c685d0f6 vocab=bb268503
+-/
 @[simp, nolint simpNF] theorem transform_translate_c (Q : BinaryQuadraticForm) (n : ℤ) :
     (transform Q (translateSL2Z n)).c = Q.a * n ^ 2 + Q.b * n + Q.c := by
   change Q.a * n ^ 2 + Q.b * n * 1 + Q.c * 1 ^ 2 = Q.a * n ^ 2 + Q.b * n + Q.c
   ring
 
-/-- Same-discriminant forms have middle coefficients of the same parity.-/
+/-- Same-discriminant forms have middle coefficients of the same parity.
+@isnad1 id=even.1h2v.s4.74286cfe035e from=translated src=- shape=58d74fcc vocab=96fd2a87
+-/
 theorem even_sub_b_of_same_discriminant {Q R : BinaryQuadraticForm}
     (hD : Q.disc = R.disc) : Even (R.b - Q.b) := by
   rcases Q with ⟨a, b, c⟩
@@ -778,7 +876,9 @@ theorem even_sub_b_of_same_discriminant {Q R : BinaryQuadraticForm}
     linarith
 
 /-- If leading coefficients are coprime and middle coefficients have the same
-parity, translations can align the middle coefficients.-/
+parity, translations can align the middle coefficients.
+@isnad1 id=ex.2h4v.s6.9725c4acd1c8 from=translated src=- shape=22e117aa vocab=857e9e43
+-/
 theorem exists_middle_alignment {A C b d : ℤ} (hgcd : Int.gcd A C = 1)
     (heven : Even (d - b)) :
     ∃ n m : ℤ, b + 2 * A * n = d + 2 * C * m := by
@@ -805,7 +905,9 @@ vector where `Q` takes a value coprime to `R.a`, then applies the corresponding
 `SL₂(ℤ)` change of variables to make that value the leading coefficient.  Since
 same-discriminant forms have middle coefficients of the same parity, Bezout
 coefficients for the two coprime leading coefficients give translations that
-align the middle coefficients, producing concordant representatives.-/
+align the middle coefficients, producing concordant representatives.
+@isnad1 id=ex.5h2v.s5.8bd902a27682 from=translated src=- shape=5940ac8c vocab=5d9637be
+-/
 theorem exists_concordant_of_sameDiscriminant
     {Q R : BinaryQuadraticForm} (hQprim : Q.IsPrimitive) (_hRprim : R.IsPrimitive)
     (_hQpos : Q.IsPositiveDefinite) (hRpos : R.IsPositiveDefinite)

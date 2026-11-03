@@ -41,12 +41,17 @@ def transform (Q : BinaryQuadraticForm) (g : SL2Z) : BinaryQuadraticForm where
     2 * Q.c * m10 g * m11 g
   c := Q.a * m01 g ^ 2 + Q.b * m01 g * m11 g + Q.c * m11 g ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s5.87e66774037f from=translated src=- shape=bb0110a5 vocab=4314cd75
+-/
 @[simp] theorem transform_one (Q : BinaryQuadraticForm) :
     transform Q (1 : SL2Z) = Q := by
   cases Q
   ext <;> norm_num [transform, m00, m01, m10, m11]
 
-/-- The coordinate transform is compatible with multiplication in `SL₂(ℤ)`.-/
+/-- The coordinate transform is compatible with multiplication in `SL₂(ℤ)`.
+@isnad1 id=eq.0h3v.s5.09b7a6137976 from=translated src=- shape=69b0a24e vocab=cb5fb276
+-/
 theorem transform_mul (Q : BinaryQuadraticForm) (g h : SL2Z) :
     transform (transform Q g) h = transform Q (g * h) := by
   rcases Q with ⟨A, B, C⟩
@@ -65,10 +70,16 @@ instance instMulAction : MulAction SL2Zᵐᵒᵖ BinaryQuadraticForm where
     rw [MulOpposite.unop_mul]
     exact (transform_mul Q h.unop g.unop).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.998407fa8456 from=translated src=- shape=2c975f13 vocab=385d3ced
+-/
 @[simp] theorem smul_eq_transform (g : SL2Zᵐᵒᵖ) (Q : BinaryQuadraticForm) :
     g • Q = transform Q g.unop :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.3338072a49d5 from=translated src=- shape=b3f51772 vocab=f82106fd
+-/
 @[simp] theorem op_smul_eq_transform (g : SL2Z) (Q : BinaryQuadraticForm) :
     (MulOpposite.op g : SL2Zᵐᵒᵖ) • Q = transform Q g :=
   rfl
@@ -77,7 +88,9 @@ instance instMulAction : MulAction SL2Zᵐᵒᵖ BinaryQuadraticForm where
 def ProperEquivalent (Q R : BinaryQuadraticForm) : Prop :=
   ∃ g : SL2Z, (MulOpposite.op g : SL2Zᵐᵒᵖ) • Q = R
 
-/-- Proper equivalence is the orbit relation for the opposite-group action.-/
+/-- Proper equivalence is the orbit relation for the opposite-group action.
+@isnad1 id=iff.0h2v.s5.c79bf9a861f3 from=translated src=- shape=217919de vocab=9e7bd826
+-/
 theorem properEquivalent_iff_orbitRel {Q R : BinaryQuadraticForm} :
     ProperEquivalent Q R ↔
       (MulAction.orbitRel SL2Zᵐᵒᵖ BinaryQuadraticForm).r R Q := by
@@ -88,24 +101,32 @@ theorem properEquivalent_iff_orbitRel {Q R : BinaryQuadraticForm} :
   · rintro ⟨g, hg⟩
     exact ⟨g.unop, hg⟩
 
-/-- Proper equivalence is reflexive.-/
+/-- Proper equivalence is reflexive.
+@isnad1 id=propereq.0h1v.s2.dcccee20551e from=translated src=- shape=b3bac8d8 vocab=470b733f
+-/
 theorem ProperEquivalent.refl (Q : BinaryQuadraticForm) : ProperEquivalent Q Q := by
   rw [properEquivalent_iff_orbitRel]
 
-/-- Proper equivalence is symmetric.-/
+/-- Proper equivalence is symmetric.
+@isnad1 id=propereq.1h2v.s3.d21bb7790bbc from=translated src=- shape=7e524d71 vocab=470b733f
+-/
 theorem ProperEquivalent.symm {Q R : BinaryQuadraticForm}
     (hQR : ProperEquivalent Q R) : ProperEquivalent R Q := by
   rw [properEquivalent_iff_orbitRel] at hQR ⊢
   exact (MulAction.orbitRel SL2Zᵐᵒᵖ BinaryQuadraticForm).symm hQR
 
-/-- Proper equivalence is transitive.-/
+/-- Proper equivalence is transitive.
+@isnad1 id=propereq.2h3v.s4.14b22b9deb43 from=translated src=- shape=0bc0c4a6 vocab=470b733f
+-/
 theorem ProperEquivalent.trans {Q R S : BinaryQuadraticForm}
     (hQR : ProperEquivalent Q R) (hRS : ProperEquivalent R S) :
     ProperEquivalent Q S := by
   rw [properEquivalent_iff_orbitRel] at hQR hRS ⊢
   exact (MulAction.orbitRel SL2Zᵐᵒᵖ BinaryQuadraticForm).trans hRS hQR
 
-/-- A positive definite form evaluates positively on every nonzero vector.-/
+/-- A positive definite form evaluates positively on every nonzero vector.
+@isnad1 id=lt.2h3v.s5.35a46002b6ce from=translated src=- shape=411a02c7 vocab=29be22ce
+-/
 theorem eval_pos_of_isPositiveDefinite (Q : BinaryQuadraticForm)
     (hQ : Q.IsPositiveDefinite) {x y : ℤ} (hxy : x ≠ 0 ∨ y ≠ 0) :
     0 < Q.eval x y := by
@@ -148,7 +169,9 @@ private theorem disc_transform_aux (a b c p q r s : ℤ) (hdet : p * s - q * r =
       rw [hdet]
       ring
 
-/-- The `SL₂(ℤ)` coordinate transform preserves discriminants.-/
+/-- The `SL₂(ℤ)` coordinate transform preserves discriminants.
+@isnad1 id=eq.0h2v.s3.1731104b59f5 from=translated src=- shape=bc45798f vocab=55618362
+-/
 theorem disc_transform (Q : BinaryQuadraticForm) (g : SL2Z) :
     (transform Q g).disc = Q.disc := by
   let p : ℤ := m00 g
@@ -162,13 +185,17 @@ theorem disc_transform (Q : BinaryQuadraticForm) (g : SL2Z) :
   rcases Q with ⟨A, B, C⟩
   simpa [transform, disc, p, q, r, s] using disc_transform_aux A B C p q r s hdet
 
-/-- Properly equivalent forms have equal discriminants.-/
+/-- Properly equivalent forms have equal discriminants.
+@isnad1 id=eq.1h2v.s3.66c0b213d25f from=translated src=- shape=52d409ee vocab=43b5d230
+-/
 theorem disc_eq_of_properEquivalent {Q R : BinaryQuadraticForm}
     (hQR : ProperEquivalent Q R) : Q.disc = R.disc := by
   rcases hQR with ⟨g, rfl⟩
   exact (disc_transform Q g).symm
 
-/-- The `SL₂(ℤ)` coordinate transform preserves positive definiteness.-/
+/-- The `SL₂(ℤ)` coordinate transform preserves positive definiteness.
+@isnad1 id=ispositi.1h2v.s3.ea71d8e43b31 from=translated src=- shape=1b0527e2 vocab=98ea95f8
+-/
 theorem isPositiveDefinite_transform (Q : BinaryQuadraticForm)
     (hQ : Q.IsPositiveDefinite) (g : SL2Z) : (transform Q g).IsPositiveDefinite := by
   constructor
@@ -181,7 +208,9 @@ theorem isPositiveDefinite_transform (Q : BinaryQuadraticForm)
     simp [hzero.1, hzero.2] at hdet
   · simpa [disc_transform] using hQ.2
 
-/-- Proper equivalence preserves positive definiteness.-/
+/-- Proper equivalence preserves positive definiteness.
+@isnad1 id=ispositi.2h2v.s3.8dcdff2f2c2e from=translated src=- shape=db379f93 vocab=d6c5d9d3
+-/
 theorem isPositiveDefinite_of_properEquivalent {Q R : BinaryQuadraticForm}
     (hQ : Q.IsPositiveDefinite) (hQR : ProperEquivalent Q R) : R.IsPositiveDefinite := by
   rcases hQR with ⟨g, rfl⟩
@@ -215,7 +244,9 @@ private theorem dvd_coefficients_of_dvd_transform_coefficients
           (dvd_mul_of_dvd_left hc (m11 g⁻¹ ^ 2)) using 1 <;>
         first | rfl | (simp [transform]; ring)
 
-/-- The `SL₂(ℤ)` coordinate transform preserves primitivity.-/
+/-- The `SL₂(ℤ)` coordinate transform preserves primitivity.
+@isnad1 id=isprimit.1h2v.s3.2a4124d366c6 from=translated src=- shape=1b0527e2 vocab=5ee53327
+-/
 theorem isPrimitive_transform (Q : BinaryQuadraticForm)
     (hQ : Q.IsPrimitive) (g : SL2Z) : (transform Q g).IsPrimitive := by
   unfold IsPrimitive at hQ ⊢
@@ -232,7 +263,9 @@ theorem isPrimitive_transform (Q : BinaryQuadraticForm)
   rw [hQ] at hngcd
   exact Nat.dvd_one.mp hngcd
 
-/-- Proper equivalence preserves primitivity.-/
+/-- Proper equivalence preserves primitivity.
+@isnad1 id=isprimit.2h2v.s3.dafb93058513 from=translated src=- shape=db379f93 vocab=16524b5c
+-/
 theorem isPrimitive_of_properEquivalent {Q R : BinaryQuadraticForm}
     (hQ : Q.IsPrimitive) (hQR : ProperEquivalent Q R) : R.IsPrimitive := by
   rcases hQR with ⟨g, rfl⟩

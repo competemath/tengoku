@@ -57,10 +57,16 @@ def ofMathlib (d : ℤ) : ℤ√d →+* Zsqrtd d where
     intro x y
     ext <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.bdad0270fdd7 from=translated src=- shape=5968ae0a vocab=57586a9e
+-/
 @[simp] theorem toMathlib_ofMathlib (d : ℤ) (z : ℤ√d) :
     toMathlib d (ofMathlib d z) = z := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.c9b31b74f1ab from=translated src=- shape=5968ae0a vocab=57586a9e
+-/
 @[simp] theorem ofMathlib_toMathlib (d : ℤ) (z : Zsqrtd d) :
     ofMathlib d (toMathlib d z) = z := by
   rfl

@@ -112,12 +112,16 @@ noncomputable def starAlgEquiv (d : ℚ) [Fact (¬ IsSquare d)] :
     -- map sends `r ↦ ⟨r, 0⟩` and `star ⟨r, 0⟩ = ⟨r, 0⟩`.
     simp
 
-/-- `Qsqrtd.starAlgEquiv` acts as `star`.-/
+/-- `Qsqrtd.starAlgEquiv` acts as `star`.
+@isnad1 id=eq.0h2v.s7.39f766458d9e from=translated src=- shape=ddab4a92 vocab=89e43bfc
+-/
 theorem starAlgEquiv_apply {d : ℚ} [Fact (¬ IsSquare d)] (x : Qsqrtd d) :
     starAlgEquiv d x = star x := by
   rfl
 
-/-- The inverse of `Qsqrtd.starAlgEquiv` also acts as `star`.-/
+/-- The inverse of `Qsqrtd.starAlgEquiv` also acts as `star`.
+@isnad1 id=eq.0h2v.s8.e3447ebaf501 from=translated src=- shape=ad8f8357 vocab=a84f48f7
+-/
 theorem starAlgEquiv_symm_apply {d : ℚ} [Fact (¬ IsSquare d)] (x : Qsqrtd d) :
     (starAlgEquiv d).symm x = star x := by
   rfl

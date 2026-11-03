@@ -28,7 +28,9 @@ open scoped NumberField
 namespace QuadraticField
 
 /-- The ring of integers of an abstract quadratic field is a quadratic extension
-of `ℤ`.-/
+of `ℤ`.
+@isnad1 id=isquadra.0h1v.s5.f3ed0915458c from=translated src=- shape=eea2e7a7 vocab=5496e926
+-/
 instance ringOfIntegers_isQuadraticExtension
     (K : Type*) [Field K] [Algebra ℚ K] [QuadraticField K] :
     Algebra.IsQuadraticExtension ℤ (𝓞 K) :=

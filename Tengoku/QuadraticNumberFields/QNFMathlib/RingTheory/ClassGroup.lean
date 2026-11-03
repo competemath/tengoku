@@ -37,7 +37,9 @@ variable {R : Type*} [CommRing R] [IsDomain R] [IsDedekindDomain R]
 
 /-- Coprime integral representative. In a Dedekind domain, every ideal class `C`
 admits an integral ideal representative whose underlying ideal is coprime to a
-prescribed nonzero ideal `M`.-/
+prescribed nonzero ideal `M`.
+@isnad1 id=ex.1h3v.s11.4ab488987d5b from=translated src=- shape=640d99c8 vocab=57f9e58e
+-/
 theorem exists_integralRep_isCoprime
     (C : ClassGroup R) (M : Ideal R) (hM : M ≠ ⊥) :
     ∃ I : (Ideal R)⁰, ClassGroup.mk0 I = C ∧ IsCoprime (I : Ideal R) M := by

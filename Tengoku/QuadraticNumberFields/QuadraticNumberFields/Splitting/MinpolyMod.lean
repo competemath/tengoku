@@ -50,7 +50,9 @@ section PolynomialLemmas
 
 variable {F : Type*} [Field F]
 
-/-- `X² - C a` splits over a field iff `a` is a square.-/
+/-- `X² - C a` splits over a field iff `a` is a square.
+@isnad1 id=iff.0h2v.s8.eec72b77c289 from=translated src=- shape=de59386a vocab=f352317b
+-/
 theorem sq_sub_C_splits_iff_isSquare (a : F) :
     (X ^ 2 - C a : F[X]).Splits ↔ IsSquare a := by
   constructor
@@ -67,7 +69,9 @@ theorem sq_sub_C_splits_iff_isSquare (a : F) :
       simp [eval_sub, eval_C, sq]
     exact Splits.of_natDegree_eq_two natDegree_X_pow_sub_C hev
 
-/-- `X² - C a` is irreducible over a field iff `a` is not a square.-/
+/-- `X² - C a` is irreducible over a field iff `a` is not a square.
+@isnad1 id=iff.0h2v.s8.14ec7459e58f from=translated src=- shape=5ccfcfa8 vocab=8dcd59a5
+-/
 theorem sq_sub_C_irreducible_iff_not_isSquare (a : F) :
     Irreducible (X ^ 2 - C a : F[X]) ↔ ¬ IsSquare a := by
   have hm := monic_X_pow_sub_C a two_ne_zero (R := F)
@@ -76,7 +80,9 @@ theorem sq_sub_C_irreducible_iff_not_isSquare (a : F) :
       (natDegree_X_pow_sub_C.le.trans (by norm_num))]
   exact nthRoots_two_eq_zero_iff
 
-/-- `X² - C a` is separable iff `a ≠ 0` (when `char ≠ 2`).-/
+/-- `X² - C a` is separable iff `a ≠ 0` (when `char ≠ 2`).
+@isnad1 id=iff.1h2v.s8.24fcc7ac3462 from=translated src=- shape=c1ac60f5 vocab=5eb93949
+-/
 theorem sq_sub_C_separable_iff (hchar : (2 : F) ≠ 0) (a : F) :
     (X ^ 2 - C a : F[X]).Separable ↔ a ≠ 0 := by
   constructor
@@ -94,25 +100,33 @@ section LegendreSymbol
 
 variable (d : ℤ) (p : ℕ) [Fact p.Prime]
 
-/-- `X² - d` splits mod `p` iff `legendreSym p d = 1` (when `p ∤ d`).-/
+/-- `X² - d` splits mod `p` iff `legendreSym p d = 1` (when `p ∤ d`).
+@isnad1 id=iff.1h2v.s8.0353dda92fe3 from=translated src=- shape=567d9713 vocab=4bbe96fb
+-/
 theorem sq_sub_splits_mod_iff (hpd : (d : ZMod p) ≠ 0) :
     (X ^ 2 - C (d : ZMod p) : (ZMod p)[X]).Splits ↔
       legendreSym p d = 1 := by
   rw [sq_sub_C_splits_iff_isSquare, legendreSym.eq_one_iff p hpd]
 
-/-- `X² - d` is irreducible mod `p` iff `legendreSym p d = -1`.-/
+/-- `X² - d` is irreducible mod `p` iff `legendreSym p d = -1`.
+@isnad1 id=iff.0h2v.s8.0e010738cae3 from=translated src=- shape=319c72d2 vocab=47726747
+-/
 theorem sq_sub_irreducible_mod_iff :
     Irreducible (X ^ 2 - C (d : ZMod p) : (ZMod p)[X]) ↔
       legendreSym p d = -1 := by
   rw [sq_sub_C_irreducible_iff_not_isSquare,
       legendreSym.eq_neg_one_iff]
 
-/-- `legendreSym p d = 0` iff `p ∣ d`.-/
+/-- `legendreSym p d = 0` iff `p ∣ d`.
+@isnad1 id=iff.0h2v.s4.017005df581f from=translated src=- shape=9b5714e4 vocab=d8bbda20
+-/
 theorem legendreSym_eq_zero_iff_dvd :
     legendreSym p d = 0 ↔ (p : ℤ) ∣ d := by
   rw [legendreSym.eq_zero_iff, ZMod.intCast_zmod_eq_zero_iff_dvd]
 
-/-- When `p ∣ d` (odd `p`), `X² - d` is not separable mod `p`.-/
+/-- When `p ∣ d` (odd `p`), `X² - d` is not separable mod `p`.
+@isnad1 id=not.2h2v.s8.9a5454ce4279 from=translated src=- shape=45142661 vocab=1c00ff33
+-/
 theorem sq_sub_not_separable_mod (hp2 : p ≠ 2)
     (hpd : (p : ℤ) ∣ d) :
     ¬ (X ^ 2 - C (d : ZMod p) : (ZMod p)[X]).Separable := by
@@ -127,7 +141,9 @@ theorem sq_sub_not_separable_mod (hp2 : p ≠ 2)
   rw [sq_sub_C_separable_iff hchar, not_not]
   exact hd0
 
-/-- If `p ≠ 2`, then `(2 : ZMod p)` is nonzero.-/
+/-- If `p ≠ 2`, then `(2 : ZMod p)` is nonzero.
+@isnad1 id=ne.1h1v.s6.9ef57fbfb6e9 from=translated src=- shape=0da77854 vocab=dac35cc4
+-/
 theorem zmod_two_ne_zero_of_prime_ne_two (hp : p ≠ 2) :
     (2 : ZMod p) ≠ 0 := by
   change ((2 : ℕ) : ZMod p) ≠ 0
@@ -136,7 +152,9 @@ theorem zmod_two_ne_zero_of_prime_ne_two (hp : p ≠ 2) :
   exact hp (Nat.le_antisymm (Nat.le_of_dvd (by norm_num) h) (Fact.out : Nat.Prime p).two_le)
 
 /-- The normalized factor set of `X² - r²` over `ZMod p` has two factors when
-`r ≠ 0` and `2 ≠ 0`.-/
+`r ≠ 0` and `2 ≠ 0`.
+@isnad1 id=eq.2h2v.s9.f7fac5c32777 from=translated src=- shape=6630f5c0 vocab=65af4d1e
+-/
 theorem normalizedFactors_X_sq_sub_C_sq_card_eq_two
     {r : ZMod p} (hr : r ≠ 0) (hp2 : (2 : ZMod p) ≠ 0) :
     ((normalizedFactors ((X ^ 2 - C (r * r)) : (ZMod p)[X])).toFinset.card = 2) := by
@@ -167,7 +185,9 @@ theorem normalizedFactors_X_sq_sub_C_sq_card_eq_two
     exact (Polynomial.monic_X_sub_C (-r : ZMod p)).ne_zero
 
 /-- If `legendreSym p d = 1`, then `X² - d` has two normalized factors mod `p`
-away from `p ∣ d` and `p = 2`.-/
+away from `p ∣ d` and `p = 2`.
+@isnad1 id=eq.3h2v.s9.1813e26775b8 from=translated src=- shape=1f677589 vocab=e82e6ee3
+-/
 theorem normalizedFactors_X_sq_sub_C_card_eq_two_of_legendre_eq_one
     (hp : p ≠ 2) (hpd : ¬ (p : ℤ) ∣ d) (hleg : legendreSym p d = 1) :
     ((normalizedFactors ((X ^ 2 - C (d : ZMod p)) : (ZMod p)[X])).toFinset.card = 2) := by
@@ -183,7 +203,9 @@ theorem normalizedFactors_X_sq_sub_C_card_eq_two_of_legendre_eq_one
     (zmod_two_ne_zero_of_prime_ne_two p hp)
 
 /-- If `legendreSym p d ≠ 1`, then `X² - d` has one normalized factor mod `p`
-away from `p ∣ d`.-/
+away from `p ∣ d`.
+@isnad1 id=eq.2h2v.s9.98c05b7409b3 from=translated src=- shape=6af7416d vocab=e82e6ee3
+-/
 theorem normalizedFactors_X_sq_sub_C_card_eq_one_of_legendre_ne_one
     (hpd : ¬ (p : ℤ) ∣ d) (hleg : legendreSym p d ≠ 1) :
     ((normalizedFactors ((X ^ 2 - C (d : ZMod p)) : (ZMod p)[X])).toFinset.card = 1) := by
@@ -198,7 +220,9 @@ theorem normalizedFactors_X_sq_sub_C_card_eq_one_of_legendre_ne_one
   · exact (sq_sub_C_irreducible_iff_not_isSquare (F := ZMod p) (d : ZMod p)).mpr hnsq
 
 /-- If the discriminant `1 + 4k` is a nonzero square and `2 ≠ 0`, then
-`X² - X - k` has two normalized factors.-/
+`X² - X - k` has two normalized factors.
+@isnad1 id=eq.3h3v.s9.95319053b2e2 from=translated src=- shape=3cb1cc42 vocab=4fb9e6f9
+-/
 theorem normalizedFactors_X_sq_sub_X_sub_C_card_eq_two_of_square_discr
     {k r : ZMod p} (hr0 : r ≠ 0) (hp2 : (2 : ZMod p) ≠ 0)
     (hr : (1 : ZMod p) + 4 * k = r * r) :
@@ -244,7 +268,9 @@ theorem normalizedFactors_X_sq_sub_X_sub_C_card_eq_two_of_square_discr
   · exact (Polynomial.monic_X_sub_C ((1 + r) / 2 : ZMod p)).ne_zero
   · exact (Polynomial.monic_X_sub_C ((1 - r) / 2 : ZMod p)).ne_zero
 
-/-- If the discriminant `1 + 4k` is not a square, then `X² - X - k` is irreducible.-/
+/-- If the discriminant `1 + 4k` is not a square, then `X² - X - k` is irreducible.
+@isnad1 id=irreduci.1h2v.s9.a17e2b4f9b23 from=translated src=- shape=f548e195 vocab=b61ed49f
+-/
 theorem irreducible_X_sq_sub_X_sub_C_of_not_square_discr
     {k : ZMod p} (hnsq : ¬ IsSquare ((1 : ZMod p) + 4 * k)) :
     Irreducible (X ^ 2 - X - C k : (ZMod p)[X]) := by
@@ -272,7 +298,9 @@ theorem irreducible_X_sq_sub_X_sub_C_of_not_square_discr
     simpa [discrim, pow_two] using hdisc
 
 /-- If `legendreSym p d = 1` and `d = 1 + 4k`, then `X² - X - k` has two
-normalized factors mod `p`, away from `p ∣ d` and `p = 2`.-/
+normalized factors mod `p`, away from `p ∣ d` and `p = 2`.
+@isnad1 id=eq.4h3v.s9.866c98e9dc79 from=translated src=- shape=cf2b65be vocab=f1a4246c
+-/
 theorem normalizedFactors_X_sq_sub_X_sub_C_card_eq_two_of_legendre_eq_one
     (hp : p ≠ 2) (hpd : ¬ (p : ℤ) ∣ d) {k : ℤ}
     (hk : d = 1 + 4 * k) (hleg : legendreSym p d = 1) :
@@ -291,7 +319,9 @@ theorem normalizedFactors_X_sq_sub_X_sub_C_card_eq_two_of_legendre_eq_one
     (zmod_two_ne_zero_of_prime_ne_two p hp) hdisc
 
 /-- If `legendreSym p d ≠ 1` and `d = 1 + 4k`, then `X² - X - k` has one
-normalized factor mod `p`, away from `p ∣ d`.-/
+normalized factor mod `p`, away from `p ∣ d`.
+@isnad1 id=eq.3h3v.s9.1d84a6e2b6ae from=translated src=- shape=9dec1366 vocab=f1a4246c
+-/
 theorem normalizedFactors_X_sq_sub_X_sub_C_card_eq_one_of_legendre_ne_one
     (hpd : ¬ (p : ℤ) ∣ d) {k : ℤ} (hk : d = 1 + 4 * k)
     (hleg : legendreSym p d ≠ 1) :

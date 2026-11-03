@@ -45,10 +45,14 @@ instance : Fact ((-5 : ℤ) < 0) := ⟨by decide⟩
 
 /-! ## Arithmetic conditions for d = -5 -/
 
-/-- Arithmetic input for the prime `2` in `ℤ[√-5]`: `2 ∣ (-5 - 1)`.-/
+/-- Arithmetic input for the prime `2` in `ℤ[√-5]`: `2 ∣ (-5 - 1)`.
+@isnad1 id=dvd.0h0v.s4.94dbe62026b9 from=translated src=- shape=192de4b8 vocab=ab9a9576
+-/
 lemma neg5_dvd_two : 2 ∣ ((-5 : ℤ) - 1) := ⟨-3, by norm_num⟩
 
-/-- Arithmetic input for the prime `3` in `ℤ[√-5]`: `3 ∣ (-5 - 1)`.-/
+/-- Arithmetic input for the prime `3` in `ℤ[√-5]`: `3 ∣ (-5 - 1)`.
+@isnad1 id=dvd.0h0v.s4.c1e46b754ae6 from=translated src=- shape=192de4b8 vocab=ab9a9576
+-/
 lemma neg5_dvd_three : 3 ∣ ((-5 : ℤ) - 1) := ⟨-2, by norm_num⟩
 
 /-! ## Helper lemmas for factorization proofs -/
@@ -60,16 +64,25 @@ by simpa [h] using hy
 
 /-! ## Ideal factorizations (specific to d = -5) -/
 
+/--
+@isnad1 id=eq.0h0v.s9.49d39ca6e1a4 from=translated src=- shape=6be6c4b3 vocab=6de8264e
+-/
 theorem factorization_of_two :
     span {(2 : R)} = (span {2, 1 + sqrtd}) ^ 2 :=
   -- Instance of the general ramified factorization at `p = 2` (since `-5 ≡ 3 mod 4`).
   Zsqrtd.Ideal.span_two_eq_sq (by decide)
 
+/--
+@isnad1 id=eq.0h0v.s9.6ff5eae245c7 from=translated src=- shape=890ae32e vocab=6720f472
+-/
 theorem factorization_of_three :
     span {(3 : R)} = (span {3, 1 + sqrtd}) * (span {3, 1 - sqrtd}) := by
   -- Instance of the general odd-prime split factorization at `p = 3` (since `3 ∣ -5 - 1`).
   simpa using Zsqrtd.Ideal.span_p_eq_span_mul_span 3 (by decide) neg5_dvd_three
 
+/--
+@isnad1 id=eq.0h0v.s9.25e5a9bf11dd from=translated src=- shape=b146005f vocab=d02ae98f
+-/
 theorem factorization_of_one_plus_sqrtd :
     span {(1 + sqrtd : R)} = (span {2, 1 + sqrtd}) * (span {3, 1 + sqrtd}) := by
   -- Expand the ideal product into the span of four pairwise products
@@ -98,6 +111,9 @@ theorem factorization_of_one_plus_sqrtd :
     · -- (1+√-5)² = (1+√-5)·(1+√-5)
       simp
 
+/--
+@isnad1 id=eq.0h0v.s9.f449155ad234 from=translated src=- shape=b146005f vocab=edf2a013
+-/
 theorem factorization_of_one_minus_sqrtd :
     span {(1 - sqrtd : R)} = (span {2, 1 - sqrtd}) * (span {3, 1 - sqrtd}) := by
   -- Symmetric to factorization_of_one_plus_sqrtd, replacing √-5 by -√-5
@@ -124,16 +140,25 @@ theorem factorization_of_one_minus_sqrtd :
 
 /-! ## Primality (instantiated from general theory) -/
 
+/--
+@isnad1 id=isprime.0h0v.s7.3ce80e1b8975 from=translated src=- shape=18939c67 vocab=32f19636
+-/
 theorem isPrime_span_two_one_plus_sqrtd :
     IsPrime (span {2, 1 + sqrtd} : Ideal R) :=
   haveI : Fact (Nat.Prime 2) := ⟨by decide⟩
   Zsqrtd.Ideal.isPrime_span_p_one_plus_sqrtd 2 neg5_dvd_two
 
+/--
+@isnad1 id=isprime.0h0v.s7.07215f333f15 from=translated src=- shape=18939c67 vocab=32f19636
+-/
 theorem isPrime_span_three_one_plus_sqrtd :
     IsPrime (span {3, 1 + sqrtd} : Ideal R) :=
   haveI : Fact (Nat.Prime 3) := ⟨by decide⟩
   Zsqrtd.Ideal.isPrime_span_p_one_plus_sqrtd 3 neg5_dvd_three
 
+/--
+@isnad1 id=isprime.0h0v.s7.75acf11397d2 from=translated src=- shape=18939c67 vocab=4745bacf
+-/
 theorem isPrime_span_three_one_minus_sqrtd :
     IsPrime (span {3, 1 - sqrtd} : Ideal R) :=
   haveI : Fact (Nat.Prime 3) := ⟨by decide⟩

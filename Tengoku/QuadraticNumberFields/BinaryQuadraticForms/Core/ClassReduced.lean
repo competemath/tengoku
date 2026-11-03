@@ -22,7 +22,9 @@ namespace BinaryQuadraticForm
 /-! ## Restricted Gauss reduction interface -/
 
 /-- Every primitive positive definite form has a properly equivalent reduced
-representative inside the same restricted carrier.-/
+representative inside the same restricted carrier.
+@isnad1 id=ex.0h2v.s4.6a760245396b from=translated src=- shape=badff6eb vocab=0cef4209
+-/
 theorem exists_isReduced_primitivePositiveDefiniteForm_properEquivalent
     {D : ℤ} (Q : PrimitivePositiveDefiniteForm D) :
     ∃ R : PrimitivePositiveDefiniteForm D, R.1.IsReduced ∧
@@ -40,7 +42,9 @@ theorem eq_of_isReduced_primitivePositiveDefiniteForm_of_properEquivalent
   apply Subtype.ext
   exact eq_of_isReduced_of_properEquivalent Q.2.2.2 hQred hRred h
 
-/-- Every form class has a reduced primitive positive definite representative.-/
+/-- Every form class has a reduced primitive positive definite representative.
+@isnad1 id=ex.0h2v.s5.1e1685667497 from=translated src=- shape=73c33bf5 vocab=4e81673a
+-/
 theorem exists_isReduced_mk_eq_formClass {D : ℤ} (C : FormClass D) :
     ∃ R : PrimitivePositiveDefiniteForm D, R.1.IsReduced ∧
       Quotient.mk (primitivePositiveDefiniteFormSetoid D) R = C := by

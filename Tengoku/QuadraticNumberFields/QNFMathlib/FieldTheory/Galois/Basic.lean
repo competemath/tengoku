@@ -16,7 +16,9 @@ Material destined for mathlib.
 -/
 
 /-- If `S` is a quadratic extension of `R`, then the fraction field of `S` is a
-quadratic extension of the fraction field of `R`.-/
+quadratic extension of the fraction field of `R`.
+@isnad1 id=isquadra.0h4v.s8.7f9d8c99e15d from=translated src=- shape=08b48e71 vocab=17711e70
+-/
 -- Repository use: `Splitting/Defs.lean` uses this in the `(e, f, g)` trichotomy;
 -- `Mathlib/NumberTheory/RamificationInertia/Galois.lean` uses it to build the
 -- fraction-field Galois bridge.
@@ -35,7 +37,9 @@ theorem Algebra.IsQuadraticExtension.fractionRing
     _ = 2 := Algebra.IsQuadraticExtension.finrank_eq_two R S
 
 /-- If `K` is a quadratic extension of a field `F` of characteristic not equal to
-`2`, then `K/F` is separable.-/
+`2`, then `K/F` is separable.
+@isnad1 id=issepara.1h2v.s6.ecab864d5f79 from=translated src=- shape=c208d086 vocab=8c301d90
+-/
 -- Repository use: `Splitting/Defs.lean` uses this in the `(e, f, g)` trichotomy;
 -- `Mathlib/NumberTheory/RamificationInertia/Galois.lean` uses it to build the
 -- fraction-field Galois bridge.

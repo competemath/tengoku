@@ -75,7 +75,9 @@ private theorem inertiaDeg_eq_inertiaDegIn
     Gal(FractionRing S / FractionRing R) hP').symm
 
 /-- In a split quadratic Dedekind extension, every prime above `p` has inertia
-degree `1`.-/
+degree `1`.
+@isnad1 id=eq.2h4v.s6.37d5f506d985 from=translated src=- shape=3f44ce6b vocab=8829619a
+-/
 theorem inertiaDeg_eq_one_of_isSplitIn
     (hchar : ringChar R ≠ 2)
     {P' : Ideal S} [P'.IsPrime] [P'.LiesOver p]
@@ -104,7 +106,9 @@ private theorem map_eq_prod_pow_ramificationIdxIn
 
 /-- In a degree-2 Dedekind extension, the numerical split condition
 `e = 1 ∧ f = 1` means the ideal factors as a product of two distinct primes:
-`map p = P₁ · P₂`.-/
+`map p = P₁ · P₂`.
+@isnad1 id=ex.3h3v.s8.43e0441a2c8a from=translated src=- shape=537d9bcd vocab=c5d4d15e
+-/
 theorem map_eq_of_ramificationIdxIn_eq_one_of_inertiaDegIn_eq_one
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -128,7 +132,9 @@ theorem map_eq_of_ramificationIdxIn_eq_one_of_inertiaDegIn_eq_one
   rwa [Finset.prod_pair hne] at hfact
 
 /-- In a degree-2 Dedekind extension, `IsSplitIn p S` gives the classical split
-factorization `map p = P₁ * P₂` with two distinct primes above `p`.-/
+factorization `map p = P₁ * P₂` with two distinct primes above `p`.
+@isnad1 id=ex.3h3v.s8.0cf0d1271714 from=translated src=- shape=17b30dd8 vocab=60583002
+-/
 theorem map_eq_of_isSplitIn
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -137,7 +143,9 @@ theorem map_eq_of_isSplitIn
   map_eq_of_ramificationIdxIn_eq_one_of_inertiaDegIn_eq_one p S hchar hp hs
 
 /-- In a degree-2 Dedekind extension, the numerical inert condition
-`g = 1 ∧ e = 1` means the lifted ideal is itself prime.-/
+`g = 1 ∧ e = 1` means the lifted ideal is itself prime.
+@isnad1 id=isprime.3h3v.s8.7756df787154 from=translated src=- shape=27875391 vocab=f754551d
+-/
 theorem map_isPrime_of_ncard_primesOver_eq_one_of_ramificationIdxIn_eq_one
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -156,7 +164,9 @@ theorem map_isPrime_of_ncard_primesOver_eq_one_of_ramificationIdxIn_eq_one
   exact (hPset ▸ Set.mem_singleton P : P ∈ P(p)).1
 
 /-- In a degree-2 Dedekind extension, `IsInertIn p S` says the lifted ideal is
-itself prime.-/
+itself prime.
+@isnad1 id=isprime.3h3v.s7.5a639025a3ab from=translated src=- shape=5b664a0a vocab=a25f4029
+-/
 theorem map_isPrime_of_isInertIn
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -165,7 +175,9 @@ theorem map_isPrime_of_isInertIn
   map_isPrime_of_ncard_primesOver_eq_one_of_ramificationIdxIn_eq_one p S hchar hp hi
 
 /-- If `P` lies above an inert prime `p`, then extending `p` to `S` recovers
-`P`.-/
+`P`.
+@isnad1 id=eq.4h4v.s8.4036c1fb7d3a from=translated src=- shape=fef2059e vocab=ce05f638
+-/
 theorem map_eq_of_isInertIn_of_mem_primesOver
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -181,7 +193,9 @@ theorem map_eq_of_isInertIn_of_mem_primesOver
     Ideal.map_ne_bot_of_ne_bot hp
   exact (hQprime.isMaximal hQbot).eq_of_le hP'.1.ne_top hQle
 
-/-- If `P` lies above an inert principal prime `p`, then `P` is principal.-/
+/-- If `P` lies above an inert principal prime `p`, then `P` is principal.
+@isnad1 id=isprinci.5h4v.s8.b17fc6fad9e5 from=translated src=- shape=03fd59a3 vocab=791ff3d2
+-/
 theorem isPrincipal_of_isInertIn_of_mem_primesOver_of_isPrincipal
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -196,7 +210,9 @@ theorem isPrincipal_of_isInertIn_of_mem_primesOver_of_isPrincipal
   exact ⟨_, rfl⟩
 
 /-- In an inert quadratic Dedekind extension, the unique prime above `p` has
-inertia degree `2`.-/
+inertia degree `2`.
+@isnad1 id=eq.3h4v.s7.d3540f73881d from=translated src=- shape=24f2c990 vocab=ce0908fd
+-/
 theorem inertiaDeg_eq_two_of_isInertIn
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
     {P' : Ideal S} [P'.IsPrime] [P'.LiesOver p]
@@ -207,7 +223,9 @@ theorem inertiaDeg_eq_two_of_isInertIn
   exact ((ncard_primesOver_eq_one_and_ramificationIdxIn_eq_one_iff_efg p S hchar hp).mp hi).2.2
 
 /-- In a ramified quadratic Dedekind extension, the unique prime above `p` has
-inertia degree `1`.-/
+inertia degree `1`.
+@isnad1 id=eq.3h4v.s7.b7c0477c2f5d from=translated src=- shape=24f2c990 vocab=75f6f51d
+-/
 theorem inertiaDeg_eq_one_of_isRamifiedIn
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
     {P' : Ideal S} [P'.IsPrime] [P'.LiesOver p]
@@ -218,7 +236,9 @@ theorem inertiaDeg_eq_one_of_isRamifiedIn
   exact ((one_lt_ramificationIdxIn_iff_efg p S hchar hp).mp hr).2.2
 
 /-- In a degree-2 Dedekind extension, the numerical ramified condition
-`1 < e` means the lifted ideal is the square of a prime: `map p = P²`.-/
+`1 < e` means the lifted ideal is the square of a prime: `map p = P²`.
+@isnad1 id=ex.3h3v.s8.1945c0f3e45a from=translated src=- shape=a82baeea vocab=7a4d630d
+-/
 theorem map_eq_sq_of_one_lt_ramificationIdxIn
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -236,7 +256,9 @@ theorem map_eq_sq_of_one_lt_ramificationIdxIn
   simpa using hfact
 
 /-- In a degree-2 Dedekind extension, `IsRamifiedIn p S` gives the classical
-ramified factorization `map p = P ^ 2` for the unique prime above `p`.-/
+ramified factorization `map p = P ^ 2` for the unique prime above `p`.
+@isnad1 id=ex.3h3v.s8.c009b28198cf from=translated src=- shape=4f8c4db4 vocab=18d13ae0
+-/
 theorem map_eq_sq_of_isRamifiedIn
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -245,7 +267,9 @@ theorem map_eq_sq_of_isRamifiedIn
   map_eq_sq_of_one_lt_ramificationIdxIn p S hchar hp hr
 
 /-- In a quadratic Dedekind extension, a ramified prime has a singleton fiber
-above it.-/
+above it.
+@isnad1 id=ex.3h3v.s7.43625abdc590 from=translated src=- shape=1370ab01 vocab=cd89283a
+-/
 theorem exists_primesOver_eq_singleton_of_isRamifiedIn
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
     (hr : IsRamifiedIn p S) :
@@ -255,7 +279,9 @@ theorem exists_primesOver_eq_singleton_of_isRamifiedIn
   rw [Set.ncard_eq_one] at hg
   exact hg
 
-/-- In a quadratic Dedekind extension, a ramified prime has a unique prime above it.-/
+/-- In a quadratic Dedekind extension, a ramified prime has a unique prime above it.
+@isnad1 id=eq.4h4v.s7.c2f9ae8995b6 from=translated src=- shape=c157d0c5 vocab=61007b44
+-/
 theorem primesOver_eq_singleton_of_isRamifiedIn
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
     {P' : Ideal S} (hP' : P' ∈ P(p))
@@ -269,7 +295,9 @@ theorem primesOver_eq_singleton_of_isRamifiedIn
   simpa [hP'Q] using hQ
 
 /-- In a quadratic Dedekind extension, a ramified factorization can be targeted
-at any chosen prime above the ramified base prime.-/
+at any chosen prime above the ramified base prime.
+@isnad1 id=eq.4h4v.s8.bc98147d4c3d from=translated src=- shape=defed88a vocab=18d13ae0
+-/
 theorem map_eq_sq_of_isRamifiedIn_of_mem_primesOver
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
@@ -286,7 +314,9 @@ theorem map_eq_sq_of_isRamifiedIn_of_mem_primesOver
   simpa [hQP'] using hmap
 
 /-- A split prime in a quadratic Dedekind extension has exactly two prime ideals
-above it.-/
+above it.
+@isnad1 id=eq.3h3v.s7.2b2a56a78821 from=translated src=- shape=9964977e vocab=122a115f
+-/
 theorem primesOver_ncard_eq_two_of_isSplitIn
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)
     (hsplit : IsSplitIn p S) :
@@ -314,7 +344,9 @@ private theorem set_eq_pair_of_ncard_eq_two_of_mem_of_mem_of_ne
   · simp [hs, hpair]
 
 /-- If `P` and `Q` are the two distinct primes above a split prime, then
-extending the base prime gives `P * Q`.-/
+extending the base prime gives `P * Q`.
+@isnad1 id=eq.6h5v.s8.fd74c8a64517 from=translated src=- shape=10ea8fa5 vocab=60583002
+-/
 theorem map_eq_mul_of_isSplitIn_of_mem_primesOver_of_ne
     [Algebra.IsIntegral R S] [Module.IsTorsionFree R S]
     (hchar : ringChar R ≠ 2) (hp : p ≠ ⊥)

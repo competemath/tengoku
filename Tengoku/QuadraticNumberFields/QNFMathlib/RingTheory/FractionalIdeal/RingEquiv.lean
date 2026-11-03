@@ -33,7 +33,9 @@ section Basic
 
 variable (e : A ≃+* B)
 
-/-- The induced fraction-ring equivalence respects scalar multiplication along `e`.-/
+/-- The induced fraction-ring equivalence respects scalar multiplication along `e`.
+@isnad1 id=eq.0h7v.s9.55801e0606ae from=translated src=- shape=395d2b5f vocab=c828c947
+-/
 -- Retain this public simp wrapper for compatibility. The upstream application
 -- lemma now unfolds its left-hand side to `IsLocalization.map`.
 @[simp, nolint simpNF]
@@ -43,6 +45,9 @@ theorem ringEquivOfRingEquiv_smul (a : A) (x : K) :
   rw [Algebra.smul_def, Algebra.smul_def, map_mul,
     IsFractionRing.ringEquivOfRingEquiv_algebraMap]
 
+/--
+@isnad1 id=isintege.1h6v.s8.8017dd18f010 from=translated src=- shape=aaa0911e vocab=9e6d3077
+-/
 theorem isInteger_ringEquivOfRingEquiv {x : K}
     (hx : IsLocalization.IsInteger A x) :
     IsLocalization.IsInteger B
@@ -94,6 +99,9 @@ noncomputable def ringEquivMap (I : FractionalIdeal A⁰ K) : FractionalIdeal B�
 
 -- These domain instances occur in `ringEquivMap`'s arguments and cannot be omitted.
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=iff.0h7v.s8.8e217ed06c82 from=translated src=- shape=3a5f3a8d vocab=5944ce2f
+-/
 @[simp]
 theorem mem_ringEquivMap {e : A ≃+* B} {I : FractionalIdeal A⁰ K} {y : L} :
     y ∈ ringEquivMap (K := K) (L := L) e I ↔
@@ -102,6 +110,9 @@ theorem mem_ringEquivMap {e : A ≃+* B} {I : FractionalIdeal A⁰ K} {y : L} :
   Iff.rfl
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h6v.s8.a5d6769d6e6f from=translated src=- shape=deb2664f vocab=af32e6a8
+-/
 @[simp]
 theorem ringEquivMap_spanSingleton (x : K) :
     ringEquivMap (K := K) (L := L) e (spanSingleton A⁰ x) =
@@ -119,6 +130,9 @@ theorem ringEquivMap_spanSingleton (x : K) :
     exact hb
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h6v.s8.57887efc8a27 from=translated src=- shape=ba553916 vocab=a2a5e4eb
+-/
 @[simp]
 theorem ringEquivMap_coeIdeal (I : Ideal A) :
     ringEquivMap (K := K) (L := L) e (I : FractionalIdeal A⁰ K) =
@@ -141,6 +155,9 @@ theorem ringEquivMap_coeIdeal (I : Ideal A) :
     · rw [IsFractionRing.ringEquivOfRingEquiv_algebraMap]
       simp
 
+/--
+@isnad1 id=eq.0h7v.s8.40b48b4021d7 from=translated src=- shape=80aa219e vocab=91617ab1
+-/
 @[simp]
 theorem ringEquivMap_mul (I J : FractionalIdeal A⁰ K) :
     ringEquivMap (K := K) (L := L) e (I * J) =
@@ -189,6 +206,9 @@ theorem ringEquivMap_mul (I J : FractionalIdeal A⁰ K) :
       refine ⟨x' + y', mem_coe.mp hsum, ?_⟩
       simp
 
+/--
+@isnad1 id=eq.0h5v.s7.2a7b056f31c4 from=translated src=- shape=6dbc43e9 vocab=81d8d4b2
+-/
 @[simp]
 theorem ringEquivMap_one :
     ringEquivMap (K := K) (L := L) e (1 : FractionalIdeal A⁰ K) = 1 := by

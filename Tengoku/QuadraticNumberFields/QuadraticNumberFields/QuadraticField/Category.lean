@@ -84,14 +84,18 @@ def forgetToAlgCat : QuadraticFieldCat.{u} ⥤ AlgCat.{u} ℚ where
   map f := AlgCat.ofHom f
 
 /-- The forgetful functor sends an object to the corresponding bundled
-`ℚ`-algebra.-/
+`ℚ`-algebra.
+@isnad1 id=eq.0h1v.s5.39de0d867e63 from=translated src=- shape=78b6b223 vocab=cf32d35e
+-/
 @[simp]
 theorem forgetToAlgCat_obj (K : QuadraticFieldCat.{u}) :
     forgetToAlgCat.obj K = AlgCat.of ℚ K :=
   rfl
 
 /-- The forgetful functor sends a morphism to the same `ℚ`-algebra homomorphism
-in `AlgCat`.-/
+in `AlgCat`.
+@isnad1 id=eq.0h3v.s6.936057658da0 from=translated src=- shape=8a5daedd vocab=9e21f351
+-/
 @[simp]
 theorem forgetToAlgCat_map {K L : QuadraticFieldCat.{u}} (f : K ⟶ L) :
     forgetToAlgCat.map f = AlgCat.ofHom f :=
@@ -112,14 +116,18 @@ def algEquivOfIso {K L : QuadraticFieldCat.{u}} (i : K ≅ L) : K ≃ₐ[ℚ] L 
   AlgEquiv.ofAlgHom i.hom i.inv i.inv_hom_id i.hom_inv_id
 
 /-- The algebra equivalence associated to an isomorphism has the same forward
-map.-/
+map.
+@isnad1 id=eq.0h4v.s7.4e91db995163 from=translated src=- shape=32c2a6df vocab=8822489d
+-/
 @[simp]
 theorem algEquivOfIso_apply {K L : QuadraticFieldCat.{u}} (i : K ≅ L) (x : K) :
     algEquivOfIso i x = (show K →ₐ[ℚ] L from i.hom) x :=
   rfl
 
 /-- The inverse of the algebra equivalence associated to an isomorphism has the
-same inverse map.-/
+same inverse map.
+@isnad1 id=eq.0h4v.s7.7ab2b27c43c2 from=translated src=- shape=bf762e32 vocab=7b4eb35a
+-/
 @[simp]
 theorem algEquivOfIso_symm_apply {K L : QuadraticFieldCat.{u}} (i : K ≅ L) (x : L) :
     (algEquivOfIso i).symm x = (show L →ₐ[ℚ] K from i.inv) x :=

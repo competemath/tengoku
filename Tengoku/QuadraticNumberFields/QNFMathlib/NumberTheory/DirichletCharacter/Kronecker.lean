@@ -137,7 +137,9 @@ noncomputable def kroneckerCharacter (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] 
   map_mul' := kroneckerCharacterFun_mul D
   map_nonunit' := fun _ hx => kroneckerCharacterFun_nonunit D hx
 
-/-- Direct evaluation of the Kronecker character at a `ZMod D.natAbs` argument.-/
+/-- Direct evaluation of the Kronecker character at a `ZMod D.natAbs` argument.
+@isnad1 id=eq.0h2v.s6.f8231e46fa2d from=translated src=- shape=a0e0b78b vocab=361b55bb
+-/
 @[simp] theorem kroneckerCharacter_apply (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     (x : ZMod D.natAbs) :
     kroneckerCharacter D x = kroneckerSymNat D x.val := rfl
@@ -146,7 +148,9 @@ noncomputable def kroneckerCharacter (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] 
 `kroneckerSymNat D n`.
 
 Not a `simp` lemma: `kroneckerCharacter_apply` already rewrites the left-hand
-side, so this would never be in simp-normal form; it is used via `rw`.-/
+side, so this would never be in simp-normal form; it is used via `rw`.
+@isnad1 id=eq.0h2v.s6.014cf8b254e7 from=translated src=- shape=d7129a30 vocab=3242d118
+-/
 theorem kroneckerCharacter_apply_natCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     (n : ℕ) :
     kroneckerCharacter D ((n : ℕ) : ZMod D.natAbs) = kroneckerSymNat D n := by
@@ -157,7 +161,9 @@ theorem kroneckerCharacter_apply_natCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 
 symbol convention.
 
 Not a `simp` lemma: `kroneckerCharacter_apply` already rewrites the left-hand
-side, so this would never be in simp-normal form; it is used via `rw`.-/
+side, so this would never be in simp-normal form; it is used via `rw`.
+@isnad1 id=eq.0h1v.s7.71b3ef83e78e from=translated src=- shape=40656078 vocab=24db0e6b
+-/
 theorem kroneckerCharacter_neg_one (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] :
     kroneckerCharacter D (-1 : ZMod D.natAbs) = kroneckerNegOne D := by
   rcases eq_or_ne D.natAbs 0 with hD0 | hD0
@@ -177,7 +183,9 @@ theorem kroneckerCharacter_neg_one (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] :
 `kroneckerSym D n`.
 
 Not a `simp` lemma: `kroneckerCharacter_apply` already rewrites the left-hand
-side, so this would never be in simp-normal form; it is used via `rw`.-/
+side, so this would never be in simp-normal form; it is used via `rw`.
+@isnad1 id=eq.0h2v.s6.273f34599620 from=translated src=- shape=c26f70de vocab=afdb578a
+-/
 theorem kroneckerCharacter_apply_intCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     (n : ℤ) :
     kroneckerCharacter D ((n : ℤ) : ZMod D.natAbs) = kroneckerSym D n := by
