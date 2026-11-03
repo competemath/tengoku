@@ -29,6 +29,7 @@ import Tengoku.OpenaiMath
 import Tengoku.ImmermanVardi
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
+import Tengoku.TheoremAFpGroups
 import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
 import Tengoku.KuroshProblemAtGkDimensionTwo
