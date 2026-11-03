@@ -422,6 +422,14 @@ class Workflows(unittest.TestCase):
             step["run"].index('"$head" != "$RUN_HEAD"'), step["run"].index("autotag_push.py"), "checked before anything is pushed"
         )
 
+    def test_the_fetch_of_mains_scripts_tries_a_server_error_again_before_it_fails(self):
+        steps = self.load("autotag-push.yml")["jobs"]["push"]["steps"]
+        run = next(x for x in steps if x.get("name") == "Main's scripts")["run"]
+        self.assertIn("for try in 1 2 3 4", run)
+        self.assertIn("&& break", run)
+        self.assertIn('[ "$try" = 4 ] && exit 1', run, "the fourth failure fails the step")
+        self.assertIn("sleep", run)
+
     def test_a_run_that_uploaded_nothing_is_skipped_not_failed(self):
         steps = self.load("autotag-push.yml")["jobs"]["push"]["steps"]
         has = next(x for x in steps if x.get("id") == "has")
