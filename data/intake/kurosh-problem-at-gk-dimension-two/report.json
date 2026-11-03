@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "3e4c5b63e00b5a3dd193858a25f415f9a9847f1e28033da2edc0da64cdccb8ef",
+ "gate2_unjudged": [],
+ "library": "kurosh-problem-at-gk-dimension-two",
+ "lint_mode": "proposed",
+ "modules": 23,
+ "part": 1,
+ "theorems": 125
+}
