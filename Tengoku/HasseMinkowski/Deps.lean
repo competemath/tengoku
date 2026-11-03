@@ -1,0 +1,1 @@
+-- HasseMinkowski: a factory bundle (data/intake/hasse-minkowski). This file only marks the library for Tengoku/All.lean.

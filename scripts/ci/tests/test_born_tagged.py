@@ -201,6 +201,37 @@ class Intake(unittest.TestCase):
         self.assertNotEqual(rc, 0, out)
         self.assertIn("from=seed but the module is translated content", out)
 
+    def test_a_module_whose_theorems_the_tagger_leaves_out_by_name_needs_no_tag(self):
+        """TengokuIsnad.lean okName leaves out eq_*, proof_*, match_*, sizeOf_*, _* and injEq: `UInt64.eq_of_toNat_eq` is a lemma the tagger never sees (azurite part 1)"""
+
+        def verdict(body: str):
+            r = Repo()
+            r.write("Tengoku/FxLib/Fx/A.lean", "import Tengoku\n\n" + body)
+            r.write(
+                "data/intake/fx-lib/manifest.jsonl",
+                json.dumps({"name": "Fx.a", "module": "Tengoku.FxLib.Fx.A", "library": "fx-lib"}) + "\n",
+            )
+            r.commit("a library arrives")
+            return r.gate("born_tagged.py", env={"TENGOKU_ISNAD_REQUIRED": "1"})
+
+        rc, out = verdict("lemma UInt64.eq_of_toNat_eq (x y : Nat) (h : x = y) : x = y := h\n")
+        self.assertEqual(rc, 0, out)
+        rc, out = verdict("theorem eq_two : 1 + 1 = 2 := rfl\ntheorem proof_x : True := trivial\n")
+        self.assertEqual(rc, 0, out)
+        rc, out = verdict("theorem eq_two : 1 + 1 = 2 := rfl\ntheorem add_two : 1 + 1 = 2 := rfl\n")
+        self.assertNotEqual(rc, 0, out)
+        self.assertIn("declares theorems and carries no isnad tag", out)
+        rc, out = verdict("theorem «a.eq_x» : 1 + 1 = 2 := rfl\n")
+        self.assertNotEqual(rc, 0, "«a.eq_x» is one component named a.eq_x: the tagger sees it, so it needs a tag")
+        rc, out = verdict("theorem _root_.foo : 1 + 1 = 2 := rfl\n")
+        self.assertNotEqual(rc, 0, "_root_.foo declares foo, which the tagger sees: it needs a tag")
+        rc, out = verdict("theorem _root_.eq_foo : 1 + 1 = 2 := rfl\n")
+        self.assertEqual(rc, 0, out)
+        rc, out = verdict("theorem Foo._bar.baz : 1 + 1 = 2 := rfl\n")
+        self.assertEqual(rc, 0, out)  # a component starting with an underscore makes the name internal
+        rc, out = verdict("theorem equal_two : 1 + 1 = 2 := rfl\n")
+        self.assertNotEqual(rc, 0, "a name that only starts like eq (equal_two) is a real theorem")
+
     def test_a_module_without_theorems_needs_no_tag(self):
         r = Repo()
         r.write("Tengoku/FxLib/Fx/A.lean", "import Tengoku\n\ndef one : Nat := 1\n")

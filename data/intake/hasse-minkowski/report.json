@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "6f661d643de3e7ce52d9307fd806a22fc92fa9e4a58ee2ed9090ec7844683945",
+ "gate2_unjudged": [],
+ "library": "hasse-minkowski",
+ "lint_mode": "proposed",
+ "modules": 11,
+ "part": 1,
+ "theorems": 83
+}
