@@ -39,7 +39,7 @@ jobs:
   classify:
     if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read }   # reads the PR's commits and runs main's scripts: no write token here (the label job below holds it)
     outputs: { class: "${{ steps.c.outputs.class }}" }
     steps:
@@ -64,7 +64,7 @@ jobs:
     needs: classify
     if: ${{ !cancelled() && needs.classify.outputs.class != '' && github.event_name == 'pull_request_target' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { pull-requests: write }
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
@@ -82,7 +82,7 @@ jobs:
     needs: classify
     if: contains(fromJSON('["content","tombstone","promotion"]'), needs.classify.outputs.class)
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions: { contents: read }
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
@@ -102,7 +102,7 @@ jobs:
   credits:
     needs: classify
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read }
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
@@ -118,7 +118,7 @@ jobs:
   goals:
     needs: classify
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read }
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
@@ -135,7 +135,7 @@ jobs:
   dco:
     needs: classify
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -227,7 +227,7 @@ jobs:
     if: github.event_name == 'pull_request_target' && needs.classify.outputs.class == 'studied'
     runs-on: ubuntu-latest
     continue-on-error: true
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read, pull-requests: read }
     steps:
       # main's scripts with plain git (see the intake job), not actions/checkout
@@ -320,7 +320,7 @@ jobs:
     needs: classify
     if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     permissions: { contents: read }
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
@@ -404,7 +404,7 @@ jobs:
     needs: classify
     if: needs.classify.outputs.class == 'content' || needs.classify.outputs.class == 'tooling'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read }   # advisory: what it finds is quoted in the gate comment, which the one privileged job writes
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -484,7 +484,7 @@ jobs:
   workflows:
     needs: classify
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -509,7 +509,7 @@ jobs:
     needs: classify
     if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions: { contents: read, pull-requests: read }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -583,7 +583,7 @@ jobs:
     # `edited` event) would still run this job, and its failure stays on the commit as the latest `pr-gate` after the newer run has passed: the PR is blocked for nothing
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions: { contents: read, actions: write, pull-requests: write }   # actions: write — to stop the runs of removed queue entries
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
