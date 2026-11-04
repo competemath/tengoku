@@ -1,0 +1,57 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.Topology.Category.TopCat.Opens.CoversTop
+import Tengoku.Seed.RingTheory.Spectrum.Prime.Topology
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Covering the prime spectrum by basic opens
+
+The opens from `PrimeSpectrum.basicOpen` cover `PrimeSpectrum R` when the elements `g i` generate
+the unit ideal. This translates the algebraic criterion for a cover into
+`CategoryTheory.GrothendieckTopology.CoversTop`, used by Grothendieck-topology arguments.
+
+## Main results
+
+* `PrimeSpectrum.coversTop_basicOpen_of_span_eq_top` converts a unit-ideal generating family into
+  a covering family on the open-set site.
+
+## Implementation notes
+
+The proof composes `PrimeSpectrum.iSup_basicOpen_eq_top_iff` with
+`TopCat.Opens.grothendieckTopology_coversTop`. Both apply without scheme structure or a
+finite-index hypothesis.
+
+## References
+
+The algebraic covering criterion is supplied by Mathlib's
+`PrimeSpectrum.iSup_basicOpen_eq_top_iff`.
+
+## Tags
+
+prime spectrum, basic opens, unit ideal, Grothendieck topology
+-/
+
+universe u v
+
+open CategoryTheory TopologicalSpace
+
+namespace PrimeSpectrum
+
+/-- Basic opens defined by a family generating the unit ideal cover the prime spectrum.
+
+The algebraic criterion `Ideal.span (Set.range g) = ⊤` is equivalent to the opens having supremum
+`⊤`; a topological open cover then gives a covering family on the open-set site.
+@isnad1 id=coversto.1h3v.s6.66b45545247e from=translated src=- shape=a4e88f91 vocab=940f5bd6
+-/
+lemma coversTop_basicOpen_of_span_eq_top {R : Type u} [CommSemiring R] {I : Type v}
+    (g : I → R) (hg : Ideal.span (Set.range g) = ⊤) :
+    (_root_.Opens.grothendieckTopology (TopCat.of (PrimeSpectrum R))).CoversTop
+      (fun i => PrimeSpectrum.basicOpen (g i)) :=
+  TopCat.Opens.grothendieckTopology_coversTop _
+    (PrimeSpectrum.iSup_basicOpen_eq_top_iff.mpr hg)
+
+end PrimeSpectrum

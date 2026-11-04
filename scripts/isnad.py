@@ -219,18 +219,76 @@ def run_exe(args: list[str], exe: str | None = None, cwd: Path = ROOT, extra_pat
 BATCH = 25  # modules per `tengoku-isnad` process (see facts)
 
 
-def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BATCH) -> tuple[list[Record], list[str]]:
+ARGUMENT = re.compile(
+    r"(?:[^\W\d]|«)[\w.«»'!?\u2100-\u214f\u2080-\u209c-]*"
+)  # a letter (Greek and other scripts too), `_` or «, then word characters, dots, guillemets, primes, subscripts
+
+
+def lean_name(arg: str) -> str:
+    """A module or theorem name goes to `tengoku-isnad` as a command-line argument: it is a Lean name (it never starts with a dash, so it cannot be taken for an option, and
+    holds no space or shell character), or the run stops. What comes back is the name as the pattern matched it: the callers use that, not the argument."""
+    match = ARGUMENT.fullmatch(arg)
+    if match is None:
+        sys.exit(f"isnad: {arg!r} is not a Lean module or theorem name: not passed to tengoku-isnad")
+    return match.group(0)
+
+
+def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BATCH, exact: bool = False) -> tuple[list[Record], list[str]]:
     """The records and the range lines of the modules, from one `tengoku-isnad` process per `batch` modules (all of them in one process when batch < 1). One
     process over a whole 400-module tag part held the import closure and the analysis of every module, and the hosted runner was shut down for memory (exit 143,
-    'The runner has received a shutdown signal': three tag runs on 2026-10-15/16); a batch frees it before the next."""
+    'The runner has received a shutdown signal': three tag runs on 2026-10-15/16); a batch frees it before the next.
+    `--module` selects by prefix: a module `A.B` selects the theorems of `A.B.C` too. A library that has a file `A/B.lean` that only imports the files of the
+    directory `A/B/` (derived-alg-geo-lean part 2, 3 Nov 2026: `CentralCharge/Exponential.lean` beside four modules in `Exponential/`) makes the batch that lists `A.B`
+    report the theorems of `A.B.C` as well as the batch that lists `A.B.C`: each of them came twice, was skipped as "the same name for two theorems of the module", and the
+    module came out untagged and refused. With `exact`, a batch keeps only the theorems of the modules it lists: every theorem comes from one batch, the one that lists its module."""
+    modules = [lean_name(m) for m in modules]
+    names = [lean_name(n) for n in names]
     size = batch if batch > 0 else max(len(modules), 1)
     recs: list[Record] = []
     ranges: list[str] = []
     for i in range(0, len(modules), size):
-        args = [x for m in modules[i : i + size] for x in ("--module", m)] + [x for n in names for x in ("--name", n)]
-        recs += run_exe(args, exe)
-        ranges += run_exe_lines(["--ranges", *args], exe)
+        part = modules[i : i + size]
+        args = [x for m in part for x in ("--module", m)] + [x for n in names for x in ("--name", n)]
+        got, lines = run_exe(args, exe), run_exe_lines(["--ranges", *args], exe)
+        if exact:
+            listed = set(part)
+            got = [r for r in got if r.module in listed]
+            lines = [ln for ln in lines if parse_range_line(ln)[1] in listed]
+        recs += got
+        ranges += lines
+    if exact:
+        # a theorem that another module of the batch's environment declares too (the same name and type, which Lean accepts for two theorems) belongs there in that
+        # environment: the module that holds the copy comes out without that record (grothendieck-riemann-roch part 1, 3 Nov 2026: `Chow/ReesDepth.lean` carries three theorems
+        # the tree's Seed has too, and the lane refused the PR). A record is the theorem as its module's own imports see it, so a module whose source declares a theorem that
+        # has no record in its batch is asked again alone, and what that gives replaces what the batch gave for the module (the module's other records are the same in both).
+        have: dict[str, set[str]] = {}
+        for r in recs:
+            have.setdefault(r.module, set()).add(r.name.split(".")[-1])
+        for m in modules:
+            if not declared_theorem_names(m) - have.get(m, set()):
+                continue
+            args = ["--module", m] + [x for n in names for x in ("--name", n)]
+            alone = [r for r in run_exe(args, exe) if r.module == m]
+            alone_lines = [ln for ln in run_exe_lines(["--ranges", *args], exe) if parse_range_line(ln)[1] == m]
+            recs = [r for r in recs if r.module != m] + alone
+            ranges = [ln for ln in ranges if parse_range_line(ln)[1] != m] + alone_lines
     return recs, ranges
+
+
+# a theorem or lemma command the tagger's Lean side can record: not private (its name is internal) and with the modifiers Lean knows (`public` of the module system too)
+THEOREM_NAME = re.compile(
+    r"^[ \t]*(?:@\[[^\]\n]*\][ \t]*)*(?:(?:public|protected|noncomputable|nonrec)[ \t]+)*(?:theorem|lemma)[ \t]+([^\s:({\[]+)", re.M
+)
+
+
+def declared_theorem_names(module: str, root: Path = ROOT) -> set[str]:
+    """The last components of the names of the theorems and lemmas the module's source declares, without the names the tagger's Lean side leaves out (generated and
+    internal ones: `eq_*`, `proof_*`, `match_*`, `sizeOf_*`, `injEq`, a `_` prefix). A text check: it only decides whether to ask the Lean side about the module again."""
+    path = module_file(module, root)
+    if not path.is_file():
+        return set()
+    names = {n.strip("«»").split(".")[-1] for n in THEOREM_NAME.findall(read_source(path))}
+    return {n for n in names if n and not n.startswith(("_", "eq_", "proof_", "match_", "sizeOf_")) and n != "injEq"}
 
 
 def golden() -> list[tuple[str, str, str, str]]:
@@ -473,7 +531,7 @@ def tagtest(exe: str | None = None) -> int:
 
 
 def cmd_tag(a: argparse.Namespace) -> int:
-    recs, ranges = facts(a.module, a.name, a.exe, a.batch)
+    recs, ranges = facts(a.module, a.name, a.exe, a.batch, exact=True)
     plan, skipped = plan_tags(recs, ranges, a.origin, a.src)
     counts, more = tag_files(plan, ROOT, a.write)
     for name, why in skipped + more:
@@ -555,7 +613,7 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
 
 
 def cmd_check_tags(a: argparse.Namespace) -> int:
-    recs, ranges = facts(a.module, [], a.exe, a.batch)
+    recs, ranges = facts(a.module, [], a.exe, a.batch, exact=True)
     problems, summary = check_tags(recs, ranges, a.module, ROOT)
     if problems:
         print("isnad check-tags: " + "; ".join(problems[:10]) + (f"; and {len(problems) - 10} more" if len(problems) > 10 else ""))

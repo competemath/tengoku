@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "683bacc3f364c19c22b6ac0c8a1e18c60d9a6144215e05f234361dc7ad68014a",
+ "gate2_unjudged": [],
+ "library": "derived-alg-geo-lean",
+ "lint_mode": "proposed",
+ "modules": 217,
+ "part": 2,
+ "theorems": 1542
+}

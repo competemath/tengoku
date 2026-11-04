@@ -36,7 +36,12 @@ jobs:
           for f in scripts/isnad.py scripts/isnad_tag.py scripts/ci/_git.py scripts/ci/allowlist.py scripts/ci/autotag.py scripts/ci/autotag_push.py scripts/ci/born_tagged.py \
                    scripts/ci/bundle_tar.py scripts/ci/lean_lex.py scripts/ci/studied_check.py scripts/ci/tag_check.py; do
             mkdir -p "$(dirname "$f")"
-            gh api "repos/$GITHUB_REPOSITORY/contents/$f?ref=main" -H "Accept: application/vnd.github.raw" > "$f"
+            # a read that fails (GitHub's server errors are the case that happened) is tried again: 4 tries in all, 2 s then 4 s then 8 s apart; the fourth failure fails the step
+            for try in 1 2 3 4; do
+              gh api "repos/$GITHUB_REPOSITORY/contents/$f?ref=main" -H "Accept: application/vnd.github.raw" > "$f" && break
+              [ "$try" = 4 ] && exit 1
+              sleep $((2 ** try))
+            done
           done
       # autotag-build uploads only when it tagged something: a run of a PR that already carries its tags (the bot's own commit starts one) has no artifact, and that is not a failure
       - name: Did the build upload tags?

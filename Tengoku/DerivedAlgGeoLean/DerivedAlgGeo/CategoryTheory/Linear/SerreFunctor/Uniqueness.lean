@@ -1,0 +1,211 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.CategoryTheory.Linear.SerreFunctor.Basic
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.CategoryTheory.Linear.Yoneda
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# A Serre functor is unique up to natural isomorphism
+
+Any two Serre functors on the same `k`-linear category are naturally isomorphic, and the
+isomorphism compatible with both duality isomorphisms is unique. The argument is Yoneda: `S A`
+represents `B ↦ Dual (A ⟶ B)`, representing objects are unique up to unique isomorphism, and
+naturality in `A` promotes the pointwise isomorphisms to a natural isomorphism of functors.
+
+## The representability step has its own owner
+
+`isoOfLinearYonedaIso`, its `mapIso` computation and `hom_ext_of_linearYoneda` are stated on
+`linearYoneda` alone and proved **without reference to `SerreFunctorData`**, because a downstream
+lane needs them on a functor that is not a Serre functor. They now live in
+`CategoryTheory/Linear/Yoneda.lean`, which this file imports; see that module for why the argument
+runs on `linearYoneda` rather than `linearCoyoneda`.
+
+## Trap: which variable the Yoneda argument runs in
+
+`Hom(A,B)` is contravariant in `A` and covariant in `B`, and the dual flips both — so
+`Dual (A ⟶ B)` is **covariant in `A`** and **contravariant in `B`**, matching `Hom(B, S A)`.
+
+The Yoneda argument therefore runs in the `B` variable with `A` fixed. Naturality in `A` is a
+separate step, and it is what promotes the pointwise isomorphisms to a natural transformation.
+
+Concretely: `yonedaIso` below is natural in `B` by `naturality_right`, and `uniqueIso` is natural
+in `A` by `naturality_left`. Two different fields of `SerreFunctorData`, for two different reasons.
+
+## No shift, no triangulation
+
+Neither this file nor `Basic` mentions a shift or a distinguished triangle, which is why both live
+under `CategoryTheory/Linear/`. Ext profiles, shift relations, the Enriques refinement and every
+triangulated compatibility stay in `CategoryTheory/Triangulated/SerreFunctor/`, which imports this
+root.
+-/
+
+universe w v u
+
+open CategoryTheory CategoryTheory.Limits
+
+namespace CategoryTheory.SerreFunctor
+
+variable {k : Type w} [Field k] {C : Type u} [Category.{v} C] [Preadditive C] [Linear k C]
+
+/-! ### Uniqueness of the Serre functor -/
+
+namespace SerreFunctorData
+
+variable (D D' : SerreFunctorData k C)
+
+/-- The comparison of the two duality isomorphisms at a fixed pair, as a linear equivalence
+`(B ⟶ S A) ≃ₗ (B ⟶ S' A)`.-/
+noncomputable def compareEquiv (A B : C) : (B ⟶ D.S.obj A) ≃ₗ[k] (B ⟶ D'.S.obj A) :=
+  (D.eta A B).symm.trans (D'.eta A B)
+
+/--
+@isnad1 id=eq.0h7v.s11.7758b6781404 from=translated src=- shape=c4b02c23 vocab=dc553b1a
+-/
+theorem compareEquiv_apply (A B : C) (psi : B ⟶ D.S.obj A) :
+    D.compareEquiv D' A B psi = D'.eta A B ((D.eta A B).symm psi) := rfl
+
+/-- **Naturality in `B`**, from `naturality_right`. This is the step the Yoneda argument runs
+on.
+@isnad1 id=eq.0h9v.s10.cee26a6829d0 from=translated src=- shape=ec7bdc8e vocab=78e1452d
+-/
+theorem compareEquiv_naturality_right {A B B' : C} (g : B' ⟶ B) (psi : B ⟶ D.S.obj A) :
+    D.compareEquiv D' A B' (g ≫ psi) = g ≫ D.compareEquiv D' A B psi := by
+  have hphi : (D.eta A B').symm (g ≫ psi) =
+      ((D.eta A B).symm psi).comp (Linear.rightComp k A g) := by
+    apply (D.eta A B').injective
+    rw [LinearEquiv.apply_symm_apply, D.naturality_right g ((D.eta A B).symm psi),
+      LinearEquiv.apply_symm_apply]
+  rw [compareEquiv_apply, compareEquiv_apply, hphi,
+    D'.naturality_right g ((D.eta A B).symm psi)]
+
+/-- The two representing objects have isomorphic linear Yoneda presheaves, at each `A`.-/
+noncomputable def yonedaIso (A : C) :
+    (linearYoneda k C).obj (D.S.obj A) ≅ (linearYoneda k C).obj (D'.S.obj A) :=
+  NatIso.ofComponents
+    (fun B ↦ (D.compareEquiv D' A B.unop).toModuleIso)
+    (by
+      intro B B' g
+      refine ModuleCat.hom_ext (LinearMap.ext fun psi ↦ ?_)
+      exact D.compareEquiv_naturality_right D' g.unop psi)
+
+/-- **The comparison isomorphism at an object.**-/
+noncomputable def uniqueIsoApp (A : C) : D.S.obj A ≅ D'.S.obj A :=
+  isoOfLinearYonedaIso k C (D.yonedaIso D' A)
+
+/-- The defining property of `uniqueIsoApp`: it is what the duality isomorphisms say it is.
+@isnad1 id=eq.0h7v.s9.3ccd3856fb5a from=translated src=- shape=66ee7e86 vocab=ab364664
+-/
+theorem comp_uniqueIsoApp_hom {A B : C} (psi : B ⟶ D.S.obj A) :
+    psi ≫ (D.uniqueIsoApp D' A).hom = D.compareEquiv D' A B psi := by
+  have h := congrArg (fun e ↦ (e.hom.app (Opposite.op B)) psi)
+    (map_isoOfLinearYonedaIso k C (D.yonedaIso D' A))
+  exact h
+
+/-- Evaluating the defining property at the identity.
+@isnad1 id=eq.0h5v.s10.e1ee81dece3e from=translated src=- shape=e4553ee2 vocab=cbbd3ee5
+-/
+theorem uniqueIsoApp_hom_eq (A : C) :
+    (D.uniqueIsoApp D' A).hom = D.compareEquiv D' A (D.S.obj A) (𝟙 _) := by
+  have h := D.comp_uniqueIsoApp_hom D' (𝟙 (D.S.obj A))
+  rwa [Category.id_comp] at h
+
+/-- **Naturality in `A`**, from `naturality_left`. This is the step that promotes the pointwise
+isomorphisms to a natural isomorphism of functors; see the module docstring on why it is a
+different field from the one `yonedaIso` uses.
+@isnad1 id=eq.0h7v.s8.ca521c84f549 from=translated src=- shape=b046cff1 vocab=188f7ef1
+-/
+theorem uniqueIsoApp_naturality {A A' : C} (f : A ⟶ A') :
+    D.S.map f ≫ (D.uniqueIsoApp D' A').hom = (D.uniqueIsoApp D' A).hom ≫ D'.S.map f := by
+  set phi := (D.eta A (D.S.obj A)).symm (𝟙 (D.S.obj A)) with hphi
+  have hkey : (D.eta A' (D.S.obj A)).symm (D.S.map f) =
+      phi.comp (Linear.leftComp k (D.S.obj A) f) := by
+    apply (D.eta A' (D.S.obj A)).injective
+    rw [LinearEquiv.apply_symm_apply, D.naturality_left f phi, hphi,
+      LinearEquiv.apply_symm_apply, Category.id_comp]
+  rw [D.comp_uniqueIsoApp_hom D' (D.S.map f), compareEquiv_apply, hkey,
+    D'.naturality_left f phi, ← compareEquiv_apply, ← uniqueIsoApp_hom_eq]
+
+/-- **A Serre functor is unique up to natural isomorphism.**-/
+noncomputable def uniqueIso : D.S ≅ D'.S :=
+  NatIso.ofComponents (fun A ↦ D.uniqueIsoApp D' A) (fun f ↦ D.uniqueIsoApp_naturality D' f)
+
+/--
+@isnad1 id=eq.0h5v.s7.3bc065bb7e28 from=translated src=- shape=fa8f2f02 vocab=1c91238a
+-/
+@[simp]
+theorem uniqueIso_hom_app (A : C) :
+    (D.uniqueIso D').hom.app A = (D.uniqueIsoApp D' A).hom := rfl
+
+/-- **The compatibility with the two duality isomorphisms**, which is what characterises the
+comparison.
+@isnad1 id=eq.0h7v.s11.12e9fd84348d from=translated src=- shape=4bf440e1 vocab=cd1952c3
+-/
+theorem uniqueIso_compat {A B : C} (phi : Module.Dual k (A ⟶ B)) :
+    D.eta A B phi ≫ (D.uniqueIso D').hom.app A = D'.eta A B phi := by
+  rw [uniqueIso_hom_app, D.comp_uniqueIsoApp_hom D', compareEquiv_apply,
+    LinearEquiv.symm_apply_apply]
+
+/-- **Uniqueness of the comparison.** Any natural transformation compatible with both duality
+isomorphisms is `uniqueIso`. This is the form a downstream coherence argument consumes, so it is
+not optional polish.
+@isnad1 id=eq.1h5v.s11.dfe380d4c83d from=translated src=- shape=97fbbf63 vocab=cd1952c3
+-/
+theorem uniqueIso_unique (alpha : D.S ⟶ D'.S)
+    (h : ∀ (A B : C) (phi : Module.Dual k (A ⟶ B)),
+      D.eta A B phi ≫ alpha.app A = D'.eta A B phi) :
+    alpha = (D.uniqueIso D').hom := by
+  ext A
+  have hid : D.eta A (D.S.obj A) ((D.eta A (D.S.obj A)).symm (𝟙 _)) = 𝟙 (D.S.obj A) :=
+    LinearEquiv.apply_symm_apply _ _
+  have h1 := h A (D.S.obj A) ((D.eta A (D.S.obj A)).symm (𝟙 _))
+  have h2 := D.uniqueIso_compat D' ((D.eta A (D.S.obj A)).symm (𝟙 (D.S.obj A)))
+  rw [hid, Category.id_comp] at h1
+  rw [hid, Category.id_comp] at h2
+  rw [h1, ← h2, uniqueIso_hom_app]
+
+/-! ### Coherence
+
+So a downstream user can move a statement between two chosen Serre functors without re-deriving
+the comparison. Each is `uniqueIso_unique` applied to the obvious candidate. -/
+
+/--
+@isnad1 id=eq.0h3v.s6.938b4587f229 from=translated src=- shape=63ec1699 vocab=42f8bc2d
+-/
+theorem uniqueIso_refl : D.uniqueIso D = Iso.refl D.S := by
+  refine Iso.ext ?_
+  exact (D.uniqueIso_unique D (𝟙 D.S) (fun A B phi ↦ by rw [NatTrans.id_app, Category.comp_id])).symm
+
+/--
+@isnad1 id=eq.0h5v.s7.de07a49d3ae1 from=translated src=- shape=8159ea19 vocab=f2240078
+-/
+theorem uniqueIso_trans (D'' : SerreFunctorData k C) :
+    (D.uniqueIso D').hom ≫ (D'.uniqueIso D'').hom = (D.uniqueIso D'').hom := by
+  refine D.uniqueIso_unique D'' _ fun A B phi ↦ ?_
+  rw [NatTrans.comp_app, ← Category.assoc, D.uniqueIso_compat D' phi,
+    D'.uniqueIso_compat D'' phi]
+
+/--
+@isnad1 id=eq.0h4v.s6.cdc4de295362 from=translated src=- shape=917c57aa vocab=e41c4784
+-/
+theorem uniqueIso_symm : (D.uniqueIso D').symm = D'.uniqueIso D := by
+  refine Iso.ext ?_
+  refine D'.uniqueIso_unique D _ fun A B phi ↦ ?_
+  have h : (D.eta A B phi ≫ (D.uniqueIso D').hom.app A) ≫ (D.uniqueIso D').inv.app A =
+      D.eta A B phi := by
+    rw [Category.assoc, ← NatTrans.comp_app, (D.uniqueIso D').hom_inv_id,
+      NatTrans.id_app, Category.comp_id]
+  rwa [D.uniqueIso_compat D' phi] at h
+
+/-- **`HasSerreFunctor` determines `S` up to natural isomorphism**, so "the" Serre functor is a
+well-defined statement about `C`.
+@isnad1 id=nonempty.0h4v.s6.3a1dd0a96b98 from=translated src=- shape=8d66429d vocab=46d7ede6
+-/
+theorem exists_uniqueIso (D D' : SerreFunctorData k C) : Nonempty (D.S ≅ D'.S) :=
+  ⟨D.uniqueIso D'⟩
+
+end SerreFunctorData
+
+end CategoryTheory.SerreFunctor

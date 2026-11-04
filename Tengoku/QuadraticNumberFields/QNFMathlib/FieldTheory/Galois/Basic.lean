@@ -1,0 +1,70 @@
+/-
+Copyright (c) 2026 Frankie Wang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Frankie Wang
+-/
+
+import Tengoku.Seed.FieldTheory.Galois.Basic
+import Tengoku.Seed.FieldTheory.PurelyInseparable.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Galois Theory
+
+Material destined for mathlib.
+-/
+
+/-- If `S` is a quadratic extension of `R`, then the fraction field of `S` is a
+quadratic extension of the fraction field of `R`.
+@isnad1 id=isquadra.0h4v.s8.7f9d8c99e15d from=translated src=- shape=08b48e71 vocab=17711e70
+-/
+-- Repository use: `Splitting/Defs.lean` uses this in the `(e, f, g)` trichotomy;
+-- `Mathlib/NumberTheory/RamificationInertia/Galois.lean` uses it to build the
+-- fraction-field Galois bridge.
+-- Keep the existing `IsDomain S` argument for API compatibility, although
+-- `IsFractionRing.finrank_eq` no longer needs it.
+@[nolint unusedArguments]
+theorem Algebra.IsQuadraticExtension.fractionRing
+    {R S K L : Type*} [CommRing R] [CommRing S] [Field K] [Field L]
+    [Algebra R S] [Algebra R K] [Algebra S L] [Algebra R L] [Algebra K L]
+    [IsDomain R] [IsDomain S] [IsFractionRing R K] [IsFractionRing S L]
+    [IsScalarTower R K L] [IsScalarTower R S L] [Algebra.IsQuadraticExtension R S] :
+    Algebra.IsQuadraticExtension K L := by
+  refine ⟨?_⟩
+  calc
+    Module.finrank K L = Module.finrank R S := IsFractionRing.finrank_eq R K S L
+    _ = 2 := Algebra.IsQuadraticExtension.finrank_eq_two R S
+
+/-- If `K` is a quadratic extension of a field `F` of characteristic not equal to
+`2`, then `K/F` is separable.
+@isnad1 id=issepara.1h2v.s6.ecab864d5f79 from=translated src=- shape=c208d086 vocab=8c301d90
+-/
+-- Repository use: `Splitting/Defs.lean` uses this in the `(e, f, g)` trichotomy;
+-- `Mathlib/NumberTheory/RamificationInertia/Galois.lean` uses it to build the
+-- fraction-field Galois bridge.
+theorem Algebra.IsQuadraticExtension.isSeparable_of_field_of_char_ne_two
+    {F K : Type*} [Field F] [Field K] [Algebra F K] [Algebra.IsQuadraticExtension F K]
+    (hchar : ringChar F ≠ 2) : Algebra.IsSeparable F K := by
+  rw [isSeparable_iff_finInsepDegree_eq_one]
+  obtain ⟨n, hn⟩ := finInsepDegree_eq_pow (F := F) (E := K) (q := ringExpChar F)
+  have hdiv : Field.finInsepDegree F K ∣ 2 := by
+    refine ⟨Field.finSepDegree F K, ?_⟩
+    rw [Nat.mul_comm, Field.finSepDegree_mul_finInsepDegree,
+      Algebra.IsQuadraticExtension.finrank_eq_two F K]
+  rcases (Nat.dvd_prime Nat.prime_two).1 hdiv with h1 | h2
+  · exact h1
+  · have hexp : ringExpChar F ≠ 2 := by
+      rw [ringExpChar]
+      intro h
+      omega
+    rw [hn] at h2
+    cases n with
+    | zero => simp at h2
+    | succ n =>
+        have hq_dvd : ringExpChar F ∣ 2 := by
+          rw [pow_succ] at h2
+          exact ⟨(ringExpChar F) ^ n, by simpa [Nat.mul_comm] using h2.symm⟩
+        rcases (Nat.dvd_prime Nat.prime_two).1 hq_dvd with hq1 | hq2
+        · simp [hq1] at h2
+        · exact (hexp hq2).elim

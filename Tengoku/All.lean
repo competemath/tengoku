@@ -27,6 +27,7 @@ import Tengoku.Leanmodularforms
 import Tengoku.Erdos1196
 import Tengoku.OpenaiMath
 import Tengoku.ImmermanVardi
+import Tengoku.MagnitudeConjecture
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
 import Tengoku.TheoremAFpGroups
@@ -53,6 +54,7 @@ import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Ieantn
 import Tengoku.GroebnerProj
+import Tengoku.Azurite
 import Tengoku.SpherePackingOrig
 import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
@@ -62,6 +64,7 @@ import Tengoku.LanaEllipticCurves
 import Tengoku.Apap
 import Tengoku.DgLean
 import Tengoku.Leancert
+import Tengoku.QuotientSubmoduleEquidistribution
 import Tengoku.ChandraFurstLipton
 import Tengoku.LanaIut
 import Tengoku.LerayHopf
@@ -73,6 +76,7 @@ import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
 import Tengoku.MeanFourier
 import Tengoku.LanaOka
+import Tengoku.QuadraticNumberFields
 import Tengoku.EquationalTheories
 import Tengoku.ForbiddenMatrix
 import Tengoku.FormalMath

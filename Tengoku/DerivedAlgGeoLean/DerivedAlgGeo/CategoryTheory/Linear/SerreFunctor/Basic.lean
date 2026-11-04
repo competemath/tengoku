@@ -1,0 +1,240 @@
+/-
+Copyright (c) 2026 Chris Dare. All rights reserved.
+Released under the MIT license.
+-/
+import Tengoku.DerivedAlgGeoLean.DerivedAlgGeo.Algebra.Category.ModuleCat.LinearDual.Basic
+import Tengoku.Seed.CategoryTheory.Linear.Yoneda
+import Tengoku.Seed.LinearAlgebra.Dual.Lemmas
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Serre functors on linear categories
+
+A Serre functor on a `k`-linear category is an endofunctor `S` together with
+natural linear equivalences
+
+`Dual k (A ⟶ B) ≃ₗ[k] (B ⟶ S.obj A)`.
+
+The pointwise equivalences and their two naturality equations are the fields of
+`SerreFunctorData`.  This is data by the mathematical nature of a Serre
+functor, not a `...Data` wrapper meaning that an unproved theorem has silently
+been postulated.  Geometric consumers may later supply such data explicitly.
+
+## Which notion this is: a *right* Serre functor
+
+`SerreFunctorData` asks for the duality and its naturality and **nothing
+else**.  It does not ask that `S` be an equivalence, so what it defines is
+Reiten--Van den Bergh's *right* Serre functor, not the Serre functor of
+Bondal--Kapranov and Huybrechts, who additionally require `S` to be a `k`-linear
+autoequivalence.  That extra clause is `SerreCategoryData.serreIsEquivalence`
+below, and the geometric consumers take that stronger package.
+
+The weaker notion is the useful one to state theorems from, and the split is
+deliberate: everything proved here holds for a right Serre functor, and a
+consumer that genuinely needs essential surjectivity asks for it by taking
+`SerreCategoryData`.  The gap is real rather than cosmetic — a right Serre
+functor is fully faithful under Hom-finiteness but need not be essentially
+surjective — so `HasRightSerreFunctor` must not be read as "this category has a
+Serre functor" in the Bondal--Kapranov sense.
+
+No shift or triangulation is needed for the definition.  Hom-finiteness is a
+separate property and appears only where double-dual or dimension arguments
+actually spend it.
+
+The naturality fields alone imply that the Serre endofunctor is additive;
+`SerreFunctorData.additive` provides this fact without a global instance.
+
+The would-be functor-level packaging has variance `C × Cᵒᵖ`: dualising
+reverses the contravariance/covariance of `Hom(A,B)`.  It is deliberately not
+exported at these general universes.  If `k : Type w` and morphisms live in
+`Type v`, then `Dual k Hom(A,B)` lives in `Type (max w v)` while
+`Hom(B,S A)` remains in `Type v`; without an equality or a systematic `ULift`,
+they are not objects of the same `ModuleCat`.  The pointwise `≃ₗ` has no such
+artificial restriction and every downstream theorem uses it directly.
+-/
+
+universe w v u
+
+namespace CategoryTheory.SerreFunctor
+
+open CategoryTheory
+
+variable (k : Type w) [Field k] (C : Type u) [Category.{v} C]
+  [Preadditive C] [Linear k C]
+
+/-- Every Hom-space of a linear category is finite-dimensional.-/
+class HomFinite : Prop where
+  /-- The finite-dimensionality witness for each Hom-space.-/
+  finite : ∀ A B : C, Module.Finite k (A ⟶ B)
+
+attribute [instance] HomFinite.finite
+
+/-- A Serre functor with its natural duality equivalence.
+
+The two equations are written pointwise to keep the variance explicit and to
+avoid hiding the load-bearing content inside a large functor expression.-/
+structure SerreFunctorData where
+  /-- The underlying endofunctor.-/
+  S : C ⥤ C
+  /-- Serre duality, pointwise.-/
+  eta : ∀ A B : C, Module.Dual k (A ⟶ B) ≃ₗ[k] (B ⟶ S.obj A)
+  /-- Naturality in the first, covariant variable.-/
+  naturality_left : ∀ {A A' B : C} (f : A ⟶ A') (phi : Module.Dual k (A ⟶ B)),
+    eta A' B (phi.comp (Linear.leftComp k B f)) =
+      eta A B phi ≫ S.map f
+  /-- Naturality in the second, contravariant variable.-/
+  naturality_right : ∀ {A B B' : C} (g : B' ⟶ B) (phi : Module.Dual k (A ⟶ B)),
+    eta A B' (phi.comp (Linear.rightComp k A g)) =
+      g ≫ eta A B phi
+
+/-- The property that a category admits some *right* Serre functor.
+
+Named for the weaker notion on purpose; see the module docstring.  For the
+Bondal--Kapranov notion, which additionally requires `S` to be an
+autoequivalence, use `Nonempty (SerreCategoryData k C)`.-/
+abbrev HasRightSerreFunctor : Prop := Nonempty (SerreFunctorData k C)
+
+/-- A chosen Serre functor which is an autoequivalence.
+
+This is the Bondal--Kapranov / Huybrechts notion: `SerreFunctorData` supplies
+the duality, and `serreIsEquivalence` supplies the clause that makes it a Serre
+functor rather than only a right one.
+
+This is the common categorical package used by geometric residual categories.
+The stronger `EnriquesCategoryData` adds a specified relation between the
+square of the Serre functor and a shift.-/
+structure SerreCategoryData where
+  /-- The chosen Serre functor and duality.-/
+  serre : SerreFunctorData k C
+  /-- The Serre functor is an autoequivalence.-/
+  serreIsEquivalence : serre.S.IsEquivalence
+
+namespace SerreCategoryData
+
+variable {k C} (A : SerreCategoryData k C)
+
+/-- The chosen Serre functor can be used as an equivalence by a consumer
+without installing a global instance.
+@isnad1 id=isequiva.0h3v.s5.1aa4924095fa from=translated src=- shape=b8172e02 vocab=eee87327
+-/
+theorem hasSerreEquivalence : A.serre.S.IsEquivalence :=
+  A.serreIsEquivalence
+
+end SerreCategoryData
+
+namespace SerreFunctorData
+
+variable {k C} (D : SerreFunctorData k C)
+
+/-- Naturality of Serre duality makes its endofunctor additive, without a
+Hom-finiteness or equivalence assumption.
+@isnad1 id=additive.0h3v.s5.fdd5b93f978e from=translated src=- shape=755cbc34 vocab=c998e5b9
+-/
+theorem additive : D.S.Additive where
+  map_add := by
+    intro A B f g
+    let φ : Module.Dual k (A ⟶ D.S.obj A) :=
+      (D.eta A (D.S.obj A)).symm (𝟙 (D.S.obj A))
+    have hmap (q : A ⟶ B) : D.S.map q =
+        D.eta B (D.S.obj A) (φ.comp (Linear.leftComp k (D.S.obj A) q)) := by
+      simpa [φ] using (D.naturality_left q φ).symm
+    rw [hmap (f + g), hmap f, hmap g, ← map_add]
+    congr 1
+    ext h
+    simp [Linear.leftComp, Preadditive.add_comp]
+
+/-- The Serre pairing `Hom(A,B) × Hom(B,S A) → k`.-/
+noncomputable def pairing (A B : C) :
+    (A ⟶ B) →ₗ[k] (B ⟶ D.S.obj A) →ₗ[k] k where
+  toFun f :=
+    { toFun := fun g ↦ (D.eta A B).symm g f
+      map_add' := by
+        intro g h
+        rw [map_add, LinearMap.add_apply]
+      map_smul' := by
+        intro c g
+        simp }
+  map_add' := by
+    intro f g
+    ext h
+    exact map_add ((D.eta A B).symm h) f g
+  map_smul' := by
+    intro c f
+    ext g
+    simp
+
+/--
+@isnad1 id=eq.0h7v.s11.af337d24cec6 from=translated src=- shape=055b6ca9 vocab=0bf02cfe
+-/
+@[simp]
+theorem pairing_apply (A B : C) (f : A ⟶ B) (g : B ⟶ D.S.obj A) :
+    D.pairing A B f g = (D.eta A B).symm g f :=
+  rfl
+
+/-- The Serre pairing separates its first argument.
+@isnad1 id=eq.1h6v.s10.b33ad4e5f5a6 from=translated src=- shape=d633bfcb vocab=54b740f9
+-/
+theorem pairing_separating_left (A B : C) (f : A ⟶ B)
+    (hf : ∀ g : B ⟶ D.S.obj A, D.pairing A B f g = 0) : f = 0 := by
+  apply Module.eval_apply_injective k
+  ext phi
+  simpa using hf (D.eta A B phi)
+
+/-- The Serre pairing separates its second argument.
+@isnad1 id=eq.1h6v.s10.49d8f03feceb from=translated src=- shape=f8ddcdd5 vocab=54b740f9
+-/
+theorem pairing_separating_right (A B : C) (g : B ⟶ D.S.obj A)
+    (hg : ∀ f : A ⟶ B, D.pairing A B f g = 0) : g = 0 := by
+  apply (D.eta A B).symm.injective
+  apply LinearMap.ext
+  intro f
+  simpa using hg f
+
+/-- Serre duality identifies the dimensions of the two Hom-spaces.
+@isnad1 id=eq.0h5v.s7.ba78ff65fcfa from=translated src=- shape=c45e88fb vocab=84d52281
+-/
+theorem finrank_hom_eq [HomFinite k C] (A B : C) :
+    Module.finrank k (A ⟶ B) = Module.finrank k (B ⟶ D.S.obj A) := by
+  calc
+    Module.finrank k (A ⟶ B) =
+        Module.finrank k (Module.Dual k (Module.Dual k (A ⟶ B))) :=
+      (Module.evalEquiv k (A ⟶ B)).finrank_eq
+    _ = Module.finrank k (Module.Dual k (A ⟶ B)) :=
+      Subspace.dual_finrank_eq
+    _ = Module.finrank k (B ⟶ D.S.obj A) :=
+      (D.eta A B).finrank_eq
+
+/-- The Serre trace on maps `A ⟶ S A`.-/
+noncomputable def trace (A : C) : (A ⟶ D.S.obj A) →ₗ[k] k where
+  toFun f := (D.eta A A).symm f (𝟙 A)
+  map_add' := by intro f g; rw [map_add, LinearMap.add_apply]
+  map_smul' := by
+    intro c f
+    simp
+
+/--
+@isnad1 id=eq.0h5v.s11.5d18377e5b7b from=translated src=- shape=0a8f35d7 vocab=cf78bb9b
+-/
+@[simp]
+theorem trace_apply (A : C) (f : A ⟶ D.S.obj A) :
+    D.trace A f = (D.eta A A).symm f (𝟙 A) :=
+  rfl
+
+/-- Cyclicity of the Serre trace, obtained from both naturality fields.
+@isnad1 id=eq.0h7v.s9.9d99c8fb979f from=translated src=- shape=6a68ad56 vocab=7bc6e8c1
+-/
+theorem trace_comp {A B : C} (f : A ⟶ B) (g : B ⟶ D.S.obj A) :
+    D.trace B (g ≫ D.S.map f) = D.trace A (f ≫ g) := by
+  let phi : Module.Dual k (A ⟶ B) := (D.eta A B).symm g
+  have hleft := D.naturality_left f phi
+  have hright := D.naturality_right f phi
+  simp only [phi, LinearEquiv.apply_symm_apply] at hleft hright
+  change (D.eta B B).symm (g ≫ D.S.map f) (𝟙 B) =
+    (D.eta A A).symm (f ≫ g) (𝟙 A)
+  rw [← hleft, ← hright]
+  simp [Linear.leftComp, Linear.rightComp]
+
+end SerreFunctorData
+
+end CategoryTheory.SerreFunctor
