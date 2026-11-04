@@ -50,6 +50,9 @@ variable (σ : T ⟶ 𝟭 C)
 /-- The component of `σ` at `A`.-/
 def ap (A : C) : T.obj A ⟶ A := σ.app A
 
+/--
+@isnad1 id=eq.0h6v.s7.f981f3546244 from=translated src=- shape=e2ff2352 vocab=9e5f7e0f
+-/
 theorem naturality' {A B : C} (f : A ⟶ B) : T.map f ≫ ap T σ B = ap T σ A ≫ f := by
   simpa [ap] using σ.naturality f
 
@@ -68,25 +71,40 @@ section Gysin
 variable {T : C ⥤ C} [T.Additive] [PreservesFiniteLimits T] [PreservesFiniteColimits T] [T.PreservesMonomorphisms]
 variable {σ : T ⟶ 𝟭 C} {P : C → Prop}
 
+/--
+@isnad1 id=eq.1h6v.s7.3db62009e704 from=translated src=- shape=df8f8e52 vocab=d545b4d8
+-/
 theorem app_eq_zero_of_mono {A B : C} (f : A ⟶ B) [Mono f] (hB : ap T σ B = 0) :
     ap T σ A = 0 := by
   rw [← cancel_mono f, ← naturality' T σ f, hB, comp_zero, zero_comp]
 
+/--
+@isnad1 id=eq.1h6v.s7.e946dbf32dbf from=translated src=- shape=3196a7a5 vocab=0357aab3
+-/
 theorem app_eq_zero_of_epi {A B : C} (f : A ⟶ B) [Epi f] (hA : ap T σ A = 0) :
     ap T σ B = 0 := by
   haveI : Epi (T.map f) := inferInstance
   rw [← cancel_epi (T.map f), naturality' T σ f, hA, zero_comp, comp_zero]
 
+/--
+@isnad1 id=kercoker.1h4v.s6.8dbaf34ea023 from=translated src=- shape=136be84e vocab=da76f94c
+-/
 theorem killedClosed (hP : KerCokerClosed P) : KerCokerClosed (Killed T σ P) where
   zero := ⟨hP.zero, (isZero_zero C).eq_of_tgt _ _⟩
   kernel f hA hB := ⟨hP.kernel f hA.1 hB.1, app_eq_zero_of_mono (kernel.ι f) hA.2⟩
   cokernel f hA hB := ⟨hP.cokernel f hA.1 hB.1, app_eq_zero_of_epi (cokernel.π f) hB.2⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.99a03f1d373d from=translated src=- shape=af078890 vocab=6d74fc8e
+-/
 theorem app_kernel_eq_zero (hc : Central T σ) (E : C) :
     ap T σ (kernel (ap T σ E)) = 0 := by
   rw [← cancel_mono (kernel.ι (ap T σ E)), ← naturality' T σ (kernel.ι (ap T σ E)), hc,
     ← Functor.map_comp, kernel.condition, Functor.map_zero, zero_comp]
 
+/--
+@isnad1 id=eq.0h4v.s8.12b648db01a9 from=translated src=- shape=f5b072fe vocab=284c7b25
+-/
 theorem app_cokernel_eq_zero (E : C) : ap T σ (cokernel (ap T σ E)) = 0 := by
   rw [← cancel_epi (T.map (cokernel.π (ap T σ E))), naturality' T σ, cokernel.condition,
     comp_zero]
@@ -94,9 +112,15 @@ theorem app_cokernel_eq_zero (E : C) : ap T σ (cokernel (ap T σ E)) = 0 := by
 variable (hc : Central T σ) (hP : KerCokerClosed P) (hT : ∀ E, P E → P (T.obj E))
 include hc hP hT
 
+/--
+@isnad1 id=killed.2h7v.s7.604d2e7d6371 from=translated src=- shape=7a9dcbab vocab=3b1574a8
+-/
 theorem killed_kernel {E : C} (hE : P E) : Killed T σ P (kernel (ap T σ E)) :=
   ⟨hP.kernel _ (hT E hE) hE, app_kernel_eq_zero hc E⟩
 
+/--
+@isnad1 id=killed.2h7v.s7.245ae9779047 from=translated src=- shape=7a9dcbab vocab=818c5cf3
+-/
 theorem killed_cokernel {E : C} (hE : P E) : Killed T σ P (cokernel (ap T σ E)) :=
   ⟨hP.cokernel _ (hT E hE) hE, app_cokernel_eq_zero E⟩
 
@@ -142,6 +166,9 @@ def snakeInput (S : ShortComplex C) (hS : S.ShortExact) : ShortComplex.SnakeInpu
   L₂_exact := hS.exact
   mono_L₂_f := hS.mono_f }
 
+/--
+@isnad1 id=eq.3h8v.s8.293e5c2efc25 from=translated src=- shape=bb7bd05e vocab=65a37ea2
+-/
 theorem gysinObj_additive (A B D : {E : C // P E}) (h : shortExactIn C P A B D) :
     gysinObj hc hP hT B = gysinObj hc hP hT A + gysinObj hc hP hT D := by
   obtain ⟨f, g, zero, hS⟩ := h
@@ -184,6 +211,9 @@ theorem gysinObj_additive (A B D : {E : C // P E}) (h : shortExactIn C P A B D) 
 def cartierGysin : SubcategoryGroup C P →+ SubcategoryGroup C (Killed T σ P) :=
   lift (gysinObj hc hP hT) (gysinObj_additive hc hP hT)
 
+/--
+@isnad1 id=eq.2h7v.s9.e3c2ba318620 from=translated src=- shape=b2259ddc vocab=82b19f58
+-/
 @[simp]
 theorem cartierGysin_classOf (E : C) (hE : P E) :
     cartierGysin hc hP hT (subcategoryClassOf C P E hE) =
@@ -192,7 +222,9 @@ theorem cartierGysin_classOf (E : C) (hE : P E) :
   lift_classOf _ _ _
 
 /-- If `σ_E` is injective (`σ` a non-zero-divisor on `E`), the Gysin class is the naive
-restriction `[E/σE] = [E ⊗ O_D]`.-/
+restriction `[E/σE] = [E ⊗ O_D]`.
+@isnad1 id=eq.2h7v.s9.87e807f53a98 from=translated src=- shape=aa50e7c6 vocab=21f6c402
+-/
 theorem cartierGysin_classOf_of_mono (E : C) (hE : P E) [Mono (ap T σ E)] :
     cartierGysin hc hP hT (subcategoryClassOf C P E hE) =
       subcategoryClassOf C (Killed T σ P) (cokernel (ap T σ E)) (killed_cokernel hc hP hT hE) := by
@@ -204,6 +236,9 @@ def pushDivisor : SubcategoryGroup C (Killed T σ P) →+ SubcategoryGroup C P :
   map (fun E => ⟨E.1, E.2.1⟩) fun _ _ _ ⟨f, g, zero, h⟩ => ⟨f, g, zero, h⟩
 
 omit hc hP hT in
+/--
+@isnad1 id=eq.1h5v.s9.03d46db0379a from=translated src=- shape=f3102765 vocab=b619aa87
+-/
 @[simp]
 theorem pushDivisor_classOf (E : C) (hE : Killed T σ P E) :
     pushDivisor (T := T) (σ := σ) (subcategoryClassOf C (Killed T σ P) E hE) =
@@ -211,7 +246,9 @@ theorem pushDivisor_classOf (E : C) (hE : Killed T σ P E) :
   simp [pushDivisor, subcategoryClassOf, map]
 
 /-- **Self-intersection formula** `D^! D_* [F] = [F] - [T F]` for `F` supported on `D`
-(`T F = L⁻¹ ⊗ F`; for trivial `L` this is `j^! j_* = 0`).-/
+(`T F = L⁻¹ ⊗ F`; for trivial `L` this is `j^! j_* = 0`).
+@isnad1 id=eq.3h6v.s10.743fa3ddffd0 from=translated src=- shape=329bd71d vocab=451120c4
+-/
 theorem cartierGysin_pushDivisor (F : C) (hF : Killed T σ P F) :
     cartierGysin hc hP hT (pushDivisor (T := T) (σ := σ)
         (subcategoryClassOf C (Killed T σ P) F hF)) =
@@ -229,7 +266,9 @@ theorem cartierGysin_pushDivisor (F : C) (hF : Killed T σ P F) :
     classOf_eq_of_iso hQ e₂ (killed_kernel hc hP hT hF.1) hTF]
 
 /-- `D_* D^! [E] = [E] - [T E]` in `G(P)` (four-term sequence `0 → ker σ_E → T E → E → coker σ_E → 0`;
-the class of `O_D` is `1 - [L⁻¹]`).-/
+the class of `O_D` is `1 - [L⁻¹]`).
+@isnad1 id=eq.2h7v.s10.f55c81098617 from=translated src=- shape=7274bab7 vocab=4a7619a5
+-/
 theorem pushDivisor_cartierGysin (E : C) (hE : P E) :
     pushDivisor (T := T) (σ := σ) (cartierGysin hc hP hT (subcategoryClassOf C P E hE)) =
       subcategoryClassOf C P E hE - subcategoryClassOf C P (T.obj E) (hT E hE) := by
@@ -257,10 +296,15 @@ def koszulσ : tensorLeft Λ ⟶ 𝟭 C where
     change Λ ◁ f ≫ (s ▷ B ≫ (λ_ B).hom) = (s ▷ A ≫ (λ_ A).hom) ≫ f
     rw [← Category.assoc, whisker_exchange, Category.assoc, Category.assoc, leftUnitor_naturality]
 
+/--
+@isnad1 id=eq.0h4v.s7.5e23a29c53ba from=translated src=- shape=d572cce2 vocab=eb9b1027
+-/
 theorem koszulσ_app (E : C) : (koszulσ Λ s).app E = (s ▷ E) ≫ (λ_ E).hom := rfl
 
 /-- If the braiding of `Λ` with itself is the identity (true for invertible sheaves), the Koszul
-map is central: `σ_{Λ ⊗ E} = Λ ⊗ σ_E`.-/
+map is central: `σ_{Λ ⊗ E} = Λ ⊗ σ_E`.
+@isnad1 id=central.1h3v.s6.bc41a2420865 from=translated src=- shape=60401b03 vocab=12915a82
+-/
 theorem koszulσ_central (hβ : (β_ Λ Λ).hom = 𝟙 _) :
     Central (tensorLeft Λ) (koszulσ Λ s) := by
   intro E

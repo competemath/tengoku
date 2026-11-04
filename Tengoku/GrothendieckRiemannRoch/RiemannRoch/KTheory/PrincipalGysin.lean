@@ -61,7 +61,9 @@ section Telescoping
 variable (hP : KerCokerClosed P)
 include hP
 
-/-- For an exact `A --f--> B --g--> D` in the class, `[A] = [ker f] + [ker g]`.-/
+/-- For an exact `A --f--> B --g--> D` in the class, `[A] = [ker f] + [ker g]`.
+@isnad1 id=eq.2h6v.s8.261c4e11fd39 from=translated src=- shape=02b1fc9a vocab=8eba065b
+-/
 theorem classOf_eq_ker_add_ker (T : ShortComplex C) (hT : T.Exact) (hA : P T.X₁)
     (hB : P T.X₂) (hD : P T.X₃) :
     subcategoryClassOf C P T.X₁ hA =
@@ -76,7 +78,9 @@ theorem classOf_eq_ker_add_ker (T : ShortComplex C) (hT : T.Exact) (hA : P T.X�
         (isKernelOfComp (kernel.ι T.g) T.f (kernelIsKernel T.f) S.zero (kernel.lift_ι _ _ _)) }
   exact subcategoryClassOf_middle C P _ _ _ S.zero hS
 
-/-- For an epimorphism `g : B ⟶ D`, `[B] = [ker g] + [D]`.-/
+/-- For an epimorphism `g : B ⟶ D`, `[B] = [ker g] + [D]`.
+@isnad1 id=eq.1h7v.s7.cb912d6a659f from=translated src=- shape=b09dc4ea vocab=6a61551e
+-/
 theorem classOf_eq_ker_add_of_epi {B D : C} (g : B ⟶ D) [Epi g] (hB : P B) (hD : P D) :
     subcategoryClassOf C P B hB =
       subcategoryClassOf C P (kernel g) (hP.kernel g hB hD) +
@@ -85,11 +89,16 @@ theorem classOf_eq_ker_add_of_epi {B D : C} (g : B ⟶ D) [Epi g] (hB : P B) (hD
   have hS : S.ShortExact := { exact := ShortComplex.exact_kernel g }
   exact subcategoryClassOf_middle C P _ _ _ S.zero hS
 
+/--
+@isnad1 id=eq.1h7v.s6.c55de48b70e7 from=translated src=- shape=ba7cf13b vocab=aed9aba9
+-/
 theorem classOf_eq_of_iso {A B : C} (e : A ≅ B) (hA : P A) (hB : P B) :
     subcategoryClassOf C P A hA = subcategoryClassOf C P B hB :=
   subcategoryClassOf_iso C P hA hB hP.zero (isZero_zero C) e
 
-/-- Alternating sum over a six-term exact sequence `0 → X₀ → ⋯ → X₅ → 0` vanishes.-/
+/-- Alternating sum over a six-term exact sequence `0 → X₀ → ⋯ → X₅ → 0` vanishes.
+@isnad1 id=eq.9h19v.s10.f53691ec0e5d from=translated src=- shape=7b1f19e0 vocab=2ab0af90
+-/
 theorem six_term {X₀ X₁ X₂ X₃ X₄ X₅ : C} (f₀ : X₀ ⟶ X₁) (f₁ : X₁ ⟶ X₂) (f₂ : X₂ ⟶ X₃)
     (f₃ : X₃ ⟶ X₄) (f₄ : X₄ ⟶ X₅) [Mono f₀] [Epi f₄]
     (w₁ : f₀ ≫ f₁ = 0) (w₂ : f₁ ≫ f₂ = 0) (w₃ : f₂ ≫ f₃ = 0) (w₄ : f₃ ≫ f₄ = 0)
@@ -120,6 +129,9 @@ variable (τ : 𝟭 C ⟶ 𝟭 C)
 def ap (A : C) : A ⟶ A := τ.app A
 
 omit [Abelian C] in
+/--
+@isnad1 id=eq.0h5v.s6.820e2cd3488b from=translated src=- shape=ca2d1dc5 vocab=b8554313
+-/
 theorem naturality' {A B : C} (f : A ⟶ B) : ap τ A ≫ f = f ≫ ap τ B := by
   simpa [ap] using (τ.naturality f).symm
 
@@ -127,31 +139,52 @@ theorem naturality' {A B : C} (f : A ⟶ B) : ap τ A ≫ f = f ≫ ap τ B := b
 fibre `t = 0`).-/
 def Killed (P : C → Prop) (τ : 𝟭 C ⟶ 𝟭 C) (E : C) : Prop := P E ∧ ap τ E = 0
 
+/--
+@isnad1 id=eq.1h5v.s7.46b95789a070 from=translated src=- shape=3a6cf8d1 vocab=174f1163
+-/
 theorem app_eq_zero_of_mono {A B : C} (f : A ⟶ B) [Mono f] (hB : ap τ B = 0) :
     ap τ A = 0 := by
   rw [← cancel_mono f, naturality' τ f, hB, comp_zero, zero_comp]
 
+/--
+@isnad1 id=eq.1h5v.s7.13696cff2103 from=translated src=- shape=7a204ef5 vocab=03ad5e6f
+-/
 theorem app_eq_zero_of_epi {A B : C} (f : A ⟶ B) [Epi f] (hA : ap τ A = 0) :
     ap τ B = 0 := by
   rw [← cancel_epi f, ← naturality' τ f, hA, comp_zero, zero_comp]
 
+/--
+@isnad1 id=kercoker.1h3v.s5.1416d7085ba1 from=translated src=- shape=bb385c78 vocab=8d8feaf2
+-/
 theorem KerCokerClosed.killed (hP : KerCokerClosed P) : KerCokerClosed (Killed P τ) where
   zero := ⟨hP.zero, (isZero_zero C).eq_of_src _ _⟩
   kernel f hA hB := ⟨hP.kernel f hA.1 hB.1, app_eq_zero_of_mono τ (kernel.ι f) hA.2⟩
   cokernel f hA hB := ⟨hP.cokernel f hA.1 hB.1, app_eq_zero_of_epi τ (cokernel.π f) hB.2⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.fead19f4b0d9 from=translated src=- shape=9d2b8ede vocab=b9ed9a5b
+-/
 theorem app_kernel_eq_zero (E : C) : ap τ (kernel (ap τ E)) = 0 := by
   rw [← cancel_mono (kernel.ι (ap τ E)), naturality' τ, kernel.condition, zero_comp]
 
+/--
+@isnad1 id=eq.0h3v.s7.87f895299843 from=translated src=- shape=9d2b8ede vocab=d40d732d
+-/
 theorem app_cokernel_eq_zero (E : C) : ap τ (cokernel (ap τ E)) = 0 := by
   rw [← cancel_epi (cokernel.π (ap τ E)), ← naturality' τ, cokernel.condition, comp_zero]
 
 variable (hP : KerCokerClosed P)
 include hP
 
+/--
+@isnad1 id=killed.1h5v.s6.d8bd45a46d3e from=translated src=- shape=87ee9ab1 vocab=28efcd17
+-/
 theorem killed_kernel {E : C} (hE : P E) : Killed P τ (kernel (ap τ E)) :=
   ⟨hP.kernel _ hE hE, app_kernel_eq_zero τ E⟩
 
+/--
+@isnad1 id=killed.1h5v.s6.69d23fcc93db from=translated src=- shape=87ee9ab1 vocab=2d9684e4
+-/
 theorem killed_cokernel {E : C} (hE : P E) : Killed P τ (cokernel (ap τ E)) :=
   ⟨hP.cokernel _ hE hE, app_cokernel_eq_zero τ E⟩
 
@@ -187,6 +220,9 @@ def snakeInput (S : ShortComplex C) (hS : S.ShortExact) : ShortComplex.SnakeInpu
   L₂_exact := hS.exact
   mono_L₂_f := hS.mono_f
 
+/--
+@isnad1 id=eq.2h6v.s8.c1051b47ac3e from=translated src=- shape=a0799865 vocab=fea3dbc0
+-/
 theorem gysinObj_additive (A B D : {E : C // P E}) (h : shortExactIn C P A B D) :
     gysinObj τ hP B = gysinObj τ hP A + gysinObj τ hP D := by
   obtain ⟨f, g, zero, hS⟩ := h
@@ -223,6 +259,9 @@ theorem gysinObj_additive (A B D : {E : C // P E}) (h : shortExactIn C P A B D) 
 def gysin : SubcategoryGroup C P →+ SubcategoryGroup C (Killed P τ) :=
   lift (gysinObj τ hP) (gysinObj_additive τ hP)
 
+/--
+@isnad1 id=eq.1h5v.s9.8890aae28933 from=translated src=- shape=7afc051b vocab=f8150d36
+-/
 @[simp]
 theorem gysin_classOf (E : C) (hE : P E) :
     gysin τ hP (subcategoryClassOf C P E hE) =
@@ -231,7 +270,9 @@ theorem gysin_classOf (E : C) (hE : P E) :
   lift_classOf _ _ _
 
 /-- If `τ` is injective on `E` (`t` a non-zero-divisor, e.g. `E` flat over the base line), the
-Gysin class is the naive restriction `[E/τE]`.-/
+Gysin class is the naive restriction `[E/τE]`.
+@isnad1 id=eq.1h5v.s9.c524388f3bc7 from=translated src=- shape=ec64413d vocab=4c869d4d
+-/
 theorem gysin_classOf_of_mono (E : C) (hE : P E) [Mono (ap τ E)] :
     gysin τ hP (subcategoryClassOf C P E hE) =
       subcategoryClassOf C (Killed P τ) (cokernel (ap τ E)) (killed_cokernel τ hP hE) := by
@@ -243,13 +284,18 @@ def pushDivisor : SubcategoryGroup C (Killed P τ) →+ SubcategoryGroup C P :=
   map (fun E => ⟨E.1, E.2.1⟩) fun _ _ _ ⟨f, g, zero, h⟩ => ⟨f, g, zero, h⟩
 
 omit hP in
+/--
+@isnad1 id=eq.1h4v.s9.48fe36bda723 from=translated src=- shape=0fd41ce1 vocab=45f39594
+-/
 @[simp]
 theorem pushDivisor_classOf (E : C) (hE : Killed P τ E) :
     pushDivisor τ (subcategoryClassOf C (Killed P τ) E hE) = subcategoryClassOf C P E hE.1 := by
   simp [pushDivisor, subcategoryClassOf, map]
 
 /-- `j^! j_* = 0`: the normal bundle of a principal divisor is trivial. This is exactly what makes
-the Fulton specialization map well defined.-/
+the Fulton specialization map well defined.
+@isnad1 id=eq.1h3v.s10.448adba7c1bc from=translated src=- shape=0e92a84d vocab=8fa1fa8f
+-/
 theorem gysin_comp_pushDivisor : (gysin τ hP).comp (pushDivisor τ) = 0 := by
   refine hom_ext _ _ fun E => ?_
   obtain ⟨E, hE⟩ := E
@@ -262,7 +308,9 @@ theorem gysin_comp_pushDivisor : (gysin τ hP).comp (pushDivisor τ) = 0 := by
   rw [classOf_eq_of_iso hQ e₁ _ hE, classOf_eq_of_iso hQ e₂ _ hE]
 
 /-- `j_* j^! = 0`: `[coker τ_E] = [ker τ_E]` in `G(P)` (four-term sequence
-`0 → ker → E → E → coker → 0`), i.e. `[O_{M₀}] = 0` for a principal divisor.-/
+`0 → ker → E → E → coker → 0`), i.e. `[O_{M₀}] = 0` for a principal divisor.
+@isnad1 id=eq.1h3v.s10.8d8b5de9482d from=translated src=- shape=7503d272 vocab=8fa1fa8f
+-/
 theorem pushDivisor_comp_gysin : (pushDivisor τ).comp (gysin τ hP) = 0 := by
   refine hom_ext _ _ fun E => ?_
   obtain ⟨E, hE⟩ := E
@@ -290,13 +338,18 @@ def smulNatTrans (r : R) : 𝟭 (ModuleCat.{v} R) ⟶ 𝟭 (ModuleCat.{v} R) whe
     change r • f.hom x = f.hom (r • x)
     exact (map_smul f.hom r x).symm
 
+/--
+@isnad1 id=iff.0h3v.s7.c2cd3b14c74a from=translated src=- shape=a993c03b vocab=2596a6ed
+-/
 theorem mono_ap_smulNatTrans_iff (r : R) (M : ModuleCat.{v} R) :
     Mono (ap (smulNatTrans R r) M) ↔ IsSMulRegular M r := by
   rw [ModuleCat.mono_iff_injective]
   rfl
 
 /-- **Tor-independence of fibres of a flat family over `𝔸¹_k`**: on a `k[t]`-flat module, `t - c`
-acts injectively, so `j_c^![E] = [E/(t-c)E]` (`gysin_classOf_of_mono`).-/
+acts injectively, so `j_c^![E] = [E/(t-c)E]` (`gysin_classOf_of_mono`).
+@isnad1 id=mono.0h3v.s8.24ee74157e89 from=translated src=- shape=bf181cf2 vocab=fb8d819f
+-/
 theorem mono_ap_smulNatTrans_of_flat (k : Type u) [Field k] (c : k)
     (M : ModuleCat.{v} (Polynomial k)) [Module.Flat (Polynomial k) M] :
     Mono (ap (smulNatTrans (Polynomial k) (Polynomial.X - Polynomial.C c)) M) := by

@@ -63,30 +63,51 @@ variable (A) in
 /-- The submodule spanned by the entries of a list.-/
 def lspan (l : List M) : Submodule A M := span A {y | y ∈ l}
 
+/--
+@isnad1 id=eq.0h2v.s6.c397f4a278d8 from=translated src=- shape=1cee2fb1 vocab=38777fe8
+-/
 @[simp] lemma lspan_nil : lspan A ([] : List M) = ⊥ := by
   simp [lspan]
 
+/--
+@isnad1 id=eq.0h4v.s7.78aa60c91ecf from=translated src=- shape=ebb02e05 vocab=34e98b45
+-/
 @[simp] lemma lspan_cons (v : M) (l : List M) : lspan A (v :: l) = A ∙ v ⊔ lspan A l := by
   simp only [lspan, List.mem_cons]
   rw [← span_insert]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.c3763fec882c from=translated src=- shape=8ab1fadb vocab=3ddcd224
+-/
 @[simp] lemma lspan_append (l₁ l₂ : List M) : lspan A (l₁ ++ l₂) = lspan A l₁ ⊔ lspan A l₂ := by
   simp only [lspan, List.mem_append]
   rw [← span_union]
   rfl
 
+/--
+@isnad1 id=mem.1h4v.s6.ad478cf1de2a from=translated src=- shape=b6b2534b vocab=70f5e83a
+-/
 lemma mem_lspan {v : M} {l : List M} (h : v ∈ l) : v ∈ lspan A l :=
   subset_span h
 
+/--
+@isnad1 id=eq.0h5v.s8.ed8aad82583c from=translated src=- shape=e5d16e0d vocab=34e98b45
+-/
 lemma sup_lspan_cons (P : Submodule A M) (v : M) (l : List M) :
     P ⊔ lspan A (v :: l) = P ⊔ A ∙ v ⊔ lspan A l := by
   rw [lspan_cons, sup_assoc]
 
+/--
+@isnad1 id=eq.0h5v.s8.d6ffea109e7e from=translated src=- shape=9a75bcf5 vocab=3ddcd224
+-/
 lemma sup_lspan_append (P : Submodule A M) (l₁ l₂ : List M) :
     P ⊔ lspan A (l₁ ++ l₂) = P ⊔ lspan A l₁ ⊔ lspan A l₂ := by
   rw [lspan_append, sup_assoc]
 
+/--
+@isnad1 id=eq.0h5v.s8.167a21ebf018 from=translated src=- shape=025a4281 vocab=310b2431
+-/
 lemma sup_lspan_snoc (P : Submodule A M) (l : List M) (v : M) :
     P ⊔ lspan A (l ++ [v]) = P ⊔ lspan A l ⊔ A ∙ v := by
   rw [sup_lspan_append, lspan_cons, lspan_nil, sup_bot_eq]
@@ -96,10 +117,15 @@ lemma sup_lspan_snoc (P : Submodule A M) (l : List M) (v : M) :
 /-- `𝔪 • v ⊆ P`.-/
 def MKill (P : Submodule A M) (v : M) : Prop := ∀ r ∈ maximalIdeal A, r • v ∈ P
 
+/--
+@isnad1 id=mkill.2h5v.s7.8b024806671f from=translated src=- shape=005af99d vocab=1ef9e959
+-/
 lemma MKill.mono {P Q : Submodule A M} {v : M} (h : MKill P v) (hPQ : P ≤ Q) : MKill Q v :=
   fun r hr => hPQ (h r hr)
 
-/-- If `𝔪 v ⊆ P` and `w ∈ P ⊔ A v`, `w ∉ P`, then `w ≡ a v` modulo `P` with `a` a unit.-/
+/-- If `𝔪 v ⊆ P` and `w ∈ P ⊔ A v`, `w ∉ P`, then `w ≡ a v` modulo `P` with `a` a unit.
+@isnad1 id=ex.3h5v.s8.feeb065e1662 from=translated src=- shape=d1be80e5 vocab=e3ac95a8
+-/
 lemma exists_unit_of_mem_sup {P : Submodule A M} {v w : M} (hv : MKill P v)
     (hw : w ∈ P ⊔ A ∙ v) (hwP : w ∉ P) : ∃ a : A, IsUnit a ∧ w - a • v ∈ P := by
   obtain ⟨p, hp, z, hz, rfl⟩ := mem_sup.1 hw
@@ -108,7 +134,9 @@ lemma exists_unit_of_mem_sup {P : Submodule A M} {v w : M} (hv : MKill P v)
   by_contra ha
   exact hwP (P.add_mem hp (hv a (not_not.1 (notMem_maximalIdeal.not.2 ha))))
 
-/-- Covering: if `𝔪 v ⊆ P` and `w ∈ (P ⊔ A v) \ P` then `P ⊔ A w = P ⊔ A v`.-/
+/-- Covering: if `𝔪 v ⊆ P` and `w ∈ (P ⊔ A v) \ P` then `P ⊔ A w = P ⊔ A v`.
+@isnad1 id=eq.3h5v.s8.0e14833c70c1 from=translated src=- shape=60ea8f23 vocab=d71bd06f
+-/
 lemma sup_span_eq_of_mem {P : Submodule A M} {v w : M} (hv : MKill P v)
     (hw : w ∈ P ⊔ A ∙ v) (hwP : w ∉ P) : P ⊔ A ∙ w = P ⊔ A ∙ v := by
   obtain ⟨a, ha, h⟩ := exists_unit_of_mem_sup hv hw hwP
@@ -129,22 +157,37 @@ def Adm : Submodule A M → Submodule A M → List M → Prop
   | P, T, [] => P = T
   | P, T, v :: l => v ∈ T ∧ v ∉ P ∧ MKill P v ∧ Adm (P ⊔ A ∙ v) T l
 
+/--
+@isnad1 id=iff.0h4v.s6.78dd2b5330b6 from=translated src=- shape=b630db9c vocab=7a094343
+-/
 @[simp] lemma adm_nil {P T : Submodule A M} : Adm P T [] ↔ P = T := Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s8.7ea806fc32b5 from=translated src=- shape=c7d34384 vocab=13bdf5fa
+-/
 @[simp] lemma adm_cons {P T : Submodule A M} {v : M} {l : List M} :
     Adm P T (v :: l) ↔ v ∈ T ∧ v ∉ P ∧ MKill P v ∧ Adm (P ⊔ A ∙ v) T l := Iff.rfl
 
+/--
+@isnad1 id=le.1h5v.s6.1aeebe8f2f3a from=translated src=- shape=cb295a8c vocab=64ea5705
+-/
 lemma Adm.le {T : Submodule A M} {l : List M} : ∀ {P : Submodule A M}, Adm P T l → P ≤ T := by
   induction l with
   | nil => intro P h; exact le_of_eq (show P = T from h)
   | cons v l ih => intro P h; exact le_sup_left.trans (ih h.2.2.2)
 
+/--
+@isnad1 id=eq.1h5v.s7.3156bbff3ef3 from=translated src=- shape=c74e6074 vocab=bc480f42
+-/
 lemma Adm.sup_lspan {T : Submodule A M} {l : List M} :
     ∀ {P : Submodule A M}, Adm P T l → P ⊔ lspan A l = T := by
   induction l with
   | nil => intro P h; simpa using h
   | cons v l ih => intro P h; rw [sup_lspan_cons]; exact ih h.2.2.2
 
+/--
+@isnad1 id=mem.2h6v.s6.2bb45af9ba7a from=translated src=- shape=54b61c62 vocab=0947f65f
+-/
 lemma Adm.mem {T : Submodule A M} {l : List M} :
     ∀ {P : Submodule A M}, Adm P T l → ∀ v ∈ l, v ∈ T := by
   induction l with
@@ -155,6 +198,9 @@ lemma Adm.mem {T : Submodule A M} {l : List M} :
     · exact h.1
     · exact ih h.2.2.2 v hv
 
+/--
+@isnad1 id=adm.1h6v.s7.3ece2fccaf22 from=translated src=- shape=6a9ea267 vocab=67f2fa92
+-/
 lemma adm_append_left {T : Submodule A M} {l₁ l₂ : List M} :
     ∀ {P : Submodule A M}, Adm P T (l₁ ++ l₂) → Adm P (P ⊔ lspan A l₁) l₁ := by
   induction l₁ with
@@ -165,6 +211,9 @@ lemma adm_append_left {T : Submodule A M} {l₁ l₂ : List M} :
     rw [sup_lspan_cons]
     exact ih h.2.2.2
 
+/--
+@isnad1 id=adm.1h6v.s7.f342697b92f7 from=translated src=- shape=51a790d9 vocab=67f2fa92
+-/
 lemma adm_append_right {T : Submodule A M} {l₁ l₂ : List M} :
     ∀ {P : Submodule A M}, Adm P T (l₁ ++ l₂) → Adm (P ⊔ lspan A l₁) T l₂ := by
   induction l₁ with
@@ -174,6 +223,9 @@ lemma adm_append_right {T : Submodule A M} {l₁ l₂ : List M} :
     rw [sup_lspan_cons]
     exact ih h.2.2.2
 
+/--
+@isnad1 id=adm.2h7v.s6.6f4128b7f8c1 from=translated src=- shape=50d24666 vocab=586f376b
+-/
 lemma adm_append {S T : Submodule A M} {l₁ l₂ : List M} :
     ∀ {P : Submodule A M}, Adm P S l₁ → Adm S T l₂ → Adm P T (l₁ ++ l₂) := by
   induction l₁ with
@@ -182,6 +234,9 @@ lemma adm_append {S T : Submodule A M} {l₁ l₂ : List M} :
     intro P h₁ h₂
     exact ⟨(Adm.le h₂) h₁.1, h₁.2.1, h₁.2.2.1, ih h₁.2.2.2 h₂⟩
 
+/--
+@isnad1 id=iff.0h6v.s8.1bbdf1827ace from=translated src=- shape=ab431b66 vocab=67f2fa92
+-/
 lemma adm_append_iff {P T : Submodule A M} {l₁ l₂ : List M} :
     Adm P T (l₁ ++ l₂) ↔ Adm P (P ⊔ lspan A l₁) l₁ ∧ Adm (P ⊔ lspan A l₁) T l₂ :=
   ⟨fun h => ⟨adm_append_left h, adm_append_right h⟩, fun h => adm_append h.1 h.2⟩
@@ -191,13 +246,17 @@ lemma Adm.eq_nil {T : Submodule A M} {l : List M} (h : Adm T T l) : l = [] := by
   | nil => rfl
   | cons v l => exact absurd h.1 h.2.1
 
-/-- The middle entry of an admissible list.-/
+/-- The middle entry of an admissible list.
+@isnad1 id=and.1h7v.s9.a05fd810f9fe from=translated src=- shape=1fe72aff vocab=2230db79
+-/
 lemma Adm.mid {P T : Submodule A M} {l₁ l₂ : List M} {v : M} (h : Adm P T (l₁ ++ v :: l₂)) :
     v ∈ T ∧ v ∉ P ⊔ lspan A l₁ ∧ MKill (P ⊔ lspan A l₁) v ∧
       Adm (P ⊔ lspan A l₁ ⊔ A ∙ v) T l₂ :=
   adm_append_right h
 
-/-- Replacing an entry by another generator of the same step.-/
+/-- Replacing an entry by another generator of the same step.
+@isnad1 id=adm.4h8v.s9.2d87e0a841c2 from=translated src=- shape=9cd697b9 vocab=2230db79
+-/
 lemma Adm.replace {P T : Submodule A M} {l₁ l₂ : List M} {v w : M} (h : Adm P T (l₁ ++ v :: l₂))
     (hw : w ∈ P ⊔ lspan A l₁ ⊔ A ∙ v) (hwB : w ∉ P ⊔ lspan A l₁) (hwk : MKill (P ⊔ lspan A l₁) w) :
     Adm P T (l₁ ++ w :: l₂) := by
@@ -207,7 +266,9 @@ lemma Adm.replace {P T : Submodule A M} {l₁ l₂ : List M} {v w : M} (h : Adm 
   · exact (Adm.le hrest) (heq ▸ mem_sup_right (mem_span_singleton_self w))
   · rw [heq]; exact hrest
 
-/-- Swapping two adjacent entries `u, v` when `𝔪 v` lies in the span before `u`.-/
+/-- Swapping two adjacent entries `u, v` when `𝔪 v` lies in the span before `u`.
+@isnad1 id=adm.2h8v.s7.817ec4e77bbc from=translated src=- shape=99d13da4 vocab=9115749e
+-/
 lemma Adm.swap {P T : Submodule A M} {l₁ l₂ : List M} {u v : M}
     (h : Adm P T (l₁ ++ u :: v :: l₂)) (hv : MKill (P ⊔ lspan A l₁) v) :
     Adm P T (l₁ ++ v :: u :: l₂) := by
@@ -223,6 +284,9 @@ lemma Adm.swap {P T : Submodule A M} {l₁ l₂ : List M} {u v : M}
 
 /-! ### Splitting a list at the first entry that reaches a given element -/
 
+/--
+@isnad1 id=ex.2h5v.s9.510b8a806ab4 from=translated src=- shape=b3be9343 vocab=c75cc162
+-/
 lemma exists_split {P : Submodule A M} {g : M} :
     ∀ {l : List M}, g ∈ P ⊔ lspan A l → g ∉ P →
       ∃ l₁ x l₂, l = l₁ ++ x :: l₂ ∧ g ∉ P ⊔ lspan A l₁ ∧ g ∈ P ⊔ lspan A l₁ ⊔ A ∙ x
@@ -234,6 +298,9 @@ lemma exists_split {P : Submodule A M} {g : M} :
       obtain ⟨l₁, x, l₂, rfl, h1, h2⟩ := exists_split (P := P ⊔ A ∙ v) h hv
       exact ⟨v :: l₁, x, l₂, rfl, by rwa [sup_lspan_cons], by rwa [sup_lspan_cons]⟩
 
+/--
+@isnad1 id=and.5h10v.s9.8ad5c8bbaecd from=translated src=- shape=142ded83 vocab=c75cc162
+-/
 lemma split_unique {g : M} {l₂ k₂ : List M} {x y : M} {l₁ : List M} :
     ∀ {P : Submodule A M} {k₁ : List M}, l₁ ++ x :: l₂ = k₁ ++ y :: k₂ →
     g ∉ P ⊔ lspan A l₁ → g ∈ P ⊔ lspan A l₁ ⊔ A ∙ x →
@@ -263,7 +330,9 @@ lemma split_unique {g : M} {l₂ k₂ : List M} {x y : M} {l₁ : List M} :
       obtain ⟨rfl, rfl, rfl⟩ := ih he h1 h2 h3 h4
       exact ⟨rfl, rfl, rfl⟩
 
-/-- Removing the step where a fixed element `f` with `𝔪 f ⊆ P` is reached.-/
+/-- Removing the step where a fixed element `f` with `𝔪 f ⊆ P` is reached.
+@isnad1 id=adm.4h8v.s9.03529cc87199 from=translated src=- shape=b0999e3e vocab=2230db79
+-/
 lemma adm_erase {f : M} : ∀ {P T : Submodule A M} {l₁ l₂ : List M} {x : M},
     Adm P T (l₁ ++ x :: l₂) → MKill P f → f ∉ P ⊔ lspan A l₁ → f ∈ P ⊔ lspan A l₁ ⊔ A ∙ x →
     Adm (P ⊔ A ∙ f) T (l₁ ++ l₂)
@@ -281,7 +350,9 @@ lemma adm_erase {f : M} : ∀ {P T : Submodule A M} {l₁ l₂ : List M} {x : M}
       have hfa : f ∈ P ⊔ A ∙ a := this ▸ mem_sup_right (mem_span_singleton_self f)
       exact h1 (mem_sup_left hfa)
 
-/-- The span after the erased step.-/
+/-- The span after the erased step.
+@isnad1 id=eq.3h7v.s9.626fece84f97 from=translated src=- shape=b6c05b8c vocab=ed2fe9c4
+-/
 lemma sup_lspan_erase {P : Submodule A M} {f x : M} {l₁ l₂ : List M}
     (hx : MKill (P ⊔ lspan A l₁) x) (h1 : f ∉ P ⊔ lspan A l₁)
     (h2 : f ∈ P ⊔ lspan A l₁ ⊔ A ∙ x) :
@@ -302,6 +373,9 @@ structure IsVol (P T : Submodule A M) (c : List M → ResidueField A) : Prop whe
   swap : ∀ (l₁ l₂ : List M) (u v : M), Adm P T (l₁ ++ u :: v :: l₂) →
     Adm P T (l₁ ++ v :: u :: l₂) → c (l₁ ++ u :: v :: l₂) = - c (l₁ ++ v :: u :: l₂)
 
+/--
+@isnad1 id=isvol.2h7v.s7.dce2fb98c8f3 from=translated src=- shape=a90f4a79 vocab=170157fa
+-/
 lemma IsVol.prefix {P S T : Submodule A M} {c : List M → ResidueField A} (hc : IsVol P T c)
     {l₀ : List M} (h₀ : Adm P S l₀) : IsVol S T (fun l => c (l₀ ++ l)) where
   smul l₁ l₂ v w x a h h' hx he := by
@@ -314,6 +388,9 @@ lemma IsVol.prefix {P S T : Submodule A M} {c : List M → ResidueField A} (hc :
       (by rw [List.append_assoc]; exact adm_append h₀ h')
     simpa only [List.append_assoc] using this
 
+/--
+@isnad1 id=isvol.2h7v.s7.d51452f62af7 from=translated src=- shape=f0e0e5c9 vocab=170157fa
+-/
 lemma IsVol.suffix {P S T : Submodule A M} {c : List M → ResidueField A} (hc : IsVol P T c)
     {l₀ : List M} (h₀ : Adm S T l₀) : IsVol P S (fun l => c (l ++ l₀)) where
   smul l₁ l₂ v w x a h h' hx he := by
@@ -327,7 +404,9 @@ lemma IsVol.suffix {P S T : Submodule A M} {c : List M → ResidueField A} (hc :
       (by have := adm_append h' h₀; simpa only [List.append_assoc, List.cons_append] using this)
     simpa only [List.append_assoc, List.cons_append] using this
 
-/-- Moving an entry `g` with `𝔪 g ⊆ P` to the front costs the sign `(-1)^{#passed}`.-/
+/-- Moving an entry `g` with `𝔪 g ⊆ P` to the front costs the sign `(-1)^{#passed}`.
+@isnad1 id=and.2h7v.s8.4ddeaa8a0508 from=translated src=- shape=ca145050 vocab=ebd39da2
+-/
 lemma move_front {P T : Submodule A M} {g : M} (hg : MKill P g) (l₁ : List M) :
     ∀ {l₂ : List M}, Adm P T (l₁ ++ g :: l₂) → Adm P T (g :: (l₁ ++ l₂)) ∧
       ∀ c, IsVol P T c → c (l₁ ++ g :: l₂) = (-1) ^ l₁.length * c (g :: (l₁ ++ l₂)) := by
@@ -342,7 +421,9 @@ lemma move_front {P T : Submodule A M} {g : M} (hg : MKill P g) (l₁ : List M) 
     rw [List.append_assoc, List.singleton_append, hc.swap _ _ _ _ h h', h2 c hc]
     simp [pow_succ]
 
-/-- **Stacks 42.68.3** (`dim det_κ ≤ 1`), in dual form, together with invariance of the length.-/
+/-- **Stacks 42.68.3** (`dim det_κ ≤ 1`), in dual form, together with invariance of the length.
+@isnad1 id=ex.2h6v.s7.1fab82aff398 from=translated src=- shape=4e575b6c vocab=714890ef
+-/
 theorem vol_unique {T : Submodule A M} {l' : List M} :
     ∀ {l : List M} {P : Submodule A M}, Adm P T l → Adm P T l' →
       ∃ μ : ResidueField A, (∀ c, IsVol P T c → c l = μ * c l') ∧ l.length = l'.length := by
@@ -376,9 +457,15 @@ theorem vol_unique {T : Submodule A M} {l' : List M} :
 
 /-! ### Existence of a nonvanishing volume (Stacks 42.68.5) -/
 
+/--
+@isnad1 id=mem.0h4v.s7.7835600368ef from=translated src=- shape=cdfb83b0 vocab=bfec7e94
+-/
 lemma self_mem_sup_span (B : Submodule A M) (v : M) : v ∈ B ⊔ A ∙ v :=
   mem_sup_right (mem_span_singleton_self v)
 
+/--
+@isnad1 id=lt.1h7v.s7.7a660b6b315c from=translated src=- shape=3dc6db0b vocab=0f704316
+-/
 lemma Adm.lt_of_mid {P T : Submodule A M} {l₁ l₂ : List M} {v : M} (h : Adm P T (l₁ ++ v :: l₂)) :
     P < T := by
   obtain ⟨hvT, hvB, -, -⟩ := h.mid
@@ -387,7 +474,9 @@ lemma Adm.lt_of_mid {P T : Submodule A M} {l₁ l₂ : List M} {v : M} (h : Adm 
   exact hvB (mem_sup_left hvT)
 
 /-- In a finite length module, every proper step `P < T` contains an element killed by `𝔪`
-modulo `P` (a socle element of `T/P`).-/
+modulo `P` (a socle element of `T/P`).
+@isnad1 id=ex.1h4v.s7.63a24c9ca097 from=translated src=- shape=5b9c7ff7 vocab=bd052593
+-/
 lemma exists_mkill [IsArtinian A M] {P T : Submodule A M} (h : P < T) :
     ∃ f ∈ T, f ∉ P ∧ MKill P f := by
   obtain ⟨Q, ⟨hPQ, hQT⟩, hmin⟩ := (wellFounded_lt (α := Submodule A M)).has_min
@@ -416,6 +505,9 @@ open Classical in
 noncomputable def coef (R : Submodule A M) (x f : M) : ResidueField A :=
   if h : ∃ a : A, x - a • f ∈ R then residue A h.choose else 0
 
+/--
+@isnad1 id=eq.2h6v.s8.5e4491868c56 from=translated src=- shape=d1b15043 vocab=78f371da
+-/
 lemma coef_eq {R : Submodule A M} {x f : M} {a : A} (hf : f ∉ R) (h : x - a • f ∈ R) :
     coef R x f = residue A a := by
   have h' : ∃ a : A, x - a • f ∈ R := ⟨a, h⟩
@@ -427,6 +519,9 @@ lemma coef_eq {R : Submodule A M} {x f : M} {a : A} (hf : f ∉ R) (h : x - a �
     rw [sub_smul]; abel
   exact hf ((R.smul_mem_iff_of_isUnit (notMem_maximalIdeal.1 hab)).1 hmem)
 
+/--
+@isnad1 id=ex.5h5v.s8.799e13d67d9c from=translated src=- shape=52e00ed7 vocab=e3ac95a8
+-/
 lemma exists_coef {B : Submodule A M} {x f : M} (hx : MKill B x) (hxB : x ∉ B) (hfB : f ∉ B)
     (hf : MKill B f) (h : f ∈ B ⊔ A ∙ x) : ∃ a : A, IsUnit a ∧ x - a • f ∈ B :=
   exists_unit_of_mem_sup hf ((sup_span_eq_of_mem hx h hfB) ▸ self_mem_sup_span B x) hxB
@@ -443,6 +538,9 @@ noncomputable def splitVal (P : Submodule A M) (f : M) (c' : List M → ResidueF
       c' (h.choose.1 ++ h.choose.2.2)
   else 0
 
+/--
+@isnad1 id=eq.2h8v.s9.5d056ddc7203 from=translated src=- shape=d1833f88 vocab=3d14df70
+-/
 lemma splitVal_eq {P : Submodule A M} {f : M} {c' : List M → ResidueField A} {l₁ l₂ : List M}
     {x : M} (h1 : f ∉ P ⊔ lspan A l₁) (h2 : f ∈ P ⊔ lspan A l₁ ⊔ A ∙ x) :
     splitVal P f c' (l₁ ++ x :: l₂) =
@@ -454,6 +552,9 @@ lemma splitVal_eq {P : Submodule A M} {f : M} {c' : List M → ResidueField A} {
   obtain ⟨e1, e2, e3⟩ := split_unique hs h1 h2 hs1 hs2
   rw [← e1, ← e2, ← e3]
 
+/--
+@isnad1 id=eq.0h6v.s8.87f8123af064 from=translated src=- shape=4d762329 vocab=405a06b1
+-/
 lemma sup_lspan_mid (P : Submodule A M) (l₁ k₁ : List M) (z : M) :
     P ⊔ lspan A (l₁ ++ z :: k₁) = P ⊔ lspan A l₁ ⊔ A ∙ z ⊔ lspan A k₁ := by
   rw [sup_lspan_append, lspan_cons, ← sup_assoc]
@@ -462,6 +563,9 @@ section splitVal
 
 variable {P T : Submodule A M} {f : M} {c' : List M → ResidueField A}
 
+/--
+@isnad1 id=eq.8h12v.s9.d48feb4c1d3a from=translated src=- shape=17c3b951 vocab=317866df
+-/
 lemma splitVal_smul (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T) (hc' : IsVol (P ⊔ A ∙ f) T c')
     (l₁ l₂ : List M) (v w x : M) (a : A) (h : Adm P T (l₁ ++ v :: l₂))
     (h' : Adm P T (l₁ ++ w :: l₂)) (hx : x ∈ P ⊔ lspan A l₁) (he : v = a • w + x) :
@@ -514,6 +618,9 @@ lemma splitVal_smul (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T) (hc' : IsVo
     simp only [List.append_assoc, List.cons_append, List.length_append, List.length_cons]
     rw [this]; ring
 
+/--
+@isnad1 id=eq.5h10v.s9.3279bab0ec8f from=translated src=- shape=a12aedde vocab=7b2f8421
+-/
 lemma splitVal_swap_caseB (hf : MKill P f) {l₁ l₂ : List M} {u v : M}
     (h : Adm P T (l₁ ++ u :: v :: l₂)) (h' : Adm P T (l₁ ++ v :: u :: l₂))
     (hA : f ∉ P ⊔ lspan A l₁) (hU : f ∈ P ⊔ lspan A l₁ ⊔ A ∙ u) :
@@ -537,6 +644,9 @@ lemma splitVal_swap_caseB (hf : MKill P f) {l₁ l₂ : List M} {u v : M}
     List.singleton_append]
   ring
 
+/--
+@isnad1 id=eq.6h10v.s8.d5cf597467d8 from=translated src=- shape=3b772a91 vocab=dd9f2d8f
+-/
 lemma splitVal_swap (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T) (hc' : IsVol (P ⊔ A ∙ f) T c')
     (l₁ l₂ : List M) (u v : M) (h : Adm P T (l₁ ++ u :: v :: l₂))
     (h' : Adm P T (l₁ ++ v :: u :: l₂)) :
@@ -631,11 +741,17 @@ lemma splitVal_swap (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T) (hc' : IsVo
     simp only [List.append_assoc, List.cons_append, List.length_append, List.length_cons]
     rw [this]; ring
 
+/--
+@isnad1 id=isvol.4h6v.s8.97b237dd972e from=translated src=- shape=2d787baa vocab=5b21330f
+-/
 lemma isVol_splitVal (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T)
     (hc' : IsVol (P ⊔ A ∙ f) T c') : IsVol P T (splitVal P f c') where
   smul := splitVal_smul hf hfP hfT hc'
   swap := splitVal_swap hf hfP hfT hc'
 
+/--
+@isnad1 id=ne.5h7v.s8.3f8ba118267b from=translated src=- shape=84392106 vocab=c0fc46b1
+-/
 lemma splitVal_ne_zero (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T)
     (hc'0 : ∀ l, Adm (P ⊔ A ∙ f) T l → c' l ≠ 0) {l : List M} (hl : Adm P T l) :
     splitVal P f c' l ≠ 0 := by
@@ -649,7 +765,9 @@ lemma splitVal_ne_zero (hf : MKill P f) (hfP : f ∉ P) (hfT : f ∈ T)
 end splitVal
 
 /-- **Stacks 42.68.5** (`det_κ(T/P)` is nonzero), dually: a volume nonvanishing on every
-admissible list.-/
+admissible list.
+@isnad1 id=ex.0h4v.s7.cb296eba7b67 from=translated src=- shape=d1eafa1f vocab=fb39ad5a
+-/
 theorem exists_vol [IsArtinian A M] [IsNoetherian A M] (T P : Submodule A M) :
     ∃ c : List M → ResidueField A, IsVol P T c ∧ ∀ l, Adm P T l → c l ≠ 0 := by
   induction P using WellFoundedGT.induction with
@@ -670,11 +788,16 @@ theorem exists_vol [IsArtinian A M] [IsNoetherian A M] (T P : Submodule A M) :
 
 /-! ### Lengths, block moves, units -/
 
+/--
+@isnad1 id=eq.2h6v.s6.c0d90fc8ec41 from=translated src=- shape=74f0a75b vocab=59f4ceb6
+-/
 lemma Adm.length_eq {P T : Submodule A M} {l l' : List M} (hl : Adm P T l) (hl' : Adm P T l') :
     l.length = l'.length :=
   (vol_unique hl hl').choose_spec.2
 
-/-- `𝔪 e_i ⊆ B + ⟨e_<i⟩` along a list (the part of admissibility used by block moves).-/
+/-- `𝔪 e_i ⊆ B + ⟨e_<i⟩` along a list (the part of admissibility used by block moves).
+@isnad1 id=and.2h9v.s9.2a0c595fde76 from=translated src=- shape=bcc79d76 vocab=c8a22c0a
+-/
 lemma move_block {P T S : Submodule A M} (X l₂ : List M) {Y : List M} :
     ∀ {l₀ : List M}, Adm (P ⊔ lspan A l₀) S Y → Adm P T (l₀ ++ X ++ Y ++ l₂) →
       Adm P T (l₀ ++ Y ++ X ++ l₂) ∧ ∀ c, IsVol P T c →
@@ -703,6 +826,9 @@ lemma move_block {P T S : Submodule A M} (X l₂ : List M) {Y : List M} :
     rw [h7, h8, List.length_cons]
     ring
 
+/--
+@isnad1 id=adm.2h6v.s7.cb40f5a422ba from=translated src=- shape=ed813c43 vocab=2b4fe0c5
+-/
 lemma adm_smul_unit {u : A} (hu : IsUnit u) {T : Submodule A M} {l : List M} :
     ∀ {P : Submodule A M}, Adm P T l → Adm P T (l.map (u • ·)) := by
   induction l with
@@ -715,7 +841,9 @@ lemma adm_smul_unit {u : A} (hu : IsUnit u) {T : Submodule A M} {l : List M} :
     · rw [smul_comm]; exact P.smul_mem u (hvk r hr)
     · rw [span_singleton_smul_eq hu]; exact ih hl
 
-/-- Multiplying every entry by a unit `u` multiplies a volume by `ū ^ length` (Stacks 42.68.10).-/
+/-- Multiplying every entry by a unit `u` multiplies a volume by `ū ^ length` (Stacks 42.68.10).
+@isnad1 id=eq.3h8v.s8.569fd99a80f3 from=translated src=- shape=1b3818af vocab=12c707e8
+-/
 lemma vol_smul_unit {u : A} (hu : IsUnit u) {P T : Submodule A M} {c : List M → ResidueField A}
     (hc : IsVol P T c) (l : List M) :
     ∀ {l₀ : List M}, Adm P T (l₀ ++ l) →
@@ -742,18 +870,26 @@ section map
 
 variable {M' : Type*} [AddCommGroup M'] [Module A M']
 
+/--
+@isnad1 id=eq.0h5v.s7.ec511bf89268 from=translated src=- shape=6472d8fa vocab=84d58bb3
+-/
 lemma lspan_map (g : M →ₗ[A] M') (l : List M) : lspan A (l.map g) = (lspan A l).map g := by
   rw [lspan, lspan, map_span]
   congr 1
   ext y
   simp
 
+/--
+@isnad1 id=eq.0h6v.s8.c1c79fee956b from=translated src=- shape=72a29b59 vocab=4d358f32
+-/
 lemma map_sup_span (g : M →ₗ[A] M') (R : Submodule A M) (v : M) :
     (R ⊔ A ∙ v).map g = R.map g ⊔ A ∙ g v := by
   rw [Submodule.map_sup, map_span, Set.image_singleton]
 
 /-- Forward transport of admissible lists along `g`, modulo `P'` on the target, provided
-`g` is injective on `T/R` modulo `P'`.-/
+`g` is injective on `T/R` modulo `P'`.
+@isnad1 id=adm.2h8v.s9.0f06e484ace1 from=translated src=- shape=cb8f17bd vocab=9badaf65
+-/
 lemma adm_map (g : M →ₗ[A] M') (P' : Submodule A M') {T : Submodule A M} {l : List M} :
     ∀ {R : Submodule A M}, T ⊓ P'.comap g ≤ R → Adm R T l →
       Adm (R.map g ⊔ P') (T.map g ⊔ P') (l.map g) := by
@@ -778,7 +914,9 @@ lemma adm_map (g : M →ₗ[A] M') (P' : Submodule A M') {T : Submodule A M} {l 
     · have := ih (hR.trans le_sup_left) hl
       rwa [map_sup_span, sup_right_comm] at this
 
-/-- Backward transport of admissible lists along `g`.-/
+/-- Backward transport of admissible lists along `g`.
+@isnad1 id=adm.4h8v.s9.68db0ce728d9 from=translated src=- shape=8fa2ec85 vocab=28c6f529
+-/
 lemma adm_of_map (g : M →ₗ[A] M') (P' : Submodule A M') {T : Submodule A M} {l : List M}
     (hlT : ∀ v ∈ l, v ∈ T) :
     ∀ {R : Submodule A M}, T ⊓ P'.comap g ≤ R → R ≤ T →
@@ -810,6 +948,9 @@ lemma adm_of_map (g : M →ₗ[A] M') (P' : Submodule A M') {T : Submodule A M} 
         (sup_le hRT ((span_singleton_le_iff_mem _ _).2 hvT)) ?_
       rwa [map_sup_span, sup_right_comm]
 
+/--
+@isnad1 id=isvol.2h8v.s9.b1d76a2d2e2c from=translated src=- shape=3ccdc237 vocab=f76de3e2
+-/
 lemma IsVol.comap (g : M →ₗ[A] M') (P' : Submodule A M') {R T : Submodule A M}
     {c : List M' → ResidueField A} (hTR : T ⊓ P'.comap g ≤ R)
     (hc : IsVol (R.map g ⊔ P') (T.map g ⊔ P') c) : IsVol R T (fun l => c (l.map g)) where
@@ -838,9 +979,15 @@ variable [IsArtinian A M] [IsNoetherian A M]
 noncomputable def vol0 (P T : Submodule A M) : List M → ResidueField A :=
   (exists_vol T P).choose
 
+/--
+@isnad1 id=isvol.0h4v.s6.6c9080ee592a from=translated src=- shape=47432653 vocab=48442d7d
+-/
 lemma isVol_vol0 (P T : Submodule A M) : IsVol P T (vol0 P T) :=
   (exists_vol T P).choose_spec.1
 
+/--
+@isnad1 id=ne.1h5v.s7.e89983f8bee3 from=translated src=- shape=1abe067e vocab=e17e584d
+-/
 lemma vol0_ne_zero {P T : Submodule A M} {l : List M} (hl : Adm P T l) : vol0 P T l ≠ 0 :=
   (exists_vol T P).choose_spec.2 l hl
 
@@ -850,47 +997,76 @@ noncomputable def ratio (P T : Submodule A M) (l l' : List M) : ResidueField A :
 
 variable {P S T : Submodule A M} {l l' l'' : List M}
 
+/--
+@isnad1 id=eq.3h7v.s7.f19e80d59946 from=translated src=- shape=9b7def71 vocab=dfd638d2
+-/
 theorem vol_eq_ratio_mul {c : List M → ResidueField A} (hc : IsVol P T c) (hl : Adm P T l)
     (hl' : Adm P T l') : c l = ratio P T l l' * c l' := by
   obtain ⟨μ, hμ, -⟩ := vol_unique hl hl'
   rw [hμ c hc, ratio, hμ _ (isVol_vol0 P T), mul_div_cancel_right₀ _ (vol0_ne_zero hl')]
 
+/--
+@isnad1 id=eq.4h7v.s7.6dbe5d22b64a from=translated src=- shape=4a1880b2 vocab=1f680b26
+-/
 theorem ratio_eq_div {c : List M → ResidueField A} (hc : IsVol P T c) (hl : Adm P T l)
     (hl' : Adm P T l') (hc' : c l' ≠ 0) : ratio P T l l' = c l / c l' := by
   rw [vol_eq_ratio_mul hc hl hl', mul_div_cancel_right₀ _ hc']
 
+/--
+@isnad1 id=ne.2h6v.s7.96412ad938ef from=translated src=- shape=48b46362 vocab=d772ec83
+-/
 lemma ratio_ne_zero (hl : Adm P T l) (hl' : Adm P T l') : ratio P T l l' ≠ 0 :=
   div_ne_zero (vol0_ne_zero hl) (vol0_ne_zero hl')
 
+/--
+@isnad1 id=eq.1h5v.s7.ebe3640c877a from=translated src=- shape=891b2023 vocab=d772ec83
+-/
 lemma ratio_self (hl : Adm P T l) : ratio P T l l = 1 :=
   div_self (vol0_ne_zero hl)
 
+/--
+@isnad1 id=eq.1h7v.s7.b1d31426785e from=translated src=- shape=4584f8df vocab=2aa2094c
+-/
 lemma ratio_mul_ratio (hl' : Adm P T l') :
     ratio P T l l' * ratio P T l' l'' = ratio P T l l'' := by
   rw [ratio, ratio, ratio, div_mul_div_cancel₀ (vol0_ne_zero hl')]
 
+/--
+@isnad1 id=eq.2h6v.s7.cd4ec6dce7fe from=translated src=- shape=cb6b805a vocab=2aa2094c
+-/
 lemma ratio_mul_ratio_symm (hl : Adm P T l) (hl' : Adm P T l') :
     ratio P T l l' * ratio P T l' l = 1 := by
   rw [ratio_mul_ratio hl', ratio_self hl]
 
+/--
+@isnad1 id=eq.3h8v.s7.78a363c1c770 from=translated src=- shape=27514293 vocab=aff48e61
+-/
 lemma ratio_append_left {l₀ : List M} (h₀ : Adm P S l₀) (hl : Adm S T l) (hl' : Adm S T l') :
     ratio P T (l₀ ++ l) (l₀ ++ l') = ratio S T l l' := by
   have hc := (isVol_vol0 P T).prefix h₀
   rw [ratio_eq_div hc hl hl' (vol0_ne_zero (adm_append h₀ hl')), ratio]
 
+/--
+@isnad1 id=eq.3h8v.s7.dc0dcdc3b316 from=translated src=- shape=ac4a57ac vocab=aff48e61
+-/
 lemma ratio_append_right {l₀ : List M} (h₀ : Adm S T l₀) (hl : Adm P S l) (hl' : Adm P S l') :
     ratio P T (l ++ l₀) (l' ++ l₀) = ratio P S l l' := by
   have hc := (isVol_vol0 P T).suffix h₀
   rw [ratio_eq_div hc hl hl' (vol0_ne_zero (adm_append hl' h₀)), ratio]
 
 /-- Multiplicativity of `det_κ` in short exact sequences `0 → S/P → T/P → T/S → 0`
-(Stacks 42.68.6), in ratio form.-/
+(Stacks 42.68.6), in ratio form.
+@isnad1 id=eq.4h9v.s8.76b7c6f6fb1a from=translated src=- shape=1a853883 vocab=f9c46178
+-/
 lemma ratio_append {l₁ l₁' l₂ l₂' : List M} (h₁ : Adm P S l₁) (h₁' : Adm P S l₁')
     (h₂ : Adm S T l₂) (h₂' : Adm S T l₂') :
     ratio P T (l₁ ++ l₂) (l₁' ++ l₂') = ratio P S l₁ l₁' * ratio S T l₂ l₂' := by
   rw [← ratio_mul_ratio (l' := l₁' ++ l₂) (adm_append h₁' h₂), ratio_append_right h₂ h₁ h₁',
     ratio_append_left h₁' h₂ h₂']
 
+/--
+@isnad1 id=eq.2h10v.s9.18a7ce605f20 from=translated src=- shape=1c0416ca vocab=f9c1bbc9
+-/
 lemma ratio_move_block {X Y l₀ l₂ : List M} (hY : Adm (P ⊔ lspan A l₀) S Y)
     (h : Adm P T (l₀ ++ X ++ Y ++ l₂)) :
     ratio P T (l₀ ++ X ++ Y ++ l₂) l' =
@@ -898,6 +1074,9 @@ lemma ratio_move_block {X Y l₀ l₂ : List M} (hY : Adm (P ⊔ lspan A l₀) S
   obtain ⟨h1, h2⟩ := move_block X l₂ hY h
   rw [ratio, ratio, h2 _ (isVol_vol0 P T), mul_div_assoc]
 
+/--
+@isnad1 id=eq.2h6v.s8.b1b633f2d3b1 from=translated src=- shape=09d8692f vocab=b5dd4197
+-/
 lemma ratio_smul_unit {u : A} (hu : IsUnit u) (hl : Adm P T l) :
     ratio P T (l.map (u • ·)) l = residue A u ^ l.length := by
   have := vol_smul_unit hu (isVol_vol0 P T) l (l₀ := []) hl
@@ -906,7 +1085,9 @@ lemma ratio_smul_unit {u : A} (hu : IsUnit u) (hl : Adm P T l) :
 
 variable {M' : Type*} [AddCommGroup M'] [Module A M'] [IsArtinian A M'] [IsNoetherian A M']
 
-/-- `det_κ` is functorial for isomorphisms of subquotients induced by linear maps.-/
+/-- `det_κ` is functorial for isomorphisms of subquotients induced by linear maps.
+@isnad1 id=eq.3h9v.s9.6ffdcc6f9292 from=translated src=- shape=bdc81b62 vocab=a9836f26
+-/
 lemma ratio_map (g : M →ₗ[A] M') (P' : Submodule A M') {R : Submodule A M}
     (hTR : T ⊓ P'.comap g ≤ R) (hl : Adm R T l) (hl' : Adm R T l') :
     ratio R T l l' = ratio (R.map g ⊔ P') (T.map g ⊔ P') (l.map g) (l'.map g) := by
@@ -917,7 +1098,9 @@ end ratio
 
 /-! ### Auxiliary existence and lattice lemmas -/
 
-/-- Admissible lists of `T/P` with entries in a submodule `S` with `T ≤ S ⊔ P`.-/
+/-- Admissible lists of `T/P` with entries in a submodule `S` with `T ≤ S ⊔ P`.
+@isnad1 id=ex.2h5v.s8.c7f9ab009625 from=translated src=- shape=60ee75da vocab=98035e17
+-/
 lemma exists_adm_sub [IsArtinian A M] [IsNoetherian A M] (S T : Submodule A M) (P : Submodule A M) :
     P ≤ T → T ≤ S ⊔ P → ∃ l, Adm P T l ∧ ∀ v ∈ l, v ∈ S := by
   induction P using WellFoundedGT.induction with
@@ -941,10 +1124,16 @@ lemma exists_adm_sub [IsArtinian A M] [IsNoetherian A M] (S T : Submodule A M) (
     · exact hlS v hv
   · exact ⟨[], (eq_of_le_of_not_lt hPT hlt), by simp⟩
 
+/--
+@isnad1 id=ex.1h4v.s7.c33ff626424e from=translated src=- shape=0851c263 vocab=a8b51dbf
+-/
 lemma exists_adm [IsArtinian A M] [IsNoetherian A M] {P T : Submodule A M} (h : P ≤ T) :
     ∃ l, Adm P T l :=
   (exists_adm_sub T T P h le_sup_left).imp fun _ h => h.1
 
+/--
+@isnad1 id=ex.1h5v.s8.a5adfd5d3140 from=translated src=- shape=1554134a vocab=411c824d
+-/
 lemma exists_lift (φ : M →ₗ[A] M) (T : Submodule A M) :
     ∀ l : List M, (∀ v ∈ l, v ∈ T.map φ) → ∃ X : List M, X.map φ = l ∧ ∀ x ∈ X, x ∈ T
   | [], _ => ⟨[], rfl, by simp⟩
@@ -956,6 +1145,9 @@ lemma exists_lift (φ : M →ₗ[A] M) (T : Submodule A M) :
     · exact hx
     · exact hXT y hy
 
+/--
+@isnad1 id=adm.2h6v.s7.a7dd65fd98ce from=translated src=- shape=a4f69def vocab=91dfeecf
+-/
 lemma adm_inf (Q : Submodule A M) {T : Submodule A M} {l : List M} :
     ∀ {R : Submodule A M}, (∀ v ∈ l, v ∈ Q) → Adm R T l → Adm (R ⊓ Q) (T ⊓ Q) l := by
   induction l with
@@ -984,11 +1176,20 @@ section periodic
 
 variable {P S T : Submodule A M} {φ ψ : M →ₗ[A] M}
 
+/--
+@isnad1 id=perexact.1h6v.s7.7b062a00e88d from=translated src=- shape=217d6171 vocab=2ee5ab22
+-/
 lemma PerExact.symm (h : PerExact P T φ ψ) : PerExact P T ψ φ := ⟨h.le, h.exact_ψ, h.exact_φ⟩
 
+/--
+@isnad1 id=le.1h6v.s8.a71e3304eee3 from=translated src=- shape=e0cd29b9 vocab=15d7ffc0
+-/
 lemma PerExact.image_le (h : PerExact P T φ ψ) : T.map φ ⊔ P ≤ T :=
   h.exact_ψ ▸ inf_le_left
 
+/--
+@isnad1 id=eq.1h6v.s8.b8d6c4d3fc98 from=translated src=- shape=7829a435 vocab=7fb8a2a0
+-/
 lemma PerExact.image_map_le (h : PerExact P T φ ψ) : (T.map φ ⊔ P).map ψ ⊔ P = P := by
   refine le_antisymm (sup_le ?_ le_rfl) le_sup_right
   rw [map_le_iff_le_comap, ← h.exact_ψ]
@@ -1000,21 +1201,36 @@ def IsChoice (P T : Submodule A M) (φ ψ : M →ₗ[A] M) (X Y : List M) : Prop
   (∀ x ∈ X, x ∈ T) ∧ (∀ y ∈ Y, y ∈ T) ∧ Adm P (T.map φ ⊔ P) (X.map φ) ∧
     Adm P (T.map ψ ⊔ P) (Y.map ψ)
 
+/--
+@isnad1 id=ischoice.1h8v.s7.dc52727628e6 from=translated src=- shape=6ba8ef74 vocab=a775bb4a
+-/
 lemma IsChoice.symm {X Y : List M} (hc : IsChoice P T φ ψ X Y) : IsChoice P T ψ φ Y X :=
   ⟨hc.2.1, hc.1, hc.2.2.2, hc.2.2.1⟩
 
+/--
+@isnad1 id=adm.2h8v.s8.695cdcd85548 from=translated src=- shape=09d4f936 vocab=54e9d572
+-/
 lemma IsChoice.adm_tail {X Y : List M} (h : PerExact P T φ ψ) (hc : IsChoice P T φ ψ X Y) :
     Adm (T.map φ ⊔ P) T Y :=
   adm_of_map ψ P hc.2.1 h.exact_ψ.le h.image_le (by rw [h.image_map_le]; exact hc.2.2.2)
 
+/--
+@isnad1 id=adm.2h8v.s7.78497920b267 from=translated src=- shape=d36d154f vocab=b0f9691c
+-/
 lemma IsChoice.adm₁ {X Y : List M} (h : PerExact P T φ ψ) (hc : IsChoice P T φ ψ X Y) :
     Adm P T (X.map φ ++ Y) :=
   adm_append hc.2.2.1 (hc.adm_tail h)
 
+/--
+@isnad1 id=adm.2h8v.s7.7737e94b3f75 from=translated src=- shape=05fed9ee vocab=b0f9691c
+-/
 lemma IsChoice.adm₂ {X Y : List M} (h : PerExact P T φ ψ) (hc : IsChoice P T φ ψ X Y) :
     Adm P T (Y.map ψ ++ X) :=
   hc.symm.adm₁ h.symm
 
+/--
+@isnad1 id=ex.1h6v.s7.1445fb3c0522 from=translated src=- shape=4052f3cb vocab=8743d56a
+-/
 lemma exists_choice [IsArtinian A M] [IsNoetherian A M] (_h : PerExact P T φ ψ) :
     ∃ X Y, IsChoice P T φ ψ X Y := by
   obtain ⟨l₁, hl₁, hl₁S⟩ := exists_adm_sub (T.map φ) (T.map φ ⊔ P) P le_sup_right le_rfl
@@ -1035,7 +1251,9 @@ noncomputable def perDet (P T : Submodule A M) (φ ψ : M →ₗ[A] M) : Residue
       ratio P T (h.choose.1.map φ ++ h.choose.2) (h.choose.2.map ψ ++ h.choose.1)
   else 1
 
-/-- The formula of Stacks Remark 42.68.14 holds for **every** choice.-/
+/-- The formula of Stacks Remark 42.68.14 holds for **every** choice.
+@isnad1 id=eq.2h8v.s9.99886ec8365d from=translated src=- shape=c47c3f87 vocab=b92d10ca
+-/
 theorem perDet_eq (h : PerExact P T φ ψ) {X Y : List M} (hc : IsChoice P T φ ψ X Y) :
     perDet P T φ ψ = (-1) ^ (X.length * Y.length) * ratio P T (X.map φ ++ Y) (Y.map ψ ++ X) := by
   have hex : ∃ XY : List M × List M, IsChoice P T φ ψ XY.1 XY.2 := ⟨(X, Y), hc⟩
@@ -1077,23 +1295,33 @@ theorem perDet_eq (h : PerExact P T φ ψ) {X Y : List M} (hc : IsChoice P T φ 
   calc R₀ = R₀ * (a * a') * (b * b') := by rw [e1, e2]; ring
     _ = a * b * (R₀ * (b' * a')) := by ring
 
+/--
+@isnad1 id=eq.0h2v.s8.28026100e8cf from=translated src=- shape=717a4bd7 vocab=e4c11051
+-/
 lemma neg_one_pow_mul_self (n : ℕ) : ((-1 : ResidueField A) ^ n) * (-1) ^ n = 1 := by
   rw [← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow]
 
+/--
+@isnad1 id=eq.0h2v.s8.cbb3245d4b18 from=translated src=- shape=583f39d2 vocab=e4c11051
+-/
 lemma neg_one_pow_mul_self' (n : ℕ) : (-1 : ResidueField A) ^ (n * n) = (-1) ^ n := by
   rw [pow_mul]
   rcases neg_one_pow_eq_or (ResidueField A) n with h | h
   · rw [h, one_pow]
   · rw [h, h]
 
-/-- `det_κ(T/P, φ, ψ) ∈ κ^*`.-/
+/-- `det_κ(T/P, φ, ψ) ∈ κ^*`.
+@isnad1 id=ne.1h6v.s7.fa747df3a3c8 from=translated src=- shape=348e8c25 vocab=5c3249fc
+-/
 theorem perDet_ne_zero (h : PerExact P T φ ψ) : perDet P T φ ψ ≠ 0 := by
   obtain ⟨X, Y, hc⟩ := exists_choice h
   rw [perDet_eq h hc]
   exact mul_ne_zero (pow_ne_zero _ (neg_ne_zero.2 one_ne_zero))
     (ratio_ne_zero (hc.adm₁ h) (hc.adm₂ h))
 
-/-- **Stacks 42.68.15**: `det_κ(M, φ, ψ) · det_κ(M, ψ, φ) = 1`.-/
+/-- **Stacks 42.68.15**: `det_κ(M, φ, ψ) · det_κ(M, ψ, φ) = 1`.
+@isnad1 id=eq.1h6v.s8.b1415a526557 from=translated src=- shape=760b712c vocab=f76ac79f
+-/
 theorem perDet_mul_perDet_symm (h : PerExact P T φ ψ) :
     perDet P T φ ψ * perDet P T ψ φ = 1 := by
   obtain ⟨X, Y, hc⟩ := exists_choice h
@@ -1105,16 +1333,23 @@ theorem perDet_mul_perDet_symm (h : PerExact P T φ ψ) :
           ring
     _ = 1 := by rw [neg_one_pow_mul_self, ratio_mul_ratio_symm (hc.adm₁ h) (hc.adm₂ h), one_mul]
 
+/--
+@isnad1 id=eq.1h6v.s7.b2b1ab77607e from=translated src=- shape=72a06f21 vocab=cc0d6f83
+-/
 theorem perDet_symm (h : PerExact P T φ ψ) : perDet P T ψ φ = (perDet P T φ ψ)⁻¹ :=
   eq_inv_of_mul_eq_one_right (perDet_mul_perDet_symm h)
 
-/-- **Stacks 42.68.16**: `det_κ(M, φ, φ) = (-1)^{length(im φ)}`.-/
+/-- **Stacks 42.68.16**: `det_κ(M, φ, φ) = (-1)^{length(im φ)}`.
+@isnad1 id=eq.3h6v.s9.e219e4382d64 from=translated src=- shape=28298214 vocab=efc61c29
+-/
 theorem perDet_self (h : PerExact P T φ φ) {X : List M} (hX : Adm P (T.map φ ⊔ P) (X.map φ))
     (hXT : ∀ x ∈ X, x ∈ T) : perDet P T φ φ = (-1) ^ X.length := by
   have hc : IsChoice P T φ φ X X := ⟨hXT, hXT, hX, hX⟩
   rw [perDet_eq h hc, ratio_self (hc.adm₁ h), mul_one, neg_one_pow_mul_self']
 
-/-- **Stacks 42.68.17 (1)**: `det_κ(M, φ, 0) = det_κ(φ)` (as a ratio `[φX]/[X]`).-/
+/-- **Stacks 42.68.17 (1)**: `det_κ(M, φ, 0) = det_κ(φ)` (as a ratio `[φX]/[X]`).
+@isnad1 id=eq.3h6v.s9.0745886fa99f from=translated src=- shape=72a311b9 vocab=efb32e9a
+-/
 theorem perDet_zero_right (h : PerExact P T φ 0) {X : List M} (hX : Adm P T (X.map φ))
     (hXT : ∀ x ∈ X, x ∈ T) : perDet P T φ 0 = ratio P T (X.map φ) X := by
   have hT : T.map φ ⊔ P = T := by
@@ -1125,11 +1360,16 @@ theorem perDet_zero_right (h : PerExact P T φ 0) {X : List M} (hX : Adm P T (X.
   rw [perDet_eq h hc]
   simp
 
-/-- **Stacks 42.68.17 (2)**: `det_κ(M, 0, ψ) = det_κ(ψ)⁻¹`.-/
+/-- **Stacks 42.68.17 (2)**: `det_κ(M, 0, ψ) = det_κ(ψ)⁻¹`.
+@isnad1 id=eq.3h6v.s9.7264da1b164c from=translated src=- shape=e3b1f854 vocab=37dbaac9
+-/
 theorem perDet_zero_left (h : PerExact P T 0 ψ) {Y : List M} (hY : Adm P T (Y.map ψ))
     (hYT : ∀ y ∈ Y, y ∈ T) : perDet P T 0 ψ = (ratio P T (Y.map ψ) Y)⁻¹ := by
   rw [perDet_symm h.symm, perDet_zero_right h.symm hY hYT]
 
+/--
+@isnad1 id=perexact.2h5v.s8.cfdf2566d7ca from=translated src=- shape=849459e3 vocab=97ba5461
+-/
 lemma perExact_unit_zero {u : A} (hu : IsUnit u) (hPT : P ≤ T) :
     PerExact P T (u • LinearMap.id) 0 := by
   have hc : P.comap (u • LinearMap.id) = P := by
@@ -1143,7 +1383,9 @@ lemma perExact_unit_zero {u : A} (hu : IsUnit u) (hPT : P ≤ T) :
   · rw [hc, Submodule.map_zero, bot_sup_eq, inf_eq_right.2 hPT]
   · rw [comap_zero, inf_top_eq, hm, sup_eq_left.2 hPT]
 
-/-- **Stacks 42.68.17 + 42.68.10**: for a unit `u`, `det_κ(T/P, u, 0) = ū ^ length(T/P)`.-/
+/-- **Stacks 42.68.17 + 42.68.10**: for a unit `u`, `det_κ(T/P, u, 0) = ū ^ length(T/P)`.
+@isnad1 id=eq.2h6v.s9.f19ba070d08e from=translated src=- shape=ff00763d vocab=f04ce99d
+-/
 theorem perDet_unit_zero {u : A} (hu : IsUnit u) {X : List M} (hX : Adm P T X) :
     perDet P T (u • LinearMap.id) 0 = residue A u ^ X.length := by
   have e : X.map (u • LinearMap.id : M →ₗ[A] M) = X.map (u • ·) := by
@@ -1151,7 +1393,9 @@ theorem perDet_unit_zero {u : A} (hu : IsUnit u) {X : List M} (hX : Adm P T X) :
   rw [perDet_zero_right (perExact_unit_zero hu hX.le) (by rw [e]; exact adm_smul_unit hu hX)
     hX.mem, e, ratio_smul_unit hu hX]
 
-/-- The image sequence of a short exact sequence of exact periodic complexes is exact.-/
+/-- The image sequence of a short exact sequence of exact periodic complexes is exact.
+@isnad1 id=eq.3h7v.s8.945807792a91 from=translated src=- shape=cb12cdfd vocab=4a5ebc20
+-/
 lemma inf_image_eq (h₁ : PerExact P S φ ψ) (h₂ : PerExact S T φ ψ) (h : PerExact P T φ ψ) :
     S ⊓ (T.map φ ⊔ P) = S.map φ ⊔ P := by
   refine le_antisymm ?_ (le_inf h₁.image_le (sup_le_sup_right (map_mono h₂.le) _))
@@ -1169,6 +1413,9 @@ lemma inf_image_eq (h₁ : PerExact P S φ ψ) (h₂ : PerExact S T φ ψ) (h : 
   rw [map_add]
   exact add_mem (add_mem (mem_sup_right h1) (mem_sup_left (mem_map_of_mem hs))) (mem_sup_right hp)
 
+/--
+@isnad1 id=ischoice.5h11v.s8.3358cef028c2 from=translated src=- shape=2304eaf8 vocab=c78246ac
+-/
 lemma IsChoice.append {X₁ Y₁ X₃ Y₃ : List M} (h₁ : PerExact P S φ ψ) (h₂ : PerExact S T φ ψ)
     (h : PerExact P T φ ψ) (hc₁ : IsChoice P S φ ψ X₁ Y₁) (hc₃ : IsChoice S T φ ψ X₃ Y₃) :
     IsChoice P T φ ψ (X₁ ++ X₃) (Y₁ ++ Y₃) := by
@@ -1192,7 +1439,9 @@ lemma IsChoice.append {X₁ Y₁ X₃ Y₃ : List M} (h₁ : PerExact P S φ ψ)
     · exact hc₃.2.1 y hy
 
 /-- **Stacks 42.68.18**: `det_κ` of exact periodic complexes is multiplicative in short exact
-sequences `0 → (S/P) → (T/P) → (T/S) → 0`.-/
+sequences `0 → (S/P) → (T/P) → (T/S) → 0`.
+@isnad1 id=eq.3h7v.s8.33a13310d47a from=translated src=- shape=744ceaba vocab=f76ac79f
+-/
 theorem perDet_mul (h₁ : PerExact P S φ ψ) (h₂ : PerExact S T φ ψ) (h : PerExact P T φ ψ) :
     perDet P T φ ψ = perDet P S φ ψ * perDet S T φ ψ := by
   obtain ⟨X₁, Y₁, hc₁⟩ := exists_choice h₁
@@ -1252,6 +1501,9 @@ section ambient
 
 variable {φ ψ : M →ₗ[A] M}
 
+/--
+@isnad1 id=iff.0h4v.s8.25054ff410a1 from=translated src=- shape=0733e5b9 vocab=d6cac13b
+-/
 lemma perExact_bot_top_iff :
     PerExact (⊥ : Submodule A M) ⊤ φ ψ ↔
       LinearMap.ker φ = LinearMap.range ψ ∧ LinearMap.ker ψ = LinearMap.range φ := by
@@ -1267,6 +1519,9 @@ lemma perExact_bot_top_iff :
 
 variable {M' : Type*} [AddCommGroup M'] [Module A M'] {P T : Submodule A M}
 
+/--
+@isnad1 id=eq.6h10v.s10.b81c442edc35 from=translated src=- shape=301d809c vocab=a83d36c9
+-/
 lemma map_exact_aux (g : M →ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : g ∘ₗ φ = φ' ∘ₗ g)
     (hψ : g ∘ₗ ψ = ψ' ∘ₗ g) (hPT : P ≤ T) (hφT : T.map φ ≤ T)
     (he : T ⊓ P.comap φ = T.map ψ ⊔ P) (hg : T ⊓ (⊥ : Submodule A M').comap g ≤ P) :
@@ -1290,6 +1545,9 @@ lemma map_exact_aux (g : M →ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : g �
     rw [← LinearMap.comp_apply, ← hφ, LinearMap.comp_apply]
     exact mem_map_of_mem ht
 
+/--
+@isnad1 id=perexact.4h10v.s9.6cbd666c48ad from=translated src=- shape=e9245813 vocab=69e0a7ba
+-/
 lemma PerExact.map (g : M →ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : g ∘ₗ φ = φ' ∘ₗ g)
     (hψ : g ∘ₗ ψ = ψ' ∘ₗ g) (h : PerExact P T φ ψ) (hg : T ⊓ (⊥ : Submodule A M').comap g ≤ P) :
     PerExact (P.map g) (T.map g) φ' ψ' :=
@@ -1300,7 +1558,9 @@ lemma PerExact.map (g : M →ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : g ∘
 variable [IsArtinian A M] [IsNoetherian A M] [IsArtinian A M'] [IsNoetherian A M']
 
 /-- `det_κ(M, φ, ψ)` is invariant under isomorphisms of periodic complexes, here: any linear map
-`g` intertwining `(φ, ψ)` with `(φ', ψ')` and injective on `T/P`.-/
+`g` intertwining `(φ, ψ)` with `(φ', ψ')` and injective on `T/P`.
+@isnad1 id=eq.4h10v.s9.0e387cda4c20 from=translated src=- shape=fab35cff vocab=0e0d057e
+-/
 theorem perDet_map (g : M →ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : g ∘ₗ φ = φ' ∘ₗ g)
     (hψ : g ∘ₗ ψ = ψ' ∘ₗ g) (h : PerExact P T φ ψ)
     (hg : T ⊓ (⊥ : Submodule A M').comap g ≤ P) :
@@ -1330,7 +1590,9 @@ theorem perDet_map (g : M →ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : g ∘
   rw [perDet_eq h' hc', perDet_eq h hc, ratio_map g ⊥ hg (hc.adm₁ h) (hc.adm₂ h), sup_bot_eq,
     sup_bot_eq, List.map_append, List.map_append, ← hX, ← hY, List.length_map, List.length_map]
 
-/-- Transport along a linear equivalence of ambient modules.-/
+/-- Transport along a linear equivalence of ambient modules.
+@isnad1 id=eq.3h10v.s9.9cb2c8781dc0 from=translated src=- shape=fb71da70 vocab=29ca71db
+-/
 theorem perDet_equiv (e : M ≃ₗ[A] M') {φ' ψ' : M' →ₗ[A] M'} (hφ : e.toLinearMap ∘ₗ φ = φ' ∘ₗ e)
     (hψ : e.toLinearMap ∘ₗ ψ = ψ' ∘ₗ e) (h : PerExact P T φ ψ) :
     perDet (P.map e.toLinearMap) (T.map e.toLinearMap) φ' ψ' = perDet P T φ ψ :=
@@ -1343,6 +1605,9 @@ end ambient
 
 /-! ### Lengths of admissible lists = lengths of modules -/
 
+/--
+@isnad1 id=covby.2h4v.s7.d30250b66e01 from=translated src=- shape=b8e2aebb vocab=64c2c168
+-/
 lemma covBy_sup_span {P : Submodule A M} {v : M} (hv : MKill P v) (hvP : v ∉ P) :
     P ⋖ P ⊔ A ∙ v := by
   refine ⟨lt_of_le_of_ne le_sup_left fun h => hvP (h ▸ self_mem_sup_span P v), fun R hPR hR => ?_⟩
@@ -1350,6 +1615,9 @@ lemma covBy_sup_span {P : Submodule A M} {v : M} (hv : MKill P v) (hvP : v ∉ P
   have := sup_span_eq_of_mem hv (hR.le hwR) hwP
   exact absurd (this ▸ sup_le hPR.le ((span_singleton_le_iff_mem _ _).2 hwR)) hR.not_ge
 
+/--
+@isnad1 id=ex.1h5v.s10.e4888c91d525 from=translated src=- shape=9ae27c4f vocab=e52fa57b
+-/
 lemma Adm.exists_compositionSeries {T : Submodule A M} {l : List M} :
     ∀ {P : Submodule A M}, Adm P T l →
       ∃ s : CompositionSeries (Submodule A M), s.head = P ∧ s.last = T ∧ s.length = l.length := by
@@ -1366,7 +1634,9 @@ lemma Adm.exists_compositionSeries {T : Submodule A M} {l : List M} :
       rw [hs1]; exact covBy_sup_span h.2.2.1 h.2.1
     · rw [RelSeries.cons_length, hs3, List.length_cons]
 
-/-- An admissible list of `M = ⊤/⊥` has length `Module.length A M`.-/
+/-- An admissible list of `M = ⊤/⊥` has length `Module.length A M`.
+@isnad1 id=eq.1h3v.s6.14e234c8ace5 from=translated src=- shape=7378e977 vocab=6c0208e0
+-/
 theorem Adm.moduleLength_eq {l : List M} (h : Adm (⊥ : Submodule A M) ⊤ l) :
     Module.length A M = l.length := by
   obtain ⟨s, h1, h2, h3⟩ := h.exists_compositionSeries
@@ -1378,12 +1648,18 @@ section comp
 
 variable [IsArtinian A M] [IsNoetherian A M]
 
+/--
+@isnad1 id=ex.0h5v.s8.26943e0570c7 from=translated src=- shape=34a8c902 vocab=647d4275
+-/
 lemma exists_image_adm (f : M →ₗ[A] M) (T P : Submodule A M) :
     ∃ X : List M, (∀ x ∈ X, x ∈ T) ∧ Adm P (T.map f ⊔ P) (X.map f) := by
   obtain ⟨l, hl, hlS⟩ := exists_adm_sub (T.map f) (T.map f ⊔ P) P le_sup_right le_rfl
   obtain ⟨X, rfl, hX⟩ := exists_lift f T l hlS
   exact ⟨X, hX, hl⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.e8616c06c899 from=translated src=- shape=25a37570 vocab=4e7393c6
+-/
 lemma map_comp_list (f g : M →ₗ[A] M) (l : List M) : (l.map g).map f = l.map (f ∘ₗ g) := by
   simp [List.map_map]
 
@@ -1392,7 +1668,9 @@ variable {α β γ : M →ₗ[A] M}
 /-- **Stacks 42.68.24**: for endomorphisms `α, β, γ` with `α β = β α`, `α γ = γ α`, `β γ = γ β`
 and `im α = ker βγ`, `ker α = im βγ`, `ker β = im αγ`, `im γ = ker αβ`:
 `det_κ(M, α, βγ) = det_κ(im γ, α, β) · det_κ(M / ker β, α, γ)`.
-(Here `im γ = [⊥, range γ]` and `M / ker β = [ker β, ⊤]` as subquotients of `M`.)-/
+(Here `im γ = [⊥, range γ]` and `M / ker β = [ker β, ⊤]` as subquotients of `M`.)
+@isnad1 id=eq.7h5v.s10.3e9a4ffe97e3 from=translated src=- shape=7aba545f vocab=6e8eb375
+-/
 theorem perDet_comp (hαβ : α ∘ₗ β = β ∘ₗ α) (hαγ : α ∘ₗ γ = γ ∘ₗ α) (hβγ : β ∘ₗ γ = γ ∘ₗ β)
     (h1 : LinearMap.range α = LinearMap.ker (β ∘ₗ γ))
     (h2 : LinearMap.ker α = LinearMap.range (β ∘ₗ γ))
@@ -1493,17 +1771,26 @@ section boundary
 
 variable {M' : Type*} [AddCommGroup M'] [Module A M']
 
+/--
+@isnad1 id=eq.0h4v.s8.5ed8f4da7ec1 from=translated src=- shape=1234c034 vocab=99005813
+-/
 lemma top_map_sup_bot {N : Type*} [AddCommGroup N] [Module A N] (f : M →ₗ[A] N) :
     (⊤ : Submodule A M).map f ⊔ ⊥ = LinearMap.range f := by
   rw [sup_bot_eq, LinearMap.range_eq_map]
 
 variable {φ ψ : M →ₗ[A] M} {φ' ψ' : M' →ₗ[A] M'}
 
+/--
+@isnad1 id=adm.1h6v.s8.8c7c7d6fe797 from=translated src=- shape=e643ba9d vocab=de7eeda3
+-/
 lemma bd_adm_g (g : M →ₗ[A] M') {T : Submodule A M} {l : List M}
     (hx : Adm (LinearMap.ker g) T l) : Adm ⊥ (T.map g) (l.map g) := by
   have := adm_map g ⊥ (inf_le_right : T ⊓ (⊥ : Submodule A M').comap g ≤ LinearMap.ker g) hx
   rwa [sup_bot_eq, sup_bot_eq, eq_bot_iff.2 (map_comap_le g ⊥)] at this
 
+/--
+@isnad1 id=adm.4h8v.s9.ed80d97b3ae1 from=translated src=- shape=90fa768d vocab=d5d1aebf
+-/
 lemma bd_adm_w (g : M →ₗ[A] M') (hφ : g ∘ₗ φ = φ' ∘ₗ g)
     (h' : PerExact (⊥ : Submodule A M') ⊤ φ' ψ') (hQψ : LinearMap.range ψ' ≤ LinearMap.range g)
     {w : List M'} (hw : Adm (LinearMap.range g) ⊤ w) :
@@ -1527,7 +1814,9 @@ lemma bd_adm_w (g : M →ₗ[A] M') (hφ : g ∘ₗ φ = φ' ∘ₗ g)
 variable [IsArtinian A M] [IsNoetherian A M] [IsArtinian A M'] [IsNoetherian A M']
 
 /-- One half of Stacks' proof of 42.68.25: the scalar `λ₀` comparing `φ' w` with `g z''` inside
-`det_κ(im φ' / g(im φ))`, computed through the boundary map `ψ ∘ g⁻¹ ∘ φ'`.-/
+`det_κ(im φ' / g(im φ))`, computed through the boundary map `ψ ∘ g⁻¹ ∘ φ'`.
+@isnad1 id=eq.14h14v.s11.00e35e0d9aa0 from=translated src=- shape=e517ce0d vocab=6da00a97
+-/
 lemma boundary_ratio (g : M →ₗ[A] M') (hφ : g ∘ₗ φ = φ' ∘ₗ g) (hψ : g ∘ₗ ψ = ψ' ∘ₗ g)
     (h : PerExact (⊥ : Submodule A M) ⊤ φ ψ) (h' : PerExact (⊥ : Submodule A M') ⊤ φ' ψ')
     (hKφ : LinearMap.ker g ≤ LinearMap.ker φ) (hKψ : LinearMap.ker g ≤ LinearMap.ker ψ)
@@ -1603,7 +1892,9 @@ lemma boundary_ratio (g : M →ₗ[A] M') (hφ : g ∘ₗ φ = φ' ∘ₗ g) (h�
 `(2,1)`-periodic complexes of finite length (`g φ = φ' g`, `g ψ = ψ' g`) such that `φ, ψ` vanish
 on `ker g`, `φ', ψ'` vanish on `coker g` (`im φ', im ψ' ⊆ im g`), and the two boundary maps
 `coker g → ker g` agree: `ψ m₁ = φ m₂` whenever `g m₁ = φ' m'` and `g m₂ = ψ' m'`.
-Then `det_κ(M', φ', ψ') = det_κ(M, φ, ψ)`.-/
+Then `det_κ(M', φ', ψ') = det_κ(M, φ, ψ)`.
+@isnad1 id=eq.9h8v.s10.e4859d23c1dc from=translated src=- shape=97678a4e vocab=5a22caf2
+-/
 theorem perDet_eq_of_boundary (g : M →ₗ[A] M') (hφ : g ∘ₗ φ = φ' ∘ₗ g)
     (hψ : g ∘ₗ ψ = ψ' ∘ₗ g)
     (h : PerExact (⊥ : Submodule A M) ⊤ φ ψ) (h' : PerExact (⊥ : Submodule A M') ⊤ φ' ψ')

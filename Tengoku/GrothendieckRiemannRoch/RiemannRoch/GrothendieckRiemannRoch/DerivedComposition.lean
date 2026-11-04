@@ -58,6 +58,9 @@ def derivedIdentity :
     ExactGrothendieck.Group Object Exact →+ ExactGrothendieck.Group Object Exact :=
   derivedPushforward 0 (identityHigherClass (Exact := Exact)) identityLongExactWitness
 
+/--
+@isnad1 id=eq.0h3v.s7.87491c3970bd from=translated src=- shape=6fa2e584 vocab=9013fb2b
+-/
 @[simp]
 theorem derivedIdentity_classOf (X : Object) :
     derivedIdentity (Object := Object) (Exact := Exact)
@@ -66,7 +69,9 @@ theorem derivedIdentity_classOf (X : Object) :
   rw [derivedIdentity, derivedPushforward_classOf]
   simp [alternatingSum, identityHigherClass]
 
-/-- The derived identity is the identity on every virtual class.-/
+/-- The derived identity is the identity on every virtual class.
+@isnad1 id=eq.0h2v.s6.5517cd7b3425 from=translated src=- shape=32722f08 vocab=fa2be2c7
+-/
 theorem derivedIdentity_eq_id :
     derivedIdentity (Object := Object) (Exact := Exact) =
       AddMonoidHom.id (ExactGrothendieck.Group Object Exact) := by
@@ -79,7 +84,9 @@ variable {B : Type w} [AddCommGroup B]
 
 /-- Composition law from the Euler equality of a bounded Leray spectral sequence on actual
 objects.  The first higher-image system takes values in the intermediate exact Grothendieck
-group; the second bounded derived pushforward acts on that entire virtual class.-/
+group; the second bounded derived pushforward acts on that entire virtual class.
+@isnad1 id=eq.1h14v.s8.212729918db0 from=translated src=- shape=431349e2 vocab=ea568754
+-/
 theorem derivedPushforward_comp_of_leray_euler
     (n₁ n₂ n : ℕ)
     (higher₁ : Object → ℕ → ExactGrothendieck.Group Object' Exact')
@@ -102,7 +109,9 @@ theorem derivedPushforward_comp_of_leray_euler
   simp only [AddMonoidHom.comp_apply, derivedPushforward_classOf]
   exact hleray X
 
-/-- Pointwise form of the Leray--Euler composition theorem on every virtual class.-/
+/-- Pointwise form of the Leray--Euler composition theorem on every virtual class.
+@isnad1 id=eq.1h15v.s9.75ee8c663558 from=translated src=- shape=e2eb745d vocab=de379c72
+-/
 theorem derivedPushforward_comp_apply_of_leray_euler
     (n₁ n₂ n : ℕ)
     (higher₁ : Object → ℕ → ExactGrothendieck.Group Object' Exact')

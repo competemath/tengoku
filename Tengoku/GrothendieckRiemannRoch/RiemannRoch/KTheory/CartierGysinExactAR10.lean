@@ -40,7 +40,9 @@ variable {D : Type u} [Category.{v} D] [Abelian D]
 variable {P : C → Prop}
 
 /-- An additive functor, exact on short exact sequences with terms in a kernel/cokernel-closed
-class `P`, preserves the cokernel of every morphism between members of `P`.-/
+class `P`, preserves the cokernel of every morphism between members of `P`.
+@isnad1 id=preserve.2h9v.s7.259227a3b0e2 from=translated src=- shape=37c2c723 vocab=002041bf
+-/
 theorem preservesColimit_cokernel_of_exactOn (Φ : C ⥤ D) [Φ.Additive] (hP : KerCokerClosed P)
     (hΦ : ∀ S : ShortComplex C, S.ShortExact → P S.X₁ → P S.X₂ → P S.X₃ →
       (S.map Φ).ShortExact)
@@ -82,6 +84,9 @@ theorem preservesColimit_cokernel_of_exactOn (Φ : C ⥤ D) [Φ.Additive] (hP : 
   apply (CokernelCofork.isColimitMapCoconeEquiv _ Φ).2
   exact hex.gIsCokernel
 
+/--
+@isnad1 id=isiso.2h9v.s7.b398026d2e20 from=translated src=- shape=5e918ba5 vocab=2a4a3890
+-/
 theorem isIso_cokernelComparison_of_exactOn (Φ : C ⥤ D) [Φ.Additive] (hP : KerCokerClosed P)
     (hΦ : ∀ S : ShortComplex C, S.ShortExact → P S.X₁ → P S.X₂ → P S.X₃ →
       (S.map Φ).ShortExact)

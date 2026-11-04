@@ -43,13 +43,18 @@ def degreeZeroMap (f : 𝒜 →+*ᵍ ℬ) : 𝒜 0 →+* ℬ 0 where
   map_zero' := Subtype.ext (map_zero f)
   map_add' x y := Subtype.ext (map_add f x.1 y.1)
 
+/--
+@isnad1 id=eq.0h8v.s9.ab2da1f1c5e0 from=translated src=- shape=a23fdba7 vocab=319da942
+-/
 @[simp]
 theorem degreeZeroMap_apply (f : 𝒜 →+*ᵍ ℬ) (x : 𝒜 0) :
     degreeZeroMap f x = ⟨f x.1, f.map_mem x.2⟩ :=
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Functoriality of `Proj` commutes with its structure map to the degree-zero spectrum.-/
+/-- Functoriality of `Proj` commutes with its structure map to the degree-zero spectrum.
+@isnad1 id=eq.1h7v.s9.49a179cb77f5 from=translated src=- shape=dcd59198 vocab=43d347f8
+-/
 @[reassoc]
 theorem map_toSpecZero (f : 𝒜 →+*ᵍ ℬ)
     (hf : HomogeneousIdeal.irrelevant ℬ ≤
@@ -107,6 +112,9 @@ noncomputable def toBase : d.scheme ⟶ U.1 :=
 noncomputable def toAmbient : d.scheme ⟶ X :=
   d.toBase ≫ U.1.ι
 
+/--
+@isnad1 id=eq.0h3v.s6.fa6d780b4f6a from=translated src=- shape=2f6a6dab vocab=25174a1e
+-/
 @[reassoc (attr := simp)]
 theorem toBase_comp_openImmersion : d.toBase ≫ U.1.ι = d.toAmbient :=
   rfl

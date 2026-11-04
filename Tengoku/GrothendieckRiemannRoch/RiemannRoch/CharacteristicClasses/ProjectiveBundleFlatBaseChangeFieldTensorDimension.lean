@@ -54,6 +54,9 @@ def rightScalarTensorCancel : (L ⊗[K] B) ⊗[B] F ≃ₐ[L] L ⊗[K] F :=
       change _ = l ⊗ₜ[K] (1 : F)
       simp [e₁, e₂, e₃, e₄] }
 
+/--
+@isnad1 id=eq.0h7v.s10.0cec88e33e62 from=translated src=- shape=4d15f44b vocab=c49453cf
+-/
 @[simp]
 theorem rightScalarTensorCancel_tmul (l : L) (b : B) (f : F) :
     rightScalarTensorCancel ((l ⊗ₜ[K] b) ⊗ₜ[B] f) =
@@ -66,6 +69,9 @@ section QuotientTransport
 variable {K R S : Type u} [CommRing K] [CommRing R] [CommRing S]
     [Algebra K R] [Algebra K S]
 
+/--
+@isnad1 id=mem.1h5v.s7.40fcb6753d9a from=translated src=- shape=6f0f4dde vocab=e7c34e8a
+-/
 theorem scalarTensor_minimalPrime_comap (e : R ≃ₐ[K] S)
     {q : Ideal S} (hq : q ∈ minimalPrimes S) :
     q.comap e.toRingHom ∈ minimalPrimes R := by
@@ -73,6 +79,9 @@ theorem scalarTensor_minimalPrime_comap (e : R ≃ₐ[K] S)
     e.toRingHom e.surjective (⊥ : Ideal S) q hq
   simpa only [Ideal.comap_bot_of_injective e.toRingHom e.injective] using h
 
+/--
+@isnad1 id=eq.0h5v.s8.0c911678c02c from=translated src=- shape=5b4e4c31 vocab=a49d1595
+-/
 theorem scalarTensor_quotient_trdeg_comap (e : R ≃ₐ[K] S) (q : Ideal S) :
     Algebra.trdeg K (R ⧸ q.comap e.toRingHom) = Algebra.trdeg K (S ⧸ q) := by
   have heq : q = (q.comap e.toRingHom).map e.toRingHom :=
@@ -92,7 +101,9 @@ local instance rationalField_rightAlgebra :
       (L ⊗[K] FractionRing (MvPolynomial σ K)) := Algebra.TensorProduct.rightAlgebra
 
 /-- Generic components of the actual scalar extension of an algebraic extension
-of a rational-function field have the original basis cardinal as their degree.-/
+of a rational-function field have the original basis cardinal as their degree.
+@isnad1 id=eq.1h5v.s10.c22a1dde4da7 from=translated src=- shape=9f88852e vocab=c576fd1d
+-/
 theorem rationalFieldExtensionTensor_trdeg
     {q : Ideal (L ⊗[K] F)} (hq : q ∈ minimalPrimes (L ⊗[K] F)) :
     Algebra.trdeg L ((L ⊗[K] F) ⧸ q) = Cardinal.mk σ := by
@@ -112,7 +123,9 @@ theorem rationalFieldExtensionTensor_trdeg
 end RationalFieldExtension
 
 /-- Localization does not change the transcendence degree of the quotient by a
-prime disjoint from its denominators.-/
+prime disjoint from its denominators.
+@isnad1 id=eq.1h5v.s8.f0cb9203ac04 from=translated src=- shape=14cbb5c5 vocab=557b354b
+-/
 theorem localization_quotient_trdeg
     {K R S : Type u} [Field K] [CommRing R] [CommRing S]
     [Algebra K R] [Algebra K S] [Algebra R S] [IsScalarTower K R S]
@@ -142,7 +155,9 @@ theorem localization_quotient_trdeg
 /-- Every generic component of scalar extension of a field has its original
 transcendence degree over the new scalar field. No finite-generation assumption
 is needed. The proof chooses a genuine transcendence basis, not a desired degree
-formula.-/
+formula.
+@isnad1 id=eq.1h4v.s10.30e893d1a7d8 from=translated src=- shape=21f43e80 vocab=ed446b72
+-/
 theorem fieldTensor_trdeg_quotient
     {K L F : Type u} [Field K] [Field L] [Field F]
     [Algebra K L] [Algebra K F]
@@ -166,7 +181,9 @@ theorem fieldTensor_trdeg_quotient
 
 /-- Generic components of scalar extension of an arbitrary domain preserve its
 transcendence degree. The denominator localization is constructed, not assumed.
-In particular this applies to finite-type integral fibres.-/
+In particular this applies to finite-type integral fibres.
+@isnad1 id=eq.1h4v.s9.7d0ed00b6250 from=translated src=- shape=b3cd199d vocab=69850edc
+-/
 theorem domainFieldTensor_trdeg_quotient
     {K L A : Type u} [Field K] [Field L] [CommRing A] [IsDomain A]
     [Algebra K L] [Algebra K A]

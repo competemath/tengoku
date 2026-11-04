@@ -43,7 +43,9 @@ variable {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
   (P Q : Extension.{w} R B)
 
 /-- If the degree-zero differential module vanishes, every conormal class is a first homology
-class.-/
+class.
+@isnad1 id=surjecti.0h3v.s8.090247c2616b from=translated src=- shape=488471f0 vocab=fbeb5e10
+-/
 theorem h1Cotangentι_surjective [Subsingleton P.CotangentSpace] :
     Function.Surjective P.h1Cotangentι := by
   intro x
@@ -52,7 +54,9 @@ theorem h1Cotangentι_surjective [Subsingleton P.CotangentSpace] :
 variable [FormallySmooth R P.Ring] [FormallySmooth R Q.Ring]
 
 /-- A map of formally smooth presentations is injective on conormals when the source
-differential module vanishes.-/
+differential module vanishes.
+@isnad1 id=injectiv.0h5v.s8.bbcb568679a2 from=translated src=- shape=d8708a45 vocab=b229ea12
+-/
 theorem cotangentMap_injective [Subsingleton P.CotangentSpace] (f : P.Hom Q) :
     Function.Injective (Extension.Cotangent.map f) := by
   intro x y h
@@ -64,7 +68,9 @@ theorem cotangentMap_injective [Subsingleton P.CotangentSpace] (f : P.Hom Q) :
     simpa only [Extension.H1Cotangent.equivOfFormallySmooth_apply f] using hm)
   exact congrArg P.h1Cotangentι he
 
-/-- The image of the actual conormal map is the kernel of the target differential.-/
+/-- The image of the actual conormal map is the kernel of the target differential.
+@isnad1 id=exact.0h5v.s10.da18c3d36d3d from=translated src=- shape=36459bdc vocab=2c3699b4
+-/
 theorem exact_cotangentMap_cotangentComplex [Subsingleton P.CotangentSpace]
     (f : P.Hom Q) : Function.Exact (Extension.Cotangent.map f) Q.cotangentComplex := by
   intro x
@@ -93,7 +99,9 @@ def baseExtension : Extension R B where
   algebraMap_σ := Function.surjInv_eq hf
 
 include hf in
-/-- Surjectivity of R → B implies surjectivity of A → B in the actual scalar tower.-/
+/-- Surjectivity of R → B implies surjectivity of A → B in the actual scalar tower.
+@isnad1 id=surjecti.1h3v.s7.1acfe463d35a from=translated src=- shape=91651009 vocab=2eb9489d
+-/
 theorem ambient_surjective : Function.Surjective (algebraMap A B) := by
   intro b
   obtain ⟨r, hr⟩ := hf b
@@ -117,7 +125,9 @@ def conormalMap : (baseExtension hf).Cotangent →ₗ[B]
   Extension.Cotangent.map (baseHom (A := A) hf)
 
 /-- The conormal comparison is injective for a formally smooth ambient A/R; B need not be
-smooth.-/
+smooth.
+@isnad1 id=injectiv.1h3v.s9.12c2554556ad from=translated src=- shape=87ba4997 vocab=5d34601c
+-/
 theorem conormalMap_injective [FormallySmooth R A] :
     Function.Injective (conormalMap (A := A) hf) := by
   haveI : FormallySmooth R (baseExtension hf).Ring :=
@@ -128,7 +138,9 @@ theorem conormalMap_injective [FormallySmooth R A] :
     inferInstanceAs (Subsingleton (B ⊗[R] Ω[R⁄R]))
   exact cotangentMap_injective _ _ (baseHom hf)
 
-/-- The conormal comparison and the actual Kähler differential form an exact pair.-/
+/-- The conormal comparison and the actual Kähler differential form an exact pair.
+@isnad1 id=exact.1h3v.s11.b09882e3b42a from=translated src=- shape=4bb45594 vocab=8bb30626
+-/
 theorem conormalMap_exact [FormallySmooth R A] :
     Function.Exact (conormalMap (A := A) hf)
       (ambientExtension (A := A) hf).cotangentComplex := by
@@ -141,7 +153,9 @@ theorem conormalMap_exact [FormallySmooth R A] :
   exact exact_cotangentMap_cotangentComplex _ _ (baseHom hf)
 
 /-- On an ideal generator r, the actual comparison sends its class to the class of its image in
-A.-/
+A.
+@isnad1 id=eq.2h4v.s12.2cb52db05821 from=translated src=- shape=a1d3a2c9 vocab=6ffc1515
+-/
 theorem conormalMap_mk (r : R) (hr : algebraMap R B r = 0) :
     conormalMap (A := A) hf (Extension.Cotangent.mk ⟨r, hr⟩) =
       Extension.Cotangent.mk ⟨algebraMap R A r,
@@ -149,7 +163,9 @@ theorem conormalMap_mk (r : R) (hr : algebraMap R B r = 0) :
   exact Extension.Cotangent.map_mk (baseHom hf) ⟨r, hr⟩
 
 include hf in
-/-- For r in ker(R → B), its image lies in ker(A → B)² exactly when r lies in ker(R → B)².-/
+/-- For r in ker(R → B), its image lies in ker(A → B)² exactly when r lies in ker(R → B)².
+@isnad1 id=iff.2h4v.s9.65b924febfbf from=translated src=- shape=6055976a vocab=f538b44a
+-/
 theorem map_mem_square_iff [FormallySmooth R A] (r : R)
     (hr : algebraMap R B r = 0) :
     algebraMap R A r ∈ (RingHom.ker (algebraMap A B)) ^ 2 ↔
@@ -164,7 +180,9 @@ theorem map_mem_square_iff [FormallySmooth R A] (r : R)
   rw [conormalMap_mk hf r hr] at he
   exact hA.trans (he.trans hR)
 
-/-- The actual differential kills the image of the coefficient conormal comparison.-/
+/-- The actual differential kills the image of the coefficient conormal comparison.
+@isnad1 id=eq.1h3v.s12.d2dfebd619cd from=translated src=- shape=a4b56d0a vocab=03afaf60
+-/
 theorem conormalMap_comp [FormallySmooth R A] :
     (ambientExtension (A := A) hf).cotangentComplex.comp (conormalMap hf) = 0 := by
   ext x

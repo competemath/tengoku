@@ -23,6 +23,9 @@ open RingTheory Sequence
 
 namespace M1
 
+/--
+@isnad1 id=eq.2h3v.s6.d3103a3ecbbc from=translated src=- shape=3e541eff vocab=b0a5c479
+-/
 theorem length_eq_height_of_isWeaklyRegular {A : Type*} [CommRing A] [IsNoetherianRing A]
     (P : Ideal A) [P.IsPrime] (rs : List A) (hP : Ideal.ofList rs = P)
     (hreg : IsWeaklyRegular A rs) : (rs.length : ℕ∞) = P.height := by

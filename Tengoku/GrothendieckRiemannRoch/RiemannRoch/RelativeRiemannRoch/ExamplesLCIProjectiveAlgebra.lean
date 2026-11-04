@@ -81,6 +81,9 @@ def ppEquiv (a : Fin 3) (u v : Chart a) (huv : u ≠ v) (hc : ∀ j, j = u ∨ j
         · simp [toPP, ofPP]
         · simp [toPP, ofPP, huv.symm])
 
+/--
+@isnad1 id=eq.2h5v.s9.e5233fd33840 from=translated src=- shape=c2a44704 vocab=10ce6afc
+-/
 theorem ppEquiv_apply (a : Fin 3) (u v : Chart a) (huv : u ≠ v) (hc : ∀ j, j = u ∨ j = v)
     (p : MvPolynomial (Chart a) k) : ppEquiv k a u v huv hc p = toPP k a u p := rfl
 
@@ -89,6 +92,9 @@ theorem ppEquiv_apply (a : Fin 3) (u v : Chart a) (huv : u ≠ v) (hc : ∀ j, j
 /-- Chart variables.-/
 def cv (a j : Fin 3) (h : j ≠ a) : Chart a := ⟨j, h⟩
 
+/--
+@isnad1 id=or.3h4v.s6.0a04b5f4332e from=translated src=- shape=9104ea26 vocab=2ff629b8
+-/
 theorem cover (a : Fin 3) (u v : Fin 3) (hu : u ≠ a) (hv : v ≠ a)
     (hall : ∀ j : Fin 3, j = a ∨ j = u ∨ j = v) :
     ∀ j : Chart a, j = cv a u hu ∨ j = cv a v hv := by
@@ -113,27 +119,45 @@ def e0 : MvPolynomial (Chart 0) k ≃+* Polynomial (Polynomial k) :=
   ppEquiv k 0 (cv 0 1 (by decide)) (cv 0 2 (by decide)) (by decide)
     (cover 0 1 2 (by decide) (by decide) (by decide))
 
+/--
+@isnad1 id=eq.0h1v.s9.4bd4ac1a094b from=translated src=- shape=a85d326c vocab=f1bfc268
+-/
 theorem e2_fpoly : e2 k (fpoly k 2) = ExamplesLCI.nodal k := by
   simp [e2, ppEquiv_apply, fpoly, rp, toPP, cv, ExamplesLCI.nodal]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.4442d1734cab from=translated src=- shape=160ab142 vocab=762845c5
+-/
 theorem e1_fpoly : e1 k (fpoly k 1) = C (1 - X ^ 2) * X + C (-X ^ 3) := by
   simp [e1, ppEquiv_apply, fpoly, rp, toPP, cv]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.ea89b3a3cca9 from=translated src=- shape=c6c94f89 vocab=d741f436
+-/
 theorem e0_fpoly : e0 k (fpoly k 0) = C (X ^ 2 - 1) * X + C (-1) := by
   simp [e0, ppEquiv_apply, fpoly, rp, toPP, cv]
   ring
 
 /-! ## Primality -/
 
+/--
+@isnad1 id=prime.2h3v.s9.af4230af9021 from=translated src=- shape=b97153da vocab=3a1a8ada
+-/
 theorem prime_linear (a b : Polynomial k) (ha : a ≠ 0) (hab : IsCoprime a b) :
     Prime (C a * X + C b : Polynomial (Polynomial k)) :=
   UniqueFactorizationMonoid.irreducible_iff_prime.mp (irreducible_C_mul_X_add_C ha hab.isRelPrime)
 
+/--
+@isnad1 id=prime.0h1v.s6.5cbc56e64944 from=translated src=- shape=41cb81ac vocab=29a235af
+-/
 theorem fpoly_prime_two : Prime (fpoly k 2) :=
   (MulEquiv.prime_iff (e2 k)).mp (by rw [e2_fpoly]; exact ExamplesLCI.nodal_prime k)
 
+/--
+@isnad1 id=prime.0h1v.s6.f9545a6bc8a6 from=translated src=- shape=41cb81ac vocab=29a235af
+-/
 theorem fpoly_prime_one : Prime (fpoly k 1) := by
   refine (MulEquiv.prime_iff (e1 k)).mp ?_
   rw [e1_fpoly]
@@ -142,6 +166,9 @@ theorem fpoly_prime_one : Prime (fpoly k 1) := by
   have := congrArg (eval 0) h
   simp at this
 
+/--
+@isnad1 id=prime.0h1v.s6.86cc307ea41a from=translated src=- shape=41cb81ac vocab=29a235af
+-/
 theorem fpoly_prime_zero : Prime (fpoly k 0) := by
   refine (MulEquiv.prime_iff (e0 k)).mp ?_
   rw [e0_fpoly]
@@ -150,16 +177,25 @@ theorem fpoly_prime_zero : Prime (fpoly k 0) := by
   have := congrArg (eval 0) h
   simp at this
 
+/--
+@isnad1 id=prime.0h2v.s5.aa4efec01fe9 from=translated src=- shape=8fb636aa vocab=29a235af
+-/
 theorem fpoly_prime (a : Fin 3) : Prime (fpoly k a) := by
   fin_cases a
   · exact fpoly_prime_zero k
   · exact fpoly_prime_one k
   · exact fpoly_prime_two k
 
+/--
+@isnad1 id=ne.0h2v.s6.e5096681c576 from=translated src=- shape=87bddf62 vocab=441b8e50
+-/
 theorem fpoly_ne_zero (a : Fin 3) : fpoly k a ≠ 0 := (fpoly_prime k a).ne_zero
 
 /-! ## The chart `z ≠ 0` meets the other charts -/
 
+/--
+@isnad1 id=not.2h3v.s10.f6b3cf75bb3c from=translated src=- shape=7560580f vocab=24dca123
+-/
 theorem not_dvd_X (α β : Polynomial k) (hβ : β ≠ 0) (hf : ¬ IsUnit (C α * X + C β)) :
     ¬ (C α * X + C β : Polynomial (Polynomial k)) ∣ X := by
   rintro ⟨q, hq⟩
@@ -178,6 +214,9 @@ theorem not_dvd_X (α β : Polynomial k) (hβ : β ≠ 0) (hf : ¬ IsUnit (C α 
   have h2 := mul_left_cancel₀ X_ne_zero h1
   exact ⟨⟨_, q', h2, by rw [mul_comm]; exact h2⟩, rfl⟩
 
+/--
+@isnad1 id=not.0h1v.s9.7dca53f42492 from=translated src=- shape=e037a3ac vocab=ee4e16ea
+-/
 theorem rp_two_not_mem_one : rp k 1 2 ∉ Ideal.span {fpoly k 1} := by
   rw [Ideal.mem_span_singleton, ← map_dvd_iff (e1 k), e1_fpoly]
   have hx : e1 k (rp k 1 2) = X := by simp [e1, ppEquiv_apply, rp, toPP, cv]
@@ -186,6 +225,9 @@ theorem rp_two_not_mem_one : rp k 1 2 ∉ Ideal.span {fpoly k 1} := by
   rw [← e1_fpoly]
   exact fun h => (fpoly_prime_one k).not_isUnit ((MulEquiv.isUnit_map (e1 k)).mp h)
 
+/--
+@isnad1 id=not.0h1v.s9.eaeba0daa99c from=translated src=- shape=e037a3ac vocab=ee4e16ea
+-/
 theorem rp_two_not_mem_zero : rp k 0 2 ∉ Ideal.span {fpoly k 0} := by
   rw [Ideal.mem_span_singleton, ← map_dvd_iff (e0 k), e0_fpoly]
   have hx : e0 k (rp k 0 2) = X := by simp [e0, ppEquiv_apply, rp, toPP, cv]

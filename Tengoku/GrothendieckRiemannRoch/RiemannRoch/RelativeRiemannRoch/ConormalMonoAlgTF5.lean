@@ -27,7 +27,9 @@ universe u v
 
 namespace SchemeKTheory.TF5
 
-/-- Ranks add in a short exact sequence with free sub and quotient.-/
+/-- Ranks add in a short exact sequence with free sub and quotient.
+@isnad1 id=eq.3h6v.s8.0227c5b743cd from=translated src=- shape=0a72d7b1 vocab=603b330a
+-/
 theorem rank_add_of_exact {B : Type u} [CommRing B] [Nontrivial B] {N M Q : Type u}
     [AddCommGroup N] [Module B N] [AddCommGroup M] [Module B M] [AddCommGroup Q] [Module B Q]
     [Module.Free B N] [Module.Free B Q] (f : N →ₗ[B] M) (g : M →ₗ[B] Q) (hf : Function.Injective f)

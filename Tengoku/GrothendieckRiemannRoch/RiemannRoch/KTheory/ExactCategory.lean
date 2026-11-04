@@ -43,7 +43,9 @@ abbrev CategoryGroup := Group C (shortExactObjects C)
 def categoryClassOf (E : C) : CategoryGroup C :=
   classOf C (shortExactObjects C) E
 
-/-- A short exact sequence gives the usual relation in the categorical Grothendieck group.-/
+/-- A short exact sequence gives the usual relation in the categorical Grothendieck group.
+@isnad1 id=eq.2h6v.s7.d6602da72951 from=translated src=- shape=b5ec32db vocab=89f79835
+-/
 theorem categoryClassOf_middle {A B D : C} {f : A ⟶ B} {g : B ⟶ D}
     (zero : f ≫ g = 0) (h : (ShortComplex.mk f g zero).ShortExact) :
     categoryClassOf C B = categoryClassOf C A + categoryClassOf C D :=
@@ -53,7 +55,9 @@ section Abelian
 
 variable (Acat : Type u) [Category.{v} Acat] [Abelian Acat]
 
-/-- The zero object represents zero in the categorical Grothendieck group.-/
+/-- The zero object represents zero in the categorical Grothendieck group.
+@isnad1 id=eq.0h1v.s7.41ee2586f9f6 from=translated src=- shape=0dd0c4c7 vocab=0a4e7083
+-/
 @[simp]
 theorem categoryClassOf_zero : categoryClassOf Acat (0 : Acat) = 0 := by
   let S : ShortComplex Acat :=
@@ -68,7 +72,9 @@ theorem categoryClassOf_zero : categoryClassOf Acat (0 : Acat) = 0 := by
   symm
   simpa only [sub_self, add_sub_cancel_right] using h'
 
-/-- Isomorphic objects define the same class in the categorical Grothendieck group.-/
+/-- Isomorphic objects define the same class in the categorical Grothendieck group.
+@isnad1 id=eq.0h4v.s5.08be59ac6664 from=translated src=- shape=e0c253cd vocab=05184fb0
+-/
 theorem categoryClassOf_iso {A B : Acat} (e : A ≅ B) :
     categoryClassOf Acat A = categoryClassOf Acat B := by
   let S := ShortComplex.mk e.hom (0 : B ⟶ (0 : Acat)) comp_zero
@@ -99,7 +105,9 @@ def subcategoryClassOf (E : C) (hE : P E) : SubcategoryGroup C P :=
   classOf {E : C // P E} (shortExactIn C P) ⟨E, hE⟩
 
 /-- A short exact sequence whose three terms satisfy `P` gives the defining relation in the
-selected exact Grothendieck group.-/
+selected exact Grothendieck group.
+@isnad1 id=eq.2h10v.s7.54d4c9acc391 from=translated src=- shape=ec01a284 vocab=526c9363
+-/
 theorem subcategoryClassOf_middle {A B D : C} (hA : P A) (hB : P B) (hD : P D)
     {f : A ⟶ B} {g : B ⟶ D} (zero : f ≫ g = 0)
     (h : (ShortComplex.mk f g zero).ShortExact) :
@@ -114,7 +122,9 @@ variable (Acat : Type u) [Category.{v} Acat] [Abelian Acat]
 variable (Q : Acat → Prop)
 
 /-- An object of the selected class which is zero in the ambient abelian category represents
-zero in the selected Grothendieck group.-/
+zero in the selected Grothendieck group.
+@isnad1 id=eq.1h4v.s7.b32c9d52d107 from=translated src=- shape=deff7a50 vocab=181505f5
+-/
 theorem subcategoryClassOf_isZero {Z : Acat} (hZ : Q Z) (zeroZ : IsZero Z) :
     subcategoryClassOf Acat Q Z hZ = 0 := by
   letI : Mono (0 : Z ⟶ Z) := zeroZ.mono _
@@ -130,7 +140,9 @@ theorem subcategoryClassOf_isZero {Z : Acat} (hZ : Q Z) (zeroZ : IsZero Z) :
   simpa only [sub_self, add_sub_cancel_right] using h'
 
 /-- Isomorphic ambient objects in the selected class have the same selected Grothendieck
-class, provided the selected class contains a zero object.-/
+class, provided the selected class contains a zero object.
+@isnad1 id=eq.1h9v.s6.4a86b254df36 from=translated src=- shape=927c996f vocab=6b74ed6d
+-/
 theorem subcategoryClassOf_iso {A B Z : Acat} (hA : Q A) (hB : Q B)
     (hZ : Q Z) (zeroZ : IsZero Z) (e : A ≅ B) :
     subcategoryClassOf Acat Q A hA = subcategoryClassOf Acat Q B hB := by
@@ -164,6 +176,9 @@ def mapOfShortExactFunctor (F : C ⥤ D) [F.PreservesZeroMorphisms]
     change shortExactObjects D T.X₁ T.X₂ T.X₃
     exact ⟨T.f, T.g, T.zero, hF S hshort⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.00241aad5634 from=translated src=- shape=8b5640b1 vocab=515037b6
+-/
 @[simp]
 theorem mapOfShortExactFunctor_classOf (F : C ⥤ D) [F.PreservesZeroMorphisms]
     (hF : ∀ (S : ShortComplex C), S.ShortExact → (S.map F).ShortExact) (E : C) :
@@ -185,6 +200,9 @@ def mapOfShortExactFunctorOn (P : C → Prop) (Q : D → Prop)
       ⟨T.X₁, hobj A.1 A.2⟩ ⟨T.X₂, hobj B.1 B.2⟩ ⟨T.X₃, hobj E.1 E.2⟩
     exact ⟨T.f, T.g, T.zero, hF S hshort⟩
 
+/--
+@isnad1 id=eq.1h8v.s8.8317768df27f from=translated src=- shape=719cf309 vocab=13a3ee90
+-/
 @[simp]
 theorem mapOfShortExactFunctorOn_classOf (P : C → Prop) (Q : D → Prop)
     (F : C ⥤ D) [F.PreservesZeroMorphisms]

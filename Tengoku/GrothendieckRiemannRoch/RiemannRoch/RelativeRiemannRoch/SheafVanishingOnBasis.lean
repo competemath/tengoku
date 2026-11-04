@@ -58,7 +58,9 @@ universe u
 namespace TopCat.Presheaf
 
 /-- A presheaf of abelian groups vanishing on a basis has zero stalks: every germ is represented on
-some neighbourhood, which may be shrunk to a basic one, where the section is zero.-/
+some neighbourhood, which may be shrunk to a basic one, where the section is zero.
+@isnad1 id=subsingl.2h4v.s6.2b904bd03579 from=translated src=- shape=4e94668f vocab=6ed90990
+-/
 theorem subsingleton_stalk_of_isBasis {X : TopCat.{u}} (P : X.Presheaf AddCommGrpCat.{u})
     {B : Set (Opens X)} (hB : Opens.IsBasis B)
     (hzero : ∀ U ∈ B, Subsingleton (P.obj (op U))) (x : X) :
@@ -78,7 +80,9 @@ end TopCat.Presheaf
 
 namespace TopCat.Sheaf
 
-/-- A sheaf of abelian groups vanishing on a basis of the topology is a zero object.-/
+/-- A sheaf of abelian groups vanishing on a basis of the topology is a zero object.
+@isnad1 id=iszero.2h3v.s7.dbc473070ce4 from=translated src=- shape=8a253b5a vocab=6b3ecf0b
+-/
 theorem isZero_of_isBasis {X : TopCat.{u}} (F : TopCat.Sheaf AddCommGrpCat.{u} X)
     {B : Set (Opens X)} (hB : Opens.IsBasis B)
     (hzero : ∀ U ∈ B, Subsingleton (F.obj.obj (op U))) : IsZero F := by
@@ -95,7 +99,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- A presheaf of abelian groups vanishing on a basis has zero sheafification.  The unit of
 sheafification induces an isomorphism on stalks
 (`TopCat.Presheaf.stalkFunctor_map_unit_toSheafify_isIso`), so the vanishing stalks of the presheaf
-are inherited.-/
+are inherited.
+@isnad1 id=iszero.2h3v.s8.6627722fca4e from=translated src=- shape=48aa8995 vocab=5fda9cdf
+-/
 theorem isZero_sheafify_of_isBasis {X : TopCat.{u}} (P : X.Presheaf AddCommGrpCat.{u})
     {B : Set (Opens X)} (hB : Opens.IsBasis B)
     (hzero : ∀ U ∈ B, Subsingleton (P.obj (op U))) :

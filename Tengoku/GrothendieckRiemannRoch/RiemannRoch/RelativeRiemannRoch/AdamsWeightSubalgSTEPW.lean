@@ -55,7 +55,9 @@ variable (H : ∀ x : K, HasFilt Ψ ρ x)
 
 include H hcomm
 
-/-- Existence of a finite-dimensional stable subalgebra containing finitely many given elements.-/
+/-- Existence of a finite-dimensional stable subalgebra containing finitely many given elements.
+@isnad1 id=ex.2h4v.s8.4a030ab9e110 from=translated src=- shape=d48ca06c vocab=3130980e
+-/
 theorem exists_finite_stable_subalgebra (xs : Finset K) :
     ∃ S : Subalgebra ℚ K, Module.Finite ℚ S ∧ StableSub Ψ S ∧ ∀ x ∈ xs, x ∈ S := by
   classical

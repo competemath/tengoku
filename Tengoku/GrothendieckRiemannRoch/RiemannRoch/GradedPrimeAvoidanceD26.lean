@@ -24,6 +24,9 @@ namespace RiemannRoch.GradedAvoidD26
 variable {A σ : Type*} [CommRing A] [SetLike σ A] [AddSubmonoidClass σ A] (𝒜 : ℕ → σ)
   [GradedRing 𝒜]
 
+/--
+@isnad1 id=ex.2h5v.s7.5be55d95d525 from=translated src=- shape=20c9ba2a vocab=cc049286
+-/
 theorem exists_homogeneous_mem_sdiff {q p : Ideal A} (hq : q.IsHomogeneous 𝒜)
     (hqp : ¬ q ≤ p) : ∃ n x, x ∈ 𝒜 n ∧ x ∈ q ∧ x ∉ p := by
   classical
@@ -35,6 +38,9 @@ theorem exists_homogeneous_mem_sdiff {q p : Ideal A} (hq : q.IsHomogeneous 𝒜)
   rw [← DirectSum.sum_support_decompose 𝒜 r]
   exact Ideal.sum_mem _ fun i _ => hcon i _ (SetLike.coe_mem _) (hq i hrq)
 
+/--
+@isnad1 id=ex.2h5v.s8.02d0b58a445a from=translated src=- shape=5477e85f vocab=bd553a3a
+-/
 theorem exists_homogeneous_mem_forall_not_mem {p : Ideal A} (hp : p.IsPrime)
     (T : Finset (Ideal A)) (hT : ∀ q ∈ T, q.IsHomogeneous 𝒜 ∧ ¬ q ≤ p) :
     ∃ n a, a ∈ 𝒜 n ∧ (∀ q ∈ T, a ∈ q) ∧ a ∉ p := by
@@ -57,7 +63,9 @@ theorem exists_homogeneous_mem_forall_not_mem {p : Ideal A} (hp : p.IsPrime)
       · exact hap h
       · exact hcp h
 
-/-- **Graded prime avoidance** (arbitrary base, finite fields allowed).-/
+/-- **Graded prime avoidance** (arbitrary base, finite fields allowed).
+@isnad1 id=ex.1h4v.s8.43889f7c7dec from=translated src=- shape=d0b66c3c vocab=bd553a3a
+-/
 theorem graded_prime_avoidance (S : Finset (Ideal A))
     (hS : ∀ p ∈ S, p.IsPrime ∧ p.IsHomogeneous 𝒜 ∧ ∃ e, 1 ≤ e ∧ ∃ h ∈ 𝒜 e, h ∉ p) :
     ∃ m, 1 ≤ m ∧ ∃ f ∈ 𝒜 m, ∀ p ∈ S, f ∉ p := by
@@ -105,7 +113,9 @@ theorem graded_prime_avoidance (S : Finset (Ideal A))
     · exact hfp (hqp ▸ hfq)
     · exact hfS q (Finset.mem_erase.2 ⟨hqp, hq⟩) hfq
 
-/-- Evaluation form: `φ i : A →+* K i` into domains, each not killing positive degree.-/
+/-- Evaluation form: `φ i : A →+* K i` into domains, each not killing positive degree.
+@isnad1 id=ex.1h7v.s8.5a208cac900e from=translated src=- shape=1b136b4b vocab=af2efae4
+-/
 theorem exists_homogeneous_eval_ne_zero {ι : Type*} (s : Finset ι) {K : ι → Type*}
     [∀ i, CommRing (K i)] [∀ i, IsDomain (K i)] (φ : ∀ i, A →+* K i)
     (hφ : ∀ i ∈ s, ∃ e, 1 ≤ e ∧ ∃ h ∈ 𝒜 e, φ i h ≠ 0) :
@@ -122,7 +132,9 @@ theorem exists_homogeneous_eval_ne_zero {ι : Type*} (s : Finset ι) {K : ι →
   refine ⟨m, hm, f, hf, fun i hi hz => hfS (P i) (Finset.mem_image_of_mem _ hi) ?_⟩
   exact Ideal.mem_homogeneousCore_of_homogeneous_of_mem ⟨m, hf⟩ (RingHom.mem_ker.2 hz)
 
-/-- Progression strengthening: avoiders in every positive multiple of one degree.-/
+/-- Progression strengthening: avoiders in every positive multiple of one degree.
+@isnad1 id=ex.1h7v.s8.2cef83b4cef9 from=translated src=- shape=4060adf7 vocab=8edbaf5d
+-/
 theorem exists_homogeneous_eval_ne_zero_progression {ι : Type*} (s : Finset ι)
     {K : ι → Type*} [∀ i, CommRing (K i)] [∀ i, IsDomain (K i)] (φ : ∀ i, A →+* K i)
     (hφ : ∀ i ∈ s, ∃ e, 1 ≤ e ∧ ∃ h ∈ 𝒜 e, φ i h ≠ 0) :
@@ -133,7 +145,9 @@ theorem exists_homogeneous_eval_ne_zero_progression {ι : Type*} (s : Finset ι)
   rw [map_pow]
   exact pow_ne_zero _ (hfs i hi)
 
-/-- Products of avoiders are avoiders: degrees form an additive semigroup.-/
+/-- Products of avoiders are avoiders: degrees form an additive semigroup.
+@isnad1 id=ex.2h9v.s8.4f4bb2e0a339 from=translated src=- shape=1573ab14 vocab=9c1b52cd
+-/
 theorem eval_avoider_mul {ι : Type*} (s : Finset ι) {K : ι → Type*}
     [∀ i, CommRing (K i)] [∀ i, IsDomain (K i)] (φ : ∀ i, A →+* K i) {a b : ℕ}
     (ha : ∃ f ∈ 𝒜 a, ∀ i ∈ s, φ i f ≠ 0) (hb : ∃ f ∈ 𝒜 b, ∀ i ∈ s, φ i f ≠ 0) :

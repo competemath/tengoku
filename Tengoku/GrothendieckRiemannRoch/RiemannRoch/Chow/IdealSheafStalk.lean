@@ -47,14 +47,18 @@ namespace AlgebraicGeometry.Scheme.IdealSheafData
 variable {X : Scheme.{u}} (I : X.IdealSheafData)
 
 /-- Germ-extension of the sections of an ideal sheaf is compatible with shrinking the affine
-open.-/
+open.
+@isnad1 id=eq.2h5v.s12.c52f2357a69b from=translated src=- shape=eee907ff vocab=f6922f89
+-/
 theorem map_germ_of_le {U V : X.affineOpens} (h : U ≤ V) {x : X} (hx : x ∈ U.1) :
     (I.ideal U).map (X.presheaf.germ U.1 x hx).hom
       = (I.ideal V).map (X.presheaf.germ V.1 x (h hx)).hom := by
   conv_lhs => rw [← I.map_ideal h]
   simp only [Ideal.map_map, ← CommRingCat.hom_comp, TopCat.Presheaf.germ_res']
 
-/-- The germ-extension of the sections of an ideal sheaf does not depend on the affine open.-/
+/-- The germ-extension of the sections of an ideal sheaf does not depend on the affine open.
+@isnad1 id=eq.2h5v.s12.dbbd0b95218d from=translated src=- shape=ebb704e8 vocab=abab2b96
+-/
 theorem map_germ_eq {U V : X.affineOpens} {x : X} (hU : x ∈ U.1) (hV : x ∈ V.1) :
     (I.ideal U).map (X.presheaf.germ U.1 x hU).hom
       = (I.ideal V).map (X.presheaf.germ V.1 x hV).hom := by
@@ -68,6 +72,9 @@ sections of `I` over any affine open containing `x`; see `stalk_eq`.-/
 def stalk (x : X) : Ideal (X.presheaf.stalk x) :=
   ⨆ U : { U : X.affineOpens // x ∈ U.1 }, (I.ideal U.1).map (X.presheaf.germ U.1.1 x U.2).hom
 
+/--
+@isnad1 id=eq.1h4v.s11.3fee355b954f from=translated src=- shape=7adf4a24 vocab=4e77bed9
+-/
 theorem stalk_eq {x : X} {U : X.affineOpens} (hx : x ∈ U.1) :
     I.stalk x = (I.ideal U).map (X.presheaf.germ U.1 x hx).hom := by
   refine le_antisymm (iSup_le fun V => (I.map_germ_eq V.2 hx).le) ?_

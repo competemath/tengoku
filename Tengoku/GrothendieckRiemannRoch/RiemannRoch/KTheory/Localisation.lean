@@ -48,6 +48,9 @@ def torsionClasses : AddSubgroup (G0 R) :=
   AddSubgroup.closure {g | ∃ (T : Type u) (_ : AddCommGroup T) (_ : Module R T)
     (_ : Module.Finite R T), (∀ x : T, ∃ t ∈ S, t • x = 0) ∧ g = gcl R T}
 
+/--
+@isnad1 id=mem.1h3v.s8.cd2f12414415 from=translated src=- shape=8475c484 vocab=f6f07f42
+-/
 theorem gcl_mem_torsionClasses (T : Type u) [AddCommGroup T] [Module R T] [Module.Finite R T]
     (h : ∀ x : T, ∃ t ∈ S, t • x = 0) : gcl R T ∈ torsionClasses S :=
   AddSubgroup.subset_closure ⟨T, _, _, _, h, rfl⟩
@@ -65,6 +68,9 @@ def latticeClass (L : Submodule R N) (hL : L.FG) : G0 R ⧸ torsionClasses S :=
   haveI : Module.Finite R L := Module.Finite.iff_fg.mpr hL
   QuotientAddGroup.mk (gcl R L)
 
+/--
+@isnad1 id=eq.3h5v.s8.c2bb9f8c5042 from=translated src=- shape=420e990e vocab=dc401ca8
+-/
 theorem latticeClass_mono {L₁ L₂ : Submodule R N} (h : L₁ ≤ L₂) (h₁ : IsLattice S L₁)
     (h₂ : L₂.FG) : latticeClass S L₁ h₁.1 = latticeClass S L₂ h₂ := by
   haveI : Module.Finite R L₁ := Module.Finite.iff_fg.mpr h₁.1
@@ -86,11 +92,17 @@ theorem latticeClass_mono {L₁ L₂ : Submodule R N} (h : L₁ ≤ L₂) (h₁ 
   rw [hses, QuotientAddGroup.mk_add, (QuotientAddGroup.eq_zero_iff _).mpr htor]
   exact (add_zero (_ : G0 R ⧸ torsionClasses S)).symm
 
+/--
+@isnad1 id=eq.2h5v.s8.d179dd879c8f from=translated src=- shape=edd09f5a vocab=760d2c95
+-/
 theorem latticeClass_eq {L₁ L₂ : Submodule R N} (h₁ : IsLattice S L₁) (h₂ : IsLattice S L₂) :
     latticeClass S L₁ h₁.1 = latticeClass S L₂ h₂.1 := by
   rw [latticeClass_mono S le_sup_left h₁ (h₁.1.sup h₂.1),
     latticeClass_mono S le_sup_right h₂ (h₁.1.sup h₂.1)]
 
+/--
+@isnad1 id=islattic.2h6v.s7.4eee302388ff from=translated src=- shape=8a49b8dd vocab=69e29f64
+-/
 theorem isLattice_comap [IsNoetherianRing R] {N₁ N₂ : Type u} [AddCommGroup N₁] [Module R N₁]
     [AddCommGroup N₂] [Module R N₂] (f : N₁ →ₗ[R] N₂) (hf : Function.Injective f)
     {L : Submodule R N₂} (hL : IsLattice S L) : IsLattice S (L.comap f) := by
@@ -102,6 +114,9 @@ theorem isLattice_comap [IsNoetherianRing R] {N₁ N₂ : Type u} [AddCommGroup 
     obtain ⟨t, ht, htx⟩ := hL.2 (f x)
     exact ⟨t, ht, by simpa [Submodule.mem_comap] using htx⟩
 
+/--
+@isnad1 id=islattic.2h6v.s7.d779d1bed10d from=translated src=- shape=898579c4 vocab=20941b94
+-/
 theorem isLattice_map {N₂ N₃ : Type u} [AddCommGroup N₂] [Module R N₂]
     [AddCommGroup N₃] [Module R N₃] (g : N₂ →ₗ[R] N₃) (hg : Function.Surjective g)
     {L : Submodule R N₂} (hL : IsLattice S L) : IsLattice S (L.map g) := by
@@ -111,6 +126,9 @@ theorem isLattice_map {N₂ N₃ : Type u} [AddCommGroup N₂] [Module R N₂]
   obtain ⟨t, ht, htx⟩ := hL.2 x
   exact ⟨t, ht, by rw [← map_smul]; exact Submodule.mem_map_of_mem htx⟩
 
+/--
+@isnad1 id=eq.4h8v.s11.0666acaec085 from=translated src=- shape=4017311c vocab=8557b72a
+-/
 theorem latticeClass_ses [IsNoetherianRing R] {N₁ N₂ N₃ : Type u} [AddCommGroup N₁]
     [Module R N₁] [AddCommGroup N₂] [Module R N₂] [AddCommGroup N₃] [Module R N₃]
     (f : N₁ →ₗ[R] N₂) (g : N₂ →ₗ[R] N₃) (hf : Function.Injective f)
@@ -158,6 +176,9 @@ section Existence
 variable (Rs : Type u) [CommRing Rs] [Algebra R Rs] [IsLocalization S Rs]
 variable {N : Type u} [AddCommGroup N] [Module R N] [Module Rs N] [IsScalarTower R Rs N]
 
+/--
+@isnad1 id=ex.0h4v.s7.57d0977424b5 from=translated src=- shape=b68d8c2c vocab=6d52ef69
+-/
 theorem exists_lattice [Module.Finite Rs N] : ∃ L : Submodule R N, IsLattice S L := by
   classical
   obtain ⟨T, hT⟩ := (Module.Finite.fg_top : (⊤ : Submodule Rs N).FG)
@@ -209,9 +230,15 @@ instance (E : ModuleCat.{u} (Localization S)) : Module R (Res S E) :=
 def resOrig (E : ModuleCat.{u} (Localization S)) : Module (Localization S) (Res S E) :=
   inferInstanceAs (Module (Localization S) E)
 
+/--
+@isnad1 id=eq.0h5v.s9.7c7b0b8b1e81 from=translated src=- shape=05a4e3f7 vocab=f389e512
+-/
 theorem res_smul (E : ModuleCat.{u} (Localization S)) (r : R) (x : Res S E) :
     r • x = (algebraMap R (Localization S) r • (show E from x) : E) := rfl
 
+/--
+@isnad1 id=isscalar.0h3v.s8.53d86bf2e96e from=translated src=- shape=61b85fd7 vocab=6ed6ccf5
+-/
 theorem res_isScalarTower (E : ModuleCat.{u} (Localization S)) :
     letI := resOrig S E
     IsScalarTower R (Localization S) (Res S E) := by
@@ -219,6 +246,9 @@ theorem res_isScalarTower (E : ModuleCat.{u} (Localization S)) :
   exact @IsScalarTower.mk R (Localization S) (Res S E) _ (resOrig S E).toSMul _
     (fun r a x => by rw [Algebra.smul_def]; exact mul_smul _ _ _)
 
+/--
+@isnad1 id=ex.0h3v.s7.efdcfd04d973 from=translated src=- shape=6d7b2301 vocab=2e83f563
+-/
 theorem exists_lattice_obj (E : ModuleCat.{u} (Localization S))
     [Module.Finite (Localization S) E] : ∃ L : Submodule R (Res S E), IsLattice S L := by
   letI : Module (Localization S) (Res S E) := resOrig S E
@@ -232,6 +262,9 @@ def psiObj (E : {E : ModuleCat.{u} (Localization S) // IsFG (Localization S) E})
   haveI : Module.Finite (Localization S) E.1 := E.2
   latticeClass S (exists_lattice_obj S E.1).choose (exists_lattice_obj S E.1).choose_spec.1
 
+/--
+@isnad1 id=eq.1h4v.s9.b134e6fb4901 from=translated src=- shape=e237b99d vocab=acfe767f
+-/
 theorem psiObj_eq (E : {E : ModuleCat.{u} (Localization S) // IsFG (Localization S) E})
     (L : Submodule R (Res S E.1)) (hL : IsLattice S L) : psiObj S E = latticeClass S L hL.1 := by
   haveI : Module.Finite (Localization S) E.1 := E.2
@@ -258,11 +291,17 @@ def psi : G0 (Localization S) →+ G0 R ⧸ torsionClasses S :=
     rw [psiObj_eq S B L hL, latticeClass_ses S (rsMap S f) (rsMap S g) hf hex hg hL,
       psiObj_eq S A _ (isLattice_comap S _ hf hL), psiObj_eq S C _ (isLattice_map S _ hg hL)])
 
+/--
+@isnad1 id=eq.1h3v.s11.4f84f3334163 from=translated src=- shape=80950407 vocab=79c75feb
+-/
 theorem psi_classOf (E : ModuleCat.{u} (Localization S)) (hE : IsFG (Localization S) E) :
     psi S (ExactGrothendieck.subcategoryClassOf _ _ E hE) = psiObj S ⟨E, hE⟩ :=
   ExactGrothendieck.lift_classOf _ _ _
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=isfg.1h3v.s6.72b7ef7b6a4a from=translated src=- shape=4ed1eda3 vocab=db8f8ee4
+-/
 theorem isFG_localizedModule (E : ModuleCat.{u} R) (hE : IsFG R E) :
     IsFG (Localization S) ((ModuleCat.localizedModuleFunctor S).obj E) := by
   haveI : Module.Finite R E := hE
@@ -277,12 +316,18 @@ def locG0 : G0 R →+ G0 (Localization S) :=
     (fun _ hT => hT.map_of_exact _)
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=eq.1h3v.s10.2abf9214f0da from=translated src=- shape=bc06befa vocab=4c7e3bf3
+-/
 theorem locG0_classOf (E : ModuleCat.{u} R) (hE : IsFG R E) :
     locG0 S (ExactGrothendieck.subcategoryClassOf _ _ E hE) =
       ExactGrothendieck.subcategoryClassOf _ _ ((ModuleCat.localizedModuleFunctor S).obj E)
         (isFG_localizedModule S E hE) :=
   ExactGrothendieck.mapOfShortExactFunctorOn_classOf _ _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.1h3v.s12.3313603cd2a4 from=translated src=- shape=a3629ba2 vocab=175155b0
+-/
 theorem psi_locG0_classOf (E : ModuleCat.{u} R) (hE : IsFG R E) :
     psi S (locG0 S (ExactGrothendieck.subcategoryClassOf _ _ E hE)) =
       QuotientAddGroup.mk (ExactGrothendieck.subcategoryClassOf _ _ E hE) := by
@@ -321,6 +366,9 @@ theorem psi_locG0_classOf (E : ModuleCat.{u} R) (hE : IsFG R E) :
   rw [hses, QuotientAddGroup.mk_add, (QuotientAddGroup.eq_zero_iff _).mpr htor]
   exact (zero_add (_ : G0 R ⧸ torsionClasses S)).symm
 
+/--
+@isnad1 id=eq.0h2v.s11.abc2a1bbd63c from=translated src=- shape=592e7a47 vocab=7035b6cc
+-/
 theorem psi_comp_locG0 :
     (psi S).comp (locG0 S) = QuotientAddGroup.mk' (torsionClasses S) := by
   refine ExactGrothendieck.hom_ext {E : ModuleCat.{u} R // IsFG R E}
@@ -329,6 +377,9 @@ theorem psi_comp_locG0 :
   exact psi_locG0_classOf S E.1 E.2
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=islocali.1h4v.s8.12a23d39a7ae from=translated src=- shape=82f61584 vocab=c6bbd757
+-/
 theorem isLocalizedModule_lattice (E : ModuleCat.{u} (Localization S))
     (L : Submodule R (Res S E)) (hL : IsLattice S L) :
     letI := resOrig S E
@@ -355,7 +406,9 @@ theorem isLocalizedModule_lattice (E : ModuleCat.{u} (Localization S))
 
 omit [IsNoetherianRing R] in
 /-- **Localisation, surjectivity**: every finite `S⁻¹R`-module is the localisation of a
-finite `R`-module (a lattice), so `G₀(R) → G₀(S⁻¹R)` is surjective.-/
+finite `R`-module (a lattice), so `G₀(R) → G₀(S⁻¹R)` is surjective.
+@isnad1 id=surjecti.0h2v.s10.3e6f4fb5e389 from=translated src=- shape=e2781840 vocab=ca20dfd2
+-/
 theorem locG0_surjective : Function.Surjective (locG0 S) := by
   have key : ∀ E : {E : ModuleCat.{u} (Localization S) // IsFG _ E},
       ExactGrothendieck.classOf _ _ E ∈ (locG0 S).range := by
@@ -395,6 +448,9 @@ section Devissage
 
 variable (I : Ideal R)
 
+/--
+@isnad1 id=isfg.1h3v.s7.921147d3c539 from=translated src=- shape=1d6b3685 vocab=d2d7817f
+-/
 theorem isFG_restrictScalars_quotient (E : ModuleCat.{u} (R ⧸ I)) (hE : IsFG (R ⧸ I) E) :
     IsFG R ((ModuleCat.restrictScalars (Ideal.Quotient.mk I)).obj E) := by
   haveI : Module.Finite (R ⧸ I) E := hE
@@ -412,6 +468,9 @@ def pushG0 : G0 (R ⧸ I) →+ G0 R :=
       exact ModuleCat.shortComplex_shortExact _ hex hT.moduleCat_injective_f
         hT.moduleCat_surjective_g)
 
+/--
+@isnad1 id=eq.1h3v.s10.b3fc480c88ff from=translated src=- shape=0a3edd1d vocab=9f6166f6
+-/
 theorem pushG0_classOf (E : ModuleCat.{u} (R ⧸ I)) (hE : IsFG (R ⧸ I) E) :
     pushG0 I (ExactGrothendieck.subcategoryClassOf _ _ E hE) =
       ExactGrothendieck.subcategoryClassOf _ _
@@ -419,6 +478,9 @@ theorem pushG0_classOf (E : ModuleCat.{u} (R ⧸ I)) (hE : IsFG (R ⧸ I) E) :
         (isFG_restrictScalars_quotient I E hE) :=
   ExactGrothendieck.mapOfShortExactFunctorOn_classOf _ _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.16b492bf5ad8 from=translated src=- shape=e0877479 vocab=2000551f
+-/
 theorem gcl_eq_zero_of_subsingleton (T : Type u) [AddCommGroup T] [Module R T]
     [Module.Finite R T] [Subsingleton T] : gcl R T = 0 :=
   ExactGrothendieck.subcategoryClassOf_isZero _ _ _ (ModuleCat.isZero_of_subsingleton _)
@@ -429,6 +491,9 @@ section Away
 
 variable (s : R)
 
+/--
+@isnad1 id=ex.1h3v.s8.912b6a116b9b from=translated src=- shape=865a21d6 vocab=8dd7afb7
+-/
 theorem exists_pow_smul_eq_zero (T : Type u) [AddCommGroup T] [Module R T] [Module.Finite R T]
     (h : ∀ x : T, ∃ t ∈ Submonoid.powers s, t • x = 0) : ∃ n : ℕ, ∀ x : T, s ^ n • x = 0 := by
   classical

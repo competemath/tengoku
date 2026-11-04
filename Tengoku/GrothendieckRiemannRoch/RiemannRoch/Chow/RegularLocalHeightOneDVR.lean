@@ -59,7 +59,9 @@ namespace IsRegularLocalRing
 /-- A one-dimensional regular local domain is a DVR.
 
 This is the terminal implication of route (h): once a height-one localization is known to be
-regular of dimension one, `IsDiscreteValuationRing.TFAE` / the cotangent criterion finishes.-/
+regular of dimension one, `IsDiscreteValuationRing.TFAE` / the cotangent criterion finishes.
+@isnad1 id=isdiscre.1h1v.s5.fc1bb5206413 from=translated src=- shape=58284ca3 vocab=818d3441
+-/
 theorem isDiscreteValuationRing_of_ringKrullDim_eq_one
     [IsDomain R] [IsRegularLocalRing R] (hdim : ringKrullDim R = 1) :
     IsDiscreteValuationRing R := by
@@ -71,7 +73,9 @@ theorem isDiscreteValuationRing_of_ringKrullDim_eq_one
     exact_mod_cast hcot
   exact IsLocalRing.finrank_CotangentSpace_eq_one_iff.mp hfin
 
-/-- Localizing at a height-one prime yields a one-dimensional local ring.-/
+/-- Localizing at a height-one prime yields a one-dimensional local ring.
+@isnad1 id=eq.1h2v.s6.33b6185d4ba8 from=translated src=- shape=d8a36fe4 vocab=9eef7697
+-/
 theorem ringKrullDim_localizationAtPrime_eq_one_of_height_eq_one
     (p : Ideal R) [p.IsPrime] (hp : p.height = 1) :
     ringKrullDim (Localization.AtPrime p) = 1 := by
@@ -82,7 +86,9 @@ theorem ringKrullDim_localizationAtPrime_eq_one_of_height_eq_one
 then it is a DVR.
 
 The missing plate input is regularity of `Localization.AtPrime p` for regular local `R`
-(finite global dimension + Serre), which is shared with plate P3.-/
+(finite global dimension + Serre), which is shared with plate P3.
+@isnad1 id=isdiscre.1h2v.s6.059406ac1227 from=translated src=- shape=d665fb61 vocab=64068dc2
+-/
 theorem isDiscreteValuationRing_localizationAtPrime_of_height_one_of_regular
     [IsDomain R] (p : Ideal R) [p.IsPrime] (hp : p.height = 1)
     [IsRegularLocalRing (Localization.AtPrime p)] :
@@ -98,7 +104,9 @@ namespace ModuleCat
 
 Together with the depth API of `RiemannRoch.Chow.Depth`, this is the free-module seed of the
 route-(h) / P3 Auslander–Buchsbaum formula `pd M + depth M = depth R` (here `pd R = 0`, so the
-identity reduces to `depth R = depth R`).-/
+identity reduces to `depth R = depth R`).
+@isnad1 id=eq.0h1v.s5.2ce1a6a39f1a from=translated src=- shape=9b070a35 vocab=cb47eb75
+-/
 theorem projectiveDimension_self_eq_zero [Small.{u} R] [Nontrivial R] :
     projectiveDimension (ModuleCat.of R R) = 0 := by
   haveI : Projective (ModuleCat.of R R) :=

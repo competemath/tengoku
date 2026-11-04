@@ -57,7 +57,9 @@ def concentratedHigherClass (push : Object → Object') (X : Object) (i : ℕ) :
     ExactGrothendieck.Group Object' Exact' :=
   if i = 0 then ExactGrothendieck.classOf Object' Exact' (push X) else 0
 
-/-- The alternating sum of a degree-zero concentrated system is the image class.-/
+/-- The alternating sum of a degree-zero concentrated system is the image class.
+@isnad1 id=eq.0h6v.s5.5ba2211027b4 from=translated src=- shape=db85e9d6 vocab=6de10347
+-/
 theorem alternatingSum_concentratedHigherClass (push : Object → Object') (X : Object) (n₁ : ℕ) :
     alternatingSum n₁ (concentratedHigherClass (Exact' := Exact') push X) =
       ExactGrothendieck.classOf Object' Exact' (push X) := by
@@ -94,7 +96,9 @@ def concentratedLongExactWitness (n₁ : ℕ) (push : Object → Object')
     by_cases hi : i = 0 <;> simp [concentratedHigherClass, hi]
 
 /-- The bounded derived pushforward of a degree-zero concentrated system is the naive functorial
-map.  Taking `push = id` recovers `derivedIdentity_eq_id`.-/
+map.  Taking `push = id` recovers `derivedIdentity_eq_id`.
+@isnad1 id=eq.0h7v.s7.a2fa51fc956c from=translated src=- shape=acba48e8 vocab=3f3797c9
+-/
 theorem derivedPushforward_concentrated_eq_map (n₁ : ℕ) (push : Object → Object')
     (hpush : ∀ X Y Z, Exact X Y Z → Exact' (push X) (push Y) (push Z)) :
     derivedPushforward n₁ (concentratedHigherClass (Exact' := Exact') push)
@@ -106,7 +110,9 @@ theorem derivedPushforward_concentrated_eq_map (n₁ : ℕ) (push : Object → O
     ExactGrothendieck.map_classOf]
 
 /-- **The bounded Euler equality is formal for a degree-zero concentrated first factor.**  This is
-the `hleray` hypothesis of `derivedPushforward_comp_of_leray_euler`, discharged.-/
+the `hleray` hypothesis of `derivedPushforward_comp_of_leray_euler`, discharged.
+@isnad1 id=eq.0h10v.s7.7260b8f8744c from=translated src=- shape=10ebc21e vocab=3fb315dc
+-/
 theorem hleray_of_concentrated (n₁ n₂ : ℕ) (push : Object → Object')
     (higher₂ : Object' → ℕ → B)
     (hlong₂ : ∀ X Y Z, Exact' X Y Z →
@@ -119,7 +125,9 @@ theorem hleray_of_concentrated (n₁ n₂ : ℕ) (push : Object → Object')
 
 /-- **Unconditional composition law for a degree-zero concentrated first factor.**  No Leray
 spectral sequence is needed: the composite higher-image system is `higher₂ ∘ push` with the same
-bound `n₂`.-/
+bound `n₂`.
+@isnad1 id=eq.0h11v.s8.1679817840ef from=translated src=- shape=86edcc47 vocab=ab10b03a
+-/
 theorem derivedPushforward_comp_of_concentrated (n₁ n₂ : ℕ) (push : Object → Object')
     (hpush : ∀ X Y Z, Exact X Y Z → Exact' (push X) (push Y) (push Z))
     (higher₂ : Object' → ℕ → B)
@@ -137,7 +145,9 @@ theorem derivedPushforward_comp_of_concentrated (n₁ n₂ : ℕ) (push : Object
     (fun X Y Z h => hlong₂ _ _ _ (hpush X Y Z h))
     (hleray_of_concentrated n₁ n₂ push higher₂ hlong₂)
 
-/-- Pointwise form of the unconditional composition law.-/
+/-- Pointwise form of the unconditional composition law.
+@isnad1 id=eq.0h12v.s9.e702f780730e from=translated src=- shape=58e4cfde vocab=d4706324
+-/
 theorem derivedPushforward_comp_apply_of_concentrated (n₁ n₂ : ℕ) (push : Object → Object')
     (hpush : ∀ X Y Z, Exact X Y Z → Exact' (push X) (push Y) (push Z))
     (higher₂ : Object' → ℕ → B)

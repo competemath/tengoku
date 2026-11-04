@@ -58,7 +58,9 @@ variable (A B : Type*) [CommRing A] [CommRing B] [IsLocalRing A] [IsLocalRing B]
 (`0` if infinite).-/
 def resDeg : ℕ := (Module.length (ResidueField A) (ResidueField B)).toNat
 
-/-- `ℓ_A(B / x B) = ℓ_B(B / x B) · [κ(B) : κ(A)]` (as natural numbers).-/
+/-- `ℓ_A(B / x B) = ℓ_B(B / x B) · [κ(B) : κ(A)]` (as natural numbers).
+@isnad1 id=eq.0h3v.s8.1399500c0df2 from=translated src=- shape=762b9d1d vocab=ecb0c440
+-/
 theorem length_quot_toNat_eq (x : B) :
     (Module.length A (B ⧸ Ideal.span {x})).toNat =
       (Ring.ord B x).toNat * resDeg A B := by
@@ -72,7 +74,9 @@ section OrdFrac
 variable {B : Type*} [CommRing B] [IsDomain B] [IsNoetherianRing B] [Ring.KrullDimLE 1 B]
   {L : Type*} [Field L] [Algebra B L] [IsFractionRing B L]
 
-/-- For `x ≠ 0` in a one-dimensional Noetherian domain, `ordFrac` is the length order.-/
+/-- For `x ≠ 0` in a one-dimensional Noetherian domain, `ordFrac` is the length order.
+@isnad1 id=eq.1h3v.s7.c1c13f88cf9a from=translated src=- shape=7b483c83 vocab=1264f7ef
+-/
 theorem ordFrac_algebraMap_eq {x : B} (hx : x ≠ 0) :
     Ring.ordFrac B (algebraMap B L x) =
       ((Multiplicative.ofAdd ((Ring.ord B x).toNat : ℤ) : Multiplicative ℤ) : ℤᵐ⁰) := by
@@ -82,6 +86,9 @@ theorem ordFrac_algebraMap_eq {x : B} (hx : x ≠ 0) :
 
 end OrdFrac
 
+/--
+@isnad1 id=eq.1h3v.s5.4c14bfa2381c from=translated src=- shape=82ec11d5 vocab=f0b581cf
+-/
 theorem toNat_sum_of_ne_top {T : Type*} (s : Finset T) (f : T → ℕ∞)
     (h : ∑ t ∈ s, f t ≠ ⊤) : (∑ t ∈ s, f t).toNat = ∑ t ∈ s, (f t).toNat := by
   have hf : ∀ t ∈ s, f t ≠ ⊤ := fun t ht ↦
@@ -91,6 +98,9 @@ theorem toNat_sum_of_ne_top {T : Type*} (s : Finset T) (f : T → ℕ∞)
     exact Finset.sum_congr rfl (fun t ht ↦ (ENat.natCast_toNat (hf t ht)).symm)
   rw [heq, ENat.toNat_natCast]
 
+/--
+@isnad1 id=eq.0h3v.s7.c9820aaab817 from=translated src=- shape=f8c17350 vocab=29bdcda6
+-/
 theorem prod_coe_ofAdd_pow {T : Type*} [Fintype T] (n d : T → ℕ) :
     ∏ t, ((Multiplicative.ofAdd (n t : ℤ) : Multiplicative ℤ) : ℤᵐ⁰) ^ d t =
       ((Multiplicative.ofAdd ((∑ t, n t * d t : ℕ) : ℤ) : Multiplicative ℤ) : ℤᵐ⁰) := by
@@ -101,6 +111,9 @@ theorem prod_coe_ofAdd_pow {T : Type*} [Fintype T] (n d : T → ℕ) :
   push_cast
   rw [nsmul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=ne.1h4v.s7.62690a025cdd from=translated src=- shape=7b9e3eb3 vocab=aba9386c
+-/
 theorem algebraMap_ne_zero_of_atPrime {S : Type*} [CommRing S] [IsDomain S] (P : Ideal S)
     [P.IsPrime] (D : Type*) [CommRing D] [Algebra S D] [IsLocalization.AtPrime D P]
     {b : S} (hb : b ≠ 0) : algebraMap S D b ≠ 0 := by
@@ -127,7 +140,9 @@ variable {R S : Type*} [CommRing R] [CommRing S] [IsDomain R] [IsDomain S] [Alge
 variable [∀ t, IsLocalRing (D t)] [∀ t, IsLocalHom (algebraMap A (D t))]
 
 /-- **Norm/length formula, exponent form** (`b ∈ S`):
-`ord_A (N_{L/K} b) = Σ_t ord_{D_t}(b) · [κ(D_t) : κ(A)]`.-/
+`ord_A (N_{L/K} b) = Σ_t ord_{D_t}(b) · [κ(D_t) : κ(A)]`.
+@isnad1 id=eq.5h10v.s10.a02677c43153 from=translated src=- shape=91bf1186 vocab=5ab58856
+-/
 theorem ordFrac_norm_eq_ofAdd_sum
     (hDtower : ∀ t r, algebraMap A (D t) (algebraMap R A r) =
       algebraMap S (D t) (algebraMap R S r))
@@ -148,7 +163,9 @@ theorem ordFrac_norm_eq_ofAdd_sum
 variable [∀ t, IsDomain (D t)] [∀ t, IsNoetherianRing (D t)] [∀ t, Ring.KrullDimLE 1 (D t)]
   [∀ t, Algebra (D t) L] [∀ t, IsFractionRing (D t) L] [∀ t, IsScalarTower S (D t) L]
 
-/-- **Norm/length formula, product form for `b ∈ S`**.-/
+/-- **Norm/length formula, product form for `b ∈ S`**.
+@isnad1 id=eq.5h10v.s10.7b254ca149b4 from=translated src=- shape=4b68ab73 vocab=00c280c4
+-/
 theorem ordFrac_norm_eq_prod_of_mem
     (hDtower : ∀ t r, algebraMap A (D t) (algebraMap R A r) =
       algebraMap S (D t) (algebraMap R S r))
@@ -165,7 +182,9 @@ theorem ordFrac_norm_eq_prod_of_mem
 
 /-- **Norm/length formula** (Fulton Ex. 1.2.3 / A.3, general form): for `b ∈ L^×`,
 `ord_A (N_{L/K} b) = ∏_t ord_{D_t}(b) ^ [κ(D_t) : κ(A)]` in `ℤᵐ⁰`, i.e.
-`ord_A (N b) = Σ_t [κ(D_t):κ(A)] · ord_{D_t}(b)`.-/
+`ord_A (N b) = Σ_t [κ(D_t):κ(A)] · ord_{D_t}(b)`.
+@isnad1 id=eq.5h10v.s10.335dc6ee8ead from=translated src=- shape=ba7e4df5 vocab=00c280c4
+-/
 theorem ordFrac_norm_eq_prod
     (hDtower : ∀ t r, algebraMap A (D t) (algebraMap R A r) =
       algebraMap S (D t) (algebraMap R S r))
@@ -202,7 +221,9 @@ end General
 
 /-! ### The local form: `A` local, `B` finite over `A` -/
 
-/-- A local ring is its own localization at the maximal ideal.-/
+/-- A local ring is its own localization at the maximal ideal.
+@isnad1 id=atprime.0h1v.s5.d24dc1b1b723 from=translated src=- shape=ac0af42f vocab=929ed0a2
+-/
 theorem isLocalization_atPrime_maximalIdeal (A : Type*) [CommRing A] [IsLocalRing A] :
     IsLocalization.AtPrime A (maximalIdeal A) :=
   IsLocalization.self (fun _ hx ↦ (IsLocalRing.notMem_maximalIdeal.mp hx))
@@ -223,6 +244,9 @@ variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullD
   [∀ t, Algebra (D t) L] [∀ t, IsFractionRing (D t) L] [∀ t, IsScalarTower B (D t) L]
 
 include hQ in
+/--
+@isnad1 id=eq.0h5v.s7.ddea5cc228aa from=translated src=- shape=d8e28cdc vocab=a693810d
+-/
 theorem comap_eq_maximalIdeal (t : T) : (Q t).comap (algebraMap A B) = maximalIdeal A := by
   haveI : (Ideal.under A (Q t)).IsMaximal := Ideal.IsMaximal.under A (Q t)
   exact IsLocalRing.eq_maximalIdeal this
@@ -230,7 +254,9 @@ theorem comap_eq_maximalIdeal (t : T) : (Q t).comap (algebraMap A B) = maximalId
 /-- **Norm/length formula, local form** (Fulton Ex. 1.2.3): `A` a one-dimensional Noetherian
 local domain, `B ⊇ A` a finite domain extension with fraction fields `K ⊆ L`, `Q` an enumeration
 of the maximal ideals of `B` and `D t = B_{Q t}`.  For `b ∈ L^×`,
-`ord_A (N_{L/K} b) = Σ_t [κ(Q t) : κ(m_A)] · ord_{B_{Q t}} b` (multiplicatively in `ℤᵐ⁰`).-/
+`ord_A (N_{L/K} b) = Σ_t [κ(Q t) : κ(m_A)] · ord_{B_{Q t}} b` (multiplicatively in `ℤᵐ⁰`).
+@isnad1 id=eq.3h8v.s10.f278664e3c74 from=translated src=- shape=0900c6ec vocab=6953f4da
+-/
 theorem ordFrac_norm_eq_prod_local
     (hQinj : Function.Injective Q)
     (hQsurj : ∀ Q' : Ideal B, Q'.IsMaximal → ∃ t, Q t = Q')

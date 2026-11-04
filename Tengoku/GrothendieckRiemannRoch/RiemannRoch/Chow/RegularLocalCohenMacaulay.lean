@@ -33,23 +33,31 @@ variable {R : Type u} [CommRing R]
 
 namespace IsRegularLocalRing
 
-/-- In a domain, every nonzero ring element is `R`-regular.-/
+/-- In a domain, every nonzero ring element is `R`-regular.
+@isnad1 id=issmulre.1h2v.s5.a16544545525 from=translated src=- shape=44b75e56 vocab=7912db22
+-/
 theorem isSMulRegular_of_ne_zero [IsDomain R] {r : R} (hr : r ≠ 0) :
     IsSMulRegular R r :=
   IsSMulRegular.of_right_eq_zero_of_smul fun a ha =>
     (mul_eq_zero.mp (by simpa [smul_eq_mul] using ha)).resolve_left hr
 
-/-- A parameter outside `m²` is nonzero.-/
+/-- A parameter outside `m²` is nonzero.
+@isnad1 id=ne.1h2v.s7.02c15cb5047d from=translated src=- shape=d4a1a8d5 vocab=2bd400e7
+-/
 theorem ne_zero_of_notMem_sq [IsLocalRing R] {x : R}
     (hx2 : x ∉ maximalIdeal R ^ 2) : x ≠ 0 := by
   intro h0; exact hx2 (by simp [h0])
 
-/-- Under `IsDomain`, a non-square parameter is an `R`-regular element.-/
+/-- Under `IsDomain`, a non-square parameter is an `R`-regular element.
+@isnad1 id=issmulre.1h2v.s7.430ddc578020 from=translated src=- shape=992105b7 vocab=31aacfc8
+-/
 theorem isSMulRegular_of_notMem_sq_of_isDomain [IsDomain R] [IsLocalRing R] {x : R}
     (hx2 : x ∉ maximalIdeal R ^ 2) : IsSMulRegular R x :=
   isSMulRegular_of_ne_zero (ne_zero_of_notMem_sq hx2)
 
-/-- Generators of equal principal maximal ideals differ by a unit.-/
+/-- Generators of equal principal maximal ideals differ by a unit.
+@isnad1 id=ex.3h3v.s7.99d4a211cef8 from=translated src=- shape=32a51055 vocab=f73cf859
+-/
 theorem exists_units_eq_of_span_singleton_eq_span_singleton [IsLocalRing R]
     {x y : R} (hx : maximalIdeal R = Ideal.span {x})
     (hy : maximalIdeal R = Ideal.span {y})
@@ -86,7 +94,9 @@ theorem exists_units_eq_of_span_singleton_eq_span_singleton [IsLocalRing R]
       _ = y * (u : R) := by rw [← hr_u]
       _ = u * y := mul_comm y u⟩
 
-/-- In dimension one, a generator of `m` is a nonzerodivisor (unconditional).-/
+/-- In dimension one, a generator of `m` is a nonzerodivisor (unconditional).
+@isnad1 id=issmulre.2h2v.s6.4b938ac27763 from=translated src=- shape=18f9737d vocab=94f0d8a0
+-/
 theorem isSMulRegular_of_ringKrullDim_eq_one [IsRegularLocalRing R]
     (hdim : ringKrullDim R = 1) {x : R}
     (hxspan : maximalIdeal R = Ideal.span {x}) :
@@ -111,7 +121,9 @@ theorem isSMulRegular_of_ringKrullDim_eq_one [IsRegularLocalRing R]
           exact hya
     exact hyne (k + 1) ((IsUnit.mul_right_eq_zero v.isUnit).mp this)
 
-/-- Embedding dimension of a parameter quotient drops by one.-/
+/-- Embedding dimension of a parameter quotient drops by one.
+@isnad1 id=eq.2h2v.s7.634f3b623b09 from=translated src=- shape=65c3eb9d vocab=4eaede63
+-/
 theorem embeddingDimension_quotient_span_singleton [IsRegularLocalRing R]
     [DecidableEq R]
     {x : R} (hxm : x ∈ maximalIdeal R) (hx2 : x ∉ maximalIdeal R ^ 2) :

@@ -33,7 +33,9 @@ section Split
 
 variable {D : Type*} [Category D] [Preadditive D]
 
-/-- **Split-kernel criterion.**-/
+/-- **Split-kernel criterion.**
+@isnad1 id=isiso.3h7v.s8.9879784dfc58 from=translated src=- shape=4a3a0dbf vocab=7c255bc1
+-/
 theorem isIso_kernelLift_of_split {A B Q : D} (ψ : A ⟶ B) (d : B ⟶ Q) (ρ : B ⟶ A)
     [HasKernel d] (hψd : ψ ≫ d = 0) (hψρ : ψ ≫ ρ = 𝟙 A)
     (hρ : ∀ {T : D} (f : T ⟶ B), f ≫ d = 0 → f ≫ ρ ≫ ψ = f) :
@@ -46,7 +48,9 @@ theorem isIso_kernelLift_of_split {A B Q : D} (ψ : A ⟶ B) (d : B ⟶ Q) (ρ :
     rw [Category.assoc, Category.assoc, Category.id_comp, kernel.lift_ι]
     exact hρ (kernel.ι d) (kernel.condition d)
 
-/-- Reindexing of the sum over the non-pivot coordinates.-/
+/-- Reindexing of the sum over the non-pivot coordinates.
+@isnad1 id=eq.5h6v.s6.cc49460d328e from=translated src=- shape=f742d667 vocab=5b5c1618
+-/
 theorem sum_range_split {M : Type*} [AddCommMonoid M] {I : Type*} [Fintype I] [DecidableEq I]
     (m a : ℕ) (ha : a < m) (e : I → ℕ) (he : ∀ k, e k < m) (hea : ∀ k, e k ≠ a)
     (hinj : Function.Injective e) (hsurj : ∀ j, j < m → j ≠ a → ∃ k, e k = j) (F : ℕ → M) :
@@ -63,7 +67,9 @@ theorem sum_range_split {M : Type*} [AddCommMonoid M] {I : Type*} [Fintype I] [D
       exact ⟨hea k, he k⟩
   rw [h, Finset.sum_image (fun x _ y _ h ↦ hinj h)]
 
-/-- **Chartwise split kernel (abstract form).**-/
+/-- **Chartwise split kernel (abstract form).**
+@isnad1 id=isiso.13h20v.s9.276376a06780 from=translated src=- shape=bfc4f53b vocab=33a3993b
+-/
 theorem isIso_kernelLift_chart {Om B Lm Lm' Q Un : D} {I : Type*} [Fintype I] [DecidableEq I]
     (m a : ℕ) (ha : a < m) (e : I → ℕ) (he : ∀ k, e k < m) (hea : ∀ k, e k ≠ a)
     (hinj : Function.Injective e) (hsurj : ∀ j, j < m → j ≠ a → ∃ k, e k = j)

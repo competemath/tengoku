@@ -34,7 +34,9 @@ namespace IsRegularLocalRing
 
 /-- **Local factoriality.**  A two-dimensional regular local ring is a unique factorization
 domain.  Every height-one prime is principal by P2.3, and a Noetherian domain with that property
-is factorial.-/
+is factorial.
+@isnad1 id=uniquefa.1h1v.s5.0c20a3134c67 from=translated src=- shape=50208249 vocab=9f84884e
+-/
 theorem uniqueFactorizationMonoid_of_ringKrullDim_eq_two (R : Type u) [CommRing R]
     [IsRegularLocalRing R] (hdim : ringKrullDim R = 2) :
     letI := isDomain_of_isRegularLocalRing R

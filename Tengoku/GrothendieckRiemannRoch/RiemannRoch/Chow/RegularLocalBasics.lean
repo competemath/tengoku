@@ -32,12 +32,16 @@ def embeddingDimension : ℕ :=
   (maximalIdeal R).spanFinrank
 
 /-- In a regular local ring the embedding dimension, coerced to the dimension value type,
-is the Krull dimension.-/
+is the Krull dimension.
+@isnad1 id=eq.0h1v.s4.4252ad5e21be from=translated src=- shape=ed6df6b0 vocab=05ab7c77
+-/
 theorem coe_embeddingDimension_eq_ringKrullDim :
     ((embeddingDimension R : ℕ∞) : WithBot ℕ∞) = ringKrullDim R :=
   IsRegularLocalRing.spanFinrank_maximalIdeal
 
-/-- The bottom-free local Krull dimension is the finite embedding dimension.-/
+/-- The bottom-free local Krull dimension is the finite embedding dimension.
+@isnad1 id=eq.0h1v.s4.b056f3fe6f03 from=translated src=- shape=92b46b85 vocab=7fab5af5
+-/
 theorem localKrullDim_eq_embeddingDimension :
     ModuleCat.localKrullDim R = (embeddingDimension R : ℕ∞) := by
   apply WithBot.coe_injective
@@ -54,13 +58,17 @@ structure SystemOfParameters where
 
 namespace SystemOfParameters
 
-/-- Every member of a regular system of parameters lies in the maximal ideal.-/
+/-- Every member of a regular system of parameters lies in the maximal ideal.
+@isnad1 id=mem.1h3v.s6.1c459ac2a388 from=translated src=- shape=232e93e9 vocab=ce41b425
+-/
 theorem mem_maximalIdeal (s : SystemOfParameters R) {r : R} (hr : r ∈ s.elements) :
     r ∈ maximalIdeal R := by
   rw [← s.span_eq]
   exact Submodule.subset_span hr
 
-/-- The parameters generate the maximal ideal as an ideal.-/
+/-- The parameters generate the maximal ideal as an ideal.
+@isnad1 id=eq.0h2v.s5.b3e177a0eeae from=translated src=- shape=bd45a3d2 vocab=51d3d576
+-/
 theorem ideal_span_eq (s : SystemOfParameters R) :
     Ideal.span (s.elements : Set R) = maximalIdeal R := by
   exact s.span_eq
@@ -68,7 +76,9 @@ theorem ideal_span_eq (s : SystemOfParameters R) :
 end SystemOfParameters
 
 /-- A regular local ring admits a regular system of parameters of cardinality equal to its
-embedding (hence Krull) dimension.-/
+embedding (hence Krull) dimension.
+@isnad1 id=nonempty.0h1v.s3.df2366fb633f from=translated src=- shape=9499e9bc vocab=0f651bb1
+-/
 theorem exists_systemOfParameters : Nonempty (SystemOfParameters R) := by
   let m : Submodule R R := maximalIdeal R
   have hfg : m.FG := IsNoetherian.noetherian m

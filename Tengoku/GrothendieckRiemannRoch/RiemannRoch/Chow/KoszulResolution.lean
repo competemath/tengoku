@@ -80,6 +80,9 @@ def coneD (d : BoundedProjectiveResolution A M) (r : A) :
   | 0 => d.coneDZero r
   | n + 1 => d.coneDSucc r n
 
+/--
+@isnad1 id=eq.0h5v.s8.bbce7975a076 from=translated src=- shape=8537d73d vocab=25af9b99
+-/
 lemma coneD_sq (d : BoundedProjectiveResolution A M) (r : A) (n : ℕ) :
     d.coneD r (n + 1) ≫ d.coneD r n = 0 := by
   apply ModuleCat.hom_ext
@@ -117,6 +120,9 @@ noncomputable def coneComplex (d : BoundedProjectiveResolution A M) (r : A) :
     ChainComplex (ModuleCat.{u} A) ℕ :=
   ChainComplex.of d.coneX (d.coneD r) (d.coneD_sq r)
 
+/--
+@isnad1 id=eq.0h4v.s7.ef2310c837d3 from=translated src=- shape=ffc793c9 vocab=528b5dba
+-/
 @[simp]
 lemma coneComplex_d_zero (d : BoundedProjectiveResolution A M) (r : A) :
     (d.coneComplex r).d 1 0 = d.coneDZero r := by
@@ -125,6 +131,9 @@ lemma coneComplex_d_zero (d : BoundedProjectiveResolution A M) (r : A) :
   rw [ChainComplex.of_d]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.37dde082620d from=translated src=- shape=01eadffc vocab=60bf7815
+-/
 @[simp]
 lemma coneComplex_d_succ (d : BoundedProjectiveResolution A M) (r : A) (n : ℕ) :
     (d.coneComplex r).d (n + 2) (n + 1) = d.coneDSucc r n := by
@@ -134,6 +143,9 @@ lemma coneComplex_d_succ (d : BoundedProjectiveResolution A M) (r : A) (n : ℕ)
   rw [ChainComplex.of_d]
   rfl
 
+/--
+@isnad1 id=iszero.1h5v.s6.a254391220fb from=translated src=- shape=9d392ff8 vocab=86ee470e
+-/
 theorem coneComplex_isZero (d : BoundedProjectiveResolution A M) (r : A)
     (n : ℕ) (hn : d.bound + 1 < n) : IsZero ((d.coneComplex r).X n) := by
   cases n with
@@ -154,6 +166,9 @@ noncomputable def coneAugmentationLinear (d : BoundedProjectiveResolution A M) (
     d.K.X 0 →ₗ[A] QuotSMulTop r M :=
   (Submodule.mkQ (r • (⊤ : Submodule A M))).comp (d.resolution.π.f 0).hom
 
+/--
+@isnad1 id=eq.0h4v.s13.17397a2944f4 from=translated src=- shape=6adcbba1 vocab=ee479fcd
+-/
 lemma cone_d_comp_augmentation (d : BoundedProjectiveResolution A M) (r : A) :
     d.coneD r 0 ≫ ModuleCat.ofHom (d.coneAugmentationLinear r) = 0 := by
   apply ModuleCat.hom_ext
@@ -176,6 +191,9 @@ noncomputable def coneAugmentation (d : BoundedProjectiveResolution A M) (r : A)
   (ChainComplex.toSingle₀Equiv _ _).symm ⟨
     ModuleCat.ofHom (d.coneAugmentationLinear r), d.cone_d_comp_augmentation r⟩
 
+/--
+@isnad1 id=exact.0h4v.s10.d12c04276af0 from=translated src=- shape=8e1584c0 vocab=656e2ca9
+-/
 theorem cone_augmentation_exact (d : BoundedProjectiveResolution A M) (r : A) :
     (ShortComplex.moduleCatMk (d.coneDZero r).hom (d.coneAugmentationLinear r)
       (by
@@ -208,6 +226,9 @@ theorem cone_augmentation_exact (d : BoundedProjectiveResolution A M) (r : A) :
   rw [hz]
   abel
 
+/--
+@isnad1 id=ex.1h5v.s11.af22a2663d4f from=translated src=- shape=07f70fe8 vocab=3b9ee983
+-/
 lemma resolution_exact_lift (d : BoundedProjectiveResolution A M) (n : ℕ)
     (x : d.K.X (n + 1)) (hx : d.K.d (n + 1) n x = 0) :
     ∃ z : d.K.X (n + 2), d.K.d (n + 2) (n + 1) z = x := by
@@ -215,6 +236,9 @@ lemma resolution_exact_lift (d : BoundedProjectiveResolution A M) (n : ℕ)
   rw [ShortComplex.moduleCat_exact_iff] at hExact
   simpa only using hExact x hx
 
+/--
+@isnad1 id=ex.1h4v.s12.24ef71db3d8c from=translated src=- shape=fc74e782 vocab=00678b1f
+-/
 lemma resolution_exact_zero_lift (d : BoundedProjectiveResolution A M)
     (x : d.K.X 0) (hx : d.resolution.π.f 0 x = 0) :
     ∃ z : d.K.X 1, d.K.d 1 0 z = x := by
@@ -222,6 +246,9 @@ lemma resolution_exact_zero_lift (d : BoundedProjectiveResolution A M)
   rw [ShortComplex.moduleCat_exact_iff] at hExact
   simpa only using hExact x hx
 
+/--
+@isnad1 id=exactat.1h5v.s8.c6f2dd6eb5d4 from=translated src=- shape=3c172e13 vocab=d540c268
+-/
 theorem coneComplex_exactAt_succ (d : BoundedProjectiveResolution A M) (r : A)
     (reg : IsSMulRegular M r) (n : ℕ) :
     (d.coneComplex r).ExactAt (n + 1) := by
@@ -317,7 +344,9 @@ noncomputable def cone (d : BoundedProjectiveResolution A M) (r : A)
   bound := d.bound + 1
   isZero n hn := d.coneComplex_isZero r n hn
 
-/-- Finite length of every tensor-applied term is preserved by a Koszul cone.-/
+/-- Finite length of every tensor-applied term is preserved by a Koszul cone.
+@isnad1 id=ne.2h6v.s13.41cc2f0f1dd3 from=translated src=- shape=53c85c3a vocab=7eda27b9
+-/
 theorem cone_finiteTensorTerms (d : BoundedProjectiveResolution A M) (r : A)
     (reg : IsSMulRegular M r)
     (L : ModuleCat.{u} A)
@@ -337,7 +366,9 @@ theorem cone_finiteTensorTerms (d : BoundedProjectiveResolution A M) (r : A)
         Module.length_prod]
       exact WithTop.add_ne_top.mpr ⟨h (n + 1), h n⟩
 
-/-- Tensoring a zero module produces a module of finite (indeed zero) length.-/
+/-- Tensoring a zero module produces a module of finite (indeed zero) length.
+@isnad1 id=ne.1h3v.s8.8ba93316fd21 from=translated src=- shape=62f8d98c vocab=c80baaa5
+-/
 theorem finiteTensorTerm_of_isZero (L P : ModuleCat.{u} A) (hP : IsZero P) :
     Module.length A
       (↑(((tensoringLeft (ModuleCat.{u} A)).obj L).obj P) : Type u) ≠ ⊤ := by
@@ -357,7 +388,9 @@ noncomputable def self (P : ModuleCat.{u} A) [Projective P] :
     exact HomologicalComplex.isZero_single_obj_X (.down ℕ) 0 P n (by omega)
 
 /-- A finite-length module tensored with the degree-zero resolution of `A` has finite-length
-terms in every degree.-/
+terms in every degree.
+@isnad1 id=ne.1h3v.s9.3fd9d6e1da3f from=translated src=- shape=d935eaac vocab=c61a121d
+-/
 theorem self_finiteTensorTerms (L : ModuleCat.{u} A)
     (hL : Module.length A (↑L : Type u) ≠ ⊤) :
     ∀ n, Module.length A
@@ -392,7 +425,9 @@ noncomputable def ofWeaklyRegular {P : ModuleCat.{u} A}
         (Submodule.quotOfListConsSMulTopEquivQuotSMulTopInner P r rs).symm.toModuleIso
 
 /-- The iterated Koszul construction preserves finite length of all tensor-applied resolution
-terms.-/
+terms.
+@isnad1 id=ne.2h6v.s12.1fca0147a94b from=translated src=- shape=fff2a3be vocab=df80840f
+-/
 theorem ofWeaklyRegular_finiteTensorTerms {P : ModuleCat.{u} A}
     (d : BoundedProjectiveResolution A P) (rs : List A)
     (reg : IsWeaklyRegular P rs) (L : ModuleCat.{u} A)
@@ -420,6 +455,9 @@ theorem ofWeaklyRegular_finiteTensorTerms {P : ModuleCat.{u} A}
             Type u) ≠ ⊤
       exact htail n
 
+/--
+@isnad1 id=eq.1h4v.s9.823fb7edce9a from=translated src=- shape=d0883422 vocab=134f78c4
+-/
 @[simp]
 theorem ofWeaklyRegular_bound (d : BoundedProjectiveResolution A M)
     (rs : List A) (reg : IsWeaklyRegular M rs) :
@@ -443,6 +481,9 @@ noncomputable def koszul (rs : List A)
   exact BoundedProjectiveResolution.ofIso (A := A) d
     (Submodule.quotEquivOfEq _ _ h).toModuleIso
 
+/--
+@isnad1 id=eq.1h2v.s7.b060a3b4cfd1 from=translated src=- shape=7d6abb9d vocab=ac287804
+-/
 @[simp]
 theorem koszul_bound (rs : List A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) rs) :
@@ -452,7 +493,9 @@ theorem koszul_bound (rs : List A)
   simp [self]
 
 /-- A finite-length left module makes every tensor-applied term of the recursive Koszul
-resolution finite length.-/
+resolution finite length.
+@isnad1 id=ne.2h4v.s10.8d504cecff6e from=translated src=- shape=94aca426 vocab=e8806b3b
+-/
 theorem koszul_finiteTensorTerms (rs : List A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) rs)
     (L : ModuleCat.{u} A) (hL : Module.length A (↑L : Type u) ≠ ⊤) :
@@ -469,7 +512,9 @@ theorem koszul_finiteTensorTerms (rs : List A)
   exact h n
 
 /-- Tor against the quotient by a finite weakly regular sequence vanishes above the sequence
-length.-/
+length.
+@isnad1 id=iszero.2h4v.s7.0fda599756ad from=translated src=- shape=c12a2ee1 vocab=121a499c
+-/
 theorem isZero_module_koszul (rs : List A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) rs)
     (L : ModuleCat.{u} A) (n : ℕ) (hn : rs.length < n) :
@@ -478,7 +523,9 @@ theorem isZero_module_koszul (rs : List A)
   rwa [koszul_bound]
 
 /-- High-Tor vanishing for a weakly regular sequence transports across any isomorphic target
-module.-/
+module.
+@isnad1 id=iszero.2h6v.s7.a34eb97f8894 from=translated src=- shape=6345f1c2 vocab=adb591f7
+-/
 theorem isZero_module_of_iso_koszul (rs : List A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) rs)
     (L : ModuleCat.{u} A) {N' : ModuleCat.{u} A}
@@ -498,7 +545,9 @@ noncomputable def koszulEulerData (rs : List A)
     (fun n _ ↦ koszul_finiteTensorTerms rs reg L hL n)
 
 /-- The resulting Serre multiplicity is the finite alternating Tor-length sum through the
-length of the sequence.-/
+length of the sequence.
+@isnad1 id=eq.2h3v.s8.424b310fb802 from=translated src=- shape=d86f3e27 vocab=e5802c41
+-/
 theorem koszulEulerData_multiplicity (rs : List A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) rs)
     (L : ModuleCat.{u} A) (hL : Module.length A (↑L : Type u) ≠ ⊤) :

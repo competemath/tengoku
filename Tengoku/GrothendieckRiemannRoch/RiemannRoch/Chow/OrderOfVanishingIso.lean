@@ -24,7 +24,9 @@ namespace Ring
 
 variable {R S : Type*} [CommRing R] [CommRing S]
 
-/-- The length-defined order is invariant under a ring equivalence.-/
+/-- The length-defined order is invariant under a ring equivalence.
+@isnad1 id=eq.0h4v.s7.c661076208ba from=translated src=- shape=0f94ccfc vocab=bdd35622
+-/
 theorem ord_map_ringEquiv (e : R ≃+* S) (x : R) :
     Ring.ord S (e x) = Ring.ord R x := by
   letI : Algebra R S := e.toRingHom.toAlgebra
@@ -48,7 +50,9 @@ section DVR
 variable [IsDomain R] [IsDomain S]
   [IsDiscreteValuationRing R] [IsDiscreteValuationRing S]
 
-/-- The additive valuation of a discrete valuation ring is invariant under a ring equivalence.-/
+/-- The additive valuation of a discrete valuation ring is invariant under a ring equivalence.
+@isnad1 id=eq.0h4v.s8.feb4d2184e8c from=translated src=- shape=057ce4ef vocab=760d00d5
+-/
 theorem addVal_map_ringEquiv (e : R ≃+* S) (x : R) :
     IsDiscreteValuationRing.addVal S (e x) = IsDiscreteValuationRing.addVal R x := by
   by_cases hx : x = 0
@@ -63,7 +67,9 @@ theorem addVal_map_ringEquiv (e : R ≃+* S) (x : R) :
     (Units.map e.toMonoidHom u) (hπ.map e.toMulEquiv) n
 
 /-- On discrete valuation rings, `ord_map_ringEquiv` also follows directly from uniformizer
-factorization.-/
+factorization.
+@isnad1 id=eq.0h4v.s7.901c75bc468c from=translated src=- shape=e2ff9520 vocab=4b03fa5b
+-/
 theorem ord_map_ringEquiv_of_dvr (e : R ≃+* S) (x : R) :
     Ring.ord S (e x) = Ring.ord R x := by
   rw [Ring.ord_eq_addVal, Ring.ord_eq_addVal, addVal_map_ringEquiv]
@@ -74,6 +80,9 @@ section Domain
 
 variable [IsDomain R] [IsDomain S]
 
+/--
+@isnad1 id=eq.0h4v.s8.bdd53aeced50 from=translated src=- shape=6a58a88c vocab=21df160b
+-/
 theorem ordMonoidWithZeroHom_map_ringEquiv (e : R ≃+* S) (x : R) :
     Ring.ordMonoidWithZeroHom S (e x) = Ring.ordMonoidWithZeroHom R x := by
   by_cases hx : x = 0
@@ -85,6 +94,9 @@ theorem ordMonoidWithZeroHom_map_ringEquiv (e : R ≃+* S) (x : R) :
       (mem_nonZeroDivisors_iff_ne_zero.mpr hx),
     ord_map_ringEquiv]
 
+/--
+@isnad1 id=eq.1h7v.s9.873acc621ad9 from=translated src=- shape=83b3d514 vocab=2e23d8e4
+-/
 theorem ordFrac_map_ringEquiv
     {K L : Type*} [Field K] [Field L]
     [IsNoetherianRing R] [IsNoetherianRing S]
@@ -130,7 +142,9 @@ noncomputable def functionFieldIsoOfIso (f : X ⟶ Y) [IsIso f] :
     asIso (f.stalkMap (genericPoint X))
 
 /-- The function-field isomorphism induced by a scheme isomorphism is compatible with the local
-stalk isomorphism and the canonical maps from a local ring to the function field.-/
+stalk isomorphism and the canonical maps from a local ring to the function field.
+@isnad1 id=eq.0h5v.s13.9a4fa556527d from=translated src=- shape=2d91326d vocab=3951f724
+-/
 theorem functionFieldIsoOfIso_algebraMap (f : X ⟶ Y) [IsIso f]
     (x : X) (r : Y.presheaf.stalk (f x)) :
     (functionFieldIsoOfIso f).commRingCatIsoToRingEquiv

@@ -41,7 +41,9 @@ namespace KoszulPdBoundLCI
 variable {R : Type u} [CommRing R]
 
 /-- Iterating the short exact sequences `0 → M --x--> M → M/xM → 0` along a weakly regular
-sequence: `pd_R (M ⧸ (f) M) < n + |f|` whenever `pd_R M < n`.-/
+sequence: `pd_R (M ⧸ (f) M) < n + |f|` whenever `pd_R M < n`.
+@isnad1 id=hasproje.2h4v.s8.944ccbd5006d from=translated src=- shape=b1f4bad5 vocab=e2446a96
+-/
 theorem hasProjectiveDimensionLT_quotient_of_isWeaklyRegular :
     ∀ (f : List R) (M : Type u) [AddCommGroup M] [Module R M], IsWeaklyRegular M f →
       ∀ n : ℕ, HasProjectiveDimensionLT (ModuleCat.of R M) n →
@@ -65,12 +67,16 @@ theorem hasProjectiveDimensionLT_quotient_of_isWeaklyRegular :
     rw [show n + (x :: f).length = n + 1 + f.length by simp only [List.length_cons]; omega]
     exact hasProjectiveDimensionLT_of_iso e.toModuleIso _
 
-/-- A sequence which is weakly regular on `R` is weakly regular on every flat `R`-module.-/
+/-- A sequence which is weakly regular on `R` is weakly regular on every flat `R`-module.
+@isnad1 id=isweakly.1h3v.s5.0cb383101398 from=translated src=- shape=ea88a084 vocab=1e352452
+-/
 theorem isWeaklyRegular_of_flat (f : List R) (hf : IsWeaklyRegular R f)
     (M : Type u) [AddCommGroup M] [Module R M] [Module.Flat R M] : IsWeaklyRegular M f :=
   ((TensorProduct.rid R M).isWeaklyRegular_congr f).mp hf.isWeaklyRegular_lTensor
 
-/-- `(ι →₀ R ⧸ (f))` has projective dimension `≤ |f|` over `R` when `f` is weakly regular on `R`.-/
+/-- `(ι →₀ R ⧸ (f))` has projective dimension `≤ |f|` over `R` when `f` is weakly regular on `R`.
+@isnad1 id=hasproje.1h3v.s7.0c074f002e23 from=translated src=- shape=3b3e09c7 vocab=2d9ec5c5
+-/
 theorem hasProjectiveDimensionLE_finsupp_quotient (f : List R) (hf : IsWeaklyRegular R f)
     (ι : Type u) :
     HasProjectiveDimensionLE (ModuleCat.of R (ι →₀ R ⧸ Ideal.ofList f)) f.length := by
@@ -88,7 +94,9 @@ theorem hasProjectiveDimensionLE_finsupp_quotient (f : List R) (hf : IsWeaklyReg
   exact hasProjectiveDimensionLT_of_iso e.toModuleIso _
 
 /-- **Brick B2.** Let `f` be weakly regular on `R` and `P` a projective `R ⧸ (f)`-module. Then
-`pd_R P ≤ |f|`.-/
+`pd_R P ≤ |f|`.
+@isnad1 id=hasproje.1h3v.s8.de802a37e901 from=translated src=- shape=8185a279 vocab=e1d41c6a
+-/
 theorem hasProjectiveDimensionLE_of_projective_quotient (f : List R) (hf : IsWeaklyRegular R f)
     (P : Type u) [AddCommGroup P] [Module (R ⧸ Ideal.ofList f) P] [Module R P]
     [IsScalarTower R (R ⧸ Ideal.ofList f) P] [Module.Projective (R ⧸ Ideal.ofList f) P] :
@@ -103,13 +111,17 @@ theorem hasProjectiveDimensionLE_of_projective_quotient (f : List R) (hf : IsWea
         simpa using LinearMap.congr_fun hs x }
   exact ret.hasProjectiveDimensionLT _
 
-/-- `pd_R (R ⧸ (f)) ≤ |f|` for `f` weakly regular on `R`.-/
+/-- `pd_R (R ⧸ (f)) ≤ |f|` for `f` weakly regular on `R`.
+@isnad1 id=hasproje.1h2v.s6.1da71a00a690 from=translated src=- shape=8d9126f2 vocab=f4e8bba7
+-/
 theorem hasProjectiveDimensionLE_quotient_ofList (f : List R) (hf : IsWeaklyRegular R f) :
     HasProjectiveDimensionLE (ModuleCat.of R (R ⧸ Ideal.ofList f)) f.length :=
   hasProjectiveDimensionLE_of_projective_quotient f hf (R ⧸ Ideal.ofList f)
 
 /-- **Change of rings.** For `f` weakly regular on `R` and an `R ⧸ (f)`-module `N`:
-`pd_{R/(f)} N ≤ n ⇒ pd_R N ≤ n + |f|`. No finiteness or locality is needed.-/
+`pd_{R/(f)} N ≤ n ⇒ pd_R N ≤ n + |f|`. No finiteness or locality is needed.
+@isnad1 id=hasproje.2h4v.s9.0d2b7b3b679a from=translated src=- shape=56f796f6 vocab=877b70a2
+-/
 theorem hasProjectiveDimensionLE_of_quotient (f : List R) (hf : IsWeaklyRegular R f) :
     ∀ (n : ℕ) (N : Type u) [AddCommGroup N] [Module (R ⧸ Ideal.ofList f) N] [Module R N]
       [IsScalarTower R (R ⧸ Ideal.ofList f) N],
@@ -150,7 +162,9 @@ theorem hasProjectiveDimensionLE_of_quotient (f : List R) (hf : IsWeaklyRegular 
 /-- **Local change of rings for one regular element.** Let `R` be Noetherian local, `t ∈ 𝔪` a
 nonzerodivisor on `R` and on a finite `R`-module `F`. Then
 `pd_{R ⧸ (t)} (F ⧸ tF) ≤ n ⇒ pd_R F ≤ n`. (Without locality/finiteness this is false: see
-`G2B2-status.md`.)-/
+`G2B2-status.md`.)
+@isnad1 id=hasproje.4h4v.s9.fce4187e84a7 from=translated src=- shape=cac9a614 vocab=1b0be6ee
+-/
 theorem hasProjectiveDimensionLE_of_quotSMulTop_local [IsLocalRing R] [IsNoetherianRing R]
     (t : R) (ht : IsSMulRegular R t) (htm : t ∈ IsLocalRing.maximalIdeal R)
     (F : Type u) [AddCommGroup F] [Module R F] [Module.Finite R F] (hF : IsSMulRegular F t)

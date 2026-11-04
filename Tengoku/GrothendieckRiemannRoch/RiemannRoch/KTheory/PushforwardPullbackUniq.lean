@@ -41,7 +41,9 @@ variable {C : Type u₁} [Category.{v₁} C] {D : Type u₂} [Category.{v₂} D]
 /-- `SheafOfModules.pushforward ψ` has a left adjoint, since it is the inverse-equivalence side of
 `SheafOfModules.pushforwardPushforwardEquivalence eqv φ ψ H₁ H₂`. Stated as a `theorem`, not an
 `instance`, since `φ`, `H₁`, `H₂` are data/propositions that cannot be found by typeclass search —
-supply it explicitly (e.g. via named-argument syntax `(hAdj := ⋯)`) at call sites.-/
+supply it explicitly (e.g. via named-argument syntax `(hAdj := ⋯)`) at call sites.
+@isnad1 id=isrighta.2h9v.s11.5362503750de from=translated src=- shape=90cc8ceb vocab=82b42b8f
+-/
 theorem SheafOfModules.pushforward_isRightAdjoint_of_equivalence (eqv : C ≌ D)
     [Functor.IsContinuous eqv.functor J K] [Functor.IsContinuous eqv.inverse K J]
     (φ : S ⟶ (eqv.functor.sheafPushforwardContinuous RingCat.{u} J K).obj R)

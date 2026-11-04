@@ -35,6 +35,9 @@ def familyEuler (push : Total → Base)
     ExactGrothendieck.Group Total ExactTotal →+ ℤ :=
   rank.comp (indexClass push hpush)
 
+/--
+@isnad1 id=eq.0h8v.s8.27e796d4efdf from=translated src=- shape=9fcd1a5f vocab=38fc6748
+-/
 @[simp]
 theorem familyEuler_classOf (push : Total → Base)
     (hpush : ∀ A B C, ExactTotal A B C → ExactBase (push A) (push B) (push C))
@@ -44,7 +47,9 @@ theorem familyEuler_classOf (push : Total → Base)
   simp [familyEuler, indexClass]
 
 /-- Family Euler characteristics commute with a base change whenever the index square commutes
-and the two rank maps are compatible.-/
+and the two rank maps are compatible.
+@isnad1 id=eq.2h18v.s9.a14b1cefc9df from=translated src=- shape=ca149801 vocab=798c9980
+-/
 theorem familyEuler_baseChange
     (push : Total → Base)
     (hpush : ∀ A B C, ExactTotal A B C → ExactBase (push A) (push B) (push C))
@@ -74,7 +79,9 @@ theorem familyEuler_baseChange
   rw [AddMonoidHom.comp_assoc, hindex]
   rfl
 
-/-- Object-level derived base change and rank compatibility imply numerical base change directly.-/
+/-- Object-level derived base change and rank compatibility imply numerical base change directly.
+@isnad1 id=eq.2h18v.s9.d43aa3be0cd3 from=translated src=- shape=811fbe53 vocab=29a615fc
+-/
 theorem familyEuler_baseChange_of_object_classes
     (push : Total → Base)
     (hpush : ∀ A B C, ExactTotal A B C → ExactBase (push A) (push B) (push C))

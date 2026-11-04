@@ -36,6 +36,9 @@ namespace ModuleCat
 
 /-! ### List dimension arithmetic -/
 
+/--
+@isnad1 id=mem.2h3v.s7.6a673afe4ba8 from=translated src=- shape=1869bd49 vocab=afef2fac
+-/
 theorem mem_maximalIdeal_of_ringKrullDim_add_length_eq [IsNoetherianRing R]
     (rs : List R)
     (hdim : ringKrullDim (R ⧸ Ideal.ofList rs) + rs.length = ringKrullDim R)
@@ -50,6 +53,9 @@ theorem mem_maximalIdeal_of_ringKrullDim_add_length_eq [IsNoetherianRing R]
     (lt_of_lt_of_le (WithBot.bot_lt_coe 0) ringKrullDim_nonneg_of_nontrivial).ne'
   exact hne (by simpa [hbot] using hdim.symm)
 
+/--
+@isnad1 id=le.1h2v.s7.407ebea04738 from=translated src=- shape=e7fa6afb vocab=f1a7bde6
+-/
 theorem ringKrullDim_le_ringKrullDim_ofList_add_length
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (rs : List R) (hmem : ∀ r ∈ rs, r ∈ maximalIdeal R) :
@@ -111,6 +117,9 @@ theorem ringKrullDim_le_ringKrullDim_ofList_add_length
           add_le_add_right h2' 1
       exact h2''
 
+/--
+@isnad1 id=and.1h3v.s8.4862b92cb6ab from=translated src=- shape=229633d8 vocab=68be1bc5
+-/
 theorem ringKrullDim_quotient_span_singleton_add_one_of_ofList_cons [IsNoetherianRing R]
     (r : R) (rs : List R)
     (hdim : ringKrullDim (R ⧸ Ideal.ofList (r :: rs)) + (rs.length + 1) = ringKrullDim R) :
@@ -174,6 +183,9 @@ theorem ringKrullDim_quotient_span_singleton_add_one_of_ofList_cons [IsNoetheria
 
 /-! ### Depth drop by a regular element -/
 
+/--
+@isnad1 id=eq.1h3v.s6.b4a797074312 from=translated src=- shape=f48193cf vocab=30d2ac9b
+-/
 theorem ringDepth_eq_of_quotIdeal_eq [IsNoetherianRing R]
     {I J : Ideal R} [IsLocalRing (R ⧸ I)] [IsLocalRing (R ⧸ J)] (hIJ : I = J) :
     ringDepth (R ⧸ I) = ringDepth (R ⧸ J) := by
@@ -182,7 +194,9 @@ theorem ringDepth_eq_of_quotIdeal_eq [IsNoetherianRing R]
 
 /-! ### Associated-prime depth bound (Stacks 0BK4) -/
 
-/-- Powers of regular elements remain regular.-/
+/-- Powers of regular elements remain regular.
+@isnad1 id=issmulre.1h3v.s6.5a57711f4683 from=translated src=- shape=ff677f77 vocab=b717e1fd
+-/
 theorem isSMulRegular_pow {x : R} (hx : IsSMulRegular R x) :
     ∀ n : ℕ, IsSMulRegular R (x ^ n)
   | 0 => IsSMulRegular.of_right_eq_zero_of_smul fun a ha => by simpa using ha
@@ -192,7 +206,9 @@ theorem isSMulRegular_pow {x : R} (hx : IsSMulRegular R x) :
       simpa [pow_succ', smul_eq_mul, mul_assoc] using ha
     exact (isSMulRegular_pow hx n).right_eq_zero_of_smul (hx.right_eq_zero_of_smul hx')
 
-/-- Transfer Ass from the `R`-module `R/I` to the ring `R/I`.-/
+/-- Transfer Ass from the `R`-module `R/I` to the ring `R/I`.
+@isnad1 id=mem.2h3v.s8.5b7405f50f27 from=translated src=- shape=0cb012c0 vocab=78ddca43
+-/
 theorem associatedPrimes_map_quotient_mk [IsNoetherianRing R]
     {I q : Ideal R} (hle : I ≤ q)
     (hq : q ∈ associatedPrimes R (R ⧸ I)) :
@@ -235,7 +251,9 @@ def quotientPowSpanIsLocalRing (x : R) (n : ℕ) (hx : x ∈ maximalIdeal R) (hn
       exact (hle.trans_lt (maximalIdeal.isMaximal R).lt_top).ne htop
   exact IsLocalRing.of_surjective' (Ideal.Quotient.mk _) Ideal.Quotient.mk_surjective
 
-/-- Stacks `0CN5`.-/
+/-- Stacks `0CN5`.
+@isnad1 id=ex.2h4v.s9.ab731cc1b1ef from=translated src=- shape=664410f6 vocab=ad895ed4
+-/
 theorem exists_mem_associatedPrimes_quotient_pow_of_mem_minimalPrimes_sup [IsNoetherianRing R]
     {p : Ideal R} (hp : p ∈ associatedPrimes R R) (x : R)
     {q : Ideal R} (hq : q ∈ (p ⊔ Ideal.span {x}).minimalPrimes) :

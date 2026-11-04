@@ -54,6 +54,9 @@ def decomposeToQuotient (I : HomogeneousIdeal 𝒜) :
   (DirectSum.lmap (componentMap 𝒜 I)).comp
     (DirectSum.decomposeLinearEquiv 𝒜).toLinearMap
 
+/--
+@isnad1 id=eq.1h6v.s14.002ea3ffdf87 from=translated src=- shape=81fbb5ae vocab=a2200087
+-/
 theorem decomposeToQuotient_eq_zero_of_mem (I : HomogeneousIdeal 𝒜) {x : A}
     (hx : x ∈ I.toIdeal) : decomposeToQuotient 𝒜 I x = 0 := by
   apply DirectSum.ext
@@ -77,10 +80,16 @@ def decompose (I : HomogeneousIdeal 𝒜) :
     rintro ⟨x⟩
     exact (decomposeToQuotient 𝒜 I).map_smul r x
 
+/--
+@isnad1 id=eq.0h6v.s14.bfb64e7b19eb from=translated src=- shape=17f65a5b vocab=a911daa9
+-/
 theorem decompose_mk (I : HomogeneousIdeal 𝒜) (x : A) :
     decompose 𝒜 I (Ideal.Quotient.mk I.toIdeal x) = decomposeToQuotient 𝒜 I x :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.d26a263a835d from=translated src=- shape=805c01d7 vocab=afa6b775
+-/
 theorem decompose_coeLinearMap (I : HomogeneousIdeal 𝒜) :
     (decompose 𝒜 I).comp (DirectSum.coeLinearMap (grading 𝒜 I)) = LinearMap.id := by
   ext i x : 2
@@ -98,6 +107,9 @@ theorem decompose_coeLinearMap (I : HomogeneousIdeal 𝒜) :
       (DirectSum.decomposeLinearEquiv 𝒜 (⟨a, ha⟩ : 𝒜 i)) = _
   rw [DirectSum.decomposeLinearEquiv_apply_coe, DirectSum.lmap_lof]
 
+/--
+@isnad1 id=eq.0h5v.s12.428c35d33b05 from=translated src=- shape=360a8249 vocab=afa6b775
+-/
 theorem coeLinearMap_decompose (I : HomogeneousIdeal 𝒜) :
     (DirectSum.coeLinearMap (grading 𝒜 I)).comp (decompose 𝒜 I) = LinearMap.id := by
   apply LinearMap.ext
@@ -119,7 +131,9 @@ theorem coeLinearMap_decompose (I : HomogeneousIdeal 𝒜) :
         Ideal.Quotient.mk I.toIdeal x
       rw [LinearEquiv.symm_apply_apply]
 
-/-- The quotient homogeneous pieces form an internal direct sum.-/
+/-- The quotient homogeneous pieces form an internal direct sum.
+@isnad1 id=isintern.0h5v.s9.9a84edf49cc8 from=translated src=- shape=26ee6a6a vocab=3f7233e9
+-/
 theorem isInternal (I : HomogeneousIdeal 𝒜) : DirectSum.IsInternal (grading 𝒜 I) := by
   rw [DirectSum.IsInternal]
   change Function.Bijective (DirectSum.coeLinearMap (grading 𝒜 I))
@@ -131,7 +145,9 @@ theorem isInternal (I : HomogeneousIdeal 𝒜) : DirectSum.IsInternal (grading �
         (DirectSum.coeLinearMap (grading 𝒜 I)) from fun x ↦
       LinearMap.congr_fun (coeLinearMap_decompose 𝒜 I) x).surjective⟩
 
-/-- Multiplication and the unit respect the quotient homogeneous pieces.-/
+/-- Multiplication and the unit respect the quotient homogeneous pieces.
+@isnad1 id=gradedmo.0h5v.s9.1854710478a2 from=translated src=- shape=26ee6a6a vocab=07a88ac9
+-/
 instance gradedMonoid (I : HomogeneousIdeal 𝒜) :
     SetLike.GradedMonoid (grading 𝒜 I) where
   one_mem := by
@@ -154,16 +170,24 @@ def quotientMap (I : HomogeneousIdeal 𝒜) : 𝒜 →+*ᵍ grading 𝒜 I where
   toRingHom := Ideal.Quotient.mk I.toIdeal
   map_mem hx := ⟨_, hx, rfl⟩
 
+/--
+@isnad1 id=eq.0h6v.s11.febe916cceba from=translated src=- shape=18723ec4 vocab=954889e8
+-/
 @[simp]
 theorem quotientMap_apply (I : HomogeneousIdeal 𝒜) (x : A) :
     quotientMap 𝒜 I x = Ideal.Quotient.mk I.toIdeal x :=
   rfl
 
+/--
+@isnad1 id=surjecti.0h5v.s10.cbbc5f413ea9 from=translated src=- shape=5cfbc433 vocab=3ecfd60a
+-/
 theorem quotientMap_surjective (I : HomogeneousIdeal 𝒜) :
     Function.Surjective (quotientMap 𝒜 I) :=
   Ideal.Quotient.mk_surjective
 
-/-- Homogeneous localization preserves surjectivity of the quotient map.-/
+/-- Homogeneous localization preserves surjectivity of the quotient map.
+@isnad1 id=surjecti.1h7v.s15.b32e96e1704e from=translated src=- shape=5b444bbf vocab=5d1b1625
+-/
 theorem awayMap_surjective (I : HomogeneousIdeal 𝒜) {d : ι} (s : A) (hs : s ∈ 𝒜 d) :
     Function.Surjective (HomogeneousLocalization.Away.map (quotientMap 𝒜 I) s) := by
   intro z
@@ -180,7 +204,9 @@ section Nat
 variable (𝒜 : ℕ → Submodule R A) [GradedAlgebra 𝒜]
 
 /-- The irrelevant ideal of the quotient is contained in the image of the original irrelevant
-ideal.  This is precisely the positivity hypothesis required by `Proj.map`.-/
+ideal.  This is precisely the positivity hypothesis required by `Proj.map`.
+@isnad1 id=le.0h4v.s12.b08015ad49d9 from=translated src=- shape=6a1c2d07 vocab=263c8327
+-/
 theorem irrelevant_le_map (I : HomogeneousIdeal 𝒜) :
     HomogeneousIdeal.irrelevant (grading 𝒜 I) ≤
       (HomogeneousIdeal.irrelevant 𝒜).map (quotientMap 𝒜 I) := by
@@ -196,7 +222,9 @@ noncomputable def projMap (I : HomogeneousIdeal 𝒜) :
   Proj.map (quotientMap 𝒜 I) (irrelevant_le_map 𝒜 I)
 
 /-- On a homogeneous basic open, the quotient `Proj` morphism is the spectrum map induced by
-the corresponding homogeneous-localization map.-/
+the corresponding homogeneous-localization map.
+@isnad1 id=ispullba.2h6v.s14.2dedb297a852 from=translated src=- shape=8fa0e693 vocab=234d5e9a
+-/
 theorem isPullback_away (I : HomogeneousIdeal 𝒜) {d : ℕ} (s : A) (hs : s ∈ 𝒜 d)
     (hd : 0 < d) :
     IsPullback
@@ -211,7 +239,9 @@ theorem isPullback_away (I : HomogeneousIdeal 𝒜) {d : ℕ} (s : A) (hs : s �
   · simpa only [Proj.opensRange_awayι, projMap] using
       (Proj.map_preimage_basicOpen (quotientMap 𝒜 I) (irrelevant_le_map 𝒜 I) s)
 
-/-- The `Proj` morphism induced by quotienting by a homogeneous ideal is a closed immersion.-/
+/-- The `Proj` morphism induced by quotienting by a homogeneous ideal is a closed immersion.
+@isnad1 id=isclosed.0h4v.s9.08c8d92ed6e8 from=translated src=- shape=645c8da7 vocab=e16df982
+-/
 theorem isClosedImmersion_projMap (I : HomogeneousIdeal 𝒜) :
     IsClosedImmersion (projMap 𝒜 I) := by
   let 𝒰 := Proj.affineOpenCover 𝒜

@@ -37,6 +37,9 @@ def eulerHom (euler : Object → ℤ)
     ExactGrothendieck.Group Object Exact →+ ℚ :=
   (Int.castAddHom ℚ).comp (ExactGrothendieck.lift euler hadd)
 
+/--
+@isnad1 id=eq.1h4v.s7.8e6d492cbea3 from=translated src=- shape=60f90bc5 vocab=df3c7811
+-/
 @[simp]
 theorem eulerHom_classOf (euler : Object → ℤ)
     (hadd : ∀ A B C, Exact A B C → euler B = euler A + euler C) (E : Object) :
@@ -56,6 +59,9 @@ def characteristicNumber
   map_add' x y := by
     rw [map_add, add_mul, map_add]
 
+/--
+@isnad1 id=eq.0h7v.s8.d61ded0487ed from=translated src=- shape=4253920b vocab=711e82d6
+-/
 @[simp]
 theorem characteristicNumber_classOf
     (chernCharacter : ExactGrothendieck.Group Object Exact →+ A)
@@ -66,7 +72,9 @@ theorem characteristicNumber_classOf
   rfl
 
 /-- The exact-additivity reduction for Hirzebruch--Riemann--Roch: it is enough to verify the
-formula on object classes, because those classes generate the exact Grothendieck group.-/
+formula on object classes, because those classes generate the exact Grothendieck group.
+@isnad1 id=eq.2h7v.s8.2ece7073cb69 from=translated src=- shape=4a117354 vocab=14a04a74
+-/
 theorem hom_eq_of_object_classes
     (euler : Object → ℤ)
     (euler_additive : ∀ A B C, Exact A B C → euler B = euler A + euler C)
@@ -82,7 +90,9 @@ theorem hom_eq_of_object_classes
   rw [eulerHom_classOf, characteristicNumber_classOf]
   exact hobject E
 
-/-- Pointwise HRR on every virtual class, deduced from the formula on actual object classes.-/
+/-- Pointwise HRR on every virtual class, deduced from the formula on actual object classes.
+@isnad1 id=eq.2h8v.s9.79ee2470752c from=translated src=- shape=36be9c74 vocab=79772f96
+-/
 theorem formula_of_object_classes
     (euler : Object → ℤ)
     (euler_additive : ∀ A B C, Exact A B C → euler B = euler A + euler C)

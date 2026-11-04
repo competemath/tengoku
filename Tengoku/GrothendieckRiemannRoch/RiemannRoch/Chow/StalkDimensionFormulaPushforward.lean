@@ -33,7 +33,9 @@ namespace AlgebraicGeometry.Chow
 
 variable {X Y : Scheme.{u}}
 
-/-- Every point of the spectrum of a field has codimension `0`.-/
+/-- Every point of the spectrum of a field has codimension `0`.
+@isnad1 id=eq.0h2v.s5.0205f720e6fe from=translated src=- shape=8f25112d vocab=5b569890
+-/
 theorem coheight_spec_field (K : Type u) [Field K] (y : Spec (CommRingCat.of K)) :
     coheight y = 0 := by
   haveI : Subsingleton (Spec (CommRingCat.of K)) :=

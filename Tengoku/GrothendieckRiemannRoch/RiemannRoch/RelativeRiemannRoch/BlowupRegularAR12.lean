@@ -31,7 +31,9 @@ noncomputable section
 
 namespace BlowupRegularAR12
 
-/-- **Ascent.**  `S` Noetherian local, `x ∈ 𝔪` a non-zero-divisor, `S/(x)` regular ⟹ `S` regular.-/
+/-- **Ascent.**  `S` Noetherian local, `x ∈ 𝔪` a non-zero-divisor, `S/(x)` regular ⟹ `S` regular.
+@isnad1 id=isregula.2h2v.s7.e94fdfbb5d7c from=translated src=- shape=ade4ec50 vocab=e77a9d8a
+-/
 theorem isRegularLocalRing_of_quotient_span_singleton {S : Type u} [CommRing S] [IsLocalRing S]
     [IsNoetherianRing S] {x : S} (hx : IsSMulRegular S x) (hxm : x ∈ maximalIdeal S)
     [IsRegularLocalRing (S ⧸ Ideal.span {x})] : IsRegularLocalRing S := by
@@ -90,7 +92,9 @@ theorem isRegularLocalRing_of_quotient_span_singleton {S : Type u} [CommRing S] 
 
 section Global
 
-/-- A non-zero-divisor stays a non-zero-divisor in every localization at a prime.-/
+/-- A non-zero-divisor stays a non-zero-divisor in every localization at a prime.
+@isnad1 id=issmulre.1h3v.s8.c810d54f71a9 from=translated src=- shape=8846b677 vocab=afc1ba18
+-/
 theorem isSMulRegular_localization_of_mem_nonZeroDivisors {R : Type u} [CommRing R] {x : R}
     (hx : x ∈ nonZeroDivisors R) (Q : Ideal R) [Q.IsPrime] :
     IsSMulRegular (Localization.AtPrime Q) (algebraMap R (Localization.AtPrime Q) x) := by
@@ -109,7 +113,9 @@ theorem isSMulRegular_localization_of_mem_nonZeroDivisors {R : Type u} [CommRing
     rw [mul_sub]; exact sub_eq_zero.mpr hab
   exact sub_eq_zero.mp (key _ this)
 
-/-- `R_Q / I R_Q` is a localization of `R/I` at the image of `Q`, hence regular if `R/I` is.-/
+/-- `R_Q / I R_Q` is a localization of `R/I` at the image of `Q`, hence regular if `R/I` is.
+@isnad1 id=isregula.1h3v.s9.df9e9aacff86 from=translated src=- shape=558053fd vocab=743b1c73
+-/
 theorem isRegularLocalRing_quotient_localization {R : Type u} [CommRing R] (I : Ideal R)
     (Q : Ideal R) [Q.IsPrime] (hIQ : I ≤ Q) [IsRegularRing (R ⧸ I)] :
     IsRegularLocalRing (Localization.AtPrime Q ⧸ I.map (algebraMap R (Localization.AtPrime Q))) := by
@@ -145,7 +151,9 @@ theorem isRegularLocalRing_quotient_localization {R : Type u} [CommRing R] (I : 
       (Localization.AtPrime Q ⧸ I.map (algebraMap R (Localization.AtPrime Q)))).toRingEquiv
 
 /-- **Ascent, global form.**  `R` Noetherian, `x` a non-zero-divisor, `R/(x)` a regular ring, `Q`
-a prime containing `x`: then `R_Q` is a regular local ring.-/
+a prime containing `x`: then `R_Q` is a regular local ring.
+@isnad1 id=isregula.2h3v.s7.e6ab0b2f5805 from=translated src=- shape=780c1041 vocab=b493e261
+-/
 theorem isRegularLocalRing_localization_of_quotient_span_singleton {R : Type u} [CommRing R]
     [IsNoetherianRing R] {x : R} (hx : x ∈ nonZeroDivisors R) (Q : Ideal R) [Q.IsPrime]
     (hxQ : x ∈ Q) [IsRegularRing (R ⧸ Ideal.span {x})] :
@@ -183,7 +191,9 @@ noncomputable def localizationAtPrimeEquivComap (M : Submonoid A) [IsLocalizatio
   exact (IsLocalization.algEquiv (q'.comap (algebraMap A T)).primeCompl
     (Localization.AtPrime (q'.comap (algebraMap A T))) (Localization.AtPrime q')).toRingEquiv
 
-/-- Localizations of regular rings are regular.-/
+/-- Localizations of regular rings are regular.
+@isnad1 id=isregula.0h3v.s5.b67af2e89ece from=translated src=- shape=7171065f vocab=e71ed8b6
+-/
 theorem isRegularRing_of_isLocalization (M : Submonoid A) [IsLocalization M T]
     [IsRegularRing A] : IsRegularRing T := by
   haveI : IsNoetherianRing T := IsLocalization.isNoetherianRing M T inferInstance
@@ -191,7 +201,9 @@ theorem isRegularRing_of_isLocalization (M : Submonoid A) [IsLocalization M T]
   exact IsRegularLocalRing.of_ringEquiv (localizationAtPrimeEquivComap M q')
 
 /-- A prime of `A` missing `M` has regular stalk when the localization `T` of `A` at `M`
-is regular.-/
+is regular.
+@isnad1 id=isregula.1h4v.s7.b2db082e8014 from=translated src=- shape=c74d3496 vocab=5b55ee93
+-/
 theorem isRegularLocalRing_of_isLocalization (M : Submonoid A) [IsLocalization M T]
     [IsRegularRing T] (q : Ideal A) [q.IsPrime] (hq : Disjoint (M : Set A) q) :
     IsRegularLocalRing (Localization.AtPrime q) := by
@@ -218,7 +230,9 @@ open RingTheory.Sequence
 variable {R : Type u} [CommRing R]
 
 /-- A common element outside the prime `P` witnessing a family of elementwise conditions that
-are stable under multiplication.-/
+are stable under multiplication.
+@isnad1 id=ex.1h6v.s7.a49ee62730df from=translated src=- shape=45176953 vocab=e66de268
+-/
 theorem exists_common_unit {ι : Type*} (P : Ideal R) [P.IsPrime] (s : Finset ι)
     (Q : ι → R → Prop) (hQ : ∀ i u v, Q i u → Q i (u * v))
     (h : ∀ i ∈ s, ∃ u ∉ P, Q i u) : ∃ u ∉ P, ∀ i ∈ s, Q i u := by
@@ -238,7 +252,9 @@ theorem exists_common_unit {ι : Type*} (P : Ideal R) [P.IsPrime] (s : Finset ι
 
 /-- **Local regularity of the sequence entries.**  Let `ys` be a weakly regular sequence in a
 Noetherian ring, contained in a prime `P`.  Then there is `u ∉ P` such that every `y ∈ ys` is a
-non-zero-divisor after inverting `u` (precisely: `u` kills the annihilator of every `y`).-/
+non-zero-divisor after inverting `u` (precisely: `u` kills the annihilator of every `y`).
+@isnad1 id=ex.2h3v.s10.beace717207a from=translated src=- shape=e552b4be vocab=984216b1
+-/
 theorem exists_unit_killing_ann [IsNoetherianRing R] (P : Ideal R) [P.IsPrime] (ys : List R)
     (hA : IsWeaklyRegular (Localization.AtPrime P) (ys.map (algebraMap R (Localization.AtPrime P))))
     (hmax : ∀ y ∈ ys, algebraMap R (Localization.AtPrime P) y ∈
@@ -292,7 +308,9 @@ end Weak
 
 section MvPoly
 
-/-- Polynomial rings in finitely many variables over a regular ring are regular.-/
+/-- Polynomial rings in finitely many variables over a regular ring are regular.
+@isnad1 id=isregula.0h2v.s5.5ae1ae8bc647 from=translated src=- shape=65f277ad vocab=86aa29ff
+-/
 theorem isRegularRing_mvPolynomial_fin_of_regular (R : Type u) [CommRing R] [IsRegularRing R]
     (n : ℕ) : IsRegularRing (MvPolynomial (Fin n) R) := by
   induction n with
@@ -303,6 +321,9 @@ theorem isRegularRing_mvPolynomial_fin_of_regular (R : Type u) [CommRing R] [IsR
       SchemeKTheory.F14.isRegularRing_polynomial _
     exact IsRegularRing.of_ringEquiv (MvPolynomial.finSuccEquiv R n).toRingEquiv.symm
 
+/--
+@isnad1 id=isregula.0h2v.s5.f35c3c73caae from=translated src=- shape=3e551672 vocab=4383a8c8
+-/
 theorem isRegularRing_mvPolynomial_of_regular (R : Type u) [CommRing R] [IsRegularRing R]
     (σ : Type) [Finite σ] : IsRegularRing (MvPolynomial σ R) := by
   haveI := isRegularRing_mvPolynomial_fin_of_regular R (Nat.card σ)

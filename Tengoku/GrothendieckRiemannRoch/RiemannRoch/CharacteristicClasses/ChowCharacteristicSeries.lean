@@ -48,7 +48,9 @@ def tdOfChern (c : ℕ → Module.End ℚ M) (m : ℕ) : Module.End ℚ M :=
 /-! ### helpers -/
 
 open PowerSeries in
-/-- One-root Chern series `1 + x t` has inverse `Σ (-x)^n t^n`.-/
+/-- One-root Chern series `1 + x t` has inverse `Σ (-x)^n t^n`.
+@isnad1 id=eq.0h2v.s8.c79e5982b0c5 from=translated src=- shape=cf09a8ea vocab=42c34b90
+-/
 theorem invOfUnit_line (x : Module.End ℚ M) :
     invOfUnit (mk (fun i ↦ if i = 0 then (1 : Module.End ℚ M) else if i = 1 then x else 0)) 1 =
       mk (fun n ↦ (-x) ^ n) := by
@@ -75,7 +77,9 @@ theorem invOfUnit_line (x : Module.End ℚ M) :
     _ = ψ := by rw [mul_assoc, this, mul_one]
 
 open PowerSeries in
-/-- Newton power sums for a single operator root are its ordinary powers.-/
+/-- Newton power sums for a single operator root are its ordinary powers.
+@isnad1 id=eq.0h3v.s7.ab8229ab3f99 from=translated src=- shape=250ad2f6 vocab=9941cfd7
+-/
 theorem psumOp_line (x : Module.End ℚ M) (m : ℕ) :
     psumOp (fun i ↦ if i = 0 then 1 else if i = 1 then x else 0) (m + 1) = x ^ (m + 1) := by
   simp only [psumOp]
@@ -98,7 +102,9 @@ open PowerSeries in
 /-- The one-root log-Todd series `L = Σ aₙ tⁿ`.-/
 private def toddLogSeries : PowerSeries ℚ := mk toddLogCoeff
 
-/-- LEAF CH-ALG (pure algebra): for one root, `c = 1 + x t`, `ch_m = x^m / m!`.-/
+/-- LEAF CH-ALG (pure algebra): for one root, `c = 1 + x t`, `ch_m = x^m / m!`.
+@isnad1 id=eq.0h3v.s8.68a98149cc94 from=translated src=- shape=636c3838 vocab=e8feca71
+-/
 theorem chOfChern_line (x : Module.End ℚ M) (m : ℕ) :
     chOfChern 1 (fun i ↦ if i = 0 then 1 else if i = 1 then x else 0) m =
       (1 / (m.factorial : ℚ)) • x ^ m := by

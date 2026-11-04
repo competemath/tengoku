@@ -31,7 +31,9 @@ variable {R M ι : Type u} [CommRing R] [IsDomain R]
   [Fintype ι] [DecidableEq ι]
 
 /-- In Smith bases, the determinant of the inclusion is the product of the Smith
-coefficients.-/
+coefficients.
+@isnad1 id=eq.1h5v.s9.88beb7176159 from=translated src=- shape=c7206877 vocab=c4c46c0f
+-/
 theorem det_smithNormalFormBotBasis_eq_prod_smithCoeffs
     (N : Submodule R M) (b : Basis ι R M)
     (h : Module.finrank R N = Module.finrank R M) :
@@ -43,7 +45,9 @@ theorem det_smithNormalFormBotBasis_eq_prod_smithCoeffs
   rw [Basis.det_self, smul_eq_mul, mul_one]
 
 /-- The inclusion determinant computed in arbitrary source and target bases is associated to
-the determinant computed in the canonical Smith bases.-/
+the determinant computed in the canonical Smith bases.
+@isnad1 id=associat.1h6v.s9.601b012bdce0 from=translated src=- shape=7fffa19c vocab=624b8e60
+-/
 theorem associated_det_basis_with_det_smithNormalForm
     (N : Submodule R M) (bM : Basis ι R M) (bN : Basis ι R N)
     (h : Module.finrank R N = Module.finrank R M) :

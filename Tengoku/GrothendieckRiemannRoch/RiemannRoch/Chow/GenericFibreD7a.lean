@@ -29,7 +29,9 @@ universe u
 
 namespace AlgebraicGeometry.Chow.D7
 
-/-- A flat preimmersion has isomorphic stalk maps.-/
+/-- A flat preimmersion has isomorphic stalk maps.
+@isnad1 id=isiso.0h4v.s8.0900fd813358 from=translated src=- shape=b48dd0f3 vocab=9d4e87be
+-/
 theorem isIso_stalkMap_of_flat_of_preimmersion {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f]
     [IsPreimmersion f] (x : X) : IsIso (f.stalkMap x) := by
   rw [ConcreteCategory.isIso_iff_bijective]
@@ -59,14 +61,23 @@ abbrev gF (h : W ⟶ Y) : GF h ⟶ W := pullback.fst h (gS Y)
 /-- The structure morphism of the generic fibre.-/
 abbrev fF (h : W ⟶ Y) : GF h ⟶ SK Y := pullback.snd h (gS Y)
 
+/--
+@isnad1 id=eq.0h1v.s8.0069db175f2b from=translated src=- shape=126a3498 vocab=05018fe3
+-/
 theorem gS_closedPoint : gS Y (IsLocalRing.closedPoint (Y.presheaf.stalk (genericPoint Y))) =
     genericPoint Y := Scheme.fromSpecStalk_closedPoint
 
+/--
+@isnad1 id=eq.0h3v.s7.e3ac0f59c913 from=translated src=- shape=54be5bf5 vocab=28308992
+-/
 theorem genericPoint_map_of_isDominant' [IsDominant h] : h (genericPoint W) = genericPoint Y := by
   have h1 := (genericPoint_spec W).image h.continuous
   rw [Set.image_univ, h.denseRange.closure_range] at h1
   exact h1.eq (genericPoint_spec Y)
 
+/--
+@isnad1 id=ex.0h3v.s8.2766dcd11835 from=translated src=- shape=49d472a9 vocab=0f5951ea
+-/
 theorem exists_point [IsDominant h] :
     ∃ x0 : GF h, gF h x0 = genericPoint W := by
   obtain ⟨z, hz, -⟩ := Scheme.Pullback.exists_preimage_pullback (f := h) (g := gS Y)

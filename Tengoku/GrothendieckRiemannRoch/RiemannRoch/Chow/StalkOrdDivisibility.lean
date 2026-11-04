@@ -55,7 +55,9 @@ universe u
 namespace IsLocalization
 
 /-- Divisibility by a power of a prime element is detected after localizing at the prime it
-generates.-/
+generates.
+@isnad1 id=iff.2h6v.s8.07687fb941a3 from=translated src=- shape=983be5de vocab=d4c18ef4
+-/
 theorem pow_dvd_iff_map_pow_dvd_map {A : Type u} [CommRing A] [IsDomain A]
     {P : Ideal A} [P.IsPrime] {π : A} (hπ : Prime π) (hgen : P = Ideal.span {π})
     (S : Type u) [CommRing S] [Algebra A S] [IsLocalization.AtPrime S P]
@@ -90,7 +92,9 @@ variable {X : Scheme.{u}} [IsIntegral X]
 
 /-- **The `Scheme.ord` bridge.**  For a codimension-one generization `w` of `pt` whose stalk is a
 discrete valuation ring, divisibility in `𝒪_{X,pt}` by a power of a generator of the prime attached
-to `w` is exactly a lower bound on the order of vanishing at `w`.-/
+to `w` is exactly a lower bound on the order of vanishing at `w`.
+@isnad1 id=iff.3h6v.s10.b86580ee8a2c from=translated src=- shape=4a7c00e2 vocab=03ede8e2
+-/
 theorem pow_dvd_iff_natCast_le_ord {w pt : X} (h : w ⤳ pt)
     [IsDiscreteValuationRing (X.presheaf.stalk w)]
     {π : X.presheaf.stalk pt} (hπ : Prime π)

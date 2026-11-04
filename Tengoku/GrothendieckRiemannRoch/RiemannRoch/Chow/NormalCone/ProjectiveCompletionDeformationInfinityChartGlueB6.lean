@@ -44,16 +44,25 @@ noncomputable def secF_isLimit (W : P.Opens) {J : Type*} [Category J]
   isLimitOfPreserves ((evaluation (Opens P)ᵒᵖ Ab.{u}).obj (op W))
     (isLimitOfPreserves (Scheme.Modules.toPresheaf P) hc)
 
+/--
+@isnad1 id=eq.0h5v.s6.b04392fbf207 from=translated src=- shape=2c01d7b8 vocab=bb087b31
+-/
 theorem secF_map {A B : P.Modules} (f : A ⟶ B) (W : P.Opens) : (secF W).map f = f.app W := rfl
 
 /-- element of an abelian group as a hom from ℤ-/
 noncomputable def zhom {G : Ab.{u}} (x : G) : AddCommGrpCat.of (ULift.{u} ℤ) ⟶ G :=
   AddCommGrpCat.ofHom ((zmultiplesHom G x).comp (AddEquiv.ulift (α := ℤ)).toAddMonoidHom)
 
+/--
+@isnad1 id=eq.0h2v.s7.c6cdc942e940 from=translated src=- shape=0edfec87 vocab=68884140
+-/
 theorem zhom_one {G : Ab.{u}} (x : G) : zhom x ⟨1⟩ = x := by
   change (1 : ℤ) • x = x
   simp
 
+/--
+@isnad1 id=eq.0h4v.s7.e33ff263fa46 from=translated src=- shape=b08012eb vocab=8b88cc7c
+-/
 theorem zhom_comp {G H : Ab.{u}} (x : G) (f : G ⟶ H) : zhom x ≫ f = zhom (f x) := by
   ext ⟨n⟩
   change f (n • x) = n • f x
@@ -62,7 +71,9 @@ theorem zhom_comp {G H : Ab.{u}} (x : G) (f : G ⟶ H) : zhom x ≫ f = zhom (f 
 theorem eq_of_zhom {G : Ab.{u}} {x y : G} (h : zhom x = zhom y) : x = y :=
   (zhom_one x).symm.trans ((congrArg (fun f => f ⟨1⟩) h).trans (zhom_one y))
 
-/-- Every family of elements over an open comes from the product.-/
+/-- Every family of elements over an open comes from the product.
+@isnad1 id=ex.0h5v.s11.a6e4fdb707e2 from=translated src=- shape=e42600dd vocab=45c6c7d7
+-/
 theorem pi_sections_exists {ι : Type u} (S : ι → P.Modules) [HasProduct S] (W : P.Opens)
     (a : ∀ i, Γ(S i, W)) : ∃ x : Γ(∏ᶜ S, W), ∀ i, (Pi.π S i).app W x = a i := by
   have hl := secF_isLimit W (productIsProduct S)
@@ -74,6 +85,9 @@ theorem pi_sections_exists {ι : Type u} (S : ι → P.Modules) [HasProduct S] (
   have h2 := congrArg (fun f => f ⟨1⟩) this
   exact h2.trans (zhom_one _)
 
+/--
+@isnad1 id=eq.0h1v.s6.5f094a48bc17 from=translated src=- shape=85d309d1 vocab=9b2ce366
+-/
 theorem zhom_zero {G : Ab.{u}} : zhom (0 : G) = 0 := by
   ext ⟨n⟩
   change n • (0 : G) = 0
@@ -89,33 +103,57 @@ end ker
 noncomputable def rs (M : P.Modules) {A B : P.Opens} (h : A ≤ B) (x : Γ(M, B)) : Γ(M, A) :=
   M.presheaf.map (homOfLE h).op x
 
+/--
+@isnad1 id=eq.1h4v.s11.e4985662fc6e from=translated src=- shape=2bcddd88 vocab=03504a32
+-/
 theorem rs_zero (M : P.Modules) {A B : P.Opens} (h : A ≤ B) : rs M h 0 = 0 := by
   simp [rs]
 
+/--
+@isnad1 id=eq.1h6v.s11.d3e6cbee4ea5 from=translated src=- shape=4906a520 vocab=505d0b15
+-/
 theorem rs_sub (M : P.Modules) {A B : P.Opens} (h : A ≤ B) (x y : Γ(M, B)) :
     rs M h (x - y) = rs M h x - rs M h y := by
   simp [rs]
 
+/--
+@isnad1 id=eq.2h6v.s8.cc650953c06d from=translated src=- shape=a2ad4857 vocab=00548edd
+-/
 theorem rs_rs (M : P.Modules) {A B C : P.Opens} (h1 : A ≤ B) (h2 : B ≤ C) (x : Γ(M, C)) :
     rs M h1 (rs M h2 x) = rs M (h1.trans h2) x := by
   unfold rs
   rw [← ConcreteCategory.comp_apply, ← Functor.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.f6a51cb43be8 from=translated src=- shape=53ce0599 vocab=43c4110f
+-/
 theorem hom_rs {M N : P.Modules} (φ : M ⟶ N) {A B : P.Opens} (h : A ≤ B) (x : Γ(M, B)) :
     φ.app A (rs M h x) = rs N h (φ.app B x) :=
   ConcreteCategory.congr_hom (φ.mapPresheaf.naturality (homOfLE h).op) x
 
+/--
+@isnad1 id=eq.0h5v.s11.d36b3f5f4777 from=translated src=- shape=8ada0f34 vocab=16e6d5b6
+-/
 theorem hom_zero' {M N : P.Modules} (φ : M ⟶ N) (A : P.Opens) : φ.app A 0 = 0 := by simp
 
+/--
+@isnad1 id=eq.0h7v.s12.69eb02d8c4ec from=translated src=- shape=5ab6856e vocab=92337b13
+-/
 theorem hom_sub' {M N : P.Modules} (φ : M ⟶ N) (A : P.Opens) (x y : Γ(M, A)) :
     φ.app A (x - y) = φ.app A x - φ.app A y := by simp
 
+/--
+@isnad1 id=eq.3h7v.s9.7ebce112ecea from=translated src=- shape=1de3f472 vocab=2f0d5337
+-/
 theorem loc_eq (M : P.Modules) {ι : Type*} (O : ι → P.Opens) {V : P.Opens} (hO : ∀ i, O i ≤ V)
     (hc : V ≤ iSup O) (s t : Γ(M, V)) (h : ∀ i, rs M (hO i) s = rs M (hO i) t) : s = t :=
   TopCat.Sheaf.eq_of_locally_eq' (⟨M.presheaf, M.isSheaf⟩ : TopCat.Sheaf Ab P) O V
     (fun i => homOfLE (hO i)) hc s t h
 
+/--
+@isnad1 id=ex.3h6v.s9.cc42348b43ba from=translated src=- shape=3e38c670 vocab=355d3e83
+-/
 theorem glue (M : P.Modules) {ι : Type*} (O : ι → P.Opens) {V : P.Opens} (hO : ∀ i, O i ≤ V)
     (hc : V ≤ iSup O) (sf : ∀ i, Γ(M, O i))
     (h : ∀ i j, rs M (inf_le_left : O i ⊓ O j ≤ O i) (sf i) =
@@ -166,6 +204,9 @@ noncomputable def proj (U : I) : G.K ⟶ G.S U := kernel.ι (G.left - G.right) �
 def Compat (W : P.Opens) (a : ∀ V, Γ(G.S V, W)) : Prop :=
   ∀ q : G.Ref, (G.ρ (G.hl q)).app W (a (G.l q)) = (G.ρ (G.hr q)).app W (a (G.r q))
 
+/--
+@isnad1 id=compat.0h5v.s10.f3cc471fa293 from=translated src=- shape=cbeaacf1 vocab=edae254e
+-/
 theorem proj_compat (W : P.Opens) (k : Γ(G.K, W)) :
     G.Compat W (fun V => (G.proj V).app W k) := by
   intro q
@@ -183,6 +224,9 @@ theorem proj_compat (W : P.Opens) (k : Γ(G.K, W)) :
     simpa [Category.assoc] using this
   exact congrArg (fun f => f.app W k) h3
 
+/--
+@isnad1 id=eq.3h8v.s11.ba8ccec9c564 from=translated src=- shape=64f791fc vocab=dc097853
+-/
 theorem compat_ex {W : P.Opens} {a : ∀ V, Γ(G.S V, W)} (ha : G.Compat W a) {V U C : I}
     (h1 : C ≤ V) (h2 : C ≤ U) :
     (G.ρ h1).app W (a V) = (G.ρ h2).app W (a U) := by
@@ -193,8 +237,14 @@ theorem compat_ex {W : P.Opens} {a : ∀ V, Γ(G.S V, W)} (ha : G.Compat W a) {V
 section comb
 variable {G} {U : I} {W : P.Opens}
 
+/--
+@isnad1 id=le.1h6v.s7.37a5c6c376f5 from=translated src=- shape=23ce263b vocab=621d8bfb
+-/
 theorem O_le {C V : I} (h : C ≤ V) : W ⊓ G.R C ≤ W ⊓ G.R V := inf_le_inf_left W (G.Rmono h)
 
+/--
+@isnad1 id=eq.3h7v.s11.357cc8dd88d5 from=translated src=- shape=11382393 vocab=6349261f
+-/
 theorem inj_comb (hW : W ≤ G.R U) (a : ∀ V, Γ(G.S V, W)) (ha : G.Compat W a) (h0 : a U = 0)
     (V : I) : a V = 0 := by
   apply (G.supp V W).1
@@ -209,6 +259,9 @@ theorem inj_comb (hW : W ≤ G.R U) (a : ∀ V, Γ(G.S V, W)) (ha : G.Compat W a
     apply (G.bij hCV (W ⊓ G.R C) inf_le_right).1
     rw [hom_rs, hom_zero', compat_ex G ha hCV hCU, h0, hom_zero', rs_zero]
 
+/--
+@isnad1 id=eq.4h10v.s12.8e5905b5f5f8 from=translated src=- shape=c8956934 vocab=e6c23269
+-/
 theorem piece {C D V : I} (hDC : D ≤ C) (hCU : C ≤ U) (hCV : C ≤ V) (t : Γ(G.S U, W))
     {σ : Γ(G.S V, W ⊓ G.R C)}
     (hσ : (G.ρ hCV).app (W ⊓ G.R C) σ = rs (G.S C) inf_le_left ((G.ρ hCU).app W t)) :
@@ -216,6 +269,9 @@ theorem piece {C D V : I} (hDC : D ≤ C) (hCU : C ≤ U) (hCV : C ≤ V) (t : �
       rs (G.S D) inf_le_left ((G.ρ (hDC.trans hCU)).app W t) := by
   rw [← G.comp hDC hCV, hom_rs, hσ, rs_rs, hom_rs, G.comp hDC hCU]
 
+/--
+@isnad1 id=ex.1h7v.s11.afcc062ea895 from=translated src=- shape=3ccaf476 vocab=31c5db1c
+-/
 theorem surj_one (hW : W ≤ G.R U) (t : Γ(G.S U, W)) (V : I) :
     ∃ aV : Γ(G.S V, W), ∀ (C : I) (hCU : C ≤ U) (hCV : C ≤ V),
       rs (G.S C) (inf_le_left : W ⊓ G.R C ≤ W) ((G.ρ hCV).app W aV) =
@@ -261,6 +317,9 @@ theorem surj_one (hW : W ≤ G.R U) (t : Γ(G.S U, W)) (V : I) :
     _ = (G.ρ hCV).app (W ⊓ G.R C) (σ ⟨C, hCU, hCV⟩) := by rw [ha, hs']
     _ = _ := hσ ⟨C, hCU, hCV⟩
 
+/--
+@isnad1 id=ex.1h6v.s11.55cbfca0840c from=translated src=- shape=6520e5de vocab=31c5db1c
+-/
 theorem surj_comb (hW : W ≤ G.R U) (t : Γ(G.S U, W)) :
     ∃ a : ∀ V, Γ(G.S V, W), a U = t ∧ ∀ (V C : I) (hCU : C ≤ U) (hCV : C ≤ V),
       rs (G.S C) (inf_le_left : W ⊓ G.R C ≤ W) ((G.ρ hCV).app W (a V)) =
@@ -275,6 +334,9 @@ theorem surj_comb (hW : W ≤ G.R U) (t : Γ(G.S U, W)) :
     rw [hom_rs, hom_rs]
     exact ha U U le_rfl le_rfl
 
+/--
+@isnad1 id=compat.2h7v.s11.301dc755c09b from=translated src=- shape=b698ca60 vocab=0d3fc3b2
+-/
 theorem compat_of_P (hW : W ≤ G.R U) (t : Γ(G.S U, W)) (a : ∀ V, Γ(G.S V, W))
     (ha : ∀ (V C : I) (hCU : C ≤ U) (hCV : C ≤ V),
       rs (G.S C) (inf_le_left : W ⊓ G.R C ≤ W) ((G.ρ hCV).app W (a V)) =
@@ -299,9 +361,15 @@ end GlueDatum
 
 /-! ### Bridge: chart morphism of a gluing is invertible -/
 
+/--
+@isnad1 id=eq.1h4v.s8.793417c23615 from=translated src=- shape=7cfcb8ff vocab=03504a32
+-/
 theorem rs_id (M : P.Modules) {A : P.Opens} (h : A ≤ A) (x : Γ(M, A)) : rs M h x = x := by
   simp [rs]
 
+/--
+@isnad1 id=bijectiv.2h4v.s8.031352a13cf1 from=translated src=- shape=e730271c vocab=eb9317a5
+-/
 theorem rs_bij (M : P.Modules) {A B : P.Opens} (h : A ≤ B) (h' : B ≤ A) :
     Function.Bijective (rs M h) := by
   refine ⟨fun x y hxy => ?_, fun y => ⟨rs M h' y, ?_⟩⟩
@@ -312,6 +380,9 @@ theorem rs_bij (M : P.Modules) {A B : P.Opens} (h : A ≤ B) (h' : B ≤ A) :
 section bridge
 variable {X : Scheme.{u}} (ι : X ⟶ P) [IsOpenImmersion ι]
 
+/--
+@isnad1 id=eq.0h6v.s9.faa8b5298323 from=translated src=- shape=c0fdaee1 vocab=07cf2a37
+-/
 theorem restrict_comm (K : P.Modules) (N : X.Modules) (p : K ⟶ (Scheme.Modules.pushforward ι).obj N) :
     (Scheme.Modules.restrictFunctorIsoPullback ι).hom.app K ≫
       ((Scheme.Modules.pullbackPushforwardAdjunction ι).homEquiv K N).symm p =
@@ -329,7 +400,9 @@ theorem restrict_comm (K : P.Modules) (N : X.Modules) (p : K ⟶ (Scheme.Modules
   exact h3
 
 /-- If `p : K ⟶ ι_* N` is bijective on all sections over opens inside the range of the open
-immersion `ι`, then its adjoint `ι^* K ⟶ N` is invertible.-/
+immersion `ι`, then its adjoint `ι^* K ⟶ N` is invertible.
+@isnad1 id=isiso.1h6v.s11.520b34c80266 from=translated src=- shape=98b4fa50 vocab=d761dfa6
+-/
 theorem chart_isIso (K : P.Modules) (N : X.Modules) (p : K ⟶ (Scheme.Modules.pushforward ι).obj N)
     (hp : ∀ W : P.Opens, W ≤ ι.opensRange → Function.Bijective (p.app W)) :
     IsIso (((Scheme.Modules.pullbackPushforwardAdjunction ι).homEquiv K N).symm p) := by
@@ -348,7 +421,9 @@ theorem chart_isIso (K : P.Modules) (N : X.Modules) (p : K ⟶ (Scheme.Modules.p
   exact IsIso.of_isIso_comp_left ((Scheme.Modules.restrictFunctorIsoPullback ι).hom.app K) _
 
 /-- Sections-level bijectivity of a morphism whose adjoint mate along an open immersion is
-invertible, over opens inside the range.-/
+invertible, over opens inside the range.
+@isnad1 id=bijectiv.2h7v.s11.a761f3c31ba8 from=translated src=- shape=72779345 vocab=d761dfa6
+-/
 theorem mate_bij (N : P.Modules) (N' : X.Modules) (φ : N ⟶ (Scheme.Modules.pushforward ι).obj N')
     (hm : IsIso (((Scheme.Modules.pullbackPushforwardAdjunction ι).homEquiv N N').symm φ))
     (A : P.Opens) (hA : A ≤ ι.opensRange) : Function.Bijective (φ.app A) := by
@@ -371,6 +446,9 @@ theorem mate_bij (N : P.Modules) (N' : X.Modules) (φ : N ⟶ (Scheme.Modules.pu
   · exact (ConcreteCategory.isIso_iff_bijective _).1 inferInstance
   · exact rs_bij N _ hle
 
+/--
+@isnad1 id=bijectiv.0h5v.s8.6582b1838b69 from=translated src=- shape=d32239cf vocab=95eb2391
+-/
 theorem supp_pushforward (N : X.Modules) (W : P.Opens) :
     Function.Bijective (rs ((Scheme.Modules.pushforward ι).obj N)
       (inf_le_left : W ⊓ ι.opensRange ≤ W)) := by
@@ -384,11 +462,17 @@ end bridge
 
 /-! ### Adjunction-mate bookkeeping and section formulas -/
 
+/--
+@isnad1 id=eq.0h6v.s10.d3dc6737ca6c from=translated src=- shape=10fd2024 vocab=be64fbd3
+-/
 theorem map_eq_rs (M : P.Modules) {A B : P.Opens} (f : A ⟶ B) (x : Γ(M, B)) :
     M.presheaf.map f.op x = rs M (leOfHom f) x := by
   unfold rs
   exact congrArg (fun g => M.presheaf.map g.op x) (Subsingleton.elim f (homOfLE (leOfHom f)))
 
+/--
+@isnad1 id=eq.0h12v.s9.8a77936aea4c from=translated src=- shape=036b6843 vocab=f3865bf1
+-/
 theorem homEquiv_conj {C D : Type*} [Category C] [Category D] {L₁ L₂ : C ⥤ D} {R₁ R₂ : D ⥤ C}
     (adj₁ : L₁ ⊣ R₁) (adj₂ : L₂ ⊣ R₂) (σ : L₂ ⟶ L₁) (K : C) (Y : D) (h : L₁.obj K ⟶ Y) :
     adj₂.homEquiv K Y (σ.app K ≫ h) = adj₁.homEquiv K Y h ≫ (conjugateEquiv adj₁ adj₂ σ).app Y := by
@@ -410,6 +494,9 @@ theorem homEquiv_conj {C D : Type*} [Category C] [Category D] {L₁ L₂ : C ⥤
   erw [← Category.assoc, n4]
   erw [Category.assoc, reassoc_of% tri]
 
+/--
+@isnad1 id=eq.0h10v.s10.5dc60fd1d9db from=translated src=- shape=6ec4866c vocab=364e2ea3
+-/
 theorem homEquiv_pullbackComp {X0 X1 X2 : Scheme.{u}} (f1 : X1 ⟶ X0) (f2 : X2 ⟶ X1)
     (K0 : X0.Modules) (K1 : X1.Modules) (K2 : X2.Modules)
     (α : (Scheme.Modules.pullback f1).obj K0 ⟶ K1) (β : (Scheme.Modules.pullback f2).obj K1 ⟶ K2) :
@@ -446,6 +533,9 @@ noncomputable def rhoMap (f : X' ⟶ X) (g : X ⟶ P) (g' : X' ⟶ P) (w : f ≫
   (Scheme.Modules.pushforward g).map φ ≫ (Scheme.Modules.pushforwardComp f g).inv.app N' ≫
     (Scheme.Modules.pushforwardCongr w).hom.app N'
 
+/--
+@isnad1 id=eq.2h11v.s12.e023921da491 from=translated src=- shape=b6b65c60 vocab=575af719
+-/
 theorem rhoMap_app (f : X' ⟶ X) (g : X ⟶ P) (g' : X' ⟶ P) (w : f ≫ g = g')
     {N : X.Modules} {N' : X'.Modules} (φ : N ⟶ (Scheme.Modules.pushforward f).obj N')
     (W : P.Opens) (hle : g' ⁻¹ᵁ W ≤ f ⁻¹ᵁ (g ⁻¹ᵁ W))

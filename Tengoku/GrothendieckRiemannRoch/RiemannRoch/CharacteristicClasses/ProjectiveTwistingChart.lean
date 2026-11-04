@@ -53,7 +53,9 @@ abbrev CoordinateTwistModule (_d : ℤ) (i : Fin (n + 1)) :=
 def coordinateOverlapEquation (i j : Fin (n + 1)) : Polynomial k n :=
   coordinate k n i * coordinate k n j
 
-/-- The overlap equation `XᵢXⱼ` is homogeneous of degree two.-/
+/-- The overlap equation `XᵢXⱼ` is homogeneous of degree two.
+@isnad1 id=mem.0h4v.s8.8e8828c0057a from=translated src=- shape=1ec07fc6 vocab=79525b4f
+-/
 theorem coordinateOverlapEquation_mem_degree_two (i j : Fin (n + 1)) :
     coordinateOverlapEquation k n i j ∈ grading k n 2 := by
   simpa [coordinateOverlapEquation] using
@@ -79,7 +81,9 @@ def coordinateOverlapRatioInv (i j : Fin (n + 1)) : CoordinateOverlapRing k n i 
     (coordinate k n i ^ 2) (by
       simpa using SetLike.pow_mem_graded 2 (coordinate_mem_degree_one k n i))
 
-/-- The two explicit coordinate ratios multiply to one.-/
+/-- The two explicit coordinate ratios multiply to one.
+@isnad1 id=eq.0h4v.s9.31133d5941ea from=translated src=- shape=098ec905 vocab=1c7d10a4
+-/
 theorem coordinateOverlapRatio_mul_inv (i j : Fin (n + 1)) :
     coordinateOverlapRatio k n i j * coordinateOverlapRatioInv k n i j = 1 := by
   apply HomogeneousLocalization.val_injective
@@ -95,7 +99,9 @@ theorem coordinateOverlapRatio_mul_inv (i j : Fin (n + 1)) :
       (coordinate k n i * coordinate k n j)
   ring
 
-/-- The inverse coordinate ratio also multiplies the forward ratio to one.-/
+/-- The inverse coordinate ratio also multiplies the forward ratio to one.
+@isnad1 id=eq.0h4v.s9.89cda9278f99 from=translated src=- shape=098ec905 vocab=1c7d10a4
+-/
 theorem coordinateOverlapRatio_inv_mul (i j : Fin (n + 1)) :
     coordinateOverlapRatioInv k n i j * coordinateOverlapRatio k n i j = 1 := by
   rw [mul_comm]
@@ -109,6 +115,9 @@ def coordinateOverlapRatioUnit (i j : Fin (n + 1)) :
   val_inv := coordinateOverlapRatio_mul_inv k n i j
   inv_val := coordinateOverlapRatio_inv_mul k n i j
 
+/--
+@isnad1 id=eq.0h4v.s8.d7114544650b from=translated src=- shape=d70137b1 vocab=f18f7ff2
+-/
 @[simp]
 theorem coordinateOverlapRatioUnit_val (i j : Fin (n + 1)) :
     (coordinateOverlapRatioUnit k n i j : CoordinateOverlapRing k n i j) =
@@ -119,11 +128,17 @@ def twistTransitionUnit (d : ℤ) (i j : Fin (n + 1)) :
     (CoordinateOverlapRing k n i j)ˣ :=
   coordinateOverlapRatioUnit k n i j ^ d
 
+/--
+@isnad1 id=eq.0h4v.s10.52d7fa4b1fc1 from=translated src=- shape=cfe1c031 vocab=cb891de5
+-/
 @[simp]
 theorem twistTransitionUnit_zero (i j : Fin (n + 1)) :
     twistTransitionUnit k n 0 i j = 1 := by
   simp [twistTransitionUnit]
 
+/--
+@isnad1 id=eq.0h5v.s9.de642f82e665 from=translated src=- shape=4a419a86 vocab=9343b330
+-/
 @[simp]
 theorem twistTransitionUnit_neg (d : ℤ) (i j : Fin (n + 1)) :
     twistTransitionUnit k n (-d) i j = (twistTransitionUnit k n d i j)⁻¹ := by
@@ -144,12 +159,18 @@ def twistTransitionLinearEquiv (d : ℤ) (i j : Fin (n + 1)) :
       CoordinateOverlapRing k n i j :=
   unitMulLinearEquiv (twistTransitionUnit k n d i j)
 
+/--
+@isnad1 id=eq.0h6v.s12.8d8803bea2f3 from=translated src=- shape=6dc34012 vocab=cb1787db
+-/
 @[simp]
 theorem twistTransitionLinearEquiv_apply (d : ℤ) (i j : Fin (n + 1))
     (x : CoordinateOverlapRing k n i j) :
     twistTransitionLinearEquiv k n d i j x =
       (twistTransitionUnit k n d i j : CoordinateOverlapRing k n i j) * x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.24036cdf1949 from=translated src=- shape=2aebf71d vocab=66f8249f
+-/
 @[simp]
 theorem twistTransitionLinearEquiv_one (d : ℤ) (i j : Fin (n + 1)) :
     twistTransitionLinearEquiv k n d i j 1 =
@@ -161,7 +182,9 @@ theorem twistTransitionLinearEquiv_one (d : ℤ) (i j : Fin (n + 1)) :
 def coordinateTripleEquation (i j l : Fin (n + 1)) : Polynomial k n :=
   coordinate k n i * coordinate k n j * coordinate k n l
 
-/-- The triple-overlap equation is homogeneous of degree three.-/
+/-- The triple-overlap equation is homogeneous of degree three.
+@isnad1 id=mem.0h5v.s8.f9e3faead595 from=translated src=- shape=74521ed0 vocab=f3a02dfb
+-/
 theorem coordinateTripleEquation_mem_degree_three (i j l : Fin (n + 1)) :
     coordinateTripleEquation k n i j l ∈ grading k n 3 := by
   simpa [coordinateTripleEquation] using
@@ -227,6 +250,9 @@ def coordinateOverlapToTripleIL (i j l : Fin (n + 1)) :
       simp only [coordinateTripleEquation, coordinateOverlapEquation]
       ring)
 
+/--
+@isnad1 id=eq.0h5v.s10.42563ca596a5 from=translated src=- shape=a9667148 vocab=bc826a16
+-/
 @[simp]
 theorem coordinateOverlapToTripleJL_ratio (i j l : Fin (n + 1)) :
     coordinateOverlapToTripleJL k n i j l (coordinateOverlapRatio k n j l) =
@@ -237,6 +263,9 @@ theorem coordinateOverlapToTripleJL_ratio (i j l : Fin (n + 1)) :
   rw [HomogeneousLocalization.val_awayMap_mk]
   simp only [HomogeneousLocalization.val_mk, pow_one]
 
+/--
+@isnad1 id=eq.0h5v.s10.9e39a411e04c from=translated src=- shape=5a71a9f5 vocab=21dc08d1
+-/
 @[simp]
 theorem coordinateOverlapToTripleIL_ratio (i j l : Fin (n + 1)) :
     coordinateOverlapToTripleIL k n i j l (coordinateOverlapRatio k n i l) =

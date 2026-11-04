@@ -32,7 +32,9 @@ variable {K L : Type*} [CommRing K] [Algebra ℚ K] [CommRing L] [Algebra ℚ L]
 def ARRAbs (psiK : K →ₐ[ℚ] K) (psiL : L →ₐ[ℚ] L) (F : K →ₗ[ℚ] L) (t : K) : Prop :=
   ∀ x, psiL (F x) = F (t * psiK x)
 
-/-- (E1) of `RG6B` for `χ ∘ F`, from the ARR identity and `ψ`-invariance of `χ`.-/
+/-- (E1) of `RG6B` for `χ ∘ F`, from the ARR identity and `ψ`-invariance of `χ`.
+@isnad1 id=eq.2h8v.s9.9ca870db4dc6 from=translated src=- shape=5144dca5 vocab=3bcbc117
+-/
 theorem E1_of_arr {psiK : K →ₐ[ℚ] K} {psiL : L →ₐ[ℚ] L} {F : K →ₗ[ℚ] L} {t : K}
     (h : ARRAbs psiK psiL F t) (chi : L →ₗ[ℚ] ℚ) (hchi : ∀ y, chi (psiL y) = chi y) (x : K) :
     (chi.comp F) x = (chi.comp F) (t * psiK x) := by
@@ -42,9 +44,14 @@ theorem E1_of_arr {psiK : K →ₐ[ℚ] K} {psiL : L →ₐ[ℚ] L} {F : K →�
 /-- The operator `Φ w = F (τ⁻¹ * w)`.-/
 def Phi (F : K →ₗ[ℚ] L) (τi : K) : K →ₗ[ℚ] L := F.comp (LinearMap.mulLeft ℚ τi)
 
+/--
+@isnad1 id=eq.0h5v.s8.93336e71ebc9 from=translated src=- shape=0861ac9a vocab=9f682c90
+-/
 theorem Phi_apply (F : K →ₗ[ℚ] L) (τi w : K) : Phi F τi w = F (τi * w) := rfl
 
-/-- **Weight-shift relation** `Φ (ψ w) = jᵈ • ψ (Φ w)`.-/
+/-- **Weight-shift relation** `Φ (ψ w) = jᵈ • ψ (Φ w)`.
+@isnad1 id=eq.4h12v.s9.daf0a356c027 from=translated src=- shape=738f007e vocab=be2acc1c
+-/
 theorem Phi_psi {psiK : K →ₐ[ℚ] K} {psiL : L →ₐ[ℚ] L} {F : K →ₗ[ℚ] L} {t : K}
     (h : ARRAbs psiK psiL F t) {j d : ℕ} {s τ τi : K} (hs : s = (j : ℚ) ^ d • t)
     (hτ : psiK τ = s * τ) (hi : τ * τi = 1) (w : K) :

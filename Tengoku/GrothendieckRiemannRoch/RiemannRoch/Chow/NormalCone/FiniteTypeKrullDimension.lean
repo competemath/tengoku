@@ -57,7 +57,9 @@ section Integral
 variable (B A : Type*) [CommRing B] [CommRing A] [Algebra B A]
 
 /-- An integral extension with injective structure map preserves Krull dimension: contraction
-of primes is strictly monotone (incomparability) and chains lift (going up).-/
+of primes is strictly monotone (incomparability) and chains lift (going up).
+@isnad1 id=eq.0h2v.s5.3a0c49981fb8 from=translated src=- shape=f946815c vocab=df74aa34
+-/
 theorem ringKrullDim_eq_of_isIntegral [Algebra.IsIntegral B A] [FaithfulSMul B A] :
     ringKrullDim A = ringKrullDim B := by
   let f : PrimeSpectrum A → PrimeSpectrum B := PrimeSpectrum.comap (algebraMap B A)
@@ -98,7 +100,9 @@ end Integral
 
 section Trdeg
 
-/-- Transcendence degree is unchanged by an algebraic extension in a tower of domains.-/
+/-- Transcendence degree is unchanged by an algebraic extension in a tower of domains.
+@isnad1 id=eq.0h3v.s7.c1324c3c411f from=translated src=- shape=14c633dc vocab=573b0ae7
+-/
 theorem trdeg_eq_of_isAlgebraic (R : Type u) (S A : Type v) [CommRing R] [CommRing S]
     [CommRing A] [Algebra R S] [Algebra R A] [Algebra S A] [IsScalarTower R S A] [Nontrivial R]
     [NoZeroDivisors A] [FaithfulSMul R S] [FaithfulSMul S A] [Algebra.IsAlgebraic S A] :
@@ -106,7 +110,9 @@ theorem trdeg_eq_of_isAlgebraic (R : Type u) (S A : Type v) [CommRing R] [CommRi
   rw [← trdeg_add_eq R S (A := A), trdeg_eq_zero (R := S) (A := A), add_zero]
 
 /-- Noether normalization: the Krull dimension of a finitely generated domain over a field is
-its transcendence degree.-/
+its transcendence degree.
+@isnad1 id=eq.0h2v.s6.13d8ff3f2c6c from=translated src=- shape=36e2e795 vocab=eabd9f88
+-/
 theorem ringKrullDim_eq_toENat_trdeg (k A : Type u) [Field k] [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] :
     ringKrullDim A = (Cardinal.toENat (Algebra.trdeg k A) : WithBot ℕ∞) := by
@@ -129,7 +135,9 @@ section Coheight
 
 variable {A : Type u} [CommRing A]
 
-/-- The coheight of a prime `p` in `Spec A` is the Krull dimension of `A ⧸ p`.-/
+/-- The coheight of a prime `p` in `Spec A` is the Krull dimension of `A ⧸ p`.
+@isnad1 id=eq.0h2v.s5.806dcfdbb632 from=translated src=- shape=18d4dc41 vocab=97099ca7
+-/
 theorem PrimeSpectrum.coheight_eq_ringKrullDim_quotient (p : PrimeSpectrum A) :
     ((Order.coheight p : ℕ∞) : WithBot ℕ∞) = ringKrullDim (A ⧸ p.asIdeal) := by
   let f : PrimeSpectrum (A ⧸ p.asIdeal) → PrimeSpectrum A :=
@@ -169,13 +177,17 @@ theorem PrimeSpectrum.coheight_eq_ringKrullDim_quotient (p : PrimeSpectrum A) :
     rw [Order.coheight_eq_of_strictMono f hmono hlift ⊥, h0]
   rw [← h1, ringKrullDim, ← Order.coheight_bot_eq_krullDim]
 
-/-- A fraction field is algebraic over its domain.-/
+/-- A fraction field is algebraic over its domain.
+@isnad1 id=isalgebr.0h2v.s5.7ae036347cc3 from=translated src=- shape=07f39a1f vocab=30c96c19
+-/
 theorem isAlgebraic_of_isFractionRing' (A K : Type*) [CommRing A] [IsDomain A] [Field K]
     [Algebra A K] [IsFractionRing A K] : Algebra.IsAlgebraic A K :=
   ⟨fun x ↦ (IsFractionRing.isAlgebraic_iff A K K).mpr (Algebra.IsAlgebraic.isAlgebraic x)⟩
 
 /-- The coheight of a prime of a finitely generated algebra over a field is the transcendence
-degree of its residue field.-/
+degree of its residue field.
+@isnad1 id=eq.0h3v.s8.d7c7d531c04b from=translated src=- shape=a11663c6 vocab=bf99610b
+-/
 theorem PrimeSpectrum.coheight_eq_toENat_trdeg_residueField {k : Type u} [Field k] [Algebra k A]
     [Algebra.FiniteType k A] (p : PrimeSpectrum A) :
     Order.coheight p = Cardinal.toENat (Algebra.trdeg k p.asIdeal.ResidueField) := by
@@ -201,7 +213,9 @@ noncomputable def fiberPrime (P : PrimeSpectrum A) :
   PrimeSpectrum.preimageOrderIsoFiber B A (PrimeSpectrum.comap (algebraMap B A) P) ⟨P, rfl⟩
 
 variable (B) in
-/-- The contraction of the fibre prime along `A → κ(Q) ⊗[B] A` is the original prime.-/
+/-- The contraction of the fibre prime along `A → κ(Q) ⊗[B] A` is the original prime.
+@isnad1 id=eq.0h3v.s12.8bfc5df903d3 from=translated src=- shape=530a9ad2 vocab=f4ea3e72
+-/
 theorem fiberPrime_comap_includeRight (P : PrimeSpectrum A) :
     (fiberPrime B P).asIdeal.comap Algebra.TensorProduct.includeRight.toRingHom = P.asIdeal := by
   have h := PrimeSpectrum.preimageEquivFiber_symm_apply_coe B A
@@ -213,7 +227,9 @@ theorem fiberPrime_comap_includeRight (P : PrimeSpectrum A) :
   exact congrArg PrimeSpectrum.asIdeal h.symm
 
 /-- In a tower `C ⊆ D ⊆ E` with `E` algebraic over `D`, and `C ⊆ κ ⊆ E` with `κ` algebraic
-over `C`, the transcendence degrees of `D` over `C` and of `E` over `κ` agree.-/
+over `C`, the transcendence degrees of `D` over `C` and of `E` over `κ` agree.
+@isnad1 id=eq.0h4v.s8.4e5b4c0278ce from=translated src=- shape=aa67a6fb vocab=573b0ae7
+-/
 theorem trdeg_eq_of_algebraic_towers (C D E κ : Type u) [CommRing C] [CommRing D] [CommRing E]
     [CommRing κ] [Nontrivial C] [NoZeroDivisors E] [Algebra C D] [Algebra D E] [Algebra C E]
     [Algebra C κ] [Algebra κ E] [IsScalarTower C D E] [IsScalarTower C κ E]
@@ -233,7 +249,9 @@ finitely generated `k`-algebra `B`: the dimension of the closure of `P` is the d
 closure of its contraction `Q` plus the dimension of the closure of `P` in the fibre
 `κ(Q) ⊗[B] A`.  The proof is the additivity of transcendence degree in the tower
 `k ⊆ B ⧸ Q ⊆ A ⧸ P`, together with the fact that `(κ(Q) ⊗[B] A) ⧸ P'` is algebraic over
-`A ⧸ P` and over `κ(Q)`.-/
+`A ⧸ P` and over `κ(Q)`.
+@isnad1 id=eq.0h4v.s10.1ad98f29365d from=translated src=- shape=e5230870 vocab=36833013
+-/
 theorem coheight_eq_coheight_add_coheight_fiberPrime [Algebra.FiniteType k B]
     [Algebra.FiniteType k A] (P : PrimeSpectrum A) :
     Order.coheight P =

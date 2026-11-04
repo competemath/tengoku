@@ -45,6 +45,9 @@ variable (R K Q) in
 /-- The graded tensor product `Λ K ⊗̂ Λ Q`.-/
 abbrev GT := GradedTensorProduct R (fun i : ℕ ↦ ⋀[R]^i K) (fun i : ℕ ↦ ⋀[R]^i Q)
 
+/--
+@isnad1 id=mem.0h3v.s10.d02faa769c5a from=translated src=- shape=bc78ade0 vocab=a3844b6d
+-/
 lemma ι_mem_one {M : Type u} [AddCommGroup M] [Module R M] (m : M) :
     ExteriorAlgebra.ι R m ∈ ⋀[R]^1 M := by
   simpa only [pow_one] using LinearMap.mem_range_self _ m
@@ -56,6 +59,9 @@ def psiOne (r : F →ₗ[R] K) (g : F →ₗ[R] Q) : F →ₗ[R] GT R K Q :=
     (GradedTensorProduct.includeRight (fun i : ℕ ↦ ⋀[R]^i K)
       (fun i : ℕ ↦ ⋀[R]^i Q)).toLinearMap ∘ₗ ExteriorAlgebra.ι R ∘ₗ g
 
+/--
+@isnad1 id=eq.0h7v.s11.8938165ddf5f from=translated src=- shape=39e594fe vocab=da436d4e
+-/
 lemma psiOne_sq (r : F →ₗ[R] K) (g : F →ₗ[R] Q) (m : F) :
     psiOne r g m * psiOne r g m = 0 := by
   set a := ExteriorAlgebra.ι R (r m)
@@ -87,7 +93,9 @@ lemma psiOne_sq (r : F →ₗ[R] K) (g : F →ₗ[R] Q) (m : F) :
 def psi (r : F →ₗ[R] K) (g : F →ₗ[R] Q) : ExteriorAlgebra R F →ₐ[R] GT R K Q :=
   ExteriorAlgebra.lift R ⟨psiOne r g, psiOne_sq r g⟩
 
-/-- The augmentation kills positive exterior degrees.-/
+/-- The augmentation kills positive exterior degrees.
+@isnad1 id=eq.2h4v.s9.af384dc8d603 from=translated src=- shape=5fff2ed7 vocab=a5f3429f
+-/
 lemma algebraMapInv_eq_zero {M : Type u} [AddCommGroup M] [Module R M] {i : ℕ} (hi : i ≠ 0)
     (a : ExteriorAlgebra R M) (ha : a ∈ ⋀[R]^i M) :
     ExteriorAlgebra.algebraMapInv a = 0 := by
@@ -134,6 +142,9 @@ def rho (i j : ℕ) (r : F →ₗ[R] K) (g : F →ₗ[R] Q) :
 
 /-! ### Exterior-algebra submodule calculus -/
 
+/--
+@isnad1 id=eq.0h6v.s13.56ba96210d3e from=translated src=- shape=2c32d871 vocab=0b5021bb
+-/
 lemma coe_exteriorPower_map {M N : Type u} [AddCommGroup M] [Module R M] [AddCommGroup N]
     [Module R N] (n : ℕ) (g : M →ₗ[R] N) (x : ⋀[R]^n M) :
     ((exteriorPower.map n g x : ⋀[R]^n N) : ExteriorAlgebra R N) =
@@ -147,6 +158,9 @@ lemma coe_exteriorPower_map {M N : Type u} [AddCommGroup M] [Module R M] [AddCom
 
 /-! ### The wedge maps `Λ^i K ⊗ Λ^j F → Λ^n F` -/
 
+/--
+@isnad1 id=mem.0h6v.s11.4968ddb191ea from=translated src=- shape=95237edf vocab=02cc9917
+-/
 lemma map_mem_exteriorPower (f : K →ₗ[R] F) (i : ℕ) (a : ⋀[R]^i K) :
     ExteriorAlgebra.map f (a : ExteriorAlgebra R K) ∈ ⋀[R]^i F := by
   rw [← coe_exteriorPower_map]
@@ -169,12 +183,18 @@ def wedgeLin (f : K →ₗ[R] F) (i j n : ℕ) (h : i + j = n) :
           exact SetLike.GradedMul.mul_mem (map_mem_exteriorPower f i a) b.2
       | add x y hx hy => rw [map_add]; exact Submodule.add_mem _ hx hy)
 
+/--
+@isnad1 id=eq.1h9v.s14.6282b961936b from=translated src=- shape=e96e90bd vocab=8d0e4adc
+-/
 @[simp]
 lemma coe_wedgeLin_tmul (f : K →ₗ[R] F) (i j n : ℕ) (h : i + j = n) (a : ⋀[R]^i K)
     (b : ⋀[R]^j F) :
     ((wedgeLin f i j n h (a ⊗ₜ b) : ⋀[R]^n F) : ExteriorAlgebra R F) =
       ExteriorAlgebra.map f (a : ExteriorAlgebra R K) * (b : ExteriorAlgebra R F) := rfl
 
+/--
+@isnad1 id=bijectiv.1h5v.s8.a85197287b3d from=translated src=- shape=ab93ea29 vocab=59104a21
+-/
 lemma lTensor_bijective_of_bijective {M N P : Type u} [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] [AddCommGroup P] [Module R P] (φ : N →ₗ[R] P)
     (hφ : Function.Bijective φ) : Function.Bijective (LinearMap.lTensor M φ) := by

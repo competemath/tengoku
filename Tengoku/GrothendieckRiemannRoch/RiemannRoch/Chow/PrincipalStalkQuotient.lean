@@ -29,7 +29,9 @@ universe u
 namespace AlgebraicGeometry.Chow
 
 /-- The local length of a closed immersion is the length of the target stalk modulo the kernel of
-the induced stalk map.-/
+the induced stalk map.
+@isnad1 id=eq.0h4v.s13.1cd72752b0d3 from=translated src=- shape=733af861 vocab=7f8cfe6a
+-/
 theorem morphismLocalLength_eq_length_quotient_ker
     {Z X : Scheme.{u}} (f : Z ⟶ X) [IsClosedImmersion f] (z : Z) :
     morphismLocalLength f z =
@@ -52,7 +54,9 @@ theorem morphismLocalLength_eq_length_quotient_ker
   exact eAlg.toLinearEquiv.length_eq.symm
 
 /-- If the stalk-map kernel of a closed immersion is principal, its local length is the length of
-that principal quotient.-/
+that principal quotient.
+@isnad1 id=eq.1h5v.s13.0f5223fb5a33 from=translated src=- shape=9a3d20e1 vocab=2d39e0dd
+-/
 theorem morphismLocalLength_eq_length_principalQuotient
     {Z X : Scheme.{u}} (f : Z ⟶ X) [IsClosedImmersion f] (z : Z)
     (a : X.presheaf.stalk (f z))

@@ -49,7 +49,9 @@ structure GAux (M : (Spec R).Modules) (V : (Spec R).Opens) : Prop where
     ∃ (n : ℕ), f ^ n • t = 0
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `GAux` on `V`, plus the fact that `M` "only sees `V`", gives the localising property.-/
+/-- `GAux` on `V`, plus the fact that `M` "only sees `V`", gives the localising property.
+@isnad1 id=islocali.2h3v.s10.b3ca6cfdf164 from=translated src=- shape=ed0f67e4 vocab=ffd120cd
+-/
 theorem isLocalizing_of_gaux (M : (Spec R).Modules) (V : (Spec R).Opens) (h : GAux M V)
     (hV : ∀ (W W' : (Spec R).Opens) (hW : W' ≤ W), V ⊓ W ≤ W' →
       Function.Bijective (M.presheaf.map (homOfLE hW).op)) :
@@ -113,7 +115,9 @@ def presentationOver {X : Scheme.{u}} (M : X.Modules) (W : X.Opens)
       (W.sheafOfModulesEquivOverInverseUnit X.ringCatSheaf).symm)
 
 /-- **Quasi-coherence is local**: if every point has an affine open neighbourhood `W` on which
-`M` (transported to `Spec Γ(X, W)`) is quasi-coherent, then `M` is quasi-coherent.-/
+`M` (transported to `Spec Γ(X, W)`) is quasi-coherent, then `M` is quasi-coherent.
+@isnad1 id=isquasic.1h2v.s11.6d608c6be8e2 from=translated src=- shape=7f7a53a4 vocab=c81dd100
+-/
 theorem isQuasicoherent_of_affine_cover {X : Scheme.{u}} (M : X.Modules)
     (h : ∀ x : X, ∃ (W : X.Opens) (hW : IsAffineOpen W), x ∈ W ∧
       (M.restrict hW.fromSpec).IsQuasicoherent) :

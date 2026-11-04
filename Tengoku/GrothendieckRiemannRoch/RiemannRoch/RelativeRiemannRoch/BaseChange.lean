@@ -39,6 +39,9 @@ def indexClass (push : Total → Base)
       ExactGrothendieck.Group Base ExactBase :=
   ExactGrothendieck.map push hpush
 
+/--
+@isnad1 id=eq.0h7v.s7.9f549c929c89 from=translated src=- shape=104a555d vocab=a4234738
+-/
 @[simp]
 theorem indexClass_classOf (push : Total → Base)
     (hpush : ∀ A B C, ExactTotal A B C → ExactBase (push A) (push B) (push C))
@@ -48,7 +51,9 @@ theorem indexClass_classOf (push : Total → Base)
   simp [indexClass]
 
 /-- Derived base change on actual object classes extends to a commuting square on exact
-Grothendieck groups.-/
+Grothendieck groups.
+@isnad1 id=eq.1h16v.s8.94bb29fc8f6d from=translated src=- shape=8cc11550 vocab=2850b3a9
+-/
 theorem baseChange_hom_eq_of_object_classes
     (push : Total → Base)
     (hpush : ∀ A B C, ExactTotal A B C → ExactBase (push A) (push B) (push C))
@@ -70,7 +75,9 @@ theorem baseChange_hom_eq_of_object_classes
   intro E
   simpa [indexClass] using hobject E
 
-/-- Pointwise base change for every virtual coefficient class.-/
+/-- Pointwise base change for every virtual coefficient class.
+@isnad1 id=eq.1h17v.s9.38bff01eaff1 from=translated src=- shape=43e4d46d vocab=ccbc2c97
+-/
 theorem baseChange_indexClass_of_object_classes
     (push : Total → Base)
     (hpush : ∀ A B C, ExactTotal A B C → ExactBase (push A) (push B) (push C))

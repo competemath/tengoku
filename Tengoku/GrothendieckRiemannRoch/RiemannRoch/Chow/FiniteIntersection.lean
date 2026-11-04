@@ -39,7 +39,9 @@ noncomputable def morphismLocalLength {Z X : Scheme.{u}} (f : Z ⟶ X) (z : Z) :
     (f.stalkMap z).hom.toAlgebra
   Module.length ↑(X.presheaf.stalk (f z)) ↑(Z.presheaf.stalk z)
 
-/-- Precomposing a scheme morphism by an isomorphism of its source preserves the local length.-/
+/-- Precomposing a scheme morphism by an isomorphism of its source preserves the local length.
+@isnad1 id=eq.0h6v.s7.399108346357 from=translated src=- shape=66bdc964 vocab=7d2690eb
+-/
 theorem morphismLocalLength_comp_iso {W Z X : Scheme.{u}} (e : W ≅ Z)
     (f : Z ⟶ X) (w : W) :
     morphismLocalLength (e.hom ≫ f) w = morphismLocalLength f (e.hom w) := by
@@ -113,7 +115,9 @@ noncomputable instance : IsClosedImmersion d.toX := by
 noncomputable def localMultiplicity (z : d.intersection) : ℕ :=
   (morphismLocalLength d.toX z).toNat
 
-/-- The local length is the natural-number intersection multiplicity, viewed in `ℕ∞`.-/
+/-- The local length is the natural-number intersection multiplicity, viewed in `ℕ∞`.
+@isnad1 id=eq.0h4v.s5.005458ec8020 from=translated src=- shape=d481595b vocab=cbf51cb2
+-/
 theorem coe_localMultiplicity (z : d.intersection) :
     (d.localMultiplicity z : ℕ∞) = morphismLocalLength d.toX z := by
   exact ENat.natCast_toNat (d.finiteLength z)
@@ -136,7 +140,9 @@ noncomputable def cycle : CodimensionCycles X ℤ p := by
   subst x
   exact d.codimension z
 
-/-- At an intersection point, the coefficient of the intersection cycle is its local length.-/
+/-- At an intersection point, the coefficient of the intersection cycle is its local length.
+@isnad1 id=eq.0h4v.s9.642b7618868d from=translated src=- shape=15de0020 vocab=cc597cda
+-/
 @[simp]
 theorem cycle_apply_toX (z : d.intersection) :
     d.cycle.1 (d.toX z) = (d.localMultiplicity z : ℤ) := by
@@ -159,7 +165,9 @@ noncomputable def intersectionSymmetry : d.intersection ≅
     CategoryTheory.Limits.pullback (C := Scheme.{u}) d.j d.i :=
   CategoryTheory.Limits.pullbackSymmetry d.i d.j
 
-/-- The symmetry isomorphism followed by the original map to `X` is the exchanged map to `X`.-/
+/-- The symmetry isomorphism followed by the original map to `X` is the exchanged map to `X`.
+@isnad1 id=eq.0h3v.s7.f4fb04abd4c5 from=translated src=- shape=6f2d14c3 vocab=f53c5e19
+-/
 theorem intersectionSymmetry_inv_comp_toX :
     d.intersectionSymmetry.inv ≫ d.toX =
       CategoryTheory.Limits.pullback.fst d.j d.i ≫ d.j := by
@@ -189,7 +197,9 @@ noncomputable def swap : FiniteClosedIntersectionData X p := by
     rw [← d.intersectionSymmetry_inv_comp_toX]
     exact d.codimension (d.intersectionSymmetry.inv z)
 
-/-- Exchanging the factors transports each local multiplicity along pullback symmetry.-/
+/-- Exchanging the factors transports each local multiplicity along pullback symmetry.
+@isnad1 id=eq.0h4v.s8.0f78a5512585 from=translated src=- shape=634d30af vocab=6c396676
+-/
 theorem swap_localMultiplicity
     (z : CategoryTheory.Limits.pullback (C := Scheme.{u}) d.j d.i) :
     d.swap.localMultiplicity z =
@@ -201,7 +211,9 @@ theorem swap_localMultiplicity
     show d.intersectionSymmetry.inv = d.intersectionSymmetry.symm.hom by rfl,
     morphismLocalLength_comp_iso]
 
-/-- Pullback symmetry commutes with the maps of the two intersections to the ambient scheme.-/
+/-- Pullback symmetry commutes with the maps of the two intersections to the ambient scheme.
+@isnad1 id=eq.0h3v.s6.dcbf8912385e from=translated src=- shape=45be2939 vocab=38774106
+-/
 theorem intersectionSymmetry_hom_comp_swap_toX :
     d.intersectionSymmetry.hom ≫ d.swap.toX = d.toX := by
   change d.intersectionSymmetry.hom ≫
@@ -210,14 +222,18 @@ theorem intersectionSymmetry_hom_comp_swap_toX :
     CategoryTheory.Limits.pullbackSymmetry_hom_comp_fst]
   exact (CategoryTheory.Limits.pullback.condition (f := d.i) (g := d.j)).symm
 
-/-- Local multiplicities agree at corresponding points under pullback symmetry.-/
+/-- Local multiplicities agree at corresponding points under pullback symmetry.
+@isnad1 id=eq.0h4v.s8.b69ecd62a669 from=translated src=- shape=9ad2aa63 vocab=fa4abd5e
+-/
 theorem swap_localMultiplicity_symmetry (z : d.intersection) :
     d.swap.localMultiplicity (d.intersectionSymmetry.hom z) = d.localMultiplicity z := by
   rw [d.swap_localMultiplicity]
   congr 1
   exact (Scheme.homeoOfIso d.intersectionSymmetry).left_inv z
 
-/-- Every point of a finite scheme-theoretic intersection has positive local multiplicity.-/
+/-- Every point of a finite scheme-theoretic intersection has positive local multiplicity.
+@isnad1 id=lt.0h4v.s5.4cf99c16fe8c from=translated src=- shape=ea645f1b vocab=979f8308
+-/
 theorem localMultiplicity_pos (z : d.intersection) : 0 < d.localMultiplicity z := by
   letI : Algebra ↑(X.presheaf.stalk (d.toX z))
       ↑(d.intersection.presheaf.stalk z) :=

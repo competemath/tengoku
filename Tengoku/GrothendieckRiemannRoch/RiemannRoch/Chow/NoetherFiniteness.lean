@@ -61,7 +61,9 @@ namespace RiemannRoch.NoetherFiniteness
 section Tower
 
 /-- If `C` is the integral closure of `A` in `B` and `A` is integral over `R`, then `C` is also
-the integral closure of `R` in `B`.-/
+the integral closure of `R` in `B`.
+@isnad1 id=isintegr.0h4v.s7.e9277e9ea150 from=translated src=- shape=d48fccb6 vocab=43b028e4
+-/
 theorem isIntegralClosure_of_isIntegral_bot (R A B C : Type*) [CommRing R] [CommRing A]
     [CommRing B] [CommRing C] [Algebra R A] [Algebra R B] [Algebra A B] [IsScalarTower R A B]
     [Algebra C B] [Algebra R C] [IsScalarTower R C B] [Algebra.IsIntegral R A]
@@ -72,7 +74,9 @@ theorem isIntegralClosure_of_isIntegral_bot (R A B C : Type*) [CommRing R] [Comm
 
 /-- The separable case of Noether finiteness, over any integrally closed Noetherian base `R`
 with fraction field `V`: if `A` is integral over `R` and `L / V` is finite separable, the
-integral closure of `A` in `L` is a finite `A`-module.-/
+integral closure of `A` in `L` is a finite `A`-module.
+@isnad1 id=finite.0h4v.s8.2ec8fca36dd1 from=translated src=- shape=530f1643 vocab=064dfaf0
+-/
 theorem finite_integralClosure_of_isSeparable
     (R V A L : Type*) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [IsNoetherianRing R]
     [Field V] [Algebra R V] [IsFractionRing R V]
@@ -87,7 +91,9 @@ theorem finite_integralClosure_of_isSeparable
   exact Module.Finite.of_restrictScalars_finite R A _
 
 /-- Integral closures shrink along injective algebra maps: over a Noetherian base, finiteness of
-the integral closure in `M` implies finiteness of the integral closure in `L ↪ M`.-/
+the integral closure in `M` implies finiteness of the integral closure in `L ↪ M`.
+@isnad1 id=finite.1h4v.s8.0271d14e20ad from=translated src=- shape=8d81aa54 vocab=9d349b87
+-/
 theorem finite_integralClosure_of_algHom {P L M : Type*} [CommRing P] [IsNoetherianRing P]
     [CommRing L] [CommRing M] [Algebra P L] [Algebra P M] (f : L →ₐ[P] M)
     (hf : Function.Injective f) [Module.Finite P (integralClosure P M)] :
@@ -102,7 +108,9 @@ theorem finite_integralClosure_of_algHom {P L M : Type*} [CommRing P] [IsNoether
 
 /-- Separable top of a tower: if `V ⊆ E ⊆ M` with `E / V` finite, `M / E` finite separable and
 the integral closure of `P` in `E` finite over `P`, then so is the integral closure of `P` in
-`M`.-/
+`M`.
+@isnad1 id=finite.0h4v.s9.63717b9c6984 from=translated src=- shape=33c4c938 vocab=6f979d7a
+-/
 theorem finite_integralClosure_of_isSeparable_tower
     (P V E M : Type*) [CommRing P] [IsDomain P] [IsNoetherianRing P]
     [Field V] [Algebra P V] [IsFractionRing P V]
@@ -141,7 +149,9 @@ variable (V Ω : Type*) [Field V] [Algebra (MvPolynomial (Fin s) k) V]
 
 /-- The purely inseparable step.  For `P = k[x₁, …, x_s]` with fraction field `V`, a perfect
 field `Ω ⊇ V`, `q = p^e` and a finite set `W ⊆ V`, the integral closure of `P` in
-`E' = V(w^{1/q} : w ∈ W) ⊆ Ω` is a finite `P`-module.-/
+`E' = V(w^{1/q} : w ∈ W) ⊆ Ω` is a finite `P`-module.
+@isnad1 id=finite.0h7v.s14.45ad61462585 from=translated src=- shape=a7372bdf vocab=1d09de82
+-/
 theorem finite_integralClosure_adjoin_roots (e : ℕ) (W : Finset V) :
     Module.Finite (MvPolynomial (Fin s) k) (integralClosure (MvPolynomial (Fin s) k)
       (IntermediateField.adjoin V
@@ -297,7 +307,9 @@ theorem finite_integralClosure_adjoin_roots (e : ℕ) (W : Finset V) :
 end RootAdjunction
 
 /-- Noether finiteness over a polynomial ring: for every finite extension `L` of
-`V = Frac(k[x₁, …, x_s])`, the integral closure of `k[x₁, …, x_s]` in `L` is finite.-/
+`V = Frac(k[x₁, …, x_s])`, the integral closure of `k[x₁, …, x_s]` in `L` is finite.
+@isnad1 id=finite.0h4v.s9.44b421834030 from=translated src=- shape=f823f4f0 vocab=da515836
+-/
 theorem finite_integralClosure_mvPolynomial (k : Type*) [Field k] (s : ℕ)
     (V L : Type*) [Field V] [Algebra (MvPolynomial (Fin s) k) V]
     [IsFractionRing (MvPolynomial (Fin s) k) V] [Field L] [Algebra (MvPolynomial (Fin s) k) L]
@@ -406,7 +418,9 @@ theorem finite_integralClosure_mvPolynomial (k : Type*) [Field k] (s : ℕ)
 
 /-- **E. Noether's finiteness theorem.**  If `A` is a finitely generated algebra over a field `k`
 and a domain with fraction field `K`, and `L / K` is a finite extension, then the integral
-closure of `A` in `L` is a finite `A`-module.-/
+closure of `A` in `L` is a finite `A`-module.
+@isnad1 id=finite.0h4v.s8.73099829b61f from=translated src=- shape=1a9734cd vocab=7379c7ba
+-/
 theorem finite_integralClosure_of_finiteType
     (k A K L : Type*) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] [Field K] [Algebra A K] [IsFractionRing A K] [Field L]
@@ -445,7 +459,9 @@ theorem finite_integralClosure_of_finiteType
       (integralClosure A L)).toLinearEquiv
   exact Module.Finite.of_restrictScalars_finite P A _
 
-/-- The normalization of a finitely generated domain over a field is finite over it.-/
+/-- The normalization of a finitely generated domain over a field is finite over it.
+@isnad1 id=finite.0h3v.s7.7dc56178116a from=translated src=- shape=2f5b40ce vocab=d00bbbd3
+-/
 theorem finite_integralClosure_fractionRing
     (k A K : Type*) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] [Field K] [Algebra A K] [IsFractionRing A K] :
@@ -458,7 +474,9 @@ open AlgebraicGeometry CategoryTheory Opposite
 
 /-- On an affine open `U` of an integral scheme locally of finite type over a field, the ring
 `Γ(U)` is finite over its integral closure in the sections of the generic-point spectrum; these
-are the rings glued by Mathlib's normalization construction.-/
+are the rings glued by Mathlib's normalization construction.
+@isnad1 id=finite.1h4v.s16.70d143f4f2d1 from=translated src=- shape=177a53ec vocab=c9ae81a9
+-/
 theorem finite_integralClosure_fromSpecStalk_app {k : Type u} [Field k] {Y : Scheme.{u}}
     [IsIntegral Y] (π : Y ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType π] {U : Y.Opens}
     (hU : IsAffineOpen U) :
@@ -520,7 +538,9 @@ theorem finite_integralClosure_fromSpecStalk_app {k : Type u} [Field k] {Y : Sch
     exact finite_integralClosure_of_algHom g e.symm.injective
 
 /-- The normalization of an integral scheme locally of finite type over a field (normalization in
-the generic-point morphism `Spec 𝒪_{Y,η} ⟶ Y`) is a finite morphism.-/
+the generic-point morphism `Spec 𝒪_{Y,η} ⟶ Y`) is a finite morphism.
+@isnad1 id=isfinite.0h3v.s7.b0ee4765792d from=translated src=- shape=e1274e40 vocab=a4ca1a0f
+-/
 theorem isFinite_fromNormalization_fromSpecStalk_genericPoint {k : Type u} [Field k]
     {Y : Scheme.{u}} [IsIntegral Y] (π : Y ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType π] :
     IsFinite (Y.fromSpecStalk (genericPoint Y)).fromNormalization := by

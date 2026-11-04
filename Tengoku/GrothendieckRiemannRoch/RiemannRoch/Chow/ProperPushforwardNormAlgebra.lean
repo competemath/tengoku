@@ -49,7 +49,9 @@ section Coker
 variable {A : Type*} [CommRing A] {M : Type*} [AddCommGroup M] [Module A M]
 
 /-- Cokernel lengths add along a composition `f ∘ g` with `f` injective:
-`0 → M/gM → M/fgM → M/fM → 0`.-/
+`0 → M/gM → M/fgM → M/fM → 0`.
+@isnad1 id=eq.1h4v.s9.c3b894194f14 from=translated src=- shape=f01894b4 vocab=bd06956c
+-/
 theorem length_quot_range_comp (f g : M →ₗ[A] M) (hf : Function.Injective f) :
     Module.length A (M ⧸ LinearMap.range (f ∘ₗ g)) =
       Module.length A (M ⧸ LinearMap.range g) + Module.length A (M ⧸ LinearMap.range f) := by
@@ -96,6 +98,9 @@ variable {A : Type*} [CommRing A] {ι : Type*} [Fintype ι] [DecidableEq ι]
 def ecoker (M : Matrix ι ι A) : ℕ∞ :=
   Module.length A ((ι → A) ⧸ LinearMap.range M.mulVecLin)
 
+/--
+@isnad1 id=injectiv.1h3v.s8.8ee698048e59 from=translated src=- shape=f0bac155 vocab=0c423416
+-/
 theorem mulVecLin_injective_of_det_ne_zero [IsDomain A] {M : Matrix ι ι A} (h : M.det ≠ 0) :
     Function.Injective M.mulVecLin := by
   intro v w hvw
@@ -104,12 +109,18 @@ theorem mulVecLin_injective_of_det_ne_zero [IsDomain A] {M : Matrix ι ι A} (h 
   simp only [mulVec_mulVec, adjugate_mul, smul_mulVec, one_mulVec] at this
   exact smul_right_injective _ h this
 
+/--
+@isnad1 id=eq.1h4v.s6.ec8678e0da7c from=translated src=- shape=0d228a5c vocab=92df8a32
+-/
 theorem ecoker_mul [IsDomain A] (M N : Matrix ι ι A) (hM : M.det ≠ 0) :
     ecoker (M * N) = ecoker N + ecoker M := by
   unfold ecoker
   rw [Matrix.mulVecLin_mul]
   exact length_quot_range_comp _ _ (mulVecLin_injective_of_det_ne_zero hM)
 
+/--
+@isnad1 id=eq.0h3v.s7.7ca3f256f48e from=translated src=- shape=a0100c5f vocab=eff60244
+-/
 theorem range_mulVecLin_diagonal (d : ι → A) :
     LinearMap.range (diagonal d).mulVecLin =
       Submodule.pi Set.univ (fun i ↦ (Ideal.span {d i} : Submodule A A)) := by
@@ -126,6 +137,9 @@ theorem range_mulVecLin_diagonal (d : ι → A) :
     rw [mulVec_diagonal, mul_comm]
     exact hw i
 
+/--
+@isnad1 id=eq.0h3v.s5.0b419499a1cb from=translated src=- shape=0095e644 vocab=58abf091
+-/
 theorem ecoker_diagonal (d : ι → A) : ecoker (diagonal d) = ∑ i, Ring.ord A (d i) := by
   unfold ecoker
   rw [range_mulVecLin_diagonal,
@@ -134,6 +148,9 @@ theorem ecoker_diagonal (d : ι → A) : ecoker (diagonal d) = ∑ i, Ring.ord A
     Module.length_pi_of_fintype]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.5090e8022378 from=translated src=- shape=d7c6a05a vocab=99a49efb
+-/
 theorem ecoker_eq_zero_of_mul_eq_one {M N : Matrix ι ι A} (h : M * N = 1) : ecoker M = 0 := by
   unfold ecoker
   have : LinearMap.range M.mulVecLin = ⊤ := by
@@ -146,6 +163,9 @@ theorem ecoker_eq_zero_of_mul_eq_one {M N : Matrix ι ι A} (h : M * N = 1) : ec
 
 variable [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A]
 
+/--
+@isnad1 id=ne.1h3v.s6.ec534b5d7fdb from=translated src=- shape=08293e3a vocab=d2dc2890
+-/
 theorem ecoker_ne_top {M : Matrix ι ι A} (h : M.det ≠ 0) : ecoker M ≠ ⊤ := by
   have hmul : M * M.adjugate = diagonal (fun _ ↦ M.det) := by
     rw [mul_adjugate, smul_one_eq_diagonal]
@@ -171,8 +191,14 @@ variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullD
 def ordE (M : Matrix ι ι A) : WithZero (Multiplicative ℤ) :=
   ((Multiplicative.ofAdd ((ecoker M).toNat : ℤ) : Multiplicative ℤ) : WithZero (Multiplicative ℤ))
 
+/--
+@isnad1 id=ne.0h3v.s6.2e3c83699d44 from=translated src=- shape=736b8c81 vocab=6b55a02b
+-/
 theorem ordE_ne_zero (M : Matrix ι ι A) : ordE M ≠ 0 := WithZero.coe_ne_zero
 
+/--
+@isnad1 id=eq.2h4v.s7.b3fd946f1533 from=translated src=- shape=58ba5118 vocab=d9b324a0
+-/
 theorem ordE_mul (M N : Matrix ι ι A) (hM : M.det ≠ 0) (hN : N.det ≠ 0) :
     ordE (M * N) = ordE M * ordE N := by
   unfold ordE
@@ -181,6 +207,9 @@ theorem ordE_mul (M N : Matrix ι ι A) (hM : M.det ≠ 0) (hN : N.det ≠ 0) :
   rw [ofAdd_add, WithZero.coe_mul, mul_comm]
 
 omit [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A] in
+/--
+@isnad1 id=eq.1h2v.s7.3ce5f4898310 from=translated src=- shape=8e44d942 vocab=6d1d90e7
+-/
 theorem ordMonoidWithZeroHom_eq_ofAdd_toNat [IsDomain A] [IsNoetherianRing A]
     [Ring.KrullDimLE 1 A] {a : A} (ha : a ≠ 0) :
     Ring.ordMonoidWithZeroHom A a =
@@ -189,6 +218,9 @@ theorem ordMonoidWithZeroHom_eq_ofAdd_toNat [IsDomain A] [IsNoetherianRing A]
   Ring.ordMonoidWithZeroHom_eq_coe A (mem_nonZeroDivisors_iff_ne_zero.mpr ha)
     (ENat.natCast_toNat (Ring.ord_ne_top (mem_nonZeroDivisors_iff_ne_zero.mpr ha))).symm
 
+/--
+@isnad1 id=eq.1h4v.s8.871eda5716ff from=translated src=- shape=a8f04dd9 vocab=1176641a
+-/
 theorem ordE_diagonal (d : ι → A) (hd : ∀ i, d i ≠ 0) :
     ordE (diagonal d) = ∏ i, Ring.ordFrac A (algebraMap A K (d i)) := by
   unfold ordE
@@ -205,11 +237,17 @@ theorem ordE_diagonal (d : ι → A) (hd : ∀ i, d i ≠ 0) :
   exact map_prod (WithZero.coeMonoidHom : Multiplicative ℤ →* WithZero (Multiplicative ℤ)) _ _
 
 omit [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A] [IsFractionRing A K] in
+/--
+@isnad1 id=eq.0h4v.s7.b6260ecf9f06 from=translated src=- shape=fc0430d0 vocab=bb60a99b
+-/
 theorem det_map_algebraMap (M : Matrix ι ι A) :
     (M.map (algebraMap A K)).det = algebraMap A K M.det := by
   rw [RingHom.map_det]; rfl
 
 omit [IsNoetherianRing A] [Ring.KrullDimLE 1 A] in
+/--
+@isnad1 id=ne.1h4v.s7.2a99b0cf0566 from=translated src=- shape=df012209 vocab=7b218833
+-/
 theorem det_map_ne_zero {M : Matrix ι ι A} (h : M.det ≠ 0) :
     (M.map (algebraMap A K)).det ≠ 0 := by
   rw [det_map_algebraMap]
@@ -220,6 +258,9 @@ def IsRep (N : Matrix ι ι K) (d : A) (M : Matrix ι ι A) : Prop :=
   d ≠ 0 ∧ ∀ i j, algebraMap A K (M i j) = algebraMap A K d * N i j
 
 omit [IsNoetherianRing A] [Ring.KrullDimLE 1 A] in
+/--
+@isnad1 id=ex.0h4v.s6.3ae124cd7017 from=translated src=- shape=de1f9cfa vocab=93499cec
+-/
 theorem exists_rep (N : Matrix ι ι K) : ∃ d M, IsRep (A := A) N d M := by
   obtain ⟨⟨b, hb⟩, hint⟩ := IsLocalization.exist_integer_multiples_of_finite
     (nonZeroDivisors A) (fun p : ι × ι ↦ N p.1 p.2)
@@ -230,6 +271,9 @@ theorem exists_rep (N : Matrix ι ι K) : ∃ d M, IsRep (A := A) N d M := by
   simp [Algebra.smul_def]
 
 omit [IsNoetherianRing A] [Ring.KrullDimLE 1 A] in
+/--
+@isnad1 id=ne.2h6v.s6.08850ca6a1ed from=translated src=- shape=88cb2963 vocab=cc1053e6
+-/
 theorem IsRep.det_ne_zero {N : Matrix ι ι K} {d : A} {M : Matrix ι ι A} (h : IsRep N d M)
     (hN : N.det ≠ 0) : M.det ≠ 0 := by
   intro h0
@@ -243,6 +287,9 @@ theorem IsRep.det_ne_zero {N : Matrix ι ι K} {d : A} {M : Matrix ι ι A} (h :
   exact (mul_ne_zero (pow_ne_zero _ hd) hN) this.symm
 
 omit [IsNoetherianRing A] [Ring.KrullDimLE 1 A] in
+/--
+@isnad1 id=eq.1h6v.s7.f4e7df79cda2 from=translated src=- shape=06315a4b vocab=a280d619
+-/
 theorem det_map_eq {N : Matrix ι ι K} {d : A} {M : Matrix ι ι A} (h : IsRep N d M) :
     algebraMap A K M.det = algebraMap A K d ^ Fintype.card ι * N.det := by
   have hmap : M.map (algebraMap A K) = algebraMap A K d • N := by
@@ -251,12 +298,17 @@ theorem det_map_eq {N : Matrix ι ι K} {d : A} {M : Matrix ι ι A} (h : IsRep 
   change (M.map (algebraMap A K)).det = _
   rw [hmap, det_smul]
 
+/--
+@isnad1 id=eq.2h5v.s8.2766385962b8 from=translated src=- shape=a0b44fb1 vocab=2a4e0aac
+-/
 theorem ordE_smul (c : A) (hc : c ≠ 0) (M : Matrix ι ι A) (hM : M.det ≠ 0) :
     ordE (c • M) = Ring.ordFrac A (algebraMap A K c) ^ Fintype.card ι * ordE M := by
   rw [smul_eq_diagonal_mul, ordE_mul _ _ (by simp [det_diagonal, hc]) hM,
     ordE_diagonal (K := K) _ (fun _ ↦ hc), Finset.prod_const, Finset.card_univ]
 
-/-- Well-definedness of the rational extension of `ordE`.-/
+/-- Well-definedness of the rational extension of `ordE`.
+@isnad1 id=eq.3h8v.s9.e19953995b22 from=translated src=- shape=7bfefc50 vocab=eaf8c8ae
+-/
 theorem rep_wd {N : Matrix ι ι K} (hN : N.det ≠ 0) {d d' : A} {M M' : Matrix ι ι A}
     (h : IsRep N d M) (h' : IsRep N d' M') :
     Ring.ordFrac A (algebraMap A K d') ^ Fintype.card ι * ordE M =
@@ -273,6 +325,9 @@ def Good (N : Matrix ι ι K) : Prop :=
   ∀ d M, IsRep N d M → ordE M = Ring.ordFrac A (algebraMap A K d) ^ Fintype.card ι *
     Ring.ordFrac A N.det
 
+/--
+@isnad1 id=good.3h6v.s8.dfcd17390c7a from=translated src=- shape=78894c14 vocab=3f205bf1
+-/
 theorem good_of_exists {N : Matrix ι ι K} (hN : N.det ≠ 0) {d : A} {M : Matrix ι ι A}
     (h : IsRep N d M)
     (hM : ordE M = Ring.ordFrac A (algebraMap A K d) ^ Fintype.card ι * Ring.ordFrac A N.det) :
@@ -287,6 +342,9 @@ theorem good_of_exists {N : Matrix ι ι K} (hN : N.det ≠ 0) {d : A} {M : Matr
   rw [← hw]
   simp only [mul_comm, mul_assoc, mul_left_comm]
 
+/--
+@isnad1 id=good.4h5v.s7.5fde65927705 from=translated src=- shape=80818734 vocab=3058e3f6
+-/
 theorem good_mul {N₁ N₂ : Matrix ι ι K} (h₁ : N₁.det ≠ 0) (h₂ : N₂.det ≠ 0)
     (g₁ : Good (A := A) N₁) (g₂ : Good (A := A) N₂) : Good (A := A) (N₁ * N₂) := by
   obtain ⟨d₁, M₁, r₁⟩ := exists_rep (A := A) N₁
@@ -301,6 +359,9 @@ theorem good_mul {N₁ N₂ : Matrix ι ι K} (h₁ : N₁.det ≠ 0) (h₂ : N�
     map_mul, map_mul, map_mul, mul_pow]
   simp only [mul_comm, mul_assoc, mul_left_comm]
 
+/--
+@isnad1 id=good.1h4v.s7.872c81962949 from=translated src=- shape=7e10480c vocab=9253e210
+-/
 theorem good_diagonal (D : ι → K) (hD : (diagonal D).det ≠ 0) : Good (A := A) (diagonal D) := by
   have hD' : ∀ i, D i ≠ 0 := by
     intro i h0
@@ -329,9 +390,15 @@ theorem good_diagonal (D : ι → K) (hD : (diagonal D).det ≠ 0) : Good (A := 
   rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ]
 
 omit [IsNoetherianRing A] [Ring.KrullDimLE 1 A] in
+/--
+@isnad1 id=isrep.0h4v.s7.c22afc7302b6 from=translated src=- shape=2f64c9ad vocab=f4cff6f6
+-/
 theorem isRep_map (M : Matrix ι ι A) : IsRep (M.map (algebraMap A K)) 1 M :=
   ⟨one_ne_zero, fun i j ↦ by simp⟩
 
+/--
+@isnad1 id=good.1h6v.s7.567c114d577a from=translated src=- shape=9b82fb67 vocab=bb02d951
+-/
 theorem good_map_transvection (i j : ι) (hij : i ≠ j) (α : A) :
     Good (A := A) ((transvection i j α).map (algebraMap A K)) := by
   have hdet : (transvection i j α).det = 1 := det_transvection_of_ne i j hij α
@@ -344,6 +411,9 @@ theorem good_map_transvection (i j : ι) (hij : i ≠ j) (α : A) :
     (by rw [transvection_mul_transvection_same i j hij, add_neg_cancel, transvection_zero])]
   rfl
 
+/--
+@isnad1 id=good.4h5v.s8.b9403d4f3603 from=translated src=- shape=9b43f0f1 vocab=ac0e4bf6
+-/
 theorem good_cancel (M₀ : Matrix ι ι A) (h₀ : M₀.det ≠ 0) {T : Matrix ι ι K} (hT : T.det ≠ 0)
     (g₀ : Good (A := A) (M₀.map (algebraMap A K)))
     (g : Good (A := A) (M₀.map (algebraMap A K) * T)) : Good (A := A) T := by
@@ -365,6 +435,9 @@ theorem good_cancel (M₀ : Matrix ι ι A) (h₀ : M₀.det ≠ 0) {T : Matrix 
   rw [e1]
   simp only [mul_comm, mul_assoc, mul_left_comm]
 
+/--
+@isnad1 id=good.0h4v.s6.ed997f3b8602 from=translated src=- shape=32a51240 vocab=956dfa74
+-/
 theorem good_transvection (t : TransvectionStruct ι K) : Good (A := A) t.toMatrix := by
   obtain ⟨α, β, hβ, hc⟩ := IsFractionRing.div_surjective (A := A) t.c
   have hβ0 : β ≠ 0 := nonZeroDivisors.ne_zero hβ
@@ -414,6 +487,9 @@ theorem good_transvection (t : TransvectionStruct ι K) : Good (A := A) t.toMatr
   refine good_mul hTK ?_ (good_map_transvection _ _ t.hij α) g₀
   rw [hmapdiag]; exact hdetK
 
+/--
+@isnad1 id=good.1h4v.s6.4e39eac90efc from=translated src=- shape=f77af7cf vocab=7801b55b
+-/
 theorem good_of_det_ne_zero (N : Matrix ι ι K) (hN : N.det ≠ 0) : Good (A := A) N :=
   diagonal_transvection_induction_of_det_ne_zero (fun N ↦ Good (A := A) N) N hN
     (fun D hD ↦ good_diagonal D hD) (fun t ↦ good_transvection t)
@@ -428,7 +504,9 @@ variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullD
 
 /-- **Fulton A.2 (free case)**: over a one-dimensional Noetherian local domain — in fact over
 any one-dimensional Noetherian domain — the cokernel of a square matrix with nonzero determinant
-has length `ord (det M)`.-/
+has length `ord (det M)`.
+@isnad1 id=eq.1h3v.s6.7332673abbad from=translated src=- shape=7ddb4fa7 vocab=2cdcaaff
+-/
 theorem ecoker_eq_ord_det (M : Matrix ι ι A) (h : M.det ≠ 0) : ecoker M = Ring.ord A M.det := by
   have g := good_of_det_ne_zero (A := A) (M.map (algebraMap A (FractionRing A)))
     (det_map_ne_zero h)
@@ -448,11 +526,16 @@ section Lattice
 
 variable {A : Type*} [CommRing A]
 
+/--
+@isnad1 id=eq.2h3v.s5.29048a017bc8 from=translated src=- shape=4e5f7a49 vocab=5eaa51e5
+-/
 theorem enat_cancel {a b c : ℕ∞} (hc : c ≠ ⊤) (h : a + c = b + c) : a = b := by
   lift c to ℕ using hc
   exact (ENat.add_left_injective_of_ne_top (ENat.natCast_ne_top c)) h
 
-/-- Cokernel lengths add along a composition `f ∘ g` with `f` injective (general form).-/
+/-- Cokernel lengths add along a composition `f ∘ g` with `f` injective (general form).
+@isnad1 id=eq.1h6v.s9.1d6d9ce9e74b from=translated src=- shape=e0f36c9d vocab=bd06956c
+-/
 theorem length_quot_range_comp' {M N P : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N]
     [Module A N] [AddCommGroup P] [Module A P] (f : N →ₗ[A] P) (g : M →ₗ[A] N)
     (hf : Function.Injective f) :
@@ -496,7 +579,9 @@ variable [IsDomain A] {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- The lattice comparison: if an injective endomorphism `φ` of `B` restricts, along an
 injective `Φ : Aⁿ → B` with finite-length cokernel, to the matrix `M`, then the cokernel of `φ`
-has the same length as the cokernel of `M`.-/
+has the same length as the cokernel of `M`.
+@isnad1 id=eq.4h6v.s10.f4c425ff86c5 from=translated src=- shape=a05b50dd vocab=dbba9073
+-/
 theorem length_coker_eq_ecoker (Φ : (ι → A) →ₗ[A] B) (hΦ : Function.Injective Φ)
     (φ : B →ₗ[A] B) (hφ : Function.Injective φ) (M : Matrix ι ι A)
     (hcomm : φ ∘ₗ Φ = Φ ∘ₗ M.mulVecLin) (hfin : Module.length A (B ⧸ LinearMap.range Φ) ≠ ⊤) :
@@ -515,7 +600,9 @@ variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullD
   {L : Type*} [Field L] [Algebra K L] [FiniteDimensional K L] [Algebra A L] [IsScalarTower A K L]
   {B : Type*} [CommRing B] [Algebra A B] [Module.Finite A B] [Algebra B L] [IsScalarTower A B L]
 
-/-- Scalar multiplication cokernels of a finite module have finite length.-/
+/-- Scalar multiplication cokernels of a finite module have finite length.
+@isnad1 id=ne.1h3v.s10.a808a316e254 from=translated src=- shape=36e57b94 vocab=411d4f40
+-/
 theorem length_quot_smul_ne_top (d : A) (hd : d ≠ 0) :
     Module.length A (B ⧸ LinearMap.range (d • (LinearMap.id : B →ₗ[A] B))) ≠ ⊤ := by
   obtain ⟨m, f, hf⟩ := Module.Finite.exists_fin' A B
@@ -539,6 +626,9 @@ theorem length_quot_smul_ne_top (d : A) (hd : d ≠ 0) :
     rw [Matrix.det_diagonal]; exact Finset.prod_ne_zero_iff.mpr fun _ _ ↦ hd)
 
 omit [Module.Finite A B] in
+/--
+@isnad1 id=eq.0h3v.s7.ed6f3d2a1348 from=translated src=- shape=406dbfb5 vocab=f2d28439
+-/
 theorem range_mulLeft_eq (b : B) :
     LinearMap.range (LinearMap.mulLeft A b) = (Ideal.span {b}).restrictScalars A := by
   ext x
@@ -549,6 +639,9 @@ theorem range_mulLeft_eq (b : B) :
   · rintro ⟨y, rfl⟩; exact ⟨y, mul_comm _ _⟩
 
 omit [Module.Finite A B] in
+/--
+@isnad1 id=eq.0h3v.s9.8677d3b4f717 from=translated src=- shape=6b7fa8ac vocab=c37ecf1b
+-/
 theorem length_quot_span_eq (b : B) :
     Module.length A (B ⧸ Ideal.span {b}) =
       Module.length A (B ⧸ LinearMap.range (LinearMap.mulLeft A b)) := by
@@ -561,6 +654,9 @@ include hinj
 
 omit [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A] [IsFractionRing A K]
   [FiniteDimensional K L] [IsScalarTower A K L] [Module.Finite A B] [IsScalarTower A B L] in
+/--
+@isnad1 id=injectiv.2h4v.s8.fa0d025f0250 from=translated src=- shape=dfbb4b85 vocab=c262d437
+-/
 theorem mulLeft_injective {x : B} (hx : x ≠ 0) :
     Function.Injective (LinearMap.mulLeft A x) := by
   intro y z hyz
@@ -573,7 +669,9 @@ theorem mulLeft_injective {x : B} (hx : x ≠ 0) :
 include hspan
 
 /-- **Fulton A.2/A.3 (lattice form)**: for a finite `A`-algebra `B ⊆ L` spanning `L` over
-`K = Frac A` (`A` a one-dimensional Noetherian domain), `ℓ_A(B/bB) = ord_A (N_{L/K} b)`.-/
+`K = Frac A` (`A` a one-dimensional Noetherian domain), `ℓ_A(B/bB) = ord_A (N_{L/K} b)`.
+@isnad1 id=and.3h5v.s10.cc448504a7a3 from=translated src=- shape=fd2d9d0b vocab=1034f13e
+-/
 theorem length_quot_eq_ordFrac_norm (b : B) (hb : b ≠ 0) :
     Module.length A (B ⧸ Ideal.span {b}) ≠ ⊤ ∧
       Ring.ordFrac A (Algebra.norm K (algebraMap B L b)) =
@@ -720,7 +818,9 @@ section SmulFinite
 variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A]
   {B : Type*} [AddCommGroup B] [Module A B] [Module.Finite A B]
 
-/-- Scalar multiplication cokernels of a finite module have finite length.-/
+/-- Scalar multiplication cokernels of a finite module have finite length.
+@isnad1 id=ne.1h3v.s9.097f3fa3a8bd from=translated src=- shape=4431e939 vocab=1c882494
+-/
 theorem length_quot_smul_ne_top' (d : A) (hd : d ≠ 0) :
     Module.length A (B ⧸ LinearMap.range (d • (LinearMap.id : B →ₗ[A] B))) ≠ ⊤ := by
   obtain ⟨m, f, hf⟩ := Module.Finite.exists_fin' A B
@@ -752,7 +852,9 @@ variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullD
   {L : Type*} [Field L] [Algebra K L] [Algebra A L] [IsScalarTower A K L]
 
 /-- Lattice data: a family `γ` in a finite `A`-module `B ⊆ L` whose image is a `K`-basis of the
-`K`-span of `B` gives an injective `Φ : Aˢ → B` with finite-length cokernel.-/
+`K`-span of `B` gives an injective `Φ : Aˢ → B` with finite-length cokernel.
+@isnad1 id=and.3h7v.s10.9ecb2f3eefc3 from=translated src=- shape=65c10522 vocab=b0ff107a
+-/
 theorem lattice_data {B : Type*} [AddCommGroup B] [Module A B] [Module.Finite A B]
     (ι : B →ₗ[A] L) (hι : Function.Injective ι) {s : Type*} [Fintype s] (γ : s → B)
     (hli : LinearIndependent K (ι ∘ γ))
@@ -814,7 +916,9 @@ variable [FiniteDimensional K L]
 variable (A K) in
 include A K in
 /-- **Krull–Akizuki, length part**: `C/aC` has finite `A`-length for `0 ≠ a ∈ A`, whenever the
-domain `C ⊇ A` embeds in a finite extension `L` of `K = Frac A`.-/
+domain `C ⊇ A` embeds in a finite extension `L` of `K = Frac A`.
+@isnad1 id=ne.2h5v.s9.0d54e9c553eb from=translated src=- shape=bd34598d vocab=5bf59597
+-/
 theorem length_quot_algebraMap_ne_top (hCL : Function.Injective (algebraMap C L)) (a : A)
     (ha : a ≠ 0) : Module.length A (C ⧸ Ideal.span {algebraMap A C a}) ≠ ⊤ := by
   classical
@@ -921,7 +1025,9 @@ theorem length_quot_algebraMap_ne_top (hCL : Function.Injective (algebraMap C L)
 variable (A K) in
 include A K in
 /-- **Krull–Akizuki, dimension part**: a domain `C ⊇ A` embedding in a finite extension of
-`Frac A`, with `A` a one-dimensional Noetherian domain, has dimension `≤ 1`.-/
+`Frac A`, with `A` a one-dimensional Noetherian domain, has dimension `≤ 1`.
+@isnad1 id=krulldim.1h4v.s8.97b7eb81162d from=translated src=- shape=9571a498 vocab=3141c2ca
+-/
 theorem krullDimLE_one_of_finite (hCL : Function.Injective (algebraMap C L)) :
     Ring.KrullDimLE 1 C := by
   rw [Ring.krullDimLE_one_iff]
@@ -961,16 +1067,24 @@ section LocQuot
 
 variable {B D : Type*} [CommRing B] [CommRing D] [Algebra B D]
 
+/--
+@isnad1 id=isprime.1h3v.s8.84b272b30b16 from=translated src=- shape=60637fd9 vocab=23c3747e
+-/
 theorem map_mk_isPrime (m : Ideal B) [m.IsPrime] (I : Ideal B) (hI : I ≤ m) :
     (m.map (Ideal.Quotient.mk I)).IsPrime :=
   Ideal.map_isPrime_of_surjective Ideal.Quotient.mk_surjective (by rwa [Ideal.mk_ker])
 
+/--
+@isnad1 id=iff.1h4v.s9.97a1a25b829f from=translated src=- shape=b0b08ce1 vocab=309880db
+-/
 theorem mem_map_mk_iff (m : Ideal B) (I : Ideal B) (hI : I ≤ m) (x : B) :
     Ideal.Quotient.mk I x ∈ m.map (Ideal.Quotient.mk I) ↔ x ∈ m := by
   rw [← Ideal.mem_comap, Ideal.comap_map_of_surjective' _ Ideal.Quotient.mk_surjective,
     Ideal.mk_ker, sup_eq_left.mpr hI]
 
-/-- Localization commutes with quotients: `(D/ID)` is the localization of `B/I` at `m/I`.-/
+/-- Localization commutes with quotients: `(D/ID)` is the localization of `B/I` at `m/I`.
+@isnad1 id=atprime.1h4v.s9.dc9e8cac049f from=translated src=- shape=e48033a8 vocab=1aee1d66
+-/
 theorem isLocalization_quotient (m : Ideal B) [m.IsPrime] [IsLocalization.AtPrime D m]
     (I : Ideal B) (hI : I ≤ m) :
     letI : Algebra (B ⧸ I) (D ⧸ I.map (algebraMap B D)) :=
@@ -1020,13 +1134,18 @@ section CRT
 
 variable {A : Type*} [CommRing A] {B : Type*} [CommRing B] [Algebra A B]
 
+/--
+@isnad1 id=eq.0h3v.s7.252abeb78598 from=translated src=- shape=f521ea52 vocab=08e6632e
+-/
 theorem span_map_eq {D : Type*} [CommRing D] [Algebra B D] (b : B) :
     (Ideal.span {b}).map (algebraMap B D) = Ideal.span {algebraMap B D b} := by
   rw [Ideal.map_span, Set.image_singleton]
 
 /-- **Chinese remainder for lengths**: if `B/bB` is Artinian, its `A`-length is the sum of the
 `A`-lengths of `D_t / b D_t` over any family of localizations `D_t = B_{m_t}` indexed
-bijectively by (a superset of) the primes containing `b`.-/
+bijectively by (a superset of) the primes containing `b`.
+@isnad1 id=eq.2h6v.s9.b66a5aaf98c7 from=translated src=- shape=268748a5 vocab=e0159bf1
+-/
 theorem length_eq_sum_localizations (b : B) [IsArtinianRing (B ⧸ Ideal.span {b})]
     {T : Type*} [Fintype T] (m : T → Ideal B) [hm : ∀ t, (m t).IsPrime]
     (D : T → Type*) [∀ t, CommRing (D t)] [∀ t, Algebra B (D t)] [∀ t, Algebra A (D t)]
@@ -1101,7 +1220,9 @@ variable {R S : Type*} [CommRing R] [CommRing S] [IsDomain R] [IsDomain S] [Alge
   [IsFractionRing S L] [Algebra K L] [Algebra R L] [IsScalarTower R K L] [IsScalarTower R S L]
 
 omit [IsDomain R] [IsDomain S] in
-/-- If `S` is integral over `R`, the image of `S` spans `L = Frac S` over `K = Frac R`.-/
+/-- If `S` is integral over `R`, the image of `S` spans `L = Frac S` over `K = Frac R`.
+@isnad1 id=eq.0h4v.s8.c5a0374e6d07 from=translated src=- shape=2e21f46a vocab=ab4e49db
+-/
 theorem span_range_eq_top [Algebra.IsIntegral R S] :
     Submodule.span K (Set.range (algebraMap S L)) = ⊤ := by
   set W := Submodule.span K (Set.range (algebraMap S L)) with hW
@@ -1160,7 +1281,9 @@ variable {T : Type*} [Fintype T] (Q : T → Ideal S) [hQ : ∀ t, (Q t).IsPrime]
 
 /-- **Fulton A.3 (local form)**: for a finite extension `R → S` of domains, a height-one prime
 `p` of `R` with `A = R_p`, the stalks `D t = S_{Q t}` at the primes over `p`, and `0 ≠ b ∈ S`,
-`ord_A (N_{L/K} b) = Σ_t ℓ_A (D_t / b D_t)`.-/
+`ord_A (N_{L/K} b) = Σ_t ℓ_A (D_t / b D_t)`.
+@isnad1 id=and.5h10v.s11.097e3ec11af4 from=translated src=- shape=836700f1 vocab=d038c339
+-/
 theorem local_formula
     (hDtower : ∀ t r, algebraMap A (D t) (algebraMap R A r) =
       algebraMap S (D t) (algebraMap R S r))

@@ -35,14 +35,18 @@ variable {A : Type v} [AddCommGroup A]
 def alternatingSum (n : ℕ) (term : ℕ → A) : A :=
   ∑ i ∈ Finset.range (n + 1), ((-1 : ℤ) ^ i) • term i
 
-/-- Additive homomorphisms commute with finite alternating sums.-/
+/-- Additive homomorphisms commute with finite alternating sums.
+@isnad1 id=eq.0h5v.s7.6cb8beaf681a from=translated src=- shape=8b76d7e9 vocab=24a40fff
+-/
 theorem map_alternatingSum {B : Type w} [AddCommGroup B] (f : A →+ B)
     (n : ℕ) (term : ℕ → A) :
     f (alternatingSum n term) = alternatingSum n (fun i => f (term i)) := by
   simp [alternatingSum]
 
 /-- Adjacent boundary terms cancel in an alternating sum.  The displayed endpoint is retained
-so that the actual bounded long-exact-sequence theorem only has to set it to zero.-/
+so that the actual bounded long-exact-sequence theorem only has to set it to zero.
+@isnad1 id=eq.1h3v.s7.0610eedfd990 from=translated src=- shape=8896c2eb vocab=78e8141a
+-/
 theorem alternating_boundary_sum (w : ℕ → A) (hzero : w 0 = 0) (n : ℕ) :
     (∑ i ∈ Finset.range n, ((-1 : ℤ) ^ i) • (w i + w (i + 1))) =
       -(((-1 : ℤ) ^ n) • w n) := by
@@ -80,7 +84,9 @@ structure LongExactWitness (n : ℕ) (a b c : ℕ → A) where
   /-- Kernel/image decomposition of `Cᵢ`.-/
   rightDecomposition : ∀ i, c i = v i + w (i + 1)
 
-/-- A bounded long exact sequence gives additivity of finite alternating sums.-/
+/-- A bounded long exact sequence gives additivity of finite alternating sums.
+@isnad1 id=eq.0h6v.s5.6685fb592264 from=translated src=- shape=e6c270eb vocab=025ad3e3
+-/
 theorem LongExactWitness.euler_additive {n : ℕ} {a b c : ℕ → A}
     (W : LongExactWitness n a b c) :
     alternatingSum n b = alternatingSum n a + alternatingSum n c := by
@@ -148,6 +154,9 @@ def derivedPushforward (n : ℕ) (higherClass : Object → ℕ → A)
   ExactGrothendieck.lift (fun X => alternatingSum n (higherClass X)) fun X Y Z h =>
     (hlong X Y Z h).euler_additive
 
+/--
+@isnad1 id=eq.0h7v.s7.e746ceda7189 from=translated src=- shape=0fc03828 vocab=1bee95d5
+-/
 @[simp]
 theorem derivedPushforward_classOf (n : ℕ) (higherClass : Object → ℕ → A)
     (hlong : ∀ X Y Z, Exact X Y Z →
@@ -158,7 +167,9 @@ theorem derivedPushforward_classOf (n : ℕ) (higherClass : Object → ℕ → A
   ExactGrothendieck.lift_classOf _ _ _
 
 /-- Degreewise derived base change implies a commuting square for the constructed virtual
-derived pushforwards.-/
+derived pushforwards.
+@isnad1 id=eq.1h14v.s8.4a5142332e72 from=translated src=- shape=6151b80c vocab=91a4ee0f
+-/
 theorem derivedPushforward_baseChange_of_degreewise
     {Object' : Type v} {Exact' : Object' → Object' → Object' → Prop}
     {B : Type w} [AddCommGroup B]

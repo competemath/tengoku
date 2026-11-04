@@ -31,14 +31,18 @@ class FiniteDimBase (R : Type u) [CommRing R] : Prop where
   krullDim_lt_top : ringKrullDim R < ⊤
 
 /-- A ring of Krull dimension `≤ n` (`Ring.KrullDimLE n R`) has finite Krull dimension.  Not an
-instance (the bound `n` is not inferable from the goal); use `FiniteDimBase.of_krullDimLE`.-/
+instance (the bound `n` is not inferable from the goal); use `FiniteDimBase.of_krullDimLE`.
+@isnad1 id=finitedi.0h2v.s4.831d4cced66b from=translated src=- shape=8416ce64 vocab=8e222913
+-/
 theorem finiteDimBase_of_krullDimLE (R : Type u) [CommRing R] (n : ℕ) [Ring.KrullDimLE n R] :
     FiniteDimBase R :=
   ⟨lt_of_le_of_lt (Ring.krullDimLE_iff.1 inferInstance) (natCast_lt_top n)⟩
 
 namespace FiniteDimBase
 
-/-- Alias of `M1.finiteDimBase_of_krullDimLE`.-/
+/-- Alias of `M1.finiteDimBase_of_krullDimLE`.
+@isnad1 id=finitedi.0h2v.s4.831d4cced66b from=translated src=- shape=8416ce64 vocab=8e222913
+-/
 theorem of_krullDimLE (R : Type u) [CommRing R] (n : ℕ) [Ring.KrullDimLE n R] :
     FiniteDimBase R :=
   finiteDimBase_of_krullDimLE R n
@@ -47,6 +51,9 @@ theorem of_krullDimLE (R : Type u) [CommRing R] (n : ℕ) [Ring.KrullDimLE n R] 
 noncomputable def d (R : Type u) [CommRing R] [FiniteDimBase R] : ℕ :=
   ((ringKrullDim R).unbotD 0).toNat
 
+/--
+@isnad1 id=le.0h1v.s5.e33f0dc0b47d from=translated src=- shape=ce4e938c vocab=e62be8e3
+-/
 theorem ringKrullDim_le (R : Type u) [CommRing R] [FiniteDimBase R] :
     ringKrullDim R ≤ (d R : WithBot ℕ∞) := by
   have h := FiniteDimBase.krullDim_lt_top (R := R)

@@ -36,10 +36,16 @@ def grade (i : ι) : AddSubgroup (A ⧸ J) :=
   (𝒜 i).map (Ideal.Quotient.mk J).toAddMonoidHom
 
 omit [DecidableEq ι] [AddMonoid ι] [GradedRing 𝒜] in
+/--
+@isnad1 id=mem.1h6v.s8.05824a8593ce from=translated src=- shape=4cdb94fa vocab=df352948
+-/
 theorem mk_mem_grade {i : ι} {a : A} (ha : a ∈ 𝒜 i) :
     Ideal.Quotient.mk J a ∈ grade 𝒜 J i :=
   ⟨a, ha, rfl⟩
 
+/--
+@isnad1 id=gradedmo.0h4v.s7.2b2aee578864 from=translated src=- shape=4f4f2fbb vocab=875f1735
+-/
 instance gradedMonoid : SetLike.GradedMonoid (grade 𝒜 J) where
   one_mem := ⟨1, SetLike.GradedOne.one_mem, map_one (Ideal.Quotient.mk J)⟩
   mul_mem := by
@@ -56,12 +62,18 @@ def reduce (i : ι) : 𝒜 i →+ grade 𝒜 J i where
 def decompose₀ : A →+ ⨁ i, grade 𝒜 J i :=
   (DirectSum.map (reduce 𝒜 J)).comp (decomposeAddEquiv 𝒜).toAddMonoidHom
 
+/--
+@isnad1 id=eq.2h5v.s13.2add42cd3f61 from=translated src=- shape=05d441a2 vocab=61afa354
+-/
 theorem decompose₀_eq_zero (hJ : J.IsHomogeneous 𝒜) {a : A} (ha : a ∈ J) :
     decompose₀ 𝒜 J a = 0 := by
   ext i
   change ((reduce 𝒜 J i) (decompose 𝒜 a i) : A ⧸ J) = 0
   exact Ideal.Quotient.eq_zero_iff_mem.mpr (hJ i ha)
 
+/--
+@isnad1 id=eq.0h5v.s13.6bcf2e658ce8 from=translated src=- shape=300aa2a6 vocab=c7da3aee
+-/
 theorem coe_decompose₀ (a : A) :
     DirectSum.coeAddMonoidHom (grade 𝒜 J) (decompose₀ 𝒜 J a) = Ideal.Quotient.mk J a := by
   have key : (DirectSum.coeAddMonoidHom (grade 𝒜 J)).comp (DirectSum.map (reduce 𝒜 J)) =
@@ -83,6 +95,9 @@ include hJ
 def decomposeQ : A ⧸ J →+ ⨁ i, grade 𝒜 J i :=
   QuotientAddGroup.lift J.toAddSubgroup (decompose₀ 𝒜 J) (fun _ ha ↦ decompose₀_eq_zero 𝒜 J hJ ha)
 
+/--
+@isnad1 id=eq.1h5v.s13.bdf8400483a6 from=translated src=- shape=37f08a2b vocab=f78e7ebe
+-/
 theorem decomposeQ_mk (a : A) : decomposeQ 𝒜 J hJ (Ideal.Quotient.mk J a) = decompose₀ 𝒜 J a := rfl
 
 /-- **The quotient of a graded ring by a homogeneous ideal is graded.**-/
@@ -111,12 +126,18 @@ def gradedRing : GradedRing (grade 𝒜 J) where
   toGradedMonoid := gradedMonoid 𝒜 J
   toDecomposition := decomposition 𝒜 J hJ
 
+/--
+@isnad1 id=eq.1h6v.s12.71d2e799877b from=translated src=- shape=cde6a533 vocab=9866198b
+-/
 theorem coe_decompose_mk (a : A) (i : ι) :
     letI := gradedRing 𝒜 J hJ
     ((decompose (grade 𝒜 J) (Ideal.Quotient.mk J a) i : grade 𝒜 J i) : A ⧸ J) =
       Ideal.Quotient.mk J (decompose 𝒜 a i) := rfl
 
 omit hJ in
+/--
+@isnad1 id=le.1h3v.s9.53e7209b61f7 from=translated src=- shape=c8c06dc6 vocab=ac70e628
+-/
 theorem irrelevant_le_map (𝒜' : ℕ → AddSubgroup A) [GradedRing 𝒜']
     (J' : Ideal A) (hJ' : J'.IsHomogeneous 𝒜') :
     letI := gradedRing 𝒜' J' hJ'

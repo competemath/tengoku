@@ -48,12 +48,18 @@ def RegOn [IrreducibleSpace X] (g : X.functionField) (W : X.Opens) : Prop :=
 def ratLocus [IrreducibleSpace X] (g : X.functionField) : X.Opens :=
   sSup {W : X.Opens | RegOn g W}
 
+/--
+@isnad1 id=le.1h3v.s6.84dd8c790038 from=translated src=- shape=29fde6d6 vocab=0fa5f88c
+-/
 theorem le_ratLocus [IrreducibleSpace X] {g : X.functionField} {W : X.Opens} (h : RegOn g W) :
     W ≤ ratLocus g :=
   le_sSup h
 
 variable [IsIntegral X]
 
+/--
+@isnad1 id=mem.1h3v.s7.8a41ab26a1e3 from=translated src=- shape=3702650e vocab=7c1228b1
+-/
 theorem genericPoint_mem_of_mem {W : X.Opens} {x : X} (hx : x ∈ W) : genericPoint X ∈ W :=
   (genericPoint_specializes x).mem_open W.isOpen hx
 
@@ -62,11 +68,16 @@ theorem eq_bot_of_genericPoint_notMem {W : X.Opens} (hη : genericPoint X ∉ W)
   rintro ⟨x, hx⟩
   exact hη (genericPoint_mem_of_mem hx)
 
+/--
+@isnad1 id=subsingl.1h2v.s7.156300940779 from=translated src=- shape=6a00ca79 vocab=38f4cba6
+-/
 theorem subsingleton_sec {W : X.Opens} (hη : genericPoint X ∉ W) : Subsingleton Γ(X, W) := by
   obtain rfl := eq_bot_of_genericPoint_notMem hη
   infer_instance
 
-/-- Sections of an integral scheme are determined by their generic germs.-/
+/-- Sections of an integral scheme are determined by their generic germs.
+@isnad1 id=eq.1h4v.s11.a1a772a156cf from=translated src=- shape=09119537 vocab=ebeabf60
+-/
 theorem sec_ext {W : X.Opens} {c c' : Γ(X, W)}
     (h : ∀ hη : genericPoint X ∈ W,
       X.presheaf.germ W (genericPoint X) hη c = X.presheaf.germ W (genericPoint X) hη c') :
@@ -76,6 +87,9 @@ theorem sec_ext {W : X.Opens} {c c' : Γ(X, W)}
   · haveI := subsingleton_sec hη
     exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=regon.0h2v.s4.fc8115afffdb from=translated src=- shape=b9db3fdf vocab=deac4274
+-/
 theorem regOn_ratLocus (g : X.functionField) : RegOn g (ratLocus g) := by
   let ι := {W : X.Opens // RegOn g W}
   let U : ι → X.Opens := fun i ↦ i.1
@@ -105,11 +119,16 @@ theorem regOn_ratLocus (g : X.functionField) : RegOn g (ratLocus g) := by
 def ratSec (g : X.functionField) : Γ(X, ratLocus g) :=
   (regOn_ratLocus g).choose
 
+/--
+@isnad1 id=eq.1h2v.s10.95cdeb0bf618 from=translated src=- shape=de250405 vocab=70afeba9
+-/
 theorem germ_ratSec (g : X.functionField) (hη : genericPoint X ∈ ratLocus g) :
     X.presheaf.germ (ratLocus g) (genericPoint X) hη (ratSec g) = g :=
   (regOn_ratLocus g).choose_spec hη
 
-/-- **Stalk criterion**: if `g` comes from the stalk at `y`, then `y ∈ ratLocus g`.-/
+/-- **Stalk criterion**: if `g` comes from the stalk at `y`, then `y ∈ ratLocus g`.
+@isnad1 id=mem.1h4v.s9.cc688135392c from=translated src=- shape=c9ac5c82 vocab=fbcd8f99
+-/
 theorem mem_ratLocus_of_algebraMap {g : X.functionField} {y : X} (a : X.presheaf.stalk y)
     (ha : algebraMap (X.presheaf.stalk y) X.functionField a = g) : y ∈ ratLocus g := by
   obtain ⟨W, hyW, c, rfl⟩ := X.presheaf.exists_germ_eq a
@@ -117,6 +136,9 @@ theorem mem_ratLocus_of_algebraMap {g : X.functionField} {y : X} (a : X.presheaf
   haveI : Nonempty W := ⟨⟨y, hyW⟩⟩
   rw [← ha, Scheme.algebraMap_germ_eq_germToFunctionField]
 
+/--
+@isnad1 id=eq.1h3v.s10.1cc6b2c191ea from=translated src=- shape=f3b469fc vocab=ae8fe89b
+-/
 theorem algebraMap_germ_ratSec (g : X.functionField) {y : X} (hy : y ∈ ratLocus g) :
     algebraMap (X.presheaf.stalk y) X.functionField
       (X.presheaf.germ (ratLocus g) y hy (ratSec g)) = g := by
@@ -124,17 +146,24 @@ theorem algebraMap_germ_ratSec (g : X.functionField) {y : X} (hy : y ∈ ratLocu
   rw [Scheme.algebraMap_germ_eq_germToFunctionField]
   exact germ_ratSec g _
 
+/--
+@isnad1 id=iff.0h3v.s9.81302962e7cc from=translated src=- shape=2328795f vocab=fbcd8f99
+-/
 theorem mem_ratLocus_iff {g : X.functionField} {y : X} :
     y ∈ ratLocus g ↔ ∃ a : X.presheaf.stalk y,
       algebraMap (X.presheaf.stalk y) X.functionField a = g :=
   ⟨fun hy ↦ ⟨_, algebraMap_germ_ratSec g hy⟩, fun ⟨a, ha⟩ ↦ mem_ratLocus_of_algebraMap a ha⟩
 
-/-- The generic point lies in every regular locus.-/
+/-- The generic point lies in every regular locus.
+@isnad1 id=mem.0h2v.s6.453baa37ea9b from=translated src=- shape=c3f8ff19 vocab=7159f242
+-/
 theorem genericPoint_mem_ratLocus (g : X.functionField) : genericPoint X ∈ ratLocus g := by
   obtain ⟨W, hηW, c, hc⟩ := X.presheaf.exists_germ_eq (x := genericPoint X) g
   exact le_ratLocus ⟨c, fun _ ↦ hc⟩ hηW
 
-/-- If the germ of `ratSec g` at `y` is a unit, then `g⁻¹` is regular at `y`.-/
+/-- If the germ of `ratSec g` at `y` is a unit, then `g⁻¹` is regular at `y`.
+@isnad1 id=mem.2h3v.s10.7c5bceb69935 from=translated src=- shape=5e4c1812 vocab=495ff855
+-/
 theorem mem_ratLocus_inv_of_isUnit {g : X.functionField} {y : X} (hy : y ∈ ratLocus g)
     (hu : IsUnit (X.presheaf.germ (ratLocus g) y hy (ratSec g))) : y ∈ ratLocus g⁻¹ := by
   obtain ⟨v, hv⟩ := hu.exists_right_inv
@@ -143,7 +172,9 @@ theorem mem_ratLocus_inv_of_isUnit {g : X.functionField} {y : X} (hy : y ∈ rat
   rw [map_mul, map_one, algebraMap_germ_ratSec] at h1
   exact eq_inv_of_mul_eq_one_right h1
 
-/-- `ratSec g · ratSec g⁻¹ = 1` on the overlap of the regular loci.-/
+/-- `ratSec g · ratSec g⁻¹ = 1` on the overlap of the regular loci.
+@isnad1 id=eq.1h2v.s12.4a23d158ec92 from=translated src=- shape=9bf24a49 vocab=7a3114f2
+-/
 theorem ratSec_mul_ratSec_inv {g : X.functionField} (hg : g ≠ 0) :
     ratSec g |_ (ratLocus g ⊓ ratLocus g⁻¹) * ratSec g⁻¹ |_ (ratLocus g ⊓ ratLocus g⁻¹) = 1 := by
   apply sec_ext
@@ -175,12 +206,17 @@ def denIdeal (g : X.functionField) (U : X.Opens) : Ideal Γ(X, U) where
     obtain ⟨b, hb⟩ := ha hη
     exact ⟨c * b, by rw [smul_eq_mul, map_mul, map_mul, hb, mul_assoc]⟩
 
+/--
+@isnad1 id=iff.0h4v.s12.f79bb7dc4fe0 from=translated src=- shape=ecb8ad07 vocab=a2c88347
+-/
 theorem mem_denIdeal {g : X.functionField} {U : X.Opens} {a : Γ(X, U)} :
     a ∈ denIdeal g U ↔ ∀ hη : genericPoint X ∈ U, ∃ b : Γ(X, U),
       X.presheaf.germ U (genericPoint X) hη b = X.presheaf.germ U (genericPoint X) hη a * g :=
   Iff.rfl
 
-/-- Localisation compatibility of the denominator ideal.-/
+/-- Localisation compatibility of the denominator ideal.
+@isnad1 id=eq.0h4v.s12.394ca44e3e2e from=translated src=- shape=0f2b3dfc vocab=cfb8d225
+-/
 theorem denIdeal_map_basicOpen (g : X.functionField) (U : X.affineOpens) (s : Γ(X, U.1)) :
     (denIdeal g U.1).map (X.presheaf.map (homOfLE (X.basicOpen_le s)).op).hom =
       denIdeal g (X.basicOpen s) := by
@@ -222,10 +258,15 @@ def denIdealSheaf (g : X.functionField) : X.IdealSheafData where
   ideal U := denIdeal g U.1
   map_ideal_basicOpen U s := denIdeal_map_basicOpen g U s
 
+/--
+@isnad1 id=eq.0h3v.s9.d874fea7acdb from=translated src=- shape=03b4059a vocab=3cc90d97
+-/
 theorem denIdealSheaf_ideal (g : X.functionField) (U : X.affineOpens) :
     (denIdealSheaf g).ideal U = denIdeal g U.1 := rfl
 
-/-- On a nonempty affine open the denominator ideal is nonzero (`g = a / b`, `b ≠ 0`).-/
+/-- On a nonempty affine open the denominator ideal is nonzero (`g = a / b`, `b ≠ 0`).
+@isnad1 id=ex.0h3v.s12.adf2a20c675c from=translated src=- shape=e32b0afc vocab=6b9222f8
+-/
 theorem exists_mem_denIdeal_ne_zero (g : X.functionField) (U : X.affineOpens)
     [Nonempty U.1] : ∃ b ∈ denIdeal g U.1, b ≠ 0 := by
   haveI := functionField_isFractionRing_of_isAffineOpen X U.1 U.2
@@ -238,7 +279,9 @@ theorem exists_mem_denIdeal_ne_zero (g : X.functionField) (U : X.affineOpens)
   rw [← hab]
   field_simp
 
-/-- `a ∈ den(g)` with `a g = b` gives `b ∈ den(g⁻¹)` (for `g ≠ 0`).-/
+/-- `a ∈ den(g)` with `a g = b` gives `b ∈ den(g⁻¹)` (for `g ≠ 0`).
+@isnad1 id=mem.2h5v.s12.7af4caed55de from=translated src=- shape=ae8059b7 vocab=05ae8ffe
+-/
 theorem mem_denIdeal_inv {g : X.functionField} (hg : g ≠ 0) {U : X.Opens} {a b : Γ(X, U)}
     (hab : ∀ hη : genericPoint X ∈ U,
       X.presheaf.germ U (genericPoint X) hη b = X.presheaf.germ U (genericPoint X) hη a * g) :

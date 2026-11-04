@@ -35,7 +35,9 @@ namespace RRC.SmoothRegularStalks
 
 section QuotientRegular
 
-/-- The range of a function on a finite type has at most `card` elements.-/
+/-- The range of a function on a finite type has at most `card` elements.
+@isnad1 id=le.0h3v.s4.362cabb919ea from=translated src=- shape=ff32ed82 vocab=d39fe70a
+-/
 theorem ncard_range_le_card {α β : Type*} [Fintype α] (f : α → β) :
     (Set.range f).ncard ≤ Fintype.card α := by
   rw [← Set.image_univ]
@@ -44,7 +46,9 @@ theorem ncard_range_le_card {α β : Type*} [Fintype α] (f : α → β) :
 variable {R : Type*} [CommRing R] [IsRegularLocalRing R]
 
 /-- **Cutting a regular local ring by part of a regular system of parameters.**  If `f : σ → m`
-has `κ`-linearly independent images in `m/m²`, then `R ⧸ (f)` is a regular local ring.-/
+has `κ`-linearly independent images in `m/m²`, then `R ⧸ (f)` is a regular local ring.
+@isnad1 id=isregula.1h3v.s9.dc61c8fd71b3 from=translated src=- shape=5daaf587 vocab=7839481e
+-/
 theorem isRegularLocalRing_quotient_of_linearIndependent {σ : Type*} [Fintype σ]
     (f : σ → maximalIdeal R)
     (hf : LinearIndependent (ResidueField R) fun i => (maximalIdeal R).toCotangent (f i)) :
@@ -148,7 +152,9 @@ open MvPolynomial
 
 variable {R0 : Type*} [CommRing R0] {ι : Type*}
 
-/-- `x ↦ (∂x/∂X_a mod Q)` kills `Q²`.-/
+/-- `x ↦ (∂x/∂X_a mod Q)` kills `Q²`.
+@isnad1 id=eq.1h5v.s11.9bd541c1d04c from=translated src=- shape=31610116 vocab=aa7b46c1
+-/
 theorem residue_pderiv_eq_zero_of_mem_sq (Q : Ideal (MvPolynomial ι R0)) [Q.IsPrime] (a : ι)
     {z : MvPolynomial ι R0} (hz : z ∈ Q ^ 2) :
     algebraMap _ Q.ResidueField (pderiv a z) = 0 := by
@@ -166,7 +172,9 @@ def locRel (Q : Ideal (MvPolynomial ι R0)) [Q.IsPrime] {σ : Type*} (f : σ →
 
 /-- **Jacobian criterion, independence half.**  If `f_j ∈ Q` and the Jacobian minor
 `det (∂f_j/∂X_{a i})` is not in `Q`, then the `f_j` have linearly independent images in the
-cotangent space of `A_Q`.-/
+cotangent space of `A_Q`.
+@isnad1 id=linearin.2h6v.s13.5405947443d8 from=translated src=- shape=cb98e08d vocab=7c84915d
+-/
 theorem linearIndependent_locRel (Q : Ideal (MvPolynomial ι R0)) [Q.IsPrime] {σ : Type*}
     [Fintype σ] [DecidableEq σ] (f : σ → MvPolynomial ι R0) (hfQ : ∀ i, f i ∈ Q) (a : σ → ι)
     (hdet : (Matrix.of fun i j => pderiv (a i) (f j)).det ∉ Q) :
@@ -244,7 +252,9 @@ end Jacobian
 
 section StandardSmooth
 
-/-- Polynomial rings in finitely many variables over a regular ring are regular.-/
+/-- Polynomial rings in finitely many variables over a regular ring are regular.
+@isnad1 id=isregula.0h2v.s5.5ae1ae8bc647 from=translated src=- shape=65f277ad vocab=86aa29ff
+-/
 theorem isRegularRing_mvPolynomial_fin (R0 : Type*) [CommRing R0] [IsRegularRing R0] (n : ℕ) :
     IsRegularRing (MvPolynomial (Fin n) R0) := by
   induction n with
@@ -254,14 +264,18 @@ theorem isRegularRing_mvPolynomial_fin (R0 : Type*) [CommRing R0] [IsRegularRing
     haveI := ih
     exact IsRegularRing.of_ringEquiv (MvPolynomial.finSuccEquiv R0 n).toRingEquiv.symm
 
-/-- `R0[X_ι]` is regular for `R0` regular and `ι` finite.-/
+/-- `R0[X_ι]` is regular for `R0` regular and `ι` finite.
+@isnad1 id=isregula.0h2v.s5.6a5312d20a6f from=translated src=- shape=ba97a0f8 vocab=4383a8c8
+-/
 theorem isRegularRing_mvPolynomial (R0 : Type*) [CommRing R0] [IsRegularRing R0] (ι : Type*)
     [Finite ι] : IsRegularRing (MvPolynomial ι R0) := by
   haveI := isRegularRing_mvPolynomial_fin R0 (Nat.card ι)
   exact IsRegularRing.of_ringEquiv
     (MvPolynomial.renameEquiv R0 (Finite.equivFin ι).symm).toRingEquiv
 
-/-- **Localizations of a submersively presented algebra over a regular ring are regular.**-/
+/-- **Localizations of a submersively presented algebra over a regular ring are regular.**
+@isnad1 id=isregula.0h6v.s6.12204fe39881 from=translated src=- shape=15c11ff7 vocab=0912bbef
+-/
 theorem isRegularLocalRing_localization_of_submersivePresentation {R S : Type*} [CommRing R]
     [CommRing S] [Algebra R S] [IsRegularRing R] {ι σ : Type*} [Finite ι] [Finite σ]
     (P : Algebra.SubmersivePresentation R S ι σ) (q : Ideal S) [q.IsPrime] :
@@ -315,7 +329,9 @@ theorem isRegularLocalRing_localization_of_submersivePresentation {R S : Type*} 
     (Ideal.quotEquivOfEq hspan).trans (RingHom.quotientKerEquivOfSurjective hsurj)
   exact @IsRegularLocalRing.of_ringEquiv _ _ hT _ _ e
 
-/-- **A standard smooth algebra over a regular ring is a regular ring.**-/
+/-- **A standard smooth algebra over a regular ring is a regular ring.**
+@isnad1 id=isregula.0h2v.s5.2744e77ee501 from=translated src=- shape=48f403c0 vocab=b1c07f77
+-/
 theorem isRegularRing_of_isStandardSmooth (R S : Type*) [CommRing R] [CommRing S] [Algebra R S]
     [IsRegularRing R] [Algebra.IsStandardSmooth R S] : IsRegularRing S := by
   haveI : IsNoetherianRing S := Algebra.FiniteType.isNoetherianRing R S

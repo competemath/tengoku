@@ -32,7 +32,9 @@ section Core
 variable {A : Type u} [CommRing A] [IsRegularLocalRing A]
 
 /-- **Core step.**  Let `A` be a regular local ring and `P` a prime of `A[X]` lying over the maximal
-ideal of `A`.  Then `A[X]_P` is regular local.-/
+ideal of `A`.  Then `A[X]_P` is regular local.
+@isnad1 id=isregula.1h2v.s7.b2a4111c6d23 from=translated src=- shape=5ff20bc1 vocab=b9ff0232
+-/
 theorem isRegularLocalRing_localization_polynomial_of_comap (P : Ideal A[X]) [P.IsPrime]
     (hP : P.comap C = maximalIdeal A) : IsRegularLocalRing (Localization.AtPrime P) := by
   classical
@@ -126,7 +128,9 @@ end Core
 section Reduction
 
 attribute [local instance] Polynomial.algebra Polynomial.isLocalization in
-/-- **Polynomial rings over regular rings are regular** (localizations at primes).-/
+/-- **Polynomial rings over regular rings are regular** (localizations at primes).
+@isnad1 id=isregula.0h2v.s7.7309a0a2ba40 from=translated src=- shape=7feb4ec5 vocab=e5022e96
+-/
 theorem isRegularLocalRing_localization_polynomial {R : Type u} [CommRing R] [IsRegularRing R]
     (P : Ideal R[X]) [P.IsPrime] : IsRegularLocalRing (Localization.AtPrime P) := by
   classical
@@ -186,15 +190,21 @@ end Reduction
 
 section Instances
 
-/-- **`R[X]` is a regular ring when `R` is.**-/
+/-- **`R[X]` is a regular ring when `R` is.**
+@isnad1 id=isregula.0h1v.s4.61df34867754 from=translated src=- shape=d96e9922 vocab=3c304815
+-/
 instance isRegularRing_polynomial (R : Type u) [CommRing R] [IsRegularRing R] :
     IsRegularRing R[X] :=
   ⟨fun P _ => isRegularLocalRing_localization_polynomial P⟩
 
-/-- A field is a regular ring.-/
+/-- A field is a regular ring.
+@isnad1 id=isregula.0h1v.s3.546f041280bb from=translated src=- shape=c6850a32 vocab=94cfb8a0
+-/
 instance isRegularRing_of_field (k : Type u) [Field k] : IsRegularRing k := inferInstance
 
-/-- Multivariate polynomial rings over a field in finitely many variables are regular.-/
+/-- Multivariate polynomial rings over a field in finitely many variables are regular.
+@isnad1 id=isregula.0h2v.s5.c4e6d434b89b from=translated src=- shape=f93d885d vocab=41046c66
+-/
 theorem isRegularRing_mvPolynomial_fin (k : Type u) [Field k] (n : ℕ) :
     IsRegularRing (MvPolynomial (Fin n) k) := by
   induction n with
@@ -204,6 +214,9 @@ theorem isRegularRing_mvPolynomial_fin (k : Type u) [Field k] (n : ℕ) :
     haveI := ih
     exact IsRegularRing.of_ringEquiv (MvPolynomial.finSuccEquiv k n).toRingEquiv.symm
 
+/--
+@isnad1 id=isregula.0h2v.s5.c5bfe9375556 from=translated src=- shape=7b122d56 vocab=ae9dd0c6
+-/
 theorem isRegularRing_mvPolynomial (k : Type u) [Field k] (σ : Type*) [Finite σ] :
     IsRegularRing (MvPolynomial σ k) := by
   haveI := isRegularRing_mvPolynomial_fin k (Nat.card σ)

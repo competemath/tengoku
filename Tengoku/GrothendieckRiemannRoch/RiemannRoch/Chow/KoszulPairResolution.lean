@@ -48,7 +48,9 @@ def koszulPairDTwo (a b : A) : A →ₗ[A] A × A where
   map_smul' r x := by
     ext <;> simp only [Prod.smul_mk, smul_eq_mul, RingHom.id_apply] <;> ring
 
-/-- The two Koszul differentials compose to zero.-/
+/-- The two Koszul differentials compose to zero.
+@isnad1 id=eq.0h3v.s8.1b1220200ac9 from=translated src=- shape=a3efc379 vocab=9f36744c
+-/
 lemma koszulPair_d_comp_d (a b : A) :
     (koszulPairDOne A a b).comp (koszulPairDTwo A a b) = 0 := by
   apply LinearMap.ext
@@ -72,7 +74,9 @@ noncomputable def koszulPairComplex (a b : A) :
     (zeroSuccessor A)
 
 /-- Weak regularity of `[a,b]` identifies the kernel of the first differential with the image
-of the second differential.-/
+of the second differential.
+@isnad1 id=exact.1h3v.s7.766ff9530861 from=translated src=- shape=a8da58ea vocab=96c5fdbf
+-/
 theorem koszulPair_exact_middle (a b : A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) [a, b]) :
     (ShortComplex.moduleCatMk (koszulPairDTwo A a b) (koszulPairDOne A a b)
@@ -115,7 +119,9 @@ theorem koszulPair_exact_middle (a b : A)
   · exact hfirst.symm
   · exact har'
 
-/-- The two-element Koszul complex vanishes in degrees at least three.-/
+/-- The two-element Koszul complex vanishes in degrees at least three.
+@isnad1 id=iszero.0h4v.s6.492471af9409 from=translated src=- shape=4795b4f9 vocab=751eea74
+-/
 theorem koszulPairComplex_isZero (a b : A) (n : ℕ) :
     IsZero ((koszulPairComplex A a b).X (n + 3)) := by
   let Z := ModuleCat.of A (Fin 0 → A)
@@ -130,7 +136,9 @@ theorem koszulPairComplex_isZero (a b : A) (n : ℕ) :
     (ModuleCat.hom_ext (koszulPair_d_comp_d A a b))
     (zeroSuccessor A) n
 
-/-- A weakly regular Koszul pair is exact in every positive degree.-/
+/-- A weakly regular Koszul pair is exact in every positive degree.
+@isnad1 id=exactat.1h4v.s7.26b73a8e4739 from=translated src=- shape=b4daa632 vocab=c4e6b319
+-/
 theorem koszulPairComplex_exactAt_succ (a b : A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) [a, b]) (n : ℕ) :
     (koszulPairComplex A a b).ExactAt (n + 1) := by
@@ -163,7 +171,9 @@ noncomputable def koszulPairQuotientMap (a b : A) :
     A →ₗ[A] A ⧸ Ideal.span ({a, b} : Set A) :=
   (Ideal.Quotient.mkₐ A (Ideal.span ({a, b} : Set A))).toLinearMap
 
-/-- The first Koszul differential lands in the kernel of the quotient map.-/
+/-- The first Koszul differential lands in the kernel of the quotient map.
+@isnad1 id=eq.0h3v.s9.cf4fd3097775 from=translated src=- shape=affc6797 vocab=8f4ea7c1
+-/
 lemma koszulPair_quotient_comp (a b : A) :
     (koszulPairQuotientMap A a b).comp (koszulPairDOne A a b) = 0 := by
   apply LinearMap.ext
@@ -186,7 +196,9 @@ noncomputable def koszulPairAugmentation (a b : A) :
         ModuleCat.ofHom (koszulPairQuotientMap A a b) = 0
       exact ModuleCat.hom_ext (koszulPair_quotient_comp A a b)⟩
 
-/-- The augmentation sequence `A² → A → A/(a,b)` is exact.-/
+/-- The augmentation sequence `A² → A → A/(a,b)` is exact.
+@isnad1 id=exact.0h3v.s7.f3d10d4cbec8 from=translated src=- shape=e427cd38 vocab=d2a4cc77
+-/
 theorem koszulPair_augmentation_exact (a b : A) :
     (ShortComplex.moduleCatMk (koszulPairDOne A a b)
       (koszulPairQuotientMap A a b) (koszulPair_quotient_comp A a b)).Exact := by
@@ -255,7 +267,9 @@ noncomputable def koszulPair (a b : A)
     · omega
     · exact koszulPairComplex_isZero A a b n
 
-/-- Tor against `A/(a,b)` vanishes in degrees at least three for a weakly regular pair.-/
+/-- Tor against `A/(a,b)` vanishes in degrees at least three for a weakly regular pair.
+@isnad1 id=iszero.1h5v.s7.accfbab17e91 from=translated src=- shape=a000bd49 vocab=73320231
+-/
 theorem isZero_module_koszulPair (a b : A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) [a, b])
     (M : ModuleCat.{u} A) (n : ℕ) :
@@ -265,7 +279,9 @@ theorem isZero_module_koszulPair (a b : A)
   change 2 < n + 3
   omega
 
-/-- The high-Tor vanishing theorem transports to every module isomorphic to `A/(a,b)`.-/
+/-- The high-Tor vanishing theorem transports to every module isomorphic to `A/(a,b)`.
+@isnad1 id=iszero.1h7v.s8.b730620a3df0 from=translated src=- shape=a0da42bd vocab=87d4c3ae
+-/
 theorem isZero_module_of_iso_koszulPair (a b : A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) [a, b])
     (M : ModuleCat.{u} A) {N' : ModuleCat.{u} A}
@@ -297,7 +313,9 @@ noncomputable def koszulPairEulerData (a b : A)
       rwa [(TensorProduct.rid A (↑M : Type u)).length_eq])
 
 /-- For a weakly regular pair, the Euler characteristic is the alternating sum in degrees
-zero, one, and two.-/
+zero, one, and two.
+@isnad1 id=eq.2h4v.s9.fbe9d50ab8c4 from=translated src=- shape=f455fff1 vocab=3cd0b78d
+-/
 theorem koszulPairEulerData_multiplicity (a b : A)
     (reg : IsWeaklyRegular (ModuleCat.of A A) [a, b])
     (M : ModuleCat.{u} A) (hM : Module.length A (↑M : Type u) ≠ ⊤) :

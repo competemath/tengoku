@@ -34,14 +34,18 @@ namespace AlgebraicGeometry.Chow
 
 variable {Z : Scheme.{u}} [IsNoetherian Z]
 
-/-- A generic point of an irreducible component is maximal in the specialization order.-/
+/-- A generic point of an irreducible component is maximal in the specialization order.
+@isnad1 id=ismax.1h2v.s6.761f0bb176b2 from=translated src=- shape=350322a0 vocab=5b31db37
+-/
 theorem isMax_of_mem_genericPoints {z : Z} (hz : z ∈ genericPoints Z) : IsMax z := by
   intro y hzy
   rw [Scheme.le_iff_specializes] at hzy ⊢
   apply specializes_iff_closure_subset.mpr
   exact hz.2 isIrreducible_singleton.closure hzy.closure_subset
 
-/-- A maximal point of a Noetherian scheme is the generic point of an irreducible component.-/
+/-- A maximal point of a Noetherian scheme is the generic point of an irreducible component.
+@isnad1 id=mem.1h2v.s6.c8a9ccc4ffd5 from=translated src=- shape=45c96940 vocab=5b31db37
+-/
 theorem mem_genericPoints_of_isMax {z : Z} (hz : IsMax z) : z ∈ genericPoints Z := by
   refine ⟨isIrreducible_singleton.closure, ?_⟩
   intro s hs hzs
@@ -57,12 +61,16 @@ theorem mem_genericPoints_of_isMax {z : Z} (hz : IsMax z) : z ∈ genericPoints 
   rw [isGenericPoint_def] at hη
   exact subset_closure.trans (hη ▸ hclosure)
 
-/-- Generic points of irreducible components have codimension zero.-/
+/-- Generic points of irreducible components have codimension zero.
+@isnad1 id=eq.1h2v.s6.4cf522616ed4 from=translated src=- shape=1422a7cb vocab=4be62e3f
+-/
 theorem coheight_eq_zero_of_mem_genericPoints {z : Z} (hz : z ∈ genericPoints Z) :
     coheight z = 0 :=
   coheight_eq_zero.mpr (isMax_of_mem_genericPoints hz)
 
-/-- On a Noetherian scheme, codimension-zero points are exactly component generic points.-/
+/-- On a Noetherian scheme, codimension-zero points are exactly component generic points.
+@isnad1 id=iff.0h2v.s6.e9f13f96c1ce from=translated src=- shape=ecf3ad9c vocab=4be62e3f
+-/
 theorem mem_genericPoints_iff_coheight_eq_zero {z : Z} :
     z ∈ genericPoints Z ↔ coheight z = 0 :=
   ⟨coheight_eq_zero_of_mem_genericPoints,
@@ -85,7 +93,9 @@ noncomputable def fundamentalCycle (Z : Scheme.{u}) [IsNoetherian Z] :
   exact ∑ z ∈ hG.toFinset,
     Function.locallyFinsuppWithin.single z (genericMultiplicity z : ℤ)
 
-/-- The coefficient of the fundamental cycle at a generic point is its local length.-/
+/-- The coefficient of the fundamental cycle at a generic point is its local length.
+@isnad1 id=eq.1h2v.s7.464d63e455cf from=translated src=- shape=97fdd0dc vocab=03c28771
+-/
 @[simp]
 theorem fundamentalCycle_apply_of_mem_genericPoints {z : Z} (hz : z ∈ genericPoints Z) :
     fundamentalCycle Z z = (genericMultiplicity z : ℤ) := by

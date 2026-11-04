@@ -37,7 +37,9 @@ noncomputable def imageShortComplex (f : A ⟶ B) (g : B ⟶ D) (zero : f ≫ g 
     rw [← cancel_mono (Abelian.image.ι g), Category.assoc, Abelian.image.fac]
     simpa using Abelian.image_ι_comp_eq_zero zero)
 
-/-- Exactness of `A → B → D` makes `im(f) → B → im(g)` short exact.-/
+/-- Exactness of `A → B → D` makes `im(f) → B → im(g)` short exact.
+@isnad1 id=shortexa.2h6v.s7.0be759734721 from=translated src=- shape=6aa46680 vocab=7e356a2f
+-/
 theorem imageShortComplex_shortExact (f : A ⟶ B) (g : B ⟶ D)
     (zero : f ≫ g = 0) (exact : (ShortComplex.mk f g zero).Exact) :
     (imageShortComplex f g zero).ShortExact := by
@@ -72,7 +74,9 @@ theorem imageShortComplex_shortExact (f : A ⟶ B) (g : B ⟶ D)
 variable (P : C → Prop)
 
 /-- The Grothendieck-class decomposition associated to two consecutive arrows in an exact
-sequence.-/
+sequence.
+@isnad1 id=eq.2h10v.s8.d425ee8124e0 from=translated src=- shape=08a9d3b6 vocab=39452433
+-/
 theorem subcategoryClassOf_eq_image_add_image
     (f : A ⟶ B) (g : B ⟶ D) (zero : f ≫ g = 0)
     (exact : (ShortComplex.mk f g zero).Exact)
@@ -267,6 +271,9 @@ noncomputable def toDerivedPushforward (s : BoundedLongExactSystem P Object Exac
       ExactGrothendieck.SubcategoryGroup C P :=
   derivedPushforward n s.higherClass s.longExactWitness
 
+/--
+@isnad1 id=eq.0h7v.s8.1e2444ab92fe from=translated src=- shape=8e3836d0 vocab=d2dde4d7
+-/
 @[simp]
 theorem toDerivedPushforward_classOf (s : BoundedLongExactSystem P Object Exact n)
     (X : Object) :

@@ -51,6 +51,9 @@ variable {R : Type*} [CommRing R]
 def phi (r : ℕ) (s : ℕ → R) : R[X] →ₗ[R] R :=
   Polynomial.lsum fun k => (if r ≤ k then s (k - r) else 0) • (LinearMap.id : R →ₗ[R] R)
 
+/--
+@isnad1 id=eq.0h5v.s8.ed25b0fd4ba6 from=translated src=- shape=ebadf35f vocab=b57fff5f
+-/
 theorem phi_monomial (r : ℕ) (s : ℕ → R) (k : ℕ) (a : R) :
     phi r s (monomial k a) = a * (if r ≤ k then s (k - r) else 0) := by
   simp only [phi, Polynomial.lsum_apply]
@@ -58,6 +61,9 @@ theorem phi_monomial (r : ℕ) (s : ℕ → R) (k : ℕ) (a : R) :
   · split_ifs <;> simp [mul_comm]
   · simp
 
+/--
+@isnad1 id=eq.0h5v.s8.d8d699ebeda4 from=translated src=- shape=4979631b vocab=06270542
+-/
 theorem phi_C_mul_X_pow (r : ℕ) (s : ℕ → R) (k : ℕ) (a : R) :
     phi r s (C a * X ^ k) = a * (if r ≤ k then s (k - r) else 0) := by
   rw [C_mul_X_pow_eq_monomial, phi_monomial]
@@ -72,6 +78,9 @@ def SegreInv (r : ℕ) (e s : ℕ → R) : Prop :=
   (∀ j, r < j → e j = 0) ∧
     ∀ m, ∑ a ∈ Finset.range (m + 1), e a * s (m - a) = if m = 0 then 1 else 0
 
+/--
+@isnad1 id=eq.1h5v.s8.cbb37ddd200b from=translated src=- shape=d917a3ea vocab=4c6e40ce
+-/
 theorem phi_chernPoly_mul_X_pow {r : ℕ} {e s : ℕ → R} (h : SegreInv r e s) (i : ℕ) :
     phi r s (chernPoly r e * X ^ i) = if i = 0 then 1 else 0 := by
   obtain ⟨hz, hs⟩ := h
@@ -99,7 +108,9 @@ theorem phi_chernPoly_mul_X_pow {r : ℕ} {e s : ℕ → R} (h : SegreInv r e s)
       exact hna (by simp only [Finset.mem_filter, Finset.mem_range]; omega)
     rw [hz a (by omega), zero_mul]
 
-/-- **Key identity** `φ(P · U) = U(0)`: the whole content of `ZSCore` modulo `P · U = g`.-/
+/-- **Key identity** `φ(P · U) = U(0)`: the whole content of `ZSCore` modulo `P · U = g`.
+@isnad1 id=eq.1h5v.s8.522092c1fcec from=translated src=- shape=1f025ab6 vocab=7e632db8
+-/
 theorem phi_chernPoly_mul {r : ℕ} {e s : ℕ → R} (h : SegreInv r e s) (U : R[X]) :
     phi r s (chernPoly r e * U) = U.coeff 0 := by
   induction U using Polynomial.induction_on' with
@@ -124,6 +135,9 @@ def expT {A : Type*} [CommRing A] [Algebra ℚ A] (D : ℕ) (z : A) : A :=
 def uT {A : Type*} [CommRing A] [Algebra ℚ A] (D : ℕ) (z : A) : A :=
   ∑ k ∈ Finset.range D, algebraMap ℚ A (1 / ((k + 1).factorial : ℚ)) * ((-1) ^ k * z ^ k)
 
+/--
+@isnad1 id=eq.0h3v.s6.21932906b520 from=translated src=- shape=c1ac8ce6 vocab=ad88f7da
+-/
 theorem one_sub_expT_neg {A : Type*} [CommRing A] [Algebra ℚ A] (D : ℕ) (z : A) :
     1 - expT D (-z) = z * uT D z := by
   induction D with
@@ -138,13 +152,18 @@ theorem one_sub_expT_neg {A : Type*} [CommRing A] [Algebra ℚ A] (D : ℕ) (z :
     rw [h3]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s7.922d97659ff5 from=translated src=- shape=f2930c65 vocab=828705c3
+-/
 theorem eval_zero_uT (D : ℕ) (n : R) : (uT D (X + C n)).eval 0 = uT D n := by
   simp only [uT, eval_finsetSum, eval_mul, eval_pow, eval_add, eval_X, eval_C, zero_add,
     eval_neg, eval_one, Polynomial.algebraMap_apply]
 
 /-- **ZSCore, splitting-principle form.**  For roots `n₁..n_r` (a multiset `m`), Segre classes
 `s` with `c(m) · s = 1`, and every truncation order `D`:
-`φ(∏ᵢ (1 - e^{-(ξ + nᵢ)})) = ∏ᵢ u(nᵢ)` (`= td(N)⁻¹`).-/
+`φ(∏ᵢ (1 - e^{-(ξ + nᵢ)})) = ∏ᵢ u(nᵢ)` (`= td(N)⁻¹`).
+@isnad1 id=eq.1h4v.s8.e36956e8b0bf from=translated src=- shape=513b757c vocab=e677729f
+-/
 theorem zscore_roots (m : Multiset R) (s : ℕ → R)
     (hs : SegreInv (Multiset.card m) (fun j => m.esymm j) s) (D : ℕ) :
     phi (Multiset.card m) s

@@ -34,7 +34,9 @@ variable {A : Type u} [CommRing A] {ι : Type u} [Fintype ι] [DecidableEq ι]
   [AddCommGroup K] [Module A K]
 
 /-- The kernel of a row with a unit entry (the entry at `j` equal to `1`) is free on
-`μ_m - z_m μ_j`, `m ≠ j`.-/
+`μ_m - z_m μ_j`, `m ≠ j`.
+@isnad1 id=ex.6h11v.s10.760152ae55e3 from=translated src=- shape=96ad5052 vocab=fe42d6c3
+-/
 theorem exists_kernelBasis (μ : Module.Basis ι A F) (ρ : F →ₗ[A] L) (g : L) (z : ι → A) (j : ι)
     (hz : z j = 1) (hρ : ∀ k, ρ (μ k) = z k • g) (hg : ∀ a : A, a • g = 0 → a = 0)
     (κ : K →ₗ[A] F) (hκ : Function.Injective κ) (hrange : ∀ f, ρ f = 0 → ∃ k, κ k = f)
@@ -110,7 +112,9 @@ variable {A B C D : Type u} [CommRing A] [CommRing B] [CommRing C] [CommRing D]
   [Algebra A B] [Algebra C D]
 
 /-- **Kernel generators survive localization.**  If `ker f ≤ (θ_i)` for `f : A → C`, and
-`B = A_h`, `D = C_{f h}` with `f' : B → D` the induced map, then `ker f' ≤ (θ_i)` in `B`.-/
+`B = A_h`, `D = C_{f h}` with `f' : B → D` the induced map, then `ker f' ≤ (θ_i)` in `B`.
+@isnad1 id=le.2h9v.s9.e73e6d4245dd from=translated src=- shape=5882c4b1 vocab=20f70c15
+-/
 theorem ker_le_span_of_localization (h : A) [IsLocalization.Away h B] (f : A →+* C)
     [IsLocalization.Away (f h) D] (f' : B →+* D)
     (hcomm : ∀ a, f' (algebraMap A B a) = algebraMap C D (f a)) {κ : Type*} (θ : κ → A)

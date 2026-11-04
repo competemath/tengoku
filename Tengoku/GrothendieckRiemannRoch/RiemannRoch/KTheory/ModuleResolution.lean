@@ -77,6 +77,9 @@ def gcl (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M] : G0 R :=
 
 variable {R}
 
+/--
+@isnad1 id=shortexa.3h6v.s9.1d2cdc85aee3 from=translated src=- shape=95ca1024 vocab=c5e3a9a5
+-/
 theorem shortExact_of_linear {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B]
     [Module R B] [AddCommGroup C] [Module R C] (f : A →ₗ[R] B) (g : B →ₗ[R] C)
     (hf : Function.Injective f) (hex : Function.Exact f g) (hg : Function.Surjective g) :
@@ -84,6 +87,9 @@ theorem shortExact_of_linear {A B C : Type u} [AddCommGroup A] [Module R A] [Add
       (by ext x; exact hex.apply_apply_eq_zero x)).ShortExact :=
   ModuleCat.shortComplex_shortExact _ hex hf hg
 
+/--
+@isnad1 id=eq.3h6v.s9.ad70b6bf5d7f from=translated src=- shape=a2d013a1 vocab=f78cb3d9
+-/
 theorem pcl_ses {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B]
     [Module R B] [AddCommGroup C] [Module R C] [Module.Finite R A] [Module.Projective R A]
     [Module.Finite R B] [Module.Projective R B] [Module.Finite R C] [Module.Projective R C]
@@ -92,6 +98,9 @@ theorem pcl_ses {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B]
     pcl R B = pcl R A + pcl R C :=
   ExactGrothendieck.subcategoryClassOf_middle _ _ _ _ _ _ (shortExact_of_linear f g hf hex hg)
 
+/--
+@isnad1 id=eq.3h6v.s9.b41d119e6f12 from=translated src=- shape=5965595c vocab=81e6242d
+-/
 theorem gcl_ses {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B]
     [Module R B] [AddCommGroup C] [Module R C] [Module.Finite R A]
     [Module.Finite R B] [Module.Finite R C]
@@ -100,22 +109,34 @@ theorem gcl_ses {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B]
     gcl R B = gcl R A + gcl R C :=
   ExactGrothendieck.subcategoryClassOf_middle _ _ _ _ _ _ (shortExact_of_linear f g hf hex hg)
 
+/--
+@isnad1 id=eq.0h2v.s9.a8b1a1f5b2fb from=translated src=- shape=b1d9af14 vocab=4e8938f1
+-/
 theorem k0ToG0_pcl (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M]
     [Module.Projective R M] : k0ToG0 R (pcl R M) = gcl R M :=
   ExactGrothendieck.map_classOf _ _ _
 
 /-! ### Projective dimension bookkeeping -/
 
+/--
+@isnad1 id=hasproje.0h3v.s5.bfd9aa6b1c36 from=translated src=- shape=9d60e367 vocab=4853e452
+-/
 theorem hasPDLE_of_projective (M : Type u) [AddCommGroup M] [Module R M]
     [Module.Projective R M] (n : ℕ) : HasProjectiveDimensionLE (ModuleCat.of R M) n := by
   haveI : Projective (ModuleCat.of R M) := inferInstance
   exact hasProjectiveDimensionLT_of_ge _ 1 (n + 1) (by omega)
 
+/--
+@isnad1 id=projecti.1h2v.s6.7821eef44d10 from=translated src=- shape=51fdb576 vocab=4853e452
+-/
 theorem projective_of_hasPDLE_zero (M : Type u) [AddCommGroup M] [Module R M]
     (h : HasProjectiveDimensionLE (ModuleCat.of R M) 0) : Module.Projective R M := by
   rw [← projective_iff_hasProjectiveDimensionLE_zero, ← IsProjective.iff_projective] at h
   exact h
 
+/--
+@isnad1 id=hasproje.2h5v.s8.5ca2deb6be4f from=translated src=- shape=65e29d58 vocab=ce01ba2a
+-/
 theorem hasPDLE_ker {F N : Type u} [AddCommGroup F] [Module R F] [AddCommGroup N]
     [Module R N] [Module.Projective R F] (f : F →ₗ[R] N) (hf : Function.Surjective f) (n : ℕ)
     (h : HasProjectiveDimensionLE (ModuleCat.of R N) (n + 1)) :
@@ -124,6 +145,9 @@ theorem hasPDLE_ker {F N : Type u} [AddCommGroup F] [Module R F] [AddCommGroup N
   have : Projective (ModuleCat.of R F) := inferInstance
   exact hS.hasProjectiveDimensionLT_X₁ (n + 1) inferInstance h
 
+/--
+@isnad1 id=hasproje.5h7v.s8.e7fc3002fbe2 from=translated src=- shape=7cd4c398 vocab=0d60add9
+-/
 theorem hasPDLE_mid {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B]
     [Module R B] [AddCommGroup C] [Module R C] (f : A →ₗ[R] B) (g : B →ₗ[R] C)
     (hf : Function.Injective f) (hex : Function.Exact f g) (hg : Function.Surjective g) (n : ℕ)
@@ -142,6 +166,9 @@ def cov (M : ModuleCat.{u} R) [Module.Finite R M] : ℕ :=
 def covMap (M : ModuleCat.{u} R) [Module.Finite R M] : (Fin (cov M) → R) →ₗ[R] M :=
   (Module.Finite.exists_fin' R M).choose_spec.choose
 
+/--
+@isnad1 id=surjecti.0h2v.s8.9b32a82b6352 from=translated src=- shape=7ef2b392 vocab=7ad564a5
+-/
 theorem covMap_surjective (M : ModuleCat.{u} R) [Module.Finite R M] :
     Function.Surjective (covMap M) :=
   (Module.Finite.exists_fin' R M).choose_spec.choose_spec
@@ -158,10 +185,16 @@ def chi : ℕ → ModuleCat.{u} R → K0 R
       pcl R (Fin (cov M) → R) - chi n (ModuleCat.of R (LinearMap.ker (covMap M)))
     else 0
 
+/--
+@isnad1 id=eq.0h2v.s6.9210f893da99 from=translated src=- shape=41757176 vocab=e6183c90
+-/
 theorem chi_zero (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M]
     [Module.Projective R M] : chi R 0 (ModuleCat.of R M) = pcl R M := by
   rw [chi, dite_eq_left ⟨‹_›, ‹_›⟩]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.b02a066fd8d7 from=translated src=- shape=899b0847 vocab=dd03a7ed
+-/
 theorem chi_succ (n : ℕ) (M : ModuleCat.{u} R) [Module.Finite R M] :
     chi R (n + 1) M =
       pcl R (Fin (cov M) → R) - chi R n (ModuleCat.of R (LinearMap.ker (covMap M))) := by
@@ -187,6 +220,9 @@ def Proj (n : ℕ) : Prop :=
     chi R n (ModuleCat.of R P) = pcl R P
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=add.0h1v.s3.34108860b097 from=translated src=- shape=89d4eb60 vocab=d4ccf65d
+-/
 theorem add_zero_level : Add R 0 := by
   intro A B C _ _ _ _ _ _ _ _ _ f g hf hex hg hA hB hC
   haveI := projective_of_hasPDLE_zero A hA
@@ -196,8 +232,14 @@ theorem add_zero_level : Add R 0 := by
   exact pcl_ses f g hf hex hg
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=proj.0h1v.s3.d682a538fedf from=translated src=- shape=89d4eb60 vocab=ed81a1a9
+-/
 theorem proj_zero_level : Proj R 0 := fun P _ _ _ _ => chi_zero P
 
+/--
+@isnad1 id=eq.1h3v.s7.167730194381 from=translated src=- shape=20592545 vocab=25f0261b
+-/
 theorem chi_subsingleton {n : ℕ} (hAdd : Add R n) (Z : Type u) [AddCommGroup Z] [Module R Z]
     [Subsingleton Z] : chi R n (ModuleCat.of R Z) = 0 := by
   haveI : Module.Finite R Z := inferInstance
@@ -210,7 +252,9 @@ theorem chi_subsingleton {n : ℕ} (hAdd : Add R n) (Z : Type u) [AddCommGroup Z
   have h' := congrArg (fun z => z - chi R n (ModuleCat.of R Z)) h
   simpa using h'.symm
 
-/-- **Independence of the cover** (generalised Schanuel).-/
+/-- **Independence of the cover** (generalised Schanuel).
+@isnad1 id=eq.4h5v.s9.7552b0c68cf1 from=translated src=- shape=061adeb0 vocab=441acaa5
+-/
 theorem res_level {n : ℕ} (hAdd : Add R n) (hProj : Proj R n)
     (E M : Type u) [AddCommGroup E] [Module R E] [Module.Finite R E] [Module.Projective R E]
     [AddCommGroup M] [Module R M] [Module.Finite R M] (π : E →ₗ[R] M)
@@ -284,6 +328,9 @@ theorem res_level {n : ℕ} (hAdd : Add R n) (hProj : Proj R n)
   change pcl R E₀ - chi R n (ModuleCat.of R (LinearMap.ker π₀)) = _
   rw [sub_eq_sub_iff_add_eq_add, add_comm (pcl R E₀), this, add_comm]
 
+/--
+@isnad1 id=proj.2h2v.s5.efd4ff9acb5c from=translated src=- shape=687009bb vocab=f297bf8e
+-/
 theorem proj_succ_level {n : ℕ} (hAdd : Add R n) (hProj : Proj R n) : Proj R (n + 1) := by
   intro P _ _ _ _
   rw [res_level hAdd hProj P P LinearMap.id Function.surjective_id (hasPDLE_of_projective P _)]
@@ -291,7 +338,9 @@ theorem proj_succ_level {n : ℕ} (hAdd : Add R n) (hProj : Proj R n) : Proj R (
     rw [LinearMap.ker_id]; infer_instance
   rw [chi_subsingleton hAdd, sub_zero]
 
-/-- **Horseshoe step.**-/
+/-- **Horseshoe step.**
+@isnad1 id=add.2h2v.s5.3e14e7fe5f60 from=translated src=- shape=a3aa6fb2 vocab=f297bf8e
+-/
 theorem add_succ_level {n : ℕ} (hAdd : Add R n) (hProj : Proj R n) : Add R (n + 1) := by
   intro A B C _ _ _ _ _ _ _ _ _ f g hf hex hg hA hB hC
   obtain ⟨ka, πA, hπA⟩ := Module.Finite.exists_fin' R A
@@ -359,13 +408,18 @@ theorem add_succ_level {n : ℕ} (hAdd : Add R n) (hProj : Proj R n) : Add R (n 
   rw [hsum]
   abel
 
+/--
+@isnad1 id=and.0h2v.s4.785f9498939e from=translated src=- shape=f7fd1afa vocab=6f288ba6
+-/
 theorem add_proj_all : ∀ n, Add R n ∧ Proj R n
   | 0 => ⟨add_zero_level, proj_zero_level⟩
   | n + 1 => by
       obtain ⟨h1, h2⟩ := add_proj_all n
       exact ⟨add_succ_level h1 h2, proj_succ_level h1 h2⟩
 
-/-- The Euler characteristic of the chosen resolution maps to the `G₀` class.-/
+/-- The Euler characteristic of the chosen resolution maps to the `G₀` class.
+@isnad1 id=eq.1h3v.s9.ea961ff7fa33 from=translated src=- shape=40debf35 vocab=4815ad5c
+-/
 theorem k0ToG0_chi : ∀ (n : ℕ) (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M],
     HasProjectiveDimensionLE (ModuleCat.of R M) n →
       k0ToG0 R (chi R n (ModuleCat.of R M)) = gcl R M
@@ -383,7 +437,9 @@ theorem k0ToG0_chi : ∀ (n : ℕ) (M : Type u) [AddCommGroup M] [Module R M] [M
       abel
 
 /-- **Resolution theorem for `K₀`.** If every finitely generated module over the noetherian
-ring `R` has projective dimension `≤ d`, then `K₀(R) → G₀(R)` is bijective.-/
+ring `R` has projective dimension `≤ d`, then `K₀(R) → G₀(R)` is bijective.
+@isnad1 id=bijectiv.1h2v.s9.94526a173cb4 from=translated src=- shape=20886442 vocab=80a6290a
+-/
 theorem k0ToG0_bijective_of_hasProjectiveDimensionLE (d : ℕ)
     (hd : ∀ M : ModuleCat.{u} R, Module.Finite R M → HasProjectiveDimensionLE M d) :
     Function.Bijective (k0ToG0 R) := by

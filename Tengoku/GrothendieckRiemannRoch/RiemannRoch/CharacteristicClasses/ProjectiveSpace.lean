@@ -52,6 +52,9 @@ noncomputable def space (R : Type u) [CommRing R] (n : ℕ) : Scheme :=
 def coordinate (R : Type u) [CommRing R] (n : ℕ) (i : Fin (n + 1)) :
     Polynomial R n := MvPolynomial.X (R := R) i
 
+/--
+@isnad1 id=mem.0h3v.s8.b3dce9b0678e from=translated src=- shape=8125ac70 vocab=2a5c86ee
+-/
 theorem coordinate_mem_degree_one (R : Type u) [CommRing R] (n : ℕ)
     (i : Fin (n + 1)) : coordinate R n i ∈ grading R n 1 := by
   exact MvPolynomial.isHomogeneous_X R i
@@ -61,6 +64,9 @@ def coordinateOpen (R : Type u) [CommRing R] (n : ℕ) (i : Fin (n + 1)) :
     (space R n).Opens :=
   Proj.basicOpen (grading R n) (coordinate R n i)
 
+/--
+@isnad1 id=eq.0h2v.s7.6c67b10a0ecc from=translated src=- shape=c628d28f vocab=47c1e76f
+-/
 theorem coordinateOpen_iSup_eq_top (R : Type u) [CommRing R] (n : ℕ) :
     ⨆ i : Fin (n + 1), coordinateOpen R n i = ⊤ := by
   apply Proj.iSup_basicOpen_eq_top (grading R n) (coordinate R n)
@@ -139,7 +145,9 @@ instance (R : Type u) [CommRing R] (n : ℕ) : IsProper (toSpec R n) := by
   infer_instance
 
 /-- Projective space is quasi-compact, hence compact as a topological space, over every
-coefficient ring.-/
+coefficient ring.
+@isnad1 id=compacts.0h2v.s4.e6b089f8a51d from=translated src=- shape=e3028cdf vocab=7e4ae427
+-/
 theorem compactSpace (R : Type u) [CommRing R] (n : ℕ) :
     CompactSpace (space R n) :=
   (quasiCompact_iff_compactSpace (toSpec R n)).mp inferInstance

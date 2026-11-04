@@ -42,7 +42,9 @@ noncomputable def principalOpenPullbackStalkElement
     (pullback.fst i t) t pullback.condition w a
 
 /-- A principal stalk kernel after restriction to an open subscheme gives a principal kernel for
-the original morphism at the underlying point.-/
+the original morphism at the underlying point.
+@isnad1 id=eq.1h7v.s14.64289c1b732d from=translated src=- shape=dcb90ecb vocab=3f17d902
+-/
 theorem ker_stalkMap_eq_span_of_openPullback
     {Z X U : Scheme.{u}} (i : Z ⟶ X) (t : U ⟶ X) [IsOpenImmersion t]
     (w : (pullback i t : Scheme.{u}))
@@ -108,7 +110,9 @@ noncomputable def localStalkElement (c : PrincipalOpenPullbackChart i t)
     (principalQuotientStalkElement c.equation (c.sourceIso.hom w))
 
 /-- The restricted morphism has the principal stalk kernel supplied by its affine quotient
-presentation.-/
+presentation.
+@isnad1 id=eq.0h7v.s12.eb5ac26386aa from=translated src=- shape=b3d5ce58 vocab=6737e48c
+-/
 theorem ker_stalkMap_openPullback (c : PrincipalOpenPullbackChart i t)
     (w : (pullback i t : Scheme.{u})) :
     RingHom.ker ((pullback.snd i t).stalkMap w).hom =
@@ -143,7 +147,9 @@ instance : IsOpenImmersion (map (i := i) (t := t) j) := by
   dsimp only [map]
   infer_instance
 
-/-- The restriction map commutes with the projections to the first closed factor.-/
+/-- The restriction map commutes with the projections to the first closed factor.
+@isnad1 id=eq.0h7v.s8.600e1a779015 from=translated src=- shape=29062001 vocab=1db93bf4
+-/
 @[reassoc (attr := simp)]
 theorem map_fst :
     map (i := i) (t := t) j ≫ pullback.fst i j =
@@ -152,7 +158,9 @@ theorem map_fst :
   change pullback.lift _ _ _ ≫ pullback.fst i j = _
   rw [pullback.lift_fst]
 
-/-- The restriction map commutes with the projections to the second closed factor.-/
+/-- The restriction map commutes with the projections to the second closed factor.
+@isnad1 id=eq.0h7v.s8.f2ce3d125353 from=translated src=- shape=7d466475 vocab=1db93bf4
+-/
 @[reassoc (attr := simp)]
 theorem map_snd :
     map (i := i) (t := t) j ≫ pullback.snd i j =
@@ -162,7 +170,9 @@ theorem map_snd :
   rw [pullback.lift_snd]
 
 /-- An original intersection point whose ambient image lies in the chosen open target has a
-preimage in the intersection obtained by restricting both factors to that open.-/
+preimage in the intersection obtained by restricting both factors to that open.
+@isnad1 id=ex.1h9v.s10.ab64c7083e6f from=translated src=- shape=efb72971 vocab=af34e54a
+-/
 theorem exists_preimage (z : (pullback i j : Scheme.{u})) (u : U)
     (h : i (pullback.fst i j z) = t u) :
     ∃ w : (pullback (pullback.snd i t) (pullback.snd j t) : Scheme.{u}),
@@ -202,7 +212,9 @@ noncomputable def ofPoint (z : (pullback i j : Scheme.{u})) (u : U)
 end At
 
 /-- A principal kernel for the second projection after restricting both factors to an open
-target transports back to the original intersection stalk.-/
+target transports back to the original intersection stalk.
+@isnad1 id=eq.1h9v.s15.fb97dbf7e08c from=translated src=- shape=ca6d7599 vocab=e3ab3f1a
+-/
 theorem ker_stalkMap_snd_eq_span_of_restriction
     (w : (pullback (pullback.snd i t) (pullback.snd j t) : Scheme.{u}))
     (a : (pullback j t).presheaf.stalk
@@ -227,7 +239,9 @@ theorem ker_stalkMap_snd_eq_span_of_restriction
 namespace At
 
 /-- The first closed-factor point of a restricted lift maps to the first coordinate of the
-selected original intersection point.-/
+selected original intersection point.
+@isnad1 id=eq.0h9v.s10.43af2f5d5f65 from=translated src=- shape=113e1c95 vocab=cad247f2
+-/
 theorem left_point {z : (pullback i j : Scheme.{u})}
     (d : At (i := i) (t := t) j z) :
     pullback.fst i t
@@ -244,7 +258,9 @@ theorem left_point {z : (pullback i j : Scheme.{u})}
     _ = pullback.fst i j z := congrArg (pullback.fst i j) d.map_point
 
 /-- The second closed-factor point of a restricted lift maps to the second coordinate of the
-selected original intersection point.-/
+selected original intersection point.
+@isnad1 id=eq.0h9v.s10.b35f11773acf from=translated src=- shape=a6dfcdff vocab=cad247f2
+-/
 theorem right_point {z : (pullback i j : Scheme.{u})}
     (d : At (i := i) (t := t) j z) :
     pullback.fst j t
@@ -277,7 +293,9 @@ noncomputable def ambientStalkElement {z : (pullback i j : Scheme.{u})}
 set_option backward.isDefEq.respectTransparency false in
 /-- At a point of the intersection over a common open target, pulling an open-target equation
 back to the ambient stalk through the left or the right closed-factor square gives the same
-element after the canonical point transport.-/
+element after the canonical point transport.
+@isnad1 id=eq.0h9v.s14.04018923ee37 from=translated src=- shape=f60cb6e2 vocab=3dfa573e
+-/
 theorem principalStalkElement_commonTarget
     (w : (pullback (pullback.snd i t) (pullback.snd j t) : Scheme.{u}))
     (a : U.presheaf.stalk
@@ -388,14 +406,18 @@ instance : IsOpenImmersion (map f g v) := by
   dsimp only [map]
   infer_instance
 
-/-- The right-factor restriction map fixes the first projection.-/
+/-- The right-factor restriction map fixes the first projection.
+@isnad1 id=eq.0h7v.s7.2a85a705417c from=translated src=- shape=f961e85f vocab=97218f7b
+-/
 @[reassoc (attr := simp)]
 theorem map_fst : map f g v ≫ pullback.fst f g = pullback.fst f (v ≫ g) := by
   change pullback.lift _ _ _ ≫ pullback.fst f g = _
   rw [pullback.lift_fst, Category.comp_id]
 
 /-- The right-factor restriction map composes the restricted second projection with the open
-immersion into the original right factor.-/
+immersion into the original right factor.
+@isnad1 id=eq.0h7v.s7.d189d9dcba45 from=translated src=- shape=74a29a6e vocab=7d7f6cad
+-/
 @[reassoc (attr := simp)]
 theorem map_snd :
     map f g v ≫ pullback.snd f g = pullback.snd f (v ≫ g) ≫ v := by
@@ -403,7 +425,9 @@ theorem map_snd :
   rw [pullback.lift_snd]
 
 /-- If the right coordinate of a fiber-product point lies in the selected open subscheme, the
-point lifts to the right-restricted fiber product.-/
+point lifts to the right-restricted fiber product.
+@isnad1 id=ex.1h9v.s9.91e70b26fc70 from=translated src=- shape=88ddb8f6 vocab=2d18317f
+-/
 theorem exists_preimage (z : (pullback f g : Scheme.{u})) (y : V)
     (h : v y = pullback.snd f g z) :
     ∃ w : (pullback f (v ≫ g) : Scheme.{u}), map f g v w = z := by
@@ -433,7 +457,9 @@ noncomputable def ofPoint (z : (pullback f g : Scheme.{u})) (y : V)
 end At
 
 /-- A principal kernel for the second projection after an open restriction of the right factor
-transports back to the original fiber-product stalk.-/
+transports back to the original fiber-product stalk.
+@isnad1 id=eq.1h9v.s15.784f04b16fa4 from=translated src=- shape=f63ca0e8 vocab=cd2f6d1c
+-/
 theorem ker_stalkMap_snd_eq_span_of_restriction
     (w : (pullback f (v ≫ g) : Scheme.{u}))
     (a : V.presheaf.stalk (pullback.snd f (v ≫ g) w))
@@ -451,7 +477,9 @@ theorem ker_stalkMap_snd_eq_span_of_restriction
 namespace At
 
 /-- The first coordinate of a right-restricted lift is the first coordinate of the selected
-original fiber-product point.-/
+original fiber-product point.
+@isnad1 id=eq.0h9v.s9.1832a2609c55 from=translated src=- shape=e37988ae vocab=643434ca
+-/
 theorem fst_point {z : (pullback f g : Scheme.{u})} (d : At f g v z) :
     pullback.fst f g z = pullback.fst f (v ≫ g) d.point := by
   calc
@@ -501,7 +529,9 @@ attribute [instance] AffineNeighbourhoodAt.isOpenImmersion_map
 
 namespace AffineNeighbourhoodAt
 
-/-- Every scheme point admits a concrete affine open neighbourhood.-/
+/-- Every scheme point admits a concrete affine open neighbourhood.
+@isnad1 id=nonempty.0h2v.s4.e394c6b7febe from=translated src=- shape=a94cd017 vocab=51d97a3a
+-/
 theorem nonempty (Y : Scheme.{u}) (y : Y) : Nonempty (AffineNeighbourhoodAt Y y) := by
   obtain ⟨R, v, hv, p, hp⟩ := Scheme.exists_Spec_apply_eq y
   exact ⟨{ R := R, map := v, isOpenImmersion_map := hv, point := p, map_point := hp }⟩
@@ -598,7 +628,9 @@ noncomputable def pullbackIso (b : c.AffineBaseChange V g) :
     b.targetIso.hom c.sourceIso.hom c.targetIso.hom
     b.commutes.symm c.commutes.symm)
 
-/-- The pullback isomorphism commutes with the first projections to the two affine targets.-/
+/-- The pullback isomorphism commutes with the first projections to the two affine targets.
+@isnad1 id=eq.0h9v.s11.4322a2269ed5 from=translated src=- shape=3fda705d vocab=8ea823d6
+-/
 @[reassoc (attr := simp)]
 theorem pullbackIso_hom_fst (b : c.AffineBaseChange V g) :
     b.pullbackIso.hom ≫
@@ -610,7 +642,9 @@ theorem pullbackIso_hom_fst (b : c.AffineBaseChange V g) :
   exact pullback.lift_fst _ _ _
 
 /-- The pullback isomorphism commutes with the second projections to the two presentations of
-the restricted principal source.-/
+the restricted principal source.
+@isnad1 id=eq.0h9v.s12.2b9a08fae62a from=translated src=- shape=8049f980 vocab=2e121714
+-/
 @[reassoc (attr := simp)]
 theorem pullbackIso_hom_snd (b : c.AffineBaseChange V g) :
     b.pullbackIso.hom ≫

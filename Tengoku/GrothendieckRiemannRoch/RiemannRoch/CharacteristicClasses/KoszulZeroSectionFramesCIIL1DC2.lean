@@ -54,6 +54,9 @@ def shiftAlgEquiv {n : ℕ} (a : Fin n → R) :
         AlgHom.id_apply]
       ring)
 
+/--
+@isnad1 id=eq.0h4v.s8.5d42eb915302 from=translated src=- shape=2e35f554 vocab=6adce58d
+-/
 @[simp] theorem shiftAlgEquiv_X {n : ℕ} (a : Fin n → R) (j : Fin n) :
     shiftAlgEquiv R a (X j) = X j - C (a j) := by
   simp [shiftAlgEquiv]
@@ -67,7 +70,9 @@ open scoped Pointwise
 
 variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 
-/-- A module quotiented by a unit multiple of the whole module is subsingleton.-/
+/-- A module quotiented by a unit multiple of the whole module is subsingleton.
+@isnad1 id=subsingl.1h3v.s5.874af6696f80 from=translated src=- shape=0ce134ae vocab=ae21c232
+-/
 theorem subsingleton_quotSMulTop_of_isUnit {r : R} (hr : IsUnit r) :
     Subsingleton (QuotSMulTop r M) := by
   have htop : r • (⊤ : Submodule R M) = ⊤ := by
@@ -77,7 +82,9 @@ theorem subsingleton_quotSMulTop_of_isUnit {r : R} (hr : IsUnit r) :
     exact ⟨(↑u⁻¹ : R) • x, trivial, by rw [smul_smul]; simp⟩
   exact Submodule.Quotient.subsingleton_iff.mpr htop
 
-/-- A weakly regular sequence over a subsingleton module is automatic.-/
+/-- A weakly regular sequence over a subsingleton module is automatic.
+@isnad1 id=isweakly.0h3v.s5.ba06132edb24 from=translated src=- shape=69165581 vocab=69121c77
+-/
 theorem isWeaklyRegular_of_subsingleton [Subsingleton M] (rs : List R) :
     IsWeaklyRegular M rs := by
   induction rs generalizing M with
@@ -88,7 +95,9 @@ theorem isWeaklyRegular_of_subsingleton [Subsingleton M] (rs : List R) :
       Function.Surjective.subsingleton (Submodule.Quotient.mk_surjective _)
     exact ih
 
-/-- Any list whose head is a unit is a weakly regular sequence.-/
+/-- Any list whose head is a unit is a weakly regular sequence.
+@isnad1 id=isweakly.1h4v.s5.595b4219dfc9 from=translated src=- shape=0a5f412f vocab=b2420731
+-/
 theorem isWeaklyRegular_cons_of_isUnit {r : R} (hr : IsUnit r) (rs : List R) :
     IsWeaklyRegular M (r :: rs) := by
   refine IsWeaklyRegular.cons (hr.isSMulRegular (M := M)) ?_

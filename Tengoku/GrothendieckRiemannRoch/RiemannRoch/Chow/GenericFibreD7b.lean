@@ -32,6 +32,9 @@ def ffIso : Y.functionField ≅ X.functionField :=
   Y.presheaf.stalkCongr (.of_eq hgen.symm) ≪≫ asIso (φ.stalkMap (genericPoint X))
 
 include hgen in
+/--
+@isnad1 id=eq.1h5v.s13.e4d0424461fa from=translated src=- shape=4ffe71a4 vocab=25c83b41
+-/
 theorem ffIso_algebraMap (x : X) (r : Y.presheaf.stalk (φ x)) :
     (ffIso φ hgen).commRingCatIsoToRingEquiv
         (algebraMap (Y.presheaf.stalk (φ x)) Y.functionField r) =
@@ -58,6 +61,9 @@ theorem ffIso_algebraMap (x : X) (r : Y.presheaf.stalk (φ x)) :
 variable [IsLocallyNoetherian X] [IsLocallyNoetherian Y]
 
 omit [IsIntegral X] [IsIntegral Y] [IsLocallyNoetherian X] [IsLocallyNoetherian Y] in
+/--
+@isnad1 id=eq.0h4v.s8.fcdc226ec822 from=translated src=- shape=eb3d5ea9 vocab=7f71574f
+-/
 theorem coheight_map_of_isIso_stalkMap (x : X) : coheight (φ x) = coheight x := by
   have h1 := ringKrullDim_stalk_eq_coheight (X := X) x
   have h2 := ringKrullDim_stalk_eq_coheight (X := Y) (φ x)

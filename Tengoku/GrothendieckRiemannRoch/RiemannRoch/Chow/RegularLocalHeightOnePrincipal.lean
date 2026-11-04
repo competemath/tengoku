@@ -72,7 +72,9 @@ namespace IsRegularLocalRing
 /-! ### The Koszul syzygy of a two-term regular sequence -/
 
 /-- If `a` is a nonzerodivisor and `b` is a nonzerodivisor modulo `a`, then every relation
-`a * u + b * v = 0` is a multiple of the Koszul relation `a * b - b * a = 0`.-/
+`a * u + b * v = 0` is a multiple of the Koszul relation `a * b - b * a = 0`.
+@isnad1 id=ex.3h5v.s7.ff33419d6dd2 from=translated src=- shape=1b115886 vocab=7ffe8dd0
+-/
 theorem exists_koszul_coeff [IsDomain R] {a b : R} (ha : a ≠ 0)
     (hb : ∀ v : R, a ∣ b * v → a ∣ v) {u v : R} (h : a * u + b * v = 0) :
     ∃ c : R, v = a * c ∧ u = -(b * c) := by
@@ -90,7 +92,9 @@ prime ideal with `a ∉ p`.  Then `m ⊗ p → p` is injective.
 
 Concretely this is `Tor₁(R/m, p) = 0`: an element of `m ⊗ p` is `a ⊗ u + b ⊗ v`, the relation
 `a * u + b * v = 0` is Koszul by `exists_koszul_coeff`, and its coefficient lies in `p`
-because `a ∉ p` and `p` is prime — so the element is the image of the Koszul relation, i.e. `0`.-/
+because `a ∉ p` and `p` is prime — so the element is the image of the Koszul relation, i.e. `0`.
+@isnad1 id=injectiv.4h4v.s11.b79541dd4b5a from=translated src=- shape=e0a3b230 vocab=291def4c
+-/
 theorem maximalIdeal_rTensor_injective_of_prime [IsDomain R] [IsLocalRing R]
     {a b : R} (ha : a ≠ 0) (hb : ∀ v : R, a ∣ b * v → a ∣ v)
     (hm : maximalIdeal R = Ideal.span {a, b})
@@ -151,7 +155,9 @@ theorem maximalIdeal_rTensor_injective_of_prime [IsDomain R] [IsLocalRing R]
 /-! ### A free ideal of a domain is principal -/
 
 /-- A free ideal of an integral domain has rank one, hence is principal: two distinct basis
-vectors `e i, e j` would satisfy the nontrivial relation `e j • e i - e i • e j = 0`.-/
+vectors `e i, e j` would satisfy the nontrivial relation `e j • e i - e i • e j = 0`.
+@isnad1 id=isprinci.1h2v.s8.b7e0f1b5b97e from=translated src=- shape=360dd95e vocab=a764899d
+-/
 theorem isPrincipal_of_free [IsDomain R] (p : Ideal R)
     [Module.Free R (p : Submodule R R)] [Module.Finite R (p : Submodule R R)]
     (hp0 : p ≠ ⊥) : Submodule.IsPrincipal p := by
@@ -208,7 +214,9 @@ theorem isPrincipal_of_free [IsDomain R] (p : Ideal R)
 generator `a` of `m`, and the complementary generator `b` is regular modulo `a`.
 
 Prime avoidance applies to `m ⊄ m² ∪ p`: containment in `m²` contradicts `m² < m`, and
-containment in `p` would force `p = m`, whose height is the dimension `2`, not `1`.-/
+containment in `p` would force `p = m`, whose height is the dimension `2`, not `1`.
+@isnad1 id=ex.2h2v.s7.359900700df4 from=translated src=- shape=e4cb01ee vocab=ca0c2e2c
+-/
 theorem exists_koszul_data [IsRegularLocalRing R] (hdim : ringKrullDim R = 2)
     (p : Ideal R) [hp : p.IsPrime] (hph : p.height = 1) :
     ∃ a b : R, maximalIdeal R = Ideal.span {a, b} ∧ a ∉ p ∧
@@ -283,7 +291,9 @@ theorem exists_koszul_data [IsRegularLocalRing R] (hdim : ringKrullDim R = 2)
 /-! ### Height-one primes are principal -/
 
 /-- **Height-one principality.**  Every height-one prime of a two-dimensional regular local
-ring is principal.  This is also exactly the input P2.4's Nagata criterion requires.-/
+ring is principal.  This is also exactly the input P2.4's Nagata criterion requires.
+@isnad1 id=isprinci.2h2v.s6.e4e45291da0c from=translated src=- shape=6d9d75dc vocab=341dbf86
+-/
 theorem isPrincipal_of_height_one [IsRegularLocalRing R] (hdim : ringKrullDim R = 2)
     (p : Ideal R) [hp : p.IsPrime] (hph : p.height = 1) : Submodule.IsPrincipal p := by
   classical
@@ -306,7 +316,9 @@ theorem isPrincipal_of_height_one [IsRegularLocalRing R] (hdim : ringKrullDim R 
 /-! ### The plate theorem -/
 
 /-- **P2.3.**  Every height-one localization of a two-dimensional regular local ring is a
-discrete valuation ring.-/
+discrete valuation ring.
+@isnad1 id=isdiscre.2h2v.s6.09b12bd922ba from=translated src=- shape=1820be83 vocab=3e484dc3
+-/
 theorem isDiscreteValuationRing_localization_height_one (R : Type u) [CommRing R]
     [IsRegularLocalRing R] (hdim : ringKrullDim R = 2)
     (p : Ideal R) [p.IsPrime] (hph : p.height = 1) :

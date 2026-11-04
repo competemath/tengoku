@@ -62,14 +62,18 @@ def ProjectiveIntegralK (k : Type u) [CommRing k] : SchemeClass k := fun X _ _ _
   IsIntegral X ∧ ∃ (N : ℕ) (j : X ⟶ space k N), IsClosedImmersion j ∧
     j ≫ toSpec k N = X ↘ Spk k
 
-/-- Integrality is invariant under isomorphism.-/
+/-- Integrality is invariant under isomorphism.
+@isnad1 id=isintegr.0h3v.s3.40f52396ff52 from=translated src=- shape=a72e8271 vocab=760dc768
+-/
 theorem isIntegral_of_iso {X Y : Scheme.{u}} (e : X ≅ Y) [IsIntegral Y] : IsIntegral X := by
   haveI : Nonempty X := ⟨e.inv (Classical.choice inferInstance)⟩
   exact isIntegral_of_isOpenImmersion e.hom
 
 variable {k : Type u} [CommRing k]
 
-/-- Closed `k`-subschemes of members are members once integral.-/
+/-- Closed `k`-subschemes of members are members once integral.
+@isnad1 id=projecti.2h5v.s7.fc9ee7800455 from=translated src=- shape=13886bea vocab=0fed6ce4
+-/
 theorem projectiveIntegralK_of_closedImmersion {X Y : Scheme.{u}} [X.Over (Spk k)]
     [LocallyOfFiniteType (X ↘ Spk k)] [IsNoetherian X] (hX : ProjectiveIntegralK k X)
     [Y.Over (Spk k)] [LocallyOfFiniteType (Y ↘ Spk k)] [IsNoetherian Y]

@@ -49,7 +49,9 @@ namespace IsRegularLocalRing
 /-! ### Parameters outside `m²` -/
 
 /-- In positive Krull dimension the square of the maximal ideal is proper, so a minimal generator
-exists outside `m²`.-/
+exists outside `m²`.
+@isnad1 id=ex.1h1v.s7.12ed942f0c20 from=translated src=- shape=c755f867 vocab=449bbfbd
+-/
 theorem exists_mem_maximalIdeal_notMem_sq [IsRegularLocalRing R]
     (hdim : ringKrullDim R ≠ 0) :
     ∃ a : R, a ∈ maximalIdeal R ∧ a ∉ maximalIdeal R ^ 2 := by
@@ -58,7 +60,9 @@ theorem exists_mem_maximalIdeal_notMem_sq [IsRegularLocalRing R]
   obtain ⟨a, ha, ha2⟩ := Set.exists_of_ssubset hlt
   exact ⟨a, ha, ha2⟩
 
-/-- If `a ∈ m \ m²`, some minimal generating set of `m` contains `a`.-/
+/-- If `a ∈ m \ m²`, some minimal generating set of `m` contains `a`.
+@isnad1 id=ex.2h2v.s8.36a6a572bc10 from=translated src=- shape=6ef1aed8 vocab=9735cbbb
+-/
 theorem exists_finset_span_card_eq_spanFinrank_containing
     [IsLocalRing R] [IsNoetherianRing R] [DecidableEq R]
     {a : R} (ha : a ∈ maximalIdeal R) (ha2 : a ∉ maximalIdeal R ^ 2) :
@@ -200,7 +204,9 @@ theorem exists_finset_span_card_eq_spanFinrank_containing
 /-! ### Quotient by a non-`m²` parameter stays regular -/
 
 /-- Quotienting a regular local ring by a parameter outside `m²` drops both Krull dimension and
-embedding dimension by exactly one, so the quotient is again regular.-/
+embedding dimension by exactly one, so the quotient is again regular.
+@isnad1 id=isregula.2h2v.s7.243e64d15af9 from=translated src=- shape=99872ffe vocab=e51435d1
+-/
 theorem quotient_span_singleton_isRegularLocalRing [IsRegularLocalRing R]
     [DecidableEq R]
     {a : R} (ha : a ∈ maximalIdeal R) (ha2 : a ∉ maximalIdeal R ^ 2) :
@@ -287,7 +293,9 @@ theorem quotient_span_singleton_isRegularLocalRing [IsRegularLocalRing R]
 
 /-! ### Domain in dimension ≤ 1 -/
 
-/-- Dimension-zero regular local rings are fields.-/
+/-- Dimension-zero regular local rings are fields.
+@isnad1 id=isfield.1h1v.s5.8d7787828f16 from=translated src=- shape=50208249 vocab=50c089dd
+-/
 theorem isField_of_ringKrullDim_eq_zero [IsRegularLocalRing R]
     (hdim : ringKrullDim R = 0) : IsField R := by
   have hspan : (maximalIdeal R).spanFinrank = 0 := by
@@ -298,7 +306,9 @@ theorem isField_of_ringKrullDim_eq_zero [IsRegularLocalRing R]
     (Submodule.spanFinrank_eq_zero_iff_eq_bot (IsNoetherian.noetherian _)).1 hspan
   exact isField_iff_maximalIdeal_eq.mpr hm
 
-/-- In a one-dimensional regular local ring the maximal ideal is principal on a non-nilpotent.-/
+/-- In a one-dimensional regular local ring the maximal ideal is principal on a non-nilpotent.
+@isnad1 id=ex.1h1v.s6.7ea2a4455f2a from=translated src=- shape=ecfe50e7 vocab=c500947f
+-/
 theorem exists_generator_maximalIdeal_of_ringKrullDim_eq_one [IsRegularLocalRing R]
     (hdim : ringKrullDim R = 1) :
     ∃ ϖ : R, maximalIdeal R = Ideal.span {ϖ} ∧ ∀ n : ℕ, ϖ ^ n ≠ 0 := by
@@ -320,7 +330,9 @@ theorem exists_generator_maximalIdeal_of_ringKrullDim_eq_one [IsRegularLocalRing
   rw [hdim] at hle0
   exact absurd hle0 (by decide)
 
-/-- Factor nonzero elements in a one-dimensional regular local ring.-/
+/-- Factor nonzero elements in a one-dimensional regular local ring.
+@isnad1 id=ex.3h3v.s7.6d0b38234617 from=translated src=- shape=77f582bf vocab=07f7a735
+-/
 theorem exists_unit_mul_pow_eq_of_ringKrullDim_eq_one [IsRegularLocalRing R]
     (hdim : ringKrullDim R = 1) {ϖ : R}
     (hϖ : maximalIdeal R = Ideal.span {ϖ}) {a : R} (ha : a ≠ 0) :
@@ -368,7 +380,9 @@ theorem exists_unit_mul_pow_eq_of_ringKrullDim_eq_one [IsRegularLocalRing R]
   obtain ⟨u, hu⟩ := hr_unit
   exact ⟨u, k - 1, by rw [hr, hu, mul_comm]⟩
 
-/-- **P2.2 (dim ≤ 1).** A regular local ring of Krull dimension at most one is a domain.-/
+/-- **P2.2 (dim ≤ 1).** A regular local ring of Krull dimension at most one is a domain.
+@isnad1 id=isdomain.1h1v.s5.4b4b49d3084d from=translated src=- shape=50208249 vocab=37ff1a7f
+-/
 theorem isDomain_of_ringKrullDim_le_one [IsRegularLocalRing R]
     (hdim : ringKrullDim R ≤ 1) : IsDomain R := by
   have hspan_eq : ((maximalIdeal R).spanFinrank : WithBot ℕ∞) = ringKrullDim R :=
@@ -401,7 +415,9 @@ theorem isDomain_of_ringKrullDim_le_one [IsRegularLocalRing R]
 
 /-- Brick P2.2 interface name, currently for `ringKrullDim ≤ 1`.
 
-See module docstring: dim ≤ 2 / general cases need the associated-graded isomorphism.-/
+See module docstring: dim ≤ 2 / general cases need the associated-graded isomorphism.
+@isnad1 id=isdomain.1h1v.s5.4b4b49d3084d from=translated src=- shape=50208249 vocab=37ff1a7f
+-/
 theorem isDomain [IsRegularLocalRing R] (hdim : ringKrullDim R ≤ 1) : IsDomain R :=
   isDomain_of_ringKrullDim_le_one hdim
 

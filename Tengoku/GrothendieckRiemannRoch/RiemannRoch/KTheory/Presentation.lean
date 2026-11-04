@@ -54,7 +54,9 @@ abbrev Group := (Object →₀ ℤ) ⧸ relations Object Exact
 def classOf (A : Object) : Group Object Exact :=
   QuotientAddGroup.mk' (relations Object Exact) (Finsupp.single A 1)
 
-/-- A declared exact triple gives the defining Grothendieck-group relation.-/
+/-- A declared exact triple gives the defining Grothendieck-group relation.
+@isnad1 id=eq.0h6v.s6.08e80a1df79c from=translated src=- shape=474840cc vocab=4e7fd704
+-/
 theorem classOf_middle (A B C : Object) (h : Exact A B C) :
     classOf Object Exact B = classOf Object Exact A + classOf Object Exact C := by
   change (QuotientAddGroup.mk' (relations Object Exact)) (Finsupp.single B 1) =
@@ -67,7 +69,9 @@ theorem classOf_middle (A B C : Object) (h : Exact A B C) :
   simp only [relation, sub_eq_add_neg]
   abel
 
-/-- Additive maps out of the Grothendieck group are determined by object classes.-/
+/-- Additive maps out of the Grothendieck group are determined by object classes.
+@isnad1 id=eq.1h5v.s8.cdafe7c418aa from=translated src=- shape=26ad04b4 vocab=5a6a0e94
+-/
 theorem hom_ext {A : Type v} [AddCommGroup A]
     {f g : Group Object Exact →+ A}
     (h : ∀ x, f (classOf Object Exact x) = g (classOf Object Exact x)) : f = g := by
@@ -94,12 +98,17 @@ def freeLift (f : Object → A) : (Object →₀ ℤ) →+ A :=
       map_zero' := zero_zsmul (f x)
       map_add' := fun m n => add_zsmul (f x) m n }
 
+/--
+@isnad1 id=eq.0h5v.s7.35a84e432abd from=translated src=- shape=9509af08 vocab=c47405ab
+-/
 @[simp]
 theorem freeLift_single (f : Object → A) (x : Object) (n : ℤ) :
     freeLift f (Finsupp.single x n) = n • f x :=
   Finsupp.liftAddHom_apply_single _ _ _
 
-/-- An exact-additive function kills the subgroup of defining relations.-/
+/-- An exact-additive function kills the subgroup of defining relations.
+@isnad1 id=le.1h4v.s7.782bca3341ed from=translated src=- shape=26b0465e vocab=869d1ddb
+-/
 theorem relations_le_ker (f : Object → A)
     (hadd : ∀ A B C, Exact A B C → f B = f A + f C) :
     relations Object Exact ≤ (freeLift f).ker := by
@@ -117,6 +126,9 @@ def lift (f : Object → A)
     Group Object Exact →+ A :=
   QuotientAddGroup.lift (relations Object Exact) (freeLift f) (relations_le_ker f hadd)
 
+/--
+@isnad1 id=eq.1h5v.s7.6149ced73010 from=translated src=- shape=49cc6611 vocab=e5d7a21b
+-/
 @[simp]
 theorem lift_classOf (f : Object → A)
     (hadd : ∀ A B C, Exact A B C → f B = f A + f C) (x : Object) :
@@ -140,13 +152,18 @@ def map (F : Object → Object')
   lift (fun E => classOf Object' Exact' (F E)) fun A B C h =>
     classOf_middle Object' Exact' (F A) (F B) (F C) (hF A B C h)
 
+/--
+@isnad1 id=eq.0h7v.s7.66364409013e from=translated src=- shape=73b2139d vocab=9b776bc8
+-/
 @[simp]
 theorem map_classOf (F : Object → Object')
     (hF : ∀ A B C, Exact A B C → Exact' (F A) (F B) (F C)) (E : Object) :
     map F hF (classOf Object Exact E) = classOf Object' Exact' (F E) :=
   lift_classOf _ _ _
 
-/-- The identity object map induces the identity on the Grothendieck group.-/
+/-- The identity object map induces the identity on the Grothendieck group.
+@isnad1 id=eq.0h2v.s7.d5b63e688779 from=translated src=- shape=ddc1b119 vocab=eabae8e7
+-/
 theorem map_id :
     map (Object := Object) (Exact := Exact) (Object' := Object) (Exact' := Exact)
         (fun E => E) (fun _ _ _ h => h) =
@@ -157,7 +174,9 @@ theorem map_id :
 
 variable {Object'' : Type w} {Exact'' : Object'' → Object'' → Object'' → Prop}
 
-/-- Maps induced on Grothendieck groups respect composition.-/
+/-- Maps induced on Grothendieck groups respect composition.
+@isnad1 id=eq.0h10v.s8.6127f717c72d from=translated src=- shape=8fef71c2 vocab=df7ea661
+-/
 theorem map_comp (F : Object → Object')
     (hF : ∀ A B C, Exact A B C → Exact' (F A) (F B) (F C))
     (G : Object' → Object'')

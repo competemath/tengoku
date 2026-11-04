@@ -37,6 +37,9 @@ def characteristicClass {C : Type w} [CommRing C]
   map_zero' := by simp
   map_add' a b := by rw [map_add, add_mul]
 
+/--
+@isnad1 id=eq.0h6v.s8.d7f1c138e882 from=translated src=- shape=85300a4f vocab=e8479896
+-/
 @[simp]
 theorem characteristicClass_classOf {C : Type w} [CommRing C]
     (chernCharacter : ExactGrothendieck.Group ObjectX ExactX →+ C) (toddClass : C)
@@ -62,7 +65,9 @@ def rightHandSide {CX : Type w} {CY : Type x} [CommRing CX] [CommRing CY]
   cyclePushforward.comp (characteristicClass chernX toddX)
 
 /-- GRR on object classes implies equality of its two additive transformations on all of `K₀`
-or `G₀`.-/
+or `G₀`.
+@isnad1 id=eq.1h13v.s9.35ad76845af5 from=translated src=- shape=658c6e8b vocab=424245fe
+-/
 theorem hom_eq_of_object_classes {CX : Type w} {CY : Type x} [CommRing CX] [CommRing CY]
     (F : ObjectX → ObjectY)
     (hF : ∀ A B C, ExactX A B C → ExactY (F A) (F B) (F C))
@@ -79,7 +84,9 @@ theorem hom_eq_of_object_classes {CX : Type w} {CY : Type x} [CommRing CX] [Comm
   intro E
   simpa [leftHandSide, rightHandSide] using hobject E
 
-/-- Pointwise GRR for every virtual class, reduced to the formula on actual object classes.-/
+/-- Pointwise GRR for every virtual class, reduced to the formula on actual object classes.
+@isnad1 id=eq.1h14v.s9.c5bd63887e61 from=translated src=- shape=8d6785ee vocab=f36bbdb5
+-/
 theorem formula_of_object_classes {CX : Type w} {CY : Type x} [CommRing CX] [CommRing CY]
     (F : ObjectX → ObjectY)
     (hF : ∀ A B C, ExactX A B C → ExactY (F A) (F B) (F C))

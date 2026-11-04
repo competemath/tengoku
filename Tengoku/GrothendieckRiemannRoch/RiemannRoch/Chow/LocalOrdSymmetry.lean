@@ -65,7 +65,9 @@ namespace LocalOrdSymmetry
 
 /-- `Module.length` is invariant under a bijective semilinear map: if `σ : R →+* S` is a
 surjective ring hom and `f : M →ₛₗ[σ] N` is bijective, then `M` and `N` have the same length
-over `R` and `S` respectively.-/
+over `R` and `S` respectively.
+@isnad1 id=eq.1h6v.s7.4fb535e2cfb5 from=translated src=- shape=0c53ca8b vocab=80af06d1
+-/
 theorem length_eq_of_bijective {R S : Type*} [CommRing R] [CommRing S]
     {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module S N]
     (σ : R →+* S) [RingHomSurjective σ] (f : M →ₛₗ[σ] N) (hf : Function.Bijective f) :
@@ -73,7 +75,9 @@ theorem length_eq_of_bijective {R S : Type*} [CommRing R] [CommRing S]
   rw [Module.length, Module.length, WithBot.unbot_inj,
     Order.krullDim_eq_of_orderIso (Submodule.orderIsoMapComapOfBijective f hf)]
 
-/-- The order of vanishing is invariant under ring isomorphisms.-/
+/-- The order of vanishing is invariant under ring isomorphisms.
+@isnad1 id=eq.0h4v.s7.c661076208ba from=translated src=- shape=0f94ccfc vocab=bdd35622
+-/
 theorem ord_ringEquiv {R S : Type*} [CommRing R] [CommRing S] (e : R ≃+* S) (x : R) :
     Ring.ord S (e x) = Ring.ord R x := by
   have hs : RingHomSurjective (e : R →+* S) := ⟨e.surjective⟩
@@ -109,7 +113,9 @@ noncomputable def chiKer (b : A) (M : Type*) [AddCommGroup M] [Module A M] : ℕ
   Module.length A (LinearMap.ker (LinearMap.lsmul A M b))
 
 /-- The length of a module is the length of the kernel plus the length of the range of any
-linear map out of it.-/
+linear map out of it.
+@isnad1 id=eq.0h4v.s8.343408c6011c from=translated src=- shape=8fac7544 vocab=98a99336
+-/
 theorem length_eq_ker_add_range {M P : Type*} [AddCommGroup M] [Module A M] [AddCommGroup P]
     [Module A P] (f : M →ₗ[A] P) :
     Module.length A M
@@ -121,7 +127,9 @@ theorem length_eq_ker_add_range {M P : Type*} [AddCommGroup M] [Module A M] [Add
 
 variable {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
 
-/-- `chiKer` is invariant under linear isomorphisms.-/
+/-- `chiKer` is invariant under linear isomorphisms.
+@isnad1 id=eq.0h5v.s6.28b3f639ab56 from=translated src=- shape=9f688160 vocab=3bc8eec1
+-/
 theorem chiKer_congr (b : A) (e : M ≃ₗ[A] N) : chiKer b M = chiKer b N := by
   have hmap : Submodule.map (e : M →ₗ[A] N) (LinearMap.ker (LinearMap.lsmul A M b))
       = LinearMap.ker (LinearMap.lsmul A N b) := by
@@ -136,7 +144,9 @@ theorem chiKer_congr (b : A) (e : M ≃ₗ[A] N) : chiKer b M = chiKer b N := by
       rw [map_smul, e.apply_symm_apply, hy, map_zero]
   exact LinearEquiv.length_eq (e.submoduleMap _ ≪≫ₗ LinearEquiv.ofEq _ _ hmap)
 
-/-- `chiCoker` is invariant under linear isomorphisms.-/
+/-- `chiCoker` is invariant under linear isomorphisms.
+@isnad1 id=eq.0h5v.s6.0ec8c2ce92d2 from=translated src=- shape=9f688160 vocab=87192c33
+-/
 theorem chiCoker_congr (b : A) (e : M ≃ₗ[A] N) : chiCoker b M = chiCoker b N := by
   have hmap : Submodule.map (e : M →ₗ[A] N) (LinearMap.range (LinearMap.lsmul A M b))
       = LinearMap.range (LinearMap.lsmul A N b) := by
@@ -149,7 +159,9 @@ theorem chiCoker_congr (b : A) (e : M ≃ₗ[A] N) : chiCoker b M = chiCoker b N
       exact ⟨b • e.symm y', ⟨e.symm y', rfl⟩, by rw [map_smul, e.apply_symm_apply]⟩
   exact LinearEquiv.length_eq (Submodule.Quotient.equiv _ _ e hmap)
 
-/-- The length of `Submodule.comap X.subtype Y` agrees with the length of `X ⊓ Y`.-/
+/-- The length of `Submodule.comap X.subtype Y` agrees with the length of `X ⊓ Y`.
+@isnad1 id=eq.0h4v.s10.84354ea3a3bd from=translated src=- shape=4e73d3ff vocab=79cc3796
+-/
 theorem length_comap_subtype (X Y : Submodule A M) :
     Module.length A (Submodule.comap X.subtype Y) = Module.length A (X ⊓ Y : Submodule A M) := by
   have h : Submodule.comap X.subtype Y = Submodule.comap X.subtype (X ⊓ Y) := by
@@ -160,7 +172,9 @@ theorem length_comap_subtype (X Y : Submodule A M) :
 
 /-- Additivity of the pair `(chiCoker, chiKer)` along a short exact sequence
 `0 → N → M → M ⧸ N → 0`.  This is the "snake lemma" input of Fulton's Appendix A.2, written
-additively so that no subtraction in `ℕ∞` is needed.-/
+additively so that no subtraction in `ℕ∞` is needed.
+@isnad1 id=eq.0h4v.s8.9a4bbc24b478 from=translated src=- shape=b07fb234 vocab=49f42b0d
+-/
 theorem chi_add_submodule (b : A) (P : Submodule A M) :
     chiCoker b M + chiKer b P + chiKer b (M ⧸ P)
       = chiKer b M + chiCoker b P + chiCoker b (M ⧸ P) := by
@@ -359,7 +373,9 @@ noncomputable def lengthAt (p : Ideal B) [p.IsPrime] (M : Type*) [AddCommGroup M
 
 variable (p : Ideal B) [p.IsPrime]
 
-/-- `lengthAt` is invariant under linear isomorphisms.-/
+/-- `lengthAt` is invariant under linear isomorphisms.
+@isnad1 id=eq.0h5v.s6.cd4e709a9d7a from=translated src=- shape=62a76c5a vocab=bfc07983
+-/
 theorem lengthAt_congr {M N : Type*} [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N]
     (e : M ≃ₗ[B] N) : lengthAt p M = lengthAt p N := by
   have hinj := IsLocalizedModule.map_injective p.primeCompl
@@ -372,7 +388,9 @@ theorem lengthAt_congr {M N : Type*} [AddCommGroup M] [Module B M] [AddCommGroup
     ((LinearEquiv.ofBijective _ ⟨hinj, hsurj⟩).extendScalarsOfIsLocalization p.primeCompl
       (Localization.AtPrime p))
 
-/-- Localization is exact, so `lengthAt` is additive along short exact sequences.-/
+/-- Localization is exact, so `lengthAt` is additive along short exact sequences.
+@isnad1 id=eq.0h4v.s7.c3c9c56a3a4b from=translated src=- shape=09fc5ff0 vocab=9291ced8
+-/
 theorem lengthAt_add {M : Type*} [AddCommGroup M] [Module B M] (P : Submodule B M) :
     lengthAt p M = lengthAt p P + lengthAt p (M ⧸ P) := by
   have hg := IsLocalizedModule.map_injective p.primeCompl
@@ -393,14 +411,18 @@ theorem lengthAt_add {M : Type*} [AddCommGroup M] [Module B M] (P : Submodule B 
         (LocalizedModule.mkLinearMap p.primeCompl (M ⧸ P))
         P.mkQ).extendScalarsOfIsLocalization p.primeCompl (Localization.AtPrime p)) hg hh hex
 
-/-- A module killed by an element outside `p` has vanishing length at `p`.-/
+/-- A module killed by an element outside `p` has vanishing length at `p`.
+@isnad1 id=eq.2h4v.s7.4eeb12761ec1 from=translated src=- shape=f48deec7 vocab=e47f37a6
+-/
 theorem lengthAt_eq_zero {M : Type*} [AddCommGroup M] [Module B M] {t : B} (ht : t ∉ p)
     (h : ∀ m : M, t • m = 0) : lengthAt p M = 0 := by
   have : Subsingleton (LocalizedModule p.primeCompl M) :=
     LocalizedModule.subsingleton_iff.2 fun m ↦ ⟨t, ht, h m⟩
   exact Module.length_eq_zero
 
-/-- The localization of `B ⧸ I` at a prime `p` is `B_p ⧸ I B_p`.-/
+/-- The localization of `B ⧸ I` at a prime `p` is `B_p ⧸ I B_p`.
+@isnad1 id=eq.0h3v.s10.a602c09c20a6 from=translated src=- shape=275872e3 vocab=f0674975
+-/
 theorem lengthAt_quotient (I : Ideal B) :
     lengthAt p (B ⧸ I) = Module.length (Localization.AtPrime p)
       (Localization.AtPrime p ⧸ I.map (algebraMap B (Localization.AtPrime p))) := by
@@ -418,14 +440,18 @@ theorem lengthAt_quotient (I : Ideal B) :
   rw [lengthAt, LinearEquiv.length_eq e₂]
 
 /-- The localization of `B ⧸ (x)` at a prime `p` computes the order of vanishing of `x` in
-`B_p`.-/
+`B_p`.
+@isnad1 id=eq.0h3v.s8.2b09fd8b8843 from=translated src=- shape=986c56d7 vocab=54cfe49a
+-/
 theorem lengthAt_quotient_span (x : B) :
     lengthAt p (B ⧸ Ideal.span {x})
       = Ring.ord (Localization.AtPrime p) (algebraMap B (Localization.AtPrime p) x) := by
   rw [lengthAt_quotient, Ideal.map_span, Set.image_singleton]
   rfl
 
-/-- The localization of `B ⧸ p` at `p` is the residue field of `B_p`, of length one.-/
+/-- The localization of `B ⧸ p` at `p` is the residue field of `B_p`, of length one.
+@isnad1 id=eq.0h2v.s6.f7e90073a2e6 from=translated src=- shape=d85a6614 vocab=00f1ac02
+-/
 theorem lengthAt_quotient_self : lengthAt p (B ⧸ p) = 1 := by
   have hloc : Submodule.localized' (Localization.AtPrime p) p.primeCompl
       (Algebra.linearMap B (Localization.AtPrime p)) (p : Submodule B B)
@@ -451,31 +477,43 @@ section Devissage
 
 variable {B : Type*} [CommRing B] (b : B)
 
-/-- Cancellation of a finite summand in `ℕ∞`.-/
+/-- Cancellation of a finite summand in `ℕ∞`.
+@isnad1 id=eq.2h3v.s5.29048a017bc8 from=translated src=- shape=4e5f7a49 vocab=5eaa51e5
+-/
 theorem enat_add_right_cancel {x y z : ℕ∞} (hz : z ≠ ⊤) (h : x + z = y + z) : x = y := by
   have hc := ENat.addLECancellable_of_ne_top hz
   have h' : z + x = z + y := by rw [add_comm z x, add_comm z y]; exact h
   exact le_antisymm (hc h'.le) (hc h'.ge)
 
-/-- The cokernel multiplicity of the zero module vanishes.-/
+/-- The cokernel multiplicity of the zero module vanishes.
+@isnad1 id=eq.0h3v.s5.851ec65185b4 from=translated src=- shape=94693a7d vocab=7c14df95
+-/
 theorem chiCoker_eq_zero {M : Type*} [AddCommGroup M] [Module B M] [Subsingleton M] :
     chiCoker b M = 0 := Module.length_eq_zero
 
-/-- The kernel multiplicity of the zero module vanishes.-/
+/-- The kernel multiplicity of the zero module vanishes.
+@isnad1 id=eq.0h3v.s5.753f40726335 from=translated src=- shape=94693a7d vocab=e402ce72
+-/
 theorem chiKer_eq_zero {M : Type*} [AddCommGroup M] [Module B M] [Subsingleton M] :
     chiKer b M = 0 := Module.length_eq_zero
 
-/-- The length at a prime of the zero module vanishes.-/
+/-- The length at a prime of the zero module vanishes.
+@isnad1 id=eq.0h3v.s5.25bcde54a4ad from=translated src=- shape=23f9a712 vocab=ff536785
+-/
 theorem lengthAt_eq_zero_of_subsingleton (p : Ideal B) [p.IsPrime] {M : Type*} [AddCommGroup M]
     [Module B M] [Subsingleton M] : lengthAt p M = 0 := Module.length_eq_zero
 
-/-- An element of an ideal `I` annihilates `B ⧸ I`.-/
+/-- An element of an ideal `I` annihilates `B ⧸ I`.
+@isnad1 id=eq.1h4v.s7.f1d13adaab4a from=translated src=- shape=0e5cb016 vocab=21b3ec53
+-/
 theorem smul_quotient_eq_zero {I : Ideal B} {t : B} (ht : t ∈ I) (m : B ⧸ I) : t • m = 0 := by
   obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective I m
   rw [← Submodule.Quotient.mk_smul, smul_eq_mul]
   exact (Submodule.Quotient.mk_eq_zero I).2 (Ideal.mul_mem_right y I ht)
 
-/-- The cokernel multiplicity of `b` on `B ⧸ I` is the length of `B ⧸ (I + (b))`.-/
+/-- The cokernel multiplicity of `b` on `B ⧸ I` is the length of `B ⧸ (I + (b))`.
+@isnad1 id=eq.0h3v.s8.277c48e34aa9 from=translated src=- shape=38752cfb vocab=d3a04fd7
+-/
 theorem chiCoker_quotient (I : Ideal B) :
     chiCoker b (B ⧸ I) = Module.length B (B ⧸ (I ⊔ Ideal.span {b})) := by
   have hr : LinearMap.range (LinearMap.lsmul B (B ⧸ I) b)
@@ -494,7 +532,9 @@ theorem chiCoker_quotient (I : Ideal B) :
   exact LinearEquiv.length_eq (Submodule.quotientQuotientEquivQuotientSup I (Ideal.span {b}))
 
 /-- For a maximal ideal `p`, multiplication by `b` on the residue field `B ⧸ p` is either zero
-or bijective, so the two multiplicity terms agree.-/
+or bijective, so the two multiplicity terms agree.
+@isnad1 id=eq.0h3v.s7.8efb9a14f8d4 from=translated src=- shape=5dc894dd vocab=41313b99
+-/
 theorem chi_eq_of_isMaximal (p : Ideal B) [hp : p.IsMaximal] :
     chiCoker b (B ⧸ p) = chiKer b (B ⧸ p) := by
   by_cases hb : b ∈ p
@@ -532,7 +572,9 @@ variable [IsNoetherianRing B]
 
 omit [IsNoetherianRing B] in
 /-- If `B ⧸ (I + (b))` is an Artinian `B`-module then `chiCoker b (B ⧸ J)` is finite for every
-ideal `J` containing `I`.-/
+ideal `J` containing `I`.
+@isnad1 id=ne.2h4v.s8.17b8e7c5d011 from=translated src=- shape=0eecb051 vocab=6f43fc11
+-/
 theorem chiCoker_ne_top (I : Ideal B) (hart : IsArtinian B (B ⧸ (I ⊔ Ideal.span {b})))
     [IsNoetherianRing B] (J : Ideal B) (hJ : I ≤ J) : chiCoker b (B ⧸ J) ≠ ⊤ := by
   have hb : I ⊔ Ideal.span {b}
@@ -556,7 +598,9 @@ theorem chiCoker_ne_top (I : Ideal B) (hart : IsArtinian B (B ⧸ (I ⊔ Ideal.s
 
 omit [IsNoetherianRing B] in
 /-- Base case of the dévissage: the statement for the cyclic modules `B ⧸ p`, `p` a prime
-containing `I`.-/
+containing `I`.
+@isnad1 id=eq.4h5v.s9.d261072816df from=translated src=- shape=d03b31cd vocab=d8b18d1a
+-/
 theorem devissage_base (I : Ideal B) (T : Finset (PrimeSpectrum B))
     (hTmin : ∀ q : PrimeSpectrum B, q.asIdeal ∈ I.minimalPrimes → q ∈ T)
     (hTmem : ∀ q ∈ T, q.asIdeal ∈ I.minimalPrimes)
@@ -597,7 +641,9 @@ theorem devissage_base (I : Ideal B) (T : Finset (PrimeSpectrum B))
 /-- Dévissage (Fulton, *Intersection Theory*, Lemma A.2.7): if every prime of `B` containing `I`
 is either minimal over `I` or maximal, and `B ⧸ (I + (b))` is Artinian, then the multiplicity of
 `b` on `B ⧸ J` (for `J ⊇ I`) is computed from the multiplicities on the `B ⧸ q`, `q` minimal over
-`I`, weighted by the lengths of the localizations.-/
+`I`, weighted by the lengths of the localizations.
+@isnad1 id=eq.5h5v.s9.298e34fa510d from=translated src=- shape=c1f74212 vocab=2c552eae
+-/
 theorem devissage (I : Ideal B) (hart : IsArtinian B (B ⧸ (I ⊔ Ideal.span {b})))
     (T : Finset (PrimeSpectrum B))
     (hTmin : ∀ q : PrimeSpectrum B, q.asIdeal ∈ I.minimalPrimes → q ∈ T)
@@ -738,7 +784,9 @@ end Devissage
 
 section Transfer
 
-/-- The range of multiplication by `x` on `R` itself is the principal ideal `(x)`.-/
+/-- The range of multiplication by `x` on `R` itself is the principal ideal `(x)`.
+@isnad1 id=eq.0h2v.s9.eff0c9ff27e0 from=translated src=- shape=fa3d45cf vocab=1c127da9
+-/
 theorem range_lsmul_self (R : Type*) [CommRing R] (x : R) :
     LinearMap.range (LinearMap.lsmul R R x) = Ideal.span {x} := by
   ext y
@@ -749,7 +797,9 @@ theorem range_lsmul_self (R : Type*) [CommRing R] (x : R) :
   · rintro ⟨z, rfl⟩
     exact ⟨z, rfl⟩
 
-/-- The cokernel multiplicity of `x` on `R` itself is the order of vanishing of `x`.-/
+/-- The cokernel multiplicity of `x` on `R` itself is the order of vanishing of `x`.
+@isnad1 id=eq.0h2v.s5.d64ccab2c482 from=translated src=- shape=54161f8a vocab=5504e195
+-/
 theorem chiCoker_self (R : Type*) [CommRing R] (x : R) : chiCoker x R = Ring.ord R x := by
   rw [chiCoker, range_lsmul_self]
   rfl
@@ -758,7 +808,9 @@ variable {A B : Type*} [CommRing A] [CommRing B]
 variable {M : Type*} [AddCommGroup M] [Module A M] [Module B M]
 
 /-- Length of a submodule computed over a ring and over a quotient of it agree, provided the
-two actions on the ambient module are related by the (surjective) ring map.-/
+two actions on the ambient module are related by the (surjective) ring map.
+@isnad1 id=eq.3h6v.s9.cc3b52ad6411 from=translated src=- shape=c1e847c5 vocab=79a85b81
+-/
 theorem length_subtype_eq_of_smul (σ : A →+* B) (hσ : Function.Surjective σ)
     (hsmul : ∀ (a : A) (m : M), a • m = σ a • m)
     (N₁ : Submodule A M) (N₂ : Submodule B M) (hN : ∀ m, m ∈ N₁ ↔ m ∈ N₂) :
@@ -774,7 +826,9 @@ theorem length_subtype_eq_of_smul (σ : A →+* B) (hσ : Function.Surjective σ
     exact ⟨⟨(y : M), (hN _).2 y.2⟩, rfl⟩
 
 /-- Length of a quotient module computed over a ring and over a quotient of it agree, provided
-the two actions on the ambient module are related by the (surjective) ring map.-/
+the two actions on the ambient module are related by the (surjective) ring map.
+@isnad1 id=eq.3h6v.s8.764afb02db1f from=translated src=- shape=e9e8189b vocab=b977ee99
+-/
 theorem length_quotient_eq_of_smul (σ : A →+* B) (hσ : Function.Surjective σ)
     (hsmul : ∀ (a : A) (m : M), a • m = σ a • m)
     (N₁ : Submodule A M) (N₂ : Submodule B M) (hN : ∀ m, m ∈ N₁ ↔ m ∈ N₂) :
@@ -801,7 +855,9 @@ section QuotientOrd
 variable {B : Type*} [CommRing B] (b : B)
 
 /-- The cokernel multiplicity of `b` on `B ⧸ I` is the order of vanishing of the image of `b`
-in the quotient ring `B ⧸ I`.-/
+in the quotient ring `B ⧸ I`.
+@isnad1 id=eq.0h3v.s7.b13745bbbb52 from=translated src=- shape=49e6428e vocab=04222714
+-/
 theorem chiCoker_quotient_ord (I : Ideal B) :
     chiCoker b (B ⧸ I) = Ring.ord (B ⧸ I) (Ideal.Quotient.mk I b) := by
   rw [chiCoker, Ring.ord]
@@ -829,14 +885,18 @@ noncomputable def koszulRel (a s : A) : Submodule A (A × A) :=
   LinearMap.ker (a • LinearMap.fst A A A - s • LinearMap.snd A A A)
 
 omit [IsDomain A] in
-/-- Membership in the Koszul relation module.-/
+/-- Membership in the Koszul relation module.
+@isnad1 id=iff.0h4v.s8.4d12b9b3bd42 from=translated src=- shape=98a646b9 vocab=b26757c0
+-/
 theorem mem_koszulRel {a s : A} {p : A × A} : p ∈ koszulRel a s ↔ a * p.1 = s * p.2 := by
   rw [koszulRel, LinearMap.mem_ker]
   simp only [LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.fst_apply, LinearMap.snd_apply,
     smul_eq_mul, sub_eq_zero]
 
 /-- Koszul symmetry: over a domain, the `a`-torsion of `A ⧸ (s)` and the `s`-torsion of
-`A ⧸ (a)` are isomorphic, hence have the same length.-/
+`A ⧸ (a)` are isomorphic, hence have the same length.
+@isnad1 id=eq.2h3v.s7.cbb9fc4ab7ee from=translated src=- shape=2d1b5425 vocab=234d3612
+-/
 theorem chiKer_quotient_comm (a s : A) (ha : a ≠ 0) (hs : s ≠ 0) :
     chiKer a (A ⧸ Ideal.span {s}) = chiKer s (A ⧸ Ideal.span {a}) := by
   set g₁ : koszulRel a s →ₗ[A] (A ⧸ Ideal.span {s}) :=
@@ -903,7 +963,9 @@ section LocalKey
 variable {A : Type*} [CommRing A] [IsNoetherianRing A]
 
 omit [IsNoetherianRing A] in
-/-- The `b`-torsion of `A ⧸ q` vanishes for a prime `q` not containing `b`.-/
+/-- The `b`-torsion of `A ⧸ q` vanishes for a prime `q` not containing `b`.
+@isnad1 id=eq.1h3v.s7.742eda94c275 from=translated src=- shape=58ee724f vocab=81489fd0
+-/
 theorem chiKer_quotient_prime_eq_zero (q : Ideal A) [hq : q.IsPrime] {b : A} (hb : b ∉ q) :
     chiKer b (A ⧸ q) = 0 := by
   have hker : LinearMap.ker (LinearMap.lsmul A (A ⧸ q) b) = ⊥ := by
@@ -916,7 +978,9 @@ theorem chiKer_quotient_prime_eq_zero (q : Ideal A) [hq : q.IsPrime] {b : A} (hb
   rw [chiKer, hker, Module.length_bot]
 
 /-- If the only prime of `A` containing `I` is a maximal ideal `m`, then `A ⧸ I` is an Artinian
-`A`-module.-/
+`A`-module.
+@isnad1 id=isartini.2h3v.s7.237b96122ca4 from=translated src=- shape=55a8eb98 vocab=8a42bc6b
+-/
 theorem isArtinian_quotient_of_unique_prime (m : Ideal A) [m.IsMaximal] (I : Ideal A)
     (hIm : I ≤ m) (hI : ∀ P : Ideal A, P.IsPrime → I ≤ P → P = m) : IsArtinian A (A ⧸ I) := by
   have hkd : Ring.KrullDimLE 0 (A ⧸ I) := by
@@ -939,7 +1003,9 @@ theorem isArtinian_quotient_of_unique_prime (m : Ideal A) [m.IsMaximal] (I : Ide
 /-- Fulton's local formula (*Intersection Theory*, A.3) in a Noetherian local domain `A` with
 maximal ideal `m` in which there is no chain `⊥ < q' < q < m` of primes: the length of
 `A ⧸ (a, s)` is the length of the `a`-torsion of `A ⧸ (s)` plus the sum, over the minimal primes
-`q` of `(s)`, of `ord_q(s)` times the order of `a` on `A ⧸ q`.-/
+`q` of `(s)`, of `ord_q(s)` times the order of `a` on `A ⧸ q`.
+@isnad1 id=eq.8h5v.s10.4295f406d211 from=translated src=- shape=2f4c2bba vocab=cafa57b2
+-/
 theorem local_key [IsDomain A] (m : Ideal A) [m.IsMaximal]
     (hlocal : ∀ P : Ideal A, P.IsPrime → P ≤ m) (a s : A) (hs : s ≠ 0) (ham : a ∈ m) (hsm : s ∈ m)
     (hchain : ∀ q q' : Ideal A, q.IsPrime → q'.IsPrime → ⊥ < q' → q' < q → q < m → False)
@@ -990,7 +1056,9 @@ end LocalKey
 section Assembly
 
 /-- Iterated localization: the localization of `D_Q` at a prime `P` is the localization of `D`
-at the contraction of `P`, so the orders of vanishing of an element of `D` agree.-/
+at the contraction of `P`, so the orders of vanishing of an element of `D` agree.
+@isnad1 id=eq.0h4v.s12.170964f7e0fb from=translated src=- shape=73a877eb vocab=9f93df7a
+-/
 theorem ord_comap_eq {D : Type*} [CommRing D] (Q : Ideal D) [Q.IsPrime]
     (P : Ideal (Localization.AtPrime Q)) [P.IsPrime] (x : D) :
     Ring.ord (Localization.AtPrime P)
@@ -1005,7 +1073,9 @@ theorem ord_comap_eq {D : Type*} [CommRing D] (Q : Ideal D) [Q.IsPrime]
     ← e.commutes x]
   exact ord_ringEquiv e.toRingEquiv _
 
-/-- Changing the ideal in an order of vanishing on a quotient ring.-/
+/-- Changing the ideal in an order of vanishing on a quotient ring.
+@isnad1 id=eq.1h4v.s8.e3779c209cf9 from=translated src=- shape=a8e8ee21 vocab=01f2ac54
+-/
 theorem ord_quotient_congr {A : Type*} [CommRing A] {J J' : Ideal A} (h : J = J') (x : A) :
     Ring.ord (A ⧸ J) (Ideal.Quotient.mk J x) = Ring.ord (A ⧸ J') (Ideal.Quotient.mk J' x) := by
   subst h
@@ -1014,7 +1084,9 @@ theorem ord_quotient_congr {A : Type*} [CommRing A] {J J' : Ideal A} (h : J = J'
 open Classical in
 /-- One half of Fulton's symmetric identity, computed in the local ring `D_Q`: the sum over the
 primes `q < Q` containing `s` of `ord_q(s) · ord_Q(a on V(q))`, plus the length of the
-`a`-torsion of `D_Q ⧸ (s)`, is the length of `D_Q ⧸ (a, s)`.-/
+`a`-torsion of `D_Q ⧸ (s)`, is the length of `D_Q ⧸ (a, s)`.
+@isnad1 id=and.8h5v.s13.067bbefeb013 from=translated src=- shape=b00a1f21 vocab=48b1e97a
+-/
 theorem finsum_ord_add_chiKer {D : Type u} [CommRing D] [IsDomain D] [IsNoetherianRing D]
     (Q : Ideal D) [Q.IsPrime] (a s : D) (hs : s ≠ 0) (haQ : a ∈ Q) (hsQ : s ∈ Q)
     (hchain : ∀ q q' : Ideal D, q.IsPrime → q'.IsPrime → ⊥ < q' → q' < q → q < Q → False)
@@ -1223,7 +1295,9 @@ theorem finsum_ord_add_chiKer {D : Type u} [CommRing D] [IsDomain D] [IsNoetheri
       (algebraMap D (Localization.AtPrime Q) a),
     ← chiCoker_quotient_ord, ← ord_comap_eq Q P.asIdeal s, ← lengthAt_quotient_span]
 
-/-- The order of vanishing of a unit is zero.-/
+/-- The order of vanishing of a unit is zero.
+@isnad1 id=eq.1h2v.s5.96da343ee215 from=translated src=- shape=10a88c7d vocab=6b6717d1
+-/
 theorem ord_eq_zero_of_isUnit {R : Type*} [CommRing R] {x : R} (hx : IsUnit x) :
     Ring.ord R x = 0 := by
   have h : Ideal.span {x} = ⊤ := Ideal.span_singleton_eq_top.2 hx
@@ -1263,7 +1337,9 @@ def LocalOrdSymmetry : Prop :=
         else 0)
 
 open Classical in
-/-- Fulton's symmetric local identity, *Intersection Theory*, Appendix A.2–A.3.-/
+/-- Fulton's symmetric local identity, *Intersection Theory*, Appendix A.2–A.3.
+@isnad1 id=localord.0h0v.s0.2789ef3abb64 from=translated src=- shape=45709ebd vocab=119191ae
+-/
 theorem localOrdSymmetry : LocalOrdSymmetry.{u} := by
   intro D _ _ _ Q _ a s ha hs hchain hgood
   have hunit : ∀ x : D, x ∉ Q → ∀ J : Ideal (Localization.AtPrime Q),

@@ -55,7 +55,9 @@ variable {R : Type u} [CommRing R]
 /-! ### The maximal ideal is not minimal in positive dimension -/
 
 /-- In positive Krull dimension the maximal ideal of a local ring is not a minimal prime:
-its height would be zero, and in a local ring the height of the maximal ideal is the dimension.-/
+its height would be zero, and in a local ring the height of the maximal ideal is the dimension.
+@isnad1 id=not.1h1v.s6.a62312ff2624 from=translated src=- shape=e09aeb6e vocab=f9707010
+-/
 theorem maximalIdeal_notMem_minimalPrimes [IsLocalRing R]
     (hdim : ringKrullDim R ≠ 0) : maximalIdeal R ∉ minimalPrimes R := by
   intro hmem
@@ -71,7 +73,9 @@ of the maximal ideal lying outside `m²` and outside every minimal prime.
 
 `m` is covered by `m² ∪ ⋃ minimal primes` only if it is contained in one of them
 (`Ideal.subset_union_prime`, which tolerates the single non-prime member `m²`).  Containment in
-`m²` contradicts `m² < m`, and containment in a minimal prime would make `m` itself minimal.-/
+`m²` contradicts `m² < m`, and containment in a minimal prime would make `m` itself minimal.
+@isnad1 id=ex.1h1v.s8.7d8b3730099c from=translated src=- shape=2190386e vocab=0fad962e
+-/
 theorem exists_mem_maximalIdeal_notMem_sq_notMem_minimalPrimes [IsRegularLocalRing R]
     (hdim : ringKrullDim R ≠ 0) :
     ∃ a : R, a ∈ maximalIdeal R ∧ a ∉ maximalIdeal R ^ 2 ∧
@@ -123,7 +127,9 @@ Induction on the embedding dimension.  Dimension zero is a field.  In positive d
 parameter `x` outside `m²` and outside every minimal prime; then `R ⧸ (x)` is regular of embedding
 dimension one less, hence a domain by induction, so `(x)` is prime.  A minimal prime `q ≤ (x)`
 satisfies `q = x · q` (each `y = r * x ∈ q` has `r ∈ q` because `x ∉ q`), so Nakayama gives
-`q = ⊥`; a prime `⊥` is exactly the domain property.-/
+`q = ⊥`; a prime `⊥` is exactly the domain property.
+@isnad1 id=isdomain.0h1v.s4.fd890a1a5574 from=translated src=- shape=c612a321 vocab=fbdff070
+-/
 theorem isDomain_of_isRegularLocalRing (A : Type u) [CommRing A] [IsRegularLocalRing A] :
     IsDomain A := by
   classical

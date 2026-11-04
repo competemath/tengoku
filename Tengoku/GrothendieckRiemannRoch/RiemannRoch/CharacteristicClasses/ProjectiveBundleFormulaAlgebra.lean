@@ -46,10 +46,16 @@ def projectiveBundleRelationLower (a : Fin r → A) : A[X] :=
 def projectiveBundleRelationPolynomial (a : Fin r → A) : A[X] :=
   X ^ r + projectiveBundleRelationLower A r a
 
+/--
+@isnad1 id=lt.0h3v.s5.9a97d7d9c959 from=translated src=- shape=d4bf4ea6 vocab=5c62c20d
+-/
 theorem projectiveBundleRelationLower_degree_lt (a : Fin r → A) :
     (projectiveBundleRelationLower A r a).degree < r := by
   exact degree_sum_fin_lt a
 
+/--
+@isnad1 id=ismonico.0h3v.s4.8c1d2791cd0e from=translated src=- shape=3590a353 vocab=bfd272ca
+-/
 theorem projectiveBundleRelationPolynomial_isMonicOfDegree
     [Nontrivial A] (a : Fin r → A) :
     (projectiveBundleRelationPolynomial A r a).IsMonicOfDegree r := by
@@ -65,11 +71,17 @@ theorem projectiveBundleRelationPolynomial_isMonicOfDegree
     · exact (natDegree_lt_iff_degree_lt hq).2
         (projectiveBundleRelationLower_degree_lt A r a)
 
+/--
+@isnad1 id=monic.0h3v.s4.c013f2de8e15 from=translated src=- shape=eac0b288 vocab=4056fb32
+-/
 theorem projectiveBundleRelationPolynomial_monic
     [Nontrivial A] (a : Fin r → A) :
     (projectiveBundleRelationPolynomial A r a).Monic :=
   (projectiveBundleRelationPolynomial_isMonicOfDegree A r a).monic
 
+/--
+@isnad1 id=eq.0h3v.s4.eecc135f1f30 from=translated src=- shape=5b3b2c09 vocab=682032c2
+-/
 theorem projectiveBundleRelationPolynomial_natDegree
     [Nontrivial A] (a : Fin r → A) :
     (projectiveBundleRelationPolynomial A r a).natDegree = r :=
@@ -105,23 +117,33 @@ noncomputable def ofCoefficients :
     (Fin r →₀ A) ≃ₗ[A] ProjectiveBundleFormulaModel A r a :=
   (coefficientEquiv A r a).symm
 
+/--
+@isnad1 id=eq.0h4v.s10.014d30f3f356 from=translated src=- shape=69a61c69 vocab=62b48d1a
+-/
 @[simp]
 theorem coefficientEquiv_ofCoefficients (c : Fin r →₀ A) :
     coefficientEquiv A r a (ofCoefficients A r a c) = c :=
   (coefficientEquiv A r a).apply_symm_apply c
 
+/--
+@isnad1 id=eq.0h4v.s10.4f7d1739eaa6 from=translated src=- shape=ada8cc58 vocab=62b48d1a
+-/
 @[simp]
 theorem ofCoefficients_coefficientEquiv
     (x : ProjectiveBundleFormulaModel A r a) :
     ofCoefficients A r a (coefficientEquiv A r a x) = x :=
   (coefficientEquiv A r a).symm_apply_apply x
 
-/-- The tautological generator satisfies the chosen monic relation.-/
+/-- The tautological generator satisfies the chosen monic relation.
+@isnad1 id=eq.0h3v.s8.bdb9b9c39a84 from=translated src=- shape=e2f1ef50 vocab=0becaa55
+-/
 theorem aeval_relation :
     aeval (xi A r a) (projectiveBundleRelationPolynomial A r a) = 0 := by
   exact AdjoinRoot.eval₂_root (projectiveBundleRelationPolynomial A r a)
 
-/-- Expanded form of the tautological relation.-/
+/-- Expanded form of the tautological relation.
+@isnad1 id=eq.0h3v.s8.bfef039bd21d from=translated src=- shape=4a01f0d3 vocab=fce4734c
+-/
 theorem xi_pow_rank :
     xi A r a ^ r =
       -∑ i : Fin r, algebraMap A (ProjectiveBundleFormulaModel A r a) (a i) *
@@ -148,6 +170,9 @@ noncomputable def lift
       rw [hi]
       simpa only [aeval_def] using hy)
 
+/--
+@isnad1 id=eq.1h5v.s8.5a7e727a831a from=translated src=- shape=9993a7b7 vocab=9ab42af7
+-/
 @[simp]
 theorem lift_xi
     {B : Type v} [CommRing B] [Algebra A B]
@@ -156,7 +181,9 @@ theorem lift_xi
     lift A r a y hy (xi A r a) = y := by
   exact AdjoinRoot.liftAlgHom_root _ _ _ _
 
-/-- The evaluation homomorphism is the unique `A`-algebra map taking `ξ` to the chosen root.-/
+/-- The evaluation homomorphism is the unique `A`-algebra map taking `ξ` to the chosen root.
+@isnad1 id=eq.2h6v.s8.ee7309105e26 from=translated src=- shape=551ae066 vocab=9ab42af7
+-/
 theorem lift_unique
     {B : Type v} [CommRing B] [Algebra A B]
     (y : B)
@@ -171,7 +198,9 @@ theorem lift_unique
 omit [Nontrivial A] in
 /-- A positive-rank power basis in the target makes its structural map from the coefficient
 ring injective.  Once the geometric projective-bundle comparison supplies such a basis, this
-is precisely the pullback-injectivity conclusion used by the splitting principle.-/
+is precisely the pullback-injectivity conclusion used by the splitting principle.
+@isnad1 id=injectiv.2h5v.s7.d32dc9a3028e from=translated src=- shape=53c16af0 vocab=7cb682fa
+-/
 theorem algebraMap_injective_of_power_basis
     {B : Type v} [CommRing B] [Algebra A B]
     (hr : 0 < r)
@@ -206,7 +235,9 @@ def chernXi [Nontrivial A] (c : Fin r → A) :
     ChernProjectiveBundleFormulaModel A r c :=
   ProjectiveBundleFormulaModel.xi A r (chernRelationCoefficients A r c)
 
-/-- The alternating Chern relation in its ascending-coefficient normal form.-/
+/-- The alternating Chern relation in its ascending-coefficient normal form.
+@isnad1 id=eq.0h3v.s9.08a3aec2f6c0 from=translated src=- shape=bc006f2b vocab=6c2391c2
+-/
 theorem chernXi_pow_rank [Nontrivial A] (c : Fin r → A) :
     chernXi A r c ^ r =
       -∑ i : Fin r,

@@ -23,6 +23,9 @@ universe u
 namespace AlgebraicGeometry.Chow.M7
 namespace E27
 
+/--
+@isnad1 id=eq.1h5v.s13.0bcfcd371552 from=translated src=- shape=75b9901f vocab=5f581f8c
+-/
 theorem ker_stalkMap_eq_map_germ {V W : Scheme.{u}} (j : V ⟶ W) [IsClosedImmersion j]
     (U : W.affineOpens) (q : V) (hq : j q ∈ U.1) :
     RingHom.ker (j.stalkMap q).hom =
@@ -82,6 +85,9 @@ theorem ker_stalkMap_eq_map_germ {V W : Scheme.{u}} (j : V ⟶ W) [IsClosedImmer
     rw [RingHom.mem_ker] at ha
     rw [ha, map_zero]
 
+/--
+@isnad1 id=eq.1h5v.s13.fcbefdd6a943 from=translated src=- shape=93348e81 vocab=3287d5da
+-/
 theorem ker_stalkMap_eq_map_germ_ker {V W : Scheme.{u}} (j : V ⟶ W) [IsClosedImmersion j]
     (U : W.affineOpens) (q : V) (hq : j q ∈ U.1) :
     RingHom.ker (j.stalkMap q).hom = (j.ker.ideal U).map (W.presheaf.germ U.1 (j q) hq).hom := by

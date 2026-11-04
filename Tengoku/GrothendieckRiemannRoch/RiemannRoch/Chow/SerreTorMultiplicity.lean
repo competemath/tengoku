@@ -46,7 +46,9 @@ noncomputable def principalQuotientComplex (a : A) :
     (ModuleCat.ofHom (LinearMap.lsmul A A a))
     (zeroResolutionSuccessor A)
 
-/-- Every term of the principal quotient complex in degree at least two is zero.-/
+/-- Every term of the principal quotient complex in degree at least two is zero.
+@isnad1 id=iszero.0h3v.s6.f4096de8c9bf from=translated src=- shape=7b28cb01 vocab=7d2303d3
+-/
 theorem principalQuotientComplex_isZero (a : A) (n : ℕ) :
     IsZero ((principalQuotientComplex A a).X (n + 2)) := by
   let Z := ModuleCat.of A (Fin 0 → A)
@@ -70,7 +72,9 @@ noncomputable def principalQuotientAugmentation (a : A) :
       exact (ModuleCat.smulShortComplex (ModuleCat.of A A) a).zero⟩
 
 /-- If multiplication by `a` is injective, the principal quotient complex is exact in every
-positive degree.-/
+positive degree.
+@isnad1 id=exactat.1h3v.s6.f8b87b441fc7 from=translated src=- shape=172774e5 vocab=01574a01
+-/
 theorem principalQuotientComplex_exactAt_succ (a : A)
     (reg : IsSMulRegular (ModuleCat.of A A) a) (n : ℕ) :
     (principalQuotientComplex A a).ExactAt (n + 1) := by
@@ -111,7 +115,9 @@ noncomputable def principalQuotientResolution (a : A)
 
 /-- If `a` is also regular on `M`, tensoring the principal quotient complex by `M` remains exact
 in every positive degree. This is the chain-level source of Tor-independence for a proper
-principal intersection.-/
+principal intersection.
+@isnad1 id=exactat.1h4v.s8.6dcc7a927840 from=translated src=- shape=def17098 vocab=e91c2aa4
+-/
 theorem tensorPrincipalQuotientComplex_exactAt_succ (a : A)
     (M : ModuleCat.{u} A) (reg : IsSMulRegular M a) (n : ℕ) :
     ((((tensoringLeft (ModuleCat.{u} A)).obj M).mapHomologicalComplex
@@ -167,13 +173,17 @@ noncomputable def zeroIsoTensor (M N : ModuleCat.{u} A) :
     module A M N 0 ≅ M ⊗ N :=
   (((tensoringLeft (ModuleCat.{u} A)).obj M).leftDerivedZeroIsoSelf).app N
 
-/-- Degree-zero Tor and the ordinary tensor product have the same module length.-/
+/-- Degree-zero Tor and the ordinary tensor product have the same module length.
+@isnad1 id=eq.0h3v.s6.f85c433ae65d from=translated src=- shape=84a73694 vocab=946dbfd3
+-/
 theorem length_zero_eq_tensor (M N : ModuleCat.{u} A) :
     length A M N 0 =
       Module.length A ((M ⊗ N : ModuleCat.{u} A) : Type u) :=
   (zeroIsoTensor A M N).toLinearEquiv.length_eq
 
-/-- The length of a zero Tor object is zero.-/
+/-- The length of a zero Tor object is zero.
+@isnad1 id=eq.1h4v.s5.1536d472e15a from=translated src=- shape=7fc89624 vocab=fb5f2b76
+-/
 theorem length_eq_zero_of_isZero (M N : ModuleCat.{u} A) (n : ℕ)
     (h : IsZero (module A M N n)) : length A M N n = 0 := by
   rw [length, Module.length_eq_zero_iff]
@@ -183,7 +193,9 @@ theorem length_eq_zero_of_isZero (M N : ModuleCat.{u} A) (n : ℕ)
 noncomputable def signedLength (M N : ModuleCat.{u} A) (n : ℕ) : ℤ :=
   (-1 : ℤ) ^ n * (length A M N n).toNat
 
-/-- A zero Tor object contributes zero to the signed Euler characteristic.-/
+/-- A zero Tor object contributes zero to the signed Euler characteristic.
+@isnad1 id=eq.1h4v.s5.4ee102c9fb24 from=translated src=- shape=7fc89624 vocab=16c3d7e8
+-/
 theorem signedLength_eq_zero_of_isZero (M N : ModuleCat.{u} A) (n : ℕ)
     (h : IsZero (module A M N n)) : signedLength A M N n = 0 := by
   rw [signedLength, length_eq_zero_of_isZero A M N n h]
@@ -209,7 +221,9 @@ noncomputable def multiplicity (d : EulerData A M N) : ℤ :=
   ∑ n ∈ Finset.range (d.bound + 1), signedLength A M N n
 
 /-- Extending a valid amplitude bound only adds zero terms.  Consequently the multiplicity is
-independent of every proof-level choice in `EulerData`.-/
+independent of every proof-level choice in `EulerData`.
+@isnad1 id=eq.0h5v.s5.b3f7c68e4831 from=translated src=- shape=834460b6 vocab=d32a4a75
+-/
 theorem multiplicity_eq (d e : EulerData A M N) : d.multiplicity = e.multiplicity := by
   unfold multiplicity
   rcases le_total d.bound e.bound with hde | hed
@@ -270,7 +284,9 @@ noncomputable def principalQuotient (a : A)
     · exact principalQuotientComplex_isZero A a n
 
 /-- Homology of a module-valued complex has finite length whenever its middle complex term does:
-cycles embed into that term and surject onto homology.-/
+cycles embed into that term and surject onto homology.
+@isnad1 id=ne.1h3v.s8.d28fd8e2f5b6 from=translated src=- shape=7e969cdf vocab=0b76d9bb
+-/
 theorem homology_length_ne_top_of_X
     (K : HomologicalComplex (ModuleCat.{u} A) (ComplexShape.down ℕ)) (n : ℕ)
     (h : Module.length A (↑(K.X n) : Type u) ≠ ⊤) :
@@ -280,7 +296,9 @@ theorem homology_length_ne_top_of_X
     ((ModuleCat.mono_iff_injective (K.iCycles n)).mp inferInstance)).of_surjective
       ((ModuleCat.epi_iff_surjective (K.homologyπ n)).mp inferInstance)
 
-/-- Tensoring an explicit bounded projective resolution computes zero Tor above its bound.-/
+/-- Tensoring an explicit bounded projective resolution computes zero Tor above its bound.
+@isnad1 id=iszero.1h5v.s5.e666ad845f6c from=translated src=- shape=590192cb vocab=bbf64cfc
+-/
 theorem isZero_module (d : BoundedProjectiveResolution A N) (M : ModuleCat.{u} A)
     (n : ℕ) (hn : d.bound < n) : IsZero (module A M N n) := by
   change IsZero
@@ -292,7 +310,9 @@ theorem isZero_module (d : BoundedProjectiveResolution A N) (M : ModuleCat.{u} A
     (((tensoringLeft (ModuleCat.{u} A)).obj M).map_isZero (d.isZero n hn))
 
 /-- Finite length of the `n`th term after tensoring a chosen projective resolution implies
-finite length of the `n`th Tor module computed by that resolution.-/
+finite length of the `n`th Tor module computed by that resolution.
+@isnad1 id=ne.1h5v.s9.87436b7c52c7 from=translated src=- shape=756770d6 vocab=1a8b2109
+-/
 theorem length_ne_top_of_term (d : BoundedProjectiveResolution A N)
     (M : ModuleCat.{u} A) (n : ℕ)
     (hterm : Module.length A
@@ -326,7 +346,9 @@ noncomputable def toEulerDataOfFiniteTerms (d : BoundedProjectiveResolution A N)
         (d.resolution.complex.X n)) : Type u) ≠ ⊤) : EulerData A M N :=
   d.toEulerData A M (fun n hn ↦ d.length_ne_top_of_term A M n (finiteTerm n hn))
 
-/-- A regular principal quotient has no Tor in degrees at least two.-/
+/-- A regular principal quotient has no Tor in degrees at least two.
+@isnad1 id=iszero.1h4v.s10.7a42cfdaaefa from=translated src=- shape=843eb0a2 vocab=148e01e9
+-/
 theorem isZero_module_principalQuotient (a : A)
     (reg : IsSMulRegular (ModuleCat.of A A) a) (M : ModuleCat.{u} A) (n : ℕ) :
     IsZero (module A M (ModuleCat.of A (QuotSMulTop a A)) (n + 2)) := by
@@ -335,7 +357,9 @@ theorem isZero_module_principalQuotient (a : A)
   omega
 
 /-- If the principal equation is regular both on the ring and on the first module, every
-positive Tor with the principal quotient vanishes.-/
+positive Tor with the principal quotient vanishes.
+@isnad1 id=iszero.2h4v.s10.de3f074f24db from=translated src=- shape=8b946610 vocab=148e01e9
+-/
 theorem isZero_module_principalQuotient_of_isSMulRegular (a : A)
     (regA : IsSMulRegular (ModuleCat.of A A) a) (M : ModuleCat.{u} A)
     (regM : IsSMulRegular M a) (n : ℕ) :
@@ -350,7 +374,9 @@ theorem isZero_module_principalQuotient_of_isSMulRegular (a : A)
   exact tensorPrincipalQuotientComplex_exactAt_succ A a M regM n
 
 /-- The positive-Tor vanishing theorem is unchanged after identifying the principal quotient
-with any isomorphic target module.-/
+with any isomorphic target module.
+@isnad1 id=iszero.2h6v.s10.406d97182fac from=translated src=- shape=a50b50da vocab=2b1caa84
+-/
 theorem isZero_module_of_iso_principalQuotient_of_isSMulRegular (a : A)
     (regA : IsSMulRegular (ModuleCat.of A A) a) (M : ModuleCat.{u} A)
     (regM : IsSMulRegular M a) {N' : ModuleCat.{u} A}
@@ -381,7 +407,9 @@ noncomputable def principalQuotientEulerData (a : A)
       rwa [(TensorProduct.rid A (↑M : Type u)).length_eq])
 
 /-- For a regular principal quotient, the Euler characteristic is the degree-zero Tor length
-minus the degree-one Tor length; all higher terms vanish by the explicit resolution.-/
+minus the degree-one Tor length; all higher terms vanish by the explicit resolution.
+@isnad1 id=eq.2h3v.s11.1f021d5b40e1 from=translated src=- shape=55fd5bac vocab=cc82d7dc
+-/
 theorem principalQuotientEulerData_multiplicity (a : A)
     (reg : IsSMulRegular (ModuleCat.of A A) a) (M : ModuleCat.{u} A)
     (hM : Module.length A (↑M : Type u) ≠ ⊤) :
@@ -444,7 +472,9 @@ noncomputable def eulerDataOfProjective (M N : ModuleCat.{u} A) [Projective N]
       (ModuleCat.{u} A) M N n)
 
 /-- Under Tor independence, the Serre multiplicity collapses to the ordinary tensor-product
-length.-/
+length.
+@isnad1 id=eq.2h3v.s7.be6894233c37 from=translated src=- shape=f797ac27 vocab=84b3b1e3
+-/
 theorem eulerDataOfTorIndependent_multiplicity
     (M N : ModuleCat.{u} A)
     (hzero : Module.length A ((M ⊗ N : ModuleCat.{u} A) : Type u) ≠ ⊤)
@@ -454,7 +484,9 @@ theorem eulerDataOfTorIndependent_multiplicity
   simp [EulerData.multiplicity, eulerDataOfTorIndependent, signedLength,
     length_zero_eq_tensor]
 
-/-- In the projective-factor case, the Serre multiplicity is the tensor-product length.-/
+/-- In the projective-factor case, the Serre multiplicity is the tensor-product length.
+@isnad1 id=eq.1h3v.s7.62c53185c95f from=translated src=- shape=68dd5400 vocab=a0a8e524
+-/
 theorem eulerDataOfProjective_multiplicity
     (M N : ModuleCat.{u} A) [Projective N]
     (hzero : Module.length A ((M ⊗ N : ModuleCat.{u} A) : Type u) ≠ ⊤) :

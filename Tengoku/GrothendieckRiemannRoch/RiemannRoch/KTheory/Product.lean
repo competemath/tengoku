@@ -38,6 +38,9 @@ def leftObjectMul (tensor : Object → Object → Object)
   lift (fun Y ↦ classOf Object Exact (tensor X Y)) fun A B C h ↦
     classOf_middle Object Exact _ _ _ (exactRight X A B C h)
 
+/--
+@isnad1 id=eq.0h6v.s7.a4f7e7f368f8 from=translated src=- shape=901924a1 vocab=cfa31ff2
+-/
 @[simp]
 theorem leftObjectMul_classOf (tensor : Object → Object → Object)
     (exactRight : ∀ X A B C, Exact A B C →
@@ -70,6 +73,9 @@ def product (tensor : Object → Object → Object)
     (x y : Group Object Exact) : Group Object Exact :=
   productHom tensor exactLeft exactRight x y
 
+/--
+@isnad1 id=eq.0h7v.s8.1cda3766421f from=translated src=- shape=64f58312 vocab=6a64d75d
+-/
 @[simp]
 theorem product_classOf_left (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
@@ -81,6 +87,9 @@ theorem product_classOf_left (tensor : Object → Object → Object)
       leftObjectMul tensor exactRight X y := by
   simp [product, productHom]
 
+/--
+@isnad1 id=eq.0h7v.s6.bbbc9b18cb2f from=translated src=- shape=91c742cc vocab=3b4a9d0b
+-/
 @[simp]
 theorem product_classOf_classOf (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
@@ -93,6 +102,9 @@ theorem product_classOf_classOf (tensor : Object → Object → Object)
       classOf Object Exact (tensor X Y) := by
   rw [product_classOf_left, leftObjectMul_classOf]
 
+/--
+@isnad1 id=eq.0h8v.s7.dd674758cebe from=translated src=- shape=167a4a26 vocab=87d4e303
+-/
 theorem product_add_left (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
       Exact (tensor A Y) (tensor B Y) (tensor C Y))
@@ -106,6 +118,9 @@ theorem product_add_left (tensor : Object → Object → Object)
   rw [map_add]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.acdbbddcb30b from=translated src=- shape=662956f2 vocab=87d4e303
+-/
 theorem product_add_right (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
       Exact (tensor A Y) (tensor B Y) (tensor C Y))
@@ -117,6 +132,9 @@ theorem product_add_right (tensor : Object → Object → Object)
         product tensor exactLeft exactRight x z := by
   exact map_add (productHom tensor exactLeft exactRight x) y z
 
+/--
+@isnad1 id=eq.0h6v.s7.a24fd3e932d3 from=translated src=- shape=5699a49b vocab=6e36ec03
+-/
 @[simp]
 theorem product_zero_left (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
@@ -129,6 +147,9 @@ theorem product_zero_left (tensor : Object → Object → Object)
   rw [map_zero]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.171e36d0e34a from=translated src=- shape=e367c45b vocab=6e36ec03
+-/
 @[simp]
 theorem product_zero_right (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
@@ -150,6 +171,9 @@ def rightMul (tensor : Object → Object → Object)
   map_zero' := product_zero_left tensor exactLeft exactRight y
   map_add' x z := product_add_left tensor exactLeft exactRight x z y
 
+/--
+@isnad1 id=eq.0h7v.s8.00265cd5ff7c from=translated src=- shape=4af2d606 vocab=02a2a918
+-/
 @[simp]
 theorem rightMul_apply (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
@@ -177,6 +201,9 @@ def flipProductHom (tensor : Object → Object → Object)
     intro x
     exact product_add_right tensor exactLeft exactRight x y z
 
+/--
+@isnad1 id=eq.0h7v.s10.8b79d73f1867 from=translated src=- shape=d444bb74 vocab=3db839f5
+-/
 @[simp]
 theorem flipProductHom_apply (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
@@ -188,7 +215,9 @@ theorem flipProductHom_apply (tensor : Object → Object → Object)
       product tensor exactLeft exactRight y x :=
   rfl
 
-/-- Associativity on object classes propagates to associativity on every virtual class.-/
+/-- Associativity on object classes propagates to associativity on every virtual class.
+@isnad1 id=eq.1h8v.s7.135353a04e75 from=translated src=- shape=18670442 vocab=3b4a9d0b
+-/
 theorem product_assoc_of_classOf (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
       Exact (tensor A Y) (tensor B Y) (tensor C Y))
@@ -233,7 +262,9 @@ theorem product_assoc_of_classOf (tensor : Object → Object → Object)
     simpa only [AddMonoidHom.comp_apply, rightMul_apply, product_classOf_left] using h
   exact congrArg (fun f : Group Object Exact →+ Group Object Exact => f x) hAll
 
-/-- Commutativity on object classes propagates to commutativity on every virtual class.-/
+/-- Commutativity on object classes propagates to commutativity on every virtual class.
+@isnad1 id=eq.1h7v.s6.6dfa50416981 from=translated src=- shape=8bf92884 vocab=3b4a9d0b
+-/
 theorem product_comm_of_classOf (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
       Exact (tensor A Y) (tensor B Y) (tensor C Y))
@@ -256,7 +287,9 @@ theorem product_comm_of_classOf (tensor : Object → Object → Object)
   exact congrArg (fun f : Group Object Exact →+ (Group Object Exact →+ Group Object Exact) =>
     f x y) h
 
-/-- A left-unit law on object classes propagates to every virtual class.-/
+/-- A left-unit law on object classes propagates to every virtual class.
+@isnad1 id=eq.1h7v.s6.edc03c53d12a from=translated src=- shape=50a74594 vocab=3b4a9d0b
+-/
 theorem product_one_left_of_classOf (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
       Exact (tensor A Y) (tensor B Y) (tensor C Y))
@@ -274,7 +307,9 @@ theorem product_one_left_of_classOf (tensor : Object → Object → Object)
   simpa only [product_classOf_left, AddMonoidHom.id_apply] using
     congrArg (fun f : Group Object Exact →+ Group Object Exact => f x) h
 
-/-- A right-unit law on object classes propagates to every virtual class.-/
+/-- A right-unit law on object classes propagates to every virtual class.
+@isnad1 id=eq.1h7v.s6.289831022f4a from=translated src=- shape=e8e82fc3 vocab=3b4a9d0b
+-/
 theorem product_one_right_of_classOf (tensor : Object → Object → Object)
     (exactLeft : ∀ A B C Y, Exact A B C →
       Exact (tensor A Y) (tensor B Y) (tensor C Y))
@@ -342,18 +377,24 @@ selected geometric objects have exact symmetric tensor data.-/
     (product_one_left_of_classOf T.tensor T.exactLeft T.exactRight T.unit T.unitClass)
     (product_add_right T.tensor T.exactLeft T.exactRight)
 
-/-- The multiplication field of `commRing` is the independently constructed quotient product.-/
+/-- The multiplication field of `commRing` is the independently constructed quotient product.
+@isnad1 id=eq.0h5v.s5.86a83721b59c from=translated src=- shape=008fffd3 vocab=02ebb9c0
+-/
 theorem commRing_mul_eq (x y : Group Object Exact) :
     @Mul.mul (Group Object Exact) T.commRing.toMul x y = T.mul x y :=
   rfl
 
-/-- The unit field of `commRing` is the class of the geometric tensor unit.-/
+/-- The unit field of `commRing` is the class of the geometric tensor unit.
+@isnad1 id=eq.0h3v.s5.13a9e6f4d469 from=translated src=- shape=d57042b8 vocab=5ce3d599
+-/
 theorem commRing_one_eq :
     @OfNat.ofNat (Group Object Exact) 1 T.commRing.toOfNat1 = T.one :=
   rfl
 
 /-- An exact-additive object invariant which is multiplicative on tensor products is
-multiplicative on all virtual classes.-/
+multiplicative on all virtual classes.
+@isnad1 id=eq.2h7v.s8.655b683cd79d from=translated src=- shape=f5460d21 vocab=8f218510
+-/
 theorem lift_product {A : Type v} [CommRing A] (c : Object → A)
     (hadd : ∀ X Y Z, Exact X Y Z → c Y = c X + c Z)
     (hmul : ∀ X Y, c (T.tensor X Y) = c X * c Y)
@@ -395,7 +436,9 @@ theorem lift_product {A : Type v} [CommRing A] (c : Object → A)
   exact congrArg (fun f : Group Object Exact →+ A ↦ f x) hAll
 
 /-- An exact-additive object invariant normalized on the tensor unit sends the virtual tensor
-unit to one.-/
+unit to one.
+@isnad1 id=eq.2h5v.s7.275c7a392038 from=translated src=- shape=a9dc1791 vocab=2fa13223
+-/
 theorem lift_one {A : Type v} [CommRing A] (c : Object → A)
     (hadd : ∀ X Y Z, Exact X Y Z → c Y = c X + c Z)
     (hone : c T.unit = 1) : lift c hadd T.one = 1 := by
@@ -403,12 +446,16 @@ theorem lift_one {A : Type v} [CommRing A] (c : Object → A)
   rw [lift_classOf]
   exact hone
 
-/-- Left unit law for every virtual class.-/
+/-- Left unit law for every virtual class.
+@isnad1 id=eq.0h4v.s5.18b21d3cb388 from=translated src=- shape=31092601 vocab=8e94c038
+-/
 theorem one_mul (x : Group Object Exact) : T.mul T.one x = x :=
   product_one_left_of_classOf T.tensor T.exactLeft T.exactRight T.unit T.unitClass x
 
 /-- Right unit law for every virtual class, obtained from the left unit by commutativity on
-object classes.-/
+object classes.
+@isnad1 id=eq.0h4v.s5.c8ccd301a265 from=translated src=- shape=cd915229 vocab=8e94c038
+-/
 theorem mul_one (x : Group Object Exact) : T.mul x T.one = x := by
   rw [mul, one, product_comm_of_classOf T.tensor T.exactLeft T.exactRight T.commClass,
     ← one, ← mul, one_mul]
@@ -430,7 +477,9 @@ noncomputable def ringLift {A : Type v} [CommRing A] (c : Object → A)
     map_add' := map_add (lift c hadd) }
 
 /-- The multiplicative universal lift has the prescribed value on every geometric object
-class.-/
+class.
+@isnad1 id=eq.3h6v.s7.321ed2599f84 from=translated src=- shape=536458e6 vocab=a968d834
+-/
 @[simp]
 theorem ringLift_classOf {A : Type v} [CommRing A] (c : Object → A)
     (hadd : ∀ X Y Z, Exact X Y Z → c Y = c X + c Z)

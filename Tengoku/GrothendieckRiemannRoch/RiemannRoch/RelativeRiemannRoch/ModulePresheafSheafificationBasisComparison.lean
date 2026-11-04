@@ -43,6 +43,9 @@ noncomputable def modulePresheafSheafificationComparison
   (PresheafOfModules.sheafificationHomEquiv
     (𝟙 Y.ringCatSheaf.obj)).symm g
 
+/--
+@isnad1 id=eq.0h4v.s14.2f03d253a193 from=translated src=- shape=f995bdaf vocab=9250eee6
+-/
 lemma modulePresheafSheafificationComparison_toSheafify_comp
     (P : Y.PresheafOfModules) (N : Y.Modules)
     (g : P ⟶ (SheafOfModules.forget Y.ringCatSheaf).obj N) :
@@ -67,6 +70,9 @@ lemma modulePresheafSheafificationComparison_toSheafify_comp
   rw [hL]
   rfl
 
+/--
+@isnad1 id=isiso.2h6v.s15.0599a739efd4 from=translated src=- shape=6aee4db5 vocab=298a9e67
+-/
 lemma modulePresheafComparison_stalk_isIso_of_basis_bijective
     (P : Y.PresheafOfModules) (N : Y.Modules)
     (g : P ⟶ (SheafOfModules.forget Y.ringCatSheaf).obj N)
@@ -95,6 +101,9 @@ lemma modulePresheafComparison_stalk_isIso_of_basis_bijective
     rw [TopCat.Presheaf.stalkFunctor_map_germ_apply, hq, hs]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.2h5v.s15.22bf67e46c78 from=translated src=- shape=fcc71af5 vocab=6bf37396
+-/
 theorem modulePresheafSheafificationComparison_isIso_of_basis_bijective
     (P : Y.PresheafOfModules) (N : Y.Modules)
     (g : P ⟶ (SheafOfModules.forget Y.ringCatSheaf).obj N)
@@ -163,6 +172,9 @@ noncomputable def modulePresheafBasisPresheafComparison
   TopCat.Sheaf.restrictHomEquivHom P.presheaf
     ((SheafOfModules.toSheaf Y.ringCatSheaf).obj N) hB αB
 
+/--
+@isnad1 id=eq.1h7v.s11.b18d0ee2f99d from=translated src=- shape=49cb0060 vocab=ee27a6be
+-/
 lemma modulePresheafBasisPresheafComparison_app
     {ι : Type u} (b : ι → Y.Opens) (hB : Opens.IsBasis (Set.range b))
     (P : Y.PresheafOfModules) (N : Y.Modules)
@@ -176,6 +188,9 @@ lemma modulePresheafBasisPresheafComparison_app
     ((SheafOfModules.toSheaf Y.ringCatSheaf).obj N) hB αB j
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h9v.s22.c9439ddd6a91 from=translated src=- shape=87cb8a26 vocab=c4a737b9
+-/
 lemma modulePresheafBasisPresheafComparison_map_smul
     {ι : Type u} (b : ι → Y.Opens) (hB : Opens.IsBasis (Set.range b))
     (P : Y.PresheafOfModules) (N : Y.Modules)
@@ -271,7 +286,9 @@ noncomputable def modulePresheafBasisComparison
         b hB P N αB hlinear U.unop r m)
 
 /-- A basiswise linear, componentwise bijective comparison identifies the associated module
-sheaf with the target.-/
+sheaf with the target.
+@isnad1 id=isiso.3h6v.s21.6f8155333e94 from=translated src=- shape=b3204122 vocab=0f686c10
+-/
 theorem modulePresheafBasisSheafificationComparison_isIso
     {ι : Type u} (b : ι → Y.Opens) (hB : Opens.IsBasis (Set.range b))
     (P : Y.PresheafOfModules) (N : Y.Modules)
@@ -296,7 +313,9 @@ theorem modulePresheafBasisSheafificationComparison_isIso
   exact hbij j
 
 /-- A basiswise linear, componentwise bijective comparison with a quasicoherent target proves
-quasicoherence of the associated module sheaf.-/
+quasicoherence of the associated module sheaf.
+@isnad1 id=isquasic.3h6v.s21.9cdbe38cf3c8 from=translated src=- shape=bc93ece5 vocab=09152f55
+-/
 theorem modulePresheafBasisSheafification_isQuasicoherent
     {ι : Type u} (b : ι → Y.Opens) (hB : Opens.IsBasis (Set.range b))
     (P : Y.PresheafOfModules) (N : Y.Modules) [N.IsQuasicoherent]
@@ -319,7 +338,9 @@ theorem modulePresheafBasisSheafification_isQuasicoherent
     inferInstance
 
 /-- A basiswise isomorphism to a quasicoherent target makes the associated module sheaf
-quasicoherent.-/
+quasicoherent.
+@isnad1 id=isquasic.2h5v.s15.5363f7731201 from=translated src=- shape=1700f4d7 vocab=846e39f4
+-/
 theorem modulePresheafSheafification_isQuasicoherent_of_basis_bijective
     (P : Y.PresheafOfModules) (N : Y.Modules) [N.IsQuasicoherent]
     (g : P ⟶ (SheafOfModules.forget Y.ringCatSheaf).obj N)

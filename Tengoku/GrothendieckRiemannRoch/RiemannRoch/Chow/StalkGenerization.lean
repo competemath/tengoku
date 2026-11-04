@@ -70,12 +70,17 @@ variable {X : Scheme.{u}} {x y : X}
 def stalkPrimeOfSpecializes (h : x ⤳ y) : Ideal (X.presheaf.stalk y) :=
   (IsLocalRing.maximalIdeal (X.presheaf.stalk x)).comap (X.presheaf.stalkSpecializes h).hom
 
+/--
+@isnad1 id=isprime.1h3v.s7.b2f995381c3b from=translated src=- shape=7a500ebf vocab=b3ae315b
+-/
 instance stalkPrimeOfSpecializes_isPrime (h : x ⤳ y) : (stalkPrimeOfSpecializes h).IsPrime := by
   unfold stalkPrimeOfSpecializes
   infer_instance
 
 /-- **The generization dictionary, localization half.**  If `x` is a generization of `y`, then
-`𝒪_{X,x}` is the localization of `𝒪_{X,y}` at the prime `stalkPrimeOfSpecializes h`.-/
+`𝒪_{X,x}` is the localization of `𝒪_{X,y}` at the prime `stalkPrimeOfSpecializes h`.
+@isnad1 id=atprime.1h3v.s7.ca8c78d3c77a from=translated src=- shape=c8924309 vocab=1f91d37a
+-/
 theorem isLocalization_stalkSpecializes (h : x ⤳ y) :
     letI := stalkSpecializesAlgebra h
     IsLocalization.AtPrime (X.presheaf.stalk x) (stalkPrimeOfSpecializes h) := by
@@ -156,7 +161,9 @@ def stalkSpecializesAlgEquiv (h : x ⤳ y) :
 /-- The generization map `𝒪_{X,y} ⟶ 𝒪_{X,x}` is compatible with the two embeddings into the
 function field.  Together with `isLocalization_stalkSpecializes` this says that the order of
 vanishing at `x` is the valuation of the localization of `𝒪_{X,y}` at
-`stalkPrimeOfSpecializes h`.-/
+`stalkPrimeOfSpecializes h`.
+@isnad1 id=isscalar.1h3v.s8.002434fef0bd from=translated src=- shape=17bcf193 vocab=61bb6283
+-/
 theorem isScalarTower_functionField [IrreducibleSpace X] (h : x ⤳ y) :
     letI := stalkSpecializesAlgebra h
     IsScalarTower (X.presheaf.stalk y) (X.presheaf.stalk x) X.functionField := by
@@ -168,7 +175,9 @@ theorem isScalarTower_functionField [IrreducibleSpace X] (h : x ⤳ y) :
 
 /-- **The generization dictionary, height half.**  The prime attached to a generization `x` of `y`
 has height equal to the codimension of `x`.  In particular the height-one primes of `𝒪_{X,y}`
-correspond exactly to the codimension-one points of `X` specializing to `y`.-/
+correspond exactly to the codimension-one points of `X` specializing to `y`.
+@isnad1 id=eq.1h3v.s6.e01ec7a4684d from=translated src=- shape=9156c883 vocab=9b45decc
+-/
 theorem height_stalkPrimeOfSpecializes (h : x ⤳ y) :
     (stalkPrimeOfSpecializes h).height = Order.coheight x := by
   letI := stalkSpecializesAlgebra h

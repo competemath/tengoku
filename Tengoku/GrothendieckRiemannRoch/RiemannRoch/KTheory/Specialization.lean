@@ -54,10 +54,16 @@ namespace Data
 variable {GX GM GU G0 : Type*} [AddCommGroup GX] [AddCommGroup GM] [AddCommGroup GU]
   [AddCommGroup G0] (D : Data GX GM GU G0)
 
+/--
+@isnad1 id=eq.1h6v.s7.9fe4be61498b from=translated src=- shape=7da5df27 vocab=9ac76256
+-/
 theorem gysin_eq_zero_of_restrict {m : GM} (hm : D.restrict m = 0) : D.gysin0 m = 0 := by
   obtain ⟨z, rfl⟩ := D.ker_le_range hm
   exact DFunLike.congr_fun D.gysin_push z
 
+/--
+@isnad1 id=le.0h5v.s6.cbfbe9b68e89 from=translated src=- shape=30b136a7 vocab=44f4707c
+-/
 theorem ker_restrict_le_ker_gysin : D.restrict.ker ≤ D.gysin0.ker := fun _ hm =>
   D.gysin_eq_zero_of_restrict hm
 
@@ -66,6 +72,9 @@ def descend : GU →+ G0 :=
   (QuotientAddGroup.lift D.restrict.ker D.gysin0 D.ker_restrict_le_ker_gysin).comp
     (QuotientAddGroup.quotientKerEquivOfSurjective D.restrict D.restrict_surjective).symm.toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h6v.s7.79a5efc59534 from=translated src=- shape=d176735a vocab=d0acb8ae
+-/
 @[simp]
 theorem descend_restrict (m : GM) : D.descend (D.restrict m) = D.gysin0 m := by
   have h : (QuotientAddGroup.quotientKerEquivOfSurjective D.restrict D.restrict_surjective).symm
@@ -79,6 +88,9 @@ theorem descend_restrict (m : GM) : D.descend (D.restrict m) = D.gysin0 m := by
 restrict to the special fibre by `j₀^!`.-/
 def sigma : GX →+ G0 := D.descend.comp D.pullGm
 
+/--
+@isnad1 id=eq.1h7v.s8.e13379cfcc25 from=translated src=- shape=557c46b7 vocab=50513bcf
+-/
 theorem sigma_eq {x : GX} {m : GM} (hm : D.restrict m = D.pullGm x) :
     D.sigma x = D.gysin0 m := by
   simp [sigma, ← hm]
@@ -105,7 +117,9 @@ structure Hom {GX GM GU G0 GX' GM' GU' G0' : Type*} [AddCommGroup GX] [AddCommGr
   /-- compatibility with pullback to `X × 𝔾ₘ`-/
   pull_comm : ∀ x, D'.pullGm (fX x) = fU (D.pullGm x)
 
-/-- **Specialization is natural**: `σ' ∘ f_X = f₀ ∘ σ`.-/
+/-- **Specialization is natural**: `σ' ∘ f_X = f₀ ∘ σ`.
+@isnad1 id=eq.0h12v.s8.72cd680b9a7b from=translated src=- shape=0520f0e3 vocab=40044ee7
+-/
 theorem Hom.sigma_comm {GX GM GU G0 GX' GM' GU' G0' : Type*} [AddCommGroup GX] [AddCommGroup GM]
     [AddCommGroup GU] [AddCommGroup G0] [AddCommGroup GX'] [AddCommGroup GM']
     [AddCommGroup GU'] [AddCommGroup G0'] {D : Data GX GM GU G0} {D' : Data GX' GM' GU' G0'}
@@ -118,7 +132,9 @@ theorem Hom.sigma_comm {GX GM GU G0 GX' GM' GU' G0' : Type*} [AddCommGroup GX] [
 
 /-- Rigidity of `K₀(ℙ¹_Z)`: if every class is `a + b·h` with `a, b` pulled back from `Z`, then any
 two ring retractions of the pullback sending `h ↦ 1` (restrictions to the fibres `0` and `∞`)
-coincide.-/
+coincide.
+@isnad1 id=eq.5h6v.s8.e0bc4cf7225a from=translated src=- shape=5db54c99 vocab=ab124287
+-/
 theorem fibre_restrictions_eq {KZ KW : Type*} [CommRing KZ] [CommRing KW] (pr : KZ →+* KW)
     (h : KW) (hspan : ∀ w, ∃ a b, w = pr a + pr b * h) (r₀ r₁ : KW →+* KZ)
     (h₀ : ∀ a, r₀ (pr a) = a) (h₁ : ∀ a, r₁ (pr a) = a) (hh₀ : r₀ h = 1) (hh₁ : r₁ h = 1) :
@@ -138,7 +154,9 @@ inverting `j` (`KLoc`). Hypotheses:
 * `hkoszul`: Adams–RR for the zero section `s : Z ↪ P` (`adams_push_zeroSection`);
 * `hπs`: `π_* s_* = id` (`π : P → Z` proper, `s` a section);
 * `hrigid`: `r₀ = r_∞` (`fibre_restrictions_eq`).
-Conclusion: Adams–RR for `i : Z ↪ X`.-/
+Conclusion: Adams–RR for `i : Z ↪ X`.
+@isnad1 id=eq.16h25v.s11.4804e8cc3494 from=translated src=- shape=a6f17ccc vocab=71e78412
+-/
 theorem adams_transport
     {KM KX KP KU KW KZ : Type*} [AddCommGroup KM] [AddCommGroup KX] [AddCommGroup KP]
     [AddCommGroup KU] [CommRing KW] [CommRing KZ]

@@ -34,7 +34,9 @@ variable {D A B C E D' A' B' C' E' : Type u}
 
 /-- **Localization five lemma.**  In a commutative ladder of two five-term sequences which are
 exact at the three inner positions, if the four outer vertical maps are localizations at `S`,
-then the middle vertical map is a localization at `S`.-/
+then the middle vertical map is a localization at `S`.
+@isnad1 id=islocali.10h25v.s11.b9ac23e97b63 from=translated src=- shape=a80a7da3 vocab=c1d11752
+-/
 theorem middle_of_exact_five_ladder
     (d₀ : D →ₗ[R] A) (d₁ : A →ₗ[R] B) (d₂ : B →ₗ[R] C) (d₃ : C →ₗ[R] E)
     (d₀' : D' →ₗ[R] A') (d₁' : A' →ₗ[R] B') (d₂' : B' →ₗ[R] C')

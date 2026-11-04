@@ -36,7 +36,9 @@ open scoped TensorProduct
 namespace AlgebraicGeometry.Chow.ProjectiveBaseChangeDimension
 
 /-- A surjective quotient map carries a generic component to a generic component
-when its kernel is contained in that component.-/
+when its kernel is contained in that component.
+@isnad1 id=mem.3h4v.s8.4b4c1e4ad8a3 from=translated src=- shape=cf54bde7 vocab=cbc9c46c
+-/
 theorem component_minimalPrime_map_of_surjective
     {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S)
     (hf : Function.Surjective f) {q : Ideal R} (hq : q ∈ minimalPrimes R)
@@ -50,7 +52,9 @@ theorem component_minimalPrime_map_of_surjective
   exact ⟨q, hq', rfl⟩
 
 /-- The quotient of a component is genuinely unchanged by a surjective map
-whose kernel is contained in that component.-/
+whose kernel is contained in that component.
+@isnad1 id=eq.2h5v.s8.cd03fbf50262 from=translated src=- shape=9d622c50 vocab=bdd1cc20
+-/
 theorem component_quotient_trdeg_of_surjective
     {K R S : Type u} [CommRing K] [CommRing R] [CommRing S]
     [Algebra K R] [Algebra K S] (f : R →ₐ[K] S)
@@ -75,12 +79,17 @@ def tensorComponentQuotientMap (p : Ideal A) :
     L ⊗[K] A →ₐ[L] L ⊗[K] (A ⧸ p) :=
   Algebra.TensorProduct.map (AlgHom.id L L) (Ideal.Quotient.mkₐ K p)
 
+/--
+@isnad1 id=eq.0h6v.s10.769f9bee38da from=translated src=- shape=51febe1f vocab=4ec21f30
+-/
 @[simp]
 theorem tensorComponentQuotientMap_tmul (p : Ideal A) (l : L) (a : A) :
     tensorComponentQuotientMap p (l ⊗ₜ[K] a) = l ⊗ₜ[K] Ideal.Quotient.mk p a := rfl
 
 /-- The native tensor map is the checked tensor-quotient isomorphism after the
-ordinary quotient by the extended ideal.-/
+ordinary quotient by the extended ideal.
+@isnad1 id=eq.0h4v.s12.54d9ce357ac0 from=translated src=- shape=3cf6a23e vocab=052fb67e
+-/
 theorem tensorComponentQuotientMap_factor (p : Ideal A) :
     tensorComponentQuotientMap (K := K) (L := L) p =
       (Algebra.TensorProduct.tensorQuotientEquiv (R := K) L A L p).symm.toAlgHom.comp
@@ -92,13 +101,18 @@ theorem tensorComponentQuotientMap_factor (p : Ideal A) :
   exact (Algebra.TensorProduct.tensorQuotientEquiv_symm_apply_tmul
     (R := K) L A L p 1 a).symm
 
+/--
+@isnad1 id=surjecti.0h4v.s9.0c0ad52586fa from=translated src=- shape=3253e362 vocab=eca6683f
+-/
 theorem tensorComponentQuotientMap_surjective (p : Ideal A) :
     Function.Surjective (tensorComponentQuotientMap (K := K) (L := L) p) := by
   rw [tensorComponentQuotientMap_factor]
   exact (Algebra.TensorProduct.tensorQuotientEquiv (R := K) L A L p).symm.surjective.comp
     Ideal.Quotient.mk_surjective
 
-/-- The native tensor quotient kernel is exactly the extended original ideal.-/
+/-- The native tensor quotient kernel is exactly the extended original ideal.
+@isnad1 id=eq.0h4v.s10.ef028c590ceb from=translated src=- shape=dcda79bc vocab=75f701e1
+-/
 theorem tensorComponentQuotientMap_ker (p : Ideal A) :
     RingHom.ker (tensorComponentQuotientMap (K := K) (L := L) p).toRingHom =
       p.map (Algebra.TensorProduct.includeRight (R := K) (A := L)) := by
@@ -114,7 +128,9 @@ end TensorQuotient
 
 /-- A generic component of scalar extension of an arbitrary K-algebra has the
 transcendence degree of its contracted original component. The original algebra
-may be nonreduced or have several components.-/
+may be nonreduced or have several components.
+@isnad1 id=eq.1h4v.s11.f0ef72f6ce8a from=translated src=- shape=50dee294 vocab=72876af2
+-/
 theorem fibreFieldTensor_component_trdeg
     {K L A : Type u} [Field K] [Field L] [CommRing A]
     [Algebra K L] [Algebra K A]
@@ -141,7 +157,9 @@ theorem fibreFieldTensor_component_trdeg
       component_quotient_trdeg_of_surjective φ hs q hker
     _ = Algebra.trdeg K (A ⧸ p) := domainFieldTensor_trdeg_quotient hq'
 
-/-- The actual contracted component is generic in the original algebra.-/
+/-- The actual contracted component is generic in the original algebra.
+@isnad1 id=mem.1h4v.s10.d77df109f066 from=translated src=- shape=af8005ff vocab=91128904
+-/
 theorem fibreFieldTensor_component_contraction_minimal
     {K L A : Type u} [Field K] [Field L] [CommRing A]
     [Algebra K L] [Algebra K A]
@@ -155,7 +173,9 @@ theorem fibreFieldTensor_component_contraction_minimal
   exact minimalPrime_under_of_flat (R := A) hq
 
 /-- The generic component formula for actual residue fields, with the prime
-instances supplied by the checked minimality rather than as extra inputs.-/
+instances supplied by the checked minimality rather than as extra inputs.
+@isnad1 id=other.1h4v.s11.9500d6540d30 from=translated src=- shape=cf2c39eb vocab=616229be
+-/
 theorem fibreFieldTensor_component_residueField_trdeg
     {K L A : Type u} [Field K] [Field L] [CommRing A]
     [Algebra K L] [Algebra K A]

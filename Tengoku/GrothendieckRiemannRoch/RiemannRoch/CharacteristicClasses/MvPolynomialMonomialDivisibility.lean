@@ -47,7 +47,9 @@ namespace MvPolynomial
 variable {σ : Type u} {R : Type v} [CommSemiring R]
 
 /-- Divisibility by a monomial with coefficient `1` is a support condition: `monomial s 1 ∣ x` iff
-every exponent vector occurring in `x` dominates `s`.  No domain hypothesis.-/
+every exponent vector occurring in `x` dominates `s`.  No domain hypothesis.
+@isnad1 id=iff.0h4v.s8.4f1728716a8e from=translated src=- shape=f13b3d45 vocab=8c553a28
+-/
 theorem monomial_one_dvd_iff {s : σ →₀ ℕ} {x : MvPolynomial σ R} :
     monomial s 1 ∣ x ↔ ∀ t, coeff t x ≠ 0 → s ≤ t := by
   classical
@@ -68,7 +70,9 @@ theorem monomial_one_dvd_iff {s : σ →₀ ℕ} {x : MvPolynomial σ R} :
 
 /-- If `i ≠ j` then `Xᵢ ^ r` divides `a * Xⱼ ^ m` only if it already divides `a`.  Mathlib's route to
 this goes through `X_prime`, which needs a domain; this proof is a support computation and holds over
-any commutative semiring.-/
+any commutative semiring.
+@isnad1 id=dvd.2h7v.s8.666cf99858f5 from=translated src=- shape=19331fe3 vocab=2a5262d3
+-/
 theorem X_pow_dvd_of_dvd_mul_X_pow {i j : σ} (hij : i ≠ j) (r m : ℕ) {a : MvPolynomial σ R}
     (h : X i ^ r ∣ a * X j ^ m) : X i ^ r ∣ a := by
   classical
@@ -82,7 +86,9 @@ theorem X_pow_dvd_of_dvd_mul_X_pow {i j : σ} (hij : i ≠ j) (r m : ℕ) {a : M
   rw [Finsupp.single_le_iff] at hle ⊢
   simpa [Finsupp.single_apply, Ne.symm hij] using hle
 
-/-- Every variable is a nonzerodivisor, over any commutative semiring.-/
+/-- Every variable is a nonzerodivisor, over any commutative semiring.
+@isnad1 id=mem.0h3v.s7.e7fea3eddddd from=translated src=- shape=c6482175 vocab=f5a49b23
+-/
 theorem X_mem_nonZeroDivisors (i : σ) :
     (X i : MvPolynomial σ R) ∈ nonZeroDivisors (MvPolynomial σ R) := by
   have key : ∀ p : MvPolynomial σ R, p * X i = 0 → p = 0 := by
@@ -93,34 +99,46 @@ theorem X_mem_nonZeroDivisors (i : σ) :
   rw [mem_nonZeroDivisors_iff]
   exact ⟨fun x hx => key x (by rwa [mul_comm] at hx), key⟩
 
-/-- A power of a variable is a nonzerodivisor, over any commutative semiring.-/
+/-- A power of a variable is a nonzerodivisor, over any commutative semiring.
+@isnad1 id=mem.0h4v.s7.f3dd0a385f7d from=translated src=- shape=d8ce11f8 vocab=e449e443
+-/
 theorem X_pow_mem_nonZeroDivisors (i : σ) (r : ℕ) :
     (X i ^ r : MvPolynomial σ R) ∈ nonZeroDivisors (MvPolynomial σ R) :=
   pow_mem (X_mem_nonZeroDivisors i) r
 
-/-- The powers of a variable are nonzerodivisors.-/
+/-- The powers of a variable are nonzerodivisors.
+@isnad1 id=le.0h3v.s7.4aeda0a20c0a from=translated src=- shape=26e51c86 vocab=2b42fea7
+-/
 theorem powers_X_le_nonZeroDivisors (i : σ) :
     Submonoid.powers (X i : MvPolynomial σ R) ≤ nonZeroDivisors (MvPolynomial σ R) :=
   Submonoid.powers_le.mpr (X_mem_nonZeroDivisors i)
 
 /-- A product of two variables is a nonzerodivisor, over any commutative semiring.  This replaces the
-appeal to `powers_le_nonZeroDivisors_of_noZeroDivisors` on the overlap equation `Xᵢ * Xⱼ`.-/
+appeal to `powers_le_nonZeroDivisors_of_noZeroDivisors` on the overlap equation `Xᵢ * Xⱼ`.
+@isnad1 id=mem.0h4v.s7.3cda6b96bac5 from=translated src=- shape=0c3fe8a4 vocab=6398a211
+-/
 theorem X_mul_X_mem_nonZeroDivisors (i j : σ) :
     (X i * X j : MvPolynomial σ R) ∈ nonZeroDivisors (MvPolynomial σ R) :=
   mul_mem (X_mem_nonZeroDivisors i) (X_mem_nonZeroDivisors j)
 
 /-- A product of powers of two variables is a nonzerodivisor.  This replaces cancellation by
-`mul_left_cancel₀`, which needs a domain, with cancellation by a nonzerodivisor.-/
+`mul_left_cancel₀`, which needs a domain, with cancellation by a nonzerodivisor.
+@isnad1 id=mem.0h6v.s8.dbe514f406ac from=translated src=- shape=f45c5ee9 vocab=64ae8783
+-/
 theorem X_pow_mul_X_pow_mem_nonZeroDivisors (i j : σ) (r m : ℕ) :
     (X i ^ r * X j ^ m : MvPolynomial σ R) ∈ nonZeroDivisors (MvPolynomial σ R) :=
   mul_mem (pow_mem (X_mem_nonZeroDivisors i) r) (pow_mem (X_mem_nonZeroDivisors j) m)
 
-/-- A finite product of variables is a nonzerodivisor, over any commutative semiring.-/
+/-- A finite product of variables is a nonzerodivisor, over any commutative semiring.
+@isnad1 id=mem.0h5v.s7.e58fcbfce025 from=translated src=- shape=20297661 vocab=67e0b8be
+-/
 theorem prod_X_mem_nonZeroDivisors {ι : Type*} (s : Finset ι) (f : ι → σ) :
     (∏ t ∈ s, X (f t) : MvPolynomial σ R) ∈ nonZeroDivisors (MvPolynomial σ R) :=
   prod_mem fun t _ => X_mem_nonZeroDivisors (f t)
 
-/-- The powers of a product of two variables are nonzerodivisors.-/
+/-- The powers of a product of two variables are nonzerodivisors.
+@isnad1 id=le.0h4v.s7.b9167fb513c5 from=translated src=- shape=4a6aced6 vocab=1242f6d0
+-/
 theorem powers_X_mul_X_le_nonZeroDivisors (i j : σ) :
     Submonoid.powers (X i * X j : MvPolynomial σ R) ≤ nonZeroDivisors (MvPolynomial σ R) :=
   Submonoid.powers_le.mpr (X_mul_X_mem_nonZeroDivisors i j)

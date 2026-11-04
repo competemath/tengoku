@@ -56,18 +56,30 @@ abbrev Qt (z : B) : Type _ := B ⧸ Ideal.span {z}
 /-- Multiplication by `x` on `B ⧸ (z)`.-/
 abbrev mulQ (z x : B) : Qt z →ₗ[B] Qt z := x • LinearMap.id
 
+/--
+@isnad1 id=eq.0h4v.s8.dbf11c21454c from=translated src=- shape=87ddcb48 vocab=3fabaa84
+-/
 theorem mulQ_mk (z x r : B) :
     mulQ z x (Submodule.Quotient.mk r) = (Submodule.Quotient.mk (x * r) : Qt z) := by
   show x • (Submodule.Quotient.mk r : Qt z) = _
   rw [← Submodule.Quotient.mk_smul, smul_eq_mul]
 
+/--
+@isnad1 id=iff.0h3v.s8.2b94af30ef80 from=translated src=- shape=978e34e3 vocab=802ab83b
+-/
 theorem mk_eq_zero_iff (z r : B) : (Submodule.Quotient.mk r : Qt z) = 0 ↔ z ∣ r := by
   rw [Submodule.Quotient.mk_eq_zero, Ideal.mem_span_singleton]
 
+/--
+@isnad1 id=iff.0h4v.s9.e827dad47af4 from=translated src=- shape=31263739 vocab=f7ea3184
+-/
 theorem mk_mem_ker_mulQ (z x r : B) :
     (Submodule.Quotient.mk r : Qt z) ∈ LinearMap.ker (mulQ z x) ↔ z ∣ x * r := by
   rw [LinearMap.mem_ker, mulQ_mk, mk_eq_zero_iff]
 
+/--
+@isnad1 id=iff.1h4v.s9.6cf9cdcf0788 from=translated src=- shape=23b9e05a vocab=6418934b
+-/
 theorem mk_mem_range_mulQ {z y : B} (hy : y ∣ z) (r : B) :
     (Submodule.Quotient.mk r : Qt z) ∈ LinearMap.range (mulQ z y) ↔ y ∣ r := by
   constructor
@@ -79,12 +91,21 @@ theorem mk_mem_range_mulQ {z y : B} (hy : y ∣ z) (r : B) :
   · rintro ⟨s, rfl⟩
     exact ⟨Submodule.Quotient.mk s, mulQ_mk _ _ _⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.27cec1793915 from=translated src=- shape=baa6554f vocab=fa9e64bf
+-/
 theorem mulQ_mul (z x y : B) : mulQ z (x * y) = mulQ z x ∘ₗ mulQ z y :=
   LinearMap.ext fun m => by simp [mulQ, mul_smul]
 
+/--
+@isnad1 id=eq.0h4v.s9.02c32a6df611 from=translated src=- shape=f83b8315 vocab=f3226f2c
+-/
 theorem mulQ_comm (z x y : B) : mulQ z x ∘ₗ mulQ z y = mulQ z y ∘ₗ mulQ z x := by
   rw [← mulQ_mul, ← mulQ_mul, mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s9.b17fe368de7b from=translated src=- shape=f24998a5 vocab=f3226f2c
+-/
 theorem comp_mulQ {z w : B} (g : Qt z →ₗ[B] Qt w) (x : B) : g ∘ₗ mulQ z x = mulQ w x ∘ₗ g :=
   LinearMap.ext fun m => by simp [mulQ]
 
@@ -94,6 +115,9 @@ noncomputable def mulMap (z c w : B) (h : w ∣ c * z) : Qt z →ₗ[B] Qt w :=
     rw [Ideal.span_le, Set.singleton_subset_iff, SetLike.mem_coe, Submodule.mem_comap]
     simpa [Ideal.mem_span_singleton] using h)
 
+/--
+@isnad1 id=eq.1h5v.s8.bfa6e2ad1790 from=translated src=- shape=d094745c vocab=a77ab085
+-/
 theorem mulMap_mk (z c w : B) (h : w ∣ c * z) (r : B) :
     mulMap z c w h (Submodule.Quotient.mk r) = (Submodule.Quotient.mk (c * r) : Qt w) := by
   rw [mulMap, Submodule.mapQ_apply]; rfl
@@ -104,10 +128,16 @@ noncomputable def projMap (z w : B) (h : w ∣ z) : Qt z →ₗ[B] Qt w :=
     rw [Ideal.span_le, Set.singleton_subset_iff, SetLike.mem_coe, Submodule.mem_comap]
     simpa [Ideal.mem_span_singleton] using h)
 
+/--
+@isnad1 id=eq.1h4v.s8.cc843e332af7 from=translated src=- shape=311e5dc9 vocab=f304c669
+-/
 theorem projMap_mk (z w : B) (h : w ∣ z) (r : B) :
     projMap z w h (Submodule.Quotient.mk r) = (Submodule.Quotient.mk r : Qt w) := by
   rw [projMap, Submodule.mapQ_apply]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.57e63844a0f3 from=translated src=- shape=34fd34a6 vocab=1f33ea8b
+-/
 theorem map_top_mulMap (z c w : B) (h : w ∣ c * z) :
     (⊤ : Submodule B (Qt z)).map (mulMap z c w h) = LinearMap.range (mulQ w c) := by
   rw [Submodule.map_top]
@@ -122,6 +152,9 @@ theorem map_top_mulMap (z c w : B) (h : w ∣ c * z) :
 
 variable [IsDomain B]
 
+/--
+@isnad1 id=eq.2h4v.s8.5b4084513451 from=translated src=- shape=0ce83a17 vocab=84eadc8a
+-/
 theorem ker_mulQ_eq_range {x y z : B} (hx : x ≠ 0) (hz : z = x * y) :
     LinearMap.ker (mulQ z x) = LinearMap.range (mulQ z y) := by
   ext m
@@ -129,6 +162,9 @@ theorem ker_mulQ_eq_range {x y z : B} (hx : x ≠ 0) (hz : z = x * y) :
   have hy : y ∣ z := by rw [hz]; exact dvd_mul_left y x
   rw [mk_mem_ker_mulQ, mk_mem_range_mulQ hy, hz, mul_dvd_mul_iff_left hx]
 
+/--
+@isnad1 id=le.2h4v.s10.533fb9428095 from=translated src=- shape=936a6d99 vocab=1fd982cf
+-/
 theorem ker_mulMap {z c w : B} (hc : c ≠ 0) (hw : w = c * z) :
     (⊤ : Submodule B (Qt z)) ⊓
         (⊥ : Submodule B (Qt w)).comap (mulMap z c w (by rw [hw])) ≤ ⊥ := by
@@ -142,7 +178,9 @@ theorem ker_mulMap {z c w : B} (hc : c ≠ 0) (hw : w = c * z) :
 
 variable [IsNoetherianRing B] [Ring.KrullDimLE 1 B]
 
-/-- `B ⧸ (z)` has finite length for `z ≠ 0` (Mathlib, `dim B ≤ 1`).-/
+/-- `B ⧸ (z)` has finite length for `z ≠ 0` (Mathlib, `dim B ≤ 1`).
+@isnad1 id=and.1h2v.s7.867e38a5db03 from=translated src=- shape=cb3a7f97 vocab=bda3578a
+-/
 theorem finLen {z : B} (hz : z ≠ 0) : IsArtinian B (Qt z) ∧ IsNoetherian B (Qt z) := by
   have := isFiniteLength_iff_isNoetherian_isArtinian.1
     (isFiniteLength_quotient_span_singleton B (mem_nonZeroDivisors_of_ne_zero hz))
@@ -165,20 +203,32 @@ noncomputable def symb (a b : B) : ResidueField B :=
     haveI := (finLen h).2
     perDet (M := Qt (a * b)) ⊥ ⊤ (mulQ (a * b) a) (mulQ (a * b) b)
 
+/--
+@isnad1 id=eq.2h4v.s9.eaad8547ce37 from=translated src=- shape=3ae57ed3 vocab=04849a1e
+-/
 theorem symb_eq {a b z : B} (hz : z = a * b) (h0 : z ≠ 0) [IsArtinian B (Qt z)]
     [IsNoetherian B (Qt z)] :
     symb a b = perDet (M := Qt z) ⊥ ⊤ (mulQ z a) (mulQ z b) := by
   subst hz
   rw [symb, dite_eq_right h0]
 
+/--
+@isnad1 id=eq.1h3v.s7.1e6a17eeaa39 from=translated src=- shape=f5fdd2d1 vocab=b793f7e1
+-/
 theorem symb_of_mul_eq_zero {a b : B} (h : a * b = 0) : symb a b = 1 := by
   rw [symb, dite_eq_left h]
 
+/--
+@isnad1 id=perexact.3h4v.s8.936b19142143 from=translated src=- shape=b3226615 vocab=53f1cc64
+-/
 theorem perExact_symb {a b z : B} (ha : a ≠ 0) (hb : b ≠ 0) (hz : z = a * b) :
     PerExact (⊥ : Submodule B (Qt z)) ⊤ (mulQ z a) (mulQ z b) :=
   perExact_bot_top_iff.2
     ⟨ker_mulQ_eq_range ha hz, ker_mulQ_eq_range hb (hz.trans (mul_comm a b))⟩
 
+/--
+@isnad1 id=ne.0h3v.s6.3daea1d40d43 from=translated src=- shape=eb4fcb94 vocab=7e562b56
+-/
 theorem symb_ne_zero (a b : B) : symb a b ≠ 0 := by
   by_cases h : a * b = 0
   · rw [symb_of_mul_eq_zero h]; exact one_ne_zero
@@ -187,7 +237,9 @@ theorem symb_ne_zero (a b : B) : symb a b ≠ 0 := by
     rw [symb_eq rfl h]
     exact perDet_ne_zero (perExact_symb (left_ne_zero_of_mul h) (right_ne_zero_of_mul h) rfl)
 
-/-- `d(a, b) · d(b, a) = 1` (Stacks 42.68.15).-/
+/-- `d(a, b) · d(b, a) = 1` (Stacks 42.68.15).
+@isnad1 id=eq.2h3v.s7.c1d35491c186 from=translated src=- shape=2042f21a vocab=b793f7e1
+-/
 theorem symb_mul_symb_swap {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) : symb a b * symb b a = 1 := by
   have hz : a * b ≠ 0 := mul_ne_zero ha hb
   haveI := (finLen hz).1
@@ -195,7 +247,9 @@ theorem symb_mul_symb_swap {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) : symb a b * 
   rw [symb_eq rfl hz, symb_eq (mul_comm a b) hz]
   exact perDet_mul_perDet_symm (perExact_symb ha hb rfl)
 
-/-- `d(a, bc) = d(a, b) d(a, c)` (Stacks 42.68.24 applied to `B/(abc)`).-/
+/-- `d(a, bc) = d(a, b) d(a, c)` (Stacks 42.68.24 applied to `B/(abc)`).
+@isnad1 id=eq.2h4v.s7.95240ee9c13e from=translated src=- shape=317868ed vocab=b793f7e1
+-/
 theorem symb_mul_right (a : B) {b c : B} (hb : b ≠ 0) (hc : c ≠ 0) :
     symb a (b * c) = symb a b * symb a c := by
   by_cases ha : a = 0
@@ -279,9 +333,15 @@ theorem symb_mul_right (a : B) {b c : B} (hb : b ≠ 0) (hc : c ≠ 0) :
     rw [hP, hT] at key
     rw [← key, symb_eq rfl hac]
 
+/--
+@isnad1 id=eq.2h3v.s7.958d35a74e16 from=translated src=- shape=9dfbf35b vocab=b28a67dc
+-/
 theorem symb_swap {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) : symb b a = (symb a b)⁻¹ :=
   eq_inv_of_mul_eq_one_right (symb_mul_symb_swap ha hb)
 
+/--
+@isnad1 id=eq.2h4v.s7.f8b049f465eb from=translated src=- shape=15d0a675 vocab=b793f7e1
+-/
 theorem symb_mul_left {a a' : B} (b : B) (ha : a ≠ 0) (ha' : a' ≠ 0) :
     symb (a * a') b = symb a b * symb a' b := by
   by_cases hb : b = 0
@@ -289,7 +349,9 @@ theorem symb_mul_left {a a' : B} (b : B) (ha : a ≠ 0) (ha' : a' ≠ 0) :
   rw [symb_swap hb (mul_ne_zero ha ha'), symb_mul_right b ha ha', mul_inv, ← symb_swap hb ha,
     ← symb_swap hb ha']
 
-/-- `d(a, a) = (-1)^{ℓ(B/a)}` (Stacks 42.68.16).-/
+/-- `d(a, a) = (-1)^{ℓ(B/a)}` (Stacks 42.68.16).
+@isnad1 id=eq.2h3v.s7.9a7f076753a0 from=translated src=- shape=640d257b vocab=ab86c4fd
+-/
 theorem symb_self {a : B} (ha : a ≠ 0) {n : ℕ} (hn : Ring.ord B a = n) :
     symb a a = (-1) ^ n := by
   have hz : a * a ≠ 0 := mul_ne_zero ha ha
@@ -312,7 +374,9 @@ theorem symb_self {a : B} (ha : a ≠ 0) {n : ℕ} (hn : Ring.ord B a = n) :
     exact_mod_cast h2
   rw [hl, this]
 
-/-- `d(u, b) = ū^{ℓ(B/b)}` for a unit `u` (Stacks 42.68.17).-/
+/-- `d(u, b) = ū^{ℓ(B/b)}` for a unit `u` (Stacks 42.68.17).
+@isnad1 id=eq.3h4v.s7.8c82ddb88c9b from=translated src=- shape=0b6bf7e5 vocab=8a0cc177
+-/
 theorem symb_unit {u b : B} (hu : IsUnit u) (hb : b ≠ 0) {n : ℕ} (hn : Ring.ord B b = n) :
     symb u b = residue B u ^ n := by
   have hz : u * b ≠ 0 := mul_ne_zero hu.ne_zero hb
@@ -338,29 +402,53 @@ theorem symb_unit {u b : B} (hu : IsUnit u) (hb : b ≠ 0) {n : ℕ} (hn : Ring.
 /-- `d_B(a, b) ∈ κ^×`.-/
 noncomputable def dB (a b : B) : (ResidueField B)ˣ := Units.mk0 (symb a b) (symb_ne_zero a b)
 
+/--
+@isnad1 id=eq.0h3v.s6.1ed4acc404ae from=translated src=- shape=5c79e736 vocab=1eb39db3
+-/
 @[simp] theorem coe_dB (a b : B) : (dB a b : ResidueField B) = symb a b := rfl
 
+/--
+@isnad1 id=eq.2h4v.s8.98c848e68e2c from=translated src=- shape=6b9ed35b vocab=2c63e073
+-/
 theorem dB_mul_right (a : B) {b c : B} (hb : b ≠ 0) (hc : c ≠ 0) :
     dB a (b * c) = dB a b * dB a c :=
   Units.ext (by simp [symb_mul_right a hb hc])
 
+/--
+@isnad1 id=eq.2h4v.s8.c958294e25da from=translated src=- shape=55fc9f8a vocab=2c63e073
+-/
 theorem dB_mul_left {a a' : B} (b : B) (ha : a ≠ 0) (ha' : a' ≠ 0) :
     dB (a * a') b = dB a b * dB a' b :=
   Units.ext (by simp [symb_mul_left b ha ha'])
 
+/--
+@isnad1 id=eq.2h3v.s8.76e545293e96 from=translated src=- shape=336a66a8 vocab=2c63e073
+-/
 theorem dB_mul_dB_swap {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) : dB a b * dB b a = 1 :=
   Units.ext (by simp [symb_mul_symb_swap ha hb])
 
+/--
+@isnad1 id=eq.2h3v.s7.d828168bb0d4 from=translated src=- shape=7c445115 vocab=5f1cff1d
+-/
 theorem dB_swap {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) : dB b a = (dB a b)⁻¹ :=
   eq_inv_of_mul_eq_one_right (dB_mul_dB_swap ha hb)
 
+/--
+@isnad1 id=eq.2h3v.s8.23d008128657 from=translated src=- shape=51ed4000 vocab=956316ec
+-/
 theorem dB_self {a : B} (ha : a ≠ 0) {n : ℕ} (hn : Ring.ord B a = n) : dB a a = (-1) ^ n :=
   Units.ext (by simp [symb_self ha hn])
 
+/--
+@isnad1 id=eq.2h4v.s9.a9ddf21e7ac4 from=translated src=- shape=f9cd8af8 vocab=07a58620
+-/
 theorem dB_unit (u : Bˣ) {b : B} (hb : b ≠ 0) {n : ℕ} (hn : Ring.ord B b = n) :
     dB (u : B) b = Units.map (residue B : B →* ResidueField B) u ^ n :=
   Units.ext (by simp [symb_unit u.isUnit hb hn])
 
+/--
+@isnad1 id=eq.1h4v.s8.efb844ba609f from=translated src=- shape=a1ce1140 vocab=5551e4fb
+-/
 theorem dB_pow_right (a : B) {b : B} (hb : b ≠ 0) (n : ℕ) : dB a (b ^ n) = dB a b ^ n := by
   induction n with
   | zero =>
@@ -370,6 +458,9 @@ theorem dB_pow_right (a : B) {b : B} (hb : b ≠ 0) (n : ℕ) : dB a (b ^ n) = d
     exact left_eq_mul.1 h |>.symm ▸ rfl
   | succ n ih => rw [pow_succ, dB_mul_right a (pow_ne_zero n hb) hb, ih, pow_succ]
 
+/--
+@isnad1 id=eq.1h4v.s8.f891f0374d16 from=translated src=- shape=72746810 vocab=5551e4fb
+-/
 theorem dB_pow_left {a : B} (ha : a ≠ 0) (b : B) (n : ℕ) : dB (a ^ n) b = dB a b ^ n := by
   induction n with
   | zero =>
@@ -395,16 +486,28 @@ noncomputable def unitOf (a : B) (ha : a ≠ 0) : Kˣ :=
 
 variable {K}
 
+/--
+@isnad1 id=eq.1h3v.s7.e2b1c994e08b from=translated src=- shape=e736e9e5 vocab=4124cb5f
+-/
 @[simp] theorem coe_unitOf (a : B) (ha : a ≠ 0) : (unitOf K a ha : K) = algebraMap B K a := rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.5132622f1bb0 from=translated src=- shape=ebaffa00 vocab=fffc5116
+-/
 theorem unitOf_mul {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) :
     unitOf K (a * b) (mul_ne_zero ha hb) = unitOf K a ha * unitOf K b hb :=
   Units.ext (by simp)
 
+/--
+@isnad1 id=eq.3h4v.s6.0be4c6a98655 from=translated src=- shape=562efd52 vocab=2425699e
+-/
 theorem unitOf_inj {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) (h : unitOf K a ha = unitOf K b hb) :
     a = b :=
   IsFractionRing.injective B K (congrArg Units.val h)
 
+/--
+@isnad1 id=ex.0h3v.s7.b1a62ed4aab7 from=translated src=- shape=55bafd1a vocab=35831a69
+-/
 theorem exists_eq_div (x : Kˣ) :
     ∃ (a c : B) (ha : a ≠ 0) (hc : c ≠ 0), x = unitOf K a ha * (unitOf K c hc)⁻¹ := by
   obtain ⟨a, c, hc, hx⟩ := IsFractionRing.div_surjective (A := B) (x : K)
@@ -421,6 +524,9 @@ variable (K) in
 noncomputable def extK (f : B → G) (x : Kˣ) : G :=
   f (exists_eq_div (B := B) (K := K) x).choose / f (exists_eq_div (B := B) (K := K) x).choose_spec.choose
 
+/--
+@isnad1 id=eq.7h9v.s8.25a865643f1f from=translated src=- shape=58020b37 vocab=59c88dc2
+-/
 theorem extK_aux {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → f (x * y) = f x * f y)
     {x : Kˣ} {a0 c0 a c : B} (ha0 : a0 ≠ 0) (hc0 : c0 ≠ 0) (ha : a ≠ 0) (hc : c ≠ 0)
     (h0 : x = unitOf K a0 ha0 * (unitOf K c0 hc0)⁻¹) (h : x = unitOf K a ha * (unitOf K c hc)⁻¹) :
@@ -432,12 +538,18 @@ theorem extK_aux {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → f (x *
   have e' := unitOf_inj _ _ e
   rw [div_eq_div_iff_mul_eq_mul, ← hf _ _ ha0 hc, ← hf _ _ ha hc0, e']
 
+/--
+@isnad1 id=eq.4h7v.s8.7d6d8d32106e from=translated src=- shape=bc39fa46 vocab=d18b4843
+-/
 theorem extK_eq {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → f (x * y) = f x * f y)
     {x : Kˣ} {a c : B} (ha : a ≠ 0) (hc : c ≠ 0) (h : x = unitOf K a ha * (unitOf K c hc)⁻¹) :
     extK K f x = f a / f c := by
   obtain ⟨ha0, hc0, h0⟩ := (exists_eq_div (B := B) (K := K) x).choose_spec.choose_spec
   exact extK_aux hf ha0 hc0 ha hc h0 h
 
+/--
+@isnad1 id=eq.1h3v.s7.30d709fdc5d7 from=translated src=- shape=3803cfbb vocab=56dec7c7
+-/
 theorem map_one_of_mul {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → f (x * y) = f x * f y) :
     f 1 = 1 := by
   have h := hf 1 1 one_ne_zero one_ne_zero
@@ -463,11 +575,17 @@ noncomputable def extKHom (f : B → G) (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 �
       extK_eq hf hb hd hy, hf _ _ ha hb, hf _ _ hc hd,
       mul_div_mul_comm]
 
+/--
+@isnad1 id=eq.4h7v.s8.14f9a4486f3a from=translated src=- shape=13579e43 vocab=ef08f9fc
+-/
 theorem extKHom_eq {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → f (x * y) = f x * f y)
     {x : Kˣ} {a c : B} (ha : a ≠ 0) (hc : c ≠ 0) (h : x = unitOf K a ha * (unitOf K c hc)⁻¹) :
     extKHom K f hf x = f a / f c :=
   extK_eq hf ha hc h
 
+/--
+@isnad1 id=eq.2h5v.s8.2f56f9f4a09b from=translated src=- shape=0677d8f7 vocab=a2173400
+-/
 theorem extKHom_unitOf {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → f (x * y) = f x * f y)
     {a : B} (ha : a ≠ 0) : extKHom K f hf (unitOf K a ha) = f a := by
   have h : unitOf K a ha = unitOf K a ha * (unitOf K (1 : B) one_ne_zero)⁻¹ := by
@@ -475,7 +593,9 @@ theorem extKHom_unitOf {f : B → G} (hf : ∀ x y : B, x ≠ 0 → y ≠ 0 → 
   rw [extKHom_eq hf ha one_ne_zero h, map_one_of_mul hf, div_one]
 
 variable (B) in
-/-- A bimultiplicative pairing on `K^×` is determined by its values on `B ∖ 0`.-/
+/-- A bimultiplicative pairing on `K^×` is determined by its values on `B ∖ 0`.
+@isnad1 id=eq.1h5v.s11.e78a2be8e7a9 from=translated src=- shape=d52ed2c7 vocab=95b47d84
+-/
 theorem pairing_ext {F F' : Kˣ →* Kˣ →* G}
     (h : ∀ (a b : B) (ha : a ≠ 0) (hb : b ≠ 0),
       F (unitOf K a ha) (unitOf K b hb) = F' (unitOf K a ha) (unitOf K b hb)) : F = F' := by
@@ -499,6 +619,9 @@ variable {K : Type*} [Field K] [Algebra B K] [IsFractionRing B K]
 noncomputable def dBHom (a : B) : Kˣ →* (ResidueField B)ˣ :=
   extKHom K (dB a) fun _ _ hb hc => dB_mul_right a hb hc
 
+/--
+@isnad1 id=eq.2h4v.s9.71ece1754b9b from=translated src=- shape=b810ece2 vocab=0bece04d
+-/
 theorem dBHom_mul {a a' : B} (ha : a ≠ 0) (ha' : a' ≠ 0) :
     (dBHom (K := K) (a * a')) = dBHom a * dBHom a' := by
   ext1 y
@@ -512,11 +635,16 @@ variable (B K) in
 noncomputable def dK : Kˣ →* Kˣ →* (ResidueField B)ˣ :=
   extKHom K (fun a => dBHom (K := K) a) fun _ _ ha ha' => dBHom_mul ha ha'
 
+/--
+@isnad1 id=eq.2h4v.s11.e7a23abfb0ec from=translated src=- shape=e4dbcecb vocab=802cc1d3
+-/
 theorem dK_unitOf {a b : B} (ha : a ≠ 0) (hb : b ≠ 0) :
     dK B K (unitOf K a ha) (unitOf K b hb) = dB a b := by
   rw [dK, extKHom_unitOf, dBHom, extKHom_unitOf]
 
-/-- `d(x, y) · d(y, x) = 1` on `K^×`.-/
+/-- `d(x, y) · d(y, x) = 1` on `K^×`.
+@isnad1 id=eq.0h4v.s12.5d897b19eb79 from=translated src=- shape=63c29eb6 vocab=9f75ef53
+-/
 theorem dK_mul_dK_swap (x y : Kˣ) : dK B K x y * dK B K y x = 1 := by
   have : dK B K * (dK B K).flip = (1 : Kˣ →* Kˣ →* (ResidueField B)ˣ) := by
     refine pairing_ext B fun a b ha hb => ?_
@@ -525,6 +653,9 @@ theorem dK_mul_dK_swap (x y : Kˣ) : dK B K x y * dK B K y x = 1 := by
   have := congrArg (fun F => F x y) this
   simpa using this
 
+/--
+@isnad1 id=eq.0h4v.s12.5a7ef6315414 from=translated src=- shape=e37bae1e vocab=002ad558
+-/
 theorem dK_swap (x y : Kˣ) : dK B K y x = (dK B K x y)⁻¹ :=
   eq_inv_of_mul_eq_one_right (dK_mul_dK_swap x y)
 
@@ -537,26 +668,43 @@ noncomputable def ordZ : Kˣ →* Multiplicative ℤ :=
         (Ring.ord_ne_top (mem_nonZeroDivisors_of_ne_zero hy))]
     simp [ofAdd_add]
 
+/--
+@isnad1 id=eq.1h3v.s8.791fd0fec572 from=translated src=- shape=cba60485 vocab=5986ea80
+-/
 theorem ordZ_unitOf {a : B} (ha : a ≠ 0) :
     ordZ B K (unitOf K a ha) = Multiplicative.ofAdd ((Ring.ord B a).toNat : ℤ) := by
   rw [ordZ, extKHom_unitOf]
 
+/--
+@isnad1 id=eq.1h2v.s8.8b58b1ac23ca from=translated src=- shape=28f0c126 vocab=6a42f187
+-/
 theorem dB_self' {a : B} (ha : a ≠ 0) : dB a a = (-1) ^ (Ring.ord B a).toNat :=
   dB_self ha (ENat.natCast_toNat (Ring.ord_ne_top (mem_nonZeroDivisors_of_ne_zero ha))).symm
 
+/--
+@isnad1 id=eq.0h4v.s12.c46bed7c6c9b from=translated src=- shape=98f64235 vocab=9f75ef53
+-/
 theorem dK_self_mul (x y : Kˣ) : dK B K (x * y) (x * y) = dK B K x x * dK B K y y := by
   have h := dK_mul_dK_swap (B := B) x y
   simp only [map_mul, MonoidHom.mul_apply]
   rw [mul_assoc, ← mul_assoc (dK B K y x), mul_comm (dK B K y x), h, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s12.4d924e2ceecf from=translated src=- shape=21bd901c vocab=002ad558
+-/
 theorem dK_self_inv (x : Kˣ) : dK B K x⁻¹ x⁻¹ = dK B K x x := by
   simp only [map_inv, MonoidHom.inv_apply, inv_inv]
 
+/--
+@isnad1 id=eq.0h2v.s7.c21f23b71da0 from=translated src=- shape=6124a3a7 vocab=bb511aa5
+-/
 theorem neg_one_pow_inv {G : Type*} [Group G] [HasDistribNeg G] (k : ℕ) :
     ((-1 : G) ^ k)⁻¹ = (-1) ^ k := by
   rw [← inv_pow, inv_neg_one]
 
-/-- `d(x, x) = (-1)^{ord x}` on `K^×` (Stacks 42.68.16).-/
+/-- `d(x, x) = (-1)^{ord x}` on `K^×` (Stacks 42.68.16).
+@isnad1 id=eq.0h3v.s11.b67afbd1ff2a from=translated src=- shape=612a1401 vocab=feb28deb
+-/
 theorem dK_self (x : Kˣ) : dK B K x x = (-1) ^ (Multiplicative.toAdd (ordZ B K x)) := by
   obtain ⟨a, c, ha, hc, rfl⟩ := exists_eq_div (B := B) (K := K) x
   rw [dK_self_mul, dK_self_inv, dK_unitOf, dK_unitOf, map_mul, map_inv, ordZ_unitOf, ordZ_unitOf,
@@ -590,16 +738,24 @@ noncomputable def tameHom : Kˣ →* Kˣ →* (ResidueField R)ˣ where
     exact left_eq_mul.1 h
   map_mul' a a' := MonoidHom.ext fun b => tame_mul_left a a' b
 
+/--
+@isnad1 id=eq.0h1v.s9.e22d3c7e39b1 from=translated src=- shape=a917d2cd vocab=1e37bd84
+-/
 theorem units_map_residue_neg_one :
     Units.map (residue R : R →* ResidueField R) (-1) = -1 :=
   Units.ext (by simp)
 
+/--
+@isnad1 id=eq.0h4v.s8.4460c5a052e9 from=translated src=- shape=c31370be vocab=0a61f20d
+-/
 theorem unitOf_eq_smul (u : Rˣ) (k : ℕ) :
     (unitOf K ((u : R) * unif R ^ k) (mul_ne_zero u.ne_zero (pow_ne_zero _
       (irreducible_unif R).ne_zero)) : K) = u • algebraMap R K (unif R) ^ (k : ℤ) := by
   rw [coe_unitOf, Units.smul_def, Algebra.smul_def, zpow_natCast, map_mul, map_pow]
 
-/-- On `R ∖ 0`: `d_R(a, b)` is the classical tame symbol (Stacks 42.68.37 (DVR case)).-/
+/-- On `R ∖ 0`: `d_R(a, b)` is the classical tame symbol (Stacks 42.68.37 (DVR case)).
+@isnad1 id=eq.2h4v.s7.835460b7d57b from=translated src=- shape=eb2fe9e3 vocab=e4aa57ec
+-/
 theorem dB_eq_tame {a b : R} (ha : a ≠ 0) (hb : b ≠ 0) :
     dB a b = tame R (unitOf K a ha) (unitOf K b hb) := by
   have hϖ := irreducible_unif R
@@ -622,10 +778,15 @@ theorem dB_eq_tame {a b : R} (ha : a ≠ 0) (hb : b ≠ 0) :
   simp only [pow_zero, pow_one, one_mul, inv_pow, ← pow_mul]
   rw [mul_assoc ((-1) ^ (k * l)), mul_comm ((-1 : (ResidueField R)ˣ) ^ (k * l)), mul_assoc]
 
-/-- **`d = tame` for a DVR**, as pairings on `K^×`.-/
+/-- **`d = tame` for a DVR**, as pairings on `K^×`.
+@isnad1 id=eq.0h2v.s9.c977b178cfba from=translated src=- shape=a55438b9 vocab=082e07da
+-/
 theorem dK_eq_tameHom : dK R K = tameHom R K :=
   pairing_ext R (K := K) fun a b ha hb => by rw [dK_unitOf, dB_eq_tame (K := K) ha hb]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.bb137a87f983 from=translated src=- shape=357fc097 vocab=e487dfa7
+-/
 theorem dK_eq_tame (x y : Kˣ) : dK R K x y = tame R x y := by
   rw [dK_eq_tameHom]; rfl
 

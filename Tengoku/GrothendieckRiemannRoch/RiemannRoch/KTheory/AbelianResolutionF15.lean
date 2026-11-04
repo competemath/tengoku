@@ -52,11 +52,19 @@ namespace SES
 
 variable {K E M : C} {i : K ⟶ E} {g : E ⟶ M}
 
+/--
+@isnad1 id=mono.1h6v.s5.efce9f430070 from=translated src=- shape=c561e46e vocab=7bb3f261
+-/
 theorem mono (h : SES i g) : Mono i := h.exact.mono_f
 
+/--
+@isnad1 id=epi.1h6v.s5.8bf4cb4e9b0e from=translated src=- shape=b2e729ef vocab=9a40b0fb
+-/
 theorem epi (h : SES i g) : Epi g := h.exact.epi_g
 
-/-- Morphisms killed by `g` factor through `i`.-/
+/-- Morphisms killed by `g` factor through `i`.
+@isnad1 id=ex.2h8v.s7.12664dbd562c from=translated src=- shape=a35f0762 vocab=7ec196fe
+-/
 theorem lift_exists (h : SES i g) {T : C} (k : T ⟶ E) (hk : k ≫ g = 0) :
     ∃ u : T ⟶ K, u ≫ i = k := by
   haveI := h.mono
@@ -67,12 +75,16 @@ theorem lift_exists (h : SES i g) {T : C} (k : T ⟶ E) (hk : k ≫ g = 0) :
 def liftSub (h : SES i g) {T : C} (k : T ⟶ E) (hk : k ≫ g = 0) : {u : T ⟶ K // u ≫ i = k} :=
   ⟨(h.lift_exists k hk).choose, (h.lift_exists k hk).choose_spec⟩
 
-/-- Build a short exact sequence from a kernel fork that is a limit and an epi.-/
+/-- Build a short exact sequence from a kernel fork that is a limit and an epi.
+@isnad1 id=ses.1h7v.s7.58258953702e from=translated src=- shape=79c6d84c vocab=16388b02
+-/
 theorem ofKernel (zero : i ≫ g = 0) [Epi g] (hK : IsLimit (KernelFork.ofι i zero)) : SES i g :=
   ⟨zero, ShortComplex.ShortExact.mk' (ShortComplex.exact_of_f_is_kernel _ hK)
     (Limits.mono_of_isLimit_fork hK) inferInstance⟩
 
-/-- Transport along an isomorphism of the third term.-/
+/-- Transport along an isomorphism of the third term.
+@isnad1 id=ses.1h8v.s6.147387e373c7 from=translated src=- shape=e6e69286 vocab=1d5a0aa0
+-/
 theorem ofIsoRight (h : SES i g) {M' : C} (e : M ≅ M') : SES i (g ≫ e.hom) := by
   refine ⟨by rw [← Category.assoc, h.zero, zero_comp], ?_⟩
   have hiso : ShortComplex.mk i g h.zero ≅ ShortComplex.mk i (g ≫ e.hom)
@@ -80,11 +92,15 @@ theorem ofIsoRight (h : SES i g) {M' : C} (e : M ≅ M') : SES i (g ≫ e.hom) :
     ShortComplex.isoMk (Iso.refl K) (Iso.refl E) e (by simp) (by simp)
   exact ShortComplex.shortExact_of_iso hiso h.exact
 
-/-- The kernel of an epimorphism.-/
+/-- The kernel of an epimorphism.
+@isnad1 id=ses.0h4v.s6.3e9eb085c531 from=translated src=- shape=f04f793e vocab=7c1b4cfb
+-/
 theorem kernel_of_epi (g : E ⟶ M) [Epi g] : SES (kernel.ι g) g :=
   ⟨kernel.condition g, ⟨ShortComplex.exact_kernel g⟩⟩
 
-/-- Pullback of a short exact sequence along `f : X ⟶ M` (right-hand copy).-/
+/-- Pullback of a short exact sequence along `f : X ⟶ M` (right-hand copy).
+@isnad1 id=ses.1h8v.s6.a63ff9e065ba from=translated src=- shape=d2ea294a vocab=0ae0a5c8
+-/
 theorem pullbackR (h : SES i g) {X : C} (f : X ⟶ M) :
     SES (pullback.lift (0 : K ⟶ X) i (by rw [zero_comp, h.zero])) (pullback.fst f g) := by
   haveI := h.mono
@@ -104,7 +120,9 @@ theorem pullbackR (h : SES i g) {X : C} (f : X ⟶ M) :
   · rw [Category.assoc, pullback.lift_snd]
     exact (h.liftSub _ hk').2
 
-/-- Pullback of a short exact sequence along `f : X ⟶ M` (left-hand copy).-/
+/-- Pullback of a short exact sequence along `f : X ⟶ M` (left-hand copy).
+@isnad1 id=ses.1h8v.s6.61bc85de069f from=translated src=- shape=abe1257e vocab=f22e6b2e
+-/
 theorem pullbackL (h : SES i g) {X : C} (f : X ⟶ M) :
     SES (pullback.lift i (0 : K ⟶ X) (by rw [zero_comp, h.zero])) (pullback.snd g f) := by
   haveI := h.mono
@@ -124,7 +142,9 @@ theorem pullbackL (h : SES i g) {X : C} (f : X ⟶ M) :
     exact (h.liftSub _ hk').2
   · rw [Category.assoc, pullback.lift_snd, comp_zero, hk]
 
-/-- Pull back the first term along an epimorphism `a : X ⟶ E`: the kernel of `a ≫ g`.-/
+/-- Pull back the first term along an epimorphism `a : X ⟶ E`: the kernel of `a ≫ g`.
+@isnad1 id=ses.1h8v.s6.4dad17e7deed from=translated src=- shape=bfbf9900 vocab=532f601b
+-/
 theorem comp (h : SES i g) {X : C} (a : X ⟶ E) [Epi a] :
     SES (pullback.snd i a) (a ≫ g) := by
   haveI := h.mono
@@ -136,7 +156,9 @@ theorem comp (h : SES i g) {X : C} (a : X ⟶ E) [Epi a] :
   have hk' : (k ≫ a) ≫ g = 0 := by rw [Category.assoc, hk]
   exact ⟨pullback.lift (h.liftSub _ hk').1 k (h.liftSub _ hk').2, pullback.lift_snd _ _ _⟩
 
-/-- A short exact sequence with zero left term and identity right map.-/
+/-- A short exact sequence with zero left term and identity right map.
+@isnad1 id=ses.1h3v.s6.65ffad7a9885 from=translated src=- shape=4877fd59 vocab=c21ffe54
+-/
 theorem zeroId {K : C} (hK : IsZero K) (E : C) : SES (0 : K ⟶ E) (𝟙 E) := by
   haveI : Mono (0 : K ⟶ E) := hK.mono _
   refine ⟨by simp, ?_⟩
@@ -191,6 +213,9 @@ def Rep : ℕ → C → K0 S → Prop
   | n + 1, M, x => ∃ (K E : C) (i : K ⟶ E) (g : E ⟶ M) (y : K0 S), SES i g ∧
       ∃ h : S.P E, S.Q K ∧ Rep n K y ∧ x = cls S E h - y
 
+/--
+@isnad1 id=syz.1h7v.s5.c3ace9b6c0bf from=translated src=- shape=53502305 vocab=ed7c6b9b
+-/
 theorem Syz.ofIsoRight {n : ℕ} {Z M M' : C} (h : Syz S n Z M) (e : M ≅ M') : Syz S n Z M' := by
   cases n with
   | zero => obtain ⟨e1⟩ := h; exact ⟨e1 ≪≫ e⟩
@@ -198,18 +223,30 @@ theorem Syz.ofIsoRight {n : ℕ} {Z M M' : C} (h : Syz S n Z M) (e : M ≅ M') :
     obtain ⟨K, E, i, g, hs, hE, hK, hZ⟩ := h
     exact ⟨K, E, i, g ≫ e.hom, hs.ofIsoRight e, hE, hK, hZ⟩
 
+/--
+@isnad1 id=pdle.1h6v.s5.03105e086d98 from=translated src=- shape=3b438db6 vocab=94053b69
+-/
 theorem PdLE.iso {n : ℕ} {M M' : C} (h : PdLE S n M) (e : M ≅ M') : PdLE S n M' :=
   fun Z hZ => h Z (hZ.ofIsoRight S e.symm)
 
+/--
+@isnad1 id=iff.0h3v.s5.7635fe1cc53c from=translated src=- shape=9075c4aa vocab=7465f47f
+-/
 theorem pdLE_zero_iff {M : C} : PdLE S 0 M ↔ S.P M := by
   constructor
   · intro h; exact h M ⟨Iso.refl M⟩
   · rintro h Z ⟨e⟩; exact S.P_iso e.symm h
 
+/--
+@isnad1 id=pdle.4h8v.s6.aa0eb17948aa from=translated src=- shape=016126d3 vocab=ca1d6764
+-/
 theorem PdLE.ker {n : ℕ} {M K E : C} {i : K ⟶ E} {g : E ⟶ M} (h : PdLE S (n + 1) M)
     (hs : SES i g) (hE : S.P E) (hK : S.Q K) : PdLE S n K :=
   fun Z hZ => h Z ⟨K, E, i, g, hs, hE, hK, hZ⟩
 
+/--
+@isnad1 id=pdle.1h4v.s5.939b1a4e3c6a from=translated src=- shape=e8d64e03 vocab=7465f47f
+-/
 theorem pdLE_of_P : ∀ (n : ℕ) (E : C), S.P E → PdLE S n E := by
   intro n
   induction n with
@@ -219,7 +256,9 @@ theorem pdLE_of_P : ∀ (n : ℕ) (E : C), S.P E → PdLE S n E := by
     obtain ⟨K, E1, i, g, hs, hE1, hK, hZ⟩ := hZ
     exact ih K (S.P_ker hs hE1 hE hK) Z hZ
 
-/-- An extension of a bundle by an object of bundle dimension `≤ n` has bundle dimension `≤ n`.-/
+/-- An extension of a bundle by an object of bundle dimension `≤ n` has bundle dimension `≤ n`.
+@isnad1 id=pdle.5h8v.s6.e342056ec0b3 from=translated src=- shape=6cb89e97 vocab=b7426f15
+-/
 theorem pdLE_ext {n : ℕ} {K P0 E : C} {i : K ⟶ P0} {g : P0 ⟶ E} (hs : SES i g) (hE : S.P E)
     (hK : S.Q K) (hP0 : S.Q P0) (hpd : PdLE S n K) : PdLE S n P0 := by
   cases n with
@@ -237,6 +276,9 @@ theorem pdLE_ext {n : ℕ} {K P0 E : C} {i : K ⟶ P0} {g : P0 ⟶ E} (hs : SES 
     have hV : S.P (pullback i a) := S.P_ker sV2 hH hE hQV
     exact hpd Z ⟨K1, pullback i a, _, _, sV1, hV, hK1, hZ1⟩
 
+/--
+@isnad1 id=ex.2h4v.s5.00e01461d1be from=translated src=- shape=93608042 vocab=7821fd16
+-/
 theorem exists_rep : ∀ (n : ℕ) (M : C), S.Q M → PdLE S n M → ∃ x, Rep S n M x := by
   intro n
   induction n with
@@ -253,6 +295,9 @@ theorem exists_rep : ∀ (n : ℕ) (M : C), S.Q M → PdLE S n M → ∃ x, Rep 
     obtain ⟨y, hy⟩ := ih (kernel g) hQK (hpd.ker S hs hE hQK)
     exact ⟨cls S E hE - y, kernel g, E, kernel.ι g, g, y, hs, hE, hQK, hy, rfl⟩
 
+/--
+@isnad1 id=rep.1h4v.s7.7b987f4778e8 from=translated src=- shape=020528fb vocab=181badd5
+-/
 theorem rep_zero : ∀ (n : ℕ) (Z : C), IsZero Z → Rep S n Z 0 := by
   intro n
   induction n with
@@ -265,6 +310,9 @@ theorem rep_zero : ∀ (n : ℕ) (Z : C), IsZero Z → Rep S n Z 0 := by
     rw [sub_zero]
     exact (ExactGrothendieck.subcategoryClassOf_isZero C S.P (S.P_zero hZ) hZ).symm
 
+/--
+@isnad1 id=rep.1h4v.s5.e9151d347e76 from=translated src=- shape=f4d7ca8f vocab=73ace78e
+-/
 theorem rep_bundle : ∀ (n : ℕ) (E : C) (hE : S.P E), Rep S n E (cls S E hE) := by
   intro n
   induction n with
@@ -285,14 +333,23 @@ def Add (n : ℕ) : Prop :=
     PdLE S n A → PdLE S n B → PdLE S n D → ∀ {x y z : K0 S},
       Rep S n A x → Rep S n B y → Rep S n D z → y = x + z
 
+/--
+@isnad1 id=uniq.0h2v.s4.0afe845ced93 from=translated src=- shape=59365f29 vocab=705409b0
+-/
 theorem uniq_zero : Uniq S 0 := by
   rintro M _ _ x y ⟨h1, rfl⟩ ⟨h2, rfl⟩
   rfl
 
+/--
+@isnad1 id=add.0h2v.s4.32271725b103 from=translated src=- shape=59365f29 vocab=2f62813d
+-/
 theorem add_zero_level : Add S 0 := by
   rintro A B D i g hs _ _ _ _ _ _ x y z ⟨hA, rfl⟩ ⟨hB, rfl⟩ ⟨hD, rfl⟩
   exact ExactGrothendieck.subcategoryClassOf_middle C S.P hA hB hD hs.zero hs.exact
 
+/--
+@isnad1 id=uniq.1h3v.s5.f8ef29ea8195 from=translated src=- shape=a23a0ce8 vocab=6ab9f162
+-/
 theorem uniq_succ {n : ℕ} (hA : Add S n) : Uniq S (n + 1) := by
   rintro M hQM hM x x' ⟨K, E, i, g, y, hs, hE, hK, hy, rfl⟩ ⟨K', E', i', g', y', hs', hE', hK', hy', rfl⟩
   haveI := hs.epi
@@ -313,6 +370,9 @@ theorem uniq_succ {n : ℕ} (hA : Add S n) : Uniq S (n + 1) := by
     _ = (y + cls S E' hE') - (y' + y) := by rw [h3]
     _ = cls S E' hE' - y' := by abel
 
+/--
+@isnad1 id=add.2h3v.s5.7c8cd4938034 from=translated src=- shape=5a1e8d5e vocab=6ab9f162
+-/
 theorem add_succ {n : ℕ} (hA : Add S n) (hU : Uniq S (n + 1)) : Add S (n + 1) := by
   intro A B D i g hs hQA hQB hQD hpA hpB hpD xA xB xD hxA hxB hxD
   -- a cover of `D`
@@ -361,6 +421,9 @@ theorem add_succ {n : ℕ} (hA : Add S n) (hU : Uniq S (n + 1)) : Add S (n + 1) 
   rw [eA, eB, eD, hadd, hrel]
   abel
 
+/--
+@isnad1 id=and.0h3v.s4.a1b37a9509f1 from=translated src=- shape=c5b54d44 vocab=5b657865
+-/
 theorem add_uniq_all : ∀ n, Add S n ∧ Uniq S n
   | 0 => ⟨add_zero_level S, uniq_zero S⟩
   | n + 1 => by
@@ -377,9 +440,15 @@ def toQ (E : {E : C // S.P E}) : {E : C // S.Q E} := ⟨E.1, S.P_Q E.2⟩
 def k0ToG0 : K0 S →+ G0 S :=
   ExactGrothendieck.map (toQ S) (fun _ _ _ h => h)
 
+/--
+@isnad1 id=eq.1h3v.s8.b81035dd3b52 from=translated src=- shape=04d63165 vocab=cfa672c6
+-/
 theorem k0ToG0_cls (E : C) (h : S.P E) : k0ToG0 S (cls S E h) = gcl S E (S.P_Q h) :=
   ExactGrothendieck.map_classOf (toQ S) (fun _ _ _ h => h) ⟨E, h⟩
 
+/--
+@isnad1 id=eq.2h5v.s8.12171c0b85de from=translated src=- shape=039c8f62 vocab=0675b09c
+-/
 theorem rep_map : ∀ (n : ℕ) (M : C) (x : K0 S) (hQ : S.Q M), Rep S n M x →
     k0ToG0 S x = gcl S M hQ := by
   intro n
@@ -396,7 +465,9 @@ theorem rep_map : ∀ (n : ℕ) (M : C) (x : K0 S) (hQ : S.Q M), Rep S n M x →
     abel
 
 /-- **Resolution theorem** in an abstract abelian category: if every `Q`-object has bundle
-dimension `≤ d` then `K₀(P) → K₀(Q)` is bijective.-/
+dimension `≤ d` then `K₀(P) → K₀(Q)` is bijective.
+@isnad1 id=bijectiv.1h3v.s8.d7fb9b598e31 from=translated src=- shape=33e813de vocab=2257ac6b
+-/
 theorem k0ToG0_bijective (d : ℕ) (hd : ∀ M : C, S.Q M → PdLE S d M) :
     Function.Bijective (k0ToG0 S) := by
   obtain ⟨hAdd, hUniq⟩ := add_uniq_all S d

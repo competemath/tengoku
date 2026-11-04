@@ -65,7 +65,9 @@ namespace ModuleCat
 /-- The implication `(3) → (4)` of `exists_isRegular_tfae`: for `M N` finitely generated
 module over Noetherian ring `R` and ideal `I` satisfying `IM < M` and `Supp N = V(I)`,
 if `Ext N M i = 0` for all `i < n`,
-then there exists an `M`-regular sequence of length `n` contained in `I`.-/
+then there exists an `M`-regular sequence of length `n` contained in `I`.
+@isnad1 id=ex.3h5v.s9.2b09b5f51add from=translated src=- shape=e14a0fa0 vocab=ef053212
+-/
 lemma exists_isRegular_of_exists_subsingleton_ext [Small.{v} R] [IsNoetherianRing R] (I : Ideal R)
     (n : ℕ) (M : ModuleCat.{v} R) [Module.Finite R M] (smul_lt : I • (⊤ : Submodule R M) < ⊤)
     (N : ModuleCat.{v} R) [Module.Finite R N]
@@ -103,7 +105,9 @@ lemma exists_isRegular_of_exists_subsingleton_ext [Small.{v} R] [IsNoetherianRin
 /-- The implication `(4) → (1)` of `exists_isRegular_tfae`: for `M N` finitely generated
 module over Noetherian ring `R` and ideal `I` satisfying `IM < M` and `Supp N ⊆ V(I)`,
 if there is an `M`-regular sequence `rs` contained in `I`,
-then `Ext N M i = 0` for all `i < rs.length`.-/
+then `Ext N M i = 0` for all `i < rs.length`.
+@isnad1 id=subsingl.5h6v.s9.395b3b86b2c5 from=translated src=- shape=3f3a4f17 vocab=116f85b0
+-/
 lemma subsingleton_ext_of_exists_isRegular [Small.{v} R] [IsNoetherianRing R] (I : Ideal R)
     (N : ModuleCat.{v} R) [Nfin : Module.Finite R N]
     (Nsupp : Module.support R N ⊆ PrimeSpectrum.zeroLocus I)
@@ -159,7 +163,9 @@ For any `n : ℕ`, Noetherian ring `R`, `I : Ideal R`, and finitely generated an
 * `∀ i < n, Ext (R ⧸ I) M i = 0`
 * there exists a `N : ModuleCat R` finitely generated and nontrivial with support equal to the
   zero locus of `I`, `∀ i < n, Ext N M i = 0`
-* there exists a `M`-regular sequence of length `n` with every element in `I`-/
+* there exists a `M`-regular sequence of length `n` with every element in `I`
+@isnad1 id=tfae.1h4v.s10.6f187b7a478d from=translated src=- shape=59c3814d vocab=68bc4636
+-/
 lemma exists_isRegular_tfae [Small.{v} R] [IsNoetherianRing R] (I : Ideal R) (n : ℕ)
     (M : ModuleCat.{v} R) [Module.Finite R M] (smul_lt : I • (⊤ : Submodule R M) < ⊤) :
     [∀ N : ModuleCat.{v} R, Nontrivial N → Module.Finite R N →

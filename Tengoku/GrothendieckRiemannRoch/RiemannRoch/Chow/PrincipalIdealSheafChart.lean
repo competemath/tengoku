@@ -64,7 +64,9 @@ namespace IdealSheafIsLocallyPrincipal
 variable {X : Scheme.{u}} {I : X.IdealSheafData}
 
 /-- A locally principal ideal sheaf supplies principal affine chart data around every point of
-its associated closed subscheme.-/
+its associated closed subscheme.
+@isnad1 id=nonempty.1h3v.s4.cfda7ae5ff5b from=translated src=- shape=b268e9a3 vocab=3d31ca3f
+-/
 theorem exists_chartAt (hI : IdealSheafIsLocallyPrincipal I) (z : I.subscheme) :
     Nonempty (PrincipalIdealSheafChartAt I z) := by
   obtain ⟨U, hzU, a, ha⟩ := hI (I.subschemeι z)

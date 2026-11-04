@@ -59,6 +59,9 @@ def mapOn (Φ : C ⥤ D) [Φ.PreservesZeroMorphisms] (hobj : ∀ E, P E → Q (�
       ⟨(S.map Φ).X₃, hobj E.1 E.2⟩
     exact ⟨(S.map Φ).f, (S.map Φ).g, (S.map Φ).zero, hΦ S hshort A.2 B.2 E.2⟩
 
+/--
+@isnad1 id=eq.1h8v.s9.76025df412e1 from=translated src=- shape=bf1fce43 vocab=dd44e57f
+-/
 theorem mapOn_classOf (Φ : C ⥤ D) [Φ.PreservesZeroMorphisms] (hobj : ∀ E, P E → Q (Φ.obj E))
     (hΦ : ∀ S : ShortComplex C, S.ShortExact → P S.X₁ → P S.X₂ → P S.X₃ →
       (S.map Φ).ShortExact) (E : C) (hE : P E) :
@@ -85,17 +88,25 @@ structure PushCompat (TC : C ⥤ C) (σC : TC ⟶ 𝟭 C) (TD : D ⥤ D) (σD : 
 
 variable {Φ : C ⥤ D} [Φ.Additive]
 
+/--
+@isnad1 id=eq.0h9v.s8.b5f839c7fce2 from=translated src=- shape=fe31ed4b vocab=51e34e09
+-/
 theorem PushCompat.ap_eq (c : PushCompat TC σC TD σD Φ) (E : C) :
     ap TD σD (Φ.obj E) = (c.iso E).inv ≫ Φ.map (ap TC σC E) := by
   rw [← c.comm E, Iso.inv_hom_id_assoc]
 
+/--
+@isnad1 id=eq.1h9v.s8.16a5d0999062 from=translated src=- shape=74467773 vocab=487edca2
+-/
 theorem PushCompat.ap_eq_zero (c : PushCompat TC σC TD σD Φ) {E : C} (h : ap TC σC E = 0) :
     ap TD σD (Φ.obj E) = 0 := by
   rw [c.ap_eq, h, Functor.map_zero, comp_zero]
 
 variable {PC : C → Prop} {PD : D → Prop}
 
-/-- `Φ` maps `σ`-killed objects to `σ`-killed objects.-/
+/-- `Φ` maps `σ`-killed objects to `σ`-killed objects.
+@isnad1 id=killed.1h12v.s7.c6307fbef422 from=translated src=- shape=00ee0e19 vocab=9bbf304b
+-/
 theorem PushCompat.killed (c : PushCompat TC σC TD σD Φ) (hobj : ∀ E, PC E → PD (Φ.obj E))
     (E : C) (hE : Killed TC σC PC E) : Killed TD σD PD (Φ.obj E) :=
   ⟨hobj E hE.1, c.ap_eq_zero hE.2⟩
@@ -124,7 +135,9 @@ variable (hcC : Central TC σC) (hPC : KerCokerClosed PC) (hTC : ∀ E, PC E →
 
 /-- **Base change for the Cartier Gysin map along `Φ`** (G3 analogue, abstract form):
 `D^!_D ∘ Φ_* = Φ_* ∘ D^!_C` on Grothendieck groups, when `Φ` is exact, compatible with
-`(T, σ)` (`PushCompat`) and preserves kernels and cokernels of the `σ_E`, `E ∈ PC`.-/
+`(T, σ)` (`PushCompat`) and preserves kernels and cokernels of the `σ_E`, `E ∈ PC`.
+@isnad1 id=eq.7h13v.s10.688d6ffcbe29 from=translated src=- shape=3dc0915d vocab=2e92a6d3
+-/
 theorem cartierGysin_comp_map (c : PushCompat TC σC TD σD Φ) (hobj : ∀ E, PC E → PD (Φ.obj E))
     (hΦ : ∀ S : ShortComplex C, S.ShortExact → PC S.X₁ → PC S.X₂ → PC S.X₃ →
       (S.map Φ).ShortExact)
@@ -164,7 +177,9 @@ variable {TC : C ⥤ C} [TC.Additive] [PreservesFiniteLimits TC] [PreservesFinit
   [TC.PreservesMonomorphisms] {σC : TC ⟶ 𝟭 C}
 
 /-- Right exact `G` sends the cokernel projection of a morphism killed by `G` to an isomorphism
-(abstract form of F19 `isIso_map_cokernel_π_of_map_eq_zero`).-/
+(abstract form of F19 `isIso_map_cokernel_π_of_map_eq_zero`).
+@isnad1 id=isiso.1h6v.s7.91ff2a49a089 from=translated src=- shape=b7ee233c vocab=241a8989
+-/
 theorem isIso_map_cokernel_π_of_map_eq_zero (G : C ⥤ D) [PreservesColimitsOfSize.{0, 0} G]
     {X Y : C} (f : X ⟶ Y) (h : G.map f = 0) : IsIso (G.map (cokernel.π f)) := by
   haveI : IsIso (cokernel.π (G.map f)) := cokernel.π_of_zero h
@@ -172,7 +187,9 @@ theorem isIso_map_cokernel_π_of_map_eq_zero (G : C ⥤ D) [PreservesColimitsOfS
   infer_instance
 
 /-- **`G σ_E = 0`** for a left adjoint `G ⊣ H` as soon as `σ` vanishes on `H G E`
-(abstract form of F19 `pullback_tMul_eq_zero`).-/
+(abstract form of F19 `pullback_tMul_eq_zero`).
+@isnad1 id=eq.1h8v.s8.839253a1c658 from=translated src=- shape=08a0dfec vocab=b2c7fa49
+-/
 theorem map_ap_eq_zero_of_adj {G : C ⥤ D} {H : D ⥤ C} (adj : G ⊣ H) [G.PreservesZeroMorphisms]
     (E : C) (hH : ap TC σC (H.obj (G.obj E)) = 0) : G.map (ap TC σC E) = 0 := by
   have hn : (TC.map (adj.unit.app E)) ≫ ap TC σC (H.obj (G.obj E)) =
@@ -195,7 +212,9 @@ variable (hcC : Central TC σC) {PC : C → Prop} (hPC : KerCokerClosed PC)
 /-- **`cartierGysin = G` on `σ`-regular classes** (G2 analogue, abstract form). Let `G ⊣ H`
 with `σ` zero on `H G E`, and let `pull` be any additive map on the killed group computing `G`
 on classes of killed objects (geometrically `AR4.pullFibre` composed with the identification of
-`σ`-killed with `IdealKills`). If `σ_E` is mono, then `pull (D^! [E]) = [G E]`.-/
+`σ`-killed with `IdealKills`). If `σ_E` is mono, then `pull (D^! [E]) = [G E]`.
+@isnad1 id=eq.4h15v.s11.21805082778b from=translated src=- shape=fc29a804 vocab=d68a21aa
+-/
 theorem pull_cartierGysin_classOf_of_mono {G : C ⥤ D} {H : D ⥤ C} (adj : G ⊣ H)
     [G.PreservesZeroMorphisms] [PreservesColimitsOfSize.{0, 0} G] {Q : D → Prop}
     (hQ0 : Q 0) (pull : SubcategoryGroup C (Killed TC σC PC) →+ SubcategoryGroup D Q)

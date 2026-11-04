@@ -39,7 +39,9 @@ universe u
 variable {R S : Type u} [CommRing R] [CommRing S] (e : R ≃+* S)
 
 /-- The lax tensor comparison for restriction of scalars along a ring isomorphism is an
-isomorphism.-/
+isomorphism.
+@isnad1 id=isiso.0h5v.s8.3846bab78a6f from=translated src=- shape=c76ff62f vocab=e4218317
+-/
 theorem ModuleCat.restrictScalars_isIso_μ_of_ringEquiv (M N : ModuleCat S) :
     IsIso (Functor.LaxMonoidal.μ (ModuleCat.restrictScalars e.toRingHom) M N) := by
   haveI hu : IsIso (extendRestrictScalarsAdj e.toRingHom).unit :=

@@ -32,7 +32,9 @@ attribute [local instance] gradedAlgebra
 
 variable (k : Type u) [Field k] (n : ℕ)
 
-/-- The irrelevant ideal of the standard graded polynomial ring over a field is prime.-/
+/-- The irrelevant ideal of the standard graded polynomial ring over a field is prime.
+@isnad1 id=isprime.0h2v.s9.21350d0ab575 from=translated src=- shape=b1b45ddf vocab=99df1fe8
+-/
 theorem irrelevantIdeal_isPrime :
     (HomogeneousIdeal.irrelevant (grading k n)).toIdeal.IsPrime := by
   letI : IsDomain (grading k n 0) :=

@@ -29,7 +29,9 @@ universe u
 namespace AlgebraicGeometry.Chow
 
 /-- Composing with a closed immersion does not change local length: the outer stalk acts through
-the surjective map to the intermediate stalk.-/
+the surjective map to the intermediate stalk.
+@isnad1 id=eq.0h6v.s5.40d6f3546622 from=translated src=- shape=3e1b4aea vocab=acbaf017
+-/
 theorem morphismLocalLength_comp_closedImmersion
     {Z Y X : Scheme.{u}} (f : Z ⟶ Y) (g : Y ⟶ X)
     [IsClosedImmersion g] (z : Z) :
@@ -55,7 +57,9 @@ theorem morphismLocalLength_comp_closedImmersion
 namespace FiniteClosedIntersectionData
 
 /-- The ambient local length of a finite closed intersection equals its length over the first
-closed factor.-/
+closed factor.
+@isnad1 id=eq.0h4v.s6.c0e73c8a3223 from=translated src=- shape=c1822f62 vocab=ad77163d
+-/
 theorem morphismLocalLength_eq_fst
     {X : Scheme.{u}} {p : ℕ} (d : FiniteClosedIntersectionData X p)
     (z : d.intersection) :
@@ -65,7 +69,9 @@ theorem morphismLocalLength_eq_fst
     (Limits.pullback.fst d.i d.j) d.i z
 
 /-- The ambient local length of a finite closed intersection equals its length over the second
-closed factor.-/
+closed factor.
+@isnad1 id=eq.0h4v.s6.d9b3b3274ca0 from=translated src=- shape=445c03f6 vocab=b76b12d9
+-/
 theorem morphismLocalLength_eq_snd
     {X : Scheme.{u}} {p : ℕ} (d : FiniteClosedIntersectionData X p)
     (z : d.intersection) :
@@ -76,7 +82,9 @@ theorem morphismLocalLength_eq_snd
   exact morphismLocalLength_comp_closedImmersion
     (Limits.pullback.snd d.i d.j) d.j z
 
-/-- Ambient intersection multiplicity equals local length over the first closed factor.-/
+/-- Ambient intersection multiplicity equals local length over the first closed factor.
+@isnad1 id=eq.0h4v.s6.6ac59deb48ab from=translated src=- shape=42d4dc36 vocab=4aa48f15
+-/
 theorem localMultiplicity_eq_fst
     {X : Scheme.{u}} {p : ℕ} (d : FiniteClosedIntersectionData X p)
     (z : d.intersection) :
@@ -86,7 +94,9 @@ theorem localMultiplicity_eq_fst
     (morphismLocalLength (Limits.pullback.fst d.i d.j) z).toNat
   rw [d.morphismLocalLength_eq_fst]
 
-/-- Ambient intersection multiplicity equals local length over the second closed factor.-/
+/-- Ambient intersection multiplicity equals local length over the second closed factor.
+@isnad1 id=eq.0h4v.s6.5f5ff4204068 from=translated src=- shape=fff87259 vocab=68f62851
+-/
 theorem localMultiplicity_eq_snd
     {X : Scheme.{u}} {p : ℕ} (d : FiniteClosedIntersectionData X p)
     (z : d.intersection) :

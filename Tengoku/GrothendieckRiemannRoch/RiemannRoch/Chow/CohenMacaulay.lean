@@ -35,6 +35,9 @@ def localKrullDim : ℕ∞ :=
   (ringKrullDim R).unbot <| by
     exact (lt_of_lt_of_le (WithBot.bot_lt_coe 0) ringKrullDim_nonneg_of_nontrivial).ne'
 
+/--
+@isnad1 id=eq.0h1v.s4.241b126dee14 from=translated src=- shape=8309a0b6 vocab=6cb8dbb0
+-/
 @[simp]
 theorem coe_localKrullDim :
     (localKrullDim R : WithBot ℕ∞) = ringKrullDim R :=

@@ -26,6 +26,9 @@ namespace E27
 
 open Module
 
+/--
+@isnad1 id=false.4h4v.s8.32eb76db1665 from=translated src=- shape=c5c71ca8 vocab=33885e6c
+-/
 theorem false_of_flat_quotient_regular {A R : Type*} [CommRing A] [CommRing R] [Algebra A R]
     (I : Ideal A) (g : R) (hg : g ∈ I.map (algebraMap A R)) (hreg : IsSMulRegular R g)
     (hI : I.map (algebraMap A R) ≠ ⊤) (hflat : Module.Flat A (R ⧸ Ideal.span {g})) : False := by

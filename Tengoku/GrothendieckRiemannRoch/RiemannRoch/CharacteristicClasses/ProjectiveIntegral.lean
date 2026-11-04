@@ -48,6 +48,9 @@ noncomputable def genericProjPoint : space k n :=
         exact MvPolynomial.X_ne_zero (R := k) (0 : Fin (n + 1))
           (Ideal.mem_bot.mp hmem) }
 
+/--
+@isnad1 id=eq.0h2v.s10.09f8782fe1c1 from=translated src=- shape=b2d073de vocab=e1635b98
+-/
 @[simp]
 theorem asHomogeneousIdeal_genericProjPoint :
     (show ProjectiveSpectrum (grading k n) from genericProjPoint k n).asHomogeneousIdeal =

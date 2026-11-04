@@ -42,16 +42,27 @@ def eSer : ℚ⟦X⟧ := PowerSeries.mk fun j => (-1 : ℚ) ^ j / ((j + 1).facto
 /-- The Todd series `X / (1 - e^{-X}) = td(c₁ = X)` of a line bundle.-/
 def tdSer : ℚ⟦X⟧ := eSer⁻¹
 
+/--
+@isnad1 id=eq.0h0v.s5.d896f988191d from=translated src=- shape=8b3e5d3e vocab=b16744d2
+-/
 theorem constantCoeff_eSer : constantCoeff eSer = 1 := by
   simp [eSer, ← coeff_zero_eq_constantCoeff_apply]
 
+/--
+@isnad1 id=eq.0h0v.s5.6e60f6a38413 from=translated src=- shape=8b3e5d3e vocab=dc938b6c
+-/
 theorem constantCoeff_tdSer : constantCoeff tdSer = 1 := by
   simp [tdSer, constantCoeff_inv, constantCoeff_eSer]
 
+/--
+@isnad1 id=eq.0h0v.s4.df9024004a4e from=translated src=- shape=41c5198e vocab=51af5865
+-/
 theorem eSer_mul_tdSer : eSer * tdSer = 1 :=
   PowerSeries.mul_inv_cancel _ (by simp [constantCoeff_eSer])
 
-/-- `X · e = 1 - e^{-X}`.-/
+/-- `X · e = 1 - e^{-X}`.
+@isnad1 id=eq.0h0v.s6.08e2cf5d262b from=translated src=- shape=1e8f4012 vocab=27d56079
+-/
 theorem X_mul_eSer : (X : ℚ⟦X⟧) * eSer = 1 - rescale (-1 : ℚ) (exp ℚ) := by
   ext j
   rcases j with _ | j
@@ -66,7 +77,9 @@ theorem X_mul_eSer : (X : ℚ⟦X⟧) * eSer = 1 - rescale (-1 : ℚ) (exp ℚ) 
     push_cast
     ring
 
-/-- `X · e' = 1 - e - X e`.-/
+/-- `X · e' = 1 - e - X e`.
+@isnad1 id=eq.0h0v.s7.2313d025e8e3 from=translated src=- shape=3f7d3c9a vocab=01318352
+-/
 theorem X_mul_derivative_eSer :
     (X : ℚ⟦X⟧) * d⁄dX ℚ eSer = 1 - eSer - X * eSer := by
   ext j
@@ -79,6 +92,9 @@ theorem X_mul_derivative_eSer :
     field_simp
     ring
 
+/--
+@isnad1 id=eq.0h0v.s7.f480d0bb1acd from=translated src=- shape=4a0b549d vocab=83d4bc3b
+-/
 theorem X_mul_derivative_tdSer :
     (X : ℚ⟦X⟧) * d⁄dX ℚ tdSer = tdSer + X * tdSer - tdSer ^ 2 := by
   have h1 := eSer_mul_tdSer
@@ -88,7 +104,9 @@ theorem X_mul_derivative_tdSer :
   rw [h3]
   linear_combination (-tdSer ^ 2) * h2 + (tdSer + X * tdSer) * h1
 
-/-- `[X^n] T^{n+1} = 1`: the `m = 0` case (`χ(ℙⁿ, O) = 1`).-/
+/-- `[X^n] T^{n+1} = 1`: the `m = 0` case (`χ(ℙⁿ, O) = 1`).
+@isnad1 id=eq.0h1v.s7.fb90fc06f66a from=translated src=- shape=5d3a61d9 vocab=296919c1
+-/
 theorem coeff_tdSer_pow_self (n : ℕ) : coeff n (tdSer ^ (n + 1)) = 1 := by
   induction n with
   | zero => simp [coeff_zero_eq_constantCoeff_apply, constantCoeff_tdSer]
@@ -118,18 +136,26 @@ theorem coeff_tdSer_pow_self (n : ℕ) : coeff n (tdSer ^ (n + 1)) = 1 := by
 /-- `F(m, n) = [X^n] (e^{mX} T^{n+1})`, the integral `∫_{ℙⁿ} ch(O(m)) td(O(1))^{n+1}`.-/
 def hrrNum (m : ℚ) (n : ℕ) : ℚ := coeff n (rescale m (exp ℚ) * tdSer ^ (n + 1))
 
+/--
+@isnad1 id=eq.0h1v.s4.e73693523953 from=translated src=- shape=0e0c2bda vocab=a43a585d
+-/
 theorem hrrNum_zero_right (m : ℚ) : hrrNum m 0 = 1 := by
   simp [hrrNum, coeff_zero_eq_constantCoeff_apply, constantCoeff_tdSer]
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_rescale]
   simp [coeff_exp]
 
+/--
+@isnad1 id=eq.0h1v.s4.0a5c75875a51 from=translated src=- shape=004a7881 vocab=a43a585d
+-/
 theorem hrrNum_zero_left (n : ℕ) : hrrNum 0 n = 1 := by
   have h : rescale (0 : ℚ) (exp ℚ) = 1 := by
     rw [rescale_zero_apply]
     simp [← coeff_zero_eq_constantCoeff_apply, coeff_exp]
   simpa [hrrNum, h] using coeff_tdSer_pow_self n
 
-/-- Pascal recursion: `e^{(m+1)X} - e^{mX} = e^{(m+1)X} · X · e` and `e · T = 1`.-/
+/-- Pascal recursion: `e^{(m+1)X} - e^{mX} = e^{(m+1)X} · X · e` and `e · T = 1`.
+@isnad1 id=eq.0h2v.s6.ecca2160af59 from=translated src=- shape=9f7e7883 vocab=1f956aa9
+-/
 theorem hrrNum_succ_succ (m : ℚ) (n : ℕ) :
     hrrNum (m + 1) (n + 1) = hrrNum m (n + 1) + hrrNum (m + 1) n := by
   have hexp : rescale (m + 1) (exp ℚ) - rescale m (exp ℚ) =
@@ -149,7 +175,9 @@ theorem hrrNum_succ_succ (m : ℚ) (n : ℕ) :
   unfold hrrNum
   linarith
 
-/-- `∫_{ℙⁿ} e^{mH} td(O(1))^{n+1} = binom(n+m, n)` for `m : ℕ`.-/
+/-- `∫_{ℙⁿ} e^{mH} td(O(1))^{n+1} = binom(n+m, n)` for `m : ℕ`.
+@isnad1 id=eq.0h2v.s4.d5b3fdf8c858 from=translated src=- shape=ca52a4af vocab=dd3e5daf
+-/
 theorem hrrNum_nat (m n : ℕ) : hrrNum (m : ℚ) n = ((n + m).choose n : ℚ) := by
   induction m generalizing n with
   | zero => simp [hrrNum_zero_left]
@@ -167,6 +195,9 @@ theorem hrrNum_nat (m n : ℕ) : hrrNum (m : ℚ) n = ((n + m).choose n : ℚ) :
 /-- `hrrNum m n` agrees with the generalised binomial `binom(m+n, n)`.-/
 def HrrBinom (n : ℕ) (m : ℚ) : Prop := hrrNum m n = Ring.choose (m + n) n
 
+/--
+@isnad1 id=hrrbinom.2h2v.s5.8c8055315f50 from=translated src=- shape=2adf158e vocab=c0234019
+-/
 theorem hrrBinom_up (n : ℕ) (m : ℚ) (h1 : HrrBinom (n + 1) m) (h2 : HrrBinom n (m + 1)) :
     HrrBinom (n + 1) (m + 1) := by
   unfold HrrBinom at *
@@ -179,6 +210,9 @@ theorem hrrBinom_up (n : ℕ) (m : ℚ) (h1 : HrrBinom (n + 1) m) (h2 : HrrBinom
   rw [hrrNum_succ_succ, e1, hP, h1, h2]
   ring
 
+/--
+@isnad1 id=hrrbinom.2h2v.s5.a36189608296 from=translated src=- shape=4e82951b vocab=c0234019
+-/
 theorem hrrBinom_down (n : ℕ) (m : ℚ) (h1 : HrrBinom (n + 1) (m + 1)) (h2 : HrrBinom n (m + 1)) :
     HrrBinom (n + 1) m := by
   unfold HrrBinom at *
@@ -194,7 +228,9 @@ theorem hrrBinom_down (n : ℕ) (m : ℚ) (h1 : HrrBinom (n + 1) (m + 1)) (h2 : 
   linarith
 
 /-- Integer twists: `∫_{ℙⁿ} e^{mH} td(O(1))^{n+1} = binom(m+n, n)` (generalised binomial in `ℚ`),
-valid for every `m : ℤ` (the Hilbert polynomial; `0` for `-n ≤ m < 0`).-/
+valid for every `m : ℤ` (the Hilbert polynomial; `0` for `-n ≤ m < 0`).
+@isnad1 id=eq.0h2v.s6.c178f8c064b7 from=translated src=- shape=4b60c7c8 vocab=7aba7013
+-/
 theorem hrrNum_int (n : ℕ) (m : ℤ) : hrrNum (m : ℚ) n = Ring.choose ((m : ℚ) + n) n := by
   suffices H : ∀ n : ℕ, ∀ m : ℤ, HrrBinom n (m : ℚ) from H n m
   intro n
@@ -225,6 +261,9 @@ variable {M : Type*} [AddCommGroup M] [Module ℚ M]
 def evTrunc (n : ℕ) (H : Module.End ℚ M) (f : ℚ⟦X⟧) : Module.End ℚ M :=
   Polynomial.aeval H (f.trunc (n + 1))
 
+/--
+@isnad1 id=eq.2h6v.s9.eca901d30566 from=translated src=- shape=7f91ffb6 vocab=fe7c1798
+-/
 theorem aeval_apply_eq_of_dvd (n : ℕ) (H : Module.End ℚ M) (v : M) (hv : (H ^ (n + 1)) v = 0)
     {p q : Polynomial ℚ} (h : (Polynomial.X : Polynomial ℚ) ^ (n + 1) ∣ p - q) :
     Polynomial.aeval H p v = Polynomial.aeval H q v := by
@@ -234,6 +273,9 @@ theorem aeval_apply_eq_of_dvd (n : ℕ) (H : Module.End ℚ M) (v : M) (hv : (H 
   rw [hp, map_add, map_mul, map_pow, Polynomial.aeval_X, LinearMap.add_apply, Module.End.mul_apply,
     hv, map_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h6v.s8.6efb3313be54 from=translated src=- shape=04a0a7b8 vocab=eb35fe9f
+-/
 theorem evTrunc_mul_apply (n : ℕ) (H : Module.End ℚ M) (v : M) (hv : (H ^ (n + 1)) v = 0)
     (f g : ℚ⟦X⟧) :
     evTrunc n H (f * g) v = evTrunc n H f (evTrunc n H g v) := by
@@ -253,9 +295,15 @@ theorem evTrunc_mul_apply (n : ℕ) (H : Module.End ℚ M) (v : M) (hv : (H ^ (n
   intro d hd
   simp [coeff_trunc, hd, hc d hd]
 
+/--
+@isnad1 id=eq.0h3v.s6.747b7e0d5776 from=translated src=- shape=c3df5aa0 vocab=bcb094c7
+-/
 theorem evTrunc_one (n : ℕ) (H : Module.End ℚ M) : evTrunc n H 1 = 1 := by
   simp [evTrunc, trunc_one]
 
+/--
+@isnad1 id=eq.1h6v.s8.2a4cf6f811cc from=translated src=- shape=dcd72645 vocab=fe0c8988
+-/
 theorem evTrunc_pow_apply (n : ℕ) (H : Module.End ℚ M) (v : M) (hv : (H ^ (n + 1)) v = 0)
     (f : ℚ⟦X⟧) (k : ℕ) : ((evTrunc n H f) ^ k) v = evTrunc n H (f ^ k) v := by
   induction k with
@@ -263,6 +311,9 @@ theorem evTrunc_pow_apply (n : ℕ) (H : Module.End ℚ M) (v : M) (hv : (H ^ (n
   | succ k ih =>
     rw [pow_succ', Module.End.mul_apply, ih, pow_succ', evTrunc_mul_apply n H v hv]
 
+/--
+@isnad1 id=eq.1h8v.s8.4a3a94b25eb6 from=translated src=- shape=93dc9129 vocab=23188de7
+-/
 theorem functional_evTrunc {N : Type*} [AddCommGroup N] [Module ℚ N] (n : ℕ)
     (H : Module.End ℚ M) (v : M) (Ψ : M →ₗ[ℚ] N) (w : N)
     (hΨ : ∀ p ≤ n, Ψ ((H ^ p) v) = if p = n then w else 0) (f : ℚ⟦X⟧) :
@@ -282,7 +333,9 @@ theorem functional_evTrunc {N : Type*} [AddCommGroup N] [Module ℚ N] (n : ℕ)
 
 /-- **Operator form of the case (i) computation (vector valued).**  `Ψ = π_*`, `H = c₁(O(1)) ∩ -`,
 `v = π^*α`: if `H^{n+1} v = 0` and `Ψ(Hᵖ v) = [p = n] w` for `p ≤ n` then
-`Ψ(ch_n(O(m)) · td_n(O(1))^{n+1} v) = binom(m+n, n) • w` for every `m : ℤ`.-/
+`Ψ(ch_n(O(m)) · td_n(O(1))^{n+1} v) = binom(m+n, n) • w` for every `m : ℤ`.
+@isnad1 id=eq.2h8v.s9.0603ebdd5622 from=translated src=- shape=4cd78245 vocab=5aae21c9
+-/
 theorem chiOp_int {N : Type*} [AddCommGroup N] [Module ℚ N] (n : ℕ) (H : Module.End ℚ M) (v : M)
     (hv : (H ^ (n + 1)) v = 0) (Ψ : M →ₗ[ℚ] N) (w : N)
     (hΨ : ∀ p ≤ n, Ψ ((H ^ p) v) = if p = n then w else 0) (m : ℤ) :
@@ -292,6 +345,9 @@ theorem chiOp_int {N : Type*} [AddCommGroup N] [Module ℚ N] (n : ℕ) (H : Mod
   rw [← hrrNum_int n m]
   rfl
 
+/--
+@isnad1 id=eq.2h8v.s9.1507299abcfe from=translated src=- shape=b8d57be2 vocab=f63454e6
+-/
 theorem chiOp_nat {N : Type*} [AddCommGroup N] [Module ℚ N] (n : ℕ) (H : Module.End ℚ M) (v : M)
     (hv : (H ^ (n + 1)) v = 0) (Ψ : M →ₗ[ℚ] N) (w : N)
     (hΨ : ∀ p ≤ n, Ψ ((H ^ p) v) = if p = n then w else 0) (m : ℕ) :
@@ -305,6 +361,9 @@ end Eval
 
 /-! ### Numeric sanity lemmas (test cases any correct HRR blueprint must satisfy) -/
 
+/--
+@isnad1 id=eq.0h0v.s6.c2bc12d9c323 from=translated src=- shape=71821b5d vocab=b393608c
+-/
 theorem coeff_tdSer_one : coeff 1 tdSer = 1 / 2 := by
   have h := congrArg (coeff 1) eSer_mul_tdSer
   rw [coeff_mul, Finset.Nat.sum_antidiagonal_succ] at h
@@ -313,6 +372,9 @@ theorem coeff_tdSer_one : coeff 1 tdSer = 1 / 2 := by
   have h1 : coeff 0 eSer = 1 := by rw [coeff_zero_eq_constantCoeff_apply, constantCoeff_eSer]
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s6.2c2035e67e99 from=translated src=- shape=71821b5d vocab=b393608c
+-/
 theorem coeff_tdSer_two : coeff 2 tdSer = 1 / 12 := by
   have h := congrArg (coeff 2) eSer_mul_tdSer
   rw [coeff_mul, Finset.Nat.sum_antidiagonal_succ, Finset.Nat.sum_antidiagonal_succ] at h
@@ -322,23 +384,32 @@ theorem coeff_tdSer_two : coeff 2 tdSer = 1 / 12 := by
   norm_num [Nat.factorial] at h
   linarith
 
-/-- `n = 1`: `∫_{ℙ¹} ch(O(m)) td(T) = m + 1`  (`χ(ℙ¹, O(m)) = m + 1`).-/
+/-- `n = 1`: `∫_{ℙ¹} ch(O(m)) td(T) = m + 1`  (`χ(ℙ¹, O(m)) = m + 1`).
+@isnad1 id=eq.0h1v.s4.29fea2ed9fcf from=translated src=- shape=1b5280e4 vocab=65195e20
+-/
 theorem hrrNum_one (m : ℤ) : hrrNum (m : ℚ) 1 = (m : ℚ) + 1 := by
   rw [hrrNum_int, Ring.choose_one_right]; simp
 
+/--
+@isnad1 id=eq.0h1v.s6.9500c528788e from=translated src=- shape=9cf3276f vocab=49ea81ad
+-/
 theorem ringChoose_two (x : ℚ) : Ring.choose x 2 = x * (x - 1) / 2 := by
   rw [Ring.choose_eq_smul]
   simp [descPochhammer_succ_right, Polynomial.smeval_mul, Polynomial.smeval_sub]
   ring
 
-/-- `n = 2`: `∫_{ℙ²} ch(O(m)) td(T) = (m+1)(m+2)/2`.-/
+/-- `n = 2`: `∫_{ℙ²} ch(O(m)) td(T) = (m+1)(m+2)/2`.
+@isnad1 id=eq.0h1v.s6.3d06eb913021 from=translated src=- shape=a65e9b89 vocab=11091833
+-/
 theorem hrrNum_two (m : ℤ) : hrrNum (m : ℚ) 2 = ((m : ℚ) + 1) * ((m : ℚ) + 2) / 2 := by
   rw [hrrNum_int, ringChoose_two]
   push_cast
   ring
 
 /-- Direct check for `n = 2`, independent of the general Pascal argument: with `t₁ = 1/2`,
-`t₂ = 1/12` the `H²`-coefficient of `e^{mH} (1 + H/2 + H²/12)³` is `m²/2 + 3m/2 + 1`.-/
+`t₂ = 1/12` the `H²`-coefficient of `e^{mH} (1 + H/2 + H²/12)³` is `m²/2 + 3m/2 + 1`.
+@isnad1 id=eq.0h1v.s7.fa9812c600fd from=translated src=- shape=c797104d vocab=ccd70aea
+-/
 theorem hrrNum_two_direct (m : ℚ) :
     m ^ 2 / 2 + m * (3 * (1 / 2)) + (3 * (1 / 12) + 3 * (1 / 2) ^ 2) = (m + 1) * (m + 2) / 2 := by
   ring

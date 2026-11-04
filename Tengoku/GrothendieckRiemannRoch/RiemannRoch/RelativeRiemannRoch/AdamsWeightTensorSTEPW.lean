@@ -48,15 +48,27 @@ def rhoQ (f : R →+* ℤ) : ℚ ⊗[ℤ] R →ₐ[ℚ] ℚ :=
 def qQ (q : R →+* T) : ℚ ⊗[ℤ] R →ₐ[ℚ] ℚ ⊗[ℤ] T :=
   Algebra.TensorProduct.map (AlgHom.id ℚ ℚ) q.toIntAlgHom
 
+/--
+@isnad1 id=eq.0h4v.s8.75440d5fc1e6 from=translated src=- shape=06f033a0 vocab=8c5c98f6
+-/
 @[simp] theorem psiQ_tmul (ψ : R →+* R) (c : ℚ) (r : R) : psiQ ψ (c ⊗ₜ r) = c ⊗ₜ ψ r := by
   simp [psiQ]
 
+/--
+@isnad1 id=eq.0h5v.s9.fc0984d2327f from=translated src=- shape=8f4d45ae vocab=da83efa2
+-/
 @[simp] theorem qQ_tmul (q : R →+* T) (c : ℚ) (r : R) : qQ q (c ⊗ₜ r) = c ⊗ₜ q r := by
   simp [qQ]
 
+/--
+@isnad1 id=eq.0h4v.s8.a31b2d0bb58c from=translated src=- shape=b3cff857 vocab=bd2e9b7f
+-/
 @[simp] theorem rhoQ_tmul (f : R →+* ℤ) (c : ℚ) (r : R) : rhoQ f (c ⊗ₜ r) = c * (f r : ℚ) := by
   simp [rhoQ, mul_comm]
 
+/--
+@isnad1 id=injectiv.1h3v.s8.f0c383046dc9 from=translated src=- shape=c8a3e1f4 vocab=591c401d
+-/
 theorem qQ_injective (q : R →+* T) (hq : Function.Injective q) : Function.Injective (qQ q) := by
   have h := Module.Flat.lTensor_preserves_injective_linearMap (R := ℤ) (M := ℚ)
     q.toIntAlgHom.toLinearMap hq
@@ -96,9 +108,15 @@ variable {φ : ℕ → T →+* T} {ρ : T →+* ℤ} {F : ℕ → AddSubgroup T}
 def Vq (F : ℕ → AddSubgroup T) (m : ℕ) : Submodule ℚ (ℚ ⊗[ℤ] T) :=
   Submodule.span ℚ ((fun t : T ↦ (1 : ℚ) ⊗ₜ[ℤ] t) '' (F m : Set T))
 
+/--
+@isnad1 id=mem.1h4v.s8.36a22575af1b from=translated src=- shape=346c268a vocab=b19eb8ec
+-/
 theorem one_tmul_mem_Vq {m : ℕ} {t : T} (ht : t ∈ F m) : (1 : ℚ) ⊗ₜ[ℤ] t ∈ Vq F m :=
   Submodule.subset_span ⟨t, ht, rfl⟩
 
+/--
+@isnad1 id=filt.1h5v.s7.985e5eb1b0f1 from=translated src=- shape=c5c0793c vocab=81d16bc3
+-/
 theorem filt_tensor (h : FiltData φ ρ F M) : Filt (fun j ↦ psiQ (φ j)) (rhoQ ρ) (Vq F) M := by
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro m
@@ -174,7 +192,9 @@ section Comap
 variable {K K' : Type*} [CommRing K] [Algebra ℚ K] [CommRing K'] [Algebra ℚ K']
   {Ψ : ℕ → K →ₐ[ℚ] K} {Ψ' : ℕ → K' →ₐ[ℚ] K'} {ρ : K →ₐ[ℚ] ℚ} {ρ' : K' →ₐ[ℚ] ℚ}
 
-/-- Pulling a weight filtration back along an injective compatible algebra map.-/
+/-- Pulling a weight filtration back along an injective compatible algebra map.
+@isnad1 id=filt.4h9v.s9.e1f5cfef0c91 from=translated src=- shape=f50f561b vocab=e5128ff2
+-/
 theorem Filt.comap (Q : K →ₐ[ℚ] K') (hQ : Function.Injective Q)
     (hΨ : ∀ j, 2 ≤ j → ∀ x, Q (Ψ j x) = Ψ' j (Q x)) (hρ : ∀ x, ρ' (Q x) = ρ x)
     {V' : ℕ → Submodule ℚ K'} {M : ℕ} (h : Filt Ψ' ρ' V' M) :
@@ -222,6 +242,9 @@ def HasTower.{w'} (ψ : ℕ → R →+* R) (ρ : R →+* ℤ) (r : R) : Prop :=
     Function.Injective q ∧ (∀ j x, q (ψ j x) = φ j (q x)) ∧ (∀ x, ρT (q x) = ρ x) ∧
       FiltData φ ρT F M ∧ q r ∈ F 0
 
+/--
+@isnad1 id=hasfilt.1h4v.s7.75d48aed9fa7 from=translated src=- shape=a5be7ef3 vocab=6e6c482b
+-/
 theorem HasTower.hasFilt {ψ : ℕ → R →+* R} {ρ : R →+* ℤ} {r : R} (h : HasTower.{u, v} ψ ρ r) :
     HasFilt (fun j ↦ psiQ (ψ j)) (rhoQ ρ) ((1 : ℚ) ⊗ₜ[ℤ] r) := by
   obtain ⟨T, _, q, φ, ρT, F, M, hq, hψ, hρ, hF, hr⟩ := h
@@ -241,6 +264,9 @@ theorem HasTower.hasFilt {ψ : ℕ → R →+* R} {ρ : R →+* ℤ} {r : R} (h 
   show (qQ q).toLinearMap ((1 : ℚ) ⊗ₜ[ℤ] r) ∈ Vq F 0
   simpa using one_tmul_mem_Vq hr
 
+/--
+@isnad1 id=hasfilt.1h4v.s8.7968fd4e2e9c from=translated src=- shape=f3ffda2e vocab=2aa145b6
+-/
 theorem HasFilt.neg_tmul {Ψ : ℕ → ℚ ⊗[ℤ] R →ₐ[ℚ] ℚ ⊗[ℤ] R} {ρ : ℚ ⊗[ℤ] R →ₐ[ℚ] ℚ} {a : R}
     (h : HasFilt Ψ ρ ((1 : ℚ) ⊗ₜ[ℤ] a)) : HasFilt Ψ ρ ((1 : ℚ) ⊗ₜ[ℤ] (-a)) := by
   have e : (1 : ℚ) ⊗ₜ[ℤ] (-a) = (-1 : ℚ) • ((1 : ℚ) ⊗ₜ[ℤ] a) :=

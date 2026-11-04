@@ -42,7 +42,9 @@ open scoped TensorProduct
 
 namespace AlgebraicGeometry.Chow.ProjectiveBaseChangeDimension
 
-/-- A generic component of a flat algebra contracts to a generic component.-/
+/-- A generic component of a flat algebra contracts to a generic component.
+@isnad1 id=mem.1h3v.s7.10fb8afc883c from=translated src=- shape=c368752c vocab=5add8e9f
+-/
 theorem minimalPrime_under_of_flat
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [Module.Flat R S] {q : Ideal S} (hq : q ∈ minimalPrimes S) :
@@ -59,7 +61,9 @@ theorem minimalPrime_under_of_flat
   have hQ : Q = q := le_antisymm hQq hqQ
   exact le_of_eq ((Q.over_def p).trans (congrArg (Ideal.under R) hQ)).symm
 
-/-- Faithful flatness supplies a generic component over every original component.-/
+/-- Faithful flatness supplies a generic component over every original component.
+@isnad1 id=ex.1h3v.s7.2eaf5c6d7e4e from=translated src=- shape=69748f6d vocab=6b614564
+-/
 theorem exists_minimalPrime_over_of_faithfullyFlat
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [Module.FaithfullyFlat R S] {p : Ideal R} (hp : p ∈ minimalPrimes R) :
@@ -77,7 +81,9 @@ theorem exists_minimalPrime_over_of_faithfullyFlat
       exact Ideal.comap_mono hqQ)
 
 /-- Generic components are preserved and exhaust the original components under a
-faithfully flat scalar extension.-/
+faithfully flat scalar extension.
+@isnad1 id=eq.0h2v.s6.9c04e3c67a05 from=translated src=- shape=7c7296d0 vocab=759afe8c
+-/
 theorem minimalPrimes_image_under_of_faithfullyFlat
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [Module.FaithfullyFlat R S] :
@@ -91,7 +97,9 @@ theorem minimalPrimes_image_under_of_faithfullyFlat
     exact ⟨q, hq, hqp⟩
 
 /-- The generic points of a scalar-extended algebra contract to genuine generic
-points of the original algebra. No finiteness or reducedness is needed.-/
+points of the original algebra. No finiteness or reducedness is needed.
+@isnad1 id=mem.1h4v.s9.27acab71aa40 from=translated src=- shape=15f2b6b5 vocab=be321ac9
+-/
 theorem fieldTensor_minimalPrime_under
     {K L A : Type*} [Field K] [Field L] [CommRing A]
     [Algebra K L] [Algebra K A] {q : Ideal (A ⊗[K] L)}
@@ -100,7 +108,9 @@ theorem fieldTensor_minimalPrime_under
   letI : Module.Free K L := Module.Free.of_divisionRing K L
   exact minimalPrime_under_of_flat hq
 
-/-- Every generic component survives scalar extension by a field.-/
+/-- Every generic component survives scalar extension by a field.
+@isnad1 id=ex.1h4v.s9.b990ee3753ab from=translated src=- shape=e9c5a410 vocab=be321ac9
+-/
 theorem fieldTensor_exists_minimalPrime_over
     {K L A : Type*} [Field K] [Field L] [CommRing A]
     [Algebra K L] [Algebra K A] {p : Ideal A} (hp : p ∈ minimalPrimes A) :
@@ -109,7 +119,9 @@ theorem fieldTensor_exists_minimalPrime_over
   exact exists_minimalPrime_over_of_faithfullyFlat hp
 
 /-- A generic component of a flat algebra over a domain contains no nonzero
-scalar. This is the injectivity boundary needed before passing to fraction fields.-/
+scalar. This is the injectivity boundary needed before passing to fraction fields.
+@isnad1 id=injectiv.1h3v.s7.154a49e705c9 from=translated src=- shape=030d91ea vocab=5969b7b3
+-/
 theorem algebraMap_quotient_injective_of_minimalPrime_flat
     {R S : Type*} [CommRing R] [CommRing S] [IsDomain R] [Algebra R S]
     [Module.Flat R S] {q : Ideal S} (hq : q ∈ minimalPrimes S) :
@@ -127,7 +139,9 @@ theorem algebraMap_quotient_injective_of_minimalPrime_flat
 
 /-- A generic component of a flat integral algebra has the same transcendence
 degree as the domain of scalars. Integrality is genuine algebraic input, not a
-conclusion about projective relative dimension.-/
+conclusion about projective relative dimension.
+@isnad1 id=eq.1h4v.s7.941bdc75d1ea from=translated src=- shape=416e2e08 vocab=d03af583
+-/
 theorem trdeg_quotient_eq_of_minimalPrime_flat_integral
     {K : Type u} {R S : Type v} [Field K] [CommRing R] [CommRing S] [IsDomain R]
     [Algebra K R] [Algebra K S] [Algebra R S] [IsScalarTower K R S]
@@ -143,7 +157,9 @@ theorem trdeg_quotient_eq_of_minimalPrime_flat_integral
 
 /-- After an algebraic field extension, every generic component of the base
 change preserves the transcendence degree of a domain base. This applies to the
-rational-function localization used in generic-fibre dimension arguments.-/
+rational-function localization used in generic-fibre dimension arguments.
+@isnad1 id=eq.1h5v.s10.bf63324d8c5c from=translated src=- shape=e94abddf vocab=26bbbd37
+-/
 theorem algebraicFieldTensor_trdeg_quotient
     {K : Type u} {L F R : Type v} [Field K] [Field L] [Field F]
     [CommRing R] [IsDomain R] [Algebra K F] [Algebra K R] [Algebra L R]
@@ -155,7 +171,9 @@ theorem algebraicFieldTensor_trdeg_quotient
 
 /-- Scalar extension of a rational-function field is a domain: its denominator
 set is inherited from the original polynomial ring, rather than all nonzero
-polynomials over the enlarged field.-/
+polynomials over the enlarged field.
+@isnad1 id=isdomain.0h3v.s10.d259b487362b from=translated src=- shape=c75e7c60 vocab=9b2ff814
+-/
 theorem rationalFunctionTensor_isDomain
     {K L σ : Type*} [Field K] [Field L] [Algebra K L] :
     IsDomain (L ⊗[K] FractionRing (MvPolynomial σ K)) := by
@@ -189,7 +207,9 @@ theorem rationalFunctionTensor_isDomain
   simpa only [map_zero] using hinj.ne (nonZeroDivisors.ne_zero hp)
 
 /-- A scalar extension of a rational-function field preserves its original
-transcendence degree even though its ring Krull dimension can decrease.-/
+transcendence degree even though its ring Krull dimension can decrease.
+@isnad1 id=eq.0h3v.s10.1c1edfeddf5b from=translated src=- shape=ae7f8ee8 vocab=260946a9
+-/
 theorem rationalFunctionTensor_trdeg
     {K L σ : Type u} [Field K] [Field L] [Algebra K L] :
     Algebra.trdeg L (L ⊗[K] FractionRing (MvPolynomial σ K)) = Cardinal.mk σ := by
@@ -240,7 +260,9 @@ local instance rationalTensor_rightAlgebra
 
 /-- The generic components of an algebraic extension of the scalar-extended
 rational-function field have exactly the original transcendence degree. This is
-the field-algebra core of generic-fibre dimension stability.-/
+the field-algebra core of generic-fibre dimension stability.
+@isnad1 id=other.0h4v.s13.852b771ab741 from=translated src=- shape=524ef37c vocab=672f5467
+-/
 theorem rationalFunctionTensor_algebraicExtension_trdeg
     {K L σ F : Type u} [Field K] [Field L] [Field F] [Algebra K L]
     [Algebra (FractionRing (MvPolynomial σ K)) F]

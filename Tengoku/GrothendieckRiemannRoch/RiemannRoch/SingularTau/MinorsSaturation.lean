@@ -49,6 +49,9 @@ def maxMinors (φ : Matrix m n A) : Ideal A :=
   Ideal.span (Set.range fun S : n → m => (φ.submatrix S id).det)
 
 omit [Fintype m] [DecidableEq m] in
+/--
+@isnad1 id=mem.0h5v.s6.a43d7b5e1d7d from=translated src=- shape=d78cf95b vocab=a56f65c0
+-/
 theorem minor_mem_maxMinors (φ : Matrix m n A) (S : n → m) :
     (φ.submatrix S id).det ∈ maxMinors φ :=
   Ideal.subset_span ⟨S, rfl⟩
@@ -77,14 +80,23 @@ structure IsSatSummand (φ : Matrix m n A) (S₀ : ι → m) (Δ : A) (B : Matri
 
 section cancel
 
+/--
+@isnad1 id=eq.2h4v.s6.fecb4a569ed1 from=translated src=- shape=7fdf8f21 vocab=5f809c94
+-/
 theorem cancel_mul {Δ x y : A} (hΔ : IsSMulRegular A Δ) (h : Δ * x = Δ * y) : x = y :=
   hΔ (by simpa only [smul_eq_mul] using h)
 
+/--
+@isnad1 id=eq.2h5v.s6.35bfcdb41eea from=translated src=- shape=7f379efe vocab=b52ceb57
+-/
 theorem cancel_smul_vec {κ : Type*} {Δ : A} (hΔ : IsSMulRegular A Δ) {v w : κ → A}
     (h : Δ • v = Δ • w) : v = w := by
   funext k
   exact cancel_mul hΔ (by simpa using congrFun h k)
 
+/--
+@isnad1 id=eq.2h6v.s6.6e564370a74b from=translated src=- shape=0bc48993 vocab=75ac3b9d
+-/
 theorem cancel_smul_mat {κ κ' : Type*} {Δ : A} (hΔ : IsSMulRegular A Δ) {X Y : Matrix κ κ' A}
     (h : Δ • X = Δ • Y) : X = Y := by
   ext i j
@@ -97,7 +109,9 @@ section summand
 variable (φ : Matrix m n A) (S₀ : ι → m) (T₀ : ι → n)
 
 omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in
-/-- The entries of `φ.submatrix id T₀ * adj (φ.submatrix S₀ T₀)` are `r × r` minors (Cramer).-/
+/-- The entries of `φ.submatrix id T₀ * adj (φ.submatrix S₀ T₀)` are `r × r` minors (Cramer).
+@isnad1 id=eq.0h9v.s6.b80b1a0ec57b from=translated src=- shape=7cc9611f vocab=6e0dd55c
+-/
 theorem mul_adjugate_apply (i : m) (s : ι) :
     (φ.submatrix id T₀ * adjugate (φ.submatrix S₀ T₀)) i s =
       (φ.submatrix (Function.update S₀ s i) T₀).det := by
@@ -116,7 +130,9 @@ variable {φ S₀ T₀}
 
 omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in
 /-- The bordered-determinant identity: if all `(r+1)`-minors vanish then
-`Δ • φ = (φ.submatrix id T₀ * adj M) * φ.submatrix S₀ id`.-/
+`Δ • φ = (φ.submatrix id T₀ * adj M) * φ.submatrix S₀ id`.
+@isnad1 id=eq.2h7v.s8.6cb5c1512cba from=translated src=- shape=db5e3192 vocab=c200f369
+-/
 theorem smul_eq_mul_adjugate_mul (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
     (hrank : ∀ (S : ι ⊕ Unit → m) (T : ι ⊕ Unit → n), (φ.submatrix S T).det = 0) :
     (φ.submatrix S₀ T₀).det • φ =
@@ -158,7 +174,9 @@ theorem smul_eq_mul_adjugate_mul (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀)
   simpa [smul_eq_mul] using sub_eq_zero.1 hE
 
 omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in
-/-- The entries of `φ.submatrix id T₀ * adj M` are divisible by `Δ`.-/
+/-- The entries of `φ.submatrix id T₀ * adj M` are divisible by `Δ`.
+@isnad1 id=ex.1h9v.s7.30015b80ffaa from=translated src=- shape=66781a0d vocab=6a61679a
+-/
 theorem mul_adjugate_mem (hgen : ∀ S : ι → m,
       (φ.submatrix S T₀).det ∈ Ideal.span {(φ.submatrix S₀ T₀).det}) (i : m) (s : ι) :
     ∃ b : A, b * (φ.submatrix S₀ T₀).det =
@@ -172,6 +190,9 @@ noncomputable def satMat (hgen : ∀ S : ι → m,
   fun i s => Classical.choose (mul_adjugate_mem hgen i s)
 
 omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in
+/--
+@isnad1 id=eq.1h7v.s7.4f8658ca7270 from=translated src=- shape=90ac51bb vocab=cf1d596f
+-/
 theorem smul_satMat (hgen : ∀ S : ι → m,
       (φ.submatrix S T₀).det ∈ Ideal.span {(φ.submatrix S₀ T₀).det}) :
     (φ.submatrix S₀ T₀).det • satMat hgen =
@@ -181,6 +202,9 @@ theorem smul_satMat (hgen : ∀ S : ι → m,
   exact Classical.choose_spec (mul_adjugate_mem hgen i s)
 
 omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in
+/--
+@isnad1 id=eq.2h7v.s7.9438fa2a4ccf from=translated src=- shape=5e86193b vocab=39e5cfa7
+-/
 theorem satMat_rows_one (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
     (hgen : ∀ S : ι → m,
       (φ.submatrix S T₀).det ∈ Ideal.span {(φ.submatrix S₀ T₀).det}) :
@@ -195,6 +219,9 @@ theorem satMat_rows_one (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
   rw [this, mul_adjugate]
 
 omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in
+/--
+@isnad1 id=eq.3h7v.s8.6d53dd58e18c from=translated src=- shape=8cf16f4d vocab=f7105c56
+-/
 theorem satMat_factor (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
     (hgen : ∀ S : ι → m,
       (φ.submatrix S T₀).det ∈ Ideal.span {(φ.submatrix S₀ T₀).det})
@@ -204,7 +231,9 @@ theorem satMat_factor (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
   rw [smul_eq_mul_adjugate_mul hΔ hrank, ← Matrix.smul_mul, smul_satMat]
 
 omit [Fintype m] [DecidableEq m] [DecidableEq n] in
-/-- Abstract part: from `rows_one`, `factor` and `Δ • B = φ * P` one gets `IsSatSummand`.-/
+/-- Abstract part: from `rows_one`, `factor` and `Δ • B = φ * P` one gets `IsSatSummand`.
+@isnad1 id=issatsum.4h8v.s7.64bc0c4946da from=translated src=- shape=5d7fa379 vocab=c72695e3
+-/
 theorem isSatSummand_of {Δ : A} (hΔ : IsSMulRegular A Δ) {B : Matrix m ι A}
     (h1 : B.submatrix S₀ id = 1) (hfac : φ = B * φ.submatrix S₀ id)
     (hsmul : ∀ u : ι → A, ∃ w : n → A, Δ • (B *ᵥ u) = φ *ᵥ w) :
@@ -271,7 +300,9 @@ theorem isSatSummand_of {Δ : A} (hΔ : IsSMulRegular A Δ) {B : Matrix m ι A}
 omit [Fintype m] [DecidableEq m] in
 /-- **MIN, general rank.** If the `r × r` minor `Δ = det (φ.submatrix S₀ T₀)` is a nonzerodivisor,
 all `r × r` minors with columns `T₀` lie in `(Δ)`, and all `(r+1) × (r+1)` minors vanish, then the
-saturated image of `φ` is the column space of `satMat`, a free direct summand of rank `r`.-/
+saturated image of `φ` is the column space of `satMat`, a free direct summand of rank `r`.
+@isnad1 id=issatsum.3h7v.s8.973a2ea0a18b from=translated src=- shape=62c73521 vocab=0c4907bc
+-/
 theorem isSatSummand_satMat (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
     (hgen : ∀ S : ι → m,
       (φ.submatrix S T₀).det ∈ Ideal.span {(φ.submatrix S₀ T₀).det})
@@ -285,6 +316,9 @@ theorem isSatSummand_satMat (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
   rw [← smul_mulVec, smul_satMat, mulVec_mulVec, mulVec_mulVec, hP]
 
 omit [Fintype m] [DecidableEq m] in
+/--
+@isnad1 id=ex.3h7v.s8.7e2e8e9dac87 from=translated src=- shape=71983422 vocab=cafff2fd
+-/
 theorem exists_summand (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
     (hgen : ∀ S : ι → m,
       (φ.submatrix S T₀).det ∈ Ideal.span {(φ.submatrix S₀ T₀).det})
@@ -293,7 +327,9 @@ theorem exists_summand (hΔ : IsSMulRegular A (φ.submatrix S₀ T₀).det)
   ⟨_, isSatSummand_satMat hΔ hgen hrank⟩
 
 omit [Fintype m] [DecidableEq m] in
-/-- Every `(card n + 1)`-minor of a matrix with `card n` columns vanishes (pigeonhole).-/
+/-- Every `(card n + 1)`-minor of a matrix with `card n` columns vanishes (pigeonhole).
+@isnad1 id=eq.0h6v.s6.d3d8a5a2b986 from=translated src=- shape=7e8c4fe6 vocab=8819e43a
+-/
 theorem det_submatrix_sum_unit_eq_zero (φ : Matrix m n A) (S : n ⊕ Unit → m)
     (T : n ⊕ Unit → n) : (φ.submatrix S T).det = 0 := by
   obtain ⟨a, b, hab, h⟩ := Fintype.exists_ne_map_eq_of_card_lt T (by simp)
@@ -302,7 +338,9 @@ theorem det_submatrix_sum_unit_eq_zero (φ : Matrix m n A) (S : n ⊕ Unit → m
 omit [Fintype m] [DecidableEq m] in
 /-- **MIN, full column rank** (the case `φ_j = (μ·1, λ·d_j)`): if the maximal-minor ideal is
 contained in (hence equal to) the principal ideal of a maximal minor `Δ` which is a
-nonzerodivisor, the saturated image of `φ` is a free direct summand of rank `card n`.-/
+nonzerodivisor, the saturated image of `φ` is a free direct summand of rank `card n`.
+@isnad1 id=ex.2h5v.s7.fe1f2ad17ad8 from=translated src=- shape=4a5f930b vocab=a99b9bcc
+-/
 theorem exists_summand_maxMinors (φ : Matrix m n A) (S₀ : n → m)
     (hΔ : IsSMulRegular A (φ.submatrix S₀ id).det)
     (hgen : maxMinors φ ≤ Ideal.span {(φ.submatrix S₀ id).det}) :
@@ -311,6 +349,9 @@ theorem exists_summand_maxMinors (φ : Matrix m n A) (S₀ : n → m)
     (det_submatrix_sum_unit_eq_zero φ)
 
 omit [Fintype m] [DecidableEq m] in
+/--
+@isnad1 id=eq.1h5v.s7.ecbbdcb77ec6 from=translated src=- shape=66b53f04 vocab=e1f45362
+-/
 theorem maxMinors_eq_span_of_le (φ : Matrix m n A) (S₀ : n → m)
     (hgen : maxMinors φ ≤ Ideal.span {(φ.submatrix S₀ id).det}) :
     maxMinors φ = Ideal.span {(φ.submatrix S₀ id).det} :=
@@ -324,7 +365,9 @@ variable {m₁ m₂ n₁ n₂ : Type*} [Fintype m₁] [Fintype m₂] [Fintype n�
   [DecidableEq m₁] [DecidableEq m₂] [DecidableEq n₁] [DecidableEq n₂]
 
 /-- **Block sum.** The maximal-minor ideal of a block-diagonal matrix is the product of the
-maximal-minor ideals of the blocks.-/
+maximal-minor ideals of the blocks.
+@isnad1 id=eq.0h7v.s7.befd17a8e8e6 from=translated src=- shape=056d5549 vocab=1856ef38
+-/
 theorem maxMinors_fromBlocks (φ₁ : Matrix m₁ n₁ A) (φ₂ : Matrix m₂ n₂ A) :
     maxMinors (fromBlocks φ₁ 0 0 φ₂) = maxMinors φ₁ * maxMinors φ₂ := by
   have hsub : ∀ (S₁ : n₁ → m₁) (S₂ : n₂ → m₂),
@@ -382,7 +425,9 @@ end blocks
 section chart
 
 omit [Fintype m] [DecidableEq m] in
-/-- Base change of the maximal-minor ideal (chartwise statement: on an affine chart `A → A'`).-/
+/-- Base change of the maximal-minor ideal (chartwise statement: on an affine chart `A → A'`).
+@isnad1 id=eq.0h6v.s7.e70180de3cc8 from=translated src=- shape=30ef6393 vocab=def21f1c
+-/
 theorem maxMinors_map {A' : Type*} [CommRing A'] (f : A →+* A') (φ : Matrix m n A) :
     (maxMinors φ).map f = maxMinors (φ.map f) := by
   rw [maxMinors, maxMinors, Ideal.map_span, ← Set.range_comp]
@@ -396,7 +441,9 @@ theorem maxMinors_map {A' : Type*} [CommRing A'] (f : A →+* A') (φ : Matrix m
 omit [Fintype m] [DecidableEq m] in
 /-- Chartwise form of MIN: if after base change along `f : A →+* A'` the maximal-minor ideal
 becomes the principal ideal of the (image of the) minor `Δ = det (φ.submatrix S₀ id)` and this is a
-nonzerodivisor in `A'`, then the saturated image of `φ.map f` is a free direct summand.-/
+nonzerodivisor in `A'`, then the saturated image of `φ.map f` is a free direct summand.
+@isnad1 id=ex.2h7v.s8.7c8cd01964d7 from=translated src=- shape=b6a06ece vocab=96de0964
+-/
 theorem exists_summand_of_map {A' : Type*} [CommRing A'] (f : A →+* A') (φ : Matrix m n A)
     (S₀ : n → m) (hΔ : IsSMulRegular A' (f (φ.submatrix S₀ id).det))
     (hgen : (maxMinors φ).map f = Ideal.span {f (φ.submatrix S₀ id).det}) :
@@ -409,7 +456,9 @@ theorem exists_summand_of_map {A' : Type*} [CommRing A'] (f : A →+* A') (φ : 
 
 omit [DecidableEq m] in
 /-- Stalkwise form: over a local ring, a principal maximal-minor ideal generated by a
-nonzerodivisor is generated by one of the maximal minors, which is then a nonzerodivisor.-/
+nonzerodivisor is generated by one of the maximal minors, which is then a nonzerodivisor.
+@isnad1 id=ex.2h5v.s7.e2f470e24eec from=translated src=- shape=864bab26 vocab=6597e88b
+-/
 theorem exists_minor_generator_of_isLocalRing [IsLocalRing A] (φ : Matrix m n A) (g : A)
     (hg : maxMinors φ = Ideal.span {g}) (hreg : IsSMulRegular A g) :
     ∃ S₀ : n → m, maxMinors φ = Ideal.span {(φ.submatrix S₀ id).det} ∧
@@ -442,7 +491,9 @@ theorem exists_minor_generator_of_isLocalRing [IsLocalRing A] (φ : Matrix m n A
 omit [DecidableEq m] in
 /-- Stalkwise MIN: over a local ring, if the maximal-minor ideal is principal generated by a
 nonzerodivisor, then for a suitable maximal minor `Δ` the saturated image of `φ` is a free direct
-summand of rank `card n`.-/
+summand of rank `card n`.
+@isnad1 id=ex.2h5v.s6.d446aecceb65 from=translated src=- shape=f533b2f3 vocab=4b931cff
+-/
 theorem exists_summand_of_isLocalRing [IsLocalRing A] (φ : Matrix m n A) (g : A)
     (hg : maxMinors φ = Ideal.span {g}) (hreg : IsSMulRegular A g) :
     ∃ (S₀ : n → m) (B : Matrix m n A), IsSatSummand φ S₀ (φ.submatrix S₀ id).det B := by

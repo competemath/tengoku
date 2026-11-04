@@ -41,7 +41,9 @@ namespace RRC.ProjectiveSpaceLeadingDegree.LengthFormula
 
 variable {B : Type u} [CommRing B] [IsNoetherianRing B]
 
-/-- A finitely generated module supported at maximal ideals has finite length.-/
+/-- A finitely generated module supported at maximal ideals has finite length.
+@isnad1 id=ne.1h2v.s6.9e237d96489f from=translated src=- shape=9b055b01 vocab=924df693
+-/
 theorem length_ne_top_of_support_maximal (N : Type v) [AddCommGroup N] [Module B N]
     [hN : Module.Finite B N] (h : ∀ p ∈ Module.support B N, p.asIdeal.IsMaximal) :
     Module.length B N ≠ ⊤ := by
@@ -68,7 +70,9 @@ theorem length_ne_top_of_support_maximal (N : Type v) [AddCommGroup N] [Module B
         h₃ fun p hp ↦ h p (Module.support_subset_of_surjective g hg hp)⟩
 
 omit [IsNoetherianRing B] in
-/-- A module killed by `b` is supported on `V(b)`.-/
+/-- A module killed by `b` is supported on `V(b)`.
+@isnad1 id=mem.2h4v.s7.2a53adb9f69f from=translated src=- shape=8f4df2b7 vocab=23536aff
+-/
 theorem mem_of_mem_support_of_smul_eq_zero {N : Type v} [AddCommGroup N] [Module B N] {b : B}
     (hb : ∀ m : N, b • m = 0) {p : PrimeSpectrum B} (hp : p ∈ Module.support B N) :
     b ∈ p.asIdeal := by
@@ -77,7 +81,9 @@ theorem mem_of_mem_support_of_smul_eq_zero {N : Type v} [AddCommGroup N] [Module
 
 variable (b : B)
 
-/-- `chiKer b N` and `chiCoker b N` are finite when `b` only lies in maximal primes of `Supp N`.-/
+/-- `chiKer b N` and `chiCoker b N` are finite when `b` only lies in maximal primes of `Supp N`.
+@isnad1 id=and.1h3v.s7.3d25783b5340 from=translated src=- shape=8c76c96e vocab=3fe4a8d9
+-/
 theorem chi_ne_top (N : Type v) [AddCommGroup N] [Module B N] [Module.Finite B N]
     (hfin : ∀ p ∈ Module.support B N, b ∈ p.asIdeal → p.asIdeal.IsMaximal) :
     chiKer b N ≠ ⊤ ∧ chiCoker b N ≠ ⊤ := by

@@ -32,7 +32,9 @@ def depth [Small.{v} R] (I : Ideal R) (M : ModuleCat.{v} R) : ℕ∞ :=
   ⨅ i : {i : ℕ // Nontrivial
       (Ext (ModuleCat.of R (Shrink.{v} (R ⧸ I))) M i)}, (i.1 : ℕ∞)
 
-/-- A natural number is at most the depth precisely when all lower `Ext` groups vanish.-/
+/-- A natural number is at most the depth precisely when all lower `Ext` groups vanish.
+@isnad1 id=iff.0h4v.s7.20a87bb23e65 from=translated src=- shape=6d81f6e8 vocab=6362b42f
+-/
 theorem natCast_le_depth_iff [Small.{v} R] (I : Ideal R) (M : ModuleCat.{v} R) (n : ℕ) :
     (n : ℕ∞) ≤ depth I M ↔
       ∀ i < n, Subsingleton (Ext (ModuleCat.of R (Shrink.{v} (R ⧸ I))) M i) := by
@@ -56,7 +58,9 @@ theorem natCast_le_depth_iff [Small.{v} R] (I : Ideal R) (M : ModuleCat.{v} R) (
 
 /-- Quotienting by an `M`-regular element lowers depth by at most one.  This is the
 vanishing consequence of the covariant long exact `Ext` sequence of
-`0 → M → M → M/rM → 0`.-/
+`0 → M → M → M/rM → 0`.
+@isnad1 id=le.2h5v.s10.e56d19bc5415 from=translated src=- shape=77db5c86 vocab=ee47e0a0
+-/
 theorem natCast_le_depth_quotSMulTop_of_succ_le_depth [Small.{v} R]
     (I : Ideal R) (M : ModuleCat.{v} R) (r : R) (hr : IsSMulRegular M r) (n : ℕ)
     (h : ((n + 1 : ℕ) : ℕ∞) ≤ depth I M) :

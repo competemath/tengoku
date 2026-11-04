@@ -48,7 +48,9 @@ universe u v
 namespace Finsupp
 
 /-- For a finite index type, only finitely many exponent vectors have a given total degree: each
-coordinate is bounded by the degree.-/
+coordinate is bounded by the degree.
+@isnad1 id=finite.0h2v.s7.b9ee10b41545 from=translated src=- shape=072047f3 vocab=7f4ccd40
+-/
 theorem finite_setOf_degree_eq (σ : Type u) [Finite σ] (d : ℕ) :
     Finite {m : σ →₀ ℕ // m.degree = d} := by
   classical

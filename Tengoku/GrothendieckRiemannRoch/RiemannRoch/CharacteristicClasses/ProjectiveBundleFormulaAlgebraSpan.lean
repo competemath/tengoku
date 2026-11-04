@@ -37,7 +37,9 @@ private theorem mul_mem_span_of_mul_mem_span {A B : Type*} [CommRing A] [CommRin
 
 /-- If a unit `z` of an `A`-algebra satisfies a monic degree-`r`
 relation whose constant coefficient is a unit of `A`, then every integral power `z^n`, `n : ℤ`,
-lies in the `A`-span of `1, z, …, z^{r-1}`.-/
+lies in the `A`-span of `1, z, …, z^{r-1}`.
+@isnad1 id=mem.3h6v.s8.213bfdf5fd91 from=translated src=- shape=c71e5ef5 vocab=4d37947e
+-/
 theorem zpow_mem_span_of_relation {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     (r : ℕ) (hr : 0 < r) (a : Fin r → A) (z : Bˣ)
     (hz : Polynomial.aeval (z : B)

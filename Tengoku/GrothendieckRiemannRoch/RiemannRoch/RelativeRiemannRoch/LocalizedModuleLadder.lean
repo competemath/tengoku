@@ -48,7 +48,9 @@ variable {R : Type u} [CommRing R] (S : Submonoid R)
 
 section SMulBijective
 
-/-- Multiplication by an element of the localizing submonoid is injective on a localized module.-/
+/-- Multiplication by an element of the localizing submonoid is injective on a localized module.
+@isnad1 id=eq.1h8v.s8.565db9929dd8 from=translated src=- shape=8dd42259 vocab=e88163b1
+-/
 theorem injective_smul {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     (f : M →ₗ[R] N) [IsLocalizedModule S f] (s : S) {x y : N}
     (h : (s : R) • x = (s : R) • y) : x = y := by
@@ -57,7 +59,9 @@ theorem injective_smul {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup
   exact h'.1 (a₁ := x) (a₂ := y) h
 
 /-- Multiplication by an element of the localizing submonoid is surjective on a localized
-module.-/
+module.
+@isnad1 id=ex.0h7v.s8.6a7d0c2fdf06 from=translated src=- shape=f9f9fdf6 vocab=e88163b1
+-/
 theorem surjective_smul {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     (f : M →ₗ[R] N) [IsLocalizedModule S f] (s : S) (y : N) :
     ∃ x : N, (s : R) • x = y := by
@@ -80,7 +84,9 @@ the left vertical map.
 All three fields of `IsLocalizedModule` are verified directly.  Invertibility of the action of `S`
 on `A'` uses exactness of the lower row, the surjectivity field uses exactness of the upper row
 together with the kernel description of the right localization, and the kernel field uses only
-injectivity of the upper row's first map.-/
+injectivity of the upper row's first map.
+@isnad1 id=islocali.6h15v.s10.ed07bf758ab2 from=translated src=- shape=5070b4ee vocab=49ddd48e
+-/
 theorem of_exact_ladder
     (i : A →ₗ[R] B) (d : B →ₗ[R] C) (i' : A' →ₗ[R] B') (d' : B' →ₗ[R] C')
     (a : A →ₗ[R] A') (b : B →ₗ[R] B') (c : C →ₗ[R] C')

@@ -36,6 +36,9 @@ variable {A σ : Type*} [CommRing A] [SetLike σ A] [AddSubmonoidClass σ A] (�
 def hker (φ : ∀ i, A →+* K i) (i : ι) : Ideal A :=
   ((RingHom.ker (φ i)).homogeneousCore 𝒜).toIdeal
 
+/--
+@isnad1 id=ex.3h8v.s9.83e29b12a6fb from=translated src=- shape=9875e7b7 vocab=a234d737
+-/
 theorem graded_module_avoidance (φ : ∀ i, A →+* K i) (V : ℕ → AddSubgroup (∀ i, K i))
     (hact : ∀ n a, a ∈ 𝒜 n → ∀ m, ∀ v ∈ V m, ∃ w ∈ V (m + n), ∀ i, w i = φ i a * v i)
     (s : Finset ι)
@@ -88,7 +91,9 @@ theorem graded_module_avoidance (φ : ∀ i, A →+* K i) (V : ℕ → AddSubgro
     · exact hfS i (Finset.mem_erase.2 ⟨hii, hi⟩)
 
 /-- Eventual hitting of a point from one hit in some degree plus a degree-one element with
-unit value at that point (the chart coordinate).-/
+unit value at that point (the chart coordinate).
+@isnad1 id=ex.5h11v.s9.722684b1f9f9 from=translated src=- shape=81b313ce vocab=6da97f83
+-/
 theorem eventually_of_degree_one (φ : ∀ i, A →+* K i) (V : ℕ → AddSubgroup (∀ i, K i))
     (hact : ∀ n a, a ∈ 𝒜 n → ∀ m, ∀ v ∈ V m, ∃ w ∈ V (m + n), ∀ i, w i = φ i a * v i)
     (i : ι) (c : A) (hc : c ∈ 𝒜 1) (hci : φ i c = 1) (m1 : ℕ) (v : ∀ i, K i) (hv : v ∈ V m1)

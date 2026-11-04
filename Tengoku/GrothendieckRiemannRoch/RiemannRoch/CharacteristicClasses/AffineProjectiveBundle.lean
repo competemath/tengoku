@@ -46,6 +46,9 @@ noncomputable def trivialProjectiveBundleAffineData (X : Scheme.{u}) (U : X.affi
   grading := grading Γ(X, U.1) n
   degreeZeroEquiv := degreeZeroAlgEquiv Γ(X, U.1) n
 
+/--
+@isnad1 id=eq.0h3v.s8.6732f22f940c from=translated src=- shape=eecbc048 vocab=80223218
+-/
 @[simp]
 theorem trivialProjectiveBundleAffineData_scheme (X : Scheme.{u}) (U : X.affineOpens)
     (n : ℕ) :

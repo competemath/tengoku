@@ -52,13 +52,17 @@ namespace RegularResolution
 
 variable {R : Type u} [CommRing R]
 
-/-- A projective `R`-module gives a projective object of `ModuleCat`.-/
+/-- A projective `R`-module gives a projective object of `ModuleCat`.
+@isnad1 id=hasproje.0h2v.s6.00879efeed1d from=translated src=- shape=4aecc906 vocab=4853e452
+-/
 theorem hasPDLE_zero_of_projective (M : Type u) [AddCommGroup M] [Module R M]
     [Module.Projective R M] : HasProjectiveDimensionLE (ModuleCat.of R M) 0 := by
   rw [← projective_iff_hasProjectiveDimensionLE_zero]
   infer_instance
 
-/-- Kernel step.-/
+/-- Kernel step.
+@isnad1 id=hasproje.2h5v.s8.ff049691c706 from=translated src=- shape=c6000abe vocab=ce01ba2a
+-/
 theorem hasPDLE_succ_of_ker {F N : Type u} [AddCommGroup F] [Module R F] [AddCommGroup N]
     [Module R N] [Module.Projective R F] (f : F →ₗ[R] N) (hf : Function.Surjective f) (n : ℕ)
     (h : HasProjectiveDimensionLE (ModuleCat.of R (LinearMap.ker f)) n) :
@@ -67,6 +71,9 @@ theorem hasPDLE_succ_of_ker {F N : Type u} [AddCommGroup F] [Module R F] [AddCom
   have : Projective (ModuleCat.of R F) := inferInstance
   exact hS.hasProjectiveDimensionLT_X₃ (n + 1) h inferInstance
 
+/--
+@isnad1 id=hasproje.2h5v.s8.5ca2deb6be4f from=translated src=- shape=65e29d58 vocab=ce01ba2a
+-/
 theorem hasPDLE_ker_of_succ {F N : Type u} [AddCommGroup F] [Module R F] [AddCommGroup N]
     [Module R N] [Module.Projective R F] (f : F →ₗ[R] N) (hf : Function.Surjective f) (n : ℕ)
     (h : HasProjectiveDimensionLE (ModuleCat.of R N) (n + 1)) :
@@ -75,20 +82,26 @@ theorem hasPDLE_ker_of_succ {F N : Type u} [AddCommGroup F] [Module R F] [AddCom
   have : Projective (ModuleCat.of R F) := inferInstance
   exact hS.hasProjectiveDimensionLT_X₁ (n + 1) inferInstance h
 
-/-- `x` is regular on a finite free module `Fin k → R` when it is regular on `R`.-/
+/-- `x` is regular on a finite free module `Fin k → R` when it is regular on `R`.
+@isnad1 id=issmulre.1h3v.s5.e94310649863 from=translated src=- shape=3e821ba5 vocab=a7601764
+-/
 theorem isSMulRegular_pi {x : R} (hx : IsSMulRegular R x) (k : ℕ) :
     IsSMulRegular (Fin k → R) x := by
   intro a b hab
   funext i
   exact hx (congrFun hab i)
 
-/-- Regularity passes to submodules.-/
+/-- Regularity passes to submodules.
+@isnad1 id=issmulre.1h4v.s7.a247992cb72d from=translated src=- shape=7cf863dd vocab=f6f4d800
+-/
 theorem isSMulRegular_submodule {F : Type u} [AddCommGroup F] [Module R F] {x : R}
     (hx : IsSMulRegular F x) (K : Submodule R F) : IsSMulRegular K x := by
   intro a b hab
   exact Subtype.ext (hx (congrArg Subtype.val hab))
 
-/-- Reduction modulo an `N`-regular element keeps the kernel inclusion injective.-/
+/-- Reduction modulo an `N`-regular element keeps the kernel inclusion injective.
+@isnad1 id=injectiv.1h5v.s16.3f5c0fbe9777 from=translated src=- shape=ee299a2a vocab=90a49b65
+-/
 theorem quotSMulTop_map_ker_subtype_injective {F N : Type u} [AddCommGroup F] [Module R F]
     [AddCommGroup N] [Module R N] (f : F →ₗ[R] N) {x : R} (hN : IsSMulRegular N x) :
     Function.Injective (QuotSMulTop.map x (LinearMap.ker f).subtype) := by
@@ -112,7 +125,9 @@ theorem quotSMulTop_map_ker_subtype_injective {F N : Type u} [AddCommGroup F] [M
 variable [IsNoetherianRing R]
 
 /-- **Change of rings.** Over a noetherian local ring, if `x ∈ 𝔪` is `R`-regular and `N`-regular,
-then `pd_R N ≤ pd_{R/x} (N/xN)`.-/
+then `pd_R N ≤ pd_{R/x} (N/xN)`.
+@isnad1 id=hasproje.4h4v.s9.5c41d936accf from=translated src=- shape=fe370fed vocab=21db67f1
+-/
 theorem hasPDLE_of_quotSMulTop [IsLocalRing R] {x : R} (hxm : x ∈ maximalIdeal R)
     (hx : IsSMulRegular R x) :
     ∀ (n : ℕ) (N : Type u) [AddCommGroup N] [Module R N] [Module.Finite R N],
@@ -163,7 +178,9 @@ namespace IsRegularLocalRing
 open RegularResolution
 
 /-- **Serre (local form).** A finitely generated module over a regular local ring of embedding
-dimension `n` has projective dimension at most `n`.-/
+dimension `n` has projective dimension at most `n`.
+@isnad1 id=hasproje.1h3v.s6.c102798e69ab from=translated src=- shape=1381f844 vocab=a40586a1
+-/
 theorem hasPDLE_of_embeddingDimension_eq :
     ∀ (n : ℕ) (R : Type u) [CommRing R] [IsRegularLocalRing R], embeddingDimension R = n →
       ∀ (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M],
@@ -195,10 +212,16 @@ theorem hasPDLE_of_embeddingDimension_eq :
 
 variable {R : Type u} [CommRing R] [IsRegularLocalRing R]
 
+/--
+@isnad1 id=hasproje.0h2v.s6.519aadfa3b7c from=translated src=- shape=a8af8ac6 vocab=98b9eeb1
+-/
 theorem hasProjectiveDimensionLE_embeddingDimension (M : ModuleCat.{u} R) [Module.Finite R M] :
     HasProjectiveDimensionLE M (embeddingDimension R) :=
   hasPDLE_of_embeddingDimension_eq _ R rfl M
 
+/--
+@isnad1 id=hasproje.1h3v.s6.a77692d627aa from=translated src=- shape=d15f83f1 vocab=1dd78f43
+-/
 theorem hasProjectiveDimensionLE_of_ringKrullDim_le (M : ModuleCat.{u} R) [Module.Finite R M]
     (d : ℕ) (hd : ringKrullDim R ≤ d) : HasProjectiveDimensionLE M d := by
   have h := hasProjectiveDimensionLE_embeddingDimension M
@@ -214,7 +237,9 @@ namespace IsRegularRing
 variable {R : Type u} [CommRing R] [IsRegularRing R]
 
 /-- **Serre (global form).** Over a regular ring of Krull dimension `≤ d`, every finitely
-generated module has projective dimension `≤ d`.-/
+generated module has projective dimension `≤ d`.
+@isnad1 id=hasproje.1h3v.s6.92f1312ee5f3 from=translated src=- shape=77ca3efd vocab=9674d50b
+-/
 theorem hasProjectiveDimensionLE (d : ℕ) (hd : ringKrullDim R ≤ d)
     (M : ModuleCat.{u} R) [Module.Finite R M] : HasProjectiveDimensionLE M d := by
   rw [ModuleCat.hasProjectiveDimensionLE_iff_forall_primeSpectrum]
