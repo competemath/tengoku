@@ -5,7 +5,9 @@ import Tengoku.EntropyConstrainedMissingMass.EntropyConstrainedMissingMass.Coeff
 /-! Literal boundary and ratio consequences of the discrete coefficient proof. -/
 namespace EntropyConstrainedMissingMass
 
-/-- The sigma exclusion applies to positive indices; b₀=1 has no such implication.-/
+/-- The sigma exclusion applies to positive indices; b₀=1 has no such implication.
+@isnad1 id=lt.5h4v.s6.7521aa114798 from=translated src=- shape=593b3a86 vocab=9ece930a
+-/
 theorem coefficientDifference_sigma_lt_two {x y z : ℝ} {N : ℕ}
     (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) (hN : 1 ≤ N)
     (hpos : 0 < coefficientDifference x y z N) : 3 - x - y - z < 2 := by
@@ -13,7 +15,9 @@ theorem coefficientDifference_sigma_lt_two {x y z : ℝ} {N : ℕ}
   rw [coefficientDifference_one] at h
   linarith
 
-/-- The boundary with one zero coordinate has exactly one surviving power.-/
+/-- The boundary with one zero coordinate has exactly one surviving power.
+@isnad1 id=eq.0h2v.s5.9cf14ed923cd from=translated src=- shape=d6db2148 vocab=0782e962
+-/
 theorem coefficientDifference_one_zero (r : ℝ) (N : ℕ) :
     coefficientDifference r 1 0 N = r ^ N := by
   have heq (k : ℕ) : homogeneous3 r 1 0 k = homogeneous2 r 1 k := by
@@ -22,13 +26,17 @@ theorem coefficientDifference_one_zero (r : ℝ) (N : ℕ) :
   | zero => simp
   | succ N => simp [coefficientDifference, heq, homogeneous2]
 
-/-- The boundary with two coordinates one is the finite geometric sum.-/
+/-- The boundary with two coordinates one is the finite geometric sum.
+@isnad1 id=eq.0h2v.s5.414d73d84fbd from=translated src=- shape=4f0ff1be vocab=2d962ee2
+-/
 theorem coefficientDifference_two_ones_sum (r : ℝ) (N : ℕ) :
     coefficientDifference r 1 1 N = ∑ j ∈ Finset.range (N + 1), r ^ j := by
   rw [coefficientDifference_two_ones, homogeneous2_eq_sum]
   simp
 
-/-- Literal adjacent-ratio monotonicity on the positive initial segment.-/
+/-- Literal adjacent-ratio monotonicity on the positive initial segment.
+@isnad1 id=lt.5h5v.s7.823bd1c3ae84 from=translated src=- shape=2a101024 vocab=7784978c
+-/
 theorem weightedCoefficient_ratio_strict {β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) (n : ℕ)
     (hpos : 0 < weightedCoefficient β x y z (n + 1)) :

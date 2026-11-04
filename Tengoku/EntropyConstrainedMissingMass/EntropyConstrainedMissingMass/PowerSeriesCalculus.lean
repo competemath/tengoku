@@ -21,33 +21,50 @@ def HasCoeffDerivAt (F : ℝ → PowerSeries ℝ) (D : PowerSeries ℝ) (a : ℝ
 namespace HasCoeffDerivAt
 variable {F G : ℝ → PowerSeries ℝ} {D E : PowerSeries ℝ} {a : ℝ}
 
+/--
+@isnad1 id=hascoeff.0h2v.s4.cba354ea6b67 from=translated src=- shape=eaddce21 vocab=93ff46e1
+-/
 theorem const (F : PowerSeries ℝ) (a : ℝ) : HasCoeffDerivAt (fun _ => F) 0 a := by
   intro n
   simpa using hasDerivAt_const a (coeff n F)
 
+/--
+@isnad1 id=eq.2h4v.s4.b173943f89a4 from=translated src=- shape=4ca92697 vocab=5d95f6d9
+-/
 theorem unique (hD : HasCoeffDerivAt F D a) (hE : HasCoeffDerivAt F E a) : D = E := by
   apply PowerSeries.ext
   intro n
   exact (hD n).unique (hE n)
 
+/--
+@isnad1 id=hascoeff.2h5v.s6.b01113f57593 from=translated src=- shape=1abf636f vocab=e6389a18
+-/
 theorem add (hF : HasCoeffDerivAt F D a) (hG : HasCoeffDerivAt G E a) :
     HasCoeffDerivAt (fun r => F r + G r) (D + E) a := by
   intro n
   simp only [map_add]
   exact (hF n).fun_add (hG n)
 
+/--
+@isnad1 id=hascoeff.2h5v.s6.390f83af9e6d from=translated src=- shape=1abf636f vocab=531177d3
+-/
 theorem sub (hF : HasCoeffDerivAt F D a) (hG : HasCoeffDerivAt G E a) :
     HasCoeffDerivAt (fun r => F r - G r) (D - E) a := by
   intro n
   simp only [map_sub]
   exact (hF n).fun_sub (hG n)
 
+/--
+@isnad1 id=hascoeff.2h4v.s5.62689a1afae0 from=translated src=- shape=57cf5ac4 vocab=c5894b23
+-/
 theorem congr_of_eventuallyEq (hF : HasCoeffDerivAt F D a)
     (hGF : G =ᶠ[nhds a] F) : HasCoeffDerivAt G D a := by
   intro n
   exact (hF n).congr_of_eventuallyEq (hGF.mono (fun _ h => congrArg (coeff n) h))
 
-/-- A scalar coefficient can be differentiated inside the constant-series embedding.-/
+/-- A scalar coefficient can be differentiated inside the constant-series embedding.
+@isnad1 id=hascoeff.1h3v.s6.0418a21992a5 from=translated src=- shape=065bbf3f vocab=58ea20cb
+-/
 theorem C {f : ℝ → ℝ} {d : ℝ} (hf : HasDerivAt f d a) :
     HasCoeffDerivAt (fun r => PowerSeries.C (f r)) (PowerSeries.C d) a := by
   intro n
@@ -58,7 +75,9 @@ theorem C {f : ℝ → ℝ} {d : ℝ} (hf : HasDerivAt f d a) :
 
 end HasCoeffDerivAt
 
-/-- Every coefficient of the homogeneous generating series varies polynomially in its roots.-/
+/-- Every coefficient of the homogeneous generating series varies polynomially in its roots.
+@isnad1 id=differen.0h1v.s7.8f73c0db0308 from=translated src=- shape=5896c694 vocab=7f15e586
+-/
 theorem differentiable_homogeneous3 (n : ℕ) :
     Differentiable ℝ (fun v : Fin 3 → ℝ => homogeneous3 (v 0) (v 1) (v 2) n) := by
   have h2 (n : ℕ) : Differentiable ℝ (fun v : Fin 3 → ℝ => homogeneous2 (v 0) (v 1) n) := by
@@ -73,7 +92,9 @@ theorem differentiable_homogeneous3 (n : ℕ) :
     simp only [homogeneous3]
     exact (h2 (n + 1)).add ((differentiable_apply 2).mul ih)
 
-/-- A differentiable triple path induces actual derivatives for all generating coefficients.-/
+/-- A differentiable triple path induces actual derivatives for all generating coefficients.
+@isnad1 id=ex.1h2v.s7.708c87a59f71 from=translated src=- shape=6da703f7 vocab=44b0bf00
+-/
 theorem exists_hasCoeffDerivAt_homogeneousSeries (q : ℝ → (Fin 3 → ℝ)) {a : ℝ}
     (hq : DifferentiableAt ℝ q a) :
     ∃ D, HasCoeffDerivAt (fun r => homogeneousSeries (q r 0) (q r 1) (q r 2)) D a := by

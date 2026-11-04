@@ -8,7 +8,9 @@ Indexing starts at zero, so the atom at index `n` is bounded by `1 / (n + 1)`. -
 
 namespace EntropyConstrainedMissingMass.ProbabilityVector
 
-/-- A decreasing probability sequence has its `n`th atom at most `1/(n+1)`.-/
+/-- A decreasing probability sequence has its `n`th atom at most `1/(n+1)`.
+@isnad1 id=le.1h2v.s5.ceed2ff2ed6c from=translated src=- shape=20850001 vocab=310710aa
+-/
 theorem coord_le_recip_of_antitone (p : ProbabilityVector ℕ) (hp : Antitone p.coord) (n : ℕ) :
     p.coord n ≤ 1 / ((n : ℝ) + 1) := by
   have hsum : ((n : ℝ) + 1) * p.coord n ≤ 1 := by
@@ -22,7 +24,9 @@ theorem coord_le_recip_of_antitone (p : ProbabilityVector ℕ) (hp : Antitone p.
       _ = 1 := p.tsum_coord
   exact (le_div_iff₀ (by positivity)).mpr (by simpa [mul_comm] using hsum)
 
-/-- An entropy budget controls the actual real entropy sum.-/
+/-- An entropy budget controls the actual real entropy sum.
+@isnad1 id=le.2h3v.s5.2de6ff3c50f8 from=translated src=- shape=6b40a756 vocab=8789b7f9
+-/
 theorem tsum_entropy_le_of_feasible {ι : Type*} (p : ProbabilityVector ι) {h : ℝ}
     (hh : 0 ≤ h) (hp : p.entropy ≤ ENNReal.ofReal h) :
     (∑' i, Real.negMulLog (p.coord i)) ≤ h := by
@@ -30,7 +34,9 @@ theorem tsum_entropy_le_of_feasible {ι : Type*} (p : ProbabilityVector ι) {h :
   have ht := ENNReal.toReal_mono ENNReal.ofReal_ne_top hp
   simpa only [p.entropy_toReal hfinite, ENNReal.toReal_ofReal hh] using ht
 
-/-- If an atom is at most `1/a`, its entropy contribution is at least `u log a`.-/
+/-- If an atom is at most `1/a`, its entropy contribution is at least `u log a`.
+@isnad1 id=le.3h2v.s5.e831c4abd69a from=translated src=- shape=fa5ae30e vocab=4d3ff708
+-/
 theorem mul_log_le_negMulLog {u a : ℝ} (hu : 0 ≤ u) (_ha : 0 < a) (hbound : u ≤ 1 / a) :
     u * Real.log a ≤ Real.negMulLog u := by
   rcases eq_or_lt_of_le hu with rfl | hu
@@ -41,7 +47,9 @@ theorem mul_log_le_negMulLog {u a : ℝ} (hu : 0 ≤ u) (_ha : 0 < a) (hbound : 
     simp only [Real.negMulLog]
     nlinarith
 
-/-- Uniform entropy tail estimate. The tail begins at index `N`, with zero-based indices.-/
+/-- Uniform entropy tail estimate. The tail begins at index `N`, with zero-based indices.
+@isnad1 id=le.4h3v.s6.8b505933fa77 from=translated src=- shape=75fb5a3a vocab=1b9b5783
+-/
 theorem sorted_tail_le (p : ProbabilityVector ℕ) (hp : Antitone p.coord) {h : ℝ}
     (hh : 0 ≤ h) (hbudget : p.entropy ≤ ENNReal.ofReal h) (N : ℕ) (hN : 1 ≤ N) :
     (∑' i : {n : ℕ // N ≤ n}, p.coord i) ≤ h / Real.log ((N : ℝ) + 1) := by
@@ -64,13 +72,17 @@ theorem sorted_tail_le (p : ProbabilityVector ℕ) (hp : Antitone p.coord) {h : 
       hsEntropy.tsum_subtype_le _ _ p.entropy_term_nonneg
     _ ≤ h := p.tsum_entropy_le_of_feasible hh hbudget
 
-/-- The common upper bound in the sorted tail estimate tends to zero.-/
+/-- The common upper bound in the sorted tail estimate tends to zero.
+@isnad1 id=tendsto.0h1v.s5.17cdefe1fa71 from=translated src=- shape=a78b673d vocab=6153bcf2
+-/
 theorem tendsto_entropy_tail_bound (h : ℝ) :
     Filter.Tendsto (fun N : ℕ => h / Real.log ((N : ℝ) + 1)) Filter.atTop (nhds 0) := by
   exact (Real.tendsto_log_atTop.comp
     (Filter.tendsto_atTop_add_const_right Filter.atTop 1 tendsto_natCast_atTop_atTop)).const_div_atTop h
 
-/-- Entropy sublevels of sorted probability sequences have uniformly vanishing ℓ¹ tails.-/
+/-- Entropy sublevels of sorted probability sequences have uniformly vanishing ℓ¹ tails.
+@isnad1 id=ex.2h2v.s6.3595e543a801 from=translated src=- shape=71b44119 vocab=cafcf85a
+-/
 theorem uniform_sorted_tail {h ε : ℝ} (hh : 0 ≤ h) (hε : 0 < ε) :
     ∃ N : ℕ, 1 ≤ N ∧ ∀ n : ℕ, N ≤ n → ∀ p : ProbabilityVector ℕ,
       Antitone p.coord → p.entropy ≤ ENNReal.ofReal h →

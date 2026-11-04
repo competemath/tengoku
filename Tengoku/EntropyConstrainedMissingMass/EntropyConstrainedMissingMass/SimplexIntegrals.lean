@@ -22,13 +22,17 @@ def simplexValue (x y z u v : ℝ) : ℝ :=
   u * x + (1 - u) * v * y + (1 - u) * (1 - v) * z
 
 /-- Adding the same location to all three scales shifts the simplex value by
-that location because its barycentric coordinates sum to one.-/
+that location because its barycentric coordinates sum to one.
+@isnad1 id=eq.0h6v.s5.3ba4593331b2 from=translated src=- shape=2088cf20 vocab=05d3df56
+-/
 theorem simplexValue_add (x y z s u v : ℝ) :
     simplexValue (s + x) (s + y) (s + z) u v = s + simplexValue x y z u v := by
   unfold simplexValue
   ring
 
-/-- Convexity keeps every simplex scale between common lower and upper bounds.-/
+/-- Convexity keeps every simplex scale between common lower and upper bounds.
+@isnad1 id=mem.5h7v.s6.18298584644f from=translated src=- shape=0a29180e vocab=419ab760
+-/
 theorem simplexValue_mem (x y z a b u v : ℝ)
     (hx : x ∈ Icc a b) (hy : y ∈ Icc a b) (hz : z ∈ Icc a b)
     (hu : u ∈ Icc (0 : ℝ) 1) (hv : v ∈ Icc (0 : ℝ) 1) :
@@ -92,7 +96,9 @@ private theorem simplex_inner_moments (x y z u : ℝ) :
     dsimp [A, B]
     ring
 
-/-- The first moment of a uniform simplex scale.-/
+/-- The first moment of a uniform simplex scale.
+@isnad1 id=eq.0h3v.s7.2d3a22f2b9e6 from=translated src=- shape=cf2db688 vocab=762608cd
+-/
 theorem simplex_first_moment (x y z : ℝ) :
     (∫ u in (0 : ℝ)..1, 2 * (1 - u) *
       ∫ v in (0 : ℝ)..1, simplexValue x y z u v) = (x + y + z) / 3 := by
@@ -104,7 +110,9 @@ theorem simplex_first_moment (x y z : ℝ) :
   rw [heq, integral_poly_two]
   ring
 
-/-- The second moment records nondegeneracy whenever the triple is nonuniform.-/
+/-- The second moment records nondegeneracy whenever the triple is nonuniform.
+@isnad1 id=eq.0h3v.s8.707691928bb3 from=translated src=- shape=6fc958fc vocab=16c37822
+-/
 theorem simplex_second_moment (x y z : ℝ) :
     (∫ u in (0 : ℝ)..1, 2 * (1 - u) *
       ∫ v in (0 : ℝ)..1, (simplexValue x y z u v) ^ 2) =

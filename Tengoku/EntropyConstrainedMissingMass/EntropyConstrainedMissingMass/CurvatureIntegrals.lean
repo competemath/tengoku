@@ -32,12 +32,16 @@ noncomputable def m (x y z : ℝ) : ℝ := I1 x y z / I0 x y z
 noncomputable def K (x y z : ℝ) : ℝ :=
   (1 / I0 x y z) * ∫ s in Ioi (0 : ℝ), (s - m x y z) ^ 2 / (D x y z s) ^ 2
 
-/-- Adding the zero endpoint does not change the improper integral.-/
+/-- Adding the zero endpoint does not change the improper integral.
+@isnad1 id=eq.0h1v.s6.400763abdd2f from=translated src=- shape=70214b95 vocab=e19b0d5e
+-/
 theorem integral_Ici_zero_eq (f : ℝ → ℝ) :
     (∫ s in Ici (0 : ℝ), f s) = ∫ s in Ioi (0 : ℝ), f s :=
   integral_Ici_eq_integral_Ioi
 
-/-- The shifted real-power integral, evaluated by the improper FTC.-/
+/-- The shifted real-power integral, evaluated by the improper FTC.
+@isnad1 id=eq.2h2v.s7.e0cda28b9744 from=translated src=- shape=fc797f0c vocab=aec9b11f
+-/
 theorem integral_add_rpow (a p : ℝ) (ha : 0 < a) (hp : p < -1) :
     (∫ s in Ioi (0 : ℝ), (s + a) ^ p) = -a ^ (p + 1) / (p + 1) := by
   have hd : ∀ s ∈ Ici (0 : ℝ), HasDerivAt
@@ -65,7 +69,9 @@ theorem integral_add_rpow (a p : ℝ) (ha : 0 < a) (hp : p < -1) :
   convert integral_Ioi_of_hasDerivAt_of_tendsto' hd hi ht using 1
   simp [neg_div]
 
-/-- Integrability of every shifted inverse power with exponent at least two.-/
+/-- Integrability of every shifted inverse power with exponent at least two.
+@isnad1 id=integrab.1h2v.s6.10eb4bc88c2d from=translated src=- shape=fa648df1 vocab=63c20184
+-/
 theorem integrableOn_inv_add_pow (a : ℝ) (ha : 0 < a) (n : ℕ) :
     IntegrableOn (fun s : ℝ => 1 / (s + a) ^ (n + 2)) (Ioi (0 : ℝ)) := by
   have hn : -((n + 2 : ℕ) : ℝ) < -1 := by push_cast; linarith
@@ -74,7 +80,9 @@ theorem integrableOn_inv_add_pow (a : ℝ) (ha : 0 < a) (n : ℕ) :
   dsimp only
   rw [Real.rpow_neg (by linarith [mem_Ioi.mp hs]), Real.rpow_natCast, one_div]
 
-/-- A reusable exact value for shifted inverse powers.-/
+/-- A reusable exact value for shifted inverse powers.
+@isnad1 id=eq.1h2v.s7.6525ab3e0f5f from=translated src=- shape=3b01796f vocab=2e624422
+-/
 theorem integral_inv_add_pow (a : ℝ) (ha : 0 < a) (n : ℕ) :
     (∫ s in Ioi (0 : ℝ), 1 / (s + a) ^ (n + 2)) =
       1 / (((n : ℝ) + 1) * a ^ (n + 1)) := by
@@ -91,19 +99,25 @@ theorem integral_inv_add_pow (a : ℝ) (ha : 0 < a) (n : ℕ) :
   push_cast
   field_simp
 
-/-- The cubic denominator on the uniform diagonal.-/
+/-- The cubic denominator on the uniform diagonal.
+@isnad1 id=eq.0h2v.s5.06777907e79f from=translated src=- shape=42841abd vocab=ede3d6d3
+-/
 theorem D_uniform (a s : ℝ) : D a a a s = (s + a) ^ 3 := by
   unfold D
   ring
 
-/-- The first integral in Appendix A's uniform calculation.-/
+/-- The first integral in Appendix A's uniform calculation.
+@isnad1 id=eq.1h1v.s6.55bd54954ba4 from=translated src=- shape=a6067191 vocab=3b89ae53
+-/
 theorem I0_uniform (a : ℝ) (ha : 0 < a) : I0 a a a = 1 / (2 * a ^ 2) := by
   unfold I0
   simp_rw [D_uniform]
   convert integral_inv_add_pow a ha 1 using 1
   norm_num
 
-/-- The second integral in Appendix A's uniform calculation.-/
+/-- The second integral in Appendix A's uniform calculation.
+@isnad1 id=eq.1h1v.s5.7d236bd24d92 from=translated src=- shape=1087d024 vocab=a0edcf34
+-/
 theorem I1_uniform (a : ℝ) (ha : 0 < a) : I1 a a a = 1 / (2 * a) := by
   have hi2 := integrableOn_inv_add_pow a ha 0
   have hi3 := integrableOn_inv_add_pow a ha 1
@@ -123,13 +137,17 @@ theorem I1_uniform (a : ℝ) (ha : 0 < a) : I1 a a a = 1 / (2 * a) := by
   field_simp
   ring
 
-/-- The mean parameter equals the common atom size.-/
+/-- The mean parameter equals the common atom size.
+@isnad1 id=eq.1h1v.s4.4fa37bf781d9 from=translated src=- shape=ab6f35fa vocab=4bd6eb21
+-/
 theorem m_uniform (a : ℝ) (ha : 0 < a) : m a a a = a := by
   unfold m
   rw [I0_uniform a ha, I1_uniform a ha]
   field_simp
 
-/-- The numerator integral in the uniform curvature calculation.-/
+/-- The numerator integral in the uniform curvature calculation.
+@isnad1 id=eq.1h1v.s7.ba46a467a430 from=translated src=- shape=8e622ee8 vocab=14863187
+-/
 theorem integral_uniform_curvature_numerator (a : ℝ) (ha : 0 < a) :
     (∫ s in Ioi (0 : ℝ), (s - a) ^ 2 / ((s + a) ^ 3) ^ 2) =
       2 / (15 * a ^ 3) := by
@@ -153,7 +171,9 @@ theorem integral_uniform_curvature_numerator (a : ℝ) (ha : 0 < a) :
   field_simp
   ring
 
-/-- Appendix A's exact uniform-triple curvature value.-/
+/-- Appendix A's exact uniform-triple curvature value.
+@isnad1 id=eq.1h1v.s5.ec109455eaf6 from=translated src=- shape=1087d024 vocab=e14766cb
+-/
 theorem K_uniform (a : ℝ) (ha : 0 < a) : K a a a = 4 / (15 * a) := by
   unfold K
   rw [I0_uniform a ha, m_uniform a ha]
@@ -162,7 +182,9 @@ theorem K_uniform (a : ℝ) (ha : 0 < a) : K a a a = 4 / (15 * a) := by
   field_simp
   ring
 
-/-- Convergence of the uniform first-moment integral.-/
+/-- Convergence of the uniform first-moment integral.
+@isnad1 id=integrab.1h1v.s6.2c545a5b4c74 from=translated src=- shape=ebda609a vocab=63c20184
+-/
 theorem integrableOn_uniform_first_moment (a : ℝ) (ha : 0 < a) :
     IntegrableOn (fun s : ℝ => s / (s + a) ^ 3) (Ioi (0 : ℝ)) := by
   refine ((integrableOn_inv_add_pow a ha 0).fun_sub
@@ -173,13 +195,17 @@ theorem integrableOn_uniform_first_moment (a : ℝ) (ha : 0 < a) :
   field_simp
   ring
 
-/-- Positivity of the geometric denominator on the integration domain.-/
+/-- Positivity of the geometric denominator on the integration domain.
+@isnad1 id=lt.4h4v.s6.6394b9843384 from=translated src=- shape=581f33db vocab=a504d21f
+-/
 theorem D_pos (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z)
     (s : ℝ) (hs : 0 ≤ s) : 0 < D x y z s := by
   unfold D
   positivity
 
-/-- A common lower bound for the cubic factors.-/
+/-- A common lower bound for the cubic factors.
+@isnad1 id=le.5h5v.s6.ba258e1bd1b3 from=translated src=- shape=583a27ea vocab=3bc8d32a
+-/
 theorem D_ge_uniform (x y z c s : ℝ) (hc : 0 < c) (hs : 0 ≤ s)
     (hcx : c ≤ x) (hcy : c ≤ y) (hcz : c ≤ z) :
     (s + c) ^ 3 ≤ D x y z s := by
@@ -193,7 +219,9 @@ theorem D_ge_uniform (x y z c s : ℝ) (hc : 0 < c) (hs : 0 ≤ s)
     hsc (mul_nonneg hsx hsy)
   simpa [D, pow_succ] using hxyz
 
-/-- Convergence of I0 for every positive triple.-/
+/-- Convergence of I0 for every positive triple.
+@isnad1 id=integrab.3h3v.s6.5f3cb75119d9 from=translated src=- shape=910d2a94 vocab=fa3eb98e
+-/
 theorem integrableOn_I0 (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     IntegrableOn (fun s : ℝ => 1 / D x y z s) (Ioi (0 : ℝ)) := by
   let c := min x (min y z)
@@ -212,7 +240,9 @@ theorem integrableOn_I0 (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
   exact one_div_le_one_div_of_le (by positivity)
     (D_ge_uniform x y z c s hc hs0 hcx hcy hcz)
 
-/-- Convergence of I1 for every positive triple.-/
+/-- Convergence of I1 for every positive triple.
+@isnad1 id=integrab.3h3v.s6.ba21c784c90f from=translated src=- shape=e5921563 vocab=fa3eb98e
+-/
 theorem integrableOn_I1 (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     IntegrableOn (fun s : ℝ => s / D x y z s) (Ioi (0 : ℝ)) := by
   let c := min x (min y z)
@@ -245,26 +275,34 @@ private theorem integral_Ioi_pos {f : ℝ → ℝ}
   rw [hsupp, Real.volume_Ioi]
   exact ENNReal.zero_lt_top
 
-/-- I0 is strictly positive, so the mean's denominator does not vanish.-/
+/-- I0 is strictly positive, so the mean's denominator does not vanish.
+@isnad1 id=lt.3h3v.s5.b89fdfb15155 from=translated src=- shape=1b4cbc0d vocab=21151a97
+-/
 theorem I0_pos (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     0 < I0 x y z := by
   apply integral_Ioi_pos (integrableOn_I0 x y z hx hy hz)
   intro s hs
   exact one_div_pos.mpr (D_pos x y z hx hy hz s (le_of_lt hs))
 
-/-- I1 is strictly positive.-/
+/-- I1 is strictly positive.
+@isnad1 id=lt.3h3v.s5.f7119cb0ebab from=translated src=- shape=1b4cbc0d vocab=9c73c9ad
+-/
 theorem I1_pos (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     0 < I1 x y z := by
   apply integral_Ioi_pos (integrableOn_I1 x y z hx hy hz)
   intro s hs
   exact div_pos hs (D_pos x y z hx hy hz s (le_of_lt hs))
 
-/-- The integral-defined mean is positive for every positive triple.-/
+/-- The integral-defined mean is positive for every positive triple.
+@isnad1 id=lt.3h3v.s5.7a3d9790b40a from=translated src=- shape=1b4cbc0d vocab=4bd6eb21
+-/
 theorem m_pos (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     0 < m x y z :=
   div_pos (I1_pos x y z hx hy hz) (I0_pos x y z hx hy hz)
 
-/-- Convergence of the curvature numerator for any real center.-/
+/-- Convergence of the curvature numerator for any real center.
+@isnad1 id=integrab.3h4v.s7.3d01c7352665 from=translated src=- shape=e14cfcfd vocab=db1f3e31
+-/
 theorem integrableOn_curvature_numerator (x y z q : ℝ)
     (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     IntegrableOn (fun s : ℝ => (s - q) ^ 2 / (D x y z s) ^ 2) (Ioi (0 : ℝ)) := by
@@ -305,7 +343,9 @@ theorem integrableOn_curvature_numerator (x y z q : ℝ)
     _ = C ^ 2 * (1 / (s + c) ^ (2 + 2)) := by field_simp
 
 /-- The curvature numerator has a strictly positive integral: its only possible
-zero inside the domain is the single point equal to the center.-/
+zero inside the domain is the single point equal to the center.
+@isnad1 id=lt.3h4v.s7.2e565d5af6ee from=translated src=- shape=ee4c72ad vocab=ae3b7476
+-/
 theorem integral_curvature_numerator_pos (x y z q : ℝ)
     (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     0 < ∫ s in Ioi (0 : ℝ), (s - q) ^ 2 / (D x y z s) ^ 2 := by
@@ -324,7 +364,9 @@ theorem integral_curvature_numerator_pos (x y z q : ℝ)
   rw [hsupp, measure_sdiff_null (measure_singleton q), Real.volume_Ioi]
   exact ENNReal.zero_lt_top
 
-/-- The integral-defined curvature is strictly positive for every positive triple.-/
+/-- The integral-defined curvature is strictly positive for every positive triple.
+@isnad1 id=lt.3h3v.s5.ea558a90cc6b from=translated src=- shape=1b4cbc0d vocab=b8bb3dbc
+-/
 theorem K_pos (x y z : ℝ) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
     0 < K x y z :=
   mul_pos (one_div_pos.mpr (I0_pos x y z hx hy hz))

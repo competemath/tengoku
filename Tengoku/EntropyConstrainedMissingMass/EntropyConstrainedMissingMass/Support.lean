@@ -11,7 +11,9 @@ namespace EntropyConstrainedMissingMass
 namespace ProbabilityVector
 variable {ι : Type*}
 
-/-- Every positive size occurs only finitely often, even on an infinite alphabet.-/
+/-- Every positive size occurs only finitely often, even on an infinite alphabet.
+@isnad1 id=finite.1h3v.s4.1ada16dc244b from=translated src=- shape=82b21f44 vocab=4e963e31
+-/
 theorem finite_fiber (p : ProbabilityVector ι) {a : ℝ} (ha : 0 < a) :
     Set.Finite {i | p.coord i = a} := by
   apply Set.finite_coe_iff.mp
@@ -19,7 +21,9 @@ theorem finite_fiber (p : ProbabilityVector ι) {a : ℝ} (ha : 0 < a) :
   have hs := p.summable_coord.subtype (fun i => p.coord i = a)
   exact hs.congr (fun i => i.property)
 
-/-- A finite set of positive sizes implies finite support, with no assumption on the alphabet.-/
+/-- A finite set of positive sizes implies finite support, with no assumption on the alphabet.
+@isnad1 id=finite.3h3v.s6.4667d8940a1a from=translated src=- shape=f6c7812f vocab=966b0b03
+-/
 theorem finite_support_of_finite_sizes (p : ProbabilityVector ι) {s : Set ℝ}
     (hs : s.Finite) (hpos : ∀ a ∈ s, 0 < a)
     (hcovers : ∀ i, p.coord i ≠ 0 → p.coord i ∈ s) :
@@ -29,6 +33,9 @@ theorem finite_support_of_finite_sizes (p : ProbabilityVector ι) {s : Set ℝ}
   intro i hi
   exact Set.mem_iUnion₂.mpr ⟨p.coord i, hcovers i hi, rfl⟩
 
+/--
+@isnad1 id=finite.3h4v.s6.09b41f0ebf2c from=translated src=- shape=8f28ad25 vocab=05b7253a
+-/
 theorem finite_support_of_two_sizes (p : ProbabilityVector ι) {a b : ℝ}
     (ha : 0 < a) (hb : 0 < b)
     (h : ∀ i, p.coord i = 0 ∨ p.coord i = a ∨ p.coord i = b) :
@@ -39,6 +46,9 @@ theorem finite_support_of_two_sizes (p : ProbabilityVector ι) {a b : ℝ}
   · exact (hi hz).elim
   · exact hsize
 
+/--
+@isnad1 id=ex.0h2v.s4.151dff771497 from=translated src=- shape=05d28ff1 vocab=71d181d5
+-/
 theorem exists_coord_pos (p : ProbabilityVector ι) : ∃ i, 0 < p.coord i := by
   by_contra h
   push Not at h
@@ -47,7 +57,9 @@ theorem exists_coord_pos (p : ProbabilityVector ι) : ∃ i, 0 < p.coord i := by
   rw [hz] at hm
   simp at hm
 
-/-- A unit coordinate forces all other coordinates to be zero.-/
+/-- A unit coordinate forces all other coordinates to be zero.
+@isnad1 id=eq.2h4v.s5.0e20c3094365 from=translated src=- shape=b0153da3 vocab=8480f4ea
+-/
 theorem coord_eq_zero_of_coord_eq_one (p : ProbabilityVector ι) {i j : ι}
     (hi : p.coord i = 1) (hji : j ≠ i) : p.coord j = 0 := by
   classical
@@ -59,7 +71,9 @@ theorem coord_eq_zero_of_coord_eq_one (p : ProbabilityVector ι) {i j : ι}
     Finset.sum_singleton, hi] at hsum
   exact le_antisymm (by linarith) (p.coord_nonneg j)
 
-/-- This is the precise point-mass characterization, including unused coordinates.-/
+/-- This is the precise point-mass characterization, including unused coordinates.
+@isnad1 id=iff.0h2v.s5.020710ff9ace from=translated src=- shape=f308ebc8 vocab=ae0bdfb7
+-/
 theorem entropy_eq_zero_iff (p : ProbabilityVector ι) :
     p.entropy = 0 ↔ ∃ i, p.coord i = 1 ∧ ∀ j, j ≠ i → p.coord j = 0 := by
   constructor
@@ -82,6 +96,9 @@ theorem entropy_eq_zero_iff (p : ProbabilityVector ι) :
     · simp [hji, hi]
     · simp [hz j hji]
 
+/--
+@isnad1 id=eq.2h3v.s5.ffc9fd35c494 from=translated src=- shape=cb481420 vocab=29be777d
+-/
 theorem objective_eq_zero_of_entropy_eq_zero (p : ProbabilityVector ι) {t : ℕ}
     (ht : 1 ≤ t) (h : p.entropy = 0) : p.objective t = 0 := by
   obtain ⟨i, hi, hz⟩ := p.entropy_eq_zero_iff.mp h
@@ -95,10 +112,16 @@ theorem objective_eq_zero_of_entropy_eq_zero (p : ProbabilityVector ι) {t : ℕ
       · simp [missingMassTerm, hz j hji]
     _ = 0 := by simp
 
+/--
+@isnad1 id=iff.0h2v.s5.380ddfde6e4e from=translated src=- shape=5ec44e86 vocab=77df3838
+-/
 theorem feasible_zero_iff (p : ProbabilityVector ι) :
     p ∈ (Feasible 0 : Set (ProbabilityVector ι)) ↔ p.entropy = 0 := by
   simp [Feasible]
 
+/--
+@isnad1 id=eq.0h2v.s4.c3c6e42140ba from=translated src=- shape=428f6990 vocab=b435310b
+-/
 theorem entropy_eq_zero_of_subsingleton [Subsingleton ι] (p : ProbabilityVector ι) :
     p.entropy = 0 := by
   obtain ⟨i, _⟩ := p.exists_coord_pos

@@ -17,7 +17,9 @@ def roundedTailMass (h t : ℝ) : ℝ := 1 - heavyRoot h (roundedMultiplicity h 
 
 def roundedEntropyScale (h t : ℝ) : ℝ := h / roundedTailMass h t
 
-/-- Entropy dominates the total light mass times the logarithm of its multiplicity.-/
+/-- Entropy dominates the total light mass times the logarithm of its multiplicity.
+@isnad1 id=le.3h2v.s6.a9843bb7b7a5 from=translated src=- shape=366b59d1 vocab=f6266461
+-/
 theorem heavy_tail_entropy_ge (m L : ℝ) (hm : 0 < m) (hL : 0 < L) (hL1 : L < 1) :
     L * Real.log m ≤ branchEntropy m (1 - L) := by
   have h0 := Real.negMulLog_nonneg hL.le hL1.le
@@ -26,7 +28,9 @@ theorem heavy_tail_entropy_ge (m L : ℝ) (hm : 0 < m) (hL : 0 < L) (hL1 : L < 1
   simp only [Real.negMulLog] at h0 h1
   nlinarith only [h0, h1]
 
-/-- A uniform first-order bound following from the actual quadratic remainder.-/
+/-- A uniform first-order bound following from the actual quadratic remainder.
+@isnad1 id=le.2h1v.s5.382842daca46 from=translated src=- shape=dafd4951 vocab=1df993e1
+-/
 theorem entropyTailCorrection_sub_one_bound (L : ℝ) (hL : 0 < L) (hL1 : L < 1) :
     |entropyTailCorrection L - 1| ≤ 2 * L := by
   have h := entropyTailCorrection_remainder_bound L hL hL1

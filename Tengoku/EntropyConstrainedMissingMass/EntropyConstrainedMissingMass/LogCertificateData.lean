@@ -7,6 +7,9 @@ noncomputable section
 set_option maxRecDepth 10000
 set_option maxHeartbeats 2000000
 
+/--
+@isnad1 id=and.0h0v.s6.607a26909fd8 from=translated src=- shape=6f52b611 vocab=84fd3923
+-/
 theorem log_two_certificate :
     (69314718055994530941723212145817656807 : ℝ)/10^38 ≤ Real.log 2 ∧
       Real.log 2 ≤ (69314718055994530941723212145817656808 : ℝ)/10^38 := by

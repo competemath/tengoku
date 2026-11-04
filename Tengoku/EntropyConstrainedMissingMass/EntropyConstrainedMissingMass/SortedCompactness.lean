@@ -12,7 +12,9 @@ namespace EntropyConstrainedMissingMass.ProbabilityVector
 
 variable {ι : Type*}
 
-/-- Probability vectors form a closed subset of ℓ¹.-/
+/-- Probability vectors form a closed subset of ℓ¹.
+@isnad1 id=isclosed.0h1v.s10.24410332aac5 from=translated src=- shape=66c5d9d8 vocab=eef333cf
+-/
 theorem isClosed_probability_lp :
     IsClosed {p : lp (fun _ : ι => ℝ) 1 | (∀ i, 0 ≤ p i) ∧ (∑' i, p i) = 1} := by
   apply IsClosed.inter
@@ -23,10 +25,15 @@ theorem isClosed_probability_lp :
     rfl
   · exact isClosed_eq (lp.tsumCLM ℝ ι ℝ).continuous continuous_const
 
+/--
+@isnad1 id=complete.0h1v.s3.b52e2d2381c9 from=translated src=- shape=caf752a7 vocab=9c7a5120
+-/
 noncomputable instance completeSpace : CompleteSpace (ProbabilityVector ι) := by
   exact @IsClosed.completeSpace_coe (lp (fun _ : ι => ℝ) 1) _ _ _ isClosed_probability_lp
 
-/-- A finite prefix and the two nonnegative tails bound ℓ¹ distance.-/
+/-- A finite prefix and the two nonnegative tails bound ℓ¹ distance.
+@isnad1 id=le.0h3v.s7.ebb742ef1881 from=translated src=- shape=9d0d17cb vocab=0fcce49d
+-/
 theorem dist_le_prefix_add_tails (p q : ProbabilityVector ℕ) (N : ℕ) :
     dist p q ≤ (∑ i ∈ Finset.range N, |p.coord i - q.coord i|) +
       (∑' i : {n : ℕ // N ≤ n}, p.coord i) + (∑' i : {n : ℕ // N ≤ n}, q.coord i) := by
@@ -49,7 +56,9 @@ theorem dist_le_prefix_add_tails (p q : ProbabilityVector ℕ) (N : ℕ) :
     exact hsplit.trans (dist_eq_tsum p q).symm
   linarith
 
-/-- Coordinate convergence plus a uniform entropy bound yields an ℓ¹-Cauchy sequence.-/
+/-- Coordinate convergence plus a uniform entropy bound yields an ℓ¹-Cauchy sequence.
+@isnad1 id=cauchyse.3h3v.s6.f93555336788 from=translated src=- shape=d87c16d0 vocab=5b1fd819
+-/
 theorem cauchySeq_of_sorted_coordinate_tendsto {h : ℝ} (hh : 0 ≤ h)
     (u : ℕ → ProbabilityVector ℕ) (hu : ∀ k, Antitone (u k).coord ∧ (u k).entropy ≤ ENNReal.ofReal h)
     (f : ℕ → ℝ) (hf : ∀ i, Filter.Tendsto (fun k => (u k).coord i) Filter.atTop (nhds (f i))) :
@@ -84,6 +93,9 @@ theorem cauchySeq_of_sorted_coordinate_tendsto {h : ℝ} (hh : 0 ≤ h)
 def SortedFeasible (h : ℝ) : Set (ProbabilityVector ℕ) :=
   {p | Antitone p.coord ∧ p.entropy ≤ ENNReal.ofReal h}
 
+/--
+@isnad1 id=isclosed.0h0v.s4.04cd3f140126 from=translated src=- shape=6b0a39c5 vocab=df8e6bac
+-/
 theorem isClosed_sorted : IsClosed {p : ProbabilityVector ℕ | Antitone p.coord} := by
   have heq : {p : ProbabilityVector ℕ | Antitone p.coord} =
       ⋂ i : ℕ, ⋂ j : ℕ, ⋂ (_ : i ≤ j), {p | p.coord j ≤ p.coord i} := by
@@ -94,10 +106,15 @@ theorem isClosed_sorted : IsClosed {p : ProbabilityVector ℕ | Antitone p.coord
   exact isClosed_iInter fun _ => isClosed_iInter fun _ => isClosed_iInter fun _ =>
     isClosed_le (continuous_coord _) (continuous_coord _)
 
+/--
+@isnad1 id=isclosed.0h1v.s4.d73ee8637043 from=translated src=- shape=dfd46278 vocab=f7240c25
+-/
 theorem isClosed_sortedFeasible (h : ℝ) : IsClosed (SortedFeasible h) :=
   isClosed_sorted.inter (isClosed_feasible h)
 
-/-- Sorted probability vectors with bounded entropy are compact in ℓ¹.-/
+/-- Sorted probability vectors with bounded entropy are compact in ℓ¹.
+@isnad1 id=iscompac.1h1v.s4.8c0ffae85d33 from=translated src=- shape=5cb726db vocab=3c1d475c
+-/
 theorem isCompact_sortedFeasible {h : ℝ} (hh : 0 ≤ h) : IsCompact (SortedFeasible h) := by
   apply IsSeqCompact.isCompact
   intro u hu

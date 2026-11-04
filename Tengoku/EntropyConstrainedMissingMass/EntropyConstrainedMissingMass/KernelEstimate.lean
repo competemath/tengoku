@@ -17,7 +17,9 @@ noncomputable def kernel (a s : ℝ) : ℝ := 2 * a ^ 2 / (s + a) ^ 3
 noncomputable def J (a : ℝ) : ℝ :=
   ∫ s in Ioi (0 : ℝ), (s - 1) ^ 2 * kernel 1 s * kernel a s
 
-/-- The kernel has total mass one.-/
+/-- The kernel has total mass one.
+@isnad1 id=eq.1h1v.s5.be18cfccb7ed from=translated src=- shape=3e8753af vocab=c4509bbb
+-/
 theorem integral_kernel (a : ℝ) (ha : 0 < a) :
     (∫ s in Ioi (0 : ℝ), kernel a s) = 1 := by
   have heq : kernel a = fun s : ℝ => (2 * a ^ 2) * (1 / (s + a) ^ 3) := by
@@ -27,7 +29,9 @@ theorem integral_kernel (a : ℝ) (ha : 0 < a) :
   norm_num
   field_simp
 
-/-- The kernel's mean is its scale.-/
+/-- The kernel's mean is its scale.
+@isnad1 id=eq.1h1v.s5.639be7c208d5 from=translated src=- shape=c490cb9a vocab=d1a8b738
+-/
 theorem integral_mul_kernel (a : ℝ) (ha : 0 < a) :
     (∫ s in Ioi (0 : ℝ), s * kernel a s) = a := by
   have heq : (fun s : ℝ => s * kernel a s) =
@@ -41,7 +45,9 @@ theorem integral_mul_kernel (a : ℝ) (ha : 0 < a) :
   rw [I1_uniform a ha]
   field_simp
 
-/-- The mixed kernel integral at the uniform scale.-/
+/-- The mixed kernel integral at the uniform scale.
+@isnad1 id=eq.0h0v.s5.c94251ca5703 from=translated src=- shape=d4f6e56f vocab=7fc6b6ac
+-/
 theorem J_one : J 1 = 8 / 15 := by
   have heq : (fun s : ℝ => (s - 1) ^ 2 * kernel 1 s * kernel 1 s) =
       fun s : ℝ => 4 * ((s - 1) ^ 2 / ((s + 1) ^ 3) ^ 2) := by
@@ -52,7 +58,9 @@ theorem J_one : J 1 = 8 / 15 := by
   rw [heq, integral_const_mul, integral_uniform_curvature_numerator 1 (by norm_num)]
   norm_num
 
-/-- The convergent difference of two reciprocal kernels integrates to a logarithm.-/
+/-- The convergent difference of two reciprocal kernels integrates to a logarithm.
+@isnad1 id=and.1h1v.s7.c6c375199e43 from=translated src=- shape=f40709a6 vocab=bb7d07ca
+-/
 theorem integral_reciprocal_difference (a : ℝ) (ha : 0 < a) :
     IntegrableOn (fun s : ℝ => 1 / (s + 1) - 1 / (s + a)) (Ioi (0 : ℝ)) ∧
       (∫ s in Ioi (0 : ℝ), (1 / (s + 1) - 1 / (s + a))) = Real.log a := by
@@ -93,7 +101,9 @@ theorem integral_reciprocal_difference (a : ℝ) (ha : 0 < a) :
   refine ⟨hi, ?_⟩
   simpa using integral_Ioi_of_hasDerivAt_of_tendsto' hd hi ht
 
-/-- The partial-fraction identity underlying the closed form of `J`.-/
+/-- The partial-fraction identity underlying the closed form of `J`.
+@isnad1 id=eq.3h2v.s9.5c26b184d408 from=translated src=- shape=91d6155b vocab=9f3387b7
+-/
 theorem kernel_integrand_partial_fraction (a s : ℝ) (ha : a ≠ 1)
     (hs1 : s + 1 ≠ 0) (hsa : s + a ≠ 0) :
     (s - 1) ^ 2 * kernel 1 s * kernel a s =
@@ -110,7 +120,9 @@ theorem kernel_integrand_partial_fraction (a s : ℝ) (ha : a ≠ 1)
 
 /-- The nonuniform mixed integral is convergent and has the exact logarithmic
 closed form printed in Appendix A. Simple-pole terms are integrated as a
-convergent difference, rather than individually.-/
+convergent difference, rather than individually.
+@isnad1 id=and.2h1v.s8.cdb436908331 from=translated src=- shape=3c036d00 vocab=e8d31e81
+-/
 theorem J_closed_form_aux (a : ℝ) (ha : 0 < a) (ha1 : a ≠ 1) :
     IntegrableOn (fun s : ℝ => (s - 1) ^ 2 * kernel 1 s * kernel a s) (Ioi (0 : ℝ)) ∧
       J a = (4 * a ^ 2 * (a ^ 2 + 10 * a + 13) * Real.log a -
@@ -157,13 +169,17 @@ theorem J_closed_form_aux (a : ℝ) (ha : 0 < a) (ha1 : a ≠ 1) :
   field_simp
   ring
 
-/-- Closed form for a scale different from one.-/
+/-- Closed form for a scale different from one.
+@isnad1 id=eq.2h1v.s8.4c7a1a5500d7 from=translated src=- shape=d1870f7d vocab=df61f2a5
+-/
 theorem J_closed_form (a : ℝ) (ha : 0 < a) (ha1 : a ≠ 1) :
     J a = (4 * a ^ 2 * (a ^ 2 + 10 * a + 13) * Real.log a -
       2 * (a - 1) * (7 * a ^ 3 + 33 * a ^ 2 + 9 * a - 1)) / (a - 1) ^ 5 :=
   (J_closed_form_aux a ha ha1).2
 
-/-- Convergence of the mixed kernel integral for every positive scale.-/
+/-- Convergence of the mixed kernel integral for every positive scale.
+@isnad1 id=integrab.1h1v.s6.4900a0deb34d from=translated src=- shape=82e7f4f6 vocab=0cfe0e8f
+-/
 theorem integrableOn_J (a : ℝ) (ha : 0 < a) :
     IntegrableOn (fun s : ℝ => (s - 1) ^ 2 * kernel 1 s * kernel a s) (Ioi (0 : ℝ)) := by
   by_cases ha1 : a = 1
@@ -179,12 +195,16 @@ theorem integrableOn_J (a : ℝ) (ha : 0 < a) :
     ring
   · exact (J_closed_form_aux a ha ha1).1
 
-/-- The sharp kernel bound holds with equality at the uniform scale.-/
+/-- The sharp kernel bound holds with equality at the uniform scale.
+@isnad1 id=eq.0h0v.s6.9299e432964a from=translated src=- shape=a980d0a2 vocab=b78c5dc0
+-/
 theorem kernel_bound_one : J 1 = 2 * (9 - (1 : ℝ)) / (15 * (1 + 1)) := by
   rw [J_one]
   norm_num
 
-/-- The cubic appearing in the positive remainder is positive on positive arguments.-/
+/-- The cubic appearing in the positive remainder is positive on positive arguments.
+@isnad1 id=lt.1h1v.s7.1661467f6729 from=translated src=- shape=5d755901 vocab=5233fd79
+-/
 theorem kernel_remainder_cubic_pos (b : ℝ) (hb : 0 < b) :
     0 < 2 * b ^ 3 + 12 * b ^ 2 - 10 * b + 13 := by
   have hsq := sq_nonneg (b - 5 / 12)
@@ -216,7 +236,9 @@ private theorem affine_scale_pos (a v : ℝ) (ha : 0 < a) (hv : v ∈ Icc (0 : �
     have hva := mul_pos hvpos ha
     nlinarith [hv.2]
 
-/-- The remainder density is continuous across the whole unit interval.-/
+/-- The remainder density is continuous across the whole unit interval.
+@isnad1 id=continuo.1h1v.s5.bf3646a69463 from=translated src=- shape=4756762a vocab=6cee50e5
+-/
 theorem continuousOn_kernelRemainderDensity (a : ℝ) (ha : 0 < a) :
     ContinuousOn (kernelRemainderDensity a) (Icc (0 : ℝ) 1) := by
   unfold kernelRemainderDensity
@@ -226,7 +248,9 @@ theorem continuousOn_kernelRemainderDensity (a : ℝ) (ha : 0 < a) :
   · intro v hv
     exact pow_ne_zero _ (ne_of_gt (affine_scale_pos a v ha hv))
 
-/-- Nonnegativity of the remainder density.-/
+/-- Nonnegativity of the remainder density.
+@isnad1 id=le.2h2v.s5.018916a827eb from=translated src=- shape=341d216e vocab=729300f0
+-/
 theorem kernelRemainderDensity_nonneg (a v : ℝ) (ha : 0 < a)
     (hv : v ∈ Icc (0 : ℝ) 1) : 0 ≤ kernelRemainderDensity a v := by
   have hb := affine_scale_pos a v ha hv
@@ -235,7 +259,9 @@ theorem kernelRemainderDensity_nonneg (a v : ℝ) (ha : 0 < a)
   exact div_nonneg (mul_nonneg (mul_nonneg hv.1 (pow_nonneg (by linarith [hv.2]) 5))
     (le_of_lt hpoly)) (le_of_lt (pow_pos hb 4))
 
-/-- The remainder integral is strictly positive for every positive scale.-/
+/-- The remainder integral is strictly positive for every positive scale.
+@isnad1 id=lt.1h1v.s5.be5a3a6514ce from=translated src=- shape=f628c7bb vocab=293e3c60
+-/
 theorem integral_kernelRemainderDensity_pos (a : ℝ) (ha : 0 < a) :
     0 < ∫ v in (0 : ℝ)..1, kernelRemainderDensity a v := by
   apply intervalIntegral.intervalIntegral_pos_of_pos_on

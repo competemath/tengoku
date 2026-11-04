@@ -16,6 +16,9 @@ open scoped Topology
 /-- Quadratic coordinate path with prescribed first and second coefficients.-/
 def quadraticPath (a b c r : ℝ) : ℝ := a + b * r + c * r ^ 2
 
+/--
+@isnad1 id=eq.0h3v.s4.396fb67b843d from=translated src=- shape=66861e1c vocab=2ed1baab
+-/
 @[simp] theorem quadraticPath_zero (a b c : ℝ) : quadraticPath a b c 0 = a := by
   simp [quadraticPath]
 

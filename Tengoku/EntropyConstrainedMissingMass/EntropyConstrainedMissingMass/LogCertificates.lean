@@ -12,7 +12,9 @@ def logSeries (v : ℝ) (R : ℕ) : ℝ := 2 * ∑ r ∈ Finset.range R, v^(2*r+
 
 def logRemainder (v : ℝ) (R : ℕ) : ℝ := 2*v^(2*R+1)/((2*R+1)*(1-v^2))
 
-/-- The exact sharp positive-series enclosure displayed in Appendix D.-/
+/-- The exact sharp positive-series enclosure displayed in Appendix D.
+@isnad1 id=and.2h2v.s7.ca91f6f69cda from=translated src=- shape=c20421c4 vocab=c3ff557e
+-/
 theorem log_certificate {v : ℝ} (hv : 0 ≤ v) (hv1 : v < 1) (R : ℕ) :
     0 ≤ Real.log ((1+v)/(1-v)) - logSeries v R ∧
       Real.log ((1+v)/(1-v)) - logSeries v R ≤ logRemainder v R := by
@@ -54,7 +56,9 @@ theorem log_certificate {v : ℝ} (hv : 0 ≤ v) (hv1 : v < 1) (R : ℕ) :
     push_cast at heq
     linarith
 
-/-- Normalize a positive logarithm to its nonnegative atanh parameter.-/
+/-- Normalize a positive logarithm to its nonnegative atanh parameter.
+@isnad1 id=and.1h2v.s7.23b2c09c36d6 from=translated src=- shape=b0fe2387 vocab=fb072215
+-/
 theorem log_certificate_normalized {y : ℝ} (hy : 1 ≤ y) (R : ℕ) :
     logSeries ((y-1)/(y+1)) R ≤ Real.log y ∧
       Real.log y ≤ logSeries ((y-1)/(y+1)) R + logRemainder ((y-1)/(y+1)) R := by
@@ -66,7 +70,9 @@ theorem log_certificate_normalized {y : ℝ} (hy : 1 ≤ y) (R : ℕ) :
   rw [he] at h
   exact ⟨by linarith [h.1], by linarith [h.2]⟩
 
-/-- Range reduction by an integer power of two, including negative exponents.-/
+/-- Range reduction by an integer power of two, including negative exponents.
+@isnad1 id=eq.2h3v.s6.6c9ca19a3d04 from=translated src=- shape=ba33328c vocab=d43add35
+-/
 theorem log_range_reduction {x y : ℝ} (hy : 0 < y) (j : ℤ)
     (hx : x = (2 : ℝ)^j*y) : Real.log x = (j : ℝ)*Real.log 2 + Real.log y := by
   rw [hx, Real.log_mul (by positivity) (ne_of_gt hy), Real.log_zpow]

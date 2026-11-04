@@ -10,13 +10,17 @@ for the missing-mass objective. -/
 
 namespace EntropyConstrainedMissingMass
 
-/-- Each single-atom contribution is a polynomial, hence globally continuous.-/
+/-- Each single-atom contribution is a polynomial, hence globally continuous.
+@isnad1 id=continuo.0h1v.s4.0d8e52f17b76 from=translated src=- shape=8735051e vocab=56604fc0
+-/
 theorem continuous_missingMassTerm (t : ℕ) : Continuous (missingMassTerm t) := by
   unfold missingMassTerm
   fun_prop
 
 /-- Splitting a positive atom into two positive atoms strictly increases
-missing mass whenever at least one sample is taken.-/
+missing mass whenever at least one sample is taken.
+@isnad1 id=lt.4h3v.s6.28632f53ee29 from=translated src=- shape=6edd9f1c vocab=a9e03030
+-/
 theorem missingMassTerm_split_strict (t : ℕ) (ht : 1 ≤ t) (a ε : ℝ)
     (hε : 0 < ε) (hεa : ε < a) (ha : a ≤ 1) :
     missingMassTerm t a < missingMassTerm t (a - ε) + missingMassTerm t ε := by

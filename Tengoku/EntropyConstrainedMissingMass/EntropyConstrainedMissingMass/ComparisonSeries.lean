@@ -9,6 +9,9 @@ namespace EntropyConstrainedMissingMass
 noncomputable section
 open PowerSeries
 
+/--
+@isnad1 id=eq.0h6v.s7.959b056d23aa from=translated src=- shape=e46f5bff vocab=b6d4c481
+-/
 theorem coeff_two_linearFactor_homogeneousSeries (α β x y z : ℝ) (n : ℕ) :
     coeff n (linearFactor β * (linearFactor α * homogeneousSeries x y z)) =
       comparisonAuxCoefficient α β x y z n := by
@@ -18,7 +21,9 @@ theorem coeff_two_linearFactor_homogeneousSeries (α β x y z : ℝ) (n : ℕ) :
     simp [coeff_linearFactor_mul_succ, coeff_linearFactor_homogeneousSeries,
       comparisonAuxCoefficient, previousWeightedCoefficient, weightedCoefficient, previousHomogeneous3]
 
-/-- The natural coefficient `n` equals the paper's `J` with comparison index `n+1`.-/
+/-- The natural coefficient `n` equals the paper's `J` with comparison index `n+1`.
+@isnad1 id=eq.0h6v.s7.c9cb3b8aa5e6 from=translated src=- shape=90c7574b vocab=9b264494
+-/
 theorem comparisonCoefficient_eq_coeff (α β x y z : ℝ) (n : ℕ) :
     comparisonCoefficient α β x y z (n + 1) =
       coeff n (linearFactor α * (linearFactor β) ^ 2 * (homogeneousSeries x y z) ^ 2) := by
@@ -34,13 +39,18 @@ def comparisonSeriesCoefficient (α β x y z : ℝ) : ℕ → ℝ
   | 0 => 0
   | n + 1 => coeff n (linearFactor α * (linearFactor β) ^ 2 * (homogeneousSeries x y z) ^ 2)
 
+/--
+@isnad1 id=eq.0h6v.s4.4bc969abf3f0 from=translated src=- shape=c31ed16b vocab=02ac79f0
+-/
 theorem comparisonSeriesCoefficient_eq (α β x y z : ℝ) (n : ℕ) :
     comparisonSeriesCoefficient α β x y z n = comparisonCoefficient α β x y z n := by
   cases n with
   | zero => simp [comparisonSeriesCoefficient, comparisonCoefficient]
   | succ n => exact (comparisonCoefficient_eq_coeff α β x y z n).symm
 
-/-- Manuscript-facing comparison, including the zero coefficient at negative index.-/
+/-- Manuscript-facing comparison, including the zero coefficient at negative index.
+@isnad1 id=lt.7h6v.s7.8cddb5e5334b from=translated src=- shape=ab541201 vocab=61bb7eb5
+-/
 theorem coefficient_comparison_series {α β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) (hα : 0 < α)
     (n : ℕ) (hkn : 0 < weightedCoefficient α x y z n)

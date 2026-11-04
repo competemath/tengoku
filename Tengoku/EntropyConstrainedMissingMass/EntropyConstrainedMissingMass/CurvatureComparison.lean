@@ -7,6 +7,9 @@ The analytic curvature estimate and the variational identities are explicit inpu
 
 namespace EntropyConstrainedMissingMass
 
+/--
+@isnad1 id=le.3h2v.s7.30dc6443c00d from=translated src=- shape=ea8972eb vocab=4748ce0a
+-/
 theorem comparison_constant_le_entropy_recip {S m : ℝ}
     (hS : 0 < S) (hS1 : S ≤ 1) (hm : 0 ≤ m) :
     max (1 / (1 + m)) (1 / (S + 3 * m)) ≤ 1 / (S + m) := by
@@ -14,7 +17,9 @@ theorem comparison_constant_le_entropy_recip {S m : ℝ}
   · exact one_div_le_one_div_of_le (by positivity) (by linarith)
   · exact one_div_le_one_div_of_le (by positivity) (by linarith)
 
-/-- The manuscript's positive-curvature gap, before multiplication by t+1.-/
+/-- The manuscript's positive-curvature gap, before multiplication by t+1.
+@isnad1 id=lt.10h7v.s9.a89921757a14 from=translated src=- shape=12a7ed20 vocab=3afc6a35
+-/
 theorem coefficient_curvature_gap {α x y z m K : ℝ}
     (hx : 0 < x) (hxy : x < y) (hyz : y < z) (_hz : z < 1)
     (hS1 : x + y + z ≤ 1) (hm : 0 < m) (hα : 0 < α) (n : ℕ)
@@ -43,7 +48,9 @@ theorem coefficient_curvature_gap {α x y z m K : ℝ}
     ring
   linarith
 
-/-- The ratio form printed in the paper follows without dropping strictness.-/
+/-- The ratio form printed in the paper follows without dropping strictness.
+@isnad1 id=lt.10h7v.s9.66ddd3fdfd83 from=translated src=- shape=61e12294 vocab=3afc6a35
+-/
 theorem coefficient_curvature_ratio_gap {α x y z m K : ℝ}
     (hx : 0 < x) (hxy : x < y) (hyz : y < z) (hz : z < 1)
     (hS1 : x + y + z ≤ 1) (hm : 0 < m) (hα : 0 < α) (n : ℕ)
@@ -58,7 +65,9 @@ theorem coefficient_curvature_ratio_gap {α x y z m K : ℝ}
     (coefficient_curvature_gap hx hxy hyz hz hS1 hm hα n hk hstat hK) hk
   simpa only [sub_div, div_right_comm, div_self (ne_of_gt hk), mul_div_cancel_right₀ _ (ne_of_gt hk)] using h
 
-/-- The stronger bound R/(20S) uses the previously proved mean constraint.-/
+/-- The stronger bound R/(20S) uses the previously proved mean constraint.
+@isnad1 id=lt.11h7v.s9.bcd5a7f4d586 from=translated src=- shape=d353f1fc vocab=3afc6a35
+-/
 theorem coefficient_curvature_twentieth_gap {α x y z m K : ℝ}
     (hx : 0 < x) (hxy : x < y) (hyz : y < z) (hz : z < 1)
     (hS1 : x + y + z ≤ 1) (hm : 0 < m) (hmS : m ≤ (x + y + z) / 3)

@@ -14,6 +14,9 @@ def finiteStationarityPolynomial (m t : ℕ) : Polynomial ℝ :=
   C (m : ℝ)^t * (1-X)^(t-1) * (1-C ((t : ℝ)+1)*X) -
     (C ((m : ℝ)-1)+X)^(t-1) * (C ((t : ℝ)+1)*X+C ((m : ℝ)-(t : ℝ)-1))
 
+/--
+@isnad1 id=eq.0h3v.s7.2f19aecf124b from=translated src=- shape=50dd989e vocab=6c62f564
+-/
 theorem eval_finiteStationarityPolynomial (m t : ℕ) (z : ℝ) :
     (finiteStationarityPolynomial m t).eval z =
       (m : ℝ)^t*(1-z)^(t-1)*(1-((t : ℝ)+1)*z) -
@@ -21,6 +24,9 @@ theorem eval_finiteStationarityPolynomial (m t : ℕ) (z : ℝ) :
   simp only [finiteStationarityPolynomial, eval_sub, eval_mul, eval_pow, eval_C, eval_one, eval_X, eval_add]
   ring
 
+/--
+@isnad1 id=ne.2h2v.s5.2949ccd02089 from=translated src=- shape=74ce10c0 vocab=0cdd9aea
+-/
 theorem finiteStationarityPolynomial_ne_zero {m t : ℕ} (hm : 0 < m) (ht : 1 ≤ t) :
     finiteStationarityPolynomial m t ≠ 0 := by
   intro he
@@ -38,7 +44,9 @@ theorem finiteStationarityPolynomial_ne_zero {m t : ℕ} (hm : 0 < m) (ht : 1 �
     rw [heq] at hz
     exact (mul_pos (pow_pos hmpos _) hmpos).ne' hz
 
-/-- The stationarity polynomial has degree at most the integer sample size.-/
+/-- The stationarity polynomial has degree at most the integer sample size.
+@isnad1 id=le.1h2v.s4.95bc53e51043 from=translated src=- shape=95bb35d5 vocab=41605e05
+-/
 theorem natDegree_finiteStationarityPolynomial_le (m t : ℕ) (ht : 1 ≤ t) :
     (finiteStationarityPolynomial m t).natDegree ≤ t := by
   have hlin₁ : ((1 : Polynomial ℝ)-X).natDegree ≤ 1 :=
@@ -77,6 +85,9 @@ def finiteStationaryRoots (m t : ℕ) (h : ℝ) : Finset ℝ := by
   exact (finiteStationarityPolynomial m t).roots.toFinset.filter
     (fun z => z ∈ Ioo (0 : ℝ) 1 ∧ branchEntropy m z ≤ h)
 
+/--
+@isnad1 id=le.1h3v.s4.ba79ef25f00e from=translated src=- shape=3c2c8155 vocab=71f46910
+-/
 theorem card_finiteStationaryRoots_le (m t : ℕ) (ht : 1 ≤ t) (h : ℝ) :
     (finiteStationaryRoots m t h).card ≤ t := by
   classical

@@ -6,7 +6,9 @@ namespace EntropyConstrainedMissingMass
 open Filter
 open scoped Topology
 
-/-- A continuous scalar function has nonpositive second derivative at a local maximum.-/
+/-- A continuous scalar function has nonpositive second derivative at a local maximum.
+@isnad1 id=le.2h2v.s6.23a4b151b976 from=translated src=- shape=e887a513 vocab=39e969d3
+-/
 theorem second_derivative_nonpos_of_localMax {f : ℝ → ℝ} {a : ℝ}
     (hc : ContinuousAt f a) (hm : IsLocalMax f a) : deriv (deriv f) a ≤ 0 := by
   by_contra h

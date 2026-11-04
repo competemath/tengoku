@@ -17,6 +17,9 @@ def ZeroMultiplicityBound (f : ℝ → ℝ) (n : ℕ) : Prop :=
   ∃ s : Finset ℝ, (∀ x, f x = 0 ↔ x ∈ s) ∧
     (∑ x ∈ s, analyticOrderAt f x) ≤ (n : ℕ∞)
 
+/--
+@isnad1 id=finite.2h2v.s6.9000ea306daa from=translated src=- shape=805e67e4 vocab=8959d2c7
+-/
 theorem finite_zeros_of_finite_deriv_zeros {f : ℝ → ℝ} (hf : Continuous f)
     {t : Finset ℝ} (ht : ∀ x, deriv f x = 0 → x ∈ t) : {x | f x = 0}.Finite := by
   classical
@@ -30,7 +33,9 @@ theorem finite_zeros_of_finite_deriv_zeros {f : ℝ → ℝ} (hf : Continuous f)
   omega
 
 /-- Rolle's theorem including repeated zeros: differentiating loses at most one zero,
-with multiplicity measured by Mathlib's analytic order.-/
+with multiplicity measured by Mathlib's analytic order.
+@isnad1 id=zeromult.2h2v.s6.a47da7d61988 from=translated src=- shape=4cb07e6e vocab=9ee65630
+-/
 theorem rolle_multiplicity {f : ℝ → ℝ} {n : ℕ}
     (hf : ∀ x, AnalyticAt ℝ f x) (hd : ZeroMultiplicityBound (deriv f) n) :
     ZeroMultiplicityBound f (n + 1) := by
@@ -73,10 +78,16 @@ theorem rolle_multiplicity {f : ℝ → ℝ} {n : ℕ}
     _ = (∑ x ∈ t, analyticOrderAt (deriv f) x) + 1 := by rw [← add_assoc, hsum]
     _ ≤ ((n + 1 : ℕ) : ℕ∞) := by simpa only [Nat.cast_add, Nat.cast_one] using add_le_add htn (le_refl (1 : ℕ∞))
 
+/--
+@isnad1 id=zeromult.1h1v.s4.c70062a8f06a from=translated src=- shape=9fb1baa7 vocab=7c62b3ad
+-/
 theorem zeroMultiplicityBound_zero_of_nonvanishing {f : ℝ → ℝ} (hf : ∀ x, f x ≠ 0) :
     ZeroMultiplicityBound f 0 := by
   exact ⟨∅, by simp [hf], by simp⟩
 
+/--
+@isnad1 id=zeromult.4h3v.s6.e3e4985c4d5e from=translated src=- shape=50d1e10b vocab=d995658b
+-/
 theorem ZeroMultiplicityBound.mul_nonvanishing {f g : ℝ → ℝ} {n : ℕ}
     (h : ZeroMultiplicityBound f n) (hf : ∀ x, AnalyticAt ℝ f x)
     (hg : ∀ x, AnalyticAt ℝ g x) (hgz : ∀ x, g x ≠ 0) :
@@ -88,18 +99,26 @@ theorem ZeroMultiplicityBound.mul_nonvanishing {f g : ℝ → ℝ} {n : ℕ}
       (hg x).analyticOrderAt_eq_zero.mpr (hgz x), add_zero]
   simpa only [ho] using hn
 
+/--
+@isnad1 id=zeromult.2h1v.s6.5c9f14a1e3e6 from=translated src=- shape=fea9396e vocab=af8e97ab
+-/
 theorem zeroMultiplicityBound_one_of_deriv_pos {f : ℝ → ℝ}
     (hf : ∀ x, AnalyticAt ℝ f x) (hd : ∀ x, 0 < deriv f x) :
     ZeroMultiplicityBound f 1 :=
   rolle_multiplicity hf (zeroMultiplicityBound_zero_of_nonvanishing (fun x => (hd x).ne'))
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.796bc6959b4e from=translated src=- shape=0b2af793 vocab=da9d0ba9
+-/
 theorem hasDerivAt_scaled_exp (c r x : ℝ) :
     HasDerivAt (fun x => c * Real.exp (r * x)) (c * r * Real.exp (r * x)) x := by
   simpa only [id_eq, mul_assoc, mul_comm, mul_left_comm, one_mul] using
     (((hasDerivAt_id x).const_mul r).exp.const_mul c)
 
 /-- Distinct real exponential rates, with all coefficients nonzero, have at most
-one fewer real zeros than terms, counted with analytic multiplicity.-/
+one fewer real zeros than terms, counted with analytic multiplicity.
+@isnad1 id=zeromult.3h4v.s6.d69972c52484 from=translated src=- shape=841c1752 vocab=b1740d63
+-/
 theorem exponential_sum_zeros {ι : Type*} (s : Finset ι) (c r : ι → ℝ)
     (hs : s.Nonempty) (hc : ∀ i ∈ s, c i ≠ 0) (hr : Set.InjOn r s) :
     ZeroMultiplicityBound (fun x => ∑ i ∈ s, c i * Real.exp (r i * x)) (s.card - 1) := by
@@ -148,12 +167,17 @@ theorem exponential_sum_zeros {ι : Type*} (s : Finset ι) (c r : ι → ℝ)
         (f := fun x => c a * Real.exp (r a * x))
         (fun x => mul_ne_zero (hc a (Finset.mem_insert_self a ∅)) (Real.exp_ne_zero _))
 
+/--
+@isnad1 id=zeromult.2h3v.s4.ccbc5aea5f66 from=translated src=- shape=2ee5f2f3 vocab=94914918
+-/
 theorem ZeroMultiplicityBound.mono {f : ℝ → ℝ} {m n : ℕ}
     (h : ZeroMultiplicityBound f m) (hmn : m ≤ n) : ZeroMultiplicityBound f n := by
   obtain ⟨s, hs, hb⟩ := h
   exact ⟨s, hs, hb.trans (by exact_mod_cast hmn)⟩
 
-/-- Zero coefficients are harmless: only nonzeroness of the represented function is required.-/
+/-- Zero coefficients are harmless: only nonzeroness of the represented function is required.
+@isnad1 id=zeromult.2h4v.s6.124bd9e8eee3 from=translated src=- shape=80b4fe8f vocab=2f20ff31
+-/
 theorem exponential_sum_zeros_of_nonzero {ι : Type*} (s : Finset ι) (c r : ι → ℝ)
     (hr : Set.InjOn r s) (hn : ∃ x, (∑ i ∈ s, c i * Real.exp (r i * x)) ≠ 0) :
     ZeroMultiplicityBound (fun x => ∑ i ∈ s, c i * Real.exp (r i * x)) (s.card - 1) := by
@@ -176,7 +200,9 @@ theorem exponential_sum_zeros_of_nonzero {ι : Type*} (s : Finset ι) (c r : ι 
   simpa only [he] using hb
 
 /-- The sharper four-term sign pattern `+,-,-,+` has at most two zeros,
-including multiplicities.-/
+including multiplicities.
+@isnad1 id=zeromult.7h8v.s7.bbb29b120914 from=translated src=- shape=ff6f192b vocab=d61ae950
+-/
 theorem four_term_zeros_exp (A B C D α β γ δ : ℝ)
     (hA : 0 < A) (_hB : 0 < B) (hC : 0 < C) (_hD : 0 < D)
     (hab : α < β) (hbc : β < γ) (hcd : γ < δ) :
@@ -234,7 +260,9 @@ theorem four_term_zeros_exp (A B C D α β γ δ : ℝ)
   dsimp [u]
   ring
 
-/-- The manuscript's first zero-count assertion, in positive-base notation.-/
+/-- The manuscript's first zero-count assertion, in positive-base notation.
+@isnad1 id=zeromult.3h4v.s7.564a604fd36f from=translated src=- shape=83b93dbf vocab=979d4b55
+-/
 theorem exponential_sum_zeros_rpow {ι : Type*} (s : Finset ι) (c b : ι → ℝ)
     (hb : ∀ i ∈ s, 0 < b i) (hi : Set.InjOn b s)
     (hn : ∃ x : ℝ, (∑ i ∈ s, c i * (b i) ^ x) ≠ 0) :
@@ -249,7 +277,9 @@ theorem exponential_sum_zeros_rpow {ι : Type*} (s : Finset ι) (c b : ι → �
     (by simpa only [he] using hn)
   simpa only [he] using hz
 
-/-- The manuscript's sharper `+,-,-,+` four-term assertion in positive-base notation.-/
+/-- The manuscript's sharper `+,-,-,+` four-term assertion in positive-base notation.
+@isnad1 id=zeromult.8h8v.s7.98faf3a0739a from=translated src=- shape=fc9c47c4 vocab=5cff5ac0
+-/
 theorem four_term_zeros (A B C D a b c d : ℝ)
     (hA : 0 < A) (hB : 0 < B) (hC : 0 < C) (hD : 0 < D)
     (ha : 0 < a) (hab : a < b) (hbc : b < c) (hcd : c < d) :
@@ -262,6 +292,9 @@ theorem four_term_zeros (A B C D a b c d : ℝ)
     four_term_zeros_exp A B C D (Real.log a) (Real.log b) (Real.log c) (Real.log d)
       hA hB hC hD (Real.log_lt_log ha hab) (Real.log_lt_log hb hbc) (Real.log_lt_log hc hcd)
 
+/--
+@isnad1 id=zeromult.4h6v.s7.3e65dff3a9c4 from=translated src=- shape=0270a4e7 vocab=c184febc
+-/
 theorem three_term_zeros_rpow (A B C a b c : ℝ) (ha : 0 < a) (hab : a < b) (hbc : b < c)
     (hn : ∃ x : ℝ, A * a ^ x + B * b ^ x + C * c ^ x ≠ 0) :
     ZeroMultiplicityBound (fun x : ℝ => A * a ^ x + B * b ^ x + C * c ^ x) 2 := by
@@ -271,6 +304,9 @@ theorem three_term_zeros_rpow (A B C a b c : ℝ) (ha : 0 < a) (hab : a < b) (hb
     (by simpa [Fin.sum_univ_succ, add_assoc] using hn)
   simpa [Fin.sum_univ_succ, add_assoc] using hz
 
+/--
+@isnad1 id=zeromult.5h8v.s7.57ad8177b713 from=translated src=- shape=9137540a vocab=c184febc
+-/
 theorem four_term_zeros_rpow (A B C D a b c d : ℝ) (ha : 0 < a)
     (hab : a < b) (hbc : b < c) (hcd : c < d)
     (hn : ∃ x : ℝ, A * a ^ x + B * b ^ x + C * c ^ x + D * d ^ x ≠ 0) :

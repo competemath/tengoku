@@ -11,7 +11,9 @@ set_option backward.isDefEq.respectTransparency false
 
 namespace EntropyConstrainedMissingMass.ProbabilityVector
 
-/-- The mass after a finite prefix is the complement of that prefix mass.-/
+/-- The mass after a finite prefix is the complement of that prefix mass.
+@isnad1 id=eq.0h2v.s6.6669d182ac3a from=translated src=- shape=3793235e vocab=8e07de87
+-/
 theorem tail_eq_one_sub_sum (p : ProbabilityVector ℕ) (N : ℕ) :
     (∑' i : {n : ℕ // N ≤ n}, p.coord i) = 1 - ∑ i ∈ Finset.range N, p.coord i := by
   have hs := p.summable_coord.sum_add_tsum_compl (s := Finset.range N)
@@ -20,7 +22,9 @@ theorem tail_eq_one_sub_sum (p : ProbabilityVector ℕ) (N : ℕ) :
   change (∑ i ∈ Finset.range N, p.coord i) + (∑' i : {n : ℕ // N ≤ n}, p.coord i) = 1 at hs
   linarith
 
-/-- Every individual probability vector has vanishing tails, without an entropy assumption.-/
+/-- Every individual probability vector has vanishing tails, without an entropy assumption.
+@isnad1 id=tendsto.0h1v.s6.8a72cf3831b7 from=translated src=- shape=e3941929 vocab=4bb736d1
+-/
 theorem tendsto_tail_zero (p : ProbabilityVector ℕ) :
     Filter.Tendsto (fun N : ℕ => ∑' i : {n : ℕ // N ≤ n}, p.coord i) Filter.atTop (nhds 0) := by
   simp_rw [p.tail_eq_one_sub_sum]
@@ -28,7 +32,9 @@ theorem tendsto_tail_zero (p : ProbabilityVector ℕ) :
   rw [p.tsum_coord] at hs
   simpa using hs.const_sub 1
 
-/-- Preserving an initial prefix costs at most twice the discarded mass in ℓ¹.-/
+/-- Preserving an initial prefix costs at most twice the discarded mass in ℓ¹.
+@isnad1 id=le.1h3v.s6.9bf71d068283 from=translated src=- shape=f74befd4 vocab=37461e6e
+-/
 theorem dist_le_two_tail_of_prefix_eq (p q : ProbabilityVector ℕ) (N : ℕ)
     (hpq : ∀ i < N, q.coord i = p.coord i) :
     dist p q ≤ 2 * (∑' i : {n : ℕ // N ≤ n}, p.coord i) := by
@@ -54,6 +60,9 @@ def truncationMap (N : ℕ) (n : ℕ) : Fin (N + 1) :=
 noncomputable def truncate (p : ProbabilityVector ℕ) (N : ℕ) : ProbabilityVector (Fin (N + 1)) :=
   p.pushforward (truncationMap N)
 
+/--
+@isnad1 id=eq.1h2v.s6.d97f5daef458 from=translated src=- shape=8a75b162 vocab=1f2d4694
+-/
 theorem truncationMap_fiber_lt (N i : ℕ) (hi : i < N) :
     (truncationMap N) ⁻¹' {⟨i, Nat.lt_succ_of_lt hi⟩} = {i} := by
   ext n
@@ -67,14 +76,23 @@ theorem truncationMap_fiber_lt (N i : ℕ) (hi : i < N) :
     apply Fin.ext
     exact Nat.min_eq_left hi.le
 
+/--
+@isnad1 id=eq.1h3v.s5.c6901623b661 from=translated src=- shape=404ed045 vocab=f206019f
+-/
 @[simp] theorem coord_truncate_lt (p : ProbabilityVector ℕ) (N i : ℕ) (hi : i < N) :
     (p.truncate N).coord ⟨i, Nat.lt_succ_of_lt hi⟩ = p.coord i := by
   rw [truncate, coord_pushforward, truncationMap_fiber_lt N i hi]
   simp
 
+/--
+@isnad1 id=le.0h2v.s4.606f30d4ae4c from=translated src=- shape=1c4a968b vocab=77e5efdc
+-/
 theorem entropy_truncate_le (p : ProbabilityVector ℕ) (N : ℕ) :
     (p.truncate N).entropy ≤ p.entropy := p.entropy_pushforward_le _
 
+/--
+@isnad1 id=mem.1h3v.s6.22cc7e0b2a6a from=translated src=- shape=542c963f vocab=9e8b2669
+-/
 theorem feasible_truncate (p : ProbabilityVector ℕ) {h : ℝ} (hp : p ∈ Feasible h) (N : ℕ) :
     p.truncate N ∈ Feasible h := (p.entropy_truncate_le N).trans hp
 
@@ -82,13 +100,18 @@ theorem feasible_truncate (p : ProbabilityVector ℕ) {h : ℝ} (hp : p ∈ Feas
 noncomputable def truncateNat (p : ProbabilityVector ℕ) (N : ℕ) : ProbabilityVector ℕ :=
   zeroExtend ⟨Fin.val, Fin.val_injective⟩ (p.truncate N)
 
+/--
+@isnad1 id=eq.1h3v.s4.528a37ed7a77 from=translated src=- shape=a6974ed7 vocab=27c51f57
+-/
 @[simp] theorem coord_truncateNat_lt (p : ProbabilityVector ℕ) (N i : ℕ) (hi : i < N) :
     (p.truncateNat N).coord i = p.coord i := by
   have hc := coord_zeroExtend_apply (⟨Fin.val, Fin.val_injective⟩ : Fin (N + 1) ↪ ℕ)
     (p.truncate N) ⟨i, Nat.lt_succ_of_lt hi⟩
   exact hc.trans (p.coord_truncate_lt N i hi)
 
-/-- The unsorted finite approximations converge in the manuscript's ℓ¹ metric.-/
+/-- The unsorted finite approximations converge in the manuscript's ℓ¹ metric.
+@isnad1 id=tendsto.0h1v.s4.e561b7fb18be from=translated src=- shape=0b9404f4 vocab=60781321
+-/
 theorem tendsto_truncateNat (p : ProbabilityVector ℕ) :
     Filter.Tendsto p.truncateNat Filter.atTop (nhds p) := by
   rw [tendsto_iff_dist_tendsto_zero]
@@ -98,7 +121,9 @@ theorem tendsto_truncateNat (p : ProbabilityVector ℕ) :
     exact dist_le_two_tail_of_prefix_eq p (p.truncateNat N) N (p.coord_truncateNat_lt N)
   · simpa using p.tendsto_tail_zero.const_mul 2
 
-/-- Exact one-sided objective error estimate for the finite coarsening.-/
+/-- Exact one-sided objective error estimate for the finite coarsening.
+@isnad1 id=le.0h3v.s6.fcff2f254ed1 from=translated src=- shape=92608eca vocab=762d287e
+-/
 theorem objective_sub_truncate_le_tail (p : ProbabilityVector ℕ) (N t : ℕ) :
     p.objective t - (p.truncate N).objective t ≤ ∑' i : {n : ℕ // N ≤ n}, p.coord i := by
   have hs := (p.objective_summable t).sum_add_tsum_compl (s := Finset.range N)
@@ -125,14 +150,18 @@ theorem objective_sub_truncate_le_tail (p : ProbabilityVector ℕ) (N t : ℕ) :
   simp only [truncateNat, objective_zeroExtend] at hprefix
   linarith
 
-/-- The absolute objective error is at most the original tail mass.-/
+/-- The absolute objective error is at most the original tail mass.
+@isnad1 id=le.0h3v.s6.0b1d0668717c from=translated src=- shape=b7588d6c vocab=97b8abd0
+-/
 theorem abs_objective_truncate_sub_le_tail (p : ProbabilityVector ℕ) (N t : ℕ) :
     |(p.truncate N).objective t - p.objective t| ≤ ∑' i : {n : ℕ // N ≤ n}, p.coord i := by
   have hle : (p.truncate N).objective t ≤ p.objective t := p.objective_pushforward_le (truncationMap N) t
   rw [abs_sub_comm, abs_of_nonneg (sub_nonneg.mpr hle)]
   exact p.objective_sub_truncate_le_tail N t
 
-/-- Missing mass of finite coarsenings converges to missing mass of the original distribution.-/
+/-- Missing mass of finite coarsenings converges to missing mass of the original distribution.
+@isnad1 id=tendsto.0h2v.s5.749f4092da3f from=translated src=- shape=9446be77 vocab=7b9b839f
+-/
 theorem tendsto_objective_truncate (p : ProbabilityVector ℕ) (t : ℕ) :
     Filter.Tendsto (fun N => (p.truncate N).objective t) Filter.atTop (nhds (p.objective t)) := by
   have ht := (continuous_objective t).tendsto p |>.comp p.tendsto_truncateNat

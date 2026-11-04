@@ -15,10 +15,16 @@ def previousWeightedCoefficient (α x y z : ℝ) : ℕ → ℝ
 def comparisonAuxCoefficient (α β x y z : ℝ) (n : ℕ) : ℝ :=
   weightedCoefficient α x y z n - β * previousWeightedCoefficient α x y z n
 
+/--
+@isnad1 id=eq.0h5v.s4.2d53c9531091 from=translated src=- shape=1427928a vocab=55cdfeee
+-/
 @[simp] theorem comparisonAuxCoefficient_zero (α β x y z : ℝ) :
     comparisonAuxCoefficient α β x y z 0 = 1 := by
   simp [comparisonAuxCoefficient, previousWeightedCoefficient]
 
+/--
+@isnad1 id=eq.0h6v.s4.bd2a48214b4e from=translated src=- shape=32444326 vocab=55cdfeee
+-/
 theorem comparisonAuxCoefficient_swap (α β x y z : ℝ) (n : ℕ) :
     comparisonAuxCoefficient α β x y z n = comparisonAuxCoefficient β α x y z n := by
   cases n with
@@ -33,6 +39,9 @@ def comparisonCoefficient (α β x y z : ℝ) (n : ℕ) : ℝ :=
   ∑ j ∈ Finset.range n,
     comparisonAuxCoefficient α β x y z j * weightedCoefficient β x y z (n - 1 - j)
 
+/--
+@isnad1 id=eq.0h4v.s5.fff6946cde3e from=translated src=- shape=d306ad4a vocab=1c9b0c38
+-/
 theorem homogeneous2_scale (c x y : ℝ) (n : ℕ) :
     homogeneous2 (c * x) (c * y) n = c ^ n * homogeneous2 x y n := by
   induction n with
@@ -41,6 +50,9 @@ theorem homogeneous2_scale (c x y : ℝ) (n : ℕ) :
     rw [homogeneous2, homogeneous2, ih, mul_pow, pow_succ c n]
     ring
 
+/--
+@isnad1 id=eq.0h5v.s6.910de5ea0e7b from=translated src=- shape=7f5e3d44 vocab=2c04cb40
+-/
 theorem homogeneous3_scale (c x y z : ℝ) (n : ℕ) :
     homogeneous3 (c * x) (c * y) (c * z) n = c ^ n * homogeneous3 x y z n := by
   induction n with
@@ -49,6 +61,9 @@ theorem homogeneous3_scale (c x y z : ℝ) (n : ℕ) :
     rw [homogeneous3, homogeneous3, homogeneous2_scale, ih, pow_succ c n]
     ring
 
+/--
+@isnad1 id=eq.0h5v.s6.0a1bac88ca56 from=translated src=- shape=52ec9ab3 vocab=3147eebc
+-/
 theorem weightedCoefficient_scale (β x y z : ℝ) (n : ℕ) :
     weightedCoefficient β (β * x) (β * y) (β * z) n =
       β ^ n * coefficientDifference x y z n := by
@@ -59,6 +74,9 @@ theorem weightedCoefficient_scale (β x y z : ℝ) (n : ℕ) :
       coefficientDifference, pow_succ]
     ring
 
+/--
+@isnad1 id=le.7h5v.s7.d043e861c0c4 from=translated src=- shape=92e0c295 vocab=da3b4736
+-/
 theorem weightedCoefficient_bound {β x y z : ℝ} (hβ : 0 < β)
     (hx : 0 ≤ x) (hxβ : x < β) (hy : 0 ≤ y) (hyβ : y < β)
     (hz : 0 ≤ z) (hzβ : z < β) (n : ℕ) :
@@ -81,7 +99,9 @@ theorem weightedCoefficient_bound {β x y z : ℝ} (hβ : 0 < β)
   rw [hs]
   exact (mul_le_mul_of_nonneg_left he (pow_nonneg hβ.le n)).trans_eq (mul_comm _ _)
 
-/-- The finite convolution against a geometric progression telescopes exactly.-/
+/-- The finite convolution against a geometric progression telescopes exactly.
+@isnad1 id=eq.0h6v.s6.4942189b712c from=translated src=- shape=65bbb9aa vocab=0816fd23
+-/
 theorem comparisonAuxCoefficient_telescoping (α β x y z : ℝ) (n : ℕ) :
     (∑ j ∈ Finset.range (n + 1), comparisonAuxCoefficient α β x y z j * β ^ (n - j)) =
       weightedCoefficient α x y z n := by
@@ -104,6 +124,9 @@ theorem comparisonAuxCoefficient_telescoping (α β x y z : ℝ) (n : ℕ) :
     simp only [comparisonAuxCoefficient, previousWeightedCoefficient]
     ring
 
+/--
+@isnad1 id=lt.4h5v.s6.59c34d500f21 from=translated src=- shape=b86730e0 vocab=b17632cc
+-/
 theorem weightedCoefficient_prev_pos {β x y z : ℝ}
     (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) {n : ℕ}
     (hpos : 0 < weightedCoefficient β x y z (n + 1)) :
@@ -121,6 +144,9 @@ theorem weightedCoefficient_prev_pos {β x y z : ℝ}
     have hm2 := mul_nonpos_of_nonneg_of_nonpos hp1.le hle
     nlinarith
 
+/--
+@isnad1 id=lt.5h6v.s6.676837182418 from=translated src=- shape=ed95696a vocab=f5cec488
+-/
 theorem weightedCoefficient_pos_of_le {β x y z : ℝ}
     (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) {N : ℕ}
     (hpos : 0 < weightedCoefficient β x y z N) {j : ℕ} (hj : j ≤ N) :
@@ -135,6 +161,9 @@ theorem weightedCoefficient_pos_of_le {β x y z : ℝ}
     · simpa [heq] using hpos
     · exact ih (weightedCoefficient_prev_pos hx hy hz hpos) (by omega)
 
+/--
+@isnad1 id=lt.6h6v.s7.b18b20748346 from=translated src=- shape=2f7bdf3d vocab=278d2a6e
+-/
 theorem weightedCoefficient_pos_of_comparison {α β x y z : ℝ}
     (hα : 0 < α) (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) (n : ℕ)
     (hk : 0 < weightedCoefficient α x y z n)
@@ -161,7 +190,9 @@ theorem weightedCoefficient_pos_of_comparison {α β x y z : ℝ}
         (mul_pos hα (sub_pos.mpr ht))
     exact pos_of_mul_pos_right hprod hk.le
 
-/-- Positive coefficients of `(1-βw)G` satisfy a strict Turán inequality.-/
+/-- Positive coefficients of `(1-βw)G` satisfy a strict Turán inequality.
+@isnad1 id=lt.5h5v.s6.abdc4ab4f6b6 from=translated src=- shape=9fbb4fa0 vocab=2409489a
+-/
 theorem weightedCoefficient_strict_log_concave {β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) (n : ℕ)
     (hpos : 0 < weightedCoefficient β x y z n) :
@@ -172,6 +203,9 @@ theorem weightedCoefficient_strict_log_concave {β x y z : ℝ}
   have hs := sq_nonneg (weightedCoefficient β x y z (n + 1) - y * weightedCoefficient β x y z n)
   nlinarith
 
+/--
+@isnad1 id=lt.7h6v.s7.0a3467b289db from=translated src=- shape=4b4a3798 vocab=7921f296
+-/
 theorem comparisonAuxCoefficient_prev_pos {α β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) {n : ℕ}
     (hB0 : 0 < weightedCoefficient β x y z n)
@@ -186,6 +220,9 @@ theorem comparisonAuxCoefficient_prev_pos {α β x y z : ℝ}
   have hm2 := mul_nonpos_of_nonneg_of_nonpos hB1.le (le_of_not_gt hn)
   nlinarith
 
+/--
+@isnad1 id=lt.7h7v.s7.4dac329b9168 from=translated src=- shape=54e899e2 vocab=7921f296
+-/
 theorem comparisonAuxCoefficient_pos_of_le {α β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) (N : ℕ)
     (hB : ∀ j ≤ N + 1, 0 < weightedCoefficient β x y z j)
@@ -206,6 +243,9 @@ theorem comparisonAuxCoefficient_pos_of_le {α β x y z : ℝ}
     · simpa [heq] using hprev
     · exact ih (fun k hk => hB k (by omega)) hprev.le j (by omega)
 
+/--
+@isnad1 id=le.8h6v.s7.f024cdbcdf7a from=translated src=- shape=c3fd5e4a vocab=a5af4e5c
+-/
 theorem comparisonCoefficient_le_of_aux_nonneg {α β x y z : ℝ} (hβ : 0 < β)
     (hx : 0 ≤ x) (hxβ : x < β) (hy : 0 ≤ y) (hyβ : y < β)
     (hz : 0 ≤ z) (hzβ : z < β) (n : ℕ)
@@ -234,6 +274,9 @@ theorem comparisonCoefficient_le_of_aux_nonneg {α β x y z : ℝ} (hβ : 0 < β
     _ = C * weightedCoefficient α x y z n := by
       rw [comparisonAuxCoefficient_telescoping]
 
+/--
+@isnad1 id=eq.1h2v.s6.76cb1c480c1a from=translated src=- shape=6376f67d vocab=8649b78e
+-/
 theorem comparison_bound_constant_identity {β d : ℝ} (hβ : 0 < β) :
     max 1 (β / d) / β = max (1 / β) (1 / d) := by
   rw [← max_div_div_right hβ.le]
@@ -241,7 +284,9 @@ theorem comparison_bound_constant_identity {β d : ℝ} (hβ : 0 < β) :
   field_simp
 
 /-- The exact strict coefficient comparison, with `J` represented by its finite convolution.
-There are no positivity, ratio, or transfer premises beyond the manuscript hypotheses.-/
+There are no positivity, ratio, or transfer premises beyond the manuscript hypotheses.
+@isnad1 id=lt.7h6v.s7.2010da99c9d9 from=translated src=- shape=ab541201 vocab=cab44ba4
+-/
 theorem coefficient_comparison {α β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) (hα : 0 < α)
     (n : ℕ) (hk : 0 < weightedCoefficient α x y z n)

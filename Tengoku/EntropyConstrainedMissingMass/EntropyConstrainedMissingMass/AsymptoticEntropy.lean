@@ -14,19 +14,25 @@ noncomputable section
 /-- The entropy correction A(L) of Section 6; its value at zero is immaterial to the right limit.-/
 def entropyTailCorrection (L : ℝ) : ℝ := -(1 - L) / L * Real.log (1 - L)
 
-/-- The entropy identity expressed using total light mass L.-/
+/-- The entropy identity expressed using total light mass L.
+@isnad1 id=eq.0h2v.s6.f3cac4104174 from=translated src=- shape=2c13e600 vocab=f7e41451
+-/
 theorem heavy_tail_entropy (m L : ℝ) :
     branchEntropy m (1 - L) = -(1 - L) * Real.log (1 - L) - L * Real.log (L / m) := by
   unfold branchEntropy
   rw [show 1 - (1 - L) = L by ring]
 
-/-- The objective identity expressed using total light mass L.-/
+/-- The objective identity expressed using total light mass L.
+@isnad1 id=eq.0h3v.s6.f8a2d6b1b341 from=translated src=- shape=2166c4e8 vocab=3bce8241
+-/
 theorem heavy_tail_objective (m L : ℝ) (t : ℕ) :
     branchObjective m t (1 - L) = (1 - L) * L ^ t + L * (1 - L / m) ^ t := by
   unfold branchObjective
   rw [show 1 - (1 - L) = L by ring]
 
-/-- Exact separation of the logarithmic entropy term and its bounded correction.-/
+/-- Exact separation of the logarithmic entropy term and its bounded correction.
+@isnad1 id=eq.2h2v.s6.83c76b1e669e from=translated src=- shape=def73f0c vocab=e28a10f7
+-/
 theorem heavy_tail_entropy_correction (m L : ℝ) (hm : m ≠ 0) (hL : L ≠ 0) :
     branchEntropy m (1 - L) = L * (Real.log (m / L) + entropyTailCorrection L) := by
   rw [heavy_tail_entropy, Real.log_div hm hL, Real.log_div hL hm]
@@ -34,7 +40,9 @@ theorem heavy_tail_entropy_correction (m L : ℝ) (hm : m ≠ 0) (hL : L ≠ 0) 
   field_simp
   ring
 
-/-- A quantitative Taylor bound valid on the whole open unit interval.-/
+/-- A quantitative Taylor bound valid on the whole open unit interval.
+@isnad1 id=le.2h1v.s6.acdb7d234da9 from=translated src=- shape=e54d0ab7 vocab=3269ae15
+-/
 theorem entropyTailCorrection_remainder_bound (L : ℝ) (hL : 0 < L) (hL1 : L < 1) :
     |entropyTailCorrection L - (1 - L / 2)| ≤ (3 / 2 : ℝ) * L ^ 2 := by
   have hlog := Real.abs_log_sub_add_sum_range_le (x := L)
@@ -59,7 +67,9 @@ theorem entropyTailCorrection_remainder_bound (L : ℝ) (hL : 0 < L) (hL1 : L < 
       linarith only [hmul]
     _ = (3 / 2 : ℝ) * L ^ 2 := by ring
 
-/-- The literal right-sided big-O expansion A(L)=1-L/2+O(L²).-/
+/-- The literal right-sided big-O expansion A(L)=1-L/2+O(L²).
+@isnad1 id=isbigo.0h0v.s6.dd5885e8373f from=translated src=- shape=d0f1928e vocab=dbcf8312
+-/
 theorem entropyTailCorrection_expansion :
     (fun L : ℝ => entropyTailCorrection L - (1 - L / 2)) =O[𝓝[>] (0 : ℝ)]
       (fun L => L ^ 2) := by
@@ -71,7 +81,9 @@ theorem entropyTailCorrection_expansion :
   simpa only [Real.norm_eq_abs, abs_of_nonneg (sq_nonneg L)] using
     entropyTailCorrection_remainder_bound L hL hL1
 
-/-- The correction is positive and at most one, uniformly on the open unit interval.-/
+/-- The correction is positive and at most one, uniformly on the open unit interval.
+@isnad1 id=and.2h1v.s5.0c437dbb557e from=translated src=- shape=3ab1a316 vocab=dd67d261
+-/
 theorem entropyTailCorrection_bounds (L : ℝ) (hL : 0 < L) (hL1 : L < 1) :
     0 < entropyTailCorrection L ∧ entropyTailCorrection L ≤ 1 := by
   have hlog : Real.log (1 - L) < 0 := Real.log_neg (by linarith) (by linarith)
@@ -88,7 +100,9 @@ theorem entropyTailCorrection_bounds (L : ℝ) (hL : 0 < L) (hL1 : L < 1) :
     rw [neg_div, neg_mul]
     linarith only [hmul]
 
-/-- The normalized entropy equation used to invert the lower-bound candidate.-/
+/-- The normalized entropy equation used to invert the lower-bound candidate.
+@isnad1 id=eq.4h3v.s6.3e2d55daf78b from=translated src=- shape=7ce7d0ec vocab=a5235a5f
+-/
 theorem heavy_tail_entropy_inversion (m L h : ℝ) (hm : 0 < m) (hL : 0 < L) (hh : 0 < h)
     (he : branchEntropy m (1 - L) = h) :
     h / L = Real.log (m / h) + Real.log (h / L) + entropyTailCorrection L := by

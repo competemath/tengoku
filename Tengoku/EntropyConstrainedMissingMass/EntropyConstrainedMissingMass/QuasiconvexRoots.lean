@@ -10,6 +10,9 @@ noncomputable section
 def curvatureRootMinus (t : ℝ) : ℝ := (2*t - Real.sqrt (2*t*(t-1))) / (t*(t+1))
 def curvatureRootPlus (t : ℝ) : ℝ := (2*t + Real.sqrt (2*t*(t-1))) / (t*(t+1))
 
+/--
+@isnad1 id=and.1h1v.s6.d5f5f40d408f from=translated src=- shape=9efd172f vocab=93742570
+-/
 theorem curvature_roots_order {t : ℝ} (ht : 1 < t) :
     0 < curvatureRootMinus t ∧ curvatureRootMinus t < 2/(t+1) ∧
       2/(t+1) < curvatureRootPlus t := by
@@ -27,6 +30,9 @@ theorem curvature_roots_order {t : ℝ} (ht : 1 < t) :
   · apply (div_lt_div_iff₀ ht1 hden).2
     nlinarith [mul_pos hs ht1]
 
+/--
+@isnad1 id=eq.1h2v.s6.2307606e2f38 from=translated src=- shape=cdadc75f vocab=c182879b
+-/
 theorem curvature_quadratic_factor {t : ℕ} (ht : 2 ≤ t) (u : ℝ) :
     curvatureDerivativeQuadratic t u = (t : ℝ)*((t : ℝ)+1)*
       (u-curvatureRootMinus t)*(u-curvatureRootPlus t) := by
@@ -38,6 +44,9 @@ theorem curvature_quadratic_factor {t : ℕ} (ht : 2 ≤ t) (u : ℝ) :
   simp only [mul_comm (t : ℝ) 2] at *
   nlinarith [hs]
 
+/--
+@isnad1 id=and.1h1v.s5.9813725179eb from=translated src=- shape=34c9c487 vocab=6537e0f8
+-/
 theorem curvature_quadratic_roots {t : ℕ} (ht : 2 ≤ t) :
     curvatureDerivativeQuadratic t (curvatureRootMinus t) = 0 ∧
       curvatureDerivativeQuadratic t (curvatureRootPlus t) = 0 := by

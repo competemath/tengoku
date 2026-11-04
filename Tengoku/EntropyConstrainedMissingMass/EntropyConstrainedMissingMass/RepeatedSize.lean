@@ -11,6 +11,9 @@ noncomputable section
 open Set Filter
 open scoped Topology ENNReal
 
+/--
+@isnad1 id=le.1h2v.s5.eae8c6cd9bba from=translated src=- shape=81066cf8 vocab=9755fa41
+-/
 theorem negMulLog_symmetric_pair_le {a ε : ℝ} (hε : |ε| ≤ a) :
     Real.negMulLog (a + ε) + Real.negMulLog (a - ε) ≤ 2 * Real.negMulLog a := by
   have he := abs_le.mp hε
@@ -27,7 +30,9 @@ theorem negMulLog_symmetric_pair_le {a ε : ℝ} (hε : |ε| ≤ a) :
   linarith
 
 /-- Cauchy's mean-value theorem realizes the logarithmic secant slope as `u f''(u)`.
-This gives the same contradiction as the manuscript's weighted-integral average.-/
+This gives the same contradiction as the manuscript's weighted-integral average.
+@isnad1 id=ex.4h3v.s8.e0b6e0c2ed40 from=translated src=- shape=67e2c2fc vocab=7b04fc78
+-/
 theorem exists_weighted_second_derivative_eq_log_secant {f : ℝ → ℝ} {x y : ℝ}
     (hx : 0 < x) (hxy : x < y) (hc : ContinuousOn (deriv f) (Icc x y))
     (hd : DifferentiableOn ℝ (deriv f) (Ioo x y)) :
@@ -50,7 +55,9 @@ theorem exists_weighted_second_derivative_eq_log_secant {f : ℝ → ℝ} {x y :
   simp only [mul_assoc, inv_mul_cancel₀ hv0, mul_one] at heq'
   nlinarith only [heq']
 
-/-- Strict quasiconvexity excludes the two second-variation endpoint inequalities.-/
+/-- Strict quasiconvexity excludes the two second-variation endpoint inequalities.
+@isnad1 id=not.5h3v.s9.5666cbafc9cf from=translated src=- shape=7e44005d vocab=055fd539
+-/
 theorem not_both_weighted_second_derivative_bounds {f : ℝ → ℝ} {x y : ℝ}
     (hx : 0 < x) (hxy : x < y) (hc : ContinuousOn (deriv f) (Icc x y))
     (hd : DifferentiableOn ℝ (deriv f) (Ioo x y))
@@ -71,6 +78,9 @@ local instance repeatedSizeDecidableEq : DecidableEq ι := Classical.decEq ι
 def repeatedPairValues (p : ProbabilityVector ι) (i : ι) (ε : ℝ) (k : ι) : ℝ :=
   if k = i then p.coord i + ε else p.coord i - ε
 
+/--
+@isnad1 id=le.2h6v.s6.4d354fb9491c from=translated src=- shape=930ba3b1 vocab=de69b096
+-/
 theorem repeatedPairValues_nonneg (p : ProbabilityVector ι) {i j : ι} {ε : ℝ}
     (hε : |ε| ≤ p.coord i) (k : ι) (_hk : k ∈ ({i, j} : Finset ι)) :
     0 ≤ repeatedPairValues p i ε k := by
@@ -78,6 +88,9 @@ theorem repeatedPairValues_nonneg (p : ProbabilityVector ι) {i j : ι} {ε : �
   unfold repeatedPairValues
   split_ifs <;> linarith
 
+/--
+@isnad1 id=eq.2h5v.s6.21f48e45d448 from=translated src=- shape=f06561aa vocab=01efcc2f
+-/
 theorem sum_repeatedPairValues (p : ProbabilityVector ι) {i j : ι} (hij : i ≠ j)
     (heq : p.coord j = p.coord i) (ε : ℝ) :
     ∑ k ∈ ({i, j} : Finset ι), repeatedPairValues p i ε k =
@@ -92,6 +105,9 @@ def perturbRepeatedPair (p : ProbabilityVector ι) (i j : ι) (hij : i ≠ j)
       (repeatedPairValues_nonneg p hε) (sum_repeatedPairValues p hij heq ε)
   else p
 
+/--
+@isnad1 id=le.2h5v.s6.29e3ef9f2770 from=translated src=- shape=6324d045 vocab=d59f7af1
+-/
 theorem dist_perturbRepeatedPair_le (p : ProbabilityVector ι) (i j : ι) (hij : i ≠ j)
     (heq : p.coord j = p.coord i) (ε : ℝ) :
     dist (perturbRepeatedPair p i j hij heq ε) p ≤ 2 * |ε| := by
@@ -102,6 +118,9 @@ theorem dist_perturbRepeatedPair_le (p : ProbabilityVector ι) (i j : ι) (hij :
     linarith
   · simp
 
+/--
+@isnad1 id=tendsto.2h4v.s6.1d9da9ad0690 from=translated src=- shape=5954424a vocab=9421671a
+-/
 theorem tendsto_perturbRepeatedPair (p : ProbabilityVector ι) (i j : ι) (hij : i ≠ j)
     (heq : p.coord j = p.coord i) :
     Tendsto (perturbRepeatedPair p i j hij heq) (𝓝 0) (𝓝 p) := by
@@ -110,6 +129,9 @@ theorem tendsto_perturbRepeatedPair (p : ProbabilityVector ι) (i j : ι) (hij :
   simpa using (tendsto_const_nhds (x := (2 : ℝ))).mul
     ((tendsto_id : Tendsto (fun ε : ℝ => ε) (𝓝 0) (𝓝 0)).abs)
 
+/--
+@isnad1 id=le.3h5v.s5.50f6683ae946 from=translated src=- shape=dc1da851 vocab=01f645cb
+-/
 theorem entropy_perturbRepeatedPair_le (p : ProbabilityVector ι) (i j : ι) (hij : i ≠ j)
     (heq : p.coord j = p.coord i) (ε : ℝ) (hp : p.entropy ≠ ⊤) :
     (perturbRepeatedPair p i j hij heq ε).entropy ≤ p.entropy := by
@@ -122,6 +144,9 @@ theorem entropy_perturbRepeatedPair_le (p : ProbabilityVector ι) (i j : ι) (hi
     linarith
   · exact le_rfl
 
+/--
+@isnad1 id=eq.3h6v.s7.f0500cc9cbef from=translated src=- shape=6fee0aad vocab=8c601a11
+-/
 theorem objective_perturbRepeatedPair (p : ProbabilityVector ι) (i j : ι) (hij : i ≠ j)
     (heq : p.coord j = p.coord i) (ε : ℝ) (hε : |ε| ≤ p.coord i) (t : ℕ) :
     (perturbRepeatedPair p i j hij heq ε).objective t = p.objective t +
@@ -131,7 +156,9 @@ theorem objective_perturbRepeatedPair (p : ProbabilityVector ι) (i j : ι) (hij
   simp [Finset.sum_pair hij, repeatedPairValues, hij.symm, heq]
   ring
 
-/-- Local maximality in the actual ℓ¹ space passes to the symmetric pair variation.-/
+/-- Local maximality in the actual ℓ¹ space passes to the symmetric pair variation.
+@isnad1 id=islocalm.4h6v.s6.58fca6e16763 from=translated src=- shape=208ecb8a vocab=cf16e07f
+-/
 theorem localMax_symmetric_pair_of_repeated (p : ProbabilityVector ι) {t : ℕ} {h : ℝ}
     (hp : LocalMaximizer t h p) (i j : ι) (hij : i ≠ j)
     (heq : p.coord j = p.coord i) (hi : 0 < p.coord i) :
@@ -152,6 +179,9 @@ theorem localMax_symmetric_pair_of_repeated (p : ProbabilityVector ι) {t : ℕ}
   simp only [add_zero, sub_zero]
   linarith
 
+/--
+@isnad1 id=le.2h4v.s5.3566fe651811 from=translated src=- shape=38fbbdaf vocab=29351807
+-/
 theorem repeated_size_le_half (p : ProbabilityVector ι) (i j : ι) (hij : i ≠ j)
     (heq : p.coord j = p.coord i) : p.coord i ≤ 1 / 2 := by
   have hs := p.summable_coord.sum_le_tsum ({i, j} : Finset ι) (fun k _ => p.coord_nonneg k)

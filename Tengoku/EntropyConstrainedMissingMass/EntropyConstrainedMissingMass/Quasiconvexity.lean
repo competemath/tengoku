@@ -17,6 +17,9 @@ def weightedCurvature (t : ℕ) (u : ℝ) : ℝ :=
 def curvatureDerivativeQuadratic (t : ℕ) (u : ℝ) : ℝ :=
   (t : ℝ) * ((t : ℝ) + 1) * u ^ 2 - 4 * (t : ℝ) * u + 2
 
+/--
+@isnad1 id=lt.3h3v.s6.13ab16333cfe from=translated src=- shape=5e9767f7 vocab=c4c27fbe
+-/
 theorem curvatureDerivativeQuadratic_strictAnti (t : ℕ) (ht : 1 ≤ t)
     {x y : ℝ} (hxy : x < y) (hy : y ≤ 2 / ((t : ℝ) + 1)) :
     curvatureDerivativeQuadratic t y < curvatureDerivativeQuadratic t x := by

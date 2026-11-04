@@ -8,6 +8,9 @@ first-order differences. They also verify the starting coefficient at index zero
 
 namespace EntropyConstrainedMissingMass
 
+/--
+@isnad1 id=eq.4h5v.s8.a92d8fc20172 from=translated src=- shape=182cbe4f vocab=8f64c146
+-/
 theorem homogeneous3_eq_of_recurrence (x y z : ℝ) (f : ℕ → ℝ)
     (h0 : f 0 = 1) (h1 : f 1 = x + y + z)
     (h2 : f 2 = (x + y + z) ^ 2 - (x * y + x * z + y * z))
@@ -25,6 +28,9 @@ theorem homogeneous3_eq_of_recurrence (x y z : ℝ) (f : ℕ → ℝ)
       rw [homogeneous3_cubic_recurrence, hr,
         ih (k + 2) (by omega), ih (k + 1) (by omega), ih k (by omega)]
 
+/--
+@isnad1 id=eq.3h4v.s7.38c846499e80 from=translated src=- shape=7a7d2321 vocab=3ea78e28
+-/
 theorem homogeneous3_partial_fraction (x y z : ℝ)
     (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) (n : ℕ) :
     homogeneous3 x y z n =
@@ -64,9 +70,15 @@ def previousHomogeneous3 (x y z : ℝ) : ℕ → ℝ
 def weightedCoefficient (β x y z : ℝ) (n : ℕ) : ℝ :=
   homogeneous3 x y z n - β * previousHomogeneous3 x y z n
 
+/--
+@isnad1 id=eq.0h4v.s4.bcfea4437ed5 from=translated src=- shape=182d6345 vocab=dc057f64
+-/
 @[simp] theorem weightedCoefficient_zero (β x y z : ℝ) : weightedCoefficient β x y z 0 = 1 := by
   simp [weightedCoefficient, previousHomogeneous3]
 
+/--
+@isnad1 id=eq.3h5v.s8.ff52aed0f61a from=translated src=- shape=6a538f94 vocab=29362a7a
+-/
 theorem weightedCoefficient_partial_fraction (β x y z : ℝ)
     (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) (n : ℕ) :
     weightedCoefficient β x y z n =
@@ -90,7 +102,9 @@ theorem weightedCoefficient_partial_fraction (β x y z : ℝ)
       homogeneous3_partial_fraction x y z hxy hxz hyz, pow_add]
     ring
 
-/-- After cancelling the middle exponential, the two remaining terms are strictly negative.-/
+/-- After cancelling the middle exponential, the two remaining terms are strictly negative.
+@isnad1 id=lt.4h5v.s7.cd443c364915 from=translated src=- shape=afb312d9 vocab=a478b513
+-/
 theorem weightedCoefficient_middle_strict_concavity {β x y z : ℝ}
     (hβx : x < β) (hxy : y < x) (hyz : z < y) (hz : 0 < z) (n : ℕ) :
     weightedCoefficient β x y z (n + 2) - 2 * y * weightedCoefficient β x y z (n + 1) +

@@ -19,7 +19,9 @@ extended algebraically to real multiplicities.-/
 noncomputable def branchObjective (m : ℝ) (t : ℕ) (z : ℝ) : ℝ :=
   z * (1 - z) ^ t + (1 - z) * (1 - (1 - z) / m) ^ t
 
-/-- Appendix D's lower and upper rational enclosures of the branch objective.-/
+/-- Appendix D's lower and upper rational enclosures of the branch objective.
+@isnad1 id=and.5h5v.s8.0201777fd28c from=translated src=- shape=beec5a8d vocab=b2c81fe5
+-/
 theorem objective_certificate (m a z b : ℝ) (t : ℕ)
     (hm : 1 ≤ m) (ha : 0 ≤ a) (haz : a ≤ z) (hzb : z ≤ b) (hb : b ≤ 1) :
     a * (1 - b) ^ t + (1 - b) * (1 - (1 - a) / m) ^ t ≤
@@ -60,7 +62,9 @@ theorem objective_certificate (m a z b : ℝ) (t : ℕ)
       (mul_le_mul (by linarith : 1 - z ≤ 1 - a) hpzb
         (pow_nonneg hbasez t) (by linarith))
 
-/-- The integer-multiplicity version used by the exact rational certificates.-/
+/-- The integer-multiplicity version used by the exact rational certificates.
+@isnad1 id=and.5h5v.s8.3b67ec35f92b from=translated src=- shape=e44506ea vocab=de71b111
+-/
 theorem objective_certificate_nat (m t : ℕ) (a z b : ℝ)
     (hm : 1 ≤ m) (ha : 0 ≤ a) (haz : a ≤ z) (hzb : z ≤ b) (hb : b ≤ 1) :
     a * (1 - b) ^ t + (1 - b) * (1 - (1 - a) / (m : ℝ)) ^ t ≤

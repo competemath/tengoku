@@ -23,6 +23,9 @@ def StatisticFiniteLocalMax (f : ℝ → ℝ) (p : ProbabilityVector ι) : Prop 
     IsLocalMaxOn (fun v : Fin n → ℝ => ∑ i, f (v i))
       (finiteEntropyConstraint (fun i => p.coord (e i))) (fun i => p.coord (e i))
 
+/--
+@isnad1 id=eq.3h6v.s7.ee464fd6e6af from=translated src=- shape=cf96f7fe vocab=f1338ddb
+-/
 theorem statistic_replaceEmbedded (p : ProbabilityVector ι) (e : Fin n ↪ ι)
     (v : Fin n → ℝ) (hv : ∀ i, 0 ≤ v i) (hsum : ∑ i, v i = ∑ i, p.coord (e i))
     (f : ℝ → ℝ) (hf : Summable (fun i => f (p.coord i))) :
@@ -33,7 +36,9 @@ theorem statistic_replaceEmbedded (p : ProbabilityVector ι) (e : Fin n ↪ ι)
   simp only [e.injective.extend_apply, Finset.sum_sub_distrib]
   ring
 
-/-- Every actual local maximum of a well-defined atom sum induces the finite-coordinate problem.-/
+/-- Every actual local maximum of a well-defined atom sum induces the finite-coordinate problem.
+@isnad1 id=statisti.3h4v.s6.4a1eab4a1993 from=translated src=- shape=499ac525 vocab=330ea9ba
+-/
 theorem statisticFiniteLocalMax_of_localMax {h : ℝ} (p : ProbabilityVector ι)
     (hp : p ∈ Feasible h) (f : ℝ → ℝ) (hf : Summable (fun i => f (p.coord i)))
     (hm : IsLocalMaxOn (fun q : ProbabilityVector ι => ∑' i, f (q.coord i)) (Feasible h) p) :

@@ -9,7 +9,9 @@ noncomputable section
 open Filter Set
 open scoped Topology
 
-/-- A zero weighted moment and a positive tail require a negative positive integer value.-/
+/-- A zero weighted moment and a positive tail require a negative positive integer value.
+@isnad1 id=ex.2h1v.s6.926f4af20b15 from=translated src=- shape=3f993625 vocab=743819fb
+-/
 theorem exists_negative_integer_of_zero_series {f : ℝ → ℝ}
     (hs : HasSum (fun n : ℕ => f (n + 1) / (n + 1)) 0)
     (hp : ∀ᶠ x in atTop, 0 < f x) : ∃ n : ℕ, f (n + 1) < 0 := by
@@ -23,7 +25,9 @@ theorem exists_negative_integer_of_zero_series {f : ℝ → ℝ}
   rw [hs.tsum_eq] at hsum
   exact lt_irrefl _ hsum
 
-/-- The coefficient of the largest positive base determines the eventual sign.-/
+/-- The coefficient of the largest positive base determines the eventual sign.
+@isnad1 id=eventual.7h8v.s7.149b708d840b from=translated src=- shape=93635821 vocab=1290ecb0
+-/
 theorem eventually_pos_four_term (A B C D a b c d : ℝ)
     (hD : 0 < D) (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (had : a < d) (hbd : b < d) (hcd : c < d) :

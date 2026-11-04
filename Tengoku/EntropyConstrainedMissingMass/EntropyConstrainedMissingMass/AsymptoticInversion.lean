@@ -8,7 +8,9 @@ open Filter Set
 open scoped Topology Asymptotics
 namespace EntropyConstrainedMissingMass
 
-/-- The logarithm increment is bounded by the relative increment.-/
+/-- The logarithm increment is bounded by the relative increment.
+@isnad1 id=le.2h2v.s5.373c4320567e from=translated src=- shape=3abc5968 vocab=a957b093
+-/
 theorem log_increment_le {x y : ℝ} (hx : 0 < x) (hy : 0 < y) :
     Real.log x - Real.log y ≤ (x - y) / y := by
   have h := Real.log_le_sub_one_of_pos (div_pos hx hy)
@@ -26,7 +28,9 @@ private theorem inverse_log_ordered {x y : ℝ} (hy : 2 ≤ y) (hxy : y ≤ x) :
   have hp := mul_nonneg (sub_nonneg.mpr hy) hlo
   nlinarith only [hu, hp]
 
-/-- An explicit inverse Lipschitz bound, avoiding any assumed asymptotic inverse theorem.-/
+/-- An explicit inverse Lipschitz bound, avoiding any assumed asymptotic inverse theorem.
+@isnad1 id=le.2h2v.s6.fbdc337f9db2 from=translated src=- shape=f2c3e77b vocab=d80c9793
+-/
 theorem inverse_log_abs_bound {x y : ℝ} (hx : 2 ≤ x) (hy : 2 ≤ y) :
     |x - y| ≤ 2 * |(x - Real.log x) - (y - Real.log y)| := by
   by_cases hxy : y ≤ x
@@ -37,7 +41,9 @@ theorem inverse_log_abs_bound {x y : ℝ} (hx : 2 ≤ x) (hy : 2 ≤ y) :
     rw [abs_sub_comm x y, abs_of_nonneg (sub_nonneg.mpr (le_of_not_ge hxy)), abs_sub_comm]
     exact h.trans (mul_le_mul_of_nonneg_left (le_abs_self _) (by norm_num))
 
-/-- The stationary-model substitution has the required small residual.-/
+/-- The stationary-model substitution has the required small residual.
+@isnad1 id=le.1h1v.s6.3995bb5eadd1 from=translated src=- shape=99acc495 vocab=a30d5e84
+-/
 theorem inverse_log_model_residual {T : ℝ} (hT : 2 ≤ T) :
     |((T + Real.log T + 1) - Real.log (T + Real.log T + 1)) - (T + 1)| ≤
       (Real.log T + 1) / T := by
@@ -52,7 +58,9 @@ theorem inverse_log_model_residual {T : ℝ} (hT : 2 ≤ T) :
   convert log_increment_le (hTp.trans_le hD) hTp using 1
   ring
 
-/-- A finite, explicit error bound for entropy inversion.-/
+/-- A finite, explicit error bound for entropy inversion.
+@isnad1 id=le.3h3v.s7.7a9859eca3ce from=translated src=- shape=1af65f07 vocab=eb008055
+-/
 theorem entropy_inversion_error_bound {T d ε : ℝ} (hT : 2 ≤ T) (hd : 2 ≤ d)
     (hr : |(d - Real.log d) - (T + 1)| ≤ ε) :
     |d - (T + Real.log T + 1)| ≤ 2 * (ε + (Real.log T + 1) / T) := by
@@ -64,7 +72,9 @@ theorem entropy_inversion_error_bound {T d ε : ℝ} (hT : 2 ≤ T) (hd : 2 ≤ 
   have hm := inverse_log_model_residual hT
   linarith only [hi, ht, hr, hm]
 
-/-- From d-log d=T+1+O(1/T), recover d=T+log T+1+O(log T/T), along an actual filter.-/
+/-- From d-log d=T+1+O(1/T), recover d=T+log T+1+O(log T/T), along an actual filter.
+@isnad1 id=isbigo.2h1v.s7.f3d4cb770074 from=translated src=- shape=e15c6b85 vocab=a8b30e1b
+-/
 theorem entropy_inversion_isBigO (d : ℝ → ℝ)
     (hd : ∀ᶠ T in atTop, 2 ≤ d T)
     (hr : (fun T : ℝ => (d T - Real.log (d T)) - (T + 1)) =O[atTop] (fun T => 1 / T)) :

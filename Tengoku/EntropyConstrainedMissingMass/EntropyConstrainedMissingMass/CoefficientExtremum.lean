@@ -12,29 +12,47 @@ def coefficientDifference (x y z : ℝ) : ℕ → ℝ
   | 0 => 1
   | n + 1 => homogeneous3 x y z (n + 1) - homogeneous3 x y z n
 
+/--
+@isnad1 id=eq.0h3v.s4.5afa1b2cad07 from=translated src=- shape=1eabbd05 vocab=3a604b89
+-/
 @[simp] theorem coefficientDifference_zero (x y z : ℝ) : coefficientDifference x y z 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.756c1b8d6618 from=translated src=- shape=b041289c vocab=9adef3aa
+-/
 theorem coefficientDifference_eq (x y z : ℝ) (n : ℕ) :
     coefficientDifference x y z n = homogeneous3 x y z n -
       (if n = 0 then 0 else homogeneous3 x y z (n - 1)) := by
   cases n <;> simp [coefficientDifference, homogeneous3]
 
+/--
+@isnad1 id=eq.0h3v.s5.c3d35e61386e from=translated src=- shape=bc31348d vocab=970784dc
+-/
 theorem coefficientDifference_one (x y z : ℝ) :
     coefficientDifference x y z 1 = x + y + z - 1 := by
   simp [coefficientDifference, homogeneous3, homogeneous2]
 
+/--
+@isnad1 id=eq.0h4v.s4.0e31a17d26f4 from=translated src=- shape=5cba315c vocab=3a604b89
+-/
 theorem coefficientDifference_swap_left (x y z : ℝ) (n : ℕ) :
     coefficientDifference x y z n = coefficientDifference y x z n := by
   cases n with
   | zero => rfl
   | succ n => simp only [coefficientDifference, homogeneous3_swap_left x y z]
 
+/--
+@isnad1 id=eq.0h4v.s4.ac2e3a82711d from=translated src=- shape=83bb3b33 vocab=3a604b89
+-/
 theorem coefficientDifference_swap_right (x y z : ℝ) (n : ℕ) :
     coefficientDifference x y z n = coefficientDifference x z y n := by
   cases n with
   | zero => rfl
   | succ n => simp only [coefficientDifference, homogeneous3_swap_right x y z]
 
+/--
+@isnad1 id=eq.0h4v.s7.37f3d72326d5 from=translated src=- shape=803645c3 vocab=e6670712
+-/
 theorem coefficientDifference_pair_recurrence (x y z : ℝ) (n : ℕ) :
     coefficientDifference x y z (n + 2) =
       (y + z) * coefficientDifference x y z (n + 1) -
@@ -45,6 +63,9 @@ theorem coefficientDifference_pair_recurrence (x y z : ℝ) (n : ℕ) :
     simp only [coefficientDifference, homogeneous3, homogeneous2, pow_succ]
     ring
 
+/--
+@isnad1 id=or.1h4v.s6.b27c15529772 from=translated src=- shape=75358a48 vocab=dc98f0e6
+-/
 theorem coefficientDifference_pos_nonzero {x y z : ℝ} {n : ℕ}
     (hpos : 0 < coefficientDifference x y z (n + 1)) : x ≠ 0 ∨ y ≠ 0 ∨ z ≠ 0 := by
   by_contra h
@@ -52,6 +73,9 @@ theorem coefficientDifference_pos_nonzero {x y z : ℝ} {n : ℕ}
   obtain ⟨rfl, rfl, rfl⟩ := h
   cases n <;> norm_num [coefficientDifference, homogeneous3, homogeneous2] at hpos
 
+/--
+@isnad1 id=lt.4h4v.s6.6677a5116d30 from=translated src=- shape=d65dede6 vocab=22125eac
+-/
 theorem coefficientDifference_prev_pos {x y z : ℝ}
     (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) {n : ℕ}
     (hpos : 0 < coefficientDifference x y z (n + 1)) :
@@ -66,7 +90,9 @@ theorem coefficientDifference_prev_pos {x y z : ℝ}
     simp only [coefficientDifference] at hpos ⊢
     nlinarith
 
-/-- The positive coefficients form an initial segment.-/
+/-- The positive coefficients form an initial segment.
+@isnad1 id=lt.5h5v.s6.6019f1786ca2 from=translated src=- shape=10e0e455 vocab=f9669726
+-/
 theorem coefficientDifference_pos_of_le {x y z : ℝ}
     (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) {N : ℕ}
     (hpos : 0 < coefficientDifference x y z N) {j : ℕ} (hj : j ≤ N) :
@@ -82,7 +108,9 @@ theorem coefficientDifference_pos_of_le {x y z : ℝ}
     · exact ih (coefficientDifference_prev_pos hx hy hz hpos) (by omega)
 
 /-- A discrete mass transfer: keep the pair sum fixed and decrease its product.
-The positivity premise concerns the original coefficient only.-/
+The positivity premise concerns the original coefficient only.
+@isnad1 id=le.8h6v.s7.5abeb7a17fd0 from=translated src=- shape=8c8bc551 vocab=6691022a
+-/
 theorem coefficientDifference_le_of_pair_product {x y z Y Z : ℝ}
     (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) (hY : 0 ≤ Y) (hZ : 0 ≤ Z)
     (hsum : Y + Z = y + z) (hprod : Y * Z ≤ y * z) (N : ℕ)
@@ -111,6 +139,9 @@ theorem coefficientDifference_le_of_pair_product {x y z Y Z : ℝ}
         exact add_nonneg (mul_nonneg hZ hprev.2) (mul_nonneg (sub_nonneg.mpr hprod) hb)
   exact sub_nonneg.mp (hnonneg N le_rfl).1
 
+/--
+@isnad1 id=le.4h3v.s6.3adff739e9cb from=translated src=- shape=c526ad45 vocab=d6f2a40f
+-/
 theorem coefficientDifference_zero_last_le_one {x y : ℝ}
     (hx : 0 ≤ x) (hx1 : x ≤ 1) (hy : 0 ≤ y) (hy1 : y ≤ 1) (n : ℕ) :
     coefficientDifference x y 0 n ≤ 1 := by
@@ -125,10 +156,16 @@ theorem coefficientDifference_zero_last_le_one {x y : ℝ}
     rw [homogeneous2]
     nlinarith
 
+/--
+@isnad1 id=eq.0h2v.s4.30d1e6247e38 from=translated src=- shape=82afb1ae vocab=8b06f42b
+-/
 theorem coefficientDifference_two_ones (r : ℝ) (n : ℕ) :
     coefficientDifference r 1 1 n = homogeneous2 r 1 n := by
   cases n <;> simp [coefficientDifference, homogeneous3, homogeneous2]
 
+/--
+@isnad1 id=eq.0h2v.s6.641e03e57fcd from=translated src=- shape=ebc63fc8 vocab=f9aec21c
+-/
 theorem homogeneous2_one_geometric_identity (r : ℝ) (n : ℕ) :
     (1 - r) * homogeneous2 r 1 n = 1 - r ^ (n + 1) := by
   induction n with
@@ -141,6 +178,9 @@ theorem homogeneous2_one_geometric_identity (r : ℝ) (n : ℕ) :
       _ = (1 - r) * r ^ (n + 1) + (1 - r ^ (n + 1)) := by rw [ih]
       _ = 1 - r ^ (n + 1 + 1) := by rw [pow_succ r (n + 1)]; ring
 
+/--
+@isnad1 id=le.2h2v.s5.cee0d3387748 from=translated src=- shape=2aa8f697 vocab=303b496d
+-/
 theorem coefficientDifference_two_ones_le {r : ℝ} (hr : 0 ≤ r) (hr1 : r < 1) (n : ℕ) :
     coefficientDifference r 1 1 n ≤ (1 - r)⁻¹ := by
   rw [coefficientDifference_two_ones, ← one_div]
@@ -149,7 +189,9 @@ theorem coefficientDifference_two_ones_le {r : ℝ} (hr : 0 ≤ r) (hr1 : r < 1)
   have hpow := pow_nonneg hr (n + 1)
   nlinarith
 
-/-- The manuscript's coefficient-extremum lemma, including all boundary coordinates.-/
+/-- The manuscript's coefficient-extremum lemma, including all boundary coordinates.
+@isnad1 id=le.7h4v.s7.b1103d2a16ec from=translated src=- shape=07fdc193 vocab=37a016dd
+-/
 theorem coefficient_extremum {x y z : ℝ}
     (hx : 0 ≤ x) (hx1 : x ≤ 1) (hy : 0 ≤ y) (hy1 : y ≤ 1)
     (hz : 0 ≤ z) (hz1 : z ≤ 1) (hsigma : 0 < 3 - x - y - z) (N : ℕ) :

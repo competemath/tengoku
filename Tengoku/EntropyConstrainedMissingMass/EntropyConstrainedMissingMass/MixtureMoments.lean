@@ -17,15 +17,26 @@ def mixtureMoment (n : ℕ) : ℝ := ∫ v : Icc a b, (v : ℝ) ^ n ∂μ
 private theorem integrable_parameter {f : Icc a b → ℝ} (hf : Continuous f) : Integrable f μ :=
   hf.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace f)
 
+/--
+@isnad1 id=integrab.0h4v.s7.f402cec2151c from=translated src=- shape=22e3f979 vocab=a304366b
+-/
 theorem integrable_mixtureMoment (n : ℕ) : Integrable (fun v : Icc a b => (v : ℝ) ^ n) μ :=
   integrable_parameter μ (by fun_prop)
 
+/--
+@isnad1 id=eq.0h3v.s6.912c5df189cb from=translated src=- shape=2679d48d vocab=67fe0ca7
+-/
 @[simp] theorem mixtureMoment_zero : mixtureMoment μ 0 = 1 := by simp [mixtureMoment]
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h3v.s5.3cba035f3fe4 from=translated src=- shape=edca2082 vocab=faa36812
+-/
 @[simp] theorem mixtureMoment_one : mixtureMoment μ 1 = mixtureMean μ := by
   simp [mixtureMoment, mixtureMean]
 
-/-- The variance is exactly the second moment minus the squared mean.-/
+/-- The variance is exactly the second moment minus the squared mean.
+@isnad1 id=eq.0h3v.s7.51d3e4c412ad from=translated src=- shape=d924ef03 vocab=631353af
+-/
 theorem mixture_variance_eq :
     (∫ v : Icc a b, ((v : ℝ) - mixtureMean μ) ^ 2 ∂μ) =
       mixtureMoment μ 2 - (mixtureMean μ) ^ 2 := by
@@ -43,7 +54,9 @@ theorem mixture_variance_eq :
   change mixtureMoment μ 2 - 2 * c * c + c ^ 2 = mixtureMoment μ 2 - c ^ 2
   ring
 
-/-- The weighted centered moment simplifies because c is the actual mean.-/
+/-- The weighted centered moment simplifies because c is the actual mean.
+@isnad1 id=eq.0h3v.s7.e8d28ab7b572 from=translated src=- shape=aabac44f vocab=94107621
+-/
 theorem mixture_weighted_variance_eq :
     (∫ v : Icc a b, ((v : ℝ) - mixtureMean μ) ^ 2 * ((v : ℝ) + mixtureMean μ) ∂μ) =
       mixtureMoment μ 3 - mixtureMean μ * mixtureMoment μ 2 := by
@@ -67,7 +80,9 @@ theorem mixture_weighted_variance_eq :
     mixtureMoment μ 3 - c * mixtureMoment μ 2
   ring
 
-/-- Cauchy–Schwarz written as an integrated nonnegative square, avoiding square-root choices.-/
+/-- Cauchy–Schwarz written as an integrated nonnegative square, avoiding square-root choices.
+@isnad1 id=le.2h3v.s7.e8dcc702aebd from=translated src=- shape=485209ed vocab=16e14743
+-/
 theorem mixture_dispersion_lower (ha : 0 < a)
     (hden : 0 < mixtureMoment μ 3 - mixtureMean μ * mixtureMoment μ 2) :
     (mixtureMoment μ 2 - (mixtureMean μ) ^ 2) ^ 2 /
@@ -105,7 +120,9 @@ theorem mixture_dispersion_lower (ha : 0 < a)
   rw [heq] at h
   exact h
 
-/-- The third-moment identity supplied by the tilted simplex gives the manuscript denominator.-/
+/-- The third-moment identity supplied by the tilted simplex gives the manuscript denominator.
+@isnad1 id=le.4h4v.s8.eb4e9f03380e from=translated src=- shape=9a0ace80 vocab=16e14743
+-/
 theorem mixture_dispersion_lower_of_third_moment (ha : 0 < a) (S : ℝ)
     (hm : mixtureMean μ < S / 3) (h2 : 0 < mixtureMoment μ 2)
     (h3 : mixtureMoment μ 3 = (S / 3) * mixtureMoment μ 2) :

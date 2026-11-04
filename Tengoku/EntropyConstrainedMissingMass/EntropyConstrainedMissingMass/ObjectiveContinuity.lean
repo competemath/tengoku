@@ -11,6 +11,9 @@ This uses an algebraic estimate instead of choosing the maximum of a derivative.
 
 namespace EntropyConstrainedMissingMass
 
+/--
+@isnad1 id=le.2h3v.s6.6195d85c7d55 from=translated src=- shape=e883cade vocab=e2a5207a
+-/
 theorem abs_pow_sub_pow_le_on_unit (t : ℕ) {x y : ℝ}
     (hx : x ∈ Set.Icc 0 1) (hy : y ∈ Set.Icc 0 1) :
     |x ^ t - y ^ t| ≤ t * |x - y| := by
@@ -24,6 +27,9 @@ theorem abs_pow_sub_pow_le_on_unit (t : ℕ) {x y : ℝ}
       (pow_le_one₀ hmax hmax1) (by positivity)
     _ = t * |x - y| := by ring
 
+/--
+@isnad1 id=le.2h3v.s6.85e9507a8721 from=translated src=- shape=a092976c vocab=d3560255
+-/
 theorem missingMassTerm_lipschitz (t : ℕ) {x y : ℝ}
     (hx : x ∈ Set.Icc 0 1) (hy : y ∈ Set.Icc 0 1) :
     |missingMassTerm t x - missingMassTerm t y| ≤ (t + 1) * |x - y| := by
@@ -52,6 +58,9 @@ theorem missingMassTerm_lipschitz (t : ℕ) {x y : ℝ}
 namespace ProbabilityVector
 variable {ι : Type*}
 
+/--
+@isnad1 id=le.0h4v.s6.266c36c0173b from=translated src=- shape=04997b9c vocab=8546b662
+-/
 theorem objective_dist_le (p q : ProbabilityVector ι) (t : ℕ) :
     |p.objective t - q.objective t| ≤ (t + 1) * dist p q := by
   have hs := (p.objective_summable t).sub (q.objective_summable t)
@@ -69,6 +78,9 @@ theorem objective_dist_le (p q : ProbabilityVector ι) (t : ℕ) :
         (hd.mul_left _)
     _ = (t + 1) * dist p q := by rw [tsum_mul_left, p.dist_eq_tsum q]
 
+/--
+@isnad1 id=lipschit.0h2v.s5.97b1ecce2bbc from=translated src=- shape=e83eb3c3 vocab=79a4375f
+-/
 theorem objective_lipschitz (t : ℕ) :
     LipschitzWith (t + 1) (fun p : ProbabilityVector ι => p.objective t) := by
   apply LipschitzWith.of_dist_le_mul
@@ -76,6 +88,9 @@ theorem objective_lipschitz (t : ℕ) :
   simpa only [Real.dist_eq, NNReal.coe_add, NNReal.coe_natCast, NNReal.coe_one] using
     p.objective_dist_le q t
 
+/--
+@isnad1 id=continuo.0h2v.s4.6592e8aa3023 from=translated src=- shape=6f7687a5 vocab=493e1aa3
+-/
 theorem continuous_objective (t : ℕ) :
     Continuous (fun p : ProbabilityVector ι => p.objective t) :=
   (objective_lipschitz t).continuous

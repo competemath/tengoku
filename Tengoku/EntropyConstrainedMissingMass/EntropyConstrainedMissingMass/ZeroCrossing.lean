@@ -10,6 +10,9 @@ noncomputable section
 open Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=le.2h3v.s6.c43d5ec17099 from=translated src=- shape=de02ca5b vocab=10e26bec
+-/
 theorem ZeroMultiplicityBound.sum_le {f : ℝ → ℝ} {n : ℕ}
     (hb : ZeroMultiplicityBound f n) (s : Finset ℝ) (hs : ∀ x ∈ s, f x = 0) :
     (∑ x ∈ s, analyticOrderAt f x) ≤ (n : ℕ∞) := by
@@ -17,6 +20,9 @@ theorem ZeroMultiplicityBound.sum_le {f : ℝ → ℝ} {n : ℕ}
   exact (Finset.sum_le_sum_of_subset_of_nonneg (fun x hx => (ht x).mp (hs x hx))
     (fun _ _ _ => zero_le)).trans hn
 
+/--
+@isnad1 id=le.3h3v.s6.821de844144f from=translated src=- shape=23c1d646 vocab=f0dd54c4
+-/
 theorem ZeroMultiplicityBound.card_le {f : ℝ → ℝ} {n : ℕ}
     (hb : ZeroMultiplicityBound f n) (hf : ∀ x, AnalyticAt ℝ f x)
     (s : Finset ℝ) (hs : ∀ x ∈ s, f x = 0) : s.card ≤ n := by
@@ -27,7 +33,9 @@ theorem ZeroMultiplicityBound.card_le {f : ℝ → ℝ} {n : ℕ}
   exact_mod_cast h1.trans h
 
 /-- If distinct zeros already exhaust a multiplicity bound, there are no other zeros
-and every listed zero is simple.-/
+and every listed zero is simple.
+@isnad1 id=and.4h3v.s7.88b7c4f0e884 from=translated src=- shape=d1d92b14 vocab=e1b976bb
+-/
 theorem ZeroMultiplicityBound.exhausted {f : ℝ → ℝ} {n : ℕ}
     (hb : ZeroMultiplicityBound f n) (hf : ∀ x, AnalyticAt ℝ f x)
     (s : Finset ℝ) (hcard : s.card = n) (hs : ∀ x ∈ s, f x = 0) :
@@ -60,7 +68,9 @@ theorem ZeroMultiplicityBound.exhausted {f : ℝ → ℝ} {n : ℕ}
         ((add_le_add le_rfl he).trans hsum)
     exact le_antisymm hu (h1 x hx)
 
-/-- Two distinct zeros exhaust a bound of two, and both zeros are simple.-/
+/-- Two distinct zeros exhaust a bound of two, and both zeros are simple.
+@isnad1 id=and.5h3v.s7.38b4428fb576 from=translated src=- shape=6ab332e8 vocab=50ceffa7
+-/
 theorem ZeroMultiplicityBound.two_zeros {f : ℝ → ℝ}
     (hb : ZeroMultiplicityBound f 2) (hf : ∀ x, AnalyticAt ℝ f x)
     {a b : ℝ} (hab : a ≠ b) (ha : f a = 0) (hb' : f b = 0) :
@@ -96,11 +106,17 @@ theorem ZeroMultiplicityBound.two_zeros {f : ℝ → ℝ}
       ((add_le_add ha1 le_rfl).trans hsum)
   exact ⟨hz, le_antisymm hleft ha1, le_antisymm hright hb1⟩
 
+/--
+@isnad1 id=ne.2h2v.s6.789ef461619d from=translated src=- shape=6217b00b vocab=cba77bf5
+-/
 theorem deriv_ne_zero_of_analyticOrderAt_eq_one {f : ℝ → ℝ} {a : ℝ}
     (hf : AnalyticAt ℝ f a) (ho : analyticOrderAt f a = 1) : deriv f a ≠ 0 := by
   have hh := (analyticOrderAt_eq_nat_iff_iteratedDeriv_eq_zero hf (n := 1)).mp ho
   simpa using hh.2
 
+/--
+@isnad1 id=lt.6h4v.s6.7b135da30e74 from=translated src=- shape=414e74ca vocab=0d346843
+-/
 theorem negative_on_interval_of_no_zeros {f : ℝ → ℝ} {I : Set ℝ}
     (hc : Continuous f) (hI : OrdConnected I) (hn : ∀ x ∈ I, f x ≠ 0)
     {a : ℝ} (ha : a ∈ I) (hfa : f a < 0) : ∀ x ∈ I, f x < 0 := by
@@ -114,7 +130,9 @@ theorem negative_on_interval_of_no_zeros {f : ℝ → ℝ} {I : Set ℝ}
     exact hn z (hI.out hx ha hz) he
 
 /-- A two-zero bound, a zero at zero, a negative positive-time value, and eventual
-positivity force exactly one positive simple crossing with the asserted sign orientation.-/
+positivity force exactly one positive simple crossing with the asserted sign orientation.
+@isnad1 id=ex.6h2v.s8.41ab33865f79 from=translated src=- shape=b8d43836 vocab=b0caf2e4
+-/
 theorem single_crossing_of_two_zeros {f : ℝ → ℝ} {a : ℝ}
     (hf : ∀ x, AnalyticAt ℝ f x) (hb : ZeroMultiplicityBound f 2)
     (h0 : f 0 = 0) (ha : 0 < a) (hfa : f a < 0)
@@ -149,7 +167,9 @@ theorem single_crossing_of_two_zeros {f : ℝ → ℝ} {a : ℝ}
     intro x hx
     simpa using hn' x hx
 
-/-- A simple zero with negative values immediately to its right has negative derivative.-/
+/-- A simple zero with negative values immediately to its right has negative derivative.
+@isnad1 id=lt.4h3v.s7.4f709b319a66 from=translated src=- shape=0e785aa9 vocab=85f88c41
+-/
 theorem deriv_neg_of_simple_zero_negative_right {f : ℝ → ℝ} {a b : ℝ}
     (hf : AnalyticAt ℝ f a) (ho : analyticOrderAt f a = 1) (hab : a < b)
     (hn : ∀ x ∈ Ioo a b, f x < 0) : deriv f a < 0 := by
@@ -164,7 +184,9 @@ theorem deriv_neg_of_simple_zero_negative_right {f : ℝ → ℝ} {a b : ℝ}
   exact lt_of_le_of_ne hle (deriv_ne_zero_of_analyticOrderAt_eq_one hf ho)
 
 /-- Three permitted zeros, a negative value followed by a positive value, and a
-negative tail force two simple positive crossings and the complete sign pattern.-/
+negative tail force two simple positive crossings and the complete sign pattern.
+@isnad1 id=ex.8h3v.s8.e96b27d850b3 from=translated src=- shape=3054a837 vocab=b0caf2e4
+-/
 theorem double_crossing_of_three_zeros {f : ℝ → ℝ} {a b : ℝ}
     (hf : ∀ x, AnalyticAt ℝ f x) (hb : ZeroMultiplicityBound f 3)
     (h0 : f 0 = 0) (ha : 0 < a) (hab : a < b) (hfa : f a < 0) (hfb : 0 < f b)

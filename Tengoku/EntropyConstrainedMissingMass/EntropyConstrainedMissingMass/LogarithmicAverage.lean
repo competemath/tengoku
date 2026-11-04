@@ -8,7 +8,9 @@ open Set MeasureTheory
 namespace EntropyConstrainedMissingMass
 noncomputable section
 
-/-- The weighting `du/u` cancels the factor u in weighted curvature.-/
+/-- The weighting `du/u` cancels the factor u in weighted curvature.
+@isnad1 id=eq.4h3v.s7.253381b75770 from=translated src=- shape=0556b71f vocab=c1afde62
+-/
 theorem weighted_second_derivative_integral {f : ℝ → ℝ} {x y : ℝ}
     (hf : ContDiffOn ℝ 2 f (Ioo 0 1)) (hx : 0 < x) (hxy : x < y) (hy : y < 1) :
     (∫ u in x..y, (u * deriv (deriv f) u)/u) = deriv f y - deriv f x := by
@@ -31,7 +33,9 @@ theorem weighted_second_derivative_integral {f : ℝ → ℝ} {x y : ℝ}
   have hu0 : u ≠ 0 := ne_of_gt (hx.trans_le hu.1)
   field_simp
 
-/-- The source logarithmic secant and integral average are exactly equal.-/
+/-- The source logarithmic secant and integral average are exactly equal.
+@isnad1 id=eq.4h3v.s8.860a0494f3ee from=translated src=- shape=2364991f vocab=258dc737
+-/
 theorem weighted_log_average {f : ℝ → ℝ} {x y : ℝ}
     (hf : ContDiffOn ℝ 2 f (Ioo 0 1)) (hx : 0 < x) (hxy : x < y) (hy : y < 1) :
     (deriv f y - deriv f x) / (Real.log y - Real.log x) =
