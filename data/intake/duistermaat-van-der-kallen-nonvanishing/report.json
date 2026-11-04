@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "bec4fdaa0daf35f78a23d35bdccc388ae18020decc2a12f25608875e029ac38c",
+ "gate2_unjudged": [],
+ "library": "duistermaat-van-der-kallen-nonvanishing",
+ "lint_mode": "proposed",
+ "modules": 88,
+ "part": 1,
+ "theorems": 410
+}

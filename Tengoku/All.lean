@@ -86,6 +86,7 @@ import Tengoku.TaoAnalysis
 import Tengoku.Tautology
 import Tengoku.Absorptioncutoff
 import Tengoku.Complexitylib
+import Tengoku.DuistermaatVanDerKallenNonvanishing
 import Tengoku.Tauceti
 import Tengoku.Fagin
 import Tengoku.BtcVerified
