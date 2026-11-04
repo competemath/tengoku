@@ -158,7 +158,18 @@
     "https://github.com/thebookersmith/hodge-structures-lean4",
     "https://github.com/laurentbartholdi/theorem-a-fp-groups",
     "https://github.com/DongzheZheng/Kurosh-Problem-at-GK-Dimension-Two",
-    "https://github.com/jayyswan/hasse-minkowski"
+    "https://github.com/jayyswan/hasse-minkowski",
+    "https://github.com/RBarish-UTokyo/NPCompleteness-Lean4",
+    "https://github.com/pmaronow/at-palomar",
+    "https://github.com/satchlj/general_stoch_to_det",
+    "https://github.com/randyxian08/jsp000937-lean",
+    "https://github.com/yawara/t3-model-companion",
+    "https://github.com/hongjin-he/erdos-lean",
+    "https://github.com/long-mathematics/entropy-constrained-missing-mass",
+    "https://github.com/jtraverso/asymptotic-triangle-packing",
+    "https://github.com/eengad/deletion-codes-lean",
+    "https://github.com/NERV-WMY/pi2-lean",
+    "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -329,7 +340,18 @@
     "https://github.com/thebookersmith/hodge-structures-lean4": "Apache-2.0",
     "https://github.com/laurentbartholdi/theorem-a-fp-groups": "Apache-2.0",
     "https://github.com/DongzheZheng/Kurosh-Problem-at-GK-Dimension-Two": "MIT",
-    "https://github.com/jayyswan/hasse-minkowski": "Apache-2.0"
+    "https://github.com/jayyswan/hasse-minkowski": "Apache-2.0",
+    "https://github.com/RBarish-UTokyo/NPCompleteness-Lean4": "Apache-2.0",
+    "https://github.com/pmaronow/at-palomar": "MIT",
+    "https://github.com/satchlj/general_stoch_to_det": "Apache-2.0",
+    "https://github.com/randyxian08/jsp000937-lean": "MIT",
+    "https://github.com/yawara/t3-model-companion": "Apache-2.0",
+    "https://github.com/hongjin-he/erdos-lean": "Apache-2.0",
+    "https://github.com/long-mathematics/entropy-constrained-missing-mass": "MIT",
+    "https://github.com/jtraverso/asymptotic-triangle-packing": "Apache-2.0",
+    "https://github.com/eengad/deletion-codes-lean": "Apache-2.0",
+    "https://github.com/NERV-WMY/pi2-lean": "Apache-2.0",
+    "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing": "MIT"
   },
   "corpora": {
     "equational-theories": {
@@ -1354,6 +1376,103 @@
       "commit": "47f0e9b5cba6e6354b882bc5856a11962ba61f4a",
       "roots": [
         "HasseMinkowski"
+      ]
+    },
+    "npcompleteness-lean4": {
+      "repo": "https://github.com/RBarish-UTokyo/NPCompleteness-Lean4",
+      "commit": "3e603e795b44fedcf7d6dd65b7d1e30547ead925",
+      "roots": [
+        "Audit",
+        "Challenge",
+        "Complexity",
+        "Examples",
+        "Solution"
+      ]
+    },
+    "at-palomar": {
+      "repo": "https://github.com/pmaronow/at-palomar",
+      "commit": "915bca99f46bad65629ef35c8be4bf8fc962af9a",
+      "roots": [
+        "BrownianMotion",
+        "Challenge",
+        "Common",
+        "KolmogorovExtension4",
+        "Lemmas",
+        "Paper",
+        "ParisiFormula",
+        "Solution",
+        "SpinGlassFoundations",
+        "StochasticCalculus",
+        "Targets"
+      ]
+    },
+    "general-stoch-to-det": {
+      "repo": "https://github.com/satchlj/general_stoch_to_det",
+      "commit": "a82d50c1554e6ed8681fbdf8ec2563ff7d6dee4c",
+      "roots": [
+        "stoch_to_det"
+      ]
+    },
+    "jsp000937-lean": {
+      "repo": "https://github.com/randyxian08/jsp000937-lean",
+      "commit": "4d7493e7e730597877c38bd750bf02839863b68a",
+      "roots": [
+        "Erdos1153"
+      ]
+    },
+    "t3-model-companion": {
+      "repo": "https://github.com/yawara/t3-model-companion",
+      "commit": "b264b4a23d3f208a62ade1611a3473c8a72d7b34",
+      "roots": [
+        "Challenge",
+        "Solution",
+        "T3"
+      ]
+    },
+    "erdos-lean": {
+      "repo": "https://github.com/hongjin-he/erdos-lean",
+      "commit": "efede9693a3192e324bc092e5510f16a2aff1804",
+      "roots": [
+        "ErdosLean"
+      ]
+    },
+    "entropy-constrained-missing-mass": {
+      "repo": "https://github.com/long-mathematics/entropy-constrained-missing-mass",
+      "commit": "cfc6f0e70596b36c2309cccbb931a1c84f63ad7f",
+      "roots": [
+        "EntropyConstrainedMissingMass"
+      ]
+    },
+    "asymptotic-triangle-packing": {
+      "repo": "https://github.com/jtraverso/asymptotic-triangle-packing",
+      "commit": "760e503972aad8ca9da7904ce72e5cce405f5991",
+      "roots": [
+        "Challenge",
+        "LeanPool",
+        "Solution"
+      ]
+    },
+    "deletion-codes-lean": {
+      "repo": "https://github.com/eengad/deletion-codes-lean",
+      "commit": "24d093a4db95895a7206d8a23dbe2d7922258701",
+      "roots": [
+        "DeletionCode"
+      ]
+    },
+    "pi2-lean": {
+      "repo": "https://github.com/NERV-WMY/pi2-lean",
+      "commit": "89a161a4f6526bea4605fdf6b2b1156e34ca7d11",
+      "roots": [
+        "Row12",
+        "Row12EulerSupport",
+        "Row12GaussGauge"
+      ]
+    },
+    "duistermaat-van-der-kallen-nonvanishing": {
+      "repo": "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing",
+      "commit": "20f13044f15fd445845bf33fe74e24c3a7424598",
+      "roots": [
+        "DuistermaatVanDerKallen"
       ]
     }
   },
