@@ -34,7 +34,9 @@ noncomputable section
 Properness makes the map closed and makes each point fiber compact.  The
 local charts make the fiber discrete; a compact discrete subset is finite,
 which is precisely the finite-fiber input to Mathlib's evenly-covered
-neighborhood constructor.-/
+neighborhood constructor.
+@isnad1 id=iscoveri.2h3v.s5.18a592512b99 from=translated src=- shape=fe28e5a3 vocab=24df0e61
+-/
 theorem isCoveringMap_of_isLocalHomeomorph_of_isProperMap
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [T2Space E] [T2Space X] {f : E → X}
@@ -60,7 +62,9 @@ simply connected, locally path-connected space is a homeomorphism.
 The inverse is the unique lift of the identity map through the covering.  To
 check the other inverse law, compare `s ∘ f` with the identity as two lifts
 of `f`; connectedness of the total space and equality at the chosen basepoint
-give equality everywhere.-/
+give equality everywhere.
+@isnad1 id=ishomeom.2h3v.s5.e7994c619ca9 from=translated src=- shape=cd5bfac0 vocab=cb4de7d4
+-/
 theorem IsCoveringMap.isHomeomorph_of_surjective
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [PreconnectedSpace E] [Nonempty X]
@@ -91,7 +95,9 @@ theorem IsCoveringMap.isHomeomorph_of_surjective
 /-! ## Euclidean global inversion -/
 
 /-- The zero-dimensional case is completely elementary: `Fin 0 → ℝ` is a
-singleton, so every local homeomorphism from it to itself is bijective.-/
+singleton, so every local homeomorphism from it to itself is bijective.
+@isnad1 id=ishomeom.1h1v.s7.bd6d3e3e37a7 from=translated src=- shape=e56063e0 vocab=59bb225f
+-/
 theorem fin_zero_isHomeomorph_of_isLocalHomeomorph
     {f : (Fin 0 → ℝ) → (Fin 0 → ℝ)}
     (hloc : IsLocalHomeomorph f) : IsHomeomorph f := by
@@ -101,7 +107,9 @@ theorem fin_zero_isHomeomorph_of_isLocalHomeomorph
 
 /-- A proper local homeomorphism of `Fin d → ℝ` is a global
 homeomorphism.  The `d = 0` singleton case is dispatched explicitly; positive
-dimensions use the covering-space argument.-/
+dimensions use the covering-space argument.
+@isnad1 id=ishomeom.2h2v.s7.5bad832f1f4e from=translated src=- shape=40b03179 vocab=527c8ac5
+-/
 theorem euclidean_isHomeomorph_of_isLocalHomeomorph_of_isProperMap
     {d : ℕ} {f : (Fin d → ℝ) → (Fin d → ℝ)}
     (hloc : IsLocalHomeomorph f) (hproper : IsProperMap f) :
@@ -130,7 +138,9 @@ def transportedGapDifference {d : ℕ} {A B : ℝ}
   gapDifference ∘ (endpointArrayLogRatioHomeomorph hAB).symm
 
 /-- Local-homeomorphism transport from endpoint arrays to the global
-Euclidean chart.-/
+Euclidean chart.
+@isnad1 id=islocalh.2h3v.s6.0eda123663bf from=translated src=- shape=837e32be vocab=87c89f54
+-/
 theorem isLocalHomeomorph_transportedGapDifference
     {d : ℕ} {A B : ℝ} (hAB : AdmissibleInterval A B)
     (hloc : IsLocalHomeomorph
@@ -139,7 +149,9 @@ theorem isLocalHomeomorph_transportedGapDifference
   exact hloc.comp (endpointArrayLogRatioHomeomorph (d := d) hAB).symm.isLocalHomeomorph
 
 /-- Properness transport from endpoint arrays to the global Euclidean
-chart.-/
+chart.
+@isnad1 id=isproper.2h3v.s6.13cac88b32a2 from=translated src=- shape=837e32be vocab=2bd2f785
+-/
 theorem isProperMap_transportedGapDifference
     {d : ℕ} {A B : ℝ} (hAB : AdmissibleInterval A B)
     (hproper : IsProperMap
@@ -149,7 +161,9 @@ theorem isProperMap_transportedGapDifference
 
 /-- The exact global-topology packaging needed by the source theorem.  Once
 the Jacobian lane supplies local homeomorphism and the boundary lane supplies
-properness, no further global hypothesis is needed.-/
+properness, no further global hypothesis is needed.
+@isnad1 id=ishomeom.3h3v.s6.6a4f58f239b3 from=translated src=- shape=b74ef41a vocab=1d589077
+-/
 theorem gapDifference_isHomeomorph_of_localHomeomorph_of_proper
     {d : ℕ} {A B : ℝ} (hAB : AdmissibleInterval A B)
     (hloc : IsLocalHomeomorph
@@ -174,7 +188,9 @@ def GapDifferenceLocalHomeomorphStatement (d : ℕ) (A B : ℝ) : Prop :=
   IsLocalHomeomorph
     (gapDifference : EndpointArray d A B → Fin d → ℝ)
 
-/-- Project-level packaging into the reserved homeomorphism statement.-/
+/-- Project-level packaging into the reserved homeomorphism statement.
+@isnad1 id=gapdiffe.2h3v.s4.1b057562d013 from=translated src=- shape=84edd881 vocab=6e05159b
+-/
 theorem gapDifference_homeomorphismStatement_of_localHomeomorph_of_proper
     {d : ℕ} {A B : ℝ}
     (hloc : GapDifferenceLocalHomeomorphStatement d A B)
@@ -184,7 +200,9 @@ theorem gapDifference_homeomorphismStatement_of_localHomeomorph_of_proper
   exact gapDifference_isHomeomorph_of_localHomeomorph_of_proper hAB hloc hproper
 
 /-- Continuity plus the local-homeomorphism input suffices, using the checked
-sequential boundary-escape-to-properness theorem.-/
+sequential boundary-escape-to-properness theorem.
+@isnad1 id=gapdiffe.2h3v.s4.a9258bc27ca6 from=translated src=- shape=84edd881 vocab=1c2e4c8c
+-/
 theorem gapDifference_homeomorphismStatement_of_localHomeomorph_of_continuous
     {d : ℕ} {A B : ℝ}
     (hloc : GapDifferenceLocalHomeomorphStatement d A B)
@@ -195,7 +213,9 @@ theorem gapDifference_homeomorphismStatement_of_localHomeomorph_of_continuous
 
 /-- Final one-input topology interface.  A local homeomorphism is already
 continuous, so the committed boundary-escape bridge supplies properness and
-the global inversion theorem supplies the reserved source statement.-/
+the global inversion theorem supplies the reserved source statement.
+@isnad1 id=gapdiffe.1h3v.s3.eddd0342891c from=translated src=- shape=1802f65d vocab=d0d7e09b
+-/
 theorem gapDifference_homeomorphismStatement_of_localHomeomorph
     {d : ℕ} {A B : ℝ}
     (hloc : GapDifferenceLocalHomeomorphStatement d A B) :

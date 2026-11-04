@@ -34,7 +34,9 @@ def FullIntervalEventual : Prop :=
       FullIntervalAt nodes ε
 
 /-- The full-interval maximum formulation is equivalent to an explicit
-witness point.-/
+witness point.
+@isnad1 id=iff.0h3v.s6.cb570d292313 from=translated src=- shape=d18d0bc0 vocab=48ebc6ea
+-/
 lemma fullIntervalAt_iff_exists_point {n : ℕ} (nodes : NodeFamily n) (ε : ℝ) :
     FullIntervalAt nodes ε ↔
       ∃ t ∈ Set.Icc (-1 : ℝ) 1,
@@ -51,7 +53,9 @@ def PolynomialCertificate {n : ℕ} (nodes : NodeFamily n) (A : ℝ) : Prop :=
       A < |p.eval t|
 
 /-- A polynomial certificate really does lower-bound the full-interval
-Lebesgue constant.-/
+Lebesgue constant.
+@isnad1 id=lt.1h3v.s5.d9cbed457ee6 from=translated src=- shape=1608510e vocab=f0e65d23
+-/
 lemma lt_lebesgueOn_of_polynomialCertificate {n : ℕ} {nodes : NodeFamily n}
     {A : ℝ} (hcert : PolynomialCertificate nodes A) :
     A < lebesgueOn nodes (-1) 1 := by
@@ -60,7 +64,9 @@ lemma lt_lebesgueOn_of_polynomialCertificate {n : ℕ} {nodes : NodeFamily n}
   exact ⟨t, ht, hlarge.trans_le
     (abs_eval_le_lebesgueFunction nodes p hpdeg t hpnodes)⟩
 
-/-- The certificate threshold can be weakened.-/
+/-- The certificate threshold can be weakened.
+@isnad1 id=polynomi.2h4v.s4.02d07789ed0c from=translated src=- shape=c8ecd9c3 vocab=0ec41f31
+-/
 lemma polynomialCertificate_mono {n : ℕ} {nodes : NodeFamily n} {A B : ℝ}
     (hAB : A ≤ B) (hcert : PolynomialCertificate nodes B) :
     PolynomialCertificate nodes A := by
@@ -69,7 +75,9 @@ lemma polynomialCertificate_mono {n : ℕ} {nodes : NodeFamily n} {A B : ℝ}
 
 /-- Supplying sharp certificates uniformly is sufficient for the complete
 classical theorem.  This theorem exposes, rather than assumes, the missing
-mathematical input.-/
+mathematical input.
+@isnad1 id=fullinte.1h0v.s6.8684d33e4594 from=translated src=- shape=d6ab7c06 vocab=b6824a7d
+-/
 lemma fullIntervalEventual_of_certificates
     (hcert : ∀ ε : ℝ, 0 < ε →
       ∃ N : ℕ, ∀ n : ℕ, N ≤ n → ∀ nodes : NodeFamily n,

@@ -29,31 +29,49 @@ noncomputable section
 def nodalPolynomial {n : ℕ} (nodes : NodeFamily n) : ℝ[X] :=
   Lagrange.nodal Finset.univ nodes.point
 
+/--
+@isnad1 id=eq.0h2v.s6.c366b4c55215 from=translated src=- shape=3c172307 vocab=e10a7ed0
+-/
 lemma nodalPolynomial_eq_product {n : ℕ} (nodes : NodeFamily n) :
     nodalPolynomial nodes =
       ∏ k : Fin n, (Polynomial.X - Polynomial.C (nodes.point k)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.886603270185 from=translated src=- shape=37d26c04 vocab=15b08fc6
+-/
 @[simp]
 lemma natDegree_nodalPolynomial {n : ℕ} (nodes : NodeFamily n) :
     (nodalPolynomial nodes).natDegree = n := by
   simp [nodalPolynomial]
 
+/--
+@isnad1 id=eq.0h2v.s4.bc256bead653 from=translated src=- shape=bd585b00 vocab=b59b6db8
+-/
 @[simp]
 lemma degree_nodalPolynomial {n : ℕ} (nodes : NodeFamily n) :
     (nodalPolynomial nodes).degree = n := by
   simp [nodalPolynomial]
 
+/--
+@isnad1 id=monic.0h2v.s3.3046f641eb98 from=translated src=- shape=595ce0b1 vocab=921afe5f
+-/
 lemma monic_nodalPolynomial {n : ℕ} (nodes : NodeFamily n) :
     (nodalPolynomial nodes).Monic := by
   exact Lagrange.nodal_monic
 
+/--
+@isnad1 id=eq.0h3v.s5.33be304b45e0 from=translated src=- shape=a6369a5a vocab=e9b9c007
+-/
 lemma eval_nodalPolynomial {n : ℕ} (nodes : NodeFamily n) (t : ℝ) :
     (nodalPolynomial nodes).eval t =
       ∏ k : Fin n, (t - nodes.point k) := by
   simpa only [nodalPolynomial] using
     (Lagrange.eval_nodal (s := Finset.univ) (v := nodes.point) (x := t))
 
+/--
+@isnad1 id=ne.1h3v.s5.199880d52ff7 from=translated src=- shape=3e791914 vocab=208241f0
+-/
 lemma eval_nodalPolynomial_ne_zero_of_off_nodes {n : ℕ}
     (nodes : NodeFamily n) {t : ℝ}
     (ht : ∀ k : Fin n, t ≠ nodes.point k) :
@@ -68,6 +86,9 @@ def nodalMaximum {n : ℕ} (nodes : NodeFamily n) : ℝ :=
   sSup ((fun t ↦ |(nodalPolynomial nodes).eval t|) ''
     Set.Icc (-1 : ℝ) 1)
 
+/--
+@isnad1 id=ex.0h2v.s6.a277787be99e from=translated src=- shape=7f025b78 vocab=104f0e57
+-/
 lemma exists_nodalMaximum_eq_and_ge {n : ℕ} (nodes : NodeFamily n) :
     ∃ t ∈ Set.Icc (-1 : ℝ) 1,
       nodalMaximum nodes = |(nodalPolynomial nodes).eval t| ∧
@@ -80,7 +101,9 @@ lemma exists_nodalMaximum_eq_and_ge {n : ℕ} (nodes : NodeFamily n) :
       (nodalPolynomial nodes).continuous.abs.continuousOn)
 
 /-- The monic nodal polynomial has a strictly positive full-interval
-maximum, even if some nodes are endpoints.-/
+maximum, even if some nodes are endpoints.
+@isnad1 id=lt.0h2v.s4.f17b12aa1a5a from=translated src=- shape=9363a417 vocab=dc9463d2
+-/
 lemma nodalMaximum_pos {n : ℕ} (nodes : NodeFamily n) :
     0 < nodalMaximum nodes := by
   obtain ⟨t, htIcc, htNot⟩ :=
@@ -95,7 +118,9 @@ lemma nodalMaximum_pos {n : ℕ} (nodes : NodeFamily n) :
   exact (abs_pos.mpr (eval_nodalPolynomial_ne_zero_of_off_nodes nodes ht)).trans_le
     (hge t htIcc)
 
-/-- A maximizer cannot be an interpolation node.-/
+/-- A maximizer cannot be an interpolation node.
+@isnad1 id=ex.0h2v.s6.5659e2296386 from=translated src=- shape=a2916ff7 vocab=88ae735a
+-/
 lemma exists_nodalMaximum_eq_and_off_nodes {n : ℕ} (nodes : NodeFamily n) :
     ∃ t ∈ Set.Icc (-1 : ℝ) 1,
       nodalMaximum nodes = |(nodalPolynomial nodes).eval t| ∧
@@ -119,6 +144,9 @@ lemma exists_nodalMaximum_eq_and_off_nodes {n : ℕ} (nodes : NodeFamily n) :
         simp
   exact (nodalMaximum_pos nodes).ne' hzero
 
+/--
+@isnad1 id=eq.0h3v.s4.c60f218da84e from=translated src=- shape=078fbc00 vocab=208241f0
+-/
 @[simp]
 lemma eval_nodalPolynomial_at_node {n : ℕ} (nodes : NodeFamily n) (k : Fin n) :
     (nodalPolynomial nodes).eval (nodes.point k) = 0 := by
@@ -127,7 +155,9 @@ lemma eval_nodalPolynomial_at_node {n : ℕ} (nodes : NodeFamily n) (k : Fin n) 
       (Finset.mem_univ k))
 
 /-- At a simple node, the derivative of the nodal polynomial is the product
-of all the remaining differences.-/
+of all the remaining differences.
+@isnad1 id=eq.0h3v.s7.2f5d2556914b from=translated src=- shape=6ae6c0de vocab=e226198b
+-/
 lemma derivative_nodalPolynomial_eval_node {n : ℕ} (nodes : NodeFamily n)
     (k : Fin n) :
     (nodalPolynomial nodes).derivative.eval (nodes.point k) =
@@ -136,7 +166,9 @@ lemma derivative_nodalPolynomial_eval_node {n : ℕ} (nodes : NodeFamily n)
     Lagrange.eval_nodal_derivative_eval_node_eq (Finset.mem_univ k),
     Lagrange.eval_nodal]
 
-/-- Node injectivity makes every nodal derivative nonzero.-/
+/-- Node injectivity makes every nodal derivative nonzero.
+@isnad1 id=ne.0h3v.s7.1615bfb5194e from=translated src=- shape=7c5b7f48 vocab=213583d0
+-/
 lemma derivative_nodalPolynomial_eval_node_ne_zero {n : ℕ}
     (nodes : NodeFamily n) (k : Fin n) :
     (nodalPolynomial nodes).derivative.eval (nodes.point k) ≠ 0 := by
@@ -145,7 +177,9 @@ lemma derivative_nodalPolynomial_eval_node_ne_zero {n : ℕ}
   have hjk : j ≠ k := (Finset.mem_erase.mp hj).1
   exact sub_ne_zero.mpr (nodes.point_ne hjk.symm)
 
-/-- Polynomial barycentric form before evaluation.-/
+/-- Polynomial barycentric form before evaluation.
+@isnad1 id=eq.0h3v.s7.8ced11012c7f from=translated src=- shape=cd5ac992 vocab=95829594
+-/
 lemma lagrangeBasis_eq_C_derivative_inv_mul_nodal_erase {n : ℕ}
     (nodes : NodeFamily n) (k : Fin n) :
     lagrangeBasis nodes k =
@@ -159,7 +193,9 @@ lemma lagrangeBasis_eq_C_derivative_inv_mul_nodal_erase {n : ℕ}
   rfl
 
 /-- Derivative of a cardinal polynomial at a different node, expressed only
-through the two nodal derivatives and the node separation.-/
+through the two nodal derivatives and the node separation.
+@isnad1 id=eq.1h4v.s8.c5cfe5397c4c from=translated src=- shape=937c89e5 vocab=ee4126a4
+-/
 lemma derivative_lagrangeBasis_eval_of_ne {n : ℕ} (nodes : NodeFamily n)
     {j k : Fin n} (hjk : j ≠ k) :
     (lagrangeBasis nodes k).derivative.eval (nodes.point j) =
@@ -196,7 +232,9 @@ lemma derivative_lagrangeBasis_eval_of_ne {n : ℕ} (nodes : NodeFamily n)
 
 /-- Reciprocal derivative identity for two different cardinal polynomials.
 This is the exact algebraic cancellation used in classical clock/defect
-arguments.-/
+arguments.
+@isnad1 id=eq.1h4v.s8.9714985a4ee7 from=translated src=- shape=b981ab83 vocab=7b4f4c01
+-/
 lemma derivative_lagrangeBasis_mul_swap {n : ℕ} (nodes : NodeFamily n)
     {j k : Fin n} (hjk : j ≠ k) :
     (lagrangeBasis nodes k).derivative.eval (nodes.point j) *
@@ -213,7 +251,9 @@ lemma derivative_lagrangeBasis_mul_swap {n : ℕ} (nodes : NodeFamily n)
   field_simp
   ring
 
-/-- Absolute-value form of the reciprocal derivative identity.-/
+/-- Absolute-value form of the reciprocal derivative identity.
+@isnad1 id=eq.1h4v.s8.ad6ed9f05b6b from=translated src=- shape=ac17d8a9 vocab=d01b4c4d
+-/
 lemma abs_derivative_lagrangeBasis_mul_swap {n : ℕ} (nodes : NodeFamily n)
     {j k : Fin n} (hjk : j ≠ k) :
     |(lagrangeBasis nodes k).derivative.eval (nodes.point j)| *
@@ -223,7 +263,9 @@ lemma abs_derivative_lagrangeBasis_mul_swap {n : ℕ} (nodes : NodeFamily n)
   simp only [abs_neg, abs_inv, abs_pow]
 
 /-- Barycentric form of one fundamental function, with the derivative of the
-nodal polynomial visible.-/
+nodal polynomial visible.
+@isnad1 id=eq.1h4v.s7.789b092f729d from=translated src=- shape=6b837b2e vocab=334fabb6
+-/
 lemma lagrangeFundamental_eq_nodalPolynomial_mul {n : ℕ}
     (nodes : NodeFamily n) (k : Fin n) {t : ℝ}
     (htk : t ≠ nodes.point k) :
@@ -239,7 +281,9 @@ lemma lagrangeFundamental_eq_nodalPolynomial_mul {n : ℕ}
       (s := Finset.univ) (v := nodes.point) (i := k) (x := t)
       (Finset.mem_univ k) htk)
 
-/-- Absolute barycentric form.-/
+/-- Absolute barycentric form.
+@isnad1 id=eq.1h4v.s7.898b14d76d8c from=translated src=- shape=9be19058 vocab=45065ad3
+-/
 lemma abs_lagrangeFundamental_eq_nodalPolynomial {n : ℕ}
     (nodes : NodeFamily n) (k : Fin n) {t : ℝ}
     (htk : t ≠ nodes.point k) :
@@ -251,7 +295,9 @@ lemma abs_lagrangeFundamental_eq_nodalPolynomial {n : ℕ}
   simp only [abs_mul, abs_inv]
   rw [mul_inv]
 
-/-- Exact reciprocal derivative-distance row for the Lebesgue function.-/
+/-- Exact reciprocal derivative-distance row for the Lebesgue function.
+@isnad1 id=eq.1h3v.s7.45f7d244b1c6 from=translated src=- shape=3bc4c653 vocab=d4811739
+-/
 lemma lebesgueFunction_eq_nodalPolynomial_mul_sum {n : ℕ}
     (nodes : NodeFamily n) {t : ℝ}
     (ht : ∀ k : Fin n, t ≠ nodes.point k) :
@@ -266,7 +312,9 @@ lemma lebesgueFunction_eq_nodalPolynomial_mul_sum {n : ℕ}
   exact abs_lagrangeFundamental_eq_nodalPolynomial nodes k (ht k)
 
 /-- A pointwise upper envelope on the nodal derivatives gives a checked
-lower envelope on the complete reciprocal row.-/
+lower envelope on the complete reciprocal row.
+@isnad1 id=le.3h4v.s7.dfa011723c9c from=translated src=- shape=f1e20aaf vocab=e6b89465
+-/
 lemma nodalPolynomial_mul_sum_inv_le_lebesgueFunction {n : ℕ}
     (nodes : NodeFamily n) {t : ℝ}
     (ht : ∀ k : Fin n, t ≠ nodes.point k)
@@ -296,7 +344,9 @@ If `M` is a positive value attained by the nodal polynomial at `t`, and the
 weighted root derivatives satisfy the classical Bernstein scale, then the
 Lebesgue function dominates the arcsine reciprocal mass of the nodes seen
 from `t`.  No distribution estimate for that mass is assumed or hidden in
-this lemma.-/
+this lemma.
+@isnad1 id=le.5h4v.s8.5468639c6b60 from=translated src=- shape=61cecbed vocab=59c7281b
+-/
 lemma arcsine_reciprocal_mass_le_lebesgueFunction {n : ℕ}
     (nodes : NodeFamily n) (hn : 0 < n) {t M : ℝ}
     (ht : ∀ k : Fin n, t ≠ nodes.point k) (hM : 0 < M)
@@ -354,7 +404,9 @@ lemma arcsine_reciprocal_mass_le_lebesgueFunction {n : ℕ}
           |t - nodes.point k|)⁻¹ := rfl
 
 /-- Full-interval version of
-`arcsine_reciprocal_mass_le_lebesgueFunction`.-/
+`arcsine_reciprocal_mass_le_lebesgueFunction`.
+@isnad1 id=le.6h4v.s8.15d63d7f0e82 from=translated src=- shape=a294085c vocab=4da726a2
+-/
 lemma arcsine_reciprocal_mass_le_lebesgueOn {n : ℕ}
     (nodes : NodeFamily n) (hn : 0 < n) {t M : ℝ}
     (htIcc : t ∈ Set.Icc (-1 : ℝ) 1)
@@ -377,7 +429,9 @@ lemma arcsine_reciprocal_mass_le_lebesgueOn {n : ℕ}
 
 /-- At a genuine maximum of the nodal polynomial, the weighted Bernstein
 root estimate reduces the full classical problem to a geometric reciprocal
-mass estimate.-/
+mass estimate.
+@isnad1 id=ex.2h2v.s8.ac98e6efc706 from=translated src=- shape=bc82f34b vocab=342b8528
+-/
 lemma exists_arcsine_reciprocal_mass_le_lebesgueOn_of_rootBernstein
     {n : ℕ} (nodes : NodeFamily n) (hn : 0 < n)
     (hbernstein : ∀ k : Fin n,

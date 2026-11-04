@@ -19,7 +19,9 @@ open Polynomial
 noncomputable section
 
 /-- Every polynomial of degree below the number of nodes has its Lagrange
-expansion.-/
+expansion.
+@isnad1 id=eq.1h3v.s6.f255e9c4c9d3 from=translated src=- shape=0e5ed4d1 vocab=5b9af641
+-/
 lemma lagrangeExpansion {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
     (hp : p.degree < n) :
     p = ∑ k : Fin n,
@@ -29,7 +31,9 @@ lemma lagrangeExpansion {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
   simpa [lagrangeBasis] using
     (Lagrange.eq_interpolate (s := Finset.univ) nodes.injective.injOn hp')
 
-/-- Pointwise form of the Lagrange expansion.-/
+/-- Pointwise form of the Lagrange expansion.
+@isnad1 id=eq.1h4v.s6.991b67344afc from=translated src=- shape=529dd964 vocab=9778e721
+-/
 lemma eval_lagrangeExpansion {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
     (hp : p.degree < n) (t : ℝ) :
     p.eval t = ∑ k : Fin n,
@@ -45,7 +49,9 @@ lemma eval_lagrangeExpansion {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
       simp only [Polynomial.eval_mul, Polynomial.eval_C, lagrangeBasis_eval]
 
 /-- The fundamental interpolation inequality with an arbitrary common upper
-bound for the absolute nodal values.-/
+bound for the absolute nodal values.
+@isnad1 id=le.2h5v.s6.82415f13b386 from=translated src=- shape=481f504f vocab=a8c73eaf
+-/
 lemma abs_eval_le_mul_lebesgueFunction {n : ℕ} (nodes : NodeFamily n)
     (p : ℝ[X]) (hp : p.degree < n) (M t : ℝ)
     (hM : ∀ k : Fin n, |p.eval (nodes.point k)| ≤ M) :
@@ -66,7 +72,9 @@ lemma abs_eval_le_mul_lebesgueFunction {n : ℕ} (nodes : NodeFamily n)
       rw [lebesgueFunction, Finset.mul_sum]
 
 /-- In particular, nodal values bounded by one are controlled by the
-Lebesgue function itself.-/
+Lebesgue function itself.
+@isnad1 id=le.2h4v.s6.1e36870eacc2 from=translated src=- shape=628f303f vocab=a5fa630a
+-/
 lemma abs_eval_le_lebesgueFunction {n : ℕ} (nodes : NodeFamily n)
     (p : ℝ[X]) (hp : p.degree < n) (t : ℝ)
     (hp_nodes : ∀ k : Fin n, |p.eval (nodes.point k)| ≤ 1) :
@@ -83,7 +91,9 @@ def nodalMax {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X]) (hn : 0 < n) : ℝ :=
   Finset.univ.sup' (fin_univ_nonempty_of_pos hn)
     (fun k : Fin n => |p.eval (nodes.point k)|)
 
-/-- Every nodal absolute value is bounded by `nodalMax`.-/
+/-- Every nodal absolute value is bounded by `nodalMax`.
+@isnad1 id=le.1h4v.s5.5fac4e9ef16b from=translated src=- shape=4ced6b4b vocab=d6aa78df
+-/
 lemma abs_eval_node_le_nodalMax {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
     (hn : 0 < n) (k : Fin n) :
     |p.eval (nodes.point k)| ≤ nodalMax nodes p hn := by
@@ -91,7 +101,9 @@ lemma abs_eval_node_le_nodalMax {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
   exact Finset.le_sup'
     (f := fun j : Fin n => |p.eval (nodes.point j)|) (Finset.mem_univ k)
 
-/-- The finite nodal maximum is attained.-/
+/-- The finite nodal maximum is attained.
+@isnad1 id=ex.1h3v.s5.ed019d72dc6a from=translated src=- shape=19d6c98f vocab=afadd3d9
+-/
 lemma exists_nodalMax_eq {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
     (hn : 0 < n) :
     ∃ k : Fin n, nodalMax nodes p hn = |p.eval (nodes.point k)| := by
@@ -100,7 +112,9 @@ lemma exists_nodalMax_eq {n : ℕ} (nodes : NodeFamily n) (p : ℝ[X])
       (fun k : Fin n => |p.eval (nodes.point k)|))
 
 /-- Pointwise interpolation inequality in the conventional finite-maximum
-form.-/
+form.
+@isnad1 id=le.2h4v.s6.5060c1aedbe4 from=translated src=- shape=3d4349dd vocab=4b8ce889
+-/
 lemma abs_eval_le_nodalMax_mul_lebesgueFunction {n : ℕ}
     (nodes : NodeFamily n) (p : ℝ[X]) (hp : p.degree < n)
     (hn : 0 < n) (t : ℝ) :

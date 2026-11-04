@@ -21,6 +21,9 @@ open Erdos1153 Polynomial
 open scoped BigOperators
 noncomputable section
 
+/--
+@isnad1 id=eq.3h5v.s7.9f5dba15d37b from=translated src=- shape=749870ab vocab=13563721
+-/
 lemma nodal_polynomial_cardinal_identity {n : ℕ} (hn : 0 < n)
     (nodes : NodeFamily n) (p : ℝ[X]) (hpdeg : p.natDegree = n)
     (hroot : ∀ j, p.eval (nodes.point j) = 0)

@@ -154,7 +154,9 @@ private lemma chebyshevT_even_root_cosecant_sum (d : ℕ) :
     _ = ((2 * d : ℕ) : ℝ) ^ 2 := by rw [hplus, hminus]; ring
 
 /-- The positive coefficients in the `2d`-point Riesz derivative formula have
-total mass exactly `d`.-/
+total mass exactly `d`.
+@isnad1 id=eq.1h1v.s7.9ac86d90c05a from=translated src=- shape=4c48c7ea vocab=dac984c2
+-/
 theorem sum_riesz_midpoint_weights (d : ℕ) (hd : 0 < d) :
     ∑ j ∈ Finset.range (2 * d),
         1 / (4 * (d : ℝ) *

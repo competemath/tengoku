@@ -21,13 +21,17 @@ open Filter
 
 noncomputable section
 
-/-- Exact floor form of the abstract positive-density relation.-/
+/-- Exact floor form of the abstract positive-density relation.
+@isnad1 id=iff.0h3v.s5.e16820ff27db from=translated src=- shape=37deaf19 vocab=4825f140
+-/
 lemma dense_nat_iff_div_lt {K n m : ℕ} :
     n < densityDenominator K * m ↔ n / densityDenominator K < m := by
   rw [Nat.div_lt_iff_lt_mul (densityDenominator_pos K), mul_comm]
 
 /-- Under a fixed positive-density relation, the dense cardinality eventually
-exceeds every prescribed fixed natural threshold, uniformly in `m`.-/
+exceeds every prescribed fixed natural threshold, uniformly in `m`.
+@isnad1 id=eventual.0h2v.s5.af35b4a01b27 from=translated src=- shape=1bcdaf7b vocab=7fd22bc8
+-/
 theorem eventually_fixedThreshold_lt_of_dense (K T : ℕ) :
     ∀ᶠ n : ℕ in Filter.atTop, ∀ m : ℕ,
       n < densityDenominator K * m → T < m := by
@@ -39,14 +43,18 @@ theorem eventually_fixedThreshold_lt_of_dense (K T : ℕ) :
     Nat.mul_le_mul_left (densityDenominator K) hmle
   omega
 
-/-- In particular, every dense cardinality is eventually at least three.-/
+/-- In particular, every dense cardinality is eventually at least three.
+@isnad1 id=eventual.0h1v.s5.fde646e3f071 from=translated src=- shape=54e5db5f vocab=7fd22bc8
+-/
 theorem eventually_two_lt_of_dense (K : ℕ) :
     ∀ᶠ n : ℕ in Filter.atTop, ∀ m : ℕ,
       n < densityDenominator K * m → 2 < m :=
   eventually_fixedThreshold_lt_of_dense K 2
 
 /-- A fixed real constant is eventually smaller than any positive multiple
-of the natural logarithm of a natural number.-/
+of the natural logarithm of a natural number.
+@isnad1 id=eventual.1h2v.s5.dcff43414eb4 from=translated src=- shape=aee9c015 vocab=db8f84d2
+-/
 lemma eventually_const_lt_pos_mul_log_nat (C δ : ℝ) (hδ : 0 < δ) :
     ∀ᶠ n : ℕ in Filter.atTop, C < δ * Real.log (n : ℝ) := by
   have hlog : Filter.Tendsto (fun n : ℕ ↦ Real.log (n : ℝ))
@@ -58,7 +66,9 @@ lemma eventually_const_lt_pos_mul_log_nat (C δ : ℝ) (hδ : 0 < δ) :
 /-- Replacing `log n` by the logarithm of any cardinality satisfying the
 fixed dense relation costs less than half of `ε` eventually.  The bound is
 uniform in `m`; `m ≤ n` is included in the interface used by the block
-application, although the lower dense relation alone proves this direction.-/
+application, although the lower dense relation alone proves this direction.
+@isnad1 id=eventual.2h2v.s7.a3c7f28792fe from=translated src=- shape=1eb71393 vocab=a5c9205c
+-/
 theorem eventually_dense_log_comparison (K : ℕ) {ε : ℝ}
     (hε : 0 < ε) (hεlt : ε < 2 / Real.pi) :
     ∀ᶠ n : ℕ in Filter.atTop, ∀ m : ℕ,
@@ -98,7 +108,9 @@ theorem eventually_dense_log_comparison (K : ℕ) {ε : ℝ}
 
 /-- The two uniform dense-branch consequences packaged at one eventual
 threshold.  The natural threshold `T` can in particular be instantiated by
-`2` or by any fixed threshold required by an equioscillating-height lemma.-/
+`2` or by any fixed threshold required by an equioscillating-height lemma.
+@isnad1 id=eventual.2h3v.s7.48b0ab204c53 from=translated src=- shape=5de04e22 vocab=a5c9205c
+-/
 theorem eventually_dense_cardinality_and_log (K T : ℕ) {ε : ℝ}
     (hε : 0 < ε) (hεlt : ε < 2 / Real.pi) :
     ∀ᶠ n : ℕ in Filter.atTop, ∀ m : ℕ,

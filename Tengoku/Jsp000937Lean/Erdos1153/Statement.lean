@@ -44,7 +44,9 @@ def lagrangeFundamental {n : ℕ} (nodes : NodeFamily n) (k : Fin n)
   ∏ i ∈ Finset.univ.erase k,
     (t - nodes.point i) / (nodes.point k - nodes.point i)
 
-/-- `lagrangeBasis` is visibly the product of its normalized linear factors.-/
+/-- `lagrangeBasis` is visibly the product of its normalized linear factors.
+@isnad1 id=eq.0h3v.s7.6f81d5a1e241 from=translated src=- shape=fe98f530 vocab=c63c5019
+-/
 lemma lagrangeBasis_eq_product {n : ℕ} (nodes : NodeFamily n) (k : Fin n) :
     lagrangeBasis nodes k =
       ∏ i ∈ Finset.univ.erase k,
@@ -56,7 +58,9 @@ lemma lagrangeBasis_eq_product {n : ℕ} (nodes : NodeFamily n) (k : Fin n) :
   intro i _
   exact mul_comm _ _
 
-/-- Evaluating the polynomial gives the literal fundamental-function formula.-/
+/-- Evaluating the polynomial gives the literal fundamental-function formula.
+@isnad1 id=eq.0h4v.s4.f3e4be1b57c6 from=translated src=- shape=18de63eb vocab=f007646e
+-/
 lemma lagrangeBasis_eval {n : ℕ} (nodes : NodeFamily n) (k : Fin n) (t : ℝ) :
     (lagrangeBasis nodes k).eval t = lagrangeFundamental nodes k t := by
   classical
@@ -64,14 +68,18 @@ lemma lagrangeBasis_eval {n : ℕ} (nodes : NodeFamily n) (k : Fin n) (t : ℝ) 
   simp only [lagrangeFundamental, Polynomial.eval_prod, Polynomial.eval_mul,
     Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C, div_eq_mul_inv]
 
-/-- A fundamental function is one at its own node.-/
+/-- A fundamental function is one at its own node.
+@isnad1 id=eq.0h3v.s4.118eb4872058 from=translated src=- shape=3813f59a vocab=1f5b2727
+-/
 @[simp]
 lemma lagrangeBasis_eval_self {n : ℕ} (nodes : NodeFamily n) (k : Fin n) :
     (lagrangeBasis nodes k).eval (nodes.point k) = 1 := by
   simpa only [lagrangeBasis] using
     (Lagrange.eval_basis_self nodes.injective.injOn (Finset.mem_univ k))
 
-/-- A fundamental function vanishes at every other node.-/
+/-- A fundamental function vanishes at every other node.
+@isnad1 id=eq.1h4v.s5.098394b01be1 from=translated src=- shape=969bd433 vocab=1f5b2727
+-/
 @[simp]
 lemma lagrangeBasis_eval_of_ne {n : ℕ} (nodes : NodeFamily n) {j k : Fin n}
     (hjk : j ≠ k) :
@@ -84,12 +92,16 @@ lemma lagrangeBasis_eval_of_ne {n : ℕ} (nodes : NodeFamily n) {j k : Fin n}
 def lebesgueFunction {n : ℕ} (nodes : NodeFamily n) (t : ℝ) : ℝ :=
   ∑ k : Fin n, |lagrangeFundamental nodes k t|
 
-/-- Every Lagrange fundamental function is continuous.-/
+/-- Every Lagrange fundamental function is continuous.
+@isnad1 id=continuo.0h3v.s4.81676ccfe593 from=translated src=- shape=7e9b6c8b vocab=15c33131
+-/
 lemma continuous_lagrangeFundamental {n : ℕ} (nodes : NodeFamily n) (k : Fin n) :
     Continuous (lagrangeFundamental nodes k) := by
   exact (lagrangeBasis nodes k).continuous.congr fun t => lagrangeBasis_eval nodes k t
 
-/-- A finite sum of absolute values of fundamental functions is continuous.-/
+/-- A finite sum of absolute values of fundamental functions is continuous.
+@isnad1 id=continuo.0h2v.s4.d392811c09b7 from=translated src=- shape=16cd4ef3 vocab=1b94b093
+-/
 lemma continuous_lebesgueFunction {n : ℕ} (nodes : NodeFamily n) :
     Continuous (lebesgueFunction nodes) := by
   classical
@@ -103,7 +115,9 @@ def lebesgueOn {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) : ℝ :=
   sSup (lebesgueFunction nodes '' Set.Icc a b)
 
 /-- On a nonempty closed interval, `lebesgueOn` is attained by the Lebesgue
-function and is an upper bound for every other value on that interval.-/
+function and is an upper bound for every other value on that interval.
+@isnad1 id=ex.1h4v.s6.7fc479a81210 from=translated src=- shape=c8b3d5cc vocab=a80f8ff3
+-/
 lemma exists_lebesgueOn_eq_and_ge {n : ℕ} (nodes : NodeFamily n) {a b : ℝ}
     (hab : a ≤ b) :
     ∃ t ∈ Set.Icc a b,
@@ -114,7 +128,9 @@ lemma exists_lebesgueOn_eq_and_ge {n : ℕ} (nodes : NodeFamily n) {a b : ℝ}
       (continuous_lebesgueFunction nodes).continuousOn)
 
 /-- Strictly exceeding a bound at the interval supremum is equivalent to
-strictly exceeding it at an explicit point of the interval.-/
+strictly exceeding it at an explicit point of the interval.
+@isnad1 id=iff.1h5v.s5.4188a5b389c0 from=translated src=- shape=ef9c46ef vocab=0db1aa8b
+-/
 lemma lt_lebesgueOn_iff {n : ℕ} (nodes : NodeFamily n) {a b c : ℝ}
     (hab : a ≤ b) :
     c < lebesgueOn nodes a b ↔

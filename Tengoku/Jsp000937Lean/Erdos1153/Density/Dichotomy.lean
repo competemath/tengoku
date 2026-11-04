@@ -24,6 +24,9 @@ def sparseDecay {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) : ℝ :=
     fixedIntervalGrowthBase (j0Left a b) (j0Right a b) ^
       (sparseIndices nodes a b).card
 
+/--
+@isnad1 id=lt.3h4v.s5.4beed1a7f3ad from=translated src=- shape=56c7452d vocab=2696237d
+-/
 lemma sparseDecay_pos {n : ℕ} (nodes : NodeFamily n) {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     0 < sparseDecay nodes a b := by
@@ -34,7 +37,9 @@ lemma sparseDecay_pos {n : ℕ} (nodes : NodeFamily n) {a b : ℝ}
     (pow_pos hbase _)
 
 /-- Natural-degree control implies the degree inequality consumed by
-Lagrange interpolation.-/
+Lagrange interpolation.
+@isnad1 id=lt.2h5v.s6.4cf3652047a6 from=translated src=- shape=8686281d vocab=7ecdeb8a
+-/
 lemma degree_sparseDampedPolynomial_lt {n : ℕ} (nodes : NodeFamily n)
     {a b xstar : ℝ} (hn : 0 < n)
     (hm : (sparseIndices nodes a b).card ≤ n - 1) :
@@ -49,7 +54,9 @@ lemma degree_sparseDampedPolynomial_lt {n : ℕ} (nodes : NodeFamily n)
       exact_mod_cast Nat.pred_lt hn.ne'
 
 /-- Package the positive maximizer, normalization, degree budget, and nodal
-decay of the sparse polynomial in one checked interface.-/
+decay of the sparse polynomial in one checked interface.
+@isnad1 id=ex.4h4v.s7.aa2e075b09d1 from=translated src=- shape=3273b33e vocab=25e6a996
+-/
 lemma exists_sparseDampedPolynomial_data {n : ℕ} (nodes : NodeFamily n)
     {a b : ℝ} (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
     (hm : (sparseIndices nodes a b).card ≤ n - 1) :
@@ -68,7 +75,9 @@ lemma exists_sparseDampedPolynomial_data {n : ℕ} (nodes : NodeFamily n)
 
 /-- Fully checked sparse branch: if not all degree slots are consumed by
 `J₁` nodes, the reciprocal of the explicit decay factor is attained as a
-lower bound for the Lebesgue function at a point of `[a,b]`.-/
+lower bound for the Lebesgue function at a point of `[a,b]`.
+@isnad1 id=ex.5h4v.s6.2122e20fcec2 from=translated src=- shape=b6f9e2d4 vocab=8cfff39d
+-/
 theorem exists_sparseDecay_inv_le_lebesgueFunction {n : ℕ}
     (nodes : NodeFamily n) {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) (hn : 0 < n)
@@ -86,7 +95,9 @@ theorem exists_sparseDecay_inv_le_lebesgueFunction {n : ℕ}
   exact (inv_le_iff_one_le_mul₀' (sparseDecay_pos nodes ha hab hb)).2 hinterp
 
 /-- If separate scalar bookkeeping bounds the explicit decay by `q^n`, the
-sparse branch gives the conventional exponential lower bound `(q⁻¹)^n`.-/
+sparse branch gives the conventional exponential lower bound `(q⁻¹)^n`.
+@isnad1 id=ex.7h5v.s7.d1ba6da5051b from=translated src=- shape=42614546 vocab=1062bc98
+-/
 theorem exists_inv_pow_le_lebesgueFunction_of_sparseDecay_le {n : ℕ}
     (nodes : NodeFamily n) {a b q : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) (hn : 0 < n)
@@ -102,7 +113,9 @@ theorem exists_inv_pow_le_lebesgueFunction_of_sparseDecay_le {n : ℕ}
 
 /-- The fixed-interval growth constant can be absorbed by a sufficiently
 large negative power of `ρ`.  This is the only Archimedean choice needed for
-the sparse asymptotics.-/
+the sparse asymptotics.
+@isnad1 id=ex.3h2v.s6.211ede96cf62 from=translated src=- shape=7cf0f38b vocab=7c892b46
+-/
 lemma exists_growthBase_le_dampingRho_inv_pow {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     ∃ K : ℕ,
@@ -117,7 +130,9 @@ lemma exists_growthBase_le_dampingRho_inv_pow {a b : ℝ}
 
 /-- Exact scalar decay ledger.  If `K m + e` damping slots fit into `d`, and
 `K` powers of `ρ⁻¹` dominate the fixed-interval growth base, then the entire
-nodal bound is at most `ρ^e`.-/
+nodal bound is at most `ρ^e`.
+@isnad1 id=le.5h6v.s7.d68a0de530ec from=translated src=- shape=7140b032 vocab=2db390d4
+-/
 lemma sparseDecay_le_dampingRho_pow {n K e : ℕ}
     (nodes : NodeFamily n) {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
@@ -152,7 +167,9 @@ lemma sparseDecay_le_dampingRho_pow {n K e : ℕ}
 
 /-- Sparse exponential alternative with an explicit natural exponent `e`.
 The exponent is whatever remains after paying `K` damping slots per inside
-node.-/
+node.
+@isnad1 id=ex.7h6v.s7.ed5f86b2c0d0 from=translated src=- shape=3eeba3e4 vocab=8205834c
+-/
 theorem exists_dampingRho_inv_pow_le_lebesgueFunction {n K e : ℕ}
     (nodes : NodeFamily n) {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) (hn : 0 < n)
@@ -175,7 +192,9 @@ theorem exists_dampingRho_inv_pow_le_lebesgueFunction {n K e : ℕ}
 /-- Concrete exponential rate used by later asymptotic assembly: if the
 inside-node count leaves `n/8` damping slots after paying for fixed-interval
 growth, then the Lebesgue function is at least `ρ⁻(n/8)` somewhere in
-`[a,b]`.-/
+`[a,b]`.
+@isnad1 id=ex.7h5v.s7.f767e407ca30 from=translated src=- shape=108999e2 vocab=01a6ab06
+-/
 theorem exists_dampingRho_inv_pow_n_div_eight_le {n K : ℕ}
     (nodes : NodeFamily n) {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) (hn : 0 < n)
@@ -191,7 +210,9 @@ theorem exists_dampingRho_inv_pow_n_div_eight_le {n K : ℕ}
 
 /-- Source-facing cardinal form of the previous theorem.  The inequality
 `(2K+1)m + 2⌊n/8⌋ ≤ n-1` is a concrete linear sparse-node cutoff and implies
-the internal damping-slot budget.-/
+the internal damping-slot budget.
+@isnad1 id=ex.7h5v.s7.bbcad3ac69f9 from=translated src=- shape=2a5668fe vocab=9b1005dc
+-/
 theorem exists_dampingRho_inv_pow_n_div_eight_le_of_card_bound {n K : ℕ}
     (nodes : NodeFamily n) {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) (hn : 0 < n)
@@ -206,7 +227,9 @@ theorem exists_dampingRho_inv_pow_n_div_eight_le_of_card_bound {n K : ℕ}
   exact dampingBudget_of_slot_bound hcard
 
 /-- Uniform sparse alternative for a fixed interval.  One natural number
-`K = K(a,b)` works for every cardinality and every node configuration.-/
+`K = K(a,b)` works for every cardinality and every node configuration.
+@isnad1 id=ex.3h2v.s7.b2a9f42d0a41 from=translated src=- shape=fad71b6c vocab=d4c35e35
+-/
 theorem exists_uniform_sparse_exponential_cutoff {a b : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     ∃ K : ℕ, ∀ {n : ℕ} (nodes : NodeFamily n), 0 < n →
@@ -224,7 +247,9 @@ theorem exists_uniform_sparse_exponential_cutoff {a b : ℝ}
 
 `K` is the chosen sparse/dense cutoff.  Scalar estimates provide `hdecay`
 and `hsparseLarge`; the later block theorem supplies exactly `hblock` in the
-dense case.  No block conclusion is assumed anywhere else in this module.-/
+dense case.  No block conclusion is assumed anywhere else in this module.
+@isnad1 id=ex.9h7v.s7.02c5ff2eeddd from=translated src=- shape=77a1160f vocab=1062bc98
+-/
 theorem exists_local_lower_bound_of_sparse_or_block {n K : ℕ}
     (nodes : NodeFamily n) {a b q L : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) (hn : 0 < n)

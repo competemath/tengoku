@@ -20,7 +20,9 @@ open DeBoorPinkus
 noncomputable section
 
 /-- Every point of an endpoint array with endpoints zero and one lies in
-`[0,1]`, not merely in the ambient interval `[-1,1]`.-/
+`[0,1]`, not merely in the ambient interval `[-1,1]`.
+@isnad1 id=mem.0h3v.s6.e792ddb3733a from=translated src=- shape=92040b30 vocab=f5042582
+-/
 lemma unitEndpointArray_point_mem_Icc {d : ℕ}
     (nodes : EndpointArray d 0 1) (k : Fin (d + 2)) :
     nodes.point k ∈ Set.Icc (0 : ℝ) 1 := by
@@ -58,13 +60,18 @@ def unitToFullEndpointArray {d : ℕ}
   left_endpoint := by rw [nodes.left_endpoint]; norm_num
   right_endpoint := by rw [nodes.right_endpoint]; norm_num
 
+/--
+@isnad1 id=eq.0h3v.s7.d97b111b437d from=translated src=- shape=d9f6961b vocab=f698edb4
+-/
 @[simp]
 lemma unitToFullEndpointArray_point {d : ℕ}
     (nodes : EndpointArray d 0 1) (k : Fin (d + 2)) :
     (unitToFullEndpointArray nodes).point k = 2 * nodes.point k - 1 :=
   rfl
 
-/-- Affine invariance of each Lagrange fundamental function.-/
+/-- Affine invariance of each Lagrange fundamental function.
+@isnad1 id=eq.0h4v.s7.3092a047b479 from=translated src=- shape=697400ea vocab=fa8989e8
+-/
 lemma lagrangeFundamental_unitToFullEndpointArray {d : ℕ}
     (nodes : EndpointArray d 0 1) (k : Fin (d + 2)) (t : ℝ) :
     lagrangeFundamental (unitToFullEndpointArray nodes).toNodeFamily k (2 * t - 1) =
@@ -85,7 +92,9 @@ lemma lagrangeFundamental_unitToFullEndpointArray {d : ℕ}
   field_simp [hden, hdenFull]
   ring
 
-/-- Affine invariance of the complete Lebesgue function.-/
+/-- Affine invariance of the complete Lebesgue function.
+@isnad1 id=eq.0h3v.s7.645b8a9fa188 from=translated src=- shape=49006023 vocab=893cd437
+-/
 lemma lebesgueFunction_unitToFullEndpointArray {d : ℕ}
     (nodes : EndpointArray d 0 1) (t : ℝ) :
     lebesgueFunction (unitToFullEndpointArray nodes).toNodeFamily (2 * t - 1) =
@@ -97,7 +106,9 @@ lemma lebesgueFunction_unitToFullEndpointArray {d : ℕ}
   rw [lagrangeFundamental_unitToFullEndpointArray]
 
 /-- Affine invariance of interval suprema.  Both directions explicitly map a
-maximizer across the affine bijection.-/
+maximizer across the affine bijection.
+@isnad1 id=eq.1h4v.s7.144a60a8aad7 from=translated src=- shape=16c0df04 vocab=46cab5e3
+-/
 lemma lebesgueOn_unitToFullEndpointArray {d : ℕ}
     (nodes : EndpointArray d 0 1) {a b : ℝ} (hab : a ≤ b) :
     lebesgueOn (unitToFullEndpointArray nodes).toNodeFamily
@@ -126,7 +137,9 @@ lemma lebesgueOn_unitToFullEndpointArray {d : ℕ}
     exact h
 
 /-- Each compact gap height is invariant under the unit-to-full affine
-transport.-/
+transport.
+@isnad1 id=eq.0h3v.s6.e0de094e7914 from=translated src=- shape=63ca5b3e vocab=33851171
+-/
 lemma height_unitToFullEndpointArray {d : ℕ}
     (nodes : EndpointArray d 0 1) (g : Fin (d + 1)) :
     (unitToFullEndpointArray nodes).height g = nodes.height g := by
@@ -135,7 +148,9 @@ lemma height_unitToFullEndpointArray {d : ℕ}
     (lebesgueOn_unitToFullEndpointArray nodes
       (gap_left_lt_right nodes.toOrderedNodes g).le)
 
-/-- Equioscillation is invariant under the affine transport.-/
+/-- Equioscillation is invariant under the affine transport.
+@isnad1 id=iff.0h2v.s5.f4f70f626c43 from=translated src=- shape=6e67759b vocab=b511f908
+-/
 lemma equioscillates_unitToFullEndpointArray_iff {d : ℕ}
     (nodes : EndpointArray d 0 1) :
     Equioscillates (unitToFullEndpointArray nodes) ↔ Equioscillates nodes := by
@@ -150,7 +165,9 @@ lemma equioscillates_unitToFullEndpointArray_iff {d : ℕ}
     exact h i j
 
 /-- The finitely many closed nodal gaps of an endpoint array cover its full
-endpoint interval.  The least-node argument also handles `d = 0`.-/
+endpoint interval.  The least-node argument also handles `d = 0`.
+@isnad1 id=ex.1h5v.s6.5285fbc01cc1 from=translated src=- shape=20d96fb7 vocab=c9bc25be
+-/
 lemma exists_closedGap_of_mem_Icc {d : ℕ} {A B x : ℝ}
     (nodes : EndpointArray d A B) (hx : x ∈ Set.Icc A B) :
     ∃ g : Fin (d + 1), x ∈ closedGap nodes.toOrderedNodes g := by
@@ -204,7 +221,9 @@ lemma exists_closedGap_of_mem_Icc {d : ℕ} {A B x : ℝ}
       simpa only [g, gapRightIndex, Nat.sub_add_cancel hkone] using hxk
 
 /-- For an equioscillating endpoint array spanning `[-1,1]`, the global
-Lebesgue maximum is exactly the common gap height.-/
+Lebesgue maximum is exactly the common gap height.
+@isnad1 id=eq.1h2v.s7.bdacc5f51d77 from=translated src=- shape=fb9f178c vocab=a2237b03
+-/
 theorem lebesgueOn_eq_height_zero_of_equioscillates {d : ℕ}
     (nodes : EndpointArray d (-1) 1) (heq : Equioscillates nodes) :
     lebesgueOn nodes.toNodeFamily (-1) 1 =
@@ -229,7 +248,9 @@ theorem lebesgueOn_eq_height_zero_of_equioscillates {d : ℕ}
 /-- The full-interval theorem gives a uniform eventual lower bound for the
 common height of every equioscillating unit-interval endpoint array.  The
 unit pattern is first transported to `[-1,1]`; no supremum on `[0,1]` is
-silently identified with the full-interval supremum.-/
+silently identified with the full-interval supremum.
+@isnad1 id=ex.2h1v.s7.5938d0ae3462 from=translated src=- shape=31f02152 vocab=af7da29b
+-/
 theorem equioscillatingUnitHeightEventual
     (hfull : FullIntervalEventual) (eps : ℝ) (heps : 0 < eps) :
     ∃ D : ℕ, ∀ d : ℕ, D ≤ d → ∀ nodes : EndpointArray d 0 1,

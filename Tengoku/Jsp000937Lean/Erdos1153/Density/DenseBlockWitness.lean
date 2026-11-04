@@ -31,7 +31,9 @@ open Erdos1153.DeBoorPinkus
 noncomputable section
 
 /-- Under the dense alternative, once one density denominator fits in the
-ambient cardinality, the central block contains at least two nodes.-/
+ambient cardinality, the central block contains at least two nodes.
+@isnad1 id=le.2h5v.s5.7e0971a23628 from=translated src=- shape=540293b1 vocab=12e2e377
+-/
 lemma two_le_card_sparseIndices_of_dense {n K : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hden : densityDenominator K ≤ n)

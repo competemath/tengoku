@@ -42,7 +42,9 @@ def tailGapHeight {d : ℕ} {A B : ℝ}
   fun i ↦ nodes.height i.succ
 
 /-- Vanishing consecutive height differences are equivalent to equality of
-all gap heights.-/
+all gap heights.
+@isnad1 id=iff.0h4v.s5.2456ea4ee9ae from=translated src=- shape=18dbf4cf vocab=6df4c382
+-/
 theorem equioscillates_iff_gapDifference_eq_zero
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) :
     Equioscillates nodes ↔
@@ -67,7 +69,9 @@ theorem equioscillates_iff_gapDifference_eq_zero
     exact (hbase i).trans (hbase j).symm
 
 /-- Source Theorem 1 immediately gives the unique equioscillating endpoint
-array as the unique inverse image of the zero difference vector.-/
+array as the unique inverse image of the zero difference vector.
+@isnad1 id=existsun.1h3v.s3.04084be67487 from=translated src=- shape=1802f65d vocab=a3a50b36
+-/
 theorem existsUniqueEquioscillating_of_gapDifferenceHomeomorphism
     {d : ℕ} {A B : ℝ}
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B) :
@@ -113,7 +117,9 @@ structure GapHeightPathRayOrientationStatement (d : ℕ) (A B : ℝ) : Prop wher
               tailGapHeight r i - (u : ℝ) * α) ∧
           gapDifference (g 1) ⟨0, hd⟩ = c
 
-/-- Endpoint form of the increasing-segment lift.-/
+/-- Endpoint form of the increasing-segment lift.
+@isnad1 id=ex.4h5v.s7.46d2ad627708 from=translated src=- shape=355c907c vocab=24c41346
+-/
 theorem exists_tail_eq_and_height_zero_lt_of_le_of_ne
     {d : ℕ} {A B : ℝ}
     (horient : GapHeightPathRayOrientationStatement d A B)
@@ -136,7 +142,9 @@ theorem exists_tail_eq_and_height_zero_lt_of_le_of_ne
 
 /-- If every noninitial height is shifted by the same amount and the first
 height difference is fixed separately, then the entire consecutive-
-difference vector is fixed.-/
+difference vector is fixed.
+@isnad1 id=eq.3h6v.s6.955d318442a8 from=translated src=- shape=40f0d779 vocab=61ae8742
+-/
 lemma gapDifference_eq_of_tail_eq_sub_and_zero_eq
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     {q t : EndpointArray d A B} {α : ℝ}
@@ -168,7 +176,9 @@ lemma gapDifference_eq_of_tail_eq_sub_and_zero_eq
 /-! ## Coordinatewise rigidity -/
 
 /-- De Boor--Pinkus Theorem 2 from the global difference homeomorphism and
-the exact coherent-minor path/ray orientation input.-/
+the exact coherent-minor path/ray orientation input.
+@isnad1 id=gapheigh.2h3v.s4.7a660b850e4a from=translated src=- shape=84edd881 vocab=f9d1eb59
+-/
 theorem gapHeightLeRigidity_of_homeomorphism_of_pathRayOrientation
     {d : ℕ} {A B : ℝ}
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -247,7 +257,9 @@ theorem gapHeightLeRigidity_of_homeomorphism_of_pathRayOrientation
 /-! ## Project packaging -/
 
 /-- Construct the complete comparison package from source Theorem 1 and the
-single remaining coherent-orientation continuation input.-/
+single remaining coherent-orientation continuation input.
+@isnad1 id=comparis.2h3v.s4.d3db146f7201 from=translated src=- shape=84edd881 vocab=da9bcfef
+-/
 theorem comparisonPackage_of_homeomorphism_of_pathRayOrientation
     {d : ℕ} {A B : ℝ}
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)

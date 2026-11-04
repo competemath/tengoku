@@ -23,7 +23,9 @@ noncomputable section
 
 All derivative and separation factors are retained.  Thus multiplying such
 identities over paired indices can cancel reciprocal derivative ratios before
-any estimates are made.-/
+any estimates are made.
+@isnad1 id=eq.2h5v.s7.e362692c7528 from=translated src=- shape=bd69cf11 vocab=39cfa38a
+-/
 lemma abs_lagrangeFundamental_mul_distance_eq_pair_transport {n : ℕ}
     (nodes : NodeFamily n) {j k : Fin n} (hjk : j ≠ k) {t : ℝ}
     (ht : ∀ i : Fin n, t ≠ nodes.point i) :
@@ -57,16 +59,25 @@ def clockLeftIndex {n : ℕ} (g : Fin (n - 1)) : Fin n :=
 def clockRightIndex {n : ℕ} (g : Fin (n - 1)) : Fin n :=
   ⟨g.val + 1, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.085d06ffee43 from=translated src=- shape=ef12c50a vocab=d23d40c0
+-/
 @[simp]
 lemma clockLeftIndex_val {n : ℕ} (g : Fin (n - 1)) :
     (clockLeftIndex g).val = g.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.65364cb000fd from=translated src=- shape=6cf84995 vocab=3d7667ec
+-/
 @[simp]
 lemma clockRightIndex_val {n : ℕ} (g : Fin (n - 1)) :
     (clockRightIndex g).val = g.val + 1 :=
   rfl
 
+/--
+@isnad1 id=lt.0h2v.s4.609e1aa87287 from=translated src=- shape=da863e3e vocab=532756dd
+-/
 lemma clockLeftIndex_lt_rightIndex {n : ℕ} (g : Fin (n - 1)) :
     clockLeftIndex g < clockRightIndex g := by
   simp [Fin.lt_def]
@@ -75,11 +86,16 @@ lemma clockLeftIndex_lt_rightIndex {n : ℕ} (g : Fin (n - 1)) :
 def clockGap {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) : ℝ :=
   nodes.point (clockRightIndex g) - nodes.point (clockLeftIndex g)
 
+/--
+@isnad1 id=lt.0h3v.s5.b1159d586f20 from=translated src=- shape=d29793a2 vocab=60f56b86
+-/
 lemma clockGap_pos {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     0 < clockGap nodes g := by
   exact sub_pos.mpr (nodes.point_lt (clockLeftIndex_lt_rightIndex g))
 
-/-- Adjacent clock gaps telescope exactly between the extreme nodes.-/
+/-- Adjacent clock gaps telescope exactly between the extreme nodes.
+@isnad1 id=eq.1h2v.s6.a7ad62c65614 from=translated src=- shape=381540c9 vocab=48bdb8e9
+-/
 lemma sum_clockGap_eq_extreme_difference {n : ℕ} (nodes : OrderedNodes n)
     (hn : 2 ≤ n) :
     (∑ g : Fin (n - 1), clockGap nodes g) =
@@ -103,7 +119,9 @@ lemma sum_clockGap_eq_extreme_difference {n : ℕ} (nodes : OrderedNodes n)
     exact (Nat.min_eq_left hi'.le).symm
 
 /-- Since all nodes lie in `[-1,1]`, the total adjacent clock length is at
-most two.-/
+most two.
+@isnad1 id=le.0h2v.s6.50e378ae43ff from=translated src=- shape=c397b48f vocab=1d0e6bc8
+-/
 lemma sum_clockGap_le_two {n : ℕ} (nodes : OrderedNodes n) :
     (∑ g : Fin (n - 1), clockGap nodes g) ≤ 2 := by
   by_cases hn : 2 ≤ n
@@ -117,7 +135,9 @@ lemma sum_clockGap_le_two {n : ℕ} (nodes : OrderedNodes n) :
 
 /-- Pure finite arithmetic behind the cluster side of the clock dichotomy:
 positive gaps of total length at most two have reciprocal mass at least
-`m² / 2`.-/
+`m² / 2`.
+@isnad1 id=le.2h2v.s6.a1589c2c716c from=translated src=- shape=01d4a9d9 vocab=32cd1795
+-/
 lemma sq_card_div_two_le_sum_inv_of_sum_le_two {m : ℕ}
     (gap : Fin m → ℝ) (hgap : ∀ i, 0 < gap i)
     (hsum : (∑ i : Fin m, gap i) ≤ 2) :

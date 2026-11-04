@@ -14,6 +14,9 @@ namespace JSPFreeNodes
 open Erdos1153 Erdos1153.DeBoorPinkus
 noncomputable section
 
+/--
+@isnad1 id=le.0h2v.s4.fcf489ff39ad from=translated src=- shape=b0f210c1 vocab=71fd8823
+-/
 lemma one_le_internal_minPeak {d : ℕ} (nodes : NodeFamily (d + 2)) :
     1 ≤ minPeak nodes := by
   apply (le_orderedMinPeak_iff nodes.sorted 1).2
@@ -29,7 +32,9 @@ lemma one_le_internal_minPeak {d : ℕ} (nodes : NodeFamily (d + 2)) :
   simpa only [lebesgueFunction_at_node] using hval
 
 /-- The all-gap minimum of EVERY endpoint-fixed node array is exactly one,
-regardless of whether its internal peaks equioscillate.-/
+regardless of whether its internal peaks equioscillate.
+@isnad1 id=eq.0h2v.s5.abd69266da16 from=translated src=- shape=112d76ca vocab=d4bb7bc9
+-/
 theorem canonical_allMinPeak_eq_one {d : ℕ} (opt : EndpointArray d (-1) 1) :
     allMinPeak opt.toNodeFamily = 1 := by
   have hl : lebesgueFunction opt.toNodeFamily (-1) = 1 := by

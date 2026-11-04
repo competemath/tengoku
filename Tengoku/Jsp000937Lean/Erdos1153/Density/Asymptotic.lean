@@ -29,10 +29,16 @@ noncomputable section
 growth constant has been absorbed by `K` powers of the damping factor.-/
 def densityDenominator (K : ℕ) : ℕ := 2 * (2 * K + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.2a17d4394d37 from=translated src=- shape=8a62b088 vocab=9ed89b29
+-/
 @[simp]
 lemma densityDenominator_pos (K : ℕ) : 0 < densityDenominator K := by
   simp [densityDenominator]
 
+/--
+@isnad1 id=le.0h1v.s3.31ca8e9db16e from=translated src=- shape=8a62b088 vocab=dd974f8d
+-/
 lemma two_le_densityDenominator (K : ℕ) : 2 ≤ densityDenominator K := by
   simp [densityDenominator]
 
@@ -45,21 +51,32 @@ inside nodes is strictly larger than `n / densityDenominator K`.-/
 def DenseAt {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) (K : ℕ) : Prop :=
   n < densityDenominator K * (sparseIndices nodes a b).card
 
+/--
+@isnad1 id=or.0h5v.s4.4f5922d95f3f from=translated src=- shape=a19e768d vocab=c9977bdc
+-/
 lemma sparseAt_or_denseAt {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) (K : ℕ) :
     SparseAt nodes a b K ∨ DenseAt nodes a b K := by
   exact le_or_gt _ _
 
+/--
+@isnad1 id=iff.0h5v.s4.8cf59136a6ba from=translated src=- shape=49c5a7c4 vocab=c9977bdc
+-/
 lemma denseAt_iff_not_sparseAt {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) (K : ℕ) :
     DenseAt nodes a b K ↔ ¬ SparseAt nodes a b K := by
   simp only [DenseAt, SparseAt, not_le]
 
+/--
+@isnad1 id=iff.0h5v.s5.095acd9fa827 from=translated src=- shape=c20e0a5d vocab=29a235e8
+-/
 lemma denseAt_iff_div_lt_card {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) (K : ℕ) :
     DenseAt nodes a b K ↔
       n / densityDenominator K < (sparseIndices nodes a b).card := by
   rw [DenseAt, Nat.div_lt_iff_lt_mul (densityDenominator_pos K), mul_comm]
 
 /-- Sparse density forces the basic `m ≤ n-1` degree condition once there
-are at least two nodes.-/
+are at least two nodes.
+@isnad1 id=le.2h5v.s5.c39d3506378d from=translated src=- shape=7fa54b08 vocab=f37b2c57
+-/
 lemma sparseAt_card_le_pred {n K : ℕ} (nodes : NodeFamily n) (a b : ℝ)
     (hn : 2 ≤ n) (hsparse : SparseAt nodes a b K) :
     (sparseIndices nodes a b).card ≤ n - 1 := by
@@ -70,7 +87,9 @@ lemma sparseAt_card_le_pred {n K : ℕ} (nodes : NodeFamily n) (a b : ℝ)
   omega
 
 /-- The chosen sparse cutoff leaves both the fixed-growth payment and
-`⌊n/8⌋` damping slots inside degree `n-1`.-/
+`⌊n/8⌋` damping slots inside degree `n-1`.
+@isnad1 id=le.2h5v.s6.d5b31c6612e3 from=translated src=- shape=f5d58798 vocab=b39ad66b
+-/
 lemma sparseAt_slot_bound {n K : ℕ} (nodes : NodeFamily n) (a b : ℝ)
     (hn : 4 ≤ n) (hsparse : SparseAt nodes a b K) :
     (2 * K + 1) * (sparseIndices nodes a b).card + 2 * (n / 8) ≤ n - 1 := by
@@ -82,7 +101,9 @@ lemma sparseAt_slot_bound {n K : ℕ} (nodes : NodeFamily n) (a b : ℝ)
   omega
 
 /-- A geometric sequence with base greater than one eventually dominates
-every fixed affine multiple `C * (8m+8)`.-/
+every fixed affine multiple `C * (8m+8)`.
+@isnad1 id=eventual.2h2v.s6.55ee409dd983 from=translated src=- shape=617e720e vocab=71366d49
+-/
 lemma eventually_affine_lt_pow (r C : ℝ) (hr : 1 < r) (hC : 0 < C) :
     ∀ᶠ m : ℕ in Filter.atTop, C * (8 * (m : ℝ) + 8) < r ^ m := by
   have hsmall :=
@@ -104,7 +125,9 @@ lemma eventually_affine_lt_pow (r C : ℝ) (hr : 1 < r) (hC : 0 < C) :
   nlinarith
 
 /-- Any fixed multiple of `log n` is eventually strictly smaller than the
-geometric lower bound with exponent `⌊n/8⌋`.-/
+geometric lower bound with exponent `⌊n/8⌋`.
+@isnad1 id=eventual.1h2v.s6.5ece0cb1864f from=translated src=- shape=3cf44dd9 vocab=2bafdf7c
+-/
 lemma eventually_mul_log_lt_pow_div_eight (r C : ℝ) (hr : 1 < r) :
     ∀ᶠ n : ℕ in Filter.atTop,
       C * Real.log (n : ℝ) < r ^ (n / 8) := by
@@ -130,7 +153,9 @@ lemma eventually_mul_log_lt_pow_div_eight (r C : ℝ) (hr : 1 < r) :
       (pow_pos hrpos _)
 
 /-- For the actual damping base, the exact Erdős threshold is eventually
-strictly below the checked sparse exponential lower bound.-/
+strictly below the checked sparse exponential lower bound.
+@isnad1 id=eventual.3h3v.s6.ba34fb5b0e5c from=translated src=- shape=91815a6d vocab=79aaae98
+-/
 lemma eventually_targetThreshold_lt_damping_pow {a b ε : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     ∀ᶠ n : ℕ in Filter.atTop,
@@ -142,7 +167,9 @@ lemma eventually_targetThreshold_lt_damping_pow {a b ε : ℝ}
 
 /-- One interval-dependent `K` and one eventual threshold partition every
 node family into an already-solved exact Target witness or an exact
-positive-density alternative.-/
+positive-density alternative.
+@isnad1 id=ex.3h3v.s7.e86a41fc9867 from=translated src=- shape=b36553a8 vocab=ec93848b
+-/
 theorem exists_sparse_target_or_dense {a b ε : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     ∃ K N : ℕ, 4 ≤ N ∧
@@ -176,7 +203,9 @@ the sole remaining input is the later block theorem on the explicit dense
 condition `n < densityDenominator K * m`.
 
 The dense hypothesis is local to a `K` which actually absorbs the interval
-growth constant, and may choose its own eventual threshold.-/
+growth constant, and may choose its own eventual threshold.
+@isnad1 id=ex.4h3v.s7.7eb32b9605ae from=translated src=- shape=e0c70be8 vocab=ec93848b
+-/
 theorem exists_eventual_target_witness_of_dense
     {a b ε : ℝ} (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
     (hdense : ∀ K : ℕ,

@@ -22,7 +22,9 @@ open Filter
 noncomputable section
 
 /-- The natural canonical threshold always satisfies the finite theorem's
-bin-mass condition when `R` is positive.-/
+bin-mass condition when `R` is positive.
+@isnad1 id=le.1h3v.s5.725128203e1f from=translated src=- shape=b3f891ff vocab=33046631
+-/
 lemma totalBinCount_mul_denseThreshold_le
     {n R : ℕ} {q : ℝ} (hR : 1 ≤ R) :
     arcsineTotalBinCount n q * arcsineDenseThreshold n q R ≤ n := by
@@ -43,7 +45,9 @@ lemma totalBinCount_mul_denseThreshold_le
 
 The coefficient displays separately the retained-bin mass loss `R`, the
 local truncation loss `L`, the geometric ratio `q`, and the arbitrarily
-small harmonic loss `eta`.-/
+small harmonic loss `eta`.
+@isnad1 id=eventual.4h4v.s8.46e54083c874 from=translated src=- shape=cac98df7 vocab=457a1479
+-/
 theorem eventually_clippedPairEnergy_lower_canonical
     {q : ℝ} (hq : 1 < q) {R L : ℕ}
     (hR : 1 ≤ R) (hL : 1 < L) {η : ℝ} (hη : 0 < η) :

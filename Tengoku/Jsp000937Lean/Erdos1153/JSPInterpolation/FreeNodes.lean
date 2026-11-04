@@ -35,6 +35,9 @@ noncomputable section
 
 /-! ## Elementary maximum and finite-minimum interfaces -/
 
+/--
+@isnad1 id=le.2h5v.s5.397c720fb21b from=translated src=- shape=87730385 vocab=a80f8ff3
+-/
 lemma value_le_interval_max {n : ℕ} (nodes : NodeFamily n)
     {a b x : ℝ} (hab : a ≤ b) (hx : x ∈ Set.Icc a b) :
     lebesgueFunction nodes x ≤ lebesgueOn nodes a b := by
@@ -42,6 +45,9 @@ lemma value_le_interval_max {n : ℕ} (nodes : NodeFamily n)
   rw [heq]
   exact hmax x hx
 
+/--
+@isnad1 id=iff.1h5v.s5.9b9819fe0ff3 from=translated src=- shape=84dfb4ee vocab=a80f8ff3
+-/
 lemma interval_max_le_iff {n : ℕ} (nodes : NodeFamily n)
     {a b U : ℝ} (hab : a ≤ b) :
     lebesgueOn nodes a b ≤ U ↔
@@ -54,12 +60,18 @@ lemma interval_max_le_iff {n : ℕ} (nodes : NodeFamily n)
     rw [heq]
     exact h t ht
 
+/--
+@isnad1 id=le.0h3v.s5.863589f08172 from=translated src=- shape=7a4475de vocab=27cca75e
+-/
 lemma orderedMinPeak_le {d : ℕ} (nodes : OrderedNodes (d + 2))
     (i : Fin (d + 1)) : orderedMinPeak nodes ≤ gapHeight nodes i := by
   classical
   exact csInf_le (Set.finite_range (fun j : Fin (d + 1) => gapHeight nodes j)).bddBelow
     (Set.mem_range_self i)
 
+/--
+@isnad1 id=iff.0h3v.s5.13ebdfa04e22 from=translated src=- shape=b4c47547 vocab=27cca75e
+-/
 lemma le_orderedMinPeak_iff {d : ℕ} (nodes : OrderedNodes (d + 2)) (L : ℝ) :
     L ≤ orderedMinPeak nodes ↔ ∀ i : Fin (d + 1), L ≤ gapHeight nodes i := by
   constructor
@@ -71,6 +83,9 @@ lemma le_orderedMinPeak_iff {d : ℕ} (nodes : OrderedNodes (d + 2)) (L : ℝ) :
     · rintro _ ⟨i, rfl⟩
       exact h i
 
+/--
+@isnad1 id=le.0h3v.s6.242cbf53d05f from=translated src=- shape=9e63f318 vocab=d3ac60d5
+-/
 lemma gap_le_amplification {d : ℕ} (nodes : OrderedNodes (d + 2))
     (i : Fin (d + 1)) : gapHeight nodes i ≤ amplification nodes.toNodeFamily := by
   change lebesgueOn nodes.toNodeFamily
@@ -83,6 +98,9 @@ lemma gap_le_amplification {d : ℕ} (nodes : OrderedNodes (d + 2))
 
 /-! ## Sorting does not remove or constrain any node configurations -/
 
+/--
+@isnad1 id=eq.1h3v.s4.e348fde33837 from=translated src=- shape=6324c611 vocab=ff604cbf
+-/
 lemma ordered_ext {n : ℕ} {s t : OrderedNodes n}
     (h : ∀ i, s.point i = t.point i) : s = t := by
   have hbase : s.toNodeFamily = t.toNodeFamily := NodeFamily.ext (funext h)
@@ -91,6 +109,9 @@ lemma ordered_ext {n : ℕ} {s t : OrderedNodes n}
   cases hbase
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.29f7a2cd801d from=translated src=- shape=11b1d970 vocab=c96a80e4
+-/
 lemma sorted_ordered_point {n : ℕ} (s : OrderedNodes n) (i : Fin n) :
     s.toNodeFamily.sorted.point i = s.point i := by
   have h := Finset.orderEmbOfFin_unique
@@ -99,16 +120,25 @@ lemma sorted_ordered_point {n : ℕ} (s : OrderedNodes n) (i : Fin n) :
     s.strictMono
   exact (congrFun h i).symm
 
+/--
+@isnad1 id=eq.0h2v.s3.260c56d7c34b from=translated src=- shape=6ddf6d3e vocab=5935beba
+-/
 @[simp]
 lemma sorted_of_ordered {n : ℕ} (s : OrderedNodes n) :
     s.toNodeFamily.sorted = s :=
   ordered_ext (sorted_ordered_point s)
 
+/--
+@isnad1 id=eq.0h4v.s6.89eeb85e7f30 from=translated src=- shape=44a029df vocab=11c722dd
+-/
 @[simp]
 lemma sorted_endpoint_array {d : ℕ} {A B : ℝ} (s : EndpointArray d A B) :
     s.toNodeFamily.sorted = s.toOrderedNodes :=
   sorted_of_ordered s.toOrderedNodes
 
+/--
+@isnad1 id=eq.0h2v.s4.88f3fb5c2b02 from=translated src=- shape=12bf1150 vocab=4969e8f6
+-/
 lemma amplification_sorted {n : ℕ} (nodes : NodeFamily n) :
     amplification nodes.sorted.toNodeFamily = amplification nodes :=
   NodeFamily.lebesgueOn_sorted nodes (-1) 1
@@ -128,12 +158,18 @@ def frame {d : ℕ} (nodes : OrderedNodes (d + 2)) :
   left_endpoint := rfl
   right_endpoint := rfl
 
+/--
+@isnad1 id=le.0h3v.s6.f3fa43f613ac from=translated src=- shape=2c4fb015 vocab=7fb280bb
+-/
 lemma left_le_point {d : ℕ} (nodes : OrderedNodes (d + 2)) (i : Fin (d + 2)) :
     left nodes ≤ nodes.point i := by
   apply nodes.strictMono.monotone
   change (endpointLeftIndex d).val ≤ i.val
   simp
 
+/--
+@isnad1 id=le.0h3v.s6.74b94a8cb0fe from=translated src=- shape=0bac5587 vocab=cab7c413
+-/
 lemma point_le_right {d : ℕ} (nodes : OrderedNodes (d + 2)) (i : Fin (d + 2)) :
     nodes.point i ≤ right nodes := by
   apply nodes.strictMono.monotone
@@ -151,16 +187,25 @@ def affine (A B t : ℝ) : ℝ :=
 def unaffine (A B x : ℝ) : ℝ :=
   (x - (A + B) / 2) / ((B - A) / 2)
 
+/--
+@isnad1 id=eq.0h2v.s4.f084f24d0c51 from=translated src=- shape=09ec87b6 vocab=8221e83b
+-/
 @[simp]
 lemma affine_neg_one (A B : ℝ) : affine A B (-1) = A := by
   unfold affine
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.0e487da55f68 from=translated src=- shape=bc06ed63 vocab=a5e2db7d
+-/
 @[simp]
 lemma affine_one (A B : ℝ) : affine A B 1 = B := by
   unfold affine
   ring
 
+/--
+@isnad1 id=strictmo.1h2v.s4.e8996c3c2a5d from=translated src=- shape=5b6270ae vocab=461718ae
+-/
 lemma affine_strictMono {A B : ℝ} (hAB : A < B) : StrictMono (affine A B) := by
   have hs : (0 : ℝ) < (B - A) / 2 := by linarith
   intro u v huv
@@ -169,6 +214,9 @@ lemma affine_strictMono {A B : ℝ} (hAB : A < B) : StrictMono (affine A B) := b
   simpa only [add_comm] using
     (add_lt_add_left (mul_lt_mul_of_pos_left huv hs) ((A + B) / 2))
 
+/--
+@isnad1 id=eq.1h3v.s4.52d6652d4a97 from=translated src=- shape=cb0c62df vocab=b8d7856a
+-/
 lemma affine_unaffine {A B : ℝ} (hAB : A < B) (x : ℝ) :
     affine A B (unaffine A B x) = x := by
   have hs : (B - A) / 2 ≠ 0 := ne_of_gt (by linarith)
@@ -177,6 +225,9 @@ lemma affine_unaffine {A B : ℝ} (hAB : A < B) (x : ℝ) :
     <;> ring
   exact hcancel _ _ hs
 
+/--
+@isnad1 id=eq.1h3v.s4.c8ec04ecf39c from=translated src=- shape=cb0c62df vocab=b8d7856a
+-/
 lemma unaffine_affine {A B : ℝ} (hAB : A < B) (t : ℝ) :
     unaffine A B (affine A B t) = t := by
   have hs : (B - A) / 2 ≠ 0 := ne_of_gt (by linarith)
@@ -185,10 +236,16 @@ lemma unaffine_affine {A B : ℝ} (hAB : A < B) (t : ℝ) :
     <;> ring
   exact hcancel _ _ hs
 
+/--
+@isnad1 id=mem.2h5v.s5.d648166ced2d from=translated src=- shape=c703d657 vocab=092bfd5d
+-/
 lemma affine_mem_Icc {A B u v t : ℝ} (hAB : A < B)
     (ht : t ∈ Set.Icc u v) : affine A B t ∈ Set.Icc (affine A B u) (affine A B v) :=
   ⟨(affine_strictMono hAB).monotone ht.1, (affine_strictMono hAB).monotone ht.2⟩
 
+/--
+@isnad1 id=mem.2h5v.s5.e3c282163875 from=translated src=- shape=cc20831f vocab=9e54a13d
+-/
 lemma unaffine_mem_Icc {A B u v x : ℝ} (hAB : A < B)
     (hx : x ∈ Set.Icc (affine A B u) (affine A B v)) :
     unaffine A B x ∈ Set.Icc u v := by
@@ -215,11 +272,17 @@ def affineNodes {d : ℕ} (opt : EndpointArray d (-1) 1)
   left_endpoint := by rw [opt.left_endpoint, affine_neg_one]
   right_endpoint := by rw [opt.right_endpoint, affine_one]
 
+/--
+@isnad1 id=eq.1h5v.s7.e396e30111e8 from=translated src=- shape=34bbe43f vocab=6e429337
+-/
 @[simp]
 lemma affineNodes_point {d : ℕ} (opt : EndpointArray d (-1) 1)
     {A B : ℝ} (hAB : AdmissibleInterval A B) (i : Fin (d + 2)) :
     (affineNodes opt hAB).point i = affine A B (opt.point i) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.3718ca0234b5 from=translated src=- shape=e5f15819 vocab=66067479
+-/
 lemma lagrangeFundamental_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
     {A B : ℝ} (hAB : AdmissibleInterval A B) (k : Fin (d + 2)) (t : ℝ) :
     lagrangeFundamental (affineNodes opt hAB).toNodeFamily k (affine A B t) =
@@ -240,6 +303,9 @@ lemma lagrangeFundamental_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
   -- or polynomial reasoning about an inverse of B-A is needed.
   exact mul_div_mul_left _ _ hs
 
+/--
+@isnad1 id=eq.1h5v.s6.640ea0998f9b from=translated src=- shape=8a1e96a5 vocab=63f922cc
+-/
 lemma lebesgueFunction_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
     {A B : ℝ} (hAB : AdmissibleInterval A B) (t : ℝ) :
     lebesgueFunction (affineNodes opt hAB).toNodeFamily (affine A B t) =
@@ -250,7 +316,9 @@ lemma lebesgueFunction_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
   intro k _hk
   rw [lagrangeFundamental_affine]
 
-/-- Invariance of interval maxima, proved by transporting both maximizers.-/
+/-- Invariance of interval maxima, proved by transporting both maximizers.
+@isnad1 id=eq.2h6v.s7.87829ec4b78d from=translated src=- shape=8f3ad9bb vocab=213f13e6
+-/
 lemma lebesgueOn_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
     {A B : ℝ} (hAB : AdmissibleInterval A B) {a b : ℝ} (hab : a ≤ b) :
     lebesgueOn (affineNodes opt hAB).toNodeFamily (affine A B a) (affine A B b) =
@@ -268,6 +336,9 @@ lemma lebesgueOn_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
     rw [lebesgueFunction_affine] at h
     exact h
 
+/--
+@isnad1 id=eq.1h5v.s6.c1d587a0dd7c from=translated src=- shape=9e943879 vocab=b41f205c
+-/
 lemma height_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
     {A B : ℝ} (hAB : AdmissibleInterval A B) (i : Fin (d + 1)) :
     (affineNodes opt hAB).height i = opt.height i := by
@@ -275,6 +346,9 @@ lemma height_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
   simpa only [affineNodes_point] using
     (lebesgueOn_affine opt hAB (gap_left_lt_right opt.toOrderedNodes i).le)
 
+/--
+@isnad1 id=equiosci.2h4v.s5.e5cd211e8a45 from=translated src=- shape=54392000 vocab=a8a47083
+-/
 lemma equioscillates_affine {d : ℕ} (opt : EndpointArray d (-1) 1)
     (hopt : Equioscillates opt) {A B : ℝ} (hAB : AdmissibleInterval A B) :
     Equioscillates (affineNodes opt hAB) := by
@@ -290,6 +364,9 @@ def HasShape {d : ℕ} (opt : EndpointArray d (-1) 1)
   ∀ i, nodes.sorted.point i =
     affine (left nodes.sorted) (right nodes.sorted) (opt.point i)
 
+/--
+@isnad1 id=iff.0h3v.s7.8c048f30e560 from=translated src=- shape=1702ea5a vocab=9d283fd1
+-/
 lemma frame_eq_affine_iff {d : ℕ} (opt : EndpointArray d (-1) 1)
     (nodes : NodeFamily (d + 2)) :
     frame nodes.sorted = affineNodes opt (frame nodes.sorted).admissibleInterval ↔
@@ -302,7 +379,9 @@ lemma frame_eq_affine_iff {d : ℕ} (opt : EndpointArray d (-1) 1)
     apply EndpointArray.ext
     exact h
 
-/-- The shape condition is literally a positive affine image fitting in [-1,1].-/
+/-- The shape condition is literally a positive affine image fitting in [-1,1].
+@isnad1 id=iff.0h3v.s7.95a7329aa836 from=translated src=- shape=4cfc52f4 vocab=bf346c82
+-/
 lemma hasShape_iff_affine_copy {d : ℕ} (opt : EndpointArray d (-1) 1)
     (nodes : NodeFamily (d + 2)) :
     HasShape opt nodes ↔
@@ -346,11 +425,17 @@ lemma hasShape_iff_affine_copy {d : ℕ} (opt : EndpointArray d (-1) 1)
 
 /-! ## Bounds that already range over every free-node family -/
 
+/--
+@isnad1 id=eq.1h2v.s7.e693e1da674f from=translated src=- shape=96dd7866 vocab=e4db81ac
+-/
 lemma canonical_amplification {d : ℕ} (opt : EndpointArray d (-1) 1)
     (hopt : Equioscillates opt) :
     amplification opt.toNodeFamily = opt.height 0 :=
   ClassicalBound.lebesgueOn_eq_height_zero_of_equioscillates opt hopt
 
+/--
+@isnad1 id=eq.1h2v.s6.3ffd9d9a6b05 from=translated src=- shape=da0d6198 vocab=ca358a32
+-/
 lemma canonical_minPeak {d : ℕ} (opt : EndpointArray d (-1) 1)
     (hopt : Equioscillates opt) : minPeak opt.toNodeFamily = opt.height 0 := by
   change orderedMinPeak opt.toOrderedNodes.toNodeFamily.sorted = opt.height 0
@@ -366,7 +451,9 @@ lemma canonical_minPeak {d : ℕ} (opt : EndpointArray d (-1) 1)
 /-! ## Exterior intervals: upper tests for 936, lower tests for 937 -/
 
 /-- To the left of all nodes, moving farther left can only increase the
-Lebesgue function.  This is proved factor by factor, not assumed.-/
+Lebesgue function.  This is proved factor by factor, not assumed.
+@isnad1 id=le.2h4v.s5.ff78acf8f84d from=translated src=- shape=1737c244 vocab=69fc1619
+-/
 lemma lebesgue_left_exterior {n : ℕ} (nodes : NodeFamily n) {u v : ℝ}
     (huv : u ≤ v) (hv : ∀ i, v ≤ nodes.point i) :
     lebesgueFunction nodes v ≤ lebesgueFunction nodes u := by
@@ -385,7 +472,9 @@ lemma lebesgue_left_exterior {n : ℕ} (nodes : NodeFamily n) {u v : ℝ}
     linarith
 
 /-- To the right of all nodes, moving farther right can only increase the
-Lebesgue function.-/
+Lebesgue function.
+@isnad1 id=le.2h4v.s5.dbce3448a5c7 from=translated src=- shape=8f9e1160 vocab=69fc1619
+-/
 lemma lebesgue_right_exterior {n : ℕ} (nodes : NodeFamily n) {u v : ℝ}
     (huv : u ≤ v) (hu : ∀ i, nodes.point i ≤ u) :
     lebesgueFunction nodes u ≤ lebesgueFunction nodes v := by
@@ -404,7 +493,9 @@ lemma lebesgue_right_exterior {n : ℕ} (nodes : NodeFamily n) {u v : ℝ}
     exact sub_le_sub_right huv _
 
 /-- Pointwise control on the WHOLE ambient interval from all internal peaks
-and the two ambient endpoint values.-/
+and the two ambient endpoint values.
+@isnad1 id=le.3h3v.s7.791b9830d9c7 from=translated src=- shape=f6f1c39a vocab=a21abcf7
+-/
 lemma full_interval_bound_of_gaps_and_endpoints {d : ℕ}
     (nodes : OrderedNodes (d + 2)) (U : ℝ)
     (hgaps : ∀ i : Fin (d + 1), gapHeight nodes i ≤ U)
@@ -429,7 +520,9 @@ lemma full_interval_bound_of_gaps_and_endpoints {d : ℕ}
 
 /-- Affine invariance from the literal point equations alone.  No equality
 of EndpointArray structures, sorting proofs, or interval certificates is
-transported through lebesgueFunction.-/
+transported through lebesgueFunction.
+@isnad1 id=eq.2h6v.s5.11ed3da7a64e from=translated src=- shape=737614e3 vocab=8ff4a604
+-/
 lemma lebesgueFunction_affine_of_points {n : ℕ}
     (source target : NodeFamily n) {A B : ℝ} (hAB : A < B)
     (hpoint : ∀ i, source.point i = affine A B (target.point i)) (t : ℝ) :
@@ -450,6 +543,9 @@ lemma lebesgueFunction_affine_of_points {n : ℕ}
   rw [hpoint j, hpoint k, hdiff, hdiff]
   exact mul_div_mul_left _ _ hs
 
+/--
+@isnad1 id=eq.1h4v.s7.a965e443143f from=translated src=- shape=d90e5876 vocab=9b9b3ef7
+-/
 lemma lebesgueFunction_of_shape {d : ℕ} (opt : EndpointArray d (-1) 1)
     (nodes : NodeFamily (d + 2)) (hshape : HasShape opt nodes) (t : ℝ) :
     lebesgueFunction nodes (affine (left nodes.sorted) (right nodes.sorted) t) =
@@ -463,6 +559,9 @@ lemma lebesgueFunction_of_shape {d : ℕ} (opt : EndpointArray d (-1) 1)
       lebesgueFunction_affine_of_points nodes.sorted.toNodeFamily opt.toNodeFamily
         (frame nodes.sorted).endpoints_lt hshape t
 
+/--
+@isnad1 id=eq.1h4v.s7.9e8e0054f9bf from=translated src=- shape=08ee9fca vocab=c361cc62
+-/
 lemma lebesgueFunction_of_shape_inverse {d : ℕ} (opt : EndpointArray d (-1) 1)
     (nodes : NodeFamily (d + 2)) (hshape : HasShape opt nodes) (x : ℝ) :
     lebesgueFunction nodes x = lebesgueFunction opt.toNodeFamily
@@ -475,7 +574,9 @@ lemma lebesgueFunction_of_shape_inverse {d : ℕ} (opt : EndpointArray d (-1) 1)
 
 /-- The n=1 edge case of minimax: every single node has amplification one.
 There are no INTERNAL adjacent gaps for n=1; the all-gap extension has
-two exterior intervals, each with constant Lebesgue function one.-/
+two exterior intervals, each with constant Lebesgue function one.
+@isnad1 id=eq.0h2v.s4.165590b7396a from=translated src=- shape=c24049f2 vocab=f5757059
+-/
 lemma single_node_lebesgue (nodes : NodeFamily 1) (x : ℝ) :
     lebesgueFunction nodes x = 1 := by
   classical
@@ -488,12 +589,18 @@ lemma single_node_lebesgue (nodes : NodeFamily 1) (x : ℝ) :
     simp only [lagrangeFundamental, herase, Finset.prod_empty]
   simp [lebesgueFunction, hfund]
 
+/--
+@isnad1 id=eq.0h1v.s4.1a55ec3ca8fc from=translated src=- shape=1e0028ff vocab=9815f495
+-/
 lemma single_node_amplification (nodes : NodeFamily 1) :
     amplification nodes = 1 := by
   obtain ⟨x, _hx, heq, _hmax⟩ := exists_lebesgueOn_eq_and_ge nodes
     (a := (-1 : ℝ)) (b := (1 : ℝ)) (by norm_num)
   exact heq.trans (single_node_lebesgue nodes x)
 
+/--
+@isnad1 id=isminimi.0h1v.s3.35d6f91a029c from=translated src=- shape=9315f4f4 vocab=9f7fb5ec
+-/
 theorem jsp_000936_one_node (nodes : NodeFamily 1) : IsMinimizer nodes := by
   intro other
   calc
@@ -503,12 +610,18 @@ theorem jsp_000936_one_node (nodes : NodeFamily 1) : IsMinimizer nodes := by
 
 /-! ## Closed public targets whose competitor types contain no fixed endpoints -/
 
+/--
+@isnad1 id=isnormal.1h2v.s6.65ecb72c1841 from=translated src=- shape=e7629662 vocab=d2179dcc
+-/
 lemma canonical_is_normalized {d : ℕ} (opt : EndpointArray d (-1) 1)
     (hopt : Equioscillates opt) : IsNormalizedEquioscillating opt.toNodeFamily := by
   unfold IsNormalizedEquioscillating
   simp only [sorted_endpoint_array]
   exact ⟨opt.left_endpoint, opt.right_endpoint, hopt⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.62565b9e03dc from=translated src=- shape=11a86a69 vocab=6db2f13c
+-/
 lemma hasShape_iff_admissibleAffineCopy {d : ℕ} (opt : EndpointArray d (-1) 1)
     (nodes : NodeFamily (d + 2)) :
     HasShape opt nodes ↔ AdmissibleAffineCopy opt.toNodeFamily nodes := by

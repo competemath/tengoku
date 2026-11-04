@@ -41,21 +41,33 @@ def IsGapMaximizer {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1))
   r ∈ closedGap nodes g ∧ ∀ u ∈ closedGap nodes g,
     (gapPolynomial nodes g).eval u ≤ (gapPolynomial nodes g).eval r
 
+/--
+@isnad1 id=mem.0h3v.s5.581b73c9b42f from=translated src=- shape=859991a2 vocab=a455cb52
+-/
 lemma gapArgmax_mem_closedGap {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     gapArgmax nodes g ∈ closedGap nodes g :=
   (Classical.choose_spec (exists_gapHeight_eq_eval_gapPolynomial nodes g)).1
 
+/--
+@isnad1 id=eq.0h3v.s5.d8721194f58c from=translated src=- shape=175f184d vocab=46fbe581
+-/
 lemma gapHeight_eq_eval_gapArgmax {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) :
     gapHeight nodes g = (gapPolynomial nodes g).eval (gapArgmax nodes g) :=
   (Classical.choose_spec (exists_gapHeight_eq_eval_gapPolynomial nodes g)).2.1
 
+/--
+@isnad1 id=le.1h4v.s5.41bdc5765b4f from=translated src=- shape=8ea74a59 vocab=191ff0ff
+-/
 lemma gapPolynomial_eval_le_gapArgmax {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) {t : ℝ} (ht : t ∈ closedGap nodes g) :
     (gapPolynomial nodes g).eval t ≤
       (gapPolynomial nodes g).eval (gapArgmax nodes g) :=
   (Classical.choose_spec (exists_gapHeight_eq_eval_gapPolynomial nodes g)).2.2 t ht
 
+/--
+@isnad1 id=isgapmax.0h3v.s4.ea39061897db from=translated src=- shape=0ca90dd0 vocab=99e4a539
+-/
 lemma isGapMaximizer_gapArgmax {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) :
     IsGapMaximizer nodes g (gapArgmax nodes g) :=
@@ -64,7 +76,9 @@ lemma isGapMaximizer_gapArgmax {n : ℕ} (nodes : OrderedNodes n)
 
 /-- For at least three nodes, the compact maximum lies strictly inside its
 gap.  The cardinality hypothesis is sharp; see
-`gapPolynomial_eq_one_of_two_nodes`.-/
+`gapPolynomial_eq_one_of_two_nodes`.
+@isnad1 id=mem.1h3v.s5.05a8a0ddda60 from=translated src=- shape=5cc2112a vocab=42641ef9
+-/
 lemma gapArgmax_mem_openGap {n : ℕ} (nodes : OrderedNodes n) (hn : 3 ≤ n)
     (g : Fin (n - 1)) :
     gapArgmax nodes g ∈ openGap nodes g := by
@@ -83,7 +97,9 @@ lemma gapArgmax_mem_openGap {n : ℕ} (nodes : OrderedNodes n) (hn : 3 ≤ n)
     exact (lt_irrefl 1) hmaxgt
 
 /-- Every chosen gap maximum is a derivative root once the gap has a genuine
-interior maximum.-/
+interior maximum.
+@isnad1 id=eq.1h3v.s7.943e1137771b from=translated src=- shape=4c5f1928 vocab=c2d9af97
+-/
 lemma gapPolynomial_derivative_eval_gapArgmax {n : ℕ}
     (nodes : OrderedNodes n) (hn : 3 ≤ n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).derivative.eval (gapArgmax nodes g) = 0 := by
@@ -97,6 +113,9 @@ lemma gapPolynomial_derivative_eval_gapArgmax {n : ℕ}
     hmaxOn.isLocalMax (Icc_mem_nhds hopen.1 hopen.2)
   simpa only [p] using hlocal.hasDerivAt_eq_zero (p.hasDerivAt (gapArgmax nodes g))
 
+/--
+@isnad1 id=lt.1h3v.s5.05306eae3b93 from=translated src=- shape=10e8b830 vocab=dd14dd82
+-/
 lemma one_lt_gapHeight {n : ℕ} (nodes : OrderedNodes n) (hn : 3 ≤ n)
     (g : Fin (n - 1)) :
     1 < gapHeight nodes g := by
@@ -106,7 +125,9 @@ lemma one_lt_gapHeight {n : ℕ} (nodes : OrderedNodes n) (hn : 3 ≤ n)
     (gapPolynomial_eval_le_gapArgmax nodes g ⟨ht.1.le, ht.2.le⟩)
 
 /-- In every nondegenerate (`n ≥ 3`) case the derivative polynomial itself
-is nonzero.  This keeps membership in its finite real-root multiset honest.-/
+is nonzero.  This keeps membership in its finite real-root multiset honest.
+@isnad1 id=ne.1h3v.s7.906be5d807f0 from=translated src=- shape=dda11726 vocab=498badaf
+-/
 lemma gapPolynomial_derivative_ne_zero {n : ℕ} (nodes : OrderedNodes n)
     (hn : 3 ≤ n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).derivative ≠ 0 := by
@@ -121,6 +142,9 @@ lemma gapPolynomial_derivative_ne_zero {n : ℕ} (nodes : OrderedNodes n)
   rw [gapPolynomial_eval_left] at heqLeft
   linarith
 
+/--
+@isnad1 id=mem.1h3v.s7.65523d2cb579 from=translated src=- shape=557d7360 vocab=be84d140
+-/
 lemma gapArgmax_mem_derivative_roots {n : ℕ} (nodes : OrderedNodes n)
     (hn : 3 ≤ n) (g : Fin (n - 1)) :
     gapArgmax nodes g ∈ (gapPolynomial nodes g).derivative.roots := by
@@ -214,7 +238,9 @@ private lemma criticalOtherGapRoot_strictMono {n : ℕ}
 
 /-- Every gap polynomial splits over `ℝ`.  The proof uses one root in each
 other nodal gap; after their product is divided out, the interpolation degree
-budget leaves a quotient of degree at most one.-/
+budget leaves a quotient of degree at most one.
+@isnad1 id=splits.0h3v.s4.fd6eedb8109b from=translated src=- shape=0d15d7bd vocab=1d7bfdf7
+-/
 theorem gapPolynomial_splits {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) : (gapPolynomial nodes g).Splits := by
   classical
@@ -327,7 +353,9 @@ private lemma hasDerivAt_rootReciprocalSum (roots : Multiset ℝ) (x : ℝ)
 
 /-- The logarithmic derivative `F'_g/F_g` is strictly decreasing throughout
 the polynomial's own gap.  This is the root-budget form of the source's
-critical-point argument.-/
+critical-point argument.
+@isnad1 id=strictan.1h3v.s7.6d18d3d603fd from=translated src=- shape=71b2438c vocab=ec6c0e18
+-/
 theorem gapLogDerivative_strictAntiOn {n : ℕ} (nodes : OrderedNodes n)
     (hn : 4 ≤ n) (g : Fin (n - 1)) :
     StrictAntiOn
@@ -384,7 +412,9 @@ lemma eq_gapArgmax_of_derivative_eval_eq_zero {n : ℕ}
     exact (lt_irrefl 0) hstrict
 
 /-- The source-critical-point statement for `n ≥ 4`: the derivative has
-exactly one zero in its own gap, namely `gapArgmax`.-/
+exactly one zero in its own gap, namely `gapArgmax`.
+@isnad1 id=existsun.1h3v.s7.759fe45e225f from=translated src=- shape=8319b2f9 vocab=209307ca
+-/
 theorem existsUnique_gapPolynomial_derivative_root_in_gap {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1)) :
     ∃! r : ℝ, r ∈ openGap nodes g ∧
@@ -395,7 +425,9 @@ theorem existsUnique_gapPolynomial_derivative_root_in_gap {n : ℕ}
   intro r hr
   exact eq_gapArgmax_of_derivative_eval_eq_zero nodes hn g hr.1 hr.2
 
-/-- Pointwise critical-root characterization on the owning open gap.-/
+/-- Pointwise critical-root characterization on the owning open gap.
+@isnad1 id=iff.2h4v.s7.57986c51a60e from=translated src=- shape=3501eb78 vocab=45e28536
+-/
 lemma derivative_eval_eq_zero_iff_eq_gapArgmax {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1))
     {r : ℝ} (hrgap : r ∈ openGap nodes g) :
@@ -406,7 +438,9 @@ lemma derivative_eval_eq_zero_iff_eq_gapArgmax {n : ℕ}
   · rintro rfl
     exact gapPolynomial_derivative_eval_gapArgmax nodes (by omega) g
 
-/-- Hence the compact maximizer on the gap is unique for `n ≥ 4`.-/
+/-- Hence the compact maximizer on the gap is unique for `n ≥ 4`.
+@isnad1 id=iff.1h4v.s5.566e847c8c85 from=translated src=- shape=4825e2ec vocab=dba105ca
+-/
 lemma isGapMaximizer_iff_eq_gapArgmax {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1)) {r : ℝ} :
     IsGapMaximizer nodes g r ↔ r = gapArgmax nodes g := by
@@ -434,6 +468,9 @@ lemma isGapMaximizer_iff_eq_gapArgmax {n : ℕ}
   · rintro rfl
     exact isGapMaximizer_gapArgmax nodes g
 
+/--
+@isnad1 id=lt.3h4v.s7.ec06b337b2e4 from=translated src=- shape=a1b50a29 vocab=5f4d6977
+-/
 lemma gapPolynomial_derivative_pos_of_lt_gapArgmax {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1))
     {x : ℝ} (hx : x ∈ openGap nodes g) (hxt : x < gapArgmax nodes g) :
@@ -451,6 +488,9 @@ lemma gapPolynomial_derivative_pos_of_lt_gapArgmax {n : ℕ}
   · exact hgood.1
   · exact (not_lt_of_ge hden.le hbad.2).elim
 
+/--
+@isnad1 id=lt.3h4v.s7.410b94758cbc from=translated src=- shape=019b60b0 vocab=5f4d6977
+-/
 lemma gapPolynomial_derivative_neg_of_gapArgmax_lt {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1))
     {x : ℝ} (hx : x ∈ openGap nodes g) (htx : gapArgmax nodes g < x) :
@@ -470,7 +510,9 @@ lemma gapPolynomial_derivative_neg_of_gapArgmax_lt {n : ℕ}
 
 /-- Strict logarithmic concavity makes the critical point nondegenerate:
 `F''_g(τ_g) < 0`.  This is stronger than uniqueness as a set-theoretic root
-and is what makes division by `(X-τ_g)` retain a nonzero value at `τ_g`.-/
+and is what makes division by `(X-τ_g)` retain a nonzero value at `τ_g`.
+@isnad1 id=lt.1h3v.s8.1a766c55c4f4 from=translated src=- shape=e59b2c25 vocab=35b7214c
+-/
 lemma gapPolynomial_secondDerivative_eval_gapArgmax_neg {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).derivative.derivative.eval (gapArgmax nodes g) < 0 := by
@@ -540,7 +582,9 @@ def gapDerivativeQuotient {n : ℕ} (nodes : OrderedNodes n)
   (gapPolynomial nodes g).derivative /ₘ (X - C (gapArgmax nodes g))
 
 /-- Exact factorization consumed by the source Lemma 2 sign table and the
-Jacobian evaluation matrix.-/
+Jacobian evaluation matrix.
+@isnad1 id=eq.1h3v.s7.4c054b9842f1 from=translated src=- shape=72f7f5b5 vocab=d20ff8be
+-/
 lemma X_sub_C_gapArgmax_mul_gapDerivativeQuotient {n : ℕ}
     (nodes : OrderedNodes n) (hn : 3 ≤ n) (g : Fin (n - 1)) :
     (X - C (gapArgmax nodes g)) * gapDerivativeQuotient nodes g =
@@ -548,6 +592,9 @@ lemma X_sub_C_gapArgmax_mul_gapDerivativeQuotient {n : ℕ}
   exact Polynomial.mul_divByMonic_eq_iff_isRoot.mpr
     (gapPolynomial_derivative_eval_gapArgmax nodes hn g)
 
+/--
+@isnad1 id=eq.0h3v.s8.b4a069a52194 from=translated src=- shape=0537eaee vocab=4ece5106
+-/
 lemma gapDerivativeQuotient_eval_gapArgmax {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapDerivativeQuotient nodes g).eval (gapArgmax nodes g) =
@@ -557,6 +604,9 @@ lemma gapDerivativeQuotient_eval_gapArgmax {n : ℕ}
       (gapPolynomial nodes g).derivative (gapArgmax nodes g))
   simpa [gapDerivativeQuotient] using h
 
+/--
+@isnad1 id=lt.1h3v.s5.bd25c2b0ee0d from=translated src=- shape=e64a1608 vocab=952a2592
+-/
 lemma gapDerivativeQuotient_eval_gapArgmax_neg {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1)) :
     (gapDerivativeQuotient nodes g).eval (gapArgmax nodes g) < 0 := by
@@ -564,7 +614,9 @@ lemma gapDerivativeQuotient_eval_gapArgmax_neg {n : ℕ}
   exact gapPolynomial_secondDerivative_eval_gapArgmax_neg nodes hn g
 
 /-- The removed-critical-factor quotient is strictly negative throughout its
-own open gap, including at the removed root.-/
+own open gap, including at the removed root.
+@isnad1 id=lt.2h4v.s5.2ce3e08cec8f from=translated src=- shape=a323199d vocab=41a59e7c
+-/
 lemma gapDerivativeQuotient_eval_neg_of_mem_openGap {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1))
     {x : ℝ} (hx : x ∈ openGap nodes g) :
@@ -591,7 +643,9 @@ lemma gapDerivativeQuotient_eval_neg_of_mem_openGap {n : ℕ}
     · exact (not_lt_of_ge (sub_pos.mpr hgt).le hbad.1).elim
 
 /-- The unique critical root is simple, so the quotient sign does not vanish
-at the removed root.-/
+at the removed root.
+@isnad1 id=eq.1h3v.s7.a63dfe4527df from=translated src=- shape=53dfadb6 vocab=c65e4adf
+-/
 lemma rootMultiplicity_gapPolynomial_derivative_gapArgmax {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).derivative.rootMultiplicity (gapArgmax nodes g) = 1 := by
@@ -611,6 +665,9 @@ lemma rootMultiplicity_gapPolynomial_derivative_gapArgmax {n : ℕ}
   change dp.rootMultiplicity (gapArgmax nodes g) = 1
   omega
 
+/--
+@isnad1 id=ne.1h3v.s5.de19fd83a9b4 from=translated src=- shape=0363206b vocab=ca4a77b2
+-/
 lemma gapDerivativeQuotient_ne_zero {n : ℕ}
     (nodes : OrderedNodes n) (hn : 3 ≤ n) (g : Fin (n - 1)) :
     gapDerivativeQuotient nodes g ≠ 0 := by
@@ -620,7 +677,9 @@ lemma gapDerivativeQuotient_ne_zero {n : ℕ}
   exact (gapPolynomial_derivative_ne_zero nodes hn g) hfactor.symm
 
 /-- The critical quotient has the `≤ n-3` degree required by the source
-Lemma 2/Jacobian matrix.-/
+Lemma 2/Jacobian matrix.
+@isnad1 id=le.1h3v.s5.3ccf9de7aa5f from=translated src=- shape=1b9f4b86 vocab=c68867a9
+-/
 lemma natDegree_gapDerivativeQuotient_le_sub_three {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1)) :
     (gapDerivativeQuotient nodes g).natDegree ≤ n - 3 := by
@@ -644,7 +703,9 @@ lemma natDegree_gapDerivativeQuotient_le_sub_three {n : ℕ}
       Nat.sub_le_sub_right hderivative 1
     _ = n - 3 := by omega
 
-/-- Away from `τ_g`, the critical quotient has no zero in the owning gap.-/
+/-- Away from `τ_g`, the critical quotient has no zero in the owning gap.
+@isnad1 id=ne.3h4v.s6.3b11e275ccfe from=translated src=- shape=e6cbbc86 vocab=5ab14a71
+-/
 lemma gapDerivativeQuotient_eval_ne_zero_of_mem_openGap {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (g : Fin (n - 1))
     {r : ℝ} (hrgap : r ∈ openGap nodes g)
@@ -657,7 +718,9 @@ lemma gapDerivativeQuotient_eval_ne_zero_of_mem_openGap {n : ℕ}
     Polynomial.eval_C, hq, mul_zero] at hfactor
   exact hrne (eq_gapArgmax_of_derivative_eval_eq_zero nodes hn g hrgap hfactor.symm)
 
-/-- With exactly three nodes the derivative is at most linear.-/
+/-- With exactly three nodes the derivative is at most linear.
+@isnad1 id=le.0h2v.s7.5cb8e07ae8d7 from=translated src=- shape=7033f756 vocab=7f7ee270
+-/
 lemma natDegree_gapPolynomial_derivative_le_one_of_three_nodes
     (nodes : OrderedNodes 3) (g : Fin 2) :
     (gapPolynomial nodes g).derivative.natDegree ≤ 1 := by
@@ -702,6 +765,9 @@ lemma eq_gapArgmax_of_derivative_eval_eq_zero_of_three_nodes
         (natDegree_gapPolynomial_derivative_le_one_of_three_nodes nodes g)
   omega
 
+/--
+@isnad1 id=existsun.0h2v.s7.ebe3c93c29f0 from=translated src=- shape=071fffd5 vocab=a2d0e2ba
+-/
 theorem existsUnique_gapPolynomial_derivative_root_in_gap_of_three_nodes
     (nodes : OrderedNodes 3) (g : Fin 2) :
     ∃! r : ℝ, r ∈ openGap nodes g ∧
@@ -712,7 +778,9 @@ theorem existsUnique_gapPolynomial_derivative_root_in_gap_of_three_nodes
   intro r hr
   exact eq_gapArgmax_of_derivative_eval_eq_zero_of_three_nodes nodes g hr.2
 
-/-- Hence the three-node compact maximizer itself is unique.-/
+/-- Hence the three-node compact maximizer itself is unique.
+@isnad1 id=iff.0h3v.s5.6062366a04f6 from=translated src=- shape=15407a24 vocab=ed2accc6
+-/
 lemma isGapMaximizer_iff_eq_gapArgmax_of_three_nodes
     (nodes : OrderedNodes 3) (g : Fin 2) {r : ℝ} :
     IsGapMaximizer nodes g r ↔ r = gapArgmax nodes g := by
@@ -741,7 +809,9 @@ lemma isGapMaximizer_iff_eq_gapArgmax_of_three_nodes
     exact isGapMaximizer_gapArgmax nodes g
 
 /-- In the two-node case the unique gap coefficient vector is constantly
-one, hence the gap polynomial is the constant polynomial one.-/
+one, hence the gap polynomial is the constant polynomial one.
+@isnad1 id=eq.0h2v.s5.f852c78395a3 from=translated src=- shape=52279d4b vocab=9a94654c
+-/
 lemma gapPolynomial_eq_one_of_two_nodes (nodes : OrderedNodes 2) (g : Fin 1) :
     gapPolynomial nodes g = 1 := by
   have hg : g = 0 := Subsingleton.elim _ _
@@ -753,6 +823,9 @@ lemma gapPolynomial_eq_one_of_two_nodes (nodes : OrderedNodes 2) (g : Fin 1) :
   exact Lagrange.interpolate_one nodes.injective.injOn
     ⟨(0 : Fin 2), Finset.mem_univ _⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.dbe987eed4e5 from=translated src=- shape=a2805b13 vocab=d875cb54
+-/
 @[simp]
 lemma gapPolynomial_derivative_eq_zero_of_two_nodes (nodes : OrderedNodes 2)
     (g : Fin 1) :

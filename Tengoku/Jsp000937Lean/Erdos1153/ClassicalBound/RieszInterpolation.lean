@@ -68,7 +68,9 @@ private lemma sum_rieszStep_pow_eq_zero (d m : ℕ) (hd : 0 < d)
     exact (rieszStep_pow_ne_one d m hd hm0 hm) (sub_eq_zero.mp hstep)
 
 /-- Nonconstant Fourier modes below frequency `2d` sum to zero on the
-`2d` midpoint phases.-/
+`2d` midpoint phases.
+@isnad1 id=eq.3h2v.s6.0dc1ac5d6054 from=translated src=- shape=c013c9c8 vocab=81dcd801
+-/
 lemma sum_rieszPhase_pow_eq_zero (d m : ℕ) (hd : 0 < d)
     (hm0 : 0 < m) (hm : m < 2 * d) :
     ∑ j ∈ Finset.range (2 * d), rieszPhase d j ^ m = 0 := by
@@ -89,7 +91,9 @@ lemma sum_rieszPhase_pow_eq_zero (d m : ℕ) (hd : 0 < d)
       rw [Finset.mul_sum]
     _ = 0 := by rw [sum_rieszStep_pow_eq_zero d m hd hm0 hm, mul_zero]
 
-/-- Real-part form of midpoint Fourier orthogonality.-/
+/-- Real-part form of midpoint Fourier orthogonality.
+@isnad1 id=eq.3h2v.s6.b75c0d24a8ce from=translated src=- shape=65a3b9f6 vocab=f790189b
+-/
 lemma sum_cos_mul_rieszAngle_eq_zero (d m : ℕ) (hd : 0 < d)
     (hm0 : 0 < m) (hm : m < 2 * d) :
     ∑ j ∈ Finset.range (2 * d), Real.cos ((m : ℝ) * rieszAngle d j) = 0 := by
@@ -107,7 +111,9 @@ lemma sum_cos_mul_rieszAngle_eq_zero (d m : ℕ) (hd : 0 < d)
       rw [Complex.exp_ofReal_mul_I_re]
     _ = 0 := h
 
-/-- Imaginary-part form of midpoint Fourier orthogonality.-/
+/-- Imaginary-part form of midpoint Fourier orthogonality.
+@isnad1 id=eq.3h2v.s6.869f05bd5be7 from=translated src=- shape=65a3b9f6 vocab=197aed4d
+-/
 lemma sum_sin_mul_rieszAngle_eq_zero (d m : ℕ) (hd : 0 < d)
     (hm0 : 0 < m) (hm : m < 2 * d) :
     ∑ j ∈ Finset.range (2 * d), Real.sin ((m : ℝ) * rieszAngle d j) = 0 := by
@@ -351,6 +357,9 @@ private lemma rieszRootMoment_center (d : ℕ) (hd : 0 < d) :
     linear_combination -href
   exact (mul_eq_zero.mp htwo).resolve_left (by norm_num)
 
+/--
+@isnad1 id=eq.2h2v.s5.a3bfd670a8aa from=translated src=- shape=43abe761 vocab=d9375366
+-/
 lemma rieszRootMoment_center_add (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) :
     rieszRootMoment d (d + 1 + k) = (d : ℂ) * k := by
   induction k with
@@ -447,7 +456,9 @@ private lemma rieszSignedWeight_cast (d j : ℕ) (hd : 0 < d) :
   push_cast
   ring
 
-/-- Complex Fourier moment of the signed Riesz weights.-/
+/-- Complex Fourier moment of the signed Riesz weights.
+@isnad1 id=eq.2h2v.s6.fcb6b08301e2 from=translated src=- shape=0146f4bd vocab=31528f9e
+-/
 lemma sum_rieszSignedWeight_mul_phase_pow (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) :
     ∑ j ∈ Finset.range (2 * d),
       (rieszSignedWeight d j : ℂ) * rieszPhase d j ^ k =
@@ -467,7 +478,9 @@ lemma sum_rieszSignedWeight_mul_phase_pow (d k : ℕ) (hd : 0 < d) (hk : k ≤ d
       have hdC : (d : ℂ) ≠ 0 := by exact_mod_cast hd.ne'
       field_simp [hdC]
 
-/-- Cosine moment of the signed weights.-/
+/-- Cosine moment of the signed weights.
+@isnad1 id=eq.2h2v.s6.59c598917e0c from=translated src=- shape=7b3b9d5d vocab=17b05381
+-/
 lemma sum_rieszSignedWeight_mul_cos (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) :
     ∑ j ∈ Finset.range (2 * d),
       rieszSignedWeight d j * Real.cos ((k : ℝ) * rieszAngle d j) = 0 := by
@@ -484,7 +497,9 @@ lemma sum_rieszSignedWeight_mul_cos (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) :
   rw [Complex.exp_ofReal_mul_I_re]
   simp
 
-/-- Sine moment of the signed weights.-/
+/-- Sine moment of the signed weights.
+@isnad1 id=eq.2h2v.s6.583f78559959 from=translated src=- shape=30ac3a31 vocab=0dcbf46f
+-/
 lemma sum_rieszSignedWeight_mul_sin (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) :
     ∑ j ∈ Finset.range (2 * d),
       rieszSignedWeight d j * Real.sin ((k : ℝ) * rieszAngle d j) = (k : ℝ) := by
@@ -506,7 +521,9 @@ lemma sum_rieszSignedWeight_mul_sin (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) :
       rw [Complex.exp_ofReal_mul_I_im]
     _ = (k : ℝ) := by simpa using h
 
-/-- Exact Riesz formula for one cosine mode.-/
+/-- Exact Riesz formula for one cosine mode.
+@isnad1 id=eq.2h3v.s6.9e00574426ec from=translated src=- shape=2c41cb02 vocab=05785c2a
+-/
 lemma sum_rieszSignedWeight_mul_cos_add (d k : ℕ) (hd : 0 < d) (hk : k ≤ d)
     (θ : ℝ) :
     ∑ j ∈ Finset.range (2 * d), rieszSignedWeight d j *
@@ -534,7 +551,9 @@ lemma sum_rieszSignedWeight_mul_cos_add (d k : ℕ) (hd : 0 < d) (hk : k ≤ d)
         sum_rieszSignedWeight_mul_sin d k hd hk]
       ring
 
-/-- The exact Riesz derivative formula on a Chebyshev basis vector.-/
+/-- The exact Riesz derivative formula on a Chebyshev basis vector.
+@isnad1 id=eq.2h3v.s8.5fc91dcac0fe from=translated src=- shape=5c8e3d36 vocab=ae7e2ac8
+-/
 lemma riesz_formula_chebyshevT (d k : ℕ) (hd : 0 < d) (hk : k ≤ d) (θ : ℝ) :
     -Real.sin θ *
         (Polynomial.Chebyshev.T ℝ (k : ℤ)).derivative.eval (Real.cos θ) =
@@ -599,7 +618,9 @@ private lemma hasRieszFormula_chebyshevT (d k : ℕ) (hd : 0 < d) (hk : k ≤ d)
   riesz_formula_chebyshevT d k hd hk
 
 /-- Exact finite Riesz interpolation formula for every real polynomial of
-degree at most `d`.-/
+degree at most `d`.
+@isnad1 id=eq.2h3v.s7.3e715522943d from=translated src=- shape=504a1cd0 vocab=a5b63726
+-/
 theorem riesz_derivative_formula (d : ℕ) (hd : 0 < d) (p : ℝ[X])
     (hdeg : p.natDegree ≤ d) (θ : ℝ) :
     -Real.sin θ * p.derivative.eval (Real.cos θ) =
@@ -655,7 +676,9 @@ theorem riesz_derivative_formula (d : ℕ) (hd : 0 < d) (p : ℝ[X])
         exact htail_formula.add hhead_formula
   exact hall p hdeg θ
 
-/-- The signed coefficients in the exact formula have total absolute mass `d`.-/
+/-- The signed coefficients in the exact formula have total absolute mass `d`.
+@isnad1 id=eq.1h1v.s5.65b8f930ba61 from=translated src=- shape=05c130e0 vocab=cd4b00fa
+-/
 theorem sum_abs_rieszSignedWeight (d : ℕ) (hd : 0 < d) :
     ∑ j ∈ Finset.range (2 * d), |rieszSignedWeight d j| = (d : ℝ) := by
   rw [← sum_riesz_midpoint_weights d hd]
@@ -673,7 +696,9 @@ theorem sum_abs_rieszSignedWeight (d : ℕ) (hd : 0 < d) :
   ring_nf
 
 /-- Sharp weighted Bernstein inequality obtained directly from the finite
-Riesz formula.-/
+Riesz formula.
+@isnad1 id=le.4h4v.s8.9720e0831096 from=translated src=- shape=b9eb79e9 vocab=368a2082
+-/
 theorem weighted_bernstein_of_pos (d : ℕ) (hd : 0 < d) (p : ℝ[X])
     (hdeg : p.natDegree ≤ d) (M : ℝ)
     (hbound : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ M)
@@ -710,7 +735,9 @@ theorem weighted_bernstein_of_pos (d : ℕ) (hd : 0 < d) (p : ℝ[X])
 
 /-- Root-specialized sharp weighted Bernstein inequality, in the exact form
 needed by the interpolation argument.  The finite Riesz formula actually proves
-the stronger result without using the root hypothesis.-/
+the stronger result without using the root hypothesis.
+@isnad1 id=le.4h4v.s8.e372e2d92834 from=translated src=- shape=908d23a6 vocab=c3dc3a9a
+-/
 theorem root_weighted_bernstein (d : ℕ) (p : ℝ[X])
     (hdeg : p.natDegree ≤ d) (M : ℝ)
     (hbound : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ M)

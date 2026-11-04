@@ -30,6 +30,9 @@ def denseArcsineLabels {d K n : ℕ} (q : ℝ)
   Finset.univ.filter fun b ↦
     T ≤ arcsineNodeBinCount q hterminal nodes b
 
+/--
+@isnad1 id=iff.1h7v.s7.f738f170de2b from=translated src=- shape=7353e9de vocab=d7b22a75
+-/
 @[simp]
 lemma mem_denseArcsineLabels {d K n T : ℕ} {q : ℝ}
     {hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d}
@@ -38,13 +41,18 @@ lemma mem_denseArcsineLabels {d K n T : ℕ} {q : ℝ}
       T ≤ arcsineNodeBinCount q hterminal nodes b := by
   simp [denseArcsineLabels]
 
+/--
+@isnad1 id=eq.0h1v.s6.b92658abae5d from=translated src=- shape=70c63473 vocab=7905880a
+-/
 lemma card_signedArcsineLabels (K : ℕ) :
     Fintype.card (Bool × Fin (K + 1)) = 2 * (K + 1) := by
   simp [Fintype.card_prod]
 
 /-- Exact real mass retained by the threshold-dense labels.  The estimate
 uses `B*T`, rather than `B*(T-1)`, so it remains valid without a separate
-case at `T=0`.-/
+case at `T=0`.
+@isnad1 id=le.1h6v.s7.16e0143538d5 from=translated src=- shape=14b526c4 vocab=0702912a
+-/
 theorem sub_binThreshold_le_sum_denseArcsineCounts
     {d K n T : ℕ} (q : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -92,7 +100,9 @@ theorem sub_binThreshold_le_sum_denseArcsineCounts
     ∑ b ∈ dense, (count b : ℝ)
   linarith
 
-/-- The real harmonic numbers are monotone.-/
+/-- The real harmonic numbers are monotone.
+@isnad1 id=le.1h2v.s4.86877334b47c from=translated src=- shape=d7721dd6 vocab=d51eb68a
+-/
 lemma realHarmonic_mono {R S : ℕ} (hRS : R ≤ S) :
     realHarmonic R ≤ realHarmonic S := by
   rw [realHarmonic_eq_sum_Icc, realHarmonic_eq_sum_Icc]
@@ -104,7 +114,9 @@ lemma realHarmonic_mono {R S : ℕ} (hRS : R ≤ S) :
     exact inv_nonneg.mpr (Nat.cast_nonneg r)
 
 /-- Replacing the exact dense-bin truncation by the common threshold loses
-at most the visible factor `(1-1/L)^2` and `H_(T/L)`.-/
+at most the visible factor `(1-1/L)^2` and `H_(T/L)`.
+@isnad1 id=le.2h3v.s7.970c63522ae1 from=translated src=- shape=2411c57b vocab=6ee31702
+-/
 lemma common_dense_harmonicFactor_le
     {m T L : ℕ} (hL : 1 < L) (hTm : T ≤ m) :
     (m : ℝ) ^ 2 * (1 - (1 : ℝ) / (L : ℝ)) ^ 2 *
@@ -186,7 +198,9 @@ private lemma cosineBinLength_pos_of_two_le_count
   linarith
 
 /-- Any selected family of signed bins uses at most the complete reflected
-length-over-scale budget.-/
+length-over-scale budget.
+@isnad1 id=le.2h4v.s7.954d1b083e72 from=translated src=- shape=356d25b4 vocab=8414c4e6
+-/
 theorem sum_selected_arcsineBinLength_div_lowerScale_le
     {d K : ℕ} {q : ℝ} (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -271,7 +285,9 @@ private theorem denseArcsineLabels_nonempty
 The hypothesis `2*(K+1)*T ≤ n` is precisely what makes the retained-mass
 quantity nonnegative before it is squared.  This theorem makes no
 asymptotic choice of the parameters and does not invoke a polynomial upper
-bound for the energy.-/
+bound for the energy.
+@isnad1 id=le.6h7v.s8.93b161452578 from=translated src=- shape=029fdadb vocab=02bd3b8c
+-/
 theorem clippedPairEnergy_lower_finite
     {d K n T L : ℕ} {q : ℝ}
     (hd : 1 ≤ d) (hq : 1 < q)

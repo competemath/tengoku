@@ -28,6 +28,9 @@ noncomputable section
 def geometricScaleLevel (d : ℕ) (q : ℝ) (i : ℕ) : ℝ :=
   min (q ^ i * cubicChebyshevFloor d) 1
 
+/--
+@isnad1 id=le.1h3v.s4.42471eb07cbd from=translated src=- shape=c318d537 vocab=c0dc7d66
+-/
 lemma geometricScaleLevel_nonneg {d i : ℕ} {q : ℝ} (hq : 0 ≤ q) :
     0 ≤ geometricScaleLevel d q i := by
   rw [geometricScaleLevel]
@@ -35,10 +38,16 @@ lemma geometricScaleLevel_nonneg {d i : ℕ} {q : ℝ} (hq : 0 ≤ q) :
     (mul_nonneg (pow_nonneg hq _) (cubicChebyshevFloor_nonneg d))
     zero_le_one
 
+/--
+@isnad1 id=le.0h3v.s4.41b5fab9dd98 from=translated src=- shape=141332ea vocab=c0dc7d66
+-/
 lemma geometricScaleLevel_le_one (d : ℕ) (q : ℝ) (i : ℕ) :
     geometricScaleLevel d q i ≤ 1 :=
   min_le_right _ _
 
+/--
+@isnad1 id=monotone.1h2v.s4.5dbc05b27b98 from=translated src=- shape=093e6b8c vocab=5912fbba
+-/
 lemma geometricScaleLevel_mono {d : ℕ} {q : ℝ} (hq : 1 ≤ q) :
     Monotone (geometricScaleLevel d q) := by
   intro i j hij
@@ -48,6 +57,9 @@ lemma geometricScaleLevel_mono {d : ℕ} {q : ℝ} (hq : 1 ≤ q) :
       (pow_right_mono₀ hq hij) (cubicChebyshevFloor_nonneg d)
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h3v.s5.16ee66063d80 from=translated src=- shape=82945e52 vocab=7f7d4b9d
+-/
 lemma geometricScaleLevel_succ_le_mul {d i : ℕ} {q : ℝ} (hq : 1 ≤ q) :
     geometricScaleLevel d q (i + 1) ≤ q * geometricScaleLevel d q i := by
   have hq0 : 0 ≤ q := zero_le_one.trans hq
@@ -64,6 +76,9 @@ lemma geometricScaleLevel_succ_le_mul {d i : ℕ} {q : ℝ} (hq : 1 ≤ q) :
     rw [min_eq_right hi']
     exact (geometricScaleLevel_le_one d q (i + 1)).trans (by simpa using hq)
 
+/--
+@isnad1 id=eq.1h3v.s5.5f5403f0c28d from=translated src=- shape=bd60ca23 vocab=7c5b54c9
+-/
 lemma geometricScaleLevel_terminal {d K : ℕ} {q : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     geometricScaleLevel d q K = 1 := by
@@ -75,16 +90,25 @@ def geometricHalfAngle (d : ℕ) (q : ℝ) (j : ℕ) : ℝ :=
   if j = 0 then 0
   else Real.arcsin (geometricScaleLevel d q (j - 1))
 
+/--
+@isnad1 id=eq.0h2v.s4.883f9a86adaa from=translated src=- shape=c1a5d958 vocab=e877af0b
+-/
 @[simp]
 lemma geometricHalfAngle_zero (d : ℕ) (q : ℝ) :
     geometricHalfAngle d q 0 = 0 := by
   simp [geometricHalfAngle]
 
+/--
+@isnad1 id=eq.0h3v.s4.c71ddc8ea303 from=translated src=- shape=ca8a6f3d vocab=0eed0323
+-/
 lemma geometricHalfAngle_succ (d : ℕ) (q : ℝ) (i : ℕ) :
     geometricHalfAngle d q (i + 1) =
       Real.arcsin (geometricScaleLevel d q i) := by
   simp [geometricHalfAngle]
 
+/--
+@isnad1 id=le.1h3v.s4.5fc6ff4d37fb from=translated src=- shape=c318d537 vocab=b11c444e
+-/
 lemma geometricHalfAngle_nonneg {d j : ℕ} {q : ℝ} (hq : 0 ≤ q) :
     0 ≤ geometricHalfAngle d q j := by
   by_cases hj : j = 0
@@ -92,6 +116,9 @@ lemma geometricHalfAngle_nonneg {d j : ℕ} {q : ℝ} (hq : 0 ≤ q) :
   · rw [geometricHalfAngle, ite_eq_right hj]
     exact Real.arcsin_nonneg.mpr (geometricScaleLevel_nonneg hq)
 
+/--
+@isnad1 id=monotone.1h2v.s4.305f3f8e4bad from=translated src=- shape=093e6b8c vocab=1effed83
+-/
 lemma geometricHalfAngle_mono {d : ℕ} {q : ℝ} (hq : 1 ≤ q) :
     Monotone (geometricHalfAngle d q) := by
   intro i j hij
@@ -103,12 +130,18 @@ lemma geometricHalfAngle_mono {d : ℕ} {q : ℝ} (hq : 1 ≤ q) :
     exact Real.arcsin_le_arcsin
       (geometricScaleLevel_mono hq (Nat.sub_le_sub_right hij 1))
 
+/--
+@isnad1 id=eq.1h3v.s6.39b4bdeedb0e from=translated src=- shape=953f05af vocab=c67f17b1
+-/
 lemma geometricHalfAngle_terminal {d K : ℕ} {q : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     geometricHalfAngle d q (K + 1) = Real.pi / 2 := by
   rw [geometricHalfAngle_succ, geometricScaleLevel_terminal hterminal,
     Real.arcsin_one]
 
+/--
+@isnad1 id=le.0h3v.s4.589dad405e82 from=translated src=- shape=fbf07d71 vocab=aea32172
+-/
 lemma geometricHalfAngle_le_pi_div_two (d : ℕ) (q : ℝ) (j : ℕ) :
     geometricHalfAngle d q j ≤ Real.pi / 2 := by
   by_cases hj : j = 0
@@ -118,7 +151,9 @@ lemma geometricHalfAngle_le_pi_div_two (d : ℕ) (q : ℝ) (j : ℕ) :
     exact Real.arcsin_le_pi_div_two _
 
 /-- At a geometric angle endpoint, the clipped scale is the maximum of
-that level and the floor.-/
+that level and the floor.
+@isnad1 id=eq.1h3v.s5.d7cfce78bfa1 from=translated src=- shape=dcb7af80 vocab=5f342e86
+-/
 lemma clippedArcsineScale_cos_geometricHalfAngle_succ
     (d i : ℕ) {q : ℝ} (hq : 0 ≤ q) :
     clippedArcsineScale d
@@ -133,6 +168,9 @@ lemma clippedArcsineScale_cos_geometricHalfAngle_succ
     (by linarith [geometricScaleLevel_nonneg (d := d) (i := i) hq])
     (geometricScaleLevel_le_one d q i)]
 
+/--
+@isnad1 id=eq.0h2v.s4.bdf54edb1174 from=translated src=- shape=85f09f4b vocab=6dcaea80
+-/
 lemma clippedArcsineScale_cos_geometricHalfAngle_zero (d : ℕ) (q : ℝ) :
     clippedArcsineScale d
         (Real.cos (geometricHalfAngle d q 0)) =
@@ -140,6 +178,9 @@ lemma clippedArcsineScale_cos_geometricHalfAngle_zero (d : ℕ) (q : ℝ) :
   simp [geometricHalfAngle, clippedArcsineScale,
     cubicChebyshevFloor_nonneg]
 
+/--
+@isnad1 id=le.1h3v.s5.018810e583b1 from=translated src=- shape=982d4e7d vocab=bcd15196
+-/
 lemma max_geometricScaleLevel_floor_succ_le_mul
     {d i : ℕ} {q : ℝ} (hq : 1 ≤ q) :
     max (geometricScaleLevel d q (i + 1)) (cubicChebyshevFloor d) ≤
@@ -207,7 +248,9 @@ def geometricHalfArcsinePartition (d K : ℕ) (q : ℝ)
       exact max_geometricScaleLevel_floor_succ_le_mul hq.le
 
 /-- The explicit construction inherits the exact full reflected
-length-over-scale budget.-/
+length-over-scale budget.
+@isnad1 id=le.2h3v.s7.aa5cb6d4d7b6 from=translated src=- shape=a1f11dab vocab=716605cb
+-/
 theorem geometricPartition_full_budget_le
     {d K : ℕ} {q : ℝ} (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
@@ -222,6 +265,9 @@ theorem geometricPartition_full_budget_le
 def geometricScaleThreshold (d : ℕ) (q : ℝ) (i : ℕ) : ℝ :=
   max (geometricScaleLevel d q i) (cubicChebyshevFloor d)
 
+/--
+@isnad1 id=eq.1h3v.s5.0a3ad41aaa2a from=translated src=- shape=47e7c153 vocab=fe6ab790
+-/
 lemma geometricScaleThreshold_terminal {d K : ℕ} {q : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     geometricScaleThreshold d q K =
@@ -230,7 +276,9 @@ lemma geometricScaleThreshold_terminal {d K : ℕ} {q : ℝ}
     geometricScaleLevel_terminal hterminal]
 
 /-- Every clipped scale is below the terminal threshold once the geometric
-levels have reached one.-/
+levels have reached one.
+@isnad1 id=le.1h4v.s5.fcf9324745e6 from=translated src=- shape=09bc3a16 vocab=b299c84d
+-/
 lemma clippedArcsineScale_le_terminalThreshold {d K : ℕ} {q x : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     clippedArcsineScale d x ≤ geometricScaleThreshold d q K := by
@@ -241,7 +289,9 @@ lemma clippedArcsineScale_le_terminalThreshold {d K : ℕ} {q x : ℝ}
   · exact le_rfl
 
 /-- Some geometric threshold with index at most K contains every real
-point.-/
+point.
+@isnad1 id=ex.1h4v.s5.6adeadafa4d4 from=translated src=- shape=ee067220 vocab=b299c84d
+-/
 lemma exists_scaleThreshold_index {d K : ℕ} {q x : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     ∃ i : ℕ, i ≤ K ∧
@@ -260,6 +310,9 @@ noncomputable def geometricScaleBinIndex (d K : ℕ) (q x : ℝ)
           (q := q) (x := x) hterminal)
       omega⟩
 
+/--
+@isnad1 id=le.1h4v.s6.95397f3437f0 from=translated src=- shape=9df33848 vocab=b9ee6d8a
+-/
 lemma clippedArcsineScale_le_assignedThreshold
     (d K : ℕ) (q x : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
@@ -270,6 +323,9 @@ lemma clippedArcsineScale_le_assignedThreshold
     (exists_scaleThreshold_index (d := d) (K := K)
       (q := q) (x := x) hterminal)).2
 
+/--
+@isnad1 id=le.1h3v.s5.081628a78e53 from=translated src=- shape=82945e52 vocab=9c443b70
+-/
 lemma geometricScaleThreshold_succ_le_mul {d i : ℕ} {q : ℝ}
     (hq : 1 ≤ q) :
     geometricScaleThreshold d q (i + 1) ≤
@@ -284,6 +340,9 @@ def geometricBinLowerScale (d : ℕ) (q : ℝ) {K : ℕ}
   if i.val = 0 then cubicChebyshevFloor d
   else geometricScaleThreshold d q (i.val - 1)
 
+/--
+@isnad1 id=lt.0h4v.s5.9909b8d09f89 from=translated src=- shape=563de37f vocab=99b9b15a
+-/
 lemma geometricBinLowerScale_pos (d : ℕ) {q : ℝ} {K : ℕ}
     (i : Fin (K + 1)) :
     0 < geometricBinLowerScale d q i := by
@@ -293,7 +352,9 @@ lemma geometricBinLowerScale_pos (d : ℕ) {q : ℝ} {K : ℕ}
   · exact (cubicChebyshevFloor_pos d).trans_le (le_max_right _ _)
 
 /-- The shell lower scales used by the canonical assignment are exactly
-the lower scales of the explicit cosine bins.-/
+the lower scales of the explicit cosine bins.
+@isnad1 id=eq.2h4v.s6.381cad98ac70 from=translated src=- shape=cd80b3cd vocab=194c62b6
+-/
 lemma geometricBinLowerScale_eq_cosineBinLowerScale
     (d K : ℕ) {q : ℝ} (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -322,7 +383,9 @@ lemma geometricBinLowerScale_eq_cosineBinLowerScale
       geometricScaleThreshold, hj, Nat.add_sub_cancel]
 
 /-- Minimality of the assigned threshold gives a strict lower bound by the
-preceding threshold away from the first shell.-/
+preceding threshold away from the first shell.
+@isnad1 id=lt.2h4v.s6.75ff3fa7b300 from=translated src=- shape=0af2562c vocab=489cc299
+-/
 lemma previousThreshold_lt_clippedArcsineScale_of_assigned_ne_zero
     (d K : ℕ) (q x : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -350,7 +413,9 @@ lemma previousThreshold_lt_clippedArcsineScale_of_assigned_ne_zero
   have hmin : j ≤ j - 1 := Nat.find_min' hex hcand
   omega
 
-/-- Every assigned point lies above its shell lower scale.-/
+/-- Every assigned point lies above its shell lower scale.
+@isnad1 id=le.1h4v.s5.6b2e900ebeb7 from=translated src=- shape=c14ebc9e vocab=1b99f666
+-/
 lemma geometricBinLowerScale_le_assignedScale
     (d K : ℕ) (q x : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
@@ -363,7 +428,9 @@ lemma geometricBinLowerScale_le_assignedScale
   · exact (previousThreshold_lt_clippedArcsineScale_of_assigned_ne_zero
       d K q x hterminal hi).le
 
-/-- The upper threshold of a shell is at most q times its lower scale.-/
+/-- The upper threshold of a shell is at most q times its lower scale.
+@isnad1 id=le.1h4v.s6.2c868e6d3c16 from=translated src=- shape=95e395d8 vocab=b620ed44
+-/
 lemma assignedThreshold_le_mul_geometricBinLowerScale
     (d K : ℕ) {q : ℝ} (hq : 1 ≤ q) (i : Fin (K + 1)) :
     geometricScaleThreshold d q i.val ≤ q * geometricBinLowerScale d q i := by
@@ -380,7 +447,9 @@ lemma assignedThreshold_le_mul_geometricBinLowerScale
     rw [hj, Nat.add_sub_cancel]
     exact geometricScaleThreshold_succ_le_mul hq
 
-/-- Assigned scales oscillate by at most q inside every canonical shell.-/
+/-- Assigned scales oscillate by at most q inside every canonical shell.
+@isnad1 id=le.2h4v.s6.a45a15fcf58f from=translated src=- shape=ee0a6712 vocab=1b99f666
+-/
 theorem assignedScale_le_mul_geometricBinLowerScale
     (d K : ℕ) {q x : ℝ} (hq : 1 ≤ q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
@@ -405,6 +474,9 @@ def arcsineAssignedBin (d K : ℕ) (q : ℝ)
     (b : Bool × Fin (K + 1)) : Set ℝ :=
   {x | arcsineBinAssignment d K q x hterminal = b}
 
+/--
+@isnad1 id=iff.1h5v.s6.9c9d7f62b22c from=translated src=- shape=61bba44e vocab=f1c02438
+-/
 lemma mem_arcsineAssignedBin_iff (d K : ℕ) (q x : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
     (b : Bool × Fin (K + 1)) :
@@ -413,7 +485,9 @@ lemma mem_arcsineAssignedBin_iff (d K : ℕ) (q x : ℝ)
   Iff.rfl
 
 /-- Membership in a canonical bin gives the exact lower-scale and
-factor-q upper-scale bounds used by the local energy estimate.-/
+factor-q upper-scale bounds used by the local energy estimate.
+@isnad1 id=and.3h5v.s7.db28a071d255 from=translated src=- shape=89e96333 vocab=1c9fe6ca
+-/
 theorem mem_arcsineAssignedBin_scale_bounds
     (d K : ℕ) {q x : ℝ} (hq : 1 ≤ q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -430,6 +504,9 @@ theorem mem_arcsineAssignedBin_scale_bounds
   · rw [← hindex]
     exact assignedScale_le_mul_geometricBinLowerScale d K hq hterminal
 
+/--
+@isnad1 id=eq.2h5v.s6.5fe16be60ffa from=translated src=- shape=5fbb971b vocab=af2672d9
+-/
 lemma mem_arcsineAssignedBin_side
     (d K : ℕ) {q x : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -438,7 +515,9 @@ lemma mem_arcsineAssignedBin_side
     decide (0 ≤ x) = b.1 :=
   congrArg Prod.fst hx
 
-/-- Every point has exactly one canonical full-interval bin label.-/
+/-- Every point has exactly one canonical full-interval bin label.
+@isnad1 id=existsun.1h4v.s6.afa2bdbf9a54 from=translated src=- shape=39b21c11 vocab=70721e6d
+-/
 theorem existsUnique_mem_arcsineAssignedBin (d K : ℕ) (q x : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     ∃! b : Bool × Fin (K + 1),
@@ -447,7 +526,9 @@ theorem existsUnique_mem_arcsineAssignedBin (d K : ℕ) (q x : ℝ)
   intro b hb
   exact hb.symm
 
-/-- Distinct canonical bins are disjoint.-/
+/-- Distinct canonical bins are disjoint.
+@isnad1 id=disjoint.2h5v.s7.55b314e56738 from=translated src=- shape=de84ae74 vocab=be5cd8f7
+-/
 lemma arcsineAssignedBin_disjoint {d K : ℕ} {q : ℝ}
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
     {b c : Bool × Fin (K + 1)} (hbc : b ≠ c) :
@@ -458,7 +539,9 @@ lemma arcsineAssignedBin_disjoint {d K : ℕ} {q : ℝ}
   exact hbc (hxb.symm.trans hxc)
 
 /-- The canonical bins cover the real line, hence in particular
-the interpolation interval.-/
+the interpolation interval.
+@isnad1 id=eq.1h3v.s6.c566688568c4 from=translated src=- shape=cf7091d2 vocab=b8aebf9e
+-/
 lemma iUnion_arcsineAssignedBin (d K : ℕ) (q : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d) :
     (⋃ b : Bool × Fin (K + 1),
@@ -477,7 +560,9 @@ def assignmentCount {n : ℕ} {β : Type*} [DecidableEq β]
     (assign : Fin n → β) (b : β) : ℕ :=
   (assignmentFiber assign b).card
 
-/-- Assignment-fiber counts sum to the total number of indices.-/
+/-- Assignment-fiber counts sum to the total number of indices.
+@isnad1 id=eq.0h3v.s5.d0408f7c97d4 from=translated src=- shape=8a86c287 vocab=d95eecd8
+-/
 theorem sum_assignmentCount {n : ℕ} {β : Type*}
     [Fintype β] [DecidableEq β] (assign : Fin n → β) :
     ∑ b : β, assignmentCount assign b = n := by
@@ -494,6 +579,9 @@ noncomputable def assignmentEmbedding {n : ℕ} {β : Type*}
     Fin (assignmentCount assign b) ↪o Fin n :=
   (assignmentFiber assign b).orderEmbOfFin rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.bc64e7e6d347 from=translated src=- shape=1964a2d6 vocab=507dbb83
+-/
 lemma assignmentEmbedding_mem_fiber {n : ℕ} {β : Type*}
     [DecidableEq β] (assign : Fin n → β) (b : β)
     (i : Fin (assignmentCount assign b)) :
@@ -502,6 +590,9 @@ lemma assignmentEmbedding_mem_fiber {n : ℕ} {β : Type*}
     (assignmentFiber assign b) rfl i
   exact (Finset.mem_filter.mp hmem).2
 
+/--
+@isnad1 id=strictmo.0h4v.s6.10ea12e4412e from=translated src=- shape=c3a2e1bf vocab=5b33c1d4
+-/
 lemma assignmentEmbedding_strictMono {n : ℕ} {β : Type*}
     [DecidableEq β] (assign : Fin n → β) (b : β) :
     StrictMono (assignmentEmbedding assign b) :=
@@ -514,6 +605,9 @@ noncomputable def arcsineNodeBinCount {d K n : ℕ} (q : ℝ)
   assignmentCount
     (fun i ↦ arcsineBinAssignment d K q (nodes.point i) hterminal) b
 
+/--
+@isnad1 id=eq.1h5v.s7.44ea0c201346 from=translated src=- shape=e7219895 vocab=06459ee6
+-/
 theorem sum_arcsineNodeBinCount {d K n : ℕ} (q : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
     (nodes : OrderedNodes n) :
@@ -530,6 +624,9 @@ noncomputable def arcsineNodeBinEmbedding {d K n : ℕ} (q : ℝ)
   assignmentEmbedding
     (fun i ↦ arcsineBinAssignment d K q (nodes.point i) hterminal) b
 
+/--
+@isnad1 id=strictmo.1h6v.s7.d1e9e68bd4e5 from=translated src=- shape=f47ff079 vocab=2d9bc8f0
+-/
 lemma arcsineNodeBinEmbedding_strictMono {d K n : ℕ} (q : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
     (nodes : OrderedNodes n) (b : Bool × Fin (K + 1)) :

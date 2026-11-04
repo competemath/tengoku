@@ -36,16 +36,25 @@ def gapLeftIndex {n : ℕ} (g : Fin (n - 1)) : Fin n :=
 def gapRightIndex {n : ℕ} (g : Fin (n - 1)) : Fin n :=
   ⟨g.val + 1, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.f9ac67d29ea8 from=translated src=- shape=ef12c50a vocab=c4031367
+-/
 @[simp]
 lemma gapLeftIndex_val {n : ℕ} (g : Fin (n - 1)) :
     (gapLeftIndex g).val = g.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.ea1aab8bc180 from=translated src=- shape=6cf84995 vocab=11392b3c
+-/
 @[simp]
 lemma gapRightIndex_val {n : ℕ} (g : Fin (n - 1)) :
     (gapRightIndex g).val = g.val + 1 :=
   rfl
 
+/--
+@isnad1 id=lt.0h2v.s4.7175bfd023cd from=translated src=- shape=da863e3e vocab=238c3244
+-/
 lemma gapLeftIndex_lt_rightIndex {n : ℕ} (g : Fin (n - 1)) :
     gapLeftIndex g < gapRightIndex g := by
   simp [Fin.lt_def]
@@ -58,14 +67,23 @@ def closedGap {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) : Set ℝ :=
 def openGap {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) : Set ℝ :=
   Set.Ioo (nodes.point (gapLeftIndex g)) (nodes.point (gapRightIndex g))
 
+/--
+@isnad1 id=lt.0h3v.s5.5a8730257e13 from=translated src=- shape=c77adde6 vocab=f7b2abb3
+-/
 lemma gap_left_lt_right {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     nodes.point (gapLeftIndex g) < nodes.point (gapRightIndex g) :=
   nodes.point_lt (gapLeftIndex_lt_rightIndex g)
 
+/--
+@isnad1 id=nonempty.0h3v.s4.c7c07c7814cc from=translated src=- shape=0d15d7bd vocab=66a3bec6
+-/
 lemma closedGap_nonempty {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (closedGap nodes g).Nonempty :=
   Set.nonempty_Icc.mpr (gap_left_lt_right nodes g).le
 
+/--
+@isnad1 id=nonempty.0h3v.s4.b6393bdef5df from=translated src=- shape=0d15d7bd vocab=f5963b42
+-/
 lemma openGap_nonempty {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (openGap nodes g).Nonempty :=
   Set.nonempty_Ioo.mpr (gap_left_lt_right nodes g)
@@ -91,16 +109,25 @@ def gapSignFactor {n : ℕ} (g : Fin (n - 1)) (k j : Fin n) : ℝ :=
 def gapCoefficient {n : ℕ} (g : Fin (n - 1)) (k : Fin n) : ℝ :=
   ∏ j ∈ Finset.univ.erase k, gapSignFactor g k j
 
+/--
+@isnad1 id=or.0h4v.s5.9e2ec4812eed from=translated src=- shape=dac6b692 vocab=44740b59
+-/
 lemma gapSignFactor_eq_one_or_neg_one {n : ℕ} (g : Fin (n - 1)) (k j : Fin n) :
     gapSignFactor g k j = 1 ∨ gapSignFactor g k j = -1 := by
   simp only [gapSignFactor]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s5.ffc149f30926 from=translated src=- shape=7eeba603 vocab=75a7e29d
+-/
 @[simp]
 lemma abs_gapSignFactor {n : ℕ} (g : Fin (n - 1)) (k j : Fin n) :
     |gapSignFactor g k j| = 1 := by
   rcases gapSignFactor_eq_one_or_neg_one g k j with h | h <;> simp [h]
 
+/--
+@isnad1 id=or.0h3v.s5.5935c193fc1f from=translated src=- shape=2c15a1b6 vocab=6bf4cde1
+-/
 lemma gapCoefficient_eq_one_or_neg_one {n : ℕ} (g : Fin (n - 1)) (k : Fin n) :
     gapCoefficient g k = 1 ∨ gapCoefficient g k = -1 := by
   classical
@@ -113,11 +140,17 @@ lemma gapCoefficient_eq_one_or_neg_one {n : ℕ} (g : Fin (n - 1)) (k : Fin n) :
       rcases gapSignFactor_eq_one_or_neg_one g k j with h | h <;>
         rcases ih with h' | h' <;> simp [h, h']
 
+/--
+@isnad1 id=eq.0h3v.s5.463f9f686b83 from=translated src=- shape=8a022a59 vocab=847f0aa4
+-/
 @[simp]
 lemma abs_gapCoefficient {n : ℕ} (g : Fin (n - 1)) (k : Fin n) :
     |gapCoefficient g k| = 1 := by
   rcases gapCoefficient_eq_one_or_neg_one g k with h | h <;> simp [h]
 
+/--
+@isnad1 id=ne.0h3v.s5.96e5b467e8cc from=translated src=- shape=cf10a08e vocab=1b79c7b2
+-/
 lemma gapCoefficient_ne_zero {n : ℕ} (g : Fin (n - 1)) (k : Fin n) :
     gapCoefficient g k ≠ 0 := by
   intro h
@@ -172,7 +205,9 @@ private lemma negative_filter_eq_Ioo {n : ℕ} (g : Fin (n - 1)) (k : Fin n)
     refine ⟨hjk.ne, Or.inl ⟨hjk, ?_⟩⟩
     simpa only [Fin.lt_def, gapLeftIndex_val] using hgj
 
-/-- Closed form of the gap sign to the left of (or at) the left endpoint.-/
+/-- Closed form of the gap sign to the left of (or at) the left endpoint.
+@isnad1 id=eq.1h3v.s6.7eeeb6def9e8 from=translated src=- shape=c7e60e71 vocab=00c20088
+-/
 lemma gapCoefficient_of_le {n : ℕ} (g : Fin (n - 1)) (k : Fin n)
     (hkg : k.val ≤ g.val) :
     gapCoefficient g k = (-1 : ℝ) ^ (g.val - k.val) := by
@@ -181,7 +216,9 @@ lemma gapCoefficient_of_le {n : ℕ} (g : Fin (n - 1)) (k : Fin n)
     negative_filter_eq_Ioc g k hkg, Fin.card_Ioc]
   rfl
 
-/-- Closed form of the gap sign to the right of the left endpoint.-/
+/-- Closed form of the gap sign to the right of the left endpoint.
+@isnad1 id=eq.1h3v.s6.2f6ba712e308 from=translated src=- shape=18d4392a vocab=c59fbcef
+-/
 lemma gapCoefficient_of_lt {n : ℕ} (g : Fin (n - 1)) (k : Fin n)
     (hgk : g.val < k.val) :
     gapCoefficient g k = (-1 : ℝ) ^ (k.val - g.val - 1) := by
@@ -190,6 +227,9 @@ lemma gapCoefficient_of_lt {n : ℕ} (g : Fin (n - 1)) (k : Fin n)
     negative_filter_eq_Ioo g k hgk, Fin.card_Ioo]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.74e8d4ce0959 from=translated src=- shape=99c4cfb9 vocab=1272b25e
+-/
 @[simp]
 lemma gapCoefficient_left {n : ℕ} (g : Fin (n - 1)) :
     gapCoefficient g (gapLeftIndex g) = 1 := by
@@ -197,6 +237,9 @@ lemma gapCoefficient_left {n : ℕ} (g : Fin (n - 1)) :
   · simp
   · simp
 
+/--
+@isnad1 id=eq.0h2v.s4.ef0db0b7e43d from=translated src=- shape=99c4cfb9 vocab=8f44b553
+-/
 @[simp]
 lemma gapCoefficient_right {n : ℕ} (g : Fin (n - 1)) :
     gapCoefficient g (gapRightIndex g) = 1 := by
@@ -205,7 +248,9 @@ lemma gapCoefficient_right {n : ℕ} (g : Fin (n - 1)) :
   · simp
 
 /-- Away from its own gap, the nodal values of a gap polynomial alternate in
-sign.  This is the first sign pattern used in the source interlacing proof.-/
+sign.  This is the first sign pattern used in the source interlacing proof.
+@isnad1 id=eq.1h3v.s6.f556595b7a7f from=translated src=- shape=013afe9f vocab=1c9121f4
+-/
 lemma gapCoefficient_right_eq_neg_left_of_ne {n : ℕ}
     (g h : Fin (n - 1)) (hhg : h ≠ g) :
     gapCoefficient g (gapRightIndex h) =
@@ -252,21 +297,33 @@ def upperAdjacentGap {n : ℕ} (q : Fin (n - 2)) : Fin (n - 1) :=
 def adjacentCommonNode {n : ℕ} (q : Fin (n - 2)) : Fin n :=
   ⟨q.val + 1, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.0e5e7bb2ad38 from=translated src=- shape=9fd2ebc8 vocab=6c99ad95
+-/
 @[simp]
 lemma lowerAdjacentGap_val {n : ℕ} (q : Fin (n - 2)) :
     (lowerAdjacentGap q).val = q.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.abb7163a4d3b from=translated src=- shape=fad8ba99 vocab=4d5321f6
+-/
 @[simp]
 lemma upperAdjacentGap_val {n : ℕ} (q : Fin (n - 2)) :
     (upperAdjacentGap q).val = q.val + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.599d452a7b2e from=translated src=- shape=6cf84995 vocab=0ab0c1cc
+-/
 @[simp]
 lemma adjacentCommonNode_val {n : ℕ} (q : Fin (n - 2)) :
     (adjacentCommonNode q).val = q.val + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.094250dfaa24 from=translated src=- shape=fe68457b vocab=5a7900bd
+-/
 lemma gapCoefficient_add_adjacent {n : ℕ} (q : Fin (n - 2)) (k : Fin n) :
     gapCoefficient (lowerAdjacentGap q) k +
         gapCoefficient (upperAdjacentGap q) k =
@@ -320,7 +377,9 @@ lemma gapCoefficient_add_adjacent {n : ℕ} (q : Fin (n - 2)) (k : Fin n) :
 
 /-- With at least three nodes, every gap sign vector contains a negative
 coefficient.  The two-node exception is real: its Lebesgue function is
-identically one on the only gap.-/
+identically one on the only gap.
+@isnad1 id=ex.1h2v.s5.cd0c299d8ac5 from=translated src=- shape=6a53d75b vocab=647ffda9
+-/
 lemma exists_gapCoefficient_eq_neg_one {n : ℕ} (hn : 3 ≤ n) (g : Fin (n - 1)) :
     ∃ k : Fin n, gapCoefficient g k = -1 := by
   by_cases hg0 : g.val = 0
@@ -344,6 +403,9 @@ function on the gap.-/
 def gapPolynomial {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) : ℝ[X] :=
   Lagrange.interpolate Finset.univ nodes.point (gapCoefficient g)
 
+/--
+@isnad1 id=eq.0h4v.s5.312d620ecac6 from=translated src=- shape=159ba562 vocab=c98883e2
+-/
 lemma gapPolynomial_eval_node {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1))
     (k : Fin n) :
     (gapPolynomial nodes g).eval (nodes.point k) = gapCoefficient g k := by
@@ -352,7 +414,9 @@ lemma gapPolynomial_eval_node {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1
       nodes.injective.injOn (Finset.mem_univ k))
 
 /-- Source adjacent-gap identity: consecutive signed gap polynomials sum to
-twice the cardinal polynomial at their common node.-/
+twice the cardinal polynomial at their common node.
+@isnad1 id=eq.0h3v.s6.31205110d01d from=translated src=- shape=de993683 vocab=ed8e7b0c
+-/
 lemma gapPolynomial_add_adjacent {n : ℕ} (nodes : OrderedNodes n)
     (q : Fin (n - 2)) :
     gapPolynomial nodes (lowerAdjacentGap q) +
@@ -370,16 +434,25 @@ lemma gapPolynomial_add_adjacent {n : ℕ} (nodes : OrderedNodes n)
     simp
   · simp
 
+/--
+@isnad1 id=eq.0h3v.s5.9e5c4a7cdf35 from=translated src=- shape=4ece8a59 vocab=39b03ec6
+-/
 @[simp]
 lemma gapPolynomial_eval_left {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).eval (nodes.point (gapLeftIndex g)) = 1 := by
   rw [gapPolynomial_eval_node, gapCoefficient_left]
 
+/--
+@isnad1 id=eq.0h3v.s5.35d41863735c from=translated src=- shape=4ece8a59 vocab=77d99292
+-/
 @[simp]
 lemma gapPolynomial_eval_right {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).eval (nodes.point (gapRightIndex g)) = 1 := by
   rw [gapPolynomial_eval_node, gapCoefficient_right]
 
+/--
+@isnad1 id=le.0h3v.s5.0b2572dc0d16 from=translated src=- shape=bd30260d vocab=1f663bde
+-/
 lemma degree_gapPolynomial_le {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).degree ≤ (n - 1 : ℕ) := by
   simpa only [gapPolynomial, Finset.card_univ, Fintype.card_fin] using
@@ -431,7 +504,9 @@ private lemma denominator_neg_of_lt {n : ℕ} (nodes : OrderedNodes n) {j k : Fi
   exact nodes.point_lt hkj
 
 /-- Each normalized linear factor has the sign encoded by `gapSignFactor` on
-the closed gap.-/
+the closed gap.
+@isnad1 id=le.2h6v.s6.0f98ee7df6fe from=translated src=- shape=6cd197b5 vocab=c2c4bf8d
+-/
 lemma gapSignFactor_mul_div_nonneg {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) {k j : Fin n} (hjk : j ≠ k) {t : ℝ}
     (ht : t ∈ closedGap nodes g) :
@@ -465,7 +540,9 @@ lemma gapSignFactor_mul_div_nonneg {n : ℕ} (nodes : OrderedNodes n)
         (denominator_neg_of_lt nodes hkj).le
 
 /-- In the open gap none of the factors vanish, so the signed factor is
-strictly positive.-/
+strictly positive.
+@isnad1 id=lt.2h6v.s6.96ee419a7774 from=translated src=- shape=6cd197b5 vocab=4e225369
+-/
 lemma gapSignFactor_mul_div_pos {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) {k j : Fin n} (hjk : j ≠ k) {t : ℝ}
     (ht : t ∈ openGap nodes g) :
@@ -498,7 +575,9 @@ lemma gapSignFactor_mul_div_pos {n : ℕ} (nodes : OrderedNodes n)
         (numerator_neg_of_gap_lt nodes g hgj ht)
         (denominator_neg_of_lt nodes hkj)
 
-/-- The signed fundamental function is nonnegative on its closed gap.-/
+/-- The signed fundamental function is nonnegative on its closed gap.
+@isnad1 id=le.1h5v.s6.3236fad7364d from=translated src=- shape=e65219ab vocab=c881d6e5
+-/
 lemma gapCoefficient_mul_lagrangeFundamental_nonneg {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) (k : Fin n) {t : ℝ}
     (ht : t ∈ closedGap nodes g) :
@@ -508,7 +587,9 @@ lemma gapCoefficient_mul_lagrangeFundamental_nonneg {n : ℕ}
   exact Finset.prod_nonneg fun j hj =>
     gapSignFactor_mul_div_nonneg nodes g (Finset.mem_erase.mp hj).1 ht
 
-/-- Strict signed positivity in the open gap.-/
+/-- Strict signed positivity in the open gap.
+@isnad1 id=lt.1h5v.s6.e9357200d4a9 from=translated src=- shape=e65219ab vocab=ceee5256
+-/
 lemma gapCoefficient_mul_lagrangeFundamental_pos {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) (k : Fin n) {t : ℝ}
     (ht : t ∈ openGap nodes g) :
@@ -518,7 +599,9 @@ lemma gapCoefficient_mul_lagrangeFundamental_pos {n : ℕ}
   exact Finset.prod_pos fun j hj =>
     gapSignFactor_mul_div_pos nodes g (Finset.mem_erase.mp hj).1 ht
 
-/-- Absolute value removes exactly the coefficient selected for the gap.-/
+/-- Absolute value removes exactly the coefficient selected for the gap.
+@isnad1 id=eq.1h5v.s6.0306387eef89 from=translated src=- shape=8399646d vocab=8176a1b7
+-/
 lemma abs_lagrangeFundamental_eq_gapCoefficient_mul {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) (k : Fin n) {t : ℝ}
     (ht : t ∈ closedGap nodes g) :
@@ -532,6 +615,9 @@ lemma abs_lagrangeFundamental_eq_gapCoefficient_mul {n : ℕ}
     _ = gapCoefficient g k * lagrangeFundamental nodes.toNodeFamily k t :=
       abs_of_nonneg (gapCoefficient_mul_lagrangeFundamental_nonneg nodes g k ht)
 
+/--
+@isnad1 id=eq.0h4v.s5.e61ac95e86cf from=translated src=- shape=6dee0b4c vocab=4a888b9a
+-/
 lemma gapPolynomial_eval_eq_sum {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) (t : ℝ) :
     (gapPolynomial nodes g).eval t =
@@ -545,7 +631,9 @@ lemma gapPolynomial_eval_eq_sum {n : ℕ} (nodes : OrderedNodes n)
   change gapCoefficient g k * (lagrangeBasis nodes.toNodeFamily k).eval t = _
   rw [lagrangeBasis_eval]
 
-/-- The Lagrange fundamental functions form a partition of unity.-/
+/-- The Lagrange fundamental functions form a partition of unity.
+@isnad1 id=eq.1h3v.s5.94a42f3de45c from=translated src=- shape=25ffc1cd vocab=ae0748bd
+-/
 lemma sum_lagrangeFundamental_eq_one {n : ℕ} (nodes : OrderedNodes n)
     (hn : 0 < n) (t : ℝ) :
     ∑ k : Fin n, lagrangeFundamental nodes.toNodeFamily k t = 1 := by
@@ -565,7 +653,9 @@ lemma sum_lagrangeFundamental_eq_one {n : ℕ} (nodes : OrderedNodes n)
     _ = 1 := by simpa using heval
 
 /-- On the whole closed nodal gap, the signed polynomial is the Lebesgue
-function.  Endpoint inclusion is useful later when taking compact maxima.-/
+function.  Endpoint inclusion is useful later when taking compact maxima.
+@isnad1 id=eq.1h4v.s5.d34e288c1e12 from=translated src=- shape=2c0841a6 vocab=03ee018f
+-/
 lemma lebesgueFunction_eq_eval_gapPolynomial {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) {t : ℝ} (ht : t ∈ closedGap nodes g) :
     lebesgueFunction nodes.toNodeFamily t = (gapPolynomial nodes g).eval t := by
@@ -576,7 +666,9 @@ lemma lebesgueFunction_eq_eval_gapPolynomial {n : ℕ} (nodes : OrderedNodes n)
 
 /-- For at least three nodes the Lebesgue/gap polynomial is strictly greater
 than one in the open gap.  The explicit cardinality hypothesis records the
-genuine two-node exception.-/
+genuine two-node exception.
+@isnad1 id=lt.2h4v.s5.36a20890100f from=translated src=- shape=20e06a42 vocab=24930775
+-/
 lemma one_lt_eval_gapPolynomial_of_mem_openGap {n : ℕ} (nodes : OrderedNodes n)
     (hn : 3 ≤ n) (g : Fin (n - 1)) {t : ℝ} (ht : t ∈ openGap nodes g) :
     1 < (gapPolynomial nodes g).eval t := by
@@ -613,7 +705,9 @@ def gapHeight {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) : ℝ :=
   lebesgueOn nodes.toNodeFamily
     (nodes.point (gapLeftIndex g)) (nodes.point (gapRightIndex g))
 
-/-- The compact gap height is attained by the signed gap polynomial.-/
+/-- The compact gap height is attained by the signed gap polynomial.
+@isnad1 id=ex.0h3v.s6.09c36f729ef0 from=translated src=- shape=5dc07e6c vocab=b65fa2fe
+-/
 lemma exists_gapHeight_eq_eval_gapPolynomial {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) :
     ∃ t ∈ closedGap nodes g,

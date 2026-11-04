@@ -22,7 +22,9 @@ noncomputable section
 
 If all zero-based cofactors are negative, the witness is `+1`; if they are
 positive, the witness is `-1`.  The proof is dimension-free, so the unique
-minor in dimension zero is handled without a separate vacuous case.-/
+minor in dimension zero is handled without a separate vacuous case.
+@isnad1 id=coherent.1h4v.s4.77a1a890558f from=translated src=- shape=19a66f41 vocab=42b6c6ee
+-/
 theorem coherentHeightMaximalMinorSigns_of_alternating
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B)
     (h : AlternatingHeightMaximalMinorSigns nodes) :
@@ -50,7 +52,9 @@ theorem coherentHeightMaximalMinorSigns_of_alternating
         ring
 
 /-- Unconditional coherent maximal-minor orientation in the canonical
-`Orientation` convention.-/
+`Orientation` convention.
+@isnad1 id=coherent.0h4v.s4.628faaa7bf9c from=translated src=- shape=7dd23ed3 vocab=e721bb57
+-/
 theorem coherentHeightMaximalMinorSigns_unconditional
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) :
     CoherentHeightMaximalMinorSigns nodes :=

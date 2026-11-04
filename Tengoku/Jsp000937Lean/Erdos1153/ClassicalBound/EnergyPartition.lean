@@ -76,7 +76,9 @@ private lemma assignmentPairToGlobal_injective {n : ℕ} {β : Type*}
   simp_all
 
 /-- Exact finite bookkeeping: local energies of all fibers of an arbitrary
-finite assignment fit disjointly inside the global clipped pair energy.-/
+finite assignment fit disjointly inside the global clipped pair energy.
+@isnad1 id=le.0h5v.s5.c122ba3389a4 from=translated src=- shape=21d3b137 vocab=92c616eb
+-/
 theorem sum_assignmentFiberLocalEnergy_le_clippedPairEnergy
     {d n : ℕ} {β : Type*} [Fintype β] [DecidableEq β]
     (nodes : OrderedNodes n) (assign : Fin n → β) :
@@ -124,7 +126,9 @@ def arcsineBinLocalEnergy {d K n : ℕ} (q : ℝ)
   assignmentFiberLocalEnergy (d := d) nodes
     (fun i ↦ arcsineBinAssignment d K q (nodes.point i) hterminal) b
 
-/-- The sum of the canonical bin energies is bounded by the global energy.-/
+/-- The sum of the canonical bin energies is bounded by the global energy.
+@isnad1 id=le.1h5v.s7.1dae063e6a8d from=translated src=- shape=8c0b8bd8 vocab=a9fa4ea6
+-/
 theorem sum_arcsineBinLocalEnergy_le_clippedPairEnergy
     {d K n : ℕ} (q : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -182,7 +186,9 @@ def geometricSignedBinInterval (d : ℕ) (q : ℝ) {K : ℕ}
   Set.Icc (geometricSignedBinLowerEndpoint d q b)
     (geometricSignedBinUpperEndpoint d q b)
 
-/-- Reflection preserves the exact cosine-bin length.-/
+/-- Reflection preserves the exact cosine-bin length.
+@isnad1 id=eq.2h4v.s7.36c46b855fc2 from=translated src=- shape=11bb828a vocab=7d41df0d
+-/
 lemma geometricSignedBin_intervalLength
     (d K : ℕ) {q : ℝ} (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -246,7 +252,9 @@ private lemma le_cos_of_clippedScale_lt {d : ℕ} {x θ : ℝ}
 
 /-- Exact geometric localization of a point in a canonical signed shell.
 Positive degree is necessary: at degree zero the cubic floor is three and
-the scale assignment cannot recover spatial shells inside `[-1,1]`.-/
+the scale assignment cannot recover spatial shells inside `[-1,1]`.
+@isnad1 id=mem.5h5v.s7.5d7c33551b0f from=translated src=- shape=82d26e70 vocab=99ada91f
+-/
 theorem mem_geometricSignedBinInterval_of_assignment
     {d K : ℕ} {q x : ℝ} (hd : 1 ≤ d) (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -361,7 +369,9 @@ theorem mem_geometricSignedBinInterval_of_assignment
       exact ⟨hright, hleft⟩
 
 /-- Every node in the canonical fiber lies in its explicit signed cosine
-interval.-/
+interval.
+@isnad1 id=mem.3h7v.s7.b718820073d1 from=translated src=- shape=cbe7cc07 vocab=b416abfd
+-/
 theorem arcsineNodeBinEmbedding_mem_interval
     {d K n : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -380,7 +390,9 @@ theorem arcsineNodeBinEmbedding_mem_interval
   congr 1
 
 /-- Every node in a canonical fiber has scale at least the bin's geometric
-lower scale.-/
+lower scale.
+@isnad1 id=le.2h7v.s7.aa48cdfd1daf from=translated src=- shape=15f3612f vocab=2a8ecfd8
+-/
 theorem geometricBinLowerScale_le_arcsineNodeBinScale
     {d K n : ℕ} {q : ℝ} (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -414,7 +426,9 @@ private lemma intervalLength_pos_of_strictMono
 
 /-- Exact dense-bin lower bound for one canonical fiber.  All floor losses
 remain visible, and the interval denominator is the actual cosine-bin
-length.-/
+length.
+@isnad1 id=le.5h7v.s8.3d2b0c9fb037 from=translated src=- shape=73e0a012 vocab=f3f11c0a
+-/
 theorem dense_arcsineBin_divisor_lower
     {d K n L : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -462,6 +476,9 @@ theorem dense_arcsineBin_divisor_lower
     arcsineNodeBinEmbedding]
   congr 1
 
+/--
+@isnad1 id=le.1h6v.s6.acdd2d26034a from=translated src=- shape=df876a92 vocab=1f2ac641
+-/
 lemma arcsineBinLocalEnergy_nonneg
     {d K n : ℕ} (q : ℝ)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)
@@ -478,7 +495,9 @@ lemma arcsineBinLocalEnergy_nonneg
 /-- Strongest exact finite aggregate before choosing any asymptotic
 parameters: every selected bin containing at least `L` nodes contributes
 its full floor-sensitive harmonic lower bound, and their sum is bounded by
-the single global clipped pair energy.-/
+the single global clipped pair energy.
+@isnad1 id=le.5h7v.s8.d5a1f331affa from=translated src=- shape=c69620dc vocab=222befc8
+-/
 theorem sum_selectedDense_arcsineBin_lower_le_clippedPairEnergy
     {d K n L : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q)
     (hterminal : 1 ≤ q ^ K * cubicChebyshevFloor d)

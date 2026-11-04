@@ -32,6 +32,9 @@ noncomputable section
 def rootAngle (n : ℕ) (j : Fin n) : ℝ :=
   ((j.val : ℝ) + 1 / 2) * Real.pi / (n : ℝ)
 
+/--
+@isnad1 id=mem.1h2v.s5.8e14485c2169 from=translated src=- shape=c5838478 vocab=df473bfd
+-/
 lemma rootAngle_mem {n : ℕ} (hn : 0 < n) (j : Fin n) :
     rootAngle n j ∈ Set.Ioo (0 : ℝ) Real.pi := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -45,10 +48,16 @@ lemma rootAngle_mem {n : ℕ} (hn : 0 < n) (j : Fin n) :
     have hlt : (j.val : ℝ) + 1 / 2 < (n : ℝ) := by linarith
     nlinarith [mul_lt_mul_of_pos_right hlt Real.pi_pos]
 
+/--
+@isnad1 id=mem.1h2v.s5.927cb469142b from=translated src=- shape=c5838478 vocab=11be80d7
+-/
 lemma rootAngle_mem_closed {n : ℕ} (hn : 0 < n) (j : Fin n) :
     rootAngle n j ∈ Set.Icc (0 : ℝ) Real.pi :=
   ⟨(rootAngle_mem hn j).1.le, (rootAngle_mem hn j).2.le⟩
 
+/--
+@isnad1 id=strictmo.1h1v.s4.db9e24b49c06 from=translated src=- shape=c3193e28 vocab=dcc1c7cf
+-/
 lemma rootAngle_strictMono {n : ℕ} (hn : 0 < n) :
     StrictMono (rootAngle n) := by
   intro i j hij
@@ -71,15 +80,24 @@ def chebyshevNodes (n : ℕ) (hn : 0 < n) : NodeFamily n where
     exact Real.injOn_cos (rootAngle_mem_closed hn i) (rootAngle_mem_closed hn j) hij
   mem_Icc j := Real.cos_mem_Icc _
 
+/--
+@isnad1 id=eq.1h2v.s4.ac69f91eda6a from=translated src=- shape=53cb62d4 vocab=2a68d38d
+-/
 @[simp] lemma chebyshevNodes_point (n : ℕ) (hn : 0 < n) (j : Fin n) :
     (chebyshevNodes n hn).point j = Real.cos (rootAngle n j) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e63f5e8f516b from=translated src=- shape=d4b21b0b vocab=13271d99
+-/
 lemma rootAngle_sub (n : ℕ) (i j : Fin n) :
     rootAngle n i - rootAngle n j =
       ((i.val : ℝ) - (j.val : ℝ)) * (Real.pi / (n : ℝ)) := by
   unfold rootAngle
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.9e7cf3f70dc2 from=translated src=- shape=8cf7212a vocab=0274cbcd
+-/
 lemma cos_mul_rootAngle {n : ℕ} (hn : 0 < n) (j : Fin n) :
     Real.cos ((n : ℝ) * rootAngle n j) = 0 := by
   have hnR : (n : ℝ) ≠ 0 := by exact_mod_cast hn.ne'
@@ -89,6 +107,9 @@ lemma cos_mul_rootAngle {n : ℕ} (hn : 0 < n) (j : Fin n) :
   push_cast
   field_simp [hnR] <;> ring
 
+/--
+@isnad1 id=eq.1h2v.s5.83a0910b2b8a from=translated src=- shape=9c34d326 vocab=a97b0e49
+-/
 lemma abs_sin_mul_rootAngle {n : ℕ} (hn : 0 < n) (j : Fin n) :
     |Real.sin ((n : ℝ) * rootAngle n j)| = 1 := by
   have hsq : Real.sin ((n : ℝ) * rootAngle n j) ^ 2 = 1 := by
@@ -97,19 +118,30 @@ lemma abs_sin_mul_rootAngle {n : ℕ} (hn : 0 < n) (j : Fin n) :
     simpa using h
   rcases sq_eq_one_iff.mp hsq with h | h <;> simp [h]
 
+/--
+@isnad1 id=lt.1h2v.s4.e05963159a2e from=translated src=- shape=314cc0d5 vocab=a586565c
+-/
 lemma sin_rootAngle_pos {n : ℕ} (hn : 0 < n) (j : Fin n) :
     0 < Real.sin (rootAngle n j) :=
   Real.sin_pos_of_pos_of_lt_pi (rootAngle_mem hn j).1 (rootAngle_mem hn j).2
 
+/--
+@isnad1 id=eq.0h1v.s4.dff46bf218f2 from=translated src=- shape=25e5eb99 vocab=d28c57b9
+-/
 lemma chebyshev_natDegree (n : ℕ) : (T ℝ (n : ℤ)).natDegree = n := by
   simp only [Polynomial.Chebyshev.natDegree_T, Int.natAbs_natCast]
 
+/--
+@isnad1 id=eq.1h2v.s5.77e752bf45e7 from=translated src=- shape=963b861d vocab=6f65ef3a
+-/
 lemma chebyshev_root {n : ℕ} (hn : 0 < n) (j : Fin n) :
     (T ℝ (n : ℤ)).eval ((chebyshevNodes n hn).point j) = 0 := by
   rw [chebyshevNodes_point, T_real_cos]
   simpa only [Int.cast_natCast] using cos_mul_rootAngle hn j
 
-/-- Derivative formula with no quotient by sin θ.-/
+/-- Derivative formula with no quotient by sin θ.
+@isnad1 id=eq.0h2v.s8.f559bde36133 from=translated src=- shape=d1b554e6 vocab=f065e99b
+-/
 lemma chebyshev_derivative_mul_sin (n : ℕ) (θ : ℝ) :
     (T ℝ (n : ℤ)).derivative.eval (Real.cos θ) * Real.sin θ =
       (n : ℝ) * Real.sin ((n : ℝ) * θ) := by
@@ -119,6 +151,9 @@ lemma chebyshev_derivative_mul_sin (n : ℕ) (θ : ℝ) :
   simpa only [Int.cast_sub, Int.cast_one, sub_add_cancel, Int.cast_natCast] using
     congrArg (fun z : ℝ => (n : ℝ) * z) hu
 
+/--
+@isnad1 id=eq.1h2v.s8.d9750eae3012 from=translated src=- shape=6bae2402 vocab=a434487e
+-/
 lemma abs_derivative_mul_sin_rootAngle {n : ℕ} (hn : 0 < n) (j : Fin n) :
     |(T ℝ (n : ℤ)).derivative.eval (Real.cos (rootAngle n j))| *
         Real.sin (rootAngle n j) = (n : ℝ) := by
@@ -127,7 +162,9 @@ lemma abs_derivative_mul_sin_rootAngle {n : ℕ} (hn : 0 < n) (j : Fin n) :
   simpa only [abs_mul, abs_of_pos (sin_rootAngle_pos hn j), abs_of_pos hnR,
     abs_sin_mul_rootAngle hn j, mul_one] using h
 
-/-- Multiplicative cardinal formula, valid even AT interpolation nodes.-/
+/-- Multiplicative cardinal formula, valid even AT interpolation nodes.
+@isnad1 id=eq.1h3v.s6.ba77b4f0d751 from=translated src=- shape=d6b8a1fb vocab=d9c2a6c7
+-/
 lemma cardinal_weighted_identity {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ) :
     |lagrangeFundamental (chebyshevNodes n hn) j (Real.cos θ)| * (n : ℝ) *
       |Real.cos θ - Real.cos (rootAngle n j)| =
@@ -149,7 +186,9 @@ lemma cardinal_weighted_identity {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ) :
             |lagrangeFundamental (chebyshevNodes n hn) j (Real.cos θ)|) := by ring
     _ = Real.sin (rootAngle n j) * |Real.cos ((n : ℝ) * θ)| := by rw [← habs]
 
-/-- The only possible zero angular denominator is treated separately.-/
+/-- The only possible zero angular denominator is treated separately.
+@isnad1 id=le.2h3v.s6.0b664447062e from=translated src=- shape=e95c84df vocab=377431a7
+-/
 lemma cardinal_angular_weighted {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ)
     (hθ : θ ∈ Set.Icc (0 : ℝ) Real.pi) :
     |lagrangeFundamental (chebyshevNodes n hn) j (Real.cos θ)| *
@@ -183,6 +222,9 @@ lemma cardinal_angular_weighted {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ)
         _ = _ := by ring
     exact le_of_mul_le_mul_right hscaled hD
 
+/--
+@isnad1 id=le.1h3v.s5.e485b2b6e9de from=translated src=- shape=0bf84040 vocab=e56971b5
+-/
 lemma cos_bound_by_root_distance {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ) :
     |Real.cos ((n : ℝ) * θ)| ≤ (n : ℝ) * |θ - rootAngle n j| := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -190,7 +232,9 @@ lemma cos_bound_by_root_distance {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ) :
   rw [cos_mul_rootAngle hn j, sub_zero, ← mul_sub, abs_mul, abs_of_pos hnR] at h
   exact h
 
-/-- A uniform bound is needed for the nearest node, including exact node hits.-/
+/-- A uniform bound is needed for the nearest node, including exact node hits.
+@isnad1 id=le.2h3v.s6.e75e781e5327 from=translated src=- shape=c9498ad6 vocab=22aa4251
+-/
 lemma cardinal_le_pi_add_one {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ)
     (hθ : θ ∈ Set.Icc (0 : ℝ) Real.pi) :
     |lagrangeFundamental (chebyshevNodes n hn) j (Real.cos θ)| ≤ Real.pi + 1 := by
@@ -209,7 +253,9 @@ lemma cardinal_le_pi_add_one {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ)
       le_of_mul_le_mul_right h hW
     linarith
 
-/-- Away from its own node, a cardinal function decays inversely with angle.-/
+/-- Away from its own node, a cardinal function decays inversely with angle.
+@isnad1 id=le.3h3v.s6.acaa153303a3 from=translated src=- shape=3c19072d vocab=c0892d99
+-/
 lemma cardinal_le_inverse_distance {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ)
     (hθ : θ ∈ Set.Icc (0 : ℝ) Real.pi) (hne : θ ≠ rootAngle n j) :
     |lagrangeFundamental (chebyshevNodes n hn) j (Real.cos θ)| ≤
@@ -222,7 +268,9 @@ lemma cardinal_le_inverse_distance {n : ℕ} (hn : 0 < n) (j : Fin n) (θ : ℝ)
   simpa only [mul_one] using h
 
 /-- Nearest-node selection plus the triangle inequality gives the separation
-bound directly. No rounding function or endpoint exception is needed.-/
+bound directly. No rounding function or endpoint exception is needed.
+@isnad1 id=le.2h4v.s7.bcfa99fa9ac9 from=translated src=- shape=fa83c63b vocab=bf692ae6
+-/
 lemma nearest_index_separation {n : ℕ} (hn : 0 < n) (θ : ℝ) (p : Fin n)
     (hp : ∀ j, |θ - rootAngle n p| ≤ |θ - rootAngle n j|) (j : Fin n) :
     |(j.val : ℝ) - (p.val : ℝ)| * (Real.pi / (n : ℝ)) ≤
@@ -233,7 +281,9 @@ lemma nearest_index_separation {n : ℕ} (hn : 0 < n) (θ : ℝ) (p : Fin n)
     abs_sub_comm (rootAngle n j) θ] at htri
   linarith [hp j]
 
-/-- A fully finite bound for the actual Lebesgue function of the competitor.-/
+/-- A fully finite bound for the actual Lebesgue function of the competitor.
+@isnad1 id=le.2h2v.s6.be463a13b30d from=translated src=- shape=702e1097 vocab=a5d0c381
+-/
 theorem chebyshev_lebesgue_cos_le {n : ℕ} (hn : 0 < n) (θ : ℝ)
     (hθ : θ ∈ Set.Icc (0 : ℝ) Real.pi) :
     lebesgueFunction (chebyshevNodes n hn) (Real.cos θ) ≤
@@ -273,7 +323,9 @@ theorem chebyshev_lebesgue_cos_le {n : ℕ} (hn : 0 < n) (θ : ℝ)
   rw [hcancel] at h
   nlinarith
 
-/-- From cosine coordinates back to the full interval, including its endpoints.-/
+/-- From cosine coordinates back to the full interval, including its endpoints.
+@isnad1 id=le.2h2v.s6.0a8e723dd03f from=translated src=- shape=fd85a252 vocab=141eecef
+-/
 theorem chebyshev_lebesgue_le {n : ℕ} (hn : 0 < n) (x : ℝ)
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     lebesgueFunction (chebyshevNodes n hn) x ≤ Real.pi + 1 + 4 * harmonicReal n := by
@@ -281,7 +333,9 @@ theorem chebyshev_lebesgue_le {n : ℕ} (hn : 0 < n) (x : ℝ)
     ⟨Real.arccos_nonneg x, Real.arccos_le_pi x⟩
   rwa [Real.cos_arccos hx.1 hx.2] at h
 
-/-- The maximum is attained; the pointwise estimate bounds that maximum.-/
+/-- The maximum is attained; the pointwise estimate bounds that maximum.
+@isnad1 id=le.1h1v.s6.91af9fc6e47e from=translated src=- shape=1dd83746 vocab=cb5ba5b8
+-/
 theorem chebyshev_lebesgueOn_le {n : ℕ} (hn : 0 < n) :
     lebesgueOn (chebyshevNodes n hn) (-1) 1 ≤ Real.pi + 1 + 4 * harmonicReal n := by
   obtain ⟨x, hx, heq, _hmax⟩ := exists_lebesgueOn_eq_and_ge (chebyshevNodes n hn)
@@ -292,13 +346,18 @@ theorem chebyshev_lebesgueOn_le {n : ℕ} (hn : 0 < n) :
 /-- A single explicit constant, independent of n and of the original nodes.-/
 def logConstant : ℝ := 4 + (Real.pi + 5) / Real.log 2
 
+/--
+@isnad1 id=lt.0h0v.s3.5aa1c566ff47 from=translated src=- shape=ff3a10fc vocab=f3fe6db6
+-/
 lemma logConstant_pos : 0 < logConstant := by
   have hlog : 0 < Real.log (2 : ℝ) := Real.log_pos (by norm_num)
   have hpi : 0 < Real.pi := Real.pi_pos
   unfold logConstant
   positivity
 
-/-- A concrete competitor with a logarithmic global amplification bound.-/
+/-- A concrete competitor with a logarithmic global amplification bound.
+@isnad1 id=le.1h1v.s5.15f53048e365 from=translated src=- shape=b70cc64f vocab=7dc9dafc
+-/
 theorem chebyshev_lebesgueOn_log {n : ℕ} (hn : 2 ≤ n) :
     lebesgueOn (chebyshevNodes n (by omega)) (-1) 1 ≤
       logConstant * Real.log (n : ℝ) := by

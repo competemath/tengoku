@@ -23,6 +23,9 @@ noncomputable section
 def strictIndexPairs (n : ℕ) : Finset (Fin n × Fin n) :=
   (Finset.univ.offDiag).filter fun p ↦ p.1 < p.2
 
+/--
+@isnad1 id=iff.0h2v.s5.ca83357bc101 from=translated src=- shape=0917527a vocab=e71717e1
+-/
 @[simp]
 lemma mem_strictIndexPairs {n : ℕ} (p : Fin n × Fin n) :
     p ∈ strictIndexPairs n ↔ p.1 < p.2 := by
@@ -110,6 +113,9 @@ private lemma sum_offDiag_eq_two_mul_sum_strict {n : ℕ}
       change _ = 2 * ∑ p ∈ upper, f p.1 p.2
       ring
 
+/--
+@isnad1 id=eq.0h5v.s4.32075ac710c2 from=translated src=- shape=ea26a9d9 vocab=ad1624b0
+-/
 lemma clippedPairWeight_comm {d n : ℕ} (nodes : OrderedNodes n)
     (j k : Fin n) :
     clippedPairWeight d nodes j k = clippedPairWeight d nodes k j := by
@@ -119,7 +125,9 @@ lemma clippedPairWeight_comm {d n : ℕ} (nodes : OrderedNodes n)
   · rw [abs_sub_comm]
 
 /-- The global clipped energy is one sum over strictly ordered index pairs;
-the factor one-half in its row-oriented definition disappears exactly.-/
+the factor one-half in its row-oriented definition disappears exactly.
+@isnad1 id=eq.0h3v.s5.7fd5c6a2f1e9 from=translated src=- shape=724c06eb vocab=c3b6ce3c
+-/
 theorem clippedPairEnergy_eq_sum_strictIndexPairs {d n : ℕ}
     (nodes : OrderedNodes n) :
     clippedPairEnergy d nodes =
@@ -146,7 +154,9 @@ private def stepSigmaToPair {m : ℕ} (q : Σ r : ℕ, Fin (m - r)) :
   (stepLeftIndex q.2, stepRightIndex q.2)
 
 /-- The separation enumeration used by `localPairEnergy` contains each
-strictly ordered pair exactly once.-/
+strictly ordered pair exactly once.
+@isnad1 id=eq.1h3v.s5.efc06cdcf911 from=translated src=- shape=8664363a vocab=26689616
+-/
 theorem localPairEnergy_eq_sum_strictIndexPairs {m : ℕ}
     (x scale : Fin m → ℝ) (hx : StrictMono x) :
     localPairEnergy x scale =
@@ -204,6 +214,9 @@ theorem localPairEnergy_eq_sum_strictIndexPairs {m : ℕ}
     rw [localPairWeight, stepSigmaToPair, stepGeometricWeight, stepSpan]
     rw [abs_of_neg (sub_neg.mpr hlt), neg_sub]
 
+/--
+@isnad1 id=le.0h5v.s4.a202b2d5bbad from=translated src=- shape=a7ee64cc vocab=6f4667fd
+-/
 lemma clippedPairWeight_nonneg {d n : ℕ} (nodes : OrderedNodes n)
     (j k : Fin n) :
     0 ≤ clippedPairWeight d nodes j k := by
@@ -211,7 +224,9 @@ lemma clippedPairWeight_nonneg {d n : ℕ} (nodes : OrderedNodes n)
 
 /-- A strictly increasing selection of global indices embeds its complete
 local pair energy into the global clipped pair energy.  No interval,
-cardinality, or asymptotic hypothesis is used.-/
+cardinality, or asymptotic hypothesis is used.
+@isnad1 id=le.1h5v.s6.09056f43aac4 from=translated src=- shape=d235722f vocab=11bb69ce
+-/
 theorem localPairEnergy_le_clippedPairEnergy_of_strictMonoEmbedding
     {d m n : ℕ} (nodes : OrderedNodes n) (ι : Fin m → Fin n)
     (hι : StrictMono ι) :

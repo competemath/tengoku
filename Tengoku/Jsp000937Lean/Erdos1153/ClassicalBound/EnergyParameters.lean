@@ -22,7 +22,9 @@ argument can be chosen so that the resulting coefficient is strictly above
 
 The witnesses in the proof are `q = 1 + delta`, `eta = delta`, and equal
 natural divisors larger than `delta⁻¹`, where
-`delta = min (1/4) (eps*pi/12)`.-/
+`delta = min (1/4) (eps*pi/12)`.
+@isnad1 id=ex.1h1v.s7.71a2bb809bc7 from=translated src=- shape=31a9c270 vocab=c43d9f31
+-/
 theorem exists_energy_parameters (eps : ℝ) (heps : 0 < eps) :
     ∃ (q : ℝ) (R L : ℕ) (eta : ℝ),
       1 < q ∧ 1 ≤ R ∧ 1 < L ∧ 0 < eta ∧ eta < 1 ∧

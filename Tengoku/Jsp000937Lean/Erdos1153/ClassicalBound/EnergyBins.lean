@@ -23,12 +23,17 @@ namespace ClassicalBound
 noncomputable section
 
 /-- Expand the existing real-valued harmonic number as a one-based real
-finite sum.-/
+finite sum.
+@isnad1 id=eq.0h1v.s4.b8289d9883ca from=translated src=- shape=6fb82e7d vocab=cb2a4c7b
+-/
 lemma realHarmonic_eq_sum_Icc (R : ℕ) :
     realHarmonic R = ∑ r ∈ Finset.Icc 1 R, (r : ℝ)⁻¹ := by
   rw [realHarmonic, harmonic_eq_sum_Icc]
   simp only [Rat.cast_sum, Rat.cast_inv, Rat.cast_natCast]
 
+/--
+@isnad1 id=le.0h1v.s3.e46d47f02f3c from=translated src=- shape=b9369acb vocab=d51eb68a
+-/
 lemma realHarmonic_nonneg (R : ℕ) :
     0 ≤ realHarmonic R := by
   rw [realHarmonic_eq_sum_Icc]
@@ -50,7 +55,9 @@ def truncatedLocalPairEnergy {m : ℕ} (R : ℕ)
     (x scale : Fin m → ℝ) : ℝ :=
   ∑ r ∈ Finset.Icc 1 R, stepPairEnergy (r := r) x scale
 
-/-- Exact finite harmonic lower bound for the truncated spacing kernel.-/
+/-- Exact finite harmonic lower bound for the truncated spacing kernel.
+@isnad1 id=le.0h2v.s5.270008ec064a from=translated src=- shape=cb52ee87 vocab=644b36a6
+-/
 theorem sq_sub_mul_realHarmonic_le_truncatedSpacingKernel
     (m R : ℕ) :
     (((m - R : ℕ) : ℝ) ^ 2) * realHarmonic R ≤
@@ -72,7 +79,9 @@ theorem sq_sub_mul_realHarmonic_le_truncatedSpacingKernel
     (mul_le_mul_of_nonneg_right hsquares
       (inv_nonneg.mpr (Nat.cast_nonneg r)))
 
-/-- Algebraic form of the truncation loss used in asymptotic estimates.-/
+/-- Algebraic form of the truncation loss used in asymptotic estimates.
+@isnad1 id=eq.1h2v.s6.5a30df5a1587 from=translated src=- shape=d0010115 vocab=f967d114
+-/
 lemma sq_natSub_eq_sq_mul_one_sub_div {m R : ℕ} (hRm : R < m) :
     (((m - R : ℕ) : ℝ) ^ 2) =
       (m : ℝ) ^ 2 * (1 - (R : ℝ) / (m : ℝ)) ^ 2 := by
@@ -83,7 +92,9 @@ lemma sq_natSub_eq_sq_mul_one_sub_div {m R : ℕ} (hRm : R < m) :
 
 /-- Requested normalized form:
 
-sum from r=1 to R of (m-r)^2/r is at least m^2 (1-R/m)^2 H_R.-/
+sum from r=1 to R of (m-r)^2/r is at least m^2 (1-R/m)^2 H_R.
+@isnad1 id=le.1h2v.s6.2a236618fccd from=translated src=- shape=49d3ed2d vocab=9f0f7f25
+-/
 theorem sq_mul_one_sub_div_mul_realHarmonic_le_truncatedSpacingKernel
     {m R : ℕ} (hRm : R < m) :
     (m : ℝ) ^ 2 * (1 - (R : ℝ) / (m : ℝ)) ^ 2 *
@@ -91,6 +102,9 @@ theorem sq_mul_one_sub_div_mul_realHarmonic_le_truncatedSpacingKernel
   rw [← sq_natSub_eq_sq_mul_one_sub_div hRm]
   exact sq_sub_mul_realHarmonic_le_truncatedSpacingKernel m R
 
+/--
+@isnad1 id=eq.1h3v.s5.e94d40f8fa69 from=translated src=- shape=809d073b vocab=6fb9c3b3
+-/
 lemma truncatedLengthKernel_eq_div {m R : ℕ} {h : ℝ} (hh : h ≠ 0) :
     truncatedLengthKernel m R h = truncatedSpacingKernel m R / h := by
   rw [truncatedLengthKernel, truncatedSpacingKernel, Finset.sum_div]
@@ -100,7 +114,9 @@ lemma truncatedLengthKernel_eq_div {m R : ℕ} {h : ℝ} (hh : h ≠ 0) :
   have hr0 : (r : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hr)
   field_simp
 
-/-- Harmonic lower bound after inserting the positive bin length.-/
+/-- Harmonic lower bound after inserting the positive bin length.
+@isnad1 id=le.1h3v.s6.784dede97b18 from=translated src=- shape=6aa50d6c vocab=2e8113ff
+-/
 theorem sq_sub_mul_realHarmonic_div_le_truncatedLengthKernel
     (m R : ℕ) {h : ℝ} (hh : 0 < h) :
     ((((m - R : ℕ) : ℝ) ^ 2) * realHarmonic R) / h ≤
@@ -110,7 +126,9 @@ theorem sq_sub_mul_realHarmonic_div_le_truncatedLengthKernel
     (sq_sub_mul_realHarmonic_le_truncatedSpacingKernel m R) hh.le
 
 /-- Each fixed-step weighted energy is nonnegative when the points are
-strictly ordered and the step is positive.-/
+strictly ordered and the step is positive.
+@isnad1 id=le.2h4v.s5.bdbd3f38c8b7 from=translated src=- shape=553290bb vocab=bb8b604c
+-/
 lemma stepPairEnergy_nonneg {m r : ℕ} (x scale : Fin m → ℝ)
     (hx : StrictMono x) (hr : 0 < r) :
     0 ≤ stepPairEnergy (r := r) x scale := by
@@ -120,7 +138,9 @@ lemma stepPairEnergy_nonneg {m r : ℕ} (x scale : Fin m → ℝ)
     (inv_nonneg.mpr (stepSpan_pos x hx hr i).le)
 
 /-- The truncated energy is literally a sub-sum of the complete local
-energy.-/
+energy.
+@isnad1 id=le.2h4v.s5.bd5df8701d7c from=translated src=- shape=e3971f60 vocab=88462cd0
+-/
 lemma truncatedLocalPairEnergy_le_localPairEnergy {m R : ℕ}
     (x scale : Fin m → ℝ) (hx : StrictMono x) (hRm : R < m) :
     truncatedLocalPairEnergy R x scale ≤ localPairEnergy x scale := by
@@ -133,7 +153,9 @@ lemma truncatedLocalPairEnergy_le_localPairEnergy {m R : ℕ}
     exact stepPairEnergy_nonneg x scale hx hr.1
 
 /-- Exact finite lower bound obtained by summing the checked fixed-step
-energy estimates only through R.-/
+energy estimates only through R.
+@isnad1 id=le.7h8v.s6.4963c938e84b from=translated src=- shape=2fd09af9 vocab=0f6d4870
+-/
 theorem mul_truncatedLengthKernel_le_truncatedLocalPairEnergy
     {m R : ℕ} (x scale : Fin m → ℝ) (hx : StrictMono x) (hRm : R < m)
     {A B h a : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)
@@ -149,7 +171,9 @@ theorem mul_truncatedLengthKernel_le_truncatedLocalPairEnergy
       hxIcc hh hinterval ha hscale
 
 /-- Dense-bin harmonic lower bound, still with an arbitrary finite
-truncation R < m.-/
+truncation R < m.
+@isnad1 id=le.7h8v.s7.42376270d61a from=translated src=- shape=a5c5cab9 vocab=041adf10
+-/
 theorem mul_sq_sub_mul_realHarmonic_div_le_localPairEnergy
     {m R : ℕ} (x scale : Fin m → ℝ) (hx : StrictMono x) (hRm : R < m)
     {A B h a : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)
@@ -168,7 +192,9 @@ theorem mul_sq_sub_mul_realHarmonic_div_le_localPairEnergy
     _ ≤ localPairEnergy x scale :=
       truncatedLocalPairEnergy_le_localPairEnergy x scale hx hRm
 
-/-- The same dense-bin bound in the normalized m^2 (1-R/m)^2 form.-/
+/-- The same dense-bin bound in the normalized m^2 (1-R/m)^2 form.
+@isnad1 id=le.7h8v.s7.586e6073274b from=translated src=- shape=66217dc4 vocab=041adf10
+-/
 theorem mul_sq_mul_one_sub_div_mul_realHarmonic_div_le_localPairEnergy
     {m R : ℕ} (x scale : Fin m → ℝ) (hx : StrictMono x) (hRm : R < m)
     {A B h a : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)
@@ -182,7 +208,9 @@ theorem mul_sq_mul_one_sub_div_mul_realHarmonic_div_le_localPairEnergy
 
 /-- Exact R = floor(m/L) specialization.  The assumptions 1 < L ≤ m
 make the retained range nonempty and ensure m/L < m; no rounding loss is
-hidden.-/
+hidden.
+@isnad1 id=le.8h8v.s7.c23e90970f62 from=translated src=- shape=89382178 vocab=041adf10
+-/
 theorem denseBin_divisor_lower {m L : ℕ} (x scale : Fin m → ℝ)
     (hx : StrictMono x) (hL : 1 < L) (hLm : L ≤ m)
     {A B h a : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)

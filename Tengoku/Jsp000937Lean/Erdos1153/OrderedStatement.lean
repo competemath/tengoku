@@ -32,7 +32,9 @@ def OrderedTarget : Prop :=
 /-- Sorting transports the ordered statement to the frozen public target.
 
 No quantitative loss occurs: sorting preserves the entire Lebesgue function
-pointwise, and the threshold (including `2 ≤ N`) is reused verbatim.-/
+pointwise, and the threshold (including `2 ≤ N`) is reused verbatim.
+@isnad1 id=target.1h0v.s1.314ed7d19a5f from=translated src=- shape=1d48f1ac vocab=dc140560
+-/
 theorem target_of_orderedTarget (hordered : OrderedTarget) : Target := by
   intro a b ha hab hb ε hε
   obtain ⟨N, hN2, hN⟩ := hordered a b ha hab hb ε hε

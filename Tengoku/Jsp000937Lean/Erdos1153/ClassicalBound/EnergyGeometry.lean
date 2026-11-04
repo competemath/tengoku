@@ -31,16 +31,25 @@ def stepLeftIndex {m r : ℕ} (i : Fin (m - r)) : Fin m :=
 def stepRightIndex {m r : ℕ} (i : Fin (m - r)) : Fin m :=
   ⟨i.val + r, by omega⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.dd9e1a2bd321 from=translated src=- shape=a6d37ffd vocab=94ca6b9d
+-/
 @[simp]
 lemma stepLeftIndex_val {m r : ℕ} (i : Fin (m - r)) :
     (stepLeftIndex i).val = i.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.4bfc73ba65c5 from=translated src=- shape=fe8aaff8 vocab=b10bc1af
+-/
 @[simp]
 lemma stepRightIndex_val {m r : ℕ} (i : Fin (m - r)) :
     (stepRightIndex i).val = i.val + r :=
   rfl
 
+/--
+@isnad1 id=lt.1h3v.s5.f33d4e862f09 from=translated src=- shape=dea6fdad vocab=9f75f980
+-/
 lemma stepLeftIndex_lt_stepRightIndex {m r : ℕ} (hr : 0 < r)
     (i : Fin (m - r)) :
     stepLeftIndex i < stepRightIndex i := by
@@ -50,6 +59,9 @@ lemma stepLeftIndex_lt_stepRightIndex {m r : ℕ} (hr : 0 < r)
 def stepSpan {m r : ℕ} (x : Fin m → ℝ) (i : Fin (m - r)) : ℝ :=
   x (stepRightIndex i) - x (stepLeftIndex i)
 
+/--
+@isnad1 id=lt.2h4v.s5.1443f7c2b496 from=translated src=- shape=e757bb04 vocab=6947dc52
+-/
 lemma stepSpan_pos {m r : ℕ} (x : Fin m → ℝ) (hx : StrictMono x)
     (hr : 0 < r) (i : Fin (m - r)) :
     0 < stepSpan x i := by
@@ -83,7 +95,9 @@ private lemma sum_range_step_eq_boundary (f : ℕ → ℝ) {m r : ℕ}
 
 The sum of all r-step spans is the sum of the last r point values minus
 the sum of the first r point values.  This identity does not require the
-points to be ordered.-/
+points to be ordered.
+@isnad1 id=eq.1h3v.s6.39ff79608384 from=translated src=- shape=17fb8cf3 vocab=b9b3ea45
+-/
 lemma sum_stepSpan_eq_boundary {m r : ℕ} (x : Fin m → ℝ)
     (hrm : r ≤ m) :
     (∑ i : Fin (m - r), stepSpan x i) =
@@ -132,7 +146,9 @@ lemma sum_stepSpan_eq_boundary {m r : ℕ} (x : Fin m → ℝ)
         exact Nat.min_eq_left (by omega)
 
 /-- Fixed-step overlap bound.  If every point lies in [A,B], the total
-length of all r-step spans is at most r * (B-A).-/
+length of all r-step spans is at most r * (B-A).
+@isnad1 id=le.2h5v.s6.ff1e39efdb9b from=translated src=- shape=36694143 vocab=8444991d
+-/
 lemma sum_stepSpan_le_mul_intervalLength {m r : ℕ} (x : Fin m → ℝ)
     (hrm : r ≤ m) {A B : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B) :
     (∑ i : Fin (m - r), stepSpan x i) ≤ (r : ℝ) * (B - A) := by
@@ -152,7 +168,9 @@ lemma sum_stepSpan_le_mul_intervalLength {m r : ℕ} (x : Fin m → ℝ)
 
 For m strictly ordered real points in an interval of length at most h,
 and 0 < r < m, the reciprocal mass of the m-r spans of step r is at
-least (m-r)^2 / (r*h).-/
+least (m-r)^2 / (r*h).
+@isnad1 id=le.6h6v.s7.043cedfa2f58 from=translated src=- shape=454e24f3 vocab=da471b2f
+-/
 theorem sq_sub_div_mul_length_le_sum_stepSpan_inv {m r : ℕ}
     (x : Fin m → ℝ) (hx : StrictMono x) (hr : 0 < r) (hrm : r < m)
     {A B h : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)
@@ -200,6 +218,9 @@ def stepGeometricWeight {m r : ℕ} (scale : Fin m → ℝ)
 def stepPairEnergy {m r : ℕ} (x scale : Fin m → ℝ) : ℝ :=
   ∑ i : Fin (m - r), stepGeometricWeight scale i * (stepSpan x i)⁻¹
 
+/--
+@isnad1 id=le.2h5v.s5.96db68b4eba7 from=translated src=- shape=459ff5a2 vocab=33316241
+-/
 lemma le_stepGeometricWeight_of_le_scale {m r : ℕ} (scale : Fin m → ℝ)
     {a : ℝ} (ha : 0 ≤ a) (hscale : ∀ i, a ≤ scale i)
     (i : Fin (m - r)) :
@@ -220,7 +241,9 @@ bounded below by a.
 
 This is deliberately a finite single-step statement: summing it over a
 chosen set of steps, or embedding those pairs into a global unordered-pair
-energy, is separate bookkeeping.-/
+energy, is separate bookkeeping.
+@isnad1 id=le.8h8v.s7.d0151f5a89fb from=translated src=- shape=c617feaf vocab=ba85bfd5
+-/
 theorem mul_sq_sub_div_mul_length_le_stepPairEnergy {m r : ℕ}
     (x scale : Fin m → ℝ) (hx : StrictMono x) (hr : 0 < r) (hrm : r < m)
     {A B h a : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)
@@ -253,7 +276,9 @@ def localPairEnergy {m : ℕ} (x scale : Fin m → ℝ) : ℝ :=
 
 /-- Summing the sharp fixed-step estimates gives the finite local-bin
 energy bound.  The right side of the lower bound is left as an exact finite
-sum; extracting its harmonic asymptotics is a separate analytic step.-/
+sum; extracting its harmonic asymptotics is a separate analytic step.
+@isnad1 id=le.6h7v.s7.2ed23630db43 from=translated src=- shape=406b2a42 vocab=15ef89bf
+-/
 theorem mul_sum_sq_sub_div_mul_length_le_localPairEnergy {m : ℕ}
     (x scale : Fin m → ℝ) (hx : StrictMono x)
     {A B h a : ℝ} (hxIcc : ∀ i, x i ∈ Set.Icc A B)

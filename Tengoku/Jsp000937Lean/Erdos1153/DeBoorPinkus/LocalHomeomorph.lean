@@ -70,7 +70,9 @@ private lemma contDiffAt_finset_prod_scalar {E ι : Type*}
       exact (hf a (by simp)).mul (ih (fun i hi => hf i (by simp [hi])))
 
 /-- The rational coordinate gap-value map is `C¹` at every simplex point
-and every evaluation point.-/
+and every evaluation point.
+@isnad1 id=contdiff.1h6v.s7.dd3e9a22b09d from=translated src=- shape=bc42a987 vocab=6f5c9e43
+-/
 lemma contDiffAt_coordinateGapValueMap {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -124,7 +126,9 @@ def coordinateGapDifference {d : ℕ} {A B : ℝ}
 /-! ## Endpoint arrays, including dimension zero -/
 
 /-- In dimension zero the displayed determinant condition holds
-automatically: both matrix index types are empty.-/
+automatically: both matrix index types are empty.
+@isnad1 id=gapdiffe.0h2v.s3.0725c88cfa9b from=translated src=- shape=e7e63813 vocab=a7b22350
+-/
 theorem gapDifferenceJacobianDeterminantCondition_zero (A B : ℝ) :
     GapDifferenceJacobianDeterminantCondition 0 A B := by
   intro nodes

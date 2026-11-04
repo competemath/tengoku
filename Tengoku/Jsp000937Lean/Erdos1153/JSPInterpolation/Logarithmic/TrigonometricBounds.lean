@@ -13,7 +13,9 @@ is imported, postulated, or represented by an additional hypothesis. -/
 namespace JSPFreeNodes.Logarithmic
 noncomputable section
 
-/-- A chord-line estimate, with the absolute value and its range checked.-/
+/-- A chord-line estimate, with the absolute value and its range checked.
+@isnad1 id=le.2h2v.s6.c20b98b89c52 from=translated src=- shape=72bf5a1c vocab=8a38b485
+-/
 lemma angle_distance_le_sine (θ φ : ℝ)
     (hθ : θ ∈ Set.Icc (0 : ℝ) Real.pi)
     (hφ : φ ∈ Set.Icc (0 : ℝ) Real.pi) :
@@ -34,7 +36,9 @@ lemma angle_distance_le_sine (θ φ : ℝ)
     _ ≤ Real.pi * |Real.sin ((θ - φ) / 2)| := h
 
 /-- The weighted cosine denominator dominates the angular distance. This
-form avoids division by sin((θ+φ)/2), including near the endpoints.-/
+form avoids division by sin((θ+φ)/2), including near the endpoints.
+@isnad1 id=le.2h2v.s6.3717ae11d1dd from=translated src=- shape=2fab3fe8 vocab=c31e3723
+-/
 lemma sin_mul_distance_le_pi_mul_cos_distance (θ φ : ℝ)
     (hθ : θ ∈ Set.Icc (0 : ℝ) Real.pi)
     (hφ : φ ∈ Set.Icc (0 : ℝ) Real.pi) :

@@ -24,16 +24,24 @@ open scoped BigOperators
 def harmonicReal (n : ℕ) : ℝ :=
   ∑ r ∈ Finset.Icc 1 n, (r : ℝ)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s3.628c25e407bd from=translated src=- shape=6b4ab8ce vocab=041b4973
+-/
 lemma harmonicReal_eq (n : ℕ) : harmonicReal n = (harmonic n : ℝ) := by
   simp only [harmonicReal, harmonic_eq_sum_Icc, Rat.cast_sum,
     Rat.cast_inv, Rat.cast_natCast]
 
+/--
+@isnad1 id=le.0h1v.s4.137d055d1abc from=translated src=- shape=bc0a3534 vocab=f6847d7c
+-/
 lemma harmonicReal_le (n : ℕ) : harmonicReal n ≤ 1 + Real.log (n : ℝ) := by
   rw [harmonicReal_eq]
   exact harmonic_le_one_add_log n
 
 /-- The harmonic estimate needs only index-distance bounds, not an ordered
-or positive function f.  Its distinguished-index bound is supplied explicitly.-/
+or positive function f.  Its distinguished-index bound is supplied explicitly.
+@isnad1 id=le.2h4v.s6.e0751ee05149 from=translated src=- shape=55a6745c vocab=df99918e
+-/
 lemma sum_le_of_index_distance {n : ℕ} (p : Fin n) (f : Fin n → ℝ) (K : ℝ)
     (hp : f p ≤ K)
     (hfar : ∀ j : Fin n, j ≠ p →

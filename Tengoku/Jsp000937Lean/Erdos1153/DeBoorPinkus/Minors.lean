@@ -207,7 +207,9 @@ private lemma endpointPoint_eq_endpointArray_point {d : ℕ} {A B : ℝ}
   exact hpoint
 
 /-- Exact row-factor sign: the nodal product at the `g`th gap maximum has
-one negative factor for every node strictly to the right of that gap.-/
+one negative factor for every node strictly to the right of that gap.
+@isnad1 id=lt.1h5v.s6.a81e179d0e08 from=translated src=- shape=c019ea79 vocab=a5d29616
+-/
 theorem gapJacobianRowFactor_parity_pos {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d) (g : Fin (d + 1)) :
     0 < (-1 : ℝ) ^ (d + 1 - g.val) * gapJacobianRowFactor nodes g := by
@@ -219,7 +221,9 @@ theorem gapJacobianRowFactor_parity_pos {d : ℕ} {A B : ℝ}
 
 /-- Exact column-factor sign.  The denominator at interior node `j` has one
 negative factor for every node to its right, namely `d-j` factors; inversion
-preserves that sign.-/
+preserves that sign.
+@isnad1 id=lt.0h5v.s6.83018ae78c39 from=translated src=- shape=3528e1bb vocab=5d518c3f
+-/
 theorem gapJacobianColumnFactor_parity_pos {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (j : Fin d) :
     0 < (-1 : ℝ) ^ (d - j.val) * gapJacobianColumnFactor nodes j := by
@@ -254,7 +258,9 @@ def heightMinorFactorParity (d : ℕ) (omitted : Fin (d + 1)) : ℝ :=
 /-- The explicit row/column factor parity collapses to the ordinary
 row-deletion parity `(-1)^omitted`.  Pairing the retained row indexed by
 `omitted.succAbove i` with column `i` makes each factor `-1` exactly for
-`i < omitted`.-/
+`i < omitted`.
+@isnad1 id=eq.0h2v.s5.2f9b9b76c72c from=translated src=- shape=8d710e64 vocab=d4b88dc3
+-/
 lemma heightMinorFactorParity_eq_negOnePow (d : ℕ)
     (omitted : Fin (d + 1)) :
     heightMinorFactorParity d omitted = (-1 : ℝ) ^ omitted.val := by
@@ -316,6 +322,9 @@ row sign.  Consequently all normalized quotients are positive at `τ₀`.-/
 def sourceQuotientNormalizer {m : ℕ} (i : Fin (m + 1)) : ℝ :=
   if i = 0 then -1 else (-1 : ℝ) ^ i.val
 
+/--
+@isnad1 id=ne.0h2v.s4.b8facf287b31 from=translated src=- shape=472d9c7f vocab=7977fce3
+-/
 lemma sourceQuotientNormalizer_ne_zero {m : ℕ} (i : Fin (m + 1)) :
     sourceQuotientNormalizer i ≠ 0 := by
   rw [sourceQuotientNormalizer]
@@ -323,6 +332,9 @@ lemma sourceQuotientNormalizer_ne_zero {m : ℕ} (i : Fin (m + 1)) :
   · norm_num
   · exact pow_ne_zero _ (by norm_num)
 
+/--
+@isnad1 id=eq.0h2v.s5.166764979d90 from=translated src=- shape=9c0a8b01 vocab=b96a1e3d
+-/
 lemma sourceQuotientNormalizer_sq {m : ℕ} (i : Fin (m + 1)) :
     sourceQuotientNormalizer i ^ 2 = 1 := by
   rw [sourceQuotientNormalizer]
@@ -336,6 +348,9 @@ def sourceNormalizedQuotient {d : ℕ} {A B : ℝ}
   C (sourceQuotientNormalizer i) *
     gapDerivativeQuotient nodes.toOrderedNodes i
 
+/--
+@isnad1 id=le.1h5v.s5.feeb6bac9cc4 from=translated src=- shape=d086abe7 vocab=18791139
+-/
 lemma natDegree_sourceNormalizedQuotient_le {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 2 ≤ d) (i : Fin (d + 1)) :
     (sourceNormalizedQuotient nodes i).natDegree ≤ d - 1 := by
@@ -343,6 +358,9 @@ lemma natDegree_sourceNormalizedQuotient_le {d : ℕ} {A B : ℝ}
     (n := d + 2) nodes.toOrderedNodes (by omega) i
   exact (Polynomial.natDegree_C_mul_le _ _).trans (by omega)
 
+/--
+@isnad1 id=lt.1h5v.s6.d6790c274a9a from=translated src=- shape=505c3abe vocab=491cbc9c
+-/
 lemma sourceNormalizedQuotient_eval_first_pos {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d) (i : Fin (d + 1)) :
     0 < (sourceNormalizedQuotient nodes i).eval
@@ -357,6 +375,9 @@ lemma sourceNormalizedQuotient_eval_first_pos {d : ℕ} {A B : ℝ}
     simpa [sourceNormalizedQuotient, sourceQuotientNormalizer, hi,
       Polynomial.eval_mul, Polynomial.eval_C] using h
 
+/--
+@isnad1 id=lt.2h5v.s7.838889d53f30 from=translated src=- shape=8b6830c7 vocab=11426e58
+-/
 lemma sourceNormalizedQuotient_first_eval_later_sign {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (j : Fin (d + 1)) (hj : j ≠ 0) :
@@ -369,6 +390,9 @@ lemma sourceNormalizedQuotient_first_eval_later_sign {d : ℕ}
   simpa [sourceNormalizedQuotient, sourceQuotientNormalizer,
     Polynomial.eval_mul, Polynomial.eval_C, pow_succ] using h
 
+/--
+@isnad1 id=lt.3h6v.s7.7f2e051f9737 from=translated src=- shape=c9c39507 vocab=11426e58
+-/
 lemma sourceNormalizedQuotient_offDiagonal_eval_sign {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (i j : Fin (d + 1)) (hi : i ≠ 0) (hij : i ≠ j) :
@@ -382,6 +406,9 @@ lemma sourceNormalizedQuotient_offDiagonal_eval_sign {d : ℕ}
     Polynomial.eval_mul, Polynomial.eval_C, pow_add, mul_assoc,
     mul_left_comm, mul_comm] using h
 
+/--
+@isnad1 id=lt.2h5v.s7.4382778c6c14 from=translated src=- shape=c8632178 vocab=11426e58
+-/
 lemma sourceNormalizedQuotient_diagonal_eval_sign {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (j : Fin (d + 1)) (hj : j ≠ 0) :
@@ -447,7 +474,9 @@ private lemma sum_eq_first_add_negative_add_positive {d : ℕ}
 
 /-- In any nonzero polynomial relation among the normalized quotients, every
 coefficient is nonzero.  This is the precise source conclusion needed for
-all row-deleted families: a relation missing one row is therefore trivial.-/
+all row-deleted families: a relation missing one row is therefore trivial.
+@isnad1 id=or.3h5v.s9.8c14ada95c98 from=translated src=- shape=0f858f51 vocab=48d5c873
+-/
 theorem sourceNormalizedQuotient_relation_sign_pattern {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 2 ≤ d)
     (a : Fin (d + 1) → ℝ)
@@ -816,6 +845,9 @@ theorem sourceNormalizedQuotient_relation_sign_pattern {d : ℕ}
       simp only [b, horient, neg_one_mul] at this
       linarith
 
+/--
+@isnad1 id=ne.3h6v.s8.b62fc5f362d4 from=translated src=- shape=46110108 vocab=0a83d74e
+-/
 theorem sourceNormalizedQuotient_relation_coeff_ne_zero {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 2 ≤ d)
     (a : Fin (d + 1) → ℝ)
@@ -846,6 +878,9 @@ def normalizedDeletedQuotientEvaluationMatrix {d : ℕ} {A B : ℝ}
   fun j i => (sourceNormalizedQuotient nodes (omitted.succAbove i)).eval
     (nodes.point (interiorNodeIndex j))
 
+/--
+@isnad1 id=ne.1h5v.s5.b0eab20c1c49 from=translated src=- shape=b60b0f58 vocab=e759a79f
+-/
 theorem normalizedDeletedQuotientEvaluationMatrix_det_ne_zero {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 2 ≤ d)
     (omitted : Fin (d + 1)) :
@@ -903,7 +938,9 @@ theorem normalizedDeletedQuotientEvaluationMatrix_det_ne_zero {d : ℕ}
   exact hall (by simp [a])
 
 /-- Row normalization is exactly diagonal scaling of the transposed deleted
-quotient-evaluation matrix.-/
+quotient-evaluation matrix.
+@isnad1 id=eq.0h5v.s6.1338a93c9a57 from=translated src=- shape=3ced5d8c vocab=0a8a09a9
+-/
 lemma normalizedDeletedQuotientEvaluationMatrix_transpose_factorization
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B)
     (omitted : Fin (d + 1)) :
@@ -915,6 +952,9 @@ lemma normalizedDeletedQuotientEvaluationMatrix_transpose_factorization
   simp [normalizedDeletedQuotientEvaluationMatrix, sourceNormalizedQuotient,
     gapQuotientEvaluationMatrix, Matrix.diagonal_mul]
 
+/--
+@isnad1 id=ne.1h5v.s5.6ef3550dd3ea from=translated src=- shape=a77e9596 vocab=36240b73
+-/
 theorem deletedRowMinor_gapQuotientEvaluationMatrix_ne_zero_of_two_le
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (hd : 2 ≤ d)
     (omitted : Fin (d + 1)) :
@@ -933,6 +973,9 @@ theorem deletedRowMinor_gapQuotientEvaluationMatrix_ne_zero_of_two_le
   rw [hminor, mul_zero] at hfactor
   exact hnormalized hfactor
 
+/--
+@isnad1 id=quotient.0h4v.s4.a97b091e7a9a from=translated src=- shape=7dd23ed3 vocab=aa2e64f1
+-/
 theorem quotientEvaluationMaximalMinorsNonzero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     QuotientEvaluationMaximalMinorsNonzero nodes := by
@@ -951,6 +994,9 @@ theorem quotientEvaluationMaximalMinorsNonzero {d : ℕ} {A B : ℝ}
   · exact deletedRowMinor_gapQuotientEvaluationMatrix_ne_zero_of_two_le
       nodes (by omega) omitted
 
+/--
+@isnad1 id=ne.1h5v.s5.c2bff74944ca from=translated src=- shape=a77e9596 vocab=45c4490e
+-/
 theorem gapHeightJacobianModel_maximalMinors_nonzero_unconditional
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (hd : 1 ≤ d) :
     ∀ omitted : Fin (d + 1),
@@ -976,6 +1022,9 @@ private def duplicateQuotientColumnMatrix {d : ℕ} {A B : ℝ}
   fun i k => Fin.cases (gapQuotientEvaluationMatrix nodes i j)
     (fun k' => gapQuotientEvaluationMatrix nodes i k') k
 
+/--
+@isnad1 id=eq.0h5v.s6.038963920220 from=translated src=- shape=d5fe60f3 vocab=093fd2ee
+-/
 lemma gapQuotientCofactor_evaluation_sum_eq_zero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (j : Fin d) :
     ∑ i : Fin (d + 1), gapQuotientCofactor nodes i *
@@ -1001,6 +1050,9 @@ lemma gapQuotientCofactor_evaluation_sum_eq_zero {d : ℕ} {A B : ℝ}
   simpa [gapQuotientCofactor, mul_assoc, mul_left_comm, mul_comm] using
     hexpand.symm
 
+/--
+@isnad1 id=eq.1h4v.s7.f79fb660b7b1 from=translated src=- shape=3ac4db89 vocab=f50703e1
+-/
 theorem gapQuotientCofactor_polynomial_relation {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 2 ≤ d) :
     (∑ i : Fin (d + 1), C (gapQuotientCofactor nodes i) *
@@ -1037,7 +1089,9 @@ theorem gapQuotientCofactor_polynomial_relation {d : ℕ} {A B : ℝ}
     exact gapQuotientCofactor_evaluation_sum_eq_zero nodes j
 
 /-- The source relation theorem applied to the cofactor relation.  In raw
-row convention, the cofactor coefficients alternate strictly.-/
+row convention, the cofactor coefficients alternate strictly.
+@isnad1 id=or.1h4v.s7.e2de1d107d5c from=translated src=- shape=49e20e90 vocab=b28f0809
+-/
 theorem gapQuotientCofactor_alternating_sign {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 2 ≤ d) :
     (∀ i : Fin (d + 1),
@@ -1101,7 +1155,9 @@ theorem gapQuotientCofactor_alternating_sign {d : ℕ} {A B : ℝ}
 
 /-- All raw row-deleted quotient-evaluation minors have one coherent strict
 sign.  This is stronger than pointwise nonvanishing and is the orientation
-input needed by the consecutive-gap-difference Jacobian.-/
+input needed by the consecutive-gap-difference Jacobian.
+@isnad1 id=or.0h4v.s6.85e87d65aaf9 from=translated src=- shape=ec1f2474 vocab=d883e523
+-/
 theorem gapQuotientEvaluation_deletedRowMinors_coherent_sign {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) :
     (∀ omitted : Fin (d + 1),
@@ -1137,7 +1193,9 @@ theorem gapQuotientEvaluation_deletedRowMinors_coherent_sign {d : ℕ}
 /-! ## Transfer to the height Jacobian and consecutive differences -/
 
 /-- The explicit diagonal row/column factor multiplying a quotient minor has
-the row-deletion sign `(-1)^omitted`.-/
+the row-deletion sign `(-1)^omitted`.
+@isnad1 id=lt.1h5v.s7.630ce3f064a5 from=translated src=- shape=6f7b504b vocab=178c6953
+-/
 theorem gapHeightMinor_diagonalFactor_parity_pos {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (omitted : Fin (d + 1)) :
@@ -1172,6 +1230,9 @@ def AlternatingHeightMaximalMinorSigns {d : ℕ} {A B : ℝ}
       0 < (-1 : ℝ) ^ omitted.val *
         deletedRowMinor (gapHeightJacobianModel nodes) omitted)
 
+/--
+@isnad1 id=alternat.0h4v.s4.ce9cd89b95ac from=translated src=- shape=7dd23ed3 vocab=bc2e7cbb
+-/
 theorem alternatingHeightMaximalMinorSigns {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     AlternatingHeightMaximalMinorSigns nodes := by
@@ -1221,6 +1282,9 @@ def augmentedGapHeightJacobianMatrix {d : ℕ} {A B : ℝ}
     Matrix (Fin (d + 1)) (Fin (d + 1)) ℝ :=
   fun i k => Fin.cases 1 (fun j => gapHeightJacobianModel nodes i j) k
 
+/--
+@isnad1 id=eq.0h5v.s6.5526225bef4e from=translated src=- shape=1fa530a6 vocab=b586e0a2
+-/
 lemma augmentedGapHeightJacobianMatrix_minor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (omitted : Fin (d + 1)) :
     ((augmentedGapHeightJacobianMatrix nodes).submatrix omitted.succAbove
@@ -1229,7 +1293,9 @@ lemma augmentedGapHeightJacobianMatrix_minor {d : ℕ} {A B : ℝ}
   rw [deletedRowMinor]
   congr 1
 
-/-- The augmented determinant has the common strict cofactor sign.-/
+/-- The augmented determinant has the common strict cofactor sign.
+@isnad1 id=or.0h4v.s7.f85c7de70898 from=translated src=- shape=d84cc636 vocab=2d3264d3
+-/
 theorem augmentedGapHeightJacobianMatrix_det_sign {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     (augmentedGapHeightJacobianMatrix nodes).det < 0 ∨
@@ -1251,6 +1317,9 @@ theorem augmentedGapHeightJacobianMatrix_det_sign {d : ℕ} {A B : ℝ}
       exact hpos i
     · exact Finset.univ_nonempty
 
+/--
+@isnad1 id=ne.0h4v.s6.9ebfdceae9dc from=translated src=- shape=3d9812dd vocab=61d5aaa7
+-/
 theorem augmentedGapHeightJacobianMatrix_det_ne_zero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     (augmentedGapHeightJacobianMatrix nodes).det ≠ 0 := by
@@ -1261,7 +1330,9 @@ theorem augmentedGapHeightJacobianMatrix_det_ne_zero {d : ℕ} {A B : ℝ}
 /-- The actual consecutive-row-difference matrix is nonsingular.  The proof
 uses the augmented determinant: a kernel vector for all consecutive
 differences would make all height-row evaluations equal, hence extend to a
-nonzero kernel vector of the augmented matrix.-/
+nonzero kernel vector of the augmented matrix.
+@isnad1 id=ne.0h4v.s5.d62c9338006a from=translated src=- shape=37b27c1c vocab=9c6b613d
+-/
 theorem gapHeightJacobianModel_consecutiveDifference_det_ne_zero
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) :
     Matrix.det (fun i j : Fin d =>
