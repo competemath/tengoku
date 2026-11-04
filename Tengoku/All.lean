@@ -44,6 +44,7 @@ import Tengoku.LanaGenl
 import Tengoku.MiscYd
 import Tengoku.Vcvio
 import Tengoku.LanaHeights
+import Tengoku.AtPalomar
 import Tengoku.EpsilonSml
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
