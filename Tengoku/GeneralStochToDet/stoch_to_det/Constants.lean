@@ -44,6 +44,9 @@ open Real
 /-- `N := 729 · 2²¹ · 17⁴ = 127 688 893 267 968`.-/
 def N : ℕ := 729 * 2 ^ 21 * 17 ^ 4
 
+/--
+@isnad1 id=eq.0h0v.s3.fdf67a8ed9ad from=translated src=- shape=ffdda526 vocab=2d568766
+-/
 lemma N_eq : N = 127688893267968 := by norm_num [N]
 
 /-- `δ_* := 27 / 2 000 000`.-/
@@ -77,38 +80,55 @@ noncomputable def CstarSharp : ℝ := 12 * C0 + 3
 /-! ### Identities used by §§8-12 -/
 
 /-- `κ · ln 2 = 1 + ln 8 − γ`. This — not any decimal — is what §8 and §10
-consume.-/
+consume.
+@isnad1 id=eq.0h0v.s5.4073925237ca from=translated src=- shape=2971115f vocab=4e8bb2ce
+-/
 lemma kappa_mul_log_two : kappa * Real.log 2 = 1 + Real.log 8 - eulerMascheroniConstant := by
   unfold kappa
   exact div_mul_cancel₀ _ (Real.log_ne_zero.mpr (by norm_num))
 
 /-- `κ / c_* = (1 + ln 8 − γ) N = K_sc`: the ledger's `max` collapses to its
-first branch.-/
+first branch.
+@isnad1 id=eq.0h0v.s3.50f9cc89a6d7 from=translated src=- shape=cc017972 vocab=63b75adf
+-/
 lemma kappa_div_cStar : kappa / cStar = Ksc := by
   unfold kappa cStar Ksc
   have hlog : Real.log 2 ≠ 0 := Real.log_ne_zero.mpr (by norm_num)
   field_simp [hlog, N]
 
 /-- `1/(c_* ln 2) = N = K_orth`: the displayed `max` collapses to its
-first branch, since `2/δ_*² ≈ 1.1 × 10¹⁰ ≪ N`.-/
+first branch, since `2/δ_*² ≈ 1.1 × 10¹⁰ ≪ N`.
+@isnad1 id=eq.0h0v.s5.aed2b6cd8ca7 from=translated src=- shape=23474a72 vocab=d806f8b1
+-/
 lemma one_div_cStar_mul_log_two : 1 / (cStar * Real.log 2) = Korth := by
   unfold cStar Korth
   have hlog : Real.log 2 ≠ 0 := Real.log_ne_zero.mpr (by norm_num)
   field_simp [hlog, N]
 
-/-- Closed form: `C₀ = (2 + ln 8 − γ) N + 1`.-/
+/-- Closed form: `C₀ = (2 + ln 8 − γ) N + 1`.
+@isnad1 id=eq.0h0v.s5.db816188fbca from=translated src=- shape=5fe7fc6e vocab=00a527bd
+-/
 lemma C0_eq : C0 = (2 + Real.log 8 - eulerMascheroniConstant) * N + 1 := by
   unfold C0 Ksc Korth
   ring
 
 /-! ### Positivity -/
 
+/--
+@isnad1 id=lt.0h0v.s3.a28db19c9a3c from=translated src=- shape=ff3a10fc vocab=60bfaca9
+-/
 lemma cStar_pos : 0 < cStar := by
   rw [cStar, one_div_pos]
   exact mul_pos (by norm_num [N]) (Real.log_pos (by norm_num))
 
+/--
+@isnad1 id=lt.0h0v.s3.4777b65ed413 from=translated src=- shape=ff3a10fc vocab=24b3cc1c
+-/
 lemma deltaStar_pos : 0 < deltaStar := by norm_num [deltaStar]
 
+/--
+@isnad1 id=lt.0h0v.s3.540b58d77c8d from=translated src=- shape=ff3a10fc vocab=e0ffb4c4
+-/
 lemma C0_pos : 0 < C0 := by
   have hlog : 0 < Real.log 8 := Real.log_pos (by norm_num)
   have hgamma : eulerMascheroniConstant < 2 / 3 :=
@@ -124,6 +144,9 @@ lemma C0_pos : 0 < C0 := by
   rw [C0]
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s3.00ea50ca309a from=translated src=- shape=ff3a10fc vocab=31d077d4
+-/
 lemma Cstar_pos : 0 < Cstar := by
   rw [Cstar]
   nlinarith [C0_pos]
@@ -132,7 +155,9 @@ lemma Cstar_pos : 0 < Cstar := by
 
 `stoch_to_det.Main` is stated with `Cstar`, not with a decimal. -/
 
-/-- The bound available from Mathlib's current `1/2 < γ`.-/
+/-- The bound available from Mathlib's current `1/2 < γ`.
+@isnad1 id=lt.0h0v.s3.9651a2fd7ae8 from=translated src=- shape=425298da vocab=386f3202
+-/
 theorem Cstar_lt_weak : Cstar < 4.94e16 := by
   have hlog8 : Real.log 8 = 3 * Real.log 2 := by
     calc
@@ -150,7 +175,9 @@ set_option maxRecDepth 10000
 
 /-- The advertised bound. **Needs
 `γ > 0.5770052`** — see the module docstring; not provable from Mathlib's
-`one_half_lt_eulerMascheroniConstant` alone.-/
+`one_half_lt_eulerMascheroniConstant` alone.
+@isnad1 id=lt.0h0v.s3.f6d850bd0f52 from=translated src=- shape=425298da vocab=386f3202
+-/
 theorem Cstar_lt_advertised : Cstar < 4.83e16 := by
   have hlog8 : Real.log 8 = 3 * Real.log 2 := by
     calc
@@ -178,7 +205,9 @@ theorem Cstar_lt_advertised : Cstar < 4.83e16 := by
 end
 
 /-- Remark 12.3(a)'s advertised bound. Same `γ`
-precision caveat.-/
+precision caveat.
+@isnad1 id=lt.0h0v.s3.5746f265602a from=translated src=- shape=425298da vocab=07d8508e
+-/
 theorem CstarSharp_lt_advertised : CstarSharp < 5.37e15 := by
   have hlog8 : Real.log 8 = 3 * Real.log 2 := by
     calc

@@ -1973,7 +1973,9 @@ private lemma right_singular_of_hgr_maximizer {q : α × β → ℝ} (hq : IsPMF
 `ρ` is the largest singular value of the conditional-expectation operator `T` of
 Lemma 2.7, with a singular pair `(f,g)` satisfying `Tg = ρf`, `T*f = ρg`.
 The last two conjuncts below state these relations against `L²(q_X)` and
-`L²(q_Y)`, multiplied through by the respective marginals.-/
+`L²(q_Y)`, multiplied through by the respective marginals.
+@isnad1 id=ex.3h5v.s8.5f4d94e7b666 from=translated src=- shape=a80446e3 vocab=7308cb5b
+-/
 theorem exists_hgr_singular_pair {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : Feasible S w) {q : α × β → ℝ} (hq : IsContact S w q) (hpos : 0 < rhoHGR q) :
     ∃ (f : α → ℝ) (g : β → ℝ),
@@ -2502,7 +2504,9 @@ For a contact `q` of a feasible kernel with `ρ := ρ_HGR(q) > 0`, in bits:
 `I_q(X;Y) ≥ 8ρ¹⁰ / (729 (1+ρ)⁴ ln 2)`.
 
 The constant is alphabet-free — no dependence on `|𝒳|`, `|𝒴|` or `|𝒮|`, which
-is what makes the Main Theorem's constant universal.-/
+is what makes the Main Theorem's constant universal.
+@isnad1 id=le.3h5v.s7.c1d6d8541eb7 from=translated src=- shape=f54cec95 vocab=34851027
+-/
 theorem Ixy_ge_hgr_floor {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsContact S w q) (hrho : 0 < rhoHGR q) :
     8 * rhoHGR q ^ 10 / (729 * (1 + rhoHGR q) ^ 4 * Real.log 2) ≤ Ixy q := by
@@ -2555,7 +2559,9 @@ theorem Ixy_ge_hgr_floor {S : Finset (α × β)} {w : α × β → ℝ} (hw : Fe
     _ ≤ Ixy q := hpinsker
 
 /-- The intermediate TV bound of Theorem 6.1:
-`TV(q, q_X ⊗ q_Y) ≥ 2ρ⁵ / (27(1+ρ)²)`. Isolated as the substance of the clipping argument.-/
+`TV(q, q_X ⊗ q_Y) ≥ 2ρ⁵ / (27(1+ρ)²)`. Isolated as the substance of the clipping argument.
+@isnad1 id=le.3h5v.s7.80f1e9e2bf16 from=translated src=- shape=7a91a1b2 vocab=d4d907e1
+-/
 theorem tv_ge_of_hgr {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsContact S w q) (hrho : 0 < rhoHGR q) :
     2 * rhoHGR q ^ 5 / (27 * (1 + rhoHGR q) ^ 2)
@@ -2919,7 +2925,9 @@ same connected `𝒮`, that are `δ_*`-close in total variation, both have
 `ρ_HGR ≥ 1/16` and hence `I(X;Y) ≥ c_*`.
 
 This drives Theorem 9.1's near/far dichotomy: clusters that nearly collide are
-individually expensive, so `M = I(X;Y ∣ L)` pays for them.-/
+individually expensive, so `M = I(X;Y ∣ L)` pays for them.
+@isnad1 id=and.6h6v.s7.0c7ec76fb160 from=translated src=- shape=527b77f4 vocab=39cafd5f
+-/
 theorem nearcollision_floor {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     (hS : IsConnected S) {q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r) (hne : q ≠ r)
@@ -2959,11 +2967,17 @@ noncomputable def hellingerSq {ω : Type*} [Fintype ω]
     (P Q : ω → ℝ) : ℝ :=
   ∑ a, (Real.sqrt (P a) - Real.sqrt (Q a)) ^ 2
 
+/--
+@isnad1 id=le.0h3v.s4.c30bad0e1ef1 from=translated src=- shape=7325c23d vocab=c213545b
+-/
 lemma hellingerSq_nonneg {ω : Type*} [Fintype ω] (P Q : ω → ℝ) :
     0 ≤ hellingerSq P Q := by
   unfold hellingerSq
   exact Finset.sum_nonneg fun a _ => sq_nonneg _
 
+/--
+@isnad1 id=eq.0h3v.s4.c6347add90b8 from=translated src=- shape=8cef85e8 vocab=6d48e3d6
+-/
 lemma hellingerSq_comm {ω : Type*} [Fintype ω] (P Q : ω → ℝ) :
     hellingerSq P Q = hellingerSq Q P := by
   unfold hellingerSq
@@ -2971,7 +2985,9 @@ lemma hellingerSq_comm {ω : Type*} [Fintype ω] (P Q : ω → ℝ) :
   intro a _
   ring
 
-/-- `h²(P,Q) = 2(1-BC(P,Q))` for probability laws.-/
+/-- `h²(P,Q) = 2(1-BC(P,Q))` for probability laws.
+@isnad1 id=eq.2h3v.s5.f2998b108e73 from=translated src=- shape=f41fd237 vocab=764a3ee3
+-/
 lemma hellingerSq_eq_two_mul_one_sub_BC {ω : Type*} [Fintype ω]
     {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q) :
     hellingerSq P Q = 2 * (1 - BC P Q) := by
@@ -3045,21 +3061,27 @@ private lemma BC_le_BC_mY {q r : α × β → ℝ}
       intro y _
       rw [Real.sqrt_mul ((isPMF_push hq).nonneg y)]
 
-/-- Squared Hellinger distance contracts under the `X` marginal.-/
+/-- Squared Hellinger distance contracts under the `X` marginal.
+@isnad1 id=le.2h4v.s6.60daec300ce4 from=translated src=- shape=9904fb33 vocab=765ed004
+-/
 lemma hellingerSq_mX_le {q r : α × β → ℝ} (hq : IsPMF q) (hr : IsPMF r) :
     hellingerSq (mX q) (mX r) ≤ hellingerSq q r := by
   rw [hellingerSq_eq_two_mul_one_sub_BC (isPMF_push hq) (isPMF_push hr),
     hellingerSq_eq_two_mul_one_sub_BC hq hr]
   linarith [BC_le_BC_mX hq hr]
 
-/-- Squared Hellinger distance contracts under the `Y` marginal.-/
+/-- Squared Hellinger distance contracts under the `Y` marginal.
+@isnad1 id=le.2h4v.s6.33a9cdd71cc0 from=translated src=- shape=ed493e9d vocab=1972bc04
+-/
 lemma hellingerSq_mY_le {q r : α × β → ℝ} (hq : IsPMF q) (hr : IsPMF r) :
     hellingerSq (mY q) (mY r) ≤ hellingerSq q r := by
   rw [hellingerSq_eq_two_mul_one_sub_BC (isPMF_push hq) (isPMF_push hr),
     hellingerSq_eq_two_mul_one_sub_BC hq hr]
   linarith [BC_le_BC_mY hq hr]
 
-/-- The pointwise cube-root estimate (6.3) of the improved proof.-/
+/-- The pointwise cube-root estimate (6.3) of the improved proof.
+@isnad1 id=le.1h1v.s6.d72deb3d00d6 from=translated src=- shape=1ed76d8c vocab=c9547d65
+-/
 lemma abs_rpow_one_third_sub_one_cube_le_sqrt_sub_one_sq
     {t : ℝ} (ht : 0 ≤ t) :
     |t ^ ((1 : ℝ) / 3) - 1| ^ 3 ≤ (Real.sqrt t - 1) ^ 2 := by
@@ -3420,7 +3442,9 @@ private lemma hellinger_floor_to_Ixy {q : α × β → ℝ} (hq : IsPMF q)
   rw [Ixy_eq_KL_product hq]
   exact hreverse.trans hbh
 
-/-- **Theorem 6.1 (improved)**: the Hellinger HGR information floor.-/
+/-- **Theorem 6.1 (improved)**: the Hellinger HGR information floor.
+@isnad1 id=le.3h5v.s7.753406795087 from=translated src=- shape=0ae8f3e6 vocab=38502ae0
+-/
 theorem Ixy_ge_hgr_floor_hellinger_pos {S : Finset (α × β)}
     {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsContact S w q)
@@ -3448,6 +3472,9 @@ theorem Ixy_ge_hgr_floor_hellinger_pos {S : Finset (α × β)}
     ring
   simpa [c, hrewrite] using hfloor
 
+/--
+@isnad1 id=le.1h3v.s5.29f7b7c95fa0 from=translated src=- shape=76ba8c2a vocab=e241f412
+-/
 theorem rhoHGR_nonneg {q : α × β → ℝ} (hq : IsPMF q) :
     0 ≤ rhoHGR q := by
   let I := {fg : (α → ℝ) × (β → ℝ) //
@@ -3504,7 +3531,9 @@ private lemma Ixy_nonneg_floor {q : α × β → ℝ} (hq : IsPMF q) :
   simpa [Ixy] using h
 
 /-- **Theorem 6.1 (improved, total form)**: the Hellinger HGR information
-floor, including the degenerate zero-correlation case.-/
+floor, including the degenerate zero-correlation case.
+@isnad1 id=le.2h5v.s7.03a8f56d4995 from=translated src=- shape=04b6aae2 vocab=94d8a84f
+-/
 theorem Ixy_ge_hgr_floor_hellinger {S : Finset (α × β)}
     {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsContact S w q) :
@@ -3546,7 +3575,9 @@ noncomputable def contactSecantEnergy (q r : α × β → ℝ) : ℝ :=
 noncomputable def contactSecantCross (q r : α × β → ℝ) : ℝ :=
   ∑ z, q z * contactSecantX q r z.1 * contactSecantY q r z.2
 
-/-- Exact marginal-mean identities forced by the two contact equations.-/
+/-- Exact marginal-mean identities forced by the two contact equations.
+@isnad1 id=and.4h6v.s8.1b6376d22bbc from=translated src=- shape=6b273b29 vocab=50f8ca13
+-/
 theorem contactSecant_mean_identities
     {S : Finset (α × β)} {w q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r)
@@ -3614,7 +3645,9 @@ theorem contactSecant_mean_identities
     dsimp [f, g, A, B, μf, μg] at hmeanf hmeang ⊢ <;>
     linarith
 
-/-- Exact Hellinger identity for two contacts of the same feasible kernel.-/
+/-- Exact Hellinger identity for two contacts of the same feasible kernel.
+@isnad1 id=eq.4h6v.s7.4a69e5c23515 from=translated src=- shape=a43b70e5 vocab=65b15fa6
+-/
 theorem hellingerSq_eq_two_contactSecantEnergy_sub_two_cross
     {S : Finset (α × β)} {w q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r)
@@ -3686,7 +3719,9 @@ theorem hellingerSq_eq_two_contactSecantEnergy_sub_two_cross
   rw [hellingerSq_eq_two_mul_one_sub_BC hq.1 hr.1, hBC]
   linarith
 
-/-- The secant cross term is at most half the total secant energy.-/
+/-- The secant cross term is at most half the total secant energy.
+@isnad1 id=le.1h4v.s6.1d4dc34c2777 from=translated src=- shape=31b5d53b vocab=df52ce98
+-/
 theorem two_mul_contactSecantCross_le_energy
     {q r : α × β → ℝ} (hq : IsPMF q) :
     2 * contactSecantCross q r ≤ contactSecantEnergy q r := by
@@ -3707,7 +3742,9 @@ theorem two_mul_contactSecantCross_le_energy
         ← sum_push_mul Prod.snd q (fun y => g y ^ 2)]
 
 /-- For a common-contact pair, total marginal secant energy is bounded by
-the squared Hellinger distance with constant one.-/
+the squared Hellinger distance with constant one.
+@isnad1 id=le.4h6v.s6.2a4fb149415d from=translated src=- shape=71af597e vocab=3a42b26a
+-/
 theorem contactSecantEnergy_le_hellingerSq
     {S : Finset (α × β)} {w q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r)
@@ -4157,7 +4194,9 @@ private theorem rho_le_rhoHGR_of_contacts_of_secant_energy
 
 /-- Parametric `q`-oriented exact-secant rigidity through the historical
 `L³` estimate: squared Hellinger distance at most `η³` forces HGR maximal
-correlation at least `1/2 - η²` at the first contact.-/
+correlation at least `1/2 - η²` at the first contact.
+@isnad1 id=le.9h7v.s7.df8b04a49adb from=translated src=- shape=16d9e1a5 vocab=12973d6c
+-/
 theorem rho_le_rhoHGR_of_contacts_param
     (η : ℝ) (hη : 0 < η) (hη1 : 2 * η ^ 2 < 1)
     {S : Finset (α × β)} {w q r : α × β → ℝ}
@@ -4223,7 +4262,9 @@ theorem rho_le_rhoHGR_of_contacts_param
 
 /-- **L² exact-secant rigidity.** Two distinct contacts of a common feasible
 kernel, on common support, that are within squared Hellinger distance
-`2 * η²` have HGR correlation at least `1/2 - η²`.-/
+`2 * η²` have HGR correlation at least `1/2 - η²`.
+@isnad1 id=le.9h7v.s8.002dfb26a6b4 from=translated src=- shape=987b8a19 vocab=12973d6c
+-/
 theorem rho_le_rhoHGR_of_contacts_param_l2
     (η : ℝ) (hη : 0 < η) (hη1 : 2 * η ^ 2 < 1)
     {S : Finset (α × β)} {w q r : α × β → ℝ}
@@ -4284,7 +4325,9 @@ private lemma hgr_hellinger_fraction_mono {a b : ℝ}
 
 /-- **Theorem 6.2 (improved)**: distinct Hellinger-near contacts on one
 connected support have the exact HGR and information floors used by the
-`1771` ledger.-/
+`1771` ledger.
+@isnad1 id=and.6h6v.s7.46988a4cad0c from=translated src=- shape=c3301cb8 vocab=63a69ca8
+-/
 theorem nearcollision_floor_hellinger
     {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : Feasible S w) (hS : IsConnected S)

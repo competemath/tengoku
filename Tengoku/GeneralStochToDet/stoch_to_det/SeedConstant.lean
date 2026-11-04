@@ -146,7 +146,9 @@ private theorem bZ_le_pair (D : SeedSetup p) :
   linarith
 
 /-- The seed leak is bounded by `(K_sc + K_orth)(M + S)`,
-from `chain_split`, `scalar_bound_Ksc` and `cone_bound_Korth`.-/
+from `chain_split`, `scalar_bound_Ksc` and `cone_bound_Korth`.
+@isnad1 id=le.0h6v.s6.53c574902eb8 from=translated src=- shape=6c984c2b vocab=f772dfa9
+-/
 theorem seedLeak_bound (R : RaceQuantities D K) :
     R.seedLeak ≤ (Ksc + Korth) * (D.M + K.Sinfo) := by
   calc
@@ -156,7 +158,9 @@ theorem seedLeak_bound (R : RaceQuantities D K) :
     _ = (Ksc + Korth) * (D.M + K.Sinfo) := by ring
 
 /-- **Theorem 11.1**, single-replica form (Remark 12.3(b)):
-`H(A ∣ ε, L₀) ≤ C₀ [M + b_Z]`.-/
+`H(A ∣ ε, L₀) ≤ C₀ [M + b_Z]`.
+@isnad1 id=le.0h6v.s6.3c7325453140 from=translated src=- shape=b6e2db09 vocab=87d814d6
+-/
 theorem seed_constant_single (R : RaceQuantities D K) :
     R.winnerEntropy ≤ C0 * (D.M + bZ D) := by
   have hle := seedLeak_bound R
@@ -170,7 +174,9 @@ theorem seed_constant_single (R : RaceQuantities D K) :
       nlinarith [seed_M_nonneg D]
 
 /-- **Theorem 11.1** (*seed-two-replica-constant-bound*):
-`H(A ∣ ε, L₀) ≤ C₀ [M + I(L₁,L₂; Z ∣ L₀)]`.-/
+`H(A ∣ ε, L₀) ≤ C₀ [M + I(L₁,L₂; Z ∣ L₀)]`.
+@isnad1 id=le.0h6v.s10.b20ef08c35a6 from=translated src=- shape=2acc3778 vocab=a192d796
+-/
 theorem seed_constant (R : RaceQuantities D K) :
     R.winnerEntropy
       ≤ C0 * (D.M + condMI (fun u => (u.2.1, u.2.2.1)) (fun u => u.2.2.2)

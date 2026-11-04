@@ -18,7 +18,9 @@ open scoped Interval
 
 local notation "L" => SharedRace.logTwo
 
-/-- One-coordinate contribution for the nondegenerate shape-two loser law.-/
+/-- One-coordinate contribution for the nondegenerate shape-two loser law.
+@isnad1 id=le.3h2v.s7.de20013893ea from=translated src=- shape=b6dc926e vocab=d6488445
+-/
 theorem betaCoordinateContribution_le (k : ℕ) (hk : 3 ≤ k) {p : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) :
     p * SharedRace.betaOneExpMoment k (-L * (1 - p)) +
@@ -40,7 +42,9 @@ theorem betaCoordinateContribution_le (k : ℕ) (hk : 3 ≤ k) {p : ℝ}
   exact SharedRace.coordinateContribution_le hp0.le hp1.le
     hwinner' hloser
 
-/-- One-coordinate contribution for the degenerate `k = 2` loser law.-/
+/-- One-coordinate contribution for the degenerate `k = 2` loser law.
+@isnad1 id=le.2h1v.s7.e3f652d39a31 from=translated src=- shape=60f1de13 vocab=4abac1a4
+-/
 theorem twoCoordinateContribution_le {p : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) :
     p * SharedRace.betaOneExpMoment 2 (-L * (1 - p)) +
@@ -63,7 +67,9 @@ theorem twoCoordinateContribution_le {p : ℝ}
     hwinner' hloser
 
 /-- Closed-interval form of `betaCoordinateContribution_le`, including the
-two deterministic coordinate endpoints.-/
+two deterministic coordinate endpoints.
+@isnad1 id=le.2h2v.s7.a0dd018400d1 from=translated src=- shape=29b2fe85 vocab=e9f37a3d
+-/
 theorem betaCoordinateContribution_le_of_mem_Icc (k : ℕ) (hk : 3 ≤ k)
     {p : ℝ} (hp : p ∈ Set.Icc (0 : ℝ) 1) :
     p * SharedRace.betaOneExpMoment k (-L * (1 - p)) +
@@ -86,7 +92,9 @@ theorem betaCoordinateContribution_le_of_mem_Icc (k : ℕ) (hk : 3 ≤ k)
     (lt_of_le_of_ne hp.2 hpone)
 
 /-- Closed-interval form of `twoCoordinateContribution_le`, including the
-two deterministic coordinate endpoints.-/
+two deterministic coordinate endpoints.
+@isnad1 id=le.1h1v.s7.7688751dc79c from=translated src=- shape=4d41025d vocab=b9c227d7
+-/
 theorem twoCoordinateContribution_le_of_mem_Icc {p : ℝ}
     (hp : p ∈ Set.Icc (0 : ℝ) 1) :
     p * SharedRace.betaOneExpMoment 2 (-L * (1 - p)) +

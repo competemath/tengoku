@@ -43,7 +43,9 @@ noncomputable def replicaViewInformation : Real :=
       (fun u => g i u.2) (fun u => u.1.1) V.replicaLaw)
 
 /-- Exact score increment when the posterior replica is adjoined to the
-latent label.-/
+latent label.
+@isnad1 id=eq.1h8v.s7.c6a6e3cb42c2 from=translated src=- shape=4e730356 vocab=861f9579
+-/
 theorem replicaRefinement_score_sub
     (hinj : forall i, Function.Injective (fun x => (f i x, g i x))) :
     V.replicaRefinement.score f g - V.score f g =
@@ -171,7 +173,9 @@ theorem replicaRefinement_score_sub
   linarith
 
 /-- The averaged contact/resampling inequality follows solely from optimality
-of the latent.-/
+of the latent.
+@isnad1 id=le.3h8v.s7.d6865ca064b4 from=translated src=- shape=aee0be62 vocab=6910f18f
+-/
 theorem replicaViewInformation_le_of_optimal [Nonempty Omega]
     (hinj : forall i, Function.Injective (fun x => (f i x, g i x)))
     (htup : Function.Injective (tupleView f))

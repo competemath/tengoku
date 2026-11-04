@@ -48,6 +48,9 @@ noncomputable def normRaceZ (π E : κ → ℝ) : ℝ :=
     Real.exp ((Fintype.card κ : ℝ) * SharedRace.logTwo * normClock E i)
 
 omit [DecidableEq κ] in
+/--
+@isnad1 id=lt.1h2v.s5.6457a5b1922e from=translated src=- shape=2c3f3f70 vocab=4cb9316a
+-/
 lemma clockTotal_pos (E : κ → ℝ) (hE : ∀ i, 0 < E i) :
     0 < clockTotal E := by
   unfold clockTotal
@@ -55,6 +58,9 @@ lemma clockTotal_pos (E : κ → ℝ) (hE : ∀ i, 0 < E i) :
   let i : κ := Classical.choice inferInstance
   exact ⟨i, Finset.mem_univ i, hE i⟩
 
+/--
+@isnad1 id=le.0h4v.s5.65ca4bf17c4c from=translated src=- shape=ca5507e2 vocab=5c9b2d4e
+-/
 lemma rawRaceMin_le (π E : κ → ℝ) (i : κ) :
     rawRaceMin π E ≤ E i / π i := by
   have h := lexMax_max (fun E i => -(E i / π i)) E i
@@ -62,6 +68,9 @@ lemma rawRaceMin_le (π E : κ → ℝ) (i : κ) :
   unfold rawRaceMin
   linarith
 
+/--
+@isnad1 id=lt.2h3v.s6.94bbf9fc3f1e from=translated src=- shape=5283c9f8 vocab=53c2bc65
+-/
 lemma rawRaceMin_pos (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :
     0 < rawRaceMin π E := by
@@ -69,23 +78,35 @@ lemma rawRaceMin_pos (π E : κ → ℝ)
   exact div_pos (hE _) (hπ _)
 
 omit [DecidableEq κ] in
+/--
+@isnad1 id=le.1h3v.s5.e071f4c80553 from=translated src=- shape=565996a1 vocab=881213bb
+-/
 lemma normClock_nonneg (E : κ → ℝ) (hE : ∀ i, 0 < E i) (i : κ) :
     0 ≤ normClock E i := by
   exact div_nonneg (hE i).le (clockTotal_pos E hE).le
 
 omit [DecidableEq κ] in
+/--
+@isnad1 id=le.1h3v.s5.6ed0d1f31d20 from=translated src=- shape=3be4985b vocab=881213bb
+-/
 lemma normClock_le_one (E : κ → ℝ) (hE : ∀ i, 0 < E i) (i : κ) :
     normClock E i ≤ 1 := by
   apply (div_le_one (clockTotal_pos E hE)).2
   unfold clockTotal
   exact Finset.single_le_sum (fun j _ => (hE j).le) (Finset.mem_univ i)
 
+/--
+@isnad1 id=lt.2h4v.s6.b1b3aa4d82f1 from=translated src=- shape=3800c44a vocab=041b3b76
+-/
 lemma raceRatio_pos (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     0 < raceRatio π E i := by
   unfold raceRatio
   exact div_pos (mul_pos (rawRaceMin_pos π E hπ hE) (hπ i)) (hE i)
 
+/--
+@isnad1 id=le.2h4v.s6.00672d9960ab from=translated src=- shape=ad9b21f7 vocab=285ff3e2
+-/
 lemma raceRatio_le_one (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     raceRatio π E i ≤ 1 := by
@@ -93,12 +114,18 @@ lemma raceRatio_le_one (π E : κ → ℝ)
   have h := rawRaceMin_le π E i
   exact (le_div_iff₀ (hπ i)).mp h
 
+/--
+@isnad1 id=eq.2h3v.s6.3df82fe7c78f from=translated src=- shape=cc91a0ac vocab=bb45b834
+-/
 @[simp] lemma raceRatio_argmin (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :
     raceRatio π E (clockArgmin π E) = 1 := by
   unfold raceRatio rawRaceMin
   field_simp [(hπ _).ne', (hE _).ne']
 
+/--
+@isnad1 id=lt.2h3v.s6.40d5732bdea1 from=translated src=- shape=5283c9f8 vocab=79067197
+-/
 lemma normRaceZ_pos (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :
     0 < normRaceZ π E := by
@@ -120,7 +147,9 @@ lemma normRaceZ_pos (π E : κ → ℝ)
 
 /-- A uniform pointwise bound on the normalized partition function.  This is
 deliberately stated with `exp (k * log 2)` so later integrability arguments do
-not need any power-of-two rewriting.-/
+not need any power-of-two rewriting.
+@isnad1 id=le.2h3v.s6.ef8ff0d71478 from=translated src=- shape=9be5aede vocab=beda902a
+-/
 lemma normRaceZ_le (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :
     normRaceZ π E ≤
@@ -171,10 +200,16 @@ noncomputable def raceGamma (π E : κ → ℝ) (i : κ) : ℝ :=
 noncomputable def referencePMF (π E : κ → ℝ) (i : κ) : ℝ :=
   raceGamma π E i / normRaceZ π E
 
+/--
+@isnad1 id=eq.0h3v.s5.387a0c71965e from=translated src=- shape=0b06d4db vocab=a3582c00
+-/
 @[simp] lemma sum_raceGamma (π E : κ → ℝ) :
     ∑ i, raceGamma π E i = normRaceZ π E := by
   rfl
 
+/--
+@isnad1 id=lt.2h4v.s6.0b950e5d4092 from=translated src=- shape=3800c44a vocab=71ce55e6
+-/
 lemma raceGamma_pos (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     0 < raceGamma π E i := by
@@ -182,12 +217,18 @@ lemma raceGamma_pos (π E : κ → ℝ)
   exact mul_pos (sq_pos_of_pos (raceRatio_pos π E hπ hE i))
     (Real.exp_pos _)
 
+/--
+@isnad1 id=lt.2h4v.s6.fc7c778d386d from=translated src=- shape=3800c44a vocab=ac80569c
+-/
 lemma referencePMF_pos (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     0 < referencePMF π E i := by
   unfold referencePMF
   exact div_pos (raceGamma_pos π E hπ hE i) (normRaceZ_pos π E hπ hE)
 
+/--
+@isnad1 id=ispmf.2h3v.s5.6882f22ef207 from=translated src=- shape=11be2d4b vocab=04b45322
+-/
 lemma referencePMF_isPMF (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :
     IsPMF (referencePMF π E) := by
@@ -198,6 +239,9 @@ lemma referencePMF_isPMF (π E : κ → ℝ)
     rw [← Finset.sum_div, sum_raceGamma]
     exact div_self (normRaceZ_pos π E hπ hE).ne'
 
+/--
+@isnad1 id=le.2h4v.s6.7a3369d7e94d from=translated src=- shape=ad9b21f7 vocab=d9cfadff
+-/
 lemma referencePMF_le_one (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     referencePMF π E i ≤ 1 := by
@@ -207,7 +251,9 @@ lemma referencePMF_le_one (π E : κ → ℝ)
       Finset.single_le_sum (fun j _ => hpmf.nonneg j) (Finset.mem_univ i)
     _ = 1 := by simpa [mass] using hpmf.total
 
-/-- Exact natural-log score of the reference law.-/
+/-- Exact natural-log score of the reference law.
+@isnad1 id=eq.2h4v.s7.b68d8dff583f from=translated src=- shape=3f07cf06 vocab=b8393488
+-/
 lemma log_referencePMF (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     Real.log (referencePMF π E i) =
@@ -225,7 +271,9 @@ lemma log_referencePMF (π E : κ → ℝ)
     Real.log_pow, Real.log_exp]
   ring
 
-/-- Exact natural-log loss of the reference law.-/
+/-- Exact natural-log loss of the reference law.
+@isnad1 id=eq.2h4v.s7.47801aa0d7ed from=translated src=- shape=70970016 vocab=03b9a672
+-/
 lemma log_inv_referencePMF (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     Real.log (1 / referencePMF π E i) =
@@ -238,7 +286,9 @@ lemma log_inv_referencePMF (π E : κ → ℝ)
   ring
 
 /-- Bit log-loss, after multiplication by `logTwo`, is the natural-log
-score from `log_inv_referencePMF`.-/
+score from `log_inv_referencePMF`.
+@isnad1 id=eq.2h4v.s7.595b68e144de from=translated src=- shape=bc655610 vocab=b18d37c5
+-/
 lemma logTwo_mul_lg_inv_referencePMF (π E : κ → ℝ)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) (i : κ) :
     SharedRace.logTwo * lg (1 / referencePMF π E i) =
@@ -254,7 +304,9 @@ lemma logTwo_mul_lg_inv_referencePMF (π E : κ → ℝ)
   rw [hconvert]
   exact log_inv_referencePMF π E hπ hE i
 
-/-- Exact natural-log cross entropy against the reference law.-/
+/-- Exact natural-log cross entropy against the reference law.
+@isnad1 id=eq.3h4v.s7.a8abe12d4405 from=translated src=- shape=085c41b6 vocab=e98b92b5
+-/
 lemma crossEntropy_referencePMF (p π E : κ → ℝ) (hp : IsPMF p)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :
     (∑ i, p i * Real.log (1 / referencePMF π E i)) =
@@ -295,7 +347,9 @@ lemma crossEntropy_referencePMF (p π E : κ → ℝ) (hp : IsPMF p)
             (∑ i, p i * normClock E i) := by
       rw [htotal, one_mul]
 
-/-- The same cross-entropy identity in the bit convention used by `H`.-/
+/-- The same cross-entropy identity in the bit convention used by `H`.
+@isnad1 id=eq.3h4v.s7.286a7ded7d6f from=translated src=- shape=9cc94f60 vocab=218395f4
+-/
 lemma logTwo_mul_crossEntropy_referencePMF
     (p π E : κ → ℝ) (hp : IsPMF p)
     (hπ : ∀ i, 0 < π i) (hE : ∀ i, 0 < E i) :

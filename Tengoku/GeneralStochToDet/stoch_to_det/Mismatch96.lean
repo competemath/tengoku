@@ -13,6 +13,9 @@ universe u v
 variable {α : Type u} {β : Type v} [Fintype α] [Fintype β]
   [DecidableEq α] [DecidableEq β]
 
+/--
+@isnad1 id=and.6h6v.s7.78da3c01485a from=translated src=- shape=c3301cb8 vocab=6338b668
+-/
 theorem nearcollision_floor_96
     {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : Feasible S w) (hS : IsConnected S)
@@ -31,6 +34,9 @@ theorem nearcollision_floor_96
 
 variable {p : α × β → ℝ} {D : SeedSetup p}
 
+/--
+@isnad1 id=le.0h5v.s7.09731e0cb7ee from=translated src=- shape=0b5be553 vocab=011f08dc
+-/
 theorem mismatch_charge_96 (K : Clustering D) :
     K.dMis ≤ D.M / infoFloor96 +
       2 * Real.log 2 / delta96 * K.Sinfo := by

@@ -23,7 +23,9 @@ variable {p : Omega -> Real}
 namespace FiniteInfo
 
 /-- Conditional mutual information is the sum of the (homogeneous) mutual
-informations of its conditioning fibres.-/
+informations of its conditioning fibres.
+@isnad1 id=eq.1h8v.s6.2013da1ff6da from=translated src=- shape=c109c983 vocab=254ec454
+-/
 lemma condMI_eq_sum_MI_fibers
     {A Gamma Delta K : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype K] [DecidableEq Gamma] [DecidableEq Delta] [DecidableEq K]
@@ -50,6 +52,9 @@ lemma condMI_eq_sum_MI_fibers
   simp only [MI, Hvar, Finset.sum_add_distrib, Finset.sum_sub_distrib]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.d99955114b2d from=translated src=- shape=d414697a vocab=9a64a9bf
+-/
 lemma push_id {A : Type*} [Fintype A] [DecidableEq A] (m : A -> Real) :
     push (fun a => a) m = m := by
   funext a
@@ -60,7 +65,9 @@ lemma push_id {A : Type*} [Fintype A] [DecidableEq A] (m : A -> Real) :
   · intro ha
     exact (ha (by simp)).elim
 
-/-- Reindexing an invariant finite law does not change any pushforward.-/
+/-- Reindexing an invariant finite law does not change any pushforward.
+@isnad1 id=eq.1h5v.s6.313c560a5884 from=translated src=- shape=85403a44 vocab=47ac2946
+-/
 lemma push_comp_equiv_eq_of_invariant
     {A Gamma : Type*} [Fintype A] [Fintype Gamma] [DecidableEq Gamma]
     (m : A -> Real) (e : A ≃ A) (hm : forall a, m (e a) = m a)
@@ -77,6 +84,9 @@ lemma push_comp_equiv_eq_of_invariant
     _ = ∑ a, if f a = y then m a else 0 :=
       e.sum_comp (fun a => if f a = y then m a else 0)
 
+/--
+@isnad1 id=eq.1h7v.s7.e0be095d98eb from=translated src=- shape=dcde8097 vocab=f5a83e02
+-/
 lemma condH_comp_equiv_eq_of_invariant
     {A Gamma K : Type*} [Fintype A] [Fintype Gamma] [Fintype K]
     [DecidableEq Gamma] [DecidableEq K]
@@ -93,6 +103,9 @@ lemma condH_comp_equiv_eq_of_invariant
   unfold condH Hvar
   rw [hpair', hh]
 
+/--
+@isnad1 id=eq.1h9v.s7.b07b48b71dd9 from=translated src=- shape=3c6bb0c8 vocab=8ea96430
+-/
 lemma condMI_comp_equiv_eq_of_invariant
     {A Gamma Delta K : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype K] [DecidableEq Gamma] [DecidableEq Delta] [DecidableEq K]
@@ -120,7 +133,9 @@ lemma condMI_comp_equiv_eq_of_invariant
   rw [hfh', hgh', hfgh', hh]
 
 /-- Mutual information depends only on the joint pushforward of its two
-arguments.-/
+arguments.
+@isnad1 id=eq.1h10v.s7.a24073d701f7 from=translated src=- shape=173dc2b4 vocab=e46ecf14
+-/
 lemma MI_eq_of_pair_push_eq
     {A A' Gamma Delta : Type*} [Fintype A] [Fintype A'] [Fintype Gamma]
     [Fintype Delta] [DecidableEq Gamma] [DecidableEq Delta]
@@ -152,6 +167,9 @@ lemma MI_eq_of_pair_push_eq
   unfold MI Hvar
   rw [hf, hg, hpair]
 
+/--
+@isnad1 id=eq.1h10v.s7.53a0fa6529a0 from=translated src=- shape=173dc2b4 vocab=7a912813
+-/
 lemma condH_eq_of_pair_push_eq
     {A A' Gamma Delta : Type*} [Fintype A] [Fintype A'] [Fintype Gamma]
     [Fintype Delta] [DecidableEq Gamma] [DecidableEq Delta]
@@ -173,6 +191,9 @@ lemma condH_eq_of_pair_push_eq
   unfold condH Hvar
   rw [hpair, hg]
 
+/--
+@isnad1 id=eq.1h13v.s7.8d3370f9a589 from=translated src=- shape=a8bd39f5 vocab=61326e90
+-/
 lemma condMI_eq_of_triple_push_eq
     {A A' Gamma Delta K : Type*} [Fintype A] [Fintype A'] [Fintype Gamma]
     [Fintype Delta] [Fintype K] [DecidableEq Gamma] [DecidableEq Delta]
@@ -222,6 +243,9 @@ lemma condMI_eq_of_triple_push_eq
   unfold condMI Hvar
   rw [hfh, hgh, htriple, hh]
 
+/--
+@isnad1 id=eq.1h8v.s6.21bb9dcc5961 from=translated src=- shape=254363f8 vocab=b11cb9e2
+-/
 lemma condMI_comm
     {A Gamma Delta K : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype K] [DecidableEq Gamma] [DecidableEq Delta] [DecidableEq K]
@@ -239,6 +263,9 @@ lemma condMI_comm
   rw [htrip]
   ring
 
+/--
+@isnad1 id=eq.1h8v.s6.5f94e5795e02 from=translated src=- shape=f01bfeae vocab=106897a9
+-/
 lemma MI_equiv_left
     {A Gamma Gamma' Delta : Type*} [Fintype A] [Fintype Gamma]
     [Fintype Gamma'] [Fintype Delta] [DecidableEq Gamma] [DecidableEq Gamma']
@@ -253,6 +280,9 @@ lemma MI_equiv_left
   unfold MI
   rw [hf, hfg]
 
+/--
+@isnad1 id=eq.1h8v.s7.38c4945d3241 from=translated src=- shape=209ceb45 vocab=ae0a4c1b
+-/
 lemma condMI_eq_MI_pair_sub
     {A Gamma Delta K : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype K] [DecidableEq Gamma] [DecidableEq Delta] [DecidableEq K]
@@ -262,6 +292,9 @@ lemma condMI_eq_MI_pair_sub
   have hchain := MI_pair_left hm h f g
   linarith
 
+/--
+@isnad1 id=eq.1h10v.s7.22964ae361ed from=translated src=- shape=3607d9de vocab=c9e04d91
+-/
 lemma condMI_pair_left
     {A Gamma Delta E K : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype E] [Fintype K] [DecidableEq Gamma] [DecidableEq Delta]
@@ -279,6 +312,9 @@ lemma condMI_pair_left
     MI (fun a => ((h a, f a), g a)) k m at hassoc
   linarith
 
+/--
+@isnad1 id=eq.1h10v.s7.f48caffa330b from=translated src=- shape=6e6cb8dd vocab=c9e04d91
+-/
 lemma condMI_pair_right
     {A Gamma Delta E K : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype E] [Fintype K] [DecidableEq Gamma] [DecidableEq Delta]
@@ -292,6 +328,9 @@ lemma condMI_pair_right
     condMI_comm hm f k h,
     condMI_comm hm g k (fun a => (h a, f a))]
 
+/--
+@isnad1 id=eq.1h10v.s6.e7b56385bbe7 from=translated src=- shape=4cc8d621 vocab=e793a9c1
+-/
 lemma condMI_equiv_cond
     {A Gamma Delta K K' : Type*} [Fintype A] [Fintype Gamma] [Fintype Delta]
     [Fintype K] [Fintype K'] [DecidableEq Gamma] [DecidableEq Delta]
@@ -313,6 +352,9 @@ lemma condMI_equiv_cond
   unfold condMI
   rw [hfh, hgh, htrip, hh]
 
+/--
+@isnad1 id=eq.1h8v.s6.84f5c44feb88 from=translated src=- shape=1a4a7f1e vocab=a332fe6b
+-/
 lemma condH_equiv_cond
     {A Gamma K K' : Type*} [Fintype A] [Fintype Gamma] [Fintype K]
     [Fintype K'] [DecidableEq Gamma] [DecidableEq K] [DecidableEq K']
@@ -326,6 +368,9 @@ lemma condH_equiv_cond
   unfold condH
   rw [hfh, hh]
 
+/--
+@isnad1 id=eq.2h10v.s6.aba60fdd1a48 from=translated src=- shape=a8cb3b53 vocab=a9b61207
+-/
 lemma condMI_comp_right_eq_of_injective
     {A Gamma Delta Delta' K : Type*} [Fintype A] [Fintype Gamma]
     [Fintype Delta] [Fintype Delta'] [Fintype K] [DecidableEq Gamma]
@@ -358,6 +403,9 @@ lemma condMI_comp_right_eq_of_injective
       Hvar (fun a => (f a, u (g a), h a)) m - Hvar h m = _
   rw [hgh, hfgh]
 
+/--
+@isnad1 id=eq.2h10v.s6.d626fe4241e1 from=translated src=- shape=70e3f87d vocab=a9b61207
+-/
 lemma condMI_comp_left_eq_of_injective
     {A Gamma Gamma' Delta K : Type*} [Fintype A] [Fintype Gamma]
     [Fintype Gamma'] [Fintype Delta] [Fintype K] [DecidableEq Gamma]
@@ -369,6 +417,9 @@ lemma condMI_comp_left_eq_of_injective
     condMI_comp_right_eq_of_injective hm g f h u hu,
     condMI_comm hm g f h]
 
+/--
+@isnad1 id=eq.2h10v.s6.be540e6b3a34 from=translated src=- shape=2e85f22b vocab=a9b61207
+-/
 lemma condMI_comp_cond_eq_of_injective
     {A Gamma Delta K K' : Type*} [Fintype A] [Fintype Gamma]
     [Fintype Delta] [Fintype K] [Fintype K'] [DecidableEq Gamma]
@@ -407,6 +458,9 @@ lemma condMI_comp_cond_eq_of_injective
   unfold condMI
   rw [hh, hfh, hgh, hfgh]
 
+/--
+@isnad1 id=eq.2h8v.s6.068ae1491b18 from=translated src=- shape=2fac1acf vocab=45613a3a
+-/
 lemma condH_comp_left_eq_of_injective
     {A Gamma Gamma' K : Type*} [Fintype A] [Fintype Gamma]
     [Fintype Gamma'] [Fintype K] [DecidableEq Gamma] [DecidableEq Gamma']
@@ -429,6 +483,9 @@ lemma condH_comp_left_eq_of_injective
   unfold condH
   simpa only using congrArg (fun t => t - Hvar h m) hfh
 
+/--
+@isnad1 id=eq.1h2v.s6.54879931beeb from=translated src=- shape=d18f6c1b vocab=318e5cb8
+-/
 lemma MI_iidProduct_zero
     {A : Type*} [Fintype A] [DecidableEq A] {t : A -> Real} (ht : IsPMF t) :
     MI Prod.fst Prod.snd (fun u : A × A => t u.1 * t u.2) = 0 := by
@@ -552,6 +609,9 @@ noncomputable def ofJoint (r : I × Omega -> Real) (hr : IsPMF r)
             simp
       _ = p x := congrFun hsource x
 
+/--
+@isnad1 id=eq.3h4v.s6.383a3140a22b from=translated src=- shape=08ec7500 vocab=ea8f9acd
+-/
 theorem ofJoint_joint_eq (r : I × Omega -> Real) (hr : IsPMF r)
     (hp : IsPMF p) (hsource : push Prod.snd r = p) :
     (ofJoint r hr hp hsource).joint = r := by
@@ -565,6 +625,9 @@ the value is immaterial; the quotient convention makes it zero.-/
 noncomputable def post (c : V.ι) (x : Omega) : Real :=
   V.prior c * V.comp c x / p x
 
+/--
+@isnad1 id=le.0h5v.s5.5c7eca4eed41 from=translated src=- shape=4f6d2557 vocab=13ee4aa5
+-/
 lemma post_nonneg (c : V.ι) (x : Omega) : 0 <= V.post c x := by
   exact div_nonneg
     (mul_nonneg (V.prior_isPMF.nonneg c) ((V.comp_isPMF c).nonneg x))
@@ -574,6 +637,9 @@ lemma post_nonneg (c : V.ι) (x : Omega) : 0 <= V.post c x := by
       exact Finset.sum_nonneg fun a _ =>
         mul_nonneg (V.prior_isPMF.nonneg a) ((V.comp_isPMF a).nonneg x))
 
+/--
+@isnad1 id=eq.1h4v.s6.8e94110452fa from=translated src=- shape=eac47a4f vocab=63265b1d
+-/
 lemma sum_post_of_pos (x : Omega) (hx : 0 < p x) :
     (∑ c, V.post c x) = 1 := by
   unfold post
@@ -584,6 +650,9 @@ lemma sum_post_of_pos (x : Omega) (hx : 0 < p x) :
     _ = p x / p x := by rw [V.mixture x]
     _ = 1 := div_self hx.ne'
 
+/--
+@isnad1 id=ispmf.0h3v.s4.67ab70c96f4f from=translated src=- shape=8f389c00 vocab=b7193662
+-/
 lemma base_isPMF (V : NLatent p) : IsPMF p := by
   have h := isPMF_push (f := fun w : V.ι × Omega => w.2) V.joint_isPMF
   rw [V.push_snd_joint] at h
@@ -619,6 +688,9 @@ private lemma sum_replica_at (x : Omega) :
       _ = p x * (∑ c0, V.post c0 x) := by rw [Finset.mul_sum]
       _ = p x := by rw [hpost, mul_one]
 
+/--
+@isnad1 id=ispmf.0h3v.s6.5fd46c22fc05 from=translated src=- shape=883d4c43 vocab=0cef69d7
+-/
 lemma replicaLaw_isPMF : IsPMF V.replicaLaw := by
   refine ⟨?_, ?_⟩
   · intro u
@@ -651,12 +723,17 @@ lemma replicaLaw_isPMF : IsPMF V.replicaLaw := by
             exact sum_replica_at V x
       _ = 1 := by simpa [mass] using V.base_isPMF.total
 
-/-- Swapping the two replicas preserves the law pointwise.-/
+/-- Swapping the two replicas preserves the law pointwise.
+@isnad1 id=eq.0h4v.s7.4fc155dc0fa5 from=translated src=- shape=b98db971 vocab=051122b0
+-/
 lemma replicaLaw_swap (u : (V.ι × V.ι) × Omega) :
     V.replicaLaw ((u.1.2, u.1.1), u.2) = V.replicaLaw u := by
   unfold replicaLaw
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.10c0f76ec917 from=translated src=- shape=0a0ef13a vocab=2ed68bed
+-/
 lemma replicaLaw_swap_equiv (u : (V.ι × V.ι) × Omega) :
     V.replicaLaw (V.replicaSwap u) = V.replicaLaw u := by
   exact V.replicaLaw_swap u
@@ -687,7 +764,9 @@ private lemma sum_replica_second (c0 : V.ι) (x : Omega) :
             unfold post joint
             field_simp [hx]
 
-/-- The `(C₀,X)` marginal is the original latent joint law.-/
+/-- The `(C₀,X)` marginal is the original latent joint law.
+@isnad1 id=eq.0h3v.s7.a8b080674781 from=translated src=- shape=09b04ac8 vocab=be6576d1
+-/
 lemma push_replica_first_source :
     push (fun u : (V.ι × V.ι) × Omega => (u.1.1, u.2)) V.replicaLaw = V.joint := by
   funext v
@@ -708,7 +787,9 @@ lemma push_replica_first_source :
           simp
     _ = V.joint (c0, x) := V.sum_replica_second c0 x
 
-/-- The `(C₁,X)` marginal is also the original latent joint law.-/
+/-- The `(C₁,X)` marginal is also the original latent joint law.
+@isnad1 id=eq.0h3v.s7.19b3d90dd989 from=translated src=- shape=09b04ac8 vocab=be6576d1
+-/
 lemma push_replica_second_source :
     push (fun u : (V.ι × V.ι) × Omega => (u.1.2, u.2)) V.replicaLaw = V.joint := by
   funext v
@@ -735,7 +816,9 @@ lemma push_replica_second_source :
   simp_rw [hswap]
   exact V.sum_replica_second c1 x
 
-/-- The source marginal of the replica law is `p`.-/
+/-- The source marginal of the replica law is `p`.
+@isnad1 id=eq.0h3v.s6.330dc0ebd93a from=translated src=- shape=c78a81d7 vocab=362cc2ff
+-/
 lemma push_replica_source :
     push (fun u : (V.ι × V.ι) × Omega => u.2) V.replicaLaw = p := by
   have h := congrArg (push Prod.snd) V.push_replica_first_source
@@ -744,7 +827,9 @@ lemma push_replica_source :
   simpa [Function.comp_def] using h.trans hbase
 
 /-- Any observable of `(C₀,X)` has the same law under the replica coupling as
-under the original latent joint law.-/
+under the original latent joint law.
+@isnad1 id=eq.0h5v.s7.fe7c41a12176 from=translated src=- shape=8625cd0a vocab=be6576d1
+-/
 lemma push_replica_first_lift {Delta : Type*} [Fintype Delta] [DecidableEq Delta]
     (h : V.ι × Omega -> Delta) :
     push (fun u : (V.ι × V.ι) × Omega => h (u.1.1, u.2)) V.replicaLaw =
@@ -758,6 +843,9 @@ lemma push_replica_first_lift {Delta : Type*} [Fintype Delta] [DecidableEq Delta
           simpa [base, Function.comp_def] using push_push base h V.replicaLaw
     _ = push h V.joint := by rw [V.push_replica_first_source]
 
+/--
+@isnad1 id=eq.0h5v.s7.c5f1a718de44 from=translated src=- shape=f5825c0e vocab=4450231c
+-/
 lemma replica_condH_first {Delta : Type*} [Fintype Delta] [DecidableEq Delta]
     (h : Omega -> Delta) :
     condH (fun u : (V.ι × V.ι) × Omega => h u.2) (fun u => u.1.1)
@@ -766,6 +854,9 @@ lemma replica_condH_first {Delta : Type*} [Fintype Delta] [DecidableEq Delta]
   apply FiniteInfo.condH_eq_of_pair_push_eq V.replicaLaw V.joint
   exact V.push_replica_first_lift (fun w : V.ι × Omega => (h w.2, w.1))
 
+/--
+@isnad1 id=eq.0h7v.s8.d8720741d256 from=translated src=- shape=e3601f15 vocab=757051de
+-/
 lemma replica_condMI_first {Delta E : Type*} [Fintype Delta] [Fintype E]
     [DecidableEq Delta] [DecidableEq E] (h : Omega -> Delta) (k : Omega -> E) :
     condMI (fun u : (V.ι × V.ι) × Omega => u.1.1) (fun u => h u.2)
@@ -845,7 +936,9 @@ private lemma MI_replicaSourceFiber_zero (x : Omega) :
     rw [hn, hscale, hzero, mul_zero]
 
 /-- The two posterior replicas are conditionally independent given the
-source.-/
+source.
+@isnad1 id=eq.0h3v.s7.b13c2925761f from=translated src=- shape=fea90ddb vocab=52e02025
+-/
 theorem replica_markov :
     condMI (fun u : (V.ι × V.ι) × Omega => u.1.1) (fun u => u.1.2)
       (fun u => u.2) V.replicaLaw = 0 := by
@@ -862,6 +955,9 @@ theorem replica_markov :
 noncomputable def replicaRefinement : NLatent p :=
   ofJoint V.replicaLaw V.replicaLaw_isPMF V.base_isPMF V.push_replica_source
 
+/--
+@isnad1 id=eq.0h3v.s5.a1a9e3489cc5 from=translated src=- shape=39f0c0ef vocab=d2a2f00f
+-/
 theorem replicaRefinement_joint_eq : V.replicaRefinement.joint = V.replicaLaw := by
   exact ofJoint_joint_eq V.replicaLaw V.replicaLaw_isPMF V.base_isPMF
     V.push_replica_source

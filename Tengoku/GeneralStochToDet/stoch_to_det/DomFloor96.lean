@@ -13,6 +13,9 @@ open Finset
 variable {α β : Type*} [Fintype α] [Fintype β]
   [DecidableEq α] [DecidableEq β]
 
+/--
+@isnad1 id=le.8h7v.s8.22785d7aaa9d from=translated src=- shape=3efdd8ad vocab=7067dc84
+-/
 theorem contact_correlation_cap_96
     {S : Finset (α × β)} {w q : α × β → ℝ}
     (hq : IsPMF q) (hw : Feasible S w) (hcontact : IsContact S w q)
@@ -28,6 +31,9 @@ theorem contact_correlation_cap_96
     ((231 : ℝ) / 10000) ((4511 : ℝ) / 10000)
     hq hw hcontact hf0 hg0 hf2 hg2 tail_quartic_cell assembly_cap_96 hK
 
+/--
+@isnad1 id=le.3h5v.s6.13a3e74838e9 from=translated src=- shape=a9908f46 vocab=59fdb38e
+-/
 theorem rhoHGR_le_cap_96
     {S : Finset (α × β)} {w q : α × β → ℝ}
     (hw : Feasible S w) (hcontact : IsContact S w q)
@@ -45,6 +51,9 @@ theorem rhoHGR_le_cap_96
       fg.2.1 fg.2.2.1 fg.2.2.2.1 fg.2.2.2.2 hK
   · norm_num
 
+/--
+@isnad1 id=le.3h5v.s6.9931b7368ff3 from=translated src=- shape=77589a10 vocab=4af835a6
+-/
 theorem infoFloor96_le_Ixy_of_contact
     {S : Finset (α × β)} {w q : α × β → ℝ}
     (hw : Feasible S w) (hcontact : IsContact S w q)

@@ -52,6 +52,9 @@ structure IsPMF (m : α → ℝ) : Prop where
   nonneg : ∀ a, 0 ≤ m a
   total : mass m = 1
 
+/--
+@isnad1 id=isfinmea.1h2v.s4.0805b9409e7d from=translated src=- shape=260c5cf7 vocab=308c4b52
+-/
 lemma IsPMF.isFinMeas {m : α → ℝ} (h : IsPMF m) : IsFinMeas m := h.nonneg
 
 /-- `𝖧(m) := ∑ m · lg(|m|/m)`, the 1-homogeneous entropy of §0, in bits.
@@ -61,7 +64,9 @@ summand is `0 * lg (mass m / 0) = 0 * lg 0 = 0`. See `stoch_to_det.Prelude`.-/
 noncomputable def H (m : α → ℝ) : ℝ := ∑ a, m a * lg (mass m / m a)
 
 /-- `𝖧` in nats splits into a mass term and a sum of `Real.negMulLog`s:
-`(ln 2) · 𝖧(m) = |m| · ln|m| + ∑ₐ negMulLog (m a)`.-/
+`(ln 2) · 𝖧(m) = |m| · ln|m| + ∑ₐ negMulLog (m a)`.
+@isnad1 id=eq.1h2v.s6.38006c9091bd from=translated src=- shape=cc763ad7 vocab=15608614
+-/
 lemma H_eq_negMulLog {m : α → ℝ} (hm : IsFinMeas m) :
     Real.log 2 * H m = mass m * Real.log (mass m) + ∑ a, Real.negMulLog (m a) := by
   by_cases hmass : mass m = 0
@@ -92,7 +97,9 @@ lemma H_eq_negMulLog {m : α → ℝ} (hm : IsFinMeas m) :
             unfold mass
             rw [Finset.sum_add_distrib, Finset.sum_mul]
 
-/-- `𝖧` is 1-homogeneous: `𝖧(c · m) = c · 𝖧(m)` for `c ≥ 0`.-/
+/-- `𝖧` is 1-homogeneous: `𝖧(c · m) = c · 𝖧(m)` for `c ≥ 0`.
+@isnad1 id=eq.2h3v.s5.21bd4bbd3f9d from=translated src=- shape=0ad32805 vocab=81843b36
+-/
 lemma H_smul {m : α → ℝ} (hm : IsFinMeas m) {c : ℝ} (hc : 0 ≤ c) :
     H (fun a => c * m a) = c * H m := by
   rcases hc.eq_or_lt with rfl | hc
@@ -106,7 +113,9 @@ lemma H_smul {m : α → ℝ} (hm : IsFinMeas m) {c : ℝ} (hc : 0 ≤ c) :
     funext a
     ring
 
-/-- Entropy of a probability law is nonnegative.-/
+/-- Entropy of a probability law is nonnegative.
+@isnad1 id=le.1h2v.s4.1e8cfdb1e848 from=translated src=- shape=35704f09 vocab=6b53dd83
+-/
 lemma H_nonneg_of_isPMF {m : α → ℝ} (hm : IsPMF m) : 0 ≤ H m := by
   have hsum : 0 ≤ ∑ a, Real.negMulLog (m a) := by
     apply Finset.sum_nonneg
@@ -122,7 +131,9 @@ lemma H_nonneg_of_isPMF {m : α → ℝ} (hm : IsPMF m) : 0 ≤ H m := by
   rw [hEq]
   exact hsum
 
-/-- Entropy of a probability law is at most `lg |α|`.-/
+/-- Entropy of a probability law is at most `lg |α|`.
+@isnad1 id=le.1h2v.s4.a4cefa90246f from=translated src=- shape=eaad509c vocab=1a728c9c
+-/
 lemma H_le_card {m : α → ℝ} (hm : IsPMF m) : H m ≤ lg (Fintype.card α) := by
   have huniv : (univ : Finset α).Nonempty := by
     by_contra h
@@ -166,7 +177,9 @@ lemma H_le_card {m : α → ℝ} (hm : IsPMF m) : H m ≤ lg (Fintype.card α) :
   simpa [n] using hscaled
 
 /-- Finite Gibbs inequality, with the support condition made explicit to avoid
-Lean's junk value for division and logarithm at zero.-/
+Lean's junk value for division and logarithm at zero.
+@isnad1 id=le.3h3v.s6.ad3ed4422693 from=translated src=- shape=2487989b vocab=c7f46006
+-/
 lemma gibbs_nonneg {p q : α → ℝ} (hp : IsPMF p) (hq : IsPMF q)
     (hsupp : ∀ a, p a ≠ 0 → q a ≠ 0) :
     0 ≤ ∑ a, p a * Real.log (p a / q a) := by
@@ -204,21 +217,32 @@ variable [Fintype α] [DecidableEq γ]
 noncomputable def push (f : α → γ) (m : α → ℝ) : γ → ℝ :=
   fun c => ∑ a ∈ univ.filter (fun a => f a = c), m a
 
+/--
+@isnad1 id=isfinmea.1h4v.s4.452e7ba5038a from=translated src=- shape=b7c1cfa5 vocab=0d56996f
+-/
 lemma isFinMeas_push {f : α → γ} {m : α → ℝ} (hm : IsFinMeas m) :
     IsFinMeas (push f m) := by
   intro c
   exact sum_nonneg fun a _ => hm a
 
+/--
+@isnad1 id=eq.0h4v.s5.b9927f46671c from=translated src=- shape=f3c55ac9 vocab=7d55af9e
+-/
 @[simp] lemma mass_push [Fintype γ] (f : α → γ) (m : α → ℝ) :
     mass (push f m) = mass m := by
   unfold mass push
   exact Finset.sum_fiberwise univ f m
 
+/--
+@isnad1 id=ispmf.1h4v.s5.b2f205a80bdf from=translated src=- shape=b9484dc8 vocab=c33eca07
+-/
 lemma isPMF_push [Fintype γ] {f : α → γ} {m : α → ℝ} (hm : IsPMF m) :
     IsPMF (push f m) :=
   ⟨isFinMeas_push hm.isFinMeas, by simpa using hm.total⟩
 
-/-- Entropy cannot increase under a deterministic pushforward.-/
+/-- Entropy cannot increase under a deterministic pushforward.
+@isnad1 id=le.1h4v.s5.d62a4fa3bd87 from=translated src=- shape=5c19b508 vocab=02dcd6c7
+-/
 lemma H_push_le [Fintype γ] {f : α → γ} {m : α → ℝ} (hm : IsPMF m) :
     H (push f m) ≤ H m := by
   have hfiber : ∀ c, Real.negMulLog (push f m c) ≤
@@ -257,7 +281,9 @@ lemma H_push_le [Fintype γ] {f : α → γ} {m : α → ℝ} (hm : IsPMF m) :
   exact (mul_le_mul_iff_of_pos_left (Real.log_pos one_lt_two)).mp
     (hEqPush.trans_le (hsum.trans_eq hEq.symm))
 
-/-- Pushing forward twice is pushing forward along the composite.-/
+/-- Pushing forward twice is pushing forward along the composite.
+@isnad1 id=eq.0h6v.s5.84560fa9fb0a from=translated src=- shape=b4161374 vocab=0244fa57
+-/
 lemma push_push [Fintype γ] [DecidableEq δ] (f : α → γ) (g : γ → δ) (m : α → ℝ) :
     push g (push f m) = push (g ∘ f) m := by
   funext d
@@ -265,7 +291,9 @@ lemma push_push [Fintype γ] [DecidableEq δ] (f : α → γ) (g : γ → δ) (m
   rw [Finset.sum_fiberwise_eq_sum_filter]
   simp
 
-/-- Entropy is invariant under an equivalence of the output alphabet.-/
+/-- Entropy is invariant under an equivalence of the output alphabet.
+@isnad1 id=eq.1h4v.s5.f41558483752 from=translated src=- shape=d117656d vocab=673c9fed
+-/
 lemma H_push_equiv [Fintype γ] [DecidableEq α] (e : α ≃ γ) (m : α → ℝ)
     (hm : IsPMF m) : H (push e m) = H m := by
   apply le_antisymm
@@ -288,13 +316,17 @@ lemma H_push_equiv [Fintype γ] [DecidableEq α] (e : α ≃ γ) (m : α → ℝ
     rw [hround] at hback
     exact hback
 
-/-- Pushforward is linear under scalar multiplication.-/
+/-- Pushforward is linear under scalar multiplication.
+@isnad1 id=eq.0h5v.s5.87bddefd40e6 from=translated src=- shape=29a7e301 vocab=de3ffc0f
+-/
 lemma push_smul (f : α → γ) (m : α → ℝ) (c : ℝ) :
     push f (fun a => c * m a) = fun x => c * push f m x := by
   funext x
   simp [push, Finset.mul_sum]
 
-/-- Integrating a function against a pushforward is the corresponding fibrewise sum.-/
+/-- Integrating a function against a pushforward is the corresponding fibrewise sum.
+@isnad1 id=eq.0h5v.s6.c559f6313d4c from=translated src=- shape=05bb1bbd vocab=1041f9ad
+-/
 lemma sum_push_mul [Fintype γ] (f : α → γ) (m : α → ℝ) (k : γ → ℝ) :
     ∑ c, push f m c * k c = ∑ a, m a * k (f a) := by
   calc
@@ -319,7 +351,9 @@ end Push
 section FiberEntropy
 variable [Fintype α] [Fintype β] [DecidableEq β]
 
-/-- Chain rule for a PMF on a product, with unnormalized conditional fibres.-/
+/-- Chain rule for a PMF on a product, with unnormalized conditional fibres.
+@isnad1 id=eq.1h3v.s6.4ef184c7a2c7 from=translated src=- shape=21d5ac12 vocab=2c70f4fb
+-/
 lemma H_prod_eq_snd_add_fibers {r : α × β → ℝ} (hr : IsPMF r) :
     H r = H (push Prod.snd r) + ∑ y, H (fun x => r (x, y)) := by
   let ry : β → ℝ := push Prod.snd r
@@ -399,7 +433,9 @@ noncomputable def condMI (f : α → γ) (g : α → δ) (h : α → ε) (m : α
 
 /-! #### Basic properties -/
 
-/-- Re-encoding a random variable by an equivalence preserves its entropy.-/
+/-- Re-encoding a random variable by an equivalence preserves its entropy.
+@isnad1 id=eq.1h6v.s6.efe6c7734a5f from=translated src=- shape=fda60cd7 vocab=0fd241ff
+-/
 lemma Hvar_equiv {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (e : γ ≃ δ) :
     Hvar (fun a => e (f a)) m = Hvar f m := by
   unfold Hvar
@@ -407,14 +443,18 @@ lemma Hvar_equiv {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (e : γ ≃ δ)
   rw [← push_push f e m]
   exact H_push_equiv e (push f m) (isPMF_push hm)
 
-/-- Entropy cannot increase after applying a deterministic function.-/
+/-- Entropy cannot increase after applying a deterministic function.
+@isnad1 id=le.1h6v.s5.0a54dc53620a from=translated src=- shape=e1c38cce vocab=c5006cbe
+-/
 lemma Hvar_comp_le {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (u : γ → δ) :
     Hvar (u ∘ f) m ≤ Hvar f m := by
   unfold Hvar
   rw [← push_push f u m]
   exact H_push_le (isPMF_push hm)
 
-/-- A deterministic re-encoding with a left inverse preserves entropy.-/
+/-- A deterministic re-encoding with a left inverse preserves entropy.
+@isnad1 id=eq.2h7v.s6.0bd92961ed46 from=translated src=- shape=b31de9b4 vocab=8271e15a
+-/
 lemma Hvar_eq_of_leftInverse {m : α → ℝ} (hm : IsPMF m) (f : α → γ)
     (u : γ → δ) (v : δ → γ) (huv : Function.LeftInverse v u) :
     Hvar (u ∘ f) m = Hvar f m := by
@@ -427,7 +467,9 @@ lemma Hvar_eq_of_leftInverse {m : α → ℝ} (hm : IsPMF m) (f : α → γ)
     rw [hfun] at hback
     exact hback
 
-/-- Conditional-entropy chain rule written as a sum of unnormalized fibres.-/
+/-- Conditional-entropy chain rule written as a sum of unnormalized fibres.
+@isnad1 id=eq.1h6v.s7.2838d7975cd7 from=translated src=- shape=eddc4ffd vocab=89ef6042
+-/
 lemma Hvar_pair_eq_sum_fibers {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (h : α → δ) :
     Hvar (fun a => (f a, h a)) m = Hvar h m +
       ∑ y, H (push f (fun a => if h a = y then m a else 0)) := by
@@ -453,7 +495,9 @@ lemma Hvar_pair_eq_sum_fibers {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (h
   unfold Hvar
   exact hdecomp
 
-/-- Mutual information is homogeneous on nonnegative finite measures.-/
+/-- Mutual information is homogeneous on nonnegative finite measures.
+@isnad1 id=eq.2h7v.s6.a8184bf98fa6 from=translated src=- shape=6d02a66e vocab=d20449f9
+-/
 lemma MI_smul {m : α → ℝ} (hm : IsFinMeas m) (f : α → γ) (g : α → δ)
     {c : ℝ} (hc : 0 ≤ c) : MI f g (fun a => c * m a) = c * MI f g m := by
   unfold MI Hvar
@@ -462,7 +506,9 @@ lemma MI_smul {m : α → ℝ} (hm : IsFinMeas m) (f : α → γ) (g : α → δ
     push_smul (fun a => (f a, g a)) m c, H_smul (isFinMeas_push hm) hc]
   ring
 
-/-- Mutual information is nonnegative.-/
+/-- Mutual information is nonnegative.
+@isnad1 id=le.1h6v.s5.4decb9677a06 from=translated src=- shape=f4a20ada vocab=beb04721
+-/
 lemma MI_nonneg {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) :
     0 ≤ MI f g m := by
   let r : γ × δ → ℝ := push (fun a => (f a, g a)) m
@@ -569,7 +615,9 @@ lemma MI_nonneg {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) 
   rw [hMIKL]
   exact hKL
 
-/-- Mutual information is nonnegative for every nonnegative finite measure.-/
+/-- Mutual information is nonnegative for every nonnegative finite measure.
+@isnad1 id=le.1h6v.s5.0f35993c44fb from=translated src=- shape=f4a20ada vocab=47f96690
+-/
 lemma MI_nonneg_of_isFinMeas {m : α → ℝ} (hm : IsFinMeas m)
     (f : α → γ) (g : α → δ) : 0 ≤ MI f g m := by
   have hmass_nonneg : 0 ≤ mass m := Finset.sum_nonneg fun a _ => hm a
@@ -599,7 +647,9 @@ lemma MI_nonneg_of_isFinMeas {m : α → ℝ} (hm : IsFinMeas m)
     rw [hscale] at hnonneg
     exact (mul_nonneg_iff_of_pos_left (inv_pos.mpr hmass_pos)).mp hnonneg
 
-/-- Conditional mutual information is nonnegative.-/
+/-- Conditional mutual information is nonnegative.
+@isnad1 id=le.1h8v.s6.7fb2ca797d55 from=translated src=- shape=80b26fe6 vocab=88dc9d82
+-/
 lemma condMI_nonneg {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) (h : α → ε) :
     0 ≤ condMI f g h m := by
   let mh : ε → α → ℝ := fun z a => if h a = z then m a else 0
@@ -626,7 +676,9 @@ lemma condMI_nonneg {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → 
   rw [hEq]
   exact Finset.sum_nonneg fun z _ => MI_nonneg_of_isFinMeas (hmh z) f g
 
-/-- Chain rule: `I(f, g ; k) = I(f ; k) + I(g ; k ∣ f)`.-/
+/-- Chain rule: `I(f, g ; k) = I(f ; k) + I(g ; k ∣ f)`.
+@isnad1 id=eq.1h8v.s7.9276ef1d243f from=translated src=- shape=9b853a47 vocab=e72f04f3
+-/
 lemma MI_pair_left {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) (k : α → ε) :
     MI (fun a => (f a, g a)) k m = MI f k m + condMI g k f m := by
   have hgf : Hvar (fun a => (g a, f a)) m = Hvar (fun a => (f a, g a)) m := by
@@ -646,7 +698,9 @@ lemma MI_pair_left {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → �
   rw [hgf, hkf, htrip]
   ring
 
-/-- Mutual information is symmetric.-/
+/-- Mutual information is symmetric.
+@isnad1 id=eq.1h6v.s6.08adb378fcfb from=translated src=- shape=af2a62a1 vocab=dd6faf38
+-/
 lemma MI_comm {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) :
     MI f g m = MI g f m := by
   have hpair : Hvar (fun a => (g a, f a)) m = Hvar (fun a => (f a, g a)) m := by
@@ -656,7 +710,9 @@ lemma MI_comm {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) :
   rw [hpair]
   ring
 
-/-- Data processing: post-processing `g` by `u` cannot increase `I(f ; ·)`.-/
+/-- Data processing: post-processing `g` by `u` cannot increase `I(f ; ·)`.
+@isnad1 id=le.1h8v.s6.9d082811427b from=translated src=- shape=bd87b840 vocab=8bb591d7
+-/
 lemma MI_le_of_comp {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ)
     {δ' : Type*} [Fintype δ'] [DecidableEq δ'] (u : δ → δ') :
     MI f (u ∘ g) m ≤ MI f g m := by
@@ -688,7 +744,9 @@ lemma MI_le_of_comp {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → 
   linarith
 
 /-- `I ≤ H`: mutual information is bounded by either marginal entropy.
-Used in Theorem 12.1 (`R_cell ≤ 3 I(A;Z ∣ ε,L₀) ≤ 3 H(A ∣ ε,L₀)`).-/
+Used in Theorem 12.1 (`R_cell ≤ 3 I(A;Z ∣ ε,L₀) ≤ 3 H(A ∣ ε,L₀)`).
+@isnad1 id=le.1h6v.s5.c23a0dd208f9 from=translated src=- shape=e2ec5c2b vocab=432cc429
+-/
 lemma MI_le_Hvar {m : α → ℝ} (hm : IsPMF m) (f : α → γ) (g : α → δ) :
     MI f g m ≤ Hvar f m := by
   have hg : Hvar g m ≤ Hvar (fun a => (f a, g a)) m := by
@@ -722,18 +780,24 @@ noncomputable def Phi (m : α × β → ℝ) : ℝ := 3 * H m - 2 * H (mX m) - 2
 /-- `I_q(X;Y)` for a law `q` on the product.-/
 noncomputable def Ixy (q : α × β → ℝ) : ℝ := H (mX q) + H (mY q) - H q
 
-/-- §0: `Φ(q) = Ψ(q) − I_q(X;Y)`. Pure algebra.-/
+/-- §0: `Φ(q) = Ψ(q) − I_q(X;Y)`. Pure algebra.
+@isnad1 id=eq.0h3v.s5.9286d89fb094 from=translated src=- shape=1deba407 vocab=cf9ed0ba
+-/
 lemma Phi_eq_Psi_sub_Ixy (q : α × β → ℝ) : Phi q = Psi q - Ixy q := by
   unfold Phi Psi Ixy; ring
 
-/-- §0: `Ψ(q) = H_q(X ∣ Y) + H_q(Y ∣ X) ≥ 0` for a law `q`.-/
+/-- §0: `Ψ(q) = H_q(X ∣ Y) + H_q(Y ∣ X) ≥ 0` for a law `q`.
+@isnad1 id=le.1h3v.s5.73964b06c8ac from=translated src=- shape=76ba8c2a vocab=b17989de
+-/
 lemma Psi_nonneg {q : α × β → ℝ} (hq : IsPMF q) : 0 ≤ Psi q := by
   have hX : H (mX q) ≤ H q := H_push_le (f := Prod.fst) hq
   have hY : H (mY q) ≤ H q := H_push_le (f := Prod.snd) hq
   unfold Psi
   linarith
 
-/-- `Ψ` and `Φ` are 1-homogeneous, like `𝖧`.-/
+/-- `Ψ` and `Φ` are 1-homogeneous, like `𝖧`.
+@isnad1 id=eq.2h4v.s6.35bc9a561ff6 from=translated src=- shape=1b92a659 vocab=157ed2ee
+-/
 lemma Psi_smul {m : α × β → ℝ} (hm : IsFinMeas m) {c : ℝ} (hc : 0 ≤ c) :
     Psi (fun z => c * m z) = c * Psi m := by
   have hX : mX (fun z => c * m z) = fun x => c * mX m x := by
@@ -745,6 +809,9 @@ lemma Psi_smul {m : α × β → ℝ} (hm : IsFinMeas m) {c : ℝ} (hc : 0 ≤ c
     hY, H_smul (isFinMeas_push hm) hc]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s6.694580e014e6 from=translated src=- shape=1b92a659 vocab=ce904b12
+-/
 lemma Phi_smul {m : α × β → ℝ} (hm : IsFinMeas m) {c : ℝ} (hc : 0 ≤ c) :
     Phi (fun z => c * m z) = c * Phi m := by
   have hX : mX (fun z => c * m z) = fun x => c * mX m x := by

@@ -64,7 +64,9 @@ private theorem main_Bq_nonneg {p : α × β → ℝ} (D : SeedSetup p) : 0 ≤ 
 
 /-- **Theorem 12.1** (universal ungated cell-defect bound,
 *gumbel-cell-defect-universal*):
-`𝒟_w(p,L) ≤ (108 C₀ + 2) τ(p)` for connected support.-/
+`𝒟_w(p,L) ≤ (108 C₀ + 2) τ(p)` for connected support.
+@isnad1 id=le.0h6v.s6.52a8665f0576 from=translated src=- shape=f89059d3 vocab=9be19cb8
+-/
 theorem Dwdefect_le {p : α × β → ℝ} (D : SeedSetup p)
     (K : Clustering D) (R : RaceQuantities D K) :
     Dwdefect D ≤ (108 * C0 + 2) * tau p := by
@@ -102,7 +104,9 @@ theorem Dwdefect_le {p : α × β → ℝ} (D : SeedSetup p)
       nlinarith [mul_nonneg hC0 hM, mul_nonneg hC0 hB]
 
 /-- The sharpest form of Theorem 12.1 (Remark 12.3(b)):
-`𝒟_w ≤ (6C₀ + 2) τ`, from the single-replica seed constant.-/
+`𝒟_w ≤ (6C₀ + 2) τ`, from the single-replica seed constant.
+@isnad1 id=le.0h6v.s6.0a01300b85dd from=translated src=- shape=f89059d3 vocab=9be19cb8
+-/
 theorem Dwdefect_le_sharpest {p : α × β → ℝ} (D : SeedSetup p)
     (K : Clustering D) (R : RaceQuantities D K) :
     Dwdefect D ≤ (6 * C0 + 2) * tau p := by

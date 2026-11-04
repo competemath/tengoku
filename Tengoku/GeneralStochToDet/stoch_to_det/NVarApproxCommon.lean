@@ -145,7 +145,9 @@ private lemma condMI_code_eq_condH [Nonempty Omega]
   rw [hfg, hcfg]
   ring
 
-/-- The `NLatent.ofFunction` score is exactly the direct deterministic score.-/
+/-- The `NLatent.ofFunction` score is exactly the direct deterministic score.
+@isnad1 id=eq.2h9v.s7.4fd337ba7994 from=translated src=- shape=63c059af vocab=561171dd
+-/
 theorem NLatent.ofFunction_score_eq_nDetScore [Nonempty Omega]
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (hp : IsPMF p) (f : forall i : Fin n, Omega -> kappa i)
@@ -170,7 +172,9 @@ theorem NLatent.ofFunction_score_eq_nDetScore [Nonempty Omega]
       ∑ i, condMI code (f i) (g i) p = _
   simp_rw [condMI_code_eq_condH hp code _ _ (hinj _)]
 
-/-- Conditional TC after a hard code is at most base TC plus code entropy.-/
+/-- Conditional TC after a hard code is at most base TC plus code entropy.
+@isnad1 id=le.1h7v.s6.f95f1a33623c from=translated src=- shape=e9fe5d6f vocab=34df1926
+-/
 theorem nCondTC_le_nTC_add_code_entropy [Nonempty Omega]
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (hp : IsPMF p) (f : forall i : Fin n, Omega -> kappa i)
@@ -198,7 +202,9 @@ theorem nCondTC_le_nTC_add_code_entropy [Nonempty Omega]
   rw [hid, Finset.sum_sub_distrib]
   linarith
 
-/-- Exact DTC split across a deterministic code.-/
+/-- Exact DTC split across a deterministic code.
+@isnad1 id=eq.2h9v.s7.69d015b10090 from=translated src=- shape=e0f465e9 vocab=f708e9d6
+-/
 theorem nDTC_eq_code_entropy_sub_recovery_add_condDTC [Nonempty Omega]
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (hp : IsPMF p) (f : forall i : Fin n, Omega -> kappa i)
@@ -235,7 +241,9 @@ theorem nDTC_eq_code_entropy_sub_recovery_add_condDTC [Nonempty Omega]
   ring
 
 /-- Approximate common-label entropy bound.  The two hypotheses are exactly
-the coordinate DTC inequalities; no alphabet or minimum mass occurs.-/
+the coordinate DTC inequalities; no alphabet or minimum mass occurs.
+@isnad1 id=le.4h9v.s8.d110ecec2254 from=translated src=- shape=99b5268f vocab=13edf6b5
+-/
 theorem code_entropy_le_n_minus_one_mul_nTC_add_recovery [Nonempty Omega]
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (hp : IsPMF p) (f : forall i : Fin n, Omega -> kappa i)
@@ -250,7 +258,9 @@ theorem code_entropy_le_n_minus_one_mul_nTC_add_recovery [Nonempty Omega]
     nDTC_eq_code_entropy_sub_recovery_add_condDTC hp f g hinj code
   linarith
 
-/-- **Alphabet-free cost of an approximately deletion-common hard code.**-/
+/-- **Alphabet-free cost of an approximately deletion-common hard code.**
+@isnad1 id=le.4h9v.s8.14303e1b621a from=translated src=- shape=cc4ff10b vocab=6d747725
+-/
 theorem ofFunction_score_le_n_mul_nTC_add_two_recovery [Nonempty Omega]
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (hp : IsPMF p) (f : forall i : Fin n, Omega -> kappa i)

@@ -56,6 +56,9 @@ noncomputable def nContinuousEntropy {δ : Type*} [Fintype δ]
     (m : δ → ℝ) : ℝ :=
   (∑ a, Real.negMulLog (m a)) / Real.log 2
 
+/--
+@isnad1 id=eq.1h2v.s4.5e8d1a18aae0 from=translated src=- shape=38e333cf vocab=dbc7c054
+-/
 lemma H_eq_nContinuousEntropy {δ : Type*} [Fintype δ]
     {m : δ → ℝ} (hm : IsPMF m) : H m = nContinuousEntropy m := by
   have h := H_eq_negMulLog hm.isFinMeas
@@ -64,11 +67,17 @@ lemma H_eq_nContinuousEntropy {δ : Type*} [Fintype δ]
   rw [mul_comm]
   exact h
 
+/--
+@isnad1 id=continuo.0h1v.s4.cdec33a99d5f from=translated src=- shape=e678c73e vocab=d81e5d00
+-/
 lemma continuous_nContinuousEntropy {δ : Type*} [Fintype δ] :
     Continuous (nContinuousEntropy : (δ → ℝ) → ℝ) := by
   unfold nContinuousEntropy
   fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s5.e6b9e70a4ab4 from=translated src=- shape=c5391ebc vocab=054ea5c6
+-/
 lemma continuous_push_map_n {δ ε : Type*} [Fintype δ] [Fintype ε]
     [DecidableEq ε] (h : δ → ε) :
     Continuous (fun m : δ → ℝ => push h m) := by
@@ -82,6 +91,9 @@ noncomputable def continuousNPhi (q : Ω → ℝ) : ℝ :=
     - ∑ i, nContinuousEntropy (push (f i) q)
     - ∑ i, nContinuousEntropy (push (g i) q)
 
+/--
+@isnad1 id=continuo.0h6v.s6.7b312b52e9b3 from=translated src=- shape=8473ba06 vocab=d2f3ab31
+-/
 lemma continuous_continuousNPhi :
     Continuous (continuousNPhi f g : (Ω → ℝ) → ℝ) := by
   unfold continuousNPhi
@@ -95,6 +107,9 @@ lemma continuous_continuousNPhi :
     fun i => continuous_nContinuousEntropy.comp (continuous_push_map_n (g i))
   fun_prop
 
+/--
+@isnad1 id=eq.1h7v.s6.117f561f0fc0 from=translated src=- shape=2e36543b vocab=96820de5
+-/
 lemma nPhi_eq_continuousNPhi {q : Ω → ℝ} (hq : IsPMF q) :
     nPhi f g q = continuousNPhi f g q := by
   unfold nPhi continuousNPhi Hvar
@@ -106,6 +121,9 @@ def nPmfSet : Set (Ω → ℝ) := {q | IsPMF q}
 noncomputable def nPhiGraph : Set ((Ω → ℝ) × ℝ) :=
   (fun q => (q, nPhi f g q)) '' nPmfSet
 
+/--
+@isnad1 id=iscompac.0h1v.s4.876392925491 from=translated src=- shape=fa7e6ba0 vocab=ae4ae73b
+-/
 lemma isCompact_nPmfSet : IsCompact (nPmfSet : Set (Ω → ℝ)) := by
   have heq : (nPmfSet : Set (Ω → ℝ)) = stdSimplex ℝ Ω := by
     ext q
@@ -117,6 +135,9 @@ lemma isCompact_nPmfSet : IsCompact (nPmfSet : Set (Ω → ℝ)) := by
   rw [heq]
   exact isCompact_stdSimplex ℝ Ω
 
+/--
+@isnad1 id=iscompac.0h6v.s6.07fd44d2ca08 from=translated src=- shape=5416aa03 vocab=494f8c3c
+-/
 lemma isCompact_nPhiGraph :
     IsCompact (nPhiGraph f g : Set ((Ω → ℝ) × ℝ)) := by
   let graphMap : (Ω → ℝ) → (Ω → ℝ) × ℝ :=
@@ -138,6 +159,9 @@ lemma isCompact_nPhiGraph :
 noncomputable def nEnvelopeSize : ℕ :=
   Module.finrank ℝ ((Ω → ℝ) × ℝ) + 1
 
+/--
+@isnad1 id=eq.0h1v.s4.b195fc05c42c from=translated src=- shape=db190f46 vocab=08e1947f
+-/
 lemma nEnvelopeSize_eq_card_add_two :
     nEnvelopeSize (Ω := Ω) = Fintype.card Ω + 2 := by
   simp [nEnvelopeSize]
@@ -316,6 +340,9 @@ private lemma convexHull_nPhiGraph_eq_barycenter_image (hp : IsPMF p) :
   Set.Subset.antisymm (convexHull_subset_nEnvelopeBarycenter_image f g hp)
     (nEnvelopeBarycenter_image_subset_convexHull f g)
 
+/--
+@isnad1 id=iscompac.1h7v.s8.6793796d1507 from=translated src=- shape=6f74b2d9 vocab=15ace7f1
+-/
 lemma isCompact_convexHull_nPhiGraph (hp : IsPMF p) :
     IsCompact (convexHull ℝ (nPhiGraph f g : Set ((Ω → ℝ) × ℝ))) := by
   rw [convexHull_nPhiGraph_eq_barycenter_image f g hp]
@@ -338,7 +365,9 @@ private lemma NLatent.graphMixture_mem_convexHull (V : NLatent p) :
     · simp only [Prod.snd_sum, Prod.smul_snd, smul_eq_mul]
 
 /-- Every point of the graph convex hull has a representing latent whose
-alphabet is the fixed Carathéodory alphabet.-/
+alphabet is the fixed Carathéodory alphabet.
+@isnad1 id=ex.2h8v.s8.e1c10d1a40fb from=translated src=- shape=ed8f8547 vocab=a8edf7e2
+-/
 lemma exists_bounded_latent_of_mem_convexHull_nPhiGraph (hp : IsPMF p) {r : ℝ}
     (h : (p, r) ∈ convexHull ℝ (nPhiGraph f g : Set ((Ω → ℝ) × ℝ))) :
     ∃ V : NLatent p,
@@ -383,7 +412,9 @@ lemma exists_bounded_latent_of_mem_convexHull_nPhiGraph (hp : IsPMF p) {r : ℝ}
   · exact hpayoff
 
 /-- The infimum defining `nTau` is attained by a finite latent, with the
-Carathéodory support bound inherited from the ambient graph space.-/
+Carathéodory support bound inherited from the ambient graph space.
+@isnad1 id=ex.2h7v.s7.51f41008bc85 from=translated src=- shape=a2204def vocab=64cd9a04
+-/
 theorem exists_nTau_optimal_latent [Nonempty Ω] (hp : IsPMF p)
     (hinj : ∀ i, Function.Injective (fun z => (f i z, g i z))) :
     ∃ V : NLatent p,
@@ -434,7 +465,9 @@ theorem exists_nTau_optimal_latent [Nonempty Ω] (hp : IsPMF p)
   · unfold nTau
     exact ciInf_le hscore_bdd V
 
-/-- `nTau = nPsi -` the upper concave envelope of `nPhi`.-/
+/-- `nTau = nPsi -` the upper concave envelope of `nPhi`.
+@isnad1 id=eq.2h7v.s7.44078535c91e from=translated src=- shape=a1e76eca vocab=c07aff53
+-/
 theorem nTau_eq [Nonempty Ω] (hp : IsPMF p)
     (hinj : ∀ i, Function.Injective (fun z => (f i z, g i z))) :
     nTau f g p = nPsi f g p - concaveEnvelopeNPhi f g p := by
@@ -587,7 +620,9 @@ noncomputable def NLatent.ofFunction {δ : Type} [Fintype δ] [DecidableEq δ]
         simpa using hsingle
 
 /-- The joint law of a deterministic `NLatent` is the pushforward along the
-graph of its code.-/
+graph of its code.
+@isnad1 id=eq.1h4v.s6.946a6c6c152f from=translated src=- shape=a986218e vocab=92286d1b
+-/
 theorem NLatent.ofFunction_joint_eq_push
     {δ : Type} [Fintype δ] [DecidableEq δ]
     (hp : IsPMF p) (Γ : Ω -> δ) :
@@ -619,7 +654,9 @@ theorem NLatent.ofFunction_joint_eq_push
     _ = ∑ x, if (fun a => (Γ a, a)) x = (c, z) then p x else 0 := rfl
 
 /-- A conditioned component of a deterministic code vanishes away from its
-code fiber.-/
+code fiber.
+@isnad1 id=eq.3h6v.s6.f7fa5c2257cc from=translated src=- shape=909bbaa7 vocab=978d53d8
+-/
 @[simp] lemma NLatent.ofFunction_comp_eq_zero_of_ne
     {δ : Type} [Fintype δ] [DecidableEq δ]
     (hp : IsPMF p) (Γ : Ω → δ) {c : δ} {z : Ω}
@@ -636,7 +673,9 @@ noncomputable def nT (p : Ω → ℝ) : ℝ := by
   else 0
 
 /-- The infimum over hard codes is attained, since the fixed code space is
-finite.-/
+finite.
+@isnad1 id=ex.1h7v.s7.c8f3453a8ab9 from=translated src=- shape=414ea166 vocab=ffc1864a
+-/
 theorem exists_nT_optimal_code [Nonempty Ω] (hp : IsPMF p) :
     ∃ Γ : Ω → Fin (Fintype.card Ω),
       (NLatent.ofFunction hp Γ).score f g = nT (f := f) (g := g) p := by

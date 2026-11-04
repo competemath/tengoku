@@ -27,7 +27,9 @@ noncomputable def clockSharedRaceEntropy
   ∫ E, H (push (fun z => clockArgmin (r z) E) μ) ∂(clockLaw κ)
 
 omit [DecidableEq Ω] in
-/-- The fixed-clock entropy integrand is bounded and hence integrable.-/
+/-- The fixed-clock entropy integrand is bounded and hence integrable.
+@isnad1 id=integrab.1h4v.s6.02355f2ca3c8 from=translated src=- shape=47462fe6 vocab=2ed45fd3
+-/
 lemma integrable_clockSharedRaceEntropy_integrand
     {μ : Ω → ℝ} (hμ : IsPMF μ) (r : Ω → κ → ℝ) :
     Integrable
@@ -60,7 +62,9 @@ lemma integrable_clockSharedRaceEntropy_integrand
 
 The hypotheses `hrowInt` and `hrowBound` are required only on the support of
 `μ`.  The conclusion is in bits; the row hypotheses use natural logarithms,
-so the final step cancels the positive factor `logTwo`.-/
+so the final step cancels the positive factor `logTwo`.
+@isnad1 id=le.5h4v.s8.2c9ae3bdb740 from=translated src=- shape=fa48b261 vocab=c9ce2951
+-/
 theorem clockSharedRaceEntropy_le_of_referenceLoss
     {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ)

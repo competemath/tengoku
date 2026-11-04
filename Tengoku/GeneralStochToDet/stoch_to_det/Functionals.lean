@@ -72,7 +72,9 @@ namespace Latent
 variable {p : α × β → ℝ}
 
 /-- A latent's index type is never empty: its prior is a probability law,
-and an empty sum cannot be `1`.-/
+and an empty sum cannot be `1`.
+@isnad1 id=nonempty.0h4v.s4.d288397ec485 from=translated src=- shape=337cecd9 vocab=767bfbe8
+-/
 instance nonempty_ι (V : Latent p) : Nonempty V.ι := by
   by_contra h
   letI : IsEmpty V.ι := not_nonempty_iff.mp h
@@ -83,6 +85,9 @@ instance nonempty_ι (V : Latent p) : Nonempty V.ι := by
 noncomputable def joint (V : Latent p) : V.ι × (α × β) → ℝ :=
   fun w => V.prior w.1 * V.comp w.1 w.2
 
+/--
+@isnad1 id=ispmf.0h4v.s6.3eb2114b00cf from=translated src=- shape=f4827d00 vocab=5c1bdc47
+-/
 lemma joint_isPMF (V : Latent p) : IsPMF V.joint := by
   refine ⟨?_, ?_⟩
   · intro w
@@ -119,6 +124,9 @@ noncomputable def DScore (G : Latent p) : ℝ :=
       (fun w => w.2.2)
       G.joint
 
+/--
+@isnad1 id=le.0h4v.s5.34c4eb6004d0 from=translated src=- shape=d40a09df vocab=e7e236f6
+-/
 lemma score_nonneg (V : Latent p) : 0 ≤ V.score := by
   unfold score
   exact add_nonneg
@@ -144,6 +152,9 @@ noncomputable def const (hp : IsPMF p) : Latent p where
   comp_isPMF := fun _ => hp
   mixture := by intro z; simp
 
+/--
+@isnad1 id=isdet.1h3v.s5.0f3f51f8e6a0 from=translated src=- shape=1fa99033 vocab=c4ab21ce
+-/
 lemma const_isDet (hp : IsPMF p) : (const hp).IsDet := by
   haveI : Subsingleton (const hp).ι := inferInstanceAs (Subsingleton Unit)
   intro z v v' _ _; exact Subsingleton.elim v v'
@@ -172,7 +183,9 @@ noncomputable def detScore {γ : Type*} [Fintype γ] [DecidableEq γ]
     condH Γ (fun z : α × β => z.2) p
 
 /-- Conditional mutual information as a difference of conditional
-entropies.-/
+entropies.
+@isnad1 id=eq.1h8v.s7.12d1c50f8818 from=translated src=- shape=829ff877 vocab=6141a824
+-/
 theorem condMI_eq_condH_sub_pair
     {Ω γ δ ε : Type*} [Fintype Ω]
     [Fintype γ] [DecidableEq γ]
@@ -191,7 +204,9 @@ theorem condMI_eq_condH_sub_pair
   rw [hassoc]
   ring
 
-/-- A deterministic function has zero conditional entropy given its input.-/
+/-- A deterministic function has zero conditional entropy given its input.
+@isnad1 id=eq.1h5v.s6.62953525b183 from=translated src=- shape=373fc6aa vocab=59fc6e7b
+-/
 theorem condH_function_given_pair_zero
     {γ : Type*} [Fintype γ] [DecidableEq γ]
     {p : α × β → ℝ} (hp : IsPMF p) (Γ : α × β → γ) :
@@ -207,6 +222,9 @@ theorem condH_function_given_pair_zero
   change Hvar graph p - Hvar (fun z : α × β => z) p = 0
   linarith
 
+/--
+@isnad1 id=eq.1h5v.s6.c3e9a3189590 from=translated src=- shape=81ebdb15 vocab=85a7d92f
+-/
 theorem condMI_code_X_given_Y
     {γ : Type*} [Fintype γ] [DecidableEq γ]
     {p : α × β → ℝ} (hp : IsPMF p) (Γ : α × β → γ) :
@@ -218,6 +236,9 @@ theorem condMI_code_X_given_Y
     simpa using hz
   rw [hz', sub_zero]
 
+/--
+@isnad1 id=eq.1h5v.s6.f57596c1754d from=translated src=- shape=89b322d7 vocab=85a7d92f
+-/
 theorem condMI_code_Y_given_X
     {γ : Type*} [Fintype γ] [DecidableEq γ]
     {p : α × β → ℝ} (hp : IsPMF p) (Γ : α × β → γ) :
@@ -254,7 +275,9 @@ theorem condMI_code_Y_given_X
   rw [hz', sub_zero]
 
 /-- For every finite latent, the LessWrong expression differs from the stoch_to_det
-score by exactly twice the residual nondeterminism `H(Γ | X,Y)`.-/
+score by exactly twice the residual nondeterminism `H(Γ | X,Y)`.
+@isnad1 id=eq.0h4v.s7.bce3d4d35249 from=translated src=- shape=5f914123 vocab=1bc12c5e
+-/
 theorem Latent.DScore_eq_score_add_two_condH_pair
     {p : α × β → ℝ} (G : Latent p) :
     G.DScore =
@@ -299,11 +322,16 @@ theorem Latent.DScore_eq_score_add_two_condH_pair
   rw [hGX, hGY, hswap]
   ring
 
+/--
+@isnad1 id=le.0h3v.s5.1bbf226d8b60 from=translated src=- shape=819d575d vocab=38834eb7
+-/
 lemma tau_nonneg (p : α × β → ℝ) : 0 ≤ tau p := by
   unfold tau
   exact Real.iInf_nonneg fun V => V.score_nonneg
 
-/-- The infimum `tau p` is below the score of every finite latent.-/
+/-- The infimum `tau p` is below the score of every finite latent.
+@isnad1 id=le.0h4v.s5.6259b403e35a from=translated src=- shape=1245b064 vocab=17cf1b14
+-/
 lemma tau_le_score {p : α × β → ℝ} (V : Latent p) : tau p ≤ V.score := by
   unfold tau
   have hb : BddBelow (Set.range fun W : Latent p => W.score) :=
@@ -312,11 +340,16 @@ lemma tau_le_score {p : α × β → ℝ} (V : Latent p) : tau p ≤ V.score := 
       exact W.score_nonneg⟩
   exact ciInf_le hb V
 
+/--
+@isnad1 id=le.0h3v.s5.c34e4b95b5c6 from=translated src=- shape=819d575d vocab=90b22960
+-/
 lemma T_nonneg (p : α × β → ℝ) : 0 ≤ T p := by
   unfold T
   exact Real.iInf_nonneg fun V => V.1.score_nonneg
 
-/-- §0: `τ ≤ T ≤ I(X;Y)`.-/
+/-- §0: `τ ≤ T ≤ I(X;Y)`.
+@isnad1 id=le.1h3v.s5.7c61ca558909 from=translated src=- shape=c201a248 vocab=71d81c4b
+-/
 lemma tau_le_T {p : α × β → ℝ} (hp : IsPMF p) : tau p ≤ T p := by
   let V0 : {V : Latent p // V.IsDet} := ⟨Latent.const hp, Latent.const_isDet hp⟩
   letI : Nonempty {V : Latent p // V.IsDet} := ⟨V0⟩
@@ -327,7 +360,9 @@ lemma tau_le_T {p : α × β → ℝ} (hp : IsPMF p) : tau p ≤ T p := by
   exact ciInf_le hb V.1
 
 /-- The score of any single deterministic latent bounds `T` from above. This is
-how §12 uses `T`: Corollary 4.4 exhibits one good seed.-/
+how §12 uses `T`: Corollary 4.4 exhibits one good seed.
+@isnad1 id=le.1h4v.s5.3254b9c45cf4 from=translated src=- shape=8ab1238c vocab=c7e3399b
+-/
 lemma T_le_score {p : α × β → ℝ} (V : Latent p) (hV : V.IsDet) : T p ≤ V.score := by
   unfold T
   have hb : BddBelow (Set.range fun W : {W : Latent p // W.IsDet} => W.1.score) :=

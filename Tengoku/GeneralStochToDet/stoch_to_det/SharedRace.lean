@@ -29,7 +29,9 @@ def HasClockCoordinateBound (κ : Type)
     2 ≤ Fintype.card κ → ∀ i,
       (∫ E : κ → ℝ, clockCoordinateIntegrand π i E ∂clockLaw κ) ≤ π i
 
-/-- Row-reference-loss assembly for one finite source context.-/
+/-- Row-reference-loss assembly for one finite source context.
+@isnad1 id=le.5h4v.s7.c7ccf6209a77 from=translated src=- shape=f9439eb7 vocab=fb2d738c
+-/
 theorem clockSharedRaceEntropy_le
     {Ω : Type u} {κ : Type}
     [Fintype Ω] [Fintype κ] [DecidableEq Ω] [DecidableEq κ] [Nonempty κ]
@@ -57,7 +59,9 @@ theorem clockSharedRaceEntropy_le
       π (r z) hπ hπpos (hr z hz) (hrpos z hz) hk hcoord
 
 /-- Nontrivial finite label alphabets satisfy the Gumbel shared-race theorem
-as soon as the coordinate moment is available.-/
+as soon as the coordinate moment is available.
+@isnad1 id=hasshare.2h2v.s5.e07a3934b4fe from=translated src=- shape=2fd866a4 vocab=7402aea5
+-/
 theorem hasSharedRaceBound_of_two_le_card
     {Ω : Type u} {κ : Type}
     [Fintype Ω] [Fintype κ] [DecidableEq Ω] [DecidableEq κ] [Nonempty κ]
@@ -68,7 +72,9 @@ theorem hasSharedRaceBound_of_two_le_card
   rw [sharedRaceEntropy_eq_clockSharedRaceEntropy hrpos]
   exact clockSharedRaceEntropy_le hμ hr hrpos hk hcoordinate
 
-/-- Singleton/nontrivial split for the universal shared-race theorem.-/
+/-- Singleton/nontrivial split for the universal shared-race theorem.
+@isnad1 id=hasshare.1h2v.s5.d9f4a3416082 from=translated src=- shape=6e211c33 vocab=52d26b6d
+-/
 theorem hasSharedRaceBound_of_clockCoordinateBound
     {Ω : Type u} {κ : Type}
     [Fintype Ω] [Fintype κ] [DecidableEq Ω] [DecidableEq κ] [Nonempty κ]
@@ -88,13 +94,17 @@ def UniversalClockCoordinateBound : Prop :=
     HasClockCoordinateBound κ
 
 /-- The winner/loser pair-clock theorem supplies the coordinate interface for
-every finite nonempty label alphabet.-/
+every finite nonempty label alphabet.
+@isnad1 id=universa.0h0v.s0.c5949cda0ff7 from=translated src=- shape=45709ebd vocab=c5949cda
+-/
 theorem universalClockCoordinateBound : UniversalClockCoordinateBound :=
   fun _κ _ _ _ π hπ hπpos hk i =>
     clockCoordinateIntegral_le π hπ hπpos hk i
 
 /-- The shared-race theorem for every source-supported strictly positive
-posterior family, including the singleton label alphabet.-/
+posterior family, including the singleton label alphabet.
+@isnad1 id=hasshare.0h2v.s4.f9d59c2bb1a2 from=translated src=- shape=cdf5ba4d vocab=d463fc85
+-/
 theorem hasSharedRaceBound
     {Ω : Type u} {κ : Type}
     [Fintype Ω] [Fintype κ] [DecidableEq Ω] [DecidableEq κ] [Nonempty κ] :

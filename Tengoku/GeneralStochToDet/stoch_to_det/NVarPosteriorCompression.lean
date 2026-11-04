@@ -17,6 +17,9 @@ open Finset
 
 namespace FiniteInfo
 
+/--
+@isnad1 id=eq.0h6v.s5.cb53cae31109 from=translated src=- shape=ed56a8df vocab=42ac46fa
+-/
 lemma Hvar_push_source
     {S T F : Type*} [Fintype S] [Fintype T] [DecidableEq T]
     [Fintype F] [DecidableEq F]
@@ -25,6 +28,9 @@ lemma Hvar_push_source
   unfold Hvar
   rw [push_push]
 
+/--
+@isnad1 id=eq.0h8v.s6.35c113fa585a from=translated src=- shape=a31567cc vocab=0b790ed5
+-/
 lemma condH_push_source
     {S T F K : Type*} [Fintype S] [Fintype T] [DecidableEq T]
     [Fintype F] [DecidableEq F] [Fintype K] [DecidableEq K]
@@ -36,6 +42,9 @@ lemma condH_push_source
   rw [Hvar_push_source, Hvar_push_source]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s6.ea244d9de47f from=translated src=- shape=c9473c1e vocab=5c040d8d
+-/
 lemma condMI_push_source
     {S T F G K : Type*} [Fintype S] [Fintype T] [DecidableEq T]
     [Fintype F] [DecidableEq F] [Fintype G] [DecidableEq G]
@@ -53,7 +62,9 @@ lemma condMI_push_source
     Hvar_push_source]
   rfl
 
-/-- Mutual information vanishes under a finite product law.-/
+/-- Mutual information vanishes under a finite product law.
+@isnad1 id=eq.2h4v.s6.6b05928c7b53 from=translated src=- shape=5b71db4f vocab=318e5cb8
+-/
 lemma MI_product_zero
     {A B : Type*} [Fintype A] [DecidableEq A]
     [Fintype B] [DecidableEq B]
@@ -100,7 +111,9 @@ lemma MI_product_zero
   ring
 
 /-- Conditional mutual information vanishes when its left input is already a
-function of the conditioning input.-/
+function of the conditioning input.
+@isnad1 id=eq.2h9v.s6.cba0903b3a1b from=translated src=- shape=4981e622 vocab=b11cb9e2
+-/
 lemma condMI_function_of_condition_left_zero
     {A F G K : Type*} [Fintype A] [Fintype F] [Fintype G] [Fintype K]
     [DecidableEq F] [DecidableEq G] [DecidableEq K]
@@ -114,7 +127,9 @@ lemma condMI_function_of_condition_left_zero
   linarith
 
 /-- The abstract Shannon ledger behind one-sided posterior compression.  No
-alphabet size occurs: `Z` only needs to be a function of `(X,C₀)`.-/
+alphabet size occurs: `Z` only needs to be a function of `(X,C₀)`.
+@isnad1 id=le.3h10v.s7.f8e96a555088 from=translated src=- shape=787030e6 vocab=edff7ac5
+-/
 lemma oneSided_bridge
     {A XTy CTy ZTy : Type*} [Fintype A]
     [Fintype XTy] [DecidableEq XTy] [Fintype CTy] [DecidableEq CTy]
@@ -214,7 +229,9 @@ lemma oneSided_bridge
   linarith
 
 /-- Revealing an independent functional-representation seed cannot increase
-the averaged one-sided hardening error.-/
+the averaged one-sided hardening error.
+@isnad1 id=le.3h11v.s8.293884ac0e17 from=translated src=- shape=a7e63e81 vocab=22870ab0
+-/
 lemma seed_conditioning_le
     {A XTy CTy ETy ZTy : Type*} [Fintype A]
     [Fintype XTy] [DecidableEq XTy] [Fintype CTy] [DecidableEq CTy]
@@ -288,7 +305,9 @@ lemma seed_conditioning_le
   linarith
 
 /-- Entropy chain rule for an independent finite seed and a seed-indexed
-observable.-/
+observable.
+@isnad1 id=eq.2h6v.s7.1c381938329b from=translated src=- shape=18f1cddd vocab=91c4b4dd
+-/
 lemma Hvar_seed_product
     {E W F : Type*} [Fintype E] [DecidableEq E]
     [Fintype W] [Fintype F] [DecidableEq F]
@@ -349,7 +368,9 @@ lemma Hvar_seed_product
   simpa [m]
 
 /-- The expectation of the fixed-seed one-sided errors is the conditional
-error before fixing the seed.-/
+error before fixing the seed.
+@isnad1 id=eq.2h10v.s8.854f3a9892b2 from=translated src=- shape=9598ec6a vocab=b22ff00f
+-/
 lemma average_fixed_error_eq
     {E W XTy CTy ZTy : Type*} [Fintype E] [DecidableEq E]
     [Fintype W] [Fintype XTy] [DecidableEq XTy]
@@ -458,7 +479,9 @@ lemma average_fixed_error_eq
     Finset.sum_sub_distrib]
   ring
 
-/-- Some point is no larger than its expectation under a finite PMF.-/
+/-- Some point is no larger than its expectation under a finite PMF.
+@isnad1 id=ex.1h3v.s5.93989ead2cca from=translated src=- shape=b44507a5 vocab=84c314f2
+-/
 lemma exists_le_weighted_average
     {E : Type*} [Fintype E] [DecidableEq E]
     {r : E -> Real} (hr : IsPMF r) (a : E -> Real) :
@@ -495,7 +518,9 @@ lemma exists_le_weighted_average
   dsimp only [avg] at he ⊢
   nlinarith
 
-/-- Product-sum identity for a finite table with `N` independent entries.-/
+/-- Product-sum identity for a finite table with `N` independent entries.
+@isnad1 id=eq.0h3v.s6.02ae0e913984 from=translated src=- shape=e2ddded9 vocab=a3339c10
+-/
 lemma sum_fin_table_prod {C : Type} [Fintype C] (N : Nat)
     (q : Fin N -> C -> Real) :
     (∑ e : Fin N -> C, ∏ j, q j (e j)) = ∏ j, ∑ c, q j c := by
@@ -526,7 +551,9 @@ lemma sum_fin_table_prod {C : Type} [Fintype C] (N : Nat)
         _ = ∏ j : Fin (N + 1), ∑ c, q j c := by
                 rw [Fin.prod_univ_succ]
 
-/-- One-coordinate marginal of the finite independent table.-/
+/-- One-coordinate marginal of the finite independent table.
+@isnad1 id=eq.1h5v.s7.a1329bb28566 from=translated src=- shape=907f1dc7 vocab=d7968812
+-/
 lemma sum_fin_table_eval {C : Type} [Fintype C] [DecidableEq C]
     (N : Nat) (q : Fin N -> C -> Real) (hq : forall j, ∑ c, q j c = 1)
     (j : Fin N) (c : C) :
@@ -576,9 +603,15 @@ variable {p : Omega -> Real}
 noncomputable def posteriorPairLaw (V : NLatent p) : Omega × V.ι -> Real :=
   push (fun w : V.ι × Omega => (w.2, w.1)) V.joint
 
+/--
+@isnad1 id=ispmf.0h3v.s5.cff3c350a768 from=translated src=- shape=05d1a6d2 vocab=81615504
+-/
 lemma posteriorPairLaw_isPMF (V : NLatent p) : IsPMF V.posteriorPairLaw :=
   isPMF_push V.joint_isPMF
 
+/--
+@isnad1 id=eq.0h3v.s7.0cc39cf8587b from=translated src=- shape=160a9312 vocab=00f972f8
+-/
 lemma posteriorPairLaw_eq_replica_push (V : NLatent p) :
     V.posteriorPairLaw =
       push (fun u : (V.ι × V.ι) × Omega => (u.2, u.1.1)) V.replicaLaw := by
@@ -601,9 +634,15 @@ noncomputable def posteriorPairJoint (V : NLatent p) :
     V.ι × (Omega × V.ι) -> Real :=
   push V.pairJointReorder V.replicaLaw
 
+/--
+@isnad1 id=ispmf.0h3v.s6.e882938ca94e from=translated src=- shape=ab50e57b vocab=06ce0171
+-/
 lemma posteriorPairJoint_isPMF (V : NLatent p) :
     IsPMF V.posteriorPairJoint := isPMF_push V.replicaLaw_isPMF
 
+/--
+@isnad1 id=eq.0h3v.s7.5982ea50fc03 from=translated src=- shape=d2d2c763 vocab=67137c63
+-/
 lemma push_posteriorPairJoint_source (V : NLatent p) :
     push Prod.snd V.posteriorPairJoint = V.posteriorPairLaw := by
   unfold posteriorPairJoint posteriorPairLaw
@@ -624,6 +663,9 @@ noncomputable def posteriorPairNLatent (V : NLatent p) :
   NLatent.ofJoint V.posteriorPairJoint V.posteriorPairJoint_isPMF
     V.posteriorPairLaw_isPMF V.push_posteriorPairJoint_source
 
+/--
+@isnad1 id=eq.0h3v.s6.3bc34beec5b4 from=translated src=- shape=1d085b9f vocab=3e36dc6e
+-/
 theorem posteriorPairNLatent_joint (V : NLatent p) :
     V.posteriorPairNLatent.joint = V.posteriorPairJoint := by
   exact NLatent.ofJoint_joint_eq V.posteriorPairJoint
@@ -643,6 +685,9 @@ noncomputable def posteriorPairLatent (V : NLatent p) :
   comp_isPMF := V.posteriorPairNLatent.comp_isPMF
   mixture := V.posteriorPairNLatent.mixture
 
+/--
+@isnad1 id=eq.0h3v.s6.d70c7a37eb88 from=translated src=- shape=310fd304 vocab=d7766536
+-/
 theorem posteriorPairLatent_joint (V : NLatent p) :
     V.posteriorPairLatent.joint = V.posteriorPairJoint := by
   change V.posteriorPairNLatent.joint = V.posteriorPairJoint
@@ -659,6 +704,9 @@ private theorem posteriorPair_condMI_lift (V : NLatent p)
         (h ∘ V.pairJointReorder) V.replicaLaw := by
   exact FiniteInfo.condMI_push_source V.pairJointReorder f g h V.replicaLaw
 
+/--
+@isnad1 id=eq.0h3v.s6.d55dfcde0d32 from=translated src=- shape=b05fafc1 vocab=bec4a959
+-/
 theorem posteriorPairLatent_score (V : NLatent p) :
     V.posteriorPairLatent.score = 2 * V.replicaDefect := by
   let A : ((V.ι × V.ι) × Omega) -> V.ι := fun u => u.1.1
@@ -719,7 +767,9 @@ theorem posteriorPairLatent_score (V : NLatent p) :
   ring
 
 /-- A pair code supplied by the two-variable theorem already has small
-one-sided error when regarded as a stochastic code of `X`.-/
+one-sided error when regarded as a stochastic code of `X`.
+@isnad1 id=other.0h5v.s8.06814aef1f52 from=translated src=- shape=dfea9f37 vocab=325addf0
+-/
 theorem replica_oneSided_le_detScore_add (V : NLatent p)
     {delta : Type*} [Fintype delta] [DecidableEq delta]
     (phi : Omega × V.ι -> delta) :

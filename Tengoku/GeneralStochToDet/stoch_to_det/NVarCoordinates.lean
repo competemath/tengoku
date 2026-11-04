@@ -214,7 +214,9 @@ private lemma condH_pair_chain
 namespace NLatent
 
 /-- Conditional entropy given both a base view and the latent is the prior
-average of the corresponding component conditional entropies.-/
+average of the corresponding component conditional entropies.
+@isnad1 id=eq.0h7v.s7.aff027145fd2 from=translated src=- shape=b84daedc vocab=bdcaa5bc
+-/
 lemma condH_pair_view_prior
     {a b : Type} [Fintype a] [DecidableEq a]
     [Fintype b] [DecidableEq b]
@@ -247,7 +249,9 @@ end NLatent
 
 /-- Conditional DTC is nonnegative for actual coordinate/deletion views.
 The statement is source-generic: `x` need not be injective and the code may
-depend on all source information.-/
+depend on all source information.
+@isnad1 id=le.1h7v.s7.ea23aa3d1400 from=translated src=- shape=8c65db92 vocab=b434c5de
+-/
 theorem coordinate_condDTC_nonneg {n : Nat}
     {m : Omega -> Real} (hm : IsPMF m)
     (x : Omega -> (Fin n -> alpha)) (c : Omega -> delta) :
@@ -301,7 +305,9 @@ theorem coordinate_condDTC_nonneg {n : Nat}
 entropy at most the conditional dual total correlation of the coordinates.
 
 This is source-generic, so the conditioning variable can in particular be a
-stochastic latent coupled to the coordinate vector.-/
+stochastic latent coupled to the coordinate vector.
+@isnad1 id=le.2h10v.s8.49789dab2b7e from=translated src=- shape=58eef9fc vocab=2d0c43af
+-/
 theorem coordinate_common_code_condH_le_condDTC {n : Nat}
     {beta : Type} [Fintype beta] [DecidableEq beta]
     {m : Omega -> Real} (hm : IsPMF m)
@@ -346,6 +352,9 @@ def coordinateView (i : Fin n) : (Fin n -> alpha) -> alpha := fun x => x i
 def coordinateDeletionView (i : Fin n) :
     (Fin n -> alpha) -> (Fin n -> alpha) := maskDelete i
 
+/--
+@isnad1 id=injectiv.0h3v.s5.9b5c0c116094 from=translated src=- shape=a87d5bec vocab=71ec420f
+-/
 theorem coordinate_pair_injective (i : Fin n) :
     Function.Injective
       (fun x : Fin n -> alpha => (coordinateView i x, coordinateDeletionView i x)) := by
@@ -357,6 +366,9 @@ theorem coordinate_pair_injective (i : Fin n) :
   · have hdel := congrArg (fun z => z.2 j) hxy
     simpa [coordinateDeletionView, maskDelete, hji] using hdel
 
+/--
+@isnad1 id=injectiv.0h2v.s5.b2e4c380e58f from=translated src=- shape=21743625 vocab=e7960406
+-/
 theorem coordinate_tuple_injective :
     Function.Injective
       (tupleView (fun i : Fin n => coordinateView (alpha := alpha) i)) := by
@@ -461,7 +473,9 @@ private lemma double_deletion_sum {p : (Fin n -> alpha) -> Real}
   rw [← Finset.mul_sum]
 
 /-- The second genuine-coordinate DTC inequality:
-`DTC(X) <= (n-1) TC(X)`.-/
+`DTC(X) <= (n-1) TC(X)`.
+@isnad1 id=le.2h3v.s7.2bdd102893c4 from=translated src=- shape=e19888eb vocab=73b64012
+-/
 theorem coordinate_nDTC_le_n_minus_one_mul_nTC
     {p : (Fin n -> alpha) -> Real} (hp : IsPMF p) (hn : 1 <= n) :
     nDTC (fun i => coordinateView (alpha := alpha) i)
@@ -487,7 +501,9 @@ theorem coordinate_nDTC_le_n_minus_one_mul_nTC
   linarith
 
 /-- The second coordinate DTC inequality after conditioning on an arbitrary
-finite stochastic latent.-/
+finite stochastic latent.
+@isnad1 id=le.1h4v.s10.5a3618804ba9 from=translated src=- shape=51b31598 vocab=508d4916
+-/
 theorem coordinate_latent_condDTC_le_n_minus_one_mul_condTC
     {p : (Fin n -> alpha) -> Real} (hn : 1 <= n) (V : NLatent p) :
     condH (fun w : V.ι × (Fin n -> alpha) => w.2) (fun w => w.1) V.joint -
@@ -566,7 +582,9 @@ theorem coordinate_latent_condDTC_le_n_minus_one_mul_condTC
 /-- If a hard code is recoverable from every deletion, adjoining it to an
 arbitrary latent costs at most a factor `n` in the score.  The left side is
 written on the original joint law; it is the conditional-TC part after
-revealing `(code X, V)`, plus the unchanged redundancy terms.-/
+revealing `(code X, V)`, plus the unchanged redundancy terms.
+@isnad1 id=le.2h7v.s10.e8a9ed96e540 from=translated src=- shape=422378f8 vocab=4cc40959
+-/
 theorem coordinate_common_refined_score_le_n_mul_score
     {p : (Fin n -> alpha) -> Real} (hn : 1 <= n) (V : NLatent p)
     (code : (Fin n -> alpha) -> delta)
@@ -643,7 +661,9 @@ theorem coordinate_common_refined_score_le_n_mul_score
         (fun w => coordinateDeletionView i w.2) V.joint)
   nlinarith
 
-/-- Conditional DTC nonnegativity in the `NVarApproxCommon` notation.-/
+/-- Conditional DTC nonnegativity in the `NVarApproxCommon` notation.
+@isnad1 id=le.1h5v.s7.944cf4035230 from=translated src=- shape=9591d4ff vocab=5bdc599a
+-/
 theorem coordinate_nCondDTC_nonneg
     {p : (Fin n -> alpha) -> Real} (hp : IsPMF p)
     (code : (Fin n -> alpha) -> delta) :
@@ -655,7 +675,9 @@ theorem coordinate_nCondDTC_nonneg
   exact coordinate_condDTC_nonneg hp (fun x : Fin n -> alpha => x) code
 
 /-- The approximate-common hard-label theorem with both coordinate entropy
-hypotheses discharged.-/
+hypotheses discharged.
+@isnad1 id=le.2h5v.s8.6b024ab5abbf from=translated src=- shape=d2701737 vocab=2cb8632d
+-/
 theorem coordinate_hard_score_le
     {p : (Fin n -> alpha) -> Real} (hp : IsPMF p) (hn : 1 <= n)
     (code : (Fin n -> alpha) -> delta) :

@@ -47,7 +47,9 @@ variable {α β : Type*} [Fintype α] [Fintype β] [DecidableEq α] [DecidableEq
 variable {p : α × β → ℝ} {D : SeedSetup p} {K : Clustering D}
 
 /-- The elementary positive-log estimate used in the sharpened scalar
-channel argument.-/
+channel argument.
+@isnad1 id=le.1h1v.s5.4221cb3b15ca from=translated src=- shape=d56e6f4b vocab=0677f952
+-/
 lemma log_pos_part_le_div_exp_one (r : ℝ) (hr : 0 < r) :
     max (Real.log r) 0 ≤ r / Real.exp 1 := by
   by_cases hlog : Real.log r ≤ 0
@@ -58,7 +60,9 @@ lemma log_pos_part_le_div_exp_one (r : ℝ) (hr : 0 < r) :
     simpa [Real.exp_log hr, mul_comm] using
       (Real.exp_one_mul_le_exp (x := Real.log r))
 
-/-- `E|ln T| ≤ 1 + e⁻¹ ≤ 2` for `T ~ Exp(1)`.-/
+/-- `E|ln T| ≤ 1 + e⁻¹ ≤ 2` for `T ~ Exp(1)`.
+@isnad1 id=le.0h0v.s6.51d8b5cae335 from=translated src=- shape=066ffe48 vocab=f457605c
+-/
 theorem abs_log_exp_integral_le :
     ∫ t in Set.Ioi (0 : ℝ), |Real.log t| * Real.exp (-t) ≤ 2 := by
   let f : ℝ → ℝ := fun t => |Real.log t| * Real.exp (-t)
@@ -153,7 +157,9 @@ theorem abs_log_exp_integral_le :
 
 /-- The off-diagonal single-context bound, in nats:
 `I(U;Z ∣ b,g) ≤ C + ln 8 − γ`, where `C = D(ν ‖ q_g)`.
-The last step is `ln((C+4)/4) ≤ C`, i.e. `e^C ≥ 1 + C/4` for `C ≥ 0`.-/
+The last step is `ln((C+4)/4) ≤ C`, i.e. `e^C ≥ 1 + C/4` for `C ≥ 0`.
+@isnad1 id=le.1h1v.s6.9574a0f77d8b from=translated src=- shape=d85f0c1b vocab=8cb94d1c
+-/
 theorem offdiag_context_bound_nats {C : ℝ} (hC : 0 ≤ C) :
     Real.log (2 * Real.exp 1 * (C + 4)) - (1 + Real.eulerMascheroniConstant)
       ≤ C + cZero := by
@@ -176,7 +182,9 @@ theorem offdiag_context_bound_nats {C : ℝ} (hC : 0 ≤ C) :
 `C = −E_ν ln R ≥ 0` and `E_ν(1/R) ≤ 1/P`, the golden formula against
 `Exp(mean P)` gives `P · I(U;Z ∣ g,g) ≤ P·[−C + E_ν(1/R) − 1] ≤ 1 − P`.
 Stated as the scalar inequality; wiring it to a context depends on how the
-seed-conditioned informations are modelled (see `stoch_to_det.Quotient`).-/
+seed-conditioned informations are modelled (see `stoch_to_det.Quotient`).
+@isnad1 id=le.3h3v.s6.47726cc219c5 from=translated src=- shape=927ef9d4 vocab=6803bdad
+-/
 theorem diag_context_arith {P C invR : ℝ} (hP : 0 < P) (hC : 0 ≤ C)
     (hinv : invR ≤ 1 / P) :
     P * (-C + invR - 1) ≤ 1 - P := by
@@ -303,7 +311,9 @@ private lemma expMeasure_eq_withDensity_expRateRatio {r u : ℝ}
     simp
 
 /-- The KL between exponentials used by the diagonal case:
-`D(Exp(mean s) ‖ Exp(mean q)) = ln(q/s) + s/q − 1` nats.-/
+`D(Exp(mean s) ‖ Exp(mean q)) = ln(q/s) + s/q − 1` nats.
+@isnad1 id=eq.2h2v.s6.36b830fce330 from=translated src=- shape=7c6c5796 vocab=6d72a724
+-/
 theorem klDiv_expMeasure {s q : ℝ} (hs : 0 < s) (hq : 0 < q) :
     (klDiv (expMeasure (1 / s)) (expMeasure (1 / q))).toReal
       = Real.log (q / s) + s / q - 1 := by
@@ -371,7 +381,9 @@ theorem klDiv_expMeasure {s q : ℝ} (hs : 0 < s) (hq : 0 < q) :
 
 /-- The form §11 consumes: `scalar ≤ K_sc (M + S)`,
 where `K_sc = κ/c_* = (1 + ln 8 − γ) N` (the first branch of the `max`
-dominates; the second is `≈ 2.75 × 10¹⁰`).-/
+dominates; the second is `≈ 2.75 × 10¹⁰`).
+@isnad1 id=le.0h6v.s6.ba743ed49b29 from=translated src=- shape=0797a377 vocab=6ddacc4f
+-/
 theorem scalar_bound_Ksc (R : RaceQuantities D K) :
     R.scalar ≤ Ksc * (D.M + K.Sinfo) := by
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)

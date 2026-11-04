@@ -7,6 +7,9 @@ import Tengoku.GeneralStochToDet.stoch_to_det.Constants96
 
 namespace stoch_to_det
 
+/--
+@isnad1 id=le.3h2v.s7.8650fb708b14 from=translated src=- shape=c08ba0f9 vocab=c91b6e27
+-/
 theorem assembly_cap_96 (x y : ℝ) (hx : 0 ≤ x) (hy : 0 ≤ y)
     (hxy : x + y ≤ (231 : ℝ) / 10000) :
     Real.sqrt (((259 : ℝ) / 100) * x) +
@@ -50,6 +53,9 @@ theorem assembly_cap_96 (x y : ℝ) (hx : 0 ≤ x) (hy : 0 ≤ y)
       norm_num at hxy ⊢
       nlinarith
 
+/--
+@isnad1 id=lt.0h0v.s4.8601bd920e0b from=translated src=- shape=5ccaf027 vocab=dc248b01
+-/
 theorem assembly_cap_96_lt_rho : (4511 : ℝ) / 10000 < rho96 := by
   rw [rho96_eq_value]
   norm_num

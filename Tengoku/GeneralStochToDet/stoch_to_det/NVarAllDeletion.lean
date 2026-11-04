@@ -23,6 +23,9 @@ set_option maxHeartbeats 1000000
 /-- Coordinate subsets of cardinality `m`.-/
 abbrev DeletionSet (n m : Nat) := {D : Finset (Fin n) // D.card = m}
 
+/--
+@isnad1 id=eq.0h2v.s5.c4ba22e4d6a9 from=translated src=- shape=26a905d5 vocab=985e3d8e
+-/
 theorem card_deletionSet (n m : Nat) :
     Fintype.card (DeletionSet n m) = Nat.choose n m := by
   classical
@@ -36,6 +39,9 @@ theorem card_deletionSet (n m : Nat) :
   rw [Fintype.card_congr e, Fintype.card_coe, Finset.card_powersetCard]
   simp
 
+/--
+@isnad1 id=nonempty.1h2v.s3.4b308231eed5 from=translated src=- shape=95cd07c6 vocab=4a25c128
+-/
 theorem deletionSet_nonempty {n m : Nat} (hmn : m <= n) :
     Nonempty (DeletionSet n m) := by
   classical
@@ -59,6 +65,9 @@ def deletedBlockView {m : Nat} (D : DeletionSet n m) :
 def survivorBlockView {m : Nat} (D : DeletionSet n m) :
     (Fin n -> alpha) -> (Fin n -> alpha) := maskOn (Finset.univ \ D.1)
 
+/--
+@isnad1 id=injectiv.0h4v.s5.426cd825c0de from=translated src=- shape=2a85f000 vocab=83d24a36
+-/
 theorem deleted_survivor_injective {m : Nat} (D : DeletionSet n m) :
     Function.Injective (fun x : Fin n -> alpha =>
       (deletedBlockView D x, survivorBlockView D x)) := by
@@ -94,7 +103,9 @@ noncomputable def deletionSumScore (V : NLatent p) : Real :=
 noncomputable def deletionSumTau (p : (Fin n -> alpha) -> Real) : Real :=
   ⨅ V : NLatent p, V.deletionSumScore (m := m)
 
-/-- The conditional-TC part of the deletion score is nonnegative.-/
+/-- The conditional-TC part of the deletion score is nonnegative.
+@isnad1 id=le.0h4v.s9.8a700eb5bd98 from=translated src=- shape=7ff30d49 vocab=0f992764
+-/
 theorem deletionConditionalTC_nonneg [Nonempty alpha] (V : NLatent p) :
     0 <= (∑ i, condH
         (fun w : V.ι × (Fin n -> alpha) => w.2 i) (fun w => w.1) V.joint) -
@@ -104,6 +115,9 @@ theorem deletionConditionalTC_nonneg [Nonempty alpha] (V : NLatent p) :
     (f := fun i => coordinateView (alpha := alpha) i)
     (coordinate_tuple_injective (alpha := alpha))
 
+/--
+@isnad1 id=le.0h5v.s6.f61f5dae2b3f from=translated src=- shape=89211070 vocab=7f201bcf
+-/
 theorem deletionSumScore_nonneg [Nonempty alpha] (V : NLatent p) :
     0 <= V.deletionSumScore (m := m) := by
   have htc := V.deletionConditionalTC_nonneg
@@ -171,7 +185,9 @@ private theorem condMI_deleted_survivor_component (V : NLatent p)
   have h := V.condMI_view (f := fd) (g := gd) (0 : Fin 1)
   simpa [fd, gd] using h
 
-/-- Envelope decomposition of the arbitrary-budget sum score.-/
+/-- Envelope decomposition of the arbitrary-budget sum score.
+@isnad1 id=eq.0h5v.s7.198e3155f0c9 from=translated src=- shape=956059a5 vocab=3638c800
+-/
 theorem deletionSumScore_eq_envelope (V : NLatent p) :
     V.deletionSumScore (m := m) =
       deletionPsi (n := n) (alpha := alpha) m p -
@@ -248,7 +264,9 @@ variable {n m : Nat} {alpha delta : Type}
 variable {p : (Fin n -> alpha) -> Real}
 
 /-- On hard latents the stochastic CMI terms become the requested entropy
-redundancy terms.-/
+redundancy terms.
+@isnad1 id=eq.1h6v.s7.b4810e95c32e from=translated src=- shape=f1ecd5cd vocab=34c09127
+-/
 theorem ofFunction_deletionSumScore_eq_hardScore
     (hp : IsPMF p) (code : (Fin n -> alpha) -> delta) :
     (NLatent.ofFunction hp code).deletionSumScore (m := m) =
@@ -385,7 +403,9 @@ private theorem Hvar_default_const_eq_zero
     _ = 0 := hunit
 
 /-- The arbitrary-deletion payoff is an instance of the already certified
-finite-dimensional `nPhi` envelope.-/
+finite-dimensional `nPhi` envelope.
+@isnad1 id=eq.1h4v.s7.9d1c6c2196c3 from=translated src=- shape=3f79196a vocab=4901ebfa
+-/
 theorem nPhi_deletionEnvelope_eq
     {q : (Fin n -> alpha) -> Real} (hq : IsPMF q) :
     nPhi (deletionEnvelopeF (n := n) (alpha := alpha) m)
@@ -427,7 +447,9 @@ theorem nPhi_deletionEnvelope_eq
 end DeletionEnvelope
 
 /-- The arbitrary-budget sum optimum is attained by a finite latent of the
-same Caratheodory size as the source probability simplex.-/
+same Caratheodory size as the source probability simplex.
+@isnad1 id=ex.1h4v.s7.efde6243e024 from=translated src=- shape=04532c65 vocab=59740e6e
+-/
 theorem exists_deletionSumTau_optimal_latent
     {n m : Nat} {alpha : Type} [Fintype alpha] [DecidableEq alpha]
     [Inhabited alpha] {p : (Fin n -> alpha) -> Real} (hp : IsPMF p) :
@@ -519,7 +541,9 @@ variable {n m : Nat} {alpha : Type} [Fintype alpha] [DecidableEq alpha]
   [Inhabited alpha] {p : (Fin n -> alpha) -> Real}
 
 /-- The fixed part of the deletion envelope is exactly the ordinary total
-correlation of the source coordinates.-/
+correlation of the source coordinates.
+@isnad1 id=eq.1h4v.s6.69cbcf959ac9 from=translated src=- shape=1e7942af vocab=ce270230
+-/
 theorem deletionPsi_sub_deletionPhi_eq_nTC (hp : IsPMF p) :
     deletionPsi (n := n) (alpha := alpha) m p -
         deletionPhi (n := n) (alpha := alpha) m p =
@@ -533,7 +557,9 @@ theorem deletionPsi_sub_deletionPhi_eq_nTC (hp : IsPMF p) :
   change _ = (∑ i : Fin n, Hvar (fun x : Fin n -> alpha => x i) p) - H p
   ring
 
-/-- Fusion identity for the arbitrary-deletion payoff.-/
+/-- Fusion identity for the arbitrary-deletion payoff.
+@isnad1 id=eq.1h5v.s10.321024f2b110 from=translated src=- shape=6f43ad33 vocab=5b1fac80
+-/
 theorem deletionPhi_fusion (hp : IsPMF p) (V : NLatent p) :
     deletionPhi (n := n) (alpha := alpha) m p -
         ∑ v, V.prior v *
@@ -589,7 +615,9 @@ theorem deletionPhi_fusion (hp : IsPMF p) (V : NLatent p) :
   rw [hscale]
   ring
 
-/-- Information-form identity for the arbitrary-deletion sum score.-/
+/-- Information-form identity for the arbitrary-deletion sum score.
+@isnad1 id=eq.0h5v.s10.958ba374fc03 from=translated src=- shape=2cdf0ed5 vocab=82f57236
+-/
 theorem deletionSumScore_eq_info (V : NLatent p) :
     V.deletionSumScore (m := m) =
       nTC (fun i => coordinateView (alpha := alpha) i) p +
@@ -617,7 +645,9 @@ noncomputable def replicaDeletionViewInformation (V : NLatent p) : Real :=
         (fun u => survivorBlockView D u.2) (fun u => u.1.1) V.replicaLaw
 
 /-- Exact arbitrary-deletion score increment when a posterior replica is
-adjoined to the latent label.-/
+adjoined to the latent label.
+@isnad1 id=eq.0h5v.s7.0bd9ae5e1f6d from=translated src=- shape=c01c98a1 vocab=0890b101
+-/
 theorem replicaRefinement_deletionSumScore_sub (V : NLatent p) :
     V.replicaRefinement.deletionSumScore (m := m) -
         V.deletionSumScore (m := m) =
@@ -698,7 +728,9 @@ theorem replicaRefinement_deletionSumScore_sub (V : NLatent p) :
   rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
   ring
 
-/-- Optimality constrains the replica's visible information.-/
+/-- Optimality constrains the replica's visible information.
+@isnad1 id=le.1h5v.s7.dfcefc556cf1 from=translated src=- shape=f004bdbb vocab=96343e71
+-/
 theorem replicaDeletionViewInformation_le_of_optimal [Nonempty alpha]
     (V : NLatent p)
     (hoptimal : V.deletionSumScore (m := m) = deletionSumTau (m := m) p) :
@@ -731,7 +763,9 @@ noncomputable def replicaDeletionRemainder (V : NLatent p) : Real :=
       (fun u => deletedBlockView D u.2)
       (fun u => (u.1.1, survivorBlockView D u.2)) V.replicaLaw
 
-/-- Chain-rule ledger for the two remainder families.-/
+/-- Chain-rule ledger for the two remainder families.
+@isnad1 id=eq.0h5v.s7.ab8d53eba784 from=translated src=- shape=aac96365 vocab=9841dde2
+-/
 theorem replicaRemainders_eq (V : NLatent p) :
     V.replicaCoordinateRemainder + V.replicaDeletionRemainder (m := m) =
       ((n : Real) + Fintype.card (DeletionSet n m)) * V.replicaDefect -
@@ -817,7 +851,9 @@ theorem replicaRemainders_eq (V : NLatent p) :
   ring
 
 /-- Optimality leaves at least `(n-1)` copies of the replica defect in the
-two remainder families.-/
+two remainder families.
+@isnad1 id=le.1h5v.s7.21b781c5193a from=translated src=- shape=7bd25084 vocab=3c1925dd
+-/
 theorem replicaDefect_mul_le_remainders_of_optimal [Nonempty alpha]
     (V : NLatent p)
     (hoptimal : V.deletionSumScore (m := m) = deletionSumTau (m := m) p) :
@@ -828,7 +864,9 @@ theorem replicaDefect_mul_le_remainders_of_optimal [Nonempty alpha]
   linarith
 
 /-- The singleton remainder is contained in the certified coordinate-cross
-quantity.-/
+quantity.
+@isnad1 id=le.0h4v.s9.f08311105c4a from=translated src=- shape=89ff99f8 vocab=15418559
+-/
 theorem replicaCoordinateRemainder_le_coordinateCross (V : NLatent p) :
     V.replicaCoordinateRemainder <=
       ReplicaCoordinate.coordinateCross V.replicaLaw (fun u => u.2)
@@ -904,7 +942,9 @@ private theorem replica_deleted_given_first_le (V : NLatent p)
   linarith
 
 /-- The deletion-family remainder is bounded by the stochastic redundancy
-part of the original arbitrary-deletion score.-/
+part of the original arbitrary-deletion score.
+@isnad1 id=le.0h5v.s9.bf24660cf2a0 from=translated src=- shape=0329cce6 vocab=450e9d66
+-/
 theorem replicaDeletionRemainder_le_redundancy (V : NLatent p) :
     V.replicaDeletionRemainder (m := m) <=
       ∑ D : DeletionSet n m,
@@ -971,7 +1011,9 @@ private theorem condH_le_processed_condition
   linarith
 
 /-- A one-coordinate deletion redundancy is bounded by any larger deletion
-block containing that coordinate.-/
+block containing that coordinate.
+@isnad1 id=le.1h7v.s9.de8b8487e028 from=translated src=- shape=f2c9ba7f vocab=b0bff325
+-/
 theorem coordinateRedundancy_le_deletion (V : NLatent p)
     (i : Fin n) (D : DeletionSet n m) (hi : i ∈ D.1) :
     condMI (fun w : V.ι × (Fin n -> alpha) => w.1) (fun w => w.2 i)
@@ -1021,7 +1063,9 @@ theorem coordinateRedundancy_le_deletion (V : NLatent p)
   linarith
 
 /-- The certified singleton-deletion score is at most `n` times the
-arbitrary-`m` sum score.-/
+arbitrary-`m` sum score.
+@isnad1 id=le.2h5v.s7.ea8c85fbf18a from=translated src=- shape=3b4acd01 vocab=a102c847
+-/
 theorem coordinateScore_le_mul_deletionSumScore (V : NLatent p)
     (hm1 : 1 <= m) (hmn : m < n) :
     V.score (fun i => coordinateView (alpha := alpha) i)
@@ -1066,7 +1110,9 @@ theorem coordinateScore_le_mul_deletionSumScore (V : NLatent p)
   nlinarith
 
 /-- Alphabet-free posterior-replica defect bound for an optimizer of the
-arbitrary-deletion sum score.-/
+arbitrary-deletion sum score.
+@isnad1 id=le.4h5v.s7.216ef0c9769a from=translated src=- shape=ee1e6b5b vocab=a7117af5
+-/
 theorem replicaDefect_le_deletionSumScore_of_optimal [Nonempty alpha]
     (V : NLatent p) (hn : 3 <= n) (hm1 : 1 <= m) (hmn : m < n)
     (hoptimal : V.deletionSumScore (m := m) = deletionSumTau (m := m) p) :
@@ -1122,7 +1168,9 @@ theorem replicaDefect_le_deletionSumScore_of_optimal [Nonempty alpha]
       ((n : Real) - 1) * V.replicaDefect := by nlinarith
   exact hb_le.trans (hrem.trans hremainders)
 
-/-- General hardening ledger for an arbitrary deletion family.-/
+/-- General hardening ledger for an arbitrary deletion family.
+@isnad1 id=le.1h7v.s9.136645c7749b from=translated src=- shape=f0377f79 vocab=fce175f8
+-/
 theorem ofFunction_deletionSumScore_le_score_add_error
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (V : NLatent p) (hp : IsPMF p) (code : (Fin n -> alpha) -> delta) :
@@ -1376,6 +1424,9 @@ noncomputable def deletionMaxT (p : (Fin n -> alpha) -> Real) : Real := by
 noncomputable def deletionMaxConstant (n m : Nat) : Real :=
   (Fintype.card (DeletionSet n m) : Real) * deletionSumConstant n m
 
+/--
+@isnad1 id=eq.0h2v.s7.a3929523a438 from=translated src=- shape=1403e57e vocab=db80169c
+-/
 theorem deletionMaxConstant_eq_choose (n m : Nat) :
     deletionMaxConstant n m =
       (Nat.choose n m : Real) *
@@ -1386,6 +1437,9 @@ theorem deletionMaxConstant_eq_choose (n m : Nat) :
 
 namespace NLatent
 
+/--
+@isnad1 id=le.0h5v.s6.add066ac6809 from=translated src=- shape=f5ed1c57 vocab=619b274e
+-/
 theorem deletionMaxScore_nonneg (V : NLatent p) :
     0 <= V.deletionMaxScore (m := m) := by
   have htc := V.deletionConditionalTC_nonneg
@@ -1409,7 +1463,9 @@ theorem deletionMaxScore_nonneg (V : NLatent p) :
   exact add_nonneg htc hmax
 
 /-- Sum and max stochastic scores differ by at most the number of deletion
-sets.-/
+sets.
+@isnad1 id=le.0h5v.s6.9a0f12e20f89 from=translated src=- shape=22da90b9 vocab=598c2e37
+-/
 theorem deletionSumScore_le_card_mul_maxScore (V : NLatent p) :
     V.deletionSumScore (m := m) <=
       (Fintype.card (DeletionSet n m) : Real) *
@@ -1440,6 +1496,9 @@ theorem deletionSumScore_le_card_mul_maxScore (V : NLatent p) :
 
 end NLatent
 
+/--
+@isnad1 id=le.1h6v.s6.760f6cead06f from=translated src=- shape=0d1bcfd4 vocab=f876a541
+-/
 theorem deletionMaxHardScore_le_sumHardScore
     {delta : Type} [Fintype delta] [DecidableEq delta]
     (hp : IsPMF p) (code : (Fin n -> alpha) -> delta) :
@@ -1477,6 +1536,9 @@ private noncomputable def deletionCodeRecode
     [Fintype delta] [DecidableEq delta] (code : Omega -> delta) :
     Omega -> Fin (Fintype.card Omega) := deletionCodeEncoder code ∘ code
 
+/--
+@isnad1 id=le.1h5v.s7.e850057955da from=translated src=- shape=3b3fe536 vocab=b8fa9865
+-/
 theorem deletionMaxT_le_code
     (hp : IsPMF p)
     (code : (Fin n -> alpha) -> Fin (Fintype.card (Fin n -> alpha))) :

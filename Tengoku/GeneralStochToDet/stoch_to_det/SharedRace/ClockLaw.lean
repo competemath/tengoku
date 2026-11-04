@@ -21,11 +21,17 @@ open Finset MeasureTheory ProbabilityTheory Set
 variable {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
 
 omit [DecidableEq κ] [Nonempty κ] in
+/--
+@isnad1 id=measurab.0h1v.s4.87a16f6bbf7a from=translated src=- shape=e812fb25 vocab=71b0ae65
+-/
 lemma measurable_clockTotal : Measurable (clockTotal : (κ → ℝ) → ℝ) := by
   unfold clockTotal
   fun_prop
 
 omit [DecidableEq κ] [Nonempty κ] in
+/--
+@isnad1 id=measurab.0h2v.s4.f12eb635c96b from=translated src=- shape=7e7fb98f vocab=9d0d2de3
+-/
 lemma measurable_normClock (i : κ) :
     Measurable (fun E : κ → ℝ => normClock E i) := by
   unfold normClock
@@ -33,7 +39,9 @@ lemma measurable_normClock (i : κ) :
 
 omit [DecidableEq κ] [Nonempty κ] in
 /-- Every coordinate of the iid exponential clock is strictly positive
-almost surely.-/
+almost surely.
+@isnad1 id=eventual.0h1v.s5.5432b86e343d from=translated src=- shape=24c1c3d3 vocab=e768e1fe
+-/
 lemma ae_clockLaw_pos : ∀ᵐ E ∂(clockLaw κ), ∀ i, 0 < E i := by
   let _ : IsProbabilityMeasure (expMeasure 1) :=
     isProbabilityMeasure_expMeasure zero_lt_one
@@ -46,19 +54,27 @@ lemma ae_clockLaw_pos : ∀ᵐ E ∂(clockLaw κ), ∀ i, 0 < E i := by
     Measure.tendsto_eval_ae_ae.eventually hone
 
 omit [DecidableEq κ] in
+/--
+@isnad1 id=eventual.0h2v.s6.683aad56b5ed from=translated src=- shape=438f61d5 vocab=cf433a6f
+-/
 lemma ae_normClock_nonneg (i : κ) :
     0 ≤ᵐ[clockLaw κ] fun E => normClock E i := by
   filter_upwards [ae_clockLaw_pos (κ := κ)] with E hE
   exact normClock_nonneg E hE i
 
 omit [DecidableEq κ] in
+/--
+@isnad1 id=eventual.0h2v.s6.47ac6f9dacb3 from=translated src=- shape=0fbc23d3 vocab=cf433a6f
+-/
 lemma ae_normClock_le_one (i : κ) :
     (fun E => normClock E i) ≤ᵐ[clockLaw κ] fun _ => 1 := by
   filter_upwards [ae_clockLaw_pos (κ := κ)] with E hE
   exact normClock_le_one E hE i
 
 omit [Nonempty κ] in
-/-- Tail law of one normalized iid exponential coordinate.-/
+/-- Tail law of one normalized iid exponential coordinate.
+@isnad1 id=eq.2h3v.s7.8c844739b390 from=translated src=- shape=20c1dcde vocab=62bca2e7
+-/
 theorem clockLaw_normClock_Ioi (i : κ) (t : ℝ)
     (ht0 : 0 ≤ t) (ht1 : t < 1) :
     clockLaw κ {E | t < normClock E i} =
@@ -234,7 +250,9 @@ theorem clockLaw_normClock_Ioi (i : κ) (t : ℝ)
 
 omit [Nonempty κ] in
 /-- Scaled form of `clockLaw_normClock_Ioi`: `k U_i` has the
-`k * Beta(1,k-1)` tail on `(0,k)`.-/
+`k * Beta(1,k-1)` tail on `(0,k)`.
+@isnad1 id=eq.3h3v.s7.d0e3a25c9f12 from=translated src=- shape=92b22d19 vocab=ecb96715
+-/
 theorem clockLaw_scaledNormClock_Ioi (i : κ) (s : ℝ)
     (hk : 2 ≤ Fintype.card κ) (hs0 : 0 ≤ s)
     (hsk : s < Fintype.card κ) :
@@ -307,7 +325,9 @@ private lemma integral_betaOneDensity (k : ℕ) (hk : 2 ≤ k)
   have hk1 : k - 1 ≠ 0 := by omega
   simpa [hk0, hk1] using hftc
 
-/-- Tail of the literal scaled-Beta density.-/
+/-- Tail of the literal scaled-Beta density.
+@isnad1 id=eq.3h2v.s6.fe8dcf215872 from=translated src=- shape=e31a4413 vocab=942d2c97
+-/
 lemma scaledBetaOneLaw_Ioi (k : ℕ) (hk : 2 ≤ k) (s : ℝ)
     (hs0 : 0 ≤ s) (hsk : s < k) :
     scaledBetaOneLaw k (Set.Ioi s) =
@@ -346,7 +366,9 @@ lemma scaledBetaOneLaw_Ioi (k : ℕ) (hk : 2 ≤ k) (s : ℝ)
   rw [(intervalIntegral.integral_of_le hsle).symm,
     integral_betaOneDensity k hk hs0 hsle]
 
-/-- The literal scaled-Beta density has total mass one.-/
+/-- The literal scaled-Beta density has total mass one.
+@isnad1 id=isprobab.1h1v.s4.899c7ed4c391 from=translated src=- shape=b1a655c7 vocab=54de4d6b
+-/
 lemma scaledBetaOneLaw_isProbability (k : ℕ) (hk : 2 ≤ k) :
     IsProbabilityMeasure (scaledBetaOneLaw k) := by
   constructor
@@ -379,7 +401,9 @@ lemma scaledBetaOneLaw_isProbability (k : ℕ) (hk : 2 ≤ k) :
   simp
 
 /-- One scaled normalized exponential coordinate has exactly the literal
-`k * Beta(1,k-1)` density.-/
+`k * Beta(1,k-1)` density.
+@isnad1 id=eq.1h2v.s6.501da87db51a from=translated src=- shape=abf35e95 vocab=8ee29771
+-/
 theorem clockLaw_scaledNormClock_map_eq_scaledBetaOneLaw (i : κ)
     (hk : 2 ≤ Fintype.card κ) :
     (clockLaw κ).map
@@ -476,7 +500,9 @@ theorem clockLaw_scaledNormClock_map_eq_scaledBetaOneLaw (i : κ)
     measure_univ, measure_univ, htail s]
 
 /-- Integrating an exponential against the literal density gives exactly the
-moment functional defined in `SharedRace`.-/
+moment functional defined in `SharedRace`.
+@isnad1 id=eq.1h2v.s5.6cb030015412 from=translated src=- shape=0177d102 vocab=be947871
+-/
 lemma integral_exp_scaledBetaOneLaw_eq_betaOneExpMoment (k : ℕ)
     (hk : 2 ≤ k) (lam : ℝ) :
     (∫ t : ℝ, Real.exp (lam * t) ∂(scaledBetaOneLaw k)) =
@@ -514,7 +540,9 @@ lemma integral_exp_scaledBetaOneLaw_eq_betaOneExpMoment (k : ℕ)
   exact (intervalIntegral.integral_of_le (by
     exact_mod_cast (Nat.zero_le k))).symm
 
-/-- Exact exponential moment of one scaled normalized clock coordinate.-/
+/-- Exact exponential moment of one scaled normalized clock coordinate.
+@isnad1 id=eq.1h3v.s6.70a30882a48c from=translated src=- shape=8f9aac11 vocab=3522f26b
+-/
 theorem clockLaw_scaledNormClock_expMoment_eq (i : κ)
     (hk : 2 ≤ Fintype.card κ) (lam : ℝ) :
     (∫ E : κ → ℝ,
@@ -544,7 +572,9 @@ theorem clockLaw_scaledNormClock_expMoment_eq (i : κ)
         (Fintype.card κ) hk lam
 
 /-- The literal exponential-moment winner bound for one normalized iid
-exponential clock coordinate.-/
+exponential clock coordinate.
+@isnad1 id=le.2h3v.s6.ddc9e43965d8 from=translated src=- shape=b00a137e vocab=f52f1fd6
+-/
 theorem clockLaw_scaledNormClock_expMoment_le (i : κ)
     (hk : 2 ≤ Fintype.card κ) {lam : ℝ} (hlam : lam < 1) :
     (∫ E : κ → ℝ,
@@ -556,7 +586,9 @@ theorem clockLaw_scaledNormClock_expMoment_le (i : κ)
 /-! ### First moments and logarithmic moments -/
 
 omit [DecidableEq κ] in
-/-- A normalized clock coordinate is integrable.-/
+/-- A normalized clock coordinate is integrable.
+@isnad1 id=integrab.0h2v.s5.352eff7cafd6 from=translated src=- shape=4e6121f9 vocab=ffb7a138
+-/
 lemma integrable_normClock (i : κ) :
     Integrable (fun E : κ → ℝ => normClock E i) (clockLaw κ) := by
   apply Integrable.of_bound (measurable_normClock i).aestronglyMeasurable 1
@@ -564,7 +596,9 @@ lemma integrable_normClock (i : κ) :
   simpa [Real.norm_eq_abs, abs_of_nonneg hE0] using hE1
 
 omit [DecidableEq κ] in
-/-- The normalized clock coordinates sum to one almost surely.-/
+/-- The normalized clock coordinates sum to one almost surely.
+@isnad1 id=eventual.0h1v.s6.dc50fb3bf7a6 from=translated src=- shape=6f38267f vocab=9a69f81c
+-/
 lemma ae_sum_normClock_eq_one :
     ∀ᵐ E ∂(clockLaw κ), ∑ i, normClock E i = 1 := by
   filter_upwards [ae_clockLaw_pos (κ := κ)] with E hE
@@ -572,7 +606,9 @@ lemma ae_sum_normClock_eq_one :
   rw [← Finset.sum_div]
   exact div_self (clockTotal_pos E hE).ne'
 
-/-- All normalized clock coordinates have the same expectation.-/
+/-- All normalized clock coordinates have the same expectation.
+@isnad1 id=eq.0h3v.s6.0812b05c6e45 from=translated src=- shape=bd36093c vocab=56d84517
+-/
 theorem integral_normClock_eq (i j : κ) :
     (∫ E : κ → ℝ, normClock E i ∂(clockLaw κ)) =
       ∫ E : κ → ℝ, normClock E j ∂(clockLaw κ) := by
@@ -621,7 +657,9 @@ theorem integral_normClock_eq (i j : κ) :
       Fintype.card_le_one_iff_subsingleton.mp hcard
     rw [Subsingleton.elim i j]
 
-/-- Each normalized iid exponential clock coordinate has mean `1 / k`.-/
+/-- Each normalized iid exponential clock coordinate has mean `1 / k`.
+@isnad1 id=eq.0h2v.s6.a0410bd73d5d from=translated src=- shape=178b9bc9 vocab=a954aee7
+-/
 theorem integral_normClock (i : κ) :
     (∫ E : κ → ℝ, normClock E i ∂(clockLaw κ)) =
       1 / (Fintype.card κ : ℝ) := by
@@ -658,7 +696,9 @@ noncomputable def normClockLogIntegral (k : ℕ) : ℝ :=
   ∫ t : ℝ, Real.log (t / (k : ℝ)) ∂(scaledBetaOneLaw k)
 
 /-- The logarithmic observable is integrable against the literal scaled-Beta
-law.-/
+law.
+@isnad1 id=integrab.1h1v.s5.d726171f6581 from=translated src=- shape=57ba5954 vocab=759c6ffb
+-/
 lemma integrable_log_scaledBetaOneLaw (k : ℕ) (hk : 2 ≤ k) :
     Integrable (fun t : ℝ => Real.log (t / (k : ℝ)))
       (scaledBetaOneLaw k) := by
@@ -702,7 +742,9 @@ lemma integrable_log_scaledBetaOneLaw (k : ℕ) (hk : 2 ≤ k) :
     rw [ENNReal.toReal_ofReal (hdensity_nonneg t ht)])]
   exact hweighted.1
 
-/-- The logarithm of a normalized clock coordinate is integrable.-/
+/-- The logarithm of a normalized clock coordinate is integrable.
+@isnad1 id=integrab.1h2v.s6.81d6adb229d1 from=translated src=- shape=b7e46b5e vocab=9ce92eb7
+-/
 theorem integrable_log_normClock (i : κ)
     (hk : 2 ≤ Fintype.card κ) :
     Integrable (fun E : κ → ℝ => Real.log (normClock E i))
@@ -720,7 +762,9 @@ theorem integrable_log_normClock (i : κ)
   simpa [Function.comp_def, f, Y, k,
     show (Fintype.card κ : ℝ) ≠ 0 by positivity] using hcomp
 
-/-- The logarithmic clock integral is the common scaled-Beta integral.-/
+/-- The logarithmic clock integral is the common scaled-Beta integral.
+@isnad1 id=eq.1h2v.s6.fffe4241e11e from=translated src=- shape=81801d4c vocab=8edb34c2
+-/
 theorem integral_log_normClock_eq_normClockLogIntegral (i : κ)
     (hk : 2 ≤ Fintype.card κ) :
     (∫ E : κ → ℝ, Real.log (normClock E i) ∂(clockLaw κ)) =
@@ -750,7 +794,9 @@ theorem integral_log_normClock_eq_normClockLogIntegral (i : κ)
     _ = normClockLogIntegral (Fintype.card κ) := by
       rfl
 
-/-- Logarithmic clock expectations are coordinate-independent.-/
+/-- Logarithmic clock expectations are coordinate-independent.
+@isnad1 id=eq.1h3v.s6.8c49ba9c0838 from=translated src=- shape=0217ccce vocab=011f20db
+-/
 theorem integral_log_normClock_eq (i j : κ)
     (hk : 2 ≤ Fintype.card κ) :
     (∫ E : κ → ℝ, Real.log (normClock E i) ∂(clockLaw κ)) =

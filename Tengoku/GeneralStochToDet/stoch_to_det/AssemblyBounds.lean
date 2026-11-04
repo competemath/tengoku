@@ -6,7 +6,9 @@ import Tengoku.GeneralStochToDet.stoch_to_det.Prelude
 
 namespace stoch_to_det
 
-/-- The tangent-line bound for the square root at the positive point `s`.-/
+/-- The tangent-line bound for the square root at the positive point `s`.
+@isnad1 id=le.2h2v.s6.5dceb131c5ae from=translated src=- shape=963ee906 vocab=d44e7500
+-/
 theorem sqrt_tangent (t s : ℝ) (ht : 0 ≤ t) (hs : 0 < s) :
     Real.sqrt t ≤ (t + s ^ 2) / (2 * s) := by
   apply (le_div_iff₀ (by positivity : 0 < 2 * s)).2
@@ -15,7 +17,9 @@ theorem sqrt_tangent (t s : ℝ) (ht : 0 ≤ t) (hs : 0 < s) :
   have hsq : 0 ≤ (Real.sqrt t - s) ^ 2 := sq_nonneg _
   nlinarith
 
-/-- The tangent-line bound for the fourth root at the positive point `b`.-/
+/-- The tangent-line bound for the fourth root at the positive point `b`.
+@isnad1 id=le.2h2v.s7.51944155cb3e from=translated src=- shape=189602a0 vocab=5c9d27ef
+-/
 theorem qrt_tangent (t b : ℝ) (ht : 0 ≤ t) (hb : 0 < b) :
     t ^ ((1 : ℝ) / 4) ≤ (t + 3 * b ^ 4) / (4 * b ^ 3) := by
   let u : ℝ := t ^ ((1 : ℝ) / 4)

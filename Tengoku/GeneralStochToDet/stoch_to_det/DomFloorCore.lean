@@ -36,7 +36,9 @@ noncomputable def Knat (q : α × β → ℝ) : ℝ :=
       Real.log (q z / (mX q z.1 * mY q z.2)) -
       q z / (mX q z.1 * mY q z.2) + 1)
 
-/-- The scalar-integrand formula for mutual information, in natural-log units.-/
+/-- The scalar-integrand formula for mutual information, in natural-log units.
+@isnad1 id=eq.1h3v.s6.2610e642bf04 from=translated src=- shape=fa640112 vocab=e22838aa
+-/
 theorem Knat_eq_log_two_mul_Ixy {q : α × β → ℝ} (hq : IsPMF q) :
     Knat q = Real.log 2 * Ixy q := by
   let Q : α × β → ℝ := fun z => mX q z.1 * mY q z.2
@@ -152,7 +154,9 @@ private lemma joint_pos_marginals {q : α × β → ℝ} (hq : IsPMF q)
 /-- The bulk/tail argument, parameterized by the natural-information budget,
 the target correlation cap, the final two-term assembly, and the scalar tail
 estimate.  Keeping the assembly abstract lets later calibrations reuse the
-load-bearing bulk and quartic estimates without duplicating this proof.-/
+load-bearing bulk and quartic estimates without duplicating this proof.
+@isnad1 id=le.10h9v.s9.5c609e29a0ef from=translated src=- shape=35315aba vocab=93278d07
+-/
 theorem contact_correlation_cap_of_tail_param
     (K cap : ℝ)
     {S : Finset (α × β)} {w q : α × β → ℝ}

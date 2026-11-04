@@ -69,7 +69,9 @@ noncomputable def betaTwoDensity (k : ℕ) (t : ℝ) : ℝ :=
 noncomputable def betaTwoExpMoment (k : ℕ) (lam : ℝ) : ℝ :=
   ∫ t : ℝ in 0..(k : ℝ), Real.exp (lam * t) * betaTwoDensity k t
 
-/-- The shape-one beta stop-loss is bounded by the exponential stop-loss.-/
+/-- The shape-one beta stop-loss is bounded by the exponential stop-loss.
+@isnad1 id=le.1h2v.s4.b8c248ef2de3 from=translated src=- shape=42e9fd70 vocab=fa1136ce
+-/
 theorem betaOneCall_le_gammaOne (k : ℕ) (t : ℝ) (ht : t ≤ k) :
     betaOneCall k t ≤ gammaOneCall t := by
   exact Real.one_sub_div_pow_le_exp_neg ht
@@ -205,7 +207,9 @@ private lemma betaTwoLogRatio_antitone (k : ℕ) (hk : 3 ≤ k) :
       (neg_nonpos.mpr (mul_nonneg (sq_nonneg t)
         (add_nonneg hcoef (mul_nonneg hkm ht.1.le)))) hden.le
 
-/-- The shape-two beta stop-loss is bounded by the Gamma(2,1) stop-loss.-/
+/-- The shape-two beta stop-loss is bounded by the Gamma(2,1) stop-loss.
+@isnad1 id=le.3h2v.s5.36cf70d98634 from=translated src=- shape=22b479bd vocab=e34114e2
+-/
 theorem betaTwoCall_le_gammaTwo (k : ℕ) (hk : 3 ≤ k) (t : ℝ)
     (ht0 : 0 ≤ t) (htk : t ≤ k) :
     betaTwoCall k t ≤ gammaTwoCall t := by
@@ -248,7 +252,9 @@ theorem betaTwoCall_le_gammaTwo (k : ℕ) (hk : 3 ≤ k) (t : ℝ)
       (mul_pos hlast (Real.exp_pos _))).mp (sub_nonpos.mp hlog)
 
 /-- The `k = 2` endpoint of the shape-two comparison: the beta variable is
-the constant one, so its scaled value is exactly two.-/
+the constant one, so its scaled value is exactly two.
+@isnad1 id=le.1h1v.s6.3e382c51850d from=translated src=- shape=efd22a9d vocab=31ee5e18
+-/
 theorem betaTwoDegenerate_exp_le_gammaTwo {lam : ℝ} (hlam : lam < 1) :
     Real.exp (2 * lam) ≤ (1 - lam)⁻¹ ^ 2 := by
   have hpos : 0 < 1 - lam := sub_pos.mpr hlam
@@ -441,7 +447,9 @@ private lemma betaOneCallCut_weighted_integral (k : ℕ) (hk : 2 ≤ k) (lam : �
       (intervalIntegral.integral_of_le hk0).symm
 
 /-- The literal scaled-Beta(1,k-1) density moment is exactly its call
-transform.-/
+transform.
+@isnad1 id=eq.1h2v.s4.287577d7792d from=translated src=- shape=f4b07ca1 vocab=eddc35f4
+-/
 theorem betaOneExpMoment_eq_expCallTransform (k : ℕ) (hk : 2 ≤ k) (lam : ℝ) :
     betaOneExpMoment k lam = expCallTransform 1 lam (betaOneCallCut k) := by
   have hcall'Int : IntervalIntegrable (betaOneCallDeriv k) volume 0 (k : ℝ) := by
@@ -496,7 +504,9 @@ private lemma betaTwoCallCut_weighted_integral (k : ℕ) (hk : 3 ≤ k) (lam : �
       (intervalIntegral.integral_of_le hk0).symm
 
 /-- The literal scaled-Beta(2,k-2) density moment is exactly its call
-transform.-/
+transform.
+@isnad1 id=eq.1h2v.s4.c524f82527a9 from=translated src=- shape=f4b07ca1 vocab=5f7e376c
+-/
 theorem betaTwoExpMoment_eq_expCallTransform (k : ℕ) (hk : 3 ≤ k) (lam : ℝ) :
     betaTwoExpMoment k lam = expCallTransform 2 lam (betaTwoCallCut k) := by
   have hcall'Int : IntervalIntegrable (betaTwoCallDeriv k) volume 0 (k : ℝ) := by
@@ -527,6 +537,9 @@ theorem betaTwoExpMoment_eq_expCallTransform (k : ℕ) (hk : 3 ≤ k) (lam : ℝ
   rw [betaTwoExpMoment, hparts, expCallTransform,
     betaTwoCallCut_weighted_integral k hk lam]
 
+/--
+@isnad1 id=le.2h2v.s5.b68dd950195a from=translated src=- shape=24f82ec9 vocab=4b84ab0e
+-/
 lemma betaOneCallCut_nonneg (k : ℕ) (hk : 1 ≤ k) (t : ℝ) (_ht : 0 ≤ t) :
     0 ≤ betaOneCallCut k t := by
   rw [betaOneCallCut]
@@ -536,6 +549,9 @@ lemma betaOneCallCut_nonneg (k : ℕ) (hk : 1 ≤ k) (t : ℝ) (_ht : 0 ≤ t) :
       exact h) _
   · exact le_rfl
 
+/--
+@isnad1 id=le.2h2v.s5.f81e2f3d0fa1 from=translated src=- shape=24f82ec9 vocab=1111c111
+-/
 lemma betaTwoCallCut_nonneg (k : ℕ) (hk : 3 ≤ k) (t : ℝ) (ht : 0 ≤ t) :
     0 ≤ betaTwoCallCut k t := by
   rw [betaTwoCallCut]
@@ -551,6 +567,9 @@ lemma betaTwoCallCut_nonneg (k : ℕ) (hk : 3 ≤ k) (t : ℝ) (ht : 0 ≤ t) :
     exact mul_nonneg (pow_nonneg hbase _) (by linarith)
   · exact le_rfl
 
+/--
+@isnad1 id=le.2h2v.s5.3df6ef628922 from=translated src=- shape=14ca3306 vocab=cd84103f
+-/
 lemma betaOneCallCut_le_gammaOne (k : ℕ) (_hk : 1 ≤ k) (t : ℝ) (_ht : 0 ≤ t) :
     betaOneCallCut k t ≤ gammaOneCall t := by
   rw [betaOneCallCut]
@@ -558,6 +577,9 @@ lemma betaOneCallCut_le_gammaOne (k : ℕ) (_hk : 1 ≤ k) (t : ℝ) (_ht : 0 �
   · exact betaOneCall_le_gammaOne k t h
   · exact (Real.exp_pos _).le
 
+/--
+@isnad1 id=le.2h2v.s5.50f70553a4e8 from=translated src=- shape=14ca3306 vocab=d01fb9dc
+-/
 lemma betaTwoCallCut_le_gammaTwo (k : ℕ) (hk : 3 ≤ k) (t : ℝ) (ht : 0 ≤ t) :
     betaTwoCallCut k t ≤ gammaTwoCall t := by
   rw [betaTwoCallCut]
@@ -604,7 +626,9 @@ private lemma gammaOne_weighted_integral {lam : ℝ} (hlam : lam < 1) :
   ring
 
 /-- The complete shape-one call-transform bound.  It is stated for every
-`lam < 1`, including negative `lam`.-/
+`lam < 1`, including negative `lam`.
+@isnad1 id=le.2h2v.s5.c369edd349e5 from=translated src=- shape=ea764294 vocab=551fe77b
+-/
 theorem betaOneExpCallTransform_le (k : ℕ) (hk : 1 ≤ k) {lam : ℝ}
     (hlam : lam < 1) :
     expCallTransform 1 lam (betaOneCallCut k) ≤ (1 - lam)⁻¹ := by
@@ -713,7 +737,9 @@ private lemma gammaTwo_weighted_integral {lam : ℝ} (hlam : lam < 1) :
   rw [integral_add htint (heint.const_mul 2), integral_const_mul, htvalue, hevalue]
 
 /-- The complete shape-two call-transform bound for the nondegenerate beta
-law.  It is valid for every `lam < 1`, including negative `lam`.-/
+law.  It is valid for every `lam < 1`, including negative `lam`.
+@isnad1 id=le.2h2v.s6.96576a4b326d from=translated src=- shape=f7ffa6ad vocab=6f72fcb2
+-/
 theorem betaTwoExpCallTransform_le (k : ℕ) (hk : 3 ≤ k) {lam : ℝ}
     (hlam : lam < 1) :
     expCallTransform 2 lam (betaTwoCallCut k) ≤ (1 - lam)⁻¹ ^ 2 := by
@@ -734,7 +760,9 @@ theorem betaTwoExpCallTransform_le (k : ℕ) (hk : 3 ≤ k) {lam : ℝ}
       ring
 
 /-- Winner-cell exponential-moment bound, in the literal scaled
-`Beta(1,k-1)` density form used by the clock proof.-/
+`Beta(1,k-1)` density form used by the clock proof.
+@isnad1 id=le.2h2v.s5.6ac49878460f from=translated src=- shape=3727fb46 vocab=4b0ae34c
+-/
 theorem winnerBetaExpMoment_le (k : ℕ) (hk : 2 ≤ k) {lam : ℝ}
     (hlam : lam < 1) :
     betaOneExpMoment k lam ≤ (1 - lam)⁻¹ := by
@@ -742,14 +770,18 @@ theorem winnerBetaExpMoment_le (k : ℕ) (hk : 2 ≤ k) {lam : ℝ}
   exact betaOneExpCallTransform_le k (by omega) hlam
 
 /-- Loser-cell exponential-moment bound, in the literal scaled
-`Beta(2,k-2)` density form used by the clock proof.-/
+`Beta(2,k-2)` density form used by the clock proof.
+@isnad1 id=le.2h2v.s6.f4048292f3ee from=translated src=- shape=f2be59aa vocab=fe633462
+-/
 theorem loserBetaExpMoment_le (k : ℕ) (hk : 3 ≤ k) {lam : ℝ}
     (hlam : lam < 1) :
     betaTwoExpMoment k lam ≤ (1 - lam)⁻¹ ^ 2 := by
   rw [betaTwoExpMoment_eq_expCallTransform k hk lam]
   exact betaTwoExpCallTransform_le k hk hlam
 
-/-- The `k=2` loser-cell endpoint is the constant scaled value two.-/
+/-- The `k=2` loser-cell endpoint is the constant scaled value two.
+@isnad1 id=le.1h1v.s6.3b7124275864 from=translated src=- shape=9f417cc1 vocab=31ee5e18
+-/
 theorem loserBetaExpMoment_two_le {lam : ℝ} (hlam : lam < 1) :
     Real.exp (lam * 2) ≤ (1 - lam)⁻¹ ^ 2 := by
   rw [mul_comm]

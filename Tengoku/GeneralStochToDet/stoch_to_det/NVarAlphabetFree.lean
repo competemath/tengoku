@@ -17,7 +17,9 @@ open Finset
 namespace FiniteInfo
 
 /-- Entropy is unchanged when two finite observables deterministically decode
-each other on the underlying sample space.-/
+each other on the underlying sample space.
+@isnad1 id=eq.3h8v.s6.ca865073be93 from=translated src=- shape=c8733424 vocab=39a0a53d
+-/
 lemma Hvar_eq_of_mutual_recode
     {A F G : Type*} [Fintype A] [Fintype F] [DecidableEq F]
     [Fintype G] [DecidableEq G]
@@ -34,6 +36,9 @@ lemma Hvar_eq_of_mutual_recode
   rw [hgf] at hback
   exact le_antisymm hforward hback
 
+/--
+@isnad1 id=eq.3h10v.s6.cc306c6a3355 from=translated src=- shape=8e65e782 vocab=778365dd
+-/
 lemma condH_eq_of_mutual_recode_left
     {A F G K : Type*} [Fintype A] [Fintype F] [DecidableEq F]
     [Fintype G] [DecidableEq G] [Fintype K] [DecidableEq K]
@@ -50,6 +55,9 @@ lemma condH_eq_of_mutual_recode_left
   unfold condH
   rw [hpair]
 
+/--
+@isnad1 id=eq.3h10v.s6.c352ed76f1d1 from=translated src=- shape=69d99a5c vocab=778365dd
+-/
 lemma condH_eq_of_mutual_recode_condition
     {A F K L : Type*} [Fintype A] [Fintype F] [DecidableEq F]
     [Fintype K] [DecidableEq K] [Fintype L] [DecidableEq L]

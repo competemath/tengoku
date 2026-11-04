@@ -118,7 +118,9 @@ private lemma condH_view_le_H [Nonempty Omega] (hp : IsPMF p)
     exact H_nonneg_of_isPMF (isPMF_push hp)
   linarith
 
-/-- The hard-code infimum is below the score of any particular fixed code.-/
+/-- The hard-code infimum is below the score of any particular fixed code.
+@isnad1 id=le.3h8v.s7.d3dbc9cb942f from=translated src=- shape=eb5b0424 vocab=36d5543c
+-/
 theorem nT_le_code_score [Nonempty Omega] (hp : IsPMF p)
     (hinj : forall i, Function.Injective (fun z => (f i z, g i z)))
     (htup : Function.Injective (tupleView f))
@@ -133,7 +135,9 @@ theorem nT_le_code_score [Nonempty Omega] (hp : IsPMF p)
   exact ciInf_le hb Gamma
 
 /-- An injective deterministic code has score exactly `nPsi`: every posterior
-component is a point mass, so its `nPhi` payoff vanishes.-/
+component is a point mass, so its `nPhi` payoff vanishes.
+@isnad1 id=eq.3h9v.s7.1dd85ff68e6a from=translated src=- shape=b02fb647 vocab=a9ba7cca
+-/
 theorem score_ofFunction_eq_nPsi_of_injective [Nonempty Omega] (hp : IsPMF p)
     (hinjViews : forall i, Function.Injective (fun z => (f i z, g i z)))
     {delta : Type} [Fintype delta] [DecidableEq delta]
@@ -176,7 +180,9 @@ hard code, so the deterministic n-variable score is at most `nPsi`.
 
 Unlike the desired stochastic-to-deterministic theorem, this statement does
 not compare `nT` to `nTau`; it is recorded to make the current certified scope
-explicit while that relative bound is developed.-/
+explicit while that relative bound is developed.
+@isnad1 id=le.3h7v.s7.de0422270c74 from=translated src=- shape=e00ed6bd vocab=d01f7fc9
+-/
 theorem nT_le_nPsi [Nonempty Omega] (hp : IsPMF p)
     (hinjViews : forall i, Function.Injective (fun z => (f i z, g i z)))
     (htup : Function.Injective (tupleView f)) :
@@ -190,7 +196,9 @@ theorem nT_le_nPsi [Nonempty Omega] (hp : IsPMF p)
         (Fintype.equivFin Omega).injective
 
 /-- The sum of deletion-conditional entropies is bounded by `n` times the
-entropy of the full cell, and hence by `n log_2 |Omega|`.-/
+entropy of the full cell, and hence by `n log_2 |Omega|`.
+@isnad1 id=le.2h7v.s7.9dd051961c3e from=translated src=- shape=4e2b2081 vocab=e8139576
+-/
 theorem nPsi_le_n_mul_lg_card [Nonempty Omega] (hp : IsPMF p)
     (hinjViews : forall i, Function.Injective (fun z => (f i z, g i z))) :
     nPsi f g p <= (n : Real) * lg (Fintype.card Omega) := by
@@ -203,7 +211,9 @@ theorem nPsi_le_n_mul_lg_card [Nonempty Omega] (hp : IsPMF p)
   exact hsum.trans (mul_le_mul_of_nonneg_left (H_le_card hp) (Nat.cast_nonneg n))
 
 /-- The stochastic n-variable infimum is nonnegative under genuine coordinate
-views.-/
+views.
+@isnad1 id=le.2h7v.s7.aaa0e53c76ad from=translated src=- shape=a07c4d2f vocab=26ac0ab5
+-/
 theorem nTau_nonneg [Nonempty Omega]
     (hinjViews : forall i, Function.Injective (fun z => (f i z, g i z)))
     (htup : Function.Injective (tupleView f)) :
@@ -217,7 +227,9 @@ alphabet term.** For all finite `n` (therefore in particular for `n >= 3`),
 `nT(p) <= nTau(p) + n log_2 |Omega|`.
 
 The desired alphabet-free multiplicative comparison remains a separate open
-problem; this theorem makes no such claim.-/
+problem; this theorem makes no such claim.
+@isnad1 id=le.3h7v.s7.6256f70fba9c from=translated src=- shape=6beaf49f vocab=5beb12c4
+-/
 theorem nT_le_nTau_add_n_mul_lg_card [Nonempty Omega] (hp : IsPMF p)
     (hinjViews : forall i, Function.Injective (fun z => (f i z, g i z)))
     (htup : Function.Injective (tupleView f)) :
@@ -232,7 +244,9 @@ theorem nT_le_nTau_add_n_mul_lg_card [Nonempty Omega] (hp : IsPMF p)
       linarith [nTau_nonneg f g (p := p) hinjViews htup]
 
 /-- The explicit `n >= 3` specialization requested by the multivariate
-program. The proof in fact works for every `n`.-/
+program. The proof in fact works for every `n`.
+@isnad1 id=le.4h7v.s7.7c9708f536b8 from=translated src=- shape=a66e2014 vocab=5beb12c4
+-/
 theorem nT_le_nTau_add_n_mul_lg_card_of_three_le [Nonempty Omega]
     (_hn : 3 <= n) (hp : IsPMF p)
     (hinjViews : forall i, Function.Injective (fun z => (f i z, g i z)))
@@ -243,7 +257,9 @@ theorem nT_le_nTau_add_n_mul_lg_card_of_three_le [Nonempty Omega]
 
 /-- A multiplicative corollary on any class of laws with a certified positive
 lower bound `epsilon <= nTau`. Its constant is explicit but depends on the
-alphabet and on that nondegeneracy threshold.-/
+alphabet and on that nondegeneracy threshold.
+@isnad1 id=le.6h8v.s7.23fa821f6fb3 from=translated src=- shape=5aa88db1 vocab=51688d84
+-/
 theorem nT_le_mul_nTau_of_epsilon_le [Nonempty Omega]
     (_hn : 3 <= n) (hp : IsPMF p) {epsilon : Real} (hepsilon : 0 < epsilon)
     (htau : epsilon <= nTau f g p)

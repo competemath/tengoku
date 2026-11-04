@@ -1784,6 +1784,9 @@ noncomputable def clockCoordinateIntegrand
     Real.exp ((Fintype.card κ : ℝ) * SharedRace.logTwo *
       (normClock E i - normRaceMin t E))
 
+/--
+@isnad1 id=measurab.0h3v.s5.875cda0d4c1b from=translated src=- shape=1a1ee15a vocab=a409103e
+-/
 lemma measurable_clockCoordinateIntegrand
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (t : κ → ℝ) (i : κ) : Measurable (clockCoordinateIntegrand t i) := by
@@ -1796,7 +1799,9 @@ lemma measurable_clockCoordinateIntegrand
 
 /-- The one-coordinate normalized race moment is integrable.  The proof uses
 only positivity of the clocks and the uniform bounds `raceRatio ≤ 1` and
-`normClock ≤ 1`.-/
+`normClock ≤ 1`.
+@isnad1 id=integrab.1h3v.s6.4c0289004c37 from=translated src=- shape=b28bf69e vocab=74d6b053
+-/
 theorem clockCoordinateIntegrand_integrable
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (t : κ → ℝ) (ht : ∀ i, 0 < t i) (i : κ) :
@@ -2076,7 +2081,9 @@ namespace SharedRace
 
 /-- The normalized clock selected by a positive PMF race has first moment
 `(sum_i r_i^2) / k`.  This is the row moment needed by the reference-loss
-assembly.-/
+assembly.
+@isnad1 id=eq.2h2v.s7.1185822dfe99 from=translated src=- shape=5c1b18e4 vocab=8c768feb
+-/
 theorem integral_normClock_clockArgmin_eq
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (r : κ → ℝ) (hr : ∀ i, 0 < r i) (hrtotal : ∑ i, r i = 1) :
@@ -2136,7 +2143,9 @@ private theorem integral_normRaceMin_cell_eq
       rw [integral_normClock a]
     _ = π a / (Fintype.card κ : ℝ) := by ring
 
-/-- Integrability and exact mean of the normalized weighted race minimum.-/
+/-- Integrability and exact mean of the normalized weighted race minimum.
+@isnad1 id=integrab.2h2v.s6.9d355b72610b from=translated src=- shape=549bc01c vocab=c23f6d1c
+-/
 theorem integrable_normRaceMin
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) (hπ : ∀ i, 0 < π i) (hπtotal : ∑ i, π i = 1) :
@@ -2150,6 +2159,9 @@ theorem integrable_normRaceMin
   rw [← clockLaw_eq_sum_restrict_strictClockWin π hπ hπtotal] at hsum
   exact hsum
 
+/--
+@isnad1 id=eq.2h2v.s6.309adb9e30b8 from=translated src=- shape=3996f718 vocab=405049c4
+-/
 theorem integral_normRaceMin_eq_inv_card
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) (hπ : ∀ i, 0 < π i) (hπtotal : ∑ i, π i = 1) :
@@ -2199,7 +2211,9 @@ private theorem integral_log_normRaceMin_cell_eq
       rw [integral_log_normClock_eq_normClockLogIntegral a hk]
 
 /-- The normalized minimum of a positive PMF race has the same logarithmic
-mean as any normalized iid clock coordinate.-/
+mean as any normalized iid clock coordinate.
+@isnad1 id=integrab.3h2v.s6.53f887d608e8 from=translated src=- shape=69fc97b8 vocab=b8490cd5
+-/
 theorem integrable_log_normRaceMin
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) (hπ : ∀ i, 0 < π i) (hπtotal : ∑ i, π i = 1)
@@ -2215,6 +2229,9 @@ theorem integrable_log_normRaceMin
   rw [← clockLaw_eq_sum_restrict_strictClockWin π hπ hπtotal] at hsum
   exact hsum
 
+/--
+@isnad1 id=eq.3h2v.s6.c45ea1b4ee74 from=translated src=- shape=f03f7425 vocab=25063366
+-/
 theorem integral_log_normRaceMin_eq_normClockLogIntegral
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) (hπ : ∀ i, 0 < π i) (hπtotal : ∑ i, π i = 1)
@@ -2308,7 +2325,9 @@ private theorem integral_log_normClock_argmin_cell_eq
         normClockLogIntegral (Fintype.card κ)) := by
       rw [integral_log_mul_normClock_eq (r a) (hr a) a hk]
 
-/-- Integrability of the logarithmic normalized winning coordinate.-/
+/-- Integrability of the logarithmic normalized winning coordinate.
+@isnad1 id=integrab.3h2v.s6.128f44125f16 from=translated src=- shape=de341622 vocab=f38637e4
+-/
 theorem integrable_log_normClock_clockArgmin
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (r : κ → ℝ) (hr : ∀ i, 0 < r i) (hrtotal : ∑ i, r i = 1)
@@ -2328,7 +2347,9 @@ theorem integrable_log_normClock_clockArgmin
 
 /-- The logarithmic winning-clock row moment.  The universal common clock
 moment is left symbolic because it cancels against the normalized race
-minimum in the reference ratio.-/
+minimum in the reference ratio.
+@isnad1 id=eq.3h2v.s7.84b7e04be716 from=translated src=- shape=8a2712a7 vocab=279d9151
+-/
 theorem integral_log_normClock_clockArgmin_eq
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (r : κ → ℝ) (hr : ∀ i, 0 < r i) (hrtotal : ∑ i, r i = 1)
@@ -2411,7 +2432,9 @@ private lemma log_raceRatio_clockArgmin_identity
   ring
 
 /-- The logarithmic reference ratio at the winner of an independent positive
-row race is integrable.-/
+row race is integrable.
+@isnad1 id=integrab.5h3v.s7.2fbdef22598a from=translated src=- shape=7805c549 vocab=ebc93f3a
+-/
 theorem integrable_log_raceRatio_clockArgmin
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π r : κ → ℝ) (hπ : ∀ i, 0 < π i) (hπtotal : ∑ i, π i = 1)
@@ -2433,7 +2456,9 @@ theorem integrable_log_raceRatio_clockArgmin
 
 /-- Exact row identity for the logarithmic winning reference ratio.  The
 common normalized-clock logarithmic moment cancels, leaving the finite
-cross-entropy expression.-/
+cross-entropy expression.
+@isnad1 id=eq.5h3v.s7.c14ccf1ae902 from=translated src=- shape=53d3e9dd vocab=ec521e74
+-/
 theorem integral_log_raceRatio_clockArgmin_eq
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π r : κ → ℝ) (hπ : ∀ i, 0 < π i) (hπtotal : ∑ i, π i = 1)
@@ -2482,7 +2507,9 @@ theorem integral_log_raceRatio_clockArgmin_eq
   rw [← Finset.sum_mul, hrtotal, one_mul]
   ring
 
-/-- Measurability of the normalized race partition function.-/
+/-- Measurability of the normalized race partition function.
+@isnad1 id=measurab.0h2v.s5.f66554b22080 from=translated src=- shape=52fb1c9f vocab=5e066415
+-/
 theorem measurable_normRaceZ
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) : Measurable (normRaceZ π) := by
@@ -2514,7 +2541,9 @@ private lemma one_le_normRaceZ
     (Finset.mem_univ a))
 
 /-- The normalized partition-function logarithm is integrable under iid
-exponential clocks.-/
+exponential clocks.
+@isnad1 id=integrab.1h2v.s6.b53cf5eb69f2 from=translated src=- shape=7307d1b4 vocab=81193f23
+-/
 theorem integrable_log_normRaceZ
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) (hπ : ∀ i, 0 < π i) :
@@ -2541,7 +2570,9 @@ theorem integrable_log_normRaceZ
   exact hlogle
 
 /-- Clock-law specialization of the logarithmic tangent, conditional only on
-the coordinate estimates supplied by the winner/loser analysis.-/
+the coordinate estimates supplied by the winner/loser analysis.
+@isnad1 id=le.4h2v.s7.c526f0265cf3 from=translated src=- shape=bab09300 vocab=c925fc2d
+-/
 theorem normalizedRaceLogIntegral_le_of_coordinate
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π : κ → ℝ) (hπ : IsPMF π) (hπpos : ∀ i, 0 < π i)
@@ -2576,7 +2607,9 @@ theorem normalizedRaceLogIntegral_le_of_coordinate
       clockCoordinateIntegrand π i E ∂clockLaw κ) ≤ π i
     exact hcoord i
 
-/-- Integrability of the clock-row reference loss at the row winner.-/
+/-- Integrability of the clock-row reference loss at the row winner.
+@isnad1 id=integrab.5h3v.s7.8fa28d3f4c80 from=translated src=- shape=d640e8e8 vocab=1dd7dcc4
+-/
 theorem integrable_log_inv_referencePMF_clockArgmin
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π r : κ → ℝ) (hπ : IsPMF π) (hπpos : ∀ i, 0 < π i)
@@ -2605,7 +2638,9 @@ theorem integrable_log_inv_referencePMF_clockArgmin
 
 /-- Row-wise reference-loss bound, conditional only on the coordinate
 moments.  All logarithmic and winning-clock identities are discharged by the
-literal clock law.-/
+literal clock law.
+@isnad1 id=le.6h3v.s8.2921df663bce from=translated src=- shape=293b38c6 vocab=c7f1092b
+-/
 theorem referenceLossIntegral_le_of_coordinate
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (π r : κ → ℝ) (hπ : IsPMF π) (hπpos : ∀ i, 0 < π i)
@@ -2649,7 +2684,9 @@ private lemma lexMax_eq_of_le_iff
     exact ha.2.2 b hb ((hord a b).1 hFab)
 
 /-- The shared lexicographic tie-break is preserved exactly by the
-exponential-clock/Gumbel change of variables.-/
+exponential-clock/Gumbel change of variables.
+@isnad1 id=eq.2h3v.s6.5be70813d23b from=translated src=- shape=a3bcb253 vocab=28de09b8
+-/
 theorem weightedLexWinner_clock_eq_argmin
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (t E : κ → ℝ) (ht : ∀ i, 0 < t i) (hE : ∀ i, 0 < E i) :
@@ -2690,7 +2727,9 @@ private lemma measurable_sharedEntropy_integrand
   exact hF.comp hA
 
 /-- The Gumbel and exponential-clock formulations of shared-race entropy
-agree.  Positivity is needed only on posterior rows in the source support.-/
+agree.  Positivity is needed only on posterior rows in the source support.
+@isnad1 id=eq.1h4v.s6.4ec59b201644 from=translated src=- shape=c5d3ebf7 vocab=494327f5
+-/
 theorem sharedRaceEntropy_eq_clockSharedRaceEntropy
     {Ω : Type u} {κ : Type} [Fintype Ω] [Fintype κ]
     [DecidableEq Ω] [DecidableEq κ] [Nonempty κ]
@@ -3071,7 +3110,9 @@ namespace SharedRace
 /-- The normalized shared-race reference moment is bounded by its PMF
 coordinate.  The proof partitions by the winning clock, evaluates the common
 fresh losing pair through the exact pair-clock law, and invokes the scalar
-beta allocation theorem (including its separate two-label branch).-/
+beta allocation theorem (including its separate two-label branch).
+@isnad1 id=le.3h3v.s6.57f437a45fd7 from=translated src=- shape=a3be5fb5 vocab=397b728a
+-/
 theorem clockCoordinateIntegral_le
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (t : κ → ℝ) (ht : IsPMF t) (htpos : ∀ i, 0 < t i)

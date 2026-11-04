@@ -26,7 +26,9 @@ open Finset
 
 variable {α β : Type*} [Fintype α] [Fintype β] [DecidableEq α] [DecidableEq β]
 
-/-- **Feasibility at point masses: the kernel is capped by 1 on `S`.**-/
+/-- **Feasibility at point masses: the kernel is capped by 1 on `S`.**
+@isnad1 id=le.2h5v.s6.d2ffffcddab1 from=translated src=- shape=ec57948b vocab=3d8fae87
+-/
 theorem feasible_kernel_le_one {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : Feasible S w) : ∀ z ∈ S, w z ≤ 1 := by
   intro z hz
@@ -55,7 +57,9 @@ theorem feasible_kernel_le_one {S : Finset (α × β)} {w : α × β → ℝ}
 
 /-- **Pointwise domination.** Every contact of a feasible kernel satisfies
 `q(x,y) ≤ (q_X(x) q_Y(y))^{2/3}` on the support (and trivially off it) —
-correlation cannot hide in rare cells.-/
+correlation cannot hide in rare cells.
+@isnad1 id=le.3h6v.s7.9c63bf1b26aa from=translated src=- shape=82edb2c5 vocab=dea702cc
+-/
 theorem contact_pointwise_dom {S : Finset (α × β)} {w q : α × β → ℝ}
     (hw : Feasible S w) (hq : IsContact S w q) :
     ∀ z ∈ S, q z ≤ mX q z.1 ^ ((2:ℝ)/3) * mY q z.2 ^ ((2:ℝ)/3) := by
@@ -73,7 +77,9 @@ theorem contact_pointwise_dom {S : Finset (α × β)} {w q : α × β → ℝ}
 
 /-- **Co-contact ratio identity** (division-free): two contacts of one
 kernel satisfy `q · r_X^{2/3} r_Y^{2/3} = r · q_X^{2/3} q_Y^{2/3}`
-pointwise on the support — i.e. `q/r` is an exact product tilt.-/
+pointwise on the support — i.e. `q/r` is an exact product tilt.
+@isnad1 id=eq.3h7v.s8.8ae4a1800a94 from=translated src=- shape=976e46a2 vocab=82c72544
+-/
 theorem cocontact_ratio {S : Finset (α × β)} {w q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r) :
     ∀ z ∈ S,
@@ -90,7 +96,9 @@ For every `x`, fibered sums of the ratio identity give
 
 This is the engine of the exact co-contact rigidity system: dividing by
 `r_X q_X^{...}` where positive recovers the conditional-moment equations
-whose contraction properties force the knife edge.-/
+whose contraction properties force the knife edge.
+@isnad1 id=eq.2h7v.s8.5c76ca1ac256 from=translated src=- shape=7c6e32fb vocab=8493cdff
+-/
 theorem cocontact_halftilt {S : Finset (α × β)} {w q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r) :
     ∀ x : α,
@@ -120,7 +128,9 @@ theorem cocontact_halftilt {S : Finset (α × β)} {w q r : α × β → ℝ}
           intro y _
           ring
 
-/-- The symmetric (Y-fibered) half-tilt identity.-/
+/-- The symmetric (Y-fibered) half-tilt identity.
+@isnad1 id=eq.2h7v.s8.8af70b0b2e9f from=translated src=- shape=d483fb53 vocab=8493cdff
+-/
 theorem cocontact_halftilt_snd {S : Finset (α × β)} {w q r : α × β → ℝ}
     (hq : IsContact S w q) (hr : IsContact S w r) :
     ∀ y : β,
@@ -153,7 +163,9 @@ theorem cocontact_halftilt_snd {S : Finset (α × β)} {w q r : α × β → ℝ
 /-- **Set-level domination** (alphabet-free anti-concentration). Feasibility
 tested at renormalized restriction tilts bounds every product event at every
 contact: `q(U×V) ≤ (q_X(U) · q_Y(V))^{2/3}`. Rare product blocks cannot carry
-correlation — the singleton case is `contact_pointwise_dom`.-/
+correlation — the singleton case is `contact_pointwise_dom`.
+@isnad1 id=le.4h7v.s8.eaeaad5ec0d8 from=translated src=- shape=4c6a3f3f vocab=95f01e14
+-/
 theorem contact_set_dom {S : Finset (α × β)} {w q : α × β → ℝ}
     (hw : Feasible S w) (hq : IsContact S w q)
     (U : Finset α) (V : Finset β)

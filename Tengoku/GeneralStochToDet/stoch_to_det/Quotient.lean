@@ -72,7 +72,9 @@ structure Clustering {p : α × β → ℝ} (D : SeedSetup p) : Type 1 where
 attribute [instance] Clustering.fin Clustering.dec
 
 /-- Every setup has a duplicate quotient (`DecidableEq` on component laws is
-classical).-/
+classical).
+@isnad1 id=nonempty.0h4v.s5.138bb39f4299 from=translated src=- shape=9e40b207 vocab=f4562eeb
+-/
 theorem exists_clustering {p : α × β → ℝ} (D : SeedSetup p) : Nonempty (Clustering D) := by
   classical
   let r : Setoid D.L.ι := {
@@ -107,7 +109,9 @@ noncomputable def sigma (c : K.κ) (z : α × β) : ℝ :=
   ∑ ℓ ∈ univ.filter (fun ℓ => K.cl ℓ = c), D.post ℓ z
 
 /-- The defining property of the duplicate quotient:
-`t_ℓ(z) = σ_{cl ℓ}(z) · π_{ℓ}` with the second factor **independent of `z`**.-/
+`t_ℓ(z) = σ_{cl ℓ}(z) · π_{ℓ}` with the second factor **independent of `z`**.
+@isnad1 id=eq.1h7v.s7.d3340ff5229c from=translated src=- shape=c2dd2b82 vocab=91b25b70
+-/
 theorem post_eq_sigma_mul (ℓ : D.L.ι) (z : α × β) (hz : z ∈ support p) :
     D.post ℓ z = K.sigma (K.cl ℓ) z * (D.L.prior ℓ / K.s (K.cl ℓ)) := by
   have hpz : p z ≠ 0 := by
@@ -141,7 +145,9 @@ theorem post_eq_sigma_mul (ℓ : D.L.ι) (z : α × β) (hz : z ∈ support p) :
   field_simp [hpz, hs_pos.ne']
 
 /-- On a connected support every cluster posterior is strictly positive
-(Lemma 2.6), so no zero-posterior edge cases arise.-/
+(Lemma 2.6), so no zero-posterior edge cases arise.
+@isnad1 id=lt.1h7v.s6.d89f91e29565 from=translated src=- shape=d1f04f14 vocab=fb7a6ba2
+-/
 theorem sigma_pos (c : K.κ) (z : α × β) (hz : z ∈ support p) : 0 < K.sigma c z := by
   let ℓ : D.L.ι := Classical.choose (K.surj c)
   have hcl : K.cl ℓ = c := Classical.choose_spec (K.surj c)
@@ -173,12 +179,17 @@ theorem sigma_pos (c : K.κ) (z : α × β) (hz : z ∈ support p) : 0 < K.sigma
   exact hpost_pos.trans_le hle
 
 /-- Distinct clusters are pairwise distinct contacts of `w` — the hypothesis
-Theorem 6.2 and Theorem 9.1 require.-/
+Theorem 6.2 and Theorem 9.1 require.
+@isnad1 id=iscontac.0h6v.s6.a3f1cd7b61fb from=translated src=- shape=97e0478a vocab=c33964a0
+-/
 theorem Q_isContact (c : K.κ) : IsContact (support p) D.w (K.Q c) := by
   let ℓ : D.L.ι := Classical.choose (K.surj c)
   have hℓ : D.L.prior ℓ ≠ 0 := (D.prior_pos ℓ).ne'
   simpa [Q, ℓ] using D.contact ℓ hℓ
 
+/--
+@isnad1 id=injectiv.0h5v.s6.59f374d66615 from=translated src=- shape=b5a9db74 vocab=2c6fe6ec
+-/
 theorem Q_injective : Function.Injective K.Q := by
   intro c c' hQ
   have hrep :
@@ -972,12 +983,16 @@ private lemma dMis_eq_sum_posterior_mismatch :
       _ = p z * pairSum := by rw [sum_post_eq_one (D := D) z hz, one_mul]
 
 /-- **Lemma 7.2(d)**: `I(L₁;Z ∣ L₀) = S = b_Z`.
-*Finite* — a `push_push` computation using `post_eq_sigma_mul`.-/
+*Finite* — a `push_push` computation using `post_eq_sigma_mul`.
+@isnad1 id=eq.0h5v.s5.c264fed2a224 from=translated src=- shape=5c85e77e vocab=cd490d49
+-/
 theorem Sinfo_eq_bZ : K.Sinfo = bZ D := by
   rw [Sinfo_eq_cluster_posterior_sum K, bZ_eq_cluster_posterior_sum K]
 
 /-- **Lemma 7.2(d)**, second half: `d = E_p[1 − ∑_c σ_c(Z)²]`.
-*Finite.* Used by Theorem 10.1's final line.-/
+*Finite.* Used by Theorem 10.1's final line.
+@isnad1 id=eq.0h5v.s7.f4a7e5f31008 from=translated src=- shape=26d2215d vocab=686fc6c7
+-/
 theorem dMis_eq : K.dMis = ∑ z, p z * (1 - ∑ c, K.sigma c z ^ 2) := by
   rw [dMis_eq_sum_posterior_mismatch K]
   apply Finset.sum_congr rfl
@@ -986,6 +1001,9 @@ theorem dMis_eq : K.dMis = ∑ z, p z * (1 - ∑ c, K.sigma c z ^ 2) := by
   · simp [hz]
   · rw [posterior_mismatch_eq K z hz]
 
+/--
+@isnad1 id=le.0h5v.s5.fd95cd702315 from=translated src=- shape=5e00b770 vocab=461187b2
+-/
 theorem dMis_nonneg : 0 ≤ K.dMis := by
   unfold dMis
   exact Finset.sum_nonneg fun u _ => (replicaLaw_isPMF D).nonneg u

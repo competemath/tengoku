@@ -33,6 +33,9 @@ def pairPolarSource : Set (ℝ × ℝ) :=
 def positivePair : Set (ℝ × ℝ) :=
   Ioi (0 : ℝ) ×ˢ Ioi (0 : ℝ)
 
+/--
+@isnad1 id=eq.0h0v.s3.68686fb2b2cf from=translated src=- shape=f46ed00a vocab=6ea02e89
+-/
 lemma pairPolar_image : pairPolar '' pairPolarSource = positivePair := by
   ext z
   constructor
@@ -60,6 +63,9 @@ lemma pairPolar_image : pairPolar '' pairPolarSource = positivePair := by
       field_simp [htne]
       ring
 
+/--
+@isnad1 id=injon.0h0v.s3.4d3fc7cdf32e from=translated src=- shape=37ff952a vocab=c38b17c3
+-/
 lemma pairPolar_injOn : Set.InjOn pairPolar pairPolarSource := by
   intro q hq r hr hqr
   have hfst := congrArg Prod.fst hqr
@@ -77,6 +83,9 @@ noncomputable def pairPolarFDeriv (q : ℝ × ℝ) : ℝ × ℝ →L[ℝ] ℝ ×
   (Matrix.toLin (.finTwoProd ℝ) (.finTwoProd ℝ)
     !![q.2, q.1; 1 - q.2, -q.1]).toContinuousLinearMap
 
+/--
+@isnad1 id=hasfderi.0h1v.s6.07550fd72455 from=translated src=- shape=99fbcee6 vocab=41c339fd
+-/
 lemma hasFDerivAt_pairPolar (q : ℝ × ℝ) :
     HasFDerivAt pairPolar (pairPolarFDeriv q) q := by
   unfold pairPolarFDeriv
@@ -89,6 +98,9 @@ lemma hasFDerivAt_pairPolar (q : ℝ × ℝ) :
         ((hasFDerivAt_snd (𝕜 := ℝ) (p := q)).const_sub 1)) using 2 <;>
   module
 
+/--
+@isnad1 id=eq.0h1v.s5.124b48cb7987 from=translated src=- shape=d07c6805 vocab=63920095
+-/
 lemma det_pairPolarFDeriv (q : ℝ × ℝ) :
     (pairPolarFDeriv q).det = -q.1 := by
   unfold pairPolarFDeriv
@@ -96,7 +108,9 @@ lemma det_pairPolarFDeriv (q : ℝ × ℝ) :
     Matrix.det_fin_two_of]
   ring
 
-/-- Jacobian formula for the positive two-clock quadrant.-/
+/-- Jacobian formula for the positive two-clock quadrant.
+@isnad1 id=eq.0h1v.s6.a696e2258d73 from=translated src=- shape=76eb5f92 vocab=c99d3c83
+-/
 theorem lintegral_pairPolar (g : ℝ × ℝ → ℝ≥0∞) :
     (∫⁻ z : ℝ × ℝ in positivePair, g z) =
       ∫⁻ q : ℝ × ℝ in pairPolarSource,
@@ -143,7 +157,9 @@ private lemma measurable_rawGammaTwoDensity : Measurable rawGammaTwoDensity := b
   unfold rawGammaTwoDensity
   fun_prop
 
-/-- The library unit exponential measure in positive-density form.-/
+/-- The library unit exponential measure in positive-density form.
+@isnad1 id=eq.0h0v.s5.e4753988210c from=translated src=- shape=47ed0a6c vocab=e62bfe96
+-/
 lemma expMeasure_one_eq_restrict_withDensity :
     expMeasure 1 =
       (volume.restrict (Ioi (0 : ℝ))).withDensity unitExpDensity := by
@@ -208,7 +224,9 @@ private lemma pairPolar_density_cancel {q : ℝ × ℝ} (hq : q ∈ pairPolarSou
   rw [hexp, ← ENNReal.ofReal_mul ht]
 
 /-- Two iid unit exponentials factor exactly into their sum, with literal
-`Gamma(2,1)` density, and an independent uniform ratio.-/
+`Gamma(2,1)` density, and an independent uniform ratio.
+@isnad1 id=eq.0h0v.s5.9310569139b1 from=translated src=- shape=fe4e7b44 vocab=1da9dafc
+-/
 theorem map_pairSumRatio_expPair :
     Measure.map pairSumRatio ((expMeasure 1).prod (expMeasure 1)) =
       rawGammaTwoLaw.prod uniformUnitLaw := by
@@ -252,7 +270,9 @@ theorem map_pairSumRatio_expPair :
   rw [pairSumRatio_pairPolar hq]
   rw [← mul_assoc, pairPolar_density_cancel hq]
 
-/-- Survival function of the literal raw `Gamma(2,1)` law.-/
+/-- Survival function of the literal raw `Gamma(2,1)` law.
+@isnad1 id=eq.1h1v.s5.2770c6607e2c from=translated src=- shape=047a22dd vocab=acd4b9b8
+-/
 lemma rawGammaTwoLaw_Ioi (y : ℝ) (hy : 0 ≤ y) :
     rawGammaTwoLaw (Ioi y) =
       ENNReal.ofReal ((y + 1) * Real.exp (-y)) := by
@@ -886,7 +906,9 @@ private lemma integral_betaTwoDensity (k : ℕ) (hk : 3 ≤ k)
   unfold SharedRace.betaTwoCallDeriv at hftc
   simpa [hk0, hpow] using hftc
 
-/-- Tail of the literal scaled-Beta(2,k-2) density.-/
+/-- Tail of the literal scaled-Beta(2,k-2) density.
+@isnad1 id=eq.3h2v.s7.02f9ff917ce1 from=translated src=- shape=ef6d20ed vocab=320db7a4
+-/
 lemma scaledBetaTwoLaw_Ioi (k : ℕ) (hk : 3 ≤ k) (s : ℝ)
     (hs0 : 0 ≤ s) (hsk : s < k) :
     scaledBetaTwoLaw k (Ioi s) =
@@ -998,7 +1020,9 @@ private lemma ae_scaledPairShare_pos_le {ι : Type} [Fintype ι] :
     nlinarith
 
 /-- The scaled normalized sum of two clocks has exactly the literal
-`k * Beta(2,k-2)` law, where `k` is the total number of clocks.-/
+`k * Beta(2,k-2)` law, where `k` is the total number of clocks.
+@isnad1 id=eq.0h1v.s6.d119b2f12cac from=translated src=- shape=f2fe07d5 vocab=5d034094
+-/
 theorem restProd_rawGamma_scaledPairShare_map_eq_scaledBetaTwoLaw
     {ι : Type} [Fintype ι] [Nonempty ι] :
     Measure.map scaledPairShare
@@ -1112,7 +1136,9 @@ theorem restProd_rawGamma_scaledPairShare_map_eq_scaledBetaTwoLaw
     measure_univ, measure_univ, htail s]
 
 /-- Integrating an exponential against the shape-two density yields
-`betaTwoExpMoment`.-/
+`betaTwoExpMoment`.
+@isnad1 id=eq.1h2v.s5.83126e0c36aa from=translated src=- shape=0177d102 vocab=432dda43
+-/
 lemma integral_exp_scaledBetaTwoLaw_eq_betaTwoExpMoment (k : ℕ)
     (hk : 3 ≤ k) (lam : ℝ) :
     (∫ t : ℝ, Real.exp (lam * t) ∂(scaledBetaTwoLaw k)) =
@@ -1154,7 +1180,9 @@ lemma integral_exp_scaledBetaTwoLaw_eq_betaTwoExpMoment (k : ℕ)
     exact_mod_cast (Nat.zero_le k))).symm
 
 /-- In the abstract product coordinates, the normalized pair share and the
-within-pair ratio are independent, with scaled-Beta and uniform laws.-/
+within-pair ratio are independent, with scaled-Beta and uniform laws.
+@isnad1 id=eq.0h1v.s7.519b81e10496 from=translated src=- shape=c1c57d8b vocab=e59fcd30
+-/
 theorem restRawUniform_joint_map_eq
     {ι : Type} [Fintype ι] [Nonempty ι] :
     Measure.map
@@ -1268,7 +1296,9 @@ private lemma clockTotal_eq_pair_add_rest {κ : Type} [Fintype κ]
     (fun i : κ => i = a ∨ i = j) W, hpair]
 
 /-- The load-bearing joint clock law: the scaled normalized sum of two
-distinct clocks is independent of their within-pair ratio.-/
+distinct clocks is independent of their within-pair ratio.
+@isnad1 id=eq.2h3v.s7.1463e3ad3245 from=translated src=- shape=5bc219e9 vocab=53dccbb2
+-/
 theorem clockLaw_pairShareRatio_map_eq {κ : Type} [Fintype κ]
     [DecidableEq κ] [Nonempty κ] (a j : κ) (haj : a ≠ j)
     (hk : 3 ≤ Fintype.card κ) :
@@ -1389,7 +1419,9 @@ theorem clockLaw_pairShareRatio_map_eq {κ : Type} [Fintype κ]
   rw [← hfun]
   rw [hfull.map_eq, hcard]
 
-/-- The raw two selected clocks have their iid exponential product law.-/
+/-- The raw two selected clocks have their iid exponential product law.
+@isnad1 id=eq.1h3v.s6.0d12c7e10daf from=translated src=- shape=de5dbb0f vocab=38381424
+-/
 theorem clockLaw_pairEval_map_eq {κ : Type} [Fintype κ]
     [DecidableEq κ] [Nonempty κ] (a j : κ) (haj : a ≠ j) :
     Measure.map (fun W : κ → ℝ => (W a, W j)) (clockLaw κ) =
@@ -1415,7 +1447,9 @@ theorem clockLaw_pairEval_map_eq {κ : Type} [Fintype κ]
   exact hp
 
 /-- For any two distinct clocks, their within-pair ratio is uniform on the
-unit interval.-/
+unit interval.
+@isnad1 id=eq.1h3v.s6.b1c7f90dd74f from=translated src=- shape=9d60838d vocab=57eef744
+-/
 theorem clockLaw_pairRatio_map_eq_uniformUnitLaw {κ : Type} [Fintype κ]
     [DecidableEq κ] [Nonempty κ] (a j : κ) (haj : a ≠ j) :
     Measure.map (fun W : κ → ℝ => W a / (W a + W j)) (clockLaw κ) =
@@ -1444,7 +1478,9 @@ theorem clockLaw_pairRatio_map_eq_uniformUnitLaw {κ : Type} [Fintype κ]
     _ = uniformUnitLaw := measurePreserving_snd.map_eq
 
 /-- Degenerate two-clock joint law: the scaled pair share is constantly two,
-while the within-pair ratio remains uniform.-/
+while the within-pair ratio remains uniform.
+@isnad1 id=eq.2h3v.s7.30b0dda5b9e9 from=translated src=- shape=3dbab88c vocab=0a15bb62
+-/
 theorem clockLaw_pairShareRatio_map_eq_two {κ : Type} [Fintype κ]
     [DecidableEq κ] [Nonempty κ] (a j : κ) (haj : a ≠ j)
     (hk : Fintype.card κ = 2) :
@@ -1502,6 +1538,9 @@ noncomputable def pairMobiusIntegrand (p : ℝ) (sv : ℝ × ℝ) : ℝ :=
   let x := SharedRace.mobius p sv.2
   x ^ 2 * Real.exp (sv.1 * SharedRace.loserExponent p x)
 
+/--
+@isnad1 id=measurab.0h1v.s3.d6c492b9215a from=translated src=- shape=c01c88c0 vocab=ffd46d34
+-/
 lemma measurable_pairMobiusIntegrand (p : ℝ) :
     Measurable (pairMobiusIntegrand p) := by
   unfold pairMobiusIntegrand SharedRace.mobius
@@ -1565,7 +1604,9 @@ private lemma integrable_pairMobiusIntegrand_prod (k : ℕ) (hk : 3 ≤ k)
   exact hC _ ⟨(s, v), ⟨Ioc_subset_Icc_self hs, ⟨hv.1.le, hv.2.le⟩⟩, rfl⟩
 
 /-- Product-coordinate evaluation of the losing statistic in the
-nondegenerate `k ≥ 3` branch.-/
+nondegenerate `k ≥ 3` branch.
+@isnad1 id=eq.3h2v.s6.ad7416c70d51 from=translated src=- shape=12189a79 vocab=a9b7be9e
+-/
 theorem integral_pairMobiusIntegrand_prod_eq_beta (k : ℕ) (hk : 3 ≤ k)
     {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ sv : ℝ × ℝ, pairMobiusIntegrand p sv
@@ -1594,7 +1635,9 @@ theorem integral_pairMobiusIntegrand_prod_eq_beta (k : ℕ) (hk : 3 ≤ k)
   rw [← integral_Ioc_eq_integral_Ioo,
     ← intervalIntegral.integral_of_le zero_le_one]
 
-/-- Product-coordinate evaluation in the degenerate `k = 2` branch.-/
+/-- Product-coordinate evaluation in the degenerate `k = 2` branch.
+@isnad1 id=eq.0h1v.s6.f062b40e09f7 from=translated src=- shape=ee03054b vocab=dbb868ba
+-/
 theorem integral_pairMobiusIntegrand_prod_eq_degenerate (p : ℝ) :
     (∫ sv : ℝ × ℝ, pairMobiusIntegrand p sv
         ∂((Measure.dirac (2 : ℝ)).prod uniformUnitLaw)) =
@@ -1611,7 +1654,9 @@ theorem integral_pairMobiusIntegrand_prod_eq_degenerate (p : ℝ) :
   · exact measurable_const.prodMk measurable_id |>.aemeasurable
   · exact (measurable_pairMobiusIntegrand p).aestronglyMeasurable
 
-/-- Clock-law evaluation of the fresh losing-pair statistic for `k ≥ 3`.-/
+/-- Clock-law evaluation of the fresh losing-pair statistic for `k ≥ 3`.
+@isnad1 id=eq.4h4v.s7.6d58e3f11896 from=translated src=- shape=c4b10d49 vocab=91d5dce3
+-/
 theorem integral_pairMobiusIntegrand_clockLaw_eq_beta
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (a j : κ) (haj : a ≠ j) (hk : 3 ≤ Fintype.card κ)
@@ -1648,7 +1693,9 @@ theorem integral_pairMobiusIntegrand_clockLaw_eq_beta
     _ = _ := integral_pairMobiusIntegrand_prod_eq_beta
       (Fintype.card κ) hk hp0 hp1
 
-/-- Clock-law evaluation in the degenerate two-label branch.-/
+/-- Clock-law evaluation in the degenerate two-label branch.
+@isnad1 id=eq.2h4v.s7.4079c0348abf from=translated src=- shape=f75a1693 vocab=1bf5fb34
+-/
 theorem integral_pairMobiusIntegrand_clockLaw_eq_degenerate
     {κ : Type} [Fintype κ] [DecidableEq κ] [Nonempty κ]
     (a j : κ) (haj : a ≠ j) (hk : Fintype.card κ = 2) (p : ℝ) :

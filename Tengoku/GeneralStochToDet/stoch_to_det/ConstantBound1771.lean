@@ -14,7 +14,9 @@ namespace stoch_to_det
 
 open MeasureTheory Set Finset
 
-/-- The elementary logarithmic moments on `(0,1]`.-/
+/-- The elementary logarithmic moments on `(0,1]`.
+@isnad1 id=eq.0h1v.s6.638f091e9887 from=translated src=- shape=74e3eb19 vocab=4f2d60e0
+-/
 theorem integral_neg_log_mul_pow (m : ℕ) :
     (∫ t : ℝ in Set.Ioc 0 1, (-Real.log t) * t ^ m) =
       1 / (m + 1 : ℝ) ^ 2 := by
@@ -89,6 +91,9 @@ noncomputable def lowLogMoment1771 : ℝ :=
 noncomputable def expNegTaylor7 (t : ℝ) : ℝ :=
   ∑ m ∈ Finset.range 8, (-t) ^ m / (m.factorial : ℝ)
 
+/--
+@isnad1 id=le.2h1v.s6.3fc4c9fa0f3c from=translated src=- shape=74d3b613 vocab=24edbfab
+-/
 lemma exp_neg_le_taylor7 (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     Real.exp (-t) ≤ expNegTaylor7 t + t ^ 8 / 35840 := by
   have hb := Real.exp_bound (x := -t) (n := 8)
@@ -100,7 +105,9 @@ lemma exp_neg_le_taylor7 (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
   linarith
 
 /-- Integrability of all logarithmic moments used to integrate the Taylor
-polynomial.-/
+polynomial.
+@isnad1 id=integrab.0h1v.s6.f164f0d4595a from=translated src=- shape=30d187c0 vocab=e938a610
+-/
 lemma integrableOn_neg_log_mul_pow (m : ℕ) :
     IntegrableOn (fun t : ℝ => (-Real.log t) * t ^ m) (Set.Ioc 0 1) := by
   have hlog : IntegrableOn (fun t : ℝ => -Real.log t) (Set.Ioc 0 1) := by
@@ -126,7 +133,9 @@ section
 set_option maxRecDepth 10000
 
 /-- A certified lower bound for Euler's constant, obtained from the same
-harmonic-sequence argument as the historical constant audit.-/
+harmonic-sequence argument as the historical constant audit.
+@isnad1 id=lt.0h0v.s4.e86f7cf6f71d from=translated src=- shape=5ccaf027 vocab=3c9485f4
+-/
 theorem eulerMascheroni_lower_1771 :
     (5770052 : ℝ) / 10000000 < Real.eulerMascheroniConstant := by
   have hlog2500 : Real.log 2500 = 2 * Real.log 2 + 4 * Real.log 5 := by
@@ -149,7 +158,9 @@ theorem eulerMascheroni_lower_1771 :
 
 end
 
-/-- Seven Taylor terms already certify `2/e < 0.7359`.-/
+/-- Seven Taylor terms already certify `2/e < 0.7359`.
+@isnad1 id=lt.0h0v.s5.d59f8ee7e8c1 from=translated src=- shape=052741ee vocab=7b78fbf0
+-/
 theorem two_div_exp_one_lt_1771 :
     2 / Real.exp 1 < (7359 : ℝ) / 10000 := by
   have hsum := Real.sum_le_exp_of_nonneg (x := (1 : ℝ)) (by norm_num) 7
@@ -168,7 +179,9 @@ noncomputable def alphaBar1771 : ℝ :=
 noncomputable def x01771 : ℝ :=
   (5770052 : ℝ) / 10000000 + (677 : ℝ) / 1000
 
-/-- The second-order lower Taylor bound for `-log (1-u)`.-/
+/-- The second-order lower Taylor bound for `-log (1-u)`.
+@isnad1 id=le.2h1v.s6.46fa8bf9a18e from=translated src=- shape=20def026 vocab=f7d62b05
+-/
 lemma neg_log_one_sub_ge_quadratic {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u < 1) :
     u + u ^ 2 / 2 ≤ -Real.log (1 - u) := by
   let f : ℝ → ℝ := fun x =>
@@ -215,7 +228,9 @@ lemma neg_log_one_sub_ge_quadratic {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u < 1) :
   linarith
 
 /-- The exact information floor dominates a rational expression in
-`u = chi/2`.-/
+`u = chi/2`.
+@isnad1 id=le.0h0v.s6.8cd05058e5ff from=translated src=- shape=c1bb711c vocab=0f9cd078
+-/
 theorem infoFloor1771_lower :
     (2 * (chi1771 / 2) + (chi1771 / 2) ^ 2) / Real.log 2 ≤
       infoFloor1771 := by
@@ -248,24 +263,39 @@ noncomputable def KMbar1771 : ℝ :=
 noncomputable def KSbar1771 : ℝ :=
   2 + 2 * ((2677 : ℝ) / 1000) / delta1771
 
+/--
+@isnad1 id=lt.0h0v.s3.87b1b5b96db4 from=translated src=- shape=ff3a10fc vocab=d2b0fe77
+-/
 lemma u1771_pos : 0 < u1771 := by
   unfold u1771
   exact div_pos chi1771_pos (by norm_num)
 
+/--
+@isnad1 id=lt.0h0v.s3.fce3faa6a2cc from=translated src=- shape=ff3a10fc vocab=1602fd81
+-/
 lemma v1771_pos : 0 < v1771 := by
   unfold v1771
   nlinarith [u1771_pos, sq_nonneg u1771]
 
+/--
+@isnad1 id=eq.0h0v.s5.7dd4dda0eafd from=translated src=- shape=c5cf480f vocab=5951ef0f
+-/
 lemma beta1771_mul_log_two :
     beta1771 * Real.log 2 = 2 + cOff1771 := by
   have hlog : Real.log 2 ≠ 0 := (Real.log_pos one_lt_two).ne'
   unfold beta1771
   field_simp [hlog]
 
+/--
+@isnad1 id=lt.0h0v.s4.f4ebec3ae982 from=translated src=- shape=f1614c97 vocab=21d9aad9
+-/
 lemma three_KMbar1771_lt_1770 : 3 * KMbar1771 < (1770 : ℝ) := by
   norm_num [KMbar1771, v1771, u1771, chi1771, chi1771Q,
     rho1771Q, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s5.8c4310e083e5 from=translated src=- shape=89bf89c6 vocab=560da8a7
+-/
 lemma six_KSbar1771_add_two_lt_1770 :
     6 * KSbar1771 + 2 < (1770 : ℝ) := by
   norm_num [KSbar1771, delta1771, delta1771Q, eta1771Q]

@@ -90,42 +90,81 @@ noncomputable def Cdagger1771 : ℝ :=
 
 /-! ### Exact threshold identities and elementary positivity -/
 
+/--
+@isnad1 id=eq.0h0v.s4.ca93fe658cd4 from=translated src=- shape=0efb1284 vocab=7638bf94
+-/
 lemma eta1771_eq : eta1771 = (527 : ℝ) / 2000 := by
   norm_num [eta1771, eta1771Q]
 
+/--
+@isnad1 id=eq.0h0v.s4.d6ba1ca29e57 from=translated src=- shape=9a2ead57 vocab=17892708
+-/
 lemma delta1771_eq : delta1771 = eta1771 ^ 3 := by
   norm_num [delta1771, delta1771Q, eta1771, eta1771Q]
 
+/--
+@isnad1 id=eq.0h0v.s5.e41a041224b8 from=translated src=- shape=f2920ecc vocab=f799af26
+-/
 lemma rho1771_eq : rho1771 = 1 / 2 - eta1771 ^ 2 := by
   norm_num [rho1771, rho1771Q, eta1771, eta1771Q]
 
+/--
+@isnad1 id=eq.0h0v.s6.c915078bb32a from=translated src=- shape=5114b5f5 vocab=feb359e8
+-/
 lemma chi1771_eq : chi1771 = rho1771 ^ 6 / (1 + rho1771 ^ 2) ^ 2 := by
   norm_num [chi1771, chi1771Q, rho1771, rho1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s3.6bf6358d1a68 from=translated src=- shape=ff3a10fc vocab=d99c1fab
+-/
 lemma eta1771_pos : 0 < eta1771 := by
   norm_num [eta1771, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s3.5758d770f015 from=translated src=- shape=ff3a10fc vocab=f6585041
+-/
 lemma delta1771_pos : 0 < delta1771 := by
   norm_num [delta1771, delta1771Q, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s3.8ad744b276ed from=translated src=- shape=ff3a10fc vocab=25267af0
+-/
 lemma rho1771_pos : 0 < rho1771 := by
   norm_num [rho1771, rho1771Q, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s3.9341587d4e19 from=translated src=- shape=ffdda526 vocab=25267af0
+-/
 lemma rho1771_lt_one : rho1771 < 1 := by
   norm_num [rho1771, rho1771Q, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s3.7692799acf31 from=translated src=- shape=ff3a10fc vocab=ceb41379
+-/
 lemma chi1771_pos : 0 < chi1771 := by
   norm_num [chi1771, chi1771Q, rho1771Q, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s3.446f55ae7988 from=translated src=- shape=ffdda526 vocab=1340ca7a
+-/
 lemma chi1771_lt_two : chi1771 < 2 := by
   norm_num [chi1771, chi1771Q, rho1771Q, eta1771Q]
 
+/--
+@isnad1 id=lt.0h0v.s5.27bf1ea144b8 from=translated src=- shape=5c5055bc vocab=256f1a27
+-/
 lemma one_sub_chi1771_half_pos : 0 < 1 - chi1771 / 2 := by
   linarith [chi1771_lt_two]
 
+/--
+@isnad1 id=lt.0h0v.s5.8256f9fea1c4 from=translated src=- shape=22e1ca55 vocab=256f1a27
+-/
 lemma one_sub_chi1771_half_lt_one : 1 - chi1771 / 2 < 1 := by
   linarith [chi1771_pos]
 
+/--
+@isnad1 id=lt.0h0v.s3.ad1f175f37b9 from=translated src=- shape=ff3a10fc vocab=f3b38dfa
+-/
 lemma infoFloor1771_pos : 0 < infoFloor1771 := by
   have harg := one_sub_chi1771_half_pos
   have hlog : lg (1 - chi1771 / 2) < 0 := by

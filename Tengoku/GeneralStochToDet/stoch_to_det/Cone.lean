@@ -122,7 +122,9 @@ private theorem map_expMeasure_add_eq_smul_restrict {a : ℝ} (ha : 0 ≤ a) :
 `D(Law(a+E) ‖ Law(E)) = a` exactly, in nats.
 
 The density ratio on the shifted support is the *constant* `eᵃ`, which is why
-the coordinate sum in (10.1) collapses with no slack.-/
+the coordinate sum in (10.1) collapses with no slack.
+@isnad1 id=eq.1h1v.s5.6b06f9e10667 from=translated src=- shape=7d370849 vocab=8df424ee
+-/
 theorem shifted_exp_klDiv {a : ℝ} (ha : 0 ≤ a) :
     (klDiv ((expMeasure 1).map (fun x => a + x)) (expMeasure 1)).toReal = a := by
   let c : ℝ≥0 := Real.toNNReal (Real.exp a)
@@ -137,7 +139,9 @@ theorem shifted_exp_klDiv {a : ℝ} (ha : 0 ≤ a) :
   simp [c, Real.coe_toNNReal _ (Real.exp_nonneg a)]
 
 /-- **(10.1)**: additivity of KL over the product of
-shifted exponentials, `D(P_z^{(u,b)} ‖ Q₀) = u ∑_{c≠b} r_c(z) = u(1/s_z − 1)`.-/
+shifted exponentials, `D(P_z^{(u,b)} ‖ Q₀) = u ∑_{c≠b} r_c(z) = u(1/s_z − 1)`.
+@isnad1 id=eq.2h8v.s7.52f73128d7b0 from=translated src=- shape=93277e32 vocab=1fc9b009
+-/
 theorem product_shift_klDiv (b : K.κ) {z : α × β} (hz : z ∈ support p)
     {u : ℝ} (hu : 0 ≤ u) :
     ∑ c ∈ univ.erase b, u * (K.sigma c z / K.sigma b z)
@@ -168,7 +172,9 @@ theorem product_shift_klDiv (b : K.κ) {z : α × β} (hz : z ∈ support p)
     _ = u * (1 / K.sigma b z - 1) := by field_simp
 
 /-- The elementary integral of **Step 3**:
-`∫₀^∞ u e^{−u/s} du = s²` for `s > 0`.-/
+`∫₀^∞ u e^{−u/s} du = s²` for `s > 0`.
+@isnad1 id=eq.1h1v.s6.19a70e206801 from=translated src=- shape=7c622c33 vocab=73872b06
+-/
 theorem exp_integral_sq {s : ℝ} (hs : 0 < s) :
     ∫ u in Set.Ioi (0 : ℝ), u * Real.exp (-u / s) = s ^ 2 := by
   have h := Real.integral_rpow_mul_exp_neg_mul_Ioi
@@ -177,7 +183,9 @@ theorem exp_integral_sq {s : ℝ} (hs : 0 < s) :
     div_eq_mul_inv, hs.ne', mul_comm] using h
 
 /-- **Theorem 10.1**, bits form:
-`cone ≤ d/ln 2 ≤ K_orth (M + S)`, using Theorem 9.1.-/
+`cone ≤ d/ln 2 ≤ K_orth (M + S)`, using Theorem 9.1.
+@isnad1 id=le.0h6v.s6.0b40eae97e9e from=translated src=- shape=0797a377 vocab=6e4cb5dc
+-/
 theorem cone_bound_Korth (R : RaceQuantities D K) :
     R.cone ≤ Korth * (D.M + K.Sinfo) := by
   have hlog : 0 < Real.log 2 := Real.log_pos (by norm_num)

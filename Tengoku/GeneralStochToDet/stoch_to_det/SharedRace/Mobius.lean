@@ -63,6 +63,9 @@ private lemma densityDen_pos {p x : ℝ} (hp0 : 0 < p) (hp1 : p < 1)
   exact add_pos_of_pos_of_nonneg hp0
     (mul_nonneg (sub_nonneg.mpr hp1.le) hx.1)
 
+/--
+@isnad1 id=mem.3h2v.s6.5cf3ada9e279 from=translated src=- shape=7b146767 vocab=98339db4
+-/
 lemma mobius_mem_Icc {p v : ℝ} (hp0 : 0 < p) (hp1 : p < 1)
     (hv : v ∈ Icc (0 : ℝ) 1) :
     mobius p v ∈ Icc (0 : ℝ) 1 := by
@@ -164,7 +167,9 @@ private lemma continuousOn_loserGammaIntegrand {p : ℝ}
   exact ((continuousOn_mobiusDensity hp0 hp1).mul
     (continuousOn_id.pow 2)).mul (hinv.pow 2)
 
-/-- Möbius change of variables for any integrand continuous on `[0,1]`.-/
+/-- Möbius change of variables for any integrand continuous on `[0,1]`.
+@isnad1 id=eq.3h2v.s7.36789b95f83a from=translated src=- shape=9f474d8c vocab=4c9356b5
+-/
 theorem integral_comp_mobius {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1)
     {F : ℝ → ℝ} (hF : ContinuousOn F (Icc (0 : ℝ) 1)) :
     (∫ v : ℝ in 0..1, F (mobius p v)) =
@@ -218,7 +223,9 @@ theorem integral_comp_mobius {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1)
     _ = ∫ x : ℝ in mobius p 0..mobius p 1, mobiusDensity p x * F x := hsub
     _ = ∫ x : ℝ in 0..1, mobiusDensity p x * F x := by rw [hzero, hone]
 
-/-- The literal loser beta-moment integral after the Möbius substitution.-/
+/-- The literal loser beta-moment integral after the Möbius substitution.
+@isnad1 id=eq.2h2v.s7.9588ff0cd40e from=translated src=- shape=75a2bedf vocab=abe86a21
+-/
 theorem loserBetaIntegral_changeOfVariables (k : ℕ) {p : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ v : ℝ in 0..1, loserBetaIntegrand k p (mobius p v)) =
@@ -230,7 +237,9 @@ theorem loserBetaIntegral_changeOfVariables (k : ℕ) {p : ℝ}
     integral_comp_mobius hp0 hp1 (continuousOn_loserBetaIntegrand k hp0 hp1)
 
 /-- The literal `k = 2` degenerate loser integral after the Möbius
-substitution.-/
+substitution.
+@isnad1 id=eq.2h1v.s7.1ac32dc245e8 from=translated src=- shape=9f2871e3 vocab=83c99508
+-/
 theorem loserDegenerateIntegral_changeOfVariables {p : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ v : ℝ in 0..1, loserDegenerateIntegrand p (mobius p v)) =
@@ -242,7 +251,9 @@ theorem loserDegenerateIntegral_changeOfVariables {p : ℝ}
 
 /-- The clock-ready integrated loser bound.  It combines the literal
 shape-two beta moment, the Möbius density, the beta--gamma comparison, and
-the rational coordinate integral.-/
+the rational coordinate integral.
+@isnad1 id=le.3h2v.s7.8ea3e9d54c83 from=translated src=- shape=9dd0a8f0 vocab=63d7bbde
+-/
 theorem integratedLoserBetaExpMoment_le (k : ℕ) (hk : 3 ≤ k) {p : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ v : ℝ in 0..1, loserBetaIntegrand k p (mobius p v)) ≤
@@ -299,7 +310,9 @@ theorem integratedLoserBetaExpMoment_le (k : ℕ) (hk : 3 ≤ k) {p : ℝ}
     _ ≤ _ := SharedRace.loserMobiusGammaIntegral_le hp0 hp1
 
 /-- The clock-ready integrated loser bound for the degenerate `k = 2`
-shape-two branch.-/
+shape-two branch.
+@isnad1 id=le.2h1v.s7.ef76ab2c2de2 from=translated src=- shape=ba999856 vocab=179feaee
+-/
 theorem integratedLoserDegenerateExpMoment_le {p : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ v : ℝ in 0..1, loserDegenerateIntegrand p (mobius p v)) ≤

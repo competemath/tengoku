@@ -72,6 +72,9 @@ namespace NLatent
 noncomputable def joint (V : NLatent p) : V.ι × Ω → ℝ :=
   fun w => V.prior w.1 * V.comp w.1 w.2
 
+/--
+@isnad1 id=ispmf.0h3v.s5.83f4cbdc62d5 from=translated src=- shape=c5744971 vocab=d98fa934
+-/
 lemma joint_isPMF (V : NLatent p) : IsPMF V.joint := by
   refine ⟨?_, ?_⟩
   · intro w
@@ -84,6 +87,9 @@ lemma joint_isPMF (V : NLatent p) : IsPMF V.joint := by
     simp_rw [hcomp, mul_one]
     simpa [mass] using V.prior_isPMF.total
 
+/--
+@isnad1 id=eq.0h3v.s6.f9b9a5818fbe from=translated src=- shape=2fdc82e5 vocab=2f893cd3
+-/
 lemma push_snd_joint (V : NLatent p) :
     push (fun w : V.ι × Ω => w.2) V.joint = p := by
   funext z
@@ -91,6 +97,9 @@ lemma push_snd_joint (V : NLatent p) :
   rw [Finset.sum_filter, Fintype.sum_prod_type]
   simpa [NLatent.joint] using V.mixture z
 
+/--
+@isnad1 id=eq.0h3v.s6.249b797f83e9 from=translated src=- shape=968b7b0d vocab=8ded6fb0
+-/
 lemma push_fst_joint (V : NLatent p) :
     push (fun w : V.ι × Ω => w.1) V.joint = V.prior := by
   funext v
@@ -109,6 +118,9 @@ lemma push_fst_joint (V : NLatent p) :
           · simp [hx]
     _ = V.prior v := by simp [hcomp]
 
+/--
+@isnad1 id=eq.0h5v.s6.e865e67fb317 from=translated src=- shape=9eee77c7 vocab=1798390f
+-/
 lemma Hvar_lift {γ : Type*} [Fintype γ] [DecidableEq γ]
     (V : NLatent p) (f : Ω → γ) :
     Hvar (fun w : V.ι × Ω => f w.2) V.joint = Hvar f p := by
@@ -122,13 +134,18 @@ lemma Hvar_lift {γ : Type*} [Fintype γ] [DecidableEq γ]
             (push_push (fun w : V.ι × Ω => w.2) f V.joint)
     _ = push f p := by rw [V.push_snd_joint]
 
+/--
+@isnad1 id=eq.0h3v.s6.381016fe2421 from=translated src=- shape=e9261195 vocab=7f173553
+-/
 lemma Hvar_prior (V : NLatent p) :
     Hvar (fun w : V.ι × Ω => w.1) V.joint = H V.prior := by
   unfold Hvar
   rw [V.push_fst_joint]
 
 /-- Conditional chain rule for the mixture joint: the entropy of `(f(Z), V)`
-is the prior entropy plus the average per-component entropy of `f`.-/
+is the prior entropy plus the average per-component entropy of `f`.
+@isnad1 id=eq.0h5v.s7.ebf292876d83 from=translated src=- shape=db521b83 vocab=a1b15698
+-/
 lemma Hvar_lift_pair_prior {γ : Type*} [Fintype γ] [DecidableEq γ]
     (V : NLatent p) (f : Ω → γ) :
     Hvar (fun w : V.ι × Ω => (f w.2, w.1)) V.joint =
@@ -171,7 +188,9 @@ lemma Hvar_lift_pair_prior {γ : Type*} [Fintype γ] [DecidableEq γ]
     simpa [Hvar] using
       (H_smul (isFinMeas_push (V.comp_isPMF v).isFinMeas) hvpos.le)
 
-/-- Pair form with the prior on the left, obtained by re-encoding.-/
+/-- Pair form with the prior on the left, obtained by re-encoding.
+@isnad1 id=eq.0h5v.s7.c962291827fa from=translated src=- shape=894ba9e9 vocab=a1b15698
+-/
 lemma Hvar_prior_pair_lift {γ : Type*} [Fintype γ] [DecidableEq γ]
     (V : NLatent p) (f : Ω → γ) :
     Hvar (fun w : V.ι × Ω => (w.1, f w.2)) V.joint =
@@ -219,7 +238,9 @@ namespace NLatent
 variable {f g}
 
 /-- Per-view conditional entropy of the joint collapses to the average
-component conditional entropy: `H(f_i ∣ V) = ∑ v λ_v H_{q_v}(f_i)`.-/
+component conditional entropy: `H(f_i ∣ V) = ∑ v λ_v H_{q_v}(f_i)`.
+@isnad1 id=eq.0h5v.s7.c78821e41472 from=translated src=- shape=0f8d6308 vocab=36706059
+-/
 lemma condH_view_prior {δ : Type*} [Fintype δ] [DecidableEq δ]
     (V : NLatent p) (h : Ω → δ) :
     condH (fun w : V.ι × Ω => h w.2) (fun w => w.1) V.joint =
@@ -230,7 +251,9 @@ lemma condH_view_prior {δ : Type*} [Fintype δ] [DecidableEq δ]
 
 /-- The conditional mutual information `I(V ; f_i ∣ g_i)` under the joint
 equals the base-law conditional entropy minus the average component
-conditional entropy. No injectivity is needed.-/
+conditional entropy. No injectivity is needed.
+@isnad1 id=eq.0h9v.s8.077429cee667 from=translated src=- shape=0e01923e vocab=ae514071
+-/
 lemma condMI_view (V : NLatent p) (i : Fin n) :
     condMI (fun w : V.ι × Ω => w.1) (fun w => f i w.2)
         (fun w => g i w.2) V.joint =
@@ -270,7 +293,9 @@ the cell — then
 `S_n(V) = Ψ_n(p) − ∑ v, λ_v Φ_n(q_v)`.
 
 This is the n-observable generalization of `Latent.score_eq`
-(Lemma 1.1 of the two-variable development).-/
+(Lemma 1.1 of the two-variable development).
+@isnad1 id=eq.2h8v.s7.3d265d4552c0 from=translated src=- shape=d5eb92d9 vocab=c9b24647
+-/
 theorem score_eq [Nonempty Ω] (hp : IsPMF p) (V : NLatent p)
     (hinj : ∀ i, Function.Injective (fun z => (f i z, g i z))) :
     V.score f g = nPsi f g p - ∑ v, V.prior v * nPhi f g (V.comp v) := by
@@ -353,7 +378,9 @@ theorem score_eq [Nonempty Ω] (hp : IsPMF p) (V : NLatent p)
   linarith [hsum]
 
 /-- Mutual information between the latent and any view collapses through the
-mixture: `I(V ; h(Z)) = H_p(h) − ∑ v λ_v H_{q_v}(h)`.-/
+mixture: `I(V ; h(Z)) = H_p(h) − ∑ v λ_v H_{q_v}(h)`.
+@isnad1 id=eq.0h5v.s7.75a11db6b3f9 from=translated src=- shape=c3c2a3de vocab=448c7bd0
+-/
 lemma MI_view {δ : Type*} [Fintype δ] [DecidableEq δ]
     (V : NLatent p) (h : Ω → δ) :
     MI (fun w : V.ι × Ω => w.1) (fun w => h w.2) V.joint =
@@ -370,7 +397,9 @@ information ledger,
 
 Since the linear part `E_q[ln w]` of any dual defect `G_w` is affine in `q`,
 this is also the exact change in total defect under the split — the
-generalization of `Gdef_fusion` (`Duality.lean`).-/
+generalization of `Gdef_fusion` (`Duality.lean`).
+@isnad1 id=eq.1h8v.s8.e2a9870642b4 from=translated src=- shape=8c072f59 vocab=53e01f1e
+-/
 theorem nPhi_fusion (hp : IsPMF p) (V : NLatent p) :
     nPhi f g p - ∑ v, V.prior v * nPhi f g (V.comp v) =
       ((n : ℝ) + 1) * MI (fun w : V.ι × Ω => w.1) (fun w => w.2) V.joint

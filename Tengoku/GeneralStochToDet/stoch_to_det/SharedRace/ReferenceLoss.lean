@@ -19,7 +19,9 @@ open Finset MeasureTheory
 
 universe u
 
-/-- Coordinatewise moment bounds against a PMF sum to a unit moment bound.-/
+/-- Coordinatewise moment bounds against a PMF sum to a unit moment bound.
+@isnad1 id=and.3h5v.s7.983ec76aaa67 from=translated src=- shape=69ae4cab vocab=63cd2295
+-/
 lemma integral_finset_sum_le_one
     {X : Type u} {κ : Type} [MeasurableSpace X] [Fintype κ]
     (μ : Measure X) (π : κ → ℝ) (hπ : IsPMF π)
@@ -42,7 +44,9 @@ lemma integral_finset_sum_le_one
 The clock geometry is encapsulated by the coordinate functions `q`, the
 normalized simplex coordinates `u`, and the normalized minimum `t`.  Once
 each coordinate contribution has mean at most its prior mass, the logarithmic
-tangent proves the desired `log 2` bound.-/
+tangent proves the desired `log 2` bound.
+@isnad1 id=le.7h7v.s9.23e9b96fb224 from=translated src=- shape=f5a4c838 vocab=906f4b8b
+-/
 theorem normalizedRaceLogIntegral_le
     {X : Type u} {κ : Type} [MeasurableSpace X] [Fintype κ]
     (μ : Measure X) [IsProbabilityMeasure μ]
@@ -127,7 +131,9 @@ interfaces.  The clock module must show that the winning reference ratio has
 mean log-score `∑ i, r i * log (π i / r i)`, and that the winning
 normalized clock has mean `(∑ i, r i ^ 2) / k`.  The universal normalized
 partition-function bound then turns the reference cross entropy into the
-desired KL plus mismatch budget.-/
+desired KL plus mismatch budget.
+@isnad1 id=le.8h7v.s9.ac9574b7be99 from=translated src=- shape=7c44d3a0 vocab=7cc6cb43
+-/
 theorem referenceLossIntegral_le
     {X : Type u} {κ : Type} [MeasurableSpace X] [Fintype κ]
     [DecidableEq κ] [Nonempty κ]

@@ -220,7 +220,9 @@ private lemma mass_refMeas_eq_Lambda (S : Finset (α × β)) (w : α × β → �
   simp [mass, refMeas, Lambda]
 
 /-- **Lemma 2.2** (defect = certificate gap).
-With `c = −3 lg w`: `G_w(q) = ⟨c,q⟩ − Φ(q)`.-/
+With `c = −3 lg w`: `G_w(q) = ⟨c,q⟩ − Φ(q)`.
+@isnad1 id=eq.3h5v.s7.43aff4265975 from=translated src=- shape=f5135283 vocab=86bb0cc7
+-/
 theorem Gdef_eq_certificate_gap {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : ∀ z ∈ S, 0 < w z) {q : α × β → ℝ} (hq : IsPMF q) (hqS : Supported S q) :
     Gdef S w q = (∑ z ∈ S, (-3 * lg (w z)) * q z) - Phi q := by
@@ -522,7 +524,9 @@ private lemma maximizer_rpow_two_thirds {γ : Type*} [Fintype γ] [DecidableEq �
       dsimp [a]
       simp [hDpos.ne']
 
-/-- **Theorem 2.3** (validity ⟺ feasibility).-/
+/-- **Theorem 2.3** (validity ⟺ feasibility).
+@isnad1 id=iff.1h4v.s6.03228c952b74 from=translated src=- shape=9b3216e1 vocab=eb78db88
+-/
 theorem valid_iff_feasible {S : Finset (α × β)} {w : α × β → ℝ} (hw : ∀ z ∈ S, 0 < w z) :
     Valid S (fun z => -3 * lg (w z)) ↔ Feasible S w := by
   constructor
@@ -814,13 +818,17 @@ theorem valid_iff_feasible {S : Finset (α × β)} {w : α × β → ℝ} (hw : 
     linarith
 
 /-- **Theorem 2.3**, consequence: the defect of a feasible kernel is nonnegative
-on *every* law.-/
+on *every* law.
+@isnad1 id=le.3h5v.s6.8ebca79dc1f0 from=translated src=- shape=0432aa71 vocab=8cab6fee
+-/
 theorem Gdef_nonneg {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsPMF q) (hqS : Supported S q) :
     0 ≤ Gdef S w q := by
   exact Gdef_nonneg_aux hw hq hqS
 
-/-- **Theorem 2.3**, equality case: `G_w(q) = 0` exactly at contacts.-/
+/-- **Theorem 2.3**, equality case: `G_w(q) = 0` exactly at contacts.
+@isnad1 id=iff.3h5v.s6.ee6fc89a76df from=translated src=- shape=6b0ad313 vocab=1c14edc5
+-/
 theorem Gdef_eq_zero_iff {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsPMF q) (hqS : Supported S q) :
     Gdef S w q = 0 ↔ IsContact S w q := by
@@ -1666,7 +1674,9 @@ private lemma neg_three_lg_two_rpow (r : ℝ) :
     (by norm_num : (0 : ℝ) < 2) (by norm_num : (2 : ℝ) ≠ 1)]
 
 /-- **Corollary 2.4**: `τ` as an attained convex program over
-feasible kernels.-/
+feasible kernels.
+@isnad1 id=ex.1h3v.s7.fa9ba4ff5f05 from=translated src=- shape=eecfbfcd vocab=b975a93b
+-/
 theorem exists_tau_optimal_kernel {p : α × β → ℝ} (hp : IsPMF p) :
     ∃ w : α × β → ℝ, Feasible (support p) w ∧
       tau p = Psi p + 3 * ∑ z ∈ support p, p z * lg (w z) := by
@@ -1698,7 +1708,9 @@ theorem exists_tau_optimal_kernel {p : α × β → ℝ} (hp : IsPMF p) :
 **attained τ(p)-optimal common-contact pair** `(L, w)`: a latent achieving `τ`
 all of whose components are contacts of one feasible kernel.
 
-This is the hypothesis §§4-12 run on; `SeedSetup` in `stoch_to_det.Seed` packages it.-/
+This is the hypothesis §§4-12 run on; `SeedSetup` in `stoch_to_det.Seed` packages it.
+@isnad1 id=ex.1h3v.s7.6894a93d4414 from=translated src=- shape=903e7eb1 vocab=ab623936
+-/
 theorem exists_common_contact_pair {p : α × β → ℝ} (hp : IsPMF p) :
     ∃ (L : Latent p) (w : α × β → ℝ),
       Feasible (support p) w ∧ L.score = tau p ∧
@@ -1785,7 +1797,9 @@ theorem exists_common_contact_pair {p : α × β → ℝ} (hp : IsPMF p) :
 
 /-- **Lemma 2.6**: on a connected support every contact has
 full support. Used from §3 on; it is what makes the near/far dichotomy of
-Theorem 9.1 total.-/
+Theorem 9.1 total.
+@isnad1 id=eq.3h5v.s6.5ee9735cfe1f from=translated src=- shape=28849672 vocab=e0ab2156
+-/
 theorem contact_support_eq {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     (hS : IsConnected S) {q : α × β → ℝ} (hq : IsContact S w q) :
     support q = S := by
@@ -1951,7 +1965,9 @@ theorem contact_support_eq {S : Finset (α × β)} {w : α × β → ℝ} (hw : 
 `E_q[f(X) g(Y)] ≤ ‖f‖_{L^{3/2}(q_X)} ‖g‖_{L^{3/2}(q_Y)}` for `f, g ≥ 0`.
 
 A frequently reused inequality (§5.2, §6.1, §6.2), proved by applying
-`Feasible` to the tilted marginals.-/
+`Feasible` to the tilted marginals.
+@isnad1 id=le.4h7v.s8.83fccbc509b3 from=translated src=- shape=c31e1242 vocab=830cb54c
+-/
 theorem contact_hypercontractive {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsContact S w q) {f : α → ℝ} {g : β → ℝ}
     (hf : ∀ x, 0 ≤ f x) (hg : ∀ y, 0 ≤ g y) :
@@ -2087,7 +2103,9 @@ The positivity hypothesis is exactly Definition 2.1's kernel positivity; the
 identity fails without it.
 
 Together with Lemma 1.2 this converts defects into information quantities;
-§4.3, §5.6 and §5.7 are corollaries of it.-/
+§4.3, §5.6 and §5.7 are corollaries of it.
+@isnad1 id=eq.3h6v.s9.3679bfc84db3 from=translated src=- shape=9c24f31f vocab=0cbb851c
+-/
 theorem Gdef_fusion {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : ∀ z ∈ S, 0 < w z) {r : α × β → ℝ}
     (hr : IsPMF r) (hrS : Supported S r) (V : Latent r) :
@@ -2150,7 +2168,9 @@ theorem Gdef_fusion {S : Finset (α × β)} {w : α × β → ℝ}
       Latent.score_sub_Ixy hr V
 
 /-- **Lemma 2.8(c)**: for an attained τ-optimal
-common-contact pair, `G_w(p) = I(X;Y) − τ(p)`.-/
+common-contact pair, `G_w(p) = I(X;Y) − τ(p)`.
+@isnad1 id=eq.4h5v.s7.d6dc852ea2fe from=translated src=- shape=9b284454 vocab=2c0db290
+-/
 theorem Gdef_of_common_contact_pair {p : α × β → ℝ} (hp : IsPMF p) (L : Latent p)
     {w : α × β → ℝ} (hw : Feasible (support p) w) (hopt : L.score = tau p)
     (hcontact : ∀ v, L.prior v ≠ 0 → IsContact (support p) w (L.comp v)) :

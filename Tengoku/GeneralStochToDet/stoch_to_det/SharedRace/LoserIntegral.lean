@@ -21,7 +21,9 @@ local notation "L" => SharedRace.logTwo
 
 /-- The simplified losing-coordinate integral produced by the Möbius change
 of variables is bounded by the scalar expression used in
-`coordinateContribution_le`.-/
+`coordinateContribution_le`.
+@isnad1 id=le.2h1v.s8.6094d5eb5bbd from=translated src=- shape=e8c78b0f vocab=659302ec
+-/
 theorem loserRationalIntegral_le {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ x : ℝ in 0..1,
       p * x ^ 2 /
@@ -95,7 +97,9 @@ theorem loserRationalIntegral_le {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1) :
     _ = _ := by rfl
 
 /-- Algebraic cancellation of the Möbius density against the Gamma(2,1)
-moment denominator.-/
+moment denominator.
+@isnad1 id=eq.3h2v.s8.17d08ad844b9 from=translated src=- shape=3bcbf64f vocab=dfdaad70
+-/
 lemma mobiusGamma_integrand_eq {p x : ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) (hx0 : 0 ≤ x) :
     p / (p + (1 - p) * x) ^ 2 * x ^ 2 *
@@ -121,7 +125,9 @@ lemma mobiusGamma_integrand_eq {p x : ℝ}
   field_simp [hbase.ne', hnum.ne']
 
 /-- The complete rational integral after both the Möbius density and the
-Gamma(2,1) moment have been inserted.-/
+Gamma(2,1) moment have been inserted.
+@isnad1 id=le.2h1v.s8.64ca7611ba4e from=translated src=- shape=39535622 vocab=e7afef29
+-/
 theorem loserMobiusGammaIntegral_le {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1) :
     (∫ x : ℝ in 0..1,
       p / (p + (1 - p) * x) ^ 2 * x ^ 2 *

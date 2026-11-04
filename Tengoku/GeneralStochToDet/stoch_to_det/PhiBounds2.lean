@@ -121,7 +121,9 @@ private lemma log_twenty_lower : (29957 / 10000 : ℝ) ≤ Real.log 20 := by
     Real.log_mul (by norm_num) (by norm_num), Real.log_mul (by norm_num) (by norm_num)]
   linarith [Real.log_two_gt_d9, Real.log_five_gt_d9]
 
-/-- On `[0,2]`, `phi` dominates `(r-1)^2` with certified factor `2.59`.-/
+/-- On `[0,2]`, `phi` dominates `(r-1)^2` with certified factor `2.59`.
+@isnad1 id=le.2h1v.s6.f49c8ca2f255 from=translated src=- shape=f3ac42fd vocab=60e75a81
+-/
 theorem bulk_quad_two (r : ℝ) (hr0 : 0 ≤ r) (hr2 : r ≤ 2) :
     (r - 1) ^ 2 ≤ (259 / 100 : ℝ) * (r * Real.log r - r + 1) := by
   change (r - 1) ^ 2 ≤ (259 / 100 : ℝ) * phi r
@@ -143,7 +145,9 @@ theorem bulk_quad_two (r : ℝ) (hr0 : 0 ≤ r) (hr2 : r ≤ 2) :
     have hscaled := mul_le_mul_of_nonneg_right hphi2 (sq_nonneg (r - 1))
     nlinarith
 
-/-- On the full tail, the normalized quartic cell is at most `0.5062`.-/
+/-- On the full tail, the normalized quartic cell is at most `0.5062`.
+@isnad1 id=le.1h1v.s7.73f6b5e9fafe from=translated src=- shape=bfae5749 vocab=60e75a81
+-/
 theorem tail_quartic_cell (r : ℝ) (hr2 : 2 ≤ r) :
     (r - 1) ^ 4 ≤ (5062 / 10000 : ℝ) *
       (r ^ 3 * (r * Real.log r - r + 1)) := by

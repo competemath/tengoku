@@ -21,9 +21,15 @@ namespace stoch_to_det
 /-- The scalar relative-entropy integrand, with its continuous value at zero.-/
 noncomputable def phi (r : ℝ) : ℝ := r * Real.log r - r + 1
 
+/--
+@isnad1 id=continuo.0h0v.s3.53f9ab10e77f from=translated src=- shape=e3d48bcb vocab=3d58bc76
+-/
 lemma continuous_phi : Continuous phi := by
   exact (Real.continuous_mul_log.sub continuous_id).add continuous_const
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.8f07b9a08f6e from=translated src=- shape=e771e0a7 vocab=a00ad6c0
+-/
 lemma hasDerivAt_phi {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt phi (Real.log r) r := by
   have hraw := ((Real.hasDerivAt_mul_log hr).sub (hasDerivAt_id r)).add_const 1
@@ -32,7 +38,9 @@ lemma hasDerivAt_phi {r : ℝ} (hr : r ≠ 0) :
     rfl
   · ring
 
-/-- `phi` is nonnegative on the nonnegative half-line.-/
+/-- `phi` is nonnegative on the nonnegative half-line.
+@isnad1 id=le.1h1v.s4.7087313294bd from=translated src=- shape=35bd48ee vocab=864ca2d4
+-/
 theorem phi_nonneg {r : ℝ} (hr : 0 ≤ r) : 0 ≤ phi r := by
   by_cases hr0 : r = 0
   · simp [phi, hr0]
@@ -44,7 +52,9 @@ theorem phi_nonneg {r : ℝ} (hr : 0 ≤ r) : 0 ≤ phi r := by
     unfold phi
     nlinarith
 
-/-- On `(0,1]`, the tangent-quadratic lower bound for `phi`.-/
+/-- On `(0,1]`, the tangent-quadratic lower bound for `phi`.
+@isnad1 id=le.2h1v.s6.83955840a8f8 from=translated src=- shape=215574e8 vocab=2db990c8
+-/
 lemma phi_half_sq_lower_of_le_one {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r ≤ 1) :
     (r - 1) ^ 2 / 2 ≤ phi r := by
   by_cases hz : r = 0
@@ -95,7 +105,9 @@ lemma phi_half_sq_lower_of_le_one {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r ≤ 1) :
     (show (1 : ℝ) ∈ Set.Icc r 1 from ⟨hr1, le_rfl⟩) hr1
   simpa [f, phi] using hle
 
-/-- The symmetric elementary logarithm bound on `[1,∞)`.-/
+/-- The symmetric elementary logarithm bound on `[1,∞)`.
+@isnad1 id=le.1h1v.s6.914e52cc81eb from=translated src=- shape=3999fcd6 vocab=5feefabf
+-/
 lemma two_mul_sub_one_le_add_one_mul_log {x : ℝ} (hx : 1 ≤ x) :
     2 * (x - 1) ≤ (x + 1) * Real.log x := by
   have h := Real.le_log_one_add_of_nonneg (x := x - 1) (sub_nonneg.mpr hx)
@@ -104,7 +116,9 @@ lemma two_mul_sub_one_le_add_one_mul_log {x : ℝ} (hx : 1 ≤ x) :
   have h' := (div_le_iff₀ (by linarith : 0 < x + 1)).1 h
   simpa only [mul_comm] using h'
 
-/-- The quotient `phi r / (r-1)^2` decreases to the right of `1`.-/
+/-- The quotient `phi r / (r-1)^2` decreases to the right of `1`.
+@isnad1 id=le.2h2v.s6.ba5319b28d95 from=translated src=- shape=b4d4ce93 vocab=8f081e3e
+-/
 lemma phi_div_sq_antitone_Icc {a b : ℝ} (ha : 1 < a) (hab : a ≤ b) :
     phi b / (b - 1) ^ 2 ≤ phi a / (a - 1) ^ 2 := by
   let g : ℝ → ℝ := fun x => phi x / (x - 1) ^ 2
@@ -154,7 +168,9 @@ lemma phi_div_sq_antitone_Icc {a b : ℝ} (ha : 1 < a) (hab : a ≤ b) :
     (show a ∈ Set.Icc a b from ⟨le_rfl, hab⟩)
     (show b ∈ Set.Icc a b from ⟨hab, le_rfl⟩) hab
 
-/-- On `[0,3]`, `phi` dominates the endpoint-matched quadratic.-/
+/-- On `[0,3]`, `phi` dominates the endpoint-matched quadratic.
+@isnad1 id=le.2h1v.s6.b82eefe3109a from=translated src=- shape=bd143688 vocab=1fe93f31
+-/
 theorem phi_quad_lower_bulk {r : ℝ} (hr0 : 0 ≤ r) (hr3 : r ≤ 3) :
     (r - 1) ^ 2 * phi 3 ≤ 4 * phi r := by
   by_cases hr1 : r ≤ 1
@@ -175,7 +191,9 @@ theorem phi_quad_lower_bulk {r : ℝ} (hr0 : 0 ≤ r) (hr3 : r ≤ 3) :
     have hcross := (div_le_div_iff₀ (by norm_num : (0 : ℝ) < 4) hsqpos).1 hratio
     simpa only [mul_comm] using hcross
 
-/-- On the tail, one quarter of `r log r` is absorbed by `phi r`.-/
+/-- On the tail, one quarter of `r log r` is absorbed by `phi r`.
+@isnad1 id=le.1h1v.s5.7327654b18ff from=translated src=- shape=81c403e5 vocab=cbe7aeb2
+-/
 theorem phi_linear_lower_tail {r : ℝ} (hr : 2 ≤ r) :
     (r / 4) * Real.log r ≤ phi r := by
   have hrpos : 0 < r := by linarith
@@ -190,7 +208,9 @@ theorem phi_linear_lower_tail {r : ℝ} (hr : 2 ≤ r) :
   field_simp [hrne] at hlog ⊢
   nlinarith
 
-/-- The sharp multiplied-out absolute envelope, maximized at `r = 3`.-/
+/-- The sharp multiplied-out absolute envelope, maximized at `r = 3`.
+@isnad1 id=le.1h1v.s6.80e3d80368fd from=translated src=- shape=adea59e6 vocab=45144f9b
+-/
 theorem env_absolute {r : ℝ} (hr : 3 ≤ r) :
     r - 1 ≤ (2 * Real.sqrt 3 / 9) * r * Real.sqrt r := by
   have hr0 : 0 ≤ r := by linarith
@@ -222,7 +242,9 @@ theorem env_absolute {r : ℝ} (hr : 3 ≤ r) :
   rw [ht3, ht2] at hfac
   nlinarith
 
-/-- A `phi` upper bound by `K r^3` forces the logarithmic tail ratio bound.-/
+/-- A `phi` upper bound by `K r^3` forces the logarithmic tail ratio bound.
+@isnad1 id=le.3h2v.s6.86477715c6c7 from=translated src=- shape=ca8931a8 vocab=5b32ab0a
+-/
 theorem tail_ratio_from_phi {r K : ℝ} (hr : 3 ≤ r) (hK : 0 < K)
     (hphi : phi r ≤ K * r ^ 3) :
     Real.log r ≤ 4 * K * r ^ 2 := by
@@ -237,7 +259,9 @@ theorem tail_ratio_from_phi {r K : ℝ} (hr : 3 ≤ r) (hK : 0 < K)
     _ = 4 * K * r ^ 2 := by
       field_simp [hrpos.ne']
 
-/-- Fourth-power decay of the normalized envelope.-/
+/-- Fourth-power decay of the normalized envelope.
+@isnad1 id=and.1h1v.s7.b5bb9eaa3b84 from=translated src=- shape=d3931b57 vocab=f55b41a1
+-/
 theorem env_pow4 {r : ℝ} (hr : 3 ≤ r) :
     (((r - 1) * r ^ (-(3 : ℝ) / 2)) ^ 4 ≤ (r - 1) ^ 4 / r ^ 6) ∧
       ((r - 1) ^ 4 / r ^ 6 ≤ 1 / r ^ 2) := by
@@ -260,7 +284,9 @@ theorem env_pow4 {r : ℝ} (hr : 3 ≤ r) :
         mul_le_mul_of_nonneg_right hp4 (sq_nonneg r)
       _ = 1 * r ^ 6 := by ring
 
-/-- Tight certified decimal bounds for `phi 3 = 3 log 3 - 2`.-/
+/-- Tight certified decimal bounds for `phi 3 = 3 log 3 - 2`.
+@isnad1 id=and.0h0v.s6.ef1643a4d288 from=translated src=- shape=922ac76a vocab=a2ce8d1d
+-/
 theorem phi_three_bounds :
     (12958 : ℝ) / 10000 ≤ phi 3 ∧ phi 3 ≤ (12959 : ℝ) / 10000 := by
   constructor

@@ -96,7 +96,9 @@ noncomputable def Bq : ℝ :=
   condMI (fun q => q.1) (fun q => q.2.1) (fun q => q.2.2) D.L.joint
     + condMI (fun q => q.1) (fun q => q.2.2) (fun q => q.2.1) D.L.joint
 
-/-- `τ = S_p(L) = M + B`.-/
+/-- `τ = S_p(L) = M + B`.
+@isnad1 id=eq.0h4v.s6.7ad5d8ac0d3a from=translated src=- shape=0a7fc220 vocab=a1beaa06
+-/
 lemma tau_eq_M_add_Bq : tau p = D.M + D.Bq := by
   rw [← D.optimal]
   unfold Latent.score M Bq
@@ -118,7 +120,9 @@ private lemma sum_ne_zero_subtype_eq {κ : Type*} [Fintype κ]
 
 /-- Theorem 2.5 packaged as a `SeedSetup`: prune the zero-prior labels
 of `exists_common_contact_pair`'s latent (pruning to the subtype
-`{v // L.prior v ≠ 0}` preserves the score and the mixture).-/
+`{v // L.prior v ≠ 0}` preserves the score and the mixture).
+@isnad1 id=nonempty.2h3v.s5.d29b3bde226d from=translated src=- shape=a74f6cae vocab=2081d344
+-/
 theorem exists_seedSetup {p : α × β → ℝ} (hp : IsPMF p)
     (hconn : IsConnected (support p)) :
     Nonempty (SeedSetup p) := by
@@ -273,6 +277,9 @@ noncomputable def winnerLatent (ε : D.L.ι → ℝ) : Latent p where
     simp_rw [cellMass_mul_cellLaw D ε]
     simp
 
+/--
+@isnad1 id=isdet.0h5v.s6.0e72540ee831 from=translated src=- shape=ff9b5b47 vocab=b58c4d0e
+-/
 lemma winnerLatent_isDet (ε : D.L.ι → ℝ) : (winnerLatent D ε).IsDet := by
   change ∀ z, ∀ a b : D.L.ι,
     cellMass D ε a * cellLaw D ε a z ≠ 0 →
@@ -292,7 +299,9 @@ lemma winnerLatent_isDet (ε : D.L.ι → ℝ) : (winnerLatent D ε).IsDet := by
 
 It follows from `Gdef_fusion` (Lemma 2.8(a)),
 `Latent.score_sub_Ixy` (Lemma 1.2) and `Gdef_of_common_contact_pair`
-(Lemma 2.8(c)).-/
+(Lemma 2.8(c)).
+@isnad1 id=eq.0h5v.s7.64ea27e553a4 from=translated src=- shape=4fda0c40 vocab=9315f512
+-/
 theorem per_seed_ledger (ε : D.L.ι → ℝ) :
     (∑ a, cellMass D ε a * Gdef (support p) D.w (cellLaw D ε a))
       = (winnerLatent D ε).score - tau p := by
@@ -309,7 +318,9 @@ theorem per_seed_ledger (ε : D.L.ι → ℝ) :
       rw [hfusion, ← hscore, hbase]
     _ = V.score - tau p := by ring
 
-/-- Each per-seed ledger term is nonnegative (Theorem 2.3).-/
+/-- Each per-seed ledger term is nonnegative (Theorem 2.3).
+@isnad1 id=le.0h5v.s7.89a0505ee727 from=translated src=- shape=ceaa81f7 vocab=ab6ad02b
+-/
 theorem per_seed_ledger_nonneg (ε : D.L.ι → ℝ) :
     0 ≤ ∑ a, cellMass D ε a * Gdef (support p) D.w (cellLaw D ε a) := by
   apply Finset.sum_nonneg
@@ -358,6 +369,9 @@ instance : IsProbabilityMeasure gumbel1 := by
   apply Measure.isProbabilityMeasure_map
   exact Real.measurable_log.neg.aemeasurable
 
+/--
+@isnad1 id=eq.0h0v.s5.5d37baeb98bd from=translated src=- shape=bb3ca987 vocab=48a6c6c9
+-/
 lemma expMeasure_one_Iic_zero : expMeasure 1 (Set.Iic 0) = 0 := by
   letI := isProbabilityMeasure_expMeasure (r := (1 : ℝ)) zero_lt_one
   have hreal : (expMeasure 1).real (Set.Iic 0) = 0 := by
@@ -365,6 +379,9 @@ lemma expMeasure_one_Iic_zero : expMeasure 1 (Set.Iic 0) = 0 := by
     simpa using cdf_expMeasure_eq (r := (1 : ℝ)) zero_lt_one 0
   exact (measureReal_eq_zero_iff).mp hreal
 
+/--
+@isnad1 id=eq.1h1v.s5.237123a898a8 from=translated src=- shape=7e028e7d vocab=ec1ca806
+-/
 lemma expMeasure_one_Ioi (x : ℝ) (hx : 0 ≤ x) :
     expMeasure 1 (Set.Ioi x) = ENNReal.ofReal (Real.exp (-x)) := by
   letI := isProbabilityMeasure_expMeasure (r := (1 : ℝ)) zero_lt_one
@@ -386,6 +403,9 @@ lemma expMeasure_one_Ioi (x : ℝ) (hx : 0 ≤ x) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.685af640c564 from=translated src=- shape=20798214 vocab=fefbad26
+-/
 lemma expMeasure_one_laplace (c : ℝ) (hc : 0 ≤ c) :
     (∫⁻ x, ENNReal.ofReal (Real.exp (-(c * x))) ∂(expMeasure 1)) =
       ENNReal.ofReal (1 / (1 + c)) := by
@@ -435,6 +455,9 @@ def strictClockWin {κ : Type*} (t : κ → ℝ) (a : κ)
     (E : κ → ℝ) : Prop :=
   ∀ b, b ≠ a → E a / t a < E b / t b
 
+/--
+@isnad1 id=eq.2h3v.s6.42169978502c from=translated src=- shape=2425b7b7 vocab=ff489709
+-/
 lemma pi_exp_strictClockWin {κ : Type*} [Fintype κ] [DecidableEq κ]
     (t : κ → ℝ) (ht : ∀ a, 0 < t a) (htotal : ∑ a, t a = 1) (a : κ) :
     Measure.pi (fun _ : κ => expMeasure 1) {E | strictClockWin t a E} =
@@ -580,6 +603,9 @@ instance : NullSingletonClass gumbel1 where
       linarith
     · exact Or.inl (le_of_not_gt hpos)
 
+/--
+@isnad1 id=eq.0h1v.s5.42de90386e7c from=translated src=- shape=4b4bb4d1 vocab=1b7f60f1
+-/
 lemma seedLaw_eq_pi_gumbel1 (ι : Type) [Fintype ι] :
     seedLaw ι = Measure.pi (fun _ : ι => gumbel1) := by
   letI : IsProbabilityMeasure (expMeasure 1) :=
@@ -596,6 +622,9 @@ lemma seedLaw_eq_pi_gumbel1 (ι : Type) [Fintype ι] :
 /- An affine equality between two distinct coordinates has measure zero under
 a finite product of any atomless sigma-finite law.  Splitting off the second
 coordinate turns every section into a singleton. -/
+/--
+@isnad1 id=eq.1h6v.s6.65ed2b227919 from=translated src=- shape=22b0e3f1 vocab=88adfaa3
+-/
 lemma pi_affine_tie_null {ι : Type*} [Fintype ι] [DecidableEq ι]
     (μ : Measure ℝ) [SigmaFinite μ] [NullSingletonClass μ]
     (a b : ι) (hab : a ≠ b) (ca cb : ℝ) :
@@ -662,6 +691,9 @@ noncomputable def lexMax {Ω ι : Type*} [Fintype ι] [DecidableEq ι]
     rw [Option.isSome_iff_ne_none, Ne, List.argmax_eq_none]
     simpa using (Finset.univ_nonempty : (Finset.univ : Finset ι).Nonempty).ne_empty)
 
+/--
+@isnad1 id=iff.0h5v.s5.1c927d66d049 from=translated src=- shape=995bad92 vocab=fb30e073
+-/
 lemma lexMax_eq_iff {Ω ι : Type*} [Fintype ι] [DecidableEq ι]
     [Nonempty ι] (F : Ω → ι → ℝ) (ω : Ω) (a : ι) :
     lexMax F ω = a ↔ List.argmax (F ω) Finset.univ.toList = some a := by
@@ -675,6 +707,9 @@ lemma lexMax_eq_iff {Ω ι : Type*} [Fintype ι] [DecidableEq ι]
   · intro h
     exact Option.get_of_eq_some hsome h
 
+/--
+@isnad1 id=measurab.1h3v.s5.1e6d9590a856 from=translated src=- shape=92667e48 vocab=2680ca13
+-/
 lemma measurable_lexMax {Ω ι : Type*} [MeasurableSpace Ω]
     [Fintype ι] [DecidableEq ι] [Nonempty ι]
     [MeasurableSpace ι] [MeasurableSingletonClass ι]
@@ -719,6 +754,9 @@ lemma measurable_lexMax {Ω ι : Type*} [MeasurableSpace Ω]
   intro ω
   exact hlevel (lexMax F ω)
 
+/--
+@isnad1 id=le.0h5v.s5.562460f96174 from=translated src=- shape=8ccf32bc vocab=43362358
+-/
 lemma lexMax_max {Ω ι : Type*} [Fintype ι] [DecidableEq ι]
     [Nonempty ι] (F : Ω → ι → ℝ) (ω : Ω) (a : ι) :
     F ω a ≤ F ω (lexMax F ω) := by
@@ -735,12 +773,18 @@ noncomputable def lexWinner {p : α × β → ℝ} (D : SeedSetup p)
     (ε : D.L.ι → ℝ) (z : α × β) : D.L.ι :=
   lexMax (fun ε a => raceValue D z ε a) ε
 
+/--
+@isnad1 id=le.0h7v.s6.da5a14d3daa9 from=translated src=- shape=cd8dab13 vocab=6cd4db85
+-/
 lemma winner_max {p : α × β → ℝ} (D : SeedSetup p)
     (ε : D.L.ι → ℝ) (z : α × β) (a : D.L.ι) :
     raceValue D z ε a ≤ raceValue D z ε (winner D ε z) := by
   exact Classical.choose_spec
     (Finite.exists_max fun a => Real.log (D.post a z) + ε a) a
 
+/--
+@isnad1 id=eq.1h6v.s7.9b37046ad58b from=translated src=- shape=4349e80a vocab=3aedda12
+-/
 lemma winner_eq_lexWinner_of_noTie {p : α × β → ℝ}
     (D : SeedSetup p) (ε : D.L.ι → ℝ) (z : α × β)
     (htie : ∀ a b, a ≠ b → raceValue D z ε a ≠ raceValue D z ε b) :
@@ -753,6 +797,9 @@ lemma winner_eq_lexWinner_of_noTie {p : α × β → ℝ}
   by_contra hne
   exact htie _ _ hne hvalue
 
+/--
+@isnad1 id=eq.1h7v.s8.f6de95d1fc14 from=translated src=- shape=8453f22a vocab=e072a6dd
+-/
 lemma seed_tie_null {p : α × β → ℝ} (D : SeedSetup p)
     (z : α × β) (a b : D.L.ι) (hab : a ≠ b) :
     seedLaw D.L.ι {ε | raceValue D z ε a = raceValue D z ε b} = 0 := by
@@ -760,6 +807,9 @@ lemma seed_tie_null {p : α × β → ℝ} (D : SeedSetup p)
   simpa [raceValue] using pi_affine_tie_null gumbel1 a b hab
     (Real.log (D.post a z)) (Real.log (D.post b z))
 
+/--
+@isnad1 id=eventual.1h5v.s5.a98854171fb8 from=translated src=- shape=efd687db vocab=34a9f090
+-/
 lemma ae_forall_fintype {Ω κ : Type*} [Finite κ]
     {mΩ : MeasurableSpace Ω} {P : Measure Ω} {R : κ → Ω → Prop}
     (hR : ∀ k, ∀ᵐ ω ∂P, R k ω) : ∀ᵐ ω ∂P, ∀ k, R k ω := by
@@ -767,6 +817,9 @@ lemma ae_forall_fintype {Ω κ : Type*} [Finite κ]
     (fun k _ => hR k)
   simpa using h
 
+/--
+@isnad1 id=eventual.0h4v.s8.be289da3b564 from=translated src=- shape=0bf22458 vocab=f1b4d53e
+-/
 lemma ae_no_race_ties {p : α × β → ℝ} (D : SeedSetup p) :
     ∀ᵐ ε ∂(seedLaw D.L.ι), ∀ z a b, a ≠ b →
       raceValue D z ε a ≠ raceValue D z ε b := by
@@ -782,6 +835,9 @@ lemma ae_no_race_ties {p : α × β → ℝ} (D : SeedSetup p) :
   exact ae_forall_fintype fun z => ae_forall_fintype fun a =>
     ae_forall_fintype fun b => hpair z a b
 
+/--
+@isnad1 id=eventual.0h4v.s8.365c0559c960 from=translated src=- shape=7cfc3c95 vocab=fe528481
+-/
 lemma winner_ae_eq_lexWinner {p : α × β → ℝ} (D : SeedSetup p) :
     (fun ε => winner D ε) =ᵐ[seedLaw D.L.ι] fun ε => lexWinner D ε := by
   filter_upwards [ae_no_race_ties D] with ε hε
@@ -839,7 +895,9 @@ variable {p : α × β → ℝ} (D : SeedSetup p)
 
 /-- The winner score is `seedLaw`-integrable: it is bounded (entropies
 on fixed finite alphabets) and a.e. equal to a measurable function of
-the seed (ties are null; off ties the winner is locally constant).-/
+the seed (ties are null; off ties the winner is locally constant).
+@isnad1 id=integrab.0h4v.s7.4ab07c7e72f0 from=translated src=- shape=20b177aa vocab=d52979f1
+-/
 theorem integrable_winnerScore :
     Integrable (fun ε => (winnerLatent D ε).score) (seedLaw D.L.ι) := by
   letI : MeasurableSpace D.L.ι := ⊤
@@ -875,7 +933,9 @@ noncomputable def Dwdefect : ℝ :=
   ∫ ε, (∑ a, cellMass D ε a * Gdef (support p) D.w (cellLaw D ε a)) ∂(seedLaw D.L.ι)
 
 /-- **Lemma 4.3**, averaged half:
-`E_ε S_p(A_ε) = τ(p) + 𝒟_w(p,L)`.-/
+`E_ε S_p(A_ε) = τ(p) + 𝒟_w(p,L)`.
+@isnad1 id=eq.1h4v.s8.576b44be78b7 from=translated src=- shape=e41a4a2b vocab=f6725b93
+-/
 theorem expected_score_eq (hint : Integrable (fun ε => (winnerLatent D ε).score) (seedLaw D.L.ι)) :
     ∫ ε, (winnerLatent D ε).score ∂(seedLaw D.L.ι) = tau p + Dwdefect D := by
   have hledger :
@@ -887,12 +947,17 @@ theorem expected_score_eq (hint : Integrable (fun ε => (winnerLatent D ε).scor
   rw [hledger, integral_sub hint (integrable_const (tau p))]
   simp
 
+/--
+@isnad1 id=le.0h4v.s5.a79e9eb714f7 from=translated src=- shape=d40a09df vocab=5a46ed37
+-/
 theorem Dwdefect_nonneg : 0 ≤ Dwdefect D := by
   unfold Dwdefect
   exact integral_nonneg fun ε => per_seed_ledger_nonneg D ε
 
 /-- The averaging step of Corollary 4.4: some fixed seed does at least as well
-as the average. This is where §12 uses the seed measure.-/
+as the average. This is where §12 uses the seed measure.
+@isnad1 id=ex.2h5v.s8.fcf4fab51252 from=translated src=- shape=cd553503 vocab=f7fa13af
+-/
 theorem exists_good_seed (c : ℝ)
     (hint : Integrable (fun ε => (winnerLatent D ε).score) (seedLaw D.L.ι))
     (h : ∫ ε, (winnerLatent D ε).score ∂(seedLaw D.L.ι) ≤ c) :
@@ -920,7 +985,9 @@ theorem exists_good_seed (c : ℝ)
   linarith
 
 /-- **Corollary 4.4**: a defect bound gives stoch_to_det on this law.
-If `𝒟_w(p,L) ≤ C τ(p)` then `T(p) ≤ (C+1) τ(p)`.-/
+If `𝒟_w(p,L) ≤ C τ(p)` then `T(p) ≤ (C+1) τ(p)`.
+@isnad1 id=le.2h5v.s8.e20164a878cf from=translated src=- shape=ed5e22e1 vocab=f0df5c3f
+-/
 theorem T_le_of_Dwdefect_le {C : ℝ}
     (hint : Integrable (fun ε => (winnerLatent D ε).score) (seedLaw D.L.ι))
     (h : Dwdefect D ≤ C * tau p) :
@@ -957,11 +1024,17 @@ variable {p : α × β → ℝ} (D : SeedSetup p)
 noncomputable def replicaLaw : D.L.ι × D.L.ι × D.L.ι × (α × β) → ℝ :=
   fun u => p u.2.2.2 * D.post u.1 u.2.2.2 * D.post u.2.1 u.2.2.2 * D.post u.2.2.1 u.2.2.2
 
+/--
+@isnad1 id=le.0h6v.s6.5d497b1bf749 from=translated src=- shape=35ae0dcb vocab=919b5725
+-/
 lemma post_nonneg (l : D.L.ι) (z : α × β) : 0 ≤ D.post l z := by
   exact div_nonneg
     (mul_nonneg (D.L.prior_isPMF.nonneg l) ((D.L.comp_isPMF l).nonneg z))
     (D.isPMF.nonneg z)
 
+/--
+@isnad1 id=eq.1h5v.s7.78803c2f485a from=translated src=- shape=db5bdf24 vocab=464125d2
+-/
 lemma sum_post_of_pos (z : α × β) (hz : 0 < p z) :
     ∑ l, D.post l z = 1 := by
   unfold SeedSetup.post
@@ -1000,6 +1073,9 @@ private lemma sum_replica_at (z : α × β) :
       _ = p z * (∑ l₀, D.post l₀ z) := by rw [Finset.mul_sum]
       _ = p z := by rw [hpost, mul_one]
 
+/--
+@isnad1 id=ispmf.0h4v.s7.7e5e1928cb12 from=translated src=- shape=0c070c64 vocab=41e009c0
+-/
 lemma replicaLaw_isPMF : IsPMF (replicaLaw D) := by
   refine ⟨?_, ?_⟩
   · intro u
@@ -2046,7 +2122,9 @@ noncomputable def jInfo : ℝ := MI (fun q => q.1) (fun q => q.2) D.L.joint
 
 /-- **Lemma 5.2** (one-use posterior resampling).
 Every contact satisfies `D(r‖q) ≥ ⅔D(r_X‖q_X) + ⅔D(r_Y‖q_Y)`.
-*Finite.* One application of (T1) plus `contact_hypercontractive`.-/
+*Finite.* One application of (T1) plus `contact_hypercontractive`.
+@isnad1 id=le.4h6v.s7.2316285997d5 from=translated src=- shape=accf1d12 vocab=02b5f8bd
+-/
 theorem posterior_resampling {S : Finset (α × β)} {w : α × β → ℝ} (hw : Feasible S w)
     {q : α × β → ℝ} (hq : IsContact S w q) {r : α × β → ℝ} (hr : IsPMF r)
     (hac : AbsCont r q) :
@@ -2150,7 +2228,9 @@ theorem posterior_resampling {S : Finset (α × β)} {w : α × β → ℝ} (hw 
   linarith
 
 /-- **Lemma 5.3** (the resampling budget): `b_Z ≤ 2B`.
-*Finite.* §12 turns every `b_Z` into `2B` and hence into `τ`.-/
+*Finite.* §12 turns every `b_Z` into `2B` and hence into `τ`.
+@isnad1 id=le.0h4v.s6.6fa3cc46afa0 from=translated src=- shape=3ca98802 vocab=b415c671
+-/
 theorem bZ_le_two_Bq : bZ D ≤ 2 * D.Bq := by
   have hR := replicaLaw_isPMF D
   have hbSwap :
@@ -2280,7 +2360,9 @@ theorem bZ_le_two_Bq : bZ D ≤ 2 * D.Bq := by
   linarith [hres, hbEq, hB, hcx, hcy]
 
 /-- **Lemma 5.4** (a replica pair carries at most two singles):
-`I(L₁,L₂;Z ∣ L₀) ≤ 2 b_Z`. *Finite.*-/
+`I(L₁,L₂;Z ∣ L₀) ≤ 2 b_Z`. *Finite.*
+@isnad1 id=le.0h4v.s10.2ca77135bcf7 from=translated src=- shape=ab7c6050 vocab=0a654d4c
+-/
 theorem pair_le_two_bZ :
     condMI (fun u => (u.2.1, u.2.2.1)) (fun u => u.2.2.2) (fun u => u.1) (replicaLaw D)
       ≤ 2 * bZ D := by
@@ -2716,7 +2798,9 @@ private lemma replica_Bq_identity :
   rfl
 
 /-- Exact replica ledger identity:
-`M + B_q = b_Z + I(L₀;L₁|X) + I(L₀;L₁|Y) + I(X;Y|L₀,L₁)`.-/
+`M + B_q = b_Z + I(L₀;L₁|X) + I(L₀;L₁|Y) + I(X;Y|L₀,L₁)`.
+@isnad1 id=eq.0h4v.s6.07f5546a0f7d from=translated src=- shape=4c10bc0c vocab=df584dd4
+-/
 theorem M_add_Bq_eq_bZ_add_jointCharge :
     D.M + D.Bq = bZ D + jointCharge D := by
   have hR := replicaLaw_isPMF D
@@ -2844,7 +2928,9 @@ theorem M_add_Bq_eq_bZ_add_jointCharge :
   rw [hXA, hYA, hXYA, hYX, hAYX, hZB, hAZB, hB, hBX, hBY, hXAB, hYAB, hXYAB]
   linarith
 
-/-- The joint replica charge is nonnegative.-/
+/-- The joint replica charge is nonnegative.
+@isnad1 id=le.0h4v.s5.f894128d2c39 from=translated src=- shape=d40a09df vocab=ab996c48
+-/
 theorem jointCharge_nonneg : 0 ≤ jointCharge D := by
   have hR := replicaLaw_isPMF D
   have hX := condMI_nonneg hR (fun u => u.1) (fun u => u.2.1)
@@ -2856,7 +2942,9 @@ theorem jointCharge_nonneg : 0 ≤ jointCharge D := by
   unfold jointCharge
   linarith
 
-/-- The replica leakage fits inside the full optimality budget: `b_Z ≤ τ`.-/
+/-- The replica leakage fits inside the full optimality budget: `b_Z ≤ τ`.
+@isnad1 id=le.0h4v.s5.db61228b7b9d from=translated src=- shape=8ecad983 vocab=218bf00c
+-/
 theorem bZ_le_tau : bZ D ≤ tau p := by
   rw [D.tau_eq_M_add_Bq, M_add_Bq_eq_bZ_add_jointCharge D]
   exact le_add_of_nonneg_right (jointCharge_nonneg D)
@@ -2899,7 +2987,9 @@ private lemma replica_interaction_identity :
   rw [hPair] at hXV
   linarith [hXY, hVX, hXV]
 
-/-- **Lemma 5.6(c)**: `Q⁽²⁾ ≤ 6 b_Z`. *Finite.*-/
+/-- **Lemma 5.6(c)**: `Q⁽²⁾ ≤ 6 b_Z`. *Finite.*
+@isnad1 id=le.0h4v.s6.151b0c64246c from=translated src=- shape=3ca98802 vocab=fc14dd1f
+-/
 theorem Q2_le_six_bZ : Q2 D ≤ 6 * bZ D := by
   have hQ := Q2_cond_identity D
   have hR := replicaLaw_isPMF D
@@ -2911,7 +3001,9 @@ theorem Q2_le_six_bZ : Q2 D ≤ 6 * bZ D := by
   linarith
 
 /-- **Lemma 5.6(d)** (co-information form):
-`I(L₁,L₂;Z ∣ L₀) ≤ Q⁽²⁾ + 2M`. *Finite.*-/
+`I(L₁,L₂;Z ∣ L₀) ≤ Q⁽²⁾ + 2M`. *Finite.*
+@isnad1 id=le.0h4v.s10.a54afb8423b6 from=translated src=- shape=9fc5353c vocab=0844e9db
+-/
 theorem pair_le_Q2_add_two_M :
     condMI (fun u => (u.2.1, u.2.2.1)) (fun u => u.2.2.2) (fun u => u.1) (replicaLaw D)
       ≤ Q2 D + 2 * D.M := by
@@ -2926,6 +3018,9 @@ theorem pair_le_Q2_add_two_M :
 
 /-! #### Calibration of the finite winner law -/
 
+/--
+@isnad1 id=lt.1h6v.s6.9cb2b008e0ee from=translated src=- shape=077bba8b vocab=da311ec6
+-/
 lemma post_pos_contact (b : D.L.ι) (z : α × β) (hz : 0 < p z) :
     0 < D.post b z := by
   have hsupp := contact_support_eq D.feasible D.conn
@@ -2940,6 +3035,9 @@ lemma post_pos_contact (b : D.L.ι) (z : α × β) (hz : 0 < p z) :
   exact div_pos (mul_pos (D.prior_pos b)
     (lt_of_le_of_ne ((D.L.comp_isPMF b).nonneg z) (Ne.symm hcompne))) hz
 
+/--
+@isnad1 id=iff.3h8v.s8.389b13a921ee from=translated src=- shape=d8987796 vocab=c5e46421
+-/
 lemma raceValue_clock_lt_iff (z : α × β) (a b : D.L.ι)
     (ha : 0 < D.post a z) (hb : 0 < D.post b z)
     (E : D.L.ι → ℝ) (hE : ∀ i, 0 < E i) :
@@ -2975,6 +3073,9 @@ lemma raceValue_clock_lt_iff (z : α × β) (a b : D.L.ι)
     exact Real.strictMonoOn_log (Set.mem_Ioi.mpr hratioB)
       (Set.mem_Ioi.mpr hratioA) hinv
 
+/--
+@isnad1 id=iff.3h7v.s8.fcdb7285d3b3 from=translated src=- shape=412e89a5 vocab=6f128ba0
+-/
 lemma lexWinner_clock_iff (z : α × β) (hz : 0 < p z)
     (E : D.L.ι → ℝ) (hE : ∀ i, 0 < E i)
     (a : D.L.ι)
@@ -3015,6 +3116,9 @@ lemma lexWinner_clock_iff (z : α × β) (hz : 0 < p z)
       (hpost a) (hpost _) E hE).2 (hstrict _ hne)
     exact (not_lt_of_ge hmax) hlt
 
+/--
+@isnad1 id=eq.1h6v.s8.ba75582314d7 from=translated src=- shape=fa2fc72c vocab=ab37e803
+-/
 lemma seedLaw_lexWinner_measure (z : α × β) (hz : 0 < p z)
     (a : D.L.ι) :
     seedLaw D.L.ι {ε | lexWinner D ε z = a} = ENNReal.ofReal (D.post a z) := by
@@ -3064,6 +3168,9 @@ lemma seedLaw_lexWinner_measure (z : α × β) (hz : 0 < p z)
       exact pi_exp_strictClockWin (fun i => D.post i z)
         (fun i => post_pos_contact D i z hz) (sum_post_of_pos D z hz) a
 
+/--
+@isnad1 id=eq.1h6v.s8.0294800a7be3 from=translated src=- shape=eaf51349 vocab=c30ca3fb
+-/
 lemma winner_probability (z : α × β) (hz : 0 < p z) (a : D.L.ι) :
     (∫ ε, (if winner D ε z = a then (1 : ℝ) else 0) ∂(seedLaw D.L.ι)) =
       D.post a z := by
@@ -3093,6 +3200,9 @@ lemma winner_probability (z : α × β) (hz : 0 < p z) (a : D.L.ι) :
 /- Any real-valued expression which depends on the seed only through the
 finite winner map is integrable.  We use the measurable lexicographic winner
 as an a.e. version of the arbitrary maximizer in `winner`. -/
+/--
+@isnad1 id=integrab.0h5v.s7.ed11850cf23e from=translated src=- shape=ef4b0d9d vocab=da012ca7
+-/
 lemma integrable_winner_code
     (F : ((α × β) → D.L.ι) → ℝ) :
     Integrable (fun ε => F (winner D ε)) (seedLaw D.L.ι) := by
@@ -3123,16 +3233,25 @@ lemma integrable_winner_code
 
 /-! #### The cellwise source latent used in Theorem 5.7 -/
 
+/--
+@isnad1 id=eq.0h5v.s6.a0e9c60f4982 from=translated src=- shape=719a8d06 vocab=8bb37dc4
+-/
 lemma component_support_eq (b : D.L.ι) :
     support (D.L.comp b) = support p := by
   exact contact_support_eq D.feasible D.conn
     (D.contact b (D.prior_pos b).ne')
 
+/--
+@isnad1 id=iff.0h6v.s6.0068d6a22282 from=translated src=- shape=2b15de6d vocab=d59a0f50
+-/
 lemma component_eq_zero_iff (b : D.L.ι) (z : α × β) :
     D.L.comp b z = 0 ↔ p z = 0 := by
   have hmem := Finset.ext_iff.mp (component_support_eq D b) z
   simpa [support] using not_congr hmem
 
+/--
+@isnad1 id=lt.1h6v.s6.9cb2b008e0ee from=translated src=- shape=077bba8b vocab=da311ec6
+-/
 lemma post_pos_of_p_pos (b : D.L.ι) (z : α × β) (hz : 0 < p z) :
     0 < D.post b z := by
   unfold SeedSetup.post
@@ -3144,10 +3263,16 @@ noncomputable def componentCellMass (ε : D.L.ι → ℝ)
     (a b : D.L.ι) : ℝ :=
   ∑ z ∈ cell D ε a, D.L.comp b z
 
+/--
+@isnad1 id=le.0h7v.s6.0e9462fc91e8 from=translated src=- shape=87207630 vocab=46ae15be
+-/
 lemma componentCellMass_nonneg (ε : D.L.ι → ℝ) (a b : D.L.ι) :
     0 ≤ componentCellMass D ε a b := by
   exact Finset.sum_nonneg fun z _ => (D.L.comp_isPMF b).nonneg z
 
+/--
+@isnad1 id=iff.0h7v.s6.9eae86a42a2b from=translated src=- shape=efe8b0c0 vocab=896ab955
+-/
 lemma componentCellMass_eq_zero_iff (ε : D.L.ι → ℝ) (a b : D.L.ι) :
     componentCellMass D ε a b = 0 ↔ cellMass D ε a = 0 := by
   rw [componentCellMass, cellMass]
@@ -3167,6 +3292,9 @@ lemma componentCellMass_eq_zero_iff (ε : D.L.ι → ℝ) (a b : D.L.ι) :
     exact (Finset.sum_eq_zero_iff_of_nonneg
       (fun z _ => D.isPMF.nonneg z)).1 h z hz
 
+/--
+@isnad1 id=eq.0h6v.s7.ffd23aea1d00 from=translated src=- shape=cb617c36 vocab=798770b7
+-/
 lemma sum_prior_componentCellMass (ε : D.L.ι → ℝ) (a : D.L.ι) :
     (∑ b, D.L.prior b * componentCellMass D ε a b) = cellMass D ε a := by
   unfold componentCellMass cellMass
@@ -3275,6 +3403,9 @@ noncomputable def cellSourceLatent (ε : D.L.ι → ℝ)
       · simp [componentCellPrior, componentCellLaw, componentCellRaw,
           hmass, hcm, hwinner, cellLaw]
 
+/--
+@isnad1 id=eq.0h6v.s8.aeb87d94d25d from=translated src=- shape=cf21b0f7 vocab=61246443
+-/
 lemma cellSource_weighted_G (ε : D.L.ι → ℝ) (a : D.L.ι) :
     cellMass D ε a *
         (∑ b, (cellSourceLatent D ε a).prior b *
@@ -3300,6 +3431,9 @@ lemma cellSource_weighted_G (ε : D.L.ι → ℝ) (a : D.L.ι) :
     simp only [componentCellPrior, hmass, ite_false]
     field_simp
 
+/--
+@isnad1 id=eq.0h6v.s8.caf0077fe038 from=translated src=- shape=b0c83273 vocab=ef5b0bea
+-/
 lemma cellSource_fiber (ε : D.L.ι → ℝ) (a : D.L.ι) :
     (fun q : D.L.ι × (α × β) =>
       if winner D ε q.2 = a then D.L.joint q else 0) =
@@ -3329,6 +3463,9 @@ lemma cellSource_fiber (ε : D.L.ι → ℝ) (a : D.L.ι) :
     · simp [hwinner, componentCellPrior, componentCellLaw,
         componentCellRaw, hmass, hcm]
 
+/--
+@isnad1 id=eq.0h5v.s9.0b005abd96fb from=translated src=- shape=0205b909 vocab=0b5911de
+-/
 lemma winner_condInfo_eq_cells (ε : D.L.ι → ℝ) :
     condMI (fun q : D.L.ι × (α × β) => q.1) (fun q => q.2)
         (fun q => winner D ε q.2) D.L.joint =
@@ -3343,6 +3480,9 @@ lemma winner_condInfo_eq_cells (ε : D.L.ι → ℝ) :
     (fun q : D.L.ι × (α × β) => q.1) (fun q => q.2)
     (cellMass_nonneg D ε a)
 
+/--
+@isnad1 id=le.0h5v.s9.e8aeb5fa71d7 from=translated src=- shape=ecc178b1 vocab=978835ad
+-/
 lemma fixed_seed_cell_comparison (ε : D.L.ι → ℝ) :
     (∑ a, cellMass D ε a * Gdef (support p) D.w (cellLaw D ε a)) ≤
       (∑ a, ∑ b, D.L.prior b * componentCellMass D ε a b *
@@ -3435,6 +3575,9 @@ private lemma integrable_cellResidual_integrand :
   unfold componentCellMass
   simpa only [F, cell] using h
 
+/--
+@isnad1 id=integrab.0h4v.s8.36935dd0a179 from=translated src=- shape=3303ad37 vocab=5b1ac590
+-/
 lemma integrable_winnerCondInfo :
     Integrable
       (fun ε => condMI
@@ -3479,6 +3622,9 @@ private lemma Dwdefect_le_Rcell_add_integral_condInfo :
 
 /- The finite cross-entropy inequality used for conditional-entropy
 concavity.  It is just Gibbs' inequality, with all quantities in bits. -/
+/--
+@isnad1 id=le.3h3v.s6.c8b02523a73d from=translated src=- shape=c1dce9ad vocab=9c4f9996
+-/
 lemma H_le_crossEntropy
     {κ : Type*} [Fintype κ] [DecidableEq κ]
     {r q : κ → ℝ} (hr : IsPMF r) (hq : IsPMF q)
@@ -3513,6 +3659,9 @@ lemma H_le_crossEntropy
   rw [hH, hcross]
   linarith
 
+/--
+@isnad1 id=eq.1h8v.s6.c6e469b8f8b0 from=translated src=- shape=154f66f6 vocab=3b6b5490
+-/
 lemma condH_graph_right
     {A Γ Δ K : Type*} [Fintype A] [Fintype Γ] [Fintype Δ] [Fintype K]
     [DecidableEq Γ] [DecidableEq Δ] [DecidableEq K]
@@ -3535,6 +3684,9 @@ lemma condH_graph_right
   unfold condH
   rw [hg, hfg]
 
+/--
+@isnad1 id=eq.1h8v.s6.84f5c44feb88 from=translated src=- shape=1a4a7f1e vocab=a332fe6b
+-/
 lemma condH_equiv_right
     {A Γ Δ K : Type*} [Fintype A] [Fintype Γ] [Fintype Δ] [Fintype K]
     [DecidableEq Γ] [DecidableEq Δ] [DecidableEq K]
@@ -3549,6 +3701,9 @@ lemma condH_equiv_right
   unfold condH
   rw [hg, hfg]
 
+/--
+@isnad1 id=eq.1h6v.s6.07c44738c7ba from=translated src=- shape=961d2e86 vocab=31191ce9
+-/
 lemma condH_eq_sum_H_fibers
     {A Γ K : Type*} [Fintype A] [Fintype Γ] [Fintype K]
     [DecidableEq Γ] [DecidableEq K]
@@ -3560,6 +3715,9 @@ lemma condH_eq_sum_H_fibers
   rw [hdecomp]
   ring
 
+/--
+@isnad1 id=eq.0h7v.s7.aec819d1949f from=translated src=- shape=20fdb5bd vocab=702869cf
+-/
 lemma cellMass_mul_componentCellPrior
     (ε : D.L.ι → ℝ) (a b : D.L.ι) :
     cellMass D ε a * componentCellPrior D ε a b =
@@ -3571,6 +3729,9 @@ lemma cellMass_mul_componentCellPrior
   · simp only [componentCellPrior, hmass, ite_false]
     field_simp
 
+/--
+@isnad1 id=eq.0h4v.s6.edcbe5c535cf from=translated src=- shape=a8c1649a vocab=b0a2dd26
+-/
 lemma push_latent_fst_joint_local
     {r : α × β → ℝ} (V : Latent r) :
     push (fun q : V.ι × (α × β) => q.1) V.joint = V.prior := by
@@ -3589,6 +3750,9 @@ lemma push_latent_fst_joint_local
       · simp [hx]
     _ = V.prior b := by simp [hcomp]
 
+/--
+@isnad1 id=eq.0h6v.s8.d9fe1e175895 from=translated src=- shape=8437fc58 vocab=528906fa
+-/
 lemma push_winner_source_fiber
     (ε : D.L.ι → ℝ) (a : D.L.ι) :
     push (fun q : D.L.ι × (α × β) => q.1)
@@ -3624,6 +3788,9 @@ lemma push_winner_source_fiber
       funext b
       exact cellMass_mul_componentCellPrior D ε a b
 
+/--
+@isnad1 id=eq.0h5v.s8.6c556ab904bc from=translated src=- shape=328aadfe vocab=4ebd2844
+-/
 lemma winner_condH_eq_cellEntropies (ε : D.L.ι → ℝ) :
     condH (fun q : D.L.ι × (α × β) => q.1)
         (fun q => winner D ε q.2) D.L.joint =
@@ -3641,6 +3808,9 @@ lemma winner_condH_eq_cellEntropies (ε : D.L.ι → ℝ) :
   exact H_smul (cellSourceLatent D ε a).prior_isPMF.isFinMeas
     (cellMass_nonneg D ε a)
 
+/--
+@isnad1 id=eq.0h5v.s9.2a2ca7b3eb18 from=translated src=- shape=951d8af0 vocab=bb3348f9
+-/
 lemma winner_condInfo_eq_condH_sub (ε : D.L.ι → ℝ) :
     condMI (fun q : D.L.ι × (α × β) => q.1) (fun q => q.2)
         (fun q => winner D ε q.2) D.L.joint =
@@ -3743,6 +3913,9 @@ private lemma replica_condH_eq_resampleEntropies :
   exact H_smul (resampleLatent D a).prior_isPMF.isFinMeas
     (D.L.prior_isPMF.nonneg a)
 
+/--
+@isnad1 id=integrab.0h6v.s7.e9cac8fd0e4a from=translated src=- shape=767f403f vocab=4c449d96
+-/
 lemma integrable_componentCellMass
     (a b : D.L.ι) :
     Integrable (fun ε => componentCellMass D ε a b) (seedLaw D.L.ι) := by
@@ -3750,6 +3923,9 @@ lemma integrable_componentCellMass
     ∑ z ∈ Finset.univ.filter (fun z => A z = a), D.L.comp b z
   simpa only [F, componentCellMass, cell] using integrable_winner_code D F
 
+/--
+@isnad1 id=eq.0h7v.s8.9a0376229307 from=translated src=- shape=82ce2401 vocab=f7a0b44d
+-/
 lemma integral_winner_component
     (z : α × β) (a b : D.L.ι) :
     (∫ ε, (if winner D ε z = a then D.L.comp b z else 0)
@@ -3767,6 +3943,9 @@ lemma integral_winner_component
       by_cases hwin : winner D ε z = a <;> simp [hwin]
     rw [hfun, integral_const_mul, winner_probability D z hz a]
 
+/--
+@isnad1 id=eq.0h6v.s8.dba58d11b574 from=translated src=- shape=84f1582a vocab=62238e87
+-/
 lemma integral_cellSource_weight (a b : D.L.ι) :
     (∫ ε, cellMass D ε a * componentCellPrior D ε a b
         ∂(seedLaw D.L.ι)) =
@@ -3791,6 +3970,9 @@ lemma integral_cellSource_weight (a b : D.L.ι) :
       simpa only [F] using integrable_winner_code D F
   rw [hcm, prior_mul_resamplePrior_comm D a b]
 
+/--
+@isnad1 id=le.0h5v.s8.558f4d71919f from=translated src=- shape=b71cf316 vocab=9a6ebf30
+-/
 lemma winner_condH_le_crossEntropy (ε : D.L.ι → ℝ) :
     condH (fun q : D.L.ι × (α × β) => q.1)
         (fun q => winner D ε q.2) D.L.joint ≤
@@ -3817,6 +3999,9 @@ lemma winner_condH_le_crossEntropy (ε : D.L.ι → ℝ) :
       intro b _
       ring
 
+/--
+@isnad1 id=integrab.0h4v.s8.c9a43a95a30f from=translated src=- shape=374759b7 vocab=eb161e78
+-/
 lemma integrable_winnerCondH :
     Integrable
       (fun ε => condH (fun q : D.L.ι × (α × β) => q.1)
@@ -3826,6 +4011,9 @@ lemma integrable_winnerCondH :
     condH (fun q : D.L.ι × (α × β) => q.1) (fun q => A q.2) D.L.joint
   simpa only [F] using integrable_winner_code D F
 
+/--
+@isnad1 id=integrab.0h4v.s8.cbf80cb9a973 from=translated src=- shape=0d772e93 vocab=9fe83384
+-/
 lemma integrable_cellCrossEntropy :
     Integrable
       (fun ε => ∑ a, ∑ b,
@@ -3854,6 +4042,9 @@ lemma integrable_cellCrossEntropy :
     (D.L.prior b * lg (1 / resamplePrior D a b))
   simpa only [mul_assoc, mul_left_comm, mul_comm] using h
 
+/--
+@isnad1 id=le.0h4v.s9.1fe654b7ca0e from=translated src=- shape=f7c74747 vocab=b27fe67d
+-/
 lemma average_winner_condH_le_replica_condH :
     (∫ ε, condH (fun q : D.L.ι × (α × β) => q.1)
         (fun q => winner D ε q.2) D.L.joint ∂(seedLaw D.L.ι)) ≤
@@ -3932,6 +4123,9 @@ lemma average_winner_condH_le_replica_condH :
         (fun u => u.2.1) (replicaLaw D) :=
       (replica_condH_eq_resampleEntropies D).symm
 
+/--
+@isnad1 id=eq.1h10v.s7.53a0fa6529a0 from=translated src=- shape=173dc2b4 vocab=7a912813
+-/
 lemma condH_eq_of_pair_push_eq
     {A A' Γ Δ : Type*} [Fintype A] [Fintype A'] [Fintype Γ] [Fintype Δ]
     [DecidableEq Γ] [DecidableEq Δ]
@@ -3969,6 +4163,9 @@ private lemma replica_condH_l₀z_eq_joint :
   exact condH_eq_of_pair_push_eq (replicaLaw D) D.L.joint
     (fun u => u.1) (fun u => u.2.2.2) (fun q => q.1) (fun q => q.2) hpair
 
+/--
+@isnad1 id=eq.0h4v.s9.4eebbeaded24 from=translated src=- shape=83772077 vocab=9f9f0256
+-/
 lemma bZ_eq_condH_sub :
     bZ D =
       condH
@@ -3997,6 +4194,9 @@ lemma bZ_eq_condH_sub :
   rw [condMI_eq_condH_sub_pair (replicaLaw_isPMF D), hswap, hpair,
     replica_condH_l₀z_eq_joint D]
 
+/--
+@isnad1 id=le.0h4v.s8.be293ad43f41 from=translated src=- shape=9f39b45e vocab=95ca3e4a
+-/
 lemma average_winner_condInfo_le_bZ :
     (∫ ε, condMI
         (fun q : D.L.ι × (α × β) => q.1) (fun q => q.2)
@@ -4030,7 +4230,9 @@ The one genuinely continuous statement here. Its proof is four steps:
 fusion within a cell, data processing, removing the
 seed via `L₀ ⟂ ε ∣ (Z,A)`, and the calibration coupling `(L₀,A,Z) ≟ (L₀,L₁,Z)`.
 Step (iv) is Lemma 4.2 and is where the continuous seed is discharged back into
-the finite replica coupling.-/
+the finite replica coupling.
+@isnad1 id=le.0h4v.s6.4971940c71d8 from=translated src=- shape=ffa094e0 vocab=a891ebe7
+-/
 theorem Dwdefect_le_Rcell_add_bZ :
     Dwdefect D ≤ Rcell D + bZ D := by
   calc

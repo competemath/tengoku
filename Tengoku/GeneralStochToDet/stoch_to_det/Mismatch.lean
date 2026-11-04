@@ -411,6 +411,9 @@ private lemma sum_triple_reorder (f : K.κ → (α × β) → K.κ → ℝ) :
       rw [sum_comm]
     _ = ∑ c, ∑ d, ∑ z, f d z c := by rw [sum_comm]
 
+/--
+@isnad1 id=eq.0h7v.s6.bf1175a66d3b from=translated src=- shape=8c8f6f6b vocab=786bde37
+-/
 lemma pairMass_comm (c d : K.κ) : pairMass K c d = pairMass K d c := by
   simp only [pairMass]
   apply sum_congr rfl
@@ -473,7 +476,9 @@ private lemma BC_Q_pos (c d : K.κ) : 0 < BC (K.Q c) (K.Q d) := by
         (Q_pos_of_mem_support K d z hz))⟩
 
 /-- **(9.1)**: the exact conditional-KL expansion
-`S = ∑_{c,d} J_{cd} D(r_{cd} ‖ Q_c)`, every term nonnegative.-/
+`S = ∑_{c,d} J_{cd} D(r_{cd} ‖ Q_c)`, every term nonnegative.
+@isnad1 id=eq.0h5v.s7.35c84364a995 from=translated src=- shape=fdbea578 vocab=8b508b3c
+-/
 theorem Sinfo_eq_sum_KL :
     K.Sinfo = ∑ c, ∑ d, pairMass K c d * KL (overlapLaw K c d) (K.Q c) := by
   rw [Sinfo_eq_clusterTriple_condMI K]
@@ -668,7 +673,9 @@ private lemma far_pair_KL (c d : K.κ) (hfar : ¬ IsNear K c d) :
 
 /-- The near part of the charge: clusters incident to a near
 pair are individually expensive, so `M` pays for them.
-`∑_{(c,d) near} J_{cd} ≤ M / c_*`.-/
+`∑_{(c,d) near} J_{cd} ≤ M / c_*`.
+@isnad1 id=le.0h5v.s8.20db48d08c06 from=translated src=- shape=1eb50424 vocab=d7277081
+-/
 theorem near_charge :
     ∑ c, ∑ d ∈ univ.filter (fun d => c ≠ d ∧ IsNear K c d), pairMass K c d
       ≤ D.M / cStar := by
@@ -719,7 +726,9 @@ theorem near_charge :
 
 /-- The far part of the charge: a far pair costs
 `δ_*²/ln 2` inside the exact sum (9.1), by Bhattacharyya.
-`2 ∑_{{c,d} far} J_{cd} ≤ (2 ln 2/δ_*²) S`.-/
+`2 ∑_{{c,d} far} J_{cd} ≤ (2 ln 2/δ_*²) S`.
+@isnad1 id=le.0h5v.s8.cb18f652e363 from=translated src=- shape=7594a181 vocab=01d8deb9
+-/
 theorem far_charge :
     ∑ c, ∑ d ∈ univ.filter (fun d => c ≠ d ∧ ¬ IsNear K c d), pairMass K c d
       ≤ 2 * Real.log 2 / deltaStar ^ 2 * K.Sinfo := by
@@ -842,7 +851,9 @@ private lemma dMis_eq_sum_pairMass :
           rw [sum_comm]
 
 /-- **Theorem 9.1** (the exact global charge), in bits:
-`d ≤ M/c_* + (2 ln 2 / δ_*²) S`.-/
+`d ≤ M/c_* + (2 ln 2 / δ_*²) S`.
+@isnad1 id=le.0h5v.s7.a23ae7aa3f96 from=translated src=- shape=803ddb01 vocab=38c3b116
+-/
 theorem mismatch_charge :
     K.dMis ≤ D.M / cStar + 2 * Real.log 2 / deltaStar ^ 2 * K.Sinfo := by
   rw [dMis_eq_sum_pairMass K]
@@ -863,7 +874,9 @@ theorem mismatch_charge :
       add_le_add (near_charge K) (far_charge K)
 
 /-- The form §10 consumes: `d/ln 2 ≤ K_orth (M + S)`, using
-that `1/(c_* ln 2) = N = K_orth` dominates `2/δ_*² ≈ 1.1 × 10¹⁰`.-/
+that `1/(c_* ln 2) = N = K_orth` dominates `2/δ_*² ≈ 1.1 × 10¹⁰`.
+@isnad1 id=le.0h5v.s6.795a5d5b46f6 from=translated src=- shape=14cd347e vocab=31191550
+-/
 theorem mismatch_charge_Korth :
     K.dMis / Real.log 2 ≤ Korth * (D.M + K.Sinfo) := by
   have hlog : 0 < Real.log 2 := Real.log_pos (by norm_num)
@@ -897,7 +910,9 @@ noncomputable instance instDecidableIsHNearAt (δ : ℝ) (c d : K.κ) :
     Decidable (IsHNearAt K δ c d) := Classical.dec _
 
 /-- A Hellinger-far pair pays at least `δ / log 2` in the two directed KL
-charges.-/
+charges.
+@isnad1 id=le.1h8v.s7.0b45c789ebfb from=translated src=- shape=cf08b74b vocab=2d82a3cd
+-/
 theorem far_pair_KL_of_not_hnear (δ : ℝ) (c d : K.κ)
     (hfar : ¬ IsHNearAt K δ c d) :
     δ / Real.log 2 ≤
@@ -928,7 +943,9 @@ theorem far_pair_KL_of_not_hnear (δ : ℝ) (c d : K.κ)
         KL (overlapLaw K c d) (K.Q d) := hbh
 
 /-- Near pairs at threshold `δ` are paid for by any positive information floor
-valid for each incident first component.-/
+valid for each incident first component.
+@isnad1 id=le.2h7v.s8.3e063020e82d from=translated src=- shape=8fe27f63 vocab=274430f4
+-/
 theorem near_charge_of_hellinger_floor (δ F : ℝ) (hF : 0 < F)
     (hfloor : ∀ c d : K.κ, c ≠ d → IsHNearAt K δ c d → F ≤ Ixy (K.Q c)) :
     ∑ c, ∑ d ∈ univ.filter (fun d => c ≠ d ∧ IsHNearAt K δ c d), pairMass K c d
@@ -979,7 +996,9 @@ theorem near_charge_of_hellinger_floor (δ F : ℝ) (hF : 0 < F)
   exact hnear_incident.trans hmass
 
 /-- Far pairs at a positive squared-Hellinger threshold `δ` are paid for at
-cost `δ / log 2`; ordered pairs cause the factor two.-/
+cost `δ / log 2`; ordered pairs cause the factor two.
+@isnad1 id=le.1h6v.s8.9e96670403c7 from=translated src=- shape=63b50d56 vocab=14829d91
+-/
 theorem far_charge_of_hellinger (δ : ℝ) (hδ : 0 < δ) :
     ∑ c, ∑ d ∈ univ.filter (fun d => c ≠ d ∧ ¬ IsHNearAt K δ c d), pairMass K c d
       ≤ 2 * Real.log 2 / δ * K.Sinfo := by
@@ -1056,7 +1075,9 @@ theorem far_charge_of_hellinger (δ : ℝ) (hδ : 0 < δ) :
       dsimp [a]
       field_simp [hδ.ne', (Real.log_pos one_lt_two).ne']
 
-/-- Parametric Hellinger near/far mismatch charge.-/
+/-- Parametric Hellinger near/far mismatch charge.
+@isnad1 id=le.3h7v.s7.8cb2215349d0 from=translated src=- shape=e1e0ba0b vocab=657bd703
+-/
 theorem mismatch_charge_of_hellinger_floor (δ F : ℝ)
     (hδ : 0 < δ) (hF : 0 < F)
     (hfloor : ∀ c d : K.κ, c ≠ d → IsHNearAt K δ c d → F ≤ Ixy (K.Q c)) :
@@ -1118,7 +1139,9 @@ private lemma far_pair_KL_1771 (c d : K.κ) (hfar : ¬ IsHNear K c d) :
     _ ≤ KL (overlapLaw K c d) (K.Q c) +
         KL (overlapLaw K c d) (K.Q d) := hbh
 
-/-- Near pairs are paid for by the improved component-information floor.-/
+/-- Near pairs are paid for by the improved component-information floor.
+@isnad1 id=le.0h5v.s8.3d49d88c0d90 from=translated src=- shape=1eb50424 vocab=fd301240
+-/
 theorem near_charge_1771 :
     ∑ c, ∑ d ∈ univ.filter (fun d => c ≠ d ∧ IsHNear K c d), pairMass K c d
       ≤ D.M / infoFloor1771 := by
@@ -1172,7 +1195,9 @@ theorem near_charge_1771 :
   exact hnear_incident.trans hmass
 
 /-- Far pairs are paid for at cost `delta1771 / log 2`; ordered pairs cause
-the factor two in the resulting coefficient.-/
+the factor two in the resulting coefficient.
+@isnad1 id=le.0h5v.s8.837d4ed82bd8 from=translated src=- shape=77e1e439 vocab=9e90b5db
+-/
 theorem far_charge_1771 :
     ∑ c, ∑ d ∈ univ.filter (fun d => c ≠ d ∧ ¬ IsHNear K c d), pairMass K c d
       ≤ 2 * Real.log 2 / delta1771 * K.Sinfo := by
@@ -1251,7 +1276,9 @@ theorem far_charge_1771 :
       field_simp [delta1771_pos.ne', (Real.log_pos one_lt_two).ne']
 
 /-- **Theorem 9.1 (improved)**: the Hellinger near/far split with the exact
-constants consumed by the `1771` seed ledger.-/
+constants consumed by the `1771` seed ledger.
+@isnad1 id=le.0h5v.s7.06155b7957f5 from=translated src=- shape=0b5be553 vocab=478466d1
+-/
 theorem mismatch_charge_1771 :
     K.dMis ≤ D.M / infoFloor1771 +
       2 * Real.log 2 / delta1771 * K.Sinfo := by

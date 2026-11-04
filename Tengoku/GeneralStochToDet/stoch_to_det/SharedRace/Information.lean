@@ -19,7 +19,9 @@ open Finset
 universe u v w
 
 /-- Mutual information in bits, multiplied by `log 2`, is the KL divergence
-of the joint law from the product of its marginals.-/
+of the joint law from the product of its marginals.
+@isnad1 id=eq.1h6v.s7.88c8f3eafa1d from=translated src=- shape=409f8a94 vocab=a8566bc9
+-/
 lemma logTwo_mul_MI_eq_kl
     {A : Type u} {B : Type v} {C : Type w}
     [Fintype A] [Fintype B] [Fintype C]
@@ -136,7 +138,9 @@ lemma logTwo_mul_MI_eq_kl
       rw [hfst_eq, hsnd_eq]
 
 /-- Pushing a PMF through a deterministic map and applying the finite
-cross-entropy bound turns the cross entropy into a source expectation.-/
+cross-entropy bound turns the cross entropy into a source expectation.
+@isnad1 id=le.3h5v.s6.6807d467dcb8 from=translated src=- shape=ac5ea9d6 vocab=388ef03c
+-/
 lemma H_push_le_expected_crossEntropy
     {A : Type u} {B : Type v} [Fintype A] [Fintype B] [DecidableEq B]
     {m : A → ℝ} (hm : IsPMF m) (f : A → B)
@@ -164,7 +168,9 @@ private lemma push_prod_eta
 /-- For a finite source and a support-local family of strictly positive
 categorical posterior rows, mutual information is the expected row-wise KL
 divergence from the mean posterior.  The left side is converted from bits to
-nats by `logTwo`.-/
+nats by `logTwo`.
+@isnad1 id=eq.3h4v.s7.37d3276c91c7 from=translated src=- shape=d745a4a9 vocab=80a66a8b
+-/
 theorem posteriorMI_mul_logTwo_eq_expectedKL
     {A : Type u} {B : Type} [Fintype A] [Fintype B]
     [DecidableEq A] [DecidableEq B]

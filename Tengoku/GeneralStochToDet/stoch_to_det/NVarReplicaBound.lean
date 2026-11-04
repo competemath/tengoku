@@ -110,7 +110,9 @@ private theorem replica_coordinateCross_symm (V : NLatent p) :
   dsimp only [X, A, B] at hdelete hsingle
   simp_rw [hdelete, hsingle]
 
-/-- The collapsed Shannon certificate, specialized to posterior replicas.-/
+/-- The collapsed Shannon certificate, specialized to posterior replicas.
+@isnad1 id=le.1h4v.s9.4ee9a89421df from=translated src=- shape=f4fd428f vocab=3b2f32b5
+-/
 theorem replica_coordinateCross_le_score (V : NLatent p) (hn : 3 <= n) :
     ReplicaCoordinate.coordinateCross V.replicaLaw (fun u => u.2)
         (fun u => u.1.1) (fun u => u.1.2) <=
@@ -170,7 +172,9 @@ private theorem replicaViewInformation_swap (V : NLatent p) :
   rw [hsingle i, hdelete i]
 
 /-- Exact bridge between the cross-information certificate and the posterior
-resampling budget.-/
+resampling budget.
+@isnad1 id=eq.0h4v.s9.f69af25f4632 from=translated src=- shape=6f7d865b vocab=861161e4
+-/
 theorem replica_coordinateCross_eq (V : NLatent p) :
     ReplicaCoordinate.coordinateCross V.replicaLaw (fun u => u.2)
         (fun u => u.1.1) (fun u => u.1.2) =
@@ -237,7 +241,9 @@ theorem replica_coordinateCross_eq (V : NLatent p) :
 
 /-- Alphabet-free posterior-replica defect bound for an optimal coordinate
 latent.  The deliberately division-free coefficient is convenient for the
-final hardening argument.-/
+final hardening argument.
+@isnad1 id=le.2h4v.s9.38aee55d062a from=translated src=- shape=dfe9d1fd vocab=fadb01b3
+-/
 theorem replicaDefect_le_score_of_optimal (V : NLatent p) (hn : 3 <= n)
     (hoptimal :
       V.score (fun i => coordinateView (alpha := alpha) i)

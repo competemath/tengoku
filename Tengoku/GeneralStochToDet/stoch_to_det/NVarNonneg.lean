@@ -28,6 +28,9 @@ variable {n : ℕ} {κ γ : Fin n → Type}
 def tupleView (f : ∀ i, Ω → κ i) : Ω → (∀ i, κ i) :=
   fun z i => f i z
 
+/--
+@isnad1 id=le.1h5v.s7.77d433ba8eed from=translated src=- shape=029fa63b vocab=97b3cb7f
+-/
 theorem Hvar_tupleView_le_sum
     {α : Type} [Fintype α] [DecidableEq α]
     {m : α → ℝ} (hm : IsPMF m) (f : ∀ i, α → κ i) :
@@ -82,7 +85,9 @@ namespace NLatent
 variable {f : ∀ i, Ω → κ i} {g : ∀ i, Ω → γ i}
 
 /-- The conditional total-correlation part of the score is nonnegative when
-the tuple of coordinate views determines the cell.-/
+the tuple of coordinate views determines the cell.
+@isnad1 id=le.1h6v.s8.409ede861dff from=translated src=- shape=2d6f297f vocab=9a8f0f61
+-/
 theorem conditionalTC_nonneg [Nonempty Ω] (V : NLatent p)
     (htup : Function.Injective (tupleView f)) :
     0 ≤ (∑ i, condH (fun w : V.ι × Ω => f i w.2)
@@ -125,7 +130,9 @@ theorem conditionalTC_nonneg [Nonempty Ω] (V : NLatent p)
       mul_nonneg (V.prior_isPMF.nonneg v) (hcomponent v)
 
 /-- The n-variable score is nonnegative when every singleton/deletion pair
-identifies the cell and the full tuple of singleton views identifies the cell.-/
+identifies the cell and the full tuple of singleton views identifies the cell.
+@isnad1 id=le.2h8v.s7.17cdaef3fb56 from=translated src=- shape=7b18b63e vocab=f6006b8d
+-/
 theorem score_nonneg [Nonempty Ω] (V : NLatent p)
     (hinj : ∀ i, Function.Injective (fun z => (f i z, g i z)))
     (htup : Function.Injective (tupleView f)) :

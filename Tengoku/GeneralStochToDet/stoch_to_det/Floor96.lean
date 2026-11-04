@@ -10,6 +10,9 @@ namespace stoch_to_det
 variable {α β : Type*} [Fintype α] [Fintype β]
   [DecidableEq α] [DecidableEq β]
 
+/--
+@isnad1 id=le.6h6v.s6.2a2e5846a8d9 from=translated src=- shape=0eed6b1e vocab=4cbd95e5
+-/
 theorem rho96_le_rhoHGR_of_contacts
     {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : Feasible S w) (hS : IsConnected S)
@@ -24,6 +27,9 @@ theorem rho96_le_rhoHGR_of_contacts
     two_mul_eta96_sq_lt_one hw hq hr hqs hrs hne
     (by simpa only [delta96_eq] using hnear)
 
+/--
+@isnad1 id=le.6h6v.s6.6d29b60348c6 from=translated src=- shape=3e7627d8 vocab=4cbd95e5
+-/
 theorem rho96_le_rhoHGR_of_contacts_right
     {S : Finset (α × β)} {w : α × β → ℝ}
     (hw : Feasible S w) (hS : IsConnected S)

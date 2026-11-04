@@ -157,7 +157,9 @@ private lemma Latent.sum_prior_mul_Phi (V : Latent p) :
       simp only [← Finset.mul_sum]
 
 /-- **Lemma 1.1** (decomposition identity).
-`S_p(V) = Ψ(p) − ∑ᵥ λᵥ Φ(qᵥ)`.-/
+`S_p(V) = Ψ(p) − ∑ᵥ λᵥ Φ(qᵥ)`.
+@isnad1 id=eq.1h4v.s7.cce7a6422338 from=translated src=- shape=cf408922 vocab=8255cc07
+-/
 theorem Latent.score_eq (hp : IsPMF p) (V : Latent p) :
     V.score = Psi p - ∑ v, V.prior v * Phi (V.comp v) := by
   have hX : Hvar (fun w : V.ι × (α × β) => w.2.1) V.joint = H (mX p) := by
@@ -269,7 +271,9 @@ theorem Latent.score_eq (hp : IsPMF p) (V : Latent p) :
   ring
 
 /-- **Lemma 1.2** (score identity).
-`S_p(V) − I(X;Y) = 3 I(V;Z) − 2 I(V;X) − 2 I(V;Y)`.-/
+`S_p(V) − I(X;Y) = 3 I(V;Z) − 2 I(V;X) − 2 I(V;Y)`.
+@isnad1 id=eq.1h4v.s8.83fb1b3b9d66 from=translated src=- shape=84d52597 vocab=475197f1
+-/
 theorem Latent.score_sub_Ixy (hp : IsPMF p) (V : Latent p) :
     V.score - Ixy p
       = 3 * MI (fun w => w.1) (fun w => w.2) V.joint
@@ -307,7 +311,9 @@ the same optimization as minimizing the score).-/
 noncomputable def concaveEnvelopePhi (p : α × β → ℝ) : ℝ :=
   ⨆ V : Latent p, ∑ v, V.prior v * Phi (V.comp v)
 
-/-- **Corollary 1.3**, first half: `τ(p) = Ψ(p) − Φ̂(p)`.-/
+/-- **Corollary 1.3**, first half: `τ(p) = Ψ(p) − Φ̂(p)`.
+@isnad1 id=eq.1h3v.s6.744871fa74a9 from=translated src=- shape=ca08e229 vocab=56351567
+-/
 theorem tau_eq_Psi_sub_envelope (hp : IsPMF p) :
     tau p = Psi p - concaveEnvelopePhi p := by
   let payoff : Latent p → ℝ := fun V => ∑ v, V.prior v * Phi (V.comp v)
@@ -442,14 +448,18 @@ noncomputable def Latent.ofFunction {γ : Type} [Fintype γ] [DecidableEq γ]
     (hp : IsPMF p) (f : α × β → γ) : Latent p :=
   functionLatent hp f
 
-/-- A function-induced latent is deterministic.-/
+/-- A function-induced latent is deterministic.
+@isnad1 id=isdet.1h5v.s6.ad240ae48d97 from=translated src=- shape=94204393 vocab=bebdd61b
+-/
 theorem Latent.ofFunction_isDet {γ : Type} [Fintype γ] [DecidableEq γ]
     (hp : IsPMF p) (f : α × β → γ) :
     (Latent.ofFunction hp f).IsDet := by
   exact functionLatent_isDet hp f
 
 /-- The joint law of a function-induced latent is the pushforward along its
-graph embedding.-/
+graph embedding.
+@isnad1 id=eq.1h5v.s7.fe0881d598e5 from=translated src=- shape=7194aca6 vocab=54e1c6d9
+-/
 theorem Latent.ofFunction_joint_eq_push
     {γ : Type} [Fintype γ] [DecidableEq γ]
     (hp : IsPMF p) (f : α × β → γ) :
@@ -508,7 +518,9 @@ private lemma condMI_push_source
   rfl
 
 /-- The score of a function-induced latent is exactly the deterministic
-LessWrong expression computed under `p`.-/
+LessWrong expression computed under `p`.
+@isnad1 id=eq.1h5v.s6.a4c660fb773f from=translated src=- shape=388b927c vocab=aaefb0dd
+-/
 theorem Latent.ofFunction_score_eq_detScore
     {γ : Type} [Fintype γ] [DecidableEq γ]
     (hp : IsPMF p) (Γ : α × β → γ) :
@@ -533,7 +545,9 @@ theorem Latent.ofFunction_score_eq_detScore
   ring
 
 /-- On a function-induced latent, the unrestricted finite-latent `DScore`
-reduces exactly to the deterministic function expression `detScore`.-/
+reduces exactly to the deterministic function expression `detScore`.
+@isnad1 id=eq.1h5v.s6.1ad42e3418f4 from=translated src=- shape=388b927c vocab=05e2edcf
+-/
 @[simp] theorem Latent.ofFunction_DScore_eq_detScore
     {γ : Type} [Fintype γ] [DecidableEq γ]
     (hp : IsPMF p) (Γ : α × β → γ) :
@@ -769,6 +783,9 @@ noncomputable def continuousEntropy {γ : Type*} [Fintype γ]
     (m : γ → ℝ) : ℝ :=
   (∑ a, Real.negMulLog (m a)) / Real.log 2
 
+/--
+@isnad1 id=eq.1h2v.s4.772582bdbe42 from=translated src=- shape=38e333cf vocab=0fd4d78a
+-/
 lemma H_eq_continuousEntropy {γ : Type*} [Fintype γ]
     {m : γ → ℝ} (hm : IsPMF m) : H m = continuousEntropy m := by
   have h := H_eq_negMulLog hm.isFinMeas
@@ -777,6 +794,9 @@ lemma H_eq_continuousEntropy {γ : Type*} [Fintype γ]
   rw [mul_comm]
   exact h
 
+/--
+@isnad1 id=continuo.0h1v.s4.c099bce7c23b from=translated src=- shape=e678c73e vocab=d8a9e361
+-/
 lemma continuous_continuousEntropy {γ : Type*} [Fintype γ] :
     Continuous (continuousEntropy : (γ → ℝ) → ℝ) := by
   unfold continuousEntropy
@@ -787,6 +807,9 @@ noncomputable def continuousPhi (q : α × β → ℝ) : ℝ :=
     - 2 * continuousEntropy (push Prod.fst q)
     - 2 * continuousEntropy (push Prod.snd q)
 
+/--
+@isnad1 id=continuo.0h3v.s5.e6b9e70a4ab4 from=translated src=- shape=c5391ebc vocab=054ea5c6
+-/
 lemma continuous_push_map {γ δ : Type*} [Fintype γ] [Fintype δ]
     [DecidableEq δ] (f : γ → δ) :
     Continuous (fun m : γ → ℝ => push f m) := by
@@ -795,6 +818,9 @@ lemma continuous_push_map {γ δ : Type*} [Fintype γ] [Fintype δ]
   unfold push
   fun_prop
 
+/--
+@isnad1 id=continuo.0h2v.s5.9348b56d6737 from=translated src=- shape=7cbfe15d vocab=4e1bcfcd
+-/
 lemma continuous_continuousPhi :
     Continuous (continuousPhi : (α × β → ℝ) → ℝ) := by
   unfold continuousPhi
@@ -807,6 +833,9 @@ lemma continuous_continuousPhi :
   exact ((continuous_const.mul hq).sub (continuous_const.mul hqX)).sub
     (continuous_const.mul hqY)
 
+/--
+@isnad1 id=eq.1h3v.s5.a41de2505b90 from=translated src=- shape=c201a248 vocab=d0e0b1c3
+-/
 lemma Phi_eq_continuousPhi {q : α × β → ℝ} (hq : IsPMF q) :
     Phi q = continuousPhi q := by
   have hqX : IsPMF (mX q) := isPMF_push hq
@@ -820,6 +849,9 @@ def pmfSet : Set (α × β → ℝ) := {q | IsPMF q}
 noncomputable def phiGraph : Set ((α × β → ℝ) × ℝ) :=
   (fun q => (q, Phi q)) '' pmfSet
 
+/--
+@isnad1 id=iscompac.0h2v.s5.b6e87be0615d from=translated src=- shape=f9601f4e vocab=1b9d0fd1
+-/
 lemma isCompact_pmfSet : IsCompact (pmfSet : Set (α × β → ℝ)) := by
   have heq : (pmfSet : Set (α × β → ℝ)) = stdSimplex ℝ (α × β) := by
     ext q
@@ -831,6 +863,9 @@ lemma isCompact_pmfSet : IsCompact (pmfSet : Set (α × β → ℝ)) := by
   rw [heq]
   exact isCompact_stdSimplex ℝ (α × β)
 
+/--
+@isnad1 id=iscompac.0h2v.s5.f1f2a3a6f521 from=translated src=- shape=072c8977 vocab=c583469f
+-/
 lemma isCompact_phiGraph : IsCompact (phiGraph : Set ((α × β → ℝ) × ℝ)) := by
   let graphMap : (α × β → ℝ) → (α × β → ℝ) × ℝ :=
     fun q => (q, continuousPhi q)
@@ -1024,6 +1059,9 @@ private lemma convexHull_phiGraph_eq_barycenter_image (hp : IsPMF p) :
   Set.Subset.antisymm (convexHull_subset_envelopeBarycenter_image hp)
     envelopeBarycenter_image_subset_convexHull
 
+/--
+@isnad1 id=iscompac.1h3v.s8.115ca19f0b99 from=translated src=- shape=77258bcc vocab=15aa311f
+-/
 lemma isCompact_convexHull_phiGraph (hp : IsPMF p) :
     IsCompact (convexHull ℝ (phiGraph : Set ((α × β → ℝ) × ℝ))) := by
   rw [convexHull_phiGraph_eq_barycenter_image hp]
@@ -1045,6 +1083,9 @@ private lemma Latent.graphMixture_mem_convexHull (V : Latent p) :
       exact V.mixture z
     · simp only [Prod.snd_sum, Prod.smul_snd, smul_eq_mul]
 
+/--
+@isnad1 id=ex.2h4v.s8.0b40b6e58547 from=translated src=- shape=18b04a77 vocab=8015deee
+-/
 lemma exists_latent_of_mem_convexHull_phiGraph (hp : IsPMF p) {r : ℝ}
     (h : (p, r) ∈ convexHull ℝ (phiGraph : Set ((α × β → ℝ) × ℝ))) :
     ∃ V : Latent p, (∑ v, V.prior v * Phi (V.comp v)) = r := by
@@ -1088,7 +1129,9 @@ lemma exists_latent_of_mem_convexHull_phiGraph (hp : IsPMF p) {r : ℝ}
 
 /-- **Corollary 1.3**, attainment half: the infimum defining
 `τ` is attained by a finite latent. Only finiteness of the attaining latent is
-used downstream; a sharper `|𝒮| + 1` cardinality bound is not needed.-/
+used downstream; a sharper `|𝒮| + 1` cardinality bound is not needed.
+@isnad1 id=ex.1h3v.s6.0cce7634f50b from=translated src=- shape=1292754e vocab=6d5c785f
+-/
 theorem exists_tau_optimal_latent (hp : IsPMF p) :
     ∃ V : Latent p, V.score = tau p := by
   let slice : Set ((α × β → ℝ) × ℝ) :=
@@ -1132,7 +1175,9 @@ theorem exists_tau_optimal_latent (hp : IsPMF p) :
     exact ciInf_le hscore_bdd V
 
 /-- **Corollary 1.3**, partition half: the same statement for `T` over
-deterministic latents.-/
+deterministic latents.
+@isnad1 id=ex.1h3v.s6.6c7089cddd32 from=translated src=- shape=0f75c61d vocab=724fce96
+-/
 theorem exists_T_optimal_latent (hp : IsPMF p) :
     ∃ V : Latent p, V.IsDet ∧ V.score = T p := by
   let Code := (α × β) → Fin (Fintype.card (α × β))
@@ -1156,7 +1201,9 @@ theorem exists_T_optimal_latent (hp : IsPMF p) :
   exact ⟨V₀, hV₀det, le_antisymm hV₀_le_T hT_le_V₀⟩
 
 /-- Function-level form of deterministic attainment.  The returned code has
-the fixed alphabet `Fin (card (α × β))`, and depends only on `p`.-/
+the fixed alphabet `Fin (card (α × β))`, and depends only on `p`.
+@isnad1 id=ex.1h3v.s6.087c9e89905f from=translated src=- shape=5ff7b3a4 vocab=15a42bae
+-/
 theorem exists_T_optimal_code (hp : IsPMF p) :
     ∃ Γ : α × β → Fin (Fintype.card (α × β)),
       (Latent.ofFunction hp Γ).score = T p := by
@@ -1169,7 +1216,9 @@ theorem exists_T_optimal_code (hp : IsPMF p) :
 
 /-- Literal function-code formulation of `T`: optimizing over bundled
 deterministic latents is exactly the same as optimizing `detScore` over codes
-with the fixed alphabet `Fin (card (α × β))`.-/
+with the fixed alphabet `Fin (card (α × β))`.
+@isnad1 id=eq.1h3v.s6.154ddc2b0531 from=translated src=- shape=cdb4dab2 vocab=6ffb9620
+-/
 theorem T_eq_iInf_detScore_codes
     {p : α × β → ℝ} (hp : IsPMF p) :
     T p =

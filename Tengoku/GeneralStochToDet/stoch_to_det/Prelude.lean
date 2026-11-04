@@ -33,11 +33,19 @@ open scoped BigOperators
 **bits** unless the name says `_nats`.-/
 noncomputable abbrev lg (x : ℝ) : ℝ := Real.logb 2 x
 
+/--
+@isnad1 id=eq.0h0v.s3.ed9e72fa6239 from=translated src=- shape=3c26ae4f vocab=2706a594
+-/
 @[simp] lemma lg_zero : lg 0 = 0 := by simp [lg]
 
+/--
+@isnad1 id=eq.0h0v.s3.4f307500584e from=translated src=- shape=3c26ae4f vocab=2706a594
+-/
 @[simp] lemma lg_one : lg 1 = 0 := by simp [lg]
 
-/-- Conversion factor between the two unit systems: `lg x = Real.log x / Real.log 2`.-/
+/-- Conversion factor between the two unit systems: `lg x = Real.log x / Real.log 2`.
+@isnad1 id=eq.0h1v.s4.07d5b728fe65 from=translated src=- shape=b804720d vocab=56e953db
+-/
 lemma lg_eq_log_div (x : ℝ) : lg x = Real.log x / Real.log 2 := rfl
 
 end stoch_to_det

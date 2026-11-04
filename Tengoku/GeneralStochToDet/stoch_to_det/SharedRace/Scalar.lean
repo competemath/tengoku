@@ -22,18 +22,29 @@ noncomputable def logTwo : ℝ := Real.log 2
 
 local notation "L" => logTwo
 
+/--
+@isnad1 id=lt.0h0v.s4.564e8d479378 from=translated src=- shape=5ccaf027 vocab=9889dcde
+-/
 lemma two_thirds_lt_L : (2 / 3 : ℝ) < L := by
   unfold logTwo
   nlinarith [Real.log_two_gt_d9]
 
+/--
+@isnad1 id=lt.0h0v.s3.bcdf7402034c from=translated src=- shape=ffdda526 vocab=cf20c883
+-/
 lemma L_lt_one : L < 1 := by
   unfold logTwo
   nlinarith [Real.log_two_lt_d9]
 
+/--
+@isnad1 id=lt.0h0v.s3.faba43246616 from=translated src=- shape=ff3a10fc vocab=cf20c883
+-/
 lemma L_pos : 0 < L := lt_trans (by norm_num : (0 : ℝ) < 2 / 3) two_thirds_lt_L
 
 /-- The supporting-line inequality for `log`, with an arbitrary positive
-base point.-/
+base point.
+@isnad1 id=le.2h2v.s6.8cf2b6f40392 from=translated src=- shape=1cb91004 vocab=5d2b6371
+-/
 lemma log_le_tangent {z t : ℝ} (hz : 0 < z) (ht : 0 < t) :
     Real.log z ≤ Real.log t + z / t - 1 := by
   have h := Real.log_le_sub_one_of_pos (div_pos hz ht)
@@ -41,7 +52,9 @@ lemma log_le_tangent {z t : ℝ} (hz : 0 < z) (ht : 0 < t) :
   linarith
 
 /-- The exponential form of the log tangent used after normalizing by the
-minimum race clock.-/
+minimum race clock.
+@isnad1 id=le.1h2v.s5.d8e5a845df73 from=translated src=- shape=67d83161 vocab=e0411c6d
+-/
 lemma log_le_exp_tangent {z a : ℝ} (hz : 0 < z) :
     Real.log z ≤ a + Real.exp (-a) * z - 1 := by
   have h := log_le_tangent hz (Real.exp_pos a)
@@ -53,7 +66,9 @@ lemma log_le_exp_tangent {z a : ℝ} (hz : 0 < z) :
 
 /-- Integrated form of the log tangent: a unit upper bound for the normalized
 moment and mean `logTwo` for the tangent point imply the desired logarithmic
-expectation bound.-/
+expectation bound.
+@isnad1 id=le.6h4v.s7.5867f10738e9 from=translated src=- shape=71269fe5 vocab=7e4891f5
+-/
 lemma integral_log_le_logTwo_of_moment
     {Ω : Type*} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
     [MeasureTheory.IsProbabilityMeasure μ]
@@ -86,7 +101,9 @@ lemma integral_log_le_logTwo_of_moment
       simp
     _ ≤ L := by rw [ha]; linarith
 
-/-- The weighted AM--GM inequality in the exact form used by the proof.-/
+/-- The weighted AM--GM inequality in the exact form used by the proof.
+@isnad1 id=le.3h2v.s6.250cd6e68700 from=translated src=- shape=9df1acc3 vocab=1f75d421
+-/
 lemma rpow_one_sub_le_affine {r x : ℝ}
     (hr0 : 0 ≤ r) (hr1 : r ≤ 1) (hx : 0 ≤ x) :
     x ^ (1 - r) ≤ r + (1 - r) * x := by
@@ -94,7 +111,9 @@ lemma rpow_one_sub_le_affine {r x : ℝ}
     hr0 (sub_nonneg.mpr hr1) (by norm_num : (0 : ℝ) ≤ 1) hx (by ring)
   simpa using h
 
-/-- The elementary power integral used after weighted AM--GM.-/
+/-- The elementary power integral used after weighted AM--GM.
+@isnad1 id=eq.1h1v.s6.76a86b7012f9 from=translated src=- shape=4a111a50 vocab=86c6d32c
+-/
 lemma integral_rpow_zero_one {a : ℝ} (ha : -1 < a) :
     (∫ x : ℝ in 0..1, x ^ a) = 1 / (a + 1) := by
   rw [integral_rpow (Or.inl ha)]
@@ -102,7 +121,9 @@ lemma integral_rpow_zero_one {a : ℝ} (ha : -1 < a) :
   simp [Real.zero_rpow ha0.ne']
 
 /-- Weighted AM--GM bounds the rational integral occurring in the scalar
-beta--gamma estimate by the elementary power integral.-/
+beta--gamma estimate by the elementary power integral.
+@isnad1 id=le.2h1v.s7.9f061b18c1c0 from=translated src=- shape=cf5c1d0a vocab=238f96ce
+-/
 lemma integral_sq_div_affine_le {r : ℝ} (hr0 : 0 < r) (hr1 : r ≤ 1) :
     (∫ x : ℝ in 0..1, (x / (r + (1 - r) * x)) ^ 2) ≤ 1 / (1 + 2 * r) := by
   have hr0' : 0 ≤ r := hr0.le
@@ -168,13 +189,17 @@ noncomputable def scalarUpper (p : ℝ) : ℝ :=
   let r := p * (1 - L) / D
   1 / D + q / (D ^ 2 * (1 + 2 * r))
 
-/-- The constant check at the end of the scalar proof.-/
+/-- The constant check at the end of the scalar proof.
+@isnad1 id=lt.0h0v.s5.93b45d94ad42 from=translated src=- shape=f1d34c10 vocab=06dc1a0b
+-/
 lemma L_mul_three_sub_two_L_gt_one : 1 < L * (3 - 2 * L) := by
   have hhalf : (1 / 2 : ℝ) < L := by
     linarith [two_thirds_lt_L]
   nlinarith [L_lt_one]
 
-/-- The final algebraic estimate for the Beta-to-Gamma scalar bound.-/
+/-- The final algebraic estimate for the Beta-to-Gamma scalar bound.
+@isnad1 id=le.2h1v.s5.3bf4f07bc5a2 from=translated src=- shape=6690a03d vocab=69d3ab36
+-/
 theorem scalarUpper_le_one {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     scalarUpper p ≤ 1 := by
   let q : ℝ := 1 - p
@@ -228,7 +253,9 @@ theorem scalarUpper_le_one {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
 
 /-- Abstract assembly of the one-coordinate estimate.  The two hypotheses are
 the winner and loser exponential-moment bounds; all remaining work is the
-scalar calculation in `scalarUpper_le_one`.-/
+scalar calculation in `scalarUpper_le_one`.
+@isnad1 id=le.4h3v.s8.cb41b5aa51b6 from=translated src=- shape=60e74a3a vocab=3298cf9b
+-/
 theorem coordinateContribution_le {p winner loser : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hwinner : winner ≤ 1 / (1 + L * (1 - p)))

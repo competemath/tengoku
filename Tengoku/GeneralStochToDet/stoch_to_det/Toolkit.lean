@@ -83,7 +83,9 @@ private lemma KL_nonneg {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q)
   exact div_nonneg hnats (Real.log_pos (by norm_num)).le
 
 /-- **(T1)** variational inequality:
-`E_r h − lg E_Q 2^h ≤ D(r ‖ Q)`.-/
+`E_r h − lg E_Q 2^h ≤ D(r ‖ Q)`.
+@isnad1 id=le.3h4v.s6.07b80083edc0 from=translated src=- shape=1cbb75bf vocab=55598e67
+-/
 theorem variational_le {r Q : ω → ℝ} (hr : IsPMF r) (hQ : IsPMF Q) (hac : AbsCont r Q)
     (h : ω → ℝ) :
     (∑ a, r a * h a) - lg (∑ a, Q a * (2 : ℝ) ^ h a) ≤ KL r Q := by
@@ -340,7 +342,9 @@ private lemma log_sum_le (s : Finset ω) {P Q : ω → ℝ}
   rw [hid] at hnorm_nonneg
   linarith
 
-/-- **(T2)** Pinsker: `D(P ‖ Q) ≥ (2/ln 2) TV(P,Q)²` bits.-/
+/-- **(T2)** Pinsker: `D(P ‖ Q) ≥ (2/ln 2) TV(P,Q)²` bits.
+@isnad1 id=le.3h3v.s6.efe04ab7fcc8 from=translated src=- shape=9afe0db1 vocab=15590804
+-/
 theorem pinsker {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q) (hac : AbsCont P Q) :
     2 / Real.log 2 * tvDist P Q ^ 2 ≤ KL P Q := by
   classical
@@ -471,7 +475,9 @@ theorem pinsker {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q) (hac : AbsCont 
       (div_le_div_iff_of_pos_right (Real.log_pos (by norm_num))).2 hnats
 
 /-- **(T3)** Bhattacharyya, first half:
-`min_r [D(r‖P) + D(r‖Q)] = −2 lg BC(P,Q)`. Only `≥` is used (Thm 9.1).-/
+`min_r [D(r‖P) + D(r‖Q)] = −2 lg BC(P,Q)`. Only `≥` is used (Thm 9.1).
+@isnad1 id=le.5h4v.s6.257ad7f190ce from=translated src=- shape=fb962f9b vocab=83e13c68
+-/
 theorem bhattacharyya_le {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q)
     {r : ω → ℝ} (hr : IsPMF r) (hacP : AbsCont r P) (hacQ : AbsCont r Q) :
     -2 * lg (BC P Q) ≤ KL r P + KL r Q := by
@@ -566,7 +572,9 @@ theorem bhattacharyya_le {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q)
   change -2 * lg B ≤ KL r P + KL r Q
   linarith
 
-/-- **(T3)** second half: `TV(P,Q) ≤ √(1 − BC(P,Q)²)`.-/
+/-- **(T3)** second half: `TV(P,Q) ≤ √(1 − BC(P,Q)²)`.
+@isnad1 id=le.2h3v.s6.93d469af6d16 from=translated src=- shape=f5be8994 vocab=9a7e2f64
+-/
 theorem tv_le_bhattacharyya {P Q : ω → ℝ} (hP : IsPMF P) (hQ : IsPMF Q) :
     tvDist P Q ≤ Real.sqrt (1 - BC P Q ^ 2) := by
   let u : ω → ℝ := fun a ↦ |Real.sqrt (P a) - Real.sqrt (Q a)|
@@ -946,7 +954,9 @@ The proof starts from `0 ≤ D(f ‖ Laplace(0,m))`.
 The integrability hypotheses are essential in Lean: without `hent` and
 `habsint`, the junk value of a divergent integral falsifies the claim for
 `m < 1/(2e)` (and for heavy-tailed `f`).  The §8 application, a finite mixture
-of shifted log-Exp densities, discharges both.-/
+of shifted log-Exp densities, discharges both.
+@isnad1 id=le.7h2v.s7.bdb21fb4be0a from=translated src=- shape=440c80a6 vocab=4e811e0b
+-/
 theorem diffEntropy_le_of_abs_le {f : ℝ → ℝ} (hf : ∀ x, 0 ≤ f x)
     (hint : Integrable f) (hnorm : ∫ x, f x = 1)
     (hent : Integrable fun x => Real.negMulLog (f x))

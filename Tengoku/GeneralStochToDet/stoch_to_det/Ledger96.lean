@@ -32,6 +32,9 @@ def HasJointSeedBound (α : Type u) (β : Type v)
   ∀ (p : α × β → ℝ) (D : SeedSetup p) (K : Clustering D),
     ∃ R : RaceQuantities D K, R.seedLeak ≤ K.Sinfo + K.dMis
 
+/--
+@isnad1 id=le.1h6v.s7.968c9ff81f72 from=translated src=- shape=74639503 vocab=6c40818b
+-/
 theorem winnerEntropy_bound_96
     {p : α × β → ℝ} {D : SeedSetup p} (K : Clustering D)
     (R : RaceQuantities D K) (hseed : R.seedLeak ≤ K.Sinfo + K.dMis) :
@@ -66,7 +69,9 @@ private theorem main96_Bq_nonneg {p : α × β → ℝ} (D : SeedSetup p) :
       (fun q => q.1) (fun q => q.2.2) (fun q => q.2.1))
 
 /-- Hybrid closure at the exact `96` constants.  This is the formal version of
-the branch switch: use `b_Z ≤ tau` when `M ≤ B_q`, and `b_Z ≤ 2B_q` otherwise.-/
+the branch switch: use `b_Z ≤ tau` when `M ≤ B_q`, and `b_Z ≤ 2B_q` otherwise.
+@isnad1 id=le.1h6v.s6.fda31b7aa150 from=translated src=- shape=7e1b891a vocab=8d27cbac
+-/
 theorem Dwdefect_le_96
     {p : α × β → ℝ} (D : SeedSetup p) (K : Clustering D)
     (R : RaceQuantities D K) (hseed : R.seedLeak ≤ K.Sinfo + K.dMis) :
@@ -123,6 +128,9 @@ theorem Dwdefect_le_96
       unfold KD96 F
       exact le_max_right _ _
 
+/--
+@isnad1 id=le.3h3v.s6.882d8b08aa61 from=translated src=- shape=f379c7a8 vocab=24f97022
+-/
 theorem T_le_Cdagger96_connected_of_joint_seed_bound
     (hjoint : HasJointSeedBound α β)
     {p : α × β → ℝ} (hp : IsPMF p) (hconn : IsConnected (support p)) :

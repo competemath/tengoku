@@ -49,7 +49,9 @@ noncomputable def sharedRaceEntropy [DecidableEq κ] [Nonempty κ]
   ∫ G, H (push (sharedWinner r G) μ) ∂(seedLaw κ)
 
 /-- The categorical joint is a PMF whenever the source and every posterior
-row are PMFs.-/
+row are PMFs.
+@isnad1 id=ispmf.2h4v.s5.3aa117969a89 from=translated src=- shape=ef2ceb08 vocab=20a41007
+-/
 lemma posteriorJoint_isPMF {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ) (hr : ∀ z, IsPMF (r z)) :
     IsPMF (posteriorJoint μ r) := by
@@ -70,7 +72,9 @@ lemma posteriorJoint_isPMF {μ : Ω → ℝ} {r : Ω → κ → ℝ}
       _ = 1 := by simpa [mass] using hμ.total
 
 /-- Support-local version: posterior rows outside the support of `μ` are
-irrelevant and need not be normalized.-/
+irrelevant and need not be normalized.
+@isnad1 id=ispmf.2h4v.s5.e1275516d87f from=translated src=- shape=6db758a9 vocab=20a41007
+-/
 lemma posteriorJoint_isPMF_of_support {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ) (hr : ∀ z, μ z ≠ 0 → IsPMF (r z)) :
     IsPMF (posteriorJoint μ r) := by
@@ -95,7 +99,9 @@ lemma posteriorJoint_isPMF_of_support {μ : Ω → ℝ} {r : Ω → κ → ℝ}
             simpa [mass] using (hr z hz).total, mul_one]
       _ = 1 := by simpa [mass] using hμ.total
 
-/-- The mean posterior is a PMF.-/
+/-- The mean posterior is a PMF.
+@isnad1 id=ispmf.2h4v.s5.abd7997c69c5 from=translated src=- shape=b7c9cffe vocab=574c3dce
+-/
 lemma posteriorMean_isPMF {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ) (hr : ∀ z, IsPMF (r z)) :
     IsPMF (posteriorMean μ r) := by
@@ -117,7 +123,9 @@ lemma posteriorMean_isPMF {μ : Ω → ℝ} {r : Ω → κ → ℝ}
         rw [show (∑ i, r z i) = 1 by simpa [mass] using (hr z).total, mul_one]
       _ = 1 := by simpa [mass] using hμ.total
 
-/-- Support-local version of `posteriorMean_isPMF`.-/
+/-- Support-local version of `posteriorMean_isPMF`.
+@isnad1 id=ispmf.2h4v.s5.39d8724b5989 from=translated src=- shape=fb539d25 vocab=574c3dce
+-/
 lemma posteriorMean_isPMF_of_support {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ) (hr : ∀ z, μ z ≠ 0 → IsPMF (r z)) :
     IsPMF (posteriorMean μ r) := by
@@ -147,7 +155,9 @@ lemma posteriorMean_isPMF_of_support {μ : Ω → ℝ} {r : Ω → κ → ℝ}
 
 omit [Fintype κ] in
 /-- Strictly positive posterior rows on the support give a strictly positive
-mean posterior.-/
+mean posterior.
+@isnad1 id=lt.2h5v.s6.ca5a4d86aa2e from=translated src=- shape=42d7efa6 vocab=683845c3
+-/
 lemma posteriorMean_pos_of_support {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ)
     (hrpos : ∀ z, μ z ≠ 0 → ∀ i, 0 < r z i) :
@@ -169,7 +179,9 @@ lemma posteriorMean_pos_of_support {μ : Ω → ℝ} {r : Ω → κ → ℝ}
   · exact ⟨z, Finset.mem_univ z,
       mul_pos hzpos (hrpos z hzpos.ne' i)⟩
 
-/-- Every coordinate of a finite PMF is at most one.-/
+/-- Every coordinate of a finite PMF is at most one.
+@isnad1 id=le.1h3v.s4.b1a7820a65ce from=translated src=- shape=5193ede0 vocab=97151dff
+-/
 lemma pmf_apply_le_one {m : κ → ℝ} (hm : IsPMF m) (i : κ) :
     m i ≤ 1 := by
   calc
@@ -177,7 +189,9 @@ lemma pmf_apply_le_one {m : κ → ℝ} (hm : IsPMF m) (i : κ) :
       Finset.single_le_sum (fun j _ => hm.nonneg j) (Finset.mem_univ i)
     _ = 1 := by simpa [mass] using hm.total
 
-/-- Collision probability of a finite PMF is at most one.-/
+/-- Collision probability of a finite PMF is at most one.
+@isnad1 id=le.1h2v.s5.23fc8f9d9317 from=translated src=- shape=f786341b vocab=0f518da3
+-/
 lemma pmf_sum_sq_le_one {m : κ → ℝ} (hm : IsPMF m) :
     ∑ i, m i ^ 2 ≤ 1 := by
   calc
@@ -190,7 +204,9 @@ lemma pmf_sum_sq_le_one {m : κ → ℝ} (hm : IsPMF m) :
     _ = 1 := by simpa [mass] using hm.total
 
 /-- The categorical mismatch charge is nonnegative under support-local PMF
-assumptions.-/
+assumptions.
+@isnad1 id=le.2h4v.s5.2dfd0e2b832c from=translated src=- shape=edb94080 vocab=e875e27e
+-/
 lemma categoricalMismatch_nonneg_of_support
     {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hμ : IsPMF μ) (hr : ∀ z, μ z ≠ 0 → IsPMF (r z)) :
@@ -202,7 +218,9 @@ lemma categoricalMismatch_nonneg_of_support
   · simp [hz]
   · exact mul_nonneg (hμ.nonneg z) (sub_nonneg.mpr (pmf_sum_sq_le_one (hr z hz)))
 
-/-- The source marginal of the categorical joint.-/
+/-- The source marginal of the categorical joint.
+@isnad1 id=eq.1h4v.s6.f2875a8c4693 from=translated src=- shape=083ec129 vocab=2f5e433b
+-/
 lemma push_posteriorJoint_fst [DecidableEq Ω]
     {μ : Ω → ℝ} {r : Ω → κ → ℝ}
     (hr : ∀ z, μ z ≠ 0 → IsPMF (r z)) :
@@ -225,7 +243,9 @@ lemma push_posteriorJoint_fst [DecidableEq Ω]
         rw [show (∑ i, r z i) = 1 by simpa [mass] using (hr z hz).total,
           mul_one]
 
-/-- The categorical marginal of the joint is the mean posterior.-/
+/-- The categorical marginal of the joint is the mean posterior.
+@isnad1 id=eq.0h4v.s5.ae22d5a37c5e from=translated src=- shape=e11fca6b vocab=9e39049c
+-/
 lemma push_posteriorJoint_snd [DecidableEq κ]
     {μ : Ω → ℝ} {r : Ω → κ → ℝ} :
     push Prod.snd (posteriorJoint μ r) = posteriorMean μ r := by
@@ -250,7 +270,9 @@ def HasSharedRaceBound (Ω : Type u) (κ : Type)
           categoricalMismatch μ r
 
 /-- The universal shared-race statement is immediate for a singleton label
-alphabet.-/
+alphabet.
+@isnad1 id=hasshare.0h2v.s4.17b92ae407ed from=translated src=- shape=6e211c33 vocab=87fb340f
+-/
 theorem hasSharedRaceBound_of_subsingleton
     [DecidableEq Ω] [DecidableEq κ] [Nonempty κ] [Subsingleton κ] :
     HasSharedRaceBound Ω κ := by

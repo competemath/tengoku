@@ -92,7 +92,9 @@ private lemma condH_under_graph
     _ = _ := rfl
 
 /-- Conditional total correlation is nonnegative for a finite coordinate
-vector, with an arbitrary finite conditioning variable.-/
+vector, with an arbitrary finite conditioning variable.
+@isnad1 id=le.1h7v.s7.8fd468db46b2 from=translated src=- shape=e948259e vocab=b7a6362b
+-/
 theorem coordinate_condTC_nonneg {n : Nat}
     {m : Z -> Real} (hm : IsPMF m)
     (x : Z -> (Fin n -> alpha)) (c : Z -> K) :
@@ -159,6 +161,9 @@ noncomputable def deletionTC {n : Nat} (m : Z -> Real)
     ((∑ j, condH (fun z => maskDelete i (x z) j) b m) -
       condH (fun z => maskDelete i (x z)) b m))
 
+/--
+@isnad1 id=le.1h9v.s6.0b9722c00bdf from=translated src=- shape=10d23e06 vocab=42a48625
+-/
 theorem deletionTC_nonneg {n : Nat} {m : Z -> Real} (hm : IsPMF m)
     (x : Z -> (Fin n -> alpha)) (a : Z -> A) (b : Z -> B) :
     0 <= deletionTC m x a b := by
@@ -210,6 +215,9 @@ noncomputable def deletionDTC {n : Nat} (m : Z -> Real)
       (fun z => (maskDelete j (maskDelete i (x z)),
         (x z i, (a z, b z)))) m)
 
+/--
+@isnad1 id=le.1h9v.s6.18c8afa73e00 from=translated src=- shape=10d23e06 vocab=9781f2ca
+-/
 theorem deletionDTC_nonneg {n : Nat} {m : Z -> Real} (hm : IsPMF m)
     (x : Z -> (Fin n -> alpha)) (a : Z -> A) (b : Z -> B) :
     0 <= deletionDTC m x a b := by
@@ -528,7 +536,9 @@ private lemma twice_sum_AB_deletion {n : Nat} {m : Z -> Real}
 
 /-- Exact all-`n` Shannon identity in its collapsed coordinate form.  Every
 term on the right except the final Markov term is a nonnegative conditional
-mutual information, deletion TC, or deletion DTC.-/
+mutual information, deletion TC, or deletion DTC.
+@isnad1 id=eq.2h9v.s9.a67e589795cd from=translated src=- shape=ca3f15a5 vocab=b5b8d2e7
+-/
 theorem coordinate_replica_certificate_identity {n : Nat} (hn : 1 <= n)
     {m : Z -> Real} (hm : IsPMF m)
     (x : Z -> (Fin n -> alpha)) (a : Z -> A) (b : Z -> B) :
@@ -560,7 +570,9 @@ theorem coordinate_replica_certificate_identity {n : Nat} (hn : 1 <= n)
     (hsingleA + hsingleB) - ((n : Real) - 1) * (hdeleteA + hdeleteB) +
       -(n : Real) * hab
 
-/-- The all-`n` posterior-replica Shannon inequality in coordinate form.-/
+/-- The all-`n` posterior-replica Shannon inequality in coordinate form.
+@isnad1 id=le.5h9v.s8.e3d02182d430 from=translated src=- shape=21eb976b vocab=20c306b4
+-/
 theorem coordinateCross_le_mul_coordinateScore {n : Nat} (hn : 3 <= n)
     {m : Z -> Real} (hm : IsPMF m)
     (x : Z -> (Fin n -> alpha)) (a : Z -> A) (b : Z -> B)

@@ -24,7 +24,9 @@ nonnegative coefficient field on a subset of a feasible support satisfies
 `(∑ w^{3/2} c φ ψ)^4 ≤ ∑ w^3 c^4`.
 
 The statement is division-free and remains valid when some vector or
-coefficient entries vanish.-/
+coefficient entries vanish.
+@isnad1 id=le.7h8v.s8.0097f63cfe71 from=translated src=- shape=0182549b vocab=a3dc1ead
+-/
 theorem quartic_bilinear {S T : Finset (α × β)} (hTS : T ⊆ S)
     {w c : α × β → ℝ} (hw : Feasible S w) (hc : ∀ z ∈ T, 0 ≤ c z)
     {φ : α → ℝ} {ψ : β → ℝ} (hφ0 : ∀ x, 0 ≤ φ x) (hψ0 : ∀ y, 0 ≤ ψ y)

@@ -16,6 +16,9 @@ open Finset
 
 namespace FiniteInfo
 
+/--
+@isnad1 id=le.1h6v.s5.ca3c812012ec from=translated src=- shape=948439ac vocab=2d58cd7c
+-/
 lemma condH_nonneg
     {Z F K : Type*} [Fintype Z] [Fintype F] [Fintype K]
     [DecidableEq F] [DecidableEq K]
@@ -26,6 +29,9 @@ lemma condH_nonneg
   unfold condH
   linarith
 
+/--
+@isnad1 id=le.1h8v.s6.2b3389a53fd4 from=translated src=- shape=37f5e2c9 vocab=632d6241
+-/
 lemma condH_pair_condition_le
     {Z F G K : Type*} [Fintype Z] [Fintype F] [Fintype G] [Fintype K]
     [DecidableEq F] [DecidableEq G] [DecidableEq K]
@@ -35,6 +41,9 @@ lemma condH_pair_condition_le
   have hchain := condMI_eq_condH_sub_pair hm f g h
   linarith
 
+/--
+@isnad1 id=le.1h8v.s6.c266025a4b5a from=translated src=- shape=f7b9efa9 vocab=1daf535d
+-/
 lemma condMI_le_condH_left
     {Z F G K : Type*} [Fintype Z] [Fintype F] [Fintype G] [Fintype K]
     [DecidableEq F] [DecidableEq G] [DecidableEq K]
@@ -44,6 +53,9 @@ lemma condMI_le_condH_left
   have hnonneg := condH_nonneg hm f (fun z => (g z, h z))
   linarith
 
+/--
+@isnad1 id=eq.2h7v.s6.c2df80209544 from=translated src=- shape=5c822f0e vocab=778365dd
+-/
 lemma condH_function_of_condition_zero
     {Z F K : Type*} [Fintype Z] [Fintype F] [Fintype K]
     [DecidableEq F] [DecidableEq K]
@@ -76,7 +88,9 @@ private theorem condH_source_lift (V : NLatent p)
   unfold condH
   rw [V.Hvar_lift (fun x => (f x, h x)), V.Hvar_lift h]
 
-/-- Hardening ledger for coordinate views.-/
+/-- Hardening ledger for coordinate views.
+@isnad1 id=le.1h6v.s10.6147082cbf03 from=translated src=- shape=7a990b7e vocab=2433032a
+-/
 theorem ofFunction_score_le_score_add_error (V : NLatent p)
     (hp : IsPMF p) (code : (Fin n -> alpha) -> delta) :
     (NLatent.ofFunction hp code).score

@@ -17,7 +17,9 @@ variable {α β : Type*} [Fintype α] [Fintype β]
 variable {p : α × β → ℝ} {D : SeedSetup p} {K : Clustering D}
 
 /-- The improved scalar and unchanged cone estimates combine to give
-`D_lab ≤ S + beta d`.-/
+`D_lab ≤ S + beta d`.
+@isnad1 id=le.0h6v.s6.30e63a676b32 from=translated src=- shape=a561e016 vocab=671ee9a2
+-/
 theorem seedLeak_bound_1771 (R : RaceQuantities1771 D K) :
     R.toRaceQuantities.seedLeak ≤ K.Sinfo + beta1771 * K.dMis := by
   have hlog : 0 < Real.log 2 := Real.log_pos one_lt_two
