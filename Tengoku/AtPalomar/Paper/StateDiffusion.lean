@@ -28,13 +28,21 @@ def gaussianStateKernel (v : ℝ≥0) : Kernel ℝ ℝ where
   toFun x := gaussianReal x v
   measurable' := measurable_gaussianReal.comp (measurable_id.prodMk measurable_const)
 
+/--
+@isnad1 id=eq.0h2v.s4.687d12bb103b from=translated src=- shape=f93c5ac9 vocab=5d14f0c5
+-/
 @[simp] theorem gaussianStateKernel_apply (v : ℝ≥0) (x : ℝ) :
     gaussianStateKernel v x = gaussianReal x v := rfl
 
+/--
+@isnad1 id=ismarkov.0h1v.s3.239210716c26 from=translated src=- shape=f614ea99 vocab=38aeedb0
+-/
 instance gaussianStateKernel_isMarkov (v : ℝ≥0) : IsMarkovKernel (gaussianStateKernel v) where
   isProbabilityMeasure x := inferInstanceAs (IsProbabilityMeasure (gaussianReal x v))
 
-/-- Gaussian transition kernels satisfy the Chapman--Kolmogorov equation.-/
+/-- Gaussian transition kernels satisfy the Chapman--Kolmogorov equation.
+@isnad1 id=eq.0h2v.s5.e89dab3c4fb1 from=translated src=- shape=b1d5b414 vocab=0cd54390
+-/
 theorem gaussianStateKernel_comp (u v : ℝ≥0) :
     gaussianStateKernel v ∘ₖ gaussianStateKernel u = gaussianStateKernel (u + v) := by
   refine Kernel.ext_fun fun x f hf => ?_
@@ -51,6 +59,9 @@ theorem gaussianStateKernel_comp (u v : ℝ≥0) :
     simpa using (gaussianReal_conv_gaussianReal (m₁ := x) (m₂ := 0) (v₁ := u) (v₂ := v))
   rw [← hc, Measure.lintegral_conv hf]
 
+/--
+@isnad1 id=eq.0h0v.s4.09ddc5bfc975 from=translated src=- shape=6b9a3452 vocab=dc312732
+-/
 @[simp] theorem gaussianStateKernel_zero : gaussianStateKernel 0 = Kernel.id := by
   ext x
   simp [gaussianReal_zero_var, Kernel.id_apply]
@@ -59,11 +70,16 @@ theorem gaussianStateKernel_comp (u v : ℝ≥0) :
 def coshStateDensity (v : ℝ≥0) (x y : ℝ) : ℝ :=
   Real.exp (-(v : ℝ) / 2) / Real.cosh x * Real.cosh y
 
+/--
+@isnad1 id=lt.0h3v.s4.aba6bca619e3 from=translated src=- shape=877de13a vocab=b2fdfa66
+-/
 theorem coshStateDensity_pos (v : ℝ≥0) (x y : ℝ) :
     0 < coshStateDensity v x y :=
   mul_pos (div_pos (Real.exp_pos _) (Real.cosh_pos _)) (Real.cosh_pos _)
 
-/-- Completing the square gives the exponential tilt of a Gaussian density.-/
+/-- Completing the square gives the exponential tilt of a Gaussian density.
+@isnad1 id=eq.1h4v.s7.7d9548e64033 from=translated src=- shape=6a329c16 vocab=b511f87e
+-/
 theorem gaussianPDFReal_exponential_tilt (x c y : ℝ) (v : ℝ≥0) (hv : v ≠ 0) :
     Real.exp (c * y - c * x - c ^ 2 * (v : ℝ) / 2) * gaussianPDFReal x v y =
       gaussianPDFReal (x + c * (v : ℝ)) v y := by
@@ -90,18 +106,26 @@ def positiveDriftWeight (x : ℝ) : ℝ := Real.exp x / (2 * Real.cosh x)
 /-- Posterior weight of the negative unit drift.-/
 def negativeDriftWeight (x : ℝ) : ℝ := Real.exp (-x) / (2 * Real.cosh x)
 
+/--
+@isnad1 id=and.0h1v.s4.75c26acda739 from=translated src=- shape=00bd4da5 vocab=b0db054a
+-/
 theorem driftWeights_nonneg (x : ℝ) :
     0 ≤ positiveDriftWeight x ∧ 0 ≤ negativeDriftWeight x := by
   simp only [positiveDriftWeight, negativeDriftWeight]
   constructor <;> positivity
 
+/--
+@isnad1 id=eq.0h1v.s4.def2273bc5fc from=translated src=- shape=72c058d5 vocab=7d30a03f
+-/
 theorem driftWeights_sum (x : ℝ) : positiveDriftWeight x + negativeDriftWeight x = 1 := by
   unfold positiveDriftWeight negativeDriftWeight
   rw [← add_div, Real.cosh_eq]
   field_simp
 
 /-- The cosh transition density is the explicit mixture of the two
-constant-drift Gaussian densities.-/
+constant-drift Gaussian densities.
+@isnad1 id=eq.1h3v.s6.bb7d230be3ab from=translated src=- shape=3b3f37e5 vocab=a857ba9e
+-/
 theorem coshStateDensity_gaussian_mixture (v : ℝ≥0) (hv : v ≠ 0) (x y : ℝ) :
     coshStateDensity v x y * gaussianPDFReal x v y =
       positiveDriftWeight x * gaussianPDFReal (x + (v : ℝ)) v y +
@@ -136,20 +160,31 @@ theorem coshStateDensity_gaussian_mixture (v : ℝ≥0) (hv : v ≠ 0) (x y : �
   have hx : Real.cosh x ≠ 0 := (Real.cosh_pos x).ne'
   field_simp
 
+/--
+@isnad1 id=measurab.0h1v.s4.20bd76944835 from=translated src=- shape=7ccd5b43 vocab=f1d46b87
+-/
 theorem measurable_coshStateDensity (v : ℝ≥0) :
     Measurable (Function.uncurry (coshStateDensity v)) := by
   unfold coshStateDensity Function.uncurry
   fun_prop
 
+/--
+@isnad1 id=integrab.0h2v.s5.e3cb8002b27b from=translated src=- shape=a0d88c3a vocab=94f6e2f2
+-/
 theorem integrable_coshStateDensity (v : ℝ≥0) (x : ℝ) :
     Integrable (coshStateDensity v x) (gaussianReal x v) :=
   (integrable_cosh_gaussianReal x v).const_mul _
 
+/--
+@isnad1 id=eq.0h2v.s5.4e4b69d79fa2 from=translated src=- shape=9b963a3e vocab=e73704c1
+-/
 theorem integral_coshStateDensity (v : ℝ≥0) (x : ℝ) :
     (∫ y, coshStateDensity v x y ∂gaussianReal x v) = 1 := by
   simpa [coshStateDensity, integral_const_mul, doobOperator] using doobOperator_one v x
 
-/-- The density multipliers cancel at the intermediate state.-/
+/-- The density multipliers cancel at the intermediate state.
+@isnad1 id=eq.0h5v.s5.083415fc418e from=translated src=- shape=2e1221fe vocab=5dd1e132
+-/
 theorem coshStateDensity_chain (u v : ℝ≥0) (x y z : ℝ) :
     coshStateDensity u x y * coshStateDensity v y z = coshStateDensity (u + v) x z := by
   unfold coshStateDensity
@@ -166,18 +201,26 @@ def coshStateKernel (v : ℝ≥0) : Kernel ℝ ℝ :=
   Kernel.withDensity (gaussianStateKernel v)
     (fun x y => ENNReal.ofReal (coshStateDensity v x y))
 
+/--
+@isnad1 id=eq.0h2v.s5.73aefa2a5bcb from=translated src=- shape=fef0fb89 vocab=4fc55f1d
+-/
 @[simp] theorem coshStateKernel_apply (v : ℝ≥0) (x : ℝ) :
     coshStateKernel v x = (gaussianReal x v).withDensity
       (fun y => ENNReal.ofReal (coshStateDensity v x y)) := by
   exact Kernel.withDensity_apply _ (measurable_coshStateDensity v).ennreal_ofReal x
 
+/--
+@isnad1 id=eq.1h3v.s6.3a5d92c70fd7 from=translated src=- shape=135f342a vocab=83fa2a12
+-/
 theorem lintegral_coshStateKernel (v : ℝ≥0) (x : ℝ) (ψ : ℝ → ℝ≥0∞)
     (hψ : Measurable ψ) :
     (∫⁻ y, ψ y ∂coshStateKernel v x) =
       ∫⁻ y, ENNReal.ofReal (coshStateDensity v x y) * ψ y ∂gaussianReal x v := by
   exact Kernel.lintegral_withDensity _ (measurable_coshStateDensity v).ennreal_ofReal x hψ
 
-/-- Chapman--Kolmogorov for the actual cosh state probability kernels.-/
+/-- Chapman--Kolmogorov for the actual cosh state probability kernels.
+@isnad1 id=eq.0h2v.s5.5086e9c53fad from=translated src=- shape=b1d5b414 vocab=209a83ca
+-/
 theorem coshStateKernel_comp (u v : ℝ≥0) :
     coshStateKernel v ∘ₖ coshStateKernel u = coshStateKernel (u + v) := by
   refine Kernel.ext_fun fun x f hf => ?_
@@ -203,6 +246,9 @@ theorem coshStateKernel_comp (u v : ℝ≥0) :
   rw [Kernel.lintegral_comp _ _ _ hm] at heq
   exact heq
 
+/--
+@isnad1 id=eq.0h0v.s4.86896c43dc9e from=translated src=- shape=6b9a3452 vocab=2d7338d6
+-/
 @[simp] theorem coshStateKernel_zero : coshStateKernel 0 = Kernel.id := by
   refine Kernel.ext_fun fun x f hf => ?_
   rw [lintegral_coshStateKernel 0 x f hf]
@@ -210,7 +256,9 @@ theorem coshStateKernel_comp (u v : ℝ≥0) :
     Kernel.id_apply, lintegral_dirac' x hf]
 
 /-- The kernel integral is exactly the analytic operator, for every real
-test function; both sides use the same totalized Bochner integral.-/
+test function; both sides use the same totalized Bochner integral.
+@isnad1 id=eq.0h3v.s5.de06123dcfaf from=translated src=- shape=17d4f44e vocab=dbb013c0
+-/
 theorem integral_coshStateKernel (v : ℝ≥0) (x : ℝ) (ψ : ℝ → ℝ) :
     (∫ y, ψ y ∂coshStateKernel v x) = doobOperator v ψ x := by
   rw [coshStateKernel_apply,
@@ -221,7 +269,9 @@ theorem integral_coshStateKernel (v : ℝ≥0) (x : ℝ) (ψ : ℝ → ℝ) :
   simp [coshStateDensity, doobOperator, mul_assoc, integral_const_mul]
 
 /-- The state transition probability is an explicit mixture of Gaussian
-increments with drift `+1` and drift `-1`, including variance zero.-/
+increments with drift `+1` and drift `-1`, including variance zero.
+@isnad1 id=eq.0h2v.s7.3146d84e3ec7 from=translated src=- shape=803abb60 vocab=1ff0f088
+-/
 theorem coshStateKernel_gaussian_mixture (v : ℝ≥0) (x : ℝ) :
     coshStateKernel v x =
       ENNReal.ofReal (positiveDriftWeight x) • gaussianReal (x + (v : ℝ)) v +

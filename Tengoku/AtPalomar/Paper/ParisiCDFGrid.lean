@@ -44,6 +44,9 @@ noncomputable def parisiGridIndex (n : ℕ) (x : Overlap) : Fin (n + 2) :=
 noncomputable def parisiGridRound (n : ℕ) (x : Overlap) : Overlap :=
   parisiGridPoint n (parisiGridIndex n x)
 
+/--
+@isnad1 id=measurab.0h1v.s5.b79b06fd065a from=translated src=- shape=10709d26 vocab=35bc2840
+-/
 theorem measurable_parisiGridRound (n : ℕ) : Measurable (parisiGridRound n) := by
   apply Measurable.subtype_mk
   change Measurable (fun x : Overlap =>
@@ -51,6 +54,9 @@ theorem measurable_parisiGridRound (n : ℕ) : Measurable (parisiGridRound n) :=
   exact (measurable_from_nat.comp
     (measurable_const.mul measurable_subtype_coe).nat_ceil).div_const _
 
+/--
+@isnad1 id=le.0h2v.s5.b293bedb7f8a from=translated src=- shape=a2e8ca26 vocab=f4fd48ba
+-/
 theorem le_parisiGridRound (n : ℕ) (x : Overlap) :
     (x : ℝ) ≤ (parisiGridRound n x : ℝ) := by
   have hd : (0 : ℝ) < (n + 1 : ℕ) := by positivity
@@ -58,6 +64,9 @@ theorem le_parisiGridRound (n : ℕ) (x : Overlap) :
   apply (le_div_iff₀ hd).mpr
   simpa [mul_comm] using Nat.le_ceil ((n + 1 : ℕ) * (x : ℝ))
 
+/--
+@isnad1 id=lt.0h2v.s6.49b0c3bd80a8 from=translated src=- shape=4f6f960c vocab=4e2d4a1c
+-/
 theorem parisiGridRound_sub_lt_mesh (n : ℕ) (x : Overlap) :
     (parisiGridRound n x : ℝ) - (x : ℝ) < 1 / (n + 1 : ℕ) := by
   have hd : (0 : ℝ) < (n + 1 : ℕ) := by positivity
@@ -71,12 +80,18 @@ theorem parisiGridRound_sub_lt_mesh (n : ℕ) (x : Overlap) :
   rw [he]
   exact hceil
 
+/--
+@isnad1 id=finite.0h1v.s3.2334b5164f01 from=translated src=- shape=519f57eb vocab=5d737eb5
+-/
 theorem finite_range_parisiGridRound (n : ℕ) :
     (Set.range (parisiGridRound n)).Finite :=
   (Set.finite_range (parisiGridPoint n)).subset (by
     rintro _ ⟨x, rfl⟩
     exact ⟨parisiGridIndex n x, rfl⟩)
 
+/--
+@isnad1 id=tendsto.0h1v.s5.79fe43c2330a from=translated src=- shape=c196bd7c vocab=17d9d34e
+-/
 theorem tendsto_parisiGridRound (x : Overlap) :
     Tendsto (fun n : ℕ => parisiGridRound n x) atTop (𝓝 x) := by
   apply tendsto_subtype_rng.mpr
@@ -92,6 +107,9 @@ theorem tendsto_parisiGridRound (x : Overlap) :
 noncomputable def parisiCDFDistance (μ ν : ParisiMeasure) : ℝ :=
   ∫ t in (0 : ℝ)..1, |parisiCDF μ t - parisiCDF ν t|
 
+/--
+@isnad1 id=le.0h2v.s4.4f0bc520ce27 from=translated src=- shape=5ffe46ab vocab=a59e9968
+-/
 theorem parisiCDFDistance_nonneg (μ ν : ParisiMeasure) :
     0 ≤ parisiCDFDistance μ ν :=
   intervalIntegral.integral_nonneg (by norm_num) (fun _ _ => abs_nonneg _)

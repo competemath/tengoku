@@ -44,7 +44,9 @@ def hardFourthMoment (β h q t : ℝ) : ℝ :=
   gaussianDoobFourthMoment β h q (β ^ 2 * (t - q)).toNNReal
 
 /-- Bounded measurable Doob tests remain integrable under every Gaussian
-initial law, so none of the analytic moment integrals is a junk integral.-/
+initial law, so none of the analytic moment integrals is a junk integral.
+@isnad1 id=integrab.2h4v.s5.66f7fb9e67de from=translated src=- shape=172bb05e vocab=a71515c5
+-/
 lemma integrable_gaussian_doob_bounded (h : ℝ) (v lam : ℝ≥0) (ψ : ℝ → ℝ)
     (hψ : Measurable ψ) (hbound : ∀ y, ‖ψ y‖ ≤ 1) :
     Integrable (doobOperator lam ψ) (gaussianReal h v) := by
@@ -53,12 +55,17 @@ lemma integrable_gaussian_doob_bounded (h : ℝ) (v lam : ℝ≥0) (ψ : ℝ →
   · filter_upwards [] with x
     exact norm_doobOperator_le lam ψ hψ 1 hbound x
 
-/-- Positivity of the operator yields positivity of the fourth moment.-/
+/-- Positivity of the operator yields positivity of the fourth moment.
+@isnad1 id=le.0h4v.s4.4b46fa0074d5 from=translated src=- shape=b9ff034a vocab=f81f78a7
+-/
 theorem gaussianDoobFourthMoment_nonneg (β h q : ℝ) (lam : ℝ≥0) :
     0 ≤ gaussianDoobFourthMoment β h q lam := by
   exact integral_nonneg (fun x => doobOperator_nonneg lam _
     (fun y => (pow_nonneg (sech_pos y).le 4)) x)
 
+/--
+@isnad1 id=le.0h4v.s4.8800bdb5809d from=translated src=- shape=b9ff034a vocab=de323d93
+-/
 theorem gaussianDoobSecondMoment_nonneg (β h q : ℝ) (lam : ℝ≥0) :
     0 ≤ gaussianDoobSecondMoment β h q lam := by
   exact integral_nonneg (fun x => doobOperator_nonneg lam _ (fun y => sq_nonneg _) x)

@@ -22,7 +22,9 @@ open scoped NNReal
 
 namespace Paper
 
-/-- The first absolute Gaussian moment has an integrable density on `ℝ`.-/
+/-- The first absolute Gaussian moment has an integrable density on `ℝ`.
+@isnad1 id=integrab.0h0v.s5.6e5a71aefee1 from=translated src=- shape=be8c720e vocab=6cfa4ce3
+-/
 theorem integrable_mul_standardGaussianPDF :
     Integrable (fun x : ℝ => x * gaussianPDFReal 0 1 x) := by
   have hi := (integrable_mul_exp_neg_mul_sq (by norm_num : (0 : ℝ) < 1 / 2)).const_mul

@@ -27,12 +27,17 @@ def overlapArgmin (G : Overlap → ℝ) : Set Overlap :=
   {x | ∀ y : Overlap, G x ≤ G y}
 
 /-- A continuous observable on the overlap interval is integrable against
-every actual Parisi probability measure.-/
+every actual Parisi probability measure.
+@isnad1 id=integrab.1h2v.s6.3b00278785dc from=translated src=- shape=75d40cb6 vocab=caacf301
+-/
 theorem integrable_overlap_continuous {G : Overlap → ℝ} (hG : Continuous G)
     (μ : ParisiMeasure) : Integrable G (μ : Measure Overlap) := by
   simpa only [IntegrableOn, Measure.restrict_univ] using
     hG.continuousOn.integrableOn_compact (μ := (μ : Measure Overlap)) isCompact_univ
 
+/--
+@isnad1 id=isclosed.1h1v.s5.26d8761ae9b9 from=translated src=- shape=3a58a77f vocab=57bc9cbd
+-/
 theorem isClosed_overlapArgmin {G : Overlap → ℝ} (hG : Continuous G) :
     IsClosed (overlapArgmin G) := by
   have heq : overlapArgmin G = ⋂ y : Overlap, {x | G x ≤ G y} := by
@@ -41,6 +46,9 @@ theorem isClosed_overlapArgmin {G : Overlap → ℝ} (hG : Continuous G) :
   rw [heq]
   exact isClosed_iInter (fun _ => isClosed_le hG continuous_const)
 
+/--
+@isnad1 id=isprobab.1h3v.s8.67330684d2b1 from=translated src=- shape=e4a5a660 vocab=ad0b2c98
+-/
 theorem parisiMix_probability (μ ν : ParisiMeasure) (t : ℝ)
     (ht : t ∈ Icc (0 : ℝ) 1) : IsProbabilityMeasure
       (ENNReal.ofReal (1 - t) • (μ : Measure Overlap) +
@@ -59,18 +67,27 @@ noncomputable def parisiMix (μ ν : ParisiMeasure) (t : ℝ) : ParisiMeasure :=
       ENNReal.ofReal t • (ν : Measure Overlap), parisiMix_probability μ ν t ht⟩
   else μ
 
+/--
+@isnad1 id=eq.1h3v.s8.6ddcf59e6d70 from=translated src=- shape=aeba8027 vocab=ff6ae399
+-/
 theorem parisiMix_measure (μ ν : ParisiMeasure) (t : ℝ) (ht : t ∈ Icc (0 : ℝ) 1) :
     (parisiMix μ ν t : Measure Overlap) =
       ENNReal.ofReal (1 - t) • (μ : Measure Overlap) +
         ENNReal.ofReal t • (ν : Measure Overlap) := by
   simp [parisiMix, ht]
 
+/--
+@isnad1 id=eq.0h2v.s4.99ef0b7f18c1 from=translated src=- shape=f56bb0f5 vocab=9aa948bc
+-/
 @[simp] theorem parisiMix_zero (μ ν : ParisiMeasure) : parisiMix μ ν 0 = μ := by
   apply Subtype.ext
   change (parisiMix μ ν 0 : Measure Overlap) = (μ : Measure Overlap)
   rw [parisiMix_measure μ ν 0 (by constructor <;> norm_num)]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s4.05dc14c538de from=translated src=- shape=cc48e823 vocab=9aa948bc
+-/
 @[simp] theorem parisiMix_one (μ ν : ParisiMeasure) : parisiMix μ ν 1 = ν := by
   apply Subtype.ext
   change (parisiMix μ ν 1 : Measure Overlap) = (ν : Measure Overlap)
@@ -78,7 +95,9 @@ theorem parisiMix_measure (μ ν : ParisiMeasure) (t : ℝ) (ht : t ∈ Icc (0 :
   simp
 
 /-- Integrating along a genuine probability mixing variation gives the
-usual affine formula, including both endpoints.-/
+usual affine formula, including both endpoints.
+@isnad1 id=eq.2h4v.s8.252554502b6b from=translated src=- shape=437d87c0 vocab=a9f55fa1
+-/
 theorem integral_parisiMix {G : Overlap → ℝ} (hG : Continuous G)
     (μ ν : ParisiMeasure) (t : ℝ) (ht : t ∈ Icc (0 : ℝ) 1) :
     (∫ x, G x ∂(parisiMix μ ν t : Measure Overlap)) =
@@ -93,7 +112,9 @@ theorem integral_parisiMix {G : Overlap → ℝ} (hG : Continuous G)
   rfl
 
 /-- The genuine CDF of a mixing variation is affine in its mixing parameter.
-This holds even when either measure has atoms or a discontinuous CDF.-/
+This holds even when either measure has atoms or a discontinuous CDF.
+@isnad1 id=eq.1h4v.s6.3aa51c94a531 from=translated src=- shape=baada04a vocab=021e829e
+-/
 theorem parisiCDF_mix (μ ν : ParisiMeasure) (t s : ℝ) (ht : t ∈ Icc (0 : ℝ) 1) :
     parisiCDF (parisiMix μ ν t) s = (1 - t) * parisiCDF μ s + t * parisiCDF ν s := by
   unfold parisiCDF
@@ -106,7 +127,9 @@ theorem parisiCDF_mix (μ ν : ParisiMeasure) (t s : ℝ) (ht : t ∈ Icc (0 : �
     ENNReal.toReal_ofReal (sub_nonneg.mpr ht.2), ENNReal.toReal_ofReal ht.1]
 
 /-- The complete CDF correction integral is affine under actual probability
-mixing. Its integrability is proved for each measure rather than assumed.-/
+mixing. Its integrability is proved for each measure rather than assumed.
+@isnad1 id=eq.1h3v.s7.20e947d1d67b from=translated src=- shape=6ab977aa vocab=ebd496a6
+-/
 theorem parisiCorrection_integral_mix (μ ν : ParisiMeasure) (t : ℝ)
     (ht : t ∈ Icc (0 : ℝ) 1) :
     (∫ s in (0 : ℝ)..1, s * parisiCDF (parisiMix μ ν t) s) =
@@ -123,7 +146,9 @@ theorem parisiCorrection_integral_mix (μ ν : ParisiMeasure) (t : ℝ)
     intervalIntegral.integral_const_mul, intervalIntegral.integral_const_mul]
 
 /-- A local affine identity supplies the right endpoint derivative of a
-mixing variation, without making any assertion outside `[0,1]`.-/
+mixing variation, without making any assertion outside `[0,1]`.
+@isnad1 id=hasderiv.1h3v.s7.3ca032cdb8e5 from=translated src=- shape=c3df41f0 vocab=b64359f7
+-/
 theorem hasDerivWithinAt_of_affine_mixing {f : ℝ → ℝ} {a b : ℝ}
     (hf : ∀ t ∈ Icc (0 : ℝ) 1, f t = (1 - t) * a + t * b) :
     HasDerivWithinAt f (b - a) (Ioi (0 : ℝ)) 0 := by
@@ -138,7 +163,9 @@ theorem hasDerivWithinAt_of_affine_mixing {f : ℝ → ℝ} {a b : ℝ}
   · exact hf 0 (by constructor <;> norm_num)
 
 /-- Actual first variation of a continuous linear observable along the
-probability mixing path.-/
+probability mixing path.
+@isnad1 id=hasderiv.1h3v.s8.e045d7c604ca from=translated src=- shape=b8cbe3e1 vocab=8074087c
+-/
 theorem hasDerivWithinAt_integral_parisiMix {G : Overlap → ℝ} (hG : Continuous G)
     (μ ν : ParisiMeasure) :
     HasDerivWithinAt (fun t => ∫ x, G x ∂(parisiMix μ ν t : Measure Overlap))
@@ -147,7 +174,9 @@ theorem hasDerivWithinAt_integral_parisiMix {G : Overlap → ℝ} (hG : Continuo
   hasDerivWithinAt_of_affine_mixing (integral_parisiMix hG μ ν)
 
 /-- Actual first variation of the Parisi CDF correction. Only the potential
-part remains to be identified with the PDE first variation.-/
+part remains to be identified with the PDE first variation.
+@isnad1 id=hasderiv.0h3v.s8.be3a3a80bd61 from=translated src=- shape=14c49956 vocab=55db1fc9
+-/
 theorem hasDerivWithinAt_parisiCorrection_mix (β : ℝ) (μ ν : ParisiMeasure) :
     HasDerivWithinAt
       (fun t => β ^ 2 / 2 * ∫ s in (0 : ℝ)..1, s * parisiCDF (parisiMix μ ν t) s)
@@ -156,7 +185,9 @@ theorem hasDerivWithinAt_parisiCorrection_mix (β : ℝ) (μ ν : ParisiMeasure)
   (hasDerivWithinAt_of_affine_mixing (parisiCorrection_integral_mix μ ν)).const_mul _
 
 /-- The elementary convex one-sided derivative criterion used by JT.
-The derivative is genuinely at the endpoint from the right.-/
+The derivative is genuinely at the endpoint from the right.
+@isnad1 id=iff.2h2v.s7.ec5420aabf99 from=translated src=- shape=9aa32041 vocab=b8525621
+-/
 theorem convex_minimum_iff_right_deriv_nonneg {f : ℝ → ℝ} {d : ℝ}
     (hconv : ConvexOn ℝ (Icc (0 : ℝ) 1) f)
     (hderiv : HasDerivWithinAt f d (Ioi (0 : ℝ)) 0) :
@@ -182,7 +213,9 @@ theorem convex_minimum_iff_right_deriv_nonneg {f : ℝ → ℝ} {d : ℝ}
       linarith
 
 /-- For a functional convex along all genuine probability mixing variations,
-nonnegative first variations are equivalent to global minimality.-/
+nonnegative first variations are equivalent to global minimality.
+@isnad1 id=iff.2h3v.s7.dcd507f3a7bb from=translated src=- shape=4b44e291 vocab=f102e835
+-/
 theorem functional_minimum_iff_variations_nonneg (P : ParisiMeasure → ℝ)
     (μ : ParisiMeasure) (D : ParisiMeasure → ℝ)
     (hconv : ∀ ν : ParisiMeasure,

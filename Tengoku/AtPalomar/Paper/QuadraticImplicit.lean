@@ -31,12 +31,18 @@ def quadraticLinearizationIsInvertible {X : Type*} [NormedAddCommGroup X]
     [NormedSpace ℝ X] (B : X →L[ℝ] X →L[ℝ] X) (x : X) : Prop :=
   (1 - (B x + B.flip x)).IsInvertible
 
+/--
+@isnad1 id=isinvert.1h2v.s9.899c715167e4 from=translated src=- shape=7cfe6aba vocab=44c13a05
+-/
 theorem one_sub_clm_isInvertible {X : Type*} [NormedAddCommGroup X]
     [NormedSpace ℝ X] [CompleteSpace X] (L : X →L[ℝ] X) (hL : ‖L‖ < 1) :
     (1 - L).IsInvertible := by
   obtain ⟨u, hu⟩ := isUnit_one_sub_of_norm_lt_one hL
   exact ⟨ContinuousLinearEquiv.ofUnit u, hu⟩
 
+/--
+@isnad1 id=hasfderi.0h4v.s11.829680466941 from=translated src=- shape=b804be70 vocab=b6d4e525
+-/
 theorem hasFDerivAt_quadratic_residual {X : Type*} [NormedAddCommGroup X]
     [NormedSpace ℝ X] (B : X →L[ℝ] X →L[ℝ] X) (g x : X) :
     HasFDerivAt (fun y => y - g - B y y) (1 - (B x + B.flip x)) x := by
@@ -48,7 +54,9 @@ theorem hasFDerivAt_quadratic_residual {X : Type*} [NormedAddCommGroup X]
 
 /-- A continuous chosen quadratic fixed point inherits the proved smoothness
 of its actual forcing and bilinear operator. No smoothness of the selector
-or invertibility premise is supplied.-/
+or invertibility premise is supplied.
+@isnad1 id=contdiff.5h6v.s10.a6b01fc147ec from=translated src=- shape=23467d13 vocab=535ac63b
+-/
 theorem contDiffAt_quadratic_fixedPoint_of_invertible {A X : Type*}
     [NormedAddCommGroup A] [NormedSpace ℝ A] [CompleteSpace A]
     [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
@@ -85,6 +93,9 @@ theorem contDiffAt_quadratic_fixedPoint_of_invertible {A X : Type*}
     exact (hp.mp (by rw [hzero p, hzero a])).symm
   exact (hF.contDiffAt_implicitFunction hn hinv).congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=contdiff.5h6v.s11.5b04bbf4747d from=translated src=- shape=f20a611e vocab=26eb890f
+-/
 theorem contDiffAt_quadratic_fixedPoint {A X : Type*}
     [NormedAddCommGroup A] [NormedSpace ℝ A] [CompleteSpace A]
     [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
@@ -97,7 +108,9 @@ theorem contDiffAt_quadratic_fixedPoint {A X : Type*}
     (one_sub_clm_isInvertible _ hsmall)
 
 /-- The operator smallness condition can be read directly from the norm of
-the bilinear correction and the chosen fixed point.-/
+the bilinear correction and the chosen fixed point.
+@isnad1 id=le.0h3v.s11.c8dfe230d5b2 from=translated src=- shape=b994a914 vocab=0a2ebc05
+-/
 theorem norm_quadratic_linearization_le {X : Type*} [NormedAddCommGroup X]
     [NormedSpace ℝ X] (B : X →L[ℝ] X →L[ℝ] X) (x : X) :
     ‖B x + B.flip x‖ ≤ 2 * ‖B‖ * ‖x‖ := by
@@ -106,6 +119,9 @@ theorem norm_quadratic_linearization_le {X : Type*} [NormedAddCommGroup X]
     _ ≤ ‖B‖ * ‖x‖ + ‖B.flip‖ * ‖x‖ := add_le_add (B.le_opNorm x) (B.flip.le_opNorm x)
     _ = 2 * ‖B‖ * ‖x‖ := by rw [ContinuousLinearMap.opNorm_flip]; ring
 
+/--
+@isnad1 id=contdiff.5h6v.s11.9cb9b9c70142 from=translated src=- shape=31b8a62b vocab=9f48e286
+-/
 theorem contDiffAt_quadratic_fixedPoint_of_norm {A X : Type*}
     [NormedAddCommGroup A] [NormedSpace ℝ A] [CompleteSpace A]
     [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
@@ -118,7 +134,9 @@ theorem contDiffAt_quadratic_fixedPoint_of_norm {A X : Type*}
 
 /-- A smooth local selector exists before any parameter family of solutions
 is constructed. Its local uniqueness identity also applies to one-sided
-families and varying terminal data.-/
+families and varying terminal data.
+@isnad1 id=ex.4h6v.s11.1a9303c0f2f3 from=translated src=- shape=d3a1b274 vocab=e9e8b888
+-/
 theorem quadratic_local_solution_of_invertible {A X : Type*}
     [NormedAddCommGroup A] [NormedSpace ℝ A] [CompleteSpace A]
     [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
@@ -153,6 +171,9 @@ theorem quadratic_local_solution_of_invertible {A X : Type*}
   rw [hzero] at hp
   simpa only [F, sub_sub, sub_eq_zero] using hp
 
+/--
+@isnad1 id=ex.4h6v.s11.dd66d6e8277d from=translated src=- shape=4324510e vocab=e61cf1ee
+-/
 theorem quadratic_local_solution {A X : Type*}
     [NormedAddCommGroup A] [NormedSpace ℝ A] [CompleteSpace A]
     [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]

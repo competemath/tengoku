@@ -22,7 +22,9 @@ open scoped NNReal
 
 namespace Paper
 
-/-- Simultaneous reflection leaves the heat kernel unchanged.-/
+/-- Simultaneous reflection leaves the heat kernel unchanged.
+@isnad1 id=eq.0h3v.s4.6541072aad9a from=translated src=- shape=9be43c92 vocab=16d6570b
+-/
 theorem heatKernel_neg_neg (v : ℝ≥0) (x y : ℝ) :
     heatKernel v (-x) (-y) = heatKernel v x y := by
   unfold heatKernel gaussianPDFReal
@@ -30,7 +32,9 @@ theorem heatKernel_neg_neg (v : ℝ≥0) (x y : ℝ) :
   rw [show (-x - -y) ^ 2 = (x - y) ^ 2 by ring]
 
 /-- Heat convolution preserves evenness, with no integrability assumption
-needed for the measure-preserving reflection of the Bochner integral.-/
+needed for the measure-preserving reflection of the Bochner integral.
+@isnad1 id=eq.1h3v.s5.34526cc80066 from=translated src=- shape=30fea61d vocab=4ab72518
+-/
 theorem kernelAverage_heatKernel_even (v : ℝ≥0) (k : ℝ → ℝ)
     (heven : ∀ y, k (-y) = k y) (x : ℝ) :
     kernelAverage (μ := volume) (heatKernel v) k (-x) =
@@ -41,21 +45,27 @@ theorem kernelAverage_heatKernel_even (v : ℝ≥0) (k : ℝ → ℝ)
       (integral_neg_eq_self (fun y => heatKernel v (-x) y * k y) volume).symm
     _ = _ := by simp_rw [heatKernel_neg_neg, heven]
 
-/-- Heat convolution is exactly Gaussian expectation at mean `x`.-/
+/-- Heat convolution is exactly Gaussian expectation at mean `x`.
+@isnad1 id=eq.1h3v.s5.cb926d439c37 from=translated src=- shape=56ab5ce0 vocab=258911d9
+-/
 theorem kernelAverage_heatKernel_eq_gaussian_integral
     (v : ℝ≥0) (hv : v ≠ 0) (k : ℝ → ℝ) (x : ℝ) :
     kernelAverage (μ := volume) (heatKernel v) k x = ∫ y, k y ∂gaussianReal x v := by
   rw [integral_gaussianReal_eq_integral_smul hv]
   simp only [kernelAverage, heatKernel_eq_gaussianPDFReal, smul_eq_mul]
 
-/-- Joint kernel measurability makes heat convolution measurable.-/
+/-- Joint kernel measurability makes heat convolution measurable.
+@isnad1 id=measurab.1h2v.s4.d89c6aaa6a8d from=translated src=- shape=ea7e2cb5 vocab=740f900b
+-/
 theorem measurable_kernelAverage_heatKernel (v : ℝ≥0) (k : ℝ → ℝ)
     (hk : Measurable k) :
     Measurable (kernelAverage (μ := volume) (heatKernel v) k) := by
   have hm := ((measurable_heatKernel v).mul (hk.comp measurable_snd)).stronglyMeasurable
   exact hm.integral_prod_right'.measurable
 
-/-- A normalized Gaussian heat convolution preserves uniform bounds.-/
+/-- A normalized Gaussian heat convolution preserves uniform bounds.
+@isnad1 id=le.2h4v.s5.002919c465df from=translated src=- shape=038f5895 vocab=4f7d375d
+-/
 theorem norm_kernelAverage_heatKernel_le
     (v : ℝ≥0) (hv : v ≠ 0) (k : ℝ → ℝ)
     (C : ℝ) (hbound : ∀ y, ‖k y‖ ≤ C) (x : ℝ) :
@@ -65,7 +75,9 @@ theorem norm_kernelAverage_heatKernel_le
     (μ := gaussianReal x v) (Filter.Eventually.of_forall hbound))
 
 /-- The Gaussian operator and its heat-kernel formula agree for every test
-function at positive variance.-/
+function at positive variance.
+@isnad1 id=eq.1h3v.s6.212b97e00d90 from=translated src=- shape=06a433e1 vocab=e146cc54
+-/
 theorem doobOperator_eq_heat (v : ℝ≥0) (hv : v ≠ 0) (ψ : ℝ → ℝ) (x : ℝ) :
     doobOperator v ψ x = Real.exp (-(v : ℝ) / 2) / Real.cosh x *
       kernelAverage (μ := volume) (heatKernel v) (fun y => Real.cosh y * ψ y) x := by
@@ -73,7 +85,9 @@ theorem doobOperator_eq_heat (v : ℝ≥0) (hv : v ≠ 0) (ψ : ℝ → ℝ) (x 
   rfl
 
 /-- The Doob transform sends measurable test functions to measurable
-functions of the starting point, including at time zero.-/
+functions of the starting point, including at time zero.
+@isnad1 id=measurab.1h2v.s4.86d89062cdbd from=translated src=- shape=c0999f8f vocab=9f639e26
+-/
 theorem measurable_doobOperator (v : ℝ≥0) (ψ : ℝ → ℝ) (hψ : Measurable ψ) :
     Measurable (doobOperator v ψ) := by
   by_cases hv : v = 0
@@ -90,13 +104,17 @@ theorem measurable_doobOperator (v : ℝ≥0) (ψ : ℝ → ℝ) (hψ : Measurab
       (measurable_kernelAverage_heatKernel v _ (Real.continuous_cosh.measurable.mul hψ))
 
 /-- The reciprocal-cosh cancellation used when applying the Doob transform
-to `sech⁴`.-/
+to `sech⁴`.
+@isnad1 id=eq.0h1v.s5.c55b4cf989f0 from=translated src=- shape=7599cb5f vocab=d8b298e7
+-/
 theorem cosh_mul_sech_fourth (y : ℝ) : Real.cosh y * sech y ^ 4 = sech y ^ 3 := by
   unfold sech
   have h : Real.cosh y ≠ 0 := (Real.cosh_pos y).ne'
   field_simp
 
-/-- The Doob transform of `sech⁴` is the scaled heat convolution of `sech³`.-/
+/-- The Doob transform of `sech⁴` is the scaled heat convolution of `sech³`.
+@isnad1 id=eq.1h2v.s6.8a784d5d0853 from=translated src=- shape=593f29c0 vocab=3bb7cad3
+-/
 theorem doobOperator_sech_fourth_eq_heat
     (v : ℝ≥0) (hv : v ≠ 0) (x : ℝ) :
     doobOperator v (fun y => sech y ^ 4) x =
@@ -106,20 +124,26 @@ theorem doobOperator_sech_fourth_eq_heat
   rw [integral_gaussianReal_eq_integral_smul hv]
   simp only [smul_eq_mul, cosh_mul_sech_fourth, heatKernel_eq_gaussianPDFReal]
 
-/-- The heat convolution of `sech³` is even.-/
+/-- The heat convolution of `sech³` is even.
+@isnad1 id=eq.0h2v.s6.42855f64e63c from=translated src=- shape=a62eac29 vocab=4b63e0eb
+-/
 theorem heatAverage_sech_cube_even (v : ℝ≥0) (x : ℝ) :
     kernelAverage (μ := volume) (heatKernel v) (fun y => sech y ^ 3) (-x) =
       kernelAverage (μ := volume) (heatKernel v) (fun y => sech y ^ 3) x :=
   kernelAverage_heatKernel_even v (fun y => sech y ^ 3) (by intro y; simp) x
 
-/-- The heat convolution of `sech³` is measurable.-/
+/-- The heat convolution of `sech³` is measurable.
+@isnad1 id=measurab.0h1v.s5.6898eff14a1b from=translated src=- shape=44c0c648 vocab=be4cade5
+-/
 theorem heatAverage_sech_cube_measurable (v : ℝ≥0) :
     Measurable (kernelAverage (μ := volume) (heatKernel v) (fun y => sech y ^ 3)) := by
   apply measurable_kernelAverage_heatKernel
   unfold sech
   fun_prop
 
-/-- The heat convolution of `sech³` has absolute value at most one.-/
+/-- The heat convolution of `sech³` has absolute value at most one.
+@isnad1 id=le.1h2v.s5.872a0b4358d3 from=translated src=- shape=d2acda83 vocab=385f8020
+-/
 theorem heatAverage_sech_cube_bound (v : ℝ≥0) (hv : v ≠ 0) (x : ℝ) :
     ‖kernelAverage (μ := volume) (heatKernel v) (fun y => sech y ^ 3) x‖ ≤ 1 := by
   apply norm_kernelAverage_heatKernel_le v hv (fun y => sech y ^ 3) 1

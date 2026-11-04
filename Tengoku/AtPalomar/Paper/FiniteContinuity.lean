@@ -22,16 +22,28 @@ open scoped BigOperators
 
 namespace Paper
 
+/--
+@isnad1 id=eq.0h1v.s4.cda72896b035 from=translated src=- shape=d9ef4337 vocab=84a87f28
+-/
 @[simp] theorem spinSign_sq (s : Bool) : spinSign s ^ 2 = 1 := by
   cases s <;> norm_num [spinSign]
 
+/--
+@isnad1 id=eq.0h1v.s4.14d6f8591139 from=translated src=- shape=562e4a6d vocab=90970657
+-/
 @[simp] theorem abs_spinSign (s : Bool) : |spinSign s| = 1 := by
   cases s <;> norm_num [spinSign]
 
+/--
+@isnad1 id=le.0h2v.s5.f1ffd86a49c8 from=translated src=- shape=8c979091 vocab=859fd689
+-/
 theorem abs_spin_sum_le (n : ℕ) (σ : SKConfiguration n) :
     |∑ i : Fin n, spinSign (σ i)| ≤ n := by
   simpa using Finset.abs_sum_le_sum_abs (s := Finset.univ) (fun i : Fin n => spinSign (σ i))
 
+/--
+@isnad1 id=eq.0h5v.s6.2d0827d62743 from=translated src=- shape=edbf1867 vocab=5e918230
+-/
 theorem skHamiltonian_eq_linear {n : ℕ} (β h : ℝ) (g : SKCouplings n)
     (σ : SKConfiguration n) :
     skHamiltonian β h g σ = β * skHamiltonian 1 0 g σ +
@@ -39,7 +51,9 @@ theorem skHamiltonian_eq_linear {n : ℕ} (β h : ℝ) (g : SKCouplings n)
   unfold skHamiltonian
   ring
 
-/-- Exact independent-Gaussian exponential moment for each configuration.-/
+/-- Exact independent-Gaussian exponential moment for each configuration.
+@isnad1 id=eq.0h4v.s7.5dee17dcaec0 from=translated src=- shape=1cfdebb0 vocab=b8cd0d66
+-/
 theorem integral_exp_skHamiltonian {n : ℕ} (β h : ℝ) (σ : SKConfiguration n) :
     (∫ g : SKCouplings n, Real.exp (skHamiltonian β h g σ) ∂skCouplingLaw n) =
       Real.exp (h * ∑ i : Fin n, spinSign (σ i) +
@@ -94,6 +108,9 @@ private theorem log_sum_exp_le_of_le {ι : Type*} [Fintype ι] [Nonempty ι]
   rw [Real.log_mul (Real.exp_pos D).ne' hK.ne', Real.log_exp] at hl
   linarith
 
+/--
+@isnad1 id=le.1h4v.s6.9472dbad2ac3 from=translated src=- shape=bc1c1dd9 vocab=501f06d9
+-/
 theorem abs_log_sum_exp_sub_le {ι : Type*} [Fintype ι] [Nonempty ι]
     (H K : ι → ℝ) (D : ℝ) (hb : ∀ i, |H i - K i| ≤ D) :
     |Real.log (∑ i, Real.exp (H i)) - Real.log (∑ i, Real.exp (K i))| ≤ D := by
@@ -108,6 +125,9 @@ theorem abs_log_sum_exp_sub_le {ι : Type*} [Fintype ι] [Nonempty ι]
 noncomputable def skEnergyEnvelope {n : ℕ} (g : SKCouplings n) : ℝ :=
   Real.log (skPartitionFunction 1 0 g + skPartitionFunction (-1) 0 g)
 
+/--
+@isnad1 id=le.0h3v.s5.91b3e54302ca from=translated src=- shape=63c0cd5f vocab=18528c1c
+-/
 theorem skEnergyEnvelope_ge_abs {n : ℕ} (g : SKCouplings n) (σ : SKConfiguration n) :
     |skHamiltonian 1 0 g σ| ≤ skEnergyEnvelope g := by
   have hZp := skPartitionFunction_pos (n := n) 1 0 g
@@ -125,9 +145,15 @@ theorem skEnergyEnvelope_ge_abs {n : ℕ} (g : SKCouplings n) (σ : SKConfigurat
   rw [hneg] at hn
   exact abs_le.mpr ⟨by dsimp [skEnergyEnvelope]; linarith, hp⟩
 
+/--
+@isnad1 id=le.0h2v.s4.c75ccc65e435 from=translated src=- shape=9363a417 vocab=b55f0049
+-/
 theorem skEnergyEnvelope_nonneg {n : ℕ} (g : SKCouplings n) : 0 ≤ skEnergyEnvelope g :=
   (abs_nonneg _).trans (skEnergyEnvelope_ge_abs g (fun _ => true))
 
+/--
+@isnad1 id=integrab.0h1v.s5.e324abd23467 from=translated src=- shape=b6fc118a vocab=c5f65b43
+-/
 theorem integrable_skEnergyEnvelope (n : ℕ) :
     Integrable (@skEnergyEnvelope n) (skCouplingLaw n) := by
   have hi := (integrable_skPartitionFunction (n := n) 1 0).add
@@ -143,6 +169,9 @@ theorem integrable_skEnergyEnvelope (n : ℕ) :
     exact (Real.log_le_sub_one_of_pos (add_pos (skPartitionFunction_pos 1 0 g)
       (skPartitionFunction_pos (-1) 0 g))).trans (by linarith)
 
+/--
+@isnad1 id=le.0h6v.s6.abbcbd9fd1a9 from=translated src=- shape=64e97fc1 vocab=e876adf4
+-/
 theorem abs_log_skPartitionFunction_parameters {n : ℕ} (β h β' h' : ℝ)
     (g : SKCouplings n) :
     |Real.log (skPartitionFunction β h g) - Real.log (skPartitionFunction β' h' g)| ≤
@@ -164,10 +193,16 @@ theorem abs_log_skPartitionFunction_parameters {n : ℕ} (β h β' h' : ℝ)
       add_le_add (mul_le_mul_of_nonneg_left (skEnergyEnvelope_ge_abs g σ) (abs_nonneg _))
         (mul_le_mul_of_nonneg_left (abs_spin_sum_le n σ) (abs_nonneg _))
 
+/--
+@isnad1 id=le.0h1v.s6.2532eddecdec from=translated src=- shape=7ed76fa8 vocab=c5ecfb9e
+-/
 theorem card_skEdge_le_square (n : ℕ) : Fintype.card (SKEdge n) ≤ n ^ 2 := by
   have hc := Fintype.card_subtype_le (fun ij : Fin n × Fin n => ij.1 < ij.2)
   simpa [sq] using hc
 
+/--
+@isnad1 id=le.1h1v.s7.d7a8bc32aa38 from=translated src=- shape=dce4f5ca vocab=e4831d24
+-/
 theorem skVarianceProxy_le {n : ℕ} (hn : 0 < n) :
     (Fintype.card (SKEdge n) : ℝ) * (1 / Real.sqrt n) ^ 2 / 2 ≤ (n : ℝ) / 2 := by
   have hnpos : (0 : ℝ) < n := by exact_mod_cast hn
@@ -180,6 +215,9 @@ theorem skVarianceProxy_le {n : ℕ} (hn : 0 < n) :
   apply (div_le_iff₀ (mul_pos (by norm_num) hnpos)).mpr
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.82019c6b5cc2 from=translated src=- shape=878b8457 vocab=48bc548d
+-/
 theorem integral_skPartitionFunction_le {n : ℕ} (hn : 0 < n) :
     (∫ g : SKCouplings n, skPartitionFunction 1 0 g ∂skCouplingLaw n) ≤
       (2 : ℝ) ^ n * Real.exp ((n : ℝ) / 2) := by
@@ -204,12 +242,17 @@ private theorem integral_skPartitionFunction_neg_eq (n : ℕ) :
 
 noncomputable def skParameterLipschitz : ℝ := 2 * Real.log 2 + 1 / 2
 
+/--
+@isnad1 id=lt.0h0v.s3.5a8200f2c237 from=translated src=- shape=ff3a10fc vocab=63857caa
+-/
 theorem skParameterLipschitz_pos : 0 < skParameterLipschitz := by
   have hp := Real.log_pos (by norm_num : (1 : ℝ) < 2)
   unfold skParameterLipschitz
   linarith
 
-/-- The Gaussian envelope's expected size grows at most linearly in `n`.-/
+/-- The Gaussian envelope's expected size grows at most linearly in `n`.
+@isnad1 id=le.1h1v.s5.78ccc7a5438c from=translated src=- shape=aa065f2c vocab=532c6478
+-/
 theorem integral_skEnergyEnvelope_le {n : ℕ} (hn : 0 < n) :
     (∫ g : SKCouplings n, skEnergyEnvelope g ∂skCouplingLaw n) ≤
       n * skParameterLipschitz := by
@@ -253,7 +296,9 @@ theorem integral_skEnergyEnvelope_le {n : ℕ} (hn : 0 < n) :
   unfold skParameterLipschitz
   nlinarith [mul_nonneg (sub_nonneg.mpr hn1) hp]
 
-/-- Parameter continuity has a constant independent of the system size.-/
+/-- Parameter continuity has a constant independent of the system size.
+@isnad1 id=le.0h5v.s6.4415ff59ab3a from=translated src=- shape=84562bc0 vocab=e537d9a4
+-/
 theorem finiteSKFreeEnergy_parameters_lipschitz (β h β' h' : ℝ) (n : ℕ) :
     |finiteSKFreeEnergy β h n - finiteSKFreeEnergy β' h' n| ≤
       skParameterLipschitz * |β - β'| + |h - h'| := by

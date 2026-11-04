@@ -26,12 +26,16 @@ noncomputable def matchedGaussianExpectation (s : ℝ) (f : ℝ → ℝ) : ℝ :
 
 noncomputable def matchedField (s z : ℝ) : ℝ := s + Real.sqrt s * z
 
-/-- Exact mean of the Gaussian whose mean and variance both equal `s`.-/
+/-- Exact mean of the Gaussian whose mean and variance both equal `s`.
+@isnad1 id=eq.0h1v.s3.1b29a4cbe9ae from=translated src=- shape=33b353e1 vocab=77e47933
+-/
 @[simp] theorem matchedGaussian_mean (s : ℝ) :
     matchedGaussianExpectation s id = s := by
   simp [matchedGaussianExpectation]
 
-/-- Its second moment includes both variance and squared mean.-/
+/-- Its second moment includes both variance and squared mean.
+@isnad1 id=eq.1h1v.s5.6eb94246ff82 from=translated src=- shape=597f6c41 vocab=c376db6f
+-/
 theorem matchedGaussian_secondMoment {s : ℝ} (hs : 0 ≤ s) :
     matchedGaussianExpectation s (fun y => y ^ 2) = s + s ^ 2 := by
   have hv := variance_eq_sub (memLp_id_gaussianReal (μ := s) (v := s.toNNReal) 2)
@@ -42,7 +46,9 @@ theorem matchedGaussian_secondMoment {s : ℝ} (hs : 0 ≤ s) :
   change s = matchedGaussianExpectation s (fun y => y ^ 2) - s ^ 2 at hv
   linarith
 
-/-- `Y = s + sqrt(s) Z` has precisely the matched Gaussian distribution.-/
+/-- `Y = s + sqrt(s) Z` has precisely the matched Gaussian distribution.
+@isnad1 id=eq.1h1v.s5.8943836ae256 from=translated src=- shape=b7e20590 vocab=7af8f245
+-/
 theorem matchedField_law {s : ℝ} (hs : 0 ≤ s) :
     (gaussianReal 0 1).map (matchedField s) = gaussianReal s s.toNNReal := by
   have he : matchedField s = (fun y : ℝ => y + s) ∘ (fun z : ℝ => Real.sqrt s * z) := by
@@ -55,7 +61,9 @@ theorem matchedField_law {s : ℝ} (hs : 0 ≤ s) :
   apply NNReal.coe_injective
   simp [Real.sq_sqrt hs, Real.coe_toNNReal s hs]
 
-/-- Relates the distribution-based calculation to the paper's standard-normal expectation.-/
+/-- Relates the distribution-based calculation to the paper's standard-normal expectation.
+@isnad1 id=eq.2h2v.s5.62d00e980ac4 from=translated src=- shape=ab26d0ab vocab=a8e08abe
+-/
 theorem matchedGaussian_eq_standard {s : ℝ} (hs : 0 ≤ s) {f : ℝ → ℝ}
     (hf : AEStronglyMeasurable f (gaussianReal s s.toNNReal)) :
     matchedGaussianExpectation s f = gaussianExpectation (fun z => f (matchedField s z)) := by
@@ -68,7 +76,9 @@ private theorem one_sub_tanh_eq (y : ℝ) :
   rw [Real.tanh_eq_sinh_div_cosh, ← Real.cosh_sub_sinh]
   field_simp
 
-/-- The weighted density in the paper's matched-field identity is even.-/
+/-- The weighted density in the paper's matched-field identity is even.
+@isnad1 id=eq.1h2v.s6.67a17deb62df from=translated src=- shape=d039db2d vocab=276636b3
+-/
 theorem matchedGaussian_weight_even {s : ℝ} (hs : 0 < s) (y : ℝ) :
     (1 - Real.tanh (-y)) * gaussianPDFReal s s.toNNReal (-y) =
       (1 - Real.tanh y) * gaussianPDFReal s s.toNNReal y := by
@@ -103,7 +113,9 @@ private theorem memLp_tanh_gaussian (s : ℝ) :
     exact (Real.continuous_sinh.div Real.continuous_cosh
       (fun y => ne_of_gt (Real.cosh_pos y))).aestronglyMeasurable
 
-/-- Cancellation of the odd weighted Gaussian density.-/
+/-- Cancellation of the odd weighted Gaussian density.
+@isnad1 id=eq.1h1v.s5.dacb89631aff from=translated src=- shape=bc3bfed8 vocab=d33c6677
+-/
 theorem matchedGaussian_cancellation {s : ℝ} (hs : 0 < s) :
     matchedGaussianExpectation s (fun y => y * (1 - Real.tanh y)) = 0 := by
   have hv : s.toNNReal ≠ 0 := ne_of_gt (Real.toNNReal_pos.mpr hs)
@@ -123,7 +135,9 @@ theorem matchedGaussian_cancellation {s : ℝ} (hs : 0 < s) :
   simp only [hodd, integral_neg] at hi
   linarith
 
-/-- The Gaussian matched-field identity `E[Y tanh Y] = s`.-/
+/-- The Gaussian matched-field identity `E[Y tanh Y] = s`.
+@isnad1 id=eq.1h1v.s4.80b73da539fc from=translated src=- shape=d450d5da vocab=0e86e41f
+-/
 theorem matchedGaussian_tanh_moment {s : ℝ} (hs : 0 < s) :
     matchedGaussianExpectation s (fun y => y * Real.tanh y) = s := by
   have hy : Integrable (fun y : ℝ => y) (gaussianReal s s.toNNReal) :=
@@ -138,7 +152,9 @@ theorem matchedGaussian_tanh_moment {s : ℝ} (hs : 0 < s) :
   unfold matchedGaussianExpectation
   linarith
 
-/-- Integral Cauchy–Schwarz, proved by integrating a nonnegative square.-/
+/-- Integral Cauchy–Schwarz, proved by integrating a nonnegative square.
+@isnad1 id=le.3h4v.s8.efcb3f6bc075 from=translated src=- shape=5f16da1d vocab=ccd57c08
+-/
 theorem integral_cauchySchwarz_sq {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f g : α → ℝ} (hf : MemLp f 2 μ) (hg : MemLp g 2 μ)
     (ha : 0 < ∫ x, f x ^ 2 ∂μ) :
@@ -167,7 +183,9 @@ theorem integral_cauchySchwarz_sq {α : Type*} [MeasurableSpace α] {μ : Measur
   dsimp [a, b, c] at hh
   linarith
 
-/-- The actual Cauchy–Schwarz bound for the matched Gaussian field.-/
+/-- The actual Cauchy–Schwarz bound for the matched Gaussian field.
+@isnad1 id=le.1h1v.s6.b8248f37185e from=translated src=- shape=b69fff1e vocab=9381185b
+-/
 theorem matchedGaussian_cauchySchwarz {s : ℝ} (hs : 0 < s) :
     s ^ 2 ≤ (s + s ^ 2) * matchedGaussianExpectation s (fun y => Real.tanh y ^ 2) := by
   have hm := matchedGaussian_secondMoment hs.le
@@ -179,7 +197,9 @@ theorem matchedGaussian_cauchySchwarz {s : ℝ} (hs : 0 < s) :
       matchedGaussianExpectation s (fun y => Real.tanh y ^ 2) at hc
   rwa [matchedGaussian_tanh_moment hs, hm] at hc
 
-/-- Distribution of the fixed-point Gaussian field.-/
+/-- Distribution of the fixed-point Gaussian field.
+@isnad1 id=eq.1h3v.s6.668092590e17 from=translated src=- shape=a1a77f07 vocab=c4f7c98c
+-/
 theorem gaussianField_law {β h q : ℝ} (hq : 0 ≤ q) :
     (gaussianReal 0 1).map (gaussianField β h q) = gaussianReal h (β ^ 2 * q).toNNReal := by
   have he : gaussianField β h q =
@@ -194,7 +214,9 @@ theorem gaussianField_law {β h q : ℝ} (hq : 0 ≤ q) :
   simp only [NNReal.coe_mk, Real.coe_toNNReal _ (mul_nonneg (sq_nonneg β) hq)]
   rw [mul_pow, Real.sq_sqrt hq]
 
-/-- The final algebraic contradiction, with the comparison of means made explicit.-/
+/-- The final algebraic contradiction, with the comparison of means made explicit.
+@isnad1 id=le.3h2v.s6.0f9a2ae99045 from=translated src=- shape=b33f9a07 vocab=4315726c
+-/
 theorem structural_beta_bound {β q : ℝ} (hq : 0 < q) (hβ : β ≠ 0)
     (hcompare : matchedGaussianExpectation (β ^ 2 * q) (fun y => Real.tanh y ^ 2) ≤ q) :
     β ^ 2 * (1 - q) ≤ 1 := by
@@ -208,7 +230,9 @@ theorem structural_beta_bound {β q : ℝ} (hq : 0 < q) (hβ : β ≠ 0)
   have he := (mul_nonneg_iff_of_pos_left hp).mp hm
   linarith
 
-/-- Auxiliary implication isolating the comparison of Gaussian means.-/
+/-- Auxiliary implication isolating the comparison of Gaussian means.
+@isnad1 id=lt.3h3v.s7.a022f79d4d59 from=translated src=- shape=c1d166c4 vocab=4315726c
+-/
 theorem structural_field_lt_conditional {β h q : ℝ} (hq : 0 < q)
     (hlarge : 1 < β ^ 2 * (1 - q))
     (hcompare : β ^ 2 * q ≤ h →
@@ -221,14 +245,18 @@ theorem structural_field_lt_conditional {β h q : ℝ} (hq : 0 < q)
   have hb := structural_beta_bound hq hβ (hcompare (le_of_not_gt hn))
   linarith
 
-/-- The matched field's first moment, expressed with standard-normal expectation.-/
+/-- The matched field's first moment, expressed with standard-normal expectation.
+@isnad1 id=eq.1h1v.s4.078aebeb6a83 from=translated src=- shape=cc7bc718 vocab=0e5a64f8
+-/
 theorem matchedField_mean {s : ℝ} (hs : 0 ≤ s) :
     gaussianExpectation (matchedField s) = s := by
   change gaussianExpectation (fun z => id (matchedField s z)) = s
   rw [← matchedGaussian_eq_standard hs (f := id) (by fun_prop)]
   exact matchedGaussian_mean s
 
-/-- The matched field's second moment, expressed with standard-normal expectation.-/
+/-- The matched field's second moment, expressed with standard-normal expectation.
+@isnad1 id=eq.1h1v.s6.29921da439d2 from=translated src=- shape=3f50bceb vocab=90acfa85
+-/
 theorem matchedField_secondMoment {s : ℝ} (hs : 0 ≤ s) :
     gaussianExpectation (fun z => matchedField s z ^ 2) = s + s ^ 2 := by
   rw [← matchedGaussian_eq_standard hs (f := fun y => y ^ 2) (by fun_prop)]

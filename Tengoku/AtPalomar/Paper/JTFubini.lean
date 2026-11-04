@@ -20,7 +20,9 @@ open scoped Topology
 namespace Paper
 
 /-- The Fubini identity underlying the JT first-variation formula, for
-genuine probability measures and genuine Lebesgue interval integrals.-/
+genuine probability measures and genuine Lebesgue interval integrals.
+@isnad1 id=eq.1h2v.s7.5e9e94621a15 from=translated src=- shape=48d44756 vocab=ac164320
+-/
 theorem parisiCDF_tail_pairing (μ : ParisiMeasure) (g : ℝ → ℝ)
     (hg : IntegrableOn g (Ioc (0 : ℝ) 1) volume) :
     (∫ x : Overlap, (∫ s in (x : ℝ)..1, g s) ∂(μ : Measure Overlap)) =
@@ -65,7 +67,9 @@ theorem parisiCDF_tail_pairing (μ : ParisiMeasure) (g : ℝ → ℝ)
       exact (intervalIntegral.integral_of_le (show (0 : ℝ) ≤ 1 by norm_num)).symm
 
 /-- The paper's `G_μ` pairs with a competitor exactly by the CDF formula.
-This is deterministic and does not assume a PDE/SDE identification of `f`.-/
+This is deterministic and does not assume a PDE/SDE identification of `f`.
+@isnad1 id=eq.1h3v.s7.ddfb22257ae4 from=translated src=- shape=9256dc64 vocab=5ffbabeb
+-/
 theorem parisiG_integral_eq_cdf (β : ℝ) (f : ℝ → ℝ)
     (hf : ContinuousOn f (Icc (0 : ℝ) 1)) (μ : ParisiMeasure) :
     (∫ x : Overlap, parisiG β f (x : ℝ) ∂(μ : Measure Overlap)) =

@@ -21,6 +21,9 @@ open scoped NNReal
 
 namespace Paper
 
+/--
+@isnad1 id=existsun.4h3v.s8.62ee187b669a from=translated src=- shape=959ad34f vocab=e4c598bc
+-/
 theorem boundedGradient_fixedPoint {X : Type*} [NormedAddCommGroup X]
     [CompleteSpace X] (G : X → X) (K : ℝ) (hK : 0 ≤ K) (hsmall : K ≤ 1 / 8)
     (hsize : ∀ v, ‖G v‖ ≤ 1 + K * ‖v‖ ^ 2)

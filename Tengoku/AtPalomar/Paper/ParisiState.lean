@@ -37,6 +37,9 @@ def zeroTime : Icc (0 : ℝ) T := ⟨0, ⟨le_rfl, hT⟩⟩
 abbrev Curve := ODE.FunSpace (zeroTime hT) h 0 L
 variable {h L} {K : ℝ≥0} {f : ℝ → ℝ → ℝ}
 
+/--
+@isnad1 id=interval.2h7v.s6.b9272425b597 from=translated src=- shape=5f21bb6c vocab=100a98a3
+-/
 lemma integrable_comp (hf : IsBoundedMeasurableDrift f L K) (α : Curve hT h L)
     (t : Icc (0 : ℝ) T) :
     IntervalIntegrable (fun s => f s (α.compProj s)) volume 0 t := by
@@ -56,9 +59,15 @@ def next (hf : IsBoundedMeasurableDrift f L K) (α : Curve hT h L) : Curve hT h 
     exact hf.norm_le s _
   mem_closedBall₀ := by simp [zeroTime]
 
+/--
+@isnad1 id=eq.2h7v.s7.3f63e1a4e677 from=translated src=- shape=c0ea2a98 vocab=1f3afc8d
+-/
 @[simp] lemma next_apply (hf : IsBoundedMeasurableDrift f L K) (α : Curve hT h L)
     (t : Icc (0 : ℝ) T) : next hT hf α t = h + ∫ s in 0..t.1, f s (α.compProj s) := rfl
 
+/--
+@isnad1 id=le.3h9v.s9.7ef8566a6840 from=translated src=- shape=048dfc9d vocab=a317fa9d
+-/
 lemma dist_comp_iterate_le (hf : IsBoundedMeasurableDrift f L K)
     (n : ℕ) (t : Icc (0 : ℝ) T) {α γ : Curve hT h L}
     (hh : dist ((next hT hf)^[n] α t) ((next hT hf)^[n] γ t) ≤
@@ -73,7 +82,9 @@ lemma dist_comp_iterate_le (hf : IsBoundedMeasurableDrift f L K)
       gcongr
       rwa [← mul_pow]
 
-/-- The genuine factorial estimate for iterated integral Picard maps.-/
+/-- The genuine factorial estimate for iterated integral Picard maps.
+@isnad1 id=le.2h9v.s8.82cba6d8258b from=translated src=- shape=2e821ad2 vocab=4c1dac3c
+-/
 lemma dist_iterate_apply_le (hf : IsBoundedMeasurableDrift f L K)
     (α γ : Curve hT h L) (n : ℕ) (t : Icc (0 : ℝ) T) :
     dist ((next hT hf)^[n] α t) ((next hT hf)^[n] γ t) ≤
@@ -105,6 +116,9 @@ lemma dist_iterate_apply_le (hf : IsBoundedMeasurableDrift f L K)
         simp only [Nat.abs_cast]
         rw [← Nat.cast_mul, ← Nat.factorial_succ, ← mul_pow]
 
+/--
+@isnad1 id=le.2h8v.s7.dd867f248a14 from=translated src=- shape=cb4ef53b vocab=6e9ebf31
+-/
 lemma dist_iterate_le (hf : IsBoundedMeasurableDrift f L K)
     (α γ : Curve hT h L) (n : ℕ) :
     dist ((next hT hf)^[n] α) ((next hT hf)^[n] γ) ≤
@@ -117,6 +131,9 @@ lemma dist_iterate_le (hf : IsBoundedMeasurableDrift f L K)
     simpa only [sub_zero, abs_of_nonneg t.2.1] using t.2.2
   · positivity
 
+/--
+@isnad1 id=ex.2h5v.s6.176a6e76c8d2 from=translated src=- shape=dec2d08c vocab=78813113
+-/
 lemma exists_contracting_iterate (hf : IsBoundedMeasurableDrift f L K) :
     ∃ (n : ℕ) (C : ℝ≥0), ContractingWith C (next (h := h) hT hf)^[n] := by
   obtain ⟨n, hn⟩ := FloorSemiring.tendsto_pow_div_factorial_atTop ((K : ℝ) * T)
@@ -124,13 +141,17 @@ lemma exists_contracting_iterate (hf : IsBoundedMeasurableDrift f L K) :
   have hC : 0 ≤ ((K : ℝ) * T) ^ n / n ! := by positivity
   exact ⟨n, ⟨_, hC⟩, hn, LipschitzWith.of_dist_le_mul fun α γ => dist_iterate_le hT hf α γ n⟩
 
-/-- A bounded measurable spatially Lipschitz drift has an actual integral solution.-/
+/-- A bounded measurable spatially Lipschitz drift has an actual integral solution.
+@isnad1 id=ex.2h5v.s5.1abcdbd8370d from=translated src=- shape=d9f2a829 vocab=0686609b
+-/
 theorem exists_fixedPoint (hf : IsBoundedMeasurableDrift f L K) :
     ∃ α : Curve hT h L, IsFixedPt (next hT hf) α := by
   obtain ⟨n, C, hc⟩ := exists_contracting_iterate (h := h) hT hf
   exact ⟨_, hc.isFixedPt_fixedPoint_iterate⟩
 
-/-- The integral solution is unique in the complete curve space.-/
+/-- The integral solution is unique in the complete curve space.
+@isnad1 id=eq.4h7v.s6.f4877ca2432a from=translated src=- shape=7a93de9b vocab=0686609b
+-/
 theorem fixedPoint_unique (hf : IsBoundedMeasurableDrift f L K)
     {α γ : Curve hT h L} (ha : IsFixedPt (next hT hf) α) (hg : IsFixedPt (next hT hf) γ) :
     α = γ := by
@@ -141,15 +162,23 @@ theorem fixedPoint_unique (hf : IsBoundedMeasurableDrift f L K)
 def solution (hf : IsBoundedMeasurableDrift f L K) : Curve hT h L :=
   Classical.choose (exists_fixedPoint (h := h) hT hf)
 
+/--
+@isnad1 id=isfixedp.2h5v.s5.ba0a50e6bff7 from=translated src=- shape=18941ed3 vocab=3f515351
+-/
 lemma solution_fixed (hf : IsBoundedMeasurableDrift f L K) :
     IsFixedPt (next hT hf) (solution (h := h) hT hf) :=
   Classical.choose_spec (exists_fixedPoint (h := h) hT hf)
 
+/--
+@isnad1 id=eq.2h6v.s7.f1579599df09 from=translated src=- shape=61850d68 vocab=225e7570
+-/
 lemma solution_equation (hf : IsBoundedMeasurableDrift f L K) (t : Icc (0 : ℝ) T) :
     solution (h := h) hT hf t = h + ∫ s in 0..t.1, f s ((solution (h := h) hT hf).compProj s) := by
   exact (congrArg (fun α : Curve hT h L => α t) (solution_fixed hT hf)).symm
 
-/-- Every continuous solution of the integral equation equals the constructed one.-/
+/-- Every continuous solution of the integral equation equals the constructed one.
+@isnad1 id=eq.5h7v.s7.030e1ec92181 from=translated src=- shape=daa6290b vocab=6bb27341
+-/
 theorem real_solution_unique (hf : IsBoundedMeasurableDrift f L K)
     (Y : ℝ → ℝ) (hY : Continuous Y)
     (hYe : ∀ t ∈ Icc (0 : ℝ) T, Y t = h + ∫ s in 0..t, f s (Y s)) :
@@ -182,12 +211,17 @@ theorem real_solution_unique (hf : IsBoundedMeasurableDrift f L K)
   rw [ODE.FunSpace.compProj_of_mem ht]
   exact congrArg (fun γ : Curve hT h L => γ ⟨t, ht⟩) he
 
+/--
+@isnad1 id=le.2h7v.s7.e398c52ab44e from=translated src=- shape=b939b75d vocab=45887768
+-/
 lemma next_dist_le (hf : IsBoundedMeasurableDrift f L K) (α γ : Curve hT h L) :
     dist (next hT hf α) (next hT hf γ) ≤ (K : ℝ) * T * dist α γ := by
   simpa only [Function.iterate_one, pow_one, Nat.factorial_one, Nat.cast_one, div_one] using
     dist_iterate_le hT hf α γ 1
 
-/-- A uniform drift perturbation controls one integral Picard step.-/
+/-- A uniform drift perturbation controls one integral Picard step.
+@isnad1 id=le.5h8v.s7.6448fde70d6c from=translated src=- shape=a5468eaa vocab=44828a0a
+-/
 lemma next_drift_dist_le {g : ℝ → ℝ → ℝ}
     (hf : IsBoundedMeasurableDrift f L K) (hg : IsBoundedMeasurableDrift g L K)
     (δ : ℝ) (hδ : 0 ≤ δ) (hfg : ∀ t x, dist (f t x) (g t x) ≤ δ)
@@ -209,11 +243,17 @@ def sensitivity (K : ℝ≥0) (T : ℝ) : ℕ → ℝ
   | 0 => 0
   | n + 1 => (K : ℝ) * T * sensitivity K T n + T
 
+/--
+@isnad1 id=le.1h3v.s4.4037f85be04b from=translated src=- shape=cee056c3 vocab=4e8447d8
+-/
 lemma sensitivity_nonneg (hT : 0 ≤ T) (n : ℕ) : 0 ≤ sensitivity K T n := by
   induction n with
   | zero => rfl
   | succ n hn => exact add_nonneg (mul_nonneg (mul_nonneg K.2 hT) hn) hT
 
+/--
+@isnad1 id=le.5h9v.s7.cacb3b3ceb40 from=translated src=- shape=9e8523fa vocab=fd85bc32
+-/
 lemma iterate_drift_dist_le {g : ℝ → ℝ → ℝ}
     (hf : IsBoundedMeasurableDrift f L K) (hg : IsBoundedMeasurableDrift g L K)
     (δ : ℝ) (hδ : 0 ≤ δ) (hfg : ∀ t x, dist (f t x) (g t x) ≤ δ)
@@ -231,7 +271,9 @@ lemma iterate_drift_dist_le {g : ℝ → ℝ → ℝ}
           (next_drift_dist_le hT hf hg δ hδ hfg _)
       _ = sensitivity K T (n + 1) * δ := by simp only [sensitivity]; ring
 
-/-- Quantitative stability of the genuine integral solution under drift perturbation.-/
+/-- Quantitative stability of the genuine integral solution under drift perturbation.
+@isnad1 id=le.6h8v.s7.c8594a6266d3 from=translated src=- shape=eb8994d6 vocab=4b686914
+-/
 lemma solution_drift_dist_le {g : ℝ → ℝ → ℝ}
     (hf : IsBoundedMeasurableDrift f L K) (hg : IsBoundedMeasurableDrift g L K)
     (δ : ℝ) (hδ : 0 ≤ δ) (hfg : ∀ t x, dist (f t x) (g t x) ≤ δ)
@@ -261,7 +303,9 @@ def parisiNoiseDrift (β : ℝ) (μ : ParisiMeasure) (v : ℝ → ℝ → ℝ)
     (W : ℝ → ℝ) (t y : ℝ) : ℝ :=
   β ^ 2 * parisiCDF μ t * v t (y + β * W t)
 
-/-- CDF jumps preserve the measurable, bounded, spatially Lipschitz hypotheses.-/
+/-- CDF jumps preserve the measurable, bounded, spatially Lipschitz hypotheses.
+@isnad1 id=isbounde.4h4v.s6.64b1cdef8bfc from=translated src=- shape=097f9ef6 vocab=884e6969
+-/
 theorem isBoundedMeasurableDrift_parisiNoiseDrift (β : ℝ) (μ : ParisiMeasure)
     (v : ℝ → ℝ → ℝ) (hv : Continuous (Function.uncurry v))
     (hvbound : ∀ t x, ‖v t x‖ ≤ 1)
@@ -309,11 +353,16 @@ def parisiCorrection (T : ℝ) (hT : 0 ≤ T) (W : ℝ → ℝ) (hW : Continuous
 def parisiStateReal (T : ℝ) (hT : 0 ≤ T) (W : ℝ → ℝ) (hW : Continuous W) (t : ℝ) : ℝ :=
   (parisiCorrection β h μ v hv hvbound hvlip T hT W hW).compProj t + β * W t
 
+/--
+@isnad1 id=continuo.5h6v.s7.43cdc4c9d81f from=translated src=- shape=4f713a36 vocab=e0f93501
+-/
 theorem continuous_parisiStateReal (T : ℝ) (hT : 0 ≤ T) (W : ℝ → ℝ) (hW : Continuous W) :
     Continuous (parisiStateReal β h μ v hv hvbound hvlip T hT W hW) :=
   ODE.FunSpace.continuous_compProj _ |>.add (hW.const_mul β)
 
-/-- The constructed state satisfies the actual pathwise Lebesgue integral equation.-/
+/-- The constructed state satisfies the actual pathwise Lebesgue integral equation.
+@isnad1 id=eq.6h7v.s8.e88bbe962719 from=translated src=- shape=345c303e vocab=13234f19
+-/
 theorem parisiStateReal_integral_equation (T : ℝ) (hT : 0 ≤ T)
     (W : ℝ → ℝ) (hW : Continuous W) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) T) :
     parisiStateReal β h μ v hv hvbound hvlip T hT W hW t = h + β * W t +
@@ -329,11 +378,16 @@ theorem parisiStateReal_integral_equation (T : ℝ) (hT : 0 ≤ T)
   unfold parisiCorrection
   ring
 
+/--
+@isnad1 id=eq.6h6v.s7.c58aaa38fe58 from=translated src=- shape=b23a7c92 vocab=e0f93501
+-/
 theorem parisiStateReal_initial (T : ℝ) (hT : 0 ≤ T) (W : ℝ → ℝ) (hW : Continuous W)
     (hW0 : W 0 = 0) : parisiStateReal β h μ v hv hvbound hvlip T hT W hW 0 = h := by
   simpa [hW0] using parisiStateReal_integral_equation β h μ v hv hvbound hvlip T hT W hW ⟨le_rfl, hT⟩
 
-/-- Uniqueness among all continuous states solving the actual integral equation.-/
+/-- Uniqueness among all continuous states solving the actual integral equation.
+@isnad1 id=eqon.7h7v.s8.3ea54c5cb02a from=translated src=- shape=c911b891 vocab=ea9a7bdd
+-/
 theorem parisiStateReal_unique (T : ℝ) (hT : 0 ≤ T) (W : ℝ → ℝ) (hW : Continuous W)
     (X : ℝ → ℝ) (hX : Continuous X)
     (hXe : ∀ t ∈ Icc (0 : ℝ) T, X t = h + β * W t +
@@ -356,7 +410,9 @@ theorem parisiStateReal_unique (T : ℝ) (hT : 0 ≤ T) (W : ℝ → ℝ) (hW : 
   dsimp only [parisiCorrection]
   linarith
 
-/-- Exact causality: changing the noise after `r` cannot change the state before `r`.-/
+/-- Exact causality: changing the noise after `r` cannot change the state before `r`.
+@isnad1 id=eqon.8h8v.s7.a48c24592b41 from=translated src=- shape=7bee7415 vocab=8121c662
+-/
 theorem parisiStateReal_causal (T : ℝ) (hT : 0 ≤ T) {r : ℝ} (hr : r ∈ Icc (0 : ℝ) T)
     (W Z : ℝ → ℝ) (hW : Continuous W) (hZ : Continuous Z)
     (hnoise : EqOn W Z (Icc (0 : ℝ) r)) :
@@ -387,6 +443,9 @@ variable (β h : ℝ) (μ : ParisiMeasure) (v : ℝ → ℝ → ℝ)
 def parisiNoiseExtension {T : ℝ} (hT : 0 ≤ T) (w : C(Icc (0 : ℝ) T, ℝ)) (t : ℝ) : ℝ :=
   w (projIcc 0 T hT t)
 
+/--
+@isnad1 id=continuo.1h2v.s6.b79e40388eae from=translated src=- shape=219ea115 vocab=d822278f
+-/
 @[fun_prop] theorem continuous_parisiNoiseExtension {T : ℝ} (hT : 0 ≤ T)
     (w : C(Icc (0 : ℝ) T, ℝ)) : Continuous (parisiNoiseExtension hT w) :=
   w.continuous.comp continuous_projIcc
@@ -396,6 +455,9 @@ def parisiStatePath (T : ℝ) (hT : 0 ≤ T) (w : C(Icc (0 : ℝ) T, ℝ)) : C(I
   (parisiCorrection β h μ v hv hvbound hvlip T hT (parisiNoiseExtension hT w)
     (continuous_parisiNoiseExtension hT w)).toContinuousMap + β • w
 
+/--
+@isnad1 id=eq.4h7v.s8.4d6ff9d0204d from=translated src=- shape=4e894948 vocab=c30fc51c
+-/
 @[simp] theorem parisiStatePath_apply (T : ℝ) (hT : 0 ≤ T) (w : C(Icc (0 : ℝ) T, ℝ))
     (t : Icc (0 : ℝ) T) :
     parisiStatePath β h μ v hv hvbound hvlip T hT w t =
@@ -404,7 +466,9 @@ def parisiStatePath (T : ℝ) (hT : 0 ≤ T) (w : C(Icc (0 : ℝ) T, ℝ)) : C(I
   simp [parisiStatePath, parisiStateReal, parisiNoiseExtension,
     ODE.FunSpace.compProj_val, projIcc_val]
 
-/-- Changing the noise by a uniform distance changes the drift by at most β³ times that distance.-/
+/-- Changing the noise by a uniform distance changes the drift by at most β³ times that distance.
+@isnad1 id=le.2h8v.s8.ddfcfa528395 from=translated src=- shape=b6f26ca4 vocab=07b4ad8a
+-/
 lemma parisiNoiseDrift_noise_dist_le (hvlip : ∀ t, LipschitzWith 1 (v t))
     {T : ℝ} (hT : 0 ≤ T)
     (w z : C(Icc (0 : ℝ) T, ℝ)) (s y : ℝ) :
@@ -425,7 +489,9 @@ lemma parisiNoiseDrift_noise_dist_le (hvlip : ∀ t, LipschitzWith 1 (v t))
     _ ≤ (β ^ 2 * 1) * (|β| * dist w z) := by gcongr; exact parisiCDF_le_one μ s; exact hl.trans (mul_le_mul_of_nonneg_left hn (abs_nonneg β))
     _ = _ := by ring
 
-/-- The actual state depends Lipschitz continuously on its noise path.-/
+/-- The actual state depends Lipschitz continuously on its noise path.
+@isnad1 id=ex.4h5v.s8.ba13968744d3 from=translated src=- shape=bf3b2700 vocab=c79bc1d6
+-/
 theorem exists_lipschitzWith_parisiStatePath (T : ℝ) (hT : 0 ≤ T) :
     ∃ C : ℝ≥0, LipschitzWith C (parisiStatePath β h μ v hv hvbound hvlip T hT) := by
   let K := parisiDriftConstant β
@@ -463,6 +529,9 @@ theorem exists_lipschitzWith_parisiStatePath (T : ℝ) (hT : 0 ≤ T) :
         (β ^ 2 * |β| * dist w z) + |β| * dist w z := add_le_add (heval.trans hb) hnoise
     _ = A * dist w z := by dsimp only [A]; ring
 
+/--
+@isnad1 id=continuo.4h5v.s8.45cd4c60a3b0 from=translated src=- shape=2d004a69 vocab=c79bc1d6
+-/
 theorem continuous_parisiStatePath (T : ℝ) (hT : 0 ≤ T) :
     Continuous (parisiStatePath β h μ v hv hvbound hvlip T hT) := by
   obtain ⟨C, hC⟩ := exists_lipschitzWith_parisiStatePath β h μ v hv hvbound hvlip T hT
@@ -480,6 +549,9 @@ def parisiPastExtensionPath {T : ℝ} (t : Icc (0 : ℝ) T)
   ⟨fun s => parisiNoiseExtension t.property.1 w s,
     (continuous_parisiNoiseExtension t.property.1 w).comp continuous_subtype_val⟩
 
+/--
+@isnad1 id=lipschit.0h2v.s9.9ef042889f4d from=translated src=- shape=3617094d vocab=e2090e1b
+-/
 lemma lipschitzWith_parisiPastExtensionPath {T : ℝ} (t : Icc (0 : ℝ) T) :
     LipschitzWith 1 (parisiPastExtensionPath t) := by
   apply LipschitzWith.of_dist_le_mul
@@ -495,7 +567,9 @@ def parisiEndpointFromPast (T : ℝ) (hT : 0 ≤ T) (t : Icc (0 : ℝ) T)
     (w : C(Icc (0 : ℝ) (t : ℝ), ℝ)) : ℝ :=
   parisiStatePath β h μ v hv hvbound hvlip T hT (parisiPastExtensionPath t w) t
 
-/-- The actual state evaluation factors exactly through past noise.-/
+/-- The actual state evaluation factors exactly through past noise.
+@isnad1 id=eq.4h7v.s8.2db48cbd5e9e from=translated src=- shape=10ed1c19 vocab=aa91f34c
+-/
 theorem parisiStatePath_eval_eq_fromPast (T : ℝ) (hT : 0 ≤ T) (t : Icc (0 : ℝ) T)
     (w : C(Icc (0 : ℝ) T, ℝ)) :
     parisiStatePath β h μ v hv hvbound hvlip T hT w t =

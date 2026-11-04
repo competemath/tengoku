@@ -13,6 +13,9 @@ noncomputable section
 open MeasureTheory
 namespace Paper
 
+/--
+@isnad1 id=integrab.0h2v.s6.ee08b8a82640 from=translated src=- shape=2f37729e vocab=16c4e25f
+-/
 theorem integrable_fourier_exponential (μ : Measure ℝ) [IsFiniteMeasure μ] (ξ : ℝ) :
     Integrable (fun x : ℝ => Complex.exp ((ξ * x : ℝ) * Complex.I)) μ := by
   apply (integrable_const (1 : ℝ)).mono'
@@ -20,7 +23,9 @@ theorem integrable_fourier_exponential (μ : Measure ℝ) [IsFiniteMeasure μ] (
   · filter_upwards [] with x
     exact (Complex.norm_exp_ofReal_mul_I (ξ * x)).le
 
-/-- Finite real measures are determined by their cosine and sine integrals.-/
+/-- Finite real measures are determined by their cosine and sine integrals.
+@isnad1 id=eq.2h2v.s7.0b7c729a6f37 from=translated src=- shape=ab8032a8 vocab=c02c2b8b
+-/
 theorem measure_eq_of_cos_sin_integrals
     (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (hc : ∀ ξ : ℝ, (∫ x, Real.cos (ξ * x) ∂μ) = ∫ x, Real.cos (ξ * x) ∂ν)

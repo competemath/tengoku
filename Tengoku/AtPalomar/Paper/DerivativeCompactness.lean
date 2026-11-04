@@ -23,6 +23,9 @@ open scoped Topology NNReal BoundedContinuousFunction
 
 namespace Paper
 
+/--
+@isnad1 id=le.3h5v.s7.68648cc598bc from=translated src=- shape=2a33fdfc vocab=1c90e88c
+-/
 theorem abs_derivative_sub_forward_slope_le {f d : ℝ → ℝ} {C : ℝ≥0}
     (hd : ∀ x, HasDerivAt f (d x) x) (hL : LipschitzWith C d)
     (x : ℝ) {δ : ℝ} (hδ : 0 < δ) :
@@ -37,6 +40,9 @@ theorem abs_derivative_sub_forward_slope_le {f d : ℝ → ℝ} {C : ℝ≥0}
   rw [← hsl]
   exact hdist.trans (mul_le_mul_of_nonneg_left hxy C.property)
 
+/--
+@isnad1 id=le.6h8v.s7.beff2ae05417 from=translated src=- shape=201590c0 vocab=1147ebec
+-/
 theorem abs_derivatives_sub_le_of_uniform_bound {f g d e : ℝ → ℝ}
     {C : ℝ≥0} {M : ℝ} (hd : ∀ x, HasDerivAt f (d x) x)
     (he : ∀ x, HasDerivAt g (e x) x) (hdL : LipschitzWith C d)
@@ -63,6 +69,9 @@ theorem abs_derivatives_sub_le_of_uniform_bound {f g d e : ℝ → ℝ}
   dsimp only [S, T] at H H'
   linarith
 
+/--
+@isnad1 id=le.5h7v.s9.3077a442558e from=translated src=- shape=8b99a5f7 vocab=dbae4190
+-/
 theorem norm_spatialDerivatives_sub_le {P : Type*} [TopologicalSpace P]
     (f g d e : (P × ℝ) →ᵇ ℝ) {C : ℝ≥0}
     (hd : ∀ p x, HasDerivAt (fun y => f (p, y)) (d (p, x)) x)
@@ -81,7 +90,9 @@ theorem norm_spatialDerivatives_sub_le {P : Type*} [TopologicalSpace P]
     (f - g).norm_coe_le_norm (z.1, x)
 
 /-- Uniform convergence and a shared derivative modulus give a Cauchy
-sequence of actual spatial derivatives in the complete BCF space.-/
+sequence of actual spatial derivatives in the complete BCF space.
+@isnad1 id=cauchyse.3h4v.s8.717f0c54ddff from=translated src=- shape=c143a050 vocab=51882e52
+-/
 theorem cauchySeq_spatialDerivatives {P : Type*} [TopologicalSpace P]
     (f d : ℕ → (P × ℝ) →ᵇ ℝ) {C : ℝ≥0}
     (hd : ∀ n p x, HasDerivAt (fun y => f n (p, y)) (d n (p, x)) x)

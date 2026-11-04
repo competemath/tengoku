@@ -25,7 +25,9 @@ open scoped NNReal
 namespace Paper
 
 /-- Hyperbolic cosine is integrable under every real Gaussian measure,
-including the zero-variance Dirac case.-/
+including the zero-variance Dirac case.
+@isnad1 id=integrab.0h2v.s4.df433f8fa307 from=translated src=- shape=80ecaa7f vocab=d49a2f41
+-/
 theorem integrable_cosh_gaussianReal (x : ℝ) (v : ℝ≥0) :
     Integrable Real.cosh (gaussianReal x v) := by
   have hp : Integrable (fun y : ℝ => Real.exp y) (gaussianReal x v) := by
@@ -36,7 +38,9 @@ theorem integrable_cosh_gaussianReal (x : ℝ) (v : ℝ≥0) :
   ext y
   simp [Real.cosh_eq]
 
-/-- The exact cosh eigenfunction identity used to normalize the Doob transform.-/
+/-- The exact cosh eigenfunction identity used to normalize the Doob transform.
+@isnad1 id=eq.0h2v.s5.2a5560337901 from=translated src=- shape=10f9e46c vocab=8dc433ab
+-/
 theorem integral_cosh_gaussianReal (x : ℝ) (v : ℝ≥0) :
     (∫ y, Real.cosh y ∂gaussianReal x v) = Real.exp ((v : ℝ) / 2) * Real.cosh x := by
   have hp : Integrable (fun y : ℝ => Real.exp y) (gaussianReal x v) := by
@@ -58,14 +62,18 @@ def doobOperator (v : ℝ≥0) (ψ : ℝ → ℝ) (x : ℝ) : ℝ :=
   Real.exp (-(v : ℝ) / 2) / Real.cosh x *
     ∫ y, Real.cosh y * ψ y ∂gaussianReal x v
 
-/-- Multiplying cosh by a bounded measurable function is Gaussian-integrable.-/
+/-- Multiplying cosh by a bounded measurable function is Gaussian-integrable.
+@isnad1 id=integrab.2h4v.s6.6429c15ffe73 from=translated src=- shape=58747b10 vocab=947c10d6
+-/
 theorem integrable_cosh_mul_gaussianReal (x : ℝ) (v : ℝ≥0) (ψ : ℝ → ℝ)
     (hψ : Measurable ψ) (C : ℝ) (hbound : ∀ y, ‖ψ y‖ ≤ C) :
     Integrable (fun y => Real.cosh y * ψ y) (gaussianReal x v) :=
   (integrable_cosh_gaussianReal x v).mul_bdd hψ.aestronglyMeasurable
     (Filter.Eventually.of_forall hbound)
 
-/-- The Doob transform preserves positivity.-/
+/-- The Doob transform preserves positivity.
+@isnad1 id=le.1h3v.s5.4ef607800872 from=translated src=- shape=20a914c9 vocab=9b2d9fd5
+-/
 theorem doobOperator_nonneg (v : ℝ≥0) (ψ : ℝ → ℝ)
     (hψ : ∀ y, 0 ≤ ψ y) (x : ℝ) : 0 ≤ doobOperator v ψ x := by
   unfold doobOperator
@@ -76,7 +84,9 @@ theorem doobOperator_nonneg (v : ℝ≥0) (ψ : ℝ → ℝ)
     change 0 ≤ Real.cosh y * ψ y
     exact mul_nonneg (Real.cosh_pos y).le (hψ y)
 
-/-- The Doob transform preserves the constant one, at every variance.-/
+/-- The Doob transform preserves the constant one, at every variance.
+@isnad1 id=eq.0h2v.s4.fe679b3a8a24 from=translated src=- shape=7687685e vocab=74ba2133
+-/
 theorem doobOperator_one (v : ℝ≥0) (x : ℝ) :
     doobOperator v (fun _ => 1) x = 1 := by
   unfold doobOperator
@@ -87,7 +97,9 @@ theorem doobOperator_one (v : ℝ≥0) (x : ℝ) :
   rw [← Real.exp_add]
   simp
 
-/-- Every real constant is preserved by the Doob transform.-/
+/-- Every real constant is preserved by the Doob transform.
+@isnad1 id=eq.0h3v.s3.97e26dfd237f from=translated src=- shape=1583d6d0 vocab=74ba2133
+-/
 theorem doobOperator_const (v : ℝ≥0) (x c : ℝ) :
     doobOperator v (fun _ => c) x = c := by
   unfold doobOperator
@@ -97,7 +109,9 @@ theorem doobOperator_const (v : ℝ≥0) (x c : ℝ) :
   rw [hone, one_mul]
 
 /-- Monotonicity of the transform, with the exact integral hypotheses needed
-for comparison of Bochner integrals.-/
+for comparison of Bochner integrals.
+@isnad1 id=le.3h4v.s6.9163a1ab817a from=translated src=- shape=abc6c02a vocab=3a49319c
+-/
 theorem doobOperator_mono_of_integrable
     (v : ℝ≥0) (x : ℝ) (ψ χ : ℝ → ℝ)
     (hψ : Integrable (fun y => Real.cosh y * ψ y) (gaussianReal x v))
@@ -111,7 +125,9 @@ theorem doobOperator_mono_of_integrable
   · exact div_nonneg (Real.exp_pos _).le (Real.cosh_pos x).le
 
 /-- The Doob transform does not increase a uniform bound. This is the bound
-used for the paper's compactly supported test functions.-/
+used for the paper's compactly supported test functions.
+@isnad1 id=le.2h4v.s5.438f3ee0e78a from=translated src=- shape=b5543fac vocab=80075435
+-/
 theorem norm_doobOperator_le (v : ℝ≥0) (ψ : ℝ → ℝ)
     (hψ : Measurable ψ) (C : ℝ) (hbound : ∀ y, ‖ψ y‖ ≤ C) (x : ℝ) :
     ‖doobOperator v ψ x‖ ≤ C := by
@@ -125,7 +141,9 @@ theorem norm_doobOperator_le (v : ℝ≥0) (ψ : ℝ → ℝ)
   rw [doobOperator_const] at hleft hright
   simpa only [Real.norm_eq_abs] using abs_le.mpr ⟨hleft, hright⟩
 
-/-- The transform is linear whenever the weighted integrands are integrable.-/
+/-- The transform is linear whenever the weighted integrands are integrable.
+@isnad1 id=eq.2h4v.s6.8e6080bc91df from=translated src=- shape=d6364f11 vocab=e3226752
+-/
 theorem doobOperator_add_of_integrable
     (v : ℝ≥0) (x : ℝ) (ψ χ : ℝ → ℝ)
     (hψ : Integrable (fun y => Real.cosh y * ψ y) (gaussianReal x v))
@@ -136,7 +154,9 @@ theorem doobOperator_add_of_integrable
   rw [integral_add hψ hχ, mul_add]
 
 /-- Scalar linearity does not require an integrability hypothesis because
-Bochner integration commutes with multiplication by a real constant.-/
+Bochner integration commutes with multiplication by a real constant.
+@isnad1 id=eq.0h4v.s5.25d9a362719d from=translated src=- shape=75562ace vocab=f3d1baaf
+-/
 theorem doobOperator_mul_const (v : ℝ≥0) (x c : ℝ) (ψ : ℝ → ℝ) :
     doobOperator v (fun y => ψ y * c) x = doobOperator v ψ x * c := by
   unfold doobOperator
@@ -144,7 +164,9 @@ theorem doobOperator_mul_const (v : ℝ≥0) (x c : ℝ) (ψ : ℝ → ℝ) :
   rw [integral_mul_const, mul_assoc]
 
 /-- At variance zero the Gaussian measure is a Dirac mass, so the transform
-is the identity operator, as required by the initial condition in the paper.-/
+is the identity operator, as required by the initial condition in the paper.
+@isnad1 id=eq.0h2v.s4.918ee0c40989 from=translated src=- shape=fd59419a vocab=74ba2133
+-/
 @[simp] theorem doobOperator_zero (ψ : ℝ → ℝ) (x : ℝ) :
     doobOperator 0 ψ x = ψ x := by
   simp only [doobOperator, NNReal.coe_zero, neg_zero, zero_div, Real.exp_zero,

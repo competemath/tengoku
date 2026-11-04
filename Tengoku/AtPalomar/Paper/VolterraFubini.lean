@@ -19,6 +19,9 @@ instance : IsFiniteMeasure parisiTimeMeasure := by
   unfold parisiTimeMeasure
   infer_instance
 
+/--
+@isnad1 id=eq.1h2v.s6.4924407f6a60 from=translated src=- shape=c357da33 vocab=d0c7afbe
+-/
 theorem integral_parisiTime_lower_triangle (F : ℝ → ℝ) (t : ℝ)
     (ht : t ∈ Icc (0 : ℝ) 1) :
     (∫ s, if t < s then F s else 0 ∂parisiTimeMeasure) = ∫ s in t..1, F s := by
@@ -33,6 +36,9 @@ theorem integral_parisiTime_lower_triangle (F : ℝ → ℝ) (t : ℝ)
     · exact fun h => ⟨h.1, lt_of_le_of_lt ht.1 h.1, h.2⟩
   rw [hs]
 
+/--
+@isnad1 id=eq.1h2v.s6.6aa397bdea9f from=translated src=- shape=76207383 vocab=d0c7afbe
+-/
 theorem integral_parisiTime_upper_triangle (F : ℝ → ℝ) (s : ℝ)
     (hs : s ∈ Icc (0 : ℝ) 1) :
     (∫ t, if t < s then F t else 0 ∂parisiTimeMeasure) = ∫ t in (0 : ℝ)..s, F t := by
@@ -48,7 +54,9 @@ theorem integral_parisiTime_upper_triangle (F : ℝ → ℝ) (s : ℝ)
   rw [ht]
 
 /-- Fubini on the backward time triangle.  The exact absolute integrability
-requirement is the indicator of the genuine two-dimensional triangle.-/
+requirement is the indicator of the genuine two-dimensional triangle.
+@isnad1 id=eq.1h1v.s7.5e217d5d03fa from=translated src=- shape=d4d1a1f3 vocab=e0001bb0
+-/
 theorem integral_volterra_swap (F : ℝ → ℝ → ℝ)
     (hi : Integrable (fun p : ℝ × ℝ => if p.1 < p.2 then F p.1 p.2 else 0)
       (parisiTimeMeasure.prod parisiTimeMeasure)) :

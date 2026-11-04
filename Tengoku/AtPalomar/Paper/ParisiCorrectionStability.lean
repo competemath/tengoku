@@ -13,6 +13,9 @@ open scoped Topology
 
 namespace Paper
 
+/--
+@isnad1 id=le.0h2v.s6.295ce500af75 from=translated src=- shape=b3123e7f vocab=215783be
+-/
 theorem parisiCorrection_integral_sub_le (μ ν : ParisiMeasure) :
     ‖(∫ s in (0 : ℝ)..1, s * parisiCDF μ s) -
         (∫ s in (0 : ℝ)..1, s * parisiCDF ν s)‖ ≤ parisiCDFDistance μ ν := by
@@ -32,6 +35,9 @@ theorem parisiCorrection_integral_sub_le (μ ν : ParisiMeasure) :
   simpa only [one_mul] using mul_le_mul_of_nonneg_right hsnorm
     (norm_nonneg (parisiCDF μ s - parisiCDF ν s))
 
+/--
+@isnad1 id=le.0h3v.s7.f48c0b36e508 from=translated src=- shape=adb38ac8 vocab=d6572223
+-/
 theorem parisiCorrection_sub_le (β : ℝ) (μ ν : ParisiMeasure) :
     ‖β ^ 2 / 2 * (∫ s in (0 : ℝ)..1, s * parisiCDF μ s) -
         β ^ 2 / 2 * (∫ s in (0 : ℝ)..1, s * parisiCDF ν s)‖ ≤

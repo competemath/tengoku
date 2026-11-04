@@ -23,7 +23,9 @@ open scoped NNReal
 namespace Paper
 
 /-- A positive external field makes the actual squared-tanh expectation
-strictly positive, for every variance coordinate.-/
+strictly positive, for every variance coordinate.
+@isnad1 id=lt.1h3v.s4.763dd88e49eb from=translated src=- shape=665d5371 vocab=5ba54f7c
+-/
 theorem overlapMap_pos_of_field_pos (β h q : ℝ) (hh : 0 < h) :
     0 < overlapMap β h q := by
   let : Measure.IsOpenPosMeasure (gaussianReal 0 1) :=
@@ -41,29 +43,39 @@ theorem overlapMap_pos_of_field_pos (β h q : ℝ) (hh : 0 < h) :
     (integrable_gaussian_tanh_sq β h q) (fun z => sq_nonneg _) (x := 0)
   simpa [gaussianField] using (sq_pos_of_pos (tanh_pos hh)).ne'
 
-/-- The time-coordinate `A` is strictly positive.-/
+/-- The time-coordinate `A` is strictly positive.
+@isnad1 id=lt.0h2v.s4.648b0627f154 from=translated src=- shape=a120b2a8 vocab=b8ae05c1
+-/
 theorem gaussianA_pos (h t : ℝ) : 0 < gaussianA h t :=
   gaussian_sech_pow_pos h (Real.sqrt t) 2
 
-/-- The time-coordinate `C` is strictly positive.-/
+/-- The time-coordinate `C` is strictly positive.
+@isnad1 id=lt.0h2v.s4.0f8381172eb7 from=translated src=- shape=a120b2a8 vocab=27ca9fcf
+-/
 theorem gaussianC_pos (h t : ℝ) : 0 < gaussianC h t :=
   gaussian_sech_pow_pos h (Real.sqrt t) 4
 
-/-- `tanh²+sech²=1` integrated in the time coordinates.-/
+/-- `tanh²+sech²=1` integrated in the time coordinates.
+@isnad1 id=eq.0h2v.s5.93b2d580e08a from=translated src=- shape=952b9b8e vocab=f7cc5c5a
+-/
 theorem gaussianA_add_overlap_time (h t : ℝ) :
     overlapMap (Real.sqrt t) h 1 + gaussianA h t = 1 := by
   have he := overlapMap_add_sech_sq (Real.sqrt t) h 1
   simpa [gaussianA, gaussianField, add_comm] using he
 
 /-- The strict upper bound needed for reconstructing the positive fixed point.
-Strictness uses the actual Gaussian law, rather than an abstract expectation.-/
+Strictness uses the actual Gaussian law, rather than an abstract expectation.
+@isnad1 id=lt.1h2v.s4.0372e7d2e598 from=translated src=- shape=3f00eb23 vocab=b8ae05c1
+-/
 theorem gaussianA_lt_one_of_field_pos (h t : ℝ) (hh : 0 < h) :
     gaussianA h t < 1 := by
   have hp := overlapMap_pos_of_field_pos (Real.sqrt t) h 1 hh
   have he := gaussianA_add_overlap_time h t
   linarith
 
-/-- The fourth sech moment is at most the second moment.-/
+/-- The fourth sech moment is at most the second moment.
+@isnad1 id=le.0h2v.s3.fb0f340cae77 from=translated src=- shape=6c8684e5 vocab=b780353f
+-/
 theorem gaussianC_le_gaussianA (h t : ℝ) : gaussianC h t ≤ gaussianA h t := by
   apply integral_mono (integrable_gaussian_sech_pow h (Real.sqrt t) 4)
     (integrable_gaussian_sech_pow h (Real.sqrt t) 2)
@@ -72,19 +84,25 @@ theorem gaussianC_le_gaussianA (h t : ℝ) : gaussianC h t ≤ gaussianA h t := 
   have hle := sech_sq_le_one (h + Real.sqrt t * z)
   nlinarith [mul_nonneg hs (sub_nonneg.mpr hle)]
 
-/-- Positive external field makes the actual fourth sech moment less than one.-/
+/-- Positive external field makes the actual fourth sech moment less than one.
+@isnad1 id=lt.1h2v.s4.a369e2a0d987 from=translated src=- shape=3f00eb23 vocab=27ca9fcf
+-/
 theorem gaussianC_lt_one_of_field_pos (h t : ℝ) (hh : 0 < h) :
     gaussianC h t < 1 :=
   lt_of_le_of_lt (gaussianC_le_gaussianA h t) (gaussianA_lt_one_of_field_pos h t hh)
 
-/-- The Gaussian field agrees with the appendix's time parametrization.-/
+/-- The Gaussian field agrees with the appendix's time parametrization.
+@isnad1 id=eq.1h4v.s6.f75521715667 from=translated src=- shape=4d209b21 vocab=45bc64e7
+-/
 theorem gaussianField_eq_time (β h q z : ℝ) (hβ : 0 ≤ β) :
     gaussianField β h q z = h + Real.sqrt (β ^ 2 * q) * z := by
   rw [Real.sqrt_mul (sq_nonneg β), Real.sqrt_sq hβ]
   unfold gaussianField
   ring
 
-/-- Any power of sech can be read in the time coordinates.-/
+/-- Any power of sech can be read in the time coordinates.
+@isnad1 id=eq.1h4v.s6.0bd759985f9c from=translated src=- shape=4114c4e6 vocab=e8f52ea5
+-/
 theorem gaussian_sech_time_coordinate (β h q : ℝ) (n : ℕ) (hβ : 0 ≤ β) :
     gaussianExpectation (fun z => sech (gaussianField β h q z) ^ n) =
       gaussianExpectation (fun z => sech (h + Real.sqrt (β ^ 2 * q) * z) ^ n) := by
@@ -92,7 +110,9 @@ theorem gaussian_sech_time_coordinate (β h q : ℝ) (n : ℕ) (hβ : 0 ≤ β) 
   ext z
   rw [gaussianField_eq_time β h q z hβ]
 
-/-- The actual fixed-point and AT equations imply the appendix's zero equation.-/
+/-- The actual fixed-point and AT equations imply the appendix's zero equation.
+@isnad1 id=eq.3h3v.s6.4131a5750e11 from=translated src=- shape=ce88b831 vocab=825d5c20
+-/
 theorem gaussian_at_critical_gives_zero (β h q : ℝ) (hβ : 0 < β)
     (hfixed : q = overlapMap β h q) (hcritical : atParameter β h q = 1) :
     atZeroFunction h (β ^ 2 * q) = 0 := by
@@ -109,7 +129,9 @@ theorem gaussian_at_critical_gives_zero (β h q : ℝ) (hβ : 0 < β)
   exact at_critical_gives_zero β q (gaussianA h (β ^ 2 * q))
     (gaussianC h (β ^ 2 * q)) hfixedA hcriticalC
 
-/-- The zero-coordinate inverse-temperature for a Gaussian AT point is exact.-/
+/-- The zero-coordinate inverse-temperature for a Gaussian AT point is exact.
+@isnad1 id=eq.2h3v.s6.e635df4b10ee from=translated src=- shape=ca5f57d1 vocab=d594bf86
+-/
 theorem gaussian_at_critical_beta_coordinate (β h q : ℝ) (hβ : 0 < β)
     (hcritical : atParameter β h q = 1) :
     β = Real.sqrt (1 / gaussianC h (β ^ 2 * q)) := by
@@ -125,7 +147,9 @@ theorem gaussian_at_critical_beta_coordinate (β h q : ℝ) (hβ : 0 < β)
     _ = Real.sqrt (1 / gaussianC h (β ^ 2 * q)) := congrArg Real.sqrt hs
 
 /-- Every positive-field critical Gaussian point has `β>1`, independently of
-the yet-unproved smooth-graph parametrization.-/
+the yet-unproved smooth-graph parametrization.
+@isnad1 id=lt.3h3v.s5.d3b11c4b40b2 from=translated src=- shape=7135925c vocab=49d0c5ef
+-/
 theorem gaussian_at_critical_beta_gt_one (β h q : ℝ) (hβ : 0 < β) (hh : 0 < h)
     (hcritical : atParameter β h q = 1) : 1 < β := by
   have hC := gaussianC_lt_one_of_field_pos h (β ^ 2 * q) hh
@@ -138,7 +162,9 @@ theorem gaussian_at_critical_beta_gt_one (β h q : ℝ) (hβ : 0 < β) (hh : 0 <
   nlinarith
 
 /-- A positive Gaussian zero produces an actual fixed point and AT-critical
-inverse temperature, with the paper's strict overlap bounds.-/
+inverse temperature, with the paper's strict overlap bounds.
+@isnad1 id=other.3h2v.s6.721a49995d78 from=translated src=- shape=7972ec2b vocab=482e562f
+-/
 theorem gaussian_at_zero_reconstruction (h t : ℝ) (hh : 0 < h) (_ht : 0 < t)
     (hzero : atZeroFunction h t = 0) :
     let C := gaussianC h t
@@ -190,7 +216,9 @@ def positiveATZeroSet : Set (ℝ × ℝ) :=
 noncomputable def atZeroToBoundary (p : ℝ × ℝ) : ℝ × ℝ :=
   (Real.sqrt (1 / gaussianC p.1 p.2), p.1)
 
-/-- Every positive Gaussian zero maps into the actual boundary definition.-/
+/-- Every positive Gaussian zero maps into the actual boundary definition.
+@isnad1 id=mem.1h1v.s5.09c56d5436f4 from=translated src=- shape=1c278087 vocab=8ca14e07
+-/
 theorem atZeroToBoundary_mem {p : ℝ × ℝ} (hp : p ∈ positiveATZeroSet) :
     atZeroToBoundary p ∈ atBoundary := by
   rcases hp with ⟨hh, ht, hzero⟩
@@ -200,7 +228,9 @@ theorem atZeroToBoundary_mem {p : ℝ × ℝ} (hp : p ∈ positiveATZeroSet) :
   exact ⟨hr.2.1.1.le, hr.2.1.2.le⟩
 
 /-- The appendix's complete zero-set image description, proved from the
-concrete Gaussian quantities. Smooth parametrization remains a separate task.-/
+concrete Gaussian quantities. Smooth parametrization remains a separate task.
+@isnad1 id=eq.0h0v.s5.8891a1645aee from=translated src=- shape=87966d39 vocab=ade238fd
+-/
 theorem atBoundary_eq_zero_image :
     atBoundary = atZeroToBoundary '' positiveATZeroSet ∪ {(1, 0)} := by
   ext p

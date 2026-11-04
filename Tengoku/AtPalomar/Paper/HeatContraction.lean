@@ -26,11 +26,16 @@ open scoped NNReal
 
 namespace Paper
 
+/--
+@isnad1 id=le.0h1v.s5.33ca39042082 from=translated src=- shape=32733e0f vocab=62485015
+-/
 theorem sech_cube_bound (x : ℝ) : ‖sech x ^ 3‖ ≤ 1 := by
   rw [Real.norm_of_nonneg (pow_nonneg (sech_pos x).le 3)]
   simpa using pow_le_pow_left₀ (sech_pos x).le (sech_le_one x) 3
 
-/-- The tilt/cosh ratio is at most one in the parameter region used in the paper.-/
+/-- The tilt/cosh ratio is at most one in the parameter region used in the paper.
+@isnad1 id=le.2h3v.s6.ee3a8c34f709 from=translated src=- shape=28a93087 vocab=1a19893f
+-/
 theorem radialWeight_le_gaussian {v c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (x : ℝ) :
     radialWeight v c x ≤ Real.exp (-x ^ 2 / (2 * v)) := by
   have hc : Real.cosh (c * x) ≤ Real.cosh x := by
@@ -41,7 +46,9 @@ theorem radialWeight_le_gaussian {v c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (x 
   exact mul_le_mul_of_nonneg_left hc (Real.exp_pos _).le
 
 /-- Symmetrization against an even test function preserves the Gaussian/cosh
-pairing. Its only analytic hypothesis is integrability of that pairing.-/
+pairing. Its only analytic hypothesis is integrability of that pairing.
+@isnad1 id=eq.2h3v.s7.8048c278d948 from=translated src=- shape=f3cb86e2 vocab=47e94444
+-/
 theorem integral_gaussian_cosh_even_symmetrization (h : ℝ) (v : ℝ≥0)
     (f : ℝ → ℝ) (hf_even : ∀ x, f (-x) = f x)
     (hf : Integrable (fun x => ProbabilityTheory.gaussianPDFReal h v x / Real.cosh x * f x)) :

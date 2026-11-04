@@ -31,7 +31,9 @@ namespace Paper
 def diracNoiseDrift (β : ℝ) (W : ℝ → ℝ) (t y : ℝ) : ℝ :=
   β ^ 2 * Real.tanh (y + β * W t)
 
-/-- The drift is bounded by `β²`, uniformly in the noise path and state.-/
+/-- The drift is bounded by `β²`, uniformly in the noise path and state.
+@isnad1 id=le.0h4v.s5.c9415ae6628a from=translated src=- shape=cfe8627d vocab=fdbc4d92
+-/
 theorem norm_diracNoiseDrift_le (β : ℝ) (W : ℝ → ℝ) (t y : ℝ) :
     ‖diracNoiseDrift β W t y‖ ≤ β ^ 2 := by
   unfold diracNoiseDrift
@@ -48,7 +50,9 @@ namespace IsDiracNoiseSolution
 
 variable {β h q : ℝ} {W Y Z : ℝ → ℝ}
 
-/-- Every pathwise ODE solution is continuous on its interval.-/
+/-- Every pathwise ODE solution is continuous on its interval.
+@isnad1 id=continuo.1h5v.s5.404c7c6ab6d2 from=translated src=- shape=c53d3a0b vocab=e151303c
+-/
 theorem continuousOn (hY : IsDiracNoiseSolution β h q W Y) :
     ContinuousOn Y (Icc q (1 : ℝ)) :=
   HasDerivWithinAt.continuousOn hY.hasDerivWithinAt
@@ -63,6 +67,9 @@ def diracStateFromCorrection (β h q : ℝ) (W Y : ℝ → ℝ) (t : ℝ) : ℝ 
 def diracCorrectionConstant (β q : ℝ) : ℝ :=
   gronwallBound 0 (β ^ 2) (β ^ 2 * |β|) (1 - q)
 
+/--
+@isnad1 id=le.1h2v.s4.7ab22999ae18 from=translated src=- shape=3f2fd937 vocab=52ffcc03
+-/
 theorem diracCorrectionConstant_nonneg (β q : ℝ) (hq : q ≤ 1) :
     0 ≤ diracCorrectionConstant β q := by
   have hm := gronwallBound_mono (δ := (0 : ℝ)) (K := β ^ 2)
@@ -74,6 +81,9 @@ theorem diracCorrectionConstant_nonneg (β q : ℝ) (hq : q ≤ 1) :
 def compactNoiseExtension (a b : ℝ) (hab : a ≤ b) (w : C(Icc a b, ℝ)) : ℝ → ℝ :=
   fun t => w (projIcc a b hab t)
 
+/--
+@isnad1 id=continuo.1h3v.s6.9c96bf73f6b8 from=translated src=- shape=f1e31d9a vocab=08d4407b
+-/
 theorem continuous_compactNoiseExtension (a b : ℝ) (hab : a ≤ b)
     (w : C(Icc a b, ℝ)) : Continuous (compactNoiseExtension a b hab w) :=
   w.continuous.comp continuous_projIcc
@@ -90,6 +100,9 @@ def diracPastExtensionPath (t : Icc (0 : ℝ) 1)
   ⟨fun s => compactNoiseExtension 0 t t.property.1 w s,
     (continuous_compactNoiseExtension 0 t t.property.1 w).comp continuous_subtype_val⟩
 
+/--
+@isnad1 id=lipschit.0h1v.s9.1cac9550700c from=translated src=- shape=f6435e60 vocab=dc73133c
+-/
 theorem lipschitzWith_diracPastExtensionPath (t : Icc (0 : ℝ) 1) :
     LipschitzWith 1 (diracPastExtensionPath t) := by
   apply LipschitzWith.of_dist_le_mul

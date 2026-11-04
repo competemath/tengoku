@@ -31,7 +31,9 @@ noncomputable def parisiG (β : ℝ) (f : ℝ → ℝ) (t : ℝ) : ℝ :=
   ∫ s in t..1, β ^ 2 / 2 * (f s - s)
 
 /-- Continuity of the stochastic second moment suffices for the integrability
-needed in the variational argument.-/
+needed in the variational argument.
+@isnad1 id=interval.3h4v.s7.1c40a346207c from=translated src=- shape=3f58f569 vocab=5628c7ca
+-/
 lemma parisiIntegrable {β a b : ℝ} {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc 0 1)) (ha : a ∈ Icc (0 : ℝ) 1)
     (hb : b ∈ Icc (0 : ℝ) 1) :
@@ -42,7 +44,9 @@ lemma parisiIntegrable {β a b : ℝ} {f : ℝ → ℝ}
   exact continuousOn_const.mul ((hf.mono hsub).sub continuousOn_id)
 
 /-- The sign change in the second-moment difference gives the variational
-minimum at the replica-symmetric overlap, using the genuine integral.-/
+minimum at the replica-symmetric overlap, using the genuine integral.
+@isnad1 id=le.5h4v.s7.5d34c32a3283 from=translated src=- shape=c16b0f50 vocab=19fae18c
+-/
 theorem parisiG_minimum_of_signs {β q : ℝ} {f : ℝ → ℝ}
     (hq : q ∈ Icc (0 : ℝ) 1) (hf : ContinuousOn f (Icc 0 1))
     (hleft : ∀ t ∈ Icc (0 : ℝ) q, t ≤ f t)
@@ -73,7 +77,9 @@ theorem parisiG_minimum_of_signs {β q : ℝ} {f : ℝ → ℝ}
       simpa only [intervalIntegral.integral_neg] using hpos
     linarith
 
-/-- The variational function decreases on any interval where `f(s) ≥ s`.-/
+/-- The variational function decreases on any interval where `f(s) ≥ s`.
+@isnad1 id=antitone.4h4v.s6.83bf26462cf4 from=translated src=- shape=54fd5f7e vocab=cc39eca8
+-/
 theorem parisiG_antitoneOn {β a b : ℝ} {f : ℝ → ℝ}
     (ha : a ∈ Icc (0 : ℝ) 1) (hb : b ∈ Icc (0 : ℝ) 1)
     (hf : ContinuousOn f (Icc 0 1))
@@ -94,7 +100,9 @@ theorem parisiG_antitoneOn {β a b : ℝ} {f : ℝ → ℝ}
     ∫ s in x..1, β ^ 2 / 2 * (f s - s)
   linarith
 
-/-- The variational function increases on any interval where `f(s) ≤ s`.-/
+/-- The variational function increases on any interval where `f(s) ≤ s`.
+@isnad1 id=monotone.4h4v.s6.4dd93b4bb217 from=translated src=- shape=1dd65e2c vocab=fb395321
+-/
 theorem parisiG_monotoneOn {β a b : ℝ} {f : ℝ → ℝ}
     (ha : a ∈ Icc (0 : ℝ) 1) (hb : b ∈ Icc (0 : ℝ) 1)
     (hf : ContinuousOn f (Icc 0 1))
@@ -118,7 +126,9 @@ theorem parisiG_monotoneOn {β a b : ℝ} {f : ℝ → ℝ}
   linarith
 
 /-- Proposition soft-full's quantitative conditional Poincaré consequence:
-`f(t)-t ≥ (1-α)(q-t) ≥ 0`.-/
+`f(t)-t ≥ (1-α)(q-t) ≥ 0`.
+@isnad1 id=and.3h4v.s7.ba79842fe82c from=translated src=- shape=3e6f3de1 vocab=7671df64
+-/
 theorem left_quantitative_of_poincare_bound {α q t f_t : ℝ}
     (hα : α ≤ 1) (ht : t ≤ q)
     (hpoincare : q - f_t ≤ α * (q - t)) :
@@ -127,7 +137,9 @@ theorem left_quantitative_of_poincare_bound {α q t f_t : ℝ}
   · exact mul_nonneg (sub_nonneg.mpr hα) (sub_nonneg.mpr ht)
   · nlinarith
 
-/-- The elementary left-hand estimate arising from conditional Poincaré.-/
+/-- The elementary left-hand estimate arising from conditional Poincaré.
+@isnad1 id=le.3h4v.s5.27d671f2be5f from=translated src=- shape=1302252d vocab=7671df64
+-/
 theorem left_sign_of_poincare_bound {α q t f_t : ℝ}
     (hα : α ≤ 1) (ht : t ≤ q)
     (hpoincare : q - f_t ≤ α * (q - t)) : t ≤ f_t := by
@@ -135,7 +147,9 @@ theorem left_sign_of_poincare_bound {α q t f_t : ℝ}
   exact sub_nonneg.mp (hquant.1.trans hquant.2)
 
 /-- A derivative bounded by one and a fixed point give the required
-right-hand second-moment bound. Endpoints need only continuity.-/
+right-hand second-moment bound. Endpoints need only continuity.
+@isnad1 id=le.6h3v.s7.33d7a0cfa282 from=translated src=- shape=9484afea vocab=df2e0772
+-/
 theorem right_bound_of_deriv_le_one {q : ℝ} {f : ℝ → ℝ}
     (hq : q ≤ 1) (hf : ContinuousOn f (Icc q 1))
     (hd : DifferentiableOn ℝ f (Ioo q 1)) (hfix : f q = q)
@@ -151,7 +165,9 @@ theorem right_bound_of_deriv_le_one {q : ℝ} {f : ℝ → ℝ}
   rw [hfix] at hbound
   linarith
 
-/-- Nonnegative derivative gives monotonicity of the stochastic second moment.-/
+/-- Nonnegative derivative gives monotonicity of the stochastic second moment.
+@isnad1 id=monotone.3h2v.s7.b571a2d967ac from=translated src=- shape=1bf9af2c vocab=cc4e31e0
+-/
 theorem secondMoment_monotone {q : ℝ} {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc q 1)) (hd : DifferentiableOn ℝ f (Ioo q 1))
     (hderiv : ∀ s ∈ Ioo q (1 : ℝ), 0 ≤ deriv f s) :
@@ -162,7 +178,9 @@ theorem secondMoment_monotone {q : ℝ} {f : ℝ → ℝ}
 
 /-- Proposition hard-small: the Itô derivative identities and the elementary
 moment bound imply `f(t) ≤ t` when `β²(1-q) ≤ 1`.
-The probabilistic statements have been isolated as explicit input bounds.-/
+The probabilistic statements have been isolated as explicit input bounds.
+@isnad1 id=le.8h4v.s8.07351cf891d7 from=translated src=- shape=d1241fd1 vocab=cf2c14a0
+-/
 theorem hard_small_of_derivative_bounds {β q : ℝ} {f : ℝ → ℝ}
     (hq : q ≤ 1) (hf : ContinuousOn f (Icc q 1))
     (hd : DifferentiableOn ℝ f (Ioo q 1)) (hfix : f q = q)
@@ -181,7 +199,9 @@ theorem hard_small_of_derivative_bounds {β q : ℝ} {f : ℝ → ℝ}
   exact (hmoment s hs).trans (hbound.trans hsmall)
 
 /-- Strict version of hard-hsmall's final calculus step. For positive `β`,
-exponential decay gives a strict derivative bound away from `q`.-/
+exponential decay gives a strict derivative bound away from `q`.
+@isnad1 id=lt.8h5v.s8.e8f1feefbd81 from=translated src=- shape=c26626dc vocab=5cd48ac0
+-/
 theorem right_strict_bound_of_exp_deriv {β α q : ℝ} {f : ℝ → ℝ}
     (hβ : 0 < β) (hα : α ≤ 1) (hq : q ≤ 1)
     (hf : ContinuousOn f (Icc q 1)) (hd : DifferentiableOn ℝ f (Ioo q 1))
@@ -211,7 +231,9 @@ theorem right_strict_bound_of_exp_deriv {β α q : ℝ} {f : ℝ → ℝ}
   linarith
 
 /-- The two right-hand regimes cover all parameters. This is the deterministic
-content of Proposition hard-full, with the semigroup estimate explicit.-/
+content of Proposition hard-full, with the semigroup estimate explicit.
+@isnad1 id=le.11h6v.s9.c42255592927 from=translated src=- shape=8d39e393 vocab=4a2a2347
+-/
 theorem hard_full_of_regime_bounds {β α q h : ℝ} {f : ℝ → ℝ}
     (hβ : 0 < β) (hα : α ≤ 1) (hq : q ≤ 1)
     (hf : ContinuousOn f (Icc q 1)) (hd : DifferentiableOn ℝ f (Ioo q 1))
@@ -235,7 +257,9 @@ theorem hard_full_of_regime_bounds {β α q h : ℝ} {f : ℝ → ℝ}
 /-- The main deterministic variational conclusion, combining the left-hand
 conditional Poincaré estimate and the full right-hand regime argument.
 PDE/SDE identification, the structural Gaussian bound, and the semigroup
-estimate remain explicit mathematical hypotheses.-/
+estimate remain explicit mathematical hypotheses.
+@isnad1 id=le.12h6v.s9.8b808ba0b13d from=translated src=- shape=de573061 vocab=646dc4bf
+-/
 theorem parisiG_minimum_of_regime_bounds {β α q h : ℝ} {f : ℝ → ℝ}
     (hβ : 0 < β) (hα : α ≤ 1) (hq : q ∈ Icc (0 : ℝ) 1)
     (hf : ContinuousOn f (Icc 0 1))
@@ -257,7 +281,9 @@ theorem parisiG_minimum_of_regime_bounds {β α q h : ℝ} {f : ℝ → ℝ}
 
 /-- FTC version of the integrated exponential estimate. The identity for the
 second-moment derivative is given by `HasDerivAt`, while continuity of that
-moment derivative supplies genuine interval integrability.-/
+moment derivative supplies genuine interval integrability.
+@isnad1 id=le.6h6v.s8.b1c389012cb1 from=translated src=- shape=2b94f95c vocab=62e6f039
+-/
 theorem secondMoment_le_integrated_exp {β α q : ℝ} {f d : ℝ → ℝ}
     (hf : ContinuousOn f (Icc q 1)) (hd : ContinuousOn d (Icc q 1))
     (hderiv : ∀ s ∈ Ioo q (1 : ℝ), HasDerivAt f (d s) s) (hfix : f q = q)

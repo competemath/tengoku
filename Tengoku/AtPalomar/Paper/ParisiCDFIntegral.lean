@@ -19,11 +19,16 @@ open scoped Topology ENNReal
 
 namespace Paper
 
+/--
+@isnad1 id=interval.0h3v.s4.741c68417d7b from=translated src=- shape=bed93bca vocab=73fee541
+-/
 theorem parisiCDF_intervalIntegrable (μ : ParisiMeasure) (a b : ℝ) :
     IntervalIntegrable (parisiCDF μ) volume a b :=
   (parisiCDF_monotone μ).intervalIntegrable
 
-/-- The CDF is the integral of the actual upper-triangle indicator.-/
+/-- The CDF is the integral of the actual upper-triangle indicator.
+@isnad1 id=eq.0h2v.s6.890ccbae188a from=translated src=- shape=8ef1eac1 vocab=a1e4c02f
+-/
 theorem parisiCDF_eq_integral_upperIndicator (μ : ParisiMeasure) (t : ℝ) :
     parisiCDF μ t = ∫ q : Overlap, if (q : ℝ) ≤ t then (1 : ℝ) else 0
       ∂(μ : Measure Overlap) := by
@@ -36,7 +41,9 @@ theorem parisiCDF_eq_integral_upperIndicator (μ : ParisiMeasure) (t : ℝ) :
   rw [hfun, integral_indicator hs]
   simp only [parisiCDF, setIntegral_const, smul_eq_mul, mul_one, Measure.real]
 
-/-- Each vertical section of the upper triangle has length `1-q`.-/
+/-- Each vertical section of the upper triangle has length `1-q`.
+@isnad1 id=eq.1h1v.s6.ab8d664fdbae from=translated src=- shape=5db8ff95 vocab=7894f006
+-/
 theorem integral_upperIndicator (q : ℝ) (hq : q ∈ Icc (0 : ℝ) 1) :
     (∫ t in (0 : ℝ)..1, if q ≤ t then (1 : ℝ) else 0) = 1 - q := by
   let f : ℝ → ℝ := fun t => if q ≤ t then 1 else 0
@@ -64,7 +71,9 @@ theorem integral_upperIndicator (q : ℝ) (hq : q ∈ Icc (0 : ℝ) 1) :
   exact hadd.symm
 
 /-- Exact CDF first-moment identity for every actual probability measure on
-the overlap interval. It includes arbitrary atoms and singular measures.-/
+the overlap interval. It includes arbitrary atoms and singular measures.
+@isnad1 id=eq.0h1v.s6.f6ba3ed8da6f from=translated src=- shape=6471dab1 vocab=7b2755b1
+-/
 theorem parisiCDF_integral_eq_firstMoment (μ : ParisiMeasure) :
     (∫ t in (0 : ℝ)..1, parisiCDF μ t) =
       ∫ q : Overlap, 1 - (q : ℝ) ∂(μ : Measure Overlap) := by
@@ -91,6 +100,9 @@ theorem parisiCDF_integral_eq_firstMoment (μ : ParisiMeasure) :
   rw [← intervalIntegral.integral_of_le (show (0 : ℝ) ≤ 1 by norm_num)]
   exact integral_upperIndicator (q : ℝ) q.2
 
+/--
+@isnad1 id=interval.0h4v.s5.c6de00fc73ec from=translated src=- shape=d139fc39 vocab=9ccbb11e
+-/
 theorem parisiCDF_abs_diff_intervalIntegrable (μ ν : ParisiMeasure) (a b : ℝ) :
     IntervalIntegrable (fun t => |parisiCDF μ t - parisiCDF ν t|) volume a b :=
   ((parisiCDF_intervalIntegrable μ a b).sub (parisiCDF_intervalIntegrable ν a b)).abs

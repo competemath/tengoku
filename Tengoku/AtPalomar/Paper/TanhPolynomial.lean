@@ -23,6 +23,9 @@ namespace Paper
 noncomputable def tanhPolynomialDeriv (P : ℝ[X]) : ℝ[X] :=
   P.derivative * (1 - Polynomial.X ^ 2)
 
+/--
+@isnad1 id=ex.0h1v.s5.0fbb1b3940ca from=translated src=- shape=f006f4cc vocab=6eb6cf31
+-/
 theorem exists_bound_tanhPolynomial (P : ℝ[X]) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ x : ℝ, ‖P.eval (Real.tanh x)‖ ≤ M := by
   have hc : Continuous (fun y : ℝ => P.eval y) :=
@@ -34,6 +37,9 @@ theorem exists_bound_tanhPolynomial (P : ℝ[X]) :
     abs_le.mp (Real.abs_tanh_lt_one x).le
   exact (hM _ hx).trans (le_max_left _ _)
 
+/--
+@isnad1 id=ex.0h1v.s5.0fbb1b3940ca from=translated src=- shape=f006f4cc vocab=6eb6cf31
+-/
 theorem tanhPolynomial_bounded (P : ℝ[X]) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ x : ℝ, ‖P.eval (Real.tanh x)‖ ≤ M :=
   exists_bound_tanhPolynomial P
