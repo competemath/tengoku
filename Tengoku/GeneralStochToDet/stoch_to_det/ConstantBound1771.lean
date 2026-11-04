@@ -1,0 +1,303 @@
+import Tengoku.GeneralStochToDet.stoch_to_det.Main1771
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# A rational certificate for `Cdagger1771 < 1771`
+
+All numerical comparisons in this module are exact rational arithmetic.
+Transcendental quantities are bounded by proved Taylor, integral, and
+Euler--Mascheroni inequalities; no floating-point evaluator is used.
+-/
+
+namespace stoch_to_det
+
+open MeasureTheory Set Finset
+
+/-- The elementary logarithmic moments on `(0,1]`.
+@isnad1 id=eq.0h1v.s6.638f091e9887 from=translated src=- shape=74e3eb19 vocab=4f2d60e0
+-/
+theorem integral_neg_log_mul_pow (m : ℕ) :
+    (∫ t : ℝ in Set.Ioc 0 1, (-Real.log t) * t ^ m) =
+      1 / (m + 1 : ℝ) ^ 2 := by
+  let f : ℝ → ℝ := fun x => Real.exp (-x)
+  let g : ℝ → ℝ := fun t => (-Real.log t) * t ^ m
+  have himage : f '' Set.Ioi 0 = Set.Ioo (0 : ℝ) 1 := by
+    ext t
+    constructor
+    · rintro ⟨x, hx, rfl⟩
+      constructor
+      · exact Real.exp_pos _
+      · exact Real.exp_lt_one_iff.mpr (neg_lt_zero.mpr hx)
+    · intro ht
+      refine ⟨-Real.log t, ?_, ?_⟩
+      · have hlog : Real.log t < 0 := Real.log_neg ht.1 ht.2
+        simpa using neg_pos.mpr hlog
+      · dsimp [f]
+        rw [neg_neg, Real.exp_log ht.1]
+  have hderiv (x : ℝ) : HasDerivAt f (-Real.exp (-x)) x := by
+    simpa [f, Function.comp_def] using
+      (Real.hasDerivAt_exp (-x)).comp x (hasDerivAt_neg' (x := x))
+  have hinj : Set.InjOn f (Set.Ioi 0) := by
+    intro x _ y _ hxy
+    dsimp [f] at hxy
+    have := Real.exp_injective hxy
+    linarith
+  have hchange := integral_image_eq_integral_abs_deriv_smul
+    (s := Set.Ioi (0 : ℝ)) (f := f)
+    (f' := fun x => -Real.exp (-x)) measurableSet_Ioi
+    (fun x _ => (hderiv x).hasDerivWithinAt) hinj g
+  rw [himage] at hchange
+  have haeeq :
+      (∫ t : ℝ in Set.Ioc 0 1, g t) =
+        ∫ t : ℝ in Set.Ioo 0 1, g t := by
+    rw [restrict_Ioo_eq_restrict_Ioc]
+  rw [haeeq, hchange]
+  have hvalue := Real.integral_rpow_mul_exp_neg_mul_Ioi
+    (a := (2 : ℝ)) (r := (m + 1 : ℝ)) (by norm_num) (by positivity)
+  calc
+    (∫ x : ℝ in Set.Ioi 0,
+        |-Real.exp (-x)| • g (f x)) =
+        ∫ x : ℝ in Set.Ioi 0,
+          x * Real.exp (-(m + 1 : ℝ) * x) := by
+      apply setIntegral_congr_fun measurableSet_Ioi
+      intro x hx
+      have hx0 : 0 < x := hx
+      simp only [abs_neg, abs_of_pos (Real.exp_pos _), smul_eq_mul]
+      dsimp [f, g]
+      rw [Real.log_exp]
+      rw [← Real.exp_nat_mul]
+      calc
+        Real.exp (-x) * (- -x * Real.exp (↑m * -x)) =
+            x * (Real.exp (-x) * Real.exp (↑m * -x)) := by ring
+        _ = x * Real.exp (-x + ↑m * -x) := by rw [Real.exp_add]
+        _ = x * Real.exp (-(↑m + 1) * x) := by congr 1 <;> ring
+    _ = 1 / (m + 1 : ℝ) ^ 2 := by
+      calc
+        (∫ x : ℝ in Set.Ioi 0,
+            x * Real.exp (-(m + 1 : ℝ) * x)) =
+            (1 / (m + 1 : ℝ)) ^ 2 * Real.Gamma 2 := by
+          simpa only [show (2 : ℝ) - 1 = 1 by norm_num,
+            Real.rpow_one, Real.rpow_two, neg_mul] using hvalue
+        _ = 1 / (m + 1 : ℝ) ^ 2 := by
+          rw [Real.Gamma_two, mul_one, div_pow]
+          norm_num
+
+/-- The low-half logarithmic moment used in the Taylor certificate.-/
+noncomputable def lowLogMoment1771 : ℝ :=
+  ∫ t : ℝ in Set.Ioc 0 1, (-Real.log t) * Real.exp (-t)
+
+/-- The degree-seven Taylor polynomial for `exp (-t)`.-/
+noncomputable def expNegTaylor7 (t : ℝ) : ℝ :=
+  ∑ m ∈ Finset.range 8, (-t) ^ m / (m.factorial : ℝ)
+
+/--
+@isnad1 id=le.2h1v.s6.3fc4c9fa0f3c from=translated src=- shape=74d3b613 vocab=24edbfab
+-/
+lemma exp_neg_le_taylor7 (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
+    Real.exp (-t) ≤ expNegTaylor7 t + t ^ 8 / 35840 := by
+  have hb := Real.exp_bound (x := -t) (n := 8)
+    (by simpa [abs_neg, abs_of_nonneg ht0] using ht1) (by norm_num)
+  have hub := (abs_le.mp hb).2
+  rw [abs_neg, abs_of_nonneg ht0] at hub
+  change Real.exp (-t) - expNegTaylor7 t ≤ _ at hub
+  norm_num at hub ⊢
+  linarith
+
+/-- Integrability of all logarithmic moments used to integrate the Taylor
+polynomial.
+@isnad1 id=integrab.0h1v.s6.f164f0d4595a from=translated src=- shape=30d187c0 vocab=e938a610
+-/
+lemma integrableOn_neg_log_mul_pow (m : ℕ) :
+    IntegrableOn (fun t : ℝ => (-Real.log t) * t ^ m) (Set.Ioc 0 1) := by
+  have hlog : IntegrableOn (fun t : ℝ => -Real.log t) (Set.Ioc 0 1) := by
+    exact ((intervalIntegrable_iff_integrableOn_Ioc_of_le zero_le_one).1
+      intervalIntegral.intervalIntegrable_log').neg
+  have hmeas : StronglyMeasurable (fun t : ℝ => (-Real.log t) * t ^ m) := by
+    exact (Real.measurable_log.neg.mul
+      (continuous_pow m).measurable).stronglyMeasurable
+  refine Integrable.mono_nonneg hlog hmeas.aestronglyMeasurable.restrict ?_ ?_
+  · rw [ae_restrict_iff' measurableSet_Ioc]
+    exact ae_of_all _ fun t ht =>
+      mul_nonneg (neg_nonneg.mpr (Real.log_nonpos ht.1.le ht.2))
+        (pow_nonneg ht.1.le m)
+  · rw [ae_restrict_iff' measurableSet_Ioc]
+    exact ae_of_all _ fun t ht => by
+      have hneglog : 0 ≤ -Real.log t :=
+        neg_nonneg.mpr (Real.log_nonpos ht.1.le ht.2)
+      have hpow : t ^ m ≤ 1 := pow_le_one₀ ht.1.le ht.2
+      exact mul_le_of_le_one_right hneglog hpow
+
+section
+
+set_option maxRecDepth 10000
+
+/-- A certified lower bound for Euler's constant, obtained from the same
+harmonic-sequence argument as the historical constant audit.
+@isnad1 id=lt.0h0v.s4.e86f7cf6f71d from=translated src=- shape=5ccaf027 vocab=3c9485f4
+-/
+theorem eulerMascheroni_lower_1771 :
+    (5770052 : ℝ) / 10000000 < Real.eulerMascheroniConstant := by
+  have hlog2500 : Real.log 2500 = 2 * Real.log 2 + 4 * Real.log 5 := by
+    calc
+      Real.log 2500 = Real.log (((2 : ℝ) ^ 2) * ((5 : ℝ) ^ 4)) := by
+        norm_num
+      _ = Real.log ((2 : ℝ) ^ 2) + Real.log ((5 : ℝ) ^ 4) :=
+        Real.log_mul (by norm_num) (by norm_num)
+      _ = 2 * Real.log 2 + 4 * Real.log 5 := by
+        rw [Real.log_pow, Real.log_pow]
+        norm_num only [Nat.cast_ofNat]
+  have hgamma := Real.eulerMascheroniSeq_lt_eulerMascheroniConstant 2499
+  have hlog2 := Real.log_two_lt_d9
+  have hlog5 := Real.log_five_lt_d9
+  rw [Real.eulerMascheroniSeq] at hgamma
+  norm_num only [Nat.cast_ofNat] at hgamma
+  rw [hlog2500] at hgamma
+  norm_num [harmonic] at hgamma hlog2 hlog5 ⊢
+  nlinarith
+
+end
+
+/-- Seven Taylor terms already certify `2/e < 0.7359`.
+@isnad1 id=lt.0h0v.s5.d59f8ee7e8c1 from=translated src=- shape=052741ee vocab=7b78fbf0
+-/
+theorem two_div_exp_one_lt_1771 :
+    2 / Real.exp 1 < (7359 : ℝ) / 10000 := by
+  have hsum := Real.sum_le_exp_of_nonneg (x := (1 : ℝ)) (by norm_num) 7
+  have hexp : 0 < Real.exp 1 := Real.exp_pos 1
+  apply (div_lt_iff₀ hexp).2
+  norm_num [Finset.sum_range_succ] at hsum ⊢
+  nlinarith
+
+/-- Rational envelope for `alpha1771`.-/
+noncomputable def alphaBar1771 : ℝ :=
+  (7359 : ℝ) / 10000 +
+    2 * ((10117453 : ℝ) / 12700800) -
+    (5770052 : ℝ) / 10000000
+
+/-- The rational exponent used to bound `log (2 alpha)`.-/
+noncomputable def x01771 : ℝ :=
+  (5770052 : ℝ) / 10000000 + (677 : ℝ) / 1000
+
+/-- The second-order lower Taylor bound for `-log (1-u)`.
+@isnad1 id=le.2h1v.s6.46fa8bf9a18e from=translated src=- shape=20def026 vocab=f7d62b05
+-/
+lemma neg_log_one_sub_ge_quadratic {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u < 1) :
+    u + u ^ 2 / 2 ≤ -Real.log (1 - u) := by
+  let f : ℝ → ℝ := fun x =>
+    -Real.log (1 - x) - x - x ^ 2 / 2
+  have hfderiv (x : ℝ) (hx : x < 1) :
+      HasDerivAt f (x ^ 2 / (1 - x)) x := by
+    have hone : HasDerivAt (fun y : ℝ => 1 - y) (-1) x := by
+      have hraw := (hasDerivAt_const x (1 : ℝ)).sub (hasDerivAt_id x)
+      refine (hraw.congr_of_eventuallyEq ?_).congr_deriv ?_
+      · filter_upwards with y
+        rfl
+      · norm_num
+    have hlog := hone.log (by linarith : 1 - x ≠ 0)
+    have hsq : HasDerivAt (fun y : ℝ => y ^ 2 / 2) x x := by
+      have hraw := ((hasDerivAt_id x).pow 2).div_const 2
+      refine (hraw.congr_of_eventuallyEq ?_).congr_deriv ?_
+      · filter_upwards with y
+        rfl
+      · norm_num
+    have hraw := hlog.neg.sub (hasDerivAt_id x) |>.sub hsq
+    have hraw' : HasDerivAt f (-(-1 / (1 - x)) - 1 - x) x := by
+      refine hraw.congr_of_eventuallyEq ?_
+      filter_upwards with y
+      rfl
+    have hne : 1 - x ≠ 0 := by linarith
+    refine hraw'.congr_deriv ?_
+    field_simp [hne]
+    ring
+  have hdiff : DifferentiableOn ℝ f (Set.Icc 0 u) := by
+    intro x hx
+    exact (hfderiv x (lt_of_le_of_lt hx.2 hu1)).differentiableAt.differentiableWithinAt
+  have hmono : MonotoneOn f (Set.Icc 0 u) := by
+    apply monotoneOn_of_deriv_nonneg (convex_Icc (0 : ℝ) u) hdiff.continuousOn
+      (hdiff.mono interior_subset)
+    intro x hx
+    have hxIcc : x ∈ Set.Icc (0 : ℝ) u := interior_subset hx
+    have hxlt : x < 1 := lt_of_le_of_lt hxIcc.2 hu1
+    rw [(hfderiv x hxlt).deriv]
+    exact div_nonneg (sq_nonneg x) (sub_nonneg.mpr hxlt.le)
+  have hle := hmono (show (0 : ℝ) ∈ Set.Icc 0 u by exact ⟨le_rfl, hu0⟩)
+    (show u ∈ Set.Icc (0 : ℝ) u by exact ⟨hu0, le_rfl⟩) hu0
+  dsimp [f] at hle
+  norm_num at hle
+  linarith
+
+/-- The exact information floor dominates a rational expression in
+`u = chi/2`.
+@isnad1 id=le.0h0v.s6.8cd05058e5ff from=translated src=- shape=c1bb711c vocab=0f9cd078
+-/
+theorem infoFloor1771_lower :
+    (2 * (chi1771 / 2) + (chi1771 / 2) ^ 2) / Real.log 2 ≤
+      infoFloor1771 := by
+  let u : ℝ := chi1771 / 2
+  have hu0 : 0 ≤ u := by
+    dsimp [u]
+    exact div_nonneg chi1771_pos.le (by norm_num)
+  have hu1 : u < 1 := by dsimp [u]; linarith [chi1771_lt_two]
+  have hquad := neg_log_one_sub_ge_quadratic hu0 hu1
+  have hlog2 : 0 < Real.log 2 := Real.log_pos one_lt_two
+  have hfloorMul : infoFloor1771 * Real.log 2 =
+      -2 * Real.log (1 - chi1771 / 2) := by
+    unfold infoFloor1771
+    rw [lg_eq_log_div]
+    field_simp [hlog2.ne']
+  apply (div_le_iff₀ hlog2).2
+  rw [hfloorMul]
+  dsimp [u] at hquad ⊢
+  nlinarith
+
+/-! ### Rational envelopes for the closing ledger -/
+
+noncomputable def u1771 : ℝ := chi1771 / 2
+
+noncomputable def v1771 : ℝ := 2 * u1771 + u1771 ^ 2
+
+noncomputable def KMbar1771 : ℝ :=
+  ((2677 : ℝ) / 1000) / v1771
+
+noncomputable def KSbar1771 : ℝ :=
+  2 + 2 * ((2677 : ℝ) / 1000) / delta1771
+
+/--
+@isnad1 id=lt.0h0v.s3.87b1b5b96db4 from=translated src=- shape=ff3a10fc vocab=d2b0fe77
+-/
+lemma u1771_pos : 0 < u1771 := by
+  unfold u1771
+  exact div_pos chi1771_pos (by norm_num)
+
+/--
+@isnad1 id=lt.0h0v.s3.fce3faa6a2cc from=translated src=- shape=ff3a10fc vocab=1602fd81
+-/
+lemma v1771_pos : 0 < v1771 := by
+  unfold v1771
+  nlinarith [u1771_pos, sq_nonneg u1771]
+
+/--
+@isnad1 id=eq.0h0v.s5.7dd4dda0eafd from=translated src=- shape=c5cf480f vocab=5951ef0f
+-/
+lemma beta1771_mul_log_two :
+    beta1771 * Real.log 2 = 2 + cOff1771 := by
+  have hlog : Real.log 2 ≠ 0 := (Real.log_pos one_lt_two).ne'
+  unfold beta1771
+  field_simp [hlog]
+
+/--
+@isnad1 id=lt.0h0v.s4.f4ebec3ae982 from=translated src=- shape=f1614c97 vocab=21d9aad9
+-/
+lemma three_KMbar1771_lt_1770 : 3 * KMbar1771 < (1770 : ℝ) := by
+  norm_num [KMbar1771, v1771, u1771, chi1771, chi1771Q,
+    rho1771Q, eta1771Q]
+
+/--
+@isnad1 id=lt.0h0v.s5.8c4310e083e5 from=translated src=- shape=89bf89c6 vocab=560da8a7
+-/
+lemma six_KSbar1771_add_two_lt_1770 :
+    6 * KSbar1771 + 2 < (1770 : ℝ) := by
+  norm_num [KSbar1771, delta1771, delta1771Q, eta1771Q]
+
+end stoch_to_det

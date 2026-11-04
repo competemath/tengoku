@@ -1,0 +1,1 @@
+-- GeneralStochToDet: a factory bundle (data/intake/general-stoch-to-det). This file only marks the library for Tengoku/All.lean.
