@@ -1,0 +1,1 @@
+-- DeletionCodesLean: a factory bundle (data/intake/deletion-codes-lean). This file only marks the library for Tengoku/All.lean.

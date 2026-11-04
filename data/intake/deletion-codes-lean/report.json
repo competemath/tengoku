@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "13b79dc69127dab30fe3f0aaef6764a5c30c0605354e513a4a1b267c52f8a446",
+ "gate2_unjudged": [],
+ "library": "deletion-codes-lean",
+ "lint_mode": "proposed",
+ "modules": 115,
+ "part": 1,
+ "theorems": 849
+}

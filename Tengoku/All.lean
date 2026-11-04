@@ -76,6 +76,7 @@ import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
 import Tengoku.MeanFourier
 import Tengoku.LanaOka
+import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
 import Tengoku.EquationalTheories
 import Tengoku.ForbiddenMatrix
