@@ -46,6 +46,7 @@ import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.LanaOrbicurveCores
+import Tengoku.AsymptoticTrianglePacking
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
 import Tengoku.SphereEversion
