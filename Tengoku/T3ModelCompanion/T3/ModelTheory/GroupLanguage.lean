@@ -68,6 +68,9 @@ abbrev mulFunc : Language.group.Functions 2 := mul
 instance (α : Type*) : One (Language.group.Term α) where
   one := Constants.term oneFunc
 
+/--
+@isnad1 id=eq.0h1v.s4.d78bc92c09e8 from=translated src=- shape=a9724e6b vocab=6fd9599f
+-/
 theorem one_def (α : Type*) :
     (1 : Language.group.Term α) = Constants.term oneFunc :=
   rfl
@@ -75,6 +78,9 @@ theorem one_def (α : Type*) :
 instance (α : Type*) : Inv (Language.group.Term α) where
   inv := invFunc.apply₁
 
+/--
+@isnad1 id=eq.0h2v.s4.624e138a57cc from=translated src=- shape=0f869eff vocab=b6f2b053
+-/
 theorem inv_def (α : Type*) (t : Language.group.Term α) :
     t⁻¹ = invFunc.apply₁ t :=
   rfl
@@ -82,6 +88,9 @@ theorem inv_def (α : Type*) (t : Language.group.Term α) :
 instance (α : Type*) : Mul (Language.group.Term α) where
   mul := mulFunc.apply₂
 
+/--
+@isnad1 id=eq.0h3v.s5.bdc59c360363 from=translated src=- shape=d5e088f6 vocab=2c4e19f9
+-/
 theorem mul_def (α : Type*) (t₁ t₂ : Language.group.Term α) :
     t₁ * t₂ = mulFunc.apply₂ t₁ t₂ :=
   rfl
@@ -111,16 +120,25 @@ section Realize
 
 variable {G : Type*} [One G] [Inv G] [Mul G] [CompatibleGroup G]
 
+/--
+@isnad1 id=eq.0h3v.s5.bfa6e29f7723 from=translated src=- shape=715743f7 vocab=2f56f17f
+-/
 @[simp]
 theorem realize_one (v : α → G) :
     Term.realize v (1 : Language.group.Term α) = 1 := by
   simp [one_def, funMap_one, constantMap]
 
+/--
+@isnad1 id=eq.0h4v.s5.b2dafa2a0867 from=translated src=- shape=df829dc6 vocab=214d31e1
+-/
 @[simp]
 theorem realize_inv (t : Language.group.Term α) (v : α → G) :
     Term.realize v t⁻¹ = (Term.realize v t)⁻¹ := by
   simp [inv_def, funMap_inv]
 
+/--
+@isnad1 id=eq.0h5v.s6.097e59c79a90 from=translated src=- shape=aa6a31a4 vocab=6cb6cc8b
+-/
 @[simp]
 theorem realize_mul (t₁ t₂ : Language.group.Term α) (v : α → G) :
     Term.realize v (t₁ * t₂) = Term.realize v t₁ * Term.realize v t₂ := by
@@ -177,7 +195,9 @@ def GroupAxiom.toProp (G : Type*) [One G] [Inv G] [Mul G] : GroupAxiom → Prop
   | .oneMul => ∀ x : G, 1 * x = x
   | .invMul => ∀ x : G, x⁻¹ * x = 1
 
-/-- Realizing a group-axiom sentence is equivalent to its algebraic proposition.-/
+/-- Realizing a group-axiom sentence is equivalent to its algebraic proposition.
+@isnad1 id=iff.0h2v.s5.df0651134a1e from=translated src=- shape=0ca9f34b vocab=df985bf4
+-/
 theorem GroupAxiom.realize_toSentence_iff_toProp {G : Type*}
     [One G] [Inv G] [Mul G] [CompatibleGroup G] (ax : GroupAxiom) :
     G ⊨ (ax.toSentence : Language.group.Sentence) ↔ ax.toProp G := by
@@ -187,7 +207,9 @@ theorem GroupAxiom.realize_toSentence_iff_toProp {G : Type*}
 def _root_.FirstOrder.Language.Theory.group : Language.group.Theory :=
   Set.range GroupAxiom.toSentence
 
-/-- Extract the algebraic content of a group axiom from a model of the group theory.-/
+/-- Extract the algebraic content of a group axiom from a model of the group theory.
+@isnad1 id=toprop.0h2v.s5.5ed9e437bdc5 from=translated src=- shape=043da252 vocab=5b073713
+-/
 theorem GroupAxiom.toProp_of_model {G : Type*}
     [One G] [Inv G] [Mul G] [CompatibleGroup G]
     [Language.Theory.group.Model G] (ax : GroupAxiom) : ax.toProp G :=
@@ -260,7 +282,9 @@ instance [Group G] [CompatibleGroup G] : Language.Theory.group.Model G where
     | oneMul => exact one_mul
     | invMul => exact inv_mul_cancel
 
-/-- Each group axiom is a universal sentence.-/
+/-- Each group axiom is a universal sentence.
+@isnad1 id=isuniver.0h1v.s3.184d66d3d0b3 from=translated src=- shape=93503a0a vocab=7ccc3344
+-/
 theorem GroupAxiom.isUniversal (ax : GroupAxiom) : ax.toSentence.IsUniversal := by
   cases ax with
   | mulAssoc => exact (BoundedFormula.IsAtomic.equal _ _).isUniversal.all.all.all
@@ -290,6 +314,9 @@ def embeddingToMonoidHom (f : G ↪[Language.group] H) : G →* H where
   map_mul' x y := by
     simpa using! f.map_fun mulFunc ![x, y]
 
+/--
+@isnad1 id=eq.0h4v.s8.960abf3fb7e7 from=translated src=- shape=e7224e22 vocab=1d011198
+-/
 @[simp]
 theorem embeddingToMonoidHom_apply (f : G ↪[Language.group] H) (x : G) :
     embeddingToMonoidHom f x = f x :=
@@ -305,11 +332,17 @@ def embeddingOfInjectiveMonoidHom (f : G →* H) (hf : Function.Injective f) :
   map_rel' := fun {n} r => by
     cases r
 
+/--
+@isnad1 id=eq.1h4v.s8.febef442c775 from=translated src=- shape=144f62e0 vocab=103cfaac
+-/
 @[simp]
 theorem embeddingOfInjectiveMonoidHom_apply (f : G →* H) (hf : Function.Injective f) (x : G) :
     embeddingOfInjectiveMonoidHom f hf x = f x :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.4bfd3c290c55 from=translated src=- shape=9bdc5764 vocab=2925593f
+-/
 @[simp]
 theorem embeddingToMonoidHom_embeddingOfInjectiveMonoidHom
     (f : G →* H) (hf : Function.Injective f) :
@@ -317,6 +350,9 @@ theorem embeddingToMonoidHom_embeddingOfInjectiveMonoidHom
   ext x
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.4f1c289ffd8c from=translated src=- shape=a683cdea vocab=015bfbb1
+-/
 @[simp]
 theorem embeddingOfInjectiveMonoidHom_embeddingToMonoidHom
     (f : G ↪[Language.group] H) :
@@ -332,7 +368,9 @@ namespace FirstOrder
 /-- The group language has precisely the three displayed function symbols and no relations.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, the language convention, lines 230–232.-/
+TeX: T3_modelcompanion_v9.tex, the language convention, lines 230–232.
+@isnad1 id=finite.0h0v.s1.8c225adbb1c5 from=translated src=- shape=87ceb31f vocab=182ceba9
+-/
 instance finiteGroupSymbols : Finite Language.group.Symbols := by
   let f : Fin 3 → Language.group.Symbols :=
     ![Sum.inl ⟨0, Group.oneFunc⟩, Sum.inl ⟨1, Group.invFunc⟩, Sum.inl ⟨2, Group.mulFunc⟩]
@@ -379,7 +417,9 @@ def substructureToSubgroup (S : Language.group.Substructure G) : Subgroup G wher
 /-- The two notions of generated closure have exactly the same elements.
 
 Paper-ID: preliminaries.exponent_three, model_theory.local_finiteness
-TeX: T3_modelcompanion_v9.tex, applying Definition 2.4 to the group language.-/
+TeX: T3_modelcompanion_v9.tex, applying Definition 2.4 to the group language.
+@isnad1 id=eq.0h2v.s8.e39bef63d333 from=translated src=- shape=956f49ee vocab=18132a15
+-/
 theorem coe_substructure_closure_eq (s : Set G) :
     (Language.Substructure.closure Language.group s : Set G) = (Subgroup.closure s : Set G) := by
   apply Set.Subset.antisymm

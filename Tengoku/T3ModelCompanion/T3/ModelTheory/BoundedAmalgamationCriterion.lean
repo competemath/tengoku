@@ -48,7 +48,9 @@ def obstructionCardBound (hLF : T.IsLocallyFinite) (d : FiniteInclusion T) (n : 
 chosen finite family, with all base elements fixed.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 340–346.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 340–346.
+@isnad1 id=ex.3h7v.s9.8852297b3476 from=translated src=- shape=fa798987 vocab=0be0233f
+-/
 theorem exists_badMarkedStructure (hLF : T.IsLocallyFinite) (d : FiniteInclusion T) (n : ℕ)
     (M : T.ModelType.{u, v, max u v}) (C : L.Substructure M) (j : d.base ↪[L] C)
     (hgen : C.GeneratedByAtMost n) (hbad : ¬ T.AmalgamableOver d.incl j) :
@@ -67,7 +69,9 @@ def extensionScheme (hLF : T.IsLocallyFinite) (d : FiniteInclusion T) (n : ℕ) 
 /-- The extension scheme applies exactly to base embeddings admitting no forbidden copy.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 349–356.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 349–356.
+@isnad1 id=iff.1h5v.s8.d4af035f874e from=translated src=- shape=717dc336 vocab=bd086d03
+-/
 theorem realize_extensionScheme_iff (hLF : T.IsLocallyFinite) (d : FiniteInclusion T) (n : ℕ)
     {M : Type*} [L.Structure M] :
     M ⊨ extensionScheme hLF d n ↔
@@ -89,7 +93,9 @@ def extensionTheory (hLF : T.IsLocallyFinite) (bound : FiniteInclusion T → ℕ
 of amalgamation admit obstructions with the specified total generator bound.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 351.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 351.
+@isnad1 id=realize.3h5v.s8.82a15c59f753 from=translated src=- shape=fb1c2f1b vocab=6d049721
+-/
 theorem IsExistentiallyClosed.realize_extensionScheme_of_bound (hLF : T.IsLocallyFinite)
     (d : FiniteInclusion T) (n : ℕ) (M : T.ModelType.{u, v, max u v})
     (hM : T.IsExistentiallyClosed M)
@@ -115,7 +121,9 @@ theorem IsExistentiallyClosed.realize_extensionScheme_of_bound (hLF : T.IsLocall
 the forbidden families is used here; the chosen generator bounds may be arbitrary.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 352–356.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 352–356.
+@isnad1 id=isexiste.2h4v.s5.554d94a68d06 from=translated src=- shape=d519dcee vocab=920f1d90
+-/
 theorem isExistentiallyClosed_of_models_extensionTheory (hLF : T.IsLocallyFinite)
     (bound : FiniteInclusion T → ℕ) (M : T.ModelType.{u, v, max u v})
     (hSigma : M ⊨ extensionTheory hLF bound) : T.IsExistentiallyClosed M := by
@@ -162,7 +170,9 @@ existentially closed class of a locally finite Pi-two theory in a finite languag
 produce a model companion. No universality assumption on the theory is used.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, implication 2 → 1.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, implication 2 → 1.
+@isnad1 id=hasmodel.3h2v.s4.d8177f765e1b from=translated src=- shape=c68202aa vocab=0058ed65
+-/
 theorem hasModelCompanion_of_boundedAmalgamationObstructions (hPi : T.IsPiTwo)
     (hLF : T.IsLocallyFinite) (hbound : T.BoundedAmalgamationObstructions) :
     T.HasModelCompanion := by
@@ -185,7 +195,9 @@ theorem hasModelCompanion_of_boundedAmalgamationObstructions (hPi : T.IsPiTwo)
 model companion is equivalent to the bounded-amalgamation-obstruction condition.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–321.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–321.
+@isnad1 id=iff.2h2v.s4.8beb12d65fdb from=translated src=- shape=f6185925 vocab=0058ed65
+-/
 theorem hasModelCompanion_iff_boundedAmalgamationObstructions (hPi : T.IsPiTwo)
     (hLF : T.IsLocallyFinite) : T.HasModelCompanion ↔ T.BoundedAmalgamationObstructions :=
   ⟨fun h => h.boundedAmalgamationObstructions hPi,

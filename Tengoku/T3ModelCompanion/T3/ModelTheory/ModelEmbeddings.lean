@@ -37,7 +37,9 @@ variable {L : Language.{u, v}}
 canonical semantic universe, up to equivalence.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=ex.0h3v.s6.1bfa2dd2c0f1 from=translated src=- shape=6b3c8c9b vocab=5a1491c9
+-/
 theorem exists_small_elementarySubstructure_containing_finset (M : Type w)
     [L.Structure M] [Nonempty M] (s : Finset M) :
     ∃ S : L.ElementarySubstructure M, (s : Set M) ⊆ S ∧ Small.{max u v} S := by
@@ -54,7 +56,9 @@ variable {T T' : L.Theory}
 simultaneously in a canonical-universe model of the target theory.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=ex.3h8v.s7.9ec86fe8975c from=translated src=- shape=9b217156 vocab=01a2d379
+-/
 theorem ModelsEmbedInto.exists_finite_assignment (h : T.ModelsEmbedInto T')
     (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T]
     {ι : Type x} [Finite ι] (n : ι → ℕ) (φ : ∀ i, L.Formula (Fin (n i)))
@@ -95,7 +99,9 @@ condition holds in the canonical semantic universe. The target lies in the maxim
 language and source universes.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 1, line 274; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 1, line 274; no label.
+@isnad1 id=ex.1h4v.s5.c7542ed39a99 from=translated src=- shape=5ba79c46 vocab=f71dbb9c
+-/
 theorem ModelsEmbedInto.exists_embedding (h : T.ModelsEmbedInto T')
     (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T] :
     ∃ N : T'.ModelType.{u, v, max u v w}, Nonempty (M ↪[L] N) := by

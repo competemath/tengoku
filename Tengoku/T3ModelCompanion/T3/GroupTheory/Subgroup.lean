@@ -31,7 +31,9 @@ variable {G H : Type*} [Group G] [Group H]
 each of the two subgroups.
 
 Paper-ID: structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, lines 1192–1197.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, lines 1192–1197.
+@isnad1 id=ex.1h4v.s7.a2e2b3cce6c0 from=translated src=- shape=71ab8a42 vocab=31d490a2
+-/
 theorem exists_mul_mul_commutator_of_mem_sup (A B : Subgroup G) {g : G} (hg : g ∈ A ⊔ B) :
     ∃ a ∈ A, ∃ b ∈ B, ∃ k ∈ ⁅A ⊔ B, A ⊔ B⁆, g = a * b * k := by
   classical
@@ -67,7 +69,9 @@ the kernel.
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-lines 1250–1265.-/
+lines 1250–1265.
+@isnad1 id=eq.1h5v.s6.95cd8f3fb913 from=translated src=- shape=bcec4ed2 vocab=85c6bcd2
+-/
 theorem map_inf_of_ker_le {f : G →* H} {U V : Subgroup G} (hV : f.ker ≤ V) :
     (U ⊓ V).map f = U.map f ⊓ V.map f := by
   refine le_antisymm (map_inf_le U V f) ?_

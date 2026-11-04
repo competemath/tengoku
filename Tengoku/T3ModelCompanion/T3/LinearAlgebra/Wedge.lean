@@ -44,6 +44,9 @@ variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 def gradedMul {i j : ℕ} (a : ⋀[R]^i M) (b : ⋀[R]^j M) : ⋀[R]^(i + j) M :=
   ⟨(a : ExteriorAlgebra R M) * (b : ExteriorAlgebra R M), SetLike.mul_mem_graded a.2 b.2⟩
 
+/--
+@isnad1 id=eq.0h6v.s11.a81c1282a9b5 from=translated src=- shape=3b01d3fa vocab=cf111a23
+-/
 @[simp]
 theorem gradedMul_coe {i j : ℕ} (a : ⋀[R]^i M) (b : ⋀[R]^j M) :
     (gradedMul a b : ExteriorAlgebra R M) = (a : ExteriorAlgebra R M) * b :=
@@ -51,7 +54,9 @@ theorem gradedMul_coe {i j : ℕ} (a : ⋀[R]^i M) (b : ⋀[R]^j M) :
 
 variable {N : Type*} [AddCommGroup N] [Module R N]
 
-/-- The exterior-power functor is the restriction of the induced exterior-algebra map.-/
+/-- The exterior-power functor is the restriction of the induced exterior-algebra map.
+@isnad1 id=eq.0h6v.s13.59b6052940b9 from=translated src=- shape=a6093659 vocab=0b5021bb
+-/
 theorem exteriorPower_map_coe (f : M →ₗ[R] N) (n : ℕ) (x : ⋀[R]^n M) :
     (exteriorPower.map n f x : ExteriorAlgebra R N) =
       ExteriorAlgebra.map f (x : ExteriorAlgebra R M) := by
@@ -70,7 +75,9 @@ theorem exteriorPower_map_coe (f : M →ₗ[R] N) (n : ℕ) (x : ⋀[R]^n M) :
 /-- Exterior multiplication commutes with the maps induced by a linear map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, natural exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, natural exterior decomposition.
+@isnad1 id=eq.0h8v.s14.17d058dffb5c from=translated src=- shape=6aa79086 vocab=f3ad882d
+-/
 theorem exteriorPower_map_gradedMul (f : M →ₗ[R] N) {i j : ℕ}
     (a : ⋀[R]^i M) (b : ⋀[R]^j M) :
     exteriorPower.map (i + j) f (gradedMul a b) =
@@ -78,7 +85,9 @@ theorem exteriorPower_map_gradedMul (f : M →ₗ[R] N) {i j : ℕ}
   apply Subtype.ext
   simp only [exteriorPower_map_coe, gradedMul_coe, map_mul]
 
-/-- The degree-one exterior identification commutes with every linear map.-/
+/-- The degree-one exterior identification commutes with every linear map.
+@isnad1 id=eq.0h5v.s14.7cf27b2bb7d9 from=translated src=- shape=7d077aaf vocab=6e30b106
+-/
 theorem exteriorPower_map_oneEquiv_symm (f : M →ₗ[R] N) (v : M) :
     exteriorPower.map 1 f ((exteriorPower.oneEquiv R M).symm v) =
       (exteriorPower.oneEquiv R N).symm (f v) := by
@@ -87,18 +96,30 @@ theorem exteriorPower_map_oneEquiv_symm (f : M →ₗ[R] N) (v : M) :
     ((exteriorPower.oneEquiv R M).symm v)
   simpa only [LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply] using h
 
+/--
+@isnad1 id=eq.0h7v.s13.234819f1ea73 from=translated src=- shape=4cbf1208 vocab=30d06535
+-/
 theorem gradedMul_add_left {i j : ℕ} (a a' : ⋀[R]^i M) (b : ⋀[R]^j M) :
     gradedMul (a + a') b = gradedMul a b + gradedMul a' b :=
   Subtype.ext (by simp [add_mul])
 
+/--
+@isnad1 id=eq.0h7v.s13.168a166c9893 from=translated src=- shape=b0714289 vocab=30d06535
+-/
 theorem gradedMul_add_right {i j : ℕ} (a : ⋀[R]^i M) (b b' : ⋀[R]^j M) :
     gradedMul a (b + b') = gradedMul a b + gradedMul a b' :=
   Subtype.ext (by simp [mul_add])
 
+/--
+@isnad1 id=eq.0h7v.s12.eab70e54267f from=translated src=- shape=57f0994a vocab=94275019
+-/
 theorem gradedMul_smul_left {i j : ℕ} (r : R) (a : ⋀[R]^i M) (b : ⋀[R]^j M) :
     gradedMul (r • a) b = r • gradedMul a b :=
   Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h7v.s12.56a42246a3ad from=translated src=- shape=2d8b0aed vocab=94275019
+-/
 theorem gradedMul_smul_right {i j : ℕ} (r : R) (a : ⋀[R]^i M) (b : ⋀[R]^j M) :
     gradedMul a (r • b) = r • gradedMul a b :=
   Subtype.ext (by simp)
@@ -122,12 +143,17 @@ noncomputable def wedgeQV : ⋀[R]^2 M →ₗ[R] M →ₗ[R] ⋀[R]^3 M :=
     (fun q v v' => by rw [map_add, gradedMul_add_right])
     (fun r q v => by rw [map_smul, gradedMul_smul_right])
 
-/-- The coercion of `(oneEquiv R M).symm m` into the exterior algebra is `ι R m`.-/
+/-- The coercion of `(oneEquiv R M).symm m` into the exterior algebra is `ι R m`.
+@isnad1 id=eq.0h3v.s12.6fc9394bec9f from=translated src=- shape=bee08ff3 vocab=9d3a3050
+-/
 theorem oneEquiv_symm_coe (m : M) :
     (((exteriorPower.oneEquiv R M).symm m : ⋀[R]^1 M) : ExteriorAlgebra R M)
       = ExteriorAlgebra.ι R m := by
   simp [exteriorPower.oneEquiv_symm_apply, ExteriorAlgebra.ιMulti_apply]
 
+/--
+@isnad1 id=eq.0h3v.s13.cc8dc83c034d from=translated src=- shape=77bcb20c vocab=7143dc31
+-/
 @[simp]
 theorem wedgeVV_self (v : M) : wedgeVV R M v v = 0 := by
   refine Subtype.ext ?_
@@ -137,7 +163,9 @@ theorem wedgeVV_self (v : M) : wedgeVV R M v v = 0 := by
 
 /--
 The triple wedge is invariant under cyclic permutation. In characteristic three, this
-identity yields the Jacobi identity for the truncated exterior Lie bracket.-/
+identity yields the Jacobi identity for the truncated exterior Lie bracket.
+@isnad1 id=eq.0h5v.s15.630c67f4e144 from=translated src=- shape=30e79c76 vocab=851cee0e
+-/
 theorem wedgeQV_wedgeVV_cyclic (u v w : M) :
     wedgeQV R M (wedgeVV R M u v) w = wedgeQV R M (wedgeVV R M v w) u := by
   refine Subtype.ext ?_
@@ -158,23 +186,31 @@ theorem wedgeQV_wedgeVV_cyclic (u v w : M) :
         rw [h1, mul_neg]
     _ = ExteriorAlgebra.ι R v * ExteriorAlgebra.ι R w * ExteriorAlgebra.ι R u := by rw [mul_assoc]
 
-/-- Multiplication by a zero exterior form vanishes.-/
+/-- Multiplication by a zero exterior form vanishes.
+@isnad1 id=eq.0h5v.s12.2357602d64bc from=translated src=- shape=ea19d799 vocab=30d06535
+-/
 @[simp]
 theorem gradedMul_zero_left {i j : ℕ} (b : ⋀[R]^j M) :
     gradedMul (0 : ⋀[R]^i M) b = 0 := Subtype.ext (by simp)
 
-/-- Multiplication with a zero exterior form vanishes.-/
+/-- Multiplication with a zero exterior form vanishes.
+@isnad1 id=eq.0h5v.s12.2761c554af1d from=translated src=- shape=a7b14df7 vocab=30d06535
+-/
 @[simp]
 theorem gradedMul_zero_right {i j : ℕ} (a : ⋀[R]^i M) :
     gradedMul a (0 : ⋀[R]^j M) = 0 := Subtype.ext (by simp)
 
-/-- A degree-one exterior form has square zero.-/
+/-- A degree-one exterior form has square zero.
+@isnad1 id=eq.0h3v.s11.afff4de562d9 from=translated src=- shape=4ab6b6ec vocab=30d06535
+-/
 @[simp]
 theorem gradedMul_one_self (a : ⋀[R]^1 M) : gradedMul a a = 0 := by
   obtain ⟨v, rfl⟩ := (exteriorPower.oneEquiv R M).symm.surjective a
   exact wedgeVV_self v
 
-/-- Triple products of degree-one exterior forms are invariant under cyclic permutation.-/
+/-- Triple products of degree-one exterior forms are invariant under cyclic permutation.
+@isnad1 id=eq.0h5v.s11.789fa9c54c92 from=translated src=- shape=d2a76054 vocab=30d06535
+-/
 theorem gradedMul_one_cyclic (a b c : ⋀[R]^1 M) :
     gradedMul (gradedMul a b) c = gradedMul (gradedMul b c) a := by
   obtain ⟨u, rfl⟩ := (exteriorPower.oneEquiv R M).symm.surjective a
@@ -182,20 +218,26 @@ theorem gradedMul_one_cyclic (a b c : ⋀[R]^1 M) :
   obtain ⟨w, rfl⟩ := (exteriorPower.oneEquiv R M).symm.surjective c
   exact wedgeQV_wedgeVV_cyclic u v w
 
-/-- A triple exterior product with its last two arguments equal vanishes.-/
+/-- A triple exterior product with its last two arguments equal vanishes.
+@isnad1 id=eq.0h4v.s11.880bb284f47f from=translated src=- shape=f6d322d8 vocab=30d06535
+-/
 @[simp]
 theorem gradedMul_one_repeat (a b : ⋀[R]^1 M) :
     gradedMul (gradedMul a b) b = 0 := by
   rw [gradedMul_one_cyclic, gradedMul_one_self, gradedMul_zero_left]
 
-/-- Degree-one exterior forms anticommute.-/
+/-- Degree-one exterior forms anticommute.
+@isnad1 id=eq.0h4v.s11.86c8e9a78e27 from=translated src=- shape=e96b6eaf vocab=7800664e
+-/
 theorem gradedMul_one_swap (a b : ⋀[R]^1 M) : gradedMul a b = -gradedMul b a := by
   have h := gradedMul_one_self (a + b)
   rw [gradedMul_add_left, gradedMul_add_right, gradedMul_add_right,
     gradedMul_one_self, gradedMul_one_self, zero_add, add_zero] at h
   exact eq_neg_of_add_eq_zero_left h
 
-/-- Degree-one and degree-two exterior forms commute.-/
+/-- Degree-one and degree-two exterior forms commute.
+@isnad1 id=eq.0h4v.s11.f3c14dba836a from=translated src=- shape=028c296a vocab=30d06535
+-/
 theorem gradedMul_one_two_comm (a : ⋀[R]^1 M) (q : ⋀[R]^2 M) :
     gradedMul a q = gradedMul q a := by
   have hq : q ∈ Submodule.span R (Set.range (exteriorPower.ιMulti R 2 (M := M))) := by

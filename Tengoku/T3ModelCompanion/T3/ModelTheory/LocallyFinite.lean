@@ -51,7 +51,9 @@ variable {T}
 /-- A finite tuple in a model of a locally finite theory generates a finite substructure.
 
 Paper-ID: model_theory.local_finiteness
-TeX: T3_modelcompanion_v9.tex, Definition 2.4; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.4; no label.
+@isnad1 id=finite.1h5v.s7.96cd863c0494 from=translated src=- shape=c78688e0 vocab=2bd3fe28
+-/
 theorem IsLocallyFinite.finite_closure_range (hT : T.IsLocallyFinite)
     (M : T.ModelType.{u, v, max u v}) {α : Type w} [Finite α] (a : α → M) :
     Finite (Substructure.closure L (Set.range a)) :=
@@ -63,7 +65,9 @@ structure, so in particular it holds modulo the theory. This does not claim that
 of all true quantifier-free formulas is itself finite.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 6, lines 286–287; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 6, lines 286–287; no label.
+@isnad1 id=ex.1h5v.s7.0411df5ebdf8 from=translated src=- shape=7b1f5327 vocab=36c5f15b
+-/
 theorem IsLocallyFinite.exists_finite_tupleQfDiagram [Finite L.Symbols]
     (hT : T.IsLocallyFinite) (M : T.ModelType.{u, v, max u v})
     {α : Type w} [Finite α] (a : α → M) :

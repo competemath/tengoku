@@ -35,7 +35,9 @@ open scoped commutatorElement
 Mathlib numbers this term by `2`, whereas the paper denotes it by `γ₃`.
 
 Paper-ID: preliminaries.elementary_identities
-TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`, v9 Fact 2.15, item 3.-/
+TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`, v9 Fact 2.15, item 3.
+@isnad1 id=eq.0h0v.s8.28385ec3d7b2 from=translated src=- shape=990579c1 vocab=f9836973
+-/
 theorem lowerCentralSeries_two_fin_two_eq_bot :
     (⊤ : Subgroup (Free (Fin 2))).lowerCentralSeries 2 = ⊥ := by
   rw [lowerCentralSeries_two_eq_increasingTripleClosure, increasingTripleClosure]
@@ -54,7 +56,9 @@ theorem lowerCentralSeries_two_fin_two_eq_bot :
 /-- The second upper central term of the free exponent-three group on two generators is full.
 
 Paper-ID: preliminaries.elementary_identities
-TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`, v9 Fact 2.15, item 3.-/
+TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`, v9 Fact 2.15, item 3.
+@isnad1 id=eq.0h0v.s7.ec26f4a71075 from=translated src=- shape=f192c004 vocab=7fc17fe0
+-/
 theorem upperCentralSeries_two_fin_two_eq_top :
     Subgroup.upperCentralSeries (Free (Fin 2)) 2 = ⊤ :=
   Subgroup.lowerCentralSeries_eq_bot_iff_upperCentralSeries_eq_top.mp
@@ -64,7 +68,9 @@ theorem upperCentralSeries_two_fin_two_eq_top :
 The explicit example is the free exponent-three group on two generators.
 
 Paper-ID: preliminaries.elementary_identities
-TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`, v9 Fact 2.15, item 3.-/
+TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`, v9 Fact 2.15, item 3.
+@isnad1 id=not.0h0v.s8.2e186c424870 from=translated src=- shape=eed588a0 vocab=c7dd54f0
+-/
 theorem not_isMulCommutative_upperCentralSeries_two_fin_two :
     ¬ IsMulCommutative (Subgroup.upperCentralSeries (Free (Fin 2)) 2) := by
   intro h

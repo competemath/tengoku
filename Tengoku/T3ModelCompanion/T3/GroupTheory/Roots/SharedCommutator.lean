@@ -90,12 +90,17 @@ TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
 def kernel (g : Fin 3 → G) : Subgroup (Ambient G) :=
   Subgroup.normalClosure (Set.range (relator g))
 
+/--
+@isnad1 id=normal.0h2v.s8.6be4d28c81f1 from=translated src=- shape=60dcf44d vocab=c871fea0
+-/
 instance kernel_normal (g : Fin 3 → G) : (kernel g).Normal := Subgroup.normalClosure_normal
 
 /-- Every relator belongs to the ambient derived subgroup.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=mem.1h3v.s10.e79cf5c08bc2 from=translated src=- shape=a105b7bd vocab=b43cf185
+-/
 theorem relator_mem_commutator (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G) (i : Fin 3) :
     relator g i ∈ commutator (Ambient G) := by
   apply Subgroup.mul_mem
@@ -116,7 +121,9 @@ def bundledRelator (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G) (i : Fin
 /-- The simultaneous relation subgroup is contained in the ambient derived subgroup.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=le.1h2v.s10.1987c44c6c0f from=translated src=- shape=3d55b380 vocab=cf9bd607
+-/
 theorem relationSubgroup_le_commutator (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G) :
     relationSubgroup g ≤ commutator (Ambient G) :=
   (Subgroup.closure_le _).mpr (by rintro _ ⟨i, rfl⟩; exact relator_mem_commutator g hg i)
@@ -124,7 +131,9 @@ theorem relationSubgroup_le_commutator (g : Fin 3 → G) (hg : ∀ i, g i ∈ co
 /-- Claim A identifies the normal closure with `K[K,H₀]`, as a subgroup join.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=eq.1h2v.s11.db4d5205e00b from=translated src=- shape=b7669648 vocab=425684f2
+-/
 theorem kernel_eq_sup_commutator (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G) :
     kernel g = relationSubgroup g ⊔ ⁅relationSubgroup g, (⊤ : Subgroup (Ambient G))⁆ := by
   rw [kernel, ← Subgroup.normalClosure_closure_eq_normalClosure]
@@ -133,7 +142,9 @@ theorem kernel_eq_sup_commutator (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutat
 /-- The kernel remains in the ambient derived subgroup.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=le.1h2v.s10.98c5b6ff1c78 from=translated src=- shape=3d55b380 vocab=1ba5157f
+-/
 theorem kernel_le_commutator (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G) :
     kernel g ≤ commutator (Ambient G) :=
   Subgroup.normalClosure_le_normal (by rintro _ ⟨i, rfl⟩; exact relator_mem_commutator g hg i)
@@ -161,13 +172,17 @@ def generator (g : Fin 3 → G) (i : Fin 3) (j : Fin 2) : Extension g :=
 /-- The simultaneous quotient satisfies the exponent-three law.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=hasexpon.0h2v.s8.108611a2a630 from=translated src=- shape=be598f97 vocab=69213320
+-/
 theorem hasExponentThree_extension (g : Fin 3 → G) : HasExponentThree (Extension g) := Fact.out
 
 /-- Each prescribed element is the commutator of its designated pair of generators.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=eq.0h3v.s9.88f68fa019ac from=translated src=- shape=dfcac29d vocab=d480a645
+-/
 theorem baseMap_root (g : Fin 3 → G) (i : Fin 3) :
     baseMap g (g i) = ⁅generator g i 0, generator g i 1⁆ := by
   have h : (QuotientGroup.mk' (kernel g)) (relator g i) = 1 :=
@@ -205,7 +220,9 @@ noncomputable def freeInitial (i : Fin 3) : Layer (Free (Fin 3)) 2 :=
 /-- The three distinct shared pairs give independent actual second-layer classes.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=linearin.0h0v.s8.8c80a7f2e796 from=translated src=- shape=04e3c201 vocab=eab1e7b0
+-/
 theorem freeInitial_linearIndependent : LinearIndependent (ZMod 3) (freeInitial) :=
   Free.layerTwoBasis.linearIndependent.comp pair pair_injective
 
@@ -224,7 +241,9 @@ private theorem mapLayer_snd_relator (g : Fin 3 → G) (hg : ∀ i, g i ∈ comm
 /-- Claim B: all exponent coefficients vanish in the coefficient field.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=eq.2h6v.s11.cf00ac5c79c9 from=translated src=- shape=c5f8942c vocab=104ab6d5
+-/
 theorem coefficients_eq_zero (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G)
     (m : Fin 3 → ℤ) (h : Fin 3 → Ambient G) {a : G}
     (ha : (normalWord (bundledRelator g hg) m h : Ambient G) = Coproduct.inl a) :
@@ -371,7 +390,9 @@ private theorem centralWord_blocks (g : Fin 3 → G) (hg : ∀ i, g i ∈ commut
 /-- Claim C: a product of central relator commutators cannot be a nontrivial base element.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=eq.2h4v.s11.0a6dc80c9b58 from=translated src=- shape=5a86293e vocab=19cfc0d6
+-/
 theorem centralWord_eq_one (g : Fin 3 → G) (hg : ∀ i, g i ∈ commutator G)
     (h : Fin 3 → Ambient G) {a : G}
     (ha : (normalWord (bundledRelator g hg) 0 h : Ambient G) = Coproduct.inl a) :
@@ -417,7 +438,9 @@ end ExponentThree
 /-- The canonical map to the simultaneous root quotient has trivial kernel.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=eq.2h2v.s8.dc40d0941cc6 from=translated src=- shape=097fd5cb vocab=27069297
+-/
 theorem baseMap_ker (hG : HasExponentThree G) (g : Fin 3 → G)
     (hg : ∀ i, g i ∈ commutator G) : (baseMap g).ker = ⊥ := by
   let : Fact (HasExponentThree G) := ⟨hG⟩
@@ -430,7 +453,9 @@ theorem baseMap_ker (hG : HasExponentThree G) (g : Fin 3 → G)
 /-- All prescribed commutator roots can be adjoined simultaneously without collapsing the base.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, last sentence, applying Lemma 4.7.
+@isnad1 id=injectiv.2h2v.s9.e74a309813bc from=translated src=- shape=733dc3a3 vocab=2667fe32
+-/
 theorem baseMap_injective (hG : HasExponentThree G) (g : Fin 3 → G)
     (hg : ∀ i, g i ∈ commutator G) : Function.Injective (baseMap g) :=
   (MonoidHom.ker_eq_bot_iff _).mp (baseMap_ker hG g hg)

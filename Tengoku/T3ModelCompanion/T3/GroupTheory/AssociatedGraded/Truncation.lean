@@ -65,14 +65,18 @@ def truncationEquiv : GradedModule G ≃ₗ[ZMod 3] Layer G 1 × Layer G 2 × La
 /-- Truncation reads the three homogeneous coordinates.
 
 Paper-ID: preliminaries.free_graded_equiv
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.29, `proposition:gr(F) is Grassmann algebra`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.29, `proposition:gr(F) is Grassmann algebra`.
+@isnad1 id=eq.0h2v.s11.e00af6cdda16 from=translated src=- shape=e8f21baa vocab=a0d509d5
+-/
 @[simp]
 theorem truncationEquiv_apply (x : GradedModule G) : truncationEquiv G x = (x 1, x 2, x 3) := rfl
 
 /-- The inverse truncation inserts the three homogeneous coordinates into the direct sum.
 
 Paper-ID: preliminaries.free_graded_equiv
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.29, `proposition:gr(F) is Grassmann algebra`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.29, `proposition:gr(F) is Grassmann algebra`.
+@isnad1 id=eq.0h2v.s12.828af83e1e02 from=translated src=- shape=2a974180 vocab=8b5c4980
+-/
 @[simp]
 theorem truncationEquiv_symm_apply (x : Layer G 1 × Layer G 2 × Layer G 3) :
     (truncationEquiv G).symm x = DirectSum.lof (ZMod 3) ℕ (Layer G) 1 x.1 +
@@ -82,7 +86,9 @@ theorem truncationEquiv_symm_apply (x : Layer G 1 × Layer G 2 × Layer G 3) :
 
 Paper-ID: preliminaries.associated_graded_properties, preliminaries.free_graded_equiv
 TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19 and Proposition 2.29,
-`proposition:gr(F) is Grassmann algebra`.-/
+`proposition:gr(F) is Grassmann algebra`.
+@isnad1 id=eq.0h3v.s12.f569ab1d82b2 from=translated src=- shape=6a0cef52 vocab=35656935
+-/
 @[simp]
 theorem bracket_three (x y : GradedModule G) :
     ⁅x, y⁆ 3 = bracketLayer (by decide) (by decide) (x 2) (y 1) -

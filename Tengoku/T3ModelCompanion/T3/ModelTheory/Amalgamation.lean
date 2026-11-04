@@ -47,7 +47,9 @@ noncomputable def extensionFormula [Finite L.Symbols] {A : Type w} [Finite A]
 /-- The finite extension formula is existential, with the finite diagram as its matrix.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 325–328.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 325–328.
+@isnad1 id=isexiste.0h4v.s5.0352dd8248db from=translated src=- shape=21bcef05 vocab=96b9553e
+-/
 theorem extensionFormula_isExistential [Finite L.Symbols] {A : Type w} [Finite A]
     {B : Type w'} [L.Structure B] [Finite B] (i : A → B) :
     (extensionFormula (L := L) i).IsExistential :=
@@ -57,7 +59,9 @@ theorem extensionFormula_isExistential [Finite L.Symbols] {A : Type w} [Finite A
 parameter assignment. No model assumption is made on the finite structure.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 325.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 325.
+@isnad1 id=iff.0h6v.s6.3e857ab31167 from=translated src=- shape=e85e563b vocab=9acbe13a
+-/
 theorem realize_extensionFormula_iff [Finite L.Symbols] {A : Type w} [Finite A]
     {B : Type w'} [L.Structure B] [Finite B] (i : A → B)
     {N : Type w''} [L.Structure N] (a : A → N) :
@@ -90,7 +94,9 @@ variable {T : L.Theory} {A : Type w} {B : Type w'} {C : Type w''} {D : Type w'''
 /-- Amalgamation is symmetric in the two extensions.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, amalgamation over A.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, amalgamation over A.
+@isnad1 id=amalgama.1h7v.s5.6058829cdfcb from=translated src=- shape=cf569f7e vocab=50b86a81
+-/
 theorem AmalgamableOver.symm {i : A ↪[L] B} {j : A ↪[L] C}
     (h : T.AmalgamableOver i j) : T.AmalgamableOver j i := by
   obtain ⟨N, f, g, heq⟩ := h
@@ -99,7 +105,9 @@ theorem AmalgamableOver.symm {i : A ↪[L] B} {j : A ↪[L] C}
 /-- Restricting an amalgam along an embedding on its right side gives an amalgam.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 354–356.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 354–356.
+@isnad1 id=amalgama.1h9v.s6.afb0daa9cde7 from=translated src=- shape=e455a386 vocab=97578240
+-/
 theorem AmalgamableOver.of_comp_right {i : A ↪[L] B} {j : A ↪[L] C}
     (e : C ↪[L] D) (h : T.AmalgamableOver i (e.comp j)) : T.AmalgamableOver i j := by
   obtain ⟨N, f, g, heq⟩ := h
@@ -109,7 +117,9 @@ theorem AmalgamableOver.of_comp_right {i : A ↪[L] B} {j : A ↪[L] C}
 an embedding of that extension back into the model over the finite base.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.
+@isnad1 id=iff.1h7v.s6.972677109610 from=translated src=- shape=4aa1c17b vocab=e7636b34
+-/
 theorem IsExistentiallyClosed.amalgamableOver_iff_exists_embedding [Finite L.Symbols]
     [Finite A] [Finite B] {M : Type (max u v)} [L.Structure M]
     (hM : T.IsExistentiallyClosed M) (i : A ↪[L] B) (j : A ↪[L] M) :
@@ -127,7 +137,9 @@ theorem IsExistentiallyClosed.amalgamableOver_iff_exists_embedding [Finite L.Sym
 /-- The finite extension formula expresses amalgamation with an existentially closed model.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.
+@isnad1 id=iff.1h7v.s6.b3560ff1c3b0 from=translated src=- shape=7af8437d vocab=2ba353ed
+-/
 theorem IsExistentiallyClosed.amalgamableOver_iff_realize_extensionFormula [Finite L.Symbols]
     [Finite A] [Finite B] {M : Type (max u v)} [L.Structure M]
     (hM : T.IsExistentiallyClosed M) (i : A ↪[L] B) (j : A ↪[L] M) :

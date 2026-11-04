@@ -62,7 +62,9 @@ def witness (i : Fin n) : Free (Fin (3 * n)) :=
 /-- Every triple root witness is central in the free exponent-three group.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=mem.0h2v.s8.e2ecf8baffe0 from=translated src=- shape=1b244795 vocab=c06be8c5
+-/
 theorem witness_mem_center (i : Fin n) : witness i ∈ Subgroup.center (Free (Fin (3 * n))) :=
   T3.commutator_mem_center_of_mem_commutator Free.pow_three
     (Subgroup.commutator_mem_commutator (Subgroup.mem_top _) (Subgroup.mem_top _)) _
@@ -81,13 +83,18 @@ TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
 def kernel (z : Fin n → G) : Subgroup (G × Free (Fin (3 * n))) :=
   Subgroup.normalClosure (Set.range (relator z))
 
+/--
+@isnad1 id=normal.0h3v.s6.772f49a1fa58 from=translated src=- shape=6ae26b20 vocab=eb41ca59
+-/
 instance kernel_normal (z : Fin n → G) : (kernel z).Normal :=
   Subgroup.normalClosure_normal
 
 /-- Each relator is central when the specified base elements are central.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=mem.1h4v.s8.88395bfe1443 from=translated src=- shape=d642ea2c vocab=5c390413
+-/
 theorem relator_mem_center (z : Fin n → G) (hz : ∀ i, z i ∈ Subgroup.center G) (i : Fin n) :
     relator z i ∈ Subgroup.center (G × Free (Fin (3 * n))) := by
   rw [Subgroup.mem_center_iff]
@@ -98,7 +105,9 @@ theorem relator_mem_center (z : Fin n → G) (hz : ∀ i, z i ∈ Subgroup.cente
 /-- Since all simultaneous relations are central, normal closure equals ordinary closure.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=eq.1h3v.s8.3b2c25c6ed65 from=translated src=- shape=222a3e59 vocab=5f32a540
+-/
 theorem kernel_eq_closure (z : Fin n → G) (hz : ∀ i, z i ∈ Subgroup.center G) :
     kernel z = Subgroup.closure (Set.range (relator z)) := by
   have hc : Subgroup.closure (Set.range (relator z)) ≤ Subgroup.center _ :=
@@ -244,7 +253,9 @@ def generator (z : Fin n → G) (i : Fin n) (j : Fin 3) : Extension z :=
 /-- The simultaneous root extension again has exponent dividing three.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=hasexpon.1h3v.s7.cd742b4dfe2f from=translated src=- shape=4f2eab9b vocab=cdc0d69d
+-/
 theorem hasExponentThree_extension (hG : HasExponentThree G) (z : Fin n → G) :
     HasExponentThree (Extension z) := by
   let : Fact (HasExponentThree G) := ⟨hG⟩
@@ -253,7 +264,9 @@ theorem hasExponentThree_extension (hG : HasExponentThree G) (z : Fin n → G) :
 /-- The natural map into the paper's concrete simultaneous root quotient has trivial kernel.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=eq.2h3v.s7.2f1dc0b7d555 from=translated src=- shape=7292b627 vocab=74584595
+-/
 theorem baseMap_ker (hG : HasExponentThree G) (z : Fin n → G)
     (hz : ∀ i, z i ∈ Subgroup.center G) : (baseMap z).ker = ⊥ := by
   apply le_antisymm _ bot_le
@@ -267,7 +280,9 @@ theorem baseMap_ker (hG : HasExponentThree G) (z : Fin n → G)
 There is no nontriviality or rank assumption on `G`, and `n = 0` is included.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=injectiv.2h3v.s8.30b42f9908ed from=translated src=- shape=e28696b2 vocab=913b5abe
+-/
 theorem baseMap_injective (hG : HasExponentThree G) (z : Fin n → G)
     (hz : ∀ i, z i ∈ Subgroup.center G) : Function.Injective (baseMap z) :=
   (MonoidHom.ker_eq_bot_iff _).mp (baseMap_ker hG z hz)
@@ -275,7 +290,9 @@ theorem baseMap_injective (hG : HasExponentThree G) (z : Fin n → G)
 /-- Each designated base element becomes its prescribed triple commutator in the quotient.
 
 Paper-ID: structure.simultaneous_triple_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:triple commutator root`, v9 Lemma 4.9.
+@isnad1 id=eq.0h4v.s9.69dbfaaecc22 from=translated src=- shape=9046d3e1 vocab=8aa7e033
+-/
 theorem baseMap_root (z : Fin n → G) (i : Fin n) :
     baseMap z (z i) = ⁅⁅generator z i 0, generator z i 1⁆, generator z i 2⁆ := by
   change (QuotientGroup.mk' (kernel z)) (MonoidHom.inl G _ (z i)) =

@@ -36,7 +36,9 @@ open FirstOrder FirstOrder.Language
 group of that exponent finite.
 
 Paper-ID: questions.burnside_local_finiteness
-TeX: archives/T3_modelcompanion_v7.tex, Section 6, lines 1522–1525.-/
+TeX: archives/T3_modelcompanion_v7.tex, Section 6, lines 1522–1525.
+@isnad1 id=finite.3h3v.s6.690a80d9b6da from=translated src=- shape=2aec8cc7 vocab=176a63d9
+-/
 theorem finite_closure_of_finite_burnside {n : ℕ}
     (hfree : ∀ r : ℕ, 0 < r → Finite (Burnside n (Fin r)))
     {G : Type*} [Group G] (hG : ∀ x : G, x ^ n = 1)

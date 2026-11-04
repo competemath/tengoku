@@ -107,7 +107,9 @@ noncomputable def normalWordFinsupp (l : I →₀ ZMod 3) (m : IncreasingPair I 
 /-- The degree-one readout recovers the generator exponents of the ascending block.
 
 Paper-ID: preliminaries.infinite_normal_form
-TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.-/
+TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.
+@isnad1 id=eq.0h2v.s8.26027626dcc3 from=translated src=- shape=aa4fbbe1 vocab=bb21177b
+-/
 theorem genReadout_generatorWordFinsupp (l : I →₀ ZMod 3) :
     genReadout (generatorWordFinsupp l) = Multiplicative.ofAdd (l : I → ZMod 3) := by
   classical
@@ -119,7 +121,9 @@ theorem genReadout_generatorWordFinsupp (l : I →₀ ZMod 3) :
 /-- The degree-two readout recovers the commutator exponents of the second block.
 
 Paper-ID: preliminaries.infinite_normal_form
-TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.-/
+TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.
+@isnad1 id=eq.0h2v.s11.a3131478e7ed from=translated src=- shape=7965cbf4 vocab=e529309f
+-/
 theorem pairReadout_pairWordFinsupp (m : IncreasingPair I →₀ ZMod 3) :
     pairReadout (pairWordFinsupp m) =
       Multiplicative.ofAdd (m : IncreasingPair I → ZMod 3) := by
@@ -135,7 +139,9 @@ theorem pairReadout_pairWordFinsupp (m : IncreasingPair I →₀ ZMod 3) :
 /-- The degree-three readout recovers the triple commutator exponents of the final block.
 
 Paper-ID: preliminaries.infinite_normal_form
-TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.-/
+TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.
+@isnad1 id=eq.0h2v.s14.ec2576e54e3f from=translated src=- shape=72c02387 vocab=b363aa18
+-/
 theorem tripleReadout_tripleWordFinsupp (n : IncreasingTriple I →₀ ZMod 3) :
     tripleReadout (tripleWordFinsupp n) =
       Multiplicative.ofAdd (n : IncreasingTriple I → ZMod 3) := by
@@ -152,7 +158,9 @@ theorem tripleReadout_tripleWordFinsupp (n : IncreasingTriple I →₀ ZMod 3) :
 /-- The degree-one readout of the whole normal word gives its generator exponents.
 
 Paper-ID: preliminaries.infinite_normal_form
-TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.-/
+TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.
+@isnad1 id=eq.0h4v.s9.d34235561a99 from=translated src=- shape=0bf46f05 vocab=aa4fc667
+-/
 theorem genReadout_normalWordFinsupp (l : I →₀ ZMod 3) (m : IncreasingPair I →₀ ZMod 3)
     (n : IncreasingTriple I →₀ ZMod 3) :
     genReadout (normalWordFinsupp l m n) = Multiplicative.ofAdd (l : I → ZMod 3) := by
@@ -165,7 +173,9 @@ theorem genReadout_normalWordFinsupp (l : I →₀ ZMod 3) (m : IncreasingPair I
 /-- The final readout is injective without a finite-rank assumption.
 
 Paper-ID: preliminaries.infinite_normal_form
-TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.-/
+TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.
+@isnad1 id=injectiv.0h1v.s14.a69e7a5585d4 from=translated src=- shape=ccaecf9d vocab=cddf975e
+-/
 theorem tripleReadout_injective : Function.Injective (tripleReadout (I := I)) := by
   rw [← MonoidHom.ker_eq_bot_iff, eq_bot_iff]
   intro x hx
@@ -188,7 +198,9 @@ theorem tripleReadout_injective : Function.Injective (tripleReadout (I := I)) :=
 /-- Every element in arbitrary rank is represented by a finitely supported normal word.
 
 Paper-ID: preliminaries.infinite_normal_form
-TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.-/
+TeX: T3_modelcompanion_v9.tex, `remark:infinite dim`, v9 Remark 2.28.
+@isnad1 id=surjecti.0h1v.s9.007177c303ec from=translated src=- shape=f1238e4b vocab=9470aa3b
+-/
 theorem normalWordFinsupp_surjective : Function.Surjective
     (fun c : (I →₀ ZMod 3) × (IncreasingPair I →₀ ZMod 3) × (IncreasingTriple I →₀ ZMod 3) =>
       normalWordFinsupp c.1 c.2.1 c.2.2) := by

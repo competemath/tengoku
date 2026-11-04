@@ -55,7 +55,9 @@ def filterLinearMap {ι : Type*} (p : ι → Prop) [DecidablePred p] :
 /-- An exterior-basis index has at most its total degree many left indices.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=le.0h4v.s4.7daab21f626a from=translated src=- shape=e6fe695e vocab=92bb55a6
+-/
 theorem leftCount_le {n : ℕ} (s : Set.powersetCard (I ⊕ J) n) : leftCount s ≤ n :=
   (Finset.card_filter_le _ _).trans_eq s.property
 
@@ -73,7 +75,9 @@ noncomputable def projection (n k : ℕ) : (⋀[R]^n M) →ₗ[R] (⋀[R]^n M) :
 /-- The block projection filters the exterior coordinates by the number of left indices.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h9v.s14.9d4961f1ddb2 from=translated src=- shape=8bd26df5 vocab=fcfe7721
+-/
 @[simp]
 theorem projection_repr (n k : ℕ) (x : ⋀[R]^n M) (s : Set.powersetCard (I ⊕ J) n) :
     (b.exteriorPower n).repr (projection b n k x) s =
@@ -87,7 +91,9 @@ theorem projection_repr (n k : ℕ) (x : ⋀[R]^n M) (s : Set.powersetCard (I �
 /-- The finitely many possible block projections sum to the original exterior vector.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h7v.s13.c56093912d6d from=translated src=- shape=95825bc0 vocab=d890cb7f
+-/
 theorem sum_projection (n : ℕ) (x : ⋀[R]^n M) :
     (∑ k ∈ Finset.range (n + 1), projection b n k x) = x := by
   apply (b.exteriorPower n).repr.injective
@@ -102,7 +108,9 @@ theorem sum_projection (n : ℕ) (x : ⋀[R]^n M) :
 /-- Each block projection is idempotent.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h8v.s14.7d7ef00451da from=translated src=- shape=fc684fad vocab=590d6887
+-/
 @[simp]
 theorem projection_idem (n k : ℕ) (x : ⋀[R]^n M) :
     projection b n k (projection b n k x) = projection b n k x := by
@@ -114,7 +122,9 @@ theorem projection_idem (n k : ℕ) (x : ⋀[R]^n M) :
 /-- Distinct blocks have orthogonal projections.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.1h9v.s13.acf2fadb8024 from=translated src=- shape=cda0e16e vocab=590d6887
+-/
 theorem projection_orthogonal (n k l : ℕ) (hkl : k ≠ l) (x : ⋀[R]^n M) :
     projection b n k (projection b n l x) = 0 := by
   apply (b.exteriorPower n).repr.injective
@@ -151,7 +161,9 @@ noncomputable def decompositionMap (n : ℕ) :
 /-- The component of the decomposition map is the corresponding exterior projection.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h8v.s17.1a3f96b7d9cb from=translated src=- shape=54e658e7 vocab=8c80d286
+-/
 theorem decompositionMap_apply (n : ℕ) (x : ⋀[R]^n M) (k : Fin (n + 1)) :
     ((decompositionMap b n x) k : ⋀[R]^n M) = projection b n k x := by
   change (block b n k).subtype (DirectSum.component R (Fin (n + 1))
@@ -208,7 +220,9 @@ noncomputable instance blockDecomposition (n : ℕ) : DirectSum.Decomposition (b
 /-- The standard decomposition exposes precisely the count-based exterior projections.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h8v.s17.7e69eef883e1 from=translated src=- shape=6cbe9fb1 vocab=5f0348a9
+-/
 theorem coe_decompose (n : ℕ) (x : ⋀[R]^n M) (k : Fin (n + 1)) :
     (DirectSum.decompose (block b n) x k : ⋀[R]^n M) = projection b n k x :=
   decompositionMap_apply b n x k

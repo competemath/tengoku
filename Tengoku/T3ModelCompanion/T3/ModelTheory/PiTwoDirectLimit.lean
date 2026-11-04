@@ -41,7 +41,9 @@ variable {L : Language.{u, v}} {ι : Type w'} [Preorder ι]
 every tuple of the directed limit. Existential witnesses are transported from a component.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=realize.2h7v.s7.8d03ab80a8e7 from=translated src=- shape=788c0dd8 vocab=c83d25c5
+-/
 theorem realize_of_isUniversalExistential :
     ∀ {n : ℕ} {φ : L.BoundedFormula Empty n}, φ.IsUniversalExistential →
       (∀ (i : ι) (xs : Fin n → G i), φ.Realize default xs) →
@@ -70,7 +72,9 @@ of that theory. The given axioms need not themselves be universal-existential se
 The index and structure universes are arbitrary.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=model.2h5v.s7.107271e53a99 from=translated src=- shape=5a1ab620 vocab=2ae7effe
+-/
 theorem models_of_isPiTwo {T : L.Theory} [∀ i, Nonempty (G i)] (hT : T.IsPiTwo)
     (h : ∀ i, G i ⊨ T) : DirectLimit G f ⊨ T := by
   classical

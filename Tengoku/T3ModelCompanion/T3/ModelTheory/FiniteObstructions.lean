@@ -41,7 +41,9 @@ variable {L : Language.{u, v}}
 Nullary symbols and positive and negative relation tables are included.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 346.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 346.
+@isnad1 id=finite.0h2v.s3.052fcf3a81b4 from=translated src=- shape=fd5c0c0f vocab=45a98b2f
+-/
 instance finiteStructure [Finite L.Symbols] (A : Type w) [Finite A] : Finite (L.Structure A) := by
   let encode (s : L.Structure A) :
       ((p : Σ n, L.Functions n) → (Fin p.1 → A) → A) ×
@@ -63,7 +65,9 @@ instance finiteStructure [Finite L.Symbols] (A : Type w) [Finite A] : Finite (L.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
 TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, marked types on
-line 346.-/
+line 346.
+@isnad1 id=finite.0h3v.s4.89ccd15ec844 from=translated src=- shape=0d3a5937 vocab=3839c2f6
+-/
 instance finiteEmbedding {A : Type w} {B : Type w'} [L.Structure A] [L.Structure B]
     [Finite A] [Finite B] : Finite (A ↪[L] B) :=
   Finite.of_injective DFunLike.coe DFunLike.coe_injective
@@ -102,7 +106,9 @@ instance [Finite L.Symbols] [Finite A] : Finite (FiniteMarkedStructure (L := L) 
 one of the finitely many fixed-carrier structures.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 346.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 346.
+@isnad1 id=ex.1h5v.s7.4d0997e0127d from=translated src=- shape=14ac8abc vocab=37323dfb
+-/
 theorem exists_equiv {C : Type w'} [L.Structure C] [Finite C]
     (j : A ↪[L] C) (hC : Nat.card C ≤ m) :
     ∃ (p : FiniteMarkedStructure (L := L) A m) (e : C ≃[L] p.Carrier),
@@ -159,7 +165,9 @@ def mark (p : BadMarkedStructure d n m) : d.base ↪[L] p.Carrier := p.val.mark
 /-- Every forbidden representative embeds into a model of the original theory.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, item 1, line 342.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, item 1, line 342.
+@isnad1 id=embeddab.0h6v.s5.51b4ec1163a3 from=translated src=- shape=3ed18c87 vocab=4f841832
+-/
 theorem embeddable (p : BadMarkedStructure d n m) : T.Embeddable p.Carrier := by
   obtain ⟨M, C, j, hgen, hbad, e, he⟩ := p.property
   exact ⟨M, ⟨C.subtype.comp e.symm.toEmbedding⟩⟩
@@ -167,7 +175,9 @@ theorem embeddable (p : BadMarkedStructure d n m) : T.Embeddable p.Carrier := by
 /-- No forbidden representative has an amalgam with the prescribed extension over its base.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, item 2, line 343.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, item 2, line 343.
+@isnad1 id=not.0h6v.s6.a08a00a4278e from=translated src=- shape=63e9acb8 vocab=76458a3b
+-/
 theorem not_amalgamable (p : BadMarkedStructure d n m) :
     ¬ T.AmalgamableOver d.incl p.mark := by
   obtain ⟨M, C, j, hgen, hbad, e, he⟩ := p.property
@@ -182,7 +192,9 @@ end BadMarkedStructure
 obstruction occurring inside a model. The isomorphisms fix the complete marked base.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 340–346.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 340–346.
+@isnad1 id=ex.1h4v.s9.b71b7a94d632 from=translated src=- shape=a34937f4 vocab=81a1f000
+-/
 theorem IsLocallyFinite.exists_finite_bad_marked_cover [Finite L.Symbols]
     (hLF : T.IsLocallyFinite) (d : FiniteInclusion T) (n : ℕ) :
     ∃ m : ℕ, ∀ (M : T.ModelType.{u, v, max u v}) (C : L.Substructure M)

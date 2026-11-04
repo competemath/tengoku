@@ -38,7 +38,9 @@ abbrev pairedCyclic (n : ℕ) : Subgroup (Free ℕ) := Subgroup.zpowers (pairedC
 /-- The cyclic bases are finitely generated, including the trivial base at `n = 0`.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, the cyclic subgroup `Aₙ` preceding Proposition 5.5.-/
+TeX: T3_modelcompanion_v9.tex, the cyclic subgroup `Aₙ` preceding Proposition 5.5.
+@isnad1 id=fg.0h1v.s6.9e74ecf0d46a from=translated src=- shape=43effe92 vocab=2572050b
+-/
 instance pairedCyclic_fg (n : ℕ) : Group.FG (pairedCyclic n) := by
   classical
   apply Group.fg_iff'.mpr
@@ -49,7 +51,9 @@ instance pairedCyclic_fg (n : ℕ) : Group.FG (pairedCyclic n) := by
 /-- Every nontrivial cyclic base has precisely three elements.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, `Aₙ` is nontrivial of exponent three, line 1450.-/
+TeX: T3_modelcompanion_v9.tex, `Aₙ` is nontrivial of exponent three, line 1450.
+@isnad1 id=eq.1h1v.s6.f1397a352a0e from=translated src=- shape=6abdbaf9 vocab=d20edef5
+-/
 theorem natCard_pairedCyclic {n : ℕ} (hn : 0 < n) : Nat.card (pairedCyclic n) = 3 := by
   rw [pairedCyclic, Nat.card_zpowers]
   exact orderOf_eq_three pow_three (pairedCommutator_ne_one hn)
@@ -57,7 +61,9 @@ theorem natCard_pairedCyclic {n : ℕ} (hn : 0 < n) : Nat.card (pairedCyclic n) 
 /-- The cyclic bases are finite.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, the finite cyclic bases preceding Proposition 5.5.-/
+TeX: T3_modelcompanion_v9.tex, the finite cyclic bases preceding Proposition 5.5.
+@isnad1 id=finite.1h1v.s6.0aef743d5fc9 from=translated src=- shape=fefd14e3 vocab=2b4593be
+-/
 theorem finite_pairedCyclic {n : ℕ} (hn : 0 < n) : Finite (pairedCyclic n) :=
   Nat.finite_of_card_ne_zero (by rw [natCard_pairedCyclic hn]; decide)
 
@@ -75,7 +81,9 @@ def pairedCyclicEquiv {n m : ℕ} (hn : 0 < n) (hm : 0 < m) :
 /-- Each positive cyclic base has generator rank exactly one.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, `d(Aₙ) = 1` after Proposition 5.5, line 1468.-/
+TeX: T3_modelcompanion_v9.tex, `d(Aₙ) = 1` after Proposition 5.5, line 1468.
+@isnad1 id=eq.1h1v.s6.34a24dc654a7 from=translated src=- shape=6abdbaf9 vocab=d29523fa
+-/
 theorem rank_pairedCyclic {n : ℕ} (hn : 0 < n) : Group.rank (pairedCyclic n) = 1 := by
   classical
   let : Nontrivial (pairedCyclic n) :=
@@ -92,7 +100,9 @@ theorem rank_pairedCyclic {n : ℕ} (hn : 0 < n) : Group.rank (pairedCyclic n) =
 /-- The fixed other factor in all obstruction examples has generator rank exactly three.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, `d(F₃) = 3` after Proposition 5.5, line 1468.-/
+TeX: T3_modelcompanion_v9.tex, `d(F₃) = 3` after Proposition 5.5, line 1468.
+@isnad1 id=eq.0h0v.s5.07aa0d6ff790 from=translated src=- shape=120b6148 vocab=9761d356
+-/
 theorem rank_free_three : Group.rank (Free (Fin 3)) = 3 := by
   apply Nat.le_antisymm
   · simpa using (rank_le_card (I := Fin 3))
@@ -110,7 +120,9 @@ def pairedCyclicToFreeThree {n : ℕ} (hn : 0 < n) : pairedCyclic n →* Free (F
 is injective.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, the identification `aₙ ↦ s` preceding Proposition 5.5.-/
+TeX: T3_modelcompanion_v9.tex, the identification `aₙ ↦ s` preceding Proposition 5.5.
+@isnad1 id=injectiv.1h1v.s10.84a96d66fa7d from=translated src=- shape=4ff3bba2 vocab=8b3e2208
+-/
 theorem pairedCyclicToFreeThree_injective {n : ℕ} (hn : 0 < n) :
     Function.Injective (pairedCyclicToFreeThree hn) :=
   cyclicToFreeThree_injective pow_three (pairedCommutator n) (pairedCommutator_ne_one hn)
@@ -119,7 +131,9 @@ theorem pairedCyclicToFreeThree_injective {n : ℕ} (hn : 0 < n) :
 over any positive member of the family of cyclic bases.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, non-amalgamation preceding Proposition 5.5, line 1451.-/
+TeX: T3_modelcompanion_v9.tex, non-amalgamation preceding Proposition 5.5, line 1451.
+@isnad1 id=not.1h1v.s7.b89003f50996 from=translated src=- shape=d562de25 vocab=c12316ad
+-/
 theorem not_amalgamableOver_pairedCyclic {n : ℕ} (hn : 0 < n) :
     ¬ AmalgamableOver (pairedCyclic n).subtype (pairedCyclicToFreeThree hn) := by
   intro h
@@ -130,7 +144,9 @@ theorem not_amalgamableOver_pairedCyclic {n : ℕ} (hn : 0 < n) :
 generators. The cardinal form includes subgroups which are not finitely generated.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, Proposition 5.5, item 1.-/
+TeX: T3_modelcompanion_v9.tex, Proposition 5.5, item 1.
+@isnad1 id=le.2h2v.s7.49e67a4c48d2 from=translated src=- shape=f88bd2c7 vocab=6349260e
+-/
 theorem pairedCyclic_strict_cardinalRank_le (n : ℕ) (D : Subgroup (Free ℕ))
     (hAD : pairedCyclic n ≤ D) (hD : IsStrict D) :
     ((2 * n : ℕ) : Cardinal) ≤ Group.cardinalRank D := by
@@ -142,7 +158,9 @@ theorem pairedCyclic_strict_cardinalRank_le (n : ℕ) (D : Subgroup (Free ℕ))
 `2n` generators. Both base maps are the specified maps from the same ambient subgroup `Aₙ`.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, Proposition 5.5, item 2.-/
+TeX: T3_modelcompanion_v9.tex, Proposition 5.5, item 2.
+@isnad1 id=le.3h2v.s8.267aa9291209 from=translated src=- shape=f264a303 vocab=01aff36a
+-/
 theorem pairedCyclic_obstruction_cardinalRank_le {n : ℕ} (hn : 0 < n)
     (D : Subgroup (Free ℕ)) (hAD : pairedCyclic n ≤ D)
     (hbad : ¬ AmalgamableOver (Subgroup.inclusion hAD) (pairedCyclicToFreeThree hn)) :
@@ -161,7 +179,9 @@ theorem pairedCyclic_obstruction_cardinalRank_le {n : ℕ} (hn : 0 < n)
 single ambient group `Fω`. Every counterexample base has exactly one generator.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, the failure of the finite-envelope bound after Proposition 5.5.-/
+TeX: T3_modelcompanion_v9.tex, the failure of the finite-envelope bound after Proposition 5.5.
+@isnad1 id=ex.0h1v.s8.b01e3cc7c389 from=translated src=- shape=50c66eeb vocab=390e9fb6
+-/
 theorem exists_cyclic_without_bounded_strict_envelope (k : ℕ) :
     ∃ n : ℕ, 0 < n ∧ Group.rank (pairedCyclic n) = 1 ∧
       ∀ D : Subgroup (Free ℕ), pairedCyclic n ≤ D → IsStrict D →
@@ -176,7 +196,9 @@ theorem exists_cyclic_without_bounded_strict_envelope (k : ℕ) :
 the single ambient group `Fω` has no uniform bound on the number of witness generators.
 
 Paper-ID: examples.unbounded_witness_rank
-TeX: T3_modelcompanion_v9.tex, the failure of the bounded-obstruction bound after Proposition 5.5.-/
+TeX: T3_modelcompanion_v9.tex, the failure of the bounded-obstruction bound after Proposition 5.5.
+@isnad1 id=ex.0h1v.s9.7d525c57ae3f from=translated src=- shape=5135fa5a vocab=68ab2fea
+-/
 theorem exists_cyclic_without_bounded_obstruction (k : ℕ) :
     ∃ (n : ℕ) (hn : 0 < n), Group.rank (pairedCyclic n) = 1 ∧
       ¬ AmalgamableOver (pairedCyclic n).subtype (pairedCyclicToFreeThree hn) ∧

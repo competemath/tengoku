@@ -92,12 +92,17 @@ TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
 def kernel (g : Fin n → G) : Subgroup (Ambient G n) :=
   Subgroup.normalClosure (Set.range (relator g))
 
+/--
+@isnad1 id=normal.0h3v.s8.1a3da44664f2 from=translated src=- shape=02de8c97 vocab=6d4f96d6
+-/
 instance kernel_normal (g : Fin n → G) : (kernel g).Normal := Subgroup.normalClosure_normal
 
 /-- Every relator belongs to the ambient derived subgroup.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=mem.1h4v.s10.248c05379806 from=translated src=- shape=7f798d76 vocab=e0b83bf0
+-/
 theorem relator_mem_commutator (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G) (i : Fin n) :
     relator g i ∈ commutator (Ambient G n) := by
   apply Subgroup.mul_mem
@@ -118,7 +123,9 @@ def bundledRelator (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G) (i : Fin
 /-- The simultaneous relation subgroup is contained in the ambient derived subgroup.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=le.1h3v.s11.4a285dc20be1 from=translated src=- shape=d75785de vocab=3ff7a67a
+-/
 theorem relationSubgroup_le_commutator (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G) :
     relationSubgroup g ≤ commutator (Ambient G n) :=
   (Subgroup.closure_le _).mpr (by rintro _ ⟨i, rfl⟩; exact relator_mem_commutator g hg i)
@@ -126,7 +133,9 @@ theorem relationSubgroup_le_commutator (g : Fin n → G) (hg : ∀ i, g i ∈ co
 /-- Claim A identifies the normal closure with `K[K,H₀]`, as a subgroup join.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=eq.1h3v.s12.2991f120d082 from=translated src=- shape=8c5571ca vocab=e77062be
+-/
 theorem kernel_eq_sup_commutator (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G) :
     kernel g = relationSubgroup g ⊔ ⁅relationSubgroup g, (⊤ : Subgroup (Ambient G n))⁆ := by
   rw [kernel, ← Subgroup.normalClosure_closure_eq_normalClosure]
@@ -135,7 +144,9 @@ theorem kernel_eq_sup_commutator (g : Fin n → G) (hg : ∀ i, g i ∈ commutat
 /-- The kernel remains in the ambient derived subgroup.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=le.1h3v.s11.198d153f0510 from=translated src=- shape=d75785de vocab=7734b4d9
+-/
 theorem kernel_le_commutator (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G) :
     kernel g ≤ commutator (Ambient G n) :=
   Subgroup.normalClosure_le_normal (by rintro _ ⟨i, rfl⟩; exact relator_mem_commutator g hg i)
@@ -163,13 +174,17 @@ def generator (g : Fin n → G) (i : Fin n) (j : Fin 2) : Extension g :=
 /-- The simultaneous quotient satisfies the exponent-three law.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=hasexpon.0h3v.s8.aa8900fc2a24 from=translated src=- shape=5e10f6a1 vocab=eac1d414
+-/
 theorem hasExponentThree_extension (g : Fin n → G) : HasExponentThree (Extension g) := Fact.out
 
 /-- Each prescribed element is the commutator of its designated pair of generators.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=eq.0h4v.s10.4d14250272f5 from=translated src=- shape=59661777 vocab=6efe5eae
+-/
 theorem baseMap_root (g : Fin n → G) (i : Fin n) :
     baseMap g (g i) = ⁅generator g i 0, generator g i 1⁆ := by
   have h : (QuotientGroup.mk' (kernel g)) (relator g i) = 1 :=
@@ -207,7 +222,9 @@ noncomputable def freeInitial (i : Fin n) : Layer (Free (Fin (2 * n))) 2 :=
 /-- Distinct root blocks give linearly independent actual second-layer classes.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=linearin.0h1v.s8.1ccbf568b572 from=translated src=- shape=5fa5e926 vocab=da1f1df6
+-/
 theorem freeInitial_linearIndependent : LinearIndependent (ZMod 3) (freeInitial (n := n)) :=
   Free.layerTwoBasis.linearIndependent.comp pair pair_injective
 
@@ -226,7 +243,9 @@ private theorem mapLayer_snd_relator (g : Fin n → G) (hg : ∀ i, g i ∈ comm
 /-- Claim B: all exponent coefficients vanish in the coefficient field.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=eq.2h7v.s12.cd2894dd6d59 from=translated src=- shape=8c017310 vocab=ca578ac7
+-/
 theorem coefficients_eq_zero (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G)
     (m : Fin n → ℤ) (h : Fin n → Ambient G n) {a : G}
     (ha : (normalWord (bundledRelator g hg) m h : Ambient G n) = Coproduct.inl a) :
@@ -373,7 +392,9 @@ private theorem centralWord_blocks (g : Fin n → G) (hg : ∀ i, g i ∈ commut
 /-- Claim C: a product of central relator commutators cannot be a nontrivial base element.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=eq.2h5v.s12.f046f6de924b from=translated src=- shape=fe5c8a74 vocab=aad468a1
+-/
 theorem centralWord_eq_one (g : Fin n → G) (hg : ∀ i, g i ∈ commutator G)
     (h : Fin n → Ambient G n) {a : G}
     (ha : (normalWord (bundledRelator g hg) 0 h : Ambient G n) = Coproduct.inl a) :
@@ -419,7 +440,9 @@ end ExponentThree
 /-- The canonical map to the simultaneous root quotient has trivial kernel.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=eq.2h3v.s9.7d15a0c6ead8 from=translated src=- shape=7292b627 vocab=5799c37e
+-/
 theorem baseMap_ker (hG : HasExponentThree G) (g : Fin n → G)
     (hg : ∀ i, g i ∈ commutator G) : (baseMap g).ker = ⊥ := by
   let : Fact (HasExponentThree G) := ⟨hG⟩
@@ -432,7 +455,9 @@ theorem baseMap_ker (hG : HasExponentThree G) (g : Fin n → G)
 /-- All prescribed commutator roots can be adjoined simultaneously without collapsing the base.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, v9 Lemma 4.7.
+@isnad1 id=injectiv.2h3v.s10.cab1179b32bd from=translated src=- shape=e28696b2 vocab=c4244438
+-/
 theorem baseMap_injective (hG : HasExponentThree G) (g : Fin n → G)
     (hg : ∀ i, g i ∈ commutator G) : Function.Injective (baseMap g) :=
   (MonoidHom.ker_eq_bot_iff _).mp (baseMap_ker hG g hg)

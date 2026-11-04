@@ -34,7 +34,9 @@ variable {L : Language.{u, v}} {T : L.Theory}
 generate finite substructures in every nonempty model, without a cardinality hypothesis.
 
 Paper-ID: model_theory.local_finiteness
-TeX: T3_modelcompanion_v9.tex, Definition 2.4, lines 297–300; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.4, lines 297–300; no label.
+@isnad1 id=finite.2h4v.s6.f12c7dfebc93 from=translated src=- shape=57ba0b24 vocab=03aa39e7
+-/
 theorem IsLocallyFinite.finite_closure (hT : T.IsLocallyFinite) (M : Type w)
     [L.Structure M] [Nonempty M] [M ⊨ T] (s : Set M) (hs : s.Finite) :
     Finite (Substructure.closure L s) := by
@@ -62,7 +64,9 @@ theorem IsLocallyFinite.finite_closure (hT : T.IsLocallyFinite) (M : Type w)
 quantifier-free diagram basis. Its equivalence is valid in arbitrary target structures.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 6, lines 286–287; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 6, lines 286–287; no label.
+@isnad1 id=ex.1h5v.s7.b9342d2d67a6 from=translated src=- shape=217eec73 vocab=00c5e847
+-/
 theorem IsLocallyFinite.exists_finite_tupleQfDiagram_of_model [Finite L.Symbols]
     (hT : T.IsLocallyFinite) (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T]
     {α : Type x} [Finite α] (a : α → M) :

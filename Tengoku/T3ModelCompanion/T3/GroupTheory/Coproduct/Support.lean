@@ -32,7 +32,9 @@ variable {G B : Type*} [Group G] [Group B]
 the left factor. The right factor is bounded by its number of generators.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the subgroup `C₀` and the inclusion of `H₀`.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the subgroup `C₀` and the inclusion of `H₀`.
+@isnad1 id=ex.3h6v.s10.7102663a6478 from=translated src=- shape=f6494aee vocab=8f4d63da
+-/
 theorem exists_bounded_factor_support [Group.FG B] {m n : ℕ} (hB : Group.rank B ≤ m)
     (Δ : Set (Coproduct G B)) (hΔ : Δ.encard ≤ n) {w : Coproduct G B}
     (hw : w ∈ Subgroup.normalClosure Δ) :

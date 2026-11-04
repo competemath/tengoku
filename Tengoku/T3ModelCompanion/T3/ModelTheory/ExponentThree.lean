@@ -52,7 +52,9 @@ def powerTerm (n : ℕ) (t : Language.group.Term α) : Language.group.Term α :=
 /-- Realizing the power term gives the corresponding group power.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, the exponent law, lines 232–236.-/
+TeX: T3_modelcompanion_v9.tex, the exponent law, lines 232–236.
+@isnad1 id=eq.0h5v.s7.afa56c943974 from=translated src=- shape=d85fbdf7 vocab=2d9328aa
+-/
 @[simp]
 theorem realize_powerTerm {G : Type*} [Group G] [CompatibleGroup G]
     (n : ℕ) (t : Language.group.Term α) (a : α → G) :
@@ -72,7 +74,9 @@ def exponentSentence (n : ℕ) : Language.group.Sentence :=
 /-- The exponent sentence has exactly the paper's exponent-dividing interpretation.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, the convention including the trivial group, line 236.-/
+TeX: T3_modelcompanion_v9.tex, the convention including the trivial group, line 236.
+@isnad1 id=iff.0h2v.s6.c95d6c10aab7 from=translated src=- shape=fe2f7e15 vocab=fcfe6322
+-/
 theorem realize_exponentSentence_iff {G : Type*} [Group G] [CompatibleGroup G] (n : ℕ) :
     G ⊨ exponentSentence n ↔ ∀ x : G, x ^ n = 1 := by
   simp [exponentSentence, Sentence.Realize, Formula.Realize, Fin.snoc]
@@ -80,7 +84,9 @@ theorem realize_exponentSentence_iff {G : Type*} [Group G] [CompatibleGroup G] (
 /-- The exponent law is a universal sentence.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, lines 232–235.-/
+TeX: T3_modelcompanion_v9.tex, lines 232–235.
+@isnad1 id=isuniver.0h1v.s3.eb1dada48aee from=translated src=- shape=d8d8e54f vocab=b66da022
+-/
 theorem exponentSentence_isUniversal (n : ℕ) : (exponentSentence n).IsUniversal :=
   (BoundedFormula.IsAtomic.equal _ _).isUniversal.all
 
@@ -107,7 +113,9 @@ instance (n : ℕ) : (exponentGroupTheory n).IsUniversal :=
 /-- A compatible group models `Tₙ` precisely when every element has `n`-th power one.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, the exponent convention, line 236.-/
+TeX: T3_modelcompanion_v9.tex, the exponent convention, line 236.
+@isnad1 id=iff.0h2v.s6.03afb84ce383 from=translated src=- shape=fe2f7e15 vocab=4a085d55
+-/
 theorem exponentGroupTheory_model_iff {G : Type*} [Group G]
     [FirstOrder.Group.CompatibleGroup G] (n : ℕ) :
     G ⊨ exponentGroupTheory n ↔ ∀ x : G, x ^ n = 1 := by
@@ -124,7 +132,9 @@ abbrev exponentThreeTheory : Language.group.Theory := exponentGroupTheory 3
 trivial group and groups of arbitrary cardinality.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, line 236 and Notation 2.1, item 4.-/
+TeX: T3_modelcompanion_v9.tex, line 236 and Notation 2.1, item 4.
+@isnad1 id=iff.0h1v.s6.0b3e08fd6101 from=translated src=- shape=370585ef vocab=c5bf7111
+-/
 theorem exponentThreeTheory_model_iff {G : Type*} [Group G]
     [FirstOrder.Group.CompatibleGroup G] : G ⊨ exponentThreeTheory ↔ HasExponentThree G :=
   exponentGroupTheory_model_iff 3
@@ -132,7 +142,9 @@ theorem exponentThreeTheory_model_iff {G : Type*} [Group G]
 /-- The universal axiomatization of `T₃` supplies the Pi-two hypothesis of Fact 2.6.
 
 Paper-ID: preliminaries.exponent_three, main.model_companion
-TeX: T3_modelcompanion_v9.tex, applying Fact 2.6 on line 835.-/
+TeX: T3_modelcompanion_v9.tex, applying Fact 2.6 on line 835.
+@isnad1 id=ispitwo.0h0v.s1.a0f97dc64319 from=translated src=- shape=25b03439 vocab=92fe66ec
+-/
 theorem exponentThreeTheory_isPiTwo : exponentThreeTheory.IsPiTwo :=
   Theory.IsUniversal.isPiTwo
 
@@ -140,7 +152,9 @@ theorem exponentThreeTheory_isPiTwo : exponentThreeTheory.IsPiTwo :=
 choice of an order on the generator type.
 
 Paper-ID: preliminaries.finite_normal_form, model_theory.local_finiteness
-TeX: T3_modelcompanion_v9.tex, Fact 2.27 and its application to local finiteness.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.27 and its application to local finiteness.
+@isnad1 id=finite.0h1v.s3.a507ac0fab40 from=translated src=- shape=0902ff63 vocab=cdeac673
+-/
 theorem finite_free_of_finite (I : Type*) [Finite I] : Finite (Free I) := by
   classical
   let : LinearOrder I := linearOrderOfSTO WellOrderingRel
@@ -150,7 +164,9 @@ theorem finite_free_of_finite (I : Type*) [Finite I] : Finite (Free I) := by
 of the free group on its given finite generating set.
 
 Paper-ID: model_theory.local_finiteness, preliminaries.finite_normal_form
-TeX: T3_modelcompanion_v9.tex, Definition 2.4 and the finite free-group theorem, Fact 2.27.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.4 and the finite free-group theorem, Fact 2.27.
+@isnad1 id=finite.2h2v.s5.06ddb0dabf9a from=translated src=- shape=4f8d159c vocab=37d7da9c
+-/
 theorem finite_closure_of_exponent_three {G : Type*} [Group G] (hG : HasExponentThree G)
     {s : Set G} (hs : s.Finite) : Finite (Subgroup.closure s) := by
   let : Finite s := hs.to_subtype
@@ -167,7 +183,9 @@ theorem finite_closure_of_exponent_three {G : Type*} [Group G] (hG : HasExponent
 /-- Every finitely generated exponent-three group is finite, in any universe.
 
 Paper-ID: structure.strict_envelope, model_theory.local_finiteness
-TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the finiteness of D₃ on line 1350.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the finiteness of D₃ on line 1350.
+@isnad1 id=finite.1h1v.s3.237d199323d8 from=translated src=- shape=affebb5f vocab=3a1d12db
+-/
 theorem finite_of_fg_of_exponent_three {G : Type*} [Group G] [Group.FG G]
     (hG : HasExponentThree G) : Finite G := by
   obtain ⟨s, hs, hfin⟩ := Group.fg_iff.mp (inferInstance : Group.FG G)

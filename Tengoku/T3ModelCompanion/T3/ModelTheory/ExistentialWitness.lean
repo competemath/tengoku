@@ -37,7 +37,9 @@ containing the witnesses realizes the formula at any preimages of its parameters
 The bound is quantified before the structure and all assignments.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 328–334.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 328–334.
+@isnad1 id=ex.1h4v.s7.c15964d600e3 from=translated src=- shape=01344c64 vocab=5a4f2c6d
+-/
 theorem IsExistential.exists_bounded_finite_witnesses {n : ℕ} {φ : L.BoundedFormula α n}
     (hφ : φ.IsExistential) :
     ∃ k : ℕ, ∀ (N : Type w') [L.Structure N] (v : α → N) (xs : Fin n → N),
@@ -70,7 +72,9 @@ theorem IsExistential.exists_bounded_finite_witnesses {n : ℕ} {φ : L.BoundedF
 /-- The formula version of the uniform finite witness theorem.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 328–334.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 328–334.
+@isnad1 id=ex.1h3v.s7.71683313dc7f from=translated src=- shape=24365135 vocab=a07f5d66
+-/
 theorem IsExistential.exists_bounded_finite_witnesses_formula {φ : L.Formula α}
     (hφ : φ.IsExistential) :
     ∃ k : ℕ, ∀ (N : Type w') [L.Structure N] (v : α → N),

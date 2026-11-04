@@ -77,7 +77,9 @@ private theorem prod_eq_sup_map {K : Type*} [Group K] (A : Subgroup G) (B : Subg
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-line 1243, `D = ⟨C,xᵢ,yᵢ,zᵢ⟩`.-/
+line 1243, `D = ⟨C,xᵢ,yᵢ,zᵢ⟩`.
+@isnad1 id=eq.0h4v.s10.79c230fdb8b4 from=translated src=- shape=37ddbfcf vocab=4d5b33e8
+-/
 theorem enlargedSubgroup_eq_sup :
     enlargedSubgroup C g = C.map (TripleRoots.baseMap (fun i => (g i : G))) ⊔
       Subgroup.closure (Set.range (newGenerator C g)) := by
@@ -104,7 +106,9 @@ private theorem kernel_le_product (hg : ∀ i, (g i : G) ∈ Subgroup.center G) 
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-line 1261, `L ≤ γ₃(G × F)`.-/
+line 1261, `L ≤ γ₃(G × F)`.
+@isnad1 id=le.1h4v.s9.2e9d103e62b4 from=translated src=- shape=90774c55 vocab=1b24b862
+-/
 theorem kernel_le_lowerCentralSeries (hg : ∀ i, (g i : G) ∈ term G 3) :
     TripleRoots.kernel (fun i => (g i : G)) ≤ term (G × Free (Fin (3 * n))) 3 := by
   apply Subgroup.normalClosure_le_normal
@@ -119,7 +123,9 @@ theorem kernel_le_lowerCentralSeries (hg : ∀ i, (g i : G) ∈ term G 3) :
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-line 1247, `L ≤ γ₂(C × F)`.-/
+line 1247, `L ≤ γ₂(C × F)`.
+@isnad1 id=le.2h4v.s10.a5d7b279fbde from=translated src=- shape=e96a4eaf vocab=25238df4
+-/
 theorem kernel_le_product_derived (hg : ∀ i, (g i : G) ∈ Subgroup.center G)
     (hgC : ∀ i, g i ∈ commutator C) :
     TripleRoots.kernel (fun i => (g i : G)) ≤ (C.prod ⊤).lowerCentralSeries 1 := by
@@ -174,7 +180,9 @@ the third-layer defect. No finiteness or nontriviality assumption on the ambient
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-the two intersection claims in lines 1244–1270.-/
+the two intersection claims in lines 1244–1270.
+@isnad1 id=isstrict.4h4v.s9.98844b521ce0 from=translated src=- shape=e21f6b6d vocab=d0bc191d
+-/
 theorem isStrict_enlargedSubgroup (hG : HasExponentThree G)
     (hg : ∀ i, (g i : G) ∈ term G 3)
     (hfirst : (commutator G).comap C.subtype = commutator C)
@@ -225,7 +233,9 @@ theorem isStrict_enlargedSubgroup (hG : HasExponentThree G)
 /-- The finite set of new generators has cardinality at most `3*n`.
 
 Paper-ID: structure.lcs_strictification
-TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`, item 1.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`, item 1.
+@isnad1 id=ex.0h4v.s10.05ab413720b8 from=translated src=- shape=85003587 vocab=12c70466
+-/
 theorem exists_generating_finset :
     ∃ Y : Finset (TripleRoots.Extension (fun i => (g i : G))), Y.card ≤ 3 * n ∧
       enlargedSubgroup C g = C.map (TripleRoots.baseMap (fun i => (g i : G))) ⊔

@@ -30,7 +30,9 @@ variable {G H : Type*} [Group G] [Group H]
 /-- A group embedding with a left inverse reflects the lower central filtration.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor retractions.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor retractions.
+@isnad1 id=iff.1h6v.s7.39d528ea07b7 from=translated src=- shape=55080034 vocab=ef1088c7
+-/
 theorem mem_term_map_iff_of_leftInverse (f : G →* H) (r : H →* G)
     (h : r.comp f = MonoidHom.id G) (n : ℕ) (x : G) : f x ∈ term H n ↔ x ∈ term G n := by
   constructor
@@ -46,7 +48,9 @@ variable [Fact (HasExponentThree G)] [Fact (HasExponentThree H)]
 /-- A retraction induces a left inverse on every actual graded quotient.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor graded inclusions.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor graded inclusions.
+@isnad1 id=leftinve.1h5v.s9.69c46afa3d89 from=translated src=- shape=e6232dba vocab=1253888f
+-/
 theorem mapLayer_leftInverse (f : G →* H) (r : H →* G)
     (h : r.comp f = MonoidHom.id G) (n : ℕ) :
     Function.LeftInverse (mapLayer r n) (mapLayer f n) := by
@@ -57,7 +61,9 @@ theorem mapLayer_leftInverse (f : G →* H) (r : H →* G)
 /-- A group homomorphism with a retraction induces an injective map on each graded layer.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor graded inclusions.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor graded inclusions.
+@isnad1 id=injectiv.1h5v.s8.3ebb95caeed7 from=translated src=- shape=35168227 vocab=7402a36e
+-/
 theorem mapLayer_injective_of_leftInverse (f : G →* H) (r : H →* G)
     (h : r.comp f = MonoidHom.id G) (n : ℕ) : Function.Injective (mapLayer f n) :=
   (mapLayer_leftInverse f r h n).injective
@@ -65,7 +71,9 @@ theorem mapLayer_injective_of_leftInverse (f : G →* H) (r : H →* G)
 /-- A subgroup which is the range of a group retraction is strict for the lower central series.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor inclusions.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor inclusions.
+@isnad1 id=isstrict.1h4v.s7.17db51bf2efb from=translated src=- shape=12057956 vocab=486d1c35
+-/
 theorem isStrict_range_of_leftInverse (f : G →* H) (r : H →* G)
     (h : r.comp f = MonoidHom.id G) : IsStrict f.range := by
   have hf : Function.Injective f :=
@@ -77,7 +85,9 @@ theorem isStrict_range_of_leftInverse (f : G →* H) (r : H →* G)
 ambient graded image. No normality or homogeneous decomposition of the subgroup is assumed.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, identification of `Rₙ` and `Sₙ`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, identification of `Rₙ` and `Sₙ`.
+@isnad1 id=eq.1h6v.s8.e0a75e568b47 from=translated src=- shape=accab093 vocab=6ab39a8b
+-/
 theorem subgroupImage_map_of_leftInverse (f : G →* H) (r : H →* G)
     (h : r.comp f = MonoidHom.id G) (K : Subgroup G) (n : ℕ) :
     subgroupImage (K.map f) n = (subgroupImage K n).map (mapLayer f n) := by

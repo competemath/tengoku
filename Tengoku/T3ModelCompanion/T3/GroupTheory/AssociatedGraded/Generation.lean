@@ -66,7 +66,9 @@ private theorem lof_mk_mem_of_degree_one
 algebra. No finite generation or rank assumption is needed.
 
 Paper-ID: preliminaries.associated_graded_properties
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 3, lines 511–512; no label.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 3, lines 511–512; no label.
+@isnad1 id=eq.1h2v.s9.3aef6f5c2dfa from=translated src=- shape=fe8aa24a vocab=245a3d64
+-/
 theorem lieSubalgebra_eq_top_of_degree_one
     (K : LieSubalgebra (ZMod 3) (GradedModule G))
     (hK : Set.range (DirectSum.lof (ZMod 3) ℕ (Layer G) 1) ⊆ K) : K = ⊤ := by
@@ -91,7 +93,9 @@ theorem lieSubalgebra_eq_top_of_degree_one
 degree-one component over `ZMod 3`.
 
 Paper-ID: preliminaries.associated_graded_properties
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 3, lines 511–512; no label.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 3, lines 511–512; no label.
+@isnad1 id=eq.0h1v.s9.51a11ebe6bd0 from=translated src=- shape=2272b81b vocab=920cc32b
+-/
 theorem lieSpan_range_lof_one_eq_top :
     LieSubalgebra.lieSpan (ZMod 3) (GradedModule G)
       (Set.range (DirectSum.lof (ZMod 3) ℕ (Layer G) 1)) = ⊤ :=

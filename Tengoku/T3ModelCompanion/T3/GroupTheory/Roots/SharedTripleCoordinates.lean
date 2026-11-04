@@ -35,7 +35,9 @@ def triple (t : IncreasingTriple (Fin 4)) : AssociatedGraded.term (Free (Fin 4))
 /-- The four increasing triple initial forms are linearly independent in the actual third quotient.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=linearin.0h0v.s8.d98ce7a38353 from=translated src=- shape=a4105e4f vocab=4a32d84c
+-/
 theorem independent : LinearIndependent (ZMod 3)
     (fun t : IncreasingTriple (Fin 4) => AssociatedGraded.mk (Free (Fin 4)) 3 (triple t)) := by
   convert (Module.Basis.ofRepr (Free.layerThreeEquiv (I := Fin 4))).linearIndependent using 1
@@ -47,7 +49,9 @@ theorem independent : LinearIndependent (ZMod 3)
 /-- There are exactly four increasing triples on four generator indices.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=eq.0h0v.s4.12933fca68ab from=translated src=- shape=120b6148 vocab=83815ad8
+-/
 theorem number_of_triples : Nat.card (IncreasingTriple (Fin 4)) = 4 := by
   norm_num [IncreasingTriple.natCard_eq_choose]
 

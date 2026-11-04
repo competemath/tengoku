@@ -49,7 +49,9 @@ variable {α : Type w} {n : ℕ}
 /-- Existentially closing the bound variables preserves existential formulas.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=isexiste.1h4v.s4.80b2eb722ea1 from=translated src=- shape=bcc846ea vocab=2e54ffdc
+-/
 theorem IsExistential.exs : ∀ {n : ℕ} {φ : L.BoundedFormula α n},
     φ.IsExistential → φ.exs.IsExistential
   | 0, _, h => h
@@ -64,7 +66,9 @@ private theorem isQF_foldr_inf : ∀ {l : List (L.BoundedFormula α n)},
 /-- A finite conjunction of quantifier-free formulas is quantifier free.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=isqf.1h5v.s5.6b338e276c98 from=translated src=- shape=a39648aa vocab=46f922f7
+-/
 theorem isQF_iInf {β : Type w'} [Finite β] {f : β → L.BoundedFormula α n}
     (h : ∀ b, (f b).IsQF) : (iInf f).IsQF := by
   simp only [iInf]
@@ -81,7 +85,9 @@ private theorem isQF_foldr_sup : ∀ {l : List (L.BoundedFormula α n)},
 /-- A finite disjunction of quantifier-free formulas is quantifier free.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=isqf.1h5v.s5.43f3830c4956 from=translated src=- shape=a39648aa vocab=b7d2c88a
+-/
 theorem isQF_iSup {β : Type w'} [Finite β] {f : β → L.BoundedFormula α n}
     (h : ∀ b, (f b).IsQF) : (iSup f).IsQF := by
   simp only [iSup]
@@ -93,7 +99,9 @@ theorem isQF_iSup {β : Type w'} [Finite β] {f : β → L.BoundedFormula α n}
 existential formula.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=isexiste.1h4v.s5.47f4a260b486 from=translated src=- shape=4e60dc1d vocab=48e02ee1
+-/
 theorem IsQF.isExistential_iExs {β : Type w'} [Finite β] {φ : L.Formula (α ⊕ β)}
     (h : φ.IsQF) : (φ.iExs β).IsExistential := by
   simp only [Formula.iExs]
@@ -117,7 +125,9 @@ noncomputable def existentialDisjunction : L.Formula α :=
 /-- The finite disjunction construction is existential when all its matrices are quantifier free.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=isexiste.1h5v.s5.cad113bbe4ba from=translated src=- shape=578ce4b4 vocab=3805853e
+-/
 theorem isExistential_existentialDisjunction (hθ : ∀ i, (θ i).IsQF) :
     (existentialDisjunction k θ).IsExistential :=
   (BoundedFormula.isQF_iSup fun i => (hθ i).relabel _).isExistential_iExs
@@ -126,7 +136,9 @@ theorem isExistential_existentialDisjunction (hθ : ∀ i, (θ i).IsQF) :
 Nonemptiness supplies unused witnesses for the other disjuncts.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=iff.0h7v.s6.a8ae2b32042b from=translated src=- shape=0e8c6c24 vocab=d5a74d93
+-/
 theorem realize_existentialDisjunction {N : Type x} [L.Structure N] [Nonempty N]
     (a : α → N) : (existentialDisjunction k θ).Realize a ↔
       ∃ i, ((θ i).iExs (Fin (k i))).Realize a := by
@@ -162,7 +174,9 @@ def qfDiagram (M : Type w) [L.Structure M] : L[[M]].Theory :=
 /-- Substitution of parameters into a sentence realizes the formula at their interpretations.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=iff.0h6v.s6.78dc2c818ea7 from=translated src=- shape=775df01d vocab=39201b3a
+-/
 theorem realize_equivSentence_relabel {M : Type w} {N : Type w'} [L[[M]].Structure N]
     [L.Structure N] [(L.lhomWithConstants M).IsExpansionOn N]
     {α : Type x} (φ : L.Formula α) (a : α → M) :
@@ -236,7 +250,9 @@ def Embedding.ofModelsQfDiagram (L : Language.{u, v}) (M : Type w) [L.Structure 
 /-- The canonical quantifier-free-diagram embedding sends an element to its named constant.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=eq.0h4v.s6.18f624900a1c from=translated src=- shape=c330e6cc vocab=ea734705
+-/
 @[simp]
 theorem Embedding.ofModelsQfDiagram_apply (L : Language.{u, v}) (M : Type w) [L.Structure M]
     (N : Type w') [L.Structure N] [L[[M]].Structure N]
@@ -251,7 +267,9 @@ variable {T : L.Theory}
 diagram of a model entails every formula true of its named tuples.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.
+@isnad1 id=modelsbo.2h6v.s7.f101024cfde2 from=translated src=- shape=09979c74 vocab=52cc961b
+-/
 theorem AllEmbeddingsElementary.models_equivSentence_of_qfDiagram
     (h : T.AllEmbeddingsElementary) (M : T.ModelType.{u, v, max u v})
     {n : ℕ} (φ : L.Formula (Fin n)) (a : Fin n → M) (hφ : φ.Realize a) :
@@ -277,7 +295,9 @@ many true quantifier-free facts together with the original theory. This gives th
 for replacing the extra named constants by existentially quantified variables.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.
+@isnad1 id=ex.2h6v.s8.8ac7a66c5d66 from=translated src=- shape=d9104cff vocab=b783f8ae
+-/
 theorem AllEmbeddingsElementary.exists_finset_qfDiagram_entails
     (h : T.AllEmbeddingsElementary) (M : T.ModelType.{u, v, max u v})
     {n : ℕ} (φ : L.Formula (Fin n)) (a : Fin n → M) (hφ : φ.Realize a) :
@@ -304,7 +324,9 @@ neighborhood implying it over the theory. The matrix is quantifier free and its 
 indexed by a finite tuple. Equations retain repeated entries of the original parameter tuple.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.
+@isnad1 id=ex.2h6v.s6.2cdf65e1dfbd from=translated src=- shape=cfd1be7a vocab=c4d293e6
+-/
 theorem AllEmbeddingsElementary.exists_qf_existential_imp
     (h : T.AllEmbeddingsElementary) (M : T.ModelType.{u, v, max u v})
     {n : ℕ} (φ : L.Formula (Fin n)) (a : Fin n → M) (hφ : φ.Realize a) :
@@ -376,7 +398,9 @@ theory to an existential formula. Compactness selects finitely many local existe
 neighborhoods, and their matrices are combined under a single existential prefix.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2, line 275; no label.-/
+TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2, line 275; no label.
+@isnad1 id=ismodelc.1h2v.s3.ade07fd5f1a6 from=translated src=- shape=b28a8773 vocab=427e5598
+-/
 theorem AllEmbeddingsElementary.isModelComplete (h : T.AllEmbeddingsElementary) :
     T.IsModelComplete := by
   classical
@@ -437,7 +461,9 @@ theorem AllEmbeddingsElementary.isModelComplete (h : T.AllEmbeddingsElementary) 
 by embeddings of bundled models in the canonical semantic universe.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2, line 275; no label.-/
+TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2, line 275; no label.
+@isnad1 id=iff.0h2v.s3.6bdeac3596e9 from=translated src=- shape=e74561de vocab=427e5598
+-/
 theorem isModelComplete_iff_allEmbeddingsElementary :
     T.IsModelComplete ↔ T.AllEmbeddingsElementary :=
   ⟨IsModelComplete.allEmbeddingsElementary, AllEmbeddingsElementary.isModelComplete⟩
@@ -447,7 +473,9 @@ formulas. The source is not assumed to satisfy the theory. The Tarski-Vaught wit
 obtained from the finite quantifier-free matrices constructed above.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 2 and 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 2 and 4; no label.
+@isnad1 id=ex.2h5v.s7.4e401727a5d6 from=translated src=- shape=a18e2b0a vocab=f79649f0
+-/
 theorem IsModelComplete.exists_elementaryEmbedding_of_existential_reflection
     (h : T.IsModelComplete) {M : Type (max u v)} [L.Structure M]
     (N : T.ModelType.{u, v, max u v}) (f : M ↪[L] N)

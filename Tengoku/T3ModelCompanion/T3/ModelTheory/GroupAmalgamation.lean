@@ -38,7 +38,9 @@ namespace Amalgamation
 /-- Ordinary group amalgamation is symmetric in its factors, in arbitrary universes.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the symmetric witness cases.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the symmetric witness cases.
+@isnad1 id=amalgama.1h5v.s6.674ba4c63861 from=translated src=- shape=f97aa8c2 vocab=4eb0bd21
+-/
 theorem AmalgamableOver.symm {A G H : Type*} [Group A] [Group G] [Group H]
     {f : A →* G} {g : A →* H} (h : AmalgamableOver f g) : AmalgamableOver g f := by
   obtain ⟨K, hK, hpow, i, j, hi, hj, hij⟩ := h
@@ -47,7 +49,9 @@ theorem AmalgamableOver.symm {A G H : Type*} [Group A] [Group G] [Group H]
 /-- Interchanging the two factors does not change group amalgamability.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the symmetric witness cases.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the symmetric witness cases.
+@isnad1 id=iff.0h5v.s6.0a0d7cd5576a from=translated src=- shape=cd2aea15 vocab=4eb0bd21
+-/
 theorem amalgamableOver_comm {A G H : Type*} [Group A] [Group G] [Group H]
     (f : A →* G) (g : A →* H) : AmalgamableOver f g ↔ AmalgamableOver g f :=
   ⟨AmalgamableOver.symm, AmalgamableOver.symm⟩
@@ -65,7 +69,9 @@ variable {A : Type*} {G H : Type} [Group A] [Group G] [Group H]
 are equivalent. Only the target is required to have exponent three.
 
 Paper-ID: main.bounded_witness, main.model_companion
-TeX: T3_modelcompanion_v9.tex, `thm:main`, and the deduction from the amalgamation criterion.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, and the deduction from the amalgamation criterion.
+@isnad1 id=iff.2h5v.s8.d36f77da299a from=translated src=- shape=18ce9be8 vocab=5947b09e
+-/
 theorem amalgamableOver_iff (f : A →* G) (g : A →* H)
     (hf : Function.Injective f) (hg : Function.Injective g) :
     Amalgamation.AmalgamableOver f g ↔ exponentThreeTheory.AmalgamableOver
@@ -97,7 +103,9 @@ theorem amalgamableOver_iff (f : A →* G) (g : A →* H)
 The base need not satisfy `T₃` or any finiteness hypothesis.
 
 Paper-ID: main.bounded_witness, main.model_companion
-TeX: T3_modelcompanion_v9.tex, `thm:main`, and the deduction from the amalgamation criterion.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, and the deduction from the amalgamation criterion.
+@isnad1 id=iff.0h5v.s8.c51a6d9f9549 from=translated src=- shape=684db299 vocab=5e7fd8f6
+-/
 theorem amalgamableOver_embeddings_iff (f : A ↪[Language.group] G)
     (g : A ↪[Language.group] H) :
     exponentThreeTheory.AmalgamableOver f g ↔
@@ -110,7 +118,9 @@ theorem amalgamableOver_embeddings_iff (f : A ↪[Language.group] G)
 of the general model-companion criterion.
 
 Paper-ID: main.bounded_witness, main.model_companion
-TeX: T3_modelcompanion_v9.tex, `thm:main`, applying the amalgamation criterion.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, applying the amalgamation criterion.
+@isnad1 id=iff.0h5v.s8.3aa699b79287 from=translated src=- shape=543c796e vocab=5e7fd8f6
+-/
 theorem amalgamableOver_embeddings_swap_iff (f : A ↪[Language.group] G)
     (g : A ↪[Language.group] H) :
     exponentThreeTheory.AmalgamableOver f g ↔

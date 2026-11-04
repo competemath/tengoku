@@ -42,7 +42,9 @@ variable {R A B C D : Type*} [CommRing R]
 No finite-dimensionality or flatness hypothesis is required.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, tensor quotients, lines 1012–1022.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, tensor quotients, lines 1012–1022.
+@isnad1 id=eq.2h7v.s10.418747acf97a from=translated src=- shape=ab37166c vocab=d91218a1
+-/
 theorem map_ker_eq_map₂ (f : A →ₗ[R] C) (g : B →ₗ[R] D)
     (hf : Function.Surjective f) (hg : Function.Surjective g) :
     (map f g).ker = Submodule.map₂ (mk R A B) f.ker ⊤ ⊔
@@ -62,7 +64,9 @@ variable {K V W : Type*} [Field K]
 /-- A pure tensor of two nonzero vectors over a field is nonzero, in arbitrary dimensions.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, tensor nonvanishing.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, tensor nonvanishing.
+@isnad1 id=ne.2h5v.s7.36aa042ee626 from=translated src=- shape=291e5d17 vocab=53c931bf
+-/
 theorem tmul_ne_zero {v : V} {w : W} (hv : v ≠ 0) (hw : w ≠ 0) : v ⊗ₜ[K] w ≠ 0 := by
   classical
   let b := Module.Basis.ofVectorSpace K W

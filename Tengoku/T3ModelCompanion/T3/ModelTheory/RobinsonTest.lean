@@ -64,7 +64,9 @@ The shared parameter support is existentially quantified at once, so that equal 
 different facts receive the same witness.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=ex.3h9v.s7.455e1127bf39 from=translated src=- shape=45c014ea vocab=d20f4947
+-/
 theorem IsExistentiallyClosedInModels.exists_assignment
     (hec : T.IsExistentiallyClosedInModels)
     (A B : T.ModelType.{u, v, max u v}) (h : A ↪[L] B)
@@ -175,7 +177,9 @@ renamed along `h`) and the quantifier-free diagram of `B`; finite satisfiability
 `exists_assignment`.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=ex.1h5v.s7.892d076b1119 from=translated src=- shape=2345d80b vocab=e34e9e0d
+-/
 theorem IsExistentiallyClosedInModels.exists_embedding_elementary_comp
     (hec : T.IsExistentiallyClosedInModels)
     (A B : T.ModelType.{u, v, max u v}) (h : A ↪[L] B) :
@@ -302,7 +306,9 @@ noncomputable def IsExistentiallyClosedInModels.chainEmbedding
 /-- Composites of two consecutive transitions of the sandwich chain are elementary.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h7v.s9.1826943ffe4d from=translated src=- shape=915bd111 vocab=9ac88504
+-/
 theorem IsExistentiallyClosedInModels.chainEmbedding_comp_elementary
     (hec : T.IsExistentiallyClosedInModels)
     (s₀ : Σ (X : T.ModelType.{u, v, max u v}) (Y : T.ModelType.{u, v, max u v}), X ↪[L] Y)
@@ -315,7 +321,9 @@ theorem IsExistentiallyClosedInModels.chainEmbedding_comp_elementary
 /-- Transitions of the sandwich chain over an even gap are elementary.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h8v.s9.48b20bdcbbb3 from=translated src=- shape=2914c48b vocab=88e94a63
+-/
 theorem IsExistentiallyClosedInModels.chain_natLERec_elementary
     (hec : T.IsExistentiallyClosedInModels)
     (s₀ : Σ (X : T.ModelType.{u, v, max u v}) (Y : T.ModelType.{u, v, max u v}), X ↪[L] Y)
@@ -364,7 +372,9 @@ The first transition of the sandwich chain is elementary: sandwich it between th
 canonical maps into the direct limit of the chain, using the elementary chain theorem.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h6v.s9.69a999d55d49 from=translated src=- shape=3d84c0de vocab=d29ce06a
+-/
 theorem IsExistentiallyClosedInModels.chainEmbedding_zero_elementary
     (hec : T.IsExistentiallyClosedInModels)
     (s₀ : Σ (X : T.ModelType.{u, v, max u v}) (Y : T.ModelType.{u, v, max u v}), X ↪[L] Y)
@@ -408,7 +418,9 @@ theorem IsExistentiallyClosedInModels.chainEmbedding_zero_elementary
 reflects existential formulas, then every such embedding is elementary.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=allembed.1h2v.s3.cb36cebd2a3d from=translated src=- shape=b28a8773 vocab=dfa49362
+-/
 theorem allEmbeddingsElementary_of_isExistentiallyClosedInModels
     (hec : T.IsExistentiallyClosedInModels) : T.AllEmbeddingsElementary := by
   intro M N f
@@ -420,7 +432,9 @@ modulo the theory to an existential formula if every embedding between its model
 existential formulas.
 
 Paper-ID: `model_theory.companion_iff_ec`.
-Source: `T3_modelcompanion_v9.tex`, Fact 2.3, lines 289–295.-/
+Source: `T3_modelcompanion_v9.tex`, Fact 2.3, lines 289–295.
+@isnad1 id=ismodelc.1h2v.s3.872be0505188 from=translated src=- shape=b28a8773 vocab=31237e79
+-/
 theorem isModelComplete_of_isExistentiallyClosedInModels
     (hec : T.IsExistentiallyClosedInModels) : T.IsModelComplete :=
   (allEmbeddingsElementary_of_isExistentiallyClosedInModels hec).isModelComplete

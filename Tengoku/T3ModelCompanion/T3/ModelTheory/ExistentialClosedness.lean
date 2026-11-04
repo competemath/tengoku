@@ -51,7 +51,9 @@ def IsExistentiallyClosedAt (T : L.Theory) (M : Type w) [L.Structure M] : Prop :
 /-- In the canonical semantic universe the general predicate is the original one.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 4; no label.
+@isnad1 id=iff.0h3v.s4.9b44feb32504 from=translated src=- shape=411994e4 vocab=00bf75e3
+-/
 theorem isExistentiallyClosedAt_iff (M : Type (max u v)) [L.Structure M] :
     T.IsExistentiallyClosedAt M ↔ T.IsExistentiallyClosed M := Iff.rfl
 
@@ -59,7 +61,9 @@ theorem isExistentiallyClosedAt_iff (M : Type (max u v)) [L.Structure M] :
 Skolem hull contains the entire image of the source, without assuming that the source is small.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 4; no label.
+@isnad1 id=realize.3h8v.s6.1382dcc33b82 from=translated src=- shape=5cf41a2d vocab=bb31afb8
+-/
 theorem IsExistentiallyClosedAt.reflects_of_model {M : Type w} [L.Structure M]
     (hM : T.IsExistentiallyClosedAt M) (N : Type w') [L.Structure N] [Nonempty N] [N ⊨ T]
     (f : M ↪[L] N) {n : ℕ} (φ : L.Formula (Fin n)) (x : Fin n → M)
@@ -86,7 +90,9 @@ theorem IsExistentiallyClosedAt.reflects_of_model {M : Type w} [L.Structure M]
 The two companion embeddings have elementary composite, which reflects the Pi-two axioms.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.3, lines 289–295; no label.
+@isnad1 id=model.2h4v.s5.674ef57eefb4 from=translated src=- shape=6f8134e9 vocab=e58390f4
+-/
 theorem IsModelCompanionOf.models_of_isPiTwo_in_universe (hT : T.IsPiTwo)
     (h : T'.IsModelCompanionOf T) (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T'] :
     M ⊨ T := by
@@ -105,7 +111,9 @@ theorem IsModelCompanionOf.models_of_isPiTwo_in_universe (hT : T.IsPiTwo)
 arbitrary universes. No Pi-two hypothesis is needed when the latter model assumption is given.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, items 3 and 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, items 3 and 4; no label.
+@isnad1 id=isexiste.1h4v.s5.0d44abb904d5 from=translated src=- shape=6e5baacd vocab=48b649d0
+-/
 theorem IsModelCompanionOf.isExistentiallyClosedAt_of_models
     (h : T'.IsModelCompanionOf T) (M : Type w) [L.Structure M] [Nonempty M]
     [M ⊨ T'] [M ⊨ T] : T.IsExistentiallyClosedAt M := by
@@ -120,7 +128,9 @@ theorem IsModelCompanionOf.isExistentiallyClosedAt_of_models
 universe are precisely the models of the companion.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.2h4v.s5.32ff5a2d3be3 from=translated src=- shape=6f4c33dc vocab=0f1ce574
+-/
 theorem IsModelCompanionOf.models_iff_isExistentiallyClosedAt (hT : T.IsPiTwo)
     (h : T'.IsModelCompanionOf T) (M : Type w) [L.Structure M] [Nonempty M] :
     M ⊨ T' ↔ T.IsExistentiallyClosedAt M := by
@@ -140,7 +150,9 @@ theorem IsModelCompanionOf.models_iff_isExistentiallyClosedAt (hT : T.IsPiTwo)
 the universes of the parameters, the original model, and the extension model.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 4; no label.
+@isnad1 id=realize.3h8v.s6.d7f7dff6c328 from=translated src=- shape=03f6337e vocab=ed7bf321
+-/
 theorem IsExistentiallyClosedAt.realize_of_finite {M : Type w} [L.Structure M]
     (hM : T.IsExistentiallyClosedAt M) (N : Type w') [L.Structure N] [Nonempty N] [N ⊨ T]
     (f : M ↪[L] N) {α : Type*} [Finite α] (φ : L.Formula α) (a : α → M)
@@ -166,7 +178,9 @@ a prescribed finite tuple. The finite structure itself need not model the theory
 
 Paper-ID: model_theory.basic_definitions
 TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2(6) and Proposition 4.13,
-`proposition:bdd LCS`, final finite-diagram transfer.-/
+`proposition:bdd LCS`, final finite-diagram transfer.
+@isnad1 id=ex.2h10v.s7.23b69b7e8e5d from=translated src=- shape=c0afb705 vocab=024aa51f
+-/
 theorem IsExistentiallyClosedAt.exists_embedding_over_tuple [Finite L.Symbols]
     {M : Type w} [L.Structure M] (hM : T.IsExistentiallyClosedAt M)
     (N : Type w') [L.Structure N] [Nonempty N] [N ⊨ T] (f : M ↪[L] N)

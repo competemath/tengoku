@@ -43,7 +43,9 @@ def pairedCommutator (n : ℕ) : Free ℕ :=
 /-- Every paired product belongs to the derived subgroup of the ambient free group.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=mem.0h1v.s6.c757336cebbe from=translated src=- shape=9653e0ce vocab=34bcfb32
+-/
 theorem pairedCommutator_mem_commutator (n : ℕ) :
     pairedCommutator n ∈ commutator (Free ℕ) := by
   apply Subgroup.list_prod_mem
@@ -60,7 +62,9 @@ private theorem sigmaOne_layerOneBasis (x : Layer (Free ℕ) 1) :
 /-- The second initial form of the paired product is the sum of the corresponding wedges.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3), `gr₂(aₙ) = αₙ`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3), `gr₂(aₙ) = αₙ`.
+@isnad1 id=eq.0h1v.s16.913d10727352 from=translated src=- shape=4b70e94e vocab=83955a15
+-/
 theorem sigmaTwo_pairedCommutator (n : ℕ) :
     sigmaTwo (layerOneBasis (I := ℕ))
       (mk (Free ℕ) 2 ⟨pairedCommutator n, pairedCommutator_mem_commutator n⟩) =
@@ -89,7 +93,9 @@ theorem sigmaTwo_pairedCommutator (n : ℕ) :
 /-- Every nonempty paired product is nonidentity.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=ne.1h1v.s5.e52bcf5c9dbc from=translated src=- shape=6ed55e28 vocab=a3f86d41
+-/
 theorem pairedCommutator_ne_one {n : ℕ} (hn : 0 < n) : pairedCommutator n ≠ 1 := by
   intro h
   have hz : (mk (Free ℕ) 2
@@ -155,7 +161,9 @@ private theorem sigmaTwo_mem_wedgeSpan (D : Subgroup (Free ℕ))
 subgroup forces at least `2n` generators.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=le.1h2v.s8.9e932918ed8f from=translated src=- shape=351054e5 vocab=0350531d
+-/
 theorem pairedCommutator_rank_le (D : Subgroup (Free ℕ)) [Group.FG D] (n : ℕ)
     (h : pairedCommutator n ∈ D.lowerCentralSeries 1) : 2 * n ≤ Group.rank D := by
   have hw := sigmaTwo_mem_wedgeSpan D h
@@ -168,7 +176,9 @@ with no finite generating set. The hypothesis is exactly membership in the ambie
 `γ₂(D)`, with no strictness assumption on `D`.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=le.1h2v.s7.c3f017470ca4 from=translated src=- shape=a1ab060d vocab=f4292ede
+-/
 theorem pairedCommutator_cardinalRank_le (D : Subgroup (Free ℕ)) (n : ℕ)
     (h : pairedCommutator n ∈ D.lowerCentralSeries 1) :
     ((2 * n : ℕ) : Cardinal) ≤ Group.cardinalRank D := by

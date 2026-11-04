@@ -30,7 +30,9 @@ variable {G H : Type*} [Group G] [Group H]
 /-- A direct product of exponent-three groups has exponent dividing three.
 
 Paper-ID: preliminaries.associated_graded_examples
-TeX: T3_modelcompanion_v9.tex, v9 Example 2.21, item 2.-/
+TeX: T3_modelcompanion_v9.tex, v9 Example 2.21, item 2.
+@isnad1 id=fact.0h2v.s4.154b514610ab from=translated src=- shape=5d6984b7 vocab=2a30038d
+-/
 instance productHasExponentThree [Fact (HasExponentThree G)] [Fact (HasExponentThree H)] :
     Fact (HasExponentThree (G × H)) :=
   ⟨fun x => Prod.ext (Fact.out (p := HasExponentThree G) x.1)
@@ -41,7 +43,9 @@ namespace AssociatedGraded
 /-- The paper's lower central term commutes with direct products.
 
 Paper-ID: preliminaries.associated_graded_examples
-TeX: T3_modelcompanion_v9.tex, v9 Example 2.21, item 2.-/
+TeX: T3_modelcompanion_v9.tex, v9 Example 2.21, item 2.
+@isnad1 id=eq.0h3v.s5.444672c12f69 from=translated src=- shape=3a3326eb vocab=b887828a
+-/
 theorem term_prod (n : ℕ) : term (G × H) n = (term G n).prod (term H n) :=
   Subgroup.top_lowerCentralSeries_prod (n - 1)
 
@@ -85,7 +89,9 @@ def layerProdEquiv (n : ℕ) : Layer (G × H) n ≃ₗ[ZMod 3] Layer G n × Laye
 /-- The product equivalence is induced by the two group projections.
 
 Paper-ID: preliminaries.associated_graded_examples
-TeX: T3_modelcompanion_v9.tex, v9 Example 2.21, item 2.-/
+TeX: T3_modelcompanion_v9.tex, v9 Example 2.21, item 2.
+@isnad1 id=eq.0h4v.s10.e1e3422ca00b from=translated src=- shape=fe878d4e vocab=0ca0ba5b
+-/
 @[simp]
 theorem layerProdEquiv_apply (n : ℕ) (x : Layer (G × H) n) :
     layerProdEquiv n x = (mapLayer (MonoidHom.fst G H) n x, mapLayer (MonoidHom.snd G H) n x) :=

@@ -89,7 +89,9 @@ private theorem normalWord_single (r : Fin n → commutator G) (i : Fin n) (g : 
 single simultaneous product expression. No iterative adjunction is used.
 
 Paper-ID: structure.simultaneous_commutator_roots
-TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, Claim A.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:basic commutator root`, Claim A.
+@isnad1 id=ex.1h4v.s7.a4b7878345ca from=translated src=- shape=fdb2950b vocab=21b08abd
+-/
 theorem exists_normalWord (r : Fin n → commutator G) {a : G}
     (ha : a ∈ Subgroup.normalClosure (Set.range fun i => (r i : G))) :
     ∃ m : Fin n → ℤ, ∃ h : Fin n → G, (normalWord r m h : G) = a := by

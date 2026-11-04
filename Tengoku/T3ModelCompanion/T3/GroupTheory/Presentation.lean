@@ -49,14 +49,18 @@ def quotientOne : G →* MulLayer G 1 where
 /-- The first quotient homomorphism is the multiplicative form of the initial-form map.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, abelianization quotient.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, abelianization quotient.
+@isnad1 id=eq.0h2v.s8.f0e76ab6d807 from=translated src=- shape=78f363a6 vocab=35291ee7
+-/
 theorem quotientOne_apply (g : G) :
     quotientOne G g = (mk G 1 ⟨g, Subgroup.mem_top _⟩).toMul := rfl
 
 /-- The first quotient has exactly the derived subgroup as kernel.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, abelianization quotient.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, abelianization quotient.
+@isnad1 id=eq.0h1v.s6.e99679644576 from=translated src=- shape=b9a30b07 vocab=c4b8fce7
+-/
 theorem quotientOne_ker : (quotientOne G).ker = commutator G := by
   ext g
   exact QuotientGroup.eq_one_iff (⟨g, Subgroup.mem_top _⟩ : term G 1)
@@ -75,7 +79,9 @@ include b ha
 /-- The image of the prescribed lifted basis covers the abelianization of the target group.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, equality `G = H γ₂(G)`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, equality `G = H γ₂(G)`.
+@isnad1 id=eq.2h4v.s8.3105b7012657 from=translated src=- shape=1511b15c vocab=8cb84570
+-/
 theorem lift_range_sup_commutator_of_basis : (lift hG a).range ⊔ commutator G = ⊤ := by
   classical
   let φ := lift hG a
@@ -106,7 +112,9 @@ theorem lift_range_sup_commutator_of_basis : (lift hG a).range ⊔ commutator G 
 the corresponding free exponent-three homomorphism is surjective.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, surjectivity assertion.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, surjectivity assertion.
+@isnad1 id=surjecti.2h4v.s8.e7b8753d941b from=translated src=- shape=6884de75 vocab=69030024
+-/
 theorem lift_surjective_of_basis : Function.Surjective (lift hG a) := by
   rw [← MonoidHom.range_eq_top]
   exact eq_top_of_sup_commutator_eq_top hG (lift_range_sup_commutator_of_basis hG b a ha)
@@ -115,7 +123,9 @@ theorem lift_surjective_of_basis : Function.Surjective (lift hG a) := by
 generator basis to the specified basis of `G / γ₂(G)`.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, induced abelianization isomorphism.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, induced abelianization isomorphism.
+@isnad1 id=bijectiv.2h4v.s9.757e53b863f1 from=translated src=- shape=0fba8ba9 vocab=153e4140
+-/
 theorem mapLayer_lift_bijective_of_basis : Function.Bijective (mapLayer (lift hG a) 1) := by
   classical
   let : LinearOrder I := linearOrderOfSTO WellOrderingRel
@@ -147,7 +157,9 @@ noncomputable def liftLayerOneEquiv : Layer (Free I) 1 ≃ₗ[ZMod 3] Layer G 1 
 /-- The presentation's first-layer equivalence is the map induced by the given free lift.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, induced abelianization isomorphism.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, induced abelianization isomorphism.
+@isnad1 id=eq.2h5v.s10.cba0a473cd51 from=translated src=- shape=710661a5 vocab=e4bf8e71
+-/
 @[simp]
 theorem liftLayerOneEquiv_apply (x : Layer (Free I) 1) :
     liftLayerOneEquiv hG b a ha x = mapLayer (lift hG a) 1 x := rfl
@@ -156,7 +168,9 @@ theorem liftLayerOneEquiv_apply (x : Layer (Free I) 1) :
 exponent-three group.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, kernel assertion.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, kernel assertion.
+@isnad1 id=le.2h4v.s8.405e060aac34 from=translated src=- shape=87725277 vocab=be9c1247
+-/
 theorem lift_ker_le_commutator_of_basis : (lift hG a).ker ≤ commutator (Free I) := by
   intro x hx
   apply (mk_eq_zero (Free I) 1 ⟨x, Subgroup.mem_top _⟩).mp
@@ -171,7 +185,9 @@ theorem lift_ker_le_commutator_of_basis : (lift hG a).ker ≤ commutator (Free I
 is surjective, with all its defining relations in the derived subgroup.
 
 Paper-ID: structure.basis_lift
-TeX: T3_modelcompanion_v9.tex, `proposition:lift`, v9 Proposition 4.1.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:lift`, v9 Proposition 4.1.
+@isnad1 id=and.2h4v.s9.807c7acd8995 from=translated src=- shape=abf77712 vocab=c7235005
+-/
 theorem presentation_of_basis : Function.Surjective (lift hG a) ∧
     (lift hG a).ker ≤ commutator (Free I) :=
   ⟨lift_surjective_of_basis hG b a ha, lift_ker_le_commutator_of_basis hG b a ha⟩

@@ -53,7 +53,9 @@ def contraction (φ : Module.Dual R V) : ⋀[R]^2 V →ₗ[R] V :=
 /-- The defining contraction formula on a decomposable two-form.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=eq.0h5v.s13.0c04db57a5d8 from=translated src=- shape=5202a1b6 vocab=1e717c46
+-/
 @[simp]
 theorem contraction_wedge (φ : Module.Dual R V) (u v : V) :
     contraction φ (T3.wedgeVV R V u v) = φ u • v - φ v • u := by
@@ -74,7 +76,9 @@ def wedgeSpan (U : Submodule R V) : Submodule R (⋀[R]^2 V) :=
 /-- Contraction of the exterior square of a subspace takes values in that subspace.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=mem.1h5v.s13.14ae1f688ca7 from=translated src=- shape=e9631691 vocab=9470446a
+-/
 theorem contraction_mem (φ : Module.Dual R V) (U : Submodule R V)
     {q : ⋀[R]^2 V} (hq : q ∈ wedgeSpan U) : contraction φ q ∈ U := by
   induction hq using Submodule.span_induction with
@@ -98,7 +102,9 @@ def pairedForm (n : ℕ) : ⋀[R]^2 V :=
 /-- Contraction by an even coordinate recovers the next odd basis vector.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=eq.1h5v.s11.449244ae1e38 from=translated src=- shape=84d48e22 vocab=c2fad59e
+-/
 theorem contraction_pairedForm_even {n k : ℕ} (hk : k < n) :
     contraction (b.coord (2 * k)) (pairedForm b n) = b (2 * k + 1) := by
   classical
@@ -115,7 +121,9 @@ theorem contraction_pairedForm_even {n k : ℕ} (hk : k < n) :
 /-- Contraction by an odd coordinate recovers the negative of the preceding basis vector.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=eq.1h5v.s11.016344244319 from=translated src=- shape=bccd7701 vocab=b93d1518
+-/
 theorem contraction_pairedForm_odd {n k : ℕ} (hk : k < n) :
     contraction (b.coord (2 * k + 1)) (pairedForm b n) = -b (2 * k) := by
   classical
@@ -131,7 +139,9 @@ theorem contraction_pairedForm_odd {n k : ℕ} (hk : k < n) :
 /-- Every vector in the first `2n` basis positions lies in a subspace supporting the paired form.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=mem.2h6v.s12.aeca7ce88758 from=translated src=- shape=9fb89156 vocab=e53026d0
+-/
 theorem basis_mem_of_pairedForm_mem {n : ℕ} {U : Submodule R V}
     (h : pairedForm b n ∈ wedgeSpan U) {j : ℕ} (hj : j < 2 * n) : b j ∈ U := by
   have hk : j / 2 < n := by omega
@@ -150,7 +160,9 @@ theorem basis_mem_of_pairedForm_mem {n : ℕ} {U : Submodule R V}
 /-- A finite-dimensional supporting subspace has dimension at least twice the number of pairs.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=le.1h5v.s12.a038a88e7400 from=translated src=- shape=5cd327df vocab=a161ba3a
+-/
 theorem pairedForm_finrank_le [StrongRankCondition R] {n : ℕ} {U : Submodule R V}
     [Module.Finite R U] (h : pairedForm b n ∈ wedgeSpan U) :
     2 * n ≤ Module.finrank R U := by
@@ -162,7 +174,9 @@ theorem pairedForm_finrank_le [StrongRankCondition R] {n : ℕ} {U : Submodule R
 /-- A paired form with at least one pair is nonzero.
 
 Paper-ID: examples.commutator_rank_lower_bound
-TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:D can be large` (Lemma 5.3).
+@isnad1 id=ne.1h4v.s11.14255e05174c from=translated src=- shape=1925e390 vocab=37e8476a
+-/
 theorem pairedForm_ne_zero [Nontrivial R] {n : ℕ} (hn : 0 < n) : pairedForm b n ≠ 0 := by
   intro hz
   have h := contraction_pairedForm_even b hn

@@ -43,7 +43,9 @@ private theorem generatingCardinals_nonempty :
 /-- The minimum generating cardinal is attained by an actual generating subset.
 
 Paper-ID: preliminaries.notation.generator_rank
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, line 249.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, line 249.
+@isnad1 id=ex.0h1v.s5.e53010483704 from=translated src=- shape=c87d2c05 vocab=ab81dcaa
+-/
 theorem cardinalRank_spec :
     ∃ s : Set G, Cardinal.mk s = cardinalRank G ∧ Subgroup.closure s = ⊤ := by
   obtain ⟨s, hs, hcard⟩ := csInf_mem (generatingCardinals_nonempty G)
@@ -52,7 +54,9 @@ theorem cardinalRank_spec :
 /-- Every generating set bounds the minimum generating cardinal from above.
 
 Paper-ID: preliminaries.notation.generator_rank
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, line 249.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, line 249.
+@isnad1 id=le.1h2v.s5.46136600f3ef from=translated src=- shape=e080f056 vocab=2fc78862
+-/
 theorem cardinalRank_le {s : Set G} (hs : Subgroup.closure s = ⊤) :
     cardinalRank G ≤ Cardinal.mk s :=
   csInf_le ⟨0, fun _ _ => zero_le⟩ ⟨s, hs, rfl⟩
@@ -61,7 +65,9 @@ theorem cardinalRank_le {s : Set G} (hs : Subgroup.closure s = ⊤) :
 set with at most that many elements generates the group.
 
 Paper-ID: preliminaries.notation.generator_rank
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, line 249.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, line 249.
+@isnad1 id=iff.0h2v.s5.dcbc118516a4 from=translated src=- shape=1aa1c57a vocab=f6cb819f
+-/
 theorem cardinalRank_le_nat_iff (n : ℕ) :
     cardinalRank G ≤ n ↔
       ∃ s : Finset G, s.card ≤ n ∧ Subgroup.closure (s : Set G) = ⊤ := by
@@ -91,7 +97,9 @@ theorem cardinalRank_le_nat_iff (n : ℕ) :
 the group is finitely generated.
 
 Paper-ID: preliminaries.notation.generator_rank
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, and every finite generator bound.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, and every finite generator bound.
+@isnad1 id=eq.0h1v.s4.2c8446d06552 from=translated src=- shape=92b46b85 vocab=e194111b
+-/
 theorem cardinalRank_eq_rank [FG G] : cardinalRank G = (rank G : Cardinal.{u}) := by
   apply le_antisymm
   · obtain ⟨s, hcard, hs⟩ := rank_spec G
@@ -114,7 +122,9 @@ theorem cardinalRank_eq_rank [FG G] : cardinalRank G = (rank G : Cardinal.{u}) :
 /-- Finitely generated groups are exactly those with a finite generating cardinal.
 
 Paper-ID: preliminaries.notation.generator_rank
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7.
+@isnad1 id=iff.0h1v.s4.b9c7e413e689 from=translated src=- shape=2918e292 vocab=6467c8fd
+-/
 theorem cardinalRank_lt_aleph0_iff : cardinalRank G < Cardinal.aleph0 ↔ FG G := by
   constructor
   · intro h

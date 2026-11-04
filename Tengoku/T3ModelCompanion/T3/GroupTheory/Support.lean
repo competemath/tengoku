@@ -93,7 +93,9 @@ private theorem exists_principal_support (hH : HasExponentThree H) {B G : Subgro
 holds in every subgroup containing that support, the first factor, and all relators.
 
 Paper-ID: main.bounded_support
-TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, finite-relator reduction and bound.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, finite-relator reduction and bound.
+@isnad1 id=ex.5h7v.s8.f5e9492dd59e from=translated src=- shape=89e6dd47 vocab=3ae96106
+-/
 theorem exists_finite_support (hH : HasExponentThree H) {B G : Subgroup H}
     (hgen : B ⊔ G = ⊤) (b : List H) (hb : Subgroup.closure {x | x ∈ b} = B)
     {m : ℕ} (hlen : b.length ≤ m) (Δ : Finset H) {h : H}
@@ -139,7 +141,9 @@ theorem exists_finite_support (hH : HasExponentThree H) {B G : Subgroup H}
 subgroup `H₀ = ⟨C,B,Δ⟩`. The displayed generating set certifies the bound on `d(C)`.
 
 Paper-ID: main.bounded_support
-TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, both conclusions.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, both conclusions.
+@isnad1 id=ex.6h8v.s8.3f6f4e5f281f from=translated src=- shape=eb41c874 vocab=81b61c11
+-/
 theorem exists_bounded_support_of_generating_list (hH : HasExponentThree H)
     {B G : Subgroup H} (hgen : B ⊔ G = ⊤) (b : List H)
     (hb : Subgroup.closure {x | x ∈ b} = B) {m n : ℕ} (hlen : b.length ≤ m)
@@ -165,7 +169,9 @@ The returned explicit generating set for `C` has at most `3(m+1)n` elements. No 
 finiteness or nontriviality hypothesis is imposed.
 
 Paper-ID: main.bounded_support
-TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support` (Lemma 3.2).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support` (Lemma 3.2).
+@isnad1 id=ex.5h7v.s8.808c81b1073a from=translated src=- shape=73188b48 vocab=c73b361a
+-/
 theorem exists_bounded_support (hH : HasExponentThree H) {B G : Subgroup H}
     [Group.FG B] (hgen : B ⊔ G = ⊤) {m n : ℕ} (hB : Group.rank B ≤ m)
     (Δ : Finset H) (hΔ : Δ.card ≤ n) {h : H}
@@ -190,7 +196,9 @@ theorem exists_bounded_support (hH : HasExponentThree H) {B G : Subgroup H}
 Using extended cardinality makes the cardinal bound itself imply finiteness.
 
 Paper-ID: main.bounded_support
-TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support` (Lemma 3.2).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support` (Lemma 3.2).
+@isnad1 id=ex.5h7v.s8.269adfb403ae from=translated src=- shape=3cf8ce91 vocab=919db6da
+-/
 theorem exists_bounded_support_set (hH : HasExponentThree H) {B G : Subgroup H}
     [Group.FG B] (hgen : B ⊔ G = ⊤) {m n : ℕ} (hB : Group.rank B ≤ m)
     (Δ : Set H) (hΔ : Δ.encard ≤ n) {h : H} (hh : h ∈ Subgroup.normalClosure Δ) :
@@ -208,7 +216,9 @@ subgroup `C = ⟨Y⟩` in Lemma 3.2.
 
 Paper-ID: main.bounded_support
 TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, `d(C) ≤ 3(m+1)n` and the
-certificate inside `H₀ = ⟨C,B,Δ⟩`.-/
+certificate inside `H₀ = ⟨C,B,Δ⟩`.
+@isnad1 id=ex.5h7v.s8.dc01abdff67d from=translated src=- shape=0e002942 vocab=d55eb2c0
+-/
 theorem exists_bounded_support_rank (hH : HasExponentThree H) {B G : Subgroup H}
     [Group.FG B] (hgen : B ⊔ G = ⊤) {m n : ℕ} (hB : Group.rank B ≤ m)
     (Δ : Set H) (hΔ : Δ.encard ≤ n) {h : H} (hh : h ∈ Subgroup.normalClosure Δ) :

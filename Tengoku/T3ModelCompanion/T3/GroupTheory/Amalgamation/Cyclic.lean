@@ -43,7 +43,9 @@ def cyclicGenerator (a : G) : Subgroup.zpowers a := ⟨a, Subgroup.mem_zpowers a
 /-- The distinguished element generates its cyclic subgroup.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=mem.0h3v.s7.15cc47ef0175 from=translated src=- shape=8dc847f6 vocab=fc9d48ea
+-/
 theorem cyclicGenerator_generates (a : G) (x : Subgroup.zpowers a) :
     x ∈ Subgroup.zpowers (cyclicGenerator a) := by
   obtain ⟨n, hn⟩ := x.property
@@ -52,7 +54,9 @@ theorem cyclicGenerator_generates (a : G) (x : Subgroup.zpowers a) :
 /-- Every nontrivial element of an exponent-three group has order three.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=eq.2h2v.s5.6f8b16a88c71 from=translated src=- shape=38457fe3 vocab=ded043f7
+-/
 theorem orderOf_eq_three (hG : HasExponentThree G) {a : G} (ha : a ≠ 1) :
     orderOf a = 3 := by
   have hd := orderOf_dvd_of_pow_eq_one (hG a)
@@ -75,7 +79,9 @@ noncomputable def cyclicToFreeThree (hG : HasExponentThree G) (a : G) (ha : a �
 /-- The cyclic identification sends `a` to the prescribed generator.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=eq.2h2v.s9.7de804bc2b08 from=translated src=- shape=fdfe583e vocab=7639acc7
+-/
 @[simp]
 theorem cyclicToFreeThree_generator (hG : HasExponentThree G) (a : G) (ha : a ≠ 1) :
     cyclicToFreeThree hG a ha (cyclicGenerator a) = Free.of 0 :=
@@ -84,7 +90,9 @@ theorem cyclicToFreeThree_generator (hG : HasExponentThree G) (a : G) (ha : a �
 /-- The canonical identification embeds the cyclic subgroup into the free group.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=injectiv.2h2v.s9.8e19dbfefb25 from=translated src=- shape=52ed3b61 vocab=fcd39737
+-/
 theorem cyclicToFreeThree_injective (hG : HasExponentThree G) (a : G) (ha : a ≠ 1) :
     Function.Injective (cyclicToFreeThree hG a ha) := by
   let r : Free (Fin 3) →* Subgroup.zpowers a :=
@@ -100,7 +108,9 @@ theorem cyclicToFreeThree_injective (hG : HasExponentThree G) (a : G) (ha : a �
 functional on the first graded layer.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=ex.2h2v.s9.a40c34917d09 from=translated src=- shape=f90a8176 vocab=1636d535
+-/
 theorem exists_cyclic_retraction (hG : HasExponentThree G) (a : G)
     (ha : a ∉ commutator G) :
     ∃ r : G →* Subgroup.zpowers a, r.comp (Subgroup.zpowers a).subtype = MonoidHom.id _ := by
@@ -125,7 +135,9 @@ theorem exists_cyclic_retraction (hG : HasExponentThree G) (a : G)
 /-- Two retractions onto a common group give the direct-product amalgam used in the paper.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=amalgama.4h7v.s7.5b248b9e2be3 from=translated src=- shape=acc5e1b1 vocab=0b5644ef
+-/
 theorem amalgamableOver_of_retractions {A H : Type*} [Group A] [Group H]
     (hG : HasExponentThree G) (hH : HasExponentThree H)
     (f : A →* G) (g : A →* H) (rG : G →* A) (rH : H →* A)
@@ -146,7 +158,9 @@ theorem amalgamableOver_of_retractions {A H : Type*} [Group A] [Group H]
 /-- A derived element has trivial triple commutators in every exponent-three extension.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=eq.2h4v.s6.f419e41d8d92 from=translated src=- shape=4c090ec7 vocab=f58bd084
+-/
 theorem triple_eq_one_of_mem_commutator (hG : HasExponentThree G) {a : G}
     (ha : a ∈ commutator G) (b c : G) : ⁅⁅a, b⁆, c⁆ = 1 := by
   exact (Subgroup.mem_center_iff.mp (commutator_mem_center_of_mem_commutator hG ha b) c).symm
@@ -155,7 +169,9 @@ theorem triple_eq_one_of_mem_commutator (hG : HasExponentThree G) {a : G}
 /-- The cyclic amalgamation criterion with an explicitly specified identification.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=iff.2h3v.s9.2c67c209cf38 from=translated src=- shape=cb2aaac5 vocab=23562315
+-/
 theorem cyclic_amalgamableOver_iff (hG : HasExponentThree G) (a : G)
     (f : Subgroup.zpowers a →* Free (Fin 3))
     (hf : f (cyclicGenerator a) = Free.of 0) :
@@ -187,7 +203,9 @@ theorem cyclic_amalgamableOver_iff (hG : HasExponentThree G) (a : G)
 nontrivial generator does not belong to the derived subgroup.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=iff.2h2v.s7.5448d6720578 from=translated src=- shape=8049ddc0 vocab=d8b9cd62
+-/
 theorem cyclicToFreeThree_amalgamableOver_iff (hG : HasExponentThree G) (a : G) (ha : a ≠ 1) :
     AmalgamableOver (Subgroup.zpowers a).subtype (cyclicToFreeThree hG a ha) ↔
       a ∉ commutator G :=
@@ -196,7 +214,9 @@ theorem cyclicToFreeThree_amalgamableOver_iff (hG : HasExponentThree G) (a : G) 
 /-- The cyclic criterion with the base subgroup kept in a fixed ambient group.
 
 Paper-ID: examples.cyclic_amalgamation
-TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:amalgam over the cyclic group`, Lemma 5.4.
+@isnad1 id=iff.3h4v.s9.bb7a05619933 from=translated src=- shape=f3daff70 vocab=1cd454fb
+-/
 theorem cyclic_subgroup_amalgamableOver_iff (hG : HasExponentThree G) (a : G)
     (D : Subgroup G) (haD : a ∈ D) (f : Subgroup.zpowers a →* Free (Fin 3))
     (hf : f (cyclicGenerator a) = Free.of 0) :

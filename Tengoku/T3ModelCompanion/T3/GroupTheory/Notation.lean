@@ -30,14 +30,18 @@ namespace T3
 /-- Mathlib's commutator uses exactly the paper's `a * b * a⁻¹ * b⁻¹` convention.
 
 Paper-ID: preliminaries.notation.commutator
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 1, line 241.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 1, line 241.
+@isnad1 id=eq.0h3v.s6.c54966b5a9c7 from=translated src=- shape=e728acce vocab=274fb08e
+-/
 theorem commutator_eq {G : Type*} [Group G] (a b : G) :
     ⁅a, b⁆ = a * b * a⁻¹ * b⁻¹ := commutatorElement_def a b
 
 /-- The paper's right conjugation `a^b` is mathlib's inner automorphism at `b⁻¹`.
 
 Paper-ID: preliminaries.notation.conjugation
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 3, line 243.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 3, line 243.
+@isnad1 id=eq.0h3v.s8.832c62c451fc from=translated src=- shape=81a6ea50 vocab=a93310e5
+-/
 theorem right_conjugation_eq {G : Type*} [Group G] (a b : G) :
     MulAut.conj b⁻¹ a = b⁻¹ * a * b := by simp only [MulAut.conj_apply, inv_inv]
 
@@ -49,7 +53,9 @@ namespace Monoid.Coprod
 In the group case, mathlib's coproduct is itself a group, so this is the group free product.
 
 Paper-ID: preliminaries.notation.free_product
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 5, line 245.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 5, line 245.
+@isnad1 id=existsun.0h5v.s7.8163fbf37f6f from=translated src=- shape=1955842b vocab=10ff14eb
+-/
 theorem existsUnique_lift {G H K : Type*} [Monoid G] [Monoid H] [Monoid K]
     (f : G →* K) (g : H →* K) :
     ∃! h : Monoid.Coprod G H →* K, h.comp inl = f ∧ h.comp inr = g := by
@@ -64,7 +70,9 @@ namespace Subgroup
 /-- The normal closure is the actual least normal subgroup containing the prescribed set.
 
 Paper-ID: preliminaries.notation.normal_closure
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 6, lines 246–248.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 6, lines 246–248.
+@isnad1 id=isleast.0h2v.s5.3f6da1b27087 from=translated src=- shape=0cba80b3 vocab=557fb015
+-/
 theorem isLeast_normalClosure {G : Type*} [Group G] (s : Set G) :
     IsLeast {N : Subgroup G | N.Normal ∧ s ⊆ N} (normalClosure s) := by
   refine ⟨⟨inferInstance, subset_normalClosure⟩, ?_⟩

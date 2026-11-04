@@ -47,7 +47,9 @@ def excludedExtensions (j : ∀ k, A ↪[L] C k) : L.Formula A :=
 /-- The exclusion formula means that no member of the family embeds over the assignment.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 349.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, line 349.
+@isnad1 id=iff.0h7v.s7.2c27a98c34d6 from=translated src=- shape=d992b0d2 vocab=9e9e8e44
+-/
 theorem realize_excludedExtensions {M : Type*} [L.Structure M]
     (j : ∀ k, A ↪[L] C k) (a : A → M) :
     (excludedExtensions j).Realize a ↔ ∀ k, ¬ ∃ f : C k ↪[L] M, f ∘ j k = a := by
@@ -67,7 +69,9 @@ def extensionAxiom (i : A ↪[L] B) (j : ∀ k, A ↪[L] C k) : L.Sentence :=
 extension has an embedding of the prescribed extension over it.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 349–356.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 349–356.
+@isnad1 id=iff.0h8v.s7.da22b8bfc3ca from=translated src=- shape=e4ae8a27 vocab=7d1f5149
+-/
 theorem realize_extensionAxiom_iff {M : Type*} [L.Structure M]
     (i : A ↪[L] B) (j : ∀ k, A ↪[L] C k) :
     M ⊨ extensionAxiom i j ↔

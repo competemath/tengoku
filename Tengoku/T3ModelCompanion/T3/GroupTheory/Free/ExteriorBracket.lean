@@ -45,7 +45,9 @@ def gradedMulLinear {i j : ℕ} : ⋀[R]^i V →ₗ[R] ⋀[R]^j V →ₗ[R] ⋀[
 /-- The bilinear exterior product evaluates to the graded algebra product.
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, bracket comparison.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, bracket comparison.
+@isnad1 id=eq.0h6v.s14.bdf2c2dcf9db from=translated src=- shape=d04987eb vocab=3f83fc95
+-/
 theorem gradedMulLinear_apply {i j : ℕ} (x : ⋀[R]^i V) (y : ⋀[R]^j V) :
     gradedMulLinear x y = gradedMul x y := rfl
 
@@ -63,7 +65,9 @@ noncomputable def layerOneBasis : Basis I (ZMod 3) (Layer (Free I) 1) :=
 /-- The first layer basis vector is represented by the corresponding free generator.
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, first displayed basis.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, first displayed basis.
+@isnad1 id=eq.0h2v.s8.1cbdffd0c13a from=translated src=- shape=4dc3cb61 vocab=4b2594ed
+-/
 theorem layerOneBasis_apply (i : I) :
     layerOneBasis i = mk (Free I) 1 ⟨of i, Subgroup.mem_top _⟩ := by
   apply layerOneEquiv.injective
@@ -80,7 +84,9 @@ noncomputable def layerTwoBasis : Basis (IncreasingPair I) (ZMod 3) (Layer (Free
 /-- The second layer basis vector is represented by its increasing generator commutator.
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, second displayed basis.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, second displayed basis.
+@isnad1 id=eq.0h2v.s8.f328b0d6c70a from=translated src=- shape=a42a22e9 vocab=c77ce110
+-/
 theorem layerTwoBasis_apply (p : IncreasingPair I) :
     layerTwoBasis p = mk (Free I) 2 (derivedCommutator (of p.first) (of p.second)) := by
   apply layerTwoEquiv.injective
@@ -90,7 +96,9 @@ theorem layerTwoBasis_apply (p : IncreasingPair I) :
 /-- The second layer basis is the bracket of the corresponding first layer basis vectors.
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, bracket comparison.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, bracket comparison.
+@isnad1 id=eq.0h2v.s12.e5affbecc164 from=translated src=- shape=24d97799 vocab=06a6f7e9
+-/
 theorem layerTwoBasis_eq_bracket (p : IncreasingPair I) :
     layerTwoBasis p = bracketLayer (by decide) (by decide)
       (layerOneBasis p.first) (layerOneBasis p.second) := by
@@ -117,7 +125,9 @@ private theorem sigmaTwo_bracketLayer_basis (i j : I) :
 /-- The degree-two identification carries the bracket of first-layer vectors to their wedge.
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, first bracket identity.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, first bracket identity.
+@isnad1 id=eq.0h5v.s15.613e26064197 from=translated src=- shape=dc28c26e vocab=22f6401b
+-/
 theorem sigmaTwo_bracketLayer (x y : Layer (Free I) 1) :
     sigmaTwo b (bracketLayer (by decide) (by decide) x y) =
       gradedMul (sigmaOne b x) (sigmaOne b y) := by
@@ -186,7 +196,9 @@ private theorem sigmaThree_bracketLayer_basis (p : IncreasingPair I) (k : I) :
 vector to their exterior product.
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, second bracket identity.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, second bracket identity.
+@isnad1 id=eq.0h5v.s15.aec65095b92b from=translated src=- shape=325d7257 vocab=b3029036
+-/
 theorem sigmaThree_bracketLayer (q : Layer (Free I) 2) (v : Layer (Free I) 1) :
     sigmaThree b (bracketLayer (by decide) (by decide) q v) =
       gradedMul (sigmaTwo b q) (sigmaOne b v) := by

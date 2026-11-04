@@ -54,14 +54,18 @@ def freeSumLayerEquiv (n : ℕ) :
 /-- The layer equivalence is induced by the specified free-coproduct homomorphism.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, identification of `F`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, identification of `F`.
+@isnad1 id=eq.0h4v.s13.c402a51b818b from=translated src=- shape=e017cabc vocab=9aea6751
+-/
 theorem freeSumLayerEquiv_apply (n : ℕ) (x : Layer (Coproduct (Free I) (Free J)) n) :
     freeSumLayerEquiv n x = mapLayer Free.coproductToSum n x := rfl
 
 /-- The free-coproduct identification preserves the entire left factor in each degree.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical left factor.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical left factor.
+@isnad1 id=eq.0h4v.s13.32eb4a1ab242 from=translated src=- shape=0f881059 vocab=0bc91fcb
+-/
 @[simp]
 theorem freeSumLayerEquiv_inl (n : ℕ) (x : Layer (Free I) n) :
     freeSumLayerEquiv n (mapLayer (inl (H := Free J)) n x) =
@@ -74,7 +78,9 @@ theorem freeSumLayerEquiv_inl (n : ℕ) (x : Layer (Free I) n) :
 /-- The free-coproduct identification preserves the entire right factor in each degree.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical right factor.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical right factor.
+@isnad1 id=eq.0h4v.s13.315675abe088 from=translated src=- shape=ac3e3a45 vocab=0c773468
+-/
 @[simp]
 theorem freeSumLayerEquiv_inr (n : ℕ) (x : Layer (Free J) n) :
     freeSumLayerEquiv n (mapLayer (inr (G := Free I)) n x) =
@@ -87,7 +93,9 @@ theorem freeSumLayerEquiv_inr (n : ℕ) (x : Layer (Free J) n) :
 /-- The free-coproduct identification preserves the mixed bracket in its printed order.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical mixed factors.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical mixed factors.
+@isnad1 id=eq.2h6v.s14.37c9a0c36108 from=translated src=- shape=ac35afaf vocab=0cd2b3dd
+-/
 theorem freeSumLayerEquiv_mixedMap_tmul {i j : ℕ} (hi : 0 < i) (hj : 0 < j)
     (x : Layer (Free I) i) (y : Layer (Free J) j) :
     freeSumLayerEquiv (i + j) (mixedMap hi hj (x ⊗ₜ[ZMod 3] y)) =
@@ -117,7 +125,9 @@ def freeSumLayerThreeMap :
 /-- The free presentation of `η₂` retains its three canonical components.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free presentation of `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free presentation of `η₂`.
+@isnad1 id=eq.0h3v.s14.9fce55a844cc from=translated src=- shape=0c9b69ed vocab=08cfed7a
+-/
 theorem freeSumLayerTwoMap_apply (x : LayerTwoBlocks (G := Free I) (H := Free J)) :
     freeSumLayerTwoMap x = mapLayer (Free.map Sum.inl) 2 x.1 +
       (freeSumLayerEquiv 2 (mixedMap (by decide) (by decide) x.2.1) +
@@ -127,7 +137,9 @@ theorem freeSumLayerTwoMap_apply (x : LayerTwoBlocks (G := Free I) (H := Free J)
 /-- The free presentation of `η₃` retains both mixed brackets in their printed order.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free presentation of `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free presentation of `η₃`.
+@isnad1 id=eq.0h3v.s15.0445ea504ec4 from=translated src=- shape=dea509e5 vocab=c0b1d7e5
+-/
 theorem freeSumLayerThreeMap_apply (x : LayerThreeBlocks (G := Free I) (H := Free J)) :
     freeSumLayerThreeMap x = mapLayer (Free.map Sum.inl) 3 x.1 +
       (freeSumLayerEquiv 3 (mixedMap (by decide) (by decide) x.2.1) +
@@ -151,7 +163,9 @@ noncomputable def freeFirstEquiv : Layer (Free I) 1 ≃ₗ[ZMod 3] V :=
 /-- Converting the generator space back to the first exterior power recovers `σ₁`.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, first exterior factor.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, first exterior factor.
+@isnad1 id=eq.0h4v.s15.536d525bab6c from=translated src=- shape=5255782e vocab=b53a4d13
+-/
 @[simp]
 theorem oneEquiv_symm_freeFirstEquiv (x : Layer (Free I) 1) :
     (exteriorPower.oneEquiv (ZMod 3) V).symm (freeFirstEquiv b x) = Free.sigmaOne b x :=
@@ -183,7 +197,9 @@ noncomputable def freeThreeBlocksEquiv :
 /-- The second-degree change of coordinates on an arbitrary block vector.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-two blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-two blocks.
+@isnad1 id=eq.0h7v.s17.23809118a979 from=translated src=- shape=ae033e97 vocab=35ab612e
+-/
 theorem freeTwoBlocksEquiv_apply (x : LayerTwoBlocks (G := Free I) (H := Free J)) :
     freeTwoBlocksEquiv b c x =
       (Free.sigmaTwo b x.1, TensorProduct.congr (freeFirstEquiv b) (freeFirstEquiv c) x.2.1,
@@ -192,7 +208,9 @@ theorem freeTwoBlocksEquiv_apply (x : LayerTwoBlocks (G := Free I) (H := Free J)
 /-- The third-degree change of coordinates records the sign of the right mixed component.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-three blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-three blocks.
+@isnad1 id=eq.0h7v.s19.7313a522165a from=translated src=- shape=2e0ad414 vocab=f99941e8
+-/
 theorem freeThreeBlocksEquiv_apply (x : LayerThreeBlocks (G := Free I) (H := Free J)) :
     freeThreeBlocksEquiv b c x =
       (Free.sigmaThree b x.1,
@@ -205,7 +223,9 @@ variable [LinearOrder (I ⊕ J)]
 /-- The entire `(1,1)` tensor component agrees with the canonical exterior tensor map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free mixed degree two.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free mixed degree two.
+@isnad1 id=eq.0h7v.s16.b1c364cd4851 from=translated src=- shape=d7a3a8b5 vocab=78cd962b
+-/
 theorem sigmaTwo_freeSum_mixedMap (z : Layer (Free I) 1 ⊗[ZMod 3] Layer (Free J) 1) :
     Free.sigmaTwo (b.prod c)
       (freeSumLayerEquiv 2 (mixedMap (by decide) (by decide) z)) =
@@ -227,7 +247,9 @@ theorem sigmaTwo_freeSum_mixedMap (z : Layer (Free I) 1 ⊗[ZMod 3] Layer (Free 
 /-- The entire `(2,1)` tensor component agrees with exterior multiplication with positive sign.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free mixed degree three.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free mixed degree three.
+@isnad1 id=eq.0h7v.s17.67162c399570 from=translated src=- shape=eb48e2e2 vocab=dfa507f5
+-/
 theorem sigmaThree_freeSum_mixedMap_two_one
     (z : Layer (Free I) 2 ⊗[ZMod 3] Layer (Free J) 1) :
     Free.sigmaThree (b.prod c)
@@ -250,7 +272,9 @@ theorem sigmaThree_freeSum_mixedMap_two_one
 /-- The entire `(1,2)` tensor component is the negative of ordered exterior multiplication.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free mixed degree three.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free mixed degree three.
+@isnad1 id=eq.0h7v.s17.0414459acad0 from=translated src=- shape=f15f7fe6 vocab=8dec7687
+-/
 theorem sigmaThree_freeSum_mixedMap_one_two
     (z : Layer (Free I) 1 ⊗[ZMod 3] Layer (Free J) 2) :
     Free.sigmaThree (b.prod c)
@@ -274,7 +298,9 @@ theorem sigmaThree_freeSum_mixedMap_one_two
 after the specified changes of coordinates.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-two decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-two decomposition.
+@isnad1 id=eq.0h7v.s17.f7c0d480ac75 from=translated src=- shape=ff44063a vocab=459d57f4
+-/
 theorem sigmaTwo_freeSumLayerTwoMap (x : LayerTwoBlocks (G := Free I) (H := Free J)) :
     Free.sigmaTwo (b.prod c) (freeSumLayerTwoMap x) =
       ExteriorLowDegree.twoMap (ZMod 3) V W (freeTwoBlocksEquiv b c x) := by
@@ -286,7 +312,9 @@ theorem sigmaTwo_freeSumLayerTwoMap (x : LayerTwoBlocks (G := Free I) (H := Free
 after changing coordinates and negating the right mixed tensor component.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-three decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free degree-three decomposition.
+@isnad1 id=eq.0h7v.s19.8107dc08e8a1 from=translated src=- shape=2a2bc348 vocab=577be890
+-/
 theorem sigmaThree_freeSumLayerThreeMap (x : LayerThreeBlocks (G := Free I) (H := Free J)) :
     Free.sigmaThree (b.prod c) (freeSumLayerThreeMap x) =
       ExteriorLowDegree.threeMap (ZMod 3) V W (freeThreeBlocksEquiv b c x) := by
@@ -303,7 +331,9 @@ Orders and coordinate bases are chosen only inside the proof; the map is the ori
 map, with no ordered or finite generating-set hypothesis.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₂`.
+@isnad1 id=bijectiv.0h2v.s12.b16c8677d609 from=translated src=- shape=8f6f6135 vocab=721d43fa
+-/
 theorem freeSumLayerTwoMap_bijective :
     Function.Bijective (freeSumLayerTwoMap (I := I) (J := J)) := by
   classical
@@ -330,7 +360,9 @@ The proof uses the signed exterior-coordinate equivalence. The canonical mixed b
 themselves retain the paper's order.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₃`.
+@isnad1 id=bijectiv.0h2v.s13.e49ec43e32ba from=translated src=- shape=8f6f6135 vocab=e18a4818
+-/
 theorem freeSumLayerThreeMap_bijective :
     Function.Bijective (freeSumLayerThreeMap (I := I) (J := J)) := by
   classical
@@ -354,7 +386,9 @@ theorem freeSumLayerThreeMap_bijective :
 /-- The paper's actual second-degree coproduct map is bijective for arbitrary free factors.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₂`.
+@isnad1 id=bijectiv.0h2v.s13.1bda7be672f6 from=translated src=- shape=b4143a88 vocab=eeb615e0
+-/
 theorem layerTwoMap_bijective_free :
     Function.Bijective (layerTwoMap (G := Free I) (H := Free J)) :=
   Function.Bijective.of_comp_left (f := freeSumLayerEquiv 2)
@@ -363,7 +397,9 @@ theorem layerTwoMap_bijective_free :
 /-- The paper's actual third-degree coproduct map is bijective for arbitrary free factors.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free case of `η₃`.
+@isnad1 id=bijectiv.0h2v.s14.059700235e66 from=translated src=- shape=b4143a88 vocab=6d1c83c9
+-/
 theorem layerThreeMap_bijective_free :
     Function.Bijective (layerThreeMap (G := Free I) (H := Free J)) :=
   Function.Bijective.of_comp_left (f := freeSumLayerEquiv 3)
@@ -388,7 +424,9 @@ noncomputable def freeLayerThreeEquiv : LayerThreeBlocks (G := Free I) (H := Fre
 /-- The bundled free second-degree equivalence keeps the canonical map unchanged.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.
+@isnad1 id=eq.0h3v.s14.320498db3ad6 from=translated src=- shape=fda6fb79 vocab=7a5c4fc3
+-/
 @[simp]
 theorem freeLayerTwoEquiv_apply (x : LayerTwoBlocks (G := Free I) (H := Free J)) :
     freeLayerTwoEquiv x = layerTwoMap x := rfl
@@ -396,7 +434,9 @@ theorem freeLayerTwoEquiv_apply (x : LayerTwoBlocks (G := Free I) (H := Free J))
 /-- The bundled free third-degree equivalence keeps the canonical map unchanged.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.
+@isnad1 id=eq.0h3v.s15.ad1f64bc9fa4 from=translated src=- shape=fda6fb79 vocab=3db55d53
+-/
 @[simp]
 theorem freeLayerThreeEquiv_apply (x : LayerThreeBlocks (G := Free I) (H := Free J)) :
     freeLayerThreeEquiv x = layerThreeMap x := rfl

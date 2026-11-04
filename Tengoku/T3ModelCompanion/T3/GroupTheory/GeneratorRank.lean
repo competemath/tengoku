@@ -40,7 +40,9 @@ namespace Group
 on the group itself.
 
 Paper-ID: preliminaries.notation.generator_rank
-TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, minimum number of generators.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1, item 7, minimum number of generators.
+@isnad1 id=fg.1h3v.s5.b3974b9b06c9 from=translated src=- shape=381fdbde vocab=13e1d283
+-/
 theorem fg_of_generating_family {G I : Type*} [Group G] [Finite I] (a : I → G)
     (ha : Subgroup.closure (Set.range a) = ⊤) : FG G :=
   fg_iff.mpr ⟨Set.range a, ha, Set.finite_range a⟩
@@ -60,7 +62,9 @@ variable {I G : Type*} [Group G] [Fact (HasExponentThree G)]
 Paper-ID: preliminaries.notation.generator_rank, structure.derived_strictification,
 structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:commutator root` and
-`lemma:number of generators for triple commutator roots`, the given generating families.-/
+`lemma:number of generators for triple commutator roots`, the given generating families.
+@isnad1 id=surjecti.1h3v.s7.4a4bb15ef47c from=translated src=- shape=45bbea10 vocab=531a6008
+-/
 theorem lift_surjective_of_generating_family (a : I → G)
     (ha : Subgroup.closure (Set.range a) = ⊤) :
     Function.Surjective (lift (show HasExponentThree G from Fact.out) a) := by
@@ -74,7 +78,9 @@ theorem lift_surjective_of_generating_family (a : I → G)
 /-- The first graded layer of a free group on finitely many generators is finite dimensional.
 
 Paper-ID: preliminaries.free_graded_equiv, structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree one.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree one.
+@isnad1 id=finite.0h1v.s7.2dc5a39d82f7 from=translated src=- shape=286ad9ba vocab=916b1ffb
+-/
 instance finite_layerOne [Finite I] : Module.Finite (ZMod 3) (Layer (Free I) 1) := by
   classical
   let : LinearOrder I := linearOrderOfSTO WellOrderingRel
@@ -83,7 +89,9 @@ instance finite_layerOne [Finite I] : Module.Finite (ZMod 3) (Layer (Free I) 1) 
 /-- The second graded layer of a free group on finitely many generators is finite dimensional.
 
 Paper-ID: preliminaries.free_graded_equiv, structure.lcs_strictification
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree two.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree two.
+@isnad1 id=finite.0h1v.s7.8bcd31898f65 from=translated src=- shape=286ad9ba vocab=916b1ffb
+-/
 instance finite_layerTwo [Finite I] : Module.Finite (ZMod 3) (Layer (Free I) 2) := by
   classical
   let : LinearOrder I := linearOrderOfSTO WellOrderingRel
@@ -92,7 +100,9 @@ instance finite_layerTwo [Finite I] : Module.Finite (ZMod 3) (Layer (Free I) 2) 
 /-- The dimension of the first free graded layer is the number of free generators.
 
 Paper-ID: preliminaries.free_graded_equiv, structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree one.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree one.
+@isnad1 id=eq.0h1v.s7.2a3cf9fb1541 from=translated src=- shape=4562b2c2 vocab=069a1d07
+-/
 theorem finrank_layerOne [Finite I] :
     Module.finrank (ZMod 3) (Layer (Free I) 1) = Nat.card I := by
   classical
@@ -103,7 +113,9 @@ theorem finrank_layerOne [Finite I] :
 /-- The dimension of the second free graded layer counts increasing pairs of generators.
 
 Paper-ID: preliminaries.free_graded_equiv, structure.lcs_strictification
-TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree two.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`, degree two.
+@isnad1 id=eq.0h1v.s7.b09aafc9c649 from=translated src=- shape=7308c83d vocab=ea00a440
+-/
 theorem finrank_layerTwo [Finite I] :
     Module.finrank (ZMod 3) (Layer (Free I) 2) = (Nat.card I).choose 2 := by
   classical
@@ -121,7 +133,9 @@ variable {G I : Type*} [Group G] [Fact (HasExponentThree G)]
 /-- A finite generating family makes the first layer finite dimensional.
 
 Paper-ID: structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, the finite-dimensional basis choice.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, the finite-dimensional basis choice.
+@isnad1 id=finite.1h3v.s6.61af0feaedc8 from=translated src=- shape=68f4d47a vocab=14f34b2e
+-/
 theorem finite_layerOne_of_generating_family [Finite I] (a : I → G)
     (ha : Subgroup.closure (Set.range a) = ⊤) : Module.Finite (ZMod 3) (Layer G 1) :=
   Module.Finite.of_surjective (mapLayer (Free.lift (show HasExponentThree G from Fact.out) a) 1)
@@ -131,7 +145,9 @@ theorem finite_layerOne_of_generating_family [Finite I] (a : I → G)
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-the finite-dimensional basis choice.-/
+the finite-dimensional basis choice.
+@isnad1 id=finite.1h3v.s6.be36a421d715 from=translated src=- shape=68f4d47a vocab=14f34b2e
+-/
 theorem finite_layerTwo_of_generating_family [Finite I] (a : I → G)
     (ha : Subgroup.closure (Set.range a) = ⊤) : Module.Finite (ZMod 3) (Layer G 2) :=
   Module.Finite.of_surjective (mapLayer (Free.lift (show HasExponentThree G from Fact.out) a) 2)
@@ -140,7 +156,9 @@ theorem finite_layerTwo_of_generating_family [Finite I] (a : I → G)
 /-- The first-layer dimension is bounded by the size of any finite generating family.
 
 Paper-ID: structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, `dim gr₁(C) ≤ m`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, `dim gr₁(C) ≤ m`.
+@isnad1 id=le.1h3v.s6.b0ba918e99af from=translated src=- shape=34684515 vocab=a0bd1c33
+-/
 theorem finrank_layerOne_le_of_generating_family [Finite I] (a : I → G)
     (ha : Subgroup.closure (Set.range a) = ⊤) :
     Module.finrank (ZMod 3) (Layer G 1) ≤ Nat.card I := by
@@ -151,7 +169,9 @@ theorem finrank_layerOne_le_of_generating_family [Finite I] (a : I → G)
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-`dim gr₂(C) ≤ binom(n,2)`.-/
+`dim gr₂(C) ≤ binom(n,2)`.
+@isnad1 id=le.1h3v.s6.0d3c962617dd from=translated src=- shape=d6bcfaf3 vocab=eeda1620
+-/
 theorem finrank_layerTwo_le_of_generating_family [Finite I] (a : I → G)
     (ha : Subgroup.closure (Set.range a) = ⊤) :
     Module.finrank (ZMod 3) (Layer G 2) ≤ (Nat.card I).choose 2 := by
@@ -161,7 +181,9 @@ theorem finrank_layerTwo_le_of_generating_family [Finite I] (a : I → G)
 /-- The first layer of a finitely generated exponent-three group is finite dimensional.
 
 Paper-ID: preliminaries.notation.generator_rank, structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, the finite-dimensional basis choice.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, the finite-dimensional basis choice.
+@isnad1 id=finite.0h1v.s6.d796c086691b from=translated src=- shape=82bb75d8 vocab=3e8298a9
+-/
 instance finite_layerOne [Group.FG G] : Module.Finite (ZMod 3) (Layer G 1) := by
   obtain ⟨s, hs, hfin⟩ := Group.fg_iff.mp (inferInstance : Group.FG G)
   let : Finite s := hfin.to_subtype
@@ -171,7 +193,9 @@ instance finite_layerOne [Group.FG G] : Module.Finite (ZMod 3) (Layer G 1) := by
 
 Paper-ID: preliminaries.notation.generator_rank, structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-the finite-dimensional basis choice.-/
+the finite-dimensional basis choice.
+@isnad1 id=finite.0h1v.s6.9ef3fcf3dde6 from=translated src=- shape=82bb75d8 vocab=3e8298a9
+-/
 instance finite_layerTwo [Group.FG G] : Module.Finite (ZMod 3) (Layer G 2) := by
   obtain ⟨s, hs, hfin⟩ := Group.fg_iff.mp (inferInstance : Group.FG G)
   let : Finite s := hfin.to_subtype
@@ -180,7 +204,9 @@ instance finite_layerTwo [Group.FG G] : Module.Finite (ZMod 3) (Layer G 2) := by
 /-- The paper's generator rank bounds the first graded dimension.
 
 Paper-ID: preliminaries.notation.generator_rank, structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, Notation 2.1(7), `lemma:commutator root`.-/
+TeX: T3_modelcompanion_v9.tex, Notation 2.1(7), `lemma:commutator root`.
+@isnad1 id=le.0h1v.s6.0bc2640cfa3a from=translated src=- shape=7f483030 vocab=13a34266
+-/
 theorem finrank_layerOne_le_rank [Group.FG G] :
     Module.finrank (ZMod 3) (Layer G 1) ≤ Group.rank G := by
   obtain ⟨s, hcard, hs⟩ := Group.rank_spec G
@@ -191,7 +217,9 @@ theorem finrank_layerOne_le_rank [Group.FG G] :
 
 Paper-ID: preliminaries.notation.generator_rank, structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, Notation 2.1(7),
-`lemma:number of generators for triple commutator roots`.-/
+`lemma:number of generators for triple commutator roots`.
+@isnad1 id=le.0h1v.s6.d81f16ffa0c1 from=translated src=- shape=e9fb293c vocab=35dbe311
+-/
 theorem finrank_layerTwo_le_rank [Group.FG G] :
     Module.finrank (ZMod 3) (Layer G 2) ≤ (Group.rank G).choose 2 := by
   obtain ⟨s, hcard, hs⟩ := Group.rank_spec G
@@ -207,14 +235,18 @@ variable {I : Type*}
 /-- A free exponent-three group on finitely many generators is finitely generated.
 
 Paper-ID: preliminaries.notation.generator_rank, structure.strict_envelope
-TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the free-two factor.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the free-two factor.
+@isnad1 id=fg.0h1v.s4.66e836f79362 from=translated src=- shape=1666ae32 vocab=cadb5880
+-/
 instance fg [Finite I] : Group.FG (Free I) :=
   Group.fg_iff.mpr ⟨Set.range of, closure_range_of, Set.finite_range of⟩
 
 /-- The rank of a free exponent-three group is bounded by the number of its generators.
 
 Paper-ID: preliminaries.notation.generator_rank, structure.strict_envelope
-TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the two added generators.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the two added generators.
+@isnad1 id=le.0h1v.s4.e7566abb6c4f from=translated src=- shape=f1cbd57e vocab=25c2258b
+-/
 theorem rank_le_card [Finite I] : Group.rank (Free I) ≤ Nat.card I := by
   classical
   let := Fintype.ofFinite I

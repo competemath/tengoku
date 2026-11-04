@@ -35,7 +35,9 @@ variable {L : Language.{u, v}} {T : L.Theory}
 all tuples in models of arbitrary cardinality and universe.
 
 Paper-ID: model_theory.uniform_local_finiteness
-TeX: T3_modelcompanion_v9.tex, Fact 2.5, lines 303–306; no label.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.5, lines 303–306; no label.
+@isnad1 id=ex.1h3v.s8.6129a4e3bfbb from=translated src=- shape=4d0ca9ec vocab=d90f3a68
+-/
 theorem IsLocallyFinite.exists_finite_qfType_cover_of_model [Finite L.Symbols]
     (hT : T.IsLocallyFinite) (n : ℕ) :
     ∃ P : Finset (Σ M : T.ModelType.{u, v, max u v}, Fin n → M),
@@ -61,7 +63,9 @@ theorem IsLocallyFinite.exists_finite_qfType_cover_of_model [Finite L.Symbols]
 fixed length in arbitrary nonempty models.
 
 Paper-ID: model_theory.uniform_local_finiteness
-TeX: T3_modelcompanion_v9.tex, Fact 2.5, lines 303–306; no label.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.5, lines 303–306; no label.
+@isnad1 id=ex.1h3v.s6.ab6a0950b497 from=translated src=- shape=a12361e2 vocab=a2ee5a2e
+-/
 theorem IsLocallyFinite.exists_card_closure_range_le_of_model [Finite L.Symbols]
     (hT : T.IsLocallyFinite) (n : ℕ) :
     ∃ m : ℕ, ∀ (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T] (a : Fin n → M),
@@ -82,7 +86,9 @@ theorem IsLocallyFinite.exists_card_closure_range_le_of_model [Finite L.Symbols]
 of an arbitrary model of a locally finite theory in a finite language.
 
 Paper-ID: model_theory.uniform_local_finiteness
-TeX: T3_modelcompanion_v9.tex, Fact 2.5, lines 303–306; no label.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.5, lines 303–306; no label.
+@isnad1 id=ex.1h3v.s6.e3cf2a826aaa from=translated src=- shape=303a71d7 vocab=94ce6b15
+-/
 theorem exists_card_closure_le_of_isLocallyFinite_of_model [Finite L.Symbols]
     (hT : T.IsLocallyFinite) (n : ℕ) :
     ∃ m : ℕ, ∀ (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T] (s : Finset M),
@@ -107,7 +113,9 @@ theorem exists_card_closure_le_of_isLocallyFinite_of_model [Finite L.Symbols]
 subset of representatives modulo the theory.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 6, lines 279–287; no label.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.2, item 6, lines 279–287; no label.
+@isnad1 id=ex.1h5v.s7.cec3c104fb9b from=translated src=- shape=3be18d31 vocab=f9360aa2
+-/
 theorem IsLocallyFinite.exists_finite_tupleQfDiagram_representatives_of_model
     [Finite L.Symbols] (hT : T.IsLocallyFinite) (M : Type w)
     [L.Structure M] [Nonempty M] [M ⊨ T] {n : ℕ} (a : Fin n → M) :

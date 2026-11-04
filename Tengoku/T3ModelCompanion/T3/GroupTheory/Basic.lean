@@ -35,7 +35,9 @@ def HasExponentThree (G : Type*) [Group G] : Prop := ∀ g : G, g ^ 3 = 1
 /-- The paper's exponent-three condition says that the group exponent divides three.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, unnumbered opening of Section 2, lines 230–236.-/
+TeX: T3_modelcompanion_v9.tex, unnumbered opening of Section 2, lines 230–236.
+@isnad1 id=iff.0h1v.s4.5a390b3dfba5 from=translated src=- shape=ed16ed2b vocab=f77e9226
+-/
 theorem hasExponentThree_iff_exponent_dvd {G : Type*} [Group G] :
     HasExponentThree G ↔ Monoid.exponent G ∣ 3 :=
   Monoid.exponent_dvd_iff_forall_pow_eq_one.symm
@@ -43,7 +45,9 @@ theorem hasExponentThree_iff_exponent_dvd {G : Type*} [Group G] :
 /-- A trivial group satisfies the exponent-three condition.
 
 Paper-ID: preliminaries.exponent_three
-TeX: T3_modelcompanion_v9.tex, unnumbered opening of Section 2, lines 230–236.-/
+TeX: T3_modelcompanion_v9.tex, unnumbered opening of Section 2, lines 230–236.
+@isnad1 id=hasexpon.0h1v.s3.17cb3898a73e from=translated src=- shape=c612a321 vocab=8faf227b
+-/
 theorem hasExponentThree_of_subsingleton (G : Type*) [Group G] [Subsingleton G] :
     HasExponentThree G := fun _ => Subsingleton.elim _ _
 
@@ -61,7 +65,9 @@ def commutatorOfSets {G : Type*} [Group G] (A B : Set G) : Subgroup G :=
 
 Paper-ID: preliminaries.set_commutator
 TeX: T3_modelcompanion_v9.tex, lines 418–419; the set notation used in
-`fact:elementary equations`, v9 Fact 2.15, items 10 and 11.-/
+`fact:elementary equations`, v9 Fact 2.15, items 10 and 11.
+@isnad1 id=mem.2h5v.s5.261aab7c4f38 from=translated src=- shape=16ae633e vocab=2d2c39fe
+-/
 theorem commutator_mem_commutatorOfSets {G : Type*} [Group G] {A B : Set G}
     {a b : G} (ha : a ∈ A) (hb : b ∈ B) : ⁅a, b⁆ ∈ commutatorOfSets A B :=
   Subgroup.subset_closure ⟨a, ha, b, hb, rfl⟩
@@ -70,7 +76,9 @@ theorem commutator_mem_commutatorOfSets {G : Type*} [Group G] {A B : Set G}
 
 Paper-ID: preliminaries.elementary_identities
 TeX: T3_modelcompanion_v9.tex, `fact:elementary equations`,
-v9 Fact 2.15, supporting lemma for items 10 and 11.-/
+v9 Fact 2.15, supporting lemma for items 10 and 11.
+@isnad1 id=le.0h3v.s5.541b26a21a4d from=translated src=- shape=ffcc485c vocab=ed40c244
+-/
 theorem commutatorOfSets_le_commutator {G : Type*} [Group G] (A B : Set G) :
     commutatorOfSets A B ≤ commutator G := by
   apply (commutator G).closure_le.mpr

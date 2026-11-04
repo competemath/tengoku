@@ -35,7 +35,9 @@ variable {R L : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
 the generators contains the Lie algebra they generate.
 
 Paper-ID: linear_algebra.degree_one_generation
-TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, proof by the Jacobi identity.-/
+TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, proof by the Jacobi identity.
+@isnad1 id=le.2h4v.s8.6bac6fbbddff from=translated src=- shape=54925a7a vocab=725f21d7
+-/
 theorem lieSpan_le_of_lie_mem_right (S U : Submodule R L) (hS : S ≤ U)
     (hbr : ∀ x ∈ U, ∀ y ∈ S, ⁅x, y⁆ ∈ U) :
     (lieSpan R L (S : Set L)).toSubmodule ≤ U := by
@@ -101,7 +103,9 @@ variable {L : Type*} [LieRing L]
 /-- Mathlib's bracket is additive in both variables, as in the paper's Lie-ring definition.
 
 Paper-ID: linear_algebra.graded_lie
-TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 2, line 367.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 2, line 367.
+@isnad1 id=and.0h4v.s7.7b8a3825f884 from=translated src=- shape=79c1f601 vocab=526122af
+-/
 theorem bracket_biadditive (x y z : L) :
     (⁅x + y, z⁆ = ⁅x, z⁆ + ⁅y, z⁆) ∧ (⁅x, y + z⁆ = ⁅x, y⁆ + ⁅x, z⁆) :=
   ⟨add_lie x y z, lie_add x y z⟩
@@ -109,14 +113,18 @@ theorem bracket_biadditive (x y z : L) :
 /-- Mathlib's bracket is alternating, including in characteristic two.
 
 Paper-ID: linear_algebra.graded_lie
-TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 3, line 368.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 3, line 368.
+@isnad1 id=eq.0h2v.s5.52d32facb1d2 from=translated src=- shape=c3da5c8a vocab=cedfc192
+-/
 theorem bracket_alternating (x : L) : ⁅x, x⁆ = 0 := lie_self x
 
 /-- The cyclic Jacobi identity in the paper's left-nested convention follows from mathlib's
 Lie-ring axioms, over every characteristic and also over the integers.
 
 Paper-ID: linear_algebra.graded_lie
-TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 4, line 369.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 4, line 369.
+@isnad1 id=eq.0h4v.s7.a3244f94da8f from=translated src=- shape=8b335330 vocab=526122af
+-/
 theorem cyclic_jacobi (x y z : L) :
     ⁅⁅x, y⁆, z⁆ + ⁅⁅y, z⁆, x⁆ + ⁅⁅z, x⁆, y⁆ = 0 := by
   have h := congrArg Neg.neg (lie_jacobi z x y)
@@ -125,7 +133,9 @@ theorem cyclic_jacobi (x y z : L) :
 /-- Lie brackets are antisymmetric, without any restriction on the characteristic.
 
 Paper-ID: linear_algebra.degree_one_generation
-TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 1, line 377.-/
+TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 1, line 377.
+@isnad1 id=eq.0h3v.s5.cff1f5b92b9e from=translated src=- shape=4fcc61a3 vocab=c06a5cd4
+-/
 theorem bracket_eq_neg_swap (x y : L) : ⁅x, y⁆ = -⁅y, x⁆ :=
   (lie_skew x y).symm
 
@@ -147,7 +157,9 @@ def IsPositive : Prop := ℒ 0 = ⊥
 /-- The bracket of homogeneous components is contained in their sum degree.
 
 Paper-ID: linear_algebra.graded_lie
-TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 1, line 366.-/
+TeX: T3_modelcompanion_v9.tex, Definition 2.7, item 1, line 366.
+@isnad1 id=le.0h5v.s8.af262fcb915b from=translated src=- shape=372bcece vocab=800db328
+-/
 theorem map₂_le_grade (i j : ℕ) :
     Submodule.map₂ (LieAlgebra.ad R L).toLinearMap (ℒ i) (ℒ j) ≤ ℒ (i + j) :=
   Submodule.map₂_le.mpr fun _ hx _ hy => SetLike.GradedBracket.bracket_mem hx hy
@@ -208,7 +220,9 @@ private theorem grade_le_iteratedBracket_of_iSup_eq_top
 then degree one generates the entire Lie algebra.
 
 Paper-ID: linear_algebra.degree_one_generation
-TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, lines 378–379, reverse implication.-/
+TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, lines 378–379, reverse implication.
+@isnad1 id=eq.2h3v.s8.a6eb6513e470 from=translated src=- shape=1bb24bfe vocab=bd752bec
+-/
 theorem lieSpan_eq_top_of_map₂_eq_grade (hzero : IsPositive ℒ)
     (hstep : ∀ i, 1 ≤ i →
       Submodule.map₂ (LieAlgebra.ad R L).toLinearMap (ℒ i) (ℒ 1) = ℒ (i + 1)) :
@@ -234,7 +248,9 @@ theorem lieSpan_eq_top_of_map₂_eq_grade (hzero : IsPositive ℒ)
 all linear combinations of brackets of the preceding component with degree one.
 
 Paper-ID: linear_algebra.degree_one_generation
-TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, lines 378–379, forward implication.-/
+TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, lines 378–379, forward implication.
+@isnad1 id=eq.2h4v.s8.a3e756fece5f from=translated src=- shape=3d2147ec vocab=0249b842
+-/
 theorem map₂_eq_grade_of_lieSpan_eq_top
     (hgen : LieSubalgebra.lieSpan R L (ℒ 1 : Set L) = ⊤) {i : ℕ} (hi : 1 ≤ i) :
     Submodule.map₂ (LieAlgebra.ad R L).toLinearMap (ℒ i) (ℒ 1) = ℒ (i + 1) := by
@@ -250,7 +266,9 @@ successor-bracket condition in every positive degree. The statement holds over a
 commutative ring, so it includes Lie rings over the integers and Lie algebras over fields.
 
 Paper-ID: linear_algebra.degree_one_generation
-TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, lines 378–379.-/
+TeX: T3_modelcompanion_v9.tex, Remark 2.8, item 2, lines 378–379.
+@isnad1 id=iff.1h3v.s8.45405c5045d8 from=translated src=- shape=81ca6dd4 vocab=bd752bec
+-/
 theorem lieSpan_eq_top_iff_map₂_eq_grade (hzero : IsPositive ℒ) :
     LieSubalgebra.lieSpan R L (ℒ 1 : Set L) = ⊤ ↔
       ∀ i, 1 ≤ i →

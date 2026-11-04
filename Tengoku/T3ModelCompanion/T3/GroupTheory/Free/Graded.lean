@@ -61,7 +61,9 @@ def tripleLayer : Subgroup (LvdW I) where
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=iff.0h2v.s7.997b944fba7c from=translated src=- shape=0cc221d3 vocab=5e99155f
+-/
 theorem mem_tripleLayer {x : LvdW I} :
     x ∈ tripleLayer ↔ (∀ i, x.gen i = 0) ∧ ∀ i j, x.pair i j = 0 :=
   Iff.rfl
@@ -84,7 +86,9 @@ abbrev GammaThree : Subgroup (Free I) :=
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=le.0h1v.s6.79cfc455f47b from=translated src=- shape=b508c106 vocab=5deaf94f
+-/
 theorem gammaThree_le_derived :
     GammaThree (I := I) ≤ commutator (Free I) :=
   (⊤ : Subgroup (Free I)).lowerCentralSeries_antitone (show 1 ≤ 2 by omega)
@@ -93,7 +97,9 @@ theorem gammaThree_le_derived :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=mem.1h3v.s7.aff76ba644c6 from=translated src=- shape=ece9137a vocab=03f5d19d
+-/
 theorem commutator_mem_gammaThree {k : Free I}
     (hk : k ∈ commutator (Free I)) (w : Free I) :
     ⁅k, w⁆ ∈ GammaThree (I := I) := by
@@ -108,7 +114,9 @@ variable [LinearOrder I]
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=le.0h1v.s7.8af5465cd045 from=translated src=- shape=01e4c4cf vocab=4fcfae2c
+-/
 theorem commutator_le_genReadout_ker :
     commutator (Free I) ≤ (genReadout (I := I)).ker := by
   rw [commutator_def]
@@ -118,7 +126,9 @@ theorem commutator_le_genReadout_ker :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.1h3v.s8.f3aaf9c529fd from=translated src=- shape=28ae8936 vocab=a1b2145c
+-/
 theorem toLvdW_gen_eq_zero_of_mem_commutator {g : Free I}
     (hg : g ∈ commutator (Free I)) : ∀ i, (toLvdW g).gen i = 0 := by
   have h := commutator_le_genReadout_ker hg
@@ -129,7 +139,9 @@ theorem toLvdW_gen_eq_zero_of_mem_commutator {g : Free I}
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=mem.1h2v.s7.99a053c72af8 from=translated src=- shape=98afea0a vocab=d1eae2d7
+-/
 theorem toLvdW_mem_tripleLayer {g : Free I} (hg : g ∈ GammaThree (I := I)) :
     toLvdW g ∈ LvdW.tripleLayer (I := I) := by
   have hg' : g ∈ increasingTripleClosure (I := I) := by
@@ -150,7 +162,9 @@ theorem toLvdW_mem_tripleLayer {g : Free I} (hg : g ∈ GammaThree (I := I)) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=mem.0h2v.s8.a1a12774bf61 from=translated src=- shape=63e17eb3 vocab=fb78021d
+-/
 theorem pairWordFinsupp_mem_derived (m : IncreasingPair I →₀ ZMod 3) :
     (pairWordFinsupp m : Free I) ∈ Derived (I := I) := by
   classical
@@ -166,7 +180,9 @@ theorem pairWordFinsupp_mem_derived (m : IncreasingPair I →₀ ZMod 3) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=mem.0h2v.s11.7749c75ea7dd from=translated src=- shape=02324936 vocab=da74614a
+-/
 theorem tripleWordFinsupp_mem_gammaThree (n : IncreasingTriple I →₀ ZMod 3) :
     ((tripleWordFinsupp n : (genReadout (I := I)).ker) : Free I) ∈ GammaThree (I := I) := by
   classical
@@ -184,7 +200,9 @@ theorem tripleWordFinsupp_mem_gammaThree (n : IncreasingTriple I →₀ ZMod 3) 
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s6.290c46a047a5 from=translated src=- shape=6cca6e43 vocab=b34d2f9c
+-/
 theorem derived_eq_genReadout_ker :
     Derived (I := I) = (genReadout (I := I)).ker := by
   apply le_antisymm commutator_le_genReadout_ker
@@ -203,7 +221,9 @@ theorem derived_eq_genReadout_ker :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s10.8882015f9e7b from=translated src=- shape=b16543a6 vocab=094ad426
+-/
 theorem pairReadout_ker_eq_gammaThree :
     (pairReadout (I := I)).ker =
       (GammaThree (I := I)).comap (genReadout (I := I)).ker.subtype := by
@@ -272,7 +292,9 @@ noncomputable def genFinsuppReadout : Free I →* Multiplicative (I →₀ ZMod 
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h3v.s10.88e912aaa7e9 from=translated src=- shape=b3665e15 vocab=6845a4fa
+-/
 @[simp]
 theorem genFinsuppReadout_apply (g : Free I) (i : I) :
     (genFinsuppReadout g).toAdd i = (toLvdW g).gen i := rfl
@@ -281,7 +303,9 @@ theorem genFinsuppReadout_apply (g : Free I) (i : I) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=iff.0h2v.s10.ccbbea12b2d4 from=translated src=- shape=9c20b457 vocab=d4897413
+-/
 theorem genFinsuppReadout_eq_one (g : Free I) :
     genFinsuppReadout g = 1 ↔ genReadout g = 1 :=
   Finsupp.coe_eq_zero.symm
@@ -290,7 +314,9 @@ theorem genFinsuppReadout_eq_one (g : Free I) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=surjecti.0h1v.s9.8a89031fae9b from=translated src=- shape=17c788db vocab=29e04f14
+-/
 theorem genFinsuppReadout_surjective : Function.Surjective (genFinsuppReadout (I := I)) := by
   intro l
   refine ⟨generatorWordFinsupp l.toAdd, ?_⟩
@@ -302,7 +328,9 @@ theorem genFinsuppReadout_surjective : Function.Surjective (genFinsuppReadout (I
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s7.df7994a68818 from=translated src=- shape=e8ce3cf8 vocab=67c7e0c2
+-/
 theorem genFinsuppReadout_ker : (genFinsuppReadout (I := I)).ker = Derived (I := I) := by
   ext g
   rw [MonoidHom.mem_ker, genFinsuppReadout_eq_one, ← MonoidHom.mem_ker,
@@ -331,7 +359,9 @@ noncomputable def pairFinsuppReadout :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h3v.s11.83af57c49dd6 from=translated src=- shape=47c47875 vocab=a7de5653
+-/
 @[simp]
 theorem pairFinsuppReadout_apply (g : Derived (I := I)) (p : IncreasingPair I) :
     (pairFinsuppReadout g).toAdd p = (toLvdW (g : Free I)).pair p.first p.second := rfl
@@ -340,7 +370,9 @@ theorem pairFinsuppReadout_apply (g : Derived (I := I)) (p : IncreasingPair I) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=iff.0h2v.s12.d00418b554ee from=translated src=- shape=83628047 vocab=138f6b2e
+-/
 theorem pairFinsuppReadout_eq_one (g : Derived (I := I)) :
     pairFinsuppReadout g = 1 ↔ pairReadout (derivedToGenKer g) = 1 :=
   Finsupp.coe_eq_zero.symm
@@ -349,7 +381,9 @@ theorem pairFinsuppReadout_eq_one (g : Derived (I := I)) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=surjecti.0h1v.s10.ef1a79f60040 from=translated src=- shape=1acd1e62 vocab=34571c7c
+-/
 theorem pairFinsuppReadout_surjective : Function.Surjective (pairFinsuppReadout (I := I)) := by
   intro m
   refine ⟨⟨pairWordFinsupp m.toAdd, pairWordFinsupp_mem_derived m.toAdd⟩, ?_⟩
@@ -361,7 +395,9 @@ theorem pairFinsuppReadout_surjective : Function.Surjective (pairFinsuppReadout 
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s8.e9ef151fd5ff from=translated src=- shape=d671739a vocab=5fbd03e2
+-/
 theorem pairFinsuppReadout_ker :
     (pairFinsuppReadout (I := I)).ker = GammaThreeInDerived (I := I) := by
   ext g
@@ -393,7 +429,9 @@ noncomputable def tripleFinsuppReadout :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h3v.s11.1865197d0b55 from=translated src=- shape=9cb69eea vocab=02050823
+-/
 theorem tripleFinsuppReadout_apply (g : GammaThree (I := I)) (t : IncreasingTriple I) :
     (tripleFinsuppReadout g).toAdd t =
       (toLvdW (g : Free I)).triple t.first t.second t.third := rfl
@@ -402,7 +440,9 @@ theorem tripleFinsuppReadout_apply (g : GammaThree (I := I)) (t : IncreasingTrip
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=surjecti.0h1v.s10.8a47e5bff4cb from=translated src=- shape=1acd1e62 vocab=3c50b5bf
+-/
 theorem tripleFinsuppReadout_surjective :
     Function.Surjective (tripleFinsuppReadout (I := I)) := by
   intro n
@@ -416,7 +456,9 @@ theorem tripleFinsuppReadout_surjective :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=injectiv.0h1v.s10.949586f9c0ca from=translated src=- shape=1acd1e62 vocab=9fd596d5
+-/
 theorem tripleFinsuppReadout_injective : Function.Injective (tripleFinsuppReadout (I := I)) := by
   intro g h hgh
   have hread : tripleReadout (gammaThreeToPairKer g) = tripleReadout (gammaThreeToPairKer h) := by
@@ -430,7 +472,9 @@ theorem tripleFinsuppReadout_injective : Function.Injective (tripleFinsuppReadou
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s9.0aea1fade313 from=translated src=- shape=30cec746 vocab=b8f95604
+-/
 theorem tripleFinsuppReadout_ker : (tripleFinsuppReadout (I := I)).ker = ⊥ :=
   (tripleFinsuppReadout (I := I)).ker_eq_bot tripleFinsuppReadout_injective
 
@@ -456,7 +500,9 @@ omit [LinearOrder I] in
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.2h5v.s12.c645832d9e37 from=translated src=- shape=86f3b848 vocab=5739910f
+-/
 @[simp]
 theorem layerEquivOfReadout_mk {J : Type*} (n : ℕ)
     (f : AssociatedGraded.term (Free I) n →* Multiplicative (J →₀ ZMod 3))
@@ -477,7 +523,9 @@ noncomputable def layerOneReadout :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s8.08888917a1bb from=translated src=- shape=4c0bc03a vocab=92a074db
+-/
 theorem layerOneReadout_ker :
     (layerOneReadout (I := I)).ker = AssociatedGraded.relation (Free I) 1 := by
   rw [layerOneReadout, ← MonoidHom.comap_ker, genFinsuppReadout_ker]
@@ -487,7 +535,9 @@ theorem layerOneReadout_ker :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=surjecti.0h1v.s10.2f6057a2f12b from=translated src=- shape=3411bf0e vocab=5495e1a2
+-/
 theorem layerOneReadout_surjective : Function.Surjective (layerOneReadout (I := I)) := by
   intro l
   obtain ⟨g, hg⟩ := genFinsuppReadout_surjective l
@@ -507,7 +557,9 @@ noncomputable def layerOneEquiv :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h2v.s11.47e79414ed29 from=translated src=- shape=48639fd2 vocab=10348ab6
+-/
 @[simp]
 theorem layerOneEquiv_mk (x : AssociatedGraded.term (Free I) 1) :
     layerOneEquiv (AssociatedGraded.mk (Free I) 1 x) =
@@ -527,7 +579,9 @@ noncomputable def layerTwoEquiv :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h2v.s11.e543372561cf from=translated src=- shape=3604c886 vocab=eb8e4676
+-/
 @[simp]
 theorem layerTwoEquiv_mk (x : AssociatedGraded.term (Free I) 2) :
     layerTwoEquiv (AssociatedGraded.mk (Free I) 2 x) = (pairFinsuppReadout x).toAdd := rfl
@@ -537,7 +591,9 @@ omit [LinearOrder I] in
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h1v.s8.ad222a03a797 from=translated src=- shape=2a99ef35 vocab=9a49ce7e
+-/
 theorem relation_three_eq_bot : AssociatedGraded.relation (Free I) 3 = ⊥ := by
   unfold AssociatedGraded.relation
   rw [lowerCentralSeries_three_eq_bot (pow_three (X := I)), MonoidHom.comap_bot]
@@ -558,7 +614,9 @@ noncomputable def layerThreeEquiv :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h2v.s11.039a139a133c from=translated src=- shape=3604c886 vocab=c9834e49
+-/
 @[simp]
 theorem layerThreeEquiv_mk (x : AssociatedGraded.term (Free I) 3) :
     layerThreeEquiv (AssociatedGraded.mk (Free I) 3 x) = (tripleFinsuppReadout x).toAdd := rfl
@@ -567,7 +625,9 @@ theorem layerThreeEquiv_mk (x : AssociatedGraded.term (Free I) 3) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h2v.s10.4415f8dacbaf from=translated src=- shape=c6d48f54 vocab=7751fcec
+-/
 theorem layerOneEquiv_of (i : I) :
     layerOneEquiv (AssociatedGraded.mk (Free I) 1 ⟨of i, Subgroup.mem_top _⟩) =
       Finsupp.single i 1 := by
@@ -579,7 +639,9 @@ theorem layerOneEquiv_of (i : I) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h2v.s10.6a93de8020d4 from=translated src=- shape=834d477a vocab=9058c129
+-/
 theorem layerTwoEquiv_commutator (p : IncreasingPair I) :
     layerTwoEquiv (AssociatedGraded.mk (Free I) 2
       (derivedCommutator (of p.first) (of p.second))) = Finsupp.single p 1 := by
@@ -595,7 +657,9 @@ theorem layerTwoEquiv_commutator (p : IncreasingPair I) :
 
 Paper-ID: preliminaries.free_graded_equiv, preliminaries.infinite_free_graded
 TeX: T3_modelcompanion_v9.tex, `proposition:gr(F) is Grassmann algebra`,
-v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.-/
+v9 Proposition 2.29 and Remark 2.30, underlying degree quotients.
+@isnad1 id=eq.0h2v.s10.debd1599f5b9 from=translated src=- shape=d43fdbd7 vocab=b7739027
+-/
 theorem layerThreeEquiv_tripleCommutator (t : IncreasingTriple I) :
     layerThreeEquiv (AssociatedGraded.mk (Free I) 3
       ⟨⁅⁅of t.first, of t.second⁆, of t.third⁆,

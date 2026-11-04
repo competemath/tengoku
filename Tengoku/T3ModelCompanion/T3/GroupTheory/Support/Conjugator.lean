@@ -33,14 +33,18 @@ variable {F : Type*} [Group F]
 
 /-! ### The quotient by `γ₃` has central derived subgroup -/
 
-/-- A commutator against a derived element lies in `γ₃`.-/
+/-- A commutator against a derived element lies in `γ₃`.
+@isnad1 id=mem.1h3v.s5.b08986367352 from=translated src=- shape=7fdf963a vocab=665fe1f6
+-/
 theorem commutator_mem_lowerCentralSeries_two {k : F} (hk : k ∈ commutator F) (w : F) :
     ⁅k, w⁆ ∈ (⊤ : Subgroup F).lowerCentralSeries 2 := by
   rw [show (2 : ℕ) = 1 + 1 by omega, Subgroup.lowerCentralSeries_succ,
     Subgroup.top_lowerCentralSeries_one]
   exact Subgroup.commutator_mem_commutator hk (Subgroup.mem_top w)
 
-/-- In the quotient by `γ₃` the derived subgroup is central.-/
+/-- In the quotient by `γ₃` the derived subgroup is central.
+@isnad1 id=le.0h1v.s8.9de667c89db4 from=translated src=- shape=17d6be02 vocab=30676e6c
+-/
 theorem commutator_quotient_gammaThree_le_center :
     commutator (F ⧸ (⊤ : Subgroup F).lowerCentralSeries 2) ≤
       Subgroup.center (F ⧸ (⊤ : Subgroup F).lowerCentralSeries 2) := by
@@ -67,6 +71,9 @@ theorem commutator_quotient_gammaThree_le_center :
 
 /-! ### Lifting a list along the quotient -/
 
+/--
+@isnad1 id=ex.1h4v.s8.34098c5b4b34 from=translated src=- shape=7257f077 vocab=f2dd8549
+-/
 theorem exists_list_lift {N : Subgroup F} [N.Normal] (S : Subgroup F) :
     ∀ l : List (F ⧸ N), (∀ z ∈ l, z ∈ S.map (QuotientGroup.mk' N)) →
       ∃ lF : List F, (∀ y ∈ lF, y ∈ S) ∧
@@ -88,6 +95,9 @@ theorem exists_list_lift {N : Subgroup F} [N.Normal] (S : Subgroup F) :
 
 /-! ### Collected products lie in the generated subgroup -/
 
+/--
+@isnad1 id=mem.2h4v.s6.c12bb545c165 from=translated src=- shape=5d3abe68 vocab=c1a91edb
+-/
 theorem crossList_mem_closure {S : Set F} {m : F → F} :
     ∀ {l : List F}, (∀ y ∈ l, y ∈ Subgroup.closure S) → (∀ y ∈ l, m y ∈ Subgroup.closure S) →
       crossList m l ∈ Subgroup.closure S := by
@@ -111,7 +121,9 @@ theorem crossList_mem_closure {S : Set F} {m : F → F} :
 conjugator using at most `k + 1` elements of the other factor. The ambient group may be infinite.
 
 Paper-ID: main.bounded_support
-TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, lines 774–786.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, lines 774–786.
+@isnad1 id=ex.4h6v.s8.9aaf875b72a8 from=translated src=- shape=cf1604e6 vocab=516894b8
+-/
 theorem exists_compressed_conjugator (hF : HasExponentThree F) {BB MM : Subgroup F}
     (hgen : BB ⊔ MM = ⊤) (b : List F)
     (hb : Subgroup.closure {x | x ∈ b} = BB) {k : ℕ} (hlen : b.length ≤ k) (u : F) :

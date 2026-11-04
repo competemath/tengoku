@@ -46,7 +46,9 @@ def strictEnvelopeBound (n : ℕ) : ℕ := 15 * n ^ 2
 /-- The three generator counts fit the paper's quadratic bound for nontrivial input.
 
 Paper-ID: structure.strict_envelope
-TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, lines 1343–1347.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, lines 1343–1347.
+@isnad1 id=le.1h1v.s6.cff16bf57b5c from=translated src=- shape=717a326b vocab=41974395
+-/
 theorem three_stage_rank_le_strictEnvelopeBound {n : ℕ} (hn : 0 < n) :
     3 * n + 3 * (3 * n).choose 2 + 2 ≤ strictEnvelopeBound n := by
   rw [Nat.choose_two_right]

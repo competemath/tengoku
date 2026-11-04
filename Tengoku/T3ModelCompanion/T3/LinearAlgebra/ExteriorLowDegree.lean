@@ -169,7 +169,9 @@ noncomputable def mixedOneTwoMap : V ⊗[R] (⋀[R]^2 W) →ₗ[R] ⋀[R]^3 (V �
 /-- On a pure tensor the mixed degree-two map is the usual wedge of the included vectors.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree two decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree two decomposition.
+@isnad1 id=eq.0h5v.s15.49d671b139ed from=translated src=- shape=e89ea6ca vocab=54d8c486
+-/
 theorem mixedTwoMap_tmul (v : V) (w : W) :
     mixedTwoMap R V W (v ⊗ₜ[R] w) =
       gradedMul (exteriorPower.map 1 (LinearMap.inl R V W)
@@ -180,7 +182,9 @@ theorem mixedTwoMap_tmul (v : V) (w : W) :
 /-- On a pure tensor the left degree-two mixed map is the usual wedge, with positive sign.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.
+@isnad1 id=eq.0h5v.s15.5309e3311e3c from=translated src=- shape=c86a8938 vocab=91fa4c99
+-/
 theorem mixedTwoOneMap_tmul (q : ⋀[R]^2 V) (w : W) :
     mixedTwoOneMap R V W (q ⊗ₜ[R] w) =
       gradedMul (exteriorPower.map 2 (LinearMap.inl R V W) q)
@@ -190,7 +194,9 @@ theorem mixedTwoOneMap_tmul (q : ⋀[R]^2 V) (w : W) :
 /-- On a pure tensor the right degree-two mixed map is the usual wedge, with positive sign.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.
+@isnad1 id=eq.0h5v.s15.ee1f11273fb9 from=translated src=- shape=cdadd4f0 vocab=e44ffbcf
+-/
 theorem mixedOneTwoMap_tmul (v : V) (q : ⋀[R]^2 W) :
     mixedOneTwoMap R V W (v ⊗ₜ[R] q) =
       gradedMul (exteriorPower.map 1 (LinearMap.inl R V W)
@@ -270,7 +276,9 @@ noncomputable def threeEquiv :
 /-- Degree-two recomposition is the sum of the two pure inclusions and the mixed wedge.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree two decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree two decomposition.
+@isnad1 id=eq.0h10v.s16.0b44b27f8088 from=translated src=- shape=ba1bd93c vocab=6c4d4275
+-/
 theorem twoEquiv_apply (q : ⋀[R]^2 V) (t : V ⊗[R] W) (r : ⋀[R]^2 W) :
     twoEquiv b c (q, t, r) = exteriorPower.map 2 (LinearMap.inl R V W) q +
       mixedTwoMap R V W t + exteriorPower.map 2 (LinearMap.inr R V W) r := by
@@ -289,7 +297,9 @@ theorem twoEquiv_apply (q : ⋀[R]^2 V) (t : V ⊗[R] W) (r : ⋀[R]^2 W) :
 /-- Degree-three recomposition is the sum of the pure inclusions and the two positive wedges.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.
+@isnad1 id=eq.0h11v.s17.5a3dd60c86c4 from=translated src=- shape=8eff90a6 vocab=24aeed21
+-/
 theorem threeEquiv_apply (q : ⋀[R]^3 V) (t : (⋀[R]^2 V) ⊗[R] W)
     (u : V ⊗[R] (⋀[R]^2 W)) (r : ⋀[R]^3 W) :
     threeEquiv b c (q, t, u, r) = exteriorPower.map 3 (LinearMap.inl R V W) q +
@@ -310,7 +320,9 @@ theorem threeEquiv_apply (q : ⋀[R]^3 V) (t : (⋀[R]^2 V) ⊗[R] W)
 /-- The degree-two equivalence has the canonical, basis-independent recomposition map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree two decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree two decomposition.
+@isnad1 id=eq.0h7v.s14.422e56a96bd1 from=translated src=- shape=f63ce774 vocab=84c897de
+-/
 theorem twoEquiv_toLinearMap : (twoEquiv b c).toLinearMap = twoMap R V W := by
   apply LinearMap.ext
   rintro ⟨q, t, r⟩
@@ -320,7 +332,9 @@ theorem twoEquiv_toLinearMap : (twoEquiv b c).toLinearMap = twoMap R V W := by
 /-- The degree-three equivalence has the canonical, basis-independent recomposition map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, degree three decomposition.
+@isnad1 id=eq.0h7v.s16.bd9b2145f135 from=translated src=- shape=8608f575 vocab=2b5989e5
+-/
 theorem threeEquiv_toLinearMap : (threeEquiv b c).toLinearMap = threeMap R V W := by
   apply LinearMap.ext
   rintro ⟨q, t, u, r⟩

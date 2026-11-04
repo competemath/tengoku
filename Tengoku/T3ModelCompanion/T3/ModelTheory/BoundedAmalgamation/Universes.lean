@@ -55,7 +55,9 @@ Local finiteness is not needed for this generator bound; it makes the resulting 
 finite in the subsequent corollary.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 327–337.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 327–337.
+@isnad1 id=ex.2h6v.s7.69544c62bba7 from=translated src=- shape=c29a4409 vocab=98865f57
+-/
 theorem IsModelCompanionOf.exists_bounded_nonamalgamation_obstruction_in_universe [Finite L.Symbols]
     (hPi : T.IsPiTwo) (hMC : Tstar.IsModelCompanionOf T)
     {A : Type w} {B : Type w'} [L.Structure A] [L.Structure B] [Finite A] [Finite B]
@@ -121,7 +123,9 @@ the model companion supplied by the sufficient direction of the criterion. The h
 are exactly the finite-language, locally finite, Pi-two hypotheses of Fact 2.6.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–357.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–357.
+@isnad1 id=ex.3h5v.s7.a2123f7caad8 from=translated src=- shape=85645311 vocab=32e19b0f
+-/
 theorem BoundedAmalgamationObstructions.exists_bounded_obstruction_in_universe
     [Finite L.Symbols] (hbound : T.BoundedAmalgamationObstructions)
     (hPi : T.IsPiTwo) (hLF : T.IsLocallyFinite)
@@ -138,7 +142,9 @@ theorem BoundedAmalgamationObstructions.exists_bounded_obstruction_in_universe
 existentially closed model is finite. The finite obstruction need not itself model the theory.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 314–337.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 314–337.
+@isnad1 id=ex.3h5v.s7.9ae9e8b74b0b from=translated src=- shape=85de6d0f vocab=21653233
+-/
 theorem HasModelCompanion.exists_finite_bounded_obstruction_in_universe
     [Finite L.Symbols] (h : T.HasModelCompanion) (hPi : T.IsPiTwo)
     (hLF : T.IsLocallyFinite) {A : Type w} {B : Type w'}
@@ -177,7 +183,9 @@ def BoundedAmalgamationObstructionsAt (T : L.Theory) : Prop :=
 preserves existential closedness, and mapping the obstruction back preserves its generators.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.-/
+TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.
+@isnad1 id=boundeda.1h2v.s3.a279a9d84eab from=translated src=- shape=b28a8773 vocab=4237d396
+-/
 theorem BoundedAmalgamationObstructionsAt.to_canonical
     (h : BoundedAmalgamationObstructionsAt.{u, v, z} T) :
     T.BoundedAmalgamationObstructions := by
@@ -222,7 +230,9 @@ theorem BoundedAmalgamationObstructionsAt.to_canonical
 semantic universe, with no cardinality condition on the existentially closed model.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–357.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–357.
+@isnad1 id=boundeda.3h2v.s4.b1c8c650cef1 from=translated src=- shape=e73e9a32 vocab=8044e692
+-/
 theorem BoundedAmalgamationObstructions.to_universe [Finite L.Symbols]
     (hbound : T.BoundedAmalgamationObstructions) (hPi : T.IsPiTwo)
     (hLF : T.IsLocallyFinite) : BoundedAmalgamationObstructionsAt.{u, v, z} T := by
@@ -234,7 +244,9 @@ finite language, the model-companion criterion holds in every semantic universe 
 the language's canonical universe. The amalgamation relation permits targets of any size.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–357.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 308–357.
+@isnad1 id=iff.2h2v.s4.c9e46bffb3f4 from=translated src=- shape=2f6737ea vocab=022d416f
+-/
 theorem hasModelCompanion_iff_boundedAmalgamationObstructionsAt [Finite L.Symbols]
     (hPi : T.IsPiTwo) (hLF : T.IsLocallyFinite) :
     T.HasModelCompanion ↔ BoundedAmalgamationObstructionsAt.{u, v, z} T := by

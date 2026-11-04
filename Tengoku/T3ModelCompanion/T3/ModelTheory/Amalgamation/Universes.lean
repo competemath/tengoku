@@ -50,7 +50,9 @@ variable {A : Type w} {B : Type w'} {C : Type w''}
 all language symbols. Only the images of the two sides are placed in the Skolem hull.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.-/
+TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.
+@isnad1 id=ex.1h10v.s7.4a96536b67a7 from=translated src=- shape=b40e8abb vocab=58f7d6cf
+-/
 theorem exists_amalgam_of_small [Small.{max u v z} B] [Small.{max u v z} C]
     {i : A ↪[L] B} {j : A ↪[L] C} (N : Type w''')
     [L.Structure N] [Nonempty N] [N ⊨ T] (f : B ↪[L] N) (g : C ↪[L] N)
@@ -82,7 +84,9 @@ theorem exists_amalgam_of_small [Small.{max u v z} B] [Small.{max u v z} C]
 /-- An amalgam in any target universe gives the standard universe-sized amalgam.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.-/
+TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.
+@isnad1 id=amalgama.1h10v.s6.7c139ca14ba5 from=translated src=- shape=4d081b28 vocab=e3a586f4
+-/
 theorem AmalgamableOverAt.of_amalgam {i : A ↪[L] B} {j : A ↪[L] C}
     (N : Type w''') [L.Structure N] [Nonempty N] [N ⊨ T]
     (f : B ↪[L] N) (g : C ↪[L] N) (heq : f.comp i = g.comp j) :
@@ -93,7 +97,9 @@ theorem AmalgamableOverAt.of_amalgam {i : A ↪[L] B} {j : A ↪[L] C}
 In particular, this applies to finite structures in arbitrary universes.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.-/
+TeX: T3_modelcompanion_v9.tex, supporting `fact:locally finiteness and model companion`.
+@isnad1 id=iff.0h7v.s6.c47a328746ae from=translated src=- shape=0ff31354 vocab=866b35ff
+-/
 theorem amalgamableOverAt_iff [Small.{max u v} B] [Small.{max u v} C]
     {i : A ↪[L] B} {j : A ↪[L] C} :
     T.AmalgamableOverAt i j ↔ T.AmalgamableOver i j := by
@@ -106,7 +112,9 @@ theorem amalgamableOverAt_iff [Small.{max u v} B] [Small.{max u v} C]
 /-- Ordinary amalgamation is symmetric in the two extensions.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`.
+@isnad1 id=amalgama.1h7v.s5.5e1b4ed72105 from=translated src=- shape=cf569f7e vocab=783e9ed2
+-/
 theorem AmalgamableOverAt.symm {i : A ↪[L] B} {j : A ↪[L] C}
     (h : T.AmalgamableOverAt i j) : T.AmalgamableOverAt j i := by
   obtain ⟨N, f, g, heq⟩ := h
@@ -116,7 +124,9 @@ theorem AmalgamableOverAt.symm {i : A ↪[L] B} {j : A ↪[L] C}
 restriction changes its universe.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 354–356.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 354–356.
+@isnad1 id=amalgama.1h9v.s6.c67f43ece2f2 from=translated src=- shape=46a99af1 vocab=ae34ec7c
+-/
 theorem AmalgamableOverAt.of_comp_right {D : Type w'''} [L.Structure D]
     {i : A ↪[L] B} {j : A ↪[L] C} (e : C ↪[L] D)
     (h : T.AmalgamableOverAt i (e.comp j)) : T.AmalgamableOverAt i j := by
@@ -127,7 +137,9 @@ theorem AmalgamableOverAt.of_comp_right {D : Type w'''} [L.Structure D]
 extension exactly when that extension embeds back into the model over the base.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.
+@isnad1 id=iff.1h7v.s6.a695f6d666b4 from=translated src=- shape=12fe094b vocab=963afc07
+-/
 theorem IsExistentiallyClosedAt.amalgamableOverAt_iff_exists_embedding [Finite L.Symbols]
     [Finite A] [Finite B] {M : Type w''} [L.Structure M]
     (hM : T.IsExistentiallyClosedAt M) (i : A ↪[L] B) (j : A ↪[L] M) :
@@ -146,7 +158,9 @@ theorem IsExistentiallyClosedAt.amalgamableOverAt_iff_exists_embedding [Finite L
 model in every universe.
 
 Paper-ID: model_theory.bounded_amalgamation_criterion
-TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.-/
+TeX: T3_modelcompanion_v9.tex, `fact:locally finiteness and model companion`, lines 332, 341.
+@isnad1 id=iff.1h7v.s6.9f8aa1a046ba from=translated src=- shape=25c4da4d vocab=b94d3b5f
+-/
 theorem IsExistentiallyClosedAt.amalgamableOverAt_iff_realize_extensionFormula
     [Finite L.Symbols] [Finite A] [Finite B] {M : Type w''} [L.Structure M]
     (hM : T.IsExistentiallyClosedAt M) (i : A ↪[L] B) (j : A ↪[L] M) :

@@ -44,7 +44,9 @@ variable {L : Language.{u, v}} {M : Type w} {N : Type w'} [L.Structure M] [L.Str
 /-- Quantifier-free formulas are absolute for embeddings.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h7v.s6.9cdf164d3b5f from=translated src=- shape=5841cc2a vocab=991999de
+-/
 theorem IsQF.realize_formula_embedding {φ : L.Formula (Fin n)} (hφ : φ.IsQF) (g : M ↪[L] N)
     (v : Fin n → M) : φ.Realize (⇑g ∘ v) ↔ φ.Realize v := by
   have h := hφ.realize_embedding g (v := v) (xs := (default : Fin 0 → M))
@@ -53,7 +55,9 @@ theorem IsQF.realize_formula_embedding {φ : L.Formula (Fin n)} (hφ : φ.IsQF) 
 /-- Existential formulas are preserved by embeddings.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=realize.2h7v.s6.80e22d7867db from=translated src=- shape=4ad7be1e vocab=92e7d7c7
+-/
 theorem IsExistential.realize_formula_embedding {φ : L.Formula (Fin n)} (hφ : φ.IsExistential)
     (g : M ↪[L] N) {v : Fin n → M} (h : φ.Realize v) : φ.Realize (⇑g ∘ v) := by
   have h2 := hφ.realize_embedding g (v := v) (xs := (default : Fin 0 → M)) h
@@ -92,7 +96,9 @@ def sentence (p : ExCondition L M) : L[[M]].Sentence :=
 realizes the formula at the interpretations of the parameters.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.0h4v.s6.5f5d3355569e from=translated src=- shape=b0a64e84 vocab=e25d37c3
+-/
 theorem realize_sentence_iff (p : ExCondition L M) {N : Type (max u v)} [L[[M]].Structure N]
     [L.Structure N] [(L.lhomWithConstants M).IsExpansionOn N] :
     N ⊨ p.sentence ↔ p.formula.Realize (fun i => (L.con (p.param i) : N)) :=
@@ -119,7 +125,9 @@ def IsRealizable (T : L.Theory) {M : Type (max u v)} [L.Structure M]
 /-- Realizability passes to subsets.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=isrealiz.2h5v.s5.984f52d3eda9 from=translated src=- shape=be01849a vocab=881cfdc4
+-/
 theorem IsRealizable.mono {M : Type (max u v)} [L.Structure M] {S S' : Set (ExCondition L M)}
     (h : T.IsRealizable S) (hsub : S' ⊆ S) : T.IsRealizable S' := by
   obtain ⟨N, g, hg⟩ := h
@@ -131,7 +139,9 @@ then `S` is realizable: apply compactness to the union of the lifted theory, the
 diagram of `M`, and the sentences of `S`.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=isrealiz.1h4v.s5.37ebdf4e0f2b from=translated src=- shape=72ad38e3 vocab=a2266aea
+-/
 theorem isRealizable_of_forall_finite {M : Type (max u v)} [L.Structure M]
     {S : Set (ExCondition L M)} (h : ∀ S₀ ⊆ S, S₀.Finite → T.IsRealizable S₀) :
     T.IsRealizable S := by
@@ -205,7 +215,9 @@ maximality is used *backwards*, against a given counterexample, exactly as the t
 recursion of the classical proof is justified stage by stage after the fact.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=ex.0h3v.s8.8bb3ab671131 from=translated src=- shape=25ac66f9 vocab=14bec4ac
+-/
 theorem exists_partiallyExistentiallyClosed (T : L.Theory) (M : Type (max u v)) [L.Structure M]
     [Nonempty M] [M ⊨ T] :
     ∃ (N : T.ModelType.{u, v, max u v}) (g : M ↪[L] N),
@@ -261,7 +273,9 @@ noncomputable def ecStepEmbedding (X : T.ModelType.{u, v, max u v}) :
 are already realized in `ecStep X`.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=realize.2h8v.s8.566fe0503c63 from=translated src=- shape=ace2e1ed vocab=a1a1951b
+-/
 theorem ecStep_spec (X : T.ModelType.{u, v, max u v}) :
     ∀ (N' : T.ModelType.{u, v, max u v}) (g' : (ecStep X : Type (max u v)) ↪[L] N') {n : ℕ}
       (φ : L.Formula (Fin n)) (x : Fin n → (X : Type (max u v))), φ.IsExistential →
@@ -293,7 +307,9 @@ noncomputable def ecTransition (M : T.ModelType.{u, v, max u v}) (n : ℕ) :
 /-- The one-step property, at a stage of the tower.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=realize.2h9v.s9.78305c738fd1 from=translated src=- shape=157b14d4 vocab=44fc93aa
+-/
 theorem ecTransition_spec (M : T.ModelType.{u, v, max u v}) (m : ℕ) :
     ∀ (N' : T.ModelType.{u, v, max u v}) (g' : ecCarrier M (m + 1) ↪[L] N') {n : ℕ}
       (φ : L.Formula (Fin n)) (x : Fin n → ecCarrier M m), φ.IsExistential →
@@ -305,7 +321,9 @@ theorem ecTransition_spec (M : T.ModelType.{u, v, max u v}) (m : ℕ) :
 direct limit of the tower of one-step extensions.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=ex.1h3v.s5.f54d6f816974 from=translated src=- shape=edfbfa44 vocab=cac1ce33
+-/
 theorem exists_isExistentiallyClosed_embedding (hT : T.IsPiTwo) (M : T.ModelType.{u, v, max u v}) :
     ∃ N : T.ModelType.{u, v, max u v}, T.IsExistentiallyClosed (N : Type (max u v)) ∧
       Nonempty ((M : Type (max u v)) ↪[L] N) := by
@@ -369,7 +387,9 @@ If every existentially closed model of `T` is a model of `Tstar`, then every mod
 into a model of `Tstar`.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=modelsem.2h3v.s5.bc4e45247d8b from=translated src=- shape=3ecaecac vocab=160cdfe9
+-/
 theorem modelsEmbedInto_of_isExistentiallyClosed_models (hT : T.IsPiTwo)
     (h : ∀ N : T.ModelType.{u, v, max u v}, T.IsExistentiallyClosed (N : Type (max u v)) →
       (N : Type (max u v)) ⊨ Tstar) :

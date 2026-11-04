@@ -69,14 +69,18 @@ def sumEquiv (n : ℕ) :
 /-- The left degree in the split index is the cardinality of the left subset.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, supporting `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, supporting `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h4v.s9.5feca8e58d1b from=translated src=- shape=57aeb6bc vocab=1a39ef3a
+-/
 theorem sumEquiv_fst (n : ℕ) (s : powersetCard (I ⊕ J) n) :
     ((sumEquiv n s).1 : ℕ) = s.val.toLeft.card := rfl
 
 /-- The inverse index map forms the disjoint union of the two subsets.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, supporting `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, supporting `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h6v.s9.2390a9488343 from=translated src=- shape=1291bef5 vocab=eebb9220
+-/
 theorem sumEquiv_symm_val (n : ℕ) (k : Fin (n + 1))
     (s : powersetCard I k) (t : powersetCard J (n - k)) :
     ((sumEquiv n).symm ⟨k, s, t⟩).val = s.val.disjSum t.val := rfl
@@ -196,7 +200,9 @@ noncomputable def wedgeMap (n : ℕ) (k : Fin (n + 1)) :
 /-- The canonical tensor map is exterior multiplication on pure tensors.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h7v.s15.8887fe83faf6 from=translated src=- shape=e5c16453 vocab=efa66d7c
+-/
 theorem wedgeMap_tmul_coe (n : ℕ) (k : Fin (n + 1))
     (x : ⋀[R]^k.val V) (y : ⋀[R]^(n - k.val) W) :
     (wedgeMap R V W n k (x ⊗ₜ[R] y) : ExteriorAlgebra R (V × W)) =
@@ -210,7 +216,9 @@ variable (b : Basis I R V) (c : Basis J R W)
 basis factors. The left-first order gives the displayed product with positive sign.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, lines 979–983.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, lines 979–983.
+@isnad1 id=eq.1h12v.s15.e34be8c80fc1 from=translated src=- shape=9f2b6e5c vocab=609200c7
+-/
 theorem exteriorBasis_disjSum_coe {p q n : ℕ} (h : p + q = n)
     (s : Set.powersetCard I p) (t : Set.powersetCard J q) :
     ((b.prod c).exteriorPower n
@@ -247,7 +255,9 @@ noncomputable def tensorBasis (n : ℕ) :
 /-- A tensor basis vector is included in its specified direct-sum component.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, supporting `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, supporting `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h11v.s16.a9bca00ba760 from=translated src=- shape=b94fea5e vocab=c23d8984
+-/
 theorem tensorBasis_apply (n : ℕ) (k : Fin (n + 1))
     (s : Set.powersetCard I k) (t : Set.powersetCard J (n - k)) :
     tensorBasis b c n ⟨k, s, t⟩ =
@@ -282,7 +292,9 @@ noncomputable def tensorEquiv (n : ℕ) :
 /-- The combined exterior basis vector maps to the tensor of its left and right basis vectors.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h11v.s16.f177467126d0 from=translated src=- shape=e425955a vocab=689947f9
+-/
 theorem tensorEquiv_basis (n : ℕ) (k : Fin (n + 1))
     (s : Set.powersetCard I k) (t : Set.powersetCard J (n - k)) :
     tensorEquiv b c n ((b.prod c).exteriorPower n
@@ -294,7 +306,9 @@ theorem tensorEquiv_basis (n : ℕ) (k : Fin (n + 1))
 /-- The inverse tensor decomposition sends a tensor of exterior basis vectors to their union.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h11v.s16.228e59a09222 from=translated src=- shape=c309f757 vocab=64bb8d4a
+-/
 theorem tensorEquiv_symm_basis (n : ℕ) (k : Fin (n + 1))
     (s : Set.powersetCard I k) (t : Set.powersetCard J (n - k)) :
     (tensorEquiv b c n).symm
@@ -306,7 +320,9 @@ theorem tensorEquiv_symm_basis (n : ℕ) (k : Fin (n + 1))
 /-- On each tensor summand, the inverse decomposition is the canonical exterior product map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h9v.s15.c024d3a9b1cb from=translated src=- shape=f7ec464d vocab=977a10dc
+-/
 theorem tensorEquiv_symm_comp_lof (n : ℕ) (k : Fin (n + 1)) :
     (tensorEquiv b c n).symm.toLinearMap.comp
       (DirectSum.lof R _ (TensorBlock R V W n) k) = wedgeMap R V W n k := by
@@ -320,7 +336,9 @@ theorem tensorEquiv_symm_comp_lof (n : ℕ) (k : Fin (n + 1)) :
 /-- The inverse decomposition on arbitrary exterior pure tensors is their ordered product.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h11v.s16.6f05097e869d from=translated src=- shape=4dcd9d0b vocab=a5a5902f
+-/
 theorem tensorEquiv_symm_tmul_coe (n : ℕ) (k : Fin (n + 1))
     (x : ⋀[R]^k.val V) (y : ⋀[R]^(n - k.val) W) :
     ((tensorEquiv b c n).symm
@@ -334,7 +352,9 @@ theorem tensorEquiv_symm_tmul_coe (n : ℕ) (k : Fin (n + 1))
 /-- Exterior multiplication of a tensor is recovered in its own summand by the decomposition.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h10v.s16.206e5714949f from=translated src=- shape=cc1a872e vocab=ad260101
+-/
 theorem tensorEquiv_wedgeMap (n : ℕ) (k : Fin (n + 1)) (z : TensorBlock R V W n k) :
     tensorEquiv b c n (wedgeMap R V W n k z) =
       DirectSum.lof R _ (TensorBlock R V W n) k z := by
@@ -373,7 +393,9 @@ private theorem projection_basis (n k : ℕ) (s : Set.powersetCard (I ⊕ J) n) 
 /-- The tensor decomposition has precisely the count-based exterior blocks as its components.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h10v.s16.16125c41f670 from=translated src=- shape=4bbcd465 vocab=4ecc262d
+-/
 theorem wedgeMap_tensorEquiv_component (n : ℕ) (k : Fin (n + 1)) (x : ⋀[R]^n (V × W)) :
     wedgeMap R V W n k (tensorEquiv b c n x k) =
       ExteriorSum.projection (b.prod c) n k x := by
@@ -395,7 +417,9 @@ theorem wedgeMap_tensorEquiv_component (n : ℕ) (k : Fin (n + 1)) (x : ⋀[R]^n
 /-- The image of each canonical exterior tensor map is the corresponding exterior block.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h9v.s13.b422d981c18c from=translated src=- shape=3da66e9d vocab=c0049bd3
+-/
 theorem range_wedgeMap (n : ℕ) (k : Fin (n + 1)) :
     LinearMap.range (wedgeMap R V W n k) = ExteriorSum.block (b.prod c) n k := by
   ext x
@@ -410,7 +434,9 @@ include b c in
 /-- Each canonical exterior tensor map is injective, including in infinite rank.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=injectiv.0h9v.s14.cb5e507ed093 from=translated src=- shape=ab478ee6 vocab=a3c2d73a
+-/
 theorem wedgeMap_injective (n : ℕ) (k : Fin (n + 1)) :
     Function.Injective (wedgeMap R V W n k) := by
   rw [← tensorEquiv_symm_comp_lof b c]
@@ -428,7 +454,9 @@ noncomputable def blockTensorEquiv (n : ℕ) (k : Fin (n + 1)) :
 /-- The block equivalence includes each tensor by the canonical exterior multiplication map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior blocks.
+@isnad1 id=eq.0h10v.s17.733504389264 from=translated src=- shape=f60f7c65 vocab=92c4ab45
+-/
 theorem blockTensorEquiv_apply_coe (n : ℕ) (k : Fin (n + 1)) (z : TensorBlock R V W n k) :
     (blockTensorEquiv b c n k z : ⋀[R]^n (V × W)) = wedgeMap R V W n k z := rfl
 
@@ -436,7 +464,9 @@ theorem blockTensorEquiv_apply_coe (n : ℕ) (k : Fin (n + 1)) (z : TensorBlock 
 the bases used to construct the inverse.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, exterior decomposition.
+@isnad1 id=eq.0h8v.s15.976cc6ce965b from=translated src=- shape=8841f60f vocab=6b7734c0
+-/
 theorem tensorEquiv_symm_toLinearMap (n : ℕ) :
     (tensorEquiv b c n).symm.toLinearMap =
       DirectSum.toModule R _ _ (wedgeMap R V W n) := by

@@ -34,7 +34,9 @@ variable {G : Type*} [Group G]
 /-- Commutators of a derived subgroup with the ambient group lie in the third central term.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=le.1h2v.s6.e7a40cd6e0eb from=translated src=- shape=e1ae6af9 vocab=94205572
+-/
 theorem commutator_top_le_term_three {K : Subgroup G} (hK : K ≤ commutator G) :
     ⁅K, (⊤ : Subgroup G)⁆ ≤ AssociatedGraded.term G 3 := by
   simpa [AssociatedGraded.term, Subgroup.lowerCentralSeries_succ, commutator_def,
@@ -43,7 +45,9 @@ theorem commutator_top_le_term_three {K : Subgroup G} (hK : K ≤ commutator G) 
 /-- The commutator factor of a derived subgroup is central and hence normal.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=normal.2h2v.s5.a7c2362a7bb5 from=translated src=- shape=b30db9a1 vocab=bf838dff
+-/
 theorem commutator_top_normal (hG : HasExponentThree G) {K : Subgroup G}
     (hK : K ≤ commutator G) : Subgroup.Normal ⁅K, (⊤ : Subgroup G)⁆ := by
   have hcen := (commutator_top_le_term_three hK).trans (lowerCentralSeries_two_le_center hG)
@@ -56,7 +60,9 @@ theorem commutator_top_normal (hG : HasExponentThree G) {K : Subgroup G}
 /-- The normal closure of a subgroup of the derived subgroup adjoins its ambient commutators.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 1, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 1, `lemma:gr of normal closure`.
+@isnad1 id=eq.2h2v.s6.d4648479ad70 from=translated src=- shape=65667f4b vocab=935be0e7
+-/
 theorem normalClosure_eq_sup_commutator (hG : HasExponentThree G) {K : Subgroup G}
     (hK : K ≤ commutator G) :
     Subgroup.normalClosure (K : Set G) = K ⊔ ⁅K, (⊤ : Subgroup G)⁆ := by
@@ -99,7 +105,9 @@ theorem normalClosure_eq_sup_commutator (hG : HasExponentThree G) {K : Subgroup 
 and an element of its commutator factor.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 1, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 1, `lemma:gr of normal closure`.
+@isnad1 id=iff.2h3v.s7.b71773062b60 from=translated src=- shape=4dd01ca4 vocab=44839385
+-/
 theorem mem_normalClosure_iff_mul_commutator (hG : HasExponentThree G) {K : Subgroup G}
     (hK : K ≤ commutator G) (a : G) :
     a ∈ Subgroup.normalClosure (K : Set G) ↔
@@ -111,7 +119,9 @@ theorem mem_normalClosure_iff_mul_commutator (hG : HasExponentThree G) {K : Subg
 /-- The normal closure of a subgroup of the derived subgroup remains in the derived subgroup.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 1, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 1, `lemma:gr of normal closure`.
+@isnad1 id=le.1h2v.s5.7e544a42ffc9 from=translated src=- shape=1412cadc vocab=fc76d3b6
+-/
 theorem normalClosure_le_commutator {K : Subgroup G} (hK : K ≤ commutator G) :
     Subgroup.normalClosure (K : Set G) ≤ commutator G :=
   Subgroup.normalClosure_le_normal hK
@@ -121,7 +131,9 @@ namespace AssociatedGraded
 /-- The initial form of the identity is zero.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=eq.0h2v.s6.c249179e04f6 from=translated src=- shape=838a77bb vocab=84e0f6a7
+-/
 @[simp]
 theorem mk_one (n : ℕ) : mk G n 1 = 0 :=
   (mk_eq_zero G n 1).mpr (Subgroup.one_mem _)
@@ -129,7 +141,9 @@ theorem mk_one (n : ℕ) : mk G n 1 = 0 :=
 /-- Inverting a representative negates its initial form.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=eq.0h3v.s6.e0768fc2d01c from=translated src=- shape=7eadbf1b vocab=d4c89d89
+-/
 @[simp]
 theorem mk_inv (n : ℕ) (x : term G n) : mk G n x⁻¹ = -mk G n x := rfl
 
@@ -138,7 +152,9 @@ variable [Fact (HasExponentThree G)]
 /-- Ambient graded images are monotone in the subgroup.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=le.1h4v.s7.bf23ca970ec8 from=translated src=- shape=00617bdf vocab=c5a70fa9
+-/
 theorem subgroupImage_mono {A B : Subgroup G} (h : A ≤ B) (n : ℕ) :
     subgroupImage A n ≤ subgroupImage B n := by
   intro x hx
@@ -148,7 +164,9 @@ theorem subgroupImage_mono {A B : Subgroup G} (h : A ≤ B) (n : ℕ) :
 /-- Intersecting with the ambient term does not change its degree image.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=eq.0h3v.s6.ea00f1bd4a83 from=translated src=- shape=2d2a19ad vocab=a2bad6dc
+-/
 theorem subgroupImage_inf_term (K : Subgroup G) (n : ℕ) :
     subgroupImage (K ⊓ term G n) n = subgroupImage K n := by
   apply le_antisymm (subgroupImage_mono inf_le_left n)
@@ -159,7 +177,9 @@ theorem subgroupImage_inf_term (K : Subgroup G) (n : ℕ) :
 /-- A subgroup in the next central term has zero image in the current degree.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=eq.1h3v.s7.c9eedda696c4 from=translated src=- shape=5a85eee9 vocab=ff6f742d
+-/
 theorem subgroupImage_eq_bot_of_le {K : Subgroup G} (n : ℕ)
     (hK : K ≤ (⊤ : Subgroup G).lowerCentralSeries n) : subgroupImage K n = ⊥ := by
   apply eq_bot_iff.mpr
@@ -170,7 +190,9 @@ theorem subgroupImage_eq_bot_of_le {K : Subgroup G} (n : ℕ)
 /-- If both subgroups lie in the current term, taking their join adds their initial forms.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, supporting v9 Lemma 4.3, `lemma:gr of normal closure`.
+@isnad1 id=eq.2h4v.s8.aa36a44364f9 from=translated src=- shape=fa267bc5 vocab=c666621d
+-/
 theorem subgroupImage_sup_of_le (A B : Subgroup G) (n : ℕ)
     (hA : A ≤ term G n) (hB : B ≤ term G n) :
     subgroupImage (A ⊔ B) n = subgroupImage A n ⊔ subgroupImage B n := by
@@ -208,7 +230,9 @@ theorem subgroupImage_sup_of_le (A B : Subgroup G) (n : ℕ)
 /-- The third-degree image of the commutator factor is the bilinear bracket image.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 3, `lemma:gr of normal closure`.
+@isnad1 id=eq.1h2v.s8.96d685f5e744 from=translated src=- shape=86a0d2ce vocab=6d920862
+-/
 theorem subgroupImage_commutator_top {K : Subgroup G} (hK : K ≤ commutator G) :
     subgroupImage ⁅K, (⊤ : Subgroup G)⁆ 3 =
       Submodule.map₂ (bracketLayer (i := 2) (j := 1) (by decide) (by decide))
@@ -252,7 +276,9 @@ theorem subgroupImage_commutator_top {K : Subgroup G} (hK : K ≤ commutator G) 
 /-- Normal closure leaves the degree-two ambient image unchanged.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 2, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 2, `lemma:gr of normal closure`.
+@isnad1 id=eq.1h2v.s7.80693ff405fc from=translated src=- shape=060ce77e vocab=ef301ad7
+-/
 theorem subgroupImage_normalClosure_two {K : Subgroup G} (hK : K ≤ commutator G) :
     subgroupImage (Subgroup.normalClosure (K : Set G)) 2 = subgroupImage K 2 := by
   rw [normalClosure_eq_sup_commutator Fact.out hK,
@@ -264,7 +290,9 @@ theorem subgroupImage_normalClosure_two {K : Subgroup G} (hK : K ≤ commutator 
 /-- The normal closure's intersection with the third term retains the whole commutator factor.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3 proof of item 3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3 proof of item 3, `lemma:gr of normal closure`.
+@isnad1 id=eq.1h2v.s6.9e91aa7b1585 from=translated src=- shape=e340075d vocab=62725ebd
+-/
 theorem normalClosure_inf_term_three {K : Subgroup G} (hK : K ≤ commutator G) :
     Subgroup.normalClosure (K : Set G) ⊓ term G 3 =
       (K ⊓ term G 3) ⊔ ⁅K, (⊤ : Subgroup G)⁆ := by
@@ -287,7 +315,9 @@ theorem normalClosure_inf_term_three {K : Subgroup G} (hK : K ≤ commutator G) 
 /-- The third-degree image of the normal closure adds precisely the bracket directions.
 
 Paper-ID: structure.normal_closure_graded
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 3, `lemma:gr of normal closure`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, item 3, `lemma:gr of normal closure`.
+@isnad1 id=eq.1h2v.s9.1f8b9cf61f5e from=translated src=- shape=e1a058e8 vocab=f7cdf02c
+-/
 theorem subgroupImage_normalClosure_three {K : Subgroup G} (hK : K ≤ commutator G) :
     subgroupImage (Subgroup.normalClosure (K : Set G)) 3 =
       subgroupImage K 3 ⊔ Submodule.map₂
@@ -302,7 +332,9 @@ theorem subgroupImage_normalClosure_three {K : Subgroup G} (hK : K ≤ commutato
 
 Paper-ID: structure.normal_closure_graded
 TeX: T3_modelcompanion_v9.tex, v9 Lemma 4.3, used in Proposition 4.4,
-`lemma:gr of normal closure`.-/
+`lemma:gr of normal closure`.
+@isnad1 id=eq.1h2v.s8.a22cc060ad87 from=translated src=- shape=ce9a06a6 vocab=fee888b6
+-/
 theorem subgroupImage_normalClosure_one {K : Subgroup G} (hK : K ≤ commutator G) :
     subgroupImage (Subgroup.normalClosure (K : Set G)) 1 = ⊥ :=
   subgroupImage_eq_bot_of_le 1 (normalClosure_le_commutator hK)

@@ -34,7 +34,9 @@ include hS hz in
 /-- The simultaneous relation is central in the direct product.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=mem.2h7v.s7.d43954583eab from=translated src=- shape=7e49a060 vocab=41b528ae
+-/
 theorem relator_mem_center (i : I) : relator S z w i ∈ Subgroup.center (G × K) := by
   rw [Subgroup.mem_center_iff]
   intro a
@@ -45,7 +47,9 @@ include hS hz in
 /-- Central relations generate a normal subgroup without further conjugates.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=eq.2h6v.s7.88ce1e111f1f from=translated src=- shape=e0550881 vocab=dbf98647
+-/
 theorem normalClosure_eq_closure :
     Subgroup.normalClosure (Set.range (relator S z w)) =
       Subgroup.closure (Set.range (relator S z w)) := by
@@ -92,7 +96,9 @@ def relationWord (m : I → ℤ) : relationAmbient (G := G) S :=
 /-- Every element of the relation subgroup is a product with integer exponents.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=ex.3h7v.s7.e90c0cb36ef2 from=translated src=- shape=efb347a6 vocab=8e380a9d
+-/
 theorem exists_relationWord {a : G × K}
     (ha : a ∈ Subgroup.normalClosure (Set.range (relator S z w))) :
     ∃ m : I → ℤ, (relationWord S hS z hz w m : G × K) = a := by
@@ -125,7 +131,9 @@ def projection : relationAmbient (G := G) S →* S :=
 /-- Independent witness coordinates recover each exponent modulo three.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=eq.3h9v.s11.50549bbfebc8 from=translated src=- shape=4da41697 vocab=6449fe49
+-/
 theorem coordinate_relationWord [DecidableEq I] (c : I → S →* Multiplicative (ZMod 3))
     (hc : ∀ i j, c i (w j) = Multiplicative.ofAdd (if i = j then 1 else 0))
     (m : I → ℤ) (i : I) :

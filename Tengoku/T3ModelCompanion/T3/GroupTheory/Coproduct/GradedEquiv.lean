@@ -78,7 +78,9 @@ private theorem exists_basis_presentation (G : Type u) [Group G]
 Its mixed component is the bracket of the factor inclusions on pure tensors.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, bijectivity of `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, bijectivity of `η₂`.
+@isnad1 id=bijectiv.0h2v.s11.9d186ec3bba0 from=translated src=- shape=21c8cb98 vocab=e587284a
+-/
 theorem layerTwoMap_bijective : Function.Bijective (layerTwoMap (G := G) (H := H)) := by
   obtain ⟨I, f, hf, hKf⟩ := exists_basis_presentation G
   obtain ⟨J, g, hg, hKg⟩ := exists_basis_presentation H
@@ -88,7 +90,9 @@ theorem layerTwoMap_bijective : Function.Bijective (layerTwoMap (G := G) (H := H
 The `(1,2)` component retains the paper's bracket order and its corresponding exterior sign.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, bijectivity of `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, bijectivity of `η₃`.
+@isnad1 id=bijectiv.0h2v.s12.25ed915e34d6 from=translated src=- shape=21c8cb98 vocab=ca724293
+-/
 theorem layerThreeMap_bijective : Function.Bijective (layerThreeMap (G := G) (H := H)) := by
   obtain ⟨I, f, hf, hKf⟩ := exists_basis_presentation G
   obtain ⟨J, g, hg, hKg⟩ := exists_basis_presentation H
@@ -113,7 +117,9 @@ noncomputable def layerThreeEquiv :
 /-- The isomorphism has the previously specified canonical degree-two map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.
+@isnad1 id=eq.0h3v.s13.48694b8198ea from=translated src=- shape=8f5b3f91 vocab=2cd7373f
+-/
 @[simp]
 theorem layerTwoEquiv_apply (x : LayerTwoBlocks (G := G) (H := H)) :
     layerTwoEquiv x = layerTwoMap x := rfl
@@ -121,7 +127,9 @@ theorem layerTwoEquiv_apply (x : LayerTwoBlocks (G := G) (H := H)) :
 /-- The isomorphism has the previously specified canonical degree-three map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.
+@isnad1 id=eq.0h3v.s14.b3c493792b13 from=translated src=- shape=8f5b3f91 vocab=b723f7bf
+-/
 @[simp]
 theorem layerThreeEquiv_apply (x : LayerThreeBlocks (G := G) (H := H)) :
     layerThreeEquiv x = layerThreeMap x := rfl
@@ -129,7 +137,9 @@ theorem layerThreeEquiv_apply (x : LayerThreeBlocks (G := G) (H := H)) :
 /-- The degree-two inverse reads the left pure component in its first coordinate.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.
+@isnad1 id=eq.0h3v.s13.71c9d14172b2 from=translated src=- shape=1ecc1d83 vocab=421cd966
+-/
 @[simp]
 theorem layerTwoEquiv_symm_inl (x : Layer G 2) :
     (layerTwoEquiv (G := G) (H := H)).symm (mapLayer inl 2 x) = (x, 0, 0) := by
@@ -140,7 +150,9 @@ theorem layerTwoEquiv_symm_inl (x : Layer G 2) :
 /-- The degree-two inverse reads the tensor component in its middle coordinate.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.
+@isnad1 id=eq.0h3v.s13.c327df09aa25 from=translated src=- shape=4542f011 vocab=9fa8c3f8
+-/
 @[simp]
 theorem layerTwoEquiv_symm_mixed (x : TensorProduct (ZMod 3) (Layer G 1) (Layer H 1)) :
     (layerTwoEquiv (G := G) (H := H)).symm
@@ -152,7 +164,9 @@ theorem layerTwoEquiv_symm_mixed (x : TensorProduct (ZMod 3) (Layer G 1) (Layer 
 /-- The degree-two inverse reads the right pure component in its last coordinate.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₂`.
+@isnad1 id=eq.0h3v.s13.5a665edcdb1c from=translated src=- shape=ff9f1dea vocab=28135f58
+-/
 @[simp]
 theorem layerTwoEquiv_symm_inr (x : Layer H 2) :
     (layerTwoEquiv (G := G) (H := H)).symm (mapLayer inr 2 x) = (0, 0, x) := by
@@ -163,7 +177,9 @@ theorem layerTwoEquiv_symm_inr (x : Layer H 2) :
 /-- The degree-three inverse reads the left pure component in its first coordinate.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.
+@isnad1 id=eq.0h3v.s13.fa079568a72e from=translated src=- shape=f6eb5f54 vocab=e71296c6
+-/
 @[simp]
 theorem layerThreeEquiv_symm_inl (x : Layer G 3) :
     (layerThreeEquiv (G := G) (H := H)).symm (mapLayer inl 3 x) = (x, 0, 0, 0) := by
@@ -174,7 +190,9 @@ theorem layerThreeEquiv_symm_inl (x : Layer G 3) :
 /-- The degree-three inverse reads the `(2,1)` tensor in its second coordinate.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.
+@isnad1 id=eq.0h3v.s14.e629952e7c03 from=translated src=- shape=8028b955 vocab=c13f1223
+-/
 @[simp]
 theorem layerThreeEquiv_symm_mixed_two_one
     (x : TensorProduct (ZMod 3) (Layer G 2) (Layer H 1)) :
@@ -188,7 +206,9 @@ theorem layerThreeEquiv_symm_mixed_two_one
 canonical bracket order already included in the map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.
+@isnad1 id=eq.0h3v.s14.afd12bc4ce50 from=translated src=- shape=044cbdb9 vocab=c13f1223
+-/
 @[simp]
 theorem layerThreeEquiv_symm_mixed_one_two
     (x : TensorProduct (ZMod 3) (Layer G 1) (Layer H 2)) :
@@ -201,7 +221,9 @@ theorem layerThreeEquiv_symm_mixed_one_two
 /-- The degree-three inverse reads the right pure component in its last coordinate.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical `η₃`.
+@isnad1 id=eq.0h3v.s13.29974e5ff669 from=translated src=- shape=7ca622a9 vocab=49cf0cf0
+-/
 @[simp]
 theorem layerThreeEquiv_symm_inr (x : Layer H 3) :
     (layerThreeEquiv (G := G) (H := H)).symm (mapLayer inr 3 x) = (0, 0, 0, x) := by

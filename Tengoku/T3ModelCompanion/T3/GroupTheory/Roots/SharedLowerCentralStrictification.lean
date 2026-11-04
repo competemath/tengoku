@@ -76,7 +76,9 @@ private theorem prod_eq_sup_map {K : Type*} [Group K] (A : Subgroup G) (B : Subg
 
 Paper-ID: structure.shared_triple_roots
 TeX: T3_modelcompanion_v9.tex, Remark 4.11, applying Lemma 4.10,
-line 1243, `D = ⟨C,xᵢ,yᵢ,zᵢ⟩`.-/
+line 1243, `D = ⟨C,xᵢ,yᵢ,zᵢ⟩`.
+@isnad1 id=eq.0h3v.s10.ddffd0cafbf2 from=translated src=- shape=4d21ea37 vocab=a0f11385
+-/
 theorem enlargedSubgroup_eq_sup :
     enlargedSubgroup C g = C.map (SharedTripleRoots.baseMap (fun i => (g i : G))) ⊔
       Subgroup.closure (Set.range (newGenerator C g)) := by
@@ -103,7 +105,9 @@ private theorem kernel_le_product (hg : ∀ i, (g i : G) ∈ Subgroup.center G) 
 
 Paper-ID: structure.shared_triple_roots
 TeX: T3_modelcompanion_v9.tex, Remark 4.11, applying Lemma 4.10,
-line 1261, `L ≤ γ₃(G × F)`.-/
+line 1261, `L ≤ γ₃(G × F)`.
+@isnad1 id=le.1h3v.s8.8d0d3152597c from=translated src=- shape=18a94fab vocab=94c2c5c8
+-/
 theorem kernel_le_lowerCentralSeries (hg : ∀ i, (g i : G) ∈ term G 3) :
     SharedTripleRoots.kernel (fun i => (g i : G)) ≤ term (G × Free (Fin 4)) 3 := by
   apply Subgroup.normalClosure_le_normal
@@ -118,7 +122,9 @@ theorem kernel_le_lowerCentralSeries (hg : ∀ i, (g i : G) ∈ term G 3) :
 
 Paper-ID: structure.shared_triple_roots
 TeX: T3_modelcompanion_v9.tex, Remark 4.11, applying Lemma 4.10,
-line 1247, `L ≤ γ₂(C × F)`.-/
+line 1247, `L ≤ γ₂(C × F)`.
+@isnad1 id=le.2h3v.s9.c4bc7bd20a27 from=translated src=- shape=5d8fbefa vocab=d4eff0ab
+-/
 theorem kernel_le_product_derived (hg : ∀ i, (g i : G) ∈ Subgroup.center G)
     (hgC : ∀ i, g i ∈ commutator C) :
     SharedTripleRoots.kernel (fun i => (g i : G)) ≤ (C.prod ⊤).lowerCentralSeries 1 := by
@@ -173,7 +179,9 @@ the third-layer defect. No finiteness or nontriviality assumption on the ambient
 
 Paper-ID: structure.shared_triple_roots
 TeX: T3_modelcompanion_v9.tex, Remark 4.11, applying Lemma 4.10,
-the two intersection claims in lines 1244–1270.-/
+the two intersection claims in lines 1244–1270.
+@isnad1 id=isstrict.4h3v.s9.952ec79980e6 from=translated src=- shape=3d426052 vocab=095840b8
+-/
 theorem isStrict_enlargedSubgroup (hG : HasExponentThree G)
     (hg : ∀ i, (g i : G) ∈ term G 3)
     (hfirst : (commutator G).comap C.subtype = commutator C)
@@ -224,7 +232,9 @@ theorem isStrict_enlargedSubgroup (hG : HasExponentThree G)
 /-- The finite set of new generators has cardinality at most four.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1276, improving the bound in Lemma 4.10(1).-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1276, improving the bound in Lemma 4.10(1).
+@isnad1 id=ex.0h3v.s10.42bb7cc52588 from=translated src=- shape=6c28c41f vocab=15a9b420
+-/
 theorem exists_generating_finset :
     ∃ Y : Finset (SharedTripleRoots.Extension (fun i => (g i : G))), Y.card ≤ 4 ∧
       enlargedSubgroup C g = C.map (SharedTripleRoots.baseMap (fun i => (g i : G))) ⊔

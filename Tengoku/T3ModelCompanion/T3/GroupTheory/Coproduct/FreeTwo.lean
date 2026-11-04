@@ -52,26 +52,34 @@ noncomputable def q : Layer (Free (Fin 2)) 2 := bracketLayer (by decide) (by dec
 /-- The first generator class is nonzero.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, the basis `{x,y}`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, the basis `{x,y}`.
+@isnad1 id=ne.0h0v.s8.4e0996ffd256 from=translated src=- shape=9bdd8e73 vocab=9d4eb7bb
+-/
 theorem x_ne_zero : x ≠ 0 := Free.layerOneBasis.ne_zero 0
 
 /-- The second generator class is nonzero.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, the basis `{x,y}`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, the basis `{x,y}`.
+@isnad1 id=ne.0h0v.s8.70863ece722a from=translated src=- shape=9bdd8e73 vocab=41a6e653
+-/
 theorem y_ne_zero : y ≠ 0 := Free.layerOneBasis.ne_zero 1
 
 /-- The bracket of the two generator classes is the increasing-commutator basis vector.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, `x ∧ y ≠ 0`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, `x ∧ y ≠ 0`.
+@isnad1 id=eq.0h0v.s9.43d5257668c9 from=translated src=- shape=6a858a89 vocab=cee101f9
+-/
 theorem q_eq_basis : q = Free.layerTwoBasis (⟨0, 1, by decide⟩ : IncreasingPair (Fin 2)) :=
   (Free.layerTwoBasis_eq_bracket ⟨0, 1, by decide⟩).symm
 
 /-- The wedge of the two generator classes is nonzero in the actual second layer.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, `x ∧ y ≠ 0`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, `x ∧ y ≠ 0`.
+@isnad1 id=ne.0h0v.s8.3861c82bbc78 from=translated src=- shape=9bdd8e73 vocab=d91cfbad
+-/
 theorem q_ne_zero : q ≠ 0 := by
   rw [q_eq_basis]
   exact Free.layerTwoBasis.ne_zero _
@@ -79,7 +87,9 @@ theorem q_ne_zero : q ≠ 0 := by
 /-- The third layer of the two-generator free group is trivial.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, `β₂ ∧ y = 0`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, `β₂ ∧ y = 0`.
+@isnad1 id=subsingl.0h0v.s5.396bf45131f5 from=translated src=- shape=e9926a24 vocab=96eff926
+-/
 theorem layerThree_subsingleton : Subsingleton (Layer (Free (Fin 2)) 3) := by
   let : IsEmpty (IncreasingTriple (Fin 2)) := ⟨fun t => by
     have h₁ := t.first_lt_second
@@ -100,7 +110,9 @@ theorem eq_repr_smul (β : Layer (Free (Fin 2)) 1) :
 /-- Bracketing a first-layer vector with the second generator extracts its first coordinate.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, choice of `w`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, choice of `w`.
+@isnad1 id=eq.0h1v.s13.2edf0f2c962e from=translated src=- shape=ffb11089 vocab=5857f72c
+-/
 theorem bracket_y (β : Layer (Free (Fin 2)) 1) :
     bracketLayer (by decide) (by decide) β y = Free.layerOneBasis.repr β 0 • q := by
   nth_rw 1 [eq_repr_smul β]
@@ -111,7 +123,9 @@ theorem bracket_y (β : Layer (Free (Fin 2)) 1) :
 coordinate.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, choice of `w`.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, choice of `w`.
+@isnad1 id=eq.0h1v.s13.813a80689162 from=translated src=- shape=bfccfcdf vocab=495e8b5a
+-/
 theorem bracket_x (β : Layer (Free (Fin 2)) 1) :
     bracketLayer (by decide) (by decide) β x = - (Free.layerOneBasis.repr β 1 • q) := by
   nth_rw 1 [eq_repr_smul β]
@@ -123,7 +137,9 @@ theorem bracket_x (β : Layer (Free (Fin 2)) 1) :
 /-- A nonzero first-layer vector has a nonzero bracket with one of the free generators.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, line 1079.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, line 1079.
+@isnad1 id=ex.1h1v.s13.66bf4c65f541 from=translated src=- shape=69dfb39e vocab=e9def73c
+-/
 theorem exists_bracket_ne_zero (β : Layer (Free (Fin 2)) 1) (hβ : β ≠ 0) :
     ∃ w : Layer (Free (Fin 2)) 1, (w = x ∨ w = y) ∧
       bracketLayer (by decide) (by decide) β w ≠ 0 := by
@@ -144,7 +160,9 @@ variable {V : Type*} [AddCommGroup V] [Module (ZMod 3) V]
 /-- Every tensor with the first layer of `F₂` has the paper's two-term generator expansion.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, lines 1088–1089.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series`, lines 1088–1089.
+@isnad1 id=ex.0h2v.s11.43850ce1df22 from=translated src=- shape=2b7982a4 vocab=18cd93f9
+-/
 theorem exists_tensor_eq (t : V ⊗[ZMod 3] Layer (Free (Fin 2)) 1) :
     ∃ α α' : V, t = α ⊗ₜ[ZMod 3] x + α' ⊗ₜ[ZMod 3] y := by
   let e := TensorProduct.equivFinsuppOfBasisRight (M := V) (Free.layerOneBasis (I := Fin 2))

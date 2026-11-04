@@ -60,7 +60,9 @@ inductive IsUniversalExistential : ∀ {n}, L.BoundedFormula α n → Prop
 /-- A universal formula is universal-existential, with an empty existential prefix.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.
+@isnad1 id=isuniver.1h4v.s4.231e8f68a0c3 from=translated src=- shape=0a14eef4 vocab=861c0cdd
+-/
 theorem IsUniversal.isUniversalExistential {φ : L.BoundedFormula α n} (h : φ.IsUniversal) :
     φ.IsUniversalExistential := by
   induction h with
@@ -71,7 +73,9 @@ theorem IsUniversal.isUniversalExistential {φ : L.BoundedFormula α n} (h : φ.
 in the intermediate structure reflect to the source on source parameters.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=realize.3h12v.s7.a1fea345f828 from=translated src=- shape=71691b42 vocab=12f63471
+-/
 theorem IsUniversalExistential.realize_of_comp_elementary
     {M : Type w} {N : Type w'} {P : Type w''}
     [L.Structure M] [L.Structure N] [L.Structure P]
@@ -111,7 +115,9 @@ def IsPiTwo (T : L.Theory) : Prop :=
 /-- Mutual consequence gives equivalence of model classes in any universe.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.
+@isnad1 id=iff.2h4v.s6.33d3d0cc95e9 from=translated src=- shape=b36e5518 vocab=96a1b485
+-/
 theorem model_iff_of_mutual_consequence
     (hTT' : ∀ φ ∈ T', T ⊨ᵇ φ) (hT'T : ∀ φ ∈ T, T' ⊨ᵇ φ)
     (M : Type w) [L.Structure M] [Nonempty M] : M ⊨ T ↔ M ⊨ T' := by
@@ -124,7 +130,9 @@ theorem model_iff_of_mutual_consequence
 /-- A theory already axiomatized by universal-existential sentences is Pi-two.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.
+@isnad1 id=ispitwo.1h2v.s5.ae9a2f711448 from=translated src=- shape=0c0b4a6b vocab=63b1b6d0
+-/
 theorem isPiTwo_of_forall_isUniversalExistential
     (h : ∀ φ ∈ T, φ.IsUniversalExistential) : T.IsPiTwo :=
   ⟨T, h, fun _ hφ => models_sentence_of_mem hφ, fun _ hφ => models_sentence_of_mem hφ⟩
@@ -133,7 +141,9 @@ theorem isPiTwo_of_forall_isUniversalExistential
 axiomatizations and genuine existential witnesses.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 5; no label.
+@isnad1 id=ispitwo.0h2v.s3.543b3a513c25 from=translated src=- shape=b28a8773 vocab=691e519f
+-/
 theorem IsUniversal.isPiTwo [h : T.IsUniversal] : T.IsPiTwo :=
   isPiTwo_of_forall_isUniversalExistential fun _ hφ =>
     (h.isUniversal_of_mem hφ).isUniversalExistential
@@ -143,7 +153,9 @@ Embed it into a model of the original theory and then back into a model of the c
 model completeness makes the composite elementary and reflects the Pi-two axioms.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, part of Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, part of Fact 2.3, lines 289–295; no label.
+@isnad1 id=model.2h4v.s5.d9350bb6d1c0 from=translated src=- shape=3fc53087 vocab=12e72452
+-/
 theorem IsModelCompanionOf.models_of_isPiTwo (hT : T.IsPiTwo)
     (h : T'.IsModelCompanionOf T) (M : T'.ModelType.{u, v, max u v}) : M ⊨ T := by
   obtain ⟨S, hS, hTS, hST⟩ := hT
@@ -160,7 +172,9 @@ theorem IsModelCompanionOf.models_of_isPiTwo (hT : T.IsPiTwo)
 This is the companion-model inclusion in the equality of classes of Fact 2.3.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, one inclusion in Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, one inclusion in Fact 2.3, lines 289–295; no label.
+@isnad1 id=isexiste.2h4v.s5.96dc93ae1c43 from=translated src=- shape=2784de81 vocab=59f732a1
+-/
 theorem IsModelCompanionOf.isExistentiallyClosed_of_isPiTwo (hT : T.IsPiTwo)
     (h : T'.IsModelCompanionOf T) (M : T'.ModelType.{u, v, max u v}) :
     T.IsExistentiallyClosed M := by
@@ -172,7 +186,9 @@ companion. Its embedding into a companion model reflects existential formulas an
 by the Tarski-Vaught criterion for a model-complete target.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, converse class inclusion in Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, converse class inclusion in Fact 2.3, lines 289–295; no label.
+@isnad1 id=model.3h4v.s5.bbf39d01fd58 from=translated src=- shape=9d28f756 vocab=eb2cbb2c
+-/
 theorem IsExistentiallyClosed.models_of_isModelCompanionOf (hT : T.IsPiTwo)
     (h : T'.IsModelCompanionOf T) {M : Type (max u v)} [L.Structure M]
     (hM : T.IsExistentiallyClosed M) : M ⊨ T' := by
@@ -189,7 +205,9 @@ exactly the existentially closed models of the original theory. This proves the 
 implication of Fact 2.3, in the canonical semantic universe.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, forward implication of Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, forward implication of Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.2h4v.s5.a38816f678f4 from=translated src=- shape=cba70e7d vocab=230954a5
+-/
 theorem IsModelCompanionOf.models_iff_isExistentiallyClosed (hT : T.IsPiTwo)
     (h : T'.IsModelCompanionOf T) (M : Type (max u v)) [L.Structure M] [Nonempty M] :
     M ⊨ T' ↔ T.IsExistentiallyClosed M := by

@@ -46,7 +46,9 @@ variable {G : Type*} [Group G]
 /-- The Three Subgroups Lemma modulo a normal subgroup, used for the lower central degree bound.
 
 Paper-ID: preliminaries.central_series_properties
-TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, supporting lemma for item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, supporting lemma for item 1.
+@isnad1 id=le.2h5v.s7.55c5752b9f8c from=translated src=- shape=934a4f80 vocab=cbee5e37
+-/
 theorem commutator_commutator_le_of_rotate (A B C N : Subgroup G) [N.Normal]
     (h₁ : ⁅⁅B, C⁆, A⁆ ≤ N) (h₂ : ⁅⁅C, A⁆, B⁆ ≤ N) : ⁅⁅A, B⁆, C⁆ ≤ N := by
   have hmap (S : Subgroup G) : S.map (QuotientGroup.mk' N) = ⊥ ↔ S ≤ N := by
@@ -61,7 +63,9 @@ theorem commutator_commutator_le_of_rotate (A B C N : Subgroup G) [N.Normal]
 the paper's degrees `m + 1` and `n + 1`, so the resulting mathlib index is `m + n + 1`.
 
 Paper-ID: preliminaries.central_series_properties
-TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, item 1.
+@isnad1 id=le.0h3v.s6.d290199f4a96 from=translated src=- shape=4b20181d vocab=60123e49
+-/
 theorem commutator_lowerCentralSeries_le (m n : ℕ) :
     ⁅(⊤ : Subgroup G).lowerCentralSeries m, (⊤ : Subgroup G).lowerCentralSeries n⁆ ≤
       (⊤ : Subgroup G).lowerCentralSeries (m + n + 1) := by
@@ -84,7 +88,9 @@ theorem commutator_lowerCentralSeries_le (m n : ℕ) :
 /-- A lower central series terminating at index `n` lies below the reversed upper series.
 
 Paper-ID: preliminaries.central_series_properties
-TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, supporting form of item 2.-/
+TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, supporting form of item 2.
+@isnad1 id=le.1h3v.s6.e37531b47473 from=translated src=- shape=869ef58b vocab=a9dc7ec5
+-/
 theorem lowerCentralSeries_le_upperCentralSeries_of_eq_bot {n : ℕ}
     (hn : (⊤ : Subgroup G).lowerCentralSeries n = ⊥) (i : ℕ) :
     (⊤ : Subgroup G).lowerCentralSeries i ≤ upperCentralSeries G (n - i) :=
@@ -97,7 +103,9 @@ theorem lowerCentralSeries_le_upperCentralSeries_of_eq_bot {n : ℕ}
 upper series. The index `i` here denotes the paper's degree `i + 1`.
 
 Paper-ID: preliminaries.central_series_properties
-TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, item 2.-/
+TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, item 2.
+@isnad1 id=le.1h3v.s5.bb63ddc02b80 from=translated src=- shape=a22791c3 vocab=73903c55
+-/
 theorem lowerCentralSeries_le_upperCentralSeries [Group.IsNilpotent G] {n : ℕ}
     (hn : Group.nilpotencyClass G ≤ n) (i : ℕ) :
     (⊤ : Subgroup G).lowerCentralSeries i ≤ upperCentralSeries G (n - i) :=
@@ -108,7 +116,9 @@ theorem lowerCentralSeries_le_upperCentralSeries [Group.IsNilpotent G] {n : ℕ}
 For a subgroup inclusion, this gives `Zₙ(H) ∩ G ≤ Zₙ(G)`.
 
 Paper-ID: preliminaries.strict_of_internal
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, supporting lemma for item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, supporting lemma for item 1.
+@isnad1 id=le.1h4v.s6.34b68c5b7b15 from=translated src=- shape=d11b6f77 vocab=06acca41
+-/
 theorem comap_upperCentralSeries_le_of_injective {H : Type*} [Group H]
     (f : G →* H) (hf : Function.Injective f) (n : ℕ) :
     (upperCentralSeries H n).comap f ≤ upperCentralSeries G n := by
@@ -129,7 +139,9 @@ theorem comap_upperCentralSeries_le_of_injective {H : Type*} [Group H]
 /-- Each quotient of consecutive lower central terms is commutative, for an arbitrary group.
 
 Paper-ID: preliminaries.central_series_properties
-TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Fact 2.14, item 1.
+@isnad1 id=ismulcom.0h2v.s10.6134f5fe73ff from=translated src=- shape=f307236f vocab=f114e664
+-/
 theorem isMulCommutative_lowerCentralSeries_quotient (n : ℕ) :
     IsMulCommutative ((⊤ : Subgroup G).lowerCentralSeries n ⧸
       ((⊤ : Subgroup G).lowerCentralSeries (n + 1)).subgroupOf
@@ -160,7 +172,9 @@ def iteratedCommutator (a : G) (l : List G) : G :=
 iterated commutator with a list of `n` further arguments.
 
 Paper-ID: preliminaries.upper_central_recursive
-TeX: T3_modelcompanion_v9.tex, v9 Remark 2.13.-/
+TeX: T3_modelcompanion_v9.tex, v9 Remark 2.13.
+@isnad1 id=iff.0h3v.s5.c4cc397fddd6 from=translated src=- shape=70110e28 vocab=b5fd6795
+-/
 theorem mem_upperCentralSeries_iff_forall_iteratedCommutator (a : G) (n : ℕ) :
     a ∈ Subgroup.upperCentralSeries G n ↔
       ∀ l : List G, l.length = n → iteratedCommutator a l = 1 := by
@@ -181,7 +195,9 @@ theorem mem_upperCentralSeries_iff_forall_iteratedCommutator (a : G) (n : ℕ) :
 This agrees with mathlib's recursive definition, including `Z₀(G) = 1`.
 
 Paper-ID: preliminaries.central_series, preliminaries.upper_central_recursive
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.12, item 2, and Remark 2.13.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.12, item 2, and Remark 2.13.
+@isnad1 id=iff.0h3v.s5.3fa284c8b13e from=translated src=- shape=dd61a60a vocab=9db89a9d
+-/
 theorem mem_upperCentralSeries_iff_forall_fin (a : G) (n : ℕ) :
     a ∈ Subgroup.upperCentralSeries G n ↔
       ∀ v : Fin n → G, iteratedCommutator a (List.ofFn v) = 1 := by
@@ -196,7 +212,9 @@ theorem mem_upperCentralSeries_iff_forall_fin (a : G) (n : ℕ) :
 /-- The lower central series begins with the whole group: the paper's `γ₁(G) = G`.
 
 Paper-ID: preliminaries.central_series
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.12, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.12, item 1.
+@isnad1 id=eq.0h1v.s4.db31eff79d54 from=translated src=- shape=647d16be vocab=82c6fc90
+-/
 theorem lowerCentralSeries_initial (G : Type*) [Group G] :
     (⊤ : Subgroup G).lowerCentralSeries 0 = ⊤ := rfl
 
@@ -204,7 +222,9 @@ theorem lowerCentralSeries_initial (G : Type*) [Group G] :
 The index `n` here represents the paper's degree `n + 1`.
 
 Paper-ID: preliminaries.central_series
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.12, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.12, item 1.
+@isnad1 id=eq.0h2v.s5.878889b41fa9 from=translated src=- shape=1d4216ad vocab=3b3dfff7
+-/
 theorem lowerCentralSeries_step (G : Type*) [Group G] (n : ℕ) :
     (⊤ : Subgroup G).lowerCentralSeries (n + 1) =
       ⁅(⊤ : Subgroup G).lowerCentralSeries n, ⊤⁆ := rfl
@@ -232,7 +252,9 @@ def CentralSeriesCoincide (G : Type*) [Group G] : Prop :=
 inverse-image equalities for lower central terms. No exponent assumption is needed.
 
 Paper-ID: preliminaries.lcs_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.23, homomorphism form.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.23, homomorphism form.
+@isnad1 id=iff.1h3v.s7.7a2850d36447 from=translated src=- shape=3e8bfa7d vocab=f5d30149
+-/
 theorem isStrict_range_iff_comap {H : Type*} [Group H] (f : G →* H)
     (hf : Function.Injective f) :
     IsStrict f.range ↔
@@ -258,7 +280,9 @@ theorem isStrict_range_iff_comap {H : Type*} [Group H] (f : G →* H)
 /-- A subgroup's lower central terms lie in the corresponding ambient terms and in the subgroup.
 
 Paper-ID: preliminaries.strict_of_internal
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, first inclusion in item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, first inclusion in item 1.
+@isnad1 id=le.0h3v.s5.5047cda97431 from=translated src=- shape=f7b57116 vocab=fcf0bf7f
+-/
 theorem lowerCentralSeries_le_ambient_inf (S : Subgroup G) (n : ℕ) :
     S.lowerCentralSeries n ≤ (⊤ : Subgroup G).lowerCentralSeries n ⊓ S :=
   le_inf (Subgroup.lowerCentralSeries_mono n le_top) (S.lowerCentralSeries_le_self n)
@@ -267,7 +291,9 @@ theorem lowerCentralSeries_le_ambient_inf (S : Subgroup G) (n : ℕ) :
 upper central term, read in the ambient group.
 
 Paper-ID: preliminaries.strict_of_internal
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, last inclusion in item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, last inclusion in item 1.
+@isnad1 id=le.0h3v.s6.e533c2046157 from=translated src=- shape=7e419dbc vocab=09837300
+-/
 theorem upperCentralSeries_inf_le_map_subtype (S : Subgroup G) (n : ℕ) :
     Subgroup.upperCentralSeries G n ⊓ S ≤ (Subgroup.upperCentralSeries S n).map S.subtype := by
   intro x hx
@@ -280,7 +306,9 @@ inside an exponent-three ambient group. The paper uses indices `n < 3`; the same
 also holds afterward, when all these terms are trivial.
 
 Paper-ID: preliminaries.strict_of_internal
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, item 1.
+@isnad1 id=and.1h3v.s7.6e4d11df73e7 from=translated src=- shape=c8b0c79d vocab=e568e89d
+-/
 theorem centralSeries_inclusions (hG : HasExponentThree G) (S : Subgroup G) (n : ℕ) :
     S.lowerCentralSeries n ≤ (⊤ : Subgroup G).lowerCentralSeries n ⊓ S ∧
     (⊤ : Subgroup G).lowerCentralSeries n ⊓ S ≤
@@ -296,7 +324,9 @@ theorem centralSeries_inclusions (hG : HasExponentThree G) (S : Subgroup G) (n :
 ambient group, by the inclusion chain of the paper.
 
 Paper-ID: preliminaries.strict_of_internal
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, item 2.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.26, item 2.
+@isnad1 id=isstrict.2h2v.s5.09e5094c6e52 from=translated src=- shape=6dc7bacd vocab=249a573f
+-/
 theorem isStrict_of_centralSeriesCoincide (hG : HasExponentThree G) (S : Subgroup G)
     (hS : CentralSeriesCoincide S) : IsStrict S := by
   have heq (n : ℕ) (hn : n < 3) :
@@ -313,7 +343,9 @@ theorem isStrict_of_centralSeriesCoincide (hG : HasExponentThree G) (S : Subgrou
 inverse images of ambient lower central terms.
 
 Paper-ID: preliminaries.lcs_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.23, internal form.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.23, internal form.
+@isnad1 id=iff.0h2v.s8.b7ce58e7cbb3 from=translated src=- shape=3126baa9 vocab=4034667b
+-/
 theorem isStrict_iff_comap_subtype (S : Subgroup G) :
     IsStrict S ↔
       (⊤ : Subgroup S).lowerCentralSeries 1 =
@@ -327,7 +359,9 @@ theorem isStrict_iff_comap_subtype (S : Subgroup G) :
 equalities: the derived subgroup is the second center, and the third lower term is the center.
 
 Paper-ID: preliminaries.central_series_coincide
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.25.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.25.
+@isnad1 id=iff.1h1v.s5.c14541f60f00 from=translated src=- shape=3d6e62e8 vocab=462c69a2
+-/
 theorem centralSeriesCoincide_iff (hG : HasExponentThree G) :
     CentralSeriesCoincide G ↔ commutator G = Subgroup.upperCentralSeries G 2 ∧
       (⊤ : Subgroup G).lowerCentralSeries 2 = Subgroup.center G := by
@@ -349,7 +383,9 @@ theorem centralSeriesCoincide_iff (hG : HasExponentThree G) :
 No exponent or finiteness condition is needed for this transport.
 
 Paper-ID: structure.strict_envelope
-TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, transporting the structure of D₃ to D.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, transporting the structure of D₃ to D.
+@isnad1 id=centrals.1h3v.s5.92e418ddb9e9 from=translated src=- shape=35640043 vocab=45f89c83
+-/
 theorem CentralSeriesCoincide.mulEquiv {H : Type*} [Group H]
     (hG : CentralSeriesCoincide G) (e : G ≃* H) : CentralSeriesCoincide H := by
   intro i hi
@@ -374,7 +410,9 @@ inverse-image equality for the subgroup's inclusion.
 
 Paper-ID: structure.strict_envelope
 TeX: T3_modelcompanion_v9.tex, `proposition:bdd LCS`, the passage from the first to the
-second strictification step, lines 1320–1325.-/
+second strictification step, lines 1320–1325.
+@isnad1 id=iff.0h3v.s7.2ac1134d406f from=translated src=- shape=ed49efcc vocab=b01710fe
+-/
 theorem lowerCentralSeries_eq_inf_iff_comap (S : Subgroup G) (k : ℕ) :
     S.lowerCentralSeries k = (⊤ : Subgroup G).lowerCentralSeries k ⊓ S ↔
       (⊤ : Subgroup S).lowerCentralSeries k =

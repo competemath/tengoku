@@ -72,7 +72,9 @@ def CofinallyElementary : Prop :=
 /-- If every transition map of the system is elementary, then it is cofinally elementary.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=cofinall.1h4v.s7.fa46d17f1151 from=translated src=- shape=4e681c4a vocab=14129efa
+-/
 theorem CofinallyElementary.of_forall_elementary [IsDirectedOrder ι]
     (h : ∀ (i j : ι) (hij : i ≤ j) (n : ℕ) (φ : L.Formula (Fin n)) (x : Fin n → G i),
       φ.Realize (f i j hij ∘ x) ↔ φ.Realize x) :
@@ -100,7 +102,9 @@ variable [DirectedSystem G fun i j h => f i j h] [IsDirectedOrder ι] [Nonempty 
 system, the canonical maps into the direct limit preserve and reflect all bounded formulas.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h10v.s8.dbe62fb529ce from=translated src=- shape=559e542c vocab=23668adb
+-/
 theorem realize_boundedFormula_of (h : CofinallyElementary f) {α : Type u'} {n : ℕ}
     (φ : L.BoundedFormula α n) (i : ι) (v : α → G i) (xs : Fin n → G i) :
     φ.Realize (of L ι G f i ∘ v) (of L ι G f i ∘ xs) ↔ φ.Realize v xs := by
@@ -148,7 +152,9 @@ theorem realize_boundedFormula_of (h : CofinallyElementary f) {α : Type u'} {n 
 the canonical maps into the direct limit preserve and reflect all formulas.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h8v.s8.c73ac4eff6cb from=translated src=- shape=2cd363c6 vocab=e77b8d34
+-/
 theorem realize_formula_of (h : CofinallyElementary f) {α : Type u'}
     (φ : L.Formula α) (i : ι) (v : α → G i) :
     φ.Realize (of L ι G f i ∘ v) ↔ φ.Realize v := by
@@ -167,6 +173,9 @@ noncomputable def ofElementary (h : CofinallyElementary f) (i : ι) :
     G i ↪ₑ[L] DirectLimit G f :=
   ⟨of L ι G f i, fun _ φ x => realize_formula_of h φ i x⟩
 
+/--
+@isnad1 id=eq.1h6v.s8.edae07b9e7d8 from=translated src=- shape=bbaf51d7 vocab=89fcc5cf
+-/
 @[simp]
 theorem ofElementary_apply (h : CofinallyElementary f) (i : ι) (x : G i) :
     ofElementary f h i x = of L ι G f i x :=

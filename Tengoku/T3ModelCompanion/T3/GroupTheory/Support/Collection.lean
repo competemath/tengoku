@@ -37,11 +37,15 @@ section ClassTwo
 variable (hQ : commutator Q ≤ Subgroup.center Q)
 include hQ
 
-/-- Every commutator is central.-/
+/-- Every commutator is central.
+@isnad1 id=mem.1h3v.s5.2d5afbd15526 from=translated src=- shape=18f27759 vocab=4898d369
+-/
 theorem commutator_mem_center_of_le (x y : Q) : ⁅x, y⁆ ∈ Subgroup.center Q :=
   hQ (Subgroup.commutator_mem_commutator (Subgroup.mem_top x) (Subgroup.mem_top y))
 
-/-- The commutator is multiplicative in its first argument.-/
+/-- The commutator is multiplicative in its first argument.
+@isnad1 id=eq.1h4v.s6.6489281217d7 from=translated src=- shape=919bed50 vocab=94a12f77
+-/
 theorem commutator_mul_left_of_le (a b c : Q) : ⁅a * b, c⁆ = ⁅a, c⁆ * ⁅b, c⁆ := by
   have hb : a * ⁅b, c⁆ = ⁅b, c⁆ * a :=
     Subgroup.mem_center_iff.mp (commutator_mem_center_of_le hQ b c) a
@@ -53,7 +57,9 @@ theorem commutator_mul_left_of_le (a b c : Q) : ⁅a * b, c⁆ = ⁅a, c⁆ * �
     _ = ⁅b, c⁆ * ⁅a, c⁆ := by simp only [commutatorElement_def]; group
     _ = ⁅a, c⁆ * ⁅b, c⁆ := ha
 
-/-- The commutator is multiplicative in its second argument.-/
+/-- The commutator is multiplicative in its second argument.
+@isnad1 id=eq.1h4v.s6.e280f518789f from=translated src=- shape=7cd60408 vocab=94a12f77
+-/
 theorem commutator_mul_right_of_le (a b c : Q) : ⁅a, b * c⁆ = ⁅a, b⁆ * ⁅a, c⁆ := by
   have hcomm : ⁅a, c⁆ * ⁅a, b⁆ = ⁅a, b⁆ * ⁅a, c⁆ :=
     Subgroup.mem_center_iff.mp (commutator_mem_center_of_le hQ a b) ⁅a, c⁆
@@ -63,7 +69,9 @@ theorem commutator_mul_right_of_le (a b c : Q) : ⁅a, b * c⁆ = ⁅a, b⁆ * �
     _ = ⁅a, c⁆ * ⁅a, b⁆ := by rw [commutatorElement_inv, commutatorElement_inv]
     _ = ⁅a, b⁆ * ⁅a, c⁆ := hcomm
 
-/-- The commutator inverts in its second argument.-/
+/-- The commutator inverts in its second argument.
+@isnad1 id=eq.1h3v.s6.f1902c5266ff from=translated src=- shape=afe7deed vocab=63421810
+-/
 theorem commutator_inv_right_of_le (a b : Q) : ⁅a, b⁻¹⁆ = ⁅a, b⁆⁻¹ := by
   have h := commutator_mul_right_of_le hQ a b b⁻¹
   rw [mul_inv_cancel, commutatorElement_one_right] at h
@@ -78,14 +86,22 @@ def crossList (m : Q → Q) : List Q → Q
   | [] => 1
   | x :: t => ⁅x, m x⁆ * crossList m t
 
+/--
+@isnad1 id=eq.0h2v.s4.b82b74058eec from=translated src=- shape=327103ef vocab=1b8cb9cc
+-/
 @[simp]
 theorem crossList_nil (m : Q → Q) : crossList m ([] : List Q) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.d79cfed60ed9 from=translated src=- shape=6dc73390 vocab=2eb49626
+-/
 @[simp]
 theorem crossList_cons (m : Q → Q) (x : Q) (t : List Q) :
     crossList m (x :: t) = ⁅x, m x⁆ * crossList m t := rfl
 
-/-- A collected product with trivial second arguments is trivial.-/
+/-- A collected product with trivial second arguments is trivial.
+@isnad1 id=eq.1h3v.s6.2e39a94ec895 from=translated src=- shape=7fbe2b9b vocab=61647d14
+-/
 theorem crossList_eq_one_of_forall {m : Q → Q} {l : List Q} (h : ∀ z ∈ l, m z = 1) :
     crossList m l = 1 := by
   induction l with
@@ -94,10 +110,15 @@ theorem crossList_eq_one_of_forall {m : Q → Q} {l : List Q} (h : ∀ z ∈ l, 
       rw [crossList_cons, h x List.mem_cons_self, commutatorElement_one_right, one_mul]
       exact ih fun z hz => h z (List.mem_cons_of_mem _ hz)
 
+/--
+@isnad1 id=eq.0h2v.s5.61b93c55288f from=translated src=- shape=71eb9ede vocab=7267b266
+-/
 theorem crossList_one (l : List Q) : crossList (fun _ : Q => (1 : Q)) l = 1 :=
   crossList_eq_one_of_forall fun _ _ => rfl
 
-/-- On a duplicate-free list, a single cross commutator is a collected product.-/
+/-- On a duplicate-free list, a single cross commutator is a collected product.
+@isnad1 id=eq.2h4v.s6.7bee38d54352 from=translated src=- shape=9c604b70 vocab=1a5dc3fb
+-/
 theorem crossList_single [DecidableEq Q] {β μ : Q} {l : List Q} (hnd : l.Nodup) (hβ : β ∈ l) :
     crossList (fun x => if x = β then μ else 1) l = ⁅β, μ⁆ := by
   induction l with
@@ -114,7 +135,9 @@ theorem crossList_single [DecidableEq Q] {β μ : Q} {l : List Q} (hnd : l.Nodup
       · have hxne : x ≠ β := fun h => hnd.1 (h ▸ hx)
         rw [ite_eq_right hxne, commutatorElement_one_right, one_mul, ih hnd.2 hx]
 
-/-- A collected product maps to a collected product.-/
+/-- A collected product maps to a collected product.
+@isnad1 id=eq.1h6v.s8.f5dbcc953710 from=translated src=- shape=83d52253 vocab=3bab41d4
+-/
 theorem map_crossList {G H : Type*} [Group G] [Group H] (φ : G →* H) (m : G → G) (m' : H → H)
     (l : List G) (h : ∀ y ∈ l, φ (m y) = m' (φ y)) :
     φ (crossList m l) = crossList m' (l.map φ) := by
@@ -129,11 +152,17 @@ section CrossLemmas
 variable (hQ : commutator Q ≤ Subgroup.center Q)
 include hQ
 
+/--
+@isnad1 id=mem.1h3v.s5.ba4751895b2f from=translated src=- shape=36153319 vocab=a0481473
+-/
 theorem crossList_mem_center (m : Q → Q) (l : List Q) : crossList m l ∈ Subgroup.center Q := by
   induction l with
   | nil => exact Subgroup.one_mem _
   | cons x t ih => exact Subgroup.mul_mem _ (commutator_mem_center_of_le hQ x (m x)) ih
 
+/--
+@isnad1 id=eq.1h4v.s6.f21e6a3695cd from=translated src=- shape=752c71f2 vocab=16ccc58d
+-/
 theorem crossList_mul (m m' : Q → Q) (l : List Q) :
     crossList m l * crossList m' l = crossList (fun x => m x * m' x) l := by
   induction l with
@@ -149,6 +178,9 @@ theorem crossList_mul (m m' : Q → Q) (l : List Q) :
         _ = ⁅x, m x * m' x⁆ * crossList (fun y => m y * m' y) t := by
               rw [commutator_mul_right_of_le hQ, ih]
 
+/--
+@isnad1 id=eq.1h3v.s6.0ae6ec86234d from=translated src=- shape=d37caaed vocab=23f5b93a
+-/
 theorem crossList_inv (m : Q → Q) (l : List Q) :
     (crossList m l)⁻¹ = crossList (fun x => (m x)⁻¹) l := by
   have h := crossList_mul hQ m (fun x => (m x)⁻¹) l
@@ -162,7 +194,9 @@ theorem crossList_inv (m : Q → Q) (l : List Q) :
 an expression for every element of a group with central derived subgroup.
 
 Paper-ID: main.bounded_support
-TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, lines 774–781.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:witness in bdd support`, lines 774–781.
+@isnad1 id=ex.4h5v.s7.28d9bd6684f4 from=translated src=- shape=1db61ae2 vocab=0a495482
+-/
 theorem exists_crossList_normalForm
     {BB MM : Subgroup Q} (hgen : BB ⊔ MM = ⊤) {l : List Q} (hnd : l.Nodup)
     (hl : Subgroup.closure {x | x ∈ l} = BB) (u : Q) :

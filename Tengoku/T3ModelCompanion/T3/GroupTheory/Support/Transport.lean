@@ -30,7 +30,9 @@ variable {G H : Type*} [Group G] [Group H]
 The relators need not all belong to the smaller subgroup.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the inclusion of `H₀` in the smaller coproduct.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the inclusion of `H₀` in the smaller coproduct.
+@isnad1 id=le.1h4v.s5.b19150b5438c from=translated src=- shape=c5d30434 vocab=e1d89e9d
+-/
 theorem normalClosureIn_mono_ambient {E F : Subgroup H} (hEF : E ≤ F) (Δ : Set H) :
     normalClosureIn E Δ ≤ normalClosureIn F Δ := by
   let j := Subgroup.inclusion hEF
@@ -46,7 +48,9 @@ theorem normalClosureIn_mono_ambient {E F : Subgroup H} (hEF : E ≤ F) (Δ : Se
 of the inverse-image relators. The embedding's inverse on its range also lifts the conjugators.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the certificate in `D ∐ B` on line 831.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the certificate in `D ∐ B` on line 831.
+@isnad1 id=mem.3h6v.s7.714ac5236b09 from=translated src=- shape=fbe7cf04 vocab=7bf7770f
+-/
 theorem mem_normalClosure_of_mem_normalClosureIn (f : G →* H) (hf : Function.Injective f)
     (E : Subgroup H) (hE : E ≤ f.range) (Δ : Set H) {x : G}
     (hx : f x ∈ normalClosureIn E Δ) : x ∈ Subgroup.normalClosure (f ⁻¹' Δ) := by

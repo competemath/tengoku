@@ -55,50 +55,95 @@ def two (x : TruncatedExterior V) : ⋀[ZMod 3]^2 V := x.2.1
 /-- The degree-three coordinate.-/
 def three (x : TruncatedExterior V) : ⋀[ZMod 3]^3 V := x.2.2
 
+/--
+@isnad1 id=eq.0h1v.s12.6d3261487ecd from=translated src=- shape=aa205ae5 vocab=afd90869
+-/
 @[simp]
 theorem one_zero : one (0 : TruncatedExterior V) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s12.5a64a44fa1d2 from=translated src=- shape=aa205ae5 vocab=a9864415
+-/
 @[simp]
 theorem two_zero : two (0 : TruncatedExterior V) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s12.230115d06b46 from=translated src=- shape=aa205ae5 vocab=4570012e
+-/
 @[simp]
 theorem three_zero : three (0 : TruncatedExterior V) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.e79341ccf6b9 from=translated src=- shape=25ade54f vocab=a2b01973
+-/
 @[simp]
 theorem one_add (x y : TruncatedExterior V) : one (x + y) = one x + one y := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.57e3b4dcd404 from=translated src=- shape=25ade54f vocab=3ad87638
+-/
 @[simp]
 theorem two_add (x y : TruncatedExterior V) : two (x + y) = two x + two y := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.e99a9ed3bd14 from=translated src=- shape=25ade54f vocab=d4531ddb
+-/
 @[simp]
 theorem three_add (x y : TruncatedExterior V) : three (x + y) = three x + three y := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.dfb1112bcb10 from=translated src=- shape=4278e947 vocab=3df8482a
+-/
 @[simp]
 theorem one_smul (r : ZMod 3) (x : TruncatedExterior V) : one (r • x) = r • one x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.ac4556d06949 from=translated src=- shape=4278e947 vocab=0f7feddf
+-/
 @[simp]
 theorem two_smul (r : ZMod 3) (x : TruncatedExterior V) : two (r • x) = r • two x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.35f4a93c8dca from=translated src=- shape=4278e947 vocab=e2b4c12f
+-/
 @[simp]
 theorem three_smul (r : ZMod 3) (x : TruncatedExterior V) : three (r • x) = r • three x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.9a3f11c99d9c from=translated src=- shape=adeef2b1 vocab=2458f680
+-/
 @[simp]
 theorem one_neg (x : TruncatedExterior V) : one (-x) = -one x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.86a7a740177f from=translated src=- shape=25ade54f vocab=afd9d94a
+-/
 @[simp]
 theorem one_sub (x y : TruncatedExterior V) :
     one (x - y) = one x - one y := rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.76094b709820 from=translated src=- shape=adeef2b1 vocab=d8e153d1
+-/
 @[simp]
 theorem two_neg (x : TruncatedExterior V) : two (-x) = -two x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.0f8be9bec2b7 from=translated src=- shape=25ade54f vocab=2f175fca
+-/
 @[simp]
 theorem two_sub (x y : TruncatedExterior V) :
     two (x - y) = two x - two y := rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.43ccbc68ecce from=translated src=- shape=adeef2b1 vocab=76938dbc
+-/
 @[simp]
 theorem three_neg (x : TruncatedExterior V) : three (-x) = -three x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.c4bd0eaf3ebc from=translated src=- shape=25ade54f vocab=89eee71f
+-/
 @[simp]
 theorem three_sub (x y : TruncatedExterior V) :
     three (x - y) = three x - three y := rfl
@@ -107,18 +152,30 @@ instance : Bracket (TruncatedExterior V) (TruncatedExterior V) where
   bracket x y := (0, gradedMul (one x) (one y),
     gradedMul (two x) (one y) - gradedMul (two y) (one x))
 
+/--
+@isnad1 id=eq.3h3v.s12.391c9d289905 from=translated src=- shape=f378c53d vocab=3017606f
+-/
 @[ext]
 theorem ext {x y : TruncatedExterior V}
     (h₁ : one x = one y) (h₂ : two x = two y) (h₃ : three x = three y) : x = y :=
   Prod.ext h₁ (Prod.ext h₂ h₃)
 
+/--
+@isnad1 id=eq.0h3v.s12.ea2cdc114096 from=translated src=- shape=aeecf400 vocab=e1dc32bf
+-/
 @[simp]
 theorem one_lie (x y : TruncatedExterior V) : one ⁅x, y⁆ = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.95aafc3e3ed9 from=translated src=- shape=b3f4ad3a vocab=49dc68e7
+-/
 @[simp]
 theorem two_lie (x y : TruncatedExterior V) : two ⁅x, y⁆ =
     gradedMul (one x) (one y) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.3dd7682698b8 from=translated src=- shape=c98a9615 vocab=ce5cfc29
+-/
 @[simp]
 theorem three_lie (x y : TruncatedExterior V) : three ⁅x, y⁆ =
     gradedMul (two x) (one y) - gradedMul (two y) (one x) := rfl
@@ -181,37 +238,66 @@ def ofThree : (⋀[ZMod 3]^3 V) →ₗ[ZMod 3] TruncatedExterior V where
   map_add' _ _ := ext (zero_add _).symm (zero_add _).symm rfl
   map_smul' r _ := ext (smul_zero r).symm (smul_zero r).symm rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.8eda760b95f1 from=translated src=- shape=b99132eb vocab=e35bf3f5
+-/
 @[simp]
 theorem one_ofOne (a : ⋀[ZMod 3]^1 V) : one (ofOne a) = a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.c36923fcc48e from=translated src=- shape=7cb8a7af vocab=38c7c722
+-/
 @[simp]
 theorem two_ofOne (a : ⋀[ZMod 3]^1 V) : two (ofOne a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.10f327ddb85f from=translated src=- shape=7cb8a7af vocab=0515d93c
+-/
 @[simp]
 theorem three_ofOne (a : ⋀[ZMod 3]^1 V) : three (ofOne a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.a4befc75446c from=translated src=- shape=7cb8a7af vocab=ce644456
+-/
 @[simp]
 theorem one_ofTwo (a : ⋀[ZMod 3]^2 V) : one (ofTwo a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.99f0fe373748 from=translated src=- shape=b99132eb vocab=402603b0
+-/
 @[simp]
 theorem two_ofTwo (a : ⋀[ZMod 3]^2 V) : two (ofTwo a) = a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.d297bc9e5a01 from=translated src=- shape=7cb8a7af vocab=98a27ee4
+-/
 @[simp]
 theorem three_ofTwo (a : ⋀[ZMod 3]^2 V) : three (ofTwo a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.12a05ed48632 from=translated src=- shape=7cb8a7af vocab=b9692c5b
+-/
 @[simp]
 theorem one_ofThree (a : ⋀[ZMod 3]^3 V) : one (ofThree a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.a4f6299d2689 from=translated src=- shape=7cb8a7af vocab=ba1f7916
+-/
 @[simp]
 theorem two_ofThree (a : ⋀[ZMod 3]^3 V) : two (ofThree a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.56e1bb3a9a78 from=translated src=- shape=b99132eb vocab=ebcad72d
+-/
 @[simp]
 theorem three_ofThree (a : ⋀[ZMod 3]^3 V) : three (ofThree a) = a := rfl
 
 /-- The bracket of degree-one elements is their exterior product.
 
 Paper-ID: linear_algebra.truncated_exterior
-TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.-/
+TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.
+@isnad1 id=eq.0h3v.s15.8109a1ba56ea from=translated src=- shape=bd563f9c vocab=a131bb83
+-/
 @[simp]
 theorem ofOne_lie_ofOne (a b : ⋀[ZMod 3]^1 V) :
     ⁅ofOne a, ofOne b⁆ = ofTwo (gradedMul a b) := by ext <;> simp
@@ -219,7 +305,9 @@ theorem ofOne_lie_ofOne (a b : ⋀[ZMod 3]^1 V) :
 /-- The bracket in degrees two and one is their exterior product.
 
 Paper-ID: linear_algebra.truncated_exterior
-TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.-/
+TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.
+@isnad1 id=eq.0h3v.s15.d57c3640a8f6 from=translated src=- shape=a03abc48 vocab=57b9f524
+-/
 @[simp]
 theorem ofTwo_lie_ofOne (q : ⋀[ZMod 3]^2 V) (a : ⋀[ZMod 3]^1 V) :
     ⁅ofTwo q, ofOne a⁆ = ofThree (gradedMul q a) := by ext <;> simp
@@ -227,23 +315,31 @@ theorem ofTwo_lie_ofOne (q : ⋀[ZMod 3]^2 V) (a : ⋀[ZMod 3]^1 V) :
 /-- The bracket in degrees one and two is the negative exterior product.
 
 Paper-ID: linear_algebra.truncated_exterior
-TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.-/
+TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.
+@isnad1 id=eq.0h3v.s15.f111573e968a from=translated src=- shape=c79b7b3b vocab=9f246f87
+-/
 @[simp]
 theorem ofOne_lie_ofTwo (a : ⋀[ZMod 3]^1 V) (q : ⋀[ZMod 3]^2 V) :
     ⁅ofOne a, ofTwo q⁆ = ofThree (-gradedMul a q) := by
   apply ext <;> simp [gradedMul_one_two_comm]
 
-/-- Degree-three elements have zero bracket with every element.-/
+/-- Degree-three elements have zero bracket with every element.
+@isnad1 id=eq.0h3v.s13.3afdb4b616ad from=translated src=- shape=a7436c8e vocab=ab51d92c
+-/
 @[simp]
 theorem ofThree_lie (a : ⋀[ZMod 3]^3 V) (x : TruncatedExterior V) :
     ⁅ofThree a, x⁆ = 0 := by ext <;> simp
 
-/-- Every element has zero bracket with degree-three elements.-/
+/-- Every element has zero bracket with degree-three elements.
+@isnad1 id=eq.0h3v.s13.cea2fa9bf2c4 from=translated src=- shape=0f523b13 vocab=ab51d92c
+-/
 @[simp]
 theorem lie_ofThree (x : TruncatedExterior V) (a : ⋀[ZMod 3]^3 V) :
     ⁅x, ofThree a⁆ = 0 := by ext <;> simp
 
-/-- Two degree-two elements have zero bracket.-/
+/-- Two degree-two elements have zero bracket.
+@isnad1 id=eq.0h3v.s14.3c704cf314b0 from=translated src=- shape=f31155a9 vocab=fe0b4064
+-/
 @[simp]
 theorem ofTwo_lie_ofTwo (a b : ⋀[ZMod 3]^2 V) :
     ⁅ofTwo a, ofTwo b⁆ = 0 := by ext <;> simp
@@ -251,7 +347,9 @@ theorem ofTwo_lie_ofTwo (a b : ⋀[ZMod 3]^2 V) :
 /-- A triple bracket is the triple exterior product of the degree-one coordinates.
 
 Paper-ID: linear_algebra.truncated_exterior
-TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.-/
+TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.
+@isnad1 id=eq.0h4v.s13.4868271fcf3e from=translated src=- shape=128def64 vocab=7c9a332b
+-/
 theorem triple_lie (x y z : TruncatedExterior V) :
     ⁅⁅x, y⁆, z⁆ = ofThree (gradedMul (gradedMul (one x) (one y)) (one z)) := by
   apply ext <;> simp only [one_lie, two_lie, three_lie, one_ofThree, two_ofThree,
@@ -260,11 +358,15 @@ theorem triple_lie (x y z : TruncatedExterior V) :
 /-- Triple brackets are invariant under cyclic permutation.
 
 Paper-ID: linear_algebra.truncated_exterior
-TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.-/
+TeX: T3_modelcompanion_v9.tex, `example:Grassmann algebra`, v9 Example 2.9.
+@isnad1 id=eq.0h4v.s6.d6536051ca02 from=translated src=- shape=2f6660b7 vocab=7294004a
+-/
 theorem triple_lie_cyclic (x y z : TruncatedExterior V) : ⁅⁅x, y⁆, z⁆ = ⁅⁅y, z⁆, x⁆ := by
   rw [triple_lie, triple_lie, gradedMul_one_cyclic]
 
-/-- Every element is the sum of its three homogeneous components.-/
+/-- Every element is the sum of its three homogeneous components.
+@isnad1 id=eq.0h2v.s15.cdf3dc88a1f4 from=translated src=- shape=5738828b vocab=ef7d5a52
+-/
 theorem ofOne_add_ofTwo_add_ofThree (x : TruncatedExterior V) :
     ofOne (one x) + ofTwo (two x) + ofThree (three x) = x := by ext <;> simp
 
@@ -290,26 +392,36 @@ def grade (n : ℕ) : Submodule (ZMod 3) (TruncatedExterior V) where
 
 variable {V}
 
-/-- Membership in a homogeneous component means that all other coordinates vanish.-/
+/-- Membership in a homogeneous component means that all other coordinates vanish.
+@isnad1 id=iff.0h3v.s14.c440fe0818d0 from=translated src=- shape=65cffef8 vocab=5e036ac5
+-/
 theorem mem_grade {n : ℕ} {x : TruncatedExterior V} : x ∈ grade V n ↔
     (n ≠ 1 → one x = 0) ∧ (n ≠ 2 → two x = 0) ∧ (n ≠ 3 → three x = 0) := Iff.rfl
 
-/-- The degree-one component has zero degree-two and degree-three coordinates.-/
+/-- The degree-one component has zero degree-two and degree-three coordinates.
+@isnad1 id=iff.0h2v.s13.8ab1b250ec28 from=translated src=- shape=cff56b3b vocab=ac5c9729
+-/
 @[simp]
 theorem mem_grade_one {x : TruncatedExterior V} :
     x ∈ grade V 1 ↔ two x = 0 ∧ three x = 0 := by simp [mem_grade]
 
-/-- The degree-two component has zero degree-one and degree-three coordinates.-/
+/-- The degree-two component has zero degree-one and degree-three coordinates.
+@isnad1 id=iff.0h2v.s13.9e09858f9bd7 from=translated src=- shape=cff56b3b vocab=93f56ac0
+-/
 @[simp]
 theorem mem_grade_two {x : TruncatedExterior V} :
     x ∈ grade V 2 ↔ one x = 0 ∧ three x = 0 := by simp [mem_grade]
 
-/-- The degree-three component has zero degree-one and degree-two coordinates.-/
+/-- The degree-three component has zero degree-one and degree-two coordinates.
+@isnad1 id=iff.0h2v.s13.2971f74889d2 from=translated src=- shape=cff56b3b vocab=e0dd9e59
+-/
 @[simp]
 theorem mem_grade_three {x : TruncatedExterior V} :
     x ∈ grade V 3 ↔ one x = 0 ∧ two x = 0 := by simp [mem_grade]
 
-/-- The homogeneous component is zero outside degrees one, two, and three.-/
+/-- The homogeneous component is zero outside degrees one, two, and three.
+@isnad1 id=eq.3h2v.s7.21173f2cdac7 from=translated src=- shape=d2c33ae3 vocab=bed7f0d8
+-/
 @[simp]
 theorem grade_eq_bot {n : ℕ} (h₁ : n ≠ 1) (h₂ : n ≠ 2) (h₃ : n ≠ 3) :
     grade V n = ⊥ := by
@@ -318,7 +430,9 @@ theorem grade_eq_bot {n : ℕ} (h₁ : n ≠ 1) (h₂ : n ≠ 2) (h₃ : n ≠ 3
   rw [Submodule.mem_bot]
   exact ext (hx.1 h₁) (hx.2.1 h₂) (hx.2.2 h₃)
 
-/-- The signed exterior bracket respects the homogeneous degrees.-/
+/-- The signed exterior bracket respects the homogeneous degrees.
+@isnad1 id=gradedbr.0h1v.s7.da3fbf20cf50 from=translated src=- shape=b2b6062b vocab=5f987c0d
+-/
 instance instGradedBracket : SetLike.GradedBracket (grade V) (grade V) where
   bracket_mem {i j} {x y} hx hy := by
     change ⁅x, y⁆ ∈ grade V (i + j)

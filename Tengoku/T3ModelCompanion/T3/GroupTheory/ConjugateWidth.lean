@@ -41,7 +41,9 @@ include hG
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=eq.1h4v.s5.c2646ac74f79 from=translated src=- shape=e655dc83 vocab=d337ea86
+-/
 theorem commutator_commutator_right (a g h : G) : ⁅a, ⁅g, h⁆⁆ = ⁅⁅a, h⁆, g⁆ := by
   have hah : ⁅a, h⁆ ∈ Subgroup.normalClosure ({a} : Set G) :=
     commutator_mem_normalClosure (Subgroup.subset_normalClosure (Set.mem_singleton a)) h
@@ -55,7 +57,9 @@ theorem commutator_commutator_right (a g h : G) : ⁅a, ⁅g, h⁆⁆ = ⁅⁅a,
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=eq.1h4v.s6.adbf43688d66 from=translated src=- shape=ba35996e vocab=898deb99
+-/
 theorem commutator_mul_commutator (a g h : G) : ⁅a, g⁆ * ⁅a, h⁆ = ⁅a, g * h * ⁅g, h⁆⁆ := by
   have hsplit : ⁅a, g⁆ * ⁅a, h⁆ = ⁅a, g * h⁆ * ⁅⁅a, h⁆, g⁆ := by
     rw [commutator_mul_right_aux hG a g h]; group
@@ -67,7 +71,9 @@ theorem commutator_mul_commutator (a g h : G) : ⁅a, g⁆ * ⁅a, h⁆ = ⁅a, 
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=eq.1h3v.s6.88157cfd8bdb from=translated src=- shape=726a60ae vocab=63883962
+-/
 theorem conj_eq_mul_commutator (a g : G) : g⁻¹ * a * g = a * ⁅a, g⁆ := by
   simpa only [commutator_inv_right hG, inv_inv] using (mul_commutator_inv hG a g⁻¹).symm
 
@@ -105,7 +111,9 @@ def principalNormalForm (a : G) : Subgroup G where
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=iff.1h3v.s6.29a7eb58779e from=translated src=- shape=c9cbdbb4 vocab=4d7d9bcf
+-/
 theorem mem_principalNormalForm (a x : G) : x ∈ principalNormalForm hG a ↔
     ∃ (k : ZMod 3) (g : G), x = a ^ k.val * ⁅a, g⁆ := Iff.rfl
 
@@ -113,7 +121,9 @@ theorem mem_principalNormalForm (a x : G) : x ∈ principalNormalForm hG a ↔
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=eq.1h2v.s4.d44f08a072f8 from=translated src=- shape=dbc70359 vocab=e823bbd6
+-/
 theorem principalNormalForm_eq_normalClosure (a : G) :
     principalNormalForm hG a = Subgroup.normalClosure ({a} : Set G) := by
   apply le_antisymm
@@ -135,7 +145,9 @@ theorem principalNormalForm_eq_normalClosure (a : G) :
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=iff.1h3v.s6.f95f4201a30d from=translated src=- shape=0dda8dd1 vocab=bbf8a9e0
+-/
 theorem mem_normalClosure_iff (a x : G) :
     x ∈ Subgroup.normalClosure ({a} : Set G) ↔
       ∃ (k : ZMod 3) (g : G), x = a ^ k.val * ⁅a, g⁆ := by
@@ -145,7 +157,9 @@ theorem mem_normalClosure_iff (a x : G) :
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=ex.2h3v.s7.a6906165cba1 from=translated src=- shape=39ab3e9d vocab=356965f4
+-/
 theorem exists_conjList_of_mem_normalClosure {a x : G}
     (hx : x ∈ Subgroup.normalClosure ({a} : Set G)) :
     ∃ l : List G, l.length ≤ 3 ∧ x = (l.map fun g => g⁻¹ * a * g).prod := by
@@ -177,7 +191,9 @@ omit hG in
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=mem.0h3v.s6.dcbead5f3560 from=translated src=- shape=ec67d509 vocab=2d71db67
+-/
 theorem conjList_prod_mem (a : G) (l : List G) :
     (l.map fun g => g⁻¹ * a * g).prod ∈ Subgroup.normalClosure ({a} : Set G) := by
   induction l with
@@ -192,7 +208,9 @@ theorem conjList_prod_mem (a : G) (l : List G) :
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=eq.1h2v.s7.79089b47f73a from=translated src=- shape=4b73b937 vocab=4b520a49
+-/
 theorem normalClosure_eq_conjList (a : G) :
     (Subgroup.normalClosure ({a} : Set G) : Set G) =
       {x | ∃ l : List G, l.length ≤ 3 ∧ x = (l.map fun g => g⁻¹ * a * g).prod} := by
@@ -206,7 +224,9 @@ theorem normalClosure_eq_conjList (a : G) :
 
 Paper-ID: main.conjugate_width
 TeX: T3_modelcompanion_v9.tex, `proposition:bounded number of conjugates`,
-v9 Proposition 3.1.-/
+v9 Proposition 3.1.
+@isnad1 id=ex.1h3v.s7.294dd338dcc2 from=translated src=- shape=007ee21f vocab=7287ee66
+-/
 theorem exists_conjList_compression (a : G) (l : List G) :
     ∃ l' : List G, l'.length ≤ 3 ∧
       (l.map fun g => g⁻¹ * a * g).prod = (l'.map fun g => g⁻¹ * a * g).prod :=

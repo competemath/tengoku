@@ -48,6 +48,9 @@ def relationKernel (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
     Subgroup (Free (I ⊕ J)) :=
   Subgroup.normalClosure (relationSubgroup K₀ K₁ : Set (Free (I ⊕ J)))
 
+/--
+@isnad1 id=normal.0h4v.s6.3598822cbbc2 from=translated src=- shape=3749bf25 vocab=68a0ae49
+-/
 instance relationKernel_normal (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
     (relationKernel K₀ K₁).Normal := Subgroup.normalClosure_normal
 
@@ -61,7 +64,9 @@ abbrev Quotient (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :=
 /-- The quotient presentation has exponent dividing three for every choice of relations.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, quotient `F/L`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, quotient `F/L`.
+@isnad1 id=hasexpon.0h4v.s6.93ebf3a11b5b from=translated src=- shape=72891524 vocab=b92a6a39
+-/
 theorem quotient_pow_three (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
     HasExponentThree (Quotient K₀ K₁) := by
   intro x
@@ -87,7 +92,9 @@ def freeInr (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
 /-- The left relations vanish under the canonical left free factor map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor descent.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor descent.
+@isnad1 id=le.0h4v.s7.a47e13fe1de6 from=translated src=- shape=526e8163 vocab=93e0ea1c
+-/
 theorem le_ker_freeInl (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
     K₀ ≤ (freeInl K₀ K₁).ker := by
   intro x hx
@@ -99,7 +106,9 @@ theorem le_ker_freeInl (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
 /-- The right relations vanish under the canonical right free factor map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor descent.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, factor descent.
+@isnad1 id=le.0h4v.s7.eac4434f0c73 from=translated src=- shape=8cb83385 vocab=51cdfd70
+-/
 theorem le_ker_freeInr (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J)) :
     K₁ ≤ (freeInr K₀ K₁).ker := by
   intro x hx
@@ -119,7 +128,9 @@ def liftFree (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ : Free J →
 /-- The combination restricts to the specified map on the left free factor.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free factor universal property.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free factor universal property.
+@isnad1 id=eq.1h6v.s8.b431ebaaa270 from=translated src=- shape=aaefd4cf vocab=32c69388
+-/
 @[simp]
 theorem liftFree_map_inl (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ : Free J →* H)
     (x : Free I) : liftFree hH f₀ f₁ (Free.map Sum.inl x) = f₀ x :=
@@ -131,7 +142,9 @@ theorem liftFree_map_inl (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ 
 /-- The combination restricts to the specified map on the right free factor.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free factor universal property.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, free factor universal property.
+@isnad1 id=eq.1h6v.s8.a099baae619e from=translated src=- shape=f6a1eb1f vocab=d9317542
+-/
 @[simp]
 theorem liftFree_map_inr (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ : Free J →* H)
     (x : Free J) : liftFree hH f₀ f₁ (Free.map Sum.inr x) = f₁ x :=
@@ -143,7 +156,9 @@ theorem liftFree_map_inr (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ 
 /-- Killing both factor relations kills their normal closure in the combined free group.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, quotient universal property.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, quotient universal property.
+@isnad1 id=le.3h7v.s9.0224a58fd258 from=translated src=- shape=5b425de9 vocab=a9570fa1
+-/
 theorem relationKernel_le_ker_liftFree (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J))
     (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ : Free J →* H)
     (h₀ : K₀ ≤ f₀.ker) (h₁ : K₁ ≤ f₁.ker) :
@@ -169,7 +184,9 @@ def liftQuotient (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J))
 /-- The quotient lift agrees with its free-level combination on representatives.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, quotient universal property.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, quotient universal property.
+@isnad1 id=eq.3h8v.s9.19d744007cef from=translated src=- shape=b98de507 vocab=3340d1e9
+-/
 @[simp]
 theorem liftQuotient_mk (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J))
     (hH : HasExponentThree H) (f₀ : Free I →* H) (f₁ : Free J →* H)
@@ -188,7 +205,9 @@ def presentationMap : Free (I ⊕ J) →* Coproduct G₀ G₁ :=
 /-- On the left free factor, the presentation map is the given map followed by inclusion.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.0h7v.s9.9662aaf65cf8 from=translated src=- shape=78fb1ead vocab=b786492a
+-/
 @[simp]
 theorem presentationMap_map_inl (x : Free I) :
     presentationMap φ₀ φ₁ (Free.map Sum.inl x) = Coproduct.inl (φ₀ x) :=
@@ -197,7 +216,9 @@ theorem presentationMap_map_inl (x : Free I) :
 /-- On the right free factor, the presentation map is the given map followed by inclusion.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.0h7v.s9.f5590f52da7b from=translated src=- shape=6c849c97 vocab=90fa83b1
+-/
 @[simp]
 theorem presentationMap_map_inr (x : Free J) :
     presentationMap φ₀ φ₁ (Free.map Sum.inr x) = Coproduct.inr (φ₁ x) :=
@@ -216,7 +237,9 @@ def quotientToCoproduct : Quotient φ₀.ker φ₁.ker →* Coproduct G₀ G₁ 
 /-- The quotient comparison keeps the canonical combined presentation map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, representative formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, representative formula.
+@isnad1 id=eq.0h7v.s10.d0cc3c340601 from=translated src=- shape=ac6185c3 vocab=85d877fe
+-/
 @[simp]
 theorem quotientToCoproduct_mk (x : Free (I ⊕ J)) :
     quotientToCoproduct φ₀ φ₁ (QuotientGroup.mk x) = presentationMap φ₀ φ₁ x := rfl
@@ -238,7 +261,9 @@ noncomputable def factorRight (h₁ : Function.Surjective φ₁) : G₁ →* Quo
 /-- The left descent commutes with the given presentation map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.1h7v.s11.619b5a9fdcf0 from=translated src=- shape=cd48dd6c vocab=8ebf56ca
+-/
 @[simp]
 theorem factorLeft_apply (h₀ : Function.Surjective φ₀) (x : Free I) :
     factorLeft φ₀ φ₁ h₀ (φ₀ x) = freeInl φ₀.ker φ₁.ker x :=
@@ -247,7 +272,9 @@ theorem factorLeft_apply (h₀ : Function.Surjective φ₀) (x : Free I) :
 /-- The right descent commutes with the given presentation map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.1h7v.s11.f4e2e8e9cb3d from=translated src=- shape=17477e01 vocab=090967f1
+-/
 @[simp]
 theorem factorRight_apply (h₁ : Function.Surjective φ₁) (x : Free J) :
     factorRight φ₀ φ₁ h₁ (φ₁ x) = freeInr φ₀.ker φ₁.ker x :=
@@ -256,7 +283,9 @@ theorem factorRight_apply (h₁ : Function.Surjective φ₁) (x : Free J) :
 /-- The quotient comparison agrees with the left free factor inclusion.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.0h7v.s11.3d7956c56fe4 from=translated src=- shape=355ff83f vocab=1630a6a2
+-/
 @[simp]
 theorem quotientToCoproduct_freeInl (x : Free I) :
     quotientToCoproduct φ₀ φ₁ (freeInl φ₀.ker φ₁.ker x) = Coproduct.inl (φ₀ x) :=
@@ -265,7 +294,9 @@ theorem quotientToCoproduct_freeInl (x : Free I) :
 /-- The quotient comparison agrees with the right free factor inclusion.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.0h7v.s11.f657f88b7ee2 from=translated src=- shape=3f630dfa vocab=63022d74
+-/
 @[simp]
 theorem quotientToCoproduct_freeInr (x : Free J) :
     quotientToCoproduct φ₀ φ₁ (freeInr φ₀.ker φ₁.ker x) = Coproduct.inr (φ₁ x) :=
@@ -274,7 +305,9 @@ theorem quotientToCoproduct_freeInr (x : Free J) :
 /-- The quotient comparison sends the descended left factor to the canonical coproduct factor.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.1h7v.s11.9f0fd6a73678 from=translated src=- shape=c2cadea0 vocab=94c25e19
+-/
 @[simp]
 theorem quotientToCoproduct_factorLeft (h₀ : Function.Surjective φ₀) (g : G₀) :
     quotientToCoproduct φ₀ φ₁ (factorLeft φ₀ φ₁ h₀ g) = Coproduct.inl g := by
@@ -284,7 +317,9 @@ theorem quotientToCoproduct_factorLeft (h₀ : Function.Surjective φ₀) (g : G
 /-- The quotient comparison sends the descended right factor to the canonical coproduct factor.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.1h7v.s11.4f5bc587f7f3 from=translated src=- shape=5c8de15d vocab=566a50a4
+-/
 @[simp]
 theorem quotientToCoproduct_factorRight (h₁ : Function.Surjective φ₁) (g : G₁) :
     quotientToCoproduct φ₀ φ₁ (factorRight φ₀ φ₁ h₁ g) = Coproduct.inr g := by
@@ -302,7 +337,9 @@ noncomputable def coproductToQuotient (h₀ : Function.Surjective φ₀)
 /-- The reverse comparison sends the left coproduct factor to its descended presentation map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.2h7v.s11.f76ada31f1db from=translated src=- shape=95adcb5b vocab=9093c55d
+-/
 @[simp]
 theorem coproductToQuotient_inl (h₀ : Function.Surjective φ₀)
     (h₁ : Function.Surjective φ₁) (g : G₀) :
@@ -311,7 +348,9 @@ theorem coproductToQuotient_inl (h₀ : Function.Surjective φ₀)
 /-- The reverse comparison sends the right coproduct factor to its descended presentation map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.2h7v.s11.b110185eda29 from=translated src=- shape=7cf35fc0 vocab=d14bde30
+-/
 @[simp]
 theorem coproductToQuotient_inr (h₀ : Function.Surjective φ₀)
     (h₁ : Function.Surjective φ₁) (g : G₁) :
@@ -320,7 +359,9 @@ theorem coproductToQuotient_inr (h₀ : Function.Surjective φ₀)
 /-- The reverse comparison composed with the combined free presentation is the quotient map.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse-map verification.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse-map verification.
+@isnad1 id=eq.2h6v.s10.de842fd67fb6 from=translated src=- shape=f5216732 vocab=9f732bd4
+-/
 theorem coproductToQuotient_comp_presentationMap (h₀ : Function.Surjective φ₀)
     (h₁ : Function.Surjective φ₁) :
     (coproductToQuotient φ₀ φ₁ h₀ h₁).comp (presentationMap φ₀ φ₁) =
@@ -336,7 +377,9 @@ theorem coproductToQuotient_comp_presentationMap (h₀ : Function.Surjective φ�
 /-- The two canonical comparisons are inverse on the quotient presentation.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse-map verification.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse-map verification.
+@isnad1 id=eq.2h6v.s11.d6ddf956d871 from=translated src=- shape=ecab565e vocab=04c03c62
+-/
 theorem coproductToQuotient_comp_quotientToCoproduct (h₀ : Function.Surjective φ₀)
     (h₁ : Function.Surjective φ₁) :
     (coproductToQuotient φ₀ φ₁ h₀ h₁).comp (quotientToCoproduct φ₀ φ₁) =
@@ -349,7 +392,9 @@ theorem coproductToQuotient_comp_quotientToCoproduct (h₀ : Function.Surjective
 /-- The two canonical comparisons are inverse on the actual coproduct.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse-map verification.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse-map verification.
+@isnad1 id=eq.2h6v.s10.053dc1fa0d34 from=translated src=- shape=795bcfb6 vocab=04c03c62
+-/
 theorem quotientToCoproduct_comp_coproductToQuotient (h₀ : Function.Surjective φ₀)
     (h₁ : Function.Surjective φ₁) :
     (quotientToCoproduct φ₀ φ₁).comp (coproductToQuotient φ₀ φ₁ h₀ h₁) =
@@ -372,7 +417,9 @@ noncomputable def quotientEquiv (h₀ : Function.Surjective φ₀) (h₁ : Funct
 /-- The canonical quotient equivalence keeps the combined presentation on every representative.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, representative formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, representative formula.
+@isnad1 id=eq.2h7v.s11.da307afeb721 from=translated src=- shape=d2b99ff9 vocab=f6628a3c
+-/
 @[simp]
 theorem quotientEquiv_mk (h₀ : Function.Surjective φ₀) (h₁ : Function.Surjective φ₁)
     (x : Free (I ⊕ J)) :
@@ -381,7 +428,9 @@ theorem quotientEquiv_mk (h₀ : Function.Surjective φ₀) (h₁ : Function.Sur
 /-- The left free generator maps to its prescribed image in the left coproduct factor.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, generator formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, generator formula.
+@isnad1 id=eq.0h7v.s9.ce957ff76bcf from=translated src=- shape=1a5fb5ed vocab=83bf1653
+-/
 @[simp]
 theorem presentationMap_of_inl (i : I) :
     presentationMap φ₀ φ₁ (Free.of (Sum.inl i)) = Coproduct.inl (φ₀ (Free.of i)) :=
@@ -390,7 +439,9 @@ theorem presentationMap_of_inl (i : I) :
 /-- The right free generator maps to its prescribed image in the right coproduct factor.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, generator formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, generator formula.
+@isnad1 id=eq.0h7v.s9.0a5f93b6b835 from=translated src=- shape=eb7f74cb vocab=d6bc8c19
+-/
 @[simp]
 theorem presentationMap_of_inr (j : J) :
     presentationMap φ₀ φ₁ (Free.of (Sum.inr j)) = Coproduct.inr (φ₁ (Free.of j)) :=
@@ -399,7 +450,9 @@ theorem presentationMap_of_inr (j : J) :
 /-- The combined free presentation is surjective whenever both factor presentations are.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, the presentation `F → G₀ * G₁`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, the presentation `F → G₀ * G₁`.
+@isnad1 id=surjecti.2h6v.s9.c091361657f4 from=translated src=- shape=ffa818e5 vocab=98e03caf
+-/
 theorem presentationMap_surjective (h₀ : Function.Surjective φ₀)
     (h₁ : Function.Surjective φ₁) : Function.Surjective (presentationMap φ₀ φ₁) :=
   (quotientEquiv φ₀ φ₁ h₀ h₁).surjective.comp (QuotientGroup.mk'_surjective _)
@@ -407,7 +460,9 @@ theorem presentationMap_surjective (h₀ : Function.Surjective φ₀)
 /-- The combined presentation has exactly the normal closure of the two transported kernels.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, the kernel `L` of `F → G₀ * G₁`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, the kernel `L` of `F → G₀ * G₁`.
+@isnad1 id=eq.2h6v.s8.d3684d05128a from=translated src=- shape=daf486e7 vocab=7858f7be
+-/
 theorem presentationMap_ker (h₀ : Function.Surjective φ₀) (h₁ : Function.Surjective φ₁) :
     (presentationMap φ₀ φ₁).ker = relationKernel φ₀.ker φ₁.ker := by
   ext x
@@ -417,7 +472,9 @@ theorem presentationMap_ker (h₀ : Function.Surjective φ₀) (h₁ : Function.
 /-- The canonical equivalence identifies the descended left map with the actual factor inclusion.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.2h7v.s11.285a4b1e6b86 from=translated src=- shape=a3eb6d41 vocab=37370709
+-/
 @[simp]
 theorem quotientEquiv_factorLeft (h₀ : Function.Surjective φ₀) (h₁ : Function.Surjective φ₁)
     (g : G₀) : quotientEquiv φ₀ φ₁ h₀ h₁ (factorLeft φ₀ φ₁ h₀ g) = Coproduct.inl g :=
@@ -426,7 +483,9 @@ theorem quotientEquiv_factorLeft (h₀ : Function.Surjective φ₀) (h₁ : Func
 /-- The canonical equivalence identifies the descended right map with the actual factor inclusion.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, canonical factor formula.
+@isnad1 id=eq.2h7v.s11.29a8f9ef50b9 from=translated src=- shape=e2b67d43 vocab=7447732d
+-/
 @[simp]
 theorem quotientEquiv_factorRight (h₀ : Function.Surjective φ₀) (h₁ : Function.Surjective φ₁)
     (g : G₁) : quotientEquiv φ₀ φ₁ h₀ h₁ (factorRight φ₀ φ₁ h₁ g) = Coproduct.inr g :=
@@ -435,7 +494,9 @@ theorem quotientEquiv_factorRight (h₀ : Function.Surjective φ₀) (h₁ : Fun
 /-- The inverse equivalence preserves the left factor under the specified presentation.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse factor formula.
+@isnad1 id=eq.2h7v.s11.bea4872634d3 from=translated src=- shape=bc2ace79 vocab=6919a553
+-/
 @[simp]
 theorem quotientEquiv_symm_inl (h₀ : Function.Surjective φ₀) (h₁ : Function.Surjective φ₁)
     (g : G₀) : (quotientEquiv φ₀ φ₁ h₀ h₁).symm (Coproduct.inl g) =
@@ -444,7 +505,9 @@ theorem quotientEquiv_symm_inl (h₀ : Function.Surjective φ₀) (h₁ : Functi
 /-- The inverse equivalence preserves the right factor under the specified presentation.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse factor formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, inverse factor formula.
+@isnad1 id=eq.2h7v.s11.0583193e5dd8 from=translated src=- shape=c791072a vocab=daad6d27
+-/
 @[simp]
 theorem quotientEquiv_symm_inr (h₀ : Function.Surjective φ₀) (h₁ : Function.Surjective φ₁)
     (g : G₁) : (quotientEquiv φ₀ φ₁ h₀ h₁).symm (Coproduct.inr g) =
@@ -460,7 +523,9 @@ variable (K₀ : Subgroup (Free I)) (K₁ : Subgroup (Free J))
 /-- If both factor relation subgroups are derived, their join is derived in the combined free group.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, containment of `K` in `γ₂(F)`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, containment of `K` in `γ₂(F)`.
+@isnad1 id=le.2h4v.s8.5f40da424722 from=translated src=- shape=73466207 vocab=3154dbca
+-/
 theorem relationSubgroup_le_commutator (h₀ : K₀ ≤ commutator (Free I))
     (h₁ : K₁ ≤ commutator (Free J)) :
     relationSubgroup K₀ K₁ ≤ commutator (Free (I ⊕ J)) :=
@@ -470,7 +535,9 @@ theorem relationSubgroup_le_commutator (h₀ : K₀ ≤ commutator (Free I))
 /-- Derived factor relations have normal closure contained in the combined derived subgroup.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, containment of `L` in `γ₂(F)`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, containment of `L` in `γ₂(F)`.
+@isnad1 id=le.2h4v.s8.bdf917b811bc from=translated src=- shape=73466207 vocab=6aa55394
+-/
 theorem relationKernel_le_commutator (h₀ : K₀ ≤ commutator (Free I))
     (h₁ : K₁ ≤ commutator (Free J)) :
     relationKernel K₀ K₁ ≤ commutator (Free (I ⊕ J)) :=
@@ -481,7 +548,9 @@ open scoped Pointwise
 /-- In the paper's derived presentations, the join `K` is the product of the transported kernels.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, equality `K = K₀ K₁`.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, equality `K = K₀ K₁`.
+@isnad1 id=eq.2h4v.s9.faf39cb8cf6f from=translated src=- shape=e4c219b3 vocab=9e8a790f
+-/
 theorem relationSubgroup_coe_eq_mul (h₀ : K₀ ≤ commutator (Free I))
     (h₁ : K₁ ≤ commutator (Free J)) :
     (relationSubgroup K₀ K₁ : Set (Free (I ⊕ J))) =
@@ -506,7 +575,9 @@ forces its left factor into that term. The right factor then belongs by subgroup
 
 Paper-ID: structure.graded_coproduct
 TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`,
-componentwise relation intersections.-/
+componentwise relation intersections.
+@isnad1 id=eq.2h5v.s9.8c4956d6348d from=translated src=- shape=f5fd32a7 vocab=6527e014
+-/
 theorem relationSubgroup_inf_term (h₀ : K₀ ≤ commutator (Free I))
     (h₁ : K₁ ≤ commutator (Free J)) (n : ℕ) :
     relationSubgroup K₀ K₁ ⊓ AssociatedGraded.term (Free (I ⊕ J)) n =
@@ -552,7 +623,9 @@ Together with transport of the factor images, this supplies the paper's decompos
 
 Paper-ID: structure.graded_coproduct
 TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`,
-degree-two and degree-three relations.-/
+degree-two and degree-three relations.
+@isnad1 id=eq.2h5v.s10.57b7c5220f78 from=translated src=- shape=935bdfc2 vocab=a05c9954
+-/
 theorem subgroupImage_relationSubgroup (h₀ : K₀ ≤ commutator (Free I))
     (h₁ : K₁ ≤ commutator (Free J)) (n : ℕ) :
     AssociatedGraded.subgroupImage (relationSubgroup K₀ K₁) n =

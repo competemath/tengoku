@@ -33,7 +33,9 @@ variable {L : Language.{u, v}} {T : L.Theory}
 quantifier-free existential neighborhood implying it over the theory.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=ex.2h6v.s6.fe156c946f91 from=translated src=- shape=65bd509e vocab=ab0cf756
+-/
 theorem AllEmbeddingsElementary.exists_qf_existential_imp_of_model
     (h : T.AllEmbeddingsElementary) (M : Type w) [L.Structure M] [Nonempty M] [M ⊨ T]
     {n : ℕ} (φ : L.Formula (Fin n)) (a : Fin n → M) (ha : φ.Realize a) :
@@ -60,7 +62,9 @@ formulas. The source is not assumed to satisfy the theory. The Tarski-Vaught wit
 obtained from the finite quantifier-free matrices constructed above.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 2 and 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 2 and 4; no label.
+@isnad1 id=ex.2h5v.s7.75804652c929 from=translated src=- shape=fb684e4f vocab=0ad01b21
+-/
 theorem IsModelComplete.exists_elementaryEmbedding_of_reflects_existential
     (h : T.IsModelComplete) {M : Type w} [L.Structure M]
     (N : Type w') [L.Structure N] [Nonempty N] [N ⊨ T] (f : M ↪[L] N)

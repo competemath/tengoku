@@ -49,7 +49,9 @@ def ModelsEmbedInto (T T' : L.Theory) : Prop :=
 /-- Composition of the model-embedding property.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=modelsem.2h4v.s4.38b054b4ab1b from=translated src=- shape=de5dbc67 vocab=3b119500
+-/
 theorem ModelsEmbedInto.trans (hTT' : T.ModelsEmbedInto T')
     (hT'T'' : T'.ModelsEmbedInto T'') : T.ModelsEmbedInto T'' := by
   intro M
@@ -67,21 +69,27 @@ def IsCompanion (T T' : L.Theory) : Prop :=
 /-- Every theory is a companion of itself.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=iscompan.0h2v.s3.01526fd91681 from=translated src=- shape=f3577ae2 vocab=6f74518f
+-/
 theorem IsCompanion.refl (T : L.Theory) : T.IsCompanion T := by
   constructor <;> intro M <;> exact ⟨M, ⟨Embedding.refl L M⟩⟩
 
 /-- The companion relation is symmetric.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=iscompan.1h3v.s4.05dc7460f406 from=translated src=- shape=26022270 vocab=6f74518f
+-/
 theorem IsCompanion.symm (h : T.IsCompanion T') : T'.IsCompanion T :=
   ⟨h.2, h.1⟩
 
 /-- The companion relation is transitive.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=iscompan.2h4v.s4.19ee79f70b6f from=translated src=- shape=de5dbc67 vocab=6f74518f
+-/
 theorem IsCompanion.trans (hTT' : T.IsCompanion T') (hT'T'' : T'.IsCompanion T'') :
     T.IsCompanion T'' :=
   ⟨hTT'.1.trans hT'T''.1, hT'T''.2.trans hTT'.2⟩
@@ -106,7 +114,9 @@ def AllEmbeddingsElementary (T : L.Theory) : Prop :=
 /-- Existential rewriting makes every formula persist along an embedding between models.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=realize.2h8v.s6.f3e39db38b81 from=translated src=- shape=c1676845 vocab=9a9dd221
+-/
 theorem IsModelComplete.realize_embedding (h : T.IsModelComplete)
     {M : Type w} {N : Type w'} [L.Structure M] [L.Structure N] [Nonempty M] [Nonempty N]
     [M ⊨ T] [N ⊨ T] (f : M ↪[L] N) {n : ℕ} (φ : L.Formula (Fin n)) (x : Fin n → M)
@@ -119,7 +129,9 @@ theorem IsModelComplete.realize_embedding (h : T.IsModelComplete)
 /-- In a model-complete theory, embeddings preserve and reflect all formulas.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 2; no label.
+@isnad1 id=iff.1h8v.s6.dd05d6e6e7ea from=translated src=- shape=9417c6a2 vocab=9a9dd221
+-/
 theorem IsModelComplete.realize_embedding_iff (h : T.IsModelComplete)
     {M : Type w} {N : Type w'} [L.Structure M] [L.Structure N] [Nonempty M] [Nonempty N]
     [M ⊨ T] [N ⊨ T] (f : M ↪[L] N) {n : ℕ} (φ : L.Formula (Fin n)) (x : Fin n → M) :
@@ -134,7 +146,9 @@ theorem IsModelComplete.realize_embedding_iff (h : T.IsModelComplete)
 /-- The paper's syntactic definition implies the semantic elementary-embedding condition.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.-/
+TeX: T3_modelcompanion_v9.tex, semantic comparison for Definition 2.2, item 2; no label.
+@isnad1 id=allembed.1h2v.s3.58952e96c4c5 from=translated src=- shape=b28a8773 vocab=427e5598
+-/
 theorem IsModelComplete.allEmbeddingsElementary (h : T.IsModelComplete) :
     T.AllEmbeddingsElementary := by
   intro M N f
@@ -150,7 +164,9 @@ def IsModelCompanionOf (Tstar T : L.Theory) : Prop :=
 /-- A model companion is a companion.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 3; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 3; no label.
+@isnad1 id=iscompan.1h3v.s4.cdaedfeb0999 from=translated src=- shape=d90a4985 vocab=a6f414f9
+-/
 theorem IsModelCompanionOf.isCompanion {Tstar : L.Theory}
     (h : Tstar.IsModelCompanionOf T) : Tstar.IsCompanion T :=
   h.1
@@ -158,7 +174,9 @@ theorem IsModelCompanionOf.isCompanion {Tstar : L.Theory}
 /-- A model companion is model complete in the paper's sense.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 3; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 3; no label.
+@isnad1 id=ismodelc.1h3v.s4.77d871a4ca4d from=translated src=- shape=9bd4f843 vocab=60d538bf
+-/
 theorem IsModelCompanionOf.isModelComplete {Tstar : L.Theory}
     (h : Tstar.IsModelCompanionOf T) : Tstar.IsModelComplete :=
   h.2
@@ -185,7 +203,9 @@ def IsExistentiallyClosed (T : L.Theory) (M : Type (max u v)) [L.Structure M] : 
 This does not assert the Pi-two model-companion criterion of Fact 2.3.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 2 and 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 2 and 4; no label.
+@isnad1 id=isexiste.1h3v.s4.5aed16452765 from=translated src=- shape=5619c4bb vocab=2578ff57
+-/
 theorem IsModelComplete.isExistentiallyClosed (h : T.IsModelComplete)
     (M : T.ModelType.{u, v, max u v}) : T.IsExistentiallyClosed M := by
   refine ⟨inferInstance, M.is_model, ?_⟩
@@ -197,7 +217,9 @@ closed among models of the original theory. The second model assumption is expli
 does not supply the Pi-two implication that appears in Fact 2.3.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 3 and 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 3 and 4; no label.
+@isnad1 id=isexiste.1h4v.s5.a0914e1555db from=translated src=- shape=b047cd67 vocab=e32dd124
+-/
 theorem IsModelCompanionOf.isExistentiallyClosed_of_models {Tstar : L.Theory}
     (h : Tstar.IsModelCompanionOf T) (M : Tstar.ModelType.{u, v, max u v}) [M ⊨ T] :
     T.IsExistentiallyClosed M := by
@@ -214,7 +236,9 @@ The universal hypothesis is used only in this auxiliary result, not as a replace
 paper's Pi-two hypothesis.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 1; no label.
+@isnad1 id=model.1h4v.s5.7e6a97a611b7 from=translated src=- shape=7eef4379 vocab=363867e0
+-/
 theorem IsCompanion.models_of_isUniversal [T.IsUniversal] (h : T.IsCompanion T')
     (M : T'.ModelType.{u, v, max u v}) : M ⊨ T := by
   obtain ⟨N, ⟨f⟩⟩ := h.2 M
@@ -223,7 +247,9 @@ theorem IsCompanion.models_of_isUniversal [T.IsUniversal] (h : T.IsCompanion T')
 /-- Every model of a model companion of a universal theory satisfies the original theory.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 3; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, item 3; no label.
+@isnad1 id=model.1h4v.s5.df61451de2bf from=translated src=- shape=3fc53087 vocab=770a9573
+-/
 theorem IsModelCompanionOf.models_of_isUniversal [T.IsUniversal]
     (h : T'.IsModelCompanionOf T) (M : T'.ModelType.{u, v, max u v}) : M ⊨ T :=
   h.isCompanion.symm.models_of_isUniversal M
@@ -232,7 +258,9 @@ theorem IsModelCompanionOf.models_of_isUniversal [T.IsUniversal]
 of the original theory. This auxiliary special case does not prove Fact 2.3 for Pi-two theories.
 
 Paper-ID: model_theory.basic_definitions
-TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 3 and 4; no label.-/
+TeX: T3_modelcompanion_v9.tex, supporting Definition 2.2, items 3 and 4; no label.
+@isnad1 id=isexiste.1h4v.s5.9220733725c5 from=translated src=- shape=2784de81 vocab=c208d67c
+-/
 theorem IsModelCompanionOf.isExistentiallyClosed_of_isUniversal [T.IsUniversal]
     (h : T'.IsModelCompanionOf T) (M : T'.ModelType.{u, v, max u v}) :
     T.IsExistentiallyClosed M := by

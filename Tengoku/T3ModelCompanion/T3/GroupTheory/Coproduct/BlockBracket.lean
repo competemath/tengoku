@@ -96,14 +96,18 @@ private theorem pureRightBlock_zero : pureRightBlock (G := G) (H := H) 0 = ⊥ :
 /-- On the right axis the blocks are the canonical right pure images.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.
+@isnad1 id=eq.0h3v.s9.7efd02fc759d from=translated src=- shape=f33b36a9 vocab=dcf7ccfd
+-/
 @[simp]
 theorem block_zero_left (j : ℕ) : block (G := G) (H := H) 0 j = pureRightBlock j := rfl
 
 /-- On the left axis the blocks are the canonical left pure images.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.
+@isnad1 id=eq.0h3v.s9.53039f4453d1 from=translated src=- shape=987906ab vocab=077ff043
+-/
 @[simp]
 theorem block_zero_right (i : ℕ) : block (G := G) (H := H) i 0 = pureLeftBlock i := by
   cases i with
@@ -113,7 +117,9 @@ theorem block_zero_right (i : ℕ) : block (G := G) (H := H) i 0 = pureLeftBlock
 /-- In positive factor degrees the block is exactly the canonical mixed tensor image.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.
+@isnad1 id=eq.2h4v.s9.db03b39c443d from=translated src=- shape=88029fc3 vocab=ac38c56e
+-/
 theorem block_of_pos {i j : ℕ} (hi : 0 < i) (hj : 0 < j) :
     block (G := G) (H := H) i j = mixedBlock hi hj := by
   cases i with
@@ -125,7 +131,9 @@ theorem block_of_pos {i j : ℕ} (hi : 0 < i) (hj : 0 < j) :
 /-- The total homogeneous degree of a block is the sum of its factor degrees.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.
+@isnad1 id=le.0h4v.s11.c5e4653d2e71 from=translated src=- shape=69145005 vocab=d510db6e
+-/
 theorem block_le_grade (i j : ℕ) :
     block (G := G) (H := H) i j ≤ grade (Coproduct G H) (i + j) := by
   cases i with
@@ -137,13 +145,17 @@ theorem block_le_grade (i j : ℕ) :
 /-- There is no block of total degree zero.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, positive grading.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, positive grading.
+@isnad1 id=eq.0h2v.s10.cf870d5dc092 from=translated src=- shape=503a140e vocab=5862f478
+-/
 theorem block_zero_zero : block (G := G) (H := H) 0 0 = ⊥ := pureRightBlock_zero
 
 /-- All blocks of total degree at least four vanish, as specified in the paper.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2.
+@isnad1 id=eq.1h4v.s10.5f14d565ae04 from=translated src=- shape=fe5a5f0c vocab=3c92e728
+-/
 theorem block_eq_bot_of_four_le {i j : ℕ} (h : 4 ≤ i + j) :
     block (G := G) (H := H) i j = ⊥ :=
   eq_bot_iff.mpr ((block_le_grade i j).trans (le_of_eq (grade_eq_bot_of_four_le h)))
@@ -152,7 +164,9 @@ theorem block_eq_bot_of_four_le {i j : ℕ} (h : 4 ≤ i + j) :
 The left arguments occur in the cyclic order `c, a`.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2, mixed bracket formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2, mixed bracket formula.
+@isnad1 id=eq.0h5v.s13.2d7298867497 from=translated src=- shape=19081c38 vocab=4ce205ef
+-/
 theorem bracket_mixedMap_tmul_inl (a c : Layer G 1) (b : Layer H 1) :
     bracketLayer (i := 2) (j := 1) (by decide) (by decide)
       (mixedMap (by decide) (by decide) (a ⊗ₜ[ZMod 3] b)) (mapLayer inl 1 c) =
@@ -165,7 +179,9 @@ theorem bracket_mixedMap_tmul_inl (a c : Layer G 1) (b : Layer H 1) :
 `(1,2)` component, with the right arguments in their original order.
 
 Paper-ID: structure.graded_coproduct
-TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2, mixed bracket formula.-/
+TeX: T3_modelcompanion_v9.tex, `proposition:gr of free product`, item 2, mixed bracket formula.
+@isnad1 id=eq.0h5v.s14.82806a5108e4 from=translated src=- shape=060980a4 vocab=af53668b
+-/
 theorem bracket_mixedMap_tmul_inr (a : Layer G 1) (b c : Layer H 1) :
     bracketLayer (i := 2) (j := 1) (by decide) (by decide)
       (mixedMap (by decide) (by decide) (a ⊗ₜ[ZMod 3] b)) (mapLayer inr 1 c) =

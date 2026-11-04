@@ -34,15 +34,22 @@ variable (G : Type u) [Group G] (n : ℕ)
 def powerSubgroup : Subgroup G :=
   Subgroup.normalClosure (Set.range fun g : G ↦ g ^ n)
 
+/--
+@isnad1 id=normal.0h2v.s3.bf3ea74d07e4 from=translated src=- shape=faee584d vocab=56b887d5
+-/
 instance powerSubgroup_normal : (powerSubgroup G n).Normal := by
   unfold powerSubgroup
   infer_instance
 
-/-- Every `n`-th power belongs to `powerSubgroup G n`.-/
+/-- Every `n`-th power belongs to `powerSubgroup G n`.
+@isnad1 id=mem.0h3v.s5.d2ca16e8a72f from=translated src=- shape=0d811e0d vocab=5b634fec
+-/
 theorem pow_mem_powerSubgroup (g : G) : g ^ n ∈ powerSubgroup G n :=
   Subgroup.subset_normalClosure ⟨g, rfl⟩
 
-/-- A normal subgroup contains `powerSubgroup G n` exactly when it contains every `n`-th power.-/
+/-- A normal subgroup contains `powerSubgroup G n` exactly when it contains every `n`-th power.
+@isnad1 id=iff.0h3v.s6.54f828cfebcf from=translated src=- shape=39e8a1da vocab=036cdf34
+-/
 theorem powerSubgroup_le_iff {N : Subgroup G} [N.Normal] :
     powerSubgroup G n ≤ N ↔ ∀ g : G, g ^ n ∈ N := by
   constructor
@@ -51,7 +58,9 @@ theorem powerSubgroup_le_iff {N : Subgroup G} [N.Normal] :
 
 variable {G n}
 
-/-- A homomorphism kills `powerSubgroup G n` exactly when all images have `n`-th power one.-/
+/-- A homomorphism kills `powerSubgroup G n` exactly when all images have `n`-th power one.
+@isnad1 id=iff.0h4v.s7.c1d6a7e681d8 from=translated src=- shape=ee184a36 vocab=aa8b4153
+-/
 theorem powerSubgroup_le_ker_iff {H : Type v} [Group H] (f : G →* H) :
     powerSubgroup G n ≤ f.ker ↔ ∀ g : G, f g ^ n = 1 := by
   rw [powerSubgroup_le_iff]
@@ -65,17 +74,23 @@ abbrev PowerQuotient (G : Type u) [Group G] (n : ℕ) :=
 def powerQuotientMk : G →* PowerQuotient G n :=
   QuotientGroup.mk' (powerSubgroup G n)
 
-/-- The canonical homomorphism to `PowerQuotient G n` is surjective.-/
+/-- The canonical homomorphism to `PowerQuotient G n` is surjective.
+@isnad1 id=surjecti.0h2v.s6.f3ef904ca82e from=translated src=- shape=ec3d2faf vocab=cf7fe4b5
+-/
 theorem powerQuotientMk_surjective : Function.Surjective (powerQuotientMk (G := G) (n := n)) :=
   QuotientGroup.mk'_surjective _
 
-/-- The image of every `n`-th power is one in `PowerQuotient G n`.-/
+/-- The image of every `n`-th power is one in `PowerQuotient G n`.
+@isnad1 id=eq.0h3v.s7.0468f6286fb8 from=translated src=- shape=6afd6307 vocab=3af0da61
+-/
 @[simp]
 theorem powerQuotientMk_pow_eq_one (g : G) : powerQuotientMk (G := G) (n := n) g ^ n = 1 := by
   rw [← map_pow]
   exact (QuotientGroup.eq_one_iff (g ^ n)).2 (pow_mem_powerSubgroup G n g)
 
-/-- The quotient by `n`-th powers has exponent dividing `n`.-/
+/-- The quotient by `n`-th powers has exponent dividing `n`.
+@isnad1 id=eq.0h3v.s6.66ff32330d2b from=translated src=- shape=635fb1b5 vocab=1170add7
+-/
 theorem powerQuotient_hasExponent : ∀ q : PowerQuotient G n, q ^ n = 1 := by
   intro q
   obtain ⟨g, rfl⟩ := powerQuotientMk_surjective (G := G) (n := n) q
@@ -86,7 +101,9 @@ def powerQuotientLift {H : Type v} [Group H] (f : G →* H) (h : ∀ g : G, f g 
     PowerQuotient G n →* H :=
   QuotientGroup.lift (powerSubgroup G n) f ((powerSubgroup_le_ker_iff f).2 h)
 
-/-- The lift to `PowerQuotient G n` agrees with the original map on `G`.-/
+/-- The lift to `PowerQuotient G n` agrees with the original map on `G`.
+@isnad1 id=eq.1h5v.s8.99e8fb6928d6 from=translated src=- shape=47ebd401 vocab=517de001
+-/
 @[simp]
 theorem powerQuotientLift_mk {H : Type v} [Group H] (f : G →* H)
     (h : ∀ g : G, f g ^ n = 1) (g : G) :
@@ -95,7 +112,9 @@ theorem powerQuotientLift_mk {H : Type v} [Group H] (f : G →* H)
 
 /--
 If `Q` is a retract of `G` and has exponent dividing `n`, then `Q` embeds in the quotient of `G`
-by `n`-th powers.-/
+by `n`-th powers.
+@isnad1 id=injectiv.2h5v.s8.77f14f15efa9 from=translated src=- shape=bbe995a3 vocab=02f10981
+-/
 theorem powerQuotientMk_comp_injective_of_retraction {Q : Type v} [Group Q]
     (i : Q →* G) (r : G →* Q) (hri : r.comp i = MonoidHom.id Q)
     (hQ : ∀ q : Q, q ^ n = 1) :
@@ -129,14 +148,18 @@ def of (x : X) : Free X :=
 /-- The free group of exponent three does have exponent dividing three.
 
 Paper-ID: preliminaries.notation
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.
+@isnad1 id=eq.0h2v.s6.d2909d85312d from=translated src=- shape=9aeecc42 vocab=c4857c32
+-/
 theorem pow_three (g : Free X) : g ^ 3 = 1 :=
   by apply powerQuotient_hasExponent
 
 /-- The exponent-three fact used by the canonical scalar actions on free-group layers.
 
 Paper-ID: preliminaries.notation
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.
+@isnad1 id=fact.0h1v.s4.cc971d42900e from=translated src=- shape=96ec6c04 vocab=52ce9709
+-/
 instance hasExponentThree : Fact (HasExponentThree (Free X)) := ⟨pow_three⟩
 
 variable {H : Type*} [Group H]
@@ -148,6 +171,9 @@ TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.-/
 def lift (hH : ∀ h : H, h ^ 3 = 1) (f : X → H) : Free X →* H :=
   powerQuotientLift (FreeGroup.lift f) fun _ => hH _
 
+/--
+@isnad1 id=eq.1h4v.s7.0778ea658b93 from=translated src=- shape=65676745 vocab=022f4314
+-/
 @[simp]
 theorem lift_of (hH : ∀ h : H, h ^ 3 = 1) (f : X → H) (x : X) :
     lift hH f (of x) = f x := by
@@ -156,7 +182,9 @@ theorem lift_of (hH : ∀ h : H, h ^ 3 = 1) (f : X → H) (x : X) :
 /-- Two homomorphisms out of the free group of exponent three agreeing on generators are equal.
 
 Paper-ID: preliminaries.notation
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.
+@isnad1 id=eq.1h4v.s8.38733ec0f46d from=translated src=- shape=1f177d49 vocab=dfb42985
+-/
 theorem hom_ext {φ ψ : Free X →* H} (h : ∀ x : X, φ (of x) = ψ (of x)) : φ = ψ := by
   have hcomp : φ.comp (powerQuotientMk (G := FreeGroup X) (n := 3))
       = ψ.comp (powerQuotientMk (G := FreeGroup X) (n := 3)) :=
@@ -174,13 +202,22 @@ TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.-/
 def map (f : X → Y) : Free X →* Free Y :=
   lift pow_three fun x => of (f x)
 
+/--
+@isnad1 id=eq.0h4v.s7.2468f2a246b7 from=translated src=- shape=1d1d145a vocab=22f8ab77
+-/
 @[simp]
 theorem map_of (f : X → Y) (x : X) : map f (of x) = of (f x) :=
   lift_of _ _ x
 
+/--
+@isnad1 id=eq.0h1v.s6.c9b49483f09d from=translated src=- shape=1f1955bd vocab=41d42790
+-/
 theorem map_id : map (id : X → X) = MonoidHom.id (Free X) :=
   hom_ext fun x => map_of _ x
 
+/--
+@isnad1 id=eq.0h5v.s7.8289d2bc6f12 from=translated src=- shape=f216c4a2 vocab=4473b4a7
+-/
 theorem map_comp (f : X → Y) (g : Y → Z) : (map g).comp (map f) = map (g ∘ f) :=
   hom_ext fun x => by
     rw [MonoidHom.comp_apply, map_of, map_of, map_of, Function.comp_apply]
@@ -190,7 +227,9 @@ A generator map with a left inverse induces an injective homomorphism: the free 
 preserves split injections, including the inclusions used to compare finite generating subsets.
 
 Paper-ID: preliminaries.notation
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.1, item 9.
+@isnad1 id=injectiv.1h4v.s7.d94a20dc0e61 from=translated src=- shape=370318c2 vocab=a7fa2039
+-/
 theorem map_injective_of_leftInverse {f : X → Y} {r : Y → X}
     (hr : Function.LeftInverse r f) : Function.Injective (map f) := by
   have hcomp : ∀ g : Free X, map r (map f g) = g := by

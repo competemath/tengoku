@@ -54,7 +54,9 @@ def witness (i : Fin 4) : Free (Fin 4) :=
 /-- The four shared triples are independent in the actual third graded quotient.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1275.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1275.
+@isnad1 id=linearin.0h0v.s8.cd26e91b940e from=translated src=- shape=6ea2fd6a vocab=28f318d3
+-/
 theorem independent : LinearIndependent (ZMod 3)
     (fun i : Fin 4 => mk (Free (Fin 4)) 3 (SharedTriple.triple (tripleIndex i))) :=
   SharedTriple.independent.comp tripleIndex tripleIndex_injective
@@ -62,7 +64,9 @@ theorem independent : LinearIndependent (ZMod 3)
 /-- Each shared witness is central.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, the same construction as Lemma 4.9.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, the same construction as Lemma 4.9.
+@isnad1 id=mem.0h1v.s7.3ab3c763b792 from=translated src=- shape=e7a89bc2 vocab=e6c957ce
+-/
 theorem witness_mem_center (i : Fin 4) : witness i ∈ Subgroup.center (Free (Fin 4)) :=
   T3.commutator_mem_center_of_mem_commutator Free.pow_three
     (Subgroup.commutator_mem_commutator (Subgroup.mem_top _) (Subgroup.mem_top _)) _
@@ -80,12 +84,17 @@ TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1276.-/
 def kernel (z : Fin 4 → G) : Subgroup (G × Free (Fin 4)) :=
   Subgroup.normalClosure (Set.range (relator z))
 
+/--
+@isnad1 id=normal.0h2v.s6.8f304fe1dc6e from=translated src=- shape=e13bb161 vocab=d2bb496b
+-/
 instance kernel_normal (z : Fin 4 → G) : (kernel z).Normal := Subgroup.normalClosure_normal
 
 /-- The relators are central, so their normal closure is their ordinary generated subgroup.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1276.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, line 1276.
+@isnad1 id=eq.1h2v.s7.8baf95b7fa39 from=translated src=- shape=a44881ad vocab=935d7f1e
+-/
 theorem kernel_eq_closure (z : Fin 4 → G) (hz : ∀ i, z i ∈ Subgroup.center G) :
     kernel z = Subgroup.closure (Set.range (relator z)) :=
   CentralRootRelations.normalClosure_eq_closure (term (Free (Fin 4)) 3)
@@ -150,7 +159,9 @@ def generator (z : Fin 4 → G) (j : Fin 4) : Extension z :=
 /-- The simultaneous root extension again has exponent dividing three.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=hasexpon.1h2v.s6.7abe294a2b68 from=translated src=- shape=4224d6c2 vocab=b534b88b
+-/
 theorem hasExponentThree_extension (hG : HasExponentThree G) (z : Fin 4 → G) :
     HasExponentThree (Extension z) := by
   let : Fact (HasExponentThree G) := ⟨hG⟩
@@ -159,7 +170,9 @@ theorem hasExponentThree_extension (hG : HasExponentThree G) (z : Fin 4 → G) :
 /-- The natural map into the paper's concrete simultaneous root quotient has trivial kernel.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=eq.2h2v.s7.dacca0e05208 from=translated src=- shape=097fd5cb vocab=8fda09e0
+-/
 theorem baseMap_ker (hG : HasExponentThree G) (z : Fin 4 → G)
     (hz : ∀ i, z i ∈ Subgroup.center G) : (baseMap z).ker = ⊥ := by
   apply le_antisymm _ bot_le
@@ -173,7 +186,9 @@ theorem baseMap_ker (hG : HasExponentThree G) (z : Fin 4 → G)
 There is no nontriviality or rank assumption on `G`, nor any independence assumption on `z`.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=injectiv.2h2v.s7.1c30dd40da86 from=translated src=- shape=733dc3a3 vocab=31934d7d
+-/
 theorem baseMap_injective (hG : HasExponentThree G) (z : Fin 4 → G)
     (hz : ∀ i, z i ∈ Subgroup.center G) : Function.Injective (baseMap z) :=
   (MonoidHom.ker_eq_bot_iff _).mp (baseMap_ker hG z hz)
@@ -181,7 +196,9 @@ theorem baseMap_injective (hG : HasExponentThree G) (z : Fin 4 → G)
 /-- Each designated base element becomes its prescribed triple commutator in the quotient.
 
 Paper-ID: structure.shared_triple_roots
-TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.-/
+TeX: T3_modelcompanion_v9.tex, Remark 4.11, lines 1273–1277.
+@isnad1 id=eq.0h3v.s8.07cab0f8341b from=translated src=- shape=517643c9 vocab=5db9d8e4
+-/
 theorem baseMap_root (z : Fin 4 → G) (i : Fin 4) :
     baseMap z (z i) =
       ⁅⁅generator z (tripleIndex i).first, generator z (tripleIndex i).second⁆,

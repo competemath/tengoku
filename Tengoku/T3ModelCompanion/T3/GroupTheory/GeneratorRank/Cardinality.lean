@@ -47,7 +47,9 @@ variable {G : Type*} [Group G] [Fact (HasExponentThree G)] [Group.FG G]
 Representatives of its finite basis generate the whole group by the two commutator inclusions.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=eq.0h1v.s6.446a0133ead2 from=translated src=- shape=900780fc vocab=46abf7a4
+-/
 theorem rank_eq_finrank_layerOne : Group.rank G = Module.finrank (ZMod 3) (Layer G 1) := by
   classical
   apply le_antisymm ?_ finrank_layerOne_le_rank
@@ -74,7 +76,9 @@ private theorem finite_of_fg : Finite G := by
 /-- The first graded quotient has cardinality `3 ^ rank G`, giving the paper's order lower bound.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=le.0h1v.s5.2bb3855f2681 from=translated src=- shape=4b5f229c vocab=fa54c095
+-/
 theorem three_pow_rank_le_natCard : 3 ^ Group.rank G ≤ Nat.card G := by
   let : Finite G := finite_of_fg
   have hsur : Function.Surjective (fun x : G => mk G 1 ⟨x, Subgroup.mem_top _⟩) := by
@@ -89,7 +93,9 @@ theorem three_pow_rank_le_natCard : 3 ^ Group.rank G ≤ Nat.card G := by
 /-- A free presentation on a minimum generating set gives the paper's order upper bound.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=le.0h1v.s5.bb86e909a442 from=translated src=- shape=c2ec9e0e vocab=fbf0de28
+-/
 theorem natCard_le_three_pow_freeOrderExponent_rank :
     Nat.card G ≤ 3 ^ freeOrderExponent (Group.rank G) := by
   classical
@@ -105,7 +111,9 @@ theorem natCard_le_three_pow_freeOrderExponent_rank :
 /-- The minimum number of generators is at most the base-three logarithm of the group order.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=le.0h1v.s4.eecf4ac82a07 from=translated src=- shape=50db8fd2 vocab=5e0e306a
+-/
 theorem rank_le_log_three_natCard : Group.rank G ≤ Nat.log 3 (Nat.card G) := by
   apply Nat.le_log_of_pow_le (by decide)
   exact three_pow_rank_le_natCard
@@ -121,7 +129,9 @@ private theorem monotone_freeOrderExponent : Monotone freeOrderExponent := by
 /-- The logarithm of the group order is at most the exponent in the corresponding free-group order.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=le.0h1v.s4.039544ed4834 from=translated src=- shape=394565cf vocab=20ec96af
+-/
 theorem log_three_natCard_le_freeOrderExponent_rank :
     Nat.log 3 (Nat.card G) ≤ freeOrderExponent (Group.rank G) := by
   have h := Nat.log_mono_right (b := 3) (natCard_le_three_pow_freeOrderExponent_rank (G := G))
@@ -133,7 +143,9 @@ variable {A B : Type*} [Group A] [Group B]
 The proof follows the paper's chain through both group orders and their base-three logarithms.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=le.3h4v.s6.d4ee2fcdf868 from=translated src=- shape=8e4fcf0e vocab=50811e35
+-/
 theorem rank_le_freeOrderExponent_of_injective [Group.FG A] [Group.FG B]
     (hB : HasExponentThree B) (f : A →* B) (hf : Function.Injective f)
     {m : ℕ} (hBm : Group.rank B ≤ m) : Group.rank A ≤ freeOrderExponent m := by
@@ -149,7 +161,9 @@ the bound `t(m)` for the source. No finite-generation or exponent assumption on 
 is needed.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the rank and order comparison on lines 823–826.
+@isnad1 id=ex.3h4v.s6.6870634e76ea from=translated src=- shape=30d38f7f vocab=50811e35
+-/
 theorem exists_fg_and_rank_le_freeOrderExponent_of_injective [Group.FG B]
     (hB : HasExponentThree B) (f : A →* B) (hf : Function.Injective f)
     {m : ℕ} (hBm : Group.rank B ≤ m) :

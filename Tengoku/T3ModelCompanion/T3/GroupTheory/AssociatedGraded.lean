@@ -58,7 +58,9 @@ def relation (n : ℕ) : Subgroup (term G n) :=
 /-- The relation subgroup is normal in its central term.
 
 Paper-ID: preliminaries.associated_graded
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.18, underlying degree quotients and direct sum.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.18, underlying degree quotients and direct sum.
+@isnad1 id=normal.0h2v.s5.93a75a0a1f8e from=translated src=- shape=7590945e vocab=a6dd0c98
+-/
 instance relation_normal (n : ℕ) : (relation G n).Normal := by
   unfold relation
   infer_instance
@@ -104,14 +106,18 @@ def mk (n : ℕ) (x : term G n) : Layer G n :=
 /-- Every element of a layer is the initial form of a representative in that central term.
 
 Paper-ID: preliminaries.graded_image
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20, item 1.
+@isnad1 id=surjecti.0h2v.s5.49b8214f4c93 from=translated src=- shape=57a304a8 vocab=be9be75e
+-/
 theorem mk_surjective (n : ℕ) : Function.Surjective (mk G n) :=
   Additive.ofMul.surjective.comp (QuotientGroup.mk'_surjective _)
 
 /-- An initial form vanishes precisely when its representative lies in the next central term.
 
 Paper-ID: preliminaries.graded_image
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20, item 1.
+@isnad1 id=iff.0h3v.s7.eceaf92e0f65 from=translated src=- shape=65781abd vocab=b6402d9b
+-/
 @[simp]
 theorem mk_eq_zero (n : ℕ) (x : term G n) :
     mk G n x = 0 ↔ (x : G) ∈ (⊤ : Subgroup G).lowerCentralSeries n :=
@@ -120,7 +126,9 @@ theorem mk_eq_zero (n : ℕ) (x : term G n) :
 /-- Multiplication of representatives becomes addition in the layer.
 
 Paper-ID: preliminaries.graded_image
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20, item 1.
+@isnad1 id=eq.0h4v.s7.7a097dd70d56 from=translated src=- shape=49e8569d vocab=3bfd1013
+-/
 @[simp]
 theorem mk_mul (n : ℕ) (x y : term G n) : mk G n (x * y) = mk G n x + mk G n y :=
   rfl
@@ -128,7 +136,9 @@ theorem mk_mul (n : ℕ) (x y : term G n) : mk G n (x * y) = mk G n x + mk G n y
 /-- The artificial degree zero is zero, preserving the paper's positive grading.
 
 Paper-ID: preliminaries.associated_graded
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.18, positive-degree direct sum.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.18, positive-degree direct sum.
+@isnad1 id=subsingl.0h1v.s3.f3bfed1d6450 from=translated src=- shape=5e8d1ab7 vocab=606e903e
+-/
 instance layerZeroSubsingleton : Subsingleton (Layer G 0) := by
   apply subsingleton_of_forall_eq 0
   intro x
@@ -138,7 +148,9 @@ instance layerZeroSubsingleton : Subsingleton (Layer G 0) := by
 /-- Every layer has exponent dividing three when the group does.
 
 Paper-ID: preliminaries.associated_graded
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.18, lines 498–500.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.18, lines 498–500.
+@isnad1 id=eq.1h3v.s7.a7887570ee11 from=translated src=- shape=bc088254 vocab=3f2256b8
+-/
 theorem three_nsmul_eq_zero (hG : HasExponentThree G) (n : ℕ) (x : Layer G n) :
     3 • x = 0 := by
   obtain ⟨x, rfl⟩ := mk_surjective G n x
@@ -159,7 +171,9 @@ variable {G} {H K : Type*} [Group H] [Group K]
 /-- A homomorphism maps each lower central term into the corresponding target term.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=le.0h4v.s6.1b838ae854ee from=translated src=- shape=b3781195 vocab=d0e22f2b
+-/
 theorem map_lowerCentralSeries_le (f : G →* H) (n : ℕ) :
     ((⊤ : Subgroup G).lowerCentralSeries n).map f ≤
       (⊤ : Subgroup H).lowerCentralSeries n := by
@@ -177,7 +191,9 @@ def termMap (f : G →* H) (n : ℕ) : term G n →* term H n :=
 /-- The restricted homomorphism acts on the same underlying element.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h5v.s9.6f8a0e416bbd from=translated src=- shape=66b62982 vocab=5a20a7c4
+-/
 @[simp]
 theorem termMap_coe (f : G →* H) (n : ℕ) (x : term G n) :
     (termMap f n x : H) = f x := rfl
@@ -185,7 +201,9 @@ theorem termMap_coe (f : G →* H) (n : ℕ) (x : term G n) :
 /-- A homomorphism respects the relations defining each degree quotient.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=le.0h4v.s7.320c93fb296a from=translated src=- shape=e6c59b33 vocab=fcf9e9b5
+-/
 theorem relation_le_comap (f : G →* H) (n : ℕ) :
     relation G n ≤ (relation H n).comap (termMap f n) := by
   intro x hx
@@ -202,7 +220,9 @@ def mapAdd (f : G →* H) (n : ℕ) : Layer G n →+ Layer H n :=
 /-- The induced map sends the initial form of `x` to that of `f x`.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h5v.s9.f290a5bf5645 from=translated src=- shape=30a03f5d vocab=b9c29bfb
+-/
 @[simp]
 theorem mapAdd_mk (f : G →* H) (n : ℕ) (x : term G n) :
     mapAdd f n (mk G n x) = mk H n (termMap f n x) := rfl
@@ -210,7 +230,9 @@ theorem mapAdd_mk (f : G →* H) (n : ℕ) (x : term G n) :
 /-- Inducing a map on a layer preserves identity maps.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h2v.s7.e8f64eca2759 from=translated src=- shape=25483e70 vocab=f54196e6
+-/
 @[simp]
 theorem mapAdd_id (n : ℕ) : mapAdd (MonoidHom.id G) n = AddMonoidHom.id (Layer G n) := by
   apply AddMonoidHom.ext
@@ -218,7 +240,9 @@ theorem mapAdd_id (n : ℕ) : mapAdd (MonoidHom.id G) n = AddMonoidHom.id (Layer
   obtain ⟨x, rfl⟩ := mk_surjective G n x
   rfl
 
-/-- The trivial group homomorphism induces the zero map on every graded quotient.-/
+/-- The trivial group homomorphism induces the zero map on every graded quotient.
+@isnad1 id=eq.0h3v.s9.7c9f98492a8d from=translated src=- shape=7e1f6f9c vocab=6cfdd09e
+-/
 @[simp]
 theorem mapAdd_one (n : ℕ) : mapAdd (1 : G →* H) n = 0 := by
   apply AddMonoidHom.ext
@@ -229,7 +253,9 @@ theorem mapAdd_one (n : ℕ) : mapAdd (1 : G →* H) n = 0 := by
 /-- Inducing a map on a layer preserves composition.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h6v.s8.7cfa1dea9f95 from=translated src=- shape=d78a2d96 vocab=c4a8278c
+-/
 @[simp]
 theorem mapAdd_comp (f : G →* H) (g : H →* K) (n : ℕ) :
     mapAdd (g.comp f) n = (mapAdd g n).comp (mapAdd f n) := by
@@ -242,7 +268,9 @@ theorem mapAdd_comp (f : G →* H) (g : H →* K) (n : ℕ) :
 already lie in the next source central term.
 
 Paper-ID: preliminaries.graded_injectivity_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.
+@isnad1 id=iff.0h4v.s8.a7d344999761 from=translated src=- shape=08ed8179 vocab=6798a06e
+-/
 theorem mapAdd_injective_iff (f : G →* H) (n : ℕ) :
     Function.Injective (mapAdd f n) ↔
       ∀ x : term G n, f x ∈ (⊤ : Subgroup H).lowerCentralSeries n →
@@ -263,7 +291,9 @@ theorem mapAdd_injective_iff (f : G →* H) (n : ℕ) :
 /-- All layers in degree at least four vanish in an exponent-three group.
 
 Paper-ID: preliminaries.associated_graded_properties
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 1.
+@isnad1 id=subsingl.2h2v.s4.93b8017c44af from=translated src=- shape=b7b67f0e vocab=85f90bec
+-/
 theorem layer_subsingleton_of_four_le (hG : HasExponentThree G) {n : ℕ} (hn : 4 ≤ n) :
     Subsingleton (Layer G n) := by
   have hterm : term G n = ⊥ := by
@@ -284,7 +314,9 @@ theorem layer_subsingleton_of_four_le (hG : HasExponentThree G) {n : ℕ} (hn : 
 /-- Degree four of the associated graded is zero.
 
 Paper-ID: preliminaries.associated_graded_properties
-TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 1.-/
+TeX: T3_modelcompanion_v9.tex, v9 Lemma 2.19, item 1.
+@isnad1 id=subsingl.1h1v.s4.ac04bbb9c6c4 from=translated src=- shape=994a3394 vocab=7c7ff522
+-/
 theorem layer_four_subsingleton (hG : HasExponentThree G) : Subsingleton (Layer G 4) :=
   layer_subsingleton_of_four_le hG le_rfl
 
@@ -292,7 +324,9 @@ theorem layer_four_subsingleton (hG : HasExponentThree G) : Subsingleton (Layer 
 exponent-three group.
 
 Paper-ID: preliminaries.graded_injectivity_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.
+@isnad1 id=injectiv.2h3v.s8.3b68032bc709 from=translated src=- shape=fac01c2d vocab=86bbdcab
+-/
 theorem injective_of_mapAdd_injective (hG : HasExponentThree G) (f : G →* H)
     (hf : ∀ n, Function.Injective (mapAdd f n)) : Function.Injective f := by
   rw [← MonoidHom.ker_eq_bot_iff, eq_bot_iff]
@@ -319,7 +353,9 @@ theorem injective_of_mapAdd_injective (hG : HasExponentThree G) (f : G →* H)
 is equivalent to the two strictness equalities for inverse images of central terms.
 
 Paper-ID: preliminaries.graded_injectivity_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.
+@isnad1 id=iff.2h3v.s8.4d0fdabdec75 from=translated src=- shape=4e8aef86 vocab=238a100d
+-/
 theorem mapAdd_injective_iff_comap (hH : HasExponentThree H) (f : G →* H)
     (hf : Function.Injective f) :
     (∀ n, Function.Injective (mapAdd f n)) ↔
@@ -367,7 +403,9 @@ def subgroupMk (S : Subgroup G) (n : ℕ) : ↥(S ⊓ term G n) →* MulLayer G 
 /-- The kernel consists of elements of `S ∩ γₙ(G)` that lie in `γₙ₊₁(G)`.
 
 Paper-ID: preliminaries.graded_image
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20.
+@isnad1 id=eq.0h3v.s7.fca58d68816d from=translated src=- shape=7256b30b vocab=5ea79d6d
+-/
 theorem subgroupMk_ker (S : Subgroup G) (n : ℕ) :
     (subgroupMk S n).ker =
       ((⊤ : Subgroup G).lowerCentralSeries n).comap (S ⊓ term G n).subtype := by
@@ -431,7 +469,9 @@ def subgroupImage (S : Subgroup G) (n : ℕ) : Submodule (ZMod 3) (Layer G n) :=
 /-- Membership in the ambient graded image is given by a representative in `S ∩ γₙ(G)`.
 
 Paper-ID: preliminaries.graded_image
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20.
+@isnad1 id=iff.0h4v.s8.bb5ecc356b07 from=translated src=- shape=cfd96776 vocab=5c94544a
+-/
 theorem mem_subgroupImage (S : Subgroup G) (n : ℕ) (x : Layer G n) :
     x ∈ subgroupImage S n ↔ ∃ a : term G n, (a : G) ∈ S ∧ mk G n a = x := by
   constructor
@@ -459,7 +499,9 @@ noncomputable def subgroupLayerEquiv (S : Subgroup G) (n : ℕ) :
 /-- The canonical isomorphism sends the class of a subgroup element to its ambient initial form.
 
 Paper-ID: preliminaries.graded_image
-TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20.-/
+TeX: T3_modelcompanion_v9.tex, v9 Notation 2.20.
+@isnad1 id=eq.0h4v.s11.53565d6749d0 from=translated src=- shape=b958ffb5 vocab=853a20de
+-/
 @[simp]
 theorem subgroupLayerEquiv_mk (S : Subgroup G) (n : ℕ) (a : ↥(S ⊓ term G n)) :
     (subgroupLayerEquiv S n
@@ -476,7 +518,9 @@ def mapLayer (f : G →* H) (n : ℕ) : Layer G n →ₗ[ZMod 3] Layer H n :=
 /-- The induced linear map has the representative formula prescribed in the paper.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h5v.s9.9321c8ec253a from=translated src=- shape=defa92d6 vocab=1c8aba35
+-/
 @[simp]
 theorem mapLayer_mk (f : G →* H) (n : ℕ) (x : term G n) :
     mapLayer f n (mk G n x) = mk H n (termMap f n x) := rfl
@@ -484,13 +528,17 @@ theorem mapLayer_mk (f : G →* H) (n : ℕ) (x : term G n) :
 /-- Degreewise linear maps preserve identities.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h2v.s7.fa53cb9dcbe8 from=translated src=- shape=b77b90f7 vocab=12511b4f
+-/
 @[simp]
 theorem mapLayer_id (n : ℕ) : mapLayer (MonoidHom.id G) n = LinearMap.id := by
   ext x
   exact DFunLike.congr_fun (mapAdd_id n) x
 
-/-- The trivial group homomorphism induces the zero linear map on every layer.-/
+/-- The trivial group homomorphism induces the zero linear map on every layer.
+@isnad1 id=eq.0h3v.s9.e6fc34b00aeb from=translated src=- shape=ea40fdb5 vocab=ca9dcd7e
+-/
 @[simp]
 theorem mapLayer_one (n : ℕ) : mapLayer (1 : G →* H) n = 0 := by
   ext x
@@ -499,7 +547,9 @@ theorem mapLayer_one (n : ℕ) : mapLayer (1 : G →* H) n = 0 := by
 /-- Degreewise linear maps preserve composition.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h6v.s9.4ca60a062b9f from=translated src=- shape=7ed6682b vocab=72deb64d
+-/
 @[simp]
 theorem mapLayer_comp (f : G →* H) (g : H →* K) (n : ℕ) :
     mapLayer (g.comp f) n = (mapLayer g n).comp (mapLayer f n) := by
@@ -527,7 +577,9 @@ def map (f : G →* H) : GradedModule G →ₗ[ZMod 3] GradedModule H :=
 /-- The induced graded linear map acts on each homogeneous component by the quotient map.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h5v.s10.bc0c9327f41c from=translated src=- shape=36ae3bed vocab=96cbd55e
+-/
 @[simp]
 theorem map_lof (f : G →* H) (n : ℕ) (x : Layer G n) :
     map f (DirectSum.lof (ZMod 3) ℕ (Layer G) n x) =
@@ -537,7 +589,9 @@ theorem map_lof (f : G →* H) (n : ℕ) (x : Layer G n) :
 /-- The induced graded linear map acts degreewise.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h5v.s10.ce0f9f36c2d2 from=translated src=- shape=b37babdf vocab=f8b080a8
+-/
 @[simp]
 theorem map_apply (f : G →* H) (x : GradedModule G) (n : ℕ) :
     map f x n = mapLayer f n (x n) := rfl
@@ -545,7 +599,9 @@ theorem map_apply (f : G →* H) (x : GradedModule G) (n : ℕ) :
 /-- The induced graded linear map preserves identity maps.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h1v.s8.9c8810449500 from=translated src=- shape=49195a36 vocab=613efbee
+-/
 @[simp]
 theorem map_id : map (MonoidHom.id G) = LinearMap.id := by
   ext x n
@@ -554,7 +610,9 @@ theorem map_id : map (MonoidHom.id G) = LinearMap.id := by
 /-- The induced graded linear map preserves composition.
 
 Paper-ID: preliminaries.associated_graded_map
-TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.-/
+TeX: T3_modelcompanion_v9.tex, v9 Definition 2.22, underlying linear maps.
+@isnad1 id=eq.0h5v.s9.c808d58f3e93 from=translated src=- shape=80f4f33b vocab=950bc5ea
+-/
 @[simp]
 theorem map_comp (f : G →* H) (g : H →* K) :
     map (g.comp f) = (map g).comp (map f) := by
@@ -564,7 +622,9 @@ theorem map_comp (f : G →* H) (g : H →* K) :
 /-- Injectivity of the direct-sum map is equivalent to injectivity on every layer.
 
 Paper-ID: preliminaries.graded_injectivity_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.
+@isnad1 id=iff.0h3v.s9.b6ee7e17f4a4 from=translated src=- shape=3ddb38db vocab=24b2e1a5
+-/
 theorem map_injective_iff (f : G →* H) :
     Function.Injective (map f) ↔ ∀ n, Function.Injective (mapLayer f n) := by
   constructor
@@ -579,7 +639,9 @@ theorem map_injective_iff (f : G →* H) :
 /-- Injectivity of the underlying graded map implies injectivity of the group homomorphism.
 
 Paper-ID: preliminaries.graded_injectivity_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.
+@isnad1 id=injectiv.1h3v.s9.5af4e014095c from=translated src=- shape=22a2f274 vocab=c4aa7d93
+-/
 theorem injective_of_map_injective (f : G →* H) (hf : Function.Injective (map f)) :
     Function.Injective f :=
   injective_of_mapAdd_injective Fact.out f ((map_injective_iff f).mp hf)
@@ -588,7 +650,9 @@ theorem injective_of_map_injective (f : G →* H) (hf : Function.Injective (map 
 for the lower central series.
 
 Paper-ID: preliminaries.graded_injectivity_strictness
-TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.-/
+TeX: T3_modelcompanion_v9.tex, v9 Proposition 2.24, `proposition:gr(f) and LCS`.
+@isnad1 id=iff.1h3v.s9.ec52983a15fb from=translated src=- shape=3d2e10f0 vocab=cbe89bac
+-/
 theorem map_injective_iff_isStrict (f : G →* H) (hf : Function.Injective f) :
     Function.Injective (map f) ↔ IsStrict f.range := by
   rw [map_injective_iff, isStrict_range_iff_comap f hf]

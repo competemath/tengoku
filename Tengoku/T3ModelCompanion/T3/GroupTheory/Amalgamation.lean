@@ -50,7 +50,9 @@ def relations : Subgroup (Coproduct G H) := Subgroup.normalClosure (Set.range (r
 /-- The identification relations form a normal subgroup.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the quotient by the normal closure.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the quotient by the normal closure.
+@isnad1 id=normal.0h5v.s6.ccbe3d26f9f8 from=translated src=- shape=138ff8f4 vocab=3ff68b73
+-/
 instance relations_normal : (relations f g).Normal := Subgroup.normalClosure_normal
 
 /-- The canonical coproduct quotient identifying the two maps from the base group.
@@ -74,7 +76,9 @@ def rightMap : H →* Pushout f g := (QuotientGroup.mk' (relations f g)).comp Co
 /-- Killing a relator is exactly equality of the two corresponding quotient images.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, identification of the base in the quotient.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, identification of the base in the quotient.
+@isnad1 id=iff.0h7v.s12.f6ea5dc11032 from=translated src=- shape=80e9be98 vocab=eae1cddd
+-/
 theorem relator_mem_iff (N : Subgroup (Coproduct G H)) [N.Normal] (a : A) :
     relator f g a ∈ N ↔
       (QuotientGroup.mk' N) (Coproduct.inl (f a)) =
@@ -86,7 +90,9 @@ theorem relator_mem_iff (N : Subgroup (Coproduct G H)) [N.Normal] (a : A) :
 /-- The canonical maps agree on every element of the base group.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the amalgam diagram.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the amalgam diagram.
+@isnad1 id=eq.0h5v.s8.ffa3355061a7 from=translated src=- shape=0eab4366 vocab=7e0e22f3
+-/
 theorem leftMap_comp_eq_rightMap_comp : (leftMap f g).comp f = (rightMap f g).comp g := by
   ext a
   exact (relator_mem_iff f g (relations f g) a).mp (Subgroup.subset_normalClosure ⟨a, rfl⟩)
@@ -94,7 +100,9 @@ theorem leftMap_comp_eq_rightMap_comp : (leftMap f g).comp f = (rightMap f g).co
 /-- The canonical quotient satisfies the exponent-three law.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the quotient as a candidate amalgam in `𝒱₃`.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the quotient as a candidate amalgam in `𝒱₃`.
+@isnad1 id=hasexpon.0h5v.s7.84ae6c4d35b0 from=translated src=- shape=8a122440 vocab=5556d994
+-/
 theorem hasExponentThree_pushout : HasExponentThree (Pushout f g) := by
   intro x
   obtain ⟨y, rfl⟩ := QuotientGroup.mk'_surjective (relations f g) x
@@ -105,7 +113,9 @@ variable {K : Type z} [Group K]
 /-- Compatible factor maps kill all identification relations in any exponent-three target.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the universal quotient argument.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the universal quotient argument.
+@isnad1 id=le.2h8v.s9.1486bc300595 from=translated src=- shape=e7cc5020 vocab=abe26eea
+-/
 theorem relations_le_ker_lift (hK : HasExponentThree K) (i : G →* K) (j : H →* K)
     (hij : i.comp f = j.comp g) : relations f g ≤ (Coproduct.lift hK i j).ker := by
   apply Subgroup.normalClosure_le_normal
@@ -125,7 +135,9 @@ def lift (hK : HasExponentThree K) (i : G →* K) (j : H →* K)
 /-- The universal homomorphism restricts to the prescribed left factor map.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the left universal triangle.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the left universal triangle.
+@isnad1 id=eq.2h9v.s9.887bbe1c7855 from=translated src=- shape=e1ae69d4 vocab=0e10e401
+-/
 @[simp]
 theorem lift_leftMap (hK : HasExponentThree K) (i : G →* K) (j : H →* K)
     (hij : i.comp f = j.comp g) (x : G) : lift f g hK i j hij (leftMap f g x) = i x := rfl
@@ -133,7 +145,9 @@ theorem lift_leftMap (hK : HasExponentThree K) (i : G →* K) (j : H →* K)
 /-- The universal homomorphism restricts to the prescribed right factor map.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the right universal triangle.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the right universal triangle.
+@isnad1 id=eq.2h9v.s9.d05376e9aa71 from=translated src=- shape=1325dc26 vocab=5c19287d
+-/
 @[simp]
 theorem lift_rightMap (hK : HasExponentThree K) (i : G →* K) (j : H →* K)
     (hij : i.comp f = j.comp g) (x : H) : lift f g hK i j hij (rightMap f g x) = j x := rfl
@@ -141,7 +155,9 @@ theorem lift_rightMap (hK : HasExponentThree K) (i : G →* K) (j : H →* K)
 /-- Homomorphisms out of the canonical quotient are determined by the two factor maps.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, uniqueness in the universal property.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, uniqueness in the universal property.
+@isnad1 id=eq.2h8v.s10.39fec37a48f9 from=translated src=- shape=268ff423 vocab=7e0e22f3
+-/
 theorem hom_ext {i j : Pushout f g →* K}
     (hl : i.comp (leftMap f g) = j.comp (leftMap f g))
     (hr : i.comp (rightMap f g) = j.comp (rightMap f g)) : i = j := by
@@ -155,7 +171,9 @@ theorem hom_ext {i j : Pushout f g →* K}
 /-- Any amalgam, in any target universe, forces both canonical quotient maps to be injective.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the canonical quotient criterion.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the canonical quotient criterion.
+@isnad1 id=and.4h8v.s9.cad6e71095b8 from=translated src=- shape=3d887086 vocab=e3602d9e
+-/
 theorem canonicalMaps_injective_of_amalgam (hK : HasExponentThree K)
     (i : G →* K) (j : H →* K) (hi : Function.Injective i) (hj : Function.Injective j)
     (hij : i.comp f = j.comp g) :
@@ -181,7 +199,9 @@ def AmalgamableOver : Prop :=
 /-- An amalgam exists exactly when both maps into the canonical quotient are injective.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the first quotient criterion.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the first quotient criterion.
+@isnad1 id=iff.0h5v.s9.0dd4eee2f3d1 from=translated src=- shape=8ad0921e vocab=8f8d35a4
+-/
 theorem amalgamableOver_iff : AmalgamableOver f g ↔
     Function.Injective (leftMap f g) ∧ Function.Injective (rightMap f g) := by
   constructor
@@ -195,7 +215,9 @@ theorem amalgamableOver_iff : AmalgamableOver f g ↔
 /-- An amalgam in an arbitrary universe supplies one in the canonical coproduct universe.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the universe-independent quotient criterion.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the universe-independent quotient criterion.
+@isnad1 id=amalgama.4h8v.s8.c30bc961f677 from=translated src=- shape=55c42d5b vocab=95a25835
+-/
 theorem amalgamableOver_of_amalgam (hK : HasExponentThree K)
     (i : G →* K) (j : H →* K) (hi : Function.Injective i) (hj : Function.Injective j)
     (hij : i.comp f = j.comp g) : AmalgamableOver f g :=
@@ -204,14 +226,18 @@ theorem amalgamableOver_of_amalgam (hK : HasExponentThree K)
 /-- A left factor element dies in the quotient exactly when its coproduct image is a relation.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the first nontrivial witness alternative.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the first nontrivial witness alternative.
+@isnad1 id=iff.0h6v.s9.ffd20446a1ef from=translated src=- shape=7fa93825 vocab=a5c5ed3a
+-/
 theorem leftMap_eq_one_iff (x : G) : leftMap f g x = 1 ↔ Coproduct.inl x ∈ relations f g :=
   QuotientGroup.eq_one_iff _
 
 /-- A right factor element dies in the quotient exactly when its coproduct image is a relation.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the second nontrivial witness alternative.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the second nontrivial witness alternative.
+@isnad1 id=iff.0h6v.s9.23ec7a0c304e from=translated src=- shape=f9ed39d3 vocab=d16ce186
+-/
 theorem rightMap_eq_one_iff (x : H) : rightMap f g x = 1 ↔ Coproduct.inr x ∈ relations f g :=
   QuotientGroup.eq_one_iff _
 
@@ -219,7 +245,9 @@ theorem rightMap_eq_one_iff (x : H) : rightMap f g x = 1 ↔ Coproduct.inr x ∈
 normal closure of the identification relations.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, the two witness alternatives on lines 816–819.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, the two witness alternatives on lines 816–819.
+@isnad1 id=or.1h5v.s9.20a426b625d5 from=translated src=- shape=284db0ac vocab=e0242d04
+-/
 theorem exists_witness_of_not_amalgamableOver (h : ¬ AmalgamableOver f g) :
     (∃ x : G, x ≠ 1 ∧ Coproduct.inl x ∈ relations f g) ∨
       ∃ x : H, x ≠ 1 ∧ Coproduct.inr x ∈ relations f g := by
@@ -241,7 +269,9 @@ theorem exists_witness_of_not_amalgamableOver (h : ¬ AmalgamableOver f g) :
 relations as a normal subgroup. The index type need not be finite.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, replacing all base relations by `Δ`.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, replacing all base relations by `Δ`.
+@isnad1 id=eq.1h7v.s7.6c50934c44be from=translated src=- shape=71883628 vocab=0d0bfa37
+-/
 theorem normalClosure_relators_eq_of_closure_range_eq_top {I : Type*} (a : I → A)
     (ha : Subgroup.closure (Set.range a) = ⊤) :
     Subgroup.normalClosure (Set.range fun i => relator f g (a i)) = relations f g := by
@@ -263,7 +293,9 @@ theorem normalClosure_relators_eq_of_closure_range_eq_top {I : Type*} (a : I →
 family's relators, exactly as in the paper's finite set `Δ`.
 
 Paper-ID: main.bounded_witness
-TeX: T3_modelcompanion_v9.tex, `thm:main`, lines 813–819.-/
+TeX: T3_modelcompanion_v9.tex, `thm:main`, lines 813–819.
+@isnad1 id=or.2h7v.s10.4d9ad25ff94f from=translated src=- shape=8f86f738 vocab=09ce7d1a
+-/
 theorem exists_witness_of_generating_family {I : Type*} (a : I → A)
     (ha : Subgroup.closure (Set.range a) = ⊤) (h : ¬ AmalgamableOver f g) :
     (∃ x : G, x ≠ 1 ∧ Coproduct.inl x ∈
@@ -276,7 +308,9 @@ theorem exists_witness_of_generating_family {I : Type*} (a : I → A)
 /-- Precomposing the common base maps preserves any existing amalgam.
 
 Paper-ID: main.model_companion
-TeX: T3_modelcompanion_v9.tex, applying `thm:main` to an embedded copy of the finite base.-/
+TeX: T3_modelcompanion_v9.tex, applying `thm:main` to an embedded copy of the finite base.
+@isnad1 id=amalgama.1h7v.s7.af75551a0688 from=translated src=- shape=7e411122 vocab=66eaf6e7
+-/
 theorem AmalgamableOver.precomp {A' : Type*} [Group A'] (e : A' →* A)
     (h : AmalgamableOver f g) : AmalgamableOver (f.comp e) (g.comp e) := by
   obtain ⟨K, hK, hpow, i, j, hi, hj, hij⟩ := h
@@ -287,7 +321,9 @@ theorem AmalgamableOver.precomp {A' : Type*} [Group A'] (e : A' →* A)
 In particular this applies to the isomorphism onto the base's image in a model.
 
 Paper-ID: main.model_companion
-TeX: T3_modelcompanion_v9.tex, applying `thm:main` to an embedded copy of the finite base.-/
+TeX: T3_modelcompanion_v9.tex, applying `thm:main` to an embedded copy of the finite base.
+@isnad1 id=iff.1h7v.s7.1523a9c0d913 from=translated src=- shape=e774e1a4 vocab=beaa4a1a
+-/
 theorem amalgamableOver_precomp_iff {A' : Type*} [Group A'] (e : A' →* A)
     (he : Function.Surjective e) :
     AmalgamableOver (f.comp e) (g.comp e) ↔ AmalgamableOver f g := by

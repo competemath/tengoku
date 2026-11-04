@@ -51,7 +51,9 @@ instance rangeLofDecomposition :
 /-- The `i`-th homogeneous component is the canonical inclusion of the `i`-th coordinate.
 
 Paper-ID: preliminaries.associated_graded
-TeX: T3_modelcompanion_v9.tex, supporting the direct-sum grading in Definition 2.18.-/
+TeX: T3_modelcompanion_v9.tex, supporting the direct-sum grading in Definition 2.18.
+@isnad1 id=eq.0h5v.s12.b691c453a8f2 from=translated src=- shape=cba363d9 vocab=3b16a281
+-/
 @[simp]
 theorem coe_decompose_range_lof (x : ⨁ i, M i) (i : ι) :
     (decompose (fun i => LinearMap.range (lof R ι M i)) x i : ⨁ i, M i) =

@@ -43,7 +43,9 @@ also applies to general homomorphisms and includes zero-dimensional kernels.
 
 Paper-ID: structure.derived_strictification, structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, lines 1180–1182, and
-`lemma:number of generators for triple commutator roots`, lines 1240–1241.-/
+`lemma:number of generators for triple commutator roots`, lines 1240–1241.
+@isnad1 id=ex.0h4v.s12.f448a2808eef from=translated src=- shape=a145b77b vocab=4a968a6c
+-/
 theorem exists_layer_kernel_basis_representatives (f : G →* H) (k : ℕ)
     [Module.Finite (ZMod 3) (Layer G k)] :
     ∃ d ≤ Module.finrank (ZMod 3) (Layer G k),
@@ -110,7 +112,9 @@ minimum number of generators of the source group. The generators lift a basis of
 first-layer kernel in `exists_layer_kernel_basis_representatives`.
 
 Paper-ID: structure.derived_strictification
-TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, lines 1180–1182.-/
+TeX: T3_modelcompanion_v9.tex, `lemma:commutator root`, lines 1180–1182.
+@isnad1 id=ex.0h3v.s7.51a8109f7512 from=translated src=- shape=8f832b3d vocab=09159a86
+-/
 theorem exists_derived_defect_generators [Group.FG G] (f : G →* H) :
     ∃ d ≤ Group.rank G, ∃ g : Fin d → G,
       (∀ i, f (g i) ∈ commutator H) ∧
@@ -130,7 +134,9 @@ its intersection with `γ₂(G)`; it is not dropped when choosing the degree-two
 
 Paper-ID: structure.lcs_strictification
 TeX: T3_modelcompanion_v9.tex, `lemma:number of generators for triple commutator roots`,
-lines 1240–1241.-/
+lines 1240–1241.
+@isnad1 id=ex.1h3v.s7.023bfe8ff88f from=translated src=- shape=e2012b16 vocab=1be10b14
+-/
 theorem exists_lowerCentral_defect_generators [Group.FG G] (f : G →* H)
     (hf : (commutator H).comap f = commutator G) :
     ∃ d ≤ (Group.rank G).choose 2, ∃ g : Fin d → G,

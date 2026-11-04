@@ -40,7 +40,9 @@ companion of that theory. In particular, model completeness has its syntactic me
 Definition 2.2(2).
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, reverse implication of Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, reverse implication of Fact 2.3, lines 289–295; no label.
+@isnad1 id=ismodelc.3h3v.s5.faf8f8f6a90c from=translated src=- shape=451d4bc1 vocab=6c12c0fd
+-/
 theorem isModelCompanionOf_of_isExistentiallyClosed_iff (hT : T.IsPiTwo)
     (h₁ : ∀ M : Tstar.ModelType.{u, v, max u v}, T.IsExistentiallyClosed M)
     (h₂ : ∀ M : T.ModelType.{u, v, max u v}, T.IsExistentiallyClosed M → M ⊨ Tstar) :
@@ -61,7 +63,9 @@ companion's model class and the class of existentially closed models of the orig
 The model-class quantifiers range over nonempty structures in the canonical semantic universe.
 
 Paper-ID: model_theory.companion_iff_ec
-TeX: T3_modelcompanion_v9.tex, Fact 2.3, lines 289–295; no label.-/
+TeX: T3_modelcompanion_v9.tex, Fact 2.3, lines 289–295; no label.
+@isnad1 id=iff.1h3v.s5.3aebdf3af05c from=translated src=- shape=89b247f4 vocab=230954a5
+-/
 theorem isModelCompanionOf_iff_models_iff_isExistentiallyClosed (hT : T.IsPiTwo) :
     Tstar.IsModelCompanionOf T ↔
       ∀ (M : Type (max u v)) [L.Structure M] [Nonempty M],

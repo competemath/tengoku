@@ -31,7 +31,9 @@ variable {G : Type*} [Group G] [Fact (HasExponentThree G)] [Nontrivial G]
 reverse order. Both graded separation claims apply to arbitrary nontrivial `G`.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series` (Lemma 4.6).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series` (Lemma 4.6).
+@isnad1 id=centrals.0h1v.s8.52e5d589356a from=translated src=- shape=548bc858 vocab=b5f30878
+-/
 theorem centralSeriesCoincide_freeTwo : CentralSeriesCoincide (Coproduct G (Free (Fin 2))) :=
   AssociatedGraded.centralSeriesCoincide_of_bracket_separation
     FreeTwoSeparation.exists_triple_bracket_ne_zero FreeTwoSeparation.exists_bracket_ne_zero
@@ -40,7 +42,9 @@ theorem centralSeriesCoincide_freeTwo : CentralSeriesCoincide (Coproduct G (Free
 central series. This is the full statement of the paper's stabilization lemma.
 
 Paper-ID: structure.free_two_stabilization
-TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series` (Lemma 4.6).-/
+TeX: T3_modelcompanion_v9.tex, `lemma:coincidence of central series` (Lemma 4.6).
+@isnad1 id=and.0h1v.s9.5b110ce20fff from=translated src=- shape=ac7a5e51 vocab=f735fbf0
+-/
 theorem freeTwo_stabilization :
     IsStrict (inl (G := G) (H := Free (Fin 2))).range ∧
       CentralSeriesCoincide (Coproduct G (Free (Fin 2))) :=
